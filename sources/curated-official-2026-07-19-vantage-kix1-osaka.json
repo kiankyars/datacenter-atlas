@@ -1,0 +1,120 @@
+{
+  "schema_version": "1.0",
+  "evidence": [
+    {
+      "key": "vantage-kix1-location-page-captured-2026-07-19",
+      "kind": "company_disclosure",
+      "title": "Osaka, Japan Data Center Campus",
+      "source_url": "https://vantage-dc.com/data-center-locations/apac/osaka-japan/",
+      "publisher": "Vantage Data Centers",
+      "source_family": "vantage_data_center_location_pages",
+      "published_at": null,
+      "retrieved_at": "2026-07-19T16:08:47Z",
+      "license": "all-rights-reserved",
+      "attribution": "Vantage Data Centers",
+      "excerpt": "The current KIX1 location page describes a two-facility Osaka campus with up to 68MW of critical IT load and a 28MW first facility scheduled for mid-2026.",
+      "content_hash": "9b4cef94f30d9e2194c1faf07d02bbeb4ee26f86f71efcc268c4d8033b88f61b",
+      "metadata": {
+        "content_hash_scope": "SHA-256 of 222999 content-decoded HTML response bytes retrieved after redirects",
+        "content_hash_verification": "fetched_bytes_sha256",
+        "http_status": 200,
+        "content_type": "text/html; charset=UTF-8",
+        "response_retrieved_at": "2026-07-19T16:08:46Z",
+        "retrieval_method": "curl --fail --location --compressed with retries disabled and the DataCenterAtlas research user agent",
+        "page_modified_at": "2026-05-27T15:13:06-04:00",
+        "capacity_scope": "The page labels 68MW as campus critical IT load and identifies 28MW as the first facility's IT load; these scopes are separate and are not summed.",
+        "forecast_guardrail": "The mid-2026 schedule is retained as forecast context only and does not establish commissioning or operation.",
+        "coordinate_basis": "The source supports the Ibaraki locality but no reliable point; coordinates and geometry remain null.",
+        "classification_guardrail": "Cloud, high-density, hyperscaler, and enterprise wording is source context only; no operating-model, workload, tenant, or user observation is imported.",
+        "rights_scope": "Compact factual extraction under the publisher's all-rights-reserved terms; no source page is redistributed."
+      }
+    },
+    {
+      "key": "vantage-kix1-groundbreak-release-2024-05-22-captured-2026-07-19",
+      "kind": "company_disclosure",
+      "title": "Vantage Data Centers Breaks Ground on First Campus in Japan",
+      "source_url": "https://vantage-dc.com/news/vantage-data-centers-breaks-ground-on-first-campus-in-japan/",
+      "publisher": "Vantage Data Centers",
+      "source_family": "vantage_newsroom",
+      "published_at": "2024-05-22",
+      "retrieved_at": "2026-07-19T16:08:47Z",
+      "license": "all-rights-reserved",
+      "attribution": "Vantage Data Centers",
+      "excerpt": "The May 2024 release records the historical KIX1 groundbreaking, a 68MW campus plan, and a 28MW first-facility schedule.",
+      "content_hash": "acde29e4b56c0bd791b1c071823696e34e6eb878cea5670d6badab3b912e5517",
+      "metadata": {
+        "content_hash_scope": "SHA-256 of 190326 content-decoded HTML response bytes retrieved after redirects",
+        "content_hash_verification": "fetched_bytes_sha256",
+        "http_status": 200,
+        "content_type": "text/html; charset=UTF-8",
+        "response_retrieved_at": "2026-07-19T16:08:47Z",
+        "retrieval_method": "curl --fail --location --compressed with retries disabled and the DataCenterAtlas research user agent",
+        "page_modified_at": "2024-05-22T17:23:41-04:00",
+        "historical_status_context": "The source reports a groundbreaking on 2024-05-22. It is retained only as dated evidence metadata because the release model otherwise carries the latest lifecycle indefinitely.",
+        "lifecycle_guardrail": "No 2024 under-construction lifecycle observation is imported and neither the campus nor first-facility project receives a current lifecycle status.",
+        "rights_scope": "Compact factual extraction under the publisher's all-rights-reserved terms; no source page is redistributed."
+      }
+    }
+  ],
+  "campus": {
+    "stable_key": "curated:vantage-kix1-osaka-campus",
+    "name": "Vantage KIX1 Osaka Data Center Campus",
+    "country": "Japan",
+    "address": "Ibaraki, Osaka, Japan",
+    "roles": {},
+    "coordinates": null,
+    "geometry": null,
+    "evidence_key": "vantage-kix1-location-page-captured-2026-07-19",
+    "as_of_date": "2026-05-27",
+    "method": "authoritative_locality",
+    "confidence": 0.98
+  },
+  "project": {
+    "stable_key": "curated:vantage-kix1-osaka-campus:first-facility",
+    "name": "Vantage KIX1 First Facility",
+    "country": "Japan",
+    "address": "Ibaraki, Osaka, Japan",
+    "roles": {},
+    "coordinates": null,
+    "geometry": null,
+    "evidence_key": "vantage-kix1-location-page-captured-2026-07-19",
+    "as_of_date": "2026-05-27",
+    "method": "authoritative_locality",
+    "confidence": 0.98
+  },
+  "lifecycle": [],
+  "operating_models": [],
+  "workloads": [],
+  "capacities": [
+    {
+      "entity": "campus",
+      "metric": "critical_it_mw",
+      "stage": "planned",
+      "unit": "MW",
+      "low": 68,
+      "base": 68,
+      "high": 68,
+      "method": "reported",
+      "confidence": 0.99,
+      "evidence_key": "vantage-kix1-location-page-captured-2026-07-19",
+      "as_of_date": "2026-05-27",
+      "target_date": null,
+      "notes": "Up-to-68MW critical IT load for the full two-facility campus once fully developed; planned campus scope, not current load and not additive with the first-facility row."
+    },
+    {
+      "entity": "project",
+      "metric": "critical_it_mw",
+      "stage": "forecast",
+      "unit": "MW",
+      "low": 28,
+      "base": 28,
+      "high": 28,
+      "method": "reported",
+      "confidence": 0.98,
+      "evidence_key": "vantage-kix1-location-page-captured-2026-07-19",
+      "as_of_date": "2026-05-27",
+      "target_date": null,
+      "notes": "First-facility IT-load forecast associated with the page's mid-2026 operational schedule; the schedule is not proof of commissioning or operation and this facility row is within, not additional to, the 68MW campus plan."
+    }
+  ]
+}

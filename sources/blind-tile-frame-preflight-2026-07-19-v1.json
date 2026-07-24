@@ -1,0 +1,171 @@
+{
+  "assignment_contract": {
+    "all_positive_country_overlaps_retained": true,
+    "country_assignment_method": "greatest_projected_overlap_then_lexicographic_country_key",
+    "country_tie_break": "lexicographically smallest country_key",
+    "macroregion_assignment_method": "greatest_projected_overlap_then_lexicographic_macroregion",
+    "macroregion_order": [
+      "Africa",
+      "Asia",
+      "Europe",
+      "North America",
+      "South America",
+      "Oceania"
+    ],
+    "macroregion_tie_break": "lexicographically smallest macroregion",
+    "macroregions": [
+      "Africa",
+      "Asia",
+      "Europe",
+      "North America",
+      "South America",
+      "Oceania"
+    ]
+  },
+  "blockers": [
+    "production EPSG:6933 intersections have not been computed from the pinned Natural Earth geometry",
+    "frozen GHS-BUILT-S 2020 and GHS-SMOD auxiliary artifacts are absent",
+    "a frozen source-policy-compliant OSM industrial/grid auxiliary artifact is absent"
+  ],
+  "eligibility_contract": {
+    "antarctica_excluded": true,
+    "eligible_when": "positive projected-area intersection with the union of non-Antarctic Natural Earth land",
+    "natural_earth_artifact_bytes": 13287234,
+    "natural_earth_artifact_sha256": "239eec57ac17f100a11e2536cffc56752c318b50ae765b0918ff7aab4ce8f255",
+    "natural_earth_version": "5.1.1",
+    "positive_land_intersection_required": true,
+    "projected_area_crs": "EPSG:6933"
+  },
+  "fixture_only": true,
+  "format": "datacenter-atlas-blind-tile-frame-definition-v1",
+  "generated_at": "2026-07-19T00:00:00Z",
+  "grid_contract": {
+    "crs": "EPSG:6933",
+    "crs_epsg": 6933,
+    "integer_indexed": true,
+    "origin_m": [
+      0,
+      0
+    ],
+    "tile_area_m2": 16000000,
+    "tile_id_format": "e6933-4km-x{signed_zero_padded_x_index}-y{signed_zero_padded_y_index}",
+    "tile_size_m": 4000
+  },
+  "implementation_contract": {
+    "algorithm_id": "blind-tile-frame-preflight-v1",
+    "module": {
+      "bytes": 56008,
+      "path": "../datacenter_atlas/blind_tile_frame.py",
+      "sha256": "3cb412e00d0cd2fb1f6482d1e1bfbc6d2f79f14c627e66841752782c7a54913d"
+    }
+  },
+  "input_contract": {
+    "ghsl": {
+      "artifacts": [],
+      "available": false,
+      "derived_values_in_fixture": false
+    },
+    "natural_earth": {
+      "artifact": {
+        "bytes": 13287234,
+        "path": "../source_cache/natural-earth-5.1.1-ca96624/ne_10m_admin_0_countries.geojson",
+        "sha256": "239eec57ac17f100a11e2536cffc56752c318b50ae765b0918ff7aab4ce8f255"
+      },
+      "geometry_applied_to_fixture": false,
+      "version": "5.1.1"
+    },
+    "normalized_fixture": {
+      "bytes": 3426,
+      "path": "blind_tile_frame_inputs/preflight-fixture-2026-07-19-v1.json",
+      "sha256": "fb19535d832b7d34e80fc31531edbad15d4ca3080427d00ef43adc0c56cdd139"
+    },
+    "osm_auxiliary": {
+      "artifacts": [],
+      "available": false,
+      "derived_values_in_fixture": false
+    }
+  },
+  "production_frame_built": false,
+  "release_id": "blind-tile-frame-preflight-2026-07-19-v1",
+  "sampling_contract": {
+    "draw_key_method": "SHA256(ASCII(seed_sha256) || NUL || ASCII(tile_id))",
+    "global_quota_ceiling": 960,
+    "inclusion_probability": "n_h/N_h stored as exact unreduced integer numerator and denominator",
+    "macroregion_order": [
+      "Africa",
+      "Asia",
+      "Europe",
+      "North America",
+      "South America",
+      "Oceania"
+    ],
+    "no_reallocation_when_stratum_is_smaller": true,
+    "quota_per_macroregion_and_stratum": {
+      "background": 16,
+      "industrial_and_grid": 80,
+      "industrial_xor_grid": 40,
+      "urban_built": 24
+    },
+    "rank_order": [
+      "draw_key",
+      "tile_id"
+    ],
+    "seed_sha256": "8dfad5fa219214e8031b70e831b9ccf45d881b32066051775417f0651f651e3f",
+    "seed_string": "datacenter-atlas-blind-tile-audit-v1|frame-2026-07-19",
+    "small_stratum_policy": "census",
+    "stratum_order": [
+      "background",
+      "urban_built",
+      "industrial_xor_grid",
+      "industrial_and_grid"
+    ],
+    "weight": "N_h/n_h stored as exact unreduced integer numerator and denominator"
+  },
+  "schema_version": 1,
+  "semantic_policy": {
+    "annual_energy_consumption_inferred": false,
+    "automatic_atlas_import_performed": false,
+    "construction_activity_inferred": false,
+    "data_centre_identity_inferred": false,
+    "data_centre_presence_inferred": false,
+    "data_centre_type_inferred": false,
+    "gross_facility_power_inferred": false,
+    "it_capacity_inferred": false,
+    "lifecycle_status_inferred": false,
+    "operating_status_inferred": false,
+    "operator_inferred": false,
+    "owner_inferred": false,
+    "pue_inferred": false,
+    "selection_is_data_centre_evidence": false,
+    "workload_inferred": false
+  },
+  "stratum_contract": {
+    "classification_precedence": [
+      "industrial_and_grid",
+      "industrial_xor_grid",
+      "urban_built",
+      "background"
+    ],
+    "definitions": {
+      "background": "no urban, industrial, or grid signal",
+      "industrial_and_grid": "industrial and grid signals are both true; urban may coexist",
+      "industrial_xor_grid": "exactly one of industrial or grid is true; urban may coexist",
+      "urban_built": "urban is true and industrial and grid are both false"
+    },
+    "ghsl_built_surface_threshold_fraction_of_tile_land": {
+      "denominator": 200,
+      "numerator": 1
+    },
+    "ghsl_smod_urban_cluster_is_urban": true,
+    "industrial_minimum_intersection_m2": 10000,
+    "osm_grid_maximum_distance_m": 5000,
+    "osm_grid_minimum_parsed_voltage_kv": 110,
+    "strata": [
+      "background",
+      "urban_built",
+      "industrial_xor_grid",
+      "industrial_and_grid"
+    ],
+    "unknown_signal_policy": "unknown is false for classification and remains in the lower stratum"
+  }
+}

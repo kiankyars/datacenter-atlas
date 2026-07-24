@@ -1,0 +1,127 @@
+{
+  "builder": {
+    "cli": {
+      "bytes": 1866,
+      "mode": "0644",
+      "path": "scripts/build_satellite_change_preparation_v1.py",
+      "sha256": "9f52ed3be4fb58977691a1ad4e92aee120d95342b7a366250c6232ab5f5db55a"
+    },
+    "module": {
+      "bytes": 46019,
+      "mode": "0644",
+      "path": "datacenter_atlas/satellite_change_preparation_v1.py",
+      "sha256": "2e0c3e462fa0a6a6c4d59290444b17dca6ee075c7cf648ebeb349cd1040988c7"
+    },
+    "outer_shim": {
+      "bytes": 157,
+      "mode": "0644",
+      "path": "satellite_change_preparation_v1.py",
+      "sha256": "0f14ddddf49d59672efe930edf29bfd5d36108b6ebd071e34a1634cd6caaaa74"
+    }
+  },
+  "claim_constraints": {
+    "atlas_claim_created": false,
+    "atlas_mutation": false,
+    "automated_promotion_allowed": false,
+    "capacity_claim_created": false,
+    "construction_status_claim_created": false,
+    "construction_truth_claim_created": false,
+    "data_centre_identity_claim_created": false,
+    "data_centre_type_claim_created": false,
+    "energy_claim_created": false,
+    "imagery_downloaded": false,
+    "imagery_opened": false,
+    "lifecycle_claim_created": false,
+    "network_requests_performed": false,
+    "operator_claim_created": false,
+    "power_claim_created": false,
+    "pue_claim_created": false,
+    "raster_analysis_executed": false,
+    "semianalysis_parity_claim_created": false,
+    "site_identity_inference": false,
+    "workload_claim_created": false
+  },
+  "expected_partition": {
+    "active_jobs": 87,
+    "distinct_aois": 84,
+    "jobs_in_shared_aois": 6,
+    "multi_tile_blocked": 5,
+    "multi_tile_ready": 6,
+    "partition_inventory_sha256": "2b68215d023217735f32a5920c22406adb25e47ba83d744ff9f6de45db11e809",
+    "shared_aoi_groups": 3,
+    "single_tile_ready": 74,
+    "terminal_no_scene": 2
+  },
+  "format": "datacenter-atlas-satellite-change-preparation-definition-v1",
+  "generated_at": "2026-07-21T00:30:00Z",
+  "preparation_id": "2026-07-20-open-seed-v57-active-change-preparation-v1",
+  "processors": {
+    "multi_tile": {
+      "algorithm_version": "sentinel-2-l2a-change-mosaic-v3",
+      "cli": {
+        "bytes": 33684,
+        "mode": "0644",
+        "path": "scripts/sentinel_change_mosaic.py",
+        "sha256": "6e5ffc0dbb04a1f8202d13556e26fe45a9075966da9037e70f417152360e2183"
+      },
+      "minimum_component_area_m2": 5000,
+      "module": {
+        "bytes": 34096,
+        "mode": "0644",
+        "path": "datacenter_atlas/satellite_change_mosaic.py",
+        "sha256": "68a89c8aedd16326c530d3c07416a10432e64af1458dba630ded89d4b5ace071"
+      }
+    },
+    "single_tile": {
+      "algorithm_version": "sentinel-2-l2a-change-v2",
+      "cli": {
+        "bytes": 23651,
+        "mode": "0644",
+        "path": "scripts/sentinel_change.py",
+        "sha256": "745c737d28fca65dddb37a0d56396d815c5d52cf90f697d714769aa52d59b78f"
+      },
+      "minimum_component_area_m2": 5000,
+      "module": {
+        "bytes": 13731,
+        "mode": "0644",
+        "path": "datacenter_atlas/satellite_change.py",
+        "sha256": "d18ee916c7e96bef7fed704960bb92292be954e0f4d7a8982f58b979acc662f2"
+      }
+    }
+  },
+  "runtime": {
+    "gdal": "3.12.1",
+    "numpy": "2.5.1",
+    "pillow": "12.3.0",
+    "proj": "9.7.1",
+    "python": "3.12.13",
+    "rasterio": "1.5.0"
+  },
+  "schema_version": 1,
+  "sources": {
+    "catalog_batch": {
+      "closed_tree": {
+        "directories": 174,
+        "file_bytes": 56500969,
+        "files": 256,
+        "inventory_sha256": "355b4ced1d5722cce60abcd99b4af76f0e3816d2af86c07b8d697e0551f444a4"
+      },
+      "directory": "satellite_review_runs/2026-07-20-open-seed-v57-active-001"
+    },
+    "catalog_lock": {
+      "bytes": 0,
+      "mode": "0600",
+      "path": "satellite_review_runs/2026-07-20-open-seed-v57-active-001.lock",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "queue_bundle": {
+      "closed_tree": {
+        "directories": 1,
+        "file_bytes": 463568,
+        "files": 3,
+        "inventory_sha256": "ad8f9478172097aa29540fcb1e4507670280d100c745173633ea83cc74119ec8"
+      },
+      "directory": "satellite_review_queues/2026-07-20-open-seed-v57"
+    }
+  }
+}

@@ -1,0 +1,128 @@
+{
+  "schema_version": "1.0",
+  "evidence": [
+    {
+      "key": "ntt-frankfurt-1-location-page-captured-2026-07-19",
+      "kind": "company_disclosure",
+      "title": "Frankfurt 1 Data Center",
+      "source_url": "https://services.global.ntt/en-us/services-and-products/global-data-centers/global-locations/emea/frankfurt-1-data-center",
+      "publisher": "NTT DATA, Inc.",
+      "source_family": "ntt_global_data_center_location_pages",
+      "published_at": null,
+      "retrieved_at": "2026-07-19T16:08:50Z",
+      "license": "all-rights-reserved",
+      "attribution": "NTT DATA, Inc.",
+      "excerpt": "The current Frankfurt 1 page reports 70.1MW of critical IT load, a distinct 7.3MW expansion currently under construction, and a 77.4MW maximum IT load.",
+      "content_hash": "1cea8254e98afefb4287a71e73f0ca85c6180ce5a5293b384a5617900b69d920",
+      "metadata": {
+        "content_hash_scope": "SHA-256 of 402159 content-decoded HTML response bytes retrieved after redirects",
+        "content_hash_verification": "fetched_bytes_sha256",
+        "http_status": 200,
+        "content_type": "text/html; charset=utf-8",
+        "response_retrieved_at": "2026-07-19T16:08:50Z",
+        "retrieval_method": "curl --fail --location --compressed with retries disabled and the DataCenterAtlas research user agent",
+        "hash_reproducibility": "The HTML includes dynamic CSP and telemetry decoration, so the hash is specific to this retrieval; the factual page text was independently rechecked.",
+        "address_scope": "The page states Eschborner Landstraße 100, 60489 Frankfurt am Main, Germany.",
+        "coordinate_guardrail": "The HTML's data-center-map widget pair -5.950637579244614,11.181073702107355 is an impossible Frankfurt location also reused on the Amsterdam page. It is rejected as a global-map default; coordinates and geometry remain null.",
+        "capacity_scope": "70.1MW is current campus critical IT load, 7.3MW is the distinct expansion's additional critical IT load, and 77.4MW is the source-reported post-expansion campus maximum. These scope-specific rows must not be aggregated together.",
+        "substation_evidence": "The page reports an onsite substation delivering 120MVA.",
+        "mva_guardrail": "120MVA is retained only as untyped evidence metadata; MVA is not converted to MW and no grid, gross-facility, or critical-IT row is derived from it.",
+        "classification_guardrail": "Cloud-network and operator wording is source context only; no operating-model, workload, owner, operator, tenant, or user observation is imported.",
+        "rights_scope": "Compact factual extraction under the publisher's all-rights-reserved terms; no source page is redistributed."
+      }
+    }
+  ],
+  "campus": {
+    "stable_key": "curated:ntt-frankfurt-1-campus",
+    "name": "NTT Frankfurt 1 Data Center Campus",
+    "country": "Germany",
+    "address": "Eschborner Landstraße 100, 60489 Frankfurt am Main, Germany",
+    "roles": {},
+    "coordinates": null,
+    "geometry": null,
+    "evidence_key": "ntt-frankfurt-1-location-page-captured-2026-07-19",
+    "as_of_date": "2026-07-19",
+    "method": "authoritative_locality",
+    "confidence": 0.99
+  },
+  "project": {
+    "stable_key": "curated:ntt-frankfurt-1-campus:7-3mw-expansion",
+    "name": "NTT Frankfurt 1 7.3MW Expansion",
+    "country": "Germany",
+    "address": "Eschborner Landstraße 100, 60489 Frankfurt am Main, Germany",
+    "roles": {},
+    "coordinates": null,
+    "geometry": null,
+    "evidence_key": "ntt-frankfurt-1-location-page-captured-2026-07-19",
+    "as_of_date": "2026-07-19",
+    "method": "authoritative_locality",
+    "confidence": 0.99
+  },
+  "lifecycle": [
+    {
+      "entity": "campus",
+      "value": "operational",
+      "evidence_key": "ntt-frankfurt-1-location-page-captured-2026-07-19",
+      "as_of_date": "2026-07-19",
+      "method": "authoritative_status_update",
+      "confidence": 0.99
+    },
+    {
+      "entity": "project",
+      "value": "under_construction",
+      "evidence_key": "ntt-frankfurt-1-location-page-captured-2026-07-19",
+      "as_of_date": "2026-07-19",
+      "method": "authoritative_construction_start",
+      "confidence": 0.99
+    }
+  ],
+  "operating_models": [],
+  "workloads": [],
+  "capacities": [
+    {
+      "entity": "campus",
+      "metric": "critical_it_mw",
+      "stage": "operational",
+      "unit": "MW",
+      "low": 70.1,
+      "base": 70.1,
+      "high": 70.1,
+      "method": "reported",
+      "confidence": 0.99,
+      "evidence_key": "ntt-frankfurt-1-location-page-captured-2026-07-19",
+      "as_of_date": "2026-07-19",
+      "target_date": null,
+      "notes": "Source-reported current campus critical IT load; excludes the separately scoped 7.3MW expansion and must not be added to the 77.4MW post-expansion maximum."
+    },
+    {
+      "entity": "project",
+      "metric": "critical_it_mw",
+      "stage": "planned",
+      "unit": "MW",
+      "low": 7.3,
+      "base": 7.3,
+      "high": 7.3,
+      "method": "reported",
+      "confidence": 0.99,
+      "evidence_key": "ntt-frankfurt-1-location-page-captured-2026-07-19",
+      "as_of_date": "2026-07-19",
+      "target_date": null,
+      "notes": "Additional critical IT load for the distinct expansion that the current page says is under construction; planned capacity stage does not itself assert energization or operation."
+    },
+    {
+      "entity": "campus",
+      "metric": "critical_it_mw",
+      "stage": "planned",
+      "unit": "MW",
+      "low": 77.4,
+      "base": 77.4,
+      "high": 77.4,
+      "method": "reported",
+      "confidence": 0.99,
+      "evidence_key": "ntt-frankfurt-1-location-page-captured-2026-07-19",
+      "as_of_date": "2026-07-19",
+      "target_date": null,
+      "notes": "Source-reported maximum campus IT load after the expansion; a future full-campus scope, not an additional amount to sum with the 70.1MW or 7.3MW rows."
+    }
+  ]
+}

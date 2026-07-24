@@ -1,0 +1,225 @@
+{
+  "access": {
+    "anonymous_api_access_documented": false,
+    "api_host_robots_http_status": 500,
+    "api_host_robots_policy_obtained": false,
+    "api_invocation_performed": false,
+    "canonical_eiass_robots_outcome": "tls_handshake_failure",
+    "data_go_development_traffic_period": null,
+    "data_go_development_traffic_value": 10000,
+    "data_go_free": true,
+    "data_go_portal_documentation_robots_http_status": 200,
+    "data_go_portal_documentation_robots_wildcard_root_disallow": false,
+    "development_review": "automatic_approval",
+    "operation_review": "automatic_approval",
+    "service_key_required": true,
+    "usage_application_surface_present": true,
+    "www_eiass_robots_outcome": "network_error"
+  },
+  "business_area_geometry_api": {
+    "base_url": "https://apis.data.go.kr/1480523/BsnsAreaService",
+    "data_formats": [
+      "JSON",
+      "XML"
+    ],
+    "discovery_source": false,
+    "license_label": "unrestricted",
+    "operation_paths": [
+      "/getInfoWFS",
+      "/getInfoWMS"
+    ],
+    "service_key_required": true,
+    "wfs_required_parameters": [
+      "ServiceKey",
+      "srsName",
+      "maxFeatures"
+    ],
+    "why_not_used": "geometry service is not a documented data-centre or project-name discovery endpoint and was not invoked"
+  },
+  "coverage_contract": {
+    "all_environmental_assessment_categories_captured": false,
+    "all_korean_data_centre_projects_claimed": false,
+    "broader_building_planning_and_grid_permits_covered": false,
+    "complete_for_south_korea_claimed": false,
+    "full_corpus_enumeration_executed": false,
+    "result_count": null,
+    "site_count": null,
+    "source_scope": "NIER EIASS environmental-impact discussion-status lists for EIA plus prior, strategic, and small-scale assessment records"
+  },
+  "downstream_import_policy": {
+    "construction_map_import_permitted": false,
+    "construction_master_import_permitted": false,
+    "current_coverage_ledger_import_permitted": false,
+    "explicit_positive_contract_present": false,
+    "reason": "zero-row source assessment with no API invocation, no project/site resolution, and no physical-construction or operating evidence"
+  },
+  "endpoint_contracts": {
+    "environmental_impact_assessment_discussion_list": {
+      "base_url": "https://apis.data.go.kr/1480523/EnvrnAffcEvlDscssSttusInfoInqireService",
+      "data_format": "XML",
+      "item_fields": [
+        "bizNm",
+        "ccilOrganNm",
+        "eiaCd",
+        "eiaSeq",
+        "firstCtgCd",
+        "rnum",
+        "stepChangeDt"
+      ],
+      "operation_path": "/getDscssBsnsListInfoInqire",
+      "optional_query_parameters": [
+        "numOfRows",
+        "searchStep1",
+        "searchStep2",
+        "searchOrgan",
+        "searchText"
+      ],
+      "page_number_base_documented": false,
+      "page_size_default": null,
+      "page_size_default_documented": false,
+      "page_size_maximum": null,
+      "page_size_maximum_documented": false,
+      "required_query_parameters": [
+        "serviceKey",
+        "pageNo"
+      ],
+      "response_pagination_fields": [
+        "numOfRows",
+        "pageNo",
+        "totalCount"
+      ],
+      "search_text_documentation": "business-name search term"
+    },
+    "pre_strategy_small_scale_discussion_list": {
+      "base_url": "https://apis.data.go.kr/1480523/BeffatStrtgySmallScaleDscssSttusInfoInqireService",
+      "data_format": "XML",
+      "item_fields": [
+        "applyDt",
+        "bizNm",
+        "bizSeq",
+        "ccilStepCd",
+        "perCd",
+        "rnum"
+      ],
+      "operation_path": "/getBsnsStrtgySmallScaleDscssListInfoInqire",
+      "optional_query_parameters": [
+        "pressGubn",
+        "searchStep1",
+        "searchStep2",
+        "searchOrgan",
+        "searchText"
+      ],
+      "page_number_base_documented": false,
+      "page_size_default": null,
+      "page_size_default_documented": false,
+      "page_size_maximum": null,
+      "page_size_maximum_documented": false,
+      "press_gubn_values": {
+        "M": "small_scale",
+        "S": "strategic",
+        "null": "prior_environmental_review"
+      },
+      "required_query_parameters": [
+        "serviceKey",
+        "pageNo",
+        "numOfRows"
+      ],
+      "response_pagination_fields": [
+        "numOfRows",
+        "pageNo",
+        "totalCount"
+      ],
+      "search_text_documentation": "business-name search"
+    },
+    "shared_semantics": {
+      "anonymous_invocation_documented": false,
+      "exact_phrase_matching_documented": false,
+      "machine_readable_project_list_endpoints_found": true,
+      "pagination_fields_documented": true,
+      "service_key_required": true,
+      "snapshot_or_as_of_semantics_documented": false,
+      "stable_sort_documented": false,
+      "substring_matching_documented": false,
+      "total_count_documented": true
+    }
+  },
+  "format": "datacenter-atlas-south-korea-eiass-nier-definition-v1",
+  "inference_policy": {
+    "administrative_eia_record_is_atlas_project": false,
+    "administrative_eia_record_is_atlas_site": false,
+    "administrative_eia_stage_is_physical_lifecycle": false,
+    "automatic_entity_merge_permitted": false,
+    "automatic_project_merge_permitted": false,
+    "automatic_site_merge_permitted": false,
+    "construction_status": null,
+    "data_centre_type": null,
+    "review_only": true
+  },
+  "migration_notice": {
+    "attachment_labelled_recovering": true,
+    "attachment_requested": false,
+    "notice_date": "2025-05-07",
+    "notice_url": "https://www.data.go.kr/bbs/ntc/selectNotice.do?originId=NOTICE_0000000004067",
+    "old_kei_api_count": 22,
+    "old_kei_services_discontinued": true,
+    "reason": "EIASS transferred from KEI to NIER",
+    "replacement_description": "identical NIER OpenAPI services",
+    "replacement_mapping_attachment_contents_verified": false
+  },
+  "network_policy": {
+    "current_audit_remaining_attempt_budget": 30,
+    "direct_request_attempt_cap": 40,
+    "minimum_request_interval_seconds": 3.0,
+    "one_request_at_a_time": true,
+    "response_body_hash_required": true,
+    "stop_and_null_counts_on_cap_or_error": true,
+    "stop_before_first_result_request_unless_access_robots_rights_and_reproducibility_gates_are_affirmative": true
+  },
+  "publisher": "Climate Energy Environment Ministry, National Institute of Environmental Research (NIER), via the Public Data Portal",
+  "release_id": "south-korea-eiass-nier-eia-project-search-2026-07-19-v1",
+  "retention": {
+    "administrative_eia_rows_retained": false,
+    "applicant_or_contact_fields_retained": false,
+    "attachments_or_documents_retained": false,
+    "geometry_retained": false,
+    "raw_response_bodies_retained": false,
+    "result_titles_or_descriptions_retained": false
+  },
+  "rights": {
+    "api_metadata_affirms_attribution_reuse_scope": true,
+    "api_metadata_marks_third_party_rights_included": true,
+    "api_metadata_publication_permitted": true,
+    "api_result_or_derived_row_publication_permitted_if_conditions_met": true,
+    "data_go_policy_type_one_allows_commercial_and_noncommercial_use": true,
+    "data_go_policy_type_one_allows_derivative_works": true,
+    "data_go_policy_type_one_requires_attribution": true,
+    "eiass_direct_rights_page_request_made": false,
+    "eiass_footer_all_rights_reserved": true,
+    "eiass_official_rights_pages_observed_via_browser_proxy": true,
+    "eiass_terms_restrict_unapproved_reproduction_distribution_alteration_or_commercial_use": true,
+    "eiass_unmarked_material_requires_prior_consultation": true,
+    "eiass_web_result_reuse_scope_affirmed": false,
+    "legal_conclusion_claimed": false,
+    "raw_audit_response_redistribution_permitted": false,
+    "reason": "The two NIER list-API metadata pages mark the resources as including third-party rights under an attribution condition and as Public Works Type 1. The directly audited Data Portal policy defines Type 1 as attribution-required use that permits commercial, noncommercial, and derivative use. This affirmative API scope does not automatically apply to EIASS web-search pages or attached assessment documents. Browser-proxy review of the official EIASS copyright policy and terms found an All Rights Reserved footer, free-reuse language limited to KOGL-marked works, prior-consultation language for unmarked material, and restrictions on unapproved reproduction, distribution, alteration, sale, or commercial use. Those EIASS pages were not directly requested after the robots origins failed.",
+    "robots_rule_is_reuse_permission": false,
+    "verified_local_date": "2026-07-19"
+  },
+  "schema_version": 1,
+  "source_id": "south-korea-eiass-nier-eia-project-search",
+  "source_urls": {
+    "business_area_api_metadata": "https://www.data.go.kr/data/15142907/openapi.do",
+    "data_go_policy": "https://www.data.go.kr/ugs/selectPortalPolicyView.do",
+    "eia_api_metadata": "https://www.data.go.kr/data/15142987/openapi.do",
+    "migration_notice": "https://www.data.go.kr/bbs/ntc/selectNotice.do?originId=NOTICE_0000000004067",
+    "pre_strategy_small_api_metadata": "https://www.data.go.kr/data/15142990/openapi.do"
+  },
+  "unit_contract": {
+    "administrative_record_is_physical_project": false,
+    "administrative_record_is_physical_site": false,
+    "project_count": null,
+    "record_count": null,
+    "site_count": null,
+    "source_observation_unit": "environmental_assessment_discussion_status_record"
+  }
+}

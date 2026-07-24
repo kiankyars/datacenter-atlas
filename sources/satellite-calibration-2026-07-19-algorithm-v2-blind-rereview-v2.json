@@ -1,0 +1,201 @@
+{
+  "expected": {
+    "ab_agreements": 28,
+    "ab_disagreements": 8,
+    "aggregate_rows": 43,
+    "binary_comparable": 35,
+    "binary_same": 30,
+    "blocked_rows": 7,
+    "final_reject": 19,
+    "final_retain": 16,
+    "final_uncertain": 1,
+    "historical_reject_blocked": 6,
+    "historical_reject_reviewed": 25,
+    "historical_retain_blocked": 1,
+    "historical_retain_reviewed": 11,
+    "reviewed_rows": 36,
+    "three_way_uncertain": 1,
+    "two_of_three": 7
+  },
+  "format": "datacenter-atlas-satellite-calibration-v2-blind-rereview-definition-v2",
+  "protocol_deviations": [
+    {
+      "disclosure": "Reviewer B briefly exposed only blind after.png paths before schema clarification and opened no extra images or metadata.",
+      "id": "reviewer_b_after_path_exposure",
+      "identity_blindness_compromised": false,
+      "occurred": true
+    },
+    {
+      "adjudicator_c_contaminated": false,
+      "blind_item_ids": [
+        "v2rr-05d2f657bb54351175a429c7",
+        "v2rr-0b6e3c624b96fb431887b8d4",
+        "v2rr-11a86c623834d73b2c563b8a"
+      ],
+      "disclosure": "After A and B finished but before C finished, the orchestration operator accidentally printed the first three sealed lineage rows. C ran fork-isolated, received only eight blind IDs and no labels or history, and the operator did not adjudicate.",
+      "id": "operator_sealed_lineage_print",
+      "occurred": true
+    }
+  ],
+  "release_id": "algorithm-v2-blind-rereview-2026-07-19-v2",
+  "schema_version": 2,
+  "sources": {
+    "adjudicator_c": {
+      "directories": {},
+      "directory": "satellite_calibration_reviews/2026-07-19-v2-identity-blind-adjudicator-c-draft",
+      "directory_mode": "0755",
+      "files": {
+        "decisions.jsonl": {
+          "bytes": 2473,
+          "mode": "0644",
+          "sha256": "c5130e7150d70864f1e492c5f5fe859d9fa4bef297307b0e4b1a43a786e3c06e"
+        },
+        "manifest.json": {
+          "bytes": 3367,
+          "mode": "0644",
+          "sha256": "711fa8726d3aa5d3a227e361e30dff4642de6efa099d6514e8efac5d5ff11970"
+        }
+      }
+    },
+    "aggregate": {
+      "directories": {},
+      "directory": "satellite_calibration_rereview/2026-07-19-algorithm-v2-numerical-aggregate-v1",
+      "directory_mode": "0555",
+      "files": {
+        "ATTRIBUTION.txt": {
+          "bytes": 237,
+          "mode": "0444",
+          "sha256": "8c572f8c428fc9ae737c11355309e2ca7c9a40ed142a45691b8e7a94276b8780"
+        },
+        "README.md": {
+          "bytes": 769,
+          "mode": "0444",
+          "sha256": "ba77f2a7b4ef6b89de1063a0544affcc1caa2a7fc17bffa9bf6318d728fa92ed"
+        },
+        "blocked-multitile.jsonl": {
+          "bytes": 6787,
+          "mode": "0444",
+          "sha256": "4a3cf4eb2ccbb0e8b2c70c42a25d75dca8b06a0afa7c0a124dc6e142213a9e3e"
+        },
+        "manifest.json": {
+          "bytes": 8527,
+          "mode": "0444",
+          "sha256": "a1b9b2e76dc4efac8ca77edfec7bb6ca2c2457eaa5395958796acf42729dbca4"
+        },
+        "manifest.sha256": {
+          "bytes": 80,
+          "mode": "0444",
+          "sha256": "0f0366dcd936e0085a144cfa4a450f33b8115dadbbb668e1fadc4220b3096e25"
+        },
+        "numerical-inventory.jsonl": {
+          "bytes": 88740,
+          "mode": "0444",
+          "sha256": "0a1a45a4292a872ec2c486abc46d3c941b8fd9b993dd26c44221d70ad118f244"
+        },
+        "reviewer-queue.jsonl": {
+          "bytes": 92562,
+          "mode": "0444",
+          "sha256": "f516433795d6475eadcd3ababb472172be688f5f5bb533848f05e2b6c2ebf251"
+        },
+        "summary.json": {
+          "bytes": 394,
+          "mode": "0444",
+          "sha256": "e0440fbd05788640d8548187b3fe9df3ade699ff06038c9e596c9caeb003e95c"
+        }
+      }
+    },
+    "preparation": {
+      "directories": {
+        "sealed": "0500"
+      },
+      "directory": "satellite_calibration_rereview/2026-07-19-algorithm-v2-preparation-v1",
+      "directory_mode": "0555",
+      "files": {
+        "ATTRIBUTION.txt": {
+          "bytes": 242,
+          "mode": "0444",
+          "sha256": "81e0b5cdb2f70b80f2c5d1e86596cb5eaea4da223e7325c036cd3fc097285760"
+        },
+        "README.md": {
+          "bytes": 2368,
+          "mode": "0444",
+          "sha256": "4512286d03aeb1cb0c168106155b8bf9865a646d5c297096e70a0087880c98ae"
+        },
+        "manifest.json": {
+          "bytes": 3387,
+          "mode": "0444",
+          "sha256": "50788426c9e71cb9236bedc949be5e93de0bf8dfa4cb650675967ab937bd9b8b"
+        },
+        "manifest.sha256": {
+          "bytes": 80,
+          "mode": "0444",
+          "sha256": "133f70d91d16289a0a70f7c466cb0c882ad30132a86c22c58f548d21c8ffd2d2"
+        },
+        "rerun-specs.jsonl": {
+          "bytes": 121121,
+          "mode": "0444",
+          "sha256": "74af3df843f487b15ac4c6ce9c8314fdb4111653e080b0d8216209b70d2c7ecf"
+        },
+        "reviewer-queue.jsonl": {
+          "bytes": 43652,
+          "mode": "0444",
+          "sha256": "76ba94af9fda798c750f1cb9789d2f42dcde34c98725fd77a0d506704289f667"
+        },
+        "run-inventory.json": {
+          "bytes": 12517,
+          "mode": "0444",
+          "sha256": "d93d98aec59cd9a2ae63cb43001ddecb52696c7417bd616091f093dff7e31ca2"
+        },
+        "sealed/lineage.jsonl": {
+          "bytes": 58172,
+          "mode": "0400",
+          "sha256": "caca027911dca8cc507d059b702832fabac06d037d25a1ef6eff4d606ca2d574"
+        },
+        "summary.json": {
+          "bytes": 897,
+          "mode": "0444",
+          "sha256": "e482873b7d09e4dcd5e59003e44439dd90571bc8970c7cb085da13a48c5a39ae"
+        }
+      }
+    },
+    "reviewer_a": {
+      "directories": {},
+      "directory": "satellite_calibration_reviews/2026-07-19-v2-identity-blind-reviewer-a-draft",
+      "directory_mode": "0755",
+      "files": {
+        "README.md": {
+          "bytes": 1388,
+          "mode": "0644",
+          "sha256": "f2049ace5b9f0d1f71aef97c21fbebc4c42d9f523fab4ff80492a2f8c180e046"
+        },
+        "decisions.jsonl": {
+          "bytes": 30265,
+          "mode": "0644",
+          "sha256": "80f43374c51f12cebe0a40f423183864c703a88bcc2b53bd7c5196293d24f5b8"
+        },
+        "policy.json": {
+          "bytes": 2248,
+          "mode": "0644",
+          "sha256": "9fcc4ee6baec9a56da3f46bdad1879ba01c091235e9053150ac2d3234ad6b689"
+        }
+      }
+    },
+    "reviewer_b": {
+      "directories": {},
+      "directory": "satellite_calibration_reviews/2026-07-19-v2-identity-blind-reviewer-b-draft",
+      "directory_mode": "0755",
+      "files": {
+        "manifest.json": {
+          "bytes": 2601,
+          "mode": "0644",
+          "sha256": "a762413ed460ecdcd3521d90d96b20d579adb957a7b777c96c193b593ea9d5cc"
+        },
+        "reviews.jsonl": {
+          "bytes": 10743,
+          "mode": "0644",
+          "sha256": "2efe62b9aa4e9177fd2f60b385e4cc5f235e63d095300872d2e8ffe86053215a"
+        }
+      }
+    }
+  }
+}

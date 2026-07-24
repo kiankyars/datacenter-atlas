@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="DataCenterAtlas blind auxiliary test">
+  <bounds minlat="0" minlon="0" maxlat="1" maxlon="1"/>
+  <node id="1" lat="0.00" lon="0.00"/>
+  <node id="2" lat="0.00" lon="0.01"/>
+  <node id="3" lat="0.01" lon="0.01"/>
+  <node id="4" lat="0.01" lon="0.00"/>
+  <node id="5" lat="0.02" lon="0.00"/>
+  <node id="6" lat="0.02" lon="0.01"/>
+  <node id="7" lat="0.03" lon="0.01"/>
+  <node id="8" lat="0.03" lon="0.00"/>
+  <node id="9" lat="0.04" lon="0.00"/>
+  <node id="10" lat="0.04" lon="0.01"/>
+  <node id="11" lat="0.05" lon="0.01"/>
+  <node id="12" lat="0.05" lon="0.00"/>
+  <node id="13" lat="0.06" lon="0.00"/>
+  <node id="14" lat="0.06" lon="0.01"/>
+  <node id="15" lat="0.07" lon="0.01"/>
+  <node id="16" lat="0.07" lon="0.00"/>
+  <node id="17" lat="0.08" lon="0.00"/>
+  <node id="18" lat="0.08" lon="0.01"/>
+  <node id="19" lat="0.09" lon="0.01"/>
+  <node id="20" lat="0.09" lon="0.00">
+    <tag k="power" v="substation"/>
+    <tag k="voltage" v="132000;33000"/>
+  </node>
+  <way id="100">
+    <nd ref="1"/><nd ref="2"/><nd ref="3"/><nd ref="4"/><nd ref="1"/>
+    <tag k="landuse" v="industrial"/>
+  </way>
+  <way id="101">
+    <nd ref="5"/><nd ref="6"/><nd ref="7"/><nd ref="8"/><nd ref="5"/>
+    <tag k="landuse" v="industrial"/>
+    <tag k="name" v="North Data Center"/>
+  </way>
+  <way id="102">
+    <nd ref="1"/><nd ref="5"/>
+    <tag k="power" v="line"/>
+    <tag k="voltage" v="110000"/>
+  </way>
+  <way id="103">
+    <nd ref="2"/><nd ref="6"/>
+    <tag k="power" v="line"/>
+    <tag k="voltage" v="33000"/>
+  </way>
+  <way id="104">
+    <nd ref="9"/><nd ref="10"/><nd ref="11"/><nd ref="12"/><nd ref="9"/>
+    <tag k="construction" v="yes"/>
+    <tag k="power" v="substation"/>
+    <tag k="voltage" v="220 kV"/>
+  </way>
+  <way id="105">
+    <nd ref="13"/><nd ref="14"/><nd ref="15"/><nd ref="16"/><nd ref="13"/>
+    <tag k="landuse" v="industrial"/>
+    <tag k="power" v="substation"/>
+    <tag k="voltage" v="400000"/>
+  </way>
+  <way id="106">
+    <nd ref="17"/><nd ref="18"/><nd ref="19"/><nd ref="20"/><nd ref="17"/>
+    <tag k="building" v="warehouse"/>
+  </way>
+  <way id="107">
+    <nd ref="3"/><nd ref="7"/>
+    <tag k="name" v="Data Centre Feeder"/>
+    <tag k="power" v="cable"/>
+    <tag k="voltage" v="132000"/>
+  </way>
+  <way id="108">
+    <nd ref="4"/><nd ref="8"/>
+    <tag k="power" v="line"/>
+    <tag k="voltage" v="110-220 kV"/>
+  </way>
+  <relation id="200">
+    <member type="way" ref="106" role="outer"/>
+    <tag k="landuse" v="industrial"/>
+    <tag k="type" v="multipolygon"/>
+  </relation>
+</osm>

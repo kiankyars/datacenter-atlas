@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "datacenter-atlas"
+version = "0.1.0"
+description = "A provenance-first registry for global data-centre construction evidence"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.scripts]
+datacenter-atlas = "datacenter_atlas.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["datacenter_atlas*"]
+
+[tool.setuptools.package-data]
+datacenter_atlas = ["migrations/*.sql"]

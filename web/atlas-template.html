@@ -1,0 +1,498 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>Data Center Atlas</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --background: Canvas;
+      --foreground: CanvasText;
+      --muted-foreground: color-mix(in srgb, CanvasText 62%, Canvas);
+      --card: Canvas;
+      --card-foreground: CanvasText;
+      --border: color-mix(in srgb, CanvasText 20%, Canvas);
+      --land: color-mix(in srgb, CanvasText 12%, Canvas);
+      --land-stroke: color-mix(in srgb, CanvasText 28%, Canvas);
+      --graticule: color-mix(in srgb, CanvasText 10%, Canvas);
+      --primary: AccentColor;
+      --primary-foreground: AccentColorText;
+      --selected-ring: CanvasText;
+      --construction: AccentColor;
+      --preconstruction: color-mix(in srgb, AccentColor 62%, CanvasText);
+      --operational: color-mix(in srgb, AccentColor 42%, CanvasText);
+      --inactive: color-mix(in srgb, CanvasText 58%, Canvas);
+      --unknown: color-mix(in srgb, CanvasText 36%, Canvas);
+      font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 16px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--background);
+      color: var(--foreground);
+    }
+
+    main {
+      max-width: 1600px;
+      margin: 0 auto;
+      padding: clamp(0.75rem, 2vw, 1.5rem);
+    }
+
+    header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 0.75rem;
+    }
+
+    h1, h2, p { margin: 0; }
+    h1 { font-size: clamp(1.3rem, 3vw, 2rem); font-weight: 500; }
+    h2 { font-size: 1.1rem; font-weight: 500; }
+
+    .muted { color: var(--muted-foreground); }
+    .small { font-size: 0.82rem; }
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: end;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+
+    label {
+      display: grid;
+      gap: 0.3rem;
+      font-size: 0.82rem;
+      color: var(--muted-foreground);
+    }
+
+    select {
+      min-width: 11rem;
+      max-width: 100%;
+      padding: 0.5rem 2rem 0.5rem 0.65rem;
+      border: 1px solid var(--border);
+      border-radius: 0.4rem;
+      background: var(--card);
+      color: var(--card-foreground);
+      font: inherit;
+    }
+
+    .count {
+      margin-left: auto;
+      padding-bottom: 0.5rem;
+      color: var(--muted-foreground);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .map-wrap {
+      position: relative;
+      width: 100%;
+      min-height: 360px;
+      height: clamp(360px, 62vw, 760px);
+      overflow: hidden;
+      background: var(--background);
+      border-block: 1px solid var(--border);
+    }
+
+    #world-map { width: 100%; height: 100%; display: block; }
+    .sphere { fill: var(--background); }
+    .graticule { fill: none; stroke: var(--graticule); stroke-width: 0.6; }
+    .country { fill: var(--land); stroke: var(--land-stroke); stroke-width: 0.45; vector-effect: non-scaling-stroke; }
+    .site-link { cursor: pointer; outline-offset: 3px; }
+    .site-point { stroke: var(--background); stroke-width: 1.25; vector-effect: non-scaling-stroke; }
+    .site-point[data-group="construction"] { fill: var(--construction); }
+    .site-point[data-group="preconstruction"] { fill: var(--preconstruction); }
+    .site-point[data-group="operational"] { fill: var(--operational); }
+    .site-point[data-group="inactive"] { fill: var(--inactive); }
+    .site-point[data-group="unknown"] { fill: var(--unknown); }
+    .site-link:hover .site-point,
+    .site-link:focus .site-point,
+    .site-link[aria-current="true"] .site-point {
+      stroke: var(--selected-ring);
+      stroke-width: 2.5;
+    }
+
+    .legend {
+      position: absolute;
+      left: 0.65rem;
+      bottom: 0.65rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem 0.75rem;
+      max-width: calc(100% - 1.3rem);
+      padding: 0.45rem 0.6rem;
+      background: color-mix(in srgb, var(--background) 88%, transparent);
+      border: 1px solid var(--border);
+      border-radius: 0.4rem;
+      font-size: 0.76rem;
+      color: var(--muted-foreground);
+      backdrop-filter: blur(4px);
+    }
+
+    .legend span { display: inline-flex; align-items: center; gap: 0.32rem; }
+    .swatch { width: 0.65rem; height: 0.65rem; border-radius: 50%; display: inline-block; }
+    .swatch.construction { background: var(--construction); }
+    .swatch.preconstruction { background: var(--preconstruction); }
+    .swatch.operational { background: var(--operational); }
+    .swatch.inactive { background: var(--inactive); }
+    .swatch.unknown { background: var(--unknown); }
+
+    .detail {
+      display: grid;
+      grid-template-columns: minmax(12rem, 1.4fr) repeat(3, minmax(8rem, 1fr));
+      gap: 0.75rem 1.25rem;
+      padding: 0.9rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .detail.empty { display: block; color: var(--muted-foreground); }
+    .detail-item { min-width: 0; }
+    .detail-label { display: block; margin-bottom: 0.2rem; color: var(--muted-foreground); font-size: 0.76rem; }
+    .detail-value { overflow-wrap: anywhere; }
+    .detail a { color: var(--foreground); text-underline-offset: 0.18em; }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      padding-top: 0.75rem;
+      color: var(--muted-foreground);
+      font-size: 0.76rem;
+    }
+
+    footer a { color: inherit; }
+
+    @media (max-width: 760px) {
+      .detail { grid-template-columns: 1fr 1fr; }
+      .count { width: 100%; margin-left: 0; padding-bottom: 0; }
+    }
+
+    @media (max-width: 460px) {
+      .controls label, .controls select { width: 100%; }
+      .detail { grid-template-columns: 1fr; }
+      .map-wrap { min-height: 320px; height: 115vw; max-height: 540px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { scroll-behavior: auto !important; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Data Center Atlas</h1>
+      <p class="muted small" id="atlas-date"></p>
+    </header>
+
+    <section class="controls" aria-label="Map filters">
+      <label for="status-filter">Build status
+        <select id="status-filter">
+          <option value="all">All statuses</option>
+          <option value="construction">Building now</option>
+          <option value="preconstruction">Pre-construction</option>
+          <option value="operational">Operational</option>
+          <option value="inactive">Paused or cancelled</option>
+          <option value="unknown">Unknown</option>
+        </select>
+      </label>
+      <label for="type-filter">Data center type
+        <select id="type-filter">
+          <option value="all">All types</option>
+        </select>
+      </label>
+      <p class="count" id="visible-count" aria-live="polite"></p>
+    </section>
+
+    <section class="map-wrap" id="map-wrap">
+      <svg id="world-map" role="img" aria-labelledby="map-title map-description">
+        <title id="map-title">Global data center records</title>
+        <desc id="map-description">Select a point to inspect its status, type, power estimate, and source.</desc>
+      </svg>
+      <div class="legend" aria-label="Status legend">
+        <span><i class="swatch construction"></i>Building now</span>
+        <span><i class="swatch preconstruction"></i>Pre-construction</span>
+        <span><i class="swatch operational"></i>Operational</span>
+        <span><i class="swatch inactive"></i>Paused/cancelled</span>
+        <span><i class="swatch unknown"></i>Unknown</span>
+      </div>
+    </section>
+
+    <section class="detail empty" id="atlas-detail" aria-live="polite">
+      Select a record on the map to inspect its evidence.
+    </section>
+
+    <footer>
+      <span id="attribution"></span>
+      <span>Basemap: <a href="https://github.com/d3-maps/atlas" rel="noopener noreferrer">@d3-maps/atlas</a> / Natural Earth</span>
+    </footer>
+  </main>
+
+  <script id="atlas-data" type="application/json">__ATLAS_DATA_JSON__</script>
+  <script type="module">
+    import { geoGraticule10, geoNaturalEarth1, geoPath } from "https://cdn.jsdelivr.net/npm/d3-geo@3/+esm";
+    import { feature as topojsonFeature } from "https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/+esm";
+    import world from "https://esm.sh/@d3-maps/atlas@1.0.0/world/countries/countries-110m";
+
+    const atlas = JSON.parse(document.getElementById("atlas-data").textContent);
+    const svg = document.getElementById("world-map");
+    const mapWrap = document.getElementById("map-wrap");
+    const statusFilter = document.getElementById("status-filter");
+    const typeFilter = document.getElementById("type-filter");
+    const count = document.getElementById("visible-count");
+    const detail = document.getElementById("atlas-detail");
+    const dateLabel = document.getElementById("atlas-date");
+    const attribution = document.getElementById("attribution");
+    const SVG_NS = "http://www.w3.org/2000/svg";
+
+    const statusGroups = {
+      construction: new Set(["site_preparation", "clearing", "civil_works", "foundations", "shell", "mep_electrical", "under_construction", "commissioning", "expansion"]),
+      preconstruction: new Set(["lead", "candidate", "announced", "proposed", "site_control", "permitting", "permitted"]),
+      operational: new Set(["operational"]),
+      inactive: new Set(["paused", "cancelled", "repurposed", "decommissioned", "demolished"])
+    };
+
+    function statusGroup(status) {
+      for (const [group, statuses] of Object.entries(statusGroups)) {
+        if (statuses.has(status)) return group;
+      }
+      return "unknown";
+    }
+
+    function humanize(value) {
+      if (!value) return "Unknown";
+      return String(value).replaceAll("_", " ").replace(/\b\w/g, letter => letter.toUpperCase());
+    }
+
+    function representativePoint(item) {
+      const explicitLongitude = Number(item.properties?.longitude);
+      const explicitLatitude = Number(item.properties?.latitude);
+      if (Number.isFinite(explicitLongitude) && Number.isFinite(explicitLatitude)) {
+        return [explicitLongitude, explicitLatitude];
+      }
+      const geometry = item.geometry;
+      if (!geometry) return null;
+      if (geometry.type === "Point") return geometry.coordinates;
+      if (geometry.type === "MultiPoint") return geometry.coordinates[0] || null;
+      const points = [];
+      function collect(value) {
+        if (Array.isArray(value) && value.length >= 2 && Number.isFinite(value[0]) && Number.isFinite(value[1])) {
+          points.push([value[0], value[1]]);
+        } else if (Array.isArray(value)) {
+          value.forEach(collect);
+        }
+      }
+      collect(geometry.coordinates);
+      if (!points.length) return null;
+      const longitudes = points.map(point => point[0]);
+      const latitudes = points.map(point => point[1]);
+      return [
+        (Math.min(...longitudes) + Math.max(...longitudes)) / 2,
+        (Math.min(...latitudes) + Math.max(...latitudes)) / 2
+      ];
+    }
+
+    const sites = atlas.features
+      .map(item => ({
+        item,
+        coordinates: representativePoint(item),
+        group: statusGroup(item.properties.status),
+        model: item.properties.operating_model && item.properties.operating_model !== "unknown"
+          ? item.properties.operating_model
+          : (item.properties.workloads?.[0] || "unknown")
+      }))
+      .filter(site => site.coordinates && site.coordinates.length >= 2 && site.coordinates.every(Number.isFinite));
+
+    const models = [...new Set(sites.map(site => site.model))].sort((a, b) => humanize(a).localeCompare(humanize(b)));
+    for (const model of models) {
+      const option = document.createElement("option");
+      option.value = model;
+      option.textContent = humanize(model);
+      typeFilter.append(option);
+    }
+
+    dateLabel.textContent = atlas.atlas_as_of ? `Atlas as of ${atlas.atlas_as_of}` : "";
+    const sourceAttribution = Array.isArray(atlas.attribution) ? atlas.attribution.filter(Boolean) : [];
+    attribution.textContent = sourceAttribution.length ? `Data: ${sourceAttribution.join(" · ")}` : "Data attribution is recorded per record";
+
+    const countries = topojsonFeature(world, world.objects.features).features;
+    const sphere = { type: "Sphere" };
+    let selectedId = null;
+    let projection;
+
+    function createSvgElement(tag, className) {
+      const element = document.createElementNS(SVG_NS, tag);
+      if (className) element.setAttribute("class", className);
+      return element;
+    }
+
+    function isVisible(site) {
+      const statusMatches = statusFilter.value === "all" || site.group === statusFilter.value;
+      const typeMatches = typeFilter.value === "all" || site.model === typeFilter.value;
+      return statusMatches && typeMatches;
+    }
+
+    function preferredCapacity(estimates, stage) {
+      if (!Array.isArray(estimates)) return null;
+      const metricPriority = ["critical_it_mw", "gross_facility_mw", "grid_connection_mw", "annual_energy_mwh", "generation_nameplate_mw", "pue"];
+      const stagePriority = ["operational", "energized", "installed", "unknown", "design", "planned", "requested", "contracted", "measured"];
+      const eligible = estimates.filter(item => stage === "forecast" ? item.stage === "forecast" : item.stage !== "forecast");
+      return [...eligible].sort((a, b) => {
+        const ai = metricPriority.indexOf(a.metric);
+        const bi = metricPriority.indexOf(b.metric);
+        const metricOrder = (ai < 0 ? 99 : ai) - (bi < 0 ? 99 : bi);
+        if (metricOrder) return metricOrder;
+        return stagePriority.indexOf(a.stage) - stagePriority.indexOf(b.stage);
+      })[0] || null;
+    }
+
+    function formatCapacity(estimate) {
+      if (!estimate) return "Not reported";
+      const value = Number(estimate.base);
+      const unit = estimate.unit || (estimate.metric === "pue" ? "ratio" : "MW");
+      const formatted = Number.isFinite(value) ? new Intl.NumberFormat(undefined, { maximumFractionDigits: 1 }).format(value) : "Unknown";
+      const target = estimate.target_date ? `, target ${estimate.target_date}` : "";
+      return `${humanize(estimate.metric)}: ${formatted} ${unit} (${humanize(estimate.stage)}${target})`;
+    }
+
+    function formatCapacities(estimates) {
+      const current = preferredCapacity(estimates, "current");
+      const forecast = preferredCapacity(estimates, "forecast");
+      return [current, forecast].filter(Boolean).map(formatCapacity).join(" · ") || "Not reported";
+    }
+
+    function safeSourceUrl(value) {
+      try {
+        const url = new URL(value);
+        return ["http:", "https:"].includes(url.protocol) ? url.href : null;
+      } catch (_error) {
+        return null;
+      }
+    }
+
+    function addDetailItem(label, value) {
+      const container = document.createElement("div");
+      container.className = "detail-item";
+      const labelNode = document.createElement("span");
+      labelNode.className = "detail-label";
+      labelNode.textContent = label;
+      const valueNode = document.createElement("span");
+      valueNode.className = "detail-value";
+      valueNode.textContent = value;
+      container.append(labelNode, valueNode);
+      detail.append(container);
+      return valueNode;
+    }
+
+    function selectSite(site) {
+      selectedId = String(site.item.id ?? site.item.properties.entity_id ?? "");
+      for (const link of svg.querySelectorAll(".site-link")) {
+        link.setAttribute("aria-current", link.dataset.id === selectedId ? "true" : "false");
+      }
+      const properties = site.item.properties;
+      detail.className = "detail";
+      detail.replaceChildren();
+      const nameNode = addDetailItem("Record", properties.name || properties.stable_key || "Unnamed record");
+      nameNode.parentElement.querySelector(".detail-label").textContent = `${humanize(properties.entity_kind)} · Record`;
+      addDetailItem("Status", `${humanize(properties.status)}${properties.status_as_of ? ` · ${properties.status_as_of}` : ""}`);
+      const workload = Array.isArray(properties.workloads) && properties.workloads.length ? ` · ${properties.workloads.map(humanize).join(", ")}` : "";
+      addDetailItem("Type", `${humanize(properties.operating_model)}${workload}`);
+      const sourceNode = addDetailItem("Power / evidence", formatCapacities(properties.capacity_estimates));
+      const annualEnergy = (properties.capacity_estimates || []).filter(
+        estimate => estimate.metric === "annual_energy_mwh"
+      );
+      addDetailItem("Modeled annual energy", formatCapacities(annualEnergy));
+      const sourceUrl = safeSourceUrl(properties.source_url);
+      if (sourceUrl) {
+        sourceNode.append(document.createTextNode(" · "));
+        const link = document.createElement("a");
+        link.href = sourceUrl;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        link.textContent = properties.source_publisher ? `Source: ${properties.source_publisher}` : "View source";
+        sourceNode.append(link);
+      }
+    }
+
+    function render() {
+      const bounds = mapWrap.getBoundingClientRect();
+      const width = Math.max(320, Math.round(bounds.width));
+      const height = Math.max(320, Math.round(bounds.height));
+      svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
+      svg.replaceChildren();
+
+      const title = createSvgElement("title");
+      title.id = "map-title";
+      title.textContent = "Global data center records";
+      const description = createSvgElement("desc");
+      description.id = "map-description";
+      description.textContent = "Select a point to inspect its status, type, power estimate, and source.";
+      svg.append(title, description);
+
+      projection = geoNaturalEarth1().fitExtent([[8, 8], [width - 8, height - 8]], sphere);
+      const path = geoPath(projection);
+
+      const spherePath = createSvgElement("path", "sphere");
+      spherePath.setAttribute("d", path(sphere));
+      svg.append(spherePath);
+      const graticule = createSvgElement("path", "graticule");
+      graticule.setAttribute("d", path(geoGraticule10()));
+      svg.append(graticule);
+
+      for (const country of countries) {
+        const countryPath = createSvgElement("path", "country");
+        countryPath.setAttribute("d", path(country));
+        svg.append(countryPath);
+      }
+
+      const visible = sites.filter(isVisible);
+      for (const site of visible) {
+        const projected = projection(site.coordinates);
+        if (!projected) continue;
+        const [x, y] = projected;
+        const properties = site.item.properties;
+        const id = String(site.item.id ?? properties.entity_id ?? "");
+        const link = createSvgElement("a", "site-link");
+        link.setAttribute("href", "#atlas-detail");
+        link.dataset.id = id;
+        link.setAttribute("aria-label", `${properties.name || "Unnamed record"}: ${humanize(properties.status)}, ${humanize(properties.operating_model)}`);
+        link.setAttribute("aria-current", id === selectedId ? "true" : "false");
+        const point = createSvgElement("circle", "site-point");
+        point.dataset.group = site.group;
+        point.setAttribute("cx", x);
+        point.setAttribute("cy", y);
+        point.setAttribute("r", id === selectedId ? 6 : 4.2);
+        link.append(point);
+        link.addEventListener("click", event => {
+          event.preventDefault();
+          selectSite(site);
+          detail.scrollIntoView({ block: "nearest" });
+        });
+        svg.append(link);
+      }
+      count.textContent = `${visible.length.toLocaleString()} of ${sites.length.toLocaleString()} mapped records`;
+
+      if (selectedId && !visible.some(site => String(site.item.id ?? site.item.properties.entity_id ?? "") === selectedId)) {
+        selectedId = null;
+        detail.className = "detail empty";
+        detail.textContent = "Select a record on the map to inspect its evidence.";
+      }
+    }
+
+    statusFilter.addEventListener("change", render);
+    typeFilter.addEventListener("change", render);
+    const observer = new ResizeObserver(render);
+    observer.observe(mapWrap);
+    render();
+  </script>
+</body>
+</html>

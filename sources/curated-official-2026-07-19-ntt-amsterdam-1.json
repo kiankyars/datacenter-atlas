@@ -1,0 +1,135 @@
+{
+  "schema_version": "1.0",
+  "evidence": [
+    {
+      "key": "ntt-amsterdam-1-location-page-captured-2026-07-19",
+      "kind": "company_disclosure",
+      "title": "Amsterdam 1 Data Center",
+      "source_url": "https://services.global.ntt/en-us/services-and-products/global-data-centers/global-locations/emea/amsterdam-1-data-center",
+      "publisher": "NTT DATA, Inc.",
+      "source_family": "ntt_global_data_center_location_pages",
+      "published_at": null,
+      "retrieved_at": "2026-07-19T16:09:33Z",
+      "license": "all-rights-reserved",
+      "attribution": "NTT DATA, Inc.",
+      "excerpt": "The current Amsterdam 1 page reports 20.7MW of critical IT load at the operating campus and gives its Rozenburg address.",
+      "content_hash": "4850a2a1279643a436c33ea1fe92099d89d1606bc39f5ea1fb0b425ed6a23b52",
+      "metadata": {
+        "content_hash_scope": "SHA-256 of 403793 content-decoded HTML response bytes retrieved after redirects",
+        "content_hash_verification": "fetched_bytes_sha256",
+        "http_status": 200,
+        "content_type": "text/html; charset=utf-8",
+        "response_retrieved_at": "2026-07-19T16:08:51Z",
+        "retrieval_method": "curl --fail --location --compressed with retries disabled and the DataCenterAtlas research user agent",
+        "hash_reproducibility": "The HTML includes dynamic CSP and telemetry decoration, so the hash is specific to this retrieval; the factual page text was independently rechecked.",
+        "address_scope": "The page states Aviolanda 1, 1437 ED Rozenburg, Netherlands.",
+        "coordinate_guardrail": "The HTML's data-center-map widget pair -5.950637579244614,11.181073702107355 is an impossible Amsterdam location also reused on the Frankfurt page. It is rejected as a global-map default; coordinates and geometry remain null.",
+        "capacity_scope": "20.7MW is the current critical IT load. The page's separate 40MW fully-built figure remains evidence metadata and is not imported as a capacity row because it differs from the brochure's dated joint 22MW C/D expansion scope.",
+        "substation_evidence": "The page reports two onsite substations delivering 60MVA.",
+        "mva_guardrail": "60MVA is retained only as untyped evidence metadata; MVA is not converted to MW and no grid, gross-facility, or critical-IT row is derived from it.",
+        "classification_guardrail": "Colocation, cloud-network, and server-space wording is source context only; no operating-model, workload, owner, operator, tenant, or user observation is imported.",
+        "rights_scope": "Compact factual extraction under the publisher's all-rights-reserved terms; no source page is redistributed."
+      }
+    },
+    {
+      "key": "ntt-amsterdam-1-cd-brochure-rev-85925-captured-2026-07-19",
+      "kind": "company_disclosure",
+      "title": "Amsterdam 1 Data Center brochure",
+      "source_url": "https://services.global.ntt/-/media/ntt/global/campaigns/amsterdam-1-data-center/brochure-en--global-data-centers-gdc-emea-amsterdam-1-ams1.pdf?rev=85925a071d88493b94cd3b7a476c6742",
+      "publisher": "NTT DATA, Inc.",
+      "source_family": "ntt_global_data_center_brochures",
+      "published_at": null,
+      "retrieved_at": "2026-07-19T16:09:33Z",
+      "license": "all-rights-reserved",
+      "attribution": "NTT DATA, Inc.",
+      "excerpt": "The brochure says the first phase opened in April 2019 and jointly scopes Buildings C and D as an additional 22MW of IT load.",
+      "content_hash": "ff3688479fcc9e8c913ce6c8da9920eb538c37dd48105e196b603c1f98b2d4c7",
+      "metadata": {
+        "content_hash_scope": "SHA-256 of 2655997 PDF response bytes retrieved after redirects",
+        "content_hash_verification": "fetched_bytes_sha256",
+        "http_status": 200,
+        "content_type": "application/pdf",
+        "response_retrieved_at": "2026-07-19T16:09:33Z",
+        "retrieval_method": "curl --fail --location --compressed with retries disabled and the DataCenterAtlas research user agent",
+        "pdf_pages": 6,
+        "xmp_created_at": "2023-03-08T14:16:28+01:00",
+        "xmp_modified_at": "2023-05-22T17:51:39+02:00",
+        "historical_status_context": "The brochure's claim that Buildings C and D were currently under construction is bounded by its 2023-05-22 XMP modification timestamp and is retained only as historical evidence metadata.",
+        "lifecycle_guardrail": "No 2023 under-construction lifecycle observation is imported. The joint C/D expansion project receives no current lifecycle status because no fresher official source confirms it.",
+        "project_scope": "Buildings C and D remain one jointly evidenced 22MW expansion project. They are not split into two projects and no per-building capacity is invented.",
+        "capacity_guardrail": "The 22MW expansion is imported as a dated planned critical-IT row. No 42.7MW total is derived by adding it to current 20.7MW, and the brochure's 60MVA substation figure is not converted to MW.",
+        "rights_scope": "Compact factual extraction under the publisher's all-rights-reserved terms; no source PDF is redistributed."
+      }
+    }
+  ],
+  "campus": {
+    "stable_key": "curated:ntt-amsterdam-1-campus",
+    "name": "NTT Amsterdam 1 Data Center Campus",
+    "country": "Netherlands",
+    "address": "Aviolanda 1, 1437 ED Rozenburg, Netherlands",
+    "roles": {},
+    "coordinates": null,
+    "geometry": null,
+    "evidence_key": "ntt-amsterdam-1-location-page-captured-2026-07-19",
+    "as_of_date": "2026-07-19",
+    "method": "authoritative_locality",
+    "confidence": 0.99
+  },
+  "project": {
+    "stable_key": "curated:ntt-amsterdam-1-campus:buildings-c-and-d-expansion",
+    "name": "NTT Amsterdam 1 Buildings C and D Expansion",
+    "country": "Netherlands",
+    "address": "Aviolanda 1, 1437 ED Rozenburg, Netherlands",
+    "roles": {},
+    "coordinates": null,
+    "geometry": null,
+    "evidence_key": "ntt-amsterdam-1-cd-brochure-rev-85925-captured-2026-07-19",
+    "as_of_date": "2023-05-22",
+    "method": "authoritative_locality",
+    "confidence": 0.99
+  },
+  "lifecycle": [
+    {
+      "entity": "campus",
+      "value": "operational",
+      "evidence_key": "ntt-amsterdam-1-location-page-captured-2026-07-19",
+      "as_of_date": "2026-07-19",
+      "method": "authoritative_status_update",
+      "confidence": 0.99
+    }
+  ],
+  "operating_models": [],
+  "workloads": [],
+  "capacities": [
+    {
+      "entity": "campus",
+      "metric": "critical_it_mw",
+      "stage": "operational",
+      "unit": "MW",
+      "low": 20.7,
+      "base": 20.7,
+      "high": 20.7,
+      "method": "reported",
+      "confidence": 0.99,
+      "evidence_key": "ntt-amsterdam-1-location-page-captured-2026-07-19",
+      "as_of_date": "2026-07-19",
+      "target_date": null,
+      "notes": "Source-reported current campus critical IT load; it is not summed with the dated C/D expansion and no 42.7MW total is derived."
+    },
+    {
+      "entity": "project",
+      "metric": "critical_it_mw",
+      "stage": "planned",
+      "unit": "MW",
+      "low": 22,
+      "base": 22,
+      "high": 22,
+      "method": "reported",
+      "confidence": 0.98,
+      "evidence_key": "ntt-amsterdam-1-cd-brochure-rev-85925-captured-2026-07-19",
+      "as_of_date": "2023-05-22",
+      "target_date": null,
+      "notes": "Dated joint C/D expansion critical IT plan from a brochure last modified in 2023. The stale under-construction wording does not establish current lifecycle, the two buildings are not split, and no 42.7MW total is derived."
+    }
+  ]
+}

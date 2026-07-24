@@ -1,0 +1,207 @@
+{
+  "schema_version": "1.0",
+  "evidence": [
+    {
+      "key": "company-construction-update",
+      "kind": "company_disclosure",
+      "title": "Example operator begins construction of Example AI Campus",
+      "source_url": "https://operator.example/news/example-ai-campus-construction",
+      "publisher": "Example Operator",
+      "source_family": "example_operator_newsroom",
+      "published_at": "2026-07-15",
+      "retrieved_at": "2026-07-17T18:30:00Z",
+      "license": "all-rights-reserved",
+      "attribution": "Example Operator",
+      "excerpt": "Construction has begun on a 750 MW data-centre development.",
+      "content_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "metadata": {
+        "content_hash_scope": "Fixture placeholder digest; not derived from source bytes",
+        "content_hash_verification": "unverified_assertion",
+        "verification": "publisher page archived and manually reviewed"
+      }
+    },
+    {
+      "key": "utility-energy-filing",
+      "kind": "utility_record",
+      "title": "Example AI Campus annual metered load",
+      "source_url": "https://utility.example/regulatory/example-ai-campus-2025",
+      "publisher": "Example Electric Utility",
+      "source_family": "example_utility_regulatory_filings",
+      "published_at": "2026-04-20T09:00:00-05:00",
+      "retrieved_at": "2026-07-17T18:30:00Z",
+      "license": "public-record",
+      "attribution": "Example Electric Utility",
+      "excerpt": "The campus consumed 3,000,000 MWh during the reporting year.",
+      "content_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "metadata": {
+        "content_hash_scope": "Fixture placeholder digest; not derived from source bytes",
+        "content_hash_verification": "unverified_assertion",
+        "reporting_year": 2025,
+        "table": "Large-load customers"
+      }
+    }
+  ],
+  "campus": {
+    "stable_key": "curated:example-ai-campus",
+    "name": "Example AI Campus",
+    "country": "United States",
+    "address": "100 Compute Road, Example County, TX",
+    "roles": {
+      "owner": ["Example Operator"],
+      "operator": ["Example Operator"],
+      "utility": ["Example Electric Utility"]
+    },
+    "coordinates": {
+      "latitude": 32.1,
+      "longitude": -97.1
+    },
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [[
+        [-97.2, 32.0],
+        [-97.0, 32.0],
+        [-97.0, 32.2],
+        [-97.2, 32.2],
+        [-97.2, 32.0]
+      ]]
+    },
+    "evidence_key": "company-construction-update",
+    "as_of_date": "2026-07-15",
+    "method": "authoritative_site_plan",
+    "confidence": 0.95
+  },
+  "project": {
+    "stable_key": "curated:example-ai-campus:phase-two",
+    "name": "Example AI Campus Phase Two",
+    "country": "United States",
+    "address": "100 Compute Road, Example County, TX",
+    "roles": {
+      "developer": ["Example Operator"],
+      "contractor": ["Example EPC"]
+    },
+    "coordinates": {
+      "latitude": 32.12,
+      "longitude": -97.08
+    },
+    "geometry": null,
+    "evidence_key": "company-construction-update",
+    "as_of_date": "2026-07-15",
+    "method": "authoritative_site_plan",
+    "confidence": 0.9
+  },
+  "lifecycle": [
+    {
+      "entity": "campus",
+      "value": "operational",
+      "evidence_key": "company-construction-update",
+      "as_of_date": "2026-07-15",
+      "method": "authoritative_status_update",
+      "confidence": 0.9
+    },
+    {
+      "entity": "project",
+      "value": "under_construction",
+      "evidence_key": "company-construction-update",
+      "as_of_date": "2026-07-15",
+      "method": "authoritative_construction_start",
+      "confidence": 0.95
+    }
+  ],
+  "operating_models": [
+    {
+      "entity": "campus",
+      "value": "hyperscale_self_build",
+      "evidence_key": "company-construction-update",
+      "as_of_date": "2026-07-15",
+      "method": "company_disclosure",
+      "confidence": 0.9
+    }
+  ],
+  "workloads": [
+    {
+      "entity": "project",
+      "value": "ai_training",
+      "evidence_key": "company-construction-update",
+      "as_of_date": "2026-07-15",
+      "method": "company_disclosure",
+      "confidence": 0.85
+    }
+  ],
+  "capacities": [
+    {
+      "entity": "campus",
+      "metric": "grid_connection_mw",
+      "stage": "contracted",
+      "unit": "MW",
+      "low": 1000,
+      "base": 1000,
+      "high": 1000,
+      "method": "reported",
+      "confidence": 0.95,
+      "evidence_key": "company-construction-update",
+      "as_of_date": "2026-07-15",
+      "target_date": null,
+      "notes": "Contracted grid service; not critical IT load."
+    },
+    {
+      "entity": "project",
+      "metric": "gross_facility_mw",
+      "stage": "design",
+      "unit": "MW",
+      "low": 700,
+      "base": 750,
+      "high": 800,
+      "method": "reported",
+      "confidence": 0.85,
+      "evidence_key": "company-construction-update",
+      "as_of_date": "2026-07-15",
+      "target_date": "2028-12-31",
+      "notes": "Total facility design load."
+    },
+    {
+      "entity": "project",
+      "metric": "critical_it_mw",
+      "stage": "design",
+      "unit": "MW",
+      "low": 550,
+      "base": 600,
+      "high": 650,
+      "method": "reported",
+      "confidence": 0.8,
+      "evidence_key": "company-construction-update",
+      "as_of_date": "2026-07-15",
+      "target_date": "2028-12-31",
+      "notes": "Critical IT design load; distinct from gross facility load."
+    },
+    {
+      "entity": "project",
+      "metric": "generation_nameplate_mw",
+      "stage": "planned",
+      "unit": "MW",
+      "low": 200,
+      "base": 250,
+      "high": 300,
+      "method": "reported",
+      "confidence": 0.75,
+      "evidence_key": "company-construction-update",
+      "as_of_date": "2026-07-15",
+      "target_date": "2027-12-31",
+      "notes": "On-site generation nameplate; not campus consumption."
+    },
+    {
+      "entity": "campus",
+      "metric": "annual_energy_mwh",
+      "stage": "measured",
+      "unit": "MWh/year",
+      "low": 3000000,
+      "base": 3000000,
+      "high": 3000000,
+      "method": "reported",
+      "confidence": 0.99,
+      "evidence_key": "utility-energy-filing",
+      "as_of_date": "2025-12-31",
+      "target_date": null,
+      "notes": "Metered reporting-year consumption from the utility filing."
+    }
+  ]
+}

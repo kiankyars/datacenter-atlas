@@ -1,0 +1,3568 @@
+{
+  "base_ledger": {
+    "definition": {
+      "bytes": 129254,
+      "path": "sources/current-coverage-2026-07-20-v14.json",
+      "sha256": "907942b43861845703900dfb57e518ed56611bb932b2ec0f16f1ab656b0beab0"
+    },
+    "ledger": {
+      "bytes": 89210,
+      "path": "current_coverage_ledgers/2026-07-20-v14/current-coverage-ledger.json",
+      "sha256": "ede89a5b75ca30dae4c96f3ae876e02abf53eff00497a8edc85fc9fcde69b2bd"
+    },
+    "ledger_id": "current-coverage-2026-07-20-v14",
+    "manifest": {
+      "bytes": 24814,
+      "path": "current_coverage_ledgers/2026-07-20-v14/manifest.json",
+      "sha256": "5f318e610653a4579fb9d995133fd3ea388de5c7a2a3b66c2e250fced69d150c"
+    }
+  },
+  "entries": [
+    {
+      "access_tier": "public_open",
+      "artifact_id": "candidate-fusion-osm-planet-priority-v13",
+      "artifact_kind": "candidate_fusion",
+      "checkpoints": [
+        {
+          "binding": {
+            "checkpoint_id": "manifest",
+            "json_pointer": "/outputs/coverage.json"
+          },
+          "bytes": 2552,
+          "checkpoint_id": "coverage",
+          "path": "candidate_fusion/2026-07-18-osm-planet-priority-v13/coverage.json",
+          "sha256": "c05f3eabf7afa0165d3fa2f9fbba3a3051ce88d2e7aed3bf46fdd8967e2942bf"
+        },
+        {
+          "binding": {
+            "checkpoint_id": "manifest",
+            "json_pointer": "/definition"
+          },
+          "bytes": 25045,
+          "checkpoint_id": "definition",
+          "path": "sources/candidate-fusion-2026-07-18-osm-planet-v13.json",
+          "sha256": "63b02b886c83e6b2d9de739f0acb85a566f03d4338796b2a546ddc34cbd3de33"
+        },
+        {
+          "bytes": 28964,
+          "checkpoint_id": "manifest",
+          "path": "candidate_fusion/2026-07-18-osm-planet-priority-v13/manifest.json",
+          "sha256": "12fc7517e5fdb4e00c2a7e59c069d868801ac87ecbc8c0237433b65e51ab9cc9"
+        }
+      ],
+      "current_role": "public_supporting_review_lane",
+      "evidence_scope": "review_only",
+      "limitations": [
+        "Candidate rows, opportunity links, and review-priority tiers are review controls, not data-centre identities, lifecycle states, or unique sites.",
+        "Fusion v13 uses active-001, proposed-001, and cumulative Unknown015 for current catalog state; its catalog-link counts are not additional to the three batch entries.",
+        "One analyst review AOI may overlap multiple candidates, so review-link outcomes are not analyst-decision or site counts.",
+        "Sentinel catalog-state links are candidate-AOI overlaps, not unique catalog jobs or visible-change confirmations."
+      ],
+      "metrics": [
+        {
+          "checkpoint_id": "coverage",
+          "json_pointer": "/sentinel_lane/analyst_reviews_examined",
+          "label": "analyst_reviews_examined",
+          "value": 43
+        },
+        {
+          "checkpoint_id": "coverage",
+          "json_pointer": "/sentinel_lane/analyst_reviews_examined_by_outcome/rejected_for_site_promotion",
+          "label": "analyst_reviews_rejected",
+          "value": 31
+        },
+        {
+          "checkpoint_id": "coverage",
+          "json_pointer": "/sentinel_lane/analyst_reviews_examined_by_outcome/retained_visible_change_aoi_followup",
+          "label": "analyst_reviews_retained",
+          "value": 12
+        },
+        {
+          "checkpoint_id": "coverage",
+          "json_pointer": "/primary_shortlist/candidates_examined",
+          "label": "candidates_examined",
+          "value": 102451
+        },
+        {
+          "checkpoint_id": "coverage",
+          "json_pointer": "/primary_shortlist/candidates_with_any_fusion_opportunity",
+          "label": "candidates_with_fusion_opportunity",
+          "value": 14324
+        },
+        {
+          "checkpoint_id": "coverage",
+          "json_pointer": "/sentinel_lane/catalog_state_links/completed",
+          "label": "catalog_completed_aoi_links",
+          "value": 5352
+        },
+        {
+          "checkpoint_id": "coverage",
+          "json_pointer": "/sentinel_lane/catalog_state_links/pending",
+          "label": "catalog_pending_aoi_links",
+          "value": 18772
+        },
+        {
+          "checkpoint_id": "coverage",
+          "json_pointer": "/sentinel_lane/catalog_state_links/unavailable_no_scene",
+          "label": "catalog_unavailable_no_scene_aoi_links",
+          "value": 295
+        },
+        {
+          "checkpoint_id": "coverage",
+          "json_pointer": "/review_priority_tiers/distinct_source_root_opportunity",
+          "label": "priority_tier_distinct_source_root",
+          "value": 1037
+        },
+        {
+          "checkpoint_id": "coverage",
+          "json_pointer": "/review_priority_tiers/analyst_retained_visible_change_aoi_overlap_followup",
+          "label": "priority_tier_retained_visible_change",
+          "value": 28
+        },
+        {
+          "checkpoint_id": "coverage",
+          "json_pointer": "/review_priority_tiers/shared_osm_root_or_queue_opportunity",
+          "label": "priority_tier_shared_root_or_queue",
+          "value": 13259
+        },
+        {
+          "checkpoint_id": "coverage",
+          "json_pointer": "/sentinel_lane/analyst_review_aoi_overlap_links_by_outcome/rejected_for_site_promotion",
+          "label": "review_rejected_candidate_aoi_links",
+          "value": 130
+        },
+        {
+          "checkpoint_id": "coverage",
+          "json_pointer": "/sentinel_lane/analyst_review_aoi_overlap_links_by_outcome/retained_visible_change_aoi_followup",
+          "label": "review_retained_candidate_aoi_links",
+          "value": 33
+        }
+      ],
+      "publication_mode": "public_review_or_discovery",
+      "record_units": [
+        "candidate_record",
+        "catalog_link",
+        "review_record"
+      ],
+      "redistribution_status": "eligible_with_upstream_terms"
+    },
+    {
+      "access_tier": "public_open",
+      "artifact_id": "cleanview-rights-assessment-v1",
+      "artifact_kind": "source_rights_assessment",
+      "checkpoints": [
+        {
+          "binding": {
+            "checkpoint_id": "manifest",
+            "json_pointer": "/files/assessment.json"
+          },
+          "bytes": 8058,
+          "checkpoint_id": "assessment",
+          "path": "source_assessments/cleanview-2026-07-18-v1/assessment.json",
+          "sha256": "60089505dd662ab186ac11e5b419e18a0023ddf6426aeacb26fa99558f1e3129"
+        },
+        {
+          "bytes": 455,
+          "checkpoint_id": "manifest",
+          "path": "source_assessments/cleanview-2026-07-18-v1/manifest.json",
+          "sha256": "e56e5229c3b39929f22152dec9db8201cd3a9a0e12f28e463e3eb22932ccb5f6"
+        }
+      ],
+      "current_role": "rights_gate",
+      "evidence_scope": "metadata_only",
+      "limitations": [
+        "No API key was used, no live records were fetched, and no source rows are released.",
+        "The 1,176-record example is dated 2024-12-12 and is not a verified current count or unique-site count.",
+        "Written custom permission is required before retrieval, storage, derivatives, redistribution, or commercial reuse."
+      ],
+      "metrics": [
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/access_assessment/api_key_used",
+          "label": "api_key_used",
+          "value": false
+        },
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/coverage_assessment/live_record_count",
+          "label": "current_live_record_count",
+          "value": null
+        },
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/coverage_assessment/example_total_count",
+          "label": "noncurrent_example_record_count",
+          "value": 1176
+        },
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/coverage_assessment/publication_facility_leads",
+          "label": "publication_facility_leads",
+          "value": 0
+        },
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/atlas_decision/source_content_publication_eligible",
+          "label": "source_content_publication_eligible",
+          "value": false
+        },
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/coverage_assessment/canonical_facility_count",
+          "label": "unique_physical_sites",
+          "value": null
+        }
+      ],
+      "publication_mode": "public_metadata_or_aggregate_only",
+      "record_units": [
+        "advertised_source_record"
+      ],
+      "redistribution_status": "metadata_only_no_source_rows"
+    },
+    {
+      "access_tier": "public_open",
+      "artifact_id": "construction-map-public-open-v21",
+      "artifact_kind": "construction_map",
+      "checkpoints": [
+        {
+          "binding": {
+            "checkpoint_id": "manifest",
+            "json_pointer": "/outputs/coverage.json"
+          },
+          "bytes": 7390,
+          "checkpoint_id": "coverage",
+          "path": "construction_maps/2026-07-20-public-open-v21/coverage.json",
+          "sha256": "2543e3237acdd44b6c736ffc5142cdd8b2e345abe2e89f62d1d04db5f2f6566e"
+        },
+        {
+          "bytes": 2441,
+          "checkpoint_id": "definition",
+          "path": "sources/construction-map-2026-07-20-public-open-v21.json",
+          "sha256": "72e99c9a1734375e02ed8a4e31a975cfaaa1c9518267466d514b39ba83df78b5"
+        },
+        {
+          "bytes": 2192,
+          "checkpoint_id": "manifest",
+          "path": "construction_maps/2026-07-20-public-open-v21/manifest.json",
+          "sha256": "a2110233083bfef5271225e77a75d2132eedb9d848ee59671c20d26eabd26ba4"
+        }
+      ],
+      "current_role": "authoritative_public_core",
+      "evidence_scope": "mixed_source_scoped_and_review",
+      "limitations": [
+        "Map rows are a presentation derivative of construction-master v21 and must never be added to the master-row total.",
+        "Mapped observations include unpromoted review and discovery rows and are not unique physical sites.",
+        "Two hundred fifty master observations lack coordinates, including 232 Tier-A rows; another 102,541 mapped observations retain an unknown country label."
+      ],
+      "metrics": [
+        {
+          "checkpoint_id": "coverage",
+          "json_pointer": "/projection/added_replacement_rows_unmapped",
+          "label": "added_replacement_rows_unmapped",
+          "value": 111
+        },
+        {
+          "checkpoint_id": "definition",
+          "json_pointer": "/expected_projection/default_visible_rows",
+          "label": "default_visible_rows",
+          "value": 6481
+        },
+        {
+          "checkpoint_id": "coverage",
+          "json_pointer": "/counts/mapped_replacement_rows",
+          "label": "mapped_replacement_rows",
+          "value": 82
+        },
+        {
+          "checkpoint_id": "coverage",
+          "json_pointer": "/counts/mapped_rows_with_any_role",
+          "label": "mapped_rows_with_any_role",
+          "value": 66
+        },
+        {
+          "checkpoint_id": "coverage",
+          "json_pointer": "/mapped_counts/by_tier/A",
+          "label": "mapped_tier_a_rows",
+          "value": 201
+        },
+        {
+          "checkpoint_id": "coverage",
+          "json_pointer": "/mapped_counts/by_tier/B",
+          "label": "mapped_tier_b_rows",
+          "value": 6280
+        },
+        {
+          "checkpoint_id": "coverage",
+          "json_pointer": "/mapped_counts/by_tier/C",
+          "label": "mapped_tier_c_rows",
+          "value": 102494
+        },
+        {
+          "checkpoint_id": "coverage",
+          "json_pointer": "/counts/mapped_observation_rows",
+          "label": "mapped_total_rows",
+          "value": 108975
+        },
+        {
+          "checkpoint_id": "coverage",
+          "json_pointer": "/mapped_counts/by_country/Unknown",
+          "label": "mapped_unknown_country_rows",
+          "value": 102541
+        },
+        {
+          "checkpoint_id": "coverage",
+          "json_pointer": "/counts/master_observation_rows",
+          "label": "master_total_rows",
+          "value": 109225
+        },
+        {
+          "checkpoint_id": "coverage",
+          "json_pointer": "/counts/unique_physical_site_count",
+          "label": "unique_physical_sites",
+          "value": null
+        },
+        {
+          "checkpoint_id": "coverage",
+          "json_pointer": "/counts/unmapped_observation_rows",
+          "label": "unmapped_rows",
+          "value": 250
+        }
+      ],
+      "publication_mode": "public_row_release",
+      "record_units": [
+        "construction_master_row"
+      ],
+      "redistribution_status": "eligible_with_upstream_terms"
+    },
+    {
+      "access_tier": "public_open",
+      "artifact_id": "construction-master-public-open-v21",
+      "artifact_kind": "construction_master",
+      "checkpoints": [
+        {
+          "binding": {
+            "checkpoint_id": "manifest",
+            "json_pointer": "/outputs/coverage.json"
+          },
+          "bytes": 8523,
+          "checkpoint_id": "coverage",
+          "path": "construction_master/2026-07-20-public-open-v21/coverage.json",
+          "sha256": "cc6288cd72eb2463a4f3bcf141eebbdfd7e56bad9c46334b5cefc54d0cae8013"
+        },
+        {
+          "binding": {
+            "checkpoint_id": "manifest",
+            "json_pointer": "/definition"
+          },
+          "bytes": 5657,
+          "checkpoint_id": "definition",
+          "path": "sources/construction-master-2026-07-20-public-open-v21.json",
+          "sha256": "ca6258e96d72407d8aa24b94e3ac52c7c1f4d6b0c52e722b0f6d36bd2c16843a"
+        },
+        {
+          "bytes": 9694,
+          "checkpoint_id": "manifest",
+          "path": "construction_master/2026-07-20-public-open-v21/manifest.json",
+          "sha256": "9af4215174275908f69f2f04302992be940277350e03924a1dda7fb089bab4f9"
+        }
+      ],
+      "current_role": "authoritative_public_core",
+      "evidence_scope": "mixed_source_scoped_and_review",
+      "limitations": [
+        "Historical lifecycle statuses are source-scoped observations and do not establish current construction after reported_status_date.",
+        "Only 433 Tier-A source-supported observation rows enter construction arithmetic; the 109,225 total includes review and structural-discovery rows and is not a unique-site count.",
+        "Planning, permit, environmental-opinion, fuzzy, SEC, imagery-review, and structural-candidate records remain separate review units and are not added to construction arithmetic.",
+        "The accepted Unknown033 recovery contributes four control-plane files and zero rows; its payload is not traversed and its imagery creates no inference."
+      ],
+      "metrics": [
+        {
+          "checkpoint_id": "coverage",
+          "json_pointer": "/replacement_invariants/added_replacement_rows",
+          "label": "added_replacement_rows",
+          "value": 114
+        },
+        {
+          "checkpoint_id": "coverage",
+          "json_pointer": "/replacement_invariants/base_rows",
+          "label": "base_rows",
+          "value": 109111
+        },
+        {
+          "checkpoint_id": "coverage",
+          "json_pointer": "/replacement_invariants/rows_with_contract_marker",
+          "label": "contract_marked_rows",
+          "value": 313
+        },
+        {
+          "checkpoint_id": "coverage",
+          "json_pointer": "/replacement_invariants/inherited_rows",
+          "label": "inherited_rows",
+          "value": 108912
+        },
+        {
+          "checkpoint_id": "coverage",
+          "json_pointer": "/replacement/publication_contract_version",
+          "label": "publication_contract_version",
+          "value": 4
+        },
+        {
+          "checkpoint_id": "coverage",
+          "json_pointer": "/replacement_invariants/replacement_rows",
+          "label": "replacement_rows",
+          "value": 313
+        },
+        {
+          "checkpoint_id": "coverage",
+          "json_pointer": "/role_counts/rows_with_any_role",
+          "label": "role_rows_with_any_role",
+          "value": 108
+        },
+        {
+          "checkpoint_id": "coverage",
+          "json_pointer": "/role_counts/with_core_role/customers",
+          "label": "role_rows_with_customers",
+          "value": 1
+        },
+        {
+          "checkpoint_id": "coverage",
+          "json_pointer": "/role_counts/with_core_role/operator",
+          "label": "role_rows_with_operator",
+          "value": 40
+        },
+        {
+          "checkpoint_id": "coverage",
+          "json_pointer": "/role_counts/with_core_role/owner",
+          "label": "role_rows_with_owner",
+          "value": 47
+        },
+        {
+          "checkpoint_id": "coverage",
+          "json_pointer": "/role_counts/rows_with_source_role_tags",
+          "label": "role_rows_with_source_role_tags",
+          "value": 69
+        },
+        {
+          "checkpoint_id": "coverage",
+          "json_pointer": "/role_counts/with_core_role/tenants",
+          "label": "role_rows_with_tenants",
+          "value": 5
+        },
+        {
+          "checkpoint_id": "coverage",
+          "json_pointer": "/role_counts/with_core_role/users",
+          "label": "role_rows_with_users",
+          "value": 36
+        },
+        {
+          "checkpoint_id": "coverage",
+          "json_pointer": "/satellite_recovery_acceptance/control_plane_bytes",
+          "label": "satellite_recovery_control_plane_bytes",
+          "value": 15313
+        },
+        {
+          "checkpoint_id": "coverage",
+          "json_pointer": "/satellite_recovery_acceptance/control_plane_files",
+          "label": "satellite_recovery_control_plane_files",
+          "value": 4
+        },
+        {
+          "checkpoint_id": "coverage",
+          "json_pointer": "/satellite_recovery_acceptance/rows_created",
+          "label": "satellite_recovery_rows",
+          "value": 0
+        },
+        {
+          "checkpoint_id": "coverage",
+          "json_pointer": "/row_counts/by_tier/A",
+          "label": "tier_a_rows",
+          "value": 433
+        },
+        {
+          "checkpoint_id": "coverage",
+          "json_pointer": "/row_counts/by_tier/B",
+          "label": "tier_b_rows",
+          "value": 6298
+        },
+        {
+          "checkpoint_id": "coverage",
+          "json_pointer": "/row_counts/by_tier/C",
+          "label": "tier_c_rows",
+          "value": 102494
+        },
+        {
+          "checkpoint_id": "coverage",
+          "json_pointer": "/row_counts/total",
+          "label": "total_master_rows",
+          "value": 109225
+        },
+        {
+          "checkpoint_id": "coverage",
+          "json_pointer": "/replacement_invariants/unchanged_replacement_rows",
+          "label": "unchanged_replacement_rows",
+          "value": 199
+        },
+        {
+          "checkpoint_id": "coverage",
+          "json_pointer": "/row_counts/unique_physical_site_count",
+          "label": "unique_physical_sites",
+          "value": null
+        }
+      ],
+      "publication_mode": "public_row_release",
+      "record_units": [
+        "construction_master_row"
+      ],
+      "redistribution_status": "eligible_with_upstream_terms"
+    },
+    {
+      "access_tier": "local_restricted",
+      "artifact_id": "coverage-audit-four-layer-v1",
+      "artifact_kind": "coverage_audit",
+      "checkpoints": [
+        {
+          "bytes": 2333,
+          "checkpoint_id": "manifest",
+          "path": "audits/2026-07-18-four-layer-coverage-v1/manifest.json",
+          "sha256": "b8db94fae2388395d5d821608d75d549c353003eb56324f780edc5950a0508ee"
+        }
+      ],
+      "current_role": "local_restricted_research",
+      "evidence_scope": "mixed_source_scoped_and_review",
+      "limitations": [
+        "This audit includes the quarantined Scrutica release and is not the public coverage view."
+      ],
+      "metrics": [
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/counts/open_gaps",
+          "label": "open_gaps",
+          "value": 2010
+        },
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/counts/source_scoped_entity_records",
+          "label": "source_scoped_rows",
+          "value": 19625
+        },
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/counts/unique_physical_sites",
+          "label": "unique_physical_sites",
+          "value": null
+        }
+      ],
+      "publication_mode": "local_quarantined",
+      "record_units": [
+        "coverage_gap"
+      ],
+      "redistribution_status": "quarantined_pending_rights"
+    },
+    {
+      "access_tier": "public_open",
+      "artifact_id": "coverage-audit-public-open-v21",
+      "artifact_kind": "coverage_audit",
+      "checkpoints": [
+        {
+          "bytes": 2240,
+          "checkpoint_id": "manifest",
+          "path": "audits/2026-07-20-public-open-coverage-v21/manifest.json",
+          "sha256": "b40981593dab96613f7a35dd5e4e07aeb7c4f7e4727f41802bec6b8af0f88393"
+        }
+      ],
+      "current_role": "authoritative_public_core",
+      "evidence_scope": "mixed_source_scoped_and_review",
+      "limitations": [
+        "Gap counts audit source-scoped rows and review rows without computing unique physical sites.",
+        "The 613 source and source-country groups and 3,193 open gaps are coverage-accounting units, not site counts."
+      ],
+      "metrics": [
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/counts/coverage_groups",
+          "label": "coverage_groups",
+          "value": 613
+        },
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/counts/non_review_source_scoped_entity_records",
+          "label": "non_review_source_scoped_rows",
+          "value": 9896
+        },
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/counts/open_gaps",
+          "label": "open_gaps",
+          "value": 3193
+        },
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/counts/review_only_source_scoped_entity_records",
+          "label": "review_only_source_scoped_rows",
+          "value": 6130
+        },
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/counts/source_scoped_entity_records",
+          "label": "source_scoped_rows",
+          "value": 16026
+        },
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/counts/unique_physical_sites",
+          "label": "unique_physical_sites",
+          "value": null
+        }
+      ],
+      "publication_mode": "public_index_or_audit",
+      "record_units": [
+        "coverage_gap"
+      ],
+      "redistribution_status": "eligible_with_upstream_terms"
+    },
+    {
+      "access_tier": "public_open",
+      "artifact_id": "edgemode-sec-assessment-v1",
+      "artifact_kind": "source_rights_assessment",
+      "checkpoints": [
+        {
+          "binding": {
+            "checkpoint_id": "manifest",
+            "json_pointer": "/files/assessment.json"
+          },
+          "bytes": 10064,
+          "checkpoint_id": "assessment",
+          "path": "source_assessments/edgemode-2026-07-18-v1/assessment.json",
+          "sha256": "946e4c033a902a750818140bba41786ad3a5a5c4cb21255199900bc418b5ec1b"
+        },
+        {
+          "bytes": 459,
+          "checkpoint_id": "manifest",
+          "path": "source_assessments/edgemode-2026-07-18-v1/manifest.json",
+          "sha256": "f8b53877a54a831130d0099b4c37ea479b904e91a89963131206e1e3b35316e7"
+        },
+        {
+          "binding": {
+            "checkpoint_id": "manifest",
+            "json_pointer": "/files/pilot.json"
+          },
+          "bytes": 14302,
+          "checkpoint_id": "pilot",
+          "path": "source_assessments/edgemode-2026-07-18-v1/pilot.json",
+          "sha256": "5bb0380d0f93c15c8d55eb2f76b5b4e30d85b4fa949eac5939198deca6af3a3b"
+        }
+      ],
+      "current_role": "rights_gate",
+      "evidence_scope": "review_only",
+      "limitations": [
+        "The direct EdgeMode website lane is blocked; nine SEC EDGAR-derived leads remain review-only with unresolved site and capacity scope."
+      ],
+      "metrics": [
+        {
+          "checkpoint_id": "pilot",
+          "json_pointer": "/construction_verified_rows",
+          "label": "construction_verified_rows",
+          "value": 0
+        },
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/atlas_decision/direct_edgemode_release_permitted",
+          "label": "direct_edgemode_release_permitted",
+          "value": false
+        },
+        {
+          "checkpoint_id": "pilot",
+          "json_pointer": "/leads",
+          "label": "review_leads",
+          "operation": "length",
+          "value": 9
+        },
+        {
+          "checkpoint_id": "pilot",
+          "json_pointer": "/typed_capacity_rows",
+          "label": "typed_capacity_rows",
+          "value": 0
+        },
+        {
+          "checkpoint_id": "pilot",
+          "json_pointer": "/unique_facility_count",
+          "label": "unique_physical_sites",
+          "value": null
+        }
+      ],
+      "publication_mode": "public_review_or_discovery",
+      "record_units": [
+        "capacity_observation",
+        "project_record",
+        "review_record"
+      ],
+      "redistribution_status": "eligible_with_upstream_terms"
+    },
+    {
+      "access_tier": "public_open",
+      "artifact_id": "england-planning-data-2026-07-18-v1",
+      "artifact_kind": "source_scoped_release",
+      "checkpoints": [
+        {
+          "binding": {
+            "checkpoint_id": "manifest",
+            "json_pointer": "/files/assessment.json"
+          },
+          "bytes": 6758,
+          "checkpoint_id": "assessment",
+          "path": "source_assessments/england-planning-data-2026-07-18-v1/assessment.json",
+          "sha256": "4cedd446a017289a6aef6387757e4c18f45177d565621d9944929025bb02beb6"
+        },
+        {
+          "bytes": 5150,
+          "checkpoint_id": "definition",
+          "path": "sources/england-planning-data-2026-07-18-v1.json",
+          "sha256": "4aafda2f425813efd3286c37e5b84159bb72673183caf3f1426a1797220ff32b"
+        },
+        {
+          "bytes": 3588,
+          "checkpoint_id": "manifest",
+          "path": "source_assessments/england-planning-data-2026-07-18-v1/manifest.json",
+          "sha256": "774c51894a2a46cbb10459cc1ebd777059c5bdab425599bfc48b6dd9d248676c"
+        },
+        {
+          "binding": {
+            "checkpoint_id": "manifest",
+            "json_pointer": "/files/phrase-review.json"
+          },
+          "bytes": 3754,
+          "checkpoint_id": "phrase_review",
+          "path": "source_assessments/england-planning-data-2026-07-18-v1/phrase-review.json",
+          "sha256": "4249f3413e5073ea4d2f446825c25edddb46f406067c406ace39c2ae09bba7e3"
+        }
+      ],
+      "current_role": "public_supporting_review_lane",
+      "evidence_scope": "review_only",
+      "limitations": [
+        "All four exact-phrase observations remain planning-application review units; three are direct-scope and one is a context-only exclusion, not four facilities.",
+        "Planning status, description text, and coordinates do not promote identity, construction, lifecycle, type, power, energy, or unique-site claims.",
+        "The source warns that the England planning-application dataset is incomplete, so neither England nor global recall is established."
+      ],
+      "metrics": [
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/inference_policy/construction_evidence",
+          "label": "construction_evidence",
+          "value": false
+        },
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/selection_assessment/explicit_context_classification_counts/context_only_exclusion",
+          "label": "context_only_excluded",
+          "value": 1
+        },
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/selection_assessment/explicit_context_classification_counts/direct_data_centre_scope",
+          "label": "direct_scope_exact_phrase_rows",
+          "value": 3
+        },
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/selection_assessment/explicit_observations",
+          "label": "exact_phrase_rows",
+          "value": 4
+        },
+        {
+          "checkpoint_id": "phrase_review",
+          "json_pointer": "/optional_observations_added",
+          "label": "optional_observations_added",
+          "value": 0
+        },
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/inference_policy/promotion_permitted",
+          "label": "promotion_permitted",
+          "value": false
+        },
+        {
+          "checkpoint_id": "phrase_review",
+          "json_pointer": "/recall_claimed",
+          "label": "recall_claimed",
+          "value": false
+        },
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/coverage_assessment/source_row_count",
+          "label": "source_rows",
+          "value": 100627
+        }
+      ],
+      "publication_mode": "public_review_or_discovery",
+      "record_units": [
+        "planning_application_record",
+        "planning_observation_record",
+        "review_record"
+      ],
+      "redistribution_status": "eligible_with_upstream_terms"
+    },
+    {
+      "access_tier": "local_restricted",
+      "artifact_id": "epa-echo-frs-local-review-v1",
+      "artifact_kind": "source_rights_assessment",
+      "checkpoints": [
+        {
+          "binding": {
+            "checkpoint_id": "manifest",
+            "json_pointer": "/files/assessment.json"
+          },
+          "bytes": 8302,
+          "checkpoint_id": "assessment",
+          "path": "source_assessments/epa-echo-frs-2026-07-18-v1/assessment.json",
+          "sha256": "62e551b0ba4c9c3e1155f5b0422c1f1a34c7bf0bf2afb44917a6f6941dca2674"
+        },
+        {
+          "bytes": 461,
+          "checkpoint_id": "manifest",
+          "path": "source_assessments/epa-echo-frs-2026-07-18-v1/manifest.json",
+          "sha256": "bcd50875c4862033cbc0fcda1e83611cec7a58cf504b3e85734b28cfdeb30bd6"
+        },
+        {
+          "binding": {
+            "checkpoint_id": "manifest",
+            "json_pointer": "/files/pilot.json"
+          },
+          "bytes": 5524,
+          "checkpoint_id": "pilot",
+          "path": "source_assessments/epa-echo-frs-2026-07-18-v1/pilot.json",
+          "sha256": "da940d8788a3b1af3065f82820cd1b2cf647743bd4442eaee3030383c352abdf"
+        }
+      ],
+      "current_role": "local_restricted_research",
+      "evidence_scope": "review_only",
+      "limitations": [
+        "No construction, typed capacity, energy, PUE, workload, or publication-eligible rows were established.",
+        "The 928-row NAICS result is a broad screening denominator, not a United States data-centre inventory or unique-site count.",
+        "The four name-token leads remain local because exact field lineage to the CC0 FRS Facility Interests distribution was not checkpointed."
+      ],
+      "metrics": [
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/coverage_assessment/naics_518210_query_rows",
+          "label": "broad_naics_query_rows",
+          "value": 928
+        },
+        {
+          "checkpoint_id": "pilot",
+          "json_pointer": "/construction_verified_rows",
+          "label": "construction_verified_rows",
+          "value": 0
+        },
+        {
+          "checkpoint_id": "pilot",
+          "json_pointer": "/publication_eligible_rows",
+          "label": "publication_eligible_rows",
+          "value": 0
+        },
+        {
+          "checkpoint_id": "pilot",
+          "json_pointer": "/leads",
+          "label": "review_leads",
+          "operation": "length",
+          "value": 4
+        },
+        {
+          "checkpoint_id": "pilot",
+          "json_pointer": "/typed_capacity_rows",
+          "label": "typed_capacity_rows",
+          "value": 0
+        },
+        {
+          "checkpoint_id": "pilot",
+          "json_pointer": "/typed_energy_rows",
+          "label": "typed_energy_rows",
+          "value": 0
+        },
+        {
+          "checkpoint_id": "pilot",
+          "json_pointer": "/typed_pue_rows",
+          "label": "typed_pue_rows",
+          "value": 0
+        },
+        {
+          "checkpoint_id": "pilot",
+          "json_pointer": "/typed_workload_rows",
+          "label": "typed_workload_rows",
+          "value": 0
+        },
+        {
+          "checkpoint_id": "pilot",
+          "json_pointer": "/unique_physical_site_count",
+          "label": "unique_physical_sites",
+          "value": null
+        }
+      ],
+      "publication_mode": "local_quarantined",
+      "record_units": [
+        "facility_record",
+        "review_record"
+      ],
+      "redistribution_status": "quarantined_pending_rights"
+    },
+    {
+      "access_tier": "local_restricted",
+      "artifact_id": "federation-four-layer-v2",
+      "artifact_kind": "federated_release_index",
+      "checkpoints": [
+        {
+          "binding": {
+            "checkpoint_id": "manifest",
+            "json_pointer": "/artifacts/federated-index.json"
+          },
+          "bytes": 17054,
+          "checkpoint_id": "index",
+          "path": "federated_indexes/2026-07-18-four-layer-v2/federated-index.json",
+          "sha256": "83423c40fa4fa694a707bfe8b4fba114ec5229598a48309ffeeb07449a87a189"
+        },
+        {
+          "bytes": 984,
+          "checkpoint_id": "manifest",
+          "path": "federated_indexes/2026-07-18-four-layer-v2/manifest.json",
+          "sha256": "84515b016fff98c5e33e96d185b03704537c27984c6e0c9deb8181a0b7a7a3d7"
+        }
+      ],
+      "current_role": "local_restricted_research",
+      "evidence_scope": "mixed_source_scoped_and_review",
+      "limitations": [
+        "The arithmetic federation contains quarantined Scrutica rows and is excluded from public redistribution."
+      ],
+      "metrics": [
+        {
+          "checkpoint_id": "index",
+          "json_pointer": "/counts/capacity_estimates",
+          "label": "capacity_observations",
+          "value": 1613
+        },
+        {
+          "checkpoint_id": "index",
+          "json_pointer": "/counts/source_scoped_entity_records",
+          "label": "source_scoped_rows",
+          "value": 19625
+        },
+        {
+          "checkpoint_id": "index",
+          "json_pointer": "/counts/unique_physical_sites",
+          "label": "unique_physical_sites",
+          "value": null
+        }
+      ],
+      "publication_mode": "local_quarantined",
+      "record_units": [
+        "source_scoped_entity_row"
+      ],
+      "redistribution_status": "quarantined_pending_rights"
+    },
+    {
+      "access_tier": "public_open",
+      "artifact_id": "federation-public-open-v22",
+      "artifact_kind": "federated_release_index",
+      "checkpoints": [
+        {
+          "binding": {
+            "checkpoint_id": "manifest",
+            "json_pointer": "/artifacts/federated-index.json"
+          },
+          "bytes": 22981,
+          "checkpoint_id": "index",
+          "path": "federated_indexes/2026-07-20-public-open-v22/federated-index.json",
+          "sha256": "d2d7518a5febb0c57a2ceaac78ecb71fe045d1578efefcdf34829a7db5866c7c"
+        },
+        {
+          "bytes": 986,
+          "checkpoint_id": "manifest",
+          "path": "federated_indexes/2026-07-20-public-open-v22/manifest.json",
+          "sha256": "bf281de1170bb709ebc33148c45d0c1c30ea535073e3193754f53f0c4ffd4a94"
+        }
+      ],
+      "current_role": "authoritative_public_core",
+      "evidence_scope": "mixed_source_scoped_and_review",
+      "limitations": [
+        "The 16,026 source-scoped rows are an arithmetic sum across three child releases, not unique physical sites.",
+        "The 6,563 construction-pipeline records include 6,130 review-only fuzzy rows and only 433 non-review observations; they are not all confirmed construction sites."
+      ],
+      "metrics": [
+        {
+          "checkpoint_id": "index",
+          "json_pointer": "/counts/capacity_estimates",
+          "label": "capacity_observations",
+          "value": 1240
+        },
+        {
+          "checkpoint_id": "index",
+          "json_pointer": "/counts/construction_pipeline_records",
+          "label": "construction_pipeline_records",
+          "value": 6563
+        },
+        {
+          "checkpoint_id": "index",
+          "json_pointer": "/counts/non_review_construction_pipeline_records",
+          "label": "non_review_construction_pipeline_records",
+          "value": 433
+        },
+        {
+          "checkpoint_id": "index",
+          "json_pointer": "/counts/non_review_source_scoped_entity_records",
+          "label": "non_review_source_scoped_rows",
+          "value": 9896
+        },
+        {
+          "checkpoint_id": "index",
+          "json_pointer": "/counts/review_only_construction_pipeline_records",
+          "label": "review_only_construction_pipeline_records",
+          "value": 6130
+        },
+        {
+          "checkpoint_id": "index",
+          "json_pointer": "/counts/review_only_source_scoped_entity_records",
+          "label": "review_only_source_scoped_rows",
+          "value": 6130
+        },
+        {
+          "checkpoint_id": "index",
+          "json_pointer": "/counts/source_scoped_entity_records",
+          "label": "source_scoped_rows",
+          "value": 16026
+        },
+        {
+          "checkpoint_id": "index",
+          "json_pointer": "/counts/unique_physical_sites",
+          "label": "unique_physical_sites",
+          "value": null
+        }
+      ],
+      "publication_mode": "public_index_or_audit",
+      "record_units": [
+        "source_scoped_entity_row"
+      ],
+      "redistribution_status": "eligible_with_upstream_terms"
+    },
+    {
+      "access_tier": "public_open",
+      "artifact_id": "france-igedd-ae-data-centres-2009-2026-2026-07-18-v1",
+      "artifact_kind": "source_scoped_release",
+      "checkpoints": [
+        {
+          "binding": {
+            "checkpoint_id": "manifest",
+            "json_pointer": "/files/3"
+          },
+          "bytes": 2354,
+          "checkpoint_id": "assessment",
+          "path": "source_assessments/france-igedd-ae-data-centres-2009-2026-2026-07-18-v1/assessment.json",
+          "sha256": "9f0f7a9884662795eb14889f7b901098ce832cefddd4086204273e6b76473e32"
+        },
+        {
+          "binding": {
+            "checkpoint_id": "manifest",
+            "json_pointer": "/files/4"
+          },
+          "bytes": 4028,
+          "checkpoint_id": "definition",
+          "path": "sources/france-igedd-ae-data-centres-2009-2026-2026-07-18-v1.json",
+          "sha256": "1d8bc43fe7a1c9d4d88b87302c2fc292039e003f1b5e695c3fc898581ed12138"
+        },
+        {
+          "bytes": 1251,
+          "checkpoint_id": "manifest",
+          "path": "source_assessments/france-igedd-ae-data-centres-2009-2026-2026-07-18-v1/manifest.json",
+          "sha256": "aef3c9b21a07d436bd48eafc26fb67e9ea81dbbb827f76429f66e65708307e49"
+        }
+      ],
+      "current_role": "public_supporting_review_lane",
+      "evidence_scope": "review_only",
+      "limitations": [
+        "Environmental opinions and their source process status do not establish physical construction, operation, lifecycle, type, coordinates, or automatic relationships.",
+        "Four derived environmental-opinion observations are review units; three direct projects and one ancillary grid-connection follow-up are not four unique sites.",
+        "Only explicitly scoped IT capacity remains IT capacity; backup, support, grid, projected annual-energy, and target-PUE values retain source semantics and units.",
+        "Raw HTML and PDFs are excluded; only derived factual rows pass the assessed Etalab 2.0 publication gate."
+      ],
+      "metrics": [
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/classification_counts/ancillary_grid_connection_follow_up",
+          "label": "ancillary_grid_connection_follow_ups",
+          "value": 1
+        },
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/inference_boundary/annual_energy_values_are_measured_actuals",
+          "label": "annual_energy_values_are_measured_actuals",
+          "value": false
+        },
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/inference_boundary/backup_or_battery_power_promoted_to_it_or_facility_load",
+          "label": "backup_or_battery_power_promoted_to_it_or_facility_load",
+          "value": false
+        },
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/inference_boundary/connection_power_promoted_to_it_or_facility_load",
+          "label": "connection_power_promoted_to_it_or_facility_load",
+          "value": false
+        },
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/atlas_decision/derived_rows_publication_eligible",
+          "label": "derived_rows_publication_eligible",
+          "value": true
+        },
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/classification_counts/direct_data_centre_project",
+          "label": "direct_data_centre_project_observations",
+          "value": 3
+        },
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/inference_boundary/environmental_opinion_promoted_to_physical_lifecycle",
+          "label": "environmental_opinion_promoted_to_physical_lifecycle",
+          "value": false
+        },
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/atlas_decision/pdf_redistribution_permitted_by_this_release",
+          "label": "pdf_redistribution_permitted",
+          "value": false
+        },
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/coverage_assessment/regional_mrae_coverage_included",
+          "label": "regional_mrae_coverage_included",
+          "value": false
+        },
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/inference_boundary/unit_multiplicity_promoted_to_distinct_sites",
+          "label": "unit_multiplicity_promoted_to_distinct_sites",
+          "value": false
+        }
+      ],
+      "publication_mode": "public_review_or_discovery",
+      "record_units": [
+        "capacity_observation",
+        "project_record",
+        "review_record"
+      ],
+      "redistribution_status": "eligible_with_upstream_terms"
+    },
+    {
+      "access_tier": "public_open",
+      "artifact_id": "gdelt-news-review-pilot",
+      "artifact_kind": "bounded_discovery_pilot",
+      "checkpoints": [
+        {
+          "bytes": 12810,
+          "checkpoint_id": "manifest",
+          "path": "source_cache/gdelt-news-review-20260630201600/manifest.json",
+          "sha256": "a175424f6099dfd0567cdcccc7facb5ca47063af33fb6890735414b76a474f22"
+        }
+      ],
+      "current_role": "public_supporting_review_lane",
+      "evidence_scope": "review_only",
+      "limitations": [
+        "Lexical matches are article-review candidates with no facility identity, geography, or lifecycle inference."
+      ],
+      "metrics": [
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/counts/candidate_articles",
+          "label": "candidate_articles",
+          "value": 14
+        }
+      ],
+      "publication_mode": "public_review_or_discovery",
+      "record_units": [
+        "candidate_record",
+        "review_record"
+      ],
+      "redistribution_status": "eligible_with_upstream_terms"
+    },
+    {
+      "access_tier": "public_open",
+      "artifact_id": "gdelt-news-triage-pilot",
+      "artifact_kind": "bounded_discovery_pilot",
+      "checkpoints": [
+        {
+          "bytes": 887,
+          "checkpoint_id": "manifest",
+          "path": "source_cache/gdelt-news-triage-20260630201600/manifest.json",
+          "sha256": "c5c2d900ec72397f676cf26247bf23fb60607eb015bc2e610cf8b52cf50752d0"
+        }
+      ],
+      "current_role": "public_supporting_review_lane",
+      "evidence_scope": "review_only",
+      "limitations": [
+        "Retained leads require authoritative source follow-up and create no Atlas claim."
+      ],
+      "metrics": [
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/counts/candidates_reviewed",
+          "label": "candidates_reviewed",
+          "value": 14
+        },
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/counts/retained_for_source_review",
+          "label": "retained_for_source_review",
+          "value": 3
+        }
+      ],
+      "publication_mode": "public_review_or_discovery",
+      "record_units": [
+        "candidate_record",
+        "review_record"
+      ],
+      "redistribution_status": "eligible_with_upstream_terms"
+    },
+    {
+      "access_tier": "public_open",
+      "artifact_id": "global-open-v3",
+      "artifact_kind": "source_scoped_release",
+      "checkpoints": [
+        {
+          "bytes": 2547,
+          "checkpoint_id": "manifest",
+          "path": "releases/2026-07-18-global-open-v3/manifest.json",
+          "sha256": "fe14c1b264ce7d5f589c717147e584f7ace97b832b0987389f2ee03ded6bb562"
+        }
+      ],
+      "current_role": "authoritative_public_core",
+      "evidence_scope": "source_scoped",
+      "limitations": [
+        "Source-scoped entity rows are not a deduplicated count of physical sites."
+      ],
+      "metrics": [
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/capacity_estimates",
+          "label": "capacity_observations",
+          "value": 786
+        },
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/construction_pipeline_records",
+          "label": "construction_pipeline_records",
+          "value": 120
+        },
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/entities",
+          "label": "source_scoped_entity_rows",
+          "value": 9295
+        }
+      ],
+      "publication_mode": "public_row_release",
+      "record_units": [
+        "capacity_observation",
+        "construction_pipeline_record",
+        "source_scoped_entity_row"
+      ],
+      "redistribution_status": "eligible_with_upstream_terms"
+    },
+    {
+      "access_tier": "public_open",
+      "artifact_id": "ireland-planning-observations-v1",
+      "artifact_kind": "source_scoped_release",
+      "checkpoints": [
+        {
+          "binding": {
+            "checkpoint_id": "manifest",
+            "json_pointer": "/files/assessment.json"
+          },
+          "bytes": 24941,
+          "checkpoint_id": "assessment",
+          "path": "source_assessments/ireland-planning-data-centres-2026-07-18-v1/assessment.json",
+          "sha256": "f8f0b1a3006e5b9bda344b40709dec56812a3b469e8b383000cef225ec2bbdc7"
+        },
+        {
+          "bytes": 4434,
+          "checkpoint_id": "manifest",
+          "path": "source_assessments/ireland-planning-data-centres-2026-07-18-v1/manifest.json",
+          "sha256": "f52bd936620909ca948e687164957e0d6510dafda957e778b5d977f5e941128c"
+        },
+        {
+          "binding": {
+            "checkpoint_id": "manifest",
+            "json_pointer": "/files/summary.json"
+          },
+          "bytes": 4959,
+          "checkpoint_id": "summary",
+          "path": "source_assessments/ireland-planning-data-centres-2026-07-18-v1/summary.json",
+          "sha256": "f15e8054c98f9c8da516b6714490c824e8d6f7cf3c78dc6cd307b851f83dc9ac"
+        }
+      ],
+      "current_role": "authoritative_public_core",
+      "evidence_scope": "source_scoped",
+      "limitations": [
+        "Planning status, decision, and application-type strings are preserved source metadata and are not normalized lifecycle, operation, capacity, power, or energy facts.",
+        "Relationship groups are advisory only; no automatic entity merge or unique-site count is accepted.",
+        "The 114 CC-BY-4.0 rows are planning-application observations, not construction confirmations or unique physical sites.",
+        "The 499,712-row source total is the wider participating-authority planning dataset, not a data-centre count."
+      ],
+      "metrics": [
+        {
+          "checkpoint_id": "summary",
+          "json_pointer": "/authority_application_key_count",
+          "label": "authority_application_keys",
+          "value": 112
+        },
+        {
+          "checkpoint_id": "summary",
+          "json_pointer": "/distinct_objectid_count",
+          "label": "distinct_objectids",
+          "value": 114
+        },
+        {
+          "checkpoint_id": "summary",
+          "json_pointer": "/matched_observation_count",
+          "label": "matched_observations",
+          "value": 114
+        },
+        {
+          "checkpoint_id": "summary",
+          "json_pointer": "/observations_in_relationship_suggestions",
+          "label": "observations_in_relationship_suggestions",
+          "value": 56
+        },
+        {
+          "checkpoint_id": "summary",
+          "json_pointer": "/potential_relationship_group_count",
+          "label": "potential_relationship_groups",
+          "value": 32
+        },
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/coverage_assessment/source_total_rows",
+          "label": "source_total_planning_rows",
+          "value": 499712
+        },
+        {
+          "checkpoint_id": "summary",
+          "json_pointer": "/unique_site_count",
+          "label": "unique_physical_sites",
+          "value": null
+        }
+      ],
+      "publication_mode": "public_row_release",
+      "record_units": [
+        "planning_application_record",
+        "planning_observation_record"
+      ],
+      "redistribution_status": "eligible_with_upstream_terms"
+    },
+    {
+      "access_tier": "public_open",
+      "artifact_id": "loudoun-data-center-assessment-v1",
+      "artifact_kind": "source_rights_assessment",
+      "checkpoints": [
+        {
+          "binding": {
+            "checkpoint_id": "manifest",
+            "json_pointer": "/files/assessment.json"
+          },
+          "bytes": 12773,
+          "checkpoint_id": "assessment",
+          "path": "source_assessments/loudoun-data-center-2026-07-18-v1/assessment.json",
+          "sha256": "d54d04f9b9085a09f8546852b34a1aa10019e17528a3cd6a0924b8cff9710e82"
+        },
+        {
+          "binding": {
+            "checkpoint_id": "manifest",
+            "json_pointer": "/files/calibration.json"
+          },
+          "bytes": 6015,
+          "checkpoint_id": "calibration",
+          "path": "source_assessments/loudoun-data-center-2026-07-18-v1/calibration.json",
+          "sha256": "b1543e6c50abce7981578c0f98a0b019df7e75c27d119e0712d45edae53d6bb8"
+        },
+        {
+          "bytes": 614,
+          "checkpoint_id": "manifest",
+          "path": "source_assessments/loudoun-data-center-2026-07-18-v1/manifest.json",
+          "sha256": "3c0e524d5b13d428bccd89ca33988945b1d58dba3d8ea1459c86243527401cb4"
+        }
+      ],
+      "current_role": "rights_gate",
+      "evidence_scope": "metadata_only",
+      "limitations": [
+        "No feature attributes, geometry, source rows, automatic cross-layer merge, or unique-facility count is released.",
+        "Public ArcGIS access and download availability are not treated as an affirmative database-redistribution license.",
+        "The 139 existing and 85 pipeline values are county-classified parcel-record counts that may overlap conceptually and are not summed."
+      ],
+      "metrics": [
+        {
+          "checkpoint_id": "calibration",
+          "json_pointer": "/contains_source_feature_rows",
+          "label": "contains_source_feature_rows",
+          "value": false
+        },
+        {
+          "checkpoint_id": "calibration",
+          "json_pointer": "/gis_snapshot/counts/existing_parcel_records",
+          "label": "existing_parcel_records",
+          "value": 139
+        },
+        {
+          "checkpoint_id": "calibration",
+          "json_pointer": "/gis_snapshot/counts/pipeline_parcel_records",
+          "label": "pipeline_parcel_records",
+          "value": 85
+        },
+        {
+          "checkpoint_id": "calibration",
+          "json_pointer": "/gis_snapshot/counts/record_counts_summed",
+          "label": "record_counts_summed",
+          "value": false
+        },
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/atlas_decision/source_feature_content_publication_eligible",
+          "label": "source_feature_content_publication_eligible",
+          "value": false
+        },
+        {
+          "checkpoint_id": "calibration",
+          "json_pointer": "/unique_facility_count",
+          "label": "unique_physical_sites",
+          "value": null
+        }
+      ],
+      "publication_mode": "public_metadata_or_aggregate_only",
+      "record_units": [
+        "aggregate_report_metric",
+        "parcel_record"
+      ],
+      "redistribution_status": "metadata_only_no_source_rows"
+    },
+    {
+      "access_tier": "public_open",
+      "artifact_id": "microsoft-global-ml-buildings-review-v1",
+      "artifact_kind": "bounded_discovery_pilot",
+      "checkpoints": [
+        {
+          "binding": {
+            "checkpoint_id": "manifest",
+            "json_pointer": "/outputs/coverage.json"
+          },
+          "bytes": 7908,
+          "checkpoint_id": "coverage",
+          "path": "source_cache/microsoft-global-ml-buildings-2026-07-18-v1/coverage.json",
+          "sha256": "acf74b654ee2753d69345c198c6bb86acb2572f5d57fdfc28f690f2a0d073301"
+        },
+        {
+          "binding": {
+            "checkpoint_id": "manifest",
+            "json_pointer": "/definition"
+          },
+          "bytes": 12001,
+          "checkpoint_id": "definition",
+          "path": "sources/microsoft-global-ml-building-footprints-2026-07-18-v1.json",
+          "sha256": "db6a3e1301338865a534f60b56abf2dfe83831fe2669afe90d0df055d99186b9"
+        },
+        {
+          "bytes": 10238,
+          "checkpoint_id": "manifest",
+          "path": "source_cache/microsoft-global-ml-buildings-2026-07-18-v1/manifest.json",
+          "sha256": "4097ff7fc71d756544b4123efee660de3e7c2e32966bd20b27597f7ab22e3892"
+        }
+      ],
+      "current_role": "public_supporting_review_lane",
+      "evidence_scope": "review_only",
+      "limitations": [
+        "Footprints, proximity, height, and confidence establish no data-centre identity, type, construction status, capacity, power, energy, or completeness claim.",
+        "Index rows are Location plus LOD9 quadkey shard pointers, not building, data-centre, facility, status, or unique-site rows.",
+        "No per-feature imagery or inference date can be assigned from the upstream dataset-level vintage descriptions.",
+        "The 476,989 source footprints are limited to four selected shards and the 671 released features are bounded AOI review context only."
+      ],
+      "metrics": [
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/inventory/advertised_compressed_bytes_binary_approx",
+          "label": "advertised_compressed_bytes_binary_approx",
+          "value": 122423557613
+        },
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/totals/confidence_present_selected_features",
+          "label": "confidence_present_selected_features",
+          "value": 0
+        },
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/totals/features_establishing_data_centre_identity_status_type_capacity_power_or_energy",
+          "label": "data_centre_facts_established",
+          "value": 0
+        },
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/totals/height_present_selected_features",
+          "label": "height_present_selected_features",
+          "value": 0
+        },
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/inventory/index_rows",
+          "label": "index_rows",
+          "value": 30344
+        },
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/inventory/locations",
+          "label": "locations",
+          "value": 225
+        },
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/inventory/selected_country_shards",
+          "label": "selected_country_shards",
+          "value": 4
+        },
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/totals/selected_features",
+          "label": "selected_features",
+          "value": 671
+        },
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/totals/compressed_selected_shard_bytes",
+          "label": "selected_shard_bytes",
+          "value": 44898457
+        },
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/totals/source_features_in_selected_shards",
+          "label": "source_features_in_selected_shards",
+          "value": 476989
+        },
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/inventory/unique_location_quadkeys",
+          "label": "unique_location_quadkeys",
+          "value": 30344
+        },
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/inventory/unique_urls",
+          "label": "unique_urls",
+          "value": 30344
+        }
+      ],
+      "publication_mode": "public_review_or_discovery",
+      "record_units": [
+        "advertised_source_record",
+        "building_footprint_record",
+        "review_record"
+      ],
+      "redistribution_status": "eligible_with_upstream_terms"
+    },
+    {
+      "access_tier": "public_open",
+      "artifact_id": "netherlands-koop-official-publications-2026-07-18-v1",
+      "artifact_kind": "source_scoped_release",
+      "checkpoints": [
+        {
+          "binding": {
+            "checkpoint_id": "manifest",
+            "json_pointer": "/files/assessment.json"
+          },
+          "bytes": 13176,
+          "checkpoint_id": "assessment",
+          "path": "source_assessments/netherlands-koop-official-publications-2026-07-18-v1/assessment.json",
+          "sha256": "2cdf1f78b80173c369634936742e8ce9464d10dda7a8d791f770bc65095b0a1f"
+        },
+        {
+          "binding": {
+            "checkpoint_id": "manifest",
+            "json_pointer": "/files/definition.json"
+          },
+          "bytes": 22302,
+          "checkpoint_id": "definition",
+          "path": "sources/netherlands-koop-official-publications-2026-07-18-v1.json",
+          "sha256": "ee23b0cd9b7e1584b48579f79a4451bf4de1b7392a1c58d13280cb7dbef78847"
+        },
+        {
+          "bytes": 5886,
+          "checkpoint_id": "manifest",
+          "path": "source_assessments/netherlands-koop-official-publications-2026-07-18-v1/manifest.json",
+          "sha256": "2fc151a0088f4d03cba8985fb45552400236518cd9022672d49280ab9d4d9cd2"
+        }
+      ],
+      "current_role": "public_supporting_review_lane",
+      "evidence_scope": "review_only",
+      "limitations": [
+        "Only assessed official-publication metadata and selected official XML text enter the public scope; attachments and images are excluded.",
+        "Permit stages, publication metadata, and map anchors do not establish physical lifecycle, construction, operation, type, power, energy, PUE, or workload.",
+        "Six relationship groups are advisory; accepted relationships and automatic merges remain zero.",
+        "Twenty bounded official publications comprise thirteen direct review candidates and seven ancillary or context exclusions; neither count is unique sites."
+      ],
+      "metrics": [
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/advisory_relationships/accepted_relationships",
+          "label": "accepted_relationships",
+          "value": 0
+        },
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/classification_counts/ancillary_or_context_exclusion",
+          "label": "ancillary_context_exclusions",
+          "value": 7
+        },
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/advisory_relationships/automatic_merges",
+          "label": "automatic_merges",
+          "value": 0
+        },
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/review_policy/construction_evidence",
+          "label": "construction_evidence",
+          "value": false
+        },
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/classification_counts/direct_project_build_expansion_candidate",
+          "label": "direct_project_review_candidates",
+          "value": 13
+        },
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/review_policy/promotion_permitted",
+          "label": "promotion_permitted",
+          "value": false
+        },
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/query_assessment/expected_number_of_records",
+          "label": "query_records",
+          "value": 20
+        },
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/review_policy/review_only",
+          "label": "review_only",
+          "value": true
+        },
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/rights_assessment/rights_gate_passed_for_retained_scope",
+          "label": "rights_gate_passed",
+          "value": true
+        },
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/advisory_relationships/unique_physical_site_count",
+          "label": "unique_physical_sites",
+          "value": null
+        }
+      ],
+      "publication_mode": "public_review_or_discovery",
+      "record_units": [
+        "planning_observation_record",
+        "review_record"
+      ],
+      "redistribution_status": "eligible_with_upstream_terms"
+    },
+    {
+      "access_tier": "public_open",
+      "artifact_id": "new-zealand-fast-track-2026-07-18-v1",
+      "artifact_kind": "source_scoped_release",
+      "checkpoints": [
+        {
+          "binding": {
+            "checkpoint_id": "manifest",
+            "json_pointer": "/files/assessment.json"
+          },
+          "bytes": 7595,
+          "checkpoint_id": "assessment",
+          "path": "source_assessments/new-zealand-fast-track-2026-07-18-v1/assessment.json",
+          "sha256": "40fb2a39f548cf8902aba1e991b6719291265a01e521ba200f1693061606b7d7"
+        },
+        {
+          "binding": {
+            "checkpoint_id": "manifest",
+            "json_pointer": "/files/definition.json"
+          },
+          "bytes": 7758,
+          "checkpoint_id": "definition",
+          "path": "sources/new-zealand-fast-track-2026-07-18-v1.json",
+          "sha256": "d06491aa46e4eeab7f04a86f5a04477807dd179d572ac71a7e401f99a15fbe53"
+        },
+        {
+          "bytes": 4052,
+          "checkpoint_id": "manifest",
+          "path": "source_assessments/new-zealand-fast-track-2026-07-18-v1/manifest.json",
+          "sha256": "97e9b78cc516acd48e6d3e3f80d367977bc7ae3b882820dc3e0f7e185b6cb264"
+        }
+      ],
+      "current_role": "public_supporting_review_lane",
+      "evidence_scope": "review_only",
+      "limitations": [
+        "No typed capacity, power, annual energy, or PUE metric is emitted; one source phrase remains untyped context.",
+        "Proposed wording and declared AI or hyperscale characterization remain source-scoped review context, not operational verification.",
+        "Relationships are advisory and automatic merges remain zero; attachments, comments, images, plans, and third-party documents are excluded.",
+        "Three bounded planning observations comprise two project candidates and one prior related observation; no nationwide coverage or unique-site count."
+      ],
+      "metrics": [
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/advisory_relationships/accepted_relationships",
+          "label": "accepted_relationships",
+          "value": 0
+        },
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/advisory_relationships/automatic_merges",
+          "label": "automatic_merges",
+          "value": 0
+        },
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/review_policy/construction_evidence",
+          "label": "construction_evidence",
+          "value": false
+        },
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/candidate_classification_counts/direct_data_centre_project_candidate",
+          "label": "direct_project_candidates",
+          "value": 2
+        },
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/candidate_classification_counts/prior_related_planning_observation",
+          "label": "prior_related_observations",
+          "value": 1
+        },
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/physical_status_counts/proposed",
+          "label": "proposed_observations",
+          "value": 3
+        },
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/review_policy/review_only",
+          "label": "review_only",
+          "value": true
+        },
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/rights_assessment/rights_gate_passed_for_retained_scope",
+          "label": "rights_gate_passed",
+          "value": true
+        },
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/typed_metric_counts/annual_energy",
+          "label": "typed_annual_energy",
+          "value": 0
+        },
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/typed_metric_counts/capacity",
+          "label": "typed_capacity",
+          "value": 0
+        },
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/typed_metric_counts/power",
+          "label": "typed_power",
+          "value": 0
+        },
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/typed_metric_counts/pue",
+          "label": "typed_pue",
+          "value": 0
+        },
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/coverage/unique_physical_site_count",
+          "label": "unique_physical_sites",
+          "value": null
+        }
+      ],
+      "publication_mode": "public_review_or_discovery",
+      "record_units": [
+        "planning_application_record",
+        "planning_observation_record",
+        "review_record"
+      ],
+      "redistribution_status": "eligible_with_upstream_terms"
+    },
+    {
+      "access_tier": "public_open",
+      "artifact_id": "nsw-major-projects-data-storage-2026-07-18-v1",
+      "artifact_kind": "source_scoped_release",
+      "checkpoints": [
+        {
+          "binding": {
+            "checkpoint_id": "manifest",
+            "json_pointer": "/files/assessment.json"
+          },
+          "bytes": 8311,
+          "checkpoint_id": "assessment",
+          "path": "source_assessments/nsw-major-projects-data-storage-2026-07-18-v1/assessment.json",
+          "sha256": "792bd0b9bed8328db727a03293648b81ca4a5409e1bb934f7edc4f6be0f1234c"
+        },
+        {
+          "binding": {
+            "checkpoint_id": "manifest",
+            "json_pointer": "/files/definition.json"
+          },
+          "bytes": 3877,
+          "checkpoint_id": "definition",
+          "path": "sources/nsw-major-projects-data-storage-2026-07-18-v1.json",
+          "sha256": "7e5c44b02c7265c7d2745892af9f4a3158a95bf299d090517ce5015242935b63"
+        },
+        {
+          "bytes": 11162,
+          "checkpoint_id": "manifest",
+          "path": "source_assessments/nsw-major-projects-data-storage-2026-07-18-v1/manifest.json",
+          "sha256": "650c9b6e194fea0dbe1ce28ecba0cb8f114b8ec7d6571a0ee1f31c41f0d660f2"
+        }
+      ],
+      "current_role": "public_supporting_review_lane",
+      "evidence_scope": "review_only",
+      "limitations": [
+        "Ten rows preserve untyped power statement text; no typed power, energy, construction, lifecycle, identity, type, workload, or operating-model promotion is permitted.",
+        "The 22 active detail observations comprise 19 base projects and three modification records; modifications are advisory relationships and counts are not unique sites.",
+        "The portal lane covers NSW State Significant projects only and does not establish NSW local-development, national, or global completeness."
+      ],
+      "metrics": [
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/coverage_assessment/active_base_rows",
+          "label": "active_base_rows",
+          "value": 19
+        },
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/coverage_assessment/active_detail_rows",
+          "label": "active_detail_rows",
+          "value": 22
+        },
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/coverage_assessment/active_modification_rows",
+          "label": "active_modification_rows",
+          "value": 3
+        },
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/coverage_assessment/base_rows",
+          "label": "base_rows",
+          "value": 35
+        },
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/coverage_assessment/construction_verified_rows",
+          "label": "construction_verified_rows",
+          "value": 0
+        },
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/coverage_assessment/list_rows",
+          "label": "list_rows",
+          "value": 44
+        },
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/coverage_assessment/modification_rows",
+          "label": "modification_rows",
+          "value": 9
+        },
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/coverage_assessment/power_statement_rows",
+          "label": "power_statement_rows",
+          "value": 10
+        },
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/atlas_decision/typed_power_or_energy_promotion_permitted",
+          "label": "typed_power_or_energy_promotion_permitted",
+          "value": false
+        },
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/coverage_assessment/unique_physical_site_count",
+          "label": "unique_physical_sites",
+          "value": null
+        }
+      ],
+      "publication_mode": "public_review_or_discovery",
+      "record_units": [
+        "planning_application_record",
+        "planning_observation_record",
+        "review_record"
+      ],
+      "redistribution_status": "eligible_with_upstream_terms"
+    },
+    {
+      "access_tier": "public_open",
+      "artifact_id": "open-buildings-temporal-review-v2",
+      "artifact_kind": "bounded_discovery_pilot",
+      "checkpoints": [
+        {
+          "bytes": 6086,
+          "checkpoint_id": "manifest",
+          "path": "source_cache/open-buildings-temporal-egy-30.8679-30.8419-review-v2/manifest.json",
+          "sha256": "b2a49587dcc759794277cdb0d894662328e444f7d7b8ad877c6622bc7dd074c9"
+        }
+      ],
+      "current_role": "public_supporting_review_lane",
+      "evidence_scope": "review_only",
+      "limitations": [
+        "Three temporal intervals are model-signal changes in one bounded AOI, not buildings or construction claims."
+      ],
+      "metrics": [
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/counts/annual_observations",
+          "label": "annual_observations",
+          "value": 8
+        },
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/counts/review_candidates",
+          "label": "review_intervals",
+          "value": 3
+        }
+      ],
+      "publication_mode": "public_review_or_discovery",
+      "record_units": [
+        "building_footprint_record",
+        "review_record"
+      ],
+      "redistribution_status": "eligible_with_upstream_terms"
+    },
+    {
+      "access_tier": "public_open",
+      "artifact_id": "open-buildings-temporal-source-v2",
+      "artifact_kind": "bounded_discovery_pilot",
+      "checkpoints": [
+        {
+          "bytes": 16882,
+          "checkpoint_id": "manifest",
+          "path": "source_cache/open-buildings-temporal-egy-30.8679-30.8419-source-v2/manifest.json",
+          "sha256": "3539b0f11ba32120eb8fb054f9d681ebf03995d8719f12b7c828908d357279ac"
+        }
+      ],
+      "current_role": "public_supporting_review_lane",
+      "evidence_scope": "review_only",
+      "limitations": [
+        "The generation-pinned source covers one bounded Egypt AOI and is not global imagery coverage."
+      ],
+      "metrics": [],
+      "publication_mode": "public_review_or_discovery",
+      "record_units": [
+        "building_footprint_record"
+      ],
+      "redistribution_status": "eligible_with_upstream_terms"
+    },
+    {
+      "access_tier": "public_open",
+      "artifact_id": "osm-fuzzy-global-open-v3-crosswalk-v2",
+      "artifact_kind": "cross_release_resolution",
+      "checkpoints": [
+        {
+          "bytes": 3344,
+          "checkpoint_id": "manifest",
+          "path": "cross_release_resolution/osm-fuzzy-global-open-v3-pilot-v2/manifest.json",
+          "sha256": "4643a6486db989d2534f17209aa8d9688e991c0201a536b515cc51f87063f88f"
+        }
+      ],
+      "current_role": "public_supporting_review_lane",
+      "evidence_scope": "review_only",
+      "limitations": [
+        "Cross-release links are proximity suggestions, not confirmed duplicates or unique sites."
+      ],
+      "metrics": [
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/counts/candidate_links",
+          "label": "candidate_links",
+          "value": 5740
+        },
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/counts/candidate_links_by_relationship_suggestion/part_of_candidate",
+          "label": "part_of_candidates",
+          "value": 5
+        },
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/counts/candidate_links_by_relationship_suggestion/same_site_candidate",
+          "label": "same_site_candidates",
+          "value": 84
+        },
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/counts/unique_physical_sites",
+          "label": "unique_physical_sites",
+          "value": null
+        }
+      ],
+      "publication_mode": "public_index_or_audit",
+      "record_units": [
+        "crosswalk_link"
+      ],
+      "redistribution_status": "eligible_with_upstream_terms"
+    },
+    {
+      "access_tier": "public_open",
+      "artifact_id": "osm-fuzzy-review-v2",
+      "artifact_kind": "source_scoped_release",
+      "checkpoints": [
+        {
+          "bytes": 2811,
+          "checkpoint_id": "manifest",
+          "path": "releases/2026-07-18-osm-fuzzy-review-v2/manifest.json",
+          "sha256": "60ecf42e7b260c2f1822c65b9efb184e9fdbca3a36bd4b467960d26e8c9bb07c"
+        }
+      ],
+      "current_role": "public_supporting_review_lane",
+      "evidence_scope": "review_only",
+      "limitations": [
+        "Fuzzy OSM discovery rows are review candidates and are not confirmed facilities."
+      ],
+      "metrics": [
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/construction_pipeline_records",
+          "label": "construction_candidate_rows",
+          "value": 6130
+        },
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/entities",
+          "label": "review_rows",
+          "value": 6130
+        }
+      ],
+      "publication_mode": "public_review_or_discovery",
+      "record_units": [
+        "candidate_record",
+        "source_scoped_entity_row"
+      ],
+      "redistribution_status": "eligible_with_upstream_terms"
+    },
+    {
+      "access_tier": "public_open",
+      "artifact_id": "osm-planet-structural-construction-v3",
+      "artifact_kind": "bounded_discovery_pilot",
+      "checkpoints": [
+        {
+          "bytes": 20133,
+          "checkpoint_id": "manifest",
+          "path": "releases/2026-07-18-osm-construction-candidates-v3/manifest.json",
+          "sha256": "b7604f2c892d37236bb80de949a3e30e22e4ded8e271c055186a777ce8137497"
+        }
+      ],
+      "current_role": "public_supporting_review_lane",
+      "evidence_scope": "review_only",
+      "limitations": [
+        "The global structural shortlist contains generic construction footprints, not identified data centres."
+      ],
+      "metrics": [
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/counts/raw_primary_match_counts/total",
+          "label": "raw_primary_matches",
+          "value": 1446595
+        },
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/counts/shortlisted_counts/total",
+          "label": "shortlisted_review_candidates",
+          "value": 102451
+        }
+      ],
+      "publication_mode": "public_review_or_discovery",
+      "record_units": [
+        "candidate_record"
+      ],
+      "redistribution_status": "eligible_with_upstream_terms"
+    },
+    {
+      "access_tier": "public_open",
+      "artifact_id": "overture-memphis-pilot",
+      "artifact_kind": "bounded_discovery_pilot",
+      "checkpoints": [
+        {
+          "bytes": 7194,
+          "checkpoint_id": "manifest",
+          "path": "source_cache/overture-2026-06-17.0-memphis/manifest.json",
+          "sha256": "a2067f805f3242962c434064b3c3e13a122c02ab2c47fe9d81a343d376821ba1"
+        }
+      ],
+      "current_role": "public_supporting_review_lane",
+      "evidence_scope": "review_only",
+      "limitations": [
+        "The 96 large-building candidates cover only the pinned Memphis bounding box and are not data-centre identities."
+      ],
+      "metrics": [
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/counts/candidate_features",
+          "label": "candidate_footprints",
+          "value": 96
+        },
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/counts/source_features",
+          "label": "source_footprints",
+          "value": 62456
+        }
+      ],
+      "publication_mode": "public_review_or_discovery",
+      "record_units": [
+        "building_record",
+        "candidate_record"
+      ],
+      "redistribution_status": "eligible_with_upstream_terms"
+    },
+    {
+      "access_tier": "public_open",
+      "artifact_id": "peeringdb-rights-assessment-v1",
+      "artifact_kind": "source_rights_assessment",
+      "checkpoints": [
+        {
+          "binding": {
+            "checkpoint_id": "manifest",
+            "json_pointer": "/files/assessment.json"
+          },
+          "bytes": 12036,
+          "checkpoint_id": "assessment",
+          "path": "source_assessments/peeringdb-2026-07-18-v1/assessment.json",
+          "sha256": "f21ccde34a4e24847b997fce5b8234934356b58d569113eb7bb028f53e2830dc"
+        },
+        {
+          "bytes": 328,
+          "checkpoint_id": "manifest",
+          "path": "source_assessments/peeringdb-2026-07-18-v1/manifest.json",
+          "sha256": "50c617b3300880df2ec4a789b966af1d60d5abf0c011968e1bd6e004b837202e"
+        }
+      ],
+      "current_role": "rights_gate",
+      "evidence_scope": "metadata_only",
+      "limitations": [
+        "The assessment releases no PeeringDB facility values and blocks a direct lane pending written permission."
+      ],
+      "metrics": [
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/atlas_decision/status",
+          "label": "atlas_decision_status",
+          "value": "blocked_pending_written_permission"
+        },
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/api_probe/facility_count_at_probe",
+          "label": "facility_count_at_probe",
+          "value": 5857
+        },
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/scrutica_upstream_rights_conflict/peeringdb_evidence_rows",
+          "label": "peeringdb_derived_scrutica_rows",
+          "value": 1548
+        },
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/atlas_decision/publication_eligible",
+          "label": "source_data_publication_eligible",
+          "value": false
+        }
+      ],
+      "publication_mode": "public_metadata_or_aggregate_only",
+      "record_units": [
+        "advertised_source_record"
+      ],
+      "redistribution_status": "metadata_only_no_source_rows"
+    },
+    {
+      "access_tier": "public_open",
+      "artifact_id": "pjm-large-load-assessment-v1",
+      "artifact_kind": "source_rights_assessment",
+      "checkpoints": [
+        {
+          "binding": {
+            "checkpoint_id": "manifest",
+            "json_pointer": "/files/assessment.json"
+          },
+          "bytes": 18094,
+          "checkpoint_id": "assessment",
+          "path": "source_assessments/pjm-large-load-2026-07-18-v1/assessment.json",
+          "sha256": "c3c70505cd3290fe3683b173d6c6b810276f7b3aeb2a72e9fee1c1350d56a100"
+        },
+        {
+          "binding": {
+            "checkpoint_id": "manifest",
+            "json_pointer": "/files/calibration.json"
+          },
+          "bytes": 6770,
+          "checkpoint_id": "calibration",
+          "path": "source_assessments/pjm-large-load-2026-07-18-v1/calibration.json",
+          "sha256": "f63cc359e6424aa63566e534fe44097aa25bd1f121ae18079952e8e95331393f"
+        },
+        {
+          "bytes": 471,
+          "checkpoint_id": "manifest",
+          "path": "source_assessments/pjm-large-load-2026-07-18-v1/manifest.json",
+          "sha256": "8347df3e3429c3c8d9c7ef1be0a7a86187a71f8380637ee72bcf21aa08ff359f"
+        }
+      ],
+      "current_role": "rights_gate",
+      "evidence_scope": "metadata_only",
+      "limitations": [
+        "Document and anonymous-project occurrence counts are metadata calibration units, not public project rows, facilities, or unique sites.",
+        "No source project rows, source numeric values, coordinates, facility names, or typed power values are released.",
+        "PJM's public access and static-site notices are not treated as an affirmative redistribution license."
+      ],
+      "metrics": [
+        {
+          "checkpoint_id": "calibration",
+          "json_pointer": "/contains_source_numeric_values",
+          "label": "contains_source_numeric_values",
+          "value": false
+        },
+        {
+          "checkpoint_id": "calibration",
+          "json_pointer": "/contains_source_project_rows",
+          "label": "contains_source_project_rows",
+          "value": false
+        },
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/granularity_assessment/year_2026_firstenergy_anonymous_project_rows",
+          "label": "firstenergy_anonymous_project_rows",
+          "value": 41
+        },
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/granularity_assessment/year_2025_anonymous_large_load_project_row_occurrences",
+          "label": "large_load_project_row_occurrences",
+          "value": 50
+        },
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/coverage_assessment/pdf_documents",
+          "label": "pdf_documents",
+          "value": 31
+        },
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/granularity_assessment/publication_facility_leads",
+          "label": "publication_facility_leads",
+          "value": 0
+        },
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/coverage_assessment/retrievals",
+          "label": "retrievals",
+          "value": 42
+        },
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/granularity_assessment/unique_facility_count",
+          "label": "unique_physical_sites",
+          "value": null
+        },
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/coverage_assessment/xlsx_workbooks",
+          "label": "xlsx_workbooks",
+          "value": 7
+        }
+      ],
+      "publication_mode": "public_metadata_or_aggregate_only",
+      "record_units": [
+        "aggregate_report_metric",
+        "project_record"
+      ],
+      "redistribution_status": "metadata_only_no_source_rows"
+    },
+    {
+      "access_tier": "public_open",
+      "artifact_id": "pwc-build-out-assessment-v1",
+      "artifact_kind": "source_rights_assessment",
+      "checkpoints": [
+        {
+          "binding": {
+            "checkpoint_id": "manifest",
+            "json_pointer": "/files/assessment.json"
+          },
+          "bytes": 12784,
+          "checkpoint_id": "assessment",
+          "path": "source_assessments/pwc-build-out-2026-07-18-v1/assessment.json",
+          "sha256": "b279705f514b6e7b5d470c053f7261c6e605e3693e2299982914af2199da4e47"
+        },
+        {
+          "bytes": 465,
+          "checkpoint_id": "manifest",
+          "path": "source_assessments/pwc-build-out-2026-07-18-v1/manifest.json",
+          "sha256": "fbf0d777b1d01a245a8064e226427b74b691088e15e4cfa4f5a2e93d7d2ca397"
+        }
+      ],
+      "current_role": "rights_gate",
+      "evidence_scope": "metadata_only",
+      "limitations": [
+        "Building, campus-project, and planning-site-application counts are distinct entity levels that may overlap and are never summed.",
+        "No feature rows, geometry, automatic relationship merge, or unique-site count is released.",
+        "Portal download capability and site-level CC-BY-SA text are not treated as a verified layer-data redistribution license."
+      ],
+      "metrics": [
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/count_assessment/building_records",
+          "label": "building_records",
+          "value": 243
+        },
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/count_assessment/campus_project_records",
+          "label": "campus_project_records",
+          "value": 72
+        },
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/count_assessment/planning_site_application_records",
+          "label": "planning_site_application_records",
+          "value": 61
+        },
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/count_assessment/record_counts_summed",
+          "label": "record_counts_summed",
+          "value": false
+        },
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/atlas_decision/source_content_publication_eligible",
+          "label": "source_content_publication_eligible",
+          "value": false
+        },
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/count_assessment/unique_site_count",
+          "label": "unique_physical_sites",
+          "value": null
+        }
+      ],
+      "publication_mode": "public_metadata_or_aggregate_only",
+      "record_units": [
+        "building_record",
+        "campus_project_record",
+        "planning_application_record"
+      ],
+      "redistribution_status": "metadata_only_no_source_rows"
+    },
+    {
+      "access_tier": "public_open",
+      "artifact_id": "satellite-active-batch-001",
+      "artifact_kind": "satellite_catalog_batch",
+      "checkpoints": [
+        {
+          "bytes": 94619,
+          "checkpoint_id": "manifest",
+          "path": "satellite_review_runs/2026-07-18-global-open-v3-active-001/batch-manifest.json",
+          "sha256": "ff0323728733557727b8d07c9aae6e2801be8a430b0b5e4f4fe7d2a168079a5a"
+        }
+      ],
+      "current_role": "public_supporting_review_lane",
+      "evidence_scope": "review_only",
+      "limitations": [
+        "Completed scene pairs are catalog availability, not visible-change or lifecycle evidence."
+      ],
+      "metrics": [
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/summary/jobs_completed",
+          "label": "jobs_completed",
+          "value": 65
+        },
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/summary/jobs_failed",
+          "label": "jobs_failed",
+          "value": 0
+        },
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/summary/jobs_selected",
+          "label": "jobs_selected",
+          "value": 74
+        },
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/summary/jobs_unavailable_no_scene",
+          "label": "jobs_unavailable_no_scene",
+          "value": 9
+        }
+      ],
+      "publication_mode": "public_review_or_discovery",
+      "record_units": [
+        "catalog_job",
+        "catalog_link"
+      ],
+      "redistribution_status": "eligible_with_upstream_terms"
+    },
+    {
+      "access_tier": "public_open",
+      "artifact_id": "satellite-calibration-analyst-reviews-v4",
+      "artifact_kind": "analyst_imagery_review",
+      "checkpoints": [
+        {
+          "binding": {
+            "checkpoint_id": "manifest",
+            "json_pointer": "/definition"
+          },
+          "bytes": 31386,
+          "checkpoint_id": "definition",
+          "path": "sources/satellite-calibration-2026-07-18-analyst-reviews-v4.json",
+          "sha256": "876d88ff2c8ad137799714408b39016bf10b12820f637c3c2ff9ab3f30283414"
+        },
+        {
+          "bytes": 33978,
+          "checkpoint_id": "manifest",
+          "path": "satellite_calibration/2026-07-18-analyst-reviews-v4/manifest.json",
+          "sha256": "a3b153c97286a9c93a2b654f427fabdb1bffafc950dc0e6a6ba5c1bdf9ff1c41"
+        },
+        {
+          "binding": {
+            "checkpoint_id": "manifest",
+            "json_pointer": "/outputs/summary.json"
+          },
+          "bytes": 10421,
+          "checkpoint_id": "summary",
+          "path": "satellite_calibration/2026-07-18-analyst-reviews-v4/summary.json",
+          "sha256": "6b8261b0f8040c156283f530232ac969ec079cd8b298bdde5b84ab638e331a0f"
+        }
+      ],
+      "current_role": "public_supporting_review_lane",
+      "evidence_scope": "review_only",
+      "limitations": [
+        "Analyst decisions are site-aligned follow-up labels, not pixel truth, construction truth, lifecycle truth, or unique-site counts.",
+        "Five round triage rules are descriptive audits only; no production threshold is selected after observing the labels.",
+        "The 43 report/review pairs are a selected, non-random sample with no recall denominator and no basis for accuracy generalisation."
+      ],
+      "metrics": [
+        {
+          "checkpoint_id": "summary",
+          "json_pointer": "/scope/accuracy_generalization_claimed",
+          "label": "accuracy_generalization_claimed",
+          "value": false
+        },
+        {
+          "checkpoint_id": "summary",
+          "json_pointer": "/scope/analyst_decision_is_construction_truth",
+          "label": "analyst_decision_is_construction_truth",
+          "value": false
+        },
+        {
+          "checkpoint_id": "summary",
+          "json_pointer": "/scope/analyst_decision_is_pixel_truth",
+          "label": "analyst_decision_is_pixel_truth",
+          "value": false
+        },
+        {
+          "checkpoint_id": "summary",
+          "json_pointer": "/sample/outcome_counts/reject",
+          "label": "analyst_rejected",
+          "value": 31
+        },
+        {
+          "checkpoint_id": "summary",
+          "json_pointer": "/sample/outcome_counts/retain",
+          "label": "analyst_retained",
+          "value": 12
+        },
+        {
+          "checkpoint_id": "summary",
+          "json_pointer": "/scope/production_threshold_selected",
+          "label": "production_threshold_selected",
+          "value": false
+        },
+        {
+          "checkpoint_id": "summary",
+          "json_pointer": "/scope/recall_denominator_available",
+          "label": "recall_denominator_available",
+          "value": false
+        },
+        {
+          "checkpoint_id": "summary",
+          "json_pointer": "/scope/sample_is_random",
+          "label": "sample_is_random",
+          "value": false
+        },
+        {
+          "checkpoint_id": "summary",
+          "json_pointer": "/scope/sample_is_selected",
+          "label": "sample_is_selected",
+          "value": true
+        },
+        {
+          "checkpoint_id": "summary",
+          "json_pointer": "/sample/count",
+          "label": "selected_review_pairs",
+          "value": 43
+        },
+        {
+          "checkpoint_id": "summary",
+          "json_pointer": "/scope/unique_physical_site_count",
+          "label": "unique_physical_sites",
+          "value": null
+        }
+      ],
+      "publication_mode": "public_review_or_discovery",
+      "record_units": [
+        "aggregate_report_metric",
+        "review_record"
+      ],
+      "redistribution_status": "eligible_with_upstream_terms"
+    },
+    {
+      "access_tier": "public_open",
+      "artifact_id": "satellite-catalog-open-seed-v43-active-001",
+      "artifact_kind": "satellite_catalog_batch",
+      "checkpoints": [
+        {
+          "bytes": 45271,
+          "checkpoint_id": "manifest",
+          "path": "satellite_review_runs/2026-07-20-open-seed-v43-active-001/batch-manifest.json",
+          "sha256": "ac658626db624f87fdc77eb0e713985959656246d255b0b8eded2c13907d5d21"
+        }
+      ],
+      "current_role": "public_supporting_review_lane",
+      "evidence_scope": "review_only",
+      "limitations": [
+        "Catalog availability is not visible-change, identity, lifecycle, operating-status, type, capacity, power, energy, or PUE evidence.",
+        "This incomplete historical seed-v43 catalog batch is retained only as the source input to reselection v2; its counts are not additive to the v43 queue or current construction coverage."
+      ],
+      "metrics": [
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/summary/jobs_completed",
+          "label": "jobs_completed",
+          "value": 6
+        },
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/summary/jobs_failed",
+          "label": "jobs_failed",
+          "value": 0
+        },
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/summary/jobs_pending",
+          "label": "jobs_pending",
+          "value": 70
+        },
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/summary/jobs_selected",
+          "label": "jobs_selected",
+          "value": 77
+        },
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/summary/jobs_unavailable_no_scene",
+          "label": "jobs_unavailable_no_scene",
+          "value": 1
+        }
+      ],
+      "publication_mode": "public_review_or_discovery",
+      "record_units": [
+        "catalog_job",
+        "catalog_link"
+      ],
+      "redistribution_status": "eligible_with_upstream_terms"
+    },
+    {
+      "access_tier": "public_open",
+      "artifact_id": "satellite-catalog-reselection-open-seed-v43-active-v2-001",
+      "artifact_kind": "satellite_catalog_batch",
+      "checkpoints": [
+        {
+          "binding": {
+            "checkpoint_id": "manifest",
+            "json_pointer": "/grid_header_evidence"
+          },
+          "bytes": 17713,
+          "checkpoint_id": "grid_headers",
+          "path": "satellite_catalog_reselection_runs/2026-07-20-open-seed-v43-active-v2-001/grid-headers.json",
+          "sha256": "9cc8e87c2b64b9262777a8973f05d2a7096525b3d933166ee21cc2ff5a5938f1"
+        },
+        {
+          "bytes": 8247,
+          "checkpoint_id": "manifest",
+          "path": "satellite_catalog_reselection_runs/2026-07-20-open-seed-v43-active-v2-001/batch-manifest.json",
+          "sha256": "5caba8afe58c21ae0e494fc8532fb5e25f0b9c26cc68dcc1b763732264ac6ec7"
+        },
+        {
+          "binding": {
+            "checkpoint_id": "manifest",
+            "json_pointer": "/queue_bundle/manifest"
+          },
+          "bytes": 10891,
+          "checkpoint_id": "queue_manifest",
+          "path": "satellite_review_queues/2026-07-20-open-seed-v43/manifest.json",
+          "sha256": "ca0d03f03749f30001533c79b15e31af841f392cb60eb23c7319d7c7ffce7d97"
+        },
+        {
+          "binding": {
+            "checkpoint_id": "manifest",
+            "json_pointer": "/source_catalog_batch/manifest"
+          },
+          "bytes": 45271,
+          "checkpoint_id": "source_catalog_manifest",
+          "path": "satellite_review_runs/2026-07-20-open-seed-v43-active-001/batch-manifest.json",
+          "sha256": "ac658626db624f87fdc77eb0e713985959656246d255b0b8eded2c13907d5d21"
+        },
+        {
+          "binding": {
+            "checkpoint_id": "manifest",
+            "json_pointer": "/unresolved_assessment"
+          },
+          "bytes": 1371,
+          "checkpoint_id": "unresolved",
+          "path": "satellite_catalog_reselection_runs/2026-07-20-open-seed-v43-active-v2-001/unresolved-multitile-needed.json",
+          "sha256": "9139599fa4e4bb1d155debcdca24df3b40cdec7e0e071221a797f1e7be623bcd"
+        }
+      ],
+      "current_role": "public_supporting_review_lane",
+      "evidence_scope": "review_only",
+      "limitations": [
+        "The offline v2 reselection covers exactly two explicit historical seed-v43 queue IDs and emits zero atlas rows; it is not a current construction census.",
+        "The reselection is a non-additive successor view over its pinned v43 queue and catalog inputs; do not add its job counts to either input.",
+        "The selected scene pairs establish catalog and grid compatibility only, not visible change, identity, lifecycle, operator, type, workload, capacity, power, energy, or PUE."
+      ],
+      "metrics": [
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/summary/atlas_rows_emitted",
+          "label": "atlas_rows_emitted",
+          "value": 0
+        },
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/summary/candidate_jobs_assessed",
+          "label": "candidate_jobs_assessed",
+          "value": 2
+        },
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/summary/change_jobs_executed",
+          "label": "change_jobs_executed",
+          "value": 0
+        },
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/summary/jobs_reselected",
+          "label": "jobs_reselected",
+          "value": 2
+        },
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/summary/jobs_unresolved_multitile_needed",
+          "label": "jobs_unresolved_multitile_needed",
+          "value": 0
+        },
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/summary/raw_provider_response_files_copied",
+          "label": "raw_provider_response_files_copied",
+          "value": 4
+        },
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/summary/source_catalog_manifest_files_copied",
+          "label": "source_catalog_manifest_files_copied",
+          "value": 2
+        },
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/summary/unique_aois_reselected",
+          "label": "unique_aois_reselected",
+          "value": 2
+        }
+      ],
+      "publication_mode": "public_review_or_discovery",
+      "record_units": [
+        "catalog_job",
+        "catalog_link"
+      ],
+      "redistribution_status": "eligible_with_upstream_terms"
+    },
+    {
+      "access_tier": "public_open",
+      "artifact_id": "satellite-change-review-open-seed-v43-active-reselected-v2-review-v1",
+      "artifact_kind": "analyst_imagery_review",
+      "checkpoints": [
+        {
+          "bytes": 13297,
+          "checkpoint_id": "manifest",
+          "path": "satellite_change_reviews/2026-07-20-open-seed-v43-active-reselected-v2-review-v1/manifest.json",
+          "sha256": "e06b780e6fc2ee85e969374ec97eb167a536953c5e8e9d9b5bb3feff14ab7623"
+        },
+        {
+          "binding": {
+            "checkpoint_id": "manifest",
+            "json_pointer": "/source_change_run/manifest"
+          },
+          "bytes": 23729,
+          "checkpoint_id": "source_run_manifest",
+          "path": "satellite_change_runs/2026-07-20-open-seed-v43-active-reselected-v2-001/batch-manifest.json",
+          "sha256": "cfafe8788fa2f7bf4321947f01b1b95a7454569c73e286009a296adc93515112"
+        },
+        {
+          "binding": {
+            "checkpoint_id": "manifest",
+            "json_pointer": "/artifacts/summary.json"
+          },
+          "bytes": 2953,
+          "checkpoint_id": "summary",
+          "path": "satellite_change_reviews/2026-07-20-open-seed-v43-active-reselected-v2-review-v1/summary.json",
+          "sha256": "d650dba66decbc80b4b4b57cc00b44a360f1d1b81cd2aa6f4936f09f74af6c04"
+        }
+      ],
+      "current_role": "public_supporting_review_lane",
+      "evidence_scope": "review_only",
+      "limitations": [
+        "Both decisions reject imagery-only site promotion; they do not negate separately sourced construction facts.",
+        "The change-mask areas are algorithm-derived metadata, not construction areas; no atlas mutation or automated promotion is allowed.",
+        "The two selected analyst decisions and twelve hash-bound image or report artifacts are review records, not construction, identity, status, type, capacity, power, energy, PUE, workload, or unique-site evidence."
+      ],
+      "metrics": [
+        {
+          "checkpoint_id": "summary",
+          "json_pointer": "/scope/atlas_mutation",
+          "label": "atlas_mutation",
+          "value": false
+        },
+        {
+          "checkpoint_id": "summary",
+          "json_pointer": "/scope/manual_review_completed",
+          "label": "manual_review_completed",
+          "value": true
+        },
+        {
+          "checkpoint_id": "summary",
+          "json_pointer": "/counts/decisions",
+          "label": "review_decisions",
+          "value": 2
+        },
+        {
+          "checkpoint_id": "summary",
+          "json_pointer": "/counts/reject_for_site_promotion",
+          "label": "site_promotion_rejections",
+          "value": 2
+        },
+        {
+          "checkpoint_id": "summary",
+          "json_pointer": "/counts/source_artifacts_hash_bound",
+          "label": "source_artifacts_hash_bound",
+          "value": 12
+        },
+        {
+          "checkpoint_id": "summary",
+          "json_pointer": "/scope/unique_site_claim_created",
+          "label": "unique_site_claim_created",
+          "value": false
+        }
+      ],
+      "publication_mode": "public_review_or_discovery",
+      "record_units": [
+        "aggregate_report_metric",
+        "review_record"
+      ],
+      "redistribution_status": "eligible_with_upstream_terms"
+    },
+    {
+      "access_tier": "public_open",
+      "artifact_id": "satellite-proposed-batch-001",
+      "artifact_kind": "satellite_catalog_batch",
+      "checkpoints": [
+        {
+          "bytes": 28779,
+          "checkpoint_id": "manifest",
+          "path": "satellite_review_runs/2026-07-18-global-open-v3-proposed-001/batch-manifest.json",
+          "sha256": "e012b06344c2332e1e3192f005db099f15058b973505e7be09907e2ff221e2f6"
+        }
+      ],
+      "current_role": "public_supporting_review_lane",
+      "evidence_scope": "review_only",
+      "limitations": [
+        "Completed scene pairs are catalog availability, not visible-change or lifecycle evidence."
+      ],
+      "metrics": [
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/summary/jobs_completed",
+          "label": "jobs_completed",
+          "value": 16
+        },
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/summary/jobs_failed",
+          "label": "jobs_failed",
+          "value": 0
+        },
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/summary/jobs_selected",
+          "label": "jobs_selected",
+          "value": 20
+        },
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/summary/jobs_unavailable_no_scene",
+          "label": "jobs_unavailable_no_scene",
+          "value": 4
+        }
+      ],
+      "publication_mode": "public_review_or_discovery",
+      "record_units": [
+        "catalog_job",
+        "catalog_link"
+      ],
+      "redistribution_status": "eligible_with_upstream_terms"
+    },
+    {
+      "access_tier": "public_open",
+      "artifact_id": "satellite-queue-global-open-v3",
+      "artifact_kind": "satellite_review_queue",
+      "checkpoints": [
+        {
+          "bytes": 28269,
+          "checkpoint_id": "manifest",
+          "path": "satellite_review_queues/2026-07-18-global-open-v3/manifest.json",
+          "sha256": "58c39d64510f37fda8eaf6912ed36001845f276239dcaeec0ea24ba4a6a2836c"
+        }
+      ],
+      "current_role": "public_supporting_review_lane",
+      "evidence_scope": "review_only",
+      "limitations": [
+        "Queue jobs are imagery-review plans for existing rows, not deduplicated sites or imagery findings."
+      ],
+      "metrics": [
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/counts/entities_queued",
+          "label": "entities_queued",
+          "value": 6830
+        },
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/counts/queue_jobs",
+          "label": "queue_jobs",
+          "value": 6830
+        }
+      ],
+      "publication_mode": "public_review_or_discovery",
+      "record_units": [
+        "catalog_job"
+      ],
+      "redistribution_status": "eligible_with_upstream_terms"
+    },
+    {
+      "access_tier": "public_open",
+      "artifact_id": "satellite-queue-open-seed-v43",
+      "artifact_kind": "satellite_review_queue",
+      "checkpoints": [
+        {
+          "bytes": 10891,
+          "checkpoint_id": "manifest",
+          "path": "satellite_review_queues/2026-07-20-open-seed-v43/manifest.json",
+          "sha256": "ca0d03f03749f30001533c79b15e31af841f392cb60eb23c7319d7c7ffce7d97"
+        },
+        {
+          "binding": {
+            "checkpoint_id": "manifest",
+            "json_pointer": "/source/release_manifest"
+          },
+          "bytes": 7056,
+          "checkpoint_id": "release_manifest",
+          "path": "releases/2026-07-20-open-seed-v43/manifest.json",
+          "sha256": "32f0b99553f925fdd47250c9a8382e81fdfc82a92a66b12793864ddf9a196537"
+        }
+      ],
+      "current_role": "public_supporting_review_lane",
+      "evidence_scope": "review_only",
+      "limitations": [
+        "Queue jobs are imagery-review plans for historical seed-v43 entities, not deduplicated sites, imagery findings, or current construction evidence.",
+        "This queue is retained to bind the catalog-reselection lineage and is not additive to the newer seed-v44 queue or the broader global-open-v3 queue."
+      ],
+      "metrics": [
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/counts/entities_queued",
+          "label": "entities_queued",
+          "value": 141
+        },
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/counts/queue_jobs",
+          "label": "queue_jobs",
+          "value": 141
+        }
+      ],
+      "publication_mode": "public_review_or_discovery",
+      "record_units": [
+        "catalog_job"
+      ],
+      "redistribution_status": "eligible_with_upstream_terms"
+    },
+    {
+      "access_tier": "public_open",
+      "artifact_id": "satellite-recovery-unknown033-review-v1",
+      "artifact_kind": "satellite_catalog_batch",
+      "checkpoints": [
+        {
+          "bytes": 3554,
+          "checkpoint_id": "acceptance",
+          "path": "definitions/satellite_recoveries/accepted-2026-07-20-v1.json",
+          "sha256": "507b606c4ab65605766d7726072d715649830467838d9d24d423ba3b8aac59ad"
+        },
+        {
+          "binding": {
+            "checkpoint_id": "acceptance",
+            "json_pointer": "/accepted/definition"
+          },
+          "bytes": 2123,
+          "checkpoint_id": "definition",
+          "path": "definitions/satellite_recoveries/2026-07-19-global-open-v3-unknown-033-recovered-25.json",
+          "sha256": "1b054ac9c1091e1470576fcf9f14df05a64cb6d679a22ab413430957ffbcb420"
+        },
+        {
+          "binding": {
+            "checkpoint_id": "acceptance",
+            "json_pointer": "/accepted/recovery_manifest"
+          },
+          "bytes": 9547,
+          "checkpoint_id": "manifest",
+          "path": "satellite_review_recoveries/2026-07-19-global-open-v3-unknown-033-recovered-25/recovery-manifest.json",
+          "sha256": "178f52ad3c42117ea19561c123eef87fe1ed7331c79e9c5c1596bd8d2b7cbfb1"
+        }
+      ],
+      "current_role": "public_supporting_review_lane",
+      "evidence_scope": "review_only",
+      "limitations": [
+        "Its recovered batch summary is a successor state to the preserved Unknown030 base and must not be added to Unknown030, the interrupted Unknown031 snapshot, or any queue total.",
+        "Operator-reported process, service, and guard observations remain unverified; the recovery claims no causal linkage and creates no identity, lifecycle, operating-status, type, capacity, power, energy, or imagery inference.",
+        "Unknown033 is an accepted offline recovery wrapper for exactly 25 clean terminal catalog jobs, not a promoted source batch, construction release, or additive site inventory."
+      ],
+      "metrics": [
+        {
+          "checkpoint_id": "acceptance",
+          "json_pointer": "/scope/atlas_release_integration",
+          "label": "atlas_release_integration",
+          "value": false
+        },
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/output/batch_summary/jobs_completed",
+          "label": "recovered_batch_completed_jobs",
+          "value": 4375
+        },
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/output/batch_summary/jobs_failed",
+          "label": "recovered_batch_failed_jobs",
+          "value": 0
+        },
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/output/batch_summary/jobs_pending",
+          "label": "recovered_batch_pending_jobs",
+          "value": 2061
+        },
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/output/batch_summary/jobs_unavailable_no_scene",
+          "label": "recovered_batch_unavailable_no_scene_jobs",
+          "value": 300
+        },
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/selection/jobs",
+          "label": "recovered_selected_jobs",
+          "value": 25
+        },
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/reconciliation/later_job_leakage",
+          "label": "selection_later_job_leakage",
+          "value": 0
+        },
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/scope/source_batch_promoted",
+          "label": "source_batch_promoted",
+          "value": false
+        },
+        {
+          "checkpoint_id": "acceptance",
+          "json_pointer": "/scope/unique_physical_site_count",
+          "label": "unique_physical_sites",
+          "value": null
+        }
+      ],
+      "publication_mode": "public_review_or_discovery",
+      "record_units": [
+        "catalog_job"
+      ],
+      "redistribution_status": "eligible_with_upstream_terms"
+    },
+    {
+      "access_tier": "public_open",
+      "artifact_id": "satellite-unknown-batch-030",
+      "artifact_kind": "satellite_catalog_batch",
+      "checkpoints": [
+        {
+          "bytes": 6453228,
+          "checkpoint_id": "manifest",
+          "path": "satellite_review_runs/2026-07-18-global-open-v3-unknown-030/batch-manifest.json",
+          "sha256": "18d154cfa6a445be775d6e7c35aea4d9c89d6fd84d57054ef00e541a5f56d053"
+        }
+      ],
+      "current_role": "public_supporting_review_lane",
+      "evidence_scope": "review_only",
+      "limitations": [
+        "Completed scene pairs establish catalog availability only, not visible change, identity, lifecycle, operating status, type, capacity, power, or energy.",
+        "This incomplete batch is the sole cumulative unknown-priority progress checkpoint and supersedes Unknown001 through Unknown029 for catalog accounting; overlapping counts are not additive."
+      ],
+      "metrics": [
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/summary/jobs_completed",
+          "label": "jobs_completed",
+          "value": 4350
+        },
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/summary/jobs_failed",
+          "label": "jobs_failed",
+          "value": 0
+        },
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/summary/jobs_pending",
+          "label": "jobs_pending",
+          "value": 2086
+        },
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/summary/jobs_selected",
+          "label": "jobs_selected",
+          "value": 6736
+        },
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/summary/jobs_unavailable_no_scene",
+          "label": "jobs_unavailable_no_scene",
+          "value": 300
+        }
+      ],
+      "publication_mode": "public_review_or_discovery",
+      "record_units": [
+        "catalog_job",
+        "catalog_link"
+      ],
+      "redistribution_status": "eligible_with_upstream_terms"
+    },
+    {
+      "access_tier": "local_restricted",
+      "artifact_id": "scrutica-global-open-v3-crosswalk-v3",
+      "artifact_kind": "cross_release_resolution",
+      "checkpoints": [
+        {
+          "bytes": 5705,
+          "checkpoint_id": "manifest",
+          "path": "cross_release_resolution/scrutica-global-open-v3-v3/manifest.json",
+          "sha256": "31601916476b805205392f92b3952583f543ff4302e425bbf850145a87b8e0d5"
+        }
+      ],
+      "current_role": "local_restricted_research",
+      "evidence_scope": "review_only",
+      "limitations": [
+        "Candidate fields remain subject to quarantined Scrutica upstream rights and are not confirmed duplicate links."
+      ],
+      "metrics": [
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/counts/candidate_links",
+          "label": "candidate_links",
+          "value": 62896
+        },
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/counts/same_site_or_part_of_candidate_links",
+          "label": "same_site_or_part_of_candidates",
+          "value": 2829
+        },
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/counts/unique_physical_sites",
+          "label": "unique_physical_sites",
+          "value": null
+        }
+      ],
+      "publication_mode": "local_quarantined",
+      "record_units": [
+        "crosswalk_link"
+      ],
+      "redistribution_status": "quarantined_pending_rights"
+    },
+    {
+      "access_tier": "local_restricted",
+      "artifact_id": "scrutica-release-2026-07-18",
+      "artifact_kind": "source_scoped_release",
+      "checkpoints": [
+        {
+          "bytes": 2537,
+          "checkpoint_id": "manifest",
+          "path": "releases/scrutica-2026-07-18/manifest.json",
+          "sha256": "49846e09124e5c7daa0bef2bdece310136988339a1191cd802a8a4ea28fc42a3"
+        }
+      ],
+      "current_role": "local_restricted_research",
+      "evidence_scope": "review_only",
+      "limitations": [
+        "The entire immutable release is quarantined pending per-upstream rights clearance, including 1,548 PeeringDB-derived rows."
+      ],
+      "metrics": [
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/capacity_estimates",
+          "label": "capacity_observations",
+          "value": 487
+        },
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/construction_pipeline_records",
+          "label": "construction_pipeline_records",
+          "value": 208
+        },
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/entities",
+          "label": "source_scoped_rows",
+          "value": 4120
+        }
+      ],
+      "publication_mode": "local_quarantined",
+      "record_units": [
+        "capacity_observation",
+        "construction_pipeline_record",
+        "source_scoped_entity_row"
+      ],
+      "redistribution_status": "quarantined_pending_rights"
+    },
+    {
+      "access_tier": "public_open",
+      "artifact_id": "seed-epoch-official-v47",
+      "artifact_kind": "source_scoped_release",
+      "checkpoints": [
+        {
+          "bytes": 8024,
+          "checkpoint_id": "manifest",
+          "path": "releases/2026-07-20-open-seed-v47/manifest.json",
+          "sha256": "c0e228ed27e28830b466592bfc9a937f3c0d684be4fb97c7a20ac78e1c8a22a1"
+        }
+      ],
+      "current_role": "authoritative_public_core",
+      "evidence_scope": "source_scoped",
+      "limitations": [
+        "Status, type, role, workload, capacity, energy, and PUE fields remain source-scoped; absent fields are not inferred from satellite imagery.",
+        "The 601 source-scoped entity rows comprise 326 campus observations and 275 project observations, not deduplicated physical sites."
+      ],
+      "metrics": [
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/capacity_estimates",
+          "label": "capacity_observations",
+          "value": 454
+        },
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/construction_pipeline_records",
+          "label": "construction_pipeline_records",
+          "value": 313
+        },
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/construction_source_signals",
+          "label": "construction_source_signals",
+          "value": 228
+        },
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/evidence_records",
+          "label": "evidence_records",
+          "value": 337
+        },
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/resolution_candidates",
+          "label": "resolution_candidates",
+          "value": 4
+        },
+        {
+          "checkpoint_id": "manifest",
+          "json_pointer": "/entities",
+          "label": "source_scoped_entity_rows",
+          "value": 601
+        }
+      ],
+      "publication_mode": "public_row_release",
+      "record_units": [
+        "capacity_observation",
+        "construction_pipeline_record",
+        "source_scoped_entity_row"
+      ],
+      "redistribution_status": "eligible_with_upstream_terms"
+    },
+    {
+      "access_tier": "local_restricted",
+      "artifact_id": "virginia-deq-air-permits-local-review-v1",
+      "artifact_kind": "source_rights_assessment",
+      "checkpoints": [
+        {
+          "binding": {
+            "checkpoint_id": "manifest",
+            "json_pointer": "/files/applications.json"
+          },
+          "bytes": 11698,
+          "checkpoint_id": "applications",
+          "path": "source_assessments/virginia-deq-air-permits-2026-07-13-v1/applications.json",
+          "sha256": "ff4caf6b01fe89223eb9f093bcbc1cd4bbb78a4ca4e80bc0f9070439fd426d21"
+        },
+        {
+          "binding": {
+            "checkpoint_id": "manifest",
+            "json_pointer": "/files/assessment.json"
+          },
+          "bytes": 7127,
+          "checkpoint_id": "assessment",
+          "path": "source_assessments/virginia-deq-air-permits-2026-07-13-v1/assessment.json",
+          "sha256": "e51aa4ab07d822d995dd030f725f01ca75fe40bbb378d8b9adc6b960ca69fe39"
+        },
+        {
+          "binding": {
+            "checkpoint_id": "manifest",
+            "json_pointer": "/files/issued_permits.json"
+          },
+          "bytes": 320823,
+          "checkpoint_id": "issued-permits",
+          "path": "source_assessments/virginia-deq-air-permits-2026-07-13-v1/issued_permits.json",
+          "sha256": "c15c349c1e4110d769c09d44928c1aa7b38b1d70d18cd4bf3d54b0040a11b493"
+        },
+        {
+          "bytes": 623,
+          "checkpoint_id": "manifest",
+          "path": "source_assessments/virginia-deq-air-permits-2026-07-13-v1/manifest.json",
+          "sha256": "61ca0146274a3046dc036ba83e54bde36b0b38688e25bf27c2baff5c3dacede8"
+        }
+      ],
+      "current_role": "local_restricted_research",
+      "evidence_scope": "review_only",
+      "limitations": [
+        "Issued permits and applications are separate legal-process record units and are not construction confirmations or unique physical sites.",
+        "No affirmative redistribution license was found; raw and derived records remain local and quarantined.",
+        "No typed facility capacity, energy, or publication-eligible rows were established."
+      ],
+      "metrics": [
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/coverage_assessment/application_under_review_rows",
+          "label": "application_under_review_rows",
+          "value": 1
+        },
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/coverage_assessment/construction_verified_rows",
+          "label": "construction_verified_rows",
+          "value": 0
+        },
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/coverage_assessment/distinct_resolved_issued_permit_document_urls",
+          "label": "distinct_resolved_permit_document_urls",
+          "value": 196
+        },
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/coverage_assessment/issued_permit_rows",
+          "label": "issued_permit_rows",
+          "value": 198
+        },
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/coverage_assessment/publication_eligible_rows",
+          "label": "publication_eligible_rows",
+          "value": 0
+        },
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/coverage_assessment/typed_facility_capacity_rows",
+          "label": "typed_facility_capacity_rows",
+          "value": 0
+        },
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/coverage_assessment/typed_facility_energy_rows",
+          "label": "typed_facility_energy_rows",
+          "value": 0
+        },
+        {
+          "checkpoint_id": "assessment",
+          "json_pointer": "/coverage_assessment/unique_physical_site_count",
+          "label": "unique_physical_sites",
+          "value": null
+        }
+      ],
+      "publication_mode": "local_quarantined",
+      "record_units": [
+        "air_permit_application_record",
+        "issued_air_permit_record",
+        "review_record"
+      ],
+      "redistribution_status": "quarantined_pending_rights"
+    },
+    {
+      "access_tier": "public_open",
+      "artifact_id": "within-release-resolution-public-open-v1",
+      "artifact_kind": "cross_release_resolution",
+      "checkpoints": [
+        {
+          "binding": {
+            "checkpoint_id": "manifest",
+            "json_pointer": "/definition"
+          },
+          "bytes": 1457,
+          "checkpoint_id": "definition",
+          "path": "sources/within-release-resolution-2026-07-18-public-open-v1.json",
+          "sha256": "f979b2e09b78aa088c7a1f2a4fd8b61d71368888dde9367ad6f8c2101c8500cd"
+        },
+        {
+          "bytes": 6028,
+          "checkpoint_id": "manifest",
+          "path": "within_release_resolution/2026-07-18-public-open-v1/manifest.json",
+          "sha256": "41938ae7bcd83c52899afe08d546a94b38c5c15ae3dadcfaaaead3f4b6986ae6"
+        },
+        {
+          "binding": {
+            "checkpoint_id": "manifest",
+            "json_pointer": "/files/summary.json"
+          },
+          "bytes": 1265,
+          "checkpoint_id": "summary",
+          "path": "within_release_resolution/2026-07-18-public-open-v1/summary.json",
+          "sha256": "e5c99b5737056c3cc0ef4592431eb3ccf9bb69c9010d4f05625359d3e070c9ec"
+        }
+      ],
+      "current_role": "public_supporting_review_lane",
+      "evidence_scope": "source_scoped",
+      "limitations": [
+        "All 8,586 links are advisory relationship candidates; none is an accepted merge or confirmed duplicate.",
+        "Links and endpoint attachments are not unique-site counts and do not reduce construction or federation row totals.",
+        "The review-only fuzzy release is excluded from processed resolution rows."
+      ],
+      "metrics": [
+        {
+          "checkpoint_id": "summary",
+          "json_pointer": "/accepted_relationships",
+          "label": "accepted_relationships",
+          "value": 0
+        },
+        {
+          "checkpoint_id": "summary",
+          "json_pointer": "/candidate_links",
+          "label": "advisory_links",
+          "value": 8586
+        },
+        {
+          "checkpoint_id": "summary",
+          "json_pointer": "/automatic_merges",
+          "label": "automatic_merges",
+          "value": 0
+        },
+        {
+          "checkpoint_id": "summary",
+          "json_pointer": "/processed_source_scoped_entity_records",
+          "label": "processed_source_scoped_rows",
+          "value": 9375
+        },
+        {
+          "checkpoint_id": "summary",
+          "json_pointer": "/review_only_source_scoped_entity_records_excluded",
+          "label": "review_only_rows_excluded",
+          "value": 6130
+        },
+        {
+          "checkpoint_id": "summary",
+          "json_pointer": "/source_scoped_entity_records",
+          "label": "source_scoped_rows_in_input_federation",
+          "value": 15505
+        },
+        {
+          "checkpoint_id": "summary",
+          "json_pointer": "/unique_physical_sites",
+          "label": "unique_physical_sites",
+          "value": null
+        }
+      ],
+      "publication_mode": "public_index_or_audit",
+      "record_units": [
+        "crosswalk_link"
+      ],
+      "redistribution_status": "eligible_with_upstream_terms"
+    }
+  ],
+  "generated_at": "2026-07-20T16:20:00Z",
+  "ledger_id": "current-coverage-2026-07-20-v16",
+  "parity_gaps": [
+    {
+      "affected_artifact_ids": [
+        "construction-map-public-open-v21",
+        "construction-master-public-open-v21",
+        "coverage-audit-public-open-v21",
+        "england-planning-data-2026-07-18-v1",
+        "federation-public-open-v22",
+        "france-igedd-ae-data-centres-2009-2026-2026-07-18-v1",
+        "global-open-v3",
+        "netherlands-koop-official-publications-2026-07-18-v1",
+        "new-zealand-fast-track-2026-07-18-v1",
+        "nsw-major-projects-data-storage-2026-07-18-v1",
+        "satellite-calibration-analyst-reviews-v4"
+      ],
+      "gap_id": "benchmark-parity-not-computed",
+      "status": "not_computed",
+      "summary": "No licensed, row-level external benchmark denominator is pinned; the 43 selected calibration labels provide neither recall nor SemiAnalysis-equivalent precision, feature, or field parity."
+    },
+    {
+      "affected_artifact_ids": [
+        "candidate-fusion-osm-planet-priority-v13",
+        "construction-map-public-open-v21",
+        "construction-master-public-open-v21",
+        "coverage-audit-public-open-v21",
+        "england-planning-data-2026-07-18-v1",
+        "france-igedd-ae-data-centres-2009-2026-2026-07-18-v1",
+        "global-open-v3",
+        "microsoft-global-ml-buildings-review-v1",
+        "netherlands-koop-official-publications-2026-07-18-v1",
+        "new-zealand-fast-track-2026-07-18-v1",
+        "nsw-major-projects-data-storage-2026-07-18-v1",
+        "satellite-calibration-analyst-reviews-v4",
+        "satellite-catalog-open-seed-v43-active-001",
+        "satellite-catalog-reselection-open-seed-v43-active-v2-001",
+        "satellite-change-review-open-seed-v43-active-reselected-v2-review-v1",
+        "satellite-queue-global-open-v3",
+        "satellite-queue-open-seed-v43",
+        "satellite-recovery-unknown033-review-v1",
+        "satellite-unknown-batch-030"
+      ],
+      "gap_id": "global-construction-coverage-partial",
+      "status": "partial_coverage",
+      "summary": "The expanded official open seed, planning and permit review lanes, structural shortlist, footprint context, and satellite review still do not establish a complete global construction census; the accepted Unknown033 recovery is review-only and promotes no source batch or site claim."
+    },
+    {
+      "affected_artifact_ids": [
+        "cleanview-rights-assessment-v1",
+        "edgemode-sec-assessment-v1",
+        "epa-echo-frs-local-review-v1",
+        "loudoun-data-center-assessment-v1",
+        "peeringdb-rights-assessment-v1",
+        "pjm-large-load-assessment-v1",
+        "pwc-build-out-assessment-v1",
+        "virginia-deq-air-permits-local-review-v1"
+      ],
+      "gap_id": "rights-blocked-source-lanes",
+      "status": "rights_blocked",
+      "summary": "Public planning, permit, and environmental-opinion observations do not resolve separate commercial, interconnection, utility, parcel, permit-detail, and mixed-rights raw-detail lanes; excluded assessed country lanes remain outside the current ledger."
+    },
+    {
+      "affected_artifact_ids": [
+        "candidate-fusion-osm-planet-priority-v13",
+        "satellite-calibration-analyst-reviews-v4",
+        "satellite-catalog-open-seed-v43-active-001",
+        "satellite-catalog-reselection-open-seed-v43-active-v2-001",
+        "satellite-change-review-open-seed-v43-active-reselected-v2-review-v1",
+        "satellite-queue-global-open-v3",
+        "satellite-queue-open-seed-v43",
+        "satellite-recovery-unknown033-review-v1",
+        "satellite-unknown-batch-030"
+      ],
+      "gap_id": "satellite-review-backlog",
+      "status": "review_backlog",
+      "summary": "Unknown030 remains the current incomplete source batch with 2,086 pending catalog jobs. The accepted Unknown033 wrapper separately reconciles 25 clean terminal jobs into a non-additive review-only recovered state with 2,061 pending; it does not promote Unknown031 or exhaust candidate-level manual verification."
+    },
+    {
+      "affected_artifact_ids": [
+        "construction-map-public-open-v21",
+        "construction-master-public-open-v21",
+        "coverage-audit-public-open-v21",
+        "england-planning-data-2026-07-18-v1",
+        "federation-public-open-v22",
+        "france-igedd-ae-data-centres-2009-2026-2026-07-18-v1",
+        "global-open-v3",
+        "ireland-planning-observations-v1",
+        "netherlands-koop-official-publications-2026-07-18-v1",
+        "new-zealand-fast-track-2026-07-18-v1",
+        "nsw-major-projects-data-storage-2026-07-18-v1",
+        "satellite-calibration-analyst-reviews-v4",
+        "within-release-resolution-public-open-v1"
+      ],
+      "gap_id": "site-resolution-partial",
+      "status": "partial_coverage",
+      "summary": "Resolution links remain advisory; England, Ireland, NSW, Netherlands, New Zealand, and France observations plus selected imagery labels are not cross-source deduplicated, no merges are accepted, and unique physical sites remain null."
+    },
+    {
+      "affected_artifact_ids": [
+        "construction-master-public-open-v21",
+        "edgemode-sec-assessment-v1",
+        "england-planning-data-2026-07-18-v1",
+        "france-igedd-ae-data-centres-2009-2026-2026-07-18-v1",
+        "global-open-v3",
+        "microsoft-global-ml-buildings-review-v1",
+        "netherlands-koop-official-publications-2026-07-18-v1",
+        "new-zealand-fast-track-2026-07-18-v1",
+        "nsw-major-projects-data-storage-2026-07-18-v1",
+        "pjm-large-load-assessment-v1",
+        "satellite-calibration-analyst-reviews-v4",
+        "seed-epoch-official-v47"
+      ],
+      "gap_id": "type-power-energy-coverage-partial",
+      "status": "partial_coverage",
+      "summary": "Type, operating model, typed capacity, power, annual energy, PUE, and workload remain sparse and source-scoped; planned critical-IT values are not current load, generation and grid metrics stay distinct, NSW retains 10 untyped statements, and review lanes promote no ungrounded facility metrics."
+    }
+  ],
+  "schema_version": 3,
+  "scope": {
+    "benchmark_parity_claimed": false,
+    "construction_arithmetic_across_entity_levels_performed": false,
+    "cross_artifact_counts_are_additive": false,
+    "global_completeness_claimed": false,
+    "local_restricted_excluded_from_public_scope": true,
+    "metadata_or_calibration_counts_are_public_row_release_counts": false,
+    "non_site_record_units_are_unique_physical_sites": false,
+    "parcels_applications_permits_and_footprints_are_additive": false,
+    "public_open_is_current_redistribution_scope": true,
+    "publication_modes_are_kept_separate": true,
+    "review_only_is_confirmed_data_centre_evidence": false,
+    "source_scoped_rows_are_unique_physical_sites": false,
+    "unique_physical_site_count": null
+  }
+}

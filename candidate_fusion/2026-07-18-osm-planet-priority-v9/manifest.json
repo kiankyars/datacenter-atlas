@@ -1,0 +1,522 @@
+{
+  "counts": {
+    "atlas_reference_lane": {
+      "candidates_linked": 14324,
+      "distinct_source_root_opportunity_links": 7377,
+      "exact_shared_osm_identity_links_in_shortlist": 0,
+      "shared_osm_root_links": 68651,
+      "site_level_reference_records_indexed": 6830,
+      "spatial_links": 76028
+    },
+    "gdelt_lane": {
+      "reason_not_spatially_joined": "retained_leads_have_no_pinned_geometry",
+      "retained_leads_with_pinned_geometry": 0,
+      "retained_manual_triage_leads": 3,
+      "spatial_links": 0
+    },
+    "open_buildings_temporal_lane": {
+      "bounded_bundles_examined": 1,
+      "candidate_aoi_overlap_links": 0,
+      "review_signals_examined": 3,
+      "shares_copernicus_sentinel_2_root_with_sentinel_lane": true
+    },
+    "osm_exact_identity_exclusions_before_fusion": 126,
+    "overture_lane": {
+      "bounded_candidate_footprints_examined": 96,
+      "bounds_overlap_links": 0,
+      "candidates_linked": 0,
+      "distinct_source_root_opportunity_links": 0,
+      "shared_osm_root_mixed_or_only_links": 0
+    },
+    "primary_shortlist": {
+      "candidate_count_is_data_centre_count": false,
+      "candidates_examined": 102451,
+      "candidates_with_any_fusion_opportunity": 14324,
+      "candidates_without_fusion_opportunity": 88127
+    },
+    "review_priority_tiers": {
+      "analyst_retained_visible_change_aoi_overlap_followup": 22,
+      "distinct_source_root_opportunity": 1037,
+      "shared_osm_root_or_queue_opportunity": 13265
+    },
+    "schema_version": 3,
+    "sentinel_lane": {
+      "analyst_review_aoi_overlap_links_by_outcome": {
+        "not_analyst_reviewed": 24333,
+        "rejected_for_site_promotion": 61,
+        "retained_visible_change_aoi_followup": 25
+      },
+      "analyst_reviews_examined": 25,
+      "analyst_reviews_examined_by_outcome": {
+        "rejected_for_site_promotion": 18,
+        "retained_visible_change_aoi_followup": 7
+      },
+      "candidates_linked": 5795,
+      "candidates_with_analyst_review_aoi_overlap_by_outcome": {
+        "rejected_for_site_promotion": 54,
+        "retained_visible_change_aoi_followup": 22
+      },
+      "catalog_batch_jobs_examined": 6830,
+      "catalog_state_links": {
+        "completed": 3867,
+        "pending": 20315,
+        "unavailable_no_scene": 237
+      },
+      "distinct_analyst_reviews_with_candidate_overlap_by_outcome": {
+        "rejected_for_site_promotion": 12,
+        "retained_visible_change_aoi_followup": 6
+      },
+      "queue_aoi_overlap_links": 24419,
+      "queue_jobs_examined": 6830,
+      "queue_or_catalog_availability_is_change_evidence": false,
+      "retained_visible_change_review_confirms_candidate_identity_or_status": false
+    }
+  },
+  "definition": {
+    "bytes": 15427,
+    "filename": "candidate-fusion-2026-07-18-osm-planet-v9.json",
+    "sha256": "e525b85df09feea10a354d41a0c0896a59963d9916e106b106aef13098f03871"
+  },
+  "format": "datacenter-atlas-candidate-fusion-v3",
+  "generated_at": "2026-07-18T23:52:26Z",
+  "inputs": [
+    {
+      "lane": "osm_planet_structural_construction",
+      "manifest": {
+        "bytes": 20133,
+        "sha256": "b7604f2c892d37236bb80de949a3e30e22e4ded8e271c055186a777ce8137497"
+      },
+      "path": "../releases/2026-07-18-osm-construction-candidates-v3"
+    },
+    {
+      "lane": "known_atlas_entities",
+      "manifest": {
+        "bytes": 2547,
+        "sha256": "fe14c1b264ce7d5f589c717147e584f7ace97b832b0987389f2ee03ded6bb562"
+      },
+      "path": "../releases/2026-07-18-global-open-v3"
+    },
+    {
+      "lane": "overture_buildings_bounded",
+      "manifest": {
+        "bytes": 7194,
+        "sha256": "a2067f805f3242962c434064b3c3e13a122c02ab2c47fe9d81a343d376821ba1"
+      },
+      "path": "../source_cache/overture-2026-06-17.0-memphis"
+    },
+    {
+      "lane": "google_open_buildings_temporal_bounded",
+      "manifest": {
+        "bytes": 6086,
+        "sha256": "b2a49587dcc759794277cdb0d894662328e444f7d7b8ad877c6622bc7dd074c9"
+      },
+      "path": "../source_cache/open-buildings-temporal-egy-30.8679-30.8419-review-v2"
+    },
+    {
+      "lane": "gdelt_manual_triage",
+      "manifest": {
+        "bytes": 887,
+        "sha256": "c5c2d900ec72397f676cf26247bf23fb60607eb015bc2e610cf8b52cf50752d0"
+      },
+      "path": "../source_cache/gdelt-news-triage-20260630201600"
+    },
+    {
+      "lane": "sentinel_review_queue",
+      "manifest": {
+        "bytes": 28269,
+        "sha256": "58c39d64510f37fda8eaf6912ed36001845f276239dcaeec0ea24ba4a6a2836c"
+      },
+      "path": "../satellite_review_queues/2026-07-18-global-open-v3"
+    },
+    {
+      "lane": "sentinel_catalog_batch",
+      "manifest": {
+        "bytes": 94619,
+        "sha256": "ff0323728733557727b8d07c9aae6e2801be8a430b0b5e4f4fe7d2a168079a5a"
+      },
+      "path": "../satellite_review_runs/2026-07-18-global-open-v3-active-001"
+    },
+    {
+      "lane": "sentinel_catalog_batch",
+      "manifest": {
+        "bytes": 28779,
+        "sha256": "e012b06344c2332e1e3192f005db099f15058b973505e7be09907e2ff221e2f6"
+      },
+      "path": "../satellite_review_runs/2026-07-18-global-open-v3-proposed-001"
+    },
+    {
+      "lane": "sentinel_catalog_batch",
+      "manifest": {
+        "bytes": 3869222,
+        "sha256": "9efff4e965e67584e0ba48d8d4d31385089f9af2e5880c44c0a24ba21eae350f"
+      },
+      "path": "../satellite_review_runs/2026-07-18-global-open-v3-unknown-009"
+    },
+    {
+      "lane": "sentinel_analyst_review",
+      "path": "../satellite_review_runs/2026-07-18-global-open-v3-active-001/jobs/satq-85151d4c7d7b37de173a666f/change/analyst-review.json",
+      "queue_id": "satq-85151d4c7d7b37de173a666f",
+      "report": {
+        "bytes": 6064,
+        "sha256": "56a05e89e23f4a646a886a90ae62cbd39dd8ad8c925c68bc4f3e4733c3a78089"
+      },
+      "review": {
+        "bytes": 861,
+        "sha256": "7b2224d610905dd82712cc90c0130bce834026208639d3740cafeba47842d803"
+      }
+    },
+    {
+      "lane": "sentinel_analyst_review",
+      "path": "../satellite_review_runs/2026-07-18-global-open-v3-proposed-001/jobs/satq-4749c9e490ba052a75db1459/change/analyst-review.json",
+      "queue_id": "satq-4749c9e490ba052a75db1459",
+      "report": {
+        "bytes": 6102,
+        "sha256": "c883b60695d3ac37a310f4255e52c01f36b604f7a4e34ff31d5d90b65089fbe6"
+      },
+      "review": {
+        "bytes": 844,
+        "sha256": "6364d6161e094f02c50e91d40d4af25485e63c59d1ad1ffe0ae617c5860a4bca"
+      }
+    },
+    {
+      "lane": "sentinel_analyst_review",
+      "path": "../satellite_review_runs/2026-07-18-global-open-v3-unknown-009/jobs/satq-0032e259e72fe68454610d49/change/analyst-review.json",
+      "queue_id": "satq-0032e259e72fe68454610d49",
+      "report": {
+        "bytes": 6101,
+        "sha256": "ec48dde8ef00860c7d86a522502e8134793214996f848a847eb546653a40aacb"
+      },
+      "review": {
+        "bytes": 1035,
+        "sha256": "3f1063aad0227be6e1b9e4f5c3951335e060ccaccb99d9e65a8501f9d8c9438f"
+      }
+    },
+    {
+      "lane": "sentinel_analyst_review",
+      "path": "../satellite_review_runs/2026-07-18-global-open-v3-unknown-009/jobs/satq-151a51d3b1e410883058ec9a/change/analyst-review.json",
+      "queue_id": "satq-151a51d3b1e410883058ec9a",
+      "report": {
+        "bytes": 6073,
+        "sha256": "5b72e71831bc4a89ddd6f7523baf35a90f14334091e52bb52eccdde78d4ab237"
+      },
+      "review": {
+        "bytes": 951,
+        "sha256": "06448acd770c9bef7c284d625dc13784022f875329c44b136ba651a6cd2f521b"
+      }
+    },
+    {
+      "lane": "sentinel_analyst_review",
+      "path": "../satellite_review_runs/2026-07-18-global-open-v3-unknown-009/jobs/satq-19ba8a09e793d8f73ba71804/change/analyst-review.json",
+      "queue_id": "satq-19ba8a09e793d8f73ba71804",
+      "report": {
+        "bytes": 6064,
+        "sha256": "e2bf48bb74a5261f36a546d3abf72ae49deab8230cce3f2d1949a37d8e402933"
+      },
+      "review": {
+        "bytes": 930,
+        "sha256": "bd6df362cec69820f4bdb32d73f8b2afb5f02597f624c99936b5091290e608d0"
+      }
+    },
+    {
+      "lane": "sentinel_analyst_review",
+      "path": "../satellite_review_runs/2026-07-18-global-open-v3-unknown-009/jobs/satq-2782dac6ff28c6658f12f84e/change/analyst-review.json",
+      "queue_id": "satq-2782dac6ff28c6658f12f84e",
+      "report": {
+        "bytes": 6071,
+        "sha256": "cd8c93dac87b952aee7d6179a84c62a2d2840e419e1c7e4411b2980394884226"
+      },
+      "review": {
+        "bytes": 861,
+        "sha256": "83860b98638e8434edbabc9560ac117e1592b53999b8614be0eadcba9d74e90e"
+      }
+    },
+    {
+      "lane": "sentinel_analyst_review",
+      "path": "../satellite_review_runs/2026-07-18-global-open-v3-unknown-009/jobs/satq-3fd1cc06b7c43dc3547a2b6b/change/analyst-review.json",
+      "queue_id": "satq-3fd1cc06b7c43dc3547a2b6b",
+      "report": {
+        "bytes": 6053,
+        "sha256": "bd0e48f34131bf6128bbdfc430db50efe1b316c54c825ee8e1622fab1a2e14f8"
+      },
+      "review": {
+        "bytes": 995,
+        "sha256": "bf72279c933c72cdccdc3d34521bee4e0c499f37318097dcccf4de6b086e827c"
+      }
+    },
+    {
+      "lane": "sentinel_analyst_review",
+      "path": "../satellite_review_runs/2026-07-18-global-open-v3-unknown-009/jobs/satq-4574ad91d56aced6425c5405/change/analyst-review.json",
+      "queue_id": "satq-4574ad91d56aced6425c5405",
+      "report": {
+        "bytes": 6092,
+        "sha256": "ba69ca9c7a3b5c311327fd46ad75b4bfc9f294ceebfeba94c2e040f55b2fdf6e"
+      },
+      "review": {
+        "bytes": 1003,
+        "sha256": "6ef441446ffd799834a2fe4febe040d728dbd92c28b0ad987b21163ec1da0e5d"
+      }
+    },
+    {
+      "lane": "sentinel_analyst_review",
+      "path": "../satellite_review_runs/2026-07-18-global-open-v3-unknown-009/jobs/satq-4c316eedd135d6138a145bfe/change/analyst-review.json",
+      "queue_id": "satq-4c316eedd135d6138a145bfe",
+      "report": {
+        "bytes": 6056,
+        "sha256": "27868ccfff1c3ab9004692d49b9b1eb759aabba00c79b921c1ba08144a1b99d4"
+      },
+      "review": {
+        "bytes": 906,
+        "sha256": "eedde143563b4de2ef67ca743d892fa4aac3c67a366f8e2dfbddf76e02b94960"
+      }
+    },
+    {
+      "lane": "sentinel_analyst_review",
+      "path": "../satellite_review_runs/2026-07-18-global-open-v3-unknown-009/jobs/satq-584c2da9dd872dbb30dbe70f/change/analyst-review.json",
+      "queue_id": "satq-584c2da9dd872dbb30dbe70f",
+      "report": {
+        "bytes": 6062,
+        "sha256": "1666016afbf9fcd1f723295ac35b0ee8fd232c7cd24b6d9fa579c17413aac169"
+      },
+      "review": {
+        "bytes": 948,
+        "sha256": "a71a30a067a6a44c4e1c7c6706ac59d489ca7ea3d91ccf0fcdc8efdd9b31e4d2"
+      }
+    },
+    {
+      "lane": "sentinel_analyst_review",
+      "path": "../satellite_review_runs/2026-07-18-global-open-v3-unknown-009/jobs/satq-5a1c2165c2264a5ff491d5f0/change/analyst-review.json",
+      "queue_id": "satq-5a1c2165c2264a5ff491d5f0",
+      "report": {
+        "bytes": 6060,
+        "sha256": "8c9096bc524d952444e3d9803e1ed545587825e8ce8093533510c0882794f58a"
+      },
+      "review": {
+        "bytes": 951,
+        "sha256": "60d22e31fa437a35ded2232d255ed412a029f22a111509416a586c8b72a0de09"
+      }
+    },
+    {
+      "lane": "sentinel_analyst_review",
+      "path": "../satellite_review_runs/2026-07-18-global-open-v3-unknown-009/jobs/satq-6cb90d5fbd84d2a283128423/change/analyst-review.json",
+      "queue_id": "satq-6cb90d5fbd84d2a283128423",
+      "report": {
+        "bytes": 6073,
+        "sha256": "06d22cc48018c7e28a2026cabbb8ec841386f752c3ce523e94898e027d715637"
+      },
+      "review": {
+        "bytes": 978,
+        "sha256": "c6641507dde69045e235c0eca5faafb0c723435a7f6c0b0940774e8a2f808a4e"
+      }
+    },
+    {
+      "lane": "sentinel_analyst_review",
+      "path": "../satellite_review_runs/2026-07-18-global-open-v3-unknown-009/jobs/satq-7e006a775807e1cd7d52b58e/change/analyst-review.json",
+      "queue_id": "satq-7e006a775807e1cd7d52b58e",
+      "report": {
+        "bytes": 6072,
+        "sha256": "7e8e8ee0f547bc6f7853716c335a0a7801b79df985a7c8a9ec7a223e2f1f38ba"
+      },
+      "review": {
+        "bytes": 975,
+        "sha256": "76041d8891d71f8e89cc2fa69e78c02f2cfcf8f039c0a4e0ee89740b87ae57da"
+      }
+    },
+    {
+      "lane": "sentinel_analyst_review",
+      "path": "../satellite_review_runs/2026-07-18-global-open-v3-unknown-009/jobs/satq-84c0eaa9ff38437a843f0ff6/change/analyst-review.json",
+      "queue_id": "satq-84c0eaa9ff38437a843f0ff6",
+      "report": {
+        "bytes": 6061,
+        "sha256": "10e0a0cb32b4fc56e6ff8cbc24dc48255d61dc0110e95699a2d59cf20855a8a5"
+      },
+      "review": {
+        "bytes": 946,
+        "sha256": "da2c0f837a01f65bc0ea911a6c62c3c7ca62e954960727786d458c9c60a26954"
+      }
+    },
+    {
+      "lane": "sentinel_analyst_review",
+      "path": "../satellite_review_runs/2026-07-18-global-open-v3-unknown-009/jobs/satq-8c3d80c8565c7fe7ed060621/change/analyst-review.json",
+      "queue_id": "satq-8c3d80c8565c7fe7ed060621",
+      "report": {
+        "bytes": 6102,
+        "sha256": "062fe4d08d08912b3707658b4d82de02393ec6275b63da57066868404e82b745"
+      },
+      "review": {
+        "bytes": 968,
+        "sha256": "5404ed547c50a62648cfdfa80106c9aa7a2207893fd5b1d46d975a9a0550a535"
+      }
+    },
+    {
+      "lane": "sentinel_analyst_review",
+      "path": "../satellite_review_runs/2026-07-18-global-open-v3-unknown-009/jobs/satq-90e31eb2995166e80e2f417d/change/analyst-review.json",
+      "queue_id": "satq-90e31eb2995166e80e2f417d",
+      "report": {
+        "bytes": 6060,
+        "sha256": "4b9013272aa0d0f46fc51a5002a8600c44b55aa9839652d95ef8b5e6a6d70cfe"
+      },
+      "review": {
+        "bytes": 940,
+        "sha256": "25cfac9526d3ebee1fb6d23d7977867c6ea1a1d8416d82052b688851214718b1"
+      }
+    },
+    {
+      "lane": "sentinel_analyst_review",
+      "path": "../satellite_review_runs/2026-07-18-global-open-v3-unknown-009/jobs/satq-b4c7c51913e4f80878b9aca7/change/analyst-review.json",
+      "queue_id": "satq-b4c7c51913e4f80878b9aca7",
+      "report": {
+        "bytes": 6072,
+        "sha256": "1151abd9e04463fdb28a3fe995c4537c5e0d74aaf747db0b50fde9f52d51184c"
+      },
+      "review": {
+        "bytes": 975,
+        "sha256": "3f0f24f4e0aa39a16307684add097f34c17002c8f5c4fdb7ada92deaadc394a1"
+      }
+    },
+    {
+      "lane": "sentinel_analyst_review",
+      "path": "../satellite_review_runs/2026-07-18-global-open-v3-unknown-009/jobs/satq-c377e9e78f223b749ea998bb/change/analyst-review.json",
+      "queue_id": "satq-c377e9e78f223b749ea998bb",
+      "report": {
+        "bytes": 6049,
+        "sha256": "4fa4935214ed24b1e2ba2940a82416cd871c85dc2b4a6ba234e748fbe810e09f"
+      },
+      "review": {
+        "bytes": 951,
+        "sha256": "6817490725e6d4a0f3b1cabc1d8c4be1fa193edc7c92991e546b7a92f77842f5"
+      }
+    },
+    {
+      "lane": "sentinel_analyst_review",
+      "path": "../satellite_review_runs/2026-07-18-global-open-v3-unknown-009/jobs/satq-e20d4867a35ce034a9415f8c/change/analyst-review.json",
+      "queue_id": "satq-e20d4867a35ce034a9415f8c",
+      "report": {
+        "bytes": 6089,
+        "sha256": "9114f3b192b8b26989f4b99a7f13db2b6f71e88198873bfe99a0b33dc92cb203"
+      },
+      "review": {
+        "bytes": 981,
+        "sha256": "b7c65048477b02a4b0cd6885960986f992cc20342283e9ed788b98acee0376a3"
+      }
+    },
+    {
+      "lane": "sentinel_analyst_review",
+      "path": "../satellite_review_runs/2026-07-18-global-open-v3-unknown-009/jobs/satq-f1aa8182923776809ac99da4/change/analyst-review.json",
+      "queue_id": "satq-f1aa8182923776809ac99da4",
+      "report": {
+        "bytes": 6069,
+        "sha256": "72dc98469d630b40e944cd2b3681bc176903e40548b54d3173273f4c8ae23145"
+      },
+      "review": {
+        "bytes": 982,
+        "sha256": "00ed4aa11478ae28f08f53a648e72f5343ee3ee03bbe6bb33de7bc1dfc3d3eee"
+      }
+    },
+    {
+      "lane": "sentinel_analyst_review",
+      "path": "../satellite_review_runs/2026-07-18-global-open-v3-unknown-009/jobs/satq-f2554b764141d2591c78d3a8/change/analyst-review.json",
+      "queue_id": "satq-f2554b764141d2591c78d3a8",
+      "report": {
+        "bytes": 6059,
+        "sha256": "cdc8408af55d36be8eecdffca3541afd2564e55edeb510a6fe947708631d3c4f"
+      },
+      "review": {
+        "bytes": 971,
+        "sha256": "9aa53663ddcc8a45ed932dda2ad32da91deb0b1e51ebfa3c8fc17bb0be15747f"
+      }
+    },
+    {
+      "lane": "sentinel_analyst_review",
+      "path": "../satellite_review_runs/2026-07-18-global-open-v3-unknown-009/jobs/satq-7fd64307ea68612e30b6b5ac/change/analyst-review.json",
+      "queue_id": "satq-7fd64307ea68612e30b6b5ac",
+      "report": {
+        "bytes": 6062,
+        "sha256": "a56bd13e7a4840f68cf6d858c0dd68209ce4f7b9f39712267f8bb0747c892011"
+      },
+      "review": {
+        "bytes": 881,
+        "sha256": "7008f2aeeea7c657f814d808f56e10d1bc071d59b39db2bbccee1ce9405efcb4"
+      }
+    },
+    {
+      "lane": "sentinel_analyst_review",
+      "path": "../satellite_review_runs/2026-07-18-global-open-v3-unknown-009/jobs/satq-c9481eec04ca05883267c576/change/analyst-review.json",
+      "queue_id": "satq-c9481eec04ca05883267c576",
+      "report": {
+        "bytes": 6065,
+        "sha256": "e469eadc01ef1c16082bc24ef9dd3962d92ececf6e530317a02547e30ba7afe0"
+      },
+      "review": {
+        "bytes": 957,
+        "sha256": "ed8e739b78ef939b83a464bac2598b15935acc747b368d94ee42d16e18ab6c20"
+      }
+    },
+    {
+      "lane": "sentinel_analyst_review",
+      "path": "../satellite_review_runs/2026-07-18-global-open-v3-unknown-009/jobs/satq-05727b50b98948308a848eab/change/analyst-review.json",
+      "queue_id": "satq-05727b50b98948308a848eab",
+      "report": {
+        "bytes": 6098,
+        "sha256": "b0f310759278d57872703aa36ad66a691e0a3c3f39b82260a40aa6a4333fafca"
+      },
+      "review": {
+        "bytes": 1056,
+        "sha256": "0255942210ed8cff424e6ab9cf253c54e799ce55282d3f70bdb991d18e714b2e"
+      }
+    },
+    {
+      "lane": "sentinel_analyst_review",
+      "path": "../satellite_review_runs/2026-07-18-global-open-v3-unknown-009/jobs/satq-5b2c2d8ec553b3fcff6aac99/change/analyst-review.json",
+      "queue_id": "satq-5b2c2d8ec553b3fcff6aac99",
+      "report": {
+        "bytes": 6068,
+        "sha256": "1e6eec206e239735a518f75f8137516a31a2302a88b90db456ff862b48079866"
+      },
+      "review": {
+        "bytes": 933,
+        "sha256": "88b00d1267baaf1c0c9cfd1a593a46995fba14b1ba15bc4fdd3f34a3f5f090b6"
+      }
+    }
+  ],
+  "outputs": {
+    "ATTRIBUTION.txt": {
+      "bytes": 339,
+      "sha256": "ae736ed2ba045cee0d2cf7669d420ed99654a33a3df2d543fe9d2efbea5158c7"
+    },
+    "README.md": {
+      "bytes": 1007,
+      "sha256": "c14b9997a9aaf2511393d635f914474bc6b3ddd79fe4a6113ed0dd8b3021b3d8"
+    },
+    "coverage.json": {
+      "bytes": 2549,
+      "sha256": "4a7e52b2eabe89ea89e2073ff581feb02603dd2e5435aff6e204cec448a1ca3b"
+    },
+    "fusion-candidates.csv": {
+      "bytes": 1978340,
+      "records": 14324,
+      "sha256": "105d734b154737463ed740b4eed80d9ed5ba596ba5aa02793bb39a4afdc5d627"
+    },
+    "fusion-candidates.jsonl": {
+      "bytes": 71996894,
+      "records": 14324,
+      "sha256": "e24d3829f3dcca359ca2a3a230b9dc17083b5dc0fd5d28d3b19c7a5eb4a462ab"
+    }
+  },
+  "parameters": {
+    "atlas_max_distance_m": 5000
+  },
+  "schema_version": 3,
+  "scope": {
+    "automatic_atlas_import_allowed": false,
+    "candidate_is_capacity_power_or_energy_claim": false,
+    "candidate_is_data_centre_identity_claim": false,
+    "candidate_is_lifecycle_or_status_claim": false,
+    "candidate_is_operating_status_claim": false,
+    "candidate_is_type_workload_or_operating_model_claim": false,
+    "candidate_merge_performed": false,
+    "distinct_source_root_is_confirmed_independence": false,
+    "proximity_or_overlap_is_independent_corroboration": false,
+    "review_only": true,
+    "unique_physical_site_count_computed": false
+  }
+}

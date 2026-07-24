@@ -1,0 +1,107 @@
+{
+  "classification_contract": {
+    "exclusive_precedence": [
+      "green_mark_data_centre_scheme",
+      "additional_project_type_match",
+      "name_only_review"
+    ],
+    "name_fields": [
+      "Project_Name",
+      "Actual_Project_Name"
+    ],
+    "normalization": [
+      "NFKC",
+      "casefold",
+      "collapse_whitespace"
+    ],
+    "phrase_pattern": "(?<![a-z0-9])data(?:[\\s-]*centre|[\\s-]*center)s?(?![a-z0-9])",
+    "project_type_field": "Project_Type",
+    "scheme_field": "GM_Version"
+  },
+  "coverage_contract": {
+    "certification_observation_count": 4793,
+    "coverage_end": "2026-02",
+    "coverage_start": "2005-01",
+    "dataset_last_updated": "2026-05-19",
+    "legislated_projects_excluded": true,
+    "national_data_centre_completeness_claimed": false,
+    "opted_out_public_disclosure_projects_excluded": true,
+    "project_count": null,
+    "site_count": null,
+    "voluntary_green_mark_listing_only": true
+  },
+  "dataset_id": "d_c4bd082b48fa7611713f39e23d250c27",
+  "dataset_title": "Green Mark Buildings",
+  "dataset_url": "https://data.gov.sg/datasets/d_c4bd082b48fa7611713f39e23d250c27/view",
+  "downstream_import_policy": {
+    "automatic_construction_master_import_permitted": false,
+    "construction_map_import_permitted": false,
+    "future_construction_master_tier_b_review_observation_import_permitted": true,
+    "future_master_requirements": {
+      "explicit_human_review_required": true,
+      "physical_lifecycle_status_must_be_null": true,
+      "tier": "B"
+    },
+    "map_blocker": "source has no coordinates and no exact documented geospatial join",
+    "no_fuzzy_green_mark_geospatial_join": true
+  },
+  "format": "datacenter-atlas-singapore-bca-green-mark-definition-v1",
+  "inference_policy": {
+    "annual_energy_consumption": null,
+    "coordinates": null,
+    "data_centre_type": null,
+    "gfa_field_is_untyped_raw_text": true,
+    "gfa_unit": null,
+    "it_capacity": null,
+    "operator": null,
+    "physical_lifecycle": {
+      "certification_dates_are_physical_dates": false,
+      "commissioning_date": null,
+      "completion_date": null,
+      "construction_start_date": null,
+      "construction_status": null,
+      "expiry_is_completion_or_closure": false,
+      "operation_date": null,
+      "operation_status": null,
+      "provisional_letter_is_construction_evidence": false,
+      "recertification_is_physical_status": false
+    },
+    "power": null,
+    "pue": null
+  },
+  "network_policy": {
+    "logical_request_count": 7,
+    "maximum_attempts_per_request": 1,
+    "maximum_logical_requests": 7,
+    "page_offsets": [
+      0,
+      1000,
+      2000,
+      3000,
+      4000
+    ],
+    "page_size": 1000,
+    "redirects_permitted": false
+  },
+  "publisher": "Building and Construction Authority (BCA), Singapore",
+  "release_id": "singapore-bca-green-mark-data-centre-certifications-2005-2026-2026-07-18-v1",
+  "rights_policy": {
+    "attribution_required": true,
+    "dataset_and_derived_data_public_review_release_permitted": true,
+    "legal_conclusion_claimed": false,
+    "licence_name": "Singapore Open Data Licence version 1.0",
+    "licence_url": "https://data.gov.sg/open-data-licence",
+    "limitations": {
+      "agency_names_logos_and_trademarks_not_licensed_as_dataset_content": true,
+      "no_endorsement_implied": true,
+      "personal_data_not_licensed": true,
+      "third_party_rights_not_licensed_without_agency_authority": true
+    },
+    "raw_dataset_response_bodies_released": false,
+    "source_dataset_snapshot_released": true,
+    "verified_local_date": "2026-07-18"
+  },
+  "schema_version": 1,
+  "source": "data.gov.sg Datastore API",
+  "source_unit": "one Green Mark certification observation keyed by _id"
+}

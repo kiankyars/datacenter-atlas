@@ -1,0 +1,154 @@
+{
+  "schema_version": "1.0",
+  "evidence": [
+    {
+      "key": "applied-digital-q3-fy2026-construction-2026-04-08",
+      "kind": "company_disclosure",
+      "title": "Applied Digital Reports Fiscal Third Quarter 2026 Results",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1144879/000114487926000029/apldq326earningsrelease.htm",
+      "publisher": "Applied Digital Corporation",
+      "source_family": "applied_digital_sec_filings",
+      "published_at": "2026-04-08",
+      "retrieved_at": "2026-07-19T14:27:13Z",
+      "license": "all-rights-reserved",
+      "attribution": "Applied Digital Corporation",
+      "excerpt": "Applied Digital says crews were advancing two 150 MW Polaris Forge 1 facilities in parallel, both Polaris Forge 2 buildings were progressing, and Delta Forge 1 had broken ground.",
+      "content_hash": "70dc3e1a2aae54de4edaf2e98ec06176437dd51c02dbd5c1bd581a294a18f906",
+      "metadata": {
+        "content_hash_scope": "SHA-256 of retrieved SEC-hosted exhibit HTML response bytes",
+        "content_hash_verification": "fetched_bytes_sha256",
+        "status_scope": "The filing provides physical construction language for the two remaining Polaris Forge 1 facilities, both Polaris Forge 2 buildings, and Delta Forge 1.",
+        "capacity_scope": "The filing labels the Polaris Forge 1 facilities as 150 MW each and Delta Forge 1 as 300 MW critical IT load; it does not turn those values into gross facility load, grid connection, or measured consumption.",
+        "timing_guardrail": "Expected service dates are forecasts and are not treated as completion or operating status.",
+        "portfolio_guardrail": "Only named facilities with explicit physical construction evidence are imported; unnamed development sites and power-pipeline figures are excluded."
+      }
+    },
+    {
+      "key": "applied-digital-investor-presentation-2026-04-23",
+      "kind": "company_disclosure",
+      "title": "Applied Digital Investor Presentation 2026",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1144879/000114487926000036/apld_invxinvestorpresent.htm",
+      "publisher": "Applied Digital Corporation",
+      "source_family": "applied_digital_sec_filings",
+      "published_at": "2026-04-23",
+      "retrieved_at": "2026-07-19T14:27:13Z",
+      "license": "all-rights-reserved",
+      "attribution": "Applied Digital Corporation",
+      "excerpt": "The presentation identifies PF1, PF2, and DF1 as 300 MW critical-IT construction programs and locates PF2 in Harwood and DF1 in Alexandria.",
+      "content_hash": "934edc29a6b11dd4442f90f76dc8984b2330009c6a7fb7cfd220e88a1a18a38b",
+      "metadata": {
+        "content_hash_scope": "SHA-256 of retrieved SEC-hosted investor-presentation HTML response bytes",
+        "content_hash_verification": "fetched_bytes_sha256",
+        "capacity_scope": "The deck explicitly defines its 300 MW PF1, PF2, and DF1 figures as critical IT load; these values are not gross facility load, grid connection, generation, or energy consumption.",
+        "contract_scope": "PF1 has 400 MW contracted including 100 MW energized; PF2 has 200 MW contracted within a 300 MW construction program; DF1 has 300 MW contracted.",
+        "location_scope": "The deck names Ellendale, Harwood, and Alexandria localities but does not publish parcel geometry.",
+        "forward_looking_guardrail": "Delivery dates, pipeline values, margins, and future expansion are forward-looking and are not imported as completed capacity or measured performance."
+      }
+    }
+  ],
+  "campus": {
+    "stable_key": "epoch-ai:data-center:ae2c8749-c97f-5512-a0ad-a40ed8df37ce",
+    "name": "Applied Digital Polaris Forge 1 Campus",
+    "country": "United States",
+    "address": "9685 87th Avenue SE, Ellendale, North Dakota 58436, United States",
+    "roles": {
+      "owner": [
+        "Applied Digital"
+      ],
+      "developer": [
+        "Applied Digital"
+      ],
+      "operator": [
+        "Applied Digital"
+      ],
+      "tenant": [
+        "CoreWeave"
+      ]
+    },
+    "coordinates": {
+      "latitude": 46.013002682483,
+      "longitude": -98.572590173489
+    },
+    "geometry": null,
+    "evidence_key": "applied-digital-investor-presentation-2026-04-23",
+    "as_of_date": "2026-04-23",
+    "method": "analyst_geolocation",
+    "confidence": 0.75
+  },
+  "project": {
+    "stable_key": "curated:applied-digital-polaris-forge-1:third-150mw-facility",
+    "name": "Polaris Forge 1 Third 150 MW Facility",
+    "country": "United States",
+    "address": "9685 87th Avenue SE, Ellendale, North Dakota 58436, United States",
+    "roles": {
+      "owner": [
+        "Applied Digital"
+      ],
+      "developer": [
+        "Applied Digital"
+      ],
+      "operator": [
+        "Applied Digital"
+      ],
+      "tenant": [
+        "CoreWeave"
+      ]
+    },
+    "coordinates": {
+      "latitude": 46.013002682483,
+      "longitude": -98.572590173489
+    },
+    "geometry": null,
+    "evidence_key": "applied-digital-q3-fy2026-construction-2026-04-08",
+    "as_of_date": "2026-04-08",
+    "method": "analyst_geolocation",
+    "confidence": 0.75
+  },
+  "lifecycle": [
+    {
+      "entity": "project",
+      "value": "under_construction",
+      "evidence_key": "applied-digital-q3-fy2026-construction-2026-04-08",
+      "as_of_date": "2026-04-08",
+      "method": "authoritative_construction_start",
+      "confidence": 0.98
+    }
+  ],
+  "operating_models": [
+    {
+      "entity": "campus",
+      "value": "wholesale_colocation",
+      "evidence_key": "applied-digital-investor-presentation-2026-04-23",
+      "as_of_date": "2026-04-23",
+      "method": "company_disclosure",
+      "confidence": 0.95
+    }
+  ],
+  "workloads": [
+    {
+      "entity": "project",
+      "value": "mixed",
+      "evidence_key": "applied-digital-investor-presentation-2026-04-23",
+      "as_of_date": "2026-04-23",
+      "method": "company_disclosure",
+      "confidence": 0.99
+    }
+  ],
+  "capacities": [
+    {
+      "entity": "project",
+      "metric": "critical_it_mw",
+      "stage": "contracted",
+      "unit": "MW",
+      "low": 150,
+      "base": 150,
+      "high": 150,
+      "method": "reported",
+      "confidence": 0.99,
+      "evidence_key": "applied-digital-investor-presentation-2026-04-23",
+      "as_of_date": "2026-04-23",
+      "target_date": null,
+      "notes": "Developer-reported critical IT load for the third 150 MW Polaris Forge 1 facility. This is contracted IT capacity, not gross facility load, grid connection, generation, annual energy, or operating load."
+    }
+  ]
+}

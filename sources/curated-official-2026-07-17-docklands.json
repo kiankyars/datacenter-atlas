@@ -1,0 +1,152 @@
+{
+  "schema_version": "1.0",
+  "evidence": [
+    {
+      "key": "ada-docklands-groundbreaking-2026-02-26",
+      "kind": "company_disclosure",
+      "title": "Ada Infrastructure Celebrates Groundbreaking of its 210 Megawatt Docklands Data Center Campus in London",
+      "source_url": "https://adainfrastructure.com/en-US/insights/news/ada-infrastructure-celebrates-groundbreaking-of-its-210-megawatt-docklands-data-center-campus-in-london",
+      "publisher": "Ada Infrastructure",
+      "source_family": "ada_infrastructure_press_releases",
+      "published_at": "2026-02-26",
+      "retrieved_at": "2026-07-18T01:44:06Z",
+      "license": "all-rights-reserved",
+      "attribution": "Ada Infrastructure",
+      "excerpt": "groundbreaking of its 210 megawatt Docklands data center campus, initiating construction on the first of three 70 MW data center buildings.",
+      "content_hash": "e78619d7aaf225e40016d4e67974a77c0c88c2128960148d8af7dbb87d2af5c6",
+      "metadata": {
+        "content_hash_scope": "SHA-256 of retrieved HTML response bytes",
+        "content_hash_verification": "fetched_bytes_sha256",
+        "location_precision": "district_centroid",
+        "coordinate_basis": "Approximate Royal Docks district point derived from the named locality; not a parcel or facility coordinate.",
+        "first_building_it_mw": 70,
+        "building_count": 3,
+        "first_building_ready": "mid-2028"
+      }
+    },
+    {
+      "key": "ada-docklands-location-page-retrieved-2026-07-17",
+      "kind": "company_disclosure",
+      "title": "Docklands",
+      "source_url": "https://adainfrastructure.com/en-US/docklands",
+      "publisher": "Ada Infrastructure",
+      "source_family": "ada_infrastructure_location_pages",
+      "published_at": null,
+      "retrieved_at": "2026-07-18T01:44:06Z",
+      "license": "all-rights-reserved",
+      "attribution": "Ada Infrastructure",
+      "excerpt": "210 Total IT load; 1.2 designed PUE (annualized average).",
+      "content_hash": "2178ba1960ba456e21f4539de6e211061425aec8a9d7dafa0880d2ae6c813555",
+      "metadata": {
+        "content_hash_scope": "SHA-256 of retrieved HTML response bytes",
+        "content_hash_verification": "fetched_bytes_sha256",
+        "page_has_no_published_date": true,
+        "published_at_interpretation": "null because the live location page has no publication date",
+        "excluded_power_claim": "300 MVA secured supply was not converted to MW or stored as grid_connection_mw.",
+        "status_wording": "under construction",
+        "capacity_wording": "210 Total IT load",
+        "pue_wording": "1.2 designed PUE (annualized average)"
+      }
+    }
+  ],
+  "campus": {
+    "stable_key": "curated:ada-infrastructure-docklands-london",
+    "name": "Ada Infrastructure Docklands Campus",
+    "country": "United Kingdom",
+    "address": "Royal Docks, East London, United Kingdom",
+    "roles": {
+      "developer": ["Ada Infrastructure"],
+      "operator": ["Ada Infrastructure"]
+    },
+    "coordinates": {
+      "latitude": 51.503,
+      "longitude": 0.033
+    },
+    "geometry": null,
+    "evidence_key": "ada-docklands-groundbreaking-2026-02-26",
+    "as_of_date": "2026-02-26",
+    "method": "analyst_geolocation",
+    "confidence": 0.45
+  },
+  "project": {
+    "stable_key": "curated:ada-infrastructure-docklands-london:three-building-development",
+    "name": "Ada Infrastructure Docklands Three-Building Development",
+    "country": "United Kingdom",
+    "address": "Royal Docks, East London, United Kingdom",
+    "roles": {
+      "developer": ["Ada Infrastructure"],
+      "operator": ["Ada Infrastructure"]
+    },
+    "coordinates": {
+      "latitude": 51.503,
+      "longitude": 0.033
+    },
+    "geometry": null,
+    "evidence_key": "ada-docklands-groundbreaking-2026-02-26",
+    "as_of_date": "2026-02-26",
+    "method": "analyst_geolocation",
+    "confidence": 0.45
+  },
+  "lifecycle": [
+    {
+      "entity": "project",
+      "value": "under_construction",
+      "evidence_key": "ada-docklands-groundbreaking-2026-02-26",
+      "as_of_date": "2026-02-26",
+      "method": "authoritative_construction_start",
+      "confidence": 0.99
+    }
+  ],
+  "operating_models": [
+    {
+      "entity": "campus",
+      "value": "wholesale_colocation",
+      "evidence_key": "ada-docklands-groundbreaking-2026-02-26",
+      "as_of_date": "2026-02-26",
+      "method": "company_disclosure",
+      "confidence": 0.7
+    }
+  ],
+  "workloads": [
+    {
+      "entity": "project",
+      "value": "mixed",
+      "evidence_key": "ada-docklands-groundbreaking-2026-02-26",
+      "as_of_date": "2026-02-26",
+      "method": "company_disclosure",
+      "confidence": 0.9
+    }
+  ],
+  "capacities": [
+    {
+      "entity": "project",
+      "metric": "critical_it_mw",
+      "stage": "design",
+      "unit": "MW",
+      "low": 210,
+      "base": 210,
+      "high": 210,
+      "method": "reported",
+      "confidence": 0.98,
+      "evidence_key": "ada-docklands-location-page-retrieved-2026-07-17",
+      "as_of_date": "2026-07-17",
+      "target_date": null,
+      "notes": "Official location page explicitly labels 210 MW as total IT load across three buildings."
+    },
+    {
+      "entity": "project",
+      "metric": "pue",
+      "stage": "design",
+      "unit": "ratio",
+      "low": 1.2,
+      "base": 1.2,
+      "high": 1.2,
+      "method": "reported",
+      "confidence": 0.98,
+      "evidence_key": "ada-docklands-location-page-retrieved-2026-07-17",
+      "as_of_date": "2026-07-17",
+      "target_date": null,
+      "notes": "Official location page states 1.2 designed PUE as an annualized average; this is a design target, not measured operating performance."
+    }
+  ]
+}

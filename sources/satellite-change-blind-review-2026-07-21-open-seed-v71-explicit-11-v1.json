@@ -1,0 +1,156 @@
+{
+  "artifact_type": "analyst_identity_blind_satellite_change_review_input",
+  "decision_semantics": {
+    "rejected_for_site_promotion": "reject imagery as a basis for site promotion",
+    "retained_for_manual_followup": "retain imagery for manual visible-change follow-up only"
+  },
+  "decisions": [
+    {
+      "blind_id": "V71-X001",
+      "confidence": 0.97,
+      "disposition": "retained_for_manual_followup",
+      "image_quality": "usable",
+      "rationale": "Large contiguous bare-surface changes with sharp parcel boundaries and new linear/rectilinear geometry are clearly visible.",
+      "visible_change": "clear",
+      "visually_identical_to": "V71-X003"
+    },
+    {
+      "blind_id": "V71-X002",
+      "confidence": 0.86,
+      "disposition": "retained_for_manual_followup",
+      "image_quality": "usable",
+      "rationale": "A coherent curved alignment and adjoining rectilinear surfaces appear within one central parcel despite broad tonal differences.",
+      "visible_change": "clear"
+    },
+    {
+      "blind_id": "V71-X003",
+      "confidence": 0.97,
+      "disposition": "retained_for_manual_followup",
+      "image_quality": "usable",
+      "rationale": "Large contiguous bare-surface changes with sharp parcel boundaries and new linear/rectilinear geometry are clearly visible.",
+      "visible_change": "clear",
+      "visually_identical_to": "V71-X001"
+    },
+    {
+      "blind_id": "V71-X004",
+      "confidence": 0.88,
+      "disposition": "rejected_for_site_promotion",
+      "image_quality": "partially_obscured",
+      "rationale": "Extensive gray gaps and scattered edge/brightness differences prevent a coherent geometric change from being isolated.",
+      "visible_change": "ambiguous"
+    },
+    {
+      "blind_id": "V71-X005",
+      "confidence": 0.93,
+      "disposition": "rejected_for_site_promotion",
+      "image_quality": "partially_obscured",
+      "rationale": "Large fragmented gray masks obscure much of the overlap; remaining differences are discontinuous or primarily tonal.",
+      "visible_change": "ambiguous"
+    },
+    {
+      "blind_id": "V71-X006",
+      "confidence": 0.84,
+      "disposition": "rejected_for_site_promotion",
+      "image_quality": "usable",
+      "rationale": "Strong scene-wide color variation dominates, while highlighted roof-sized differences remain scattered and geometrically inconclusive.",
+      "visible_change": "ambiguous"
+    },
+    {
+      "blind_id": "V71-X007",
+      "confidence": 0.78,
+      "disposition": "retained_for_manual_followup",
+      "image_quality": "usable",
+      "rationale": "Several compact, sharply rectilinear roof-sized changes form coherent clusters against otherwise well-aligned imagery.",
+      "visible_change": "clear"
+    },
+    {
+      "blind_id": "V71-X008",
+      "confidence": 0.9,
+      "disposition": "rejected_for_site_promotion",
+      "image_quality": "partially_obscured",
+      "rationale": "Gray and hazy regions plus widespread linear-edge differences dominate; no isolated coherent built-form change is secure.",
+      "visible_change": "ambiguous"
+    },
+    {
+      "blind_id": "V71-X009",
+      "confidence": 0.96,
+      "disposition": "retained_for_manual_followup",
+      "image_quality": "partially_obscured",
+      "rationale": "Within the shared visible area, a large contiguous light-toned surface with sharp edges and branching linear geometry appears clearly.",
+      "visible_change": "clear"
+    },
+    {
+      "blind_id": "V71-X010",
+      "confidence": 0.9,
+      "disposition": "retained_for_manual_followup",
+      "image_quality": "usable",
+      "rationale": "A central rectilinear footprint changes coherently in extent and internal geometry, distinct from minor surrounding differences.",
+      "visible_change": "clear"
+    },
+    {
+      "blind_id": "V71-X011",
+      "confidence": 0.98,
+      "disposition": "retained_for_manual_followup",
+      "image_quality": "usable",
+      "rationale": "Multiple adjoining rectilinear roofs, pads, and access-like lines appear as a spatially coherent expansion.",
+      "visible_change": "clear"
+    }
+  ],
+  "guardrails": {
+    "atlas_mutation": false,
+    "automated_promotion_allowed": false,
+    "capacity_claim_created": false,
+    "construction_status_claim_created": false,
+    "current_status_claim_created": false,
+    "data_centre_identity_claim_created": false,
+    "data_centre_type_claim_created": false,
+    "energy_claim_created": false,
+    "imagery_construction_truth_claim_created": false,
+    "it_capacity_claim_created": false,
+    "lifecycle_status_claim_created": false,
+    "operator_claim_created": false,
+    "power_claim_created": false,
+    "pue_claim_created": false,
+    "site_count_claim_created": false,
+    "unique_site_claim_created": false,
+    "workload_claim_created": false
+  },
+  "method": {
+    "fresh_context_without_parent_history": true,
+    "identity_metadata_available_during_review": false,
+    "lineage_unsealed_after_visual_judgments_were_fixed": true,
+    "manifest_definition_or_review_units_available_during_review": false,
+    "reviewer_received_only_neutral_image_paths": true,
+    "visual_artifacts_inspected_per_unit": [
+      "after.png",
+      "before.png",
+      "change-overlay.png",
+      "comparison.png"
+    ]
+  },
+  "preparation": {
+    "generated_at": "2026-07-21T14:14:00.000000Z",
+    "manifest_sha256": "353dad8aee795cafc8ab4c80fe83ee05c8188f153f8aa792584b021bec38dbea",
+    "path": "satellite_change_preparation/2026-07-21-open-seed-v71-active-explicit-11-blind-v1",
+    "tree_sha256": "184927d0fb85b4aae762fc768a4b73f4131f061254fe4ea9f880e578d39c2502"
+  },
+  "recorded_at": "2026-07-21T14:17:09.562317Z",
+  "review_id": "2026-07-21-open-seed-v71-active-explicit-11-blind-review-v1",
+  "schema_version": 1,
+  "summary": {
+    "decisions": 11,
+    "image_quality": {
+      "partially_obscured": 4,
+      "usable": 7
+    },
+    "promotion_dispositions": {
+      "rejected_for_site_promotion": 4,
+      "retained_for_manual_followup": 7
+    },
+    "visible_change": {
+      "ambiguous": 4,
+      "clear": 7
+    },
+    "visual_identity_links": 2
+  }
+}

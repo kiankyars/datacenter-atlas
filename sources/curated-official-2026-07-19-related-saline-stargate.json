@@ -1,0 +1,154 @@
+{
+  "schema_version": "1.0",
+  "evidence": [
+    {
+      "key": "related-saline-stargate-construction-2026-06-01",
+      "kind": "company_disclosure",
+      "title": "Related Digital, Blackstone, Oracle, OpenAI, Walbridge and Governor Whitmer celebrate construction of Stargate campus in Saline Township",
+      "source_url": "https://www.related.com/press-releases/2026-06-01/related-digital-blackstone-oracle-openai-walbridge-and-governor-whitmer",
+      "publisher": "Related Digital",
+      "source_family": "related_digital_official_news",
+      "published_at": "2026-06-01",
+      "retrieved_at": "2026-07-19T13:34:32Z",
+      "license": "all-rights-reserved",
+      "attribution": "Related Digital",
+      "excerpt": "The Saline Township Stargate campus is under construction, with all three data-center buildings actively under construction.",
+      "content_hash": "a887982bd207937237fb61986c2343680ff963c9826660a5ca37e649347b2bda",
+      "metadata": {
+        "content_hash_scope": "SHA-256 of retrieved HTML response bytes",
+        "content_hash_verification": "fetched_bytes_sha256",
+        "location_precision": "approximate project locality",
+        "coordinate_basis": "Approximate Saline Township project point rounded from public locality context; not a parcel or building coordinate.",
+        "status_scope": "The developer says the campus is under construction, all campus buildings are actively under construction, and the first of three buildings is nearing completion.",
+        "physical_scope": "The source describes three 550,000-square-foot single-story data-center buildings on a 250-acre campus.",
+        "cooling_statement": "The source describes a closed-loop, air-cooled system and does not provide PUE.",
+        "roles_guardrail": "Related Digital is the developer, Walbridge is the contractor, and the campus is being delivered for Oracle and OpenAI; the source does not establish a separate landlord or final operating-entity record.",
+        "capacity_guardrail": "The construction source does not type its gigawatt-scale wording. The separate DTE utility disclosure supports only a contracted grid-load observation."
+      }
+    },
+    {
+      "key": "dte-saline-oracle-contract-load-2026-02-17",
+      "kind": "utility_record",
+      "title": "DTE Energy reports 2025 accomplishments, earnings and investments",
+      "source_url": "https://www.dteenergy.com/us/en/newsroom/2026/DTE-Energy-reports-2025-accomplishments%2C-earnings-and-investments.html",
+      "publisher": "DTE Energy",
+      "source_family": "dte_energy_official_news",
+      "published_at": "2026-02-17",
+      "retrieved_at": "2026-07-19T13:34:32Z",
+      "license": "all-rights-reserved",
+      "attribution": "DTE Energy",
+      "excerpt": "DTE says approved hyperscale contracts provide 1.4 GW of electric load for Oracle's Saline Township data center.",
+      "content_hash": "85a3e651f99b15234e8ce3b0df65b9f00a132d6e59eff12e9d1150994aa1fdce",
+      "metadata": {
+        "content_hash_scope": "SHA-256 of retrieved HTML response bytes",
+        "content_hash_verification": "fetched_bytes_sha256",
+        "metric_scope": "DTE explicitly describes 1.4 gigawatts of load in approved hyperscale data-center contracts for the Saline Township project.",
+        "metric_typing": "Imported as contracted grid_connection_mw because the utility describes contracted electric service/load; not critical IT load, gross facility load, generation nameplate, PUE, or measured annual energy.",
+        "annual_energy_method": "The forecast annual-energy interval is an Atlas model from contracted grid load: zero downside for delay or curtailment, 80 percent load factor at base, and 100 percent at high, each over 8,760 hours.",
+        "annual_energy_guardrail": "The annual-energy observation is modeled, not metered or company-reported consumption."
+      }
+    }
+  ],
+  "campus": {
+    "stable_key": "curated:related-openai-oracle-stargate-michigan-saline",
+    "name": "The Barn Stargate Data Center Campus",
+    "country": "United States",
+    "address": "Saline Township, Washtenaw County, Michigan, United States",
+    "roles": {
+      "developer": ["Related Digital"],
+      "contractor": ["Walbridge"],
+      "customer": ["OpenAI", "Oracle"]
+    },
+    "coordinates": {
+      "latitude": 42.13,
+      "longitude": -83.88
+    },
+    "geometry": null,
+    "evidence_key": "related-saline-stargate-construction-2026-06-01",
+    "as_of_date": "2026-06-01",
+    "method": "analyst_geolocation",
+    "confidence": 0.35
+  },
+  "project": {
+    "stable_key": "curated:related-openai-oracle-stargate-michigan-saline:current-build",
+    "name": "The Barn Stargate Current Data Center Build",
+    "country": "United States",
+    "address": "Saline Township, Washtenaw County, Michigan, United States",
+    "roles": {
+      "developer": ["Related Digital"],
+      "contractor": ["Walbridge"],
+      "customer": ["OpenAI", "Oracle"]
+    },
+    "coordinates": {
+      "latitude": 42.13,
+      "longitude": -83.88
+    },
+    "geometry": null,
+    "evidence_key": "related-saline-stargate-construction-2026-06-01",
+    "as_of_date": "2026-06-01",
+    "method": "analyst_geolocation",
+    "confidence": 0.35
+  },
+  "lifecycle": [
+    {
+      "entity": "project",
+      "value": "under_construction",
+      "evidence_key": "related-saline-stargate-construction-2026-06-01",
+      "as_of_date": "2026-06-01",
+      "method": "authoritative_construction_start",
+      "confidence": 0.99
+    }
+  ],
+  "operating_models": [
+    {
+      "entity": "campus",
+      "value": "hyperscaler",
+      "evidence_key": "related-saline-stargate-construction-2026-06-01",
+      "as_of_date": "2026-06-01",
+      "method": "company_disclosure",
+      "confidence": 0.98
+    }
+  ],
+  "workloads": [
+    {
+      "entity": "project",
+      "value": "ai_specialized_unspecified",
+      "evidence_key": "related-saline-stargate-construction-2026-06-01",
+      "as_of_date": "2026-06-01",
+      "method": "company_disclosure",
+      "confidence": 0.99
+    }
+  ],
+  "capacities": [
+    {
+      "entity": "campus",
+      "metric": "grid_connection_mw",
+      "stage": "contracted",
+      "unit": "MW",
+      "low": 1400,
+      "base": 1400,
+      "high": 1400,
+      "method": "reported",
+      "confidence": 0.99,
+      "evidence_key": "dte-saline-oracle-contract-load-2026-02-17",
+      "as_of_date": "2026-02-17",
+      "target_date": null,
+      "notes": "DTE-reported approved contract load for the Saline Township data center; not IT load, gross facility load, or generation nameplate."
+    },
+    {
+      "entity": "campus",
+      "metric": "annual_energy_mwh",
+      "stage": "forecast",
+      "unit": "MWh/year",
+      "low": 0,
+      "base": 9811200,
+      "high": 12264000,
+      "method": "modeled",
+      "confidence": 0.3,
+      "evidence_key": "dte-saline-oracle-contract-load-2026-02-17",
+      "as_of_date": "2026-02-17",
+      "target_date": null,
+      "notes": "Atlas forecast from 1,400 MW contracted grid load using zero downside for delay or curtailment, 80% base load factor, 100% high load factor, and 8,760 hours; not measured consumption."
+    }
+  ]
+}

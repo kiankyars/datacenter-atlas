@@ -1,0 +1,181 @@
+{
+  "coverage_contract": {
+    "attached_document_full_text_searched": false,
+    "current_recall_claimed": false,
+    "global_recall_claimed": false,
+    "national_recall_claimed": false,
+    "portal_scope": "MASE portal objects exposed by the combined VIA/VAS/AIA search; regional and local assessment portals are outside this release",
+    "query_engine_match_semantics_documented": false,
+    "unique_physical_site_count": null
+  },
+  "endpoint_contract": {
+    "export_content_disposition": "attachment; filename=Export.xlsx",
+    "export_content_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "export_parameter": {
+      "mode": "export"
+    },
+    "html_parameters": [
+      "Testo",
+      "pagina"
+    ],
+    "method": "GET",
+    "page_size_observed": 10,
+    "path": "/it-IT/Ricerca/ViaVasAia",
+    "search_parameter": "Testo",
+    "sort": "portal default; no documented stable sort parameter"
+  },
+  "format": "datacenter-atlas-italy-mase-via-vas-definition-v1",
+  "inference_policy": {
+    "annual_energy_mwh": null,
+    "application_or_decision_is_physical_lifecycle": false,
+    "automatic_promotion_permitted": false,
+    "construction_status": null,
+    "data_centre_type": null,
+    "gross_facility_power_mw": null,
+    "identity_merge_performed": false,
+    "it_capacity_mw": null,
+    "numeric_title_mentions_converted": false,
+    "pue": null,
+    "review_only": true,
+    "unique_physical_site_count": null
+  },
+  "network_policy": {
+    "maximum_attempts_per_request": 3,
+    "maximum_network_requests": 120,
+    "maximum_pages_per_query": 50,
+    "minimum_request_interval_seconds": 0.2,
+    "retryable_http_statuses": [
+      500,
+      502,
+      503,
+      504
+    ]
+  },
+  "publisher": "Ministero dell'Ambiente e della Sicurezza Energetica, Direzione Generale Valutazioni Ambientali",
+  "query_contract": {
+    "classification_contract": {
+      "ancillary_prefix_regex": "^(?:datacenter edificio .*inserimento pozzi|installazione di gruppi elettrogeni|progetto di installazione di .*generatori)",
+      "context_prefix_regex": "^(?:elettrodotto|metanodotto|gasdotto|acquedotto|collegamento)",
+      "direct_facility_phrase_regex": "(?<!\\w)data[\\s-]*cent(?:er|re)(?!\\w)|(?<!\\w)datacenter(?!\\w)|centro(?:\\s+di)?\\s+elaborazione\\s+dati|server\\s+farm",
+      "evaluation_order": [
+        "excluded_when_no_direct_facility_phrase_in_title",
+        "ancillary_follow_up_when_ancillary_prefix_matches",
+        "context_only_when_context_prefix_matches",
+        "direct_project_otherwise"
+      ],
+      "input_field": "normalized portal result title only",
+      "manual_overrides": [],
+      "regex_case_insensitive": true
+    },
+    "classification_values": [
+      "direct_project",
+      "ancillary_follow_up",
+      "context_only",
+      "excluded"
+    ],
+    "deduplication_key": [
+      "portal_object_id",
+      "portal_documentation_id",
+      "latest_procedure_code"
+    ],
+    "phrases": [
+      {
+        "language": "common_english",
+        "phrase": "data center",
+        "query_id": "q01"
+      },
+      {
+        "language": "common_english",
+        "phrase": "data centre",
+        "query_id": "q02"
+      },
+      {
+        "language": "common_english",
+        "phrase": "datacenter",
+        "query_id": "q03"
+      },
+      {
+        "language": "common_english",
+        "phrase": "data-center",
+        "query_id": "q04"
+      },
+      {
+        "language": "common_english",
+        "phrase": "server farm",
+        "query_id": "q05"
+      },
+      {
+        "language": "common_english",
+        "phrase": "server room",
+        "query_id": "q06"
+      },
+      {
+        "language": "common_english",
+        "phrase": "computer room",
+        "query_id": "q07"
+      },
+      {
+        "language": "italian",
+        "phrase": "centro elaborazione dati",
+        "query_id": "q08"
+      },
+      {
+        "language": "italian",
+        "phrase": "centro di elaborazione dati",
+        "query_id": "q09"
+      },
+      {
+        "language": "italian",
+        "phrase": "centro dati",
+        "query_id": "q10"
+      },
+      {
+        "language": "italian",
+        "phrase": "centro di calcolo",
+        "query_id": "q11"
+      },
+      {
+        "language": "italian",
+        "phrase": "sala server",
+        "query_id": "q12"
+      },
+      {
+        "language": "italian",
+        "phrase": "sale server",
+        "query_id": "q13"
+      }
+    ],
+    "predeclared_before_bounded_capture": true
+  },
+  "release_id": "italy-mase-via-vas-data-centre-search-2026-07-18-v1",
+  "retention": {
+    "attached_documents_retained": false,
+    "html_response_bodies_retained": false,
+    "raw_response_redistribution_permitted": false,
+    "third_party_material_retained": false,
+    "xlsx_response_bodies_retained": false
+  },
+  "rights": {
+    "legal_conclusion_claimed": false,
+    "portal_footer_notice": "Copyright M.A.T.T.M 2017. Tutti i diritti riservati",
+    "portal_specific_open_licence_found": false,
+    "raw_response_redistribution_permitted": false,
+    "reason": "The portal footer states that all rights are reserved and its sitemap exposes no portal-specific reuse licence.",
+    "retention_decision": "derived_metadata_and_response_hashes_only",
+    "verified_local_date": "2026-07-18"
+  },
+  "schema_version": 1,
+  "source_id": "italy-mase-via-vas-data-centre-search",
+  "source_urls": {
+    "portal": "https://va.mite.gov.it/it-IT",
+    "search": "https://va.mite.gov.it/it-IT/Ricerca/ViaVasAia",
+    "sitemap": "https://va.mite.gov.it/it-IT/Home/Mappa"
+  },
+  "unit_contract": {
+    "application_unit": "latest procedure code, label, and documentation-route ID shown on the search result",
+    "decision_units_extracted": false,
+    "exact_search_record_is_unique_site": false,
+    "object_unit": "portal Piano/Programma/Progetto/Installazione object",
+    "publication_units_extracted": false
+  }
+}

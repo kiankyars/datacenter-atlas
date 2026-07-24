@@ -1,0 +1,113 @@
+{
+  "acquisition": {
+    "all_origin_request_count_known": false,
+    "browser_origin_count_unavailable_reason": "browsing service does not expose origin-request, cache-hit, or redirect accounting",
+    "direct_probe_get_count": 2,
+    "direct_probe_head_count": 2,
+    "direct_requests_including_controlled_acquisition": 8,
+    "downloaded_archive_count": 2,
+    "exact_get_count": 4,
+    "publisher_archive_checksums_advertised": false,
+    "redirect_count": 0,
+    "research_browser_requests_excluded_from_direct_count": true
+  },
+  "artifacts": [
+    {
+      "archive": {
+        "bytes": 152527564,
+        "publisher_index_display": "145M",
+        "publisher_sha256_advertised": false,
+        "sha256": "5ab899936b560f1b803778fffe6912a28de50036e2bfa0338d55ed34e502d8a2",
+        "url": "https://jeodpp.jrc.ec.europa.eu/ftp/jrc-opendata/GHSL/GHS_BUILT_S_GLOBE_R2023A/GHS_BUILT_S_E2020_GLOBE_R2023A_54009_1000/V1-0/GHS_BUILT_S_E2020_GLOBE_R2023A_54009_1000_V1_0.zip"
+      },
+      "artifact_id": "ghs-built-s-2020-1km-v1-0",
+      "catalog": {
+        "doi": "10.2905/9F06F36F-4B11-47EC-ABB0-4F8B7B1D72EA",
+        "pid": "https://data.europa.eu/89h/9f06f36f-4b11-47ec-abb0-4f8b7b1d72ea",
+        "product_page": "https://human-settlement.emergency.copernicus.eu/ghs_buS2023.php"
+      },
+      "epoch": 2020,
+      "product": "GHS-BUILT-S R2023A",
+      "release_version": "V1.0",
+      "resolution_metres": 1000
+    },
+    {
+      "archive": {
+        "bytes": 35853870,
+        "publisher_index_display": "34M",
+        "publisher_sha256_advertised": false,
+        "sha256": "5a81c3827c9bbc9109159b4c3f92ac7722705944e43038219f142b410431a852",
+        "url": "https://jeodpp.jrc.ec.europa.eu/ftp/jrc-opendata/GHSL/GHS_SMOD_GLOBE_R2023A/GHS_SMOD_E2020_GLOBE_R2023A_54009_1000/V2-0/GHS_SMOD_E2020_GLOBE_R2023A_54009_1000_V2_0.zip"
+      },
+      "artifact_id": "ghs-smod-2020-1km-v2-0",
+      "catalog": {
+        "doi": "10.2905/A0DF7A6F-49DE-46EA-9BDE-563437A6E2BA",
+        "pid": "https://data.europa.eu/89h/a0df7a6f-49de-46ea-9bde-563437a6e2ba",
+        "product_page": "https://human-settlement.emergency.copernicus.eu/ghs_smod2023.php"
+      },
+      "epoch": 2020,
+      "product": "GHS-SMOD R2023A L2",
+      "release_version": "V2.0",
+      "resolution_metres": 1000
+    }
+  ],
+  "cache": {
+    "fetch_manifest_bytes": 10544,
+    "fetch_manifest_path": "../source_cache/ghsl-r2023a-2020-1km/fetch-manifest.json",
+    "fetch_manifest_sha256": "07bfcabcae06aa14e5b53e5cf9f73c4430e1d7902463df1f6ca6f8c8c2fd7b31",
+    "frozen_directory_mode_octal": "0555",
+    "frozen_file_inventory": [
+      "GHS_BUILT_S_E2020_GLOBE_R2023A_54009_1000.copyright.txt",
+      "GHS_BUILT_S_E2020_GLOBE_R2023A_54009_1000_V1_0.zip",
+      "GHS_SMOD_E2020_GLOBE_R2023A_54009_1000.copyright.txt",
+      "GHS_SMOD_E2020_GLOBE_R2023A_54009_1000_V2_0.zip",
+      "README.md",
+      "fetch-manifest.json",
+      "raster-metadata.json"
+    ],
+    "frozen_file_mode_octal": "0444",
+    "raster_metadata_bytes": 3532,
+    "raster_metadata_path": "../source_cache/ghsl-r2023a-2020-1km/raster-metadata.json",
+    "raster_metadata_sha256": "1343f3199e1ee42d29be326bc2e593ee600b1c53e67875c8675880efacf5cf99",
+    "readme_bytes": 1753,
+    "readme_path": "../source_cache/ghsl-r2023a-2020-1km/README.md",
+    "readme_sha256": "54390f19dd4f28135f534fcc11d3500e4e0773f220441f5cf7597452bcc91610"
+  },
+  "format": "datacenter-atlas-ghsl-blind-tile-auxiliary-definition-v1",
+  "generated_at": "2026-07-19T08:25:50Z",
+  "integration_contract": {
+    "built_allocation": "allocate each valid source-cell extensive square-metre total by EPSG:6933 source-cell-land overlap fraction across target tile-land intersections",
+    "built_false_requires_full_valid_tile_land_coverage": true,
+    "built_global_and_local_sum_conservation_required": true,
+    "built_nodata_is_unknown_not_zero": true,
+    "built_surface_semantics": "predicted built-up square metres per 1 km cell",
+    "built_threshold_denominator": "positive-area tile intersection with pinned non-Antarctic Natural Earth land union",
+    "built_threshold_fraction": {
+      "denominator": 200,
+      "numerator": 1
+    },
+    "crs_authority": "ESRI:54009",
+    "crs_name": "World_Mollweide",
+    "epsg_6933_area_conserving_integration_deferred": true,
+    "interpolation_bilinear_forbidden": true,
+    "production_frame_built": false,
+    "screen_not_site_detector": true,
+    "smod_false_requires_full_valid_tile_land_coverage": true,
+    "smod_intersection_rule": "true iff summed positive EPSG:6933 tile-land intersection area with source cells in the exact urban code set is greater than zero; false only with full valid non-urban coverage; otherwise unknown",
+    "smod_l2_urban_codes": [
+      21,
+      22,
+      23,
+      30
+    ],
+    "smod_nodata_is_unknown_not_zero": true
+  },
+  "rights": {
+    "attribution": "European Union / European Commission, Joint Research Centre (JRC)",
+    "changes_must_be_indicated": true,
+    "copyright_bytes_sha256": "f20723519a580fb35b3499870f0b1baea54f483195105416e547f0014f1610d2",
+    "license": "CC-BY-4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0"
+  },
+  "schema_version": 1
+}

@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>Data Center Construction Evidence Map</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: Canvas;
+      --fg: CanvasText;
+      --muted: color-mix(in srgb, CanvasText 62%, Canvas);
+      --border: color-mix(in srgb, CanvasText 22%, Canvas);
+      --land: color-mix(in srgb, CanvasText 11%, Canvas);
+      --land-stroke: color-mix(in srgb, CanvasText 28%, Canvas);
+      --tier-a: #d97706;
+      --tier-b: #2563eb;
+      --tier-c: color-mix(in srgb, CanvasText 38%, Canvas);
+      font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 16px;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--fg); }
+    main { max-width: 1800px; margin: 0 auto; padding: clamp(0.75rem, 2vw, 1.5rem); }
+    header { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; flex-wrap: wrap; }
+    h1, h2, p { margin: 0; }
+    h1 { font-size: clamp(1.25rem, 3vw, 2rem); font-weight: 550; }
+    h2 { font-size: 1rem; font-weight: 600; }
+    .muted { color: var(--muted); }
+    .small { font-size: 0.8rem; }
+    .notice { margin: 0.65rem 0; padding: 0.6rem 0.7rem; border-left: 3px solid var(--tier-a); color: var(--muted); }
+    .controls { display: grid; grid-template-columns: repeat(4, minmax(10rem, 1fr)); gap: 0.65rem; margin: 0.75rem 0; }
+    label { display: grid; gap: 0.25rem; color: var(--muted); font-size: 0.78rem; }
+    select, input { width: 100%; min-width: 0; padding: 0.5rem 0.6rem; border: 1px solid var(--border); border-radius: 0.35rem; background: var(--bg); color: var(--fg); font: inherit; }
+    .map-wrap { position: relative; min-height: 390px; height: clamp(390px, 58vw, 790px); border-block: 1px solid var(--border); overflow: hidden; }
+    canvas { width: 100%; height: 100%; display: block; cursor: grab; touch-action: none; }
+    canvas:active { cursor: grabbing; }
+    .map-status { position: absolute; left: 0.65rem; top: 0.65rem; padding: 0.42rem 0.55rem; border: 1px solid var(--border); border-radius: 0.35rem; background: color-mix(in srgb, var(--bg) 88%, transparent); color: var(--muted); font-size: 0.76rem; pointer-events: none; backdrop-filter: blur(4px); }
+    .legend { position: absolute; left: 0.65rem; bottom: 0.65rem; display: flex; flex-wrap: wrap; gap: 0.35rem 0.75rem; padding: 0.42rem 0.55rem; border: 1px solid var(--border); border-radius: 0.35rem; background: color-mix(in srgb, var(--bg) 88%, transparent); color: var(--muted); font-size: 0.74rem; pointer-events: none; backdrop-filter: blur(4px); }
+    .legend span { display: inline-flex; align-items: center; gap: 0.3rem; }
+    .dot { width: 0.65rem; height: 0.65rem; border-radius: 50%; display: inline-block; }
+    .dot.a { background: var(--tier-a); }
+    .dot.b { background: var(--tier-b); }
+    .dot.c { background: var(--tier-c); }
+    .detail { display: grid; grid-template-columns: 1.4fr repeat(3, 1fr); gap: 0.75rem 1.2rem; padding: 0.85rem 0; border-bottom: 1px solid var(--border); }
+    .detail.empty { display: block; color: var(--muted); }
+    .item { min-width: 0; }
+    .item-label { display: block; margin-bottom: 0.2rem; color: var(--muted); font-size: 0.74rem; }
+    .item-value { overflow-wrap: anywhere; }
+    a { color: inherit; text-underline-offset: 0.17em; }
+    footer { display: flex; justify-content: space-between; gap: 0.75rem; flex-wrap: wrap; padding-top: 0.7rem; color: var(--muted); font-size: 0.74rem; }
+    @media (max-width: 860px) { .controls { grid-template-columns: 1fr 1fr; } .detail { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 520px) { .controls, .detail { grid-template-columns: 1fr; } .map-wrap { height: 115vw; max-height: 600px; } }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Data Center Construction Evidence Map</h1>
+      <p class="muted small" id="snapshot-label">Loading frozen map…</p>
+    </header>
+    <p class="notice">Rows are source observations, not deduplicated physical sites. Tier A is source-supported construction/pipeline evidence; Tier B is review-only; Tier C is broad structural or imagery discovery and is hidden by default.</p>
+    <section class="controls" aria-label="Map filters">
+      <label>Evidence tier
+        <select id="tier-filter">
+          <option value="AB" selected>Tier A + B</option>
+          <option value="A">Tier A only</option>
+          <option value="B">Tier B only</option>
+          <option value="C">Tier C discovery only</option>
+          <option value="all">All tiers</option>
+        </select>
+      </label>
+      <label>Status
+        <select id="status-filter"><option value="all">All statuses</option></select>
+      </label>
+      <label>Country
+        <select id="country-filter"><option value="all">All countries</option></select>
+      </label>
+      <label>Search record name
+        <input id="search-filter" type="search" placeholder="Operator, campus, project…" autocomplete="off">
+      </label>
+    </section>
+    <section class="map-wrap" id="map-wrap">
+      <canvas id="map" aria-label="Interactive global construction evidence map"></canvas>
+      <p class="map-status" id="visible-count" aria-live="polite">Loading…</p>
+      <div class="legend" aria-label="Evidence tier legend">
+        <span><i class="dot a"></i>Tier A source-supported</span>
+        <span><i class="dot b"></i>Tier B review lead</span>
+        <span><i class="dot c"></i>Tier C discovery</span>
+      </div>
+    </section>
+    <section class="detail empty" id="detail" aria-live="polite">Select a point to inspect its evidence boundary and source.</section>
+    <footer>
+      <span id="attribution">Data attribution is retained per row.</span>
+      <span>Scroll to zoom · drag to pan · basemap: <a href="https://github.com/d3-maps/atlas" rel="noopener noreferrer">@d3-maps/atlas</a> / Natural Earth</span>
+    </footer>
+  </main>
+  <script id="construction-map-data" type="application/octet-stream">__CONSTRUCTION_MAP_GZIP_BASE64__</script>
+  <script type="module">
+    import { geoNaturalEarth1, geoPath } from "https://cdn.jsdelivr.net/npm/d3-geo@3/+esm";
+    import { select } from "https://cdn.jsdelivr.net/npm/d3-selection@3/+esm";
+    import { zoom, zoomIdentity } from "https://cdn.jsdelivr.net/npm/d3-zoom@3/+esm";
+    import { feature as topojsonFeature } from "https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/+esm";
+    import world from "https://esm.sh/@d3-maps/atlas@1.0.0/world/countries/countries-110m";
+
+    async function decodeIndex() {
+      const encoded = document.getElementById("construction-map-data").textContent.trim();
+      const binary = atob(encoded);
+      const compressed = new Uint8Array(binary.length);
+      for (let index = 0; index < binary.length; index += 1) compressed[index] = binary.charCodeAt(index);
+      let raw;
+      if (typeof DecompressionStream === "function") {
+        const stream = new Blob([compressed]).stream().pipeThrough(new DecompressionStream("gzip"));
+        raw = await new Response(stream).text();
+      } else {
+        const { ungzip } = await import("https://cdn.jsdelivr.net/npm/pako@2.1.0/+esm");
+        raw = new TextDecoder().decode(ungzip(compressed));
+      }
+      return JSON.parse(raw);
+    }
+
+    const index = await decodeIndex();
+    const position = Object.fromEntries(index.fields.map((field, fieldIndex) => [field, fieldIndex]));
+    const value = (row, field) => row[position[field]];
+    const canvas = document.getElementById("map");
+    const context = canvas.getContext("2d", { alpha: false });
+    const mapWrap = document.getElementById("map-wrap");
+    const tierFilter = document.getElementById("tier-filter");
+    const statusFilter = document.getElementById("status-filter");
+    const countryFilter = document.getElementById("country-filter");
+    const searchFilter = document.getElementById("search-filter");
+    const count = document.getElementById("visible-count");
+    const detail = document.getElementById("detail");
+    const snapshot = document.getElementById("snapshot-label");
+    const attribution = document.getElementById("attribution");
+    const countries = topojsonFeature(world, world.objects.features).features;
+    const style = getComputedStyle(document.documentElement);
+    const colors = {
+      A: style.getPropertyValue("--tier-a").trim(),
+      B: style.getPropertyValue("--tier-b").trim(),
+      C: style.getPropertyValue("--tier-c").trim()
+    };
+    let projection;
+    let transform = zoomIdentity;
+    let visiblePoints = [];
+    let selectedId = null;
+    let width = 0;
+    let height = 0;
+
+    function humanize(raw) {
+      if (raw === null || raw === undefined || raw === "") return "Unknown";
+      return String(raw).replaceAll("_", " ").replace(/\b\w/g, letter => letter.toUpperCase());
+    }
+
+    function rowCountry(row) {
+      return value(row, "country") || value(row, "country_iso_a3") || "Unknown";
+    }
+
+    function addOptions(element, values) {
+      for (const item of values) {
+        const option = document.createElement("option");
+        option.value = item;
+        option.textContent = humanize(item);
+        element.append(option);
+      }
+    }
+
+    addOptions(statusFilter, [...new Set(index.rows.map(row => value(row, "normalized_status") || "unknown"))].sort());
+    addOptions(countryFilter, [...new Set(index.rows.map(rowCountry))].sort((a, b) => a.localeCompare(b)));
+    snapshot.textContent = `${index.master_id} · generated ${index.generated_at || "unknown"}`;
+    attribution.textContent = Array.isArray(index.attribution) ? index.attribution.join(" · ") : "Data attribution is retained per row.";
+
+    function tierMatches(row) {
+      const tier = value(row, "tier");
+      if (tierFilter.value === "all") return true;
+      if (tierFilter.value === "AB") return tier === "A" || tier === "B";
+      return tier === tierFilter.value;
+    }
+
+    function matches(row) {
+      if (!tierMatches(row)) return false;
+      const status = value(row, "normalized_status") || "unknown";
+      if (statusFilter.value !== "all" && status !== statusFilter.value) return false;
+      if (countryFilter.value !== "all" && rowCountry(row) !== countryFilter.value) return false;
+      const query = searchFilter.value.trim().toLocaleLowerCase();
+      if (query && !String(value(row, "name") || "").toLocaleLowerCase().includes(query)) return false;
+      return true;
+    }
+
+    function drawBackground() {
+      context.save();
+      context.fillStyle = style.getPropertyValue("--bg").trim() || "#fff";
+      context.fillRect(0, 0, width, height);
+      context.translate(transform.x, transform.y);
+      context.scale(transform.k, transform.k);
+      const path = geoPath(projection, context);
+      context.beginPath();
+      for (const country of countries) path(country);
+      context.fillStyle = style.getPropertyValue("--land").trim();
+      context.strokeStyle = style.getPropertyValue("--land-stroke").trim();
+      context.lineWidth = 0.45 / transform.k;
+      context.fill();
+      context.stroke();
+      context.restore();
+    }
+
+    function render() {
+      drawBackground();
+      const rows = index.rows.filter(matches);
+      visiblePoints = [];
+      for (const tier of ["C", "B", "A"]) {
+        context.fillStyle = colors[tier];
+        context.globalAlpha = tier === "C" ? 0.34 : tier === "B" ? 0.65 : 0.9;
+        context.beginPath();
+        for (const row of rows) {
+          if (value(row, "tier") !== tier) continue;
+          const base = projection([Number(value(row, "longitude")), Number(value(row, "latitude"))]);
+          if (!base) continue;
+          const point = transform.apply(base);
+          if (point[0] < -8 || point[0] > width + 8 || point[1] < -8 || point[1] > height + 8) continue;
+          const radius = tier === "A" ? 3.2 : tier === "B" ? 2.3 : 1.15;
+          context.moveTo(point[0] + radius, point[1]);
+          context.arc(point[0], point[1], radius, 0, Math.PI * 2);
+          visiblePoints.push([row, point[0], point[1], radius]);
+        }
+        context.fill();
+      }
+      context.globalAlpha = 1;
+      if (selectedId) {
+        const selected = visiblePoints.find(item => value(item[0], "row_id") === selectedId);
+        if (selected) {
+          context.beginPath();
+          context.arc(selected[1], selected[2], Math.max(5.5, selected[3] + 2), 0, Math.PI * 2);
+          context.lineWidth = 2;
+          context.strokeStyle = style.getPropertyValue("--fg").trim();
+          context.stroke();
+        }
+      }
+      count.textContent = `${rows.length.toLocaleString()} visible observations · ${index.rows.length.toLocaleString()} mapped total`;
+    }
+
+    function resize() {
+      const bounds = mapWrap.getBoundingClientRect();
+      width = Math.max(320, Math.round(bounds.width));
+      height = Math.max(320, Math.round(bounds.height));
+      const ratio = Math.max(1, window.devicePixelRatio || 1);
+      canvas.width = Math.round(width * ratio);
+      canvas.height = Math.round(height * ratio);
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
+      context.setTransform(ratio, 0, 0, ratio, 0, 0);
+      projection = geoNaturalEarth1().fitExtent([[8, 8], [width - 8, height - 8]], { type: "Sphere" });
+      render();
+    }
+
+    function addItem(label, raw) {
+      const container = document.createElement("div");
+      container.className = "item";
+      const labelNode = document.createElement("span");
+      labelNode.className = "item-label";
+      labelNode.textContent = label;
+      const valueNode = document.createElement("span");
+      valueNode.className = "item-value";
+      valueNode.textContent = raw;
+      container.append(labelNode, valueNode);
+      detail.append(container);
+      return valueNode;
+    }
+
+    function metricText(rows) {
+      if (!Array.isArray(rows) || !rows.length) return "Not reported";
+      return rows.map(item => {
+        const [metric, base, low, high, unit, stage, target, method] = item;
+        const interval = low !== null || high !== null ? ` [${low ?? "?"}–${high ?? "?"}]` : "";
+        return `${humanize(metric)} ${base ?? "?"}${interval} ${unit || ""} · ${humanize(stage)}${target ? ` · target ${target}` : ""}${method ? ` · ${humanize(method)}` : ""}`;
+      }).join(" | ");
+    }
+
+    function safeUrl(raw) {
+      try {
+        const parsed = new URL(raw);
+        return ["http:", "https:"].includes(parsed.protocol) ? parsed.href : null;
+      } catch (_error) { return null; }
+    }
+
+    function selectRow(row) {
+      selectedId = value(row, "row_id");
+      detail.className = "detail";
+      detail.replaceChildren();
+      addItem("Record", value(row, "name") || "Unnamed observation");
+      addItem("Evidence tier", `Tier ${value(row, "tier")} · ${humanize(value(row, "observation_kind"))}`);
+      addItem("Status", `${humanize(value(row, "normalized_status"))}${value(row, "reported_status_date") ? ` · ${value(row, "reported_status_date")}` : ""}`);
+      addItem("Location", `${rowCountry(row)} · ${Number(value(row, "latitude")).toFixed(5)}, ${Number(value(row, "longitude")).toFixed(5)}`);
+      addItem("Construction boundary", `${value(row, "construction_source_supported") ? "Source-supported" : "Not source-supported"} · ${value(row, "construction_verified") ? "independently verified" : "not independently verified"} · ${humanize(value(row, "construction_verification_status"))}`);
+      addItem("Capacity", metricText(value(row, "capacity_observations")));
+      addItem("Annual energy", metricText(value(row, "annual_energy_observations")));
+      addItem("Type / workload", `${humanize(value(row, "operating_model"))} · ${(value(row, "workloads") || []).map(humanize).join(", ") || "No workload reported"}`);
+      const sourceNode = addItem("Source", `${value(row, "source_publisher") || value(row, "source_artifact_id") || "Unknown"} · ${value(row, "source_license") || "license recorded in master"}`);
+      const url = safeUrl(value(row, "source_url"));
+      if (url) {
+        sourceNode.append(document.createTextNode(" · "));
+        const link = document.createElement("a");
+        link.href = url;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        link.textContent = "Open source";
+        sourceNode.append(link);
+      }
+      addItem("Evidence dates", `${value(row, "first_evidence_date") || "Unknown"} → ${value(row, "last_evidence_date") || "Unknown"}`);
+      addItem("Disposition", humanize(value(row, "disposition_label")));
+      addItem("Advisory context", `${value(row, "satellite_link_count")} satellite link(s) · ${value(row, "resolution_advisory_count")} resolution advisory link(s)`);
+      render();
+    }
+
+    canvas.addEventListener("click", event => {
+      const bounds = canvas.getBoundingClientRect();
+      const x = event.clientX - bounds.left;
+      const y = event.clientY - bounds.top;
+      let best = null;
+      let bestDistance = 10 * 10;
+      for (const item of visiblePoints) {
+        const dx = item[1] - x;
+        const dy = item[2] - y;
+        const distance = dx * dx + dy * dy;
+        if (distance < bestDistance) { best = item[0]; bestDistance = distance; }
+      }
+      if (best) selectRow(best);
+    });
+
+    const zoomBehavior = zoom().scaleExtent([1, 24]).on("zoom", event => {
+      transform = event.transform;
+      render();
+    });
+    select(canvas).call(zoomBehavior);
+    for (const element of [tierFilter, statusFilter, countryFilter]) element.addEventListener("change", render);
+    searchFilter.addEventListener("input", render);
+    new ResizeObserver(resize).observe(mapWrap);
+    resize();
+  </script>
+</body>
+</html>

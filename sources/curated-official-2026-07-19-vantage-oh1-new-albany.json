@@ -1,0 +1,125 @@
+{
+  "schema_version": "1.0",
+  "evidence": [
+    {
+      "key": "vantage-oh1-location-page-captured-2026-07-19",
+      "kind": "company_disclosure",
+      "title": "New Albany (OH1) Data Center Campus",
+      "source_url": "https://vantage-dc.com/data-center-locations/north-america/new-albany-ohio/",
+      "publisher": "Vantage Data Centers",
+      "source_family": "vantage_data_center_location_pages",
+      "published_at": null,
+      "retrieved_at": "2026-07-19T16:08:50Z",
+      "license": "all-rights-reserved",
+      "attribution": "Vantage Data Centers",
+      "excerpt": "The current OH1 page gives the campus address, 192MW of critical IT load across three 64MW buildings, and an elapsed December 2025 first-building schedule.",
+      "content_hash": "535c59491257b41138a7aae57405156a4f0b630fe53bd0bc4eca10cb6a1dd807",
+      "metadata": {
+        "content_hash_scope": "SHA-256 of 232204 content-decoded HTML response bytes retrieved after redirects",
+        "content_hash_verification": "fetched_bytes_sha256",
+        "http_status": 200,
+        "content_type": "text/html; charset=UTF-8",
+        "response_retrieved_at": "2026-07-19T16:08:50Z",
+        "retrieval_method": "curl --fail --location --compressed with retries disabled and the DataCenterAtlas research user agent",
+        "page_modified_at": "2025-06-05T13:31:25-04:00",
+        "address_scope": "The page's Campus Address is 3325 Horizon Court, New Albany, OH 43031, USA.",
+        "coordinate_basis": "The official page marker is 40.094580,-82.730140 and is used only as a campus reference marker. It is not represented as a building, parcel, footprint, or survey point. The first-building project intentionally remains coordinate-null because the official page provides no building-specific point.",
+        "capacity_scope": "The page labels 192MW as campus critical IT load and says each of three buildings is 64MW. The first-building row is within, not additional to, the campus total.",
+        "forecast_guardrail": "The first-building December 2025 schedule and phase rollout through 2028 are forecasts. Their passage does not establish commissioning or operation.",
+        "classification_guardrail": "Hyperscale and modern-IT wording is source context only; no operating-model, workload, tenant, or user observation is imported.",
+        "rights_scope": "Compact factual extraction under the publisher's all-rights-reserved terms; no source page is redistributed."
+      }
+    },
+    {
+      "key": "vantage-oh1-groundbreak-release-2024-10-25-captured-2026-07-19",
+      "kind": "company_disclosure",
+      "title": "Vantage Data Centers Breaks Ground on 192MW Campus in New Albany",
+      "source_url": "https://vantage-dc.com/news/vantage-data-centers-breaks-ground-on-192mw-campus-enters-growing-ohio-data-center-market-with-over-2-billion-investment-in-hyperscale-digital-infrastructure/",
+      "publisher": "Vantage Data Centers",
+      "source_family": "vantage_newsroom",
+      "published_at": "2024-10-25",
+      "retrieved_at": "2026-07-19T16:08:50Z",
+      "license": "all-rights-reserved",
+      "attribution": "Vantage Data Centers",
+      "excerpt": "The October 2024 release records the historical OH1 groundbreaking, a 192MW campus plan, and a late-2025 first-building schedule.",
+      "content_hash": "0f00f2df1abd2605e7f6e26eb46ddb95d4e273256ed02bf3e1473651e31ba5c6",
+      "metadata": {
+        "content_hash_scope": "SHA-256 of 193914 content-decoded HTML response bytes retrieved after redirects",
+        "content_hash_verification": "fetched_bytes_sha256",
+        "http_status": 200,
+        "content_type": "text/html; charset=UTF-8",
+        "response_retrieved_at": "2026-07-19T16:08:50Z",
+        "retrieval_method": "curl --fail --location --compressed with retries disabled and the DataCenterAtlas research user agent",
+        "page_modified_at": "2024-10-25T11:58:59-04:00",
+        "historical_status_context": "The source reports a groundbreaking on 2024-10-25. It is retained only as dated evidence metadata because the release model otherwise carries the latest lifecycle indefinitely.",
+        "lifecycle_guardrail": "No 2024 under-construction lifecycle observation is imported and neither the campus nor first-building project receives a current lifecycle status.",
+        "forecast_guardrail": "The release's late-2025 opening schedule is historical forecast evidence, not evidence that the first building opened.",
+        "rights_scope": "Compact factual extraction under the publisher's all-rights-reserved terms; no source page is redistributed."
+      }
+    }
+  ],
+  "campus": {
+    "stable_key": "curated:vantage-oh1-new-albany-campus",
+    "name": "Vantage OH1 New Albany Data Center Campus",
+    "country": "United States",
+    "address": "3325 Horizon Court, New Albany, OH 43031, USA",
+    "roles": {},
+    "coordinates": {
+      "latitude": 40.09458,
+      "longitude": -82.73014
+    },
+    "geometry": null,
+    "evidence_key": "vantage-oh1-location-page-captured-2026-07-19",
+    "as_of_date": "2025-06-05",
+    "method": "authoritative_address_geocode",
+    "confidence": 0.8
+  },
+  "project": {
+    "stable_key": "curated:vantage-oh1-new-albany-campus:first-building",
+    "name": "Vantage OH1 First Building",
+    "country": "United States",
+    "address": "3325 Horizon Court, New Albany, OH 43031, USA",
+    "roles": {},
+    "coordinates": null,
+    "geometry": null,
+    "evidence_key": "vantage-oh1-location-page-captured-2026-07-19",
+    "as_of_date": "2025-06-05",
+    "method": "authoritative_locality",
+    "confidence": 0.98
+  },
+  "lifecycle": [],
+  "operating_models": [],
+  "workloads": [],
+  "capacities": [
+    {
+      "entity": "campus",
+      "metric": "critical_it_mw",
+      "stage": "planned",
+      "unit": "MW",
+      "low": 192,
+      "base": 192,
+      "high": 192,
+      "method": "reported",
+      "confidence": 0.99,
+      "evidence_key": "vantage-oh1-location-page-captured-2026-07-19",
+      "as_of_date": "2025-06-05",
+      "target_date": null,
+      "notes": "Planned full-campus critical IT load across three buildings; not current load and not additive with the first-building row."
+    },
+    {
+      "entity": "project",
+      "metric": "critical_it_mw",
+      "stage": "forecast",
+      "unit": "MW",
+      "low": 64,
+      "base": 64,
+      "high": 64,
+      "method": "reported",
+      "confidence": 0.98,
+      "evidence_key": "vantage-oh1-location-page-captured-2026-07-19",
+      "as_of_date": "2025-06-05",
+      "target_date": null,
+      "notes": "First-building critical-IT forecast from the page's 64MW-per-building statement. The elapsed December 2025 schedule is not operation evidence, and the row is within, not additional to, the 192MW campus plan."
+    }
+  ]
+}

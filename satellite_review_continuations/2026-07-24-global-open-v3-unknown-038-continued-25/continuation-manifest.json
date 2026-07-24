@@ -1,0 +1,284 @@
+{
+  "accepted_at": "2026-07-24T21:20:00Z",
+  "artifact_id": "2026-07-24-global-open-v3-unknown-038-continued-25",
+  "artifacts": {
+    "clone-delta.json": {
+      "bytes": 22484,
+      "sha256": "b07e9e493cbce50f1a16d54b6bf10b5701dc0c5e9e1aa5b17b670ceb023a806b"
+    },
+    "destination-tree.inventory": {
+      "bytes": 1841060,
+      "sha256": "ac7fef9cb5e01e2f2c241c36be46f877c318607c60b1f69c0c40b63817aaec85"
+    },
+    "source-tree.inventory": {
+      "bytes": 1831795,
+      "sha256": "63407d0870f97fe8a1397efff07392da7bbbb737c836eb4fcae463c0b7b7ac1a"
+    }
+  },
+  "builder": {
+    "clone_delta_recomputed": true,
+    "complete_inventory_recomputed": true,
+    "files": {
+      "datacenter_atlas/satellite_unknown038_continuation_acceptance.py": {
+        "bytes": 41218,
+        "path": "datacenter_atlas/satellite_unknown038_continuation_acceptance.py",
+        "sha256": "b8f9f6dceaf09537ba7d2d8dc6bfa83a0e8b424973b68df9c21dad4c8cfec743"
+      },
+      "scripts/accept_satellite_unknown038_continuation.py": {
+        "bytes": 230,
+        "path": "scripts/accept_satellite_unknown038_continuation.py",
+        "sha256": "dd7e99065ccaf741e2d18b5168e8babf34621193c0587498e3f2bb8bcce17498"
+      }
+    },
+    "network_access": false
+  },
+  "clone": {
+    "destination_path": "satellite_review_runs/2026-07-24-global-open-v3-unknown-038",
+    "destination_root_chronology": {
+      "birthtime": "2026-07-24T20:40:11.320346Z",
+      "ctime": "2026-07-24T20:44:48.689433Z",
+      "device": 16777230,
+      "inode": 41344415,
+      "mtime": "2026-07-24T20:42:59.616599Z"
+    },
+    "filesystem": "APFS",
+    "filesystem_observation": "local mount table before acceptance",
+    "method": "cp -cR copy-on-write clone",
+    "source_and_destination_same_device": true,
+    "source_path": "satellite_review_runs/2026-07-22-global-open-v3-unknown-037",
+    "source_root_chronology": {
+      "birthtime": "2026-07-22T06:02:41.636688Z",
+      "ctime": "2026-07-22T06:04:49.958266Z",
+      "device": 16777230,
+      "inode": 35091946,
+      "mtime": "2026-07-22T06:04:41.557111Z"
+    }
+  },
+  "execution": {
+    "bounds": {
+      "catalog_retries": 0,
+      "max_http_attempts": 50,
+      "max_job_attempts": 3,
+      "max_jobs": 25
+    },
+    "configuration": {
+      "catalog_retries": 0,
+      "max_job_attempts": 3,
+      "max_response_bytes": 16777216,
+      "maximum_http_attempts_per_job": 2,
+      "minimum_interval_seconds": 1.1,
+      "mode": "catalog_only",
+      "priority_tiers": [
+        "unknown"
+      ],
+      "timeout_seconds": 60.0,
+      "user_agent": "DataCenterAtlas/0.1 (open research satellite review queue; +https://github.com/kiankyars/semiconductors)"
+    },
+    "http_outcomes": {
+      "actual_status_codes_persisted": false,
+      "catalog_pair_selection_completed": 23,
+      "http_attempts_reserved": 50,
+      "no_scene_outcomes_persisted": 2,
+      "provider_http_success_count_claimed": false,
+      "provider_or_transport_failures_recorded": 0
+    },
+    "position_end": 4894,
+    "position_start": 4870,
+    "run": {
+      "budget_exhausted": true,
+      "finished_at": "2026-07-24T20:42:59Z",
+      "http_attempts_reserved": 50,
+      "job_attempts": 25,
+      "jobs_completed": 23,
+      "jobs_failed": 0,
+      "jobs_unavailable_no_scene": 2,
+      "max_http_attempts": 50,
+      "max_jobs": 25,
+      "started_at": "2026-07-24T20:40:44Z"
+    },
+    "run_start_clock_precision": {
+      "batch_manifest": "whole-second UTC",
+      "lock_filesystem": "microsecond UTC",
+      "ordering_check": "lock birth whole-second <= recorded run start; runner pin holds the lock around queue execution"
+    },
+    "runner": {
+      "datacenter_atlas/satellite_batch.py": {
+        "bytes": 59984,
+        "path": "datacenter_atlas/satellite_batch.py",
+        "sha256": "b57497568a5268637828a30cc43c19f457c0e89d0428ee3ac08e9ea01b54fbba"
+      },
+      "datacenter_atlas/satellite_catalog.py": {
+        "bytes": 28132,
+        "path": "datacenter_atlas/satellite_catalog.py",
+        "sha256": "16a22c0e20e973a23e153f0611366d284c9db198cf4533268df9ac8a3e040087"
+      },
+      "scripts/catalog_satellite.py": {
+        "bytes": 9646,
+        "path": "scripts/catalog_satellite.py",
+        "sha256": "6aaef442995f1f9c5f1b77f1f9ae6969f2f6a6795d47d26c6ac3fa255f2e1833"
+      },
+      "scripts/run_satellite_review_queue.py": {
+        "bytes": 7338,
+        "path": "scripts/run_satellite_review_queue.py",
+        "sha256": "626c271fca3cb6d724494688a3c7149bf217936c784d37000a0a13366743be23"
+      }
+    },
+    "terminal_tasks": {
+      "bytes": 21991,
+      "canonicalization": "queue-position order; compact sorted-key UTF-8 JSON plus newline for each exact batch task object",
+      "jobs": 25,
+      "sha256": "9cbd1e6ee52a189f5ef99c5caa0642144dce3cdeccf58bed413d46a12df4e80f"
+    }
+  },
+  "format": "datacenter-atlas-satellite-catalog-continuation-acceptance-v1",
+  "output": {
+    "batch_manifest": {
+      "bytes": 6553448,
+      "path": "satellite_review_runs/2026-07-24-global-open-v3-unknown-038/batch-manifest.json",
+      "sha256": "42033a50e3ef383613b95487030e21d6b90753c25f6776898b728c9fb6f61733"
+    },
+    "delta": {
+      "directories_added": 48,
+      "files_added": 69,
+      "jobs_completed": 23,
+      "jobs_failed": 0,
+      "jobs_pending": -25,
+      "jobs_selected": 0,
+      "jobs_unavailable_no_scene": 2,
+      "logical_bytes_added": 11674759,
+      "preexisting_non_manifest_files_byte_identical": 13655
+    },
+    "delta_artifact": {
+      "bytes": 22484,
+      "path": "clone-delta.json",
+      "sha256": "b07e9e493cbce50f1a16d54b6bf10b5701dc0c5e9e1aa5b17b670ceb023a806b"
+    },
+    "directories_mode": "0555",
+    "files_mode": "0444",
+    "inventory": {
+      "bytes": 3157726422,
+      "canonicalization": "UTF-8 path NUL decimal-bytes NUL lowercase-SHA-256 newline",
+      "directories": 9330,
+      "files": 13725,
+      "sha256": "ac7fef9cb5e01e2f2c241c36be46f877c318607c60b1f69c0c40b63817aaec85"
+    },
+    "inventory_artifact": {
+      "bytes": 1841060,
+      "path": "destination-tree.inventory",
+      "sha256": "ac7fef9cb5e01e2f2c241c36be46f877c318607c60b1f69c0c40b63817aaec85"
+    },
+    "lock": {
+      "birthtime": "2026-07-24T20:40:42.198760Z",
+      "bytes": 0,
+      "ctime": "2026-07-24T20:40:42.198760Z",
+      "excluded_from_accepted_tree": true,
+      "mode": "0600",
+      "mtime": "2026-07-24T20:40:42.198760Z",
+      "outside_destination_tree": true,
+      "path": "satellite_review_runs/2026-07-24-global-open-v3-unknown-038.lock",
+      "single_writer": true
+    },
+    "next_pending": {
+      "queue_id": "satq-e89e725265ef74b2cf41db13",
+      "queue_position": 4895
+    },
+    "post_freeze_validation": {
+      "performed_offline": true,
+      "state": "incomplete"
+    },
+    "summary": {
+      "jobs_completed": 4493,
+      "jobs_failed": 0,
+      "jobs_pending": 1936,
+      "jobs_selected": 6736,
+      "jobs_unavailable_no_scene": 307
+    }
+  },
+  "publication_contract": {
+    "declared_at": "2026-07-24T21:20:00Z",
+    "final_tree_ctime_not_before_declared": true,
+    "no_replace_promotion": true,
+    "stage_birthtime_and_mtime_not_after_declared": true
+  },
+  "queue_bundle": {
+    "manifest": {
+      "bytes": 28269,
+      "path": "satellite_review_queues/2026-07-18-global-open-v3/manifest.json",
+      "sha256": "58c39d64510f37fda8eaf6912ed36001845f276239dcaeec0ea24ba4a6a2836c"
+    },
+    "queue": {
+      "bytes": 18238365,
+      "path": "satellite_review_queues/2026-07-18-global-open-v3/satellite-review-queue.jsonl",
+      "sha256": "6889779b817d7822e02745261699c9e2eac8860f5c1d617662882770798764be"
+    },
+    "queue_jobs": 6830,
+    "selected_unknown_jobs": 6736
+  },
+  "schema_version": 1,
+  "scope": {
+    "atlas_mutation": false,
+    "automated_promotion_allowed": false,
+    "change_analysis_executed": false,
+    "construction_master_integration": false,
+    "current_coverage_integration": false,
+    "global_completeness_claimed": false,
+    "imagery_assets_downloaded": false,
+    "imagery_computer_vision_executed": false,
+    "imagery_construction_status_inference": false,
+    "imagery_data_centre_type_inference": false,
+    "imagery_identity_inference": false,
+    "imagery_lifecycle_inference": false,
+    "imagery_operating_status_inference": false,
+    "imagery_power_inference": false,
+    "imagery_pue_inference": false,
+    "imagery_workload_inference": false,
+    "map_integration": false,
+    "mode": "catalog_only",
+    "network_access_during_acceptance": false,
+    "network_access_during_validation": false,
+    "review_required": true,
+    "semianalysis_parity_claimed": false,
+    "unique_site_claim_created": false
+  },
+  "source_continuation": {
+    "acceptance_manifest": {
+      "bytes": 10276,
+      "path": "satellite_review_continuations/2026-07-22-global-open-v3-unknown-037-continued-25/continuation-manifest.json",
+      "sha256": "0967b139a26f83ecfc7e4b79d7006e316f558295e93cb06e64ee099e7b773a39"
+    },
+    "acceptance_sidecar": {
+      "bytes": 93,
+      "path": "satellite_review_continuations/2026-07-22-global-open-v3-unknown-037-continued-25/manifest.sha256",
+      "sha256": "b7c01ea99272a4e3ee830c7ee0df9524fc53d5ac353212f0053b1b9e37cd8a8a"
+    },
+    "artifact_id": "2026-07-22-global-open-v3-unknown-037-continued-25",
+    "batch_manifest": {
+      "bytes": 6535665,
+      "path": "satellite_review_runs/2026-07-22-global-open-v3-unknown-037/batch-manifest.json",
+      "sha256": "8243bab467d4b9d661315b22b8cd54fc19de3de2afadf686ff0c1e1d63dd665e"
+    },
+    "directories_mode": "0555",
+    "files_mode": "0444",
+    "inventory": {
+      "bytes": 3146051663,
+      "canonicalization": "UTF-8 path NUL decimal-bytes NUL lowercase-SHA-256 newline",
+      "directories": 9282,
+      "files": 13656,
+      "sha256": "63407d0870f97fe8a1397efff07392da7bbbb737c836eb4fcae463c0b7b7ac1a"
+    },
+    "inventory_artifact": {
+      "bytes": 1831795,
+      "path": "source-tree.inventory",
+      "sha256": "63407d0870f97fe8a1397efff07392da7bbbb737c836eb4fcae463c0b7b7ac1a"
+    },
+    "preserved_read_only": true,
+    "validated_offline_before_acceptance": true
+  },
+  "wrapper_closed_file_set": [
+    "clone-delta.json",
+    "continuation-manifest.json",
+    "destination-tree.inventory",
+    "manifest.sha256",
+    "source-tree.inventory"
+  ]
+}

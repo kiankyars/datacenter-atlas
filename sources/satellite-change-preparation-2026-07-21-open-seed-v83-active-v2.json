@@ -1,0 +1,166 @@
+{
+  "builder": {
+    "cli": {
+      "bytes": 1916,
+      "mode": "0644",
+      "path": "scripts/build_satellite_change_preparation_v2.py",
+      "sha256": "dad1daafaf8594fa48d7c67a43fdb5f7f98e20cd0b6986d41446a6c93a36d835"
+    },
+    "module": {
+      "bytes": 27997,
+      "mode": "0644",
+      "path": "datacenter_atlas/satellite_change_preparation_v2.py",
+      "sha256": "02f81b0c6261844d38767c8a0bcdc0d0c6101588af8cdea97a799ea13d86f212"
+    },
+    "outer_shim": {
+      "bytes": 160,
+      "mode": "0644",
+      "path": "satellite_change_preparation_v2.py",
+      "sha256": "d8ea8c6b354bf0b571c165975262c1adbaadd21563d0fb105ff465952c005401"
+    }
+  },
+  "claim_constraints": {
+    "atlas_claim_created": false,
+    "atlas_mutation": false,
+    "automated_promotion_allowed": false,
+    "capacity_claim_created": false,
+    "construction_status_claim_created": false,
+    "construction_truth_claim_created": false,
+    "data_centre_identity_claim_created": false,
+    "data_centre_type_claim_created": false,
+    "energy_claim_created": false,
+    "imagery_downloaded": false,
+    "imagery_opened": false,
+    "lifecycle_claim_created": false,
+    "network_requests_performed": false,
+    "operator_claim_created": false,
+    "power_claim_created": false,
+    "pue_claim_created": false,
+    "raster_analysis_executed": false,
+    "semianalysis_parity_claim_created": false,
+    "site_identity_inference": false,
+    "workload_claim_created": false
+  },
+  "expected_partition": {
+    "active_jobs": 104,
+    "distinct_aois": 100,
+    "jobs_in_shared_aois": 8,
+    "multi_tile_blocked": 7,
+    "multi_tile_ready": 6,
+    "partition_inventory_sha256": "54f219388b7f80abb17cf0c53c4a5ca06b604333fde4234aa19a5cab33a5d74f",
+    "shared_aoi_groups": 4,
+    "single_tile_ready": 88,
+    "terminal_no_scene": 3
+  },
+  "format": "datacenter-atlas-satellite-change-preparation-definition-v2",
+  "generated_at": "2026-07-21T20:47:00Z",
+  "preparation_id": "2026-07-21-open-seed-v83-active-change-preparation-v2",
+  "processors": {
+    "multi_tile": {
+      "algorithm_version": "sentinel-2-l2a-change-mosaic-v3",
+      "cli": {
+        "bytes": 33684,
+        "mode": "0644",
+        "path": "scripts/sentinel_change_mosaic.py",
+        "sha256": "6e5ffc0dbb04a1f8202d13556e26fe45a9075966da9037e70f417152360e2183"
+      },
+      "minimum_component_area_m2": 5000,
+      "module": {
+        "bytes": 34096,
+        "mode": "0644",
+        "path": "datacenter_atlas/satellite_change_mosaic.py",
+        "sha256": "68a89c8aedd16326c530d3c07416a10432e64af1458dba630ded89d4b5ace071"
+      }
+    },
+    "single_tile": {
+      "algorithm_version": "sentinel-2-l2a-change-v2",
+      "cli": {
+        "bytes": 23651,
+        "mode": "0644",
+        "path": "scripts/sentinel_change.py",
+        "sha256": "745c737d28fca65dddb37a0d56396d815c5d52cf90f697d714769aa52d59b78f"
+      },
+      "minimum_component_area_m2": 5000,
+      "module": {
+        "bytes": 13731,
+        "mode": "0644",
+        "path": "datacenter_atlas/satellite_change.py",
+        "sha256": "d18ee916c7e96bef7fed704960bb92292be954e0f4d7a8982f58b979acc662f2"
+      }
+    }
+  },
+  "publication_contract": {
+    "artifact_mode": "0444",
+    "atomic_no_replace": true,
+    "directory_mode": "0555",
+    "publish_not_before": "2026-07-21T20:47:00Z",
+    "two_offline_replays_required": true
+  },
+  "review_coverage_context": {
+    "active_jobs": 104,
+    "context_only_not_preparation_input": true,
+    "reviewed_jobs": 27,
+    "reviewed_queue_ids_sha256": "c55aa3aa3b40b5e882b414b26a0a47dec3f297866d48248a08a6b8dc72e61c88",
+    "unreviewed_jobs": 77,
+    "unreviewed_no_scene_jobs": 3
+  },
+  "runtime": {
+    "gdal": "3.12.1",
+    "numpy": "2.5.1",
+    "pillow": "12.3.0",
+    "proj": "9.7.1",
+    "python": "3.12.13",
+    "rasterio": "1.5.0"
+  },
+  "schema_version": 2,
+  "sources": {
+    "catalog_batch": {
+      "batch_manifest": {
+        "bytes": 120448,
+        "mode": "0444",
+        "path": "satellite_review_runs/2026-07-21-open-seed-v83-active-002/batch-manifest.json",
+        "sha256": "ec43aacf55bab8d8169e5cad4855b5e33614c2e65de0a5b82bf70c2c585adae8"
+      },
+      "closed_tree": {
+        "directories": 207,
+        "file_bytes": 64360349,
+        "files": 304,
+        "inventory_sha256": "7a26caebb28656c551837c1431bfd2a5a228889572d5df006a149badc8c91152"
+      },
+      "directory": "satellite_review_runs/2026-07-21-open-seed-v83-active-002"
+    },
+    "catalog_lock": {
+      "bytes": 0,
+      "mode": "0600",
+      "path": "satellite_review_runs/2026-07-21-open-seed-v83-active-002.lock",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "queue_bundle": {
+      "closed_tree": {
+        "directories": 1,
+        "file_bytes": 573623,
+        "files": 3,
+        "inventory_sha256": "2b9fc5a30525e2e815154d1635c49badf06c436e354ccb04a4898e6f42d22eee"
+      },
+      "directory": "satellite_review_queues/2026-07-21-open-seed-v83",
+      "manifest": {
+        "bytes": 19851,
+        "mode": "0444",
+        "path": "satellite_review_queues/2026-07-21-open-seed-v83/manifest.json",
+        "sha256": "cd31436eb4bc862096952403d70be33ed41d0e752a3a617ce2d175569049c9bd"
+      },
+      "manifest_sidecar": {
+        "bytes": 80,
+        "mode": "0444",
+        "path": "satellite_review_queues/2026-07-21-open-seed-v83/manifest.sha256",
+        "sha256": "9554a659b8b51925377bc31e99fa29a6fda92a5aa4675c48164d3de28e583288"
+      },
+      "queue": {
+        "bytes": 553692,
+        "mode": "0444",
+        "path": "satellite_review_queues/2026-07-21-open-seed-v83/satellite-review-queue.jsonl",
+        "sha256": "8792ee2d80ed9b44d3ef67d3511b29ca0f9160b8ebd641e7f54cf4f5db4e4251"
+      }
+    }
+  }
+}

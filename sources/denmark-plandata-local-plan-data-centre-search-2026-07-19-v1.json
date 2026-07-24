@@ -1,0 +1,98 @@
+{
+  "coverage_contract": {
+    "attached_document_text_searched": false,
+    "complete_for_denmark_claimed": false,
+    "geometry_is_facility_footprint": false,
+    "national_data_centre_completeness_claimed": false,
+    "scope": "case-insensitive contains matches in plannavn on three current Plandata.dk local-plan status layers",
+    "unique_physical_site_count": null
+  },
+  "downstream_import_policy": {
+    "construction_map_import_permitted": false,
+    "construction_master_import_permitted": false,
+    "current_coverage_ledger_import_permitted": false,
+    "reason": "planning-name matches require source-document and physical review"
+  },
+  "format": "datacenter-atlas-denmark-plandata-definition-v1",
+  "inference_policy": {
+    "annual_energy_consumption_mwh": null,
+    "automatic_identity_merge_permitted": false,
+    "construction_status": null,
+    "data_centre_type": null,
+    "gross_facility_power_mw": null,
+    "identity": null,
+    "it_capacity_mw": null,
+    "megawatt_field_converted": false,
+    "operator": null,
+    "planning_maxima_are_observed_actuals": false,
+    "planning_status_is_physical_lifecycle": false,
+    "pue": null,
+    "workload": null
+  },
+  "network_policy": {
+    "maximum_controlled_requests": 115,
+    "maximum_features": 8100,
+    "maximum_pages_per_positive_query": 3,
+    "minimum_request_interval_seconds": 5.0,
+    "page_size": 100,
+    "retry_attempts": 0,
+    "stop_on_error_html_or_pagination_inconsistency": true
+  },
+  "publisher": "Plan- og Landdistriktsstyrelsen / Plandata.dk",
+  "query_contract": {
+    "case_sensitive": false,
+    "field": "plannavn",
+    "layers": [
+      "pdk:theme_pdk_lokalplan_forslag",
+      "pdk:theme_pdk_lokalplan_vedtaget",
+      "pdk:theme_pdk_lokalplan_aflyst"
+    ],
+    "literals": [
+      "datacenter",
+      "datacentre",
+      "datacentret",
+      "data center",
+      "data centre",
+      "servercenter",
+      "servercentre",
+      "servercentret",
+      "serverhal"
+    ],
+    "ogc_operator": "PropertyIsLike",
+    "query_count": 27,
+    "query_plan_file": "query-plan.json",
+    "wildcard_mode": "contains"
+  },
+  "release_id": "denmark-plandata-local-plan-data-centre-search-2026-07-19-v1",
+  "retention": {
+    "document_requests": 0,
+    "pdf_requests": 0,
+    "projected_feature_metadata_retained": true,
+    "raw_response_bodies_retained": false
+  },
+  "rights": {
+    "attribution": "Plan- og Landdistriktsstyrelsen / Plandata.dk",
+    "catalogued_dataset_and_distribution_licence_uri": "http://publications.europa.eu/resource/authority/licence/CC_BY_4_0",
+    "catalogued_licence_human_url": "https://creativecommons.org/licenses/by/4.0/",
+    "legal_conclusion_claimed": false,
+    "licence_scope_extended_to_linked_documents": false,
+    "official_alternative_wfs_endpoint_same_dataset_inferred": true,
+    "robots_absence_is_permission": false,
+    "verified_local_date": "2026-07-19"
+  },
+  "schema_version": 1,
+  "source_urls": {
+    "data_model": "https://www.plandata.dk/teknisk-information/datamodeller/lokalplaner",
+    "dataset_record": "https://datavejviser.dk/katalog/plan-og-landdistriktsstyrelsen/7a0b537c-8161-4827-a9c8-c39aff0ca49d",
+    "licence_jsonld": "https://datavejviser.dk/katalog/plan-og-landdistriktsstyrelsen/7a0b537c-8161-4827-a9c8-c39aff0ca49d.jsonld",
+    "wfs": "https://geoserver.plandata.dk/geoserver/wfs",
+    "wfs_intro": "https://www.plandata.dk/webservices/introduktion-til-webservices/wfs"
+  },
+  "unit_contract": {
+    "adopted_or_effective_plan_is_construction": false,
+    "cancelled_layer_is_negative_planning_evidence": true,
+    "feature_is_unique_physical_site": false,
+    "proposal_is_construction": false,
+    "source_unit": "status-layer local-plan feature"
+  }
+}
