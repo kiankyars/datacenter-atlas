@@ -338,7 +338,9 @@ class OpenSeedV70Tests(unittest.TestCase):
             core.selected_inputs(
                 self.base,
                 recorded_at="2026-07-22T00:00:00Z",
-                validation_wall_clock=datetime.now(timezone.utc),
+                validation_wall_clock=datetime(
+                    2026, 7, 21, 23, 59, 59, tzinfo=timezone.utc
+                ),
             )
 
     def test_accepted_v69_base_remains_byte_exact(self) -> None:

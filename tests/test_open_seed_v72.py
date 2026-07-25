@@ -343,7 +343,9 @@ class OpenSeedV72Tests(unittest.TestCase):
             core.selected_inputs(
                 self.base,
                 recorded_at="2026-07-22T00:00:00Z",
-                validation_wall_clock=datetime.now(UTC),
+                validation_wall_clock=datetime(
+                    2026, 7, 21, 23, 59, 59, tzinfo=UTC
+                ),
             )
         guard = core._guard_state()
         result = subprocess.run(
