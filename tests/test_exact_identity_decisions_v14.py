@@ -32,6 +32,31 @@ def sha256(raw: bytes) -> str:
     return hashlib.sha256(raw).hexdigest()
 
 
+def live_final_state() -> dict[str, object]:
+    definition_metadata = identity.DEFINITION.stat(follow_symlinks=False)
+    bundle_metadata = identity.BUNDLE.stat(follow_symlinks=False)
+    return {
+        "definition_identity": (
+            definition_metadata.st_dev,
+            definition_metadata.st_ino,
+            definition_metadata.st_ctime_ns,
+            definition_metadata.st_mtime_ns,
+            definition_metadata.st_size,
+            stat.S_IMODE(definition_metadata.st_mode),
+        ),
+        "bundle_identity": (
+            bundle_metadata.st_dev,
+            bundle_metadata.st_ino,
+            bundle_metadata.st_ctime_ns,
+            bundle_metadata.st_mtime_ns,
+            stat.S_IMODE(bundle_metadata.st_mode),
+        ),
+        "pins": identity._candidate_pin_report(
+            identity.DEFINITION.read_bytes(), identity.BUNDLE
+        ),
+    }
+
+
 class ExactIdentityDecisionV14Tests(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
@@ -152,39 +177,38 @@ class ExactIdentityDecisionV14Tests(unittest.TestCase):
         ):
             identity.carrier._prepare_bundle(self.definition)
 
-    def test_private_preflight_is_two_replay_and_leaves_no_final(self) -> None:
+    def test_live_bundle_matches_reviewed_candidate_and_preflight_is_closed(
+        self,
+    ) -> None:
         guard = identity._guard_state()
-        with (
-            patch.object(
-                identity,
-                "_prepare_payloads",
-                return_value=(
-                    self.definition_raw,
-                    self.payloads,
-                    self.manifest,
-                    self.definition,
-                ),
+        before = live_final_state()
+        manifest = identity.validate_exact_identity_decision_bundle()
+        self.assertEqual(manifest["counts"], self.manifest["counts"])
+        self.assertEqual(
+            before["pins"],
+            (
+                identity.DEFINITION_PIN,
+                identity.ARTIFACT_PINS,
+                identity.BUNDLE_TREE_SHA256,
             ),
-            patch.object(identity, "_require_guard_state", return_value=guard),
-        ):
-            result = identity.prepare_exact_identity_decisions_v14(
-                TEST_RECORDED_AT
-            )
-        self.assertEqual(result["status"], "prepublication-validated")
-        self.assertFalse(result["publication_authorized"])
-        self.assertEqual(result["replay_count"], 2)
-        self.assertEqual(result["counts"], self.manifest["counts"])
-        self.assertEqual(
-            result["definition_pin"],
-            (len(self.definition_raw), sha256(self.definition_raw)),
         )
-        self.assertEqual(result["definition_pin"], identity.DEFINITION_PIN)
-        self.assertEqual(result["artifact_pins"], identity.ARTIFACT_PINS)
-        self.assertEqual(
-            result["bundle_tree_sha256"], identity.BUNDLE_TREE_SHA256
-        )
-        self.assertFalse(identity.DEFINITION.exists())
-        self.assertFalse(identity.BUNDLE.exists())
+        with tempfile.TemporaryDirectory(
+            prefix="identity-v14-live-preflight-", dir="/private/tmp"
+        ) as temporary:
+            temporary_lock = Path(temporary) / "publication.lock"
+            with (
+                patch.object(identity, "PUBLICATION_LOCK", temporary_lock),
+                self.assertRaisesRegex(
+                    identity.ExactIdentityDecisionError,
+                    "preflight final path already exists",
+                ),
+            ):
+                identity.prepare_exact_identity_decisions_v14(
+                    TEST_RECORDED_AT
+                )
+            self.assertFalse(temporary_lock.exists())
+        self.assertEqual(identity._guard_state(), guard)
+        self.assertEqual(live_final_state(), before)
         self.assertFalse(identity.PUBLICATION_LOCK.exists())
         self.assertFalse(
             any(
@@ -197,7 +221,8 @@ class ExactIdentityDecisionV14Tests(unittest.TestCase):
             )
         )
 
-    def test_safe_prepare_runner_and_explicit_build_runner(self) -> None:
+    def test_safe_prepare_and_build_rejections_preserve_live_finals(self) -> None:
+        before = live_final_state()
         environment = {**os.environ, "PYTHONDONTWRITEBYTECODE": "1"}
         for command in (
             [
@@ -225,10 +250,10 @@ class ExactIdentityDecisionV14Tests(unittest.TestCase):
             shim.prepare_exact_identity_decisions_v14,
             identity.prepare_exact_identity_decisions_v14,
         )
-        self.assertFalse(identity.DEFINITION.exists())
-        self.assertFalse(identity.BUNDLE.exists())
+        self.assertEqual(live_final_state(), before)
+        self.assertFalse(identity.PUBLICATION_LOCK.exists())
 
-    def test_active_lock_wins_before_preflight_work(self) -> None:
+    def test_active_lock_wins_before_preflight_phase_checks(self) -> None:
         with (
             identity._bound_output_parents() as bindings,
             identity._publication_lock(bindings),

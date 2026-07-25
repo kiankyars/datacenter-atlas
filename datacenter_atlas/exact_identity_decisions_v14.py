@@ -2595,11 +2595,6 @@ def prepare_exact_identity_decisions_v14(
         raise ExactIdentityDecisionError(
             "identity v14 preflight requires exactly two offline replays"
         )
-    timestamp, target = _target_timestamp(recorded_at)
-    if target <= datetime.now(UTC):
-        raise ExactIdentityDecisionError(
-            "identity v14 preflight recorded_at must be future before staging"
-        )
     with _bound_output_parents() as parent_bindings:
         definition_stage: Path | None = None
         definition_identity: tuple[int, int] | None = None
@@ -2607,6 +2602,12 @@ def prepare_exact_identity_decisions_v14(
         bundle_identities: dict[str, tuple[str, int, int]] | None = None
         with _publication_lock(parent_bindings):
             _require_finals_absent(parent_bindings, label="preflight")
+            timestamp, target = _target_timestamp(recorded_at)
+            if target <= datetime.now(UTC):
+                raise ExactIdentityDecisionError(
+                    "identity v14 preflight recorded_at must be future before "
+                    "staging"
+                )
             guard = _require_guard_state()
             try:
                 definition_raw, payloads, expected_manifest, _definition = (
