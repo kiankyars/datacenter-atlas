@@ -12,7 +12,7 @@ import sys
 if __package__ in {None, ""}:
     sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from datacenter_atlas.coverage_audit_v4 import (  # noqa: E402
+from datacenter_atlas.coverage_audit_v28 import (  # noqa: E402
     publish_coverage_audit_v28,
     validate_coverage_audit_v28,
 )

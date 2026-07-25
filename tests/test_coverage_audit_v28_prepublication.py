@@ -15,9 +15,9 @@ import unittest
 from unittest.mock import patch
 
 try:
-    from datacenter_atlas.datacenter_atlas import coverage_audit_v4 as coverage
+    from datacenter_atlas.datacenter_atlas import coverage_audit_v28 as coverage
 except ModuleNotFoundError:
-    from datacenter_atlas import coverage_audit_v4 as coverage
+    from datacenter_atlas import coverage_audit_v28 as coverage
 
 
 ROOT = Path(__file__).resolve().parents[1]
