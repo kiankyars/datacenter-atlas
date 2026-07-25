@@ -3,11 +3,16 @@ from __future__ import annotations
 import gzip
 import hashlib
 import json
+import shutil
 import stat
 import unittest
 from collections import Counter
+from contextlib import nullcontext
 from copy import deepcopy
+from datetime import UTC, datetime, timedelta
 from pathlib import Path
+from tempfile import TemporaryDirectory
+from unittest.mock import patch
 
 try:
     from datacenter_atlas import construction_map_v32 as shim
@@ -21,9 +26,9 @@ except ModuleNotFoundError:
 
 DEFINITION_PIN = (
     2_509,
-    "50248a1fafc5ce96693592b990be6fc9352233091e4c4210817db5d6936cef3f",
+    "67789635b3f197e12705fcd8ad635b5ad552c6d315cf0dab3d487c6f5379d32d",
 )
-BUNDLE_TREE_PIN = "78d444c9b289ccc23acdbc7a7a2ff5fbedf0df16ece8100da328cb7fde05572e"
+BUNDLE_TREE_PIN = "ae25def835f0715566ffed2aa12dad6834484ed6a93a692eef310bfee07aa0c2"
 BUNDLE_PINS = {
     "ATTRIBUTION.txt": (
         365,
@@ -34,12 +39,12 @@ BUNDLE_PINS = {
         "24b0e3143fc9f9a130869c7b546e34ed369228e7772f69669835ac9368cbb96d",
     ),
     "construction-map-index.json.gz": (
-        6_683_675,
-        "b52ece43b13e7d626115f3f8b3f1393e5e82d4e4821e09b4a383ee96d03f6712",
+        6_683_678,
+        "2b59b4cc377d335ec1db1534dfe28e7f7050683df209b3ea836e7a371e16b294",
     ),
     "construction-map.html": (
-        8_929_176,
-        "c8a1119dc545168612f89ffd048451c6c0b56917744d6e84890e4961cb26acc3",
+        8_929_180,
+        "08ec618175707ec6b6167969ce96741f86f751518654c479c0e0e8f8520ee7b9",
     ),
     "coverage.json": (
         7_524,
@@ -47,11 +52,11 @@ BUNDLE_PINS = {
     ),
     "manifest.json": (
         2_172,
-        "8b321d67ef80a6af0fbc0d39d60b5a10387777a1ab97d3a1a0f45a5b9bfa952d",
+        "b4176ec21fde9a30f5c727e2061d4d6ebb00a5d9eb80bea76b60b06ea0887ef9",
     ),
     "manifest.sha256": (
         80,
-        "765a7137eb4f4c78a33f31c929e527719ee26e55c1519283acd44c553d810d80",
+        "d5361beb8aa2be4de265387ea35b6bbb1409ec98cec487fed9eb759d4a2395c2",
     ),
 }
 
@@ -109,6 +114,59 @@ class ConstructionMapV32Tests(unittest.TestCase):
         expected["expected_projection"] = map_v32.EXPECTED_PROJECTION
         expected["master"] = current["master"]
         self.assertEqual(current, expected)
+
+    def test_public_output_stays_blocked_until_public_master_bytes_are_pinned(
+        self,
+    ) -> None:
+        self.assertEqual(
+            (
+                map_v32.PUBLIC_DEFINITION_SHA256,
+                map_v32.PUBLIC_MANIFEST_SHA256,
+                map_v32.PUBLIC_TREE_SHA256,
+            ),
+            (None, None, None),
+        )
+        with self.assertRaisesRegex(
+            map_v32.ConstructionMapV32Error,
+            "public-output pins are not reviewed",
+        ):
+            map_v32._require_public_output_pins(
+                map_v32.CANDIDATE_DEFINITION_STAGE,
+                map_v32.CANDIDATE_BUNDLE_STAGE,
+            )
+
+        with TemporaryDirectory(prefix="map-v32-existing-unpinned-") as temporary:
+            root = Path(temporary)
+            sources = root / "sources"
+            maps = root / "construction_maps"
+            masters = root / "construction_master"
+            sources.mkdir()
+            maps.mkdir()
+            masters.mkdir()
+            definition = sources / "map.json"
+            bundle = maps / "map"
+            definition.write_bytes(b"definition")
+            bundle.mkdir()
+            (bundle / map_v32.MANIFEST_FILENAME).write_bytes(b"manifest")
+            with (
+                patch.multiple(
+                    map_v32,
+                    DEFINITION=definition,
+                    BUNDLE=bundle,
+                    PUBLICATION_LOCK=root / ".map.lock",
+                    MASTER=masters / "master",
+                    MASTER_DEFINITION=sources / "master.json",
+                    MAP_GENERATED_AT="2026-07-25T00:00:00Z",
+                ),
+                self.assertRaisesRegex(
+                    map_v32.ConstructionMapV32Error,
+                    "public-output pins are not reviewed",
+                ),
+            ):
+                map_v32.publish_construction_map_v32(
+                    "2026-07-25T00:00:00Z",
+                    publication_authorized=True,
+                )
 
     def test_four_bare_collisions_are_distinct_rows_and_not_map_collapses(
         self,
@@ -192,6 +250,11 @@ class ConstructionMapV32Tests(unittest.TestCase):
         self.assertFalse(map_v32.PUBLICATION_LOCK.exists())
         self.assertFalse(map_v32.DEFINITION.exists())
         self.assertFalse(map_v32.BUNDLE.exists())
+        with self.assertRaisesRegex(
+            map_v32.ConstructionMapV32Error,
+            "requires authorization",
+        ):
+            map_v32.publish_construction_map_v32()
 
     def test_public_defaults_bind_dated_v32_paths(self) -> None:
         definition_defaults = map_v32.definition_document.__kwdefaults__
@@ -228,6 +291,135 @@ class ConstructionMapV32Tests(unittest.TestCase):
             map_v32.build_construction_map_v32,
             map_v32.write_construction_map_v32,
         )
+
+    def test_public_defaults_call_through_to_dated_v32_paths(self) -> None:
+        with patch.object(
+            map_v32,
+            "_carrier_validate_public",
+            return_value={"ok": True},
+        ) as validate:
+            self.assertEqual(map_v32.validate_construction_map_v32(), {"ok": True})
+        validate.assert_called_once_with(
+            map_v32.BUNDLE,
+            master_directory=map_v32.MASTER,
+            master_definition_path=map_v32.MASTER_DEFINITION,
+            map_definition_path=map_v32.DEFINITION,
+            replay_count=2,
+            require_accepted_master=True,
+            require_frozen=True,
+            validation_wall_clock=None,
+        )
+
+        with patch.object(
+            map_v32,
+            "publish_construction_map_v32",
+            return_value={"published": True},
+        ) as publish:
+            self.assertEqual(
+                map_v32.write_construction_map_v32(
+                    generated_at=map_v32.MAP_GENERATED_AT,
+                    publication_authorized=True,
+                ),
+                {"published": True},
+            )
+        publish.assert_called_once_with(
+            map_v32.MAP_GENERATED_AT,
+            publication_authorized=True,
+        )
+
+    def test_final_validation_failure_rolls_back_both_owned_finals(self) -> None:
+        with TemporaryDirectory(prefix="construction-map-v32-publish-") as temporary:
+            root = Path(temporary)
+            sources = root / "sources"
+            maps = root / "construction_maps"
+            masters = root / "construction_master"
+            sources.mkdir()
+            maps.mkdir()
+            masters.mkdir()
+            master = masters / "master"
+            master.mkdir()
+            master_definition = sources / "master.json"
+            master_definition.write_bytes(b"accepted master")
+            definition = sources / "map.json"
+            bundle = maps / "map"
+            lock = root / ".map.lock"
+            target = (datetime.now(UTC) + timedelta(seconds=2)).replace(
+                microsecond=0
+            )
+            generated_at = target.isoformat().replace("+00:00", "Z")
+
+            def build_bundle(destination: Path, **_kwargs: object) -> dict[str, object]:
+                nested = destination / "nested"
+                nested.mkdir()
+                (nested / "payload.json").write_bytes(b'{"ok":true}\n')
+                return {}
+
+            validations = [{}, map_v32.ConstructionMapV32Error("final validation")]
+            with (
+                patch.multiple(
+                    map_v32,
+                    DEFINITION=definition,
+                    BUNDLE=bundle,
+                    PUBLICATION_LOCK=lock,
+                    MASTER=master,
+                    MASTER_DEFINITION=master_definition,
+                    MAP_GENERATED_AT=generated_at,
+                ),
+                patch.object(map_v32, "_require_predecessor"),
+                patch.object(map_v32, "_require_accepted_master"),
+                patch.object(map_v32, "definition_document", return_value={}),
+                patch.object(
+                    map_v32,
+                    "_build_bundle_stage",
+                    side_effect=build_bundle,
+                ),
+                patch.object(map_v32, "_assert_two_replays"),
+                patch.object(map_v32, "_core_validate_static"),
+                patch.object(map_v32, "_require_public_output_pins"),
+                patch.object(
+                    map_v32,
+                    "_definition_generated_at",
+                    return_value=generated_at,
+                ),
+                patch.object(
+                    map_v32,
+                    "_master_generated_at",
+                    return_value="2026-07-25T00:00:00Z",
+                ),
+                patch.object(
+                    map_v32,
+                    "_runtime_timestamps",
+                    side_effect=lambda *_args: nullcontext(),
+                ),
+                patch.object(map_v32, "tree_digest", return_value="tree"),
+                patch.object(
+                    map_v32,
+                    "validate_construction_map_v32",
+                    side_effect=validations,
+                ),
+                self.assertRaisesRegex(
+                    map_v32.ConstructionMapV32Error,
+                    "final validation",
+                ),
+            ):
+                map_v32.publish_construction_map_v32(
+                    generated_at,
+                    publication_authorized=True,
+                )
+
+            self.assertFalse(definition.exists())
+            self.assertFalse(bundle.exists())
+            self.assertFalse(lock.exists())
+            definition_stages = tuple(sources.glob(".map.json.stage-*"))
+            bundle_stages = tuple(maps.glob(".map.stage-*"))
+            self.assertEqual(len(definition_stages), 1)
+            self.assertEqual(len(bundle_stages), 1)
+            definition_stages[0].chmod(0o600)
+            definition_stages[0].unlink()
+            bundle_stages[0].chmod(0o700)
+            for path in bundle_stages[0].rglob("*"):
+                path.chmod(0o700 if path.is_dir() else 0o600)
+            shutil.rmtree(bundle_stages[0])
 
 
 if __name__ == "__main__":

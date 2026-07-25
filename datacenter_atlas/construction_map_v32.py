@@ -14,12 +14,51 @@ from __future__ import annotations
 import gzip
 import hashlib
 import json
+import os
+import tempfile
 from collections import Counter, defaultdict
 from collections.abc import Iterable, Iterator, Mapping
 from contextlib import contextmanager
-from datetime import datetime
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
+
+from .publication_pair_v32 import (
+    assert_parent_bindings as _pair_assert_parent_bindings,
+)
+from .publication_pair_v32 import (
+    bound_parents as _pair_bound_parents,
+)
+from .publication_pair_v32 import (
+    entry_identity as _pair_entry_identity,
+)
+from .publication_pair_v32 import (
+    entry_present as _pair_entry_present,
+)
+from .publication_pair_v32 import (
+    freeze_directory as _pair_freeze_directory,
+)
+from .publication_pair_v32 import (
+    make_directory_renameable as _pair_make_directory_renameable,
+)
+from .publication_pair_v32 import (
+    promote_noreplace as _pair_promote_noreplace,
+)
+from .publication_pair_v32 import (
+    publication_lock as _pair_publication_lock,
+)
+from .publication_pair_v32 import (
+    refresh_publication_ctimes as _pair_refresh_publication_ctimes,
+)
+from .publication_pair_v32 import (
+    rollback_owned_final as _pair_rollback_owned_final,
+)
+from .publication_pair_v32 import (
+    tree_inventory as _pair_tree_inventory,
+)
+from .publication_pair_v32 import (
+    validate_publication_times as _pair_validate_publication_times,
+)
 
 _BASE_SOURCE = Path(__file__).with_name("construction_map_v31.py")
 _BASE_SOURCE_SHA256 = "846746ae0a290600f1779ab706a90611a3adb05f470e1f656759afed0634bd3d"
@@ -54,7 +93,7 @@ for _old, _new, _count in (
 exec(compile(_source, __file__, "exec"), globals())  # noqa: S102
 
 
-MAP_GENERATED_AT = "2026-07-24T23:45:00Z"
+MAP_GENERATED_AT = "2026-07-25T05:30:00Z"
 MAP_ID = "2026-07-22-public-open-v32-construction-map-v2"
 MASTER_ID = "2026-07-22-public-open-v32"
 MASTER_DEFINITION = ROOT / "sources/construction-master-2026-07-22-public-open-v32.json"
@@ -63,40 +102,46 @@ DEFINITION = ROOT / "sources/construction-map-2026-07-22-public-open-v32.json"
 BUNDLE = ROOT / "construction_maps/2026-07-22-public-open-v32"
 PUBLICATION_LOCK = ROOT / ".construction-map-v32.lock"
 
-CANDIDATE_MASTER_TRANSACTION = ROOT / ".construction-master-v32.transaction-8gsvvbir"
+CANDIDATE_MASTER_TRANSACTION = ROOT / ".construction-master-v32.transaction-wghbbjy8"
 CANDIDATE_MASTER_DEFINITION = (
     CANDIDATE_MASTER_TRANSACTION / "construction-master-2026-07-22-public-open-v32.json"
 )
 CANDIDATE_MASTER = CANDIDATE_MASTER_TRANSACTION / "bundle"
-CANDIDATE_MASTER_GENERATED_AT = "2026-07-24T23:30:00Z"
+CANDIDATE_MASTER_GENERATED_AT = "2026-07-25T03:30:00Z"
 CANDIDATE_MASTER_DEFINITION_SHA256 = (
-    "05ed7f1eb48a54efb9e21224356d85108c897e977e2d458d52d10d2c0e14dbdb"
+    "47d3752d5b78601e786d6fb942d2b9f2f6a689433b45754cc5c9cda20d0f0241"
 )
 CANDIDATE_MASTER_JSONL_SHA256 = (
     "60388e1a111a880ab04ab4ec6aa95bd3cf2a04eaa77b16a1bcd0b85533a32eae"
 )
 CANDIDATE_MASTER_MANIFEST_SHA256 = (
-    "aee4310084012a0adc77b0833df6325c6a2da57d4379fe6b57b49b133876294a"
+    "2282a8200d4bf9ed260123ec55b6f54676384728c091cbea1065f3708a644cdc"
 )
 CANDIDATE_MASTER_TREE_SHA256 = (
-    "9a651415dbf66c99bcf07bc6aa268a05fc43aa03afaca1eea94cf8b31fed4084"
+    "f4cdd4352d48c87a9fb269214cf47482b61459f68d0a941b9916b5b09837947f"
 )
 CANDIDATE_DEFINITION_STAGE = (
     DEFINITION.parent
-    / ".construction-map-2026-07-22-public-open-v32.json.candidate-jn5inlyj"
+    / ".construction-map-2026-07-22-public-open-v32.json.candidate-t5r3wqy5"
 )
 CANDIDATE_BUNDLE_STAGE = (
-    BUNDLE.parent / ".2026-07-22-public-open-v32.candidate-z7hgjpib"
+    BUNDLE.parent / ".2026-07-22-public-open-v32.candidate-u06s775i"
 )
 CANDIDATE_DEFINITION_SHA256 = (
-    "50248a1fafc5ce96693592b990be6fc9352233091e4c4210817db5d6936cef3f"
+    "67789635b3f197e12705fcd8ad635b5ad552c6d315cf0dab3d487c6f5379d32d"
 )
 CANDIDATE_MANIFEST_SHA256 = (
-    "8b321d67ef80a6af0fbc0d39d60b5a10387777a1ab97d3a1a0f45a5b9bfa952d"
+    "b4176ec21fde9a30f5c727e2061d4d6ebb00a5d9eb80bea76b60b06ea0887ef9"
 )
 CANDIDATE_TREE_SHA256 = (
-    "78d444c9b289ccc23acdbc7a7a2ff5fbedf0df16ece8100da328cb7fde05572e"
+    "ae25def835f0715566ffed2aa12dad6834484ed6a93a692eef310bfee07aa0c2"
 )
+
+# Set only after the accepted master final exists and an independently reviewed
+# map stage has been built against those exact public paths.
+PUBLIC_DEFINITION_SHA256: str | None = None
+PUBLIC_MANIFEST_SHA256: str | None = None
+PUBLIC_TREE_SHA256: str | None = None
 
 MASTER_DEFINITION_SHA256 = CANDIDATE_MASTER_DEFINITION_SHA256
 MASTER_JSONL_SHA256 = CANDIDATE_MASTER_JSONL_SHA256
@@ -736,16 +781,23 @@ def write_construction_map_v32(
     map_definition_path: str | Path = DEFINITION,
     generated_at: str,
     freeze: bool = True,
+    publication_authorized: bool = False,
 ) -> dict[str, Any]:
     """Publish only the dated v32 public definition and bundle paths."""
 
-    return _carrier_write_public(
-        master_directory,
-        output_directory,
-        master_definition_path=master_definition_path,
-        map_definition_path=map_definition_path,
-        generated_at=generated_at,
-        freeze=freeze,
+    if (
+        Path(master_directory).resolve() != MASTER.resolve()
+        or Path(output_directory).resolve() != BUNDLE.resolve()
+        or Path(master_definition_path).resolve() != MASTER_DEFINITION.resolve()
+        or Path(map_definition_path).resolve() != DEFINITION.resolve()
+        or freeze is not True
+    ):
+        raise ConstructionMapV32Error(
+            "construction-map v32 publication paths and frozen mode are reserved"
+        )
+    return publish_construction_map_v32(
+        generated_at,
+        publication_authorized=publication_authorized,
     )
 
 
@@ -783,6 +835,498 @@ def validate_candidate_construction_map_v32(
         )
 
 
+def _freeze_publication_stages(definition: Path, bundle: Path) -> None:
+    definition.chmod(0o444)
+    descendants = sorted(bundle.rglob("*"))
+    if any(path.is_symlink() for path in descendants):
+        raise ConstructionMapV32Error("map v32 publication stage contains a symlink")
+    for path in descendants:
+        if path.is_file():
+            path.chmod(0o444)
+    for path in sorted(
+        (path for path in descendants if path.is_dir()),
+        key=lambda value: len(value.parts),
+        reverse=True,
+    ):
+        path.chmod(0o555)
+    bundle.chmod(0o555)
+
+
+def _require_public_output_pins(definition: Path, bundle: Path) -> None:
+    expected = (
+        PUBLIC_DEFINITION_SHA256,
+        PUBLIC_MANIFEST_SHA256,
+        PUBLIC_TREE_SHA256,
+    )
+    if any(value is None for value in expected):
+        raise ConstructionMapV32Error(
+            "construction-map v32 public-output pins are not reviewed"
+        )
+    observed = (
+        hashlib.sha256(definition.read_bytes()).hexdigest(),
+        hashlib.sha256((bundle / MANIFEST_FILENAME).read_bytes()).hexdigest(),
+        tree_digest(bundle),
+    )
+    if observed != expected:
+        raise ConstructionMapV32Error(
+            "construction-map v32 public output differs from reviewed pins"
+        )
+
+
+def publish_construction_map_v32(
+    generated_at: str = MAP_GENERATED_AT,
+    *,
+    publication_authorized: bool = False,
+    completion_callback: Any | None = None,
+) -> dict[str, Any]:
+    """Descriptor-bind, recursively timestamp, and rollback-safe publish v32."""
+
+    if not publication_authorized:
+        raise ConstructionMapV32Error(
+            "construction-map v32 publication requires authorization"
+        )
+    target = _parse_utc(generated_at, label="map v32 generated_at")
+    if generated_at != MAP_GENERATED_AT:
+        raise ConstructionMapV32Error(
+            "construction-map v32 publication timestamp is reserved"
+        )
+    output_parents = {
+        DEFINITION.parent,
+        BUNDLE.parent,
+        PUBLICATION_LOCK.parent,
+        MASTER.parent,
+        MASTER_DEFINITION.parent,
+    }
+    definition_stage: Path | None = None
+    bundle_stage: Path | None = None
+    definition_identity: tuple[int, int] | None = None
+    bundle_identity: tuple[int, int] | None = None
+
+    with _pair_bound_parents(
+        output_parents,
+        error=ConstructionMapV32Error,
+    ) as bindings:
+        completion_definition_identity: tuple[int, int] | None = None
+        completion_tree: dict[str, tuple[str, int, int]] | None = None
+
+        def check_lock_completion() -> None:
+            if completion_definition_identity is None or completion_tree is None:
+                raise ConstructionMapV32Error(
+                    "construction-map v32 lock completed without final identities"
+                )
+            _pair_assert_parent_bindings(
+                bindings,
+                error=ConstructionMapV32Error,
+                label="map successful lock exit",
+            )
+            if (
+                _pair_entry_identity(
+                    DEFINITION,
+                    bindings,
+                    directory=False,
+                    error=ConstructionMapV32Error,
+                )
+                != completion_definition_identity
+                or _pair_tree_inventory(
+                    BUNDLE,
+                    bindings,
+                    error=ConstructionMapV32Error,
+                )
+                != completion_tree
+            ):
+                raise ConstructionMapV32Error(
+                    "construction-map v32 changed during successful lock exit"
+                )
+
+        def rollback(error: BaseException) -> None:
+            definition_remains = False
+            if definition_stage is not None and definition_identity is not None:
+                definition_remains = _pair_rollback_owned_final(
+                    error,
+                    destination=DEFINITION,
+                    stage=definition_stage,
+                    identity=definition_identity,
+                    bindings=bindings,
+                    directory=False,
+                    error=ConstructionMapV32Error,
+                )
+            if definition_remains:
+                error.add_note(
+                    "construction-map v32 bundle retained because the "
+                    "definition commit marker could not be rolled back"
+                )
+                return
+            if bundle_stage is not None and bundle_identity is not None:
+                _pair_rollback_owned_final(
+                    error,
+                    destination=BUNDLE,
+                    stage=bundle_stage,
+                    identity=bundle_identity,
+                    bindings=bindings,
+                    directory=True,
+                    error=ConstructionMapV32Error,
+                )
+
+        try:
+            with _pair_publication_lock(
+                PUBLICATION_LOCK,
+                bindings,
+                error=ConstructionMapV32Error,
+                completion_check=check_lock_completion,
+            ):
+                try:
+                    definition_present = _pair_entry_present(
+                        DEFINITION,
+                        bindings,
+                        error=ConstructionMapV32Error,
+                    )
+                    bundle_present = _pair_entry_present(
+                        BUNDLE,
+                        bindings,
+                        error=ConstructionMapV32Error,
+                    )
+                    if definition_present and bundle_present:
+                        _require_public_output_pins(DEFINITION, BUNDLE)
+                        existing_definition_identity = _pair_entry_identity(
+                            DEFINITION,
+                            bindings,
+                            directory=False,
+                            error=ConstructionMapV32Error,
+                        )
+                        existing_tree = _pair_tree_inventory(
+                            BUNDLE,
+                            bindings,
+                            error=ConstructionMapV32Error,
+                        )
+                        _pair_validate_publication_times(
+                            DEFINITION,
+                            existing_definition_identity,
+                            BUNDLE,
+                            existing_tree,
+                            bindings,
+                            target=target,
+                            wall_clock=datetime.now(UTC),
+                            require_live=True,
+                            error=ConstructionMapV32Error,
+                        )
+                        result = validate_construction_map_v32(
+                            validation_wall_clock=datetime.now(UTC)
+                        )
+                        if completion_callback is not None:
+                            completion_callback(result)
+                        if (
+                            validate_construction_map_v32(
+                                validation_wall_clock=datetime.now(UTC)
+                            )
+                            != result
+                            or _pair_entry_identity(
+                                DEFINITION,
+                                bindings,
+                                directory=False,
+                                error=ConstructionMapV32Error,
+                            )
+                            != existing_definition_identity
+                            or _pair_tree_inventory(
+                                BUNDLE,
+                                bindings,
+                                error=ConstructionMapV32Error,
+                            )
+                            != existing_tree
+                        ):
+                            raise ConstructionMapV32Error(
+                                "existing construction-map v32 changed during "
+                                "completion callback"
+                            )
+                        _pair_assert_parent_bindings(
+                            bindings,
+                            error=ConstructionMapV32Error,
+                            label="existing map completion callback",
+                        )
+                        completion_definition_identity = (
+                            existing_definition_identity
+                        )
+                        completion_tree = existing_tree
+                        return result
+                    if definition_present or bundle_present:
+                        raise ConstructionMapV32Error(
+                            "construction-map v32 partial final-path collision"
+                        )
+                    remaining = target.timestamp() - datetime.now(UTC).timestamp()
+                    if remaining <= 0:
+                        raise ConstructionMapV32Error(
+                            "construction-map v32 generated_at must be future "
+                            "before staging"
+                        )
+                    if remaining > 900:
+                        raise ConstructionMapV32Error(
+                            "construction-map v32 publication is over 15 minutes ahead"
+                        )
+
+                    _require_predecessor()
+                    _require_accepted_master()
+                    accepted_master_definition = MASTER_DEFINITION.read_bytes()
+                    accepted_master_tree = tree_digest(MASTER)
+                    descriptor, definition_name = tempfile.mkstemp(
+                        prefix=f".{DEFINITION.name}.stage-",
+                        dir=DEFINITION.parent,
+                    )
+                    os.close(descriptor)
+                    definition_stage = Path(definition_name)
+                    bundle_stage = Path(
+                        tempfile.mkdtemp(
+                            prefix=f".{BUNDLE.name}.stage-",
+                            dir=BUNDLE.parent,
+                        )
+                    )
+                    raw = _canonical_json(definition_document(generated_at))
+                    _write_definition_stage(definition_stage, raw)
+                    _build_bundle_stage(
+                        bundle_stage,
+                        definition_path=definition_stage,
+                        master_directory=MASTER,
+                        master_definition_path=MASTER_DEFINITION,
+                    )
+                    _assert_two_replays(
+                        bundle_stage,
+                        definition_path=definition_stage,
+                        master_directory=MASTER,
+                        master_definition_path=MASTER_DEFINITION,
+                    )
+                    generated_text = _definition_generated_at(definition_stage)
+                    master_generated_at = _master_generated_at(MASTER_DEFINITION)
+                    with _runtime_timestamps(
+                        generated_text,
+                        master_generated_at,
+                    ):
+                        _core_validate_static(bundle_stage, frozen=False)
+                    _freeze_publication_stages(definition_stage, bundle_stage)
+                    definition_identity = _pair_entry_identity(
+                        definition_stage,
+                        bindings,
+                        directory=False,
+                        error=ConstructionMapV32Error,
+                    )
+                    bundle_tree = _pair_tree_inventory(
+                        bundle_stage,
+                        bindings,
+                        error=ConstructionMapV32Error,
+                    )
+                    bundle_identity = (
+                        bundle_tree["."][1],
+                        bundle_tree["."][2],
+                    )
+                    staged_definition = definition_stage.read_bytes()
+                    staged_tree_digest = tree_digest(bundle_stage)
+                    _require_public_output_pins(
+                        definition_stage,
+                        bundle_stage,
+                    )
+                    validate_construction_map_v32(
+                        bundle_stage,
+                        master_directory=MASTER,
+                        master_definition_path=MASTER_DEFINITION,
+                        map_definition_path=definition_stage,
+                        validation_wall_clock=target,
+                    )
+                    _pair_validate_publication_times(
+                        definition_stage,
+                        definition_identity,
+                        bundle_stage,
+                        bundle_tree,
+                        bindings,
+                        target=target,
+                        wall_clock=target,
+                        require_live=False,
+                        error=ConstructionMapV32Error,
+                    )
+                    _pair_assert_parent_bindings(
+                        bindings,
+                        error=ConstructionMapV32Error,
+                        label="before map publication wait",
+                    )
+                    _wait_until(target)
+                    _pair_assert_parent_bindings(
+                        bindings,
+                        error=ConstructionMapV32Error,
+                        label="after map publication wait",
+                    )
+                    if _pair_entry_present(
+                        DEFINITION,
+                        bindings,
+                        error=ConstructionMapV32Error,
+                    ) or _pair_entry_present(
+                        BUNDLE,
+                        bindings,
+                        error=ConstructionMapV32Error,
+                    ):
+                        raise ConstructionMapV32Error(
+                            "construction-map v32 late final-path collision"
+                        )
+                    _require_predecessor()
+                    _require_accepted_master()
+                    if (
+                        MASTER_DEFINITION.read_bytes() != accepted_master_definition
+                        or tree_digest(MASTER) != accepted_master_tree
+                    ):
+                        raise ConstructionMapV32Error(
+                            "accepted master changed during map publication"
+                        )
+                    if (
+                        definition_stage.read_bytes() != staged_definition
+                        or tree_digest(bundle_stage) != staged_tree_digest
+                    ):
+                        raise ConstructionMapV32Error(
+                            "construction-map v32 stage changed while waiting"
+                        )
+                    _pair_refresh_publication_ctimes(
+                        definition_stage,
+                        definition_identity,
+                        bundle_stage,
+                        bundle_tree,
+                        bindings,
+                        target=target,
+                        error=ConstructionMapV32Error,
+                    )
+                    _pair_validate_publication_times(
+                        definition_stage,
+                        definition_identity,
+                        bundle_stage,
+                        bundle_tree,
+                        bindings,
+                        target=target,
+                        wall_clock=datetime.now(UTC),
+                        require_live=True,
+                        error=ConstructionMapV32Error,
+                    )
+                    if (
+                        definition_stage.read_bytes() != staged_definition
+                        or tree_digest(bundle_stage) != staged_tree_digest
+                    ):
+                        raise ConstructionMapV32Error(
+                            "construction-map v32 bytes changed at publication"
+                        )
+
+                    _pair_make_directory_renameable(
+                        bundle_stage,
+                        bundle_identity,
+                        bindings,
+                        error=ConstructionMapV32Error,
+                    )
+                    promoted_bundle = _pair_promote_noreplace(
+                        bundle_stage,
+                        BUNDLE,
+                        bindings,
+                        directory=True,
+                        error=ConstructionMapV32Error,
+                    )
+                    if promoted_bundle != bundle_identity:
+                        raise ConstructionMapV32Error(
+                            "construction-map v32 bundle promotion identity differs"
+                        )
+                    _pair_freeze_directory(
+                        BUNDLE,
+                        bundle_identity,
+                        bindings,
+                        error=ConstructionMapV32Error,
+                    )
+                    promoted_definition = _pair_promote_noreplace(
+                        definition_stage,
+                        DEFINITION,
+                        bindings,
+                        directory=False,
+                        error=ConstructionMapV32Error,
+                    )
+                    if promoted_definition != definition_identity:
+                        raise ConstructionMapV32Error(
+                            "construction-map v32 definition promotion identity differs"
+                        )
+                    final_tree = _pair_tree_inventory(
+                        BUNDLE,
+                        bindings,
+                        error=ConstructionMapV32Error,
+                    )
+                    if final_tree != bundle_tree:
+                        raise ConstructionMapV32Error(
+                            "construction-map v32 final tree identity differs"
+                        )
+                    result = validate_construction_map_v32(
+                        validation_wall_clock=datetime.now(UTC)
+                    )
+                    _pair_validate_publication_times(
+                        DEFINITION,
+                        definition_identity,
+                        BUNDLE,
+                        final_tree,
+                        bindings,
+                        target=target,
+                        wall_clock=datetime.now(UTC),
+                        require_live=True,
+                        error=ConstructionMapV32Error,
+                    )
+                    if completion_callback is not None:
+                        completion_callback(result)
+                    if (
+                        validate_construction_map_v32(
+                            validation_wall_clock=datetime.now(UTC)
+                        )
+                        != result
+                        or _pair_entry_identity(
+                            DEFINITION,
+                            bindings,
+                            directory=False,
+                            error=ConstructionMapV32Error,
+                        )
+                        != definition_identity
+                        or _pair_tree_inventory(
+                            BUNDLE,
+                            bindings,
+                            error=ConstructionMapV32Error,
+                        )
+                        != final_tree
+                    ):
+                        raise ConstructionMapV32Error(
+                            "construction-map v32 changed during completion callback"
+                        )
+                    _pair_assert_parent_bindings(
+                        bindings,
+                        error=ConstructionMapV32Error,
+                        label="map publication completion callback",
+                    )
+                    completion_definition_identity = definition_identity
+                    completion_tree = final_tree
+                except BaseException as error:
+                    rollback(error)
+                    raise
+            _pair_assert_parent_bindings(
+                bindings,
+                error=ConstructionMapV32Error,
+                label="map publication lock cleanup",
+            )
+            if (
+                _pair_entry_identity(
+                    DEFINITION,
+                    bindings,
+                    directory=False,
+                    error=ConstructionMapV32Error,
+                )
+                != definition_identity
+                or _pair_tree_inventory(
+                    BUNDLE,
+                    bindings,
+                    error=ConstructionMapV32Error,
+                )
+                != final_tree
+            ):
+                raise ConstructionMapV32Error(
+                    "construction-map v32 changed during lock cleanup"
+                )
+        except BaseException as error:
+            # Lock cleanup is itself inside the rollback lifetime.
+            rollback(error)
+            raise
+        return result
+
+
 __all__ = [
     "BUNDLE",
     "BUNDLE_FILES",
@@ -807,6 +1351,9 @@ __all__ = [
     "MASTER_DEFINITION",
     "NEW_COORDINATE_MAPPING_IDS",
     "NEW_MASTER_RECORD_IDS",
+    "PUBLIC_DEFINITION_SHA256",
+    "PUBLIC_MANIFEST_SHA256",
+    "PUBLIC_TREE_SHA256",
     "ConstructionMapV32Error",
     "build_construction_map_v32",
     "definition_document",

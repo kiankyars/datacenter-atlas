@@ -19,12 +19,53 @@ from __future__ import annotations
 import hashlib
 import json
 import stat
+import tempfile
 from collections.abc import Iterator
 from contextlib import contextmanager
 from copy import deepcopy
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
+
+from .publication_pair_v32 import (
+    add_parent_binding as _pair_add_parent_binding,
+)
+from .publication_pair_v32 import (
+    assert_parent_bindings as _pair_assert_parent_bindings,
+)
+from .publication_pair_v32 import (
+    bound_parents as _pair_bound_parents,
+)
+from .publication_pair_v32 import (
+    entry_identity as _pair_entry_identity,
+)
+from .publication_pair_v32 import (
+    entry_present as _pair_entry_present,
+)
+from .publication_pair_v32 import (
+    freeze_directory as _pair_freeze_directory,
+)
+from .publication_pair_v32 import (
+    make_directory_renameable as _pair_make_directory_renameable,
+)
+from .publication_pair_v32 import (
+    promote_noreplace as _pair_promote_noreplace,
+)
+from .publication_pair_v32 import (
+    publication_lock as _pair_publication_lock,
+)
+from .publication_pair_v32 import (
+    refresh_publication_ctimes as _pair_refresh_publication_ctimes,
+)
+from .publication_pair_v32 import (
+    rollback_owned_final as _pair_rollback_owned_final,
+)
+from .publication_pair_v32 import (
+    tree_inventory as _pair_tree_inventory,
+)
+from .publication_pair_v32 import (
+    validate_publication_times as _pair_validate_publication_times,
+)
 
 _BASE_SOURCE = Path(__file__).with_name("construction_master_v31.py")
 _BASE_SOURCE_SHA256 = "70e160500940712b8406f40907c6bf3d4b0ae8ad5a947d79bc4f63835be5a523"
@@ -91,7 +132,7 @@ for _old, _new, _count in (
 exec(compile(_source, __file__, "exec"), globals())  # noqa: S102
 
 
-GENERATED_AT = "2026-07-24T23:30:00Z"
+GENERATED_AT = "2026-07-25T03:30:00Z"
 MASTER_ID = "2026-07-22-public-open-v32"
 REPLACEMENT_ARTIFACT_ID = "epoch-official-open-seed-v97"
 REPLACEMENT_RELEASE_ID = "epoch-official-open-seed-v97"
@@ -296,6 +337,7 @@ _carrier_definition = globals()["construction_master_v32_definition"]
 _carrier_definition_bytes = globals()["construction_master_v32_definition_bytes"]
 _carrier_prepare = globals()["prepare_construction_master_v32"]
 _carrier_validate = globals()["validate_construction_master_v32"]
+_carrier_write = globals()["write_construction_master_v32"]
 
 
 def _v32_error(message: str) -> Exception:
@@ -528,9 +570,453 @@ def validate_construction_master_v32(
         else allow_prospective_identity
     )
     with _prospective_identity_mode(enabled):
-        return _carrier_validate(
-            directory, definition_path=definition_path, reproduce=reproduce
+        manifest = _carrier_validate(
+            directory,
+            definition_path=definition_path,
+            reproduce=False,
         )
+        if reproduce:
+            root = Path(directory)
+            with tempfile.TemporaryDirectory(
+                prefix="construction-master-v32-reproduce-"
+            ) as temporary:
+                rebuilt = Path(temporary) / "bundle"
+                _carrier_write(
+                    definition_path,
+                    rebuilt,
+                    freeze=True,
+                )
+                for name in sorted(BUNDLE_FILES):
+                    if _checkpoint(root / name) != _checkpoint(rebuilt / name):
+                        raise _v32_error(
+                            "v32 output differs from offline reproduction: "
+                            f"{name}"
+                        )
+        return manifest
+
+
+def write_construction_master_v32(
+    definition_path: str | Path,
+    output_directory: str | Path,
+    *,
+    freeze: bool = False,
+) -> dict[str, Any]:
+    """Reject direct writes; reproduction uses an unexported carrier capability."""
+
+    del definition_path, output_directory, freeze
+    raise _v32_error(
+        "construction-master v32 writer is private to validated reproduction"
+    )
+
+
+def publish_construction_master_v32(
+    *,
+    publication_authorized: bool = False,
+    completion_callback: Any | None = None,
+) -> dict[str, Any]:
+    """Descriptor-bind, recursively timestamp, and rollback-safe publish v32."""
+
+    if not publication_authorized:
+        raise _v32_error("construction-master v32 publication requires authorization")
+    target = _parse_utc(GENERATED_AT, "v32 generated_at")
+    output_parents = {
+        DEFINITION_PATH.parent,
+        BUNDLE_PATH.parent,
+        PUBLICATION_LOCK.parent,
+    }
+    transaction: Path | None = None
+    definition_stage: Path | None = None
+    bundle_stage: Path | None = None
+    definition_identity: tuple[int, int] | None = None
+    bundle_identity: tuple[int, int] | None = None
+
+    with _pair_bound_parents(output_parents, error=_v32_error) as bindings:
+        completion_definition_identity: tuple[int, int] | None = None
+        completion_tree: dict[str, tuple[str, int, int]] | None = None
+
+        def check_lock_completion() -> None:
+            if completion_definition_identity is None or completion_tree is None:
+                raise _v32_error(
+                    "construction-master v32 lock completed without final identities"
+                )
+            _pair_assert_parent_bindings(
+                bindings,
+                error=_v32_error,
+                label="master successful lock exit",
+            )
+            if (
+                _pair_entry_identity(
+                    DEFINITION_PATH,
+                    bindings,
+                    directory=False,
+                    error=_v32_error,
+                )
+                != completion_definition_identity
+                or _pair_tree_inventory(
+                    BUNDLE_PATH,
+                    bindings,
+                    error=_v32_error,
+                )
+                != completion_tree
+            ):
+                raise _v32_error(
+                    "construction-master v32 changed during successful lock exit"
+                )
+
+        def rollback(error: BaseException) -> None:
+            definition_remains = False
+            if definition_stage is not None and definition_identity is not None:
+                definition_remains = _pair_rollback_owned_final(
+                    error,
+                    destination=DEFINITION_PATH,
+                    stage=definition_stage,
+                    identity=definition_identity,
+                    bindings=bindings,
+                    directory=False,
+                    error=_v32_error,
+                )
+            if definition_remains:
+                error.add_note(
+                    "construction-master v32 bundle retained because the "
+                    "definition commit marker could not be rolled back"
+                )
+                return
+            if bundle_stage is not None and bundle_identity is not None:
+                _pair_rollback_owned_final(
+                    error,
+                    destination=BUNDLE_PATH,
+                    stage=bundle_stage,
+                    identity=bundle_identity,
+                    bindings=bindings,
+                    directory=True,
+                    error=_v32_error,
+                )
+
+        try:
+            with _pair_publication_lock(
+                PUBLICATION_LOCK,
+                bindings,
+                error=_v32_error,
+                completion_check=check_lock_completion,
+            ):
+                try:
+                    definition_present = _pair_entry_present(
+                        DEFINITION_PATH, bindings, error=_v32_error
+                    )
+                    bundle_present = _pair_entry_present(
+                        BUNDLE_PATH, bindings, error=_v32_error
+                    )
+                    if definition_present and bundle_present:
+                        existing_definition_identity = _pair_entry_identity(
+                            DEFINITION_PATH,
+                            bindings,
+                            directory=False,
+                            error=_v32_error,
+                        )
+                        existing_tree = _pair_tree_inventory(
+                            BUNDLE_PATH,
+                            bindings,
+                            error=_v32_error,
+                        )
+                        _pair_validate_publication_times(
+                            DEFINITION_PATH,
+                            existing_definition_identity,
+                            BUNDLE_PATH,
+                            existing_tree,
+                            bindings,
+                            target=target,
+                            wall_clock=datetime.now(UTC),
+                            require_live=True,
+                            error=_v32_error,
+                        )
+                        result = validate_construction_master_v32(
+                            BUNDLE_PATH,
+                            definition_path=DEFINITION_PATH,
+                            reproduce=False,
+                            allow_prospective_identity=False,
+                        )
+                        if completion_callback is not None:
+                            completion_callback(result)
+                        if (
+                            validate_construction_master_v32(
+                                BUNDLE_PATH,
+                                definition_path=DEFINITION_PATH,
+                                reproduce=False,
+                                allow_prospective_identity=False,
+                            )
+                            != result
+                            or _pair_entry_identity(
+                                DEFINITION_PATH,
+                                bindings,
+                                directory=False,
+                                error=_v32_error,
+                            )
+                            != existing_definition_identity
+                            or _pair_tree_inventory(
+                                BUNDLE_PATH,
+                                bindings,
+                                error=_v32_error,
+                            )
+                            != existing_tree
+                        ):
+                            raise _v32_error(
+                                "existing construction-master v32 changed during "
+                                "completion callback"
+                            )
+                        _pair_assert_parent_bindings(
+                            bindings,
+                            error=_v32_error,
+                            label="existing master completion callback",
+                        )
+                        completion_definition_identity = (
+                            existing_definition_identity
+                        )
+                        completion_tree = existing_tree
+                        return result
+                    if definition_present or bundle_present:
+                        raise _v32_error(
+                            "construction-master v32 partial final-path collision"
+                        )
+                    if target <= datetime.now(UTC):
+                        raise _v32_error(
+                            "construction-master v32 generated_at must be future "
+                            "before staging"
+                        )
+
+                    transaction, definition_stage, bundle_stage = (
+                        prepare_construction_master_v32(
+                            allow_prospective_identity=False
+                        )
+                    )
+                    _pair_add_parent_binding(
+                        bindings,
+                        transaction,
+                        error=_v32_error,
+                    )
+                    _pair_assert_parent_bindings(
+                        bindings,
+                        error=_v32_error,
+                        label="after master staging",
+                    )
+                    definition_identity = _pair_entry_identity(
+                        definition_stage,
+                        bindings,
+                        directory=False,
+                        error=_v32_error,
+                    )
+                    bundle_tree = _pair_tree_inventory(
+                        bundle_stage,
+                        bindings,
+                        error=_v32_error,
+                    )
+                    bundle_identity = (
+                        bundle_tree["."][1],
+                        bundle_tree["."][2],
+                    )
+                    staged_definition = definition_stage.read_bytes()
+                    staged_tree_digest = _v32_tree_digest(bundle_stage)
+                    validate_construction_master_v32(
+                        bundle_stage,
+                        definition_path=definition_stage,
+                        reproduce=True,
+                        allow_prospective_identity=False,
+                    )
+                    _pair_validate_publication_times(
+                        definition_stage,
+                        definition_identity,
+                        bundle_stage,
+                        bundle_tree,
+                        bindings,
+                        target=target,
+                        wall_clock=target,
+                        require_live=False,
+                        error=_v32_error,
+                    )
+                    _pair_assert_parent_bindings(
+                        bindings,
+                        error=_v32_error,
+                        label="before master publication wait",
+                    )
+                    _v32_destination_absent(
+                        DEFINITION_PATH, "pre-wait v32 definition"
+                    )
+                    _v32_destination_absent(BUNDLE_PATH, "pre-wait v32 bundle")
+                    _v32_wait_until(target.timestamp())
+                    _pair_assert_parent_bindings(
+                        bindings,
+                        error=_v32_error,
+                        label="after master publication wait",
+                    )
+                    if _pair_entry_present(
+                        DEFINITION_PATH, bindings, error=_v32_error
+                    ) or _pair_entry_present(
+                        BUNDLE_PATH, bindings, error=_v32_error
+                    ):
+                        raise _v32_error(
+                            "construction-master v32 late final-path collision"
+                        )
+                    if (
+                        definition_stage.read_bytes() != staged_definition
+                        or _v32_tree_digest(bundle_stage) != staged_tree_digest
+                    ):
+                        raise _v32_error(
+                            "construction-master v32 stage changed while waiting"
+                        )
+                    _pair_refresh_publication_ctimes(
+                        definition_stage,
+                        definition_identity,
+                        bundle_stage,
+                        bundle_tree,
+                        bindings,
+                        target=target,
+                        error=_v32_error,
+                    )
+                    live_clock = datetime.now(UTC)
+                    _pair_validate_publication_times(
+                        definition_stage,
+                        definition_identity,
+                        bundle_stage,
+                        bundle_tree,
+                        bindings,
+                        target=target,
+                        wall_clock=live_clock,
+                        require_live=True,
+                        error=_v32_error,
+                    )
+                    if (
+                        definition_stage.read_bytes() != staged_definition
+                        or _v32_tree_digest(bundle_stage) != staged_tree_digest
+                    ):
+                        raise _v32_error(
+                            "construction-master v32 bytes changed at publication"
+                        )
+
+                    _pair_make_directory_renameable(
+                        bundle_stage,
+                        bundle_identity,
+                        bindings,
+                        error=_v32_error,
+                    )
+                    promoted_bundle = _pair_promote_noreplace(
+                        bundle_stage,
+                        BUNDLE_PATH,
+                        bindings,
+                        directory=True,
+                        error=_v32_error,
+                    )
+                    if promoted_bundle != bundle_identity:
+                        raise _v32_error(
+                            "construction-master v32 bundle promotion identity differs"
+                        )
+                    _pair_freeze_directory(
+                        BUNDLE_PATH,
+                        bundle_identity,
+                        bindings,
+                        error=_v32_error,
+                    )
+                    promoted_definition = _pair_promote_noreplace(
+                        definition_stage,
+                        DEFINITION_PATH,
+                        bindings,
+                        directory=False,
+                        error=_v32_error,
+                    )
+                    if promoted_definition != definition_identity:
+                        raise _v32_error(
+                            "construction-master v32 definition promotion identity "
+                            "differs"
+                        )
+                    final_tree = _pair_tree_inventory(
+                        BUNDLE_PATH,
+                        bindings,
+                        error=_v32_error,
+                    )
+                    if final_tree != bundle_tree:
+                        raise _v32_error(
+                            "construction-master v32 final tree identity differs"
+                        )
+                    result = validate_construction_master_v32(
+                        BUNDLE_PATH,
+                        definition_path=DEFINITION_PATH,
+                        reproduce=False,
+                        allow_prospective_identity=False,
+                    )
+                    _pair_validate_publication_times(
+                        DEFINITION_PATH,
+                        definition_identity,
+                        BUNDLE_PATH,
+                        final_tree,
+                        bindings,
+                        target=target,
+                        wall_clock=datetime.now(UTC),
+                        require_live=True,
+                        error=_v32_error,
+                    )
+                    if completion_callback is not None:
+                        completion_callback(result)
+                    if (
+                        validate_construction_master_v32(
+                            BUNDLE_PATH,
+                            definition_path=DEFINITION_PATH,
+                            reproduce=False,
+                            allow_prospective_identity=False,
+                        )
+                        != result
+                        or _pair_entry_identity(
+                            DEFINITION_PATH,
+                            bindings,
+                            directory=False,
+                            error=_v32_error,
+                        )
+                        != definition_identity
+                        or _pair_tree_inventory(
+                            BUNDLE_PATH,
+                            bindings,
+                            error=_v32_error,
+                        )
+                        != final_tree
+                    ):
+                        raise _v32_error(
+                            "construction-master v32 changed during completion callback"
+                        )
+                    _pair_assert_parent_bindings(
+                        bindings,
+                        error=_v32_error,
+                        label="master publication completion callback",
+                    )
+                    completion_definition_identity = definition_identity
+                    completion_tree = final_tree
+                except BaseException as error:
+                    rollback(error)
+                    raise
+            _pair_assert_parent_bindings(
+                bindings,
+                error=_v32_error,
+                label="master publication lock cleanup",
+            )
+            if (
+                _pair_entry_identity(
+                    DEFINITION_PATH,
+                    bindings,
+                    directory=False,
+                    error=_v32_error,
+                )
+                != definition_identity
+                or _pair_tree_inventory(
+                    BUNDLE_PATH,
+                    bindings,
+                    error=_v32_error,
+                )
+                != final_tree
+            ):
+                raise _v32_error(
+                    "construction-master v32 changed during lock cleanup"
+                )
+        except BaseException as error:
+            # Lock cleanup is itself inside the rollback lifetime.
+            rollback(error)
+            raise
+        return result
 
 
 __all__ = [
