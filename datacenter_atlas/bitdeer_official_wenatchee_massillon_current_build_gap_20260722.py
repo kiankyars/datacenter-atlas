@@ -7,25 +7,26 @@ compact factual extracts. No open-seed or downstream integration is performed.
 
 from __future__ import annotations
 
-from contextlib import contextmanager
 import csv
-from dataclasses import dataclass
-from datetime import UTC, datetime, timedelta
+import hashlib
 import json
 import os
-from pathlib import Path
 import shutil
 import stat
 import tempfile
 import time
-from typing import Any, Iterator, Mapping, Sequence
+from collections.abc import Iterator, Mapping, Sequence
+from contextlib import contextmanager
+from dataclasses import dataclass
+from datetime import UTC, datetime, timedelta
+from pathlib import Path
+from typing import Any
 
 from . import global_official_builds_six_candidate_20260721 as publication
 from .curated_v11 import CuratedOfficialSourceAdapterV11
 from .database import initialize
 from .open_seed_v56 import tree_digest
 from .service import validate_database
-
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCES_ROOT = ROOT / "sources"
@@ -89,6 +90,14 @@ FOX_CREEK_PIN = (
     1_784_534_254_918_361_291,
     0o644,
 )
+FOX_CREEK_MTIME_NS = 1_784_494_008_917_990_810
+FOX_CREEK_BIRTHTIME_NS = 1_784_494_008_917_936_384
+FOX_CREEK_GIT_BLOB_SHA1 = "e51e6ddf266beb8e642c9790a8ea710623b2bf6c"
+FOX_CREEK_PROVENANCE_WITNESS_ID = (
+    "fox-creek-source-provenance-after-hard-link-ctime-incident-2026-07-24-v2"
+)
+FOX_CREEK_CTIME_INCIDENT_OBSERVED_NS = 1_784_930_560_401_323_499
+FOX_CREEK_CTIME_INCIDENT_OBSERVED_NLINK = 4
 
 _canonical = publication._canonical
 _sha256 = publication._sha256
@@ -633,28 +642,119 @@ def _planned_keys(
     return stable, evidence
 
 
-def _require_fox_creek_nonmutation() -> dict[str, Any]:
-    size, digest, ctime_ns, mode = FOX_CREEK_PIN
-    metadata = FOX_CREEK_SOURCE.stat(follow_symlinks=False)
+def _git_blob_sha1(raw: bytes) -> str:
+    header = f"blob {len(raw)}\0".encode("ascii")
+    return hashlib.sha1(header + raw).hexdigest()
+
+
+def _fox_creek_metadata(path: Path) -> dict[str, int]:
+    metadata = path.stat(follow_symlinks=False)
+    birthtime = getattr(metadata, "st_birthtime", None)
+    if birthtime is None:
+        raise RuntimeError("Fox Creek source birth time is unavailable")
+    return {
+        "birthtime_ns": round(birthtime * 1_000_000_000),
+        "ctime_ns": metadata.st_ctime_ns,
+        "mode": stat.S_IMODE(metadata.st_mode),
+        "mtime_ns": metadata.st_mtime_ns,
+        "nlink": metadata.st_nlink,
+        "raw_mode": metadata.st_mode,
+        "size": metadata.st_size,
+    }
+
+
+def _require_fox_creek_provenance_v2() -> dict[str, Any]:
+    size, digest, prior_ctime_ns, mode = FOX_CREEK_PIN
+    if FOX_CREEK_SOURCE.is_symlink():
+        raise RuntimeError("frozen prior Fox Creek source changed")
+    metadata = _fox_creek_metadata(FOX_CREEK_SOURCE)
+    raw = FOX_CREEK_SOURCE.read_bytes()
     if (
-        FOX_CREEK_SOURCE.is_symlink()
-        or not FOX_CREEK_SOURCE.is_file()
-        or metadata.st_size != size
-        or _sha256(FOX_CREEK_SOURCE) != digest
-        or metadata.st_ctime_ns != ctime_ns
-        or stat.S_IMODE(metadata.st_mode) != mode
+        not stat.S_ISREG(metadata["raw_mode"])
+        or metadata["size"] != size
+        or _sha256_bytes(raw) != digest
+        or metadata["mode"] != mode
+        or metadata["mtime_ns"] != FOX_CREEK_MTIME_NS
+        or metadata["birthtime_ns"] != FOX_CREEK_BIRTHTIME_NS
+        or _git_blob_sha1(raw) != FOX_CREEK_GIT_BLOB_SHA1
     ):
         raise RuntimeError("frozen prior Fox Creek source changed")
+
+    for path, pin in V92_PINS.items():
+        _pin(path, pin)
+    if tree_digest(V92_RELEASE) != V92_TREE_SHA256:
+        raise RuntimeError("v92 release tree differs")
     definition = json.loads(V92_DEFINITION.read_text())
+    selected_input = {
+        "path": f"sources/{FOX_CREEK_SOURCE.name}",
+        "sha256": digest,
+    }
     matches = [
         row
         for row in definition.get("curated_inputs", [])
-        if row.get("path") == f"sources/{FOX_CREEK_SOURCE.name}"
+        if row.get("path") == selected_input["path"]
     ]
-    if matches != [
-        {"path": f"sources/{FOX_CREEK_SOURCE.name}", "sha256": digest}
-    ]:
+    if matches != [selected_input]:
         raise RuntimeError("v92 Fox Creek input witness changed")
+
+    return {
+        "schema_version": "2.0",
+        "witness_id": FOX_CREEK_PROVENANCE_WITNESS_ID,
+        "status": "accepted_metadata_incident_no_content_change",
+        "source_identity": {
+            "path": selected_input["path"],
+            "bytes": size,
+            "sha256": digest,
+            "mode": f"{mode:04o}",
+            "mtime_ns": FOX_CREEK_MTIME_NS,
+            "birthtime_ns": FOX_CREEK_BIRTHTIME_NS,
+            "git_blob_sha1": FOX_CREEK_GIT_BLOB_SHA1,
+        },
+        "release_identity": {
+            "definition_path": str(V92_DEFINITION.relative_to(ROOT)),
+            "definition_sha256": V92_PINS[V92_DEFINITION][1],
+            "release_path": str(V92_RELEASE.relative_to(ROOT)),
+            "release_tree_sha256": V92_TREE_SHA256,
+            "selected_input": selected_input,
+        },
+        "incident": {
+            "kind": "ctime_changed_when_retained_temporary_hard_link_was_removed",
+            "prior_ctime_witness_ns": prior_ctime_ns,
+            "observed_ctime_ns": FOX_CREEK_CTIME_INCIDENT_OBSERVED_NS,
+            "remaining_link_count_at_observation": (
+                FOX_CREEK_CTIME_INCIDENT_OBSERVED_NLINK
+            ),
+            "classification": "inode_metadata_event_not_content_mutation",
+            "content_or_semantic_mutation": False,
+        },
+        "integrity_contract": {
+            "required_signals": [
+                "ordinary_regular_file",
+                "bytes",
+                "sha256",
+                "mode",
+                "mtime_ns",
+                "birthtime_ns",
+                "git_blob_sha1",
+                "v92_definition_sha256",
+                "v92_release_tree_sha256",
+                "v92_selected_input",
+            ],
+            "observational_not_nonmutation_signals": ["ctime_ns", "nlink"],
+            "future_staging_policy": "fresh_exclusive_single_link_regular_inodes",
+        },
+        "current_inode_observation": {
+            "ctime_ns": metadata["ctime_ns"],
+            "nlink": metadata["nlink"],
+        },
+    }
+
+
+def _require_fox_creek_nonmutation() -> dict[str, Any]:
+    """Reproduce the frozen v1 payload after validating its v2 successor witness."""
+
+    _require_fox_creek_provenance_v2()
+    size, digest, ctime_ns, mode = FOX_CREEK_PIN
     return {
         "path": f"sources/{FOX_CREEK_SOURCE.name}",
         "bytes": size,
@@ -998,6 +1098,7 @@ def _validate_sources(
             or not path.is_file()
             or path.read_bytes() != _canonical(expected[name])
             or stat.S_IMODE(path.stat().st_mode) != wanted_mode
+            or path.stat(follow_symlinks=False).st_nlink != 1
         ):
             raise RuntimeError(f"Bitdeer source differs: {name}")
     documents = list(expected.values())
@@ -1131,6 +1232,7 @@ def validate_artifact(
         entry.is_symlink()
         or not entry.is_file()
         or stat.S_IMODE(entry.stat().st_mode) != wanted_member
+        or entry.stat(follow_symlinks=False).st_nlink != 1
         for entry in entries.values()
     ):
         raise RuntimeError("Bitdeer artifact member contract differs")
@@ -1184,14 +1286,33 @@ def validate_artifact(
     return manifest
 
 
+def _write_fresh_stage_file(path: Path, raw: bytes) -> None:
+    flags = os.O_CREAT | os.O_EXCL | os.O_WRONLY
+    if hasattr(os, "O_NOFOLLOW"):
+        flags |= os.O_NOFOLLOW
+    descriptor = os.open(path, flags, 0o600)
+    try:
+        view = memoryview(raw)
+        while view:
+            written = os.write(descriptor, view)
+            if written <= 0:
+                raise RuntimeError(f"short Bitdeer stage write: {path}")
+            view = view[written:]
+        os.fchmod(descriptor, 0o600)
+        os.fsync(descriptor)
+        metadata = os.fstat(descriptor)
+        if not stat.S_ISREG(metadata.st_mode) or metadata.st_nlink != 1:
+            raise RuntimeError(f"Bitdeer stage file is not a fresh inode: {path}")
+    finally:
+        os.close(descriptor)
+
+
 def _write_source_stage(
     stage: Path, documents: Mapping[str, Mapping[str, Any]]
 ) -> None:
     for name in SOURCE_FILENAMES:
         path = stage / name
-        path.write_bytes(_canonical(documents[name]))
-        path.chmod(0o600)
-        _fsync_regular(path)
+        _write_fresh_stage_file(path, _canonical(documents[name]))
     _fsync_directory(stage)
 
 
@@ -1201,9 +1322,7 @@ def _write_artifact_stage(
     payloads = _artifact_documents(recorded_at, documents)
     for name in CONTENT_FILES:
         path = stage / name
-        path.write_bytes(payloads[name])
-        path.chmod(0o600)
-        _fsync_regular(path)
+        _write_fresh_stage_file(path, payloads[name])
     rows = [
         {
             "bytes": (stage / name).stat().st_size,
@@ -1232,13 +1351,11 @@ def _write_artifact_stage(
         "release_integration": "none",
     }
     manifest_path = stage / "manifest.json"
-    manifest_path.write_bytes(_canonical(manifest))
-    manifest_path.chmod(0o600)
-    _fsync_regular(manifest_path)
+    _write_fresh_stage_file(manifest_path, _canonical(manifest))
     sidecar = stage / "manifest.sha256"
-    sidecar.write_text(f"{_sha256(manifest_path)}  manifest.json\n")
-    sidecar.chmod(0o600)
-    _fsync_regular(sidecar)
+    _write_fresh_stage_file(
+        sidecar, f"{_sha256(manifest_path)}  manifest.json\n".encode()
+    )
     stage.chmod(0o700)
     _fsync_directory(stage)
 

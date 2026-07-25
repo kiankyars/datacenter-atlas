@@ -1,10 +1,11 @@
 from __future__ import annotations
 
-from datetime import UTC, datetime, timedelta
 import json
-from pathlib import Path
+import os
 import shutil
 import stat
+from datetime import UTC, datetime, timedelta
+from pathlib import Path
 
 import pytest
 
@@ -131,6 +132,54 @@ def test_v92_collision_and_fox_creek_nonmutation_witnesses() -> None:
     assert fox["ctime_ns"] == tranche.FOX_CREEK_PIN[2]
     assert fox["mutated"] is False
     assert fox["new_physical_observation_added"] is False
+    provenance = tranche._require_fox_creek_provenance_v2()
+    assert provenance["schema_version"] == "2.0"
+    assert provenance["witness_id"] == tranche.FOX_CREEK_PROVENANCE_WITNESS_ID
+    assert provenance["status"] == "accepted_metadata_incident_no_content_change"
+    assert provenance["source_identity"] == {
+        "path": f"sources/{tranche.FOX_CREEK_SOURCE.name}",
+        "bytes": tranche.FOX_CREEK_PIN[0],
+        "sha256": tranche.FOX_CREEK_PIN[1],
+        "mode": "0644",
+        "mtime_ns": tranche.FOX_CREEK_MTIME_NS,
+        "birthtime_ns": tranche.FOX_CREEK_BIRTHTIME_NS,
+        "git_blob_sha1": tranche.FOX_CREEK_GIT_BLOB_SHA1,
+    }
+    assert provenance["release_identity"]["release_tree_sha256"] == (
+        tranche.V92_TREE_SHA256
+    )
+    assert provenance["incident"]["prior_ctime_witness_ns"] == (
+        tranche.FOX_CREEK_PIN[2]
+    )
+    assert provenance["incident"]["content_or_semantic_mutation"] is False
+    assert provenance["integrity_contract"][
+        "observational_not_nonmutation_signals"
+    ] == ["ctime_ns", "nlink"]
+    assert provenance["integrity_contract"]["future_staging_policy"] == (
+        "fresh_exclusive_single_link_regular_inodes"
+    )
+
+
+def test_fox_creek_ctime_and_link_count_are_observations(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    actual = tranche._fox_creek_metadata(tranche.FOX_CREEK_SOURCE)
+    changed_observation = {
+        **actual,
+        "ctime_ns": actual["ctime_ns"] + 1,
+        "nlink": actual["nlink"] + 1,
+    }
+    monkeypatch.setattr(
+        tranche,
+        "_fox_creek_metadata",
+        lambda _path: changed_observation,
+    )
+    witness = tranche._require_fox_creek_provenance_v2()
+    assert witness["current_inode_observation"] == {
+        "ctime_ns": changed_observation["ctime_ns"],
+        "nlink": changed_observation["nlink"],
+    }
+    assert witness["source_identity"]["sha256"] == tranche.FOX_CREEK_PIN[1]
 
 
 def test_private_stage_is_hidden_and_replays_offline() -> None:
@@ -187,6 +236,8 @@ def test_chmod_freeze_changes_only_staged_publication_members(tmp_path) -> None:
         stat.S_IMODE(path.stat().st_mode) == 0o600
         for path in source_stage.iterdir()
     )
+    assert all(path.stat().st_nlink == 1 for path in source_stage.iterdir())
+    assert all(path.stat().st_nlink == 1 for path in artifact_stage.iterdir())
     assert stat.S_IMODE(artifact_stage.stat().st_mode) == 0o700
     prepared = tranche._Prepared(
         source_stage, artifact_stage, "2000-01-01T00:00:00Z"
@@ -202,6 +253,20 @@ def test_chmod_freeze_changes_only_staged_publication_members(tmp_path) -> None:
     )
     assert stat.S_IMODE(artifact_stage.stat().st_mode) == 0o555
     assert tranche._require_fox_creek_nonmutation()["ctime_ns"] == tranche.FOX_CREEK_PIN[2]
+
+
+def test_hard_linked_source_stage_is_rejected(tmp_path) -> None:
+    source_stage = tmp_path / "sources"
+    source_stage.mkdir()
+    tranche._write_source_stage(source_stage, tranche.expected_source_documents())
+    linked = tmp_path / "linked-source.json"
+    target = source_stage / tranche.SOURCE_FILENAMES[0]
+    os.link(target, linked)
+    with pytest.raises(RuntimeError, match="Bitdeer source differs"):
+        tranche._validate_sources(
+            tranche._source_paths(source_stage),
+            require_frozen=False,
+        )
 
 
 def test_partial_final_collision_fails_closed(tmp_path, monkeypatch) -> None:
