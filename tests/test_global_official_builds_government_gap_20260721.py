@@ -114,9 +114,10 @@ class GovernmentGapArtifactTests(unittest.TestCase):
 
         self.assertFalse(tranche.CAPTURE_ORIGIN.exists())
         self.assertEqual(TRASH, tranche.CAPTURE_TRASH)
-        tranche._validate_capture_directory(TRASH)
-        self.assertEqual(tree_digest(TRASH), tranche.CAPTURE_TREE_SHA256)
-        self.assertEqual(stat.S_IMODE(TRASH.stat().st_mode), 0o700)
+        capture = tranche.resolve_external_capture(tranche.CAPTURE_ORIGIN, TRASH)
+        tranche._validate_capture_directory(capture)
+        self.assertEqual(tree_digest(capture), tranche.CAPTURE_TREE_SHA256)
+        self.assertEqual(stat.S_IMODE(capture.stat().st_mode), 0o700)
 
     def test_all_three_candidates_fail_closed_without_normalized_rows(self) -> None:
         assessment = json.loads((ARTIFACT / "candidate-assessment.json").read_text())

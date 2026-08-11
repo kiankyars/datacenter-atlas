@@ -233,30 +233,27 @@ def test_epoch_fairwater_remains_nearby_only_and_unmerged() -> None:
 
 
 def test_capture_bundle_is_exact_frozen_private_and_primary_only() -> None:
+    capture = tranche.resolve_external_capture(tranche.CAPTURE_ORIGIN)
     tranche._validate_capture_directory()
     assert len(tranche.CAPTURE_FILE_PINS) == tranche.CAPTURE_FILE_COUNT == 4
     assert sum(
         size for size, _digest in tranche.CAPTURE_FILE_PINS.values()
     ) == tranche.CAPTURE_TOTAL_BYTES
-    assert tranche.tree_digest(tranche.CAPTURE_ORIGIN) == (
+    assert tranche.tree_digest(capture) == (
         tranche.CAPTURE_TREE_SHA256
     )
-    assert stat.S_IMODE(tranche.CAPTURE_ORIGIN.stat().st_mode) == 0o555
+    assert stat.S_IMODE(capture.stat().st_mode) == 0o555
     assert all(
         stat.S_IMODE(path.stat().st_mode) == 0o444
-        for path in tranche.CAPTURE_ORIGIN.iterdir()
+        for path in capture.iterdir()
     )
-    local_body = (
-        tranche.CAPTURE_ORIGIN / "mount-pleasant.body"
-    ).read_bytes()
+    local_body = (capture / "mount-pleasant.body").read_bytes()
     assert (
         b"Preliminary earthwork is underway to prepare the site for future "
         b"construction."
     ) in local_body
     assert b"Starting on or around July 13, 2026" in local_body
-    june_body = (
-        tranche.CAPTURE_ORIGIN / "mount-pleasant-june-news.body"
-    ).read_bytes()
+    june_body = (capture / "mount-pleasant-june-news.body").read_bytes()
     assert (
         b"foundation installation, steel erection and underground utility "
         b"placement"
@@ -431,7 +428,7 @@ def test_artifact_is_compact_facts_and_hashes_not_raw_capture(
 
 def test_mutated_capture_copy_fails_closed(tmp_path: Path) -> None:
     copied = tmp_path / "capture"
-    shutil.copytree(tranche.CAPTURE_ORIGIN, copied)
+    shutil.copytree(tranche.resolve_external_capture(tranche.CAPTURE_ORIGIN), copied)
     for path in copied.iterdir():
         path.chmod(0o444)
     copied.chmod(0o555)

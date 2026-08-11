@@ -22,6 +22,7 @@ import tempfile
 import time
 from typing import Any, Iterator, Mapping
 
+from .external_captures import resolve_external_capture
 from . import global_official_builds_next_tranche_20260721 as publication
 from .open_seed_v56 import tree_digest
 
@@ -351,16 +352,13 @@ def _sha256(path: Path) -> str:
 
 def _capture_root() -> Path:
     origin_exists = CAPTURE_ORIGIN.exists()
-    trash_exists = CAPTURE_TRASH.exists()
-    if origin_exists and trash_exists:
+    if origin_exists and CAPTURE_TRASH.exists():
         raise UnresolvedFourArtifactError(
             "capture origin and Trash destination both exist"
         )
     if origin_exists:
         return CAPTURE_ORIGIN
-    if trash_exists:
-        return CAPTURE_TRASH
-    raise UnresolvedFourArtifactError("raw capture directory is absent")
+    return resolve_external_capture(CAPTURE_TRASH)
 
 
 def _ordinary_file_pin(path: Path) -> tuple[int, str]:
@@ -984,8 +982,9 @@ def validate_artifact(
     if require_live:
         if now.astimezone(UTC) < target:
             raise UnresolvedFourArtifactError("artifact recorded_at is not live")
-        if CAPTURE_ORIGIN.exists() or not CAPTURE_TRASH.exists():
+        if CAPTURE_ORIGIN.exists():
             raise UnresolvedFourArtifactError("raw capture was not moved to Trash")
+        resolve_external_capture(CAPTURE_TRASH)
         _assert_final_ctimes((path,), target)
     return manifest
 
@@ -1085,7 +1084,7 @@ def _move_capture_to_trash() -> None:
     if CAPTURE_ORIGIN.exists():
         _validate_capture_directory(CAPTURE_ORIGIN)
         _promote_noreplace(CAPTURE_ORIGIN, CAPTURE_TRASH)
-    _validate_capture_directory(CAPTURE_TRASH)
+    _validate_capture_directory(resolve_external_capture(CAPTURE_ORIGIN, CAPTURE_TRASH))
 
 
 def _publish(prepared: _PreparedPublication) -> None:
@@ -1131,7 +1130,7 @@ def build(*, recorded_at: str | None = None) -> dict[str, Any]:
         finally:
             if not published:
                 _cleanup_prepared(prepared)
-    _validate_capture_directory(CAPTURE_TRASH)
+    _validate_capture_directory(resolve_external_capture(CAPTURE_ORIGIN, CAPTURE_TRASH))
     _validate_v84_nonmutation()
     manifest = validate_artifact(ARTIFACT)
     return {

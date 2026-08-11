@@ -48,7 +48,7 @@ def test_reviewed_stages_and_capture_are_exact_immutable_inputs() -> None:
     assert publication.tree_digest(publication.REVIEWED_ARTIFACT_STAGE) == (
         publication.REVIEWED_ARTIFACT_TREE_SHA256
     )
-    assert publication.tree_digest(publication.RAW_CAPTURE) == (
+    assert publication.tree_digest(publication._raw_capture()) == (
         publication.RAW_CAPTURE_TREE_SHA256
     )
     assert set(publication.REVIEWED_SOURCE_PINS) == set(publication.SOURCE_FILENAMES)
@@ -56,7 +56,7 @@ def test_reviewed_stages_and_capture_are_exact_immutable_inputs() -> None:
     assert len(publication.RAW_CAPTURE_PINS) == 9
     assert stat.S_IMODE(publication.REVIEWED_SOURCE_STAGE.stat().st_mode) == 0o700
     assert stat.S_IMODE(publication.REVIEWED_ARTIFACT_STAGE.stat().st_mode) == (0o700)
-    assert stat.S_IMODE(publication.RAW_CAPTURE.stat().st_mode) == 0o555
+    assert stat.S_IMODE(publication._raw_capture().stat().st_mode) == 0o555
     publication._assert_reviewed_input_identities(identities)
 
 
@@ -346,13 +346,13 @@ def test_preflight_never_moves_reviewed_inputs(
     before = (
         publication._identity(publication.REVIEWED_SOURCE_STAGE, directory=True),
         publication._identity(publication.REVIEWED_ARTIFACT_STAGE, directory=True),
-        publication._identity(publication.RAW_CAPTURE, directory=True),
+        publication._identity(publication._raw_capture(), directory=True),
     )
     publication.preflight(recorded_at=_future(60))
     after = (
         publication._identity(publication.REVIEWED_SOURCE_STAGE, directory=True),
         publication._identity(publication.REVIEWED_ARTIFACT_STAGE, directory=True),
-        publication._identity(publication.RAW_CAPTURE, directory=True),
+        publication._identity(publication._raw_capture(), directory=True),
     )
     assert after == before
     assert not publication.ARTIFACT.exists()

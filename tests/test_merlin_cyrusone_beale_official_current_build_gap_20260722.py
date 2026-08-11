@@ -90,9 +90,7 @@ def test_wood_tulsa_and_pima_preserve_temporal_rows_without_extrapolation() -> N
 
 def test_capture_and_collision_witnesses_are_closed_and_pinned() -> None:
     directory = (
-        tranche.CAPTURE_ORIGIN
-        if tranche.CAPTURE_ORIGIN.exists()
-        else tranche.CAPTURE_TRASH
+        tranche.resolve_external_capture(tranche.CAPTURE_ORIGIN, tranche.CAPTURE_TRASH)
     )
     tranche._validate_capture_directory(directory)
     assert len(tranche.CAPTURES) == 15

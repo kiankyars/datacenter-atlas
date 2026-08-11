@@ -131,9 +131,7 @@ def test_evidence_has_exact_body_and_header_lineage(
 
 def test_raw_capture_is_closed_exact_and_includes_both_403_headers() -> None:
     directory = (
-        tranche.CAPTURE_ORIGIN
-        if tranche.CAPTURE_ORIGIN.exists()
-        else tranche.CAPTURE_TRASH
+        tranche.resolve_external_capture(tranche.CAPTURE_ORIGIN, tranche.CAPTURE_TRASH)
     )
     tranche._validate_capture_directory(directory)
     assert len(tranche.CAPTURE_FILE_PINS) == 8

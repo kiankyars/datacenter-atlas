@@ -153,6 +153,7 @@ class EuropeLatamTemporalCorrectionTests(unittest.TestCase):
         self.assertEqual(manifest["downstream_product_integration"], "none")
 
     def test_completed_writeout_mtime_not_birth_controls_retrieved_at(self) -> None:
+        capture = correction.resolve_external_capture(TRASH)
         inventory = json.loads((V2 / "retrieval-inventory.json").read_text())
         rows = {row["request_id"]: row for row in inventory["controlled_http_requests"]}
         expected = {
@@ -189,7 +190,7 @@ class EuropeLatamTemporalCorrectionTests(unittest.TestCase):
             self.assertEqual(row["retrieved_at"], completed_at)
             self.assertEqual(row["response_http_date"], server_date)
             self.assertFalse(row["response_http_date_used_as_retrieved_at"])
-            writeout = TRASH / f"{request_id}.writeout"
+            writeout = capture / f"{request_id}.writeout"
             actual_completed = datetime.fromtimestamp(
                 writeout.stat().st_mtime, timezone.utc
             ).replace(microsecond=0)

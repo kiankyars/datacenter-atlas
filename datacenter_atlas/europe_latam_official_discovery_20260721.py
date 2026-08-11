@@ -14,6 +14,7 @@ import tempfile
 import time
 from typing import Any, Iterator, Mapping
 
+from .external_captures import resolve_external_capture
 from .curated_v11 import CuratedOfficialSourceAdapterV11
 from .database import initialize
 from .open_seed_v56 import discard_release_stage, promote_noreplace, tree_digest
@@ -298,6 +299,9 @@ def _validate_sources() -> list[dict[str, Any]]:
 def _validate_captures(capture_directory: Path) -> None:
     if not capture_directory.is_dir() or capture_directory.is_symlink():
         raise SystemExit(f"capture directory is absent or unsafe: {capture_directory}")
+    if stat.S_IMODE(capture_directory.stat().st_mode) != 0o700:
+        raise SystemExit("capture directory mode differs")
+    packaged_capture = capture_directory not in (CAPTURE_ORIGIN, CAPTURE_TRASH)
     expected_names = {
         f"{request_id}.{suffix}"
         for request_id in CAPTURE_SPECS
@@ -308,7 +312,10 @@ def _validate_captures(capture_directory: Path) -> None:
         raise SystemExit("capture directory file closure differs")
     for request_id, spec in CAPTURE_SPECS.items():
         for suffix in ("body", "headers", "writeout"):
-            _pin(capture_directory / f"{request_id}.{suffix}", spec[suffix])
+            carrier = capture_directory / f"{request_id}.{suffix}"
+            _pin(carrier, spec[suffix])
+            if stat.S_IMODE(carrier.stat().st_mode) != 0o644:
+                raise SystemExit(f"capture carrier mode differs: {carrier.name}")
         writeout = json.loads(
             (capture_directory / f"{request_id}.writeout").read_text(encoding="utf-8")
         )
@@ -335,9 +342,13 @@ def _validate_captures(capture_directory: Path) -> None:
         if actual_writeout != expected_writeout:
             raise SystemExit(f"capture writeout differs: {request_id}")
         body = capture_directory / f"{request_id}.body"
-        completion = datetime.fromtimestamp(body.stat().st_birthtime, timezone.utc)
-        if completion.replace(microsecond=0) != _parse_utc(spec["retrieved_at"]):
-            raise SystemExit(f"capture completion timestamp differs: {request_id}")
+        if not packaged_capture:
+            completion = datetime.fromtimestamp(
+                body.stat().st_birthtime,
+                timezone.utc,
+            )
+            if completion.replace(microsecond=0) != _parse_utc(spec["retrieved_at"]):
+                raise SystemExit(f"capture completion timestamp differs: {request_id}")
 
 
 def _capture_inventory(recorded_at: str) -> dict[str, Any]:
@@ -797,7 +808,9 @@ def build() -> dict[str, Any]:
             if CAPTURE_ORIGIN.exists():
                 _validate_captures(CAPTURE_ORIGIN)
                 promote_noreplace(CAPTURE_ORIGIN, CAPTURE_TRASH)
-            _validate_captures(CAPTURE_TRASH)
+            _validate_captures(
+                resolve_external_capture(CAPTURE_ORIGIN, CAPTURE_TRASH)
+            )
             recorded_at = _capture_after_stage_birth(stage)
             if any(
                 _parse_utc(spec["retrieved_at"]) > _parse_utc(recorded_at)

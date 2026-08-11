@@ -173,9 +173,7 @@ def test_each_evidence_record_has_exact_body_and_header_lineage(
 
 def test_raw_capture_is_closed_and_exact() -> None:
     directory = (
-        tranche.CAPTURE_ORIGIN
-        if tranche.CAPTURE_ORIGIN.exists()
-        else tranche.CAPTURE_TRASH
+        tranche.resolve_external_capture(tranche.CAPTURE_ORIGIN, tranche.CAPTURE_TRASH)
     )
     tranche._validate_capture_directory(directory)
     assert len(tranche.CAPTURE_FILE_PINS) == 26

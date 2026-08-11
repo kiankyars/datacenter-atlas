@@ -285,19 +285,20 @@ def test_epoch_chester_is_exactly_witnessed_and_never_merged() -> None:
 
 
 def test_capture_bundle_is_exact_frozen_private_and_retains_404() -> None:
+    capture = tranche.resolve_external_capture(tranche.CAPTURE_ORIGIN)
     tranche._validate_capture_directory()
     assert len(tranche.CAPTURES) == 9
     assert len(tranche.CAPTURE_FILE_PINS) == tranche.CAPTURE_FILE_COUNT == 20
     assert sum(
         size for size, _digest in tranche.CAPTURE_FILE_PINS.values()
     ) == tranche.CAPTURE_TOTAL_BYTES
-    assert tranche.tree_digest(tranche.CAPTURE_ORIGIN) == (
+    assert tranche.tree_digest(capture) == (
         tranche.CAPTURE_TREE_SHA256
     )
-    assert stat.S_IMODE(tranche.CAPTURE_ORIGIN.stat().st_mode) == 0o555
+    assert stat.S_IMODE(capture.stat().st_mode) == 0o555
     assert all(
         stat.S_IMODE(path.stat().st_mode) == 0o444
-        for path in tranche.CAPTURE_ORIGIN.iterdir()
+        for path in capture.iterdir()
     )
     inventory = tranche._retrieval_inventory(RECORDED_AT)
     assert inventory["successful_http_200_body_captures"] == 9
@@ -466,7 +467,7 @@ def test_artifact_is_compact_facts_and_hashes_not_raw_capture(
 
 def test_mutated_capture_copy_fails_closed(tmp_path: Path) -> None:
     copied = tmp_path / "capture"
-    shutil.copytree(tranche.CAPTURE_ORIGIN, copied)
+    shutil.copytree(tranche.resolve_external_capture(tranche.CAPTURE_ORIGIN), copied)
     for path in copied.iterdir():
         path.chmod(0o444)
     copied.chmod(0o555)

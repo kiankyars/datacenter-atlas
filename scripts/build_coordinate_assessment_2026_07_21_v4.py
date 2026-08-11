@@ -22,8 +22,14 @@ import tempfile
 import time
 from typing import Any, Mapping
 
+REPOSITORY_ROOT = Path(__file__).resolve().parents[1]
+if str(REPOSITORY_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPOSITORY_ROOT))
 
-ROOT = Path(__file__).resolve().parents[1]
+from datacenter_atlas.external_captures import resolve_external_capture
+
+
+ROOT = REPOSITORY_ROOT
 PUBLICATION_ROOT = ROOT / "source_artifacts"
 ARTIFACT_ID = "site-coordinate-assessment-2026-07-21-v4"
 ARTIFACT_DIR = PUBLICATION_ROOT / ARTIFACT_ID
@@ -39,6 +45,79 @@ CAPTURE_TOTAL_BYTES = 1_692_764
 CAPTURE_TREE_SHA256 = (
     "1c84a37eaa06a0f04a72d6c1b4f7e62c7ce00645fcb79a1df2463598db14beef"
 )
+
+# Kopia preserves modification times but a restored inode necessarily receives
+# a new macOS birth time. These pins reproduce the frozen v4 inventory without
+# pretending that the package inode birth is the historical acquisition birth.
+CAPTURE_MTIME_EPOCHS: Mapping[str, int] = {
+    "equinix_ld14.body": 1_784_636_757,
+    "equinix_ld14.headers": 1_784_636_757,
+    "equinix_ld14.writeout": 1_784_636_757,
+    "equinix_os3.body": 1_784_636_755,
+    "equinix_os3.headers": 1_784_636_755,
+    "equinix_os3.writeout": 1_784_636_755,
+    "equinix_zh4.body": 1_784_636_756,
+    "equinix_zh4.headers": 1_784_636_756,
+    "equinix_zh4.writeout": 1_784_636_756,
+    "japan_gsi_os3.body": 1_784_636_756,
+    "japan_gsi_os3.headers": 1_784_636_756,
+    "japan_gsi_os3.writeout": 1_784_636_756,
+    "nextdc_d2.body": 1_784_636_752,
+    "nextdc_d2.headers": 1_784_636_752,
+    "nextdc_d2.writeout": 1_784_636_752,
+    "nextdc_s4.body": 1_784_636_755,
+    "nextdc_s4.headers": 1_784_636_755,
+    "nextdc_s4.writeout": 1_784_636_755,
+    "nextdc_sc2.body": 1_784_636_750,
+    "nextdc_sc2.headers": 1_784_636_750,
+    "nextdc_sc2.writeout": 1_784_636_750,
+    "nsw_s4_pda.body": 1_784_636_755,
+    "nsw_s4_pda.headers": 1_784_636_755,
+    "nsw_s4_pda.writeout": 1_784_636_755,
+    "nsw_s4_project.body": 1_784_636_754,
+    "nsw_s4_project.headers": 1_784_636_754,
+    "nsw_s4_project.writeout": 1_784_636_754,
+    "nt_d2_planning.body": 1_784_636_750,
+    "nt_d2_planning.headers": 1_784_636_750,
+    "nt_d2_planning.writeout": 1_784_636_750,
+    "nt_d2_survey_plan.body": 1_784_636_752,
+    "nt_d2_survey_plan.headers": 1_784_636_751,
+    "nt_d2_survey_plan.writeout": 1_784_636_752,
+    "ntlis_d2_lot11310_featureinfo.body": 1_784_636_816,
+    "ntlis_d2_lot11310_featureinfo.headers": 1_784_636_816,
+    "ntlis_d2_lot11310_featureinfo.writeout": 1_784_636_816,
+    "ntlis_wms_capabilities.body": 1_784_636_789,
+    "ntlis_wms_capabilities.headers": 1_784_636_789,
+    "ntlis_wms_capabilities.writeout": 1_784_636_789,
+    "ntlis_wms_capabilities_http.body": 1_784_636_800,
+    "ntlis_wms_capabilities_http.headers": 1_784_636_799,
+    "ntlis_wms_capabilities_http.writeout": 1_784_636_800,
+    "qld_sc2_da.body": 1_784_636_750,
+    "qld_sc2_da.headers": 1_784_636_750,
+    "qld_sc2_da.writeout": 1_784_636_750,
+    "qld_sc2_parcel.body": 1_784_636_749,
+    "qld_sc2_parcel.headers": 1_784_636_749,
+    "qld_sc2_parcel.writeout": 1_784_636_749,
+    "swiss_zh4.body": 1_784_636_756,
+    "swiss_zh4.headers": 1_784_636_756,
+    "swiss_zh4.writeout": 1_784_636_756,
+    "uk_ld14_report.body": 1_784_636_757,
+    "uk_ld14_report.headers": 1_784_636_757,
+    "uk_ld14_report.writeout": 1_784_636_757,
+}
+CAPTURE_BIRTH_EPOCH_OVERRIDES: Mapping[str, int] = {
+    "japan_gsi_os3.headers": 1_784_636_755,
+    "nsw_s4_pda.headers": 1_784_636_754,
+    "nsw_s4_project.headers": 1_784_636_752,
+    "nt_d2_survey_plan.body": 1_784_636_751,
+    "nt_d2_survey_plan.headers": 1_784_636_750,
+    "ntlis_d2_lot11310_featureinfo.headers": 1_784_636_814,
+    "ntlis_wms_capabilities.headers": 1_784_636_788,
+    "ntlis_wms_capabilities_http.body": 1_784_636_799,
+    "qld_sc2_da.headers": 1_784_636_749,
+    "qld_sc2_parcel.headers": 1_784_636_748,
+    "uk_ld14_report.headers": 1_784_636_756,
+}
 
 BASE_DEFINITION = ROOT / "sources/open-seed-2026-07-21-v71.json"
 BASE_DEFINITION_BYTES = 86_839
@@ -258,20 +337,29 @@ def _capture_root() -> Path:
         for path in (CAPTURE_INPUT_PATH, CAPTURE_TRASH_PATH)
         if path.exists() or path.is_symlink()
     ]
-    if len(roots) != 1:
+    if len(roots) > 1:
         raise CoordinateAssessmentV4Error(
             "exactly one private or preserved capture root must exist"
         )
-    root = roots[0]
+    root = (
+        roots[0]
+        if roots
+        else resolve_external_capture(CAPTURE_INPUT_PATH, CAPTURE_TRASH_PATH)
+    )
     if root.is_symlink() or not root.is_dir():
         raise CoordinateAssessmentV4Error("capture root must be an ordinary directory")
     return root
 
 
 def _capture_rows(root: Path) -> list[dict[str, Any]]:
+    if stat.S_IMODE(root.stat().st_mode) != 0o700:
+        raise CoordinateAssessmentV4Error("capture root mode differs")
+    packaged_capture = root not in (CAPTURE_INPUT_PATH, CAPTURE_TRASH_PATH)
     paths = sorted(path for path in root.iterdir() if path.is_file())
     if len(paths) != CAPTURE_FILE_COUNT or any(path.is_symlink() for path in paths):
         raise CoordinateAssessmentV4Error("capture file inventory differs")
+    if {path.name for path in paths} != set(CAPTURE_MTIME_EPOCHS):
+        raise CoordinateAssessmentV4Error("capture timestamp inventory differs")
     total = 0
     closure = bytearray()
     rows: list[dict[str, Any]] = []
@@ -279,6 +367,22 @@ def _capture_rows(root: Path) -> list[dict[str, Any]]:
         raw = path.read_bytes()
         metadata = path.stat(follow_symlinks=False)
         digest = _sha256(raw)
+        expected_mtime = CAPTURE_MTIME_EPOCHS[path.name]
+        expected_birth = CAPTURE_BIRTH_EPOCH_OVERRIDES.get(
+            path.name,
+            expected_mtime,
+        )
+        if (
+            int(metadata.st_mtime) != expected_mtime
+            or stat.S_IMODE(metadata.st_mode) != 0o644
+            or (
+                not packaged_capture
+                and int(metadata.st_birthtime) != expected_birth
+            )
+        ):
+            raise CoordinateAssessmentV4Error(
+                f"capture timestamp or mode differs: {path.name}"
+            )
         total += len(raw)
         closure.extend(f"{digest}  ./{path.name}\n".encode())
         rows.append(
@@ -286,7 +390,7 @@ def _capture_rows(root: Path) -> list[dict[str, Any]]:
                 "capture_name": path.name,
                 "bytes": len(raw),
                 "sha256": digest,
-                "birth_epoch": int(metadata.st_birthtime),
+                "birth_epoch": expected_birth,
                 "mtime_epoch": int(metadata.st_mtime),
             }
         )

@@ -321,8 +321,9 @@ class GlobalOfficialBuildsNextTrancheTests(unittest.TestCase):
     def test_capture_disposition_v73_nonmutation_and_no_staging_residue(self) -> None:
         self.assertFalse(tranche.CAPTURE_ORIGIN.exists())
         self.assertFalse(tranche.CAPTURE_ORIGIN.is_symlink())
-        tranche._validate_capture_directory(TRASH)
-        self.assertEqual(len(list(TRASH.iterdir())), 43)
+        capture = tranche.resolve_external_capture(tranche.CAPTURE_ORIGIN, TRASH)
+        tranche._validate_capture_directory(capture)
+        self.assertEqual(len(list(capture.iterdir())), 43)
         self.assertFalse(tranche.PUBLICATION_LOCK.exists())
         self.assertEqual(list(ROOT.glob("sources/.official-builds-next.*")), [])
         self.assertEqual(

@@ -23,6 +23,7 @@ import tempfile
 import time
 from typing import Any, Callable, Iterator, Mapping, Sequence
 
+from .external_captures import resolve_external_capture
 from .curated_v11 import CuratedOfficialSourceAdapterV11
 from .database import initialize
 from .open_seed_v56 import tree_digest
@@ -2089,7 +2090,7 @@ def _move_capture_to_trash() -> None:
     if CAPTURE_ORIGIN.exists():
         _validate_capture_directory(CAPTURE_ORIGIN)
         _promote_noreplace(CAPTURE_ORIGIN, CAPTURE_TRASH)
-    _validate_capture_directory(CAPTURE_TRASH)
+    _validate_capture_directory(resolve_external_capture(CAPTURE_ORIGIN, CAPTURE_TRASH))
 
 
 def _default_recorded_at() -> str:
@@ -2105,7 +2106,7 @@ def build(*, recorded_at: str | None = None) -> dict[str, Any]:
     _require_finals_absent(final_paths, "initial")
     _validate_source_collisions()
     _validate_v71_nonmutation()
-    capture_directory = CAPTURE_ORIGIN if CAPTURE_ORIGIN.exists() else CAPTURE_TRASH
+    capture_directory = resolve_external_capture(CAPTURE_ORIGIN, CAPTURE_TRASH)
     _validate_capture_directory(capture_directory)
     with _publication_lock():
         _require_finals_absent(final_paths, "locked initial")
@@ -2124,7 +2125,7 @@ def build(*, recorded_at: str | None = None) -> dict[str, Any]:
                 prepared.source_stage_identity,
                 prepared.source_identities,
             )
-    _validate_capture_directory(CAPTURE_TRASH)
+    _validate_capture_directory(resolve_external_capture(CAPTURE_ORIGIN, CAPTURE_TRASH))
     _validate_v71_nonmutation()
     manifest = validate_artifact(ARTIFACT)
     source_records = _validate_sources(_source_paths(SOURCES_ROOT))

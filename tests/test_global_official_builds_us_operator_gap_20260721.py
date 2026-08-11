@@ -285,12 +285,13 @@ class GlobalOfficialBuildsUSOperatorGapTests(unittest.TestCase):
             )
 
     def test_collision_rights_and_excluded_expansion_witnesses(self) -> None:
+        capture = tranche.resolve_external_capture(tranche.CAPTURE_ORIGIN, TRASH)
         with self._offline():
             tranche._validate_frozen_witnesses()
             tranche._validate_source_collisions()
-            tranche._validate_capture_directory(TRASH)
+            tranche._validate_capture_directory(capture)
         self.assertFalse(tranche.CAPTURE_ORIGIN.exists())
-        self.assertEqual(tree_digest(TRASH), tranche.CAPTURE_TREE_SHA256)
+        self.assertEqual(tree_digest(capture), tranche.CAPTURE_TREE_SHA256)
         inventory = json.loads(
             (ARTIFACT / "retrieval-inventory.json").read_text(encoding="utf-8")
         )

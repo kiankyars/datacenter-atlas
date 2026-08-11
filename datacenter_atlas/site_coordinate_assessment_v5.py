@@ -24,6 +24,8 @@ import tempfile
 import time
 from typing import Any, Mapping
 
+from .external_captures import resolve_external_capture
+
 
 ROOT = Path(__file__).resolve().parents[1]
 PUBLICATION_ROOT = ROOT / "source_artifacts"
@@ -397,11 +399,15 @@ def _capture_root() -> Path:
         for candidate in (CAPTURE_INPUT, CAPTURE_TRASH)
         if candidate.exists() or candidate.is_symlink()
     ]
-    if len(roots) != 1:
+    if len(roots) > 1:
         raise SiteCoordinateAssessmentV5Error(
             "exactly one private or preserved capture root must exist"
         )
-    root = roots[0]
+    root = (
+        roots[0]
+        if roots
+        else resolve_external_capture(CAPTURE_INPUT, CAPTURE_TRASH)
+    )
     if root.is_symlink() or not root.is_dir():
         raise SiteCoordinateAssessmentV5Error(
             "capture root must be an ordinary directory"
@@ -410,6 +416,9 @@ def _capture_root() -> Path:
 
 
 def _capture_rows(root: Path) -> list[dict[str, Any]]:
+    if stat.S_IMODE(root.stat().st_mode) != 0o700:
+        raise SiteCoordinateAssessmentV5Error("capture root mode differs")
+    packaged_capture = root not in (CAPTURE_INPUT, CAPTURE_TRASH)
     entries = sorted(root.iterdir(), key=lambda candidate: candidate.name)
     if any(entry.is_symlink() or not entry.is_file() for entry in entries):
         raise SiteCoordinateAssessmentV5Error("capture tree contains unsafe entries")
@@ -422,13 +431,19 @@ def _capture_rows(root: Path) -> list[dict[str, Any]]:
         raw = entry.read_bytes()
         metadata = entry.stat(follow_symlinks=False)
         digest = _sha256(raw)
-        observed = (
-            len(raw),
-            digest,
-            int(metadata.st_birthtime),
-            int(metadata.st_mtime),
+        expected_bytes, expected_sha256, expected_birth, expected_mtime = (
+            CAPTURE_FILES[entry.name]
         )
-        if observed != CAPTURE_FILES[entry.name]:
+        if (
+            len(raw) != expected_bytes
+            or digest != expected_sha256
+            or int(metadata.st_mtime) != expected_mtime
+            or stat.S_IMODE(metadata.st_mode) != 0o644
+            or (
+                not packaged_capture
+                and int(metadata.st_birthtime) != expected_birth
+            )
+        ):
             raise SiteCoordinateAssessmentV5Error(
                 f"capture carrier differs: {entry.name}"
             )
@@ -439,7 +454,7 @@ def _capture_rows(root: Path) -> list[dict[str, Any]]:
                 "capture_name": entry.name,
                 "bytes": len(raw),
                 "sha256": digest,
-                "birth_epoch": int(metadata.st_birthtime),
+                "birth_epoch": expected_birth,
                 "mtime_epoch": int(metadata.st_mtime),
             }
         )
@@ -1350,7 +1365,7 @@ def _verify_live_artifact(root: Path, payloads: Mapping[str, bytes]) -> None:
 def _preserve_capture() -> None:
     capture = _capture_root()
     _capture_rows(capture)
-    if capture == CAPTURE_TRASH:
+    if capture != CAPTURE_INPUT:
         return
     if CAPTURE_TRASH.exists() or CAPTURE_TRASH.is_symlink():
         raise SiteCoordinateAssessmentV5Error("capture Trash collision")

@@ -59,7 +59,7 @@ This validates queue, original catalog, frozen release, candidate outcomes,
 task bindings, processor files, and runtime without executing change analysis:
 
 ```bash
-cd /Users/kian/Developer/semiconductors/datacenter_atlas
+cd /Users/kian/Developer/datacenter_atlas
 python scripts/run_satellite_reselected_change_batch_v2.py \
   --queue-dir satellite_review_queues/2026-07-20-open-seed-v43 \
   --source-catalog-batch-dir satellite_review_runs/2026-07-20-open-seed-v43-active-001 \

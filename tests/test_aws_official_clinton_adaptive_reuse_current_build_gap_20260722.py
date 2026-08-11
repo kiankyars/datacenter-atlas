@@ -88,9 +88,7 @@ def test_v91_collision_witness_is_exact_and_immutable() -> None:
 
 def test_capture_set_is_closed_and_exact() -> None:
     directory = (
-        tranche.CAPTURE_ORIGIN
-        if tranche.CAPTURE_ORIGIN.exists()
-        else tranche.CAPTURE_TRASH
+        tranche.resolve_external_capture(tranche.CAPTURE_ORIGIN, tranche.CAPTURE_TRASH)
     )
     tranche._validate_capture_directory(directory)
     assert len(tranche.CAPTURES) == 4

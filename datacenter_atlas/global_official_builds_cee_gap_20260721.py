@@ -21,6 +21,7 @@ import tempfile
 import time
 from typing import Any, Iterator, Mapping, Sequence
 
+from .external_captures import resolve_external_capture
 from . import global_official_builds_next_tranche_20260721 as publication
 from .curated_v11 import CuratedOfficialSourceAdapterV11
 from .database import initialize
@@ -1023,7 +1024,7 @@ def _capture_directory() -> Path:
         raise OfficialCeeGapError("both capture origin and Trash destination exist")
     if CAPTURE_ORIGIN.exists():
         return CAPTURE_ORIGIN
-    return CAPTURE_TRASH
+    return resolve_external_capture(CAPTURE_TRASH)
 
 
 def _validate_capture_directory(directory: Path) -> None:
@@ -1967,7 +1968,7 @@ def _move_capture_to_trash() -> None:
     if CAPTURE_ORIGIN.exists():
         _validate_capture_directory(CAPTURE_ORIGIN)
         _promote_noreplace(CAPTURE_ORIGIN, CAPTURE_TRASH)
-    _validate_capture_directory(CAPTURE_TRASH)
+    _validate_capture_directory(resolve_external_capture(CAPTURE_ORIGIN, CAPTURE_TRASH))
 
 
 def _default_recorded_at() -> str:
@@ -2001,7 +2002,7 @@ def build(*, recorded_at: str | None = None) -> dict[str, Any]:
                 prepared.source_stage_identity,
                 prepared.source_identities,
             )
-    _validate_capture_directory(CAPTURE_TRASH)
+    _validate_capture_directory(resolve_external_capture(CAPTURE_ORIGIN, CAPTURE_TRASH))
     _validate_v80_nonmutation()
     manifest = validate_artifact(ARTIFACT)
     source_records = _validate_sources(_source_paths(SOURCES_ROOT))

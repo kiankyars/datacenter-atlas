@@ -199,7 +199,17 @@ class OfficialCoordinateAssessmentTests(unittest.TestCase):
     def test_exact_private_capture_rights_and_source_boundaries(self) -> None:
         with self._network_guard():
             capture = builder.verify_private_capture()
-        self.assertEqual(capture, builder.CAPTURE_TRASH)
+        self.assertEqual(
+            capture,
+            builder.resolve_external_capture(
+                builder.CAPTURE_TRASH,
+                builder.CAPTURE_ORIGIN,
+            ),
+        )
+        self.assertEqual(
+            builder.CAPTURE_TRASH,
+            Path("/Users/kian/.Trash/dc-official-coordinate-gap-20260722.4CXd7D"),
+        )
         self.assertEqual(stat.S_IMODE(capture.stat().st_mode), 0o555)
         self.assertEqual(tree_digest(capture), builder.CAPTURE_TREE_SHA256)
         self.assertEqual(len(builder.CAPTURE_FILE_PINS), 16)

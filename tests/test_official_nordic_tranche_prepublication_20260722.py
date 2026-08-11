@@ -189,16 +189,17 @@ def test_fin04_is_exact_existing_phase_successor_with_430mw_untyped() -> None:
 
 
 def test_capture_bundle_is_exact_frozen_and_private() -> None:
+    capture = tranche.resolve_external_capture(tranche.CAPTURE_ORIGIN)
     tranche._validate_capture_directory()
     assert len(tranche.CAPTURES) == 6
     assert len(tranche.CAPTURE_FILE_PINS) == tranche.CAPTURE_FILE_COUNT == 12
     assert sum(size for size, _digest in tranche.CAPTURE_FILE_PINS.values()) == (
         tranche.CAPTURE_TOTAL_BYTES
     )
-    assert tranche.tree_digest(tranche.CAPTURE_ORIGIN) == tranche.CAPTURE_TREE_SHA256
+    assert tranche.tree_digest(capture) == tranche.CAPTURE_TREE_SHA256
     assert all(
         stat.S_IMODE(path.stat().st_mode) == 0o444
-        for path in tranche.CAPTURE_ORIGIN.iterdir()
+        for path in capture.iterdir()
     )
     inventory = tranche._retrieval_inventory("2026-07-22T04:20:00Z")
     assert inventory["successful_http_200_body_captures"] == 6

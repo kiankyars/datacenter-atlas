@@ -164,9 +164,7 @@ def test_cmc_annual_report_is_the_lifecycle_corroboration() -> None:
 
 def test_raw_capture_is_closed_exact_and_includes_every_failure() -> None:
     directory = (
-        tranche.CAPTURE_ORIGIN
-        if tranche.CAPTURE_ORIGIN.exists()
-        else tranche.CAPTURE_TRASH
+        tranche.resolve_external_capture(tranche.CAPTURE_ORIGIN, tranche.CAPTURE_TRASH)
     )
     tranche._validate_capture_directory(directory)
     assert len(tranche.CAPTURE_FILE_PINS) == tranche.CAPTURE_FILE_COUNT == 50
@@ -341,7 +339,10 @@ def test_live_artifact_is_frozen_idempotent_and_has_no_residue() -> None:
     assert tranche.build()["status"] == "existing-identical"
     assert manifest["recorded_at"] == tranche.validate_artifact()["recorded_at"]
     assert not tranche.CAPTURE_ORIGIN.exists()
-    assert tranche.CAPTURE_TRASH.is_dir()
+    assert tranche.resolve_external_capture(
+        tranche.CAPTURE_ORIGIN,
+        tranche.CAPTURE_TRASH,
+    ).is_dir()
     assert not tranche.PUBLICATION_LOCK.exists()
     assert list(tranche.SOURCES_ROOT.glob(".global-official-gap-sources.*")) == []
     assert list(tranche.ARTIFACT_ROOT.glob(f".{tranche.ARTIFACT_ID}.*")) == []

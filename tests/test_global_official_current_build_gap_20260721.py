@@ -53,7 +53,7 @@ class OfficialCurrentBuildGapTests(unittest.TestCase):
 
     def test_capture_is_closed_hash_bound_and_recoverable(self) -> None:
         capture = (
-            gap.CAPTURE_ORIGIN if gap.CAPTURE_ORIGIN.exists() else gap.CAPTURE_TRASH
+            gap.resolve_external_capture(gap.CAPTURE_ORIGIN, gap.CAPTURE_TRASH)
         )
         gap._validate_capture_directory(capture)
         self.assertEqual(len(list(capture.iterdir())), 18)
@@ -104,9 +104,7 @@ class OfficialCurrentBuildGapTests(unittest.TestCase):
             "v87_definition": gap._sha256(gap.V87_DEFINITION),
             "v87_tree": tree_digest(gap.V87_RELEASE),
             "capture_tree": tree_digest(
-                gap.CAPTURE_ORIGIN
-                if gap.CAPTURE_ORIGIN.exists()
-                else gap.CAPTURE_TRASH
+                gap.resolve_external_capture(gap.CAPTURE_ORIGIN, gap.CAPTURE_TRASH)
             ),
         }
         past = (datetime.now(UTC) - timedelta(seconds=1)).isoformat(
@@ -129,9 +127,7 @@ class OfficialCurrentBuildGapTests(unittest.TestCase):
             "v87_definition": gap._sha256(gap.V87_DEFINITION),
             "v87_tree": tree_digest(gap.V87_RELEASE),
             "capture_tree": tree_digest(
-                gap.CAPTURE_ORIGIN
-                if gap.CAPTURE_ORIGIN.exists()
-                else gap.CAPTURE_TRASH
+                gap.resolve_external_capture(gap.CAPTURE_ORIGIN, gap.CAPTURE_TRASH)
             ),
         }
         self.assertEqual(before, after)
@@ -143,7 +139,12 @@ class OfficialCurrentBuildGapTests(unittest.TestCase):
         self.assertEqual(manifest["seed_eligible_source_records"], 5)
         self.assertEqual(manifest["review_only_candidates"], 2)
         self.assertEqual(stat.S_IMODE(gap.ARTIFACT.stat().st_mode), 0o555)
-        self.assertTrue(gap.CAPTURE_TRASH.is_dir())
+        self.assertTrue(
+            gap.resolve_external_capture(
+                gap.CAPTURE_ORIGIN,
+                gap.CAPTURE_TRASH,
+            ).is_dir()
+        )
         self.assertFalse(gap.CAPTURE_ORIGIN.exists())
         self.assertTrue(
             all(

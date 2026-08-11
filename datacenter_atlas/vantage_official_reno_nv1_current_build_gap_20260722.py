@@ -22,6 +22,7 @@ import tempfile
 import time
 from typing import Any, Iterator, Mapping, Sequence
 
+from .external_captures import resolve_external_capture
 from .curated_v11 import CuratedOfficialSourceAdapterV11
 from .database import initialize
 from . import coreweave_official_lancaster_current_build_gap_20260722 as prior
@@ -894,7 +895,7 @@ def _prepare(recorded_at: str) -> _Prepared:
     if any((SOURCES_ROOT / name).exists() or (SOURCES_ROOT / name).is_symlink() for name in SOURCE_FILENAMES) or ARTIFACT.exists() or ARTIFACT.is_symlink():
         raise RuntimeError("Vantage source final-path collision")
     _validate_source_collisions()
-    capture = CAPTURE_ORIGIN if CAPTURE_ORIGIN.exists() else CAPTURE_TRASH
+    capture = resolve_external_capture(CAPTURE_ORIGIN, CAPTURE_TRASH)
     _validate_capture_directory(capture)
     documents = expected_source_documents()
     source_stage = Path(tempfile.mkdtemp(prefix=".vantage-nv1-sources.", dir=SOURCES_ROOT))
@@ -948,7 +949,7 @@ def _move_capture_to_trash() -> None:
     if CAPTURE_ORIGIN.exists():
         _validate_capture_directory(CAPTURE_ORIGIN)
         _promote_noreplace(CAPTURE_ORIGIN, CAPTURE_TRASH)
-    _validate_capture_directory(CAPTURE_TRASH)
+    _validate_capture_directory(resolve_external_capture(CAPTURE_ORIGIN, CAPTURE_TRASH))
 
 
 def build(*, recorded_at: str | None = None) -> dict[str, Any]:

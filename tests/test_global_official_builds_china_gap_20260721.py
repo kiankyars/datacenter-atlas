@@ -306,9 +306,10 @@ class GlobalOfficialBuildsChinaGapTests(unittest.TestCase):
         self.assertFalse(incidents["china-telecom-http-412"]["claims_copied"])
 
         self.assertFalse(tranche.CAPTURE_ORIGIN.exists())
-        tranche._validate_capture_directory(TRASH)
-        self.assertEqual(len(list(TRASH.iterdir())), 39)
-        self.assertEqual(tree_digest(TRASH), tranche.CAPTURE_TREE_SHA256)
+        capture = tranche.resolve_external_capture(tranche.CAPTURE_ORIGIN, TRASH)
+        tranche._validate_capture_directory(capture)
+        self.assertEqual(len(list(capture.iterdir())), 39)
+        self.assertEqual(tree_digest(capture), tranche.CAPTURE_TREE_SHA256)
         tranche._validate_v73_nonmutation()
         definition = json.loads(tranche.V73_DEFINITION.read_text())
         selected = {row["path"] for row in definition["curated_inputs"]}

@@ -321,9 +321,10 @@ class GlobalOfficialBuildsOperatorSocialNextTrancheTests(unittest.TestCase):
 
     def test_capture_tree_binds_direct_bodies_and_404s_create_no_claim(self) -> None:
         self.assertFalse(tranche.CAPTURE_ORIGIN.exists())
-        tranche._validate_capture_directory(TRASH)
-        self.assertEqual(len(list(TRASH.iterdir())), 60)
-        self.assertEqual(tree_digest(TRASH), tranche.CAPTURE_TREE_SHA256)
+        capture = tranche.resolve_external_capture(tranche.CAPTURE_ORIGIN, TRASH)
+        tranche._validate_capture_directory(capture)
+        self.assertEqual(len(list(capture.iterdir())), 60)
+        self.assertEqual(tree_digest(capture), tranche.CAPTURE_TREE_SHA256)
         bodies = {
             "stack_social_physical.body": "Construction is progressing on the first 120MW data center",
             "echelon_dub20_green_energy_park.body": "Construction is underway and due to be completed by 2028",
@@ -334,9 +335,11 @@ class GlobalOfficialBuildsOperatorSocialNextTrancheTests(unittest.TestCase):
             "multidc_geva_project.body": "30MWIT",
         }
         for name, witness in bodies.items():
-            self.assertIn(witness, (TRASH / name).read_text(errors="replace"))
+            self.assertIn(witness, (capture / name).read_text(errors="replace"))
         for capture_id in ("echelon_dub20_facility", "echelon_dub40_facility"):
-            writeout = json.loads((TRASH / f"{capture_id}.writeout").read_text())
+            writeout = json.loads(
+                (capture / f"{capture_id}.writeout").read_text()
+            )
             self.assertEqual(writeout["http_code"], 404)
 
         inventory = json.loads(

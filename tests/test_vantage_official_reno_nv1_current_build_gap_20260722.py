@@ -72,7 +72,7 @@ def test_collision_witness_creates_no_existing_identity_link() -> None:
 
 
 def test_capture_set_is_closed_and_exact() -> None:
-    directory = tranche.CAPTURE_ORIGIN if tranche.CAPTURE_ORIGIN.exists() else tranche.CAPTURE_TRASH
+    directory = tranche.resolve_external_capture(tranche.CAPTURE_ORIGIN, tranche.CAPTURE_TRASH)
     tranche._validate_capture_directory(directory)
     assert len(tranche.CAPTURES) == 4
     assert len(tranche.CAPTURE_FILE_PINS) == 8

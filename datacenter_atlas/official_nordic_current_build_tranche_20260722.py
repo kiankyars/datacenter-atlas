@@ -27,6 +27,7 @@ import tempfile
 import time
 from typing import Any, Iterator, Mapping
 
+from .external_captures import resolve_external_capture
 from .curated_v11 import CuratedOfficialSourceAdapterV11
 from .database import initialize
 from .open_seed_v56 import tree_digest
@@ -64,6 +65,10 @@ REVIEWED_ARTIFACT_STAGE = (
     ARTIFACT_ROOT / ".official-nordic-tranche-prepublication-2026-07-22-v1.88kkj_4s"
 )
 RAW_CAPTURE = Path("/private/tmp/dc-nordic-prepublication-20260722.jN0cUf")
+
+
+def _raw_capture() -> Path:
+    return resolve_external_capture(RAW_CAPTURE)
 
 REVIEWED_SOURCE_TREE_SHA256 = (
     "eae64483e9434f159bb757807903fbdfa92069e3d3799f84d95fa3eff6267e87"
@@ -356,27 +361,27 @@ def _validate_reviewed_inputs() -> ReviewedInputIdentities:
         raise NordicPublicationError("reviewed candidate checksum differs")
 
     if (
-        RAW_CAPTURE.is_symlink()
-        or not RAW_CAPTURE.is_dir()
-        or stat.S_IMODE(RAW_CAPTURE.stat().st_mode) != 0o700
+        _raw_capture().is_symlink()
+        or not _raw_capture().is_dir()
+        or stat.S_IMODE(_raw_capture().stat().st_mode) != 0o700
     ):
         raise NordicPublicationError("raw capture bundle is missing or unsafe")
-    raw_entries = {path.name: path for path in RAW_CAPTURE.iterdir()}
+    raw_entries = {path.name: path for path in _raw_capture().iterdir()}
     if set(raw_entries) != set(RAW_CAPTURE_PINS):
         raise NordicPublicationError("raw capture inventory differs")
     for name, pin in RAW_CAPTURE_PINS.items():
         _pin(raw_entries[name], pin, mode=0o444)
-    if tree_digest(RAW_CAPTURE) != RAW_CAPTURE_TREE_SHA256:
+    if tree_digest(_raw_capture()) != RAW_CAPTURE_TREE_SHA256:
         raise NordicPublicationError("raw capture tree differs")
 
     identities = ReviewedInputIdentities(
         _tree_identities(REVIEWED_SOURCE_STAGE),
         _tree_identities(REVIEWED_ARTIFACT_STAGE),
-        _tree_identities(RAW_CAPTURE),
+        _tree_identities(_raw_capture()),
     )
     _assert_tree_identities(REVIEWED_SOURCE_STAGE, identities.sources)
     _assert_tree_identities(REVIEWED_ARTIFACT_STAGE, identities.artifact)
-    _assert_tree_identities(RAW_CAPTURE, identities.captures)
+    _assert_tree_identities(_raw_capture(), identities.captures)
     return identities
 
 
@@ -385,7 +390,7 @@ def _assert_reviewed_input_identities(
 ) -> None:
     _assert_tree_identities(REVIEWED_SOURCE_STAGE, identities.sources)
     _assert_tree_identities(REVIEWED_ARTIFACT_STAGE, identities.artifact)
-    _assert_tree_identities(RAW_CAPTURE, identities.captures)
+    _assert_tree_identities(_raw_capture(), identities.captures)
 
 
 def _load_reviewed_documents() -> dict[str, dict[str, Any]]:
@@ -1134,7 +1139,7 @@ def preflight(*, recorded_at: str | None = None) -> dict[str, Any]:
     result["artifact_stage_discarded"] = not artifact_stage.exists()
     result["reviewed_source_stage_retained"] = REVIEWED_SOURCE_STAGE.exists()
     result["reviewed_artifact_stage_retained"] = REVIEWED_ARTIFACT_STAGE.exists()
-    result["raw_capture_retained"] = RAW_CAPTURE.exists()
+    result["raw_capture_retained"] = _raw_capture().exists()
     return result
 
 
@@ -1271,7 +1276,7 @@ def _existing_identical(recorded_at: str | None) -> dict[str, Any]:
         "artifact_tree_sha256": tree_digest(ARTIFACT),
         "published": True,
         "accepted_source_records": 3,
-        "raw_capture_retained": RAW_CAPTURE.exists(),
+        "raw_capture_retained": _raw_capture().exists(),
     }
 
 
@@ -1335,7 +1340,7 @@ def build(
         "artifact_tree_sha256": tree_digest(ARTIFACT),
         "published": True,
         "accepted_source_records": 3,
-        "raw_capture_retained": RAW_CAPTURE.exists(),
+        "raw_capture_retained": _raw_capture().exists(),
     }
 
 

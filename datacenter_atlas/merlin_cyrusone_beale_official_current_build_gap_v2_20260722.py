@@ -24,6 +24,7 @@ from typing import Any, Iterator, Mapping, Sequence
 from . import merlin_cyrusone_beale_official_current_build_gap_20260722 as v1
 from .curated_v11 import CuratedOfficialSourceAdapterV11
 from .database import initialize
+from .external_captures import resolve_external_capture
 from .service import validate_database
 
 
@@ -748,7 +749,9 @@ def validate_artifact(
     replay = [_offline_import(paths, manifest["recorded_at"]) for _ in range(2)]
     if replay[0] != replay[1]:
         raise RuntimeError("v2 offline replay differs")
-    v1._validate_capture_directory(v1.CAPTURE_TRASH)
+    v1._validate_capture_directory(
+        resolve_external_capture(v1.CAPTURE_ORIGIN, v1.CAPTURE_TRASH)
+    )
     if require_frozen:
         _assert_chronology(
             [
@@ -863,7 +866,9 @@ def _prepare(recorded_at: str) -> _Prepared:
         )
     ):
         raise RuntimeError("v2 final-path collision")
-    v1._validate_capture_directory(v1.CAPTURE_TRASH)
+    v1._validate_capture_directory(
+        resolve_external_capture(v1.CAPTURE_ORIGIN, v1.CAPTURE_TRASH)
+    )
     documents = expected_source_documents()
     _collision_witness(documents)
     source_stage = Path(

@@ -299,10 +299,11 @@ class GlobalOfficialBuildsAsiaGapTests(unittest.TestCase):
         self.assertFalse(incident["search_transformed_text_used"])
 
     def test_capture_disposition_v75_nonmutation_and_no_staging_residue(self) -> None:
+        capture = gap.resolve_external_capture(gap.CAPTURE_ORIGIN, TRASH)
         self.assertFalse(gap.CAPTURE_ORIGIN.exists())
         self.assertFalse(gap.CAPTURE_ORIGIN.is_symlink())
-        gap._validate_capture_directory(TRASH)
-        self.assertEqual(len(list(TRASH.iterdir())), 35)
+        gap._validate_capture_directory(capture)
+        self.assertEqual(len(list(capture.iterdir())), 35)
         self.assertFalse(gap.PUBLICATION_LOCK.exists())
         self.assertEqual(list(ROOT.glob("sources/.official-builds-asia-gap.*")), [])
         self.assertEqual(

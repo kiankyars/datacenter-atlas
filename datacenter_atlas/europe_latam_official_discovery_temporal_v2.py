@@ -15,6 +15,7 @@ import tempfile
 import time
 from typing import Any, Iterator, Mapping
 
+from .external_captures import resolve_external_capture
 from .curated_v11 import CuratedOfficialSourceAdapterV11
 from .database import initialize
 from .open_seed_v56 import discard_release_stage, promote_noreplace, tree_digest
@@ -219,23 +220,36 @@ def _validate_v1_preserved() -> None:
 
 
 def _validate_raw_capture() -> None:
-    if not CAPTURE_TRASH.is_dir() or CAPTURE_TRASH.is_symlink():
+    capture = resolve_external_capture(CAPTURE_TRASH)
+    if not capture.is_dir() or capture.is_symlink():
         raise SystemExit("recoverable raw capture directory is absent")
+    if stat.S_IMODE(capture.stat().st_mode) != 0o700:
+        raise SystemExit("recoverable raw capture directory mode differs")
+    packaged_capture = capture != CAPTURE_TRASH
     expected_names = {
         f"{request_id}.{suffix}"
         for request_id in CAPTURE_TIMES
         for suffix in ("body", "headers", "writeout")
     }
-    if {path.name for path in CAPTURE_TRASH.iterdir()} != expected_names:
+    if {path.name for path in capture.iterdir()} != expected_names:
         raise SystemExit("recoverable raw capture closure differs")
     for request_id, spec in CAPTURE_TIMES.items():
         for suffix in ("body", "headers", "writeout"):
-            _pin(CAPTURE_TRASH / f"{request_id}.{suffix}", spec[suffix])
-        body = CAPTURE_TRASH / f"{request_id}.body"
-        writeout = CAPTURE_TRASH / f"{request_id}.writeout"
-        if int(body.stat().st_birthtime) != spec["body_birth_epoch"]:
+            carrier = capture / f"{request_id}.{suffix}"
+            _pin(carrier, spec[suffix])
+            if stat.S_IMODE(carrier.stat().st_mode) != 0o644:
+                raise SystemExit(f"capture carrier mode differs: {carrier.name}")
+        body = capture / f"{request_id}.body"
+        writeout = capture / f"{request_id}.writeout"
+        if (
+            not packaged_capture
+            and int(body.stat().st_birthtime) != spec["body_birth_epoch"]
+        ):
             raise SystemExit(f"body birth pin differs: {request_id}")
-        if int(writeout.stat().st_birthtime) != spec["writeout_birth_epoch"]:
+        if (
+            not packaged_capture
+            and int(writeout.stat().st_birthtime) != spec["writeout_birth_epoch"]
+        ):
             raise SystemExit(f"writeout birth pin differs: {request_id}")
         if int(writeout.stat().st_mtime) != spec["writeout_mtime_epoch"]:
             raise SystemExit(f"writeout completion mtime pin differs: {request_id}")

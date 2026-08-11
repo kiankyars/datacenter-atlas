@@ -22,6 +22,7 @@ import tempfile
 import time
 from typing import Any, Iterator, Mapping, Sequence
 
+from .external_captures import resolve_external_capture
 from .curated_v11 import CuratedOfficialSourceAdapterV11
 from .database import initialize
 from . import global_official_builds_six_candidate_20260721 as publication
@@ -1727,7 +1728,7 @@ def _prepare(recorded_at: str) -> _Prepared:
         raise OfficialCurrentBuildGapError("current-build-gap final path collision")
     _validate_frozen_witnesses()
     _validate_source_collisions()
-    capture_directory = CAPTURE_ORIGIN if CAPTURE_ORIGIN.exists() else CAPTURE_TRASH
+    capture_directory = resolve_external_capture(CAPTURE_ORIGIN, CAPTURE_TRASH)
     _validate_capture_directory(capture_directory)
     documents = expected_source_documents()
     source_stage = Path(
@@ -1839,7 +1840,7 @@ def _move_capture_to_trash() -> None:
     if CAPTURE_ORIGIN.exists():
         _validate_capture_directory(CAPTURE_ORIGIN)
         _promote_noreplace(CAPTURE_ORIGIN, CAPTURE_TRASH)
-    _validate_capture_directory(CAPTURE_TRASH)
+    _validate_capture_directory(resolve_external_capture(CAPTURE_ORIGIN, CAPTURE_TRASH))
 
 
 def _rollback_published(prepared: _Prepared) -> None:

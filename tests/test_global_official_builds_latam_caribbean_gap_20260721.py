@@ -234,14 +234,15 @@ class GlobalOfficialBuildsLatamCaribbeanGapTests(unittest.TestCase):
 
     def test_private_capture_disposition_v77_nonmutation_and_no_residue(self) -> None:
         self.assertFalse(tranche.CAPTURE_ORIGIN.exists())
-        self.assertTrue(TRASH.is_dir())
-        self.assertEqual(len(list(TRASH.iterdir())), tranche.CAPTURE_FILE_COUNT)
+        capture = tranche.resolve_external_capture(tranche.CAPTURE_ORIGIN, TRASH)
+        self.assertTrue(capture.is_dir())
+        self.assertEqual(len(list(capture.iterdir())), tranche.CAPTURE_FILE_COUNT)
         self.assertEqual(
-            sum(path.stat().st_size for path in TRASH.iterdir()),
+            sum(path.stat().st_size for path in capture.iterdir()),
             tranche.CAPTURE_TOTAL_BYTES,
         )
-        self.assertEqual(tree_digest(TRASH), tranche.CAPTURE_TREE_SHA256)
-        tranche._validate_capture_directory(TRASH)
+        self.assertEqual(tree_digest(capture), tranche.CAPTURE_TREE_SHA256)
+        tranche._validate_capture_directory(capture)
 
         tranche._validate_v77_nonmutation()
         definition = json.loads(tranche.V77_DEFINITION.read_text(encoding="utf-8"))

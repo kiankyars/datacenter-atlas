@@ -13,10 +13,15 @@ import sys
 import tempfile
 from typing import Any
 
+REPOSITORY_ROOT = Path(__file__).resolve().parents[1]
+if str(REPOSITORY_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPOSITORY_ROOT))
+
 import build_coordinate_assessment_2026_07_21_v1 as base
+from datacenter_atlas.external_captures import resolve_external_capture
 
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = REPOSITORY_ROOT
 PUBLICATION_ROOT = ROOT / "source_artifacts"
 ARTIFACT_ID = "site-coordinate-assessment-2026-07-21-v2"
 ARTIFACT_DIR = PUBLICATION_ROOT / ARTIFACT_ID
@@ -445,7 +450,7 @@ def publish_all(publication_root: Path = PUBLICATION_ROOT) -> dict[str, str]:
     first_path = (
         V1_FIRST_STATE_PATH
         if V1_FIRST_STATE_PATH.exists()
-        else V1_FIRST_STATE_TRASH_PATH
+        else resolve_external_capture(V1_FIRST_STATE_TRASH_PATH)
     )
     _verify_state(first_path, V1_FIRST_STATE)
 

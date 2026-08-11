@@ -169,16 +169,17 @@ def test_porr_waw_and_data4_are_explicit_non_promotions() -> None:
 
 
 def test_capture_bundle_is_exact_frozen_private_and_records_failed_shortlink() -> None:
+    capture = tranche.resolve_external_capture(tranche.CAPTURE_ORIGIN)
     tranche._validate_capture_directory()
     assert len(tranche.CAPTURES) == 13
     assert len(tranche.CAPTURE_FILE_PINS) == tranche.CAPTURE_FILE_COUNT == 26
     assert sum(size for size, _digest in tranche.CAPTURE_FILE_PINS.values()) == (
         tranche.CAPTURE_TOTAL_BYTES
     )
-    assert tranche.tree_digest(tranche.CAPTURE_ORIGIN) == (tranche.CAPTURE_TREE_SHA256)
+    assert tranche.tree_digest(capture) == tranche.CAPTURE_TREE_SHA256
     assert all(
         stat.S_IMODE(path.stat().st_mode) == 0o444
-        for path in tranche.CAPTURE_ORIGIN.iterdir()
+        for path in capture.iterdir()
     )
     inventory = tranche._retrieval_inventory("2026-07-22T04:40:00Z")
     assert inventory["normalized_nxdata_claim_capture_count"] == 4

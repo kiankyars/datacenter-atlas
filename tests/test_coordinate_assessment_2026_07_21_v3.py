@@ -19,6 +19,7 @@ from unittest.mock import patch
 
 from datacenter_atlas.curated_v11 import CuratedOfficialSourceAdapterV11
 from datacenter_atlas.database import initialize
+from datacenter_atlas.external_captures import resolve_external_capture
 from datacenter_atlas.service import validate_database
 from datacenter_atlas.tests.test_coordinate_assessment_2026_07_21_v2 import (
     COHORT,
@@ -273,11 +274,12 @@ class CoordinateAssessmentV3Tests(unittest.TestCase):
         witness = incident["truthful_capture_witness"]
         self.assertEqual(witness["capture_tree_sha256"], "25e73755344fb8e6db9ef32b6f1f967afc4a8db8f9e714971f00a1b8685adf49")
         rows = bytearray()
-        paths = sorted(path for path in CAPTURE.rglob("*") if path.is_file())
+        capture_root = resolve_external_capture(CAPTURE)
+        paths = sorted(path for path in capture_root.rglob("*") if path.is_file())
         self.assertEqual(len(paths), 79)
         self.assertEqual(sum(path.stat().st_size for path in paths), 57_610_841)
         for path in paths:
-            relative = path.relative_to(CAPTURE).as_posix()
+            relative = path.relative_to(capture_root).as_posix()
             rows.extend(
                 f"{hashlib.sha256(path.read_bytes()).hexdigest()}  ./{relative}\n".encode()
             )
@@ -290,10 +292,14 @@ class CoordinateAssessmentV3Tests(unittest.TestCase):
             )
             for carrier in ("body", "headers", "curl_writeout"):
                 expected = capture[carrier]
-                path = CAPTURE / expected["capture_name"]
+                path = capture_root / expected["capture_name"]
                 self.assertEqual(path.stat().st_size, expected["bytes"])
                 self.assertEqual(hashlib.sha256(path.read_bytes()).hexdigest(), expected["sha256"])
-                self.assertEqual(int(path.stat().st_birthtime), expected["birth_epoch"])
+                if capture_root == CAPTURE:
+                    self.assertEqual(
+                        int(path.stat().st_birthtime),
+                        expected["birth_epoch"],
+                    )
                 self.assertEqual(int(path.stat().st_mtime), expected["mtime_epoch"])
 
     def test_direct_pins_partition_geometry_and_coordinate_only_delta(self) -> None:

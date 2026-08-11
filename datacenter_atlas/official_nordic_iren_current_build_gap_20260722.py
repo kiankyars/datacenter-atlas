@@ -22,6 +22,7 @@ import tempfile
 import time
 from typing import Any, Iterator, Mapping, Sequence
 
+from .external_captures import resolve_external_capture
 from . import global_official_builds_six_candidate_20260721 as publication
 from .curated_v11 import CuratedOfficialSourceAdapterV11
 from .database import initialize
@@ -1854,7 +1855,7 @@ def _prepare(recorded_at: str) -> _Prepared:
         )
     ):
         raise RuntimeError("official tranche final-path collision")
-    capture = CAPTURE_ORIGIN if CAPTURE_ORIGIN.exists() else CAPTURE_TRASH
+    capture = resolve_external_capture(CAPTURE_ORIGIN, CAPTURE_TRASH)
     _validate_capture_directory(capture)
     documents = expected_source_documents()
     _collision_witness(documents)
@@ -1954,7 +1955,7 @@ def _move_capture_to_trash() -> None:
     if CAPTURE_ORIGIN.exists():
         _validate_capture_directory(CAPTURE_ORIGIN)
         _promote_noreplace(CAPTURE_ORIGIN, CAPTURE_TRASH)
-    _validate_capture_directory(CAPTURE_TRASH)
+    _validate_capture_directory(resolve_external_capture(CAPTURE_ORIGIN, CAPTURE_TRASH))
 
 
 def _result(manifest: Mapping[str, Any], status_value: str) -> dict[str, Any]:

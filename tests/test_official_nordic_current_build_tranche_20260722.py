@@ -47,7 +47,7 @@ def test_reviewed_candidate_stages_and_raw_capture_are_exact_inputs() -> None:
     assert publication.tree_digest(publication.REVIEWED_ARTIFACT_STAGE) == (
         publication.REVIEWED_ARTIFACT_TREE_SHA256
     )
-    assert publication.tree_digest(publication.RAW_CAPTURE) == (
+    assert publication.tree_digest(publication._raw_capture()) == (
         publication.RAW_CAPTURE_TREE_SHA256
     )
     assert set(publication.REVIEWED_SOURCE_PINS) == set(publication.SOURCE_FILENAMES)
@@ -282,13 +282,13 @@ def test_preflight_does_not_remove_or_move_review_inputs(
     before = (
         publication._identity(publication.REVIEWED_SOURCE_STAGE, directory=True),
         publication._identity(publication.REVIEWED_ARTIFACT_STAGE, directory=True),
-        publication._identity(publication.RAW_CAPTURE, directory=True),
+        publication._identity(publication._raw_capture(), directory=True),
     )
     publication.preflight(recorded_at=_future(60))
     after = (
         publication._identity(publication.REVIEWED_SOURCE_STAGE, directory=True),
         publication._identity(publication.REVIEWED_ARTIFACT_STAGE, directory=True),
-        publication._identity(publication.RAW_CAPTURE, directory=True),
+        publication._identity(publication._raw_capture(), directory=True),
     )
     assert after == before
     assert not publication.ARTIFACT.exists()

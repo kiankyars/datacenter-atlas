@@ -31,6 +31,7 @@ import tempfile
 import time
 from typing import Any, Iterator, Mapping
 
+from .external_captures import resolve_external_capture
 from .curated_v11 import CuratedOfficialSourceAdapterV11
 from .database import initialize
 from .open_seed_v56 import tree_digest
@@ -63,6 +64,10 @@ REVIEWED_ARTIFACT_STAGE = (
     ARTIFACT_ROOT / ".ctrls-ntt-india-adaniconnex-prepublication-2026-07-22-v1.wbm2coy5"
 )
 RAW_CAPTURE = Path("/Users/kian/.Trash/dc-india-build-gap.0X6WIC")
+
+
+def _raw_capture() -> Path:
+    return resolve_external_capture(RAW_CAPTURE)
 
 REVIEWED_SOURCE_TREE_SHA256 = (
     "152b7c5f1941043cc048f04a441b50c6eb4356bd31d28f5fa9fef1dccf89343c"
@@ -514,12 +519,12 @@ def _validate_reviewed_inputs() -> ReviewedInputIdentities:
         raise CtrlSPublicationError("reviewed candidate checksum differs")
 
     if (
-        RAW_CAPTURE.is_symlink()
-        or not RAW_CAPTURE.is_dir()
-        or stat.S_IMODE(RAW_CAPTURE.stat().st_mode) != 0o555
+        _raw_capture().is_symlink()
+        or not _raw_capture().is_dir()
+        or stat.S_IMODE(_raw_capture().stat().st_mode) != 0o555
     ):
         raise CtrlSPublicationError("raw capture bundle is missing or unsafe")
-    raw_entries = {path.name: path for path in RAW_CAPTURE.iterdir()}
+    raw_entries = {path.name: path for path in _raw_capture().iterdir()}
     if set(raw_entries) != set(RAW_CAPTURE_PINS):
         raise CtrlSPublicationError("raw capture inventory differs")
     for name, pin in RAW_CAPTURE_PINS.items():
@@ -529,17 +534,17 @@ def _validate_reviewed_inputs() -> ReviewedInputIdentities:
         or sum(pin[0] for pin in RAW_CAPTURE_PINS.values()) != 3_431_628
     ):
         raise CtrlSPublicationError("raw capture pin contract differs")
-    if tree_digest(RAW_CAPTURE) != RAW_CAPTURE_TREE_SHA256:
+    if tree_digest(_raw_capture()) != RAW_CAPTURE_TREE_SHA256:
         raise CtrlSPublicationError("raw capture tree differs")
 
     identities = ReviewedInputIdentities(
         _tree_identities(REVIEWED_SOURCE_STAGE),
         _tree_identities(REVIEWED_ARTIFACT_STAGE),
-        _tree_identities(RAW_CAPTURE),
+        _tree_identities(_raw_capture()),
     )
     _assert_tree_identities(REVIEWED_SOURCE_STAGE, identities.sources)
     _assert_tree_identities(REVIEWED_ARTIFACT_STAGE, identities.artifact)
-    _assert_tree_identities(RAW_CAPTURE, identities.captures)
+    _assert_tree_identities(_raw_capture(), identities.captures)
     return identities
 
 
@@ -548,7 +553,7 @@ def _assert_reviewed_input_identities(
 ) -> None:
     _assert_tree_identities(REVIEWED_SOURCE_STAGE, identities.sources)
     _assert_tree_identities(REVIEWED_ARTIFACT_STAGE, identities.artifact)
-    _assert_tree_identities(RAW_CAPTURE, identities.captures)
+    _assert_tree_identities(_raw_capture(), identities.captures)
 
 
 def _walk_strings(
@@ -572,7 +577,7 @@ def _assert_accepted_carrier_redacted(value: Any) -> None:
         "prospective-sources",
         str(REVIEWED_SOURCE_STAGE).lower(),
         str(REVIEWED_ARTIFACT_STAGE).lower(),
-        str(RAW_CAPTURE).lower(),
+        str(_raw_capture()).lower(),
     )
     banned_keys = {
         "artifact_stage",
@@ -1694,7 +1699,7 @@ def preflight(*, recorded_at: str | None = None) -> dict[str, Any]:
     result["artifact_stage_discarded"] = not artifact_stage.exists()
     result["reviewed_source_stage_retained"] = REVIEWED_SOURCE_STAGE.exists()
     result["reviewed_artifact_stage_retained"] = REVIEWED_ARTIFACT_STAGE.exists()
-    result["raw_capture_retained"] = RAW_CAPTURE.exists()
+    result["raw_capture_retained"] = _raw_capture().exists()
     result["final_artifact_exists"] = ARTIFACT.exists()
     result["final_source_exists"] = all(
         path.exists() for path in _final_source_paths().values()
@@ -1865,7 +1870,7 @@ def _existing_identical(recorded_at: str | None) -> dict[str, Any]:
         "published": True,
         "accepted_source_records": 2,
         "rejected_review_only_candidates": 10,
-        "raw_capture_retained": RAW_CAPTURE.exists(),
+        "raw_capture_retained": _raw_capture().exists(),
     }
 
 
@@ -1932,7 +1937,7 @@ def build(
         "published": True,
         "accepted_source_records": 2,
         "rejected_review_only_candidates": 10,
-        "raw_capture_retained": RAW_CAPTURE.exists(),
+        "raw_capture_retained": _raw_capture().exists(),
     }
 
 

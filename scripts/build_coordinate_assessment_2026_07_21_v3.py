@@ -5,14 +5,21 @@ from datetime import datetime, timezone
 import hashlib
 import json
 from pathlib import Path
+import stat
+import sys
 import tempfile
 from typing import Any, Callable
 
+REPOSITORY_ROOT = Path(__file__).resolve().parents[1]
+if str(REPOSITORY_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPOSITORY_ROOT))
+
 import build_coordinate_assessment_2026_07_21_v2 as previous
+from datacenter_atlas.external_captures import resolve_external_capture
 
 
 base = previous.base
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = REPOSITORY_ROOT
 PUBLICATION_ROOT = ROOT / "source_artifacts"
 ARTIFACT_ID = "site-coordinate-assessment-2026-07-21-v3"
 ARTIFACT_DIR = PUBLICATION_ROOT / ARTIFACT_ID
@@ -51,6 +58,10 @@ CAPTURE_TREE_SHA256 = (
 )
 CAPTURE_FILE_COUNT = 79
 CAPTURE_TOTAL_BYTES = 57_610_841
+
+
+def _capture_path() -> Path:
+    return resolve_external_capture(CAPTURE_TRASH_PATH)
 
 SIMBIO_SEIA_WITNESS = {
     "local_capture_completed_at": "2026-07-21T09:26:39Z",
@@ -256,16 +267,22 @@ def _verify_prior_publications() -> dict[str, Any]:
 
 
 def _verify_capture_witness(witness: dict[str, Any]) -> None:
+    root = _capture_path()
+    packaged_capture = root != CAPTURE_TRASH_PATH
     for carrier in ("body", "headers", "curl_writeout"):
         expected = witness[carrier]
-        path = CAPTURE_TRASH_PATH / expected["capture_name"]
+        path = root / expected["capture_name"]
         raw = path.read_bytes()
         metadata = path.stat()
         if (
             len(raw) != expected["bytes"]
             or _sha256(raw) != expected["sha256"]
-            or int(metadata.st_birthtime) != expected["birth_epoch"]
             or int(metadata.st_mtime) != expected["mtime_epoch"]
+            or stat.S_IMODE(metadata.st_mode) != 0o644
+            or (
+                not packaged_capture
+                and int(metadata.st_birthtime) != expected["birth_epoch"]
+            )
         ):
             raise TemporalPublicationError(f"capture witness drifted: {path}")
     if witness["completion_mtime_epoch"] != witness["curl_writeout"]["mtime_epoch"]:
@@ -277,15 +294,20 @@ def _verify_capture_witness(witness: dict[str, Any]) -> None:
 
 
 def _verify_capture_tree() -> None:
-    paths = sorted(path for path in CAPTURE_TRASH_PATH.rglob("*") if path.is_file())
+    root = _capture_path()
+    if stat.S_IMODE(root.stat().st_mode) != 0o700:
+        raise TemporalPublicationError("capture root mode drifted")
+    paths = sorted(path for path in root.rglob("*") if path.is_file())
     if len(paths) != CAPTURE_FILE_COUNT:
         raise TemporalPublicationError("capture tree file count drifted")
     total_bytes = 0
     rows = bytearray()
     for path in paths:
+        if path.is_symlink() or stat.S_IMODE(path.stat().st_mode) != 0o644:
+            raise TemporalPublicationError(f"capture carrier mode drifted: {path}")
         raw = path.read_bytes()
         total_bytes += len(raw)
-        relative = path.relative_to(CAPTURE_TRASH_PATH).as_posix()
+        relative = path.relative_to(root).as_posix()
         rows.extend(f"{_sha256(raw)}  ./{relative}\n".encode("utf-8"))
     if total_bytes != CAPTURE_TOTAL_BYTES or _sha256(bytes(rows)) != CAPTURE_TREE_SHA256:
         raise TemporalPublicationError("capture tree byte closure drifted")

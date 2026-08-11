@@ -60,7 +60,7 @@ def test_reviewed_stages_and_capture_are_exact_immutable_inputs() -> None:
     assert publication.RAW_CAPTURE_TREE_SHA256 == (
         "702b3c5257c81b60d2d5b16df0cf9c41df826012018bbe72d5f79942255bbecc"
     )
-    assert publication.tree_digest(publication.RAW_CAPTURE) == (
+    assert publication.tree_digest(publication._raw_capture()) == (
         publication.RAW_CAPTURE_TREE_SHA256
     )
     assert publication.REVIEWED_SOURCE_PINS == {
@@ -82,10 +82,10 @@ def test_reviewed_stages_and_capture_are_exact_immutable_inputs() -> None:
     assert sum(pin[0] for pin in publication.RAW_CAPTURE_PINS.values()) == 3_431_628
     assert stat.S_IMODE(publication.REVIEWED_SOURCE_STAGE.stat().st_mode) == 0o700
     assert stat.S_IMODE(publication.REVIEWED_ARTIFACT_STAGE.stat().st_mode) == 0o700
-    assert stat.S_IMODE(publication.RAW_CAPTURE.stat().st_mode) == 0o555
+    assert stat.S_IMODE(publication._raw_capture().stat().st_mode) == 0o555
     assert all(
         stat.S_IMODE(path.stat().st_mode) == 0o444
-        for path in publication.RAW_CAPTURE.iterdir()
+        for path in publication._raw_capture().iterdir()
     )
     publication._assert_reviewed_input_identities(identities)
 
@@ -649,12 +649,12 @@ def test_temporal_guard_and_preflight_preserve_reviewed_inodes(
     before = (
         publication._identity(publication.REVIEWED_SOURCE_STAGE, directory=True),
         publication._identity(publication.REVIEWED_ARTIFACT_STAGE, directory=True),
-        publication._identity(publication.RAW_CAPTURE, directory=True),
+        publication._identity(publication._raw_capture(), directory=True),
     )
     publication.preflight(recorded_at=_future(60))
     after = (
         publication._identity(publication.REVIEWED_SOURCE_STAGE, directory=True),
         publication._identity(publication.REVIEWED_ARTIFACT_STAGE, directory=True),
-        publication._identity(publication.RAW_CAPTURE, directory=True),
+        publication._identity(publication._raw_capture(), directory=True),
     )
     assert after == before

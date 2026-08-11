@@ -409,8 +409,9 @@ class GlobalOfficialBuildsCanadaMexicoCaribbeanGapTests(unittest.TestCase):
     def test_capture_rights_incidents_and_closed_private_inventory(self) -> None:
         self.assertFalse(tranche.CAPTURE_ORIGIN.exists())
         self.assertEqual(TRASH, tranche.CAPTURE_TRASH)
-        self.assertTrue(TRASH.is_dir())
-        tranche._validate_capture_directory(TRASH)
+        capture = tranche.resolve_external_capture(tranche.CAPTURE_ORIGIN, TRASH)
+        self.assertTrue(capture.is_dir())
+        tranche._validate_capture_directory(capture)
         inventory = json.loads(
             (ARTIFACT / "retrieval-inventory.json").read_text(encoding="utf-8")
         )

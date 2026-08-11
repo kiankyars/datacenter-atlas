@@ -145,8 +145,9 @@ class GlobalOfficialBuildsOceaniaGapTests(unittest.TestCase):
 
         self.assertFalse(tranche.CAPTURE_ORIGIN.exists())
         self.assertEqual(TRASH, tranche.CAPTURE_TRASH)
-        self.assertTrue(TRASH.is_dir())
-        tranche._validate_capture_directory(TRASH)
+        capture = tranche.resolve_external_capture(tranche.CAPTURE_ORIGIN, TRASH)
+        self.assertTrue(capture.is_dir())
+        tranche._validate_capture_directory(capture)
         self.assertFalse(tranche.PUBLICATION_LOCK.exists())
         self.assertEqual(
             list((ROOT / "sources").glob(".official-builds-oceania-gap.*")), []
@@ -294,9 +295,7 @@ class GlobalOfficialBuildsOceaniaGapTests(unittest.TestCase):
             selected & {f"sources/{name}" for name in tranche.SOURCE_FILENAMES}
         )
         capture = (
-            tranche.CAPTURE_ORIGIN
-            if tranche.CAPTURE_ORIGIN.exists()
-            else tranche.CAPTURE_TRASH
+            tranche.resolve_external_capture(tranche.CAPTURE_ORIGIN, tranche.CAPTURE_TRASH)
         )
         tranche._validate_capture_directory(capture)
 

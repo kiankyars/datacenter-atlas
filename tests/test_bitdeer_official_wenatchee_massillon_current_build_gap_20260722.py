@@ -74,9 +74,7 @@ def test_capacity_boundary_has_only_massillon_26_planned_gross() -> None:
 
 def test_raw_sec_lineage_is_closed_and_exact() -> None:
     directory = (
-        tranche.CAPTURE_ORIGIN
-        if tranche.CAPTURE_ORIGIN.exists()
-        else tranche.CAPTURE_TRASH
+        tranche.resolve_external_capture(tranche.CAPTURE_ORIGIN, tranche.CAPTURE_TRASH)
     )
     tranche._validate_capture_directory(directory)
     assert len(tranche.CAPTURES) == 6

@@ -45,6 +45,7 @@ for _module_name in (
     "epoch",
     "epoch_source_capture",
     "exact_identity_decisions",
+    "external_captures",
     "federated_release",
     "finland_lvv_environmental_permits",
     "france_igedd_ae",

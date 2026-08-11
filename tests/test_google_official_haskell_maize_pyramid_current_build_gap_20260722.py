@@ -162,9 +162,7 @@ def test_v91_collision_witness_is_absent_and_pinned() -> None:
 
 def test_capture_set_includes_eleven_successes_and_three_pinned_failures() -> None:
     directory = (
-        tranche.CAPTURE_ORIGIN
-        if tranche.CAPTURE_ORIGIN.exists()
-        else tranche.CAPTURE_TRASH
+        tranche.resolve_external_capture(tranche.CAPTURE_ORIGIN, tranche.CAPTURE_TRASH)
     )
     tranche._validate_capture_directory(directory)
     assert len(tranche.CAPTURES) == 14

@@ -234,6 +234,7 @@ def test_twelve_assessments_accept_two_and_reject_ten_without_records() -> None:
 
 
 def test_capture_bundle_is_exact_frozen_private_and_complete() -> None:
+    capture = tranche.resolve_external_capture(tranche.CAPTURE_ORIGIN)
     tranche._validate_capture_directory()
     assert len(tranche.CAPTURES) == 15
     assert len(tranche.CAPTURE_FILE_PINS) == tranche.CAPTURE_FILE_COUNT == 30
@@ -242,16 +243,16 @@ def test_capture_bundle_is_exact_frozen_private_and_complete() -> None:
         sum(size for size, _digest in tranche.CAPTURE_FILE_PINS.values())
         == tranche.CAPTURE_TOTAL_BYTES
     )
-    assert tranche.tree_digest(tranche.CAPTURE_ORIGIN) == (
+    assert tranche.tree_digest(capture) == (
         tranche.CAPTURE_TREE_SHA256
     )
     assert tranche.CAPTURE_TREE_SHA256 == (
         "702b3c5257c81b60d2d5b16df0cf9c41df826012018bbe72d5f79942255bbecc"
     )
-    assert stat.S_IMODE(tranche.CAPTURE_ORIGIN.stat().st_mode) == 0o555
+    assert stat.S_IMODE(capture.stat().st_mode) == 0o555
     assert all(
         stat.S_IMODE(path.stat().st_mode) == 0o444
-        for path in tranche.CAPTURE_ORIGIN.iterdir()
+        for path in capture.iterdir()
     )
     inventory = tranche._retrieval_inventory(RECORDED_AT)
     assert inventory["successful_http_200_body_captures"] == 15

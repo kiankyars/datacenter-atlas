@@ -257,12 +257,14 @@ class GlobalOfficialBuildsRegionalGapTests(unittest.TestCase):
 
     def test_private_capture_disposition_v73_nonmutation_and_no_residue(self) -> None:
         self.assertFalse(tranche.CAPTURE_ORIGIN.exists())
-        self.assertTrue(TRASH.is_dir())
-        self.assertEqual(len(list(TRASH.iterdir())), tranche.CAPTURE_FILE_COUNT)
-        self.assertEqual(tree_digest(TRASH), tranche.CAPTURE_TREE_SHA256)
-        tranche._validate_capture_directory(TRASH)
+        capture = tranche.resolve_external_capture(tranche.CAPTURE_ORIGIN, TRASH)
+        self.assertTrue(capture.is_dir())
+        self.assertEqual(len(list(capture.iterdir())), tranche.CAPTURE_FILE_COUNT)
+        self.assertEqual(tree_digest(capture), tranche.CAPTURE_TREE_SHA256)
+        tranche._validate_capture_directory(capture)
         self.assertFalse(tranche.BROWSER_PROFILE_ORIGIN.exists())
-        self.assertTrue(BROWSER_PROFILE_TRASH.is_dir())
+        browser_profile = tranche.resolve_external_capture(BROWSER_PROFILE_TRASH)
+        self.assertTrue(browser_profile.is_dir())
         tranche._validate_browser_profile_disposition()
 
         tranche._validate_v73_nonmutation()

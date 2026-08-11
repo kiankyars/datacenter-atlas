@@ -250,31 +250,30 @@ def test_chonburi_nearby_projects_are_explicit_non_merges() -> None:
 
 
 def test_capture_bundle_is_exact_frozen_and_primary_only() -> None:
+    capture = tranche.resolve_external_capture(tranche.CAPTURE_ORIGIN)
     tranche._validate_capture_directory()
     assert len(tranche.CAPTURE_FILE_PINS) == tranche.CAPTURE_FILE_COUNT == 8
     assert sum(
         size for size, _digest in tranche.CAPTURE_FILE_PINS.values()
     ) == tranche.CAPTURE_TOTAL_BYTES
-    assert tranche.tree_digest(tranche.CAPTURE_ORIGIN) == (
+    assert tranche.tree_digest(capture) == (
         tranche.CAPTURE_TREE_SHA256
     )
-    assert stat.S_IMODE(tranche.CAPTURE_ORIGIN.stat().st_mode) == 0o555
+    assert stat.S_IMODE(capture.stat().st_mode) == 0o555
     assert all(
         stat.S_IMODE(path.stat().st_mode) == 0o444
-        for path in tranche.CAPTURE_ORIGIN.iterdir()
+        for path in capture.iterdir()
     )
-    converge = (tranche.CAPTURE_ORIGIN / "converge.body").read_bytes()
+    converge = (capture / "converge.body").read_bytes()
     assert b"Friday, July 24th 2026" in converge
     assert b"Angeles Data Center serving as a strategic hub" in converge
-    viewer = (tranche.CAPTURE_ORIGIN / "gulf-viewer.body").read_bytes()
+    viewer = (capture / "gulf-viewer.body").read_bytes()
     assert tranche.GULF_WRAPPER_URL.encode() in viewer
-    wrapper = (tranche.CAPTURE_ORIGIN / "gulf-wrapper.body").read_bytes()
+    wrapper = (capture / "gulf-wrapper.body").read_bytes()
     assert tranche.GULF_PDF_URL.encode().replace(b"&", b"&amp;")[:120] in (
         wrapper.replace(b"&amp;", b"&")
     )
-    assert (tranche.CAPTURE_ORIGIN / "gulf-filing.body").read_bytes().startswith(
-        b"%PDF"
-    )
+    assert (capture / "gulf-filing.body").read_bytes().startswith(b"%PDF")
 
 
 def test_retrieval_inventory_records_complete_delivery_chain() -> None:
@@ -447,7 +446,7 @@ def test_artifact_is_compact_facts_and_hashes_not_raw_capture(
 
 def test_mutated_capture_copy_fails_closed(tmp_path: Path) -> None:
     copied = tmp_path / "capture"
-    shutil.copytree(tranche.CAPTURE_ORIGIN, copied)
+    shutil.copytree(tranche.resolve_external_capture(tranche.CAPTURE_ORIGIN), copied)
     for path in copied.iterdir():
         path.chmod(0o444)
     copied.chmod(0o555)

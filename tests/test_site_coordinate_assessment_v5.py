@@ -314,8 +314,11 @@ class SiteCoordinateAssessmentV5Tests(unittest.TestCase):
 
     def test_capture_is_preserved_hash_only_and_inventory_is_exact(self) -> None:
         self.assertFalse(CAPTURE_INPUT.exists())
-        self.assertTrue(CAPTURE.is_dir())
-        filenames = sorted(candidate for candidate in CAPTURE.iterdir() if candidate.is_file())
+        capture_path = builder.resolve_external_capture(CAPTURE)
+        self.assertTrue(capture_path.is_dir())
+        filenames = sorted(
+            candidate for candidate in capture_path.iterdir() if candidate.is_file()
+        )
         self.assertEqual(len(filenames), 18)
         self.assertEqual(sum(filename.stat().st_size for filename in filenames), 6_538_063)
         closure = bytearray()

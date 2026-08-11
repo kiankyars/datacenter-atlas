@@ -100,9 +100,7 @@ def test_novva_phases_are_review_only_despite_cms_update() -> None:
 
 def test_capture_set_is_closed_exact_and_all_successful() -> None:
     directory = (
-        tranche.CAPTURE_ORIGIN
-        if tranche.CAPTURE_ORIGIN.exists()
-        else tranche.CAPTURE_TRASH
+        tranche.resolve_external_capture(tranche.CAPTURE_ORIGIN, tranche.CAPTURE_TRASH)
     )
     tranche._validate_capture_directory(directory)
     assert len(tranche.CAPTURES) == 7

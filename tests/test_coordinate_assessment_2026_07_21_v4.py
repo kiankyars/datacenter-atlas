@@ -18,6 +18,7 @@ from unittest.mock import patch
 
 from datacenter_atlas.curated_v11 import CuratedOfficialSourceAdapterV11
 from datacenter_atlas.database import initialize
+from datacenter_atlas.external_captures import resolve_external_capture
 from datacenter_atlas.open_seed_v69 import tree_digest
 from datacenter_atlas.service import validate_database
 
@@ -269,8 +270,9 @@ class CoordinateAssessmentV4Tests(unittest.TestCase):
 
     def test_capture_tree_is_preserved_hash_only_and_inventory_is_exact(self) -> None:
         self.assertFalse(CAPTURE_INPUT.exists())
-        self.assertTrue(CAPTURE.is_dir())
-        paths = sorted(path for path in CAPTURE.iterdir() if path.is_file())
+        capture = resolve_external_capture(CAPTURE)
+        self.assertTrue(capture.is_dir())
+        paths = sorted(path for path in capture.iterdir() if path.is_file())
         self.assertEqual(len(paths), 54)
         self.assertEqual(sum(path.stat().st_size for path in paths), 1_692_764)
         closure = bytearray()

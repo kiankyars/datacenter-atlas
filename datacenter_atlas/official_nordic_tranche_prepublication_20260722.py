@@ -27,6 +27,7 @@ import stat
 import tempfile
 from typing import Any, Mapping, Sequence
 
+from .external_captures import resolve_external_capture
 from .curated_v11 import CuratedOfficialSourceAdapterV11
 from .database import initialize
 from .open_seed_v56 import tree_digest
@@ -684,7 +685,11 @@ def expected_source_documents() -> dict[str, dict[str, Any]]:
     }
 
 
-def _validate_capture_directory(directory: Path = CAPTURE_ORIGIN) -> None:
+def _validate_capture_directory(
+    directory: Path | None = None,
+) -> None:
+    if directory is None:
+        directory = resolve_external_capture(CAPTURE_ORIGIN)
     if directory.is_symlink() or not directory.is_dir():
         raise RuntimeError("private Nordic capture directory is missing or unsafe")
     entries = {path.name: path for path in directory.iterdir()}

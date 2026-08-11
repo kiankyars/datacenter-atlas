@@ -22,6 +22,7 @@ import tempfile
 import time
 from typing import Any, Mapping
 
+from .external_captures import resolve_external_capture
 from .open_seed_v69 import promote_noreplace, tree_digest
 
 
@@ -422,11 +423,13 @@ def _capture_location() -> Path:
         for candidate in (CAPTURE_TRASH, CAPTURE_ORIGIN)
         if candidate.exists() or candidate.is_symlink()
     ]
-    if len(candidates) != 1:
+    if len(candidates) > 1:
         raise OfficialCoordinateAssessmentError(
             "exactly one preserved raw-capture location must exist"
         )
-    return candidates[0]
+    if candidates:
+        return candidates[0]
+    return resolve_external_capture(CAPTURE_TRASH, CAPTURE_ORIGIN)
 
 
 def verify_private_capture() -> Path:
