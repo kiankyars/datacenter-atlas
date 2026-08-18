@@ -13,8 +13,10 @@ are intentionally not committed to Git.
 - Content encryption: AES256-GCM-HMAC-SHA256
 - Credential envelope: age, encrypted to the SSH public keys registered to the
   GitHub account at the time of creation
-- Current temporary repository location:
-  `/Users/kian/Library/Mobile Documents/com~apple~CloudDocs/Backups/datacenter-atlas/kopia-repository-v1`
+- Current local repository location:
+  `/Users/kian/Backups/datacenter-atlas/kopia-repository-v1`
+- Repository checksum manifest:
+  `/Users/kian/Backups/datacenter-atlas/kopia-repository-v1.SHA256SUMS`
 - Full-workspace snapshot ID:
   `5a29490e6b97a11d17855053f2de4b90`
 - Full-workspace root object:
@@ -26,14 +28,19 @@ are intentionally not committed to Git.
 - Critical snapshot pin: `critical-v1`
 - Capture cutoff: `2026-07-24T22:51:19Z`
 
-The repository location is temporary, not a canonical dependency. On
-2026-08-10 a read-only audit found 369 pinned snapshots, 4,309 blobs occupying
-approximately 102.6 GB, 215,128,363,129 logical bytes, 416,933 files, and zero
-content errors. The full-workspace snapshot above records the former
+The filesystem path is a machine-local convenience, not the repository's
+identity. On 2026-08-18 all 4,310 regular repository files were hydrated and
+hashed before a same-volume move out of iCloud. The checksum manifest above has
+SHA-256 `87ed0ead18a1e593985fe762cf4a5ab86b110ab193911c20831dbea65ce87bf4`.
+A read-only reconnect at the new path confirmed the repository ID and the
+full-workspace snapshot above.
+
+On 2026-08-10 a read-only audit found 369 pinned snapshots, 4,309 blobs
+occupying approximately 102.6 GB, 215,128,363,129 logical bytes, 416,933 files,
+and zero content errors. The full-workspace snapshot records the former
 `/Users/kian/Developer/semiconductors` tree: 205,645,209,106 logical bytes,
-367,634 files, 214,671 directories, and zero errors. Use the repository and
-snapshot IDs to identify the archive after it is moved, and update only the
-temporary-location line.
+367,591 files, 214,671 directories, and zero errors. Use the repository and
+snapshot IDs to identify the archive after any later move.
 
 The first critical set contains 368 pinned snapshots: 9,483,154,023 logical
 bytes, 49,299 files, 10,273 directories, four symlinks, and zero read failures.
