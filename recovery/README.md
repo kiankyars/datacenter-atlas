@@ -14,9 +14,9 @@ are intentionally not committed to Git.
 - Credential envelope: age, encrypted to the SSH public keys registered to the
   GitHub account at the time of creation
 - Current local repository location:
-  `/Users/kian/Backups/datacenter-atlas/kopia-repository-v1`
+  `recovery/kopia-repository-v1`
 - Repository checksum manifest:
-  `/Users/kian/Backups/datacenter-atlas/kopia-repository-v1.SHA256SUMS`
+  `recovery/kopia-repository-v1.SHA256SUMS`
 - Full-workspace snapshot ID:
   `5a29490e6b97a11d17855053f2de4b90`
 - Full-workspace root object:
