@@ -48,9 +48,9 @@ no raw PNG, GeoJSON proposal, raster, or other imagery artifact and reports no u
 Run this command from the repository root:
 
 ```bash
-PYTHONDONTWRITEBYTECODE=1 python3 datacenter_atlas/scripts/build_satellite_calibration.py \
-  --definition datacenter_atlas/sources/satellite-calibration-2026-07-18-analyst-reviews-v4.json \
-  --output datacenter_atlas/satellite_calibration/2026-07-18-analyst-reviews-v4 \
+PYTHONDONTWRITEBYTECODE=1 python3 scripts/build_satellite_calibration.py \
+  --definition sources/satellite-calibration-2026-07-18-analyst-reviews-v4.json \
+  --output satellite_calibration/2026-07-18-analyst-reviews-v4 \
   --validate-only
 ```
 

@@ -101,13 +101,13 @@ are:
 Validate offline from the repository root:
 
 ```bash
-python3 datacenter_atlas/scripts/validate_virginia_deq_air_permits.py
+python3 scripts/validate_virginia_deq_air_permits.py
 ```
 
 Rebuild an exact byte-for-byte copy without network access:
 
 ```bash
-python3 datacenter_atlas/scripts/build_virginia_deq_air_permits.py \
+python3 scripts/build_virginia_deq_air_permits.py \
   --output-dir /absolute/new/output/path
 ```
 

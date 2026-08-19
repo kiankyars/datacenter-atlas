@@ -57,7 +57,7 @@ OHSOME_ENDPOINT = "https://api.ohsome.org/v1/elements/geometry"
 OHSOME_COPYRIGHT_URL = "https://ohsome.org/copyrights"
 DEFAULT_USER_AGENT = (
     "DataCenterAtlas/0.1 (open research; "
-    "+https://github.com/kiankyars/semiconductors)"
+    "+https://github.com/kiankyars/datacenter-atlas)"
 )
 DATA_CENTER_VALUES = ("data_center", "data_centre", "datacenter", "datacentre")
 DIRECT_KEYS = (

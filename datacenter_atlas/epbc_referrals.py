@@ -130,6 +130,10 @@ EXPECTED_BUNDLE_FILES = RELEASE_FILENAMES | {
     MANIFEST_FILENAME,
     MANIFEST_HASH_FILENAME,
 }
+PUBLISHED_V1_README_PIN = (
+    1_780,
+    "3b91535fa1d65105a46762112554b3f35abb58a0f82238a1a649e024f3d7ff21",
+)
 
 OFFICIAL_HOSTS = frozenset(
     {
@@ -931,8 +935,8 @@ consultant attachments, referral documents, plans, maps, images, or PDFs.
 Validate offline:
 
 ```bash
-python datacenter_atlas/scripts/validate_epbc_referrals.py \\
-  datacenter_atlas/source_assessments/{RELEASE_ID}
+python scripts/validate_epbc_referrals.py \\
+  source_assessments/{RELEASE_ID}
 ```
 """
 
@@ -1435,7 +1439,11 @@ def validate_release_bundle(path: str | Path) -> dict[str, Any]:
         raise EPBCReferralsError("source definition changed")
     if schema != schema_document():
         raise EPBCReferralsError("schema changed")
-    if (root / "README.md").read_text(encoding="utf-8") != readme_text():
+    readme_raw = (root / "README.md").read_bytes()
+    if readme_raw != readme_text().encode("utf-8") and (
+        len(readme_raw),
+        sha256_bytes(readme_raw),
+    ) != PUBLISHED_V1_README_PIN:
         raise EPBCReferralsError("release README changed")
     if (root / "ATTRIBUTION.txt").read_text(encoding="utf-8") != attribution_text():
         raise EPBCReferralsError("release attribution changed")

@@ -75,7 +75,7 @@ NATURAL_EARTH_ATTRIBUTION = "Natural Earth"
 NATURAL_EARTH_MANIFEST = "manifest.json"
 NATURAL_EARTH_USER_AGENT = (
     "DataCenterAtlas/0.1 (open research; "
-    "+https://github.com/kiankyars/semiconductors)"
+    "+https://github.com/kiankyars/datacenter-atlas)"
 )
 BOUNDARY_EPSILON = 1e-10
 

@@ -46,7 +46,7 @@ LEGACY_BATCH_SCHEMA_VERSION = 1
 BATCH_PIPELINE = "satellite_review_catalog_batch"
 DEFAULT_USER_AGENT = (
     "DataCenterAtlas/0.1 (open research satellite review queue; "
-    "+https://github.com/kiankyars/semiconductors)"
+    "+https://github.com/kiankyars/datacenter-atlas)"
 )
 DEFAULT_MINIMUM_INTERVAL_SECONDS = 1.1
 DEFAULT_MAX_RESPONSE_BYTES = 16 * 1024 * 1024

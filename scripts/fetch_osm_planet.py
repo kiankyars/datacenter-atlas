@@ -19,7 +19,7 @@ from pathlib import Path
 import re
 import stat
 import sys
-from typing import Any, BinaryIO, Callable, Sequence
+from typing import Any, Callable, Sequence
 import urllib.parse
 import urllib.request
 
@@ -40,7 +40,7 @@ DEFAULT_OUTPUT_DIRECTORY = (
 )
 DEFAULT_USER_AGENT = (
     "DataCenterAtlas/0.1 planet-fallback "
-    "(+https://github.com/kiankyars/semiconductors)"
+    "(+https://github.com/kiankyars/datacenter-atlas)"
 )
 OSM_ATTRIBUTION = "© OpenStreetMap contributors"
 OSM_LICENSE = "ODbL-1.0"
