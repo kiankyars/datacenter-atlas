@@ -26,7 +26,7 @@ REPOSITORY_ROOT = Path(__file__).resolve().parents[1]
 if str(REPOSITORY_ROOT) not in sys.path:
     sys.path.insert(0, str(REPOSITORY_ROOT))
 
-from datacenter_atlas.external_captures import resolve_external_capture
+from datacenter_atlas.external_captures import resolve_external_capture  # noqa: E402
 
 
 ROOT = REPOSITORY_ROOT
@@ -46,9 +46,9 @@ CAPTURE_TREE_SHA256 = (
     "1c84a37eaa06a0f04a72d6c1b4f7e62c7ce00645fcb79a1df2463598db14beef"
 )
 
-# Kopia preserves modification times but a restored inode necessarily receives
-# a new macOS birth time. These pins reproduce the frozen v4 inventory without
-# pretending that the package inode birth is the historical acquisition birth.
+# A copied or restored inode can retain modification time while receiving a new
+# macOS birth time. These pins reproduce the frozen v4 inventory without treating
+# the current local inode birth as the historical acquisition birth.
 CAPTURE_MTIME_EPOCHS: Mapping[str, int] = {
     "equinix_ld14.body": 1_784_636_757,
     "equinix_ld14.headers": 1_784_636_757,
