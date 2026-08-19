@@ -20,7 +20,7 @@ from pathlib import Path
 import re
 import sqlite3
 import stat
-from typing import Any, Callable, Mapping, Sequence
+from typing import Any, Callable, Mapping
 import urllib.request
 
 from .adapters import ImportResult
@@ -85,7 +85,7 @@ UVA_ATTRIBUTION = (
 )
 UVA_USER_AGENT = (
     "DataCenterAtlas/0.1 (open research; "
-    "+https://github.com/kiankyars/semiconductors)"
+    "+https://github.com/kiankyars/datacenter-atlas)"
 )
 
 # A conservative envelope enclosing Virginia.  Every facility centre and

@@ -81,25 +81,25 @@ four selected shards. Every response body must match the definition's byte and
 SHA-256 checkpoint before derivation.
 
 ```bash
-PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=datacenter_atlas \
-  python3 datacenter_atlas/scripts/fetch_microsoft_building_footprints.py \
-  --output datacenter_atlas/source_cache/microsoft-global-ml-buildings-2026-07-18-v1
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=. \
+  python3 scripts/fetch_microsoft_building_footprints.py \
+  --output source_cache/microsoft-global-ml-buildings-2026-07-18-v1
 ```
 
 Inventory an already downloaded index without network access:
 
 ```bash
-PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=datacenter_atlas \
-  python3 datacenter_atlas/scripts/inventory_microsoft_building_footprints.py \
-  --index datacenter_atlas/source_cache/microsoft-global-ml-buildings-2026-07-18-v1/dataset-links.csv
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=. \
+  python3 scripts/inventory_microsoft_building_footprints.py \
+  --index source_cache/microsoft-global-ml-buildings-2026-07-18-v1/dataset-links.csv
 ```
 
 Validate the closed file set, exact permissions, manifest sidecar, every file
 hash, source semantics, and byte-for-byte offline reproduction:
 
 ```bash
-PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=datacenter_atlas \
-  python3 datacenter_atlas/scripts/validate_microsoft_building_footprints.py
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=. \
+  python3 scripts/validate_microsoft_building_footprints.py
 ```
 
 The published directory is mode `0555`; every contained file is mode `0444`.

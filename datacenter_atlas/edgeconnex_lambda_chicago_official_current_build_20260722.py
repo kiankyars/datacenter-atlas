@@ -3,8 +3,9 @@
 The source payload is promoted byte-for-byte from its retained reviewed stage.
 The accepted artifact is rendered from pinned reviewed inputs, contains one
 accepted Chicago record and nine review-only dispositions, and exposes no
-storage or staging locations.  The frozen response bundle is a persistent,
-read-only clone outside the volatile capture directory.
+storage or staging locations. If the frozen raw-response clone is still
+resolvable, it is validated exactly; after publication, its absence does not
+replace or relax validation of the reviewed stages or accepted final artifact.
 
 ``preflight`` is the safe default.  It renders the exact accepted bytes in
 unique same-filesystem sibling stages, imports the source exactly twice,
@@ -33,6 +34,7 @@ from .database import initialize
 from .edgeconnex_lambda_chicago_official_gap_prepublication_20260722 import (
     CAPTURE_FILE_PINS as _REVIEWED_CAPTURE_FILE_PINS,
 )
+from .external_captures import ExternalCaptureError, resolve_external_capture
 from .open_seed_v56 import tree_digest
 from .open_seed_v69 import promote_noreplace
 from .service import validate_database
@@ -256,6 +258,7 @@ def _assert_tree_identities(
 class ReviewedInputIdentities:
     sources: Mapping[str, tuple[int, int, str]]
     artifact: Mapping[str, tuple[int, int, str]]
+    capture_path: Path | None
     captures: Mapping[str, tuple[int, int, str]]
 
 
@@ -283,10 +286,36 @@ def _validate_governed_tree(
         raise EdgeConneXPublicationError(f"{label} tree differs")
 
 
+def _resolve_raw_capture() -> Path | None:
+    try:
+        return resolve_external_capture(RAW_CAPTURE)
+    except ExternalCaptureError:
+        return None
+
+
+def _validate_raw_capture(capture: Path) -> None:
+    _validate_governed_tree(
+        capture,
+        RAW_CAPTURE_PINS,
+        directory_mode=0o555,
+        file_mode=0o444,
+        tree_sha256=RAW_CAPTURE_TREE_SHA256,
+        label="raw capture clone",
+    )
+
+
 def _assert_reviewed_input_identities(identities: ReviewedInputIdentities) -> None:
     _assert_tree_identities(REVIEWED_SOURCE_STAGE, identities.sources)
     _assert_tree_identities(REVIEWED_ARTIFACT_STAGE, identities.artifact)
-    _assert_tree_identities(RAW_CAPTURE, identities.captures)
+    capture = _resolve_raw_capture()
+    if identities.capture_path is None:
+        if capture is not None:
+            raise EdgeConneXPublicationError("raw capture clone identity changed")
+        return
+    if capture != identities.capture_path:
+        raise EdgeConneXPublicationError("raw capture clone identity changed")
+    _validate_raw_capture(capture)
+    _assert_tree_identities(capture, identities.captures)
 
 
 def _validate_reviewed_inputs() -> ReviewedInputIdentities:
@@ -306,14 +335,9 @@ def _validate_reviewed_inputs() -> ReviewedInputIdentities:
         tree_sha256=REVIEWED_ARTIFACT_TREE_SHA256,
         label="reviewed artifact stage",
     )
-    _validate_governed_tree(
-        RAW_CAPTURE,
-        RAW_CAPTURE_PINS,
-        directory_mode=0o555,
-        file_mode=0o444,
-        tree_sha256=RAW_CAPTURE_TREE_SHA256,
-        label="raw capture clone",
-    )
+    capture = _resolve_raw_capture()
+    if capture is not None:
+        _validate_raw_capture(capture)
 
     manifest_path = REVIEWED_ARTIFACT_STAGE / "manifest.json"
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
@@ -358,7 +382,8 @@ def _validate_reviewed_inputs() -> ReviewedInputIdentities:
     identities = ReviewedInputIdentities(
         _tree_identities(REVIEWED_SOURCE_STAGE),
         _tree_identities(REVIEWED_ARTIFACT_STAGE),
-        _tree_identities(RAW_CAPTURE),
+        capture,
+        _tree_identities(capture) if capture is not None else {},
     )
     _assert_reviewed_input_identities(identities)
     return identities
@@ -1164,12 +1189,12 @@ def preflight(*, recorded_at: str | None = None) -> dict[str, Any]:
         if artifact_stage.exists():
             _discard_owned_tree(artifact_stage, expected=prepared.artifact_identities)
     _assert_final_absent()
-    _validate_reviewed_inputs()
+    retained_inputs = _validate_reviewed_inputs()
     result["source_stage_discarded"] = not source_stage.exists()
     result["artifact_stage_discarded"] = not artifact_stage.exists()
     result["reviewed_source_stage_retained"] = REVIEWED_SOURCE_STAGE.exists()
     result["reviewed_artifact_stage_retained"] = REVIEWED_ARTIFACT_STAGE.exists()
-    result["capture_clone_retained"] = RAW_CAPTURE.exists()
+    result["capture_clone_retained"] = retained_inputs.capture_path is not None
     result["capture_storage_location_redacted"] = True
     _assert_publication_clean(result)
     return result
@@ -1326,7 +1351,7 @@ def _existing_identical(recorded_at: str | None) -> dict[str, Any]:
         "published": True,
         "accepted_source_records": 1,
         "review_only_assessments": 9,
-        "capture_clone_retained": RAW_CAPTURE.exists(),
+        "capture_clone_retained": identities.capture_path is not None,
         "capture_storage_location_redacted": True,
     }
 
@@ -1414,7 +1439,9 @@ def build(
         "published": True,
         "accepted_source_records": 1,
         "review_only_assessments": 9,
-        "capture_clone_retained": RAW_CAPTURE.exists(),
+        "capture_clone_retained": (
+            prepared.reviewed_input_identities.capture_path is not None
+        ),
         "capture_storage_location_redacted": True,
     }
 

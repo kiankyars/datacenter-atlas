@@ -1,0 +1,54 @@
+name: Clean-clone checks
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  core:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: datacenter_atlas
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: astral-sh/setup-uv@v6
+        with:
+          version: "0.10.4"
+      - name: Check dependency lock
+        working-directory: datacenter_atlas
+        run: uv lock --check
+      - name: Install the standard-library core
+        working-directory: datacenter_atlas
+        run: uv sync --locked --no-default-groups --python 3.12
+      - name: Run corpus-free tests
+        run: |
+          PYTHONDONTWRITEBYTECODE=1 \
+            datacenter_atlas/.venv/bin/python -m unittest -v \
+            datacenter_atlas.tests.test_models \
+            datacenter_atlas.tests.test_database \
+            datacenter_atlas.tests.test_timestamp_boundaries \
+            datacenter_atlas.tests.test_release \
+            datacenter_atlas.tests.test_workspace_shim
+      - name: Smoke-test the CLI
+        run: datacenter_atlas/.venv/bin/python -m datacenter_atlas --help
+      - name: Lint the clean-clone surface
+        working-directory: datacenter_atlas
+        run: |
+          uv run --locked --only-group lint ruff check \
+            datacenter_atlas/models.py \
+            datacenter_atlas/database.py \
+            datacenter_atlas/repository.py \
+            datacenter_atlas/release.py \
+            datacenter_atlas/timestamps.py \
+            europe_latam_official_discovery_20260721.py \
+            tests/test_models.py \
+            tests/test_database.py \
+            tests/test_timestamp_boundaries.py \
+            tests/test_release.py \
+            tests/test_workspace_shim.py

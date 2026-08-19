@@ -56,17 +56,17 @@ The two operating-model observations are source-supported `wholesale_colocation`
 From the repository root:
 
 ```bash
-PYTHONDONTWRITEBYTECODE=1 python3 datacenter_atlas/scripts/build_construction_master.py \
-  --definition datacenter_atlas/sources/construction-master-2026-07-19-public-open-v13.json \
-  --output datacenter_atlas/construction_master/2026-07-19-public-open-v13
+PYTHONDONTWRITEBYTECODE=1 python3 scripts/build_construction_master.py \
+  --definition sources/construction-master-2026-07-19-public-open-v13.json \
+  --output construction_master/2026-07-19-public-open-v13
 ```
 
 The writer refuses an existing destination and atomically publishes a fully staged bundle. Validate every pinned input and regenerate every output byte without network access with:
 
 ```bash
-PYTHONDONTWRITEBYTECODE=1 python3 datacenter_atlas/scripts/build_construction_master.py \
-  --definition datacenter_atlas/sources/construction-master-2026-07-19-public-open-v13.json \
-  --output datacenter_atlas/construction_master/2026-07-19-public-open-v13 \
+PYTHONDONTWRITEBYTECODE=1 python3 scripts/build_construction_master.py \
+  --definition sources/construction-master-2026-07-19-public-open-v13.json \
+  --output construction_master/2026-07-19-public-open-v13 \
   --validate-only
 ```
 

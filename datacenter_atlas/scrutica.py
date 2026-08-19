@@ -101,7 +101,7 @@ SCRUTICA_NON_DATA_CENTER_FACILITY_TYPES = frozenset(
 SCRUTICA_REVIEW_REQUIRED_FACILITY_TYPES = frozenset({"other"})
 SCRUTICA_USER_AGENT = (
     "DataCenterAtlas/0.1 (open research; "
-    "+https://github.com/kiankyars/semiconductors)"
+    "+https://github.com/kiankyars/datacenter-atlas)"
 )
 _FACILITY_ID_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9-]*$")
 _FACILITY_PATH_RE = re.compile(r"^/facilities/([A-Za-z0-9][A-Za-z0-9-]*)$")

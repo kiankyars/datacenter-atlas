@@ -86,7 +86,7 @@ WIKIDATA_PUBLISHER = "Wikidata contributors / Wikimedia Foundation"
 WIKIDATA_ATTRIBUTION = "Wikidata contributors"
 WIKIDATA_USER_AGENT = (
     "DataCenterAtlas/0.1 (open research; "
-    "+https://github.com/kiankyars/semiconductors)"
+    "+https://github.com/kiankyars/datacenter-atlas)"
 )
 WIKIDATA_MANIFEST = "manifest.json"
 WIKIDATA_SCHEMA_VERSION = 1

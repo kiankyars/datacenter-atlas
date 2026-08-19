@@ -60,7 +60,7 @@ def _imports() -> tuple[Any, Any, Any, Any, Any, Any, Any]:
         raise SystemExit(
             "Install the optional imagery runtime, for example: "
             "uv run --python 3.12 --with numpy --with pillow --with rasterio "
-            "python datacenter_atlas/scripts/sentinel_change.py ..."
+            "python scripts/sentinel_change.py ..."
         ) from exc
     return (
         np,

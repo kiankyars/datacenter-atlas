@@ -12,7 +12,7 @@ import os
 from pathlib import Path
 import stat
 import sys
-from typing import Any, BinaryIO, Sequence
+from typing import Any, Sequence
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -24,7 +24,7 @@ OUTPUT_DIRECTORY = PROJECT_ROOT / "source_cache" / "ghsl-r2023a-2020-1km"
 MANIFEST_FILENAME = "fetch-manifest.json"
 USER_AGENT = (
     "DataCenterAtlas/0.1 blind-tile-GHSL-auxiliary "
-    "(+https://github.com/kiankyars/semiconductors)"
+    "(+https://github.com/kiankyars/datacenter-atlas)"
 )
 ALLOWED_HOST = "jeodpp.jrc.ec.europa.eu"
 MAX_REDIRECTS = 3

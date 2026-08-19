@@ -82,7 +82,48 @@ The public product may be superior before all six feature steps if it demonstrat
 recall, freshness, accuracy, reproducibility, or uncertainty on the common benchmark. It may not
 claim superiority solely because it exposes more speculative rows.
 
-## Current evidence inventory
+## Current evidence inventory (2026-08-18 audit)
+
+The newest artifact in each lane is not a single same-date publication chain. Open-seed v97,
+federation v38, exact identity v14, and timeline v11 postdate the inputs pinned by coverage,
+construction-master, and construction-map v31. Cross-version counts are not additive.
+
+[Open-seed v97](../releases/2026-07-22-open-seed-v97/) contains 1,053 source-scoped entity rows,
+693 evidence rows, 570 typed capacity observations, and 531 construction-pipeline rows. Federation
+[v38](../federated_indexes/2026-07-22-public-open-v38/) indexes 16,478 source-scoped rows: 10,348
+non-review and 6,130 review-only. Neither count is a unique-facility denominator.
+
+[Exact-identity v14](../exact_identity_decisions/2026-07-22-public-open-v14/) reduces the 10,348
+eligible non-review occurrences to 8,616 exact same-kind source-record components. It preserves
+2,517 canonical topology links and leaves 100,541 candidate references unresolved. Unique physical
+sites and both site-count bounds remain `null`.
+
+[Timeline v11](../construction_timelines/2026-07-22-public-open-v11/) publishes 607 raw dated
+lifecycle observations for 583 source-scoped entities. It assumes no persistence, interpolation, or
+current construction state; every current-status classification remains unknown. [Coverage v31](../audits/2026-07-21-public-open-coverage-v31/)
+reports 979 coverage groups and 4,582 open gaps, based on its older pinned chain.
+
+The accepted construction-master v31 manifest declares 109,381 observation rows: 589 Tier A, 6,298
+Tier B, and 102,494 Tier C. The map v31 manifest declares 109,008 mapped observation rows. Those are
+observations, not sites, and the locally present large payloads are ignored by Git; a clean clone
+contains their manifests but is not a hydrated publication workspace. Coverage-ledger v26 likewise
+remains a scoped artifact inventory rather than a site total.
+
+The latest satellite continuation, Unknown038, reports 4,493 catalog pairs completed, 307 no-scene
+outcomes, 1,936 pending jobs, and zero failures. Its post-freeze state is `incomplete` and its mode is
+`catalog_only`: no imagery assets were downloaded, no computer vision or change analysis ran, and no
+Atlas identity, lifecycle, operating-status, type, capacity, power, energy, PUE, workload, map, or
+unique-site claim was created.
+
+A licensed row-level benchmark, shared ontology, adjudicated blind sample, and the scorecard's
+accuracy/calibration results remain absent. Current Atlas row counts and SemiAnalysis's
+vendor-reported facility count are not comparable denominators. No parity or superiority claim is
+supported.
+
+## Historical evidence inventory (2026-07-21)
+
+The remainder of this section preserves the prior v73/v33/v9/v6/v29/v23 checkpoint as historical
+evidence. It is not the current workspace inventory.
 
 The frozen [public/open construction master v29](../construction_master/2026-07-21-public-open-v29/)
 contains 109,332 observation rows: 540 Tier A, 6,298 Tier B, and 102,494 Tier C. This is not a count

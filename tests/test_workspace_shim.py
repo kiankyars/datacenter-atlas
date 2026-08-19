@@ -15,6 +15,12 @@ class WorkspaceShimTests(unittest.TestCase):
         nested_repository = importlib.import_module(
             "datacenter_atlas.datacenter_atlas.repository"
         )
+        public_europe = importlib.import_module(
+            "datacenter_atlas.europe_latam_official_discovery_20260721"
+        )
+        nested_europe = importlib.import_module(
+            "datacenter_atlas.datacenter_atlas.europe_latam_official_discovery_20260721"
+        )
 
         self.assertIs(public, nested)
         self.assertIs(public_repository, nested_repository)
@@ -34,6 +40,10 @@ class WorkspaceShimTests(unittest.TestCase):
         self.assertIs(
             public_repository.canonical_storage_timestamp,
             public.canonical_storage_timestamp,
+        )
+        self.assertIs(
+            public_europe._validate_captures,
+            nested_europe._validate_captures,
         )
 
 

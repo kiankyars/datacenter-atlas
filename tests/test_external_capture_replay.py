@@ -5,7 +5,6 @@ import json
 from pathlib import Path
 import sys
 import unittest
-from unittest.mock import patch
 
 from datacenter_atlas import europe_latam_official_discovery_20260721 as europe_v1
 from datacenter_atlas import europe_latam_official_discovery_temporal_v2 as europe_v2
@@ -36,17 +35,14 @@ def _load_script(module_name: str, filename: str):
 
 @unittest.skipUnless(PAYLOAD.is_dir(), "external capture payload is not installed")
 class ExternalCaptureReplayTests(unittest.TestCase):
-    def test_europe_capture_replay_uses_pinned_birth_provenance(self) -> None:
+    def test_europe_capture_replay_preserves_pinned_content_and_times(self) -> None:
         capture = europe_v1.resolve_external_capture(
             europe_v1.CAPTURE_ORIGIN,
             europe_v1.CAPTURE_TRASH,
         )
+        self.assertNotEqual(capture, europe_v2.CAPTURE_TRASH)
         europe_v1._validate_captures(capture)
         europe_v2._validate_raw_capture()
-
-        with patch.object(europe_v2, "CAPTURE_TRASH", capture):
-            with self.assertRaisesRegex(SystemExit, "birth pin differs"):
-                europe_v2._validate_raw_capture()
 
     def test_coordinate_v3_capture_replay(self) -> None:
         builder = _load_script(

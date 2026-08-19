@@ -61,7 +61,7 @@ PNNL_IM3_ATTRIBUTION = (
 PNNL_IM3_PUBLISHER = "Pacific Northwest National Laboratory (PNNL) / IM3"
 PNNL_IM3_USER_AGENT = (
     "DataCenterAtlas/0.1 (open research; "
-    "+https://github.com/kiankyars/semiconductors)"
+    "+https://github.com/kiankyars/datacenter-atlas)"
 )
 PNNL_IM3_MANIFEST = "manifest.json"
 

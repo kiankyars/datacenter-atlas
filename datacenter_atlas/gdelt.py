@@ -27,7 +27,7 @@ import urllib.request
 from dataclasses import dataclass
 from datetime import UTC, datetime
 from pathlib import Path
-from typing import Any, Callable, Iterable, Mapping, Sequence
+from typing import Any, Callable, Iterable, Mapping
 
 
 GDELT_DOCUMENTATION_URL = (
@@ -44,7 +44,7 @@ GDELT_USAGE_TERMS = (
 GDELT_SOURCE_FAMILY = "gdelt:web_news_ngrams"
 GDELT_USER_AGENT = (
     "DataCenterAtlas/0.1 (open research GDELT bulk news lane; "
-    "+https://github.com/kiankyars/semiconductors)"
+    "+https://github.com/kiankyars/datacenter-atlas)"
 )
 GDELT_DEFAULT_INTERVAL_SECONDS = 1.1
 GDELT_MAX_RETRY_DELAY_SECONDS = 30.0

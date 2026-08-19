@@ -287,9 +287,9 @@ reconstructed byte-for-byte without network access. Focused tests also independe
 manifest-listed England and NSW JSONL releases without broadening the ledger parser.
 
 ```sh
-PYTHONDONTWRITEBYTECODE=1 python3 datacenter_atlas/scripts/build_current_coverage_ledger.py \
-  --definition datacenter_atlas/sources/current-coverage-2026-07-19-v9.json \
-  --output datacenter_atlas/current_coverage_ledgers/2026-07-19-v9 \
+PYTHONDONTWRITEBYTECODE=1 python3 scripts/build_current_coverage_ledger.py \
+  --definition sources/current-coverage-2026-07-19-v9.json \
+  --output current_coverage_ledgers/2026-07-19-v9 \
   --validate-only
 ```
 

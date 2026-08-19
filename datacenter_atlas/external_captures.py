@@ -1,4 +1,4 @@
-"""Resolve historical external-capture paths into the portable recovery tree."""
+"""Resolve historical external-capture paths into the local data tree."""
 
 from __future__ import annotations
 
@@ -13,7 +13,7 @@ PACKAGE_NAME = "atlas-critical-v1-external-captures-2026-08-04"
 PACKAGE_ROOT_ENV = "DATACENTER_ATLAS_EXTERNAL_CAPTURES_ROOT"
 REPOSITORY_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_PACKAGE_ROOT = (
-    REPOSITORY_ROOT / "recovery" / "external-captures" / PACKAGE_NAME
+    REPOSITORY_ROOT / "local_data" / "external-captures" / PACKAGE_NAME
 )
 
 

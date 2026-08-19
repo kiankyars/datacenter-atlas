@@ -41,21 +41,21 @@ review-focus choice, not evidence against those candidates.
 
 ## Reproduction
 
-From `datacenter_atlas/`'s parent directory:
+From the repository root:
 
 ```bash
-PYTHONDONTWRITEBYTECODE=1 python3 datacenter_atlas/scripts/build_candidate_fusion.py \
-  --definition datacenter_atlas/sources/candidate-fusion-2026-07-18-osm-planet-v13.json \
-  --output datacenter_atlas/candidate_fusion/2026-07-18-osm-planet-priority-v13
+PYTHONDONTWRITEBYTECODE=1 python3 scripts/build_candidate_fusion.py \
+  --definition sources/candidate-fusion-2026-07-18-osm-planet-v13.json \
+  --output candidate_fusion/2026-07-18-osm-planet-priority-v13
 ```
 
 The builder refuses an existing destination. To validate hashes, upstream bundles, all terminal
 satellite catalog outputs, and byte-for-byte reconstruction offline:
 
 ```bash
-PYTHONDONTWRITEBYTECODE=1 python3 datacenter_atlas/scripts/build_candidate_fusion.py \
-  --definition datacenter_atlas/sources/candidate-fusion-2026-07-18-osm-planet-v13.json \
-  --output datacenter_atlas/candidate_fusion/2026-07-18-osm-planet-priority-v13 \
+PYTHONDONTWRITEBYTECODE=1 python3 scripts/build_candidate_fusion.py \
+  --definition sources/candidate-fusion-2026-07-18-osm-planet-v13.json \
+  --output candidate_fusion/2026-07-18-osm-planet-priority-v13 \
   --validate-only
 ```
 
