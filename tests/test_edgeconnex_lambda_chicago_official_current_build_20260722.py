@@ -40,7 +40,7 @@ def _configure_private_publication(
     return sources, artifacts
 
 
-def test_reviewed_stages_and_persistent_capture_clone_are_exact() -> None:
+def test_reviewed_stages_and_optional_capture_clone_are_exact() -> None:
     identities = publication._validate_reviewed_inputs()
     assert publication.tree_digest(publication.REVIEWED_SOURCE_STAGE) == (
         publication.REVIEWED_SOURCE_TREE_SHA256
@@ -48,12 +48,8 @@ def test_reviewed_stages_and_persistent_capture_clone_are_exact() -> None:
     assert publication.tree_digest(publication.REVIEWED_ARTIFACT_STAGE) == (
         publication.REVIEWED_ARTIFACT_TREE_SHA256
     )
-    assert publication.tree_digest(publication.RAW_CAPTURE) == (
-        publication.RAW_CAPTURE_TREE_SHA256
-    )
     assert stat.S_IMODE(publication.REVIEWED_SOURCE_STAGE.stat().st_mode) == 0o700
     assert stat.S_IMODE(publication.REVIEWED_ARTIFACT_STAGE.stat().st_mode) == 0o700
-    assert stat.S_IMODE(publication.RAW_CAPTURE.stat().st_mode) == 0o555
     assert all(
         stat.S_IMODE(path.stat().st_mode) == 0o600
         for path in publication.REVIEWED_SOURCE_STAGE.iterdir()
@@ -62,10 +58,17 @@ def test_reviewed_stages_and_persistent_capture_clone_are_exact() -> None:
         stat.S_IMODE(path.stat().st_mode) == 0o600
         for path in publication.REVIEWED_ARTIFACT_STAGE.iterdir()
     )
-    assert all(
-        stat.S_IMODE(path.stat().st_mode) == 0o444
-        for path in publication.RAW_CAPTURE.iterdir()
-    )
+    if identities.capture_path is None:
+        assert identities.captures == {}
+    else:
+        assert publication.tree_digest(identities.capture_path) == (
+            publication.RAW_CAPTURE_TREE_SHA256
+        )
+        assert stat.S_IMODE(identities.capture_path.stat().st_mode) == 0o555
+        assert all(
+            stat.S_IMODE(path.stat().st_mode) == 0o444
+            for path in identities.capture_path.iterdir()
+        )
     assert set(publication.REVIEWED_SOURCE_PINS) == {publication.SOURCE_FILENAME}
     assert len(publication.REVIEWED_ARTIFACT_PINS) == 7
     assert len(publication.RAW_CAPTURE_PINS) == 28
@@ -196,6 +199,7 @@ def test_preflight_imports_exactly_twice_is_deterministic_and_discards(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
     _configure_private_publication(tmp_path, monkeypatch)
+    monkeypatch.setattr(publication, "_resolve_raw_capture", lambda: None)
     calls = 0
     original = publication.CuratedOfficialSourceAdapterV11.import_file
 
@@ -219,7 +223,7 @@ def test_preflight_imports_exactly_twice_is_deterministic_and_discards(
     assert result["artifact_stage_discarded"] is True
     assert result["reviewed_source_stage_retained"] is True
     assert result["reviewed_artifact_stage_retained"] is True
-    assert result["capture_clone_retained"] is True
+    assert result["capture_clone_retained"] is False
     assert not publication.ARTIFACT.exists()
     assert not publication._final_source().exists()
 
@@ -502,29 +506,30 @@ def test_reviewed_artifact_tamper_fails_without_touching_retained_stage(
     )
 
 
-def test_capture_clone_tamper_fails_without_touching_persistent_clone(
+def test_resolvable_capture_clone_tamper_fails(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:
-    retained = publication.RAW_CAPTURE
     copied = tmp_path / "capture-clone"
     copied.mkdir(mode=0o700)
-    for path in retained.iterdir():
-        destination = copied / path.name
-        shutil.copyfile(path, destination)
+    for name in publication.RAW_CAPTURE_PINS:
+        destination = copied / name
+        destination.write_bytes(b"")
         destination.chmod(0o444)
     copied.chmod(0o555)
-    copied.chmod(0o755)
-    target = copied / next(iter(publication.RAW_CAPTURE_PINS))
-    target.chmod(0o644)
-    target.write_bytes(target.read_bytes() + b"\n")
-    target.chmod(0o444)
-    copied.chmod(0o555)
-    monkeypatch.setattr(publication, "RAW_CAPTURE", copied)
+    monkeypatch.setattr(publication, "_resolve_raw_capture", lambda: copied)
     with pytest.raises(
         publication.EdgeConneXPublicationError, match="pinned input differs"
     ):
         publication._validate_reviewed_inputs()
-    assert publication.tree_digest(retained) == publication.RAW_CAPTURE_TREE_SHA256
+
+
+def test_absent_capture_clone_uses_exact_reviewed_and_final_artifacts(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    monkeypatch.setattr(publication, "_resolve_raw_capture", lambda: None)
+    identities = publication._validate_reviewed_inputs()
+    assert identities.capture_path is None
+    assert publication.validate_published()["capture_clone_retained"] is False
 
 
 def test_stage_time_lock_and_identity_cleanup_guards_fail_closed(

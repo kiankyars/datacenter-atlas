@@ -100,16 +100,18 @@ class CurrentCoverageLedgerV26Tests(unittest.TestCase):
             root / ".current-coverage-v26.lock",
         )
 
-    def test_rejected_v25_incident_is_exact_and_immutable(self) -> None:
+    def test_rejected_v25_incident_witness_is_exact_portable_and_immutable(self) -> None:
         v25_definition = ROOT / core.REJECTED_V25_DEFINITION["path"]
         v25_bundle = ROOT / core.REJECTED_V25_BUNDLE_PATH
+        paths = (v25_definition, *v25_bundle.iterdir())
         before = {
             path.relative_to(ROOT).as_posix(): checkpoint(path)
-            for path in (v25_definition, *v25_bundle.iterdir())
+            for path in paths
         }
         with ExitStack() as stack:
             self._offline(stack)
             core._require_inputs()
+            witness = core._require_v25_incident_witness_v2()
         self.assertEqual(core.INCIDENT_LINEAGE["accepted_as_base"], False)
         self.assertEqual(
             core.INCIDENT_LINEAGE["status"], "rejected_publication_incident"
@@ -118,22 +120,43 @@ class CurrentCoverageLedgerV26Tests(unittest.TestCase):
             core.INCIDENT_LINEAGE["incident_kind"],
             "final_bundle_member_ctime_predates_generated_at",
         )
-        generated = datetime.fromisoformat(
-            core.REJECTED_V25_GENERATED_AT.replace("Z", "+00:00")
+        self.assertEqual(witness["schema_version"], "2.0")
+        self.assertEqual(witness["witness_id"], core.REJECTED_V25_WITNESS_ID)
+        self.assertEqual(
+            witness["incident"]["failed_bundle_members_at_original_observation"],
+            list(core.REJECTED_V25_FAILED_MEMBERS),
         )
-        failed = tuple(
-            sorted(
-                member.name
-                for member in v25_bundle.iterdir()
-                if member.stat().st_ctime < generated.timestamp()
-            )
+        self.assertEqual(
+            witness["integrity_contract"]["observational_not_identity_signals"],
+            ["ctime_ns", "nlink"],
         )
-        self.assertEqual(failed, core.REJECTED_V25_FAILED_MEMBERS)
+        original_observations = {
+            path: core._incident_metadata(path)
+            for path in (v25_definition, v25_bundle, *v25_bundle.iterdir())
+        }
+
+        def changed_inode_observation(path: Path) -> dict[str, int | float | None]:
+            observation = dict(original_observations[path])
+            observation["ctime_ns"] = int(observation["ctime_ns"]) + 1
+            observation["nlink"] = int(observation["nlink"]) + 1
+            return observation
+
+        with patch.object(
+            core, "_incident_metadata", side_effect=changed_inode_observation
+        ):
+            changed_witness = core._require_v25_incident_witness_v2()
+        self.assertEqual(
+            changed_witness["portable_identity"], witness["portable_identity"]
+        )
+        self.assertNotEqual(
+            changed_witness["current_inode_observation"],
+            witness["current_inode_observation"],
+        )
         self.assertEqual(
             before,
             {
                 path.relative_to(ROOT).as_posix(): checkpoint(path)
-                for path in (v25_definition, *v25_bundle.iterdir())
+                for path in paths
             },
         )
 

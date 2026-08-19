@@ -110,7 +110,12 @@ SOURCE_PINS: Mapping[str, tuple[int, str]] = {
         "d43bcec02e9459d307ecaadadf0c9cbc59100f9008d835567db9f1db47c8748f",
     ),
 }
-SOURCE_CTIME_NS: Mapping[str, int] = {
+SOURCE_BIRTH_MTIME_PINS: Mapping[str, tuple[float, int]] = {
+    APPEND_ORDER[0]: (1_784_698_849.0706782, 1_784_698_849_070_678_287),
+    APPEND_ORDER[1]: (1_784_698_849.0708606, 1_784_698_849_070_860_575),
+    APPEND_ORDER[2]: (1_784_698_204.049011, 1_784_698_204_049_010_959),
+}
+HISTORICAL_SOURCE_CTIME_NS: Mapping[str, int] = {
     APPEND_ORDER[0]: 1_784_698_893_030_743_791,
     APPEND_ORDER[1]: 1_784_698_893_030_859_372,
     APPEND_ORDER[2]: 1_784_698_249_038_004_879,
@@ -272,6 +277,28 @@ def _pin(path: Path) -> tuple[int, str]:
     return len(raw), _sha256(raw)
 
 
+def _source_metadata(path: Path) -> dict[str, int | float | None]:
+    metadata = path.stat(follow_symlinks=False)
+    return {
+        "birthtime": getattr(metadata, "st_birthtime", None),
+        "mtime_ns": metadata.st_mtime_ns,
+        "ctime_ns": metadata.st_ctime_ns,
+        "nlink": metadata.st_nlink,
+    }
+
+
+def _accepted_source_inode_observations() -> dict[str, dict[str, int]]:
+    observations: dict[str, dict[str, int]] = {}
+    for relative in APPEND_ORDER:
+        metadata = _source_metadata(ROOT / relative)
+        observations[relative] = {
+            "historical_accepted_ctime_ns": HISTORICAL_SOURCE_CTIME_NS[relative],
+            "current_ctime_ns": int(metadata["ctime_ns"]),
+            "current_nlink": int(metadata["nlink"]),
+        }
+    return observations
+
+
 def _canonical(value: Any, *, sort_keys: bool = False) -> bytes:
     return (
         json.dumps(value, indent=2, sort_keys=sort_keys, ensure_ascii=False) + "\n"
@@ -389,12 +416,14 @@ def _validate_accepted_inputs() -> dict[str, dict[str, Any]]:
     for relative, document in documents.items():
         path = ROOT / relative
         metadata = path.stat(follow_symlinks=False)
+        source_metadata = _source_metadata(path)
         if (
             path.is_symlink()
             or not path.is_file()
             or stat.S_IMODE(metadata.st_mode) != 0o444
             or _pin(path) != SOURCE_PINS[relative]
-            or metadata.st_ctime_ns != SOURCE_CTIME_NS[relative]
+            or (source_metadata["birthtime"], source_metadata["mtime_ns"])
+            != SOURCE_BIRTH_MTIME_PINS[relative]
             or path.read_bytes() != _canonical(document)
         ):
             raise OpenSeedV97Error(f"accepted v97 source pin differs: {relative}")
@@ -563,6 +592,8 @@ def readiness_report() -> dict[str, Any]:
         "planned_input_count": len(selected),
         "append_order": list(APPEND_ORDER),
         "accepted_artifacts_validated": ["ctrls", "edgeconnex_lambda"],
+        "accepted_source_inode_observations": _accepted_source_inode_observations(),
+        "accepted_source_observational_not_identity_signals": ["ctime_ns", "nlink"],
         "stale_status_suppression_unchanged": sorted(v96.EXPECTED_STALE_PROJECT_KEYS),
         "promotion_contract": dict(PROMOTION_CONTRACT),
         "final_definition_absent": not DEFINITION.exists(),
@@ -1129,8 +1160,11 @@ def _guard_state() -> dict[str, Any]:
         "selected_sources": {
             relative: _pin(ROOT / relative) for relative in APPEND_ORDER
         },
-        "selected_source_ctimes": {
-            relative: (ROOT / relative).stat(follow_symlinks=False).st_ctime_ns
+        "selected_source_birth_mtimes": {
+            relative: (
+                _source_metadata(ROOT / relative)["birthtime"],
+                _source_metadata(ROOT / relative)["mtime_ns"],
+            )
             for relative in APPEND_ORDER
         },
     }
@@ -1154,7 +1188,7 @@ def _validate_guard(guard: Mapping[str, Any]) -> None:
             "edgeconnex_lambda": EDGE_ARTIFACT_PHYSICAL_TREE_SHA256,
         }
         or guard["selected_sources"] != dict(SOURCE_PINS)
-        or guard["selected_source_ctimes"] != dict(SOURCE_CTIME_NS)
+        or guard["selected_source_birth_mtimes"] != dict(SOURCE_BIRTH_MTIME_PINS)
     ):
         raise OpenSeedV97Error("v97 immutable-input guard differs")
 

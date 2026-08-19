@@ -1,9 +1,9 @@
 """Incident-preserving, chronology-correct current-coverage ledger v26.
 
 V26 reconstructs the intended 53-entry successor directly from accepted v24
-inputs. It does not accept v25 as a base: v25 is retained and pinned as a
-rejected publication incident because its three final bundle members kept
-private-stage ctimes that predated its declared publication timestamp.
+inputs. It does not accept v25 as a base: v25 is retained and content-pinned as
+a rejected publication incident. The original ctime observation remains part
+of that incident record, but is not treated as portable artifact identity.
 """
 
 from __future__ import annotations
@@ -70,6 +70,7 @@ REJECTED_V25_TREE_SHA256 = (
 REJECTED_V25_GENERATED_AT = "2026-07-22T01:48:00Z"
 REJECTED_V25_LEDGER_ID = "current-coverage-2026-07-21-v25"
 REJECTED_V25_FAILED_MEMBERS = tuple(sorted(REJECTED_V25_MEMBERS))
+REJECTED_V25_WITNESS_ID = "current-coverage-v25-rejection-witness-v2"
 
 INCIDENT_LINEAGE = {
     "accepted_as_base": False,
@@ -96,6 +97,11 @@ INCIDENT_LINEAGE = {
 V26_DEFINITION_SHA256: str | None = (
     "04ff833055238a20172a4fb340116198321c0b18df7ba8c8250b68f03f62780c"
 )
+PUBLISHED_V26_MODULE_PIN = {
+    "bytes": 26_929,
+    "path": "datacenter_atlas/current_coverage_v26.py",
+    "sha256": "e899f3e935a1489caec56c708e4472be690e07fe0ccb36266f04520da7fcefc0",
+}
 
 
 class CurrentCoverageV26Error(RuntimeError):
@@ -132,7 +138,17 @@ def _regular_bytes(path: Path, label: str) -> bytes:
     return path.read_bytes()
 
 
-def _require_v25_incident() -> None:
+def _incident_metadata(path: Path) -> dict[str, int | float | None]:
+    metadata = path.stat(follow_symlinks=False)
+    return {
+        "birthtime": getattr(metadata, "st_birthtime", None),
+        "ctime_ns": metadata.st_ctime_ns,
+        "mtime": metadata.st_mtime,
+        "nlink": metadata.st_nlink,
+    }
+
+
+def _require_v25_incident_witness_v2() -> dict[str, Any]:
     definition_path = ROOT / REJECTED_V25_DEFINITION["path"]
     definition_raw = _regular_bytes(definition_path, "rejected v25 definition")
     if (
@@ -169,27 +185,66 @@ def _require_v25_incident() -> None:
     if _v25.tree_digest(bundle) != REJECTED_V25_TREE_SHA256:
         raise CurrentCoverageV26Error("rejected v25 tree changed")
 
-    target = _parse_utc(REJECTED_V25_GENERATED_AT, "rejected v25 generated_at")
-    target_seconds = target.timestamp()
     all_paths = (definition_path, bundle, *members)
+    observations = {
+        path.relative_to(ROOT).as_posix(): _incident_metadata(path)
+        for path in all_paths
+    }
+    target_seconds = _parse_utc(
+        REJECTED_V25_GENERATED_AT, "rejected v25 generated_at"
+    ).timestamp()
     for path in all_paths:
-        metadata = path.stat(follow_symlinks=False)
-        birth = getattr(metadata, "st_birthtime", metadata.st_ctime)
-        if max(birth, metadata.st_mtime) > target_seconds + 0.000_001:
+        metadata = observations[path.relative_to(ROOT).as_posix()]
+        birthtime = metadata["birthtime"]
+        if metadata["mtime"] > target_seconds + 0.000_001 or (
+            birthtime is not None and birthtime > target_seconds + 0.000_001
+        ):
             raise CurrentCoverageV26Error("rejected v25 chronology evidence changed")
-    if definition_path.stat().st_ctime + 0.000_001 < target_seconds:
-        raise CurrentCoverageV26Error("rejected v25 definition incident changed")
-    if bundle.stat().st_ctime + 0.000_001 < target_seconds:
-        raise CurrentCoverageV26Error("rejected v25 bundle-root incident changed")
-    failed = tuple(
-        sorted(
-            path.name
-            for path in members
-            if path.stat().st_ctime + 0.000_001 < target_seconds
-        )
-    )
-    if failed != REJECTED_V25_FAILED_MEMBERS:
-        raise CurrentCoverageV26Error("rejected v25 failed-member set changed")
+
+    return {
+        "schema_version": "2.0",
+        "witness_id": REJECTED_V25_WITNESS_ID,
+        "status": "rejected_publication_incident",
+        "portable_identity": {
+            "definition": dict(REJECTED_V25_DEFINITION),
+            "bundle": {
+                "members": {
+                    name: {"bytes": size, "sha256": digest}
+                    for name, (size, digest) in sorted(REJECTED_V25_MEMBERS.items())
+                },
+                "path": REJECTED_V25_BUNDLE_PATH,
+                "tree_sha256": REJECTED_V25_TREE_SHA256,
+            },
+        },
+        "incident": {
+            "kind": INCIDENT_LINEAGE["incident_kind"],
+            "declared_generated_at": REJECTED_V25_GENERATED_AT,
+            "failed_bundle_members_at_original_observation": list(
+                REJECTED_V25_FAILED_MEMBERS
+            ),
+            "classification": "historical_filesystem_metadata_observation",
+            "content_or_semantic_mutation": False,
+        },
+        "integrity_contract": {
+            "required_signals": [
+                "ordinary_regular_files",
+                "closed_member_inventory",
+                "relative_paths",
+                "bytes",
+                "sha256",
+                "modes",
+                "tree_sha256",
+                "definition_identity",
+                "birthtime_and_mtime_not_after_declared_generated_at",
+            ],
+            "observational_not_identity_signals": ["ctime_ns", "nlink"],
+        },
+        "current_inode_observation": observations,
+    }
+
+
+def _require_v25_incident() -> dict[str, Any]:
+    return _require_v25_incident_witness_v2()
 
 
 def _require_inputs() -> None:
@@ -267,6 +322,7 @@ def _implementation_pins() -> dict[str, Any]:
             "path": path.relative_to(ROOT).as_posix(),
             "sha256": _sha256(raw),
         }
+    result["module"] = dict(PUBLISHED_V26_MODULE_PIN)
     return result
 
 

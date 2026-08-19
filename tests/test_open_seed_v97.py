@@ -106,19 +106,67 @@ def _remove_test_tree(path: Path) -> None:
 def test_exact_v96_base_and_accepted_artifacts_are_ready() -> None:
     guard = core._guard_state()
     core._validate_guard(guard)
+    assert guard["selected_source_birth_mtimes"] == dict(
+        core.SOURCE_BIRTH_MTIME_PINS
+    )
     report = core.readiness_report()
     assert report["status"] == "ready"
     assert report["base_release_id"] == core.v96.RELEASE_ID
     assert report["base_definition_sha256"] == core.BASE_DEFINITION_PIN[1]
     assert report["base_tree_sha256"] == core.BASE_TREE_SHA256
     assert report["accepted_artifacts_validated"] == ["ctrls", "edgeconnex_lambda"]
+    assert report["accepted_source_observational_not_identity_signals"] == [
+        "ctime_ns",
+        "nlink",
+    ]
     assert report["planned_input_count"] == 519
     assert report["stale_status_suppression_unchanged"] == sorted(
         core.v96.EXPECTED_STALE_PROJECT_KEYS
     )
-    assert report["final_definition_absent"] is True
-    assert report["final_release_absent"] is True
-    assert report["publication_lock_absent"] is True
+    assert report["final_definition_absent"] is (not core.DEFINITION.exists())
+    assert report["final_release_absent"] is (not core.RELEASE.exists())
+    assert report["publication_lock_absent"] is (not core.PUBLICATION_LOCK.exists())
+
+
+def test_guard_observes_ctime_and_nlink_without_using_them_as_identity(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    baseline_guard = core._guard_state()
+    original_metadata = core._source_metadata
+
+    def changed_inode_observation(path: Path) -> dict[str, int | float | None]:
+        metadata = dict(original_metadata(path))
+        metadata["ctime_ns"] = int(metadata["ctime_ns"]) + 1
+        metadata["nlink"] = int(metadata["nlink"]) + 1
+        return metadata
+
+    monkeypatch.setattr(core, "_source_metadata", changed_inode_observation)
+    changed_guard = core._guard_state()
+    core._validate_guard(changed_guard)
+    assert changed_guard == baseline_guard
+    observations = core._accepted_source_inode_observations()
+    for relative in core.APPEND_ORDER:
+        actual = original_metadata(core.ROOT / relative)
+        assert observations[relative]["current_ctime_ns"] == actual["ctime_ns"] + 1
+        assert observations[relative]["current_nlink"] == actual["nlink"] + 1
+
+
+@pytest.mark.parametrize("field", ["birthtime", "mtime_ns"])
+def test_guard_rejects_accepted_source_birthtime_or_mtime_change(
+    monkeypatch: pytest.MonkeyPatch, field: str
+) -> None:
+    original_metadata = core._source_metadata
+
+    def changed_identity(path: Path) -> dict[str, int | float | None]:
+        metadata = dict(original_metadata(path))
+        value = metadata[field]
+        assert value is not None
+        metadata[field] = value + 1
+        return metadata
+
+    monkeypatch.setattr(core, "_source_metadata", changed_identity)
+    with pytest.raises(core.OpenSeedV97Error, match="accepted v97 source pin differs"):
+        core._guard_state()
 
 
 def test_selection_is_exact_append_and_preserves_all_516_v96_rows() -> None:
@@ -228,7 +276,12 @@ def test_real_database_renderer_and_byte_frozen_v96_projection() -> None:
         )
 
 
-def test_full_prepublication_runs_two_replays_and_leaves_no_final() -> None:
+def test_full_prepublication_runs_two_replays_and_leaves_no_final(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    sources, releases, definition, release, lock = _publisher_roots(
+        tmp_path, monkeypatch
+    )
     result = core.prepare_open_seed_v97()
     assert result["status"] == "prepublication-validated"
     assert result["publication_authorized"] is False
@@ -242,19 +295,20 @@ def test_full_prepublication_runs_two_replays_and_leaves_no_final() -> None:
     assert result["final_definition_absent"] is True
     assert result["final_release_absent"] is True
     assert result["publication_lock_absent"] is True
-    assert not core.DEFINITION.exists()
-    assert not core.RELEASE.exists()
-    assert not core.PUBLICATION_LOCK.exists()
+    _assert_no_publisher_residue(sources, releases, definition, release, lock)
 
 
-def test_publication_requires_authorization_and_exactly_two_replays() -> None:
+def test_publication_requires_authorization_and_exactly_two_replays(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    sources, releases, definition, release, lock = _publisher_roots(
+        tmp_path, monkeypatch
+    )
     with pytest.raises(core.OpenSeedV97Error, match="requires explicit"):
         core.build_open_seed_v97()
     with pytest.raises(core.OpenSeedV97Error, match="exactly two"):
         core.prepare_open_seed_v97(replay_count=1)
-    assert not core.DEFINITION.exists()
-    assert not core.RELEASE.exists()
-    assert not core.PUBLICATION_LOCK.exists()
+    _assert_no_publisher_residue(sources, releases, definition, release, lock)
 
 
 def test_private_publisher_is_release_first_and_existing_identical(

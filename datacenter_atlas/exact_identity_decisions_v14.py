@@ -419,8 +419,8 @@ CODE_PINS = {
         "d65711ef0a40216db8a811626369018df6f7216f0f54e49170663bcb9f50e9e1",
     ),
     "open_seed_v97.py": (
-        88_620,
-        "47ac8cacfebf6a9179be22db5368aae5066faf14e47e3bbd591208f331958466",
+        90_086,
+        "968d9f13593ae22a372df0951b0a57b032a19ee09d6c0f47c37c9209206cbabe",
     ),
 }
 
