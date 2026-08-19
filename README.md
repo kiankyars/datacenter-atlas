@@ -10,56 +10,51 @@ Operating model and workload are independent classifications. Power observations
 number means grid connection, gross facility load, critical IT load, generation nameplate, annual
 energy, or PUE; estimates carry low/base/high values, method, confidence, and evidence.
 
-## Current working snapshot (2026-07-21)
+## Current workspace state (audited 2026-08-18)
 
-The active accepted seed is [open-seed v73](releases/2026-07-21-open-seed-v73/). It contains 818
-source-scoped entity rows (431 campuses and 387 projects), 520 exported evidence rows, 534 typed
-capacity observations, 420 construction-pipeline rows, and 322 construction-source signals. Only
-192 entities have coordinates. These are source records and observations, not a deduplicated count
-of physical sites. Every lifecycle row remains a dated last-observed fact;
-`current_status_inferred` is `false`.
+The latest fully present source bundle is
+[open-seed v97](releases/2026-07-22-open-seed-v97/). It contains 1,053 source-scoped entity rows
+(545 campuses and 508 projects), 693 evidence rows, 570 typed capacity observations, 531
+construction-pipeline rows, and 432 construction-source signals. These remain observations, not a
+deduplicated physical-site count, and `current_status_inferred` remains `false`.
 
-The accepted downstream chain includes
-[federation v33](federated_indexes/2026-07-21-public-open-v33/),
-[exact-identity decisions v9](exact_identity_decisions/2026-07-21-public-open-v9/),
-[construction timeline v6](construction_timelines/2026-07-21-public-open-v6/),
-[coverage audit v29](audits/2026-07-21-public-open-coverage-v29/),
-[construction master v29](construction_master/2026-07-21-public-open-v29/), and
-[construction map v29](construction_maps/2026-07-21-public-open-v29/). Federation v33 indexes
-16,243 source-scoped rows: 10,113 non-review rows and 6,130 review-only rows. Identity v9 reduces
-the eligible non-review rows to 8,381 exact source-record components while leaving unique physical
-sites and both physical-site bounds `null`. Coverage v29 records 847 coverage groups and 4,103 open
-gaps.
+The newest artifact in each downstream lane is listed below. These versions are not one coherent
+same-date chain: coverage/master/map v31 pin earlier seed, federation, identity, and timeline inputs
+than v97/v38/v14/v11. Counts from separate lanes or versions must not be added.
 
-Timeline v6 publishes 479 raw dated observations for 462 source-scoped entities without assuming
-persistence; every current-status classification is unknown. Master v29 contains 109,332
-observation rows across tiers A/B/C (540/6,298/102,494), not 109,332 facilities. Its 412
-`under_construction` rows are dated source observations rather than current-status assertions. Map
-v29 maps 108,998 observations, leaves 334 unmapped, and exposes 6,504 coordinate-bearing Tier A+B
-rows by default; map markers remain observations rather than sites.
+| Lane | Latest artifact | Current local hydration |
+| --- | --- | --- |
+| Source release | [open-seed v97](releases/2026-07-22-open-seed-v97/) | All 13 manifest-declared payload files present |
+| Federation | [v38](federated_indexes/2026-07-22-public-open-v38/) | Federated index present |
+| Exact identity | [v14](exact_identity_decisions/2026-07-22-public-open-v14/) | All seven declared payload files present |
+| Timeline | [v11](construction_timelines/2026-07-22-public-open-v11/) | All five declared payload files present |
+| Coverage audit | [v31](audits/2026-07-21-public-open-coverage-v31/) | All four declared payload files present |
+| Construction master | [v31](construction_master/2026-07-21-public-open-v31/) | All five declared payload files present locally |
+| Construction map | [v31](construction_maps/2026-07-21-public-open-v31/) | All five declared payload files present locally |
+| Coverage ledger | [v26](current_coverage_ledgers/2026-07-21-v26/) | Declared ledger payload present locally |
 
-The current bounded v73 satellite queue contains 192 coordinate-bearing seed entities: 100
-active-construction, 29 operational, five proposed-pipeline, and 58 unknown-priority jobs; 626
-entities lacked coordinates and were skipped. It adds exactly three newly located records to v71
-and removes none. The completed explicit catalog tranche was sampled from the predecessor v71
-queue: it represented all 98 v71 active jobs, executed 11, completed all 11 with no failures or
-no-scene outcomes, and left 87 pending. Change analysis also completed those 11 jobs.
-Identity-blind analyst review retained seven visual results for manual follow-up and rejected four
-for site promotion. The queue, catalog, change, and review
-artifacts created no Atlas identity, operator, lifecycle, type, capacity, power, energy, PUE,
-workload, current-status, construction-arithmetic, or unique-site claim; no row was promoted.
+Git versions the code, definitions, documentation, tests, and small provenance manifests, while
+large generated payloads are ignored. A clean clone therefore supports the CLI and corpus-free CI
+tier, but it does not promise a hydrated publication workspace. Ignored payloads are ordinary local
+files and may be copied with normal filesystem tools; historical recovery records are not required
+to install or test the project.
 
-The [coverage ledger v23](current_coverage_ledgers/2026-07-21-v23/) closes 50 artifact contracts:
-40 v22 entries remain byte-identical, seven are one-for-one successors for seed v73, timeline v6,
-federation v33, identity v9, coverage v29, master v29, and map v29, and three add the bounded v71
-satellite queue, catalog, and blind-review contracts. Ledger entries remain separately scoped and
-are not additive site counts.
+The latest exact-identity release indexes 16,478 source-scoped records and reduces 10,348 eligible
+non-review occurrences to 8,616 exact same-kind components. It leaves 100,541 candidate references
+unresolved; unique physical sites and both physical-site bounds remain `null`. Timeline v11 contains
+607 raw lifecycle observations for 583 source-scoped entities and classifies every current status as
+unknown. Coverage v31 records 979 coverage groups and 4,582 open gaps.
 
-Global coverage is still partial, last-observed status is not current status, and cross-source
-resolution is not yet a site census. SemiAnalysis publicly claims more than 5,000 facilities and a
-broader critical-IT, energy-system, and forecast surface. No licensed common row-level benchmark is
-available, so Atlas supports neither parity nor superiority. Older release descriptions below are
-retained as historical checkpoints rather than the current accepted chain.
+The latest accepted satellite continuation, Unknown038, reports 4,493 completed jobs, 307 no-scene
+outcomes, 1,936 pending jobs, and zero failures. Its post-freeze validation state is `incomplete` and
+its mode is `catalog_only`: it downloaded no imagery assets, ran no computer vision or change
+analysis, and created no Atlas identity, lifecycle, type, capacity, power, energy, PUE, workload,
+map, or unique-site claim.
+
+No public v32 master/map/coverage publication is present. Global coverage remains partial,
+last-observed status is not current status, and cross-source resolution is not a site census. No
+licensed common row-level benchmark is available, so Atlas supports neither SemiAnalysis parity nor
+superiority. Older release descriptions below are retained as historical checkpoints.
 
 ## Quick start
 
@@ -184,18 +179,19 @@ construction-source-signal export. Use `global-open-v3`; it retains the original
 audit and exposes both the 120 entity-level construction rows and their 61 lifecycle evidence
 observations.
 
-Run the full suite from the workspace root with the frozen optional imagery
-runtime. `uv` keeps this overlay separate from the standard-library core
-environment:
+The dependency groups and `uv.lock` pin the test, imagery-test, and lint runtimes. Install the full
+test environment and run pytest with:
 
 ```sh
-UV_OFFLINE=1 PYTHONDONTWRITEBYTECODE=1 \
-uv run --python 3.12 \
-  --with numpy==2.5.1 \
-  --with pillow==12.3.0 \
-  --with rasterio==1.5.0 \
-  python -m unittest discover -s datacenter_atlas/tests -v
+uv sync --locked --group test --group imagery-test --python 3.12
+PYTHONDONTWRITEBYTECODE=1 \
+  uv run --locked --group test --group imagery-test \
+  python -m pytest tests
 ```
+
+The full suite also validates ignored release corpora and frozen filesystem modes, so it requires a
+locally hydrated workspace. The GitHub clean-clone workflow runs the smaller standard-library core,
+workspace-shim, CLI, lock, and lint checks without those ignored artifacts.
 
 ## OSM import policy
 
