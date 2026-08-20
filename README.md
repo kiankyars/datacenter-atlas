@@ -10,15 +10,21 @@ Operating model and workload are independent classifications. Power observations
 number means grid connection, gross facility load, critical IT load, generation nameplate, annual
 energy, or PUE; estimates carry low/base/high values, method, confidence, and evidence.
 
-## Current workspace state (audited 2026-08-19)
+## Current workspace state (audited 2026-08-20)
 
 The first coherent user-facing construction product is the tracked
-[Verified Construction Core v0.1 preview](verified_construction_core/2026-08-19-preview-v0.1/),
-with its [selection contract and final gates](docs/verified_construction_core.md). It contains 9
-recently observed projects grouped into 8 source-scoped physical sites across 6 countries. Only 2
-project rows have official parcel/survey boundaries; 7 use explicitly scoped site/address locator
-points. Every row remains `independent_imagery_verification=false`, so this preview is a research
-baseline—not the promised 100-site final release or a claim of SemiAnalysis parity.
+[Verified Construction Core v0.2 preview](verified_construction_core/2026-08-20-preview-v0.2/),
+with its [selection contract and final gates](docs/verified_construction_core.md). It contains 12
+recently observed projects grouped into 11 source-scoped physical sites across 8 countries. Three
+project rows carry official parcel/survey geometry; nine use explicitly scoped site/address
+locator points. Every row remains `independent_imagery_verification=false`, so this preview is a
+research baseline—not the promised 100-site final release or a claim of SemiAnalysis parity. The
+[v0.1 preview](verified_construction_core/2026-08-19-preview-v0.1/) remains byte-frozen for audit,
+not as a second dataset to add to v0.2.
+
+The preview treats workload labels as evidence-linked source classifications rather than proof of
+operating workloads. It also discloses that per-role evidence identifiers are not yet part of the
+v0.2 compact schema.
 
 The latest fully present source bundle is
 [open-seed v97](releases/2026-07-22-open-seed-v97/). It contains 1,053 source-scoped entity rows
@@ -32,7 +38,7 @@ than v97/v38/v14/v11. Counts from separate lanes or versions must not be added.
 
 | Lane | Latest artifact | Current local hydration |
 | --- | --- | --- |
-| Verified construction preview | [v0.1](verified_construction_core/2026-08-19-preview-v0.1/) | All compact payloads tracked and clean-clone validatable |
+| Verified construction preview | [v0.2](verified_construction_core/2026-08-20-preview-v0.2/) | All compact payloads tracked and clean-clone validatable |
 | Source release | [open-seed v97](releases/2026-07-22-open-seed-v97/) | All 13 manifest-declared payload files present |
 | Federation | [v38](federated_indexes/2026-07-22-public-open-v38/) | Federated index present |
 | Exact identity | [v14](exact_identity_decisions/2026-07-22-public-open-v14/) | All seven declared payload files present |

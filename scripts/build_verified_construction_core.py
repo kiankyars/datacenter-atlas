@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build or validate the tracked Verified Construction Core v0.1 preview."""
+"""Build or validate the tracked Verified Construction Core current preview."""
 
 from __future__ import annotations
 

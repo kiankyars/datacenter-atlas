@@ -1,0 +1,55 @@
+{
+  "contract_id": "verified-construction-core-v0.2-reviewed-sites",
+  "review_scope": "Incremental exact physical-site geometry review for the 2026-07-22 open-seed-v97 construction snapshot.",
+  "reviewed_as_of": "2026-08-20",
+  "base_contract": {
+    "path": "definitions/verified-construction-core-v0.1-reviewed-sites.json",
+    "sha256": "d8c017c7e22384d68ea56b4c22763cfec02d86c588e41818f4d6c243ecbaace8",
+    "default_geometry_entity": "project",
+    "default_geometry_derivation": "direct_geometry"
+  },
+  "acceptances": [
+    {
+      "project_stable_key": "curated:verne-mantsala-data-center-campus:current-development",
+      "physical_site_stable_key": "curated:verne-mantsala-data-center-campus",
+      "source_input_path": "sources/curated-official-2026-07-20-verne-mantsala-current-development-v2.json",
+      "source_input_sha256": "349e9d131a5f708359f062d929c9a762680682b3c23ffe35302e3b4fe653b64a",
+      "geometry_entity": "campus",
+      "geometry_derivation": "direct_geometry",
+      "geometry_evidence_key": "mantsala-property-505-407-7-137-gis-captured-2026-07-20",
+      "geometry_method": "authoritative_site_plan",
+      "geometry_scope_class": "official_cadastral_campus_parcel_boundary",
+      "horizontal_uncertainty_metres": null,
+      "precision_scope": "Exact municipal cadastral polygon for property 505-407-7-137, inherited through the explicit project-to-campus link; it is the full campus parcel, not a building or the current 70 MW development footprint.",
+      "decision_basis": "The exact-identity v14 relationship binds the current development to the campus, while municipal records bind Verne and the data-centre use to property 505-407-7-137."
+    },
+    {
+      "project_stable_key": "curated:maincubes-mainhub-nauen-campus:ber02",
+      "physical_site_stable_key": "curated:maincubes-mainhub-nauen-campus",
+      "source_input_path": "sources/curated-official-2026-07-19-maincubes-ber02-mainhub-nauen.json",
+      "source_input_sha256": "0dd1cf621fd7ffc8d7924fc757fa89c70bcd01101824830c422bc1ec8c216738",
+      "geometry_entity": "project",
+      "geometry_derivation": "coordinates_to_point",
+      "geometry_evidence_key": "maincubes-ber02-official-factsheet-captured-2026-07-19",
+      "geometry_method": "authoritative_site_plan",
+      "geometry_scope_class": "first_party_shared_campus_reference_point",
+      "horizontal_uncertainty_metres": null,
+      "precision_scope": "First-party BER02/mainHub Nauen location point derived exactly from the published latitude and longitude; not a parcel, building outline, footprint, or measured centroid.",
+      "decision_basis": "The strict curated source pairs BER02 with mainHub Nauen at the same first-party coordinates, and exact-identity v14 records the explicit project-to-campus relationship."
+    },
+    {
+      "project_stable_key": "curated:avaio-taurus-brandon-mississippi-campus:phase-one-current-campus-build",
+      "physical_site_stable_key": "curated:avaio-taurus-brandon-mississippi-campus",
+      "source_input_path": "sources/curated-official-2026-07-20-avaio-taurus-brandon.json",
+      "source_input_sha256": "b5f56dba59f31af34355fe694d9c9a55e3120545d790dced23310d8676964b35",
+      "geometry_entity": "project",
+      "geometry_derivation": "coordinates_to_point",
+      "geometry_evidence_key": "avaio-taurus-current-development-page-captured-2026-07-20",
+      "geometry_method": "authoritative_site_plan",
+      "geometry_scope_class": "first_party_campus_reference_point",
+      "horizontal_uncertainty_metres": null,
+      "precision_scope": "First-party Taurus campus location point derived exactly from the published latitude and longitude; not the 329-acre boundary, a parcel, building footprint, measured centroid, or phase-one outline.",
+      "decision_basis": "The strict curated source pairs the current phase-one build with the Taurus campus at the same first-party coordinates, and exact-identity v14 records the explicit project-to-campus relationship."
+    }
+  ]
+}
