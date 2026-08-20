@@ -17,6 +17,8 @@ import datacenter_atlas.verified_construction_core as verified_core
 from datacenter_atlas.verified_construction_core import (
     CURRENT_V07_PREVIEW_DIR,
     CURRENT_V07_PREVIEW_ID,
+    CURRENT_V08_PREVIEW_DIR,
+    CURRENT_V08_PREVIEW_ID,
     LEGACY_PREVIEW_V01_DIR,
     LEGACY_PREVIEW_V02_DIR,
     LEGACY_PREVIEW_V03_DIR,
@@ -32,6 +34,7 @@ from datacenter_atlas.verified_construction_core import (
     SOURCE_RELEASE,
     VerifiedConstructionCoreError,
     load_current_v07_profile,
+    load_current_v08_profile,
     validate_frozen_preview,
     validate_frozen_v01,
     validate_frozen_v02,
@@ -39,6 +42,7 @@ from datacenter_atlas.verified_construction_core import (
     validate_frozen_v04,
     validate_frozen_v05,
     validate_frozen_v06,
+    validate_frozen_v07,
     validate_preview as validate_preview_dispatch,
 )
 
@@ -2643,7 +2647,8 @@ class VerifiedConstructionCorePreviewTest(unittest.TestCase):
             )
             _refresh_unsigned_manifest(clone)
             with self.assertRaisesRegex(
-                VerifiedConstructionCoreError, "v0.7 manifest semantics differ"
+                VerifiedConstructionCoreError,
+                "frozen v0.7 manifest hash differs|v0.7 manifest semantics differ",
             ):
                 validate_preview_dispatch(clone)
         reviewed = json.loads(
@@ -2694,12 +2699,610 @@ class VerifiedConstructionCorePreviewTest(unittest.TestCase):
                     "_v07_hydrated_crosscheck_available",
                     return_value=hydrated,
                 ):
-                    verified_core.build_preview(rebuilt)
+                    verified_core._build_v07_preview(rebuilt)
                 self.assertEqual(
                     {path.name for path in rebuilt.iterdir()},
                     {path.name for path in CURRENT_V07_PREVIEW_DIR.iterdir()},
                 )
                 for expected in CURRENT_V07_PREVIEW_DIR.iterdir():
+                    self.assertEqual(
+                        (rebuilt / expected.name).read_bytes(),
+                        expected.read_bytes(),
+                        expected.name,
+                    )
+
+    def test_current_v08_profile_and_frozen_v07_are_exact(self) -> None:
+        self.assertEqual(CURRENT_V08_PREVIEW_ID, "2026-08-20-preview-v0.8")
+        self.assertEqual(CURRENT_V08_PREVIEW_DIR.name, CURRENT_V08_PREVIEW_ID)
+        self.assertEqual(
+            verified_core.LEGACY_PREVIEW_V07_MANIFEST_SHA256,
+            "36d3f40d2a6ce8c4cf960adb680a3788a216552ca2e53c72fedc7aa3d5d97d6a",
+        )
+        self.assertEqual(
+            verified_core.LEGACY_PREVIEW_V07_COMMIT,
+            "86bb4c589a0a6bf3e6d07a2a94c399b69fb016d6",
+        )
+        self.assertEqual(
+            validate_frozen_v07()["counts"],
+            {
+                "physical_sites": 33,
+                "projects": 36,
+                "evidence": 79,
+                "countries": 23,
+                "non_us_sites": 27,
+                "official_boundary_projects": 5,
+                "reviewed_site_locator_projects": 31,
+            },
+        )
+        self.assertEqual(
+            validate_preview_dispatch(verified_core.LEGACY_PREVIEW_V07_DIR)[
+                "preview_id"
+            ],
+            "2026-08-20-preview-v0.7",
+        )
+        self.assertEqual(
+            (CURRENT_V08_PREVIEW_DIR / "manifest.sha256").read_text(),
+            "a916aa4a438510ac5c1c26b359c7581dc18ca55de4c40ffd59c93424cad70b08"
+            "  manifest.json\n",
+        )
+        with self.assertRaisesRegex(
+            VerifiedConstructionCoreError,
+            "current v0.8 definition pins are incomplete",
+        ):
+            load_current_v08_profile({})
+        pins = {
+            field: hashlib.sha256(path.read_bytes()).hexdigest()
+            for field, path in verified_core.CURRENT_V08_DEFINITION_PATHS
+        }
+        profile = load_current_v08_profile(pins)
+        self.assertEqual(profile.base_preview_dir, verified_core.LEGACY_PREVIEW_V07_DIR)
+        self.assertEqual(
+            profile.base_manifest_sha256,
+            verified_core.LEGACY_PREVIEW_V07_MANIFEST_SHA256,
+        )
+        self.assertEqual(profile.base_commit, verified_core.LEGACY_PREVIEW_V07_COMMIT)
+
+    def test_v08_artifact_counts_source_targets_and_claims_are_exact(self) -> None:
+        manifest = validate_preview_dispatch(CURRENT_V08_PREVIEW_DIR)
+        self.assertEqual(
+            manifest["counts"],
+            {
+                "physical_sites": 41,
+                "projects": 44,
+                "evidence": 100,
+                "countries": 25,
+                "non_us_sites": 35,
+                "official_boundary_projects": 5,
+                "reviewed_site_locator_projects": 39,
+            },
+        )
+        self.assertEqual(len(manifest["portable_source_inputs"]), 57)
+        projects = {
+            row["project_stable_key"]: row
+            for row in _rows_from(CURRENT_V08_PREVIEW_DIR, "projects.csv")
+        }
+        delta_keys = set(verified_core.V08_BRIDGE_PROFILES)
+        for key in delta_keys:
+            row = projects[key]
+            self.assertEqual(row["independent_imagery_verification"], "false")
+            self.assertEqual(
+                row["imagery_review_outcome"], "not_reviewed_for_core_preview"
+            )
+            self.assertEqual(json.loads(row["workloads_json"]), [])
+        macquarie = projects[
+            "curated:macquarie-ic3-super-west-facility:phase-1-build"
+        ]
+        self.assertEqual(macquarie["geometry_source_entity_kind"], "project")
+        self.assertEqual(macquarie["geometry_use_scope"], "campus_locator")
+        self.assertEqual(
+            [row["base"] for row in json.loads(macquarie["power_observations_json"])],
+            [6.0],
+        )
+        self.assertEqual(json.loads(macquarie["efficiency_observations_json"]), [])
+        colt = projects[
+            "curated:colt-frankfurt3-sossenheim-campus:frankfurt3-current-facility-build"
+        ]
+        self.assertEqual(colt["geometry_source_entity_kind"], "building")
+        self.assertEqual(colt["geometry_use_scope"], "project_locator")
+        vie13 = projects[
+            "curated:digital-realty-vienna-vie13-vie16-expansion:vie13-phase-1-current-build"
+        ]
+        self.assertEqual(vie13["operating_model"], "colocation")
+        self.assertEqual(
+            vie13["operating_model_evidence_id"],
+            "7305379e-4152-58ec-9152-c2d7af3d39c1",
+        )
+        self.assertEqual(json.loads(vie13["power_observations_json"]), [])
+        cdc = projects["curated:cdc-laverton-melbourne-campus:current-build"]
+        self.assertEqual(cdc["operator"], "CDC Data Centres")
+        self.assertEqual(
+            json.loads(cdc["role_claims_json"]),
+            [
+                {
+                    "evidence_id": "d05112cf-0117-5f1a-9b7a-4087ec4f5c8f",
+                    "party": "CDC Data Centres",
+                    "relationship_scope": "intended",
+                    "role": "operator",
+                }
+            ],
+        )
+        borealis = projects[
+            "curated:borealis-blonduos-data-center-campus:expansion-current-build"
+        ]
+        self.assertEqual(borealis["operator"], "")
+        base_evidence = {
+            row["evidence_id"]
+            for row in _rows_from(CURRENT_V07_PREVIEW_DIR, "evidence.csv")
+        }
+        current_evidence = {
+            row["evidence_id"]: row
+            for row in _rows_from(CURRENT_V08_PREVIEW_DIR, "evidence.csv")
+        }
+        self.assertEqual(
+            set(current_evidence) - base_evidence,
+            verified_core.V08_EVIDENCE_IDS,
+        )
+        project_key_by_id = {
+            row["project_id"]: row["project_stable_key"]
+            for row in _rows_from(CURRENT_V08_PREVIEW_DIR, "projects.csv")
+        }
+        evidence_projection = {
+            evidence_id: (
+                json.loads(current_evidence[evidence_id]["roles_json"]),
+                [
+                    project_key_by_id[project_id]
+                    for project_id in json.loads(
+                        current_evidence[evidence_id]["project_ids_json"]
+                    )
+                ],
+            )
+            for evidence_id in verified_core.V08_EVIDENCE_IDS
+        }
+        borealis_key = (
+            "curated:borealis-blonduos-data-center-campus:expansion-current-build"
+        )
+        cdc_key = "curated:cdc-laverton-melbourne-campus:current-build"
+        colt_key = (
+            "curated:colt-frankfurt3-sossenheim-campus:"
+            "frankfurt3-current-facility-build"
+        )
+        enka_key = (
+            "curated:enka-data-solutions-eds-ist-01-tuzla-data-center:initial-build"
+        )
+        equinix_key = "curated:equinix-mu4-munich-data-center:phase-3"
+        macquarie_key = "curated:macquarie-ic3-super-west-facility:phase-1-build"
+        pure_key = "curated:pure-dc-brent-cross-lon01-campus:b2-composite-build"
+        vie13_key = (
+            "curated:digital-realty-vienna-vie13-vie16-expansion:"
+            "vie13-phase-1-current-build"
+        )
+        self.assertEqual(
+            evidence_projection,
+            {
+                "0ba37f72-6f9b-5d8f-8b8e-8b66e03dbb11": (
+                    ["context:project_context"],
+                    [macquarie_key],
+                ),
+                "0dd3dc39-1457-5bc3-b7d2-7ff44183aed3": (
+                    ["context:geometry_identity"],
+                    [enka_key],
+                ),
+                "10cad266-3d5e-591d-a1c4-8ded1e082c7b": (
+                    ["typed_metric:critical_it_mw"],
+                    [macquarie_key],
+                ),
+                "4302b7fb-1bf4-5dc7-abf5-9ba24f4556fa": (
+                    ["physical_status"],
+                    [equinix_key],
+                ),
+                "4bbf6d0c-4fcb-5dd0-9504-4322a80117b8": (
+                    ["geometry"],
+                    [vie13_key],
+                ),
+                "654559c0-3ba5-519b-8215-80eaaf854f5a": (
+                    ["physical_status"],
+                    [macquarie_key],
+                ),
+                "6b7130b5-f5f5-50c8-9689-6b8e348e0015": (
+                    ["physical_status"],
+                    [enka_key],
+                ),
+                "7305379e-4152-58ec-9152-c2d7af3d39c1": (
+                    ["operating_model"],
+                    [vie13_key],
+                ),
+                "7b2675bd-76c0-54b0-82d1-3f5d6cb328b2": (
+                    ["geometry"],
+                    [macquarie_key],
+                ),
+                "959963fd-1d27-5927-a972-8a04fd97727e": (
+                    ["geometry"],
+                    [enka_key],
+                ),
+                "9ef151e3-b5f8-5421-b9df-f5ac0bfca4a6": (
+                    ["physical_status"],
+                    [vie13_key],
+                ),
+                "a63792de-87ff-5a78-8a99-e53260b301f1": (
+                    ["typed_metric:critical_it_mw"],
+                    [enka_key],
+                ),
+                "a9d0173c-a00c-5936-b2d2-493a61fc0d53": (
+                    ["physical_status"],
+                    [pure_key],
+                ),
+                "b24c0246-2488-55e4-9022-3609124fd8c8": (
+                    ["geometry"],
+                    [borealis_key],
+                ),
+                "bd494c0b-3936-5cc0-844a-67cd0db22812": (
+                    ["physical_status"],
+                    [borealis_key],
+                ),
+                "bf2135c6-1aa5-58e8-a318-7e67915aa1bb": (
+                    ["physical_status", "typed_metric:critical_it_mw"],
+                    [colt_key],
+                ),
+                "d05112cf-0117-5f1a-9b7a-4087ec4f5c8f": (
+                    ["physical_status", "role:operator"],
+                    [cdc_key],
+                ),
+                "d0865f65-7e1e-59ab-989c-2d49ec5ce196": (
+                    ["geometry"],
+                    [colt_key],
+                ),
+                "e07bd94a-9734-5f78-a7b6-d69e757357c2": (
+                    ["geometry"],
+                    [cdc_key],
+                ),
+                "ee256a2f-4e9b-5224-a6ce-e4f95c4a11ed": (
+                    ["geometry"],
+                    [pure_key],
+                ),
+                "efe5b5c9-7394-5f0c-951b-051197168c49": (
+                    ["geometry"],
+                    [equinix_key],
+                ),
+            },
+        )
+        self.assertIn(
+            "context:project_context",
+            json.loads(
+                current_evidence[
+                    "0ba37f72-6f9b-5d8f-8b8e-8b66e03dbb11"
+                ]["roles_json"]
+            ),
+        )
+        self.assertIn(
+            "operating_model",
+            json.loads(
+                current_evidence[
+                    "7305379e-4152-58ec-9152-c2d7af3d39c1"
+                ]["roles_json"]
+            ),
+        )
+        report = json.loads(
+            (CURRENT_V08_PREVIEW_DIR / "selection-report.json").read_text()
+        )
+        self.assertEqual(
+            report["selection_first_failure_counts"],
+            verified_core.V08_SELECTION_FIRST_FAILURE_COUNTS,
+        )
+        self.assertEqual(
+            len(report["provenance_decisions"]["context_evidence_bindings"]),
+            2,
+        )
+        map_html = (CURRENT_V08_PREVIEW_DIR / "map.html").read_text()
+        self.assertIn("© OpenStreetMap contributors", map_html)
+        self.assertIn("Verified Construction Core v0.8 preview", map_html)
+
+    def test_v08_source_target_and_hash_seams_fail_closed(self) -> None:
+        reviewed = json.loads(verified_core.V08_REVIEW_DEFINITION.read_text())
+        overlays = json.loads(verified_core.V08_OVERLAY_DEFINITION.read_text())
+        acceptance_by_key = {
+            row["project_stable_key"]: row for row in reviewed["acceptances"]
+        }
+        overlay_by_key = {
+            row["source_project_stable_key"]: row for row in overlays["overlays"]
+        }
+        mac_key = "curated:macquarie-ic3-super-west-facility:phase-1-build"
+        mac = dict(acceptance_by_key[mac_key])
+        self.assertEqual(mac["geometry_entity"], "project")
+        self.assertEqual(mac["geometry_target_entity_kind"], "campus")
+        mac["geometry_target_entity_kind"] = "project"
+        with self.assertRaisesRegex(
+            VerifiedConstructionCoreError, "immutable bridge profile differs"
+        ):
+            verified_core._validate_v08_bridge(
+                mac, overlay_by_key[mac_key], hydrated_crosscheck=False
+            )
+        colt_key = (
+            "curated:colt-frankfurt3-sossenheim-campus:frankfurt3-current-facility-build"
+        )
+        colt = dict(acceptance_by_key[colt_key])
+        colt["bridge_sha256"] = "0" * 64
+        with self.assertRaisesRegex(
+            VerifiedConstructionCoreError, "immutable bridge profile differs"
+        ):
+            verified_core._validate_v08_bridge(
+                colt, overlay_by_key[colt_key], hydrated_crosscheck=False
+            )
+        direct_path = (
+            verified_core.ROOT
+            / acceptance_by_key[
+                "curated:digital-realty-vienna-vie13-vie16-expansion:vie13-phase-1-current-build"
+            ]["bridge_path"]
+        )
+        direct = json.loads(direct_path.read_text())
+        direct_acceptance = acceptance_by_key[
+            "curated:digital-realty-vienna-vie13-vie16-expansion:vie13-phase-1-current-build"
+        ]
+        verified_core._validate_v08_direct_geometry(direct, direct_acceptance)
+        direct["geometry_evidence"]["geometry_canonical_sha256"] = hashlib.sha256(
+            _canonical_json(direct["geometry_entity"]["geometry"])
+        ).hexdigest()
+        with self.assertRaisesRegex(
+            VerifiedConstructionCoreError, "direct geometry projection differs"
+        ):
+            verified_core._validate_v08_direct_geometry(direct, direct_acceptance)
+
+        def assert_rejected_after_bridge_hash_refresh(
+            project_key: str,
+            altered_bridge: dict[str, object],
+            message: str,
+            acceptance_changes: dict[str, object] | None = None,
+            altered_source: dict[str, object] | None = None,
+            hydrated_crosscheck: bool = False,
+        ) -> None:
+            acceptance = dict(acceptance_by_key[project_key])
+            acceptance.update(acceptance_changes or {})
+            source_payload = None
+            refreshed_source_sha256 = None
+            if altered_source is not None:
+                source_payload = _canonical_json(altered_source)
+                refreshed_source_sha256 = hashlib.sha256(source_payload).hexdigest()
+                source_binding = {
+                    "path": acceptance["source_input_path"],
+                    "bytes": len(source_payload),
+                    "sha256": refreshed_source_sha256,
+                }
+                acceptance["source_input_bytes"] = len(source_payload)
+                acceptance["source_input_sha256"] = refreshed_source_sha256
+                acceptance["portable_input_binding"] = source_binding
+                altered_bridge["construction_source"]["input"] = source_binding
+            payload = _canonical_json(altered_bridge)
+            refreshed_sha256 = hashlib.sha256(payload).hexdigest()
+            acceptance["bridge_sha256"] = refreshed_sha256
+            acceptance["bridge_bytes"] = len(payload)
+            refreshed_profile = dict(verified_core.V08_BRIDGE_PROFILES[project_key])
+            refreshed_profile["bridge_sha256"] = refreshed_sha256
+            if refreshed_source_sha256 is not None:
+                refreshed_profile["source_sha256"] = refreshed_source_sha256
+            original_repository_input = verified_core._repository_input
+            with tempfile.TemporaryDirectory() as temporary:
+                altered_path = Path(temporary) / "geometry-bridge.json"
+                altered_path.write_bytes(payload)
+                altered_source_path = Path(temporary) / "source.json"
+                if source_payload is not None:
+                    altered_source_path.write_bytes(source_payload)
+
+                def repository_input(
+                    path_text: str, expected_sha256: str, field: str
+                ) -> Path:
+                    if (
+                        path_text == acceptance["bridge_path"]
+                        and field == "geometry bridge"
+                    ):
+                        self.assertEqual(expected_sha256, refreshed_sha256)
+                        return altered_path
+                    if (
+                        source_payload is not None
+                        and path_text == acceptance["source_input_path"]
+                        and field == "v0.8 source input"
+                    ):
+                        self.assertEqual(expected_sha256, refreshed_source_sha256)
+                        return altered_source_path
+                    return original_repository_input(
+                        path_text, expected_sha256, field
+                    )
+
+                with mock.patch.dict(
+                    verified_core.V08_BRIDGE_PROFILES,
+                    {project_key: refreshed_profile},
+                ), mock.patch.object(
+                    verified_core,
+                    "_repository_input",
+                    side_effect=repository_input,
+                ), self.assertRaisesRegex(VerifiedConstructionCoreError, message):
+                    verified_core._validate_v08_bridge(
+                        acceptance,
+                        overlay_by_key[project_key],
+                        hydrated_crosscheck=hydrated_crosscheck,
+                    )
+
+        direct = json.loads(direct_path.read_text())
+        direct["geometry_entity"]["source_license"] = "CC0-1.0"
+        direct["geometry_evidence"]["license"] = "CC0-1.0"
+        with self.assertRaisesRegex(
+            VerifiedConstructionCoreError, "direct source metadata differs"
+        ):
+            verified_core._validate_v08_direct_geometry(
+                direct, direct_acceptance
+            )
+        assert_rejected_after_bridge_hash_refresh(
+            direct_acceptance["project_stable_key"],
+            direct,
+            "geometry profile differs",
+        )
+
+        borealis_key = (
+            "curated:borealis-blonduos-data-center-campus:expansion-current-build"
+        )
+        borealis_path = verified_core.ROOT / acceptance_by_key[borealis_key][
+            "bridge_path"
+        ]
+        borealis = json.loads(borealis_path.read_text())
+        borealis["rights"]["mixed_rights"] = "All sources relicensed as CC0."
+        assert_rejected_after_bridge_hash_refresh(
+            borealis_key,
+            borealis,
+            "rights profile differs",
+        )
+
+        borealis = json.loads(borealis_path.read_text())
+        borealis["geometry_entity"]["source_row"]["line"] += 1
+        assert_rejected_after_bridge_hash_refresh(
+            borealis_key,
+            borealis,
+            "geometry profile differs",
+        )
+
+        borealis = json.loads(borealis_path.read_text())
+        rejected_claims = borealis["review_decision"]["rejected_claims"][:-1]
+        borealis["review_decision"]["rejected_claims"] = rejected_claims
+        assert_rejected_after_bridge_hash_refresh(
+            borealis_key,
+            borealis,
+            "review decision profile differs",
+            {"rejected_claims": rejected_claims},
+        )
+
+        cdc_key = "curated:cdc-laverton-melbourne-campus:current-build"
+        cdc_acceptance = dict(acceptance_by_key[cdc_key])
+        cdc_acceptance["country"] = "Germany"
+        with self.assertRaisesRegex(
+            VerifiedConstructionCoreError, "publication target projection differs"
+        ):
+            verified_core._validate_v08_bridge(
+                cdc_acceptance,
+                overlay_by_key[cdc_key],
+                hydrated_crosscheck=True,
+            )
+
+        direct = json.loads(direct_path.read_text())
+        direct["geometry_entity"]["entity_id"] = (
+            "00000000-0000-0000-0000-000000000000"
+        )
+        fake_id_acceptance = dict(direct_acceptance)
+        fake_id_acceptance["geometry_entity_id"] = direct["geometry_entity"][
+            "entity_id"
+        ]
+        with self.assertRaisesRegex(
+            VerifiedConstructionCoreError, "direct geometry projection differs"
+        ):
+            verified_core._validate_v08_direct_geometry(
+                direct, fake_id_acceptance
+            )
+        assert_rejected_after_bridge_hash_refresh(
+            direct_acceptance["project_stable_key"],
+            direct,
+            "geometry profile differs",
+            {"geometry_entity_id": direct["geometry_entity"]["entity_id"]},
+        )
+
+        mac_key = "curated:macquarie-ic3-super-west-facility:phase-1-build"
+        mac_path = verified_core.ROOT / acceptance_by_key[mac_key]["bridge_path"]
+        mac = json.loads(mac_path.read_text())
+        mac_source_path = verified_core.ROOT / acceptance_by_key[mac_key][
+            "source_input_path"
+        ]
+        mac_source = json.loads(mac_source_path.read_text())
+        project_capacity = next(
+            row for row in mac_source["capacities"] if row["entity"] == "project"
+        )
+        project_capacity.update(
+            {
+                "metric": "pue",
+                "stage": "design",
+                "unit": "ratio",
+                "low": 1.5,
+                "base": 1.5,
+                "high": 1.5,
+            }
+        )
+        evidence_by_key = {row["key"]: row for row in mac_source["evidence"]}
+        mac_project = verified_core._v08_source_entity_projection(
+            mac_source, evidence_by_key, entity_kind="project"
+        )
+        mac["construction_source"]["project"].update(mac_project)
+        hydration_modes = (
+            (False, True)
+            if _hydrated_vcc_source_inputs_are_present()
+            else (False,)
+        )
+        for hydrated in hydration_modes:
+            with self.subTest(attack="mac-project-capacity", hydrated=hydrated):
+                assert_rejected_after_bridge_hash_refresh(
+                    mac_key,
+                    mac,
+                    "v97 project projection differs",
+                    altered_source=mac_source,
+                    hydrated_crosscheck=hydrated,
+                )
+
+        vie_source_path = verified_core.ROOT / direct_acceptance["source_input_path"]
+        vie_source = json.loads(vie_source_path.read_text())
+        operating_model_evidence = next(
+            row
+            for row in vie_source["evidence"]
+            if row["key"]
+            == "digital-realty-vie13-vie16-brochure-updated-2026-06-03-captured-2026-07-20"
+        )
+        operating_model_evidence.update(
+            {
+                "source_url": "https://attacker.invalid/evidence",
+                "publisher": "Attacker",
+                "license": "CC0-1.0",
+                "attribution": "Attacker",
+            }
+        )
+        direct = json.loads(direct_path.read_text())
+        for hydrated in hydration_modes:
+            with self.subTest(attack="vie-evidence-laundering", hydrated=hydrated):
+                assert_rejected_after_bridge_hash_refresh(
+                    direct_acceptance["project_stable_key"],
+                    direct,
+                    "used source evidence differs",
+                    altered_source=vie_source,
+                    hydrated_crosscheck=hydrated,
+                )
+
+    def test_v08_overlay_schema_is_not_self_describing(self) -> None:
+        overlay = json.loads(verified_core.V08_OVERLAY_DEFINITION.read_text())
+        overlay["required_fields"].append("attacker_field")
+        for row in overlay["overlays"]:
+            row["attacker_field"] = "accepted-by-self-description"
+        original_load = verified_core._load_json
+
+        def load_with_refreshed_overlay(path: Path) -> object:
+            if Path(path).resolve() == verified_core.V08_OVERLAY_DEFINITION.resolve():
+                return overlay
+            return original_load(path)
+
+        with mock.patch.object(
+            verified_core, "_load_json", side_effect=load_with_refreshed_overlay
+        ), self.assertRaisesRegex(
+            VerifiedConstructionCoreError, "v0.8 overlay required fields differ"
+        ):
+            verified_core._v08_contracts(hydrated_crosscheck=False)
+
+    def test_v08_corpus_free_and_hydrated_rebuilds_are_byte_exact(self) -> None:
+        for hydrated in (False, True):
+            if hydrated and not _hydrated_vcc_source_inputs_are_present():
+                continue
+            with self.subTest(hydrated=hydrated), tempfile.TemporaryDirectory() as temporary:
+                rebuilt = Path(temporary) / "preview"
+                with mock.patch.object(
+                    verified_core,
+                    "_v08_hydrated_crosscheck_available",
+                    return_value=hydrated,
+                ):
+                    verified_core.build_preview(rebuilt)
+                self.assertEqual(
+                    {path.name for path in rebuilt.iterdir()},
+                    {path.name for path in CURRENT_V08_PREVIEW_DIR.iterdir()},
+                )
+                for expected in CURRENT_V08_PREVIEW_DIR.iterdir():
                     self.assertEqual(
                         (rebuilt / expected.name).read_bytes(),
                         expected.read_bytes(),

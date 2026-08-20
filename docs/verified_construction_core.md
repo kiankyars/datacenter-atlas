@@ -3,8 +3,9 @@
 The long-term product target is a compact, public cohort of 100 physical data-centre sites with
 linked active construction projects, precise geometry, current evidence, typed power semantics,
 and reviewable imagery outcomes. The current artifact is deliberately labelled
-[`v0.7 preview`](../verified_construction_core/2026-08-20-preview-v0.7/README.md), because the
+[`v0.8 preview`](../verified_construction_core/2026-08-20-preview-v0.8/README.md), because the
 available evidence does not yet support that final claim. The previous
+[`v0.7 preview`](../verified_construction_core/2026-08-20-preview-v0.7/README.md),
 [`v0.6 preview`](../verified_construction_core/2026-08-20-preview-v0.6/README.md),
 [`v0.5 preview`](../verified_construction_core/2026-08-20-preview-v0.5/README.md),
 [`v0.4 preview`](../verified_construction_core/2026-08-20-preview-v0.4/README.md),
@@ -15,7 +16,7 @@ byte-frozen and hash-validated rather than being overwritten.
 
 ## Preview scope
 
-The preview selects 36 projects attached to 33 source-scoped campus sites in 23 countries from
+The preview selects 44 projects attached to 41 source-scoped campus sites in 25 countries from
 `2026-07-22-open-seed-v97`. Every project has:
 
 - a physical-status observation no more than 90 days old on the fixed 2026-08-20 review date;
@@ -29,7 +30,7 @@ uses the exact municipal cadastral polygon of its explicitly linked parent campu
 not presented as the footprint of the current 70 MW development. Green Mountain Undheim uses the
 deterministic union of official Kartverket parcels 1121-46/316, /317, and /319. It is the approved
 project-site parcel boundary, not either data-hall footprint or the observed construction extent.
-Fifteen project rows use points and are labelled by their actual scope: shared-campus reference,
+Twenty-two project rows use points and are labelled by their actual scope: shared-campus reference,
 facility reference,
 same-parcel infrastructure reference, parcel reference, official address, or first-party campus
 location. They are not silently promoted to building footprints or site boundaries.
@@ -43,9 +44,10 @@ Kartverket boundary of parcel 1806-10/760 only as a campus locator after a separ
 bridge. It is not the 25 MW Data Center 1 footprint, the later 75 MW project footprint, or proof that
 the one parcel is the complete Nscale campus.
 
-atNorth ICE02 Phase 2, QScale Q01 Building B, Green ZRH1 DC4, The Barn Saline, Microsoft Mount
-Pleasant's second facility, Amazon Salem's active buildout, and STT Jakarta 3, 5, and 6 are nine
-project rows using contributor-mapped OSM polygon locators (seven distinct polygons) under a separate authority model. Each is accepted only as a
+The v0.6 cohort includes nine project rows—atNorth ICE02 Phase 2, QScale Q01 Building B, Green
+ZRH1 DC4, The Barn Saline, Microsoft Mount Pleasant's second facility, Amazon Salem's active
+buildout, and STT Jakarta 3, 5, and 6—using contributor-mapped OSM polygon locators (seven
+distinct polygons) under a separate authority model. Each is accepted only as a
 `community_mapped`
 `campus_locator`; none is counted as an official boundary, project/phase footprint, construction
 extent, lifecycle observation, or imagery result. The selected geometry locates the named campus,
@@ -62,6 +64,22 @@ San Bovio carries a capture-replayed OSM campus polygon. The other five addition
 source-scoped project or shared-campus locators. SEL3 inherits only its explicitly proven adjacent
 SEL2 campus identity, Walqa's blind imagery rejection remains local-unsealed and creates no claim,
 and Alto's three workloads plus operator relationship are explicitly `intended`.
+
+The eight-project v0.8 delta adds Digital Realty VIE13, ENKA EDS IST 01, Colt FRA3, Macquarie IC3
+Super West Phase 1, Equinix MU4 Phase 3, CDC Laverton, Pure DC LON01 B2, and the Borealis Blönduós
+expansion. VIE13 and IST 01 use direct first-party facility-page points as project locators. Six
+frozen global-v3 OSM source objects retain their raw geometry identity separately from the curated
+publication target: Colt's building polygon is a project locator; Macquarie's source object is a
+`project` but is used only for its explicitly linked parent campus; and the Equinix, CDC, Pure DC,
+and Borealis polygons are likewise campus locators. Across v0.8, 16 project rows use 14 distinct
+community-mapped polygons. None is an official boundary or current construction extent.
+
+Digital Realty VIE13 retains a source-bound `colocation` operating model. CDC Laverton adds one
+intended operator claim. Borealis operator and utility strings are explicitly excluded. ENKA's
+identity evidence and Macquarie's parent-facility 1.28 design PUE are retained as context-only
+evidence; neither creates a project role or metric. The Macquarie project keeps only its scoped
+6 MW Phase 1 observation, not the parent facility's 47 MW capacity or design PUE. No v0.8 workload
+is promoted, and all eight new projects inherit the default not-reviewed imagery outcome.
 
 The review contract distinguishes `direct_geometry` from `coordinates_to_point` and records
 whether geometry comes from the project or its parent campus. Coordinate serialization adds no
@@ -88,11 +106,11 @@ validator forbids using it for geometry, status, capacity, progress, or building
 - `projects.csv` preserves project-level status, geometry source entity, derivation, method and
   scope, coordinate precision, source URLs, typed power observations, and explicit
   unknown/not-estimated reasons.
-- `sites.csv` groups the 36 selected projects into 33 physical-site keys without claiming
+- `sites.csv` groups the 44 selected projects into 41 physical-site keys without claiming
   global cross-source deduplication.
-- `evidence.csv` is the closed set of 79 status, geometry, operating-model, workload, role, and
+- `evidence.csv` is the closed set of 100 status, geometry, operating-model, context, workload, role, and
   typed-metric evidence rows referenced by the cohort.
-- `sites.geojson` and the dependency-free `map.html` expose the same 33 site IDs. The visible map
+- `sites.geojson` and the dependency-free `map.html` expose the same 41 site IDs. The visible map
   footer credits every selected geometry provider whose terms require it.
 - `schema.json` defines CSV fields, logical types, keys, embedded evidence references, GeoJSON
   geometry equality, and the map dependency in machine-readable form.
@@ -103,8 +121,9 @@ validator forbids using it for geometry, status, capacity, progress, or building
 ## Version policy
 
 Each preview is a coherent frozen snapshot, not a separate pile of data that must be added to the
-latest CSV. v0.7 inherits the byte-frozen v0.6 artifact and adds seven independently pinned
-projects; v0.6 inherits all 21 reviewed v0.5 decisions through an exact base contract hash and
+latest CSV. v0.8 inherits the byte-frozen v0.7 artifact and adds eight independently pinned
+projects; v0.7 inherits the byte-frozen v0.6 artifact and adds seven; v0.6 inherits all 21 reviewed
+v0.5 decisions through an exact base contract hash and
 adds eight projects across six physical sites; v0.5 inherits all 17 reviewed v0.4 decisions and
 adds four reviewed geometry bridges; v0.4 inherits the 15 reviewed v0.3 decisions and adds two;
 v0.3 inherits the 12 reviewed v0.2 decisions and adds three. Users normally consume only the latest
@@ -118,7 +137,7 @@ inputs and assumptions exist.
 
 Workload values are evidence-linked source classifications, not proof of an operating workload.
 Every observation has a validator-bound `deployment_scope`; all eight current observations are
-`intended`. Every published role has a machine-readable evidence ID and relationship scope. Seven
+`intended`. Every published role has a machine-readable evidence ID and relationship scope. Eight
 intended-operator and two intended-customer claims pass. Four prior CDC/AST owner or operator
 strings plus the atNorth, QScale, Microsoft, and Amazon project-operator candidates lack
 role-specific evidence, so the current preview clears them and records the exclusions and reasons
@@ -127,7 +146,7 @@ instead.
 ## Validation and rebuild
 
 Validation and byte-exact rebuilding work in a public clean clone from the generated preview and
-41 manifest-listed portable inputs. The ignored v97, global-v3, and v14 payloads are optional
+57 manifest-listed portable inputs. The ignored v97, global-v3, and v14 payloads are optional
 hydration-only cross-checks; when all seven are present, their exact embedded source rows are
 replayed as an additional validation layer:
 
