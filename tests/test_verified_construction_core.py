@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import base64
 import csv
 import hashlib
 import io
@@ -13,9 +14,9 @@ from unittest import mock
 import datacenter_atlas.verified_construction_core as verified_core
 
 from datacenter_atlas.verified_construction_core import (
-    IMAGERY_REVIEW_DEFINITION,
     LEGACY_PREVIEW_V01_DIR,
     LEGACY_PREVIEW_V02_DIR,
+    LEGACY_PREVIEW_V03_DIR,
     OVERLAY_DEFINITION,
     PREVIEW_DIR,
     REVIEW_DEFINITION,
@@ -24,6 +25,7 @@ from datacenter_atlas.verified_construction_core import (
     build_preview,
     validate_frozen_v01,
     validate_frozen_v02,
+    validate_frozen_v03,
     validate_preview,
 )
 
@@ -72,19 +74,46 @@ def _refresh_unsigned_manifest(path: Path) -> None:
 
 
 class VerifiedConstructionCorePreviewTest(unittest.TestCase):
+    def _validate_refreshed_bridge(
+        self, canonical_path: Path, bridge: dict[str, object]
+    ) -> dict[str, object]:
+        with tempfile.TemporaryDirectory() as temporary:
+            refreshed_path = Path(temporary) / canonical_path.name
+            refreshed_path.write_bytes(_canonical_json(bridge))
+            refreshed_sha256 = hashlib.sha256(refreshed_path.read_bytes()).hexdigest()
+            relative_path = canonical_path.relative_to(verified_core.ROOT).as_posix()
+            original_repository_input = verified_core._repository_input
+
+            def repository_input(
+                path_text: str, expected_sha256: str, field: str
+            ) -> Path:
+                if path_text == relative_path and field == "geometry bridge":
+                    self.assertEqual(expected_sha256, refreshed_sha256)
+                    return refreshed_path
+                return original_repository_input(path_text, expected_sha256, field)
+
+            with mock.patch.object(
+                verified_core, "_repository_input", side_effect=repository_input
+            ):
+                return verified_core._validate_geometry_bridge(
+                    relative_path,
+                    refreshed_sha256,
+                    hydrated_crosscheck=False,
+                )
+
     def test_tracked_preview_is_closed_and_honestly_labelled(self) -> None:
         manifest = validate_preview()
 
         self.assertEqual(
             manifest["counts"],
             {
-                "physical_sites": 14,
-                "projects": 15,
-                "evidence": 36,
-                "countries": 10,
-                "non_us_sites": 11,
+                "physical_sites": 16,
+                "projects": 17,
+                "evidence": 40,
+                "countries": 12,
+                "non_us_sites": 13,
                 "official_boundary_projects": 3,
-                "reviewed_site_locator_projects": 12,
+                "reviewed_site_locator_projects": 14,
             },
         )
         self.assertEqual(manifest["release_status"], "preview")
@@ -92,18 +121,39 @@ class VerifiedConstructionCorePreviewTest(unittest.TestCase):
 
     def test_geometry_precision_and_verification_posture_are_explicit(self) -> None:
         projects = _rows("projects.csv")
-        boundary_keys = {
+        official_boundary_keys = {
             row["project_stable_key"]
             for row in projects
-            if row["geometry_type"] in {"Polygon", "MultiPolygon"}
+            if row["geometry_authority_class"] == "official_source"
+            and row["geometry_use_scope"] == "official_boundary"
         }
         self.assertEqual(
-            boundary_keys,
+            official_boundary_keys,
             {
                 "curated:coresite-de3-race-street-campus:de3",
                 "curated:scala-praia-do-futuro-campus:sforpf01",
                 "curated:verne-mantsala-data-center-campus:current-development",
             },
+        )
+        community_locator_keys = {
+            row["project_stable_key"]
+            for row in projects
+            if row["geometry_authority_class"] == "community_mapped"
+        }
+        self.assertEqual(
+            community_locator_keys,
+            {
+                "curated:atnorth-ice02-reykjanesbaer-campus:phase-2-expansion",
+                "curated:qscale-q01-levis-campus:building-b",
+            },
+        )
+        self.assertTrue(
+            all(
+                row["geometry_use_scope"] == "campus_locator"
+                and row["verification_posture"].endswith("reviewed_site_locator")
+                for row in projects
+                if row["project_stable_key"] in community_locator_keys
+            )
         )
         for row in projects:
             self.assertEqual(row["independent_imagery_verification"], "false")
@@ -208,6 +258,64 @@ class VerifiedConstructionCorePreviewTest(unittest.TestCase):
         )
         self.assertTrue(kao["horizontal_uncertainty_unknown_reason"])
 
+    def test_v04_osm_bridges_are_locator_only_and_preserve_official_claims(self) -> None:
+        projects = {row["project_stable_key"]: row for row in _rows("projects.csv")}
+        atnorth = projects[
+            "curated:atnorth-ice02-reykjanesbaer-campus:phase-2-expansion"
+        ]
+        qscale = projects["curated:qscale-q01-levis-campus:building-b"]
+        for row in (atnorth, qscale):
+            self.assertEqual(row["geometry_type"], "Polygon")
+            self.assertEqual(row["geometry_derivation"], "cross_source_overlay")
+            self.assertEqual(row["geometry_authority_class"], "community_mapped")
+            self.assertEqual(row["geometry_use_scope"], "campus_locator")
+            self.assertEqual(
+                row["verification_posture"],
+                "recent_authoritative_physical_observation_plus_reviewed_site_locator",
+            )
+            self.assertEqual(row["independent_imagery_verification"], "false")
+            self.assertEqual(
+                row["imagery_review_outcome"], "not_reviewed_for_core_preview"
+            )
+            self.assertEqual(row["operating_model"], "unknown")
+            self.assertEqual(row["operator"], "")
+            self.assertEqual(json.loads(row["workloads_json"]), [])
+            self.assertTrue(row["horizontal_uncertainty_unknown_reason"])
+
+        self.assertEqual(atnorth["last_observed_physical_status"], "under_construction")
+        self.assertEqual(atnorth["status_as_of"], "2026-07-21")
+        self.assertEqual(atnorth["status_age_days_at_review"], "30")
+        self.assertEqual(
+            atnorth["status_evidence_id"],
+            "5d2dd8ab-e30c-5a8d-816e-6b5b744cc665",
+        )
+        self.assertEqual(json.loads(atnorth["power_observations_json"]), [])
+        self.assertEqual(json.loads(atnorth["annual_energy_observations_json"]), [])
+        self.assertEqual(json.loads(atnorth["efficiency_observations_json"]), [])
+
+        self.assertEqual(qscale["last_observed_physical_status"], "under_construction")
+        self.assertEqual(qscale["status_as_of"], "2026-06-04")
+        self.assertEqual(qscale["status_age_days_at_review"], "77")
+        power = json.loads(qscale["power_observations_json"])
+        self.assertEqual(len(power), 1)
+        self.assertEqual(
+            (power[0]["metric"], power[0]["stage"], power[0]["base"]),
+            ("critical_it_mw", "design", 60.0),
+        )
+        self.assertEqual(json.loads(qscale["annual_energy_observations_json"]), [])
+        self.assertEqual(json.loads(qscale["efficiency_observations_json"]), [])
+
+        sites = {row["site_id"]: row for row in _rows("sites.csv")}
+        for project in (atnorth, qscale):
+            site = sites[project["site_id"]]
+            self.assertEqual(
+                json.loads(site["geometry_authority_classes_json"]),
+                ["community_mapped"],
+            )
+            self.assertEqual(
+                json.loads(site["geometry_use_scopes_json"]), ["campus_locator"]
+            )
+
     def test_imagery_provenance_preserves_portability_and_conflicts(self) -> None:
         report = json.loads((PREVIEW_DIR / "selection-report.json").read_text())
         records = {
@@ -271,6 +379,21 @@ class VerifiedConstructionCorePreviewTest(unittest.TestCase):
             },
         )
         self.assertEqual(validate_preview(LEGACY_PREVIEW_V02_DIR), v02)
+        v03 = validate_frozen_v03()
+        self.assertEqual(LEGACY_PREVIEW_V03_DIR.name, "2026-08-20-preview-v0.3")
+        self.assertEqual(
+            v03["counts"],
+            {
+                "countries": 10,
+                "evidence": 36,
+                "non_us_sites": 11,
+                "official_boundary_projects": 3,
+                "physical_sites": 14,
+                "projects": 15,
+                "reviewed_site_locator_projects": 12,
+            },
+        )
+        self.assertEqual(validate_preview(LEGACY_PREVIEW_V03_DIR), v03)
 
     def test_frozen_v02_validation_is_isolated_from_current_globals(self) -> None:
         missing = Path("/definitely-absent-v03-contract.json")
@@ -284,6 +407,31 @@ class VerifiedConstructionCorePreviewTest(unittest.TestCase):
                 validate_preview(LEGACY_PREVIEW_V02_DIR)["preview_id"],
                 "2026-08-20-preview-v0.2",
             )
+
+    def test_frozen_v03_validation_is_isolated_from_v04_globals(self) -> None:
+        missing = Path("/definitely-absent-v04-contract.json")
+        with (
+            mock.patch.object(verified_core, "REVIEW_DEFINITION", missing),
+            mock.patch.object(verified_core, "IMAGERY_REVIEW_DEFINITION", missing),
+            mock.patch.object(verified_core, "PROVENANCE_DEFINITION", missing),
+            mock.patch.object(verified_core, "OVERLAY_DEFINITION", missing),
+            mock.patch.object(verified_core, "PREVIEW_ID", "invented-preview"),
+        ):
+            self.assertEqual(
+                validate_preview(LEGACY_PREVIEW_V03_DIR)["preview_id"],
+                "2026-08-20-preview-v0.3",
+            )
+
+    def test_frozen_v03_member_tamper_fails_closed(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            clone = Path(temporary) / "preview-v0.3"
+            shutil.copytree(LEGACY_PREVIEW_V03_DIR, clone)
+            with (clone / "projects.csv").open("ab") as handle:
+                handle.write(b"tamper\n")
+            with self.assertRaisesRegex(
+                VerifiedConstructionCoreError, "frozen v0.3 member differs"
+            ):
+                validate_frozen_v03(clone)
 
     def test_v03_provenance_clears_unsupported_roles_and_scopes_workloads(self) -> None:
         projects = {row["project_stable_key"]: row for row in _rows("projects.csv")}
@@ -338,33 +486,35 @@ class VerifiedConstructionCorePreviewTest(unittest.TestCase):
             self.assertEqual(json.loads(projects[key]["role_claims_json"]), [])
         report = json.loads((PREVIEW_DIR / "selection-report.json").read_text())
         self.assertEqual(
-            len(report["provenance_decisions"]["excluded_source_roles"]), 4
+            len(report["provenance_decisions"]["excluded_source_roles"]), 6
         )
 
-    def test_portable_v03_sources_are_manifest_bound(self) -> None:
+    def test_portable_v04_sources_and_bridges_are_manifest_bound(self) -> None:
         manifest = json.loads((PREVIEW_DIR / "manifest.json").read_text())
         inputs = manifest["portable_source_inputs"]
-        self.assertEqual(len(inputs), 3)
+        self.assertEqual(len(inputs), 4)
         self.assertEqual(
             {row["path"] for row in inputs},
             {
-                "sources/curated-official-2026-07-19-kao-klon03-harlow.json",
-                "source_artifacts/site-coordinate-assessment-2026-07-21-v3/normalized-successors/curated-official-2026-07-21-scala-ssclhb01-huechuraba-current-build-coordinate-v3.json",
-                "source_artifacts/site-coordinate-assessment-2026-07-21-v3/normalized-successors/curated-official-2026-07-21-scala-sscllp01-lampa-current-build-coordinate-v3.json",
+                "sources/curated-official-2026-07-21-atnorth-ice02-phase-2-current-build.json",
+                "sources/curated-official-2026-07-21-qscale-q01-building-b-current-build.json",
+                "sources/verified-construction-core-v0.4-atnorth-ice02-campus-geometry-bridge.json",
+                "sources/verified-construction-core-v0.4-qscale-q01-campus-geometry-bridge.json",
             },
         )
         for row in inputs:
             path = verified_core.ROOT / row["path"]
             self.assertEqual(path.stat().st_size, row["bytes"])
             self.assertEqual(hashlib.sha256(path.read_bytes()).hexdigest(), row["sha256"])
-        parent_pins = [
-            row for row in inputs if row["parent_manifest_path"] is not None
-        ]
+            for parent in row["parent_manifests"]:
+                parent_path = verified_core.ROOT / parent["path"]
+                self.assertEqual(
+                    hashlib.sha256(parent_path.read_bytes()).hexdigest(),
+                    parent["sha256"],
+                )
+        parent_pins = [row for row in inputs if row["parent_manifests"]]
         self.assertEqual(len(parent_pins), 2)
-        self.assertEqual(
-            {row["parent_manifest_sha256"] for row in parent_pins},
-            {"acb675580c993e3af150f8a3e25f53a8d66a6d7b595b644088a84f1294acd43d"},
-        )
+        self.assertTrue(all(len(row["parent_manifests"]) == 3 for row in parent_pins))
 
     def test_site_project_geojson_and_selection_accounting_match(self) -> None:
         sites = _rows("sites.csv")
@@ -378,12 +528,12 @@ class VerifiedConstructionCorePreviewTest(unittest.TestCase):
             {feature["id"] for feature in geojson["features"]}, site_ids
         )
         self.assertEqual(report["source_pipeline_row_count"], 531)
-        self.assertEqual(report["selected_project_count"], 15)
-        self.assertEqual(report["non_selected_source_row_count"], 516)
+        self.assertEqual(report["selected_project_count"], 17)
+        self.assertEqual(report["non_selected_source_row_count"], 514)
         self.assertEqual(
             sum(report["selection_first_failure_counts"].values()), 531
         )
-        self.assertEqual(report["selection_first_failure_counts"]["selected"], 15)
+        self.assertEqual(report["selection_first_failure_counts"]["selected"], 17)
         self.assertIs(report["publishable_as_final"], False)
         self.assertFalse(report["final_release_gates"]["site_count"]["passed"])
         self.assertFalse(report["final_release_gates"]["blind_review"]["passed"])
@@ -391,15 +541,17 @@ class VerifiedConstructionCorePreviewTest(unittest.TestCase):
             report["final_release_gates"]["clean_clone_rebuild"]["passed"]
         )
         self.assertEqual(
-            {row["decision"] for row in report["reviewed_overlay_queue"]},
-            {"excluded"},
+            [row["decision"] for row in report["reviewed_overlay_queue"]].count(
+                "accepted"
+            ),
+            2,
         )
 
     def test_machine_readable_schema_covers_tables_and_relationships(self) -> None:
         schema = json.loads((PREVIEW_DIR / "schema.json").read_text())
         self.assertEqual(
             schema["format"],
-            "datacenter-atlas-verified-construction-core-schema-v3",
+            "datacenter-atlas-verified-construction-core-schema-v4",
         )
         self.assertEqual(
             set(schema["tables"]), {"projects.csv", "sites.csv", "evidence.csv"}
@@ -431,7 +583,11 @@ class VerifiedConstructionCorePreviewTest(unittest.TestCase):
         )
         self.assertEqual(
             project_fields["geometry_derivation"]["allowed_values"],
-            ["direct_geometry", "coordinates_to_point"],
+            ["direct_geometry", "coordinates_to_point", "cross_source_overlay"],
+        )
+        self.assertEqual(
+            project_fields["geometry_authority_class"]["allowed_values"],
+            ["official_source", "community_mapped"],
         )
 
     def test_artifact_is_portable_and_map_has_no_runtime_dependency(self) -> None:
@@ -478,7 +634,7 @@ class VerifiedConstructionCorePreviewTest(unittest.TestCase):
         ):
             verified_core._reviewed_acceptances()
 
-    def test_v03_definition_semantics_are_release_pinned(self) -> None:
+    def test_v04_definition_semantics_are_release_pinned(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             bad_definition = Path(temporary) / "reviewed-sites.json"
             definition = json.loads(REVIEW_DEFINITION.read_text(encoding="utf-8"))
@@ -486,7 +642,7 @@ class VerifiedConstructionCorePreviewTest(unittest.TestCase):
                 row
                 for row in definition["acceptances"]
                 if row["project_stable_key"]
-                == "curated:kao-data-harlow-campus:klon-03-building"
+                == "curated:qscale-q01-levis-campus:building-b"
             )
             target.update(
                 {
@@ -505,11 +661,260 @@ class VerifiedConstructionCorePreviewTest(unittest.TestCase):
             ):
                 validate_preview()
 
+    def test_bridge_cannot_promote_community_geometry_to_official_boundary(self) -> None:
+        overlays = json.loads(OVERLAY_DEFINITION.read_text(encoding="utf-8"))
+        bridge_path = verified_core.ROOT / overlays["overlays"][0]["bridge_path"]
+        tampered = json.loads(bridge_path.read_text(encoding="utf-8"))
+        tampered["review_decision"]["geometry_authority_class"] = "official_source"
+        tampered["review_decision"]["geometry_use_scope"] = "official_boundary"
+        original_load = verified_core._load_json
+
+        def load_with_tampered_bridge(path: Path) -> object:
+            if Path(path).resolve() == bridge_path.resolve():
+                return tampered
+            return original_load(path)
+
+        with mock.patch.object(
+            verified_core, "_load_json", side_effect=load_with_tampered_bridge
+        ), self.assertRaisesRegex(
+            VerifiedConstructionCoreError, "geometry bridge review decision differs"
+        ):
+            verified_core._reviewed_overlays(hydrated_crosscheck=False)
+
+    def test_refreshed_bridge_pin_cannot_relocate_geometry_projection(self) -> None:
+        bridge_path = (
+            verified_core.ROOT
+            / "sources/verified-construction-core-v0.4-atnorth-ice02-campus-geometry-bridge.json"
+        )
+        tampered = json.loads(bridge_path.read_text(encoding="utf-8"))
+        tampered["geometry_entity"].update(
+            {
+                "name": "Invented Equatorial Facility",
+                "country": "Brazil",
+                "latitude": 0.0,
+                "longitude": 0.0,
+                "geometry": {
+                    "type": "Polygon",
+                    "coordinates": [
+                        [[0.0, 0.0], [0.01, 0.0], [0.01, 0.01], [0.0, 0.0]]
+                    ],
+                },
+            }
+        )
+        with self.assertRaisesRegex(
+            VerifiedConstructionCoreError,
+            "geometry bridge entity source projection differs",
+        ):
+            self._validate_refreshed_bridge(bridge_path, tampered)
+
+    def test_refreshed_bridge_pin_cannot_rewrite_v14_identity_projection(self) -> None:
+        bridge_path = (
+            verified_core.ROOT
+            / "sources/verified-construction-core-v0.4-atnorth-ice02-campus-geometry-bridge.json"
+        )
+        tampered = json.loads(bridge_path.read_text(encoding="utf-8"))
+        tampered["construction_source"]["project_to_campus"]["relationship"][
+            "object_component_id"
+        ] = "exact:" + "0" * 64
+        with self.assertRaisesRegex(
+            VerifiedConstructionCoreError,
+            "geometry bridge topology relationship differs",
+        ):
+            self._validate_refreshed_bridge(bridge_path, tampered)
+
+    def test_refreshed_bridge_pin_cannot_relabel_v14_subject_line(self) -> None:
+        bridge_path = (
+            verified_core.ROOT
+            / "sources/verified-construction-core-v0.4-atnorth-ice02-campus-geometry-bridge.json"
+        )
+        tampered = json.loads(bridge_path.read_text(encoding="utf-8"))
+        tampered["construction_source"]["project_to_campus"]["subject_member"][
+            "source_row"
+        ]["line"] = 2
+        attacker_allowlist = json.loads(
+            json.dumps(verified_core.BRIDGE_PARENT_ROW_BINDINGS)
+        )
+        attacker_allowlist[
+            "curated:atnorth-ice02-reykjanesbaer-campus:phase-2-expansion"
+        ]["subject_member"]["line"] = 2
+        with mock.patch.object(
+            verified_core, "BRIDGE_PARENT_ROW_BINDINGS", attacker_allowlist
+        ):
+            self._validate_refreshed_bridge(bridge_path, tampered)
+        with self.assertRaisesRegex(
+            VerifiedConstructionCoreError,
+            "geometry bridge parent source-row binding differs",
+        ):
+            self._validate_refreshed_bridge(bridge_path, tampered)
+
+    def test_refreshed_bridge_pin_cannot_replace_qscale_geometry_parent_row(
+        self,
+    ) -> None:
+        bridge_path = (
+            verified_core.ROOT
+            / "sources/verified-construction-core-v0.4-qscale-q01-campus-geometry-bridge.json"
+        )
+        tampered = json.loads(bridge_path.read_text(encoding="utf-8"))
+        entity = tampered["geometry_entity"]
+        source_row = entity["source_row"]
+        raw_record = base64.b64decode(source_row["raw_csv_record_base64"])
+        values = next(csv.reader(io.StringIO(raw_record.decode("utf-8"))))
+        row = dict(zip(verified_core.GLOBAL_GEOMETRY_ENTITY_FIELDS, values, strict=True))
+        geometry = {
+            "type": "Polygon",
+            "coordinates": [
+                [
+                    [-0.01, -0.01],
+                    [0.01, -0.01],
+                    [0.01, 0.01],
+                    [-0.01, 0.01],
+                    [-0.01, -0.01],
+                ]
+            ],
+        }
+        row.update(
+            {
+                "latitude": "0.0",
+                "longitude": "0.0",
+                "geometry_json": json.dumps(
+                    geometry,
+                    ensure_ascii=False,
+                    sort_keys=True,
+                    separators=(",", ":"),
+                ),
+            }
+        )
+        buffer = io.StringIO(newline="")
+        csv.writer(buffer, lineterminator="\n").writerow(
+            [row[field] for field in verified_core.GLOBAL_GEOMETRY_ENTITY_FIELDS]
+        )
+        replaced_record = buffer.getvalue().encode()
+        source_row.update(
+            {
+                "bytes": len(replaced_record),
+                "sha256": hashlib.sha256(replaced_record).hexdigest(),
+                "raw_csv_record_base64": base64.b64encode(replaced_record).decode(),
+            }
+        )
+        entity.update({"latitude": 0.0, "longitude": 0.0, "geometry": geometry})
+        self.assertEqual(
+            verified_core._global_geometry_entity_projection(row),
+            {field: value for field, value in entity.items() if field != "source_row"},
+        )
+        attacker_allowlist = json.loads(
+            json.dumps(verified_core.BRIDGE_PARENT_ROW_BINDINGS)
+        )
+        attacker_allowlist["curated:qscale-q01-levis-campus:building-b"][
+            "geometry_entity"
+        ].update({"bytes": source_row["bytes"], "sha256": source_row["sha256"]})
+        with mock.patch.object(
+            verified_core, "BRIDGE_PARENT_ROW_BINDINGS", attacker_allowlist
+        ):
+            self._validate_refreshed_bridge(bridge_path, tampered)
+        with self.assertRaisesRegex(
+            VerifiedConstructionCoreError,
+            "geometry bridge parent source-row binding differs",
+        ):
+            self._validate_refreshed_bridge(bridge_path, tampered)
+
+    def test_qscale_identity_predicate_rejects_refreshed_address_claim(self) -> None:
+        bridge_path = (
+            verified_core.ROOT
+            / "sources/verified-construction-core-v0.4-qscale-q01-campus-geometry-bridge.json"
+        )
+        tampered = json.loads(bridge_path.read_text(encoding="utf-8"))
+        evidence = tampered["identity_bridge_evidence"][0]
+        evidence["address_extraction"]["street"] = "Invented Street"
+        with (
+            mock.patch.object(verified_core, "QSCALE_IDENTITY_EVIDENCE", evidence),
+            self.assertRaisesRegex(
+                VerifiedConstructionCoreError,
+                "geometry bridge QScale address identity differs",
+            ),
+        ):
+            self._validate_refreshed_bridge(bridge_path, tampered)
+
+    def test_refreshed_review_pin_cannot_override_bridge_semantics(self) -> None:
+        acceptances = verified_core._reviewed_acceptances()
+        target = next(
+            row
+            for row in acceptances
+            if row["project_stable_key"]
+            == "curated:qscale-q01-levis-campus:building-b"
+        )
+        tampered = {
+            **target,
+            "geometry_method": "satellite_verified_exact_building_footprint",
+            "geometry_scope_class": "official_cadastral_building_b_footprint",
+            "precision_scope": (
+                "Survey-accurate Building B construction footprint independently "
+                "verified by satellite."
+            ),
+        }
+        overlays = verified_core._reviewed_overlays(hydrated_crosscheck=False)
+        bridge = overlays["bridges_by_overlay_id"][target["geometry_overlay_id"]]
+        with self.assertRaisesRegex(
+            VerifiedConstructionCoreError,
+            "refreshed review overlay semantics differ",
+        ):
+            verified_core._validate_bridge_acceptance_semantics(
+                tampered, bridge, label="refreshed review"
+            )
+
+    def test_coherent_bridge_and_review_overclaim_fails_allowlist(self) -> None:
+        bridge_path = (
+            verified_core.ROOT
+            / "sources/verified-construction-core-v0.4-qscale-q01-campus-geometry-bridge.json"
+        )
+        tampered_bridge = json.loads(bridge_path.read_text(encoding="utf-8"))
+        tampered_bridge["review_decision"].update(
+            {
+                "geometry_method": "satellite_verified_exact_building_footprint",
+                "geometry_scope_class": "official_cadastral_building_b_footprint",
+                "precision_scope": (
+                    "Survey-accurate Building B construction footprint independently "
+                    "verified by satellite."
+                ),
+            }
+        )
+        with self.assertRaisesRegex(
+            VerifiedConstructionCoreError,
+            "geometry bridge allowlisted review semantics differ",
+        ):
+            self._validate_refreshed_bridge(bridge_path, tampered_bridge)
+
+    def test_artifact_authority_scope_tamper_fails_after_manifest_refresh(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            clone = Path(temporary) / "preview"
+            shutil.copytree(PREVIEW_DIR, clone)
+            projects = _rows_from(clone, "projects.csv")
+            target = next(
+                row
+                for row in projects
+                if row["project_stable_key"]
+                == "curated:qscale-q01-levis-campus:building-b"
+            )
+            target["geometry_authority_class"] = "official_source"
+            target["geometry_use_scope"] = "official_boundary"
+            target["verification_posture"] = (
+                "recent_authoritative_physical_observation_plus_official_boundary"
+            )
+            _write_rows(clone, "projects.csv", projects)
+            _refresh_unsigned_manifest(clone)
+            with self.assertRaisesRegex(
+                VerifiedConstructionCoreError,
+                "current reviewed-site project projection differs|reviewed geometry or imagery contract differs",
+            ):
+                validate_preview(clone)
+
     def test_imagery_conflict_cannot_silently_supersede_primary(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             bad_definition = Path(temporary) / "imagery-reviews.json"
             definition = json.loads(
-                IMAGERY_REVIEW_DEFINITION.read_text(encoding="utf-8")
+                (
+                    verified_core.ROOT
+                    / "definitions/verified-construction-core-v0.3-imagery-reviews.json"
+                ).read_text(encoding="utf-8")
             )
             target = next(
                 row
@@ -519,18 +924,19 @@ class VerifiedConstructionCorePreviewTest(unittest.TestCase):
             )
             target["later_review_conflict"]["supersedes_primary"] = True
             bad_definition.write_bytes(_canonical_json(definition))
-            with mock.patch.object(
-                verified_core, "IMAGERY_REVIEW_DEFINITION", bad_definition
-            ), self.assertRaisesRegex(
+            with self.assertRaisesRegex(
                 VerifiedConstructionCoreError, "cannot supersede without adjudication"
             ):
-                verified_core._imagery_contract()
+                verified_core._imagery_contract_v03(bad_definition)
 
     def test_imagery_delta_outcome_cannot_overclaim_primary_verdict(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             bad_definition = Path(temporary) / "imagery-reviews.json"
             definition = json.loads(
-                IMAGERY_REVIEW_DEFINITION.read_text(encoding="utf-8")
+                (
+                    verified_core.ROOT
+                    / "definitions/verified-construction-core-v0.3-imagery-reviews.json"
+                ).read_text(encoding="utf-8")
             )
             target = next(
                 row
@@ -540,12 +946,10 @@ class VerifiedConstructionCorePreviewTest(unittest.TestCase):
             )
             target["outcome"] = "construction_verified"
             bad_definition.write_bytes(_canonical_json(definition))
-            with mock.patch.object(
-                verified_core, "IMAGERY_REVIEW_DEFINITION", bad_definition
-            ), self.assertRaisesRegex(
+            with self.assertRaisesRegex(
                 VerifiedConstructionCoreError, "delta outcome differs"
             ):
-                verified_core._imagery_contract()
+                verified_core._imagery_contract_v03(bad_definition)
 
     def test_coordinate_derivation_rejects_boolean_and_out_of_range_values(self) -> None:
         acceptance = {
@@ -573,7 +977,7 @@ class VerifiedConstructionCorePreviewTest(unittest.TestCase):
                 VerifiedConstructionCoreError, "coordinates are invalid"
             ):
                 verified_core._resolve_reviewed_geometry(
-                    acceptance, source, release, campus_release
+                    acceptance, source, release, campus_release, None
                 )
 
     def test_geometry_precision_tamper_fails_after_manifest_refresh(self) -> None:
@@ -634,7 +1038,8 @@ class VerifiedConstructionCorePreviewTest(unittest.TestCase):
             _write_rows(clone, "projects.csv", projects)
             _refresh_unsigned_manifest(clone)
             with self.assertRaisesRegex(
-                VerifiedConstructionCoreError, "workload provenance differs"
+                VerifiedConstructionCoreError,
+                "workload provenance differs|inherited project field differs",
             ):
                 validate_preview(clone)
 
@@ -653,7 +1058,8 @@ class VerifiedConstructionCorePreviewTest(unittest.TestCase):
             _write_rows(clone, "projects.csv", projects)
             _refresh_unsigned_manifest(clone)
             with self.assertRaisesRegex(
-                VerifiedConstructionCoreError, "role projection differs"
+                VerifiedConstructionCoreError,
+                "role projection differs|inherited project field differs",
             ):
                 validate_preview(clone)
 
@@ -674,7 +1080,7 @@ class VerifiedConstructionCorePreviewTest(unittest.TestCase):
             _refresh_unsigned_manifest(clone)
             with self.assertRaisesRegex(
                 VerifiedConstructionCoreError,
-                "provenance evidence content differs",
+                "provenance evidence content differs|inherited evidence content differs",
             ):
                 validate_preview(clone)
 
@@ -736,14 +1142,14 @@ class VerifiedConstructionCorePreviewTest(unittest.TestCase):
                     row
                     for row in projects
                     if row["project_stable_key"]
-                    == "curated:kao-data-harlow-campus:klon-03-building"
+                    == "curated:qscale-q01-levis-campus:building-b"
                 )
                 target.update(changes)
                 _write_rows(clone, "projects.csv", projects)
                 _refresh_unsigned_manifest(clone)
                 with self.assertRaisesRegex(
                     VerifiedConstructionCoreError,
-                    "current reviewed-site project projection differs",
+                    "current reviewed-site project projection differs|current reviewed-site typed metrics differ",
                 ):
                     validate_preview(clone)
 
@@ -786,7 +1192,8 @@ class VerifiedConstructionCorePreviewTest(unittest.TestCase):
             _write_rows(clone, "evidence.csv", evidence)
             _refresh_unsigned_manifest(clone)
             with self.assertRaisesRegex(
-                VerifiedConstructionCoreError, "evidence usage closure differs"
+                VerifiedConstructionCoreError,
+                "evidence usage closure differs|inherited evidence content differs",
             ):
                 validate_preview(clone)
 
@@ -827,7 +1234,10 @@ class VerifiedConstructionCorePreviewTest(unittest.TestCase):
 
     def test_provenance_contract_cannot_reclassify_frozen_v02_claims(self) -> None:
         base = json.loads(
-            verified_core.PROVENANCE_DEFINITION.read_text(encoding="utf-8")
+            (
+                verified_core.ROOT
+                / "definitions/verified-construction-core-v0.3-provenance.json"
+            ).read_text(encoding="utf-8")
         )
         variants: list[tuple[str, dict[str, object], str]] = []
         workload_scope = json.loads(json.dumps(base))
@@ -862,17 +1272,12 @@ class VerifiedConstructionCorePreviewTest(unittest.TestCase):
                 "role decisions differ from frozen v0.2",
             )
         )
-        original_load = verified_core._load_json
         for name, definition, error in variants:
-            def load_with_variant(path: Path, definition: object = definition) -> object:
-                if Path(path).resolve() == verified_core.PROVENANCE_DEFINITION.resolve():
-                    return definition
-                return original_load(path)
-
-            with self.subTest(name=name), mock.patch.object(
-                verified_core, "_load_json", side_effect=load_with_variant
-            ), self.assertRaisesRegex(VerifiedConstructionCoreError, error):
-                verified_core._provenance_contract()
+            with self.subTest(name=name), tempfile.TemporaryDirectory() as temporary:
+                bad_definition = Path(temporary) / "verified-construction-core-v0.3-provenance.json"
+                bad_definition.write_bytes(_canonical_json(definition))
+                with self.assertRaisesRegex(VerifiedConstructionCoreError, error):
+                    verified_core._provenance_contract_v03(bad_definition)
 
     def test_point_coordinate_tamper_fails_after_manifest_refresh(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
@@ -989,9 +1394,7 @@ class VerifiedConstructionCorePreviewTest(unittest.TestCase):
             temporary_path = Path(temporary)
             bad_definition = temporary_path / "overlays.json"
             definition = json.loads(OVERLAY_DEFINITION.read_text(encoding="utf-8"))
-            definition["overlays"][0]["geometry_stable_key"] = (
-                "osm:way/does-not-exist:development-project"
-            )
+            definition["overlays"][0]["bridge_path"] = "sources/does-not-exist.json"
             bad_definition.write_bytes(_canonical_json(definition))
             with (
                 mock.patch.object(
@@ -999,11 +1402,11 @@ class VerifiedConstructionCorePreviewTest(unittest.TestCase):
                 ),
                 mock.patch.object(
                     verified_core,
-                    "V03_OVERLAY_DEFINITION_SHA256",
+                    "V04_OVERLAY_DEFINITION_SHA256",
                     hashlib.sha256(bad_definition.read_bytes()).hexdigest(),
                 ),
                 self.assertRaisesRegex(
-                VerifiedConstructionCoreError, "geometry identity differs"
+                    VerifiedConstructionCoreError, "geometry bridge source hash differs"
                 ),
             ):
                 verified_core.build_preview(temporary_path / "preview")

@@ -1,0 +1,43 @@
+{
+  "contract_id": "verified-construction-core-v0.4-reviewed-sites",
+  "review_scope": "Incremental exact-hash successor to the v0.3 physical-site review, adding two cross-source community-mapped campus locators without modifying inherited acceptances or frozen releases.",
+  "reviewed_as_of": "2026-08-20",
+  "base_contract": {
+    "path": "definitions/verified-construction-core-v0.3-reviewed-sites.json",
+    "sha256": "ee56ff41dc6ea59df67de6ab462540c8a3fe3747ca3e1504cb9228481c25c06b",
+    "default_geometry_entity": "project",
+    "default_geometry_derivation": "direct_geometry"
+  },
+  "acceptances": [
+    {
+      "project_stable_key": "curated:atnorth-ice02-reykjanesbaer-campus:phase-2-expansion",
+      "physical_site_stable_key": "curated:atnorth-ice02-reykjanesbaer-campus",
+      "source_input_path": "sources/curated-official-2026-07-21-atnorth-ice02-phase-2-current-build.json",
+      "source_input_sha256": "8b180e3aacc62cb2317d2147c6795ba156154a655a558c2e1efb6f93b710c8c2",
+      "geometry_entity": "campus",
+      "geometry_derivation": "cross_source_overlay",
+      "geometry_evidence_key": null,
+      "geometry_overlay_id": "overlay:osm-way-1223207434-atnorth-ice02-campus-locator",
+      "geometry_method": "openstreetmap_named_campus_fence_boundary",
+      "geometry_scope_class": "reviewed_openstreetmap_named_campus_fence",
+      "horizontal_uncertainty_metres": null,
+      "precision_scope": "The frozen global-open-v3 Polygon is a reviewed named ICE02 campus fence/site locator inherited by the phase-two project through the explicit project_targets relationship. It is not an official, cadastral, or survey boundary; a complete current campus extent; a building footprint; or a Phase 2 footprint.",
+      "decision_basis": "The Mannverk construction source explicitly identifies atNorth ICE02 Phase 2 in Reykjanesbær and links it to the ICE02 campus. The closed bridge pins the OSM object named ICE02 Campus with operator atNorth in Iceland, while rejecting lifecycle, capacity, imagery, and phase-footprint inference."
+    },
+    {
+      "project_stable_key": "curated:qscale-q01-levis-campus:building-b",
+      "physical_site_stable_key": "curated:qscale-q01-levis-campus",
+      "source_input_path": "sources/curated-official-2026-07-21-qscale-q01-building-b-current-build.json",
+      "source_input_sha256": "a663bfcede320da49a6df829aac09fe46721272b2f77c95125c4751752e10f5a",
+      "geometry_entity": "campus",
+      "geometry_derivation": "cross_source_overlay",
+      "geometry_evidence_key": null,
+      "geometry_overlay_id": "overlay:osm-way-1171439340-qscale-q01-campus-locator",
+      "geometry_method": "openstreetmap_named_addressed_facility_polygon_as_campus_locator",
+      "geometry_scope_class": "reviewed_openstreetmap_named_addressed_qscale_facility_building_polygon",
+      "horizontal_uncertainty_metres": null,
+      "precision_scope": "Contributor-mapped polygon for one named QScale data-centre building at Q01's exact first-party address, used only to locate the Q01 campus. It is not the Building B footprint or centroid, the Q01 campus boundary, a parcel, a construction extent, or a survey-accuracy claim.",
+      "decision_basis": "The v97 project explicitly targets Q01; QScale's captured first-party contact page labels the exact OSM-tagged address as Headquarters - Q01 Campus; and the OSM feature is named QScale with the same house number, street, and postal code."
+    }
+  ]
+}

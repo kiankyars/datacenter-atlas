@@ -1,0 +1,52 @@
+{
+  "contract_id": "verified-construction-core-reviewed-overlays-v2",
+  "purpose": "Exact-hash incremental successor to the reviewed-overlay v1 queue. Accepted rows bind one construction project and physical site to one closed, tracked geometry bridge without editing frozen releases or accepting fuzzy matching.",
+  "reviewed_as_of": "2026-08-20",
+  "base_contract": {
+    "path": "definitions/verified-construction-core-reviewed-overlays-v1.json",
+    "sha256": "57540f73c5cac475bd8e9e64fc5d8eb2188158ef977b477a0c0e8d7158caf1b7"
+  },
+  "required_fields": [
+    "overlay_id",
+    "source_project_stable_key",
+    "source_project_entity_id",
+    "physical_site_stable_key",
+    "physical_site_entity_id",
+    "bridge_path",
+    "bridge_sha256",
+    "decision",
+    "decision_reason",
+    "reviewed_at"
+  ],
+  "allowed_decisions": [
+    "queued",
+    "accepted",
+    "excluded"
+  ],
+  "overlays": [
+    {
+      "overlay_id": "overlay:osm-way-1223207434-atnorth-ice02-campus-locator",
+      "source_project_stable_key": "curated:atnorth-ice02-reykjanesbaer-campus:phase-2-expansion",
+      "source_project_entity_id": "9be0ab88-c727-5dbc-8a12-e2443878b69f",
+      "physical_site_stable_key": "curated:atnorth-ice02-reykjanesbaer-campus",
+      "physical_site_entity_id": "14d37766-8b5e-5fe5-956f-56603ee35097",
+      "bridge_path": "sources/verified-construction-core-v0.4-atnorth-ice02-campus-geometry-bridge.json",
+      "bridge_sha256": "008e82de2fb0ec2218d306abd0e73476f28bfaa7468f2ede0a2c56481044760e",
+      "decision": "accepted",
+      "decision_reason": "The official construction record explicitly targets the ICE02 campus, while the closed bridge independently pins a manually reviewed OSM named-campus fence as a community-mapped campus locator only.",
+      "reviewed_at": "2026-08-20"
+    },
+    {
+      "overlay_id": "overlay:osm-way-1171439340-qscale-q01-campus-locator",
+      "source_project_stable_key": "curated:qscale-q01-levis-campus:building-b",
+      "source_project_entity_id": "a848e771-2e45-55fb-8d43-db0885bb824f",
+      "physical_site_stable_key": "curated:qscale-q01-levis-campus",
+      "physical_site_entity_id": "4a3d306a-102e-5606-85b1-ba7e2b9745da",
+      "bridge_path": "sources/verified-construction-core-v0.4-qscale-q01-campus-geometry-bridge.json",
+      "bridge_sha256": "f684fb93515b05c5b69751f906bec8860c021870719ce73bfaa8e063c6916fc6",
+      "decision": "accepted",
+      "decision_reason": "The official construction record explicitly targets Q01, and the closed bridge pins QScale's first-party campus address to the matching OSM named-addressed building solely as a community-mapped Q01 campus locator.",
+      "reviewed_at": "2026-08-20"
+    }
+  ]
+}

@@ -13,19 +13,22 @@ energy, or PUE; estimates carry low/base/high values, method, confidence, and ev
 ## Current workspace state (audited 2026-08-20)
 
 The first coherent user-facing construction product is the tracked
-[Verified Construction Core v0.3 preview](verified_construction_core/2026-08-20-preview-v0.3/),
-with its [selection contract and final gates](docs/verified_construction_core.md). It contains 15
-recently observed projects grouped into 14 source-scoped physical sites across 10 countries. Three
-project rows carry official parcel/survey geometry; 12 use explicitly scoped site/address
-locator points. Every row remains `independent_imagery_verification=false`, so this preview is a
+[Verified Construction Core v0.4 preview](verified_construction_core/2026-08-20-preview-v0.4/),
+with its [selection contract and final gates](docs/verified_construction_core.md). It contains 17
+recently observed projects grouped into 16 source-scoped physical sites across 12 countries. Three
+project rows carry official parcel/survey geometry; 14 use explicitly scoped locators. Two of those
+are contributor-mapped OSM polygons accepted only as campus locators, never official boundaries or
+construction footprints. Every row remains `independent_imagery_verification=false`, so this preview is a
 research baseline—not the promised 100-site final release or a claim of SemiAnalysis parity. The
+[v0.3 preview](verified_construction_core/2026-08-20-preview-v0.3/),
 [v0.2 preview](verified_construction_core/2026-08-20-preview-v0.2/) and
 [v0.1 preview](verified_construction_core/2026-08-19-preview-v0.1/) remain byte-frozen for audit,
-not as datasets to add to v0.3.
+not as datasets to add to v0.4.
 
 All three workload observations are machine-labelled `intended`, not operational. Five published
 operator claims now carry evidence IDs and intended-relationship scope; four unsupported CDC/AST
-role strings were removed and retained only as explicit rejected provenance decisions.
+role strings plus the atNorth and QScale operator candidates are retained only as explicit rejected
+provenance decisions.
 
 The latest fully present source bundle is
 [open-seed v97](releases/2026-07-22-open-seed-v97/). It contains 1,053 source-scoped entity rows
@@ -39,7 +42,7 @@ than v97/v38/v14/v11. Counts from separate lanes or versions must not be added.
 
 | Lane | Latest artifact | Current local hydration |
 | --- | --- | --- |
-| Verified construction preview | [v0.3](verified_construction_core/2026-08-20-preview-v0.3/) | All compact payloads and current-delta source inputs tracked and clean-clone validatable |
+| Verified construction preview | [v0.4](verified_construction_core/2026-08-20-preview-v0.4/) | All compact payloads, bridge inputs, and current-delta source inputs tracked and clean-clone validatable |
 | Source release | [open-seed v97](releases/2026-07-22-open-seed-v97/) | All 13 manifest-declared payload files present |
 | Federation | [v38](federated_indexes/2026-07-22-public-open-v38/) | Federated index present |
 | Exact identity | [v14](exact_identity_decisions/2026-07-22-public-open-v14/) | All seven declared payload files present |
