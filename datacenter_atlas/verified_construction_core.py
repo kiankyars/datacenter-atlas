@@ -19,6 +19,7 @@ import re
 import shutil
 import tempfile
 import unicodedata
+import xml.etree.ElementTree as ET
 from collections import Counter, defaultdict
 from datetime import date
 from pathlib import Path
@@ -59,17 +60,24 @@ LEGACY_PREVIEW_V04_DIR = (
 LEGACY_PREVIEW_V04_MANIFEST_SHA256 = (
     "26bdf0930f21acd8db8b52d6f58803206d3ef8f0cde83d5d2ae80abc113895a7"
 )
+LEGACY_PREVIEW_V05_DIR = (
+    ROOT / "verified_construction_core" / "2026-08-20-preview-v0.5"
+)
+LEGACY_PREVIEW_V05_MANIFEST_SHA256 = (
+    "be699da97cc8386c30ff2414fcaa8264870e663197a039a1371a3bcc20fbc23c"
+)
+LEGACY_PREVIEW_V05_COMMIT = "30d4259bca2557da81fb85b805eff0ddd35868a4"
 REVIEW_DEFINITION = (
-    ROOT / "definitions" / "verified-construction-core-v0.5-reviewed-sites.json"
+    ROOT / "definitions" / "verified-construction-core-v0.6-reviewed-sites.json"
 )
 IMAGERY_REVIEW_DEFINITION = (
-    ROOT / "definitions" / "verified-construction-core-v0.5-imagery-reviews.json"
+    ROOT / "definitions" / "verified-construction-core-v0.6-imagery-reviews.json"
 )
 PROVENANCE_DEFINITION = (
-    ROOT / "definitions" / "verified-construction-core-v0.5-provenance.json"
+    ROOT / "definitions" / "verified-construction-core-v0.6-provenance.json"
 )
 OVERLAY_DEFINITION = (
-    ROOT / "definitions" / "verified-construction-core-reviewed-overlays-v3.json"
+    ROOT / "definitions" / "verified-construction-core-reviewed-overlays-v4.json"
 )
 V03_REVIEW_DEFINITION_SHA256 = (
     "ee56ff41dc6ea59df67de6ab462540c8a3fe3747ca3e1504cb9228481c25c06b"
@@ -107,17 +115,27 @@ V05_PROVENANCE_DEFINITION_SHA256 = (
 V05_OVERLAY_DEFINITION_SHA256 = (
     "d71ce264327ccf523cb7f000d559c0a4953524d0224dbdcc7e91e36d8e4b98c5"
 )
-PREVIEW_ID = "2026-08-20-preview-v0.5"
+V06_REVIEW_DEFINITION_SHA256 = (
+    "494b7d92638678aa991e15c81e52f9f5e5955ffab0e84e20f1df83dd82ecc06c"
+)
+V06_IMAGERY_REVIEW_DEFINITION_SHA256 = (
+    "0fe6726cbca33ec95e90bc669d5f25383ab14a84fb9c2d668b77ff643861cb00"
+)
+V06_PROVENANCE_DEFINITION_SHA256 = (
+    "5f504762991ea5c20854eab17a017cf97587bd47b6b11974d7681b37cd869ee4"
+)
+V06_OVERLAY_DEFINITION_SHA256 = (
+    "f495067d8cef674b88d82b8b2554ccd7a043b68b7df527f8fd6d8ef49beda5a8"
+)
+PREVIEW_ID = "2026-08-20-preview-v0.6"
 PREVIEW_DIR = ROOT / "verified_construction_core" / PREVIEW_ID
 REVIEW_DATE = date(2026, 8, 20)
 MAX_STATUS_AGE_DAYS = 90
 CURRENT_DELTA_COUNTRY_ISO_A2 = {
-    "Canada": "CA",
-    "Chile": "CL",
-    "Iceland": "IS",
-    "Switzerland": "CH",
-    "United Kingdom": "GB",
-    "United States": "US",
+    "Hong Kong": "HK",
+    "India": "IN",
+    "Indonesia": "ID",
+    "Norway": "NO",
 }
 
 PHYSICAL_STATUSES = {
@@ -184,8 +202,8 @@ FINAL_REQUIREMENTS = {
 PREVIEW_SOURCE_PIPELINE_ROW_COUNT = 531
 PREVIEW_SELECTION_FIRST_FAILURE_COUNTS = {
     "entity_kind_not_project": 49,
-    "not_in_reviewed_site_geometry_allowlist": 122,
-    "selected": 21,
+    "not_in_reviewed_site_geometry_allowlist": 114,
+    "selected": 29,
     "status_not_physical": 12,
     "status_outside_90_day_window": 327,
 }
@@ -369,6 +387,50 @@ GLOBAL_GEOMETRY_EVIDENCE_FIELDS = (
     "published_at",
     "retrieved_at",
     "content_hash",
+)
+SOURCE_ENTITY_FIELDS = (
+    "entity_id",
+    "entity_kind",
+    "stable_key",
+    "name",
+    "latitude",
+    "longitude",
+    "country",
+    "country_iso_a2",
+    "country_iso_a3",
+    "country_assignment_status",
+    "country_assignment_method",
+    "country_assignment_confidence",
+    "country_assignment_evidence_id",
+    "country_boundary_feature_id",
+    "source_country_tag",
+    "source_country_method",
+    "source_country_qid",
+    "address",
+    "owner",
+    "operator",
+    "users",
+    "tenants",
+    "customers",
+    "status",
+    "status_as_of",
+    "status_confidence",
+    "status_method",
+    "status_evidence_id",
+    "operating_model",
+    "operating_model_confidence",
+    "operating_model_evidence_id",
+    "workloads_json",
+    "capacity_estimates_json",
+    "geometry_json",
+    "tags_json",
+    "snapshot_as_of",
+    "snapshot_confidence",
+    "snapshot_evidence_id",
+    "source_url",
+    "source_publisher",
+    "source_license",
+    "source_retrieved_at",
 )
 EXACT_COMPONENT_FIELDS = (
     "component_id",
@@ -925,22 +987,22 @@ def _current_definition_pins() -> tuple[tuple[str, Path, str], ...]:
         (
             "review_definition_sha256",
             REVIEW_DEFINITION,
-            V05_REVIEW_DEFINITION_SHA256,
+            V06_REVIEW_DEFINITION_SHA256,
         ),
         (
             "imagery_review_definition_sha256",
             IMAGERY_REVIEW_DEFINITION,
-            V05_IMAGERY_REVIEW_DEFINITION_SHA256,
+            V06_IMAGERY_REVIEW_DEFINITION_SHA256,
         ),
         (
             "provenance_definition_sha256",
             PROVENANCE_DEFINITION,
-            V05_PROVENANCE_DEFINITION_SHA256,
+            V06_PROVENANCE_DEFINITION_SHA256,
         ),
         (
             "overlay_definition_sha256",
             OVERLAY_DEFINITION,
-            V05_OVERLAY_DEFINITION_SHA256,
+            V06_OVERLAY_DEFINITION_SHA256,
         ),
     )
 
@@ -1336,10 +1398,11 @@ def _reviewed_acceptances_from(
             "direct_geometry",
             "coordinates_to_point",
             "cross_source_overlay",
+            "official_parcel_union",
         }:
             raise VerifiedConstructionCoreError("reviewed-site geometry derivation differs")
         overlay_id = acceptance.get("geometry_overlay_id")
-        if acceptance["geometry_derivation"] == "cross_source_overlay":
+        if overlay_id is not None:
             if (
                 not isinstance(overlay_id, str)
                 or not overlay_id
@@ -1348,16 +1411,17 @@ def _reviewed_acceptances_from(
                 raise VerifiedConstructionCoreError(
                     "reviewed-site overlay geometry source differs"
                 )
-        elif overlay_id is not None:
-            raise VerifiedConstructionCoreError(
-                "reviewed-site direct geometry source differs"
-            )
+        elif acceptance["geometry_derivation"] in {
+            "cross_source_overlay",
+            "official_parcel_union",
+        }:
+            raise VerifiedConstructionCoreError("reviewed-site overlay geometry source differs")
     return flattened, delta
 
 
 def _reviewed_acceptances() -> list[dict[str, Any]]:
     acceptances, _ = _reviewed_acceptances_from(REVIEW_DEFINITION)
-    if REVIEW_DEFINITION.stem != "verified-construction-core-v0.5-reviewed-sites":
+    if REVIEW_DEFINITION.stem != "verified-construction-core-v0.6-reviewed-sites":
         raise VerifiedConstructionCoreError("current reviewed-site contract differs")
     reviewed = _load_json(REVIEW_DEFINITION)
     if reviewed.get("reviewed_as_of") != REVIEW_DATE.isoformat():
@@ -1764,8 +1828,8 @@ def _provenance_contract_v04(path: Path) -> dict[str, Any]:
     }
 
 
-def _provenance_contract() -> dict[str, Any]:
-    reviewed = _load_json(PROVENANCE_DEFINITION)
+def _provenance_contract_v05(path: Path) -> dict[str, Any]:
+    reviewed = _load_json(path)
     expected_fields = {
         "contract_id",
         "review_scope",
@@ -2031,39 +2095,150 @@ def _provenance_contract() -> dict[str, Any]:
     }
 
 
+def _provenance_contract() -> dict[str, Any]:
+    reviewed = _load_json(PROVENANCE_DEFINITION)
+    expected_fields = {
+        "contract_id",
+        "review_scope",
+        "reviewed_as_of",
+        "base_contract",
+        "workload_scope_bindings",
+        "role_bindings",
+        "excluded_source_roles",
+    }
+    if not isinstance(reviewed, dict) or set(reviewed) != expected_fields:
+        raise VerifiedConstructionCoreError("provenance contract fields differ")
+    if (
+        reviewed.get("contract_id") != "verified-construction-core-v0.6-provenance"
+        or reviewed.get("reviewed_as_of") != REVIEW_DATE.isoformat()
+        or reviewed.get("workload_scope_bindings") != []
+        or reviewed.get("excluded_source_roles") != []
+    ):
+        raise VerifiedConstructionCoreError("provenance current contract differs")
+    expected_base = {
+        "path": "definitions/verified-construction-core-v0.5-provenance.json",
+        "sha256": V05_PROVENANCE_DEFINITION_SHA256,
+    }
+    if reviewed.get("base_contract") != expected_base:
+        raise VerifiedConstructionCoreError("provenance base pin differs")
+    base_path = _repository_input(
+        expected_base["path"], expected_base["sha256"], "provenance base"
+    )
+    base = _provenance_contract_v05(base_path)
+    role_fields = {
+        "project_stable_key",
+        "source_input_path",
+        "source_input_sha256",
+        "role",
+        "party",
+        "evidence_key",
+        "evidence_id",
+        "relationship_scope",
+        "semantic_scope",
+    }
+    bindings = reviewed.get("role_bindings")
+    if not isinstance(bindings, list) or len(bindings) != 1:
+        raise VerifiedConstructionCoreError("provenance current collections differ")
+    binding = bindings[0]
+    expected_key = (
+        "curated:skygard-osl1-hovinbyen-campus:phase-2",
+        "operator",
+        "Skygard",
+    )
+    if (
+        not isinstance(binding, dict)
+        or set(binding) != role_fields
+        or (
+            binding.get("project_stable_key"),
+            binding.get("role"),
+            binding.get("party"),
+        )
+        != expected_key
+        or binding.get("relationship_scope") != "intended"
+        or not isinstance(binding.get("semantic_scope"), str)
+        or not binding["semantic_scope"]
+    ):
+        raise VerifiedConstructionCoreError("provenance current role differs")
+    source_path = _repository_input(
+        binding["source_input_path"],
+        binding["source_input_sha256"],
+        "provenance current source",
+    )
+    source = _load_json(source_path)
+    roles = source.get("project", {}).get("roles", {})
+    if not isinstance(roles, dict) or binding["party"] not in roles.get(
+        binding["role"], []
+    ):
+        raise VerifiedConstructionCoreError("provenance source role differs")
+    evidence_row, _ = _evidence_from_pinned_source(
+        binding,
+        evidence_key_field="evidence_key",
+        evidence_id_field="evidence_id",
+    )
+    evidence_rows = dict(base["evidence_rows"])
+    existing = evidence_rows.get(evidence_row["evidence_id"])
+    if existing is not None and existing != evidence_row:
+        raise VerifiedConstructionCoreError("provenance evidence collision")
+    evidence_rows[evidence_row["evidence_id"]] = evidence_row
+    inherited_keys = {
+        (row["project_stable_key"], row["role"], row["party"])
+        for row in [*base["role_bindings"], *base["excluded_source_roles"]]
+    }
+    if expected_key in inherited_keys:
+        raise VerifiedConstructionCoreError("provenance inherited decision differs")
+    return {
+        "workload_scope_bindings": base["workload_scope_bindings"],
+        "role_bindings": [*base["role_bindings"], binding],
+        "excluded_source_roles": base["excluded_source_roles"],
+        "evidence_rows": evidence_rows,
+    }
+
+
 def _portable_source_inputs() -> list[dict[str, Any]]:
     _, delta = _reviewed_acceptances_from(REVIEW_DEFINITION)
     rows_by_path: dict[str, dict[str, Any]] = {}
-    for acceptance in delta:
-        path_text = acceptance["source_input_path"]
-        path = _repository_input(
-            path_text, acceptance["source_input_sha256"], "portable reviewed-site"
-        )
-        rows_by_path[path_text] = {
+
+    def add_input(
+        path_text: str,
+        expected_sha256: str,
+        *,
+        parents: Sequence[Mapping[str, str]] = (),
+    ) -> None:
+        path = _repository_input(path_text, expected_sha256, "portable source")
+        deduplicated = {
+            (item["path"], item["sha256"]): dict(item) for item in parents
+        }
+        for parent in deduplicated.values():
+            _repository_input(parent["path"], parent["sha256"], "portable parent")
+        row = {
             "path": path_text,
             "bytes": path.stat().st_size,
-            "sha256": acceptance["source_input_sha256"],
-            "parent_manifests": [],
+            "sha256": expected_sha256,
+            "parent_manifests": sorted(
+                deduplicated.values(), key=lambda item: item["path"]
+            ),
         }
+        existing = rows_by_path.get(path_text)
+        if existing is not None and existing != row:
+            raise VerifiedConstructionCoreError("portable source binding collision")
+        rows_by_path[path_text] = row
+
+    for acceptance in delta:
+        add_input(
+            acceptance["source_input_path"], acceptance["source_input_sha256"]
+        )
     overlays = _reviewed_overlays(hydrated_crosscheck=False)
     for overlay in overlays["delta_overlays"]:
-        bridge_path = _repository_input(
-            overlay["bridge_path"], overlay["bridge_sha256"], "portable bridge"
-        )
         bridge = overlays["bridges_by_overlay_id"][overlay["overlay_id"]]
         parents = [
             {
                 "path": bridge["construction_source"]["release"]["manifest"]["path"],
                 "sha256": bridge["construction_source"]["release"]["manifest"]["sha256"],
-            },
-            {
-                "path": bridge["geometry_release"]["manifest"]["path"],
-                "sha256": bridge["geometry_release"]["manifest"]["sha256"],
-            },
+            }
         ]
-        relationship_manifest = bridge["construction_source"][
-            "project_to_campus"
-        ].get("manifest")
+        relationship_manifest = bridge["construction_source"]["project_to_campus"].get(
+            "manifest"
+        )
         if isinstance(relationship_manifest, dict):
             parents.append(
                 {
@@ -2071,37 +2246,58 @@ def _portable_source_inputs() -> list[dict[str, Any]]:
                     "sha256": relationship_manifest["sha256"],
                 }
             )
-        deduplicated = {
-            (item["path"], item["sha256"]): item for item in parents
-        }
-        for item in deduplicated.values():
-            _repository_input(item["path"], item["sha256"], "portable parent")
-        rows_by_path[overlay["bridge_path"]] = {
-            "path": overlay["bridge_path"],
-            "bytes": bridge_path.stat().st_size,
-            "sha256": overlay["bridge_sha256"],
-            "parent_manifests": sorted(
-                deduplicated.values(), key=lambda item: item["path"]
-            ),
-        }
+        geometry_release = bridge.get("geometry_release")
+        if isinstance(geometry_release, dict) and isinstance(
+            geometry_release.get("manifest"), dict
+        ):
+            geometry_manifest = geometry_release["manifest"]
+            parents.append(
+                {
+                    "path": geometry_manifest["path"],
+                    "sha256": geometry_manifest["sha256"],
+                }
+            )
+            if str(geometry_manifest["path"]).startswith("sources/"):
+                add_input(geometry_manifest["path"], geometry_manifest["sha256"])
+                for binding in geometry_release.get("members", {}).values():
+                    add_input(
+                        binding["path"],
+                        binding["sha256"],
+                        parents=(
+                            {
+                                "path": geometry_manifest["path"],
+                                "sha256": geometry_manifest["sha256"],
+                            },
+                        ),
+                    )
+        elif isinstance(geometry_release, dict) and isinstance(
+            geometry_release.get("capture"), dict
+        ):
+            capture = geometry_release["capture"]
+            add_input(capture["path"], capture["sha256"])
+        add_input(
+            overlay["bridge_path"],
+            overlay["bridge_sha256"],
+            parents=parents,
+        )
     return sorted(rows_by_path.values(), key=lambda row: row["path"])
 
 
-def _validate_v05_inheritance(
+def _validate_v06_inheritance(
     projects: Sequence[Mapping[str, str]],
     sites: Sequence[Mapping[str, str]],
     evidence: Sequence[Mapping[str, str]],
 ) -> None:
-    validate_frozen_v04(LEGACY_PREVIEW_V04_DIR)
+    validate_frozen_v05(LEGACY_PREVIEW_V05_DIR)
     base_projects = {
         row["project_stable_key"]: row
         for row in _load_csv(
-            LEGACY_PREVIEW_V04_DIR / "projects.csv", PROJECT_FIELDS
+            LEGACY_PREVIEW_V05_DIR / "projects.csv", PROJECT_FIELDS
         )
     }
     current = {row["project_stable_key"]: row for row in projects}
     if not set(base_projects) < set(current):
-        raise VerifiedConstructionCoreError("preview v0.4 inheritance cohort differs")
+        raise VerifiedConstructionCoreError("preview v0.5 inheritance cohort differs")
     for key, base in base_projects.items():
         inherited = current[key]
         for field, value in base.items():
@@ -2113,12 +2309,12 @@ def _validate_v05_inheritance(
     base_sites = {
         row["site_id"]: row
         for row in _load_csv(
-            LEGACY_PREVIEW_V04_DIR / "sites.csv", SITE_FIELDS
+            LEGACY_PREVIEW_V05_DIR / "sites.csv", SITE_FIELDS
         )
     }
     current_sites = {row["site_id"]: row for row in sites}
     if not set(base_sites) < set(current_sites):
-        raise VerifiedConstructionCoreError("preview v0.4 site inheritance differs")
+        raise VerifiedConstructionCoreError("preview v0.5 site inheritance differs")
     for site_id, base in base_sites.items():
         if any(current_sites[site_id].get(field) != value for field, value in base.items()):
             raise VerifiedConstructionCoreError(
@@ -2128,12 +2324,12 @@ def _validate_v05_inheritance(
     base_evidence = {
         row["evidence_id"]: row
         for row in _load_csv(
-            LEGACY_PREVIEW_V04_DIR / "evidence.csv", EVIDENCE_FIELDS
+            LEGACY_PREVIEW_V05_DIR / "evidence.csv", EVIDENCE_FIELDS
         )
     }
     current_evidence = {row["evidence_id"]: row for row in evidence}
     if not set(base_evidence) < set(current_evidence):
-        raise VerifiedConstructionCoreError("preview v0.4 evidence inheritance differs")
+        raise VerifiedConstructionCoreError("preview v0.5 evidence inheritance differs")
     for evidence_id, base in base_evidence.items():
         inherited = current_evidence[evidence_id]
         if inherited != base:
@@ -2142,7 +2338,7 @@ def _validate_v05_inheritance(
             )
 
 
-def _validate_v05_delta_project(
+def _validate_v06_delta_project(
     row: Mapping[str, str],
     acceptance: Mapping[str, Any],
     evidence_by_id: Mapping[str, Mapping[str, str]],
@@ -2811,8 +3007,8 @@ def _imagery_contract_v04(path: Path) -> tuple[str, list[dict[str, Any]]]:
     return default_outcome, records
 
 
-def _imagery_contract() -> tuple[str, list[dict[str, Any]]]:
-    reviewed = _load_json(IMAGERY_REVIEW_DEFINITION)
+def _imagery_contract_v05(path: Path) -> tuple[str, list[dict[str, Any]]]:
+    reviewed = _load_json(path)
     expected_fields = {
         "contract_id",
         "review_scope",
@@ -2945,6 +3141,123 @@ def _imagery_contract() -> tuple[str, list[dict[str, Any]]]:
     if default_outcome != reviewed["default_outcome"]:
         raise VerifiedConstructionCoreError("imagery-review default differs")
     return default_outcome, [*inherited, *delta]
+
+
+def _imagery_contract() -> tuple[str, list[dict[str, Any]]]:
+    reviewed = _load_json(IMAGERY_REVIEW_DEFINITION)
+    expected_fields = {
+        "contract_id",
+        "review_scope",
+        "reviewed_as_of",
+        "base_contract",
+        "default_outcome",
+        "records",
+    }
+    if not isinstance(reviewed, dict) or set(reviewed) != expected_fields:
+        raise VerifiedConstructionCoreError("imagery-review contract fields differ")
+    if (
+        reviewed.get("contract_id")
+        != "verified-construction-core-v0.6-imagery-reviews"
+        or reviewed.get("reviewed_as_of") != REVIEW_DATE.isoformat()
+        or reviewed.get("default_outcome") != "not_reviewed_for_core_preview"
+    ):
+        raise VerifiedConstructionCoreError("imagery-review current contract differs")
+    expected_base = {
+        "path": "definitions/verified-construction-core-v0.5-imagery-reviews.json",
+        "sha256": V05_IMAGERY_REVIEW_DEFINITION_SHA256,
+    }
+    if reviewed.get("base_contract") != expected_base:
+        raise VerifiedConstructionCoreError("imagery-review base pin differs")
+    base_path = _repository_input(
+        expected_base["path"], expected_base["sha256"], "imagery-review base"
+    )
+    default_outcome, inherited = _imagery_contract_v05(base_path)
+    records = reviewed.get("records")
+    fields = {
+        "project_stable_key",
+        "project_entity_id",
+        "review_type",
+        "outcome",
+        "portable_identity_binding",
+        "identity_binding_basis",
+        "source_path",
+        "source_sha256",
+        "source_role",
+        "publisher",
+        "publisher_source_url",
+        "publisher_media_redistributed",
+        "independent_imagery_verification",
+        "used_for_geometry",
+        "used_for_status",
+        "used_for_capacity",
+        "used_for_progress",
+        "used_for_building_count",
+        "semantic_scope",
+        "no_claim_guardrail",
+    }
+    project_key = (
+        "curated:green-mountain-undheim-campus:current-two-building-development"
+    )
+    if not isinstance(records, list) or len(records) != 1:
+        raise VerifiedConstructionCoreError("imagery-review current cohort differs")
+    record = records[0]
+    if (
+        not isinstance(record, dict)
+        or set(record) != fields
+        or record.get("project_stable_key") != project_key
+        or record.get("project_entity_id")
+        != atlas_stable_id("entity", project_key, "project")
+        or record.get("review_type") != "publisher_contractor_drone_context"
+        or record.get("outcome")
+        != "first_party_contractor_drone_imagery_present_not_independently_verified"
+        or record.get("portable_identity_binding") is not True
+        or record.get("source_role")
+        != "portable_geometry_bridge_with_publisher_imagery_context"
+        or record.get("publisher") != "Backe"
+        or record.get("publisher_media_redistributed") is not False
+        or record.get("independent_imagery_verification") is not False
+        or any(
+            record.get(field) is not False
+            for field in (
+                "used_for_geometry",
+                "used_for_status",
+                "used_for_capacity",
+                "used_for_progress",
+                "used_for_building_count",
+            )
+        )
+        or record.get("no_claim_guardrail") is not True
+        or any(
+            not isinstance(record.get(field), str) or not record[field]
+            for field in (
+                "identity_binding_basis",
+                "publisher_source_url",
+                "semantic_scope",
+            )
+        )
+    ):
+        raise VerifiedConstructionCoreError("imagery-review current record differs")
+    source_path = _repository_input(
+        record["source_path"], record["source_sha256"], "imagery-review source"
+    )
+    bridge = _load_json(source_path)
+    imagery = bridge.get("imagery_posture") if isinstance(bridge, dict) else None
+    if (
+        bridge.get("construction_source", {}).get("project", {}).get("stable_key")
+        != project_key
+        or not isinstance(imagery, dict)
+        or imagery.get("outcome") != record["outcome"]
+        or imagery.get("independent_imagery_verification") is not False
+        or imagery.get("publisher_imagery", {}).get("publisher") != record["publisher"]
+        or imagery.get("publisher_imagery", {}).get("media_redistributed") is not False
+        or imagery.get("publisher_imagery", {}).get("source_page")
+        != record["publisher_source_url"]
+    ):
+        raise VerifiedConstructionCoreError("imagery-review bridge binding differs")
+    inherited_keys = {row["project_stable_key"] for row in inherited}
+    if project_key in inherited_keys or default_outcome != reviewed["default_outcome"]:
+        raise VerifiedConstructionCoreError("imagery-review inheritance differs")
+    return default_outcome, [*inherited, record]
 
 
 def _manifest_binding(
@@ -3566,13 +3879,2210 @@ def _validate_bridge_acceptance_semantics(
 def _geometry_evidence_projection(bridge: Mapping[str, Any]) -> dict[str, Any]:
     evidence = bridge["geometry_evidence"]
     return {
-        field: evidence[field]
+        field: evidence[field] if evidence[field] is not None else ""
         for field in EVIDENCE_FIELDS
         if field not in {"roles_json", "project_ids_json"}
     }
 
 
+V06_BRIDGE_SEMANTICS = {
+    "curated:adaniconnex-pune-data-center-campus:pnq04-current-build": {
+        "decision": "accepted_as_project_locator",
+        "geometry_target_entity_kind": "project",
+        "geometry_derivation": "direct_geometry",
+        "geometry_method": "official_project_report_coordinate_to_point",
+        "geometry_scope_class": "official_source_reported_project_reference_point",
+        "geometry_authority_class": "official_source",
+        "geometry_use_scope": "project_locator",
+        "geometry_stable_key": (
+            "curated:adaniconnex-pune-data-center-campus:pnq04-current-build"
+        ),
+        "horizontal_uncertainty_unknown_reason": (
+            "The report does not identify the coordinate's datum, reference "
+            "feature, collection method, or horizontal accuracy."
+        ),
+        "imagery_outcome": "not_reviewed_for_core_preview",
+    },
+    "curated:goodman-hkg09-kwai-chung-data-centre:current-redevelopment": {
+        "decision": "accepted_as_campus_locator",
+        "geometry_target_entity_kind": "campus",
+        "geometry_derivation": "cross_source_overlay",
+        "geometry_method": (
+            "official_company_exact_address_to_lands_department_location_search_"
+            "and_official_hk80_wgs84_transform"
+        ),
+        "geometry_scope_class": (
+            "official_lands_department_address_building_reference_point"
+        ),
+        "geometry_authority_class": "official_source",
+        "geometry_use_scope": "campus_locator",
+        "geometry_stable_key": "curated:goodman-hkg09-kwai-chung-data-centre",
+        "horizontal_uncertainty_unknown_reason": (
+            "The Location Search API and transformation API do not publish "
+            "numeric horizontal accuracy for this selected result; the "
+            "transformation service warns against precise-point applications."
+        ),
+        "imagery_outcome": "not_reviewed_for_core_preview",
+    },
+    "curated:green-mountain-undheim-campus:current-two-building-development": {
+        "decision": "accepted_as_official_boundary",
+        "geometry_target_entity_kind": "campus",
+        "geometry_derivation": "official_parcel_union",
+        "geometry_method": "authoritative_kartverket_cadastral_parcel_union",
+        "geometry_scope_class": (
+            "official_cadastral_project_site_parcel_union_boundary"
+        ),
+        "geometry_authority_class": "official_source",
+        "geometry_use_scope": "official_boundary",
+        "geometry_stable_key": (
+            "kartverket:matrikkelteig-union/1121-46/316+317+319"
+        ),
+        "horizontal_uncertainty_unknown_reason": (
+            "Kartverket supplies only a coarse green accuracy class and "
+            "explicitly does not expose boundary-line type or detailed boundary "
+            "quality."
+        ),
+        "imagery_outcome": (
+            "first_party_contractor_drone_imagery_present_not_independently_verified"
+        ),
+    },
+    "curated:nscale-kvandal-narvik-ai-data-center-campus:initial-25mw-epc-current-build": {
+        "decision": "accepted_as_campus_locator",
+        "geometry_target_entity_kind": "campus",
+        "geometry_derivation": "cross_source_overlay",
+        "geometry_method": (
+            "kartverket_official_cadastral_parcel_polygon_as_campus_locator"
+        ),
+        "geometry_scope_class": "official_cadastral_parcel_as_campus_locator",
+        "geometry_authority_class": "official_source",
+        "geometry_use_scope": "campus_locator",
+        "geometry_stable_key": "kartverket:matrikkelen-teig/6508960482",
+        "horizontal_uncertainty_unknown_reason": (
+            "The captured WFS publishes accuracy class “Grønt” but no numeric "
+            "horizontal uncertainty in metres; the bridge does not convert that "
+            "class into survey accuracy."
+        ),
+        "imagery_outcome": "not_reviewed_for_core_preview",
+    },
+    "curated:skygard-osl1-hovinbyen-campus:phase-2": {
+        "decision": "accepted_as_campus_locator",
+        "geometry_target_entity_kind": "campus",
+        "geometry_derivation": "cross_source_overlay",
+        "geometry_method": (
+            "official_nve_site_address_to_matrikkelen_epsg4326_address_point"
+        ),
+        "geometry_scope_class": (
+            "official_matrikkelen_verified_address_representative_point"
+        ),
+        "geometry_authority_class": "official_source",
+        "geometry_use_scope": "campus_locator",
+        "geometry_stable_key": "curated:skygard-osl1-hovinbyen-campus",
+        "horizontal_uncertainty_unknown_reason": (
+            "The response marks the address point verified but does not publish "
+            "numeric horizontal accuracy for this record."
+        ),
+        "imagery_outcome": "not_reviewed_for_core_preview",
+    },
+    **{
+        f"curated:stt-jakarta-data-centre-campus:stt-jakarta-{number}": {
+            "decision": "accepted_as_campus_locator",
+            "geometry_target_entity_kind": "campus",
+            "geometry_derivation": "cross_source_overlay",
+            "geometry_method": (
+                "openstreetmap_exactly_named_stt_jakarta_1_facility_polygon_as_"
+                "shared_campus_locator"
+            ),
+            "geometry_scope_class": (
+                "reviewed_openstreetmap_stt_jakarta_1_building_polygon"
+            ),
+            "geometry_authority_class": "community_mapped",
+            "geometry_use_scope": "campus_locator",
+            "geometry_stable_key": "osm:way/1533569836",
+            "horizontal_uncertainty_unknown_reason": (
+                "OpenStreetMap does not state horizontal positional accuracy; "
+                "community-mapped geometry is not cadastral or survey geometry."
+            ),
+            "imagery_outcome": "not_reviewed_for_core_preview",
+        }
+        for number in (3, 5, 6)
+    },
+}
+
+
+def _official_evidence_id(evidence: Mapping[str, Any]) -> str:
+    return atlas_stable_id(
+        "evidence",
+        "curated-official",
+        evidence.get("key"),
+        evidence.get("content_hash"),
+    )
+
+
+def _validate_v06_fact_evidence(evidence: Any, *, label: str) -> None:
+    if not isinstance(evidence, dict):
+        raise VerifiedConstructionCoreError(f"{label} differs")
+    for field in (
+        "key",
+        "kind",
+        "title",
+        "source_url",
+        "publisher",
+        "source_family",
+        "license",
+        "attribution",
+        "retrieved_at",
+        "content_hash",
+    ):
+        if not isinstance(evidence.get(field), str) or not evidence[field]:
+            raise VerifiedConstructionCoreError(f"{label} {field} differs")
+    content_hash = evidence["content_hash"]
+    if re.fullmatch(r"[0-9a-f]{64}", content_hash) is None:
+        raise VerifiedConstructionCoreError(f"{label} content hash differs")
+    evidence_id = evidence.get("evidence_id")
+    if evidence_id is not None and evidence_id != _official_evidence_id(evidence):
+        raise VerifiedConstructionCoreError(f"{label} evidence identity differs")
+    if "fact_payload" in evidence:
+        if (
+            evidence.get("fact_payload_canonical_sha256")
+            != _sha256_bytes(_json_bytes(evidence["fact_payload"]))
+            or not isinstance(evidence.get("fact_payload_hash_scope"), str)
+            or not evidence["fact_payload_hash_scope"]
+        ):
+            raise VerifiedConstructionCoreError(f"{label} fact payload differs")
+    captured_bytes = evidence.get("captured_bytes")
+    if captured_bytes is not None and (
+        isinstance(captured_bytes, bool)
+        or not isinstance(captured_bytes, int)
+        or captured_bytes <= 0
+    ):
+        raise VerifiedConstructionCoreError(f"{label} byte count differs")
+
+
+def _projected_bridge_observations(
+    source: Mapping[str, Any],
+    evidence_by_key: Mapping[str, Mapping[str, Any]],
+    *,
+    collection: str,
+    entity_kind: str,
+) -> list[dict[str, Any]]:
+    rows = source.get(collection, [])
+    if not isinstance(rows, list):
+        raise VerifiedConstructionCoreError(
+            f"geometry bridge {collection} source differs"
+        )
+    projected: list[dict[str, Any]] = []
+    for row in rows:
+        if not isinstance(row, dict):
+            raise VerifiedConstructionCoreError(
+                f"geometry bridge {collection} observation differs"
+            )
+        if row.get("entity") != entity_kind:
+            continue
+        pinned = evidence_by_key.get(str(row.get("evidence_key")))
+        if pinned is None:
+            raise VerifiedConstructionCoreError(
+                f"geometry bridge {collection} evidence differs"
+            )
+        evidence_id = _official_evidence_id(pinned)
+        if collection == "capacities":
+            observation = {
+                **{
+                    field: (
+                        float(value)
+                        if field in {"low", "base", "high"} and value is not None
+                        else value
+                    )
+                    for field, value in row.items()
+                    if field not in {"entity", "evidence_key"}
+                },
+                "evidence_id": evidence_id,
+            }
+            _validate_typed_observation(
+                observation, POWER_METRICS | ENERGY_METRICS | EFFICIENCY_METRICS
+            )
+        else:
+            observation = {
+                **{
+                    ("workload" if field == "value" else field): value
+                    for field, value in row.items()
+                    if field not in {"entity", "evidence_key"}
+                },
+                "evidence_id": evidence_id,
+            }
+            _validate_source_workload_observation(observation)
+        projected.append(observation)
+    return projected
+
+
+def _validate_v06_embedded_release_rows(
+    rows: Any,
+    members: Mapping[str, Any],
+    *,
+    hydrated_crosscheck: bool,
+) -> None:
+    if not isinstance(rows, dict) or not rows:
+        raise VerifiedConstructionCoreError("geometry bridge release rows differ")
+    for label, binding in rows.items():
+        if not isinstance(binding, dict) or set(binding) != {
+            "member",
+            "source_row",
+            *(
+                {"evidence_id"}
+                if binding.get("member") == "evidence.csv"
+                else ({"stable_key"} if "stable_key" in binding else {"entity_id"})
+            ),
+        }:
+            raise VerifiedConstructionCoreError(
+                f"geometry bridge release row differs: {label}"
+            )
+        member = binding["member"]
+        fields = (
+            GLOBAL_GEOMETRY_EVIDENCE_FIELDS
+            if member == "evidence.csv"
+            else SOURCE_ENTITY_FIELDS
+        )
+        if member not in members or member not in {
+            "construction_pipeline.csv",
+            "entities.csv",
+            "evidence.csv",
+        }:
+            raise VerifiedConstructionCoreError(
+                f"geometry bridge release row member differs: {label}"
+            )
+        row = _embedded_csv_source_row(
+            binding["source_row"], fields, label=f"geometry bridge {label}"
+        )
+        identity_field = next(
+            field for field in ("evidence_id", "stable_key", "entity_id") if field in binding
+        )
+        if row[identity_field] != binding[identity_field]:
+            raise VerifiedConstructionCoreError(
+                f"geometry bridge release row identity differs: {label}"
+            )
+        if hydrated_crosscheck:
+            metadata = members[member]
+            payload_path = _repository_input(
+                metadata["path"], metadata["sha256"], f"geometry bridge {member}"
+            )
+            if payload_path.stat().st_size != metadata["bytes"]:
+                raise VerifiedConstructionCoreError(
+                    f"geometry bridge hydrated release differs: {member}"
+                )
+            _validate_hydrated_source_row(
+                payload_path,
+                binding["source_row"],
+                fields,
+                label=f"geometry bridge {label}",
+            )
+
+
+def _validate_v06_topology(
+    bridge: Mapping[str, Any],
+    project: Mapping[str, Any],
+    campus: Mapping[str, Any],
+    *,
+    project_source_family: str,
+    project_evidence_id: str,
+    campus_source_family: str,
+    campus_evidence_id: str,
+    hydrated_crosscheck: bool,
+) -> None:
+    topology = bridge["construction_source"]["project_to_campus"]
+    if not isinstance(topology, dict) or set(topology) != {
+        "basis",
+        "target_entity_id",
+        "bundle_id",
+        "manifest",
+        "members",
+        "relationship",
+        "subject_member",
+        "object_member",
+        "supplemental_v97_atlas_feature",
+    }:
+        raise VerifiedConstructionCoreError("geometry bridge topology fields differ")
+    if (
+        topology.get("basis") != "v14_project_targets_explicit_parent"
+        or topology.get("bundle_id") != "2026-07-22-public-open-v14"
+        or topology.get("target_entity_id") != campus.get("entity_id")
+        or topology.get("supplemental_v97_atlas_feature") is not None
+    ):
+        raise VerifiedConstructionCoreError("geometry bridge topology identity differs")
+    _, manifest = _manifest_binding(
+        topology["manifest"], label="geometry bridge topology release"
+    )
+    if (
+        manifest.get("bundle_id") != topology["bundle_id"]
+        or manifest.get("format")
+        != "datacenter-atlas-exact-identity-decision-bundle-v1"
+        or set(topology["members"])
+        != {"component-members.csv", "relationships.csv"}
+    ):
+        raise VerifiedConstructionCoreError("geometry bridge topology release differs")
+    _validate_manifest_members(
+        manifest, topology["members"], label="geometry bridge topology release"
+    )
+    subject = topology["subject_member"]
+    object_member = topology["object_member"]
+    _validate_exact_component_projection(
+        subject,
+        entity=project,
+        entity_kind="project",
+        source_family=project_source_family,
+        snapshot_evidence_id=project_evidence_id,
+        label="geometry bridge topology subject",
+    )
+    _validate_exact_component_projection(
+        object_member,
+        entity=campus,
+        entity_kind="campus",
+        source_family=campus_source_family,
+        snapshot_evidence_id=campus_evidence_id,
+        label="geometry bridge topology object",
+    )
+    relationship = topology["relationship"]
+    if not isinstance(relationship, dict) or set(relationship) != {
+        "relationship_id",
+        "relationship_type",
+        "subject_component_id",
+        "subject_kind",
+        "object_component_id",
+        "object_kind",
+        "decision_basis",
+        "typed_identity_tokens",
+        "source_release_ids",
+        "raw_relationship_count",
+        "source_row",
+    }:
+        raise VerifiedConstructionCoreError(
+            "geometry bridge topology relationship fields differ"
+        )
+    row = _embedded_csv_source_row(
+        relationship["source_row"],
+        EXACT_RELATIONSHIP_FIELDS,
+        label="geometry bridge topology relationship",
+    )
+    projection = _exact_relationship_projection(row)
+    if (
+        {field: value for field, value in relationship.items() if field != "source_row"}
+        != projection
+        or relationship.get("relationship_type") != "project_targets"
+        or relationship.get("subject_component_id") != subject.get("component_id")
+        or relationship.get("subject_kind") != "project"
+        or relationship.get("object_component_id")
+        != object_member.get("component_id")
+        or relationship.get("object_kind") != "campus"
+        or relationship.get("decision_basis") != "explicit_parent"
+        or relationship.get("typed_identity_tokens") != []
+        or relationship.get("source_release_ids") != [SOURCE_RELEASE_ID]
+        or relationship.get("raw_relationship_count") != 1
+        or relationship.get("relationship_id")
+        != _exact_relationship_id(
+            "project_targets", subject["component_id"], object_member["component_id"]
+        )
+    ):
+        raise VerifiedConstructionCoreError(
+            "geometry bridge topology relationship differs"
+        )
+    if hydrated_crosscheck:
+        for name, record, fields in (
+            ("relationships.csv", relationship, EXACT_RELATIONSHIP_FIELDS),
+            ("component-members.csv", subject, EXACT_COMPONENT_FIELDS),
+            ("component-members.csv", object_member, EXACT_COMPONENT_FIELDS),
+        ):
+            metadata = topology["members"][name]
+            payload_path = _repository_input(
+                metadata["path"], metadata["sha256"], f"geometry bridge {name}"
+            )
+            if payload_path.stat().st_size != metadata["bytes"]:
+                raise VerifiedConstructionCoreError(
+                    f"geometry bridge hydrated topology differs: {name}"
+                )
+            _validate_hydrated_source_row(
+                payload_path,
+                record["source_row"],
+                fields,
+                label=f"geometry bridge {name}",
+            )
+
+
+def _validate_v06_construction_source(
+    bridge: Mapping[str, Any], *, hydrated_crosscheck: bool
+) -> tuple[dict[str, Any], dict[str, Any]]:
+    construction = bridge["construction_source"]
+    allowed_fields = {
+        "input",
+        "release",
+        "project",
+        "campus",
+        "project_to_campus",
+        "status_evidence",
+    }
+    if not isinstance(construction, dict) or set(construction) not in {
+        frozenset(allowed_fields),
+        frozenset(allowed_fields | {"release_rows"}),
+    }:
+        raise VerifiedConstructionCoreError("geometry bridge construction source differs")
+    source_input = construction["input"]
+    if not isinstance(source_input, dict) or set(source_input) != {
+        "path",
+        "bytes",
+        "sha256",
+    }:
+        raise VerifiedConstructionCoreError("geometry bridge source input differs")
+    source_path = _repository_input(
+        source_input["path"], source_input["sha256"], "geometry bridge source"
+    )
+    if source_path.stat().st_size != source_input["bytes"]:
+        raise VerifiedConstructionCoreError("geometry bridge source byte count differs")
+    source = _load_json(source_path)
+    source_project = source.get("project") if isinstance(source, dict) else None
+    source_campus = source.get("campus") if isinstance(source, dict) else None
+    source_evidence = source.get("evidence") if isinstance(source, dict) else None
+    if (
+        not isinstance(source_project, dict)
+        or not isinstance(source_campus, dict)
+        or not isinstance(source_evidence, list)
+    ):
+        raise VerifiedConstructionCoreError("geometry bridge source record differs")
+    evidence_by_key = {
+        row["key"]: row
+        for row in source_evidence
+        if isinstance(row, dict) and isinstance(row.get("key"), str)
+    }
+    if len(evidence_by_key) != len(source_evidence):
+        raise VerifiedConstructionCoreError("geometry bridge source evidence differs")
+    lifecycle = [
+        row
+        for row in source.get("lifecycle", [])
+        if isinstance(row, dict) and row.get("entity") == "project"
+    ]
+    if not lifecycle:
+        raise VerifiedConstructionCoreError("geometry bridge lifecycle differs")
+    latest = max(lifecycle, key=lambda row: row.get("as_of_date", ""))
+    pinned_status = evidence_by_key.get(latest.get("evidence_key"))
+    if pinned_status is None:
+        raise VerifiedConstructionCoreError("geometry bridge status evidence differs")
+    status_id = _official_evidence_id(pinned_status)
+    campus_source_evidence = evidence_by_key.get(source_campus.get("evidence_key"))
+    if campus_source_evidence is None:
+        raise VerifiedConstructionCoreError(
+            "geometry bridge campus source evidence differs"
+        )
+    campus_source_evidence_id = _official_evidence_id(campus_source_evidence)
+    project_capacities = _projected_bridge_observations(
+        source, evidence_by_key, collection="capacities", entity_kind="project"
+    )
+    project_workloads = _projected_bridge_observations(
+        source, evidence_by_key, collection="workloads", entity_kind="project"
+    )
+    project = construction["project"]
+    expected_project: dict[str, Any] = {
+        "stable_key": source_project["stable_key"],
+        "entity_id": atlas_stable_id(
+            "entity", source_project["stable_key"], "project"
+        ),
+        "name": source_project["name"],
+        "country": source_project["country"],
+        "address": source_project["address"],
+        "status": latest["value"],
+        "status_as_of": latest["as_of_date"],
+        "status_age_days_at_review": (
+            REVIEW_DATE - _calendar_date(latest["as_of_date"], "bridge status")
+        ).days,
+        "status_method": latest["method"],
+        "status_confidence": latest["confidence"],
+        "status_evidence_id": status_id,
+        "workloads_json": project_workloads,
+        "capacity_estimates_json": project_capacities,
+    }
+    if isinstance(project, dict) and "capacity_semantics" in project:
+        by_metric = {row["metric"]: row["base"] for row in project_capacities}
+        expected_semantics = project["capacity_semantics"]
+        if (
+            not isinstance(expected_semantics, dict)
+            or set(expected_semantics)
+            != {
+                "non_additive",
+                "critical_it_mw",
+                "gross_facility_mw",
+                "annual_energy_observation",
+                "guardrail",
+            }
+            or expected_semantics.get("non_additive") is not True
+            or expected_semantics.get("critical_it_mw")
+            != by_metric.get("critical_it_mw")
+            or expected_semantics.get("gross_facility_mw")
+            != by_metric.get("gross_facility_mw")
+            or expected_semantics.get("annual_energy_observation") is not None
+            or not isinstance(expected_semantics.get("guardrail"), str)
+            or not expected_semantics["guardrail"]
+        ):
+            raise VerifiedConstructionCoreError(
+                "geometry bridge capacity semantics differ"
+            )
+        expected_project["capacity_semantics"] = expected_semantics
+    if not isinstance(project, dict) or project != expected_project:
+        raise VerifiedConstructionCoreError(
+            "geometry bridge construction project projection differs"
+        )
+
+    campus_models = [
+        row
+        for row in source.get("operating_models", [])
+        if isinstance(row, dict) and row.get("entity") == "campus"
+    ]
+    if len(campus_models) > 1:
+        raise VerifiedConstructionCoreError("geometry bridge campus model differs")
+    model = campus_models[0] if campus_models else None
+    model_id = (
+        _official_evidence_id(evidence_by_key[model["evidence_key"]])
+        if model is not None
+        else None
+    )
+    campus = construction["campus"]
+    expected_campus: dict[str, Any] = {
+        "stable_key": source_campus["stable_key"],
+        "entity_id": atlas_stable_id(
+            "entity", source_campus["stable_key"], "campus"
+        ),
+        "name": source_campus["name"],
+        "country": source_campus["country"],
+        "address": source_campus["address"],
+        "operating_model": model["value"] if model else None,
+        "operating_model_confidence": model["confidence"] if model else None,
+        "operating_model_evidence_id": model_id,
+    }
+    campus_workloads = _projected_bridge_observations(
+        source, evidence_by_key, collection="workloads", entity_kind="campus"
+    )
+    campus_capacities = _projected_bridge_observations(
+        source, evidence_by_key, collection="capacities", entity_kind="campus"
+    )
+    if isinstance(campus, dict) and "workloads_json" in campus:
+        expected_campus["workloads_json"] = campus_workloads
+    elif campus_workloads:
+        raise VerifiedConstructionCoreError("geometry bridge campus workloads differ")
+    if isinstance(campus, dict) and "capacity_estimates_json" in campus:
+        expected_campus["capacity_estimates_json"] = campus_capacities
+    elif campus_capacities:
+        raise VerifiedConstructionCoreError("geometry bridge campus capacities differ")
+    if not isinstance(campus, dict) or campus != expected_campus:
+        raise VerifiedConstructionCoreError(
+            "geometry bridge construction campus projection differs"
+        )
+
+    status = construction["status_evidence"]
+    required_status_fields = {
+        "evidence_id",
+        "kind",
+        "title",
+        "source_url",
+        "publisher",
+        "source_family",
+        "license",
+        "attribution",
+        "published_at",
+        "retrieved_at",
+        "content_hash",
+    }
+    if (
+        not isinstance(status, dict)
+        or not required_status_fields <= set(status)
+        or frozenset(set(status) - required_status_fields)
+        not in {frozenset(), frozenset({"key"}), frozenset({"key", "content_hash_scope"})}
+        or status.get("evidence_id") != status_id
+        or project["status_evidence_id"] != status_id
+    ):
+        raise VerifiedConstructionCoreError("geometry bridge status projection differs")
+    for field in required_status_fields - {"evidence_id"}:
+        if status.get(field) != pinned_status.get(field):
+            raise VerifiedConstructionCoreError(
+                "geometry bridge status evidence content differs"
+            )
+    if "key" in status and status["key"] != pinned_status["key"]:
+        raise VerifiedConstructionCoreError("geometry bridge status evidence key differs")
+
+    release = construction["release"]
+    if not isinstance(release, dict) or set(release) not in {
+        frozenset({"release_id", "manifest", "members"}),
+        frozenset({"release_id", "manifest", "members", "raw_rows"}),
+    } or release.get("release_id") != SOURCE_RELEASE_ID:
+        raise VerifiedConstructionCoreError("geometry bridge source release differs")
+    _, release_manifest = _manifest_binding(
+        release["manifest"], label="geometry bridge source release"
+    )
+    if set(release["members"]) != {
+        "construction_pipeline.csv",
+        "entities.csv",
+        "evidence.csv",
+    }:
+        raise VerifiedConstructionCoreError("geometry bridge source members differ")
+    _validate_manifest_members(
+        release_manifest, release["members"], label="geometry bridge source release"
+    )
+    embedded_rows = release.get("raw_rows", construction.get("release_rows"))
+    if embedded_rows is not None:
+        _validate_v06_embedded_release_rows(
+            embedded_rows,
+            release["members"],
+            hydrated_crosscheck=hydrated_crosscheck,
+        )
+    _validate_v06_topology(
+        bridge,
+        project,
+        campus,
+        project_source_family=pinned_status["source_family"],
+        project_evidence_id=status_id,
+        campus_source_family=campus_source_evidence["source_family"],
+        campus_evidence_id=campus_source_evidence_id,
+        hydrated_crosscheck=hydrated_crosscheck,
+    )
+    return project, campus
+
+
+def _point_inside_ring(point: Sequence[float], ring: Sequence[Sequence[float]]) -> bool:
+    x, y = point
+    inside = False
+    for first, second in zip(ring, ring[1:]):
+        x1, y1 = first
+        x2, y2 = second
+        cross = (x - x1) * (y2 - y1) - (y - y1) * (x2 - x1)
+        if abs(cross) <= 1e-12 and min(x1, x2) <= x <= max(x1, x2) and min(
+            y1, y2
+        ) <= y <= max(y1, y2):
+            return True
+        if (y1 > y) != (y2 > y):
+            intersection = x1 + (y - y1) * (x2 - x1) / (y2 - y1)
+            if x < intersection:
+                inside = not inside
+    return inside
+
+
+def _validate_v06_official_point_geometry(
+    bridge: Mapping[str, Any],
+    project: Mapping[str, Any],
+    campus: Mapping[str, Any],
+) -> None:
+    if bridge["geometry_release"] is not None:
+        raise VerifiedConstructionCoreError(
+            "geometry bridge official point release must be absent"
+        )
+    entity = bridge["geometry_entity"]
+    evidence = bridge["geometry_evidence"]
+    expected_entity_fields = {
+        "entity_id",
+        "entity_kind",
+        "stable_key",
+        "name",
+        "latitude",
+        "longitude",
+        "country",
+        "address",
+        "geometry",
+        "source_evidence_id",
+        "source_url",
+        "source_publisher",
+        "source_license",
+        "source_retrieved_at",
+    }
+    target = project if entity.get("entity_kind") == "project" else campus
+    if (
+        not isinstance(entity, dict)
+        or set(entity) != expected_entity_fields
+        or entity.get("entity_kind") not in {"project", "campus"}
+        or any(
+            entity.get(field) != target.get(field)
+            for field in ("entity_id", "stable_key", "name", "country")
+        )
+        or not isinstance(evidence, dict)
+    ):
+        raise VerifiedConstructionCoreError("geometry bridge official point differs")
+    geometry = entity["geometry"]
+    if (
+        not isinstance(geometry, dict)
+        or geometry != {
+            "type": "Point",
+            "coordinates": [entity["longitude"], entity["latitude"]],
+        }
+        or not _finite_number(entity["latitude"])
+        or not _finite_number(entity["longitude"])
+        or not -90 <= entity["latitude"] <= 90
+        or not -180 <= entity["longitude"] <= 180
+    ):
+        raise VerifiedConstructionCoreError(
+            "geometry bridge official point coordinates differ"
+        )
+    _validate_v06_fact_evidence(evidence, label="geometry bridge point evidence")
+    if (
+        evidence.get("evidence_id") != entity.get("source_evidence_id")
+        or evidence.get("source_url") != entity.get("source_url")
+        or evidence.get("publisher") != entity.get("source_publisher")
+        or evidence.get("license") != entity.get("source_license")
+        or evidence.get("retrieved_at") != entity.get("source_retrieved_at")
+    ):
+        raise VerifiedConstructionCoreError(
+            "geometry bridge official point evidence differs"
+        )
+    fact_payload = evidence.get("fact_payload")
+    if not isinstance(fact_payload, dict):
+        raise VerifiedConstructionCoreError(
+            "geometry bridge official point fact payload differs"
+        )
+    source_family = evidence.get("source_family")
+    expected_evidence = {
+        "curated:adaniconnex-pune-data-center-campus:pnq04-current-build": (
+            "india-adaniconnex-pune-pnq04-compliance-captured-2026-07-21",
+            "adaniconnex_environmental_compliance_reports",
+            "406e7134f896a916f6ac978a888183f67de62218cbfbd24a90248af52af544f4",
+        ),
+        "curated:goodman-hkg09-kwai-chung-data-centre:current-redevelopment": (
+            "hk-landsd-hk80-to-wgs84-hkg09-address-point-captured-2026-08-20",
+            "hong_kong_lands_department_coordinate_transformation_api",
+            "8db2983a30966dedfb7470b0712deb3bb82505e82ef65ac1b786f052ad8efb9e",
+        ),
+        "curated:skygard-osl1-hovinbyen-campus:phase-2": (
+            "norway-geonorge-ostre-aker-vei-24c-address-epsg4326-captured-2026-08-20",
+            "kartverket_matrikkelen_address_rest_api",
+            "de1397fe0cf91cb53d0330d4b1cfbb589b868122b2602100a375c69f4b506de1",
+        ),
+    }.get(project.get("stable_key"))
+    if expected_evidence is None or (
+        evidence.get("key"), source_family, evidence.get("content_hash")
+    ) != expected_evidence:
+        raise VerifiedConstructionCoreError(
+            "geometry bridge official point evidence contract differs"
+        )
+    official_source_contract = {
+        "curated:adaniconnex-pune-data-center-campus:pnq04-current-build": {
+            "license": "all-rights-reserved",
+            "license_url": None,
+            "publisher": "Pune Data Center Limited",
+            "attribution": "Pune Data Center Limited",
+            "published_at": None,
+            "retrieved_at": "2026-07-21T16:11:57Z",
+            "kind": "company_disclosure",
+            "title": "Compliance to Stipulated Conditions in Environment Clearance, October 2024 to March 2025 — Development of Data Center PNQ04",
+            "source_url": "https://www.adaniconnex.com/-/media/Project/AdaniConneX/AdaniConneX-AboutUs-Assets/Certifications/Post-EC-compliance-report-PNQ26--with-Anneure.pdf",
+            "geometry_license_url": None,
+            "geometry_source": "The geometry is an arithmetic normalization of the coordinate printed in the official PNQ04 PDF; the PDF is not redistributed.",
+            "fact_payload_sha256": "1d8dfc91502babb1ca58cbfc140d03b25c79197eb00eb47a6f247dc85f45103e",
+        },
+        "curated:goodman-hkg09-kwai-chung-data-centre:current-redevelopment": {
+            "license": "Hong-Kong-DATA.GOV.HK-Terms-of-Use",
+            "license_url": "https://data.gov.hk/en/terms-and-conditions",
+            "publisher": "Geodetic Survey Section, Lands Department, Government of the Hong Kong SAR",
+            "attribution": "Government of the Hong Kong SAR / Lands Department / DATA.GOV.HK",
+            "published_at": None,
+            "retrieved_at": "2026-08-20T19:57:28Z",
+            "kind": "government_coordinate_transformation",
+            "title": "Lands Department HK1980 Grid to WGS84 transformation",
+            "source_url": "https://www.geodetic.gov.hk/transform/v2/?inSys=hkgrid&outSys=wgsgeog&e=832091&n=825415",
+            "geometry_license_url": "https://data.gov.hk/en/terms-and-conditions",
+            "geometry_source": "The exact two-field official transformation response is distributed under DATA.GOV.HK terms with Government, Lands Department, and DATA.GOV.HK attribution.",
+            "fact_payload_sha256": "ab876378ef271567f2cc44e9d052ac6a6cbb8da2ae3dc48fe785fbdc7718e50c",
+        },
+        "curated:skygard-osl1-hovinbyen-campus:phase-2": {
+            "license": "CC-BY-4.0",
+            "license_url": "https://creativecommons.org/licenses/by/4.0/",
+            "publisher": "Kartverket / Statens kartverk",
+            "attribution": "Kartverket",
+            "published_at": None,
+            "retrieved_at": "2026-08-20T19:58:01Z",
+            "kind": "government_address_register",
+            "title": "Matrikkelen address lookup: Østre Aker vei 24C, Oslo",
+            "source_url": "https://ws.geonorge.no/adresser/v1/sok?sok=%C3%98stre%20Aker%20vei%2024C%2C%200581%20Oslo&utkoordsys=4326&treffPerSide=10",
+            "geometry_license_url": "https://creativecommons.org/licenses/by/4.0/",
+            "geometry_source": "The exact Kartverket address fields are open government data under CC BY 4.0 and require Kartverket attribution.",
+            "fact_payload_sha256": "ebceb1b62f367711d095f3fb07ad843944f2ec01f0d3125b805c3ead92ea827e",
+        },
+    }[project["stable_key"]]
+    rights = bridge.get("rights")
+    if (
+        evidence.get("license") != official_source_contract["license"]
+        or evidence.get("license_url") != official_source_contract["license_url"]
+        or evidence.get("publisher") != official_source_contract["publisher"]
+        or evidence.get("attribution") != official_source_contract["attribution"]
+        or evidence.get("published_at") != official_source_contract["published_at"]
+        or evidence.get("retrieved_at") != official_source_contract["retrieved_at"]
+        or evidence.get("kind") != official_source_contract["kind"]
+        or evidence.get("title") != official_source_contract["title"]
+        or evidence.get("source_url") != official_source_contract["source_url"]
+        or evidence.get("fact_payload_canonical_sha256")
+        != official_source_contract["fact_payload_sha256"]
+        or entity.get("source_license") != official_source_contract["license"]
+        or not isinstance(rights, dict)
+        or rights.get("geometry_license_url")
+        != official_source_contract["geometry_license_url"]
+        or rights.get("geometry_source")
+        != official_source_contract["geometry_source"]
+    ):
+        raise VerifiedConstructionCoreError(
+            "geometry bridge official point rights contract differs"
+        )
+    if source_family == "adaniconnex_environmental_compliance_reports":
+        dms_pattern = re.compile(r"^([0-9]+)º([0-9]+)ʹ([0-9]+(?:\.[0-9]+)?)ʺ$")
+
+        def decimal_from_dms(value: object) -> float:
+            match = dms_pattern.fullmatch(str(value))
+            if match is None:
+                raise VerifiedConstructionCoreError(
+                    "geometry bridge official DMS coordinate differs"
+                )
+            degrees, minutes, seconds = match.groups()
+            if int(minutes) >= 60 or float(seconds) >= 60:
+                raise VerifiedConstructionCoreError(
+                    "geometry bridge official DMS coordinate differs"
+                )
+            return int(degrees) + int(minutes) / 60 + float(seconds) / 3600
+
+        latitude = decimal_from_dms(fact_payload.get("latitude_dms"))
+        longitude = decimal_from_dms(fact_payload.get("longitude_dms"))
+        if (
+            fact_payload.get("latitude_decimal") != entity["latitude"]
+            or fact_payload.get("longitude_decimal") != entity["longitude"]
+            or not math.isclose(latitude, entity["latitude"], abs_tol=1e-10)
+            or not math.isclose(longitude, entity["longitude"], abs_tol=1e-10)
+        ):
+            raise VerifiedConstructionCoreError(
+                "geometry bridge official DMS derivation differs"
+            )
+    elif source_family == "hong_kong_lands_department_coordinate_transformation_api":
+        request = fact_payload.get("request_input")
+        response = fact_payload.get("response")
+        address_facts = next(
+            (
+                item.get("fact_payload")
+                for item in bridge["identity_bridge_evidence"]
+                if item.get("source_family")
+                == "hong_kong_lands_department_location_search_api"
+            ),
+            None,
+        )
+        selected = (
+            address_facts.get("selected_result")
+            if isinstance(address_facts, dict)
+            else None
+        )
+        if (
+            not isinstance(request, dict)
+            or not isinstance(response, dict)
+            or not isinstance(selected, dict)
+            or request
+            != {
+                "inSys": "hkgrid",
+                "outSys": "wgsgeog",
+                "e": selected.get("x"),
+                "n": selected.get("y"),
+            }
+            or response
+            != {"wgsLat": entity["latitude"], "wgsLong": entity["longitude"]}
+        ):
+            raise VerifiedConstructionCoreError(
+                "geometry bridge official coordinate transform differs"
+            )
+    elif source_family == "kartverket_matrikkelen_address_rest_api":
+        address = fact_payload.get("address")
+        point = address.get("representasjonspunkt") if isinstance(address, dict) else None
+        if (
+            not isinstance(point, dict)
+            or point
+            != {
+                "epsg": "EPSG:4326",
+                "lat": entity["latitude"],
+                "lon": entity["longitude"],
+            }
+            or address.get("stedfestingverifisert") is not True
+        ):
+            raise VerifiedConstructionCoreError(
+                "geometry bridge official address point differs"
+            )
+    else:
+        raise VerifiedConstructionCoreError(
+            "geometry bridge official point source family differs"
+        )
+
+
+def _validate_v06_osm_geometry(
+    bridge: Mapping[str, Any], *, hydrated_crosscheck: bool
+) -> None:
+    release = bridge["geometry_release"]
+    if not isinstance(release, dict) or set(release) != {
+        "release_id",
+        "as_of",
+        "recorded_at",
+        "manifest",
+        "members",
+    } or release.get("release_id") != "global-open-v3":
+        raise VerifiedConstructionCoreError("geometry bridge OSM release differs")
+    _, manifest = _manifest_binding(
+        release["manifest"], label="geometry bridge OSM release"
+    )
+    if set(release["members"]) != {"entities.csv", "evidence.csv"}:
+        raise VerifiedConstructionCoreError("geometry bridge OSM members differ")
+    _validate_manifest_members(manifest, release["members"], label="geometry bridge OSM")
+    entity = bridge["geometry_entity"]
+    evidence = bridge["geometry_evidence"]
+    if not isinstance(entity, dict) or not isinstance(evidence, dict):
+        raise VerifiedConstructionCoreError("geometry bridge OSM records differ")
+    entity_row = _embedded_csv_source_row(
+        entity.get("source_row"),
+        GLOBAL_GEOMETRY_ENTITY_FIELDS,
+        label="geometry bridge OSM entity",
+    )
+    evidence_row = _embedded_csv_source_row(
+        evidence.get("source_row"),
+        GLOBAL_GEOMETRY_EVIDENCE_FIELDS,
+        label="geometry bridge OSM evidence",
+    )
+    if (
+        {field: value for field, value in entity.items() if field != "source_row"}
+        != _global_geometry_entity_projection(entity_row)
+        or {field: value for field, value in evidence.items() if field != "source_row"}
+        != _global_geometry_evidence_projection(evidence_row)
+    ):
+        raise VerifiedConstructionCoreError("geometry bridge OSM projection differs")
+    match = re.fullmatch(r"osm:(node|way|relation)/([1-9][0-9]*)", entity["stable_key"])
+    if match is None:
+        raise VerifiedConstructionCoreError("geometry bridge OSM identity differs")
+    osm_type, osm_id = match.group(1), int(match.group(2))
+    if (
+        {field: entity["source_row"].get(field) for field in ("line", "bytes", "sha256")}
+        != {
+            "line": 8940,
+            "bytes": 1154,
+            "sha256": "ef3547df7dba55a747f603c66fdef578b680fa70fab621c731a9f076c73a0884",
+        }
+        or {
+            field: evidence["source_row"].get(field)
+            for field in ("line", "bytes", "sha256")
+        }
+        != {
+            "line": 6483,
+            "bytes": 334,
+            "sha256": "3d22a24cad9f59f7d76bf858a7e9a6586ea4501a2264e09343900928b3831786",
+        }
+        or entity.get("name") != "STT Jakarta 1"
+        or entity.get("latitude") != -6.37400965
+        or entity.get("longitude") != 107.20106675
+        or entity.get("tags")
+        != {
+            "building": "yes",
+            "name": "STT Jakarta 1",
+            "operator": "Singapore Technologies Telemedia",
+            "operator:wikidata": "Q138426438",
+            "ref": "Jakarta 1",
+            "telecom": "data_center",
+        }
+        or evidence.get("content_hash")
+        != "dcf9e3616e24371f0d9b0b49ff61da6ee1a31e4be3484826b967ae8b64357016"
+        or not _point_inside_ring(
+            [entity.get("longitude"), entity.get("latitude")],
+            entity.get("geometry", {}).get("coordinates", [[]])[0],
+        )
+        or
+        entity.get("entity_id")
+        != atlas_stable_id("entity", entity["stable_key"], entity["entity_kind"])
+        or entity.get("source_url")
+        != f"https://www.openstreetmap.org/{osm_type}/{osm_id}"
+        or entity.get("source_family") != "openstreetmap"
+        or entity.get("source_license") != "ODbL-1.0"
+        or entity.get("source_attribution") != "© OpenStreetMap contributors"
+        or entity.get("status") != "unknown"
+        or entity.get("status_method")
+        != "osm_geometry_only_no_operational_inference"
+        or entity.get("capacity_estimates_json") != []
+        or entity.get("workloads_json") != []
+        or evidence.get("evidence_id")
+        != atlas_stable_id(
+            "evidence",
+            "osm",
+            osm_type,
+            str(osm_id),
+            evidence.get("retrieved_at"),
+            evidence.get("content_hash"),
+        )
+        or evidence.get("evidence_id") != entity.get("snapshot_evidence_id")
+        or evidence.get("source_url") != entity.get("source_url")
+        or evidence.get("license") != "ODbL-1.0"
+        or evidence.get("attribution") != "© OpenStreetMap contributors"
+    ):
+        raise VerifiedConstructionCoreError("geometry bridge OSM semantics differ")
+    _validate_polygon(entity.get("geometry"), label="geometry bridge OSM")
+    rights = bridge.get("rights")
+    if (
+        not isinstance(rights, dict)
+        or rights.get("geometry_license_url")
+        != "https://www.openstreetmap.org/copyright"
+        or rights.get("geometry_source")
+        != "The frozen OSM geometry and object metadata are derived from OpenStreetMap under ODbL 1.0 and require attribution: © OpenStreetMap contributors."
+        or rights.get("mixed_rights")
+        != "Each upstream source retains its own rights; STT facts are not relicensed under ODbL."
+    ):
+        raise VerifiedConstructionCoreError("geometry bridge STT rights differ")
+    if hydrated_crosscheck:
+        for name, record, fields in (
+            ("entities.csv", entity, GLOBAL_GEOMETRY_ENTITY_FIELDS),
+            ("evidence.csv", evidence, GLOBAL_GEOMETRY_EVIDENCE_FIELDS),
+        ):
+            metadata = release["members"][name]
+            payload_path = _repository_input(
+                metadata["path"], metadata["sha256"], f"geometry bridge OSM {name}"
+            )
+            if payload_path.stat().st_size != metadata["bytes"]:
+                raise VerifiedConstructionCoreError(
+                    f"geometry bridge hydrated OSM payload differs: {name}"
+                )
+            _validate_hydrated_source_row(
+                payload_path,
+                record["source_row"],
+                fields,
+                label=f"geometry bridge OSM {name}",
+            )
+
+
+def _validate_v06_kvandal_geometry(bridge: Mapping[str, Any]) -> None:
+    release = bridge["geometry_release"]
+    if not isinstance(release, dict) or set(release) != {
+        "release_id",
+        "as_of",
+        "recorded_at",
+        "capture",
+        "upstream_payload",
+    }:
+        raise VerifiedConstructionCoreError("geometry bridge Kvandal release differs")
+    capture_binding = release["capture"]
+    if (
+        not isinstance(capture_binding, dict)
+        or capture_binding
+        != {
+            "path": "sources/verified-construction-core-v0.6-kvandal-kartverket-wfs-capture.json",
+            "bytes": 13990,
+            "sha256": "677b6285401124aebccd95f0291987b843aa9866c04f18981fae3f451c4d529e",
+        }
+    ):
+        raise VerifiedConstructionCoreError("geometry bridge Kvandal capture differs")
+    capture_path = _repository_input(
+        capture_binding["path"], capture_binding["sha256"], "Kvandal WFS capture"
+    )
+    if capture_path.stat().st_size != capture_binding["bytes"]:
+        raise VerifiedConstructionCoreError("geometry bridge Kvandal capture bytes differ")
+    capture = _load_json(capture_path)
+    raw = capture.get("raw_capture") if isinstance(capture, dict) else None
+    if not isinstance(raw, dict) or set(raw) != {
+        "content_encoding",
+        "transfer_decoding",
+        "storage_encoding",
+        "bytes",
+        "sha256",
+        "payload_base64",
+    }:
+        raise VerifiedConstructionCoreError("geometry bridge Kvandal payload differs")
+    try:
+        payload = base64.b64decode(raw["payload_base64"], validate=True)
+    except (binascii.Error, TypeError) as error:
+        raise VerifiedConstructionCoreError(
+            "geometry bridge Kvandal payload differs"
+        ) from error
+    if (
+        base64.b64encode(payload).decode("ascii") != raw["payload_base64"]
+        or len(payload) != raw["bytes"]
+        or _sha256_bytes(payload) != raw["sha256"]
+        or raw["bytes"] != 4378
+        or raw["sha256"]
+        != "8d835fa69725193def708489f681c84bb12c384d71e263fca1739c3c539f997b"
+        or release["upstream_payload"]
+        != {"encoding": "base64", "bytes": raw["bytes"], "sha256": raw["sha256"]}
+        or capture.get("captured_at") != release.get("recorded_at")
+    ):
+        raise VerifiedConstructionCoreError("geometry bridge Kvandal payload hash differs")
+    wfs_namespace = "http://www.opengis.net/wfs/2.0"
+    gml_namespace = "http://www.opengis.net/gml/3.2"
+    app_namespace = (
+        "http://skjema.geonorge.no/SOSI/produktspesifikasjon/"
+        "Matrikkelen-Eiendomskart-Teig/20211101"
+    )
+    namespaces = {"wfs": wfs_namespace, "gml": gml_namespace, "app": app_namespace}
+    try:
+        root = ET.fromstring(payload)
+    except ET.ParseError as error:
+        raise VerifiedConstructionCoreError(
+            "geometry bridge Kvandal XML differs"
+        ) from error
+    members = root.findall("wfs:member", namespaces)
+    if (
+        root.tag != f"{{{wfs_namespace}}}FeatureCollection"
+        or len(members) != 1
+        or len(members[0]) != 1
+        or members[0][0].tag != f"{{{app_namespace}}}Teig"
+    ):
+        raise VerifiedConstructionCoreError("geometry bridge Kvandal XML member differs")
+    teig = members[0][0]
+
+    def one_text(path: str) -> str:
+        matches = teig.findall(path, namespaces)
+        if len(matches) != 1 or matches[0].text is None:
+            raise VerifiedConstructionCoreError(
+                "geometry bridge Kvandal XML feature differs"
+            )
+        return matches[0].text.strip()
+
+    points = teig.findall("app:representasjonspunkt/gml:Point", namespaces)
+    polygons = teig.findall("app:område/gml:Polygon", namespaces)
+    if len(points) != 1 or len(polygons) != 1:
+        raise VerifiedConstructionCoreError("geometry bridge Kvandal XML geometry differs")
+    point = points[0]
+    polygon = polygons[0]
+    point_positions = point.findall("gml:pos", namespaces)
+    polygon_positions = polygon.findall(
+        "gml:exterior/gml:LinearRing/gml:posList", namespaces
+    )
+    if len(point_positions) != 1 or len(polygon_positions) != 1:
+        raise VerifiedConstructionCoreError("geometry bridge Kvandal XML geometry differs")
+    try:
+        point_values = [float(value) for value in (point_positions[0].text or "").split()]
+        polygon_values = [
+            float(value) for value in (polygon_positions[0].text or "").split()
+        ]
+        stored_area = float(one_text("app:teigareal/app:Areal/app:lagretBeregnetAreal"))
+    except ValueError as error:
+        raise VerifiedConstructionCoreError(
+            "geometry bridge Kvandal XML coordinate differs"
+        ) from error
+    if len(point_values) != 2 or len(polygon_values) < 8 or len(polygon_values) % 2:
+        raise VerifiedConstructionCoreError("geometry bridge Kvandal XML coordinate differs")
+    raw_point = {"type": "Point", "coordinates": point_values}
+    raw_geometry = {
+        "type": "Polygon",
+        "coordinates": [
+            [polygon_values[index : index + 2] for index in range(0, len(polygon_values), 2)]
+        ],
+    }
+    gml_id = teig.get(f"{{{gml_namespace}}}id")
+    teig_id = one_text("app:identTeig/app:IdentTeig/app:teigId")
+    if (
+        not gml_id
+        or gml_id != f"teig.{teig_id}"
+        or point.get(f"{{{gml_namespace}}}id")
+        != f"{gml_id}_APP_REPRESENTASJONSPUNKT"
+        or polygon.get(f"{{{gml_namespace}}}id") != f"{gml_id}_APP_OMRÅDE"
+        or point.get("srsName") != "EPSG:4326"
+        or polygon.get("srsName") != "EPSG:4326"
+    ):
+        raise VerifiedConstructionCoreError("geometry bridge Kvandal XML identity differs")
+    feature = capture.get("feature")
+    entity = bridge["geometry_entity"]
+    evidence = bridge["geometry_evidence"]
+    if (
+        not isinstance(feature, dict)
+        or not isinstance(entity, dict)
+        or not isinstance(evidence, dict)
+        or capture.get("request", {}).get("parameters", {}).get("service") != "WFS"
+        or capture.get("request", {}).get("parameters", {}).get("version") != "2.0.0"
+        or capture.get("request", {}).get("parameters", {}).get("request")
+        != "GetFeature"
+        or capture.get("request", {}).get("parameters", {}).get("typeNames")
+        != "app:Teig"
+        or capture.get("request", {}).get("parameters", {}).get("srsName")
+        != "EPSG:4326"
+        or "<fes:Literal>1806</fes:Literal>"
+        not in capture.get("request", {}).get("parameters", {}).get("FILTER", "")
+        or "<fes:Literal>10/760</fes:Literal>"
+        not in capture.get("request", {}).get("parameters", {}).get("FILTER", "")
+        or feature.get("gml_id") != gml_id
+        or feature.get("teig_id") != teig_id
+        or feature.get("uuid_teig") != one_text("app:uuidTeig")
+        or feature.get("update_timestamp") != one_text("app:oppdateringsdato")
+        or feature.get("municipality_number") != one_text("app:kommunenummer")
+        or feature.get("municipality_name") != one_text("app:kommunenavn")
+        or feature.get("cadastral_number_text")
+        != one_text("app:matrikkelnummerTekst")
+        or feature.get("property_type")
+        != one_text("app:matrikkelenhet/app:Matrikkelenhet/app:matrikkelenhetstype")
+        or str(feature.get("matrikkelenhet_id"))
+        != one_text("app:matrikkelenhet/app:Matrikkelenhet/app:matrikkelenhetId")
+        or feature.get("uuid_matrikkelenhet")
+        != one_text("app:matrikkelenhet/app:Matrikkelenhet/app:uuidMatrikkelenhet")
+        or feature.get("stored_calculated_area_square_metres") != stored_area
+        or feature.get("accuracy_class_as_published")
+        != one_text("app:noyaktighetsklasseTeig")
+        or feature.get("coordinate_reference_system") != "EPSG:4326"
+        or feature.get("coordinate_order_as_emitted") != "longitude_latitude"
+        or feature.get("geometry") != raw_geometry
+        or feature.get("geometry") != entity.get("geometry")
+        or feature.get("official_representative_point") != raw_point
+        or feature.get("official_representative_point")
+        != {"type": "Point", "coordinates": [entity["longitude"], entity["latitude"]]}
+        or entity.get("stable_key")
+        != f"kartverket:matrikkelen-teig/{feature.get('teig_id')}"
+        or entity.get("entity_id")
+        != atlas_stable_id("entity", entity["stable_key"], "parcel")
+        or entity.get("entity_kind") != "parcel"
+        or entity.get("tags", {}).get("cadastral_number_text")
+        != feature.get("cadastral_number_text")
+        or entity.get("source_capture")
+        != {
+            **capture_binding,
+            "raw_payload_bytes": raw["bytes"],
+            "raw_payload_sha256": raw["sha256"],
+        }
+    ):
+        raise VerifiedConstructionCoreError("geometry bridge Kvandal feature differs")
+    _validate_polygon(entity["geometry"], label="geometry bridge Kvandal")
+    if not _point_inside_ring(raw_point["coordinates"], raw_geometry["coordinates"][0]):
+        raise VerifiedConstructionCoreError(
+            "geometry bridge Kvandal representative point differs"
+        )
+    expected_evidence_id = atlas_stable_id(
+        "evidence",
+        "kartverket",
+        "teig",
+        feature["teig_id"],
+        release["recorded_at"],
+        raw["sha256"],
+    )
+    if (
+        evidence.get("evidence_id") != expected_evidence_id
+        or evidence.get("content_hash") != raw["sha256"]
+        or evidence.get("capture_path") != capture_binding["path"]
+        or entity.get("snapshot_evidence_id") != expected_evidence_id
+        or entity.get("status_evidence_id") != expected_evidence_id
+        or evidence.get("source_url") != entity.get("source_url")
+        or evidence.get("publisher") != entity.get("source_publisher")
+        or evidence.get("license") != "CC-BY-4.0"
+        or evidence.get("attribution") != "Kartverket"
+        or evidence.get("publisher") != "Kartverket / Statens kartverk"
+        or evidence.get("kind") != "government_record"
+        or evidence.get("title") != "Kartverket Matrikkelen parcel 1806-10/760"
+        or evidence.get("source_family")
+        != "kartverket_matrikkelen_eiendomskart_teig_wfs"
+        or evidence.get("published_at") != "2026-04-10T07:48:05.975"
+        or evidence.get("retrieved_at") != "2026-08-20T19:58:00Z"
+        or evidence.get("source_url") != capture.get("request", {}).get("effective_url")
+        or entity.get("source_url") != capture.get("request", {}).get("effective_url")
+        or entity.get("source_publisher") != capture.get("source", {}).get("publisher")
+        or capture.get("source", {}).get("publisher")
+        != "Kartverket / Statens kartverk"
+        or capture.get("source", {}).get("license") != "CC-BY-4.0"
+    ):
+        raise VerifiedConstructionCoreError("geometry bridge Kvandal evidence differs")
+    rights = bridge.get("rights")
+    if (
+        not isinstance(rights, dict)
+        or rights.get("geometry_license_url")
+        != "https://creativecommons.org/licenses/by/4.0/"
+        or rights.get("geometry_service_metadata_url")
+        != capture.get("source", {}).get("service_metadata_url")
+        or rights.get("geometry_dataset_metadata_url")
+        != capture.get("source", {}).get("dataset_metadata_url")
+        or rights.get("geometry_source")
+        != "The exact Kartverket Matrikkelen-Eiendomskart-Teig WFS response and extracted parcel geometry are redistributed under Creative Commons Attribution 4.0 with attribution to Kartverket."
+        or rights.get("mixed_rights")
+        != "Each upstream source retains its own rights. The CC BY 4.0 geometry license does not relicense Nscale, Sentia, or NVE source-linked material."
+    ):
+        raise VerifiedConstructionCoreError("geometry bridge Kvandal rights differ")
+    identity = bridge["identity_bridge_evidence"]
+    if (
+        not isinstance(identity, list)
+        or len(identity) != 1
+        or identity[0].get("map_identity", {}).get(
+            "point_inside_captured_parcel_10_760"
+        )
+        is not True
+        or not _point_inside_ring(
+            [
+                identity[0]["map_identity"]["derived_wgs84_longitude"],
+                identity[0]["map_identity"]["derived_wgs84_latitude"],
+            ],
+            entity["geometry"]["coordinates"][0],
+        )
+    ):
+        raise VerifiedConstructionCoreError("geometry bridge Kvandal identity differs")
+
+
+def _parcel_union(rings: Sequence[Sequence[Sequence[float]]]) -> list[list[float]]:
+    edge_counts: Counter[tuple[tuple[float, float], tuple[float, float]]] = Counter()
+    for ring in rings:
+        if len(ring) < 4 or ring[0] != ring[-1]:
+            raise VerifiedConstructionCoreError("geometry bridge parcel ring differs")
+        for first, second in zip(ring, ring[1:]):
+            edge = tuple(sorted((tuple(first), tuple(second))))
+            edge_counts[edge] += 1
+    adjacency: dict[tuple[float, float], set[tuple[float, float]]] = defaultdict(set)
+    for (first, second), count in edge_counts.items():
+        if count == 1:
+            adjacency[first].add(second)
+            adjacency[second].add(first)
+        elif count != 2:
+            raise VerifiedConstructionCoreError("geometry bridge parcel topology differs")
+    if not adjacency or any(len(neighbors) != 2 for neighbors in adjacency.values()):
+        raise VerifiedConstructionCoreError("geometry bridge parcel union differs")
+    start = min(adjacency)
+    ring: list[tuple[float, float]] = [start]
+    previous: tuple[float, float] | None = None
+    current = start
+    while True:
+        following = sorted(point for point in adjacency[current] if point != previous)[0]
+        if following == start:
+            ring.append(start)
+            break
+        if following in ring or len(ring) > len(adjacency):
+            raise VerifiedConstructionCoreError("geometry bridge parcel union differs")
+        ring.append(following)
+        previous, current = current, following
+    if len(ring) != len(adjacency) + 1:
+        raise VerifiedConstructionCoreError("geometry bridge parcel union differs")
+    signed_area = sum(
+        first[0] * second[1] - second[0] * first[1]
+        for first, second in zip(ring, ring[1:])
+    )
+    points = ring[:-1] if signed_area > 0 else list(reversed(ring[:-1]))
+    offset = points.index(min(points))
+    points = points[offset:] + points[:offset]
+    return [list(point) for point in [*points, points[0]]]
+
+
+def _polygon_area_centroid(
+    ring: Sequence[Sequence[float]],
+) -> tuple[float, list[float]]:
+    origin_x, origin_y = ring[0]
+    shifted = [(x - origin_x, y - origin_y) for x, y in ring]
+    crosses = [
+        first[0] * second[1] - second[0] * first[1]
+        for first, second in zip(shifted, shifted[1:])
+    ]
+    area = sum(crosses) / 2
+    if area <= 0:
+        raise VerifiedConstructionCoreError("geometry bridge parcel area differs")
+    centroid_x = origin_x + sum(
+        (first[0] + second[0]) * cross
+        for first, second, cross in zip(shifted, shifted[1:], crosses)
+    ) / (6 * area)
+    centroid_y = origin_y + sum(
+        (first[1] + second[1]) * cross
+        for first, second, cross in zip(shifted, shifted[1:], crosses)
+    ) / (6 * area)
+    return area, [centroid_x, centroid_y]
+
+
+def _validate_v06_undheim_geometry(bridge: Mapping[str, Any]) -> None:
+    release = bridge["geometry_release"]
+    if not isinstance(release, dict) or set(release) != {
+        "release_id",
+        "as_of",
+        "recorded_at",
+        "manifest",
+        "members",
+    }:
+        raise VerifiedConstructionCoreError("geometry bridge Undheim release differs")
+    manifest_binding = release["manifest"]
+    if not isinstance(manifest_binding, dict) or set(manifest_binding) != {
+        "path",
+        "bytes",
+        "sha256",
+    }:
+        raise VerifiedConstructionCoreError(
+            "geometry bridge Undheim capture manifest binding differs"
+        )
+    manifest_path = _repository_input(
+        manifest_binding["path"],
+        manifest_binding["sha256"],
+        "geometry bridge Undheim capture manifest",
+    )
+    if manifest_path.stat().st_size != manifest_binding["bytes"]:
+        raise VerifiedConstructionCoreError(
+            "geometry bridge Undheim capture manifest bytes differ"
+        )
+    manifest = _load_json(manifest_path)
+    manifest_members = manifest.get("members")
+    expected_member_facts = {
+        "openapi.json": {
+            "bytes": 15558,
+            "sha256": "933a65c7f47348f4490899f539481d9e88ee3d50b98f3d6531b34321d57d14bc",
+            "url": "https://api.kartverket.no/eiendom/v1/openapi.json",
+        },
+        "1121-46-316-epsg4258.json": {
+            "bytes": 1381,
+            "sha256": "46c662a0a110ec84b7bbd550852892d975373597341955c5c95feab57445e3ea",
+            "url": "https://api.kartverket.no/eiendom/v1/geokoding?matrikkelnummer=1121-46%2F316&omrade=true&utkoordsys=4258",
+        },
+        "1121-46-316-epsg25832.json": {
+            "bytes": 1509,
+            "sha256": "24ab438f6bce9a6656a697c1bf367c4c7042f74b17ae9c4f9db6e0ba8ffde14c",
+            "url": "https://api.kartverket.no/eiendom/v1/geokoding?matrikkelnummer=1121-46%2F316&omrade=true&utkoordsys=25832",
+        },
+        "1121-46-317-epsg4258.json": {
+            "bytes": 1630,
+            "sha256": "15533ed85e1f3268feea36417158c8024078dcb61c1770162f19cb22128bfeff",
+            "url": "https://api.kartverket.no/eiendom/v1/geokoding?matrikkelnummer=1121-46%2F317&omrade=true&utkoordsys=4258",
+        },
+        "1121-46-317-epsg25832.json": {
+            "bytes": 1775,
+            "sha256": "1d9cf20ac76ae509fe51420f2ca33847565a778c38a19af38fb9cd349947f252",
+            "url": "https://api.kartverket.no/eiendom/v1/geokoding?matrikkelnummer=1121-46%2F317&omrade=true&utkoordsys=25832",
+        },
+        "1121-46-319-epsg4258.json": {
+            "bytes": 944,
+            "sha256": "5be1e9b90190df40d27d5b1e640cd736f151e4dd7a5a1d40bf7f58cdf9ced11f",
+            "url": "https://api.kartverket.no/eiendom/v1/geokoding?matrikkelnummer=1121-46%2F319&omrade=true&utkoordsys=4258",
+        },
+        "1121-46-319-epsg25832.json": {
+            "bytes": 1030,
+            "sha256": "332139a1c5f55a343fcc23f0e5aa353e81d197404a22026589f68de2179701f0",
+            "url": "https://api.kartverket.no/eiendom/v1/geokoding?matrikkelnummer=1121-46%2F319&omrade=true&utkoordsys=25832",
+        },
+    }
+    if (
+        manifest_path.name != "manifest.json"
+        or not isinstance(manifest_members, dict)
+        or set(manifest_members) != set(expected_member_facts)
+        or manifest.get("schema_id")
+        != "datacenter-atlas-public-api-capture-manifest-v1"
+        or manifest.get("capture_id")
+        != "verified-construction-core-v0.6-undheim-kartverket-capture"
+        or not isinstance(manifest.get("source"), dict)
+        or manifest["source"].get("api_base_url")
+        != "https://api.kartverket.no/eiendom/v1"
+        or manifest["source"].get("license") != "CC-BY-4.0"
+        or not isinstance(manifest.get("capture"), dict)
+        or manifest["capture"].get("authentication") != "none"
+        or manifest["capture"].get("http_status") != 200
+        or manifest["capture"].get("last_response_at")
+        != release.get("recorded_at")
+        or release["members"]
+        != {
+            name: {field: binding[field] for field in ("path", "bytes", "sha256")}
+            for name, binding in manifest_members.items()
+        }
+        or any(
+            binding.get("bytes") != expected_member_facts[name]["bytes"]
+            or binding.get("sha256") != expected_member_facts[name]["sha256"]
+            or binding.get("url") != expected_member_facts[name]["url"]
+            for name, binding in manifest_members.items()
+        )
+    ):
+        raise VerifiedConstructionCoreError("geometry bridge Undheim members differ")
+    member_payloads: dict[str, dict[str, Any]] = {}
+    for name, binding in release["members"].items():
+        path = _repository_input(
+            binding["path"], binding["sha256"], f"Undheim capture {name}"
+        )
+        if path.stat().st_size != binding["bytes"]:
+            raise VerifiedConstructionCoreError(
+                f"geometry bridge Undheim member bytes differ: {name}"
+            )
+        member_payloads[name] = _load_json(path)
+    display_names = [
+        f"1121-46-{number}-epsg4258.json" for number in (316, 317, 319)
+    ]
+    metric_names = [
+        f"1121-46-{number}-epsg25832.json" for number in (316, 317, 319)
+    ]
+    parcel_facts = {
+        316: (6492542413, "2025-07-02T10:05:05"),
+        317: (6458360571, "2025-07-01T10:08:08"),
+        319: (6461028274, "2025-07-01T09:20:20"),
+    }
+
+    def capture_feature(name: str, parcel_number: int, epsg: int) -> dict[str, Any]:
+        payload = member_payloads[name]
+        features = payload.get("features") if isinstance(payload, dict) else None
+        expected_crs = (
+            None
+            if epsg == 4258
+            else {"properties": {"name": "EPSG:25832"}, "type": "name"}
+        )
+        if (
+            not isinstance(payload, dict)
+            or set(payload) != ({"features", "type"} if epsg == 4258 else {"crs", "features", "type"})
+            or payload.get("type") != "FeatureCollection"
+            or payload.get("crs") != expected_crs
+            or not isinstance(features, list)
+            or len(features) != 1
+        ):
+            raise VerifiedConstructionCoreError(
+                f"geometry bridge Undheim capture differs: {name}"
+            )
+        feature = features[0]
+        geometry = feature.get("geometry") if isinstance(feature, dict) else None
+        properties = feature.get("properties") if isinstance(feature, dict) else None
+        local_id, updated_at = parcel_facts[parcel_number]
+        expected_properties = {
+            "bruksnummer": parcel_number,
+            "festenummer": 0,
+            "gardsnummer": 46,
+            "hovedområde": True,
+            "kommunenummer": "1121",
+            "lokalid": local_id,
+            "matrikkelnummertekst": f"46/{parcel_number}",
+            "nøyaktighetsklasseteig": "Grønt",
+            "objekttype": "Teig",
+            "oppdateringsdato": updated_at,
+            "seksjonsnummer": 0,
+            "teigmedflerematrikkelenheter": False,
+            "uregistrertjordsameie": False,
+        }
+        if (
+            set(feature) != {"geometry", "properties", "type"}
+            or feature.get("type") != "Feature"
+            or properties != expected_properties
+            or not isinstance(geometry, dict)
+        ):
+            raise VerifiedConstructionCoreError(
+                f"geometry bridge Undheim feature differs: {name}"
+            )
+        if epsg == 4258:
+            _validate_polygon(geometry, label=f"geometry bridge Undheim {name}")
+        else:
+            coordinates = geometry.get("coordinates")
+            ring = coordinates[0] if isinstance(coordinates, list) and len(coordinates) == 1 else None
+            if (
+                geometry.get("type") != "Polygon"
+                or not isinstance(ring, list)
+                or len(ring) < 4
+                or ring[0] != ring[-1]
+                or any(
+                    not isinstance(point, list)
+                    or len(point) != 2
+                    or not all(_finite_number(value) for value in point)
+                    for point in ring
+                )
+            ):
+                raise VerifiedConstructionCoreError(
+                    f"geometry bridge Undheim metric geometry differs: {name}"
+                )
+        return feature
+
+    display_features = [
+        capture_feature(name, parcel_number, 4258)
+        for name, parcel_number in zip(display_names, (316, 317, 319))
+    ]
+    metric_features = [
+        capture_feature(name, parcel_number, 25832)
+        for name, parcel_number in zip(metric_names, (316, 317, 319))
+    ]
+    for display_feature, metric_feature in zip(display_features, metric_features):
+        if display_feature["properties"] != metric_feature["properties"]:
+            raise VerifiedConstructionCoreError(
+                "geometry bridge Undheim paired feature differs"
+            )
+    display_ring = _parcel_union(
+        [feature["geometry"]["coordinates"][0] for feature in display_features]
+    )
+    metric_ring = _parcel_union(
+        [feature["geometry"]["coordinates"][0] for feature in metric_features]
+    )
+    area, centroid = _polygon_area_centroid(metric_ring)
+    entity = bridge["geometry_entity"]
+    evidence = bridge["geometry_evidence"]
+    derivation = entity.get("derivation") if isinstance(entity, dict) else None
+    geometry = {"type": "Polygon", "coordinates": [display_ring]}
+    metric_geometry = {"type": "Polygon", "coordinates": [metric_ring]}
+    canonical_geometry = json.dumps(
+        geometry, ensure_ascii=False, sort_keys=True, separators=(",", ":")
+    ).encode("utf-8")
+    canonical_metric = json.dumps(
+        metric_geometry, ensure_ascii=False, sort_keys=True, separators=(",", ":")
+    ).encode("utf-8")
+    if (
+        not isinstance(entity, dict)
+        or not isinstance(evidence, dict)
+        or not isinstance(derivation, dict)
+        or entity.get("entity_kind") != "campus"
+        or entity.get("geometry") != geometry
+        or [entity.get("longitude"), entity.get("latitude")]
+        != [5.7940859, 58.6593348]
+        or derivation.get("method") != "exact_shared_edge_cancellation_union"
+        or derivation.get("display_crs") != 4258
+        or derivation.get("metric_crs") != 25832
+        or derivation.get("union_geometry_type") != "Polygon"
+        or derivation.get("union_ring_vertices_including_closure") != 102
+        or derivation.get("area_m2") != round(area, 6)
+        or derivation.get("area_m2") != 64015.998576
+        or any(
+            not math.isclose(actual, expected, abs_tol=1e-9)
+            for actual, expected in zip(derivation.get("centroid_epsg25832", []), centroid)
+        )
+        or derivation.get("centroid_epsg25832")
+        != [314041.3340706079, 6506564.987444305]
+        or derivation.get("representative_point_epsg4258")
+        != [5.7940859, 58.6593348]
+        or derivation.get("canonical_geometry_bytes") != len(canonical_geometry)
+        or derivation.get("canonical_geometry_sha256")
+        != _sha256_bytes(canonical_geometry)
+        or derivation.get("canonical_geometry_sha256")
+        != "fd26948d9030a8c944e64759e6e9dc3d513969d8a8fe4e82563f75b14ff52c37"
+        or derivation.get("canonical_metric_geometry_bytes") != len(canonical_metric)
+        or derivation.get("canonical_metric_geometry_sha256")
+        != _sha256_bytes(canonical_metric)
+        or derivation.get("canonical_metric_geometry_sha256")
+        != "de076d1ae86ace9ca28b8eda72e8254e695be68b2b0bdae74255e38c128d7b0c"
+        or not _point_inside_ring(
+            [entity.get("longitude"), entity.get("latitude")], display_ring
+        )
+    ):
+        raise VerifiedConstructionCoreError("geometry bridge Undheim union differs")
+    source_features = entity.get("source_features")
+    expected_source_features = []
+    for parcel_number in (316, 317, 319):
+        local_id = parcel_facts[parcel_number][0]
+        for epsg in (4258, 25832):
+            member = f"1121-46-{parcel_number}-epsg{epsg}.json"
+            binding = expected_member_facts[member]
+            expected_source_features.append(
+                {
+                    "member": member,
+                    "json_pointer": "/features/0",
+                    "matrikkelnummer": f"1121-46/{parcel_number}",
+                    "epsg": epsg,
+                    "lokalid": local_id,
+                    "response_bytes": binding["bytes"],
+                    "response_sha256": binding["sha256"],
+                }
+            )
+    if source_features != expected_source_features:
+        raise VerifiedConstructionCoreError("geometry bridge Undheim sources differ")
+    for row in source_features:
+        binding = release["members"].get(row["member"])
+        if binding is None or (
+            row.get("response_bytes") != binding["bytes"]
+            or row.get("response_sha256") != binding["sha256"]
+        ):
+            raise VerifiedConstructionCoreError(
+                "geometry bridge Undheim source binding differs"
+            )
+    capture_set = manifest.get("geometry_capture_set")
+    capture_set_payload = {
+        "schema": capture_set.get("schema") if isinstance(capture_set, dict) else None,
+        "members": {
+            name: {
+                "bytes": manifest_members[name]["bytes"],
+                "sha256": manifest_members[name]["sha256"],
+            }
+            for name in manifest_members
+            if name != "openapi.json"
+        },
+    }
+    canonical_capture_set = json.dumps(
+        capture_set_payload,
+        ensure_ascii=False,
+        sort_keys=True,
+        separators=(",", ":"),
+    ).encode("utf-8")
+    if (
+        not isinstance(capture_set, dict)
+        or set(capture_set)
+        != {"schema", "member_scope", "canonicalization", "canonical_bytes", "sha256"}
+        or capture_set.get("schema")
+        != "kartverket-open-property-api-capture-set-v1"
+        or capture_set.get("canonical_bytes") != len(canonical_capture_set)
+        or capture_set.get("sha256") != _sha256_bytes(canonical_capture_set)
+        or capture_set.get("sha256")
+        != "6bcd905d036ecde8e55ef4933bf1502f58a58701e5784583fdc3bccc5c6edd1f"
+        or evidence.get("content_hash") != capture_set.get("sha256")
+    ):
+        raise VerifiedConstructionCoreError(
+            "geometry bridge Undheim evidence hash differs"
+        )
+    expected_member_order = [
+        "1121-46-316-epsg4258.json",
+        "1121-46-316-epsg25832.json",
+        "1121-46-317-epsg4258.json",
+        "1121-46-317-epsg25832.json",
+        "1121-46-319-epsg4258.json",
+        "1121-46-319-epsg25832.json",
+    ]
+    manifest_source = manifest["source"]
+    if (
+        evidence.get("source_members") != expected_member_order
+        or evidence.get("license") != "CC-BY-4.0"
+        or evidence.get("attribution") != "© Kartverket"
+        or evidence.get("publisher") != "Kartverket"
+        or evidence.get("kind") != "government_cadastral_api"
+        or evidence.get("title")
+        != "Kartverket matrikkelteig union 1121-46/316, 1121-46/317 and 1121-46/319"
+        or evidence.get("source_family") != "kartverket_open_property_api"
+        or evidence.get("published_at") is not None
+        or evidence.get("retrieved_at") != "2026-08-20T19:49:51Z"
+        or evidence.get("source_url") != manifest_source.get("api_base_url")
+        or entity.get("source_url") != manifest_source.get("api_base_url")
+        or entity.get("source_publisher") != manifest_source.get("publisher")
+        or entity.get("source_license") != manifest_source.get("license")
+    ):
+        raise VerifiedConstructionCoreError("geometry bridge Undheim evidence differs")
+    rights = bridge.get("rights")
+    if (
+        not isinstance(rights, dict)
+        or rights.get("geometry_license_url")
+        != "https://www.kartverket.no/en/api-and-data/terms-of-use"
+        or rights.get("geometry_source")
+        != "The exact Kartverket API response bodies and derived cadastral geometry are redistributed under CC BY 4.0 with attribution: © Kartverket."
+        or rights.get("mixed_rights")
+        != "Each upstream source retains its own rights; this bridge does not relicense Green Mountain, Time municipality, JoB Arkitekter, or Backe material under CC BY 4.0."
+    ):
+        raise VerifiedConstructionCoreError("geometry bridge Undheim rights differ")
+    constituents = entity.get("constituent_parcels")
+    if not isinstance(constituents, list) or len(constituents) != 3:
+        raise VerifiedConstructionCoreError(
+            "geometry bridge Undheim constituent parcels differ"
+        )
+    for row, parcel_number, feature in zip(
+        constituents, (316, 317, 319), metric_features
+    ):
+        ring = feature["geometry"]["coordinates"][0]
+        origin_x, origin_y = ring[0]
+        shifted_ring = [
+            [point[0] - origin_x, point[1] - origin_y] for point in ring
+        ]
+        signed_area = sum(
+            first[0] * second[1] - second[0] * first[1]
+            for first, second in zip(shifted_ring, shifted_ring[1:])
+        ) / 2
+        local_id, updated_at = parcel_facts[parcel_number]
+        if (
+            not isinstance(row, dict)
+            or set(row)
+            != {
+                "matrikkelnummer",
+                "lokalid",
+                "oppdateringsdato",
+                "nøyaktighetsklasseteig",
+                "area_m2",
+            }
+            or row.get("matrikkelnummer") != f"1121-46/{parcel_number}"
+            or row.get("lokalid") != local_id
+            or row.get("oppdateringsdato") != updated_at
+            or row.get("nøyaktighetsklasseteig") != "Grønt"
+            or not math.isclose(
+                row.get("area_m2", -1), abs(signed_area), abs_tol=1e-6
+            )
+        ):
+            raise VerifiedConstructionCoreError(
+                "geometry bridge Undheim constituent parcels differ"
+            )
+
+
+def _validate_v06_review_semantics(
+    bridge: Mapping[str, Any], project: Mapping[str, Any]
+) -> None:
+    expected = V06_BRIDGE_SEMANTICS.get(project.get("stable_key"))
+    decision = bridge["review_decision"]
+    expected_fields = {
+        "decision",
+        "geometry_target_entity_kind",
+        "geometry_derivation",
+        "geometry_method",
+        "geometry_scope_class",
+        "geometry_authority_class",
+        "geometry_use_scope",
+        "horizontal_uncertainty_metres",
+        "horizontal_uncertainty_unknown_reason",
+        "identity_basis",
+        "precision_scope",
+        "rejected_claims",
+    }
+    if not isinstance(decision, dict) or set(decision) not in {
+        frozenset(expected_fields),
+        frozenset(expected_fields | {"accepted_claims"}),
+    } or expected is None:
+        raise VerifiedConstructionCoreError("geometry bridge v0.6 review fields differ")
+    if any(
+        decision.get(field) != expected[field]
+        for field in (
+            "decision",
+            "geometry_target_entity_kind",
+            "geometry_derivation",
+            "geometry_method",
+            "geometry_scope_class",
+            "geometry_authority_class",
+            "geometry_use_scope",
+            "horizontal_uncertainty_unknown_reason",
+        )
+    ) or bridge["geometry_entity"].get("stable_key") != expected[
+        "geometry_stable_key"
+    ]:
+        raise VerifiedConstructionCoreError("geometry bridge v0.6 semantics differ")
+    rejected = decision.get("rejected_claims")
+    if (
+        decision.get("horizontal_uncertainty_metres") is not None
+        or not isinstance(decision.get("horizontal_uncertainty_unknown_reason"), str)
+        or not decision["horizontal_uncertainty_unknown_reason"]
+        or not isinstance(decision.get("identity_basis"), str)
+        or not decision["identity_basis"]
+        or not isinstance(decision.get("precision_scope"), str)
+        or not decision["precision_scope"]
+        or not isinstance(rejected, list)
+        or len(rejected) != len(set(rejected))
+        or not any("footprint" in claim for claim in rejected)
+        or not any("construction_extent" in claim for claim in rejected)
+        or not any("geometry_derived" in claim for claim in rejected)
+    ):
+        raise VerifiedConstructionCoreError("geometry bridge v0.6 guardrails differ")
+    imagery = bridge["imagery_posture"]
+    if (
+        not isinstance(imagery, dict)
+        or not {"outcome", "independent_imagery_verification", "basis"}
+        <= set(imagery)
+        or imagery.get("outcome") != expected["imagery_outcome"]
+        or imagery.get("independent_imagery_verification") is not False
+        or not isinstance(imagery.get("basis"), str)
+        or not imagery["basis"]
+    ):
+        raise VerifiedConstructionCoreError("geometry bridge v0.6 imagery differs")
+    guardrails = bridge.get("claim_guardrails")
+    if guardrails is not None and (
+        not isinstance(guardrails, dict)
+        or set(guardrails)
+        != {"capacity_scope", "energy_scope", "role_scope", "workload_scope"}
+        or any(not isinstance(value, str) or not value for value in guardrails.values())
+    ):
+        raise VerifiedConstructionCoreError("geometry bridge v0.6 claim guardrails differ")
+
+
+def _validate_v06_identity_evidence(
+    bridge: Mapping[str, Any], project: Mapping[str, Any]
+) -> None:
+    project_key = project.get("stable_key")
+    expected_contracts = {
+        "curated:adaniconnex-pune-data-center-campus:pnq04-current-build": [],
+        "curated:goodman-hkg09-kwai-chung-data-centre:current-redevelopment": [
+            (
+                "goodman-hkg09-current-pipeline-address-captured-2026-08-20",
+                "goodman_hong_kong_data_centre_pipeline",
+                "3b2c00da63973852fd2ede105850be9a439760b06f1f6fa2a2e9718a9abef16f",
+            ),
+            (
+                "hk-landsd-location-search-57-61-ta-chuen-ping-street-captured-2026-08-20",
+                "hong_kong_lands_department_location_search_api",
+                "69d3478b64d1fd693368ba681e32b8f9bd9cbd1f5dc3b689f1145365c78402ce",
+            ),
+        ],
+        "curated:green-mountain-undheim-campus:current-two-building-development": [
+            (
+                "time-municipality-case-2025-1487-captured-2026-08-20",
+                "time_municipality_public_archive",
+                "6fb7fb7c78b8dc083bcd3617cafad6acff9cd8cb98cf456c269b2773d2c130fd",
+            ),
+            (
+                "time-municipality-undheim-permit-vuu1-captured-2026-08-20",
+                "time_municipality_public_archive",
+                "a8e374f9b26193c9810816fec3edc41854e8cbc69ecd31a5a5bf733dc540b847",
+            ),
+            (
+                "time-municipality-undheim-approved-situation-plan-green-mountain-captured-2026-08-20",
+                "time_municipality_public_archive",
+                "3e6f0f59d3bd8112f2351f3a45fbce57d1c4b0383fc1798e86279e7a7df27bb2",
+            ),
+            (
+                "time-municipality-undheim-approved-area-overview-green-mountain-captured-2026-08-20",
+                "time_municipality_public_archive",
+                "b5567fc90c922ced1a1eff3aa0bbf9d8e762538045496f0a1d16fe4a1ffee680",
+            ),
+            (
+                "backe-undheim-green-mountain-contractor-page-captured-2026-08-20",
+                "backe_project_pages",
+                "5aeecd8c2bdaa189b46dddb6e6366a2f16847cb0e024f575146770efb7f06d86",
+            ),
+        ],
+        "curated:nscale-kvandal-narvik-ai-data-center-campus:initial-25mw-epc-current-build": [
+            (
+                "nve-202521094-kvandal-two-data-centers-application-captured-2026-08-20",
+                "nve_concession_case_files",
+                "8ee750f67e722e6d6ea0fdf415eb30140651c020c994ec4596a852793f65c58a",
+            )
+        ],
+        "curated:skygard-osl1-hovinbyen-campus:phase-2": [
+            (
+                "skygard-osl1-current-page-captured-2026-08-20",
+                "skygard_official_facility_page",
+                "b6af40e5edbf7edb82fa9ee5c6b97a2342aea9907a4de1c2ca032e8c09aa6f51",
+            ),
+            (
+                "nve-skygard-ostre-aker-vei-24c-case-captured-2026-08-20",
+                "nve_concession_cases",
+                "8c3c3e1fc35ed9429510a8d93413a25dbe00f12f1017f075997bc13ed6ad0eae",
+            ),
+        ],
+    }
+    stt_contract = [
+        (
+            "stt-jakarta-campus-expansion-2026-06-10-captured-2026-07-19",
+            "stt_gdc_newsroom",
+            "f56371010a4c86f72e48fec5078c3b0bb8441cf46d97fb43a1e85f52980fc676",
+        ),
+        (
+            "stt-jakarta-1-factsheet-august-2025-captured-2026-08-20",
+            "stt_gdc_facility_factsheets",
+            "31aed9991d53e01b94ff65b9e06b1bd3ba0f7c3da0ec7a90de8b6a1e5e068f60",
+        ),
+    ]
+    if project_key in {
+        f"curated:stt-jakarta-data-centre-campus:stt-jakarta-{number}"
+        for number in (3, 5, 6)
+    }:
+        expected = stt_contract
+    else:
+        expected = expected_contracts.get(project_key)
+    evidence = bridge.get("identity_bridge_evidence")
+    if (
+        expected is None
+        or not isinstance(evidence, list)
+        or [
+            (item.get("key"), item.get("source_family"), item.get("content_hash"))
+            for item in evidence
+            if isinstance(item, dict)
+        ]
+        != expected
+        or any(not isinstance(item, dict) for item in evidence)
+    ):
+        raise VerifiedConstructionCoreError(
+            "geometry bridge v0.6 identity evidence cohort differs"
+        )
+    by_key = {item["key"]: item for item in evidence}
+
+    def object_field(item: Mapping[str, Any], field: str) -> dict[str, Any]:
+        value = item.get(field)
+        return value if isinstance(value, dict) else {}
+
+    if project_key and "stt-jakarta-data-centre-campus" in project_key:
+        expansion = object_field(by_key[stt_contract[0][0]], "fact_payload")
+        factsheet = object_field(by_key[stt_contract[1][0]], "fact_payload")
+        if (
+            expansion.get("campus_expansion_events")
+            != {
+                "STT Jakarta 3": "topping out",
+                "STT Jakarta 5": "groundbreaking",
+                "STT Jakarta 6": "groundbreaking",
+            }
+            or expansion.get("campus_name_as_reported")
+            != "STT Jakarta data centre campus"
+            or factsheet.get("facility_name") != "STT Jakarta 1"
+            or factsheet.get("campus_relation_as_reported")
+            != "Interconnected within the STT Jakarta data centre campus"
+            or not str(factsheet.get("location_as_reported", "")).startswith(
+                "Block EA-1, Greenland International Industrial Centre"
+            )
+        ):
+            raise VerifiedConstructionCoreError(
+                "geometry bridge STT identity facts differ"
+            )
+    elif project_key == "curated:goodman-hkg09-kwai-chung-data-centre:current-redevelopment":
+        goodman = object_field(by_key[expected[0][0]], "fact_payload")
+        lands = object_field(by_key[expected[1][0]], "fact_payload")
+        selected_result = object_field(lands, "selected_result")
+        if (
+            goodman.get("facility_code") != "HKG09"
+            or goodman.get("address_as_reported")
+            != "57-61 Ta Chuen Ping St, Kwai Chung, Hong Kong"
+            or lands.get("selected_result_index") != 0
+            or selected_result.get("addressEN") != "57-61 TA CHUEN PING STREET  "
+            or selected_result.get("x") != 832091.0
+            or selected_result.get("y") != 825415.0
+        ):
+            raise VerifiedConstructionCoreError(
+                "geometry bridge Goodman identity facts differ"
+            )
+    elif project_key == "curated:skygard-osl1-hovinbyen-campus:phase-2":
+        skygard = object_field(by_key[expected[0][0]], "fact_payload")
+        nve = object_field(by_key[expected[1][0]], "fact_payload")
+        if (
+            skygard.get("site_code") != "OSL1"
+            or skygard.get("site_label") != "OSL1 - Hovinbyen, Oslo"
+            or nve.get("case_number") != "19357"
+            or nve.get("case_title") != "Datasenter Østre Aker vei 24C"
+            or nve.get("applicant") != "SKYGARD 1 AS"
+        ):
+            raise VerifiedConstructionCoreError(
+                "geometry bridge Skygard identity facts differ"
+            )
+    elif project_key == "curated:green-mountain-undheim-campus:current-two-building-development":
+        permit = object_field(by_key[expected[1][0]], "extraction")
+        situation = object_field(by_key[expected[2][0]], "extraction")
+        overview = object_field(by_key[expected[3][0]], "extraction")
+        contractor = object_field(by_key[expected[4][0]], "extraction")
+        parcels = ["1121-46/316", "1121-46/317", "1121-46/319"]
+        if (
+            by_key[expected[0][0]].get("case_number") != "2025/1487"
+            or permit.get("applicant") != "VUU1 AS"
+            or permit.get("permit_parcels") != parcels[1:]
+            or situation.get("client_project_owner") != "Green Mountain AS"
+            or situation.get("project_parcels") != parcels
+            or overview.get("client_project_owner") != "Green Mountain AS"
+            or overview.get("project_parcels") != parcels
+            or overview.get("reported_parcel_area_sum_m2") != 64016.0
+            or contractor.get("client") != "Green Mountain AS"
+        ):
+            raise VerifiedConstructionCoreError(
+                "geometry bridge Undheim identity facts differ"
+            )
+    elif project_key == (
+        "curated:nscale-kvandal-narvik-ai-data-center-campus:"
+        "initial-25mw-epc-current-build"
+    ):
+        nve = evidence[0]
+        case_facts = object_field(nve, "case_facts")
+        map_identity = object_field(nve, "map_identity")
+        if (
+            case_facts.get("nve_case_number") != "202521094"
+            or case_facts.get("location")
+            != "Skoglund industrial area in Kvandal, north of Bjerkvik, Narvik municipality"
+            or map_identity.get("figures") != [3, 4]
+            or map_identity.get("source_coordinate_reference_system")
+            != "EPSG:25833"
+            or map_identity.get("map_center_easting") != 605178.71
+            or map_identity.get("map_center_northing") != 7609294.92
+            or map_identity.get("derived_wgs84_longitude")
+            != 17.580864522839857
+            or map_identity.get("derived_wgs84_latitude") != 68.5760344679832
+            or map_identity.get("point_inside_captured_parcel_10_760") is not True
+        ):
+            raise VerifiedConstructionCoreError(
+                "geometry bridge Kvandal identity facts differ"
+            )
+
+
+def _validate_v06_geometry_bridge(
+    path_text: str,
+    expected_sha256: str,
+    *,
+    hydrated_crosscheck: bool,
+) -> dict[str, Any]:
+    path = _repository_input(path_text, expected_sha256, "geometry bridge")
+    bridge = _load_json(path)
+    expected_top = {
+        "schema_version",
+        "bridge_id",
+        "reviewed_at",
+        "construction_source",
+        "identity_bridge_evidence",
+        "geometry_release",
+        "geometry_entity",
+        "geometry_evidence",
+        "lineage_context",
+        "imagery_posture",
+        "review_decision",
+        "rights",
+    }
+    if not isinstance(bridge, dict) or set(bridge) not in {
+        frozenset(expected_top),
+        frozenset(expected_top | {"claim_guardrails"}),
+    }:
+        raise VerifiedConstructionCoreError("geometry bridge v0.6 fields differ")
+    if (
+        bridge.get("schema_version") not in {1, 2}
+        or bridge.get("reviewed_at") != REVIEW_DATE.isoformat()
+        or not str(bridge.get("bridge_id", "")).startswith(
+            "verified-construction-core-v0.6-"
+        )
+        or bridge.get("lineage_context") is not None
+    ):
+        raise VerifiedConstructionCoreError("geometry bridge v0.6 identity differs")
+    project, campus = _validate_v06_construction_source(
+        bridge, hydrated_crosscheck=hydrated_crosscheck
+    )
+    _validate_v06_review_semantics(bridge, project)
+    _validate_v06_identity_evidence(bridge, project)
+    geometry_stable_key = bridge["geometry_entity"].get("stable_key")
+    if geometry_stable_key == "osm:way/1533569836":
+        _validate_v06_osm_geometry(
+            bridge, hydrated_crosscheck=hydrated_crosscheck
+        )
+    elif geometry_stable_key == "kartverket:matrikkelen-teig/6508960482":
+        _validate_v06_kvandal_geometry(bridge)
+    elif geometry_stable_key == (
+        "kartverket:matrikkelteig-union/1121-46/316+317+319"
+    ):
+        _validate_v06_undheim_geometry(bridge)
+    else:
+        _validate_v06_official_point_geometry(bridge, project, campus)
+    identity_evidence = bridge["identity_bridge_evidence"]
+    if not isinstance(identity_evidence, list):
+        raise VerifiedConstructionCoreError("geometry bridge v0.6 identity evidence differs")
+    for index, evidence in enumerate(identity_evidence):
+        if "fact_payload" in evidence:
+            _validate_v06_fact_evidence(
+                evidence, label=f"geometry bridge identity evidence {index}"
+            )
+        elif (
+            not isinstance(evidence, dict)
+            or not isinstance(evidence.get("source_url"), str)
+            or not evidence["source_url"]
+            or not isinstance(evidence.get("content_hash"), str)
+            or re.fullmatch(r"[0-9a-f]{64}", evidence["content_hash"]) is None
+        ):
+            raise VerifiedConstructionCoreError(
+                f"geometry bridge identity evidence {index} differs"
+            )
+    rights = bridge["rights"]
+    base_rights_fields = {
+        "construction_source",
+        "identity_bridge_evidence",
+        "geometry_source",
+        "geometry_license_url",
+        "lineage_context",
+        "mixed_rights",
+    }
+    kvandal_rights_fields = base_rights_fields | {
+        "geometry_service_metadata_url",
+        "geometry_dataset_metadata_url",
+        "required_attribution",
+    }
+    if (
+        not isinstance(rights, dict)
+        or set(rights)
+        != (
+            kvandal_rights_fields
+            if geometry_stable_key == "kartverket:matrikkelen-teig/6508960482"
+            else base_rights_fields
+        )
+        or rights.get("lineage_context") is not None
+        or any(
+            not isinstance(rights.get(field), str) or not rights[field]
+            for field in ("construction_source", "geometry_source", "mixed_rights")
+        )
+    ):
+        raise VerifiedConstructionCoreError("geometry bridge v0.6 rights differ")
+    if geometry_stable_key == "kartverket:matrikkelen-teig/6508960482" and (
+        "Kartverket" not in str(rights.get("required_attribution"))
+        or not all(
+            isinstance(rights.get(field), str) and rights[field].startswith("https://")
+            for field in (
+                "geometry_service_metadata_url",
+                "geometry_dataset_metadata_url",
+                "geometry_license_url",
+            )
+        )
+    ):
+        raise VerifiedConstructionCoreError("geometry bridge Kvandal rights differ")
+    if set(_geometry_evidence_projection(bridge)) != set(EVIDENCE_FIELDS) - {
+        "roles_json",
+        "project_ids_json",
+    }:
+        raise VerifiedConstructionCoreError(
+            "geometry bridge v0.6 evidence projection differs"
+        )
+    return bridge
+
+
 def _validate_geometry_bridge(
+    path_text: str,
+    expected_sha256: str,
+    *,
+    hydrated_crosscheck: bool,
+) -> dict[str, Any]:
+    if Path(path_text).stem.startswith("verified-construction-core-v0.6-"):
+        return _validate_v06_geometry_bridge(
+            path_text,
+            expected_sha256,
+            hydrated_crosscheck=hydrated_crosscheck,
+        )
+    return _validate_legacy_geometry_bridge(
+        path_text,
+        expected_sha256,
+        hydrated_crosscheck=hydrated_crosscheck,
+    )
+
+
+def _validate_legacy_geometry_bridge(
     path_text: str,
     expected_sha256: str,
     *,
@@ -4383,8 +6893,10 @@ def _reviewed_overlays_v04(
     }
 
 
-def _reviewed_overlays(*, hydrated_crosscheck: bool) -> dict[str, Any]:
-    reviewed = _load_json(OVERLAY_DEFINITION)
+def _reviewed_overlays_v05(
+    path: Path, *, hydrated_crosscheck: bool
+) -> dict[str, Any]:
+    reviewed = _load_json(path)
     if not isinstance(reviewed, dict) or set(reviewed) != {
         "contract_id",
         "purpose",
@@ -4477,6 +6989,114 @@ def _reviewed_overlays(*, hydrated_crosscheck: bool) -> dict[str, Any]:
                 "reviewed-overlay bridge identity differs"
             )
         bridges[overlay_id] = bridge
+    return {
+        "overlays": [*base["overlays"], *delta],
+        "delta_overlays": delta,
+        "bridges_by_overlay_id": bridges,
+    }
+
+
+def _reviewed_overlays(*, hydrated_crosscheck: bool) -> dict[str, Any]:
+    reviewed = _load_json(OVERLAY_DEFINITION)
+    if not isinstance(reviewed, dict) or set(reviewed) != {
+        "contract_id",
+        "purpose",
+        "reviewed_as_of",
+        "base_contract",
+        "required_fields",
+        "allowed_decisions",
+        "overlays",
+    }:
+        raise VerifiedConstructionCoreError("reviewed-overlay contract fields differ")
+    if (
+        reviewed.get("contract_id")
+        != "verified-construction-core-reviewed-overlays-v4"
+        or reviewed.get("reviewed_as_of") != REVIEW_DATE.isoformat()
+        or set(reviewed.get("allowed_decisions", []))
+        != {"queued", "accepted", "excluded"}
+    ):
+        raise VerifiedConstructionCoreError("reviewed-overlay contract identity differs")
+    expected_base = {
+        "path": "definitions/verified-construction-core-reviewed-overlays-v3.json",
+        "sha256": V05_OVERLAY_DEFINITION_SHA256,
+    }
+    if reviewed.get("base_contract") != expected_base:
+        raise VerifiedConstructionCoreError("reviewed-overlay base pin differs")
+    base_path = _repository_input(
+        expected_base["path"], expected_base["sha256"], "reviewed-overlay base"
+    )
+    base = _reviewed_overlays_v05(
+        base_path, hydrated_crosscheck=hydrated_crosscheck
+    )
+    required = {
+        "overlay_id",
+        "source_project_stable_key",
+        "source_project_entity_id",
+        "physical_site_stable_key",
+        "physical_site_entity_id",
+        "bridge_path",
+        "bridge_sha256",
+        "decision",
+        "decision_reason",
+        "reviewed_at",
+    }
+    if set(reviewed.get("required_fields", [])) != required:
+        raise VerifiedConstructionCoreError("reviewed-overlay required fields differ")
+    delta = reviewed.get("overlays")
+    if not isinstance(delta, list) or len(delta) != len(V06_BRIDGE_SEMANTICS):
+        raise VerifiedConstructionCoreError("reviewed-overlay current cohort differs")
+    ids = {
+        row.get("overlay_id")
+        for row in base["overlays"]
+        if isinstance(row, dict)
+    }
+    bridges = dict(base["bridges_by_overlay_id"])
+    project_keys: set[str] = set()
+    for index, row in enumerate(delta):
+        if not isinstance(row, dict) or set(row) != required:
+            raise VerifiedConstructionCoreError(
+                f"reviewed-overlay current row {index} differs"
+            )
+        overlay_id = row["overlay_id"]
+        project_key = row["source_project_stable_key"]
+        if (
+            not isinstance(overlay_id, str)
+            or not overlay_id
+            or overlay_id in ids
+            or project_key in project_keys
+            or project_key not in V06_BRIDGE_SEMANTICS
+            or row.get("decision") != "accepted"
+            or row.get("reviewed_at") != REVIEW_DATE.isoformat()
+            or not isinstance(row.get("decision_reason"), str)
+            or not row["decision_reason"]
+        ):
+            raise VerifiedConstructionCoreError(
+                "reviewed-overlay current identity differs"
+            )
+        ids.add(overlay_id)
+        project_keys.add(project_key)
+        bridge = _validate_geometry_bridge(
+            row["bridge_path"],
+            row["bridge_sha256"],
+            hydrated_crosscheck=hydrated_crosscheck,
+        )
+        construction = bridge["construction_source"]
+        if (
+            row["source_project_stable_key"]
+            != construction["project"]["stable_key"]
+            or row["source_project_entity_id"]
+            != construction["project"]["entity_id"]
+            or row["physical_site_stable_key"]
+            != construction["campus"]["stable_key"]
+            or row["physical_site_entity_id"]
+            != construction["campus"]["entity_id"]
+        ):
+            raise VerifiedConstructionCoreError(
+                "reviewed-overlay bridge identity differs"
+            )
+        bridges[overlay_id] = bridge
+    if project_keys != set(V06_BRIDGE_SEMANTICS):
+        raise VerifiedConstructionCoreError("reviewed-overlay current cohort differs")
     return {
         "overlays": [*base["overlays"], *delta],
         "delta_overlays": delta,
@@ -4657,6 +7277,7 @@ def _is_official_boundary(row: Mapping[str, Any]) -> bool:
 def _is_reviewed_locator(row: Mapping[str, Any]) -> bool:
     return row.get("geometry_use_scope") in {
         "reviewed_site_locator",
+        "project_locator",
         "campus_locator",
     }
 
@@ -4706,15 +7327,12 @@ def _resolve_reviewed_geometry(
             f"reviewed geometry release entity differs: {project_key}"
         )
     derivation = acceptance["geometry_derivation"]
-    if derivation == "cross_source_overlay":
-        if bridge is None:
-            raise VerifiedConstructionCoreError(
-                f"reviewed geometry bridge is absent: {project_key}"
-            )
+    if bridge is not None:
         geometry_entity = bridge["geometry_entity"]
         decision = bridge["review_decision"]
         if (
             decision["geometry_target_entity_kind"] != entity_kind
+            or decision["geometry_derivation"] != derivation
             or bridge["construction_source"]["project"]["stable_key"]
             != project_key
             or bridge["construction_source"]["campus"]["stable_key"]
@@ -4725,9 +7343,9 @@ def _resolve_reviewed_geometry(
             )
         geometry = geometry_entity["geometry"]
         return geometry, geometry_entity
-    if bridge is not None:
+    if derivation in {"cross_source_overlay", "official_parcel_union"}:
         raise VerifiedConstructionCoreError(
-            f"reviewed direct geometry unexpectedly has a bridge: {project_key}"
+            f"reviewed geometry bridge is absent: {project_key}"
         )
     if derivation == "direct_geometry":
         geometry = source_entity.get("geometry")
@@ -4797,6 +7415,8 @@ def _preferred_site_geometry_member(
     semantic_rank = {
         ("official_source", "official_boundary"): 4,
         ("official_source", "reviewed_site_locator"): 3,
+        ("official_source", "project_locator"): 3,
+        ("official_source", "campus_locator"): 3,
         ("community_mapped", "campus_locator"): 2,
     }
     try:
@@ -4981,7 +7601,11 @@ def _build_rows() -> dict[str, Any]:
             )
         site_id = _stable_id("vcc-site", site_key)
         status_evidence_id = source["status_evidence_id"]
-        geometry_evidence_id = geometry_release["snapshot_evidence_id"]
+        geometry_evidence_id = (
+            bridge["geometry_evidence"]["evidence_id"]
+            if bridge is not None
+            else geometry_release["snapshot_evidence_id"]
+        )
         for evidence_id, role in (
             (status_evidence_id, "physical_status"),
             (geometry_evidence_id, "geometry"),
@@ -5356,7 +7980,7 @@ def _build_rows() -> dict[str, Any]:
     country_counts = Counter(row["country"] for row in sites)
     gates = _final_release_gates(sites, projects)
     selection_report = {
-        "format": "datacenter-atlas-verified-construction-core-selection-v5",
+        "format": "datacenter-atlas-verified-construction-core-selection-v6",
         "release_status": "preview",
         "publishable_as_final": all(gate.get("passed", False) for gate in gates.values()),
         "source_release_id": SOURCE_RELEASE_ID,
@@ -5438,15 +8062,51 @@ def _geojson(sites: Sequence[Mapping[str, Any]]) -> dict[str, Any]:
     }
 
 
-def _map_html(geojson: Mapping[str, Any]) -> bytes:
+def _map_attribution_notices(
+    evidence: Sequence[Mapping[str, Any]],
+) -> tuple[tuple[str, str, str], ...]:
+    source_families = {
+        str(row.get("source_family", ""))
+        for row in evidence
+        if "geometry" in json.loads(str(row.get("roles_json", "[]")))
+    }
+    notices: list[tuple[str, str, str]] = []
+    if "openstreetmap" in source_families:
+        notices.append(
+            (
+                "© OpenStreetMap contributors",
+                "ODbL 1.0",
+                "https://www.openstreetmap.org/copyright",
+            )
+        )
+    if any(source_family.startswith("kartverket_") for source_family in source_families):
+        notices.append(
+            (
+                "© Kartverket",
+                "CC BY 4.0",
+                "https://www.kartverket.no/en/api-and-data/terms-of-use",
+            )
+        )
+    return tuple(notices)
+
+
+def _map_html(
+    geojson: Mapping[str, Any],
+    evidence: Sequence[Mapping[str, Any]],
+) -> bytes:
     data = json.dumps(geojson, ensure_ascii=False, sort_keys=True).replace("<", "\\u003c")
     site_count = len(geojson.get("features", []))
+    attribution = " · ".join(
+        f'<a href="{url}">{label}</a> — {license_name}'
+        for label, license_name, url in _map_attribution_notices(evidence)
+    )
     document = f"""<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Verified Construction Core preview</title>
-<style>body{{font:14px system-ui;margin:0;color:#17202a}}header{{padding:18px 22px;background:#eef4f7}}main{{display:grid;grid-template-columns:minmax(0,2fr) minmax(260px,1fr);gap:16px;padding:16px}}svg{{width:100%;height:auto;background:#f8fafb;border:1px solid #ccd6dc}}.grid{{stroke:#dce4e8;stroke-width:1}}circle{{fill:#b6412e;stroke:#fff;stroke-width:1.5;cursor:pointer}}circle:focus{{outline:2px solid #173b57}}table{{border-collapse:collapse;width:100%}}th,td{{padding:6px;border-bottom:1px solid #ddd;text-align:left}}code{{font-size:12px}}.warning{{color:#7b2d1d;font-weight:700}}@media(max-width:800px){{main{{grid-template-columns:1fr}}}}</style></head>
-<body><header><h1>Verified Construction Core v0.5 preview</h1><p class="warning">{site_count} physical sites. This is not the 100-site final release and does not claim independent imagery verification.</p></header>
+<style>body{{font:14px system-ui;margin:0;color:#17202a}}header{{padding:18px 22px;background:#eef4f7}}main{{display:grid;grid-template-columns:minmax(0,2fr) minmax(260px,1fr);gap:16px;padding:16px}}footer{{padding:0 16px 18px;color:#46545f}}svg{{width:100%;height:auto;background:#f8fafb;border:1px solid #ccd6dc}}.grid{{stroke:#dce4e8;stroke-width:1}}circle{{fill:#b6412e;stroke:#fff;stroke-width:1.5;cursor:pointer}}circle:focus{{outline:2px solid #173b57}}table{{border-collapse:collapse;width:100%}}th,td{{padding:6px;border-bottom:1px solid #ddd;text-align:left}}code{{font-size:12px}}.warning{{color:#7b2d1d;font-weight:700}}@media(max-width:800px){{main{{grid-template-columns:1fr}}}}</style></head>
+<body><header><h1>Verified Construction Core v0.6 preview</h1><p class="warning">{site_count} physical sites. This is not the 100-site final release and does not claim independent imagery verification.</p></header>
 <main><section><svg id="map" viewBox="0 0 1000 500" role="img" aria-label="Global plot of selected sites"></svg></section><aside><h2 id="name">Select a site</h2><div id="detail"></div><h3>Sites</h3><table><tbody id="rows"></tbody></table></aside></main>
+<footer><strong>Map data attribution:</strong> {attribution}. <a href="ATTRIBUTION.txt">Full attribution and source terms</a>.</footer>
 <script>const atlas={data};const svg=document.getElementById('map');const ns='http://www.w3.org/2000/svg';
 for(let lon=-180;lon<=180;lon+=30){{const l=document.createElementNS(ns,'line');l.setAttribute('x1',(lon+180)/360*1000);l.setAttribute('x2',(lon+180)/360*1000);l.setAttribute('y1',0);l.setAttribute('y2',500);l.setAttribute('class','grid');svg.appendChild(l)}}
 for(let lat=-60;lat<=60;lat+=30){{const l=document.createElementNS(ns,'line');l.setAttribute('x1',0);l.setAttribute('x2',1000);l.setAttribute('y1',(90-lat)/180*500);l.setAttribute('y2',(90-lat)/180*500);l.setAttribute('class','grid');svg.appendChild(l)}}
@@ -5461,7 +8121,7 @@ def _readme(report: Mapping[str, Any]) -> bytes:
     gates = report["final_release_gates"]
     boundary_count = report["official_boundary_project_count"]
     locator_count = report["reviewed_site_locator_project_count"]
-    text = f"""# Verified Construction Core v0.5 preview
+    text = f"""# Verified Construction Core v0.6 preview
 
 This tracked preview contains **{report['selected_physical_site_count']} physical sites** and
 **{report['selected_project_count']} linked projects** selected from `{SOURCE_RELEASE_ID}`.
@@ -5469,10 +8129,18 @@ Every selected project has a physical-status observation no more than {MAX_STATU
 old at the {REVIEW_DATE.isoformat()} review date. {boundary_count} project rows carry official
 parcel or surveyed boundary geometry; this describes the geometry attached to the row, not a claim
 that construction occupies the entire parcel. The other {locator_count} use explicitly labelled
-reviewed locators with their precision limits preserved. Six selected projects use contributor-mapped
-OSM polygons accepted only as campus locators: they are not official boundaries, project or phase
+reviewed locators with their precision limits preserved. Nine selected project rows use
+contributor-mapped OSM polygon locators (seven distinct polygons), accepted only as campus locators:
+they are not official boundaries, project or phase
 footprints, construction extents, or lifecycle evidence. Locality centroids and model-only lifecycle
 states fail the selector.
+
+The v0.6 delta adds an official PNQ04 project reference point; official Goodman HKG09 and Skygard
+OSL1 campus address/reference points; an official current Kvandal parcel used only as a campus
+locator; one shared STT Jakarta 1 OSM campus locator for Jakarta 3, 5, and 6; and the official
+three-parcel Undheim project-site union. None of those locator geometries is promoted to a current
+building footprint. The Undheim parcel union is an official boundary, but still not a claim that
+construction fills the parcels.
 
 This is **not** the final Verified Construction Core v1. It does not change the historical Atlas
 `construction_verified=false` field, infer a continuously current state, claim independent imagery
@@ -5496,10 +8164,13 @@ non-claiming analyst evidence. The selection report binds each non-default image
 exact tracked review source and preserves locally unsealed identity lineage and unadjudicated
 conflicts explicitly. Two exact Canadian geometry overlays were reviewed but excluded: one recent
 scene was unusable and one usable comparison showed no filtered recent-change component.
+Backe-published Undheim contractor drone photography is source-linked context only: no image bytes
+are redistributed, no independent imagery review is claimed, and it supports no geometry, status,
+capacity, progress, or building-count field.
 
 Every workload observation carries a validator-bound `deployment_scope`; all five selected
 observations are `intended`, never operational. `role_claims_json` binds each published role to an
-evidence ID and relationship scope. Five intended-operator and two intended-customer claims pass
+evidence ID and relationship scope. Six intended-operator and two intended-customer claims pass
 that gate. Four prior CDC/AST owner or operator strings lacked role-specific evidence, so the preview
 clears them and preserves the rejected claims and reasons in the provenance contract rather than
 laundering status evidence into role evidence. The same conservative rule clears the atNorth,
@@ -5587,11 +8258,13 @@ def _field_contract(name: str) -> dict[str, Any]:
             "direct_geometry",
             "coordinates_to_point",
             "cross_source_overlay",
+            "official_parcel_union",
         ],
         "geometry_authority_class": ["official_source", "community_mapped"],
         "geometry_use_scope": [
             "official_boundary",
             "reviewed_site_locator",
+            "project_locator",
             "campus_locator",
         ],
         "last_observed_physical_status": sorted(PHYSICAL_STATUSES),
@@ -5605,7 +8278,7 @@ def _field_contract(name: str) -> dict[str, Any]:
 
 def _schema() -> dict[str, Any]:
     return {
-        "format": "datacenter-atlas-verified-construction-core-schema-v5",
+        "format": "datacenter-atlas-verified-construction-core-schema-v6",
         "preview_id": PREVIEW_ID,
         "csv_encoding": "UTF-8",
         "csv_dialect": {
@@ -5734,7 +8407,10 @@ def _schema() -> dict[str, Any]:
             "geometry_equals": ["sites.csv", "geometry_json"],
             "allowed_geometry_types": ["Point", "Polygon", "MultiPolygon"],
         },
-        "map": {"path": "map.html", "derived_from": "sites.geojson"},
+        "map": {
+            "path": "map.html",
+            "derived_from": ["sites.geojson", "evidence.csv"],
+        },
     }
 
 
@@ -5800,7 +8476,7 @@ def build_preview(output_dir: Path = PREVIEW_DIR) -> dict[str, Any]:
         ),
         "README.md": _readme(report),
         "evidence.csv": _csv_bytes(evidence, EVIDENCE_FIELDS),
-        "map.html": _map_html(geojson),
+        "map.html": _map_html(geojson, evidence),
         "projects.csv": _csv_bytes(projects, PROJECT_FIELDS),
         "schema.json": _json_bytes(_schema()),
         "selection-report.json": _json_bytes(report),
@@ -5808,7 +8484,7 @@ def build_preview(output_dir: Path = PREVIEW_DIR) -> dict[str, Any]:
         "sites.geojson": _json_bytes(geojson),
     }
     manifest = {
-        "format": "datacenter-atlas-verified-construction-core-preview-v5",
+        "format": "datacenter-atlas-verified-construction-core-preview-v6",
         "preview_id": PREVIEW_ID,
         "release_status": "preview",
         "publishable_as_final": report["publishable_as_final"],
@@ -6292,6 +8968,163 @@ def validate_frozen_v04(
     return manifest
 
 
+def validate_frozen_v05(
+    path: Path = LEGACY_PREVIEW_V05_DIR,
+) -> dict[str, Any]:
+    """Validate the byte-frozen v0.5 inventory using only immutable pins."""
+    path = Path(path)
+    if path.is_symlink() or not path.is_dir():
+        raise VerifiedConstructionCoreError(
+            f"frozen v0.5 preview is not a regular directory: {path}"
+        )
+    manifest_path = path / "manifest.json"
+    checksum_path = path / "manifest.sha256"
+    if (
+        manifest_path.is_symlink()
+        or not manifest_path.is_file()
+        or checksum_path.is_symlink()
+        or not checksum_path.is_file()
+    ):
+        raise VerifiedConstructionCoreError(
+            "frozen v0.5 manifest trust root differs"
+        )
+    if _sha256_file(manifest_path) != LEGACY_PREVIEW_V05_MANIFEST_SHA256:
+        raise VerifiedConstructionCoreError("frozen v0.5 manifest hash differs")
+    manifest = _load_json(manifest_path)
+    expected_pins = {
+        "format": "datacenter-atlas-verified-construction-core-preview-v5",
+        "preview_id": "2026-08-20-preview-v0.5",
+        "reviewed_at": "2026-08-20",
+        "source_release_id": "2026-07-22-open-seed-v97",
+        "source_release_manifest_path": (
+            "releases/2026-07-22-open-seed-v97/manifest.json"
+        ),
+        "source_release_manifest_sha256": (
+            "0a6f41f4239944df27f2ce70e81a089b91cec401f154bbae28412b27a4d00fdd"
+        ),
+        "review_definition_sha256": (
+            "ec1c7dfc9f9516567ca2c58e29b631cf11df4bba4212df3fc875d0a4b5236775"
+        ),
+        "imagery_review_definition_sha256": (
+            "90969eb2e15210b7a398ff2cc1a2d12ba1b2aa5213e5f4cfe31021ec71c2b083"
+        ),
+        "provenance_definition_sha256": (
+            "bbd0e4665605e7af6389d6730211d096c737ee038886cfdacf848f87a2ee16af"
+        ),
+        "overlay_definition_sha256": (
+            "d71ce264327ccf523cb7f000d559c0a4953524d0224dbdcc7e91e36d8e4b98c5"
+        ),
+    }
+    if any(manifest.get(field) != value for field, value in expected_pins.items()):
+        raise VerifiedConstructionCoreError("frozen v0.5 identity differs")
+    expected_definition_paths = {
+        "imagery_reviews": (
+            "definitions/verified-construction-core-v0.5-imagery-reviews.json"
+        ),
+        "provenance": "definitions/verified-construction-core-v0.5-provenance.json",
+        "reviewed_overlays": (
+            "definitions/verified-construction-core-reviewed-overlays-v3.json"
+        ),
+        "reviewed_sites": (
+            "definitions/verified-construction-core-v0.5-reviewed-sites.json"
+        ),
+    }
+    if manifest.get("definition_paths") != expected_definition_paths:
+        raise VerifiedConstructionCoreError("frozen v0.5 definition paths differ")
+    repository_pins = {
+        expected_definition_paths["reviewed_sites"]: expected_pins[
+            "review_definition_sha256"
+        ],
+        expected_definition_paths["imagery_reviews"]: expected_pins[
+            "imagery_review_definition_sha256"
+        ],
+        expected_definition_paths["provenance"]: expected_pins[
+            "provenance_definition_sha256"
+        ],
+        expected_definition_paths["reviewed_overlays"]: expected_pins[
+            "overlay_definition_sha256"
+        ],
+        expected_pins["source_release_manifest_path"]: expected_pins[
+            "source_release_manifest_sha256"
+        ],
+    }
+    for relative, expected_sha256 in repository_pins.items():
+        candidate = ROOT / relative
+        if (
+            candidate.is_symlink()
+            or not candidate.is_file()
+            or _sha256_file(candidate) != expected_sha256
+        ):
+            raise VerifiedConstructionCoreError(
+                f"frozen v0.5 repository input differs: {relative}"
+            )
+    portable = manifest.get("portable_source_inputs")
+    if not isinstance(portable, list) or len(portable) != 8:
+        raise VerifiedConstructionCoreError("frozen v0.5 portable inputs differ")
+    for item in portable:
+        if not isinstance(item, dict) or set(item) != {
+            "path",
+            "bytes",
+            "sha256",
+            "parent_manifests",
+        }:
+            raise VerifiedConstructionCoreError("frozen v0.5 portable input differs")
+        relative = Path(item["path"])
+        candidate = ROOT / relative
+        if (
+            relative.is_absolute()
+            or ".." in relative.parts
+            or candidate.is_symlink()
+            or not candidate.is_file()
+            or candidate.stat().st_size != item["bytes"]
+            or _sha256_file(candidate) != item["sha256"]
+        ):
+            raise VerifiedConstructionCoreError(
+                f"frozen v0.5 portable member differs: {relative}"
+            )
+        parents = item["parent_manifests"]
+        if not isinstance(parents, list):
+            raise VerifiedConstructionCoreError("frozen v0.5 portable parents differ")
+        for parent in parents:
+            if not isinstance(parent, dict) or set(parent) != {"path", "sha256"}:
+                raise VerifiedConstructionCoreError(
+                    "frozen v0.5 portable parent differs"
+                )
+            parent_relative = Path(parent["path"])
+            parent_path = ROOT / parent_relative
+            if (
+                parent_relative.is_absolute()
+                or ".." in parent_relative.parts
+                or parent_path.is_symlink()
+                or not parent_path.is_file()
+                or _sha256_file(parent_path) != parent["sha256"]
+            ):
+                raise VerifiedConstructionCoreError(
+                    "frozen v0.5 portable parent differs"
+                )
+    files = manifest.get("files")
+    if not isinstance(files, dict):
+        raise VerifiedConstructionCoreError("frozen v0.5 files map is absent")
+    expected_names = set(files) | {"manifest.json", "manifest.sha256"}
+    if {item.name for item in path.iterdir()} != expected_names:
+        raise VerifiedConstructionCoreError("frozen v0.5 inventory differs")
+    for name, metadata in files.items():
+        candidate = path / name
+        if (
+            candidate.is_symlink()
+            or not candidate.is_file()
+            or candidate.stat().st_size != metadata.get("bytes")
+            or _sha256_file(candidate) != metadata.get("sha256")
+        ):
+            raise VerifiedConstructionCoreError(
+                f"frozen v0.5 member differs: {name}"
+            )
+    expected_sum = f"{LEGACY_PREVIEW_V05_MANIFEST_SHA256}  manifest.json\n"
+    if checksum_path.read_text(encoding="utf-8") != expected_sum:
+        raise VerifiedConstructionCoreError("frozen v0.5 checksum differs")
+    return manifest
+
+
 def validate_preview(path: Path = PREVIEW_DIR) -> dict[str, Any]:
     """Dispatch frozen previews by manifest identity and validate the current one."""
     path = Path(path)
@@ -6310,6 +9143,8 @@ def validate_preview(path: Path = PREVIEW_DIR) -> dict[str, Any]:
         return validate_frozen_v03(path)
     if preview_id == "2026-08-20-preview-v0.4":
         return validate_frozen_v04(path)
+    if preview_id == "2026-08-20-preview-v0.5":
+        return validate_frozen_v05(path)
     if preview_id != PREVIEW_ID:
         raise VerifiedConstructionCoreError("preview id differs")
     return _validate_current_preview(path)
@@ -6351,7 +9186,7 @@ def _validate_current_preview(path: Path) -> dict[str, Any]:
     }
     if set(manifest) != expected_manifest_fields:
         raise VerifiedConstructionCoreError("preview manifest fields differ")
-    if manifest.get("format") != "datacenter-atlas-verified-construction-core-preview-v5":
+    if manifest.get("format") != "datacenter-atlas-verified-construction-core-preview-v6":
         raise VerifiedConstructionCoreError("preview format differs")
     if manifest.get("preview_id") != PREVIEW_ID:
         raise VerifiedConstructionCoreError("preview id differs")
@@ -6481,7 +9316,7 @@ def _validate_current_preview(path: Path) -> dict[str, Any]:
     evidence_by_id = {row["evidence_id"]: row for row in evidence}
     if len(evidence_by_id) != len(evidence):
         raise VerifiedConstructionCoreError("preview evidence identifiers are not unique")
-    _validate_v05_inheritance(projects, sites, evidence)
+    _validate_v06_inheritance(projects, sites, evidence)
     for row in projects:
         acceptance = reviewed_by_key[row["project_stable_key"]]
         if row["project_id"] != atlas_stable_id(
@@ -6505,7 +9340,7 @@ def _validate_current_preview(path: Path) -> dict[str, Any]:
                 bridge,
                 label="preview reviewed geometry",
             )
-            _validate_v05_delta_project(
+            _validate_v06_delta_project(
                 row,
                 reviewed_delta_by_key[row["project_stable_key"]],
                 evidence_by_id,
@@ -6964,7 +9799,7 @@ def _validate_current_preview(path: Path) -> dict[str, Any]:
             raise VerifiedConstructionCoreError("preview site id differs")
     if geojson != _geojson(sites):
         raise VerifiedConstructionCoreError("preview GeoJSON and site table differ")
-    if (path / "map.html").read_bytes() != _map_html(geojson):
+    if (path / "map.html").read_bytes() != _map_html(geojson, evidence):
         raise VerifiedConstructionCoreError("preview map and GeoJSON differ")
     report_fields = {
         "country_counts",
@@ -6992,7 +9827,7 @@ def _validate_current_preview(path: Path) -> dict[str, Any]:
     expected_gates = _final_release_gates(sites, projects)
     country_counts = dict(sorted(Counter(row["country"] for row in sites).items()))
     expected_values = {
-        "format": "datacenter-atlas-verified-construction-core-selection-v5",
+        "format": "datacenter-atlas-verified-construction-core-selection-v6",
         "release_status": "preview",
         "publishable_as_final": all(
             gate.get("passed", False) for gate in expected_gates.values()
@@ -7057,13 +9892,13 @@ def _validate_current_preview(path: Path) -> dict[str, Any]:
     if counts != derived_counts:
         raise VerifiedConstructionCoreError("preview derived counts differ")
     if counts != {
-        "physical_sites": 20,
-        "projects": 21,
-        "evidence": 48,
-        "countries": 13,
-        "non_us_sites": 14,
-        "official_boundary_projects": 3,
-        "reviewed_site_locator_projects": 18,
+        "physical_sites": 26,
+        "projects": 29,
+        "evidence": 63,
+        "countries": 17,
+        "non_us_sites": 20,
+        "official_boundary_projects": 4,
+        "reviewed_site_locator_projects": 25,
     }:
         raise VerifiedConstructionCoreError("preview expected cohort counts differ")
     return manifest
@@ -7075,6 +9910,8 @@ __all__ = [
     "LEGACY_PREVIEW_V02_DIR",
     "LEGACY_PREVIEW_V03_DIR",
     "LEGACY_PREVIEW_V04_DIR",
+    "LEGACY_PREVIEW_V05_COMMIT",
+    "LEGACY_PREVIEW_V05_DIR",
     "PREVIEW_DIR",
     "PROVENANCE_DEFINITION",
     "VerifiedConstructionCoreError",
@@ -7083,5 +9920,6 @@ __all__ = [
     "validate_frozen_v02",
     "validate_frozen_v03",
     "validate_frozen_v04",
+    "validate_frozen_v05",
     "validate_preview",
 ]

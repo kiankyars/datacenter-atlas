@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build or validate the tracked Verified Construction Core current preview."""
+"""Build v0.6 or validate any supported Verified Construction Core preview."""
 
 from __future__ import annotations
 
@@ -25,12 +25,12 @@ def main() -> int:
         "--output-dir",
         type=Path,
         default=PREVIEW_DIR,
-        help="new preview directory (default: tracked preview path)",
+        help="preview directory (default: current v0.6 artifact path)",
     )
     parser.add_argument(
         "--validate-only",
         action="store_true",
-        help="validate an existing preview without needing the ignored source corpus",
+        help="validate an existing v0.1-v0.6 preview without the ignored source corpus",
     )
     arguments = parser.parse_args()
     if arguments.validate_only:

@@ -1,0 +1,124 @@
+{
+  "contract_id": "verified-construction-core-reviewed-overlays-v4",
+  "purpose": "Exact-hash incremental successor to reviewed-overlay v3. Each accepted row binds one construction project and physical site to one closed portable bridge. Geometry authority and use scope remain exactly those of each bridge, all rejected claims survive, and no proximity-only or fuzzy-name identity is accepted.",
+  "reviewed_as_of": "2026-08-20",
+  "base_contract": {
+    "path": "definitions/verified-construction-core-reviewed-overlays-v3.json",
+    "sha256": "d71ce264327ccf523cb7f000d559c0a4953524d0224dbdcc7e91e36d8e4b98c5"
+  },
+  "required_fields": [
+    "overlay_id",
+    "source_project_stable_key",
+    "source_project_entity_id",
+    "physical_site_stable_key",
+    "physical_site_entity_id",
+    "bridge_path",
+    "bridge_sha256",
+    "decision",
+    "decision_reason",
+    "reviewed_at"
+  ],
+  "allowed_decisions": [
+    "queued",
+    "accepted",
+    "excluded"
+  ],
+  "overlays": [
+    {
+      "overlay_id": "overlay:official-pnq04-project-reference-point",
+      "source_project_stable_key": "curated:adaniconnex-pune-data-center-campus:pnq04-current-build",
+      "source_project_entity_id": "48eb54d5-dd3f-51a3-aeed-1ddce1949763",
+      "physical_site_stable_key": "curated:adaniconnex-pune-data-center-campus",
+      "physical_site_entity_id": "472b90dc-b8a9-51a3-9b40-a5cc660113b5",
+      "bridge_path": "sources/verified-construction-core-v0.6-adaniconnex-pnq04-project-geometry-bridge.json",
+      "bridge_sha256": "3b1b016de029e0c223f9488bb5d18246cd9954da9c167df7c0641332cad775c4",
+      "decision": "accepted",
+      "decision_reason": "The official PNQ04 compliance report names the project and exact Bhosari address and prints the coordinate normalized by the bridge. The geometry is accepted only as an official-source project_locator reference point; it is not a centroid, footprint, parcel, campus boundary, construction extent, or accuracy claim, and every bridge rejection remains rejected.",
+      "reviewed_at": "2026-08-20"
+    },
+    {
+      "overlay_id": "overlay:osm-way-1533569836-stt-jakarta-3-shared-campus-locator",
+      "source_project_stable_key": "curated:stt-jakarta-data-centre-campus:stt-jakarta-3",
+      "source_project_entity_id": "aa93c84a-17d6-5092-bf57-686f7e1ab4a4",
+      "physical_site_stable_key": "curated:stt-jakarta-data-centre-campus",
+      "physical_site_entity_id": "b8882731-b2f0-5673-8ba0-abeedafb6003",
+      "bridge_path": "sources/verified-construction-core-v0.6-stt-jakarta-3-campus-geometry-bridge.json",
+      "bridge_sha256": "8306461f601370128919b2d285e522a70a8c8cd9c4948b1d46520901806e5743",
+      "decision": "accepted",
+      "decision_reason": "The exact v14 relationship targets the shared STT Jakarta campus; STT groups Jakarta 3, 5, and 6 under that campus and places Jakarta 1 within it; and the frozen OSM feature is exactly named and referenced STT Jakarta 1. The community-mapped polygon is accepted only as one known-building anchor for the shared campus, never as Jakarta 3 geometry, a campus boundary, or a proximity-derived phase match; every bridge rejection remains rejected.",
+      "reviewed_at": "2026-08-20"
+    },
+    {
+      "overlay_id": "overlay:osm-way-1533569836-stt-jakarta-5-shared-campus-locator",
+      "source_project_stable_key": "curated:stt-jakarta-data-centre-campus:stt-jakarta-5",
+      "source_project_entity_id": "42e50e84-873d-562d-b6d2-945ccf04b0e8",
+      "physical_site_stable_key": "curated:stt-jakarta-data-centre-campus",
+      "physical_site_entity_id": "b8882731-b2f0-5673-8ba0-abeedafb6003",
+      "bridge_path": "sources/verified-construction-core-v0.6-stt-jakarta-5-campus-geometry-bridge.json",
+      "bridge_sha256": "05f17813a176638ceae99c2282fb4fa75e9ca2a35ff1998be8b593b7564c9477",
+      "decision": "accepted",
+      "decision_reason": "The exact v14 relationship targets the shared STT Jakarta campus; STT groups Jakarta 3, 5, and 6 under that campus and places Jakarta 1 within it; and the frozen OSM feature is exactly named and referenced STT Jakarta 1. The community-mapped polygon is accepted only as one known-building anchor for the shared campus, never as Jakarta 5 geometry, a campus boundary, or a proximity-derived phase match; every bridge rejection remains rejected.",
+      "reviewed_at": "2026-08-20"
+    },
+    {
+      "overlay_id": "overlay:osm-way-1533569836-stt-jakarta-6-shared-campus-locator",
+      "source_project_stable_key": "curated:stt-jakarta-data-centre-campus:stt-jakarta-6",
+      "source_project_entity_id": "e4e51c8d-a98e-50a4-ba16-0795f1f3f63a",
+      "physical_site_stable_key": "curated:stt-jakarta-data-centre-campus",
+      "physical_site_entity_id": "b8882731-b2f0-5673-8ba0-abeedafb6003",
+      "bridge_path": "sources/verified-construction-core-v0.6-stt-jakarta-6-campus-geometry-bridge.json",
+      "bridge_sha256": "d79ca4a1c5479da6c1376594fa2d331d4cef6d310283c33a2d668d9295cc924f",
+      "decision": "accepted",
+      "decision_reason": "The exact v14 relationship targets the shared STT Jakarta campus; STT groups Jakarta 3, 5, and 6 under that campus and places Jakarta 1 within it; and the frozen OSM feature is exactly named and referenced STT Jakarta 1. The community-mapped polygon is accepted only as one known-building anchor for the shared campus, never as Jakarta 6 geometry, a campus boundary, or a proximity-derived phase match; every bridge rejection remains rejected.",
+      "reviewed_at": "2026-08-20"
+    },
+    {
+      "overlay_id": "overlay:kartverket-address-ostre-aker-vei-24c-skygard-osl1-campus-locator",
+      "source_project_stable_key": "curated:skygard-osl1-hovinbyen-campus:phase-2",
+      "source_project_entity_id": "5ae9f639-4de6-5ce4-af8d-a40d6f8a3bec",
+      "physical_site_stable_key": "curated:skygard-osl1-hovinbyen-campus",
+      "physical_site_entity_id": "cf0ca979-9de5-5e44-b982-0357fd8df685",
+      "bridge_path": "sources/verified-construction-core-v0.6-skygard-osl1-phase-2-campus-geometry-bridge.json",
+      "bridge_sha256": "4fa16c524d80fcad5c22c29f3b42390e25651e75e0a044dab228f0162bc79295",
+      "decision": "accepted",
+      "decision_reason": "Skygard and the explicit v14 parent identify OSL1, NVE names its data-center case at Østre Aker vei 24C, and Kartverket returns exactly one verified record for that official address. The official-source point is accepted only as an OSL1 campus_locator inherited by Phase 2, not a Phase 2 point, footprint, building centroid, parcel, boundary, construction extent, or accuracy claim; every bridge rejection remains rejected.",
+      "reviewed_at": "2026-08-20"
+    },
+    {
+      "overlay_id": "overlay:landsd-hkg09-address-point-campus-locator",
+      "source_project_stable_key": "curated:goodman-hkg09-kwai-chung-data-centre:current-redevelopment",
+      "source_project_entity_id": "c04bedc0-51b3-5d4d-996c-1d1e56de96c0",
+      "physical_site_stable_key": "curated:goodman-hkg09-kwai-chung-data-centre",
+      "physical_site_entity_id": "67468dbe-fbef-52d3-a547-6861a5dd1a0e",
+      "bridge_path": "sources/verified-construction-core-v0.6-goodman-hkg09-campus-geometry-bridge.json",
+      "bridge_sha256": "4ad128a78ff13a29a82b38501fbc3753b793bf902002abf1e193fa5ec14b6773",
+      "decision": "accepted",
+      "decision_reason": "Goodman's exact HKG09 street-number range matches the first Lands Department Location Search result, whose HK80 coordinates are transformed by the official Lands Department service. The official-source point is accepted only as an HKG09 campus_locator inherited by the redevelopment, not a parcel, centroid, footprint, boundary, construction extent, or accuracy claim; every bridge rejection remains rejected.",
+      "reviewed_at": "2026-08-20"
+    },
+    {
+      "overlay_id": "overlay:kartverket-parcel-1806-10-760-kvandal-campus-locator",
+      "source_project_stable_key": "curated:nscale-kvandal-narvik-ai-data-center-campus:initial-25mw-epc-current-build",
+      "source_project_entity_id": "97f12a4b-6526-5c76-94b3-6562420ffe99",
+      "physical_site_stable_key": "curated:nscale-kvandal-narvik-ai-data-center-campus",
+      "physical_site_entity_id": "27332b4b-1d22-58c9-9294-b6f366988731",
+      "bridge_path": "sources/verified-construction-core-v0.6-kvandal-campus-geometry-bridge.json",
+      "bridge_sha256": "1f749c7e3d40f58e95c1754ae7834954730c1f14889749c0fbdcde458c585c98",
+      "decision": "accepted",
+      "decision_reason": "The exact v14 parent targets the Kvandal campus, while the NVE case maps two Kvandal data centers inside current Kartverket parcel 10/760. The official cadastral polygon is accepted only as a campus_locator container inherited by the 25 MW project, not as the project's footprint or centroid, either building footprint, the complete campus, a construction extent, or numeric survey accuracy; every bridge rejection remains rejected.",
+      "reviewed_at": "2026-08-20"
+    },
+    {
+      "overlay_id": "overlay:kartverket-parcel-union-1121-46-316-317-319-undheim-official-boundary",
+      "source_project_stable_key": "curated:green-mountain-undheim-campus:current-two-building-development",
+      "source_project_entity_id": "0a075c8d-2733-5aba-b19a-4b53e51fd8f8",
+      "physical_site_stable_key": "curated:green-mountain-undheim-campus",
+      "physical_site_entity_id": "8f52cd7e-2ff0-5dc1-a482-5e2cf27d2b0a",
+      "bridge_path": "sources/verified-construction-core-v0.6-green-mountain-undheim-geometry-bridge.json",
+      "bridge_sha256": "7a90115a5276079f02c623327d6b5f74e78483c65e59ed53050db25cec93c09d",
+      "decision": "accepted",
+      "decision_reason": "Approved Time municipality drawings bind the Green Mountain Undheim project to parcels 46/316, 46/317 and 46/319 and publish rounded areas matching the exact Kartverket parcel geometries. Their deterministic contiguous union is accepted as the official cadastral project-site boundary inherited by the current build, not survey accuracy, a security fence, building outline, current construction extent, ownership proof, or an assertion of exclusive developed use; every bridge rejection remains rejected.",
+      "reviewed_at": "2026-08-20"
+    }
+  ]
+}

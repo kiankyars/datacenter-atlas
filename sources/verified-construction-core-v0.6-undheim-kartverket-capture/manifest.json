@@ -1,0 +1,89 @@
+{
+  "schema_id": "datacenter-atlas-public-api-capture-manifest-v1",
+  "capture_id": "verified-construction-core-v0.6-undheim-kartverket-capture",
+  "source": {
+    "publisher": "Kartverket",
+    "source_family": "kartverket_open_property_api",
+    "api_title": "Åpent eiendoms-API for lokalisering",
+    "api_version": "1.1.0",
+    "api_base_url": "https://api.kartverket.no/eiendom/v1",
+    "license": "CC-BY-4.0",
+    "license_url": "https://www.kartverket.no/en/api-and-data/terms-of-use",
+    "attribution": "© Kartverket"
+  },
+  "capture": {
+    "method": "GET",
+    "authentication": "none",
+    "http_status": 200,
+    "content_type": "application/json",
+    "first_response_at": "2026-08-20T19:49:47Z",
+    "last_response_at": "2026-08-20T19:54:07Z",
+    "response_body_semantics": "Each member is the exact content-decoded public response body, including its terminal LF.",
+    "api_guardrail": "Kartverket says the property map can be incomplete or imprecise. This API does not expose boundary-line type or detailed boundary quality, and area lines can include helper lines where boundaries are missing."
+  },
+  "members": {
+    "openapi.json": {
+      "path": "sources/verified-construction-core-v0.6-undheim-kartverket-capture/openapi.json",
+      "url": "https://api.kartverket.no/eiendom/v1/openapi.json",
+      "retrieved_at": "2026-08-20T19:54:07Z",
+      "bytes": 15558,
+      "sha256": "933a65c7f47348f4490899f539481d9e88ee3d50b98f3d6531b34321d57d14bc",
+      "purpose": "API contract and source limitations"
+    },
+    "1121-46-316-epsg4258.json": {
+      "path": "sources/verified-construction-core-v0.6-undheim-kartverket-capture/1121-46-316-epsg4258.json",
+      "url": "https://api.kartverket.no/eiendom/v1/geokoding?matrikkelnummer=1121-46%2F316&omrade=true&utkoordsys=4258",
+      "retrieved_at": "2026-08-20T19:49:47Z",
+      "bytes": 1381,
+      "sha256": "46c662a0a110ec84b7bbd550852892d975373597341955c5c95feab57445e3ea",
+      "purpose": "Authoritative EPSG:4258 parcel geometry"
+    },
+    "1121-46-316-epsg25832.json": {
+      "path": "sources/verified-construction-core-v0.6-undheim-kartverket-capture/1121-46-316-epsg25832.json",
+      "url": "https://api.kartverket.no/eiendom/v1/geokoding?matrikkelnummer=1121-46%2F316&omrade=true&utkoordsys=25832",
+      "retrieved_at": "2026-08-20T19:49:47Z",
+      "bytes": 1509,
+      "sha256": "24ab438f6bce9a6656a697c1bf367c4c7042f74b17ae9c4f9db6e0ba8ffde14c",
+      "purpose": "Authoritative EPSG:25832 parcel geometry for metric derivation"
+    },
+    "1121-46-317-epsg4258.json": {
+      "path": "sources/verified-construction-core-v0.6-undheim-kartverket-capture/1121-46-317-epsg4258.json",
+      "url": "https://api.kartverket.no/eiendom/v1/geokoding?matrikkelnummer=1121-46%2F317&omrade=true&utkoordsys=4258",
+      "retrieved_at": "2026-08-20T19:49:49Z",
+      "bytes": 1630,
+      "sha256": "15533ed85e1f3268feea36417158c8024078dcb61c1770162f19cb22128bfeff",
+      "purpose": "Authoritative EPSG:4258 parcel geometry"
+    },
+    "1121-46-317-epsg25832.json": {
+      "path": "sources/verified-construction-core-v0.6-undheim-kartverket-capture/1121-46-317-epsg25832.json",
+      "url": "https://api.kartverket.no/eiendom/v1/geokoding?matrikkelnummer=1121-46%2F317&omrade=true&utkoordsys=25832",
+      "retrieved_at": "2026-08-20T19:49:49Z",
+      "bytes": 1775,
+      "sha256": "1d9cf20ac76ae509fe51420f2ca33847565a778c38a19af38fb9cd349947f252",
+      "purpose": "Authoritative EPSG:25832 parcel geometry for metric derivation"
+    },
+    "1121-46-319-epsg4258.json": {
+      "path": "sources/verified-construction-core-v0.6-undheim-kartverket-capture/1121-46-319-epsg4258.json",
+      "url": "https://api.kartverket.no/eiendom/v1/geokoding?matrikkelnummer=1121-46%2F319&omrade=true&utkoordsys=4258",
+      "retrieved_at": "2026-08-20T19:49:50Z",
+      "bytes": 944,
+      "sha256": "5be1e9b90190df40d27d5b1e640cd736f151e4dd7a5a1d40bf7f58cdf9ced11f",
+      "purpose": "Authoritative EPSG:4258 parcel geometry"
+    },
+    "1121-46-319-epsg25832.json": {
+      "path": "sources/verified-construction-core-v0.6-undheim-kartverket-capture/1121-46-319-epsg25832.json",
+      "url": "https://api.kartverket.no/eiendom/v1/geokoding?matrikkelnummer=1121-46%2F319&omrade=true&utkoordsys=25832",
+      "retrieved_at": "2026-08-20T19:49:51Z",
+      "bytes": 1030,
+      "sha256": "332139a1c5f55a343fcc23f0e5aa353e81d197404a22026589f68de2179701f0",
+      "purpose": "Authoritative EPSG:25832 parcel geometry for metric derivation"
+    }
+  },
+  "geometry_capture_set": {
+    "schema": "kartverket-open-property-api-capture-set-v1",
+    "member_scope": "The six parcel response members, excluding openapi.json",
+    "canonicalization": "UTF-8 JSON with sorted keys and separators ',' and ':', containing each member name, byte count, and SHA-256",
+    "canonical_bytes": 784,
+    "sha256": "6bcd905d036ecde8e55ef4933bf1502f58a58701e5784583fdc3bccc5c6edd1f"
+  }
+}

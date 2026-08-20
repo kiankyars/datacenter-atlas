@@ -1,0 +1,34 @@
+{
+  "contract_id": "verified-construction-core-v0.6-imagery-reviews",
+  "review_scope": "Exact-hash incremental successor to the v0.5 imagery contract. Seven projects inherit the default not-reviewed outcome. Undheim records only identity-bound contractor-published drone context: it is not independent imagery verification and is never used for geometry, status, capacity, progress, building count, or any other core claim. The v0.6 publisher-context record type has no blind ID, queue ID, comparison hash, or visual verdict because those fields are inapplicable rather than missing.",
+  "reviewed_as_of": "2026-08-20",
+  "base_contract": {
+    "path": "definitions/verified-construction-core-v0.5-imagery-reviews.json",
+    "sha256": "90969eb2e15210b7a398ff2cc1a2d12ba1b2aa5213e5f4cfe31021ec71c2b083"
+  },
+  "default_outcome": "not_reviewed_for_core_preview",
+  "records": [
+    {
+      "project_stable_key": "curated:green-mountain-undheim-campus:current-two-building-development",
+      "project_entity_id": "0a075c8d-2733-5aba-b19a-4b53e51fd8f8",
+      "review_type": "publisher_contractor_drone_context",
+      "outcome": "first_party_contractor_drone_imagery_present_not_independently_verified",
+      "portable_identity_binding": true,
+      "identity_binding_basis": "The pinned bridge directly binds the v97 Undheim project UUID to its campus through the exact v14 project_targets relationship and retains the Backe page's compact project, client, contractor, and imagery facts. This binds publisher context to the project without treating the media as independent evidence.",
+      "source_path": "sources/verified-construction-core-v0.6-green-mountain-undheim-geometry-bridge.json",
+      "source_sha256": "7a90115a5276079f02c623327d6b5f74e78483c65e59ed53050db25cec93c09d",
+      "source_role": "portable_geometry_bridge_with_publisher_imagery_context",
+      "publisher": "Backe",
+      "publisher_source_url": "https://backe.no/prosjektsider/ferdigstillelse-av-grunnarbeider-paa-undheim",
+      "publisher_media_redistributed": false,
+      "independent_imagery_verification": false,
+      "used_for_geometry": false,
+      "used_for_status": false,
+      "used_for_capacity": false,
+      "used_for_progress": false,
+      "used_for_building_count": false,
+      "semantic_scope": "Backe-published contractor drone photographs are retained only as source-linked construction context. No image bytes are redistributed, no independent satellite or aerial review exists, and no visual inference enters the core.",
+      "no_claim_guardrail": true
+    }
+  ]
+}
