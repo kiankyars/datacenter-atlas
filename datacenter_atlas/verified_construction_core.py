@@ -53,17 +53,23 @@ LEGACY_PREVIEW_V03_MANIFEST_SHA256 = (
     "8a17e9e4d126bc210a34c2b9a0bd2fd1737402ca9d1069dd5411067831e6d1ac"
 )
 LEGACY_PREVIEW_V03_COMMIT = "f2964d751c25f28cea04c56d8feefb1a029fd371"
+LEGACY_PREVIEW_V04_DIR = (
+    ROOT / "verified_construction_core" / "2026-08-20-preview-v0.4"
+)
+LEGACY_PREVIEW_V04_MANIFEST_SHA256 = (
+    "26bdf0930f21acd8db8b52d6f58803206d3ef8f0cde83d5d2ae80abc113895a7"
+)
 REVIEW_DEFINITION = (
-    ROOT / "definitions" / "verified-construction-core-v0.4-reviewed-sites.json"
+    ROOT / "definitions" / "verified-construction-core-v0.5-reviewed-sites.json"
 )
 IMAGERY_REVIEW_DEFINITION = (
-    ROOT / "definitions" / "verified-construction-core-v0.4-imagery-reviews.json"
+    ROOT / "definitions" / "verified-construction-core-v0.5-imagery-reviews.json"
 )
 PROVENANCE_DEFINITION = (
-    ROOT / "definitions" / "verified-construction-core-v0.4-provenance.json"
+    ROOT / "definitions" / "verified-construction-core-v0.5-provenance.json"
 )
 OVERLAY_DEFINITION = (
-    ROOT / "definitions" / "verified-construction-core-reviewed-overlays-v2.json"
+    ROOT / "definitions" / "verified-construction-core-reviewed-overlays-v3.json"
 )
 V03_REVIEW_DEFINITION_SHA256 = (
     "ee56ff41dc6ea59df67de6ab462540c8a3fe3747ca3e1504cb9228481c25c06b"
@@ -89,7 +95,19 @@ V04_PROVENANCE_DEFINITION_SHA256 = (
 V04_OVERLAY_DEFINITION_SHA256 = (
     "65b01f335e60c1f7a886100089bd3a4fe4da79c074233a49bb60b9b65ab8129f"
 )
-PREVIEW_ID = "2026-08-20-preview-v0.4"
+V05_REVIEW_DEFINITION_SHA256 = (
+    "ec1c7dfc9f9516567ca2c58e29b631cf11df4bba4212df3fc875d0a4b5236775"
+)
+V05_IMAGERY_REVIEW_DEFINITION_SHA256 = (
+    "90969eb2e15210b7a398ff2cc1a2d12ba1b2aa5213e5f4cfe31021ec71c2b083"
+)
+V05_PROVENANCE_DEFINITION_SHA256 = (
+    "bbd0e4665605e7af6389d6730211d096c737ee038886cfdacf848f87a2ee16af"
+)
+V05_OVERLAY_DEFINITION_SHA256 = (
+    "d71ce264327ccf523cb7f000d559c0a4953524d0224dbdcc7e91e36d8e4b98c5"
+)
+PREVIEW_ID = "2026-08-20-preview-v0.5"
 PREVIEW_DIR = ROOT / "verified_construction_core" / PREVIEW_ID
 REVIEW_DATE = date(2026, 8, 20)
 MAX_STATUS_AGE_DAYS = 90
@@ -97,7 +115,9 @@ CURRENT_DELTA_COUNTRY_ISO_A2 = {
     "Canada": "CA",
     "Chile": "CL",
     "Iceland": "IS",
+    "Switzerland": "CH",
     "United Kingdom": "GB",
+    "United States": "US",
 }
 
 PHYSICAL_STATUSES = {
@@ -164,8 +184,8 @@ FINAL_REQUIREMENTS = {
 PREVIEW_SOURCE_PIPELINE_ROW_COUNT = 531
 PREVIEW_SELECTION_FIRST_FAILURE_COUNTS = {
     "entity_kind_not_project": 49,
-    "not_in_reviewed_site_geometry_allowlist": 126,
-    "selected": 17,
+    "not_in_reviewed_site_geometry_allowlist": 122,
+    "selected": 21,
     "status_not_physical": 12,
     "status_outside_90_day_window": 327,
 }
@@ -412,6 +432,41 @@ QSCALE_IDENTITY_EVIDENCE = {
         "postcode": "G7A 5M9",
     },
 }
+GREEN_IDENTITY_EVIDENCE = {
+    "key": "green-contact-enterprise-campus-zrh1-address-captured-2026-08-20",
+    "kind": "company_disclosure",
+    "title": "Green enterprise contact page: Campus ZRH1",
+    "source_url": "https://www.green.ch/en/contact-enterprise",
+    "publisher": "Green",
+    "source_family": "green_company_contact",
+    "published_at": None,
+    "retrieved_at": "2026-08-20T18:40:35Z",
+    "license": "all-rights-reserved",
+    "attribution": "Green",
+    "excerpt": (
+        "Green labels its Campus ZRH1 data-center site at Industriestrasse 31, "
+        "5242 Lupfig, Switzerland."
+    ),
+    "content_hash": "19144da94289763ead81898082377a4c1e735155e706b70debc5e012e41ca043",
+    "content_hash_scope": (
+        "SHA-256 of the exact 215015-byte content-decoded credential-free public "
+        "response body captured at retrieved_at."
+    ),
+    "captured_bytes": 215015,
+    "rights_scope": (
+        "Only this compact factual extraction and the response-body hash are "
+        "redistributed; the HTML and publisher media are not."
+    ),
+    "address_extraction": {
+        "site_label": "Campus ZRH1",
+        "organization": "Green Datacenter AG",
+        "house_number": "31",
+        "street": "Industriestrasse",
+        "postcode": "5242",
+        "locality": "Lupfig",
+        "country_as_published": "Schweiz",
+    },
+}
 BRIDGE_REVIEW_SEMANTICS = {
     "curated:atnorth-ice02-reykjanesbaer-campus:phase-2-expansion": {
         "geometry_method": "openstreetmap_named_campus_fence_boundary",
@@ -419,6 +474,11 @@ BRIDGE_REVIEW_SEMANTICS = {
         "horizontal_uncertainty_unknown_reason": (
             "OpenStreetMap does not state horizontal positional accuracy; "
             "community-mapped geometry is not a cadastral or survey product."
+        ),
+        "identity_basis": (
+            "The curated source names atNorth ICE02 in Reykjanesbær and the OSM "
+            "object names ICE02 Campus with operator atNorth in Iceland. This is "
+            "a manual branded-campus identity review, not an automated fuzzy merge."
         ),
         "precision_scope": (
             "The frozen global-open-v3 Polygon is a reviewed named ICE02 campus "
@@ -439,6 +499,12 @@ BRIDGE_REVIEW_SEMANTICS = {
             "OpenStreetMap does not state horizontal positional accuracy; "
             "community-mapped geometry is not a cadastral or survey product."
         ),
+        "identity_basis": (
+            "The v97 project explicitly targets the Q01 campus; QScale's first-party "
+            "contact page names the exact OSM-tagged address as Headquarters - Q01 "
+            "Campus; the OSM feature is named QScale and carries the same house "
+            "number, street and postal code."
+        ),
         "precision_scope": (
             "Contributor-mapped polygon for one named QScale data-centre building "
             "at Q01's exact first-party address, used only to locate the Q01 "
@@ -447,6 +513,136 @@ BRIDGE_REVIEW_SEMANTICS = {
             "claim."
         ),
     },
+    "curated:green-campus-zrh1-lupfig:data-center-4": {
+        "geometry_method": (
+            "openstreetmap_exactly_addressed_data_center_building_polygon_as_campus_locator"
+        ),
+        "geometry_scope_class": (
+            "reviewed_openstreetmap_addressed_green_data_center_building_polygon"
+        ),
+        "horizontal_uncertainty_unknown_reason": (
+            "OpenStreetMap does not state horizontal positional accuracy; "
+            "community-mapped geometry is not a cadastral or survey product."
+        ),
+        "identity_basis": (
+            "The v97 DC4 project explicitly targets Campus ZRH1; Green's first-party "
+            "enterprise contact page labels Campus ZRH1 at Industriestrasse 31, 5242 "
+            "Lupfig; the OSM data-center building carries the same house number, "
+            "street, postcode, and locality and is described as Green Datacenter "
+            "Lupfig."
+        ),
+        "precision_scope": (
+            "Contributor-mapped polygon for one data-center building at Green's exact "
+            "first-party Campus ZRH1 address, used only to locate Campus ZRH1. It is "
+            "not the DC4 footprint or centroid, the Campus ZRH1 boundary, a parcel, "
+            "a construction extent, or a survey-accuracy claim."
+        ),
+    },
+    "curated:related-openai-oracle-stargate-michigan-saline:current-build": {
+        "geometry_method": (
+            "openstreetmap_named_website_tagged_construction_site_polygon_as_campus_locator"
+        ),
+        "geometry_scope_class": (
+            "reviewed_openstreetmap_named_website_tagged_barn_construction_site_polygon"
+        ),
+        "horizontal_uncertainty_unknown_reason": (
+            "OpenStreetMap does not state horizontal positional accuracy; "
+            "community-mapped geometry is not a cadastral or survey product."
+        ),
+        "identity_basis": (
+            "The v97 project explicitly targets The Barn Stargate campus; the curated "
+            "Related Digital source names The Barn in Saline Township; and the OSM "
+            "feature in the same locality is named The Barn Data Center and carries "
+            "the Saline Barn website. This is a manual distinctive-name, locality, "
+            "and website-tag identity review, not an automated fuzzy merge."
+        ),
+        "precision_scope": (
+            "The frozen global-open-v3 Polygon is a contributor-mapped "
+            "construction-site locator for the named Barn data-center campus, "
+            "inherited by the current-build project through the explicit v14 "
+            "project_targets relationship. It is not an official, cadastral, or "
+            "survey boundary; a verified complete 250-acre campus extent; a building "
+            "or project footprint; a construction extent; or a source of lifecycle, "
+            "capacity, energy, operating-status, or imagery claims."
+        ),
+    },
+    "curated:microsoft-mount-pleasant-datacenter-campus:second-facility": {
+        "geometry_method": (
+            "openstreetmap_named_construction_area_polygon_as_campus_locator"
+        ),
+        "geometry_scope_class": (
+            "reviewed_openstreetmap_named_microsoft_fairwater_phase_2_construction_area_polygon"
+        ),
+        "horizontal_uncertainty_unknown_reason": (
+            "OpenStreetMap does not state horizontal positional accuracy; "
+            "community-mapped geometry is not a cadastral or survey product."
+        ),
+        "identity_basis": (
+            "Microsoft's first-party source places the ongoing second facility "
+            "immediately adjacent to its first Mount Pleasant facility. The OSM "
+            "object is named Microsoft Fairwater AI Phase 2, is tagged as data-centre "
+            "construction, and lies in the same Mount Pleasant Fairwater development. "
+            "This supports a manual branded-campus association only; the OSM Phase 2 "
+            "label is not treated as proof that the polygon is the official "
+            "second-facility footprint or that the two naming systems are "
+            "phase-equivalent."
+        ),
+        "precision_scope": (
+            "Contributor-mapped polygon for a named Microsoft Fairwater Phase 2 "
+            "construction area, used only to locate the Mount Pleasant datacenter "
+            "campus. It is not an official campus boundary, the complete campus "
+            "extent, a parcel, a building footprint, the official second-facility "
+            "footprint, a construction-progress extent, or a survey-accuracy claim."
+        ),
+    },
+    "curated:amazon-salem-township-innovation-campus:active-buildout": {
+        "geometry_method": (
+            "openstreetmap_named_addressed_aws_building_polygon_as_campus_locator"
+        ),
+        "geometry_scope_class": (
+            "reviewed_openstreetmap_named_addressed_aws_data_centre_building_polygon"
+        ),
+        "horizontal_uncertainty_unknown_reason": (
+            "OpenStreetMap does not state horizontal positional accuracy; "
+            "community-mapped geometry is not a cadastral or survey product."
+        ),
+        "identity_basis": (
+            "Amazon's first-party project page identifies an AWS Salem Township "
+            "innovation campus with an active buildout and an already operating "
+            "campus at the same location. The OSM feature is a named Amazon AWS "
+            "data-centre building operated by Amazon Web Services at 1125 Electron "
+            "Avenue, Berwick, within the official source's approximate Salem Township "
+            "campus locality. This is a manual operator-and-proximity campus "
+            "association only; it does not identify the mapped building as part of "
+            "the active buildout."
+        ),
+        "precision_scope": (
+            "Contributor-mapped polygon for one named and addressed Amazon AWS "
+            "data-centre building, used only to locate the Salem Township innovation "
+            "campus. It is not an official campus boundary, the complete campus "
+            "extent, a parcel, the active-buildout footprint or centroid, a "
+            "construction extent, a current-building count, or a survey-accuracy "
+            "claim."
+        ),
+    },
+}
+BRIDGE_IMAGERY_OUTCOMES = {
+    "curated:atnorth-ice02-reykjanesbaer-campus:phase-2-expansion": (
+        "not_reviewed_for_core_preview"
+    ),
+    "curated:qscale-q01-levis-campus:building-b": "not_reviewed_for_core_preview",
+    "curated:green-campus-zrh1-lupfig:data-center-4": (
+        "not_reviewed_for_core_preview"
+    ),
+    "curated:related-openai-oracle-stargate-michigan-saline:current-build": (
+        "tracked_identity_bound_visible_change_followup_only_no_construction_claim"
+    ),
+    "curated:microsoft-mount-pleasant-datacenter-campus:second-facility": (
+        "tracked_identity_bound_uncertain_unsuperseded_no_construction_claim"
+    ),
+    "curated:amazon-salem-township-innovation-campus:active-buildout": (
+        "tracked_identity_bound_uncertain_unsuperseded_no_construction_claim"
+    ),
 }
 BRIDGE_PARENT_ROW_BINDINGS = {
     "curated:atnorth-ice02-reykjanesbaer-campus:phase-2-expansion": {
@@ -533,6 +729,178 @@ BRIDGE_PARENT_ROW_BINDINGS = {
             "sha256": "48e517fcf239ab01cfd81f7884e124095a0645cc0bbbddbde357e6d77f0496ea",
         },
     },
+    "curated:green-campus-zrh1-lupfig:data-center-4": {
+        "geometry_entity": {
+            "release_id": "global-open-v3",
+            "member": "entities.csv",
+            "stable_key": "osm:way/242248627",
+            "line": 1482,
+            "bytes": 1204,
+            "sha256": "0089e033a00ea6034decfebd8ca8700c1c57413424b6982a4ab416922312cf31",
+        },
+        "geometry_evidence": {
+            "release_id": "global-open-v3",
+            "member": "evidence.csv",
+            "evidence_id": "a488471c-6dc2-593f-92df-db707862cbfc",
+            "line": 4457,
+            "bytes": 346,
+            "sha256": "217bc4b5fea78cbfc2ecec2dbd5658dedbf47aa47484b58ec9c8f35704ce1a3b",
+        },
+        "relationship": {
+            "release_id": "2026-07-22-public-open-v14",
+            "member": "relationships.csv",
+            "relationship_id": "relationship:a20d17ac9a8b24d64952d63afc20e386dfe9b087ec25685d7a38695c2e2b62a6",
+            "line": 1628,
+            "bytes": 305,
+            "sha256": "545ac14096b373e3b47fe3f3b292ee7d82f9c7fe9ff62ad742f027f87fa583b5",
+        },
+        "subject_member": {
+            "release_id": "2026-07-22-public-open-v14",
+            "member": "component-members.csv",
+            "stable_key": "curated:green-campus-zrh1-lupfig:data-center-4",
+            "line": 355,
+            "bytes": 363,
+            "sha256": "292e8e6b0c1027b8b501d720689a96cffdd77b46b558211dee9810aa3666f6ea",
+        },
+        "object_member": {
+            "release_id": "2026-07-22-public-open-v14",
+            "member": "component-members.csv",
+            "stable_key": "curated:green-campus-zrh1-lupfig",
+            "line": 438,
+            "bytes": 348,
+            "sha256": "f8788e9d68ddf1468f9c988a0b7a35ec2bed0bd87f2f8140162cfd6009989af1",
+        },
+    },
+    "curated:related-openai-oracle-stargate-michigan-saline:current-build": {
+        "geometry_entity": {
+            "release_id": "global-open-v3",
+            "member": "entities.csv",
+            "stable_key": "osm:way/1528327802",
+            "line": 7488,
+            "bytes": 1046,
+            "sha256": "b1d287181b8b9c1efaa0de257c0d1ccde33e7c440e62fc5fc5192b07891d208c",
+        },
+        "geometry_evidence": {
+            "release_id": "global-open-v3",
+            "member": "evidence.csv",
+            "evidence_id": "2c1a0857-1368-581b-adfa-96bf72cc9c16",
+            "line": 1243,
+            "bytes": 341,
+            "sha256": "c10955e4fae8fbc890eb24711dac9f54b97c3655cb2b49b0902e7b16256ad781",
+        },
+        "relationship": {
+            "release_id": "2026-07-22-public-open-v14",
+            "member": "relationships.csv",
+            "relationship_id": "relationship:3bcf7d690a6c8e7b1dddf8e45ddb457847d5a589a3dd753a50107343b065279f",
+            "line": 633,
+            "bytes": 305,
+            "sha256": "5b391e31ace079b39e0249fe7d5eec4c4e4af2df5022cb283d18ea5827707159",
+        },
+        "subject_member": {
+            "release_id": "2026-07-22-public-open-v14",
+            "member": "component-members.csv",
+            "stable_key": (
+                "curated:related-openai-oracle-stargate-michigan-saline:current-build"
+            ),
+            "line": 509,
+            "bytes": 379,
+            "sha256": "0e0fa97fd888d1bd69cb57225e2db4997166d46f27211f4532d14c69f4d35b92",
+        },
+        "object_member": {
+            "release_id": "2026-07-22-public-open-v14",
+            "member": "component-members.csv",
+            "stable_key": "curated:related-openai-oracle-stargate-michigan-saline",
+            "line": 432,
+            "bytes": 364,
+            "sha256": "0d7f6ee7355975f4a7bfde019f296bf96e9e8c87e93d3a07e437fa8c4fe8d72f",
+        },
+    },
+    "curated:microsoft-mount-pleasant-datacenter-campus:second-facility": {
+        "geometry_entity": {
+            "release_id": "global-open-v3",
+            "member": "entities.csv",
+            "stable_key": "osm:way/1528490094",
+            "line": 8156,
+            "bytes": 951,
+            "sha256": "4e10305dbbf68253152eedaa22f5b4bca66fc86116761d4f638371a032cb9652",
+        },
+        "geometry_evidence": {
+            "release_id": "global-open-v3",
+            "member": "evidence.csv",
+            "evidence_id": "ab38ac59-f17b-5f63-b060-392d2bebd078",
+            "line": 4620,
+            "bytes": 351,
+            "sha256": "ae126f114e1132c8ba0a5e9e22602087d414d0718133c89eabbf9e361b8b67bb",
+        },
+        "relationship": {
+            "release_id": "2026-07-22-public-open-v14",
+            "member": "relationships.csv",
+            "relationship_id": "relationship:5331540b613864aed98b22addbeaec3104ec83a5007a409654a27454209d4fd1",
+            "line": 854,
+            "bytes": 305,
+            "sha256": "b6abab4859428f9a5227cc7999b1db23accd6e4e723500ae50853747451fa595",
+        },
+        "subject_member": {
+            "release_id": "2026-07-22-public-open-v14",
+            "member": "component-members.csv",
+            "stable_key": (
+                "curated:microsoft-mount-pleasant-datacenter-campus:second-facility"
+            ),
+            "line": 858,
+            "bytes": 365,
+            "sha256": "d7ee099cc646e475fa89f534761968463dc89a0bc89ae603074991ce928077e2",
+        },
+        "object_member": {
+            "release_id": "2026-07-22-public-open-v14",
+            "member": "component-members.csv",
+            "stable_key": "curated:microsoft-mount-pleasant-datacenter-campus",
+            "line": 700,
+            "bytes": 348,
+            "sha256": "32417f946e727399cf83a3a3990130f664689da823646c359b3ba158ac740c07",
+        },
+    },
+    "curated:amazon-salem-township-innovation-campus:active-buildout": {
+        "geometry_entity": {
+            "release_id": "global-open-v3",
+            "member": "entities.csv",
+            "stable_key": "osm:way/1334234458",
+            "line": 4855,
+            "bytes": 1184,
+            "sha256": "a26c3cfb01c137b816d7e03c8407c87494c89de93cd4ddab492fa30e9728956c",
+        },
+        "geometry_evidence": {
+            "release_id": "global-open-v3",
+            "member": "evidence.csv",
+            "evidence_id": "13a65a07-1b3a-58a3-9ca7-b98723686f7c",
+            "line": 583,
+            "bytes": 335,
+            "sha256": "9186bac4aa9570f15608a0e0098d9c7fb898876d380fcaa6f0c06102de32943a",
+        },
+        "relationship": {
+            "release_id": "2026-07-22-public-open-v14",
+            "member": "relationships.csv",
+            "relationship_id": "relationship:3f242c8c7209bd11809916cebef051602992a3db7d4e0e6ea4e0f5f1da706b62",
+            "line": 662,
+            "bytes": 305,
+            "sha256": "52efa9753c85574c744875734ef69bb5ea40160f5d23f64fb462303ef9220f62",
+        },
+        "subject_member": {
+            "release_id": "2026-07-22-public-open-v14",
+            "member": "component-members.csv",
+            "stable_key": "curated:amazon-salem-township-innovation-campus:active-buildout",
+            "line": 834,
+            "bytes": 400,
+            "sha256": "d8488e3961f15786331a0845a17fd1fae927d47a0c14dc95e4ccf5e0ac8d8c66",
+        },
+        "object_member": {
+            "release_id": "2026-07-22-public-open-v14",
+            "member": "component-members.csv",
+            "stable_key": "curated:amazon-salem-township-innovation-campus",
+            "line": 590,
+            "bytes": 383,
+            "sha256": "f6cd0c01918b12bb068e4a650204ae250964ab065baebcfd3bd55b2afba14084",
+        },
+    },
 }
 
 
@@ -557,22 +925,22 @@ def _current_definition_pins() -> tuple[tuple[str, Path, str], ...]:
         (
             "review_definition_sha256",
             REVIEW_DEFINITION,
-            V04_REVIEW_DEFINITION_SHA256,
+            V05_REVIEW_DEFINITION_SHA256,
         ),
         (
             "imagery_review_definition_sha256",
             IMAGERY_REVIEW_DEFINITION,
-            V04_IMAGERY_REVIEW_DEFINITION_SHA256,
+            V05_IMAGERY_REVIEW_DEFINITION_SHA256,
         ),
         (
             "provenance_definition_sha256",
             PROVENANCE_DEFINITION,
-            V04_PROVENANCE_DEFINITION_SHA256,
+            V05_PROVENANCE_DEFINITION_SHA256,
         ),
         (
             "overlay_definition_sha256",
             OVERLAY_DEFINITION,
-            V04_OVERLAY_DEFINITION_SHA256,
+            V05_OVERLAY_DEFINITION_SHA256,
         ),
     )
 
@@ -989,7 +1357,7 @@ def _reviewed_acceptances_from(
 
 def _reviewed_acceptances() -> list[dict[str, Any]]:
     acceptances, _ = _reviewed_acceptances_from(REVIEW_DEFINITION)
-    if REVIEW_DEFINITION.stem != "verified-construction-core-v0.4-reviewed-sites":
+    if REVIEW_DEFINITION.stem != "verified-construction-core-v0.5-reviewed-sites":
         raise VerifiedConstructionCoreError("current reviewed-site contract differs")
     reviewed = _load_json(REVIEW_DEFINITION)
     if reviewed.get("reviewed_as_of") != REVIEW_DATE.isoformat():
@@ -1301,8 +1669,8 @@ def _provenance_contract_v03(path: Path) -> dict[str, Any]:
     }
 
 
-def _provenance_contract() -> dict[str, Any]:
-    reviewed = _load_json(PROVENANCE_DEFINITION)
+def _provenance_contract_v04(path: Path) -> dict[str, Any]:
+    reviewed = _load_json(path)
     expected_fields = {
         "contract_id",
         "review_scope",
@@ -1396,6 +1764,273 @@ def _provenance_contract() -> dict[str, Any]:
     }
 
 
+def _provenance_contract() -> dict[str, Any]:
+    reviewed = _load_json(PROVENANCE_DEFINITION)
+    expected_fields = {
+        "contract_id",
+        "review_scope",
+        "reviewed_as_of",
+        "base_contract",
+        "workload_scope_bindings",
+        "role_bindings",
+        "excluded_source_roles",
+    }
+    if not isinstance(reviewed, dict) or set(reviewed) != expected_fields:
+        raise VerifiedConstructionCoreError("provenance contract fields differ")
+    if (
+        reviewed.get("contract_id") != "verified-construction-core-v0.5-provenance"
+        or reviewed.get("reviewed_as_of") != REVIEW_DATE.isoformat()
+    ):
+        raise VerifiedConstructionCoreError("provenance current contract differs")
+    expected_base = {
+        "path": "definitions/verified-construction-core-v0.4-provenance.json",
+        "sha256": V04_PROVENANCE_DEFINITION_SHA256,
+    }
+    if reviewed.get("base_contract") != expected_base:
+        raise VerifiedConstructionCoreError("provenance base pin differs")
+    base_path = _repository_input(
+        expected_base["path"], expected_base["sha256"], "provenance base"
+    )
+    base = _provenance_contract_v04(base_path)
+    workload_fields = {
+        "project_stable_key",
+        "source_input_path",
+        "source_input_sha256",
+        "evidence_key",
+        "evidence_id",
+        "workload",
+        "as_of_date",
+        "method",
+        "confidence",
+        "deployment_scope",
+        "semantic_scope",
+    }
+    role_fields = {
+        "project_stable_key",
+        "source_input_path",
+        "source_input_sha256",
+        "role",
+        "party",
+        "evidence_key",
+        "evidence_id",
+        "relationship_scope",
+        "semantic_scope",
+    }
+    excluded_fields = {
+        "project_stable_key",
+        "source_input_path",
+        "source_input_sha256",
+        "role",
+        "party",
+        "candidate_evidence_key",
+        "candidate_evidence_id",
+        "relationship_scope",
+        "semantic_scope",
+        "reason",
+    }
+    workload_bindings = reviewed.get("workload_scope_bindings")
+    role_bindings = reviewed.get("role_bindings")
+    exclusions = reviewed.get("excluded_source_roles")
+    if (
+        not isinstance(workload_bindings, list)
+        or not isinstance(role_bindings, list)
+        or not isinstance(exclusions, list)
+        or len(workload_bindings) != 2
+        or len(role_bindings) != 2
+        or len(exclusions) != 2
+    ):
+        raise VerifiedConstructionCoreError("provenance current collections differ")
+    evidence_rows = dict(base["evidence_rows"])
+
+    def pinned_source(binding: Mapping[str, Any]) -> dict[str, Any]:
+        path = _repository_input(
+            binding["source_input_path"],
+            binding["source_input_sha256"],
+            "provenance current source",
+        )
+        source = _load_json(path)
+        if not isinstance(source, dict):
+            raise VerifiedConstructionCoreError("provenance current source differs")
+        return source
+
+    expected_workloads = {
+        "curated:related-openai-oracle-stargate-michigan-saline:current-build": (
+            "ai_specialized_unspecified"
+        ),
+        "curated:amazon-salem-township-innovation-campus:active-buildout": "mixed",
+    }
+    workload_keys: set[tuple[str, str, str]] = set()
+    for index, binding in enumerate(workload_bindings):
+        if not isinstance(binding, dict) or set(binding) != workload_fields:
+            raise VerifiedConstructionCoreError(
+                f"provenance current workload {index} differs"
+            )
+        project_key = binding["project_stable_key"]
+        key = (project_key, binding["evidence_id"], binding["workload"])
+        if (
+            key in workload_keys
+            or binding["workload"] != expected_workloads.get(project_key)
+            or binding["deployment_scope"] != "intended"
+            or not isinstance(binding["semantic_scope"], str)
+            or not binding["semantic_scope"]
+        ):
+            raise VerifiedConstructionCoreError(
+                "provenance current workload identity differs"
+            )
+        workload_keys.add(key)
+        source = pinned_source(binding)
+        matches = [
+            row
+            for row in source.get("workloads", [])
+            if isinstance(row, dict)
+            and row.get("entity") == "project"
+            and row.get("value") == binding["workload"]
+            and row.get("evidence_key") == binding["evidence_key"]
+        ]
+        if len(matches) != 1 or any(
+            matches[0].get(field) != binding[field]
+            for field in ("as_of_date", "method", "confidence")
+        ):
+            raise VerifiedConstructionCoreError(
+                "provenance current workload projection differs"
+            )
+        evidence_row, _ = _evidence_from_pinned_source(
+            binding,
+            evidence_key_field="evidence_key",
+            evidence_id_field="evidence_id",
+        )
+        existing = evidence_rows.get(evidence_row["evidence_id"])
+        if existing is not None and existing != evidence_row:
+            raise VerifiedConstructionCoreError("provenance evidence collision")
+        evidence_rows[evidence_row["evidence_id"]] = evidence_row
+    if {key[0] for key in workload_keys} != set(expected_workloads):
+        raise VerifiedConstructionCoreError("provenance current workload cohort differs")
+
+    expected_roles = {
+        (
+            "curated:related-openai-oracle-stargate-michigan-saline:current-build",
+            "customer",
+            "OpenAI",
+        ),
+        (
+            "curated:related-openai-oracle-stargate-michigan-saline:current-build",
+            "customer",
+            "Oracle",
+        ),
+    }
+    role_keys: set[tuple[str, str, str]] = set()
+    for index, binding in enumerate(role_bindings):
+        if not isinstance(binding, dict) or set(binding) != role_fields:
+            raise VerifiedConstructionCoreError(
+                f"provenance current role {index} differs"
+            )
+        key = (
+            binding["project_stable_key"],
+            binding["role"],
+            binding["party"],
+        )
+        source = pinned_source(binding)
+        source_roles = source.get("project", {}).get("roles", {})
+        if (
+            key not in expected_roles
+            or key in role_keys
+            or binding["relationship_scope"] != "intended"
+            or not isinstance(binding["semantic_scope"], str)
+            or not binding["semantic_scope"]
+            or not isinstance(source_roles, dict)
+            or binding["party"] not in source_roles.get(binding["role"], [])
+        ):
+            raise VerifiedConstructionCoreError(
+                "provenance current role identity differs"
+            )
+        role_keys.add(key)
+        evidence_row, _ = _evidence_from_pinned_source(
+            binding,
+            evidence_key_field="evidence_key",
+            evidence_id_field="evidence_id",
+        )
+        existing = evidence_rows.get(evidence_row["evidence_id"])
+        if existing is not None and existing != evidence_row:
+            raise VerifiedConstructionCoreError("provenance evidence collision")
+        evidence_rows[evidence_row["evidence_id"]] = evidence_row
+    if role_keys != expected_roles:
+        raise VerifiedConstructionCoreError("provenance current role cohort differs")
+
+    expected_exclusions = {
+        (
+            "curated:microsoft-mount-pleasant-datacenter-campus:second-facility",
+            "operator",
+            "Microsoft",
+        ),
+        (
+            "curated:amazon-salem-township-innovation-campus:active-buildout",
+            "operator",
+            "Amazon Web Services",
+        ),
+    }
+    exclusion_keys: set[tuple[str, str, str]] = set()
+    for index, exclusion in enumerate(exclusions):
+        if not isinstance(exclusion, dict) or set(exclusion) != excluded_fields:
+            raise VerifiedConstructionCoreError(
+                f"provenance current exclusion {index} differs"
+            )
+        key = (
+            exclusion["project_stable_key"],
+            exclusion["role"],
+            exclusion["party"],
+        )
+        source = pinned_source(exclusion)
+        source_roles = source.get("project", {}).get("roles", {})
+        if (
+            key not in expected_exclusions
+            or key in exclusion_keys
+            or exclusion["relationship_scope"] != "not_established"
+            or not isinstance(exclusion["semantic_scope"], str)
+            or not exclusion["semantic_scope"]
+            or not isinstance(exclusion["reason"], str)
+            or not exclusion["reason"]
+            or not isinstance(source_roles, dict)
+            or exclusion["party"] not in source_roles.get(exclusion["role"], [])
+        ):
+            raise VerifiedConstructionCoreError(
+                "provenance current exclusion identity differs"
+            )
+        exclusion_keys.add(key)
+        _evidence_from_pinned_source(
+            exclusion,
+            evidence_key_field="candidate_evidence_key",
+            evidence_id_field="candidate_evidence_id",
+        )
+    if exclusion_keys != expected_exclusions:
+        raise VerifiedConstructionCoreError(
+            "provenance current exclusion cohort differs"
+        )
+    base_workload_keys = {
+        (row["project_stable_key"], row["evidence_id"], row["workload"])
+        for row in base["workload_scope_bindings"]
+    }
+    base_role_keys = {
+        (row["project_stable_key"], row["role"], row["party"])
+        for row in [*base["role_bindings"], *base["excluded_source_roles"]]
+    }
+    if base_workload_keys & workload_keys or base_role_keys & (
+        role_keys | exclusion_keys
+    ):
+        raise VerifiedConstructionCoreError("provenance inherited decision differs")
+    return {
+        "workload_scope_bindings": [
+            *base["workload_scope_bindings"],
+            *workload_bindings,
+        ],
+        "role_bindings": [*base["role_bindings"], *role_bindings],
+        "excluded_source_roles": [
+            *base["excluded_source_roles"],
+            *exclusions,
+        ],
+        "evidence_rows": evidence_rows,
+    }
+
+
 def _portable_source_inputs() -> list[dict[str, Any]]:
     _, delta = _reviewed_acceptances_from(REVIEW_DEFINITION)
     rows_by_path: dict[str, dict[str, Any]] = {}
@@ -1452,21 +2087,21 @@ def _portable_source_inputs() -> list[dict[str, Any]]:
     return sorted(rows_by_path.values(), key=lambda row: row["path"])
 
 
-def _validate_v04_inheritance(
+def _validate_v05_inheritance(
     projects: Sequence[Mapping[str, str]],
     sites: Sequence[Mapping[str, str]],
     evidence: Sequence[Mapping[str, str]],
 ) -> None:
-    validate_frozen_v03(LEGACY_PREVIEW_V03_DIR)
+    validate_frozen_v04(LEGACY_PREVIEW_V04_DIR)
     base_projects = {
         row["project_stable_key"]: row
         for row in _load_csv(
-            LEGACY_PREVIEW_V03_DIR / "projects.csv", LEGACY_PROJECT_FIELDS_V03
+            LEGACY_PREVIEW_V04_DIR / "projects.csv", PROJECT_FIELDS
         )
     }
     current = {row["project_stable_key"]: row for row in projects}
     if not set(base_projects) < set(current):
-        raise VerifiedConstructionCoreError("preview v0.3 inheritance cohort differs")
+        raise VerifiedConstructionCoreError("preview v0.4 inheritance cohort differs")
     for key, base in base_projects.items():
         inherited = current[key]
         for field, value in base.items():
@@ -1478,12 +2113,12 @@ def _validate_v04_inheritance(
     base_sites = {
         row["site_id"]: row
         for row in _load_csv(
-            LEGACY_PREVIEW_V03_DIR / "sites.csv", LEGACY_SITE_FIELDS_V03
+            LEGACY_PREVIEW_V04_DIR / "sites.csv", SITE_FIELDS
         )
     }
     current_sites = {row["site_id"]: row for row in sites}
     if not set(base_sites) < set(current_sites):
-        raise VerifiedConstructionCoreError("preview v0.3 site inheritance differs")
+        raise VerifiedConstructionCoreError("preview v0.4 site inheritance differs")
     for site_id, base in base_sites.items():
         if any(current_sites[site_id].get(field) != value for field, value in base.items()):
             raise VerifiedConstructionCoreError(
@@ -1493,12 +2128,12 @@ def _validate_v04_inheritance(
     base_evidence = {
         row["evidence_id"]: row
         for row in _load_csv(
-            LEGACY_PREVIEW_V03_DIR / "evidence.csv", EVIDENCE_FIELDS
+            LEGACY_PREVIEW_V04_DIR / "evidence.csv", EVIDENCE_FIELDS
         )
     }
     current_evidence = {row["evidence_id"]: row for row in evidence}
     if not set(base_evidence) < set(current_evidence):
-        raise VerifiedConstructionCoreError("preview v0.3 evidence inheritance differs")
+        raise VerifiedConstructionCoreError("preview v0.4 evidence inheritance differs")
     for evidence_id, base in base_evidence.items():
         inherited = current_evidence[evidence_id]
         if inherited != base:
@@ -1507,12 +2142,16 @@ def _validate_v04_inheritance(
             )
 
 
-def _validate_v04_delta_project(
+def _validate_v05_delta_project(
     row: Mapping[str, str],
     acceptance: Mapping[str, Any],
     evidence_by_id: Mapping[str, Mapping[str, str]],
     expected_imagery_outcome: str,
     bridge: Mapping[str, Any],
+    workload_binding_by_key: Mapping[
+        tuple[str, str, str], Mapping[str, Any]
+    ],
+    role_bindings_by_project: Mapping[str, Sequence[Mapping[str, Any]]],
 ) -> None:
     source_path = _repository_input(
         acceptance["source_input_path"],
@@ -1656,10 +2295,68 @@ def _validate_v04_delta_project(
         for item in source.get("operating_models", [])
         if isinstance(item, dict) and item.get("entity") == "project"
     ]
-    if source.get("workloads") or project_operating_models:
+    if project_operating_models:
         raise VerifiedConstructionCoreError(
             "current reviewed-site unsupported normalized claims differ"
         )
+    expected_workloads: list[dict[str, Any]] = []
+    source_workloads = source.get("workloads", [])
+    if not isinstance(source_workloads, list) or any(
+        not isinstance(item, dict) or item.get("entity") != "project"
+        for item in source_workloads
+    ):
+        raise VerifiedConstructionCoreError(
+            "current reviewed-site workload source differs"
+        )
+    for source_workload in source_workloads:
+        evidence_key = source_workload.get("evidence_key")
+        pinned = evidence_by_key.get(evidence_key)
+        if pinned is None:
+            raise VerifiedConstructionCoreError(
+                "current reviewed-site workload evidence differs"
+            )
+        evidence_id = atlas_stable_id(
+            "evidence", "curated-official", evidence_key, pinned["content_hash"]
+        )
+        verify_evidence(evidence_key, evidence_id)
+        projected = {
+            "as_of_date": source_workload["as_of_date"],
+            "confidence": float(source_workload["confidence"]),
+            "evidence_id": evidence_id,
+            "method": source_workload["method"],
+            "workload": source_workload["value"],
+        }
+        binding = workload_binding_by_key.get(
+            (project["stable_key"], evidence_id, source_workload["value"])
+        )
+        if binding is None or any(
+            binding.get(field) != value for field, value in projected.items()
+        ):
+            raise VerifiedConstructionCoreError(
+                "current reviewed-site workload binding differs"
+            )
+        expected_workloads.append(
+            {**projected, "deployment_scope": binding["deployment_scope"]}
+        )
+    expected_role_claims = sorted(
+        [
+            {
+                "evidence_id": binding["evidence_id"],
+                "party": binding["party"],
+                "relationship_scope": binding["relationship_scope"],
+                "role": binding["role"],
+            }
+            for binding in role_bindings_by_project.get(
+                project["stable_key"], []
+            )
+        ],
+        key=lambda claim: (claim["role"], claim["party"], claim["evidence_id"]),
+    )
+    role_projection: dict[str, list[str]] = {
+        role: [] for role in ROLE_COLUMNS
+    }
+    for claim in expected_role_claims:
+        role_projection[claim["role"]].append(claim["party"])
 
     country_iso_a2 = CURRENT_DELTA_COUNTRY_ISO_A2.get(project["country"])
     if country_iso_a2 is None:
@@ -1722,9 +2419,11 @@ def _validate_v04_delta_project(
         "operating_model": "unknown",
         "operating_model_unknown_reason": "not established by selected evidence",
         "operating_model_evidence_id": "",
-        "workloads_json": "[]",
-        "workload_unknown_reason": "not established by selected evidence",
-        "role_claims_json": "[]",
+        "workloads_json": _json_bytes(expected_workloads).decode().strip(),
+        "workload_unknown_reason": (
+            "" if expected_workloads else "not established by selected evidence"
+        ),
+        "role_claims_json": _json_bytes(expected_role_claims).decode().strip(),
         "power_observations_json": _json_bytes(power).decode().strip(),
         "power_unknown_reason": (
             "" if power else "no typed project power observation; not estimated"
@@ -1737,11 +2436,11 @@ def _validate_v04_delta_project(
         "efficiency_unknown_reason": (
             "" if efficiency else "no scoped PUE or WUE observation"
         ),
-        "owner": "",
-        "operator": "",
-        "users": "",
-        "tenants": "",
-        "customers": "",
+        "owner": "; ".join(sorted(role_projection["owner"])),
+        "operator": "; ".join(sorted(role_projection["operator"])),
+        "users": "; ".join(sorted(role_projection["user"])),
+        "tenants": "; ".join(sorted(role_projection["tenant"])),
+        "customers": "; ".join(sorted(role_projection["customer"])),
         "status_source_url": evidence_by_key[latest["evidence_key"]]["source_url"],
         "geometry_source_url": bridge_evidence["source_url"],
     }
@@ -2077,8 +2776,8 @@ def _imagery_contract_v03(
     return default_outcome, records
 
 
-def _imagery_contract() -> tuple[str, list[dict[str, Any]]]:
-    reviewed = _load_json(IMAGERY_REVIEW_DEFINITION)
+def _imagery_contract_v04(path: Path) -> tuple[str, list[dict[str, Any]]]:
+    reviewed = _load_json(path)
     if not isinstance(reviewed, dict) or set(reviewed) != {
         "contract_id",
         "review_scope",
@@ -2110,6 +2809,142 @@ def _imagery_contract() -> tuple[str, list[dict[str, Any]]]:
     if default_outcome != reviewed["default_outcome"]:
         raise VerifiedConstructionCoreError("imagery-review default differs")
     return default_outcome, records
+
+
+def _imagery_contract() -> tuple[str, list[dict[str, Any]]]:
+    reviewed = _load_json(IMAGERY_REVIEW_DEFINITION)
+    expected_fields = {
+        "contract_id",
+        "review_scope",
+        "reviewed_as_of",
+        "base_contract",
+        "default_outcome",
+        "records",
+    }
+    if not isinstance(reviewed, dict) or set(reviewed) != expected_fields:
+        raise VerifiedConstructionCoreError("imagery-review contract fields differ")
+    if (
+        reviewed.get("contract_id")
+        != "verified-construction-core-v0.5-imagery-reviews"
+        or reviewed.get("reviewed_as_of") != REVIEW_DATE.isoformat()
+        or reviewed.get("default_outcome") != "not_reviewed_for_core_preview"
+    ):
+        raise VerifiedConstructionCoreError("imagery-review current contract differs")
+    expected_base = {
+        "path": "definitions/verified-construction-core-v0.4-imagery-reviews.json",
+        "sha256": V04_IMAGERY_REVIEW_DEFINITION_SHA256,
+    }
+    if reviewed.get("base_contract") != expected_base:
+        raise VerifiedConstructionCoreError("imagery-review base pin differs")
+    base_path = _repository_input(
+        expected_base["path"], expected_base["sha256"], "imagery-review base"
+    )
+    default_outcome, inherited = _imagery_contract_v04(base_path)
+    delta = reviewed.get("records")
+    if not isinstance(delta, list) or len(delta) != 3:
+        raise VerifiedConstructionCoreError("imagery-review current cohort differs")
+    required = {
+        "project_stable_key",
+        "project_entity_id",
+        "outcome",
+        "portable_identity_binding",
+        "identity_binding_basis",
+        "primary_review_source_path",
+        "primary_review_source_sha256",
+        "primary_review_id",
+        "primary_blind_id",
+        "primary_queue_id",
+        "source_comparison_sha256",
+        "primary_verdict",
+        "local_identity_lineage",
+        "later_review_conflict",
+        "no_claim_guardrail",
+    }
+    expected_outcomes = {
+        "curated:related-openai-oracle-stargate-michigan-saline:current-build": (
+            "tracked_identity_bound_visible_change_followup_only_no_construction_claim"
+        ),
+        "curated:microsoft-mount-pleasant-datacenter-campus:second-facility": (
+            "tracked_identity_bound_uncertain_unsuperseded_no_construction_claim"
+        ),
+        "curated:amazon-salem-township-innovation-campus:active-buildout": (
+            "tracked_identity_bound_uncertain_unsuperseded_no_construction_claim"
+        ),
+    }
+    inherited_keys = {row["project_stable_key"] for row in inherited}
+    delta_keys: set[str] = set()
+    for index, record in enumerate(delta):
+        if not isinstance(record, dict) or set(record) != required:
+            raise VerifiedConstructionCoreError(
+                f"imagery-review current record {index} differs"
+            )
+        key = record["project_stable_key"]
+        if (
+            key in inherited_keys
+            or key in delta_keys
+            or record["outcome"] != expected_outcomes.get(key)
+            or record["portable_identity_binding"] is not True
+            or record["local_identity_lineage"] is not None
+            or record["later_review_conflict"] is not None
+            or record["no_claim_guardrail"] is not True
+            or not isinstance(record["identity_binding_basis"], str)
+            or not record["identity_binding_basis"]
+            or record["project_entity_id"]
+            != atlas_stable_id("entity", key, "project")
+        ):
+            raise VerifiedConstructionCoreError(
+                "imagery-review current identity differs"
+            )
+        delta_keys.add(key)
+        source_path = _repository_input(
+            record["primary_review_source_path"],
+            record["primary_review_source_sha256"],
+            "imagery-review current source",
+        )
+        source = _load_json(source_path)
+        if source.get("review_id") != record["primary_review_id"]:
+            raise VerifiedConstructionCoreError(
+                "imagery-review current source id differs"
+            )
+        matches = [
+            row
+            for row in source.get("lineage_records", [])
+            if isinstance(row, dict)
+            and row.get("blind_id") == record["primary_blind_id"]
+        ]
+        if len(matches) != 1:
+            raise VerifiedConstructionCoreError(
+                "imagery-review current lineage differs"
+            )
+        match = matches[0]
+        members = match.get("members")
+        if not isinstance(members, list) or len(members) != 1:
+            raise VerifiedConstructionCoreError(
+                "imagery-review current member differs"
+            )
+        member = members[0]
+        expected_verdict = {
+            "semantics": source.get("decision_semantics", {}).get(
+                match.get("visual_verdict")
+            ),
+            "visual_verdict": match.get("visual_verdict"),
+        }
+        if (
+            member.get("stable_key") != key
+            or member.get("entity_id") != record["project_entity_id"]
+            or member.get("queue_id") != record["primary_queue_id"]
+            or match.get("source_comparison_sha256")
+            != record["source_comparison_sha256"]
+            or expected_verdict != record["primary_verdict"]
+        ):
+            raise VerifiedConstructionCoreError(
+                "imagery-review current identity-bound lineage differs"
+            )
+    if delta_keys != set(expected_outcomes):
+        raise VerifiedConstructionCoreError("imagery-review current cohort differs")
+    if default_outcome != reviewed["default_outcome"]:
+        raise VerifiedConstructionCoreError("imagery-review default differs")
+    return default_outcome, [*inherited, *delta]
 
 
 def _manifest_binding(
@@ -2565,7 +3400,7 @@ def _validate_identity_bridge(
     if entity.get("country") not in {project.get("country"), campus.get("country")}:
         raise VerifiedConstructionCoreError("geometry bridge identity country differs")
     project_key = str(project["stable_key"])
-    if project_key.startswith("curated:qscale-"):
+    if project_key == "curated:qscale-q01-levis-campus:building-b":
         if (
             not isinstance(identity_evidence, list)
             or len(identity_evidence) != 1
@@ -2599,22 +3434,111 @@ def _validate_identity_bridge(
             raise VerifiedConstructionCoreError(
                 "geometry bridge QScale address identity differs"
             )
+    elif project_key == "curated:green-campus-zrh1-lupfig:data-center-4":
+        if (
+            not isinstance(identity_evidence, list)
+            or len(identity_evidence) != 1
+            or _json_bytes(identity_evidence[0]) != _json_bytes(GREEN_IDENTITY_EVIDENCE)
+        ):
+            raise VerifiedConstructionCoreError(
+                "geometry bridge identity evidence differs"
+            )
+        extraction = identity_evidence[0]["address_extraction"]
+        tags = entity.get("tags")
+        if (
+            not isinstance(tags, dict)
+            or (
+                _canonical_address_text(extraction["house_number"]),
+                _canonical_address_text(extraction["street"]),
+                _canonical_address_text(extraction["postcode"]),
+                _canonical_address_text(extraction["locality"]),
+            )
+            != ("31", "industriestrasse", "5242", "lupfig")
+            or (
+                _canonical_address_text(str(tags.get("addr:housenumber", ""))),
+                _canonical_address_text(str(tags.get("addr:street", ""))),
+                _canonical_address_text(str(tags.get("addr:postcode", ""))),
+                _canonical_address_text(str(tags.get("addr:city", ""))),
+            )
+            != ("31", "industriestrasse", "5242", "lupfig")
+            or _canonical_address_text(extraction["site_label"]) != "campus zrh1"
+            or _canonical_address_text(str(tags.get("building", "")))
+            != "data_center"
+            or _canonical_address_text(str(tags.get("description", "")))
+            != "green datacenter lupfig"
+        ):
+            raise VerifiedConstructionCoreError(
+                "geometry bridge Green address identity differs"
+            )
     else:
         if identity_evidence != []:
             raise VerifiedConstructionCoreError(
                 "geometry bridge identity evidence differs"
             )
-        names = " ".join(
-            str(value)
-            for value in (project.get("name"), campus.get("name"), entity.get("name"))
+        normalized_names = _normalized_address_part(
+            " ".join(
+                str(value)
+                for value in (
+                    project.get("name"),
+                    campus.get("name"),
+                    entity.get("name"),
+                )
+            )
         )
-        if (
-            "ice02" not in _normalized_address_part(names)
-            or _normalized_address_part(str(entity.get("operator", ""))) != "atnorth"
-            or "atnorth" not in _normalized_address_part(names)
-        ):
+        tags = entity.get("tags")
+        if not isinstance(tags, dict):
             raise VerifiedConstructionCoreError(
-                "geometry bridge atNorth campus identity differs"
+                "geometry bridge campus identity differs"
+            )
+        if project_key == (
+            "curated:atnorth-ice02-reykjanesbaer-campus:phase-2-expansion"
+        ):
+            valid = (
+                "ice02" in normalized_names
+                and "atnorth" in normalized_names
+                and _normalized_address_part(str(entity.get("operator", "")))
+                == "atnorth"
+            )
+        elif project_key == (
+            "curated:related-openai-oracle-stargate-michigan-saline:current-build"
+        ):
+            valid = (
+                "thebarn" in normalized_names
+                and _canonical_address_text(str(entity.get("name", "")))
+                == "the barn data center"
+                and tags.get("website") == "https://www.thesalinebarn.com/"
+                and tags.get("landuse") == "construction"
+                and tags.get("industrial") == "data_centre"
+            )
+        elif project_key == (
+            "curated:microsoft-mount-pleasant-datacenter-campus:second-facility"
+        ):
+            valid = (
+                "microsoftmountpleasant" in normalized_names
+                and _canonical_address_text(str(entity.get("name", "")))
+                == "microsoft fairwater ai phase 2"
+                and tags.get("landuse") == "construction"
+                and tags.get("industrial") == "data_centre"
+            )
+        elif project_key == (
+            "curated:amazon-salem-township-innovation-campus:active-buildout"
+        ):
+            valid = (
+                "amazonsalemtownship" in normalized_names
+                and _canonical_address_text(str(entity.get("name", "")))
+                == "amazon aws phl"
+                and _canonical_address_text(str(entity.get("operator", "")))
+                == "amazon web services"
+                and tags.get("addr:housenumber") == "1125"
+                and tags.get("addr:street") == "Electron Avenue"
+                and tags.get("addr:postcode") == "18603"
+                and tags.get("addr:city") == "Berwick"
+            )
+        else:
+            valid = False
+        if not valid:
+            raise VerifiedConstructionCoreError(
+                "geometry bridge campus identity differs"
             )
 
 
@@ -2713,6 +3637,20 @@ def _validate_geometry_bridge(
         raise VerifiedConstructionCoreError("geometry bridge source record differs")
     project = construction["project"]
     campus = construction["campus"]
+    expected_campus_fields = {
+        "stable_key",
+        "entity_id",
+        "name",
+        "country",
+        "address",
+        "operating_model",
+        "operating_model_confidence",
+        "operating_model_evidence_id",
+    }
+    if source_project.get("stable_key") == (
+        "curated:related-openai-oracle-stargate-michigan-saline:current-build"
+    ):
+        expected_campus_fields.add("capacity_estimates_json")
     if (
         not isinstance(project, dict)
         or not isinstance(campus, dict)
@@ -2732,17 +3670,7 @@ def _validate_geometry_bridge(
             "workloads_json",
             "capacity_estimates_json",
         }
-        or set(campus)
-        != {
-            "stable_key",
-            "entity_id",
-            "name",
-            "country",
-            "address",
-            "operating_model",
-            "operating_model_confidence",
-            "operating_model_evidence_id",
-        }
+        or set(campus) != expected_campus_fields
         or project.get("stable_key") != source_project.get("stable_key")
         or campus.get("stable_key") != source_campus.get("stable_key")
         or project.get("entity_id")
@@ -2860,30 +3788,72 @@ def _validate_geometry_bridge(
         if status_evidence.get(field) != pinned_status.get(field):
             raise VerifiedConstructionCoreError("geometry bridge status content differs")
 
-    expected_capacity: list[dict[str, Any]] = []
-    for observation in source.get("capacities", []):
-        if not isinstance(observation, dict) or observation.get("entity") != "project":
-            continue
-        evidence_key = observation.get("evidence_key")
+    def projected_evidence_id(evidence_key: Any, label: str) -> str:
         evidence_matches = [
             row
             for row in source_evidence
             if isinstance(row, dict) and row.get("key") == evidence_key
         ]
         if len(evidence_matches) != 1:
-            raise VerifiedConstructionCoreError(
-                "geometry bridge capacity evidence differs"
-            )
-        evidence_id = atlas_stable_id(
+            raise VerifiedConstructionCoreError(f"geometry bridge {label} evidence differs")
+        return atlas_stable_id(
             "evidence",
             "curated-official",
             evidence_key,
             evidence_matches[0].get("content_hash"),
         )
-        expected_capacity.append(
+
+    def projected_capacities(entity_kind: str) -> list[dict[str, Any]]:
+        projected: list[dict[str, Any]] = []
+        for observation in source.get("capacities", []):
+            if not isinstance(observation, dict):
+                raise VerifiedConstructionCoreError(
+                    "geometry bridge capacity observation differs"
+                )
+            if observation.get("entity") != entity_kind:
+                continue
+            evidence_id = projected_evidence_id(
+                observation.get("evidence_key"), "capacity"
+            )
+            projected.append(
+                {
+                    **{
+                        field: (
+                            float(value)
+                            if field in {"low", "base", "high"} and value is not None
+                            else value
+                        )
+                        for field, value in observation.items()
+                        if field not in {"entity", "evidence_key"}
+                    },
+                    "evidence_id": evidence_id,
+                }
+            )
+        return sorted(
+            projected,
+            key=lambda row: (
+                row.get("metric", ""),
+                row.get("stage", ""),
+                row.get("evidence_id", ""),
+            ),
+        )
+
+    expected_capacity = projected_capacities("project")
+    expected_workloads: list[dict[str, Any]] = []
+    for observation in source.get("workloads", []):
+        if not isinstance(observation, dict):
+            raise VerifiedConstructionCoreError(
+                "geometry bridge workload observation differs"
+            )
+        if observation.get("entity") != "project":
+            continue
+        evidence_id = projected_evidence_id(
+            observation.get("evidence_key"), "workload"
+        )
+        expected_workloads.append(
             {
                 **{
-                    field: value
+                    ("workload" if field == "value" else field): value
                     for field, value in observation.items()
                     if field not in {"entity", "evidence_key"}
                 },
@@ -2906,7 +3876,7 @@ def _validate_geometry_bridge(
         "status_method": latest["method"],
         "status_confidence": latest["confidence"],
         "status_evidence_id": expected_status_id,
-        "workloads_json": [],
+        "workloads_json": expected_workloads,
         "capacity_estimates_json": expected_capacity,
     }
     campus_models = [
@@ -2917,7 +3887,12 @@ def _validate_geometry_bridge(
     if len(campus_models) > 1:
         raise VerifiedConstructionCoreError("geometry bridge campus model differs")
     campus_model = campus_models[0] if campus_models else None
-    expected_campus = {
+    campus_model_evidence_id = (
+        projected_evidence_id(campus_model["evidence_key"], "campus model")
+        if campus_model
+        else None
+    )
+    expected_campus: dict[str, Any] = {
         "stable_key": source_campus["stable_key"],
         "entity_id": atlas_stable_id(
             "entity", source_campus["stable_key"], "campus"
@@ -2929,10 +3904,25 @@ def _validate_geometry_bridge(
         "operating_model_confidence": (
             campus_model["confidence"] if campus_model else None
         ),
-        "operating_model_evidence_id": (
-            expected_status_id if campus_model else None
-        ),
+        "operating_model_evidence_id": campus_model_evidence_id,
     }
+    expected_campus_capacity = projected_capacities("campus")
+    if project["stable_key"] == (
+        "curated:related-openai-oracle-stargate-michigan-saline:current-build"
+    ):
+        if len(expected_campus_capacity) != 2:
+            raise VerifiedConstructionCoreError(
+                "geometry bridge Saline campus capacity differs"
+            )
+        for observation in expected_campus_capacity:
+            _validate_typed_observation(
+                observation, POWER_METRICS | ENERGY_METRICS | EFFICIENCY_METRICS
+            )
+        expected_campus["capacity_estimates_json"] = expected_campus_capacity
+    elif expected_campus_capacity:
+        raise VerifiedConstructionCoreError(
+            "geometry bridge unexpected campus capacity differs"
+        )
     if (
         _json_bytes(project) != _json_bytes(expected_project)
         or _json_bytes(campus) != _json_bytes(expected_campus)
@@ -3094,12 +4084,17 @@ def _validate_geometry_bridge(
     osm_match = re.fullmatch(r"osm:(node|way|relation)/([1-9][0-9]*)", str(stable_key))
     osm_type = osm_match.group(1) if osm_match else None
     osm_id = int(osm_match.group(2)) if osm_match else None
+    expected_entity_kind = (
+        "building"
+        if project["stable_key"] == "curated:green-campus-zrh1-lupfig:data-center-4"
+        else "facility"
+    )
     if (
         not isinstance(stable_key, str)
         or osm_match is None
-        or entity.get("entity_kind") != "facility"
+        or entity.get("entity_kind") != expected_entity_kind
         or entity.get("entity_id")
-        != atlas_stable_id("entity", stable_key, "facility")
+        != atlas_stable_id("entity", stable_key, expected_entity_kind)
         or entity.get("source_url")
         != f"https://www.openstreetmap.org/{osm_type}/{osm_id}"
         or entity.get("source_family") != "openstreetmap"
@@ -3210,10 +4205,12 @@ def _validate_geometry_bridge(
             "geometry bridge unbound lineage context must be absent"
         )
     imagery = bridge["imagery_posture"]
+    expected_imagery_outcome = BRIDGE_IMAGERY_OUTCOMES.get(project["stable_key"])
     if (
         not isinstance(imagery, dict)
         or set(imagery) != {"outcome", "independent_imagery_verification", "basis"}
-        or imagery.get("outcome") != "not_reviewed_for_core_preview"
+        or expected_imagery_outcome is None
+        or imagery.get("outcome") != expected_imagery_outcome
         or imagery.get("independent_imagery_verification") is not False
         or not isinstance(imagery.get("basis"), str)
         or not imagery["basis"]
@@ -3283,8 +4280,10 @@ def _validate_geometry_bridge(
     return bridge
 
 
-def _reviewed_overlays(*, hydrated_crosscheck: bool) -> dict[str, Any]:
-    reviewed = _load_json(OVERLAY_DEFINITION)
+def _reviewed_overlays_v04(
+    path: Path, *, hydrated_crosscheck: bool
+) -> dict[str, Any]:
+    reviewed = _load_json(path)
     if not isinstance(reviewed, dict) or set(reviewed) != {
         "contract_id",
         "purpose",
@@ -3379,6 +4378,107 @@ def _reviewed_overlays(*, hydrated_crosscheck: bool) -> dict[str, Any]:
         bridges[overlay_id] = bridge
     return {
         "overlays": [*base_rows, *delta],
+        "delta_overlays": delta,
+        "bridges_by_overlay_id": bridges,
+    }
+
+
+def _reviewed_overlays(*, hydrated_crosscheck: bool) -> dict[str, Any]:
+    reviewed = _load_json(OVERLAY_DEFINITION)
+    if not isinstance(reviewed, dict) or set(reviewed) != {
+        "contract_id",
+        "purpose",
+        "reviewed_as_of",
+        "base_contract",
+        "required_fields",
+        "allowed_decisions",
+        "overlays",
+    }:
+        raise VerifiedConstructionCoreError("reviewed-overlay contract fields differ")
+    if (
+        reviewed.get("contract_id")
+        != "verified-construction-core-reviewed-overlays-v3"
+        or reviewed.get("reviewed_as_of") != REVIEW_DATE.isoformat()
+        or set(reviewed.get("allowed_decisions", []))
+        != {"queued", "accepted", "excluded"}
+    ):
+        raise VerifiedConstructionCoreError("reviewed-overlay contract identity differs")
+    expected_base = {
+        "path": "definitions/verified-construction-core-reviewed-overlays-v2.json",
+        "sha256": V04_OVERLAY_DEFINITION_SHA256,
+    }
+    if reviewed.get("base_contract") != expected_base:
+        raise VerifiedConstructionCoreError("reviewed-overlay base pin differs")
+    base_path = _repository_input(
+        expected_base["path"], expected_base["sha256"], "reviewed-overlay base"
+    )
+    base = _reviewed_overlays_v04(
+        base_path, hydrated_crosscheck=hydrated_crosscheck
+    )
+    required = {
+        "overlay_id",
+        "source_project_stable_key",
+        "source_project_entity_id",
+        "physical_site_stable_key",
+        "physical_site_entity_id",
+        "bridge_path",
+        "bridge_sha256",
+        "decision",
+        "decision_reason",
+        "reviewed_at",
+    }
+    if set(reviewed.get("required_fields", [])) != required:
+        raise VerifiedConstructionCoreError("reviewed-overlay required fields differ")
+    delta = reviewed.get("overlays")
+    if not isinstance(delta, list) or len(delta) != 4:
+        raise VerifiedConstructionCoreError("reviewed-overlay current cohort differs")
+    ids = {
+        row.get("overlay_id")
+        for row in base["overlays"]
+        if isinstance(row, dict)
+    }
+    bridges = dict(base["bridges_by_overlay_id"])
+    for index, row in enumerate(delta):
+        if not isinstance(row, dict) or set(row) != required:
+            raise VerifiedConstructionCoreError(
+                f"reviewed-overlay current row {index} differs"
+            )
+        overlay_id = row["overlay_id"]
+        if (
+            not isinstance(overlay_id, str)
+            or not overlay_id
+            or overlay_id in ids
+            or row.get("decision") != "accepted"
+            or row.get("reviewed_at") != REVIEW_DATE.isoformat()
+            or not isinstance(row.get("decision_reason"), str)
+            or not row["decision_reason"]
+        ):
+            raise VerifiedConstructionCoreError(
+                "reviewed-overlay current identity differs"
+            )
+        ids.add(overlay_id)
+        bridge = _validate_geometry_bridge(
+            row["bridge_path"],
+            row["bridge_sha256"],
+            hydrated_crosscheck=hydrated_crosscheck,
+        )
+        construction = bridge["construction_source"]
+        if (
+            row["source_project_stable_key"]
+            != construction["project"]["stable_key"]
+            or row["source_project_entity_id"]
+            != construction["project"]["entity_id"]
+            or row["physical_site_stable_key"]
+            != construction["campus"]["stable_key"]
+            or row["physical_site_entity_id"]
+            != construction["campus"]["entity_id"]
+        ):
+            raise VerifiedConstructionCoreError(
+                "reviewed-overlay bridge identity differs"
+            )
+        bridges[overlay_id] = bridge
+    return {
+        "overlays": [*base["overlays"], *delta],
         "delta_overlays": delta,
         "bridges_by_overlay_id": bridges,
     }
@@ -4256,7 +5356,7 @@ def _build_rows() -> dict[str, Any]:
     country_counts = Counter(row["country"] for row in sites)
     gates = _final_release_gates(sites, projects)
     selection_report = {
-        "format": "datacenter-atlas-verified-construction-core-selection-v4",
+        "format": "datacenter-atlas-verified-construction-core-selection-v5",
         "release_status": "preview",
         "publishable_as_final": all(gate.get("passed", False) for gate in gates.values()),
         "source_release_id": SOURCE_RELEASE_ID,
@@ -4345,7 +5445,7 @@ def _map_html(geojson: Mapping[str, Any]) -> bytes:
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Verified Construction Core preview</title>
 <style>body{{font:14px system-ui;margin:0;color:#17202a}}header{{padding:18px 22px;background:#eef4f7}}main{{display:grid;grid-template-columns:minmax(0,2fr) minmax(260px,1fr);gap:16px;padding:16px}}svg{{width:100%;height:auto;background:#f8fafb;border:1px solid #ccd6dc}}.grid{{stroke:#dce4e8;stroke-width:1}}circle{{fill:#b6412e;stroke:#fff;stroke-width:1.5;cursor:pointer}}circle:focus{{outline:2px solid #173b57}}table{{border-collapse:collapse;width:100%}}th,td{{padding:6px;border-bottom:1px solid #ddd;text-align:left}}code{{font-size:12px}}.warning{{color:#7b2d1d;font-weight:700}}@media(max-width:800px){{main{{grid-template-columns:1fr}}}}</style></head>
-<body><header><h1>Verified Construction Core v0.4 preview</h1><p class="warning">{site_count} physical sites. This is not the 100-site final release and does not claim independent imagery verification.</p></header>
+<body><header><h1>Verified Construction Core v0.5 preview</h1><p class="warning">{site_count} physical sites. This is not the 100-site final release and does not claim independent imagery verification.</p></header>
 <main><section><svg id="map" viewBox="0 0 1000 500" role="img" aria-label="Global plot of selected sites"></svg></section><aside><h2 id="name">Select a site</h2><div id="detail"></div><h3>Sites</h3><table><tbody id="rows"></tbody></table></aside></main>
 <script>const atlas={data};const svg=document.getElementById('map');const ns='http://www.w3.org/2000/svg';
 for(let lon=-180;lon<=180;lon+=30){{const l=document.createElementNS(ns,'line');l.setAttribute('x1',(lon+180)/360*1000);l.setAttribute('x2',(lon+180)/360*1000);l.setAttribute('y1',0);l.setAttribute('y2',500);l.setAttribute('class','grid');svg.appendChild(l)}}
@@ -4361,7 +5461,7 @@ def _readme(report: Mapping[str, Any]) -> bytes:
     gates = report["final_release_gates"]
     boundary_count = report["official_boundary_project_count"]
     locator_count = report["reviewed_site_locator_project_count"]
-    text = f"""# Verified Construction Core v0.4 preview
+    text = f"""# Verified Construction Core v0.5 preview
 
 This tracked preview contains **{report['selected_physical_site_count']} physical sites** and
 **{report['selected_project_count']} linked projects** selected from `{SOURCE_RELEASE_ID}`.
@@ -4369,8 +5469,8 @@ Every selected project has a physical-status observation no more than {MAX_STATU
 old at the {REVIEW_DATE.isoformat()} review date. {boundary_count} project rows carry official
 parcel or surveyed boundary geometry; this describes the geometry attached to the row, not a claim
 that construction occupies the entire parcel. The other {locator_count} use explicitly labelled
-reviewed locators with their precision limits preserved. Two of those are contributor-mapped OSM
-polygons accepted only as campus locators: they are not official boundaries, project or phase
+reviewed locators with their precision limits preserved. Six selected projects use contributor-mapped
+OSM polygons accepted only as campus locators: they are not official boundaries, project or phase
 footprints, construction extents, or lifecycle evidence. Locality centroids and model-only lifecycle
 states fail the selector.
 
@@ -4397,13 +5497,18 @@ exact tracked review source and preserves locally unsealed identity lineage and 
 conflicts explicitly. Two exact Canadian geometry overlays were reviewed but excluded: one recent
 scene was unusable and one usable comparison showed no filtered recent-change component.
 
-Every workload observation now carries a validator-bound `deployment_scope`; all three current
+Every workload observation carries a validator-bound `deployment_scope`; all five selected
 observations are `intended`, never operational. `role_claims_json` binds each published role to an
-evidence ID and relationship scope. Five intended-operator claims pass that gate. Four prior
-CDC/AST owner or operator strings lacked role-specific evidence, so the preview clears them and preserves
-the rejected claims and reasons in the provenance contract rather than laundering status evidence
-into role evidence. The same conservative rule clears the atNorth and QScale operator candidates;
-OSM operator tags and branded status evidence are identity context, not role-specific proof.
+evidence ID and relationship scope. Five intended-operator and two intended-customer claims pass
+that gate. Four prior CDC/AST owner or operator strings lacked role-specific evidence, so the preview
+clears them and preserves the rejected claims and reasons in the provenance contract rather than
+laundering status evidence into role evidence. The same conservative rule clears the atNorth,
+QScale, Microsoft Mount Pleasant, and Amazon Salem operator candidates; OSM operator tags, campus
+operating models, and branded status evidence are identity context, not project-role proof.
+
+Saline's source-level 1,400 MW contracted grid-load observation and modeled annual-energy range are
+retained only in the closed bridge as campus-scoped provenance. They are not promoted to project or
+site power or energy, and the modeled range is not measured consumption.
 
 The preview validates from a public clean clone. Rebuilding it still requires the locally hydrated
 v97 payload, so clean-clone rebuildability is an explicit failed final-release gate rather than an
@@ -4500,7 +5605,7 @@ def _field_contract(name: str) -> dict[str, Any]:
 
 def _schema() -> dict[str, Any]:
     return {
-        "format": "datacenter-atlas-verified-construction-core-schema-v4",
+        "format": "datacenter-atlas-verified-construction-core-schema-v5",
         "preview_id": PREVIEW_ID,
         "csv_encoding": "UTF-8",
         "csv_dialect": {
@@ -4703,7 +5808,7 @@ def build_preview(output_dir: Path = PREVIEW_DIR) -> dict[str, Any]:
         "sites.geojson": _json_bytes(geojson),
     }
     manifest = {
-        "format": "datacenter-atlas-verified-construction-core-preview-v4",
+        "format": "datacenter-atlas-verified-construction-core-preview-v5",
         "preview_id": PREVIEW_ID,
         "release_status": "preview",
         "publishable_as_final": report["publishable_as_final"],
@@ -5030,12 +6135,172 @@ def validate_frozen_v03(
     return manifest
 
 
+def validate_frozen_v04(
+    path: Path = LEGACY_PREVIEW_V04_DIR,
+) -> dict[str, Any]:
+    """Validate the byte-frozen v0.4 inventory using only immutable pins."""
+    path = Path(path)
+    if path.is_symlink() or not path.is_dir():
+        raise VerifiedConstructionCoreError(
+            f"frozen v0.4 preview is not a regular directory: {path}"
+        )
+    manifest_path = path / "manifest.json"
+    checksum_path = path / "manifest.sha256"
+    if (
+        manifest_path.is_symlink()
+        or not manifest_path.is_file()
+        or checksum_path.is_symlink()
+        or not checksum_path.is_file()
+    ):
+        raise VerifiedConstructionCoreError(
+            "frozen v0.4 manifest trust root differs"
+        )
+    if _sha256_file(manifest_path) != LEGACY_PREVIEW_V04_MANIFEST_SHA256:
+        raise VerifiedConstructionCoreError("frozen v0.4 manifest hash differs")
+    manifest = _load_json(manifest_path)
+    expected_pins = {
+        "format": "datacenter-atlas-verified-construction-core-preview-v4",
+        "preview_id": "2026-08-20-preview-v0.4",
+        "reviewed_at": "2026-08-20",
+        "source_release_id": "2026-07-22-open-seed-v97",
+        "source_release_manifest_path": (
+            "releases/2026-07-22-open-seed-v97/manifest.json"
+        ),
+        "source_release_manifest_sha256": (
+            "0a6f41f4239944df27f2ce70e81a089b91cec401f154bbae28412b27a4d00fdd"
+        ),
+        "review_definition_sha256": (
+            "cc71ed6bc107fa585caf3726f7625fd0fdd982c5699a5e19218bbeb1dec7c97c"
+        ),
+        "imagery_review_definition_sha256": (
+            "897a9cbe1f85dea871a3c267069390d5db7ab1206691068769a14fb0b7882798"
+        ),
+        "provenance_definition_sha256": (
+            "9d51d2e998c6d902a6410dfb3a2ce8dde8ee4b722d483bec65de4fda1d6e636e"
+        ),
+        "overlay_definition_sha256": (
+            "65b01f335e60c1f7a886100089bd3a4fe4da79c074233a49bb60b9b65ab8129f"
+        ),
+    }
+    if any(manifest.get(field) != value for field, value in expected_pins.items()):
+        raise VerifiedConstructionCoreError("frozen v0.4 identity differs")
+    expected_definition_paths = {
+        "imagery_reviews": (
+            "definitions/verified-construction-core-v0.4-imagery-reviews.json"
+        ),
+        "provenance": "definitions/verified-construction-core-v0.4-provenance.json",
+        "reviewed_overlays": (
+            "definitions/verified-construction-core-reviewed-overlays-v2.json"
+        ),
+        "reviewed_sites": (
+            "definitions/verified-construction-core-v0.4-reviewed-sites.json"
+        ),
+    }
+    if manifest.get("definition_paths") != expected_definition_paths:
+        raise VerifiedConstructionCoreError("frozen v0.4 definition paths differ")
+    repository_pins = {
+        expected_definition_paths["reviewed_sites"]: expected_pins[
+            "review_definition_sha256"
+        ],
+        expected_definition_paths["imagery_reviews"]: expected_pins[
+            "imagery_review_definition_sha256"
+        ],
+        expected_definition_paths["provenance"]: expected_pins[
+            "provenance_definition_sha256"
+        ],
+        expected_definition_paths["reviewed_overlays"]: expected_pins[
+            "overlay_definition_sha256"
+        ],
+        expected_pins["source_release_manifest_path"]: expected_pins[
+            "source_release_manifest_sha256"
+        ],
+    }
+    for relative, expected_sha256 in repository_pins.items():
+        candidate = ROOT / relative
+        if (
+            candidate.is_symlink()
+            or not candidate.is_file()
+            or _sha256_file(candidate) != expected_sha256
+        ):
+            raise VerifiedConstructionCoreError(
+                f"frozen v0.4 repository input differs: {relative}"
+            )
+    portable = manifest.get("portable_source_inputs")
+    if not isinstance(portable, list) or len(portable) != 4:
+        raise VerifiedConstructionCoreError("frozen v0.4 portable inputs differ")
+    for item in portable:
+        if not isinstance(item, dict) or set(item) != {
+            "path",
+            "bytes",
+            "sha256",
+            "parent_manifests",
+        }:
+            raise VerifiedConstructionCoreError("frozen v0.4 portable input differs")
+        relative = Path(item["path"])
+        candidate = ROOT / relative
+        if (
+            relative.is_absolute()
+            or ".." in relative.parts
+            or candidate.is_symlink()
+            or not candidate.is_file()
+            or candidate.stat().st_size != item["bytes"]
+            or _sha256_file(candidate) != item["sha256"]
+        ):
+            raise VerifiedConstructionCoreError(
+                f"frozen v0.4 portable member differs: {relative}"
+            )
+        parents = item["parent_manifests"]
+        if not isinstance(parents, list):
+            raise VerifiedConstructionCoreError("frozen v0.4 portable parents differ")
+        for parent in parents:
+            if not isinstance(parent, dict) or set(parent) != {"path", "sha256"}:
+                raise VerifiedConstructionCoreError(
+                    "frozen v0.4 portable parent differs"
+                )
+            parent_relative = Path(parent["path"])
+            parent_path = ROOT / parent_relative
+            if (
+                parent_relative.is_absolute()
+                or ".." in parent_relative.parts
+                or parent_path.is_symlink()
+                or not parent_path.is_file()
+                or _sha256_file(parent_path) != parent["sha256"]
+            ):
+                raise VerifiedConstructionCoreError(
+                    "frozen v0.4 portable parent differs"
+                )
+    files = manifest.get("files")
+    if not isinstance(files, dict):
+        raise VerifiedConstructionCoreError("frozen v0.4 files map is absent")
+    expected_names = set(files) | {"manifest.json", "manifest.sha256"}
+    if {item.name for item in path.iterdir()} != expected_names:
+        raise VerifiedConstructionCoreError("frozen v0.4 inventory differs")
+    for name, metadata in files.items():
+        candidate = path / name
+        if (
+            candidate.is_symlink()
+            or not candidate.is_file()
+            or candidate.stat().st_size != metadata.get("bytes")
+            or _sha256_file(candidate) != metadata.get("sha256")
+        ):
+            raise VerifiedConstructionCoreError(
+                f"frozen v0.4 member differs: {name}"
+            )
+    expected_sum = f"{LEGACY_PREVIEW_V04_MANIFEST_SHA256}  manifest.json\n"
+    if checksum_path.read_text(encoding="utf-8") != expected_sum:
+        raise VerifiedConstructionCoreError("frozen v0.4 checksum differs")
+    return manifest
+
+
 def validate_preview(path: Path = PREVIEW_DIR) -> dict[str, Any]:
     """Dispatch frozen previews by manifest identity and validate the current one."""
     path = Path(path)
     if path.is_symlink() or not path.is_dir():
         raise VerifiedConstructionCoreError(f"preview is not a regular directory: {path}")
-    manifest = _load_json(path / "manifest.json")
+    manifest_path = path / "manifest.json"
+    if manifest_path.is_symlink() or not manifest_path.is_file():
+        raise VerifiedConstructionCoreError("preview manifest trust root differs")
+    manifest = _load_json(manifest_path)
     preview_id = manifest.get("preview_id")
     if preview_id == "2026-08-19-preview-v0.1":
         return validate_frozen_v01(path)
@@ -5043,6 +6308,8 @@ def validate_preview(path: Path = PREVIEW_DIR) -> dict[str, Any]:
         return validate_frozen_v02(path)
     if preview_id == "2026-08-20-preview-v0.3":
         return validate_frozen_v03(path)
+    if preview_id == "2026-08-20-preview-v0.4":
+        return validate_frozen_v04(path)
     if preview_id != PREVIEW_ID:
         raise VerifiedConstructionCoreError("preview id differs")
     return _validate_current_preview(path)
@@ -5055,6 +6322,14 @@ def _validate_current_preview(path: Path) -> dict[str, Any]:
         raise VerifiedConstructionCoreError(f"preview is not a regular directory: {path}")
     _validate_current_definition_pins()
     manifest_path = path / "manifest.json"
+    checksum_path = path / "manifest.sha256"
+    if (
+        manifest_path.is_symlink()
+        or not manifest_path.is_file()
+        or checksum_path.is_symlink()
+        or not checksum_path.is_file()
+    ):
+        raise VerifiedConstructionCoreError("preview manifest trust root differs")
     manifest = _load_json(manifest_path)
     expected_manifest_fields = {
         "format",
@@ -5076,7 +6351,7 @@ def _validate_current_preview(path: Path) -> dict[str, Any]:
     }
     if set(manifest) != expected_manifest_fields:
         raise VerifiedConstructionCoreError("preview manifest fields differ")
-    if manifest.get("format") != "datacenter-atlas-verified-construction-core-preview-v4":
+    if manifest.get("format") != "datacenter-atlas-verified-construction-core-preview-v5":
         raise VerifiedConstructionCoreError("preview format differs")
     if manifest.get("preview_id") != PREVIEW_ID:
         raise VerifiedConstructionCoreError("preview id differs")
@@ -5141,7 +6416,7 @@ def _validate_current_preview(path: Path) -> dict[str, Any]:
         if _sha256_file(candidate) != metadata.get("sha256"):
             raise VerifiedConstructionCoreError(f"preview member hash differs: {name}")
     expected_sum = f"{_sha256_file(manifest_path)}  manifest.json\n"
-    if (path / "manifest.sha256").read_text(encoding="utf-8") != expected_sum:
+    if checksum_path.read_text(encoding="utf-8") != expected_sum:
         raise VerifiedConstructionCoreError("preview manifest checksum differs")
 
     sites = _load_csv(path / "sites.csv", SITE_FIELDS)
@@ -5206,7 +6481,7 @@ def _validate_current_preview(path: Path) -> dict[str, Any]:
     evidence_by_id = {row["evidence_id"]: row for row in evidence}
     if len(evidence_by_id) != len(evidence):
         raise VerifiedConstructionCoreError("preview evidence identifiers are not unique")
-    _validate_v04_inheritance(projects, sites, evidence)
+    _validate_v05_inheritance(projects, sites, evidence)
     for row in projects:
         acceptance = reviewed_by_key[row["project_stable_key"]]
         if row["project_id"] != atlas_stable_id(
@@ -5230,12 +6505,14 @@ def _validate_current_preview(path: Path) -> dict[str, Any]:
                 bridge,
                 label="preview reviewed geometry",
             )
-            _validate_v04_delta_project(
+            _validate_v05_delta_project(
                 row,
                 reviewed_delta_by_key[row["project_stable_key"]],
                 evidence_by_id,
                 expected_imagery_outcome,
                 bridge,
+                workload_binding_by_key,
+                role_bindings_by_project,
             )
         if acceptance.get("geometry_overlay_id") is None:
             expected_authority, expected_use_scope = _direct_geometry_semantics(
@@ -5715,7 +6992,7 @@ def _validate_current_preview(path: Path) -> dict[str, Any]:
     expected_gates = _final_release_gates(sites, projects)
     country_counts = dict(sorted(Counter(row["country"] for row in sites).items()))
     expected_values = {
-        "format": "datacenter-atlas-verified-construction-core-selection-v4",
+        "format": "datacenter-atlas-verified-construction-core-selection-v5",
         "release_status": "preview",
         "publishable_as_final": all(
             gate.get("passed", False) for gate in expected_gates.values()
@@ -5780,13 +7057,13 @@ def _validate_current_preview(path: Path) -> dict[str, Any]:
     if counts != derived_counts:
         raise VerifiedConstructionCoreError("preview derived counts differ")
     if counts != {
-        "physical_sites": 16,
-        "projects": 17,
-        "evidence": 40,
-        "countries": 12,
-        "non_us_sites": 13,
+        "physical_sites": 20,
+        "projects": 21,
+        "evidence": 48,
+        "countries": 13,
+        "non_us_sites": 14,
         "official_boundary_projects": 3,
-        "reviewed_site_locator_projects": 14,
+        "reviewed_site_locator_projects": 18,
     }:
         raise VerifiedConstructionCoreError("preview expected cohort counts differ")
     return manifest
@@ -5797,6 +7074,7 @@ __all__ = [
     "LEGACY_PREVIEW_V01_DIR",
     "LEGACY_PREVIEW_V02_DIR",
     "LEGACY_PREVIEW_V03_DIR",
+    "LEGACY_PREVIEW_V04_DIR",
     "PREVIEW_DIR",
     "PROVENANCE_DEFINITION",
     "VerifiedConstructionCoreError",
@@ -5804,5 +7082,6 @@ __all__ = [
     "validate_frozen_v01",
     "validate_frozen_v02",
     "validate_frozen_v03",
+    "validate_frozen_v04",
     "validate_preview",
 ]

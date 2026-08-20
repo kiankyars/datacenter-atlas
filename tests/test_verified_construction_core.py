@@ -7,6 +7,7 @@ import io
 import json
 from pathlib import Path
 import shutil
+import subprocess
 import tempfile
 import unittest
 from unittest import mock
@@ -17,6 +18,7 @@ from datacenter_atlas.verified_construction_core import (
     LEGACY_PREVIEW_V01_DIR,
     LEGACY_PREVIEW_V02_DIR,
     LEGACY_PREVIEW_V03_DIR,
+    LEGACY_PREVIEW_V04_DIR,
     OVERLAY_DEFINITION,
     PREVIEW_DIR,
     REVIEW_DEFINITION,
@@ -26,6 +28,7 @@ from datacenter_atlas.verified_construction_core import (
     validate_frozen_v01,
     validate_frozen_v02,
     validate_frozen_v03,
+    validate_frozen_v04,
     validate_preview,
 )
 
@@ -73,6 +76,24 @@ def _refresh_unsigned_manifest(path: Path) -> None:
     )
 
 
+def _replace_embedded_csv_row(
+    binding: dict[str, object], fields: tuple[str, ...], row: dict[str, str]
+) -> bytes:
+    buffer = io.StringIO(newline="")
+    csv.writer(buffer, lineterminator="\n").writerow(
+        [row[field] for field in fields]
+    )
+    payload = buffer.getvalue().encode("utf-8")
+    binding.update(
+        {
+            "bytes": len(payload),
+            "sha256": hashlib.sha256(payload).hexdigest(),
+            "raw_csv_record_base64": base64.b64encode(payload).decode("ascii"),
+        }
+    )
+    return payload
+
+
 class VerifiedConstructionCorePreviewTest(unittest.TestCase):
     def _validate_refreshed_bridge(
         self, canonical_path: Path, bridge: dict[str, object]
@@ -107,13 +128,13 @@ class VerifiedConstructionCorePreviewTest(unittest.TestCase):
         self.assertEqual(
             manifest["counts"],
             {
-                "physical_sites": 16,
-                "projects": 17,
-                "evidence": 40,
-                "countries": 12,
-                "non_us_sites": 13,
+                "physical_sites": 20,
+                "projects": 21,
+                "evidence": 48,
+                "countries": 13,
+                "non_us_sites": 14,
                 "official_boundary_projects": 3,
-                "reviewed_site_locator_projects": 14,
+                "reviewed_site_locator_projects": 18,
             },
         )
         self.assertEqual(manifest["release_status"], "preview")
@@ -144,7 +165,11 @@ class VerifiedConstructionCorePreviewTest(unittest.TestCase):
             community_locator_keys,
             {
                 "curated:atnorth-ice02-reykjanesbaer-campus:phase-2-expansion",
+                "curated:amazon-salem-township-innovation-campus:active-buildout",
+                "curated:green-campus-zrh1-lupfig:data-center-4",
+                "curated:microsoft-mount-pleasant-datacenter-campus:second-facility",
                 "curated:qscale-q01-levis-campus:building-b",
+                "curated:related-openai-oracle-stargate-michigan-saline:current-build",
             },
         )
         self.assertTrue(
@@ -316,13 +341,106 @@ class VerifiedConstructionCorePreviewTest(unittest.TestCase):
                 json.loads(site["geometry_use_scopes_json"]), ["campus_locator"]
             )
 
+    def test_v05_osm_bridges_preserve_scope_workloads_and_unknowns(self) -> None:
+        projects = {row["project_stable_key"]: row for row in _rows("projects.csv")}
+        keys = {
+            "green": "curated:green-campus-zrh1-lupfig:data-center-4",
+            "saline": "curated:related-openai-oracle-stargate-michigan-saline:current-build",
+            "mount": "curated:microsoft-mount-pleasant-datacenter-campus:second-facility",
+            "salem": "curated:amazon-salem-township-innovation-campus:active-buildout",
+        }
+        for key in keys.values():
+            row = projects[key]
+            self.assertEqual(row["geometry_type"], "Polygon")
+            self.assertEqual(row["geometry_source_entity_kind"], "campus")
+            self.assertEqual(row["geometry_derivation"], "cross_source_overlay")
+            self.assertEqual(row["geometry_authority_class"], "community_mapped")
+            self.assertEqual(row["geometry_use_scope"], "campus_locator")
+            self.assertEqual(row["independent_imagery_verification"], "false")
+            self.assertEqual(row["operating_model"], "unknown")
+            self.assertEqual(row["operator"], "")
+            self.assertEqual(json.loads(row["power_observations_json"]), [])
+            self.assertEqual(json.loads(row["annual_energy_observations_json"]), [])
+
+        overlays = verified_core._reviewed_overlays(hydrated_crosscheck=False)
+        green_overlay = next(
+            row
+            for row in overlays["delta_overlays"]
+            if row["source_project_stable_key"] == keys["green"]
+        )
+        green_bridge = overlays["bridges_by_overlay_id"][green_overlay["overlay_id"]]
+        self.assertEqual(green_bridge["geometry_entity"]["entity_kind"], "building")
+        self.assertEqual(
+            green_bridge["review_decision"]["geometry_use_scope"],
+            "campus_locator",
+        )
+        self.assertIn(
+            "project_or_phase_footprint",
+            green_bridge["review_decision"]["rejected_claims"],
+        )
+
+        saline = projects[keys["saline"]]
+        self.assertEqual(
+            json.loads(saline["workloads_json"]),
+            [
+                {
+                    "as_of_date": "2026-06-01",
+                    "confidence": 0.99,
+                    "deployment_scope": "intended",
+                    "evidence_id": "ec302d8d-d1c0-594f-88f7-708f6642e827",
+                    "method": "company_disclosure",
+                    "workload": "ai_specialized_unspecified",
+                }
+            ],
+        )
+        self.assertEqual(saline["customers"], "OpenAI; Oracle")
+        self.assertEqual(
+            [claim["relationship_scope"] for claim in json.loads(saline["role_claims_json"])],
+            ["intended", "intended"],
+        )
+        saline_overlay = next(
+            row
+            for row in overlays["delta_overlays"]
+            if row["source_project_stable_key"] == keys["saline"]
+        )
+        saline_bridge = overlays["bridges_by_overlay_id"][saline_overlay["overlay_id"]]
+        campus_capacity = saline_bridge["construction_source"]["campus"][
+            "capacity_estimates_json"
+        ]
+        self.assertEqual(
+            [row["metric"] for row in campus_capacity],
+            ["annual_energy_mwh", "grid_connection_mw"],
+        )
+        self.assertEqual(
+            saline["imagery_review_outcome"],
+            "tracked_identity_bound_visible_change_followup_only_no_construction_claim",
+        )
+
+        salem = projects[keys["salem"]]
+        self.assertEqual(
+            json.loads(salem["workloads_json"])[0]["workload"], "mixed"
+        )
+        self.assertEqual(
+            json.loads(salem["workloads_json"])[0]["deployment_scope"],
+            "intended",
+        )
+        for key in (keys["mount"], keys["salem"]):
+            self.assertEqual(
+                projects[key]["imagery_review_outcome"],
+                "tracked_identity_bound_uncertain_unsuperseded_no_construction_claim",
+            )
+        self.assertEqual(
+            projects[keys["green"]]["imagery_review_outcome"],
+            "not_reviewed_for_core_preview",
+        )
+
     def test_imagery_provenance_preserves_portability_and_conflicts(self) -> None:
         report = json.loads((PREVIEW_DIR / "selection-report.json").read_text())
         records = {
             row["project_stable_key"]: row
             for row in report["imagery_review_provenance"]
         }
-        self.assertEqual(len(records), 5)
+        self.assertEqual(len(records), 8)
         self.assertFalse(
             records["curated:coresite-de3-race-street-campus:de3"][
                 "portable_identity_binding"
@@ -346,7 +464,7 @@ class VerifiedConstructionCorePreviewTest(unittest.TestCase):
         self.assertIs(kao["later_review_conflict"]["supersedes_primary"], False)
         self.assertEqual(
             report["final_release_gates"]["imagery_outcomes_complete"]["actual"],
-            5,
+            8,
         )
 
     def test_previous_preview_remains_byte_frozen(self) -> None:
@@ -394,6 +512,21 @@ class VerifiedConstructionCorePreviewTest(unittest.TestCase):
             },
         )
         self.assertEqual(validate_preview(LEGACY_PREVIEW_V03_DIR), v03)
+        v04 = validate_frozen_v04()
+        self.assertEqual(LEGACY_PREVIEW_V04_DIR.name, "2026-08-20-preview-v0.4")
+        self.assertEqual(
+            v04["counts"],
+            {
+                "countries": 12,
+                "evidence": 40,
+                "non_us_sites": 13,
+                "official_boundary_projects": 3,
+                "physical_sites": 16,
+                "projects": 17,
+                "reviewed_site_locator_projects": 14,
+            },
+        )
+        self.assertEqual(validate_preview(LEGACY_PREVIEW_V04_DIR), v04)
 
     def test_frozen_v02_validation_is_isolated_from_current_globals(self) -> None:
         missing = Path("/definitely-absent-v03-contract.json")
@@ -433,6 +566,64 @@ class VerifiedConstructionCorePreviewTest(unittest.TestCase):
             ):
                 validate_frozen_v03(clone)
 
+    def test_frozen_v04_validation_is_isolated_from_v05_globals(self) -> None:
+        missing = Path("/definitely-absent-v05-contract.json")
+        with (
+            mock.patch.object(verified_core, "REVIEW_DEFINITION", missing),
+            mock.patch.object(verified_core, "IMAGERY_REVIEW_DEFINITION", missing),
+            mock.patch.object(verified_core, "PROVENANCE_DEFINITION", missing),
+            mock.patch.object(verified_core, "OVERLAY_DEFINITION", missing),
+            mock.patch.object(verified_core, "PREVIEW_ID", "invented-preview"),
+        ):
+            self.assertEqual(
+                validate_preview(LEGACY_PREVIEW_V04_DIR)["preview_id"],
+                "2026-08-20-preview-v0.4",
+            )
+
+    def test_frozen_v04_member_tamper_fails_closed(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            clone = Path(temporary) / "preview-v0.4"
+            shutil.copytree(LEGACY_PREVIEW_V04_DIR, clone)
+            with (clone / "projects.csv").open("ab") as handle:
+                handle.write(b"tamper\n")
+            with self.assertRaisesRegex(
+                VerifiedConstructionCoreError, "frozen v0.4 member differs"
+            ):
+                validate_frozen_v04(clone)
+
+    def test_v04_and_v05_manifest_trust_roots_must_not_be_symlinks(self) -> None:
+        cases = (
+            (
+                "v04",
+                LEGACY_PREVIEW_V04_DIR,
+                validate_frozen_v04,
+                "frozen v0.4 manifest trust root differs",
+            ),
+            (
+                "v05",
+                PREVIEW_DIR,
+                validate_preview,
+                "preview manifest trust root differs",
+            ),
+        )
+        for label, source, validator, error in cases:
+            for member in ("manifest.json", "manifest.sha256"):
+                with (
+                    self.subTest(preview=label, member=member),
+                    tempfile.TemporaryDirectory() as temporary,
+                ):
+                    root = Path(temporary)
+                    clone = root / label
+                    shutil.copytree(source, clone)
+                    external = root / f"external-{member}"
+                    external.write_bytes((clone / member).read_bytes())
+                    (clone / member).unlink()
+                    (clone / member).symlink_to(external)
+                    with self.assertRaisesRegex(
+                        VerifiedConstructionCoreError, error
+                    ):
+                        validator(clone)
+
     def test_v03_provenance_clears_unsupported_roles_and_scopes_workloads(self) -> None:
         projects = {row["project_stable_key"]: row for row in _rows("projects.csv")}
         evidence = {row["evidence_id"]: row for row in _rows("evidence.csv")}
@@ -441,7 +632,7 @@ class VerifiedConstructionCorePreviewTest(unittest.TestCase):
             for project in projects.values()
             for workload in json.loads(project["workloads_json"])
         ]
-        self.assertEqual(len(workload_observations), 3)
+        self.assertEqual(len(workload_observations), 5)
         self.assertEqual(
             {workload["deployment_scope"] for _, workload in workload_observations},
             {"intended"},
@@ -462,15 +653,20 @@ class VerifiedConstructionCorePreviewTest(unittest.TestCase):
             for project in projects.values()
             for claim in json.loads(project["role_claims_json"])
         ]
-        self.assertEqual(len(role_claims), 5)
-        self.assertEqual({claim["role"] for _, claim in role_claims}, {"operator"})
+        self.assertEqual(len(role_claims), 7)
+        self.assertEqual(
+            {claim["role"] for _, claim in role_claims},
+            {"customer", "operator"},
+        )
         self.assertEqual(
             {claim["relationship_scope"] for _, claim in role_claims},
             {"intended"},
         )
         for project, claim in role_claims:
             evidence_row = evidence[claim["evidence_id"]]
-            self.assertIn("role:operator", json.loads(evidence_row["roles_json"]))
+            self.assertIn(
+                f"role:{claim['role']}", json.loads(evidence_row["roles_json"])
+            )
             self.assertIn(
                 project["project_id"],
                 json.loads(evidence_row["project_ids_json"]),
@@ -486,20 +682,24 @@ class VerifiedConstructionCorePreviewTest(unittest.TestCase):
             self.assertEqual(json.loads(projects[key]["role_claims_json"]), [])
         report = json.loads((PREVIEW_DIR / "selection-report.json").read_text())
         self.assertEqual(
-            len(report["provenance_decisions"]["excluded_source_roles"]), 6
+            len(report["provenance_decisions"]["excluded_source_roles"]), 8
         )
 
-    def test_portable_v04_sources_and_bridges_are_manifest_bound(self) -> None:
+    def test_portable_v05_sources_and_bridges_are_manifest_bound(self) -> None:
         manifest = json.loads((PREVIEW_DIR / "manifest.json").read_text())
         inputs = manifest["portable_source_inputs"]
-        self.assertEqual(len(inputs), 4)
+        self.assertEqual(len(inputs), 8)
         self.assertEqual(
             {row["path"] for row in inputs},
             {
-                "sources/curated-official-2026-07-21-atnorth-ice02-phase-2-current-build.json",
-                "sources/curated-official-2026-07-21-qscale-q01-building-b-current-build.json",
-                "sources/verified-construction-core-v0.4-atnorth-ice02-campus-geometry-bridge.json",
-                "sources/verified-construction-core-v0.4-qscale-q01-campus-geometry-bridge.json",
+                "sources/curated-official-2026-07-19-amazon-salem-township-pa.json",
+                "sources/curated-official-2026-07-19-microsoft-mount-pleasant-second.json",
+                "sources/curated-official-2026-07-19-related-saline-stargate.json",
+                "sources/curated-official-2026-07-20-green-zrh1-dc4-lupfig.json",
+                "sources/verified-construction-core-v0.5-amazon-salem-campus-geometry-bridge.json",
+                "sources/verified-construction-core-v0.5-green-zrh1-campus-geometry-bridge.json",
+                "sources/verified-construction-core-v0.5-microsoft-mount-pleasant-campus-geometry-bridge.json",
+                "sources/verified-construction-core-v0.5-saline-campus-geometry-bridge.json",
             },
         )
         for row in inputs:
@@ -513,8 +713,72 @@ class VerifiedConstructionCorePreviewTest(unittest.TestCase):
                     parent["sha256"],
                 )
         parent_pins = [row for row in inputs if row["parent_manifests"]]
-        self.assertEqual(len(parent_pins), 2)
+        self.assertEqual(len(parent_pins), 4)
         self.assertTrue(all(len(row["parent_manifests"]) == 3 for row in parent_pins))
+
+    def test_v05_validate_only_succeeds_in_tracked_clean_clone(self) -> None:
+        listed = subprocess.run(
+            ["git", "ls-files", "--cached", "--others", "--exclude-standard", "-z"],
+            cwd=verified_core.ROOT,
+            check=True,
+            capture_output=True,
+        ).stdout
+        with tempfile.TemporaryDirectory() as temporary:
+            clone = Path(temporary) / "clean-clone"
+            clone.mkdir()
+            for raw_path in listed.split(b"\0"):
+                if not raw_path:
+                    continue
+                relative = Path(raw_path.decode("utf-8"))
+                source = verified_core.ROOT / relative
+                if not source.is_file() or source.is_symlink():
+                    continue
+                destination = clone / relative
+                destination.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copy2(source, destination)
+
+            self.assertFalse(
+                (clone / "releases/2026-07-22-open-seed-v97/construction_pipeline.csv").exists()
+            )
+            self.assertFalse(
+                (clone / "releases/2026-07-18-global-open-v3/entities.csv").exists()
+            )
+            self.assertFalse(
+                (
+                    clone
+                    / "exact_identity_decisions/2026-07-22-public-open-v14/component-members.csv"
+                ).exists()
+            )
+            patched_paths = {
+                "ROOT": clone,
+                "SOURCE_RELEASE": clone
+                / "releases/2026-07-22-open-seed-v97",
+                "REVIEW_DEFINITION": clone
+                / "definitions/verified-construction-core-v0.5-reviewed-sites.json",
+                "IMAGERY_REVIEW_DEFINITION": clone
+                / "definitions/verified-construction-core-v0.5-imagery-reviews.json",
+                "PROVENANCE_DEFINITION": clone
+                / "definitions/verified-construction-core-v0.5-provenance.json",
+                "OVERLAY_DEFINITION": clone
+                / "definitions/verified-construction-core-reviewed-overlays-v3.json",
+                "PREVIEW_DIR": clone
+                / "verified_construction_core/2026-08-20-preview-v0.5",
+                "LEGACY_PREVIEW_V01_DIR": clone
+                / "verified_construction_core/2026-08-19-preview-v0.1",
+                "LEGACY_PREVIEW_V02_DIR": clone
+                / "verified_construction_core/2026-08-20-preview-v0.2",
+                "LEGACY_PREVIEW_V03_DIR": clone
+                / "verified_construction_core/2026-08-20-preview-v0.3",
+                "LEGACY_PREVIEW_V04_DIR": clone
+                / "verified_construction_core/2026-08-20-preview-v0.4",
+                "GEOMETRY_RELEASES": {
+                    release_id: clone / path.relative_to(verified_core.ROOT)
+                    for release_id, path in verified_core.GEOMETRY_RELEASES.items()
+                },
+            }
+            with mock.patch.multiple(verified_core, **patched_paths):
+                manifest = validate_preview(patched_paths["PREVIEW_DIR"])
+            self.assertEqual(manifest["preview_id"], "2026-08-20-preview-v0.5")
 
     def test_site_project_geojson_and_selection_accounting_match(self) -> None:
         sites = _rows("sites.csv")
@@ -528,12 +792,12 @@ class VerifiedConstructionCorePreviewTest(unittest.TestCase):
             {feature["id"] for feature in geojson["features"]}, site_ids
         )
         self.assertEqual(report["source_pipeline_row_count"], 531)
-        self.assertEqual(report["selected_project_count"], 17)
-        self.assertEqual(report["non_selected_source_row_count"], 514)
+        self.assertEqual(report["selected_project_count"], 21)
+        self.assertEqual(report["non_selected_source_row_count"], 510)
         self.assertEqual(
             sum(report["selection_first_failure_counts"].values()), 531
         )
-        self.assertEqual(report["selection_first_failure_counts"]["selected"], 17)
+        self.assertEqual(report["selection_first_failure_counts"]["selected"], 21)
         self.assertIs(report["publishable_as_final"], False)
         self.assertFalse(report["final_release_gates"]["site_count"]["passed"])
         self.assertFalse(report["final_release_gates"]["blind_review"]["passed"])
@@ -544,14 +808,14 @@ class VerifiedConstructionCorePreviewTest(unittest.TestCase):
             [row["decision"] for row in report["reviewed_overlay_queue"]].count(
                 "accepted"
             ),
-            2,
+            6,
         )
 
     def test_machine_readable_schema_covers_tables_and_relationships(self) -> None:
         schema = json.loads((PREVIEW_DIR / "schema.json").read_text())
         self.assertEqual(
             schema["format"],
-            "datacenter-atlas-verified-construction-core-schema-v4",
+            "datacenter-atlas-verified-construction-core-schema-v5",
         )
         self.assertEqual(
             set(schema["tables"]), {"projects.csv", "sites.csv", "evidence.csv"}
@@ -634,7 +898,7 @@ class VerifiedConstructionCorePreviewTest(unittest.TestCase):
         ):
             verified_core._reviewed_acceptances()
 
-    def test_v04_definition_semantics_are_release_pinned(self) -> None:
+    def test_v05_definition_semantics_are_release_pinned(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             bad_definition = Path(temporary) / "reviewed-sites.json"
             definition = json.loads(REVIEW_DEFINITION.read_text(encoding="utf-8"))
@@ -642,7 +906,7 @@ class VerifiedConstructionCorePreviewTest(unittest.TestCase):
                 row
                 for row in definition["acceptances"]
                 if row["project_stable_key"]
-                == "curated:qscale-q01-levis-campus:building-b"
+                == "curated:green-campus-zrh1-lupfig:data-center-4"
             )
             target.update(
                 {
@@ -834,6 +1098,80 @@ class VerifiedConstructionCorePreviewTest(unittest.TestCase):
         ):
             self._validate_refreshed_bridge(bridge_path, tampered)
 
+    def test_green_building_cannot_be_relabelled_as_facility_container(self) -> None:
+        bridge_path = (
+            verified_core.ROOT
+            / "sources/verified-construction-core-v0.5-green-zrh1-campus-geometry-bridge.json"
+        )
+        tampered = json.loads(bridge_path.read_text(encoding="utf-8"))
+        entity = tampered["geometry_entity"]
+        source_row = entity["source_row"]
+        values = next(
+            csv.reader(
+                io.StringIO(
+                    base64.b64decode(source_row["raw_csv_record_base64"]).decode(
+                        "utf-8"
+                    )
+                )
+            )
+        )
+        row = dict(
+            zip(verified_core.GLOBAL_GEOMETRY_ENTITY_FIELDS, values, strict=True)
+        )
+        row["entity_kind"] = "facility"
+        row["entity_id"] = verified_core.atlas_stable_id(
+            "entity", row["stable_key"], "facility"
+        )
+        _replace_embedded_csv_row(
+            source_row, verified_core.GLOBAL_GEOMETRY_ENTITY_FIELDS, row
+        )
+        projection = verified_core._global_geometry_entity_projection(row)
+        entity.clear()
+        entity.update(projection)
+        entity["source_row"] = source_row
+
+        with self.assertRaisesRegex(
+            VerifiedConstructionCoreError,
+            "geometry bridge parent source-row binding differs",
+        ):
+            self._validate_refreshed_bridge(bridge_path, tampered)
+
+        attacker_allowlist = json.loads(
+            json.dumps(verified_core.BRIDGE_PARENT_ROW_BINDINGS)
+        )
+        attacker_allowlist[
+            "curated:green-campus-zrh1-lupfig:data-center-4"
+        ]["geometry_entity"].update(
+            {"bytes": source_row["bytes"], "sha256": source_row["sha256"]}
+        )
+        with (
+            mock.patch.object(
+                verified_core, "BRIDGE_PARENT_ROW_BINDINGS", attacker_allowlist
+            ),
+            self.assertRaisesRegex(
+                VerifiedConstructionCoreError,
+                "geometry bridge OSM entity differs",
+            ),
+        ):
+            self._validate_refreshed_bridge(bridge_path, tampered)
+
+    def test_green_identity_predicate_rejects_refreshed_address_claim(self) -> None:
+        bridge_path = (
+            verified_core.ROOT
+            / "sources/verified-construction-core-v0.5-green-zrh1-campus-geometry-bridge.json"
+        )
+        tampered = json.loads(bridge_path.read_text(encoding="utf-8"))
+        evidence = tampered["identity_bridge_evidence"][0]
+        evidence["address_extraction"]["street"] = "Invented Street"
+        with (
+            mock.patch.object(verified_core, "GREEN_IDENTITY_EVIDENCE", evidence),
+            self.assertRaisesRegex(
+                VerifiedConstructionCoreError,
+                "geometry bridge Green address identity differs",
+            ),
+        ):
+            self._validate_refreshed_bridge(bridge_path, tampered)
+
     def test_refreshed_review_pin_cannot_override_bridge_semantics(self) -> None:
         acceptances = verified_core._reviewed_acceptances()
         target = next(
@@ -903,7 +1241,7 @@ class VerifiedConstructionCorePreviewTest(unittest.TestCase):
             _refresh_unsigned_manifest(clone)
             with self.assertRaisesRegex(
                 VerifiedConstructionCoreError,
-                "current reviewed-site project projection differs|reviewed geometry or imagery contract differs",
+                "preview inherited project field differs|current reviewed-site project projection differs|reviewed geometry or imagery contract differs",
             ):
                 validate_preview(clone)
 
@@ -1039,7 +1377,7 @@ class VerifiedConstructionCorePreviewTest(unittest.TestCase):
             _refresh_unsigned_manifest(clone)
             with self.assertRaisesRegex(
                 VerifiedConstructionCoreError,
-                "workload provenance differs|inherited project field differs",
+                "workload provenance differs|current reviewed-site project projection differs|inherited project field differs",
             ):
                 validate_preview(clone)
 
@@ -1142,7 +1480,7 @@ class VerifiedConstructionCorePreviewTest(unittest.TestCase):
                     row
                     for row in projects
                     if row["project_stable_key"]
-                    == "curated:qscale-q01-levis-campus:building-b"
+                    == "curated:green-campus-zrh1-lupfig:data-center-4"
                 )
                 target.update(changes)
                 _write_rows(clone, "projects.csv", projects)
@@ -1353,6 +1691,49 @@ class VerifiedConstructionCorePreviewTest(unittest.TestCase):
             ):
                 validate_preview(clone)
 
+    def test_saline_campus_capacity_cannot_be_promoted_to_project(self) -> None:
+        overlays = verified_core._reviewed_overlays(hydrated_crosscheck=False)
+        overlay = next(
+            row
+            for row in overlays["delta_overlays"]
+            if row["source_project_stable_key"]
+            == "curated:related-openai-oracle-stargate-michigan-saline:current-build"
+        )
+        capacities = overlays["bridges_by_overlay_id"][overlay["overlay_id"]][
+            "construction_source"
+        ]["campus"]["capacity_estimates_json"]
+        with tempfile.TemporaryDirectory() as temporary:
+            clone = Path(temporary) / "preview"
+            shutil.copytree(PREVIEW_DIR, clone)
+            projects = _rows_from(clone, "projects.csv")
+            target = next(
+                row
+                for row in projects
+                if row["project_stable_key"]
+                == "curated:related-openai-oracle-stargate-michigan-saline:current-build"
+            )
+            target["power_observations_json"] = json.dumps(
+                [row for row in capacities if row["metric"] == "grid_connection_mw"],
+                ensure_ascii=False,
+                sort_keys=True,
+                separators=(",", ":"),
+            )
+            target["power_unknown_reason"] = ""
+            target["annual_energy_observations_json"] = json.dumps(
+                [row for row in capacities if row["metric"] == "annual_energy_mwh"],
+                ensure_ascii=False,
+                sort_keys=True,
+                separators=(",", ":"),
+            )
+            target["annual_energy_unknown_reason"] = ""
+            _write_rows(clone, "projects.csv", projects)
+            _refresh_unsigned_manifest(clone)
+            with self.assertRaisesRegex(
+                VerifiedConstructionCoreError,
+                "current reviewed-site typed metrics differ|current reviewed-site project projection differs",
+            ):
+                validate_preview(clone)
+
     def test_selection_report_tamper_fails_after_manifest_refresh(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             clone = Path(temporary) / "preview"
@@ -1402,7 +1783,7 @@ class VerifiedConstructionCorePreviewTest(unittest.TestCase):
                 ),
                 mock.patch.object(
                     verified_core,
-                    "V04_OVERLAY_DEFINITION_SHA256",
+                    "V05_OVERLAY_DEFINITION_SHA256",
                     hashlib.sha256(bad_definition.read_bytes()).hexdigest(),
                 ),
                 self.assertRaisesRegex(

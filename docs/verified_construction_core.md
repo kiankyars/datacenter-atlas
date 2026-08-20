@@ -3,8 +3,9 @@
 The long-term product target is a compact, public cohort of 100 physical data-centre sites with
 linked active construction projects, precise geometry, current evidence, typed power semantics,
 and reviewable imagery outcomes. The current checked artifact is deliberately labelled
-[`v0.4 preview`](../verified_construction_core/2026-08-20-preview-v0.4/README.md), because the
+[`v0.5 preview`](../verified_construction_core/2026-08-20-preview-v0.5/README.md), because the
 available evidence does not yet support that final claim. The previous
+[`v0.4 preview`](../verified_construction_core/2026-08-20-preview-v0.4/README.md),
 [`v0.3 preview`](../verified_construction_core/2026-08-20-preview-v0.3/README.md),
 [`v0.2 preview`](../verified_construction_core/2026-08-20-preview-v0.2/README.md) and
 [`v0.1 preview`](../verified_construction_core/2026-08-19-preview-v0.1/README.md) remain
@@ -12,7 +13,7 @@ byte-frozen and hash-validated rather than being overwritten.
 
 ## Preview scope
 
-The preview selects 17 projects attached to 16 source-scoped campus sites in 12 countries from
+The preview selects 21 projects attached to 20 source-scoped campus sites in 13 countries from
 `2026-07-22-open-seed-v97`. Every project has:
 
 - a physical-status observation no more than 90 days old on the fixed 2026-08-20 review date;
@@ -28,12 +29,15 @@ points and are labelled by their actual scope: shared-campus reference, facility
 same-parcel infrastructure reference, parcel reference, official address, or first-party campus
 location. They are not silently promoted to building footprints or site boundaries.
 
-atNorth ICE02 Phase 2 and QScale Q01 Building B add two contributor-mapped OSM polygons under a
-separate authority model. Each is accepted only as a `community_mapped` `campus_locator`: neither
-is counted as an official boundary, project/phase footprint, construction extent, lifecycle
-observation, capacity source, or imagery result. ICE02 retains the Mannverk construction status
-and no capacity. QScale retains one reported 60 MW design-stage critical-IT observation while the
-campus-level colocation label is not promoted to Building B.
+atNorth ICE02 Phase 2, QScale Q01 Building B, Green ZRH1 DC4, The Barn Saline, Microsoft Mount
+Pleasant's second facility, and Amazon Salem's active buildout use six contributor-mapped OSM
+polygons under a separate authority model. Each is accepted only as a `community_mapped`
+`campus_locator`; none is counted as an official boundary, project/phase footprint, construction
+extent, lifecycle observation, or imagery result. The selected geometry locates the named campus,
+not necessarily the current building project. QScale retains one reported 60 MW design-stage
+critical-IT observation. Saline's 1,400 MW contracted campus grid connection and modeled annual
+energy range remain pinned in the bridge for provenance but are not promoted to project power or
+measured consumption. Campus operating models likewise do not become project claims.
 
 The review contract distinguishes `direct_geometry` from `coordinates_to_point` and records
 whether geometry comes from the project or its parent campus. Coordinate serialization adds no
@@ -42,23 +46,25 @@ accuracy. Scala Huechuraba and Lampa use official Chilean environmental-review r
 points with conservative 50 metre analyst envelopes; neither is presented as a footprint.
 
 The project status field is `last_observed_physical_status`, not an inferred current state. The
-preview leaves `independent_imagery_verification=false` for every row. Five projects have a
-non-default satellite-review outcome, but those reviews create no lifecycle claim. Three are
-portable identity-bound records; two preserve an identity mapping extracted from exact local
-hash-bound lineage that is not independently available in a clean clone. BER02's later conflicting
-blind verdict and KAO's later conflicting verdict are retained as unsuperseded rather than resolved
-in favor of either judgment.
+preview leaves `independent_imagery_verification=false` for every row. Eight projects have a
+non-default satellite-review outcome, but those reviews create no lifecycle claim. Six are portable
+identity-bound records; two preserve an identity mapping extracted from exact local hash-bound
+lineage that is not independently available in a clean clone. Saline retains only its tracked v57
+visible-change follow-up verdict; an unsealed later review is not published as project evidence.
+Microsoft and Amazon retain uncertain v57 outcomes. BER02's later conflicting blind verdict and
+KAO's later conflicting verdict remain unsuperseded rather than being resolved in favor of either
+judgment.
 
 ## Files and semantics
 
 - `projects.csv` preserves project-level status, geometry source entity, derivation, method and
   scope, coordinate precision, source URLs, typed power observations, and explicit
   unknown/not-estimated reasons.
-- `sites.csv` groups the 17 selected projects into 16 physical-site keys without claiming
+- `sites.csv` groups the 21 selected projects into 20 physical-site keys without claiming
   global cross-source deduplication.
-- `evidence.csv` is the closed set of 40 status, geometry, operating-model, workload, role, and typed-metric
-  evidence rows referenced by the cohort.
-- `sites.geojson` and the dependency-free `map.html` expose the same 16 site IDs.
+- `evidence.csv` is the closed set of 48 status, geometry, operating-model, workload, role, and
+  typed-metric evidence rows referenced by the cohort.
+- `sites.geojson` and the dependency-free `map.html` expose the same 20 site IDs.
 - `schema.json` defines CSV fields, logical types, keys, embedded evidence references, GeoJSON
   geometry equality, and the map dependency in machine-readable form.
 - `selection-report.json` accounts for all 531 source pipeline rows and records every final gate.
@@ -68,11 +74,11 @@ in favor of either judgment.
 ## Version policy
 
 Each preview is a coherent frozen snapshot, not a separate pile of data that must be added to the
-latest CSV. v0.4 inherits all 15 reviewed v0.3 decisions through an exact base contract hash and
-adds two geometry-only bridge decisions; v0.3 inherits the 12 reviewed v0.2 decisions and adds
-three. Users normally consume only the latest preview; the
-older artifact remains because it proves what the product said at that date and lets a historical
-result be audited against the code commit that produced it.
+latest CSV. v0.5 inherits all 17 reviewed v0.4 decisions through an exact base contract hash and
+adds four reviewed geometry bridges; v0.4 inherits the 15 reviewed v0.3 decisions and adds two;
+v0.3 inherits the 12 reviewed v0.2 decisions and adds three. Users normally consume only the latest
+preview; the older artifact remains because it proves what the product said at that date and lets a
+historical result be audited against the code commit that produced it.
 
 Missing development type, operating model, workload, power, annual energy, PUE, or WUE never
 becomes zero. Reported observations preserve metric, stage, units, interval, method, confidence,
@@ -80,11 +86,12 @@ and evidence. PUE/WUE stay separate from power; annual energy remains unestimate
 inputs and assumptions exist.
 
 Workload values are evidence-linked source classifications, not proof of an operating workload.
-Every observation now has a validator-bound `deployment_scope`; all three current observations are
+Every observation has a validator-bound `deployment_scope`; all five current observations are
 `intended`. Every published role has a machine-readable evidence ID and relationship scope. Five
-intended-operator claims pass. Four prior CDC/AST owner or operator strings and the new atNorth and
-QScale operator candidates lack role-specific evidence, so the current preview clears them and
-records the exclusions and reasons instead.
+intended-operator and two intended-customer claims pass. Four prior CDC/AST owner or operator
+strings plus the atNorth, QScale, Microsoft, and Amazon project-operator candidates lack
+role-specific evidence, so the current preview clears them and records the exclusions and reasons
+instead.
 
 ## Validation and rebuild
 

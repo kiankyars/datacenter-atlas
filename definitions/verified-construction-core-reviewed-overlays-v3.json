@@ -1,0 +1,76 @@
+{
+  "contract_id": "verified-construction-core-reviewed-overlays-v3",
+  "purpose": "Exact-hash incremental successor to reviewed-overlay v2. Each accepted row binds one construction project and physical site to one closed tracked bridge, while preserving community-mapped campus-locator scope and every bridge rejection.",
+  "reviewed_as_of": "2026-08-20",
+  "base_contract": {
+    "path": "definitions/verified-construction-core-reviewed-overlays-v2.json",
+    "sha256": "65b01f335e60c1f7a886100089bd3a4fe4da79c074233a49bb60b9b65ab8129f"
+  },
+  "required_fields": [
+    "overlay_id",
+    "source_project_stable_key",
+    "source_project_entity_id",
+    "physical_site_stable_key",
+    "physical_site_entity_id",
+    "bridge_path",
+    "bridge_sha256",
+    "decision",
+    "decision_reason",
+    "reviewed_at"
+  ],
+  "allowed_decisions": [
+    "queued",
+    "accepted",
+    "excluded"
+  ],
+  "overlays": [
+    {
+      "overlay_id": "overlay:osm-way-242248627-green-zrh1-campus-locator",
+      "source_project_stable_key": "curated:green-campus-zrh1-lupfig:data-center-4",
+      "source_project_entity_id": "58129708-0b52-5984-afbc-f8f38e085df1",
+      "physical_site_stable_key": "curated:green-campus-zrh1-lupfig",
+      "physical_site_entity_id": "6c10e414-ca56-58a8-a9fa-3b3fd85b0f9c",
+      "bridge_path": "sources/verified-construction-core-v0.5-green-zrh1-campus-geometry-bridge.json",
+      "bridge_sha256": "900a7e02c838a3c4b8287dd58404c25eb6ae41d64347988d5d1ef5f6eb4ec41a",
+      "decision": "accepted",
+      "decision_reason": "The v97 DC4 project explicitly targets Campus ZRH1; Green's first-party enterprise contact page labels Campus ZRH1 at Industriestrasse 31, 5242 Lupfig; the OSM data-center building carries the same house number, street, postcode, and locality and is described as Green Datacenter Lupfig. The geometry is accepted only with the bridge's community_mapped authority class and campus_locator use scope; every rejected claim in the bridge remains rejected.",
+      "reviewed_at": "2026-08-20"
+    },
+    {
+      "overlay_id": "overlay:osm-way-1528327802-saline-barn-campus-locator",
+      "source_project_stable_key": "curated:related-openai-oracle-stargate-michigan-saline:current-build",
+      "source_project_entity_id": "7d936c4e-29f2-592f-984b-61f5d6367fc8",
+      "physical_site_stable_key": "curated:related-openai-oracle-stargate-michigan-saline",
+      "physical_site_entity_id": "6b1b89fa-5f85-54bd-b1c3-328532319d7e",
+      "bridge_path": "sources/verified-construction-core-v0.5-saline-campus-geometry-bridge.json",
+      "bridge_sha256": "e581ba11776e8ed4867e5a29aeec6f07f30a9adf6d4b1d8999867fb45cdc4c9f",
+      "decision": "accepted",
+      "decision_reason": "The v97 project explicitly targets The Barn Stargate campus; the curated Related Digital source names The Barn in Saline Township; and the OSM feature in the same locality is named The Barn Data Center and carries the Saline Barn website. This is a manual distinctive-name, locality, and website-tag identity review, not an automated fuzzy merge. The geometry is accepted only with the bridge's community_mapped authority class and campus_locator use scope; every rejected claim in the bridge remains rejected.",
+      "reviewed_at": "2026-08-20"
+    },
+    {
+      "overlay_id": "overlay:osm-way-1528490094-microsoft-mount-pleasant-campus-locator",
+      "source_project_stable_key": "curated:microsoft-mount-pleasant-datacenter-campus:second-facility",
+      "source_project_entity_id": "ccb7fe0e-f94d-58ca-8d36-695a9cd48d56",
+      "physical_site_stable_key": "curated:microsoft-mount-pleasant-datacenter-campus",
+      "physical_site_entity_id": "ab6e7ac9-67cd-512b-9062-836d362f3e38",
+      "bridge_path": "sources/verified-construction-core-v0.5-microsoft-mount-pleasant-campus-geometry-bridge.json",
+      "bridge_sha256": "eaf4d0cb445b0780f1f42d8ae5c6f654e1065cfc8ca5e38cbb8209b22950b708",
+      "decision": "accepted",
+      "decision_reason": "Microsoft's first-party source places the ongoing second facility immediately adjacent to its first Mount Pleasant facility. The OSM object is named Microsoft Fairwater AI Phase 2, is tagged as data-centre construction, and lies in the same Mount Pleasant Fairwater development. This supports a manual branded-campus association only; the OSM Phase 2 label is not treated as proof that the polygon is the official second-facility footprint or that the two naming systems are phase-equivalent. The geometry is accepted only with the bridge's community_mapped authority class and campus_locator use scope; every rejected claim in the bridge remains rejected.",
+      "reviewed_at": "2026-08-20"
+    },
+    {
+      "overlay_id": "overlay:osm-way-1334234458-amazon-salem-campus-locator",
+      "source_project_stable_key": "curated:amazon-salem-township-innovation-campus:active-buildout",
+      "source_project_entity_id": "c73ac912-e44d-5477-84f5-c5beb4813518",
+      "physical_site_stable_key": "curated:amazon-salem-township-innovation-campus",
+      "physical_site_entity_id": "905f7110-cd88-5b3a-ad0b-0478d9a7a662",
+      "bridge_path": "sources/verified-construction-core-v0.5-amazon-salem-campus-geometry-bridge.json",
+      "bridge_sha256": "bed9dc4737b75c2762fcb6ef47475f3f62860bb2596367da109a327906e9353c",
+      "decision": "accepted",
+      "decision_reason": "Amazon's first-party project page identifies an AWS Salem Township innovation campus with an active buildout and an already operating campus at the same location. The OSM feature is a named Amazon AWS data-centre building operated by Amazon Web Services at 1125 Electron Avenue, Berwick, within the official source's approximate Salem Township campus locality. This is a manual operator-and-proximity campus association only; it does not identify the mapped building as part of the active buildout. The geometry is accepted only with the bridge's community_mapped authority class and campus_locator use scope; every rejected claim in the bridge remains rejected.",
+      "reviewed_at": "2026-08-20"
+    }
+  ]
+}

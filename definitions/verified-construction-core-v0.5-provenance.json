@@ -1,0 +1,87 @@
+{
+  "contract_id": "verified-construction-core-v0.5-provenance",
+  "review_scope": "Exact-hash incremental successor to v0.4. It adds two intended-only project workload bindings, two directly supported intended customer bindings, and explicit exclusions for the remaining modeled source-role candidates. Campus operating models and Saline campus capacities are never promoted to projects.",
+  "reviewed_as_of": "2026-08-20",
+  "base_contract": {
+    "path": "definitions/verified-construction-core-v0.4-provenance.json",
+    "sha256": "9d51d2e998c6d902a6410dfb3a2ce8dde8ee4b722d483bec65de4fda1d6e636e"
+  },
+  "workload_scope_bindings": [
+    {
+      "project_stable_key": "curated:related-openai-oracle-stargate-michigan-saline:current-build",
+      "source_input_path": "sources/curated-official-2026-07-19-related-saline-stargate.json",
+      "source_input_sha256": "3acea1d9dd42d17d75deb54e03a3f9e2af65d10eb990dbb5eaaa929d4a85b24f",
+      "evidence_key": "related-saline-stargate-construction-2026-06-01",
+      "evidence_id": "ec302d8d-d1c0-594f-88f7-708f6642e827",
+      "workload": "ai_specialized_unspecified",
+      "as_of_date": "2026-06-01",
+      "method": "company_disclosure",
+      "confidence": 0.99,
+      "deployment_scope": "intended",
+      "semantic_scope": "The project-specific Stargate disclosure identifies the under-construction Saline campus as infrastructure being delivered for Oracle and OpenAI. This supports one intended ai_specialized_unspecified project workload only; it does not establish operational compute, a training-versus-inference split, installed accelerators, current users, utilization, or workload share."
+    },
+    {
+      "project_stable_key": "curated:amazon-salem-township-innovation-campus:active-buildout",
+      "source_input_path": "sources/curated-official-2026-07-19-amazon-salem-township-pa.json",
+      "source_input_sha256": "e498e3974341d98659bc81ce86e4c685217b3cfe62c6a39c3c05f4d161fc16d1",
+      "evidence_key": "amazon-salem-township-active-construction-2026-07-19",
+      "evidence_id": "4197607a-032d-53c9-9fb8-681a6311e78a",
+      "workload": "mixed",
+      "as_of_date": "2026-07-19",
+      "method": "company_disclosure",
+      "confidence": 0.95,
+      "deployment_scope": "intended",
+      "semantic_scope": "The project-specific campus disclosure supports one mixed intended workload classification for the active buildout only. It does not establish an operational workload, cloud-versus-AI share, training-versus-inference split, installed hardware, current customer, current use, utilization, or workload share."
+    }
+  ],
+  "role_bindings": [
+    {
+      "project_stable_key": "curated:related-openai-oracle-stargate-michigan-saline:current-build",
+      "source_input_path": "sources/curated-official-2026-07-19-related-saline-stargate.json",
+      "source_input_sha256": "3acea1d9dd42d17d75deb54e03a3f9e2af65d10eb990dbb5eaaa929d4a85b24f",
+      "role": "customer",
+      "party": "OpenAI",
+      "evidence_key": "related-saline-stargate-construction-2026-06-01",
+      "evidence_id": "ec302d8d-d1c0-594f-88f7-708f6642e827",
+      "relationship_scope": "intended",
+      "semantic_scope": "The project-specific disclosure says the under-construction campus is being delivered for Oracle and OpenAI. This supports OpenAI as an intended customer only; it does not establish current occupancy, current service, tenant or user status, operation, or operational workload activity."
+    },
+    {
+      "project_stable_key": "curated:related-openai-oracle-stargate-michigan-saline:current-build",
+      "source_input_path": "sources/curated-official-2026-07-19-related-saline-stargate.json",
+      "source_input_sha256": "3acea1d9dd42d17d75deb54e03a3f9e2af65d10eb990dbb5eaaa929d4a85b24f",
+      "role": "customer",
+      "party": "Oracle",
+      "evidence_key": "related-saline-stargate-construction-2026-06-01",
+      "evidence_id": "ec302d8d-d1c0-594f-88f7-708f6642e827",
+      "relationship_scope": "intended",
+      "semantic_scope": "The project-specific disclosure says the under-construction campus is being delivered for Oracle and OpenAI. This supports Oracle as an intended customer only; it does not establish current occupancy, current service, tenant or user status, operation, or operational workload activity."
+    }
+  ],
+  "excluded_source_roles": [
+    {
+      "project_stable_key": "curated:microsoft-mount-pleasant-datacenter-campus:second-facility",
+      "source_input_path": "sources/curated-official-2026-07-19-microsoft-mount-pleasant-second.json",
+      "source_input_sha256": "9ad3498bc28f1e00993922af38f4010c2ac81756c8cc9c5da70838d5b04c649d",
+      "role": "operator",
+      "party": "Microsoft",
+      "candidate_evidence_key": "microsoft-mount-pleasant-second-facility-construction-2026-06-23",
+      "candidate_evidence_id": "d7e6bc2e-63fd-5cb3-a118-03bec050c1e6",
+      "relationship_scope": "not_established",
+      "semantic_scope": "The Microsoft disclosure establishes ongoing construction of the second facility and distinguishes it from a first facility that is operational. The selected campus locator and campus-level hyperscaler classification add no project-role evidence.",
+      "reason": "The selected evidence does not explicitly assign current or intended operating responsibility for the unfinished second facility. Operation of the separate first facility and a campus operating model cannot be promoted to this project."
+    },
+    {
+      "project_stable_key": "curated:amazon-salem-township-innovation-campus:active-buildout",
+      "source_input_path": "sources/curated-official-2026-07-19-amazon-salem-township-pa.json",
+      "source_input_sha256": "e498e3974341d98659bc81ce86e4c685217b3cfe62c6a39c3c05f4d161fc16d1",
+      "role": "operator",
+      "party": "Amazon Web Services",
+      "candidate_evidence_key": "amazon-salem-township-active-construction-2026-07-19",
+      "candidate_evidence_id": "4197607a-032d-53c9-9fb8-681a6311e78a",
+      "relationship_scope": "not_established",
+      "semantic_scope": "The Amazon page establishes an active buildout while separately saying Amazon already operates a campus at the location. The selected OSM building is a campus locator only, and the campus hyperscaler classification remains campus-scoped.",
+      "reason": "Existing campus operation does not separately establish current or intended operating responsibility for the unfinished active-buildout project. Neither the campus operating model nor the OSM operator tag may be promoted to the project."
+    }
+  ]
+}
