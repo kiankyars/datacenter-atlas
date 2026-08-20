@@ -190,8 +190,8 @@ and removes none. The completed
 [explicit catalog tranche](../satellite_review_runs/2026-07-21-open-seed-v71-active-explicit-final-v1/)
 was sampled from the predecessor v71 queue: it represented all 98 v71 active jobs, selected 11,
 completed all 11 with no failure or no-scene result, and left the other 87 pending. The corresponding
-[visible-change run](../satellite_change_runs/2026-07-21-open-seed-v71-active-explicit-001/) also
-completed 11 of 11. Its
+historical `2026-07-21-open-seed-v71-active-explicit-001` visible-change run also completed 11 of 11,
+but that intermediate payload is not distributed in the public clean clone. Its
 [identity-blind analyst review](../satellite_change_reviews/2026-07-21-open-seed-v71-active-explicit-11-review-v1/)
 retained seven visual results for manual follow-up and rejected four for site promotion. These are
 review dispositions, not seven construction sites: no Atlas row, identity, operator, lifecycle,
