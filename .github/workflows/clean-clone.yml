@@ -34,6 +34,8 @@ jobs:
             datacenter_atlas.tests.test_database \
             datacenter_atlas.tests.test_timestamp_boundaries \
             datacenter_atlas.tests.test_release \
+            datacenter_atlas.tests.test_recovered_legacy_evidence \
+            datacenter_atlas.tests.test_verified_construction_core \
             datacenter_atlas.tests.test_workspace_shim
       - name: Smoke-test the CLI
         run: datacenter_atlas/.venv/bin/python -m datacenter_atlas --help
@@ -46,9 +48,13 @@ jobs:
             datacenter_atlas/repository.py \
             datacenter_atlas/release.py \
             datacenter_atlas/timestamps.py \
+            datacenter_atlas/verified_construction_core.py \
             europe_latam_official_discovery_20260721.py \
+            scripts/build_verified_construction_core.py \
             tests/test_models.py \
             tests/test_database.py \
             tests/test_timestamp_boundaries.py \
             tests/test_release.py \
+            tests/test_recovered_legacy_evidence.py \
+            tests/test_verified_construction_core.py \
             tests/test_workspace_shim.py

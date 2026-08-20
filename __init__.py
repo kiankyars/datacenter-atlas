@@ -123,6 +123,7 @@ for _module_name in (
     "thailand_onep_smart_eia",
     "timestamps",
     "uva",
+    "verified_construction_core",
     "virginia_deq_air_permits",
     "wikidata",
     "within_release_resolution",

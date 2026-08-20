@@ -1,0 +1,62 @@
+{
+  "contract_id": "verified-construction-core-reviewed-overlays-v1",
+  "purpose": "Append-only review queue for exact external geometry links. Frozen source releases are never edited and fuzzy matching is never sufficient.",
+  "required_fields": [
+    "overlay_id",
+    "source_project_stable_key",
+    "source_entity_id",
+    "geometry_release_id",
+    "geometry_release_manifest_sha256",
+    "geometry_stable_key",
+    "identity_basis",
+    "decision",
+    "decision_reason",
+    "reviewed_at"
+  ],
+  "allowed_decisions": [
+    "queued",
+    "accepted",
+    "excluded"
+  ],
+  "overlays": [
+    {
+      "overlay_id": "overlay:osm-way-1383040176-development-project",
+      "source_project_stable_key": "osm:way/1383040176:development-project",
+      "source_entity_id": "867d91cb-7a17-59db-a92e-4a50a499f54f",
+      "geometry_release_id": "global-open-v3",
+      "geometry_release_manifest_sha256": "fe14c1b264ce7d5f589c717147e584f7ace97b832b0987389f2ee03ded6bb562",
+      "geometry_stable_key": "osm:way/1383040176:development-project",
+      "identity_basis": "Exact stable-key and source-entity UUID equality between open-seed-v97 and global-open-v3; no fuzzy name or proximity match.",
+      "geometry_scope": "OpenStreetMap development-project polygon for Microsoft L’Ancienne-Lorette, ODbL-1.0.",
+      "decision": "excluded",
+      "decision_reason": "The exact geometry link is credible, but the current Sentinel-2 scene is unusable and therefore supplies no independent recent physical-change check.",
+      "reviewed_at": "2026-08-19",
+      "satellite_review": {
+        "outcome": "imagery_unusable",
+        "current_scene_id": "S2A_19TCM_20260720_1_L2A",
+        "valid_pixel_percent": 8.24
+      }
+    },
+    {
+      "overlay_id": "overlay:osm-way-1383040174-development-project",
+      "source_project_stable_key": "osm:way/1383040174:development-project",
+      "source_entity_id": "b3656b35-f3ad-5119-8918-ac5237bf2a7f",
+      "geometry_release_id": "global-open-v3",
+      "geometry_release_manifest_sha256": "fe14c1b264ce7d5f589c717147e584f7ace97b832b0987389f2ee03ded6bb562",
+      "geometry_stable_key": "osm:way/1383040174:development-project",
+      "identity_basis": "Exact stable-key and source-entity UUID equality between open-seed-v97 and global-open-v3; no fuzzy name or proximity match.",
+      "geometry_scope": "OpenStreetMap development-project polygon for Microsoft Lévis Charny, ODbL-1.0.",
+      "decision": "excluded",
+      "decision_reason": "Usable recent Sentinel-2 imagery showed no filtered recent change component; a longer-baseline component does not prove activity inside the 90-day current-status window.",
+      "reviewed_at": "2026-08-19",
+      "satellite_review": {
+        "outcome": "usable_no_recent_change",
+        "current_scene_id": "S2B_19TCM_20260720_0_L2A",
+        "baseline_scene_id": "S2C_19TCM_20260526_0_L2A",
+        "valid_pixel_percent": 98.7,
+        "filtered_recent_change_components": 0,
+        "long_baseline_component_square_metres": 29800
+      }
+    }
+  ]
+}
