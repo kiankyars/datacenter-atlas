@@ -21,6 +21,8 @@ from pathlib import Path
 from typing import Any, Mapping, Sequence
 from uuid import UUID
 
+from .repository import stable_id as atlas_stable_id
+
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE_RELEASE_ID = "2026-07-22-open-seed-v97"
@@ -34,19 +36,44 @@ LEGACY_PREVIEW_V01_DIR = (
 LEGACY_PREVIEW_V01_MANIFEST_SHA256 = (
     "50c37999d6e14156910cdd0c66fb973c554414dcc29917226746afc15dc673b7"
 )
+LEGACY_PREVIEW_V02_DIR = (
+    ROOT / "verified_construction_core" / "2026-08-20-preview-v0.2"
+)
+LEGACY_PREVIEW_V02_MANIFEST_SHA256 = (
+    "e69b6d0570710dd3ef4802601652852d24047fb19f1e9bf6ebd5dad9ac29ae8d"
+)
 REVIEW_DEFINITION = (
-    ROOT / "definitions" / "verified-construction-core-v0.2-reviewed-sites.json"
+    ROOT / "definitions" / "verified-construction-core-v0.3-reviewed-sites.json"
 )
 IMAGERY_REVIEW_DEFINITION = (
-    ROOT / "definitions" / "verified-construction-core-v0.2-imagery-reviews.json"
+    ROOT / "definitions" / "verified-construction-core-v0.3-imagery-reviews.json"
+)
+PROVENANCE_DEFINITION = (
+    ROOT / "definitions" / "verified-construction-core-v0.3-provenance.json"
 )
 OVERLAY_DEFINITION = (
     ROOT / "definitions" / "verified-construction-core-reviewed-overlays-v1.json"
 )
-PREVIEW_ID = "2026-08-20-preview-v0.2"
+V03_REVIEW_DEFINITION_SHA256 = (
+    "ee56ff41dc6ea59df67de6ab462540c8a3fe3747ca3e1504cb9228481c25c06b"
+)
+V03_IMAGERY_REVIEW_DEFINITION_SHA256 = (
+    "eec896bd0c1b26fe95110ab3023e3d713c9ff4c6965412683b4d5e945ad09d7a"
+)
+V03_PROVENANCE_DEFINITION_SHA256 = (
+    "50c3e82d2a9ae6a759b36344e34556ed527027b5c6397153d051adf61dce6561"
+)
+V03_OVERLAY_DEFINITION_SHA256 = (
+    "57540f73c5cac475bd8e9e64fc5d8eb2188158ef977b477a0c0e8d7158caf1b7"
+)
+PREVIEW_ID = "2026-08-20-preview-v0.3"
 PREVIEW_DIR = ROOT / "verified_construction_core" / PREVIEW_ID
 REVIEW_DATE = date(2026, 8, 20)
 MAX_STATUS_AGE_DAYS = 90
+V03_DELTA_COUNTRY_ISO_A2 = {
+    "Chile": "CL",
+    "United Kingdom": "GB",
+}
 
 PHYSICAL_STATUSES = {
     "civil_works",
@@ -112,8 +139,8 @@ FINAL_REQUIREMENTS = {
 PREVIEW_SOURCE_PIPELINE_ROW_COUNT = 531
 PREVIEW_SELECTION_FIRST_FAILURE_COUNTS = {
     "entity_kind_not_project": 49,
-    "not_in_reviewed_site_geometry_allowlist": 131,
-    "selected": 12,
+    "not_in_reviewed_site_geometry_allowlist": 128,
+    "selected": 15,
     "status_not_physical": 12,
     "status_outside_90_day_window": 327,
 }
@@ -166,6 +193,7 @@ PROJECT_FIELDS = (
     "operating_model_evidence_id",
     "workloads_json",
     "workload_unknown_reason",
+    "role_claims_json",
     "power_observations_json",
     "power_unknown_reason",
     "annual_energy_observations_json",
@@ -241,6 +269,43 @@ def _sha256_file(path: Path) -> str:
         for chunk in iter(lambda: handle.read(1024 * 1024), b""):
             digest.update(chunk)
     return digest.hexdigest()
+
+
+def _v03_definition_pins() -> tuple[tuple[str, Path, str], ...]:
+    return (
+        (
+            "review_definition_sha256",
+            REVIEW_DEFINITION,
+            V03_REVIEW_DEFINITION_SHA256,
+        ),
+        (
+            "imagery_review_definition_sha256",
+            IMAGERY_REVIEW_DEFINITION,
+            V03_IMAGERY_REVIEW_DEFINITION_SHA256,
+        ),
+        (
+            "provenance_definition_sha256",
+            PROVENANCE_DEFINITION,
+            V03_PROVENANCE_DEFINITION_SHA256,
+        ),
+        (
+            "overlay_definition_sha256",
+            OVERLAY_DEFINITION,
+            V03_OVERLAY_DEFINITION_SHA256,
+        ),
+    )
+
+
+def _validate_v03_definition_pins() -> None:
+    for field, definition, expected_sha256 in _v03_definition_pins():
+        if (
+            definition.is_symlink()
+            or not definition.is_file()
+            or _sha256_file(definition) != expected_sha256
+        ):
+            raise VerifiedConstructionCoreError(
+                f"preview {field} source hash differs"
+            )
 
 
 def _json_bytes(value: object) -> bytes:
@@ -373,9 +438,17 @@ def _validate_typed_observation(
     return observation
 
 
-def _validate_workload_observation(observation: Any) -> dict[str, Any]:
-    fields = {"as_of_date", "confidence", "evidence_id", "method", "workload"}
-    if not isinstance(observation, dict) or set(observation) != fields:
+SOURCE_WORKLOAD_FIELDS = {
+    "as_of_date",
+    "confidence",
+    "evidence_id",
+    "method",
+    "workload",
+}
+
+
+def _validate_source_workload_observation(observation: Any) -> dict[str, Any]:
+    if not isinstance(observation, dict) or set(observation) != SOURCE_WORKLOAD_FIELDS:
         raise VerifiedConstructionCoreError("workload observation schema differs")
     confidence = observation["confidence"]
     if not _finite_number(confidence) or not 0 <= confidence <= 1:
@@ -385,6 +458,38 @@ def _validate_workload_observation(observation: Any) -> dict[str, Any]:
             raise VerifiedConstructionCoreError(f"workload {field} differs")
     _calendar_date(observation["as_of_date"], "workload as_of_date")
     return observation
+
+
+def _validate_workload_observation(observation: Any) -> dict[str, Any]:
+    fields = SOURCE_WORKLOAD_FIELDS | {"deployment_scope"}
+    if not isinstance(observation, dict) or set(observation) != fields:
+        raise VerifiedConstructionCoreError("workload observation schema differs")
+    _validate_source_workload_observation(
+        {field: observation[field] for field in SOURCE_WORKLOAD_FIELDS}
+    )
+    if observation["deployment_scope"] not in {
+        "intended",
+        "operational",
+        "unknown",
+    }:
+        raise VerifiedConstructionCoreError("workload deployment scope differs")
+    return observation
+
+
+def _validate_role_claim(claim: Any) -> dict[str, Any]:
+    fields = {"evidence_id", "party", "relationship_scope", "role"}
+    if not isinstance(claim, dict) or set(claim) != fields:
+        raise VerifiedConstructionCoreError("role claim schema differs")
+    for field in ("evidence_id", "party", "relationship_scope", "role"):
+        if not isinstance(claim[field], str) or not claim[field]:
+            raise VerifiedConstructionCoreError(f"role claim {field} differs")
+    if claim["role"] not in ROLE_COLUMNS or claim["relationship_scope"] not in {
+        "intended",
+        "current",
+        "unknown",
+    }:
+        raise VerifiedConstructionCoreError("role claim semantics differ")
+    return claim
 
 
 def _verify_source_release() -> dict[str, Any]:
@@ -462,22 +567,81 @@ def _geometry_release_entities(
     return entities_by_key
 
 
-def _reviewed_acceptances() -> list[dict[str, Any]]:
-    reviewed = _load_json(REVIEW_DEFINITION)
-    if not isinstance(reviewed, dict) or set(reviewed) != {
+REVIEWED_SITE_LEGACY_FIELDS = {
+    "project_stable_key",
+    "physical_site_stable_key",
+    "source_input_path",
+    "source_input_sha256",
+    "geometry_evidence_key",
+    "geometry_method",
+    "geometry_scope_class",
+    "horizontal_uncertainty_metres",
+    "precision_scope",
+    "decision_basis",
+}
+REVIEWED_SITE_FIELDS = REVIEWED_SITE_LEGACY_FIELDS | {
+    "geometry_entity",
+    "geometry_derivation",
+}
+
+
+def _reviewed_acceptances_from(
+    path: Path, seen: frozenset[Path] = frozenset()
+) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+    path = path.resolve()
+    definitions_root = (ROOT / "definitions").resolve()
+    if path.parent != definitions_root or path in seen:
+        raise VerifiedConstructionCoreError("reviewed-site contract path or cycle differs")
+    if not path.is_file():
+        raise VerifiedConstructionCoreError("reviewed-site contract is absent")
+    reviewed = _load_json(path)
+    if not isinstance(reviewed, dict):
+        raise VerifiedConstructionCoreError("reviewed-site contract differs")
+    contract_id = reviewed.get("contract_id")
+    expected_id = path.stem
+    if contract_id != expected_id:
+        raise VerifiedConstructionCoreError("reviewed-site contract id differs")
+    reviewed_as_of = _calendar_date(
+        reviewed.get("reviewed_as_of"), "reviewed-site reviewed_as_of"
+    )
+    if reviewed_as_of > REVIEW_DATE:
+        raise VerifiedConstructionCoreError("reviewed-site contract date differs")
+    acceptances = reviewed.get("acceptances")
+    if not isinstance(acceptances, list) or not acceptances:
+        raise VerifiedConstructionCoreError("reviewed-site acceptances are empty")
+
+    if "base_contract" not in reviewed:
+        if set(reviewed) != {
+            "contract_id",
+            "review_scope",
+            "reviewed_as_of",
+            "acceptances",
+        } or contract_id != "verified-construction-core-v0.1-reviewed-sites":
+            raise VerifiedConstructionCoreError("reviewed-site leaf contract differs")
+        normalized: list[dict[str, Any]] = []
+        for index, acceptance in enumerate(acceptances):
+            if not isinstance(acceptance, dict) or set(acceptance) != REVIEWED_SITE_LEGACY_FIELDS:
+                raise VerifiedConstructionCoreError(
+                    f"reviewed-site leaf acceptance {index} has unexpected fields"
+                )
+            normalized.append(
+                {
+                    **acceptance,
+                    "geometry_entity": "project",
+                    "geometry_derivation": "direct_geometry",
+                }
+            )
+        return normalized, normalized
+
+    if set(reviewed) != {
         "contract_id",
         "review_scope",
         "reviewed_as_of",
         "base_contract",
         "acceptances",
     }:
-        raise VerifiedConstructionCoreError("reviewed-site contract fields differ")
-    if reviewed.get("contract_id") != "verified-construction-core-v0.2-reviewed-sites":
-        raise VerifiedConstructionCoreError("reviewed-site contract id differs")
-    if reviewed.get("reviewed_as_of") != REVIEW_DATE.isoformat():
-        raise VerifiedConstructionCoreError("reviewed-site contract date differs")
-
-    base = reviewed.get("base_contract")
+        raise VerifiedConstructionCoreError("reviewed-site successor fields differ")
+    base = reviewed["base_contract"]
     if not isinstance(base, dict) or set(base) != {
         "path",
         "sha256",
@@ -485,70 +649,33 @@ def _reviewed_acceptances() -> list[dict[str, Any]]:
         "default_geometry_derivation",
     }:
         raise VerifiedConstructionCoreError("reviewed-site base contract differs")
-    if base.get("path") != "definitions/verified-construction-core-v0.1-reviewed-sites.json":
-        raise VerifiedConstructionCoreError("reviewed-site base path differs")
     if base.get("default_geometry_entity") != "project" or base.get(
         "default_geometry_derivation"
     ) != "direct_geometry":
         raise VerifiedConstructionCoreError("reviewed-site base defaults differ")
-    base_path = ROOT / base["path"]
-    if not base_path.is_file() or _sha256_file(base_path) != base.get("sha256"):
+    relative = Path(base.get("path", ""))
+    if relative.is_absolute() or ".." in relative.parts:
+        raise VerifiedConstructionCoreError("reviewed-site base path differs")
+    base_path = (ROOT / relative).resolve()
+    if (
+        base_path.parent != definitions_root
+        or not base_path.is_file()
+        or _sha256_file(base_path) != base.get("sha256")
+    ):
         raise VerifiedConstructionCoreError("reviewed-site base hash differs")
-    base_reviewed = _load_json(base_path)
-    if not isinstance(base_reviewed, dict) or set(base_reviewed) != {
-        "contract_id",
-        "review_scope",
-        "reviewed_as_of",
-        "acceptances",
-    }:
-        raise VerifiedConstructionCoreError("reviewed-site base fields differ")
-    if base_reviewed.get("contract_id") != "verified-construction-core-v0.1-reviewed-sites":
-        raise VerifiedConstructionCoreError("reviewed-site base id differs")
-
-    legacy_fields = {
-        "project_stable_key",
-        "physical_site_stable_key",
-        "source_input_path",
-        "source_input_sha256",
-        "geometry_evidence_key",
-        "geometry_method",
-        "geometry_scope_class",
-        "horizontal_uncertainty_metres",
-        "precision_scope",
-        "decision_basis",
-    }
-    current_fields = legacy_fields | {"geometry_entity", "geometry_derivation"}
-    base_acceptances = base_reviewed.get("acceptances")
-    delta_acceptances = reviewed.get("acceptances")
-    if not isinstance(base_acceptances, list) or not base_acceptances:
-        raise VerifiedConstructionCoreError("reviewed-site base acceptances are empty")
-    if not isinstance(delta_acceptances, list) or not delta_acceptances:
-        raise VerifiedConstructionCoreError("reviewed-site delta acceptances are empty")
-
-    acceptances: list[dict[str, Any]] = []
-    for index, acceptance in enumerate(base_acceptances):
-        if not isinstance(acceptance, dict) or set(acceptance) != legacy_fields:
-            raise VerifiedConstructionCoreError(
-                f"reviewed-site base acceptance {index} has unexpected fields"
-            )
-        acceptances.append(
-            {
-                **acceptance,
-                "geometry_entity": base["default_geometry_entity"],
-                "geometry_derivation": base["default_geometry_derivation"],
-            }
-        )
-    for index, acceptance in enumerate(delta_acceptances):
-        if not isinstance(acceptance, dict) or set(acceptance) != current_fields:
+    inherited, _ = _reviewed_acceptances_from(base_path, seen | {path})
+    delta: list[dict[str, Any]] = []
+    for index, acceptance in enumerate(acceptances):
+        if not isinstance(acceptance, dict) or set(acceptance) != REVIEWED_SITE_FIELDS:
             raise VerifiedConstructionCoreError(
                 f"reviewed-site delta acceptance {index} has unexpected fields"
             )
-        acceptances.append(dict(acceptance))
-
-    keys = [row["project_stable_key"] for row in acceptances]
+        delta.append(dict(acceptance))
+    flattened = [*inherited, *delta]
+    keys = [row["project_stable_key"] for row in flattened]
     if len(set(keys)) != len(keys):
         raise VerifiedConstructionCoreError("reviewed-site project keys are not unique")
-    for acceptance in acceptances:
+    for acceptance in flattened:
         if acceptance["geometry_entity"] not in {"project", "campus"}:
             raise VerifiedConstructionCoreError("reviewed-site geometry entity differs")
         if acceptance["geometry_derivation"] not in {
@@ -556,7 +683,693 @@ def _reviewed_acceptances() -> list[dict[str, Any]]:
             "coordinates_to_point",
         }:
             raise VerifiedConstructionCoreError("reviewed-site geometry derivation differs")
+    return flattened, delta
+
+
+def _reviewed_acceptances() -> list[dict[str, Any]]:
+    acceptances, _ = _reviewed_acceptances_from(REVIEW_DEFINITION)
+    if REVIEW_DEFINITION.stem != "verified-construction-core-v0.3-reviewed-sites":
+        raise VerifiedConstructionCoreError("current reviewed-site contract differs")
+    reviewed = _load_json(REVIEW_DEFINITION)
+    if reviewed.get("reviewed_as_of") != REVIEW_DATE.isoformat():
+        raise VerifiedConstructionCoreError("current reviewed-site date differs")
     return acceptances
+
+
+ROLE_COLUMNS = {
+    "owner": "owner",
+    "operator": "operator",
+    "user": "users",
+    "tenant": "tenants",
+    "customer": "customers",
+}
+
+
+def _repository_input(path_text: str, expected_sha256: str, field: str) -> Path:
+    relative = Path(path_text)
+    if relative.is_absolute() or ".." in relative.parts:
+        raise VerifiedConstructionCoreError(f"{field} path escapes the repository")
+    path = ROOT / relative
+    if (
+        path.is_symlink()
+        or not path.is_file()
+        or _sha256_file(path) != expected_sha256
+    ):
+        raise VerifiedConstructionCoreError(f"{field} source hash differs")
+    return path
+
+
+def _evidence_from_pinned_source(
+    binding: Mapping[str, Any], *, evidence_key_field: str, evidence_id_field: str
+) -> tuple[dict[str, Any], dict[str, Any]]:
+    path = _repository_input(
+        str(binding["source_input_path"]),
+        str(binding["source_input_sha256"]),
+        "provenance",
+    )
+    source = _load_json(path)
+    project = source.get("project")
+    if not isinstance(project, dict) or project.get("stable_key") != binding.get(
+        "project_stable_key"
+    ):
+        raise VerifiedConstructionCoreError("provenance project identity differs")
+    evidence = source.get("evidence")
+    if not isinstance(evidence, list):
+        raise VerifiedConstructionCoreError("provenance source evidence differs")
+    key = binding[evidence_key_field]
+    matches = [row for row in evidence if isinstance(row, dict) and row.get("key") == key]
+    if len(matches) != 1:
+        raise VerifiedConstructionCoreError("provenance evidence key differs")
+    pinned = matches[0]
+    evidence_id = binding[evidence_id_field]
+    if evidence_id != atlas_stable_id(
+        "evidence", "curated-official", key, pinned.get("content_hash")
+    ):
+        raise VerifiedConstructionCoreError("provenance evidence id differs")
+    required = {
+        "kind",
+        "title",
+        "source_url",
+        "publisher",
+        "source_family",
+        "license",
+        "attribution",
+        "retrieved_at",
+        "content_hash",
+    }
+    if any(not isinstance(pinned.get(field), str) or not pinned[field] for field in required):
+        raise VerifiedConstructionCoreError("provenance evidence fields differ")
+    published_at = pinned.get("published_at")
+    if published_at is not None and not isinstance(published_at, str):
+        raise VerifiedConstructionCoreError("provenance evidence publication date differs")
+    row = {
+        "evidence_id": evidence_id,
+        "kind": pinned["kind"],
+        "title": pinned["title"],
+        "source_url": pinned["source_url"],
+        "publisher": pinned["publisher"],
+        "source_family": pinned["source_family"],
+        "license": pinned["license"],
+        "attribution": pinned["attribution"],
+        "published_at": published_at or "",
+        "retrieved_at": pinned["retrieved_at"],
+        "content_hash": pinned["content_hash"],
+    }
+    return row, pinned
+
+
+def _provenance_contract() -> dict[str, Any]:
+    validate_frozen_v02(LEGACY_PREVIEW_V02_DIR)
+    reviewed = _load_json(PROVENANCE_DEFINITION)
+    expected_fields = {
+        "contract_id",
+        "review_scope",
+        "reviewed_as_of",
+        "base_contract",
+        "workload_scope_bindings",
+        "role_bindings",
+        "excluded_source_roles",
+    }
+    if not isinstance(reviewed, dict) or set(reviewed) != expected_fields:
+        raise VerifiedConstructionCoreError("provenance contract fields differ")
+    if (
+        reviewed.get("contract_id") != "verified-construction-core-v0.3-provenance"
+        or reviewed.get("reviewed_as_of") != REVIEW_DATE.isoformat()
+    ):
+        raise VerifiedConstructionCoreError("provenance contract identity differs")
+    base = reviewed.get("base_contract")
+    if not isinstance(base, dict) or set(base) != {
+        "preview_manifest",
+        "reviewed_sites_definition",
+    }:
+        raise VerifiedConstructionCoreError("provenance base contract differs")
+    expected_base = {
+        "preview_manifest": (
+            "verified_construction_core/2026-08-20-preview-v0.2/manifest.json",
+            LEGACY_PREVIEW_V02_MANIFEST_SHA256,
+        ),
+        "reviewed_sites_definition": (
+            "definitions/verified-construction-core-v0.2-reviewed-sites.json",
+            "13f4d6e82c9057b1dd95319e19e30c2bae0ac0f1848d6e6dee2bbc10b5dde1d0",
+        ),
+    }
+    for name, (expected_path, expected_sha256) in expected_base.items():
+        item = base.get(name)
+        if not isinstance(item, dict) or set(item) != {"path", "sha256"}:
+            raise VerifiedConstructionCoreError("provenance base item differs")
+        if item != {"path": expected_path, "sha256": expected_sha256}:
+            raise VerifiedConstructionCoreError("provenance base pin differs")
+        _repository_input(expected_path, expected_sha256, "provenance base")
+
+    workload_fields = {
+        "project_stable_key",
+        "source_input_path",
+        "source_input_sha256",
+        "evidence_key",
+        "evidence_id",
+        "workload",
+        "as_of_date",
+        "method",
+        "confidence",
+        "deployment_scope",
+        "semantic_scope",
+    }
+    role_fields = {
+        "project_stable_key",
+        "source_input_path",
+        "source_input_sha256",
+        "role",
+        "party",
+        "evidence_key",
+        "evidence_id",
+        "relationship_scope",
+        "semantic_scope",
+    }
+    excluded_fields = {
+        "project_stable_key",
+        "source_input_path",
+        "source_input_sha256",
+        "role",
+        "party",
+        "candidate_evidence_key",
+        "candidate_evidence_id",
+        "relationship_scope",
+        "semantic_scope",
+        "reason",
+    }
+    workload_bindings = reviewed.get("workload_scope_bindings")
+    role_bindings = reviewed.get("role_bindings")
+    exclusions = reviewed.get("excluded_source_roles")
+    if not all(isinstance(rows, list) for rows in (workload_bindings, role_bindings, exclusions)):
+        raise VerifiedConstructionCoreError("provenance binding collections differ")
+    evidence_rows: dict[str, dict[str, Any]] = {}
+    workload_keys: set[tuple[str, str, str]] = set()
+    for index, binding in enumerate(workload_bindings):
+        if not isinstance(binding, dict) or set(binding) != workload_fields:
+            raise VerifiedConstructionCoreError(
+                f"workload provenance binding {index} differs"
+            )
+        key = (
+            binding["project_stable_key"],
+            binding["evidence_id"],
+            binding["workload"],
+        )
+        if key in workload_keys or binding["deployment_scope"] != "intended":
+            raise VerifiedConstructionCoreError("workload provenance identity differs")
+        workload_keys.add(key)
+        _calendar_date(binding["as_of_date"], "workload provenance as_of_date")
+        if not _finite_number(binding["confidence"]) or not 0 <= binding["confidence"] <= 1:
+            raise VerifiedConstructionCoreError("workload provenance confidence differs")
+        evidence_row, pinned = _evidence_from_pinned_source(
+            binding,
+            evidence_key_field="evidence_key",
+            evidence_id_field="evidence_id",
+        )
+        metadata = pinned.get("metadata")
+        if not isinstance(metadata, dict) or metadata.get("workload_scope") != binding[
+            "semantic_scope"
+        ]:
+            raise VerifiedConstructionCoreError("workload provenance scope differs")
+        evidence_rows[evidence_row["evidence_id"]] = evidence_row
+
+    role_keys: set[tuple[str, str, str]] = set()
+    for index, binding in enumerate(role_bindings):
+        if not isinstance(binding, dict) or set(binding) != role_fields:
+            raise VerifiedConstructionCoreError(f"role provenance binding {index} differs")
+        key = (
+            binding["project_stable_key"],
+            binding["role"],
+            binding["party"],
+        )
+        if (
+            key in role_keys
+            or binding["role"] not in ROLE_COLUMNS
+            or binding["relationship_scope"] != "intended"
+        ):
+            raise VerifiedConstructionCoreError("role provenance identity differs")
+        role_keys.add(key)
+        evidence_row, pinned = _evidence_from_pinned_source(
+            binding,
+            evidence_key_field="evidence_key",
+            evidence_id_field="evidence_id",
+        )
+        metadata = pinned.get("metadata")
+        if not isinstance(metadata, dict) or metadata.get("role_scope") != binding[
+            "semantic_scope"
+        ]:
+            raise VerifiedConstructionCoreError("role provenance scope differs")
+        existing = evidence_rows.get(evidence_row["evidence_id"])
+        if existing is not None and existing != evidence_row:
+            raise VerifiedConstructionCoreError("provenance evidence collision")
+        evidence_rows[evidence_row["evidence_id"]] = evidence_row
+
+    excluded_keys: set[tuple[str, str, str]] = set()
+    for index, exclusion in enumerate(exclusions):
+        if not isinstance(exclusion, dict) or set(exclusion) != excluded_fields:
+            raise VerifiedConstructionCoreError(f"role exclusion {index} differs")
+        key = (
+            exclusion["project_stable_key"],
+            exclusion["role"],
+            exclusion["party"],
+        )
+        if (
+            key in excluded_keys
+            or key in role_keys
+            or exclusion["role"] not in ROLE_COLUMNS
+            or exclusion["relationship_scope"] != "not_established"
+            or not isinstance(exclusion["reason"], str)
+            or not exclusion["reason"]
+        ):
+            raise VerifiedConstructionCoreError("role exclusion identity differs")
+        excluded_keys.add(key)
+        _evidence_from_pinned_source(
+            exclusion,
+            evidence_key_field="candidate_evidence_key",
+            evidence_id_field="candidate_evidence_id",
+        )
+    base_projects = {
+        row["project_stable_key"]: row
+        for row in _load_csv(LEGACY_PREVIEW_V02_DIR / "projects.csv")
+    }
+    base_workloads: set[tuple[str, str, str, str, str, float]] = set()
+    base_roles: set[tuple[str, str, str]] = set()
+    for project_key, project in base_projects.items():
+        workloads = _parse_json_field(project["workloads_json"], "base workloads")
+        if not isinstance(workloads, list):
+            raise VerifiedConstructionCoreError("provenance base workloads differ")
+        for workload in workloads:
+            _validate_source_workload_observation(workload)
+            base_workloads.add(
+                (
+                    project_key,
+                    workload["evidence_id"],
+                    workload["workload"],
+                    workload["as_of_date"],
+                    workload["method"],
+                    workload["confidence"],
+                )
+            )
+        for role, column in ROLE_COLUMNS.items():
+            for party in project[column].split(";"):
+                if party.strip():
+                    base_roles.add((project_key, role, party.strip()))
+    bound_workloads = {
+        (
+            row["project_stable_key"],
+            row["evidence_id"],
+            row["workload"],
+            row["as_of_date"],
+            row["method"],
+            row["confidence"],
+        )
+        for row in workload_bindings
+    }
+    if bound_workloads != base_workloads:
+        raise VerifiedConstructionCoreError(
+            "provenance workload bindings differ from frozen v0.2"
+        )
+    if role_keys | excluded_keys != base_roles:
+        raise VerifiedConstructionCoreError(
+            "provenance role decisions differ from frozen v0.2"
+        )
+    return {
+        "workload_scope_bindings": workload_bindings,
+        "role_bindings": role_bindings,
+        "excluded_source_roles": exclusions,
+        "evidence_rows": evidence_rows,
+    }
+
+
+def _portable_source_inputs() -> list[dict[str, Any]]:
+    _, delta = _reviewed_acceptances_from(REVIEW_DEFINITION)
+    rows: list[dict[str, Any]] = []
+    for acceptance in delta:
+        path_text = acceptance["source_input_path"]
+        path = _repository_input(
+            path_text, acceptance["source_input_sha256"], "portable reviewed-site"
+        )
+        row: dict[str, Any] = {
+            "path": path_text,
+            "bytes": path.stat().st_size,
+            "sha256": acceptance["source_input_sha256"],
+            "parent_manifest_path": None,
+            "parent_manifest_sha256": None,
+        }
+        relative = Path(path_text)
+        if relative.parts and relative.parts[0] == "source_artifacts":
+            if len(relative.parts) < 4:
+                raise VerifiedConstructionCoreError(
+                    "portable source-artifact path differs"
+                )
+            parent = ROOT / relative.parts[0] / relative.parts[1]
+            manifest_path = parent / "manifest.json"
+            checksum_path = parent / "manifest.sha256"
+            manifest_sha256 = _sha256_file(manifest_path)
+            expected_parent_sha256 = (
+                "acb675580c993e3af150f8a3e25f53a8d66a6d7b595b644088a84f1294acd43d"
+            )
+            if (
+                manifest_sha256 != expected_parent_sha256
+                or checksum_path.read_text(encoding="utf-8")
+                != f"{expected_parent_sha256}  manifest.json\n"
+            ):
+                raise VerifiedConstructionCoreError(
+                    "portable source parent manifest differs"
+                )
+            manifest = _load_json(manifest_path)
+            member_path = str(relative.relative_to(Path(*relative.parts[:2])))
+            members = manifest.get("files")
+            matches = [
+                member
+                for member in members
+                if isinstance(member, dict) and member.get("path") == member_path
+            ] if isinstance(members, list) else []
+            if len(matches) != 1 or matches[0] != {
+                "path": member_path,
+                "bytes": path.stat().st_size,
+                "sha256": acceptance["source_input_sha256"],
+            }:
+                raise VerifiedConstructionCoreError(
+                    "portable source parent membership differs"
+                )
+            row["parent_manifest_path"] = str(
+                manifest_path.relative_to(ROOT)
+            )
+            row["parent_manifest_sha256"] = expected_parent_sha256
+        rows.append(row)
+    return sorted(rows, key=lambda row: row["path"])
+
+
+def _validate_v03_inheritance(
+    projects: Sequence[Mapping[str, str]],
+    sites: Sequence[Mapping[str, str]],
+    evidence: Sequence[Mapping[str, str]],
+) -> None:
+    validate_frozen_v02(LEGACY_PREVIEW_V02_DIR)
+    base_projects = {
+        row["project_stable_key"]: row
+        for row in _load_csv(LEGACY_PREVIEW_V02_DIR / "projects.csv")
+    }
+    current = {row["project_stable_key"]: row for row in projects}
+    if not set(base_projects) < set(current):
+        raise VerifiedConstructionCoreError("preview v0.2 inheritance cohort differs")
+    intentionally_changed = {
+        "workloads_json",
+        "owner",
+        "operator",
+        "users",
+        "tenants",
+        "customers",
+    }
+    for key, base in base_projects.items():
+        inherited = current[key]
+        for field, value in base.items():
+            if field not in intentionally_changed and inherited.get(field) != value:
+                raise VerifiedConstructionCoreError(
+                    f"preview inherited project field differs: {field}"
+                )
+        base_workloads = _parse_json_field(base["workloads_json"], "base workloads")
+        current_workloads = _parse_json_field(
+            inherited["workloads_json"], "current workloads"
+        )
+        stripped = [
+            {field: workload[field] for field in SOURCE_WORKLOAD_FIELDS}
+            for workload in current_workloads
+        ]
+        if stripped != base_workloads:
+            raise VerifiedConstructionCoreError(
+                "preview inherited workload observations differ"
+            )
+
+    base_sites = {
+        row["site_id"]: row
+        for row in _load_csv(LEGACY_PREVIEW_V02_DIR / "sites.csv", SITE_FIELDS)
+    }
+    current_sites = {row["site_id"]: row for row in sites}
+    if not set(base_sites) < set(current_sites):
+        raise VerifiedConstructionCoreError("preview v0.2 site inheritance differs")
+    for site_id, base in base_sites.items():
+        if current_sites[site_id] != base:
+            raise VerifiedConstructionCoreError(
+                "preview inherited site fields differ"
+            )
+
+    base_evidence = {
+        row["evidence_id"]: row
+        for row in _load_csv(
+            LEGACY_PREVIEW_V02_DIR / "evidence.csv", EVIDENCE_FIELDS
+        )
+    }
+    current_evidence = {row["evidence_id"]: row for row in evidence}
+    if not set(base_evidence) < set(current_evidence):
+        raise VerifiedConstructionCoreError("preview v0.2 evidence inheritance differs")
+    mutable_usage_fields = {"roles_json", "project_ids_json"}
+    for evidence_id, base in base_evidence.items():
+        inherited = current_evidence[evidence_id]
+        if any(
+            inherited[field] != value
+            for field, value in base.items()
+            if field not in mutable_usage_fields
+        ):
+            raise VerifiedConstructionCoreError(
+                "preview inherited evidence content differs"
+            )
+
+
+def _validate_v03_delta_project(
+    row: Mapping[str, str],
+    acceptance: Mapping[str, Any],
+    evidence_by_id: Mapping[str, Mapping[str, str]],
+    expected_imagery_outcome: str,
+) -> None:
+    source_path = _repository_input(
+        acceptance["source_input_path"],
+        acceptance["source_input_sha256"],
+        "current reviewed-site",
+    )
+    source = _load_json(source_path)
+    project = source.get("project")
+    campus = source.get("campus")
+    source_evidence = source.get("evidence")
+    if not all(isinstance(value, dict) for value in (project, campus)) or not isinstance(
+        source_evidence, list
+    ):
+        raise VerifiedConstructionCoreError("current reviewed-site source differs")
+    if (
+        project["stable_key"] != row["project_stable_key"]
+        or campus["stable_key"] != row["physical_site_stable_key"]
+        or project["name"] != row["name"]
+        or project["country"] != row["country"]
+    ):
+        raise VerifiedConstructionCoreError("current reviewed-site identity differs")
+    geometry_source = project if acceptance["geometry_entity"] == "project" else campus
+    if acceptance["geometry_derivation"] == "direct_geometry":
+        expected_geometry = geometry_source.get("geometry")
+    else:
+        coordinates = geometry_source.get("coordinates")
+        if not isinstance(coordinates, dict):
+            raise VerifiedConstructionCoreError("current reviewed-site coordinates differ")
+        expected_geometry = {
+            "type": "Point",
+            "coordinates": [coordinates.get("longitude"), coordinates.get("latitude")],
+        }
+    if (
+        _parse_json_field(row["geometry_json"], "geometry") != expected_geometry
+        or float(row["latitude"]) != float(geometry_source["coordinates"]["latitude"])
+        or float(row["longitude"])
+        != float(geometry_source["coordinates"]["longitude"])
+    ):
+        raise VerifiedConstructionCoreError("current reviewed-site geometry differs")
+
+    evidence_by_key = {
+        item["key"]: item
+        for item in source_evidence
+        if isinstance(item, dict) and isinstance(item.get("key"), str)
+    }
+
+    def verify_evidence(key: str, evidence_id: str) -> None:
+        pinned = evidence_by_key.get(key)
+        if pinned is None or evidence_id != atlas_stable_id(
+            "evidence", "curated-official", key, pinned.get("content_hash")
+        ):
+            raise VerifiedConstructionCoreError(
+                "current reviewed-site evidence identity differs"
+            )
+        expected = {
+            "evidence_id": evidence_id,
+            "kind": pinned["kind"],
+            "title": pinned["title"],
+            "source_url": pinned["source_url"],
+            "publisher": pinned["publisher"],
+            "source_family": pinned["source_family"],
+            "license": pinned["license"],
+            "attribution": pinned["attribution"],
+            "published_at": pinned.get("published_at") or "",
+            "retrieved_at": pinned["retrieved_at"],
+            "content_hash": pinned["content_hash"],
+        }
+        actual = evidence_by_id.get(evidence_id)
+        if actual is None or any(actual.get(field) != value for field, value in expected.items()):
+            raise VerifiedConstructionCoreError(
+                "current reviewed-site evidence content differs"
+            )
+
+    geometry_evidence_key = acceptance["geometry_evidence_key"]
+    verify_evidence(geometry_evidence_key, row["geometry_evidence_id"])
+    if row["geometry_source_url"] != evidence_by_key[geometry_evidence_key]["source_url"]:
+        raise VerifiedConstructionCoreError("current reviewed-site geometry URL differs")
+    lifecycle = [
+        item
+        for item in source.get("lifecycle", [])
+        if isinstance(item, dict) and item.get("entity") == "project"
+    ]
+    if not lifecycle:
+        raise VerifiedConstructionCoreError("current reviewed-site lifecycle differs")
+    latest = max(lifecycle, key=lambda item: item["as_of_date"])
+    status_evidence = evidence_by_key.get(latest["evidence_key"])
+    expected_status_id = atlas_stable_id(
+        "evidence",
+        "curated-official",
+        latest["evidence_key"],
+        status_evidence.get("content_hash") if status_evidence else None,
+    )
+    if (
+        row["last_observed_physical_status"] != latest["value"]
+        or row["status_as_of"] != latest["as_of_date"]
+        or row["status_method"] != latest["method"]
+        or row["status_evidence_id"] != expected_status_id
+    ):
+        raise VerifiedConstructionCoreError("current reviewed-site status differs")
+    verify_evidence(latest["evidence_key"], expected_status_id)
+    if row["status_source_url"] != evidence_by_key[latest["evidence_key"]]["source_url"]:
+        raise VerifiedConstructionCoreError("current reviewed-site status URL differs")
+
+    expected_capacity: list[dict[str, Any]] = []
+    for observation in source.get("capacities", []):
+        if not isinstance(observation, dict) or observation.get("entity") != "project":
+            continue
+        evidence_key = observation["evidence_key"]
+        pinned = evidence_by_key[evidence_key]
+        evidence_id = atlas_stable_id(
+            "evidence", "curated-official", evidence_key, pinned["content_hash"]
+        )
+        verify_evidence(evidence_key, evidence_id)
+        expected_capacity.append(
+            {
+                **{
+                    field: (
+                        float(value)
+                        if field in {"low", "base", "high"} and value is not None
+                        else value
+                    )
+                    for field, value in observation.items()
+                    if field not in {"entity", "evidence_key"}
+                },
+                "evidence_id": evidence_id,
+            }
+        )
+    actual_capacity = []
+    for field in (
+        "power_observations_json",
+        "annual_energy_observations_json",
+        "efficiency_observations_json",
+    ):
+        actual_capacity.extend(_parse_json_field(row[field], field))
+    if actual_capacity != expected_capacity:
+        raise VerifiedConstructionCoreError(
+            "current reviewed-site typed metrics differ"
+        )
+    if source.get("workloads") or source.get("operating_models"):
+        raise VerifiedConstructionCoreError(
+            "current reviewed-site unsupported normalized claims differ"
+        )
+
+    country_iso_a2 = V03_DELTA_COUNTRY_ISO_A2.get(project["country"])
+    if country_iso_a2 is None:
+        raise VerifiedConstructionCoreError(
+            "current reviewed-site country code differs"
+        )
+    power = [item for item in expected_capacity if item["metric"] in POWER_METRICS]
+    energy = [item for item in expected_capacity if item["metric"] in ENERGY_METRICS]
+    efficiency = [
+        item for item in expected_capacity if item["metric"] in EFFICIENCY_METRICS
+    ]
+    uncertainty = acceptance["horizontal_uncertainty_metres"]
+    expected_row = {
+        "project_id": atlas_stable_id(
+            "entity", project["stable_key"], "project"
+        ),
+        "project_stable_key": project["stable_key"],
+        "site_id": _stable_id("vcc-site", campus["stable_key"]),
+        "physical_site_stable_key": campus["stable_key"],
+        "name": project["name"],
+        "country": project["country"],
+        "country_iso_a2": country_iso_a2,
+        "latitude": str(geometry_source["coordinates"]["latitude"]),
+        "longitude": str(geometry_source["coordinates"]["longitude"]),
+        "geometry_json": _json_bytes(expected_geometry).decode().strip(),
+        "geometry_type": expected_geometry["type"],
+        "geometry_source_entity_kind": acceptance["geometry_entity"],
+        "geometry_derivation": acceptance["geometry_derivation"],
+        "geometry_method": acceptance["geometry_method"],
+        "geometry_scope_class": acceptance["geometry_scope_class"],
+        "geometry_precision_scope": acceptance["precision_scope"],
+        "horizontal_uncertainty_metres": (
+            "" if uncertainty is None else str(uncertainty)
+        ),
+        "horizontal_uncertainty_unknown_reason": (
+            "official source does not state positional accuracy"
+            if uncertainty is None
+            else ""
+        ),
+        "geometry_evidence_id": row["geometry_evidence_id"],
+        "last_observed_physical_status": latest["value"],
+        "status_as_of": latest["as_of_date"],
+        "status_age_days_at_review": str(
+            (REVIEW_DATE - _calendar_date(latest["as_of_date"], "status_as_of")).days
+        ),
+        "status_method": latest["method"],
+        "status_evidence_id": expected_status_id,
+        "verification_posture": _verification_posture(expected_geometry["type"]),
+        "independent_imagery_verification": "false",
+        "imagery_review_outcome": expected_imagery_outcome,
+        "development_type": "unknown",
+        "development_type_unknown_reason": (
+            "source evidence does not distinguish greenfield, expansion, or retrofit"
+        ),
+        "operating_model": "unknown",
+        "operating_model_unknown_reason": "not established by selected evidence",
+        "operating_model_evidence_id": "",
+        "workloads_json": "[]",
+        "workload_unknown_reason": "not established by selected evidence",
+        "role_claims_json": "[]",
+        "power_observations_json": _json_bytes(power).decode().strip(),
+        "power_unknown_reason": (
+            "" if power else "no typed project power observation; not estimated"
+        ),
+        "annual_energy_observations_json": _json_bytes(energy).decode().strip(),
+        "annual_energy_unknown_reason": (
+            "" if energy else "no scoped annual-energy inputs; not estimated"
+        ),
+        "efficiency_observations_json": _json_bytes(efficiency).decode().strip(),
+        "efficiency_unknown_reason": (
+            "" if efficiency else "no scoped PUE or WUE observation"
+        ),
+        "owner": "",
+        "operator": "",
+        "users": "",
+        "tenants": "",
+        "customers": "",
+        "status_source_url": evidence_by_key[latest["evidence_key"]]["source_url"],
+        "geometry_source_url": evidence_by_key[geometry_evidence_key]["source_url"],
+    }
+    if dict(row) != expected_row:
+        differing = sorted(
+            field for field in PROJECT_FIELDS if row.get(field) != expected_row[field]
+        )
+        raise VerifiedConstructionCoreError(
+            f"current reviewed-site project projection differs: {differing}"
+        )
 
 
 def _imagery_contract() -> tuple[str, list[dict[str, Any]]]:
@@ -565,20 +1378,58 @@ def _imagery_contract() -> tuple[str, list[dict[str, Any]]]:
         "contract_id",
         "review_scope",
         "reviewed_as_of",
+        "base_contract",
         "default_outcome",
         "records",
     }:
         raise VerifiedConstructionCoreError("imagery-review contract fields differ")
-    if reviewed.get("contract_id") != "verified-construction-core-v0.2-imagery-reviews":
+    if reviewed.get("contract_id") != "verified-construction-core-v0.3-imagery-reviews":
         raise VerifiedConstructionCoreError("imagery-review contract id differs")
     if reviewed.get("reviewed_as_of") != REVIEW_DATE.isoformat():
         raise VerifiedConstructionCoreError("imagery-review contract date differs")
+    base = reviewed.get("base_contract")
+    if not isinstance(base, dict) or set(base) != {"path", "sha256"}:
+        raise VerifiedConstructionCoreError("imagery-review base contract differs")
+    if base != {
+        "path": "definitions/verified-construction-core-v0.2-imagery-reviews.json",
+        "sha256": "0516a3281d0a3a1734a4bacb8f8d9e5419d0ae8dc22df36c098c5375f84ee613",
+    }:
+        raise VerifiedConstructionCoreError("imagery-review base pin differs")
+    base_path = _repository_input(base["path"], base["sha256"], "imagery-review base")
+    base_reviewed = _load_json(base_path)
+    if not isinstance(base_reviewed, dict) or set(base_reviewed) != {
+        "contract_id",
+        "review_scope",
+        "reviewed_as_of",
+        "default_outcome",
+        "records",
+    }:
+        raise VerifiedConstructionCoreError("imagery-review base fields differ")
+    if (
+        base_reviewed.get("contract_id")
+        != "verified-construction-core-v0.2-imagery-reviews"
+        or base_reviewed.get("default_outcome") != reviewed.get("default_outcome")
+    ):
+        raise VerifiedConstructionCoreError("imagery-review base identity differs")
     default_outcome = reviewed.get("default_outcome")
     if default_outcome != "not_reviewed_for_core_preview":
         raise VerifiedConstructionCoreError("imagery-review default differs")
-    records = reviewed.get("records")
-    if not isinstance(records, list) or not records:
+    base_records = base_reviewed.get("records")
+    delta_records = reviewed.get("records")
+    if (
+        not isinstance(base_records, list)
+        or not base_records
+        or not isinstance(delta_records, list)
+        or not delta_records
+    ):
         raise VerifiedConstructionCoreError("imagery-review records are empty")
+    records = [*base_records, *delta_records]
+    expected_delta_outcomes = {
+        "curated:kao-data-harlow-campus:klon-03-building": (
+            "tracked_identity_bound_uncertain_with_unadjudicated_later_clear_"
+            "conflict_no_construction_claim"
+        ),
+    }
     required = {
         "project_stable_key",
         "project_entity_id",
@@ -597,6 +1448,7 @@ def _imagery_contract() -> tuple[str, list[dict[str, Any]]]:
         "no_claim_guardrail",
     }
     keys: set[str] = set()
+    delta_keys: set[str] = set()
     for index, record in enumerate(records):
         if not isinstance(record, dict) or set(record) != required:
             raise VerifiedConstructionCoreError(
@@ -606,6 +1458,12 @@ def _imagery_contract() -> tuple[str, list[dict[str, Any]]]:
         if not isinstance(key, str) or not key or key in keys:
             raise VerifiedConstructionCoreError("imagery-review project key differs")
         keys.add(key)
+        if index >= len(base_records):
+            delta_keys.add(key)
+            if record["outcome"] != expected_delta_outcomes.get(key):
+                raise VerifiedConstructionCoreError(
+                    "imagery-review delta outcome differs"
+                )
         try:
             if str(UUID(record["project_entity_id"])) != record["project_entity_id"]:
                 raise ValueError
@@ -830,6 +1688,8 @@ def _imagery_contract() -> tuple[str, list[dict[str, Any]]]:
                     raise VerifiedConstructionCoreError(
                         "imagery-review conflict identity lineage differs"
                     )
+    if delta_keys != set(expected_delta_outcomes):
+        raise VerifiedConstructionCoreError("imagery-review delta cohort differs")
     return default_outcome, records
 
 
@@ -1225,9 +2085,11 @@ def _final_release_gates(
 
 
 def _build_rows() -> dict[str, Any]:
+    _validate_v03_definition_pins()
     source_manifest = _verify_source_release()
     acceptances, overlays, source_records = _review_contracts()
     default_imagery_outcome, imagery_records = _imagery_contract()
+    provenance = _provenance_contract()
     pipeline = _load_csv(SOURCE_RELEASE / "construction_pipeline.csv")
     entities = _load_csv(SOURCE_RELEASE / "entities.csv")
     evidence_rows = _load_csv(SOURCE_RELEASE / "evidence.csv")
@@ -1241,6 +2103,13 @@ def _build_rows() -> dict[str, Any]:
         raise VerifiedConstructionCoreError("source entity stable keys are not unique")
     if len(evidence_by_id) != len(evidence_rows):
         raise VerifiedConstructionCoreError("source evidence identifiers are not unique")
+    for evidence_id, provenance_evidence in provenance["evidence_rows"].items():
+        existing = evidence_by_id.get(evidence_id)
+        if existing is not None and existing != provenance_evidence:
+            raise VerifiedConstructionCoreError(
+                "source and provenance evidence differ"
+            )
+        evidence_by_id[evidence_id] = provenance_evidence
     geometry_release_cache: dict[
         tuple[str, str], dict[str, dict[str, str]]
     ] = {}
@@ -1289,6 +2158,23 @@ def _build_rows() -> dict[str, Any]:
     evidence_usage: dict[str, dict[str, set[str]]] = defaultdict(
         lambda: {"roles": set(), "project_ids": set()}
     )
+    workload_bindings = {
+        (
+            row["project_stable_key"],
+            row["evidence_id"],
+            row["workload"],
+        ): row
+        for row in provenance["workload_scope_bindings"]
+    }
+    role_bindings: dict[str, list[dict[str, Any]]] = defaultdict(list)
+    role_exclusions: dict[str, list[dict[str, Any]]] = defaultdict(list)
+    for row in provenance["role_bindings"]:
+        role_bindings[row["project_stable_key"]].append(row)
+    for row in provenance["excluded_source_roles"]:
+        role_exclusions[row["project_stable_key"]].append(row)
+    used_workload_bindings: set[tuple[str, str, str]] = set()
+    used_role_bindings: set[tuple[str, str, str]] = set()
+    used_role_exclusions: set[tuple[str, str, str]] = set()
 
     for project_key in sorted(accepted_keys):
         acceptance = acceptance_by_key[project_key]
@@ -1379,10 +2265,10 @@ def _build_rows() -> dict[str, Any]:
         efficiency = [
             row for row in observations if row.get("metric") in EFFICIENCY_METRICS
         ]
-        workloads = _parse_json_field(source["workloads_json"], "workloads")
-        if not isinstance(workloads, list):
+        source_workloads = _parse_json_field(source["workloads_json"], "workloads")
+        if not isinstance(source_workloads, list):
             raise VerifiedConstructionCoreError("workloads are not a list")
-        if any(not isinstance(row, dict) for row in workloads):
+        if any(not isinstance(row, dict) for row in source_workloads):
             raise VerifiedConstructionCoreError("workload observation is not an object")
         for observation in observations:
             evidence_id = observation.get("evidence_id")
@@ -1393,14 +2279,38 @@ def _build_rows() -> dict[str, Any]:
                 )
             evidence_usage[evidence_id]["roles"].add(f"typed_metric:{metric}")
             evidence_usage[evidence_id]["project_ids"].add(project_id)
-        for workload in workloads:
+        workloads: list[dict[str, Any]] = []
+        for source_workload in source_workloads:
+            _validate_source_workload_observation(source_workload)
+            binding_key = (
+                project_key,
+                source_workload["evidence_id"],
+                source_workload["workload"],
+            )
+            binding = workload_bindings.get(binding_key)
+            if binding is None or any(
+                source_workload[field] != binding[field]
+                for field in SOURCE_WORKLOAD_FIELDS
+            ):
+                raise VerifiedConstructionCoreError(
+                    f"workload provenance is absent or differs: {project_key}"
+                )
+            workload = {
+                **source_workload,
+                "deployment_scope": binding["deployment_scope"],
+            }
             _validate_workload_observation(workload)
-            evidence_id = workload.get("evidence_id")
+            workloads.append(workload)
+            used_workload_bindings.add(binding_key)
+            evidence_id = workload["evidence_id"]
             if not evidence_id or evidence_id not in evidence_by_id:
                 raise VerifiedConstructionCoreError(
                     f"workload evidence is absent: {project_key}"
                 )
             evidence_usage[evidence_id]["roles"].add("workload")
+            evidence_usage[evidence_id]["roles"].add(
+                f"workload_scope:{workload['deployment_scope']}"
+            )
             evidence_usage[evidence_id]["project_ids"].add(project_id)
         operating_model_evidence_id = source["operating_model_evidence_id"]
         if operating_model_evidence_id:
@@ -1414,6 +2324,59 @@ def _build_rows() -> dict[str, Any]:
             evidence_usage[operating_model_evidence_id]["project_ids"].add(
                 project_id
             )
+        source_role_keys: set[tuple[str, str, str]] = set()
+        for role, column in ROLE_COLUMNS.items():
+            parties = [
+                party.strip()
+                for party in source[column].split(";")
+                if party.strip()
+            ]
+            if len(parties) != len(set(parties)):
+                raise VerifiedConstructionCoreError(
+                    f"source role parties are not unique: {project_key}"
+                )
+            source_role_keys.update((project_key, role, party) for party in parties)
+        accepted_role_keys = {
+            (project_key, row["role"], row["party"])
+            for row in role_bindings.get(project_key, [])
+        }
+        excluded_role_keys = {
+            (project_key, row["role"], row["party"])
+            for row in role_exclusions.get(project_key, [])
+        }
+        if source_role_keys != accepted_role_keys | excluded_role_keys:
+            raise VerifiedConstructionCoreError(
+                f"source role provenance coverage differs: {project_key}"
+            )
+        role_claims: list[dict[str, str]] = []
+        projected_roles: dict[str, list[str]] = {
+            role: [] for role in ROLE_COLUMNS
+        }
+        for binding in role_bindings.get(project_key, []):
+            binding_key = (project_key, binding["role"], binding["party"])
+            used_role_bindings.add(binding_key)
+            evidence_id = binding["evidence_id"]
+            if evidence_id not in evidence_by_id:
+                raise VerifiedConstructionCoreError(
+                    f"role evidence is absent: {project_key}"
+                )
+            role_claims.append(
+                {
+                    "evidence_id": evidence_id,
+                    "party": binding["party"],
+                    "relationship_scope": binding["relationship_scope"],
+                    "role": binding["role"],
+                }
+            )
+            projected_roles[binding["role"]].append(binding["party"])
+            evidence_usage[evidence_id]["roles"].add(f"role:{binding['role']}")
+            evidence_usage[evidence_id]["project_ids"].add(project_id)
+        used_role_exclusions.update(excluded_role_keys)
+        role_claims.sort(key=lambda row: (row["role"], row["party"], row["evidence_id"]))
+        role_projection = {
+            column: "; ".join(sorted(projected_roles[role]))
+            for role, column in ROLE_COLUMNS.items()
+        }
         status_date = _calendar_date(source["status_as_of"], "status_as_of")
         geometry_type = geometry["type"]
         uncertainty = acceptance["horizontal_uncertainty_metres"]
@@ -1467,6 +2430,7 @@ def _build_rows() -> dict[str, Any]:
                 "workload_unknown_reason": (
                     "" if workloads else "not established by selected evidence"
                 ),
+                "role_claims_json": _json_bytes(role_claims).decode().strip(),
                 "power_observations_json": _json_bytes(power).decode().strip(),
                 "power_unknown_reason": (
                     "" if power else "no typed project power observation; not estimated"
@@ -1481,15 +2445,31 @@ def _build_rows() -> dict[str, Any]:
                 "efficiency_unknown_reason": (
                     "" if efficiency else "no scoped PUE or WUE observation"
                 ),
-                "owner": source["owner"],
-                "operator": source["operator"],
-                "users": source["users"],
-                "tenants": source["tenants"],
-                "customers": source["customers"],
+                "owner": role_projection["owner"],
+                "operator": role_projection["operator"],
+                "users": role_projection["users"],
+                "tenants": role_projection["tenants"],
+                "customers": role_projection["customers"],
                 "status_source_url": evidence_by_id[status_evidence_id]["source_url"],
                 "geometry_source_url": evidence_by_id[geometry_evidence_id]["source_url"],
             }
         )
+
+    if used_workload_bindings != set(workload_bindings):
+        raise VerifiedConstructionCoreError("workload provenance has unused bindings")
+    expected_role_bindings = {
+        (row["project_stable_key"], row["role"], row["party"])
+        for row in provenance["role_bindings"]
+    }
+    expected_role_exclusions = {
+        (row["project_stable_key"], row["role"], row["party"])
+        for row in provenance["excluded_source_roles"]
+    }
+    if (
+        used_role_bindings != expected_role_bindings
+        or used_role_exclusions != expected_role_exclusions
+    ):
+        raise VerifiedConstructionCoreError("role provenance has unused decisions")
 
     by_site: dict[str, list[dict[str, Any]]] = defaultdict(list)
     for project in projects:
@@ -1571,7 +2551,7 @@ def _build_rows() -> dict[str, Any]:
     country_counts = Counter(row["country"] for row in sites)
     gates = _final_release_gates(sites, projects)
     selection_report = {
-        "format": "datacenter-atlas-verified-construction-core-selection-v2",
+        "format": "datacenter-atlas-verified-construction-core-selection-v3",
         "release_status": "preview",
         "publishable_as_final": all(gate.get("passed", False) for gate in gates.values()),
         "source_release_id": SOURCE_RELEASE_ID,
@@ -1591,6 +2571,11 @@ def _build_rows() -> dict[str, Any]:
         "country_counts": dict(sorted(country_counts.items())),
         "final_release_gates": gates,
         "imagery_review_provenance": imagery_records,
+        "provenance_decisions": {
+            "workload_scope_bindings": provenance["workload_scope_bindings"],
+            "role_bindings": provenance["role_bindings"],
+            "excluded_source_roles": provenance["excluded_source_roles"],
+        },
         "reviewed_overlay_queue": overlays.get("overlays", []),
         "semantic_guardrails": SEMANTIC_GUARDRAILS,
     }
@@ -1649,7 +2634,7 @@ def _map_html(geojson: Mapping[str, Any]) -> bytes:
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Verified Construction Core preview</title>
 <style>body{{font:14px system-ui;margin:0;color:#17202a}}header{{padding:18px 22px;background:#eef4f7}}main{{display:grid;grid-template-columns:minmax(0,2fr) minmax(260px,1fr);gap:16px;padding:16px}}svg{{width:100%;height:auto;background:#f8fafb;border:1px solid #ccd6dc}}.grid{{stroke:#dce4e8;stroke-width:1}}circle{{fill:#b6412e;stroke:#fff;stroke-width:1.5;cursor:pointer}}circle:focus{{outline:2px solid #173b57}}table{{border-collapse:collapse;width:100%}}th,td{{padding:6px;border-bottom:1px solid #ddd;text-align:left}}code{{font-size:12px}}.warning{{color:#7b2d1d;font-weight:700}}@media(max-width:800px){{main{{grid-template-columns:1fr}}}}</style></head>
-<body><header><h1>Verified Construction Core v0.2 preview</h1><p class="warning">{site_count} physical sites. This is not the 100-site final release and does not claim independent imagery verification.</p></header>
+<body><header><h1>Verified Construction Core v0.3 preview</h1><p class="warning">{site_count} physical sites. This is not the 100-site final release and does not claim independent imagery verification.</p></header>
 <main><section><svg id="map" viewBox="0 0 1000 500" role="img" aria-label="Global plot of selected sites"></svg></section><aside><h2 id="name">Select a site</h2><div id="detail"></div><h3>Sites</h3><table><tbody id="rows"></tbody></table></aside></main>
 <script>const atlas={data};const svg=document.getElementById('map');const ns='http://www.w3.org/2000/svg';
 for(let lon=-180;lon<=180;lon+=30){{const l=document.createElementNS(ns,'line');l.setAttribute('x1',(lon+180)/360*1000);l.setAttribute('x2',(lon+180)/360*1000);l.setAttribute('y1',0);l.setAttribute('y2',500);l.setAttribute('class','grid');svg.appendChild(l)}}
@@ -1665,7 +2650,7 @@ def _readme(report: Mapping[str, Any]) -> bytes:
     gates = report["final_release_gates"]
     boundary_count = report["official_boundary_project_count"]
     locator_count = report["reviewed_site_locator_project_count"]
-    text = f"""# Verified Construction Core v0.2 preview
+    text = f"""# Verified Construction Core v0.3 preview
 
 This tracked preview contains **{report['selected_physical_site_count']} physical sites** and
 **{report['selected_project_count']} linked projects** selected from `{SOURCE_RELEASE_ID}`.
@@ -1699,11 +2684,12 @@ exact tracked review source and preserves locally unsealed identity lineage and 
 conflicts explicitly. Two exact Canadian geometry overlays were reviewed but excluded: one recent
 scene was unusable and one usable comparison showed no filtered recent-change component.
 
-Workload values remain evidence-linked source classifications, not proof of a running workload.
-In particular, the Edged ORD01-2 and AVAIO Taurus disclosures describe intended or purpose-built
-workloads; their fuller scope guardrails remain in the pinned source records. Role strings are
-inherited from the source release, but v0.2 does not yet publish dedicated evidence identifiers for
-each owner, operator, user, tenant, or customer role.
+Every workload observation now carries a validator-bound `deployment_scope`; all three current
+observations are `intended`, never operational. `role_claims_json` binds each published role to an
+evidence ID and relationship scope. Five intended-operator claims pass that gate. Four prior
+CDC/AST owner or operator strings lacked role-specific evidence, so v0.3 clears them and preserves
+the rejected claims and reasons in the provenance contract rather than laundering status evidence
+into role evidence.
 
 The preview validates from a public clean clone. Rebuilding it still requires the locally hydrated
 v97 payload, so clean-clone rebuildability is an explicit failed final-release gate rather than an
@@ -1715,6 +2701,7 @@ implied capability.
 def _field_contract(name: str) -> dict[str, Any]:
     json_array_fields = {
         "workloads_json",
+        "role_claims_json",
         "power_observations_json",
         "annual_energy_observations_json",
         "efficiency_observations_json",
@@ -1787,7 +2774,7 @@ def _field_contract(name: str) -> dict[str, Any]:
 
 def _schema() -> dict[str, Any]:
     return {
-        "format": "datacenter-atlas-verified-construction-core-schema-v2",
+        "format": "datacenter-atlas-verified-construction-core-schema-v3",
         "preview_id": PREVIEW_ID,
         "csv_encoding": "UTF-8",
         "csv_dialect": {
@@ -1831,6 +2818,7 @@ def _schema() -> dict[str, Any]:
         ],
         "json_embedded_evidence_fields": [
             ["projects.csv", "workloads_json", "evidence_id"],
+            ["projects.csv", "role_claims_json", "evidence_id"],
             ["projects.csv", "power_observations_json", "evidence_id"],
             ["projects.csv", "annual_energy_observations_json", "evidence_id"],
             ["projects.csv", "efficiency_observations_json", "evidence_id"],
@@ -1850,6 +2838,9 @@ def _schema() -> dict[str, Any]:
             },
             "projects.csv:workloads_json": {
                 "item_type": "workload_observation"
+            },
+            "projects.csv:role_claims_json": {
+                "item_type": "role_claim"
             },
         },
         "embedded_types": {
@@ -1879,11 +2870,31 @@ def _schema() -> dict[str, Any]:
                 "required_fields": [
                     "as_of_date",
                     "confidence",
+                    "deployment_scope",
                     "evidence_id",
                     "method",
                     "workload",
                 ],
+                "allowed_deployment_scopes": [
+                    "intended",
+                    "operational",
+                    "unknown",
+                ],
                 "confidence_constraint": "0 <= confidence <= 1",
+            },
+            "role_claim": {
+                "required_fields": [
+                    "evidence_id",
+                    "party",
+                    "relationship_scope",
+                    "role",
+                ],
+                "allowed_relationship_scopes": [
+                    "current",
+                    "intended",
+                    "unknown",
+                ],
+                "allowed_roles": sorted(ROLE_COLUMNS),
             },
         },
         "geojson": {
@@ -1917,7 +2928,7 @@ def _attribution(
             )
         )
     lines = [
-        "Data Center Atlas Verified Construction Core v0.2 preview",
+        "Data Center Atlas Verified Construction Core v0.3 preview",
         "",
         "Compact derived facts only; third-party terms remain controlling.",
         "",
@@ -1966,17 +2977,28 @@ def build_preview(output_dir: Path = PREVIEW_DIR) -> dict[str, Any]:
         "sites.geojson": _json_bytes(geojson),
     }
     manifest = {
-        "format": "datacenter-atlas-verified-construction-core-preview-v2",
+        "format": "datacenter-atlas-verified-construction-core-preview-v3",
         "preview_id": PREVIEW_ID,
         "release_status": "preview",
         "publishable_as_final": report["publishable_as_final"],
         "source_release_id": SOURCE_RELEASE_ID,
+        "source_release_manifest_path": str(
+            (SOURCE_RELEASE / "manifest.json").relative_to(ROOT)
+        ),
         "source_release_manifest_sha256": _sha256_file(SOURCE_RELEASE / "manifest.json"),
+        "definition_paths": {
+            "imagery_reviews": str(IMAGERY_REVIEW_DEFINITION.relative_to(ROOT)),
+            "provenance": str(PROVENANCE_DEFINITION.relative_to(ROOT)),
+            "reviewed_overlays": str(OVERLAY_DEFINITION.relative_to(ROOT)),
+            "reviewed_sites": str(REVIEW_DEFINITION.relative_to(ROOT)),
+        },
         "review_definition_sha256": _sha256_file(REVIEW_DEFINITION),
         "imagery_review_definition_sha256": _sha256_file(
             IMAGERY_REVIEW_DEFINITION
         ),
+        "provenance_definition_sha256": _sha256_file(PROVENANCE_DEFINITION),
         "overlay_definition_sha256": _sha256_file(OVERLAY_DEFINITION),
+        "portable_source_inputs": _portable_source_inputs(),
         "reviewed_at": REVIEW_DATE.isoformat(),
         "counts": {
             "physical_sites": len(sites),
@@ -2067,11 +3089,84 @@ def validate_frozen_v01(
     return manifest
 
 
+def validate_frozen_v02(
+    path: Path = LEGACY_PREVIEW_V02_DIR,
+) -> dict[str, Any]:
+    """Validate the byte-frozen v0.2 inventory using only immutable pins."""
+    path = Path(path)
+    if path.is_symlink() or not path.is_dir():
+        raise VerifiedConstructionCoreError(
+            f"frozen v0.2 preview is not a regular directory: {path}"
+        )
+    manifest_path = path / "manifest.json"
+    if _sha256_file(manifest_path) != LEGACY_PREVIEW_V02_MANIFEST_SHA256:
+        raise VerifiedConstructionCoreError("frozen v0.2 manifest hash differs")
+    manifest = _load_json(manifest_path)
+    expected_pins = {
+        "format": "datacenter-atlas-verified-construction-core-preview-v2",
+        "preview_id": "2026-08-20-preview-v0.2",
+        "reviewed_at": "2026-08-20",
+        "source_release_id": "2026-07-22-open-seed-v97",
+        "source_release_manifest_sha256": (
+            "0a6f41f4239944df27f2ce70e81a089b91cec401f154bbae28412b27a4d00fdd"
+        ),
+        "review_definition_sha256": (
+            "13f4d6e82c9057b1dd95319e19e30c2bae0ac0f1848d6e6dee2bbc10b5dde1d0"
+        ),
+        "imagery_review_definition_sha256": (
+            "0516a3281d0a3a1734a4bacb8f8d9e5419d0ae8dc22df36c098c5375f84ee613"
+        ),
+        "overlay_definition_sha256": (
+            "57540f73c5cac475bd8e9e64fc5d8eb2188158ef977b477a0c0e8d7158caf1b7"
+        ),
+    }
+    if any(manifest.get(field) != value for field, value in expected_pins.items()):
+        raise VerifiedConstructionCoreError("frozen v0.2 identity differs")
+    files = manifest.get("files")
+    if not isinstance(files, dict):
+        raise VerifiedConstructionCoreError("frozen v0.2 files map is absent")
+    expected_names = set(files) | {"manifest.json", "manifest.sha256"}
+    if {item.name for item in path.iterdir()} != expected_names:
+        raise VerifiedConstructionCoreError("frozen v0.2 inventory differs")
+    for name, metadata in files.items():
+        candidate = path / name
+        if (
+            candidate.is_symlink()
+            or not candidate.is_file()
+            or candidate.stat().st_size != metadata.get("bytes")
+            or _sha256_file(candidate) != metadata.get("sha256")
+        ):
+            raise VerifiedConstructionCoreError(
+                f"frozen v0.2 member differs: {name}"
+            )
+    expected_sum = f"{LEGACY_PREVIEW_V02_MANIFEST_SHA256}  manifest.json\n"
+    if (path / "manifest.sha256").read_text(encoding="utf-8") != expected_sum:
+        raise VerifiedConstructionCoreError("frozen v0.2 checksum differs")
+    return manifest
+
+
 def validate_preview(path: Path = PREVIEW_DIR) -> dict[str, Any]:
+    """Dispatch frozen previews by manifest identity and validate the current one."""
+    path = Path(path)
+    if path.is_symlink() or not path.is_dir():
+        raise VerifiedConstructionCoreError(f"preview is not a regular directory: {path}")
+    manifest = _load_json(path / "manifest.json")
+    preview_id = manifest.get("preview_id")
+    if preview_id == "2026-08-19-preview-v0.1":
+        return validate_frozen_v01(path)
+    if preview_id == "2026-08-20-preview-v0.2":
+        return validate_frozen_v02(path)
+    if preview_id != PREVIEW_ID:
+        raise VerifiedConstructionCoreError("preview id differs")
+    return _validate_current_preview(path)
+
+
+def _validate_current_preview(path: Path) -> dict[str, Any]:
     """Validate the tracked preview without requiring the ignored source corpus."""
     path = Path(path)
     if path.is_symlink() or not path.is_dir():
         raise VerifiedConstructionCoreError(f"preview is not a regular directory: {path}")
+    _validate_v03_definition_pins()
     manifest_path = path / "manifest.json"
     manifest = _load_json(manifest_path)
     expected_manifest_fields = {
@@ -2080,17 +3175,21 @@ def validate_preview(path: Path = PREVIEW_DIR) -> dict[str, Any]:
         "release_status",
         "publishable_as_final",
         "source_release_id",
+        "source_release_manifest_path",
         "source_release_manifest_sha256",
+        "definition_paths",
         "review_definition_sha256",
         "imagery_review_definition_sha256",
+        "provenance_definition_sha256",
         "overlay_definition_sha256",
+        "portable_source_inputs",
         "reviewed_at",
         "counts",
         "files",
     }
     if set(manifest) != expected_manifest_fields:
         raise VerifiedConstructionCoreError("preview manifest fields differ")
-    if manifest.get("format") != "datacenter-atlas-verified-construction-core-preview-v2":
+    if manifest.get("format") != "datacenter-atlas-verified-construction-core-preview-v3":
         raise VerifiedConstructionCoreError("preview format differs")
     if manifest.get("preview_id") != PREVIEW_ID:
         raise VerifiedConstructionCoreError("preview id differs")
@@ -2102,18 +3201,30 @@ def validate_preview(path: Path = PREVIEW_DIR) -> dict[str, Any]:
         raise VerifiedConstructionCoreError("preview source release differs")
     if manifest.get("reviewed_at") != REVIEW_DATE.isoformat():
         raise VerifiedConstructionCoreError("preview review date differs")
-    for field, definition in (
-        ("review_definition_sha256", REVIEW_DEFINITION),
-        ("imagery_review_definition_sha256", IMAGERY_REVIEW_DEFINITION),
-        ("overlay_definition_sha256", OVERLAY_DEFINITION),
-    ):
-        if not definition.is_file() or manifest.get(field) != _sha256_file(definition):
+    for field, _, expected_sha256 in _v03_definition_pins():
+        if manifest.get(field) != expected_sha256:
             raise VerifiedConstructionCoreError(f"preview {field} differs")
+    expected_definition_paths = {
+        "imagery_reviews": str(IMAGERY_REVIEW_DEFINITION.relative_to(ROOT)),
+        "provenance": str(PROVENANCE_DEFINITION.relative_to(ROOT)),
+        "reviewed_overlays": str(OVERLAY_DEFINITION.relative_to(ROOT)),
+        "reviewed_sites": str(REVIEW_DEFINITION.relative_to(ROOT)),
+    }
+    if manifest.get("definition_paths") != expected_definition_paths:
+        raise VerifiedConstructionCoreError("preview definition paths differ")
     source_manifest_path = SOURCE_RELEASE / "manifest.json"
-    if not source_manifest_path.is_file() or manifest.get(
+    if (
+        manifest.get("source_release_manifest_path")
+        != str(source_manifest_path.relative_to(ROOT))
+        or not source_manifest_path.is_file()
+        or manifest.get(
         "source_release_manifest_sha256"
-    ) != _sha256_file(source_manifest_path):
+        )
+        != _sha256_file(source_manifest_path)
+    ):
         raise VerifiedConstructionCoreError("preview source manifest hash differs")
+    if manifest.get("portable_source_inputs") != _portable_source_inputs():
+        raise VerifiedConstructionCoreError("preview portable source inputs differ")
     files = manifest.get("files")
     if not isinstance(files, dict):
         raise VerifiedConstructionCoreError("preview files map is absent")
@@ -2180,6 +3291,10 @@ def validate_preview(path: Path = PREVIEW_DIR) -> dict[str, Any]:
         raise VerifiedConstructionCoreError("preview contains a site without a project")
     site_by_id = {row["site_id"]: row for row in sites}
     reviewed_acceptances = _reviewed_acceptances()
+    _, reviewed_delta = _reviewed_acceptances_from(REVIEW_DEFINITION)
+    reviewed_delta_by_key = {
+        row["project_stable_key"]: row for row in reviewed_delta
+    }
     reviewed_by_key = {
         row["project_stable_key"]: row for row in reviewed_acceptances
     }
@@ -2188,14 +3303,38 @@ def validate_preview(path: Path = PREVIEW_DIR) -> dict[str, Any]:
         raise VerifiedConstructionCoreError("preview reviewed-project cohort differs")
     default_imagery_outcome, imagery_records = _imagery_contract()
     imagery_by_key = {row["project_stable_key"]: row for row in imagery_records}
+    provenance = _provenance_contract()
+    workload_binding_by_key = {
+        (
+            row["project_stable_key"],
+            row["evidence_id"],
+            row["workload"],
+        ): row
+        for row in provenance["workload_scope_bindings"]
+    }
+    role_bindings_by_project: dict[str, list[dict[str, Any]]] = defaultdict(list)
+    for binding in provenance["role_bindings"]:
+        role_bindings_by_project[binding["project_stable_key"]].append(binding)
     evidence_by_id = {row["evidence_id"]: row for row in evidence}
     if len(evidence_by_id) != len(evidence):
         raise VerifiedConstructionCoreError("preview evidence identifiers are not unique")
+    _validate_v03_inheritance(projects, sites, evidence)
     for row in projects:
         acceptance = reviewed_by_key[row["project_stable_key"]]
+        if row["project_id"] != atlas_stable_id(
+            "entity", row["project_stable_key"], "project"
+        ):
+            raise VerifiedConstructionCoreError("preview project id differs")
         expected_imagery_outcome = _imagery_outcome(
             row["project_stable_key"], default_imagery_outcome, imagery_by_key
         )
+        if row["project_stable_key"] in reviewed_delta_by_key:
+            _validate_v03_delta_project(
+                row,
+                reviewed_delta_by_key[row["project_stable_key"]],
+                evidence_by_id,
+                expected_imagery_outcome,
+            )
         if (
             row["geometry_source_entity_kind"] != acceptance["geometry_entity"]
             or row["geometry_derivation"] != acceptance["geometry_derivation"]
@@ -2383,19 +3522,163 @@ def validate_preview(path: Path = PREVIEW_DIR) -> dict[str, Any]:
         for workload in workloads:
             _validate_workload_observation(workload)
             evidence_id = workload.get("evidence_id")
+            binding = workload_binding_by_key.get(
+                (row["project_stable_key"], evidence_id, workload.get("workload"))
+            )
+            if binding is None or any(
+                workload[field] != binding[field]
+                for field in SOURCE_WORKLOAD_FIELDS | {"deployment_scope"}
+            ):
+                raise VerifiedConstructionCoreError(
+                    "preview workload provenance differs"
+                )
             if evidence_id not in evidence_by_id:
                 raise VerifiedConstructionCoreError(
                     "preview workload evidence usage differs"
                 )
             workload_evidence = evidence_by_id[evidence_id]
-            if "workload" not in _parse_json_field(
-                workload_evidence["roles_json"], "roles"
-            ) or row["project_id"] not in _parse_json_field(
+            workload_roles = _parse_json_field(workload_evidence["roles_json"], "roles")
+            if (
+                "workload" not in workload_roles
+                or f"workload_scope:{workload['deployment_scope']}" not in workload_roles
+                or row["project_id"] not in _parse_json_field(
                 workload_evidence["project_ids_json"], "project_ids"
+                )
             ):
                 raise VerifiedConstructionCoreError(
                     "preview workload evidence usage differs"
                 )
+        role_claims = _parse_json_field(row["role_claims_json"], "role claims")
+        if not isinstance(role_claims, list):
+            raise VerifiedConstructionCoreError("preview role claims differ")
+        for claim in role_claims:
+            _validate_role_claim(claim)
+        if role_claims != sorted(
+            role_claims,
+            key=lambda claim: (claim["role"], claim["party"], claim["evidence_id"]),
+        ) or len({(claim["role"], claim["party"]) for claim in role_claims}) != len(
+            role_claims
+        ):
+            raise VerifiedConstructionCoreError("preview role claim ordering differs")
+        expected_role_claims = sorted(
+            [
+                {
+                    "evidence_id": binding["evidence_id"],
+                    "party": binding["party"],
+                    "relationship_scope": binding["relationship_scope"],
+                    "role": binding["role"],
+                }
+                for binding in role_bindings_by_project.get(
+                    row["project_stable_key"], []
+                )
+            ],
+            key=lambda claim: (claim["role"], claim["party"], claim["evidence_id"]),
+        )
+        if role_claims != expected_role_claims:
+            raise VerifiedConstructionCoreError("preview role provenance differs")
+        projected: dict[str, list[str]] = {role: [] for role in ROLE_COLUMNS}
+        for claim in role_claims:
+            projected[claim["role"]].append(claim["party"])
+            role_evidence = evidence_by_id.get(claim["evidence_id"])
+            if role_evidence is None or (
+                f"role:{claim['role']}"
+                not in _parse_json_field(role_evidence["roles_json"], "roles")
+                or row["project_id"]
+                not in _parse_json_field(
+                    role_evidence["project_ids_json"], "project_ids"
+                )
+            ):
+                raise VerifiedConstructionCoreError(
+                    "preview role evidence usage differs"
+                )
+        for role, column in ROLE_COLUMNS.items():
+            if row[column] != "; ".join(sorted(projected[role])):
+                raise VerifiedConstructionCoreError(
+                    "preview role projection differs"
+                )
+    for evidence_id, expected in provenance["evidence_rows"].items():
+        actual = evidence_by_id.get(evidence_id)
+        if actual is None or any(
+            actual.get(field) != value
+            for field, value in expected.items()
+            if field not in {"roles_json", "project_ids_json"}
+        ):
+            raise VerifiedConstructionCoreError(
+                "preview provenance evidence content differs"
+            )
+    expected_usage: dict[str, dict[str, set[str]]] = defaultdict(
+        lambda: {"roles": set(), "project_ids": set()}
+    )
+    for project in projects:
+        project_id = project["project_id"]
+        for evidence_id, role in (
+            (project["status_evidence_id"], "physical_status"),
+            (project["geometry_evidence_id"], "geometry"),
+        ):
+            expected_usage[evidence_id]["roles"].add(role)
+            expected_usage[evidence_id]["project_ids"].add(project_id)
+        if project["operating_model_evidence_id"]:
+            evidence_id = project["operating_model_evidence_id"]
+            expected_usage[evidence_id]["roles"].add("operating_model")
+            expected_usage[evidence_id]["project_ids"].add(project_id)
+        for field in (
+            "power_observations_json",
+            "annual_energy_observations_json",
+            "efficiency_observations_json",
+        ):
+            for observation in _parse_json_field(project[field], field):
+                evidence_id = observation["evidence_id"]
+                expected_usage[evidence_id]["roles"].add(
+                    f"typed_metric:{observation['metric']}"
+                )
+                expected_usage[evidence_id]["project_ids"].add(project_id)
+        for workload in _parse_json_field(project["workloads_json"], "workloads"):
+            evidence_id = workload["evidence_id"]
+            expected_usage[evidence_id]["roles"].update(
+                {"workload", f"workload_scope:{workload['deployment_scope']}"}
+            )
+            expected_usage[evidence_id]["project_ids"].add(project_id)
+        for claim in _parse_json_field(project["role_claims_json"], "role claims"):
+            evidence_id = claim["evidence_id"]
+            expected_usage[evidence_id]["roles"].add(f"role:{claim['role']}")
+            expected_usage[evidence_id]["project_ids"].add(project_id)
+    if set(expected_usage) != evidence_ids:
+        raise VerifiedConstructionCoreError("preview evidence closure differs")
+    for evidence_id, usage in expected_usage.items():
+        evidence_row = evidence_by_id[evidence_id]
+        if (
+            _parse_json_field(evidence_row["roles_json"], "roles")
+            != sorted(usage["roles"])
+            or _parse_json_field(
+                evidence_row["project_ids_json"], "project_ids"
+            )
+            != sorted(usage["project_ids"])
+        ):
+            raise VerifiedConstructionCoreError("preview evidence usage closure differs")
+    delta_site_names: dict[str, str] = {}
+    for acceptance in reviewed_delta:
+        source = _load_json(
+            _repository_input(
+                acceptance["source_input_path"],
+                acceptance["source_input_sha256"],
+                "current reviewed-site",
+            )
+        )
+        campus = source.get("campus")
+        if (
+            not isinstance(campus, dict)
+            or campus.get("stable_key") != acceptance["physical_site_stable_key"]
+            or not isinstance(campus.get("name"), str)
+            or not campus["name"]
+        ):
+            raise VerifiedConstructionCoreError(
+                "current reviewed-site campus identity differs"
+            )
+        previous = delta_site_names.setdefault(campus["stable_key"], campus["name"])
+        if previous != campus["name"]:
+            raise VerifiedConstructionCoreError(
+                "current reviewed-site campus name differs"
+            )
     projects_by_site: dict[str, list[dict[str, str]]] = defaultdict(list)
     for project in projects:
         projects_by_site[project["site_id"]].append(project)
@@ -2462,6 +3745,10 @@ def validate_preview(path: Path = PREVIEW_DIR) -> dict[str, Any]:
             "verification_posture": geometry_member["verification_posture"],
             "independent_imagery_verification": "false",
         }
+        if site["physical_site_stable_key"] in delta_site_names:
+            expected_scalars["name"] = delta_site_names[
+                site["physical_site_stable_key"]
+            ]
         if any(site[field] != expected for field, expected in expected_scalars.items()):
             raise VerifiedConstructionCoreError("preview site projection differs")
         if site["site_id"] != _stable_id(
@@ -2480,6 +3767,7 @@ def validate_preview(path: Path = PREVIEW_DIR) -> dict[str, Any]:
         "maximum_status_age_days",
         "non_selected_source_row_count",
         "official_boundary_project_count",
+        "provenance_decisions",
         "publishable_as_final",
         "release_status",
         "reviewed_at",
@@ -2497,7 +3785,7 @@ def validate_preview(path: Path = PREVIEW_DIR) -> dict[str, Any]:
     expected_gates = _final_release_gates(sites, projects)
     country_counts = dict(sorted(Counter(row["country"] for row in sites).items()))
     expected_values = {
-        "format": "datacenter-atlas-verified-construction-core-selection-v2",
+        "format": "datacenter-atlas-verified-construction-core-selection-v3",
         "release_status": "preview",
         "publishable_as_final": all(
             gate.get("passed", False) for gate in expected_gates.values()
@@ -2520,10 +3808,17 @@ def validate_preview(path: Path = PREVIEW_DIR) -> dict[str, Any]:
         "country_counts": country_counts,
         "final_release_gates": expected_gates,
         "imagery_review_provenance": imagery_records,
+        "provenance_decisions": {
+            "workload_scope_bindings": provenance["workload_scope_bindings"],
+            "role_bindings": provenance["role_bindings"],
+            "excluded_source_roles": provenance["excluded_source_roles"],
+        },
         "semantic_guardrails": SEMANTIC_GUARDRAILS,
     }
     if any(report.get(field) != value for field, value in expected_values.items()):
         raise VerifiedConstructionCoreError("preview selection-report values differ")
+    if (path / "README.md").read_bytes() != _readme(report):
+        raise VerifiedConstructionCoreError("preview README differs")
     overlay_definition = _load_json(OVERLAY_DEFINITION)
     expected_overlays = overlay_definition.get("overlays")
     if report.get("reviewed_overlay_queue") != expected_overlays:
@@ -2556,13 +3851,13 @@ def validate_preview(path: Path = PREVIEW_DIR) -> dict[str, Any]:
     if counts != derived_counts:
         raise VerifiedConstructionCoreError("preview derived counts differ")
     if counts != {
-        "physical_sites": 11,
-        "projects": 12,
-        "evidence": 29,
-        "countries": 8,
-        "non_us_sites": 8,
+        "physical_sites": 14,
+        "projects": 15,
+        "evidence": 36,
+        "countries": 10,
+        "non_us_sites": 11,
         "official_boundary_projects": 3,
-        "reviewed_site_locator_projects": 9,
+        "reviewed_site_locator_projects": 12,
     }:
         raise VerifiedConstructionCoreError("preview expected cohort counts differ")
     return manifest
@@ -2571,9 +3866,12 @@ def validate_preview(path: Path = PREVIEW_DIR) -> dict[str, Any]:
 __all__ = [
     "IMAGERY_REVIEW_DEFINITION",
     "LEGACY_PREVIEW_V01_DIR",
+    "LEGACY_PREVIEW_V02_DIR",
     "PREVIEW_DIR",
+    "PROVENANCE_DEFINITION",
     "VerifiedConstructionCoreError",
     "build_preview",
     "validate_frozen_v01",
+    "validate_frozen_v02",
     "validate_preview",
 ]
