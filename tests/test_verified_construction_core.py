@@ -15,25 +15,40 @@ from unittest import mock
 import datacenter_atlas.verified_construction_core as verified_core
 
 from datacenter_atlas.verified_construction_core import (
+    CURRENT_V07_PREVIEW_DIR,
+    CURRENT_V07_PREVIEW_ID,
     LEGACY_PREVIEW_V01_DIR,
     LEGACY_PREVIEW_V02_DIR,
     LEGACY_PREVIEW_V03_DIR,
     LEGACY_PREVIEW_V04_DIR,
     LEGACY_PREVIEW_V05_COMMIT,
     LEGACY_PREVIEW_V05_DIR,
+    LEGACY_PREVIEW_V06_COMMIT,
+    LEGACY_PREVIEW_V06_DIR,
+    LEGACY_PREVIEW_V06_MANIFEST_SHA256,
     OVERLAY_DEFINITION,
     PREVIEW_DIR,
     REVIEW_DEFINITION,
     SOURCE_RELEASE,
     VerifiedConstructionCoreError,
-    build_preview,
+    load_current_v07_profile,
+    validate_frozen_preview,
     validate_frozen_v01,
     validate_frozen_v02,
     validate_frozen_v03,
     validate_frozen_v04,
     validate_frozen_v05,
-    validate_preview,
+    validate_frozen_v06,
+    validate_preview as validate_preview_dispatch,
 )
+
+
+def validate_preview(path: Path = PREVIEW_DIR) -> dict[str, object]:
+    """Exercise the semantic v0.6 validator in legacy tests."""
+    manifest = json.loads((Path(path) / "manifest.json").read_text(encoding="utf-8"))
+    if manifest.get("preview_id") == "2026-08-20-preview-v0.6":
+        return verified_core._validate_v06_preview_dispatch(Path(path))
+    return validate_preview_dispatch(Path(path))
 
 
 def _rows(name: str) -> list[dict[str, str]]:
@@ -660,6 +675,88 @@ class VerifiedConstructionCorePreviewTest(unittest.TestCase):
             },
         )
         self.assertEqual(validate_preview(LEGACY_PREVIEW_V05_DIR), v05)
+        v06 = validate_frozen_v06()
+        self.assertEqual(LEGACY_PREVIEW_V06_DIR.name, "2026-08-20-preview-v0.6")
+        self.assertEqual(
+            LEGACY_PREVIEW_V06_MANIFEST_SHA256,
+            "05070fab668b1ddd575745cefe3dc36600cd27b48f90702939229c1372674bd5",
+        )
+        self.assertEqual(
+            LEGACY_PREVIEW_V06_COMMIT,
+            "ec9cfe665e79cf76ea6b209a5a6e33c8fd1553c6",
+        )
+        self.assertEqual(
+            v06["counts"],
+            {
+                "countries": 17,
+                "evidence": 63,
+                "non_us_sites": 20,
+                "official_boundary_projects": 4,
+                "physical_sites": 26,
+                "projects": 29,
+                "reviewed_site_locator_projects": 25,
+            },
+        )
+        self.assertEqual(validate_frozen_preview(LEGACY_PREVIEW_V06_DIR), v06)
+
+    def test_current_v07_profile_requires_explicit_complete_definition_pins(
+        self,
+    ) -> None:
+        self.assertEqual(CURRENT_V07_PREVIEW_ID, "2026-08-20-preview-v0.7")
+        self.assertEqual(CURRENT_V07_PREVIEW_DIR.name, CURRENT_V07_PREVIEW_ID)
+        self.assertEqual(
+            verified_core.V07_REVIEW_DEFINITION_SHA256,
+            "e6fd80ddb57b49f40cc939a56bc4764e265b2580dc95cba22a4a07cfbd7cb096",
+        )
+        self.assertEqual(
+            verified_core.V07_IMAGERY_REVIEW_DEFINITION_SHA256,
+            "93afb53f21a7931202237d0688237a74fd8b7aa01646700785c1f368d69f4e42",
+        )
+        self.assertEqual(
+            verified_core.V07_PROVENANCE_DEFINITION_SHA256,
+            "ef4d730fe87bcf2f2e6a99831f2a045023d4f7024d273fc0c82ba52b52648d6f",
+        )
+        self.assertEqual(
+            verified_core.V07_OVERLAY_DEFINITION_SHA256,
+            "aa857c31d1b747749fec75b94afc16c48f8a0b28bc025d66f4a58b830cdfff3d",
+        )
+        with self.assertRaisesRegex(
+            VerifiedConstructionCoreError,
+            "current v0.7 definition pins are incomplete",
+        ):
+            load_current_v07_profile({})
+
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            paths = (
+                ("review_definition_sha256", root / "reviewed-sites.json"),
+                ("imagery_review_definition_sha256", root / "imagery.json"),
+                ("provenance_definition_sha256", root / "provenance.json"),
+                ("overlay_definition_sha256", root / "overlays.json"),
+            )
+            pins = {}
+            for index, (field, path) in enumerate(paths):
+                path.write_text(f'{{"fixture":{index}}}\n', encoding="utf-8")
+                pins[field] = hashlib.sha256(path.read_bytes()).hexdigest()
+            with mock.patch.object(
+                verified_core, "CURRENT_V07_DEFINITION_PATHS", paths
+            ):
+                profile = load_current_v07_profile(pins)
+            self.assertEqual(profile.preview_id, CURRENT_V07_PREVIEW_ID)
+            self.assertEqual(profile.preview_dir, CURRENT_V07_PREVIEW_DIR)
+            self.assertEqual(profile.base_preview_id, "2026-08-20-preview-v0.6")
+            self.assertEqual(profile.base_preview_dir, LEGACY_PREVIEW_V06_DIR)
+            self.assertEqual(
+                profile.base_manifest_sha256,
+                LEGACY_PREVIEW_V06_MANIFEST_SHA256,
+            )
+            self.assertEqual(profile.base_commit, LEGACY_PREVIEW_V06_COMMIT)
+            self.assertEqual(
+                profile.definition_pins,
+                tuple(
+                    (field, path, pins[field]) for field, path in paths
+                ),
+            )
 
     def test_frozen_v02_validation_is_isolated_from_current_globals(self) -> None:
         missing = Path("/definitely-absent-v03-contract.json")
@@ -735,7 +832,53 @@ class VerifiedConstructionCorePreviewTest(unittest.TestCase):
             ):
                 validate_frozen_v05(clone)
 
-    def test_v04_v05_and_current_manifest_trust_roots_must_not_be_symlinks(
+    def test_frozen_v06_dispatch_is_isolated_from_future_globals(self) -> None:
+        missing = Path("/definitely-absent-v07-contract.json")
+        with (
+            mock.patch.object(verified_core, "REVIEW_DEFINITION", missing),
+            mock.patch.object(verified_core, "IMAGERY_REVIEW_DEFINITION", missing),
+            mock.patch.object(verified_core, "PROVENANCE_DEFINITION", missing),
+            mock.patch.object(verified_core, "OVERLAY_DEFINITION", missing),
+            mock.patch.object(verified_core, "PREVIEW_ID", CURRENT_V07_PREVIEW_ID),
+            mock.patch.object(
+                verified_core,
+                "LEGACY_PREVIEW_V06_MANIFEST_SHA256",
+                "0" * 64,
+            ),
+        ):
+            self.assertEqual(
+                validate_preview_dispatch(LEGACY_PREVIEW_V06_DIR)["preview_id"],
+                "2026-08-20-preview-v0.6",
+            )
+
+    def test_frozen_v06_member_tamper_and_symlink_fail_closed(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            clone = root / "preview-v0.6"
+            shutil.copytree(LEGACY_PREVIEW_V06_DIR, clone)
+            with (clone / "map.html").open("ab") as handle:
+                handle.write(b"tamper\n")
+            with self.assertRaisesRegex(
+                VerifiedConstructionCoreError,
+                "frozen v0.6 member differs: map.html",
+            ):
+                validate_frozen_v06(clone)
+
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            clone = root / "preview-v0.6"
+            shutil.copytree(LEGACY_PREVIEW_V06_DIR, clone)
+            external = root / "external-map.html"
+            external.write_bytes((clone / "map.html").read_bytes())
+            (clone / "map.html").unlink()
+            (clone / "map.html").symlink_to(external)
+            with self.assertRaisesRegex(
+                VerifiedConstructionCoreError,
+                "frozen v0.6 member differs: map.html",
+            ):
+                validate_frozen_v06(clone)
+
+    def test_v04_v05_v06_and_current_manifest_trust_roots_must_not_be_symlinks(
         self,
     ) -> None:
         cases = (
@@ -750,6 +893,12 @@ class VerifiedConstructionCorePreviewTest(unittest.TestCase):
                 LEGACY_PREVIEW_V05_DIR,
                 validate_frozen_v05,
                 "frozen v0.5 manifest trust root differs",
+            ),
+            (
+                "frozen-v06",
+                LEGACY_PREVIEW_V06_DIR,
+                validate_frozen_v06,
+                "frozen v0.6 manifest trust root differs",
             ),
             (
                 "v06",
@@ -2399,7 +2548,7 @@ class VerifiedConstructionCorePreviewTest(unittest.TestCase):
                     VerifiedConstructionCoreError, "geometry bridge source hash differs"
                 ),
             ):
-                verified_core.build_preview(temporary_path / "preview")
+                verified_core._build_v06_preview(temporary_path / "preview")
 
     @unittest.skipUnless(
         _hydrated_vcc_source_inputs_are_present(),
@@ -2408,7 +2557,7 @@ class VerifiedConstructionCorePreviewTest(unittest.TestCase):
     def test_hydrated_source_rebuild_is_byte_exact(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             rebuilt = Path(temporary) / "preview"
-            build_preview(rebuilt)
+            verified_core._build_v06_preview(rebuilt)
             self.assertEqual(
                 {path.name for path in rebuilt.iterdir()},
                 {path.name for path in PREVIEW_DIR.iterdir()},
@@ -2419,6 +2568,143 @@ class VerifiedConstructionCorePreviewTest(unittest.TestCase):
                     expected.read_bytes(),
                     expected.name,
                 )
+
+    def test_v07_artifact_counts_claims_and_attribution_are_frozen(self) -> None:
+        manifest = validate_preview_dispatch(CURRENT_V07_PREVIEW_DIR)
+        self.assertEqual(
+            manifest["counts"],
+            {
+                "physical_sites": 33,
+                "projects": 36,
+                "evidence": 79,
+                "countries": 23,
+                "non_us_sites": 27,
+                "official_boundary_projects": 5,
+                "reviewed_site_locator_projects": 31,
+            },
+        )
+        self.assertEqual(len(manifest["portable_source_inputs"]), 41)
+        report = json.loads(
+            (CURRENT_V07_PREVIEW_DIR / "selection-report.json").read_text()
+        )
+        self.assertEqual(
+            report["selection_first_failure_counts"],
+            verified_core.V07_SELECTION_FIRST_FAILURE_COUNTS,
+        )
+        projects = {
+            row["project_stable_key"]: row
+            for row in _rows_from(CURRENT_V07_PREVIEW_DIR, "projects.csv")
+        }
+        alto = projects[
+            "curated:alto-sp01-granada-data-center-campus:phase-1-10mw-critical-it"
+        ]
+        self.assertEqual(alto["operator"], "Alto Infrastructure")
+        self.assertEqual(
+            {row["deployment_scope"] for row in json.loads(alto["workloads_json"])},
+            {"intended"},
+        )
+        self.assertEqual(len(json.loads(alto["workloads_json"])), 3)
+        walqa = projects["curated:aws-walqa-huesca-data-center:current-build"]
+        self.assertEqual(walqa["operator"], "")
+        self.assertEqual(
+            walqa["imagery_review_outcome"],
+            "tracked_blind_reject_locally_unsealed_identity_no_construction_claim",
+        )
+        sel3 = projects[
+            "curated:digital-edge-seoul-bupyeong-campus:sel3-phase-2"
+        ]
+        self.assertEqual(sel3["country"], "Korea, Republic of")
+        self.assertEqual(sel3["geometry_derivation"], "cross_source_geometry")
+        map_html = (CURRENT_V07_PREVIEW_DIR / "map.html").read_text()
+        for label in (
+            "OpenStreetMap",
+            "Kartverket",
+            "Direction générale des Finances publiques (DGFiP) — Cadastre Etalab — millésime 1 June 2026",
+            "Lands Department",
+            "Valsts zemes dienests",
+            "City and County of Denver",
+        ):
+            self.assertIn(label, map_html)
+        self.assertNotIn("<script src=", map_html)
+        self.assertNotIn("<link rel=", map_html)
+        schema = json.loads((CURRENT_V07_PREVIEW_DIR / "schema.json").read_text())
+        self.assertEqual(
+            schema["map"]["derived_from"], ["sites.geojson", "evidence.csv"]
+        )
+
+    def test_v07_refreshed_manifest_and_bridge_pins_fail_closed(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            clone = Path(temporary) / "preview"
+            shutil.copytree(CURRENT_V07_PREVIEW_DIR, clone)
+            map_path = clone / "map.html"
+            map_path.write_text(
+                map_path.read_text().replace("City and County of Denver", "Denver"),
+                encoding="utf-8",
+            )
+            _refresh_unsigned_manifest(clone)
+            with self.assertRaisesRegex(
+                VerifiedConstructionCoreError, "v0.7 manifest semantics differ"
+            ):
+                validate_preview_dispatch(clone)
+        reviewed = json.loads(
+            (verified_core.ROOT / "definitions/verified-construction-core-v0.7-reviewed-sites.json").read_text()
+        )
+        acceptance = reviewed["acceptances"][0]
+        original = acceptance["bridge_sha256"]
+        acceptance["bridge_sha256"] = "0" * 64
+        with self.assertRaisesRegex(
+            VerifiedConstructionCoreError, "immutable bridge profile differs"
+        ):
+            verified_core._validate_v07_bridge(
+                acceptance, {}, hydrated_crosscheck=False
+            )
+        acceptance["bridge_sha256"] = original
+
+    def test_v07_overlay_required_fields_are_not_self_describing(self) -> None:
+        overlay_path = (
+            verified_core.ROOT
+            / "definitions/verified-construction-core-reviewed-overlays-v5.json"
+        )
+        overlay = json.loads(overlay_path.read_text(encoding="utf-8"))
+        overlay["required_fields"].append("attacker_field")
+        for row in overlay["overlays"]:
+            row["attacker_field"] = "accepted-by-self-described-schema"
+        original_load = verified_core._load_json
+
+        def load_with_refreshed_overlay(path: Path) -> object:
+            if Path(path).resolve() == overlay_path.resolve():
+                return overlay
+            return original_load(path)
+
+        with mock.patch.object(
+            verified_core, "_load_json", side_effect=load_with_refreshed_overlay
+        ), self.assertRaisesRegex(
+            VerifiedConstructionCoreError, "overlay required fields differ"
+        ):
+            verified_core._v07_contracts(hydrated_crosscheck=False)
+
+    def test_v07_corpus_free_and_hydrated_rebuilds_are_byte_exact(self) -> None:
+        for hydrated in (False, True):
+            if hydrated and not _hydrated_vcc_source_inputs_are_present():
+                continue
+            with self.subTest(hydrated=hydrated), tempfile.TemporaryDirectory() as temporary:
+                rebuilt = Path(temporary) / "preview"
+                with mock.patch.object(
+                    verified_core,
+                    "_v07_hydrated_crosscheck_available",
+                    return_value=hydrated,
+                ):
+                    verified_core.build_preview(rebuilt)
+                self.assertEqual(
+                    {path.name for path in rebuilt.iterdir()},
+                    {path.name for path in CURRENT_V07_PREVIEW_DIR.iterdir()},
+                )
+                for expected in CURRENT_V07_PREVIEW_DIR.iterdir():
+                    self.assertEqual(
+                        (rebuilt / expected.name).read_bytes(),
+                        expected.read_bytes(),
+                        expected.name,
+                    )
 
 
 if __name__ == "__main__":
