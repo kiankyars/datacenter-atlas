@@ -19,6 +19,8 @@ from datacenter_atlas.verified_construction_core import (
     CURRENT_V07_PREVIEW_ID,
     CURRENT_V08_PREVIEW_DIR,
     CURRENT_V08_PREVIEW_ID,
+    CURRENT_V09_PREVIEW_DIR,
+    CURRENT_V09_PREVIEW_ID,
     LEGACY_PREVIEW_V01_DIR,
     LEGACY_PREVIEW_V02_DIR,
     LEGACY_PREVIEW_V03_DIR,
@@ -35,6 +37,7 @@ from datacenter_atlas.verified_construction_core import (
     VerifiedConstructionCoreError,
     load_current_v07_profile,
     load_current_v08_profile,
+    load_current_v09_profile,
     validate_frozen_preview,
     validate_frozen_v01,
     validate_frozen_v02,
@@ -3297,12 +3300,557 @@ class VerifiedConstructionCorePreviewTest(unittest.TestCase):
                     "_v08_hydrated_crosscheck_available",
                     return_value=hydrated,
                 ):
-                    verified_core.build_preview(rebuilt)
+                    verified_core._build_v08_preview(rebuilt)
                 self.assertEqual(
                     {path.name for path in rebuilt.iterdir()},
                     {path.name for path in CURRENT_V08_PREVIEW_DIR.iterdir()},
                 )
                 for expected in CURRENT_V08_PREVIEW_DIR.iterdir():
+                    self.assertEqual(
+                        (rebuilt / expected.name).read_bytes(),
+                        expected.read_bytes(),
+                        expected.name,
+                    )
+
+    def test_current_v09_profile_and_frozen_v08_are_exact(self) -> None:
+        self.assertEqual(CURRENT_V09_PREVIEW_ID, "2026-08-20-preview-v0.9")
+        self.assertEqual(CURRENT_V09_PREVIEW_DIR.name, CURRENT_V09_PREVIEW_ID)
+        self.assertEqual(
+            verified_core.LEGACY_PREVIEW_V08_MANIFEST_SHA256,
+            "a916aa4a438510ac5c1c26b359c7581dc18ca55de4c40ffd59c93424cad70b08",
+        )
+        self.assertEqual(
+            verified_core.LEGACY_PREVIEW_V08_COMMIT,
+            "26782bec3107fdbc778af2b57aa425f013a6a243",
+        )
+        self.assertEqual(
+            verified_core.validate_frozen_v08()["counts"],
+            {
+                "physical_sites": 41,
+                "projects": 44,
+                "evidence": 100,
+                "countries": 25,
+                "non_us_sites": 35,
+                "official_boundary_projects": 5,
+                "reviewed_site_locator_projects": 39,
+            },
+        )
+        self.assertEqual(
+            validate_preview_dispatch(CURRENT_V08_PREVIEW_DIR)["preview_id"],
+            CURRENT_V08_PREVIEW_ID,
+        )
+        self.assertEqual(
+            (CURRENT_V09_PREVIEW_DIR / "manifest.sha256").read_text(),
+            "d9d9975f8e70dbe8aab14c82f0af4aed1cd9d25d8eb3566ae458c60026c7b5c8"
+            "  manifest.json\n",
+        )
+        with self.assertRaisesRegex(
+            VerifiedConstructionCoreError,
+            "current v0.9 definition pins are incomplete",
+        ):
+            load_current_v09_profile({})
+        pins = {
+            field: hashlib.sha256(path.read_bytes()).hexdigest()
+            for field, path in verified_core.CURRENT_V09_DEFINITION_PATHS
+        }
+        profile = load_current_v09_profile(pins)
+        self.assertEqual(profile.base_preview_dir, CURRENT_V08_PREVIEW_DIR)
+        self.assertEqual(
+            profile.base_manifest_sha256,
+            verified_core.LEGACY_PREVIEW_V08_MANIFEST_SHA256,
+        )
+        self.assertEqual(profile.base_commit, verified_core.LEGACY_PREVIEW_V08_COMMIT)
+
+    def test_v09_artifact_counts_evidence_and_guardrails_are_exact(self) -> None:
+        manifest = validate_preview_dispatch(CURRENT_V09_PREVIEW_DIR)
+        self.assertEqual(
+            manifest["counts"],
+            {
+                "physical_sites": 44,
+                "projects": 47,
+                "evidence": 108,
+                "countries": 25,
+                "non_us_sites": 37,
+                "official_boundary_projects": 5,
+                "reviewed_site_locator_projects": 42,
+            },
+        )
+        self.assertEqual(len(manifest["portable_source_inputs"]), 66)
+        projects = {
+            row["project_stable_key"]: row
+            for row in _rows_from(CURRENT_V09_PREVIEW_DIR, "projects.csv")
+        }
+        delta_keys = set(verified_core.V09_BRIDGE_PROFILES)
+        for key in delta_keys:
+            row = projects[key]
+            self.assertEqual(row["last_observed_physical_status"], "under_construction")
+            self.assertEqual(row["independent_imagery_verification"], "false")
+            self.assertEqual(
+                row["imagery_review_outcome"], "not_reviewed_for_core_preview"
+            )
+            self.assertEqual(json.loads(row["workloads_json"]), [])
+
+        marsden_key = "curated:cdc-marsden-park-campus:early-construction"
+        marsden = projects[marsden_key]
+        self.assertEqual(marsden["geometry_source_entity_kind"], "facility")
+        self.assertEqual(marsden["geometry_use_scope"], "campus_locator")
+        self.assertEqual(json.loads(marsden["power_observations_json"]), [])
+        self.assertEqual(json.loads(marsden["efficiency_observations_json"]), [])
+        self.assertEqual(marsden["operator"], "CDC Data Centres")
+        self.assertEqual(
+            json.loads(marsden["role_claims_json"]),
+            [
+                {
+                    "evidence_id": "56fa3df3-1fe1-50af-80c1-0e2f0f14d610",
+                    "party": "CDC Data Centres",
+                    "relationship_scope": "intended",
+                    "role": "operator",
+                }
+            ],
+        )
+
+        cermak_key = (
+            "curated:digital-realty-330-east-cermak-chicago:"
+            "current-facility-build"
+        )
+        cermak = projects[cermak_key]
+        self.assertEqual(cermak["geometry_source_entity_kind"], "building")
+        self.assertEqual(cermak["geometry_use_scope"], "project_locator")
+        self.assertEqual(
+            cermak["geometry_evidence_id"],
+            "b2a12b58-767d-5517-9d63-a5d6fc6e9426",
+        )
+        self.assertIn("openstreetmap.org/way/210537873", cermak["geometry_source_url"])
+        self.assertNotIn("cityofchicago", cermak["geometry_source_url"].lower())
+
+        ntt_key = "curated:ntt-frankfurt-1-campus:7-3mw-expansion"
+        ntt = projects[ntt_key]
+        self.assertEqual(ntt["geometry_source_entity_kind"], "facility")
+        self.assertEqual(ntt["geometry_use_scope"], "campus_locator")
+        self.assertEqual(
+            json.loads(ntt["power_observations_json"]),
+            [
+                {
+                    "as_of_date": "2026-07-19",
+                    "base": 7.3,
+                    "confidence": 0.99,
+                    "evidence_id": "603f155d-0c9d-5428-8e24-36a685af8aa7",
+                    "high": 7.3,
+                    "low": 7.3,
+                    "method": "reported",
+                    "metric": "critical_it_mw",
+                    "notes": (
+                        "Additional critical IT load for the distinct expansion that "
+                        "the current page says is under construction; planned capacity "
+                        "stage does not itself assert energization or operation."
+                    ),
+                    "stage": "planned",
+                    "target_date": None,
+                    "unit": "MW",
+                }
+            ],
+        )
+        self.assertEqual(json.loads(ntt["efficiency_observations_json"]), [])
+        self.assertEqual(json.loads(ntt["role_claims_json"]), [])
+        self.assertNotIn("70.1", ntt["power_observations_json"])
+        self.assertNotIn("77.4", ntt["power_observations_json"])
+        self.assertNotIn("120", ntt["power_observations_json"])
+
+        base_evidence = {
+            row["evidence_id"]
+            for row in _rows_from(CURRENT_V08_PREVIEW_DIR, "evidence.csv")
+        }
+        current_evidence = {
+            row["evidence_id"]: row
+            for row in _rows_from(CURRENT_V09_PREVIEW_DIR, "evidence.csv")
+        }
+        self.assertEqual(
+            set(current_evidence) - base_evidence,
+            verified_core.V09_EVIDENCE_IDS,
+        )
+        project_key_by_id = {
+            row["project_id"]: row["project_stable_key"] for row in projects.values()
+        }
+        projection = {
+            evidence_id: (
+                json.loads(current_evidence[evidence_id]["roles_json"]),
+                [
+                    project_key_by_id[project_id]
+                    for project_id in json.loads(
+                        current_evidence[evidence_id]["project_ids_json"]
+                    )
+                ],
+            )
+            for evidence_id in verified_core.V09_EVIDENCE_IDS
+        }
+        self.assertEqual(
+            projection,
+            {
+                "1df077b4-ffa3-5938-a5fe-88d5b4028ad4": (
+                    ["context:geometry_identity"],
+                    [ntt_key],
+                ),
+                "39cdd4b0-60f0-5d50-9a38-59d72c0a9d53": (
+                    ["context:geometry_identity"],
+                    [cermak_key],
+                ),
+                "56fa3df3-1fe1-50af-80c1-0e2f0f14d610": (
+                    ["physical_status", "role:operator"],
+                    [marsden_key],
+                ),
+                "603f155d-0c9d-5428-8e24-36a685af8aa7": (
+                    ["physical_status", "typed_metric:critical_it_mw"],
+                    [ntt_key],
+                ),
+                "9f47299f-1ce7-579f-b0b8-1bd454faabd5": (
+                    ["physical_status"],
+                    [cermak_key],
+                ),
+                "b2a12b58-767d-5517-9d63-a5d6fc6e9426": (
+                    ["geometry"],
+                    [cermak_key],
+                ),
+                "ce28239d-1c35-5043-9373-97416961a743": (
+                    ["geometry"],
+                    [marsden_key],
+                ),
+                "eb188ade-b0ff-5b98-bbd4-83cee821ca4b": (
+                    ["geometry"],
+                    [ntt_key],
+                ),
+            },
+        )
+        report = json.loads(
+            (CURRENT_V09_PREVIEW_DIR / "selection-report.json").read_text()
+        )
+        self.assertEqual(
+            report["selection_first_failure_counts"],
+            verified_core.V09_SELECTION_FIRST_FAILURE_COUNTS,
+        )
+        self.assertEqual(
+            report["final_release_gates"]["imagery_outcomes_complete"],
+            {"actual": 10, "required": 47, "passed": False},
+        )
+        self.assertEqual(
+            len(report["provenance_decisions"]["context_evidence_bindings"]),
+            4,
+        )
+
+    def test_v09_city_notice_is_exact_visible_and_manifest_bound(self) -> None:
+        contracts = verified_core._v09_contracts(hydrated_crosscheck=False)
+        city_terms = contracts["city_terms"]
+        legal_notice = verified_core._v09_city_legal_notice(city_terms)
+        self.assertEqual(
+            hashlib.sha256(city_terms["required_disclaimer"].encode()).hexdigest(),
+            verified_core.V09_CITY_NOTICE_SHA256,
+        )
+        for name in ("README.md", "ATTRIBUTION.txt"):
+            content = (CURRENT_V09_PREVIEW_DIR / name).read_text()
+            self.assertIn(legal_notice, content)
+            self.assertIn("Attribution: City of Chicago", content)
+            self.assertIn(verified_core.V09_CITY_TERMS_URL, content)
+            self.assertIn(city_terms["additional_terms_requirement"], content)
+        with tempfile.TemporaryDirectory() as temporary:
+            altered = Path(temporary) / "preview"
+            shutil.copytree(CURRENT_V09_PREVIEW_DIR, altered)
+            readme = altered / "README.md"
+            readme.write_text(
+                readme.read_text().replace(
+                    city_terms["required_disclaimer"], "[notice removed]"
+                ),
+                encoding="utf-8",
+            )
+            _refresh_unsigned_manifest(altered)
+            with self.assertRaisesRegex(
+                VerifiedConstructionCoreError,
+                "v0.9 manifest semantics differ|v0.9 generated member differs",
+            ):
+                validate_preview_dispatch(altered)
+
+    def test_v09_capture_source_and_release_refreshes_fail_closed(self) -> None:
+        reviewed = json.loads(verified_core.V09_REVIEW_DEFINITION.read_text())
+        acceptance_by_key = {
+            row["project_stable_key"]: row for row in reviewed["acceptances"]
+        }
+        cermak_key = (
+            "curated:digital-realty-330-east-cermak-chicago:"
+            "current-facility-build"
+        )
+        cermak_acceptance = json.loads(
+            json.dumps(acceptance_by_key[cermak_key])
+        )
+        cermak_bridge = json.loads(
+            (verified_core.ROOT / cermak_acceptance["bridge_path"]).read_text()
+        )
+        cermak_acceptance["portable_capture_bindings"] = cermak_acceptance[
+            "portable_capture_bindings"
+        ][:-1]
+        with self.assertRaisesRegex(
+            VerifiedConstructionCoreError, "v0.9 capture inventory differs"
+        ):
+            verified_core._v09_load_capture_bindings(
+                cermak_acceptance, cermak_bridge
+            )
+
+        cermak_acceptance = next(
+            row
+            for row in reviewed["acceptances"]
+            if row["project_stable_key"] == cermak_key
+        )
+        city_binding = next(
+            row
+            for row in cermak_acceptance["portable_capture_bindings"]
+            if row["capture_role"] == "identity_context"
+        )
+        city_capture = json.loads(
+            (verified_core.ROOT / city_binding["path"]).read_text()
+        )
+        city_capture.pop("rights")
+        city_payload = _canonical_json(city_capture)
+        city_sha256 = hashlib.sha256(city_payload).hexdigest()
+        refreshed_acceptance = json.loads(json.dumps(cermak_acceptance))
+        refreshed_bridge = json.loads(json.dumps(cermak_bridge))
+        refreshed_binding = next(
+            row
+            for row in refreshed_acceptance["portable_capture_bindings"]
+            if row["capture_role"] == "identity_context"
+        )
+        refreshed_binding.update(
+            {"bytes": len(city_payload), "sha256": city_sha256}
+        )
+        refreshed_bridge["identity_bridge_evidence"][0]["capture_reference"].update(
+            {"bytes": len(city_payload), "sha256": city_sha256}
+        )
+        capture_id = city_binding["capture_id"]
+        refreshed_profile = dict(verified_core.V09_CAPTURE_PROFILES[capture_id])
+        refreshed_profile.update(
+            {"bytes": len(city_payload), "sha256": city_sha256}
+        )
+        original_repository_input = verified_core._repository_input
+        with tempfile.TemporaryDirectory() as temporary:
+            altered_capture = Path(temporary) / "capture.json"
+            altered_capture.write_bytes(city_payload)
+
+            def repository_input(
+                path_text: str, expected_sha256: str, field: str
+            ) -> Path:
+                if path_text == city_binding["path"]:
+                    self.assertEqual(expected_sha256, city_sha256)
+                    return altered_capture
+                return original_repository_input(path_text, expected_sha256, field)
+
+            with mock.patch.dict(
+                verified_core.V09_CAPTURE_PROFILES,
+                {capture_id: refreshed_profile},
+            ), mock.patch.object(
+                verified_core,
+                "_repository_input",
+                side_effect=repository_input,
+            ), self.assertRaisesRegex(
+                VerifiedConstructionCoreError, "v0.9 capture identity differs"
+            ):
+                verified_core._v09_load_capture_bindings(
+                    refreshed_acceptance, refreshed_bridge
+                )
+
+        marsden_key = "curated:cdc-marsden-park-campus:early-construction"
+        marsden_acceptance = json.loads(
+            json.dumps(acceptance_by_key[marsden_key])
+        )
+        marsden_bridge = json.loads(
+            (verified_core.ROOT / marsden_acceptance["bridge_path"]).read_text()
+        )
+        source_path = verified_core.ROOT / marsden_acceptance["source_input_path"]
+        altered_source = json.loads(source_path.read_text())
+        altered_source["guardrail_bypass"] = True
+        source_payload = _canonical_json(altered_source)
+        source_sha256 = hashlib.sha256(source_payload).hexdigest()
+        source_binding = {
+            "path": marsden_acceptance["source_input_path"],
+            "bytes": len(source_payload),
+            "sha256": source_sha256,
+        }
+        marsden_acceptance.update(
+            {
+                "source_input_bytes": len(source_payload),
+                "source_input_sha256": source_sha256,
+                "portable_input_binding": source_binding,
+            }
+        )
+        marsden_bridge["construction_source"]["input"] = source_binding
+        with tempfile.TemporaryDirectory() as temporary:
+            altered_path = Path(temporary) / "source.json"
+            altered_path.write_bytes(source_payload)
+
+            def source_repository_input(
+                path_text: str, expected_sha256: str, field: str
+            ) -> Path:
+                if path_text == source_binding["path"]:
+                    self.assertEqual(expected_sha256, source_sha256)
+                    return altered_path
+                return original_repository_input(path_text, expected_sha256, field)
+
+            with mock.patch.object(
+                verified_core,
+                "_repository_input",
+                side_effect=source_repository_input,
+            ), self.assertRaisesRegex(
+                VerifiedConstructionCoreError, "v0.9 source record differs"
+            ):
+                verified_core._v09_validate_construction_source(
+                    marsden_bridge,
+                    marsden_acceptance,
+                    hydrated_crosscheck=False,
+                )
+
+        canonical_marsden = json.loads(
+            (verified_core.ROOT / acceptance_by_key[marsden_key]["bridge_path"])
+            .read_text()
+        )
+        canonical_marsden["construction_source"]["release"]["release_id"] = (
+            "attacker-release"
+        )
+        with self.assertRaisesRegex(
+            VerifiedConstructionCoreError, "v0.9 source release differs"
+        ):
+            verified_core._v09_validate_construction_source(
+                canonical_marsden,
+                acceptance_by_key[marsden_key],
+                hydrated_crosscheck=False,
+            )
+
+    def test_v09_ntt_segment_escape_is_rejected_after_fact_repin(self) -> None:
+        project_key = "curated:ntt-frankfurt-1-campus:7-3mw-expansion"
+        acceptance = next(
+            row
+            for row in json.loads(
+                verified_core.V09_REVIEW_DEFINITION.read_text()
+            )["acceptances"]
+            if row["project_stable_key"] == project_key
+        )
+        bridge = json.loads(
+            (verified_core.ROOT / acceptance["bridge_path"]).read_text()
+        )
+        container = {
+            "type": "Polygon",
+            "coordinates": [
+                [
+                    [0.0, 0.0],
+                    [4.0, 0.0],
+                    [4.0, 4.0],
+                    [3.0, 4.0],
+                    [3.0, 1.0],
+                    [1.0, 1.0],
+                    [1.0, 4.0],
+                    [0.0, 4.0],
+                    [0.0, 0.0],
+                ]
+            ],
+        }
+        evidence = bridge["identity_bridge_evidence"][0]
+        fact = evidence["fact_payload"]
+        bridge["geometry_entity"]["geometry"] = container
+        fact["frozen_geometry_container"]["geometry_sha256"] = hashlib.sha256(
+            verified_core._v09_json_without_lf(container)
+        ).hexdigest()
+        objects = fact["osm_address_objects"]
+        objects[0]["geometry"] = {"type": "Point", "coordinates": [0.5, 0.5]}
+        objects[1]["geometry"] = {
+            "type": "Polygon",
+            "coordinates": [
+                [
+                    [0.5, 3.0],
+                    [3.5, 3.0],
+                    [3.5, 2.5],
+                    [0.5, 2.5],
+                    [0.5, 3.0],
+                ]
+            ],
+        }
+        objects[2]["geometry"] = {"type": "Point", "coordinates": [3.5, 0.5]}
+        fact_sha256 = hashlib.sha256(_canonical_json(fact)).hexdigest()
+        evidence["fact_payload_canonical_sha256"] = fact_sha256
+        evidence["content_hash"] = fact_sha256
+        with mock.patch.object(
+            verified_core, "V09_NTT_IDENTITY_FACT_SHA256", fact_sha256
+        ), mock.patch.object(
+            verified_core,
+            "_official_evidence_id",
+            return_value=evidence["evidence_id"],
+        ), self.assertRaisesRegex(
+            VerifiedConstructionCoreError,
+            "v0.9 NTT address segment containment differs",
+        ):
+            verified_core._v09_validate_ntt_identity(bridge)
+
+    def test_v09_overlay_schema_and_city_selection_fail_closed(self) -> None:
+        overlay = json.loads(verified_core.V09_OVERLAY_DEFINITION.read_text())
+        overlay["required_fields"].append("attacker_field")
+        for row in overlay["overlays"]:
+            row["attacker_field"] = "accepted-by-self-description"
+        original_load = verified_core._load_json
+
+        def load_with_refreshed_overlay(path: Path) -> object:
+            if Path(path).resolve() == verified_core.V09_OVERLAY_DEFINITION.resolve():
+                return overlay
+            return original_load(path)
+
+        with mock.patch.object(
+            verified_core, "_load_json", side_effect=load_with_refreshed_overlay
+        ), self.assertRaisesRegex(
+            VerifiedConstructionCoreError, "v0.9 overlay contract differs"
+        ):
+            verified_core._v09_contracts(hydrated_crosscheck=False)
+
+        city_profile = next(
+            profile
+            for capture_id, profile in verified_core.V09_CAPTURE_PROFILES.items()
+            if "city-building-footprint" in capture_id
+        )
+        city_capture = json.loads(
+            (verified_core.ROOT / city_profile["path"]).read_text()
+        )
+        self.assertNotIn("fact_payload_canonical_bytes", city_capture["selection"])
+        self.assertNotIn("fact_payload_canonical_sha256", city_capture["selection"])
+        cermak_key = (
+            "curated:digital-realty-330-east-cermak-chicago:"
+            "current-facility-build"
+        )
+        cermak_bridge = verified_core._v09_contracts(
+            hydrated_crosscheck=False
+        )["bridges"][cermak_key]
+        rejected = cermak_bridge["lineage_context"][
+            "hard_rejected_global_v3_source_objects"
+        ]["objects"]
+        self.assertEqual(
+            {row["stable_key"] for row in rejected},
+            {"osm:way/156520409", "osm:node/10910879064"},
+        )
+        self.assertTrue(
+            all(
+                row["contributes_to_identity"] is False
+                and row["contributes_to_geometry"] is False
+                for row in rejected
+            )
+        )
+
+    def test_v09_corpus_free_and_hydrated_rebuilds_are_byte_exact(self) -> None:
+        for hydrated in (False, True):
+            if hydrated and not _hydrated_vcc_source_inputs_are_present():
+                continue
+            with self.subTest(hydrated=hydrated), tempfile.TemporaryDirectory() as temporary:
+                rebuilt = Path(temporary) / "preview"
+                with mock.patch.object(
+                    verified_core,
+                    "_v09_hydrated_crosscheck_available",
+                    return_value=hydrated,
+                ):
+                    verified_core.build_preview(rebuilt)
+                self.assertEqual(
+                    {path.name for path in rebuilt.iterdir()},
+                    {path.name for path in CURRENT_V09_PREVIEW_DIR.iterdir()},
+                )
+                for expected in CURRENT_V09_PREVIEW_DIR.iterdir():
                     self.assertEqual(
                         (rebuilt / expected.name).read_bytes(),
                         expected.read_bytes(),

@@ -1,0 +1,44 @@
+{
+  "contract_id": "verified-construction-core-v0.9-provenance",
+  "review_scope": "Exact-hash incremental successor to v0.8. CDC Marsden Park adds one source-bound intended-operator decision. The Cermak City building-footprint record and NTT Frankfurt address-containment proof remain geometry-identity context only and are sourced from each pinned bridge's identity_bridge_evidence collection. No workload or operating-model binding is added. Digital Realty publisher identity, the American Book Company name, City building status, OSM NTT and e-shelter tags, campus capacities, generic regional capacity language, and geometry-source metadata are not promoted into project owner, operator, user, tenant, customer, workload, operating-model, lifecycle, capacity, energy, or efficiency claims.",
+  "reviewed_as_of": "2026-08-20",
+  "base_contract": {
+    "path": "definitions/verified-construction-core-v0.8-provenance.json",
+    "sha256": "a4a8fbda2d06a368f6030127d6f3e3eb73f22b95626e31c6719d88515f15fe48"
+  },
+  "workload_scope_bindings": [],
+  "role_bindings": [
+    {
+      "project_stable_key": "curated:cdc-marsden-park-campus:early-construction",
+      "source_input_path": "sources/curated-official-2026-07-21-cdc-marsden-park-current-build.json",
+      "source_input_sha256": "8ef701ac0b4346aed089996487a149dd1aea2545ce11b0b30c53faf5a1807322",
+      "role": "operator",
+      "party": "CDC Data Centres",
+      "evidence_key": "cdc-marsden-park-current-status-captured-2026-07-21",
+      "evidence_id": "56fa3df3-1fe1-50af-80c1-0e2f0f14d610",
+      "relationship_scope": "intended",
+      "semantic_scope": "CDC's current location page identifies the Marsden Park campus and directly supports the CDC operator relationship retained by the curated source. This establishes CDC Data Centres only as intended operator of the unfinished early-construction aggregate; it does not establish present operation, completion, ownership, a tenant, customer, user, utility, contractor, occupancy, or workload."
+    }
+  ],
+  "excluded_source_roles": [],
+  "context_evidence_bindings": [
+    {
+      "project_stable_key": "curated:digital-realty-330-east-cermak-chicago:current-facility-build",
+      "bridge_path": "sources/verified-construction-core-v0.9-digital-realty-330-east-cermak-project-geometry-bridge.json",
+      "bridge_sha256": "5b32961df7601c828c9e2892ccd25ad0d7f4bf466569c7e7d6af48def8ac278a",
+      "evidence_origin": "identity_bridge_evidence",
+      "evidence_id": "39cdd4b0-60f0-5d50-9a38-59d72c0a9d53",
+      "usage_role": "geometry_identity",
+      "semantic_scope": "The City of Chicago Building Footprints row binds municipal building ID 871169 to the OSM building-ID tag and provides crosswalk context for the existing corner building. Its old 2132 S Calumet frontage address, 2007 timestamps, ACTIVE field, and City geometry do not independently establish Digital Realty identity, current lifecycle, selected geometry, an official boundary, a role, workload, operating model, capacity, energy, or efficiency claim."
+    },
+    {
+      "project_stable_key": "curated:ntt-frankfurt-1-campus:7-3mw-expansion",
+      "bridge_path": "sources/verified-construction-core-v0.9-ntt-fra1-expansion-campus-geometry-bridge.json",
+      "bridge_sha256": "f2e3be5faf8065fc0bc449e2118b5d4d6d1fe3700672bee879c8a15bf052665e",
+      "evidence_origin": "identity_bridge_evidence",
+      "evidence_id": "1df077b4-ffa3-5938-a5fe-88d5b4028ad4",
+      "usage_role": "geometry_identity",
+      "semantic_scope": "The compact ODbL address-containment proof binds three exact OSM objects carrying Eschborner Landstraße 100, 60489 Frankfurt am Main to the interior of the frozen named NTT campus polygon. It supports parent-campus identity only; it does not establish an official boundary, the 7.3 MW expansion footprint, lifecycle, a normalized operator or alias, workload, operating model, project capacity beyond the source-bound 7.3 MW row, energy, or efficiency."
+    }
+  ]
+}
