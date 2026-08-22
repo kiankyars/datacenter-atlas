@@ -4396,11 +4396,16 @@ class VerifiedConstructionCorePreviewTest(unittest.TestCase):
                 validate_preview_dispatch(altered)
 
         original_is_file = Path.is_file
+        present = verified_core.ROOT / (
+            "releases/2026-07-22-open-seed-v97/construction_pipeline.csv"
+        )
         missing = verified_core.ROOT / (
             "releases/2026-07-22-open-seed-v97/capacity_estimates.csv"
         )
 
         def partial_is_file(path: Path) -> bool:
+            if path == present:
+                return True
             if path == missing:
                 return False
             return original_is_file(path)
