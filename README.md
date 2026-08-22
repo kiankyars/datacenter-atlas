@@ -13,16 +13,17 @@ energy, or PUE; estimates carry low/base/high values, method, confidence, and ev
 ## Current workspace state (audited 2026-08-20)
 
 The first coherent user-facing construction product is the
-[Verified Construction Core v0.9 preview](verified_construction_core/2026-08-20-preview-v0.9/),
-with its [selection contract and final gates](docs/verified_construction_core.md). It contains 47
-recently observed projects grouped into 44 source-scoped physical sites across 25 countries. Five
-project rows carry official parcel/survey geometry; 42 use explicitly scoped locators. The v0.9
-delta adds CDC Marsden Park, Digital Realty 330 East Cermak, and the NTT FRA1 7.3 MW expansion.
-Marsden Park and FRA1 use campus locators; Cermak uses the selected OpenStreetMap 330 East Cermak
-building as a project locator, while its City of Chicago footprint is identity context only. None
-is an official boundary or construction footprint. Every row remains
+[Verified Construction Core v0.10 preview](verified_construction_core/2026-08-20-preview-v0.10/),
+with its [selection contract and final gates](docs/verified_construction_core.md). It contains 50
+recently observed projects grouped into 47 source-scoped physical sites across 25 countries. Five
+project rows carry official parcel/survey geometry; 45 use explicitly scoped locators. The v0.10
+delta adds Oracle Project Jupiter, CyrusOne FRA7, and Colt London 4. Oracle's exact-name OSM
+polygon is only a parent-campus locator, the Hessian FF7 L1 permit coordinate is only a CyrusOne
+project locator, and Colt's captured exact-name OSM building is only a project locator. None is an
+official boundary or current construction footprint. Every row remains
 `independent_imagery_verification=false`, so this preview is a research baseline—not the promised
 100-site final release or a claim of SemiAnalysis parity. The
+[v0.9 preview](verified_construction_core/2026-08-20-preview-v0.9/),
 [v0.8 preview](verified_construction_core/2026-08-20-preview-v0.8/),
 [v0.7 preview](verified_construction_core/2026-08-20-preview-v0.7/),
 [v0.6 preview](verified_construction_core/2026-08-20-preview-v0.6/),
@@ -31,14 +32,13 @@ is an official boundary or construction footprint. Every row remains
 [v0.3 preview](verified_construction_core/2026-08-20-preview-v0.3/),
 [v0.2 preview](verified_construction_core/2026-08-20-preview-v0.2/) and
 [v0.1 preview](verified_construction_core/2026-08-19-preview-v0.1/) remain byte-frozen for audit,
-not as datasets to add to v0.9.
+not as datasets to add to v0.10.
 
 All eight inherited workload observations are machine-labelled `intended`, not operational. Nine
 published operator claims and two intended-customer claims carry evidence IDs and relationship
-scope after v0.9 adds CDC Marsden Park's intended operator. Marsden Park publishes neither 504 MW
-nor 1 GW, while FRA1 publishes only its project-scoped planned 7.3 MW critical-IT observation.
-FRA1's 70.1 MW and 77.4 MW campus values and its untyped 120 MVA electrical figure remain context,
-not additive project metrics.
+scope. The v0.10 delta adds no roles, operating models, or workloads. Only Colt London 4 adds a
+project metric: planned 31 MW critical IT. CyrusOne's campus-level 81 MW and Oracle's campus-level
+2,450 MW generation and AI-workload context are validated but not promoted.
 
 The latest fully present source bundle is
 [open-seed v97](releases/2026-07-22-open-seed-v97/). It contains 1,053 source-scoped entity rows
@@ -52,7 +52,7 @@ than v97/v38/v14/v11. Counts from separate lanes or versions must not be added.
 
 | Lane | Latest artifact | Current local hydration |
 | --- | --- | --- |
-| Verified construction preview | [v0.9](verified_construction_core/2026-08-20-preview-v0.9/) | 66 portable source, bridge, and capture inputs are manifest-bound; the generated preview remains a non-final artifact |
+| Verified construction preview | [v0.10](verified_construction_core/2026-08-20-preview-v0.10/) | 72 portable source and bridge inputs are manifest-bound; the generated preview remains a non-final artifact |
 | Source release | [open-seed v97](releases/2026-07-22-open-seed-v97/) | All 13 manifest-declared payload files present |
 | Federation | [v38](federated_indexes/2026-07-22-public-open-v38/) | Federated index present |
 | Exact identity | [v14](exact_identity_decisions/2026-07-22-public-open-v14/) | All seven declared payload files present |

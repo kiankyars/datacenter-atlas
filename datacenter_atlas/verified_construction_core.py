@@ -16914,3 +16914,2613 @@ __all__ = [
     "validate_frozen_v08",
     "validate_preview",
 ]
+
+
+# v0.10 is layered only after the complete v0.9 implementation.
+_build_v09_preview = build_preview
+_validate_v09_preview_dispatch = validate_preview
+
+LEGACY_PREVIEW_V09_DIR = ROOT / "verified_construction_core" / "2026-08-20-preview-v0.9"
+LEGACY_PREVIEW_V09_MANIFEST_SHA256 = "d9d9975f8e70dbe8aab14c82f0af4aed1cd9d25d8eb3566ae458c60026c7b5c8"
+LEGACY_PREVIEW_V09_COMMIT = "d358b53f0518830aec5b654bfb8e7e1df8ba134a"
+CURRENT_V10_PREVIEW_ID = "2026-08-20-preview-v0.10"
+CURRENT_V10_PREVIEW_DIR = ROOT / "verified_construction_core" / CURRENT_V10_PREVIEW_ID
+CURRENT_V10_REVIEW_DATE = date(2026, 8, 20)
+V10_REVIEW_DEFINITION_SHA256 = "6eaaf362f2ec92e753c0199e972a9d616c8f9ae120a496a2ce9bf7ba514af813"
+V10_OVERLAY_DEFINITION_SHA256 = "4f3c4227381e52fe9255ded079d2897c5a579c8e94a5d56bbec5bee474f8b9fc"
+V10_PROVENANCE_DEFINITION_SHA256 = "4ca9f02c25392d1a5aeccab9252868cb7e156145c969c64c6ee53dd74ad6f6d9"
+V10_IMAGERY_REVIEW_DEFINITION_SHA256 = "7a316cfd4bb78868fbf5feff4b3228c3a5fe5625d5bd8bf7ec56e6f6ad29284a"
+V10_REVIEW_DEFINITION = ROOT / "definitions" / "verified-construction-core-v0.10-reviewed-sites.json"
+V10_OVERLAY_DEFINITION = ROOT / "definitions" / "verified-construction-core-reviewed-overlays-v8.json"
+V10_PROVENANCE_DEFINITION = ROOT / "definitions" / "verified-construction-core-v0.10-provenance.json"
+V10_IMAGERY_REVIEW_DEFINITION = ROOT / "definitions" / "verified-construction-core-v0.10-imagery-reviews.json"
+CURRENT_V10_DEFINITION_PATHS = (
+    ("review_definition_sha256", V10_REVIEW_DEFINITION),
+    ("imagery_review_definition_sha256", V10_IMAGERY_REVIEW_DEFINITION),
+    ("provenance_definition_sha256", V10_PROVENANCE_DEFINITION),
+    ("overlay_definition_sha256", V10_OVERLAY_DEFINITION),
+)
+V10_SELECTION_FIRST_FAILURE_COUNTS = {
+    "entity_kind_not_project": 49,
+    "not_in_reviewed_site_geometry_allowlist": 93,
+    "selected": 50,
+    "status_not_physical": 12,
+    "status_outside_90_day_window": 327,
+}
+V10_COUNTRY_ISO_A2 = {"Germany": "DE", "United Kingdom": "GB", "United States": "US"}
+V10_ACCEPTANCE_REQUIRED_FIELDS = V09_ACCEPTANCE_REQUIRED_FIELDS
+V10_OVERLAY_REQUIRED_FIELDS = V09_OVERLAY_REQUIRED_FIELDS
+V10_OVERLAY_REQUIRED_FIELD_ORDER = ('country',
+ 'physical_site_stable_key',
+ 'physical_site_entity_id',
+ 'source_input_path',
+ 'source_input_bytes',
+ 'source_input_sha256',
+ 'bridge_id',
+ 'bridge_schema',
+ 'bridge_path',
+ 'bridge_bytes',
+ 'bridge_sha256',
+ 'project_to_campus_relationship_id',
+ 'project_to_campus_relationship_type',
+ 'project_to_campus_decision_basis',
+ 'geometry_entity',
+ 'geometry_entity_stable_key',
+ 'geometry_entity_id',
+ 'geometry_target_entity_kind',
+ 'geometry_target_entity_stable_key',
+ 'geometry_target_entity_id',
+ 'geometry_evidence_key',
+ 'geometry_evidence_id',
+ 'geometry_source_kind',
+ 'geometry_derivation',
+ 'overlay_id',
+ 'geometry_method',
+ 'geometry_scope_class',
+ 'geometry_authority_class',
+ 'geometry_use_scope',
+ 'official_boundary',
+ 'horizontal_uncertainty_metres',
+ 'horizontal_uncertainty_unknown_reason',
+ 'precision_scope',
+ 'bridge_decision',
+ 'portable_input_binding',
+ 'portable_capture_bindings',
+ 'rejected_claims',
+ 'source_project_stable_key',
+ 'source_project_entity_id',
+ 'decision',
+ 'decision_reason',
+ 'reviewed_at')
+V10_EVIDENCE_IDS = frozenset({
+    "0cad69d1-3151-5073-af8e-73f8401bf2cb",
+    "465b57e0-58b6-56aa-8b00-728b9cc9c201",
+    "6bf6472d-a1f7-53fd-b0d5-2317d80df706",
+    "6e4b0bfe-23de-5439-9dc0-3688a382a285",
+    "850336d5-4d8f-5821-ae65-cb195961e7b6",
+    "b0d7fbf5-7de2-58e0-a54f-d6fec6d08a6a",
+    "c0b3ca09-1341-5395-9301-9f6a2d67cf0c",
+    "e0cbb7f3-f4ab-52c7-a4ed-10424c78e411",
+})
+V10_PROVENANCE_SEMANTICS_SHA256 = "5f7ade193dcdfc65e72004185daf349edb85f6c8f0edd3784292205d12ea23ad"
+V10_CAPACITY_FIELDS = (
+    "entity_id", "entity_kind", "name", "metric", "stage", "unit",
+    "low", "base", "high", "method", "confidence", "as_of_date",
+    "target_date", "evidence_id", "notes", "source_url",
+    "source_publisher", "source_license", "source_retrieved_at",
+)
+V10_BRIDGE_PROFILES = {'curated:colt-london-hayes-campus:london4-current-facility-build': {'acceptance_sha256': '24af4d1d8d9270bfdd0a0cdb698e9b908c9aa42da1f5446092c7c4e3101aabbb',
+                                                                     'bridge_bytes': 35538,
+                                                                     'bridge_id': 'verified-construction-core-v0.10-colt-london4-project-geometry-bridge',
+                                                                     'bridge_path': 'sources/verified-construction-core-v0.10-colt-london4-project-geometry-bridge.json',
+                                                                     'bridge_sha256': '8eb58d7d46eda6cae3b161e4a2e7c75a28371e4a9dbd1cc06ffd77fecbefe883',
+                                                                     'construction_sha256': 'd5bd67e030f618e331aacd2c9141882afff4e2906440fd2a36949838cc4c3af7',
+                                                                     'enriched_way_sha256': 'ed7d8e290bb1600dcb013e40b6fcc95ada3aad357b3a0e3083008301b0ed1b09',
+                                                                     'evidence_field': 'capacity_evidence',
+                                                                     'geometry_entity_id': 'd34a5fdb-5c7e-5da7-8b79-ffeebc48be25',
+                                                                     'geometry_evidence_id': 'c0b3ca09-1341-5395-9301-9f6a2d67cf0c',
+                                                                     'geometry_evidence_key': 'osm-way-1495920404-colt-london4-captured-2026-08-20',
+                                                                     'geometry_kind': 'building',
+                                                                     'geometry_source_kind': 'openstreetmap',
+                                                                     'geometry_stable_key': 'osm:way/1495920404',
+                                                                     'latitude': 51.5095591,
+                                                                     'longitude': -0.394089,
+                                                                     'overlay_sha256': 'c1c79a4039e21e66fcf22f0a8014cc97d91da19e89d2b85f9be96d4f74e6eb59',
+                                                                     'polygon_sha256': '60c1d42e5bf550c100334cb77426d229a268c3eb849dd0932fe7348d317cb8e1',
+                                                                     'raw_response_bytes': 1639,
+                                                                     'raw_response_sha256': '3bd140b2eb8fa082c8727955d4fef1bd26fa668356c8654918ac922b5ae6eef6',
+                                                                     'raw_way_sha256': '70faf0e8cca8652c815ced5f25a16a420dfba9206994ec0c18e48dc91d608e15',
+                                                                     'release_rows_sha256': 'a40d74ec2ae6da784b3e66a1eff5a3b861105fe0f083082d97a5c40a8bea1e59',
+                                                                     'release_sha256': 'fc927c3f55d942fd40c0bd6addc5fe303aa82fe25ee1814e54e36adb0b58c432',
+                                                                     'schema': 'verified-construction-core-v0.10-portable-capture-replayed-project-geometry-bridge-input-v1',
+                                                                     'semantic_hashes': {'claim_guardrails': 'e5aa26f4ae55ec36512ee83a46bc050f5009ea89c8237e11c62d9d9d101ec249',
+                                                                                         'false_match_guardrails': '7cdec7697b45b059d3d6f28add77f81b542a6f80dde50713ba4de1bf55e50b79',
+                                                                                         'geometry_capture': '46050e653bd57381fb88253caecdd693d435badfb33921c474fab90a05f605b7',
+                                                                                         'geometry_entity': '2edf84f15665301685d8c4403db22e9bedecb6765842b59bac1f575a43617ea8',
+                                                                                         'geometry_evidence': 'ac06f7d53039bf4d7cbd0dbaa58c5c68135c8e8fd80490bd3be73a4b657e0bc2',
+                                                                                         'geometry_release': '38e0b9de817f645c4bec37c0d4a3e58baecccb040f5718dc069a72c7385a0bed',
+                                                                                         'identity_bridge_evidence': 'c87382ea6928a2bd7c3e90f3d8549135a3e4ab6e5f368662d9a03547a5645f6a',
+                                                                                         'imagery_posture': '5371874de7b49eee64e534372b02c526792438cbd7c0b983223f7cf6c634d036',
+                                                                                         'materialization_scope': '39541f7699bb81ca619518e2d85dd5190ecae6cd89e862dc67f023abac36acad',
+                                                                                         'review_decision': '86c7dc707a44cb9e2dd38b633cb67a78d09cbc64db86831c184b26fdab436872',
+                                                                                         'rights': 'f836dbf3626d0ed322aa9dc8536a8636a21b15412b284d244e744d0c35ab2349'},
+                                                                     'source_bytes': 11304,
+                                                                     'source_evidence_ids': ('465b57e0-58b6-56aa-8b00-728b9cc9c201',
+                                                                                             '6e4b0bfe-23de-5439-9dc0-3688a382a285'),
+                                                                     'source_path': 'sources/curated-official-2026-07-19-colt-london4-hayes.json',
+                                                                     'source_semantic_sha256': 'b185eefb33dab41ba8efe688efb9243977664abef558b03f00bffb9c0788d47e',
+                                                                     'source_sha256': '44a4569bed0c12103d726d0e73f8a05078f4528c74c7f032dfc5feaa9ea0b05b',
+                                                                     'target_entity_id': '0bac3fe4-c3dd-54ba-a500-e37599191432',
+                                                                     'target_kind': 'project',
+                                                                     'target_stable_key': 'curated:colt-london-hayes-campus:london4-current-facility-build',
+                                                                     'topology_sha256': '79b307b0c51c2e960a5fa5d792539effaa48b13271542f9dbe3353ae95c7517a',
+                                                                     'way_id': 1495920404,
+                                                                     'way_version': 3},
+ 'curated:cyrusone-fra7-frankfurt-westside-campus:current-multi-building-development': {'acceptance_sha256': 'a702e78aca1ae18fc9606381fa924ef96a2a1c0bd6ad58abe3d69539e8f8f4b1',
+                                                                                        'bridge_bytes': 30050,
+                                                                                        'bridge_id': 'verified-construction-core-v0.10-cyrusone-fra7-project-geometry-bridge',
+                                                                                        'bridge_path': 'sources/verified-construction-core-v0.10-cyrusone-fra7-project-geometry-bridge.json',
+                                                                                        'bridge_sha256': '43390493b8b88719f8932c1a0781f94d69192642d105f15e2f66b4a479d4b402',
+                                                                                        'construction_sha256': '693f55b7f392ee8a168ae6bf89bfc9dce972edda78ddf0499f4efb664a478ef3',
+                                                                                        'evidence_field': 'capacity_evidence',
+                                                                                        'geometry_entity_id': '58f9a985-bfa8-521c-ab85-132aec6799ed',
+                                                                                        'geometry_evidence_id': '850336d5-4d8f-5821-ae65-cb195961e7b6',
+                                                                                        'geometry_evidence_key': 'rp-darmstadt-cyrusone-fra7-ff7-l1-coordinate-captured-2026-08-20',
+                                                                                        'geometry_kind': 'project',
+                                                                                        'geometry_source_kind': 'government_permit',
+                                                                                        'geometry_stable_key': 'curated:cyrusone-fra7-frankfurt-westside-campus:current-multi-building-development',
+                                                                                        'latitude': 50.093438822,
+                                                                                        'longitude': 8.5805137288,
+                                                                                        'overlay_sha256': '4700aaf9d6b82a3d579e3f3a53d2e22f8263a5ccc4bbae272d2690ffd6efba7e',
+                                                                                        'release_rows_sha256': '3e22a111b472b5f57c38c7c893e512e90865d123c3bbea37dd41189c5fde7772',
+                                                                                        'release_sha256': 'fc927c3f55d942fd40c0bd6addc5fe303aa82fe25ee1814e54e36adb0b58c432',
+                                                                                        'schema': 'verified-construction-core-v0.10-portable-direct-official-point-geometry-bridge-input-v1',
+                                                                                        'semantic_hashes': {'claim_guardrails': '1104143bf5d3db7213127c4ede7c83080f8a0f4fc7f59ccbe3a7e4509cc29d04',
+                                                                                                            'false_match_guardrails': '7297971f54ec08466d88833851d71d1947381aa3b5416a346c54d1bc63655e15',
+                                                                                                            'geometry_capture': 'fb681389c7d4584df1b56e6774d0767249eb517d019e49089d8b819f43bbeb88',
+                                                                                                            'geometry_entity': '27c9a09ef893751b72a4cedd2874a7f12d8a4254dacef9d04505717843fd8aa3',
+                                                                                                            'geometry_evidence': 'de9cdd3970fa5df38a91c16564c6d508dbb10d7e3e3a159af71de6e964a30377',
+                                                                                                            'geometry_release': '38e0b9de817f645c4bec37c0d4a3e58baecccb040f5718dc069a72c7385a0bed',
+                                                                                                            'identity_bridge_evidence': 'c236464380c33a31b91dd217d8bc30afa552fdc8ad4cdac1b8690038a07a5765',
+                                                                                                            'imagery_posture': '4604ff6fc044a92f393ade7fbea0be0f7358bc639ac9de48a9780f22347e9870',
+                                                                                                            'materialization_scope': '39541f7699bb81ca619518e2d85dd5190ecae6cd89e862dc67f023abac36acad',
+                                                                                                            'review_decision': 'e034c937527944c62bb6a195f43fe387d0b879a8d41d1d9856aabed7918eac7d',
+                                                                                                            'rights': 'aadb24043cc4b38283676a2ec59bae835fae1924d5ef2da2a62b0ead793ea6e3'},
+                                                                                        'source_bytes': 12723,
+                                                                                        'source_evidence_ids': ('6bf6472d-a1f7-53fd-b0d5-2317d80df706',
+                                                                                                                'fa3a4aa6-5df4-57f3-be02-7f0764f605e1'),
+                                                                                        'source_path': 'sources/curated-official-2026-07-19-cyrusone-fra7-frankfurt-westside.json',
+                                                                                        'source_semantic_sha256': '531410ce4ca64f5d98046d930ff14d860870a43a4e8b0a61e4b2ee47b069d8cc',
+                                                                                        'source_sha256': 'fa736c847a85f5d99bb4f0cd608cea5dc82f381905fea017a9a7d8e3b66324c0',
+                                                                                        'target_entity_id': '58f9a985-bfa8-521c-ab85-132aec6799ed',
+                                                                                        'target_kind': 'project',
+                                                                                        'target_stable_key': 'curated:cyrusone-fra7-frankfurt-westside-campus:current-multi-building-development',
+                                                                                        'topology_sha256': 'c57995fa212c7ece44fae82ad9238ee0c98840570ced4d1711b1cd297f2d1762'},
+ 'curated:oracle-project-jupiter-dona-ana-campus:current-campus-build': {'acceptance_sha256': '0699db6bd54a78162383f44db39ee495fb228813feafb838997e4274db0af127',
+                                                                         'bridge_bytes': 31170,
+                                                                         'bridge_id': 'verified-construction-core-v0.10-oracle-project-jupiter-campus-geometry-bridge',
+                                                                         'bridge_path': 'sources/verified-construction-core-v0.10-oracle-project-jupiter-campus-geometry-bridge.json',
+                                                                         'bridge_sha256': '29a6d9aaa71335918c2224fc491e1b9067cb92aef7dcc1d4ac55195c77d64c61',
+                                                                         'construction_sha256': 'd99fcd552c876759da17514143ca787f8b350cc11e4a6b3c790e912cc7a0466f',
+                                                                         'evidence_field': 'capacity_workload_evidence',
+                                                                         'geometry_entity_id': 'a83a35df-3efb-505f-bfe6-950fff586dee',
+                                                                         'geometry_evidence_id': '0cad69d1-3151-5073-af8e-73f8401bf2cb',
+                                                                         'geometry_evidence_key': None,
+                                                                         'geometry_kind': 'facility',
+                                                                         'geometry_source_kind': 'openstreetmap',
+                                                                         'geometry_stable_key': 'osm:way/1476734418',
+                                                                         'latitude': 31.8182982,
+                                                                         'longitude': -106.66530225,
+                                                                         'overlay_sha256': 'dc3d520f76cc058fab3d0c990690edc8bd80676e05f97868f05d7b86fd482c86',
+                                                                         'release_rows_sha256': '30d40e15d176e9aa661f3ff78b384033149f8f53effbc99a38249a4873d68428',
+                                                                         'release_sha256': 'fc927c3f55d942fd40c0bd6addc5fe303aa82fe25ee1814e54e36adb0b58c432',
+                                                                         'schema': 'verified-construction-core-v0.10-portable-global-v3-campus-geometry-bridge-input-v1',
+                                                                         'semantic_hashes': {'claim_guardrails': '7bb3673c53444468fb7aa70ce87add507d8c85b0415e11537ee880c66549797e',
+                                                                                             'false_match_guardrails': 'c7f9817f78b58551f055a4f6abf2af1052078fcafb1270912ed0c737628e3499',
+                                                                                             'geometry_capture': '613dc63983089530584840b935fab17b4d35d1d14cbfdab4a90d7871b6289c02',
+                                                                                             'geometry_entity': '3e1fca87bb98ac70cb2a43a0f74b97668df3d8fd05c7d0ba261216f789489005',
+                                                                                             'geometry_evidence': 'f3f8b7101fd3d02574ade4c0b98f382d0b2ba0b3828230cd8d255b3b37ec20dd',
+                                                                                             'geometry_release': 'c023a80963a2f35ad5074450f1219023f38c7216531a0ce7a99f3d3756da54aa',
+                                                                                             'identity_bridge_evidence': '56a84a3237e2721723c0ab5884ac24830c9e06b4b65ba7b5f36f759efcb0e5eb',
+                                                                                             'imagery_posture': '0fcbb8bd0d87e823ce79c41dad00badd0b76db28249c7e54f5bae4597e18cbee',
+                                                                                             'materialization_scope': '39541f7699bb81ca619518e2d85dd5190ecae6cd89e862dc67f023abac36acad',
+                                                                                             'review_decision': '30f9378b312332a11ae1369dc77cce49909c4e98ff90ffcc110f2c9c362f31c3',
+                                                                                             'rights': '8c090fb447ba0b54662bc1ddd2d8dd3e72998afd371ac27dddeaf8549cb01c70'},
+                                                                         'source_bytes': 17808,
+                                                                         'source_evidence_ids': ('e0cbb7f3-f4ab-52c7-a4ed-10424c78e411',
+                                                                                                 'b68ce146-3dea-57e1-bb04-fbe710b2f39d'),
+                                                                         'source_path': 'sources/curated-official-2026-07-19-oracle-project-jupiter-dona-ana.json',
+                                                                         'source_semantic_sha256': '52d1cf16facbefe3de4b4dfe969c9b13f88816cbf6ee8c86de9b1bf2597ee218',
+                                                                         'source_sha256': '817a653cd86ca0e1dbacb84a3cdd7730597a657395623c2fe21896f781dae6cc',
+                                                                         'target_entity_id': '993d8d6e-de3d-526a-9e01-09e291b66839',
+                                                                         'target_kind': 'campus',
+                                                                         'target_stable_key': 'curated:oracle-project-jupiter-dona-ana-campus',
+                                                                         'topology_sha256': 'da2fb6d5fcd7648c4863dda0b2e8b1f495beab2cd74592dee5089f7f7ff8ac70'}}
+
+V10_GEOMETRY_CONTRACTS = {
+    "curated:oracle-project-jupiter-dona-ana-campus:current-campus-build": {
+        "geometry_entity": "facility",
+        "geometry_entity_stable_key": "osm:way/1476734418",
+        "geometry_entity_id": "a83a35df-3efb-505f-bfe6-950fff586dee",
+        "geometry_target_entity_kind": "campus",
+        "geometry_target_entity_stable_key": (
+            "curated:oracle-project-jupiter-dona-ana-campus"
+        ),
+        "geometry_target_entity_id": "993d8d6e-de3d-526a-9e01-09e291b66839",
+        "geometry_source_kind": "openstreetmap",
+        "geometry_derivation": "cross_source_geometry",
+        "geometry_method": (
+            "frozen_openstreetmap_exact_project_jupiter_named_development_polygon_"
+            "as_parent_campus_locator"
+        ),
+        "geometry_scope_class": (
+            "reviewed_openstreetmap_named_project_jupiter_development_polygon"
+        ),
+        "geometry_authority_class": "community_mapped",
+        "geometry_use_scope": "campus_locator",
+        "official_boundary": False,
+        "bridge_decision": "accepted_as_campus_locator",
+    },
+    (
+        "curated:cyrusone-fra7-frankfurt-westside-campus:"
+        "current-multi-building-development"
+    ): {
+        "geometry_entity": "project",
+        "geometry_entity_stable_key": (
+            "curated:cyrusone-fra7-frankfurt-westside-campus:"
+            "current-multi-building-development"
+        ),
+        "geometry_entity_id": "58f9a985-bfa8-521c-ab85-132aec6799ed",
+        "geometry_target_entity_kind": "project",
+        "geometry_target_entity_stable_key": (
+            "curated:cyrusone-fra7-frankfurt-westside-campus:"
+            "current-multi-building-development"
+        ),
+        "geometry_target_entity_id": "58f9a985-bfa8-521c-ab85-132aec6799ed",
+        "geometry_source_kind": "government_permit",
+        "geometry_derivation": "official_coordinate_transform",
+        "geometry_method": (
+            "rp_darmstadt_ff7_l1_etrs89_utm32_coordinate_to_wgs84_point"
+        ),
+        "geometry_scope_class": "official_source_reported_ff7_l1_reference_point",
+        "geometry_authority_class": "official_source",
+        "geometry_use_scope": "project_locator",
+        "official_boundary": False,
+        "bridge_decision": "accepted_as_project_locator",
+    },
+    "curated:colt-london-hayes-campus:london4-current-facility-build": {
+        "geometry_entity": "building",
+        "geometry_entity_stable_key": "osm:way/1495920404",
+        "geometry_entity_id": "d34a5fdb-5c7e-5da7-8b79-ffeebc48be25",
+        "geometry_target_entity_kind": "project",
+        "geometry_target_entity_stable_key": (
+            "curated:colt-london-hayes-campus:london4-current-facility-build"
+        ),
+        "geometry_target_entity_id": "0bac3fe4-c3dd-54ba-a500-e37599191432",
+        "geometry_source_kind": "openstreetmap",
+        "geometry_derivation": "capture_replayed_geometry",
+        "geometry_method": (
+            "capture_replayed_openstreetmap_exact_colt_london4_named_building_"
+            "polygon_as_project_locator"
+        ),
+        "geometry_scope_class": (
+            "community_mapped_named_colt_london4_building_polygon"
+        ),
+        "geometry_authority_class": "community_mapped",
+        "geometry_use_scope": "project_locator",
+        "official_boundary": False,
+        "bridge_decision": "accepted_as_project_locator",
+    },
+}
+V10_ACCEPTANCE_NON_SEMANTIC_FIELDS = frozenset(
+    {
+        "source_input_path",
+        "source_input_bytes",
+        "source_input_sha256",
+        "bridge_path",
+        "bridge_bytes",
+        "bridge_sha256",
+        "portable_input_binding",
+        "portable_capture_bindings",
+    }
+)
+V10_ACCEPTANCE_SEMANTICS_SHA256 = {
+    "curated:oracle-project-jupiter-dona-ana-campus:current-campus-build": (
+        "d5c5392d8f12ca08b01ba1f0b8719ce6c8b6871ac0d2f4c70d38c3ee36f606c8"
+    ),
+    (
+        "curated:cyrusone-fra7-frankfurt-westside-campus:"
+        "current-multi-building-development"
+    ): "e513fde801c5dab2c90b956339483b835d81bafb475db4a5d260859a526a9e7a",
+    "curated:colt-london-hayes-campus:london4-current-facility-build": (
+        "433c233c18609f4ab05fe99f2553f5655c80410dd517b4d5c4366919850257a3"
+    ),
+}
+V10_GEOMETRY_ENTITY_SHA256 = {
+    "curated:oracle-project-jupiter-dona-ana-campus:current-campus-build": (
+        "3e1fca87bb98ac70cb2a43a0f74b97668df3d8fd05c7d0ba261216f789489005"
+    ),
+    (
+        "curated:cyrusone-fra7-frankfurt-westside-campus:"
+        "current-multi-building-development"
+    ): "27c9a09ef893751b72a4cedd2874a7f12d8a4254dacef9d04505717843fd8aa3",
+    "curated:colt-london-hayes-campus:london4-current-facility-build": (
+        "2edf84f15665301685d8c4403db22e9bedecb6765842b59bac1f575a43617ea8"
+    ),
+}
+
+
+def _v10_acceptance_semantics(acceptance: Mapping[str, Any]) -> dict[str, Any]:
+    return {
+        field: value
+        for field, value in acceptance.items()
+        if field not in V10_ACCEPTANCE_NON_SEMANTIC_FIELDS
+    }
+
+
+def load_current_v10_profile(
+    definition_sha256: Mapping[str, str],
+) -> PreviewProfile:
+    """Load v0.10 only after all four final definition hashes are supplied."""
+    expected_fields = {field for field, _ in CURRENT_V10_DEFINITION_PATHS}
+    if set(definition_sha256) != expected_fields:
+        raise VerifiedConstructionCoreError(
+            "current v0.10 definition pins are incomplete"
+        )
+    pins: list[tuple[str, Path, str]] = []
+    for field, path in CURRENT_V10_DEFINITION_PATHS:
+        expected = definition_sha256[field]
+        if (
+            re.fullmatch(r"[0-9a-f]{64}", expected) is None
+            or path.is_symlink()
+            or not path.is_file()
+            or _sha256_file(path) != expected
+        ):
+            raise VerifiedConstructionCoreError(
+                f"current v0.10 {field} source hash differs"
+            )
+        pins.append((field, path, expected))
+    return PreviewProfile(
+        preview_id=CURRENT_V10_PREVIEW_ID,
+        preview_dir=CURRENT_V10_PREVIEW_DIR,
+        reviewed_at=CURRENT_V10_REVIEW_DATE,
+        base_preview_id=CURRENT_V09_PREVIEW_ID,
+        base_preview_dir=LEGACY_PREVIEW_V09_DIR,
+        base_manifest_sha256=LEGACY_PREVIEW_V09_MANIFEST_SHA256,
+        base_commit=LEGACY_PREVIEW_V09_COMMIT,
+        definition_pins=tuple(pins),
+    )
+
+
+def validate_frozen_v09(
+    path: Path = LEGACY_PREVIEW_V09_DIR,
+) -> dict[str, Any]:
+    """Validate byte-frozen v0.9 from its immutable inventory only."""
+    return _validate_frozen_preview_inventory(
+        path,
+        preview_id=CURRENT_V09_PREVIEW_ID,
+        manifest_sha256=LEGACY_PREVIEW_V09_MANIFEST_SHA256,
+        version_label="v0.9",
+    )
+
+
+_FROZEN_PREVIEW_VALIDATORS = (
+    *_FROZEN_PREVIEW_VALIDATORS,
+    (CURRENT_V09_PREVIEW_ID, validate_frozen_v09),
+)
+
+
+def _v10_definition_paths() -> dict[str, tuple[Path, str]]:
+    return {
+        "review_definition_sha256": (
+            V10_REVIEW_DEFINITION,
+            V10_REVIEW_DEFINITION_SHA256,
+        ),
+        "imagery_review_definition_sha256": (
+            V10_IMAGERY_REVIEW_DEFINITION,
+            V10_IMAGERY_REVIEW_DEFINITION_SHA256,
+        ),
+        "provenance_definition_sha256": (
+            V10_PROVENANCE_DEFINITION,
+            V10_PROVENANCE_DEFINITION_SHA256,
+        ),
+        "overlay_definition_sha256": (
+            V10_OVERLAY_DEFINITION,
+            V10_OVERLAY_DEFINITION_SHA256,
+        ),
+    }
+
+
+def _validate_v10_definition_pins() -> None:
+    for field, (path, expected) in _v10_definition_paths().items():
+        if path.is_symlink() or not path.is_file() or _sha256_file(path) != expected:
+            raise VerifiedConstructionCoreError(
+                f"current v0.10 {field} source hash differs"
+            )
+
+
+def _v10_hydrated_crosscheck_available() -> bool:
+    required = (
+        ROOT / "releases/2026-07-22-open-seed-v97/construction_pipeline.csv",
+        ROOT / "releases/2026-07-22-open-seed-v97/entities.csv",
+        ROOT / "releases/2026-07-22-open-seed-v97/evidence.csv",
+        ROOT / "releases/2026-07-22-open-seed-v97/capacity_estimates.csv",
+        ROOT / "releases/2026-07-18-global-open-v3/entities.csv",
+        ROOT / "releases/2026-07-18-global-open-v3/evidence.csv",
+        ROOT
+        / "exact_identity_decisions/2026-07-22-public-open-v14/component-members.csv",
+        ROOT
+        / "exact_identity_decisions/2026-07-22-public-open-v14/relationships.csv",
+    )
+    present = [path.is_file() for path in required]
+    if any(present) and not all(present):
+        raise VerifiedConstructionCoreError(
+            "v0.10 hydrated cross-check inputs are only partially present"
+        )
+    return all(present)
+
+
+def _v10_flat_source_row(
+    binding: Any,
+    member: Mapping[str, Any],
+    fields: Sequence[str],
+    *,
+    label: str,
+    hydrated_crosscheck: bool,
+) -> dict[str, str]:
+    if not isinstance(binding, dict) or set(binding) != {
+        "path",
+        "line",
+        "bytes",
+        "sha256",
+        "raw_csv_record_base64",
+    }:
+        raise VerifiedConstructionCoreError(f"{label} flat source-row binding differs")
+    if binding["path"] != member.get("path"):
+        raise VerifiedConstructionCoreError(f"{label} source member differs")
+    embedded = {
+        field: binding[field]
+        for field in ("line", "bytes", "sha256", "raw_csv_record_base64")
+    }
+    row = _embedded_csv_source_row(embedded, fields, label=label)
+    if hydrated_crosscheck:
+        path = _repository_input(
+            str(member["path"]), str(member["sha256"]), f"{label} hydrated member"
+        )
+        if path.stat().st_size != member["bytes"]:
+            raise VerifiedConstructionCoreError(
+                f"{label} hydrated member byte count differs"
+            )
+        _validate_hydrated_source_row(path, embedded, fields, label=label)
+    return row
+
+
+def _v10_capacity_projection(row: Mapping[str, str]) -> dict[str, Any]:
+    return {
+        "as_of_date": row["as_of_date"],
+        "base": _csv_float(row["base"], label="v0.10 capacity base"),
+        "confidence": _csv_float(
+            row["confidence"], label="v0.10 capacity confidence"
+        ),
+        "evidence_id": row["evidence_id"],
+        "high": _csv_float(row["high"], label="v0.10 capacity high"),
+        "low": _csv_float(row["low"], label="v0.10 capacity low"),
+        "method": row["method"],
+        "metric": row["metric"],
+        "notes": row["notes"],
+        "stage": row["stage"],
+        "target_date": _nullable_csv_value(row["target_date"]),
+        "unit": row["unit"],
+    }
+
+
+def _v10_validate_flat_topology(
+    topology: Any,
+    *,
+    project: Mapping[str, Any],
+    campus: Mapping[str, Any],
+    acceptance: Mapping[str, Any],
+    hydrated_crosscheck: bool,
+) -> None:
+    expected_fields = {
+        "basis",
+        "bundle_id",
+        "manifest",
+        "members",
+        "relationship_id",
+        "relationship_type",
+        "subject_component_id",
+        "subject_entity_id",
+        "object_component_id",
+        "object_entity_id",
+        "decision_basis",
+        "relationship_source_row",
+        "subject_member_source_row",
+        "object_member_source_row",
+    }
+    if (
+        not isinstance(topology, dict)
+        or set(topology) != expected_fields
+        or topology.get("basis") != "v14_project_targets_explicit_parent"
+        or topology.get("bundle_id") != "2026-07-22-public-open-v14"
+    ):
+        raise VerifiedConstructionCoreError("v0.10 topology fields differ")
+    _, manifest = _manifest_binding(
+        topology["manifest"], label="v0.10 exact-identity release"
+    )
+    _validate_manifest_members(
+        manifest, topology["members"], label="v0.10 exact-identity release"
+    )
+    if set(topology["members"]) != {"component-members.csv", "relationships.csv"}:
+        raise VerifiedConstructionCoreError("v0.10 topology members differ")
+    subject = _v10_flat_source_row(
+        topology["subject_member_source_row"],
+        topology["members"]["component-members.csv"],
+        EXACT_COMPONENT_FIELDS,
+        label="v0.10 topology subject",
+        hydrated_crosscheck=hydrated_crosscheck,
+    )
+    object_member = _v10_flat_source_row(
+        topology["object_member_source_row"],
+        topology["members"]["component-members.csv"],
+        EXACT_COMPONENT_FIELDS,
+        label="v0.10 topology object",
+        hydrated_crosscheck=hydrated_crosscheck,
+    )
+    relationship = _v10_flat_source_row(
+        topology["relationship_source_row"],
+        topology["members"]["relationships.csv"],
+        EXACT_RELATIONSHIP_FIELDS,
+        label="v0.10 topology relationship",
+        hydrated_crosscheck=hydrated_crosscheck,
+    )
+    for label, row, entity, kind in (
+        ("subject", subject, project, "project"),
+        ("object", object_member, campus, "campus"),
+    ):
+        occurrence_id = f"{SOURCE_RELEASE_ID}:{entity['entity_id']}"
+        expected_component_id = _exact_component_id(kind, occurrence_id)
+        if (
+            row["component_id"] != expected_component_id
+            or row["occurrence_id"] != occurrence_id
+            or row["release_id"] != SOURCE_RELEASE_ID
+            or row["entity_id"] != entity["entity_id"]
+            or row["entity_kind"] != kind
+            or row["stable_key"] != entity["stable_key"]
+            or not row["source_family"]
+            or row["source_root"] != row["source_family"]
+            or not row["snapshot_evidence_id"]
+            or _csv_integer(
+                row["component_member_count"],
+                label=f"v0.10 topology {label}",
+            )
+            != 1
+            or row["identity_proof_parent_occurrence_id"]
+            or row["identity_proof_token"]
+            or _csv_json(
+                row["typed_identity_tokens_json"],
+                label=f"v0.10 topology {label} typed tokens",
+            )
+            != []
+            or _csv_json(
+                row["ambiguous_identity_tokens_json"],
+                label=f"v0.10 topology {label} ambiguous tokens",
+            )
+            != []
+        ):
+            raise VerifiedConstructionCoreError(
+                f"v0.10 topology {label} projection differs"
+            )
+    relationship_projection = _exact_relationship_projection(relationship)
+    expected_relationship_id = _exact_relationship_id(
+        "project_targets", subject["component_id"], object_member["component_id"]
+    )
+    if (
+        relationship_projection["relationship_id"] != expected_relationship_id
+        or relationship_projection["relationship_type"] != "project_targets"
+        or relationship_projection["subject_component_id"]
+        != subject["component_id"]
+        or relationship_projection["subject_kind"] != "project"
+        or relationship_projection["object_component_id"]
+        != object_member["component_id"]
+        or relationship_projection["object_kind"] != "campus"
+        or relationship_projection["decision_basis"] != "explicit_parent"
+        or relationship_projection["typed_identity_tokens"] != []
+        or relationship_projection["source_release_ids"] != [SOURCE_RELEASE_ID]
+        or relationship_projection["raw_relationship_count"] != 1
+        or topology["relationship_id"] != expected_relationship_id
+        or topology["relationship_type"] != "project_targets"
+        or topology["subject_component_id"] != subject["component_id"]
+        or topology["subject_entity_id"] != project["entity_id"]
+        or topology["object_component_id"] != object_member["component_id"]
+        or topology["object_entity_id"] != campus["entity_id"]
+        or topology["decision_basis"] != "explicit_parent"
+        or acceptance["project_to_campus_relationship_id"]
+        != expected_relationship_id
+        or acceptance["project_to_campus_relationship_type"] != "project_targets"
+        or acceptance["project_to_campus_decision_basis"] != "explicit_parent"
+    ):
+        raise VerifiedConstructionCoreError(
+            "v0.10 topology relationship projection differs"
+        )
+
+
+def _v10_validate_construction_source(
+    bridge: Mapping[str, Any],
+    acceptance: Mapping[str, Any],
+    profile: Mapping[str, Any],
+    *,
+    hydrated_crosscheck: bool,
+) -> tuple[dict[str, Any], dict[str, Any], dict[str, Any]]:
+    construction = bridge.get("construction_source")
+    expected_evidence_field = profile["evidence_field"]
+    expected_fields = {
+        "input",
+        "release",
+        "release_rows",
+        "project",
+        "campus",
+        "project_to_campus",
+        "status_evidence",
+        expected_evidence_field,
+        "capacity_estimate",
+    }
+    if (
+        not isinstance(construction, dict)
+        or set(construction) != expected_fields
+        or _sha256_bytes(_json_bytes(construction))
+        != profile["construction_sha256"]
+        or _sha256_bytes(_json_bytes(construction["release"]))
+        != profile["release_sha256"]
+        or _sha256_bytes(_json_bytes(construction["release_rows"]))
+        != profile["release_rows_sha256"]
+        or _sha256_bytes(_json_bytes(construction["project_to_campus"]))
+        != profile["topology_sha256"]
+    ):
+        raise VerifiedConstructionCoreError(
+            "v0.10 immutable construction profile differs"
+        )
+    expected_input = {
+        "path": acceptance["source_input_path"],
+        "bytes": acceptance["source_input_bytes"],
+        "sha256": acceptance["source_input_sha256"],
+    }
+    if (
+        construction["input"] != expected_input
+        or acceptance["portable_input_binding"] != expected_input
+        or expected_input
+        != {
+            "path": profile["source_path"],
+            "bytes": profile["source_bytes"],
+            "sha256": profile["source_sha256"],
+        }
+    ):
+        raise VerifiedConstructionCoreError("v0.10 source input binding differs")
+    source_path = _repository_input(
+        expected_input["path"], expected_input["sha256"], "v0.10 curated source"
+    )
+    if source_path.stat().st_size != expected_input["bytes"]:
+        raise VerifiedConstructionCoreError("v0.10 curated source bytes differ")
+    source = _load_json(source_path)
+    if (
+        not isinstance(source, dict)
+        or set(source)
+        != {
+            "schema_version",
+            "project",
+            "campus",
+            "evidence",
+            "lifecycle",
+            "operating_models",
+            "workloads",
+            "capacities",
+        }
+        or source.get("schema_version") != "1.0"
+        or _sha256_bytes(_json_bytes(source)) != profile["source_semantic_sha256"]
+    ):
+        raise VerifiedConstructionCoreError("v0.10 curated source semantics differ")
+    release = construction["release"]
+    if (
+        not isinstance(release, dict)
+        or set(release) != {"release_id", "manifest", "members"}
+        or release["release_id"] != SOURCE_RELEASE_ID
+    ):
+        raise VerifiedConstructionCoreError("v0.10 v97 release differs")
+    _, source_manifest = _manifest_binding(
+        release["manifest"], label="v0.10 v97 release"
+    )
+    _validate_manifest_members(
+        source_manifest, release["members"], label="v0.10 v97 release"
+    )
+    if set(release["members"]) != {
+        "construction_pipeline.csv",
+        "entities.csv",
+        "evidence.csv",
+        "capacity_estimates.csv",
+    }:
+        raise VerifiedConstructionCoreError("v0.10 v97 members differ")
+    rows = construction["release_rows"]
+    expected_row_keys = {
+        "construction_pipeline_project",
+        "entities_project",
+        "entities_campus",
+        "status_evidence",
+        expected_evidence_field,
+        "capacity_estimate",
+    }
+    if set(rows) != expected_row_keys:
+        raise VerifiedConstructionCoreError("v0.10 flat release-row inventory differs")
+    project_row = _v10_flat_source_row(
+        rows["construction_pipeline_project"],
+        release["members"]["construction_pipeline.csv"],
+        SOURCE_ENTITY_FIELDS,
+        label="v0.10 construction project",
+        hydrated_crosscheck=hydrated_crosscheck,
+    )
+    entities_project_row = _v10_flat_source_row(
+        rows["entities_project"],
+        release["members"]["entities.csv"],
+        SOURCE_ENTITY_FIELDS,
+        label="v0.10 entities project",
+        hydrated_crosscheck=hydrated_crosscheck,
+    )
+    campus_row = _v10_flat_source_row(
+        rows["entities_campus"],
+        release["members"]["entities.csv"],
+        SOURCE_ENTITY_FIELDS,
+        label="v0.10 entities campus",
+        hydrated_crosscheck=hydrated_crosscheck,
+    )
+    if project_row != entities_project_row:
+        raise VerifiedConstructionCoreError("v0.10 duplicate project rows differ")
+    evidence_rows: dict[str, dict[str, Any]] = {}
+    for field in ("status_evidence", expected_evidence_field):
+        evidence_row = _v10_flat_source_row(
+            rows[field],
+            release["members"]["evidence.csv"],
+            GLOBAL_GEOMETRY_EVIDENCE_FIELDS,
+            label=f"v0.10 {field}",
+            hydrated_crosscheck=hydrated_crosscheck,
+        )
+        normalized = {
+            key: (value if value is not None else "")
+            for key, value in _global_geometry_evidence_projection(
+                evidence_row
+            ).items()
+        }
+        evidence_rows[field] = normalized
+    capacity_row = _v10_flat_source_row(
+        rows["capacity_estimate"],
+        release["members"]["capacity_estimates.csv"],
+        V10_CAPACITY_FIELDS,
+        label="v0.10 capacity estimate",
+        hydrated_crosscheck=hydrated_crosscheck,
+    )
+    if capacity_row != construction["capacity_estimate"]:
+        raise VerifiedConstructionCoreError(
+            "v0.10 capacity source-row projection differs"
+        )
+    evidence_by_key = {
+        row.get("key"): row
+        for row in source["evidence"]
+        if isinstance(row, dict) and isinstance(row.get("key"), str)
+    }
+    if len(evidence_by_key) != len(source["evidence"]):
+        raise VerifiedConstructionCoreError("v0.10 source evidence keys differ")
+    expected_project = _v08_source_entity_projection(
+        source, evidence_by_key, entity_kind="project"
+    )
+    expected_project["normalized_roles"] = _v08_normalized_roles(source["project"])
+    expected_campus = _v08_source_entity_projection(
+        source, evidence_by_key, entity_kind="campus"
+    )
+    expected_campus["normalized_roles"] = _v08_normalized_roles(source["campus"])
+    actual_project = _v08_actual_entity_projection(
+        construction["project"], entity_kind="project"
+    )
+    actual_campus = _v08_actual_entity_projection(
+        construction["campus"], entity_kind="campus"
+    )
+    if (
+        actual_project != expected_project
+        or actual_campus != expected_campus
+        or _v08_csv_entity_projection(project_row, entity_kind="project")
+        != actual_project
+        or _v08_csv_entity_projection(campus_row, entity_kind="campus")
+        != actual_campus
+    ):
+        raise VerifiedConstructionCoreError("v0.10 full v97 entity projection differs")
+    source_evidence = _v08_source_evidence(source)
+    for field, expected_id in zip(
+        ("status_evidence", expected_evidence_field),
+        profile["source_evidence_ids"],
+        strict=True,
+    ):
+        construction_evidence = construction[field]
+        if (
+            construction_evidence.get("evidence_id") != expected_id
+            or evidence_rows[field]
+            != {
+                key: source_evidence[expected_id][key]
+                for key in GLOBAL_GEOMETRY_EVIDENCE_FIELDS
+            }
+            or evidence_rows[field]
+            != {
+                key: (
+                    construction_evidence.get(key)
+                    if construction_evidence.get(key) is not None
+                    else ""
+                )
+                for key in GLOBAL_GEOMETRY_EVIDENCE_FIELDS
+            }
+        ):
+            raise VerifiedConstructionCoreError(
+                f"v0.10 {field} full evidence projection differs"
+            )
+    capacity_observations = (
+        actual_project["capacity_estimates_json"]
+        if capacity_row["entity_kind"] == "project"
+        else actual_campus["capacity_estimates_json"]
+    )
+    expected_capacity_kind = (
+        "project"
+        if actual_project["stable_key"].startswith("curated:colt-london")
+        else "campus"
+    )
+    if (
+        capacity_row["entity_kind"] != expected_capacity_kind
+        or capacity_row["entity_id"]
+        != (
+            actual_project["entity_id"]
+            if capacity_row["entity_kind"] == "project"
+            else actual_campus["entity_id"]
+        )
+        or len(capacity_observations) != 1
+        or _v10_capacity_projection(capacity_row) != capacity_observations[0]
+        or capacity_row["evidence_id"]
+        != construction[expected_evidence_field]["evidence_id"]
+    ):
+        raise VerifiedConstructionCoreError(
+            "v0.10 capacity observation projection differs"
+        )
+    if (
+        actual_project["normalized_roles"]
+        != {
+            "owner": None,
+            "operator": None,
+            "users": [],
+            "tenants": [],
+            "customers": [],
+        }
+        or actual_campus["normalized_roles"]
+        != {
+            "owner": None,
+            "operator": None,
+            "users": [],
+            "tenants": [],
+            "customers": [],
+        }
+        or actual_project["workloads_json"] != []
+        or actual_project["operating_model"] is not None
+        or actual_project["operating_model_evidence_id"] is not None
+    ):
+        raise VerifiedConstructionCoreError(
+            "v0.10 project role workload or model leakage differs"
+        )
+    project_key = actual_project["stable_key"]
+    if project_key.startswith("curated:colt-london"):
+        expected_project_capacity = [
+            row
+            for row in actual_project["capacity_estimates_json"]
+            if row.get("metric") == "critical_it_mw"
+            and row.get("stage") == "planned"
+            and row.get("base") == 31.0
+        ]
+        if (
+            len(expected_project_capacity) != 1
+            or actual_campus["capacity_estimates_json"] != []
+            or actual_campus["workloads_json"] != []
+        ):
+            raise VerifiedConstructionCoreError("v0.10 Colt metric scope differs")
+    elif (
+        actual_project["capacity_estimates_json"] != []
+        or (
+            project_key.startswith("curated:cyrusone")
+            and (
+                len(actual_campus["capacity_estimates_json"]) != 1
+                or actual_campus["capacity_estimates_json"][0].get("base")
+                != 81.0
+                or actual_campus["workloads_json"] != []
+            )
+        )
+        or (
+            project_key.startswith("curated:oracle")
+            and (
+                len(actual_campus["capacity_estimates_json"]) != 1
+                or actual_campus["capacity_estimates_json"][0].get("base")
+                != 2450.0
+                or actual_campus["workloads_json"]
+                != [
+                    {
+                        "as_of_date": "2026-04-27",
+                        "confidence": 0.99,
+                        "evidence_id": "b68ce146-3dea-57e1-bb04-fbe710b2f39d",
+                        "method": "company_disclosure",
+                        "workload": "ai_specialized_unspecified",
+                    }
+                ]
+            )
+        )
+    ):
+        raise VerifiedConstructionCoreError("v0.10 campus context scope differs")
+    _v10_validate_flat_topology(
+        construction["project_to_campus"],
+        project=actual_project,
+        campus=actual_campus,
+        acceptance=acceptance,
+        hydrated_crosscheck=hydrated_crosscheck,
+    )
+    if (
+        acceptance["project_stable_key"] != actual_project["stable_key"]
+        or acceptance["project_entity_id"] != actual_project["entity_id"]
+        or acceptance["physical_site_stable_key"] != actual_campus["stable_key"]
+        or acceptance["physical_site_entity_id"] != actual_campus["entity_id"]
+        or acceptance["country"] != actual_project["country"]
+        or acceptance["country"] != actual_campus["country"]
+    ):
+        raise VerifiedConstructionCoreError(
+            "v0.10 publication target projection differs"
+        )
+    return actual_project, actual_campus, source
+
+
+def _v10_validate_oracle_geometry(
+    bridge: Mapping[str, Any], *, hydrated_crosscheck: bool
+) -> None:
+    capture = bridge["geometry_capture"]
+    release = bridge["geometry_release"]
+    if (
+        not isinstance(capture, dict)
+        or set(capture)
+        != {
+            "type",
+            "entity_source_row",
+            "evidence_source_row",
+            "live_version_probe",
+        }
+        or capture["type"] != "embedded_exact_csv_rows"
+        or not isinstance(release, dict)
+        or set(release)
+        != {"release_id", "manifest", "members", "portable_row_authority"}
+        or release["release_id"] != "global-open-v3"
+    ):
+        raise VerifiedConstructionCoreError("v0.10 Oracle geometry source differs")
+    _, manifest = _manifest_binding(
+        release["manifest"], label="v0.10 Oracle global-v3 release"
+    )
+    _validate_manifest_members(
+        manifest, release["members"], label="v0.10 Oracle global-v3 release"
+    )
+    if set(release["members"]) != {"entities.csv", "evidence.csv"}:
+        raise VerifiedConstructionCoreError("v0.10 Oracle geometry members differ")
+    entity_row = _v10_flat_source_row(
+        capture["entity_source_row"],
+        release["members"]["entities.csv"],
+        GLOBAL_GEOMETRY_ENTITY_FIELDS,
+        label="v0.10 Oracle geometry entity",
+        hydrated_crosscheck=hydrated_crosscheck,
+    )
+    evidence_row = _v10_flat_source_row(
+        capture["evidence_source_row"],
+        release["members"]["evidence.csv"],
+        GLOBAL_GEOMETRY_EVIDENCE_FIELDS,
+        label="v0.10 Oracle geometry evidence",
+        hydrated_crosscheck=hydrated_crosscheck,
+    )
+    raw_entity = _global_geometry_entity_projection(entity_row)
+    entity = bridge["geometry_entity"]
+    evidence = bridge["geometry_evidence"]
+    if (
+        entity["entity_id"] != raw_entity["entity_id"]
+        or entity["entity_kind"] != raw_entity["entity_kind"]
+        or entity["stable_key"] != raw_entity["stable_key"]
+        or entity["name"] != raw_entity["name"]
+        or entity["latitude"] != raw_entity["latitude"]
+        or entity["longitude"] != raw_entity["longitude"]
+        or entity["country"] != raw_entity["country"]
+        or entity["geometry"] != raw_entity["geometry"]
+        or entity["tags"] != raw_entity["tags"]
+        or entity["source_evidence_id"] != raw_entity["snapshot_evidence_id"]
+        or entity["source_url"] != raw_entity["source_url"]
+        or entity["source_publisher"] != raw_entity["source_publisher"]
+        or entity["source_license"] != raw_entity["source_license"]
+        or entity["source_retrieved_at"] != raw_entity["source_retrieved_at"]
+        or entity["source_object_timestamp"] != raw_entity["snapshot_as_of"]
+        or raw_entity["status"] != "unknown"
+        or raw_entity["status_method"]
+        != "osm_geometry_only_no_operational_inference"
+        or raw_entity["workloads_json"] != []
+        or raw_entity["capacity_estimates_json"] != []
+    ):
+        raise VerifiedConstructionCoreError(
+            "v0.10 Oracle global entity projection differs"
+        )
+    raw_evidence = _global_geometry_evidence_projection(evidence_row)
+    if (
+        any(evidence.get(field) != raw_evidence[field] for field in raw_evidence)
+        or type(evidence.get("public_evidence_projection")) is not bool
+        or evidence["public_evidence_projection"] is not True
+        or evidence.get("projection_scope") != "public_geometry_evidence"
+    ):
+        raise VerifiedConstructionCoreError(
+            "v0.10 Oracle global evidence projection differs"
+        )
+    _validate_polygon(entity["geometry"], label="v0.10 Oracle geometry")
+    ring = entity["geometry"]["coordinates"][0]
+    midpoint = [
+        (min(point[0] for point in ring) + max(point[0] for point in ring)) / 2,
+        (min(point[1] for point in ring) + max(point[1] for point in ring)) / 2,
+    ]
+    if midpoint != [entity["longitude"], entity["latitude"]]:
+        raise VerifiedConstructionCoreError("v0.10 Oracle midpoint differs")
+
+
+def _v10_validate_cyrus_geometry(bridge: Mapping[str, Any]) -> None:
+    entity = bridge["geometry_entity"]
+    evidence = bridge["geometry_evidence"]
+    capture = bridge["geometry_capture"]
+    identities = bridge["identity_bridge_evidence"]
+    if (
+        not isinstance(capture, dict)
+        or set(capture)
+        != {
+            "type",
+            "source_evidence_id",
+            "raw_document_redistributed",
+            "replay_contract",
+            "transform_audit",
+        }
+        or capture["type"] != "embedded_compact_official_permit_fact"
+        or type(capture["raw_document_redistributed"]) is not bool
+        or capture["raw_document_redistributed"] is not False
+        or not isinstance(identities, list)
+        or len(identities) != 2
+    ):
+        raise VerifiedConstructionCoreError("v0.10 Cyrus capture differs")
+    public, hvbg = identities
+    if (
+        type(public.get("public_evidence_projection")) is not bool
+        or public["public_evidence_projection"] is not True
+        or type(hvbg.get("public_evidence_projection")) is not bool
+        or hvbg["public_evidence_projection"] is not False
+        or hvbg.get("evidence_id") is not None
+        or "evidence_id" in hvbg
+        or hvbg.get("projection_scope") != "derivation_only_crs_context"
+        or _v07_evidence_projection(public) != _v07_evidence_projection(evidence)
+        or evidence.get("canonical_public_evidence_origin")
+        != "identity_bridge_evidence[0]"
+        or evidence["evidence_id"] != _official_evidence_id(public)
+    ):
+        raise VerifiedConstructionCoreError(
+            "v0.10 Cyrus public/HVBG projection differs"
+        )
+    fact = public.get("fact_payload")
+    canonical = public.get("fact_payload_canonical")
+    transform = capture.get("transform_audit")
+    hvbg_fact = hvbg.get("fact_payload")
+    hvbg_canonical = hvbg.get("fact_payload_canonical")
+    if (
+        not isinstance(fact, dict)
+        or not isinstance(canonical, dict)
+        or canonical.get("bytes") != len(_json_bytes(fact))
+        or canonical.get("sha256") != _sha256_bytes(_json_bytes(fact))
+        or canonical.get("bytes") != 1359
+        or canonical.get("sha256")
+        != "6645e92ef80313bc2726fbfc39a936031c17c761b907910ccbd8b5a5a1fd4d8e"
+        or fact.get("coordinate_easting") != 469995
+        or fact.get("coordinate_northing") != 5549104
+        or fact.get("coordinate_source_crs_epsg") != 25832
+        or fact.get("coordinate_output_crs_epsg") != 4326
+        or fact.get("coordinate_output_lon") != 8.5805137288
+        or fact.get("coordinate_output_lat") != 50.093438822
+        or not isinstance(transform, dict)
+        or transform.get("library_bytes") != 121969
+        or transform.get("library_sha256")
+        != "ae2c4005bd390f89472d0f241bb960c015c1ee5149ca972ba096ff9158f2244e"
+        or transform.get("unrounded_output_lon_lat")
+        != [8.580513728800428, 50.093438822045506]
+        or entity["geometry"]
+        != {
+            "type": "Point",
+            "coordinates": [
+                fact["coordinate_output_lon"],
+                fact["coordinate_output_lat"],
+            ],
+        }
+        or entity["source_evidence_id"] != public["evidence_id"]
+        or hvbg.get("key")
+        != "hessen-etrs89-utm32-epsg25832-reference-captured-2026-08-20"
+        or hvbg.get("publisher")
+        != "Hessische Verwaltung für Bodenmanagement und Geoinformation"
+        or hvbg.get("source_url")
+        != (
+            "https://hvbg.hessen.de/landesvermessung/geotopographie/3d-daten/"
+            "bildbasierte-digitale-oberflaechenmodelle"
+        )
+        or hvbg.get("license") != "rights-status-not-established"
+        or hvbg.get("captured_bytes") != 330153
+        or hvbg.get("content_hash")
+        != "9cf4caf3ed28f17caea5d824eac7dc57c7fad27f43a5f865f9a972c0abb05847"
+        or hvbg.get("rights_scope")
+        != "Only the compact CRS fact and hashes are redistributed."
+        or hvbg_fact
+        != {
+            "official_hessian_horizontal_crs": (
+                "EPSG:25832, ETRS89/UTM zone 32, GRS80"
+            ),
+            "source_context": (
+                "Hessian state geodata reference-system page; used only to "
+                "interpret the RP Darmstadt 32U coordinate notation."
+            ),
+        }
+        or not isinstance(hvbg_canonical, dict)
+        or hvbg_canonical.get("bytes") != len(_json_bytes(hvbg_fact))
+        or hvbg_canonical.get("sha256") != _sha256_bytes(_json_bytes(hvbg_fact))
+        or hvbg_canonical.get("bytes") != 205
+        or hvbg_canonical.get("sha256")
+        != "1b768082b10384f56bf0596475202e22d32e7a4b41d4818a06a6d33099e9bd1e"
+    ):
+        raise VerifiedConstructionCoreError("v0.10 Cyrus transform replay differs")
+
+
+def _v10_validate_colt_geometry(
+    bridge: Mapping[str, Any], profile: Mapping[str, Any]
+) -> None:
+    capture = bridge["geometry_capture"]
+    replay = _v09_replay_osm_capture(capture, profile)
+    entity = bridge["geometry_entity"]
+    evidence = bridge["geometry_evidence"]
+    identities = bridge["identity_bridge_evidence"]
+    if not isinstance(identities, list) or len(identities) != 1:
+        raise VerifiedConstructionCoreError("v0.10 Colt identity inventory differs")
+    identity = identities[0]
+    fact = identity.get("fact_payload")
+    canonical = identity.get("fact_payload_canonical")
+    stability = capture.get("capture_stability")
+    capture_rights = capture.get("rights")
+    if (
+        set(capture)
+        != {
+            "type",
+            "capture_id",
+            "captured_at",
+            "review_date_local",
+            "request",
+            "response",
+            "payload",
+            "object_expectations",
+            "replay_checksums",
+            "capture_stability",
+            "rights",
+        }
+        or stability
+        != {
+            "body_refetch_reproducibility": "not_guaranteed",
+            "reason": (
+                "The OSM API generator string varies across backend hosts and "
+                "therefore can change the exact response-body hash without changing "
+                "the selected way."
+            ),
+            "portable_authority": (
+                "The embedded bytes are the authority; replay must also prove raw-way, "
+                "enriched-way, and polygon canonical hashes."
+            ),
+        }
+        or capture_rights
+        != {
+            "publisher": "OpenStreetMap contributors",
+            "attribution": "© OpenStreetMap contributors",
+            "license": "ODbL-1.0",
+            "license_url": "https://opendatacommons.org/licenses/odbl/1-0/",
+            "copyright_and_attribution_url": (
+                "https://www.openstreetmap.org/copyright"
+            ),
+            "redistribution_posture": (
+                "Exact OSM data bytes may be redistributed under ODbL 1.0 with "
+                "attribution and applicable share-alike obligations."
+            ),
+        }
+        or type(capture.get("request", {}).get("credentials_supplied")) is not bool
+        or capture["request"]["credentials_supplied"] is not False
+        or type(capture.get("response", {}).get("decoded_body_ends_with_lf"))
+        is not bool
+        or capture["response"]["decoded_body_ends_with_lf"] is not False
+        or type(identity.get("public_evidence_projection")) is not bool
+        or identity["public_evidence_projection"] is not True
+        or not isinstance(fact, dict)
+        or fact.get("object_id") != profile["way_id"]
+        or fact.get("object_version") != profile["way_version"]
+        or fact.get("ordered_node_ids") != replay["way"]["nodes"]
+        or fact.get("tags") != replay["way"]["tags"]
+        or fact.get("ordered_ring_coordinates_lon_lat")
+        != replay["geometry"]["coordinates"][0]
+        or fact.get("representative_point", {}).get("coordinates")
+        != replay["midpoint"]
+        or not isinstance(canonical, dict)
+        or canonical.get("bytes") != len(_json_bytes(fact))
+        or canonical.get("sha256") != _sha256_bytes(_json_bytes(fact))
+        or canonical.get("bytes") != 1593
+        or canonical.get("sha256")
+        != "0016b31daf2ded3854a999e662deb58d945e1fcdab615e589e7cd015709bde0f"
+        or entity["geometry"] != replay["geometry"]
+        or [entity["longitude"], entity["latitude"]] != replay["midpoint"]
+        or entity["tags"] != replay["way"]["tags"]
+        or entity["source_evidence_id"] != identity["evidence_id"]
+        or _v07_evidence_projection(identity) != _v07_evidence_projection(evidence)
+        or evidence.get("canonical_public_evidence_origin")
+        != "identity_bridge_evidence[0]"
+    ):
+        raise VerifiedConstructionCoreError("v0.10 Colt OSM replay differs")
+
+
+def _v10_validate_rights_semantics(
+    bridge: Mapping[str, Any], project_key: str
+) -> None:
+    rights = bridge["rights"]
+    entity = bridge["geometry_entity"]
+    evidence = bridge["geometry_evidence"]
+    if project_key.startswith(("curated:colt-london", "curated:oracle")):
+        expected_rights = {
+            "construction_source": (
+                "Colt material is all-rights-reserved; only compact facts, hashes, "
+                "and identifiers are retained."
+                if project_key.startswith("curated:colt-london")
+                else "Oracle material is all-rights-reserved; only compact facts, "
+                "hashes, and identifiers are retained."
+            ),
+            "geometry_source": (
+                "The exact OSM payload and derived polygon are redistributed under "
+                "ODbL 1.0 with required attribution."
+                if project_key.startswith("curated:colt-london")
+                else "The embedded OSM rows and derived polygon are redistributed "
+                "under ODbL 1.0 with OpenStreetMap contributor attribution."
+            ),
+            "geometry_license_url": (
+                "https://opendatacommons.org/licenses/odbl/1-0/"
+            ),
+            "geometry_attribution_url": "https://www.openstreetmap.org/copyright",
+            "mixed_rights": (
+                "ODbL geometry does not relicense Colt material."
+                if project_key.startswith("curated:colt-london")
+                else "ODbL geometry does not relicense Oracle or state-source material."
+            ),
+        }
+        if project_key.startswith("curated:oracle"):
+            expected_rights["identity_bridge_source"] = (
+                "New Mexico State Ethics Commission PDF redistribution rights were "
+                "not established; only compact facts and hashes are retained."
+            )
+        if (
+            rights != expected_rights
+            or evidence.get("publisher") != "OpenStreetMap contributors"
+            or evidence.get("source_family") != "openstreetmap"
+            or evidence.get("license") != "ODbL-1.0"
+            or evidence.get("attribution") != "© OpenStreetMap contributors"
+            or evidence.get("source_url")
+            != f"https://www.openstreetmap.org/way/{entity['stable_key'].split('/')[-1]}"
+            or entity.get("source_publisher") != "OpenStreetMap contributors"
+            or entity.get("source_license") != "ODbL-1.0"
+            or (
+                project_key.startswith("curated:colt-london")
+                and entity.get("source_attribution")
+                != "© OpenStreetMap contributors"
+            )
+        ):
+            raise VerifiedConstructionCoreError("v0.10 OSM rights semantics differ")
+        return
+    expected_url = (
+        "https://rp-darmstadt.hessen.de/sites/rp-darmstadt.hessen.de/files/"
+        "2026-07/bescheid-4_ndma-ff7-cyrusone_end.pdf"
+    )
+    expected_rights = {
+        "construction_source": (
+            "CyrusOne material is all-rights-reserved; only compact facts, hashes, "
+            "and identifiers are retained."
+        ),
+        "geometry_source": (
+            "RP Darmstadt and HVBG redistribution rights were not established; "
+            "official PDF/HTML bodies are not redistributed, only compact facts, "
+            "hashes, and the derived point."
+        ),
+        "transform_library": (
+            "Proj4js is used only as an audit implementation; its fetched bundle is "
+            "not redistributed."
+        ),
+        "mixed_rights": "No source body is relicensed by this bridge.",
+    }
+    if (
+        rights != expected_rights
+        or evidence.get("publisher") != "Regierungspräsidium Darmstadt"
+        or evidence.get("source_family")
+        != "rp_darmstadt_environmental_permit_decisions"
+        or evidence.get("license") != "rights-status-not-established"
+        or evidence.get("attribution") != "Regierungspräsidium Darmstadt"
+        or evidence.get("source_url") != expected_url
+        or entity.get("source_publisher") != "Regierungspräsidium Darmstadt"
+        or entity.get("source_license") != "rights-status-not-established"
+        or entity.get("source_url") != expected_url
+    ):
+        raise VerifiedConstructionCoreError("v0.10 Cyrus rights semantics differ")
+
+
+def _validate_v10_bridge(
+    acceptance: Mapping[str, Any],
+    overlay: Mapping[str, Any],
+    *,
+    hydrated_crosscheck: bool,
+) -> tuple[dict[str, Any], dict[str, Any]]:
+    project_key = acceptance["project_stable_key"]
+    profile = V10_BRIDGE_PROFILES.get(project_key)
+    geometry_contract = V10_GEOMETRY_CONTRACTS.get(project_key)
+    acceptance_semantics_sha256 = V10_ACCEPTANCE_SEMANTICS_SHA256.get(project_key)
+    if (
+        profile is None
+        or geometry_contract is None
+        or acceptance_semantics_sha256 is None
+        or _sha256_bytes(_json_bytes(_v10_acceptance_semantics(acceptance)))
+        != acceptance_semantics_sha256
+        or {
+            field: acceptance.get(field)
+            for field in geometry_contract
+        }
+        != geometry_contract
+        or type(acceptance.get("official_boundary")) is not bool
+        or _sha256_bytes(_json_bytes(acceptance))
+        != profile["acceptance_sha256"]
+        or _sha256_bytes(_json_bytes(overlay)) != profile["overlay_sha256"]
+        or acceptance["bridge_path"] != profile["bridge_path"]
+        or acceptance["bridge_bytes"] != profile["bridge_bytes"]
+        or acceptance["bridge_sha256"] != profile["bridge_sha256"]
+        or acceptance["source_input_path"] != profile["source_path"]
+        or acceptance["source_input_bytes"] != profile["source_bytes"]
+        or acceptance["source_input_sha256"] != profile["source_sha256"]
+        or acceptance["bridge_id"] != profile["bridge_id"]
+        or acceptance["bridge_schema"] != profile["schema"]
+        or acceptance["geometry_entity"] != profile["geometry_kind"]
+        or acceptance["geometry_entity_stable_key"]
+        != profile["geometry_stable_key"]
+        or acceptance["geometry_entity_id"] != profile["geometry_entity_id"]
+        or acceptance["geometry_target_entity_kind"] != profile["target_kind"]
+        or acceptance["geometry_target_entity_stable_key"]
+        != profile["target_stable_key"]
+        or acceptance["geometry_target_entity_id"] != profile["target_entity_id"]
+        or acceptance["geometry_evidence_id"]
+        != profile["geometry_evidence_id"]
+        or acceptance["geometry_evidence_key"]
+        != profile["geometry_evidence_key"]
+        or acceptance["geometry_source_kind"]
+        != profile["geometry_source_kind"]
+        or acceptance["portable_capture_bindings"] != []
+    ):
+        raise VerifiedConstructionCoreError("v0.10 immutable bridge profile differs")
+    bridge_path = _repository_input(
+        acceptance["bridge_path"], acceptance["bridge_sha256"], "v0.10 bridge"
+    )
+    if bridge_path.stat().st_size != acceptance["bridge_bytes"]:
+        raise VerifiedConstructionCoreError("v0.10 bridge bytes differ")
+    bridge = _load_json(bridge_path)
+    if (
+        not isinstance(bridge, dict)
+        or set(bridge)
+        != {
+            "bridge_id",
+            "bridge_schema",
+            "claim_guardrails",
+            "construction_source",
+            "false_match_guardrails",
+            "geometry_capture",
+            "geometry_entity",
+            "geometry_evidence",
+            "geometry_release",
+            "identity_bridge_evidence",
+            "imagery_posture",
+            "materialization_scope",
+            "review_decision",
+            "reviewed_at",
+            "rights",
+            "schema_version",
+        }
+        or type(bridge.get("schema_version")) is not int
+        or bridge["schema_version"] != 1
+        or bridge["bridge_id"] != profile["bridge_id"]
+        or bridge["bridge_schema"] != profile["schema"]
+        or bridge["reviewed_at"] != CURRENT_V10_REVIEW_DATE.isoformat()
+    ):
+        raise VerifiedConstructionCoreError("v0.10 bridge schema differs")
+    if _sha256_bytes(_json_bytes(bridge["geometry_entity"])) != (
+        V10_GEOMETRY_ENTITY_SHA256.get(project_key)
+    ):
+        raise VerifiedConstructionCoreError(
+            "v0.10 independent geometry source contract differs"
+        )
+    for field, expected_hash in profile["semantic_hashes"].items():
+        if _sha256_bytes(_json_bytes(bridge.get(field))) != expected_hash:
+            raise VerifiedConstructionCoreError(
+                f"v0.10 {field.replace('_', ' ')} semantic profile differs"
+            )
+    _v10_validate_rights_semantics(bridge, project_key)
+    project, campus, source = _v10_validate_construction_source(
+        bridge,
+        acceptance,
+        profile,
+        hydrated_crosscheck=hydrated_crosscheck,
+    )
+    entity = bridge["geometry_entity"]
+    evidence = bridge["geometry_evidence"]
+    if (
+        entity.get("entity_kind") != profile["geometry_kind"]
+        or entity.get("stable_key") != profile["geometry_stable_key"]
+        or entity.get("entity_id") != profile["geometry_entity_id"]
+        or entity.get("entity_id")
+        != atlas_stable_id(
+            "entity", entity.get("stable_key", ""), entity.get("entity_kind", "")
+        )
+        or [entity.get("longitude"), entity.get("latitude")]
+        != [profile["longitude"], profile["latitude"]]
+        or evidence.get("evidence_id") != profile["geometry_evidence_id"]
+        or evidence.get("key") != profile["geometry_evidence_key"]
+        or type(evidence.get("public_evidence_projection")) is not bool
+        or evidence["public_evidence_projection"] is not True
+    ):
+        raise VerifiedConstructionCoreError("v0.10 geometry source identity differs")
+    target = project if profile["target_kind"] == "project" else campus
+    if (
+        target["stable_key"] != profile["target_stable_key"]
+        or target["entity_id"] != profile["target_entity_id"]
+        or target["stable_key"] != acceptance["geometry_target_entity_stable_key"]
+        or target["entity_id"] != acceptance["geometry_target_entity_id"]
+    ):
+        raise VerifiedConstructionCoreError("v0.10 geometry target differs")
+    decision = bridge["review_decision"]
+    bindings = {
+        "decision": "bridge_decision",
+        "decision_basis": "decision_basis",
+        "geometry_target_entity_kind": "geometry_target_entity_kind",
+        "geometry_target_entity_stable_key": "geometry_target_entity_stable_key",
+        "geometry_target_entity_id": "geometry_target_entity_id",
+        "geometry_derivation": "geometry_derivation",
+        "geometry_method": "geometry_method",
+        "geometry_scope_class": "geometry_scope_class",
+        "geometry_authority_class": "geometry_authority_class",
+        "geometry_use_scope": "geometry_use_scope",
+        "horizontal_uncertainty_metres": "horizontal_uncertainty_metres",
+        "horizontal_uncertainty_unknown_reason": "horizontal_uncertainty_unknown_reason",
+        "precision_scope": "precision_scope",
+    }
+    if (
+        not isinstance(decision, dict)
+        or any(
+            decision.get(field) != acceptance[target_field]
+            for field, target_field in bindings.items()
+        )
+        or type(decision.get("official_boundary")) is not bool
+        or decision["official_boundary"] is not False
+        or type(acceptance.get("official_boundary")) is not bool
+        or acceptance["official_boundary"] is not False
+        or acceptance["geometry_use_scope"]
+        != ("campus_locator" if profile["target_kind"] == "campus" else "project_locator")
+    ):
+        raise VerifiedConstructionCoreError("v0.10 review semantics differ")
+    imagery = bridge["imagery_posture"]
+    if (
+        not isinstance(imagery, dict)
+        or imagery.get("outcome") != "not_reviewed_for_core_preview"
+        or type(imagery.get("independent_imagery_verification")) is not bool
+        or imagery["independent_imagery_verification"] is not False
+        or not isinstance(bridge["claim_guardrails"], dict)
+        or not bridge["claim_guardrails"]
+    ):
+        raise VerifiedConstructionCoreError("v0.10 imagery guardrail differs")
+    if project_key.startswith("curated:oracle"):
+        _v10_validate_oracle_geometry(
+            bridge, hydrated_crosscheck=hydrated_crosscheck
+        )
+    elif project_key.startswith("curated:cyrusone"):
+        _v10_validate_cyrus_geometry(bridge)
+        if (
+            entity["entity_id"] != project["entity_id"]
+            or entity["stable_key"] != project["stable_key"]
+        ):
+            raise VerifiedConstructionCoreError(
+                "v0.10 Cyrus source-target identity differs"
+            )
+    else:
+        _v10_validate_colt_geometry(bridge, profile)
+    return bridge, source
+
+
+def _v10_contracts(*, hydrated_crosscheck: bool) -> dict[str, Any]:
+    _validate_v10_definition_pins()
+    reviewed = _load_json(V10_REVIEW_DEFINITION)
+    overlays = _load_json(V10_OVERLAY_DEFINITION)
+    provenance = _load_json(V10_PROVENANCE_DEFINITION)
+    imagery = _load_json(V10_IMAGERY_REVIEW_DEFINITION)
+    if (
+        not isinstance(reviewed, dict)
+        or set(reviewed)
+        != {
+            "contract_id",
+            "review_scope",
+            "reviewed_as_of",
+            "base_contract",
+            "acceptances",
+        }
+        or reviewed.get("contract_id")
+        != "verified-construction-core-v0.10-reviewed-sites"
+        or reviewed.get("reviewed_as_of")
+        != CURRENT_V10_REVIEW_DATE.isoformat()
+        or reviewed.get("base_contract")
+        != {
+            "path": "definitions/verified-construction-core-v0.9-reviewed-sites.json",
+            "sha256": V09_REVIEW_DEFINITION_SHA256,
+            "default_geometry_entity": "project",
+            "default_geometry_derivation": "direct_geometry",
+        }
+        or not isinstance(reviewed.get("acceptances"), list)
+        or len(reviewed["acceptances"]) != 3
+        or any(
+            not isinstance(row, dict)
+            or set(row) != V10_ACCEPTANCE_REQUIRED_FIELDS
+            for row in reviewed["acceptances"]
+        )
+    ):
+        raise VerifiedConstructionCoreError("v0.10 reviewed-site contract differs")
+    if (
+        not isinstance(overlays, dict)
+        or set(overlays)
+        != {
+            "contract_id",
+            "purpose",
+            "reviewed_as_of",
+            "base_contract",
+            "required_fields",
+            "allowed_decisions",
+            "overlays",
+        }
+        or overlays.get("contract_id")
+        != "verified-construction-core-reviewed-overlays-v8"
+        or overlays.get("reviewed_as_of")
+        != CURRENT_V10_REVIEW_DATE.isoformat()
+        or overlays.get("base_contract")
+        != {
+            "path": "definitions/verified-construction-core-reviewed-overlays-v7.json",
+            "sha256": V09_OVERLAY_DEFINITION_SHA256,
+        }
+        or tuple(overlays.get("required_fields", []))
+        != V10_OVERLAY_REQUIRED_FIELD_ORDER
+        or overlays.get("allowed_decisions") != ["queued", "accepted", "excluded"]
+        or not isinstance(overlays.get("overlays"), list)
+        or len(overlays["overlays"]) != 3
+        or any(
+            not isinstance(row, dict) or set(row) != V10_OVERLAY_REQUIRED_FIELDS
+            for row in overlays["overlays"]
+        )
+    ):
+        raise VerifiedConstructionCoreError("v0.10 overlay contract differs")
+    acceptance_by_key = {
+        row.get("project_stable_key"): row for row in reviewed["acceptances"]
+    }
+    overlay_by_key = {
+        row.get("source_project_stable_key"): row for row in overlays["overlays"]
+    }
+    if (
+        len(acceptance_by_key) != 3
+        or len(overlay_by_key) != 3
+        or set(acceptance_by_key) != set(V10_BRIDGE_PROFILES)
+        or set(overlay_by_key) != set(V10_BRIDGE_PROFILES)
+    ):
+        raise VerifiedConstructionCoreError("v0.10 cohort differs")
+    crosswalk = {
+        field: field
+        for field in V10_ACCEPTANCE_REQUIRED_FIELDS
+        if field
+        not in {
+            "project_stable_key",
+            "project_entity_id",
+            "geometry_overlay_id",
+            "decision_basis",
+        }
+    }
+    bridges: dict[str, dict[str, Any]] = {}
+    sources: dict[str, dict[str, Any]] = {}
+    for project_key in sorted(acceptance_by_key):
+        acceptance = acceptance_by_key[project_key]
+        overlay = overlay_by_key[project_key]
+        if (
+            any(
+                acceptance[left] != overlay[right]
+                for left, right in crosswalk.items()
+            )
+            or acceptance["project_stable_key"]
+            != overlay["source_project_stable_key"]
+            or acceptance["project_entity_id"]
+            != overlay["source_project_entity_id"]
+            or acceptance["geometry_overlay_id"] != overlay["overlay_id"]
+            or acceptance["decision_basis"] != overlay["decision_reason"]
+            or overlay["decision"] != "accepted"
+            or overlay["reviewed_at"] != CURRENT_V10_REVIEW_DATE.isoformat()
+        ):
+            raise VerifiedConstructionCoreError(
+                "v0.10 acceptance-overlay binding differs"
+            )
+        bridge, source = _validate_v10_bridge(
+            acceptance,
+            overlay,
+            hydrated_crosscheck=hydrated_crosscheck,
+        )
+        bridges[project_key] = bridge
+        sources[project_key] = source
+    if (
+        not isinstance(provenance, dict)
+        or set(provenance)
+        != {
+            "contract_id",
+            "review_scope",
+            "reviewed_as_of",
+            "base_contract",
+            "workload_scope_bindings",
+            "role_bindings",
+            "excluded_source_roles",
+            "context_evidence_bindings",
+        }
+        or provenance.get("contract_id")
+        != "verified-construction-core-v0.10-provenance"
+        or provenance.get("reviewed_as_of")
+        != CURRENT_V10_REVIEW_DATE.isoformat()
+        or provenance.get("base_contract")
+        != {
+            "path": "definitions/verified-construction-core-v0.9-provenance.json",
+            "sha256": V09_PROVENANCE_DEFINITION_SHA256,
+        }
+        or provenance.get("workload_scope_bindings") != []
+        or provenance.get("role_bindings") != []
+        or provenance.get("excluded_source_roles") != []
+        or not isinstance(provenance.get("context_evidence_bindings"), list)
+        or len(provenance["context_evidence_bindings"]) != 3
+        or _sha256_bytes(
+            _json_bytes(
+                {
+                    field: provenance[field]
+                    for field in (
+                        "workload_scope_bindings",
+                        "role_bindings",
+                        "excluded_source_roles",
+                        "context_evidence_bindings",
+                    )
+                }
+            )
+        )
+        != V10_PROVENANCE_SEMANTICS_SHA256
+    ):
+        raise VerifiedConstructionCoreError("v0.10 provenance contract differs")
+    context_ids = set()
+    for binding in provenance["context_evidence_bindings"]:
+        project_key = binding.get("project_stable_key")
+        bridge = bridges.get(project_key)
+        if (
+            not isinstance(binding, dict)
+            or set(binding)
+            != {
+                "project_stable_key",
+                "bridge_path",
+                "bridge_sha256",
+                "evidence_origin",
+                "evidence_id",
+                "usage_role",
+                "semantic_scope",
+            }
+            or bridge is None
+            or binding["bridge_path"]
+            != acceptance_by_key[project_key]["bridge_path"]
+            or binding["bridge_sha256"]
+            != acceptance_by_key[project_key]["bridge_sha256"]
+            or binding["evidence_origin"] != "identity_bridge_evidence"
+            or binding["usage_role"] != "geometry_identity"
+            or not isinstance(binding["semantic_scope"], str)
+            or not binding["semantic_scope"]
+        ):
+            raise VerifiedConstructionCoreError(
+                "v0.10 context binding differs"
+            )
+        public_ids = {
+            row.get("evidence_id")
+            for row in bridge["identity_bridge_evidence"]
+            if isinstance(row, dict)
+            and type(row.get("public_evidence_projection")) is bool
+            and row["public_evidence_projection"] is True
+        }
+        if binding["evidence_id"] not in public_ids:
+            raise VerifiedConstructionCoreError(
+                "v0.10 context evidence origin differs"
+            )
+        context_ids.add(binding["evidence_id"])
+    if context_ids != {
+        "b0d7fbf5-7de2-58e0-a54f-d6fec6d08a6a",
+        "850336d5-4d8f-5821-ae65-cb195961e7b6",
+        "c0b3ca09-1341-5395-9301-9f6a2d67cf0c",
+    }:
+        raise VerifiedConstructionCoreError("v0.10 context inventory differs")
+    if (
+        not isinstance(imagery, dict)
+        or set(imagery)
+        != {
+            "contract_id",
+            "review_scope",
+            "reviewed_as_of",
+            "base_contract",
+            "default_outcome",
+            "records",
+        }
+        or imagery.get("contract_id")
+        != "verified-construction-core-v0.10-imagery-reviews"
+        or imagery.get("reviewed_as_of")
+        != CURRENT_V10_REVIEW_DATE.isoformat()
+        or imagery.get("base_contract")
+        != {
+            "path": "definitions/verified-construction-core-v0.9-imagery-reviews.json",
+            "sha256": V09_IMAGERY_REVIEW_DEFINITION_SHA256,
+        }
+        or imagery.get("default_outcome")
+        != "not_reviewed_for_core_preview"
+        or imagery.get("records") != []
+    ):
+        raise VerifiedConstructionCoreError("v0.10 imagery contract differs")
+    return {
+        "reviewed": reviewed,
+        "overlays": overlays,
+        "provenance": provenance,
+        "imagery": imagery,
+        "acceptance_by_key": acceptance_by_key,
+        "overlay_by_key": overlay_by_key,
+        "bridges": bridges,
+        "sources": sources,
+    }
+
+
+def _v10_build_delta_rows(contracts: Mapping[str, Any]) -> dict[str, Any]:
+    provenance = contracts["provenance"]
+    roles_by_project: dict[str, list[dict[str, Any]]] = defaultdict(list)
+    for row in provenance["role_bindings"]:
+        roles_by_project[row["project_stable_key"]].append(row)
+    contexts_by_project: dict[str, list[dict[str, Any]]] = defaultdict(list)
+    for row in provenance["context_evidence_bindings"]:
+        contexts_by_project[row["project_stable_key"]].append(row)
+    evidence_pool: dict[str, dict[str, Any]] = {}
+    evidence_usage: dict[str, dict[str, set[str]]] = defaultdict(
+        lambda: {"roles": set(), "project_ids": set()}
+    )
+    projects: list[dict[str, Any]] = []
+    sites: list[dict[str, Any]] = []
+    for project_key in sorted(contracts["bridges"]):
+        bridge = contracts["bridges"][project_key]
+        source = contracts["sources"][project_key]
+        acceptance = contracts["acceptance_by_key"][project_key]
+        construction = bridge["construction_source"]
+        source_evidence = _v08_source_evidence(source)
+        evidence_pool.update(source_evidence)
+        geometry_evidence = _v07_evidence_projection(bridge["geometry_evidence"])
+        evidence_pool[geometry_evidence["evidence_id"]] = geometry_evidence
+        identity_evidence = bridge.get("identity_bridge_evidence")
+        if not isinstance(identity_evidence, list):
+            raise VerifiedConstructionCoreError(
+                "v0.10 identity evidence inventory differs"
+            )
+        for identity_row in identity_evidence:
+            public_projection = identity_row.get("public_evidence_projection")
+            if type(public_projection) is not bool:
+                raise VerifiedConstructionCoreError(
+                    "v0.10 identity evidence visibility differs"
+                )
+            if public_projection is False:
+                if "evidence_id" in identity_row:
+                    raise VerifiedConstructionCoreError(
+                        "v0.10 nonpublic evidence identifier differs"
+                    )
+                continue
+            projected_identity = _v07_evidence_projection(identity_row)
+            evidence_id = projected_identity["evidence_id"]
+            existing = evidence_pool.get(evidence_id)
+            if existing is not None and existing != projected_identity:
+                raise VerifiedConstructionCoreError(
+                    "v0.10 identity evidence projection differs"
+                )
+            evidence_pool[evidence_id] = projected_identity
+        project = construction["project"]
+        campus = construction["campus"]
+        project_id = project["entity_id"]
+        site_id = _stable_id("vcc-site", campus["stable_key"])
+        status_evidence_id = project["status_evidence_id"]
+        geometry_evidence_id = bridge["geometry_evidence"]["evidence_id"]
+        evidence_usage[status_evidence_id]["roles"].add("physical_status")
+        evidence_usage[status_evidence_id]["project_ids"].add(project_id)
+        evidence_usage[geometry_evidence_id]["roles"].add("geometry")
+        evidence_usage[geometry_evidence_id]["project_ids"].add(project_id)
+        observations = project.get("capacity_estimates_json", [])
+        if not isinstance(observations, list):
+            raise VerifiedConstructionCoreError("v0.10 capacity observations differ")
+        for observation in observations:
+            _validate_typed_observation(
+                observation, POWER_METRICS | ENERGY_METRICS | EFFICIENCY_METRICS
+            )
+            evidence_id = observation["evidence_id"]
+            if evidence_id not in evidence_pool:
+                raise VerifiedConstructionCoreError(
+                    "v0.10 capacity evidence differs"
+                )
+            evidence_usage[evidence_id]["roles"].add(
+                f"typed_metric:{observation['metric']}"
+            )
+            evidence_usage[evidence_id]["project_ids"].add(project_id)
+        power = [row for row in observations if row["metric"] in POWER_METRICS]
+        energy = [row for row in observations if row["metric"] in ENERGY_METRICS]
+        efficiency = [
+            row for row in observations if row["metric"] in EFFICIENCY_METRICS
+        ]
+        if project.get("workloads_json") != []:
+            raise VerifiedConstructionCoreError("v0.10 workload promotion differs")
+        role_claims: list[dict[str, str]] = []
+        projected_roles = {role: [] for role in ROLE_COLUMNS}
+        for binding in roles_by_project.get(project_key, []):
+            evidence_id = binding["evidence_id"]
+            if evidence_id not in evidence_pool:
+                raise VerifiedConstructionCoreError("v0.10 role evidence differs")
+            role_claims.append(
+                {
+                    "evidence_id": evidence_id,
+                    "party": binding["party"],
+                    "relationship_scope": binding["relationship_scope"],
+                    "role": binding["role"],
+                }
+            )
+            projected_roles[binding["role"]].append(binding["party"])
+            evidence_usage[evidence_id]["roles"].add(f"role:{binding['role']}")
+            evidence_usage[evidence_id]["project_ids"].add(project_id)
+        role_claims.sort(
+            key=lambda row: (row["role"], row["party"], row["evidence_id"])
+        )
+        operating_model = project.get("operating_model")
+        operating_model_evidence_id = project.get("operating_model_evidence_id")
+        if operating_model:
+            if operating_model_evidence_id not in evidence_pool:
+                raise VerifiedConstructionCoreError(
+                    "v0.10 operating-model evidence differs"
+                )
+            evidence_usage[operating_model_evidence_id]["roles"].add(
+                "operating_model"
+            )
+            evidence_usage[operating_model_evidence_id]["project_ids"].add(
+                project_id
+            )
+        elif operating_model_evidence_id is not None:
+            raise VerifiedConstructionCoreError(
+                "v0.10 operating-model identity differs"
+            )
+        for binding in contexts_by_project.get(project_key, []):
+            evidence_id = binding["evidence_id"]
+            if evidence_id not in evidence_pool:
+                raise VerifiedConstructionCoreError("v0.10 context evidence differs")
+            evidence_usage[evidence_id]["roles"].add(
+                f"context:{binding['usage_role']}"
+            )
+            evidence_usage[evidence_id]["project_ids"].add(project_id)
+        entity = bridge["geometry_entity"]
+        geometry = entity["geometry"]
+        status_date = _calendar_date(project["status_as_of"], "v0.10 status_as_of")
+        image_outcome = contracts["imagery"]["default_outcome"]
+        row = {
+            "project_id": project_id,
+            "project_stable_key": project_key,
+            "site_id": site_id,
+            "physical_site_stable_key": campus["stable_key"],
+            "name": project["name"],
+            "country": acceptance["country"],
+            "country_iso_a2": V10_COUNTRY_ISO_A2[acceptance["country"]],
+            "latitude": entity["latitude"],
+            "longitude": entity["longitude"],
+            "geometry_json": _json_bytes(geometry).decode().strip(),
+            "geometry_type": geometry["type"],
+            "geometry_source_entity_kind": acceptance["geometry_entity"],
+            "geometry_derivation": acceptance["geometry_derivation"],
+            "geometry_method": acceptance["geometry_method"],
+            "geometry_scope_class": acceptance["geometry_scope_class"],
+            "geometry_authority_class": acceptance["geometry_authority_class"],
+            "geometry_use_scope": acceptance["geometry_use_scope"],
+            "geometry_precision_scope": acceptance["precision_scope"],
+            "horizontal_uncertainty_metres": (
+                ""
+                if acceptance["horizontal_uncertainty_metres"] is None
+                else acceptance["horizontal_uncertainty_metres"]
+            ),
+            "horizontal_uncertainty_unknown_reason": acceptance[
+                "horizontal_uncertainty_unknown_reason"
+            ],
+            "geometry_evidence_id": geometry_evidence_id,
+            "last_observed_physical_status": project["status"],
+            "status_as_of": project["status_as_of"],
+            "status_age_days_at_review": (
+                CURRENT_V10_REVIEW_DATE - status_date
+            ).days,
+            "status_method": project["status_method"],
+            "status_evidence_id": status_evidence_id,
+            "verification_posture": _verification_posture(
+                acceptance["geometry_authority_class"],
+                acceptance["geometry_use_scope"],
+            ),
+            "independent_imagery_verification": "false",
+            "imagery_review_outcome": image_outcome,
+            "development_type": "unknown",
+            "development_type_unknown_reason": "source evidence does not distinguish greenfield, expansion, or retrofit",
+            "operating_model": operating_model or "unknown",
+            "operating_model_unknown_reason": (
+                "" if operating_model else "not established by selected evidence"
+            ),
+            "operating_model_evidence_id": operating_model_evidence_id or "",
+            "workloads_json": "[]",
+            "workload_unknown_reason": "not established by selected evidence",
+            "role_claims_json": _json_bytes(role_claims).decode().strip(),
+            "power_observations_json": _json_bytes(power).decode().strip(),
+            "power_unknown_reason": (
+                "" if power else "no typed project power observation; not estimated"
+            ),
+            "annual_energy_observations_json": _json_bytes(energy)
+            .decode()
+            .strip(),
+            "annual_energy_unknown_reason": (
+                ""
+                if energy
+                else "no scoped annual-energy inputs; not estimated"
+            ),
+            "efficiency_observations_json": _json_bytes(efficiency)
+            .decode()
+            .strip(),
+            "efficiency_unknown_reason": (
+                "" if efficiency else "no scoped PUE or WUE observation"
+            ),
+            "owner": "; ".join(sorted(projected_roles["owner"])),
+            "operator": "; ".join(sorted(projected_roles["operator"])),
+            "users": "; ".join(sorted(projected_roles["user"])),
+            "tenants": "; ".join(sorted(projected_roles["tenant"])),
+            "customers": "; ".join(sorted(projected_roles["customer"])),
+            "status_source_url": evidence_pool[status_evidence_id]["source_url"],
+            "geometry_source_url": geometry_evidence["source_url"],
+        }
+        projects.append(row)
+        sites.append(
+            {
+                "site_id": site_id,
+                "physical_site_stable_key": campus["stable_key"],
+                "name": campus["name"],
+                "country": row["country"],
+                "country_iso_a2": row["country_iso_a2"],
+                "latitude": row["latitude"],
+                "longitude": row["longitude"],
+                "geometry_json": row["geometry_json"],
+                "geometry_type": row["geometry_type"],
+                "geometry_source_entity_kinds_json": _json_bytes(
+                    [row["geometry_source_entity_kind"]]
+                )
+                .decode()
+                .strip(),
+                "geometry_derivations_json": _json_bytes(
+                    [row["geometry_derivation"]]
+                )
+                .decode()
+                .strip(),
+                "geometry_methods_json": _json_bytes([row["geometry_method"]])
+                .decode()
+                .strip(),
+                "geometry_scope_classes_json": _json_bytes(
+                    [row["geometry_scope_class"]]
+                )
+                .decode()
+                .strip(),
+                "geometry_authority_classes_json": _json_bytes(
+                    [row["geometry_authority_class"]]
+                )
+                .decode()
+                .strip(),
+                "geometry_use_scopes_json": _json_bytes(
+                    [row["geometry_use_scope"]]
+                )
+                .decode()
+                .strip(),
+                "geometry_precision_scopes_json": _json_bytes(
+                    [row["geometry_precision_scope"]]
+                )
+                .decode()
+                .strip(),
+                "horizontal_uncertainty_metres": row[
+                    "horizontal_uncertainty_metres"
+                ],
+                "horizontal_uncertainty_unknown_reason": row[
+                    "horizontal_uncertainty_unknown_reason"
+                ],
+                "geometry_evidence_ids_json": _json_bytes(
+                    [geometry_evidence_id]
+                )
+                .decode()
+                .strip(),
+                "project_count": 1,
+                "project_ids_json": _json_bytes([project_id]).decode().strip(),
+                "project_stable_keys_json": _json_bytes([project_key])
+                .decode()
+                .strip(),
+                "statuses_json": _json_bytes(
+                    [row["last_observed_physical_status"]]
+                )
+                .decode()
+                .strip(),
+                "oldest_status_as_of": row["status_as_of"],
+                "newest_status_as_of": row["status_as_of"],
+                "verification_posture": row["verification_posture"],
+                "independent_imagery_verification": "false",
+                "imagery_review_outcomes_json": _json_bytes([image_outcome])
+                .decode()
+                .strip(),
+            }
+        )
+    if set(evidence_usage) != V10_EVIDENCE_IDS:
+        raise VerifiedConstructionCoreError(
+            "v0.10 projected evidence allowlist differs"
+        )
+    evidence = [
+        {
+            **evidence_pool[evidence_id],
+            "roles_json": _json_bytes(sorted(usage["roles"])).decode().strip(),
+            "project_ids_json": _json_bytes(sorted(usage["project_ids"]))
+            .decode()
+            .strip(),
+        }
+        for evidence_id, usage in sorted(evidence_usage.items())
+    ]
+    return {"projects": projects, "sites": sites, "evidence": evidence}
+
+
+def _v10_portable_source_inputs(
+    contracts: Mapping[str, Any],
+) -> list[dict[str, Any]]:
+    base_manifest = _load_json(LEGACY_PREVIEW_V09_DIR / "manifest.json")
+    rows = list(base_manifest["portable_source_inputs"])
+    new: dict[str, dict[str, Any]] = {}
+    for acceptance in contracts["reviewed"]["acceptances"]:
+        for binding in (
+            acceptance["portable_input_binding"],
+            {
+                "path": acceptance["bridge_path"],
+                "bytes": acceptance["bridge_bytes"],
+                "sha256": acceptance["bridge_sha256"],
+            },
+        ):
+            record = {
+                "path": binding["path"],
+                "bytes": binding["bytes"],
+                "sha256": binding["sha256"],
+                "parent_manifests": [],
+            }
+            previous = new.get(record["path"])
+            if previous is not None and previous != record:
+                raise VerifiedConstructionCoreError(
+                    "v0.10 portable input collision differs"
+                )
+            new[record["path"]] = record
+    rows.extend(new.values())
+    rows.sort(key=lambda row: row["path"])
+    if len(rows) != 72 or len({row["path"] for row in rows}) != 72:
+        raise VerifiedConstructionCoreError("v0.10 portable input count differs")
+    for row in rows:
+        path = _repository_input(
+            row["path"], row["sha256"], "v0.10 portable input"
+        )
+        if path.stat().st_size != row["bytes"]:
+            raise VerifiedConstructionCoreError(
+                "v0.10 portable input byte count differs"
+            )
+    return rows
+
+
+def _v10_city_legal_notice_from_base() -> str:
+    readme_path = LEGACY_PREVIEW_V09_DIR / "README.md"
+    attribution_path = LEGACY_PREVIEW_V09_DIR / "ATTRIBUTION.txt"
+    if (
+        readme_path.is_symlink()
+        or attribution_path.is_symlink()
+        or not readme_path.is_file()
+        or not attribution_path.is_file()
+    ):
+        raise VerifiedConstructionCoreError("v0.10 inherited City notice source differs")
+    document = readme_path.read_text(encoding="utf-8")
+    marker = "City of Chicago data notice"
+    start = document.find(marker)
+    end = document.find("\n\nThis is not the final", start)
+    if start < 0 or end < 0:
+        raise VerifiedConstructionCoreError("v0.10 inherited City notice differs")
+    notice = document[start:end]
+    disclaimer_marker = "Required disclaimer:\n"
+    reminder_marker = "\n\nAdditional terms reminder:\n"
+    disclaimer_start = notice.find(disclaimer_marker)
+    reminder_start = notice.find(reminder_marker, disclaimer_start)
+    if disclaimer_start < 0 or reminder_start < 0:
+        raise VerifiedConstructionCoreError("v0.10 City notice sections differ")
+    disclaimer = notice[
+        disclaimer_start + len(disclaimer_marker) : reminder_start
+    ]
+    if (
+        _sha256_bytes(disclaimer.encode("utf-8")) != V09_CITY_NOTICE_SHA256
+        or "Attribution: City of Chicago" not in notice
+        or f"Terms: {V09_CITY_TERMS_URL}" not in notice
+        or not notice.split("Additional terms reminder:\n", 1)[1].strip()
+        or notice.encode("utf-8") not in attribution_path.read_bytes()
+    ):
+        raise VerifiedConstructionCoreError("v0.10 City legal notice differs")
+    return notice
+
+
+def _v10_map_html(
+    geojson: Mapping[str, Any], evidence: Sequence[Mapping[str, Any]]
+) -> bytes:
+    document = _v09_map_html(geojson, evidence).decode("utf-8")
+    if "Verified Construction Core v0.9 preview" not in document:
+        raise VerifiedConstructionCoreError("v0.10 map title seam differs")
+    rendered = document.replace(
+        "Verified Construction Core v0.9 preview",
+        "Verified Construction Core v0.10 preview",
+    )
+    if (
+        "© OpenStreetMap contributors" not in rendered
+        or "https://www.openstreetmap.org/copyright" not in rendered
+    ):
+        raise VerifiedConstructionCoreError("v0.10 map attribution differs")
+    return rendered.encode("utf-8")
+
+
+def _v10_schema() -> dict[str, Any]:
+    schema = _v09_schema()
+    schema["format"] = "datacenter-atlas-verified-construction-core-schema-v10"
+    schema["preview_id"] = CURRENT_V10_PREVIEW_ID
+    return schema
+
+
+def _v10_readme(report: Mapping[str, Any], legal_notice: str) -> bytes:
+    return f"""# Verified Construction Core v0.10 preview
+
+This tracked, non-final preview contains **{report['selected_physical_site_count']} physical sites**
+and **{report['selected_project_count']} linked projects** in {len(report['country_counts'])}
+countries. Every project retains a dated authoritative physical-status observation and an exact
+reviewed geometry scope. Five project rows carry official boundaries; the remaining 45 are
+explicit project or campus locators, never construction footprints by implication.
+
+The three-row v0.10 delta adds Oracle Project Jupiter in Doña Ana County, CyrusOne FRA7 in
+Frankfurt, and Colt London 4 in Hayes. Oracle uses a frozen exact-name OpenStreetMap polygon only
+as a parent-campus locator. CyrusOne uses the Hessian FF7 L1 permit coordinate only as a project
+locator. Colt uses a separately captured exact-name OpenStreetMap building only as a project
+locator. None is an official boundary, parcel, complete campus, current-work extent, or imagery
+verification. OSM and permit lifecycle or operator metadata do not create project lifecycle or
+normalized-role claims.
+
+Only Colt publishes a new project metric: planned 31 MW critical IT for London 4. CyrusOne's
+campus-level 81 MW context and Oracle's campus-level 2,450 MW generation context and AI workload
+are validated but excluded from project publication. The delta adds no normalized roles,
+operating models, or workloads.
+
+The artifact is deterministic and rebuildable in a clean clone from the 72 manifest-bound portable
+inputs plus the frozen v0.9 artifact. Ignored v97, global-v3, and v14 payloads are optional complete
+hydrated cross-checks, not build dependencies. All three v0.10 rows inherit the not-reviewed
+imagery outcome and remain independent_imagery_verification=false.
+
+## City of Chicago terms inherited from v0.9
+
+{legal_notice}
+
+This is not the final 100-site Verified Construction Core v1. Its final-release gates remain
+unsatisfied and publishable_as_final is false.
+""".encode("utf-8")
+
+
+def _v10_attribution(
+    evidence: Sequence[Mapping[str, Any]], legal_notice: str
+) -> bytes:
+    rows = {
+        (row["publisher"], row["license"], row["source_url"])
+        for row in evidence
+    }
+    lines = [
+        "Data Center Atlas Verified Construction Core v0.10 preview",
+        "",
+        "Compact derived facts only; third-party terms remain controlling.",
+        "",
+        *(
+            f"- {publisher} | {license_name} | {url}"
+            for publisher, license_name, url in sorted(rows)
+        ),
+        "",
+        "Map-provider terms:",
+        *(
+            f"- {label} | {license_name} | {url}"
+            for label, license_name, url in _v07_map_attribution_notices(evidence)
+        ),
+        "",
+        legal_notice,
+    ]
+    payload = ("\n".join(lines) + "\n").encode("utf-8")
+    if (
+        b"OpenStreetMap contributors" not in payload
+        or legal_notice.encode("utf-8") not in payload
+    ):
+        raise VerifiedConstructionCoreError("v0.10 attribution posture differs")
+    return payload
+
+
+def _v10_payloads() -> tuple[dict[str, bytes], dict[str, Any], list[dict[str, Any]]]:
+    validate_frozen_v09(LEGACY_PREVIEW_V09_DIR)
+    contracts = _v10_contracts(
+        hydrated_crosscheck=_v10_hydrated_crosscheck_available()
+    )
+    base_projects = _load_csv(
+        LEGACY_PREVIEW_V09_DIR / "projects.csv", PROJECT_FIELDS
+    )
+    base_sites = _load_csv(LEGACY_PREVIEW_V09_DIR / "sites.csv", SITE_FIELDS)
+    base_evidence = _load_csv(
+        LEGACY_PREVIEW_V09_DIR / "evidence.csv", EVIDENCE_FIELDS
+    )
+    base_report = _load_json(
+        LEGACY_PREVIEW_V09_DIR / "selection-report.json"
+    )
+    delta = _v10_build_delta_rows(contracts)
+    projects = sorted(
+        [*base_projects, *delta["projects"]],
+        key=lambda row: row["project_stable_key"],
+    )
+    sites = sorted(
+        [*base_sites, *delta["sites"]],
+        key=lambda row: row["physical_site_stable_key"],
+    )
+    evidence = sorted(
+        [*base_evidence, *delta["evidence"]],
+        key=lambda row: row["evidence_id"],
+    )
+    if (
+        len(projects) != 50
+        or len(sites) != 47
+        or len(evidence) != 116
+        or len({row["project_id"] for row in projects}) != 50
+        or len({row["site_id"] for row in sites}) != 47
+        or len({row["evidence_id"] for row in evidence}) != 116
+    ):
+        raise VerifiedConstructionCoreError(
+            "v0.10 cohort count or uniqueness differs"
+        )
+    project_by_id = {row["project_id"]: row for row in projects}
+    site_by_id = {row["site_id"]: row for row in sites}
+    evidence_by_id = {row["evidence_id"]: row for row in evidence}
+    if (
+        any(project_by_id[row["project_id"]] != row for row in base_projects)
+        or any(site_by_id[row["site_id"]] != row for row in base_sites)
+        or any(evidence_by_id[row["evidence_id"]] != row for row in base_evidence)
+    ):
+        raise VerifiedConstructionCoreError("v0.10 inherited row changed")
+    gates = _final_release_gates(sites, projects)
+    gates["clean_clone_rebuild"] = {
+        "passed": True,
+        "reason": (
+            "all current-delta inputs and the frozen base artifact are tracked "
+            "and hash-bound"
+        ),
+    }
+    country_counts = dict(
+        sorted(Counter(row["country"] for row in sites).items())
+    )
+    provenance_decisions = {
+        key: [
+            *base_report["provenance_decisions"][key],
+            *contracts["provenance"][key],
+        ]
+        for key in (
+            "workload_scope_bindings",
+            "role_bindings",
+            "excluded_source_roles",
+            "context_evidence_bindings",
+        )
+    }
+    report = {
+        **base_report,
+        "format": "datacenter-atlas-verified-construction-core-selection-v10",
+        "publishable_as_final": all(
+            gate.get("passed", False) for gate in gates.values()
+        ),
+        "reviewed_at": CURRENT_V10_REVIEW_DATE.isoformat(),
+        "selected_project_count": 50,
+        "selected_physical_site_count": 47,
+        "official_boundary_project_count": 5,
+        "reviewed_site_locator_project_count": 45,
+        "non_selected_source_row_count": 481,
+        "selection_first_failure_counts": V10_SELECTION_FIRST_FAILURE_COUNTS,
+        "country_counts": country_counts,
+        "final_release_gates": gates,
+        "imagery_review_provenance": list(
+            base_report["imagery_review_provenance"]
+        ),
+        "provenance_decisions": provenance_decisions,
+        "reviewed_overlay_queue": [
+            *base_report["reviewed_overlay_queue"],
+            *contracts["overlays"]["overlays"],
+        ],
+    }
+    if (
+        len(country_counts) != 25
+        or country_counts.get("United States") != 8
+        or country_counts.get("Germany") != 5
+        or country_counts.get("United Kingdom") != 3
+        or sum(row["country_iso_a2"] != "US" for row in sites) != 39
+        or sum(_is_official_boundary(row) for row in projects) != 5
+        or sum(_is_reviewed_locator(row) for row in projects) != 45
+        or sum(V10_SELECTION_FIRST_FAILURE_COUNTS.values()) != 531
+        or gates["imagery_outcomes_complete"]
+        != {"actual": 10, "required": 50, "passed": False}
+        or len(provenance_decisions["context_evidence_bindings"]) != 7
+        or any(
+            row["workloads_json"] != "[]"
+            or row["role_claims_json"] != "[]"
+            or row["operating_model"] != "unknown"
+            for row in delta["projects"]
+        )
+    ):
+        raise VerifiedConstructionCoreError("v0.10 expected accounting differs")
+    geojson = _geojson(sites)
+    geojson["name"] = "Data Center Atlas Verified Construction Core v0.10 preview"
+    legal_notice = _v10_city_legal_notice_from_base()
+    payloads = {
+        "ATTRIBUTION.txt": _v10_attribution(evidence, legal_notice),
+        "README.md": _v10_readme(report, legal_notice),
+        "evidence.csv": _csv_bytes(evidence, EVIDENCE_FIELDS),
+        "map.html": _v10_map_html(geojson, evidence),
+        "projects.csv": _csv_bytes(projects, PROJECT_FIELDS),
+        "schema.json": _json_bytes(_v10_schema()),
+        "selection-report.json": _json_bytes(report),
+        "sites.csv": _csv_bytes(sites, SITE_FIELDS),
+        "sites.geojson": _json_bytes(geojson),
+    }
+    portable = _v10_portable_source_inputs(contracts)
+    return payloads, report, portable
+
+
+def _v10_manifest(
+    payloads: Mapping[str, bytes],
+    report: Mapping[str, Any],
+    portable: Sequence[Mapping[str, Any]],
+) -> dict[str, Any]:
+    return {
+        "format": "datacenter-atlas-verified-construction-core-preview-v10",
+        "preview_id": CURRENT_V10_PREVIEW_ID,
+        "release_status": "preview",
+        "publishable_as_final": report["publishable_as_final"],
+        "base_preview_id": CURRENT_V09_PREVIEW_ID,
+        "base_preview_manifest_sha256": LEGACY_PREVIEW_V09_MANIFEST_SHA256,
+        "base_preview_commit": LEGACY_PREVIEW_V09_COMMIT,
+        "source_release_id": SOURCE_RELEASE_ID,
+        "source_release_manifest_path": (
+            "releases/2026-07-22-open-seed-v97/manifest.json"
+        ),
+        "source_release_manifest_sha256": (
+            "0a6f41f4239944df27f2ce70e81a089b91cec401f154bbae28412b27a4d00fdd"
+        ),
+        "definition_paths": {
+            "imagery_reviews": (
+                "definitions/verified-construction-core-v0.10-imagery-reviews.json"
+            ),
+            "provenance": (
+                "definitions/verified-construction-core-v0.10-provenance.json"
+            ),
+            "reviewed_overlays": (
+                "definitions/verified-construction-core-reviewed-overlays-v8.json"
+            ),
+            "reviewed_sites": (
+                "definitions/verified-construction-core-v0.10-reviewed-sites.json"
+            ),
+        },
+        "review_definition_sha256": V10_REVIEW_DEFINITION_SHA256,
+        "imagery_review_definition_sha256": (
+            V10_IMAGERY_REVIEW_DEFINITION_SHA256
+        ),
+        "provenance_definition_sha256": V10_PROVENANCE_DEFINITION_SHA256,
+        "overlay_definition_sha256": V10_OVERLAY_DEFINITION_SHA256,
+        "portable_source_inputs": list(portable),
+        "reviewed_at": CURRENT_V10_REVIEW_DATE.isoformat(),
+        "counts": {
+            "physical_sites": 47,
+            "projects": 50,
+            "evidence": 116,
+            "countries": 25,
+            "non_us_sites": 39,
+            "official_boundary_projects": 5,
+            "reviewed_site_locator_projects": 45,
+        },
+        "files": {
+            name: {"bytes": len(payload), "sha256": _sha256_bytes(payload)}
+            for name, payload in sorted(payloads.items())
+        },
+    }
+
+
+def build_preview(output_dir: Path = CURRENT_V10_PREVIEW_DIR) -> dict[str, Any]:
+    """Build the current v0.10 preview from tracked, hash-bound inputs."""
+    output_dir = Path(output_dir)
+    if output_dir.exists():
+        raise VerifiedConstructionCoreError(f"refusing to overwrite {output_dir}")
+    payloads, report, portable = _v10_payloads()
+    manifest = _v10_manifest(payloads, report, portable)
+    manifest_bytes = _json_bytes(manifest)
+    complete = {
+        **payloads,
+        "manifest.json": manifest_bytes,
+        "manifest.sha256": (
+            f"{_sha256_bytes(manifest_bytes)}  manifest.json\n".encode()
+        ),
+    }
+    output_dir.parent.mkdir(parents=True, exist_ok=True)
+    stage = Path(
+        tempfile.mkdtemp(prefix=f".{output_dir.name}.", dir=output_dir.parent)
+    )
+    try:
+        for name, payload in complete.items():
+            with (stage / name).open("xb") as handle:
+                handle.write(payload)
+        os.replace(stage, output_dir)
+    except Exception:
+        shutil.rmtree(stage, ignore_errors=True)
+        raise
+    validate_preview(output_dir)
+    return manifest
+
+
+def _validate_v10_preview(path: Path) -> dict[str, Any]:
+    path = Path(path)
+    if path.is_symlink() or not path.is_dir():
+        raise VerifiedConstructionCoreError("v0.10 preview directory differs")
+    manifest_path = path / "manifest.json"
+    checksum_path = path / "manifest.sha256"
+    if (
+        manifest_path.is_symlink()
+        or not manifest_path.is_file()
+        or checksum_path.is_symlink()
+        or not checksum_path.is_file()
+    ):
+        raise VerifiedConstructionCoreError("v0.10 manifest trust root differs")
+    manifest_bytes = manifest_path.read_bytes()
+    if checksum_path.read_bytes() != (
+        f"{_sha256_bytes(manifest_bytes)}  manifest.json\n".encode()
+    ):
+        raise VerifiedConstructionCoreError("v0.10 manifest checksum differs")
+    manifest = _load_json(manifest_path)
+    files = manifest.get("files") if isinstance(manifest, dict) else None
+    if (
+        not isinstance(manifest, dict)
+        or manifest.get("format")
+        != "datacenter-atlas-verified-construction-core-preview-v10"
+        or manifest.get("preview_id") != CURRENT_V10_PREVIEW_ID
+        or manifest.get("release_status") != "preview"
+        or type(manifest.get("publishable_as_final")) is not bool
+        or manifest["publishable_as_final"] is not False
+        or not isinstance(files, dict)
+    ):
+        raise VerifiedConstructionCoreError("v0.10 manifest files differ")
+    expected_inventory = set(files) | {"manifest.json", "manifest.sha256"}
+    if {item.name for item in path.iterdir()} != expected_inventory:
+        raise VerifiedConstructionCoreError("v0.10 preview inventory differs")
+    for name, metadata in files.items():
+        member = path / name
+        if (
+            Path(name).name != name
+            or member.is_symlink()
+            or not member.is_file()
+            or type(metadata.get("bytes")) is not int
+            or member.stat().st_size != metadata["bytes"]
+            or _sha256_file(member) != metadata.get("sha256")
+        ):
+            raise VerifiedConstructionCoreError(
+                f"v0.10 member differs: {name}"
+            )
+    payloads, report, portable = _v10_payloads()
+    if manifest != _v10_manifest(payloads, report, portable):
+        raise VerifiedConstructionCoreError("v0.10 manifest semantics differ")
+    for name, expected in payloads.items():
+        if (path / name).read_bytes() != expected:
+            raise VerifiedConstructionCoreError(
+                f"v0.10 generated member differs: {name}"
+            )
+    legal_notice = _v10_city_legal_notice_from_base().encode("utf-8")
+    for name in ("README.md", "ATTRIBUTION.txt"):
+        if legal_notice not in (path / name).read_bytes():
+            raise VerifiedConstructionCoreError(
+                f"v0.10 City legal notice missing from {name}"
+            )
+    return manifest
+
+
+def validate_preview(path: Path = CURRENT_V10_PREVIEW_DIR) -> dict[str, Any]:
+    """Validate current v0.10 or dispatch immutable v0.1-v0.9 previews."""
+    path = Path(path)
+    manifest_path = path / "manifest.json"
+    if (
+        path.is_symlink()
+        or not path.is_dir()
+        or manifest_path.is_symlink()
+        or not manifest_path.is_file()
+    ):
+        raise VerifiedConstructionCoreError("preview manifest trust root differs")
+    manifest = _load_json(manifest_path)
+    preview_id = manifest.get("preview_id") if isinstance(manifest, dict) else None
+    if preview_id == CURRENT_V10_PREVIEW_ID:
+        return _validate_v10_preview(path)
+    validator = _frozen_preview_validator(preview_id)
+    if validator is not None:
+        return validator(path)
+    raise VerifiedConstructionCoreError("preview id differs")
+
+
+__all__ = [
+    "CURRENT_V07_DEFINITION_PATHS",
+    "CURRENT_V07_PREVIEW_DIR",
+    "CURRENT_V07_PREVIEW_ID",
+    "CURRENT_V07_REVIEW_DATE",
+    "CURRENT_V08_DEFINITION_PATHS",
+    "CURRENT_V08_PREVIEW_DIR",
+    "CURRENT_V08_PREVIEW_ID",
+    "CURRENT_V08_REVIEW_DATE",
+    "CURRENT_V09_DEFINITION_PATHS",
+    "CURRENT_V09_PREVIEW_DIR",
+    "CURRENT_V09_PREVIEW_ID",
+    "CURRENT_V09_REVIEW_DATE",
+    "CURRENT_V10_DEFINITION_PATHS",
+    "CURRENT_V10_PREVIEW_DIR",
+    "CURRENT_V10_PREVIEW_ID",
+    "CURRENT_V10_REVIEW_DATE",
+    "IMAGERY_REVIEW_DEFINITION",
+    "LEGACY_PREVIEW_V01_DIR",
+    "LEGACY_PREVIEW_V02_DIR",
+    "LEGACY_PREVIEW_V03_DIR",
+    "LEGACY_PREVIEW_V04_DIR",
+    "LEGACY_PREVIEW_V05_COMMIT",
+    "LEGACY_PREVIEW_V05_DIR",
+    "LEGACY_PREVIEW_V06_COMMIT",
+    "LEGACY_PREVIEW_V06_DIR",
+    "LEGACY_PREVIEW_V06_MANIFEST_SHA256",
+    "LEGACY_PREVIEW_V07_COMMIT",
+    "LEGACY_PREVIEW_V07_DIR",
+    "LEGACY_PREVIEW_V07_MANIFEST_SHA256",
+    "LEGACY_PREVIEW_V08_COMMIT",
+    "LEGACY_PREVIEW_V08_DIR",
+    "LEGACY_PREVIEW_V08_MANIFEST_SHA256",
+    "LEGACY_PREVIEW_V09_COMMIT",
+    "LEGACY_PREVIEW_V09_DIR",
+    "LEGACY_PREVIEW_V09_MANIFEST_SHA256",
+    "PREVIEW_DIR",
+    "PreviewProfile",
+    "PROVENANCE_DEFINITION",
+    "VerifiedConstructionCoreError",
+    "build_preview",
+    "load_current_v07_profile",
+    "load_current_v08_profile",
+    "load_current_v09_profile",
+    "load_current_v10_profile",
+    "validate_frozen_preview",
+    "validate_frozen_v01",
+    "validate_frozen_v02",
+    "validate_frozen_v03",
+    "validate_frozen_v04",
+    "validate_frozen_v05",
+    "validate_frozen_v06",
+    "validate_frozen_v07",
+    "validate_frozen_v08",
+    "validate_frozen_v09",
+    "validate_preview",
+]
