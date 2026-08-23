@@ -269,29 +269,37 @@ class VerifiedConstructionCoreV012Tests(unittest.TestCase):
         ):
             verified_core._v12_contracts()
 
-    def test_corpus_free_and_hydrated_rebuilds_are_byte_exact(self) -> None:
-        for hydrated in (False, True):
-            with (
-                self.subTest(hydrated=hydrated),
-                tempfile.TemporaryDirectory() as temporary,
-            ):
-                rebuilt = Path(temporary) / "preview"
+    def _assert_rebuild_is_byte_exact(self, *, corpus_free: bool) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            rebuilt = Path(temporary) / "preview"
+            if corpus_free:
                 with mock.patch.object(
                     verified_core,
                     "_v12_hydrated_crosscheck_available",
-                    return_value=hydrated,
+                    return_value=False,
                 ):
                     verified_core.build_preview(rebuilt)
+            else:
+                verified_core.build_preview(rebuilt)
+            self.assertEqual(
+                {path.name for path in rebuilt.iterdir()},
+                {path.name for path in CURRENT_V12_PREVIEW_DIR.iterdir()},
+            )
+            for expected in CURRENT_V12_PREVIEW_DIR.iterdir():
                 self.assertEqual(
-                    {path.name for path in rebuilt.iterdir()},
-                    {path.name for path in CURRENT_V12_PREVIEW_DIR.iterdir()},
+                    (rebuilt / expected.name).read_bytes(),
+                    expected.read_bytes(),
+                    expected.name,
                 )
-                for expected in CURRENT_V12_PREVIEW_DIR.iterdir():
-                    self.assertEqual(
-                        (rebuilt / expected.name).read_bytes(),
-                        expected.read_bytes(),
-                        expected.name,
-                    )
+
+    def test_corpus_free_rebuild_is_byte_exact(self) -> None:
+        self._assert_rebuild_is_byte_exact(corpus_free=True)
+
+    def test_hydrated_rebuild_is_byte_exact(self) -> None:
+        contract = json.loads(V12_BATCH_CONTRACT.read_text(encoding="utf-8"))
+        if not verified_core._v12_hydrated_crosscheck_available(contract):
+            self.skipTest("hydration-only: five ignored v97/v14 inputs are absent")
+        self._assert_rebuild_is_byte_exact(corpus_free=False)
 
 
 if __name__ == "__main__":
