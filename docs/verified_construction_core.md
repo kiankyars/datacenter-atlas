@@ -3,8 +3,9 @@
 The long-term product target is a compact, public cohort of 100 physical data-centre sites with
 linked active construction projects, precise geometry, current evidence, typed power semantics,
 and reviewable imagery outcomes. The current artifact is deliberately labelled
-[`v0.9 preview`](../verified_construction_core/2026-08-20-preview-v0.9/README.md), because the
+[`v0.10 preview`](../verified_construction_core/2026-08-20-preview-v0.10/README.md), because the
 available evidence does not yet support that final claim. The previous
+[`v0.9 preview`](../verified_construction_core/2026-08-20-preview-v0.9/README.md),
 [`v0.8 preview`](../verified_construction_core/2026-08-20-preview-v0.8/README.md),
 [`v0.7 preview`](../verified_construction_core/2026-08-20-preview-v0.7/README.md),
 [`v0.6 preview`](../verified_construction_core/2026-08-20-preview-v0.6/README.md),
@@ -17,7 +18,7 @@ byte-frozen and hash-validated rather than being overwritten.
 
 ## Preview scope
 
-The preview selects 47 projects attached to 44 source-scoped campus sites in 25 countries from
+The preview selects 50 projects attached to 47 source-scoped campus sites in 25 countries from
 `2026-07-22-open-seed-v97`. Every project has:
 
 - a physical-status observation no more than 90 days old on the fixed 2026-08-20 review date;
@@ -96,6 +97,21 @@ current-campus and 77.4 MW post-expansion campus values remain non-additive cont
 README and attribution file reproduce the capture-bound City of Chicago notice, attribution,
 canonical terms URL, and additional-terms reminder.
 
+The three-project v0.10 delta adds Oracle Project Jupiter, CyrusOne FRA7, and Colt London 4.
+Oracle's frozen global-v3 facility polygon is accepted only as a parent-campus locator. Its raw
+OSM source lifecycle and operator tags remain geometry metadata, not project status or normalized
+roles. CyrusOne uses the official Hessian FF7 L1 permit coordinate only as a project locator; the
+permit, its ETRS89/UTM 32N CRS context, and the derived WGS84 point do not create a parcel,
+building boundary, current-work extent, capacity, or lifecycle claim. Colt uses a capture-replayed
+exact-name OSM London 4 building polygon only as a project locator.
+
+Only Colt publishes a new metric: planned 31 MW critical IT at the project scope. CyrusOne's
+campus-scoped planned 81 MW critical-IT value and Oracle's campus-scoped planned 2,450 MW
+generation value and AI workload remain validated source context and are excluded from project
+publication. No v0.10 role, operating-model, or workload binding is added. The inherited City of
+Chicago notice remains byte-exact in both downloadable public text files, and OSM attribution
+covers the inherited and new OSM-derived locators.
+
 The review contract distinguishes `direct_geometry` from `coordinates_to_point` and records
 whether geometry comes from the project or its parent campus. Coordinate serialization adds no
 precision. The maincubes BER02, AVAIO Taurus, and KAO KLON-03 points retain unknown horizontal
@@ -121,11 +137,11 @@ validator forbids using it for geometry, status, capacity, progress, or building
 - `projects.csv` preserves project-level status, geometry source entity, derivation, method and
   scope, coordinate precision, source URLs, typed power observations, and explicit
   unknown/not-estimated reasons.
-- `sites.csv` groups the 47 selected projects into 44 physical-site keys without claiming
+- `sites.csv` groups the 50 selected projects into 47 physical-site keys without claiming
   global cross-source deduplication.
-- `evidence.csv` is the closed set of 108 status, geometry, operating-model, context, workload, role, and
+- `evidence.csv` is the closed set of 116 status, geometry, operating-model, context, workload, role, and
   typed-metric evidence rows referenced by the cohort.
-- `sites.geojson` and the dependency-free `map.html` expose the same 44 site IDs. The visible map
+- `sites.geojson` and the dependency-free `map.html` expose the same 47 site IDs. The visible map
   footer credits every selected geometry provider whose terms require it.
 - `schema.json` defines CSV fields, logical types, keys, embedded evidence references, GeoJSON
   geometry equality, and the map dependency in machine-readable form.
@@ -136,8 +152,9 @@ validator forbids using it for geometry, status, capacity, progress, or building
 ## Version policy
 
 Each preview is a coherent frozen snapshot, not a separate pile of data that must be added to the
-latest CSV. v0.9 inherits the byte-frozen v0.8 artifact and adds three independently pinned
-projects; v0.8 inherits the byte-frozen v0.7 artifact and adds eight; v0.7 inherits the byte-frozen
+latest CSV. v0.10 inherits the byte-frozen v0.9 artifact and adds three independently pinned
+projects; v0.9 inherits the byte-frozen v0.8 artifact and adds three; v0.8 inherits the byte-frozen
+v0.7 artifact and adds eight; v0.7 inherits the byte-frozen
 v0.6 artifact and adds seven; v0.6 inherits all 21 reviewed
 v0.5 decisions through an exact base contract hash and
 adds eight projects across six physical sites; v0.5 inherits all 17 reviewed v0.4 decisions and
@@ -162,8 +179,8 @@ instead.
 ## Validation and rebuild
 
 Validation and byte-exact rebuilding work in a public clean clone from the generated preview and
-66 manifest-listed portable inputs. The ignored v97, global-v3, and v14 payloads are optional
-hydration-only cross-checks; when all seven are present, their exact embedded source rows are
+72 manifest-listed portable inputs. The ignored v97, global-v3, and v14 payloads are optional
+hydration-only cross-checks; when all eight are present, their exact embedded source rows are
 replayed as an additional validation layer:
 
 ```sh

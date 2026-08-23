@@ -21,6 +21,8 @@ from datacenter_atlas.verified_construction_core import (
     CURRENT_V08_PREVIEW_ID,
     CURRENT_V09_PREVIEW_DIR,
     CURRENT_V09_PREVIEW_ID,
+    CURRENT_V10_PREVIEW_DIR,
+    CURRENT_V10_PREVIEW_ID,
     LEGACY_PREVIEW_V01_DIR,
     LEGACY_PREVIEW_V02_DIR,
     LEGACY_PREVIEW_V03_DIR,
@@ -38,6 +40,7 @@ from datacenter_atlas.verified_construction_core import (
     load_current_v07_profile,
     load_current_v08_profile,
     load_current_v09_profile,
+    load_current_v10_profile,
     validate_frozen_preview,
     validate_frozen_v01,
     validate_frozen_v02,
@@ -46,6 +49,7 @@ from datacenter_atlas.verified_construction_core import (
     validate_frozen_v05,
     validate_frozen_v06,
     validate_frozen_v07,
+    validate_frozen_v09,
     validate_preview as validate_preview_dispatch,
 )
 
@@ -3565,7 +3569,7 @@ class VerifiedConstructionCorePreviewTest(unittest.TestCase):
                 VerifiedConstructionCoreError,
                 "v0.9 manifest semantics differ|v0.9 generated member differs",
             ):
-                validate_preview_dispatch(altered)
+                verified_core._validate_v09_preview_dispatch(altered)
 
     def test_v09_capture_source_and_release_refreshes_fail_closed(self) -> None:
         reviewed = json.loads(verified_core.V09_REVIEW_DEFINITION.read_text())
@@ -3845,12 +3849,590 @@ class VerifiedConstructionCorePreviewTest(unittest.TestCase):
                     "_v09_hydrated_crosscheck_available",
                     return_value=hydrated,
                 ):
-                    verified_core.build_preview(rebuilt)
+                    verified_core._build_v09_preview(rebuilt)
                 self.assertEqual(
                     {path.name for path in rebuilt.iterdir()},
                     {path.name for path in CURRENT_V09_PREVIEW_DIR.iterdir()},
                 )
                 for expected in CURRENT_V09_PREVIEW_DIR.iterdir():
+                    self.assertEqual(
+                        (rebuilt / expected.name).read_bytes(),
+                        expected.read_bytes(),
+                        expected.name,
+                    )
+
+    def test_v10_profile_counts_evidence_and_attribution(self) -> None:
+        self.assertEqual(CURRENT_V10_PREVIEW_ID, "2026-08-20-preview-v0.10")
+        self.assertEqual(CURRENT_V10_PREVIEW_DIR.name, CURRENT_V10_PREVIEW_ID)
+        pins = {
+            field: hashlib.sha256(path.read_bytes()).hexdigest()
+            for field, path in verified_core.CURRENT_V10_DEFINITION_PATHS
+        }
+        profile = load_current_v10_profile(pins)
+        self.assertEqual(profile.base_preview_id, CURRENT_V09_PREVIEW_ID)
+        self.assertEqual(
+            validate_frozen_v09(CURRENT_V09_PREVIEW_DIR)["preview_id"],
+            CURRENT_V09_PREVIEW_ID,
+        )
+        manifest = validate_preview_dispatch(CURRENT_V10_PREVIEW_DIR)
+        self.assertEqual(
+            manifest["counts"],
+            {
+                "physical_sites": 47,
+                "projects": 50,
+                "evidence": 116,
+                "countries": 25,
+                "non_us_sites": 39,
+                "official_boundary_projects": 5,
+                "reviewed_site_locator_projects": 45,
+            },
+        )
+        self.assertEqual(len(manifest["portable_source_inputs"]), 72)
+        projects = {
+            row["project_stable_key"]: row
+            for row in _rows_from(CURRENT_V10_PREVIEW_DIR, "projects.csv")
+        }
+        delta_keys = set(verified_core.V10_BRIDGE_PROFILES)
+        self.assertEqual(delta_keys, set(projects) - {
+            row["project_stable_key"]
+            for row in _rows_from(CURRENT_V09_PREVIEW_DIR, "projects.csv")
+        })
+        colt = projects[
+            "curated:colt-london-hayes-campus:london4-current-facility-build"
+        ]
+        self.assertEqual(
+            json.loads(colt["power_observations_json"])[0]["base"], 31.0
+        )
+        for key in delta_keys:
+            self.assertEqual(projects[key]["workloads_json"], "[]")
+            self.assertEqual(projects[key]["role_claims_json"], "[]")
+            self.assertEqual(projects[key]["operating_model"], "unknown")
+        expected_roles = {
+            "0cad69d1-3151-5073-af8e-73f8401bf2cb": ["geometry"],
+            "465b57e0-58b6-56aa-8b00-728b9cc9c201": ["physical_status"],
+            "6bf6472d-a1f7-53fd-b0d5-2317d80df706": ["physical_status"],
+            "6e4b0bfe-23de-5439-9dc0-3688a382a285": [
+                "typed_metric:critical_it_mw"
+            ],
+            "850336d5-4d8f-5821-ae65-cb195961e7b6": [
+                "context:geometry_identity",
+                "geometry",
+            ],
+            "b0d7fbf5-7de2-58e0-a54f-d6fec6d08a6a": [
+                "context:geometry_identity"
+            ],
+            "c0b3ca09-1341-5395-9301-9f6a2d67cf0c": [
+                "context:geometry_identity",
+                "geometry",
+            ],
+            "e0cbb7f3-f4ab-52c7-a4ed-10424c78e411": ["physical_status"],
+        }
+        evidence = {
+            row["evidence_id"]: json.loads(row["roles_json"])
+            for row in _rows_from(CURRENT_V10_PREVIEW_DIR, "evidence.csv")
+            if row["evidence_id"] in expected_roles
+        }
+        self.assertEqual(evidence, expected_roles)
+        notice = verified_core._v10_city_legal_notice_from_base()
+        for name in ("README.md", "ATTRIBUTION.txt"):
+            self.assertIn(
+                notice,
+                (CURRENT_V10_PREVIEW_DIR / name).read_text(encoding="utf-8"),
+            )
+        attribution = (CURRENT_V10_PREVIEW_DIR / "ATTRIBUTION.txt").read_text()
+        self.assertIn("© OpenStreetMap contributors", attribution)
+        self.assertIn("Regierungspräsidium Darmstadt", attribution)
+
+    def test_v10_inherits_v09_rows_without_changes(self) -> None:
+        for filename, key in (
+            ("projects.csv", "project_id"),
+            ("sites.csv", "site_id"),
+            ("evidence.csv", "evidence_id"),
+        ):
+            inherited = {
+                row[key]: row
+                for row in _rows_from(CURRENT_V09_PREVIEW_DIR, filename)
+            }
+            current = {
+                row[key]: row
+                for row in _rows_from(CURRENT_V10_PREVIEW_DIR, filename)
+            }
+            self.assertEqual(
+                {row_id: current[row_id] for row_id in inherited}, inherited
+            )
+
+    def test_v10_flat_rows_status_scope_and_topology_fail_closed(self) -> None:
+        contracts = verified_core._v10_contracts(hydrated_crosscheck=False)
+        for project_key in sorted(verified_core.V10_BRIDGE_PROFILES):
+            with self.subTest(project_key=project_key):
+                acceptance = contracts["acceptance_by_key"][project_key]
+                bridge = json.loads(
+                    (verified_core.ROOT / acceptance["bridge_path"]).read_text()
+                )
+                construction = bridge["construction_source"]
+                profile = dict(verified_core.V10_BRIDGE_PROFILES[project_key])
+                construction["project"]["status_age_days_at_review"] = 0
+                profile["construction_sha256"] = hashlib.sha256(
+                    _canonical_json(construction)
+                ).hexdigest()
+                with self.assertRaisesRegex(
+                    VerifiedConstructionCoreError,
+                    "full v97 entity projection differs",
+                ):
+                    verified_core._v10_validate_construction_source(
+                        bridge,
+                        acceptance,
+                        profile,
+                        hydrated_crosscheck=False,
+                    )
+
+        project_key = (
+            "curated:oracle-project-jupiter-dona-ana-campus:current-campus-build"
+        )
+        acceptance = contracts["acceptance_by_key"][project_key]
+        bridge = json.loads(
+            (verified_core.ROOT / acceptance["bridge_path"]).read_text()
+        )
+        construction = bridge["construction_source"]
+        capacity = construction["capacity_estimate"]
+        capacity["entity_kind"] = "attacker_scope"
+        binding = construction["release_rows"]["capacity_estimate"]
+        _replace_embedded_csv_row(binding, verified_core.V10_CAPACITY_FIELDS, capacity)
+        profile = dict(verified_core.V10_BRIDGE_PROFILES[project_key])
+        profile["release_rows_sha256"] = hashlib.sha256(
+            _canonical_json(construction["release_rows"])
+        ).hexdigest()
+        profile["construction_sha256"] = hashlib.sha256(
+            _canonical_json(construction)
+        ).hexdigest()
+        with self.assertRaisesRegex(
+            VerifiedConstructionCoreError,
+            "capacity observation projection differs",
+        ):
+            verified_core._v10_validate_construction_source(
+                bridge,
+                acceptance,
+                profile,
+                hydrated_crosscheck=False,
+            )
+
+        bridge = json.loads(
+            (verified_core.ROOT / acceptance["bridge_path"]).read_text()
+        )
+        construction = bridge["construction_source"]
+        construction["project_to_campus"]["relationship_type"] = "attacker"
+        profile = dict(verified_core.V10_BRIDGE_PROFILES[project_key])
+        profile["topology_sha256"] = hashlib.sha256(
+            _canonical_json(construction["project_to_campus"])
+        ).hexdigest()
+        profile["construction_sha256"] = hashlib.sha256(
+            _canonical_json(construction)
+        ).hexdigest()
+        with self.assertRaisesRegex(
+            VerifiedConstructionCoreError,
+            "topology relationship projection differs",
+        ):
+            verified_core._v10_validate_construction_source(
+                bridge,
+                acceptance,
+                profile,
+                hydrated_crosscheck=False,
+            )
+
+    def test_v10_geometry_contract_resists_coherent_profile_refresh(self) -> None:
+        contracts = verified_core._v10_contracts(hydrated_crosscheck=False)
+
+        def assert_rejected(
+            project_key: str,
+            mutate: object,
+            error: str = "v0.10 immutable bridge profile differs",
+        ) -> None:
+            acceptance = json.loads(
+                json.dumps(contracts["acceptance_by_key"][project_key])
+            )
+            overlay = json.loads(
+                json.dumps(contracts["overlay_by_key"][project_key])
+            )
+            bridge = json.loads(
+                (verified_core.ROOT / acceptance["bridge_path"]).read_text()
+            )
+            profile = dict(verified_core.V10_BRIDGE_PROFILES[project_key])
+            profile["semantic_hashes"] = dict(profile["semantic_hashes"])
+            mutate(acceptance, overlay, bridge, profile)
+            for field in profile["semantic_hashes"]:
+                profile["semantic_hashes"][field] = hashlib.sha256(
+                    _canonical_json(bridge[field])
+                ).hexdigest()
+            with tempfile.TemporaryDirectory() as temporary:
+                bridge_path = Path(temporary) / "bridge.json"
+                bridge_payload = _canonical_json(bridge)
+                bridge_path.write_bytes(bridge_payload)
+                bridge_sha256 = hashlib.sha256(bridge_payload).hexdigest()
+                for row in (acceptance, overlay):
+                    row["bridge_bytes"] = len(bridge_payload)
+                    row["bridge_sha256"] = bridge_sha256
+                profile["bridge_bytes"] = len(bridge_payload)
+                profile["bridge_sha256"] = bridge_sha256
+                profile["acceptance_sha256"] = hashlib.sha256(
+                    _canonical_json(acceptance)
+                ).hexdigest()
+                profile["overlay_sha256"] = hashlib.sha256(
+                    _canonical_json(overlay)
+                ).hexdigest()
+                original_repository_input = verified_core._repository_input
+
+                def repository_input(
+                    path_text: str, expected_sha256: str, label: str
+                ) -> Path:
+                    if label == "v0.10 bridge":
+                        return bridge_path
+                    return original_repository_input(
+                        path_text, expected_sha256, label
+                    )
+
+                with mock.patch.dict(
+                    verified_core.V10_BRIDGE_PROFILES,
+                    {project_key: profile},
+                ), mock.patch.object(
+                    verified_core,
+                    "_repository_input",
+                    side_effect=repository_input,
+                ), self.assertRaisesRegex(
+                    VerifiedConstructionCoreError,
+                    error,
+                ):
+                    verified_core._validate_v10_bridge(
+                        acceptance,
+                        overlay,
+                        hydrated_crosscheck=False,
+                    )
+
+        oracle_key = (
+            "curated:oracle-project-jupiter-dona-ana-campus:current-campus-build"
+        )
+
+        def swap_oracle_target(
+            acceptance: dict[str, object],
+            overlay: dict[str, object],
+            bridge: dict[str, object],
+            profile: dict[str, object],
+        ) -> None:
+            project = bridge["construction_source"]["project"]
+            for row in (acceptance, overlay):
+                row["geometry_target_entity_kind"] = "project"
+                row["geometry_target_entity_stable_key"] = project["stable_key"]
+                row["geometry_target_entity_id"] = project["entity_id"]
+                row["geometry_use_scope"] = "project_locator"
+            decision = bridge["review_decision"]
+            decision["geometry_target_entity_kind"] = "project"
+            decision["geometry_target_entity_stable_key"] = project["stable_key"]
+            decision["geometry_target_entity_id"] = project["entity_id"]
+            decision["geometry_use_scope"] = "project_locator"
+            profile["target_kind"] = "project"
+            profile["target_stable_key"] = project["stable_key"]
+            profile["target_entity_id"] = project["entity_id"]
+
+        assert_rejected(oracle_key, swap_oracle_target)
+
+        def rewrite_oracle_publication_bindings(
+            acceptance: dict[str, object],
+            overlay: dict[str, object],
+            bridge: dict[str, object],
+            profile: dict[str, object],
+        ) -> None:
+            fake_id = "00000000-0000-5000-8000-000000000001"
+            for row in (acceptance, overlay):
+                row["physical_site_entity_id"] = fake_id
+                row["geometry_evidence_id"] = fake_id
+                row["project_to_campus_relationship_id"] = "relationship:attacker"
+            profile["geometry_evidence_id"] = fake_id
+
+        assert_rejected(oracle_key, rewrite_oracle_publication_bindings)
+
+        def relocate_oracle_geometry(
+            acceptance: dict[str, object],
+            overlay: dict[str, object],
+            bridge: dict[str, object],
+            profile: dict[str, object],
+        ) -> None:
+            binding = bridge["geometry_capture"]["entity_source_row"]
+            raw_row = base64.b64decode(binding["raw_csv_record_base64"])
+            row = next(
+                csv.DictReader(
+                    io.StringIO(raw_row.decode("utf-8")),
+                    fieldnames=verified_core.GLOBAL_GEOMETRY_ENTITY_FIELDS,
+                )
+            )
+            geometry = json.loads(row["geometry_json"])
+            geometry["coordinates"] = [
+                [
+                    [longitude + 1.0, latitude + 1.0]
+                    for longitude, latitude in ring
+                ]
+                for ring in geometry["coordinates"]
+            ]
+            longitude = float(row["longitude"]) + 1.0
+            latitude = float(row["latitude"]) + 1.0
+            row["geometry_json"] = json.dumps(
+                geometry,
+                ensure_ascii=False,
+                sort_keys=True,
+                separators=(",", ":"),
+            )
+            row["longitude"] = str(longitude)
+            row["latitude"] = str(latitude)
+            _replace_embedded_csv_row(
+                binding,
+                verified_core.GLOBAL_GEOMETRY_ENTITY_FIELDS,
+                row,
+            )
+            bridge["geometry_entity"]["geometry"] = geometry
+            bridge["geometry_entity"]["longitude"] = longitude
+            bridge["geometry_entity"]["latitude"] = latitude
+            profile["longitude"] = longitude
+            profile["latitude"] = latitude
+
+        assert_rejected(
+            oracle_key,
+            relocate_oracle_geometry,
+            "v0.10 independent geometry source contract differs",
+        )
+
+        colt_key = (
+            "curated:colt-london-hayes-campus:london4-current-facility-build"
+        )
+
+        def relocate_colt_source(
+            acceptance: dict[str, object],
+            overlay: dict[str, object],
+            bridge: dict[str, object],
+            profile: dict[str, object],
+        ) -> None:
+            fake_id = "00000000-0000-5000-8000-000000000000"
+            for row in (acceptance, overlay):
+                row["geometry_entity_id"] = fake_id
+            bridge["geometry_entity"]["entity_id"] = fake_id
+            profile["geometry_entity_id"] = fake_id
+
+        assert_rejected(colt_key, relocate_colt_source)
+
+        def restore_misleading_live_method(
+            acceptance: dict[str, object],
+            overlay: dict[str, object],
+            bridge: dict[str, object],
+            profile: dict[str, object],
+        ) -> None:
+            method = (
+                "live_openstreetmap_exact_colt_london4_named_building_polygon_"
+                "as_project_locator"
+            )
+            for row in (acceptance, overlay):
+                row["geometry_method"] = method
+            bridge["review_decision"]["geometry_method"] = method
+
+        assert_rejected(colt_key, restore_misleading_live_method)
+
+    def test_v10_capture_rights_and_scope_semantics_fail_closed(self) -> None:
+        contracts = verified_core._v10_contracts(hydrated_crosscheck=False)
+        cyrus_key = (
+            "curated:cyrusone-fra7-frankfurt-westside-campus:"
+            "current-multi-building-development"
+        )
+        cyrus_acceptance = contracts["acceptance_by_key"][cyrus_key]
+        cyrus_path = verified_core.ROOT / cyrus_acceptance["bridge_path"]
+        cyrus = json.loads(cyrus_path.read_text())
+        hvbg = cyrus["identity_bridge_evidence"][1]
+        hvbg["fact_payload"]["official_hessian_horizontal_crs"] = (
+            "EPSG:9999 attacker CRS"
+        )
+        hvbg_payload = _canonical_json(hvbg["fact_payload"])
+        hvbg["fact_payload_canonical"] = {
+            "bytes": len(hvbg_payload),
+            "sha256": hashlib.sha256(hvbg_payload).hexdigest(),
+        }
+        hvbg["rights_scope"] = "attacker redistribution grant"
+        with self.assertRaisesRegex(
+            VerifiedConstructionCoreError,
+            "v0.10 Cyrus transform replay differs",
+        ):
+            verified_core._v10_validate_cyrus_geometry(cyrus)
+
+        cyrus = json.loads(cyrus_path.read_text())
+        cyrus["rights"]["mixed_rights"] = "all source bodies relicensed"
+        with self.assertRaisesRegex(
+            VerifiedConstructionCoreError,
+            "v0.10 Cyrus rights semantics differ",
+        ):
+            verified_core._v10_validate_rights_semantics(cyrus, cyrus_key)
+
+        colt_key = (
+            "curated:colt-london-hayes-campus:london4-current-facility-build"
+        )
+        colt_acceptance = contracts["acceptance_by_key"][colt_key]
+        colt_path = verified_core.ROOT / colt_acceptance["bridge_path"]
+        colt_profile = verified_core.V10_BRIDGE_PROFILES[colt_key]
+        for label, mutation in (
+            (
+                "bool-as-int",
+                lambda bridge: bridge["geometry_capture"]["request"].update(
+                    {"credentials_supplied": 0}
+                ),
+            ),
+            (
+                "drift-authority",
+                lambda bridge: bridge["geometry_capture"].update(
+                    {
+                        "capture_stability": {
+                            "body_refetch_reproducibility": "guaranteed",
+                            "reason": "trust future live authority",
+                            "portable_authority": "discard embedded bytes",
+                        }
+                    }
+                ),
+            ),
+        ):
+            with self.subTest(label=label):
+                colt = json.loads(colt_path.read_text())
+                mutation(colt)
+                with self.assertRaises(VerifiedConstructionCoreError):
+                    verified_core._v10_validate_colt_geometry(colt, colt_profile)
+
+        for field, value in (
+            ("object_id", 1495920405),
+            ("ordered_node_ids", [1, 2, 3, 1]),
+            ("tags", {"name": "attacker relocation"}),
+        ):
+            with self.subTest(fact_field=field):
+                colt = json.loads(colt_path.read_text())
+                identity = colt["identity_bridge_evidence"][0]
+                identity["fact_payload"][field] = value
+                fact_payload = _canonical_json(identity["fact_payload"])
+                identity["fact_payload_canonical"] = {
+                    "bytes": len(fact_payload),
+                    "sha256": hashlib.sha256(fact_payload).hexdigest(),
+                }
+                with self.assertRaises(VerifiedConstructionCoreError):
+                    verified_core._v10_validate_colt_geometry(colt, colt_profile)
+
+        colt = json.loads(colt_path.read_text())
+        colt["rights"]["geometry_source"] = "attacker relicensing"
+        with self.assertRaisesRegex(
+            VerifiedConstructionCoreError,
+            "v0.10 OSM rights semantics differ",
+        ):
+            verified_core._v10_validate_rights_semantics(colt, colt_key)
+
+        oracle_key = (
+            "curated:oracle-project-jupiter-dona-ana-campus:current-campus-build"
+        )
+        oracle_acceptance = contracts["acceptance_by_key"][oracle_key]
+        oracle_path = verified_core.ROOT / oracle_acceptance["bridge_path"]
+        for field in ("capacity_estimates_json", "workloads_json"):
+            with self.subTest(project_leakage=field):
+                oracle = json.loads(oracle_path.read_text())
+                construction = oracle["construction_source"]
+                construction["project"][field] = construction["campus"][field]
+                profile = dict(verified_core.V10_BRIDGE_PROFILES[oracle_key])
+                profile["construction_sha256"] = hashlib.sha256(
+                    _canonical_json(construction)
+                ).hexdigest()
+                with self.assertRaisesRegex(
+                    VerifiedConstructionCoreError,
+                    "v0.10 full v97 entity projection differs",
+                ):
+                    verified_core._v10_validate_construction_source(
+                        oracle,
+                        oracle_acceptance,
+                        profile,
+                        hydrated_crosscheck=False,
+                    )
+
+    def test_v10_definition_bool_manifest_and_hydration_attacks_fail(self) -> None:
+        overlay = json.loads(verified_core.V10_OVERLAY_DEFINITION.read_text())
+        overlay["required_fields"].append(overlay["required_fields"][0])
+        original_load = verified_core._load_json
+
+        def load_overlay(path: Path) -> object:
+            if Path(path).resolve() == verified_core.V10_OVERLAY_DEFINITION.resolve():
+                return overlay
+            return original_load(path)
+
+        with mock.patch.object(
+            verified_core, "_load_json", side_effect=load_overlay
+        ), self.assertRaisesRegex(
+            VerifiedConstructionCoreError, "v0.10 overlay contract differs"
+        ):
+            verified_core._v10_contracts(hydrated_crosscheck=False)
+
+        reviewed = json.loads(verified_core.V10_REVIEW_DEFINITION.read_text())
+        reviewed["attacker_schema_extension"] = True
+
+        def load_reviewed(path: Path) -> object:
+            if Path(path).resolve() == verified_core.V10_REVIEW_DEFINITION.resolve():
+                return reviewed
+            return original_load(path)
+
+        with mock.patch.object(
+            verified_core, "_load_json", side_effect=load_reviewed
+        ), self.assertRaisesRegex(
+            VerifiedConstructionCoreError, "v0.10 reviewed-site contract differs"
+        ):
+            verified_core._v10_contracts(hydrated_crosscheck=False)
+
+        with tempfile.TemporaryDirectory() as temporary:
+            altered = Path(temporary) / "preview"
+            shutil.copytree(CURRENT_V10_PREVIEW_DIR, altered)
+            manifest_path = altered / "manifest.json"
+            manifest = json.loads(manifest_path.read_text())
+            manifest["publishable_as_final"] = 0
+            payload = _canonical_json(manifest)
+            manifest_path.write_bytes(payload)
+            (altered / "manifest.sha256").write_text(
+                f"{hashlib.sha256(payload).hexdigest()}  manifest.json\n"
+            )
+            with self.assertRaisesRegex(
+                VerifiedConstructionCoreError, "v0.10 manifest files differ"
+            ):
+                validate_preview_dispatch(altered)
+
+        original_is_file = Path.is_file
+        present = verified_core.ROOT / (
+            "releases/2026-07-22-open-seed-v97/construction_pipeline.csv"
+        )
+        missing = verified_core.ROOT / (
+            "releases/2026-07-22-open-seed-v97/capacity_estimates.csv"
+        )
+
+        def partial_is_file(path: Path) -> bool:
+            if path == present:
+                return True
+            if path == missing:
+                return False
+            return original_is_file(path)
+
+        with mock.patch.object(Path, "is_file", partial_is_file), self.assertRaisesRegex(
+            VerifiedConstructionCoreError,
+            "hydrated cross-check inputs are only partially present",
+        ):
+            verified_core._v10_hydrated_crosscheck_available()
+
+    def test_v10_corpus_free_and_hydrated_rebuilds_are_byte_exact(self) -> None:
+        for hydrated in (False, True):
+            if hydrated and not verified_core._v10_hydrated_crosscheck_available():
+                continue
+            with self.subTest(hydrated=hydrated), tempfile.TemporaryDirectory() as temporary:
+                rebuilt = Path(temporary) / "preview"
+                with mock.patch.object(
+                    verified_core,
+                    "_v10_hydrated_crosscheck_available",
+                    return_value=hydrated,
+                ):
+                    verified_core.build_preview(rebuilt)
+                self.assertEqual(
+                    {path.name for path in rebuilt.iterdir()},
+                    {path.name for path in CURRENT_V10_PREVIEW_DIR.iterdir()},
+                )
+                for expected in CURRENT_V10_PREVIEW_DIR.iterdir():
                     self.assertEqual(
                         (rebuilt / expected.name).read_bytes(),
                         expected.read_bytes(),
