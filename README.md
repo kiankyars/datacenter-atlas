@@ -13,19 +13,19 @@ energy, or PUE; estimates carry low/base/high values, method, confidence, and ev
 ## Current workspace state (audited 2026-08-23)
 
 The first coherent user-facing construction product is the
-[Verified Construction Core v0.11 preview](verified_construction_core/2026-08-20-preview-v0.11/),
-with its [selection contract and final gates](docs/verified_construction_core.md). It contains 51
-recently observed projects grouped into 48 source-scoped physical sites across 26 countries. Five
-project rows carry official parcel/survey geometry; 46 use explicitly scoped locators. The v0.11
-delta adds IIJ Shiroi DCC Phase 3 in Japan. Its official e-Stat Sakuradai 5 census small-area
-polygon is only an address-area locator for the parent campus. It is not the IIJ campus, parcel,
-Phase 3 building or construction footprint, and it is not counted as an official boundary. Its
-source-published shape-centre coordinates are only a display anchor for that polygon, never a
-standalone campus, project, or site point. The cohort lifecycle cutoff remains 2026-08-20; the
-e-Stat and Chiba evidence was captured and its geometry/identity use accepted on 2026-08-23. The
-manifest and selection report record both clocks explicitly. Every row remains
+[Verified Construction Core v0.12 preview](verified_construction_core/2026-08-20-preview-v0.12/),
+with its [selection contract and final gates](docs/verified_construction_core.md). It contains 56
+recently observed projects grouped into 53 source-scoped physical sites across 26 countries. Five
+project rows carry official parcel/survey geometry; 51 use explicitly scoped locators. The v0.12
+delta adds five distinct U.S. campuses using United States Census Bureau Public_AR_Current
+exact-address matches only as street-range campus locators. They are not parcel, campus, building,
+project, or construction boundaries; their numeric horizontal uncertainty remains unknown. The
+cohort lifecycle cutoff remains 2026-08-20, while the locator and identity review was accepted on
+2026-08-23. The NTT Dallas address conflict and QTS York parent-campus-only address scope remain
+explicit. The manifest and selection report record both clocks separately. Every row remains
 `independent_imagery_verification=false`, so this preview is a research baseline—not the promised
 100-site final release or a claim of SemiAnalysis parity. The
+[v0.11 preview](verified_construction_core/2026-08-20-preview-v0.11/),
 [v0.10 preview](verified_construction_core/2026-08-20-preview-v0.10/),
 [v0.9 preview](verified_construction_core/2026-08-20-preview-v0.9/),
 [v0.8 preview](verified_construction_core/2026-08-20-preview-v0.8/),
@@ -36,13 +36,14 @@ manifest and selection report record both clocks explicitly. Every row remains
 [v0.3 preview](verified_construction_core/2026-08-20-preview-v0.3/),
 [v0.2 preview](verified_construction_core/2026-08-20-preview-v0.2/) and
 [v0.1 preview](verified_construction_core/2026-08-19-preview-v0.1/) remain byte-frozen for audit,
-not as datasets to add to v0.11.
+not as datasets to add to v0.12.
 
 All eight inherited workload observations are machine-labelled `intended`, not operational. Nine
 published operator claims and two intended-customer claims carry evidence IDs and relationship
-scope. The v0.11 delta adds no normalized roles, operating models, or workloads. It adds one
-project-scoped planned 10 MW grid-connection observation for IIJ Phase 3; the optional 25 MW
-expandability ceiling is not promoted as installed, contracted, current, or additive capacity.
+scope. The v0.12 delta adds no normalized roles, operating models, workloads, or metrics. The
+inherited v0.11 row retains one project-scoped planned 10 MW grid-connection observation for IIJ
+Phase 3; the optional 25 MW expandability ceiling is not promoted as installed, contracted,
+current, or additive capacity.
 
 The latest fully present source bundle is
 [open-seed v97](releases/2026-07-22-open-seed-v97/). It contains 1,053 source-scoped entity rows
@@ -56,7 +57,7 @@ than v97/v38/v14/v11. Counts from separate lanes or versions must not be added.
 
 | Lane | Latest artifact | Current local hydration |
 | --- | --- | --- |
-| Verified construction preview | [v0.11](verified_construction_core/2026-08-20-preview-v0.11/) | 74 portable source and bridge inputs are manifest-bound; the generated preview remains a non-final artifact |
+| Verified construction preview | [v0.12](verified_construction_core/2026-08-20-preview-v0.12/) | 81 portable source and bridge inputs are manifest-bound; the generated preview remains a non-final artifact |
 | Source release | [open-seed v97](releases/2026-07-22-open-seed-v97/) | All 13 manifest-declared payload files present |
 | Federation | [v38](federated_indexes/2026-07-22-public-open-v38/) | Federated index present |
 | Exact identity | [v14](exact_identity_decisions/2026-07-22-public-open-v14/) | All seven declared payload files present |

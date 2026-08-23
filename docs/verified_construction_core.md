@@ -3,8 +3,9 @@
 The long-term product target is a compact, public cohort of 100 physical data-centre sites with
 linked active construction projects, precise geometry, current evidence, typed power semantics,
 and reviewable imagery outcomes. The current artifact is deliberately labelled
-[`v0.11 preview`](../verified_construction_core/2026-08-20-preview-v0.11/README.md), because the
+[`v0.12 preview`](../verified_construction_core/2026-08-20-preview-v0.12/README.md), because the
 available evidence does not yet support that final claim. The previous
+[`v0.11 preview`](../verified_construction_core/2026-08-20-preview-v0.11/README.md),
 [`v0.10 preview`](../verified_construction_core/2026-08-20-preview-v0.10/README.md),
 [`v0.9 preview`](../verified_construction_core/2026-08-20-preview-v0.9/README.md),
 [`v0.8 preview`](../verified_construction_core/2026-08-20-preview-v0.8/README.md),
@@ -19,7 +20,7 @@ byte-frozen and hash-validated rather than being overwritten.
 
 ## Preview scope
 
-The preview selects 51 projects attached to 48 source-scoped campus sites in 26 countries from
+The preview selects 56 projects attached to 53 source-scoped campus sites in 26 countries from
 `2026-07-22-open-seed-v97`. Every project has:
 
 - a physical-status observation no more than 90 days old on the fixed 2026-08-20 cohort lifecycle
@@ -29,11 +30,11 @@ The preview selects 51 projects attached to 48 source-scoped campus sites in 26 
 - a pinned source record and geometry-evidence key; and
 - an official boundary or a source-specific site/address locator with its precision limit.
 
-The e-Stat and Chiba evidence used by the v0.11 delta was captured and its geometry/identity use
-accepted on 2026-08-23. It cannot update lifecycle state after the fixed 2026-08-20 cohort cutoff.
-For preview compatibility, the v0.11 manifest and selection report retain `reviewed_at` as an alias
-for that lifecycle cutoff and also expose `cohort_lifecycle_reference_date` and
-`geometry_identity_reviewed_at` as distinct machine fields.
+The e-Stat, Chiba, and Census geometry evidence used by the v0.11 and v0.12 deltas was captured and
+its geometry/identity use accepted on 2026-08-23. It cannot update lifecycle state after the fixed
+2026-08-20 cohort cutoff. For preview compatibility, the v0.12 manifest and selection report retain
+`reviewed_at` as an alias for that lifecycle cutoff and also expose
+`cohort_lifecycle_reference_date` and `geometry_identity_reviewed_at` as distinct machine fields.
 
 CoreSite DE3 and Scala SFORPF01 have official parcel or surveyed project polygons. Verne Mäntsälä
 uses the exact municipal cadastral polygon of its explicitly linked parent campus; that polygon is
@@ -140,6 +141,16 @@ anchor; they must not be used without the polygon or treated as an independent c
 or site point. The reported 55,117.019 m² area likewise belongs only to the selected statistical
 feature, not to the IIJ campus, site, parcel, building, or construction works.
 
+The five-project v0.12 delta adds CoreWeave Lancaster Phase 1, Lancium Abilene's remaining
+six-building expansion, NTT Dallas TX4, QTS York Building 1, and TRG HOU2. Each project is linked
+to one distinct parent campus and retains its dated source status. Census Public_AR_Current
+exact-address matches are used only as street-range campus locators. They are not parcel,
+cadastral, campus, building, project, or construction boundaries; they do not prove containment;
+and their numeric horizontal uncertainty is unknown. NTT's current 2060 Lookout Drive address and
+the Texas TDLR record's conflicting 2008 address both remain disclosed. QTS's 2143 Hands Mill
+Highway address is scoped only to the parent York campus, never to Building 1. No v0.12 metric,
+role, workload, operating model, imagery result, or party claim is added.
+
 The review contract distinguishes `direct_geometry` from `coordinates_to_point` and records
 whether geometry comes from the project or its parent campus. Coordinate serialization adds no
 precision. The maincubes BER02, AVAIO Taurus, and KAO KLON-03 points retain unknown horizontal
@@ -180,7 +191,9 @@ validator forbids using it for geometry, status, capacity, progress, or building
 ## Version policy
 
 Each preview is a coherent frozen snapshot, not a separate pile of data that must be added to the
-latest CSV. v0.10 inherits the byte-frozen v0.9 artifact and adds three independently pinned
+latest CSV. v0.12 inherits the byte-frozen v0.11 artifact and adds five independently pinned U.S.
+projects with Census address-match campus locators; v0.11 inherits v0.10 and adds IIJ Shiroi Phase
+3; v0.10 inherits the byte-frozen v0.9 artifact and adds three independently pinned
 projects; v0.9 inherits the byte-frozen v0.8 artifact and adds three; v0.8 inherits the byte-frozen
 v0.7 artifact and adds eight; v0.7 inherits the byte-frozen
 v0.6 artifact and adds seven; v0.6 inherits all 21 reviewed
@@ -207,13 +220,15 @@ instead.
 ## Validation and rebuild
 
 Validation and byte-exact rebuilding work in a public clean clone from the generated preview and
-72 manifest-listed portable inputs. The ignored v97, global-v3, and v14 payloads are optional
-hydration-only cross-checks; when all eight are present, their exact embedded source rows are
-replayed as an additional validation layer:
+81 manifest-listed portable inputs. The ignored v97 and v14 payloads are optional, all-or-nothing
+hydration-only cross-checks; when all five are present, their exact embedded source rows are replayed
+as an additional validation layer:
 
 ```sh
 uv run python scripts/build_verified_construction_core.py --validate-only
-uv run python -m unittest -v tests.test_verified_construction_core
+uv run python -m unittest -v \
+  tests.test_verified_construction_core \
+  tests.test_verified_construction_core_v012
 ```
 
 The builder refuses to overwrite an existing directory:

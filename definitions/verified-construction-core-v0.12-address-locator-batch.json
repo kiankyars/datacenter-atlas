@@ -1,0 +1,226 @@
+{
+  "schema_version": "1.0",
+  "contract_id": "verified-construction-core-v0.12-address-locator-batch",
+  "reviewed_as_of": "2026-08-23",
+  "cohort_lifecycle_reference_date": "2026-08-20",
+  "base_preview": {
+    "path": "verified_construction_core/2026-08-20-preview-v0.11",
+    "preview_id": "2026-08-20-preview-v0.11",
+    "manifest_sha256": "1a17dd9da2727ef80fbc86da6b49259b5031a326b0bab0df2f9bea77aa3b31bc"
+  },
+  "geometry_capture": {
+    "path": "sources/verified-construction-core-v0.12-census-address-locators.json",
+    "bytes": 2209,
+    "sha256": "db625d4738dc9a0eed46bd54216090509b1882f16c8b57578f43ac0fa76b0905",
+    "evidence_key": "census-public-ar-current-five-address-locators-2026-08-23",
+    "evidence_id": "6600dddb-f2d8-5458-8e71-b43f77cc5e01"
+  },
+  "geometry_semantics": {
+    "geometry_source_entity_kind": "campus",
+    "geometry_derivation": "official_address_geocode",
+    "geometry_method": "census_public_ar_current_street_range_interpolation",
+    "geometry_scope_class": "official_census_address_locator_point",
+    "geometry_authority_class": "official_source",
+    "geometry_use_scope": "campus_locator",
+    "precision_scope": "Official Census Public_AR_Current address-match point used only to locate the source-linked parent campus. Street-range interpolation can differ from a parcel, building, entrance, or surveyed position.",
+    "horizontal_uncertainty_unknown_reason": "The captured Census match supplies no bounded horizontal-accuracy value, and a street-range interpolation point is not asserted to fall within the campus, parcel, building, or project extent.",
+    "official_boundary": false,
+    "parcel_or_building_geometry": false,
+    "project_footprint": false,
+    "campus_boundary": false,
+    "imagery_verification": false
+  },
+  "hydrated_crosscheck_inputs": [
+    {
+      "path": "exact_identity_decisions/2026-07-22-public-open-v14/component-members.csv",
+      "bytes": 3744672,
+      "sha256": "6f0c133c7710fe0a6d96fdad078d25c1cec0d858ef5f159abb890d518fb3ae25"
+    },
+    {
+      "path": "exact_identity_decisions/2026-07-22-public-open-v14/relationships.csv",
+      "bytes": 965327,
+      "sha256": "e8bae6b1893e621066b4974390665ff322a5f625e9b11f98db6438c9adb08ef7"
+    },
+    {
+      "path": "releases/2026-07-22-open-seed-v97/construction_pipeline.csv",
+      "bytes": 635843,
+      "sha256": "b39aed7653872bff0d0841ece2968f69e9d1d76bd07a242d103ab50e9b78c12f"
+    },
+    {
+      "path": "releases/2026-07-22-open-seed-v97/entities.csv",
+      "bytes": 1076359,
+      "sha256": "7950a4e871d4afd0fd877e6e4f3ba9f9cbc1ffd664a611bc036896fbdba46fa1"
+    },
+    {
+      "path": "releases/2026-07-22-open-seed-v97/evidence.csv",
+      "bytes": 271797,
+      "sha256": "c73263c3b27f984c8bebf76f9db31b63a22059a3774dbec9ed944ceee344f2d1"
+    }
+  ],
+  "acceptances": [
+    {
+      "project_stable_key": "curated:coreweave-chirisa-lancaster-greenfield-road-campus:phase-1-adaptive-reuse",
+      "project_entity_id": "b75695b9-38e3-58ec-baf2-039179ab353a",
+      "parent_campus_stable_key": "curated:coreweave-chirisa-lancaster-greenfield-road-campus",
+      "parent_campus_entity_id": "9801d3dc-7102-55bc-8088-84366e261511",
+      "source_input": {
+        "path": "sources/curated-official-2026-07-22-coreweave-chirisa-lancaster-greenfield-adaptive-reuse-current-build.json",
+        "bytes": 14824,
+        "sha256": "b95aef23cf7eb244a9c137d9dfc814ed6aea59a36c04aa1016f95f0751f6ac72"
+      },
+      "locator_id": "coreweave-lancaster-216-greenfield-road",
+      "address_scope": "project_and_parent_campus",
+      "relationship": {
+        "relationship_id": "relationship:0e90e54736d8d222768d76fde9345248f28070efe37d8ced1bfcd5f8ef57aaff",
+        "relationship_type": "project_targets",
+        "decision_basis": "explicit_parent"
+      },
+      "location_evidence": {
+        "key": "chirisa-lancaster-east-lpe01-in-construction-observed-2026-07-22",
+        "evidence_id": "0eb488ab-3c0c-5223-86d8-2b47a96e7476"
+      },
+      "status": {
+        "value": "under_construction",
+        "as_of_date": "2026-07-22",
+        "method": "authoritative_physical_status_update",
+        "confidence": 0.99,
+        "evidence_key": "chirisa-lancaster-east-lpe01-in-construction-observed-2026-07-22",
+        "evidence_id": "0eb488ab-3c0c-5223-86d8-2b47a96e7476"
+      },
+      "scope_guardrail": "The address identifies the adaptive-reuse property, but the Census point is not the existing shell or Phase 1 footprint."
+    },
+    {
+      "project_stable_key": "curated:lancium-clean-campus-abilene-ai-data-center:remaining-six-building-expansion",
+      "project_entity_id": "938feeec-a323-56e0-b6ce-2590fe58e623",
+      "parent_campus_stable_key": "curated:lancium-clean-campus-abilene-ai-data-center",
+      "parent_campus_entity_id": "b0b47b3f-46a2-5573-a55b-d3a5f03225f5",
+      "source_input": {
+        "path": "sources/curated-official-2026-07-20-lancium-crusoe-oracle-abilene.json",
+        "bytes": 26322,
+        "sha256": "bffd47864bb2d013caff5c8888974c761ca5abe3a03025f3b19c90d52fb92eaa"
+      },
+      "locator_id": "lancium-abilene-617-fm-2404",
+      "address_scope": "project_and_parent_campus",
+      "relationship": {
+        "relationship_id": "relationship:ddb9fa436d66a77807097b4397d381763d3313eb099f5153eb6a3f5c0b96310f",
+        "relationship_type": "project_targets",
+        "decision_basis": "explicit_parent"
+      },
+      "location_evidence": {
+        "key": "abilene-planning-q2-2025-lancium-buildings-5-8-captured-2026-07-20",
+        "evidence_id": "76b0e3d9-4d31-5fd3-8b73-ed63f3c6bf6f"
+      },
+      "status": {
+        "value": "under_construction",
+        "as_of_date": "2026-06-04",
+        "method": "authoritative_physical_status_update",
+        "confidence": 0.99,
+        "evidence_key": "oracle-abilene-portfolio-status-captured-2026-07-20",
+        "evidence_id": "c721a602-e557-5a4d-8518-d5fce69a64d2"
+      },
+      "scope_guardrail": "The municipal address binds Buildings 5 through 8 and the remaining campus development; the point is not any one of the six remaining building locations."
+    },
+    {
+      "project_stable_key": "curated:ntt-dallas-data-center-campus:tx4",
+      "project_entity_id": "9ddf0df3-e40c-515f-9468-ed78f063513b",
+      "parent_campus_stable_key": "curated:ntt-dallas-data-center-campus",
+      "parent_campus_entity_id": "d012a7c5-7dc1-5649-b8e3-b63dfa14cfe0",
+      "source_input": {
+        "path": "sources/curated-official-2026-07-20-ntt-tx4-dallas.json",
+        "bytes": 15653,
+        "sha256": "10ffafeb8dd80d4ee40394e4edbc9ae422d5972f68823cbfe738a1c1e8d170d3"
+      },
+      "locator_id": "ntt-dallas-2060-lookout-drive",
+      "address_scope": "project_and_parent_campus_with_conflicting_government_address",
+      "relationship": {
+        "relationship_id": "relationship:ef0d52d6c8eba3551303fd77ad15035fbb54755946e7b53744a038d430dd6d14",
+        "relationship_type": "project_targets",
+        "decision_basis": "explicit_parent"
+      },
+      "location_evidence": {
+        "key": "ntt-tx4-location-page-current-captured-2026-07-20",
+        "evidence_id": "29445792-c8cc-5589-894d-d8094d059dbf"
+      },
+      "status": {
+        "value": "under_construction",
+        "as_of_date": "2026-05-31",
+        "method": "authoritative_physical_status_update",
+        "confidence": 0.98,
+        "evidence_key": "ntt-tx4-construction-timelapse-linkedin-2026-06-17-captured-2026-07-20",
+        "evidence_id": "077a6629-8396-549b-92c0-cdec324067f3"
+      },
+      "scope_guardrail": "The current NTT page supplies 2060 Lookout Drive and controls the locator; the Texas TDLR record supplies conflicting 2008 Lookout Drive. Both remain disclosed, and neither point is a TX4 footprint or parcel."
+    },
+    {
+      "project_stable_key": "curated:qts-york-county-south-carolina-data-center-campus:initial-phase-building-1",
+      "project_entity_id": "5b758548-2a2a-5643-9ebb-d8381bbd2c52",
+      "parent_campus_stable_key": "curated:qts-york-county-south-carolina-data-center-campus",
+      "parent_campus_entity_id": "ef5357f0-6fa3-51d6-a031-7ac7bd987ad6",
+      "source_input": {
+        "path": "sources/curated-official-2026-07-19-qts-york-initial-phase-building-1.json",
+        "bytes": 7682,
+        "sha256": "11b588dfcd677fc3a5b5f8807e7aa4041f6f5e9b4fe8d31459034401d1692c4c"
+      },
+      "locator_id": "qts-york-2143-hands-mill-highway",
+      "address_scope": "parent_campus_only",
+      "relationship": {
+        "relationship_id": "relationship:70adbaa5dcfcf4f57b89161790b21d03997454e342a3c230bd1d07af273374cb",
+        "relationship_type": "project_targets",
+        "decision_basis": "explicit_parent"
+      },
+      "location_evidence": {
+        "key": "qts-york-location-page-captured-2026-07-19",
+        "evidence_id": "9617e6ae-f52d-59ef-bbfc-8b8c54303be1"
+      },
+      "status": {
+        "value": "shell",
+        "as_of_date": "2026-06-30",
+        "method": "authoritative_physical_status_update",
+        "confidence": 0.99,
+        "evidence_key": "gilbane-qts-york-topout-captured-2026-07-19",
+        "evidence_id": "913d7da6-9208-5382-a8e3-10f507b88fe6"
+      },
+      "scope_guardrail": "The exact address is asserted only for the parent QTS York campus. Building 1 remains at its source-explicit York locality, so the point is a campus locator only."
+    },
+    {
+      "project_stable_key": "curated:trg-spring-cypress-campus:hou2",
+      "project_entity_id": "ba5ddf33-10ec-5fb8-b880-98a04df096b8",
+      "parent_campus_stable_key": "curated:trg-spring-cypress-campus",
+      "parent_campus_entity_id": "e0f31b44-3e15-5597-b73f-5992fdf2ab82",
+      "source_input": {
+        "path": "sources/curated-official-2026-07-20-trg-hou2-spring-texas.json",
+        "bytes": 9056,
+        "sha256": "1689c544d726d8eb9c1e21602c8b3e8a20209c7e5650b84e589ad604a4bff60d"
+      },
+      "locator_id": "trg-hou2-2626-spring-cypress-road",
+      "address_scope": "project_and_parent_campus_shared_two_facility_campus",
+      "relationship": {
+        "relationship_id": "relationship:89b000976cdd7102ad3d1d6e7164b007fcc811ae4d1513a65a7416cb156dad14",
+        "relationship_type": "project_targets",
+        "decision_basis": "explicit_parent"
+      },
+      "location_evidence": {
+        "key": "trg-hou2-campus-brochure-2026-captured-2026-07-20",
+        "evidence_id": "209c7f3e-18eb-533c-bb99-0b302fc22d7b"
+      },
+      "status": {
+        "value": "under_construction",
+        "as_of_date": "2026-07-20",
+        "method": "authoritative_physical_status_update",
+        "confidence": 0.99,
+        "evidence_key": "trg-hou2-campus-brochure-2026-captured-2026-07-20",
+        "evidence_id": "209c7f3e-18eb-533c-bb99-0b302fc22d7b"
+      },
+      "scope_guardrail": "The brochure places HOU1 and HOU2 on one two-data-center campus. The address point locates that campus and is not an HOU2 building footprint."
+    }
+  ],
+  "rejected_claims": [
+    "parcel, cadastral, campus, building, project, or construction boundary",
+    "building or project footprint",
+    "point-in-parcel or point-in-building containment",
+    "site centroid, entrance, or survey-accuracy claim",
+    "imagery verification or imagery-derived lifecycle",
+    "geometry-derived lifecycle, capacity, energy, efficiency, role, workload, or operating model",
+    "source metrics, roles, or workloads not independently selected by this batch contract"
+  ]
+}

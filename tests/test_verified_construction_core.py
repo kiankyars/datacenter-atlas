@@ -4833,7 +4833,7 @@ class VerifiedConstructionCorePreviewTest(unittest.TestCase):
                     "_v11_hydrated_crosscheck_available",
                     return_value=hydrated,
                 ):
-                    verified_core.build_preview(rebuilt)
+                    verified_core._build_v11_preview(rebuilt)
                 self.assertEqual(
                     {path.name for path in rebuilt.iterdir()},
                     {path.name for path in CURRENT_V11_PREVIEW_DIR.iterdir()},
