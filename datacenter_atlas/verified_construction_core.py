@@ -22672,3 +22672,1934 @@ __all__ = [
     "V12_PROJECT_KEYS",
     "validate_frozen_v11",
 ]
+
+
+_build_v12_preview = build_preview
+_validate_v12_preview_dispatch = validate_preview
+
+LEGACY_PREVIEW_V12_DIR = CURRENT_V12_PREVIEW_DIR
+LEGACY_PREVIEW_V12_MANIFEST_SHA256 = (
+    "cdd84e2137b2963600a923fff775f79da4bf8af513a6eeb45805e2c9cac192d1"
+)
+LEGACY_PREVIEW_V12_COMMIT = "2e3363e088929439230a83cf00551cc1ed5e2476"
+CURRENT_V13_PREVIEW_ID = "2026-08-20-preview-v0.13"
+CURRENT_V13_PREVIEW_DIR = ROOT / "verified_construction_core" / CURRENT_V13_PREVIEW_ID
+CURRENT_V13_LIFECYCLE_REFERENCE_DATE = date(2026, 8, 20)
+CURRENT_V13_GEOMETRY_IDENTITY_REVIEW_DATE = date(2026, 8, 23)
+CURRENT_V13_REVIEW_DATE = CURRENT_V13_LIFECYCLE_REFERENCE_DATE
+V13_BATCH_CONTRACT = (
+    ROOT
+    / "definitions"
+    / "verified-construction-core-v0.13-six-site-geometry-batch.json"
+)
+V13_BATCH_CONTRACT_SHA256 = (
+    "8ac7a56a2036010f37a8af0e563a47a546a6c30afeb4a12c025f34b464a4a45b"
+)
+V13_GEOMETRY_CAPTURE = (
+    ROOT
+    / "sources"
+    / "verified-construction-core-v0.13-six-site-geometry-facts.json"
+)
+V13_GEOMETRY_CAPTURE_SHA256 = (
+    "b2831a4d5028b0de4757ccba4774b0987794f2fa9f6669b0682b6cfcedfe96fd"
+)
+V13_PROJECT_KEYS = frozenset(
+    {
+        "curated:bitzero-namsskogan-data-center-campus:2026-power-infrastructure-expansion",
+        "curated:ezditek-ruh01-pnu-riyadh-data-center:phase-1-current-build",
+        "curated:firstcolo-fra7-rosbach-campus:fra7-current-build",
+        "curated:goodman-syd01-macquarie-park-data-centre:current-single-building-development",
+        "curated:qts-cambois-data-centre-campus:2026-earthworks",
+        "curated:xtx-markets-kajaani-data-center-campus:second-data-center",
+    }
+)
+V13_SELECTION_FIRST_FAILURE_COUNTS = {
+    "entity_kind_not_project": 49,
+    "not_in_reviewed_site_geometry_allowlist": 81,
+    "selected": 62,
+    "status_not_physical": 12,
+    "status_outside_90_day_window": 327,
+}
+V13_COUNTRY_ISO_A2 = {
+    "Australia": "AU",
+    "Finland": "FI",
+    "Germany": "DE",
+    "Norway": "NO",
+    "Saudi Arabia": "SA",
+    "United Kingdom": "GB",
+}
+V13_CAPTURE_EVIDENCE_IDS = frozenset(
+    {
+        "1a606443-bf19-54d8-8025-8c1e1102c25e",
+        "23365ee9-f538-56fe-acec-e41f43182ded",
+        "706814f6-ce3c-5619-83a7-174fea885db2",
+        "817642c1-265e-5c90-9684-93ab069621a4",
+        "8f3069b1-7b32-5df4-9329-c365ae2a09bb",
+        "90d3590f-be24-5554-809a-36313784fe51",
+        "9d76095e-ffd9-5ac9-a910-1b0bf3dacc91",
+        "a4ff7674-bfdc-5a88-92cd-673e02250b1a",
+        "b91493e8-2d06-5029-8df8-bfc06d77f418",
+    }
+)
+V13_SOURCE_DOCUMENT_EXPECTATIONS = {
+    "bitzero-namsskogan-kartverket-parcel": (
+        842,
+        "a29e44a76c1cb22d8e4ee697c78ab84843819a031ea37e1ccf64603093d277c8",
+        "90d3590f-be24-5554-809a-36313784fe51",
+        "CC-BY-4.0",
+    ),
+    "bitzero-namsskogan-kartverket-point": (
+        477,
+        "3fec07c823639bf1eac26e5ae98de06b01e754c45d43421ab7df702cbb5e0ab3",
+        None,
+        "CC-BY-4.0",
+    ),
+    "bitzero-namsskogan-sec-aif": (
+        929809,
+        "459f619d5ad1586a6e12214d7f9892d4ee3423eb3b2beca378e7d19395e5683c",
+        "1a606443-bf19-54d8-8025-8c1e1102c25e",
+        "all-rights-reserved-fact-extraction-only",
+    ),
+    "bitzero-namsskogan-sec-lease": (
+        420349,
+        "379454e37fc2b040a5ddb74fe6fa612289c9db2e08f83aa311addbe8ea99b56e",
+        "9d76095e-ffd9-5ac9-a910-1b0bf3dacc91",
+        "all-rights-reserved-fact-extraction-only",
+    ),
+    "ezditek-ruh01-osm-changeset": (
+        823,
+        "d2adf517afe2f4322d73a9cd09ce8359a43334f799b699405c74c58e46ec3b07",
+        None,
+        "ODbL-1.0",
+    ),
+    "ezditek-ruh01-osm-way": (
+        1205,
+        "b5ba6cc30c8c10bba2887c067dd1f1d48644123fcf83b7fedb6902f9fad540b8",
+        "b91493e8-2d06-5029-8df8-bfc06d77f418",
+        "ODbL-1.0",
+    ),
+    "firstcolo-fra7-factsheet": (
+        2261778,
+        "ea1df880294c544a81b5d67f9bc6dcfed9a84b87c55ad588d5e52bd691dc0cd5",
+        "706814f6-ce3c-5619-83a7-174fea885db2",
+        "all-rights-reserved-fact-extraction-only",
+    ),
+    "goodman-syd01-nsw-planning-application": (
+        515049,
+        "d69c321182f25e379fd519ed9367e3e7b6deda9f42c5cb2dfcc2dd8371bef9e5",
+        "8f3069b1-7b32-5df4-9329-c365ae2a09bb",
+        "all-rights-reserved-fact-extraction-only",
+    ),
+    "qts-cambois-environment-agency-report": (
+        24912891,
+        "25235f3c8187b67df890d8460cf520537ddad603a87c56e84bf06728cd7946f4",
+        "a4ff7674-bfdc-5a88-92cd-673e02250b1a",
+        "all-rights-reserved-fact-extraction-only",
+    ),
+    "xtx-kajaani-city-permit": (
+        390873,
+        "b5a3a02ac2abcece2631c3da711054448317b4f4a7a482c61bcea2963cef0ac7",
+        "817642c1-265e-5c90-9684-93ab069621a4",
+        "rights-status-uncertain-fact-extraction-only",
+    ),
+    "xtx-kajaani-nls-parcel": (
+        7419,
+        "2f83cf299f5258c92fd4c61306c5a5aed91bd20a56c48dae51b94c99714164af",
+        "23365ee9-f538-56fe-acec-e41f43182ded",
+        "CC-BY-4.0",
+    ),
+}
+V13_GEOMETRY_EXPECTATIONS = {
+    "bitzero-namsskogan-parcel-5044-50-44": {
+        "project_stable_key": (
+            "curated:bitzero-namsskogan-data-center-campus:"
+            "2026-power-infrastructure-expansion"
+        ),
+        "geometry_source_document_id": "bitzero-namsskogan-kartverket-parcel",
+        "identity_source_document_ids": [
+            "bitzero-namsskogan-sec-lease",
+            "bitzero-namsskogan-sec-aif",
+        ],
+        "geometry_type": "Polygon",
+        "geometry_sha256": (
+            "2fa5ce3ba9eb4f4d43ec5baf6e8faf1ae13385b1ca2338e8ec3f0e5631e7bf84"
+        ),
+        "anchor": [12.83406, 64.71427],
+        "geometry_source_entity_kind": "campus",
+        "geometry_derivation": "cross_source_geometry",
+        "geometry_method": (
+            "kartverket_official_cadastral_parcel_polygon_as_campus_locator"
+        ),
+        "geometry_scope_class": "official_cadastral_parcel_as_campus_locator",
+        "geometry_authority_class": "official_source",
+        "geometry_use_scope": "campus_locator",
+    },
+    "ezditek-ruh01-osm-way-1544103564": {
+        "project_stable_key": (
+            "curated:ezditek-ruh01-pnu-riyadh-data-center:phase-1-current-build"
+        ),
+        "geometry_source_document_id": "ezditek-ruh01-osm-way",
+        "identity_source_document_ids": ["ezditek-ruh01-osm-way"],
+        "geometry_type": "Polygon",
+        "geometry_sha256": (
+            "ee593fe28cb596db83e396f59c5922569d7a140399cdc05c78b7a4895d46e51f"
+        ),
+        "anchor": [46.713968972719, 24.866954286488],
+        "geometry_source_entity_kind": "building",
+        "geometry_derivation": "capture_replayed_geometry",
+        "geometry_method": (
+            "capture_replayed_openstreetmap_exact_ezditek_ruh01_named_"
+            "building_polygon_as_project_locator"
+        ),
+        "geometry_scope_class": (
+            "community_mapped_named_ezditek_ruh01_building_polygon"
+        ),
+        "geometry_authority_class": "community_mapped",
+        "geometry_use_scope": "project_locator",
+    },
+    "firstcolo-fra7-factsheet-point": {
+        "project_stable_key": "curated:firstcolo-fra7-rosbach-campus:fra7-current-build",
+        "geometry_source_document_id": "firstcolo-fra7-factsheet",
+        "identity_source_document_ids": ["firstcolo-fra7-factsheet"],
+        "geometry_type": "Point",
+        "geometry_sha256": (
+            "bf5f898ced294134512457ebd83d494eaec97db1e2c936b3fd2f6511640fe3fa"
+        ),
+        "anchor": [8.699444444444445, 50.29480555555556],
+        "geometry_source_entity_kind": "facility",
+        "geometry_derivation": "coordinates_to_point",
+        "geometry_method": "first_party_published_dms_coordinate_to_point",
+        "geometry_scope_class": "first_party_facility_reference_point",
+        "geometry_authority_class": "official_source",
+        "geometry_use_scope": "project_locator",
+    },
+    "goodman-syd01-ssd-66777221-point": {
+        "project_stable_key": (
+            "curated:goodman-syd01-macquarie-park-data-centre:"
+            "current-single-building-development"
+        ),
+        "geometry_source_document_id": (
+            "goodman-syd01-nsw-planning-application"
+        ),
+        "identity_source_document_ids": [
+            "goodman-syd01-nsw-planning-application"
+        ],
+        "geometry_type": "Point",
+        "geometry_sha256": (
+            "607ea1bcafa63380d2b5c9c080ffd7da25c07b18c5c6bd0f8924bec1287fcac1"
+        ),
+        "anchor": [151.19, -33.818441],
+        "geometry_source_entity_kind": "project",
+        "geometry_derivation": "coordinates_to_point",
+        "geometry_method": (
+            "nsw_planning_portal_applicant_project_coordinate_to_point"
+        ),
+        "geometry_scope_class": "official_applicant_project_site_reference_point",
+        "geometry_authority_class": "official_source",
+        "geometry_use_scope": "project_locator",
+    },
+    "qts-cambois-wider-campus-ngr-point": {
+        "project_stable_key": (
+            "curated:qts-cambois-data-centre-campus:2026-earthworks"
+        ),
+        "geometry_source_document_id": (
+            "qts-cambois-environment-agency-report"
+        ),
+        "identity_source_document_ids": [
+            "qts-cambois-environment-agency-report"
+        ],
+        "geometry_type": "Point",
+        "geometry_sha256": (
+            "454261ae4755e08026a94bba6e85ecd00794212777d49767e9344d7385d50d25"
+        ),
+        "anchor": [-1.533627047468273, 55.15092301981584],
+        "geometry_source_entity_kind": "campus",
+        "geometry_derivation": "official_coordinate_transform",
+        "geometry_method": (
+            "applicant_report_osgb36_national_grid_reference_to_wgs84"
+        ),
+        "geometry_scope_class": (
+            "government_hosted_applicant_report_wider_campus_reference_point"
+        ),
+        "geometry_authority_class": "official_source",
+        "geometry_use_scope": "campus_locator",
+    },
+    "xtx-kajaani-parcel-205-7-4-1": {
+        "project_stable_key": (
+            "curated:xtx-markets-kajaani-data-center-campus:second-data-center"
+        ),
+        "geometry_source_document_id": "xtx-kajaani-nls-parcel",
+        "identity_source_document_ids": ["xtx-kajaani-city-permit"],
+        "geometry_type": "Polygon",
+        "geometry_sha256": (
+            "c1e67ac736a39f6970c1d5e4e8c1ceebdfcffa083b96d5b5cee4464d084df221"
+        ),
+        "anchor": [27.655443809824, 64.237214640662],
+        "geometry_source_entity_kind": "campus",
+        "geometry_derivation": "official_coordinate_transform",
+        "geometry_method": (
+            "nls_official_cadastral_parcel_polygon_as_campus_locator"
+        ),
+        "geometry_scope_class": "official_cadastral_parcel_as_campus_locator",
+        "geometry_authority_class": "official_source",
+        "geometry_use_scope": "campus_locator",
+    },
+}
+
+
+def validate_frozen_v12(
+    path: Path = LEGACY_PREVIEW_V12_DIR,
+) -> dict[str, Any]:
+    """Validate byte-frozen v0.12 without regenerating it."""
+    return _validate_frozen_preview_inventory(
+        path,
+        preview_id=CURRENT_V12_PREVIEW_ID,
+        manifest_sha256=LEGACY_PREVIEW_V12_MANIFEST_SHA256,
+        version_label="v0.12",
+    )
+
+
+def _v13_hydrated_crosscheck_available(contract: Mapping[str, Any]) -> bool:
+    bindings = contract.get("hydrated_crosscheck_inputs")
+    if not isinstance(bindings, list) or len(bindings) != 5:
+        raise VerifiedConstructionCoreError(
+            "v0.13 hydrated cross-check contract differs"
+        )
+    paths = [ROOT / str(binding.get("path", "")) for binding in bindings]
+    present = [path.is_file() for path in paths]
+    if any(present) and not all(present):
+        raise VerifiedConstructionCoreError(
+            "v0.13 hydrated cross-check inputs are only partially present"
+        )
+    if not all(present):
+        return False
+    for binding, path in zip(bindings, paths, strict=True):
+        if (
+            path.is_symlink()
+            or path.stat().st_size != binding.get("bytes")
+            or _sha256_file(path) != binding.get("sha256")
+        ):
+            raise VerifiedConstructionCoreError(
+                "v0.13 hydrated cross-check input differs"
+            )
+    return True
+
+
+def _v13_source_evidence(
+    source: Mapping[str, Any], key: str, evidence_id: str
+) -> dict[str, Any]:
+    matches = [
+        row
+        for row in source.get("evidence", [])
+        if isinstance(row, dict) and row.get("key") == key
+    ]
+    if len(matches) != 1:
+        raise VerifiedConstructionCoreError(
+            f"v0.13 source evidence differs: {key}"
+        )
+    row = matches[0]
+    expected_id = atlas_stable_id(
+        "evidence", "curated-official", key, row.get("content_hash")
+    )
+    if evidence_id != expected_id:
+        raise VerifiedConstructionCoreError(
+            f"v0.13 source evidence identifier differs: {key}"
+        )
+    return _v07_evidence_projection({**row, "evidence_id": evidence_id})
+
+
+def _v13_capture_evidence(document: Mapping[str, Any]) -> dict[str, Any]:
+    evidence_id = document.get("evidence_id")
+    expected_id = atlas_stable_id(
+        "evidence",
+        "verified-construction-core-v0.13",
+        document.get("source_id"),
+        document.get("content_hash"),
+    )
+    if not isinstance(evidence_id, str) or evidence_id != expected_id:
+        raise VerifiedConstructionCoreError(
+            "v0.13 capture evidence identifier differs"
+        )
+    return _v07_evidence_projection(document)
+
+
+def _v13_validate_geometry(record: Mapping[str, Any]) -> None:
+    geometry = record.get("geometry")
+    if not isinstance(geometry, dict) or set(geometry) != {
+        "type",
+        "coordinates",
+    }:
+        raise VerifiedConstructionCoreError("v0.13 geometry structure differs")
+    geometry_type = geometry.get("type")
+    coordinates = geometry.get("coordinates")
+
+    def validate_position(position: Any) -> None:
+        if (
+            not isinstance(position, list)
+            or len(position) != 2
+            or any(type(value) not in {int, float} for value in position)
+            or any(not math.isfinite(value) for value in position)
+            or not -180 <= position[0] <= 180
+            or not -90 <= position[1] <= 90
+        ):
+            raise VerifiedConstructionCoreError(
+                "v0.13 geometry coordinate differs"
+            )
+
+    if geometry_type == "Point":
+        validate_position(coordinates)
+    elif geometry_type == "Polygon":
+        if not isinstance(coordinates, list) or not coordinates:
+            raise VerifiedConstructionCoreError(
+                "v0.13 polygon structure differs"
+            )
+        for ring in coordinates:
+            if (
+                not isinstance(ring, list)
+                or len(ring) < 4
+                or ring[0] != ring[-1]
+            ):
+                raise VerifiedConstructionCoreError(
+                    "v0.13 polygon ring differs"
+                )
+            for position in ring:
+                validate_position(position)
+    else:
+        raise VerifiedConstructionCoreError("v0.13 geometry type differs")
+    anchor = record.get("display_anchor")
+    if not isinstance(anchor, dict):
+        raise VerifiedConstructionCoreError("v0.13 display anchor differs")
+    validate_position(anchor.get("coordinates"))
+
+
+def _v13_validate_hydrated_crosscheck(
+    contract: Mapping[str, Any],
+    acceptances: Sequence[Mapping[str, Any]],
+    sources: Mapping[str, Mapping[str, Any]],
+) -> None:
+    if not _v13_hydrated_crosscheck_available(contract):
+        return
+    pipeline = {
+        row["stable_key"]: row
+        for row in _load_csv(SOURCE_RELEASE / "construction_pipeline.csv")
+    }
+    entities = {
+        row["stable_key"]: row
+        for row in _load_csv(SOURCE_RELEASE / "entities.csv")
+    }
+    evidence = {
+        row["evidence_id"]: row
+        for row in _load_csv(SOURCE_RELEASE / "evidence.csv")
+    }
+    members = _load_csv(
+        ROOT
+        / "exact_identity_decisions"
+        / "2026-07-22-public-open-v14"
+        / "component-members.csv"
+    )
+    relationships = _load_csv(
+        ROOT
+        / "exact_identity_decisions"
+        / "2026-07-22-public-open-v14"
+        / "relationships.csv"
+    )
+    members_by_component: dict[str, list[dict[str, str]]] = defaultdict(list)
+    for member in members:
+        members_by_component[member["component_id"]].append(member)
+    for acceptance in acceptances:
+        project_key = acceptance["project_stable_key"]
+        campus_key = acceptance["parent_campus_stable_key"]
+        source = sources[project_key]
+        status = acceptance["status"]
+        project = pipeline.get(project_key)
+        campus = entities.get(campus_key)
+        if (
+            project is None
+            or campus is None
+            or project["entity_id"] != acceptance["project_entity_id"]
+            or campus["entity_id"] != acceptance["parent_campus_entity_id"]
+            or project["status"] != status["value"]
+            or project["status_as_of"] != status["as_of_date"]
+            or project["status_method"] != status["method"]
+            or project["status_evidence_id"] != status["evidence_id"]
+        ):
+            raise VerifiedConstructionCoreError(
+                f"v0.13 hydrated source projection differs: {project_key}"
+            )
+        for evidence_binding in (
+            acceptance["location_evidence"],
+            {
+                "key": status["evidence_key"],
+                "evidence_id": status["evidence_id"],
+            },
+        ):
+            projected = _v13_source_evidence(
+                source,
+                evidence_binding["key"],
+                evidence_binding["evidence_id"],
+            )
+            hydrated = evidence.get(evidence_binding["evidence_id"])
+            if hydrated is None or any(
+                hydrated[field] != projected[field] for field in projected
+            ):
+                raise VerifiedConstructionCoreError(
+                    f"v0.13 hydrated evidence projection differs: {project_key}"
+                )
+        project_member = next(
+            (
+                row
+                for row in members
+                if row["release_id"] == SOURCE_RELEASE_ID
+                and row["stable_key"] == project_key
+                and row["entity_id"] == acceptance["project_entity_id"]
+            ),
+            None,
+        )
+        relationship = acceptance["relationship"]
+        topology = next(
+            (
+                row
+                for row in relationships
+                if row["relationship_id"] == relationship["relationship_id"]
+                and project_member is not None
+                and row["subject_component_id"]
+                == project_member["component_id"]
+            ),
+            None,
+        )
+        target_members = (
+            []
+            if topology is None
+            else members_by_component[topology["object_component_id"]]
+        )
+        if (
+            topology is None
+            or topology["relationship_type"] != "project_targets"
+            or topology["decision_basis"] != "explicit_parent"
+            or not any(
+                row["release_id"] == SOURCE_RELEASE_ID
+                and row["stable_key"] == campus_key
+                and row["entity_id"] == acceptance["parent_campus_entity_id"]
+                for row in target_members
+            )
+        ):
+            raise VerifiedConstructionCoreError(
+                f"v0.13 hydrated topology differs: {project_key}"
+            )
+
+
+def _v13_contracts() -> dict[str, Any]:
+    if (
+        V13_BATCH_CONTRACT.is_symlink()
+        or not V13_BATCH_CONTRACT.is_file()
+        or _sha256_file(V13_BATCH_CONTRACT) != V13_BATCH_CONTRACT_SHA256
+        or V13_GEOMETRY_CAPTURE.is_symlink()
+        or not V13_GEOMETRY_CAPTURE.is_file()
+        or _sha256_file(V13_GEOMETRY_CAPTURE) != V13_GEOMETRY_CAPTURE_SHA256
+    ):
+        raise VerifiedConstructionCoreError("v0.13 contract hash differs")
+    contract = _load_json(V13_BATCH_CONTRACT)
+    capture = _load_json(V13_GEOMETRY_CAPTURE)
+    capture_binding = contract.get("geometry_capture", {})
+    base = contract.get("base_preview", {})
+    if (
+        contract.get("contract_id")
+        != "verified-construction-core-v0.13-six-site-geometry-batch"
+        or contract.get("reviewed_as_of")
+        != CURRENT_V13_GEOMETRY_IDENTITY_REVIEW_DATE.isoformat()
+        or contract.get("cohort_lifecycle_reference_date")
+        != CURRENT_V13_LIFECYCLE_REFERENCE_DATE.isoformat()
+        or base.get("preview_id") != CURRENT_V12_PREVIEW_ID
+        or base.get("manifest_sha256")
+        != LEGACY_PREVIEW_V12_MANIFEST_SHA256
+        or base.get("commit") != LEGACY_PREVIEW_V12_COMMIT
+        or capture_binding.get("path")
+        != V13_GEOMETRY_CAPTURE.relative_to(ROOT).as_posix()
+        or capture_binding.get("bytes") != V13_GEOMETRY_CAPTURE.stat().st_size
+        or capture_binding.get("sha256") != V13_GEOMETRY_CAPTURE_SHA256
+        or capture_binding.get("capture_id")
+        != "verified-construction-core-v0.13-six-site-geometry-facts"
+        or capture.get("capture_id") != capture_binding.get("capture_id")
+        or capture.get("captured_on")
+        != CURRENT_V13_GEOMETRY_IDENTITY_REVIEW_DATE.isoformat()
+        or capture.get("cohort_lifecycle_reference_date")
+        != CURRENT_V13_LIFECYCLE_REFERENCE_DATE.isoformat()
+    ):
+        raise VerifiedConstructionCoreError("v0.13 batch contract differs")
+    expected_invariants = {
+        "accepted_physical_site_count": 6,
+        "accepted_project_count": 6,
+        "geometry_authority_classes": {
+            "community_mapped": 1,
+            "official_source": 5,
+        },
+        "geometry_types": {"Point": 3, "Polygon": 3},
+        "geometry_use_scopes": {
+            "campus_locator": 3,
+            "project_locator": 3,
+        },
+        "independent_imagery_verification": False,
+        "official_boundary": False,
+        "raw_all_rights_artifacts_redistributed": False,
+    }
+    if contract.get("batch_invariants") != expected_invariants:
+        raise VerifiedConstructionCoreError("v0.13 batch invariants differ")
+    acceptances = contract.get("acceptances")
+    documents = capture.get("source_documents")
+    geometries = capture.get("geometries")
+    if (
+        not isinstance(acceptances, list)
+        or len(acceptances) != 6
+        or {row.get("project_stable_key") for row in acceptances}
+        != V13_PROJECT_KEYS
+        or not isinstance(documents, list)
+        or len(documents) != 11
+        or not isinstance(geometries, list)
+        or len(geometries) != 6
+    ):
+        raise VerifiedConstructionCoreError("v0.13 batch inventory differs")
+    documents_by_id = {row.get("source_id"): row for row in documents}
+    geometries_by_id = {row.get("locator_id"): row for row in geometries}
+    if (
+        set(documents_by_id) != set(V13_SOURCE_DOCUMENT_EXPECTATIONS)
+        or set(geometries_by_id) != set(V13_GEOMETRY_EXPECTATIONS)
+    ):
+        raise VerifiedConstructionCoreError("v0.13 capture identities differ")
+    evidence_documents: dict[str, Mapping[str, Any]] = {}
+    for source_id, expected in V13_SOURCE_DOCUMENT_EXPECTATIONS.items():
+        document = documents_by_id[source_id]
+        raw = document.get("raw_capture")
+        expected_bytes, expected_hash, expected_evidence_id, expected_license = expected
+        if (
+            not isinstance(raw, dict)
+            or raw.get("bytes") != expected_bytes
+            or raw.get("sha256") != expected_hash
+            or raw.get("redistributed") is not False
+            or document.get("content_hash") != expected_hash
+            or document.get("evidence_id") != expected_evidence_id
+            or document.get("license") != expected_license
+            or not isinstance(document.get("source_url"), str)
+            or not document["source_url"].startswith("https://")
+        ):
+            raise VerifiedConstructionCoreError(
+                f"v0.13 source-document semantics differ: {source_id}"
+            )
+        if expected_evidence_id is not None:
+            projected = _v13_capture_evidence(document)
+            if projected["evidence_id"] in evidence_documents:
+                raise VerifiedConstructionCoreError(
+                    "v0.13 capture evidence collision"
+                )
+            evidence_documents[projected["evidence_id"]] = document
+    if (
+        set(evidence_documents) != V13_CAPTURE_EVIDENCE_IDS
+        or capture_binding.get("evidence_document_count") != 9
+        or capture_binding.get("geometry_record_count") != 6
+    ):
+        raise VerifiedConstructionCoreError(
+            "v0.13 capture evidence inventory differs"
+        )
+    for locator_id, expected in V13_GEOMETRY_EXPECTATIONS.items():
+        record = geometries_by_id[locator_id]
+        semantics = record.get("semantics")
+        _v13_validate_geometry(record)
+        if (
+            record.get("project_stable_key")
+            != expected["project_stable_key"]
+            or record.get("geometry_source_document_id")
+            != expected["geometry_source_document_id"]
+            or record.get("identity_source_document_ids")
+            != expected["identity_source_document_ids"]
+            or record["geometry"].get("type") != expected["geometry_type"]
+            or _sha256_bytes(_json_bytes(record["geometry"]))
+            != expected["geometry_sha256"]
+            or record["display_anchor"].get("coordinates")
+            != expected["anchor"]
+            or not isinstance(semantics, dict)
+            or any(
+                semantics.get(field) != expected[field]
+                for field in (
+                    "geometry_source_entity_kind",
+                    "geometry_derivation",
+                    "geometry_method",
+                    "geometry_scope_class",
+                    "geometry_authority_class",
+                    "geometry_use_scope",
+                )
+            )
+            or semantics.get("official_boundary") is not False
+            or not isinstance(semantics.get("precision_scope"), str)
+            or not semantics["precision_scope"]
+            or not isinstance(
+                semantics.get("horizontal_uncertainty_unknown_reason"), str
+            )
+            or not semantics["horizontal_uncertainty_unknown_reason"]
+        ):
+            raise VerifiedConstructionCoreError(
+                f"v0.13 geometry semantics differ: {locator_id}"
+            )
+    xtx_document = documents_by_id["xtx-kajaani-nls-parcel"]
+    xtx_record = geometries_by_id["xtx-kajaani-parcel-205-7-4-1"]
+    bitzero_document = documents_by_id[
+        "bitzero-namsskogan-kartverket-parcel"
+    ]
+    bitzero_point = documents_by_id[
+        "bitzero-namsskogan-kartverket-point"
+    ]
+    osm_document = documents_by_id["ezditek-ruh01-osm-way"]
+    osm_changeset = documents_by_id["ezditek-ruh01-osm-changeset"]
+    if (
+        xtx_document.get("facts", {}).get("feature_id")
+        != "FI_CP_CADASTRALPARCEL_150470261"
+        or xtx_document.get("facts", {}).get("label") != "205-7-4-1"
+        or xtx_document.get("facts", {}).get("vertex_count") != 264
+        or "not a claim that a later live response is byte-identical"
+        not in xtx_document.get("raw_capture", {}).get("volatility_notice", "")
+        or xtx_record.get("transform")
+        != {
+            "always_xy": True,
+            "proj_version": "9.5.1",
+            "pyproj_version": "3.7.2",
+            "source_crs": "EPSG:3067",
+            "target_crs": "EPSG:4326",
+        }
+        or bitzero_document.get("facts", {}).get("lokalid") != 6425160282
+        or bitzero_document.get("facts", {}).get("matrikkelnummertekst")
+        != "50/44"
+        or bitzero_point.get("facts", {}).get("coordinates")
+        != [12.83406, 64.71427]
+        or osm_document.get("facts", {}).get("way_id") != 1544103564
+        or osm_document.get("facts", {}).get("version") != 1
+        or osm_document.get("facts", {}).get("changeset") != 186307556
+        or osm_document.get("facts", {}).get("tags")
+        != {
+            "building": "yes",
+            "operator": "Ezditek",
+            "ref": "RUH01",
+            "telecom": "data_center",
+        }
+        or osm_changeset.get("facts", {}).get("imagery_used")
+        != "Esri World Imagery"
+        or "No Esri imagery or pixels"
+        not in geometries_by_id[
+            "ezditek-ruh01-osm-way-1544103564"
+        ].get("imagery_guardrail", "")
+    ):
+        raise VerifiedConstructionCoreError(
+            "v0.13 source-specific geometry facts differ"
+        )
+    sources: dict[str, Mapping[str, Any]] = {}
+    seen_campuses: set[str] = set()
+    for acceptance in acceptances:
+        project_key = acceptance["project_stable_key"]
+        campus_key = acceptance["parent_campus_stable_key"]
+        source_binding = acceptance["source_input"]
+        source_path = _repository_input(
+            source_binding["path"],
+            source_binding["sha256"],
+            "v0.13 curated source",
+        )
+        if source_path.stat().st_size != source_binding["bytes"]:
+            raise VerifiedConstructionCoreError(
+                f"v0.13 source bytes differ: {project_key}"
+            )
+        source = _load_json(source_path)
+        project = source.get("project")
+        campus = source.get("campus")
+        if (
+            not isinstance(project, dict)
+            or not isinstance(campus, dict)
+            or project.get("stable_key") != project_key
+            or campus.get("stable_key") != campus_key
+            or project.get("country") != campus.get("country")
+            or project.get("country") not in V13_COUNTRY_ISO_A2
+            or project.get("coordinates") is not None
+            or project.get("geometry") is not None
+            or campus.get("coordinates") is not None
+            or campus.get("geometry") is not None
+            or acceptance["project_entity_id"]
+            != atlas_stable_id("entity", project_key, "project")
+            or acceptance["parent_campus_entity_id"]
+            != atlas_stable_id("entity", campus_key, "campus")
+            or campus_key in seen_campuses
+        ):
+            raise VerifiedConstructionCoreError(
+                f"v0.13 source identity differs: {project_key}"
+            )
+        seen_campuses.add(campus_key)
+        record = geometries_by_id.get(acceptance.get("locator_id"))
+        if record is None or record.get("project_stable_key") != project_key:
+            raise VerifiedConstructionCoreError(
+                f"v0.13 locator identity differs: {project_key}"
+            )
+        relationship = acceptance.get("relationship")
+        if (
+            not isinstance(relationship, dict)
+            or not str(relationship.get("relationship_id", "")).startswith(
+                "relationship:"
+            )
+            or relationship.get("relationship_type") != "project_targets"
+            or relationship.get("decision_basis") != "explicit_parent"
+        ):
+            raise VerifiedConstructionCoreError(
+                f"v0.13 project-to-campus relationship differs: {project_key}"
+            )
+        status = acceptance.get("status")
+        if not isinstance(status, dict):
+            raise VerifiedConstructionCoreError(
+                f"v0.13 lifecycle differs: {project_key}"
+            )
+        lifecycle = [
+            row
+            for row in source.get("lifecycle", [])
+            if isinstance(row, dict)
+            and row.get("entity") == "project"
+            and row.get("evidence_key") == status.get("evidence_key")
+        ]
+        if (
+            len(lifecycle) != 1
+            or lifecycle[0].get("value") != status.get("value")
+            or lifecycle[0].get("as_of_date") != status.get("as_of_date")
+            or lifecycle[0].get("method") != status.get("method")
+            or lifecycle[0].get("confidence") != status.get("confidence")
+            or status.get("value") not in PHYSICAL_STATUSES
+            or status.get("method") not in AUTHORITATIVE_STATUS_METHODS
+            or not 0
+            <= (
+                CURRENT_V13_LIFECYCLE_REFERENCE_DATE
+                - _calendar_date(status["as_of_date"], "v0.13 status_as_of")
+            ).days
+            <= MAX_STATUS_AGE_DAYS
+        ):
+            raise VerifiedConstructionCoreError(
+                f"v0.13 lifecycle differs: {project_key}"
+            )
+        _v13_source_evidence(
+            source, status["evidence_key"], status["evidence_id"]
+        )
+        location = acceptance.get("location_evidence")
+        if not isinstance(location, dict):
+            raise VerifiedConstructionCoreError(
+                f"v0.13 location evidence differs: {project_key}"
+            )
+        _v13_source_evidence(source, location["key"], location["evidence_id"])
+        sources[project_key] = source
+    _v13_validate_hydrated_crosscheck(contract, acceptances, sources)
+    return {
+        "contract": contract,
+        "capture": capture,
+        "acceptances": sorted(
+            acceptances, key=lambda row: row["project_stable_key"]
+        ),
+        "documents_by_id": documents_by_id,
+        "geometries_by_id": geometries_by_id,
+        "sources": sources,
+    }
+
+
+def _v13_build_delta_rows(contracts: Mapping[str, Any]) -> dict[str, Any]:
+    sources = contracts["sources"]
+    documents = contracts["documents_by_id"]
+    geometries = contracts["geometries_by_id"]
+    evidence_pool: dict[str, dict[str, Any]] = {}
+    evidence_usage: dict[str, dict[str, set[str]]] = defaultdict(
+        lambda: {"roles": set(), "project_ids": set()}
+    )
+    projects: list[dict[str, Any]] = []
+    sites: list[dict[str, Any]] = []
+    for acceptance in contracts["acceptances"]:
+        project_key = acceptance["project_stable_key"]
+        project_id = acceptance["project_entity_id"]
+        campus_key = acceptance["parent_campus_stable_key"]
+        source = sources[project_key]
+        project = source["project"]
+        campus = source["campus"]
+        status = acceptance["status"]
+        location = acceptance["location_evidence"]
+        record = geometries[acceptance["locator_id"]]
+        semantics = record["semantics"]
+        for binding, role in (
+            (status, "physical_status"),
+            (location, "context:source_location_identity"),
+        ):
+            key = binding.get("evidence_key", binding.get("key"))
+            evidence_id = binding["evidence_id"]
+            projected = _v13_source_evidence(source, key, evidence_id)
+            previous = evidence_pool.get(evidence_id)
+            if previous is not None and previous != projected:
+                raise VerifiedConstructionCoreError(
+                    f"v0.13 evidence collision differs: {project_key}"
+                )
+            evidence_pool[evidence_id] = projected
+            evidence_usage[evidence_id]["roles"].add(role)
+            evidence_usage[evidence_id]["project_ids"].add(project_id)
+        geometry_source_id = record["geometry_source_document_id"]
+        for source_id, role in (
+            (geometry_source_id, "geometry"),
+            *(
+                (source_id, "context:geometry_identity")
+                for source_id in record["identity_source_document_ids"]
+            ),
+        ):
+            document = documents[source_id]
+            projected = _v13_capture_evidence(document)
+            evidence_id = projected["evidence_id"]
+            previous = evidence_pool.get(evidence_id)
+            if previous is not None and previous != projected:
+                raise VerifiedConstructionCoreError(
+                    f"v0.13 capture evidence collision differs: {project_key}"
+                )
+            evidence_pool[evidence_id] = projected
+            evidence_usage[evidence_id]["roles"].add(role)
+            evidence_usage[evidence_id]["project_ids"].add(project_id)
+        geometry_document = documents[geometry_source_id]
+        geometry_evidence_id = geometry_document["evidence_id"]
+        longitude, latitude = record["display_anchor"]["coordinates"]
+        geometry = record["geometry"]
+        geometry_json = _json_bytes(geometry).decode().strip()
+        site_id = _stable_id("vcc-site", campus_key)
+        status_date = _calendar_date(
+            status["as_of_date"], "v0.13 status_as_of"
+        )
+        country = project["country"]
+        project_row = {
+            "project_id": project_id,
+            "project_stable_key": project_key,
+            "site_id": site_id,
+            "physical_site_stable_key": campus_key,
+            "name": project["name"],
+            "country": country,
+            "country_iso_a2": V13_COUNTRY_ISO_A2[country],
+            "latitude": latitude,
+            "longitude": longitude,
+            "geometry_json": geometry_json,
+            "geometry_type": geometry["type"],
+            "geometry_source_entity_kind": semantics[
+                "geometry_source_entity_kind"
+            ],
+            "geometry_derivation": semantics["geometry_derivation"],
+            "geometry_method": semantics["geometry_method"],
+            "geometry_scope_class": semantics["geometry_scope_class"],
+            "geometry_authority_class": semantics[
+                "geometry_authority_class"
+            ],
+            "geometry_use_scope": semantics["geometry_use_scope"],
+            "geometry_precision_scope": semantics["precision_scope"],
+            "horizontal_uncertainty_metres": "",
+            "horizontal_uncertainty_unknown_reason": semantics[
+                "horizontal_uncertainty_unknown_reason"
+            ],
+            "geometry_evidence_id": geometry_evidence_id,
+            "last_observed_physical_status": status["value"],
+            "status_as_of": status["as_of_date"],
+            "status_age_days_at_review": (
+                CURRENT_V13_LIFECYCLE_REFERENCE_DATE - status_date
+            ).days,
+            "status_method": status["method"],
+            "status_evidence_id": status["evidence_id"],
+            "verification_posture": _verification_posture(
+                semantics["geometry_authority_class"],
+                semantics["geometry_use_scope"],
+            ),
+            "independent_imagery_verification": "false",
+            "imagery_review_outcome": "not_reviewed_for_core_preview",
+            "development_type": "unknown",
+            "development_type_unknown_reason": (
+                "not selected by the v0.13 geometry batch"
+            ),
+            "operating_model": "unknown",
+            "operating_model_unknown_reason": (
+                "not established by selected evidence"
+            ),
+            "operating_model_evidence_id": "",
+            "workloads_json": "[]",
+            "workload_unknown_reason": "not established by selected evidence",
+            "role_claims_json": "[]",
+            "power_observations_json": "[]",
+            "power_unknown_reason": (
+                "no typed project power observation selected by this batch; "
+                "not estimated"
+            ),
+            "annual_energy_observations_json": "[]",
+            "annual_energy_unknown_reason": (
+                "no scoped annual-energy inputs selected; not estimated"
+            ),
+            "efficiency_observations_json": "[]",
+            "efficiency_unknown_reason": (
+                "no scoped PUE or WUE observation selected"
+            ),
+            "owner": "",
+            "operator": "",
+            "users": "",
+            "tenants": "",
+            "customers": "",
+            "status_source_url": evidence_pool[status["evidence_id"]][
+                "source_url"
+            ],
+            "geometry_source_url": geometry_document["source_url"],
+        }
+        projects.append(project_row)
+        sites.append(
+            {
+                "site_id": site_id,
+                "physical_site_stable_key": campus_key,
+                "name": campus["name"],
+                "country": country,
+                "country_iso_a2": V13_COUNTRY_ISO_A2[country],
+                "latitude": latitude,
+                "longitude": longitude,
+                "geometry_json": geometry_json,
+                "geometry_type": geometry["type"],
+                "geometry_source_entity_kinds_json": _json_bytes(
+                    [semantics["geometry_source_entity_kind"]]
+                )
+                .decode()
+                .strip(),
+                "geometry_derivations_json": _json_bytes(
+                    [semantics["geometry_derivation"]]
+                )
+                .decode()
+                .strip(),
+                "geometry_methods_json": _json_bytes(
+                    [semantics["geometry_method"]]
+                )
+                .decode()
+                .strip(),
+                "geometry_scope_classes_json": _json_bytes(
+                    [semantics["geometry_scope_class"]]
+                )
+                .decode()
+                .strip(),
+                "geometry_authority_classes_json": _json_bytes(
+                    [semantics["geometry_authority_class"]]
+                )
+                .decode()
+                .strip(),
+                "geometry_use_scopes_json": _json_bytes(
+                    [semantics["geometry_use_scope"]]
+                )
+                .decode()
+                .strip(),
+                "geometry_precision_scopes_json": _json_bytes(
+                    [semantics["precision_scope"]]
+                )
+                .decode()
+                .strip(),
+                "horizontal_uncertainty_metres": "",
+                "horizontal_uncertainty_unknown_reason": semantics[
+                    "horizontal_uncertainty_unknown_reason"
+                ],
+                "geometry_evidence_ids_json": _json_bytes(
+                    [geometry_evidence_id]
+                )
+                .decode()
+                .strip(),
+                "project_count": 1,
+                "project_ids_json": _json_bytes([project_id]).decode().strip(),
+                "project_stable_keys_json": _json_bytes([project_key])
+                .decode()
+                .strip(),
+                "statuses_json": _json_bytes([status["value"]])
+                .decode()
+                .strip(),
+                "oldest_status_as_of": status["as_of_date"],
+                "newest_status_as_of": status["as_of_date"],
+                "verification_posture": project_row["verification_posture"],
+                "independent_imagery_verification": "false",
+                "imagery_review_outcomes_json": _json_bytes(
+                    ["not_reviewed_for_core_preview"]
+                )
+                .decode()
+                .strip(),
+            }
+        )
+    evidence_rows = [
+        {
+            **evidence_pool[evidence_id],
+            "roles_json": _json_bytes(sorted(usage["roles"])).decode().strip(),
+            "project_ids_json": _json_bytes(sorted(usage["project_ids"]))
+            .decode()
+            .strip(),
+        }
+        for evidence_id, usage in sorted(evidence_usage.items())
+    ]
+    if (
+        len(projects) != 6
+        or len(sites) != 6
+        or len(evidence_rows) != 16
+        or len({row["project_id"] for row in projects}) != 6
+        or len({row["site_id"] for row in sites}) != 6
+        or len({row["evidence_id"] for row in evidence_rows}) != 16
+    ):
+        raise VerifiedConstructionCoreError("v0.13 delta accounting differs")
+    return {"projects": projects, "sites": sites, "evidence": evidence_rows}
+
+
+def _v13_portable_source_inputs(
+    contracts: Mapping[str, Any],
+) -> list[dict[str, Any]]:
+    base_manifest = _load_json(LEGACY_PREVIEW_V12_DIR / "manifest.json")
+    rows = list(base_manifest["portable_source_inputs"])
+    rows.extend(
+        [
+            {
+                "path": V13_BATCH_CONTRACT.relative_to(ROOT).as_posix(),
+                "bytes": V13_BATCH_CONTRACT.stat().st_size,
+                "sha256": V13_BATCH_CONTRACT_SHA256,
+                "parent_manifests": [],
+            },
+            {
+                "path": V13_GEOMETRY_CAPTURE.relative_to(ROOT).as_posix(),
+                "bytes": V13_GEOMETRY_CAPTURE.stat().st_size,
+                "sha256": V13_GEOMETRY_CAPTURE_SHA256,
+                "parent_manifests": [],
+            },
+            *(
+                {
+                    **acceptance["source_input"],
+                    "parent_manifests": [],
+                }
+                for acceptance in contracts["acceptances"]
+            ),
+        ]
+    )
+    rows.sort(key=lambda row: row["path"])
+    if len(rows) != 89 or len({row["path"] for row in rows}) != 89:
+        raise VerifiedConstructionCoreError("v0.13 portable input count differs")
+    for row in rows:
+        path = _repository_input(
+            row["path"], row["sha256"], "v0.13 portable input"
+        )
+        if path.stat().st_size != row["bytes"]:
+            raise VerifiedConstructionCoreError(
+                "v0.13 portable input byte count differs"
+            )
+    return rows
+
+
+def _v13_review_queue(
+    contracts: Mapping[str, Any],
+) -> list[dict[str, Any]]:
+    rows = []
+    for acceptance in contracts["acceptances"]:
+        record = contracts["geometries_by_id"][acceptance["locator_id"]]
+        semantics = record["semantics"]
+        geometry_document = contracts["documents_by_id"][
+            record["geometry_source_document_id"]
+        ]
+        use_scope = semantics["geometry_use_scope"]
+        target_is_campus = use_scope == "campus_locator"
+        rows.append(
+            {
+                "batch_contract_path": V13_BATCH_CONTRACT.relative_to(
+                    ROOT
+                ).as_posix(),
+                "batch_contract_sha256": V13_BATCH_CONTRACT_SHA256,
+                "decision": "accepted",
+                "decision_reason": semantics["precision_scope"],
+                "geometry_authority_class": semantics[
+                    "geometry_authority_class"
+                ],
+                "geometry_derivation": semantics["geometry_derivation"],
+                "geometry_entity": semantics["geometry_source_entity_kind"],
+                "geometry_evidence_id": geometry_document["evidence_id"],
+                "geometry_evidence_key": geometry_document["source_id"],
+                "geometry_method": semantics["geometry_method"],
+                "geometry_scope_class": semantics["geometry_scope_class"],
+                "geometry_target_entity_id": (
+                    acceptance["parent_campus_entity_id"]
+                    if target_is_campus
+                    else acceptance["project_entity_id"]
+                ),
+                "geometry_target_entity_kind": (
+                    "campus" if target_is_campus else "project"
+                ),
+                "geometry_target_entity_stable_key": (
+                    acceptance["parent_campus_stable_key"]
+                    if target_is_campus
+                    else acceptance["project_stable_key"]
+                ),
+                "geometry_use_scope": use_scope,
+                "horizontal_uncertainty_metres": None,
+                "horizontal_uncertainty_unknown_reason": semantics[
+                    "horizontal_uncertainty_unknown_reason"
+                ],
+                "locator_id": acceptance["locator_id"],
+                "official_boundary": False,
+                "precision_scope": semantics["precision_scope"],
+                "project_to_campus_decision_basis": "explicit_parent",
+                "project_to_campus_relationship_id": acceptance[
+                    "relationship"
+                ]["relationship_id"],
+                "project_to_campus_relationship_type": "project_targets",
+                "rejected_claims": contracts["contract"]["rejected_claims"],
+                "reviewed_at": (
+                    CURRENT_V13_GEOMETRY_IDENTITY_REVIEW_DATE.isoformat()
+                ),
+                "source_input_bytes": acceptance["source_input"]["bytes"],
+                "source_input_path": acceptance["source_input"]["path"],
+                "source_input_sha256": acceptance["source_input"]["sha256"],
+                "source_project_entity_id": acceptance["project_entity_id"],
+                "source_project_stable_key": acceptance[
+                    "project_stable_key"
+                ],
+            }
+        )
+    return rows
+
+
+def _v13_context_evidence_bindings(
+    contracts: Mapping[str, Any],
+) -> list[dict[str, Any]]:
+    semantic_scopes = {
+        (
+            "curated:bitzero-namsskogan-data-center-campus:"
+            "2026-power-infrastructure-expansion"
+        ): (
+            "The selected company update places transformer-foundation work at "
+            "Bitzero's Namsskogan campus. SEC property disclosures bind the "
+            "Bitzero/Exanorth site to property 50/44, and Kartverket supplies "
+            "that parcel only as a campus locator; it is not a transformer, "
+            "building, current-work, or complete-campus footprint."
+        ),
+        (
+            "curated:ezditek-ruh01-pnu-riyadh-data-center:"
+            "phase-1-current-build"
+        ): (
+            "First-party evidence identifies the current Phase 1 build as RUH01 "
+            "at PNU. The separately captured OSM way has exact Ezditek and RUH01 "
+            "tags and is used only as a community-mapped project locator, never "
+            "as official or Phase 1 construction geometry."
+        ),
+        "curated:firstcolo-fra7-rosbach-campus:fra7-current-build": (
+            "The firstcolo construction disclosure identifies FRA7 in Rosbach. "
+            "The separately captured first-party FRA7 factsheet supplies the "
+            "facility coordinate and exact address only as a project locator, "
+            "not a building, parcel, campus, or current-work boundary."
+        ),
+        (
+            "curated:goodman-syd01-macquarie-park-data-centre:"
+            "current-single-building-development"
+        ): (
+            "Goodman's current page binds the SYD01 build to 2-8 Lanceley Place. "
+            "The NSW application independently binds the same applicant, project "
+            "name, address and lots to its reported coordinate, which remains a "
+            "project locator rather than a lot or project boundary."
+        ),
+        "curated:qts-cambois-data-centre-campus:2026-earthworks": (
+            "The QTS page identifies current earthworks at the Cambois campus. "
+            "The government-hosted applicant report supplies only the wider "
+            "campus's approximate centre; its separate Phase A point is rejected "
+            "and no earthworks or project footprint is inferred."
+        ),
+        (
+            "curated:xtx-markets-kajaani-data-center-campus:"
+            "second-data-center"
+        ): (
+            "The Bravida update identifies current work on XTX's second Kajaani "
+            "data center. A Kajaani permit binds XTX's worksite to parcel "
+            "205-7-4-1, and NLS supplies that parcel only as a parent-campus "
+            "locator, not a DC2 or complete-campus boundary."
+        ),
+    }
+    rows = []
+    for acceptance in contracts["acceptances"]:
+        project_key = acceptance["project_stable_key"]
+        location = acceptance["location_evidence"]
+        source_input = acceptance["source_input"]
+        rows.append(
+            {
+                "evidence_id": location["evidence_id"],
+                "evidence_key": location["key"],
+                "project_stable_key": project_key,
+                "semantic_scope": semantic_scopes[project_key],
+                "source_input_path": source_input["path"],
+                "source_input_sha256": source_input["sha256"],
+                "usage_role": "geometry_identity",
+            }
+        )
+    return rows
+
+
+def _v13_map_html(
+    geojson: Mapping[str, Any],
+    sites: Sequence[Mapping[str, Any]],
+    evidence: Sequence[Mapping[str, Any]],
+) -> bytes:
+    document = _v12_map_html(geojson, sites, evidence).decode("utf-8")
+    title = "Verified Construction Core v0.12 preview"
+    if document.count(title) != 1:
+        raise VerifiedConstructionCoreError("v0.13 map title seam differs")
+    document = document.replace(
+        title, "Verified Construction Core v0.13 preview", 1
+    )
+    marker = '. <a href="ATTRIBUTION.txt">Full attribution and source terms</a>.'
+    notices = (
+        ' · <a href="https://www.maanmittauslaitos.fi/en/opendata-licence-cc40">'
+        "National Land Survey of Finland INSPIRE Cadastral Parcels</a> — "
+        "CC BY 4.0 · "
+        '<a href="https://kartkatalog.geonorge.no/api/getdata/'
+        'fd16464c-648a-4576-83e0-231f93d687ad">Kartverket property data</a> — '
+        "CC BY 4.0, © Kartverket · "
+        '<a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> — '
+        "ODbL 1.0, © OpenStreetMap contributors"
+    )
+    if document.count(marker) != 1:
+        raise VerifiedConstructionCoreError(
+            "v0.13 map attribution seam differs"
+        )
+    document = document.replace(marker, f"{notices}{marker}", 1)
+    return document.encode("utf-8")
+
+
+def _v13_schema() -> dict[str, Any]:
+    schema = _v12_schema()
+    schema["format"] = "datacenter-atlas-verified-construction-core-schema-v13"
+    schema["preview_id"] = CURRENT_V13_PREVIEW_ID
+    schema["v0_13_six_site_geometry_batch"] = {
+        "accepted_project_count": 6,
+        "geometry_authority_classes": {
+            "official_source": 5,
+            "community_mapped": 1,
+        },
+        "geometry_types": {"Point": 3, "Polygon": 3},
+        "geometry_use_scopes": {
+            "campus_locator": 3,
+            "project_locator": 3,
+        },
+        "official_boundary": False,
+        "coordinate_semantics": (
+            "Three reviewed source points and three reviewed polygons locate six "
+            "distinct physical sites. The NLS and Kartverket cadastral polygons "
+            "remain parent-campus locators, and the RUH01 OSM building polygon "
+            "remains a community-mapped project locator. No v0.13 geometry is a "
+            "publication-target official boundary or current-work footprint."
+        ),
+        "horizontal_uncertainty_semantics": (
+            "Every v0.13 row leaves horizontal_uncertainty_metres empty because "
+            "the selected source publishes no bounded numeric value applicable "
+            "to the selected geometry; transformed or converted digits do not "
+            "add accuracy."
+        ),
+    }
+    schema["v0_13_temporal_scope"] = {
+        "reviewed_at_semantics": (
+            "Legacy alias for cohort_lifecycle_reference_date, retained for "
+            "preview compatibility; it is not the geometry-identity review date."
+        ),
+        "cohort_lifecycle_reference_date": (
+            CURRENT_V13_LIFECYCLE_REFERENCE_DATE.isoformat()
+        ),
+        "geometry_identity_reviewed_at": (
+            CURRENT_V13_GEOMETRY_IDENTITY_REVIEW_DATE.isoformat()
+        ),
+    }
+    return schema
+
+
+def _v13_readme(report: Mapping[str, Any], legal_notice: str) -> bytes:
+    return f"""# Verified Construction Core v0.13 preview
+
+This tracked, non-final preview contains **{report['selected_physical_site_count']} physical sites**
+and **{report['selected_project_count']} linked projects** in {len(report['country_counts'])}
+countries. Every project retains a dated authoritative physical-status observation and a reviewed
+geometry scope. Five project rows carry official boundaries; the remaining 57 are explicit project
+or campus locators, never construction footprints by implication.
+
+The six-row v0.13 delta adds Goodman SYD01, firstcolo FRA7, XTX Kajaani DC2, QTS Cambois
+earthworks, Bitzero Namsskogan power-infrastructure foundations, and Ezditek RUH01 Phase 1. It
+uses three source points and three source polygons. The XTX and Bitzero cadastral polygons are
+official-source parent-campus locators, not official publication boundaries; the RUH01 building
+polygon is community mapped and remains non-official. QTS uses only the wider-campus approximate
+NGR point, never the separate Phase A point. All v0.13 lifecycle dates are no more than 90 days old
+at the fixed **2026-08-20** cohort cutoff.
+
+The tracked capture retains compact facts, derived geometry, exact raw-source byte counts and
+hashes, and source-specific rights. It does not redistribute the all-rights PDFs or SEC HTML, and it
+does not retain or interpret Esri imagery. The volatile NLS WFS raw-response hash identifies the
+reviewed response only; it is not a promise that a later live response will be byte-identical.
+
+The National Land Survey of Finland parcel geometry is redistributed under CC BY 4.0 with NLS
+attribution. The Kartverket parcel geometry is redistributed under CC BY 4.0 with © Kartverket.
+The RUH01 geometry is derived from OpenStreetMap and is made available under ODbL 1.0 with
+© OpenStreetMap contributors. Applicant, issuer, and company sources remain fact-extraction-only.
+
+Final-release gates remain explicit in `selection-report.json`. The final artifact still requires at
+least 100 physical sites, 40 countries, 50 non-U.S. sites, complete imagery-review outcomes, a
+20-site blind review, and a clean-clone rebuild. Until every gate passes,
+`publishable_as_final` is false.
+
+## Files
+
+- `projects.csv`: one row per selected physical construction project
+- `sites.csv`: one row per distinct physical site
+- `sites.geojson`: reviewed locator or boundary geometry for each physical site
+- `evidence.csv`: locally bound evidence and exact usage roles
+- `selection-report.json`: cohort, provenance, rejection, and release-gate audit
+- `schema.json`: field and v0.13 scope semantics
+- `map.html`: deterministic offline map; no tile requests
+- `manifest.json` and `manifest.sha256`: byte inventory and trust root
+- `ATTRIBUTION.txt`: source-specific attribution and terms
+
+## Legal notice
+
+{legal_notice}
+
+This preview is an evidence product, not legal, surveying, investment, engineering, or operational
+advice. Unknowns remain unknown, locators are not silently promoted to footprints, and no capacity,
+role, workload, energy, efficiency, or lifecycle claim is inferred from geometry. The preview is
+not final while `publishable_as_final` is false.
+""".encode("utf-8")
+
+
+def _v13_attribution(
+    evidence: Sequence[Mapping[str, Any]], legal_notice: str
+) -> bytes:
+    document = _v12_attribution(evidence, legal_notice).decode("utf-8")
+    heading = "Data Center Atlas Verified Construction Core v0.12 preview"
+    if document.count(heading) != 1:
+        raise VerifiedConstructionCoreError(
+            "v0.13 attribution heading seam differs"
+        )
+    document = document.replace(
+        heading,
+        "Data Center Atlas Verified Construction Core v0.13 preview",
+        1,
+    )
+    marker = "Map-provider terms:\n"
+    notice = (
+        "v0.13 geometry notice: Contains data from the National Land Survey "
+        "of Finland INSPIRE Cadastral Parcels (CP) WFS, licensed under the "
+        "National Land Survey open data Attribution CC 4.0 licence; retrieved "
+        "2026-08-23. Kartverket property geometry is CC BY 4.0, © Kartverket. "
+        "RUH01 geometry is © OpenStreetMap contributors and ODbL 1.0. Raw "
+        "all-rights PDFs and issuer HTML are not redistributed or relicensed; "
+        "only compact facts and hashes are retained. No Esri imagery or pixels "
+        "are redistributed or interpreted.\n\n"
+    )
+    if document.count(marker) != 1:
+        raise VerifiedConstructionCoreError(
+            "v0.13 attribution notice seam differs"
+        )
+    document = document.replace(marker, f"{notice}{marker}", 1)
+    return document.encode("utf-8")
+
+
+def _v13_payloads() -> tuple[dict[str, bytes], dict[str, Any], list[dict[str, Any]]]:
+    validate_frozen_v12(LEGACY_PREVIEW_V12_DIR)
+    contracts = _v13_contracts()
+    base_projects = _load_csv(
+        LEGACY_PREVIEW_V12_DIR / "projects.csv", PROJECT_FIELDS
+    )
+    base_sites = _load_csv(LEGACY_PREVIEW_V12_DIR / "sites.csv", SITE_FIELDS)
+    base_evidence = _load_csv(
+        LEGACY_PREVIEW_V12_DIR / "evidence.csv", EVIDENCE_FIELDS
+    )
+    base_report = _load_json(
+        LEGACY_PREVIEW_V12_DIR / "selection-report.json"
+    )
+    delta = _v13_build_delta_rows(contracts)
+    if (
+        {row["project_id"] for row in base_projects}
+        & {row["project_id"] for row in delta["projects"]}
+        or {row["site_id"] for row in base_sites}
+        & {row["site_id"] for row in delta["sites"]}
+        or {row["evidence_id"] for row in base_evidence}
+        & {row["evidence_id"] for row in delta["evidence"]}
+    ):
+        raise VerifiedConstructionCoreError("v0.13 delta identity collision")
+    projects = sorted(
+        [*base_projects, *delta["projects"]],
+        key=lambda row: row["project_stable_key"],
+    )
+    sites = sorted(
+        [*base_sites, *delta["sites"]],
+        key=lambda row: row["physical_site_stable_key"],
+    )
+    evidence = sorted(
+        [*base_evidence, *delta["evidence"]],
+        key=lambda row: row["evidence_id"],
+    )
+    if (
+        len(projects) != 62
+        or len(sites) != 59
+        or len(evidence) != 145
+        or len({row["project_id"] for row in projects}) != 62
+        or len({row["site_id"] for row in sites}) != 59
+        or len({row["evidence_id"] for row in evidence}) != 145
+    ):
+        raise VerifiedConstructionCoreError(
+            "v0.13 cohort count or uniqueness differs"
+        )
+    project_by_id = {row["project_id"]: row for row in projects}
+    site_by_id = {row["site_id"]: row for row in sites}
+    evidence_by_id = {row["evidence_id"]: row for row in evidence}
+    if (
+        any(project_by_id[row["project_id"]] != row for row in base_projects)
+        or any(site_by_id[row["site_id"]] != row for row in base_sites)
+        or any(
+            evidence_by_id[row["evidence_id"]] != row
+            for row in base_evidence
+        )
+    ):
+        raise VerifiedConstructionCoreError("v0.13 inherited row changed")
+    gates = _final_release_gates(sites, projects)
+    gates["clean_clone_rebuild"] = {
+        "passed": True,
+        "reason": (
+            "all current-delta inputs and the frozen base artifact are tracked "
+            "and hash-bound"
+        ),
+    }
+    country_counts = dict(
+        sorted(Counter(row["country"] for row in sites).items())
+    )
+    provenance_decisions = {
+        key: list(base_report["provenance_decisions"][key])
+        for key in (
+            "workload_scope_bindings",
+            "role_bindings",
+            "excluded_source_roles",
+            "context_evidence_bindings",
+        )
+    }
+    provenance_decisions["context_evidence_bindings"].extend(
+        _v13_context_evidence_bindings(contracts)
+    )
+    report = {
+        **base_report,
+        "format": "datacenter-atlas-verified-construction-core-selection-v13",
+        "publishable_as_final": all(
+            gate.get("passed", False) for gate in gates.values()
+        ),
+        "reviewed_at": CURRENT_V13_LIFECYCLE_REFERENCE_DATE.isoformat(),
+        "cohort_lifecycle_reference_date": (
+            CURRENT_V13_LIFECYCLE_REFERENCE_DATE.isoformat()
+        ),
+        "geometry_identity_reviewed_at": (
+            CURRENT_V13_GEOMETRY_IDENTITY_REVIEW_DATE.isoformat()
+        ),
+        "selected_project_count": 62,
+        "selected_physical_site_count": 59,
+        "official_boundary_project_count": 5,
+        "reviewed_site_locator_project_count": 57,
+        "non_selected_source_row_count": 469,
+        "selection_first_failure_counts": V13_SELECTION_FIRST_FAILURE_COUNTS,
+        "country_counts": country_counts,
+        "final_release_gates": gates,
+        "imagery_review_provenance": list(
+            base_report["imagery_review_provenance"]
+        ),
+        "provenance_decisions": provenance_decisions,
+        "reviewed_overlay_queue": [
+            *base_report["reviewed_overlay_queue"],
+            *_v13_review_queue(contracts),
+        ],
+        "six_site_geometry_batch": {
+            "accepted_project_count": 6,
+            "accepted_physical_site_count": 6,
+            "batch_contract_path": V13_BATCH_CONTRACT.relative_to(
+                ROOT
+            ).as_posix(),
+            "batch_contract_sha256": V13_BATCH_CONTRACT_SHA256,
+            "capture_path": V13_GEOMETRY_CAPTURE.relative_to(ROOT).as_posix(),
+            "capture_sha256": V13_GEOMETRY_CAPTURE_SHA256,
+            "capture_source_document_count": 11,
+            "geometry_authority_classes": {
+                "official_source": 5,
+                "community_mapped": 1,
+            },
+            "geometry_types": {"Point": 3, "Polygon": 3},
+            "geometry_use_scopes": {
+                "campus_locator": 3,
+                "project_locator": 3,
+            },
+            "official_boundary": False,
+            "project_stable_keys": sorted(V13_PROJECT_KEYS),
+            "rejected_claims": contracts["contract"]["rejected_claims"],
+        },
+    }
+    delta_by_key = {
+        row["project_stable_key"]: row for row in delta["projects"]
+    }
+    if (
+        len(country_counts) != 27
+        or country_counts.get("United States") != 13
+        or country_counts.get("Saudi Arabia") != 1
+        or sum(row["country_iso_a2"] != "US" for row in sites) != 46
+        or sum(_is_official_boundary(row) for row in projects) != 5
+        or sum(_is_reviewed_locator(row) for row in projects) != 57
+        or sum(V13_SELECTION_FIRST_FAILURE_COUNTS.values()) != 531
+        or gates["imagery_outcomes_complete"]
+        != {"actual": 10, "required": 62, "passed": False}
+        or len(provenance_decisions["context_evidence_bindings"]) != 20
+        or len(provenance_decisions["excluded_source_roles"]) != 12
+        or len(report["reviewed_overlay_queue"]) != 49
+        or set(delta_by_key) != V13_PROJECT_KEYS
+        or any(
+            row["geometry_use_scope"]
+            not in {"campus_locator", "project_locator"}
+            or row["workloads_json"] != "[]"
+            or row["role_claims_json"] != "[]"
+            or row["power_observations_json"] != "[]"
+            or row["annual_energy_observations_json"] != "[]"
+            or row["efficiency_observations_json"] != "[]"
+            or row["operating_model"] != "unknown"
+            or row["independent_imagery_verification"] != "false"
+            or any(
+                row[field]
+                for field in (
+                    "owner",
+                    "operator",
+                    "users",
+                    "tenants",
+                    "customers",
+                )
+            )
+            for row in delta_by_key.values()
+        )
+    ):
+        raise VerifiedConstructionCoreError("v0.13 expected accounting differs")
+    geojson = _geojson(sites)
+    geojson["name"] = (
+        "Data Center Atlas Verified Construction Core v0.13 preview"
+    )
+    delta_features = {
+        row["properties"]["physical_site_stable_key"]: row
+        for row in geojson["features"]
+        if row["properties"]["physical_site_stable_key"]
+        in {
+            acceptance["parent_campus_stable_key"]
+            for acceptance in contracts["acceptances"]
+        }
+    }
+    if (
+        len(delta_features) != 6
+        or Counter(
+            feature["geometry"]["type"]
+            for feature in delta_features.values()
+        )
+        != {"Point": 3, "Polygon": 3}
+    ):
+        raise VerifiedConstructionCoreError(
+            "v0.13 geometry publication differs"
+        )
+    legal_notice = _v10_city_legal_notice_from_base()
+    payloads = {
+        "ATTRIBUTION.txt": _v13_attribution(evidence, legal_notice),
+        "README.md": _v13_readme(report, legal_notice),
+        "evidence.csv": _csv_bytes(evidence, EVIDENCE_FIELDS),
+        "map.html": _v13_map_html(geojson, sites, evidence),
+        "projects.csv": _csv_bytes(projects, PROJECT_FIELDS),
+        "schema.json": _json_bytes(_v13_schema()),
+        "selection-report.json": _json_bytes(report),
+        "sites.csv": _csv_bytes(sites, SITE_FIELDS),
+        "sites.geojson": _json_bytes(geojson),
+    }
+    portable = _v13_portable_source_inputs(contracts)
+    return payloads, report, portable
+
+
+def _v13_manifest(
+    payloads: Mapping[str, bytes],
+    report: Mapping[str, Any],
+    portable: Sequence[Mapping[str, Any]],
+) -> dict[str, Any]:
+    return {
+        "format": "datacenter-atlas-verified-construction-core-preview-v13",
+        "preview_id": CURRENT_V13_PREVIEW_ID,
+        "release_status": "preview",
+        "publishable_as_final": report["publishable_as_final"],
+        "base_preview_id": CURRENT_V12_PREVIEW_ID,
+        "base_preview_manifest_sha256": LEGACY_PREVIEW_V12_MANIFEST_SHA256,
+        "base_preview_commit": LEGACY_PREVIEW_V12_COMMIT,
+        "source_release_id": SOURCE_RELEASE_ID,
+        "source_release_manifest_path": (
+            "releases/2026-07-22-open-seed-v97/manifest.json"
+        ),
+        "source_release_manifest_sha256": (
+            "0a6f41f4239944df27f2ce70e81a089b91cec401f154bbae28412b27a4d00fdd"
+        ),
+        "definition_paths": {
+            "six_site_geometry_batch": V13_BATCH_CONTRACT.relative_to(
+                ROOT
+            ).as_posix()
+        },
+        "six_site_geometry_batch_sha256": V13_BATCH_CONTRACT_SHA256,
+        "geometry_capture": {
+            "path": V13_GEOMETRY_CAPTURE.relative_to(ROOT).as_posix(),
+            "bytes": V13_GEOMETRY_CAPTURE.stat().st_size,
+            "sha256": V13_GEOMETRY_CAPTURE_SHA256,
+            "evidence_ids": sorted(V13_CAPTURE_EVIDENCE_IDS),
+        },
+        "portable_source_inputs": list(portable),
+        "reviewed_at": CURRENT_V13_LIFECYCLE_REFERENCE_DATE.isoformat(),
+        "cohort_lifecycle_reference_date": (
+            CURRENT_V13_LIFECYCLE_REFERENCE_DATE.isoformat()
+        ),
+        "geometry_identity_reviewed_at": (
+            CURRENT_V13_GEOMETRY_IDENTITY_REVIEW_DATE.isoformat()
+        ),
+        "counts": {
+            "physical_sites": 59,
+            "projects": 62,
+            "evidence": 145,
+            "countries": 27,
+            "non_us_sites": 46,
+            "official_boundary_projects": 5,
+            "reviewed_site_locator_projects": 57,
+        },
+        "files": {
+            name: {"bytes": len(payload), "sha256": _sha256_bytes(payload)}
+            for name, payload in sorted(payloads.items())
+        },
+    }
+
+
+def build_preview(output_dir: Path = CURRENT_V13_PREVIEW_DIR) -> dict[str, Any]:
+    """Build v0.13 from byte-frozen v0.12 and tracked hash-bound inputs."""
+    output_dir = Path(output_dir)
+    if output_dir.exists():
+        raise VerifiedConstructionCoreError(f"refusing to overwrite {output_dir}")
+    payloads, report, portable = _v13_payloads()
+    manifest = _v13_manifest(payloads, report, portable)
+    manifest_bytes = _json_bytes(manifest)
+    complete = {
+        **payloads,
+        "manifest.json": manifest_bytes,
+        "manifest.sha256": (
+            f"{_sha256_bytes(manifest_bytes)}  manifest.json\n".encode()
+        ),
+    }
+    output_dir.parent.mkdir(parents=True, exist_ok=True)
+    stage = Path(
+        tempfile.mkdtemp(prefix=f".{output_dir.name}.", dir=output_dir.parent)
+    )
+    try:
+        for name, payload in complete.items():
+            with (stage / name).open("xb") as handle:
+                handle.write(payload)
+        os.replace(stage, output_dir)
+    except Exception:
+        shutil.rmtree(stage, ignore_errors=True)
+        raise
+    validate_preview(output_dir)
+    return manifest
+
+
+def _validate_v13_preview(path: Path) -> dict[str, Any]:
+    path = Path(path)
+    if path.is_symlink() or not path.is_dir():
+        raise VerifiedConstructionCoreError("v0.13 preview directory differs")
+    manifest_path = path / "manifest.json"
+    checksum_path = path / "manifest.sha256"
+    if (
+        manifest_path.is_symlink()
+        or not manifest_path.is_file()
+        or checksum_path.is_symlink()
+        or not checksum_path.is_file()
+    ):
+        raise VerifiedConstructionCoreError(
+            "v0.13 manifest trust root differs"
+        )
+    manifest_bytes = manifest_path.read_bytes()
+    if checksum_path.read_bytes() != (
+        f"{_sha256_bytes(manifest_bytes)}  manifest.json\n".encode()
+    ):
+        raise VerifiedConstructionCoreError("v0.13 manifest checksum differs")
+    manifest = _load_json(manifest_path)
+    files = manifest.get("files") if isinstance(manifest, dict) else None
+    if (
+        not isinstance(manifest, dict)
+        or manifest.get("format")
+        != "datacenter-atlas-verified-construction-core-preview-v13"
+        or manifest.get("preview_id") != CURRENT_V13_PREVIEW_ID
+        or manifest.get("release_status") != "preview"
+        or type(manifest.get("publishable_as_final")) is not bool
+        or manifest["publishable_as_final"] is not False
+        or manifest.get("base_preview_manifest_sha256")
+        != LEGACY_PREVIEW_V12_MANIFEST_SHA256
+        or manifest.get("base_preview_commit") != LEGACY_PREVIEW_V12_COMMIT
+        or not isinstance(files, dict)
+    ):
+        raise VerifiedConstructionCoreError("v0.13 manifest files differ")
+    expected_inventory = set(files) | {"manifest.json", "manifest.sha256"}
+    if {item.name for item in path.iterdir()} != expected_inventory:
+        raise VerifiedConstructionCoreError("v0.13 preview inventory differs")
+    for name, metadata in files.items():
+        member = path / name
+        if (
+            Path(name).name != name
+            or member.is_symlink()
+            or not member.is_file()
+            or type(metadata.get("bytes")) is not int
+            or member.stat().st_size != metadata["bytes"]
+            or _sha256_file(member) != metadata.get("sha256")
+        ):
+            raise VerifiedConstructionCoreError(
+                f"v0.13 member differs: {name}"
+            )
+    payloads, report, portable = _v13_payloads()
+    if manifest != _v13_manifest(payloads, report, portable):
+        raise VerifiedConstructionCoreError("v0.13 manifest semantics differ")
+    for name, expected in payloads.items():
+        if (path / name).read_bytes() != expected:
+            raise VerifiedConstructionCoreError(
+                f"v0.13 generated member differs: {name}"
+            )
+    schema = _load_json(path / "schema.json")
+    batch_schema = schema.get("v0_13_six_site_geometry_batch", {})
+    if (
+        batch_schema.get("accepted_project_count") != 6
+        or batch_schema.get("official_boundary") is not False
+        or batch_schema.get("geometry_use_scopes")
+        != {"campus_locator": 3, "project_locator": 3}
+    ):
+        raise VerifiedConstructionCoreError(
+            "v0.13 geometry schema seam differs"
+        )
+    notices = (
+        b"National Land Survey",
+        b"Kartverket",
+        b"OpenStreetMap",
+    )
+    for name in ("ATTRIBUTION.txt", "README.md", "map.html"):
+        content = (path / name).read_bytes()
+        if any(notice not in content for notice in notices):
+            raise VerifiedConstructionCoreError(
+                f"v0.13 attribution notice missing from {name}"
+            )
+    projects = {
+        row["project_stable_key"]: row
+        for row in _load_csv(path / "projects.csv", PROJECT_FIELDS)
+        if row["project_stable_key"] in V13_PROJECT_KEYS
+    }
+    if set(projects) != V13_PROJECT_KEYS:
+        raise VerifiedConstructionCoreError("v0.13 project inventory differs")
+    contracts = _v13_contracts()
+    evidence = {
+        row["evidence_id"]: row
+        for row in _load_csv(path / "evidence.csv", EVIDENCE_FIELDS)
+    }
+    for acceptance in contracts["acceptances"]:
+        project_key = acceptance["project_stable_key"]
+        project = projects[project_key]
+        record = contracts["geometries_by_id"][acceptance["locator_id"]]
+        expected = V13_GEOMETRY_EXPECTATIONS[acceptance["locator_id"]]
+        semantics = record["semantics"]
+        geometry_document = contracts["documents_by_id"][
+            record["geometry_source_document_id"]
+        ]
+        geometry_evidence = evidence.get(geometry_document["evidence_id"])
+        if (
+            project["geometry_type"] != expected["geometry_type"]
+            or _sha256_bytes(
+                _json_bytes(
+                    _parse_json_field(
+                        project["geometry_json"], "v0.13 project geometry"
+                    )
+                )
+            )
+            != expected["geometry_sha256"]
+            or project["geometry_source_entity_kind"]
+            != expected["geometry_source_entity_kind"]
+            or project["geometry_derivation"]
+            != expected["geometry_derivation"]
+            or project["geometry_method"] != expected["geometry_method"]
+            or project["geometry_scope_class"]
+            != expected["geometry_scope_class"]
+            or project["geometry_authority_class"]
+            != expected["geometry_authority_class"]
+            or project["geometry_use_scope"]
+            != expected["geometry_use_scope"]
+            or project["geometry_precision_scope"]
+            != semantics["precision_scope"]
+            or project["horizontal_uncertainty_metres"]
+            or project["independent_imagery_verification"] != "false"
+            or project["verification_posture"]
+            != "recent_authoritative_physical_observation_plus_reviewed_site_locator"
+            or geometry_evidence is None
+            or "geometry"
+            not in _parse_json_field(
+                geometry_evidence["roles_json"], "v0.13 geometry roles"
+            )
+            or project["project_id"]
+            not in _parse_json_field(
+                geometry_evidence["project_ids_json"],
+                "v0.13 geometry projects",
+            )
+            or any(
+                project[field] != "[]"
+                for field in (
+                    "workloads_json",
+                    "role_claims_json",
+                    "power_observations_json",
+                    "annual_energy_observations_json",
+                    "efficiency_observations_json",
+                )
+            )
+            or any(
+                project[field]
+                for field in (
+                    "owner",
+                    "operator",
+                    "users",
+                    "tenants",
+                    "customers",
+                )
+            )
+        ):
+            raise VerifiedConstructionCoreError(
+                f"v0.13 project semantic scope differs: {project_key}"
+            )
+    base_projects = {
+        row["project_id"]: row
+        for row in _load_csv(
+            LEGACY_PREVIEW_V12_DIR / "projects.csv", PROJECT_FIELDS
+        )
+    }
+    current_projects = {
+        row["project_id"]: row
+        for row in _load_csv(path / "projects.csv", PROJECT_FIELDS)
+    }
+    if any(current_projects[row_id] != row for row_id, row in base_projects.items()):
+        raise VerifiedConstructionCoreError("v0.13 inherited project changed")
+    return manifest
+
+
+def validate_preview(path: Path = CURRENT_V13_PREVIEW_DIR) -> dict[str, Any]:
+    """Validate current v0.13 or dispatch v0.1-v0.12 via frozen seams."""
+    path = Path(path)
+    manifest_path = path / "manifest.json"
+    if (
+        path.is_symlink()
+        or not path.is_dir()
+        or manifest_path.is_symlink()
+        or not manifest_path.is_file()
+    ):
+        raise VerifiedConstructionCoreError("preview manifest trust root differs")
+    manifest = _load_json(manifest_path)
+    preview_id = manifest.get("preview_id") if isinstance(manifest, dict) else None
+    if preview_id == CURRENT_V13_PREVIEW_ID:
+        return _validate_v13_preview(path)
+    return _validate_v12_preview_dispatch(path)
+
+
+__all__ = [
+    *__all__,
+    "CURRENT_V13_PREVIEW_DIR",
+    "CURRENT_V13_PREVIEW_ID",
+    "CURRENT_V13_GEOMETRY_IDENTITY_REVIEW_DATE",
+    "CURRENT_V13_LIFECYCLE_REFERENCE_DATE",
+    "CURRENT_V13_REVIEW_DATE",
+    "LEGACY_PREVIEW_V12_COMMIT",
+    "LEGACY_PREVIEW_V12_DIR",
+    "LEGACY_PREVIEW_V12_MANIFEST_SHA256",
+    "V13_BATCH_CONTRACT",
+    "V13_BATCH_CONTRACT_SHA256",
+    "V13_CAPTURE_EVIDENCE_IDS",
+    "V13_GEOMETRY_CAPTURE",
+    "V13_GEOMETRY_CAPTURE_SHA256",
+    "V13_PROJECT_KEYS",
+    "validate_frozen_v12",
+]

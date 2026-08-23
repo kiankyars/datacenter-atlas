@@ -278,9 +278,9 @@ class VerifiedConstructionCoreV012Tests(unittest.TestCase):
                     "_v12_hydrated_crosscheck_available",
                     return_value=False,
                 ):
-                    verified_core.build_preview(rebuilt)
+                    verified_core._build_v12_preview(rebuilt)
             else:
-                verified_core.build_preview(rebuilt)
+                verified_core._build_v12_preview(rebuilt)
             self.assertEqual(
                 {path.name for path in rebuilt.iterdir()},
                 {path.name for path in CURRENT_V12_PREVIEW_DIR.iterdir()},
