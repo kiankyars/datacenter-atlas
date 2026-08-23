@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build v0.10 or validate any supported Verified Construction Core preview."""
+"""Build v0.11 or validate any supported Verified Construction Core preview."""
 
 from __future__ import annotations
 
@@ -13,7 +13,7 @@ if __package__ in {None, ""}:
     sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from datacenter_atlas.verified_construction_core import (  # noqa: E402
-    CURRENT_V10_PREVIEW_DIR,
+    CURRENT_V11_PREVIEW_DIR,
     build_preview,
     validate_preview,
 )
@@ -24,13 +24,13 @@ def main() -> int:
     parser.add_argument(
         "--output-dir",
         type=Path,
-        default=CURRENT_V10_PREVIEW_DIR,
-        help="preview directory (default: current v0.10 artifact path)",
+        default=CURRENT_V11_PREVIEW_DIR,
+        help="preview directory (default: current v0.11 artifact path)",
     )
     parser.add_argument(
         "--validate-only",
         action="store_true",
-        help="validate an existing v0.1-v0.10 preview without the ignored source corpus",
+        help="validate an existing v0.1-v0.11 preview without the ignored source corpus",
     )
     arguments = parser.parse_args()
     if arguments.validate_only:

@@ -23,6 +23,8 @@ from datacenter_atlas.verified_construction_core import (
     CURRENT_V09_PREVIEW_ID,
     CURRENT_V10_PREVIEW_DIR,
     CURRENT_V10_PREVIEW_ID,
+    CURRENT_V11_PREVIEW_DIR,
+    CURRENT_V11_PREVIEW_ID,
     LEGACY_PREVIEW_V01_DIR,
     LEGACY_PREVIEW_V02_DIR,
     LEGACY_PREVIEW_V03_DIR,
@@ -41,6 +43,7 @@ from datacenter_atlas.verified_construction_core import (
     load_current_v08_profile,
     load_current_v09_profile,
     load_current_v10_profile,
+    load_current_v11_profile,
     validate_frozen_preview,
     validate_frozen_v01,
     validate_frozen_v02,
@@ -50,6 +53,7 @@ from datacenter_atlas.verified_construction_core import (
     validate_frozen_v06,
     validate_frozen_v07,
     validate_frozen_v09,
+    validate_frozen_v10,
     validate_preview as validate_preview_dispatch,
 )
 
@@ -4393,7 +4397,7 @@ class VerifiedConstructionCorePreviewTest(unittest.TestCase):
             with self.assertRaisesRegex(
                 VerifiedConstructionCoreError, "v0.10 manifest files differ"
             ):
-                validate_preview_dispatch(altered)
+                verified_core._validate_v10_preview_dispatch(altered)
 
         original_is_file = Path.is_file
         present = verified_core.ROOT / (
@@ -4427,12 +4431,414 @@ class VerifiedConstructionCorePreviewTest(unittest.TestCase):
                     "_v10_hydrated_crosscheck_available",
                     return_value=hydrated,
                 ):
-                    verified_core.build_preview(rebuilt)
+                    verified_core._build_v10_preview(rebuilt)
                 self.assertEqual(
                     {path.name for path in rebuilt.iterdir()},
                     {path.name for path in CURRENT_V10_PREVIEW_DIR.iterdir()},
                 )
                 for expected in CURRENT_V10_PREVIEW_DIR.iterdir():
+                    self.assertEqual(
+                        (rebuilt / expected.name).read_bytes(),
+                        expected.read_bytes(),
+                        expected.name,
+                    )
+
+    def test_v11_profile_counts_evidence_scope_and_attribution(self) -> None:
+        self.assertEqual(CURRENT_V11_PREVIEW_ID, "2026-08-20-preview-v0.11")
+        self.assertEqual(CURRENT_V11_PREVIEW_DIR.name, CURRENT_V11_PREVIEW_ID)
+        pins = {
+            field: hashlib.sha256(path.read_bytes()).hexdigest()
+            for field, path in verified_core.CURRENT_V11_DEFINITION_PATHS
+        }
+        profile = load_current_v11_profile(pins)
+        self.assertEqual(profile.base_preview_id, CURRENT_V10_PREVIEW_ID)
+        self.assertEqual(
+            profile.reviewed_at,
+            verified_core.CURRENT_V11_LIFECYCLE_REFERENCE_DATE,
+        )
+        self.assertEqual(
+            validate_frozen_v10(CURRENT_V10_PREVIEW_DIR)["preview_id"],
+            CURRENT_V10_PREVIEW_ID,
+        )
+        manifest = validate_preview_dispatch(CURRENT_V11_PREVIEW_DIR)
+        self.assertEqual(manifest["reviewed_at"], "2026-08-20")
+        self.assertEqual(
+            manifest["cohort_lifecycle_reference_date"], "2026-08-20"
+        )
+        self.assertEqual(
+            manifest["geometry_identity_reviewed_at"], "2026-08-23"
+        )
+        report = json.loads(
+            (CURRENT_V11_PREVIEW_DIR / "selection-report.json").read_text()
+        )
+        self.assertEqual(report["reviewed_at"], "2026-08-20")
+        self.assertEqual(
+            report["cohort_lifecycle_reference_date"], "2026-08-20"
+        )
+        self.assertEqual(
+            report["geometry_identity_reviewed_at"], "2026-08-23"
+        )
+        self.assertEqual(
+            manifest["counts"],
+            {
+                "physical_sites": 48,
+                "projects": 51,
+                "evidence": 120,
+                "countries": 26,
+                "non_us_sites": 40,
+                "official_boundary_projects": 5,
+                "reviewed_site_locator_projects": 46,
+            },
+        )
+        self.assertEqual(len(manifest["portable_source_inputs"]), 74)
+        projects = {
+            row["project_stable_key"]: row
+            for row in _rows_from(CURRENT_V11_PREVIEW_DIR, "projects.csv")
+        }
+        inherited = {
+            row["project_stable_key"]
+            for row in _rows_from(CURRENT_V10_PREVIEW_DIR, "projects.csv")
+        }
+        self.assertEqual(set(projects) - inherited, {verified_core.V11_PROJECT_KEY})
+        iij = projects[verified_core.V11_PROJECT_KEY]
+        self.assertEqual(iij["geometry_source_entity_kind"], "address_area")
+        self.assertEqual(iij["geometry_type"], "Polygon")
+        self.assertEqual(iij["geometry_authority_class"], "official_source")
+        self.assertEqual(iij["geometry_use_scope"], "campus_locator")
+        self.assertEqual(iij["last_observed_physical_status"], "under_construction")
+        self.assertEqual(iij["status_as_of"], "2026-06-25")
+        self.assertEqual(iij["status_age_days_at_review"], "56")
+        self.assertEqual(iij["independent_imagery_verification"], "false")
+        self.assertEqual(iij["workloads_json"], "[]")
+        self.assertEqual(iij["role_claims_json"], "[]")
+        self.assertEqual(iij["operating_model"], "unknown")
+        self.assertTrue(
+            all(not iij[field] for field in ("owner", "operator", "users", "tenants", "customers"))
+        )
+        power = json.loads(iij["power_observations_json"])
+        self.assertEqual(len(power), 1)
+        self.assertEqual(
+            {
+                field: power[0][field]
+                for field in ("metric", "stage", "low", "base", "high", "evidence_id")
+            },
+            {
+                "metric": "grid_connection_mw",
+                "stage": "planned",
+                "low": 10.0,
+                "base": 10.0,
+                "high": 10.0,
+                "evidence_id": "35d502eb-803a-5c40-8dc1-f0825babb831",
+            },
+        )
+        expected_roles = {
+            "35d502eb-803a-5c40-8dc1-f0825babb831": [
+                "context:project_and_campus_identity",
+                "typed_metric:grid_connection_mw",
+            ],
+            "4bd37265-9c6e-556b-8899-8015ffc11cae": ["physical_status"],
+            verified_core.V11_GEOMETRY_EVIDENCE_ID: ["geometry"],
+            verified_core.V11_IDENTITY_EVIDENCE_ID: [
+                "context:geometry_identity"
+            ],
+        }
+        evidence = {
+            row["evidence_id"]: json.loads(row["roles_json"])
+            for row in _rows_from(CURRENT_V11_PREVIEW_DIR, "evidence.csv")
+            if row["evidence_id"] in expected_roles
+        }
+        self.assertEqual(evidence, expected_roles)
+        processing = (
+            "Portal Site of Official Statistics of Japan (e-Stat); Statistics "
+            "Bureau of Japan; selected Shapefile feature converted to GeoJSON by "
+            "Data Center Atlas"
+        )
+        for name in ("README.md", "ATTRIBUTION.txt", "map.html"):
+            self.assertIn(
+                processing,
+                (CURRENT_V11_PREVIEW_DIR / name).read_text(encoding="utf-8"),
+            )
+        attribution = (CURRENT_V11_PREVIEW_DIR / "ATTRIBUTION.txt").read_text()
+        self.assertIn("https://www.e-stat.go.jp/terms-of-use", attribution)
+        self.assertIn("https://www.e-stat.go.jp/gis-terms", attribution)
+        schema = json.loads((CURRENT_V11_PREVIEW_DIR / "schema.json").read_text())
+        source_kind = next(
+            row
+            for row in schema["tables"]["projects.csv"]["fields"]
+            if row["name"] == "geometry_source_entity_kind"
+        )
+        self.assertEqual(
+            source_kind["allowed_values"],
+            ["project", "campus", "facility", "building", "address_area"],
+        )
+        derivation = next(
+            row
+            for row in schema["tables"]["projects.csv"]["fields"]
+            if row["name"] == "geometry_derivation"
+        )
+        self.assertIn(
+            "official_coordinate_transform", derivation["allowed_values"]
+        )
+        self.assertEqual(
+            schema["map"]["derived_from"],
+            ["sites.geojson", "sites.csv", "evidence.csv"],
+        )
+        project_rows = _rows_from(CURRENT_V11_PREVIEW_DIR, "projects.csv")
+        for field in schema["tables"]["projects.csv"]["fields"]:
+            allowed = field.get("allowed_values")
+            if allowed is None:
+                continue
+            for row in project_rows:
+                value: object = row[field["name"]]
+                if value == "":
+                    continue
+                if field["logical_type"] == "boolean":
+                    value = value == "true"
+                self.assertIn(value, allowed, field["name"])
+        map_document = (CURRENT_V11_PREVIEW_DIR / "map.html").read_text()
+        self.assertNotIn("function point(g)", map_document)
+        self.assertNotIn("point(f.geometry)", map_document)
+        anchor_json = map_document.split("const displayAnchors=", 1)[1].split(
+            ";const svg=", 1
+        )[0]
+        anchors = json.loads(anchor_json)
+        features = {
+            feature["properties"]["site_id"]: feature
+            for feature in json.loads(
+                (CURRENT_V11_PREVIEW_DIR / "sites.geojson").read_text()
+            )["features"]
+        }
+        self.assertEqual(set(anchors), set(features))
+        self.assertEqual(
+            anchors["vcc-site-38f7e55e7e55aaed6c27"],
+            [140.099553, 35.799113],
+        )
+        for site_id, feature in features.items():
+            if feature["geometry"]["type"] == "Point":
+                self.assertEqual(anchors[site_id], feature["geometry"]["coordinates"])
+        self.assertEqual(
+            schema["v0_11_temporal_scope"],
+            {
+                "reviewed_at_semantics": (
+                    "Legacy alias for cohort_lifecycle_reference_date, retained "
+                    "for preview compatibility; it is not the geometry-identity "
+                    "review date."
+                ),
+                "cohort_lifecycle_reference_date": "2026-08-20",
+                "geometry_identity_reviewed_at": "2026-08-23",
+            },
+        )
+
+    def test_v11_inherits_v10_rows_and_geojson_features_without_changes(self) -> None:
+        for filename, key in (
+            ("projects.csv", "project_id"),
+            ("sites.csv", "site_id"),
+            ("evidence.csv", "evidence_id"),
+        ):
+            inherited = {
+                row[key]: row
+                for row in _rows_from(CURRENT_V10_PREVIEW_DIR, filename)
+            }
+            current = {
+                row[key]: row
+                for row in _rows_from(CURRENT_V11_PREVIEW_DIR, filename)
+            }
+            self.assertEqual(
+                {row_id: current[row_id] for row_id in inherited}, inherited
+            )
+        base_geojson = json.loads(
+            (CURRENT_V10_PREVIEW_DIR / "sites.geojson").read_text()
+        )
+        current_geojson = json.loads(
+            (CURRENT_V11_PREVIEW_DIR / "sites.geojson").read_text()
+        )
+        inherited_features = {
+            feature["properties"]["site_id"]: feature
+            for feature in base_geojson["features"]
+        }
+        current_features = {
+            feature["properties"]["site_id"]: feature
+            for feature in current_geojson["features"]
+        }
+        self.assertEqual(
+            {
+                site_id: current_features[site_id]
+                for site_id in inherited_features
+            },
+            inherited_features,
+        )
+
+    def test_v11_iij_estat_replay_scope_and_rights_fail_closed(self) -> None:
+        contracts = verified_core._v11_contracts()
+        bridge = contracts["bridge"]
+        self.assertEqual(bridge["reviewed_at"], "2026-08-23")
+        for contract_name in ("reviewed", "overlays", "provenance", "imagery"):
+            self.assertEqual(contracts[contract_name]["reviewed_as_of"], "2026-08-23")
+        self.assertEqual(contracts["overlays"]["overlays"][0]["reviewed_at"], "2026-08-23")
+        self.assertTrue(
+            all(
+                row["cohort_lifecycle_reference_date"] == "2026-08-20"
+                for row in bridge["identity_bridge_evidence"]
+            )
+        )
+        fact = bridge["identity_bridge_evidence"][0]["fact_payload"]
+        selection = fact["selection"]
+        self.assertEqual(selection["shapefile_feature_index_zero_based"], 47)
+        self.assertEqual(selection["shp_record_number_one_based"], 48)
+        self.assertEqual(selection["point_count_including_closure"], 28)
+        self.assertEqual(
+            selection["dbf_selected_row_sha256"],
+            "7bcd702b0539b4e794fef281e6bb8fe337b22bcf13adcf1b5c60de2258a28988",
+        )
+        self.assertEqual(
+            selection["shp_record_sha256"],
+            "e4511eae24936f192c293ff405ccaede6349c7290ec54427c3a93f185c3acf0f",
+        )
+        self.assertEqual(
+            fact["members"],
+            {
+                "r2ka12232.shp": {
+                    "bytes": 149660,
+                    "sha256": "bab6b51c533b99e0192fa86b9bb582e04ff29ba614c52c31e71f38c42413b805",
+                },
+                "r2ka12232.shx": {
+                    "bytes": 580,
+                    "sha256": "f03f25ddc3b2bb984661bad1e7b9010f797ab87492c059f37610b59ca52c49a8",
+                },
+                "r2ka12232.dbf": {
+                    "bytes": 18422,
+                    "sha256": "1f8e326325a52d30944a7c393074f0f8e340a3a5b2c06ce2ac7ed0d758847278",
+                },
+                "r2ka12232.prj": {
+                    "bytes": 147,
+                    "sha256": "7f9245352d5795209fde0ba46668aa9db40a41f80f0986ac5f72b036914a6a9d",
+                },
+            },
+        )
+        geometry = bridge["geometry_entity"]["geometry"]
+        self.assertEqual(geometry, fact["geometry"])
+        self.assertEqual(geometry["type"], "Polygon")
+        self.assertEqual(geometry["coordinates"][0][0], geometry["coordinates"][0][-1])
+        replay = bridge["geometry_capture"]["replay_contract"]
+        self.assertEqual(
+            replay["selected_feature_fact_canonical"],
+            bridge["identity_bridge_evidence"][0]["fact_payload_canonical"],
+        )
+        self.assertEqual(
+            replay["geometry_canonical"],
+            {
+                "bytes": len(_canonical_json(geometry)),
+                "sha256": hashlib.sha256(_canonical_json(geometry)).hexdigest(),
+                "canonicalization": (
+                    "UTF-8 JSON, sorted keys, compact separators, one trailing LF"
+                ),
+            },
+        )
+        decision = bridge["review_decision"]
+        self.assertIs(decision["official_boundary"], False)
+        self.assertEqual(decision["geometry_use_scope"], "campus_locator")
+        self.assertIn("no address point or point-in-polygon containment", decision["decision_basis"])
+        self.assertIn("55,117.019 square metres", decision["precision_scope"])
+        self.assertIsNone(bridge["geometry_release"])
+        self.assertIn(
+            "Source-published statistical-boundary shape center",
+            bridge["geometry_entity"]["representative_point"]["method"],
+        )
+        self.assertEqual(
+            bridge["identity_bridge_evidence"][1]["fact_payload"]["exact_rows"][1]["binding"],
+            "false_match_guardrail_only",
+        )
+        self.assertEqual(
+            bridge["geometry_capture"]["rights"]["processing_notice"],
+            "Selected Shapefile feature converted to GeoJSON by Data Center Atlas.",
+        )
+
+        overlay = json.loads(verified_core.V11_OVERLAY_DEFINITION.read_text())
+        overlay["overlays"][0]["official_boundary"] = 0
+        original_load = verified_core._load_json
+
+        def load_overlay(path: Path) -> object:
+            if Path(path).resolve() == verified_core.V11_OVERLAY_DEFINITION.resolve():
+                return overlay
+            return original_load(path)
+
+        with mock.patch.object(
+            verified_core, "_load_json", side_effect=load_overlay
+        ), self.assertRaisesRegex(
+            VerifiedConstructionCoreError,
+            "v0.11 acceptance-overlay binding differs",
+        ):
+            verified_core._v11_contracts()
+
+        altered = json.loads(verified_core.V11_BRIDGE_PATH.read_text())
+        altered["identity_bridge_evidence"][0]["fact_payload"]["selection"][
+            "shapefile_feature_index_zero_based"
+        ] = 5359
+
+        def load_bridge(path: Path) -> object:
+            if Path(path).resolve() == verified_core.V11_BRIDGE_PATH.resolve():
+                return altered
+            return original_load(path)
+
+        with mock.patch.object(
+            verified_core, "_load_json", side_effect=load_bridge
+        ), self.assertRaises(VerifiedConstructionCoreError):
+            verified_core._v11_contracts()
+
+        altered_review = json.loads(verified_core.V11_BRIDGE_PATH.read_text())
+        altered_review["reviewed_at"] = "2026-08-20"
+
+        def load_early_review(path: Path) -> object:
+            if Path(path).resolve() == verified_core.V11_BRIDGE_PATH.resolve():
+                return altered_review
+            return original_load(path)
+
+        with mock.patch.object(
+            verified_core, "_load_json", side_effect=load_early_review
+        ), self.assertRaisesRegex(
+            VerifiedConstructionCoreError,
+            "v0.11 bridge schema differs",
+        ):
+            verified_core._v11_contracts()
+
+    def test_v11_partial_hydration_fails_closed(self) -> None:
+        bridge = verified_core._v11_contracts()["bridge"]
+        bindings = [
+            *bridge["construction_source"]["release"]["members"].values(),
+            *bridge["construction_source"]["project_to_campus"]["members"].values(),
+        ]
+        present = verified_core.ROOT / bindings[0]["path"]
+        missing = verified_core.ROOT / bindings[1]["path"]
+        original_is_file = Path.is_file
+
+        def partial_is_file(path: Path) -> bool:
+            if path == present:
+                return True
+            if path == missing:
+                return False
+            return original_is_file(path)
+
+        with mock.patch.object(Path, "is_file", partial_is_file), self.assertRaisesRegex(
+            VerifiedConstructionCoreError,
+            "v0.11 hydrated cross-check inputs are only partially present",
+        ):
+            verified_core._v11_hydrated_crosscheck_available(bridge)
+
+    def test_v11_corpus_free_and_hydrated_rebuilds_are_byte_exact(self) -> None:
+        for hydrated in (False, True):
+            with self.subTest(hydrated=hydrated), tempfile.TemporaryDirectory() as temporary:
+                rebuilt = Path(temporary) / "preview"
+                with mock.patch.object(
+                    verified_core,
+                    "_v11_hydrated_crosscheck_available",
+                    return_value=hydrated,
+                ):
+                    verified_core.build_preview(rebuilt)
+                self.assertEqual(
+                    {path.name for path in rebuilt.iterdir()},
+                    {path.name for path in CURRENT_V11_PREVIEW_DIR.iterdir()},
+                )
+                for expected in CURRENT_V11_PREVIEW_DIR.iterdir():
                     self.assertEqual(
                         (rebuilt / expected.name).read_bytes(),
                         expected.read_bytes(),

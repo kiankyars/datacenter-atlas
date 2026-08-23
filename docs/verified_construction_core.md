@@ -3,8 +3,9 @@
 The long-term product target is a compact, public cohort of 100 physical data-centre sites with
 linked active construction projects, precise geometry, current evidence, typed power semantics,
 and reviewable imagery outcomes. The current artifact is deliberately labelled
-[`v0.10 preview`](../verified_construction_core/2026-08-20-preview-v0.10/README.md), because the
+[`v0.11 preview`](../verified_construction_core/2026-08-20-preview-v0.11/README.md), because the
 available evidence does not yet support that final claim. The previous
+[`v0.10 preview`](../verified_construction_core/2026-08-20-preview-v0.10/README.md),
 [`v0.9 preview`](../verified_construction_core/2026-08-20-preview-v0.9/README.md),
 [`v0.8 preview`](../verified_construction_core/2026-08-20-preview-v0.8/README.md),
 [`v0.7 preview`](../verified_construction_core/2026-08-20-preview-v0.7/README.md),
@@ -18,14 +19,21 @@ byte-frozen and hash-validated rather than being overwritten.
 
 ## Preview scope
 
-The preview selects 50 projects attached to 47 source-scoped campus sites in 25 countries from
+The preview selects 51 projects attached to 48 source-scoped campus sites in 26 countries from
 `2026-07-22-open-seed-v97`. Every project has:
 
-- a physical-status observation no more than 90 days old on the fixed 2026-08-20 review date;
+- a physical-status observation no more than 90 days old on the fixed 2026-08-20 cohort lifecycle
+  reference date;
 - an authoritative physical-status method and an explicit evidence row;
 - one reviewed project-to-campus identity link;
 - a pinned source record and geometry-evidence key; and
 - an official boundary or a source-specific site/address locator with its precision limit.
+
+The e-Stat and Chiba evidence used by the v0.11 delta was captured and its geometry/identity use
+accepted on 2026-08-23. It cannot update lifecycle state after the fixed 2026-08-20 cohort cutoff.
+For preview compatibility, the v0.11 manifest and selection report retain `reviewed_at` as an alias
+for that lifecycle cutoff and also expose `cohort_lifecycle_reference_date` and
+`geometry_identity_reviewed_at` as distinct machine fields.
 
 CoreSite DE3 and Scala SFORPF01 have official parcel or surveyed project polygons. Verne Mäntsälä
 uses the exact municipal cadastral polygon of its explicitly linked parent campus; that polygon is
@@ -112,6 +120,26 @@ publication. No v0.10 role, operating-model, or workload binding is added. The i
 Chicago notice remains byte-exact in both downloadable public text files, and OSM attribution
 covers the inherited and new OSM-derived locators.
 
+The one-project v0.11 delta adds IIJ Shiroi DCC Phase 3 in Japan. IIJ's dated disclosure retains
+`under_construction` as of 2026-06-25 and one planned 10 MW project-scoped grid-connection
+observation. The source's optional 25 MW expandability ceiling is not a second capacity row and is
+not treated as installed, contracted, current, or additive capacity. No operating model, workload,
+operator, customer, tenant, user, or owner is inferred for the unfinished phase.
+
+Chiba Prefecture's exact campus-name registry row binds Shiroi Data Center Campus to Sakuradai
+5-1-1. That address prefix corresponds textually to the selected official e-Stat feature name,
+Sakuradai 5; no address coordinate or point-in-polygon containment is asserted. The complete 2020
+census small-area polygon is accepted only as an `official_source` `campus_locator` and remains
+`official_boundary=false`. e-Stat warns that statistical small-area boundaries need not match
+general regional or administrative boundaries; accordingly, the polygon is not presented as the
+IIJ campus, a parcel, the Phase 3 building, a construction footprint, or a current-work extent. It
+is the published locator geometry and only the scope of the statistical feature, not a containment
+claim about the campus. CSV latitude and longitude retain e-Stat's X/Y values only as the
+source-published polygon shape centre and display
+anchor; they must not be used without the polygon or treated as an independent campus, project,
+or site point. The reported 55,117.019 m² area likewise belongs only to the selected statistical
+feature, not to the IIJ campus, site, parcel, building, or construction works.
+
 The review contract distinguishes `direct_geometry` from `coordinates_to_point` and records
 whether geometry comes from the project or its parent campus. Coordinate serialization adds no
 precision. The maincubes BER02, AVAIO Taurus, and KAO KLON-03 points retain unknown horizontal
@@ -137,11 +165,11 @@ validator forbids using it for geometry, status, capacity, progress, or building
 - `projects.csv` preserves project-level status, geometry source entity, derivation, method and
   scope, coordinate precision, source URLs, typed power observations, and explicit
   unknown/not-estimated reasons.
-- `sites.csv` groups the 50 selected projects into 47 physical-site keys without claiming
+- `sites.csv` groups the 51 selected projects into 48 physical-site keys without claiming
   global cross-source deduplication.
-- `evidence.csv` is the closed set of 116 status, geometry, operating-model, context, workload, role, and
+- `evidence.csv` is the closed set of 120 status, geometry, operating-model, context, workload, role, and
   typed-metric evidence rows referenced by the cohort.
-- `sites.geojson` and the dependency-free `map.html` expose the same 47 site IDs. The visible map
+- `sites.geojson` and the dependency-free `map.html` expose the same 48 site IDs. The visible map
   footer credits every selected geometry provider whose terms require it.
 - `schema.json` defines CSV fields, logical types, keys, embedded evidence references, GeoJSON
   geometry equality, and the map dependency in machine-readable form.

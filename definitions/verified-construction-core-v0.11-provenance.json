@@ -1,0 +1,45 @@
+{
+  "contract_id": "verified-construction-core-v0.11-provenance",
+  "review_scope": "Exact-hash one-row incremental successor to v0.10. IIJ evidence 4bd37265-9c6e-556b-8899-8015ffc11cae remains the sole lifecycle authority; evidence 35d502eb-803a-5c40-8dc1-f0825babb831 supplies project/campus identity context and one planned 10 MW grid_connection metric. The Chiba exact campus-name/address row supports geometry identity. The separate IIJSDC project row is not identified as Phase 3. The developer source string is excluded because developer is outside the public role schema; no operator, operating-model, or workload inference is made.",
+  "reviewed_as_of": "2026-08-23",
+  "base_contract": {
+    "path": "definitions/verified-construction-core-v0.10-provenance.json",
+    "sha256": "4ca9f02c25392d1a5aeccab9252868cb7e156145c969c64c6ee53dd74ad6f6d9"
+  },
+  "workload_scope_bindings": [],
+  "role_bindings": [],
+  "excluded_source_roles": [
+    {
+      "project_stable_key": "curated:iij-shiroi-data-center-campus:phase-3-server-building",
+      "source_input_path": "sources/curated-official-2026-07-20-iij-shiroi-phase-3.json",
+      "source_input_sha256": "ed214cfed7495ad6b1cf7a65f2cc1e90d80d12b58b615afb2931b98cb0bb6714",
+      "role": "developer",
+      "party": "Internet Initiative Japan Inc.",
+      "candidate_evidence_key": "iij-shiroi-phase-3-plan-10mw-2025-05-08-captured-2026-07-20",
+      "candidate_evidence_id": "35d502eb-803a-5c40-8dc1-f0825babb831",
+      "relationship_scope": "source_explicit_but_not_public_schema",
+      "semantic_scope": "The pinned IIJ source explicitly retains Internet Initiative Japan Inc. as developer for the Shiroi Phase 3 project and campus.",
+      "reason": "developer is not a public normalized role in this release; the string must not be recast as owner, operator, user, tenant, or customer."
+    }
+  ],
+  "context_evidence_bindings": [
+    {
+      "project_stable_key": "curated:iij-shiroi-data-center-campus:phase-3-server-building",
+      "bridge_path": "sources/verified-construction-core-v0.11-iij-shiroi-phase3-campus-address-area-geometry-bridge.json",
+      "bridge_sha256": "2dc78a324b0eb00d66c9d714ff7d989862577ea77d75ae0f2b8fbf195335ce74",
+      "evidence_origin": "construction_source.capacity_evidence",
+      "evidence_id": "35d502eb-803a-5c40-8dc1-f0825babb831",
+      "usage_role": "project_and_campus_identity",
+      "semantic_scope": "The IIJ release names the Shiroi DCC Phase 3 server building and its parent campus and supplies only one planned 10 MW grid_connection metric. It does not establish operation, operating model, workload, normalized role, current draw, IT load, generation, measured energy, or energization."
+    },
+    {
+      "project_stable_key": "curated:iij-shiroi-data-center-campus:phase-3-server-building",
+      "bridge_path": "sources/verified-construction-core-v0.11-iij-shiroi-phase3-campus-address-area-geometry-bridge.json",
+      "bridge_sha256": "2dc78a324b0eb00d66c9d714ff7d989862577ea77d75ae0f2b8fbf195335ce74",
+      "evidence_origin": "identity_bridge_evidence",
+      "evidence_id": "846dc1a1-5268-544e-92c2-2df087877703",
+      "usage_role": "geometry_identity",
+      "semantic_scope": "The exact Chiba row binds 白井データセンターキャンパス to 白井市桜台５－１－１ and supports the e-Stat 桜台五丁目 polygon only as a broad campus address-area locator. The separate IIJSDC project row is not asserted to be Phase 3 and neither row establishes a boundary, lifecycle, role, capacity, workload, operating model, energy, efficiency, or imagery claim."
+    }
+  ]
+}

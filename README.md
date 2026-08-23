@@ -10,19 +10,23 @@ Operating model and workload are independent classifications. Power observations
 number means grid connection, gross facility load, critical IT load, generation nameplate, annual
 energy, or PUE; estimates carry low/base/high values, method, confidence, and evidence.
 
-## Current workspace state (audited 2026-08-20)
+## Current workspace state (audited 2026-08-23)
 
 The first coherent user-facing construction product is the
-[Verified Construction Core v0.10 preview](verified_construction_core/2026-08-20-preview-v0.10/),
-with its [selection contract and final gates](docs/verified_construction_core.md). It contains 50
-recently observed projects grouped into 47 source-scoped physical sites across 25 countries. Five
-project rows carry official parcel/survey geometry; 45 use explicitly scoped locators. The v0.10
-delta adds Oracle Project Jupiter, CyrusOne FRA7, and Colt London 4. Oracle's exact-name OSM
-polygon is only a parent-campus locator, the Hessian FF7 L1 permit coordinate is only a CyrusOne
-project locator, and Colt's captured exact-name OSM building is only a project locator. None is an
-official boundary or current construction footprint. Every row remains
+[Verified Construction Core v0.11 preview](verified_construction_core/2026-08-20-preview-v0.11/),
+with its [selection contract and final gates](docs/verified_construction_core.md). It contains 51
+recently observed projects grouped into 48 source-scoped physical sites across 26 countries. Five
+project rows carry official parcel/survey geometry; 46 use explicitly scoped locators. The v0.11
+delta adds IIJ Shiroi DCC Phase 3 in Japan. Its official e-Stat Sakuradai 5 census small-area
+polygon is only an address-area locator for the parent campus. It is not the IIJ campus, parcel,
+Phase 3 building or construction footprint, and it is not counted as an official boundary. Its
+source-published shape-centre coordinates are only a display anchor for that polygon, never a
+standalone campus, project, or site point. The cohort lifecycle cutoff remains 2026-08-20; the
+e-Stat and Chiba evidence was captured and its geometry/identity use accepted on 2026-08-23. The
+manifest and selection report record both clocks explicitly. Every row remains
 `independent_imagery_verification=false`, so this preview is a research baseline—not the promised
 100-site final release or a claim of SemiAnalysis parity. The
+[v0.10 preview](verified_construction_core/2026-08-20-preview-v0.10/),
 [v0.9 preview](verified_construction_core/2026-08-20-preview-v0.9/),
 [v0.8 preview](verified_construction_core/2026-08-20-preview-v0.8/),
 [v0.7 preview](verified_construction_core/2026-08-20-preview-v0.7/),
@@ -32,13 +36,13 @@ official boundary or current construction footprint. Every row remains
 [v0.3 preview](verified_construction_core/2026-08-20-preview-v0.3/),
 [v0.2 preview](verified_construction_core/2026-08-20-preview-v0.2/) and
 [v0.1 preview](verified_construction_core/2026-08-19-preview-v0.1/) remain byte-frozen for audit,
-not as datasets to add to v0.10.
+not as datasets to add to v0.11.
 
 All eight inherited workload observations are machine-labelled `intended`, not operational. Nine
 published operator claims and two intended-customer claims carry evidence IDs and relationship
-scope. The v0.10 delta adds no roles, operating models, or workloads. Only Colt London 4 adds a
-project metric: planned 31 MW critical IT. CyrusOne's campus-level 81 MW and Oracle's campus-level
-2,450 MW generation and AI-workload context are validated but not promoted.
+scope. The v0.11 delta adds no normalized roles, operating models, or workloads. It adds one
+project-scoped planned 10 MW grid-connection observation for IIJ Phase 3; the optional 25 MW
+expandability ceiling is not promoted as installed, contracted, current, or additive capacity.
 
 The latest fully present source bundle is
 [open-seed v97](releases/2026-07-22-open-seed-v97/). It contains 1,053 source-scoped entity rows
@@ -52,7 +56,7 @@ than v97/v38/v14/v11. Counts from separate lanes or versions must not be added.
 
 | Lane | Latest artifact | Current local hydration |
 | --- | --- | --- |
-| Verified construction preview | [v0.10](verified_construction_core/2026-08-20-preview-v0.10/) | 72 portable source and bridge inputs are manifest-bound; the generated preview remains a non-final artifact |
+| Verified construction preview | [v0.11](verified_construction_core/2026-08-20-preview-v0.11/) | 74 portable source and bridge inputs are manifest-bound; the generated preview remains a non-final artifact |
 | Source release | [open-seed v97](releases/2026-07-22-open-seed-v97/) | All 13 manifest-declared payload files present |
 | Federation | [v38](federated_indexes/2026-07-22-public-open-v38/) | Federated index present |
 | Exact identity | [v14](exact_identity_decisions/2026-07-22-public-open-v14/) | All seven declared payload files present |
