@@ -3,8 +3,9 @@
 The long-term product target is a compact, public cohort of 100 physical data-centre sites with
 linked active construction projects, precise geometry, current evidence, typed power semantics,
 and reviewable imagery outcomes. The current artifact is deliberately labelled
-[`v0.13 preview`](../verified_construction_core/2026-08-20-preview-v0.13/README.md), because the
+[`v0.14 preview`](../verified_construction_core/2026-08-20-preview-v0.14/README.md), because the
 available evidence does not yet support that final claim. The previous
+[`v0.13 preview`](../verified_construction_core/2026-08-20-preview-v0.13/README.md),
 [`v0.12 preview`](../verified_construction_core/2026-08-20-preview-v0.12/README.md),
 [`v0.11 preview`](../verified_construction_core/2026-08-20-preview-v0.11/README.md),
 [`v0.10 preview`](../verified_construction_core/2026-08-20-preview-v0.10/README.md),
@@ -21,7 +22,7 @@ byte-frozen and hash-validated rather than being overwritten.
 
 ## Preview scope
 
-The preview selects 62 projects attached to 59 source-scoped physical sites in 27 countries from
+The preview selects 71 projects attached to 68 source-scoped physical sites in 27 countries from
 `2026-07-22-open-seed-v97`. Every project has:
 
 - a physical-status observation no more than 90 days old on the fixed 2026-08-20 cohort lifecycle
@@ -31,10 +32,10 @@ The preview selects 62 projects attached to 59 source-scoped physical sites in 2
 - a pinned source record and geometry-evidence key; and
 - an official boundary or a source-specific site/address locator with its precision limit.
 
-The e-Stat, Chiba, Census, NSW Planning, firstcolo, NLS, Environment Agency, Kartverket, and OSM
-geometry evidence used by the v0.11 through v0.13 deltas was captured and its geometry/identity use
-accepted on 2026-08-23. It cannot update lifecycle state after the fixed 2026-08-20 cohort cutoff.
-For preview compatibility, the v0.13 manifest and selection report retain
+The e-Stat, Chiba, Census, NSW Planning, firstcolo, NLS, Environment Agency, Kartverket, OSM, City
+of San Jose, and QTS geometry evidence used by the v0.11 through v0.14 deltas was captured and its
+geometry/identity use accepted on 2026-08-23. It cannot update lifecycle state after the fixed
+2026-08-20 cohort cutoff. For preview compatibility, the v0.14 manifest and selection report retain
 `reviewed_at` as an alias for that lifecycle cutoff and also expose
 `cohort_lifecycle_reference_date` and `geometry_identity_reviewed_at` as distinct machine fields.
 
@@ -43,7 +44,7 @@ uses the exact municipal cadastral polygon of its explicitly linked parent campu
 not presented as the footprint of the current 70 MW development. Green Mountain Undheim uses the
 deterministic union of official Kartverket parcels 1121-46/316, /317, and /319. It is the approved
 project-site parcel boundary, not either data-hall footprint or the observed construction extent.
-Thirty-one project rows use points and are labelled by their actual scope: shared-campus reference,
+Forty project rows use points and are labelled by their actual scope: shared-campus reference,
 facility reference,
 same-parcel infrastructure reference, parcel reference, official address, or first-party campus
 location. They are not silently promoted to building footprints or site boundaries.
@@ -164,6 +165,25 @@ role, workload, energy, efficiency, or lifecycle claim. Raw all-rights PDFs and 
 Esri imagery remain excluded; the tracked capture contains only compact facts, derived geometry,
 byte counts, hashes, and source-specific rights.
 
+The nine-project v0.14 delta adds Microsoft Alviso, Bitdeer Wenatchee, Sabey Austin, Microsoft
+Heath, Microsoft New Albany, Bitdeer Massillon, Microsoft Hebron, QTS Cedar Rapids, and Jefferson
+Lab JLDC as nine distinct U.S. physical sites. Seven use United States Census Bureau
+Public_AR_Current exact-address matches only as parent-campus locators, with the same semantics as
+v0.12: a street-range point is not a parcel, campus, building, project, or construction boundary;
+it proves no containment; and its numeric horizontal uncertainty remains unknown. QTS instead uses
+its first-party CDR1 DC1 page pin as a shared-campus locator. Alviso uses the City of San Jose
+address point for 1657 Alviso-Milpitas Road, cross-identified to Microsoft and CP23-016, only as a
+project locator; the City's Major Private Development polygon is rejected.
+
+QTS labels 6200 76th Avenue SW as Cedar Rapids while the Census corroborator returns Fairfax for
+the same address and ZIP. Jefferson Lab publishes ZIP 23606 while the Census match returns 23605;
+its point locates only the broad laboratory campus, not the JLDC building. Both normalizations stay
+explicit rather than being silently reconciled. All nine points have `official_boundary=false` and
+unknown numeric horizontal accuracy. Washington and Licking County parcel records are used only
+for compact identity/address facts; no parcel geometry is redistributed. Raw rights-uncertain
+parcel responses, source HTML/PDF, the City development polygon, and imagery remain untracked.
+Geometry adds no party, capacity, workload, metric, imagery, footprint, or lifecycle claim.
+
 The review contract distinguishes `direct_geometry` from `coordinates_to_point` and records
 whether geometry comes from the project or its parent campus. Coordinate serialization adds no
 precision. The maincubes BER02, AVAIO Taurus, and KAO KLON-03 points retain unknown horizontal
@@ -189,11 +209,11 @@ validator forbids using it for geometry, status, capacity, progress, or building
 - `projects.csv` preserves project-level status, geometry source entity, derivation, method and
   scope, coordinate precision, source URLs, typed power observations, and explicit
   unknown/not-estimated reasons.
-- `sites.csv` groups the 62 selected projects into 59 physical-site keys without claiming
+- `sites.csv` groups the 71 selected projects into 68 physical-site keys without claiming
   global cross-source deduplication.
-- `evidence.csv` is the closed set of 145 status, geometry, operating-model, context, workload, role, and
+- `evidence.csv` is the closed set of 170 status, geometry, operating-model, context, workload, role, and
   typed-metric evidence rows referenced by the cohort.
-- `sites.geojson` and the dependency-free `map.html` expose the same 59 site IDs. The visible map
+- `sites.geojson` and the dependency-free `map.html` expose the same 68 site IDs. The visible map
   footer credits every selected geometry provider whose terms require it.
 - `schema.json` defines CSV fields, logical types, keys, embedded evidence references, GeoJSON
   geometry equality, and the map dependency in machine-readable form.
@@ -204,7 +224,8 @@ validator forbids using it for geometry, status, capacity, progress, or building
 ## Version policy
 
 Each preview is a coherent frozen snapshot, not a separate pile of data that must be added to the
-latest CSV. v0.13 inherits the byte-frozen v0.12 artifact and adds six independently pinned sites;
+latest CSV. v0.14 inherits the byte-frozen v0.13 artifact and adds nine independently pinned U.S.
+sites; v0.13 inherits the byte-frozen v0.12 artifact and adds six independently pinned sites;
 v0.12 inherits the byte-frozen v0.11 artifact and adds five independently pinned U.S. projects with
 Census address-match campus locators; v0.11 inherits v0.10 and adds IIJ Shiroi Phase
 3; v0.10 inherits the byte-frozen v0.9 artifact and adds three independently pinned
@@ -234,7 +255,7 @@ instead.
 ## Validation and rebuild
 
 Validation and byte-exact rebuilding work in a public clean clone from the generated preview and
-89 manifest-listed portable inputs. The ignored v97 and v14 payloads are optional, all-or-nothing
+100 manifest-listed portable inputs. The ignored v97 and exact-identity v14 payloads are optional, all-or-nothing
 hydration-only cross-checks; when all five are present, their exact embedded source rows are replayed
 as an additional validation layer:
 
@@ -243,7 +264,8 @@ uv run python scripts/build_verified_construction_core.py --validate-only
 uv run python -m unittest -v \
   tests.test_verified_construction_core \
   tests.test_verified_construction_core_v012 \
-  tests.test_verified_construction_core_v013
+  tests.test_verified_construction_core_v013 \
+  tests.test_verified_construction_core_v014
 ```
 
 The builder refuses to overwrite an existing directory:

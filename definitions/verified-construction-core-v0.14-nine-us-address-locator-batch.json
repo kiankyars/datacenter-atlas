@@ -1,0 +1,390 @@
+{
+  "schema_version": "1.0",
+  "contract_id": "verified-construction-core-v0.14-nine-us-address-locator-batch",
+  "reviewed_as_of": "2026-08-23",
+  "cohort_lifecycle_reference_date": "2026-08-20",
+  "base_preview": {
+    "path": "verified_construction_core/2026-08-20-preview-v0.13",
+    "preview_id": "2026-08-20-preview-v0.13",
+    "manifest_sha256": "28f291619658f7e678f5b888b5475d762366ada8138244b79341c6abab1462fb",
+    "commit": "cbeaa15121e909e93b9698cfd90deabc2ece215f"
+  },
+  "geometry_capture": {
+    "path": "sources/verified-construction-core-v0.14-us-address-locator-facts.json",
+    "bytes": 23717,
+    "sha256": "7b93cad5f094a9380efc02f174e3466b7e641ddf9c3ec7e556b27b946a93a835"
+  },
+  "census_geometry_semantics": {
+    "geometry_source_entity_kind": "campus",
+    "geometry_derivation": "official_address_geocode",
+    "geometry_method": "census_public_ar_current_street_range_interpolation",
+    "geometry_scope_class": "official_census_address_locator_point",
+    "geometry_authority_class": "official_source",
+    "geometry_use_scope": "campus_locator",
+    "precision_scope": "Official Census Public_AR_Current address-match point used only to locate the source-linked parent campus. Street-range interpolation can differ from a parcel, building, entrance, or surveyed position.",
+    "horizontal_uncertainty_unknown_reason": "The captured Census match supplies no bounded horizontal-accuracy value, and a street-range interpolation point is not asserted to fall within the campus, parcel, building, or project extent.",
+    "official_boundary": false,
+    "parcel_or_building_geometry": false,
+    "project_footprint": false,
+    "campus_boundary": false,
+    "imagery_verification": false
+  },
+  "first_party_geometry_semantics": {
+    "geometry_source_entity_kind": "campus",
+    "geometry_derivation": "first_party_published_map_pin",
+    "geometry_method": "qts_first_party_cdr1_dc1_page_map_pin_as_shared_campus_locator",
+    "geometry_scope_class": "first_party_facility_page_point_as_broad_campus_locator",
+    "geometry_authority_class": "official_source",
+    "geometry_use_scope": "campus_locator",
+    "precision_scope": "QTS-published page map pin attached to the CDR1 DC1 address at the shared 6200 76th Avenue SW campus. It is used only as a broad campus locator, not as DC1, DC2, DC3, current-development, sewer-work, building, parcel, or 612-acre campus boundary geometry.",
+    "horizontal_uncertainty_unknown_reason": "The QTS page publishes coordinate digits but no collection method, reference-feature definition, or bounded numeric horizontal-accuracy value; the map pin is not asserted to fall on any specific building or work extent.",
+    "official_boundary": false,
+    "parcel_or_building_geometry": false,
+    "project_footprint": false,
+    "campus_boundary": false,
+    "imagery_verification": false
+  },
+  "alviso_geometry_semantics": {
+    "geometry_source_entity_kind": "project",
+    "geometry_derivation": "official_address_point",
+    "geometry_method": "city_of_san_jose_address_point_cross_identified_by_named_development_record",
+    "geometry_scope_class": "official_city_address_point_cross_identified_to_named_project",
+    "geometry_authority_class": "official_source",
+    "geometry_use_scope": "project_locator",
+    "precision_scope": "Official City of San Jose address point for 1657 Alviso-Milpitas Road, cross-identified to Microsoft and CP23-016 by the City's named Major Private Development record. The point locates the named project and shared parent campus only; the separate development polygon is rejected.",
+    "horizontal_uncertainty_unknown_reason": "The City address record labels the feature Placed on Map and supplies no bounded numeric horizontal-accuracy value; coordinate digits do not establish survey accuracy, containment, an entrance, or a footprint.",
+    "official_boundary": false,
+    "parcel_or_building_geometry": false,
+    "project_footprint": false,
+    "campus_boundary": false,
+    "imagery_verification": false
+  },
+  "hydrated_crosscheck_inputs": [
+    {
+      "path": "exact_identity_decisions/2026-07-22-public-open-v14/component-members.csv",
+      "bytes": 3744672,
+      "sha256": "6f0c133c7710fe0a6d96fdad078d25c1cec0d858ef5f159abb890d518fb3ae25"
+    },
+    {
+      "path": "exact_identity_decisions/2026-07-22-public-open-v14/relationships.csv",
+      "bytes": 965327,
+      "sha256": "e8bae6b1893e621066b4974390665ff322a5f625e9b11f98db6438c9adb08ef7"
+    },
+    {
+      "path": "releases/2026-07-22-open-seed-v97/construction_pipeline.csv",
+      "bytes": 635843,
+      "sha256": "b39aed7653872bff0d0841ece2968f69e9d1d76bd07a242d103ab50e9b78c12f"
+    },
+    {
+      "path": "releases/2026-07-22-open-seed-v97/entities.csv",
+      "bytes": 1076359,
+      "sha256": "7950a4e871d4afd0fd877e6e4f3ba9f9cbc1ffd664a611bc036896fbdba46fa1"
+    },
+    {
+      "path": "releases/2026-07-22-open-seed-v97/evidence.csv",
+      "bytes": 271797,
+      "sha256": "c73263c3b27f984c8bebf76f9db31b63a22059a3774dbec9ed944ceee344f2d1"
+    }
+  ],
+  "acceptances": [
+    {
+      "project_stable_key": "curated:microsoft-alviso-san-jose-datacenter-campus:phase-2-greenfield-development",
+      "project_entity_id": "1861d9fb-3980-5a16-baa1-c32762e244c1",
+      "parent_campus_stable_key": "curated:microsoft-alviso-san-jose-datacenter-campus",
+      "parent_campus_entity_id": "d1087891-39d3-5e02-81be-ff48cbe970ef",
+      "source_input": {
+        "path": "sources/curated-official-2026-07-20-microsoft-alviso-phase-2.json",
+        "bytes": 12562,
+        "sha256": "7dcd5b73ffe64319c234c16a1db94e0e883096663396eae55a071f626b6bca3a"
+      },
+      "locator_id": "microsoft-alviso-city-address-point",
+      "semantics_profile": "alviso",
+      "address_scope": "project_and_parent_campus",
+      "relationship": {
+        "relationship_id": "relationship:bda9d668711a30e2117124ce38c5de8ede22114d681cb50fcdc07b090c3ed7ed",
+        "relationship_type": "project_targets",
+        "decision_basis": "explicit_parent"
+      },
+      "location_evidence": {
+        "key": "hitt-microsoft-alviso-groundbreaking-2026-06-10-captured-2026-07-20",
+        "evidence_id": "508e32e2-ef98-5db2-b6b1-50103f924aaf"
+      },
+      "status": {
+        "value": "under_construction",
+        "as_of_date": "2026-06-10",
+        "method": "authoritative_construction_start",
+        "confidence": 0.99,
+        "evidence_key": "hitt-microsoft-alviso-groundbreaking-2026-06-10-captured-2026-07-20",
+        "evidence_id": "508e32e2-ef98-5db2-b6b1-50103f924aaf"
+      },
+      "scope_guardrail": "The City address point and named CP23-016 development record bind Microsoft and the numbered address. The point is a project locator shared by the parent campus, not a Phase 2, building, parcel, campus, or current-work footprint; the City development polygon is rejected."
+    },
+    {
+      "project_stable_key": "curated:bitdeer-wenatchee-washington-campus:2026-ai-conversion-site-preparation",
+      "project_entity_id": "484cf452-3a8f-5574-8003-a5b3f693c5d2",
+      "parent_campus_stable_key": "curated:bitdeer-wenatchee-washington-campus",
+      "parent_campus_entity_id": "ab86efb1-8d5b-5cb7-a6a7-815c3788a71b",
+      "source_input": {
+        "path": "sources/curated-official-2026-07-22-bitdeer-wenatchee-ai-conversion-current-build.json",
+        "bytes": 5605,
+        "sha256": "5008be9fc5496c0a6eafe97fea6b0138ba5ad4ca56f6a881d1c3aada85a75f4a"
+      },
+      "locator_id": "bitdeer-wenatchee-624-urban-industrial-way",
+      "semantics_profile": "census",
+      "address_scope": "parent_campus_only",
+      "relationship": {
+        "relationship_id": "relationship:c4d2c0e9d7a1d99a97371ef8994bf7b633e96b0cf7402cf64b780f0d89751ff3",
+        "relationship_type": "project_targets",
+        "decision_basis": "explicit_parent"
+      },
+      "location_evidence": {
+        "key": "bitdeer-sec-wenatchee-ai-conversion-update-2026-07-21",
+        "evidence_id": "9bb3b9ad-0b64-5c9f-adc9-abc7463b1a61"
+      },
+      "status": {
+        "value": "site_preparation",
+        "as_of_date": "2026-07-21",
+        "method": "authoritative_physical_status_update",
+        "confidence": 0.99,
+        "evidence_key": "bitdeer-sec-wenatchee-ai-conversion-update-2026-07-21",
+        "evidence_id": "9bb3b9ad-0b64-5c9f-adc9-abc7463b1a61"
+      },
+      "scope_guardrail": "The SEC property exhibit and Washington parcel address fact bridge the Bitdeer Wenatchee campus to parent parcel 93700000002 and 624 Urban Industrial Way. The Census point locates only the parent campus; the parcel polygon is rejected and no AI-conversion work extent is inferred."
+    },
+    {
+      "project_stable_key": "curated:sabey-sdc-austin-round-rock-campus:building-b-current-build",
+      "project_entity_id": "ae484949-f575-5553-ad33-bc1f96eab345",
+      "parent_campus_stable_key": "curated:sabey-sdc-austin-round-rock-campus",
+      "parent_campus_entity_id": "a78dd3a8-768a-577f-9507-cf313832da4f",
+      "source_input": {
+        "path": "sources/curated-official-2026-07-22-sabey-austin-round-rock-building-b-current-build.json",
+        "bytes": 12030,
+        "sha256": "42ca5504fad0d0f8d1cc38ffacd7133fa8b378377a5dde704eb2e04831d8704f"
+      },
+      "locator_id": "sabey-austin-1300-louis-henna-boulevard",
+      "semantics_profile": "census",
+      "address_scope": "parent_campus_only",
+      "relationship": {
+        "relationship_id": "relationship:685ff16fbc117f663e5541d422d4d506ec7a9d081285a996fff59969367a7f3b",
+        "relationship_type": "project_targets",
+        "decision_basis": "explicit_parent"
+      },
+      "location_evidence": {
+        "key": "sabey-austin-building-b-shell-update-2026-06-16",
+        "evidence_id": "ed8d1d3a-d3bf-5121-99f1-8da8caaebd1e"
+      },
+      "status": {
+        "value": "shell",
+        "as_of_date": "2026-06-16",
+        "method": "authoritative_physical_status_update",
+        "confidence": 0.99,
+        "evidence_key": "sabey-austin-building-b-shell-update-2026-06-16",
+        "evidence_id": "ed8d1d3a-d3bf-5121-99f1-8da8caaebd1e"
+      },
+      "scope_guardrail": "Sabey's source supplies 1300 Louis Henna Boulevard for the Austin campus. The Census point locates only the parent campus and is not Building B, its shell, a parcel, or any construction footprint."
+    },
+    {
+      "project_stable_key": "curated:microsoft-heath-oh-datacenter:initial-site-preparation",
+      "project_entity_id": "edf978b4-fbe8-5f8a-9fe0-bd1e9f33e1d2",
+      "parent_campus_stable_key": "curated:microsoft-heath-oh-datacenter",
+      "parent_campus_entity_id": "140afe54-fcdb-5bfe-9a7b-617ea21066c2",
+      "source_input": {
+        "path": "sources/curated-official-2026-07-19-microsoft-local-heath-oh.json",
+        "bytes": 3970,
+        "sha256": "7baa853f3fbaa2c2c2a8ae9acade07066dcc68ead8dc70c30be18a7a3ca4f078"
+      },
+      "locator_id": "microsoft-heath-975-thornwood-census-point",
+      "semantics_profile": "census",
+      "address_scope": "parent_campus_only",
+      "relationship": {
+        "relationship_id": "relationship:957aca2929d6187228ac6c9399ed47379c6721aeb15d6ec471d369ab6a759330",
+        "relationship_type": "project_targets",
+        "decision_basis": "explicit_parent"
+      },
+      "location_evidence": {
+        "key": "microsoft-local-heath-update-captured-2026-07-19",
+        "evidence_id": "7c13694c-7c87-52e1-a47b-3417bedbc5aa"
+      },
+      "status": {
+        "value": "site_preparation",
+        "as_of_date": "2026-07-01",
+        "method": "authoritative_physical_status_update",
+        "confidence": 0.99,
+        "evidence_key": "microsoft-local-heath-update-captured-2026-07-19",
+        "evidence_id": "7c13694c-7c87-52e1-a47b-3417bedbc5aa"
+      },
+      "scope_guardrail": "The Microsoft locality update and Licking County Microsoft owner/address row bind the Heath parent campus to 975 Thornwood Drive. The Census point is not a parcel, campus boundary, or initial-site-preparation footprint."
+    },
+    {
+      "project_stable_key": "curated:microsoft-new-albany-oh-datacenter:initial-site-preparation",
+      "project_entity_id": "f8377a0f-dc89-5b7a-8257-25f25cdbac43",
+      "parent_campus_stable_key": "curated:microsoft-new-albany-oh-datacenter",
+      "parent_campus_entity_id": "4400fbba-bdad-54df-a759-40ba6c23ab3f",
+      "source_input": {
+        "path": "sources/curated-official-2026-07-19-microsoft-local-new-albany-oh.json",
+        "bytes": 4044,
+        "sha256": "1c4037db5728baf062b739a5eee0ce423c681b51225cffcc79973c8b94813ac6"
+      },
+      "locator_id": "microsoft-new-albany-3287-beech-census-point",
+      "semantics_profile": "census",
+      "address_scope": "parent_campus_only",
+      "relationship": {
+        "relationship_id": "relationship:c4df29ee19cd94f480c194fe4a830137c44c37c39aebb85881e4b922c52ac5f3",
+        "relationship_type": "project_targets",
+        "decision_basis": "explicit_parent"
+      },
+      "location_evidence": {
+        "key": "microsoft-local-new-albany-update-captured-2026-07-19",
+        "evidence_id": "431690d2-aa37-5626-905e-69ddc5f30a41"
+      },
+      "status": {
+        "value": "site_preparation",
+        "as_of_date": "2026-07-01",
+        "method": "authoritative_physical_status_update",
+        "confidence": 0.99,
+        "evidence_key": "microsoft-local-new-albany-update-captured-2026-07-19",
+        "evidence_id": "431690d2-aa37-5626-905e-69ddc5f30a41"
+      },
+      "scope_guardrail": "The Microsoft locality update and Licking County Microsoft owner/address row bind the New Albany parent campus to 3287 Beech Road NW. The Census point is not a parcel, campus boundary, or site-preparation footprint."
+    },
+    {
+      "project_stable_key": "curated:bitdeer-massillon-ohio-campus:2026-fire-damaged-buildings-reconstruction",
+      "project_entity_id": "fb943def-5b5b-5192-8bb9-599e4cf616cc",
+      "parent_campus_stable_key": "curated:bitdeer-massillon-ohio-campus",
+      "parent_campus_entity_id": "b15a4585-87dc-5bfb-9417-e59300ac3aea",
+      "source_input": {
+        "path": "sources/curated-official-2026-07-22-bitdeer-massillon-reconstruction-current-build.json",
+        "bytes": 6421,
+        "sha256": "ff868620cc4fc17cb64abb9e243cfaa58750dd52cbc099cb2f5e1fbf52074fa1"
+      },
+      "locator_id": "bitdeer-massillon-577-oberlin-avenue",
+      "semantics_profile": "census",
+      "address_scope": "parent_campus_only",
+      "relationship": {
+        "relationship_id": "relationship:0131e0ffd1c4f26ae4ec5ef39d7e5c933ccade3a589758cfdc2ee4c19525ebce",
+        "relationship_type": "project_targets",
+        "decision_basis": "explicit_parent"
+      },
+      "location_evidence": {
+        "key": "bitdeer-sec-massillon-fire-damaged-buildings-reconstruction-2026-07-21",
+        "evidence_id": "5e48435e-d49f-5e10-aef3-9b672b64e571"
+      },
+      "status": {
+        "value": "under_construction",
+        "as_of_date": "2026-07-21",
+        "method": "authoritative_physical_status_update",
+        "confidence": 0.99,
+        "evidence_key": "bitdeer-sec-massillon-fire-damaged-buildings-reconstruction-2026-07-21",
+        "evidence_id": "5e48435e-d49f-5e10-aef3-9b672b64e571"
+      },
+      "scope_guardrail": "Bitdeer's current update and its SEC property exhibit bind the Massillon campus to 577 Oberlin Avenue SW. The Census point locates only the parent campus and is not either fire-damaged building or reconstruction geometry."
+    },
+    {
+      "project_stable_key": "curated:microsoft-hebron-oh-datacenter:initial-site-preparation",
+      "project_entity_id": "86bcbcd1-702d-5afa-aeb8-1cb145224b97",
+      "parent_campus_stable_key": "curated:microsoft-hebron-oh-datacenter",
+      "parent_campus_entity_id": "a4ea072c-8a2e-591a-a033-95e71e2d8869",
+      "source_input": {
+        "path": "sources/curated-official-2026-07-19-microsoft-local-hebron-oh.json",
+        "bytes": 3931,
+        "sha256": "0b4cb18b64ac7858fc098994e110043ef6c745ea020a5f8d9cbc85a953e449a2"
+      },
+      "locator_id": "microsoft-hebron-323-n-high-census-point",
+      "semantics_profile": "census",
+      "address_scope": "parent_campus_only",
+      "relationship": {
+        "relationship_id": "relationship:a475d37e28964e6a95d23fd23228393d4ef6e543ac252422dc15a0cf54b61db8",
+        "relationship_type": "project_targets",
+        "decision_basis": "explicit_parent"
+      },
+      "location_evidence": {
+        "key": "microsoft-local-hebron-update-captured-2026-07-19",
+        "evidence_id": "46947788-7664-564d-8408-61a49b6fc3ab"
+      },
+      "status": {
+        "value": "site_preparation",
+        "as_of_date": "2026-07-01",
+        "method": "authoritative_physical_status_update",
+        "confidence": 0.99,
+        "evidence_key": "microsoft-local-hebron-update-captured-2026-07-19",
+        "evidence_id": "46947788-7664-564d-8408-61a49b6fc3ab"
+      },
+      "scope_guardrail": "The Microsoft locality update and Licking County Microsoft owner/address row bind the Hebron parent campus to 323 North High Street. The Census point is not a parcel, campus boundary, or site-preparation footprint."
+    },
+    {
+      "project_stable_key": "curated:qts-cedar-rapids-data-center-campus:current-campus-development",
+      "project_entity_id": "ae6f1b86-660b-54e9-bdb0-d29bfeedc551",
+      "parent_campus_stable_key": "curated:qts-cedar-rapids-data-center-campus",
+      "parent_campus_entity_id": "07fbb53a-a401-5e30-bbfe-02714a65afa2",
+      "source_input": {
+        "path": "sources/curated-official-2026-07-19-qts-cedar-rapids-current-campus-development.json",
+        "bytes": 5016,
+        "sha256": "0b8a466bc192a20b432e621081612927374d4cd0949553ef2c5c7aed8499bcd5"
+      },
+      "locator_id": "qts-cedar-rapids-dc1-first-party-pin",
+      "semantics_profile": "first_party",
+      "address_scope": "parent_campus_only",
+      "relationship": {
+        "relationship_id": "relationship:b3b9e2a3c4e35028ac32f18a4a2ca76ca035000bbd7491c85cd7fad1612540d8",
+        "relationship_type": "project_targets",
+        "decision_basis": "explicit_parent"
+      },
+      "location_evidence": {
+        "key": "qts-cedar-rapids-location-page-captured-2026-07-19",
+        "evidence_id": "e2169f4d-f349-5a9c-8e37-03a4ee09aa49"
+      },
+      "status": {
+        "value": "under_construction",
+        "as_of_date": "2026-07-15",
+        "method": "authoritative_physical_status_update",
+        "confidence": 0.98,
+        "evidence_key": "qts-cedar-rapids-location-page-captured-2026-07-19",
+        "evidence_id": "e2169f4d-f349-5a9c-8e37-03a4ee09aa49"
+      },
+      "scope_guardrail": "QTS publishes a map pin for CDR1 DC1 at the shared 6200 76th Avenue SW address; a separate Census match returns the same address and ZIP with Fairfax as the city. The mismatch is disclosed, Census remains corroboration only, and the QTS point locates the parent campus rather than DC1, DC2, DC3, current development, sewer work, a building, or the 612-acre campus boundary."
+    },
+    {
+      "project_stable_key": "curated:jefferson-lab-newport-news-campus:jldc-building",
+      "project_entity_id": "9283d3fe-3789-54c7-abf4-8bb757e29835",
+      "parent_campus_stable_key": "curated:jefferson-lab-newport-news-campus",
+      "parent_campus_entity_id": "74691c03-5019-5972-b0ea-036a7f959ff8",
+      "source_input": {
+        "path": "sources/curated-official-2026-07-20-jefferson-lab-jldc-newport-news.json",
+        "bytes": 9145,
+        "sha256": "ea26383ca36ae92f83141d4877d4bd3c46adb24fbb51c1545e574678267c493d"
+      },
+      "locator_id": "jefferson-lab-12000-jefferson-avenue",
+      "semantics_profile": "census",
+      "address_scope": "parent_campus_only",
+      "relationship": {
+        "relationship_id": "relationship:d24dd73827edd4ba0b74fe601263ef44154116cf1c1716dec23b6efe9040d1dc",
+        "relationship_type": "project_targets",
+        "decision_basis": "explicit_parent"
+      },
+      "location_evidence": {
+        "key": "jefferson-lab-jldc-ceremonial-construction-start-2026-06-12-captured-2026-07-20",
+        "evidence_id": "299ff180-d01b-5474-b229-12fed55b6f7c"
+      },
+      "status": {
+        "value": "under_construction",
+        "as_of_date": "2026-06-12",
+        "method": "authoritative_construction_start",
+        "confidence": 0.99,
+        "evidence_key": "jefferson-lab-jldc-ceremonial-construction-start-2026-06-12-captured-2026-07-20",
+        "evidence_id": "299ff180-d01b-5474-b229-12fed55b6f7c"
+      },
+      "scope_guardrail": "The official release places JLDC on the Jefferson Lab campus and publishes 12000 Jefferson Avenue only as the laboratory address. Census changes ZIP 23606 to 23605; the point is retained only as a broad laboratory-campus locator and never as the JLDC building location or footprint."
+    }
+  ],
+  "rejected_claims": [
+    "parcel, cadastral, campus, building, project, or construction boundary",
+    "building or project footprint",
+    "point-in-parcel or point-in-building containment",
+    "site centroid, entrance, or survey-accuracy claim",
+    "imagery verification or imagery-derived lifecycle",
+    "geometry-derived lifecycle, capacity, energy, efficiency, role, workload, or operating model",
+    "source metrics, roles, or workloads not independently selected by this batch contract",
+    "the City of San Jose Major Private Development polygon",
+    "Washington or Licking County parcel polygons"
+  ]
+}
