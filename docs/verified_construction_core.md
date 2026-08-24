@@ -3,8 +3,9 @@
 The long-term product target is a compact, public cohort of 100 physical data-centre sites with
 linked active construction projects, precise geometry, current evidence, typed power semantics,
 and reviewable imagery outcomes. The current artifact is deliberately labelled
-[`v0.14 preview`](../verified_construction_core/2026-08-20-preview-v0.14/README.md), because the
+[`v0.15 preview`](../verified_construction_core/2026-08-20-preview-v0.15/README.md), because the
 available evidence does not yet support that final claim. The previous
+[`v0.14 preview`](../verified_construction_core/2026-08-20-preview-v0.14/README.md),
 [`v0.13 preview`](../verified_construction_core/2026-08-20-preview-v0.13/README.md),
 [`v0.12 preview`](../verified_construction_core/2026-08-20-preview-v0.12/README.md),
 [`v0.11 preview`](../verified_construction_core/2026-08-20-preview-v0.11/README.md),
@@ -22,7 +23,7 @@ byte-frozen and hash-validated rather than being overwritten.
 
 ## Preview scope
 
-The preview selects 71 projects attached to 68 source-scoped physical sites in 27 countries from
+The preview selects 76 projects attached to 73 source-scoped physical sites in 27 countries from
 `2026-07-22-open-seed-v97`. Every project has:
 
 - a physical-status observation no more than 90 days old on the fixed 2026-08-20 cohort lifecycle
@@ -33,9 +34,10 @@ The preview selects 71 projects attached to 68 source-scoped physical sites in 2
 - an official boundary or a source-specific site/address locator with its precision limit.
 
 The e-Stat, Chiba, Census, NSW Planning, firstcolo, NLS, Environment Agency, Kartverket, OSM, City
-of San Jose, and QTS geometry evidence used by the v0.11 through v0.14 deltas was captured and its
+of San Jose, QTS, Ryhti, ACT, and Energieatlas geometry evidence used by the v0.11 through v0.15
+deltas was captured and its
 geometry/identity use accepted on 2026-08-23. It cannot update lifecycle state after the fixed
-2026-08-20 cohort cutoff. For preview compatibility, the v0.14 manifest and selection report retain
+2026-08-20 cohort cutoff. For preview compatibility, the v0.15 manifest and selection report retain
 `reviewed_at` as an alias for that lifecycle cutoff and also expose
 `cohort_lifecycle_reference_date` and `geometry_identity_reviewed_at` as distinct machine fields.
 
@@ -184,6 +186,31 @@ for compact identity/address facts; no parcel geometry is redistributed. Raw rig
 parcel responses, source HTML/PDF, the City development polygon, and imagery remain untracked.
 Geometry adds no party, capacity, workload, metric, imagery, footprint, or lifecycle claim.
 
+The five-project v0.15 delta adds eStruxture CAL-3 in Canada, atNorth FIN04 and Hyperco Loviisa in
+Finland, CDC Beard BE1 in Australia, and Green Mountain FRA-Mainz in Germany as five distinct
+physical sites. CAL-3 uses the exact coordinate published in its first-party datasheet. FRA-Mainz
+uses the official Energieatlas point for the named Green Rocks project, with Green Mountain, KMW,
+Gaßnerallee, and the same three-building facility retained as compact identity facts. Neither point
+is a parcel, campus, building, entrance, survey point, centroid, or current-work boundary.
+
+FIN04's Kouvola permit binds atNorth, Lossitie 26, and property 286-423-20-1. The exact three-feature
+NLS EPSG:3067 geometry is transformed with pyproj 3.7.2 / PROJ 9.5.1 and published as one
+MultiPolygon under CC BY 4.0. Its disconnected components remain only a shared-campus locator, not
+a Phase 1, campus, building, current-work, or publication-target official boundary. Hyperco's
+Loviisa permit binds permit 2025-157, applicant Hyperco Quantum Oy, Itäinen liittymä 7a, and
+property 434-405-1-33. The CC BY 4.0 Ryhti building point is cross-identified by permanent permit,
+property, decision date, and gross floor area; it remains a point locator, never a building
+footprint or work-at-point claim.
+
+The official ACT development-application plan identifies CDC's BE1 Data Centre at Block 24 Section
+11 Beard. The corresponding exact ACT polygon is published under CC BY 4.0, but the cadastral source
+marks the block `RETIRED`. It is therefore explicitly a historical BE1 project locator only—never a
+current parcel, present legal boundary, campus boundary, project footprint, building footprint, or
+current-work extent. All five v0.15 geometries have `official_boundary=false`, empty numeric
+horizontal uncertainty with an explicit unknown reason, and no imagery-derived or geometry-derived
+lifecycle, capacity, energy, efficiency, role, workload, tenant, customer, user, or operating-model
+claim. Raw PDFs, HTML, all-rights-reserved responses, and imagery are excluded.
+
 The review contract distinguishes `direct_geometry` from `coordinates_to_point` and records
 whether geometry comes from the project or its parent campus. Coordinate serialization adds no
 precision. The maincubes BER02, AVAIO Taurus, and KAO KLON-03 points retain unknown horizontal
@@ -209,11 +236,11 @@ validator forbids using it for geometry, status, capacity, progress, or building
 - `projects.csv` preserves project-level status, geometry source entity, derivation, method and
   scope, coordinate precision, source URLs, typed power observations, and explicit
   unknown/not-estimated reasons.
-- `sites.csv` groups the 71 selected projects into 68 physical-site keys without claiming
+- `sites.csv` groups the 76 selected projects into 73 physical-site keys without claiming
   global cross-source deduplication.
-- `evidence.csv` is the closed set of 170 status, geometry, operating-model, context, workload, role, and
+- `evidence.csv` is the closed set of 183 status, geometry, operating-model, context, workload, role, and
   typed-metric evidence rows referenced by the cohort.
-- `sites.geojson` and the dependency-free `map.html` expose the same 68 site IDs. The visible map
+- `sites.geojson` and the dependency-free `map.html` expose the same 73 site IDs. The visible map
   footer credits every selected geometry provider whose terms require it.
 - `schema.json` defines CSV fields, logical types, keys, embedded evidence references, GeoJSON
   geometry equality, and the map dependency in machine-readable form.
@@ -224,7 +251,8 @@ validator forbids using it for geometry, status, capacity, progress, or building
 ## Version policy
 
 Each preview is a coherent frozen snapshot, not a separate pile of data that must be added to the
-latest CSV. v0.14 inherits the byte-frozen v0.13 artifact and adds nine independently pinned U.S.
+latest CSV. v0.15 inherits the byte-frozen v0.14 artifact and adds five independently pinned non-U.S.
+sites; v0.14 inherits the byte-frozen v0.13 artifact and adds nine independently pinned U.S.
 sites; v0.13 inherits the byte-frozen v0.12 artifact and adds six independently pinned sites;
 v0.12 inherits the byte-frozen v0.11 artifact and adds five independently pinned U.S. projects with
 Census address-match campus locators; v0.11 inherits v0.10 and adds IIJ Shiroi Phase
@@ -255,7 +283,7 @@ instead.
 ## Validation and rebuild
 
 Validation and byte-exact rebuilding work in a public clean clone from the generated preview and
-100 manifest-listed portable inputs. The ignored v97 and exact-identity v14 payloads are optional, all-or-nothing
+107 manifest-listed portable inputs. The ignored v97 and exact-identity v14 payloads are optional, all-or-nothing
 hydration-only cross-checks; when all five are present, their exact embedded source rows are replayed
 as an additional validation layer:
 
@@ -265,7 +293,8 @@ uv run python -m unittest -v \
   tests.test_verified_construction_core \
   tests.test_verified_construction_core_v012 \
   tests.test_verified_construction_core_v013 \
-  tests.test_verified_construction_core_v014
+  tests.test_verified_construction_core_v014 \
+  tests.test_verified_construction_core_v015
 ```
 
 The builder refuses to overwrite an existing directory:
