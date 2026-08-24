@@ -3,8 +3,9 @@
 The long-term product target is a compact, public cohort of 100 physical data-centre sites with
 linked active construction projects, precise geometry, current evidence, typed power semantics,
 and reviewable imagery outcomes. The current artifact is deliberately labelled
-[`v0.15 preview`](../verified_construction_core/2026-08-20-preview-v0.15/README.md), because the
+[`v0.16 preview`](../verified_construction_core/2026-08-20-preview-v0.16/README.md), because the
 available evidence does not yet support that final claim. The previous
+[`v0.15 preview`](../verified_construction_core/2026-08-20-preview-v0.15/README.md),
 [`v0.14 preview`](../verified_construction_core/2026-08-20-preview-v0.14/README.md),
 [`v0.13 preview`](../verified_construction_core/2026-08-20-preview-v0.13/README.md),
 [`v0.12 preview`](../verified_construction_core/2026-08-20-preview-v0.12/README.md),
@@ -23,8 +24,10 @@ byte-frozen and hash-validated rather than being overwritten.
 
 ## Preview scope
 
-The preview selects 76 projects attached to 73 source-scoped physical sites in 27 countries from
-`2026-07-22-open-seed-v97`. Every project has:
+The preview selects 83 projects attached to 80 source-scoped physical sites in 33 countries. Of
+those projects, 81 are selected from the frozen 531-row `2026-07-22-open-seed-v97` construction
+pipeline after the reviewed v0.16 allowlist and two successor-status overlays. Pure DC AMS01 and
+Start Campus SIN02 are two explicitly post-v97 portable additions. Every project has:
 
 - a physical-status observation no more than 90 days old on the fixed 2026-08-20 cohort lifecycle
   reference date;
@@ -34,10 +37,10 @@ The preview selects 76 projects attached to 73 source-scoped physical sites in 2
 - an official boundary or a source-specific site/address locator with its precision limit.
 
 The e-Stat, Chiba, Census, NSW Planning, firstcolo, NLS, Environment Agency, Kartverket, OSM, City
-of San Jose, QTS, Ryhti, ACT, and Energieatlas geometry evidence used by the v0.11 through v0.15
-deltas was captured and its
+of San Jose, QTS, Ryhti, ACT, Energieatlas, IDECA, PDOK BAG, and APA geometry evidence used by the
+v0.11 through v0.16 deltas was captured and its
 geometry/identity use accepted on 2026-08-23. It cannot update lifecycle state after the fixed
-2026-08-20 cohort cutoff. For preview compatibility, the v0.15 manifest and selection report retain
+2026-08-20 cohort cutoff. For preview compatibility, the v0.16 manifest and selection report retain
 `reviewed_at` as an alias for that lifecycle cutoff and also expose
 `cohort_lifecycle_reference_date` and `geometry_identity_reviewed_at` as distinct machine fields.
 
@@ -211,6 +214,54 @@ horizontal uncertainty with an explicit unknown reason, and no imagery-derived o
 lifecycle, capacity, energy, efficiency, role, workload, tenant, customer, user, or operating-model
 claim. Raw PDFs, HTML, all-rights-reserved responses, and imagery are excluded.
 
+The seven-project v0.16 delta adds Scala SBOGZB01 in Colombia, Telecom Egypt RDH2, Racks Central
+RCJM1 in Malaysia, Telia's new Vilnius data center in Lithuania, Pure DC AMS01 in the Netherlands,
+Start Campus SIN02 in Portugal, and Digital Edge CGK1 in Indonesia as seven distinct physical
+sites. Mexico SMEXTP01 is intentionally absent: its current authoritative state is operational,
+which is outside `PHYSICAL_STATUSES`.
+
+The v0.16 lineage contract separates three cases instead of treating the seven rows as one v97
+population. Digital Edge CGK1, Scala SBOGZB01, and Telecom Egypt RDH2 replay their exact v97
+project/status evidence and exact-identity v14 project-to-campus topology. RDH2's separate location
+evidence exists only in its current hash-bound portable source and is explicitly field-level,
+post-v97 evidence. Racks Central RCJM1 and Telia Vilnius replay their v97 project/campus identities
+and their actual v14 topology rows, while their current status comes from separately pinned
+post-v97 successors dated 2026-06-30. Pure DC AMS01 and Start Campus SIN02 are explicitly post-v97
+projects whose `explicit_parent` topology IDs are derived from the project ID, campus ID, source
+hash, relationship type, and a versioned domain separator. Pure's parent campus is absent from v97;
+Start's parent campus is present even though the SIN02 project is absent.
+
+The selection report therefore keeps source-ledger and artifact counts separate. Its frozen-v97
+first-failure counts are 49 `entity_kind_not_project`, 64
+`not_in_reviewed_site_geometry_allowlist`, 81 `selected`, 12 `status_not_physical`, and 325
+`status_outside_90_day_window`: exactly 531 rows, of which 450 are nonselected. The two post-v97
+portable projects bring `artifact_selected_projects` to 83 but do not change that v97 ledger.
+
+SBOGZB01 uses the exact CC BY 4.0 IDECA address point for KR 106 15A 25 only as a Zona Franca
+Bogotá host-development locator. AMS01 uses the exact Public Domain Mark 1.0 PDOK BAG point for
+Plimsollweg 3, the address associated with one Tower 1 permit, only as a broad campus locator.
+SIN02 uses an approximate 25-metre centroid derived from the official APA GeoPDF for the shared
+multi-phase SIN02-06 area. It is not the SIN02 facility, a work point, project footprint, building
+footprint, or current-work extent.
+
+RDH2, RCJM1, Telia Vilnius, and CGK1 use ODbL OpenStreetMap geometry only as broad
+`campus_locator` records. The selected geometries are respectively the named Smart Village host
+development, the reproducible topological union of Iskandar Halal Park Phases 1 and 2, the named
+Telia construction-area way, and the entire Greenland International Industrial Center host estate.
+None is an official boundary, parcel, complete project campus, building footprint, project
+footprint, or current-work extent. OSM names, construction tags, and `opening_date` values are
+geometry metadata and never status evidence. All seven v0.16 geometries have
+`official_boundary=false`; only the APA-derived point has numeric horizontal uncertainty, while the
+other six preserve explicit unknown reasons.
+
+The v0.16 delta publishes no source role, capacity, workload, tenant, customer, user, operating
+model, energy, efficiency, or geometry-derived lifecycle claim. Raw HTML, PDFs, GeoPDFs, drawing
+bundles, API responses, all-rights-reserved artifacts, and imagery remain excluded. The Malaysia
+union is pinned both as 927 canonical no-newline bytes with SHA-256
+`bd636e9b192fca33247390a035d1faf568792055d6e0bb46547531eb0a8ebcb8` and as the 928-byte stored
+newline-terminated JSON container with SHA-256
+`791faac4b109498d4265f8035c8aa5af16a53d4eaf65b969ee4ec7c157deec06`.
+
 The review contract distinguishes `direct_geometry` from `coordinates_to_point` and records
 whether geometry comes from the project or its parent campus. Coordinate serialization adds no
 precision. The maincubes BER02, AVAIO Taurus, and KAO KLON-03 points retain unknown horizontal
@@ -236,11 +287,11 @@ validator forbids using it for geometry, status, capacity, progress, or building
 - `projects.csv` preserves project-level status, geometry source entity, derivation, method and
   scope, coordinate precision, source URLs, typed power observations, and explicit
   unknown/not-estimated reasons.
-- `sites.csv` groups the 76 selected projects into 73 physical-site keys without claiming
+- `sites.csv` groups the 83 selected projects into 80 physical-site keys without claiming
   global cross-source deduplication.
-- `evidence.csv` is the closed set of 183 status, geometry, operating-model, context, workload, role, and
+- `evidence.csv` is the closed set of 200 status, geometry, operating-model, context, workload, role, and
   typed-metric evidence rows referenced by the cohort.
-- `sites.geojson` and the dependency-free `map.html` expose the same 73 site IDs. The visible map
+- `sites.geojson` and the dependency-free `map.html` expose the same 80 site IDs. The visible map
   footer credits every selected geometry provider whose terms require it.
 - `schema.json` defines CSV fields, logical types, keys, embedded evidence references, GeoJSON
   geometry equality, and the map dependency in machine-readable form.
@@ -251,7 +302,8 @@ validator forbids using it for geometry, status, capacity, progress, or building
 ## Version policy
 
 Each preview is a coherent frozen snapshot, not a separate pile of data that must be added to the
-latest CSV. v0.15 inherits the byte-frozen v0.14 artifact and adds five independently pinned non-U.S.
+latest CSV. v0.16 inherits the byte-frozen v0.15 artifact and adds seven independently pinned
+non-U.S. sites; v0.15 inherits the byte-frozen v0.14 artifact and adds five independently pinned non-U.S.
 sites; v0.14 inherits the byte-frozen v0.13 artifact and adds nine independently pinned U.S.
 sites; v0.13 inherits the byte-frozen v0.12 artifact and adds six independently pinned sites;
 v0.12 inherits the byte-frozen v0.11 artifact and adds five independently pinned U.S. projects with
@@ -283,9 +335,13 @@ instead.
 ## Validation and rebuild
 
 Validation and byte-exact rebuilding work in a public clean clone from the generated preview and
-107 manifest-listed portable inputs. The ignored v97 and exact-identity v14 payloads are optional, all-or-nothing
-hydration-only cross-checks; when all five are present, their exact embedded source rows are replayed
-as an additional validation layer:
+116 manifest-listed portable inputs. The ignored v97 and exact-identity v14 payloads are optional, all-or-nothing
+hydration-only cross-checks. When all five are present, the semantic lineage validator replays the
+applicable v97 project, campus, status-evidence, v14 member, and v14 topology rows; verifies the
+declared Pure/Start project and campus presence or absence; and independently recomputes the
+531-row first-failure ledger after successor overlays. It also verifies that the pinned successor
+and post-v97 portable evidence IDs are absent from the v97 evidence table. A public clean clone
+remains rebuildable without those five ignored inputs:
 
 ```sh
 uv run python scripts/build_verified_construction_core.py --validate-only
@@ -294,7 +350,8 @@ uv run python -m unittest -v \
   tests.test_verified_construction_core_v012 \
   tests.test_verified_construction_core_v013 \
   tests.test_verified_construction_core_v014 \
-  tests.test_verified_construction_core_v015
+  tests.test_verified_construction_core_v015 \
+  tests.test_verified_construction_core_v016
 ```
 
 The builder refuses to overwrite an existing directory:

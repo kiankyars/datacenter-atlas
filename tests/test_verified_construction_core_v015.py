@@ -23,7 +23,7 @@ from datacenter_atlas.verified_construction_core import (
     V15_GEOMETRY_CAPTURE_SHA256,
     V15_PROJECT_KEYS,
     VerifiedConstructionCoreError,
-    build_preview,
+    build_v15_preview as build_preview,
     validate_frozen_v14,
     validate_preview,
 )

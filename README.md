@@ -13,21 +13,26 @@ energy, or PUE; estimates carry low/base/high values, method, confidence, and ev
 ## Current workspace state (audited 2026-08-23)
 
 The first coherent user-facing construction product is the
-[Verified Construction Core v0.15 preview](verified_construction_core/2026-08-20-preview-v0.15/),
-with its [selection contract and final gates](docs/verified_construction_core.md). It contains 76
-recently observed projects grouped into 73 source-scoped physical sites across 27 countries. Five
-project rows carry official parcel/survey geometry; 71 use explicitly scoped locators. The v0.15
-delta adds five distinct non-U.S. sites: eStruxture CAL-3, atNorth FIN04 Kouvola, Hyperco Loviisa,
-CDC Beard BE1, and Green Mountain FRA-Mainz. CAL-3 and FRA-Mainz use official published points;
-Hyperco uses the CC BY 4.0 Ryhti permit-building point. FIN04 uses the exact three-component NLS
-property MultiPolygon under CC BY 4.0 only as a shared-campus locator. CDC uses the exact CC BY 4.0
-ACT Block 24 Section 11 polygon only as a historical BE1 locator because the source marks the block
-`RETIRED`. Every new geometry has `official_boundary=false` and unknown numeric horizontal
-accuracy. The cohort lifecycle cutoff remains 2026-08-20, while the geometry and identity review
-was accepted on 2026-08-23. The manifest and selection report record both clocks separately. Every
-row remains
+[Verified Construction Core v0.16 preview](verified_construction_core/2026-08-20-preview-v0.16/),
+with its [selection contract and final gates](docs/verified_construction_core.md). It contains 83
+recently observed projects grouped into 80 source-scoped physical sites across 33 countries. Five
+project rows carry official parcel/survey geometry; 78 use explicitly scoped locators. The source
+selection ledger attributes 81 selected projects and 450 nonselected rows to the frozen 531-row
+v97 pipeline after the reviewed v0.16 allowlist and successor-status overlays. Pure DC AMS01 and
+Start Campus SIN02 are two explicitly post-v97 portable additions, bringing the artifact cohort to
+83 without presenting them as v97 rows. The v0.16 delta adds seven distinct non-U.S. sites in
+Colombia, Egypt, Malaysia, Lithuania, the Netherlands,
+Portugal, and Indonesia. IDECA and PDOK supply exact official address points, and APA supplies an
+approximate 25-metre centroid of the shared SIN02-06 multi-phase area. Five OSM host-development
+ways supply four ODbL community locators, including a reproducible union of Iskandar Halal Park
+Phases 1 and 2. Every new geometry has `official_boundary=false` and `campus_locator` scope. Mexico
+SMEXTP01 is excluded because its current authoritative status is operational and outside the
+physical-status cohort. The cohort lifecycle cutoff remains 2026-08-20, while the geometry and
+identity review was accepted on 2026-08-23. The manifest and selection report record both clocks
+separately. Every row remains
 `independent_imagery_verification=false`, so this preview is a research baseline—not the promised
 100-site final release or a claim of SemiAnalysis parity. The
+[v0.15 preview](verified_construction_core/2026-08-20-preview-v0.15/),
 [v0.14 preview](verified_construction_core/2026-08-20-preview-v0.14/),
 [v0.13 preview](verified_construction_core/2026-08-20-preview-v0.13/),
 [v0.12 preview](verified_construction_core/2026-08-20-preview-v0.12/),
@@ -42,11 +47,11 @@ row remains
 [v0.3 preview](verified_construction_core/2026-08-20-preview-v0.3/),
 [v0.2 preview](verified_construction_core/2026-08-20-preview-v0.2/) and
 [v0.1 preview](verified_construction_core/2026-08-19-preview-v0.1/) remain byte-frozen for audit,
-not as datasets to add to v0.15.
+not as datasets to add to v0.16.
 
 All eight inherited workload observations are machine-labelled `intended`, not operational. Nine
 published operator claims and two intended-customer claims carry evidence IDs and relationship
-scope. The v0.15 delta adds no normalized roles, operating models, workloads, or metrics. The
+scope. The v0.16 delta adds no normalized roles, operating models, workloads, or metrics. The
 inherited v0.11 row retains one project-scoped planned 10 MW grid-connection observation for IIJ
 Phase 3; the optional 25 MW expandability ceiling is not promoted as installed, contracted,
 current, or additive capacity.
@@ -63,7 +68,7 @@ than v97/v38/v14/v11. Counts from separate lanes or versions must not be added.
 
 | Lane | Latest artifact | Current local hydration |
 | --- | --- | --- |
-| Verified construction preview | [v0.15](verified_construction_core/2026-08-20-preview-v0.15/) | 107 portable source and bridge inputs are manifest-bound; the generated preview remains a non-final artifact |
+| Verified construction preview | [v0.16](verified_construction_core/2026-08-20-preview-v0.16/) | 116 portable source and bridge inputs are manifest-bound; the generated preview remains a non-final artifact |
 | Source release | [open-seed v97](releases/2026-07-22-open-seed-v97/) | All 13 manifest-declared payload files present |
 | Federation | [v38](federated_indexes/2026-07-22-public-open-v38/) | Federated index present |
 | Exact identity | [v14](exact_identity_decisions/2026-07-22-public-open-v14/) | All seven declared payload files present |
