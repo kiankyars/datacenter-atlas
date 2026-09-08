@@ -1,0 +1,275 @@
+{
+  "format": "datacenter-atlas-expansion-200-middleeast-research-v1",
+  "accepted_into_core": false,
+  "lifecycle_reference_date": "2026-08-20",
+  "reviewed_at": "2026-09-08",
+  "reference_checkpoint": {
+    "commit": "c8f332dd578a97200b1634ddc9cb168379fa8a6e",
+    "physical_sites": 120,
+    "new_sites_accepted_by_this_packet": 0
+  },
+  "purpose": "Preserve bounded locator failures and a newly dated Shoham physical observation without admitting city-level points or changing frozen records.",
+  "candidates": [
+    {
+      "name": "MultiDC Shoham",
+      "decision": "hold_exact_geometry",
+      "project_stable_key": "curated:multidc-shoham-campus:current-build",
+      "fresh_physical_observation": "2026-07-08",
+      "new_source": {
+        "path": "sources/curated-official-2026-09-08-multidc-shoham-chiller-installation.json",
+        "bytes": 6341,
+        "sha256": "864192949a0d75538465eb35b8d11682438d19007c6c6e4ffdda6acf6129efa6"
+      },
+      "findings": [
+        "Operator JSON-LD literally dates the chiller-installation post July 8. The June 3 post date is independently confirmed by JSON-LD at 2026-06-03T11:04:57.428Z.",
+        "Both developer pages identify Shoham Industrial Zone but have no project-specific numeric map point. Reject the corporate Tel Aviv footer.",
+        "Exact Nominatim query MultiDC Shoham returned an empty JSON list, not a locator.",
+        "Kardan annual report 2024 physical page 25, section 7.13.1(a), explicitly describes one 27.4-dunam Shoham campus with three planned facilities, two in early construction at December 31, 2024; it supplies no parcel or street number. This page was fully rendered and visually reviewed. Its date is historical identity context only.",
+        "A business-directory result lists Rakefet 4 for the joint venture. This is an unverified lead, not a primary project-address bridge, and no point is selected."
+      ],
+      "next_evidence_needed": "Project-bound municipal permit/parcel geometry or a first-party numeric campus locator; preserve one physical campus across its buildings."
+    },
+    {
+      "name": "Gulf Data Hub Dubai DSO4 / DSO5 / DSO6",
+      "decision": "hold_geometry_and_campus_scope",
+      "findings": [
+        "Fresh September Dubai page retains the three under-construction labels and describes six Dubai locations.",
+        "The Dubai and locations pages inspected expose no exact DSO4/5/6 coordinate or parcel. A shared Dubai Silicon Oasis locality is insufficient to conclude one or three physical campuses.",
+        "No new lifecycle date is inferred from September retrieval; historical July22 captures remain frozen, with their retrieval-date status semantics."
+      ],
+      "next_evidence_needed": "An exact first-party or government identity-location bridge for each proposed physical campus, plus explicit cross-building campus review."
+    },
+    {
+      "name": "XDS / Desert Dragon Jeddah",
+      "decision": "hold_exact_geometry",
+      "findings": [
+        "Current operator locations page still describes construction/hand-over and a November 2026 target, but no exact street address or numeric locator.",
+        "The inspected Desert Dragon homepage supplies no project-bound numeric map marker.",
+        "The June2026 Riyadh target and November2026 Jeddah target are schedules only, not evidence of completion or current physical-date refresh."
+      ],
+      "next_evidence_needed": "A Jeddah-specific project boundary or numeric locator; do not substitute an ICS Arabia or XDS office."
+    },
+    {
+      "name": "Noor Capital Gardens",
+      "decision": "hold_exact_geometry",
+      "findings": [
+        "The current contractor page is byte-identical to the archived July22 capture: 35951 bytes and SHA-256 809b7b91729c0535105611ce9206678188ffe9bd3281210b04bdc02d7b9be920.",
+        "No exact project coordinate, street number or parcel is exposed in the inspected page. The broad Capital Gardens development cannot be substituted for the data center."
+      ],
+      "next_evidence_needed": "An exact named data-center location, not a town or master-development center."
+    }
+  ],
+  "capture_records": [
+    {
+      "tag": "middleeast4-dragon",
+      "source_url": "https://dragon-datacenter.com/",
+      "capture_started_at": "2026-09-08T20:47:37Z",
+      "capture_finished_at": "2026-09-08T20:47:38Z",
+      "returncode": 0,
+      "http_status": 200,
+      "effective_url": "https://dragon-datacenter.com/",
+      "content_type": "text/html; charset=UTF-8",
+      "request_credentials_supplied": false,
+      "capture_method": "credential_free_curl_fail_location_compressed",
+      "raw_capture_bytes": 380200,
+      "raw_capture_sha256": "35092d60509e0dc59fe8855b4d5bbb70c3c2818f23b30bea21c9467d7bfd6aeb"
+    },
+    {
+      "tag": "middleeast4-gdh-dubai",
+      "source_url": "https://www.gulfdatahub.ae/dubai",
+      "capture_started_at": "2026-09-08T20:45:01Z",
+      "capture_finished_at": "2026-09-08T20:45:02Z",
+      "returncode": 0,
+      "http_status": 200,
+      "effective_url": "https://www.gulfdatahub.ae/dubai",
+      "content_type": "text/html; charset=utf-8",
+      "request_credentials_supplied": false,
+      "capture_method": "credential_free_curl_fail_location_compressed",
+      "raw_capture_bytes": 80016,
+      "raw_capture_sha256": "2fa46e60ecb4828ab421cce469cc411db7790cf843e775d39404705dade04d7b"
+    },
+    {
+      "tag": "middleeast4-gdh-locations",
+      "source_url": "https://www.gulfdatahub.ae/locations",
+      "capture_started_at": "2026-09-08T20:47:39Z",
+      "capture_finished_at": "2026-09-08T20:47:40Z",
+      "returncode": 0,
+      "http_status": 200,
+      "effective_url": "https://www.gulfdatahub.ae/locations",
+      "content_type": "text/html; charset=utf-8",
+      "request_credentials_supplied": false,
+      "capture_method": "credential_free_curl_fail_location_compressed",
+      "raw_capture_bytes": 100775,
+      "raw_capture_sha256": "8fe8459929b05dfc33084c2a8f76666aaf77272fb9f4e63535373c4a2c0e0712"
+    },
+    {
+      "tag": "middleeast4-geva-multidc",
+      "source_url": "https://www.geva.co/multidc",
+      "capture_started_at": "2026-09-08T20:44:12Z",
+      "capture_finished_at": "2026-09-08T20:44:12Z",
+      "returncode": 0,
+      "http_status": 200,
+      "effective_url": "https://www.geva.co/multidc",
+      "content_type": "text/html; charset=UTF-8",
+      "request_credentials_supplied": false,
+      "capture_method": "credential_free_curl_fail_location_compressed",
+      "raw_capture_bytes": 547542,
+      "raw_capture_sha256": "7861ac586125dec93ecb4ce1bac58f11e9362e2f08282f3e73a9055ebca6f281"
+    },
+    {
+      "tag": "middleeast4-geva-shoham",
+      "source_url": "https://www.geva.co/geva-projects/multidc-shoham",
+      "capture_started_at": "2026-09-08T20:44:12Z",
+      "capture_finished_at": "2026-09-08T20:44:14Z",
+      "returncode": 0,
+      "http_status": 200,
+      "effective_url": "https://www.geva.co/geva-projects/multidc-shoham",
+      "content_type": "text/html; charset=UTF-8",
+      "request_credentials_supplied": false,
+      "capture_method": "credential_free_curl_fail_location_compressed",
+      "raw_capture_bytes": 551340,
+      "raw_capture_sha256": "715d03b67feb1816fd2c52a470284dbecd431736673a1eb2e25acd994ccac241"
+    },
+    {
+      "tag": "middleeast4-kardan-2023",
+      "source_url": "https://www.magna.isa.gov.il/public/2024-01-029200/%D7%A7%D7%A8%D7%93%D7%9F_%D7%99%D7%A9%D7%A8%D7%90%D7%9C_%D7%A9%D7%A0%D7%AA%D7%99_2023_isa.pdf",
+      "capture_started_at": "2026-09-08T20:45:35Z",
+      "capture_finished_at": "2026-09-08T20:45:35Z",
+      "returncode": 56,
+      "http_status": 403,
+      "effective_url": "https://www.magna.isa.gov.il/public/2024-01-029200/%D7%A7%D7%A8%D7%93%D7%9F_%D7%99%D7%A9%D7%A8%D7%90%D7%9C_%D7%A9%D7%A0%D7%AA%D7%99_2023_isa.pdf",
+      "content_type": "text/html",
+      "request_credentials_supplied": false,
+      "capture_method": "credential_free_curl_fail_location_compressed",
+      "error": "curl: (56) The requested URL returned error: 403\n"
+    },
+    {
+      "tag": "middleeast4-kardan-2024",
+      "source_url": "https://mayafiles.tase.co.il/rpdf/1655001-1656000/P1655376-00.pdf",
+      "capture_started_at": "2026-09-08T20:45:49Z",
+      "capture_finished_at": "2026-09-08T20:46:01Z",
+      "returncode": 0,
+      "http_status": 200,
+      "effective_url": "https://mayafiles.tase.co.il/rpdf/1655001-1656000/P1655376-00.pdf",
+      "content_type": "application/pdf",
+      "request_credentials_supplied": false,
+      "capture_method": "credential_free_curl_fail_location_compressed",
+      "raw_capture_bytes": 5849183,
+      "raw_capture_sha256": "d16782f3d548836a349d7d5d8beb97f814a3245b694081565e7ab685c567f839"
+    },
+    {
+      "tag": "middleeast4-noor",
+      "source_url": "https://www.square.com.eg/all-projects/noor-data-center",
+      "capture_started_at": "2026-09-08T20:47:38Z",
+      "capture_finished_at": "2026-09-08T20:47:39Z",
+      "returncode": 0,
+      "http_status": 200,
+      "effective_url": "https://www.square.com.eg/all-projects/noor-data-center",
+      "content_type": "text/html; charset=utf-8",
+      "request_credentials_supplied": false,
+      "capture_method": "credential_free_curl_fail_location_compressed",
+      "raw_capture_bytes": 35951,
+      "raw_capture_sha256": "809b7b91729c0535105611ce9206678188ffe9bd3281210b04bdc02d7b9be920"
+    },
+    {
+      "tag": "middleeast4-shoham-july",
+      "source_url": "https://www.linkedin.com/posts/multidc-data-center-campus_datacenter-aiinfrastructure-artificialintelligence-activity-7480526811874058240-5h6X",
+      "capture_started_at": "2026-09-08T20:45:03Z",
+      "capture_finished_at": "2026-09-08T20:45:03Z",
+      "returncode": 0,
+      "http_status": 200,
+      "effective_url": "https://www.linkedin.com/posts/multidc-data-center-campus_datacenter-aiinfrastructure-artificialintelligence-activity-7480526811874058240-5h6X",
+      "content_type": "text/html; charset=utf-8",
+      "request_credentials_supplied": false,
+      "capture_method": "credential_free_curl_fail_location_compressed",
+      "raw_capture_bytes": 106527,
+      "raw_capture_sha256": "a729c2269083a8b237ed57d4e5723848713f1a8ba8c975a453e29ebc48c322ed"
+    },
+    {
+      "tag": "middleeast4-shoham-june3",
+      "source_url": "https://www.linkedin.com/posts/multidc-data-center-campus_datacenters-datacenter-digitalinfrastructure-activity-7467894088462249984-2SdU",
+      "capture_started_at": "2026-09-08T20:45:02Z",
+      "capture_finished_at": "2026-09-08T20:45:03Z",
+      "returncode": 0,
+      "http_status": 200,
+      "effective_url": "https://www.linkedin.com/posts/multidc-data-center-campus_datacenters-datacenter-digitalinfrastructure-activity-7467894088462249984-2SdU",
+      "content_type": "text/html; charset=utf-8",
+      "request_credentials_supplied": false,
+      "capture_method": "credential_free_curl_fail_location_compressed",
+      "raw_capture_bytes": 118512,
+      "raw_capture_sha256": "e3c4f38308883c81f5cc8aefbda38ce9ecbd62a0351938d85aa2fe18e74e2dec"
+    },
+    {
+      "tag": "middleeast4-shoham-osm",
+      "source_url": "https://nominatim.openstreetmap.org/search?format=jsonv2&q=MultiDC%20Shoham&addressdetails=1",
+      "capture_started_at": "2026-09-08T20:45:22Z",
+      "capture_finished_at": "2026-09-08T20:45:22Z",
+      "returncode": 0,
+      "http_status": 200,
+      "effective_url": "https://nominatim.openstreetmap.org/search?format=jsonv2&q=MultiDC%20Shoham&addressdetails=1",
+      "content_type": "application/json; charset=utf-8",
+      "request_credentials_supplied": false,
+      "capture_method": "credential_free_curl_fail_location_compressed",
+      "raw_capture_bytes": 2,
+      "raw_capture_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "tag": "middleeast4-xds",
+      "source_url": "https://xdsdatacentres.com/locations/",
+      "capture_started_at": "2026-09-08T20:47:36Z",
+      "capture_finished_at": "2026-09-08T20:47:37Z",
+      "returncode": 0,
+      "http_status": 200,
+      "effective_url": "https://xdsdatacentres.com/locations/",
+      "content_type": "text/html; charset=UTF-8",
+      "request_credentials_supplied": false,
+      "capture_method": "credential_free_curl_fail_location_compressed",
+      "raw_capture_bytes": 101677,
+      "raw_capture_sha256": "df5771963768d2b20057dc7eaa5233dd9a90706d0e0ee5160d7b9fca68f94bf3"
+    }
+  ],
+  "other_bounded_checks": [
+    {
+      "topic": "Digital Realty second-quarter2026 supplemental",
+      "result": "No site admission. Online text extraction for supplemental page23 shows metro-level construction accounting, not named-site identity; raw index and supplement captures returned403 and receive no body hashes. No PDF visual review or primary raw-byte verification is claimed.",
+      "urls": [
+        "https://investor.digitalrealty.com/financials/quarterly-results",
+        "https://investor.digitalrealty.com/static-files/678a7e32-514a-41c8-aebc-9492d513bf61"
+      ],
+      "capture_records": [
+        {
+          "tag": "digital4-q2-index",
+          "source_url": "https://investor.digitalrealty.com/financials/quarterly-results",
+          "capture_started_at": "2026-09-08T20:46:48Z",
+          "capture_finished_at": "2026-09-08T20:46:48Z",
+          "returncode": 56,
+          "http_status": 403,
+          "effective_url": "https://investor.digitalrealty.com/financials/quarterly-results",
+          "content_type": "text/html",
+          "request_credentials_supplied": false,
+          "capture_method": "credential_free_curl_fail_location_compressed",
+          "error": "curl: (56) The requested URL returned error: 403\n"
+        },
+        {
+          "tag": "digital4-q2-supplement",
+          "source_url": "https://investor.digitalrealty.com/static-files/678a7e32-514a-41c8-aebc-9492d513bf61",
+          "capture_started_at": "2026-09-08T20:47:11Z",
+          "capture_finished_at": "2026-09-08T20:47:11Z",
+          "returncode": 56,
+          "http_status": 403,
+          "effective_url": "https://investor.digitalrealty.com/static-files/678a7e32-514a-41c8-aebc-9492d513bf61",
+          "content_type": "text/html",
+          "request_credentials_supplied": false,
+          "capture_method": "credential_free_curl_fail_location_compressed",
+          "error": "curl: (56) The requested URL returned error: 403\n"
+        }
+      ]
+    }
+  ],
+  "rights_and_limits": [
+    "Raw HTML/PDF/media remain temporary and untracked; minimal restated source facts and capture hashes only.",
+    "No imagery coverage, blind review, role, workload or power rows are created.",
+    "Research evidence does not increase the verified physical-site count.",
+    "Unsuccessful searches are bounded observations, not proof that no source exists."
+  ]
+}

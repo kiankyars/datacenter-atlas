@@ -193,3 +193,47 @@ Regression tests constrain these exact differences rather than allowing broad in
 .venv/bin/python scripts/build_expansion_200_draft.py --batch third-reviewed --output-dir /absolute/new/draft-directory
 .venv/bin/python scripts/build_expansion_200_draft.py --batch third-reviewed --validate-only
 ```
+
+## Twenty-eight-site reviewed checkpoint
+
+The [fourth reviewed draft](../verified_construction_core/2026-08-20-v0.18-draft-fourth-reviewed/README.md)
+adds NEXTDC M2, M3, S3 and S4, MERLIN Bilbao-Arasur and Lisbon, Microsoft La Porte and Meta Lebanon.
+It contains 128 physical sites, 131 projects, 40 countries, 89 non-US sites and 362 evidence rows.
+This is 28 of the requested 100 additions, with 72 remaining. Every preceding project, site and
+evidence row is unchanged. The public v0.17 release and all earlier checkpoints remain frozen.
+
+NEXTDC's August 27 results explicitly report the named remaining construction inventory at
+June 30. That retrospective observation date is selected; publication after the cutoff does not
+become a later construction date. M2/M3/S3 retain the reported M&E fit-out scope and S4 retains
+generic construction. Delivered halls and approval-dependent pipeline are excluded. M2 uses the
+operator's directions-link destination. M3 and S3 use attributed community campus points, with
+their exact code/address identity constraints retained. M3's conflicting operator overview marker
+is recorded and unselected, supported by independent street-address and council identity checks.
+S4 uses the named NSW project marker, not the wrong Artarmon search result or default map center.
+
+Bilbao-Arasur selects Building 2 once at the existing multi-building campus, with June 30
+half-year work-update evidence. Its owner-published location link resolves to a literal coordinate
+query, whose response headers are hash-bound separately from the empty body. Lisbon's two
+Phase II buildings count as one campus, with July 27 datelined continuing work and Edged's literal
+site coordinates. Existing Phase I operations and later same-campus phases do not add sites.
+Publisher work-update photographs are not independent Atlas imagery reviews, and their separate
+camera dates remain unknown.
+
+La Porte selects the June 18 first-phase construction start. The July-only grading update is
+corroboration, not a fabricated day inferred from a page edit; vertical construction is still future
+in that update. The exact government parcel is a 215.361-acre constituent of the approximately
+500-acre first-phase campus, not its complete boundary or the proposed eastern expansion.
+Lebanon's July 6 municipal minutes explicitly link Orla, Domino and Meta to a campus under
+construction. Its exact DNR detention-outfall permit reference locates the campus at Deer Creek,
+not a data-center building. The service's Web Mercator-to-WGS84 conversion is independently
+checked without claiming to verify the older UTM derivation or improve positional accuracy.
+
+All eight locators retain explicit campus-locator scope and unknown positional accuracy.
+No new roles, power metrics, workloads or operating status are inferred. Imagery remains 10/131;
+blind review remains incomplete, with the fixed 20-row/19-agreement protocol covering the full
+eligible population. Both objective-completion and final-publication flags remain false.
+
+```sh
+.venv/bin/python scripts/build_expansion_200_draft.py --batch fourth-reviewed --output-dir /absolute/new/draft-directory
+.venv/bin/python scripts/build_expansion_200_draft.py --batch fourth-reviewed --validate-only
+```
