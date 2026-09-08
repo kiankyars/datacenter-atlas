@@ -50,6 +50,12 @@ promised final release or a claim of SemiAnalysis parity. The
 [v0.1 preview](verified_construction_core/2026-08-19-preview-v0.1/) remain byte-frozen for audit,
 not as datasets to add to v0.17.
 
+The active [200-site expansion](docs/expansion_200.md), begun on 2026-09-08, targets another 100
+distinct physical sites under the same evidence standards. Candidate research is not included in
+the published 100-site count above. The separately labelled
+[initial-three draft](verified_construction_core/2026-08-20-v0.18-draft-initial-three/README.md)
+contains 103 sites and is reproducible with `scripts/build_expansion_200_draft.py`.
+
 All eight inherited workload observations are machine-labelled `intended`, not operational. Nine
 published operator claims and two intended-customer claims carry evidence IDs and relationship
 scope. The v0.17 delta adds no normalized roles, operating models, workloads, or metrics. The

@@ -42,8 +42,21 @@ jobs:
             datacenter_atlas.tests.test_verified_construction_core_v015 \
             datacenter_atlas.tests.test_verified_construction_core_v016 \
             datacenter_atlas.tests.test_verified_construction_core_v017 \
+            datacenter_atlas.tests.test_expansion_200_inventory \
+            datacenter_atlas.tests.test_expansion_200_sources \
+            datacenter_atlas.tests.test_verified_construction_core_v018 \
+            datacenter_atlas.tests.test_expansion_200_draft \
             datacenter_atlas.tests.test_workspace_shim
+      - name: Validate the frozen expansion research inventory
+        working-directory: datacenter_atlas
+        run: .venv/bin/python scripts/build_expansion_200_inventory.py --validate-snapshot
       - name: Smoke-test the CLI
+        run: .venv/bin/python scripts/build_expansion_200_draft.py --help
+        working-directory: datacenter_atlas
+      - name: Validate the reviewed initial-three draft
+        working-directory: datacenter_atlas
+        run: .venv/bin/python scripts/build_expansion_200_draft.py --validate-only
+      - name: Smoke-test the public CLI
         run: datacenter_atlas/.venv/bin/python -m datacenter_atlas --help
       - name: Lint the clean-clone surface
         working-directory: datacenter_atlas
@@ -56,9 +69,13 @@ jobs:
             datacenter_atlas/timestamps.py \
             datacenter_atlas/verified_construction_core.py \
             datacenter_atlas/verified_construction_core_v017.py \
+            datacenter_atlas/verified_construction_core_v018.py \
+            datacenter_atlas/expansion_200_initial_three.py \
             europe_latam_official_discovery_20260721.py \
             scripts/build_verified_construction_core.py \
             scripts/generate_verified_construction_core_v017_inputs.py \
+            scripts/build_expansion_200_inventory.py \
+            scripts/build_expansion_200_draft.py \
             tests/test_models.py \
             tests/test_database.py \
             tests/test_timestamp_boundaries.py \
@@ -71,4 +88,8 @@ jobs:
             tests/test_verified_construction_core_v015.py \
             tests/test_verified_construction_core_v016.py \
             tests/test_verified_construction_core_v017.py \
+            tests/test_expansion_200_inventory.py \
+            tests/test_expansion_200_sources.py \
+            tests/test_verified_construction_core_v018.py \
+            tests/test_expansion_200_draft.py \
             tests/test_workspace_shim.py
