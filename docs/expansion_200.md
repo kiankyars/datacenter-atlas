@@ -104,3 +104,38 @@ Imagery coverage remains 10/108 and the blind-review gap remains open. To reprod
 .venv/bin/python scripts/build_expansion_200_draft.py --batch initial-five --output-dir /absolute/new/draft-directory
 .venv/bin/python scripts/build_expansion_200_draft.py --batch initial-five --validate-only
 ```
+
+## Twelve-site reviewed checkpoint
+
+The [second reviewed draft](../verified_construction_core/2026-08-20-v0.18-draft-second-reviewed/README.md)
+preserves the previous five additions and adds Goodman PAR01, PAR02, AMS01 and FRA02,
+Amazon Falls Township, Digital Realty Digital Dulles, and Galaxy Helios Phase II. It contains
+112 physical sites, 115 projects, 40 countries, 78 non-US sites, and 295 evidence rows.
+This is 12 of the requested 100 additions, with 88 remaining. Both prior draft snapshots
+and the public v0.17 release remain unchanged.
+
+The French campuses use exact government house-number points. Amsterdam uses the provincial
+notice's first published RD location marker, with the source CRS independently checked.
+Frankfurt uses the marker linked in Goodman's own project brochure, not the map viewport center.
+These are campus locators; none is promoted to a data-center boundary or construction footprint.
+
+The three US locators have explicitly broader constituent scope: Amazon's building-six parcel,
+Digital Dulles' IAD44/B7 operator point, and Helios I's government address-range geocode.
+They locate one identified campus apiece, not the particular new hall or phase. The Helios
+construction selection is Phase II; completed Phase I is not selected as a construction project.
+Freestone remains excluded because its operator/legal-entity identity bridge is unresolved.
+The [US research handoff](../research/expansion-200/us-locator-handoff-2026-09-08.json) records the
+pre-acceptance evidence and unresolved candidates; the separately pinned batch contract is
+the authority for these three admissions. The [Americas review](../research/expansion-200/americas-review-2026-09-08.json)
+also preserves the Fox Creek power-plant/data-center scope distinction and unresolved Latin
+American locator checks without altering the frozen inventory.
+
+Selected physical observations remain June 30 for the four Goodman projects, July 19 for Amazon,
+June 29 for Digital Dulles, and July 6 for Helios Phase II. September identity retrievals do not
+advance those dates. No new roles, workloads, power metrics or imagery outcomes are inferred.
+Imagery coverage is still 10/115; blind review remains incomplete. Reproduce or validate with:
+
+```sh
+.venv/bin/python scripts/build_expansion_200_draft.py --batch second-reviewed --output-dir /absolute/new/draft-directory
+.venv/bin/python scripts/build_expansion_200_draft.py --batch second-reviewed --validate-only
+```

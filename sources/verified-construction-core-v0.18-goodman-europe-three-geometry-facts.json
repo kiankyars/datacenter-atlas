@@ -1,0 +1,346 @@
+{
+  "schema_version": "v018-goodman-europe-three-source-facts-1",
+  "reviewed_at": "2026-09-08",
+  "lifecycle_reference_date": "2026-08-20",
+  "review_scope": "Location and identity facts only, prepared for independent acceptance review. No batch contract, acceptance, core mutation or new lifecycle observation is created here. Fresh generic under_construction status must be selected separately from the existing Goodman FY26 current-build source for each named campus.",
+  "proposed_source_bindings": [
+    {
+      "source_id": "goodman-par01-registry-identity",
+      "path": "sources/curated-official-2026-09-08-goodman-par01-paris-reviewed-location.json",
+      "evidence_pointer": "/evidence/0"
+    },
+    {
+      "source_id": "goodman-par01-project-identity",
+      "path": "sources/curated-official-2026-09-08-goodman-par01-paris-reviewed-location.json",
+      "evidence_pointer": "/evidence/1"
+    },
+    {
+      "source_id": "goodman-par01-inquiry-identity",
+      "path": "sources/curated-official-2026-09-08-goodman-par01-paris-reviewed-location.json",
+      "evidence_pointer": "/evidence/2"
+    },
+    {
+      "source_id": "goodman-par02-report-identity",
+      "path": "sources/curated-official-2026-09-08-goodman-par02-paris-reviewed-location.json",
+      "evidence_pointer": "/evidence/0"
+    },
+    {
+      "source_id": "goodman-par02-inquiry-identity",
+      "path": "sources/curated-official-2026-09-08-goodman-par02-paris-reviewed-location.json",
+      "evidence_pointer": "/evidence/1"
+    },
+    {
+      "source_id": "goodman-ams01-usgbc-identity",
+      "path": "sources/curated-official-2026-09-08-goodman-ams01-amsterdam-reviewed-location.json",
+      "evidence_pointer": "/evidence/0"
+    },
+    {
+      "source_id": "goodman-ams01-permit-identity",
+      "path": "sources/curated-official-2026-09-08-goodman-ams01-amsterdam-reviewed-location.json",
+      "evidence_pointer": "/evidence/1"
+    },
+    {
+      "source_id": "goodman-par01-ign-locator",
+      "path": "sources/verified-construction-core-v0.18-goodman-europe-three-geometry-facts.json",
+      "evidence_pointer": "/evidence/0"
+    },
+    {
+      "source_id": "goodman-par02-ign-locator",
+      "path": "sources/verified-construction-core-v0.18-goodman-europe-three-geometry-facts.json",
+      "evidence_pointer": "/evidence/1"
+    },
+    {
+      "source_id": "goodman-ams01-notice-locator",
+      "path": "sources/verified-construction-core-v0.18-goodman-europe-three-geometry-facts.json",
+      "evidence_pointer": "/evidence/2"
+    },
+    {
+      "source_id": "goodman-ams01-notice-crs",
+      "path": "sources/verified-construction-core-v0.18-goodman-europe-three-geometry-facts.json",
+      "evidence_pointer": "/evidence/3"
+    }
+  ],
+  "evidence": [
+    {
+      "key": "goodman-par01-ign-address-locator-captured-2026-09-08",
+      "kind": "government_record",
+      "title": "Official address point - 13 rue Charles Cros, Tremblay-en-France",
+      "source_url": "https://data.geopf.fr/geocodage/search?q=13%20Rue%20Charles%20Cros%2093290%20Tremblay-en-France&index=address&limit=5",
+      "publisher": "IGN Geoplateforme / Base Adresse Nationale",
+      "source_family": "france_ign_ban_address_geocoding",
+      "published_at": null,
+      "retrieved_at": "2026-09-08T19:27:02Z",
+      "license": "no-open-redistribution-license-asserted",
+      "attribution": "IGN Geoplateforme / Base Adresse Nationale",
+      "excerpt": "The official address lookup returns the exact house-number feature for the independently bound Goodman PAR01 project address.",
+      "content_hash": "5376cb7cc9bd84e13a67d92e8c2c604699ea5be093b4c5180de900059584ca51",
+      "metadata": {
+        "content_hash_scope": "SHA-256 of the exact 642-byte decoded response body; raw publisher content is not redistributed",
+        "content_hash_verification": "fetched_bytes_sha256",
+        "capture_method": "credential_free_curl_fail_location_compressed",
+        "capture_started_at": "2026-09-08T19:27:00Z",
+        "capture_finished_at": "2026-09-08T19:27:02Z",
+        "capture_time_scope": "Capture was bracketed by these UTC clock readings; retrieved_at is the observed completion of the containing capture group, not an invented exact HTTP response instant.",
+        "raw_capture_bytes": 642,
+        "request_credentials_supplied": false,
+        "temporal_guardrail": "Location and identity only. This source does not establish or refresh physical construction status; the frozen lifecycle cutoff remains 2026-08-20.",
+        "rights_scope": "Only compact factual identity and location paraphrases are retained with attribution. No publisher documents, page bodies, images, map tiles or raw response datasets are redistributed.",
+        "selected_feature_id": "93073_0419_00013",
+        "selected_ban_id": "22c7b219-0e0c-477e-855c-2730c4ddb492",
+        "selected_type": "housenumber",
+        "result_count": 1,
+        "selected_label": "13 Rue Charles Cros 93290 Tremblay-en-France",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            2.569445,
+            48.967618
+          ]
+        },
+        "coordinate_order": "longitude,latitude",
+        "source_crs": "EPSG:4326",
+        "geometry_use_scope": "campus_locator",
+        "official_boundary": false,
+        "location_scope": "Official address locator only; not a building, campus boundary or observed construction footprint.",
+        "horizontal_uncertainty_metres": null,
+        "horizontal_uncertainty_unknown_reason": "The service supplies a house-number address point without a numeric horizontal-accuracy statement. Match score is not positional uncertainty."
+      }
+    },
+    {
+      "key": "goodman-par02-ign-address-locator-captured-2026-09-08",
+      "kind": "government_record",
+      "title": "Official address point - 34 rue Louis Armand, Villeneuve-Saint-Georges",
+      "source_url": "https://data.geopf.fr/geocodage/search?q=34%20Rue%20Louis%20Armand%2094190%20Villeneuve-Saint-Georges&index=address&limit=5",
+      "publisher": "IGN Geoplateforme / Base Adresse Nationale",
+      "source_family": "france_ign_ban_address_geocoding",
+      "published_at": null,
+      "retrieved_at": "2026-09-08T19:27:02Z",
+      "license": "no-open-redistribution-license-asserted",
+      "attribution": "IGN Geoplateforme / Base Adresse Nationale",
+      "excerpt": "The official address lookup returns the exact house-number feature for the independently bound Goodman PAR02 project address.",
+      "content_hash": "24a1fba2a5f5adf64cc85e9af539726a8a7b98833cb0645484a16c37543b7068",
+      "metadata": {
+        "content_hash_scope": "SHA-256 of the exact 1187-byte decoded response body; raw publisher content is not redistributed",
+        "content_hash_verification": "fetched_bytes_sha256",
+        "capture_method": "credential_free_curl_fail_location_compressed",
+        "capture_started_at": "2026-09-08T19:27:00Z",
+        "capture_finished_at": "2026-09-08T19:27:02Z",
+        "capture_time_scope": "Capture was bracketed by these UTC clock readings; retrieved_at is the observed completion of the containing capture group, not an invented exact HTTP response instant.",
+        "raw_capture_bytes": 1187,
+        "request_credentials_supplied": false,
+        "temporal_guardrail": "Location and identity only. This source does not establish or refresh physical construction status; the frozen lifecycle cutoff remains 2026-08-20.",
+        "rights_scope": "Only compact factual identity and location paraphrases are retained with attribution. No publisher documents, page bodies, images, map tiles or raw response datasets are redistributed.",
+        "selected_feature_id": "94078_1123_00034",
+        "selected_ban_id": "54c5e652-1cbf-4e04-a294-b1c5fc5ce676",
+        "selected_type": "housenumber",
+        "result_count": 2,
+        "selected_label": "34 Rue Louis Armand 94190 Villeneuve-Saint-Georges",
+        "excluded_result": "The separate Allee Armand Jusselin street result is not selected.",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            2.447152,
+            48.760391
+          ]
+        },
+        "coordinate_order": "longitude,latitude",
+        "source_crs": "EPSG:4326",
+        "geometry_use_scope": "campus_locator",
+        "official_boundary": false,
+        "location_scope": "Official address locator for one two-building campus; not a building, campus boundary or observed construction footprint.",
+        "horizontal_uncertainty_metres": null,
+        "horizontal_uncertainty_unknown_reason": "The service supplies a house-number address point without a numeric horizontal-accuracy statement. Match score is not positional uncertainty."
+      }
+    },
+    {
+      "key": "goodman-ams01-official-notice-marker-locator-captured-2026-09-08",
+      "kind": "government_record",
+      "title": "Official notice marker - Hybrideweg 105 datacenter amendment",
+      "source_url": "https://zoek.officielebekendmakingen.nl/prb-2026-2233/metadata.xml",
+      "publisher": "Province of Noord-Holland / Officiele Bekendmakingen",
+      "source_family": "netherlands_official_notice_geometries",
+      "published_at": "2026-02-10",
+      "retrieved_at": "2026-09-08T19:27:02Z",
+      "license": "no-open-redistribution-license-asserted",
+      "attribution": "Province of Noord-Holland / Officiele Bekendmakingen",
+      "excerpt": "The exact-address datacenter notice supplies a location polygon and two point markers. The first published point is selected only as a campus locator.",
+      "content_hash": "b67d2ef88fa1b03908add04e3b4c3e3c131abd840bec26eda0a09191c4657c62",
+      "metadata": {
+        "content_hash_scope": "SHA-256 of the exact 3095-byte decoded response body; raw publisher content is not redistributed",
+        "content_hash_verification": "fetched_bytes_sha256",
+        "capture_method": "credential_free_curl_fail_location_compressed",
+        "capture_started_at": "2026-09-08T19:27:00Z",
+        "capture_finished_at": "2026-09-08T19:27:02Z",
+        "capture_time_scope": "Capture was bracketed by these UTC clock readings; retrieved_at is the observed completion of the containing capture group, not an invented exact HTTP response instant.",
+        "raw_capture_bytes": 3095,
+        "request_credentials_supplied": false,
+        "temporal_guardrail": "Location and identity only. This source does not establish or refresh physical construction status; the frozen lifecycle cutoff remains 2026-08-20.",
+        "rights_scope": "Only compact factual identity and location paraphrases are retained with attribution. No publisher documents, page bodies, images, map tiles or raw response datasets are redistributed.",
+        "notice_id": "prb-2026-2233",
+        "case_reference": "OD2025-0036452",
+        "selector": "First metadata[@name='OVERHEIDop.gebiedsmarkering'][@content='Punt']/metadata[@name='OVERHEIDop.geometrie']/@content",
+        "source_wkt": "POINT(108545 488162)",
+        "source_crs": "EPSG:28992",
+        "source_crs_basis": "The official site's map implementation reads geometrie_rd with dataProjection EPSG:28992; companion CRS evidence captures that implementation.",
+        "transformation": "pyproj Transformer.from_crs('EPSG:28992', 'EPSG:4326', always_xy=True).transform(108545, 488162)",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            4.704939898256592,
+            52.37935680103495
+          ]
+        },
+        "coordinate_order": "longitude,latitude",
+        "geometry_use_scope": "campus_locator",
+        "official_boundary": false,
+        "selection_scope": "Select the first source-published point; no centroid or building-centre inference. The second point and polygon are same-notice map localization features, not separate sites.",
+        "excluded_geometry_claims": "The notice's localization polygon is not asserted to be a cadastral boundary, building footprint or physical-work extent.",
+        "horizontal_uncertainty_metres": null,
+        "horizontal_uncertainty_unknown_reason": "The notice gives a location marker but no numeric horizontal-accuracy statement or surveyed reference feature."
+      }
+    },
+    {
+      "key": "goodman-ams01-official-notice-map-crs-captured-2026-09-08",
+      "kind": "government_record",
+      "title": "Official notice map implementation - RD coordinate reference system",
+      "source_url": "https://zoek.officielebekendmakingen.nl/static/kaartmodule/js/index.js",
+      "publisher": "Officiele Bekendmakingen",
+      "source_family": "netherlands_official_notice_map_implementation",
+      "published_at": null,
+      "retrieved_at": "2026-09-08T19:28:37Z",
+      "license": "no-open-redistribution-license-asserted",
+      "attribution": "Officiele Bekendmakingen",
+      "excerpt": "The official map code declares EPSG:28992 as the input projection when reading the notice's geometrie_rd location data.",
+      "content_hash": "c9a4b32921b71171eecd74c90d4341965147717da3f60c6c66399760c5b7fe54",
+      "metadata": {
+        "content_hash_scope": "SHA-256 of the exact 2067113-byte decoded response body; raw publisher content is not redistributed",
+        "content_hash_verification": "fetched_bytes_sha256",
+        "capture_method": "credential_free_curl_fail_location_compressed",
+        "capture_started_at": "2026-09-08T19:28:35Z",
+        "capture_finished_at": "2026-09-08T19:28:37Z",
+        "capture_time_scope": "Capture was bracketed by these UTC clock readings; retrieved_at is the observed completion of the containing capture group, not an invented exact HTTP response instant.",
+        "raw_capture_bytes": 2067113,
+        "request_credentials_supplied": false,
+        "temporal_guardrail": "Location and identity only. This source does not establish or refresh physical construction status; the frozen lifecycle cutoff remains 2026-08-20.",
+        "rights_scope": "Only compact factual identity and location paraphrases are retained with attribution. No publisher documents, page bodies, images, map tiles or raw response datasets are redistributed.",
+        "selector": "readFeature(t.geometrie_rd,{dataProjection:'EPSG:28992',featureProjection:'EPSG:3857'})",
+        "evidence_scope": "Source coordinate-system interpretation only; does not establish identity, location extent, construction status or positional accuracy."
+      }
+    }
+  ],
+  "results": [
+    {
+      "project_stable_key": "curated:goodman-par01-paris-data-centre-campus:phase-1-current-development",
+      "parent_campus_stable_key": "curated:goodman-par01-paris-data-centre-campus",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.569445,
+          48.967618
+        ]
+      },
+      "display_anchor": {
+        "type": "Point",
+        "coordinates": [
+          2.569445,
+          48.967618
+        ]
+      },
+      "geometry_source_ids": [
+        "goodman-par01-ign-locator"
+      ],
+      "identity_source_ids": [
+        "goodman-par01-registry-identity",
+        "goodman-par01-project-identity",
+        "goodman-par01-inquiry-identity"
+      ],
+      "location_basis": "official_address_geocode",
+      "semantics": {
+        "geometry_source_entity_kind": "campus",
+        "geometry_derivation": "official_exact_house_number_geocode",
+        "geometry_method": "exact_named_address_feature_to_point_without_centroiding",
+        "geometry_scope_class": "official_address_campus_locator",
+        "geometry_authority_class": "official_source",
+        "geometry_use_scope": "campus_locator",
+        "precision_scope": "The exact house-number point locates the reviewed Goodman campus address, not any specific phase, building, campus boundary or observed-work extent. Multiple buildings on this campus remain one physical site.",
+        "horizontal_uncertainty_metres": null,
+        "horizontal_uncertainty_unknown_reason": "The service supplies a house-number address point without a numeric horizontal-accuracy statement. Match score is not positional uncertainty."
+      }
+    },
+    {
+      "project_stable_key": "curated:goodman-par02-paris-data-centre-campus:phase-1-current-development",
+      "parent_campus_stable_key": "curated:goodman-par02-paris-data-centre-campus",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.447152,
+          48.760391
+        ]
+      },
+      "display_anchor": {
+        "type": "Point",
+        "coordinates": [
+          2.447152,
+          48.760391
+        ]
+      },
+      "geometry_source_ids": [
+        "goodman-par02-ign-locator"
+      ],
+      "identity_source_ids": [
+        "goodman-par02-report-identity",
+        "goodman-par02-inquiry-identity"
+      ],
+      "location_basis": "official_address_geocode",
+      "semantics": {
+        "geometry_source_entity_kind": "campus",
+        "geometry_derivation": "official_exact_house_number_geocode",
+        "geometry_method": "exact_named_address_feature_to_point_without_centroiding",
+        "geometry_scope_class": "official_address_campus_locator",
+        "geometry_authority_class": "official_source",
+        "geometry_use_scope": "campus_locator",
+        "precision_scope": "The exact house-number point locates the reviewed Goodman campus address, not any specific phase, building, campus boundary or observed-work extent. Multiple buildings on this campus remain one physical site.",
+        "horizontal_uncertainty_metres": null,
+        "horizontal_uncertainty_unknown_reason": "The service supplies a house-number address point without a numeric horizontal-accuracy statement. Match score is not positional uncertainty."
+      }
+    },
+    {
+      "project_stable_key": "curated:goodman-ams01-amsterdam-data-centre-campus:phase-1-current-development",
+      "parent_campus_stable_key": "curated:goodman-ams01-amsterdam-data-centre-campus",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.704939898256592,
+          52.37935680103495
+        ]
+      },
+      "display_anchor": {
+        "type": "Point",
+        "coordinates": [
+          4.704939898256592,
+          52.37935680103495
+        ]
+      },
+      "geometry_source_ids": [
+        "goodman-ams01-notice-locator",
+        "goodman-ams01-notice-crs"
+      ],
+      "identity_source_ids": [
+        "goodman-ams01-usgbc-identity",
+        "goodman-ams01-permit-identity"
+      ],
+      "location_basis": "official_named_site_feature",
+      "semantics": {
+        "geometry_source_entity_kind": "campus",
+        "geometry_derivation": "official_notice_published_point_marker",
+        "geometry_method": "first_published_RD_point_transformed_to_WGS84_without_centroiding",
+        "geometry_scope_class": "official_project_notice_campus_locator",
+        "geometry_authority_class": "official_source",
+        "geometry_use_scope": "campus_locator",
+        "precision_scope": "The provincial notice marker locates the same named entity/address as the certifier's literal AMS01 record. It does not delineate Building A, Building B, a cadastral property or the June 30 active-work extent. One point represents one campus.",
+        "horizontal_uncertainty_metres": null,
+        "horizontal_uncertainty_unknown_reason": "The notice gives a location marker but no numeric horizontal-accuracy statement or surveyed reference feature."
+      }
+    }
+  ]
+}

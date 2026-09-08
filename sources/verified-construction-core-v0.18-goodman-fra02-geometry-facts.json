@@ -1,0 +1,116 @@
+{
+  "schema_version": "v018-goodman-fra02-source-facts-1",
+  "reviewed_at": "2026-09-08",
+  "lifecycle_reference_date": "2026-08-20",
+  "review_scope": "Identity and location facts prepared for independent acceptance review; no batch contract, acceptance or lifecycle observation is created.",
+  "proposed_source_bindings": [
+    {
+      "source_id": "goodman-fra02-city-identity",
+      "path": "sources/curated-official-2026-09-08-goodman-fra02-frankfurt-reviewed-location.json",
+      "evidence_pointer": "/evidence/0"
+    },
+    {
+      "source_id": "goodman-fra02-brochure",
+      "path": "sources/curated-official-2026-09-08-goodman-fra02-frankfurt-reviewed-location.json",
+      "evidence_pointer": "/evidence/1"
+    },
+    {
+      "source_id": "goodman-fra02-map-locator",
+      "path": "sources/verified-construction-core-v0.18-goodman-fra02-geometry-facts.json",
+      "evidence_pointer": "/evidence/0"
+    }
+  ],
+  "evidence": [
+    {
+      "key": "goodman-fra02-brochure-linked-map-point-captured-2026-09-08",
+      "kind": "company_disclosure",
+      "title": "FRA II brochure map target - source-selected campus reference point",
+      "source_url": "https://goo.gl/maps/HXytDcSqfrnEAHNs5",
+      "publisher": "Goodman Group via its published Google Maps link",
+      "source_family": "goodman_published_external_project_map_links",
+      "published_at": null,
+      "retrieved_at": "2026-09-08T19:39:52Z",
+      "license": "all-rights-reserved",
+      "attribution": "Goodman Group via its published Google Maps link",
+      "excerpt": "The exact map URL published in Goodman's FRA II brochure resolves to a point at latitude 50.0427 and longitude 8.685529. The selected marker coordinates are distinct from the map viewport center.",
+      "content_hash": "70d109bfd65fc755a900eb04fbdff29184b3f8939b08897e6c15548447ec089d",
+      "metadata": {
+        "content_hash_scope": "SHA-256 of the exact 218505-byte decoded response body; raw publisher content is not redistributed",
+        "content_hash_verification": "fetched_bytes_sha256",
+        "capture_method": "credential_free_curl_fail_location_compressed",
+        "capture_started_at": "2026-09-08T19:39:51Z",
+        "capture_finished_at": "2026-09-08T19:39:52Z",
+        "capture_time_scope": "UTC clock readings bracket the request; retrieved_at is observed request completion, not an invented HTTP server timestamp.",
+        "raw_capture_bytes": 218505,
+        "request_credentials_supplied": false,
+        "temporal_guardrail": "Location and identity only. No source in this package is selected as a physical construction observation. The separate Goodman FY26 current-build source supplies generic under_construction as of 2026-06-30; the lifecycle cutoff remains 2026-08-20.",
+        "rights_scope": "Compact factual identity, address, hyperlink and coordinate facts with attribution only. No raw publisher PDF, page body, rendered page, image, map tile, plan, contact list or Google map dataset is redistributed.",
+        "official_link_origin_url": "https://de.goodman.com/-/media/project/goodman/germany/files/property/properties-for-lease/fra-ii/fra-ii-data-centre-brochure.pdf",
+        "official_link_origin_pointer": "Page 4 ONLINE MAP URI annotation.",
+        "effective_url": "https://www.google.com/maps/place/50%C2%B002'33.7%22N+8%C2%B041'07.9%22E/@50.0427,8.683335,17z/data=!3m1!4b1!4m5!3m4!1s0x0:0xc9ad6b15bdf56135!8m2!3d50.0427!4d8.685529?coh=164777&entry=tt&shorturl=1",
+        "http_status": 200,
+        "selected_marker_latitude": 50.0427,
+        "selected_marker_longitude": 8.685529,
+        "coordinate_pointer": "Effective target URL !3d50.0427!4d8.685529, independently repeated in the response body's named-coordinate marker tuple [null,null,50.0427,8.685529].",
+        "rejected_viewport_center": {
+          "latitude": 50.0427,
+          "longitude": 8.683335
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            8.685529,
+            50.0427
+          ]
+        },
+        "coordinate_order": "longitude,latitude",
+        "source_crs": "EPSG:4326",
+        "geometry_use_scope": "campus_locator",
+        "official_boundary": false,
+        "location_scope": "Source-published campus reference point selected through Goodman's brochure, not a geocoder guess, municipality center, building center, property boundary or current-work extent.",
+        "horizontal_uncertainty_metres": null,
+        "horizontal_uncertainty_unknown_reason": "Neither Goodman nor the linked marker supplies a numeric horizontal-accuracy statement or identifies a surveyed reference feature."
+      }
+    }
+  ],
+  "results": [
+    {
+      "project_stable_key": "curated:goodman-fra02-frankfurt-data-centre-campus:phase-1-current-development",
+      "parent_campus_stable_key": "curated:goodman-fra02-frankfurt-data-centre-campus",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.685529,
+          50.0427
+        ]
+      },
+      "display_anchor": {
+        "type": "Point",
+        "coordinates": [
+          8.685529,
+          50.0427
+        ]
+      },
+      "geometry_source_ids": [
+        "goodman-fra02-brochure",
+        "goodman-fra02-map-locator"
+      ],
+      "identity_source_ids": [
+        "goodman-fra02-city-identity",
+        "goodman-fra02-brochure"
+      ],
+      "location_basis": "first_party_site_coordinate",
+      "semantics": {
+        "geometry_source_entity_kind": "campus",
+        "geometry_derivation": "first_party_brochure_published_map_link_target",
+        "geometry_method": "resolve_official_PDF_hyperlink_and_select_marker_coordinates_without_geocoding_or_centroiding",
+        "geometry_scope_class": "official_operator_published_campus_reference_point",
+        "geometry_authority_class": "official_source",
+        "geometry_use_scope": "campus_locator",
+        "precision_scope": "Goodman's FRA II brochure links this campus point at Rathenaustrasse 31; the city identifies the same Rathenaustrasse project as FRA02. The point is not a specific building, phase, substation, parcel boundary, campus footprint or June 30 active-work extent. Two campus buildings remain one physical site.",
+        "horizontal_uncertainty_metres": null,
+        "horizontal_uncertainty_unknown_reason": "Neither Goodman nor the linked marker supplies a numeric horizontal-accuracy statement or identifies a surveyed reference feature."
+      }
+    }
+  ]
+}

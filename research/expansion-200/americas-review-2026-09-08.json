@@ -1,0 +1,148 @@
+{
+  "format": "datacenter-atlas-expansion-research-review-v1",
+  "reviewed_at": "2026-09-08",
+  "lifecycle_reference_date": "2026-08-20",
+  "accepted_into_core": false,
+  "purpose": "Supplement the frozen candidate inventory with independently reviewed exclusions and unresolved location leads. This file adds no physical sites or normalized observations.",
+  "captures": [
+    {
+      "capture_id": "bitdeer-q2-2026-distribution",
+      "source_url": "https://www.globenewswire.com/news-release/2026/08/10/3341671/0/en/Bitdeer-Reports-Unaudited-Financial-Results-for-the-Second-Quarter-of-2026.html",
+      "publisher": "Bitdeer Technologies Group via GlobeNewswire",
+      "published_at": "2026-08-10",
+      "request_started_at": "2026-09-08T19:35:28.645432Z",
+      "request_finished_at": "2026-09-08T19:35:29.371073Z",
+      "bytes": 350686,
+      "sha256": "f13c4d1e345e3ee1b2ebfaebdaf592373752be041022a26e17217c793a67fb8d",
+      "hash_scope": "Exact content-decoded HTML response body fetched with credential-free curl --fail --location --compressed.",
+      "license": "all-rights-reserved",
+      "rights_scope": "Compact factual projection only; response body and publisher media are not redistributed."
+    },
+    {
+      "capture_id": "sumare-ascenty-osm-search",
+      "source_url": "https://overpass-api.de/api/interpreter",
+      "request_query": "[out:json][timeout:20];nwr[\"name\"~\"Ascenty\",i](-22.95,-47.4,-22.7,-47.1);out meta geom;",
+      "request_started_at": "2026-09-08T19:33:09.226878Z",
+      "request_finished_at": "2026-09-08T19:33:11.950920Z",
+      "bytes": 4944,
+      "sha256": "ddafa6a73f536f74d1d088e72cd6a7e27e1db18d0653882375c478bc2a724715",
+      "hash_scope": "Exact content-decoded JSON response body.",
+      "license": "ODbL-1.0",
+      "rights_url": "https://www.openstreetmap.org/copyright",
+      "attribution": "OpenStreetMap contributors",
+      "osm_base_timestamp": "2026-09-08T19:31:44Z"
+    },
+    {
+      "capture_id": "tambore-scala-osm-search",
+      "source_url": "https://overpass-api.de/api/interpreter",
+      "request_query": "[out:json][timeout:20];nwr[\"name\"~\"Scala\",i](-23.56,-46.94,-23.44,-46.78);out meta geom;",
+      "request_started_at": "2026-09-08T19:33:41.254003Z",
+      "request_finished_at": "2026-09-08T19:33:53.371256Z",
+      "bytes": 6561,
+      "sha256": "261a6ddf5db91c2ff0dc5f57639effe0ff4c5d6a37f1c263b46b90821bbe1a4f",
+      "hash_scope": "Exact content-decoded JSON response body.",
+      "license": "ODbL-1.0",
+      "rights_url": "https://www.openstreetmap.org/copyright",
+      "attribution": "OpenStreetMap contributors",
+      "osm_base_timestamp": "2026-09-08T19:32:42Z"
+    },
+    {
+      "capture_id": "scala-certificate-2026-identity",
+      "source_url": "https://scaladatacenters.com/wp-content/uploads/2026/02/Certificate-BR042843-Item-1-96NDP6G-2_Flavia-Cassia-Meneze-1.pdf",
+      "publisher": "Bureau Veritas, hosted by Scala Data Centers",
+      "published_at": null,
+      "issue_date": "2026-01-15",
+      "request_started_at": "2026-09-08T19:32:54.255069Z",
+      "request_finished_at": "2026-09-08T19:32:54.668596Z",
+      "bytes": 117202,
+      "sha256": "fbb3280e4a24ef91b1f846f22a8e32ce943cef4fbfe33ce1e760f341bd7ee974",
+      "hash_scope": "Exact PDF response body.",
+      "license": "all-rights-reserved",
+      "rights_scope": "Compact factual projection only; certificate is not redistributed.",
+      "review_scope": "Page 2 rendered and visually reviewed. Certificate IND.25.6501/IS/U version 2. No independent certificate-status validation or new certification claim."
+    }
+  ],
+  "decisions": [
+    {
+      "project_stable_key": "curated:bitdeer-fox-creek-alberta-campus:integrated-facility-current-build",
+      "decision": "exclude_pending_data_center_physical_work_evidence",
+      "accepted_into_core": false,
+      "capture_ids": [
+        "bitdeer-q2-2026-distribution"
+      ],
+      "authoritative_status_as_of": "2026-07-31",
+      "facts": [
+        "The August 10 company release labels the infrastructure summary as of July 31, 2026.",
+        "The Fox Creek row identifies the June 2026 groundbreaking as power-plant work and states the data-center design is underway.",
+        "The older June 2 integrated-facility announcement therefore does not unambiguously establish physical data-center construction at the cutoff."
+      ],
+      "guardrails": [
+        "Do not transfer power-plant construction to a data-center lifecycle observation.",
+        "Do not promote a generation-plant location to the data-center building or campus footprint.",
+        "This review does not claim that no data-center work ever occurred; it withholds acceptance until that work is evidenced."
+      ],
+      "next_required_evidence": "Dated authoritative physical work on the data-center component within the fixed freshness window, plus exact project-bound geometry."
+    },
+    {
+      "project_stable_key": "curated:ascenty-sumare-campus:sumare-3",
+      "decision": "hold_unresolved_named_site_geometry",
+      "accepted_into_core": false,
+      "capture_ids": [
+        "sumare-ascenty-osm-search"
+      ],
+      "facts": [
+        "The bounded OSM query returned five Ascenty-tagged ways but none named Sumare or carrying a matching street address.",
+        "Way 713804589 and building 1420053797 are approximately 9 km south of the unaccepted owner-map camera center; other returned objects are substations.",
+        "No result is admitted as the Sumare campus merely because the operator name matches."
+      ],
+      "guardrails": [
+        "The owner iframe's camera-center numbers remain unaccepted; this independent OSM query does not validate them.",
+        "Substations, unrelated named campuses, and arbitrary building centroids are not substitutes for Sumare 3 geometry."
+      ],
+      "next_required_evidence": "Operator-published site coordinates or an independently named/address-bound official or community site feature."
+    },
+    {
+      "project_stable_key": "curated:scala-tambore-campus:sgrutb07",
+      "decision": "hold_locator_identity_conflict",
+      "accepted_into_core": false,
+      "capture_ids": [
+        "tambore-scala-osm-search",
+        "scala-certificate-2026-identity"
+      ],
+      "facts": [
+        "OSM node 13509301320 is named Scala Datacenter but has operator=Equinix and no street-address tag.",
+        "The certificate separately lists SGRUTB01 at Avenida Ceci 1900, SGRUTB04 at Rua Joao Ferreira de Camargo 1217, and SGRUTB12 at Avenida Ceci 1649, Bloco 03.",
+        "The certificate does not name SGRUTB07, SGRUTB09, SGRUTB10, or SGRUTB11."
+      ],
+      "guardrails": [
+        "The conflicting OSM node is not selected.",
+        "Known constituent addresses could support a carefully bound campus locator but are not exact new-building addresses.",
+        "SGRUTB07, SGRUTB09, SGRUTB10, and SGRUTB11 are at most one new physical campus, not four new sites.",
+        "The old start-up forecasts on the live portfolio do not establish completion; an independent successor check is still required before admission."
+      ],
+      "next_required_evidence": "Source-specific location tied to the Tambore campus or selected facility, with OSM operator conflict resolved or an independent authoritative locator."
+    },
+    {
+      "project_stable_key": "curated:scala-smextp02-tepotzotlan-data-center:smextp02",
+      "decision": "hold_exact_identity_and_geometry",
+      "accepted_into_core": false,
+      "capture_ids": [
+        "scala-certificate-2026-identity"
+      ],
+      "facts": [
+        "The certificate lists SMEXTP01 at Calle 6 de Enero, Las Animas, CP 54616, Tepotzotlan.",
+        "It does not list SMEXTP02 or demonstrate that the two codes share one physical campus."
+      ],
+      "guardrails": [
+        "Do not transfer SMEXTP01's certificate address or operating status to SMEXTP02 by locality alone."
+      ],
+      "next_required_evidence": "An exact SMEXTP02 address or documented campus relationship, then independently resolved geometry."
+    }
+  ],
+  "limitations": [
+    "Research exclusions and holds are not changes to the frozen inventory or published v0.17 data.",
+    "None of these candidates is part of the cumulative-five reviewed draft.",
+    "Raw third-party documents and OSM geometry are not redistributed in this review.",
+    "Search-engine snippets were used only for discovery, not accepted geometry."
+  ]
+}
