@@ -237,3 +237,43 @@ eligible population. Both objective-completion and final-publication flags remai
 .venv/bin/python scripts/build_expansion_200_draft.py --batch fourth-reviewed --output-dir /absolute/new/draft-directory
 .venv/bin/python scripts/build_expansion_200_draft.py --batch fourth-reviewed --validate-only
 ```
+
+## Thirty-two-site reviewed checkpoint
+
+The [fifth reviewed draft](../verified_construction_core/2026-08-20-v0.18-draft-fifth-reviewed/README.md)
+adds NEXTDC M4, GE1 and KL1, and MERLIN Edged Madrid-Getafe II. It contains 132 physical sites,
+135 projects, 40 countries, 93 non-US sites and 386 evidence rows. This is 32 of the requested
+100 additions, with 68 remaining. All preceding project, site and evidence rows remain unchanged;
+the public v0.17 release and earlier checkpoints are frozen.
+
+The NEXTDC observations are expressly dated June 30, despite August 27 publication. M4 selects
+early works as site preparation; its historical demolition and planning approval are not the
+selected construction evidence. GE1 retains generic construction status. Its exact Next DC Corio
+application is associated with the operator and builder's GE1 Corio identity by explicit analyst
+inference, not a literal government code-to-parcel statement. Both Australian points come from
+Vicmap's exact primary virtual address records, not surveyed entrances or construction footprints.
+Vicmap's CC BY 4.0 terms and exclusions are retained with source attribution.
+
+KL1's May 14 opening is a predecessor scope check: the June 30 inventory separately distinguishes
+delivered halls, remaining fit-out and future plans. Only remaining fit-out is selected. Its named
+OSM building point is bound by operator, code, address and facility URL. The road-only operator
+directions point and duplicate same-campus industrial-landuse feature are not selected. Community
+geometry remains attributed and ODbL licensed; no capacity or operating status is inferred.
+
+Getafe II selects June 30 project-specific demolition as physical site preparation. July 27
+continuing-work evidence corroborates the scope. The MAD02 specification sheet literally prints
+its campus coordinates and Calle Fundidores 2 address; separate Getafe I is at Fundidores 40.
+Matching the report's MAD-GET II code to MAD02 is explicit analyst identity inference. The Getafe II
+page's inconsistent, undated 20 MW "Now Open" block is recorded, not erased or treated as dated
+completion of MAD02. The sheet's older design-stage forecast and generic footer route do not
+override the named identity and dated physical-work disclosure.
+
+All four source-specific points are campus locators with unknown positional accuracy. No new
+roles, power metrics, workloads or independent imagery reviews are selected. Imagery remains
+10/135; the fixed 20-row/19-agreement blind-review protocol covers the full eligible population
+and remains incomplete. Objective-completion and final-publication flags remain false.
+
+```sh
+.venv/bin/python scripts/build_expansion_200_draft.py --batch fifth-reviewed --output-dir /absolute/new/draft-directory
+.venv/bin/python scripts/build_expansion_200_draft.py --batch fifth-reviewed --validate-only
+```
