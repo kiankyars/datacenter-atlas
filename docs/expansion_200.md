@@ -277,3 +277,55 @@ and remains incomplete. Objective-completion and final-publication flags remain 
 .venv/bin/python scripts/build_expansion_200_draft.py --batch fifth-reviewed --output-dir /absolute/new/draft-directory
 .venv/bin/python scripts/build_expansion_200_draft.py --batch fifth-reviewed --validate-only
 ```
+
+## Thirty-eight-site reviewed checkpoint
+
+The [sixth reviewed draft](../verified_construction_core/2026-08-20-v0.18-draft-sixth-reviewed/README.md)
+adds AI Tech Tomakomai, noris FRA1 Schwalbach, Nebius Pajarila Lappeenranta, FlexBase Laufenburg,
+Applied Digital Polaris Forge 1 Ellendale and Polaris Forge 2 Harwood. It contains 138 physical
+sites, 141 projects, 40 countries, 97 non-US sites and 419 evidence rows. This is 38 of the
+requested 100 additions, with 62 remaining. All prior project, site and evidence rows are
+unchanged; the public v0.17 release and preceding draft snapshots remain frozen.
+
+Tomakomai selects June 19 active grading, piling and concrete foundations. The exact corporate
+project parcel, Kashiwabara 32-17, is bound by the issuer's acquisition disclosure. AIGID's
+MOJ-derived polygon is retained as a community-converted cadastral reference, not an official
+data-center boundary. Declared CRS84 output, graphically measured source accuracy limitations,
+custom underlying MOJ reuse restrictions and attribution/modification notices remain explicit.
+Phase II and its substation do not add another site. The September lease-MOU expiry is a
+post-cutoff commercial event, not an inferred construction cancellation.
+
+Schwalbach's June 10 contractor statement confirms actual work beyond the June 9 ceremony.
+The later syndicated release is not a new start. Its named OSM FRA1 enclosure point retains the
+street-spelling discrepancy and community authority. Pajarila selects Fira's August 11 physical
+update without inventing a day for July commencement. The municipal piling notice binds the
+exact address and parcel; the city's address search and explicit EPSG:4326 transform supply a
+campus point. An unverified native EPSG code is not guessed, and two plots count once.
+
+Laufenburg selects ERNE's June 18 excavated-pit update for the new mixed-use building containing
+a data center and battery installation. The OSM technology-centre point is distinct from the
+existing office. Neither battery capacity nor the whole mixed-use area becomes data-center
+capacity. The September 1 excavation-completion update describes continuing building work;
+it does not refresh the selected pre-cutoff observation or establish completed operation.
+
+The July 27 issuer update explicitly names remaining PF1 buildings and PF2 in construction.
+Delivered PF1 halls, operating crypto hosting and future financing are excluded. PF1's government
+NAD83 generator reference point is bound through exact filed campus lease addresses and transformed
+to WGS84; it locates a constituent of the campus, not the selected remaining hall. PF2 uses the
+exact APLD FAR-01 county parcel at the government data-center-associated generator address.
+The native Web Mercator transformation was independently checked. Its public-domain, reference-only
+rights statement is retained; neither locator is promoted to a complete construction boundary.
+
+Microsoft Vaughan remains excluded. Its later-published certificate reports July 15 substantial
+completion of the main shell and administrative fit-out, while current remaining construction
+scope is insufficiently separated. A held research package is not an additional site.
+
+All six additions retain unknown positional accuracy and campus-locator scope. No roles,
+workloads, capacities, operations or independent imagery results are inferred. Imagery remains
+10/141; the fixed 20-row/19-agreement blind review remains incomplete. Both completion and
+final-publication flags are false, and the 100 non-US expansion threshold is not yet reached.
+
+```sh
+.venv/bin/python scripts/build_expansion_200_draft.py --batch sixth-reviewed --output-dir /absolute/new/draft-directory
+.venv/bin/python scripts/build_expansion_200_draft.py --batch sixth-reviewed --validate-only
+```

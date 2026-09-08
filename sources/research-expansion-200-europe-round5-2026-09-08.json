@@ -1,0 +1,275 @@
+{
+  "schema_version": "expansion-200-europe-round5-research-1",
+  "researched_on": "2026-09-08",
+  "reference_date": "2026-08-20",
+  "freshness_window": {
+    "from": "2026-05-22",
+    "through": "2026-08-20"
+  },
+  "compared_core": "verified_construction_core/2026-08-20-v0.18-draft-fourth-reviewed/sites.geojson",
+  "baseline_site_count": 128,
+  "scope": "Proposals only. No contracts, core snapshots, build scripts or admissions edited. Existing files preserved. MERLIN GetafeII handled independently by root; Bilbao and Lisbon already admitted and not counted again.",
+  "proposals": [
+    {
+      "campus_stable_key": "curated:noris-network-fra1-schwalbach-campus",
+      "project_stable_key": "curated:noris-network-fra1-schwalbach-campus:current-build",
+      "status": "review_ready",
+      "curated_path": "sources/curated-official-2026-09-08-europe-round5-noris-fra1-proposed-build.json",
+      "geometry_path": "sources/verified-construction-core-v0.18-europe-round5-two-proposed-geometry.json",
+      "point_lon_lat": [
+        8.5325882,
+        50.1629204
+      ],
+      "physical_observation_date": "2026-06-10",
+      "physical_event_date": "2026-06-09",
+      "identity_bridge": "Contractor June10 names noris Schwalbach and confirms work started; company-authored June11 release names FRA1 at Am Kronberger Hang; exact OSM way313208490 has FRA1/operator/Schwalbach identity. Not adjacent maincubes FRA03.",
+      "successor_check": {
+        "checked_on": "2026-09-08",
+        "cutoff": "2026-08-20",
+        "captured_source_ids": [
+          "europe5-dcg-news-index",
+          "europe5-noris-dcg-june10-captured-2026-09-08",
+          "europe5-noris-company-june11-captured-2026-09-08"
+        ],
+        "discovery_queries": [
+          "site.noris.de \"FRA1\" \"2026\" completed OR opening OR eröffnet OR cancelled",
+          "site.noris.de \"FRA1\" \"August\" \"2026\"",
+          "site.datacenter-group.com \"Schwalbach\" \"2026\" eröffnet OR fertiggestellt"
+        ],
+        "additional_primary_page_read": "https://www.noris.de/en/data-centers/datacenter-frankfurt/",
+        "result": "No completion or cancellation successor through cutoff was found. The operator page still expects2027; it is not used as a new undated status observation. Bounded check is not proof of absence.",
+        "rejected_false_successor": "The August20 distributed contractor release repeats yesterday from the June10 original. The original and company June11 corroborate June9 ceremony. Do not create August19 event or claim two starts.",
+        "retrieval_limit": "The operator domain repeatedly reset credential-free curl; its raw HTML was not captured. It is a read-only successor check, not the admitted evidence basis."
+      }
+    },
+    {
+      "campus_stable_key": "curated:nebius-pajarila-lappeenranta-campus",
+      "project_stable_key": "curated:nebius-pajarila-lappeenranta-campus:first-phase-current-build",
+      "status": "review_ready",
+      "curated_path": "sources/curated-official-2026-09-08-europe-round5-nebius-pajarila-proposed-build.json",
+      "geometry_path": "sources/verified-construction-core-v0.18-europe-round5-two-proposed-geometry.json",
+      "point_lon_lat": [
+        28.285490465043303,
+        61.055863394051165
+      ],
+      "physical_observation_date": "2026-08-11",
+      "identity_bridge": "Fira identifies Nebius first-phase construction in Pajarila; city Fira piling notice provides exact project parcel405-53-23-1 and Pajarilanväylä24. City's one-result exact address search and same-city EPSG4326 transform yield a point without guessed CRS, locality centroid or viewport.",
+      "successor_check": {
+        "checked_on": "2026-09-08",
+        "cutoff": "2026-08-20",
+        "captured_source_ids": [
+          "europe5-nebius-newsroom",
+          "europe5-nebius-fira-aug11-captured-2026-09-08",
+          "europe5-nebius-city-fira-parcel-captured-2026-09-08",
+          "europe5-nebius-city-identity-captured-2026-09-08"
+        ],
+        "discovery_queries": [
+          "site.nebius.com \"Lappeenranta\" \"2026\" completed OR opened OR cancellation",
+          "site.fira.fi \"Pajarila\" \"2026\" cancelled OR completed",
+          "site.lappeenranta.fi \"Nebius\" \"August\" \"2026\""
+        ],
+        "result": "No completion or cancellation successor for the selected Pajarila first phase was found through cutoff. Fira expects the first building in H12027. Nebius's completed earlier Mäntsälä expansion is a different campus and not a Pajarila successor. Bounded check is not proof of absence."
+      },
+      "rejected_locator_attempts": [
+        "Generic WGS84 target string returned native coordinates unchanged and is rejected; only explicit EPSG:4326 output retained.",
+        "Parcel-name lookup returned zero results; exact project address returns one.",
+        "Expired earlier city MFiles notices returned400; they are not raw-capture evidence."
+      ]
+    }
+  ],
+  "raw_captures": [
+    {
+      "source_id": "europe5-noris-dcg-june10-captured-2026-09-08",
+      "url": "https://datacenter-group.com/de/news-stories/artikel/grundstein-fuer-neues-rechenzentrum-gelegt/",
+      "sha256": "4a121025fa058a048d0e22bf8772303b838166832e9afaa475624133ed1c2368",
+      "bytes": 113748,
+      "capture_started_at": "2026-09-08T21:43:40Z",
+      "capture_finished_at": "2026-09-08T21:43:45Z",
+      "temporary_path": "/tmp/atlas-europe-round5.yeqJV6/noris-dcg-foundation.html",
+      "rights": "no-open-license-asserted"
+    },
+    {
+      "source_id": "europe5-noris-company-june11-captured-2026-09-08",
+      "url": "https://www.technologiebox.de/2026/06/11/noris-network-legt-grundstein-fr-frankfurter-rechenzentrum/",
+      "sha256": "2e696f27e662d72eb4eb0e0845e78baf40de86751249e311d5dcb486074645a1",
+      "bytes": 111706,
+      "capture_started_at": "2026-09-08T21:46:13Z",
+      "capture_finished_at": "2026-09-08T21:46:17Z",
+      "temporary_path": "/tmp/atlas-europe-round5.yeqJV6/noris-june11-company.html",
+      "rights": "no-open-license-asserted"
+    },
+    {
+      "source_id": "europe5-nebius-fira-aug11-captured-2026-09-08",
+      "url": "https://fira.fi/en/news/construction-and-project-development-company-fira-selected-as-main-contractor-for-one-of-europes-largest-ai-data-center-projects/",
+      "sha256": "dbdde0c41ff4af8c02a8d8ccd2090c7bb33936dae617fd20557bf99ed2fd0202",
+      "bytes": 111981,
+      "capture_started_at": "2026-09-08T21:33:42Z",
+      "capture_finished_at": "2026-09-08T21:33:43Z",
+      "temporary_path": "/tmp/atlas-europe-round5.yeqJV6/nebius-fira-aug11.html",
+      "rights": "no-open-license-asserted"
+    },
+    {
+      "source_id": "europe5-nebius-city-fira-parcel-captured-2026-09-08",
+      "url": "https://www.lappeenranta.fi/MFiles/MFFiles/Open?fileId=169510&objectId=123121&objectTypeId=0",
+      "sha256": "b2a4fce8fb20137c8ad3d35269aadfd436c6debbc356abb2050b1a7db39c79e2",
+      "bytes": 123675,
+      "capture_started_at": "2026-09-08T21:36:58Z",
+      "capture_finished_at": "2026-09-08T21:37:00Z",
+      "temporary_path": "/tmp/atlas-europe-round5.yeqJV6/pajarila-aug12-fira.pdf",
+      "rights": "no-open-license-asserted"
+    },
+    {
+      "source_id": "europe5-nebius-city-identity-captured-2026-09-08",
+      "url": "https://www.lappeenranta.fi/en/decision-making-and-administration/pajarila-data-center",
+      "sha256": "68dd0a22563abb9758905700358ccbe5bedb73e3e663b1814d95d5bf1d08dee8",
+      "bytes": 203707,
+      "capture_started_at": "2026-09-08T21:44:20Z",
+      "capture_finished_at": "2026-09-08T21:44:28Z",
+      "temporary_path": "/tmp/atlas-europe-round5.yeqJV6/pajarila-city-identity.html",
+      "rights": "no-open-license-asserted"
+    },
+    {
+      "source_id": "europe5-noris-osm-way313208490-captured-2026-09-08",
+      "url": "https://overpass-api.de/api/interpreter?data=%5Bout%3Ajson%5D%3Bway%28313208490%29%3Bout%20meta%20center%3B",
+      "sha256": "68907f60d504b0aa48d5184ee46747e45736fbd3ef2838f9c12154145dc3df37",
+      "bytes": 1358,
+      "capture_started_at": "2026-09-08T21:37:47Z",
+      "capture_finished_at": "2026-09-08T21:37:49Z",
+      "temporary_path": "/tmp/atlas-europe-round5.yeqJV6/noris-osm-way313208490.json",
+      "rights": "ODbL-1.0"
+    },
+    {
+      "source_id": "europe5-nebius-city-address-point-captured-2026-09-08",
+      "url": "https://kartta.lappeenranta.fi/IMS/fi/Search?Op=all&Name=Pajarilanv%C3%A4yl%C3%A4%2024",
+      "sha256": "0308eb155e73b832cf05b377844d29d518cf8f4cd33fcf2f465bbb5880d525d4",
+      "bytes": 257,
+      "capture_started_at": "2026-09-08T21:45:49Z",
+      "capture_finished_at": "2026-09-08T21:45:53Z",
+      "temporary_path": "/tmp/atlas-europe-round5.yeqJV6/pajarila-address.json",
+      "rights": "no-open-license-asserted"
+    },
+    {
+      "source_id": "europe5-nebius-city-address-transform-captured-2026-09-08",
+      "url": "https://kartta.lappeenranta.fi/IMS/fi/Transform?north=6771752&east=28515420&targetSystem=EPSG%3A4326&decimalCount=8",
+      "sha256": "29017038745012c333210dd11624040ad854ac33c0986e6c902317c09b6d7cb1",
+      "bytes": 74,
+      "capture_started_at": "2026-09-08T21:48:12Z",
+      "capture_finished_at": "2026-09-08T21:48:12Z",
+      "temporary_path": "/tmp/atlas-europe-round5.yeqJV6/pajarila-epsg4326.json",
+      "rights": "no-open-license-asserted"
+    },
+    {
+      "source_id": "europe5-city-map-api-code-captured-2026-09-08",
+      "url": "https://kartta.lappeenranta.fi/IMS/bundles/imscore?v=G3ob28axnml9DJ8RoTAoFLLmwbG9Chr0Fvf-WjyWgC01",
+      "sha256": "84c5bf32d0796e2e8bf712337bad692eb78ed9388eca943810661e0109cafb25",
+      "bytes": 306151,
+      "capture_started_at": "2026-09-08T21:38:55Z",
+      "capture_finished_at": "2026-09-08T21:38:56Z",
+      "temporary_path": "/tmp/atlas-europe-round5.yeqJV6/lappeenranta-imscore.js",
+      "rights": "no-open-license-asserted"
+    },
+    {
+      "source_id": "europe5-dcg-news-index",
+      "url": "https://datacenter-group.com/de/news-stories/news/",
+      "sha256": "978bda80aec66629ab89d89b1e9ef709e8dcfb9c23d9b3edc1ffed8c4acda7d1",
+      "bytes": 134627,
+      "capture_started_at": "2026-09-08T21:39:16Z",
+      "capture_finished_at": "2026-09-08T21:39:18Z",
+      "temporary_path": "/tmp/atlas-europe-round5.yeqJV6/dcg-news.html",
+      "rights": "no-open-license-asserted"
+    },
+    {
+      "source_id": "europe5-nebius-newsroom",
+      "url": "https://nebius.com/newsroom",
+      "sha256": "1a00718ede3efb8d8feaad80d834c734419b73e48e1759d9b5ef82cd3d6fdecf",
+      "bytes": 339386,
+      "capture_started_at": "2026-09-08T21:51:45Z",
+      "capture_finished_at": "2026-09-08T21:51:47Z",
+      "temporary_path": "/tmp/atlas-europe-round5.yeqJV6/nebius-newsroom.html",
+      "rights": "no-open-license-asserted"
+    },
+    {
+      "source_id": "europe5-osm-rights",
+      "url": "https://www.openstreetmap.org/copyright",
+      "sha256": "93e4a5f40f0caf3739fd3fcef7849a062cb0595e175c898998d8bb1629eef1d0",
+      "bytes": 21314,
+      "capture_started_at": "2026-09-08T21:51:45Z",
+      "capture_finished_at": "2026-09-08T21:51:47Z",
+      "temporary_path": "/tmp/atlas-europe-round5.yeqJV6/osm-copyright.html",
+      "rights": "OpenStreetMap database ODbL1.0, attribution required"
+    }
+  ],
+  "rights_scope": "All raw HTML, PDF, script and API captures stay in a unique temporary directory. Only compact attributed facts and minimal locators are proposed for distribution. OSM facts retain ODbL attribution. No publisher media is tracked.",
+  "held_candidates": [
+    {
+      "name": "EcoDataCenter 2 Borlänge",
+      "status": "pending_independent_status_precision_review",
+      "geometry": "OSM relation19894196, named EcoDataCenter at former Kvarnsveden paper-mill campus, point[15.4205225,60.5217727]; operator addressKvarnsvedsvägen420.",
+      "physical_evidence": "ByggPartner July17 Q2 p2 names ongoing additional datacenter orders in Borlänge and separately reports expanding large-scale production for EcoDataCenter. A campus-wide current-build programme may be supportable; this must not silently redate B1/B2 or choose a building.",
+      "status_source": "https://byggpartnergruppen.se/mfn_news/byggpartnergruppens-delarsrapport-q2-2026/",
+      "pdf_url": "https://storage.mfn.se/70b08e24-72bd-4f3c-a12d-e248134d06f9/kvartalsrapport-2026-q2.pdf",
+      "pdf_temp": "/tmp/atlas-europe-round5.yeqJV6/byggpartner-q2.pdf",
+      "pdf_sha256": "d6fec019f668a4c088cb79213c7f5acad632f7ff249d86f000f2e8c45b340952",
+      "pdf_bytes": 594113,
+      "pdf_capture_started_at": "2026-09-08T21:37:19Z",
+      "pdf_capture_finished_at": "2026-09-08T21:37:21Z",
+      "pdf_visual_review": "Complete printed page2 visually reviewed.",
+      "rejected_evidence": "EcoDC Q2Aug27 report only gives aggregate continuing projects, not named B1/B2 or FalunE/F. July8Bravida installation contract says will start immediately; future tense alone is not observed start."
+    },
+    {
+      "name": "EcoDataCenter Falun",
+      "status": "hold_fresh_named_status",
+      "geometry": "Named community way808907423 at Slaggvarpsvägen21 supplies campus point[15.6099229,60.6111243].",
+      "reason": "Current portfolio-wide Q2 activity cannot refresh individually named2025E/F starts. JunePPA is not physical work. Operator map points also disagree; the source-page point is not admitted."
+    },
+    {
+      "name": "VIRTUS Wustermark",
+      "status": "hold_raw_document_and_phase_binding",
+      "fresh_source": "https://virtusdatacentres.com/press-releases/virtus-installs-two-of-europes-largest-super-grid-transformers-at-wustermark-campus-in-brandenburg",
+      "fresh_date": "2026-06-01",
+      "fresh_fact": "Operator reports delivered and installed transformers for campus. May26 first-person local committee-chair site visit separately observed construction site.",
+      "geometry_source": "https://www.uvp-verbund.de/documents-ige-ng/igc_bb/358782d6-e594-4884-81d3-4391a473cebc/Virtus%20Wustermark%201%20GmbH_V1_20-12-2024_Abschnitt-3.pdf",
+      "locator_candidate": "PDF page6: Planstraße3, Wustermark; parcels138/2,1342,1344,1346,1348,147,145,1339; ETRS89UTM33 easting361172/northing5825716 for M5-M8 campus.",
+      "reason": "PDF raw fetch429 twice and web screenshot404. Search text alone is not a captured and visually reviewed plan. Operator raw release403. Two-site campus/transformer phase binding still needs validation before claiming exact selected scope."
+    },
+    {
+      "name": "MERLIN Tres Cantos",
+      "status": "hold_exact_project_locator",
+      "reason": "June30 active urbanization qualifies as site_preparation; former rejection as insufficient building construction is corrected. No exact operator/government/community parcel point was found. City or industrial-park center is inadmissible."
+    },
+    {
+      "name": "PureDC SJK01 Seinäjoki",
+      "status": "hold_current_physical_status",
+      "source": "https://puredc.com/2026/07/14/pure-dc-launches-one-of-europes-largest-ever-ai-infrastructure-projects",
+      "reason": "July14 announcement describes a completed live first-hall substation and future halls. Completed power infrastructure alone is not observed continuing construction of the selected DC phase."
+    },
+    {
+      "name": "nexspace Graz expansion",
+      "status": "exclude_post_cutoff_start",
+      "source": "https://datacenter-group.com/de/news-stories/artikel/spatenstich-in-graz/",
+      "reason": "Contractor explicitly dates groundbreakingAugust26, after fixedAugust20cutoff."
+    },
+    {
+      "name": "regioIT Aachen EURaix Evolution",
+      "status": "exclude_completed_successor",
+      "source": "https://datacenter-group.com/de/news-stories/artikel/neues-rechenzentrum-der-regio-it-in-aachen/",
+      "reason": "Contractor July2 article explicitly describes opening/commissioning inJuly2026, not continuing construction."
+    },
+    {
+      "name": "maincubes BER02 Nauen",
+      "status": "hold_fresh_dated_physical_observation",
+      "source": "https://www.maincubes.com/rechenzentren/berlin-cloud-ki-anbieter-campus-ber02/",
+      "reason": "Exact operator point52.5935000,12.8929999 is available. Current page says construction but CMS last-modifiedJune12 is not itself an observed work date; March24substationgroundbreaking is stale. An OwlerJune11YouTube update title may be fresh but original dated source not yet verified. July27blog navigation repeats currentstatus but does not date that site work."
+    },
+    {
+      "name": "Google Kronstorf",
+      "status": "hold_fresh_authoritative_observation",
+      "reason": "April23groundbreaking is stale; July localnews constructionprogress is discovery only pending authoritative attribution. No locator work advanced."
+    },
+    {
+      "name": "Nebius second Mäntsälä building",
+      "status": "hold_physical_start",
+      "reason": "August12earnings-linked announcement is future capacity expansion; no named actual physical-start passage found in initial bounded scan. Separate completed first-campus expansion must not be redated."
+    }
+  ]
+}

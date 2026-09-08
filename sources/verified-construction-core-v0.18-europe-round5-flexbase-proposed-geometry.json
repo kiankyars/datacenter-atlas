@@ -1,0 +1,117 @@
+{
+  "schema_version": "v018-europe-round5-flexbase-proposed-locator-1",
+  "reviewed_at": "2026-09-08",
+  "lifecycle_reference_date": "2026-08-20",
+  "review_scope": "One mixed-use technology-centre campus locator proposal for independent root review; no admission is implied.",
+  "evidence": [
+    {
+      "key": "europe5-flexbase-osm-1160708952",
+      "kind": "openstreetmap",
+      "title": "Named new Technologiezentrum Laufenburg community locator",
+      "source_url": "https://overpass-api.de/api/interpreter?data=%5Bout%3Ajson%5D%3Bnwr%5B%22name%22~%22FlexBase%7CTechnologiezentrum%7CSwissgrid%22%2Ci%5D%2847.52%2C8.03%2C47.59%2C8.1%29%3Bout%20meta%20center%3B",
+      "publisher": "OpenStreetMap contributors via Overpass",
+      "source_family": "europe_round5_flexbase",
+      "published_at": null,
+      "retrieved_at": "2026-09-08T21:56:53Z",
+      "license": "ODbL-1.0",
+      "attribution": "OpenStreetMap contributors via Overpass",
+      "excerpt": "OSM way1160708952 explicitly identifies the new Technologiezentrum Laufenburg with Flexbase Group as operator. Its center is distinct from the nearby FlexBase Service office node.",
+      "content_hash": "285142b0fcf5f2e5040c09d3629a1143343083162db89afe589b785c0a6f3bd1",
+      "metadata": {
+        "content_hash_scope": "SHA-256 of exact 1184-byte saved HTTP response body",
+        "content_hash_verification": "fetched_bytes_sha256",
+        "capture_started_at": "2026-09-08T21:56:46Z",
+        "capture_finished_at": "2026-09-08T21:56:53Z",
+        "request_credentials_supplied": false,
+        "capture_method": "credential_free_curl_public_capture",
+        "raw_capture_bytes": 1184,
+        "raw_capture_temp_path": "/tmp/atlas-europe-round5.yeqJV6/flexbase-osm.json",
+        "rights_scope": "Compact restated facts and attribution only; no publisher photographs, simulations, plans or raw documents are redistributed. No open source-document licence is asserted.",
+        "object_url": "https://www.openstreetmap.org/way/1160708952",
+        "object_id": 1160708952,
+        "object_type": "way",
+        "version": 6,
+        "object_timestamp": "2026-01-19T14:59:55Z",
+        "source_crs": "EPSG:4326",
+        "literal_lat_lon": [
+          47.5536415,
+          8.0511054
+        ],
+        "rights_url": "https://www.openstreetmap.org/copyright",
+        "query": "[out:json];nwr[\"name\"~\"FlexBase|Technologiezentrum|Swissgrid\",i](47.52,8.03,47.59,8.1);out meta center;",
+        "excluded_feature": "node12538696123 FlexBase Service AG office is not the selected construction location.",
+        "lifecycle_guardrail": "OSM construction/opening tags are not authoritative status evidence."
+      }
+    }
+  ],
+  "source_binding_map": [
+    {
+      "source_id": "flexbase-current-status",
+      "path": "sources/curated-official-2026-09-08-europe-round5-flexbase-laufenburg-proposed-build.json",
+      "evidence_pointer": "/evidence/0"
+    },
+    {
+      "source_id": "flexbase-foundation-corroboration",
+      "path": "sources/curated-official-2026-09-08-europe-round5-flexbase-laufenburg-proposed-build.json",
+      "evidence_pointer": "/evidence/1"
+    },
+    {
+      "source_id": "flexbase-operator-identity",
+      "path": "sources/curated-official-2026-09-08-europe-round5-flexbase-laufenburg-proposed-build.json",
+      "evidence_pointer": "/evidence/2"
+    },
+    {
+      "source_id": "flexbase-exact-osm",
+      "path": "sources/verified-construction-core-v0.18-europe-round5-flexbase-proposed-geometry.json",
+      "evidence_pointer": "/evidence/0"
+    }
+  ],
+  "results": [
+    {
+      "project_stable_key": "curated:flexbase-technologiezentrum-laufenburg-campus:new-technology-centre-current-build",
+      "parent_campus_stable_key": "curated:flexbase-technologiezentrum-laufenburg-campus",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.0511054,
+          47.5536415
+        ]
+      },
+      "display_anchor": {
+        "type": "Point",
+        "coordinates": [
+          8.0511054,
+          47.5536415
+        ]
+      },
+      "geometry_source_ids": [
+        "flexbase-exact-osm"
+      ],
+      "identity_source_ids": [
+        "flexbase-current-status",
+        "flexbase-foundation-corroboration",
+        "flexbase-operator-identity"
+      ],
+      "location_basis": "community_named_site_feature",
+      "semantics": {
+        "geometry_source_entity_kind": "campus",
+        "geometry_derivation": "copy_Overpass_center_of_explicitly_named_Technologiezentrum_Laufenburg_way1160708952",
+        "geometry_method": "copy_Overpass_center_of_explicitly_named_Technologiezentrum_Laufenburg_way1160708952",
+        "geometry_scope_class": "community_mapped_campus_reference_point",
+        "geometry_authority_class": "community_source",
+        "geometry_use_scope": "campus_locator",
+        "precision_scope": "Representative center of the named new construction feature. It is not a survey, building centroid, legal boundary, existing-office location or a claim that all mixed-use floor area is data-center space.",
+        "horizontal_uncertainty_metres": null,
+        "horizontal_uncertainty_unknown_reason": "Community map metadata does not provide survey accuracy or quantitative positional uncertainty."
+      }
+    }
+  ],
+  "root_review": {
+    "reviewed_on": "2026-09-08",
+    "compared_against": "verified_construction_core/2026-08-20-v0.18-draft-fifth-reviewed/sites.geojson",
+    "physical_site_count_compared": 132,
+    "review_result": "Independent source-byte, physical-observation, exact-identity, rights and full-cohort distinctness review completed; admission is controlled only by the sixth-reviewed pinned contract.",
+    "geometry_accuracy": "No numeric source accuracy or surveyed construction boundary inferred.",
+    "source_review": "Four selected raw captures and postcutoff operator update hash/size independently matched and body reviewed. The June18 excavated pit belongs to the new mixed-use building containing the data center; no battery capacity, office point or image-derived status selected."
+  }
+}
