@@ -1,0 +1,139 @@
+{
+  "schema_version": "v018-europe-round5-dvz-proposed-locator-1",
+  "reviewed_at": "2026-09-08",
+  "lifecycle_reference_date": "2026-08-20",
+  "review_scope": "One new-build project at an identified existing physical campus; proposed for independent root review, no admission implied.",
+  "evidence": [
+    {
+      "key": "europe5-dvz-campus-osm",
+      "kind": "openstreetmap",
+      "title": "Named DVZ data-center campus community locator",
+      "source_url": "https://overpass-api.de/api/interpreter?data=%5Bout%3Ajson%5D%3Bnwr%5B%22name%22~%22DVZ%7CDatenverarbeitungszentrum%22%2Ci%5D%2853.6%2C11.3%2C53.7%2C11.45%29%3Bout%20meta%20center%3B",
+      "publisher": "OpenStreetMap contributors via Overpass",
+      "source_family": "europe_round5_dvz_schwerin",
+      "published_at": null,
+      "retrieved_at": "2026-09-08T22:03:03Z",
+      "license": "ODbL-1.0",
+      "attribution": "OpenStreetMap contributors via Overpass",
+      "excerpt": "OSM way1545965488 identifies the DVZ data-center campus by name and operator website. Its center represents the whole mapped campus, distinct from the individual House A and G office features.",
+      "content_hash": "b14676d43662227726f397ec88aa8f438f0853fc8e5485c11bb9c6cd1a98b5c6",
+      "metadata": {
+        "content_hash_scope": "SHA-256 of exact 3465-byte saved HTTP response body",
+        "content_hash_verification": "fetched_bytes_sha256",
+        "capture_started_at": "2026-09-08T22:02:50Z",
+        "capture_finished_at": "2026-09-08T22:03:03Z",
+        "request_credentials_supplied": false,
+        "capture_method": "credential_free_curl_public_capture",
+        "raw_capture_bytes": 3465,
+        "raw_capture_temp_path": "/tmp/atlas-europe-round5.yeqJV6/dvz-osm.json",
+        "rights_scope": "Selected OSM factual attributes and named campus center under ODbL1.0 with contributor attribution. No tiles, imagery or raw publisher documents are redistributed.",
+        "object_type": "way",
+        "object_id": 1545965488,
+        "object_url": "https://www.openstreetmap.org/way/1545965488",
+        "version": 2,
+        "object_timestamp": "2026-08-13T08:37:19Z",
+        "literal_lat_lon": [
+          53.6469747,
+          11.3811071
+        ],
+        "source_crs": "EPSG:4326",
+        "name": "Datenverarbeitungszentrum Mecklenburg-Vorpommern",
+        "short_name": "DVZ",
+        "telecom": "data_center",
+        "operator_website": "https://www.dvz-mv.de",
+        "query": "[out:json];nwr[\"name\"~\"DVZ|Datenverarbeitungszentrum\",i](53.6,11.3,53.7,11.45);out meta center;",
+        "rights_url": "https://www.openstreetmap.org/copyright",
+        "excluded_features": [
+          "way40847611: House A office at283",
+          "way40847861: House G office at285"
+        ],
+        "lifecycle_guardrail": "Community tags are not used as authoritative physical status."
+      }
+    }
+  ],
+  "source_binding_map": [
+    {
+      "source_id": "dvz-current-status",
+      "path": "sources/curated-official-2026-09-08-europe-round5-dvz-schwerin-proposed-build.json",
+      "evidence_pointer": "/evidence/0"
+    },
+    {
+      "source_id": "dvz-issue-publication",
+      "path": "sources/curated-official-2026-09-08-europe-round5-dvz-schwerin-proposed-build.json",
+      "evidence_pointer": "/evidence/1"
+    },
+    {
+      "source_id": "dvz-issue-pdf-link",
+      "path": "sources/curated-official-2026-09-08-europe-round5-dvz-schwerin-proposed-build.json",
+      "evidence_pointer": "/evidence/2"
+    },
+    {
+      "source_id": "dvz-newbuild-location",
+      "path": "sources/curated-official-2026-09-08-europe-round5-dvz-schwerin-proposed-build.json",
+      "evidence_pointer": "/evidence/3"
+    },
+    {
+      "source_id": "dvz-exact-campus-address",
+      "path": "sources/curated-official-2026-09-08-europe-round5-dvz-schwerin-proposed-build.json",
+      "evidence_pointer": "/evidence/4"
+    },
+    {
+      "source_id": "dvz-campus-osm",
+      "path": "sources/verified-construction-core-v0.18-europe-round5-dvz-proposed-geometry.json",
+      "evidence_pointer": "/evidence/0"
+    },
+    {
+      "source_id": "dvz-news-index-date",
+      "path": "sources/curated-official-2026-09-08-europe-round5-dvz-schwerin-proposed-build.json",
+      "evidence_pointer": "/evidence/5"
+    }
+  ],
+  "results": [
+    {
+      "project_stable_key": "curated:dvz-schwerin-luebecker-strasse-campus:new-modular-data-center-current-build",
+      "parent_campus_stable_key": "curated:dvz-schwerin-luebecker-strasse-campus",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          11.3811071,
+          53.6469747
+        ]
+      },
+      "display_anchor": {
+        "type": "Point",
+        "coordinates": [
+          11.3811071,
+          53.6469747
+        ]
+      },
+      "geometry_source_ids": [
+        "dvz-campus-osm"
+      ],
+      "identity_source_ids": [
+        "dvz-newbuild-location",
+        "dvz-exact-campus-address",
+        "dvz-current-status",
+        "dvz-issue-publication",
+        "dvz-issue-pdf-link",
+        "dvz-news-index-date"
+      ],
+      "location_basis": "community_named_site_feature",
+      "semantics": {
+        "geometry_source_entity_kind": "campus",
+        "geometry_derivation": "copy_Overpass_center_for_named_DVZ_data_center_campus_way1545965488",
+        "geometry_method": "copy_Overpass_center_for_named_DVZ_data_center_campus_way1545965488",
+        "geometry_scope_class": "community_mapped_campus_reference_point",
+        "geometry_authority_class": "community_source",
+        "geometry_use_scope": "campus_locator",
+        "precision_scope": "A representative point for the entire named DVZ campus. The operator's plot description and TED exact-address clause bind the new building to this campus. The point is not claimed to locate the new building footprint or its active work extent; individual office centers are not selected.",
+        "horizontal_uncertainty_metres": null,
+        "horizontal_uncertainty_unknown_reason": "No source states survey accuracy or quantitative positional uncertainty."
+      }
+    }
+  ],
+  "root_review": {
+    "reviewed_at": "2026-09-08T22:22:08Z",
+    "review_result": "All8 raw capture byte lengths and SHA256s independently matched. Full magazine page5, operator deck page8 and TED page3 visually reviewed. Exact news-card July31 date, issue announcement and magazine PDF link are all bound. OSM campus feature is distinct from excluded office features. Source-specific positional accuracy remains unknown. Geometry vocabulary normalized without changing point or scope.",
+    "dedup": "All138 prior campus names and keys compared; no Schwerin/DVZ campus alias. Nearest prior mainHub Nauen about154.6km away. One physical campus, not one addition per building. Foundation2025/2026 conflict retained and not selected."
+  }
+}

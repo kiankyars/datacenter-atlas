@@ -329,3 +329,37 @@ final-publication flags are false, and the 100 non-US expansion threshold is not
 .venv/bin/python scripts/build_expansion_200_draft.py --batch sixth-reviewed --output-dir /absolute/new/draft-directory
 .venv/bin/python scripts/build_expansion_200_draft.py --batch sixth-reviewed --validate-only
 ```
+
+## Forty-site reviewed checkpoint
+
+The [seventh reviewed draft](../verified_construction_core/2026-08-20-v0.18-draft-seventh-reviewed/README.md)
+adds DVZ Schwerin and Applied Digital Delta Forge 1 near Boyce, Louisiana. It contains 140
+physical sites, 143 projects, 40 countries, 98 non-US sites and 437 evidence rows. This is
+40 of the requested 100 additions, with 60 remaining. Every prior project, site and evidence
+row is unchanged. The public v0.17 release and all earlier checkpoints remain frozen.
+
+Schwerin's July 31 magazine reports the unfinished shell and ongoing utility connections.
+Its exact dated operator news card, issue announcement and PDF download link are separately
+bound. The inconsistent 2025/2026 foundation year remains unresolved and is not the selected
+observation. The operator's site-planning deck and TED address clause bind the new building
+to the existing campus. The named OSM campus center is not either nearby office feature,
+the new building footprint, a surveyed boundary or the active-work extent.
+
+Delta Forge 1 retains the July 27 issuer statement explicitly naming current construction.
+Its selected point is independently reproduced from the named OSM construction-fence polygon.
+Government, owner and contractor records corroborate the exact campus identity through
+15 James Road, AI 250709 and construction well 40-0252. The public rehosted documents have
+not been byte-matched to agency originals; this limitation stays explicit. The well's datum
+is unstated, so its coordinate is corroboration only, not transformed or selected geometry.
+Completed wells and a cleared dust deficiency do not establish a completed data center.
+AEX01, AEX02 and their construction wells count as one physical campus.
+
+Both new locators retain community authority and unknown positional accuracy. No new roles,
+capacities, workloads, operations or independent imagery outcomes are inferred. Imagery
+remains 10/143; the fixed 20-row/19-agreement blind review remains incomplete. Completion
+and final-publication flags remain false, and the 100 non-US threshold is not yet reached.
+
+```sh
+.venv/bin/python scripts/build_expansion_200_draft.py --batch seventh-reviewed --output-dir /absolute/new/draft-directory
+.venv/bin/python scripts/build_expansion_200_draft.py --batch seventh-reviewed --validate-only
+```
