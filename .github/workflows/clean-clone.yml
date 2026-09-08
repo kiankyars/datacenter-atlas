@@ -46,6 +46,7 @@ jobs:
             datacenter_atlas.tests.test_expansion_200_sources \
             datacenter_atlas.tests.test_verified_construction_core_v018 \
             datacenter_atlas.tests.test_expansion_200_draft \
+            datacenter_atlas.tests.test_expansion_200_finland \
             datacenter_atlas.tests.test_workspace_shim
       - name: Validate the frozen expansion research inventory
         working-directory: datacenter_atlas
@@ -58,6 +59,9 @@ jobs:
         run: .venv/bin/python scripts/build_expansion_200_draft.py --validate-only
       - name: Smoke-test the public CLI
         run: datacenter_atlas/.venv/bin/python -m datacenter_atlas --help
+      - name: Validate the cumulative-five draft
+        working-directory: datacenter_atlas
+        run: .venv/bin/python scripts/build_expansion_200_draft.py --batch initial-five --validate-only
       - name: Lint the clean-clone surface
         working-directory: datacenter_atlas
         run: |
@@ -71,6 +75,7 @@ jobs:
             datacenter_atlas/verified_construction_core_v017.py \
             datacenter_atlas/verified_construction_core_v018.py \
             datacenter_atlas/expansion_200_initial_three.py \
+            datacenter_atlas/expansion_200_initial_five.py \
             europe_latam_official_discovery_20260721.py \
             scripts/build_verified_construction_core.py \
             scripts/generate_verified_construction_core_v017_inputs.py \
@@ -92,4 +97,5 @@ jobs:
             tests/test_expansion_200_sources.py \
             tests/test_verified_construction_core_v018.py \
             tests/test_expansion_200_draft.py \
+            tests/test_expansion_200_finland.py \
             tests/test_workspace_shim.py

@@ -63,7 +63,7 @@ The blind-review protocol remains a fixed 20-row sample requiring 19 agreements,
 full expanded eligible project population. It is not a 20-percent sampling rule, and a sample
 restricted to the old baseline cannot certify the expansion.
 
-## Reviewed partial draft
+## First reviewed partial draft
 
 The [initial-three draft](../verified_construction_core/2026-08-20-v0.18-draft-initial-three/README.md)
 adds CapitaLand Navi Mumbai Tower 2, CapitaLand DC ITPH Hyderabad, and Goodman's first LAX01
@@ -84,3 +84,23 @@ Reproduce or validate this opt-in draft with:
 ```
 
 The builder refuses to overwrite an existing directory. The public core builder remains on v0.17.
+
+## Cumulative five-site draft
+
+The [cumulative-five draft](../verified_construction_core/2026-08-20-v0.18-draft-initial-five/README.md)
+adds Microsoft's Kirkkonummi first building and Espoo second building to the initial three. It
+contains 105 physical sites, 108 projects, 40 countries, and 265 evidence rows: 5 of the requested
+100 additions. Both the initial-three snapshot and the v0.17 release remain unchanged.
+
+Kirkkonummi's contractor update is dated June 26 and its municipal permit supplies a TM-35
+activity-site reference point. Espoo's June 11 minutes explicitly identify the first two buildings
+as under construction; the selected second building is bound to permit 2024-1349 and registered
+parcel 49-65-3-1. The parcel polygon is a project locator, not a data-center campus boundary.
+The adjacent third-building permit does not create another selected construction site.
+
+Imagery coverage remains 10/108 and the blind-review gap remains open. To reproduce or validate:
+
+```sh
+.venv/bin/python scripts/build_expansion_200_draft.py --batch initial-five --output-dir /absolute/new/draft-directory
+.venv/bin/python scripts/build_expansion_200_draft.py --batch initial-five --validate-only
+```
