@@ -1,0 +1,67 @@
+{
+  "schema_version": "research-expansion-200-hive-yguazu-locator-review-1",
+  "reviewed_at": "2026-09-08",
+  "decision": "hold_not_admitted",
+  "campus_stable_key": "curated:hive-yguazu-paraguay-campus",
+  "existing_candidate": "sources/curated-official-2026-07-21-hive-yguazu-100mw-expansion-current-build.json",
+  "scope": "Bounded locator follow-up only; existing lifecycle package was not revalidated or accepted.",
+  "findings": [
+    "Exact HIVE Yguazu Paraguay and Bitfarms Yguazu Paraguay Nominatim searches both returned empty arrays, not locations.",
+    "The operator Paraguay page distinguishes completed Paraguay1.0 Yguazu (September2025) and Paraguay2.0 Valenzuela (November2025) from the Paraguay3.0 Yguazu 100MW expansion forecast for Q32026. Those two operating stages do not establish completion of the selected 2026 expansion.",
+    "The inspected operator location information supplies Yguazu at locality scope. No source-specific geographic point, exact house number or parcel was selected. Schematic display positions, dam imagery and Valenzuela locations are not substitutes.",
+    "Secondary reporting describes vicinity of km41, about2km south of PY02 near an ANDE substation; this is not an exact project-bound locator and no point is inferred from it."
+  ],
+  "candidate_source_urls": [
+    "https://www.hivedigitaltechnologies.com/operations/paraguay/",
+    "https://www.lanacion.com.py/negocios/2026/02/28/yguazu-se-proyecta-para-ser-el-polo-tecnologico-e-industrial-con-3-mil-empleos-directos/?outputType=amp"
+  ],
+  "captures": [
+    {
+      "tag": "hive-yguazu-osm-root",
+      "source_url": "https://nominatim.openstreetmap.org/search?format=jsonv2&q=HIVE%20Yguazu%20Paraguay&addressdetails=1",
+      "capture_started_at": "2026-09-08T23:18:50Z",
+      "capture_finished_at": "2026-09-08T23:18:51Z",
+      "returncode": 0,
+      "http_status": 200,
+      "effective_url": "https://nominatim.openstreetmap.org/search?format=jsonv2&q=HIVE%20Yguazu%20Paraguay&addressdetails=1",
+      "content_type": "application/json; charset=utf-8",
+      "request_credentials_supplied": false,
+      "capture_method": "credential_free_curl_fail_location_compressed",
+      "raw_capture_bytes": 2,
+      "raw_capture_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "tag": "hive-bitfarms-yguazu-osm-root",
+      "source_url": "https://nominatim.openstreetmap.org/search?format=jsonv2&q=Bitfarms%20Yguazu%20Paraguay&addressdetails=1",
+      "capture_started_at": "2026-09-08T23:19:31Z",
+      "capture_finished_at": "2026-09-08T23:19:31Z",
+      "returncode": 0,
+      "http_status": 200,
+      "effective_url": "https://nominatim.openstreetmap.org/search?format=jsonv2&q=Bitfarms%20Yguazu%20Paraguay&addressdetails=1",
+      "content_type": "application/json; charset=utf-8",
+      "request_credentials_supplied": false,
+      "capture_method": "credential_free_curl_fail_location_compressed",
+      "raw_capture_bytes": 2,
+      "raw_capture_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "tag": "hive-paraguay-operator-root",
+      "source_url": "https://www.hivedigitaltechnologies.com/operations/paraguay/",
+      "capture_started_at": "2026-09-08T23:18:59Z",
+      "capture_finished_at": "2026-09-08T23:19:00Z",
+      "returncode": 0,
+      "http_status": 200,
+      "effective_url": "https://www.hivedigitaltechnologies.com/operations/paraguay/",
+      "content_type": "text/html",
+      "request_credentials_supplied": false,
+      "capture_method": "credential_free_curl_fail_location_compressed",
+      "raw_capture_bytes": 184257,
+      "raw_capture_sha256": "f5be3512fb95ab11a36b5d869673e4bcf5c2cc1a016e0091981dc9b0136d9575"
+    }
+  ],
+  "rights_scope": "Minimal restated facts and capture metadata only; no operator HTML, schematic map, third-party imagery or numeric locality point redistributed.",
+  "selected_geometry": null,
+  "admissions": 0,
+  "core_changes": 0,
+  "next_gate": "Exact source-specific named campus geometry or a primary legal-address/parcel bridge, followed by fresh lifecycle and successor review."
+}

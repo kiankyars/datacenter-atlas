@@ -1,0 +1,142 @@
+{
+  "schema_version": "research-expansion-200-fra5-root-review-1",
+  "reviewed_at": "2026-09-08",
+  "lifecycle_reference_date": "2026-08-20",
+  "decision": "hold_not_admitted",
+  "campus_stable_key": "curated:ntt-frankfurt-5-hattersheim-campus",
+  "prior_proposal_path": "sources/verified-construction-core-v0.18-europe-round7-ntt-fra5-community-pin-proposal.json",
+  "prior_proposal_sha256": "09caa87693b715d34c5c6c960379b21ee94c1d95a4f90ae1da1cb071571e798b",
+  "status_review": "July16 operator article explicitly reports continuing first-data-center piling. Completed substation shell and planned later DC shell works remain distinct. Current operator page describes early-August piling completion and prospective September slab pours, not completed data center.",
+  "root_full_page_visual_review": [
+    {
+      "path": "/tmp/atlas-europe-round7.5A7tsC/ntt-fra5-rp-plan.pdf",
+      "pages": [
+        3,
+        5
+      ],
+      "finding": "The 2022 city summary separates northern IONOS from the remaining NTT campus; the southern internal agricultural field is not drawn as a data-center building."
+    },
+    {
+      "path": "/tmp/atlas-europe-round7.5A7tsC/ntt-fra5-official-2786546.pdf",
+      "pages": [
+        11,
+        25,
+        26
+      ],
+      "finding": "The 2024 named FRA5 plan shows an L-shaped A/B campus with a southern agricultural-field notch. No coordinates were traced or derived from these maps."
+    }
+  ],
+  "literal_marker_review": {
+    "coordinates_lon_lat": [
+      8.4727,
+      50.0669
+    ],
+    "origin": "Same forum contributor authored a 2024 marker and a 2026 explicit FRA5 identity follow-up. Complementary, not independent sources. The point is not an OSM object and does not acquire an ODbL license from its display URL.",
+    "coordinate_documentation": "mlat/mlon marker semantics and WGS84 documented by source provider; these facts do not establish project-bound positional accuracy.",
+    "cross_check": {
+      "osm_way_id": 1206576465,
+      "tags": {
+        "landuse": "construction"
+      },
+      "ordered_ring_vertices": 53,
+      "bounds_lon_lat": [
+        8.4697253,
+        50.0656186,
+        8.474628,
+        50.0701422
+      ],
+      "literal_marker_within_polygon": false,
+      "method": "Read exact ordered OSM node references, construct Shapely Polygon, evaluate contains(Point(8.4727,50.0669)); plot the unchanged marker and polygon for independent visual inspection.",
+      "interpretation": "Marker falls in the southern excluded notch of the unnamed construction polygon. Its relationship to the current NTT campus is not closed. This community polygon is not authoritative and alone cannot prove the exact legal boundary, but the mismatch prevents confident acceptance; the official plan also shows a southern agricultural notch."
+    },
+    "decision": "Do not admit, move or snap the marker, select an unnamed polygon centroid, borrow FRA4 coordinates, or convert the old community point into official geometry."
+  },
+  "raw_capture_verifications": [
+    {
+      "evidence_key": "europe7-ntt-fra5-piling-captured-2026-09-08",
+      "raw_bytes": 31015,
+      "raw_sha256": "d3469e8ce84966f4070ea583a40f544eaa988156032dcefc7b28600993ce6b03"
+    },
+    {
+      "evidence_key": "europe7-ntt-fra5-forum-pin-captured-2026-09-08",
+      "raw_bytes": 158912,
+      "raw_sha256": "d4e2854b4236dfa87e797c83a891b7e369f9842eaedb88e40e0258d76a52fc28"
+    },
+    {
+      "evidence_key": "europe7-ntt-fra5-forum-identity-captured-2026-09-08",
+      "raw_bytes": 158912,
+      "raw_sha256": "d4e2854b4236dfa87e797c83a891b7e369f9842eaedb88e40e0258d76a52fc28"
+    },
+    {
+      "evidence_key": "europe7-ntt-fra5-city-mapped-area-captured-2026-09-08",
+      "raw_bytes": 703409,
+      "raw_sha256": "395b8e554218c2a6cf92b7701a411b244c06cf30f85fd0021c55c40dc234e956"
+    },
+    {
+      "evidence_key": "europe7-ntt-fra5-operator-mapped-area-captured-2026-09-08",
+      "raw_bytes": 6213360,
+      "raw_sha256": "fc78a125f300e79f078918d4757632ed966d77210a249f3b5d70f43ff6bfa7e0"
+    }
+  ],
+  "new_captures": [
+    {
+      "tag": "fra5-osm-marker-root",
+      "source_url": "https://wiki.openstreetmap.org/wiki/Browsing",
+      "capture_started_at": "2026-09-08T23:11:53Z",
+      "capture_finished_at": "2026-09-08T23:11:54Z",
+      "returncode": 0,
+      "http_status": 200,
+      "effective_url": "https://wiki.openstreetmap.org/wiki/Browsing",
+      "content_type": "text/html; charset=UTF-8",
+      "request_credentials_supplied": false,
+      "capture_method": "credential_free_curl_fail_location_compressed",
+      "raw_capture_bytes": 74843,
+      "raw_capture_sha256": "40b4f3ba45f1e051f6c68d94e867c1e9fb8edab167024412a8109241896ec727",
+      "raw_capture_temp_path": "/tmp/atlas-us-locators.OAvNaE/fra5-osm-marker-root.body",
+      "role": "Documentation: mlat/mlon are the marker, distinct from map viewport.",
+      "license": "CC-BY-SA-2.0",
+      "attribution": "OpenStreetMap Wiki contributors"
+    },
+    {
+      "tag": "fra5-osm-crs-root",
+      "source_url": "https://wiki.openstreetmap.org/wiki/Converting_to_WGS84",
+      "capture_started_at": "2026-09-08T23:11:52Z",
+      "capture_finished_at": "2026-09-08T23:11:53Z",
+      "returncode": 0,
+      "http_status": 200,
+      "effective_url": "https://wiki.openstreetmap.org/wiki/Converting_to_WGS84",
+      "content_type": "text/html; charset=UTF-8",
+      "request_credentials_supplied": false,
+      "capture_method": "credential_free_curl_fail_location_compressed",
+      "raw_capture_bytes": 57065,
+      "raw_capture_sha256": "9b19d65bf08772834a083c1fa2a7849550737ee7364f0c85a11a85cfc894b7a4",
+      "raw_capture_temp_path": "/tmp/atlas-us-locators.OAvNaE/fra5-osm-crs-root.body",
+      "role": "Documentation: OSM uses WGS84, not source authority for this contributor point.",
+      "license": "CC-BY-SA-2.0",
+      "attribution": "OpenStreetMap Wiki contributors"
+    },
+    {
+      "tag": "fra5-osm-full-way-root",
+      "source_url": "https://www.openstreetmap.org/api/0.6/way/1206576465/full.json",
+      "capture_started_at": "2026-09-08T23:12:16Z",
+      "capture_finished_at": "2026-09-08T23:12:17Z",
+      "returncode": 0,
+      "http_status": 200,
+      "effective_url": "https://www.openstreetmap.org/api/0.6/way/1206576465/full.json",
+      "content_type": "application/json; charset=utf-8",
+      "request_credentials_supplied": false,
+      "capture_method": "credential_free_curl_fail_location_compressed",
+      "raw_capture_bytes": 9706,
+      "raw_capture_sha256": "37909a20971adafc0adc3cfb93935a87463a46c3fb7127ed958e500ef5e80865",
+      "raw_capture_temp_path": "/tmp/atlas-us-locators.OAvNaE/fra5-osm-full-way-root.body",
+      "role": "Unselected unnamed construction polygon: positional cross-check only; not a named NTT feature or official boundary.",
+      "license": "ODbL-1.0",
+      "attribution": "OpenStreetMap contributors"
+    }
+  ],
+  "rights_scope": "Minimal factual review and attribution only. No raw forum text, provider documentation, diagrams, basemap, photograph, survey plan or map tile redistributed. Community marker has no asserted open license. Diagnostic plot remains temporary.",
+  "next_gate": "Obtain a source-specific named NTT FRA5 point or a separately justified official parcel/address locator. A correct general neighborhood and a fresh status report do not resolve the observed positional mismatch.",
+  "admissions": 0,
+  "core_changes": 0,
+  "prior_packets_modified": false
+}

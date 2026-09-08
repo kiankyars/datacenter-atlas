@@ -403,3 +403,53 @@ Both objective completion and final-publication flags remain false.
 .venv/bin/python scripts/build_expansion_200_draft.py --batch eighth-reviewed --output-dir /absolute/new/draft-directory
 .venv/bin/python scripts/build_expansion_200_draft.py --batch eighth-reviewed --validate-only
 ```
+
+## Forty-six-site reviewed checkpoint
+
+The [ninth reviewed draft](../verified_construction_core/2026-08-20-v0.18-draft-ninth-reviewed/README.md)
+adds Vantage Winterthur, Hut 8 River Bend and Hut 8 Beacon Point. It contains 146 physical
+sites, 149 projects, 41 countries, 102 non-US sites and 479 evidence rows. This is 46 of the
+requested 100 additions, with 54 remaining. All 143 previous sites, 146 previous projects,
+459 previous evidence rows and their GeoJSON features remain unchanged. The public v0.17
+release is still frozen at 100 sites.
+
+Winterthur retains an explicit phase-identity inference. ERNE's July 30 current-finishing
+article names Vantage, Winterthur and DPR, not the ZRH12 code. DPR's named ZRH12 Building 2
+project and separate ERNE trade-partner disclosure bind that phase. Completed ZRH11 and
+future ZRH13 do not become separate sites. The exact operator address, Fabrikstrasse 12,
+8404 Winterthur, matches one record in the complete official address download: EGAID
+102586517. The selected point is transformed from that record's LV95 coordinates using
+the official REFRAME service. The download checksum, full CSV member checksum, unique-row
+match, coordinate specification and attribution terms are independently checked. Full PDF
+pages establish REFRAME's coordinate contract and Report A public-domain classification.
+The operator's conflicting embedded pin is excluded; the selected building-address point
+locates the shared campus, not the ZRH12 footprint or a surveyed boundary.
+
+River Bend and Beacon Point use the issuer's August 4 current-construction statement and
+project-specific physical-work descriptions. Quarter milestones are not assigned an exact
+August 4 occurrence date. Phase 2 leasing, financial construction categories and forecast
+2027 delivery are not additional physical projects, capacity observations or completed halls.
+Beacon Point's later generic CMS Commercialization label remains an explicit conflict,
+not lifecycle corroboration or proof that work stopped. The August 10 primary successor
+still describes the campus under development.
+
+Both Hut 8 locations are exact named operator markers, traced from the platform's campus
+records through its Mapbox implementation with provider CRS documentation bound. River
+Bend's displayed marker uses the operator's six-decimal rounding; raw input precision is
+preserved in provenance. Neither marker is a boundary, phase footprint or accuracy estimate.
+Hut 8 rights remain reserved: the draft retains isolated coordinates and independently
+restated facts, not publisher prose, code, maps or imagery. No open license is invented.
+
+Fresh hold packets preserve FRA5's forum-marker/plan-location conflict, HIVE Yguazú's
+unclosed locator, Sabey Umatilla and Bell Sherwood's location/rights gaps, and the APAC
+date/identity conflicts. Fairview's Q2 filing is now captured and supports Level 2
+commissioning, but its exact locator remains unclosed. These candidates are not admitted.
+
+The checkpoint adds no normalized roles, workloads, capacities, operating models or imagery
+outcomes. Imagery coverage is 10/149; the fixed 20-row/19-agreement blind review is incomplete.
+Objective-completion and final-publication flags remain false.
+
+```sh
+.venv/bin/python scripts/build_expansion_200_draft.py --batch ninth-reviewed --output-dir /absolute/new/draft-directory
+.venv/bin/python scripts/build_expansion_200_draft.py --batch ninth-reviewed --validate-only
+```

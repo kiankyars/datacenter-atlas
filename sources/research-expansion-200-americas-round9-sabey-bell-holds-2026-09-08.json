@@ -1,0 +1,324 @@
+{
+  "schema_version": "americas-round9-sabey-bell-holds-1",
+  "reviewed_at": "2026-09-08",
+  "lifecycle_cutoff": "2026-08-20",
+  "physical_window": [
+    "2026-05-22",
+    "2026-08-20"
+  ],
+  "admissions": 0,
+  "scope": "Two bounded research holds. No campus geometry, admission, core, contract or frozen-source edits.",
+  "rights_scope": "Compact independently restated factual metadata only. Raw HTML, PDF, parcel polygons, survey drawings, maps, photographs and code remain temporary. Public access does not imply an open redistribution license. No paid API, purchased license, credential or geocoder match is invented.",
+  "dedup": {
+    "snapshot": "verified_construction_core/2026-08-20-v0.18-draft-eighth-reviewed/sites.csv",
+    "site_count": 143,
+    "sha256": "7f911b6e66c66fffe70825d4707ef2a12c4285b16aabc7b9003e12702163d442",
+    "result": "Neither candidate is selected. The only selected Sabey campus is Round Rock, Texas, distinct from Umatilla. No selected Bell/Sherwood campus. Bell's earlier unselected source remains preserved, not counted as a new inventory identity."
+  },
+  "candidates": [
+    {
+      "name": "Sabey SDC Umatilla Campus",
+      "country": "United States",
+      "decision": "held_geometry_rights_and_off_parcel_alternative",
+      "construction": {
+        "source": "sabey-umatilla-july22.html",
+        "published_at": "2026-07-22",
+        "observation_date": "2026-07-15",
+        "value": "under_construction",
+        "pointer": "Article body, first two paragraphs; July22 dateline explicitly dates July15 event and first steel rising. This is physical vertical work, not ceremony alone."
+      },
+      "identity": {
+        "sources": [
+          "sabey-enterprise-zone-2024.pdf",
+          "sabey-parcel-remap-nov2024.pdf",
+          "sabey-wanapa-replat.pdf"
+        ],
+        "bridge": "Enterprise-zone agreement PDF page5 explicitly binds Sabey Data Center Properties LLC to Lots2,3,4 of THE LONG SUBDIVISION: old TLIDs5N28000001500/1600/1700. Municipal November2024 packet page16 explicitly remaps SDC Umatilla LLC old5N2800-1500 to current5N2813-200; old1600 to current300. Replat PDF page10 names SDC Umatilla I LLC and the same old lots. These are one site, not three campuses.",
+        "page_review": "Full enterprise agreement page5, remap page16, and replat page10 rendered with Poppler and visually inspected."
+      },
+      "geometry_hold": {
+        "selected_geometry": null,
+        "county_source": "umatilla-sdc-owner-taxlots.json",
+        "exact_locator_candidate": "Single feature FID353421, TLID5N28130000200, owner SDC UMATILLA I LLC, situs31266 WANAPA UMATILLA. GIS response includes an outSR4326 polygon; no polygon or centroid is redistributed.",
+        "rights_sources": [
+          "umatilla-taxlots-item.json",
+          "umatilla-gis-current-license.pdf"
+        ],
+        "rights_reason": "ArcGIS item public/as-is licenseInfo requires attribution and modification disclosure, but item description prices nongovernmental taxlot data. County-linked current GIS agreement page1 conditions license on payment and restricts publication/distribution without written consent. No paid license or consent has been obtained; do not reinterpret public API availability as an open license.",
+        "alternative": "Replat PDF page10 notes3–4 give benchmark3009 at N194314.64 E808289.90 in OCRS Columbia River East NAD83(2011), epoch2010.00, international feet. The full drawing places it on the north side of Wanapa Road, outside the campus parcel. Root review rejects this off-parcel survey benchmark as a campus locator; no transform or new point selected.",
+        "failed_geocode": "sabey-census-31266-wanapa.json has addressMatches=[] for exact31266 Wanapa Road, Umatilla, OR. No fallback to locality or invented address point. DEQ WQSIS queries for SABEY, SDC or31266 also returned no features."
+      },
+      "successor": {
+        "sources": [
+          "sabey-umatilla-location.html",
+          "sabey-news-index.html"
+        ],
+        "checked_through": "2026-08-20",
+        "result": "Operator location page labels its dates Projected Schedule, with first data hall2027;2026 core-and-shell item is not proof of delivery. Operator newsroom and targeted completion/cancellation/opening searches found no authoritative successor through cutoff. Third-party registries conflict on operating status and use a wrongly placed point; excluded.",
+        "caveat": "Bounded check, not proof of absence."
+      }
+    },
+    {
+      "name": "Bell AI Fabric Sherwood Campus",
+      "country": "Canada",
+      "existing_campus_key": "curated:bell-ai-fabric-sherwood-campus",
+      "existing_project_key": "curated:bell-ai-fabric-sherwood-campus:saskatchewan-facility",
+      "existing_source": "sources/curated-official-2026-07-20-bell-ai-fabric-saskatchewan.json",
+      "decision": "held_exact_locator_and_reusable_geometry",
+      "construction": {
+        "sources": [
+          "bell-iaac-project.html",
+          "bell-iaac-june5-response.html"
+        ],
+        "published_at": "2026-06-05",
+        "observation_date": "2026-06-05",
+        "value": "under_construction",
+        "pointer": "IAAC project90514 Latest update supplies June5 date. Document166714 Reasons, first bullet and nested bullets, states essential project-linked substantial landscape alteration and work completed or currently underway: clearing/stripping, major earthworks, berm/sound barriers, grading/site preparation.",
+        "date_guardrail": "April21 is historical commencement; June5 is the authority's explicit current physical assessment. Assessment status Completed refers only to federal designation review, not data-center completion."
+      },
+      "identity_geometry": {
+        "sources": [
+          "bell-rm-dp26-005.html",
+          "bell-rm-january-legal-parcels.html",
+          "bell-site-plan.pdf"
+        ],
+        "legal_site_candidate": "Municipal DP26-005 names proposed data centre at NW33-16-19W2M. January rezoning notice names parcel203875689 (NW33 16 19 2 Ext1) and parcel203875667 (Blk/ParA Plan102362341 Ext0).",
+        "bridge_limit": "Municipal sources name Sherwood Data Centre and its Fusion/TrueNorth design, not Bell. Independent secondary reporting explicitly calls this Bell's site; no primary named Bell-to-legal-parcel bridge is claimed closed in this packet.",
+        "plan_review": "Complete conceptual site-plan page1 rendered and inspected. It places phases within a property outline but contains no selected geographic coordinates. No visual georeferencing or drawing trace performed.",
+        "selected_geometry": null,
+        "registry_map_rejection": "IAAC project page Disclaimer explicitly describes markers as approximate and illustrative. No marker or map viewport selected.",
+        "cadastre_rejection": "saskgrid-redistribution-metadata.html Use_Constraints prohibits whole or partial redistribution under standard license and restricts derivatives. A federal-hosted copy is not treated as independently open-licensed; no cadastral extraction selected."
+      },
+      "successor": {
+        "source": "bell-q2-release.html",
+        "published_at": "2026-08-06",
+        "checked_through": "2026-08-20",
+        "result": "BCE Q2 release continues Saskatchewan construction/build-out context. Targeted BCE/Bird searches and the IAAC project registry found no authoritative completion/cancellation through cutoff. No future opening forecast becomes an actual operating claim.",
+        "caveat": "Bounded check, not proof of absence."
+      }
+    }
+  ],
+  "captures": [
+    {
+      "tag": "sabey-umatilla-july22.html",
+      "url": "https://sabeydatacenters.com/news/sabey-data-centers-celebrates-going-vertical-milestone-at-sdc-umatilla",
+      "path": "/tmp/atlas-regions-round8.gpQ9EX/sabey-umatilla-july22.html",
+      "bytes": 78385,
+      "sha256": "552c91bc4ba05c77de5d50ce294019ac07935f586cbb9931b8db37e84331983d",
+      "started": "2026-09-08T22:48:04.938Z",
+      "finished": "2026-09-08T22:48:08.035Z",
+      "http_status": 200,
+      "request_credentials_supplied": false,
+      "capture_method": "credential_free_curl_fail_location_compressed",
+      "hash_scope": "SHA-256 exact content-decoded response body"
+    },
+    {
+      "tag": "sabey-umatilla-location.html",
+      "url": "https://sabeydatacenters.com/locations/sdc-umatilla",
+      "path": "/tmp/atlas-regions-round8.gpQ9EX/sabey-umatilla-location.html",
+      "bytes": 129579,
+      "sha256": "ef6da0554f1672c9e2dba8ba94f866fce96f185447ede0f5ac16314cf433b202",
+      "started": "2026-09-08T22:48:06.159Z",
+      "finished": "2026-09-08T22:48:08.952Z",
+      "http_status": 200,
+      "request_credentials_supplied": false,
+      "capture_method": "credential_free_curl_fail_location_compressed",
+      "hash_scope": "SHA-256 exact content-decoded response body"
+    },
+    {
+      "tag": "sabey-news-index.html",
+      "url": "https://sabeydatacenters.com/news",
+      "path": "/tmp/atlas-regions-round8.gpQ9EX/sabey-news-index.html",
+      "bytes": 1790196,
+      "sha256": "32087073b23ddb6e5c486e0ad15c6140841e98190e0d39a030f7823ed114a168",
+      "started": "2026-09-08T22:58:45.871Z",
+      "finished": "2026-09-08T22:58:52.469Z",
+      "http_status": 200,
+      "request_credentials_supplied": false,
+      "capture_method": "credential_free_curl_fail_location_compressed",
+      "hash_scope": "SHA-256 exact content-decoded response body"
+    },
+    {
+      "tag": "sabey-enterprise-zone-2024.pdf",
+      "url": "https://umatilla.civicweb.net/document/6302/Resolution%2009-2024.%20A%20Resolution%20approving%20the%20.pdf?handle=7ECCF6B767334B23817C1417870C4135",
+      "path": "/tmp/atlas-regions-round8.gpQ9EX/sabey-enterprise-zone-2024.pdf",
+      "bytes": 278162,
+      "sha256": "4471d3000d423b25bce3e1f7bb78a27196496ca8033522a22b9cd8256b6830ef",
+      "started": "2026-09-08T22:55:46.582Z",
+      "finished": "2026-09-08T22:55:47.406Z",
+      "http_status": 200,
+      "request_credentials_supplied": false,
+      "capture_method": "credential_free_curl_fail_location_compressed",
+      "hash_scope": "SHA-256 exact content-decoded response body"
+    },
+    {
+      "tag": "sabey-parcel-remap-nov2024.pdf",
+      "url": "https://umatilla.civicweb.net/document/44108/Special%20City%20Council%20Meeting%20-%20Nov%2021%202024.pdf?handle=1930F59198544F9E95C78A80E5B3567B",
+      "path": "/tmp/atlas-regions-round8.gpQ9EX/sabey-parcel-remap-nov2024.pdf",
+      "bytes": 9027843,
+      "sha256": "c327fde180010018fcf73d52f5b855e349f61487021c7fbe3f97098c63891bb3",
+      "started": "2026-09-08T22:59:50.637Z",
+      "finished": "2026-09-08T22:59:52.070Z",
+      "http_status": 200,
+      "request_credentials_supplied": false,
+      "capture_method": "credential_free_curl_fail_location_compressed",
+      "hash_scope": "SHA-256 exact content-decoded response body"
+    },
+    {
+      "tag": "umatilla-sdc-owner-taxlots.json",
+      "url": "https://services3.arcgis.com/tNPgIZWOB0Efvm0g/arcgis/rest/services/Tax_Lots/FeatureServer/0/query?where=UPPER%28MAILING_NA%29%20LIKE%20%27%25SDC%25%27&outFields=FID,TLID,MAILING_NA,SITUS_HOUS,SITUS_STRE,SITUS_CITY,SUM_OF_ACR&returnGeometry=true&outSR=4326&f=geojson",
+      "path": "/tmp/atlas-regions-round8.gpQ9EX/umatilla-sdc-owner-taxlots.json",
+      "bytes": 744,
+      "sha256": "215f0eae5e5fca9ac637336f9606ecfc62d7a8c913c01e7724a247f46d3241b6",
+      "started": "2026-09-08T22:58:11.986Z",
+      "finished": "2026-09-08T22:58:12.402Z",
+      "http_status": 200,
+      "request_credentials_supplied": false,
+      "capture_method": "credential_free_curl_fail_location_compressed",
+      "hash_scope": "SHA-256 exact content-decoded response body"
+    },
+    {
+      "tag": "umatilla-taxlots-item.json",
+      "url": "https://www.arcgis.com/sharing/rest/content/items/37cf486b6fb742fd86dc45cbda131a0b?f=json",
+      "path": "/tmp/atlas-regions-round8.gpQ9EX/umatilla-taxlots-item.json",
+      "bytes": 3496,
+      "sha256": "00fab0de26ef054a5ccc1d7efd7c61aa34b5fd85ac56574f7a21a9d398dec6a9",
+      "started": "2026-09-08T22:56:32.964Z",
+      "finished": "2026-09-08T22:56:33.159Z",
+      "http_status": 200,
+      "request_credentials_supplied": false,
+      "capture_method": "credential_free_curl_fail_location_compressed",
+      "hash_scope": "SHA-256 exact content-decoded response body"
+    },
+    {
+      "tag": "umatilla-gis-current-license.pdf",
+      "url": "https://umatillacounty.gov/fileadmin/user_upload/Community_Development/Planning/GIS_Maps/GIS_User_Agreement.pdf",
+      "path": "/tmp/atlas-regions-round8.gpQ9EX/umatilla-gis-current-license.pdf",
+      "bytes": 58526,
+      "sha256": "7f775c18da12abde2b7b2c6a4bae9384391dd9f4daa0ca643d06aa74bc486a65",
+      "started": "2026-09-08T23:09:13.138Z",
+      "finished": "2026-09-08T23:09:13.595Z",
+      "http_status": 200,
+      "request_credentials_supplied": false,
+      "capture_method": "credential_free_curl_fail_location_compressed",
+      "hash_scope": "SHA-256 exact content-decoded response body"
+    },
+    {
+      "tag": "sabey-wanapa-replat.pdf",
+      "url": "https://umatilla.civicweb.net/document/36276/Wanapa%20Road%20Replat%20RP-3-23.pdf?handle=03EF706BA37E4DD79A06BCF2C92CA303",
+      "path": "/tmp/atlas-regions-round8.gpQ9EX/sabey-wanapa-replat.pdf",
+      "bytes": 2633032,
+      "sha256": "2ad3cfd88b0ed442079844f1deaf01f700f45856e9427beee2c6c416468c1bdb",
+      "started": "2026-09-08T23:09:12.013Z",
+      "finished": "2026-09-08T23:09:13.088Z",
+      "http_status": 200,
+      "request_credentials_supplied": false,
+      "capture_method": "credential_free_curl_fail_location_compressed",
+      "hash_scope": "SHA-256 exact content-decoded response body"
+    },
+    {
+      "tag": "sabey-census-31266-wanapa.json",
+      "url": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=31266%20Wanapa%20Road%2C%20Umatilla%2C%20OR&benchmark=Public_AR_Current&format=json",
+      "path": "/tmp/atlas-regions-round8.gpQ9EX/sabey-census-31266-wanapa.json",
+      "bytes": 241,
+      "sha256": "8122681191bedad4f6f2b02a86f17c0215b849c38dbadd657eb37fd6a17d665d",
+      "started": "2026-09-08T23:08:22.063Z",
+      "finished": "2026-09-08T23:08:22.600Z",
+      "http_status": 200,
+      "request_credentials_supplied": false,
+      "capture_method": "credential_free_curl_fail_location_compressed",
+      "hash_scope": "SHA-256 exact content-decoded response body"
+    },
+    {
+      "tag": "bell-iaac-project.html",
+      "url": "https://iaac-aeic.gc.ca/050/evaluations/proj/90514",
+      "path": "/tmp/atlas-regions-round8.gpQ9EX/bell-iaac-project.html",
+      "bytes": 130050,
+      "sha256": "232944563540d322256ec5a781e7afe58d002959d4f3ff6b82c80c0805ffe089",
+      "started": "2026-09-08T22:58:25.115Z",
+      "finished": "2026-09-08T22:58:25.949Z",
+      "http_status": 200,
+      "request_credentials_supplied": false,
+      "capture_method": "credential_free_curl_fail_location_compressed",
+      "hash_scope": "SHA-256 exact content-decoded response body"
+    },
+    {
+      "tag": "bell-iaac-june5-response.html",
+      "url": "https://iaac-aeic.gc.ca/050/evaluations/document/166714?culture=en-CA",
+      "path": "/tmp/atlas-regions-round8.gpQ9EX/bell-iaac-june5-response.html",
+      "bytes": 26540,
+      "sha256": "6be740adc30c2882b22d0db3717a7473b9439145a39e8b9f2f4009e654249eed",
+      "started": "2026-09-08T22:58:57.274Z",
+      "finished": "2026-09-08T22:58:58.046Z",
+      "http_status": 200,
+      "request_credentials_supplied": false,
+      "capture_method": "credential_free_curl_fail_location_compressed",
+      "hash_scope": "SHA-256 exact content-decoded response body"
+    },
+    {
+      "tag": "bell-q2-release.html",
+      "url": "https://www.bce.ca/news-and-media/newsroom?article=bce-reports-second-quarter-2026-results",
+      "path": "/tmp/atlas-regions-round8.gpQ9EX/bell-q2-release.html",
+      "bytes": 814649,
+      "sha256": "b2e3eec7461f2db9da4e4c9c0ef3d1c6df79c1b0e1fb4e92a5a848f4dc1e12c6",
+      "started": "2026-09-08T22:59:23.211Z",
+      "finished": "2026-09-08T22:59:24.276Z",
+      "http_status": 200,
+      "request_credentials_supplied": false,
+      "capture_method": "credential_free_curl_fail_location_compressed",
+      "hash_scope": "SHA-256 exact content-decoded response body"
+    },
+    {
+      "tag": "bell-rm-dp26-005.html",
+      "url": "https://rmofsherwood.ca/advanced-notification-of-development-agreement-for-dp-26-005-proposed-data-centre-at-nw-33-16-19-w2m/",
+      "path": "/tmp/atlas-regions-round8.gpQ9EX/bell-rm-dp26-005.html",
+      "bytes": 25651,
+      "sha256": "971f530f83cd60c0f1a704605499da8fa5cf3ef897b9f347cb948a364143e390",
+      "started": "2026-09-08T23:07:47.017Z",
+      "finished": "2026-09-08T23:07:47.382Z",
+      "http_status": 200,
+      "request_credentials_supplied": false,
+      "capture_method": "credential_free_curl_fail_location_compressed",
+      "hash_scope": "SHA-256 exact content-decoded response body"
+    },
+    {
+      "tag": "bell-rm-january-legal-parcels.html",
+      "url": "https://rmofsherwood.ca/public-notice-bylaw-no-01-26/",
+      "path": "/tmp/atlas-regions-round8.gpQ9EX/bell-rm-january-legal-parcels.html",
+      "bytes": 22473,
+      "sha256": "ceaa18066cb102954b7e640ae41cf995b32015fbffa6cb46b2ef62c8a6b8d4db",
+      "started": "2026-09-08T23:09:29.454Z",
+      "finished": "2026-09-08T23:09:30.329Z",
+      "http_status": 200,
+      "request_credentials_supplied": false,
+      "capture_method": "credential_free_curl_fail_location_compressed",
+      "hash_scope": "SHA-256 exact content-decoded response body"
+    },
+    {
+      "tag": "bell-site-plan.pdf",
+      "url": "https://rmofsherwood.ca/app/uploads/2026/04/Conceptual-Site-Plan.pdf",
+      "path": "/tmp/atlas-regions-round8.gpQ9EX/bell-site-plan.pdf",
+      "bytes": 3308853,
+      "sha256": "008c5a00b27b09f07a0ba50e5b002d1ed1648d00007660ed5048045175a45db4",
+      "started": "2026-09-08T23:07:47.436Z",
+      "finished": "2026-09-08T23:07:48.616Z",
+      "http_status": 200,
+      "request_credentials_supplied": false,
+      "capture_method": "credential_free_curl_fail_location_compressed",
+      "hash_scope": "SHA-256 exact content-decoded response body"
+    },
+    {
+      "tag": "saskgrid-redistribution-metadata.html",
+      "url": "https://gisappl.saskatchewan.ca/WebDocs/Geo_Atlas/MetaData/SG_SECTION.html",
+      "path": "/tmp/atlas-regions-round8.gpQ9EX/saskgrid-redistribution-metadata.html",
+      "bytes": 31085,
+      "sha256": "9cf1877985d6114d632b1cd576a23ac67687accaa4af974f47aac5329102e211",
+      "started": "2026-09-08T23:10:45.039Z",
+      "finished": "2026-09-08T23:10:45.436Z",
+      "http_status": 200,
+      "request_credentials_supplied": false,
+      "capture_method": "credential_free_curl_fail_location_compressed",
+      "hash_scope": "SHA-256 exact content-decoded response body"
+    }
+  ]
+}
