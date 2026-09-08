@@ -1,0 +1,160 @@
+{
+  "schema_version": "regions-round8-sumare-coordinate-convention-addendum-1",
+  "reviewed_at": "2026-09-08",
+  "scope": "Separate coordinate-convention closure requested by root; none of the submitted round8 curated, geometry or research files is edited.",
+  "candidate": "Ascenty Sumaré campus / Sumaré3",
+  "proposed_lon_lat": [
+    -47.212871,
+    -22.812328
+  ],
+  "decision": "geographic_coordinate_convention_closed_static_frontend_trace",
+  "convention": "WGS84 latitude/longitude, reordered into longitude/latitude for GeoJSON without numeric transformation",
+  "bounded_review_pointers": {
+    "offset_convention": "Zero-based UTF-8 byte offsets in the SHA256-bound raw captures, not JavaScript character indices. Ranges are inclusive start and exclusive end. Read only these bounded regions; API-key literals elsewhere are irrelevant and must not be republished.",
+    "items": [
+      {"capture": "digital-realty-sum01.html", "bytes": [84720, 84900], "symbols": "script#__NEXT_DATA__ /props/pageProps/data field_latitude and field_longitude"},
+      {"capture": "digital-realty-sum01.html", "bytes": [86600, 86900], "symbols": "hero_block: mapHero, empty location override arrays, field_second_line SUM01"},
+      {"capture": "digital-realty-page-code.js", "bytes": [870040, 870300], "symbols": "location node lat/L/field_latitude and lng/T/field_longitude assignments"},
+      {"capture": "digital-realty-page-code.js", "bytes": [846420, 846680], "symbols": "_e dynamic component resolves module5170"},
+      {"capture": "digital-realty-page-code.js", "bytes": [854545, 854700], "symbols": "hero_block switch case passes facilityData M to _e"},
+      {"capture": "digital-realty-5170.js", "bytes": [1250, 1960], "symbols": "Y and ll use Number(facilityData.lat/lng) when explicit override arrays are empty"},
+      {"capture": "digital-realty-5170.js", "bytes": [820, 960], "symbols": "m dynamic map component loads1438 and2881"},
+      {"capture": "digital-realty-5170.js", "bytes": [6990, 7460], "symbols": "map latitude Y/longitude ll; renderMarkers nl lat Y/lng ll; text field_second_line with siteCodeName fallback"},
+      {"capture": "digital-realty-2881.js", "bytes": [3540, 3650], "symbols": "n=e.latitude, r=e.longitude, b=e.renderMarkers"},
+      {"capture": "digital-realty-2881.js", "bytes": [4107, 4180], "symbols": "center:{lat:n,lng:r}"},
+      {"capture": "digital-realty-2881.js", "bytes": [8394, 8468], "symbols": "defaultCenter:V.center and yesIWantToUseGoogleMapApiInternals"},
+      {"capture": "digital-realty-1438.js", "bytes": [43845, 43910], "symbols": "Maps JavaScript API loader URL maps.googleapis.com/maps/api/js"},
+      {"capture": "digital-realty-1438.js", "bytes": [65730, 65830], "symbols": "center:new e.LatLng(r.lat,r.lng)"},
+      {"capture": "digital-realty-1438.js", "bytes": [66680, 66770], "symbols": "new e.Map(n.googleMapDom_,h)"},
+      {"capture": "google-crs.html", "bytes": [212420, 212740], "symbols": "Map and Tile Coordinates latitude/longitude paragraph identifies World Geodetic System WGS84"}
+    ]
+  },
+  "trace": [
+    {
+      "capture": "digital-realty-sum01.html",
+      "step": "Exact script#__NEXT_DATA__ /props/pageProps/data has titleSUM01 and field_latitude=-22.812328, field_longitude=-47.212871. Its hero_block is mapHero, field_second_lineSUM01, and explicit coordinate override arrays are empty."
+    },
+    {
+      "capture": "digital-realty-page-code.js",
+      "step": "Location node mapping assigns field_latitude[0].value to facilityData.lat and field_longitude[0].value to facilityData.lng. hero_block uses dynamic component5170 and passes that facilityData."
+    },
+    {
+      "capture": "digital-realty-5170.js",
+      "step": "Because coordinate override arrays are empty, component5170 uses Number(facilityData.lat/lng) as Y/ll. It sends latitude:Y,longitude:ll to map component2881 and independently creates renderMarkers with lat:Y,lng:ll, labelled by the exact SUM01 second-line value. Therefore the selected pair is a named facility marker, not merely map viewport."
+    },
+    {
+      "capture": "digital-realty-2881.js",
+      "step": "Map component2881 forms center{lat:latitude,lng:longitude} and passes defaultCenter into GoogleMapReact, enables Google Maps API internals, and renders the supplied marker child."
+    },
+    {
+      "capture": "digital-realty-1438.js",
+      "step": "Bundled GoogleMapReact loader loads Maps JavaScript API from maps.googleapis.com. It constructs a Google LatLng from the unchanged center lat/lng and a Google Map. The marker overlay uses the same latitude/longitude convention."
+    },
+    {
+      "capture": "google-crs.html",
+      "step": "Official Google Maps JavaScript API Map and Tile Coordinates documentation explicitly identifies WGS84 as its latitude/longitude standard."
+    }
+  ],
+  "proof_type": "Static code and provider contract; no paid map request, live map screenshot, place search, geocoder, viewport selection or approximation used.",
+  "rights": "Frontend code, provider documentation and map/media rights are separate. Only compact factual trace metadata is tracked. Digital Realty numeric source point is all-rights-reserved factual extraction; Google documentation fact is CC-BY4.0 with Google attribution, not a license to Google map data. No code, credentials/API-key literals, imagery or raw documents are redistributed.",
+  "remaining_scope_limits": "This closes coordinate convention only. It does not improve accuracy, survey the site, prove a SUM03 footprint, refresh lifecycle or itself admit a campus. All existing campus-locator semantics remain in force.",
+  "raw_captures": [
+    {
+      "tag": "digital-realty-sum01.html",
+      "source_url": "https://www.digitalrealty.com/data-centers/americas/sao-paulo/sum01",
+      "raw_local_path": "/tmp/atlas-regions-round8.gpQ9EX/digital-realty-sum01.html",
+      "capture_started_at": "2026-09-08T22:39:19.400Z",
+      "capture_finished_at": "2026-09-08T22:39:20.575Z",
+      "returncode": 0,
+      "http_status": 200,
+      "effective_url": "https://www.digitalrealty.com/data-centers/americas/sao-paulo/sum01",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 204959,
+      "sha256": "9ba36757edc2a2f21877ae6a69ff152f328b6aa449c4bd4c7984fcd5af80abbd",
+      "request_credentials_supplied": false,
+      "capture_method": "credential_free_curl_fail_location_compressed",
+      "stderr": ""
+    },
+    {
+      "tag": "digital-realty-page-code.js",
+      "source_url": "https://www.digitalrealty.com/_next/static/chunks/pages/%5B%5B...slug%5D%5D-8021e6fa0c539442.js",
+      "raw_local_path": "/tmp/atlas-regions-round8.gpQ9EX/digital-realty-page-code.js",
+      "capture_started_at": "2026-09-08T22:42:02.888Z",
+      "capture_finished_at": "2026-09-08T22:42:03.457Z",
+      "returncode": 0,
+      "http_status": 200,
+      "effective_url": "https://www.digitalrealty.com/_next/static/chunks/pages/%5B%5B...slug%5D%5D-8021e6fa0c539442.js",
+      "content_type": "application/javascript; charset=UTF-8",
+      "bytes": 967631,
+      "sha256": "4b7a83716d883ffca50d98c2b726d8a02835c8efec10244e4bcd1eb31baf26d8",
+      "request_credentials_supplied": false,
+      "capture_method": "credential_free_curl_fail_location_compressed",
+      "stderr": ""
+    },
+    {
+      "tag": "digital-realty-5170.js",
+      "source_url": "https://www.digitalrealty.com/_next/static/chunks/5170.09fe70abdb9673fb.js",
+      "raw_local_path": "/tmp/atlas-regions-round8.gpQ9EX/digital-realty-5170.js",
+      "capture_started_at": "2026-09-08T22:46:02.426Z",
+      "capture_finished_at": "2026-09-08T22:46:02.697Z",
+      "returncode": 0,
+      "http_status": 200,
+      "effective_url": "https://www.digitalrealty.com/_next/static/chunks/5170.09fe70abdb9673fb.js",
+      "content_type": "application/javascript; charset=UTF-8",
+      "bytes": 8202,
+      "sha256": "5719f69d40c467db95a89251217d964499e72432f4b8078a2df212249fd2ed4c",
+      "request_credentials_supplied": false,
+      "capture_method": "credential_free_curl_fail_location_compressed",
+      "stderr": ""
+    },
+    {
+      "tag": "digital-realty-2881.js",
+      "source_url": "https://www.digitalrealty.com/_next/static/chunks/2881.7bc38f42a2a7e45e.js",
+      "raw_local_path": "/tmp/atlas-regions-round8.gpQ9EX/digital-realty-2881.js",
+      "capture_started_at": "2026-09-08T22:46:24.421Z",
+      "capture_finished_at": "2026-09-08T22:46:24.701Z",
+      "returncode": 0,
+      "http_status": 200,
+      "effective_url": "https://www.digitalrealty.com/_next/static/chunks/2881.7bc38f42a2a7e45e.js",
+      "content_type": "application/javascript; charset=UTF-8",
+      "bytes": 18608,
+      "sha256": "60a861bb63086eaeb8f8c23b27dee542370ae088b65b166abb080314e3c9f04d",
+      "request_credentials_supplied": false,
+      "capture_method": "credential_free_curl_fail_location_compressed",
+      "stderr": ""
+    },
+    {
+      "tag": "digital-realty-1438.js",
+      "source_url": "https://www.digitalrealty.com/_next/static/chunks/1438.728722cd82ebeed9.js",
+      "raw_local_path": "/tmp/atlas-regions-round8.gpQ9EX/digital-realty-1438.js",
+      "capture_started_at": "2026-09-08T22:46:24.787Z",
+      "capture_finished_at": "2026-09-08T22:46:25.162Z",
+      "returncode": 0,
+      "http_status": 200,
+      "effective_url": "https://www.digitalrealty.com/_next/static/chunks/1438.728722cd82ebeed9.js",
+      "content_type": "application/javascript; charset=UTF-8",
+      "bytes": 82232,
+      "sha256": "729922bfef0efceb22ad0f58a9669ca82b3926175ab532e2380b6cde712d8c02",
+      "request_credentials_supplied": false,
+      "capture_method": "credential_free_curl_fail_location_compressed",
+      "stderr": ""
+    },
+    {
+      "tag": "google-crs.html",
+      "source_url": "https://developers.google.com/maps/documentation/javascript/coordinates?hl=en",
+      "raw_local_path": "/tmp/atlas-africa-round7.WdvLKt/google-crs.html",
+      "capture_started_at": "2026-09-08T22:30:01.614Z",
+      "capture_finished_at": "2026-09-08T22:30:02.444Z",
+      "returncode": 0,
+      "http_status": 200,
+      "effective_url": "https://developers.google.com/maps/documentation/javascript/coordinates?hl=en",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 250230,
+      "sha256": "bdae181810bbc83026d6b3a2d342542dddb8909099435bb9abc600a71e973de7",
+      "request_credentials_supplied": false,
+      "capture_method": "credential_free_curl_fail_location_compressed",
+      "stderr": ""
+    }
+  ],
+  "validation": "All six selected raw captures independently recalculated byte counts and SHA256. Exact point, empty override arrays, SUM01 marker name, mapHero identity and expected provider-call chain assertions passed."
+}

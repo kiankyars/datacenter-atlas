@@ -1,0 +1,134 @@
+{
+  "schema_version": "v018-europe-round7-heusenstamm-proposed-geometry-1",
+  "reviewed_at": "2026-09-08",
+  "lifecycle_reference_date": "2026-08-20",
+  "review_scope": "Geometry research proposal only; historical mixed-use campus point. Fresh data-center-specific physical status is held, so this package is not admission-ready.",
+  "evidence": [
+    {
+      "key": "europe7-heusenstamm-osm146534839-captured-2026-09-08",
+      "kind": "openstreetmap",
+      "title": "Named Campus Heusenstamm community locator",
+      "source_url": "https://overpass-api.de/api/interpreter?data=%5Bout%3Ajson%5D%3Bway(146534839)%3Bout%20meta%20center%3B",
+      "publisher": "OpenStreetMap contributors via Overpass",
+      "source_family": "europe_round7_expansion_asia",
+      "published_at": null,
+      "retrieved_at": "2026-09-08T22:40:42.159Z",
+      "license": "ODbL-1.0",
+      "attribution": "OpenStreetMap contributors via Overpass",
+      "excerpt": "OSM way146534839 is named Campus Heusenstamm, alternative Campus Heusenstamm Rhein-Main, and links campusheusenstamm.de. Its source-returned center locates the historic mixed-use campus.",
+      "content_hash": "f31e41e2727a23e9908f3578b3d00c6f6bd07dfe6d59ee581ada818905269ed8",
+      "metadata": {
+        "content_hash_scope": "SHA-256 of exact saved response body",
+        "content_hash_verification": "fetched_bytes_sha256",
+        "capture_started_at": "2026-09-08T22:40:39.970Z",
+        "capture_finished_at": "2026-09-08T22:40:42.159Z",
+        "raw_capture_bytes": 1103,
+        "raw_capture_temp_path": "/tmp/atlas-europe-round7.5A7tsC/heusenstamm-osm-exact.json",
+        "capture_method": "credential_free_curl_fail_location",
+        "request_credentials_supplied": false,
+        "rights_scope": "Compact factual projection and attribution only. No raw document/media redistribution; OpenStreetMap geometry retains ODbL attribution. No open license inferred for publisher text.",
+        "object_url": "https://www.openstreetmap.org/way/146534839",
+        "object_type": "way",
+        "object_id": 146534839,
+        "version": 5,
+        "object_timestamp": "2024-04-16T10:15:12Z",
+        "literal_pointer": "/elements/0/center and /elements/0/tags",
+        "source_crs": "EPSG:4326",
+        "literal_lat_lon": [
+          50.0633577,
+          8.7990351
+        ],
+        "rights_url": "https://www.openstreetmap.org/copyright",
+        "historical_scope": "2024 object predates current works. Named mixed-use campus location only, not surviving offices, exact data-hall property, current boundary or new construction polygon."
+      }
+    },
+    {
+      "key": "europe7-heusenstamm-project-identity-captured-2026-09-08",
+      "kind": "company_disclosure",
+      "title": "Project communications identifies two new data centers on Campus Heusenstamm",
+      "source_url": "https://baustelle-jahnstrasse.de/projektinformationen/",
+      "publisher": "BCC GmbH Baustellenkommunikation",
+      "source_family": "europe_round7_expansion_asia",
+      "published_at": null,
+      "retrieved_at": "2026-09-08T22:40:42.800Z",
+      "license": "no-open-license-asserted",
+      "attribution": "BCC GmbH Baustellenkommunikation",
+      "excerpt": "The project communications page identifies two new data centers and related offices/parking on Campus Heusenstamm at Jahnstraße, with the first building in the south.",
+      "content_hash": "fe480ec40ca9a5144f51d97958221f4b1a967000dcc39c69614dbdd543b31d66",
+      "metadata": {
+        "content_hash_scope": "SHA-256 of exact saved response body",
+        "content_hash_verification": "fetched_bytes_sha256",
+        "capture_started_at": "2026-09-08T22:40:41.182Z",
+        "capture_finished_at": "2026-09-08T22:40:42.800Z",
+        "raw_capture_bytes": 95874,
+        "raw_capture_temp_path": "/tmp/atlas-europe-round7.5A7tsC/heusenstamm-project.html",
+        "capture_method": "credential_free_curl_fail_location",
+        "request_credentials_supplied": false,
+        "rights_scope": "BCC footer says All Rights Reserved. Minimal restated factual identity metadata only; no plan or source prose redistributed.",
+        "literal_pointer": "Heading Das Bauprojekt an der Jahnstraße and first paragraph; location image not redistributed.",
+        "source_binding": "The city explicitly links this communications service and states its current notices are reproduced verbatim."
+      }
+    }
+  ],
+  "source_binding_map": [
+    {
+      "source_id": "heusenstamm-current-and-identity",
+      "path": "sources/curated-official-2026-09-08-europe-round7-heusenstamm-site-works.json",
+      "evidence_pointer": "/evidence/0"
+    },
+    {
+      "source_id": "heusenstamm-osm-campus",
+      "path": "sources/verified-construction-core-v0.18-europe-round7-heusenstamm-proposed-geometry.json",
+      "evidence_pointer": "/evidence/0"
+    },
+    {
+      "source_id": "heusenstamm-project-identity",
+      "path": "sources/verified-construction-core-v0.18-europe-round7-heusenstamm-proposed-geometry.json",
+      "evidence_pointer": "/evidence/1"
+    }
+  ],
+  "results": [
+    {
+      "project_stable_key": "curated:edgeconnex-heusenstamm-campus:active-campus-site-works",
+      "parent_campus_stable_key": "curated:edgeconnex-heusenstamm-campus",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.7990351,
+          50.0633577
+        ]
+      },
+      "display_anchor": {
+        "type": "Point",
+        "coordinates": [
+          8.7990351,
+          50.0633577
+        ]
+      },
+      "geometry_source_ids": [
+        "heusenstamm-osm-campus"
+      ],
+      "identity_source_ids": [
+        "heusenstamm-current-and-identity",
+        "heusenstamm-project-identity"
+      ],
+      "location_basis": "community_named_site_feature",
+      "semantics": {
+        "geometry_source_entity_kind": "campus",
+        "geometry_derivation": "copy_Overpass_center_of_named_historical_campus_way146534839",
+        "geometry_method": "named_community_campus_to_city_and_project_communications_identity",
+        "geometry_scope_class": "community_historical_mixed_use_campus_reference_point",
+        "geometry_authority_class": "community_source",
+        "geometry_use_scope": "campus_locator",
+        "precision_scope": "Historical mixed-use Campus Heusenstamm representative point only, not a data-center building, first-phase footprint, current campus boundary or surveyed entrance. Existing offices and two new data centers share the named campus. Source center is retained exactly; date and numerical precision do not establish survey accuracy.",
+        "horizontal_uncertainty_metres": null,
+        "horizontal_uncertainty_unknown_reason": "OSM provides no quantitative positional accuracy for this historical campus feature."
+      }
+    }
+  ],
+  "review_warnings": [
+    "Municipal og:latitude50.062569/og:longitude8.807709 may be a generic municipal marker and are unselected.",
+    "July 6 roadwork does not establish data-center-specific site preparation rather than general campus modernization. No lifecycle assertion selected. Planned concrete notices are not retrospective observations.",
+    "Both data centers count once at this shared campus. Not Digital Realty Hattersheim or Equinix Offenbach despite similar FRA11/FRA12 codes."
+  ]
+}

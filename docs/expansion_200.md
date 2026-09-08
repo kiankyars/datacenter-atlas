@@ -363,3 +363,43 @@ and final-publication flags remain false, and the 100 non-US threshold is not ye
 .venv/bin/python scripts/build_expansion_200_draft.py --batch seventh-reviewed --output-dir /absolute/new/draft-directory
 .venv/bin/python scripts/build_expansion_200_draft.py --batch seventh-reviewed --validate-only
 ```
+
+## Forty-three-site reviewed checkpoint
+
+The [eighth reviewed draft](../verified_construction_core/2026-08-20-v0.18-draft-eighth-reviewed/README.md)
+adds Nxtra Lagos Eko Atlantic LOS1, Ascenty Sumaré and Schwarz Digits Lübbenau. It contains
+143 physical sites, 146 projects, 41 countries, 101 non-US sites and 459 evidence rows.
+This is 43 of the requested 100 additions, with 57 remaining. The non-US threshold is now met,
+but the total-site objective is not. Every earlier project, site, evidence row and GeoJSON
+feature remains unchanged; the public v0.17 release remains frozen at 100 sites.
+
+Lagos preserves an explicit identity inference: the July 23 CEO transcript names a large
+Nigerian data center, not LOS1. The sole named Nigeria hyperscale project, first-Nigeria
+disclosure and LOS1 page establish the association. Its operator-authored point and Google
+Maps coordinate contract are bound separately. A secondary completed claim linked to an old
+forecast does not override the later primary construction statement. Nigeria is not Niger.
+
+Sumaré uses the May 28 CEO construction post, with executive authority independently bound
+to the operator's Code of Conduct. Full readable legacy brochure pages establish the shared
+SUM01/SUM03 campus. SUM01's literal operator point is a broad constituent-campus locator,
+not the new SUM03 footprint. The static frontend marker trace and WGS84 provider contract
+are bound without distributing source code or making map-service requests. Old brochure
+status, operating SUM01, other campus phases and aggregate power are not new admissions.
+
+Lübbenau's August 24 project-manager article explicitly reports August 18 building progress.
+The observation is within the cutoff even though publication is later. An operator job names
+the exact Kraftwerkstraße 24 address, matching one government house-number object. LGB's
+address-building-or-parcel scope, EPSG:4326 and attribution license remain explicit; no campus
+boundary, entrance, new-hall footprint or numeric accuracy is claimed.
+
+The research packets retain Heusenstamm's mixed-use-roadwork scope gap, FRA5's unresolved
+locator, the failed TYO05 exact-parcel lookup, completed MEL01 ambiguity, and Equinix's
+financial-expansion/physical-status distinction. Fairview Level 2 commissioning has a real
+Q2 filing lead, but its raw capture and exact locator remain unclosed. None is admitted here.
+Imagery coverage remains 10/146 and the fixed 20-row/19-agreement blind review is incomplete.
+Both objective completion and final-publication flags remain false.
+
+```sh
+.venv/bin/python scripts/build_expansion_200_draft.py --batch eighth-reviewed --output-dir /absolute/new/draft-directory
+.venv/bin/python scripts/build_expansion_200_draft.py --batch eighth-reviewed --validate-only
+```
