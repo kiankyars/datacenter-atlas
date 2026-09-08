@@ -53,8 +53,10 @@ not as datasets to add to v0.17.
 The active [200-site expansion](docs/expansion_200.md), begun on 2026-09-08, targets another 100
 distinct physical sites under the same evidence standards. Candidate research is not included in
 the published 100-site count above. The separately labelled
-[cumulative-five draft](verified_construction_core/2026-08-20-v0.18-draft-initial-five/README.md)
-contains 105 sites and is reproducible with `scripts/build_expansion_200_draft.py --batch initial-five`.
+[third reviewed draft](verified_construction_core/2026-08-20-v0.18-draft-third-reviewed/README.md)
+contains 120 sites and is reproducible with `scripts/build_expansion_200_draft.py --batch third-reviewed`.
+This is 20 of the requested 100 additions. Earlier checkpoints remain frozen; the new checkpoint
+explicitly corrects the Helios locator's Census datum provenance without changing its coordinates.
 
 All eight inherited workload observations are machine-labelled `intended`, not operational. Nine
 published operator claims and two intended-customer claims carry evidence IDs and relationship

@@ -139,3 +139,57 @@ Imagery coverage is still 10/115; blind review remains incomplete. Reproduce or 
 .venv/bin/python scripts/build_expansion_200_draft.py --batch second-reviewed --output-dir /absolute/new/draft-directory
 .venv/bin/python scripts/build_expansion_200_draft.py --batch second-reviewed --validate-only
 ```
+
+## Twenty-site reviewed checkpoint
+
+The [third reviewed draft](../verified_construction_core/2026-08-20-v0.18-draft-third-reviewed/README.md)
+adds Goodman MAD01, Iron Mountain LON3, Amsterdam, Madrid MAD-2/3, VA-9, MIA-1 and NJE-1,
+and LG Uplus Paju. It contains 120 physical sites, 123 projects, 40 countries, 83 non-US sites,
+and 329 evidence rows. This is 20 of the requested 100 additions, with 80 remaining. All earlier
+snapshots and the public v0.17 release remain unchanged.
+
+Goodman MAD01 uses the exact coordinate query linked by its own brochure. LON3 uses the
+government-hosted site-condition report's National Grid Reference. Iron Mountain Amsterdam
+uses the provincial notice's RD location marker. The AMS-2 10 MW / AMS-1 Phase 4 association
+is explicitly an analyst identity inference from matching campus, scope and schedule, not an
+issuer renaming statement. Historical owner records supply identity only; their older March 31
+status context is not selected. The separate 20 MW held-development row stays excluded.
+Iron Mountain Madrid uses the exact official street-number point at Calle Mar Egeo 4. Its shared
+MAD-2/MAD-3 building and subsequent campus phases count once, separate from Goodman MAD01.
+
+The three US locators use exact Census street-address matches with an explicit NAD83-to-WGS84
+transformation. VA-9 is located through its known VA-1 constituent on the same 142-acre Manassas
+campus, not through an invented point for the unmatched VA-9 address. MIA-1's later partial
+generator-test approval is not a completion or occupancy claim. NJE-1's June 30 row supersedes
+the earlier planned-but-not-commenced row without inventing a finer construction stage.
+
+Paju's operator-to-parcel link comes from the municipal notice landing page, while its PDF
+supplies parcel 1239-1 and site area. The city factory register's exact historical row matches
+that parcel, area and the former Heesung Electronics factory. The attributed OSM representative
+point is used only as a former-factory campus locator, not a current data-center footprint or
+surveyed boundary. The city text's noncommercial/no-derivatives notice is retained; only minimal
+restated factual identity metadata is distributed, not the workbook, source prose or images.
+
+The selected physical dates remain June 30 for the seven European/US projects and June 5 for
+Paju. No September retrieval advances the lifecycle cutoff. Imagery remains 10/123, the blind
+review remains incomplete, and both completion and final-publication flags remain false.
+
+### Explicit Helios datum correction
+
+The [versioned correction](../sources/verified-construction-core-v0.18-helios-census-datum-correction-v2.json)
+records that Census geocoder source coordinates use NAD83 (EPSG:4269), as stated in the official
+FAQ. The previous checkpoint had copied those numbers into WGS84 GeoJSON without documenting
+the datum transformation. The independently executed PROJ operation leaves this point numerically
+unchanged. Its reported operation accuracy is not a site-locator accuracy estimate.
+
+Only the new checkpoint replaces the Helios locator evidence key and updates the method/evidence
+references. The physical site, project, identity, raw capture hash/timestamp, coordinates, scope,
+unknown positional accuracy and construction observation remain unchanged. Earlier source and
+draft bytes are frozen and hash-bound in the correction. The shared Dutch CRS evidence also gains
+the newly selected Iron Mountain Amsterdam project association; its factual content is unchanged.
+Regression tests constrain these exact differences rather than allowing broad inherited rewrites.
+
+```sh
+.venv/bin/python scripts/build_expansion_200_draft.py --batch third-reviewed --output-dir /absolute/new/draft-directory
+.venv/bin/python scripts/build_expansion_200_draft.py --batch third-reviewed --validate-only
+```

@@ -1,0 +1,200 @@
+{
+  "schema_version": "europe-four-followup-research-1",
+  "reviewed_at": "2026-09-08",
+  "lifecycle_reference_date": "2026-08-20",
+  "fresh_observation_window": {
+    "from": "2026-05-22",
+    "through": "2026-08-20"
+  },
+  "scope": "Bounded follow-up of exactly four European campuses: Iron Mountain Madrid, Google Horndal, Microsoft Vihti and Telehouse London Docklands. This file creates no acceptance or default changes.",
+  "baseline": {
+    "path": "verified_construction_core/2026-08-20-v0.18-draft-second-reviewed/sites.geojson",
+    "physical_site_count": 112,
+    "revision_reported_by_parent": "651ce7d",
+    "check": "112 features read locally; none of these four campus identities appears among the baseline names or stable keys. Closest baseline point to Iron Mountain Madrid is AWS Walqa, approximately 314 km away. Parent separately owns Goodman MAD01, LON3 and Amsterdam."
+  },
+  "promotion_ready_for_independent_review": [
+    {
+      "candidate_id": "iron-mountain-madrid-mad2-mad3",
+      "physical_site_stable_key": "curated:iron-mountain-madrid-data-center-campus",
+      "project_stable_key": "curated:iron-mountain-madrid-data-center-campus:mad-2-mad-3-20mw-development",
+      "country": "Spain",
+      "physical_site_additions": 1,
+      "status_as_of": "2026-06-30",
+      "status": "under_construction",
+      "status_basis": "Q2 2026 SEC supplemental page 23 current construction row Madrid MAD-2/3; positive Q2 investment; selected row has no planned-not-commenced footnote.",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.498520384597765,
+          40.458191566488146
+        ]
+      },
+      "geometry_scope": "Official CartoCiudad address-point campus locator for Calle Mar Egeo 4. Owner brochure binds every Madrid campus component to this address and labels the combined MAD-2/MAD-3 building. Unknown numeric horizontal accuracy, not a footprint.",
+      "files": [
+        {
+          "path": "sources/curated-official-2026-09-08-iron-mountain-madrid-reviewed-build.json",
+          "bytes": 7277,
+          "sha256": "1dd5d682b52d417e567e2860d2748b197f869f376b52c0e5945be81cc20a8edc"
+        },
+        {
+          "path": "sources/verified-construction-core-v0.18-iron-madrid-geometry-facts.json",
+          "bytes": 7683,
+          "sha256": "b740958b3e0c6a0780c11b2743f448c5aedd4015de093134c8eb2e1ec894f1c6"
+        }
+      ],
+      "source_bindings": [
+        {
+          "id": "iron-madrid-current-status",
+          "path": "sources/curated-official-2026-09-08-iron-mountain-madrid-reviewed-build.json",
+          "pointer": "/evidence/0"
+        },
+        {
+          "id": "iron-madrid-campus-identity",
+          "path": "sources/curated-official-2026-09-08-iron-mountain-madrid-reviewed-build.json",
+          "pointer": "/evidence/1"
+        },
+        {
+          "id": "iron-madrid-address-locator",
+          "path": "sources/verified-construction-core-v0.18-iron-madrid-geometry-facts.json",
+          "pointer": "/evidence/0"
+        },
+        {
+          "id": "cartociudad-service-crs",
+          "path": "sources/verified-construction-core-v0.18-iron-madrid-geometry-facts.json",
+          "pointer": "/evidence/1"
+        },
+        {
+          "id": "cartociudad-legal-context",
+          "path": "sources/verified-construction-core-v0.18-iron-madrid-geometry-facts.json",
+          "pointer": "/evidence/2",
+          "required_for_geometry": false
+        }
+      ],
+      "geometry_pointer": "/results/0",
+      "validation": "All five source-evidence and curated-evidence records, both entities, strict v018 geometry, and five exact raw byte counts and SHA-256 values checked successfully.",
+      "guardrails": [
+        "One campus, one aggregated current MAD-2/3 development.",
+        "Operating MAD-1 and MAD Future Phases 56 MW held for development are excluded from physical observations.",
+        "No capacity, load, forecast completion, commissioned or operating record is normalized.",
+        "A separate government substation permit coordinate was found but is not used as campus/project geometry.",
+        "Publication dates are null for undated brochure, geocoder and documentation. The Q2 package is explicitly dated August 5."
+      ]
+    }
+  ],
+  "unresolved": [
+    {
+      "candidate_id": "google-horndal",
+      "physical_site_stable_key": "curated:google-horndal-sweden-data-center",
+      "project_stable_key": "curated:google-horndal-sweden-data-center:current-development",
+      "country": "Sweden",
+      "status_evidence": "First-party June 2, 2026 groundbreaking already captured in sources/research-expansion-200-europe-2026-09-08.json. Newly reviewed municipal June 2 article independently reports commencement and ongoing earthworks.",
+      "status_as_of": "2026-06-02",
+      "identity": "Svenska kraftnat consultation response 83 binds DSC International, part of Google, to Horndalsbyn 12:28. Existing frozen 60.29,16.41 point is approximate locality and remains excluded.",
+      "new_primary_source": {
+        "url": "https://avesta.se/-/nyheter/arbete-och-naringsliv/utkast---etablering/",
+        "publisher": "Avesta kommun",
+        "published_at": "2026-06-02",
+        "publication_date_basis": "Displayed Publicerad 2026-06-02, kl 11.33; no timezone inferred.",
+        "retrieved_at": "2026-09-08T20:15:18Z",
+        "capture_started_at": "2026-09-08T20:15:16Z",
+        "raw_path": "/tmp/atlas-europe-four.63x0cH/avesta-google-june2.html",
+        "bytes": 247218,
+        "sha256": "452f886b430637c6b482e66fb4afef30ff00d674c02bb099e2f733e0ff16cd71"
+      },
+      "locator_checks": [
+        {
+          "url": "https://www.avesta.se/bygga-bo-och-miljo/karta-matning-och-gis/avestakartan/kommunkarta-avesta/",
+          "retrieved_at": "2026-09-08T20:15:39Z",
+          "raw_path": "/tmp/atlas-europe-four.63x0cH/avesta-map-page.html",
+          "bytes": 280674,
+          "sha256": "dafc0d6f1c735f9a633a0122612896e9d6a60219858abdfb257c057e4afd2ee3",
+          "finding": "Official municipality page links https://karta-avesta.vdmb.se/ . Displayed June 16 reviewed date is not treated as publication."
+        },
+        {
+          "url": "https://karta-avesta.vdmb.se/index.json",
+          "retrieved_at": "2026-09-08T20:16:10Z",
+          "raw_path": "/tmp/atlas-europe-four.63x0cH/avesta-map-index.json",
+          "bytes": 24505,
+          "sha256": "00526405d62b54d21d4f928da9bf1f8f4df040051593dead6b3128eef1b51315",
+          "finding": "Public configuration provides address search endpoint and EPSG:3010, but no site-specific coordinate."
+        },
+        {
+          "url": "https://karta-avesta.vdmb.se/origoserver_ave/search?q=St%C3%A4llverksv%C3%A4gen%2010&c=true",
+          "retrieved_at": "2026-09-08T20:17:31Z",
+          "raw_path": "/tmp/atlas-europe-four.63x0cH/avesta-address.json",
+          "bytes": 2,
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "finding": "Empty result. Ställverksvägen 10 is only a secondary lead, not independently accepted owner address."
+        },
+        {
+          "url": "https://karta-avesta.vdmb.se/origoserver_ave/search?q=Horndalsbyn%2012%3A28&c=true",
+          "retrieved_at": "2026-09-08T20:18:00Z",
+          "raw_path": "/tmp/atlas-europe-four.63x0cH/avesta-parcel-search.json",
+          "bytes": 2,
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "finding": "Empty result. Address-only service does not resolve the parcel."
+        }
+      ],
+      "remaining_gate": "Exact official parcel polygon or source-scoped campus point, with current parcel identity. Do not use adjacent power station, town centroid, construction rendering or secondary locator as substitute.",
+      "accepted": false
+    },
+    {
+      "candidate_id": "microsoft-vihti",
+      "country": "Finland",
+      "primary_checks": [
+        {
+          "url": "https://www.mercuryeng.com/hel10-project-news/",
+          "retrieved_at": "2026-09-08T20:10:03Z",
+          "raw_path": "/tmp/atlas-europe-four.63x0cH/mercury.html",
+          "bytes": 56099,
+          "sha256": "5c6ed420d0a203e23c8b032bfec630c9c2b7d510bf6f3aeb36c83e20e3288bbe",
+          "finding": "Undated active-project overview and notices dated 2025, latest displayed September 13. No fresh dated 2026 observation."
+        },
+        {
+          "url": "https://destia.fi/uutishuone/hankkeet/vihtidc/",
+          "retrieved_at": "2026-09-08T20:18:00Z",
+          "raw_path": "/tmp/atlas-europe-four.63x0cH/vihti-destia.html",
+          "bytes": 180305,
+          "sha256": "85640771296aa5b2f0702962d49f42672bef300d2bd1bfc72f0f9ce2e0476414",
+          "finding": "Latest explicit dated notice January 28, 2026 reports resumed blasting. It lies outside the frozen freshness window. Future work-duration estimates do not refresh status."
+        },
+        {
+          "url": "https://www.vihti.fi/blog/2026/04/28/microsoft-kaynnistaa-tana-vuonna-datakeskusalueen-toisen-vaiheen-rakentamisen-vihdissa/",
+          "finding": "April 28 municipality article is stale and describes later second-phase starts. June employment is a forecast, not a June observation.",
+          "capture_scope": "Web-reviewed only; no new normalized evidence record."
+        }
+      ],
+      "locator_lead": "Mercury page embeds Google Maps for Vanha Turuntie 634, Vihti. The embed's 2d/3d values are viewport coordinates, not automatically a selected site-marker coordinate; no locator accepted.",
+      "remaining_gate": "Authoritative physical construction observation dated May 22-August 20, then exact campus geometry binding. Do not count phase 2 independently or treat intended start as actual.",
+      "accepted": false
+    },
+    {
+      "candidate_id": "telehouse-west-two-london-docklands",
+      "country": "United Kingdom",
+      "primary_checks": [
+        {
+          "url": "https://www.telehouse.net/campus-updates/",
+          "retrieved_at": "2026-09-08T20:18:00Z",
+          "raw_path": "/tmp/atlas-europe-four.63x0cH/telehouse-current.html",
+          "bytes": 179407,
+          "sha256": "9135b2a1e152e59ab29f37002bab155c2b176dbb88f5f23179472fd868e9c40b",
+          "finding": "July 2026 section reports West Two steelwork installation started and ground slab/piling completed. Only month precision is displayed; this is not July 1 or July 31."
+        },
+        {
+          "url": "https://www.flynnmc.com/projects/telehouse-west-2-london",
+          "retrieved_at": "2026-09-08T20:18:00Z",
+          "raw_path": "/tmp/atlas-europe-four.63x0cH/telehouse-builder.html",
+          "bytes": 21833,
+          "sha256": "c3cd269bb02cf8a21f1018a9379d9b21fef5129778106480f12565502a78cbd2",
+          "finding": "Builder describes live construction at existing Docklands campus, but the project label is 2025 and no exact current observation date is shown."
+        }
+      ],
+      "remaining_gate": "Resolve an exact qualifying physical observation date without fabrication, and bind a precise authoritative Docklands campus locator. Current engine's date-only field must not silently encode a month as an invented day.",
+      "scope_guardrail": "Telehouse West Two and South-floor works share the existing London Docklands campus and cannot yield separate campus additions. Existing Telehouse West operation does not establish West Two completion.",
+      "accepted": false
+    }
+  ],
+  "capture_guardrails": "All hash values above are actual decoded-body SHA-256 values, not HTTP compressed transfer byte counts. Page update dates, retrieval times, filename dates, project years and event schedules are not silently treated as publication or observation dates. Raw files stay temporary; this research distributes only compact factual descriptions.",
+  "freeze": "Madrid curated and geometry files frozen after source/entity/geometry/hash checks; independent root review and acceptance remain pending. This bounded lane is complete without promoting the three unresolved candidates."
+}

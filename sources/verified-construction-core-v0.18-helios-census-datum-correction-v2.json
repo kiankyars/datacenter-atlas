@@ -1,0 +1,226 @@
+{
+  "schema_version": "v018-helios-census-datum-correction-2",
+  "reviewed_at": "2026-09-08",
+  "lifecycle_reference_date": "2026-08-20",
+  "accepted_into_core": false,
+  "accepted_additional_sites": 0,
+  "correction_scope": "Versioned metadata correction for the already reviewed Helios campus locator. No added campus/project, lifecycle refresh, finer location, boundary, precision, source-recapture or acceptance claim.",
+  "supersedes": {
+    "source_path": "sources/verified-construction-core-v0.18-us-research-geometry-facts.json",
+    "source_file_sha256": "5e821b8af29317603872e8ecbdad792f3fa9cfb42a63ef828c1776f1498f122f",
+    "source_file_bytes": 55546,
+    "evidence_pointer": "/evidence/11",
+    "evidence_record_sha256": "72ae0659a2aaa3d71f87c2f7873caa9b88e56b17e80e428959fc426dd698014b",
+    "evidence_key": "us-helios-locator-captured-2026-09-08",
+    "geometry_pointer": "/results/3",
+    "geometry_record_sha256": "81c4185f6a64315a5c41dc9d44d106da9d85f64fc10f5e04927fb8e9986eb029"
+  },
+  "source_bindings": [
+    {
+      "source_id": "us-helios-locator",
+      "evidence_pointer": "/evidence/0"
+    },
+    {
+      "source_id": "us-census-geocoder-datum",
+      "evidence_pointer": "/evidence/1"
+    }
+  ],
+  "evidence": [
+    {
+      "key": "us-helios-locator-nad83-corrected-v2-2026-09-08",
+      "kind": "government_record",
+      "title": "Census exact-address match for 984 County Road 112, Afton - explicit NAD83 provenance correction",
+      "source_url": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=984%20County%20Road%20112%20Afton%20TX%2079220&benchmark=Public_AR_Current&format=json",
+      "publisher": "United States Census Bureau",
+      "source_family": "expansion_200_us_locator_review",
+      "published_at": null,
+      "retrieved_at": "2026-09-08T19:33:31Z",
+      "license": "no-open-redistribution-license-asserted",
+      "attribution": "United States Census Bureau",
+      "excerpt": "The Census geocoder returns one exact street-address match for the official Galaxy Helios I registry address.",
+      "content_hash": "5a774f282621730362b35870e22058b5f628c82c737137fc8bc13c030e5ecf1e",
+      "metadata": {
+        "content_hash_scope": "SHA-256 of the exact 638-byte content-decoded HTTP response body; raw source body is not redistributed",
+        "content_hash_verification": "fetched_bytes_sha256",
+        "capture_method": "credential_free_curl_fail_location_compressed",
+        "capture_started_at": "2026-09-08T19:33:31Z",
+        "capture_finished_at": "2026-09-08T19:33:31Z",
+        "raw_capture_bytes": 638,
+        "http_status": 200,
+        "request_credentials_supplied": false,
+        "result_count": 1,
+        "selected_match": {
+          "tigerLine": {
+            "side": "L",
+            "tigerLineId": "186144007"
+          },
+          "coordinates": {
+            "x": -100.867099886006,
+            "y": 33.780636279018
+          },
+          "addressComponents": {
+            "zip": "79220",
+            "streetName": "112",
+            "preType": "CO RD",
+            "city": "AFTON",
+            "preDirection": "",
+            "suffixDirection": "",
+            "fromAddress": "998",
+            "state": "TX",
+            "suffixType": "",
+            "toAddress": "900",
+            "suffixQualifier": "",
+            "preQualifier": ""
+          },
+          "matchedAddress": "984 CO RD 112, AFTON, TX, 79220"
+        },
+        "benchmark": "Public_AR_Current",
+        "geometry_use_scope": "campus_locator",
+        "official_boundary": false,
+        "location_precision": "Street-range interpolation at a Helios campus constituent, not the Phase II data halls, property boundary, building center or surveyed entrance.",
+        "horizontal_uncertainty_metres": null,
+        "horizontal_uncertainty_unknown_reason": "No numeric horizontal-accuracy guarantee is supplied for this source-scoped locator.",
+        "temporal_guardrail": "Retrieved on September 8 for location/identity only. No September retrieval advances the fixed August 20 lifecycle cutoff or the inherited physical observation.",
+        "rights_scope": "Compact factual projection and attribution only. No raw source body, map tiles, imagery, publisher media or bulk property data is redistributed.",
+        "supersedes": {
+          "source_path": "sources/verified-construction-core-v0.18-us-research-geometry-facts.json",
+          "source_file_sha256": "5e821b8af29317603872e8ecbdad792f3fa9cfb42a63ef828c1776f1498f122f",
+          "evidence_pointer": "/evidence/11",
+          "evidence_key": "us-helios-locator-captured-2026-09-08",
+          "evidence_record_sha256": "72ae0659a2aaa3d71f87c2f7873caa9b88e56b17e80e428959fc426dd698014b",
+          "geometry_pointer": "/results/3",
+          "geometry_record_sha256": "81c4185f6a64315a5c41dc9d44d106da9d85f64fc10f5e04927fb8e9986eb029",
+          "correction_reason": "The prior packet copied Census numeric longitude/latitude into WGS84 GeoJSON without documenting the source NAD83 datum or an explicit datum operation. Official Census FAQ page 2 confirms NAD83.",
+          "frozen_artifact_mutated": false
+        },
+        "coordinate_system": "NAD83 source longitude, latitude (EPSG:4269); GeoJSON output transformed to WGS84 (EPSG:4326)",
+        "datum_evidence_source_id": "us-census-geocoder-datum",
+        "transformation": {
+          "source_crs": "EPSG:4269",
+          "source_point": [
+            -100.867099886006,
+            33.780636279018
+          ],
+          "target_crs": "EPSG:4326",
+          "wgs84_lon_lat": [
+            -100.867099886006,
+            33.780636279018
+          ],
+          "method": "pyproj Transformer.from_crs(\"EPSG:4269\", \"EPSG:4326\", always_xy=True); transform source longitude/latitude",
+          "pyproj_version": "3.7.2",
+          "proj_version": "9.5.1",
+          "network_enabled": false,
+          "operation": "axis order change (2D) + NAD83 to WGS 84 (1) + axis order change (2D)",
+          "pipeline": "+proj=noop",
+          "operation_reported_accuracy_metres": 4,
+          "horizontal_uncertainty_metres": null,
+          "horizontal_uncertainty_reason": "Transform operation accuracy is not a source-specific site-locator accuracy estimate. Census address-range interpolation accuracy remains unknown."
+        },
+        "raw_capture_reuse": "Exact existing raw capture reused without a new network request; retrieved_at, source_url, raw SHA256, bytes, selected_match and capture timestamps are unchanged."
+      }
+    },
+    {
+      "key": "census-geocoder-nad83-datum-faq-captured-2026-09-08",
+      "kind": "government_record",
+      "title": "Census Geocoder FAQ - source NAD83 datum and address-range interpolation",
+      "source_url": "https://www2.census.gov/geo/pdfs/maps-data/data/FAQ_for_Census_Bureau_Public_Geocoder.pdf",
+      "publisher": "U.S. Census Bureau",
+      "source_family": "us_census_geocoder_coordinate_reference_system",
+      "published_at": null,
+      "retrieved_at": "2026-09-08T20:18:18Z",
+      "license": "no-open-redistribution-license-asserted",
+      "attribution": "U.S. Census Bureau",
+      "excerpt": "The official FAQ page 2 identifies the geocoder output as interpolated latitude and longitude in NAD83. Address matching does not establish a surveyed building location.",
+      "content_hash": "13a8ca9f7395daf53e0c06344dd2f1ed28bc6806ab0625b3410eba7e280db169",
+      "metadata": {
+        "content_hash_scope": "SHA-256 of exact 561406-byte content-decoded HTTP response body",
+        "content_hash_verification": "fetched_bytes_sha256",
+        "capture_method": "credential_free_curl_fail_location_compressed",
+        "capture_started_at": "2026-09-08T20:18:18Z",
+        "capture_finished_at": "2026-09-08T20:18:18Z",
+        "raw_capture_bytes": 561406,
+        "http_status": 200,
+        "request_credentials_supplied": false,
+        "reviewed_pages": [
+          2
+        ],
+        "visual_review": "Full PDF page 2 inspected, including section 3 identifying NAD83.",
+        "publication_date_unknown_reason": "No verified publication date was found in the reviewed PDF.",
+        "source_crs": "EPSG:4269",
+        "source_coordinate_order": "longitude, latitude in decimal degrees",
+        "geometry_guardrail": "NAD83 source coordinates must not be labeled native WGS84. Transformation accuracy does not quantify street-address locator uncertainty.",
+        "rights_scope": "Compact factual extraction and attribution only. No raw response bodies, PDF pages, publisher imagery, map tiles or bulk records are redistributed; no open source-document or media licence is asserted."
+      }
+    }
+  ],
+  "results": [
+    {
+      "project_stable_key": "curated:galaxy-helios-data-center-campus:phase-2-260mw-critical-it-build",
+      "parent_campus_stable_key": "curated:galaxy-helios-data-center-campus",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -100.867099886006,
+          33.780636279018
+        ]
+      },
+      "display_anchor": {
+        "type": "Point",
+        "coordinates": [
+          -100.867099886006,
+          33.780636279018
+        ]
+      },
+      "geometry_source_ids": [
+        "us-helios-locator",
+        "us-census-geocoder-datum"
+      ],
+      "identity_source_ids": [
+        "us-helios-identity",
+        "us-helios-phase2-identity"
+      ],
+      "location_basis": "official_address_geocode",
+      "semantics": {
+        "geometry_source_entity_kind": "campus",
+        "geometry_derivation": "official_address_range_geocode",
+        "geometry_method": "census_single_exact_address_match_then_explicit_nad83_to_wgs84",
+        "geometry_scope_class": "official_address_range_interpolation_constituent_campus_locator",
+        "geometry_authority_class": "official_source",
+        "geometry_use_scope": "campus_locator",
+        "precision_scope": "Government geocoder street-range interpolation for the TCEQ-registered Helios I address. Used for the physical campus only; Phase II's separate 1003 FM 193 address is unresolved in Census. No Phase II footprint, parcel boundary or surveyed accuracy is asserted.",
+        "horizontal_uncertainty_metres": null,
+        "horizontal_uncertainty_unknown_reason": "No source provides a numeric horizontal-accuracy guarantee or a surveyed campus reference feature."
+      }
+    }
+  ],
+  "required_unchanged_identity_bindings": [
+    {
+      "source_id": "us-helios-identity",
+      "source_path": "sources/verified-construction-core-v0.18-us-research-geometry-facts.json",
+      "evidence_pointer": "/evidence/9"
+    },
+    {
+      "source_id": "us-helios-phase2-identity",
+      "source_path": "sources/verified-construction-core-v0.18-us-research-geometry-facts.json",
+      "evidence_pointer": "/evidence/10"
+    }
+  ],
+  "preservation_invariants": {
+    "raw_evidence_body_sha256_unchanged": "5a774f282621730362b35870e22058b5f628c82c737137fc8bc13c030e5ecf1e",
+    "raw_capture_timestamp_unchanged": "2026-09-08T19:33:31Z",
+    "selected_raw_match_unchanged": true,
+    "numeric_geometry_unchanged": true,
+    "physical_campus_key_unchanged": true,
+    "construction_project_key_unchanged": true,
+    "scope_unchanged": "campus_locator",
+    "horizontal_uncertainty_metres": null,
+    "source_status_unchanged": true,
+    "old_file_not_modified": true
+  },
+  "raw_review_paths": {
+    "geocoder": "/tmp/atlas-us-locators.OAvNaE/helios-cr112-census.body",
+    "datum_faq": "/tmp/atlas-us-round2.vlLxEG/census-datum-faq.body",
+    "datum_faq_page2": "/tmp/atlas-us-round2.vlLxEG/census-datum-faq-page2.png"
+  },
+  "validation_scope": "Strict geometry record validated, raw reused body hash and bytes rechecked, numerical transformation independently executed with pyproj3.7.2/PROJ9.5.1. Parent owns versioned contract rebind and exact-delta regression tests."
+}
