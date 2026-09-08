@@ -3,8 +3,9 @@
 The long-term product target is a compact, public cohort of 100 physical data-centre sites with
 linked active construction projects, precise geometry, current evidence, typed power semantics,
 and reviewable imagery outcomes. The current artifact is deliberately labelled
-[`v0.16 preview`](../verified_construction_core/2026-08-20-preview-v0.16/README.md), because the
-available evidence does not yet support that final claim. The previous
+[`v0.17 preview`](../verified_construction_core/2026-08-20-preview-v0.17/README.md), because imagery
+coverage and the required blind review do not yet support that final claim. The previous
+[`v0.16 preview`](../verified_construction_core/2026-08-20-preview-v0.16/README.md),
 [`v0.15 preview`](../verified_construction_core/2026-08-20-preview-v0.15/README.md),
 [`v0.14 preview`](../verified_construction_core/2026-08-20-preview-v0.14/README.md),
 [`v0.13 preview`](../verified_construction_core/2026-08-20-preview-v0.13/README.md),
@@ -24,10 +25,12 @@ byte-frozen and hash-validated rather than being overwritten.
 
 ## Preview scope
 
-The preview selects 83 projects attached to 80 source-scoped physical sites in 33 countries. Of
-those projects, 81 are selected from the frozen 531-row `2026-07-22-open-seed-v97` construction
-pipeline after the reviewed v0.16 allowlist and two successor-status overlays. Pure DC AMS01 and
-Start Campus SIN02 are two explicitly post-v97 portable additions. Every project has:
+The preview selects 103 projects attached to 100 source-scoped physical sites in 40 countries, with
+70 sites outside the United States and 252 closed-set evidence rows. Five projects use official
+parcel or surveyed boundaries and 98 use explicitly scoped locators. Of the projects, 97 are
+selected from the frozen 531-row `2026-07-22-open-seed-v97` construction pipeline after the reviewed
+v0.17 allowlist and successor-status overlays. Six are explicitly post-v97 portable additions.
+Every project has:
 
 - a physical-status observation no more than 90 days old on the fixed 2026-08-20 cohort lifecycle
   reference date;
@@ -38,9 +41,9 @@ Start Campus SIN02 are two explicitly post-v97 portable additions. Every project
 
 The e-Stat, Chiba, Census, NSW Planning, firstcolo, NLS, Environment Agency, Kartverket, OSM, City
 of San Jose, QTS, Ryhti, ACT, Energieatlas, IDECA, PDOK BAG, and APA geometry evidence used by the
-v0.11 through v0.16 deltas was captured and its
-geometry/identity use accepted on 2026-08-23. It cannot update lifecycle state after the fixed
-2026-08-20 cohort cutoff. For preview compatibility, the v0.16 manifest and selection report retain
+v0.11 through v0.16 deltas was accepted for geometry/identity use on 2026-08-23. The 24-document
+v0.17 geometry capture was accepted on 2026-09-06 and cannot update lifecycle state after the fixed
+2026-08-20 cohort cutoff. For preview compatibility, the v0.17 manifest and selection report retain
 `reviewed_at` as an alias for that lifecycle cutoff and also expose
 `cohort_lifecycle_reference_date` and `geometry_identity_reviewed_at` as distinct machine fields.
 
@@ -49,7 +52,7 @@ uses the exact municipal cadastral polygon of its explicitly linked parent campu
 not presented as the footprint of the current 70 MW development. Green Mountain Undheim uses the
 deterministic union of official Kartverket parcels 1121-46/316, /317, and /319. It is the approved
 project-site parcel boundary, not either data-hall footprint or the observed construction extent.
-Forty project rows use points and are labelled by their actual scope: shared-campus reference,
+Sixty-three project rows use points and are labelled by their actual scope: shared-campus reference,
 facility reference,
 same-parcel infrastructure reference, parcel reference, official address, or first-party campus
 location. They are not silently promoted to building footprints or site boundaries.
@@ -262,6 +265,22 @@ union is pinned both as 927 canonical no-newline bytes with SHA-256
 newline-terminated JSON container with SHA-256
 `791faac4b109498d4265f8035c8aa5af16a53d4eaf65b969ee4ec7c157deec06`.
 
+The 20-project v0.17 delta adds 20 distinct physical sites. Thirteen extend coverage in countries
+already represented: CDC Brooklyn and Maddington, Ascenty Vinhedo 3, ODATA SP04 Phase 2, Meta
+Sturgeon County, CyrusOne Yorkville, Edged Council Bluffs, DigiPowerX Columbiana, Vantage
+Lighthouse, Related Digital Cheyenne, Microsoft Conover, QTS Eagle Mountain Building 2, and
+EdgeCore AS02. Seven add one site each in countries absent from v0.16: China Mobile Haidong Phase 2,
+CRA Prague Gateway, Dansk Data Center 1 Esbjerg, Data World Matatirtha, DataGrid Makarewa, Niger's
+national data center in Niamey, and NXDATA3 Bucharest. Sixteen are reviewed v97 promotions and four
+are portable post-v97 additions; with Pure DC AMS01 and Start Campus SIN02 inherited from v0.16,
+the artifact contains six post-v97 projects.
+
+The v0.17 capture binds 19 official-source locators and one community-source locator: 17
+points and three polygons, split between 12 campus locators and eight project locators. All 20 have
+`official_boundary=false`, preserve an explicit unknown numeric-accuracy reason, and add no
+capacity, energy, efficiency, role, workload, customer, tenant, user, operating-model, imagery, or
+geometry-derived lifecycle claim. Raw source artifacts and imagery are not redistributed.
+
 The review contract distinguishes `direct_geometry` from `coordinates_to_point` and records
 whether geometry comes from the project or its parent campus. Coordinate serialization adds no
 precision. The maincubes BER02, AVAIO Taurus, and KAO KLON-03 points retain unknown horizontal
@@ -269,9 +288,9 @@ accuracy. Scala Huechuraba and Lampa use official Chilean environmental-review r
 points with conservative 50 metre analyst envelopes; neither is presented as a footprint.
 
 The project status field is `last_observed_physical_status`, not an inferred current state. The
-preview leaves `independent_imagery_verification=false` for every row. Eight inherited projects
-have a non-default satellite-review outcome, but those reviews create no lifecycle claim. Six are portable
-identity-bound records; two preserve an identity mapping extracted from exact local hash-bound
+preview leaves `independent_imagery_verification=false` for every row. Nine projects have a
+non-default satellite-review outcome, but those reviews create no lifecycle claim. Six are portable
+identity-bound records; three preserve an identity mapping extracted from exact local hash-bound
 lineage that is not independently available in a clean clone. Saline retains only its tracked v57
 visible-change follow-up verdict; an unsealed later review is not published as project evidence.
 Microsoft and Amazon retain uncertain v57 outcomes. BER02's later conflicting blind verdict and
@@ -287,11 +306,11 @@ validator forbids using it for geometry, status, capacity, progress, or building
 - `projects.csv` preserves project-level status, geometry source entity, derivation, method and
   scope, coordinate precision, source URLs, typed power observations, and explicit
   unknown/not-estimated reasons.
-- `sites.csv` groups the 83 selected projects into 80 physical-site keys without claiming
+- `sites.csv` groups the 103 selected projects into 100 physical-site keys without claiming
   global cross-source deduplication.
-- `evidence.csv` is the closed set of 200 status, geometry, operating-model, context, workload, role, and
+- `evidence.csv` is the closed set of 252 status, geometry, operating-model, context, workload, role, and
   typed-metric evidence rows referenced by the cohort.
-- `sites.geojson` and the dependency-free `map.html` expose the same 80 site IDs. The visible map
+- `sites.geojson` and the dependency-free `map.html` expose the same 100 site IDs. The visible map
   footer credits every selected geometry provider whose terms require it.
 - `schema.json` defines CSV fields, logical types, keys, embedded evidence references, GeoJSON
   geometry equality, and the map dependency in machine-readable form.
@@ -302,7 +321,8 @@ validator forbids using it for geometry, status, capacity, progress, or building
 ## Version policy
 
 Each preview is a coherent frozen snapshot, not a separate pile of data that must be added to the
-latest CSV. v0.16 inherits the byte-frozen v0.15 artifact and adds seven independently pinned
+latest CSV. v0.17 inherits the byte-frozen v0.16 artifact and adds 20 independently pinned sites;
+v0.16 inherits the byte-frozen v0.15 artifact and adds seven independently pinned
 non-U.S. sites; v0.15 inherits the byte-frozen v0.14 artifact and adds five independently pinned non-U.S.
 sites; v0.14 inherits the byte-frozen v0.13 artifact and adds nine independently pinned U.S.
 sites; v0.13 inherits the byte-frozen v0.12 artifact and adds six independently pinned sites;
@@ -335,10 +355,10 @@ instead.
 ## Validation and rebuild
 
 Validation and byte-exact rebuilding work in a public clean clone from the generated preview and
-116 manifest-listed portable inputs. The ignored v97 and exact-identity v14 payloads are optional, all-or-nothing
+138 manifest-listed portable inputs. The ignored v97 and exact-identity v14 payloads are optional, all-or-nothing
 hydration-only cross-checks. When all five are present, the semantic lineage validator replays the
 applicable v97 project, campus, status-evidence, v14 member, and v14 topology rows; verifies the
-declared Pure/Start project and campus presence or absence; and independently recomputes the
+declared post-v97 project and campus presence or absence; and independently recomputes the
 531-row first-failure ledger after successor overlays. It also verifies that the pinned successor
 and post-v97 portable evidence IDs are absent from the v97 evidence table. A public clean clone
 remains rebuildable without those five ignored inputs:
@@ -351,7 +371,8 @@ uv run python -m unittest -v \
   tests.test_verified_construction_core_v013 \
   tests.test_verified_construction_core_v014 \
   tests.test_verified_construction_core_v015 \
-  tests.test_verified_construction_core_v016
+  tests.test_verified_construction_core_v016 \
+  tests.test_verified_construction_core_v017
 ```
 
 The builder refuses to overwrite an existing directory:
@@ -363,14 +384,14 @@ uv run python scripts/build_verified_construction_core.py \
 
 ## Final-release gates
 
-The preview cannot be promoted to v1 until it has exactly 100 resolved sites and linked projects,
-at least 40 countries, at least 50 non-US sites, no country above 40% of the cohort, a recorded
-imagery outcome for every selected project (and therefore every site), a blind 20-row re-review with at least 19 identity/construction
-agreements, and a byte-exact clean-clone rebuild from publicly available inputs.
+The site-count, country-count, non-US-site, maximum-country-share, and clean-clone gates pass: the
+preview has exactly 100 sites, 40 countries, 70 non-US sites, a 30% maximum single-country share,
+and a byte-exact rebuild from public inputs. It cannot be promoted to v1 because imagery outcomes
+cover only 10 of 103 projects and the required blind 20-row re-review has not begun; its required 19
+identity/construction agreements therefore remain at zero. `publishable_as_final` remains `false`.
 
-The next research tranche should start with fresh authoritative project rows in countries absent
-from this preview, resolve an official parcel/site/address geometry, then execute dated imagery
-review where usable scenes exist. Locality/model centroids remain rejected; an official project
+The next research tranche should complete dated imagery review where usable scenes exist, then run
+the fixed blind sample. Locality/model centroids remain rejected; an official project
 representative point is usable only as an explicitly labelled locator with an uncertainty envelope.
 Announcement, permit, catalog completion, or automated pixel change alone does not satisfy the
 physical-construction gate.
