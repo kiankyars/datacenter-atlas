@@ -1143,3 +1143,69 @@ must be non-US to keep every country at or below 40 percent at 200 sites.
 .venv/bin/python scripts/build_expansion_200_draft.py --batch twenty-first-reviewed --output-dir /absolute/new/draft-directory
 .venv/bin/python scripts/build_expansion_200_draft.py --batch twenty-first-reviewed --validate-only
 ```
+
+## Twenty-second reviewed partial draft
+
+The [twenty-second reviewed draft](../verified_construction_core/2026-08-20-v0.18-draft-twenty-second-reviewed/README.md)
+adds Daou Jukjeon, Digital Park Fechenheim and QTS Aurora DEN1. It contains 170 sites,
+173 projects, 42 countries, 113 non-US sites and 693 evidence rows: 70 requested additions,
+30 remaining. All preceding rows, full features, source bindings and input hashes remain
+unchanged. Public v0.17 and every earlier checkpoint remain frozen.
+
+Contract SHA-256: `1c034319c5fc05bc6d3ae499b391bf2c4e3e4bb20ef8046974651bffab1ea5a4`.
+Manifest SHA-256: `29796493c50a747982ba8d8f3709606c8c4d0280ac7c2c9686783a5696e0fd24`.
+
+[Daou Jukjeon](../sources/research-expansion-200-asia-round24-2026-09-09.json) selects the
+August 14 issuer filing's explicit current-build narrative. June 30 is the financial period end,
+not an invented site inspection date. Complete PDF pages 4, 29 and 30 were independently
+visually reviewed, including the contrast with already operating centers. The exact named
+operator marker identifies one campus across lots 23-11/12/13 in Jukjeon-dong, Yongin.
+Its explicit Google LatLng convention establishes WGS84; the linked Google place coordinate,
+headquarters address and post-cutoff-created presentation are not selected. Generic construction
+does not establish a particular MEP stage, power capacity or operational workload.
+
+[Digital Park Fechenheim](../sources/research-expansion-200-europe-round24-2026-09-09.json)
+selects UW04 constituent-substation construction only. Lupp's July 2 public account describes
+the building as being built and current execution following a mid-June groundbreaking.
+The August 11 modification and absence of a July 2 snapshot remain explicit. Neither a finer
+groundbreaking day nor completion of the listed excavation/foundation scope is asserted.
+The new project keeps the existing unselected FRA20 campus key. Digital Realty explicitly
+places FRA20 on the same campus; its named facility point is a campus locator, not UW04's
+footprint or street address. The current frontend runtime binds the coordinate and CRS trace.
+Existing FRA18 operations, the stale FRA20 building observation and UW03 are not selected.
+
+[QTS Aurora DEN1](../sources/research-expansion-200-americas-round24-2026-09-09.json) resolves
+the earlier hold through a genuinely new public municipal inspection route. The successful
+August 19 drywall inspection identifies actual first-layer wall work in two DC2 data-hall zones.
+Permit serial/type, property 227490 and 1140 N Gun Club Road reconcile the inspection, city permit,
+document index and exact city address point. Cancelled insulation and wrongly requested framing
+inspections are excluded; they are not campus cancellation. Completed DC1 and separately permitted
+DC3 count neither as selected projects nor extra sites. September inspections are successor context,
+not an August status refresh. No restricted QTS operator-page content is used.
+
+Root independently verified all 27 selected raw-evidence hashes and byte counts, the critical
+identity records, and all three new points against the full 167 predecessor geometries and
+each other. There are no intersections or shared-campus identities. Aurora's explicit
+EPSG:2232-to-WGS84 operation 1188 was independently reproduced; transform-operation accuracy is
+not source-point accuracy. All locators retain unknown positional accuracy and campus-only scope.
+Only isolated attributed factual projections are retained, with publisher copyright and the
+city's disclaimer/risk/indemnity terms explicit; no broad open-data licence is inferred.
+Raw source documents, HTML, maps, images, source code and personal inspection names are not
+redistributed. Google documentation's separate licence does not license operator or map data.
+
+[Root-lane holds](../sources/research-expansion-200-us-round24-holds-2026-09-09.json) preserve
+Soluna Kati's promising physical evidence and September 8 post-cutoff completion, but no exact
+campus locator. Conflicting directory addresses and the wind-farm point are not substitutes.
+The unsafe county-document redirect and restrictive appraisal-search terms were respected.
+Richmond RCH-1 retains an edited-post date/access gap; its brochure is not a physical-work report.
+Prime's May 7/21 groundbreaking reports remain outside the window. Freestone and Turksat retain
+unresolved identity bridges. The Asia packet also preserves Naver Sejong and GS Goyang holds.
+
+Imagery remains 10/173, and the fixed 20-project/19-agreement blind review remains incomplete.
+Completion and final-publication flags remain false. At least 7 of the remaining 30 additions
+must be non-US to keep every country at or below 40 percent at 200 sites.
+
+```sh
+.venv/bin/python scripts/build_expansion_200_draft.py --batch twenty-second-reviewed --output-dir /absolute/new/draft-directory
+.venv/bin/python scripts/build_expansion_200_draft.py --batch twenty-second-reviewed --validate-only
+```
