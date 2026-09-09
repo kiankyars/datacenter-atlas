@@ -509,3 +509,47 @@ completion and final-publication flags remain false.
 .venv/bin/python scripts/build_expansion_200_draft.py --batch tenth-reviewed --output-dir /absolute/new/draft-directory
 .venv/bin/python scripts/build_expansion_200_draft.py --batch tenth-reviewed --validate-only
 ```
+
+## Fifty-one-site reviewed checkpoint
+
+The [eleventh reviewed draft](../verified_construction_core/2026-08-20-v0.18-draft-eleventh-reviewed/README.md)
+adds Flexential Parker Compark Campus, retaining its existing unselected campus and project
+keys. It contains 151 physical sites, 154 projects, 41 countries, 104 non-US sites and 518
+evidence rows. This is 51 of the requested 100 additions, with 49 remaining. Every preceding
+site, project, evidence row and GeoJSON feature is preserved. Public v0.17 stays at 100 sites.
+
+The August 18 issuer disclosure explicitly names Denver-Parker as currently under construction.
+The financing transaction, other planned developments, May permit issuance and March structural
+completion are not used as fresh physical observations. Structural completion does not imply
+the whole data center is finished. The bounded issuer successor check found no decisive
+completion through August 20; absence from an index is not proof of no unreported event.
+
+The Town's May permit report, full PDF page 2 row 18, explicitly binds Flexential DEN12 to
+15255 Compark Boulevard and geographic record 223305207007. The county's exact street and
+record match supplies Englewood 80112 as the postal name. This is not a transfer to Flexential's
+separate Englewood operation. No lineage from the older parcel identifier ending 005 is invented.
+The county coordinate and another county service's licence are not selected.
+
+Census returns the exact official postal address once. The selected point is address-range
+interpolation, not a building, entrance, legal parcel, campus centre or current-work extent.
+The official FAQ's full relevant page was visually checked: the source datum is NAD83.
+An independently repeated pyproj 3.8.0 / PROJ 9.8.1 transformation to WGS84 returns the same
+numeric coordinates through NAD83 to WGS84 (1). Its reported 4-metre operation accuracy is
+not site-locator accuracy; the latter remains unknown. Eight exact evidence bindings preserve
+source hashes, attribution, identity, status, datum and completion-scope caveats.
+
+New hold-only research preserves Vaasa's unclosed exact locator, APAC phase/date/identity gaps,
+and Chesterfield's July county construction table. Existing labelled month-precision conventions
+are recognized without changing the schema or inventing observation days. Chirisa's adjacent
+CTP/DDC developments require conservative campus grouping. Peanut's exact parcel identity is
+resolved, but reusable geometry remains unclosed; both Census queries altered the street to
+Old Bermuda Hundred Road and were rejected. These research records add no sites.
+
+No new roles, capacities, workloads, operating models or imagery outcomes are inferred.
+Imagery coverage is 10/154 and the fixed 20-row/19-agreement blind review remains incomplete.
+Objective completion and final-publication flags remain false.
+
+```sh
+.venv/bin/python scripts/build_expansion_200_draft.py --batch eleventh-reviewed --output-dir /absolute/new/draft-directory
+.venv/bin/python scripts/build_expansion_200_draft.py --batch eleventh-reviewed --validate-only
+```

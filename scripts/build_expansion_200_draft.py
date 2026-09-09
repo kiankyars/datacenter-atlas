@@ -14,6 +14,7 @@ if __package__ in {None, ""}:
 
 from datacenter_atlas import (  # noqa: E402
     expansion_200_eighth_reviewed,
+    expansion_200_eleventh_reviewed,
     expansion_200_fifth_reviewed,
     expansion_200_fourth_reviewed,
     expansion_200_initial_five,
@@ -45,6 +46,7 @@ def main() -> int:
         "eighth-reviewed": expansion_200_eighth_reviewed,
         "ninth-reviewed": expansion_200_ninth_reviewed,
         "tenth-reviewed": expansion_200_tenth_reviewed,
+        "eleventh-reviewed": expansion_200_eleventh_reviewed,
     }
     parser.add_argument("--batch", choices=sorted(batches), default="initial-three")
     parser.add_argument("--output-dir", type=Path)

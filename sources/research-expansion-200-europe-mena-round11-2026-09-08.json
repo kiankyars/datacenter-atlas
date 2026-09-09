@@ -1,0 +1,154 @@
+{
+  "schema_version": "expansion-200-europe-mena-round11-research-1",
+  "reviewed_at": "2026-09-09",
+  "lifecycle_reference_date": "2026-08-20",
+  "physical_observation_window": {"earliest": "2026-05-22", "latest": "2026-08-20"},
+  "scope": "Bounded Europe/MENA research plus a requested read-only San Bovio discrepancy diagnosis. No admissions, geometry proposals, baseline changes, tests, contracts, artifacts, commits or pushes.",
+  "inventory_comparison": {
+    "path": "verified_construction_core/2026-08-20-v0.18-draft-tenth-reviewed/sites.geojson",
+    "sha256": "2e007249ccc739c11cbd5d377c914b77b7c856bd02480eaec57a55d75fcf9d83",
+    "physical_sites": 150,
+    "baseline_checkpoint": "d5de57c",
+    "method": "Read the 150 physical-site keys/names and check the selected Finnish cohort. Vaasa-Mustasaari is not represented; Espoo, Kirkkonummi, Kouvola, Loviisa, Mantsala, Kajaani and Lappeenranta remain separate. No coordinate-distance comparison claimed while candidate geometry is unresolved."
+  },
+  "admission_ready_proposals": [],
+  "pending_candidates": [
+    {
+      "name": "Microsoft Vaasa-Mustasaari Data Center Campus",
+      "country": "Finland",
+      "parent_campus_stable_key": "curated:microsoft-vaasa-mustasaari-finland-data-center-campus",
+      "project_stable_key": "curated:microsoft-vaasa-mustasaari-finland-data-center-campus:site-preparation",
+      "decision": "hold_exact_reusable_project_locator_unresolved",
+      "curated_path": "sources/curated-official-2026-09-08-europe-mena-round11-microsoft-vaasa-site-preparation.json",
+      "geometry_path": null,
+      "physical_observation": {
+        "status": "site_preparation",
+        "as_of_date": "2026-07-13",
+        "source_key": "europe11-microsoft-vaasa-july13-site-preparation",
+        "source_url": "https://local.microsoft.com/blog/vaasa-datacenter-project-updates/",
+        "date_semantics": "Dated July 13 construction-update label; the body retrospectively reports approximate mid-July onset. July 13 is not asserted as the exact physical start day. August 20 CMS publication is separately recorded and does not supply lifecycle freshness.",
+        "guardrail": "Past-tense plot pre-construction onset only. The following list of first work stages is prospective; no particular clearing, road, rock transport or soil task is asserted complete. Main building permits remained under application in the August 12 section."
+      },
+      "identity": {
+        "source_key": "europe11-destia-vaasa-tuotantotie15-identity-successor",
+        "source_url": "https://destia.fi/uutishuone/hankkeet/tuotantotie15/",
+        "address": "Tuotantotie 15, GigaVaasa industrial area, Vaasa and Mustasaari, Finland",
+        "chain": "The Microsoft update directly links the Destia project. The contractor's visible title, Microsoft client label and site-description bind Tuotantotie 15 to the approximately 190-hectare project spanning both municipalities.",
+        "campus_scope": "One physical campus crossing a municipal boundary; not two added sites.",
+        "metadata_conflict": "Destia JSON-LD description refers incorrectly to Vihdin Rosti. This template text is excluded; no Vihti status or geometry is imported.",
+        "fetch_guardrail": "After the successful capture recorded here, the parent reported that a subsequent Destia web open returned a hard non-retryable safety denial. Do not fetch the Destia page again or try an alternate client/host. Microsoft's already captured direct-link text independently supplies the Tuotantotie 15 project title."
+      },
+      "locator_checks": [
+        {
+          "route": "Exact-address Nominatim search",
+          "capture_file": "osm-tuotantotie15.json",
+          "result": "Only unnumbered Tuotantotie road way 1067708093, not house number 15 or a project feature.",
+          "excluded_coordinates": [21.7892817, 63.0549191],
+          "decision": "Rejected road-center fallback; ODbL does not cure missing physical-site identity."
+        },
+        {
+          "route": "Named Microsoft Vaasa Nominatim search",
+          "capture_file": "osm-vaasa-microsoft.json",
+          "result": "Empty result array; no project locator."
+        },
+        {
+          "route": "Community Datakeskusrekisteri project record",
+          "capture_file": "vaasa-public-registry.html",
+          "source_url": "https://www.datakeskusrekisteri.fi/hankkeet/7a10bbea-b7f3-4ada-8734-02bc16486378",
+          "excluded_coordinates": [21.771, 63.062],
+          "result": "The page itself describes the location as Nominatim's Laajametsa industrial-area result, not an exact campus location. It is not an official government registry.",
+          "decision": "Rejected industrial-zone centroid and unverified machine-proposed block identifiers."
+        },
+        {
+          "route": "OSM construction/data-center feature query around the project locality",
+          "capture_file": "osm-vaasa-development.json",
+          "result": "Three construction ways: 270313417 and 301353940 unnamed; 1526530551 names FCDC Corp Oy, a different development.",
+          "decision": "No proximity-based assignment of unnamed geometry to Microsoft; no borrowing FCDC geometry."
+        },
+        {
+          "route": "First-party contractor media",
+          "capture_files": ["vaasa-destia-map.png", "destia-vaasa-traffic-map.png"],
+          "result": "The June file is an oblique photograph, not a coordinate-bearing map. The August traffic image visibly colors the project area but has no coordinate tuple or georeferencing.",
+          "decision": "Media inspected as identity context only. No visually estimated, snapped, digitized or invented point; no open media license inferred."
+        },
+        {
+          "route": "City official mapping service",
+          "directory_url": "https://www.vaasa.fi/asu-ja-ela/asuminen-ja-rakentaminen/kartat-ja-paikkatiedot/",
+          "map_url": "https://kartta.vaasa.fi/IMS/fi/Map",
+          "result": "Credential-free request timed out after 25 seconds; no captured map body or hash. Directory describes city map copyright and permission by order, not an open map license."
+        },
+        {
+          "route": "Government June 18 YVA decision",
+          "source_url": "https://www.ymparisto.fi/sites/default/files/documents/Vaasa%20mustasaari%20datakeskuksen%20yvan%20soveltamisp%C3%A4%C3%A4t%C3%B6s.pdf",
+          "result": "Government PDF text extraction names the project and planning areas, but no exact coordinate/parcel bridge was identified. Direct body capture returned HTTP 406; no raw PDF hash or rendered-page review claimed.",
+          "decision": "Not an admitted evidence binding."
+        },
+        {
+          "route": "Official municipality June 5 land agreement",
+          "source_url": "https://mustasaari.fi/2026/06/microsoft-varaa-noin-190-hehtaaria-maata-mustasaaresta-ja-vaasasta",
+          "result": "Public body confirms approximately 60 hectares in Granholmsbacken II and 130 in Vaasa; no coordinate tuple or parcel identifiers were found in the release. Land agreement is not physical work."
+        }
+      ],
+      "successor_review": {
+        "sources": ["https://local.microsoft.com/blog/vaasa-datacenter-project-updates/", "https://destia.fi/uutishuone/hankkeet/tuotantotie15/"],
+        "finding": "No completed/cancelled site-preparation successor at cutoff in the reviewed bodies. Microsoft's August 12 building-permit application section does not negate preparation. Destia's August 28 work report is after cutoff and excluded from selected lifecycle; its July 6 prospective start notice does not prove occurrence.",
+        "limits": "Bounded review, not proof of absence. Current capture contains post-cutoff contractor content and is not treated as a snapshot available on August 20."
+      },
+      "rights": "Compact attributed factual projection only for Microsoft and Destia; no open body/media license asserted. OSM responses are ODbL community data but their geometries are not selected because identity is insufficient.",
+      "next_decisive_evidence": "Exact project-bound official address/permit/cadastral locator with clear source CRS and rights, or a literally identified OSM project feature. A general GigaVaasa location will not close the hold."
+    }
+  ],
+  "san_bovio_read_only_diagnostic": {
+    "decision": "no_baseline_correction_justified",
+    "baseline_source": "sources/curated-official-2026-07-19-microsoft-local-san-bovio-italy.json",
+    "campus_key": "curated:microsoft-san-bovio-italy-datacenter",
+    "project_key": "curated:microsoft-san-bovio-italy-datacenter:initial-development",
+    "selected_status": "site_preparation",
+    "selected_date": "2026-07-01",
+    "source_date_precision": "month",
+    "normalization": "The existing metadata explicitly represents the source's July 2026 update conservatively as July 1, not an asserted observation day.",
+    "apparent_conflict": "A snippet emphasizing September initial works can appear to contradict a July construction selection.",
+    "full_body_resolution": "The full Microsoft body also reports that the construction site has already started unspecified preliminary activities. The baseline selects only site preparation and separately excludes prospective September principal works and historic demolition/remediation as refreshed construction evidence.",
+    "literal_pointers": "Baseline source metadata lines 25-30 and lifecycle line 67; newly captured Microsoft body line 504 for prospective September principal work and line 656 for preliminary activities already begun.",
+    "uncertainty_preserved": "No exact preliminary task, exact start day, or main-building construction start is inferred.",
+    "current_capture_file": "microsoft-san-bovio-diagnostic.html",
+    "source_url": "https://local.microsoft.com/blog/san-bovio-datacenter-construction-update/",
+    "byte_guardrail": "The fresh body hash differs from the frozen July/August captures. Matching byte count does not establish byte equivalence. No frozen source was overwritten.",
+    "regression_reference": "tests/test_curated_microsoft_local_current.py already asserts the September/main-work and historical-activity guardrails. Tests were read, not changed or run in this research pass."
+  },
+  "other_screened_holds": [
+    {"name": "FCDC Vaasa / Kiinteisto Oy MegaWatti", "source_url": "https://www.vaasa.fi/en/news/building-permit-granted-for-vaasa-data-centre-project/", "finding": "Official December 2025 release binds Kuriiritie 7; named OSM construction way 1526530551 may be useful geometry. March earthworks coverage is stale and no fresh authoritative May 22-August 20 physical observation was found. Do not use as Microsoft geometry."},
+    {"name": "Microsoft Vihti / Mercury HEL10", "source_url": "https://www.mercuryeng.com/hel10-project-news/", "finding": "No fresh named physical observation established. August 10 Mercury role profile says Helsinki generically and cannot bind its work to Vihti; HEL10 page's latest dated visible news was September 2025."},
+    {"name": "Microsoft Koge Phase 2", "source_url": "https://local.microsoft.com/blog/koge-datacenter-construction-update/", "finding": "Latest March 2026 section has a prospective March 9 start, outside the freshness window; no refreshed physical observation selected."},
+    {"name": "atNorth DEN02 Olgod", "source_url": "https://vardekommune.dk/h%C3%B8ringer/tillaeg-02-til-kommuneplan-2025-samt-lokalplan-24-10-l03-for-et-sektorkoblet-projekt-ved-krageris/", "finding": "June consultation/planning publication is not evidence of physical construction."},
+    {"name": "Data4 Hanau", "source_url": "https://www.deerns.com/news/engineering-a-sustainable-mega-campus/", "finding": "July 6 engineering article does not supply a sufficiently explicit physical-work observation; design work and ceremony coverage not selected."},
+    {"name": "VIRTUS Wustermark", "source_url": "https://virtusdatacentres.com/press-releases/virtus-installs-two-of-europes-largest-super-grid-transformers-at-wustermark-campus-in-brandenburg", "finding": "Prior hold preserved. June 1 transformer installation is useful physical evidence, but source capture and exact site/phase locator provenance remain unresolved; no duplicate attempt at rejected government routes."},
+    {"name": "VIRTUS LONDON19", "finding": "June 30 expansion announcement is prospective, not selected physical construction."},
+    {"name": "maincubes FRA04 and FRA03", "source_url": "https://www.maincubes.com/", "finding": "FRA04 future plan and FRA03 June operation do not establish a new distinct currently building campus; phase refresh unclosed."},
+    {"name": "Corscale Iver Court Lane", "source_url": "https://www.mclarengroup.com/news/corscale-appoints-mclaren-construction-and-phoenix-me-to-start-predevelopment-of-140mw-iver-data-centre", "finding": "Preserve prior hold: future clearance/enabling announcement does not confirm works occurred."},
+    {"name": "Data4 Marcoussis utility connections", "source_url": "https://app.eiffage.com/en/content/innovative-project-rte-marcoussis", "finding": "July 10 utility works have off-site/shared connection scope; not a new exact data-center campus work observation."},
+    {"name": "Data4 Escaudain", "finding": "June 12 publication describes future preliminary work over the next year, not current physical activity."},
+    {"name": "Green Mountain Romford", "finding": "June freehold acquisition alone is not physical construction; sustainability report covers 2025 and September contract is post-cutoff."},
+    {"name": "Khazna AUH6", "finding": "Aggregator June 2026 date appears to repackage a 2023 completion; no primary fresh construction evidence selected."},
+    {"name": "Sesterce Rovaltain", "finding": "Reported July 10 permit suspension requires a primary successor/status resolution before any active-work proposal; no admission."},
+    {"name": "Fouju MGX", "finding": "July permit and September start forecast do not provide a current physical-work observation. Secondary bulldozer assertions not selected."}
+  ],
+  "capture_register": [
+    {"file": "microsoft-vaasa.html", "url": "https://local.microsoft.com/blog/vaasa-datacenter-project-updates/", "started_at": "2026-09-09T00:16:01.735Z", "finished_at": "2026-09-09T00:16:02.000Z", "bytes": 218025, "sha256": "04e53b5e83e52bb7553ce3ef4e00dcce4af00d703b9f84894cb851bffea391b4"},
+    {"file": "destia-tuotantotie15.html", "url": "https://destia.fi/uutishuone/hankkeet/tuotantotie15/", "started_at": "2026-09-09T00:16:33.303Z", "finished_at": "2026-09-09T00:16:34.638Z", "bytes": 101831, "sha256": "90d1a4f872f7459a70d3e64cee0d8320e72f295425367c6fb2415211a277f05e"},
+    {"file": "microsoft-san-bovio-diagnostic.html", "url": "https://local.microsoft.com/blog/san-bovio-datacenter-construction-update/", "started_at": "2026-09-09T00:18:10.920Z", "finished_at": "2026-09-09T00:18:11.169Z", "bytes": 205997, "sha256": "bf97d8c78690520e1f1bcf2ca43d5979ed5e10728c89a0cc5062d381eac5975f"},
+    {"file": "osm-vaasa-microsoft.json", "url": "https://nominatim.openstreetmap.org/search?q=Microsoft%20Vaasa&format=jsonv2&addressdetails=1", "started_at": "2026-09-09T00:17:33.514Z", "finished_at": "2026-09-09T00:17:33.722Z", "bytes": 2, "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"},
+    {"file": "osm-tuotantotie15.json", "url": "https://nominatim.openstreetmap.org/search?street=Tuotantotie%2015&city=Vaasa&format=jsonv2&addressdetails=1", "started_at": "2026-09-09T00:19:08.300Z", "finished_at": "2026-09-09T00:19:08.513Z", "bytes": 781, "sha256": "fa212fcc1b91ab63ea672cd807eb21bf0100ba70a758f43880dbfe8c2190a1b3"},
+    {"file": "osm-vaasa-development.json", "url": "https://overpass-api.de/api/interpreter?data=%5Bout%3Ajson%5D%3B%28nwr%5Blanduse%3Dconstruction%5D%2863.03%2C21.74%2C63.07%2C21.83%29%3Bnwr%5Bindustrial%3Ddata_center%5D%2863.03%2C21.74%2C63.07%2C21.83%29%3B%29%3Bout%20body%20geom%3B", "started_at": "2026-09-09T00:19:26.989Z", "finished_at": "2026-09-09T00:19:36.224Z", "bytes": 5334, "sha256": "e665e054a129dc5461a0672cbdc53fc736629177f66a4b3aeef0731e02e10e5a"},
+    {"file": "vaasa-destia-map.png", "url": "https://destia.fi/app/uploads/2026/06/tuotantotie15-aluekuva-16062026.png", "started_at": "2026-09-09T00:19:36.312Z", "finished_at": "2026-09-09T00:19:38.592Z", "bytes": 3744190, "sha256": "13121dfb51bf976103c338bddb4e95bf78478df2f684549db74d0cdda6ee98bb"},
+    {"file": "destia-vaasa-traffic-map.png", "url": "https://destia.fi/app/uploads/2026/08/image.png", "started_at": "2026-09-09T00:19:59.503Z", "finished_at": "2026-09-09T00:20:01.102Z", "bytes": 614017, "sha256": "bb2cc878487a08d2e5a7e57f18a709018366486b2c5c3efb8d9ae47c1f6c2275"},
+    {"file": "vaasa-public-registry.html", "url": "https://www.datakeskusrekisteri.fi/hankkeet/7a10bbea-b7f3-4ada-8734-02bc16486378", "started_at": "2026-09-09T00:20:33.448Z", "finished_at": "2026-09-09T00:20:35.528Z", "bytes": 140414, "sha256": "b54343aed8a9a359756f7d1e8d39084176f656793da2b25a44af54ef503b2044"}
+  ],
+  "capture_register_scope": {
+    "raw_directory": "/tmp/atlas-europe-mena-round11.zk1amv",
+    "metadata_suffix": ".metadata.json",
+    "method": "credential_free_curl_fail_location",
+    "hash_scope": "SHA-256 of exact saved response bytes, rechecked against all nine adjacent capture metadata records.",
+    "rights": "Raw third-party HTML, maps and photographs remain temporary. Only attributed compact factual research and metadata are tracked. Failed PDF/map requests have no asserted captured-body hash."
+  }
+}
