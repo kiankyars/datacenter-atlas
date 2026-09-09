@@ -827,3 +827,53 @@ Objective-completion and final-publication flags remain false. At least 13 of th
 .venv/bin/python scripts/build_expansion_200_draft.py --batch sixteenth-reviewed --output-dir /absolute/new/draft-directory
 .venv/bin/python scripts/build_expansion_200_draft.py --batch sixteenth-reviewed --validate-only
 ```
+
+## Sixty-two-site reviewed checkpoint
+
+The [seventeenth reviewed draft](../verified_construction_core/2026-08-20-v0.18-draft-seventeenth-reviewed/README.md)
+adds Greenergy's Hüüru campus in Estonia. It contains 162 physical sites, 165 projects, 42 countries,
+108 non-US sites and 618 evidence rows: 62 requested additions completed, 38 remaining. Every
+preceding 161-site, 164-project and 609-evidence row and full selected feature is unchanged.
+All earlier checkpoints and the public v0.17 release remain byte-frozen.
+
+The July 30 MCF Group Estonia release explicitly reports that preparatory construction has begun.
+Its issuer-supplied English translation is identified; the Estonian original was not inspected.
+The selected status is conservatively site preparation, with July 30 as the report date, not a
+known construction-start day. An independent reviewer found this stronger direct statement
+while challenging the July 31 contractor's present-tense staffing wording. The owner describes
+close to 200 workers as prospective peak staffing; that figure, the contract award, technical
+delivery language and autumn forecast are not independent construction observations. The English
+and Finnish contractor wording differences remain visible but neither supplies selected lifecycle.
+
+The exact operator-labelled Office / Data Center address at Alajaama tee 1 matches OSM way
+1043819046 by name, street number, postcode, website and phone. Root and independent review
+reconstructed the exact ordered WGS84 enclosure and its representative point. Neither the point
+nor the full source enclosure intersects any of the 161 prior selected features, and historical
+alias checks found no represented Greenergy campus. This is a community-mapped campus locator,
+not an official boundary, surveyed entrance, provider point or active-work extent. The source
+node ids and ring are retained as ODbL-attributed derivation facts, not exported as an official
+campus polygon. Positional accuracy remains unknown. A portable standard-library test independently
+reproduces the point without depending on temporary raw captures or a GIS package.
+
+The direct August 12 joint Greenergy/Tensor release still forecasts first deployment operation
+later in 2026. It supplies successor context, not a new physical-work date. Already operating
+halls and Nebius's planned deployment remain within this one campus and create no extra site.
+The bounded review does not prove exhaustive absence of later completion or cancellation records.
+The counsel page's JavaScript shell remains unselected. Nine selected source bindings and all
+11 research captures have independently verified raw-body hashes and byte counts.
+
+The separate Asia round-18 and Americas round-17/18 packets preserve explicit holds. Qingyang
+has new work reporting but no exact accepted locator; MEL02's actual post is stale; Gangcheng's
+May-only register and July building-specific fire filing need further review. Equinix's portfolio
+expansion total does not refresh its old individual phase rows. AHI's new county locator route
+does not close source authority or the legal-entity bridge. None of these holds changes the count.
+
+No roles, capacities, workloads, operating models or imagery outcomes are inferred. Imagery
+remains 10/165; the fixed 20-project/19-agreement blind-review requirement remains incomplete.
+Objective-completion and final-publication flags remain false. At least 12 of the remaining
+38 additions must be non-US to keep every country at or below 40 percent at the 200-site target.
+
+```sh
+.venv/bin/python scripts/build_expansion_200_draft.py --batch seventeenth-reviewed --output-dir /absolute/new/draft-directory
+.venv/bin/python scripts/build_expansion_200_draft.py --batch seventeenth-reviewed --validate-only
+```
