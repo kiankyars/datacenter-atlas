@@ -1,0 +1,448 @@
+{
+  "schema_version": "research-expansion-200-americas-round23-aurora-1",
+  "reviewed_at": "2026-09-09",
+  "reference_date": "2026-08-20",
+  "physical_observation_window": [
+    "2026-05-22",
+    "2026-08-20"
+  ],
+  "decision": "hold_final_physical_authority_and_isolated_fact_rights_review",
+  "admission_ready_candidate_count": 0,
+  "review_scope": "Independent public-city-map locator closure and physical-status assessment for one QTS Aurora/Denver DEN1 campus; research only. No curated or strict geometry proposal, admission, central code or frozen source changes.",
+  "baseline": {
+    "commit": "5497426",
+    "checkpoint": "twentieth-reviewed",
+    "sites": 166,
+    "projects": 169,
+    "acceptances": 66,
+    "geometry_path": "verified_construction_core/2026-08-20-v0.18-draft-twentieth-reviewed/sites.geojson",
+    "geometry_sha256": "3b905a39025d8ba3db5feac38a18de444ba1aa2a319aa781e46fe53bd8dd9c63"
+  },
+  "candidate": {
+    "name": "QTS Aurora-Denver DEN1 Campus",
+    "country": "United States",
+    "aliases": [
+      "QTS Denver",
+      "QTS Aurora",
+      "QTS DEN1",
+      "DEN1 DC1",
+      "DEN1 DC2",
+      "DEN1 DC3"
+    ],
+    "campus_grouping": "One physical campus, not separate additions for DC1/DC2/DC3. Existing DC1 occupancy does not establish completion of all campus expansion.",
+    "old_identity_review": "Read all 166 selected stable keys and names. QTS Denver/Aurora/DEN1 and exact Gun Club Road address search across source JSONs and local v97 entities.csv found no older match. No old key changed.",
+    "proposed_stable_key": null,
+    "physical_status_assessment": {
+      "potential_source": "qts-aurora-kunc-aug10.html",
+      "reported_observation_date": "2026-08-06",
+      "publication_date": "2026-08-10",
+      "source_authority": "KUNC publishes Sara Wilson / Colorado Newsline article through Colorado News Collaborative; the original photograph is credited to Chase Woodruff / Colorado Newsline and its visible caption expressly identifies construction on a data-center expansion at the QTS Aurora site on August 6.",
+      "literal_pointer": "Visible lead photograph credit/caption immediately below the article title and publication line. Article close states the story was made available via the Colorado News Collaborative.",
+      "minimal_literal_excerpt": "Construction on a data center expansion",
+      "authority_judgment": "This is stronger than an unattributed publicity paraphrase: a specifically dated original-photographer observation carried in a public credited syndication. It is nevertheless news-source observation, not a city inspector or company physical statement. Final reviewer must explicitly accept that first-hand reporting authority under the unchanged contract; no status selected in this packet.",
+      "date_caveat": "Use day precision only. Visible publication time and structured publication UTC value differ; no exact publication instant normalized. August 6 belongs to the caption, not the page retrieval.",
+      "scope_caveat": "Caption is campus-expansion generic and does not identify DC2 versus DC3 or assert all buildings unfinished. If accepted, select generic campus expansion project scope and one campus, not a specific observed hall.",
+      "imagery_caveat": "No photograph downloaded separately, republished, or independently visually verified. No imagery outcome or image-use right is asserted.",
+      "source_reuse": "Only short factual restatement and attribution. Licensed public syndication is an access/publication context, not an assumed open license for the photograph or prose."
+    },
+    "city_physical_status_review": {
+      "source": "aurora-qts-permits.json",
+      "literal_pointer": "/features[*]/attributes/Permit_, Status_1, FolderDescription, IssueDate, PropertyRSN and Address",
+      "assessment": "Four exact project/address records corroborate identity. Two have Initial Inspection status but no inspection date. IssueDate and InDate are application/permit events, not dated physical inspections; September retrieval must not backdate those status labels.",
+      "records": [
+        {
+          "permit": "26-2629108-000-00",
+          "address": "1160 N GUN CLUB RD",
+          "project": "QTS DEN1 DC1 interior data hall tenant improvement",
+          "status_literal": "Initial Inspection",
+          "issue_timestamp_ms": 1783335413000
+        },
+        {
+          "permit": "25-2569691-000-00",
+          "address": "1140 N GUN CLUB RD",
+          "project": "DEN1 DC2 tenant fit-out",
+          "status_literal": "Initial Inspection",
+          "issue_timestamp_ms": 1782389577000,
+          "condition_caveat": "May 20 permit extension note precedes the observation window and is not physical work."
+        },
+        {
+          "permit": "26-2629045-000-00",
+          "address": "1160 N GUN CLUB RD",
+          "project": "QTS DEN1 DC1 data hall remodeling with exterior work",
+          "status_literal": "Permit Issued",
+          "issue_timestamp_ms": 1787220316000
+        },
+        {
+          "permit": "25-2519410-000-00",
+          "address": "1100 N GUN CLUB RD",
+          "project": "DEN1 DC3 core and shell",
+          "status_literal": "Permit Issued",
+          "issue_timestamp_ms": 1785229102000
+        }
+      ],
+      "public_documents": "Direct city address hyperlinks returned 27 DC2 documents and 8 DC3 documents, consisting of permits/plans/plot plans, not dated inspection reports. Listing keywords expressly bind QTS DEN1 DC2 to 1140; DC3 plans bind 1100. Release dates are document publication events only; no plans downloaded.",
+      "selected_physical_city_evidence": false
+    },
+    "successor_review": {
+      "sources": [
+        "aurora-qts-addresses-native.json",
+        "aurora-qts-co2026.json",
+        "aurora-public-documents-dc2.html",
+        "aurora-public-documents-dc3.html"
+      ],
+      "dc1": "1160 address record says CO_ISSUED YES and CO_DATE 07/05/2024. Existing first-hall occupancy must remain excluded from current expansion lifecycle.",
+      "dc2_dc3": "Both current address records say CO_ISSUED NO with null CO_DATE; exact 2026 CO layer query returns zero features. This is bounded absence, not proof of nonoperation or continued work.",
+      "broader_cancellation_scope": "The KUNC article describes several other jurisdictions' moratoria. None is normalized as a QTS Aurora stop. No campus-wide completion/cancellation was established here.",
+      "final_review_required": true
+    },
+    "locator_review": {
+      "decision": "technical_exact_city_address_locator_closed_rights_adjudication_pending",
+      "preferred_constituent": "DC2 / 1140 N GUN CLUB RD",
+      "location_basis": "official_named_site_feature",
+      "source_address_id": "777076746",
+      "source_propertyrsn": 227490,
+      "source_objectid": 58597929,
+      "native_crs": "EPSG:2232",
+      "native_esri_wkid": 102654,
+      "native_geometry": {
+        "x": 3221510.2228432745,
+        "y": 1693120.3680016845
+      },
+      "output_crs": "EPSG:4326",
+      "literal_server_output_point": [
+        -104.71239001410385,
+        39.73378311392442
+      ],
+      "coordinate_order": "longitude,latitude",
+      "query": "Exact three addresses, only project-bound attribute fields, returnGeometry=true, outSR=4326, datumTransformation=1188. No bulk extraction, geocoding or locator substitution.",
+      "derivation": "City address-point geometry transformed by official server from native EPSG:2232 to WGS84 using explicit EPSG:1188; selected output is copied literally from that response. Native geometry is not the nearly equal POINT_X/POINT_Y attribute pair.",
+      "coordinate_attribute_caveat": "Stored LATITUDE/LONGITUDE attributes differ slightly from the explicitly transformed geometry; their unstated transformation is not borrowed or silently equated. The address point is not a parcel, surveyed entrance or actual new-work footprint.",
+      "local_check": {
+        "pyproj_version": "3.8.0",
+        "operation": "Inverse of SPCS83 Colorado Central zone (US survey foot) + NAD83 to WGS 84 (1) (axis order normalized for visualization)",
+        "inverse_projection_epsg": 15314,
+        "datum_operation_epsg": 1188,
+        "operation_accuracy_metres": 4,
+        "local_point": [
+          -104.71239001298015,
+          39.73378311483352
+        ],
+        "maximum_absolute_degree_difference": 1.123694914895168e-9,
+        "caveat": "Preferred NOAA Colorado HPGN grid was unavailable in the cached offline runtime; no grid downloaded. The explicit available EPSG:1188 operation was selected and checked, not claimed the best possible transformation."
+      },
+      "horizontal_uncertainty_metres": null,
+      "accuracy_caveat": "Four-metre operation accuracy is not source positional accuracy. City disclaimers provide no numerical locator accuracy; decimal precision is not survey accuracy.",
+      "other_same_campus_points": [
+        {
+          "address": "1160 N GUN CLUB RD",
+          "objectid": 58593778,
+          "point": [
+            -104.70798046196103,
+            39.734057672022495
+          ],
+          "scope": "Existing occupied DC1 constituent only."
+        },
+        {
+          "address": "1100 N GUN CLUB RD",
+          "objectid": 58597930,
+          "point": [
+            -104.71240230901147,
+            39.73268506347875
+          ],
+          "scope": "DC3 constituent identity; permit alone supplies no physical observation."
+        }
+      ],
+      "geometry_selected_for_admission": false
+    },
+    "rights_review": {
+      "status": "no-open-license-asserted_pending_final_isolated_fact_review",
+      "source_pointers": [
+        "aurora-permit-app.json /widgets/widget_21/config/text",
+        "aurora-app-item.json /licenseInfo",
+        "aurora-map-item.json /licenseInfo"
+      ],
+      "fact": "The public app and map expose Aurora's Data Download Disclaimer: data were developed for city internal use; no warranties or accuracy guarantee; use at requestor risk; indemnification and hold-harmless language. No broad open-data redistribution grant is stated.",
+      "interpretation_limit": "No claim that those terms grant redistribution or that their enforceability was legally assessed. Proposed reuse is only one isolated official address coordinate plus compact named-project facts with City of Aurora attribution; final reviewer must adjudicate. Do not redistribute full city map, plan, geometry collection or disclaimer prose.",
+      "operator_stop": "QTS operator page geometry is excluded because parent identified restrictive AI language in its legal notices. This subtask did not fetch or parse that operator body."
+    },
+    "dedup_review": {
+      "all_baseline_feature_count": 166,
+      "method": "Shapely 2.1.2 exact Point intersections against every complete baseline geometry, not display anchors. Separate tests for all three city constituent points.",
+      "dc1_intersections": [],
+      "dc2_intersections": [],
+      "dc3_intersections": [],
+      "alias_match_count": 0,
+      "mutual_grouping": "All three points belong to this one DEN1 campus. They are not three independent candidate sites.",
+      "no_new_roles_capacity_workloads_or_imagery": true
+    }
+  },
+  "public_route_chain": [
+    "Parent's public ArcGIS app /dataSources/dataSource_2 binds map item 3bb0ce685ce442129077c9b1d37081fc and AuroraCo public portal.",
+    "Map /operationalLayers exposes OpenData/MapServer/9 exact address layer, /156 six-month permits and AuroraBuilding2/MapServer/29 2026 CO layer.",
+    "Public layer metadata has no definition expression or access-warning suppression to remove; exact field names were inspected before narrow queries.",
+    "Returned address HYPERLINK values bind exact public record search URLs for DC2 and DC3; no private endpoint, login, form submission, permission modification or guessed document identifier.",
+    "Separate map/app item access=public. Service-associated item 9ffddeff15c0486488f683e468b38eea returned application error400 (item nonexistent or inaccessible), despite HTTP200; stopped without retry or alternate client."
+  ],
+  "access_stops": [
+    "Parent's CPR July 8 and Colorado Newsline August 10 raw403 routes not retried.",
+    "Restricted operator locator excluded, not read in this subtask.",
+    "Inaccessible service portal item retained only as failed-response audit; no alternate-host or client retry.",
+    "No plan/media downloads or independent imagery claim."
+  ],
+  "counts": {
+    "new_raw_capture_bodies": 13,
+    "successful_new_bodies": 12,
+    "application_error_bodies": 1,
+    "reused_raw_bodies": 2,
+    "admitted_sites": 0,
+    "new_curated_files": 0,
+    "new_strict_geometry_files": 0
+  },
+  "raw_captures": [
+    {
+      "name": "aurora-map-data.json",
+      "source_url": "https://AuroraCo.maps.arcgis.com/sharing/rest/content/items/3bb0ce685ce442129077c9b1d37081fc/data?f=json",
+      "raw_capture_temp_path": "/tmp/atlas-aurora-round23.qvEVhq/aurora-map-data.json",
+      "capture_started_at": "2026-09-09T07:47:50.527295+00:00",
+      "capture_finished_at": "2026-09-09T07:47:51.297520+00:00",
+      "response": "200 application/json;charset=utf-8",
+      "stderr": "",
+      "raw_capture_bytes": 253089,
+      "content_hash": "41a307046ff16c7779fecfaf1e8bd1c94ca61f880f5e2a133d41753170a6784c",
+      "http_status": 200,
+      "request_credentials_supplied": false,
+      "content_hash_scope": "SHA-256 of exact saved HTTP response-body bytes",
+      "content_hash_verification": "fetched_bytes_sha256",
+      "selection": "research_only",
+      "retention": "Temporary untracked body. No bulk GIS, plans, photographs or substantial publisher text redistributed."
+    },
+    {
+      "name": "aurora-map-item.json",
+      "source_url": "https://AuroraCo.maps.arcgis.com/sharing/rest/content/items/3bb0ce685ce442129077c9b1d37081fc?f=json",
+      "raw_capture_temp_path": "/tmp/atlas-aurora-round23.qvEVhq/aurora-map-item.json",
+      "capture_started_at": "2026-09-09T07:47:50.527448+00:00",
+      "capture_finished_at": "2026-09-09T07:47:50.948434+00:00",
+      "response": "200 application/json;charset=utf-8",
+      "stderr": "",
+      "raw_capture_bytes": 7274,
+      "content_hash": "d487025b73d2028a80518744712034bc0167e39c5c1e75eca21880e76ad4416e",
+      "http_status": 200,
+      "request_credentials_supplied": false,
+      "content_hash_scope": "SHA-256 of exact saved HTTP response-body bytes",
+      "content_hash_verification": "fetched_bytes_sha256",
+      "selection": "research_only",
+      "retention": "Temporary untracked body. No bulk GIS, plans, photographs or substantial publisher text redistributed."
+    },
+    {
+      "name": "aurora-app-item.json",
+      "source_url": "https://www.arcgis.com/sharing/rest/content/items/25e68ba47119437cb4bf6bdeea6fbea4?f=json",
+      "raw_capture_temp_path": "/tmp/atlas-aurora-round23.qvEVhq/aurora-app-item.json",
+      "capture_started_at": "2026-09-09T07:47:50.528229+00:00",
+      "capture_finished_at": "2026-09-09T07:47:50.775601+00:00",
+      "response": "200 application/json;charset=utf-8",
+      "stderr": "",
+      "raw_capture_bytes": 7606,
+      "content_hash": "dbf452c16741fc5b40f68c6b0a014f1e6c5e3f03f800321dd4ca3de7b759009c",
+      "http_status": 200,
+      "request_credentials_supplied": false,
+      "content_hash_scope": "SHA-256 of exact saved HTTP response-body bytes",
+      "content_hash_verification": "fetched_bytes_sha256",
+      "selection": "research_only",
+      "retention": "Temporary untracked body. No bulk GIS, plans, photographs or substantial publisher text redistributed."
+    },
+    {
+      "name": "aurora-address-layer.json",
+      "source_url": "https://ags.auroragov.org/aurora/rest/services/OpenData/MapServer/9?f=json",
+      "raw_capture_temp_path": "/tmp/atlas-aurora-round23.qvEVhq/aurora-address-layer.json",
+      "capture_started_at": "2026-09-09T07:48:27.160002+00:00",
+      "capture_finished_at": "2026-09-09T07:48:27.520492+00:00",
+      "response": "200 application/json; charset=UTF-8",
+      "stderr": "",
+      "raw_capture_bytes": 7694,
+      "content_hash": "9676ac5772834cf12e5194fe4d1e442bbeefa889413b1998545cf386fc4e52ff",
+      "http_status": 200,
+      "request_credentials_supplied": false,
+      "content_hash_scope": "SHA-256 of exact saved HTTP response-body bytes",
+      "content_hash_verification": "fetched_bytes_sha256",
+      "selection": "research_only",
+      "retention": "Temporary untracked body. No bulk GIS, plans, photographs or substantial publisher text redistributed."
+    },
+    {
+      "name": "aurora-permits-layer.json",
+      "source_url": "https://ags.auroragov.org/aurora/rest/services/OpenData/MapServer/156?f=json",
+      "raw_capture_temp_path": "/tmp/atlas-aurora-round23.qvEVhq/aurora-permits-layer.json",
+      "capture_started_at": "2026-09-09T07:48:27.160830+00:00",
+      "capture_finished_at": "2026-09-09T07:48:27.514369+00:00",
+      "response": "200 application/json; charset=UTF-8",
+      "stderr": "",
+      "raw_capture_bytes": 8096,
+      "content_hash": "f3380c99807ecdc84afb688387822a99c28da0a372306102009168ed98b546f4",
+      "http_status": 200,
+      "request_credentials_supplied": false,
+      "content_hash_scope": "SHA-256 of exact saved HTTP response-body bytes",
+      "content_hash_verification": "fetched_bytes_sha256",
+      "selection": "research_only",
+      "retention": "Temporary untracked body. No bulk GIS, plans, photographs or substantial publisher text redistributed."
+    },
+    {
+      "name": "aurora-co2026-layer.json",
+      "source_url": "https://ags.auroragov.org/aurora/rest/services/AuroraBuilding2/MapServer/29?f=json",
+      "raw_capture_temp_path": "/tmp/atlas-aurora-round23.qvEVhq/aurora-co2026-layer.json",
+      "capture_started_at": "2026-09-09T07:48:27.161777+00:00",
+      "capture_finished_at": "2026-09-09T07:48:27.514535+00:00",
+      "response": "200 application/json; charset=UTF-8",
+      "stderr": "",
+      "raw_capture_bytes": 5141,
+      "content_hash": "b21bde75c667f63259709f5d56289bed6e3a27348ed5aa9d86487885ea5cc1b1",
+      "http_status": 200,
+      "request_credentials_supplied": false,
+      "content_hash_scope": "SHA-256 of exact saved HTTP response-body bytes",
+      "content_hash_verification": "fetched_bytes_sha256",
+      "selection": "research_only",
+      "retention": "Temporary untracked body. No bulk GIS, plans, photographs or substantial publisher text redistributed."
+    },
+    {
+      "name": "aurora-qts-addresses-native.json",
+      "source_url": "https://ags.auroragov.org/aurora/rest/services/OpenData/MapServer/9/query?f=json&where=ADDRESS+IN+%28%271160+N+GUN+CLUB+RD%27%2C%271140+N+GUN+CLUB+RD%27%2C%271100+N+GUN+CLUB+RD%27%29&outFields=OBJECTID%2CADDRESS%2CADDRESS_TYPE%2CADDRESS_STATUS%2CADDRESS_ID%2CPROPERTYRSN%2CCO_DATE%2CCO_ISSUED%2CSUBDIVISION_NAME%2CSUBDIVISION_CASE_NUMBER%2CLOT%2CBLOCK%2CHYPERLINK%2CPOINT_X%2CPOINT_Y%2CLATITUDE%2CLONGITUDE&returnGeometry=true",
+      "raw_capture_temp_path": "/tmp/atlas-aurora-round23.qvEVhq/aurora-qts-addresses-native.json",
+      "capture_started_at": "2026-09-09T07:49:02.007779+00:00",
+      "capture_finished_at": "2026-09-09T07:49:02.337722+00:00",
+      "response": "200 application/json; charset=UTF-8",
+      "stderr": "",
+      "raw_capture_bytes": 3630,
+      "content_hash": "976d9d3b7def40245b3538ed1edb63ecf9f6625a01506501b5407e4609e99fc5",
+      "http_status": 200,
+      "request_credentials_supplied": false,
+      "content_hash_scope": "SHA-256 of exact saved HTTP response-body bytes",
+      "content_hash_verification": "fetched_bytes_sha256",
+      "selection": "research_only",
+      "retention": "Temporary untracked body. No bulk GIS, plans, photographs or substantial publisher text redistributed."
+    },
+    {
+      "name": "aurora-qts-permits.json",
+      "source_url": "https://ags.auroragov.org/aurora/rest/services/OpenData/MapServer/156/query?f=json&where=PropHouse+IN+%28%271160%27%2C%271140%27%2C%271100%27%29+AND+UPPER%28PropStreet%29+%3D+%27GUN+CLUB%27&outFields=OBJECTID%2CFolderRSN%2CPermit_%2CInDate%2CStatus_1%2CFolderType%2CFolderDesc%2CSubDesc%2CFolderDescription%2CFolderCondition%2CIssueDate%2CPropertyRSN%2CAddress%2CFULL_ADDRESS%2CPropGisId1&returnGeometry=false",
+      "raw_capture_temp_path": "/tmp/atlas-aurora-round23.qvEVhq/aurora-qts-permits.json",
+      "capture_started_at": "2026-09-09T07:49:02.008573+00:00",
+      "capture_finished_at": "2026-09-09T07:49:02.330161+00:00",
+      "response": "200 application/json; charset=UTF-8",
+      "stderr": "",
+      "raw_capture_bytes": 3930,
+      "content_hash": "02eaa7c8fca96bba43b9cfb421aa4cf515b5e099b19bd96ad3f0fda711ee3928",
+      "http_status": 200,
+      "request_credentials_supplied": false,
+      "content_hash_scope": "SHA-256 of exact saved HTTP response-body bytes",
+      "content_hash_verification": "fetched_bytes_sha256",
+      "selection": "research_only",
+      "retention": "Temporary untracked body. No bulk GIS, plans, photographs or substantial publisher text redistributed."
+    },
+    {
+      "name": "aurora-qts-co2026.json",
+      "source_url": "https://ags.auroragov.org/aurora/rest/services/AuroraBuilding2/MapServer/29/query?f=json&where=ADDRESS+IN+%28%271160+N+GUN+CLUB+RD%27%2C%271140+N+GUN+CLUB+RD%27%2C%271100+N+GUN+CLUB+RD%27%29&outFields=OBJECTID%2CADDRESS%2CCO_DATE%2CCO_ISSUED%2CSUBDIVISION_NAME%2CSUBDIVISION_CASE_NUMBER&returnGeometry=false",
+      "raw_capture_temp_path": "/tmp/atlas-aurora-round23.qvEVhq/aurora-qts-co2026.json",
+      "capture_started_at": "2026-09-09T07:49:02.008830+00:00",
+      "capture_finished_at": "2026-09-09T07:49:02.568460+00:00",
+      "response": "200 application/json; charset=UTF-8",
+      "stderr": "",
+      "raw_capture_bytes": 766,
+      "content_hash": "b977acfc9b91941462b0d584ade13357d150105d2e68abfb2bbff64c7378b56f",
+      "http_status": 200,
+      "request_credentials_supplied": false,
+      "content_hash_scope": "SHA-256 of exact saved HTTP response-body bytes",
+      "content_hash_verification": "fetched_bytes_sha256",
+      "selection": "research_only",
+      "retention": "Temporary untracked body. No bulk GIS, plans, photographs or substantial publisher text redistributed."
+    },
+    {
+      "name": "aurora-opendata-item.json",
+      "source_url": "https://AuroraCo.maps.arcgis.com/sharing/rest/content/items/9ffddeff15c0486488f683e468b38eea?f=json",
+      "raw_capture_temp_path": "/tmp/atlas-aurora-round23.qvEVhq/aurora-opendata-item.json",
+      "capture_started_at": "2026-09-09T07:49:02.008916+00:00",
+      "capture_finished_at": "2026-09-09T07:49:02.353565+00:00",
+      "response": "200 application/json;charset=utf-8",
+      "stderr": "",
+      "raw_capture_bytes": 113,
+      "content_hash": "65915fb331b297e9907690d5a715a75062b6dc04c3bae84bfdae5fc17e705d5c",
+      "http_status": 200,
+      "request_credentials_supplied": false,
+      "content_hash_scope": "SHA-256 of exact saved HTTP response-body bytes",
+      "content_hash_verification": "fetched_bytes_sha256",
+      "selection": "failed_application_response_not_evidence",
+      "retention": "Temporary untracked body. No bulk GIS, plans, photographs or substantial publisher text redistributed."
+    },
+    {
+      "name": "aurora-public-documents-dc2.html",
+      "source_url": "https://coaapps.auroragov.org/publicdocuments/publicrecordsearch.aspx?locationkey=227490",
+      "raw_capture_temp_path": "/tmp/atlas-aurora-round23.qvEVhq/aurora-public-documents-dc2.html",
+      "capture_started_at": "2026-09-09T07:49:37.434101+00:00",
+      "capture_finished_at": "2026-09-09T07:49:37.833480+00:00",
+      "response": "200 text/html; charset=utf-8",
+      "stderr": "",
+      "raw_capture_bytes": 27306,
+      "content_hash": "ff9a7b4efd31c5ea0ac21885784d270cf48edb5e8698cfd430c37d1e260c541d",
+      "http_status": 200,
+      "request_credentials_supplied": false,
+      "content_hash_scope": "SHA-256 of exact saved HTTP response-body bytes",
+      "content_hash_verification": "fetched_bytes_sha256",
+      "selection": "research_only",
+      "retention": "Temporary untracked body. No bulk GIS, plans, photographs or substantial publisher text redistributed."
+    },
+    {
+      "name": "aurora-public-documents-dc3.html",
+      "source_url": "https://coaapps.auroragov.org/publicdocuments/publicrecordsearch.aspx?locationkey=227488",
+      "raw_capture_temp_path": "/tmp/atlas-aurora-round23.qvEVhq/aurora-public-documents-dc3.html",
+      "capture_started_at": "2026-09-09T07:49:37.434295+00:00",
+      "capture_finished_at": "2026-09-09T07:49:37.808055+00:00",
+      "response": "200 text/html; charset=utf-8",
+      "stderr": "",
+      "raw_capture_bytes": 15102,
+      "content_hash": "364d3ffabc9d8b3df95545b84f0b589d137ff12f956b59e41912f947e1abf888",
+      "http_status": 200,
+      "request_credentials_supplied": false,
+      "content_hash_scope": "SHA-256 of exact saved HTTP response-body bytes",
+      "content_hash_verification": "fetched_bytes_sha256",
+      "selection": "research_only",
+      "retention": "Temporary untracked body. No bulk GIS, plans, photographs or substantial publisher text redistributed."
+    },
+    {
+      "name": "aurora-qts-addresses-wgs84-1188.json",
+      "source_url": "https://ags.auroragov.org/aurora/rest/services/OpenData/MapServer/9/query?f=json&where=ADDRESS+IN+%28%271160+N+GUN+CLUB+RD%27%2C%271140+N+GUN+CLUB+RD%27%2C%271100+N+GUN+CLUB+RD%27%29&outFields=OBJECTID%2CADDRESS%2CADDRESS_ID%2CPROPERTYRSN&returnGeometry=true&outSR=4326&datumTransformation=1188",
+      "raw_capture_temp_path": "/tmp/atlas-aurora-round23.qvEVhq/aurora-qts-addresses-wgs84-1188.json",
+      "capture_started_at": "2026-09-09T07:51:46.580956+00:00",
+      "capture_finished_at": "2026-09-09T07:51:46.896179+00:00",
+      "response": "200 application/json; charset=UTF-8",
+      "stderr": "",
+      "raw_capture_bytes": 1077,
+      "content_hash": "bf40f8da37d5b3bd244828ee1d78d0463fcebfb939f92c27ad44453ee4b7c2d9",
+      "http_status": 200,
+      "request_credentials_supplied": false,
+      "content_hash_scope": "SHA-256 of exact saved HTTP response-body bytes",
+      "content_hash_verification": "fetched_bytes_sha256",
+      "selection": "research_only",
+      "retention": "Temporary untracked body. No bulk GIS, plans, photographs or substantial publisher text redistributed."
+    }
+  ],
+  "reused_raw_captures": [
+    {
+      "name": "aurora-permit-app.json",
+      "source_url": "https://www.arcgis.com/sharing/rest/content/items/25e68ba47119437cb4bf6bdeea6fbea4/data?f=json",
+      "raw_capture_temp_path": "/tmp/atlas-us-round23.wWO7NJ/aurora-permit-app.json",
+      "raw_capture_bytes": 111132,
+      "content_hash": "8da8fdcc443a3da49712fd532568b1fbb62f879d03baf67766cf5ccfc28e34f8",
+      "capture_started_at": "2026-09-09T07:42:53.053Z",
+      "capture_finished_at": "2026-09-09T07:42:53.389Z",
+      "http_status": 200,
+      "request_credentials_supplied": false
+    },
+    {
+      "name": "qts-aurora-kunc-aug10.html",
+      "source_url": "https://www.kunc.org/news/2026-08-10/local-governments-in-colorado-enact-moratoriums-on-data-center-development",
+      "raw_capture_temp_path": "/tmp/atlas-us-round23.wWO7NJ/qts-aurora-kunc-aug10.html",
+      "raw_capture_bytes": 176874,
+      "content_hash": "c04d65cd1aecc94ab7c56787cf94e414b8a6c243ed94286980ef95748950ad3d",
+      "capture_started_at": "2026-09-09T07:42:53.440Z",
+      "capture_finished_at": "2026-09-09T07:42:53.662Z",
+      "http_status": 200,
+      "request_credentials_supplied": false
+    }
+  ]
+}

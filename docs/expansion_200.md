@@ -1089,3 +1089,57 @@ must be non-US to keep every country at or below 40 percent at 200 sites.
 .venv/bin/python scripts/build_expansion_200_draft.py --batch twentieth-reviewed --output-dir /absolute/new/draft-directory
 .venv/bin/python scripts/build_expansion_200_draft.py --batch twentieth-reviewed --validate-only
 ```
+
+## Twenty-first reviewed partial draft
+
+The [twenty-first reviewed draft](../verified_construction_core/2026-08-20-v0.18-draft-twenty-first-reviewed/README.md)
+adds DataOne Vineland's Phase 2 building on one physical campus. It contains 167 sites,
+170 projects, 42 countries, 111 non-US sites and 666 evidence rows: 67 requested additions,
+33 remaining. All preceding rows, full features, source bindings and input hashes remain
+unchanged. Public v0.17 and every earlier checkpoint remain frozen.
+
+Contract SHA-256: `a13e0fdffce1d12a2c1f602fb84ef5c7b1b1efeb90e222e18e44ba3f7d9c8a8d`.
+Manifest SHA-256: `43a353490c13d1cb347c1ad963f12d7495df41918bc412484bb2efceb07cb2fb`.
+
+The [status and successor review](../sources/research-expansion-200-us-round23-dataone-vineland-2026-09-09.json)
+binds the city's newly issued August 7 notice to its explicit current-construction statement
+for the Phase 2 datacenter building. August 17 is a scheduled hearing, not the physical date.
+The original campus and Phase 2 project identities are retained; Phase 1 and ancillary
+equipment do not create extra sites, roles, workloads or capacity observations.
+
+The complete signed August 6 LNG and August 10 Bloom Energy stop-work orders were visually
+inspected. Both check the generic All Construction box but expressly qualify the stopped work
+to their named equipment. Those equipment scopes are not selected. The scans also correct
+reversed equipment dates in one host article and faulty OCR address digits. Later site-plan
+approval is not treated as construction-permit clearance or verified rescission of the orders.
+Undated December 2026 and 2027 delivery forecasts and generator use do not prove completed
+Phase 2 construction or operating status. No imagery outcome is inferred from document scans.
+
+The [independent geometry review](../sources/research-expansion-200-us-round23-dataone-vineland-geometry-2026-09-09.json)
+matches municipal Block 7503 Lot 35.01, DataOne Vineland LLC and 3963 South Lincoln Avenue.
+The one public parcel ring is returned in WGS84 using explicit transformation 1188 from
+EPSG:3424; root independently reproduced every vertex and the full-geometry comparison against
+all 166 prior sites. No intersection was found; the nearest prior site is Amazon Falls Township,
+83.39 km away. The mapped parcel is a campus locator, not a surveyed or complete campus boundary,
+new-building footprint or active-work extent. Its display anchor is derived; undocumented
+geographic-looking coordinate attributes and old Lot 33.01 are not selected.
+
+Only isolated attributed parcel and source facts are retained. The city provides no open licence
+or quantified accuracy; its disclaimer and disabled export-widget setting are preserved.
+The ordinary public one-record query was used without changing controls or exporting a bulk
+dataset. Raw maps, HTML, PDF, scans, signatures and other publisher media remain unredistributed.
+
+Round 23 [Aurora](../sources/research-expansion-200-americas-round23-aurora-2026-09-09.json)
+and [six non-US screens](../sources/research-expansion-200-nonus-round23-2026-09-09.json) remain
+outside the checkpoint. Aurora's exact city locators do not date its inspections; the original
+photographer's caption has not been accepted as the authoritative physical-status source.
+Non-US leads retain stale, forecast-only, agreement-only or unavailable-source findings.
+
+Imagery remains 10/170, and the fixed 20-project/19-agreement blind review remains incomplete.
+Completion and final-publication flags remain false. At least 9 of the remaining 33 additions
+must be non-US to keep every country at or below 40 percent at 200 sites.
+
+```sh
+.venv/bin/python scripts/build_expansion_200_draft.py --batch twenty-first-reviewed --output-dir /absolute/new/draft-directory
+.venv/bin/python scripts/build_expansion_200_draft.py --batch twenty-first-reviewed --validate-only
+```
