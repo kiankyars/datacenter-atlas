@@ -1,0 +1,173 @@
+{
+  "schema_version": "expansion-200-europe-mena-round10-research-1",
+  "reviewed_at": "2026-09-08",
+  "lifecycle_reference_date": "2026-08-20",
+  "physical_observation_window": {
+    "earliest": "2026-05-22",
+    "latest": "2026-08-20"
+  },
+  "scope": "Bounded Europe/MENA source research only. One proposed new physical campus; no admission, prior-source mutation, test/core/contract/artifact changes, commit or push.",
+  "inventory_comparison": {
+    "path": "verified_construction_core/2026-08-20-v0.18-draft-ninth-reviewed/sites.csv",
+    "sha256": "67e300295031e02da1adc77a0637586b4d29be77c829a807eb5adb0fcdc01fc2",
+    "physical_sites": 146,
+    "baseline_checkpoint": "e5eac742",
+    "method": "Read all 146 CSV rows, compare physical-site keys/names and exact proposed source point with all inventory coordinates; grep sources/research for existing Portus Munich/MUC2 source-local keys returned no match.",
+    "nearest_selected_site": {
+      "key": "curated:equinix-mu4-munich-data-center",
+      "distance_km": 6.535
+    },
+    "dedup_result": "Portus MUC1/MUC2 form one campus not in the 146-site inventory. Existing MUC1 is only a locator and campus identity dependency, not an added operating project. No extra site is claimed for MUC2 as a phase within its own new parent campus."
+  },
+  "proposals": [
+    {
+      "project_stable_key": "curated:portus-munich-data-center-campus:muc2",
+      "parent_campus_stable_key": "curated:portus-munich-data-center-campus",
+      "name": "Portus MUC2 / shared Munich campus",
+      "country": "Germany",
+      "decision": "proposed_pending_independent_root_review",
+      "curated_path": "sources/curated-official-2026-09-08-europe-mena-round10-portus-muc2-current-build.json",
+      "geometry_path": "sources/verified-construction-core-v0.18-europe-mena-round10-portus-muc2-proposed-geometry.json",
+      "physical_observation": {
+        "status": "under_construction",
+        "as_of_date": "2026-05-28",
+        "source_key": "europe10-portus-muc2-current-build-2026-05-28",
+        "freshness_days_at_cutoff": 84,
+        "scope": "Named MUC2 is explicitly being constructed in Portus's existing Munich campus. Financing and forecast service commencement are not the physical evidence."
+      },
+      "locator": {
+        "type": "Point",
+        "coordinates": [
+          11.7688419,
+          48.1585332
+        ],
+        "authority_class": "community_source",
+        "basis": "Exact-address Nominatim point of OSM commercial-building way 571006394, literally named Spacenet.",
+        "identity_chain": [
+          "Portus May 28 release names current MUC2 construction at existing Munich campus.",
+          "Portus campus body explicitly groups MUC1 and MUC2 in Kirchheim; LocalBusiness address is Marsstraße 5, postal code 85551.",
+          "Portus downloads page directly links TÜV SÜD MUC1 EN50600 certificate.",
+          "Certificate Location block, distinct from owner address, names MUC1 at Marsstraße 5, 85551 Kirchheim bei München.",
+          "OSM way 571006394 exactly matches street, number, postal code and town; the Nominatim source provides its point. The map's Spacenet label is preserved literally and is not asserted to be an operator-name change."
+        ],
+        "crs": "EPSG:4326",
+        "rights": "OSM-derived point and selected map facts: ODbL 1.0, © OpenStreetMap contributors. Company and certificate documents remain reserved-rights compact factual sources.",
+        "horizontal_uncertainty_metres": null,
+        "excluded_coordinate": {
+          "coordinates": [
+            11.7662373,
+            48.1585287
+          ],
+          "source": "Portus Munich LocalBusiness JSON-LD",
+          "distance_from_selected_point_metres": 193.197,
+          "reason": "Conflicts with exact-address OSM building point. No unverified explanation, snapping or averaging applied."
+        },
+        "scope_guardrail": "Constituent-building centroid used only as shared-campus locator. Not MUC2 footprint, active work extent, campus boundary, parcel/entrance or quantified accuracy."
+      },
+      "successor_review": {
+        "sources": [
+          "https://www.portusdatacenters.com/pressrelease/arcus-secures-inaugural-financing-for-portus-data-centers/",
+          "https://www.portusdatacenters.com/our-data-centers/munich/",
+          "https://www.portusdatacenters.com/our-data-centers/munich/muc2/"
+        ],
+        "queries": [
+          "\"Portus\" \"MUC2\" \"2026\" completed opened operational"
+        ],
+        "finding": "No completed/cancelled MUC2 successor through August 20 found in this bounded source review. Current operator page retains early-2027 delivery forecast. This is not exhaustive proof of absence.",
+        "excluded": "Undated progress media, relative-age edited LinkedIn snippets, historic May 2025 start and February 4 factsheet do not refresh lifecycle."
+      },
+      "unknowns_preserved": [
+        "capacity_claims",
+        "workloads",
+        "operating_models",
+        "organization_roles",
+        "MUC2_building_footprint",
+        "campus_boundary",
+        "horizontal_accuracy",
+        "independent_imagery_verification"
+      ]
+    }
+  ],
+  "screened_not_proposed": [
+    {
+      "name": "EcoDataCenter Falun and Borlänge",
+      "decision": "hold_preserved_new_q2_route_insufficient",
+      "source_url": "https://ecodatacenter.tech/hubfs/EcoDC%20Holding%20AB%20Q2%20report%202026_ENG.pdf",
+      "capture": {
+        "path": "/tmp/atlas-europe-mena-round10.aAETmy/ecodc-q2.pdf",
+        "url": "https://ecodatacenter.tech/hubfs/EcoDC%20Holding%20AB%20Q2%20report%202026_ENG.pdf",
+        "started_at": "2026-09-08T23:48:45.777Z",
+        "finished_at": "2026-09-08T23:48:46.574Z",
+        "bytes": 1558514,
+        "sha256": "86c318308124078d88cf6c17ef5fa17f2d3b56f015620c768e3a594917baffa9",
+        "method": "credential_free_curl_fail_location"
+      },
+      "publication_date": "2026-08-27",
+      "reported_period_end": "2026-06-30",
+      "findings": "Q2 CEO page 3 discusses ongoing parallel construction generically; page 5 says construction invoices increased. Neither identifies Falun or Borlänge as the current named projects. Only head-office Falun appears elsewhere. Generic construction and financial totals cannot refresh prior campus/project holds.",
+      "visual_review": "Complete CEO page 3 rendered and inspected; all PDF text searched for named campuses and construction."
+    },
+    {
+      "name": "CyrusOne MIL1 Segrate",
+      "decision": "hold_no_fresh_physical_observation",
+      "preserved_key": "curated:cyrusone-mil1-segrate-data-center:current-facility-build",
+      "source_url": "https://www.cyrusone.com/resources/press-releases/cyrusone-breaks-ground-on-first-data-center-in-italy?hs_amp=true",
+      "finding": "Official visible release date is March 25, 2026. A third-party July market-report date cannot refresh that groundbreaking. No new within-window physical observation selected."
+    },
+    {
+      "name": "Portus HH4 Hamburg",
+      "decision": "hold_no_fresh_named_physical_observation",
+      "source_url": "https://www.portusdatacenters.com/",
+      "finding": "Current undated operator homepage announces HH4 in a virtual campus with HH2/HH3/HH5 but gives no selected May 22-August 20 physical observation. A virtual network campus does not prove shared physical geography."
+    },
+    {
+      "name": "Bitzero Namsskogan",
+      "decision": "excluded_already_selected",
+      "preserved_key": "curated:bitzero-namsskogan-data-center-campus",
+      "finding": "June 15 transformer-foundation construction is already the selected baseline project; no additional physical campus."
+    },
+    {
+      "name": "Pau CAPBP / La Fibre Paloise / Axione",
+      "decision": "prior_hold_not_requeried",
+      "source_url": "https://www.pau.fr/actualites/un-data-center-en-construction-proximite-du-centre-technique-municipal",
+      "finding": "Parent-suggested page is already explicitly recorded in the round9 hold. No genuinely new locator route; proximity to CTM and Axione/Cosoluce office pins remain insufficient."
+    }
+  ],
+  "supplemental_captures": [
+    {
+      "path": "/tmp/atlas-europe-mena-round10.aAETmy/portus-home.html",
+      "url": "https://www.portusdatacenters.com/",
+      "started_at": "2026-09-08T23:43:57.061Z",
+      "finished_at": "2026-09-08T23:43:58.357Z",
+      "bytes": 355383,
+      "sha256": "bc39f2788bf336ba82a30b9ba93a5ec1675966dfa36e8c7f440ffbb7869b439b",
+      "method": "credential_free_curl_fail_location"
+    },
+    {
+      "path": "/tmp/atlas-europe-mena-round10.aAETmy/portus-muc2-factsheet.pdf",
+      "url": "https://144396000.fs1.hubspotusercontent-eu1.net/hubfs/144396000/Portus%20Munich%20-%20EN.pdf",
+      "started_at": "2026-09-08T23:47:54.403Z",
+      "finished_at": "2026-09-08T23:47:55.671Z",
+      "bytes": 1264797,
+      "sha256": "042a6393a00020e9ac81a86305bfb880ee14b095312cd80a101adcab17b51d72",
+      "method": "credential_free_curl_fail_location"
+    },
+    {
+      "path": "/tmp/atlas-europe-mena-round10.aAETmy/portus-osm-search.json",
+      "url": "https://nominatim.openstreetmap.org/search?q=Portus%20Munich&format=jsonv2&addressdetails=1",
+      "started_at": "2026-09-08T23:44:38.904Z",
+      "finished_at": "2026-09-08T23:44:39.472Z",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "method": "credential_free_curl_fail_location"
+    }
+  ],
+  "validation": {
+    "curated_v11_intake": "pass",
+    "selected_body_hashes_and_byte_counts": "10 of 10 independently rehashed locally after authoring; all pass",
+    "source_binding_map": "10 bindings resolve to existing evidence keys and hashes",
+    "literal_point": "Exact source lat/lon strings preserved as longitude/latitude; no adjustment",
+    "full_tests_or_build_run": false
+  },
+  "skills_influence": "Spreadsheet skill supported read-only inspection of the frozen 146-row CSV. PDF skill caused full visual review of the MUC1 certificate's physical Location block and two-page MUC2 factsheet, and the new EcoDataCenter Q2 CEO page. MUC1 certification is not transferred to MUC2; renderer images remain temporary."
+}

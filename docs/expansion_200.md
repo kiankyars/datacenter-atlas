@@ -453,3 +453,59 @@ Objective-completion and final-publication flags remain false.
 .venv/bin/python scripts/build_expansion_200_draft.py --batch ninth-reviewed --output-dir /absolute/new/draft-directory
 .venv/bin/python scripts/build_expansion_200_draft.py --batch ninth-reviewed --validate-only
 ```
+
+## Fifty-site reviewed checkpoint
+
+The [tenth reviewed draft](../verified_construction_core/2026-08-20-v0.18-draft-tenth-reviewed/README.md)
+adds Portus Munich MUC2, Meta El Paso, Meta Richland Parish and Microsoft Etobicoke. It
+contains 150 physical sites, 153 projects, 41 countries, 104 non-US sites and 510 evidence
+rows. This is 50 of the requested 100 additions, with 50 remaining. All 146 previous sites,
+149 previous projects, 479 previous evidence rows and their GeoJSON features are preserved.
+The public v0.17 release remains frozen at 100 sites.
+
+Portus's May 28 release explicitly describes MUC2 being constructed on its existing Munich
+campus. Financing and the expected Q1 2027 opening are not the physical evidence. The
+operator explicitly groups MUC1 and MUC2; an operator-linked certificate names MUC1's
+physical address at Marsstraße 5, Kirchheim. That address matches a community building
+literally labelled Spacenet. Its point locates the shared campus only: no operator rename,
+MUC2 footprint, transferred certification or building-use claim is inferred. The conflicting
+operator pin 193 metres west remains excluded. The full relevant certificate page was
+visually reviewed, including separate owner, Location, audit, issue and validity fields.
+
+Meta El Paso retains the existing campus and project keys with the July 28 issuer statement
+of current construction and an already-onsite workforce. City records corroborate the
+Meta/Wurldwide campus north of Stan Roberts Sr. Avenue and west of U.S. Highway 54. The
+community source explicitly marks its boundary very approximate; only its broad named-campus
+point is selected. The rectangle is not a legal boundary, and a failed Census address query
+does not become an official locator. TDLR's April 15 date is recorded as registration, not
+publication or a physical observation. Financial ownership, future phases and capacity claims
+remain unselected.
+
+Meta Richland Parish retains its existing keys and Turner's July 16 observation of active
+interior buildout in the first buildings. The operator names Turner as a contractor; Turner's
+scope page separates Phase 1 delivery from Phase 2 preconstruction and future building works.
+The named three-component community relation supplies only a whole-campus reference point.
+Its northern component is not asserted to locate the first buildings, a legal entity's parcel
+or Phase 2 construction. One campus is counted, not its phases, buildings or financial entities.
+An independent second review checked both Meta status, identity and geometry chains.
+
+Etobicoke's August 5 operator update describes an unfinished first building and continuing
+installation work. Conflicting historical onset dates are preserved without selecting either.
+The city's owner table explicitly links Microsoft to 48 Lowe's Place, while its July 22 motion
+identifies the datacentre there. Pursuit of conditional occupancy is not granted occupancy or
+operation. The unique municipal Land address point is checked against the same-ID official
+EPSG:4326 response. Toronto's exact dataset page supplies the open licence despite the CKAN
+catalogue's unspecified licence field. This point is not a building centroid, entrance or boundary.
+
+Vaughan stays held: its licensed geometry cannot resolve the existing substantial-completion
+scope conflict. The research packets also preserve named APAC construction leads with unclosed
+source captures or exact locators, rather than reusing locality or nearby-facility points.
+All selected points retain attribution, source-specific semantics and unknown accuracy. No
+new roles, workloads, operating models, capacities or imagery results are inferred. Imagery
+coverage is 10/153; the fixed 20-row/19-agreement blind review remains incomplete. Both objective
+completion and final-publication flags remain false.
+
+```sh
+.venv/bin/python scripts/build_expansion_200_draft.py --batch tenth-reviewed --output-dir /absolute/new/draft-directory
+.venv/bin/python scripts/build_expansion_200_draft.py --batch tenth-reviewed --validate-only
+```
