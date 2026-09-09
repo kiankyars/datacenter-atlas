@@ -1,0 +1,100 @@
+{
+  "schema_version": "1.0",
+  "research_id": "expansion-200-root-round27-shoham-locator-exclusion",
+  "reviewed_on": "2026-09-09",
+  "accepted_into_core": false,
+  "new_physical_sites": 0,
+  "baseline": {
+    "commit": "47327912d467e2755e6201feed5d8224c4b5857a",
+    "physical_sites": 173,
+    "projects": 176,
+    "path": "verified_construction_core/2026-08-20-v0.18-draft-twenty-fourth-reviewed/sites.geojson",
+    "bytes": 278133,
+    "sha256": "1d7e2b2ed686bca230e315ae9e547b8fc2d3c4de89574c8fc5a14b491a680582",
+    "lifecycle_cutoff": "2026-08-20",
+    "physical_observation_window": ["2026-05-22", "2026-08-20"]
+  },
+  "candidate": {
+    "name": "MultiDC Shoham",
+    "project_stable_key": "curated:multidc-shoham-campus:current-build",
+    "decision": "hold_exact_project_geometry",
+    "prior_research_path": "sources/research-expansion-200-middleeast-round4-2026-09-08.json",
+    "prior_physical_source": {
+      "path": "sources/curated-official-2026-09-08-multidc-shoham-chiller-installation.json",
+      "bytes": 6341,
+      "sha256": "864192949a0d75538465eb35b8d11682438d19007c6c6e4ffdda6acf6129efa6",
+      "physical_observation_date": "2026-07-08",
+      "scope": "Prior frozen source retains dated chiller-installation evidence. This locator-only investigation does not replace it or advance its date."
+    },
+    "findings": [
+      "Kardan's 2025 annual report section 7.13.1(a), physical page 24 / printed page Aleph-21, identifies a 27.4-dunam Shoham Industrial Zone property planned for three server facilities. Two facilities under the current build occupy approximately 60 percent of the land; a third is contingent on market conditions. Treat this as one campus, not three new sites.",
+      "The relevant annual-report section describes piles in November 2024 and construction work from January 2025. These historical dates are not a new May-August 2026 physical observation. The report provides no selected street number, parcel identifier or numeric campus location.",
+      "An official Israeli Ministry of Environmental Protection air-emission permit, number 2213, names Amazon Data Services Israel Ltd's Shoham site and assigns it Rakefet 4 in Hevel Modiin Industrial Park. That address therefore cannot establish MultiDC's location merely because a business-directory lead associates the same address with the venture.",
+      "The Amazon permit is an exclusion of an unsupported locator bridge, not evidence that the two developments share a campus, and not proof of their surveyed separation. No Amazon geometry, construction status, capacity or certification is imported.",
+      "Current Geva and Minrav project pages identify the Shoham Industrial Zone and the joint-venture construction scope but did not close an exact campus locator. Undated under-execution wording does not refresh lifecycle evidence.",
+      "Historical same-owner land-transfer and MultiLog project search leads were not promoted to parcel evidence: the discovered 30,271-square-metre tract differs from the 27,400-square-metre campus and lacks an adjudicated identity bridge. No geometry is borrowed from a neighboring Amazon site or a similarly named owner."
+    ],
+    "next_evidence_needed": "A direct named-project link to a municipal parcel or a first-party numeric campus locator, with source CRS, rights, precision and full-cohort geometry deduplication. Do not repeat the empty Nominatim query or the previously denied Magna report route without a genuine evidence change.",
+    "geometry": null,
+    "deduplication_limit": "No candidate geometry was selected, so there is no new spatial distinctness or point-in-polygon result. The 173-site baseline is unchanged."
+  },
+  "raw_evidence": [
+    {
+      "key": "root27-kardan-2025-annual-report",
+      "publisher": "Kardan Israel Ltd, hosted by Tel Aviv Stock Exchange",
+      "url": "https://mayafiles.tase.co.il/rpdf/1732001-1733000/P1732578-00.pdf",
+      "path": "/tmp/atlas-root-round27.bXgNDj/kardan-2025.pdf",
+      "bytes": 10443258,
+      "sha256": "0822d34060c300591091f9c92474dcb1473f7d7f5c0f15512d071c8a410e5ee6",
+      "http_status": 200,
+      "capture_start_utc": null,
+      "capture_completed_file_mtime_utc": "2026-09-09T10:11:59Z",
+      "capture_time_caveat": "Request-start and finish UTC were not separately recorded. The timestamp is the saved file's modification time, with whole-second filesystem reporting, not an asserted request timestamp.",
+      "pages": 341,
+      "review_pointer": "Physical page 24, printed Aleph-21, section 7.13.1(a)",
+      "review_scope": "The complete relevant page was rendered and visually read. Full text was searched for parcel/street/area terms to distinguish unrelated residential-project matches. No whole-report financial or legal assessment is claimed.",
+      "evidence_role": "Historical campus identity, scope and unresolved exact locator only"
+    },
+    {
+      "key": "root27-amazon-shoham-address-permit",
+      "publisher": "Israel Ministry of Environmental Protection",
+      "url": "https://www.gov.il/BlobFolder/dynamiccollectorresultitem/tlv62shoham_2213/he/air_emission_permits_2025_tlv62shoham_2213_finalpermit.pdf",
+      "path": "/tmp/atlas-root-round27.bXgNDj/amazon-shoham-air-permit.pdf",
+      "bytes": 416002,
+      "sha256": "68054ae564b3e07d321600f3af311b841f84918adf64ee7f93e21b62dade3c68",
+      "http_status": 200,
+      "capture_start_utc": null,
+      "capture_completed_file_mtime_utc": "2026-09-09T10:13:02Z",
+      "capture_time_caveat": "Saved-file modification-time proxy only; request-start and finish UTC were not separately recorded.",
+      "pages": 21,
+      "review_pointer": "Complete physical page 1, permit 2213, environmental site 355866, company identifier 515747087",
+      "review_scope": "The complete identification page was rendered and visually read, including issuer, legal entity and facility address. Remaining permit conditions were not adjudicated; no current permit-validity, operating or emissions-compliance claim is made.",
+      "evidence_role": "Reject unsupported transfer of Rakefet 4 from an Amazon-named official record to MultiDC"
+    }
+  ],
+  "other_public_body_checks": [
+    {
+      "url": "https://www.geva.co/multidc",
+      "scope": "Developer body reviewed for project identity and exact locator. No new raw capture bound here."
+    },
+    {
+      "url": "https://www.geva.co/geva-projects/multidc-shoham",
+      "scope": "Developer English project body reviewed; only zone-level locator selected as unresolved context."
+    },
+    {
+      "url": "https://www.minrav.co.il/project/%D7%97%D7%95%D7%95%D7%AA-%D7%A9%D7%A8%D7%AA%D7%99%D7%9D-%D7%A9%D7%95%D7%94%D7%9D/",
+      "scope": "Contractor's Shoham project body reviewed; two-facility scope and joint-venture identity, not dated physical observation or exact point."
+    }
+  ],
+  "capture_and_rights": {
+    "method": "Ordinary credential-free curl --fail --location --compressed; two complete HTTP200 PDF bodies. No login, supplied credential, access-control workaround or denied-route retry.",
+    "hash_scope": "Exact saved content-decoded PDF response-body bytes",
+    "license": "all-rights-reserved; no open license asserted",
+    "rights_urls": [
+      "https://mayafiles.tase.co.il/rpdf/1732001-1733000/P1732578-00.pdf",
+      "https://www.gov.il/BlobFolder/dynamiccollectorresultitem/tlv62shoham_2213/he/air_emission_permits_2025_tlv62shoham_2213_finalpermit.pdf"
+    ],
+    "redistribution": "Minimal independently restated factual metadata and source pointers only. Raw PDFs, rendered pages, extracted text, HTML, response headers and source media remain temporary and are not redistributed.",
+    "scope": "Research hold only, not a new source binding or an admission to the construction core."
+  }
+}

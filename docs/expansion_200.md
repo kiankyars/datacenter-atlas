@@ -1337,3 +1337,36 @@ The 200-site objective and final-publication gates remain incomplete.
 .venv/bin/python scripts/build_expansion_200_draft.py --batch twenty-fourth-reviewed --output-dir /absolute/new/draft-directory
 .venv/bin/python scripts/build_expansion_200_draft.py --batch twenty-fourth-reviewed --validate-only
 ```
+
+## Round 27 research checkpoint: count unchanged
+
+The cohort remains 173 physical sites, 176 projects and 722 evidence rows. No candidate in this
+round closes every admission gate, and no frozen record or generated release is changed.
+
+The [Key Point locator review](../sources/research-expansion-200-europe-round27-keypoint-spb-dc2-2026-09-09.json)
+closes an operator-published St Petersburg campus point, with documented provider axis order,
+unknown positional accuracy and comparison against all 173 full geometries. The separate
+[lifecycle review](../sources/research-expansion-200-root-round27-keypoint-lifecycle-2026-09-09.json)
+holds admission: June forum coverage and a July contractor interview describe active project
+implementation but do not unambiguously establish current physical work. The undated construction
+label, old start announcement and permit do not fill that gap.
+
+The [Shoham investigation](../sources/research-expansion-200-root-round27-shoham-2026-09-09.json)
+finds that an official permit assigns the tempting Rakefet 4 address to Amazon, not an established
+MultiDC location. Kardan's newer annual report retains the 27.4-dunam campus description without
+an exact locator. MultiDC's existing July physical-work evidence remains held for geometry.
+
+The [San Bovio audit](../sources/research-expansion-200-europe-round27-2026-09-09.json) resolves an
+apparent source conflict: the complete current updates retain preliminary site activity, compatible
+with the baseline's narrow `site_preparation` selection. September principal works remain a forecast.
+The original July raw body was not independently recovered; that limitation remains explicit.
+
+[Asia](../sources/research-expansion-200-asia-round27-2026-09-09.json) retains Qingyang's July outdoor
+work with unresolved geometry, Huwei's ceremony/forecast distinction and MiTASUN's limited public
+interview scope. [Americas](../sources/research-expansion-200-americas-round27-2026-09-09.json)
+preserves the earlier Fox Creek power-plant/data-center distinction, Hawesville's conflicting issuer
+wording and Los Teros's missing fresh authoritative observation. Denied routes remain stopped.
+
+There are 27 additions remaining; at least four must be non-US to satisfy the 40-percent country
+ceiling at 200 sites. Imagery remains 10/176, blind review remains incomplete, and neither the
+200-site objective nor final-release readiness is complete.
