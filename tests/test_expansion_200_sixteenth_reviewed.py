@@ -70,6 +70,7 @@ class SixteenthReviewedDraftTests(unittest.TestCase):
         self.assertIn("1100-acre", application["excerpt"])
         self.assertIn("2250-acre", application["excerpt"])
         self.assertIn("not fresh physical work", application["metadata"]["publication_date_basis"])
+        self.assertIn("not independent verification of land contiguity", application["metadata"]["identity_scope"])
         self.assertIn("no explicit datum", application["metadata"]["coordinate_exclusions"])
         self.assertIn("conflicting2027 dateline", application["metadata"]["coordinate_exclusions"])
         self.assertIn("not silently merged", application["metadata"]["coordinate_exclusions"])

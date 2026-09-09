@@ -8,7 +8,7 @@ from .verified_construction_core_v018 import ROOT, ReviewPins
 CONTRACT_RELATIVE_PATH = "definitions/verified-construction-core-v0.18-sixteenth-reviewed-batch.json"
 DRAFT_RELATIVE_PATH = "verified_construction_core/2026-08-20-v0.18-draft-sixteenth-reviewed"
 REVIEW_PINS = ReviewPins(
-    contract_sha256="8a68716b8c23ba57144d85febcaf39a79040724dc24a3ad3235803c1efee5d53",
+    contract_sha256="9832999c9a741f559d08a7a28948247059fe5c212decea9703b9b8064bc1362f",
     source_sha256={
         "capitaland-mumbai-status": "81bb8898883c4e97b2a4fbb699bdf09e71a31f9d4595dd7e402471478490d76f",
         "capitaland-mumbai-locator-identity": "09898db5b9d5f5d0cb11997246386076ccbdbf9ad3bfbef3774ac5d24f13f666",
@@ -372,17 +372,17 @@ REVIEW_PINS = ReviewPins(
         "europe16-nls-cadastral-service-rights": "80092dc7bebb57a33146d19073b9b537e4b4ebaad17afb1a1858932b39fe9f0f",
         "europe16-nls-ccby4-attribution-policy": "3419ba63b7534d33297e5b2a2c16e1f037eaa4bf1ea009c494f55e393e68535f",
         "am16-monarch-july14-physical-work": "5420eaaab78c7fb55d6585a091d9c4894dd86a04aa2a52312d29e0a4e84301b9",
-        "am16-monarch-integrated-campus-application": "50f59271a824acf514453f0a15c54a6a3923ab57677e2911975813a6754535e1",
-        "am16-monarch-wvr113311-official-point": "9e6720eefded838ba1098b70c5f9437e0ccb1d4eb23efcc8b27c48022aa448cb",
-        "am16-monarch-wvr113311-native-point": "c41fa0851710cbbae5117847423b0a109f0b97099baede0f7093e6ebacca97fc",
-        "am16-wvdep-water-layer-semantics": "241c4273b24efbbf274c2d4440541fd59d5e0d88d97a5147ebd78146969e6389",
-        "am16-wvdep-water-item-rights": "298b3767fbc58047ce43384dbf880933dfe9e6fc03428aa60f151ce0dfe25931",
-        "am16-wvdep-public-gis-use-context": "72f0c3eb3b1ab936f51ee4208702422fc6f7d7979f38aee112d782598a63983e",
-        "am16-monarch-official-application-index": "28fae6324ffcd9c2e32e8eb41c79b16dfeed5540640538f31f4e966c622539b3",
-        "am16-monarch-operator-campus-identity": "03d25d1126d7e47a1fd96cd4640f16a660581579ac0b5665e6ce73804c2890b1",
-        "am16-monarch-project-participant-identity": "33dd3d51dafd9108134f7d7110efcc976d1c7cf5abd1741b2787e9697338f3a3",
-        "am16-monarch-agency-successor-check": "cd95eb0b4a46e0bfd51b654c3f5ce238b1dd1d119551df929a60a99e092e6b05",
-        "am16-monarch-registration-public-notice": "83b6f0c2df7f212057317f8c8e3b6eb72661fd93f504279424a9607df4d36a18",
+        "am16-monarch-integrated-campus-application": "20b69aab5a64c12fcbbf79e7d5050dbde1e38aae265a584e47812e2bc48cb21e",
+        "am16-monarch-wvr113311-official-point": "84842c98097427fe1dc46866fa757c75757cc51a5ff42c5effa138d85ae488bf",
+        "am16-monarch-wvr113311-native-point": "3610291eee69967e48f5375ae12cc411b73e30e67377c682cf1fe4c36b489922",
+        "am16-wvdep-water-layer-semantics": "e1d81e5c5348f92740475908dec293b218b5be7ab0cbe77f14ac70de5f79b3ef",
+        "am16-wvdep-water-item-rights": "7f0948a439299a02840faa30d334cec6a5def09318f2b5fc302f34f7b518d67e",
+        "am16-wvdep-public-gis-use-context": "7a09a435302e095073ba23a61b18c92de1e04324ea6067e62a28c6a2ed7b796b",
+        "am16-monarch-official-application-index": "482ba91a736997fc55d4dbb91f359f4b92c030b4c0ba9f081f90a9fbc3244525",
+        "am16-monarch-operator-campus-identity": "52c9d753419c9971fdd3c038887f9c34eaecfe037b21338252e5398fbf3fdb12",
+        "am16-monarch-project-participant-identity": "bbdfaba078323bfd000358073510d0215fe1a6d943632f1f0f98bb89c0d8f9ca",
+        "am16-monarch-agency-successor-check": "ad865118babeefff9192877f06e5efd16791ead1b0fb579760fb6040e946d8c8",
+        "am16-monarch-registration-public-notice": "3a417402052ec8ae7590a3f7efec45066c331a50f5a435460bff0c728028631e",
     },
     acceptance_sha256={
         "curated:capitaland-dc-navi-mumbai-campus:tower-2": "021460c7b515cc9117129fab87863db7924be91ccfb63c9f444593eac2b77b64",

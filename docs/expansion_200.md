@@ -793,7 +793,8 @@ The applicant's integrated power-and-three-data-center campus, agency applicatio
 page and project-participant disclosure support one campus identity. Visual review of application
 pages 7, 93 and 221 preserves the distinction between its approximately 1100-acre application
 and the broader 2250-acre marketed concept. Planned buildings and the power pad do not count as
-additional sites. Linking the July enforcement report to this campus and exact stormwater
+additional sites. The quoted contiguous-or-adjacent regulatory definition does not independently
+verify land contiguity. Linking the July enforcement report to this campus and exact stormwater
 registration WVR113311 is explicit analyst reconciliation, not a permit number or street address
 literally printed in that report.
 
