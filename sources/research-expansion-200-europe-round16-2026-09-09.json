@@ -1,0 +1,320 @@
+{
+  "schema_version": "expansion-200-europe-round16-research-1",
+  "reviewed_at": "2026-09-09",
+  "baseline_commit": "40fc5b3894edf3ea6a925b61e315266b4b6e54be",
+  "baseline_sites": 159,
+  "lifecycle_reference_date": "2026-08-20",
+  "freshness_window": {
+    "start": "2026-05-22",
+    "end": "2026-08-20",
+    "inclusive": true
+  },
+  "scope": "Bounded primary-source Europe/MENA/Africa follow-up. One admission-ready proposal for independent root review; no contract, core, artifact, prior input, commit or publication change.",
+  "proposals": [
+    {
+      "name": "DayOne Kiveriö Unnamed Data Center Campus",
+      "country": "Finland",
+      "decision": "ready_for_independent_review",
+      "campus_stable_key": "curated:dayone-kiverio-lahti-unnamed-data-center-campus",
+      "project_stable_key": "curated:dayone-kiverio-lahti-unnamed-data-center-campus:unnamed-construction-project",
+      "curated_path": "sources/curated-official-2026-09-09-europe-round16-dayone-lahti-current-build.json",
+      "geometry_path": "sources/verified-construction-core-v0.18-europe-round16-dayone-lahti-geometry-proposal.json",
+      "selected_status_date": "2026-08-11",
+      "status_date_precision": "day",
+      "status": "under_construction",
+      "new_selected_source_bindings": 8,
+      "curated_evidence_count": 2,
+      "geometry_evidence_count": 6,
+      "decisive_chain": [
+        "SRV job 2984 August 11 bulletin reports construction at Ilmarisentie 3 with frame work roughly halfway; explicit day wins over inconsistent week 32 label, which remains disclosed.",
+        "Same job's main page explicitly names DayOne and Ilmarisentie 3 in Kiveriö. Undated page, old April release, June construction context and 2027 forecast supply no extra selected work dates.",
+        "City data-center permit 398-2025-418 names parcel 398-5-966-7 at Väinämöisentie 2a. City's October permit register page 5 puts the same permit and parcel at Ilmarisentie 3, closing the two-frontage address bridge.",
+        "City's historical DayOne announcement identifies one Kiveriö site between Ilmarisentie and Väinämöisentie. DC-A and associated buildings or future phases are not separate campuses.",
+        "NLS official cadastral WFS exact nationalCadastralReference query returns one labelled parcel and its provider referencePoint in EPSG:3067. Primary service page and policy explicitly bind this dataset to CC BY 4.0.",
+        "Provider point transforms through pyproj 3.8.0 to [25.703874164769484,60.990755708567505] WGS84. It is inside the valid 153-vertex parcel ring. Point and full parcel intersect none of 159 selected features; positional accuracy remains unknown."
+      ],
+      "retained_caveats": [
+        "Publication metadata uses midnight UTC only as a date-only normalization, not an observed time or timezone.",
+        "Visible Viikko 32 is inconsistent with the August 11 calendar day. Earlier July/May/June labels are not promoted to additional dates.",
+        "No transformation-operation accuracy, decimal count or cadastral metadata is treated as measured point accuracy.",
+        "Official cadastral reference point is a campus locator, not a recomputed centroid, building outline, full campus boundary, entrance or work extent.",
+        "Old road, Dahl wholesaler, unit 3a and service-area coordinates remain excluded. New exact official parcel route resolves the old locator hold without editing it.",
+        "September cadastral response and 2018 lifespan metadata are not physical-work observations.",
+        "Bounded successor review found no whole-campus completion, operation or cancellation through cutoff; absence is not proven."
+      ],
+      "preserved_prior_input": "sources/curated-official-2026-07-19-dayone-kiverio-lahti.json",
+      "dedup": {
+        "baseline_commit": "40fc5b3894edf3ea6a925b61e315266b4b6e54be",
+        "baseline_sites_path": "verified_construction_core/2026-08-20-v0.18-draft-fourteenth-reviewed/sites.geojson",
+        "baseline_sites_sha256": "5723c140fb11fd875d676159adf269ccdf96f71f1f8b5fee8d19347d38119f9a",
+        "baseline_sites_reviewed": 159,
+        "parcel_geometry_valid": true,
+        "parcel_ring_vertices_including_closure": 153,
+        "reference_point_inside_parcel": true,
+        "point_intersections_with_selected_features": [],
+        "parcel_intersections_with_selected_features": [],
+        "nearest_selected_representative_point": {
+          "name": "Verne Mäntsälä Data Center Campus",
+          "distance_metres": 45670.920584481704,
+          "distance_semantics": "WGS84 geodesic between selected point and Shapely representative_point of each selected feature; not minimum boundary distance."
+        },
+        "mutual_proposal_dedup": "One round16 proposal only; no mutual campus pair.",
+        "alias_review": "Preserves existing July 19 DayOne unnamed-campus and project keys. None of the 159 selected keys/names identifies this Kiveriö/Ilmarisentie 3 parcel. atNorth FIN04 Kouvola, DayOne's separately described Kouvola development and Hyperco Loviisa are not this parcel. Historical FCDC/DayOne Lahti names do not produce additional campuses.",
+        "preservation_guardrail": "Old curated, geometry, research, selected artifacts and acceptance contracts remain unchanged. No new roles or metric observations."
+      },
+      "validation": {
+        "curated_schema_1_1": "PASS",
+        "strict_geometry_result": "PASS",
+        "selected_raw_sha256_and_bytes": "8 of 8 PASS",
+        "no_new_roles_or_metrics": true
+      }
+    }
+  ],
+  "screened_holds": [
+    {
+      "name": "Mercury unnamed Helsinki data-center project",
+      "decision": "hold_identity_and_locator",
+      "source_urls": [
+        "https://www.mercuryeng.com/2026/08/10/inside-the-role-of-an-electrical-construction-manager/",
+        "https://www.mercuryeng.com/2026/07/27/mercurys-graduate-programme-bill-murphy/"
+      ],
+      "finding": "Fresh primary staff profiles describe current electrical/site responsibilities in Helsinki but name neither client nor exact campus. No named site, address, parcel or unique-site assertion is fabricated.",
+      "selected_for_lifecycle": false,
+      "coordinates": null
+    },
+    {
+      "name": "BESIX unnamed Hainaut hyperscale data-center project",
+      "decision": "hold_identity_and_locator",
+      "source_urls": [
+        "https://www.besix.com/fr/news/besix-wint-nieuw-contract-voor-grootschalig-datacenter-in-wallonie"
+      ],
+      "finding": "July 9 primary contract/update describes fast-track foundation and core/shell responsibilities for an unnamed client's fourth Wallonia project. Hainaut is too broad to establish a unique campus or avoid an existing Google-campus collision.",
+      "selected_for_lifecycle": false,
+      "coordinates": null
+    },
+    {
+      "name": "Ada Infrastructure Docklands",
+      "decision": "hold_freshness",
+      "source_urls": [
+        "https://www.adadocklands.co.uk/latest-news/",
+        "https://www.mclarengroup.com/"
+      ],
+      "finding": "Operator updates show February groundbreaking, April newsletter and an undated piling paragraph. A June 11 third-party contractor-award republication led back to the primary February 25 listing, not a new June physical-work observation. No publication refresh is promoted.",
+      "selected_for_lifecycle": false,
+      "coordinates": null
+    },
+    {
+      "name": "Pau CAPBP / La Fibre Paloise / Axione",
+      "decision": "prior_hold_unchanged",
+      "prior_research_paths": [
+        "sources/research-expansion-200-europe-mena-round9-2026-09-08.json",
+        "sources/research-expansion-200-europe-mena-round10-2026-09-08.json"
+      ],
+      "source_urls": [
+        "https://www.pau.fr/actualites/un-data-center-en-construction-proximite-du-centre-technique-municipal",
+        "https://www.axione.com/souverainete-numerique-pau-construit-son-data-center-de-proximite-qui-sera-operationnel-a-lautomne-2027/"
+      ],
+      "finding": "Recognized as a prior exact-locator hold after initial bounded discovery. Government URL returned 404 in ordinary curl; no alternate client retry. Axione body was captured but supplies no new exact reusable locator. No CTM/road/office point is borrowed.",
+      "selected_for_lifecycle": false,
+      "coordinates": null
+    }
+  ],
+  "screening_notes": [
+    "Mercury MU4.3 July update belongs to already-selected MU4 campus; no separate phase admitted.",
+    "PhotonAI June RFP schedules first-site construction for Q4 2026, not an observed current build.",
+    "Kasi LOS1 June secondary reports describe transition to operational readiness, not a clean new current-build candidate. No extra admission.",
+    "Vaasa, Mougins and denied government/Google/DEQ routes were not reopened."
+  ],
+  "raw_capture_policy": "Exact saved response bodies remain in temporary directories only. Hashes and byte counts were recomputed locally. Finishes are recorded tool-completion confirmation upper bounds unless source response timestamp is separately stated. All requests were ordinary credential-free curl; no paid or restricted service used. Full third-party text or media is not redistributed.",
+  "raw_captures": [
+    {
+      "path": "/tmp/atlas-europe-round16.pzgaoN/ada-latest-news.html",
+      "bytes": 276666,
+      "sha256": "7ea73e09fcb98f1c7856b1660640f41fecd9f24fd0357fcbc5d24fee066c68a4",
+      "source_url": "https://www.adadocklands.co.uk/latest-news/",
+      "selected": false,
+      "evidence_key": null,
+      "capture_started_at": "2026-09-09T04:21:58Z",
+      "capture_finished_at": "2026-09-09T04:21:59Z",
+      "http_status": 200,
+      "hash_verified": true
+    },
+    {
+      "path": "/tmp/atlas-europe-round16.pzgaoN/besix-hainaut-jul9.html",
+      "bytes": 38389,
+      "sha256": "1c81114ab589314abc7a2e67175dd1a54ff2649a2a545d549a5dfe8f1a4c8182",
+      "source_url": "https://www.besix.com/fr/news/besix-wint-nieuw-contract-voor-grootschalig-datacenter-in-wallonie",
+      "selected": false,
+      "evidence_key": null,
+      "capture_started_at": "2026-09-09T04:21:57Z",
+      "capture_finished_at": "2026-09-09T04:21:58Z",
+      "http_status": 200,
+      "hash_verified": true
+    },
+    {
+      "path": "/tmp/atlas-europe-round16.pzgaoN/lahti-dayone-identity.html",
+      "bytes": 259702,
+      "sha256": "aac721521b065eebda7aae853d223ad20f5f7dc573e206a36bafd2d58a731593",
+      "source_url": "https://www.lahti.fi/en/news/a-e1-2-billion-data-centre-to-be-built-in-kiverio-lahti/",
+      "selected": true,
+      "evidence_key": "europe16-dayone-lahti-city-campus-identity",
+      "capture_started_at": "2026-09-09T04:12:17Z",
+      "capture_finished_at": "2026-09-09T04:13:44Z",
+      "http_status": 200,
+      "hash_verified": true
+    },
+    {
+      "path": "/tmp/atlas-europe-round16.pzgaoN/lahti-permit-register.pdf",
+      "bytes": 147430,
+      "sha256": "278579d3a5ac60972a5c87d9ad3c05928a453229358983e45449fc2ddc9da70e",
+      "source_url": "https://www.lahti.fi/app/uploads/2025/11/3393d31f-myonnetyt-luvat-lokakuu-2025.pdf",
+      "selected": true,
+      "evidence_key": "europe16-dayone-lahti-permit-address-register",
+      "capture_started_at": "2026-09-09T04:13:08Z",
+      "capture_finished_at": "2026-09-09T04:13:09Z",
+      "http_status": 200,
+      "hash_verified": true
+    },
+    {
+      "path": "/tmp/atlas-europe-round16.pzgaoN/lahti-permit.pdf",
+      "bytes": 71651,
+      "sha256": "21da28454577f698846e380d6e325ef3e3ed29af6287ee726497684882302283",
+      "source_url": "https://lahti-prod.oncloudos.com/kokous/20251180-3-400009.PDF",
+      "selected": true,
+      "evidence_key": "europe16-dayone-lahti-permit-parcel",
+      "capture_started_at": "2026-09-09T04:11:20Z",
+      "capture_finished_at": "2026-09-09T04:11:40Z",
+      "http_status": 200,
+      "hash_verified": true
+    },
+    {
+      "path": "/tmp/atlas-europe-round16.pzgaoN/mercury-helsinki-aug10.html",
+      "bytes": 58414,
+      "sha256": "adfa74b0bd9d62df233db9ed40549918f39dc79be1b12efd589da4ce33624bfb",
+      "source_url": "https://www.mercuryeng.com/2026/08/10/inside-the-role-of-an-electrical-construction-manager/",
+      "selected": false,
+      "evidence_key": null,
+      "capture_started_at": "2026-09-09T04:21:57Z",
+      "capture_finished_at": "2026-09-09T04:21:57Z",
+      "http_status": 200,
+      "hash_verified": true
+    },
+    {
+      "path": "/tmp/atlas-europe-round16.pzgaoN/mercury-helsinki-jul27.html",
+      "bytes": 56980,
+      "sha256": "78762891b1a8f1cfe2254dc98ca70baebcce3e884be69f7c312b0df9b7e75f5c",
+      "source_url": "https://www.mercuryeng.com/2026/07/27/mercurys-graduate-programme-bill-murphy/",
+      "selected": false,
+      "evidence_key": null,
+      "capture_started_at": "2026-09-09T04:21:57Z",
+      "capture_finished_at": "2026-09-09T04:21:57Z",
+      "http_status": 200,
+      "hash_verified": true
+    },
+    {
+      "path": "/tmp/atlas-europe-round16.pzgaoN/nls-lahti-parcel.json",
+      "bytes": 4670,
+      "sha256": "9e43b9729105b1baaaab1c0580c07cc1034d2555af443e52cea8430f308da962",
+      "source_url": "https://inspire-wfs.maanmittauslaitos.fi/inspire-wfs/cp/ows?service=WFS&version=2.0.0&request=GetFeature&typeNames=cp%3ACadastralParcel&outputFormat=application%2Fjson&CQL_FILTER=nationalCadastralReference%3D%2739800509660007%27",
+      "selected": true,
+      "evidence_key": "europe16-dayone-lahti-nls-reference-point",
+      "capture_started_at": "2026-09-09T04:11:20Z",
+      "capture_finished_at": "2026-09-09T04:12:14Z",
+      "http_status": 200,
+      "hash_verified": true
+    },
+    {
+      "path": "/tmp/atlas-europe-round16.pzgaoN/nls-rights.html",
+      "bytes": 38788,
+      "sha256": "73983ab9e45b3509dc8a33806bbef0ea16f935a1607c65a53a87a3a467ebfe38",
+      "source_url": "https://www.maanmittauslaitos.fi/en/opendata-licence-cc40",
+      "selected": true,
+      "evidence_key": "europe16-nls-ccby4-attribution-policy",
+      "capture_started_at": "2026-09-09T04:11:20Z",
+      "capture_finished_at": "2026-09-09T04:11:45Z",
+      "http_status": 200,
+      "hash_verified": true
+    },
+    {
+      "path": "/tmp/atlas-europe-round16.pzgaoN/nls-service.html",
+      "bytes": 64700,
+      "sha256": "a83883c5b00b134b16397d7af6e31f5f0ff76a871dcae181bf651cfa1a75d9a5",
+      "source_url": "https://www.maanmittauslaitos.fi/inspire-kyselypalvelut-wfs",
+      "selected": true,
+      "evidence_key": "europe16-nls-cadastral-service-rights",
+      "capture_started_at": "2026-09-09T04:13:09Z",
+      "capture_finished_at": "2026-09-09T04:13:44Z",
+      "http_status": 200,
+      "hash_verified": true
+    },
+    {
+      "path": "/tmp/atlas-europe-round16.pzgaoN/pau-axione-july10.html",
+      "bytes": 102797,
+      "sha256": "38871302f65b77638f78cbdaa40c6a2ac07562d6f420ab546f9d20cafb786b05",
+      "source_url": "https://www.axione.com/souverainete-numerique-pau-construit-son-data-center-de-proximite-qui-sera-operationnel-a-lautomne-2027/",
+      "selected": false,
+      "evidence_key": null,
+      "capture_started_at": "2026-09-09T04:13:10Z",
+      "capture_finished_at": "2026-09-09T04:13:44Z",
+      "http_status": 200,
+      "hash_verified": true
+    },
+    {
+      "path": "/tmp/atlas-europe-round15.WlxtK4/dayone-srv-aug11.html",
+      "bytes": 354975,
+      "sha256": "45604be6b8775bc94ef450efd8e5f8873ae17be3c7d6fc91089f9fbfeee73aeb",
+      "source_url": "https://www.srv.fi/srv-yrityksena/tyomaat/2984-lahden-datakeskus/tiedotteet/",
+      "selected": true,
+      "evidence_key": "europe16-dayone-lahti-aug11-current-build",
+      "capture_started_at": "2026-09-09T03:40:20Z",
+      "capture_finished_at": "2026-09-09T03:40:21Z",
+      "http_status": 200,
+      "hash_verified": true
+    },
+    {
+      "path": "/tmp/atlas-europe-round15.WlxtK4/dayone-srv-main.html",
+      "bytes": 355976,
+      "sha256": "76f0bae361a09ab0fe5461aca6423cda548ea5fdc86fbd84d05748bad85c66b7",
+      "source_url": "https://www.srv.fi/srv-yrityksena/tyomaat/2984-lahden-datakeskus/",
+      "selected": true,
+      "evidence_key": "europe16-dayone-lahti-srv-job2984-address",
+      "capture_started_at": "2026-09-09T03:41:15Z",
+      "capture_finished_at": "2026-09-09T03:41:16Z",
+      "http_status": 200,
+      "hash_verified": true
+    }
+  ],
+  "failed_request": {
+    "file": "pau-july3.html",
+    "url": "https://www.pau.fr/actualites/un-data-center-en-construction-proximite-du-centre-technique-municipal",
+    "http_status": 404,
+    "body_saved": false,
+    "sha256": null,
+    "capture_started_at": "2026-09-09T04:12:17Z",
+    "capture_finished_at": "2026-09-09T04:12:18Z",
+    "retry_performed": false
+  },
+  "skills_influence": "PDF skill required full visual review of permit pages 1 and 6 and permit-register page 5 before accepting the address/parcel bridge; rendered pages remain temporary.",
+  "visual_review_files": [
+    {
+      "pdf": "/tmp/atlas-europe-round16.pzgaoN/lahti-permit.pdf",
+      "pages": [
+        1,
+        6
+      ],
+      "renders": [
+        "/tmp/atlas-europe-round16.pzgaoN/lahti-permit-page1.png",
+        "/tmp/atlas-europe-round16.pzgaoN/lahti-permit-page6.png"
+      ]
+    },
+    {
+      "pdf": "/tmp/atlas-europe-round16.pzgaoN/lahti-permit-register.pdf",
+      "pages": [
+        5
+      ],
+      "renders": [
+        "/tmp/atlas-europe-round16.pzgaoN/lahti-permit-register-page5.png"
+      ]
+    }
+  ]
+}

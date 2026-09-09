@@ -730,3 +730,45 @@ and final-publication flags remain false.
 .venv/bin/python scripts/build_expansion_200_draft.py --batch fourteenth-reviewed --output-dir /absolute/new/draft-directory
 .venv/bin/python scripts/build_expansion_200_draft.py --batch fourteenth-reviewed --validate-only
 ```
+
+## Sixty-site reviewed checkpoint
+
+The [fifteenth reviewed draft](../verified_construction_core/2026-08-20-v0.18-draft-fifteenth-reviewed/README.md)
+adds DayOne's Kiveriö campus in Lahti, Finland, preserving its original campus and project keys.
+It contains 160 physical sites, 163 projects, 41 countries, 107 non-US sites and 597 evidence rows.
+This is 60 of the requested 100 additions, with 40 remaining. All 159 preceding sites, 162 projects,
+589 evidence rows and their full selected geometries are preserved. Earlier snapshots and the
+public v0.17 release remain byte-frozen.
+
+SRV's job 2984 bulletin reports current frame work on August 11 at Ilmarisentie 3. Its conflicting
+week-32 label is retained, not silently corrected; the explicit date falls in ISO week 33. The
+day-only date is normalized without inventing a publication time. End-August frame completion
+and 2027 operation remain forecasts. September retrieval and older permit dates do not refresh
+construction status.
+
+Visual PDF review joins municipal permit 398-2025-418 at Väinämöisentie 2a to the October 2025
+permit-register row at Ilmarisentie 3 through the exact same parcel 398-5-966-7. SRV and the city
+independently identify DayOne in Kiveriö. DC-A, support buildings and possible later phases count
+as one campus. The NLS cadastral WFS returns exactly one matching parcel and its own reference
+point. Independent EPSG:3067-to-WGS84 conversion and containment checks agree; neither the point
+nor its source parcel intersects any of the 159 prior selected features. This official reference
+point is a campus locator, not a recomputed centroid, building footprint, surveyed entrance or
+asserted complete campus boundary. Old road, wholesaler and regional-service coordinates remain
+rejected. NLS's explicit CC BY 4.0 terms apply only to its data, with attribution and transformation
+notice; the source point's positional accuracy remains unknown.
+
+Eight new evidence bindings have independently verified raw-body hashes and byte counts. The
+separate Google/Meta research packet preserves the Beaver Dam search-date conflict: the city
+article and linked fact sheet are from November 2025, while the original July fire-department
+account was inaccessible. Temple's July opening and Kuna's post-cutoff opening do not create new
+construction observations. Asia's newly dated SMX01, Lanzhou and Ekibastuz leads remain held for
+exact location, identity or classification checks. No held proposal changes the selected count.
+
+No roles, capacities, workloads, operating models or imagery outcomes are inferred. Imagery
+remains 10/163, and the fixed 20-project/19-agreement blind-review requirement remains incomplete.
+Objective-completion and final-publication flags remain false.
+
+```sh
+.venv/bin/python scripts/build_expansion_200_draft.py --batch fifteenth-reviewed --output-dir /absolute/new/draft-directory
+.venv/bin/python scripts/build_expansion_200_draft.py --batch fifteenth-reviewed --validate-only
+```
