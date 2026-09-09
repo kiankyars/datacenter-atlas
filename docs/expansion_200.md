@@ -1370,3 +1370,63 @@ wording and Los Teros's missing fresh authoritative observation. Denied routes r
 There are 27 additions remaining; at least four must be non-US to satisfy the 40-percent country
 ceiling at 200 sites. Imagery remains 10/176, blind review remains incomplete, and neither the
 200-site objective nor final-release readiness is complete.
+
+## Seventy-five-site reviewed checkpoint
+
+The [twenty-fifth reviewed draft](../verified_construction_core/2026-08-20-v0.18-draft-twenty-fifth-reviewed/README.md)
+adds DC BLOX Palm Coast and envia TEL's shared Datacenter Campus Leipzig. It contains
+175 physical sites, 178 projects, 43 countries, 117 non-US sites and 744 evidence rows.
+All 173 preceding sites, project rows and evidence rows remain unchanged. This is 75 of the
+requested 100 additions; 25 remain, at least three of which must be non-US under the country ceiling.
+
+Palm Coast's June 19 municipal clarification explicitly reports current construction of one
+approved building. The city's project hub identifies colocation capabilities, so the selected
+scope is a cable landing station with colocation, not an inferred hyperscale or AI facility.
+The proposed second building is excluded. The older approved plan's 34,875-square-foot total
+differs from the current statement's 33,760 square feet; the source/version discrepancy is retained
+without inventing its cause or selecting a normalized area metric.
+
+The city links that plan under 1109 Town Center Boulevard. Its Lot 7B and older 1035/0070 parent
+labels are reconciled against the current exact address object and parcel 0071, not promoted to
+separate sites. The municipal point is queried in the address layer's stored EPSG:2881
+NAD83(HARN) CRS and converted through the preserved HARN-to-WGS84 operation. The service's
+EPSG:2236 response is a different coordinate route, not the stored CRS. That earlier route and
+the server's WGS84 result remain explicitly unselected audits. The selected operation's one-metre
+accuracy is not source-feature accuracy; the campus point's actual accuracy remains unknown.
+The point is not a parcel boundary, entrance or exact construction footprint. Public GIS access
+and AS-IS scale warnings are not treated as an open-license grant; only isolated attributed facts
+and the numeric locator are redistributed, not the plan, source polygons or media.
+
+Leipzig's May 27 operator report distinguishes the ongoing fourth section in Leipzig 2 from
+the already operating first three sections. Datacenters 1 and 2 are expressly grouped as one
+campus. The contemporaneous status is not taken from the 2025 financial period, spring opening,
+network rollout or later retrieval. First-party event and directions pages bind Leipzig II to
+Leipziger Straße 116a in Taucha. The exact-address OSM building's literal Nominatim centroid
+locates the shared campus through that constituent only. It is not the fourth-section footprint,
+an official survey, the 116b office or the alternative navigation entrance. OSM contributor
+attribution and ODbL data rights remain separate from the operator's reserved-content rights.
+
+Both points were independently compared with all 173 full preceding geometries, including
+polygon holes, and each other. Palm Coast's complete source parcel was also screened; no overlap
+was found. Bounded city follow-up and operator-index successor checks found no authoritative
+completion/cancellation of the selected projects before August 20. This is not an exhaustive
+absence claim and does not advance the lifecycle reference date.
+
+The [Magadan hold](../sources/research-expansion-200-root-round28-magadan-2026-09-09.json) preserves
+July physical-work reporting without substituting a settlement, legal office, offsite substation
+or sanitary-zone polygon for campus geometry. [Asia's hold record](../sources/research-expansion-200-asia-round28-2026-09-09.json)
+retains VNET Ulanqab Phase II's recent contractor report and unresolved relationship to the older
+Bayin campus, plus Gimpo's fresh-secondary/stale-primary distinction.
+[Conapto and Pyhäjoki](../sources/research-expansion-200-europe-round28-2026-09-09.json) remain
+temporal-evidence holds; the Finnish headline/body tension is not silently resolved into a precise
+start day. These records do not add to the accepted count.
+
+The cumulative contract binds 508 source selections and 75 additions. No new roles, workloads,
+power metrics, certifications or imagery reviews are inferred. Imagery remains 10/178, and blind
+review remains a fixed 20-row sample requiring 19 agreements from the expanded population.
+The 200-site objective and final-publication gates remain incomplete.
+
+```sh
+.venv/bin/python scripts/build_expansion_200_draft.py --batch twenty-fifth-reviewed --output-dir /absolute/new/draft-directory
+.venv/bin/python scripts/build_expansion_200_draft.py --batch twenty-fifth-reviewed --validate-only
+```

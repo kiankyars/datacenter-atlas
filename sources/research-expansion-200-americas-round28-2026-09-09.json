@@ -1,0 +1,491 @@
+{
+  "schema_version": "expansion-200-americas-round28-research-1",
+  "reviewed_at": "2026-09-09",
+  "lifecycle_reference_date": "2026-08-20",
+  "physical_observation_window": [
+    "2026-05-22",
+    "2026-08-20"
+  ],
+  "research_only": true,
+  "accepted_into_core": false,
+  "baseline": {
+    "baseline_commit": "3ced5a5415a1c26c72eb1cd24003196fa3502b72",
+    "baseline_path": "verified_construction_core/2026-08-20-v0.18-draft-twenty-fourth-reviewed/sites.geojson",
+    "baseline_sha256": "1d7e2b2ed686bca230e315ae9e547b8fc2d3c4de89574c8fc5a14b491a680582",
+    "baseline_bytes": 278133,
+    "sites_compared": 173,
+    "projects_compared": 176,
+    "method": "Read every selected campus name/physical key; search prior sources, research/expansion-200 and locally available v97 entities for Palm Coast, DCB Orchid, GUMBO and 1109 Town Center. Shapely 2.1.2 intersects() compares both the selected EPSG:2881-to-WGS84 address point and the private transformed Lot 7B polygon against every full selected feature, including holes.",
+    "matched_selected_campuses": [],
+    "full_geometry_collisions": [],
+    "private_parcel_full_geometry_collisions": [],
+    "old_inventory_alias_hits": [],
+    "mutual_candidate_check": "Only one candidate proposed in this packet.",
+    "preservation": "No prior matching stable key found; one new proposed campus and one approved first-building project only. No existing source or selected feature edited."
+  },
+  "scope": "Bounded Americas research closes one new Palm Coast approved first-building campus proposal. No prior source, stable key, contract, core module, test, artifact or release is modified; admission remains a separate root-reviewed action.",
+  "proposals": [
+    {
+      "candidate": "DC BLOX Palm Coast Cable Landing Station and Colocation Campus",
+      "decision": "ready_for_independent_admission_review",
+      "proposed_physical_site_count": 1,
+      "proposed_project_count": 1,
+      "country": "United States",
+      "campus_stable_key": "curated:dc-blox-palm-coast-cls-campus",
+      "project_stable_key": "curated:dc-blox-palm-coast-cls-campus:approved-first-building-current-build",
+      "curated_path": "sources/curated-official-2026-09-09-americas-round28-palm-coast-current-build.json",
+      "geometry_proposal_path": "sources/verified-construction-core-v0.18-americas-round28-palm-coast-geometry-proposal.json",
+      "source_binding_pointer": "/source_binding_map",
+      "source_binding_count": 12,
+      "selected_status": {
+        "value": "under_construction",
+        "as_of_date": "2026-06-19",
+        "date_precision": "day",
+        "evidence_source_id": "am28-palmcoast-city-june19-build",
+        "basis": "Dated municipal present-tense statement that the approved named facility is currently being built; not a permit-date inference."
+      },
+      "selected_geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.1973193341733,
+          29.495434584291427
+        ],
+        "location_basis": "official_named_site_feature",
+        "evidence_source_id": "am28-palmcoast-city-address-point",
+        "source_object_id": 93663,
+        "source_point_id": 1601547,
+        "address": "1109 Town Center Blvd",
+        "exact_parcel_id": "05-12-31-5855-00000-0071",
+        "lot": "7B",
+        "native_source_crs": "EPSG:2881 / NAD83(HARN) Florida East US survey feet",
+        "native_source_point": [
+          593395.180339247,
+          1876493.363847576
+        ],
+        "selected_conversion": {
+          "runtime": "pyproj 3.8.0 / PROJ 9.8.1, cached offline uv environment; no repository dependency change",
+          "runtime_path_observed": "/Users/kian/.cache/uv/builds-v0/.tmpUDntbL/bin/python",
+          "reproduction_command": "uv run --no-project --offline --with shapely --with pyproj python",
+          "method": "Transformer.from_crs(2881, 4326, always_xy=True).transform(593395.180339247, 1876493.363847576)",
+          "source_crs": "EPSG:2881 / NAD83(HARN) Florida East (US survey feet); both stored layer and exact query response",
+          "target_crs": "EPSG:4326 / WGS84 with output axis order normalized to longitude, latitude",
+          "operation_description": "Inverse of SPCS83 Florida East zone (US survey foot) + NAD83(HARN) to WGS 84 (3) (with axis order normalized for visualization)",
+          "operation_pipeline": "proj=pipeline step proj=unitconvert xy_in=us-ft xy_out=m step inv proj=tmerc lat_0=24.3333333333333 lon_0=-81 k=0.999941177 x_0=200000.0001016 y_0=0 ellps=GRS80 step proj=push v_3 step proj=cart ellps=GRS80 step proj=helmert x=-0.991 y=1.9072 z=0.5129 rx=-0.0257899075194932 ry=-0.0096500989602704 rz=-0.0116599432323421 s=0 convention=coordinate_frame step inv proj=cart ellps=WGS84 step proj=pop v_3 step proj=unitconvert xy_in=rad xy_out=deg",
+          "result": [
+            -81.1973193341733,
+            29.495434584291427
+          ],
+          "operation_accuracy_metres_not_source_position_accuracy": 1,
+          "transformer_group_best_available": true,
+          "unavailable_operations": [],
+          "network_grid_download_performed": false,
+          "accuracy_caveat": "The selected transformation's one-metre operation accuracy is not a measured positional accuracy of the address feature. No feature-specific accuracy estimate exists; retained digits are computational precision only."
+        },
+        "horizontal_uncertainty_metres": null,
+        "source_accuracy": "Unknown; transformation operation accuracy is not municipal feature positional accuracy.",
+        "location_scope": "One isolated official address reference point only. No boundary, centroid, entrance or current work footprint is claimed."
+      },
+      "identity_chain": {
+        "literal_facts": [
+          "The June 19 city article identifies the DC BLOX cable landing station in Town Center as currently under construction, limited to one approved building.",
+          "The city's project hub explicitly gives colocation capabilities and links the exact approved plan under 1109 Town Center Blvd and permit 2025100821.",
+          "The older approved plan labels GUMBO, 1035 Town Center Blvd, parent parcel 0070 and the first-building site as Lot 7B; its adjoining Lot 7A is not the approved first-building site.",
+          "The current official address point at 1109 identifies parcel 0071, whose exact official legal description calls it Lot 7B. The selected stored-source HARN point lies within that parcel after explicit transformations; the service's NAD83 address response also passes a same-CRS containment cross-check."
+        ],
+        "analyst_reconciliation": "The city's current plan-link address and GIS lot/address facts reconcile an older parent-address design to the subdivided approved first-building parcel. This is an explicit cross-record association, not a claim that the June 19 article literally contains coordinates or parcel IDs.",
+        "no_new_site_for_phases": true,
+        "no_normalized_roles_or_metrics": true
+      },
+      "scope_caveats": [
+        "The city's approved CLS explicitly has colocation capabilities. No AI or hyperscale claim is selected.",
+        "One approved first building only; adjacent Lot 7A, an unapproved second building and any future expansion create no selected site or project.",
+        "The approved plan has the historical 1035/0070 parent address while the city's current download label and exact GIS point/parcel use 1109/0071 Lot 7B. This reconciliation is explicit, not silently assumed.",
+        "The older approved plan totals 34,875 square feet (34,823 main plus 52 guard) versus 33,760 in the June 19 city statement. The discrepancy's cause is unresolved; no area or other metric is normalized.",
+        "Plan approval November 12, 2025 is an approval date, not its unknown publication date or the selected construction observation.",
+        "The address layer's stored sourceSpatialReference is EPSG:2881; service/extent and earlier query response are EPSG:2236. Final selection starts from the exact 2881 source-CRS query. Earlier 2236 and server 4326 routes remain unselected coordinate audits.",
+        "Map item terms warn of generalized error, published-scale limits and survey differences. This minimal factual locator is not an open-license or site-survey claim."
+      ],
+      "successor_review": {
+        "reference_cutoff": "2026-08-20",
+        "evidence_source_ids": [
+          "am28-palmcoast-city-june19-build",
+          "am28-palmcoast-city-identity",
+          "am28-palmcoast-city-july2-successor"
+        ],
+        "finding": "The city June 19 statement establishes actual current construction. The July 2 city follow-up and its current June-record project hub retain a single approved building and future approval requirements. Bounded exact-campus searches found no authoritative completion or cancellation that supersedes the observation.",
+        "unselected_context": "County-level moratorium reporting was screened but is not treated as cancellation of this city-approved project. Search snippets and owner marketing are not selected as lifecycle evidence; no claim about legal moratorium applicability is normalized.",
+        "no_later_capture_status_refresh": true,
+        "no_second_building_admission": true
+      },
+      "roles_added": 0,
+      "capacity_observations_added": 0,
+      "workload_observations_added": 0,
+      "operating_model_observations_added": 0,
+      "imagery_reviews_added": 0
+    }
+  ],
+  "raw_captures": [
+    {
+      "source_url": "https://gis.palmcoast.gov/hosting/rest/services/External/FlaglerCountyParcels/MapServer/0/query?f=json&where=ADDRESS%20%3D%20%271109%20TOWN%20CENTER%20BLVD%27&outFields=OBJECTID%2CPT_ID%2CADDRESS%2CADDR_NUM%2CST_NAME%2CST_TYPE%2CPO_CITY%2CSTATE%2CZIPCODE%2CPARCEL_ID%2CCONF%2CStatus&returnGeometry=true&outSR=2236",
+      "raw_capture_temp_path": "/tmp/atlas-americas-round28.TxpFl3/palm-address-1109-native.json",
+      "raw_capture_bytes": 1601,
+      "sha256": "65468e0a8aa283bf78edfdac52871d9f875c8fe1fd4fdcff59ce84c281c5761b",
+      "capture_started_at": "2026-09-09T10:40:15.540Z",
+      "capture_finished_at": "2026-09-09T10:40:15.877Z",
+      "http_status": 200,
+      "effective_url": "https://gis.palmcoast.gov/hosting/rest/services/External/FlaglerCountyParcels/MapServer/0/query?f=json&where=ADDRESS%20%3D%20%271109%20TOWN%20CENTER%20BLVD%27&outFields=OBJECTID%2CPT_ID%2CADDRESS%2CADDR_NUM%2CST_NAME%2CST_TYPE%2CPO_CITY%2CSTATE%2CZIPCODE%2CPARCEL_ID%2CCONF%2CStatus&returnGeometry=true&outSR=2236",
+      "content_type": "application/json; charset=UTF-8",
+      "curl_exit": 0,
+      "content_hash_scope": "Exact content-decoded HTTP response body; not normalized text.",
+      "request_credentials_supplied": false,
+      "raw_capture_redistributed": false,
+      "selected_binding_source_id": "am28-palmcoast-city-address-2236-audit"
+    },
+    {
+      "source_url": "https://gis.palmcoast.gov/hosting/rest/services/External/FlaglerCountyParcels/MapServer/0/query?f=json&objectIds=93663&outFields=OBJECTID%2CPT_ID%2CADDRESS%2CPARCEL_ID%2CCONF%2CStatus&returnGeometry=true&outSR=4326&datumTransformation=1188",
+      "raw_capture_temp_path": "/tmp/atlas-americas-round28.TxpFl3/palm-address-93663-wgs84.json",
+      "raw_capture_bytes": 920,
+      "sha256": "adaf815a3cdb25e5070b23f6c5af9fdb0394d73a96d5494565559c8887174820",
+      "capture_started_at": "2026-09-09T10:40:40.574Z",
+      "capture_finished_at": "2026-09-09T10:40:40.912Z",
+      "http_status": 200,
+      "effective_url": "https://gis.palmcoast.gov/hosting/rest/services/External/FlaglerCountyParcels/MapServer/0/query?f=json&objectIds=93663&outFields=OBJECTID%2CPT_ID%2CADDRESS%2CPARCEL_ID%2CCONF%2CStatus&returnGeometry=true&outSR=4326&datumTransformation=1188",
+      "content_type": "application/json; charset=UTF-8",
+      "curl_exit": 0,
+      "content_hash_scope": "Exact content-decoded HTTP response body; not normalized text.",
+      "request_credentials_supplied": false,
+      "raw_capture_redistributed": false,
+      "selected_binding_source_id": null,
+      "exclusion_reason": "Server WGS84 output is explicitly not selected. Its exact internal datum operation is unresolved and the result differs from the reproducible local source-CRS conversion."
+    },
+    {
+      "source_url": "https://gis.palmcoast.gov/hosting/rest/services/External/FlaglerCountyParcels/MapServer/0?f=pjson",
+      "raw_capture_temp_path": "/tmp/atlas-americas-round28.TxpFl3/palm-address-layer.json",
+      "raw_capture_bytes": 10528,
+      "sha256": "36787e4c75e88880554f70408f687da05e6c66989503f96f10e89dc9d3f77bd2",
+      "capture_started_at": "2026-09-09T10:40:01.521Z",
+      "capture_finished_at": "2026-09-09T10:40:01.835Z",
+      "http_status": 200,
+      "effective_url": "https://gis.palmcoast.gov/hosting/rest/services/External/FlaglerCountyParcels/MapServer/0?f=pjson",
+      "content_type": "text/plain; charset=UTF-8",
+      "curl_exit": 0,
+      "content_hash_scope": "Exact content-decoded HTTP response body; not normalized text.",
+      "request_credentials_supplied": false,
+      "raw_capture_redistributed": false,
+      "selected_binding_source_id": "am28-palmcoast-city-address-layer"
+    },
+    {
+      "source_url": "https://copc-strapi-production.s3.amazonaws.com/1109_Town_Center_Blvd_Permit_2025100821_Approved_Site_Plan_a7a5b3f29c.pdf",
+      "raw_capture_temp_path": "/tmp/atlas-americas-round28.TxpFl3/palm-approved-plan.pdf",
+      "raw_capture_bytes": 1523432,
+      "sha256": "f188fdc07a3b53e655c68c1e41bbb6bdc5b34d447dbe404c46f67c0c41fdcc82",
+      "capture_started_at": "2026-09-09T10:36:29.987Z",
+      "capture_finished_at": "2026-09-09T10:36:30.873Z",
+      "http_status": 200,
+      "effective_url": "https://copc-strapi-production.s3.amazonaws.com/1109_Town_Center_Blvd_Permit_2025100821_Approved_Site_Plan_a7a5b3f29c.pdf",
+      "content_type": "application/pdf",
+      "curl_exit": 0,
+      "content_hash_scope": "Exact content-decoded HTTP response body; not normalized text.",
+      "request_credentials_supplied": false,
+      "raw_capture_redistributed": false,
+      "selected_binding_source_id": "am28-palmcoast-city-approved-plan"
+    },
+    {
+      "source_url": "https://www.palmcoast.gov/newsroom/home/details/new-gis-hub",
+      "raw_capture_temp_path": "/tmp/atlas-americas-round28.TxpFl3/palm-city-gis-announcement.html",
+      "raw_capture_bytes": 237640,
+      "sha256": "51a6c9e023384864b670894826067be4d05700da8d6378a4539154e00346298a",
+      "capture_started_at": "2026-09-09T10:38:53.772Z",
+      "capture_finished_at": "2026-09-09T10:38:54.144Z",
+      "http_status": 200,
+      "effective_url": "https://www.palmcoast.gov/newsroom/home/details/new-gis-hub",
+      "content_type": "text/html; charset=utf-8",
+      "curl_exit": 0,
+      "content_hash_scope": "Exact content-decoded HTTP response body; not normalized text.",
+      "request_credentials_supplied": false,
+      "raw_capture_redistributed": false,
+      "selected_binding_source_id": "am28-palmcoast-city-public-gis"
+    },
+    {
+      "source_url": "https://www.palmcoast.gov/cls",
+      "raw_capture_temp_path": "/tmp/atlas-americas-round28.TxpFl3/palm-city-hub.html",
+      "raw_capture_bytes": 304904,
+      "sha256": "c4c0ce06644346ac1b02924f862abcda8bdd5e5ddc1ea05843cb7db491022cb6",
+      "capture_started_at": "2026-09-09T10:36:11.109Z",
+      "capture_finished_at": "2026-09-09T10:36:11.834Z",
+      "http_status": 200,
+      "effective_url": "https://www.palmcoast.gov/cls",
+      "content_type": "text/html; charset=utf-8",
+      "curl_exit": 0,
+      "content_hash_scope": "Exact content-decoded HTTP response body; not normalized text.",
+      "request_credentials_supplied": false,
+      "raw_capture_redistributed": false,
+      "selected_binding_source_id": "am28-palmcoast-city-identity"
+    },
+    {
+      "source_url": "https://www.palmcoast.gov/newsroom/home/details/additional-resources-on-dc-blox-project",
+      "raw_capture_temp_path": "/tmp/atlas-americas-round28.TxpFl3/palm-city-july2.html",
+      "raw_capture_bytes": 237102,
+      "sha256": "a23a699864dda715be4b49b85c51d482763f2109688cc986fac9c716fb47d8e3",
+      "capture_started_at": "2026-09-09T10:38:54.229Z",
+      "capture_finished_at": "2026-09-09T10:38:54.534Z",
+      "http_status": 200,
+      "effective_url": "https://www.palmcoast.gov/newsroom/home/details/additional-resources-on-dc-blox-project",
+      "content_type": "text/html; charset=utf-8",
+      "curl_exit": 0,
+      "content_hash_scope": "Exact content-decoded HTTP response body; not normalized text.",
+      "request_credentials_supplied": false,
+      "raw_capture_redistributed": false,
+      "selected_binding_source_id": "am28-palmcoast-city-july2-successor"
+    },
+    {
+      "source_url": "https://www.palmcoast.gov/newsroom/home/details/approved-scope-of-dc-blox",
+      "raw_capture_temp_path": "/tmp/atlas-americas-round28.TxpFl3/palm-city-june19.html",
+      "raw_capture_bytes": 242852,
+      "sha256": "b2b958c725d6a7385e328a7ec2a1fcfb8b91382a086b2913a8b9e34e18de8a41",
+      "capture_started_at": "2026-09-09T10:36:10.419Z",
+      "capture_finished_at": "2026-09-09T10:36:11.016Z",
+      "http_status": 200,
+      "effective_url": "https://www.palmcoast.gov/newsroom/home/details/approved-scope-of-dc-blox",
+      "content_type": "text/html; charset=utf-8",
+      "curl_exit": 0,
+      "content_hash_scope": "Exact content-decoded HTTP response body; not normalized text.",
+      "request_credentials_supplied": false,
+      "raw_capture_redistributed": false,
+      "selected_binding_source_id": "am28-palmcoast-city-june19-build"
+    },
+    {
+      "source_url": "https://www.dcblox.com/wp-content/uploads/2026/06/Statement-for-Palm-Coast-Size-Clarification-FINAL.pdf",
+      "raw_capture_temp_path": "/tmp/atlas-americas-round28.TxpFl3/palm-owner-clarification.pdf",
+      "raw_capture_bytes": 189018,
+      "sha256": "7de798f664b7119d22d5b898f45013ed5acc39e0f6a442b2b0b1d125075c5279",
+      "capture_started_at": "2026-09-09T10:36:30.960Z",
+      "capture_finished_at": "2026-09-09T10:36:31.169Z",
+      "http_status": 200,
+      "effective_url": "https://www.dcblox.com/wp-content/uploads/2026/06/Statement-for-Palm-Coast-Size-Clarification-FINAL.pdf",
+      "content_type": "application/pdf",
+      "curl_exit": 0,
+      "content_hash_scope": "Exact content-decoded HTTP response body; not normalized text.",
+      "request_credentials_supplied": false,
+      "raw_capture_redistributed": false,
+      "selected_binding_source_id": null,
+      "exclusion_reason": "Not selected or reused after the operator's restrictive terms were inspected. The city's own single-building scope statement and city-published approved plan suffice; no owner media, plan or source prose is redistributed."
+    },
+    {
+      "source_url": "https://www.dcblox.com/data-centers/palm-coast-fl-cable-landing-station/",
+      "raw_capture_temp_path": "/tmp/atlas-americas-round28.TxpFl3/palm-owner-site.html",
+      "raw_capture_bytes": 188483,
+      "sha256": "39def2d5d9a8980a6190a1987b4f3e3a8a7cacbf0ace27bc62a8cf3d9107c05f",
+      "capture_started_at": "2026-09-09T10:36:11.921Z",
+      "capture_finished_at": "2026-09-09T10:36:12.222Z",
+      "http_status": 200,
+      "effective_url": "https://www.dcblox.com/data-centers/palm-coast-fl-cable-landing-station/",
+      "content_type": "text/html; charset=UTF-8",
+      "curl_exit": 0,
+      "content_hash_scope": "Exact content-decoded HTTP response body; not normalized text.",
+      "request_credentials_supplied": false,
+      "raw_capture_redistributed": false,
+      "selected_binding_source_id": null,
+      "exclusion_reason": "Not selected or reused after the operator's restrictive terms were inspected. The city independently supplies physical status, facility scope and identity."
+    },
+    {
+      "source_url": "https://www.dcblox.com/terms-of-use/",
+      "raw_capture_temp_path": "/tmp/atlas-americas-round28.TxpFl3/palm-owner-terms.html",
+      "raw_capture_bytes": 210248,
+      "sha256": "9893068f214381deaa7d801e370679fae6ffe4a50c088cb50b1149182e5167a2",
+      "capture_started_at": "2026-09-09T10:36:31.255Z",
+      "capture_finished_at": "2026-09-09T10:36:31.537Z",
+      "http_status": 200,
+      "effective_url": "https://www.dcblox.com/terms-of-use/",
+      "content_type": "text/html; charset=UTF-8",
+      "curl_exit": 0,
+      "content_hash_scope": "Exact content-decoded HTTP response body; not normalized text.",
+      "request_credentials_supplied": false,
+      "raw_capture_redistributed": false,
+      "selected_binding_source_id": null,
+      "exclusion_reason": "Access/reuse limitation audit only. The operator reserves broad content rights and restricts copying and downloading. No further operator fetch or reuse followed discovery; no operator source is in the acceptance binding list."
+    },
+    {
+      "source_url": "https://gis.palmcoast.gov/hosting/rest/services/External/FlaglerCountyParcels/MapServer/1/query?f=json&where=situs_num%20%3D%20%271109%27%20AND%20situs_street%20%3D%20%27TOWN%20CENTER%27&outFields=OBJECTID%2CPARCELNO%2CparcelNum%2Cfile_as_name%2Csitus_num%2Csitus_street%2Csitus_street_sufix%2Csitus_city%2Csitus_zip%2CLegal%2CGIS_TAGX%2CGIS_TAGY%2Cconfidential&returnGeometry=true&returnCentroid=true&outSR=2236",
+      "raw_capture_temp_path": "/tmp/atlas-americas-round28.TxpFl3/palm-parcel-1109-native.json",
+      "raw_capture_bytes": 1547,
+      "sha256": "cd688a1a0765aa503c10caec9e2c0e10115ded770bcd05890bef41b35851e660",
+      "capture_started_at": "2026-09-09T10:37:58.694Z",
+      "capture_finished_at": "2026-09-09T10:37:59.001Z",
+      "http_status": 200,
+      "effective_url": "https://gis.palmcoast.gov/hosting/rest/services/External/FlaglerCountyParcels/MapServer/1/query?f=json&where=situs_num%20%3D%20%271109%27%20AND%20situs_street%20%3D%20%27TOWN%20CENTER%27&outFields=OBJECTID%2CPARCELNO%2CparcelNum%2Cfile_as_name%2Csitus_num%2Csitus_street%2Csitus_street_sufix%2Csitus_city%2Csitus_zip%2CLegal%2CGIS_TAGX%2CGIS_TAGY%2Cconfidential&returnGeometry=true&returnCentroid=true&outSR=2236",
+      "content_type": "application/json; charset=UTF-8",
+      "curl_exit": 0,
+      "content_hash_scope": "Exact content-decoded HTTP response body; not normalized text.",
+      "request_credentials_supplied": false,
+      "raw_capture_redistributed": false,
+      "selected_binding_source_id": null,
+      "exclusion_reason": "Empty exact-address query used an incomplete situs_street literal lacking BLVD. It is not evidence of a missing parcel; a corrected official identity path resolved Lot 7B."
+    },
+    {
+      "source_url": "https://gis.palmcoast.gov/hosting/rest/services/External/FlaglerCountyParcels/MapServer/1/query?f=json&objectIds=54350&outFields=OBJECTID%2CPARCELNO%2Cfile_as_name%2Csitus_num%2Csitus_street%2Csitus_city%2Csitus_zip%2CLegal%2Cconfidential&returnGeometry=true&returnCentroid=true&outSR=2236",
+      "raw_capture_temp_path": "/tmp/atlas-americas-round28.TxpFl3/palm-parcel-54350-native.json",
+      "raw_capture_bytes": 2429,
+      "sha256": "29c83f7f5ce5cbed5296196a60c062a7edd3bb5ce8df7c0e33c152a1365c05b3",
+      "capture_started_at": "2026-09-09T10:38:36.776Z",
+      "capture_finished_at": "2026-09-09T10:38:37.106Z",
+      "http_status": 200,
+      "effective_url": "https://gis.palmcoast.gov/hosting/rest/services/External/FlaglerCountyParcels/MapServer/1/query?f=json&objectIds=54350&outFields=OBJECTID%2CPARCELNO%2Cfile_as_name%2Csitus_num%2Csitus_street%2Csitus_city%2Csitus_zip%2CLegal%2Cconfidential&returnGeometry=true&returnCentroid=true&outSR=2236",
+      "content_type": "application/json; charset=UTF-8",
+      "curl_exit": 0,
+      "content_hash_scope": "Exact content-decoded HTTP response body; not normalized text.",
+      "request_credentials_supplied": false,
+      "raw_capture_redistributed": false,
+      "selected_binding_source_id": "am28-palmcoast-city-lot7b"
+    },
+    {
+      "source_url": "https://gis.palmcoast.gov/hosting/rest/services/External/FlaglerCountyParcels/MapServer/1/query?f=json&where=situs_num%20%3D%20%271109%27%20OR%20file_as_name%20LIKE%20%27%25ORCHID%25%27&outFields=OBJECTID%2CPARCELNO%2CparcelNum%2Cfile_as_name%2Csitus_num%2Csitus_street%2Csitus_street_sufix%2Csitus_city%2Csitus_zip%2CLegal%2Cconfidential&returnGeometry=false",
+      "raw_capture_temp_path": "/tmp/atlas-americas-round28.TxpFl3/palm-parcel-identity-search.json",
+      "raw_capture_bytes": 5479,
+      "sha256": "f77515a0cbd0153fc6362a229b986c4d450753e6b486ab2b5466033991541246",
+      "capture_started_at": "2026-09-09T10:38:18.650Z",
+      "capture_finished_at": "2026-09-09T10:38:18.997Z",
+      "http_status": 200,
+      "effective_url": "https://gis.palmcoast.gov/hosting/rest/services/External/FlaglerCountyParcels/MapServer/1/query?f=json&where=situs_num%20%3D%20%271109%27%20OR%20file_as_name%20LIKE%20%27%25ORCHID%25%27&outFields=OBJECTID%2CPARCELNO%2CparcelNum%2Cfile_as_name%2Csitus_num%2Csitus_street%2Csitus_street_sufix%2Csitus_city%2Csitus_zip%2CLegal%2Cconfidential&returnGeometry=false",
+      "content_type": "application/json; charset=UTF-8",
+      "curl_exit": 0,
+      "content_hash_scope": "Exact content-decoded HTTP response body; not normalized text.",
+      "request_credentials_supplied": false,
+      "raw_capture_redistributed": false,
+      "selected_binding_source_id": null,
+      "exclusion_reason": "Small attribute-only discovery query returned several unrelated residential records. Their personal attributes are not copied into this research packet; no bulk records, named private individuals or unrelated properties are redistributed."
+    },
+    {
+      "source_url": "https://gis.palmcoast.gov/portal/sharing/rest/content/items/14e7221cb8224211b02185fdb1a76863?f=json",
+      "raw_capture_temp_path": "/tmp/atlas-americas-round28.TxpFl3/palm-parcel-item.json",
+      "raw_capture_bytes": 2842,
+      "sha256": "9be564e35c63d22649e0c86af1f09b686fae859e1d4424e9d8fb3b81b395d412",
+      "capture_started_at": "2026-09-09T10:38:53.410Z",
+      "capture_finished_at": "2026-09-09T10:38:53.690Z",
+      "http_status": 200,
+      "effective_url": "https://gis.palmcoast.gov/portal/sharing/rest/content/items/14e7221cb8224211b02185fdb1a76863?f=json",
+      "content_type": "application/json; charset=utf-8",
+      "curl_exit": 0,
+      "content_hash_scope": "Exact content-decoded HTTP response body; not normalized text.",
+      "request_credentials_supplied": false,
+      "raw_capture_redistributed": false,
+      "selected_binding_source_id": "am28-palmcoast-city-gis-rights"
+    },
+    {
+      "source_url": "https://gis.palmcoast.gov/hosting/rest/services/External/FlaglerCountyParcels/MapServer/1?f=pjson",
+      "raw_capture_temp_path": "/tmp/atlas-americas-round28.TxpFl3/palm-parcel-layer.json",
+      "raw_capture_bytes": 25565,
+      "sha256": "a75319352c609b502aa0d3c473d0b3483eb7d874c6d0ed5b52dfc7590536a788",
+      "capture_started_at": "2026-09-09T10:37:18.181Z",
+      "capture_finished_at": "2026-09-09T10:37:18.463Z",
+      "http_status": 200,
+      "effective_url": "https://gis.palmcoast.gov/hosting/rest/services/External/FlaglerCountyParcels/MapServer/1?f=pjson",
+      "content_type": "text/plain; charset=UTF-8",
+      "curl_exit": 0,
+      "content_hash_scope": "Exact content-decoded HTTP response body; not normalized text.",
+      "request_credentials_supplied": false,
+      "raw_capture_redistributed": false,
+      "selected_binding_source_id": "am28-palmcoast-city-parcel-layer"
+    },
+    {
+      "source_url": "https://gis.palmcoast.gov/hosting/rest/services/External/FlaglerCountyParcels/MapServer?f=pjson",
+      "raw_capture_temp_path": "/tmp/atlas-americas-round28.TxpFl3/palm-parcel-service.json",
+      "raw_capture_bytes": 4337,
+      "sha256": "ed0e0c6cef2aca99131fe3027e79c60360bc8f3d5ffc628b0b18c2856386f9f6",
+      "capture_started_at": "2026-09-09T10:37:17.792Z",
+      "capture_finished_at": "2026-09-09T10:37:18.101Z",
+      "http_status": 200,
+      "effective_url": "https://gis.palmcoast.gov/hosting/rest/services/External/FlaglerCountyParcels/MapServer?f=pjson",
+      "content_type": "text/plain; charset=UTF-8",
+      "curl_exit": 0,
+      "content_hash_scope": "Exact content-decoded HTTP response body; not normalized text.",
+      "request_credentials_supplied": false,
+      "raw_capture_redistributed": false,
+      "selected_binding_source_id": "am28-palmcoast-city-gis-service"
+    },
+    {
+      "source_url": "https://gis.palmcoast.gov/hosting/rest/services/External/FlaglerCountyParcels/MapServer/0/query?f=json&objectIds=93663&outFields=OBJECTID%2CPT_ID%2CADDRESS%2CPARCEL_ID%2CCONF%2CStatus&returnGeometry=true&outSR=2881",
+      "raw_capture_temp_path": "/tmp/atlas-americas-round28.TxpFl3/palm-address-93663-source2881.json",
+      "raw_capture_bytes": 919,
+      "sha256": "96a24d29843e2826c434a1dc1f6f567ffce274767ab0f8f950afde9070e3daad",
+      "capture_started_at": "2026-09-09T10:50:29.215Z",
+      "capture_finished_at": "2026-09-09T10:50:29.642Z",
+      "http_status": 200,
+      "effective_url": "https://gis.palmcoast.gov/hosting/rest/services/External/FlaglerCountyParcels/MapServer/0/query?f=json&objectIds=93663&outFields=OBJECTID%2CPT_ID%2CADDRESS%2CPARCEL_ID%2CCONF%2CStatus&returnGeometry=true&outSR=2881",
+      "content_type": "application/json; charset=UTF-8",
+      "curl_exit": 0,
+      "content_hash_scope": "Exact content-decoded HTTP response body; not normalized text.",
+      "request_credentials_supplied": false,
+      "raw_capture_redistributed": false,
+      "selected_binding_source_id": "am28-palmcoast-city-address-point"
+    }
+  ],
+  "verification": {
+    "raw_body_count": 18,
+    "selected_binding_count": 12,
+    "raw_sha256_and_byte_counts": "All 18 local raw bodies independently rehashed against their capture metadata; all passed.",
+    "selected_binding_closure": "One curated source plus eleven geometry/context sources; each pointer resolves exactly to its declared key and hash-bound body. Union of geometry and identity dependency IDs equals all twelve source bindings.",
+    "curated_schema_validation": "datacenter_atlas.curated_v11._parse_document passed schema 1.1. The initial legacy schema-1.0 parser invocation rejected the version as expected; correct versioned parser subsequently passed.",
+    "strict_geometry_validation": "datacenter_atlas.verified_construction_core_v018._geometry passed for the single result.",
+    "html_byte_anchors": "All retained UTF-8 byte anchors matched the exact raw slices.",
+    "pdf_visual_review": {
+      "city_plan": {
+        "pages": [
+          1
+        ],
+        "complete_selected_pages_read": true,
+        "rendered_page_path": "/tmp/atlas-americas-round28.TxpFl3/palm-approved-plan-p1.png"
+      },
+      "excluded_operator_clarification": {
+        "pages": [
+          1,
+          2
+        ],
+        "selected_for_admission": false
+      }
+    },
+    "geometry_reproduction": "pyproj 3.8.0 / PROJ 9.8.1 reproduces the selected native 2881-to-4326 point and full operation pipeline. Shapely 2.1.2 finds it inside the independently transformed exact Lot 7B polygon and no intersections with any of all 173 full baseline geometries. The private transformed parcel also has zero baseline intersections.",
+    "source_polygon_redistributed": false,
+    "all_prior_alias_scan": "No Palm Coast, DCB Orchid, GUMBO or 1109 Town Center match in prior sources/research or locally available v97 entities. No old key is replaced.",
+    "independent_review_status": "Parent and independent reviewer examined city status/scope, full plan, raw hashes, precise stored/source CRS distinction and geometric dedup. Final root acceptance is not performed by this packet."
+  },
+  "access_and_rights_stops": [
+    {
+      "url": "https://www.flaglercounty.gov/County-Services/Geographic-Information-Systems",
+      "result": "403 encountered through web reader; no direct retry or altered-route bypass performed.",
+      "effect": "The independent city-owned public GIS service supplies the selected records; no denied county page is reused."
+    },
+    {
+      "url": "https://www.dcblox.com/terms-of-use/",
+      "result": "Operator content restrictions found and retained as an exclusion record.",
+      "effect": "No selected owner body, owner coordinate, source media or future-scope assertion. City-only admission bindings."
+    }
+  ],
+  "rejected_geometry_routes": [
+    {
+      "route": "Approved-plan coordinate callouts",
+      "reason": "No explicit source CRS on the visually inspected sheet; not used for coordinate extraction."
+    },
+    {
+      "route": "City government office footer",
+      "reason": "160 Lake Avenue is unrelated to the facility."
+    },
+    {
+      "route": "Computed parcel centroid",
+      "reason": "Not needed once the exact official address point was obtained. No server-returned centroid was supplied by the parcel response."
+    },
+    {
+      "route": "Earlier service-returned EPSG:2236 and server WGS84 address values",
+      "reason": "Superseded by the stored-source EPSG:2881 point and explicit local HARN-to-WGS84 transform; numerical differences retained, not erased."
+    }
+  ],
+  "successor_discovery_only": {
+    "scope": "Exact-campus completion/cancellation and moratorium context searches; search snippets are not selected as construction evidence.",
+    "urls": [
+      "https://www.observerlocalnews.com/news/2026/jul/14/flagler-county-advances-12-month-data-center-moratorium/",
+      "https://www.flaglercountybuzz.com/2026/08/03/awards-a-34-million-beach-project-and-a-data-center-pause-what-happened-at-flagler-countys-aug-3-commission-meetings/"
+    ],
+    "finding": "County moratorium coverage was not treated as proof of a cancellation or a legal determination about the city-approved site. The selected authoritative successor context remains the city's July 2 statement and June-record hub."
+  },
+  "rights_scope": "No open licence or public-domain status is asserted. Only compact independently restated municipal project facts and one isolated official numeric address-point locator with attribution are proposed. Public access and the GIS item disclaimer are not treated as an affirmative licence grant. No source polygon, plan, map code, bulk address/parcel database, photograph or substantive source prose is redistributed."
+}
