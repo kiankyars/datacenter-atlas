@@ -1499,3 +1499,67 @@ remain incomplete.
 .venv/bin/python scripts/build_expansion_200_draft.py --batch twenty-sixth-reviewed --output-dir /absolute/new/draft-directory
 .venv/bin/python scripts/build_expansion_200_draft.py --batch twenty-sixth-reviewed --validate-only
 ```
+
+## 2026-09-09: twenty-seventh reviewed checkpoint, 181 sites
+
+The [twenty-seventh reviewed draft](../verified_construction_core/2026-08-20-v0.18-draft-twenty-seventh-reviewed/README.md)
+adds five distinct campuses: Riot Rockdale, Google Elmina, dataR Rellingen, Microsoft
+L'Ancienne-Lorette and Microsoft Lévis Charny. It contains 181 physical sites, 184 projects,
+43 countries, 121 non-US sites and 795 evidence rows. The cumulative contract binds 559
+source selections. Every preceding project, site, full geometry and evidence row is preserved.
+This is 81 of the requested 100 additions; 19 remain. The 60 US sites leave room for at most
+20 further US sites under the 40% country ceiling at 200.
+
+The lifecycle cutoff remains August 20, with physical observations from May 22 onward.
+Status, identity, geometry, source rights and imagery are reviewed independently:
+
+- [Riot Rockdale](../sources/research-expansion-200-americas-round30-riot-2026-09-09.json):
+  the August 10 issuer update explicitly puts the second AMD deployment under construction.
+  The completed initial deployment stays unselected. A participant's public court filing,
+  not a judicial finding, defines the exact facility address; the issuer independently bridges
+  the same Rockdale campus identity. The native Texas address point is transformed from
+  EPSG:3857, with unknown placement accuracy. No extra site is counted for later phases,
+  mining buildings, acquired Rhodium assets or an unrelated lease announcement.
+- [Google Elmina](../sources/research-expansion-200-asia-round30-2026-09-09.json):
+  an original interview with Google's named infrastructure representative on August 15,
+  published August 20, reports remaining construction. The office interview venue and
+  unrelated Microsoft photograph are excluded. The preserved Wikidata campus key has a
+  uniquely named CC0 point, zero coordinate references and unknown positional accuracy.
+  No claim is made that the core and shell remain unfinished; a developer's later asset
+  completion language is retained as an unselected scope caveat, with its rights unresolved.
+- [dataR Rellingen](../sources/research-expansion-200-europe-round30-2026-09-09.json):
+  the July 17 operator-hosted professional interview describes current implementation during
+  construction separately from later operating preparations. Exact interview day is unknown.
+  March's end-Q2 opening target is not an opening event. The municipality explicitly matches
+  the data center to Kellerstraße 68; native OSM node 11707884695 supplies the exact mapped
+  site-address point under ODbL. Its 2024 mapping date does not refresh physical status.
+- [Microsoft Québec](../sources/research-expansion-200-americas-round30-microsoft-quebec-2026-09-09.json):
+  the construction regulator's June 8 active-project register supplies two exact-address rows.
+  Its aggregate four-center row is excluded. L'Ancienne-Lorette uses the unsuffixed 6505
+  Yvon-Dolbec provincial record, transformed from EPSG:4617. Certified address validity is
+  not location accuracy: the source explicitly labels the point interpolated. Lévis rejects
+  the uncertain provincial locator and instead uses an interior point independently
+  reconstructed from all 13 nodes of the named OSM campus polygon. That community shape
+  is not an official boundary or work footprint, and the distinct QScale Q01 is not collapsed.
+
+All five locators and the full Lévis source polygon were independently checked against all
+176 preceding full geometries; the new sites were also checked against each other. There
+were no intersections. No locality, headquarters or unrelated adjacent project was substituted.
+Raw response hashes, byte counts, literal anchors, source enums and portable binding hashes
+are checked. Raw articles, photographs and PDFs remain temporary and are not redistributed.
+
+[DataVolt Tashkent](../sources/research-expansion-200-root-round30-datavolt-2026-09-09.json)
+remains held: June financing is not fresh physical work, and the actual construction description
+is from August 2025. Its consultant PDF also reserves third-party disclosure rights; no map
+is digitized. [Piaseczno Energetyczna](../sources/research-expansion-200-root-round30-piaseczno-2026-09-09.json)
+remains held because the municipality's preparatory-work wording concerns the separate
+water-treatment station, not the data center. No Poland site is added.
+
+No new roles, workloads, power metrics, certifications or imagery reviews are inferred.
+Imagery remains 10/184; the fixed 20-row blind review requiring 19 agreements is incomplete.
+The 200-site objective and final-publication gates remain incomplete.
+
+```sh
+.venv/bin/python scripts/build_expansion_200_draft.py --batch twenty-seventh-reviewed --output-dir /absolute/new/draft-directory
+.venv/bin/python scripts/build_expansion_200_draft.py --batch twenty-seventh-reviewed --validate-only
+```

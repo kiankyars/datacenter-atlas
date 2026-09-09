@@ -1,0 +1,743 @@
+{
+  "schema_version": "v0.18-americas-round30-microsoft-quebec-geometry-proposal-1",
+  "reviewed_at": "2026-09-09",
+  "lifecycle_reference_date": "2026-08-20",
+  "research_only": true,
+  "accepted_into_core": false,
+  "accepted_additional_sites": 0,
+  "root_review_required": true,
+  "evidence": [
+    {
+      "key": "am30-lancienne-rqa-address",
+      "kind": "government_record",
+      "title": "RQA exact unsuffixed 6505 Yvon-Dolbec address record",
+      "source_url": "https://servicescarto.mern.gouv.qc.ca/pes/rest/services/Territoire/RQA_WMS/MapServer/0/query?where=NUMERO_MUNICIPAL%3D6505%20AND%20SPECIFIQUE_ODONYME%3D%27Yvon-Dolbec%27&outFields=*&returnGeometry=true&outSR=4617&f=json",
+      "publisher": "Québec Ministère des Ressources naturelles et des Forêts",
+      "source_family": "americas_round30_microsoft_quebec",
+      "published_at": null,
+      "retrieved_at": "2026-09-09T11:54:37.589Z",
+      "license": "CC-BY-4.0",
+      "attribution": "Québec Ministère des Ressources naturelles et des Forêts",
+      "excerpt": "The province returns an exact unsuffixed site address, with a geocoded quality flag and a cadastral lot attribute; the separate 6505 A result is excluded.",
+      "content_hash": "5ce06c77a9523e6ebe7e22fc6c630a5ab1b8cf207b88b97a4dce5b1692db230a",
+      "metadata": {
+        "content_hash_scope": "Exact content-decoded HTTP response body; not normalized text.",
+        "content_hash_verification": "fetched_bytes_sha256",
+        "raw_capture_temp_path": "/tmp/atlas-americas-round30.hgEtDS/quebec-lancienne-address.json",
+        "raw_capture_bytes": 9616,
+        "capture_started_at": "2026-09-09T11:54:35.108Z",
+        "capture_finished_at": "2026-09-09T11:54:37.589Z",
+        "http_status": 200,
+        "effective_url": "https://servicescarto.mern.gouv.qc.ca/pes/rest/services/Territoire/RQA_WMS/MapServer/0/query?where=NUMERO_MUNICIPAL%3D6505%20AND%20SPECIFIQUE_ODONYME%3D%27Yvon-Dolbec%27&outFields=*&returnGeometry=true&outSR=4617&f=json",
+        "content_type": "application/json; charset=UTF-8",
+        "capture_method": "credential_free_curl_location_compressed",
+        "request_credentials_supplied": false,
+        "raw_capture_redistributed": false,
+        "lifecycle_selected": false,
+        "literal_pointer": "/features/1/attributes and /features/1/geometry; /spatialReference",
+        "source_unique_address_id": "5ea7752f8cef40a7e05358f2298e7095",
+        "source_address": "6505 Rue Yvon-Dolbec, L'Ancienne-Lorette G2E0A3",
+        "source_lot_attribute": "6123996",
+        "source_quality": "Géocodée",
+        "source_validity": "Certifiée",
+        "source_point_xy": [
+          -71.34675115599998,
+          46.79188023800003
+        ],
+        "source_crs": "EPSG:4617 / NAD83(CSRS)",
+        "response_crs": "ESRI:4140 latestWkid EPSG:4617",
+        "excluded_attribute_coordinates": "LONGITUDE/LATITUDE attributes differ slightly; selected geometry.x/y is the literal response geometry, not a mixed pair.",
+        "excluded_record": "6505 A has a suffix not present in the CCQ project address and is not selected.",
+        "source_positional_accuracy_metres": null,
+        "transformation": {
+          "method": "Transformer.from_crs(4617,4326,always_xy=True).transform(x,y)",
+          "runtime": "/Users/kian/.cache/uv/builds-v0/.tmptuQrZr/bin/python",
+          "pyproj_version": "3.8.0",
+          "proj_version": "9.8.1",
+          "operation": "NAD83(CSRS) to WGS 84 (2) (with axis order normalized for visualization)",
+          "pipeline": "+proj=pipeline +step +proj=unitconvert +xy_in=deg +xy_out=rad +step +proj=push +v_3 +step +proj=cart +ellps=GRS80 +step +proj=helmert +x=-0.991 +y=1.9072 +z=0.5129 +rx=-0.0257899075194932 +ry=-0.0096500989602704 +rz=-0.0116599432323421 +s=0 +convention=coordinate_frame +step +inv +proj=cart +ellps=WGS84 +step +proj=pop +v_3 +step +proj=unitconvert +xy_in=rad +xy_out=deg",
+          "reported_operation_accuracy_metres": 1,
+          "best_available": true,
+          "operation_accuracy_not_source_positional_accuracy": true,
+          "wgs84_point": [
+            -71.34675196270454,
+            46.79188968009724
+          ]
+        },
+        "placement_caveat": "Official guide defines Géocodée as approximate road-address-range interpolation. It is not a building rooftop, surveyed site point, parcel centroid, or active-work footprint.",
+        "source_geometry_version_date": "2026-09-01",
+        "source_geometry_dates_not_lifecycle": true,
+        "source_feature_modified_at_unix_milliseconds": 1720656757000
+      }
+    },
+    {
+      "key": "am30-rqa-layer-crs",
+      "kind": "government_record",
+      "title": "RQA address-layer schema and native NAD83(CSRS)",
+      "source_url": "https://servicescarto.mern.gouv.qc.ca/pes/rest/services/Territoire/RQA_WMS/MapServer/0?f=pjson",
+      "publisher": "Québec Ministère des Ressources naturelles et des Forêts",
+      "source_family": "americas_round30_microsoft_quebec",
+      "published_at": null,
+      "retrieved_at": "2026-09-09T11:51:23.008Z",
+      "license": "CC-BY-4.0",
+      "attribution": "Québec Ministère des Ressources naturelles et des Forêts",
+      "excerpt": "The address-layer schema declares source and response NAD83(CSRS), not WGS84, and defines the quality, address and unique identifier fields.",
+      "content_hash": "c146b02bc3e33a5d64a448893a88138782da12c11b9ff663ce26bbdc9b3fc18f",
+      "metadata": {
+        "content_hash_scope": "Exact content-decoded HTTP response body; not normalized text.",
+        "content_hash_verification": "fetched_bytes_sha256",
+        "raw_capture_temp_path": "/tmp/atlas-americas-round30.hgEtDS/quebec-rqa-layer.json",
+        "raw_capture_bytes": 14549,
+        "capture_started_at": "2026-09-09T11:51:22.426Z",
+        "capture_finished_at": "2026-09-09T11:51:23.008Z",
+        "http_status": 200,
+        "effective_url": "https://servicescarto.mern.gouv.qc.ca/pes/rest/services/Territoire/RQA_WMS/MapServer/0?f=pjson",
+        "content_type": "text/plain; charset=UTF-8",
+        "capture_method": "credential_free_curl_location_compressed",
+        "request_credentials_supplied": false,
+        "raw_capture_redistributed": false,
+        "lifecycle_selected": false,
+        "literal_pointer": "/sourceSpatialReference, /spatialReference and /fields",
+        "source_crs": "EPSG:4617",
+        "old_esri_wkid": 4140
+      }
+    },
+    {
+      "key": "am30-rqa-dataset-rights",
+      "kind": "government_record",
+      "title": "Official RQA dataset licence and coordinate-reference definition",
+      "source_url": "https://www.donneesquebec.ca/recherche/dataset/referentiel-quebecois-des-adresses",
+      "publisher": "Québec Ministère des Ressources naturelles et des Forêts",
+      "source_family": "americas_round30_microsoft_quebec",
+      "published_at": null,
+      "retrieved_at": "2026-09-09T11:54:40.802Z",
+      "license": "CC-BY-4.0",
+      "attribution": "Québec Ministère des Ressources naturelles et des Forêts",
+      "excerpt": "The dataset catalogue identifies the provincial address reference dataset, its NAD83(CSRS) coordinate system and CC BY 4.0 licence.",
+      "content_hash": "7490bb5de091c89efa04a18573ee91067e18ca48d3449ce6207b2a91fb57c84f",
+      "metadata": {
+        "content_hash_scope": "Exact content-decoded HTTP response body; not normalized text.",
+        "content_hash_verification": "fetched_bytes_sha256",
+        "raw_capture_temp_path": "/tmp/atlas-americas-round30.hgEtDS/quebec-rqa-dataset.html",
+        "raw_capture_bytes": 74953,
+        "capture_started_at": "2026-09-09T11:54:39.633Z",
+        "capture_finished_at": "2026-09-09T11:54:40.802Z",
+        "http_status": 200,
+        "effective_url": "https://www.donneesquebec.ca/recherche/dataset/referentiel-quebecois-des-adresses",
+        "content_type": "text/html; charset=utf-8",
+        "capture_method": "credential_free_curl_location_compressed",
+        "request_credentials_supplied": false,
+        "raw_capture_redistributed": false,
+        "lifecycle_selected": false,
+        "literal_pointer": "Visible Licence, Citation recommandée and EPSG4617 paragraphs.",
+        "dataset_id": "36e34a64-52dc-4fa1-9fb8-15cde1f2448f",
+        "dataset_updated_at": "2026-09-02",
+        "update_is_not_work_observation": true,
+        "licence_url": "https://www.donneesquebec.ca/licence/#cc-by",
+        "rights_scope": "CC BY 4.0 for RQA data; selected point attributed to MRNF/Données Québec. No assertion that this licences the CCQ register or Microsoft pages.",
+        "literal_byte_anchors": [
+          {
+            "literal": "Attribution (CC-BY 4.0)",
+            "byte_start_inclusive": 44819,
+            "byte_end_exclusive": 44842
+          },
+          {
+            "literal": "La projection EPSG 4617",
+            "byte_start_inclusive": 46833,
+            "byte_end_exclusive": 46856
+          }
+        ]
+      }
+    },
+    {
+      "key": "am30-rqa-guide-quality",
+      "kind": "government_record",
+      "title": "RQA guide defines geocoded and uncertain placement",
+      "source_url": "https://diffusion.mern.gouv.qc.ca/diffusion/RGQ/Vectoriel/Theme/Local/RQA/Document/Guide_d_utilisation_RQA.pdf",
+      "publisher": "Québec Ministère des Ressources naturelles et des Forêts",
+      "source_family": "americas_round30_microsoft_quebec",
+      "published_at": null,
+      "retrieved_at": "2026-09-09T11:55:18.961Z",
+      "license": "no-open-license-asserted",
+      "attribution": "Québec Ministère des Ressources naturelles et des Forêts",
+      "excerpt": "The guide defines geocoded positioning as approximate address-range interpolation; certified address validity does not establish positional accuracy.",
+      "content_hash": "e76cd159a481f3960eaa0e789d90f5209632d67b7c975e9f432399a3b89ff99a",
+      "metadata": {
+        "content_hash_scope": "Exact content-decoded HTTP response body; not normalized text.",
+        "content_hash_verification": "fetched_bytes_sha256",
+        "raw_capture_temp_path": "/tmp/atlas-americas-round30.hgEtDS/quebec-rqa-guide.pdf",
+        "raw_capture_bytes": 692427,
+        "capture_started_at": "2026-09-09T11:55:15.191Z",
+        "capture_finished_at": "2026-09-09T11:55:18.961Z",
+        "http_status": 200,
+        "effective_url": "https://diffusion.mern.gouv.qc.ca/diffusion/RGQ/Vectoriel/Theme/Local/RQA/Document/Guide_d_utilisation_RQA.pdf",
+        "content_type": "application/x-msdownload",
+        "capture_method": "credential_free_curl_location_compressed",
+        "request_credentials_supplied": false,
+        "raw_capture_redistributed": false,
+        "lifecycle_selected": false,
+        "literal_pointer": "PDF page 15, printed 10, quality/validity table.",
+        "source_pages_visually_reviewed": [
+          15
+        ],
+        "quality_definition": "Approximate position obtained by interpolating an address from the lower and upper address-range bounds of a road segment.",
+        "quality_definition_source_value": "Géocodée",
+        "rejected_levis_quality": "Incertaine",
+        "rejected_levis_quality_definition": "Position incertaine",
+        "certified_validity_not_accuracy": true
+      }
+    },
+    {
+      "key": "am30-levis-osm-named-campus",
+      "kind": "openstreetmap",
+      "title": "Named Microsoft Lévis OSM campus geometry",
+      "source_url": "https://api.openstreetmap.org/api/0.6/way/1383040174/full.json",
+      "publisher": "OpenStreetMap contributors",
+      "source_family": "americas_round30_microsoft_quebec",
+      "published_at": null,
+      "retrieved_at": "2026-09-09T11:55:58.420Z",
+      "license": "ODbL-1.0",
+      "attribution": "OpenStreetMap contributors",
+      "excerpt": "The exact preserved OSM campus key identifies the named Microsoft Lévis data-centre site. A point inside that community polygon is used only as a campus locator.",
+      "content_hash": "49547faa8e4b0f4b78e978575432f637eb88f825349e402041de4928da360a65",
+      "metadata": {
+        "content_hash_scope": "Exact content-decoded HTTP response body; not normalized text.",
+        "content_hash_verification": "fetched_bytes_sha256",
+        "raw_capture_temp_path": "/tmp/atlas-americas-round30.hgEtDS/levis-osm-way-full.json",
+        "raw_capture_bytes": 2945,
+        "capture_started_at": "2026-09-09T11:55:57.872Z",
+        "capture_finished_at": "2026-09-09T11:55:58.420Z",
+        "http_status": 200,
+        "effective_url": "https://api.openstreetmap.org/api/0.6/way/1383040174/full.json",
+        "content_type": "application/json; charset=utf-8",
+        "capture_method": "credential_free_curl_location_compressed",
+        "request_credentials_supplied": false,
+        "raw_capture_redistributed": false,
+        "lifecycle_selected": false,
+        "literal_pointer": "/elements/13 for way; /elements/0 through /elements/12 for nodes.",
+        "osm_way_id": 1383040174,
+        "osm_way_version": 1,
+        "osm_way_timestamp": "2025-05-02T18:39:54Z",
+        "osm_changeset_id": 165732728,
+        "osm_name": "Microsoft centre de données de Lévis",
+        "source_crs": "EPSG:4326 / WGS84 longitude-latitude",
+        "osm_node_order": [
+          1119579294,
+          12804653766,
+          12804653767,
+          12804653768,
+          12804653769,
+          12804653770,
+          12804653771,
+          12804653772,
+          12804653773,
+          1175923385,
+          1119579298,
+          1119579295,
+          1119579302,
+          1119579294
+        ],
+        "source_ring_lon_lat": [
+          [
+            -71.2629995,
+            46.7097724
+          ],
+          [
+            -71.2601642,
+            46.7115489
+          ],
+          [
+            -71.2557744,
+            46.7086209
+          ],
+          [
+            -71.2565306,
+            46.7081222
+          ],
+          [
+            -71.2566463,
+            46.7077454
+          ],
+          [
+            -71.2568487,
+            46.7076434
+          ],
+          [
+            -71.256952,
+            46.7074763
+          ],
+          [
+            -71.256514,
+            46.7072298
+          ],
+          [
+            -71.2547332,
+            46.7059264
+          ],
+          [
+            -71.2538968,
+            46.7052868
+          ],
+          [
+            -71.255822,
+            46.7043503
+          ],
+          [
+            -71.2620769,
+            46.7087793
+          ],
+          [
+            -71.2625168,
+            46.7094561
+          ],
+          [
+            -71.2629995,
+            46.7097724
+          ]
+        ],
+        "node_coordinate_records": [
+          {
+            "id": 1119579294,
+            "version": 1,
+            "timestamp": "2011-01-25T02:38:47Z",
+            "longitude": -71.2629995,
+            "latitude": 46.7097724
+          },
+          {
+            "id": 1119579295,
+            "version": 1,
+            "timestamp": "2011-01-25T02:38:47Z",
+            "longitude": -71.2620769,
+            "latitude": 46.7087793
+          },
+          {
+            "id": 1119579298,
+            "version": 1,
+            "timestamp": "2011-01-25T02:38:47Z",
+            "longitude": -71.255822,
+            "latitude": 46.7043503
+          },
+          {
+            "id": 1119579302,
+            "version": 1,
+            "timestamp": "2011-01-25T02:38:47Z",
+            "longitude": -71.2625168,
+            "latitude": 46.7094561
+          },
+          {
+            "id": 1175923385,
+            "version": 2,
+            "timestamp": "2025-05-02T18:39:54Z",
+            "longitude": -71.2538968,
+            "latitude": 46.7052868
+          },
+          {
+            "id": 12804653766,
+            "version": 1,
+            "timestamp": "2025-05-02T18:39:54Z",
+            "longitude": -71.2601642,
+            "latitude": 46.7115489
+          },
+          {
+            "id": 12804653767,
+            "version": 1,
+            "timestamp": "2025-05-02T18:39:54Z",
+            "longitude": -71.2557744,
+            "latitude": 46.7086209
+          },
+          {
+            "id": 12804653768,
+            "version": 1,
+            "timestamp": "2025-05-02T18:39:54Z",
+            "longitude": -71.2565306,
+            "latitude": 46.7081222
+          },
+          {
+            "id": 12804653769,
+            "version": 1,
+            "timestamp": "2025-05-02T18:39:54Z",
+            "longitude": -71.2566463,
+            "latitude": 46.7077454
+          },
+          {
+            "id": 12804653770,
+            "version": 1,
+            "timestamp": "2025-05-02T18:39:54Z",
+            "longitude": -71.2568487,
+            "latitude": 46.7076434
+          },
+          {
+            "id": 12804653771,
+            "version": 1,
+            "timestamp": "2025-05-02T18:39:54Z",
+            "longitude": -71.256952,
+            "latitude": 46.7074763
+          },
+          {
+            "id": 12804653772,
+            "version": 1,
+            "timestamp": "2025-05-02T18:39:54Z",
+            "longitude": -71.256514,
+            "latitude": 46.7072298
+          },
+          {
+            "id": 12804653773,
+            "version": 1,
+            "timestamp": "2025-05-02T18:39:54Z",
+            "longitude": -71.2547332,
+            "latitude": 46.7059264
+          }
+        ],
+        "derivation": {
+          "library": "Shapely 2.1.2",
+          "method": "Polygon(source_ring_lon_lat).representative_point()",
+          "point": [
+            -71.2587356420411,
+            46.7079338
+          ],
+          "source_polygon_valid": true,
+          "point_strictly_within_source_polygon": true,
+          "projected_area_or_distance_not_used": true
+        },
+        "source_positional_accuracy_metres": null,
+        "scope_caveat": "OSM construction/opening_date/operator tags are not lifecycle or role evidence. Community geometry is not an official parcel, permit boundary or current-work footprint. No imagery was inspected or inferred.",
+        "rejected_rqa_locator": "The independent RQA point for 2411 avenue de la Rotonde is explicitly Incertaine and is not selected; its official origin does not cure that limitation.",
+        "literal_byte_anchors": [
+          {
+            "literal": "Microsoft centre de données de Lévis",
+            "byte_start_inclusive": 2824,
+            "byte_end_exclusive": 2862
+          }
+        ]
+      }
+    },
+    {
+      "key": "am30-osm-copyright",
+      "kind": "openstreetmap",
+      "title": "OSM attribution and ODbL licence",
+      "source_url": "https://www.openstreetmap.org/copyright",
+      "publisher": "OpenStreetMap Foundation",
+      "source_family": "americas_round30_microsoft_quebec",
+      "published_at": null,
+      "retrieved_at": "2026-09-09T11:56:34.797Z",
+      "license": "ODbL-1.0",
+      "attribution": "OpenStreetMap Foundation",
+      "excerpt": "OSM requires attribution and licences its geodata under ODbL; the proposed derived campus point and reconstruction facts preserve that provenance.",
+      "content_hash": "e137b7c7edfa01ef2d2245654155001d82b10e6bee8aaa1618fa2ee148bca4d3",
+      "metadata": {
+        "content_hash_scope": "Exact content-decoded HTTP response body; not normalized text.",
+        "content_hash_verification": "fetched_bytes_sha256",
+        "raw_capture_temp_path": "/tmp/atlas-americas-round30.hgEtDS/osm-copyright.html",
+        "raw_capture_bytes": 21314,
+        "capture_started_at": "2026-09-09T11:56:34.223Z",
+        "capture_finished_at": "2026-09-09T11:56:34.797Z",
+        "http_status": 200,
+        "effective_url": "https://www.openstreetmap.org/copyright",
+        "content_type": "text/html; charset=utf-8",
+        "capture_method": "credential_free_curl_location_compressed",
+        "request_credentials_supplied": false,
+        "raw_capture_redistributed": false,
+        "lifecycle_selected": false,
+        "literal_pointer": "Copyright and License / Open Data Commons Open Database License section.",
+        "rights_scope": "OpenStreetMap geodata ODbL-1.0 with attribution. No map tiles, imagery or contributor personal profile metadata redistributed.",
+        "literal_byte_anchors": [
+          {
+            "literal": "Open Data Commons Open Database License",
+            "byte_start_inclusive": 12871,
+            "byte_end_exclusive": 12910
+          }
+        ]
+      }
+    },
+    {
+      "key": "am30-lancienne-microsoft-scope",
+      "kind": "company_disclosure",
+      "title": "Microsoft L’Ancienne-Lorette scope and bounded successor context",
+      "source_url": "https://local.microsoft.com/blog/lancienne-lorette-datacentre-construction-update/",
+      "publisher": "Microsoft",
+      "source_family": "americas_round30_microsoft_quebec",
+      "published_at": null,
+      "retrieved_at": "2026-09-09T11:54:41.394Z",
+      "license": "no-open-license-asserted",
+      "attribution": "Microsoft",
+      "excerpt": "The operator identifies its L’Ancienne-Lorette construction project and preserves an early-2027 completion forecast. Its latest April update is not a fresh in-window observation.",
+      "content_hash": "55bb263d4d52d0ddb4d62c540bb8faacab068fad8667253cc9cfe3d7117e0e86",
+      "metadata": {
+        "content_hash_scope": "Exact content-decoded HTTP response body; not normalized text.",
+        "content_hash_verification": "fetched_bytes_sha256",
+        "raw_capture_temp_path": "/tmp/atlas-americas-round30.hgEtDS/microsoft-lancienne-current.html",
+        "raw_capture_bytes": 198125,
+        "capture_started_at": "2026-09-09T11:54:40.889Z",
+        "capture_finished_at": "2026-09-09T11:54:41.394Z",
+        "http_status": 200,
+        "effective_url": "https://local.microsoft.com/blog/lancienne-lorette-datacentre-construction-update/",
+        "content_type": "text/html; charset=UTF-8",
+        "capture_method": "credential_free_curl_location_compressed",
+        "request_credentials_supplied": false,
+        "raw_capture_redistributed": false,
+        "lifecycle_selected": false,
+        "literal_pointer": "Page title, April2026 section and Construction timeline.",
+        "identity_only": true,
+        "latest_source_update_month": "2026-04",
+        "page_modified_at": "2026-05-04T22:23:49+00:00",
+        "date_semantics": "Not selected status; no retrieval-date refresh. April tests/completion of individual work items do not complete the whole campus.",
+        "successor_caveat": "Early2027 is a forecast, not a completion event; bounded searches found no whole-campus completion/cancellation through cutoff.",
+        "literal_byte_anchors": [
+          {
+            "literal": "Construction is currently anticipated to be completed by early 2027.",
+            "byte_start_inclusive": 150776,
+            "byte_end_exclusive": 150844
+          }
+        ]
+      }
+    },
+    {
+      "key": "am30-levis-microsoft-scope",
+      "kind": "company_disclosure",
+      "title": "Microsoft Lévis Charny project identity and scope",
+      "source_url": "https://local.microsoft.com/blog/levis-datacenter-project-updates/",
+      "publisher": "Microsoft",
+      "source_family": "americas_round30_microsoft_quebec",
+      "published_at": null,
+      "retrieved_at": "2026-09-09T11:54:41.972Z",
+      "license": "no-open-license-asserted",
+      "attribution": "Microsoft",
+      "excerpt": "The operator identifies its Lévis construction site in Charny. Completed generator tests and ground-replacement work do not establish completion of the campus.",
+      "content_hash": "55d7b7c536ff1aa6d5f02a15c0adec5c70992543af06b3a588b0096a38cb091c",
+      "metadata": {
+        "content_hash_scope": "Exact content-decoded HTTP response body; not normalized text.",
+        "content_hash_verification": "fetched_bytes_sha256",
+        "raw_capture_temp_path": "/tmp/atlas-americas-round30.hgEtDS/microsoft-levis-current.html",
+        "raw_capture_bytes": 200415,
+        "capture_started_at": "2026-09-09T11:54:41.480Z",
+        "capture_finished_at": "2026-09-09T11:54:41.972Z",
+        "http_status": 200,
+        "effective_url": "https://local.microsoft.com/blog/levis-datacenter-project-updates/",
+        "content_type": "text/html; charset=UTF-8",
+        "capture_method": "credential_free_curl_location_compressed",
+        "request_credentials_supplied": false,
+        "raw_capture_redistributed": false,
+        "lifecycle_selected": false,
+        "literal_pointer": "Opening paragraph, April2026 section and July2025 section.",
+        "identity_only": true,
+        "latest_source_update_month": "2026-04",
+        "page_modified_at": "2026-04-30T09:00:54+00:00",
+        "date_semantics": "Not selected status; no retrieval-date refresh or July2026 repost-based refresh of this older update.",
+        "scope_caveat": "The first-phase campus, not QScale Q01 elsewhere in Lévis. The operator's Pomerleau contractor description corroborates the OSM name/location association but no contractor role is normalized.",
+        "literal_byte_anchors": [
+          {
+            "literal": "Charny neighborhood of Lévis",
+            "byte_start_inclusive": 148116,
+            "byte_end_exclusive": 148145
+          }
+        ]
+      }
+    },
+    {
+      "key": "am30-osm-node-crs",
+      "kind": "openstreetmap",
+      "title": "OSM node coordinate reference semantics",
+      "source_url": "https://wiki.openstreetmap.org/wiki/Node",
+      "publisher": "OpenStreetMap Wiki contributors",
+      "source_family": "americas_round30_microsoft_quebec",
+      "published_at": null,
+      "retrieved_at": "2026-09-09T11:58:38.544Z",
+      "license": "CC-BY-SA-2.0",
+      "attribution": "OpenStreetMap Wiki contributors",
+      "excerpt": "OSM node documentation defines longitude and latitude coordinates in WGS84. Decimal precision does not imply survey accuracy.",
+      "content_hash": "e4a80e755fac2a22099aca877553d7156fecf25b08cddbde090cc806eb7c10d5",
+      "metadata": {
+        "content_hash_scope": "Exact content-decoded HTTP response body; not normalized text.",
+        "content_hash_verification": "fetched_bytes_sha256",
+        "raw_capture_temp_path": "/tmp/atlas-americas-round30.hgEtDS/osm-node-crs.html",
+        "raw_capture_bytes": 57930,
+        "capture_started_at": "2026-09-09T11:58:37.798Z",
+        "capture_finished_at": "2026-09-09T11:58:38.544Z",
+        "http_status": 200,
+        "effective_url": "https://wiki.openstreetmap.org/wiki/Node",
+        "content_type": "text/html; charset=UTF-8",
+        "capture_method": "credential_free_curl_location_compressed",
+        "request_credentials_supplied": false,
+        "raw_capture_redistributed": false,
+        "lifecycle_selected": false,
+        "literal_pointer": "Structure table, lat and lon rows.",
+        "source_crs": "EPSG:4326 / WGS84",
+        "no_numeric_accuracy_inference": true,
+        "literal_byte_anchors": [
+          {
+            "literal": "WGS84",
+            "byte_start_inclusive": 29862,
+            "byte_end_exclusive": 29867
+          }
+        ]
+      }
+    }
+  ],
+  "source_binding_map": [
+    {
+      "source_id": "am30-ccq-lancienne-lorette-june8-active",
+      "path": "sources/curated-official-2026-09-09-americas-round30-microsoft-lancienne-lorette-current-build.json",
+      "evidence_pointer": "/evidence/0"
+    },
+    {
+      "source_id": "am30-ccq-levis-charny-june8-active",
+      "path": "sources/curated-official-2026-09-09-americas-round30-microsoft-levis-charny-current-build.json",
+      "evidence_pointer": "/evidence/0"
+    },
+    {
+      "source_id": "am30-lancienne-rqa-address",
+      "path": "sources/verified-construction-core-v0.18-americas-round30-microsoft-quebec-geometry-proposal.json",
+      "evidence_pointer": "/evidence/0"
+    },
+    {
+      "source_id": "am30-rqa-layer-crs",
+      "path": "sources/verified-construction-core-v0.18-americas-round30-microsoft-quebec-geometry-proposal.json",
+      "evidence_pointer": "/evidence/1"
+    },
+    {
+      "source_id": "am30-rqa-dataset-rights",
+      "path": "sources/verified-construction-core-v0.18-americas-round30-microsoft-quebec-geometry-proposal.json",
+      "evidence_pointer": "/evidence/2"
+    },
+    {
+      "source_id": "am30-rqa-guide-quality",
+      "path": "sources/verified-construction-core-v0.18-americas-round30-microsoft-quebec-geometry-proposal.json",
+      "evidence_pointer": "/evidence/3"
+    },
+    {
+      "source_id": "am30-levis-osm-named-campus",
+      "path": "sources/verified-construction-core-v0.18-americas-round30-microsoft-quebec-geometry-proposal.json",
+      "evidence_pointer": "/evidence/4"
+    },
+    {
+      "source_id": "am30-osm-copyright",
+      "path": "sources/verified-construction-core-v0.18-americas-round30-microsoft-quebec-geometry-proposal.json",
+      "evidence_pointer": "/evidence/5"
+    },
+    {
+      "source_id": "am30-lancienne-microsoft-scope",
+      "path": "sources/verified-construction-core-v0.18-americas-round30-microsoft-quebec-geometry-proposal.json",
+      "evidence_pointer": "/evidence/6"
+    },
+    {
+      "source_id": "am30-levis-microsoft-scope",
+      "path": "sources/verified-construction-core-v0.18-americas-round30-microsoft-quebec-geometry-proposal.json",
+      "evidence_pointer": "/evidence/7"
+    },
+    {
+      "source_id": "am30-osm-node-crs",
+      "path": "sources/verified-construction-core-v0.18-americas-round30-microsoft-quebec-geometry-proposal.json",
+      "evidence_pointer": "/evidence/8"
+    }
+  ],
+  "results": [
+    {
+      "project_stable_key": "osm:way/1383040176:development-project",
+      "parent_campus_stable_key": "osm:way/1383040176",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.34675196270454,
+          46.79188968009724
+        ]
+      },
+      "display_anchor": {
+        "type": "Point",
+        "coordinates": [
+          -71.34675196270454,
+          46.79188968009724
+        ]
+      },
+      "geometry_source_ids": [
+        "am30-lancienne-rqa-address",
+        "am30-rqa-layer-crs",
+        "am30-rqa-dataset-rights",
+        "am30-rqa-guide-quality"
+      ],
+      "identity_source_ids": [
+        "am30-ccq-lancienne-lorette-june8-active",
+        "am30-lancienne-microsoft-scope"
+      ],
+      "location_basis": "official_named_site_feature",
+      "semantics": {
+        "geometry_source_entity_kind": "campus",
+        "geometry_derivation": "official_address_range_interpolation",
+        "geometry_method": "EPSG4617_to_EPSG4326_NAD83CSRS_to_WGS84_2",
+        "geometry_scope_class": "official_interpolated_address_reference_point",
+        "geometry_authority_class": "official_source",
+        "geometry_use_scope": "campus_locator",
+        "precision_scope": "Source-matched unsuffixed address record interpolated along a road-address range. Not an entrance, exact building, parcel centroid, or current work footprint. Exact decimal output preserves calculation only.",
+        "horizontal_uncertainty_metres": null,
+        "horizontal_uncertainty_unknown_reason": "Official source labels geometry geocoded and supplies no numeric positional accuracy. The 1m datum operation accuracy is not the much less constrained address-interpolation accuracy."
+      }
+    },
+    {
+      "project_stable_key": "osm:way/1383040174:development-project",
+      "parent_campus_stable_key": "osm:way/1383040174",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.2587356420411,
+          46.7079338
+        ]
+      },
+      "display_anchor": {
+        "type": "Point",
+        "coordinates": [
+          -71.2587356420411,
+          46.7079338
+        ]
+      },
+      "geometry_source_ids": [
+        "am30-levis-osm-named-campus",
+        "am30-osm-copyright",
+        "am30-osm-node-crs"
+      ],
+      "identity_source_ids": [
+        "am30-ccq-levis-charny-june8-active",
+        "am30-levis-microsoft-scope"
+      ],
+      "location_basis": "community_named_site_feature",
+      "semantics": {
+        "geometry_source_entity_kind": "campus",
+        "geometry_derivation": "point_on_named_community_polygon",
+        "geometry_method": "Shapely_Polygon_representative_point",
+        "geometry_scope_class": "named_community_site_locator",
+        "geometry_authority_class": "community_source",
+        "geometry_use_scope": "campus_locator",
+        "precision_scope": "Interior representative point of an explicitly named OSM Microsoft campus polygon. Not official boundary, current work footprint or surveyed position.",
+        "horizontal_uncertainty_metres": null,
+        "horizontal_uncertainty_unknown_reason": "OSM mapping accuracy is not quantified; node decimal precision does not establish positional accuracy."
+      }
+    }
+  ],
+  "distinctness_review": {
+    "baseline_commit": "ac0b9d228e65b3b7dbe495e3f32a38c3c614a9aa",
+    "baseline_path": "verified_construction_core/2026-08-20-v0.18-draft-twenty-sixth-reviewed/sites.geojson",
+    "baseline_sha256": "deeb8342a892ee5e62a658e961c65242ba1095de55cb221688f25b3de61866db",
+    "baseline_bytes": 281301,
+    "sites_compared": 176,
+    "all_names_keys_reviewed": true,
+    "full_geometry_collisions": [],
+    "levis_full_source_polygon_collisions": [],
+    "mutual_candidate_intersections": false,
+    "method": "Shapely2.1.2 intersects against every full selected geometry, including holes; Lévis source polygon also checked, not only display point.",
+    "preservation": "Both original OSM campus and development-project stable keys retained. All old source files unchanged; former April status rows are not selected. Two geographically separate campuses; QScale Q01 is a distinct selected operator/site. Riot Rockdale is disjoint from both."
+  },
+  "successor_review": {
+    "reference_cutoff": "2026-08-20",
+    "source_ids": [
+      "am30-lancienne-microsoft-scope",
+      "am30-levis-microsoft-scope"
+    ],
+    "searches": [
+      "site.local.microsoft.com L’Ancienne-Lorette 2026 completed",
+      "site.local.microsoft.com Lévis 2026 completed",
+      "Microsoft 6505 2026",
+      "Microsoft 2411 Rotonde"
+    ],
+    "finding": "No authoritative whole-campus completion or cancellation found through cutoff. Latest operator pages retain April2026 observations; early2027/fall2026 wording is forecast. A July16 local report paraphrases the April Lévis update and is not used to refresh status.",
+    "scope_caveat": "CCQ's specific June8 active-project rows provide the only selected current status. Its aggregate four-centre row is excluded."
+  },
+  "rights_scope": "RQA address point is CC BY4 with Québec MRNF/Données Québec attribution; OSM point is ODbL1 with OpenStreetMap attribution. Separate CCQ/Microsoft compact facts carry no-open-license-asserted. No raw page, PDF, map tile, media, financial quantity, bulk address database, role or capacity is redistributed."
+}
