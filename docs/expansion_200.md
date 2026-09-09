@@ -877,3 +877,29 @@ Objective-completion and final-publication flags remain false. At least 12 of th
 .venv/bin/python scripts/build_expansion_200_draft.py --batch seventeenth-reviewed --output-dir /absolute/new/draft-directory
 .venv/bin/python scripts/build_expansion_200_draft.py --batch seventeenth-reviewed --validate-only
 ```
+
+## Round 19 research checkpoint: no additional admissions
+
+The selected cohort remains 162 sites and 165 projects. Six research/locator packets preserve
+the next evidence gates without creating another reviewed draft or changing frozen inputs.
+
+The [Kenya locator review](../sources/research-expansion-200-africa-round19-nxtra-nbo1-locator-2026-09-09.json)
+reproduces Nxtra's exact operator-authored Tatu City point and NB01/NBO1 alias link. This closes
+the locator gate, not lifecycle. The [separate interview review](../sources/research-expansion-200-africa-round19-nxtra-2026-09-09.json)
+binds the original podcast feed and a bounded local automated transcription; its executive
+answer discusses future services, not physical progress. No acoustic certification or imagery
+outcome is claimed. The earlier openly syndicated CEO report remains eligible for authority
+and unique-campus association review; a verbatim-only rule is not imposed. Hidden paywalled
+article text is excluded.
+
+The [India review](../sources/research-expansion-200-india-round19-2026-09-09.json) preserves Rai's
+existing-shell versus conversion versus future-greenfield distinction and adds a historical
+government TP-1/SEZ identity record. Current physical-work meaning and the exact mapped-feature
+bridge remain unresolved. The [Europe review](../sources/research-expansion-200-europe-round19-2026-09-09.json)
+retains Alcalá's dated issuer construction statement but rejects the Cisneros substation parcel:
+the government plan associates that infrastructure with Nabiax, not a Coravel campus locator.
+The [Asia review](../sources/research-expansion-200-asia-round19-2026-09-09.json) keeps Qingyang's
+unlocated project, STT Johor's financing-only update and Obayashi's unnamed construction trial held.
+
+No roles, capacities, workloads, construction dates or sites are added. The 200-site goal remains
+active with 38 sites outstanding; final-release imagery and blind-review gates remain open.

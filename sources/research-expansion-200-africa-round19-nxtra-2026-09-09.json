@@ -1,0 +1,255 @@
+{
+  "schema_version": "expansion-200-africa-round19-research-1",
+  "reviewed_at": "2026-09-09",
+  "decision": "hold_current_authoritative_physical_observation",
+  "admission_ready_count": 0,
+  "baseline": {
+    "commit": "2227eb59ac601311ff36ca49e8ec3816673c4dce",
+    "sites": 162,
+    "projects": 165,
+    "countries": 42,
+    "non_us_sites": 108,
+    "evidence": 618,
+    "path": "verified_construction_core/2026-08-20-v0.18-draft-seventeenth-reviewed/sites.geojson",
+    "sha256": "7e8d40f2f4e067bbaf3d15856736c664e6520a8409a3b862db3c2d124fb9c7b4"
+  },
+  "lifecycle_contract": {
+    "as_of_date": "2026-08-20",
+    "observation_start": "2026-05-22",
+    "observation_end": "2026-08-20",
+    "one_site_per_physical_campus": true,
+    "changed": false
+  },
+  "candidate": {
+    "name": "Nxtra Tatu City NB01 / NBO1, Kenya",
+    "country": "Kenya",
+    "campus_stable_key": "curated:nxtra-tatu-city-kenya-data-center",
+    "project_stable_key": "curated:nxtra-tatu-city-kenya-data-center:current-facility-build",
+    "stable_key_basis": "Exact existing July 19 curated campus and project keys independently checked by root; no new alias key introduced.",
+    "selected_status": null,
+    "selected_status_date": null,
+    "selected_geometry": null,
+    "normalized_roles": {},
+    "normalized_capacities": [],
+    "normalized_workloads": [],
+    "imagery_review": false
+  },
+  "inherited_research": {
+    "path": "sources/research-expansion-200-africa-round7-nxtra-2026-09-08.json",
+    "scope": "The earlier openly syndicated TNX/Standard report explicitly attributes ongoing construction to Airtel Kenya's CEO, but root authority adjudication was left open. This turn does not represent that old body as a new source or transfer the Nigeria-only Q1 transcript statement to Kenya."
+  },
+  "new_findings": [
+    {
+      "source_tag": "podcast-aug5.html",
+      "publisher": "Moses Kemibaro",
+      "published_at": "2026-08-05",
+      "authority": "Original interviewer's own account of his interview with Airtel Kenya Managing Director Djibril Tobe, not an operator release.",
+      "pointer": "Article title/date and opening three paragraphs; section 'Nxtra & Airtel’s Move Into B2B Infrastructure'; embedded episode links.",
+      "finding": "The host describes the Tatu City development as under construction. His article distinguishes the interview from the August 3 product launch. The direct remarks summarized in the data-center section concern future hosting and business services; the host's narrative is not a literal executive construction quotation.",
+      "date_caveat": "Publication is August 5. The exact interview day is not independently established. Q1 2027 commissioning is a forecast; the different July 2027 target in other event reports is not treated as completion or construction proof.",
+      "selected_for_lifecycle": false
+    },
+    {
+      "source_tag": "podcast-rss.xml",
+      "publisher": "Moses Kemibaro via Spotify for Creators / Anchor",
+      "pointer": "Item with itunes:episode 193 and guid a55a9117-7be2-495e-9d50-62f70c1c4847",
+      "published_at": "2026-08-05T18:13:11Z",
+      "episode_title": "Episode 193 - “This Is Just The Beginning”: Inside Djibril Tobe’s Airtel Kenya Growth Playbook",
+      "episode_guid": "a55a9117-7be2-495e-9d50-62f70c1c4847",
+      "episode_duration": "00:27:49",
+      "enclosure_bytes": 26713442,
+      "episode_link": "https://podcasters.spotify.com/pod/show/moseskemibaro/episodes/Episode-193---This-Is-Just-The-Beginning-Inside-Djibril-Tobes-Airtel-Kenya-Growth-Playbook-e3n1524",
+      "finding": "The public publisher feed binds title, episode number, publication timestamp and exact audio enclosure. Published chapter marks locate the data-center discussion; these are navigation hints, not audited spoken-word timestamps.",
+      "selected_for_lifecycle": false
+    },
+    {
+      "source_tag": "episode193.mp3",
+      "publisher": "Moses Kemibaro via publisher RSS enclosure",
+      "pointer": "Local review window 1390–1650 seconds, covering the host's data-center question, executive answer and closing conversation.",
+      "finding": "Root read every segment of the local automated transcription. The host asks about the data center being developed; the executive describes future B2B hosting, local data processing and potential customers. No explicit executive statement of ongoing physical construction was identified in this window. This is not evidence that construction is absent.",
+      "selected_for_lifecycle": false,
+      "review_scope": "Only the bounded 260-second window was transcribed and text-reviewed. No full-episode acoustic review, human listening certification, diarization or publisher-approved transcript is claimed.",
+      "role_guardrail": "Potential customer discussions do not establish tenant/customer roles, contracts, AI deployments, capacity or operating status."
+    },
+    {
+      "source_tag": "airtel-kenya-about.html",
+      "publisher": "Airtel Kenya",
+      "pointer": "Complete HTML response body and linked main JavaScript bundle.",
+      "finding": "The captured page is a frontend shell. Search-rendered leadership text was not reproduced in this body or linked main bundle, so neither capture independently verifies the named executive biography. No private API, account or protected endpoint was used.",
+      "selected_for_identity": false,
+      "selected_for_lifecycle": false
+    },
+    {
+      "source_tag": "original-standard-aug4.html",
+      "publisher": "The Standard",
+      "pointer": "Visible article header/lead/photo and subscription block; JSON-LD access classification.",
+      "finding": "A normal public request returned HTTP 200, but subsequent inspection revealed subscription/paywall classification. Hidden full structured article text is not selected as lifecycle evidence. No restriction was removed and no alternative client was used to defeat the paywall.",
+      "selected_for_lifecycle": false,
+      "access_gate": "stop_hidden_full_text_not_selected"
+    }
+  ],
+  "audio_derivation": {
+    "source_tag": "episode193.mp3",
+    "source_sha256": "eb149bd448cc8a89a8c1c33493981fadaac084b4afea7280fb5c6eefd389f837",
+    "clip": {
+      "raw_local_path": "/tmp/atlas-africa-round19.xT8RCY/episode193-nxtra-1390-1650.wav",
+      "bytes": 8320078,
+      "sha256": "378a9d5d33ed25847151909c7a66e065122b18cda40535129a7cbc7a706667f4",
+      "start_seconds": 1390,
+      "end_seconds": 1650,
+      "duration_seconds": 260,
+      "sample_rate_hz": 16000,
+      "channels": 1,
+      "codec": "pcm_s16le",
+      "command": "ffmpeg -nostdin -hide_banner -loglevel error -n -ss 00:23:10 -i episode193.mp3 -t 00:04:20 -ar 16000 -ac 1 episode193-nxtra-1390-1650.wav"
+    },
+    "transcript": {
+      "raw_local_path": "/tmp/atlas-africa-round19.xT8RCY/nxtra-turbo.json",
+      "bytes": 154503,
+      "sha256": "5392c9a2f76292bc47980a9086fb95771f8a1604b1a83d6500aa549b2c7a025b",
+      "model": "mlx-community/whisper-large-v3-turbo",
+      "mlx_whisper_version": "0.4.3",
+      "language": "en",
+      "temperature": 0,
+      "condition_on_previous_text": false,
+      "word_timestamps": true,
+      "elapsed_seconds": 22.97654891014099,
+      "source_offset_seconds": 1390,
+      "caveat": "Automated local ASR with visible errors in proper names and phrases. Not suitable for selecting exact quoted words without independent acoustic validation. No transcript text redistributed."
+    },
+    "local_only": true,
+    "paid_compute": false
+  },
+  "access_notes": [
+    {
+      "url": "https://www.youtube.com/embed/htGrgbrXCik",
+      "outcome": "Web embed fetch throttled. Stopped without YouTube retry, alternate client or subtitle request."
+    },
+    {
+      "url": "https://anchor.fm/s/6c93c08/podcast/rss",
+      "outcome": "Separate openly distributed publisher podcast feed supplied its own public audio enclosure. No YouTube content extraction, account, paywall or login was used."
+    }
+  ],
+  "raw_captures": [
+    {
+      "tag": "podcast-aug5.html",
+      "source_url": "https://moseskemibaro.com/2026/08/05/new-podcast-this-is-just-the-beginning-inside-djibril-tobes-airtel-kenya-growth-playbook/",
+      "raw_local_path": "/tmp/atlas-africa-round19.xT8RCY/podcast-aug5.html",
+      "capture_started_at": "2026-09-09T05:27:19.658Z",
+      "capture_finished_at": "2026-09-09T05:27:20.463Z",
+      "returncode": 0,
+      "http_status": 200,
+      "effective_url": "https://moseskemibaro.com/2026/08/05/new-podcast-this-is-just-the-beginning-inside-djibril-tobes-airtel-kenya-growth-playbook/",
+      "content_type": "text/html; charset=UTF-8",
+      "bytes": 143776,
+      "sha256": "d8e46f3890cfdbb3c1f78b0048a47ea662458c671496a5e7ab273a5e18356f0e",
+      "request_credentials_supplied": false,
+      "capture_method": "credential_free_curl_fail_location_compressed",
+      "stderr": "",
+      "raw_capture_redistributed": false,
+      "selected_for_lifecycle": false
+    },
+    {
+      "tag": "podcast-rss.xml",
+      "source_url": "https://anchor.fm/s/6c93c08/podcast/rss",
+      "raw_local_path": "/tmp/atlas-africa-round19.xT8RCY/podcast-rss.xml",
+      "capture_started_at": "2026-09-09T05:27:34.888Z",
+      "capture_finished_at": "2026-09-09T05:27:35.260Z",
+      "returncode": 0,
+      "http_status": 200,
+      "effective_url": "https://anchor.fm/s/6c93c08/podcast/rss",
+      "content_type": "application/rss+xml; charset=utf-8",
+      "bytes": 1338415,
+      "sha256": "52f8f729ae4cf159befce533540f270650d1e3365d122f500130ce15cfdda02f",
+      "request_credentials_supplied": false,
+      "capture_method": "credential_free_curl_fail_location_compressed",
+      "stderr": "",
+      "raw_capture_redistributed": false,
+      "selected_for_lifecycle": false
+    },
+    {
+      "tag": "episode193.mp3",
+      "source_url": "https://anchor.fm/s/6c93c08/podcast/play/123818500/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-7-5%2F429286386-44100-2-762bc7554fd1e.mp3",
+      "raw_local_path": "/tmp/atlas-africa-round19.xT8RCY/episode193.mp3",
+      "capture_started_at": "2026-09-09T05:28:00.347Z",
+      "capture_finished_at": "2026-09-09T05:28:03.249Z",
+      "returncode": 0,
+      "http_status": 200,
+      "effective_url": "https://d3ctxlq1ktw2nl.cloudfront.net/staging/2026-7-5/429286386-44100-2-762bc7554fd1e.mp3",
+      "content_type": "audio/mpeg",
+      "bytes": 26713442,
+      "sha256": "eb149bd448cc8a89a8c1c33493981fadaac084b4afea7280fb5c6eefd389f837",
+      "request_credentials_supplied": false,
+      "capture_method": "credential_free_curl_fail_location_compressed",
+      "stderr": "",
+      "raw_capture_redistributed": false,
+      "selected_for_lifecycle": false
+    },
+    {
+      "tag": "airtel-kenya-about.html",
+      "source_url": "https://www.airtelkenya.com/aboutus",
+      "raw_local_path": "/tmp/atlas-africa-round19.xT8RCY/airtel-kenya-about.html",
+      "capture_started_at": "2026-09-09T05:29:47.408Z",
+      "capture_finished_at": "2026-09-09T05:29:48.541Z",
+      "returncode": 0,
+      "http_status": 200,
+      "effective_url": "https://www.airtelkenya.com/aboutus",
+      "content_type": "text/html",
+      "bytes": 6526,
+      "sha256": "83f5a0115ae51ecfb2c3f15199ca02dbfc6f7c0ec2a2ce24d5aa26d3f3336910",
+      "request_credentials_supplied": false,
+      "capture_method": "credential_free_curl_fail_location_compressed",
+      "stderr": "",
+      "raw_capture_redistributed": false,
+      "selected_for_lifecycle": false
+    },
+    {
+      "tag": "airtel-kenya-main.js",
+      "source_url": "https://www.airtelkenya.com/static/js/main.51cc9aa3.js",
+      "raw_local_path": "/tmp/atlas-africa-round19.xT8RCY/airtel-kenya-main.js",
+      "capture_started_at": "2026-09-09T05:31:37.802Z",
+      "capture_finished_at": "2026-09-09T05:31:39.402Z",
+      "returncode": 0,
+      "http_status": 200,
+      "effective_url": "https://www.airtelkenya.com/static/js/main.51cc9aa3.js",
+      "content_type": "application/javascript",
+      "bytes": 448075,
+      "sha256": "eb5aace789f20bf2bfd2e15a0514d0c64b2ad992cd9038e216ec934b27c911fc",
+      "request_credentials_supplied": false,
+      "capture_method": "credential_free_curl_fail_location_compressed",
+      "stderr": "",
+      "raw_capture_redistributed": false,
+      "selected_for_lifecycle": false
+    },
+    {
+      "tag": "original-standard-aug4.html",
+      "source_url": "https://www.standardmedia.co.ke/business/article/2001554458/airtel-goes-big-with-data-centre-to-be-ready-by-july-2027",
+      "raw_local_path": "/tmp/atlas-africa-round19.xT8RCY/original-standard-aug4.html",
+      "capture_started_at": "2026-09-09T05:30:30.834Z",
+      "capture_finished_at": "2026-09-09T05:30:31.154Z",
+      "returncode": 0,
+      "http_status": 200,
+      "effective_url": "https://www.standardmedia.co.ke/business/article/2001554458/airtel-goes-big-with-data-centre-to-be-ready-by-july-2027",
+      "content_type": "text/html; charset=UTF-8",
+      "bytes": 226064,
+      "sha256": "8e4d2454eac48df95375988d93d8408e5305ffbc40de68041518bb559b314386",
+      "request_credentials_supplied": false,
+      "capture_method": "credential_free_curl_fail_location_compressed",
+      "stderr": "",
+      "raw_capture_redistributed": false,
+      "selected_for_lifecycle": false
+    }
+  ],
+  "independent_review_addendum": {
+    "reviewer": "nextdc_round7",
+    "original_report_assessment": "The preserved openly syndicated TNX body is credible explicitly attributed executive speech, not unattributed publicity. The acceptance contract does not impose a universal verbatim-quote requirement. However, that report does not literally name Nxtra or Tatu City; executive authority and the unique-campus identity association need to be documented independently before admission.",
+    "audio_assessment": "Independent text review agrees that the bounded local ASR does not establish an executive physical-work statement. Neither review claims acoustic or speaker certification.",
+    "date_scope": "August 4 is the original report date; July 2027 and the podcast article's Q1 2027 are differing forecasts, not status observations or verified completion dates.",
+    "original_report_pointer": "/tmp/atlas-africa-round7.WdvLKt/kenya-interview.html:1276",
+    "geometry_handoff": "sources/research-expansion-200-africa-round19-nxtra-nbo1-locator-2026-09-09.json",
+    "no_admission": true
+  },
+  "remaining_gate": "First document the original reported executive statement's authority and its unique association with the named Tatu City campus, using the existing primary portfolio and verified locator. If that cannot be closed, require a genuinely new fresh authoritative named physical-work source. A verbatim-only rule is not imposed. Do not repeat this episode transcription, hidden paywalled-text route, stale 2025 groundbreaking, generic expected opening or Nigeria-only transcript.",
+  "preservation": "No admission, central core, frozen draft, contract, role, capacity, workload or imagery state changed. Only compact research metadata authored; full HTML, code, RSS, audio and ASR transcript remain temporary and untracked.",
+  "rights": "No open publisher-content licence asserted. Public podcast availability permits the ordinary access used here but is not a licence to redistribute the recording or full transcript. Only compact restated findings, provenance, hashes and exact source identifiers are retained."
+}

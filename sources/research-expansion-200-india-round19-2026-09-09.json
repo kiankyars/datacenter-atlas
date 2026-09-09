@@ -1,0 +1,447 @@
+{
+  "schema_version": "1.0",
+  "research_date": "2026-09-09",
+  "lane": "india-round19-anant-raj",
+  "decision": "hold_no_admission",
+  "ready_candidates": 0,
+  "held_candidates": 3,
+  "scope": "Bounded primary-source review of Anant Raj Manesar, Rai and Panchkula only. No curated or strict geometry proposal; no central changes or admissions.",
+  "acceptance_window": {
+    "reference_date": "2026-08-20",
+    "physical_observation_start": "2026-05-22",
+    "physical_observation_end": "2026-08-20",
+    "publication_does_not_establish_onset": true
+  },
+  "baseline_review": {
+    "path": "verified_construction_core/2026-08-20-v0.18-draft-seventeenth-reviewed/sites.geojson",
+    "bytes": 265292,
+    "sha256": "7e8d40f2f4e067bbaf3d15856736c664e6520a8409a3b862db3c2d124fb9c7b4",
+    "physical_sites": 162,
+    "review": "Read all 162 names, physical-site stable keys and countries. No selected Anant Raj / Ashok Cloud / Rai / Manesar / Panchkula campus identified. No admission-quality spatial or full alias dedup claimed because locator identity is unresolved.",
+    "v97_path": "releases/2026-07-22-open-seed-v97/entities.csv",
+    "v97_bytes": 1076359,
+    "v97_sha256": "7950a4e871d4afd0fd877e6e4f3ba9f9cbc1ffd664a611bc036896fbdba46fa1",
+    "prior_inventory_search": "Case-insensitive rg of Anant, Panchkula, Manesar through sources and v97 entities.csv returned no match. No prior candidate key located under these names; provisional research keys only."
+  },
+  "key_primary_evidence": [
+    {
+      "capture_id": "investor-aug11-complete.pdf",
+      "authority": "Issuer-hosted signed exchange filing, discovered in issuer investors page public embedded document list. Not a broker summary or an independently authenticated stock-exchange copy.",
+      "document_date": "2026-08-11",
+      "document_reference": "ARL/CS/13593",
+      "signatory": "Neeraj Kumar, Company Secretary, A55302",
+      "pages": 42,
+      "visually_reviewed_full_pages": [
+        1,
+        2,
+        3,
+        13,
+        26,
+        27,
+        35
+      ],
+      "source_discovery_binding": {
+        "capture_id": "issuer-investors.html",
+        "record_id": 918,
+        "parent_id": 316,
+        "title": "Intimation_Investor_Presentation_11082026",
+        "created_at": "2026-08-11T12:11:32.215Z",
+        "note": "Embedded issuer record points exactly to selected blob URL. A second indexed copy, record 919, was not needed or fetched."
+      },
+      "status_scope": "The current August presentation reports Rai work commenced for an initial 20 MW in an existing building. Whether this sufficiently asserts current physical work rather than reiterating a historical commencement remains open for root adjudication; no exact work-onset date or June 30 observation assigned.",
+      "visual_caveats": "Page 27 has photographic-looking building material with screener.in watermarks. It is not used as independent imagery or physical progress proof; underlying image date and provenance are unverified. Page 3 explicitly disclaims map scale and accuracy. No slide map is selected as geometry.",
+      "extracted_text_path": "/tmp/atlas-india-round19.JNRruP/investor-aug11.txt",
+      "extracted_text_bytes": 62054,
+      "extracted_text_sha256": "86bf78e5c9aae02f0ed1d40be1b8204567a910aa2cc00a9963d0bcbbf3914a87",
+      "extract_method": "pdftotext -layout; extraction only navigates; selected full pages visually inspected"
+    },
+    {
+      "capture_id": "issuer-aug8-results.pdf",
+      "document_date": "2026-08-08",
+      "period_ended": "2026-06-30",
+      "pages": 15,
+      "visually_reviewed_full_pages": [
+        1,
+        2,
+        3,
+        4,
+        11,
+        12
+      ],
+      "result": "Issuer quarterly financial results do not resolve site-specific work. Full extracted text screened; no Rai token found. Notes describe Indian data/cloud infrastructure in aggregate, expenditure and proposed reorganization, none selected as physical construction.",
+      "scope_limit": "Other nine pages were text-screened but not fully visually reviewed; no claim of full visual document review."
+    },
+    {
+      "capture_id": "issuer-july21.pdf",
+      "document_date": "2026-07-21",
+      "pages": 4,
+      "visually_reviewed_full_pages": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "result": "Demerger press release does not name Rai, Manesar or Panchkula current works. Supports only proposed restructuring, not completed legal transfer or construction. No useful additional status fact."
+    }
+  ],
+  "candidates": [
+    {
+      "candidate_key": "hold:anant-raj-rai-data-center-campus",
+      "country": "India",
+      "name": "Anant Raj Rai Data Center Campus",
+      "decision": "hold_status_semantics_and_exact_locator_identity",
+      "physical_source": {
+        "capture_id": "investor-aug11-complete.pdf",
+        "pdf_page": 27,
+        "printed_slide": 26,
+        "short_literal": "Work commenced for 20 MW",
+        "date": "2026-08-11",
+        "date_semantics": "Dated issuer report, not a dated construction-start event. The row is under Potential Capacity and separate from Future Plan. Current physical-build interpretation requires review."
+      },
+      "scope": "Initial 20 MW conversion within the existing building; exclude the future separate 100 MW greenfield plan and do not select 200 MW as active construction.",
+      "identity_and_locator": {
+        "issuer_site_capture": "rai-project.html",
+        "issuer_site_name": "Anant Raj Trade Center",
+        "address": "Plot No. TP-1, HSIIDC Ethnic City, Sector 38, Rai, Haryana 131029",
+        "address_pointer": "Public structured-data PostalAddress in the issuer project HTML; exact street literal at UTF-8 byte 6974.",
+        "site_scope": "Issuer describes a 25-acre commercial property and completed Phase I office space. That completion is not proof the separate data-center conversion is complete; office and retrofit scopes must remain distinguished.",
+        "community_capture": "rai-osm.json",
+        "community_object": "way/296497708",
+        "community_object_version": 2,
+        "community_object_timestamp": "2025-04-06T16:55:33Z",
+        "community_name": "Anant Raj NeXtech The SEZ",
+        "community_building_tag": "yes",
+        "community_result_count": 1,
+        "geometry_status": "Not selected. Exact returned building geometry is retained only in temporary raw source. Name is plausible but NeXtech-to-Trade-Center/data-center alias is not yet primary-verified; OSM object has no address/operator/ref tags. No invented center, geocoded address or map illustration used.",
+        "crs_review": "Source has lat/lon fields; formal OSM WGS84 coordinate documentation not captured in this bounded pass. No output GeoJSON or transform created.",
+        "rights_review": "Overpass response explicitly attributes OpenStreetMap and ODbL. Full licence/CRS capture and source-bound identity review remain necessary for a geometry proposal. Issuer facts may be narrowly restated with attribution; no open issuer licence asserted.",
+        "positional_accuracy_metres": null,
+        "spatial_dedup_completed": false
+      },
+      "completion_successor_review": "Bounded search for Rai August 2026 completion/commissioning/cancellation found no selected authoritative successor. Current issuer commercial page states completed office space and ready-to-move existing Phase I. No complete post-report issuer/contractor successor review is claimed.",
+      "remaining_gates": [
+        "Root adjudication of August report's current physical-work meaning versus historical commencement wording; no invented exact onset or June 30 observation.",
+        "Primary bridge between the exact Rai TP-1 property, Rai data-center work and OSM NeXtech feature, or a cleaner exact official/operator point.",
+        "Rights/CRS source capture, precise locator scope and all-162 spatial/alias dedup, followed by completion/cancellation successor review."
+      ],
+      "next_action": "Use captured issuer address and exact OSM object to seek a primary naming/parcel bridge; independently read August 11 page 27 and determine whether an additional dated physical-work source is needed. Do not repeat denied BSE/PDF routes."
+    },
+    {
+      "candidate_key": "hold:anant-raj-manesar-data-center-expansion",
+      "country": "India",
+      "name": "Anant Raj Manesar Data Center Campus",
+      "decision": "hold_no_explicit_new_physical_work",
+      "evidence": {
+        "capture_id": "investor-aug11-complete.pdf",
+        "pdf_pages": [
+          13,
+          26,
+          35
+        ],
+        "summary": "21 MW is operational. Ongoing colocation/cloud expansion and initialization of AI services do not identify physical construction. Further incremental capacity is future-planned. No active additional hall/buildout is selected."
+      },
+      "excluded_scope": "Operating 21 MW and forecast expansion are not construction additions.",
+      "geometry_review": "Not pursued because physical-work gate remains unresolved. Registered-office CP-1 on filing cover must not automatically stand in for construction location.",
+      "next_action": "Require a fresh named physical expansion or fit-out observation, separating installed IT/services from infrastructure works, before reviewing a precise campus locator."
+    },
+    {
+      "candidate_key": "hold:anant-raj-panchkula-data-center-expansion",
+      "country": "India",
+      "name": "Anant Raj Panchkula Data Center Campus",
+      "decision": "hold_operating_initial_phase_future_greenfield",
+      "evidence": {
+        "capture_id": "investor-aug11-complete.pdf",
+        "pdf_pages": [
+          13,
+          26,
+          35
+        ],
+        "summary": "7 MW is operational; additional cloud-service integration is advanced. The 50 MW greenfield scope is envisaged on available land, not explicitly being physically built."
+      },
+      "excluded_scope": "Completed/operational 7 MW and proposed 50 MW greenfield expansion remain excluded.",
+      "geometry_review": "Not pursued because no eligible physical work identified.",
+      "next_action": "Only reopen for explicit fresh physical works on an additional non-operating phase; generic cloud rollout, targets and land availability are insufficient."
+    }
+  ],
+  "discovery_and_access_caveats": [
+    {
+      "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=7b3cf886-7a1d-4250-80fa-57d49521f681.pdf",
+      "outcome": "Web returned HTTP 403; no retry or alternate BSE path attempted. Issuer's own independently discovered document URL was used.",
+      "raw_capture": null
+    },
+    {
+      "url": "https://bazaarwatch.com/announcement/60065/anant-raj-limited-investor-presentation",
+      "capture_id": "bazaar-discovery.html",
+      "outcome": "Discovery index and limited document text only. AI summary excluded. PDF link redirected to an unsafe/non-retryable S3 URL in web tool; no download retry or workaround attempted."
+    },
+    {
+      "capture_id": "investor-aug11.pdf",
+      "outcome": "Initial issuer download timed out at 30 seconds after partial bytes. Not a denial. Partial PDF excluded and unhashed; one separately named full retry with 60-second limit succeeded at 25 seconds. Only complete file selected."
+    },
+    {
+      "url": "https://anantrajcloud.com/news",
+      "capture_id": "cloud-news.html",
+      "outcome": "Search index exposed undated Rai construction wording, but direct web and raw fetch returned only the frontend shell, identical to homepage. Raw main bundle does not contain site-specific Rai text. Search-only body is not selected as dated status, and no date invented. No private or authenticated API calls made."
+    },
+    {
+      "url": "https://anantrajltd.com/localities/rai-haryana/",
+      "outcome": "Not relied upon: similar-looking domain authority unverified. Captured official issuer disclaimer identifies its own domain and warns of imitations."
+    },
+    {
+      "url": "https://mapcarta.com/W93076075",
+      "outcome": "Discovery of nearby named OSM building only; industrial-area center rejected. Directory coordinates and approximate DC Atlas point were not selected."
+    },
+    {
+      "outcome": "Annual 2025, Jan 2026 and May 20 2026 construction descriptions surfaced in search. All are stale for current physical observation; no global header/crawl date used to refresh them. They warn that commencement predates August, not that work began August 11."
+    }
+  ],
+  "rights_and_safe_scope": {
+    "tracked_material": "Only compact restated facts, record identifiers, provenance and short literal pointers. No raw PDFs, source photographs, screenshots, app bundle or bulk GIS data distributed.",
+    "issuer_licence": "No open licence asserted. Copyright notice and explicit issuer disclaimer captured. A narrow factual address is not automatically barred merely because the site is copyrighted; publication review remains conditional.",
+    "source_images": "Temporary visual page inspections only; no Atlas independent imagery claim.",
+    "no_paid_apis": true,
+    "no_credentials_supplied": true,
+    "no_external_writes": true,
+    "no_denial_bypass": true,
+    "no_admission": true
+  },
+  "raw_captures": [
+    {
+      "capture_id": "sez-board-2008.pdf",
+      "source_url": "https://sezindia.gov.in/sites/default/files/board_of_approval/files/58Final%20minutes%20of%2022nd%20BoA%20held%20on%2025th%20Feb%202008.pdf",
+      "raw_local_path": "/tmp/atlas-india-round19-review.tgzBQd/sez-board-2008.pdf",
+      "retrieved_at": "2026-09-09T05:31:03.407Z",
+      "capture_started_at": "2026-09-09T05:30:54.493Z",
+      "http_status": 200,
+      "content_type": "application/pdf",
+      "bytes": 180507,
+      "sha256": "4da3bf8f3eef68cbc83d15d2bbf354e3464c53c74e8bb7f9f582a4c17b838ccd",
+      "request_credentials_supplied": false,
+      "capture_method": "credential_free_curl_fail_location_compressed",
+      "metadata_path": "/tmp/atlas-india-round19-review.tgzBQd/sez-board-2008.pdf.metadata.json"
+    },
+    {
+      "capture_id": "bazaar-discovery.html",
+      "source_url": "https://bazaarwatch.com/announcement/60065/anant-raj-limited-investor-presentation",
+      "raw_local_path": "/tmp/atlas-india-round19.JNRruP/bazaar-discovery.html",
+      "retrieved_at": "2026-09-09T05:15:55.660Z",
+      "capture_started_at": "2026-09-09T05:15:54.484Z",
+      "http_status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 51385,
+      "sha256": "975a59d957af556275ddda88a0fc05a69ecca500a155833472b139a746848306",
+      "request_credentials_supplied": false
+    },
+    {
+      "capture_id": "cloud-app.js",
+      "source_url": "https://anantrajcloud.com/main.536eb30847fa8f9d.js",
+      "raw_local_path": "/tmp/atlas-india-round19.JNRruP/cloud-app.js",
+      "retrieved_at": "2026-09-09T05:19:08.867Z",
+      "capture_started_at": "2026-09-09T05:19:04.005Z",
+      "http_status": 200,
+      "content_type": "application/javascript",
+      "bytes": 1073556,
+      "sha256": "1d96d1dc2e9e81906a896f5aade7b4140ccbe741be012787d476a31d5dec8838",
+      "request_credentials_supplied": false
+    },
+    {
+      "capture_id": "cloud-home.html",
+      "source_url": "https://anantrajcloud.com/",
+      "raw_local_path": "/tmp/atlas-india-round19.JNRruP/cloud-home.html",
+      "retrieved_at": "2026-09-09T05:16:39.749Z",
+      "capture_started_at": "2026-09-09T05:16:38.479Z",
+      "http_status": 200,
+      "content_type": "text/html",
+      "bytes": 23706,
+      "sha256": "27f22318ce01e4d1458100f31faa52168acf6bdb89cff31f653faa60d980e46f",
+      "request_credentials_supplied": false
+    },
+    {
+      "capture_id": "cloud-news.html",
+      "source_url": "https://anantrajcloud.com/news",
+      "raw_local_path": "/tmp/atlas-india-round19.JNRruP/cloud-news.html",
+      "retrieved_at": "2026-09-09T05:20:06.624Z",
+      "capture_started_at": "2026-09-09T05:20:05.339Z",
+      "http_status": 200,
+      "content_type": "text/html",
+      "bytes": 23706,
+      "sha256": "27f22318ce01e4d1458100f31faa52168acf6bdb89cff31f653faa60d980e46f",
+      "request_credentials_supplied": false
+    },
+    {
+      "capture_id": "investor-aug11-complete.pdf",
+      "source_url": "https://blob.anantrajlimited.com/anantraj/1786450285723-Intimation_Investor_Presentation_11082026.pdf",
+      "raw_local_path": "/tmp/atlas-india-round19.JNRruP/investor-aug11-complete.pdf",
+      "retrieved_at": "2026-09-09T05:17:35.419Z",
+      "capture_started_at": "2026-09-09T05:17:10.368Z",
+      "http_status": 200,
+      "content_type": "application/pdf",
+      "bytes": 11329270,
+      "sha256": "ca275e4bb0cc4cbd1566e4874090e16a096495b6bdb6157a5b75da47237f5570",
+      "request_credentials_supplied": false
+    },
+    {
+      "capture_id": "issuer-aug8-results.pdf",
+      "source_url": "https://blob.anantrajlimited.com/anantraj/1786194464920-August%208,%202026-Outcome%20of%20Board%20Meeting.pdf",
+      "raw_local_path": "/tmp/atlas-india-round19.JNRruP/issuer-aug8-results.pdf",
+      "retrieved_at": "2026-09-09T05:22:26.216Z",
+      "capture_started_at": "2026-09-09T05:21:46.803Z",
+      "http_status": 200,
+      "content_type": "application/pdf",
+      "bytes": 17222435,
+      "sha256": "9e61cf0cb055d8697f9dca2d0966d0f4c69b271d2776216810f9303a08fbe3a3",
+      "request_credentials_supplied": false
+    },
+    {
+      "capture_id": "issuer-commercial.html",
+      "source_url": "https://www.anantrajlimited.com/commercial",
+      "raw_local_path": "/tmp/atlas-india-round19.JNRruP/issuer-commercial.html",
+      "retrieved_at": "2026-09-09T05:19:35.574Z",
+      "capture_started_at": "2026-09-09T05:19:34.420Z",
+      "http_status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 87446,
+      "sha256": "ac20e0ff6b7584a373670e82805da768627450f07929928e7e0b1955ffde028f",
+      "request_credentials_supplied": false
+    },
+    {
+      "capture_id": "issuer-disclaimer.html",
+      "source_url": "https://www.anantrajlimited.com/disclaimer",
+      "raw_local_path": "/tmp/atlas-india-round19.JNRruP/issuer-disclaimer.html",
+      "retrieved_at": "2026-09-09T05:21:58.143Z",
+      "capture_started_at": "2026-09-09T05:21:56.997Z",
+      "http_status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 23498,
+      "sha256": "193a615d1b26c48e6169df69e2f0e213ae8125f24e2888af18959d61643f4c0e",
+      "request_credentials_supplied": false
+    },
+    {
+      "capture_id": "issuer-home.html",
+      "source_url": "https://www.anantrajlimited.com",
+      "raw_local_path": "/tmp/atlas-india-round19.JNRruP/issuer-home.html",
+      "retrieved_at": "2026-09-09T05:15:54.431Z",
+      "capture_started_at": "2026-09-09T05:15:52.593Z",
+      "http_status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 287890,
+      "sha256": "2aa59103e295fbd3b71c2c98002dd2b9fc20e6f17c16b5250a07299dda67c9e4",
+      "request_credentials_supplied": false
+    },
+    {
+      "capture_id": "issuer-investors.html",
+      "source_url": "https://www.anantrajlimited.com/investors",
+      "raw_local_path": "/tmp/atlas-india-round19.JNRruP/issuer-investors.html",
+      "retrieved_at": "2026-09-09T05:16:13.904Z",
+      "capture_started_at": "2026-09-09T05:16:12.127Z",
+      "http_status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 379407,
+      "sha256": "a6240b95fdd6743e69eb16185a919c226a62d4c4042d2f8ea69a603cb6eb8bc4",
+      "request_credentials_supplied": false
+    },
+    {
+      "capture_id": "issuer-july21.pdf",
+      "source_url": "https://blob.anantrajlimited.com/anantraj/1784717107483-Press%20Release_21072026.pdf",
+      "raw_local_path": "/tmp/atlas-india-round19.JNRruP/issuer-july21.pdf",
+      "retrieved_at": "2026-09-09T05:20:26.745Z",
+      "capture_started_at": "2026-09-09T05:20:21.879Z",
+      "http_status": 200,
+      "content_type": "application/pdf",
+      "bytes": 1076021,
+      "sha256": "ec20ee9bc46f66668ca9ce350bf9fb7f0ef87d3c557aaa759826e8e0f421f771",
+      "request_credentials_supplied": false
+    },
+    {
+      "capture_id": "rai-osm.json",
+      "source_url": "https://overpass-api.de/api/interpreter?data=%5Bout%3Ajson%5D%5Btimeout%3A25%5D%3Bnwr%5B%22name%22~%22Anant%7CNeXtech%22%2Ci%5D(28.90%2C77.06%2C28.96%2C77.14)%3Bout%20meta%20geom%3B",
+      "raw_local_path": "/tmp/atlas-india-round19.JNRruP/rai-osm.json",
+      "retrieved_at": "2026-09-09T05:21:38.874Z",
+      "capture_started_at": "2026-09-09T05:21:32.227Z",
+      "http_status": 200,
+      "content_type": "application/json",
+      "bytes": 3349,
+      "sha256": "7eb4f6a0ab9302298f1e5a7e82e9705fe78c492ea0c3f1f257e4eab8d232ce11",
+      "request_credentials_supplied": false
+    },
+    {
+      "capture_id": "rai-project.html",
+      "source_url": "https://www.anantrajlimited.com/commercial/anant-raj-trade-center",
+      "raw_local_path": "/tmp/atlas-india-round19.JNRruP/rai-project.html",
+      "retrieved_at": "2026-09-09T05:20:21.799Z",
+      "capture_started_at": "2026-09-09T05:20:20.513Z",
+      "http_status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 55986,
+      "sha256": "6aa42cf5ae9da9556f9a919bf422af1009c36e1a79d8f2bbe4299282ed099304",
+      "request_credentials_supplied": false
+    },
+    {
+      "capture_id": "screener-index.html",
+      "source_url": "https://www.screener.in/company/ANANTRAJ/?order=asc",
+      "raw_local_path": "/tmp/atlas-india-round19.JNRruP/screener-index.html",
+      "retrieved_at": "2026-09-09T05:15:45.845Z",
+      "capture_started_at": "2026-09-09T05:15:44.657Z",
+      "http_status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 190676,
+      "sha256": "3b124edee96847581b5d0977e9668e1869b4e532a8c890279ad4afe0c20bf1d2",
+      "request_credentials_supplied": false
+    }
+  ],
+  "independent_followup_addendum": {
+    "date": "2026-09-09",
+    "scope": "Bounded follow-up on Rai status semantics and one exact TP-1/SEZ identity route. Original source descriptions and three holds preserved; no admission, date upgrade, selected locator or central change.",
+    "prior_packet_bytes": 21409,
+    "prior_packet_sha256": "52060a78dcb4a8560a4f9c50ab5365830d65e216d2e8c06bd3eebb4a2358534c",
+    "visual_review": {
+      "issuer_capture_id": "investor-aug11-complete.pdf",
+      "independent_reviewer": "new_regions_round7",
+      "independent_full_pdf_pages": [22, 23, 24, 25, 26, 27, 28],
+      "root_reported_full_pdf_pages": [1, 3, 26, 27],
+      "root_review_attribution": "Root reported these complete-page visual inspections directly; this addendum records that review without claiming the independent reviewer performed root's actions.",
+      "new_government_capture_id": "sez-board-2008.pdf",
+      "independent_government_full_pdf_pages": [3],
+      "method": "Complete Poppler-rendered pages visually inspected, not selected text fragments or partial crops. No additional whole-document visual review claimed."
+    },
+    "status_semantics": {
+      "source_pointer": "Issuer PDF page 27, printed slide 26, Rai Potential Capacity and separate Future Plan blocks; adjacent page 26, printed slide 25, Manesar and Panchkula blocks.",
+      "assessment": "In the full infrastructure section, the Rai wording is more consistent with work to convert or fit out an existing building for 20 MW of data-center capacity than with a cloud-service rollout alone. This is a contextual inference, not a literal description of a particular construction trade or activity.",
+      "supporting_context": "Rai distinguishes a ready building capable of 100 MW IT load, commenced work for an initial 20 MW, and a separate future 100 MW greenfield plan. The adjacent Manesar and Panchkula blocks explicitly describe operational capacity and cloud/colocation service expansion. The general vendor page is not attributed as proof of work at Rai.",
+      "temporal_limit": "The signed August 11 disclosure repeats a historical commencement formulation under Potential Capacity. It does not unambiguously state when physical work was observed or affirm contemporaneous ongoing physical work. Publication is not onset; no June 30 physical-observation date is assigned. Earlier stale discovery references warn against treating August 11 as a new start, but are not selected as current status.",
+      "acceptance_standard_preserved": "A fresh authoritative general statement that a named project is under construction can qualify without a named civil, MEP or installation milestone. Missing trade-level detail is not a universal additional gate. The unresolved issue here is whether this particular historical work-commenced wording establishes current physical work within the fixed window, together with the independent locator-identity gap.",
+      "completion_scope": "Ready building and completed office-space descriptions concern the existing shell/property and do not alone establish completion of the proposed 20 MW data-center conversion. Conversely, no definite current-build status is inferred merely from the absence of a completion notice.",
+      "excluded_phase": "The separate future 100 MW greenfield plan and the 200 MW headline are not selected as active construction.",
+      "decision": "Hold preserved pending root adjudication or a clear fresh authoritative current physical-work statement; no date or status upgrade."
+    },
+    "new_exact_identity_route": {
+      "capture_id": "sez-board-2008.pdf",
+      "authority": "Government of India SEZ Board of Approval minutes hosted by sezindia.gov.in.",
+      "document_date": "2008-02-25",
+      "document_title": "Minutes of the 22nd meeting of the SEZ Board of Approval held on 25th February, 2008",
+      "pdf_page": 3,
+      "item": 8,
+      "finding": "The Board granted formal approval for Anant Raj Industries Ltd's 10-hectare IT/ITES SEZ at TP-1, Rai, Sonepat, Haryana, recording developer possession and State Government recommendation.",
+      "identity_scope": "Corroborates the historical exact plot/SEZ relationship alongside the current issuer Trade Center page's TP-1 address. The minutes do not supply the NeXtech trade name, current data-center identity or a geographic point/polygon, and do not by themselves establish legal continuity from the historical company name.",
+      "locator_result": "The primary bridge to OSM way 296497708 named Anant Raj NeXtech The SEZ remains unresolved. No coordinate, geocoded substitute, administrative center, illustrated map or inferred campus boundary selected.",
+      "rights_and_crs": "Only a narrow restatement of official documentary facts is tracked; no open government-document licence asserted. This document supplies no geographic geometry, so no CRS, numerical positional accuracy or spatial permission is inferred from it.",
+      "temporal_scope": "Historical approval/identity evidence only, never current physical construction evidence.",
+      "route_closure": "Bounded route yielded corroborating TP-1/SEZ identity but did not close the exact mapped-campus bridge. Stop rather than repeat exhausted or denied routes."
+    },
+    "remaining_gates": [
+      "Resolve whether the selected August disclosure establishes current physical work, or obtain a clear fresh authoritative statement for the named Rai project. A generic current under-construction statement is eligible; no named construction trade is mandatory.",
+      "Verify the exact Rai data-center-to-TP-1-to-NeXtech feature identity, or obtain a cleaner exact official/operator locator with source-specific rights, CRS and scope.",
+      "Only after those gates close, complete source-specific locator review, all-selected-site spatial/alias dedup and bounded completion/cancellation successor review. No such completion is claimed in this follow-up."
+    ],
+    "safe_scope": "No further broad discovery, denied-route retries, paid APIs, credentials, external writes, raw-source redistribution, curated/geometry proposal, core edits, tests or commits."
+  },
+  "validation": {
+    "successful_raw_captures": 15,
+    "hashes_and_bytes_rechecked": true,
+    "pdf_visual_review": "Complete relevant pages specified individually above. No partial crops used.",
+    "research_only": true,
+    "curated_schema_validation": "not_applicable_no_curated_proposal",
+    "strict_geometry_validation": "not_applicable_no_geometry_proposal",
+    "core_tests": "not_run_no_core_changes"
+  }
+}
