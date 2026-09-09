@@ -1430,3 +1430,72 @@ The 200-site objective and final-publication gates remain incomplete.
 .venv/bin/python scripts/build_expansion_200_draft.py --batch twenty-fifth-reviewed --output-dir /absolute/new/draft-directory
 .venv/bin/python scripts/build_expansion_200_draft.py --batch twenty-fifth-reviewed --validate-only
 ```
+
+## Seventy-six-site reviewed checkpoint
+
+The [twenty-sixth reviewed draft](../verified_construction_core/2026-08-20-v0.18-draft-twenty-sixth-reviewed/README.md)
+adds one DataBank Red Oak campus. It contains 176 physical sites, 179 projects, 43 countries,
+117 non-US sites and 757 evidence rows. The cumulative contract binds 521 source selections.
+All 175 preceding sites, project rows and evidence rows remain unchanged.
+This is 76 of the requested 100 additions; 24 remain, at least three of which must be non-US
+under the country ceiling. The public v0.17 release and every earlier checkpoint remain frozen.
+
+DataBank's July 26 company report describes actual current construction across its first phase.
+The selected project is therefore `curated:databank-red-oak-campus:first-phase-current-build`,
+not a newly dated assertion for each of DFW9 through DFW12. The existing campus key is preserved;
+the older individual-building research rows remain unselected and unchanged. The source's July 29
+metadata edit and September retrieval do not advance the July 26 current-status report date.
+DFW9's expected August opening is a forecast, not an actual completion of the first phase or campus.
+Yates's undated DFW10 case study corroborates constituent identity; its described trade sequencing
+and 2027 completion target do not become dated July 26 events.
+
+DFW10 supplies the campus locator, not the selected project's entire physical scope. The operator's
+facility and campus pages give 3330 Batchler Road; the county's exact Site address point matches
+that address. Its landmark and parcel-ID fields are null, so the operator-address bridge is
+essential and no literal county DataBank label is asserted. The point is not a building survey,
+entrance, parcel or campus boundary, centroid, or observed active-work footprint.
+
+The county layer and response identify stored EPSG:2276 NAD83 Texas North Central coordinates,
+not the map-service extent's Web Mercator CRS. Independent PROJ conversion reproduces the
+selected WGS84 point. The transformation operation's four-metre accuracy is not the point's
+horizontal accuracy, which remains unknown. Independent comparison with all 175 full preceding
+geometries, including polygon holes, found no intersection; full identity review found no
+represented-campus alias. Building cards, later phases and the substation add no other site.
+
+The county's copyright notice and blank map-item license field are retained separately from
+DataBank's protected-content terms. No open licence or permission to reproduce the source works
+is asserted. The draft distributes only minimal independently restated facts and the isolated
+numeric address-point locator with attribution, not source prose, documents, maps, databases,
+photographs, logos or raw captures. Public access is not treated as a redistribution grant.
+
+The [Americas review](../sources/research-expansion-200-americas-round29-2026-09-09.json) records
+the closed Red Oak route and four holds: anonymous Fort Worth district-level construction,
+Snyder's incomplete capture and locator bridge, proposed Trumbull upgrades, and Culpeper's stale
+underlying visit date. None adds to the accepted count. Bounded official successor checks found
+no first-phase or whole-campus completion or cancellation before August 20; this is not an
+exhaustive absence claim.
+
+The [PA14 hold](../sources/research-expansion-200-europe-round29-2026-09-09.json) retains Icade's
+June 10 powered-shell construction observation, the exact government PA14 address, and the
+separately open-licensed BAN locator. Icade's explicit information-reuse restriction remains an
+unresolved source-reuse gate in this checkpoint. The broad shell observation is not silently
+assigned to an older Equinix phase key, and the full surrounding parcel is not a campus boundary.
+
+The [MEEZA status review](../sources/research-expansion-200-root-round29-meeza-2026-09-09.json)
+preserves fresh MV6 and MV8 construction reporting without substituting an office, QSTP locality
+or MV2 address for an exact project locator. The independent
+[identity supplement](../sources/research-expansion-200-asia-round29-meeza-identity-2026-09-09.json)
+finds adjacency to MV2, not a verified same-plot statement; unresolved words in the issuer's
+transcript are not strengthened using a third-party transcription. MV4's delivered expansion
+and MV7's tender-stage design are excluded. [Asia's other holds](../sources/research-expansion-200-asia-round29-2026-09-09.json)
+preserve the difference between investment or programme announcements and observed physical work.
+
+No new roles, workloads, power metrics, certifications or independent imagery reviews are
+inferred. Imagery remains 10/179, and blind review remains a fixed 20-row sample requiring
+19 agreements from the expanded population. The 200-site objective and final-publication gates
+remain incomplete.
+
+```sh
+.venv/bin/python scripts/build_expansion_200_draft.py --batch twenty-sixth-reviewed --output-dir /absolute/new/draft-directory
+.venv/bin/python scripts/build_expansion_200_draft.py --batch twenty-sixth-reviewed --validate-only
+```
