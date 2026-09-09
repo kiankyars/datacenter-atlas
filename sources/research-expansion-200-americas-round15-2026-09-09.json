@@ -1,0 +1,358 @@
+{
+  "schema_version": "expansion-200-americas-round15-research-1",
+  "researched_at": "2026-09-09",
+  "lifecycle_reference_date": "2026-08-20",
+  "physical_observation_window": [
+    "2026-05-22",
+    "2026-08-20"
+  ],
+  "baseline_commit": "8ce84de",
+  "baseline_sites": 156,
+  "baseline_projects": 159,
+  "research_only": true,
+  "accepted_additional_sites": 0,
+  "raw_capture_directory": "/tmp/atlas-americas-round15.QP021h",
+  "ready_proposals": [
+    {
+      "campus_stable_key": "epoch-ai:data-center:dd4bfd7c-adf8-5312-9a4a-f2728f1fe791",
+      "project_stable_key": "epoch-ai:data-center:dd4bfd7c-adf8-5312-9a4a-f2728f1fe791:cb-5-current-build",
+      "decision": "proposed_ready_root_review_required",
+      "curated_path": "sources/curated-official-2026-09-09-americas-round15-lake-mariner-cb5-current-build.json",
+      "geometry_path": "sources/verified-construction-core-v0.18-americas-round15-lake-mariner-geometry-proposal.json",
+      "physical_date": "2026-08-05",
+      "locator_gate": "Exact CB-5 address in issuer legal definition plus one Census match with explicit NAD83 transformation.",
+      "successor_gate": "Delivered CB-3 excluded. Current Aug5 work and future CB-5 delivery explicit; no completion/cancellation found through cutoff in bounded primary index and searches.",
+      "dedup": {
+        "baseline_commit": "8ce84de",
+        "baseline_path": "verified_construction_core/2026-08-20-v0.18-draft-thirteenth-reviewed/sites.geojson",
+        "baseline_sha256": "741eccacd5798818bdba8c5e9354b8a29280cbd009e4ee8cf6c618d479787ce8",
+        "sites_compared": 156,
+        "projects_compared": 159,
+        "method": "Read all156 selected names and physical keys; checked old curated/research inventory, v97 campus identities and exact addresses; compared candidate point with all selected Point locators.",
+        "matched_selected_campuses": [],
+        "nearest_existing_reference_point": {
+          "name": "Microsoft Etobicoke Ontario Datacenter Campus",
+          "distance_km": 86.071765
+        },
+        "old_inventory": {
+          "path": "releases/2026-07-22-open-seed-v97/entities.csv",
+          "sha256": "7950a4e871d4afd0fd877e6e4f3ba9f9cbc1ffd664a611bc036896fbdba46fa1",
+          "row_1_based": 458,
+          "entity_id": "e53bb5b1-fc47-51be-a763-5886033e48ef",
+          "stable_key": "epoch-ai:data-center:dd4bfd7c-adf8-5312-9a4a-f2728f1fe791",
+          "name": "Fluidstack Lake Mariner"
+        },
+        "identity_rule": "Reuse the existing unselected Epoch campus key, not a new campus for each tenant/building. Do not inherit Epoch coordinates, bounding rectangle, modeled power, ownership or lifecycle. CB-5 is the new explicit project scope."
+      }
+    }
+  ],
+  "holds": [
+    {
+      "campus_stable_key": "curated:cipher-digital-black-pearl-wink-texas-data-center-campus",
+      "project_stable_key": "curated:cipher-digital-black-pearl-wink-texas-data-center-campus:aws-phase-2-site-preparation",
+      "decision": "physical_gate_refreshed_geometry_hold",
+      "source_tag": "cipher-q2-gnw.html",
+      "physical_date": "2026-08-04",
+      "changed_evidence": "Issuer's distributed update reports PhaseII foundations, steel and underground electrical in progress; fresh actual work supersedes May5's stale observation for research purposes.",
+      "literal_pointer": {
+        "start_utf8_byte": 44838,
+        "anchor": "remaining Phase I",
+        "scope": "Finance and Operations Highlights, complete Black Pearl bullet."
+      },
+      "completion_exclusions": "Initial HPC capacity delivered/rent begun in August and remaining PhaseI MEP are distinct from proposed PhaseII. Earlier mining operations and the old inspection-complete maintenance/shop building are not current construction evidence.",
+      "identity_progress": "Official TDLR TABS2025001763 names Black Pearl Data Center at 11786 Co Rd 209, Wink TX79789. Its owner field does not name 11786 Wink LLC; that proposed LLC bridge was incorrect and is not selected. This older shop/maintenance constituent needs an explicit current-campus bridge before locator adoption; no ownership role is normalized.",
+      "geometry_checks": [
+        {
+          "tag": "black-pearl-census.json",
+          "result": "zero address matches"
+        },
+        {
+          "tag": "black-pearl-nominatim.json",
+          "result": "zero named-site matches"
+        },
+        {
+          "url": "https://wireless2.fcc.gov/UlsApp/UlsSearch/license.jsp?licKey=5158920",
+          "result": "403 in first web open; no retry",
+          "scope": "FCC.report discovery led to named licence5158920/WSIY216. Its parsed point is NOT adopted; official record custody, CRS and precise on-site scope unclosed."
+        },
+        {
+          "tag": "black-pearl-fcc-discovery.html",
+          "result": "raw capture403 after prior web reading; no retry; no body hash claimed"
+        }
+      ],
+      "rights_crs_gate": "No coordinate selected. FCC.report is an independent parser, not an official or licensed coordinate proof. Do not use directory coordinates or a road-centre substitute.",
+      "next_action": "Only pursue a genuinely new openly accessible exact facility record or licensed project-bound point; do not retry the denied FCC/issuer URLs."
+    },
+    {
+      "candidate_name": "Cipher Stingray, Andrews Texas",
+      "decision": "physical_gate_pass_geometry_hold",
+      "physical_date": "2026-08-04",
+      "source_tag": "cipher-q2-gnw.html",
+      "literal_pointer": {
+        "start_utf8_byte": 45019,
+        "anchor": "Stingray data center construction"
+      },
+      "changed_evidence": "Issuer explicitly reports active earthwork, grading, pads and underground electrical. This is actual work, not solely the financing headline.",
+      "identity_progress": "June15 issuer8K describes Stingray inAndrewsTexas; exact street address/parcel remains unclosed. SW9001 from directories and a later county-road news item is a corridor, not a project locator.",
+      "geometry": null,
+      "next_action": "Exact county project/parcel or operator point with licence and CRS needed; no arbitrary four-mile-road or locality point.",
+      "primary_identity_discovery_url": "https://www.sec.gov/Archives/edgar/data/1819989/000095010326008994/dp248453_8k.htm",
+      "duplicate_review": "No selected156 Stingray/Cipher/Andrews match; Bear/Chief facilities must not be silently assigned to Stingray."
+    },
+    {
+      "campus_stable_key": "curated:cipher-digital-barber-lake-colorado-city-texas-data-center-campus",
+      "decision": "not_proposed_partial_occupancy_scope_unresolved",
+      "source_tag": "cipher-q2-gnw.html",
+      "physical_date": "2026-08-04",
+      "reason": "Current progress-to-completion accompanies tenant beneficial use and partial occupancy/network racks. No separate exact remaining construction scope/locator closure pursued."
+    },
+    {
+      "candidate_name": "Keel Infrastructure Moses Lake Washington",
+      "decision": "not_proposed_source_denied_and_physical_semantics_unclosed",
+      "source_tag": "keel-q2.html",
+      "reason": "Initial discovery mixed module deliveries, procurement and permits. Direct issuer capture403; no retry and no generic planned-development admission."
+    }
+  ],
+  "successor_queries": [
+    {
+      "query": "site:terawulf.com \"CB-5\" (\"completed\" OR \"operational\" OR \"canceled\") after:2026-08-04 before:2026-08-21",
+      "result": "Current issuer release/deck and old announcements, no decisive CB-5 completion/cancellation found."
+    },
+    {
+      "query": "site:terawulf.com \"Lake Mariner\" \"August 2026\" construction",
+      "result": "Aug5 current build remains controlling; old Aug18,2025 CB-5 lease announcement not redated."
+    },
+    {
+      "query": "site:globenewswire.com \"Cipher\" \"Black Pearl\" after:2026-08-04 before:2026-08-21",
+      "result": "Returned current update and older mining completion material; none used to erase explicitly separate PhaseII. Cipher remains held, not admission-ready."
+    }
+  ],
+  "raw_captures": [
+    {
+      "tag": "black-pearl-census.json",
+      "source_url": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=11786%20Co%20Rd%20209%2C%20Wink%2C%20TX%2079789&benchmark=Public_AR_Current&format=json",
+      "raw_local_path": "/tmp/atlas-americas-round15.QP021h/black-pearl-census.json",
+      "capture_started_at": "2026-09-09T03:41:32.446Z",
+      "capture_finished_at": "2026-09-09T03:41:32.921Z",
+      "returncode": 0,
+      "http_status": 200,
+      "effective_url": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=11786%20Co%20Rd%20209%2C%20Wink%2C%20TX%2079789&benchmark=Public_AR_Current&format=json",
+      "content_type": "application/json",
+      "bytes": 241,
+      "sha256": "7104c087dacbbd7a053e58b89143020c87750d4f22f50a8dcc16b8edfc41b22e",
+      "request_credentials_supplied": false,
+      "capture_method": "credential_free_curl_fail_location_compressed",
+      "stderr": ""
+    },
+    {
+      "tag": "black-pearl-fcc-discovery.html",
+      "source_url": "https://fcc.report/ULS/5158920",
+      "raw_local_path": "/tmp/atlas-americas-round15.QP021h/black-pearl-fcc-discovery.html",
+      "capture_started_at": "2026-09-09T03:46:28.781Z",
+      "capture_finished_at": "2026-09-09T03:46:28.959Z",
+      "returncode": 56,
+      "http_status": 403,
+      "effective_url": "https://fcc.report/ULS/5158920",
+      "content_type": "text/html; charset=UTF-8",
+      "bytes": null,
+      "sha256": null,
+      "request_credentials_supplied": false,
+      "capture_method": "credential_free_curl_fail_location_compressed",
+      "stderr": "curl: (56) The requested URL returned error: 403\n"
+    },
+    {
+      "tag": "black-pearl-nominatim.json",
+      "source_url": "https://nominatim.openstreetmap.org/search?q=Black%20Pearl%2C%20Wink%2C%20Texas&format=jsonv2&addressdetails=1&namedetails=1&extratags=1",
+      "raw_local_path": "/tmp/atlas-americas-round15.QP021h/black-pearl-nominatim.json",
+      "capture_started_at": "2026-09-09T03:42:14.164Z",
+      "capture_finished_at": "2026-09-09T03:42:14.890Z",
+      "returncode": 0,
+      "http_status": 200,
+      "effective_url": "https://nominatim.openstreetmap.org/search?q=Black%20Pearl%2C%20Wink%2C%20Texas&format=jsonv2&addressdetails=1&namedetails=1&extratags=1",
+      "content_type": "application/json; charset=utf-8",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "request_credentials_supplied": false,
+      "capture_method": "credential_free_curl_fail_location_compressed",
+      "stderr": ""
+    },
+    {
+      "tag": "black-pearl-tdlr.html",
+      "source_url": "https://www.tdlr.texas.gov/TABS/Search/Project/TABS2025001763",
+      "raw_local_path": "/tmp/atlas-americas-round15.QP021h/black-pearl-tdlr.html",
+      "capture_started_at": "2026-09-09T03:41:31.809Z",
+      "capture_finished_at": "2026-09-09T03:41:32.365Z",
+      "returncode": 0,
+      "http_status": 200,
+      "effective_url": "https://www.tdlr.texas.gov/TABS/Search/Project/TABS2025001763",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 16049,
+      "sha256": "eae8087c3ca723c5544487f4e188520d75cbe12db61386ad7283e1538b2314ea",
+      "request_credentials_supplied": false,
+      "capture_method": "credential_free_curl_fail_location_compressed",
+      "stderr": ""
+    },
+    {
+      "tag": "census-faq.pdf",
+      "source_url": "https://www2.census.gov/geo/pdfs/maps-data/data/FAQ_for_Census_Bureau_Public_Geocoder.pdf",
+      "raw_local_path": "/tmp/atlas-americas-round15.QP021h/census-faq.pdf",
+      "capture_started_at": "2026-09-09T03:42:12.603Z",
+      "capture_finished_at": "2026-09-09T03:42:13.438Z",
+      "returncode": 0,
+      "http_status": 200,
+      "effective_url": "https://www2.census.gov/geo/pdfs/maps-data/data/FAQ_for_Census_Bureau_Public_Geocoder.pdf",
+      "content_type": "application/pdf",
+      "bytes": 561406,
+      "sha256": "13a8ca9f7395daf53e0c06344dd2f1ed28bc6806ab0625b3410eba7e280db169",
+      "request_credentials_supplied": false,
+      "capture_method": "credential_free_curl_fail_location_compressed",
+      "stderr": ""
+    },
+    {
+      "tag": "census-rights.html",
+      "source_url": "https://www.census.gov/about/policies/citation.html",
+      "raw_local_path": "/tmp/atlas-americas-round15.QP021h/census-rights.html",
+      "capture_started_at": "2026-09-09T03:42:13.517Z",
+      "capture_finished_at": "2026-09-09T03:42:14.077Z",
+      "returncode": 0,
+      "http_status": 200,
+      "effective_url": "https://www.census.gov/about/policies/citation.html",
+      "content_type": "text/html; charset=UTF-8",
+      "bytes": 362535,
+      "sha256": "4d16fd3c768e6921ca07773f0d5ffa4527b27a9e4f423810d6135807692856a1",
+      "request_credentials_supplied": false,
+      "capture_method": "credential_free_curl_fail_location_compressed",
+      "stderr": ""
+    },
+    {
+      "tag": "cipher-q2-gnw.html",
+      "source_url": "https://www.globenewswire.com/news-release/2026/08/04/3338166/0/en/cipher-digital-provides-second-quarter-2026-business-update.html",
+      "raw_local_path": "/tmp/atlas-americas-round15.QP021h/cipher-q2-gnw.html",
+      "capture_started_at": "2026-09-09T03:40:49.464Z",
+      "capture_finished_at": "2026-09-09T03:40:49.667Z",
+      "returncode": 0,
+      "http_status": 200,
+      "effective_url": "https://www.globenewswire.com/news-release/2026/08/04/3338166/0/en/cipher-digital-provides-second-quarter-2026-business-update.html",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 211533,
+      "sha256": "3280c7cd5b16e9e53593bfeeb84f1281c655c8e854f386621b6d6b654f560cc5",
+      "request_credentials_supplied": false,
+      "capture_method": "credential_free_curl_fail_location_compressed",
+      "stderr": ""
+    },
+    {
+      "tag": "cipher-q2.html",
+      "source_url": "https://investors.cipherdigital.com/news-releases/news-release-details/cipher-digital-provides-second-quarter-2026-business-update",
+      "raw_local_path": "/tmp/atlas-americas-round15.QP021h/cipher-q2.html",
+      "capture_started_at": "2026-09-09T03:37:52.579Z",
+      "capture_finished_at": "2026-09-09T03:37:52.731Z",
+      "returncode": 56,
+      "http_status": 403,
+      "effective_url": "https://investors.cipherdigital.com/news-releases/news-release-details/cipher-digital-provides-second-quarter-2026-business-update",
+      "content_type": "text/html",
+      "bytes": null,
+      "sha256": null,
+      "request_credentials_supplied": false,
+      "capture_method": "credential_free_curl_fail_location_compressed",
+      "stderr": "curl: (56) The requested URL returned error: 403\n"
+    },
+    {
+      "tag": "keel-q2.html",
+      "source_url": "https://ir.keelinfra.com/news-releases/news-release-details/keel-infrastructure-reports-second-quarter-2026-results",
+      "raw_local_path": "/tmp/atlas-americas-round15.QP021h/keel-q2.html",
+      "capture_started_at": "2026-09-09T03:37:52.563Z",
+      "capture_finished_at": "2026-09-09T03:37:52.821Z",
+      "returncode": 56,
+      "http_status": 403,
+      "effective_url": "https://ir.keelinfra.com/news-releases/news-release-details/keel-infrastructure-reports-second-quarter-2026-results",
+      "content_type": "text/html",
+      "bytes": null,
+      "sha256": null,
+      "request_credentials_supplied": false,
+      "capture_method": "credential_free_curl_fail_location_compressed",
+      "stderr": "curl: (56) The requested URL returned error: 403\n"
+    },
+    {
+      "tag": "lake-mariner-census.json",
+      "source_url": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=7725%20Lake%20Road%2C%20Barker%2C%20NY%2014012&benchmark=Public_AR_Current&format=json",
+      "raw_local_path": "/tmp/atlas-americas-round15.QP021h/lake-mariner-census.json",
+      "capture_started_at": "2026-09-09T03:41:16.482Z",
+      "capture_finished_at": "2026-09-09T03:41:16.971Z",
+      "returncode": 0,
+      "http_status": 200,
+      "effective_url": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=7725%20Lake%20Road%2C%20Barker%2C%20NY%2014012&benchmark=Public_AR_Current&format=json",
+      "content_type": "application/json",
+      "bytes": 636,
+      "sha256": "38d5769f311532ae8b21ec52eb7a899aae17342bfbc6bd68b631c603c43f5936",
+      "request_credentials_supplied": false,
+      "capture_method": "credential_free_curl_fail_location_compressed",
+      "stderr": ""
+    },
+    {
+      "tag": "terawulf-2022-credit.pdf",
+      "source_url": "https://investors.terawulf.com/sec-filings/all-sec-filings/content/0001104659-22-041168/0001104659-22-041168.pdf",
+      "raw_local_path": "/tmp/atlas-americas-round15.QP021h/terawulf-2022-credit.pdf",
+      "capture_started_at": "2026-09-09T03:40:49.755Z",
+      "capture_finished_at": "2026-09-09T03:40:51.223Z",
+      "returncode": 0,
+      "http_status": 200,
+      "effective_url": "https://investors.terawulf.com/sec-filings/all-sec-filings/content/0001104659-22-041168/0001104659-22-041168.pdf",
+      "content_type": "application/pdf",
+      "bytes": 1611244,
+      "sha256": "f6ad06510d8d6414423422760d275eaa6f4637513de9821081d8880b6d88c53d",
+      "request_credentials_supplied": false,
+      "capture_method": "credential_free_curl_fail_location_compressed",
+      "stderr": ""
+    },
+    {
+      "tag": "terawulf-2026-credit.html",
+      "source_url": "https://investors.terawulf.com/sec-filings/all-sec-filings/content/0001083301-26-000092/terawulf-revolvingcreditag.htm",
+      "raw_local_path": "/tmp/atlas-americas-round15.QP021h/terawulf-2026-credit.html",
+      "capture_started_at": "2026-09-09T03:44:23.024Z",
+      "capture_finished_at": "2026-09-09T03:44:23.234Z",
+      "returncode": 0,
+      "http_status": 200,
+      "effective_url": "https://investors.terawulf.com/sec-filings/all-sec-filings/content/0001083301-26-000092/terawulf-revolvingcreditag.htm",
+      "content_type": "text/html; charset=UTF-8",
+      "bytes": 1422804,
+      "sha256": "60298a47ea22293cfa47f15654c09b1061a98ebd627e0f47610f7bcb91a6b8c8",
+      "request_credentials_supplied": false,
+      "capture_method": "credential_free_curl_fail_location_compressed",
+      "stderr": ""
+    },
+    {
+      "tag": "terawulf-index.html",
+      "source_url": "https://investors.terawulf.com/news-events/press-releases",
+      "raw_local_path": "/tmp/atlas-americas-round15.QP021h/terawulf-index.html",
+      "capture_started_at": "2026-09-09T03:42:14.979Z",
+      "capture_finished_at": "2026-09-09T03:42:15.157Z",
+      "returncode": 0,
+      "http_status": 200,
+      "effective_url": "https://investors.terawulf.com/news-events/press-releases",
+      "content_type": "text/html; charset=UTF-8",
+      "bytes": 40642,
+      "sha256": "ce1c3ebc1ef8a8b1f0a9c0cd3e87c67c13c125b2dd365ca235e364edd86c6b06",
+      "request_credentials_supplied": false,
+      "capture_method": "credential_free_curl_fail_location_compressed",
+      "stderr": ""
+    },
+    {
+      "tag": "terawulf-q2.html",
+      "source_url": "https://investors.terawulf.com/news-events/press-releases/detail/144/terawulf-reports-second-quarter-2026-results",
+      "raw_local_path": "/tmp/atlas-americas-round15.QP021h/terawulf-q2.html",
+      "capture_started_at": "2026-09-09T03:37:52.561Z",
+      "capture_finished_at": "2026-09-09T03:37:52.856Z",
+      "returncode": 0,
+      "http_status": 200,
+      "effective_url": "https://investors.terawulf.com/news-events/press-releases/detail/144/terawulf-reports-second-quarter-2026-results",
+      "content_type": "text/html; charset=UTF-8",
+      "bytes": 302669,
+      "sha256": "15f820d02c6586538ea55972ad77a9a1ad33a94df22bedf11b08e32bea0ae539",
+      "request_credentials_supplied": false,
+      "capture_method": "credential_free_curl_fail_location_compressed",
+      "stderr": ""
+    }
+  ],
+  "raw_rights": "Full captures are temporary and untracked. Tracked files contain compact restated facts and provenance only. Denied URLs remain closed; no paid, authenticated or denial-bypass route used.",
+  "files_not_changed": "No central admission, contract, tests, artifacts, old source or Pecos file changed; no commit."
+}

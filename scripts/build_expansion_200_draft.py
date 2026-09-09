@@ -16,6 +16,7 @@ from datacenter_atlas import (  # noqa: E402
     expansion_200_eighth_reviewed,
     expansion_200_eleventh_reviewed,
     expansion_200_fifth_reviewed,
+    expansion_200_fourteenth_reviewed,
     expansion_200_fourth_reviewed,
     expansion_200_initial_five,
     expansion_200_initial_three,
@@ -51,6 +52,7 @@ def main() -> int:
         "eleventh-reviewed": expansion_200_eleventh_reviewed,
         "twelfth-reviewed": expansion_200_twelfth_reviewed,
         "thirteenth-reviewed": expansion_200_thirteenth_reviewed,
+        "fourteenth-reviewed": expansion_200_fourteenth_reviewed,
     }
     parser.add_argument("--batch", choices=sorted(batches), default="initial-three")
     parser.add_argument("--output-dir", type=Path)

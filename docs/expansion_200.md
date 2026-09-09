@@ -666,3 +666,67 @@ publication flags remain false.
 .venv/bin/python scripts/build_expansion_200_draft.py --batch thirteenth-reviewed --output-dir /absolute/new/draft-directory
 .venv/bin/python scripts/build_expansion_200_draft.py --batch thirteenth-reviewed --validate-only
 ```
+
+## Fifty-nine-site reviewed checkpoint
+
+The [fourteenth reviewed draft](../verified_construction_core/2026-08-20-v0.18-draft-fourteenth-reviewed/README.md)
+adds Core Scientific Pecos Cottonwood, TeraWulf Lake Mariner CB-5 and CSC LUMI-AI Kajaani.
+It contains 159 physical sites, 162 projects, 41 countries, 106 non-US sites and 589 evidence
+rows: 59 requested additions completed, 41 remaining. Every preceding 156-site, 159-project
+and 562-evidence row and GeoJSON feature is unchanged. Public v0.17 remains byte-frozen.
+
+Pecos uses the original June 2 CEO post's explicit current vertical-construction statement.
+The issuer leadership page links the exact author profile, and the April issuer release
+corroborates the executive and existing-campus conversion identity. April milestones are
+stale context, not refreshed work dates. The third-party July machine transcript is retained
+only as contrary evidence: its completed-building answer is attributed to Adam Sullivan,
+while its near-complete precast and future-shell answer is attributed to Matt Brown. Neither
+is an audio-verified whole-HDC completion certificate. No new transcript lifecycle method
+was added; only the existing authoritative physical-status method is selected.
+
+The issuer's historical 1851 FM 2119 deed, named OSM relation 20669718 and unchanged Nominatim
+point bind a genuine constituent of the operator-grouped Cottonwood 1 and 2 campus. Root and
+independent review found the point inside its outer ring and outside the hole. The one-campus
+locator does not identify the new hall or assert that both constituents are contiguous. The
+existing unselected OSM facility identity is retained as a reference, not another count. The
+older unselected Microsoft Pecos announcement has only locality-level geometry: its relationship
+to Cottonwood remains unresolved, no separation is claimed and no Microsoft count is added.
+Any later Microsoft admission must reconcile that relationship.
+
+For Lake Mariner, the August 5 issuer update explicitly reports continuing CB-5 construction.
+Delivered CB-3 and CB-4 commissioning do not supply CB-5 status. The May 2026 agreement defines
+CB-5 at 7725 Lake Road, Barker, matching the single Census result exactly. PDF inspection of
+the Census FAQ confirmed NAD83 and address-range interpolation. Independent pyproj 3.8.0 runs
+of NAD83-to-WGS84 operation EPSG:1188 preserved the numeric coordinates. Its stated four-metre
+transformation accuracy is not the unknown accuracy of the address interpolation. This point
+locates the project's street address, not the physical building, entrance, parcel or campus
+interior. Historical property evidence corroborates only the address. The existing Epoch campus
+key is reused without importing modeled metrics, roles, geometry or lifecycle.
+
+CSC's August 20 primary report states that the Kajaani expansion is under construction with
+people currently working on site. This dates a current-work report, not the construction onset.
+The March same-hall article and official Tehdaskatu 15 data-center address bind the community
+building named CSC, alternative name LUMI. Its provider point lies inside the full source ring;
+that ring is disjoint from the previously selected XTX Kajaani parcel. Existing LUMI and Roihu
+operations count within one campus and do not complete the new expansion. March photographs
+and future 2027 delivery are not selected physical observations. Initial capture start/end
+timestamps remain explicitly unknown; response dates and file times are audit context only.
+
+Both OSM locators retain ODbL attribution and WGS84 with unknown positional accuracy. They are
+constituent-campus reference points, not official boundaries or active-work extents. Census
+reuse guidance applies only to the federal geocoder facts, not the reserved issuer material.
+All 156 prior identities and full selected geometries, plus the three new sites mutually, were
+reviewed without a selected-cohort collision. Twenty-seven new bindings resolve to 26 unique
+selected raw bodies; root and cross-review independently verified their hashes and byte counts.
+
+The separate research packets keep DayOne Lahti, Cipher Black Pearl and Stingray held for exact
+geometry. TATC and DDSP candidates lack qualifying dated physical work; Digital Halo's later
+vendor post describes an April topping-out event, not new July construction. No roles,
+capacities, workloads, operating models or imagery outcomes are inferred. Imagery remains
+10/162; the fixed 20-project/19-agreement blind review remains incomplete. Objective completion
+and final-publication flags remain false.
+
+```sh
+.venv/bin/python scripts/build_expansion_200_draft.py --batch fourteenth-reviewed --output-dir /absolute/new/draft-directory
+.venv/bin/python scripts/build_expansion_200_draft.py --batch fourteenth-reviewed --validate-only
+```
