@@ -601,3 +601,68 @@ incomplete. Objective-completion and final-publication flags remain false.
 .venv/bin/python scripts/build_expansion_200_draft.py --batch twelfth-reviewed --output-dir /absolute/new/draft-directory
 .venv/bin/python scripts/build_expansion_200_draft.py --batch twelfth-reviewed --validate-only
 ```
+
+## Fifty-six-site reviewed checkpoint
+
+The [thirteenth reviewed draft](../verified_construction_core/2026-08-20-v0.18-draft-thirteenth-reviewed/README.md)
+adds Google Bermuda Hundred, Chirisa Chesterfield Digital Drive and noris NBG6 Nürnberg Süd.
+It contains 156 physical sites, 159 projects, 41 countries, 105 non-US sites and 562 evidence
+rows: 56 requested additions completed, 44 remaining. All 153 preceding sites, 156 projects,
+535 evidence rows and GeoJSON features remain unchanged. Public v0.17 remains byte-frozen.
+
+The county's explicitly July 2026 table and visually reviewed full-page map identify three
+Peanut buildings at 2100 Bermuda Hundred Road and two Digital Drive buildings at 1551 Digital
+Drive as under construction. July 1 is the existing conservative month-start representation,
+not an invented observation day or construction-start date. The whole stated month lies within
+the fixed physical-observation window. Permit dates and PDF creation timestamps are unselected.
+
+Peanut retains the prior unselected Google Bermuda Hundred stable identity. Reconciliation
+uses the named county address and matching Bermuda Hundred water agreement, explicitly as
+identity context rather than a normalized water metric. The December 2025 county planning
+letter's visually reviewed page 4 binds the exact Peanut tax ID. All three buildings count once;
+Old Bermuda, Upper Magnolia Green and Watkins Centre do not inherit this construction status.
+
+Chirisa's Digital Drive development and adjoining CTP facilities count conservatively as one
+physical campus. The operator's 2024 existing-campus expansion and 2025 combined-campus accounts
+support that grouping despite today's separate marketing headings. Only Digital Drive's county
+construction row is selected, not operating CTP halls. The existing Chirisa Lancaster site is
+in Pennsylvania. Peanut and Digital Drive are distinct named properties approximately 2.82 km
+apart, with independent addresses and parcel features; neither overlaps the preceding sites.
+
+The exact Chesterfield parcel layer is covered by the open-data portal's full CC0 terms through
+its public catalogue item `caac62a09b49446b8a20744963ba1d23`. The item links Cadastral_ProdA layer 3
+and has an accuracy disclaimer, not a conflicting reuse restriction. The unlisted parent service
+is not used as the rights bridge. Source-generated centroid responses explicitly request
+EPSG:4326 and are copied as longitude/latitude, without street interpolation or local map tracing.
+These are constituent-property reference points, not selected campus boundaries, construction
+extents, entrances or surveyed coordinates. Positional accuracy remains unknown. Digital Drive's
+Name and TaxID suffix discrepancy is preserved; the exact object, address and DDC owner provide
+the binding. Its two clockwise exterior rings form a valid multipolygon for the independent
+containment check; no source polygon is published. CC0 does not relicense county prose or imagery.
+
+For noris, the original company post's August 13 timestamp dates explicit current concrete-shell
+and elevator installation work. The separate mid-May and late-June IT-area deliveries and partial
+cooling commissioning do not establish whole-phase operation. The August body does not literally
+name NBG6 BA3: a documented analyst reconciliation joins the operator's exact code/campus post
+with the award organizer's matching modular 400-square-metre description. The latter is identity
+context, not a fresh construction observation or an operator-authored source.
+
+The named NBG6 BA3 OSM way and unchanged Nominatim point agree, with independent ring containment.
+BA1, BA2 and BA3 count once at Nürnberg Süd; headquarters and Slovak module fabrication add no
+sites. The selected noris Schwalbach project is separate. The nearest preceding campus is MU4
+roughly 146 km away; sampled polygon distances are only a duplicate-screening aid. ODbL
+attribution, WGS84 and unknown accuracy remain explicit. This is a community constituent-building
+campus locator, not an official address certification, boundary, work extent or imagery outcome.
+
+Twenty-seven new bindings resolve to 25 unique selected raw captures, independently rehashed.
+Cross-review found no admission blockers. Separate research keeps Vaasa, Mougins, Sify's named
+Indian expansions and Federal Bank Kochi held for unresolved exact location or dated physical
+work; financing, aggregate capacity and an undated ceremony cannot fill those gaps. No new roles,
+capacities, workloads, operating models or imagery outcomes are inferred. Imagery remains 10/159;
+the fixed 20-row/19-agreement blind review is incomplete. Both objective-completion and final-
+publication flags remain false.
+
+```sh
+.venv/bin/python scripts/build_expansion_200_draft.py --batch thirteenth-reviewed --output-dir /absolute/new/draft-directory
+.venv/bin/python scripts/build_expansion_200_draft.py --batch thirteenth-reviewed --validate-only
+```

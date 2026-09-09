@@ -1,0 +1,246 @@
+{
+  "schema_version": "1.1",
+  "reviewed_at": "2026-09-09",
+  "lifecycle_reference_date": "2026-08-20",
+  "physical_observation_window": [
+    "2026-05-22",
+    "2026-08-20"
+  ],
+  "scope": "Round 14 bounded admission proposals for Peanut and conservative Chirisa CTP/DDC grouping; two proposed physical campuses, no admissions or central changes.",
+  "baseline": {
+    "commit": "011cc18",
+    "path": "verified_construction_core/2026-08-20-v0.18-draft-twelfth-reviewed/sites.geojson",
+    "sha256": "599e4b884efb7576b6e0d9982c4b9b3400c07bbcba3877ceab0b3e27122a9bbc",
+    "physical_sites": 153,
+    "projects": 156,
+    "identity_review": "All 153 selected site names/keys were inspected. Neither Bermuda Hundred/Peanut nor Chirisa Chesterfield/Digital Drive is present. Lancaster's Chirisa campus is in Pennsylvania. Both new exact candidate points were compared with all 153 existing GeoJSON features, including polygons, for coordinate collisions."
+  },
+  "proposal_files": {
+    "peanut": "sources/curated-official-2026-09-09-chesterfield-round14-peanut-july-build.json",
+    "ddc": "sources/curated-official-2026-09-09-chesterfield-round14-chirisa-digital-drive-july-build.json",
+    "geo": "sources/verified-construction-core-v0.18-chesterfield-round14-geometry-proposal.json",
+    "research": "sources/research-expansion-200-chesterfield-round14-2026-09-09.json"
+  },
+  "accepted_additional_sites": 0,
+  "recommended_candidates": [
+    {
+      "project_stable_key": "curated:google-bermuda-hundred-chesterfield-campus:current-development",
+      "parent_campus_stable_key": "curated:google-bermuda-hundred-chesterfield-campus",
+      "recommendation": "ready_for_independent_root_admission_review",
+      "proposed_physical_site_count": 1,
+      "source_observation_month": "2026-07",
+      "status_date_precision": "month",
+      "normalized_status_as_of": "2026-07-01",
+      "normalization_semantics": "Conservative month-start representation, not an asserted work day, per existing San Bovio source convention.",
+      "exact_locator_source_id": "round14-peanut-county-centroid",
+      "new_authority_closure": "Exact public county parcel centroid for tax ID830651308400000, PEANUT LLC, 2100 Bermuda Hundred Road; no Old Bermuda substitute.",
+      "identity_guardrail": "Preserve the existing unselected Google Bermuda Hundred campus/project stable keys from curated-official-2026-07-20-google-bermuda-hundred-chesterfield.json. The current county page binds Peanut to the exact address and distinguishes the same Bermuda Hundred Google property by the matching water agreement. This is an explicit analyst reconciliation of the old Google campus identity, not an operator rename or new campus; water allowance is identity context only and no water metric is normalized.",
+      "scope_guardrail": "Three buildings and all Peanut phases count once at the existing Google Bermuda Hundred campus identity. Upper Magnolia Green, Watkins Centre, Old Bermuda and Chirisa are excluded.",
+      "geometry_check": {
+        "name": "Peanut",
+        "point": [
+          -77.30489173364066,
+          37.34632783459711
+        ],
+        "rings": 1,
+        "vertices": [
+          126
+        ],
+        "closed": true,
+        "point_inside": true,
+        "all_sites_compared": 153,
+        "nearest_approx_metres": [
+          {
+            "name": "Jefferson Lab Newport News Campus",
+            "distance": 77157.01851864699
+          },
+          {
+            "name": "Iron Mountain VA-9 Northern Virginia Data Center",
+            "distance": 160000.67839405197
+          }
+        ]
+      }
+    },
+    {
+      "project_stable_key": "curated:chirisa-chesterfield-campus:digital-drive-current-build",
+      "parent_campus_stable_key": "curated:chirisa-chesterfield-campus",
+      "recommendation": "ready_for_independent_root_admission_review",
+      "proposed_physical_site_count": 1,
+      "source_observation_month": "2026-07",
+      "status_date_precision": "month",
+      "normalized_status_as_of": "2026-07-01",
+      "normalization_semantics": "Conservative month-start representation, not an asserted work day, per existing San Bovio source convention.",
+      "exact_locator_source_id": "round14-chirisa-county-address-centroid",
+      "new_authority_closure": "Exact public county parcel centroid for DDC01 PROPCO LLC, 1551 Digital Drive; named county row reports two buildings under construction. One conservative shared CTP/DDC campus, no separate CTP admission.",
+      "identity_guardrail": "One conservative parent campus covers the adjacent CTP and Digital Drive development groups. Chirisa's 2024 disclosure calls Digital Drive expansion of its existing Richmond campus and its May 2025 disclosure refers to a combined Chesterfield campus. Current separate CTP/DDC marketing headings do not create a second physical-site count. Select Digital Drive construction only, not operating CTP buildings or an assumed unfinished CTP hall.",
+      "scope_guardrail": "Count two Digital Drive buildings once inside one conservative CTP/DDC physical-campus grouping. CTP-01 operations and the remaining CTP row do not create additional acceptances. The Virginia campus is distinct from selected Chirisa Lancaster, Pennsylvania.",
+      "geometry_check": {
+        "name": "DDC",
+        "point": [
+          -77.33425619418317,
+          37.356171271028536
+        ],
+        "rings": 2,
+        "vertices": [
+          83,
+          37
+        ],
+        "closed": true,
+        "point_inside": true,
+        "all_sites_compared": 153,
+        "nearest_approx_metres": [
+          {
+            "name": "Jefferson Lab Newport News Campus",
+            "distance": 79963.43951082628
+          },
+          {
+            "name": "Iron Mountain VA-9 Northern Virginia Data Center",
+            "distance": 158592.60038521467
+          }
+        ]
+      }
+    }
+  ],
+  "rights_closure": {
+    "license": "CC0-1.0",
+    "licence_dedication_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "rights_source_url": "https://opengisdata.chesterfield.gov/",
+    "full_terms_url": "https://chesterfieldva.maps.arcgis.com/sharing/rest/content/items/457f6e0b2d844284a649e79741460f05/data",
+    "exact_dataset_bridge": "Portal catalogue group search returns county item caac62a09b49446b8a20744963ba1d23 with exact Cadastral_ProdA/FeatureServer/3 URL. Its item-specific licenseInfo is an accuracy disclaimer, not a redistribution override. The general parent service item cadb8e716a3348eda94352f863338c8f is not itself in the catalogue; it is not used as the rights bridge.",
+    "scope": "Select only the two official centroid coordinate pairs and minimal non-personal identity facts. No legal or surveyed boundary, construction footprint, imagery or whole-source document reused.",
+    "attribution": "Data retrieved from Chesterfield County GIS Data Catalog.",
+    "accuracy": "Unknown; full terms disclaim positional accuracy and legal/survey use.",
+    "pdf_skill_effect": "Full-page visual review confirmed the CC0 paragraph, the unless-otherwise-noted condition, public-reference-only scope, accuracy disclaimers and requested attribution. Full county status map and Peanut planning-letter page4 were also inspected."
+  },
+  "successor_review": {
+    "checked_at": "2026-09-09",
+    "method": "Bounded direct county status page and full map review, existing primary Chirisa 2024/2025/current identity pages, plus exact primary-domain completion/operational/cancellation searches. No denied route or secondary transcript used.",
+    "queries": [
+      "site.chesterfield.gov \"Peanut\" (\"completed\" OR \"operational\" OR \"cancelled\")",
+      "site.chirisatechnologyparks.com \"Chesterfield\" (\"2026\" OR \"completed\")"
+    ],
+    "findings": "No authoritative dated whole-project completion or cancellation through August20 was located. County explicitly distinguishes existing CTP buildings from Digital Drive construction and separates approved-only/unapproved neighbors. Its Google text still describes first-facility operation prospectively. Undated Chirisa portfolio labels and older starts do not refresh July status. Secondary CTP-02 operating labels do not establish completion of Digital Drive and are not selected as lifecycle evidence.",
+    "limits": "Negative search is bounded, not proof of absence of unreported events. Search-engine snippets are not normalized evidence; root independently reviews the proposal before admission."
+  },
+  "raw_capture_audit": [
+    {
+      "file": "arcgis-centroid-docs.html",
+      "path": "/tmp/atlas-chesterfield-round14.fS8ZL6/arcgis-centroid-docs.html",
+      "bytes": 650736,
+      "sha256": "f14f0237847890c32cad85dec32cd039942802dd3783fc64b2baf36066f6bf74",
+      "capture_started_at": "2026-09-09 03:06:37 UTC",
+      "capture_finished_at": "2026-09-09 03:06:38 UTC",
+      "http_status": 200,
+      "selected_evidence": true
+    },
+    {
+      "file": "county-catalog-parcel-item.json",
+      "path": "/tmp/atlas-chesterfield-round14.fS8ZL6/county-catalog-parcel-item.json",
+      "bytes": 3385,
+      "sha256": "cb523cf77c7f90a81302d2d334cdfffe820a45db18cb020842f68df6d916a2e9",
+      "capture_started_at": "2026-09-09 03:08:42 UTC",
+      "capture_finished_at": "2026-09-09 03:08:42 UTC",
+      "http_status": 200,
+      "selected_evidence": true
+    },
+    {
+      "file": "county-chirisa-exact-address-centroids.json",
+      "path": "/tmp/atlas-chesterfield-round14.fS8ZL6/county-chirisa-exact-address-centroids.json",
+      "bytes": 1458,
+      "sha256": "a01085a47aa4883ff5b0dddd1337558d7df2a2b00a89d2a7c1d1a009a48750a7",
+      "capture_started_at": "2026-09-09 03:08:42 UTC",
+      "capture_finished_at": "2026-09-09 03:08:42 UTC",
+      "http_status": 200,
+      "selected_evidence": true
+    },
+    {
+      "file": "county-current-item-catalog-membership.json",
+      "path": "/tmp/atlas-chesterfield-round14.fS8ZL6/county-current-item-catalog-membership.json",
+      "bytes": 80,
+      "sha256": "d445061c671d2636fd1d5cd3fa171a18cdcbe44b644a29a6a996702c0dfa7e0f",
+      "capture_started_at": "2026-09-09 03:07:03 UTC",
+      "capture_finished_at": "2026-09-09 03:07:04 UTC",
+      "http_status": 200,
+      "selected_evidence": false
+    },
+    {
+      "file": "county-ddc-polygon-verification.json",
+      "path": "/tmp/atlas-chesterfield-round14.fS8ZL6/county-ddc-polygon-verification.json",
+      "bytes": 5795,
+      "sha256": "ade1ae54c4c00f5828157ff608eba66970545a85edd8cb066730ee11848335fe",
+      "capture_started_at": "2026-09-09 03:09:41 UTC",
+      "capture_finished_at": "2026-09-09 03:09:41 UTC",
+      "http_status": 200,
+      "selected_evidence": true
+    },
+    {
+      "file": "county-gis-terms.body",
+      "path": "/tmp/atlas-chesterfield-round14.fS8ZL6/county-gis-terms.body",
+      "bytes": 14938,
+      "sha256": "4b544f9d7c65ce48e157055222745f15bb732af360e1dbf86fb3da63c15f0433",
+      "capture_started_at": "2026-09-09 03:06:37 UTC",
+      "capture_finished_at": "2026-09-09 03:06:38 UTC",
+      "http_status": 200,
+      "selected_evidence": true
+    },
+    {
+      "file": "county-open-data-landing.html",
+      "path": "/tmp/atlas-chesterfield-round14.fS8ZL6/county-open-data-landing.html",
+      "bytes": 42043,
+      "sha256": "b6106582985a1c1e041e66522448bfe951fba43b262850fbcc20a53a82dc6bdb",
+      "capture_started_at": "2026-09-09 03:05:02 UTC",
+      "capture_finished_at": "2026-09-09 03:05:03 UTC",
+      "http_status": 200,
+      "selected_evidence": true
+    },
+    {
+      "file": "county-parcels-catalog-search.json",
+      "path": "/tmp/atlas-chesterfield-round14.fS8ZL6/county-parcels-catalog-search.json",
+      "bytes": 38227,
+      "sha256": "3aaf85ca0486660b98b9b1fce750b0069dffaf16de687cd168775373a6f0ea88",
+      "capture_started_at": "2026-09-09 03:07:03 UTC",
+      "capture_finished_at": "2026-09-09 03:07:04 UTC",
+      "http_status": 200,
+      "selected_evidence": true
+    },
+    {
+      "file": "county-peanut-centroid.json",
+      "path": "/tmp/atlas-chesterfield-round14.fS8ZL6/county-peanut-centroid.json",
+      "bytes": 1240,
+      "sha256": "dc5b7572e4faa9385e314c0a5dfbb48d94288ba0c926d60ccf509aa2f77419f4",
+      "capture_started_at": "2026-09-09 03:05:02 UTC",
+      "capture_finished_at": "2026-09-09 03:05:03 UTC",
+      "http_status": 200,
+      "selected_evidence": true
+    },
+    {
+      "file": "county-privacy.html",
+      "path": "/tmp/atlas-chesterfield-round14.fS8ZL6/county-privacy.html",
+      "bytes": 131308,
+      "sha256": "cd8573cec99be49ee5a072644dad7d858bd8bc8e087711c69fe71ece84534248",
+      "capture_started_at": "2026-09-09 03:05:02 UTC",
+      "capture_finished_at": "2026-09-09 03:05:03 UTC",
+      "http_status": 200,
+      "selected_evidence": false
+    }
+  ],
+  "rejected_routes": [
+    "Hard-denied chesterfieldvadatacenter.com and the denied DEQ index/PDF were not revisited.",
+    "Old Bermuda Hundred Census responses remain rejected for changed street identity.",
+    "No raw Google microsite body was read. Older Google stable keys are preserved, but no role, hardware, capacity or water metric is imported.",
+    "The county privacy policy is not a GIS licence; Map Gallery permissions are not borrowed. The actual Open GIS catalogue/CC0 terms are the distinct closing route.",
+    "Parent-service catalogue membership returned zero; exact layer item membership closes the bridge instead.",
+    "The unselected 1381 CTP centroid is not used as a second site; existing CTP operations and constituent buildings are not additions.",
+    "Digital Drive Name and TaxID suffixes disagree; neither is normalized as a legal parcel ID. Exact object/address/DDC owner are used. Root may inspect the discrepancy; it does not change the coordinate's source-specific object identity."
+  ],
+  "verification": {
+    "curated_schema_validation": "PASS: both schema 1.1 documents parsed by datacenter_atlas.curated_v11._parse_document.",
+    "geometry_validation": "PASS: both proposed result records passed verified_construction_core_v018._geometry. Exact source centroid x/y copies and EPSG:4326 response CRS verified. Source rings were checked for closure and point containment using JavaScript ray crossing; no full OGC polygon-validity claim is made.",
+    "all_raw_hashes_and_byte_counts": "PASS: 18 evidence bindings represent 16 unique selected raw bodies. Together with the two unselected audit bodies, all 18 unique local response bodies match SHA-256 and byte count; all 10 new-capture audit rows were also checked.",
+    "prior_packets_and_baseline_preserved": "PASS: baseline 153-site GeoJSON, twelfth contract and the three prior APAC/Chesterfield round12/13 packets retain exact recorded hashes. Existing Google Bermuda Hundred campus and project stable keys preserved.",
+    "all_source_binding_pointers": "PASS: 18 unique IDs resolve to the exact evidence objects and all result source IDs resolve.",
+    "local_audit_script": "/tmp/atlas-chesterfield-round14.fS8ZL6/validate-proposals.cjs",
+    "no_central_edits": true,
+    "no_commit_or_push": true
+  }
+}
