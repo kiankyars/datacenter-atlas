@@ -36,6 +36,7 @@ from datacenter_atlas import (  # noqa: E402
     expansion_200_twentieth_reviewed,
     expansion_200_twenty_first_reviewed,
     expansion_200_twenty_second_reviewed,
+    expansion_200_twenty_third_reviewed,
 )
 from datacenter_atlas.verified_construction_core_v018 import (  # noqa: E402
     build_draft,
@@ -69,6 +70,7 @@ def main() -> int:
         "twentieth-reviewed": expansion_200_twentieth_reviewed,
         "twenty-first-reviewed": expansion_200_twenty_first_reviewed,
         "twenty-second-reviewed": expansion_200_twenty_second_reviewed,
+        "twenty-third-reviewed": expansion_200_twenty_third_reviewed,
     }
     parser.add_argument("--batch", choices=sorted(batches), default="initial-three")
     parser.add_argument("--output-dir", type=Path)

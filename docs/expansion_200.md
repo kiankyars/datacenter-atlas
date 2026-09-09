@@ -1209,3 +1209,73 @@ must be non-US to keep every country at or below 40 percent at 200 sites.
 .venv/bin/python scripts/build_expansion_200_draft.py --batch twenty-second-reviewed --output-dir /absolute/new/draft-directory
 .venv/bin/python scripts/build_expansion_200_draft.py --batch twenty-second-reviewed --validate-only
 ```
+
+## Twenty-third reviewed partial draft
+
+The [twenty-third reviewed draft](../verified_construction_core/2026-08-20-v0.18-draft-twenty-third-reviewed/README.md)
+adds DigiCo SYD1 Ultimo. It contains 171 sites, 174 projects, 42 countries, 114 non-US sites
+and 704 evidence rows: 71 requested additions, 29 remaining. Every preceding row, full feature,
+source binding and input hash remains unchanged. Public v0.17 and all earlier drafts stay frozen.
+
+Contract SHA-256: `0b85ec5fb8bc3c7644f419d21d62fcf5a7ee811226d0c48c0312117b9bee622a`.
+Manifest SHA-256: `b5cbe82e4ae1fce7aff98f2cff4344ec90cf2015a91b10df96ec134cd0ea3783`.
+
+[DigiCo's review](../sources/research-expansion-200-asia-round25-2026-09-09.json) selects
+only preparatory works reported by SHAPE's CEO during the August 19 results call. Public
+transcript segment 27 describes work already being performed; the preceding answer separates
+it from the handed-over first stage. The issuer's presentation independently names SYD1 Ultimo
+and the existing two-building campus, and its annual report confirms the speaker's executive
+role. Early-contractor involvement alone is not selected as physical work, and no main contract,
+specific trade or structural milestone is inferred. The third-party transcription is not
+audio-verified. Only public preview segments 1-31 are used: segments 32-62 are actually hidden
+by the publisher's access controls, not an available full-call source. They are excluded.
+
+The August 21 operator presentation distinguishes completed 20 MW from the next 52 MW expansion
+within the full 88 MW programme. It corroborates the distinction between design/ECI and early
+physical works, but does not independently establish a pre-cutoff observation. These numbers
+are phase-identification context only, not normalized capacity. The completed upgrade, Sydney
+East/West buildings and future phases count as one physical campus and one selected project.
+
+The exact NSW Planning Portal feature binds application SSD-69637456 and entity 75575896 to
+the named expansion. Its unchanged point `[151.197, -33.875]` is published to only three decimal
+places: a coarse campus reference, potentially outside building footprints, not a surveyed
+point, entrance, parcel, boundary or exact work area. Accuracy remains unknown. The architect
+independently binds the East/West campus to 400 Harris Street. Root reproduced the exact
+GeoJSON feature, all 11 source hashes/byte counts and 15 short byte anchors, then compared
+the point against all 170 prior full geometries. No intersection or shared-campus identity
+was found; the nearest prior geometry is Goodman SYD01 Artarmon, approximately 6.32 km away.
+Other operators' SYD1 codes are not an identity match.
+
+Department-produced metadata retains its scoped CC BY 4.0 attribution; that licence does not
+cover applicant plans, third-party submissions or Google map content. Other sources retain
+their reserved copyright and separately reviewed terms. Only isolated attributed factual
+projections are redistributed, not raw HTML, complete transcripts, source code, PDFs, plans,
+photos, personal contacts or map data. The denied OSM feature is not used or accessed by an
+alternate route. No roles, workloads, power metrics or independent imagery outcomes are added.
+
+The [root-lane holds](../sources/research-expansion-200-root-round25-holds-2026-09-09.json)
+and [Pima follow-up](../sources/research-expansion-200-americas-round25-pima-followup-2026-09-09.json)
+keep Project Blue excluded: its May 22 memo summarizes a May 15 contractor response about
+May 8-14 work and remediation, not a fresh May 22 inspection. The public tracker covers only
+adjacent business days; the denied DEQ route was stopped. Novva Mesa, Cyta RedMax, DDC307,
+PAIX and Hassan Allam remain announcement, acquisition, contract or stale-status holds.
+[Kati's new issuer schematic](../sources/research-expansion-200-americas-round25-2026-09-09.json)
+lacks a geographic reference and cannot locate the campus. September 8 completion is not
+backdated, and no wind-farm or conflicting directory point is substituted.
+
+[European round 25](../sources/research-expansion-200-europe-round25-2026-09-09.json) preserves
+HLRS III's post-cutoff August 27 physical report, Leopoldsdorf's prospective 2027 start and
+Lefdal's transaction-only update; the denied Ada source remains unused.
+[Two further European screens](../sources/research-expansion-200-europe-round25b-2026-09-09.json)
+retain TTC's historical retrospective and Polcom's 2024 forecast as holds. The Asia packet
+also excludes NTT Ota's post-cutoff announcement and holds GreenSquare's ambiguously dated work.
+Root rechecked 13 raw captures across the separate root, Americas and European hold packets.
+
+Imagery remains 10/174 and the fixed 20-project/19-agreement blind review remains incomplete.
+Completion and final-publication flags remain false. At least 6 of the remaining 29 additions
+must be non-US to keep every country at or below 40 percent at 200 sites.
+
+```sh
+.venv/bin/python scripts/build_expansion_200_draft.py --batch twenty-third-reviewed --output-dir /absolute/new/draft-directory
+.venv/bin/python scripts/build_expansion_200_draft.py --batch twenty-third-reviewed --validate-only
+```

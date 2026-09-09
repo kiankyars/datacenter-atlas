@@ -1,0 +1,139 @@
+{
+  "schema_version": "research-expansion-200-americas-round25-pima-followup-1",
+  "reviewed_at": "2026-09-09",
+  "reference_date": "2026-08-20",
+  "physical_observation_window": ["2026-05-22", "2026-08-20"],
+  "baseline": {
+    "commit": "1800e11a8aad2672597e0cba5f515ae9888217d8",
+    "checkpoint": "twenty-second-reviewed",
+    "sites": 170,
+    "projects": 173
+  },
+  "decision": "hold_no_new_authoritative_in_window_physical_observation_and_no_selected_geometry",
+  "admission_ready_candidate_count": 0,
+  "selected_acceptances": [],
+  "curated_proposals": [],
+  "geometry_proposals": [],
+  "candidate": {
+    "name": "Beale Pima County Project Blue (Project Bobcat) Campus",
+    "stable_site_key_to_preserve": "curated:beale-pima-county-project-blue-bobcat-campus",
+    "stable_project_key_to_preserve": "curated:beale-pima-county-project-blue-bobcat-campus:current-site-preparation",
+    "identity_source": {
+      "path": "sources/curated-official-2026-07-22-beale-pima-project-blue-bobcat-site-preparation-v2.json",
+      "bytes": 13631,
+      "sha256": "2f9f99472b5ca33bd1833535073e81f82d1d4925eb5c1a87923922bc0f7b547a",
+      "review_scope": "Complete frozen schema 1.1 packet read. It preserves the operator's Bobcat name and county Project Blue name as one campus, with no precise coordinates."
+    },
+    "address_context_only": "11295 S Harrison Road, Tucson, Arizona 85747",
+    "fugitive_dust_permit": "P25FD0278",
+    "notice_of_violation": "PC2605-064",
+    "temporal_guardrail": "The May 12 NOV reports physical work seen May 8 and May 11, before the window. The May 22 county memorandum relays the contractor's May 15 response; its publication date must not turn that earlier work/pause account into a May 22 inspection. Root independently visually reviewed that PDF; this follow-up did not recapture or independently reread it.",
+    "pause_and_successor_caveat": "Loss of a water source and a reported earthwork pause are preserved as scope caveats, not an inferred permanent cancellation. Secondary discovery of an August 11 draft-moratorium vote is not an independently reviewed primary resolution and is not assumed to establish enactment or applicable project cancellation. The parent's August 10 AZPM reporter narrative is not upgraded here into an attributed official physical observation.",
+    "new_independent_route": {
+      "name": "Pima County public Building Inspection Tracking",
+      "source_ids": ["am25-pima-tracking-page", "am25-pima-tracking-code"],
+      "result": "The public page and its ordinarily linked Tracking.js were captured. The UI explicitly describes today, previous business day and next business day. Its searchForPermit function searches those three displayed days only; searchDay compares the entered permit ID with the loaded scheduler data. This is not a historical May-August search. No historical parameters were invented and no unrelated current-day inspection records were bulk downloaded.",
+      "scope_caveat": "This is the Building Inspection Tracking application, not proof that a fugitive-dust inspection must be present there. Its limited public UI is not evidence that no relevant historical inspection exists in county records.",
+      "no_qualifying_observation_found": true
+    },
+    "other_bounded_discovery": [
+      {
+        "source_url": "https://bealeinfra.com/location/pima-county/",
+        "result": "Public web-reader discovery still shows a Q1 2026 construction-start timeline and future phase completion; no new exact in-window physical observation was identified. No new raw body or selected evidence."
+      },
+      {
+        "source_url": "https://www.pima.gov/3552/Project-Blue-FAQ",
+        "result": "Search-discovered county FAQ retains the 290-acre campus locality and document listing through the April 23 progress update. No new May-August physical inspection was found in that result. Not a locator or updated lifecycle selection."
+      },
+      {
+        "source_url": "https://azfreenews.com/2026/05/pcc-approves-5-9m-gift-while-confirming-elimination-of-sustainability-director-position/",
+        "result": "May 28 report describes a May 13 college funding agreement and includes generic under-construction context. No exact new municipal/permit inspection or attributed in-window physical-work statement was established. Not selected or raw captured."
+      }
+    ],
+    "excluded_alias_collisions": [
+      "Project Bobcat in Merced, California is a distribution facility, not this Pima campus.",
+      "Project Blue cold-storage construction in Fort Worth is another project.",
+      "Bobcat Boulevard roundabout work in Trophy Club is unrelated roadway construction."
+    ],
+    "geometry": null,
+    "coordinates": null,
+    "crs": null,
+    "accuracy_m": null,
+    "geometry_guardrail": "No address interpolation, locality point, adjacent fairgrounds or unrelated Bobcat/Blue feature is substituted. Exact reusable geometry remains unselected. Spatial collision testing is not performed for this coordinate-free hold.",
+    "one_physical_campus_all_buildings_and_phases": true,
+    "roles_metrics_workloads_imagery_added": false,
+    "remaining_gate": "An independently public dated authority/contractor/operator observation of actual physical work in the required window, plus an exact source-bound reusable campus locator. No admission is proposed."
+  },
+  "source_binding_map": {
+    "am25-pima-tracking-page": {
+      "raw_capture_index": 0,
+      "binding_location": "Public How to Use instructions",
+      "literal_pointer": "UTF-8 raw byte range, zero-based, end-exclusive",
+      "byte_range": [5133, 5231],
+      "literal_excerpt": "Inspections for today, previous business day, and next business day are shown by inspection route.",
+      "selected_for_admission": false
+    },
+    "am25-pima-tracking-code": {
+      "raw_capture_index": 1,
+      "binding_location": "searchForPermit and searchDay functions in the publicly linked client code",
+      "literal_pointer": "UTF-8 raw byte ranges, zero-based, end-exclusive, identifying function declarations",
+      "byte_ranges": [[11366, 11400], [12293, 12327]],
+      "symbols": ["function searchForPermit(elements)", "function searchDay(elements, date)"],
+      "selected_for_admission": false
+    }
+  },
+  "raw_captures": [
+    {
+      "source_url": "https://publicworks.pima.gov/inspections/",
+      "raw_local_path": "/tmp/atlas-americas-round25-pima.m6EKE3/inspection-tracking.html",
+      "capture_started_at": "2026-09-09T08:57:30.115775Z",
+      "capture_finished_at": "2026-09-09T08:57:30.354468Z",
+      "bytes": 8250,
+      "sha256": "7583a7ab1a9f7e2dba501e536d08e6588b9c1935eff2885754dae81a932473e1",
+      "http_status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "capture_method": "credential_free_curl_fail_location",
+      "request_credentials_supplied": false,
+      "rights": "No open license asserted. Temporary raw body only; tracked packet contains isolated factual analysis and a short attributed instruction excerpt, not website code or bulk records.",
+      "raw_body_redistributed": false
+    },
+    {
+      "source_url": "https://publicworks.pima.gov/Inspections/Scripts/UI/Tracking.js",
+      "raw_local_path": "/tmp/atlas-americas-round25-pima.m6EKE3/inspection-tracking.js",
+      "capture_started_at": "2026-09-09T08:57:43.699718Z",
+      "capture_finished_at": "2026-09-09T08:57:44.046794Z",
+      "bytes": 13927,
+      "sha256": "4390cf07a7314250d679ba40bc5c981a648fcab9ced80c359e11f741805a6d3e",
+      "http_status": 200,
+      "content_type": "application/javascript",
+      "capture_method": "credential_free_curl_fail_location",
+      "discovery": "Literal script src in the public inspection-tracking page, not a guessed/private endpoint.",
+      "request_credentials_supplied": false,
+      "rights": "No open license asserted. Source code kept temporary for factual interface review, not copied into atlas code or redistributed.",
+      "raw_body_redistributed": false
+    }
+  ],
+  "access_stops": [
+    {
+      "source_url": "https://aca-prod.accela.com/PIMA/Cap/CapHome.aspx?module=DEQ",
+      "result": "Web reader returned HTTP 403 Forbidden on the ordinary public DEQ search route. Stopped immediately; no curl retry, alternate module/host/client, proxy or gateway workaround.",
+      "raw_local_path": null,
+      "bytes": null,
+      "sha256": null
+    },
+    {
+      "source_url": "https://www.pima.gov/3716/county-administrator-memoranda-2026",
+      "result": "Inherited root unsafe/non-retryable stop. Not requested; no altered case, query or alternate URL for that index attempted."
+    }
+  ],
+  "browser_availability": "Ordinary browser request returned No browser is available. No browser state or successful permit submission is claimed.",
+  "validation": {
+    "research_json_parse": "pass",
+    "two_raw_hashes_bytes_and_literal_pointers": "pass",
+    "prior_curated_file_preserved_hash": "pass",
+    "curated_schema_validation": "not_applicable_no_new_curated_proposal",
+    "strict_geometry_validation": "not_applicable_no_geometry_proposal",
+    "selected_acceptances": 0,
+    "central_files_tests_artifacts_and_prior_sources_edited": false
+  }
+}
