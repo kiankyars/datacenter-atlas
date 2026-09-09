@@ -1563,3 +1563,47 @@ The 200-site objective and final-publication gates remain incomplete.
 .venv/bin/python scripts/build_expansion_200_draft.py --batch twenty-seventh-reviewed --output-dir /absolute/new/draft-directory
 .venv/bin/python scripts/build_expansion_200_draft.py --batch twenty-seventh-reviewed --validate-only
 ```
+
+## 2026-09-09: twenty-eighth reviewed checkpoint, 183 sites
+
+The [twenty-eighth reviewed draft](../verified_construction_core/2026-08-20-v0.18-draft-twenty-eighth-reviewed/README.md)
+adds CyrusOne Aurora and Firmus St Leonards/Launceston. It contains 183 physical sites,
+186 projects, 43 countries, 122 non-US sites and 812 evidence rows. This is 83 of the requested
+100 additions; 17 remain. Every prior row, source pin and full site feature is preserved.
+
+CyrusOne's August 20 operator update reports permanent rooftop sound-wall and attenuation
+installation at CHI2. This is a capital retrofit on the existing CHI1-CHI3 campus, not a new hall,
+new IT capacity, routine generator testing or an assertion that the whole campus is unbuilt.
+The state-named campus address is located by Census address-range interpolation with explicit
+NAD83-to-WGS84 semantics. It does not locate the particular roof or imply surveyed accuracy.
+
+Firmus's July 2 original ABC interview contains a directly attributed executive account of
+contractors currently working on site. The broadcaster and speaker attribution remain explicit;
+the transcript is not issuer-hosted and has not been acoustically verified. The September 2025
+municipal agenda binds the new development to both 23 Killafaddy Road and 66-92 St Leonards Road.
+The exact named existing LST01 building is a constituent-campus locator, not a new-hall footprint.
+Bell Bay, Wesley Vale and the separate Melbourne project are not additional admissions here.
+An unnamed operating Australian site in a September portfolio statement is retained as a caveat,
+not treated as an observed completion of the new St Leonards factory before the cutoff.
+
+The [root review](../sources/research-expansion-200-root-round31-review-2026-09-09.json)
+records independent full-geometry checks against all 181 preceding sites, mutual comparison,
+17 reverified source captures and the limits of each observation. Temporary captures disappeared
+during an execution pause, so all selected source responses were freshly captured and rebound
+before admission. Raw content remains in ignored local scratch storage, not the release.
+
+Meta Aiken and DC BLOX North Augusta remain research holds: the June 3 original local article's
+physical-work wording is reporter narrative alongside a named official's interview, without an
+expressly attributed firsthand physical-status statement. Precise mapping or a legal parcel
+match does not fill that evidence gap. Aiken's July 15 operational estimate is also not an
+observed completion notice. The broader DPR community article is not a substitute lifecycle
+source; its later failed refresh was stopped without an alternate-route retry.
+
+No new roles, workload, capacity, jobs or imagery fields are inferred. Imagery remains 10/186;
+the fixed 20-row blind review requiring 19 agreements remains incomplete. Expansion completion
+and final-publication claims remain false.
+
+```sh
+.venv/bin/python scripts/build_expansion_200_draft.py --batch twenty-eighth-reviewed --output-dir /absolute/new/draft-directory
+.venv/bin/python scripts/build_expansion_200_draft.py --batch twenty-eighth-reviewed --validate-only
+```

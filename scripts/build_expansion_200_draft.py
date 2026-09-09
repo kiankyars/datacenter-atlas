@@ -34,6 +34,7 @@ from datacenter_atlas import (  # noqa: E402
     expansion_200_thirteenth_reviewed,
     expansion_200_twelfth_reviewed,
     expansion_200_twentieth_reviewed,
+    expansion_200_twenty_eighth_reviewed,
     expansion_200_twenty_first_reviewed,
     expansion_200_twenty_fifth_reviewed,
     expansion_200_twenty_fourth_reviewed,
@@ -79,6 +80,7 @@ def main() -> int:
         "twenty-fifth-reviewed": expansion_200_twenty_fifth_reviewed,
         "twenty-sixth-reviewed": expansion_200_twenty_sixth_reviewed,
         "twenty-seventh-reviewed": expansion_200_twenty_seventh_reviewed,
+        "twenty-eighth-reviewed": expansion_200_twenty_eighth_reviewed,
     }
     parser.add_argument("--batch", choices=sorted(batches), default="initial-three")
     parser.add_argument("--output-dir", type=Path)
