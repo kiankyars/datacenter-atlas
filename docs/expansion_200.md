@@ -772,3 +772,57 @@ Objective-completion and final-publication flags remain false.
 .venv/bin/python scripts/build_expansion_200_draft.py --batch fifteenth-reviewed --output-dir /absolute/new/draft-directory
 .venv/bin/python scripts/build_expansion_200_draft.py --batch fifteenth-reviewed --validate-only
 ```
+
+## Sixty-one-site reviewed checkpoint
+
+The [sixteenth reviewed draft](../verified_construction_core/2026-08-20-v0.18-draft-sixteenth-reviewed/README.md)
+adds the Monarch Compute Campus at Point Pleasant, West Virginia. It contains 161 physical sites,
+164 projects, 41 countries, 107 non-US sites and 609 evidence rows: 61 requested additions completed,
+39 remaining. Every preceding 160-site, 163-project and 597-evidence row and full selected feature
+is unchanged. All earlier checkpoints and the public v0.17 release remain byte-frozen.
+
+The July 14 WVDEP report documents actual land-disturbing work following July 11 rainfall and
+requires a stop in one separate drainage area until controls are installed and agency compliance
+is verified. July 14 is the current physical-state report date, not construction onset or a known
+inspection day. The partial restriction remains unresolved; neither a whole-campus shutdown nor
+clearance is inferred. Site preparation does not establish hall erection, IT installation or
+delivered capacity. The bounded successor review found no whole-campus completion or cancellation
+through the August 20 cutoff and does not claim exhaustive enforcement-record coverage.
+
+The applicant's integrated power-and-three-data-center campus, agency application index, operator
+page and project-participant disclosure support one campus identity. Visual review of application
+pages 7, 93 and 221 preserves the distinction between its approximately 1100-acre application
+and the broader 2250-acre marketed concept. Planned buildings and the power pad do not count as
+additional sites. Linking the July enforcement report to this campus and exact stormwater
+registration WVR113311 is explicit analyst reconciliation, not a permit number or street address
+literally printed in that report.
+
+The exact official Power Generation Pad South registration supplies the selected EPSG:4326 point.
+Independent inverse projection of the same record's native EPSG:3857 point agrees. This checks
+coordinate consistency, not survey accuracy; both point-placement method and positional accuracy
+remain unknown. It is a constituent campus locator, not a data-center building, entrance, campus
+centroid, work extent or property boundary. The distant M2 Pipeline record, Norway template
+coordinate, datum-unstated application coordinate and conflicting 2027 notice are excluded.
+The notice's Mason-versus-Monarch naming discrepancy is retained with its exact registration join.
+
+Twelve new evidence bindings have independently verified raw hashes and byte counts. Root also
+verified all 35 research capture hashes and reviewed all 160 prior selected identities and full
+geometries, plus historical v97 aliases, without a selected-cohort collision. WVDEP's public GIS
+context supports retaining only attributed isolated factual projections; its null licence
+metadata is not relabelled as open-licensed or public domain. Source documents, maps and raw
+GIS responses are not redistributed.
+
+The separate Asia round-17 packet keeps SMX01 and Ekibastuz held for exact site location.
+SM+'s issuer bulletin corroborates the executive's name and role but not the exact author-profile
+link. The newly discovered valley website's dated news cards contain placeholder text, not
+construction observations. Neither office pins nor generic power-station locations are selected.
+
+No roles, capacities, workloads, operating models or imagery outcomes are inferred. Imagery
+remains 10/164; the fixed 20-project/19-agreement blind-review requirement remains incomplete.
+Objective-completion and final-publication flags remain false. At least 13 of the remaining
+39 additions must be non-US to keep every country at or below 40 percent at the 200-site target.
+
+```sh
+.venv/bin/python scripts/build_expansion_200_draft.py --batch sixteenth-reviewed --output-dir /absolute/new/draft-directory
+.venv/bin/python scripts/build_expansion_200_draft.py --batch sixteenth-reviewed --validate-only
+```
