@@ -553,3 +553,51 @@ Objective completion and final-publication flags remain false.
 .venv/bin/python scripts/build_expansion_200_draft.py --batch eleventh-reviewed --output-dir /absolute/new/draft-directory
 .venv/bin/python scripts/build_expansion_200_draft.py --batch eleventh-reviewed --validate-only
 ```
+
+## Fifty-three-site reviewed checkpoint
+
+The [twelfth reviewed draft](../verified_construction_core/2026-08-20-v0.18-draft-twelfth-reviewed/README.md)
+adds Flexential Hillsboro 5 on the Starr campus and Douglasville 2 on the North River campus.
+It contains 153 physical sites, 156 projects, 41 countries, 104 non-US sites and 535 evidence
+rows: 53 requested additions completed, 47 remaining. All 151 preceding sites, 154 projects,
+518 evidence rows and GeoJSON features remain unchanged, as does the public v0.17 release.
+
+Both projects use the August 18 issuer's explicit current-construction sentence, not the
+financing transaction. Project identification is a documented analyst reconciliation. For H5,
+the September 2025 owner release separates four operating facilities from named H5 under
+construction; the May 2026 release gives its exact address and distinguishes H3 and future H6.
+For D2, the May 2025 owner acquisition release identifies the 36 MW design at 1750 N River Road.
+The July ESG release names H5 and D2 as awaiting completion, but within its FY2025 accomplishments
+section: this is identity/completion-scope context, not a July physical observation.
+
+The May releases and undated owner marketing use operational-sounding capability language.
+That contrary context is retained. Full visual review of both H5 brochure pages found no dated
+whole-project completion. The later explicit August work statement supports generic current
+construction only; it does not establish that no part is operating or identify remaining halls.
+Planned H6/Norcross developments do not inherit the current-build status. Bounded successor
+checks found no decisive dated whole-project completion through August 20; index silence is
+not proof that an unreported event never happened.
+
+H5's 4975 NE Starr address matches named OSM way 1080170580, including operator and owner URL.
+Its Nominatim representative point is independently checked inside the valid source ring.
+Neighboring H4 objects with incorrect H5 website tags are excluded. The restricted municipal
+point and the Census match for H3 are also unselected. Adjoining Starr facilities count once,
+without merging other Hillsboro sites merely because they share a network.
+
+D2's 1750 North River address matches named OSM way 1258702591 and its canonical owner URL.
+Its representative point is likewise checked inside the valid source ring. The neighboring D1
+object and Census interpolation near D1 are not selected. D2 is counted once, conservatively
+reserving the adjoining North River facilities as one campus group. Its brochure was web-readable
+but the raw request returned 403; no PDF hash, visual-review claim or evidence binding is invented.
+
+Both points preserve ODbL attribution, WGS84 source coordinates and unknown positional accuracy.
+Neither is a selected boundary, surveyed footprint, entrance or active-work extent. Seventeen
+new source bindings are closed. Separate review-index evidence prevents new usage from changing
+Parker's frozen evidence row. No new roles, capacities, workloads, operating models or imagery
+outcomes are inferred. Imagery remains 10/156; the fixed 20-row/19-agreement blind review remains
+incomplete. Objective-completion and final-publication flags remain false.
+
+```sh
+.venv/bin/python scripts/build_expansion_200_draft.py --batch twelfth-reviewed --output-dir /absolute/new/draft-directory
+.venv/bin/python scripts/build_expansion_200_draft.py --batch twelfth-reviewed --validate-only
+```
