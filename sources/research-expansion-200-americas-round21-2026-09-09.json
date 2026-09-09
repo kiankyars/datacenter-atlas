@@ -1,0 +1,500 @@
+{
+  "schema_version": "research-expansion-200-americas-round21-1",
+  "reviewed_at": "2026-09-09",
+  "reference_date": "2026-08-20",
+  "physical_observation_window": [
+    "2026-05-22",
+    "2026-08-20"
+  ],
+  "review_scope": "Bounded construction-first screening of three new physical-campus identities. One independently reviewable proposal and two holds; this packet admits nothing and modifies no frozen baseline.",
+  "baseline": {
+    "commit": "5b38215",
+    "checkpoint": "eighteenth-reviewed",
+    "sites": 163,
+    "projects": 166,
+    "evidence": 629,
+    "sites_geojson": "verified_construction_core/2026-08-20-v0.18-draft-eighteenth-reviewed/sites.geojson",
+    "sites_geojson_sha256": "c4c23c667aee9336aa4402b40194d4392a4879c492e29a43a25a51ce848d1480"
+  },
+  "prior_review": {
+    "selected_names_and_stable_keys_read": 163,
+    "prior_packets_read": [
+      "sources/research-expansion-200-americas-round18-2026-09-09.json",
+      "sources/research-expansion-200-americas-round17-2026-09-09.json",
+      "sources/research-expansion-200-regions-round8-2026-09-08.json",
+      "sources/research-expansion-200-americas-round9-sabey-bell-holds-2026-09-08.json"
+    ],
+    "scope": "Avoided old Equinix portfolio refresh, AHI entity, KIO QRO3 investment/QRO2 completion, Cirion SAN2 stale, Tecto denied and Bell Sherwood unresolved routes. No Conesville or old Pecos repeat.",
+    "stable_key_search": "Case-insensitive Procergs / historic company name / Praça or Praca dos Açorianos searches of prior sources, selected eighteenth artifacts, and local v97 entities.csv/atlas.geojson found no matching older identity. Proposed new keys replace no existing keys."
+  },
+  "counts": {
+    "candidates_screened": 3,
+    "proposals_for_independent_review": 1,
+    "held_candidates": 2,
+    "admitted_sites": 0,
+    "new_raw_capture_bodies": 22,
+    "selected_source_bindings": 10
+  },
+  "proposals": [
+    {
+      "campus": "Procergs Porto Alegre Data Center Campus",
+      "country": "Brazil",
+      "curated_path": "sources/curated-official-2026-09-09-americas-round21-procergs-july-current-build.json",
+      "geometry_path": "sources/verified-construction-core-v0.18-americas-round21-procergs-geometry-proposal.json",
+      "decision": "proposal_ready_for_independent_review",
+      "campus_stable_key": "curated:procergs-porto-alegre-praca-dos-acorianos-campus",
+      "project_stable_key": "curated:procergs-porto-alegre-praca-dos-acorianos-campus:new-substation-6033",
+      "physical_status": "under_construction",
+      "normalized_as_of_date": "2026-07-01",
+      "date_precision": "month",
+      "source_month_interval": [
+        "2026-07-01",
+        "2026-07-31"
+      ],
+      "decisive_physical_evidence": "Owner July physical report explicitly states new substation construction has begun and remains ongoing; exact contract6033-00 ties to the public location template.",
+      "identity_chain": [
+        "July report I.b / AGTech /6033-00",
+        "Public numbered6033-00 template: new substation alongside Procergs building at Praça dos Açorianos s/n",
+        "Separate2026 tender page35 names Data Center PROCERGS at that address",
+        "OSM way112410783 literal PROCERGS short_name, canonical website, historic name, postcode and named Açorianos setting",
+        "Unchanged Nominatim centroid for that same way"
+      ],
+      "geometry": {
+        "point": [
+          -51.2308141,
+          -30.038629
+        ],
+        "crs": "EPSG:4326",
+        "location_basis": "community_named_site_feature",
+        "rights": "ODbL-1.0 with attribution; unrelated prose remains no-open-license-asserted",
+        "horizontal_uncertainty_metres": null
+      },
+      "dedup": {
+        "baseline_full_features_tested": 163,
+        "point_intersections": 0,
+        "complete_source_ring_intersections": 0,
+        "source_ring_valid": true,
+        "point_inside_named_source_ring": true,
+        "nominatim_and_full_api_ring_topologically_equal": true,
+        "method": "Shapely2.1.2: exact point and full20-node ring tested against every complete selected Point/Polygon/MultiPolygon, not display anchors. API/Nominatim rings reverse/reindex the same vertices.",
+        "mutual_candidate_overlap": "Only one geometry proposal. Held candidates are in Campinas and Kamloops and supply no normalized points."
+      },
+      "scope_caveats": [
+        "Operating datacenter and new power infrastructure have distinct lifecycle scopes. No new halls, campus-wide nonoperation, added IT capacity or whole-campus completion is inferred.",
+        "The locator is an existing same-campus datacenter constituent, not the exact new substation footprint or official boundary.",
+        "July1 is a conservative representation of explicit July precision, not an exact observation or start day.",
+        "Public contract attachment has unfilled contractor fields; July report supplies execution and contractor.",
+        "OSM object is not independently tagged datacenter. Explicit official datacenter address plus canonical website/short_name support the analyst association.",
+        "Nominatim reverse-address and OSM street/district labels differ from official Praça/ Centro Histórico wording. Their equality is not claimed.",
+        "Completed earlier recovery items and remote DR are excluded. August17 future September electrical target does not prove completion."
+      ],
+      "excluded_locator": "Operator Google Maps /@latitude,longitude,400m viewport lacks a project marker and is rejected.",
+      "no_new_roles_metrics_or_imagery": true
+    }
+  ],
+  "holds": [
+    {
+      "campus": "Terranova Campinas Campus",
+      "country": "Brazil",
+      "decision": "hold_exact_project_bound_reusable_geometry",
+      "physical_evidence_assessment": "Primary municipal August20 article reports the named campus and attributes a present-tense construction statement to Mauricio Giusti, Actis managing director and interim Terranova CEO. Credible reported company physical status is not rejected for lacking trade detail or a verbatim-only rule.",
+      "source_date": "2026-08-20",
+      "literal_date_pointer": "HTML time element datetime attribute inside public news JSON /0/not_data: 2026-08-20T17:23:53-03:00. The field itself contains rendered HTML, not a bare timestamp.",
+      "identity_context": "One Fazenda Pau D'Alho / Barão Geraldo / PIDS campus; prospective phases grouped once.",
+      "permit_caveat": "The municipal report expressly identifies the awarded permit as for the substation, not proof every datacenter building permit was issued or every phase began.",
+      "remaining_gate": "No exact authoritative parcel/site map or reusable source-specific point tied to the campus. Farm/locality/road/nearby CPQD coordinates do not close this gate.",
+      "selected_geometry": null,
+      "curated_admission_proposal": null,
+      "lifecycle_normalized": false,
+      "rights_crs_accuracy": "No locator selected; unresolved.",
+      "source_files": [
+        "campinas-city-aug20-body.json",
+        "campinas-city-aug20.html",
+        "campinas-main.js",
+        "terranova-telesintese-aug20.html",
+        "terranova-home.html",
+        "terranova-blog.html"
+      ],
+      "access_route": "Public frontend news API and literal article147416 GET route, discovered in openly served routing code. No credentials, private endpoint, login or form. Static code stays temporary.",
+      "secondary_scope": "Telesintese acknowledges press assistance and is corroborative only. Search-only later permit controversy and undated Actis social post were not selected.",
+      "excluded_phases": "Praia Grande and later prospective phases not selected or counted."
+    },
+    {
+      "campus": "TRU Hillside Data Centre / Bell AI Fabric,1452 McGill Road, Kamloops",
+      "country": "Canada",
+      "decision": "hold_no_fresh_authoritative_physical_observation",
+      "physical_evidence_assessment": "Official TRU April9 article explicitly reports construction but precedes May22. Undated TNSI timelines/forecasts cannot establish fresh physical status.",
+      "remaining_gate": "Need primary named-campus actual-work observation May22–August20. No exact locator proposed before status closes.",
+      "source_files": [
+        "tru-april9.html",
+        "tnsi-projects.html",
+        "tnsi-about.html"
+      ],
+      "successor_caveat": "TNSI timelines contain divergent prospective Hillside completion targets. Do not synthesize July completion or current work from retrieval date. Mission Flats/Merritt are separate sites, not Hillside successors or new admissions.",
+      "selected_geometry": null,
+      "curated_admission_proposal": null,
+      "lifecycle_normalized": false,
+      "rights_crs_accuracy": "No locator selected; unresolved.",
+      "distinctness": "Not the separately held Bell Sherwood Alberta campus."
+    }
+  ],
+  "raw_captures": [
+    {
+      "raw_capture_temp_path": "/tmp/atlas-americas-round21.VYbGrM/campinas-city-aug20.html",
+      "raw_capture_bytes": 63327,
+      "content_hash": "089ec9260e723b5374f923053283dc93750d47a6ae44ff7a607b43d9ee6ad1ed",
+      "source_url": "https://campinas.sp.gov.br/noticias/campinas-tera-data-center-de-r-5-bilhoes-voltado-a-inteligencia-artificial-147416",
+      "capture_started_at": "2026-09-09T06:28:44.306899Z",
+      "capture_finished_at": "2026-09-09T06:28:51.843924Z",
+      "http_status": 200,
+      "request_credentials_supplied": false,
+      "content_hash_scope": "SHA-256 of exact saved HTTP response-body bytes",
+      "content_hash_verification": "fetched_bytes_sha256",
+      "literal_pointer": "Public municipal frontend and literal script references; shell only, not the article body.",
+      "retention": "Temporary/untracked bodies; only compact facts and hashes proposed. No media or bulk map assets redistributed."
+    },
+    {
+      "raw_capture_temp_path": "/tmp/atlas-americas-round21.VYbGrM/terranova-home.html",
+      "raw_capture_bytes": 472688,
+      "content_hash": "7adf32378a5eac726024952ce7653fd9c7159cfb4293f018e6cf469bf9112d74",
+      "source_url": "https://dcterranova.com/",
+      "capture_started_at": "2026-09-09T06:28:44.307074Z",
+      "capture_finished_at": "2026-09-09T06:28:44.657744Z",
+      "http_status": 200,
+      "request_credentials_supplied": false,
+      "content_hash_scope": "SHA-256 of exact saved HTTP response-body bytes",
+      "content_hash_verification": "fetched_bytes_sha256",
+      "literal_pointer": "Visible company platform/campus marketing; no exact reusable campus point selected.",
+      "retention": "Temporary/untracked bodies; only compact facts and hashes proposed. No media or bulk map assets redistributed."
+    },
+    {
+      "raw_capture_temp_path": "/tmp/atlas-americas-round21.VYbGrM/terranova-telesintese-aug20.html",
+      "raw_capture_bytes": 285144,
+      "content_hash": "55a177448934206d5f1aaac4afd18fbb6cbb6bc920b5af591ac4e5d36aa05b32",
+      "source_url": "https://telesintese.com.br/terranova-inicia-construcao-de-data-center-para-ia-em-campinas/",
+      "capture_started_at": "2026-09-09T06:28:44.307134Z",
+      "capture_finished_at": "2026-09-09T06:28:45.609227Z",
+      "http_status": 200,
+      "request_credentials_supplied": false,
+      "content_hash_scope": "SHA-256 of exact saved HTTP response-body bytes",
+      "content_hash_verification": "fetched_bytes_sha256",
+      "literal_pointer": "Visible August 20, 2026 article and construction statement; closing parenthetical credits press assistance.",
+      "retention": "Temporary/untracked bodies; only compact facts and hashes proposed. No media or bulk map assets redistributed."
+    },
+    {
+      "raw_capture_temp_path": "/tmp/atlas-americas-round21.VYbGrM/procergs-interview-aug17.html",
+      "raw_capture_bytes": 161001,
+      "content_hash": "1d7bbd5738812e8fc032716d13559ddbe9d6133ffffc4ae853fe73c3372d6aa3",
+      "source_url": "https://convergenciadigital.com.br/governo/data-center-da-procergs-afetado-pela-enchente-ganha-estrutura-renovada-a-partir-de-setembro/",
+      "capture_started_at": "2026-09-09T06:28:44.307970Z",
+      "capture_finished_at": "2026-09-09T06:28:44.842396Z",
+      "http_status": 200,
+      "request_credentials_supplied": false,
+      "content_hash_scope": "SHA-256 of exact saved HTTP response-body bytes",
+      "content_hash_verification": "fetched_bytes_sha256",
+      "literal_pointer": "Visible heading/byline/date and paragraphs distinguishing rebuilt datacenter from prospective September electrical completion.",
+      "retention": "Temporary/untracked bodies; only compact facts and hashes proposed. No media or bulk map assets redistributed."
+    },
+    {
+      "raw_capture_temp_path": "/tmp/atlas-americas-round21.VYbGrM/terranova-blog.html",
+      "raw_capture_bytes": 228829,
+      "content_hash": "c8c771461db378e2173f54fe6f6b7fa1e7ae0d3b73719759cd558128c37abfda",
+      "source_url": "https://dcterranova.com/blog",
+      "capture_started_at": "2026-09-09T06:29:34.222422Z",
+      "capture_finished_at": "2026-09-09T06:29:34.507568Z",
+      "http_status": 200,
+      "request_credentials_supplied": false,
+      "content_hash_scope": "SHA-256 of exact saved HTTP response-body bytes",
+      "content_hash_verification": "fetched_bytes_sha256",
+      "literal_pointer": "Visible launch/marketing article links, not a fresh selected physical observation.",
+      "retention": "Temporary/untracked bodies; only compact facts and hashes proposed. No media or bulk map assets redistributed."
+    },
+    {
+      "raw_capture_temp_path": "/tmp/atlas-americas-round21.VYbGrM/campinas-config.js",
+      "raw_capture_bytes": 7391,
+      "content_hash": "0e6c264b6730b3592ef5b6af639fb0c331a6716626ef6d30c3a8f628ba4d12e3",
+      "source_url": "https://campinas.sp.gov.br/assets/config.js",
+      "capture_started_at": "2026-09-09T06:29:34.222610Z",
+      "capture_finished_at": "2026-09-09T06:29:34.855950Z",
+      "http_status": 200,
+      "request_credentials_supplied": false,
+      "content_hash_scope": "SHA-256 of exact saved HTTP response-body bytes",
+      "content_hash_verification": "fetched_bytes_sha256",
+      "literal_pointer": "Public static config; incidental discovery only, no selected evidence or credentials used.",
+      "retention": "Temporary/untracked bodies; only compact facts and hashes proposed. No media or bulk map assets redistributed."
+    },
+    {
+      "raw_capture_temp_path": "/tmp/atlas-americas-round21.VYbGrM/campinas-main.js",
+      "raw_capture_bytes": 2061582,
+      "content_hash": "9cda3257064691cba7628c5dbe22a1542f9ea57854480342d0d577855ab879a3",
+      "source_url": "https://campinas.sp.gov.br/main.e31ef257db364f5ba50c.js",
+      "capture_started_at": "2026-09-09T06:29:34.223931Z",
+      "capture_finished_at": "2026-09-09T06:29:35.848443Z",
+      "http_status": 200,
+      "request_credentials_supplied": false,
+      "content_hash_scope": "SHA-256 of exact saved HTTP response-body bytes",
+      "content_hash_verification": "fetched_bytes_sha256",
+      "literal_pointer": "Public frontend routing literals base https://portal-adm.campinas.sp.gov.br/api/v1/ and new_integra: noticias-integra. No credential or session value used; code is not redistributed.",
+      "retention": "Temporary/untracked bodies; only compact facts and hashes proposed. No media or bulk map assets redistributed."
+    },
+    {
+      "raw_capture_temp_path": "/tmp/atlas-americas-round21.VYbGrM/campinas-city-aug20-body.json",
+      "raw_capture_bytes": 9478,
+      "content_hash": "d055cdd99653099a44a652fc6cdba4c14ff776e0cab3fca739668e5153c6ade8",
+      "source_url": "https://portal-adm.campinas.sp.gov.br/api/v1/noticias-integra/147416",
+      "capture_started_at": "2026-09-09T06:30:37.274525Z",
+      "capture_finished_at": "2026-09-09T06:30:40.032229Z",
+      "http_status": 200,
+      "request_credentials_supplied": false,
+      "content_hash_scope": "SHA-256 of exact saved HTTP response-body bytes",
+      "content_hash_verification": "fetched_bytes_sha256",
+      "literal_pointer": "JSON /0/not_id=147416; the HTML time element datetime attribute inside /0/not_data is 2026-08-20T17:23:53-03:00; /0/not_texto and /2/not_texto hold the public municipal article segments.",
+      "retention": "Temporary/untracked bodies; only compact facts and hashes proposed. No media or bulk map assets redistributed."
+    },
+    {
+      "raw_capture_temp_path": "/tmp/atlas-americas-round21.VYbGrM/procergs-capital-index.html",
+      "raw_capture_bytes": 50038,
+      "content_hash": "af1f95dec94217f6ed860a8f5f2dfc42109387139c48dee57873a88baba80231",
+      "source_url": "https://www.procergs.rs.gov.br/aporte-de-capital-2025",
+      "capture_started_at": "2026-09-09T06:31:31.024773Z",
+      "capture_finished_at": "2026-09-09T06:31:33.631789Z",
+      "http_status": 200,
+      "request_credentials_supplied": false,
+      "content_hash_scope": "SHA-256 of exact saved HTTP response-body bytes",
+      "content_hash_verification": "fetched_bytes_sha256",
+      "literal_pointer": "Visible Aporte de Capital 2025 page, July report hyperlink and address footer. Google viewport link rejected.",
+      "retention": "Temporary/untracked bodies; only compact facts and hashes proposed. No media or bulk map assets redistributed."
+    },
+    {
+      "raw_capture_temp_path": "/tmp/atlas-americas-round21.VYbGrM/tru-april9.html",
+      "raw_capture_bytes": 124680,
+      "content_hash": "975638e7c2c5931cdb872f25192b01da8611150b6e26a78b0ca13aa7b913a7bc",
+      "source_url": "https://inside.tru.ca/2026/04/09/tru-community-trust-advances-data-centre-development/",
+      "capture_started_at": "2026-09-09T06:31:31.024962Z",
+      "capture_finished_at": "2026-09-09T06:31:31.274329Z",
+      "http_status": 200,
+      "request_credentials_supplied": false,
+      "content_hash_scope": "SHA-256 of exact saved HTTP response-body bytes",
+      "content_hash_verification": "fetched_bytes_sha256",
+      "literal_pointer": "Visible April 9, 2026 article names construction and 1452 McGill Road, but precedes the physical window.",
+      "retention": "Temporary/untracked bodies; only compact facts and hashes proposed. No media or bulk map assets redistributed."
+    },
+    {
+      "raw_capture_temp_path": "/tmp/atlas-americas-round21.VYbGrM/tnsi-projects.html",
+      "raw_capture_bytes": 133141,
+      "content_hash": "13525452be12ecd1f31d64cb9de93c77f5430163a24d6b35f95025318ad50e87",
+      "source_url": "https://tnsiinc.com/projects/",
+      "capture_started_at": "2026-09-09T06:31:31.025807Z",
+      "capture_finished_at": "2026-09-09T06:31:31.404107Z",
+      "http_status": 200,
+      "request_credentials_supplied": false,
+      "content_hash_scope": "SHA-256 of exact saved HTTP response-body bytes",
+      "content_hash_verification": "fetched_bytes_sha256",
+      "literal_pointer": "Visible Hillside and other project sections; undated/stale schedules cannot refresh construction.",
+      "retention": "Temporary/untracked bodies; only compact facts and hashes proposed. No media or bulk map assets redistributed."
+    },
+    {
+      "raw_capture_temp_path": "/tmp/atlas-americas-round21.VYbGrM/procergs-july2026.pdf",
+      "raw_capture_bytes": 441812,
+      "content_hash": "ddd67d5ead6df020b7bfd285f58c4ff9ab9bd5050bac014a868652dd7e0c6788",
+      "source_url": "https://www.procergs.rs.gov.br/upload/arquivos/202608/20132929-aporte2025-prestacaocontas-jul2026.pdf",
+      "capture_started_at": "2026-09-09T06:31:54.589172Z",
+      "capture_finished_at": "2026-09-09T06:31:56.236953Z",
+      "http_status": 200,
+      "request_credentials_supplied": false,
+      "content_hash_scope": "SHA-256 of exact saved HTTP response-body bytes",
+      "content_hash_verification": "fetched_bytes_sha256",
+      "literal_pointer": "PDF page 3 I.b new substation construction/July ongoing/contract6033-00; pages1–2 and4–6 scope context.",
+      "retention": "Temporary/untracked bodies; only compact facts and hashes proposed. No media or bulk map assets redistributed."
+    },
+    {
+      "raw_capture_temp_path": "/tmp/atlas-americas-round21.VYbGrM/procergs-nominatim.json",
+      "raw_capture_bytes": 1537,
+      "content_hash": "740c2be0e762e6a8df0e232269a88d04dffe00646378ca18579ab14a7d3b2560",
+      "source_url": "https://nominatim.openstreetmap.org/search?format=jsonv2&q=PROCERGS%20Porto%20Alegre&addressdetails=1&polygon_geojson=1",
+      "capture_started_at": "2026-09-09T06:31:54.589357Z",
+      "capture_finished_at": "2026-09-09T06:31:54.899955Z",
+      "http_status": 200,
+      "request_credentials_supplied": false,
+      "content_hash_scope": "SHA-256 of exact saved HTTP response-body bytes",
+      "content_hash_verification": "fetched_bytes_sha256",
+      "literal_pointer": "JSON /0 exact way112410783 lat/lon/name/address/geojson/licence.",
+      "retention": "Temporary/untracked bodies; only compact facts and hashes proposed. No media or bulk map assets redistributed."
+    },
+    {
+      "raw_capture_temp_path": "/tmp/atlas-americas-round21.VYbGrM/tnsi-about.html",
+      "raw_capture_bytes": 199549,
+      "content_hash": "91fd997fdbaba58d86667c26abd5d713083936046ff798a412756bcbecd09763",
+      "source_url": "https://tnsiinc.com/about/",
+      "capture_started_at": "2026-09-09T06:31:54.590947Z",
+      "capture_finished_at": "2026-09-09T06:31:54.958390Z",
+      "http_status": 200,
+      "request_credentials_supplied": false,
+      "content_hash_scope": "SHA-256 of exact saved HTTP response-body bytes",
+      "content_hash_verification": "fetched_bytes_sha256",
+      "literal_pointer": "Visible timeline has historical/planned Hillside milestones, not a fresh physical observation.",
+      "retention": "Temporary/untracked bodies; only compact facts and hashes proposed. No media or bulk map assets redistributed."
+    },
+    {
+      "raw_capture_temp_path": "/tmp/atlas-americas-round21.VYbGrM/procergs-dc-address.pdf",
+      "raw_capture_bytes": 3073032,
+      "content_hash": "b2f5754936bbfc4537c280d669ffb0faa7fe21f1a4ac03139a08fd7b9e7ffd3e",
+      "source_url": "https://www.compras.procergs.rs.gov.br/anexos/858795-aeddda652fdb499ace96f1b33e45f6282ad26bafdb45e159b2868ef5694f75c2",
+      "capture_started_at": "2026-09-09T06:36:32.847514Z",
+      "capture_finished_at": "2026-09-09T06:36:35.293686Z",
+      "http_status": 200,
+      "request_credentials_supplied": false,
+      "content_hash_scope": "SHA-256 of exact saved HTTP response-body bytes",
+      "content_hash_verification": "fetched_bytes_sha256",
+      "literal_pointer": "PDF page35 section7.1 names Data Center PROCERGS at Praça dos Açorianos s/n.",
+      "retention": "Temporary/untracked bodies; only compact facts and hashes proposed. No media or bulk map assets redistributed."
+    },
+    {
+      "raw_capture_temp_path": "/tmp/atlas-americas-round21.VYbGrM/procergs-osm-full.json",
+      "raw_capture_bytes": 4408,
+      "content_hash": "6fcb24edf9acc4c8667ea87ff4e85cfec73e023c30bb84d7bd0687565bbc1b35",
+      "source_url": "https://www.openstreetmap.org/api/0.6/way/112410783/full.json",
+      "capture_started_at": "2026-09-09T06:36:32.849592Z",
+      "capture_finished_at": "2026-09-09T06:36:33.392267Z",
+      "http_status": 200,
+      "request_credentials_supplied": false,
+      "content_hash_scope": "SHA-256 of exact saved HTTP response-body bytes",
+      "content_hash_verification": "fetched_bytes_sha256",
+      "literal_pointer": "JSON /elements exact way112410783 version18 and referenced nodes/tags; short_name and canonical website.",
+      "retention": "Temporary/untracked bodies; only compact facts and hashes proposed. No media or bulk map assets redistributed."
+    },
+    {
+      "raw_capture_temp_path": "/tmp/atlas-americas-round21.VYbGrM/procergs-substation-contract.pdf",
+      "raw_capture_bytes": 468369,
+      "content_hash": "278020eed12fc0ea29cce495688594e7b4bc6e8465d6fe32c0adf68c55e0297f",
+      "source_url": "https://www.compras.procergs.rs.gov.br/anexos/805071-71a433905d64308ba2c14e1a07c5a3acd866d06cc6f39c98997fa18dacaec4b4",
+      "capture_started_at": "2026-09-09T06:36:57.830905Z",
+      "capture_finished_at": "2026-09-09T06:36:59.471020Z",
+      "http_status": 200,
+      "request_credentials_supplied": false,
+      "content_hash_scope": "SHA-256 of exact saved HTTP response-body bytes",
+      "content_hash_verification": "fetched_bytes_sha256",
+      "literal_pointer": "PDF page1 number6033-00, heading and clause1.1 address; public unfilled template, not signed progress.",
+      "retention": "Temporary/untracked bodies; only compact facts and hashes proposed. No media or bulk map assets redistributed."
+    },
+    {
+      "raw_capture_temp_path": "/tmp/atlas-americas-round21.VYbGrM/procergs-substation-portal.html",
+      "raw_capture_bytes": 48023,
+      "content_hash": "40d07fc43e71e47864c22f5f5f7f07076f60e4a90d142dfd02fd5c82292d8621",
+      "source_url": "https://www.compras.procergs.rs.gov.br/editais/0020_2025/338262",
+      "capture_started_at": "2026-09-09T06:36:57.831802Z",
+      "capture_finished_at": "2026-09-09T06:36:58.857679Z",
+      "http_status": 200,
+      "request_credentials_supplied": false,
+      "content_hash_scope": "SHA-256 of exact saved HTTP response-body bytes",
+      "content_hash_verification": "fetched_bytes_sha256",
+      "literal_pointer": "Visible edital0020/2025 table, substation object/address and public attachment links.",
+      "retention": "Temporary/untracked bodies; only compact facts and hashes proposed. No media or bulk map assets redistributed."
+    },
+    {
+      "raw_capture_temp_path": "/tmp/atlas-americas-round21.VYbGrM/procergs-name-identity.html",
+      "raw_capture_bytes": 38924,
+      "content_hash": "1b2a141d3cab2c0f60ef9f4159da51978f02b6f924c34115d67ceb179a4b3613",
+      "source_url": "https://www.compras.procergs.rs.gov.br/editais/0058_2018/239085",
+      "capture_started_at": "2026-09-09T06:36:57.832789Z",
+      "capture_finished_at": "2026-09-09T06:36:58.684661Z",
+      "http_status": 200,
+      "request_credentials_supplied": false,
+      "content_hash_scope": "SHA-256 of exact saved HTTP response-body bytes",
+      "content_hash_verification": "fetched_bytes_sha256",
+      "literal_pointer": "Visible edital0058/2018 Objeto row spells historic PROCERGS company name.",
+      "retention": "Temporary/untracked bodies; only compact facts and hashes proposed. No media or bulk map assets redistributed."
+    },
+    {
+      "raw_capture_temp_path": "/tmp/atlas-americas-round21.VYbGrM/osm-copyright.html",
+      "raw_capture_bytes": 21314,
+      "content_hash": "8b25e999a8c6feb9cedbac09ede068b55cf703ed4b9de8afa54e462f315ce2a3",
+      "source_url": "https://www.openstreetmap.org/copyright",
+      "capture_started_at": "2026-09-09T06:36:57.833681Z",
+      "capture_finished_at": "2026-09-09T06:36:58.536084Z",
+      "http_status": 200,
+      "request_credentials_supplied": false,
+      "content_hash_scope": "SHA-256 of exact saved HTTP response-body bytes",
+      "content_hash_verification": "fetched_bytes_sha256",
+      "literal_pointer": "HTML lines197–242 licensing and attribution.",
+      "retention": "Temporary/untracked bodies; only compact facts and hashes proposed. No media or bulk map assets redistributed."
+    },
+    {
+      "raw_capture_temp_path": "/tmp/atlas-americas-round21.VYbGrM/nominatim-output.html",
+      "raw_capture_bytes": 61248,
+      "content_hash": "2b22abff55df61794873a6648149a09a46262c4f409578cb8d6823de3d6b5f7e",
+      "source_url": "https://nominatim.org/release-docs/latest/api/Output/",
+      "capture_started_at": "2026-09-09T06:36:57.834702Z",
+      "capture_finished_at": "2026-09-09T06:36:59.025505Z",
+      "http_status": 200,
+      "request_credentials_supplied": false,
+      "content_hash_scope": "SHA-256 of exact saved HTTP response-body bytes",
+      "content_hash_verification": "fetched_bytes_sha256",
+      "literal_pointer": "HTML lines2205–2230 centroid semantics and JSONv2.",
+      "retention": "Temporary/untracked bodies; only compact facts and hashes proposed. No media or bulk map assets redistributed."
+    },
+    {
+      "raw_capture_temp_path": "/tmp/atlas-americas-round21.VYbGrM/osm-node-crs.html",
+      "raw_capture_bytes": 57930,
+      "content_hash": "6d0a2a184d9fb49f51663fc54e995bd722f87d6d50b0db96ac34d4ef7e6ac900",
+      "source_url": "https://wiki.openstreetmap.org/wiki/Node",
+      "capture_started_at": "2026-09-09T06:36:57.835607Z",
+      "capture_finished_at": "2026-09-09T06:36:58.864488Z",
+      "http_status": 200,
+      "request_credentials_supplied": false,
+      "content_hash_scope": "SHA-256 of exact saved HTTP response-body bytes",
+      "content_hash_verification": "fetched_bytes_sha256",
+      "literal_pointer": "HTML table rows197/206 WGS84 and footer515 CC BY-SA2.0.",
+      "retention": "Temporary/untracked bodies; only compact facts and hashes proposed. No media or bulk map assets redistributed."
+    }
+  ],
+  "failed_or_rejected_routes": [
+    {
+      "url": "https://www.procergs.rs.gov.br/procergs-apresenta-solucoes-de-e-gov-na-cebit",
+      "result": "One ordinary HTTP404; curl --fail retained no body. Not repeated. A separate public procurement record supplies historic name.",
+      "started_at": "2026-09-09T06:36:32.848405Z",
+      "finished_at": "2026-09-09T06:36:35.544292Z"
+    },
+    {
+      "url": "https://tw.tru.ca/president.html",
+      "result": "Web reader502, not retried. Mixed-month search summaries not used as status."
+    },
+    {
+      "url": "https://www.google.com.br/maps/@-30.038482196260112,-51.230796701605186,400m",
+      "result": "Viewport hyperlink rejected as campus-specific point. No imagery downloaded."
+    }
+  ],
+  "verification": {
+    "curated_schema_1_1_parse": "PASS curated_v11._parse_document",
+    "strict_geometry_result": "PASS verified_construction_core_v018._geometry",
+    "selected_pointer_closure": "Ten source IDs point to exact entries across two proposal files. No frozen source edits.",
+    "raw_hashes": "All22 exact body hashes and byte counts recomputed before packet writing; independent final review requested.",
+    "pdf_visual_review": [
+      {
+        "path": "/tmp/atlas-americas-round21.VYbGrM/procergs-july2026.pdf",
+        "full_pages": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      {
+        "path": "/tmp/atlas-americas-round21.VYbGrM/procergs-dc-address.pdf",
+        "full_pages": [
+          35
+        ]
+      },
+      {
+        "path": "/tmp/atlas-americas-round21.VYbGrM/procergs-substation-contract.pdf",
+        "full_pages": [
+          1
+        ]
+      }
+    ],
+    "no_central_edits": true,
+    "no_commit": true
+  }
+}

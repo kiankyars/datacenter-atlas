@@ -1,0 +1,129 @@
+{
+  "schema_version": "expansion-200-asia-round21-research-1",
+  "reviewed_at": "2026-09-09",
+  "lifecycle_reference_date": "2026-08-20",
+  "observation_window": ["2026-05-22", "2026-08-20"],
+  "scope": "Bounded new Asia screens. Research holds only; no admission, geometry, status selection, metric, role or imagery outcome is added to the core.",
+  "baseline_review": {
+    "commit": "5b38215",
+    "path": "verified_construction_core/2026-08-20-v0.18-draft-eighteenth-reviewed/sites.geojson",
+    "bytes": 266357,
+    "sha256": "c4c23c667aee9336aa4402b40194d4392a4879c492e29a43a25a51ce848d1480",
+    "physical_sites": 163,
+    "projects": 166,
+    "method": "Read all selected names and stable keys, inspected the full feature collection, and searched prior research for exact candidate aliases before deep work. The only Galaxy name hit is US Galaxy Helios, not Thailand Galaxy Data Center. Japan's selected campuses are IIJ Shiroi and AI Tech Tomakomai. No OME/TECROWD/TECRA selected identity was found.",
+    "limitation": "No new candidate has a defensible selected geometry, so no point-to-full-feature distance or polygon-intersection test is claimed. Final physical distinctness and mutual OME-campus grouping remain required before any admission."
+  },
+  "ready_candidates": [],
+  "held_candidates": [
+    {
+      "research_key": "tecra-ome04-shinmachi9-a",
+      "name": "OME Data Center #04 (Ome Shinmachi 9-A)",
+      "aliases": ["OME Data Center#04", "OME Data Center#04（青梅市新町9-A）", "TECROWD93号ファンド"],
+      "country": "Japan",
+      "review_state": "held_exact_locator_successor_and_reuse_review",
+      "physical_status_evidence": {
+        "capture_id": "tecrowd-july93",
+        "candidate_status": "under_construction",
+        "candidate_observation_date": "2026-07-15",
+        "date_precision": "day",
+        "date_basis": "Visible dated field report; OpenGraph published and modified timestamps and JSON-LD datePublished/dateModified agree on July 15. The report states the named property is currently being built and construction is progressing to plan. This is not a financial construction-account classification.",
+        "visible_date": "2026.07.15",
+        "published_timestamp": "2026-07-15T08:44:55+00:00",
+        "literal_status": "【現状】建築中",
+        "literal_pointer": "HTML article#post-3291, lines 389-430; visible date line 392, current state line 396, progress/completion forecast line 412, exact fund93 link line 430; metadata lines 52-53 and JSON-LD line 62.",
+        "authority": "TECROWD publisher reports its own named fund property; site terms identify TECRA as the service provider. Independent site inspection is not claimed.",
+        "scope_caveats": "July 15 is the report's current-state observation, not a claimed construction start or individual photograph capture date. Autumn 2026 completion is a forecast, not a completed milestone. Photos were not captured or visually reviewed and do not establish imagery verification. Fund operation is not data-center operation."
+      },
+      "identity_evidence": {
+        "capture_id": "tecrowd-fund93",
+        "source_address_literal": "東京都青梅市新町九丁目2053番1の一部",
+        "source_address_translation": "Part of parcel 2053-1, Shinmachi 9-chome, Ome, Tokyo",
+        "building_confirmation_id": "第ERI-25040429号",
+        "building_confirmation_date": "2026-01-28",
+        "literal_pointer": "Fund93 title lines 337/350; subdivision section lines 634-649; property table land line 1125, building line 1146, confirmation line 1162; subdivision qualification lines 1167-1170.",
+        "date_scope": "Standing marketing/property identity page has no selected publication date. Its financial schedule and permit date are not current physical-status observations.",
+        "scope_caveats": "The source explicitly plans subdivision of the one parent parcel before the fund begins; no final subdivision parcel number or independently georeferenced selected subparcel was established. This is not evidence that the full parent parcel is the current data-center site. Related OME phases/buildings must be grouped by physical campus, not counted by fund number."
+      },
+      "locator_attempts": [
+        {
+          "capture_ids": ["ome-moj-catalogue", "ome-moj2026"],
+          "result": "Exact parcel absent from the public-coordinate conversion, not a dataset-wide absence from the legal cadastre.",
+          "literal_pointer": "Catalogue lines 278-283 identify MOJ data converted by AIGID and public-coordinate-only coverage, JGD2011 conversion from 2025. Lines 1061-1106 label and link the 2026 Ome GeoJSON. GeoJSON /crs/properties/name is urn:ogc:def:crs:OGC::CRS84; /features has 22374 entries.",
+          "inspection": "Exact value 2053-1 and text 2053/fullwidth ２０５３ occur in no feature properties. Dataset does contain Shinmachi 9-chome, but nearby or same-district features are not substitutes.",
+          "source_crs": "OGC:CRS84",
+          "selected_feature": null,
+          "selected_geometry": null,
+          "horizontal_uncertainty_metres": null,
+          "rights": "Catalogue labels CC BY without a version and points to underlying MOJ terms. Those underlying terms were not re-reviewed for this held candidate, and no geometry is selected or redistributed."
+        },
+        {
+          "capture_id": "tecrowd-fund93",
+          "result": "Excluded restaurant-target Google embed; no source-specific data-center coordinate derived.",
+          "literal_pointer": "HTML line 1178 iframe under the target-site map section; embedded place label decodes to 焼肉明月館, 9-chome 2053-1. Parameters !2d139.3172917 and !3d35.7826983 are not selected.",
+          "reason": "The embed targets a restaurant and its numeric parameters may be a viewport. A shared address or page placement is insufficient to turn the restaurant marker into an exact data-center locator."
+        },
+        {
+          "capture_id": "tecrowd-fund93",
+          "result": "Subdivision illustration link observed but not downloaded or used to derive geometry.",
+          "literal_pointer": "HTML line 649 image alt 93号対象地/分筆計画, publisher-linked asset ending /funds/93/content/image/samples/93map.webp.",
+          "reason": "No reusable source-coordinate geometry or georeferencing was established; subsequent access/rights stop preserved."
+        }
+      ],
+      "successor_review": {
+        "capture_id": "tecrowd-report-index",
+        "result": "Incomplete, not a clean successor clearance.",
+        "literal_pointer": "article#post-3343 lists 2026.08.20 and links https://tecrowd.jp/column/construction-report/2026-08-construction-report/.",
+        "limitation": "The captured index identifies an in-window August 20 portfolio report, but its body was not captured/reviewed. No no-completion or no-cancellation conclusion is asserted."
+      },
+      "rights_and_access_stop": {
+        "capture_id": "tecrowd-terms",
+        "literal_pointer": "Main terms text lines 344-495; article 2 defines services, article 6 item 6 at line 411 prohibits scraping/crawling, article 15 lines 486-489 reserves intellectual property and grants no implied use licence.",
+        "result": "Existing public captures preceded the full terms review. Further automated publisher captures stopped upon reading these restrictions; no alternative client, asset download or crawl was used to evade them. Research retains compact facts, source URLs and hashes only, not raw publisher text or media. Final reuse/access suitability remains a review gate.",
+        "catalogue_stop": "A credential-free catalogue capture returned HTTP 200 before a later web open of the same catalogue returned HTTP 403. The catalogue was not retried. The already captured HTML separately linked a public 2026 S3 GeoJSON resource, which returned HTTP 200; it is different content, not an alternate representation of the denied catalogue."
+      }
+    },
+    {
+      "research_key": "galaxy-banchang-rayong",
+      "name": "Galaxy Data Center Banchang Rayong campus",
+      "country": "Thailand",
+      "capture_ids": ["galaxy-july8", "galaxy-thailand"],
+      "review_state": "held_named_physical_observation_and_exact_locator",
+      "finding": "The July 8 article describes the developer's panel discussion and general delivery approach. The separate standing Thailand page describes a Banchang/Rayong development but does not bind named-site actual physical work to July 8. Neither a generic regional building statement nor map-adjacent locality distances supplies the missing dated project observation or exact locator.",
+      "date_semantics": "July 8 is article publication, not a transferred date for the standing portfolio page. No construction status is selected.",
+      "rights": "No open content licence identified; compact factual assessment only, no raw body redistribution."
+    },
+    {
+      "research_key": "viettel-tan-phu-trung",
+      "name": "Viettel Tan Phu Trung campus",
+      "country": "Vietnam",
+      "review_state": "screen_only_no_primary_status_closure",
+      "discovery_url": "https://vietnambiz.vn/viettel-can-chi-them-bao-nhie-de-tiep-tuc-ngoi-tren-ngai-vang-data-center-toi-2030-202661718512498.htm",
+      "finding": "Search discovery of a June 17 executive interview describes preparation to begin the first building. No fresh authoritative actual-work body was captured. The older groundbreaking and future operation targets do not close the requested physical-state window.",
+      "raw_capture": null,
+      "selected_evidence": false
+    },
+    {
+      "research_key": "chunghwa-taichung-backup-dc",
+      "name": "Chunghwa Taichung AI / TWSE backup data center",
+      "country": "Taiwan",
+      "review_state": "screen_only_planned_scope_not_physical_work",
+      "discovery_url": "https://www.cht.com.tw/zh-tw/home/cht/messages/2026/0810-1710",
+      "finding": "Official search discovery describes July cooperation planning for a TWSE backup center. No dated actual-build statement or exact project-bound locator was established. The separately mentioned Lunping opening is not a qualifying construction addition.",
+      "raw_capture": null,
+      "selected_evidence": false
+    }
+  ],
+  "raw_capture_manifest": [
+    {"capture_id":"tecrowd-july93","url":"https://tecrowd.jp/column/construction-report/construction-report-2026-07-fund-93-report-2/","raw_path":"/tmp/atlas-asia21.UF2VwC/tecrowd-july93.html","bytes":85692,"sha256":"3a07a65765c4b7fb74ae329165e711f8d60bb9b7ee39e8a9f9e5340906889f71","started_at_utc":"2026-09-09T06:29:07.514Z","completed_at_utc":"2026-09-09T06:29:08.914Z","http_status":200},
+    {"capture_id":"tecrowd-fund93","url":"https://tecrowd.jp/funds/properties/93","raw_path":"/tmp/atlas-asia21.UF2VwC/tecrowd-fund93.html","bytes":108558,"sha256":"b85017f4cfa8426e4945361a4572ae72a5f64ad334b19da4455f3f7ae4e08de8","started_at_utc":"2026-09-09T06:29:08.943Z","completed_at_utc":"2026-09-09T06:29:11.067Z","http_status":200},
+    {"capture_id":"galaxy-july8","url":"https://www.galaxy-dc.com/News_Center/212.html","raw_path":"/tmp/atlas-asia21.UF2VwC/galaxy-july8.html","bytes":18846,"sha256":"928ae2dda56a0ce8e11d215a910001c6ed3971a6e849774b28b231cd54e87c5f","started_at_utc":"2026-09-09T06:29:11.096Z","completed_at_utc":"2026-09-09T06:29:11.943Z","http_status":200},
+    {"capture_id":"galaxy-thailand","url":"https://www.galaxy-dc.com/Data_Centers.html","raw_path":"/tmp/atlas-asia21.UF2VwC/galaxy-thailand.html","bytes":14940,"sha256":"5fc8c2668050a62618b4f6ba5250256e4113899f49cecadf10201482cb4ea1f8","started_at_utc":"2026-09-09T06:29:11.971Z","completed_at_utc":"2026-09-09T06:29:12.635Z","http_status":200},
+    {"capture_id":"ome-moj-catalogue","url":"https://www.geospatial.jp/ckan/dataset/aigid-moj-13205","raw_path":"/tmp/atlas-asia21.UF2VwC/ome-moj-catalogue.html","bytes":45861,"sha256":"ef481fdcb3c424b3d9e5c8fbefe8dd2020c1de91c6b47aba0256d208c29f131e","started_at_utc":"2026-09-09T06:29:49.920Z","completed_at_utc":"2026-09-09T06:29:50.576Z","http_status":200},
+    {"capture_id":"tecrowd-terms","url":"https://tecrowd.jp/term_of_service","raw_path":"/tmp/atlas-asia21.UF2VwC/tecrowd-terms.html","bytes":44697,"sha256":"ae44c0e38aaaf0bfc485d38d018b2996fb8918948278783aaab45983935ec486","started_at_utc":"2026-09-09T06:29:50.605Z","completed_at_utc":"2026-09-09T06:29:51.251Z","http_status":200},
+    {"capture_id":"tecrowd-report-index","url":"https://tecrowd.jp/column/construction-report/","raw_path":"/tmp/atlas-asia21.UF2VwC/tecrowd-report-index.html","bytes":65518,"sha256":"2acfbf3b22da3d8242b8fe94b3fbcf20247508b87a8b78f262b5870d95b3fa4a","started_at_utc":"2026-09-09T06:29:51.281Z","completed_at_utc":"2026-09-09T06:29:52.582Z","http_status":200},
+    {"capture_id":"ome-moj2026","url":"https://gsic-opendata.s3.ap-northeast-1.amazonaws.com/aigid/aigid-moj/2026/13/aigid-moj-13205/13205_%E9%9D%92%E6%A2%85%E5%B8%82_%E5%85%AC%E5%85%B1%E5%BA%A7%E6%A8%999%E7%B3%BB_%E7%AD%86R_2026.geojson","raw_path":"/tmp/atlas-asia21.UF2VwC/ome-moj2026.geojson","bytes":18010647,"sha256":"325bb62eecbc148c21d5a8bcca75e451075dbbcd7a9386d4620e98b5052a6781","started_at_utc":"2026-09-09T06:32:42.730Z","completed_at_utc":"2026-09-09T06:33:00.312Z","http_status":200}
+  ],
+  "capture_policy": "Raw response bodies are temporary only. Every manifest record has adjacent .metadata.json with actual credential-free Node fetch start/end timestamps, HTTP status and exact response-byte SHA-256. Page access dates do not advance construction observations. No prohibited/restricted route was retried after the documented stop.",
+  "admissions": 0
+}

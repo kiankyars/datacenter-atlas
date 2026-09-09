@@ -973,3 +973,63 @@ Objective-completion and final-publication flags remain false. At least 12 of th
 .venv/bin/python scripts/build_expansion_200_draft.py --batch eighteenth-reviewed --output-dir /absolute/new/draft-directory
 .venv/bin/python scripts/build_expansion_200_draft.py --batch eighteenth-reviewed --validate-only
 ```
+
+## Nineteenth reviewed partial draft
+
+The [nineteenth reviewed draft](../verified_construction_core/2026-08-20-v0.18-draft-nineteenth-reviewed/README.md)
+adds Procergs Porto Alegre, limited to new substation construction at its existing data-center
+campus. It contains 164 physical sites, 167 projects, 42 countries, 109 non-US sites and 639
+evidence rows: 64 requested additions completed, 36 remaining. Every preceding selected row,
+full site feature, source binding and raw-input hash is preserved. The public v0.17 remains frozen.
+
+Contract SHA-256: `29bc6728271040a949a39bb815296ec3c760e3ee5a506ef3c1fd8d035a0b0e0b`.
+Manifest SHA-256: `8f02039a76ad8e4872f924d36749c7f536738252035e5389c60ea6e0075d950c`.
+
+The [Americas review](../sources/research-expansion-200-americas-round21-2026-09-09.json)
+binds the owner's July physical-progress report, item I.b, to contract 6033-00. July 1 is only
+the existing conservative month-start representation of the explicitly reported July status;
+it is not an invented observation or construction-start day. The report's repeated comparison
+heading and July-to-August table footer remain disclosed template inconsistencies. Spending
+percentages, completed recovery work, purchased storage and future deliveries do not supply
+additional physical projects or dates. The August 17 original interview distinguishes rebuilt
+existing halls from electrical renewal still expected in September, not completed at cutoff.
+
+The public contract template identifies the new substation beside Procergs' headquarters;
+a separate official tender explicitly identifies its data center at that same address. The
+template is identity evidence, not a signed award or work observation. The exact OSM building's
+short name, historic company name and canonical website close the community-feature association.
+Its provider-supplied Nominatim point and full ring were checked against all 163 predecessor
+geometries, with no intersection or alias collision. Differing street and district labels remain
+explicit. The point locates the campus, not the new substation footprint, entrance, parcel or
+surveyed position. Accuracy is unknown. OSM data retain ODbL attribution and rights; third-party
+PDFs, media, code and raw HTML are not redistributed. Root and independent reviewer verified all
+ten selected complete capture hashes, source bindings, relevant PDF pages and scope separation.
+
+New round 21 holds preserve the next exact gates:
+
+- [Ōme, Japan](../sources/research-expansion-200-asia-round21-2026-09-09.json): current construction
+  exists, but the precise parcel is absent from the inspected public-coordinate dataset;
+  successor review and publisher reuse/access questions remain unresolved.
+- [Türksat Gölbaşı](../sources/research-expansion-200-mena-round21-2026-09-09.json): July 22 physical
+  work is supported, but the specific construction-campus-to-headquarters-marker bridge is not.
+- [Telehouse West Two](../sources/research-expansion-200-europe-round21-telehouse-2026-09-09.json):
+  month precision need not block July status, but reuse terms and live locator access do. The
+  supposed SCR download returned unavailable-consultation HTML, not a verified PDF capture.
+- [Vösendorf](../sources/research-expansion-200-europe-round21-voesendorf-locator-2026-09-09.json):
+  the [identity review](../sources/research-expansion-200-europe-round21-voesendorf-identity-2026-09-09.json)
+  binds August 13 municipal construction and Microsoft's site board for further review. The
+  municipality does not name Microsoft; the association is geographic reconciliation. A wrong
+  southern construction feature, an imprecise unnamed greenfield and street bounds are excluded.
+  A project-bound parcel or another exact reusable locator is still needed.
+- Terranova Campinas remains held for its exact locator; TRU Hillside for a fresh dated physical
+  observation. Neither adds a selected site.
+
+No new roles, metrics, workloads, operating models or imagery reviews are inferred. Imagery is
+10/167, and the fixed 20-project/19-agreement blind review remains incomplete. Both completion
+and final-publication flags remain false. At least 11 of the remaining 36 additions must be
+non-US to keep every country at or below 40 percent at 200 sites.
+
+```sh
+.venv/bin/python scripts/build_expansion_200_draft.py --batch nineteenth-reviewed --output-dir /absolute/new/draft-directory
+.venv/bin/python scripts/build_expansion_200_draft.py --batch nineteenth-reviewed --validate-only
+```

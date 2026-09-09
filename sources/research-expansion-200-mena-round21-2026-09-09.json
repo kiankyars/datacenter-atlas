@@ -1,0 +1,431 @@
+{
+  "schema_version": "research-handoff-1.0",
+  "research_date": "2026-09-09",
+  "round": 21,
+  "lane": "Middle East and Africa, with bounded Turkish follow-up",
+  "admissions": [],
+  "baseline": {
+    "head_commit": "5b38215ec151901c567a0316368de71263bc1eba",
+    "sites_path": "verified_construction_core/2026-08-20-v0.18-draft-eighteenth-reviewed/sites.geojson",
+    "sites_sha256": "c4c23c667aee9336aa4402b40194d4392a4879c492e29a43a25a51ce848d1480",
+    "site_count": 163,
+    "project_count": 166,
+    "evidence_count": 629
+  },
+  "scope": {
+    "lifecycle_reference_date": "2026-08-20",
+    "required_physical_observation_window": [
+      "2026-05-22",
+      "2026-08-20"
+    ],
+    "no_central_edits": true,
+    "no_admission": true,
+    "no_source_media_redistributed": true,
+    "no_paid_or_restricted_documents_accessed": true
+  },
+  "candidates": [
+    {
+      "candidate_key": "curated:turksat-golbasi-data-center-campus",
+      "name": "Türksat Gölbaşı Data Center",
+      "country": "Turkey",
+      "decision": "hold_exact_campus_identity_to_locator_bridge",
+      "physical_status_gate": "closed_for_generic_under_construction_on_2026-07-22",
+      "status_source": "turksat-july22.html",
+      "physical_observation": {
+        "date": "2026-07-22",
+        "date_precision": "day",
+        "source_kind": "primary_operator_report_of_actual_groundbreaking",
+        "meaning": "The operator reports that the named data-center project's foundation was laid at the attended ceremony. The opening and closing paragraphs report an event that occurred, not only an announced event. Generic under_construction is supported; no trade-specific stage, current operating status, or construction onset before the ceremony is inferred.",
+        "source_pointers": [
+          {
+            "raw_file": "turksat-july22.html",
+            "zero_based_utf8_byte_offset": 57602,
+            "literal": "22 Temmuz 2026 Çarşamba"
+          },
+          {
+            "raw_file": "turksat-july22.html",
+            "zero_based_utf8_byte_offset": 57855,
+            "literal": "projesinin temeli"
+          },
+          {
+            "raw_file": "turksat-july22.html",
+            "zero_based_utf8_byte_offset": 66663,
+            "literal": "Konuşmaların ardından"
+          }
+        ],
+        "corroboration": "The Ministry of Transport and Infrastructure July22 body independently reports the minister laid the foundation. The operator's English translation is published July23; it does not move the selected Turkish event date."
+      },
+      "identity_context": {
+        "source": "turksat-2025-campus.html",
+        "publication_date": "2025-02-24",
+        "zero_based_utf8_byte_offset": 58987,
+        "literal": "Türksat'ın Gölbaşı yerleşkesinde kurulacak",
+        "meaning": "The operator explicitly placed the planned new data center in its Gölbaşı campus. This is historical identity context, not a fresh physical observation.",
+        "remaining_gate": "The current official contact map calls the Yağlıpınar facility the General Directorate Campus, but it separately lists an Ankara University Technology Development campus at Bahçelievler, also in Gölbaşı. No reviewed source explicitly joins the new DC's Gölbaşı-campus wording to Yağlıpınar rather than that alternative. The locality match and corporate headquarters address alone do not close this gate.",
+        "root_disposition": "Root agreed to freeze this hold rather than accept the ambiguous campus-name reconciliation."
+      },
+      "unselected_locator": {
+        "source": "turksat-contact.html",
+        "source_authority": "operator_authored",
+        "source_literal": {
+          "lat": 39.639938,
+          "lng": 32.808476,
+          "title": "Türksat A.Ş. Genel Müdürlük Kampüsü",
+          "address": "Yağlıpınar Mahallesi Türksat (Küme Evler) İdari Bina Apt. No:1 Gölbaşı Ankara"
+        },
+        "potential_geojson_coordinates": [
+          32.808476,
+          39.639938
+        ],
+        "scope": "An explicit existing headquarters-campus marker, not a new data-center building point, footprint, boundary, parcel or active-work location. It is not selected pending the campus identity bridge.",
+        "horizontal_uncertainty_metres": null,
+        "pointers": [
+          {
+            "zero_based_utf8_byte_offset": 54597,
+            "literal": "lat: 39.639938"
+          },
+          {
+            "zero_based_utf8_byte_offset": 55355,
+            "literal": "L.marker([loc.lat, loc.lng])"
+          },
+          {
+            "zero_based_utf8_byte_offset": 53987,
+            "literal": "leaflet@1.9.4"
+          }
+        ],
+        "excluded_alternatives": [
+          {
+            "coordinates_lat_lng": [
+              39.75,
+              32.81
+            ],
+            "reason": "Map setView viewport center, not a feature."
+          },
+          {
+            "coordinates_lat_lng": [
+              39.783986,
+              32.813317
+            ],
+            "reason": "Separate Ankara University Technology Development campus at Bahçelievler, not established as the new DC site."
+          },
+          {
+            "reason": "Tender's company/procurement office and document-inspection addresses are not declared construction-site addresses."
+          }
+        ],
+        "crs_review": {
+          "provider_source": "leaflet-1.9.4.js",
+          "source_kind": "versioned_mapping_library_source",
+          "input_convention": "L.marker receives [latitude,longitude], in degrees; contact data uses explicit lat/lng symbols.",
+          "reviewed_source_lines": [
+            "1445-1489 LatLng contract and properties",
+            "1544-1574 array conversion",
+            "1863-1880 EPSG3857 definition",
+            "3144-3153 default Map CRS"
+          ],
+          "map_crs": "EPSG:3857 default, no override in operator script",
+          "geographic_interpretation": "WGS84 geographic degrees, not Web-Mercator metre coordinates. Local PROJ EPSG3857 geodetic base returned EPSG4326 / WGS 84. This resolves API convention, not the operator's survey datum epoch or accuracy.",
+          "derivation": "Reorder the literal marker from lat/lng to GeoJSON longitude/latitude only if identity accepted. No transform or geocoder has been applied to select a point.",
+          "survey_accuracy": "unknown"
+        },
+        "rights": {
+          "rights_notice": "Tüm Hakları Saklıdır",
+          "rights_url": "https://turksat.com.tr/kurumsal/turksata-ulasin",
+          "zero_based_utf8_byte_offset": 69807,
+          "open_license_asserted": false,
+          "scope": "Only an isolated attributed coordinate fact and short restated identity metadata are preserved for review. Operator-authored marker rights are not borrowed from the OpenStreetMap basemap attribution. No basemap tiles, imagery, page copy, map design, bulk locations or source code are redistributed in the repository."
+        }
+      },
+      "successor_check": {
+        "cutoff": "2026-08-20",
+        "queries": [
+          "\"Türksat Gölbaşı Veri Merkezi\" \"tamamlandı\"",
+          "\"Türksat Gölbaşı Veri Merkezi\" \"iptal\" \"2026\"",
+          "\"Türksat Gölbaşı Veri Merkezi\" \"hizmete\" \"Ağustos 2026\""
+        ],
+        "reviewed_primary_sources": [
+          "turksat-july22.html",
+          "turksat-july23-en.html",
+          "uab-july22.html",
+          "turksat-dc.html",
+          "turksat-home.html"
+        ],
+        "result": "No completion or cancellation successor through the cutoff was found in these bounded checks. This is a search result, not proof of exhaustive absence.",
+        "contrary_context": "The generic data-center-services page describes two operating Ankara locations. The July report distinguishes existing capacity from the new build and gives early2028 / Q12028 first-phase opening forecasts. Existing services are not silently labelled non-operating, nor treated as proof that the July project completed.",
+        "forecast_revision": "The historical February2025 report targeted first-half2027 and gave smaller design metrics. July2026 targets early2028 and revised metrics. Neither old forecast is selected as fresh physical work. No capacity or area is proposed."
+      },
+      "dedup": {
+        "identity_review": "All163 selected names and stable keys were read; no Türksat/Gölbaşı identity is selected. Searches across prior source JSON and v97 entities for turksat, türksat, golbasi, gölbaşı returned no prior candidate.",
+        "full_geometry_review": {
+          "method": "Shapely geometry intersection and nearest-distance comparison of the unselected potential operator point against all163 complete source geometries, transformed to local WGS84 azimuthal-equidistant metres centred on that point. No coordinate-only comparison of polygons.",
+          "intersections": [],
+          "nearest": [
+            {
+              "name": "ENKA Data Solutions EDS IST 01 Tuzla Data Center",
+              "distance_metres": 324857.346
+            },
+            {
+              "name": "NXDATA-3 Bucharest Ring Road Campus",
+              "distance_metres": 775023.821
+            },
+            {
+              "name": "Ten Brinke Spata Data Center",
+              "distance_metres": 794724.923
+            }
+          ],
+          "limitation": "No collision does not establish the unresolved campus identity."
+        },
+        "mutual_dedup": "Only this named physical project reached a potential locator. Turkcell aggregate sites are not individual candidates and have no selected points."
+      },
+      "next_action": "Only a genuinely new primary source explicitly identifying the new DC's Gölbaşı campus as Yağlıpınar, or a direct official project-address/parcel/marker, changes this hold. Do not substitute the corporate office or repeat generic searches."
+    },
+    {
+      "candidate_key": "hold:turkcell-google-cloud-turkiye-three-unnamed-sites",
+      "name": "Turkcell / Google Cloud three next-generation data centers",
+      "country": "Turkey",
+      "decision": "hold_aggregate_identity_and_observation_precision",
+      "source_url": "https://www.nasdaq.com/press-release/turkcell-iletisim-hizmetleri-second-quarter-2026-results-2026-08-13",
+      "source_kind": "issuer_press_release_syndicated_by_Nasdaq",
+      "publication_date": "2026-08-13",
+      "review_scope": "Full web-readable release body, particularly CEO comments; not a raw-closed admission source.",
+      "finding": "CEO comments report commencing construction of three next-generation data centers for Google Cloud. No exact three named campuses or addresses were supplied. Q2 reporting context extends before May22; publication date alone does not establish the physical onset date or a qualifying current observation for each site.",
+      "phase_exclusion": "The same section says the fifth module of the existing Ankara data center was commissioned. That completed phase is not selected as construction.",
+      "raw_capture_limitation": "The attempted credential-free raw download failed with curl92 / HTTP2 stream internal error. It was not retried. No successful body bytes or SHA are claimed.",
+      "next_action": "A project-specific operator/contractor/government source identifying one campus with physical observation date or current-status semantics in the required window, followed by an exact locator."
+    },
+    {
+      "candidate_key": "hold:vodafone-damac-red-haven-izmir-completion-screen",
+      "name": "Vodafone / DAMAC Digital Red Haven İzmir",
+      "country": "Turkey",
+      "decision": "excluded_completion_conflict_at_discovery_only",
+      "source_url": "https://www.technopat.net/2026/07/13/serban-vodafone-ve-damac-digitalin-izmir-veri-merkezini-tamamladi/",
+      "source_kind": "secondary_trade_report_attributing_contractor_statement",
+      "publication_date": "2026-07-13",
+      "finding": "The discovery body says Serban completed turnkey delivery including testing and commissioning. This contradicts a fresh under-construction selection; no primary, date-bound contractor body was captured in the bounded lane.",
+      "limitations": "This is a completion-conflict screen, not independently verified primary completion and not a selected lifecycle claim. No locator or raw body hash is claimed.",
+      "next_action": "Do not reopen as new construction without a genuinely distinct, authoritative post-completion phase with a qualifying physical date."
+    }
+  ],
+  "prior_hold_avoidance": {
+    "reviewed_packet": "sources/research-expansion-200-middleeast-round4-2026-09-08.json",
+    "not_reopened": [
+      "MultiDC Shoham unresolved exact campus locator",
+      "Gulf Data Hub Dubai Silicon Oasis three-facility geometry ambiguity",
+      "XDS Desert Dragon Jeddah unresolved locator",
+      "Noor Capital Gardens unresolved locator",
+      "TNX/Nairobi and LinkedIn authority loops",
+      "Khazna stale or completed phase dates",
+      "Ezditek RUH01 already selected"
+    ],
+    "scope": "Broader Saudi/UAE discovery did not produce a new raw-closed candidate in this bounded pass; generic forecasts are not admission evidence."
+  },
+  "raw_captures": [
+    {
+      "tag": "leaflet-1.9.4.js",
+      "source_url": "https://unpkg.com/leaflet@1.9.4/dist/leaflet-src.js",
+      "raw_local_path": "/tmp/atlas-mena-round21.wZV6PW/leaflet-1.9.4.js",
+      "capture_started_at": "2026-09-09T06:34:41.495Z",
+      "capture_finished_at": "2026-09-09T06:34:41.685Z",
+      "http_status": 200,
+      "returncode": 0,
+      "effective_url": "https://unpkg.com/leaflet@1.9.4/dist/leaflet-src.js",
+      "content_type": "text/javascript; charset=utf-8",
+      "bytes": 450229,
+      "sha256": "b4fa27bd78a8487450b75fb8ced591e66cffd4a1b55f7c87373557a6b3f680ba",
+      "request_credentials_supplied": false,
+      "capture_method": "credential_free_curl_fail_location_compressed",
+      "stderr": "",
+      "raw_exists": true,
+      "selected_for_admission": false
+    },
+    {
+      "tag": "turkcell-aug13.html",
+      "source_url": "https://www.nasdaq.com/press-release/turkcell-iletisim-hizmetleri-second-quarter-2026-results-2026-08-13",
+      "raw_local_path": "/tmp/atlas-mena-round21.wZV6PW/turkcell-aug13.html",
+      "capture_started_at": "2026-09-09T06:34:26.555Z",
+      "capture_finished_at": "2026-09-09T06:34:26.676Z",
+      "http_status": 0,
+      "returncode": 92,
+      "effective_url": "https://www.nasdaq.com/press-release/turkcell-iletisim-hizmetleri-second-quarter-2026-results-2026-08-13",
+      "content_type": null,
+      "bytes": null,
+      "sha256": null,
+      "request_credentials_supplied": false,
+      "capture_method": "credential_free_curl_fail_location_compressed",
+      "stderr": "curl: (92) HTTP/2 stream 1 was not closed cleanly: INTERNAL_ERROR (err 2)\n",
+      "raw_exists": false,
+      "selected_for_admission": false
+    },
+    {
+      "tag": "turksat-2024.pdf",
+      "source_url": "https://www.turksat.com.tr/sites/default/files/2025-05/FAAL%C4%B0YET_RAPORU_2024%20%28r%29.pdf",
+      "raw_local_path": "/tmp/atlas-mena-round21.wZV6PW/turksat-2024.pdf",
+      "capture_started_at": "2026-09-09T06:35:44.083Z",
+      "capture_finished_at": "2026-09-09T06:35:45.265Z",
+      "http_status": 404,
+      "returncode": 22,
+      "effective_url": "https://www.turksat.com.tr/sites/default/files/2025-05/FAAL%C4%B0YET_RAPORU_2024%20%28r%29.pdf",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": null,
+      "sha256": null,
+      "request_credentials_supplied": false,
+      "capture_method": "credential_free_curl_fail_location_compressed",
+      "stderr": "curl: (22) The requested URL returned error: 404\n",
+      "raw_exists": false,
+      "selected_for_admission": false
+    },
+    {
+      "tag": "turksat-2025-campus.html",
+      "source_url": "https://www.turksat.com.tr/haberler/turksat-golbasina-dev-veri-merkezi-kuruyor",
+      "raw_local_path": "/tmp/atlas-mena-round21.wZV6PW/turksat-2025-campus.html",
+      "capture_started_at": "2026-09-09T06:29:10.515Z",
+      "capture_finished_at": "2026-09-09T06:29:11.653Z",
+      "http_status": 200,
+      "returncode": 0,
+      "effective_url": "https://www.turksat.com.tr/haberler/turksat-golbasina-dev-veri-merkezi-kuruyor",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 71057,
+      "sha256": "8f59372c19e3dab47a710dcc4488f1aa05fd2c156718236b05b87f064bf40d76",
+      "request_credentials_supplied": false,
+      "capture_method": "credential_free_curl_fail_location_compressed",
+      "stderr": "",
+      "raw_exists": true,
+      "selected_for_admission": false
+    },
+    {
+      "tag": "turksat-contact.html",
+      "source_url": "https://turksat.com.tr/kurumsal/turksata-ulasin",
+      "raw_local_path": "/tmp/atlas-mena-round21.wZV6PW/turksat-contact.html",
+      "capture_started_at": "2026-09-09T06:28:54.092Z",
+      "capture_finished_at": "2026-09-09T06:28:55.647Z",
+      "http_status": 200,
+      "returncode": 0,
+      "effective_url": "https://turksat.com.tr/kurumsal/turksata-ulasin",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 85483,
+      "sha256": "9671d62203b56900351c5a9479e867e4d0d5cdd2bc937ea5cf725abf4ccb54bd",
+      "request_credentials_supplied": false,
+      "capture_method": "credential_free_curl_fail_location_compressed",
+      "stderr": "",
+      "raw_exists": true,
+      "selected_for_admission": false
+    },
+    {
+      "tag": "turksat-dc.html",
+      "source_url": "https://turksat.com.tr/bilisim/e-donusum-hizmetleri/veri-merkezi-cozumleri",
+      "raw_local_path": "/tmp/atlas-mena-round21.wZV6PW/turksat-dc.html",
+      "capture_started_at": "2026-09-09T06:28:54.103Z",
+      "capture_finished_at": "2026-09-09T06:28:55.081Z",
+      "http_status": 200,
+      "returncode": 0,
+      "effective_url": "https://turksat.com.tr/bilisim/e-donusum-hizmetleri/veri-merkezi-cozumleri",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 83401,
+      "sha256": "183f9363a710662e1bed4ee4234964908b359918f9b615ddfa04d6e8af961830",
+      "request_credentials_supplied": false,
+      "capture_method": "credential_free_curl_fail_location_compressed",
+      "stderr": "",
+      "raw_exists": true,
+      "selected_for_admission": false
+    },
+    {
+      "tag": "turksat-home.html",
+      "source_url": "https://www.turksat.com.tr/",
+      "raw_local_path": "/tmp/atlas-mena-round21.wZV6PW/turksat-home.html",
+      "capture_started_at": "2026-09-09T06:37:39.006Z",
+      "capture_finished_at": "2026-09-09T06:37:40.165Z",
+      "http_status": 200,
+      "returncode": 0,
+      "effective_url": "https://www.turksat.com.tr/",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 107843,
+      "sha256": "fdf3dcc7dafeda3c6746dd94e3379375837c0f6ba2172036eaa4f03eb5a10585",
+      "request_credentials_supplied": false,
+      "capture_method": "credential_free_curl_fail_location_compressed",
+      "stderr": "",
+      "raw_exists": true,
+      "selected_for_admission": false
+    },
+    {
+      "tag": "turksat-july22.html",
+      "source_url": "https://turksat.com.tr/kurumsal/basin-medya/haberler/turksat-golbasi-veri-merkezinin-temeli-atildi",
+      "raw_local_path": "/tmp/atlas-mena-round21.wZV6PW/turksat-july22.html",
+      "capture_started_at": "2026-09-09T06:28:29.052Z",
+      "capture_finished_at": "2026-09-09T06:28:30.190Z",
+      "http_status": 200,
+      "returncode": 0,
+      "effective_url": "https://turksat.com.tr/kurumsal/basin-medya/haberler/turksat-golbasi-veri-merkezinin-temeli-atildi",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 78209,
+      "sha256": "7e40fa007f291e1ff8ff2c10d372ee4777037ccaa0ab8112a92258ea8b6a9659",
+      "request_credentials_supplied": false,
+      "capture_method": "credential_free_curl_fail_location_compressed",
+      "stderr": "",
+      "raw_exists": true,
+      "selected_for_admission": false
+    },
+    {
+      "tag": "turksat-july23-en.html",
+      "source_url": "https://www.turksat.com.tr/en/corporate/press-media/news/groundbreaking-ceremony-held-turksat-golbasi-data-center",
+      "raw_local_path": "/tmp/atlas-mena-round21.wZV6PW/turksat-july23-en.html",
+      "capture_started_at": "2026-09-09T06:35:55.430Z",
+      "capture_finished_at": "2026-09-09T06:35:56.399Z",
+      "http_status": 200,
+      "returncode": 0,
+      "effective_url": "https://www.turksat.com.tr/en/corporate/press-media/news/groundbreaking-ceremony-held-turksat-golbasi-data-center",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 79244,
+      "sha256": "42d33b6bc8d2c0540631e892c500efb2c2761fb6fcd2933e443298fe5c7bdf51",
+      "request_credentials_supplied": false,
+      "capture_method": "credential_free_curl_fail_location_compressed",
+      "stderr": "",
+      "raw_exists": true,
+      "selected_for_admission": false
+    },
+    {
+      "tag": "turksat-tender.html",
+      "source_url": "https://www.turksat.com.tr/satin-alma-ilanlari/turksat-golbasi-veri-merkezi-yapim-isi-satin-alma-ilani",
+      "raw_local_path": "/tmp/atlas-mena-round21.wZV6PW/turksat-tender.html",
+      "capture_started_at": "2026-09-09T06:28:29.062Z",
+      "capture_finished_at": "2026-09-09T06:28:30.343Z",
+      "http_status": 200,
+      "returncode": 0,
+      "effective_url": "https://www.turksat.com.tr/satin-alma-ilanlari/turksat-golbasi-veri-merkezi-yapim-isi-satin-alma-ilani",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 76394,
+      "sha256": "a6dd3afe1a82c2b669039187852eb5f2370f2150fdc241bced0a628a0b45bd54",
+      "request_credentials_supplied": false,
+      "capture_method": "credential_free_curl_fail_location_compressed",
+      "stderr": "",
+      "raw_exists": true,
+      "selected_for_admission": false
+    },
+    {
+      "tag": "uab-july22.html",
+      "source_url": "https://www.uab.gov.tr/haberler/verilerimize-dijital-kale/",
+      "raw_local_path": "/tmp/atlas-mena-round21.wZV6PW/uab-july22.html",
+      "capture_started_at": "2026-09-09T06:37:40.196Z",
+      "capture_finished_at": "2026-09-09T06:37:42.369Z",
+      "http_status": 200,
+      "returncode": 0,
+      "effective_url": "https://www.uab.gov.tr/haberler/verilerimize-dijital-kale/",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 82818,
+      "sha256": "39ba4a71f5fd16d1d4ca1fe478aa935fce0d9e560fec54cbe613976315f21d98",
+      "request_credentials_supplied": false,
+      "capture_method": "credential_free_curl_fail_location_compressed",
+      "stderr": "",
+      "raw_exists": true,
+      "selected_for_admission": false
+    }
+  ],
+  "verification": {
+    "successful_raw_capture_count": 9,
+    "failed_capture_count": 2,
+    "raw_hashes_and_byte_counts": "Recomputed from complete local raw bodies before handoff.",
+    "pdf_skill": "Read fully before attempting indexed2024PDF; HTTP404 left no PDF body, extraction or visual review. No annual-report PDF claim is selected.",
+    "curated_or_geometry_proposal_written": false,
+    "central_files_changed": false,
+    "tests_run": false,
+    "commit_created": false
+  }
+}

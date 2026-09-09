@@ -1,0 +1,229 @@
+{
+  "schema_version": "expansion-200-europe-round21-voesendorf-locator-research-1",
+  "reviewed_at": "2026-09-09",
+  "lifecycle_reference_date": "2026-08-20",
+  "scope": "Independent exact-locator research only. Status and operator/site identity are reviewed in separate root and Maxwell lanes. No admission, selected geometry or core edit.",
+  "name": "Microsoft Vösendorf data center campus",
+  "country": "Austria",
+  "review_state": "held_exact_named_project_locator_not_established",
+  "selected_geometry": null,
+  "project_stable_key": null,
+  "baseline_review": {
+    "path": "verified_construction_core/2026-08-20-v0.18-draft-eighteenth-reviewed/sites.geojson",
+    "physical_sites": 163,
+    "sha256": "c4c23c667aee9336aa4402b40194d4392a4879c492e29a43a25a51ce848d1480",
+    "result": "No Vösendorf/voesendorf/vosendorf or Anton-Benya source/selected aliases found. Geometry-to-all163 comparison is not claimed without a valid candidate geometry."
+  },
+  "primary_board_review": {
+    "raw_path": "/tmp/atlas-europe-round21-voesendorf.fSDVZC/microsoft-boards.pdf",
+    "source_url": "https://local.microsoft.com/wp-content/uploads/2026/04/2602_Drop-In-Event_Vienna-Event-boards-FINAL-250226.pdf",
+    "bytes": 7913925,
+    "sha256": "3b77ddb6c628c9e9c0e62b0fe01e15a90e61f6609c6527b8a4001fc6a82b1377",
+    "capture_started_at": "2026-09-09T06:36:58.507Z",
+    "capture_finished_at": "2026-09-09T06:36:59.144Z",
+    "pointer": "PDF pages 9-10, visually reviewed in the already rendered Microsoft-board-09/-10 PNGs.",
+    "finding": "Page9 names the Vösendorf project and displays a green site outline west of OBI/Triester Straße, south of A21; red access from the north corresponds to Fachmarktstraße. Page10 is an architectural rendering and provisional timeline, not georeferenced geometry or imagery verification.",
+    "date_scope": "Publication date not established by this locator review. The URL/filename and PDF retrieval are not selected lifecycle observations.",
+    "rights_scope": "Microsoft-published public board with third-party map background. No board image, digitized overlay or base-map geometry is redistributed. No open licence asserted."
+  },
+  "routes": [
+    {
+      "route": "Overpass named-operator query",
+      "capture": "osm-microsoft.json",
+      "result": "HTTP406 HTML response, no OSM result data. Stopped without retry or alternate Overpass host/client."
+    },
+    {
+      "route": "OpenStreetMap public search web view",
+      "url": "https://www.openstreetmap.org/search?query=Microsoft%20V%C3%B6sendorf",
+      "result": "Web tool returned an internal error; no useful body selected."
+    },
+    {
+      "route": "Ordinary browser",
+      "url": "https://kataster.bev.gv.at/",
+      "result": "CUA reported no browser available; no further browser attempt."
+    },
+    {
+      "route": "BEV cadastral service and documented API",
+      "captures": [
+        "bev-service.html",
+        "bev-kataster.html",
+        "bev-swagger.yml",
+        "bev-address-search.json",
+        "bev-fachmarkt.json",
+        "bev-antonbenya.json"
+      ],
+      "result": "Successful public body captures. Service explicitly describes free unrestricted API use. Compound Fachmarktstraße Vösendorf search returned no features; single-street searches return bounding rectangles for named streets. These rectangles are orientation aids only and excluded as campus geometry.",
+      "documentation_pointer": "Service sections Zugangsvoraussetzungen/Preise/Nutzungsbedingungen; Swagger /all/?term={term} and /gst/{kgnr}/{gnr}.",
+      "rights_scope": "Free API access is not an open data licence. Service page references BEV AGB and Standardentgelte/Nutzungsbedingungen and reserves rights; no selected geometry use is approved here. Swagger info.license Apache2.0 is not assumed to license cadastral data.",
+      "unclosed_gate": "No literal Microsoft parcel number or exact source-specific project address point established, and data reuse/CRS details would need review for an actual selected feature."
+    },
+    {
+      "route": "Independent official OpenStreetMap bounded raw map API",
+      "capture": "osm-bounded-map.osm",
+      "result": "Small area query oriented by the BEV Fachmarktstraße result, not a rerun of the regional Overpass named-feature query. Successful complete map response contains no Microsoft or named data-centre feature. Geographic bounds are search bounds, not a project locator.",
+      "rights": "Response root declares OpenStreetMap and contributors / ODbL1.0; no map feature selected.",
+      "excluded_features": [
+        {
+          "osm_way_id": 317544376,
+          "captures": [
+            "osm-way-317544376-full.osm",
+            "osm-changeset-169552904.osm"
+          ],
+          "tags": {
+            "barrier": "fence",
+            "landuse": "construction"
+          },
+          "source_bounds": [
+            16.3127373,
+            48.1141801,
+            16.3159032,
+            48.1155966
+          ],
+          "reason": "Unnamed enclosure lies south of the Microsoft-board site. Its generic Vösendorf edit comment supplies no Microsoft identity. Neither the landuse tag nor July2025 edit date is selected physical-status evidence."
+        },
+        {
+          "osm_way_id": 885908945,
+          "capture": "osm-bounded-map.osm",
+          "tags": {
+            "access": "private",
+            "barrier": "fence",
+            "fixme": "genaue Lage",
+            "landuse": "greenfield"
+          },
+          "source_bounds": [
+            16.3075358,
+            48.1143709,
+            16.3148532,
+            48.118869
+          ],
+          "reason": "Unnamed, broad greenfield enclosure has an explicit exact-location FIXME and extends substantially beyond the illustrated project area. No named identity or exact project scope; excluded."
+        }
+      ]
+    }
+  ],
+  "next_gate": "A primary parcel identifier or independently named source-specific campus feature is needed. Do not derive a point from OBI, Stihl, a street rectangle, an unnamed enclosure or the Microsoft slide's map viewport. Do not infer campus completion from the Austria cloud-region opening.",
+  "raw_capture_manifest": [
+    {
+      "url": "https://kataster.bev.gv.at/api/all?term=Fachmarktstra%C3%9Fe%20V%C3%B6sendorf",
+      "response_url": "https://kataster.bev.gv.at/api/all?term=Fachmarktstra%C3%9Fe%20V%C3%B6sendorf",
+      "http_status": 200,
+      "content_type": "application/json; charset=utf-8",
+      "started_at_utc": "2026-09-09T06:42:58.915Z",
+      "completed_at_utc": "2026-09-09T06:43:00.044Z",
+      "bytes": 80,
+      "sha256": "1db41fdaab86c4064ecf2ef6c6faeddc8d23b149fc87f5f9f02df48e755a9044",
+      "raw_path": "/tmp/atlas-voesendorf-locator.omN6H0/bev-address-search.json",
+      "request_credentials_supplied": false
+    },
+    {
+      "url": "https://kataster.bev.gv.at/api/all?term=Anton%20Benya-Stra%C3%9Fe",
+      "response_url": "https://kataster.bev.gv.at/api/all?term=Anton%20Benya-Stra%C3%9Fe",
+      "http_status": 200,
+      "content_type": "application/json; charset=utf-8",
+      "started_at_utc": "2026-09-09T06:44:25.655Z",
+      "completed_at_utc": "2026-09-09T06:44:26.668Z",
+      "bytes": 1704,
+      "sha256": "5ded87d3971f1154ab9fc89cfba8ac0e4863fca9b9bf66a10161a4596cf27307",
+      "raw_path": "/tmp/atlas-voesendorf-locator.omN6H0/bev-antonbenya.json",
+      "request_credentials_supplied": false
+    },
+    {
+      "url": "https://kataster.bev.gv.at/api/all?term=Fachmarktstra%C3%9Fe",
+      "response_url": "https://kataster.bev.gv.at/api/all?term=Fachmarktstra%C3%9Fe",
+      "http_status": 200,
+      "content_type": "application/json; charset=utf-8",
+      "started_at_utc": "2026-09-09T06:43:23.608Z",
+      "completed_at_utc": "2026-09-09T06:43:24.608Z",
+      "bytes": 881,
+      "sha256": "85fecdcfe107115f2c983ced52172fa160d4f244130da040967d953f9b1d2c0d",
+      "raw_path": "/tmp/atlas-voesendorf-locator.omN6H0/bev-fachmarkt.json",
+      "request_credentials_supplied": false
+    },
+    {
+      "url": "https://kataster.bev.gv.at/",
+      "response_url": "https://kataster.bev.gv.at/",
+      "http_status": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "started_at_utc": "2026-09-09T06:42:11.778Z",
+      "completed_at_utc": "2026-09-09T06:42:12.731Z",
+      "bytes": 2580,
+      "sha256": "c979fdc98aa319baf6e32f7296815cd2dc791598307c71d93ff3d1bf299c86d9",
+      "raw_path": "/tmp/atlas-voesendorf-locator.omN6H0/bev-kataster.html",
+      "request_credentials_supplied": false
+    },
+    {
+      "url": "https://www.bev.gv.at/Services/Geoinformationsdienste/Services/Katasterservice.html",
+      "response_url": "https://www.bev.gv.at/Services/Geoinformationsdienste/Services/Katasterservice.html",
+      "http_status": 200,
+      "content_type": "text/html;charset=UTF-8",
+      "started_at_utc": "2026-09-09T06:42:10.574Z",
+      "completed_at_utc": "2026-09-09T06:42:12.008Z",
+      "bytes": 130635,
+      "sha256": "b7c65cc3bfb9b8872985c45c7a509568fb75f4276b3d358fab4e7687d0b56220",
+      "raw_path": "/tmp/atlas-voesendorf-locator.omN6H0/bev-service.html",
+      "request_credentials_supplied": false
+    },
+    {
+      "url": "https://kataster.bev.gv.at/api/swagger.yml",
+      "response_url": "https://kataster.bev.gv.at/api/swagger.yml",
+      "http_status": 200,
+      "content_type": "text/yaml; charset=UTF-8",
+      "started_at_utc": "2026-09-09T06:42:58.100Z",
+      "completed_at_utc": "2026-09-09T06:42:58.841Z",
+      "bytes": 33636,
+      "sha256": "4c25fefbbdf9dff38aa0e7ad3bc5ea050da62ef0c8cc55e2cec4b7075ec59b09",
+      "raw_path": "/tmp/atlas-voesendorf-locator.omN6H0/bev-swagger.yml",
+      "request_credentials_supplied": false
+    },
+    {
+      "url": "https://api.openstreetmap.org/api/0.6/map?bbox=16.309,48.114,16.317,48.121",
+      "response_url": "https://api.openstreetmap.org/api/0.6/map?bbox=16.309,48.114,16.317,48.121",
+      "http_status": 200,
+      "content_type": "application/xml; charset=utf-8",
+      "started_at_utc": "2026-09-09T06:43:53.947Z",
+      "completed_at_utc": "2026-09-09T06:43:55.183Z",
+      "bytes": 1025715,
+      "sha256": "d192c684a76e72dc2d2e8342bd673a38ed5a3820ea5a7d301c95fc8c61863f8e",
+      "raw_path": "/tmp/atlas-voesendorf-locator.omN6H0/osm-bounded-map.osm",
+      "request_credentials_supplied": false
+    },
+    {
+      "url": "https://api.openstreetmap.org/api/0.6/changeset/169552904",
+      "response_url": "https://api.openstreetmap.org/api/0.6/changeset/169552904",
+      "http_status": 200,
+      "content_type": "application/xml; charset=utf-8",
+      "started_at_utc": "2026-09-09T06:44:25.025Z",
+      "completed_at_utc": "2026-09-09T06:44:25.574Z",
+      "bytes": 730,
+      "sha256": "17f147362953cd4ea01fd0cf41f4edcd4c19fc9f28533e507b8d7352ddd68f8b",
+      "raw_path": "/tmp/atlas-voesendorf-locator.omN6H0/osm-changeset-169552904.osm",
+      "request_credentials_supplied": false
+    },
+    {
+      "url": "https://overpass-api.de/api/interpreter?data=%5Bout%3Ajson%5D%5Btimeout%3A25%5D%3Bnwr%5B%22name%22~%22Microsoft%22%2Ci%5D%2847.9%2C16.2%2C48.25%2C16.6%29%3Bout%20body%20geom%3B",
+      "response_url": "https://overpass-api.de/api/interpreter?data=%5Bout%3Ajson%5D%5Btimeout%3A25%5D%3Bnwr%5B%22name%22~%22Microsoft%22%2Ci%5D%2847.9%2C16.2%2C48.25%2C16.6%29%3Bout%20body%20geom%3B",
+      "http_status": 406,
+      "content_type": "text/html; charset=iso-8859-1",
+      "started_at_utc": "2026-09-09T06:41:35.757Z",
+      "completed_at_utc": "2026-09-09T06:41:36.377Z",
+      "bytes": 371,
+      "sha256": "396f0a34ea1dad2ac8ae630285dd93fd4cd1619c4ccb0f30160ae71ab118a04d",
+      "raw_path": "/tmp/atlas-voesendorf-locator.omN6H0/osm-microsoft.json",
+      "request_credentials_supplied": false
+    },
+    {
+      "url": "https://api.openstreetmap.org/api/0.6/way/317544376/full",
+      "response_url": "https://api.openstreetmap.org/api/0.6/way/317544376/full",
+      "http_status": 200,
+      "content_type": "application/xml; charset=utf-8",
+      "started_at_utc": "2026-09-09T06:44:24.421Z",
+      "completed_at_utc": "2026-09-09T06:44:24.951Z",
+      "bytes": 3363,
+      "sha256": "18077caab0c32f0162a1307d0bd3a12e50f957ecbba9236c037b7af3a66ade78",
+      "raw_path": "/tmp/atlas-voesendorf-locator.omN6H0/osm-way-317544376-full.osm",
+      "request_credentials_supplied": false
+    }
+  ],
+  "capture_policy": "Exact bytes/hashes verified locally; adjacent metadata records actual UTC request start/end and response types. Raw bodies remain temporary. Only this compact hold is tracked.",
+  "admissions": 0
+}
