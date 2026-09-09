@@ -1033,3 +1033,59 @@ non-US to keep every country at or below 40 percent at 200 sites.
 .venv/bin/python scripts/build_expansion_200_draft.py --batch nineteenth-reviewed --output-dir /absolute/new/draft-directory
 .venv/bin/python scripts/build_expansion_200_draft.py --batch nineteenth-reviewed --validate-only
 ```
+
+## Twentieth reviewed partial draft
+
+The [twentieth reviewed draft](../verified_construction_core/2026-08-20-v0.18-draft-twentieth-reviewed/README.md)
+adds Bulk N01 in Vennesla, Norway, and Bulk DK01 in Esbjerg, Denmark. It contains 166 physical
+sites, 169 projects, 42 countries, 111 non-US sites and 650 evidence rows: 66 requested additions
+completed, 34 remaining. All preceding rows, full features, source bindings and raw-input hashes
+remain unchanged. Public v0.17 and every earlier checkpoint remain frozen.
+
+Contract SHA-256: `790a7784f3884162d0fad611d0bfc12ae241114654c3dd7f7dcadd458163a1c6`.
+Manifest SHA-256: `f07af48c36f96278e41cc8a1aead764d5b5e2538f71e1020aec96b9be2da8c84`.
+
+The [Bulk round 22 review](../sources/research-expansion-200-europe-round22-2026-09-09.json)
+binds the operator's Q2 report to ongoing new-facility construction and plot preparation at N01,
+and the new building and power connection at DK01. June 30 is the reporting-period observation;
+July 16 is the corroborated report publication, not work onset. Existing operating halls are not
+assigned the new-work lifecycle. No named DCM phase, capacity, role, tenant, workload or operating
+model is inferred. OSIX's inclusion in an aggregate headline, Arendal land acquisition and the
+separate industrial-property portfolio do not supply additional physical sites.
+
+Each operator page publishes its own campus URL, address and literal decimal point together in
+one JSON-LD object. Although its name field is generic, the site URL and address distinguish the
+campus from Bulk's Oslo corporate footer. Schema.org's GeoCoordinates definition supplies WGS84
+semantics. The Danish government facility record independently matches DK01's address. N01's
+named community polygon contains the primary point, but is not promoted to an official boundary;
+the older brochure's different DMS locator has no explicit datum and remains unselected. Full
+geometry comparisons against all 164 prior sites found no intersection: nearest prior sites are
+130.15 km from N01 and 6.11 km from DK01. The new campuses are 308.25 km apart. These are campus
+locators, not construction footprints, surveyed entrances or quantified accuracy claims.
+
+Root and independent review checked the exact capture hashes, relevant full PDF pages, source
+associations, coordinate semantics and spatial separation. Only compact attributed facts are
+retained; no open licence is asserted for Bulk content, and OSM audit facts retain separate ODbL
+attribution. Raw documents, media and HTML stay temporary and unredistributed. The failed Jorton
+HTTP 455 request has no saved body or evidence hash and was not retried or selected.
+
+Round 22 holds remain outside the draft:
+
+- [SoftBank Tomakomai](../sources/research-expansion-200-asia-round22-2026-09-09.json): new
+  authoritative construction testimony, but no accepted exact campus locator. Missing parcel
+  bridge and unresolved public-map location warnings are preserved; no warning filters bypassed.
+- [Terranova Campinas](../sources/research-expansion-200-americas-round22-terranova-2026-09-09.json):
+  exact primary parcel identity, but geometry, CRS and reuse remain unresolved. A post-cutoff
+  suspension request is not recast as an executed stop or pre-cutoff cancellation.
+- [ACE Gabon Carrier Hotel](../sources/research-expansion-200-africa-round22-2026-09-09.json):
+  fresh ministry construction report, but contrary landing-station location labels remain
+  unresolved. A different completed ST Digital facility is not treated as an ACE successor.
+
+Imagery remains 10/169 and the fixed 20-project/19-agreement blind review remains incomplete.
+Completion and final-publication flags remain false. At least 9 of the remaining 34 additions
+must be non-US to keep every country at or below 40 percent at 200 sites.
+
+```sh
+.venv/bin/python scripts/build_expansion_200_draft.py --batch twentieth-reviewed --output-dir /absolute/new/draft-directory
+.venv/bin/python scripts/build_expansion_200_draft.py --batch twentieth-reviewed --validate-only
+```

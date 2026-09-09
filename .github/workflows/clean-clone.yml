@@ -65,6 +65,7 @@ jobs:
             datacenter_atlas.tests.test_expansion_200_seventeenth_reviewed \
             datacenter_atlas.tests.test_expansion_200_eighteenth_reviewed \
             datacenter_atlas.tests.test_expansion_200_nineteenth_reviewed \
+            datacenter_atlas.tests.test_expansion_200_twentieth_reviewed \
             datacenter_atlas.tests.test_workspace_shim
       - name: Validate the frozen expansion research inventory
         working-directory: datacenter_atlas
@@ -134,6 +135,9 @@ jobs:
       - name: Validate nineteenth reviewed expansion draft
         working-directory: datacenter_atlas
         run: .venv/bin/python scripts/build_expansion_200_draft.py --batch nineteenth-reviewed --validate-only
+      - name: Validate twentieth reviewed expansion draft
+        working-directory: datacenter_atlas
+        run: .venv/bin/python scripts/build_expansion_200_draft.py --batch twentieth-reviewed --validate-only
       - name: Lint the clean-clone surface
         working-directory: datacenter_atlas
         run: |
@@ -166,6 +170,7 @@ jobs:
             datacenter_atlas/expansion_200_seventeenth_reviewed.py \
             datacenter_atlas/expansion_200_eighteenth_reviewed.py \
             datacenter_atlas/expansion_200_nineteenth_reviewed.py \
+            datacenter_atlas/expansion_200_twentieth_reviewed.py \
             europe_latam_official_discovery_20260721.py \
             scripts/build_verified_construction_core.py \
             scripts/generate_verified_construction_core_v017_inputs.py \
@@ -206,4 +211,5 @@ jobs:
             tests/test_expansion_200_seventeenth_reviewed.py \
             tests/test_expansion_200_eighteenth_reviewed.py \
             tests/test_expansion_200_nineteenth_reviewed.py \
+            tests/test_expansion_200_twentieth_reviewed.py \
             tests/test_workspace_shim.py
