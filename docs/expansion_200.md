@@ -888,9 +888,13 @@ reproduces Nxtra's exact operator-authored Tatu City point and NB01/NBO1 alias l
 the locator gate, not lifecycle. The [separate interview review](../sources/research-expansion-200-africa-round19-nxtra-2026-09-09.json)
 binds the original podcast feed and a bounded local automated transcription; its executive
 answer discusses future services, not physical progress. No acoustic certification or imagery
-outcome is claimed. The earlier openly syndicated CEO report remains eligible for authority
-and unique-campus association review; a verbatim-only rule is not imposed. Hidden paywalled
-article text is excluded.
+outcome is claimed. This checkpoint originally described the earlier CEO report as openly
+syndicated. The [round 20 access correction](../sources/research-expansion-200-africa-round20-nxtra-nbo1-identity-review-2026-09-09.json)
+withdraws that assumption: the preserved TNX response marks the relevant construction paragraph
+inside an access-restricted body, and public rendered visibility was not established. That text
+is not selected. The new public ITWeb report supports campus and event identity, not fresh
+physical status. No universal verbatim-only rule is imposed. Prior research captures and frozen
+core artifacts remain unchanged; no selected admission depended on this TNX assertion.
 
 The [India review](../sources/research-expansion-200-india-round19-2026-09-09.json) preserves Rai's
 existing-shell versus conversion versus future-greenfield distinction and adds a historical
@@ -903,3 +907,69 @@ unlocated project, STT Johor's financing-only update and Obayashi's unnamed cons
 
 No roles, capacities, workloads, construction dates or sites are added. The 200-site goal remains
 active with 38 sites outstanding; final-release imagery and blind-review gates remain open.
+
+## Sixty-three-site reviewed checkpoint
+
+The [eighteenth reviewed draft](../verified_construction_core/2026-08-20-v0.18-draft-eighteenth-reviewed/README.md)
+adds one Aligned Conesville CMH-02 campus in Ohio. It contains 163 physical sites, 166 projects,
+42 countries, 108 non-US sites and 629 evidence rows: 63 requested additions completed, 37 remaining.
+Every preceding 162-site, 165-project and 618-evidence row and full selected feature is unchanged.
+All earlier checkpoints and the public v0.17 release remain byte-frozen.
+
+The [Conesville review](../sources/research-expansion-200-americas-round20-conesville-2026-09-09.json)
+preserves the contractor's actual pad-earthworks completion in July 2026. Root and independent
+review accepted this as site preparation, not completion or operation of the entire campus and
+not proof of continuing August work. The entire July interval falls inside the fixed observation
+window. July 1 is the existing conservative month-start representation, not an asserted exact
+work day. The page's June initial publication and August 24 modification do not date that work.
+The frozen proposal's pending-review labels record its pre-admission state; this checkpoint's
+explicit contract and independently pinned acceptances record the subsequent root decision.
+
+The locator is the county-computed centroid of one exact Aligned-owned constituent parcel,
+0100000080609 / OBJECTID 27692. County minutes, the county-linked viewer and its underlying parcel
+service close the identity and source-authority chain. The explicit EPSG:4326 output with datum
+operation 1188 independently reproduces the native EPSG:3734 centroid to about 0.00011 metres;
+that numerical agreement is not positional accuracy. The selected point is inside the parcel,
+not a whole-campus centroid, boundary, entrance, building or active-work footprint. The operator
+map marker lies outside the five Aligned-owned county features and is rejected, as are the
+county's inconsistent stored latitude/longitude attributes. No intersection or prior identity
+match was found against all 162 preceding full geometries and physical keys.
+
+CCU's contractor report names Aligned and Conesville but not CMH-02 or a parcel. Its association
+with the operator-named campus and official Propco parcel is explicitly analyst reconciliation.
+Pads, buildings and future phases remain one campus. Bounded primary successor checks found no
+whole-campus completion or cancellation; generic operator marketing and contradictory secondary
+directory labels do not establish one. Eleven selected bindings and all 38 research captures
+have independently verified raw-body hashes and byte counts. Only one isolated official point
+and compact attributed facts are redistributed, not the county polygon, media, raw sources or
+substantive source prose. Empty county licenceInfo is not an open licence; accuracy stays unknown.
+
+Round 20 also preserves the next gates without admitting additional sites:
+
+- The [Asia review](../sources/research-expansion-200-asia20-2026-09-09.json) verifies Techno's
+  August 12 current-build statement for its RailTel Noida project. An official RFP supplies a
+  B-209 plot midpoint but no coordinate datum; the final award-to-plot bridge is also unresolved.
+  Neither a WGS84 point nor an exact parcel association is invented. Its smaller live phase
+  remains distinct from the current build within one campus.
+- The [Kolkata locator review](../sources/research-expansion-200-india-round20-kolkata-locator-2026-09-09.json)
+  preserves a current foundation/piling statement but cannot bind the exact mapped plot to the
+  issuer. A similarly named allotment applicant is not assumed to be the same legal entity, and
+  unreferenced map graphics do not become coordinates.
+- The [Nairobi identity/access review](../sources/research-expansion-200-africa-round20-nxtra-nbo1-identity-review-2026-09-09.json)
+  corrects the earlier TNX public-access assumption. The new public ITWeb article supplies event
+  and campus identity, not fresh physical work. The [executive authority review](../sources/research-expansion-200-africa-round20-authority-2026-09-09.json)
+  retains incomplete public-source attribution checks without promoting an appointment preview
+  or changing a managing-director title into CEO. Earlier denied or restricted routes stay closed.
+- The [Europe review](../sources/research-expansion-200-europe-round20-2026-09-09.json) separates
+  NTT Berlin's scheduled summer start, stale YEXIO groundbreakings, and nearby Herne roadworks
+  from qualifying current data-center construction. None adds a site.
+
+No roles, capacities, workloads, operating models or imagery outcomes are inferred. Imagery
+remains 10/166; the fixed 20-project/19-agreement blind-review requirement remains incomplete.
+Objective-completion and final-publication flags remain false. At least 12 of the remaining
+37 additions must be non-US to keep every country at or below 40 percent at the 200-site target.
+
+```sh
+.venv/bin/python scripts/build_expansion_200_draft.py --batch eighteenth-reviewed --output-dir /absolute/new/draft-directory
+.venv/bin/python scripts/build_expansion_200_draft.py --batch eighteenth-reviewed --validate-only
+```

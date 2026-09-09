@@ -13,6 +13,7 @@ if __package__ in {None, ""}:
     sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from datacenter_atlas import (  # noqa: E402
+    expansion_200_eighteenth_reviewed,
     expansion_200_eighth_reviewed,
     expansion_200_eleventh_reviewed,
     expansion_200_fifteenth_reviewed,
@@ -59,6 +60,7 @@ def main() -> int:
         "fifteenth-reviewed": expansion_200_fifteenth_reviewed,
         "sixteenth-reviewed": expansion_200_sixteenth_reviewed,
         "seventeenth-reviewed": expansion_200_seventeenth_reviewed,
+        "eighteenth-reviewed": expansion_200_eighteenth_reviewed,
     }
     parser.add_argument("--batch", choices=sorted(batches), default="initial-three")
     parser.add_argument("--output-dir", type=Path)
