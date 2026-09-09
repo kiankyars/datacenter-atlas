@@ -1279,3 +1279,61 @@ must be non-US to keep every country at or below 40 percent at 200 sites.
 .venv/bin/python scripts/build_expansion_200_draft.py --batch twenty-third-reviewed --output-dir /absolute/new/draft-directory
 .venv/bin/python scripts/build_expansion_200_draft.py --batch twenty-third-reviewed --validate-only
 ```
+
+## Seventy-three-site reviewed checkpoint
+
+The [twenty-fourth reviewed draft](../verified_construction_core/2026-08-20-v0.18-draft-twenty-fourth-reviewed/README.md)
+adds Cloud4Y Marfino and OMNIA Pecém. It contains 173 physical sites, 176 projects, 43 countries,
+116 non-US sites and 722 evidence rows. This is 73 of the requested 100 additions, with 27 remaining.
+Every preceding CSV row, full site feature and evidence record remains unchanged. The public
+v0.17 release and all earlier draft snapshots remain byte-frozen.
+
+Marfino selects June construction of the main data-center building and its first-phase supporting
+works. The July 13 corporate report explicitly covers June: June 1 is a conservative month-start
+representation of the June 1-30 interval, not an exact inspection or first-concrete day. Concrete
+had been placed in energy-center piles; pads and slabs remained future work. The already operating
+container center and later planned modules are excluded. Cloud4Y's own facility page endorses the
+exact Habr corporate-blog namespace. Its current Cloud4U display label does not establish a legal
+rename date. The operator's Marfino contact card supplies the exact campus point; the linked click
+handler and Yandex API defaults resolve misleading latitude/longitude attribute names. This is a
+campus reference point with unknown positional accuracy, not a building footprint or parcel.
+
+Pecém selects the June 16 official port/Casa Civil report's named OMNIA construction visit, not the
+separate railway and logistics-terminal work in the same article. SEMACE's named project record
+for enterprise 127774 provides the exact campus marker. The signed installation license and live
+service share the corporate identifier and process number, connecting the historical CDV DC I name
+to current OMNIA BR PC 01 without inventing a rename date. The substantive project location is
+Caucaia; the license holder's Maracanaú office is excluded. The original stable keys remain, while
+the new expansion display label makes no additional TikTok/ByteDance tenant claim.
+
+Pecém's public map passes the literal latitude/longitude fields to a WGS84 interface. The original
+applicant survey datum and measurement accuracy remain unknown. The signed license's transposed
+UTM N/E suffixes are retained as a source caveat; neither a corrected boundary nor the interpreted
+permit polygon is selected. Off-site transmission, construction-camp, road and forest-credit
+markers are not campus substitutes. All 32 public company licensing records were inspected for
+completion/cancellation context. Administrative validity is not physical construction evidence or
+proof of compliance; the earlier MPF/DPU recommendation remains explicit unresolved regulatory
+context, not an established judicial construction injunction.
+
+Both points were independently compared with all 171 preceding full geometries and each other,
+including polygon holes. No overlap was found. Approximate nearest-site screening distances are
+782 km from Marfino to Telia Vilnius and 41.79 km from Pecém to Scala Praia do Futuro; these are
+duplicate-screening measurements, not coordinate-accuracy estimates. Only isolated attributed
+coordinate facts and compact restated source facts are redistributed. No open license is inferred
+for operator material, SEMACE collections, source code, PDFs, photographs or provider maps.
+
+The [root hold record](../sources/research-expansion-200-root-round26-holds-2026-09-09.json) preserves
+Bolshaya Tsifra's July work report and its unresolved building-to-coordinate match. Generic house
+number 16 is not substituted for building 1. Separate regional records retain Rongtai's remaining
+geometry/successor gap, Romford's delivered-expansion evidence and Campus Oulu's ambiguous agreement
+wording. These research records do not increase the count.
+
+The checkpoint binds 486 source selections and 73 accepted additions. No new roles, workloads,
+power metrics, certifications or imagery reviews are inferred. Imagery coverage is still 10/176;
+blind review remains a fixed 20-row sample requiring 19 agreements from the expanded population.
+The 200-site objective and final-publication gates remain incomplete.
+
+```sh
+.venv/bin/python scripts/build_expansion_200_draft.py --batch twenty-fourth-reviewed --output-dir /absolute/new/draft-directory
+.venv/bin/python scripts/build_expansion_200_draft.py --batch twenty-fourth-reviewed --validate-only
+```
