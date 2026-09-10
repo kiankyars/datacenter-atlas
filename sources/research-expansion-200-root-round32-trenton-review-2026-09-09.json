@@ -1,0 +1,208 @@
+{
+  "schema_version": "expansion-200-round32-root-review-1",
+  "reviewed_at": "2026-09-10",
+  "independent_review": {
+    "reviewer": "round32_ashville independent subagent",
+    "verdict": "pass_no_concrete_admission_blocker_identified",
+    "raw_capture_byte_and_sha256_checks": 11,
+    "independent_pdf_text_reextractions": 6,
+    "literal_extracted_text_anchors_verified": 11,
+    "new_contract_source_bindings_verified": 11,
+    "identity_status_and_geometry_record_pins_verified": true,
+    "derived_point_reproduced_exactly": true,
+    "all_183_full_geometries_and_aliases_rechecked": true,
+    "no_duplicate_or_parcel_intersection": true,
+    "scope": "Independent raw-custody, source attribution, visual relevant-page, parcel identity, CRS derivation and distinctness review. Release integration, clean-clone tests, secret scan and CI are separate root checks."
+  },
+  "baseline": {
+    "commit": "835797f9dece1f6f4f1321e07c1ced730fb96366",
+    "path": "verified_construction_core/2026-08-20-v0.18-draft-twenty-eighth-reviewed/sites.geojson",
+    "bytes": 288443,
+    "sha256": "948b65e10200009cbbea45030f978b7dc64fa64f72df2a341cba34ef25524467",
+    "sites": 183,
+    "geometry_types": {
+      "Point": 139,
+      "Polygon": 42,
+      "MultiPolygon": 2
+    }
+  },
+  "transformation": {
+    "source_crs": "EPSG:3735",
+    "source_crs_name": "NAD83 / Ohio South (ftUS)",
+    "source_units": "US survey foot",
+    "output_crs": "EPSG:4326",
+    "method": "Transform all 55 ring positions from the response WKT with pyproj.Transformer.from_crs(...,4326,always_xy=True), then Shapely Polygon.representative_point in WGS84.",
+    "pyproj_version": "3.8.0",
+    "proj_version": "9.8.1",
+    "shapely_version": "2.1.2",
+    "operation": "Inverse of SPCS83 Ohio South zone (US survey foot) + NAD83 to WGS 84 (1) (with axis order normalized for visualization)",
+    "pipeline": "proj=pipeline step proj=unitconvert xy_in=us-ft xy_out=m step inv proj=lcc lat_0=38 lon_0=-82.5 lat_1=40.0333333333333 lat_2=38.7333333333333 x_0=600000 y_0=0 ellps=GRS80 step proj=unitconvert xy_in=rad xy_out=deg",
+    "reported_operation_accuracy_metres": 4.0,
+    "accuracy_caveat": "Operation accuracy is not the unknown positional accuracy of county parcel mapping or the derived campus locator.",
+    "executed": true,
+    "ballpark_transformation": false,
+    "native_ring_positions": 55,
+    "native_polygon_valid": true,
+    "transformed_polygon_valid": true,
+    "native_geometry_canonical_sha256": "30504ed73fd30792db1e9193edac3bc35bffc56de50c0d4b1abc2347172b927c",
+    "output_coordinates_xy": [
+      -84.45971679023693,
+      39.45620000836149
+    ],
+    "point_inside_transformed_parcel": true,
+    "point_inside_former_parcel_union": true
+  },
+  "identity": {
+    "current_pin": "R8000060000011",
+    "current_objectid": 200143116,
+    "owner": "TRENTON DATA CENTER CAMPUS LLC",
+    "former_parcels": [
+      "R8000059000004",
+      "R8000060000005",
+      "R8000060000006",
+      "R8000060000007",
+      "R8000060000008"
+    ],
+    "current_acres": null,
+    "former_union_geometry_valid": true,
+    "former_union_vs_current_overlap_fraction": 0.9974292669422832,
+    "overlap_caveat": "Degree-coordinate area ratio is a topology sanity check only, not a physical area metric or cadastral survey."
+  },
+  "dedup": {
+    "full_geometries_compared": 183,
+    "full_parcel_intersections": [],
+    "point_intersections": [],
+    "nearest": [
+      {
+        "key": "curated:microsoft-new-albany-oh-datacenter",
+        "approximate_parcel_distance_metres": 161980
+      },
+      {
+        "key": "curated:microsoft-hebron-oh-datacenter",
+        "approximate_parcel_distance_metres": 177501
+      },
+      {
+        "key": "curated:microsoft-heath-oh-datacenter",
+        "approximate_parcel_distance_metres": 180142
+      },
+      {
+        "key": "curated:meta-lebanon-indiana-data-center",
+        "approximate_parcel_distance_metres": 189408
+      },
+      {
+        "key": "curated:monarch-compute-campus-point-pleasant-west-virginia",
+        "approximate_parcel_distance_metres": 210708
+      }
+    ],
+    "distance_scope": "Local azimuthal-equidistant approximate geometric separation for candidate triage only; not source positional accuracy."
+  },
+  "candidate": {
+    "campus_stable_key": "curated:prologis-trenton-project-mila-campus",
+    "project_stable_key": "curated:prologis-trenton-project-mila-campus:current-campus-build",
+    "decision": "passes_review_for_one_physical_site",
+    "selected_status_date": "2026-08-20",
+    "authority_limit": "Developer-authored legal submission through its counsel in its own project dispute, directly attributed to Trenton Data Center Campus LLC. This is a company disclosure hosted by a court, not reporter narrative, a sworn affidavit, a judicial construction finding or a court inspection.",
+    "geometry_scope": "One point within the exact consolidated parcel R8000060000011 linked by developer filings to Project Mila. It is not a surveyed building position, construction footprint, approved campus boundary or individual hall. The source parcel polygon is not redistributed."
+  },
+  "source_review": {
+    "raw_hashes_and_bytes_verified": 11,
+    "raw_captures": [
+      {
+        "source_id": "root32-trenton-aug20-current-build",
+        "sha256": "efbd863c9b77ca2c15f37febc2bc6e42b521997a861350324d74a1d81ed5893d",
+        "bytes": 531576,
+        "path": "/Users/kian/Developer/datacenter_atlas/tmp/research-round32-trenton/aug20-brief-viewer.html",
+        "retrieved_at": "2026-09-09T23:58:14.123Z"
+      },
+      {
+        "source_id": "root32-trenton-aug13-owner-bridge",
+        "sha256": "00938d2a420006a7316a7e4836f39a3f4070828a93452472e35e0fc40eeb798b",
+        "bytes": 525383,
+        "path": "/Users/kian/Developer/datacenter_atlas/tmp/research-round32-trenton/aug13-motion-viewer.html",
+        "retrieved_at": "2026-09-09T23:58:11.846Z"
+      },
+      {
+        "source_id": "root32-trenton-city-project-context",
+        "sha256": "7b2439ad90eb3beb039e1c134af7a690e67c3582751ae100a6ff398bf8bddd22",
+        "bytes": 116559,
+        "path": "/Users/kian/Developer/datacenter_atlas/tmp/research-round32-trenton/city-projects.html",
+        "retrieved_at": "2026-09-09T23:56:03.732Z"
+      },
+      {
+        "source_id": "root32-trenton-zoning-identity",
+        "sha256": "7d5243ddb8575106bcfc5bbfce9d1d6e5c4db62fac171167965e57984320ffa6",
+        "bytes": 333184,
+        "path": "/Users/kian/Developer/datacenter_atlas/tmp/research-round32-trenton/zoning-certificate.pdf",
+        "retrieved_at": "2026-09-09T23:55:46.248Z"
+      },
+      {
+        "source_id": "root32-trenton-preliminary-site-plan",
+        "sha256": "6b8c5f0bf551bc23e21e12d99e227dde927eb6f0edb6e67a49c4111e2cfc0d6c",
+        "bytes": 35812581,
+        "path": "/Users/kian/Developer/datacenter_atlas/tmp/research-round32-trenton/site-location-plans.pdf",
+        "retrieved_at": "2026-09-09T23:56:07.424Z"
+      },
+      {
+        "source_id": "root32-trenton-engineer-parcel",
+        "sha256": "357f548f95aa183d15e6ceb893e2e915e93d7401086cd0a2295521ec7bd1ce46",
+        "bytes": 3434,
+        "path": "/Users/kian/Developer/datacenter_atlas/tmp/research-round32-trenton/engineer-exact-owner-parcels.json",
+        "retrieved_at": "2026-09-10T00:00:52.207Z"
+      },
+      {
+        "source_id": "root32-trenton-engineer-layer-crs",
+        "sha256": "cf92c9554f28ba013b4e59990efeb022e80d8649346511e5ef76509bc6699af0",
+        "bytes": 7414,
+        "path": "/Users/kian/Developer/datacenter_atlas/tmp/research-round32-trenton/engineer-parcel-layer.json",
+        "retrieved_at": "2026-09-10T00:00:05.134Z"
+      },
+      {
+        "source_id": "root32-trenton-auditor-former-parcels",
+        "sha256": "f216acd32e92e2061ea5a70a8368ffab6a15d1b7f488b2228b13b1a814b6fca1",
+        "bytes": 5149,
+        "path": "/Users/kian/Developer/datacenter_atlas/tmp/research-round32-trenton/auditor-exact-owner-parcels.json",
+        "retrieved_at": "2026-09-10T00:00:48.138Z"
+      },
+      {
+        "source_id": "root32-trenton-county-gis-disclaimer",
+        "sha256": "083ac55f10112e74f9c243af659b2d166105490c69bedfb9265cd935ab77aded",
+        "bytes": 705617,
+        "path": "/Users/kian/Developer/datacenter_atlas/tmp/research-round32-trenton/county-gis-disclaimer.pdf",
+        "retrieved_at": "2026-09-10T00:06:00.157Z"
+      },
+      {
+        "source_id": "root32-trenton-city-copyright",
+        "sha256": "133355025f6ecfaf97d94ae86b1acaa8cfa8309807e43164102fc9a421c431d0",
+        "bytes": 101371,
+        "path": "/Users/kian/Developer/datacenter_atlas/tmp/research-round32-trenton/city-copyright.html",
+        "retrieved_at": "2026-09-09T23:56:04.464Z"
+      },
+      {
+        "source_id": "root32-trenton-sept1-successor",
+        "sha256": "eec5fc251b4a4397cd096ac74ab78eff2fa096405eff9d3c4838b223d1ed7cd1",
+        "bytes": 287039,
+        "path": "/Users/kian/Developer/datacenter_atlas/tmp/research-round32-trenton/supreme-sept1-opinion.pdf",
+        "retrieved_at": "2026-09-09T23:56:14.859Z"
+      }
+    ],
+    "pdf_review": "Complete relevant pages visually inspected: August13 filing1-3; August20 brief1,10-11; zoning certificate1; preliminary plans1-2; county disclaimer1; September1 opinion4,12-13. No claim of complete irrelevant legal-argument or engineering-sheet review.",
+    "unselected_captures": [
+      "August20 developer evidence attachment primarily reproduces historical constitutional material; not a construction affidavit.",
+      "August19 intervention order is procedural context, not a construction finding.",
+      "Court news September1 and docket UI provide navigation and successor context, not selected physical evidence."
+    ],
+    "technical_notes": [
+      "Court PDF-viewer responses have PDF bytes despite local .html filenames.",
+      "Direct public docket AJAX returned empty200; the normal public browser docket was read instead. No login or access-control bypass.",
+      "Initial auditor queries used null PARID; corrected exact-owner query returned5 matching PINs. Empty initial response is not evidence of absence."
+    ],
+    "successor_review": "September1 Ohio Supreme Court opinion still describes the intervenor as constructing the Trenton data center and orders certification of a proposed charter-amendment petition for a special election. It does not itself ban construction, cancel this project or establish completion. This post-cutoff context is not selected lifecycle evidence. Bounded company/city successor search found no selected project-specific in-window completion or cancellation; this is not an exhaustive guarantee."
+  },
+  "completion": {
+    "physical_sites_after_proposed_admission": 184,
+    "remaining_to_200": 16,
+    "objective_complete": false,
+    "publishable_as_final": false,
+    "imagery_and_blind_review_gaps_unchanged": true
+  }
+}

@@ -1607,3 +1607,43 @@ and final-publication claims remain false.
 .venv/bin/python scripts/build_expansion_200_draft.py --batch twenty-eighth-reviewed --output-dir /absolute/new/draft-directory
 .venv/bin/python scripts/build_expansion_200_draft.py --batch twenty-eighth-reviewed --validate-only
 ```
+
+## 2026-09-09: twenty-ninth reviewed checkpoint, 184 sites
+
+The [twenty-ninth reviewed draft](../verified_construction_core/2026-08-20-v0.18-draft-twenty-ninth-reviewed/README.md)
+adds one Prologis Trenton Project Mila campus. It contains 184 physical sites, 187 projects,
+43 countries, 122 non-US sites and 823 evidence rows: 84 of the requested 100 additions,
+with 16 remaining. All earlier checkpoints and the public v0.17 release stay unchanged.
+
+The selected August 20 physical observation is the developer's own merit brief, filed through
+its counsel and hosted by the Supreme Court of Ohio. It reports ongoing campus construction
+and substantial progress on the exact consolidated property. The August 13 motion identifies
+the developer as a Prologis affiliate. These are directly attributed company disclosures,
+not court inspections, sworn construction affidavits or judicial findings about construction.
+The later September 1 opinion orders certification of a proposed charter-amendment petition
+for a special election; no project cancellation or construction ban is inferred from that writ.
+
+The municipal certificate and preliminary plans connect Project Mila to its former parcels.
+The county engineer returns the exact consolidated parcel R8000060000011 under the same
+developer name; the older auditor layer independently matches all five predecessor parcels.
+The 55-position county ring was transformed from NAD83 / Ohio South (US survey feet) to WGS84,
+then used to derive a parcel-interior point. It is only a campus locator, not an approved
+campus boundary, surveyed building position or new hall. The source polygon is not redistributed.
+County mapping accuracy is unknown; the datum operation's reported four-metre accuracy is
+not an estimate of locator accuracy. The whole parcel and point were checked against all
+183 preceding full geometries, alongside identity and alias review.
+
+Review and some source captures crossed UTC midnight into September 10 while the local work
+date remained September 9. The contract records the later UTC review date; this does not move
+the August 20 lifecycle cutoff. Raw-response bytes and hashes were verified before admission,
+with extracted-text pointers clearly separated from PDF byte offsets. Municipal and county
+rights limitations remain explicit, and only compact attributed facts and one point are included.
+
+No new capacity, roles, workloads or imagery outcomes are selected. Imagery coverage remains
+10/187, and the fixed 20-row blind-review requirement remains unresolved. Expansion completion
+and final-publication flags are both false. Reproduce or validate with:
+
+```sh
+.venv/bin/python scripts/build_expansion_200_draft.py --batch twenty-ninth-reviewed --output-dir /absolute/new/draft-directory
+.venv/bin/python scripts/build_expansion_200_draft.py --batch twenty-ninth-reviewed --validate-only
+```
