@@ -1,0 +1,366 @@
+{
+  "schema_version": "research-expansion-200-handoff-v1",
+  "research_id": "europe-round37-arnes-2026-09-10",
+  "created_at_utc": "2026-09-10T18:23:00Z",
+  "status": "held_missing_in_window_physical_observation",
+  "accepted_site_count_delta": 0,
+  "baseline": {
+    "path": "verified_construction_core/2026-08-20-v0.18-draft-thirty-second-reviewed/sites.geojson",
+    "site_count": 187,
+    "bytes": 293261,
+    "sha256": "201660cd4bc08728a4d886815d17eb0d74a92b1af739b6b274ca0f37efca563b"
+  },
+  "prior_research": {
+    "path": "sources/research-expansion-200-arnes-maribor-round34-2026-09-10.json",
+    "sha256": "a5c261b78c3a5c0edac86a59cf099d8b32ae653c5035675bd41ba242c45be0b8",
+    "status": "unaccepted research only; read without modification"
+  },
+  "candidate": {
+    "name": "Arnes Maribor Data Center Site",
+    "campus_key": "curated:arnes-maribor-data-center-site",
+    "country": "Slovenia",
+    "physical_campus_count": 1,
+    "aliases_screened": [
+      "Arnes",
+      "Maribor",
+      "Vega",
+      "IZUM",
+      "Obrezna",
+      "Obrežna"
+    ],
+    "accepted": false
+  },
+  "finding": "Exact legal-campus identity and two source-native cadastral polygons recovered. No admissible physical observation within 2026-05-22 through 2026-08-20 was recovered; nothing added to a contract or draft.",
+  "new_identity_evidence": [
+    {
+      "capture": "r37-arnes-2024-report.pdf",
+      "publisher": "ARNES",
+      "title": "Pregled aktivnosti Arnesa v letu 2024",
+      "document_date": "2025-02",
+      "date_precision": "month",
+      "publication_date": null,
+      "locator": "PDF page 150; heading Projekt podatkovni center",
+      "visually_verified_pages": [
+        1,
+        150
+      ],
+      "fact": "ARNES says it bought both parcels on behalf of the Republic of Slovenia specifically to build the Maribor data center, with property management assigned on 2024-09-12. Municipality 660 STUDENCI, parcels 1/47 and 1/51 are explicit, not inferred from DEM or ARNES office addresses.",
+      "reported_legacy_parcel_ids": {
+        "1/47": "7319506",
+        "1/51": "7361663"
+      },
+      "date_caution": "The URL directory 2026/02 is not a publication or physical-observation date.",
+      "rights": "Retain factual parcel identifiers and short paraphrase only; no report redistribution license established."
+    },
+    {
+      "capture": "r37-arnes-government-parcels.html",
+      "publisher": "Government of the Republic of Slovenia",
+      "publication_date": "2024-09-12",
+      "locator": "Agenda item 6.4",
+      "fact": "Agenda proposes ARNES as manager of parcels 1/47 and 1/51, both municipality 660 Studenci, and building1084. This independently supports identity, not construction status. The building identifier is not assumed to identify the new DC building."
+    }
+  ],
+  "native_locator": {
+    "provider": "Geodetska uprava Republike Slovenije (GURS)",
+    "source_capture": "r37-arnes-gurs-two-parcels.gml",
+    "source_layer": "SI.GURS.KN:PARCELE",
+    "native_crs": "urn:ogc:def:crs:EPSG::3794",
+    "native_axis_order": "easting,northing",
+    "coordinate_serialization": "Coordinates returned to0.01m; trailing zeroes may be omitted.",
+    "positional_accuracy_m": null,
+    "point_accuracy_warning": "Serialization resolution is not positional accuracy; source centroid fields were not selected as campus locators.",
+    "identity_join": "Exact KO_ID660 and ST_PARCELE1/47 or1/51, matching ARNES p150 and government agenda6.4. Legacy report IDs differ from current GURS IDs; no unproven numerical-ID equivalence is used.",
+    "data_time": "2026-09-10T18:20:51.283Z",
+    "record_DATUM_SYS": "2024-09-17T12:34:39Z",
+    "temporal_caution": "Current public cadastral capture plus record timestamp; neither is a physical construction observation or an independent guarantee of the full parcel history.",
+    "geometry_scope": "Two specifically acquired campus parcels, not the wider DEM estate, city centroid, administrative office or DC building footprint. The adjacent source polygons may be united for one campus after independent geometry review.",
+    "geometries": [
+      {
+        "parcel": "1/47",
+        "KO_ID": 660,
+        "gml_id": "PARCELE.100101000000510350",
+        "EID": "100101000000510350",
+        "PARCELA_ID": "100000051035",
+        "reported_area_m2": 2400,
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              546548.65,
+              158570.54
+            ],
+            [
+              546556.76,
+              158583.96
+            ],
+            [
+              546571.43,
+              158608.23
+            ],
+            [
+              546568.31,
+              158610.34
+            ],
+            [
+              546564.87,
+              158612.68
+            ],
+            [
+              546540.61,
+              158624.98
+            ],
+            [
+              546535.58,
+              158628.3
+            ],
+            [
+              546513.82,
+              158595.41
+            ],
+            [
+              546511.06,
+              158591.23
+            ],
+            [
+              546501.41,
+              158576.65
+            ],
+            [
+              546528.61,
+              158566.05
+            ],
+            [
+              546548.65,
+              158570.54
+            ]
+          ]
+        ]
+      },
+      {
+        "parcel": "1/51",
+        "KO_ID": 660,
+        "gml_id": "PARCELE.100101000000855904",
+        "EID": "100101000000855904",
+        "PARCELA_ID": "100000085590",
+        "reported_area_m2": 770,
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              546535.58,
+              158628.3
+            ],
+            [
+              546519.28,
+              158639.05
+            ],
+            [
+              546497.55,
+              158606.26
+            ],
+            [
+              546513.82,
+              158595.41
+            ],
+            [
+              546535.58,
+              158628.3
+            ]
+          ]
+        ]
+      }
+    ],
+    "geometry_validation": {
+      "both_valid": true,
+      "common_boundary": true,
+      "native_union_type": "Polygon",
+      "native_union_area_m2": 3170.0100499989253,
+      "source_ring_coordinate_pairs": [
+        12,
+        5
+      ],
+      "geometry_admission_proposed": false
+    },
+    "provenance": [
+      "r37-arnes-gurs-public-access.html: public WFS endpoints and access without registration",
+      "r37-arnes-gurs-capabilities.xml: SI.GURS.KN:PARCELE defaultCRS EPSG3794",
+      "r37-arnes-gurs-parcels-schema.xml: KO_ID, ST_PARCELE and GEOM field definitions"
+    ],
+    "rights": {
+      "license": "CC-BY-4.0",
+      "terms_capture": "r37-arnes-gurs-public-access.html",
+      "terms_locator": "Pogoji uporabe section #c1822 / #c1823",
+      "required_attribution": "Geodetska uprava Republike Slovenije, Kataster nepremičnin - parcele, captured2026-09-10; source record DATUM_SYS2024-09-17T12:34:39Z",
+      "notes": "Public terms permit commercial and noncommercial reuse and adaptation with attribution including data type and data/reference date. Quality and uninterrupted service are not warranted."
+    }
+  },
+  "deduplication": {
+    "full_baseline_features_checked": 187,
+    "alias_property_matches": 0,
+    "geometry_intersections": 0,
+    "method": "Diagnostic transform of both full parcel polygons, union, then Shapely intersects against all187 full baseline geometries. Property labels and identifiers were searched, including opaque-key features.",
+    "diagnostic_only": true,
+    "transform": {
+      "source": "EPSG:3794",
+      "target": "EPSG:4326",
+      "always_xy": true,
+      "allow_ballpark": false,
+      "best_available": true,
+      "description": "Inverse of Slovene National Grid + Slovenia1996 to WGS84(1), with axis order normalized",
+      "reported_operation_accuracy_m": 1,
+      "definition": "proj=pipeline step inv proj=tmerc lat_0=0 lon_0=15 k=0.9999 x_0=500000 y_0=-5000000 ellps=GRS80 step proj=unitconvert xy_in=rad xy_out=deg",
+      "caution": "Operation accuracy is not source positional accuracy. Diagnostic transformation only; a future accepted WGS84 derivation still needs its separately reviewed CRS evidence and provenance."
+    },
+    "diagnostic_wgs84_bounds": [
+      15.60652162612175,
+      46.56512098077966,
+      15.607485471570381,
+      46.565778352253965
+    ],
+    "published_locator_created": false
+  },
+  "lifecycle": {
+    "required_observation_window": [
+      "2026-05-22",
+      "2026-08-20"
+    ],
+    "existing_best_observation": {
+      "date": "2026-05-08",
+      "publisher": "Dravske elektrarne Maribor",
+      "source": "prior round34 DEM capture",
+      "days_before_window": 14,
+      "admissible": false
+    },
+    "new_report": {
+      "capture": "r37-arnes-2025-report.pdf",
+      "publisher": "ARNES",
+      "document_date": "2026-02-20",
+      "publication_date": null,
+      "visually_verified_pages": [
+        1,
+        59,
+        60
+      ],
+      "facts": "2025 activity report says the Maribor project was executing phase1 and planning phase2 during2025. Phase1 building and air-cooled rooms had an end-August2026 deadline; phase2 water-cooled HPC infrastructure was scheduled for2026-27; phase3 remained demand-dependent and orderable through2030.",
+      "caution": "These are historical activity and forward schedules, not May22-Aug20 physical observations. May2026 URL directory is not a date of current work. Do not infer completion from phase1 deadline or active phase2 from its calendar."
+    },
+    "bounded_successor_search": "ARNES, DEM, government, municipal and contractor-targeted searches found old groundbreaking accounts, budget/procurement records and forecasts but no new directly dated in-window physical milestone. This is not an exhaustive certification that no completion or cancellation occurred.",
+    "excluded": [
+      "Office address Obrežna170, used by DEM/HSE and for tour assembly, was not geocoded.",
+      "May8,2026 site activity remains out of window.",
+      "Undated supervisor in-progress page and July31 deadline remain insufficient.",
+      "Generic July2026 ARNES service maintenance is not Maribor DC capital work.",
+      "Municipal GMS441 older search-only reference to parcel6601/22 was not used to override explicit purchased parcels; no assumed parcel-split history."
+    ]
+  },
+  "access_policy": {
+    "credential_free": true,
+    "denied_routes_retried": false,
+    "stopped_prior_routes": [
+      "NTR security-gatekeeper route",
+      "Prior GoogleMaps shortened-link InternalError"
+    ],
+    "current_wfs_requests": "One GetCapabilities, one DescribeFeatureType, one exact two-parcel GetFeature request, all HTTP200; no owner/person data requested."
+  },
+  "next_action": "Seek one original ARNES, DEM, consortium contractor or municipality statement with an explicit May22-Aug20,2026 observation of actual unfinished capital works at this Maribor campus, plus same-scope completion/cancellation review. Then independently review source-native polygons, transformation provenance and source closure. Until then keep held, delta0.",
+  "captures": [
+    {
+      "url": "https://www.arnes.si/files/2026/02/Pregled_aktivnosti_v_letu_2024_Arnes.pdf",
+      "effective_url": "https://www.arnes.si/files/2026/02/Pregled_aktivnosti_v_letu_2024_Arnes.pdf",
+      "http_status": 200,
+      "content_type": "application/pdf",
+      "started_at": "2026-09-10T18:18:37.982Z",
+      "captured_at": "2026-09-10T18:18:50.163Z",
+      "bytes": 5342315,
+      "sha256": "be1ec8988d21a1a9cb3c67276a825d90634eff944d7c00203da1c4d84edca674",
+      "raw_path": "tmp/research-round33-europe-africa/r37-arnes-2024-report.pdf",
+      "request_credentials_supplied": false,
+      "capture_method": "credential-free Node fetch; no retry; content-decoded response bytes",
+      "metadata_path": "tmp/research-round33-europe-africa/r37-arnes-2024-report.pdf.metadata.json"
+    },
+    {
+      "url": "https://www.arnes.si/files/2026/05/Pregled_aktivnosti_v_letu_2025_Arnes.pdf",
+      "effective_url": "https://www.arnes.si/files/2026/05/Pregled_aktivnosti_v_letu_2025_Arnes.pdf",
+      "http_status": 200,
+      "content_type": "application/pdf",
+      "started_at": "2026-09-10T18:18:48.195Z",
+      "captured_at": "2026-09-10T18:18:57.334Z",
+      "bytes": 5001689,
+      "sha256": "2720e84d4c81ea13b580f3ba704467a7292c8fe70373b7d45a47a88d6f81cb05",
+      "raw_path": "tmp/research-round33-europe-africa/r37-arnes-2025-report.pdf",
+      "request_credentials_supplied": false,
+      "capture_method": "credential-free Node fetch; no retry; content-decoded response bytes",
+      "metadata_path": "tmp/research-round33-europe-africa/r37-arnes-2025-report.pdf.metadata.json"
+    },
+    {
+      "url": "https://www.gov.si/novice/2024-09-12-dnevni-red-120-redne-seje-vlade-republike-slovenije/",
+      "effective_url": "https://www.gov.si/novice/2024-09-12-dnevni-red-120-redne-seje-vlade-republike-slovenije/",
+      "http_status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "started_at": "2026-09-10T18:19:59.048Z",
+      "captured_at": "2026-09-10T18:20:01.259Z",
+      "bytes": 31985,
+      "sha256": "a8de1559226e31960dd6cb1a11f48d38978070278fc227dc467499d8d43a556b",
+      "raw_path": "tmp/research-round33-europe-africa/r37-arnes-government-parcels.html",
+      "request_credentials_supplied": false,
+      "capture_method": "credential-free Node fetch; no retry; content-decoded response bytes",
+      "metadata_path": "tmp/research-round33-europe-africa/r37-arnes-government-parcels.html.metadata.json"
+    },
+    {
+      "url": "https://ipi.eprostor.gov.si/wfs-si-gurs-kn/wfs?request=getCapabilities",
+      "effective_url": "https://ipi.eprostor.gov.si/wfs-si-gurs-kn/wfs?request=getCapabilities",
+      "http_status": 200,
+      "content_type": "application/xml",
+      "started_at": "2026-09-10T18:19:57.897Z",
+      "captured_at": "2026-09-10T18:19:58.965Z",
+      "bytes": 134687,
+      "sha256": "4dc1cbb961921f8e83f527458267c974ef0fa51c762ae8fa534f195f34676b1d",
+      "raw_path": "tmp/research-round33-europe-africa/r37-arnes-gurs-capabilities.xml",
+      "request_credentials_supplied": false,
+      "capture_method": "credential-free Node fetch; no retry; content-decoded response bytes",
+      "metadata_path": "tmp/research-round33-europe-africa/r37-arnes-gurs-capabilities.xml.metadata.json"
+    },
+    {
+      "url": "https://ipi.eprostor.gov.si/wfs-si-gurs-kn/wfs?service=WFS&version=2.0.0&request=DescribeFeatureType&typeNames=SI.GURS.KN%3APARCELE",
+      "effective_url": "https://ipi.eprostor.gov.si/wfs-si-gurs-kn/wfs?service=WFS&version=2.0.0&request=DescribeFeatureType&typeNames=SI.GURS.KN%3APARCELE",
+      "http_status": 200,
+      "content_type": "application/gml+xml; version=3.2",
+      "started_at": "2026-09-10T18:20:21.971Z",
+      "captured_at": "2026-09-10T18:20:22.778Z",
+      "bytes": 6193,
+      "sha256": "8538a03d0fcdf5c3534ec2819a67093320dd49ad33949a958d1346109dbd7fd4",
+      "raw_path": "tmp/research-round33-europe-africa/r37-arnes-gurs-parcels-schema.xml",
+      "request_credentials_supplied": false,
+      "capture_method": "credential-free Node fetch; no retry; content-decoded response bytes",
+      "metadata_path": "tmp/research-round33-europe-africa/r37-arnes-gurs-parcels-schema.xml.metadata.json"
+    },
+    {
+      "url": "https://www.e-prostor.gov.si/dostopi/javni-dostop/",
+      "effective_url": "https://www.e-prostor.gov.si/dostopi/javni-dostop/",
+      "http_status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "started_at": "2026-09-10T18:19:56.661Z",
+      "captured_at": "2026-09-10T18:19:57.820Z",
+      "bytes": 179936,
+      "sha256": "34b8d22118bde8f01e45bc88adb7a58ed1335f70f46783209cf597c5133b155e",
+      "raw_path": "tmp/research-round33-europe-africa/r37-arnes-gurs-public-access.html",
+      "request_credentials_supplied": false,
+      "capture_method": "credential-free Node fetch; no retry; content-decoded response bytes",
+      "metadata_path": "tmp/research-round33-europe-africa/r37-arnes-gurs-public-access.html.metadata.json"
+    },
+    {
+      "url": "https://ipi.eprostor.gov.si/wfs-si-gurs-kn/wfs?service=WFS&version=2.0.0&request=GetFeature&typeNames=SI.GURS.KN%3APARCELE&count=2&filter=%3Cfes%3AFilter+xmlns%3Afes%3D%22http%3A%2F%2Fwww.opengis.net%2Ffes%2F2.0%22%3E%3Cfes%3AAnd%3E%3Cfes%3APropertyIsEqualTo%3E%3Cfes%3AValueReference%3EKO_ID%3C%2Ffes%3AValueReference%3E%3Cfes%3ALiteral%3E660%3C%2Ffes%3ALiteral%3E%3C%2Ffes%3APropertyIsEqualTo%3E%3Cfes%3AOr%3E%3Cfes%3APropertyIsEqualTo%3E%3Cfes%3AValueReference%3EST_PARCELE%3C%2Ffes%3AValueReference%3E%3Cfes%3ALiteral%3E1%2F47%3C%2Ffes%3ALiteral%3E%3C%2Ffes%3APropertyIsEqualTo%3E%3Cfes%3APropertyIsEqualTo%3E%3Cfes%3AValueReference%3EST_PARCELE%3C%2Ffes%3AValueReference%3E%3Cfes%3ALiteral%3E1%2F51%3C%2Ffes%3ALiteral%3E%3C%2Ffes%3APropertyIsEqualTo%3E%3C%2Ffes%3AOr%3E%3C%2Ffes%3AAnd%3E%3C%2Ffes%3AFilter%3E",
+      "effective_url": "https://ipi.eprostor.gov.si/wfs-si-gurs-kn/wfs?service=WFS&version=2.0.0&request=GetFeature&typeNames=SI.GURS.KN%3APARCELE&count=2&filter=%3Cfes%3AFilter+xmlns%3Afes%3D%22http%3A%2F%2Fwww.opengis.net%2Ffes%2F2.0%22%3E%3Cfes%3AAnd%3E%3Cfes%3APropertyIsEqualTo%3E%3Cfes%3AValueReference%3EKO_ID%3C%2Ffes%3AValueReference%3E%3Cfes%3ALiteral%3E660%3C%2Ffes%3ALiteral%3E%3C%2Ffes%3APropertyIsEqualTo%3E%3Cfes%3AOr%3E%3Cfes%3APropertyIsEqualTo%3E%3Cfes%3AValueReference%3EST_PARCELE%3C%2Ffes%3AValueReference%3E%3Cfes%3ALiteral%3E1%2F47%3C%2Ffes%3ALiteral%3E%3C%2Ffes%3APropertyIsEqualTo%3E%3Cfes%3APropertyIsEqualTo%3E%3Cfes%3AValueReference%3EST_PARCELE%3C%2Ffes%3AValueReference%3E%3Cfes%3ALiteral%3E1%2F51%3C%2Ffes%3ALiteral%3E%3C%2Ffes%3APropertyIsEqualTo%3E%3C%2Ffes%3AOr%3E%3C%2Ffes%3AAnd%3E%3C%2Ffes%3AFilter%3E",
+      "http_status": 200,
+      "content_type": "application/gml+xml; version=3.2",
+      "started_at": "2026-09-10T18:20:50.520Z",
+      "captured_at": "2026-09-10T18:20:51.401Z",
+      "bytes": 7283,
+      "sha256": "393c131cc354703d3b01f7539e94f1b29d9b9aaa519121203411e26c9bd3298b",
+      "raw_path": "tmp/research-round33-europe-africa/r37-arnes-gurs-two-parcels.gml",
+      "request_credentials_supplied": false,
+      "capture_method": "credential-free Node fetch; no retry; content-decoded response bytes",
+      "metadata_path": "tmp/research-round33-europe-africa/r37-arnes-gurs-two-parcels.gml.metadata.json"
+    }
+  ]
+}

@@ -1784,3 +1784,56 @@ and final-publication flags remain false. Reproduce or validate:
 .venv/bin/python scripts/build_expansion_200_draft.py --batch thirty-second-reviewed --output-dir /absolute/new/draft-directory
 .venv/bin/python scripts/build_expansion_200_draft.py --batch thirty-second-reviewed --validate-only
 ```
+
+## 2026-09-10: thirty-third reviewed checkpoint, 188 sites
+
+The [thirty-third reviewed draft](../verified_construction_core/2026-08-20-v0.18-draft-thirty-third-reviewed/README.md)
+adds the existing Digital Edge EDGE2 campus at Kuningan Mulia in Jakarta, where phase-3 electrical
+and mechanical development remained unfinished on June 30. It contains 188 physical sites,
+191 projects, 44 countries, 125 non-US sites and 854 evidence rows: 88 of the requested 100
+additions, with 12 remaining. All preceding rows, full geometries and source bindings remain frozen.
+
+The issuer's June financial statement explicitly describes the named phase as construction in
+progress, separately from phase 2, which was completed and operating in 2025. The accounting
+policy covers construction and machinery installation until completion. This supports broad
+`under_construction`, not a particular installation milestone. The reported 99% is cost-based,
+not measured physical progress. July 29 is authorization for issuance, not publication or a new
+observation; publication day remains unknown. The forecast of completion during 2026, the 2024
+whole-facility launch and current operational marketing do not settle phase-3 completion.
+Bounded original-source successor checks found no authoritative completion or cancellation
+through August 20; this is not exhaustive proof of absence.
+
+The exact OSM way 1230327255 supplies a named EDGE2, EDGE DC, 15-storey data-centre building.
+The operator announcement and historical specification sheet establish the street and facility
+identity. PeeringDB facility 15081 provides explicitly selected third-party identity corroboration;
+its geocode falls inside the OSM building, but its origin, datum and independence are unknown.
+Neither the PeeringDB point nor the historical brochure's printed point is selected as geometry.
+The brochure point differs by approximately 239 metres under a diagnostic WGS84 assumption.
+That discrepancy remains unexplained, not disproved, and no averaging or forced match is applied.
+The OSM website tag now redirects to a generic article, which is not current identity evidence.
+
+The selected polygon copies the source node ring in order. OSM's separately captured coordinate
+documentation supplies WGS84 semantics; source coordinates retain seven decimal places while
+positional accuracy remains unknown. This community building outline is only a campus locator,
+not an official boundary, surveyed footprint or current work extent. All 187 preceding full
+geometries and aliases were screened with no overlap or match. EDGE1, CGK, DGE1 and DGE2 remain
+separate; phase 3 adds one previously unrepresented campus, not an extra count for each phase.
+
+The [root evidence audit](../sources/research-expansion-200-asia-round37-edge2-root-review-2026-09-10.json)
+preserves the local-archive discovery, exact public object-API capture, rejected geocoder request,
+stale website redirect and unresolved brochure discrepancy. Seven selected raw captures were
+independently rehashed. Complete relevant PDF pages were visually reviewed. Only compact factual
+projections and attributed OSM geometry are distributed, not raw documents, maps, HTML or media.
+No new roles, capacity, workload, operating model or imagery observation is inferred.
+
+Additional Haskell, ARNES Maribor and Equinix FR15 findings remain research-only: energy-zone
+geometry does not locate Google's campus, and exact location evidence does not supply missing
+in-window physical status. The inherited CGK host-estate locator remains a separately logged
+correction hold, not certified by EDGE2's admission. Imagery coverage is still 10/191; the fixed
+20-row blind review requiring 19 agreements is unfinished. Expansion-complete and final-publication
+flags remain false. Reproduce or validate:
+
+```sh
+.venv/bin/python scripts/build_expansion_200_draft.py --batch thirty-third-reviewed --output-dir /absolute/new/draft-directory
+.venv/bin/python scripts/build_expansion_200_draft.py --batch thirty-third-reviewed --validate-only
+```
