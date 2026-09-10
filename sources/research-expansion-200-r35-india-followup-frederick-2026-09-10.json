@@ -1,0 +1,102 @@
+{
+  "schema_version": "research-expansion-200-bounded-handoff-1.0",
+  "reviewed_at": "2026-09-10",
+  "review_status": "public_permit_route_access_hold_no_admission",
+  "accepted_into_core": false,
+  "admission_ready_count": 0,
+  "lifecycle_reference_date": "2026-08-20",
+  "physical_observation_window_inclusive": ["2026-05-22", "2026-08-20"],
+  "scope": "Read-only public county-permit lookup for Aligned IAD04/IAD06 and Rowan Bauxite II/III. Permit 498550 at the old 5601 Manor Woods Road master address was an unverified discovery lead supplied by the parent investigation. No application, registration, inspection request, contact, form submission or login was performed.",
+  "rights": "Compact attributed facts and capture metadata only. No raw HTML, JavaScript, media or third-party record is redistributed; no open-content license asserted.",
+  "captures": [
+    {
+      "id": "frederick35-public-home",
+      "url": "https://planningandpermitting.frederickcountymd.gov/",
+      "publisher": "Frederick County, Maryland",
+      "captured_at": "2026-09-10T17:20:02.318Z",
+      "http_status": 200,
+      "bytes": 186397,
+      "sha256": "e459111806fad9ca8e4e9acf40a70d0c735944d42d795478dfc430f0be92836f",
+      "raw_local_path": "/Users/kian/Developer/datacenter_atlas/tmp/research-round33-europe-africa/r35-india-followup-frederick-home.html",
+      "facts": "Public home page supplies a Lookup Record navigation URL. The warning against fraudulent permit-payment emails does not establish any project status."
+    },
+    {
+      "id": "frederick35-lookup-page",
+      "url": "https://planningandpermitting.frederickcountymd.gov/lookup-record",
+      "publisher": "Frederick County, Maryland",
+      "captured_at": "2026-09-10T17:20:23.012Z",
+      "http_status": 200,
+      "bytes": 165297,
+      "sha256": "b64f0e31526378abb12c91ec6bbdc7b52c8b516fd56a431f18dd024cedfdbbcc",
+      "raw_local_path": "/Users/kian/Developer/datacenter_atlas/tmp/research-round33-europe-africa/r35-india-followup-frederick-lookup.html",
+      "facts": "Signed-out public lookup page initializes InstrumentListCardView with storedProcedureMode=true and record-details target. Its server HTML contains no permit or inspection result."
+    },
+    {
+      "id": "frederick35-app-client",
+      "url": "https://planningandpermitting.frederickcountymd.gov/o/rhythm-web/dist/app.js",
+      "publisher": "Frederick County public portal / Infor Rhythm Civics",
+      "captured_at": "2026-09-10T17:20:43.499Z",
+      "http_status": 200,
+      "bytes": 157111,
+      "sha256": "3140d250e0059b71a721fd5dfbe8b4055ac5027dc0881343b0386e5c3978eb10",
+      "raw_local_path": "/Users/kian/Developer/datacenter_atlas/tmp/research-round33-europe-africa/r35-india-followup-frederick-app.js",
+      "facts": "Public client asset linked by the lookup page. Inspected only to discover the public lookup widget; not executed or modified."
+    },
+    {
+      "id": "frederick35-common-client",
+      "url": "https://planningandpermitting.frederickcountymd.gov/o/rhythm-web/dist/common.js",
+      "publisher": "Frederick County public portal / Infor Rhythm Civics",
+      "captured_at": "2026-09-10T17:20:58.558Z",
+      "http_status": 200,
+      "bytes": 12475,
+      "sha256": "f1fd3ada4ab22d7a1afcbdbae2346ab780c0a5ae68c72514cd162fba0779ff5a",
+      "raw_local_path": "/Users/kian/Developer/datacenter_atlas/tmp/research-round33-europe-africa/r35-india-followup-frederick-common.js",
+      "facts": "Public client asset linked by the lookup page; not executed or modified."
+    },
+    {
+      "id": "frederick35-public-lookup-widget",
+      "url": "https://planningandpermitting.frederickcountymd.gov/o/rhythm-civics-InstrumentListCardView-portlet/build/Widget.js",
+      "publisher": "Frederick County public portal / Infor Rhythm Civics",
+      "captured_at": "2026-09-10T17:20:58.327Z",
+      "http_status": 200,
+      "bytes": 1781497,
+      "sha256": "16c6ec6f93d020979fc673f3d655ac31389cd63dad96b3947339fac1473584e7",
+      "raw_local_path": "/Users/kian/Developer/datacenter_atlas/tmp/research-round33-europe-africa/r35-india-followup-frederick-lookup-widget.js",
+      "pointer": "instrument_view_collection_plain around lines2317-2350; buildUrlParameters and extendedFilterMap around6188-6620; ID-number field around22406.",
+      "facts": "The published client defines the publicinstrumentdetails GET endpoint, ExtendedFilter and Page query encoding, compatiblemode=true, and instrumentNumber lookup field. It also defines an anonymous-auth bootstrap. Neither the script nor its endpoint definitions contain an observed project inspection. The script was not executed or modified."
+    }
+  ],
+  "read_only_request": {
+    "method": "GET",
+    "url": "https://planningandpermitting.frederickcountymd.gov/delegate/civics-api/api/portal/publicinstrumentdetails?ExtendedFilter=%5B%7Boperator%3AAnd%2Ccriteria%3A%5B%7Bproperty%3AinstrumentNumber%2Cvalue%3A498550%7D%5D%7D%5D&Page=%5B%7BStart%3A1%2CMax%3A11%7D%5D&compatiblemode=true",
+    "captured_at": "2026-09-10T17:22:05.925Z",
+    "http_status": 401,
+    "request_credentials_supplied": false,
+    "response_bytes": 26,
+    "response_sha256": "3e7db788e384631f8a9f299d1797e6f8af6d16d643a1c91f9e83ae15212de45c",
+    "raw_body_saved": false,
+    "metadata_path": "/Users/kian/Developer/datacenter_atlas/tmp/research-round33-europe-africa/r35-india-followup-frederick-498550.json.metadata.json",
+    "disposition": "Authorization response; stopped without session, anonymous-auth bootstrap, credential, alternate endpoint, parameter retry or security bypass. This response does not prove that public browser lookup requires a user account or that the permit does not exist."
+  },
+  "browser_status": {
+    "known_url_get_browser": "No browser is available",
+    "in_app_browser_creation": "Browser is not available: iab",
+    "ui_actions_performed": false,
+    "interpretation": "No enabled browser surface was available in this agent. This is an environment limitation, not a county-site access decision."
+  },
+  "conclusion": {
+    "status_observation_obtained": false,
+    "inspection_record_obtained": false,
+    "completion_successor_check_completed": false,
+    "exact_permit_to_project_identity_confirmed": false,
+    "selected_geometry": [],
+    "sites_added": 0,
+    "hold": "A rendered public lookup in an available authorized browser, or an independent official inspection dataset, is still needed. Permit issuance, plan review and date-added fields alone would not supply physical-work observations."
+  },
+  "validation": {
+    "capture_hash_scope": "Exact saved content-decoded HTTP response bodies. All five successful capture hashes and lengths independently rechecked.",
+    "new_files_only": true,
+    "existing_core_contracts_or_snapshots_modified": false,
+    "pdfs_used": false
+  }
+}

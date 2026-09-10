@@ -1,0 +1,139 @@
+{
+  "schema_version": "expansion-200-frederick-mde-inspections-round35-research-1",
+  "reviewed_at": "2026-09-10",
+  "research_scope": "Read-only bounded search for original MDE inspection observations of Aligned or Rowan/Bauxite physical construction at Quantum Frederick during May 22–August 20, 2026.",
+  "admission_ready_count": 0,
+  "decision": "hold_inspection_rows_not_recovered_access_denied",
+  "physical_observation_window": [
+    "2026-05-22",
+    "2026-08-20"
+  ],
+  "official_route": {
+    "url": "https://mde.maryland.gov/Pages/Open-MDE.aspx",
+    "finding": "The MDE Open Records page explicitly links the land, water and air inspection dashboards. The separate official Frederick Data Center Sampling/Reports page points back to this inspection route; it distinguishes the Aligned parcel from Rowan's three Bauxite parcels, but is undated and supplies no fresh inspection observations.",
+    "identity_page_url": "https://mde.maryland.gov/datacenters/Pages/FrederickDataCenter.aspx"
+  },
+  "datasets": [
+    {
+      "department": "Land and Materials",
+      "story_url": "https://opendata.maryland.gov/stories/s/m5ca-7ght",
+      "dataset_id": "wnuf-axys",
+      "name_field": "site_name",
+      "date_field": "inspection_date",
+      "document_field": "document",
+      "story_capture": "r35-mde-land-inspections-story.html",
+      "query_failure_metadata": "r35-mde-land-frederick-name-query.json.metadata.json"
+    },
+    {
+      "department": "Water and Science",
+      "story_url": "https://opendata.maryland.gov/stories/s/iape-ym8p",
+      "dataset_id": "hxmu-urvx",
+      "name_field": "site_name",
+      "date_field": "fir_inspection_date",
+      "document_field": "documentpage",
+      "story_capture": "r35-mde-water-inspections-story.html",
+      "query_failure_metadata": "r35-mde-water-frederick-name-query.json.metadata.json"
+    },
+    {
+      "department": "Air and Radiation",
+      "story_url": "https://opendata.maryland.gov/stories/s/scux-4sq3",
+      "dataset_id": "vgrx-qjj6",
+      "name_field": "facility_name",
+      "date_field": "achieved_date",
+      "document_field": "documents",
+      "story_capture": "r35-mde-air-inspections-story.html",
+      "query_failure_metadata": "r35-mde-air-frederick-name-query.json.metadata.json"
+    }
+  ],
+  "dataset_binding": "Each captured public story's window.STORY_DATA dataSource.dataSourceList and visualization field schemas explicitly bind the stated dataset and columns. Only public JSON was parsed; no browser/session credentials, presigned source assets or internal APIs were used.",
+  "query": {
+    "api_pattern": "https://opendata.maryland.gov/resource/DATASET.json",
+    "method": "One ordinary credential-free GET per dataset with a documented SoQL name filter and limit 2000. Exact request URLs are preserved in local metadata.",
+    "name_terms": [
+      "ALIGNED",
+      "ROWAN",
+      "BAUXITE",
+      "QUANTUM",
+      "EASTALCO"
+    ],
+    "where_logic": "OR of uppercase name-field LIKE matches",
+    "date_filter_applied": false,
+    "date_filter_reason": "Initial identity search was intended to recover site aliases and record URLs across dates before selecting the observation window.",
+    "result": "All three queries returned HTTP403. Zero rows were recovered; this is not a zero-result search. No conclusion about existence or absence of inspections follows.",
+    "retries": 0,
+    "alternate_api_version_attempted": false,
+    "browser_bypass_attempted": false,
+    "authentication_attempted": false
+  },
+  "status_boundaries": [
+    "The prior April 15, 2026 state report is outside the May 22 start of the observation window.",
+    "The parent reports that the July year-end report repeats the April overview paragraph. This subtask did not independently inspect either PDF and does not use the later publication date as a new physical observation.",
+    "No current-build status, completion state, company role, capacity or geometry is selected from dashboard accessibility, permit records or an undated identity page."
+  ],
+  "missing_gate": "A newly available official dated inspection report or independent original operator/contractor/municipal physical-progress statement for an unfinished Aligned parcel project or unfinished Rowan Bauxite II/III campus scope, with exact project/date binding. Do not reopen the same denied queries or change API versions to work around this denial.",
+  "capture_directory": "/Users/kian/Developer/datacenter_atlas/tmp/research-round33-europe-africa",
+  "raw_captures": [
+    {
+      "file": "r35-mde-open-records-index.html",
+      "url": "https://mde.maryland.gov/Pages/Open-MDE.aspx",
+      "captured_at": "2026-09-10T17:18:53.841Z",
+      "bytes": 65122,
+      "sha256": "d84202782073988bd455a849878bddef4d7bc47af7ca3f17ab01306e42c17dec"
+    },
+    {
+      "file": "r35-mde-land-inspections-story.html",
+      "url": "https://opendata.maryland.gov/stories/s/m5ca-7ght",
+      "captured_at": "2026-09-10T17:18:55.397Z",
+      "bytes": 303782,
+      "sha256": "a8e7ebc7a8a59a506cb6cd4292273be7d57904868bdae55c75c61b7324b75cc8"
+    },
+    {
+      "file": "r35-mde-water-inspections-story.html",
+      "url": "https://opendata.maryland.gov/stories/s/iape-ym8p",
+      "captured_at": "2026-09-10T17:18:55.110Z",
+      "bytes": 312356,
+      "sha256": "c020db7b1594cdaf0d050a03fb584ba94d7fd670f3baee57629d023876fd6c70"
+    },
+    {
+      "file": "r35-mde-air-inspections-story.html",
+      "url": "https://opendata.maryland.gov/stories/s/scux-4sq3",
+      "captured_at": "2026-09-10T17:18:55.521Z",
+      "bytes": 302073,
+      "sha256": "003e67bb8cb82b3e8b36bb762fbc6162660e00124eaaed5011af2ec9b9be355d"
+    }
+  ],
+  "failure_metadata": [
+    {
+      "file": "r35-mde-land-frederick-name-query.json.metadata.json",
+      "captured_at": "2026-09-10T17:19:50.244Z",
+      "http_status": 403,
+      "metadata_sha256": "4ff656bd35da791a4b3912941ae567a0d729940f998ce2c854afd561549852aa",
+      "body_retained": false
+    },
+    {
+      "file": "r35-mde-water-frederick-name-query.json.metadata.json",
+      "captured_at": "2026-09-10T17:19:50.231Z",
+      "http_status": 403,
+      "metadata_sha256": "2c00a3ff275612276c1bfb56e37fe3a8395fce011560bdfa5e1ec07347892d21",
+      "body_retained": false
+    },
+    {
+      "file": "r35-mde-air-frederick-name-query.json.metadata.json",
+      "captured_at": "2026-09-10T17:19:50.242Z",
+      "http_status": 403,
+      "metadata_sha256": "df16187c6ee9be052a989884105507c253061ab815755aa22c2003c2153f5c16",
+      "body_retained": false
+    }
+  ],
+  "custody": "The helper hashes every HTTP response but retains only successful bodies. Four successful public HTML bodies were independently rehashed; failed response bodies are not available for rehash. Failure metadata itself is separately hash-bound. Public story session fields and publisher assets stay in ignored raw custody, not this factual handoff.",
+  "validation": {
+    "successful_raw_bodies_rehashed": 4,
+    "failure_metadata_files_rehashed": 3,
+    "inspection_rows_recovered": null,
+    "pdf_downloaded_or_used": false,
+    "selected_geometry": false,
+    "existing_files_edited_by_this_subtask": false,
+    "accepted_count_change": 0,
+    "git_commits": false
+  }
+}

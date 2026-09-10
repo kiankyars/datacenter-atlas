@@ -1,0 +1,94 @@
+{
+  "schema_version": "expansion-200-frederick-map-status-round35-research-1",
+  "reviewed_at": "2026-09-10",
+  "decision": "hold_exact_project_physical_observation_not_established_in_window",
+  "admission_ready_count": 0,
+  "physical_observation_window": ["2026-05-22", "2026-08-20"],
+  "baseline_site_count": 186,
+  "accepted_count_change": 0,
+  "scope": "Preserve independently checked publisher-authored map locators for Aligned and Rowan Bauxite in Frederick County, Maryland, without selecting construction status or WGS84 geometry.",
+  "identity": {
+    "quantum_frederick": "The state environmental agency distinguishes the approximately 2100-acre former Eastalco redevelopment from individual operators' smaller parcels. This parent redevelopment area is not interchangeable with each child campus.",
+    "aligned": "The separately labelled Aligned four-building parcel is distinct from Rowan's Bauxite parcels. The historical IAD06 topping-out record identifies a constituent of the Aligned campus; it does not create another physical site.",
+    "rowan": "The developer's Bauxite I/II/III portfolio describes one flagship campus. Its three named phases must count at most once, not as three physical sites. The map's western label is literally Bauxite, not Bauxite I; an independent identity bridge is required before using that marker for I.",
+    "successor": "The current undated Rowan portfolio reports Bauxite I substantial completion in 2025. Its 2026/2027 delivery language for II/III is prospective and is not selected as construction evidence. Bauxite I is not an eligible unfinished project on that evidence.",
+    "existing_source_records": [
+      "sources/curated-official-2026-07-20-aligned-iad06-frederick-topout.json",
+      "sources/curated-official-2026-07-21-rowan-quantum-frederick-current-build.json"
+    ]
+  },
+  "map": {
+    "source_url": "https://frederickcountymd.gov/DocumentCenter/View/374476/CDI-approved-site-plans-July-2026",
+    "raw_file": "r35-frederick-approved-map.pdf",
+    "sha256": "94030666af1b8f0d3e3fab7226bd389083dc5b78846b83be57a724d077b94ade",
+    "page": 1,
+    "approval_status_date": "2026-07-01",
+    "print_date": "2026-07-14",
+    "status_boundary": "This is a map of approved site plans, not observed construction. Neither date establishes physical work. The broad CDI overlay outline is not a campus boundary; approved green polygons are not construction extents.",
+    "point_scope": "Centers of publisher-authored purple labelled circle symbols, with leader lines checked visually on the complete rendered page. These are source-specific locators, not surveyed points, entrances, polygon centroids, building footprints or construction extents.",
+    "embedded_viewport_pdf_points": [21.6, 162.0, 590.4, 768.646713],
+    "embedded_local_control_points": [[0, 0], [0, 1], [1, 1], [1, 0]],
+    "embedded_geographic_controls_nad83_latitude_longitude": [[39.30675, -77.50927], [39.36072, -77.50966], [39.36098, -77.44447], [39.30701, -77.44413]],
+    "source_crs_wkt": "PROJCS[\"NAD_1983_StatePlane_Maryland_FIPS_1900_Feet\",GEOGCS[\"GCS_North_American_1983\",DATUM[\"D_North_American_1983\",SPHEROID[\"GRS_1980\",6378137.0,298.257222101]],PRIMEM[\"Greenwich\",0.0],UNIT[\"Degree\",0.0174532925199433]],PROJECTION[\"Lambert_Conformal_Conic\"],PARAMETER[\"False_Easting\",1312333.333333333],PARAMETER[\"False_Northing\",0.0],PARAMETER[\"Central_Meridian\",-77.0],PARAMETER[\"Standard_Parallel_1\",38.3],PARAMETER[\"Standard_Parallel_2\",39.45],PARAMETER[\"Latitude_Of_Origin\",37.66666666666666],UNIT[\"Foot_US\",0.3048006096012192]]",
+    "derivation": "Read the PDF VP/Measure georeference. Transform the four NAD83 geographic controls into the publisher's exact projected WKT, fit an affine map from the local control coordinates by least squares, evaluate each vector symbol's bounding-box center relative to the PDF viewport, and inverse-transform to NAD83 longitude/latitude. Round to five decimal places, matching the controls. Do not silently substitute EPSG:2248: the source WKT has reversed equivalent standard parallels and a 0.0001016-metre false-easting difference.",
+    "calculation_helper": "tmp/derive-r35-frederick-locators.py",
+    "calculation_libraries": ["pypdf", "PyMuPDF", "numpy", "pyproj"],
+    "control_fit_max_residual_metres": 0.01008117,
+    "independent_review": "A separate reviewer inspected the full page and traced the leader lines, then independently solved a three-corner affine mapping using the exact WKT. All four main locators agree at five decimal places; the held-out fourth corner differs by 0.040325 metres. Those residuals measure computational consistency, not positional accuracy.",
+    "horizontal_accuracy_metres": null,
+    "source_disclaimer": "County map is illustrative and not for surveying, engineering or site-specific analysis.",
+    "wgs84_transformation_performed": false,
+    "selected_geometry": false,
+    "research_locators": [
+      {"label": "Aligned Data Centers", "drawing_index": 1269, "pdf_point_bottom_left": [329.9160461425781, 490.3680419921875], "nad83_longitude_latitude": [-77.47416, 39.33611], "labelled_buildings": 4, "labelled_acres": 74.89},
+      {"label": "Bauxite III", "drawing_index": 1272, "pdf_point_bottom_left": [337.1239929199219, 424.54443359375], "nad83_longitude_latitude": [-77.47329, 39.33026], "labelled_buildings": 4, "labelled_accessory_buildings": 1, "labelled_acres": 79.52},
+      {"label": "Bauxite II", "drawing_index": 1273, "pdf_point_bottom_left": [421.8008117675781, 343.8578796386719], "nad83_longitude_latitude": [-77.46354, 39.32312], "labelled_buildings": 7, "labelled_accessory_buildings": 2, "labelled_acres": 177.68},
+      {"label": "Bauxite", "drawing_index": 1275, "pdf_point_bottom_left": [268.5455627441406, 352.8226623535156], "nad83_longitude_latitude": [-77.48111, 39.32384], "labelled_buildings": 6, "labelled_accessory_buildings": 2, "labelled_acres": 151.17}
+    ]
+  },
+  "status_checks": [
+    {"source": "r35-maryland-q3.pdf", "publication_date": "2026-04-15", "page": 8, "finding": "The state explicitly identifies Aligned and Rowan facilities under construction within their separate boundaries, but this observation is stale for the required window."},
+    {"source": "r35-maryland-yearend.pdf", "publication_date": "2026-07-01", "page": 35, "finding": "Full rendered Quantum Frederick page repeats the April overview paragraph and illustrations. No new dated developer status update or site visit is supplied. July publication is not treated as a fresh observation."},
+    {"source": "r35-frederick-july1-order.pdf", "publication_date": "2026-07-01", "pages": [1, 2], "finding": "The county pause exempts projects with earlier adequate-public-facilities approval. This legal eligibility exception is not a physical observation of the Aligned or Rowan project."},
+    {"source": "r35-frederick-june25-release.html", "publication_date": "2026-06-25", "finding": "County air-monitoring release describes construction progressing at the broader Quantum Frederick campus. It does not independently bind the physical observation to a particular Aligned or Rowan child project."},
+    {"source": "r35-mde-frederick-index.html", "publication_date": null, "finding": "Agency distinguishes individual operator parcels and remediation, but its undated body does not refresh physical status."},
+    {"source": "r35-prometheus-home.html", "publication_date": null, "finding": "Concrete supplier names Bauxite 2 in Maryland and reports a completed 300-plus-cubic-yard deployment with Rowan and Suffolk. The undated case study does not establish when the pour occurred or ongoing construction at the cutoff."},
+    {"source": "r35-prometheus-linkedin.html", "publication_date": "2026-06-16", "publisher_jsonld_datePublished": "2026-06-16T12:26:23.527Z", "finding": "Accessible supplier post names Rowan and Suffolk in a general data-center construction discussion. Its body does not identify Bauxite II or date a particular physical operation. Publication timestamp is not substituted for a work date."},
+    {"source": "r35-nyce-concrete.html", "publication_date": "2026-07-15", "publisher_datePublished": "2026-07-15T12:39:43-0400", "finding": "New York Climate Exchange discusses a recent Rowan/Suffolk Maryland sidewalk pour, linking the Rowan social post. It does not independently supply an exact work date, phase identity or unfinished-project observation. Its own Governors Island construction is a separate non-data-center project."},
+    {"source": "r35-rowan-concrete-linkedin.html", "publication_date": null, "finding": "Search exposed a Rowan post naming Bauxite 2, but the one direct capture redirected to a cold-join sign-up shell. The retained hash is the shell, not the project body. Do not admit from the search snippet or retry through authentication or alternate routes."}
+  ],
+  "related_access_holds": [
+    "sources/research-expansion-200-frederick-mde-inspections-round35-2026-09-10.json",
+    "sources/research-expansion-200-r35-india-followup-frederick-2026-09-10.json"
+  ],
+  "rights": {
+    "county_notice_url": "https://frederickcountymd.gov/site/copyright",
+    "county_notice": "County and representatives reserve all rights. The map also states its illustrative, non-survey scope.",
+    "projection_policy": "This research packet contains limited restated facts and derivation metadata. Raw documents, source prose, map artwork, video and photographs remain in ignored local custody and are not redistributed. No broader reuse license is inferred for any publisher.",
+    "imagery_review_added": false
+  },
+  "capture_directory": "/Users/kian/Developer/datacenter_atlas/tmp/research-round33-europe-africa",
+  "raw_captures": [
+    {"file": "r35-frederick-approved-map.pdf", "url": "https://frederickcountymd.gov/DocumentCenter/View/374476/CDI-approved-site-plans-July-2026", "captured_at": "2026-09-10T17:14:07.598Z", "bytes": 440922, "sha256": "94030666af1b8f0d3e3fab7226bd389083dc5b78846b83be57a724d077b94ade"},
+    {"file": "r35-frederick-copyright.html", "url": "https://frederickcountymd.gov/site/copyright", "captured_at": "2026-09-10T17:20:15.821Z", "bytes": 92511, "sha256": "3f7285e0e33546c20e3f7537b0530cdd5c7262eded5df108dd52c37f5a1a145b"},
+    {"file": "r35-frederick-july1-order.pdf", "url": "https://frederickcountymd.gov/Archive.aspx?ADID=17112", "effective_url": "https://frederickcountymd.gov/ArchiveCenter/ViewFile/Item/17112", "captured_at": "2026-09-10T17:14:08.516Z", "bytes": 337283, "sha256": "aa3b617dd5b042a5767b90f5a3a12f6012abffd1b4574bae72bbd6714511d788"},
+    {"file": "r35-frederick-june25-release.html", "url": "https://frederickcountymd.gov/m/newsflash/Archive/Item/5839?arcId=8990", "captured_at": "2026-09-10T17:20:14.862Z", "bytes": 109427, "sha256": "3303d45632f12d1afe2a29feebd283292f5a0f3ece10f7efb8e0f0453aa0698d"},
+    {"file": "r35-maryland-q3.pdf", "url": "https://planning.maryland.gov/SiteAssets/Pages/OurEngagement/PermitCouncil/PermitCouncil-reports/20260415-Permitting-Council-Quarterly-Report-FY26Q3.pdf", "captured_at": "2026-09-10T17:17:02.305Z", "bytes": 1408338, "sha256": "dcbee96c8d30ffb38e2aa713e98dc45fa505b73163d55f24b0c28bbe25da1168"},
+    {"file": "r35-maryland-yearend.pdf", "url": "https://planning.maryland.gov/Documents/Our-Engagement/PermitCouncil/20260701-PermittingCouncilYearEndReport.pdf", "captured_at": "2026-09-10T17:15:12.144Z", "bytes": 15269204, "sha256": "2fe1f1318571f0eed97e427d85a46f96937814bc455023b2710ac1be4c1265b4"},
+    {"file": "r35-mde-frederick-index.html", "url": "https://mde.maryland.gov/datacenters/Pages/FrederickDataCenter.aspx", "captured_at": "2026-09-10T17:20:16.310Z", "bytes": 77885, "sha256": "139d12bfa21c2196dc0a26f367d4d6ecb7d2e1085a6ec76554e630b0238af074"},
+    {"file": "r35-rowan-bauxite.html", "url": "https://rowan.digital/portfolio/bauxite-i-ii-iii/", "effective_url": "http://rowan.com/portfolio/bauxite-i-ii-iii/", "captured_at": "2026-09-10T17:17:03.903Z", "bytes": 120360, "sha256": "f7ad0df3f92e4f93060d34179ece7340b774f5413d0f4e960a53b0f1055d5788"},
+    {"file": "r35-prometheus-home.html", "url": "https://prometheusmaterials.com/", "captured_at": "2026-09-10T17:25:57.600Z", "bytes": 268689, "sha256": "70a0c6dce2a6a884a872a8c2c4ddb6d5832a09a09148a9d36ba9d85e444a8468"},
+    {"file": "r35-prometheus-linkedin.html", "url": "https://www.linkedin.com/posts/prometheus-materials_why-data-centers-matterpm-rowan-suffolk-activity-7472625624499535872-A9dV", "captured_at": "2026-09-10T17:25:58.314Z", "bytes": 284903, "sha256": "ae61054847415d93fe73ccc638d8caa2e90c1e6f2f1bac600808a0416caf596a"},
+    {"file": "r35-nyce-concrete.html", "url": "https://nyce.org/blog/2026-from-pilot-to-specs-scaling-climate-solutions-in-the-built-environment", "captured_at": "2026-09-10T17:25:58.982Z", "bytes": 393045, "sha256": "a17289125cb22ef6a3a2f02761ffe8bc6f473f9bacb402c5630ec2ddaa6d4b99"},
+    {"file": "r35-rowan-concrete-linkedin.html", "url": "https://www.linkedin.com/posts/rowandigital_at-rowan-were-challenging-conventional-activity-7472319446208974848--L_p", "effective_response_kind": "sign_up_shell_not_post_body", "captured_at": "2026-09-10T17:26:37.823Z", "bytes": 65074, "sha256": "0137dc8f2ee497101a6c2548d9c3c806221bf15e388a6d699e91a251c0d94b67"}
+  ],
+  "validation": {
+    "raw_bodies_rehashed": 12,
+    "map_locator_review": "independent visual leader-line and numerical georeference check passed",
+    "current_contract_edited": false,
+    "existing_files_edited": false,
+    "selected_status": false,
+    "git_commit_created": false
+  },
+  "next_gate": "Obtain a genuinely fresh original May 22-August 20 physical observation bound to unfinished Aligned or Bauxite II/III work, plus completion/cancellation successor review. Then explicitly transform a chosen appropriate NAD83 locator to WGS84, preserve unknown accuracy, and independently compare the physical campus with the full then-current accepted inventory. Do not reopen denied inspection APIs or a gated social post to bypass restrictions."
+}
