@@ -1688,3 +1688,51 @@ flags remain false. Reproduce or validate with:
 .venv/bin/python scripts/build_expansion_200_draft.py --batch thirtieth-reviewed --output-dir /absolute/new/draft-directory
 .venv/bin/python scripts/build_expansion_200_draft.py --batch thirtieth-reviewed --validate-only
 ```
+
+## 2026-09-10: thirty-first reviewed checkpoint, 186 sites
+
+The [thirty-first reviewed draft](../verified_construction_core/2026-08-20-v0.18-draft-thirty-first-reviewed/README.md)
+adds HIVE's Yguazú campus in Paraguay, limited to its current electrical-infrastructure expansion.
+It contains 186 physical sites, 189 projects, 44 countries, 123 non-US sites and 841 evidence rows:
+86 of the requested 100 additions, with 14 remaining. Every preceding row, geometry and snapshot
+is preserved. The substation is a constituent of one data-center campus, not a separate utility site.
+
+The issuer's August 14 MD&A describes ongoing construction of the Yguazú substation expansion
+as of its information-through date. June 30 is the financial period end, not the construction
+observation. June 22 distinguishes completed civil works from continuing substation construction
+and a future Tier-III building scheduled to start in fall 2026. August 15 forecasts Q4 energization
+and leaves the additional capacity's allocation undecided. Neither the completed original halls
+nor the future building is selected as current construction. No new IT load, grid-capacity metric,
+workload, role, operating-model or imagery observation is inferred.
+
+The acquisition agreement identifies Zunz as owner of the acquired Yguazú data-center site.
+The regulator's 2024 and 2026 declarations bind the combined data-center/substation project to
+Finca 1534, Padrón 33. All six declaration pages were visually reviewed. The older design-stage
+declaration and newer conditional environmental adjustment approval supply identity and scope,
+not proof of current construction, comprehensive building authorization or legal compliance.
+March 17, 2025 is retained as the agreement's effective date; its unverified SEC publication date
+is explicitly null in the new root copy. The earlier unaccepted handoff remains unchanged.
+
+The locator is the exact point returned by the public regulator GeoJSON response for project
+83461, expedition 6240/2026. The public map's direct GeoJSON rendering and RFC7946 establish
+the longitude/latitude WGS84 format contract; this is not an independent datum survey. The
+slight difference in decimal serialization from the matching detail endpoint is retained without
+averaging. It is a campus reference point, not a parcel boundary, building, entrance or work
+footprint, and source-specific positional accuracy remains unknown. Full-geometry intersection
+and identity/alias checks against all 185 preceding sites found no collision.
+
+The [root review](../sources/research-expansion-200-root-round34-hive-yguazu-review-2026-09-10.json)
+records twelve rehashed responses and separate verification of the two base64-decoded PDFs.
+Independent read-only review confirmed all source bindings, six declaration pages, byte anchors,
+full-geometry distinctness, inherited records and eleven byte-exact generated payloads.
+Only compact restated facts, source attribution, hashes, coordinate-contract reasoning and one
+locator are distributed. Raw filings, regulator declarations, maps and personal details remain
+local research material; no open reuse licence is asserted.
+
+Imagery coverage remains 10/189 and the fixed 20-row blind review requiring 19 agreements remains
+incomplete. Expansion completion and final-publication claims are both false. Reproduce or validate:
+
+```sh
+.venv/bin/python scripts/build_expansion_200_draft.py --batch thirty-first-reviewed --output-dir /absolute/new/draft-directory
+.venv/bin/python scripts/build_expansion_200_draft.py --batch thirty-first-reviewed --validate-only
+```
