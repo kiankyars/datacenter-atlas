@@ -1,0 +1,105 @@
+{
+  "schema_version": "research-expansion-200-independent-source-review-1",
+  "reviewed_at": "2026-09-10",
+  "research_only": true,
+  "accepted_into_core": false,
+  "lifecycle_reference_date": "2026-08-20",
+  "campus_stable_key": "curated:stack-bossier-highway-3-technology-park-campus",
+  "project_stable_key": "curated:stack-bossier-highway-3-technology-park-campus:current-campus-build",
+  "previous_research": "sources/research-expansion-200-americas-round37-stack-bossier-2026-09-10.json",
+  "review_outcome": "Independent exact-identity, lifecycle and locator review passed for one physical campus. A separately pinned acceptance contract and successful release validation are required to change the draft count; this research file alone changes none.",
+  "lifecycle_review": {
+    "source_url": "https://www.stackinfra.com/about/news-press/press-releases/stack-infrastructure-partners-with-amazon-to-invest-in-northwest-louisiana-communities/",
+    "source_date": "2026-06-10",
+    "selected_status": "under_construction",
+    "finding": "The explicit current construction statement names both Caddo and Bossier Parishes. The selected campus is its Bossier member, separately identified through parish records. Physical work is not inferred from investment or community spending.",
+    "date_semantics": "The June 10 release dateline normalizes the contemporary physical-status statement. It is not an independently dated inspection, groundbreaking day or September observation.",
+    "scope": "Broad campus construction only, not a specified data-hall trade, percentage, completion, commissioning, energization or operation.",
+    "successor_source_url": "https://www.aboutamazon.com/news/company-news/amazon-data-center-louisiana-new-jobs",
+    "successor_dates": {"original_publication": "2026-02-23", "explicit_update": "2026-08-18"},
+    "successor_finding": "Amazon's explicit August 18 update retains Bossier and Caddo and adds a third planned Shreveport campus. It reports no actual Bossier completion or cancellation. Its update is context, not a new physical observation.",
+    "bounded_queries": [
+      "site.stackinfra.com Bossier construction 2026",
+      "site.bossierparishla.gov Technology Park completed",
+      "site.aboutamazon.com Louisiana August 18 2026 Bossier data centers"
+    ],
+    "absence_limit": "No authoritative completion or cancellation through August 20 was found in this bounded original-source review; this is not an exhaustive permit or occupancy audit."
+  },
+  "identity_review": {
+    "parish_meeting_date": "2026-03-18",
+    "parish_news_publication_date": "2026-03-20",
+    "proceedings_publication_date": "2026-04-15",
+    "proceedings_pdf_page": 12,
+    "planning_case": "Benton MPC BP-8-26(SC)",
+    "finding": "The official parish report and published parish proceedings bind STACK and Amazon to Highway 3 Technology Park, west of Highway 3 and north of Lone Oak Drive. The Bohler applicant matches the Corps notice. The five-lot plat places the six-building development on lots 3 and 4 with supporting infrastructure, including a switchyard. These are one physical campus, not counts for six buildings or five lots.",
+    "corps_notice": "MVK-2025-00855, April 16, 2026",
+    "corps_caveat": "Page 3 states that applicant information was not verified or evaluated for regulatory compliance except for aquatic-resource jurisdiction. The attached map is government-published applicant evidence, not a certified Corps campus survey or proof of permit issuance.",
+    "section_discrepancy": "Map title Section 2, T21N conflicts with Section 32, T21N in the parish proceeding. Both are retained as printed. The selected smaller project area and notice text are in Section 5, T20N, R13W; the independent name/applicant/road/six-building identity bridge does not depend on correcting the northern title."
+  },
+  "independent_geometry_review": {
+    "source_pdf_page": 5,
+    "source_map_date": "2025-12-22",
+    "source_path": "Black dashed 335-point Project Site vector, not the larger red Site Boundary, inset or off-page white graphic.",
+    "exact_viewport_bbox": [19.000137329, 92.519571792, 594, 774],
+    "source_projected_crs": "Exact embedded WKT matching EPSG:6477, NAD83(2011) / Louisiana North (US survey feet)",
+    "source_geographic_crs": "NAD83(2011), equivalent to EPSG:6318 after axis-order normalization, not an assumed WGS84 frame for GPTS. The WKT's longitude-first underlying CRS has no direct pyproj authority match; equality with EPSG:6318 is verified ignoring axis order. Exact WKT remains the transform input.",
+    "control_precision_decimal_places": 5,
+    "method": "Independently extract the PDF's WKT, viewport, four GPTS/LPTS controls and unique black 335-point path. Project geographic controls in their own underlying GCS datum. Flip top-origin extracted page Y, normalize within the exact viewport and bilinearly interpolate between four projected control points. The interpolation is an explicit reviewer method, not an algorithm prescribed by the PDF specification.",
+    "normalization": "Shapely make_valid converts the self-touching source path into a valid Polygon with 330 exterior coordinates and one 8.861292233015122-square-foot hole. Original input is retained. Area change is floating-point noise, -1.1175870895385742e-08 square feet. The representative point is identical before and after normalization; no simplification, snapping, area fitting or hidden repair.",
+    "native_representative_point_us_survey_feet": [2900930.5120895035, 822704.1535681961],
+    "computed_wgs84_longitude_latitude": [-93.73566985786377, 32.75560802967376],
+    "display_locator_longitude_latitude": [-93.73567, 32.75561],
+    "transform": "Inverse of SPCS83 Louisiana North (US survey foot) plus NAD83(2011) to WGS84 (1), axis normalized; root reproduced with allow_ballpark=False.",
+    "transform_operation_accuracy_metres": 2,
+    "horizontal_uncertainty_metres": null,
+    "uncertainty_caveat": "Operation accuracy is not positional accuracy of this source drawing or derived locator. Five-decimal source controls limit precision. Extra computed digits are retained only for reproduction, not asserted accuracy.",
+    "scope_checks": "Rounded locator is within both the smaller project area and the larger landholding. Derived project area 234.13181603986382 acres is not silently equated to the conceptual 206.8-acre lease. Red-outline area 1066.689091350781 acres is not fitted to either the 1065.95 map label or later 1067.331-acre plat.",
+    "rejected_narrative_point": [-93.736122, 32.753977],
+    "rejection_reason": "The separate narrative latitude/longitude pair does not explicitly identify its datum. The embedded map CRS is not borrowed to certify that textual pair.",
+    "geometry_semantics": "Government-published proponent project-area-derived interior point, campus locator only. Not an official boundary, surveyed building/entrance, estate centroid, current work extent or imagery observation.",
+    "prior_output_sha256": "4c069a6fd561adb3adb8fa9d6d4727e335956d85693a5ada6b6253f65f2f5cb3",
+    "reproduction_note": "Root independently re-extracted and calculated, rather than rerunning the original exclusive-output helper. A second reviewer also reproduced the same point. The earlier round37 rounded viewport is superseded for computation by the exact values here and in the proposal."
+  },
+  "normative_format_review": {
+    "selected_url": "https://web.archive.org/web/20200621050243/https://www.adobe.com/content/dam/acom/en/devnet/acrobat/pdfs/adobe_supplement_iso32000.pdf",
+    "local_pdf": "/Users/kian/Developer/datacenter_atlas/tmp/research-round37-stack-bossier/root-adobe-level3-specification.pdf",
+    "title": "Adobe Supplement to ISO 32000, BaseVersion 1.7, ExtensionLevel 3, June 2008",
+    "captured_at": "2026-09-10T18:54:54.923Z",
+    "bytes": 1490032,
+    "sha256": "638f531b57ceb50b4f0b86a6740a57438ccecb0e434e32f0209d9c8200ecc44b",
+    "pdf_pages_visually_reviewed": [49, 50, 51, 52, 131, 132],
+    "finding": "Tables 8.111a and 8.111c explicitly place GPTS latitude/longitude in the geographic CRS underlying GCS, LPTS in the viewport unit square, and projected WKT in the GCS dictionary. Implementation notes retain WKT semantics. DCS is display context, not permission to reinterpret the source controls as WGS84.",
+    "source_role": "Coordinate-format semantics only; no campus identity, lifecycle or source positional accuracy.",
+    "superseded_attempts": [
+      {"file": "adobe-geospatial-spec.pdf", "finding": "Original Adobe URL redirected to SDK-index HTML; not a PDF or normative source."},
+      {"file": "root-adobe-geospatial-supplement.pdf", "bytes": 323997, "sha256": "a39127c2b44849c07935751a2aeebaa7d4619e0cadadbd348bddebe65fb8df2e", "finding": "The archived _1.pdf is June 2009 ExtensionLevel 5, eight pages, not the needed Level 3 GEO tables. Retained as an unselected negative capture."}
+    ],
+    "archive_discovery": "The Library of Congress related PDF-format description provided the older public archive link; PDF Association's official extensions index separately distinguishes Level 3 and Level 5. The correct PDF's own title, tables and notes were then inspected. No authentication, gate bypass or retry was used."
+  },
+  "distinctness_review": {
+    "compared_release": "verified_construction_core/2026-08-20-v0.18-draft-thirty-third-reviewed",
+    "sites": 188,
+    "geojson_bytes": 294561,
+    "geojson_sha256": "205ab2ed660aa9c7f5a3c4c8f151b82bc65a2cc32823470ad7f06390ae7c7e12",
+    "full_geometry_intersections": [],
+    "alias_matches": [],
+    "method": "Full Point/Polygon/MultiPolygon geometries, including holes, compared against the larger red landholding for a conservative overlap screen; every feature's properties searched for Bossier, Benton, STACK, Caddo and Highway 3. Root and independent reviewer both found no intersection or alias."
+  },
+  "visual_review": {
+    "skill": "pdf",
+    "complete_pages": [
+      {"file": "usace-mvk-2025-00855.pdf", "pages": [1, 2, 3, 5, 6, 8]},
+      {"file": "bossier-legal-publication-april15.pdf", "pages": [12]},
+      {"file": "root-adobe-level3-specification.pdf", "pages": [49, 50, 51, 52, 131, 132]}
+    ],
+    "method": "Complete Poppler page images inspected, with extracted text as a cross-check. Full newspaper legal page and complete plan context were reviewed. No current site photograph, satellite observation or site visit is claimed."
+  },
+  "rights_and_custody": {
+    "raw_hash_review": "Root independently rehashed all six selected raw source bodies and the parish terms capture; exact bytes and capture timestamps match metadata, all HTTP 200 without credentials, and each raw path is git-ignored.",
+    "parish_terms_url": "https://www.bossierparishla.gov/legal/terms-of-use",
+    "parish_terms_sha256": "40611d5eae858331e0993d2cb8affa15b3a7d522eb117e4bc32af887cce3c393",
+    "rights_scope": "The complete relevant parish terms were read: public-domain treatment is limited to parish-generated website information, with external materials and protected seals excluded. It is not borrowed for the newspaper, proponent drawings or Adobe specification. Conservative all-rights-reserved metadata and attributed compact factual projections are retained for those sources.",
+    "redistribution": "No raw PDFs, HTML, basemaps, photographs, logos, signatures, personal addresses or unrelated proceedings are redistributed. Selected numerical geometry facts and derivation metadata do not claim an open licence for the source drawings."
+  },
+  "separate_unfinished_work": "No new metrics, roles, workload, operating model or imagery evidence. Final imagery and blind review remain incomplete. The inherited CGK host-estate locator remains an explicit separate correction hold; this review neither modifies the frozen baseline nor certifies it."
+}

@@ -1,0 +1,518 @@
+{
+  "schema_version": "research-expansion-200-bounded-handoff-1.0",
+  "reviewed_at": "2026-09-10",
+  "lane": "Asia round 38: True IDC northern seventh / East Bangna disambiguation, DCI-Koramco SEL02, Baoji Digital Building and China Mobile Data Center",
+  "review_status": "research_only_three_evidence_based_holds",
+  "accepted_into_core": false,
+  "admission_ready_count": 0,
+  "incremental_selected_site_count": 0,
+  "lifecycle_reference_date": "2026-08-20",
+  "physical_observation_window_inclusive": [
+    "2026-05-22",
+    "2026-08-20"
+  ],
+  "scope": "One assigned True IDC lead and exactly two alternative campuses. No release, module, curated lifecycle, geometry proposal, selection contract or admission changes. Existing construction bytes reused when available; dated locator and identity discoveries remain research evidence.",
+  "scope_correction": "The fresh source concerns True IDC's seventh data center in Northern Bangkok, not an East Bangkok phase 7. Seventh facility numbering is not a phase identifier. East Bangna, Northern Bangkok, and the EEC mega-campus remain separate until authoritative identity evidence says otherwise.",
+  "prior_work_review": {
+    "contract_path": "docs/expansion_200.md",
+    "contract_lines_read": "1-65",
+    "true_idc_existing_curated": "sources/curated-official-2026-07-19-trueidc-seventh-northern-bangkok.json",
+    "true_idc_prior_research": "sources/research-expansion-200-asia-round37-edge2-2026-09-10.json",
+    "true_idc_previous_hold": "Northern Bangkok only; no municipality, street, parcel or coordinate. Image filename MGT2 not accepted as identity.",
+    "alternative_1_existing_curated": "sources/curated-official-2026-07-20-dci-koramco-ansan-sel02.json",
+    "alternative_2_existing_curated": "sources/curated-official-2026-07-21-baoji-digital-building-mobile-dc-current-build.json",
+    "prior_research_scan": "All sources/research-expansion-200*.json scanned for True IDC / Northern Bangkok / East Bangna / Muangthong; Koramco / SEL02 / Korean operator variants; Baoji / 宝鸡. Only the round37 next-lead entry matched True IDC. No prior dedicated SEL02 or Baoji research hold found. Digital Edge SEL5 Ansan and SEL2 are different projects and were not reopened."
+  },
+  "candidates": [
+    {
+      "id": "trueidc-northern-seventh",
+      "name": "True IDC Northern Bangkok Seventh Data Center",
+      "country": "Thailand",
+      "stable_key": "curated:trueidc-northern-bangkok-seventh-data-center-campus",
+      "decision": "hold_exact_project_identity_and_georeferenced_locator_unresolved",
+      "physical_evidence": {
+        "capture_id": "r37-edge2-next-lead-trueidc",
+        "source_url": "https://www.trueidc.com/en/news-detail/238/trueidc-7th-Data-Center-Ground-breaking",
+        "authority": "True IDC operator announcement",
+        "publication_date": "2026-06-19",
+        "physical_observation_date": "2026-06-19",
+        "evidence_role": "lifecycle",
+        "observation": "Operator reports an actual groundbreaking ceremony and ongoing construction for its seventh Northern Bangkok data center.",
+        "supported_status": "under_construction",
+        "unsupported_statuses": [
+          "specific structural or electrical stage",
+          "energized",
+          "commissioning",
+          "completed",
+          "operational"
+        ],
+        "forecast_excluded": "Q3 2027 official launch",
+        "financial_metric_excluded": "THB 6 billion investment is not construction progress or a power metric."
+      },
+      "location": {
+        "source_locality": "Northern Bangkok, Thailand",
+        "selected_geometry": null,
+        "selected_crs": null,
+        "source_coordinate_precision": null,
+        "horizontal_uncertainty_metres": null,
+        "horizontal_uncertainty_unknown_reason": "No project-specific coordinate, parcel or survey is established.",
+        "assessed_sources": [
+          "r37-edge2-next-lead-trueidc",
+          "trueidc-locations",
+          "trueidc-news"
+        ],
+        "finding": "Current colocation-service page supplies capability information, not an exact locator for the newly announced seventh facility. Existing North Muangthong facility identity is not sufficient to place a new building there.",
+        "rejected_shortcuts": [
+          "MGT2 image-path token as a facility-code bridge",
+          "existing North Muangthong building or office pin",
+          "East Bangna campus point",
+          "Northern Bangkok locality center"
+        ]
+      },
+      "east_bangna_disambiguation": {
+        "capture_id": "trueidc-east-certification",
+        "source_url": "https://www.trueidc.com/en/news-detail/226/TrueIDC-AI-Hyperscale-Data-Center-Achieves-Global-Uptime-Facility-Tier-III-Certification",
+        "publication_date": "2025-12-09",
+        "finding": "Operator describes completed-facility certification with post-construction assessment at East Bangna. The separate 2025 design-certification listing concerns phases 3, 4 and 5, not a verified 2026 phase 7.",
+        "guardrail": "Does not establish the status of every East Bangna phase, and does not supersede the different June2026 Northern Bangkok project. No qualifying East Bangna phase7 physical observation was found."
+      },
+      "successor_review": {
+        "through": "2026-08-20",
+        "source_ids": [
+          "trueidc-news",
+          "r37-edge2-next-lead-trueidc"
+        ],
+        "query": "site:trueidc.com \"Northern Bangkok\" (completed OR cancelled OR opened OR launch) after:2026-06-19 before:2026-08-21",
+        "result": "No authoritative completion or cancellation of the seventh Northern Bangkok project through the cutoff found. Visible operator news index still lists its groundbreaking; launch forecast is excluded.",
+        "limitation": "Bounded public index and search review, not exhaustive proof of absence."
+      },
+      "next_required_evidence": "An operator or permitting-authority address/parcel bridge to the exact new seventh facility, then source-specific georeferenced locator with explicit CRS, precision and unknown accuracy."
+    },
+    {
+      "id": "dci-koramco-sel02",
+      "name": "DCI and Koramco Ansan SEL02 / Sihwa AI Data Center",
+      "country": "South Korea",
+      "stable_key": "curated:dci-koramco-ansan-sihwa-sel02-data-center",
+      "decision": "priority_hold_exact_parcel_identity_recovered_numeric_locator_missing",
+      "physical_evidence": {
+        "capture_id": "koramco-news-page3",
+        "source_url": "https://www.koramco.com/ko/menewsList?page=3",
+        "authority": "Koramco issuer-owned media-news listing",
+        "publication_date": "2026-06-09",
+        "physical_observation_date": null,
+        "report_date": "2026-06-09",
+        "evidence_role": "lifecycle",
+        "literal_heading": "[TV조선] 코람코·DCI, 안산에 40MW 인공지능 데이터센터 첫 삽",
+        "observation": "Dated issuer listing explicitly reports first shovel for Koramco and DCI's Ansan AI data center. This is an actual-work report, not an investment forecast.",
+        "event_date_caution": "The listing date does not establish the ceremony's exact day. Secondary coverage differs between May28 and June8; both lie inside the window, but neither is selected as an authoritative exact event date. The existing curated June9 observation remains unchanged by this research packet.",
+        "source_boundary": "Issuer-owned title/date is evidence; linked TV Chosun article and other media are not represented as issuer-authored bodies."
+      },
+      "identity_and_locator": {
+        "authority_capture_ids": [
+          "koramco-pfv-projects",
+          "ansan-government-712"
+        ],
+        "exact_address": "경기도 안산시 단원구 성곡동 712번지",
+        "english_address": "712 Seonggok-dong, Danwon-gu, Ansan-si, Gyeonggi-do, South Korea",
+        "official_project_name": "시화 IDC",
+        "official_project_company": "코람코시화데이터센터피에프브이 주식회사",
+        "operator_page_date": null,
+        "finding": "Koramco's PFV portfolio binds Sihwa IDC to this exact parcel and project company, with five floors and 26,810.23 square metres, matching the separately reported SEL02 identity and approximate floor area. The regional traffic-approval record independently names the same company, exact parcel and data-center use.",
+        "government_record": {
+          "publication_date": "2023-06-12",
+          "approving_body": "Ansan City Railway and Transportation Division",
+          "last_listed_processing_date": "2023-07-27",
+          "planned_project_period": "2023-2026",
+          "planned_scale_square_metres": 36877,
+          "role": "Historical parcel identity and permitting only; no physical status derived.",
+          "scope_caution": "The 2023 planned scale differs from the current PFV portfolio's floor area; no area conversion or unchanged design is assumed."
+        },
+        "selected_geometry": null,
+        "selected_crs": null,
+        "source_coordinate_precision": null,
+        "horizontal_uncertainty_metres": null,
+        "horizontal_uncertainty_unknown_reason": "The identified sources give an exact parcel address but no source-bound coordinate, geometry or positional accuracy.",
+        "geometry_method": null,
+        "rejected_shortcut": "Gyeonggi webpage navigation contains an office map for the provincial government, not the Ansan project. No office map coordinates selected.",
+        "non_aliases": [
+          "DCI SEL01",
+          "Digital Edge SEL2",
+          "Digital Edge SEL5 Ansan",
+          "other Seonggok-dong data-center projects"
+        ],
+        "locator_gate": "Recover a public cadastral geometry or named-project locator for parcel712 with explicit CRS. Do not use a Seonggok-dong or Sihwa industrial-zone centroid."
+      },
+      "unselected_metric_clarification": {
+        "capture_id": "koramco-pfv-projects",
+        "incoming_power_mw_as_reported": 40,
+        "it_capacity_mw_as_reported": 27,
+        "finding": "Current issuer portfolio explicitly distinguishes incoming power and IT capacity, resolving the conceptual 40/27 discrepancy in older coverage.",
+        "guardrail": "Undated current page is identity and research context only. No capacity row, operational load or metric observation is selected."
+      },
+      "successor_review": {
+        "through": "2026-08-20",
+        "source_ids": [
+          "koramco-news",
+          "koramco-news-page2",
+          "koramco-news-page3",
+          "koramco-pfv-projects"
+        ],
+        "source_scope": "Issuer listing pages1-3 span June9 through September3; post-cutoff listings are not selected. Page4 was only a pagination bracket to locate June9.",
+        "query": "(\"SEL02\" OR \"시화 AI 데이터센터\") (준공 OR 취소 OR completion OR cancelled) after:2026-05-22 before:2026-08-21",
+        "result": "No authoritative project completion or cancellation through August20 found. Older forecast of 2026 completion and newer forecast of 2028 operation are not successor observations.",
+        "limitation": "No admission until exact geometry and date/identity linkage receive independent review."
+      },
+      "next_required_evidence": "Georeferenced parcel712 geometry, then full geometry overlap and alias comparison against all188 selected sites. Independently review the issuer report-date versus actual ceremony-date semantics."
+    },
+    {
+      "id": "baoji-digital-building-mobile-dc",
+      "name": "Baoji Digital Building and China Mobile Data Center",
+      "country": "China",
+      "stable_key": "curated:baoji-digital-building-china-mobile-data-center",
+      "decision": "priority_hold_named_authoritative_site_plan_recovered_georeferencing_unresolved",
+      "physical_evidence": {
+        "capture_id": "baoji-status",
+        "source_url": "https://jt.baojidj.gov.cn/info/1125/14700.htm",
+        "authority": "Baoji Jintai District official party/government website",
+        "publication_date": "2026-07-15",
+        "physical_observation_date": "2026-07-15",
+        "observation_date_semantics": "Article-date contemporary site report; its introduction reviews the first half-year, while the named-project paragraph explicitly describes current work at the visited construction site.",
+        "evidence_role": "lifecycle",
+        "observation": "A named-site account describes welding activity and moving vehicles, and quotes the site manager saying main-structure construction is advancing.",
+        "supported_status": "under_construction",
+        "guardrail": "No physical percentage or particular data-hall trade is inferred; site-wide work is not allocated to a specific building. The CNY1.5billion investment is not the status basis."
+      },
+      "exact_plan": {
+        "capture_ids": [
+          "baoji-plan-page",
+          "baoji-plan"
+        ],
+        "authority": "Baoji Natural Resources and Planning Bureau",
+        "source_page_url": "https://www.baoji.gov.cn/bmpd/bjszrzyhghj/ztzl/zdlyxxgs/202507/t20250725_1172215.html",
+        "publication_date": "2025-07-25",
+        "notice_date": "2025-07-22",
+        "approved_plan_name": "宝鸡数字大厦暨宝鸡数据中心项目规划总平面图",
+        "owner_as_printed": "中国移动通信集团有限公司陕西分公司",
+        "named_bounds": "South of Xingzheng Avenue; north of Shilipu wastewater-treatment plant; west of Haitang Holiday Hotel; east of Baoji Art Museum.",
+        "page_binding": "The city notice links ./P020250725331157004280.pdf; the same PDF filename is published on the planning bureau's zrzy.baoji.gov.cn official subdomain.",
+        "pages_visually_reviewed": [
+          1
+        ],
+        "pdf_pages": 1,
+        "pdf_visual_review": "Full page rendered at180dpi, then coordinate region and notes inspected at360/480dpi. Plan depicts a single outlined development with a northern research/dispatch building and a southern four-storey data-center building labelled 数据中心.",
+        "source_raster_dimensions": [
+          1399,
+          1010
+        ],
+        "georeferencing_finding": "The plan contains small X/Y annotations and design notes in an embedded low-resolution raster. These are not a legible, complete coordinate/CRS specification that can be safely transcribed and transformed. The single-page text layer contains identity and surrounding-landmark information only.",
+        "selected_geometry": null,
+        "selected_crs": null,
+        "source_coordinate_precision": null,
+        "horizontal_uncertainty_metres": null,
+        "horizontal_uncertainty_unknown_reason": "No coordinate accuracy or usable georeferencing has been established from the plan. Larger renders do not create extra source precision.",
+        "rejected_shortcuts": [
+          "Baoji city center",
+          "art museum or hotel point",
+          "nearby wastewater-plant point",
+          "unverified local-XY to WGS84 conversion",
+          "treating a building layout as an already georeferenced polygon"
+        ],
+        "role_guardrail": "Plan is historical identity/layout evidence only, not a 2026 construction observation or proof every planned building is being constructed."
+      },
+      "successor_review": {
+        "through": "2026-08-20",
+        "query": "\"宝鸡数字大厦\" (竣工 OR 投运 OR 取消 OR 停工) after:2026-07-15 before:2026-08-21",
+        "supplementary_scope": "Government-domain searches and exact Chinese project-name searches for2026 completion, operation and cancellation.",
+        "result": "No authoritative completion, operation or cancellation successor through August20 found. Broad2026 annual-plan language and2025 investment summaries are not physical-status successors.",
+        "limitation": "Bounded public-source review; absence is not proof of continued work."
+      },
+      "next_required_evidence": "A higher-fidelity official plan with an explicit coordinate system/transform, or an independent source-specific project locator with explicit CRS; then full selected-geometry comparison. Do not independently geolocate from neighboring landmark centroids."
+    }
+  ],
+  "selected_cohort_screen": {
+    "path": "verified_construction_core/2026-08-20-v0.18-draft-thirty-third-reviewed/sites.geojson",
+    "bytes": 294561,
+    "sha256": "205ab2ed660aa9c7f5a3c4c8f151b82bc65a2cc32823470ad7f06390ae7c7e12",
+    "site_count": 188,
+    "geometry_types": {
+      "Point": 142,
+      "Polygon": 44,
+      "MultiPolygon": 2
+    },
+    "full_geometries_loaded": 188,
+    "coordinate_pairs_checked": 2920,
+    "properties_alias_matches": [],
+    "full_geometry_intersection_test_performed": false,
+    "full_geometry_intersection_test_blocker": "None of the three candidates has admissible georeferenced geometry. All188 complete selected geometries and2920 coordinate pairs were read, but testing a fabricated point would not establish distinctness.",
+    "alias_result": "No candidate-specific alias/property match found in the current188-site artifact.",
+    "distinctness_decision": "Not established. Zero selected aliases is not a geometric distinctness pass or permission to count a campus.",
+    "corpus_geometry_scope": "Point, Polygon and MultiPolygon inputs loaded without replacing polygons by representative points; no boundary distance or clearance claim made."
+  },
+  "capture_policy": {
+    "credential_free": true,
+    "retries_per_source": 0,
+    "public_source_only": true,
+    "login_or_browser_session_used": false,
+    "raw_capture_redistributed": false,
+    "capture_scope": "Content-decoded response-body bytes. Source responses kept only in local tmp; hashes and compact factual derivations retained in this packet.",
+    "reused_capture": "True IDC June19 official release reused from round37 and hash-checked; not requested again by this lane.",
+    "old_capture_note": "The original July Koramco curated file says its capture directory was moved to Trash. No surviving matching Koramco or Baoji raw bodies were located in the bounded filename check, so each live source/pagination body was captured once.",
+    "search_result_guardrail": "Web-search excerpts and third-party pages are discovery/successor-screen context only, not byte-hashed selected evidence. Primary captured sources support the stated candidate facts."
+  },
+  "raw_captures": [
+    {
+      "id": "baoji-plan-page",
+      "url": "https://www.baoji.gov.cn/bmpd/bjszrzyhghj/ztzl/zdlyxxgs/202507/t20250725_1172215.html",
+      "effective_url": "https://www.baoji.gov.cn/bmpd/bjszrzyhghj/ztzl/zdlyxxgs/202507/t20250725_1172215.html",
+      "http_status": 200,
+      "content_type": "text/html",
+      "started_at": "2026-09-10T18:53:18.561Z",
+      "captured_at": "2026-09-10T18:53:20.100Z",
+      "bytes": 59277,
+      "sha256": "46fba7767acd8d37190db3b7466c796e5822842f31b6c8213c474966c09d57d9",
+      "raw_path": "/Users/kian/Developer/datacenter_atlas/tmp/research-round38-asia/baoji-plan-page.html",
+      "request_credentials_supplied": false,
+      "capture_method": "credential-free Node fetch; single request; no retry; content-decoded response bytes",
+      "metadata_path": "tmp/research-round38-asia/baoji-plan-page.html.metadata.json",
+      "hash_verification": "Recomputed exact local raw-byte SHA-256 and byte count on 2026-09-10; matched metadata.",
+      "raw_capture_redistributed": false
+    },
+    {
+      "id": "baoji-plan",
+      "url": "https://zrzy.baoji.gov.cn/col12463/col12500/col14472/202507/P020250725331157004280.pdf",
+      "effective_url": "https://zrzy.baoji.gov.cn/col12463/col12500/col14472/202507/P020250725331157004280.pdf",
+      "http_status": 200,
+      "content_type": "application/pdf",
+      "started_at": "2026-09-10T18:53:19.767Z",
+      "captured_at": "2026-09-10T18:53:22.307Z",
+      "bytes": 499150,
+      "sha256": "092652093cd5021de4f7366f4734888ed808f9cf17b3c2c1ad4e1854acd778a5",
+      "raw_path": "/Users/kian/Developer/datacenter_atlas/tmp/research-round38-asia/baoji-plan.pdf",
+      "request_credentials_supplied": false,
+      "capture_method": "credential-free Node fetch; single request; no retry; content-decoded response bytes",
+      "metadata_path": "tmp/research-round38-asia/baoji-plan.pdf.metadata.json",
+      "hash_verification": "Recomputed exact local raw-byte SHA-256 and byte count on 2026-09-10; matched metadata.",
+      "raw_capture_redistributed": false
+    },
+    {
+      "id": "baoji-status",
+      "url": "https://jt.baojidj.gov.cn/info/1125/14700.htm",
+      "effective_url": "https://jt.baojidj.gov.cn/info/1125/14700.htm",
+      "http_status": 200,
+      "content_type": "text/html",
+      "started_at": "2026-09-10T18:52:52.194Z",
+      "captured_at": "2026-09-10T18:52:53.259Z",
+      "bytes": 40263,
+      "sha256": "c07bc3365efe237b2f9f3706ca2f658ff6839fe99a9a7ee887e9a6e6ca153411",
+      "raw_path": "/Users/kian/Developer/datacenter_atlas/tmp/research-round38-asia/baoji-status.html",
+      "request_credentials_supplied": false,
+      "capture_method": "credential-free Node fetch; single request; no retry; content-decoded response bytes",
+      "metadata_path": "tmp/research-round38-asia/baoji-status.html.metadata.json",
+      "hash_verification": "Recomputed exact local raw-byte SHA-256 and byte count on 2026-09-10; matched metadata.",
+      "raw_capture_redistributed": false
+    },
+    {
+      "id": "koramco-news-page2",
+      "url": "https://www.koramco.com/ko/menewsList?page=2",
+      "effective_url": "https://www.koramco.com/ko/menewsList?page=2",
+      "http_status": 200,
+      "content_type": "text/html;charset=UTF-8",
+      "started_at": "2026-09-10T18:54:39.440Z",
+      "captured_at": "2026-09-10T18:54:40.130Z",
+      "bytes": 22417,
+      "sha256": "b7add1de81cd13bfd61f14935095dd74ceab306f9580a882c6c11068d8509363",
+      "raw_path": "/Users/kian/Developer/datacenter_atlas/tmp/research-round38-asia/koramco-news-page2.html",
+      "request_credentials_supplied": false,
+      "capture_method": "credential-free Node fetch; single request; no retry; content-decoded response bytes",
+      "metadata_path": "tmp/research-round38-asia/koramco-news-page2.html.metadata.json",
+      "hash_verification": "Recomputed exact local raw-byte SHA-256 and byte count on 2026-09-10; matched metadata.",
+      "raw_capture_redistributed": false
+    },
+    {
+      "id": "koramco-news-page3",
+      "url": "https://www.koramco.com/ko/menewsList?page=3",
+      "effective_url": "https://www.koramco.com/ko/menewsList?page=3",
+      "http_status": 200,
+      "content_type": "text/html;charset=UTF-8",
+      "started_at": "2026-09-10T18:54:17.725Z",
+      "captured_at": "2026-09-10T18:54:18.510Z",
+      "bytes": 22044,
+      "sha256": "31955cb9e75494f48c9804a3606004facebe8c5b59a5c2664dadeaab726b6c68",
+      "raw_path": "/Users/kian/Developer/datacenter_atlas/tmp/research-round38-asia/koramco-news-page3.html",
+      "request_credentials_supplied": false,
+      "capture_method": "credential-free Node fetch; single request; no retry; content-decoded response bytes",
+      "metadata_path": "tmp/research-round38-asia/koramco-news-page3.html.metadata.json",
+      "hash_verification": "Recomputed exact local raw-byte SHA-256 and byte count on 2026-09-10; matched metadata.",
+      "raw_capture_redistributed": false
+    },
+    {
+      "id": "koramco-news-page4",
+      "url": "https://www.koramco.com/ko/menewsList?page=4",
+      "effective_url": "https://www.koramco.com/ko/menewsList?page=4",
+      "http_status": 200,
+      "content_type": "text/html;charset=UTF-8",
+      "started_at": "2026-09-10T18:53:50.613Z",
+      "captured_at": "2026-09-10T18:53:51.356Z",
+      "bytes": 21637,
+      "sha256": "fb41dcc0b91ccff5335472a305e8db59ad3096dff864f4ed84eea264d8c55517",
+      "raw_path": "/Users/kian/Developer/datacenter_atlas/tmp/research-round38-asia/koramco-news-page4.html",
+      "request_credentials_supplied": false,
+      "capture_method": "credential-free Node fetch; single request; no retry; content-decoded response bytes",
+      "metadata_path": "tmp/research-round38-asia/koramco-news-page4.html.metadata.json",
+      "hash_verification": "Recomputed exact local raw-byte SHA-256 and byte count on 2026-09-10; matched metadata.",
+      "raw_capture_redistributed": false
+    },
+    {
+      "id": "koramco-news",
+      "url": "https://www.koramco.com/ko/menewsList",
+      "effective_url": "https://www.koramco.com/ko/menewsList",
+      "http_status": 200,
+      "content_type": "text/html;charset=UTF-8",
+      "started_at": "2026-09-10T18:52:51.242Z",
+      "captured_at": "2026-09-10T18:52:52.108Z",
+      "bytes": 21547,
+      "sha256": "895320eb0051a2837f35fa495764b5c9504849c21e62009abc836d0a6db819c7",
+      "raw_path": "/Users/kian/Developer/datacenter_atlas/tmp/research-round38-asia/koramco-news.html",
+      "request_credentials_supplied": false,
+      "capture_method": "credential-free Node fetch; single request; no retry; content-decoded response bytes",
+      "metadata_path": "tmp/research-round38-asia/koramco-news.html.metadata.json",
+      "hash_verification": "Recomputed exact local raw-byte SHA-256 and byte count on 2026-09-10; matched metadata.",
+      "raw_capture_redistributed": false
+    },
+    {
+      "id": "trueidc-east-certification",
+      "url": "https://www.trueidc.com/en/news-detail/226/TrueIDC-AI-Hyperscale-Data-Center-Achieves-Global-Uptime-Facility-Tier-III-Certification",
+      "effective_url": "https://www.trueidc.com/en/news-detail/226/TrueIDC-AI-Hyperscale-Data-Center-Achieves-Global-Uptime-Facility-Tier-III-Certification",
+      "http_status": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "started_at": "2026-09-10T18:53:39.603Z",
+      "captured_at": "2026-09-10T18:53:40.241Z",
+      "bytes": 52065,
+      "sha256": "74fa97d1b9fccb5c4013b947c22b4d0342d0691b77c8902c045cd66fac46554b",
+      "raw_path": "/Users/kian/Developer/datacenter_atlas/tmp/research-round38-asia/trueidc-east-certification.html",
+      "request_credentials_supplied": false,
+      "capture_method": "credential-free Node fetch; single request; no retry; content-decoded response bytes",
+      "metadata_path": "tmp/research-round38-asia/trueidc-east-certification.html.metadata.json",
+      "hash_verification": "Recomputed exact local raw-byte SHA-256 and byte count on 2026-09-10; matched metadata.",
+      "raw_capture_redistributed": false
+    },
+    {
+      "id": "trueidc-locations",
+      "url": "https://www.trueidc.com/en/service/1/Data-Center-Colocation-and-Network-service",
+      "effective_url": "https://www.trueidc.com/en/service/1/Data-Center-Colocation-and-Network-service",
+      "http_status": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "started_at": "2026-09-10T18:52:13.467Z",
+      "captured_at": "2026-09-10T18:52:13.945Z",
+      "bytes": 69806,
+      "sha256": "03ce44ec162eb6e0fe8db26b78ad187e3aa2fdafe750b44542d702240379b597",
+      "raw_path": "/Users/kian/Developer/datacenter_atlas/tmp/research-round38-asia/trueidc-locations.html",
+      "request_credentials_supplied": false,
+      "capture_method": "credential-free Node fetch; single request; no retry; content-decoded response bytes",
+      "metadata_path": "tmp/research-round38-asia/trueidc-locations.html.metadata.json",
+      "hash_verification": "Recomputed exact local raw-byte SHA-256 and byte count on 2026-09-10; matched metadata.",
+      "raw_capture_redistributed": false
+    },
+    {
+      "id": "trueidc-news",
+      "url": "https://www.trueidc.com/en/news",
+      "effective_url": "https://www.trueidc.com/en/news",
+      "http_status": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "started_at": "2026-09-10T18:52:12.265Z",
+      "captured_at": "2026-09-10T18:52:13.525Z",
+      "bytes": 219705,
+      "sha256": "5b953153d7268d641d3a7cacf19478a73e683360ccfa860d01ddc65b28e8ba1c",
+      "raw_path": "/Users/kian/Developer/datacenter_atlas/tmp/research-round38-asia/trueidc-news.html",
+      "request_credentials_supplied": false,
+      "capture_method": "credential-free Node fetch; single request; no retry; content-decoded response bytes",
+      "metadata_path": "tmp/research-round38-asia/trueidc-news.html.metadata.json",
+      "hash_verification": "Recomputed exact local raw-byte SHA-256 and byte count on 2026-09-10; matched metadata.",
+      "raw_capture_redistributed": false
+    },
+    {
+      "id": "r37-edge2-next-lead-trueidc",
+      "url": "https://www.trueidc.com/en/news-detail/238/trueidc-7th-Data-Center-Ground-breaking",
+      "effective_url": "https://www.trueidc.com/en/news-detail/238/trueidc-7th-Data-Center-Ground-breaking",
+      "http_status": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "started_at": "2026-09-10T18:20:50.202Z",
+      "captured_at": "2026-09-10T18:20:51.177Z",
+      "bytes": 56054,
+      "sha256": "894eeb74fdc3c1da4dbbb8b3db1909b4d94d1434150dc3d7c51c1d2fa532fb49",
+      "raw_path": "/Users/kian/Developer/datacenter_atlas/tmp/research-round33-europe-africa/r37-edge2-next-lead-trueidc.html",
+      "request_credentials_supplied": false,
+      "capture_method": "credential-free Node fetch; no retry; content-decoded response bytes",
+      "metadata_path": "tmp/research-round33-europe-africa/r37-edge2-next-lead-trueidc.html.metadata.json",
+      "hash_verification": "Recomputed exact local raw-byte SHA-256 and byte count on 2026-09-10; matched metadata.",
+      "raw_capture_redistributed": false
+    },
+    {
+      "id": "koramco-pfv-projects",
+      "url": "https://www.koramcofund.co.kr/ko/pfv_01",
+      "effective_url": "https://www.koramcofund.co.kr/ko/pfv_01",
+      "http_status": 200,
+      "content_type": "text/html;charset=UTF-8",
+      "started_at": "2026-09-10T18:56:32.106Z",
+      "captured_at": "2026-09-10T18:56:33.324Z",
+      "bytes": 22431,
+      "sha256": "fb6b441cc7b1328a4df4240096db167919566e18c8fb23f91b7d85e89789d3c3",
+      "raw_path": "/Users/kian/Developer/datacenter_atlas/tmp/research-round38-asia/koramco-pfv-projects.html",
+      "request_credentials_supplied": false,
+      "capture_method": "credential-free Node fetch; single request; no retry; content-decoded response bytes",
+      "metadata_path": "tmp/research-round38-asia/koramco-pfv-projects.html.metadata.json",
+      "hash_verification": "Recomputed exact local raw-byte SHA-256 and byte count on 2026-09-10; matched metadata.",
+      "raw_capture_redistributed": false
+    },
+    {
+      "id": "ansan-government-712",
+      "url": "https://www.gg.go.kr/bbs/boardView.do?bIdx=78844424&bcIdx=&bsIdx=598&menuId=2828&page=1",
+      "effective_url": "https://www.gg.go.kr/bbs/boardView.do?bIdx=78844424&bcIdx=&bsIdx=598&menuId=2828&page=1",
+      "http_status": 200,
+      "content_type": "text/html;charset=utf-8",
+      "started_at": "2026-09-10T18:56:33.298Z",
+      "captured_at": "2026-09-10T18:56:36.031Z",
+      "bytes": 555989,
+      "sha256": "3bd3cfbef957dc60f617726105eff2ad5e8f37499acb750c96ae49cdb58e1c41",
+      "raw_path": "/Users/kian/Developer/datacenter_atlas/tmp/research-round38-asia/ansan-government-712.html",
+      "request_credentials_supplied": false,
+      "capture_method": "credential-free Node fetch; single request; no retry; content-decoded response bytes",
+      "metadata_path": "tmp/research-round38-asia/ansan-government-712.html.metadata.json",
+      "hash_verification": "Recomputed exact local raw-byte SHA-256 and byte count on 2026-09-10; matched metadata.",
+      "raw_capture_redistributed": false
+    }
+  ],
+  "rights_and_attribution": [
+    {
+      "publisher": "True IDC",
+      "rights_link": "https://www.trueidc.com/en/news",
+      "privacy_link": "https://www.trueidc.com/en/privacy-policy",
+      "scope": "No open licence established. Compact factual restatements only; no source photographs or body redistributed."
+    },
+    {
+      "publisher": "Koramco Asset Management",
+      "rights_link": "https://www.koramcofund.co.kr/ko/terms_02",
+      "scope": "Portfolio footer states all rights reserved. Compact project facts only; no raw HTML or linked third-party article bodies redistributed."
+    },
+    {
+      "publisher": "Gyeonggi Province",
+      "rights_link": "https://www.gg.go.kr/contents/contents.do?ciIdx=1066&menuId=2772",
+      "record_license": "KOGL Type3: attribution plus no changes, as displayed on the record",
+      "scope": "Only isolated factual parcel/company identity retained with attribution. No altered source document, screenshot or raw record redistributed."
+    },
+    {
+      "publisher": "Baoji Jintai District; Baoji Natural Resources and Planning Bureau",
+      "rights_link": "https://www.baoji.gov.cn/bmpd/bjszrzyhghj/ztzl/zdlyxxgs/202507/t20250725_1172215.html",
+      "scope": "No open licence established. Source plan states planning-management use. Compact factual identity/layout findings only; no publisher plan, media, raster or derivative trace redistributed."
+    }
+  ],
+  "verification": {
+    "json_parse": "Passed after authoring.",
+    "raw_hash_and_byte_counts": "All13 capture bodies independently recomputed and matched capture metadata.",
+    "release_files_changed": false,
+    "admission_contract_changed": false,
+    "source_modules_changed": false,
+    "pdf_skill_used": "Read the complete /Users/kian/.codex/plugins/cache/openai-primary-runtime/pdf/26.905.11957/skills/pdf/SKILL.md before PDF actions; read-only rendering and visual inspection only."
+  },
+  "handoff": "No additions. Best follow-up is SEL02 parcel712 because two primary sources now establish exact parcel/company identity. Baoji has an authoritative exact-site plan but an unresolved coordinate frame. True IDC needs an exact identity/address bridge before any geometry work."
+}

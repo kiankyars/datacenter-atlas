@@ -1837,3 +1837,60 @@ flags remain false. Reproduce or validate:
 .venv/bin/python scripts/build_expansion_200_draft.py --batch thirty-third-reviewed --output-dir /absolute/new/draft-directory
 .venv/bin/python scripts/build_expansion_200_draft.py --batch thirty-third-reviewed --validate-only
 ```
+
+## 2026-09-10: thirty-fourth reviewed checkpoint, 189 sites
+
+The [thirty-fourth reviewed draft](../verified_construction_core/2026-08-20-v0.18-draft-thirty-fourth-reviewed/README.md)
+adds STACK's Bossier Highway 3 Technology Park campus in Louisiana. It contains 189 physical
+sites, 192 projects, 44 countries, 125 non-US sites and 860 evidence rows: 89 of the requested
+100 additions, with 11 remaining. Every preceding row, feature and source binding is preserved.
+
+STACK's June 10 release explicitly says construction is underway at both its Caddo and Bossier
+campuses. Only the independently identified Bossier member is selected. The publication date
+normalizes its contemporary broad construction statement; it is not an independently dated
+inspection or start day. The parish's March 18 proceedings, published April 15, and March 20
+official report bind STACK and Amazon to Highway 3 Technology Park. The six-building development
+on lots 3 and 4 with supporting infrastructure is one campus, not six sites. Amazon's explicitly
+August 18-updated disclosure is successor context only. Bounded original-source checks found
+no actual Bossier completion or cancellation through August 20, not exhaustive proof of absence.
+Caddo and the third planned Shreveport campus are not merged or counted here.
+
+The locator comes from the smaller black dashed Project Site vector in the applicant's map
+published with Corps notice MVK-2025-00855. It is not the larger red landholding's centroid or
+the separate narrative point with unstated datum. The exact embedded WKT matches NAD83(2011)
+/ Louisiana North in US survey feet. Adobe's original ExtensionLevel 3 specification explicitly
+places the geographic registration controls in the datum underlying that WKT. Four five-decimal
+controls map the 335-point PDF vector into source projected coordinates by disclosed bilinear
+interpolation; they are not silently assumed to be WGS84.
+
+Independent reproduction yields the interior point `[-93.73567, 32.75561]` in longitude/latitude.
+The source's tiny self-touch is explicitly normalized with `make_valid`; the original points,
+one tiny resulting hole and unchanged representative point are recorded. The datum operation's
+two-metre accuracy is not positional accuracy of the drawing. Source positional accuracy remains
+unknown. The Corps says applicant information was not otherwise verified for regulatory
+compliance; this is a government-published proponent locator, not an official campus boundary,
+survey, building footprint or observed work extent. The conflicting Section 2/32 northern map
+label and differing mapped/plat/lease areas remain disclosed rather than fitted or corrected.
+The larger full landholding and all 188 preceding geometries and aliases were screened with no
+intersection or match.
+
+The [root evidence audit](../sources/research-expansion-200-americas-round38-stack-bossier-root-review-2026-09-10.json)
+records the independent derivation, exact source hashes, complete relevant PDF-page review and
+rejected Adobe redirect/wrong-version capture. Six selected source bodies and the parish terms
+were rehashed. Only compact attributed facts and numerical derivation inputs are distributed;
+raw documents, maps, HTML, media and personal details stay ignored. Parish website rights are
+not extended to the newspaper, proponent map or Adobe specification. No new roles, capacity,
+workload, operating model or imagery observation is selected.
+
+The [round38 Asia research packet](../sources/research-expansion-200-asia-round38-2026-09-10.json)
+adds no admissions: SEL02's exact Ansan parcel is identified but lacks georeferenced geometry;
+Baoji's approved plan has an unresolved coordinate frame; True IDC's seventh Northern Bangkok
+facility must not be conflated with East Bangna phases. The inherited CGK host-estate locator
+still requires a versioned correction before a verified 200-site completion claim. Imagery is
+still 10/192, and the fixed 20-row blind review requiring 19 agreements remains unfinished.
+Expansion-complete and final-publication flags remain false. Reproduce or validate:
+
+```sh
+.venv/bin/python scripts/build_expansion_200_draft.py --batch thirty-fourth-reviewed --output-dir /absolute/new/draft-directory
+.venv/bin/python scripts/build_expansion_200_draft.py --batch thirty-fourth-reviewed --validate-only
+```
