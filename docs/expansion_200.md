@@ -1647,3 +1647,44 @@ and final-publication flags are both false. Reproduce or validate with:
 .venv/bin/python scripts/build_expansion_200_draft.py --batch twenty-ninth-reviewed --output-dir /absolute/new/draft-directory
 .venv/bin/python scripts/build_expansion_200_draft.py --batch twenty-ninth-reviewed --validate-only
 ```
+
+## 2026-09-10: thirtieth reviewed checkpoint, 185 sites
+
+The [thirtieth reviewed draft](../verified_construction_core/2026-08-20-v0.18-draft-thirtieth-reviewed/README.md)
+adds Google / Beale's Tulsa County Project Clydesdale campus. It contains 185 physical sites,
+188 projects, 43 countries, 122 non-US sites and 829 evidence rows: 85 of the requested
+100 additions, with 15 remaining. All preceding records and snapshots remain unchanged.
+
+The selected August 19 joint developer announcement explicitly describes ongoing construction
+at this named campus. Older groundbreaking, draft planning material and a forecast Q3 2027
+completion do not refresh that observation. The existing Clydesdale campus key is preserved;
+the selected project covers current campus construction without assuming a specific active
+hall. Five planned lots, later phases and other Google campuses in Oklahoma are not extra sites.
+
+A source-specific locator was derived from the public February 12 draft survey, using all
+18 metes-and-bounds courses and the printed NAD83(2011) Oklahoma North section corners.
+The traverse closes within 0.012 feet. Independent visual transcription and reconstruction
+from the opposite corner reproduces the locator within 2.7 millimetres. These are numerical
+consistency checks, not claims of positional accuracy. The point is inside the named draft
+tract; it is not an approved plat, registered boundary, surveyed building or work footprint.
+The survey's grid-to-ground factor is documented but not applied a second time to grid data.
+
+The planning report's conflicting hearing year remains explicit. The official March 4, 2026
+agenda establishes the meeting context, and draft minutes record withdrawal of the accelerated
+permit request, not cancellation of the campus or approval of its plat. The independent
+August 19 construction statement is later. All 184 preceding full geometries and campus
+aliases were reviewed; neither the full reconstructed tract nor its point overlaps a selected site.
+
+Six raw captures were rehashed independently, with the status anchor verified in the article
+body rather than duplicate page metadata. Only attributed restated facts, derivation metadata
+and one locator are distributed. Raw plans, complete course lists, reconstructed polygons,
+publisher prose and imagery remain local research material; no open reuse licence is asserted.
+
+No new metrics, roles, workloads or imagery outcomes are selected. Imagery remains 10/188;
+the fixed 20-row blind-review requirement is unresolved. Both completion and final-publication
+flags remain false. Reproduce or validate with:
+
+```sh
+.venv/bin/python scripts/build_expansion_200_draft.py --batch thirtieth-reviewed --output-dir /absolute/new/draft-directory
+.venv/bin/python scripts/build_expansion_200_draft.py --batch thirtieth-reviewed --validate-only
+```

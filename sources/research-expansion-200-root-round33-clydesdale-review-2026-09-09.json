@@ -1,0 +1,196 @@
+{
+  "schema_version": "expansion-200-round33-root-review-1",
+  "reviewed_at": "2026-09-10",
+  "baseline": {
+    "commit": "10c3172b1d86d29ecd20cc3a78ab83922dbddf7b",
+    "path": "verified_construction_core/2026-08-20-v0.18-draft-twenty-ninth-reviewed/sites.geojson",
+    "bytes": 289534,
+    "sha256": "035e8e4859d8474375537d47633953847a45d2ddad1880d753ed15b0b59a2782",
+    "sites": 184,
+    "geometry_types": {
+      "Point": 140,
+      "Polygon": 42,
+      "MultiPolygon": 2
+    }
+  },
+  "survey_derivation": {
+    "source_pages": [
+      2,
+      3,
+      4
+    ],
+    "draft_prepared_date": "2026-02-12",
+    "source_crs": "EPSG:6553",
+    "source_crs_name": "NAD83(2011) / Oklahoma North (ftUS)",
+    "source_units": "US survey foot",
+    "north_east_section_corner_xy": [
+      2586861.08,
+      472097.21
+    ],
+    "south_east_section_corner_xy": [
+      2586974.73,
+      466816.88
+    ],
+    "north_and_south_half_section_distance_feet": 2640.78,
+    "east_quarter_corner_derived_from_ne_xy": [
+      2586917.907520818,
+      469457.04151271033
+    ],
+    "independent_se_anchor_discrepancy_feet": 0.008605977655382431,
+    "course_format": [
+      "north_south",
+      "degrees",
+      "minutes",
+      "seconds",
+      "east_west",
+      "distance_feet"
+    ],
+    "traverse_closure_error_feet": 0.011847797999753691,
+    "closure_method": "Retain18 transcribed boundary vertices and close the sub-0.05-foot last-course residual directly to the first vertex; no adjustment of bearings or scaling.",
+    "native_polygon_area_square_feet": 22007079.86266026,
+    "source_printed_area_square_feet": 22007093,
+    "printed_combined_scale_factor": 1.00008290627861,
+    "scale_factor_handling": "No second scale factor applied: sheet1 says bearings and distances are based on Oklahoma North NAD83 grid, and coordinates are grid. Independently printed NE and SE grid coordinates agree with the summed two2640.78-foot section lengths without rescaling. The supplied grid-to-ground factor is recorded, not used to transform grid coordinates twice.",
+    "native_ring_positions": 19,
+    "native_ring_canonical_sha256": "87b5bee391fa7af2d9bea7a20651041d55052b8c10e4e36d9c2954ef52611fe3",
+    "native_polygon_valid": true,
+    "metes_bounds_course_count": 18,
+    "metes_bounds_courses_canonical_sha256": "8286df431d116bcee12b15fed379c9d104e609330be3075e21f86adf46e36ac4",
+    "metes_bounds_transcription_temp_path": "/Users/kian/Developer/datacenter_atlas/tmp/research-round33-americas/derivation-audit.json",
+    "full_course_list_redistributed": false,
+    "north_half_distance_derivation": "Sheet1 north650.01-foot segment plus1990.77-foot segment =2640.78 feet; this sum is not labelled as a single printed dimension.",
+    "south_half_distance_derivation": "Sheet2/3 legal course2290.78 feet plus300 feet and the50-foot road strip =2640.78 feet; independently derived, not an assumption of equal quarters."
+  },
+  "transformation": {
+    "source_crs": "EPSG:6553",
+    "output_crs": "EPSG:4326",
+    "pyproj_version": "3.8.0",
+    "proj_version": "9.8.1",
+    "shapely_version": "2.1.2",
+    "operation": "Inverse of SPCS83 Oklahoma North zone (US survey foot) + NAD83(2011) to WGS 84 (1) (with axis order normalized for visualization)",
+    "pipeline": "proj=pipeline step proj=unitconvert xy_in=us-ft xy_out=m step inv proj=lcc lat_0=35 lon_0=-98 lat_1=36.7666666666667 lat_2=35.5666666666667 x_0=600000 y_0=0 ellps=GRS80 step proj=unitconvert xy_in=rad xy_out=deg",
+    "reported_operation_accuracy_metres": 2.0,
+    "ballpark_transformation": false,
+    "output_coordinates_xy": [
+      -95.91092189697753,
+      36.26982717564227
+    ],
+    "method": "Transform reconstructed draft-survey ring fromEPSG6553 toWGS84 with always_xy and allow_ballpark=False; Shapely representative_point of transformed ring.",
+    "point_inside_reconstructed_draft_plat": true,
+    "transformed_polygon_valid": true,
+    "accuracy_caveat": "Datum-operation accuracy and printed coordinate decimals are not a claim of campus locator positional accuracy. This is a derived interior locator from a draft plat, not a registered boundary or building position."
+  },
+  "dedup": {
+    "full_geometries_compared": 184,
+    "full_plat_intersections": [],
+    "point_intersections": [],
+    "nearest": [
+      {
+        "key": "curated:ntt-dallas-data-center-campus",
+        "approximate_plat_distance_metres": 370299
+      },
+      {
+        "key": "curated:databank-red-oak-campus",
+        "approximate_plat_distance_metres": 420126
+      },
+      {
+        "key": "curated:galaxy-helios-data-center-campus",
+        "approximate_plat_distance_metres": 529046
+      },
+      {
+        "key": "curated:lancium-clean-campus-abilene-ai-data-center",
+        "approximate_plat_distance_metres": 547101
+      },
+      {
+        "key": "curated:edged-council-bluffs-data-center-campus",
+        "approximate_plat_distance_metres": 554767
+      }
+    ],
+    "distance_scope": "Approximate local azimuthal-equidistant separation for duplicate triage, not source positional accuracy."
+  },
+  "candidate": {
+    "campus_stable_key": "curated:beale-tulsa-county-project-clydesdale-campus",
+    "project_stable_key": "curated:beale-tulsa-county-project-clydesdale-campus:current-campus-build",
+    "decision": "passes_review_for_one_physical_site",
+    "selected_status_date": "2026-08-19",
+    "geometry_scope": "One derived point inside the named Project Clydesdale draft survey tract. Official-source classification refers to public planning custody, not survey approval. No registered boundary, individual hall, construction footprint, road junction, offsite benchmark or mailing address is selected."
+  },
+  "source_review": {
+    "raw_hashes_and_bytes_verified": 6,
+    "raw_captures": [
+      {
+        "source_id": "root33-clydesdale-aug19-current-build",
+        "sha256": "745b13a8a1e059fbc83dfe19e5daca6dc7cd88b6a88b8354363b81c4bd2b9467",
+        "bytes": 67719,
+        "path": "/Users/kian/Developer/datacenter_atlas/tmp/research-round33-americas/clydesdale-aug19.html"
+      },
+      {
+        "source_id": "root33-clydesdale-operator-identity",
+        "sha256": "c452104a712f53bde8f2630b98965cb6f222e77e2c5645e598ba48e36b767174",
+        "bytes": 92318,
+        "path": "/Users/kian/Developer/datacenter_atlas/tmp/research-round33-americas/clydesdale-location.html"
+      },
+      {
+        "source_id": "root33-clydesdale-draft-survey",
+        "sha256": "ccf4aa1959e7e00bf4c645e3e5657ba76b4b853359e9d7cff03118be0e94eb44",
+        "bytes": 6278365,
+        "path": "/Users/kian/Developer/datacenter_atlas/tmp/research-round33-americas/clydesdale-planning.pdf"
+      },
+      {
+        "source_id": "root33-clydesdale-march4-agenda",
+        "sha256": "bb3dac70c8e56f0ccd0573151f5813b7f896ddf7bf890e7d26fae143a6feafc1",
+        "bytes": 178066,
+        "path": "/Users/kian/Developer/datacenter_atlas/tmp/research-round33-americas/clydesdale-agenda.html"
+      },
+      {
+        "source_id": "root33-clydesdale-march4-draft-minutes",
+        "sha256": "e6316cd77b3189b150b7fabf24d678bbca3c4217330a8f9ffddd7b5af5d88c0b",
+        "bytes": 601670,
+        "path": "/Users/kian/Developer/datacenter_atlas/tmp/research-round33-americas/clydesdale-minutes.pdf"
+      },
+      {
+        "source_id": "root33-beale-source-rights",
+        "sha256": "e1d2fde1d407ee62aa5d1de4f7470981f887753f914c38dc32040725931fbd81",
+        "bytes": 65775,
+        "path": "/Users/kian/Developer/datacenter_atlas/tmp/research-round33-americas/beale-terms.html"
+      }
+    ],
+    "pdf_review": "Complete pages1-6 of planning packet and page37 of draft minutes visually inspected. Numeric survey annotations independently enlarged and transcribed; outlined text is not claimed to be machine-extracted.",
+    "successor_review": "Bounded September10 searches of Beale and Tulsa Planning found no project-specific completion or cancellation superseding August19. The undated developer page forecasts Phase1 completion inQ3 2027. March4 draft minutes record withdrawal of the accelerated permit request, not campus cancellation, and predate the selected August19 disclosure. No exhaustive absence claim.",
+    "access_limits": "County assessor returned403 and cityGIS nonretryable safe-open error in research. Neither route was retried or bypassed; the already public project-specific survey is an independent source, not a mirror of denied data."
+  },
+  "completion": {
+    "physical_sites_after_proposed_admission": 185,
+    "remaining_to_200": 15,
+    "objective_complete": false,
+    "publishable_as_final": false,
+    "imagery_and_blind_review_gaps_unchanged": true
+  },
+  "independent_review": {
+    "decision": "pass_with_explicit_draft_locator_and_factual_reuse_scope",
+    "blocking_findings": [],
+    "reviewed_at": "2026-09-10",
+    "method": "Visual re-transcription of all18 courses from legal description page4, independent complex-vector azimuth arithmetic anchored from SE corner rather than root NE corner; no importing or executing root derivation script.",
+    "course_transcription_matches": true,
+    "independent_anchor": "Southeast section corner; root anchored from Northeast",
+    "point_difference_metres": 0.002623246129315118,
+    "root_point_inside_independent_tract": true,
+    "all_full_geometries_compared": 184,
+    "full_tract_intersections": [],
+    "point_intersections": [],
+    "alias_matches": [],
+    "raw_captures_rehashed": 6,
+    "raw_review_temp_path": "/Users/kian/Developer/datacenter_atlas/tmp/research-round33-americas/independent-review.json",
+    "raw_review_sha256": "392ace30adbfc1e860c6434c69a00824b9a07675ff67e5742e17f7f78cb1688b",
+    "body_anchor_correction": "Independent review located the same physical-status sentence in the article body at bytes40836 through40939, end-exclusive. The selected source anchor was corrected from duplicate metadata to body bytes before acceptance.",
+    "scope_caveats": [
+      "Planning PDF contains an erroneous cover hearing year2025; March4 2026 official agenda links the exact same PDF as item14 and supports meeting-date correction as contextual metadata, not a fresh construction observation.",
+      "The plat is explicitly draft final, with blank approval/recording/signature fields. Locator must be labelled derived interior point of the named draft-survey tract, not official registered parcel, approved plat, precise building position or verified construction extent.",
+      "Draft minutes page37 places the withdrawn sentence immediately before item14, while page36 explicitly continues the prior item13. Combined with agenda item14 accelerated permit scope, this supports withdrawn permit-release request, not campus cancellation; it must not be described as final plat approval.",
+      "August19 direct joint release is the sole selected fresh lifecycle evidence. Whole-campus multi-phase future claims and forecast2027 completion are context only.",
+      "Beale terms expressly restrict redistribution of publisher content. Use independently restated minimal facts and source hashes/pointers, not HTML, full prose, rendering, logo or media. No open license inferred.",
+      "Government-hosted private survey drawing does not become public domain or registered legal geometry. Keep full metes reconstruction and raw drawing ignored; distribute only justified minimal derived locator factual projection with scope and attribution.",
+      "Independent exact geometry and alias comparisons found no existing selected campus, including opaque-key labels. Google regional references and Meta Project Anthem must remain separate."
+    ]
+  }
+}
