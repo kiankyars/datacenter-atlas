@@ -1894,3 +1894,31 @@ Expansion-complete and final-publication flags remain false. Reproduce or valida
 .venv/bin/python scripts/build_expansion_200_draft.py --batch thirty-fourth-reviewed --output-dir /absolute/new/draft-directory
 .venv/bin/python scripts/build_expansion_200_draft.py --batch thirty-fourth-reviewed --validate-only
 ```
+
+## 2026-09-10: round39 locator and successor review
+
+The selected checkpoint remains 189 sites and 192 projects. These research findings add no
+campuses and do not change any frozen input, admission contract or release artifact.
+
+- [Caddo State Line](../sources/research-expansion-200-americas-round39-caddo-2026-09-10.json):
+  STACK's June 10 physical-status statement qualifies, but the public Blanchard water authorization
+  does not name its customer or include a site exhibit. Caddo's August 17 minutes remand the two
+  resolutions to committee, rather than enact a moratorium. The exact applicant-to-parcel bridge
+  and source-CRS locator remain missing. Bossier and the third Shreveport proposal stay separate.
+- [DCI/Koramco SEL02](../sources/research-expansion-200-asia-round39-sel02-2026-09-10.json):
+  an additional official plan table corroborates Seonggok-dong parcel 712, but supplies no map.
+  Two directory pins disagree by about 3.15 km and neither is parcel-bound; neither is selected.
+  The issuer's June 9 media-listing date is not the ceremony date. Conflicting third-party
+  ceremony dates are retained separately, and no exact primary event day is invented.
+- [CGK correction](../sources/research-expansion-200-cgk-locator-round39-2026-09-10.json):
+  a public landowner financial filing names Digital Gayana Ekagrata as a customer, without
+  identifying its parcel. The estate-wide masterplan and corporate-domicile table likewise do
+  not resolve the campus. The inherited host-estate polygon still needs a versioned correction
+  before a verified 200-site completion claim; CGK's correction cannot add a new site.
+
+All 35 referenced raw capture hashes and byte counts were independently rechecked locally;
+the current 189-site draft validator still passes. Complete relevant PDF pages were visually
+reviewed, and the CGK packet received a separate peer review. Only concise attributed findings
+and custody metadata are retained in Git. Raw documents, maps, HTML, rendered pages and personal
+details remain ignored. No restricted-presentation content, denied-service bypass, or fabricated
+geometry is included. Eleven further distinct campuses and the CGK correction remain required.
