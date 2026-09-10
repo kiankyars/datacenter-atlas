@@ -1,0 +1,291 @@
+{
+  "schema_version": "research-expansion-200-bounded-handoff-1.0",
+  "reviewed_at": "2026-09-10",
+  "review_status": "exact_geometry_and_independent_source_reviews_passed_pending_contract_integration",
+  "accepted_into_core": false,
+  "admission_ready_count": 0,
+  "lifecycle_reference_date": "2026-08-20",
+  "physical_observation_window_inclusive": [
+    "2026-05-22",
+    "2026-08-20"
+  ],
+  "candidate": {
+    "name": "CapitaLand DC Chennai Ambattur / Minerva Veritas",
+    "campus_stable_key": "curated:capitaland-dc-chennai-ambattur",
+    "project_stable_key": "curated:capitaland-dc-chennai-ambattur:current-facility-build",
+    "curated_proposal_path": "sources/curated-official-2026-09-10-asia-round36-chennai-current-build.json",
+    "geometry_proposal_path": "sources/verified-construction-core-v0.18-asia-round36-chennai-geometry-proposal.json",
+    "prior_held_records": [
+      "sources/research-expansion-200-asia-2026-09-08.json",
+      "sources/research-expansion-200-asia-round35-india-2026-09-10.json"
+    ],
+    "prior_holds_preserved": true
+  },
+  "new_material_evidence": {
+    "conclusion": "Recovered the actual active Project Site.kml and matching Site Layout.pdf from the named Minerva public statutory proposal, with exact document UUID/ref/version binding. This resolves the earlier absence of a site-specific georeferenced geometry; the office map pin remains rejected.",
+    "source_specificity": "Government-hosted proponent-submitted project polygon, not government-certified cadastral/surveyed accuracy. It covers one combined data-centre/substation/ancillary campus.",
+    "source_crs": "KML 2.2 normative WGS84 longitude/latitude; 2D projection retains source horizontal coordinates and ring, omitting zero Z only.",
+    "precision": "13–14 decimal places are source numeric representation; exact lexical tuples retained in geometry evidence. Horizontal accuracy is unknown, not a sub-metre claim.",
+    "geometry_validation": {
+      "type": "Polygon",
+      "closed": true,
+      "valid": true,
+      "unique_vertices": 6,
+      "coordinate_tuples_with_closure": 7,
+      "holes": 0,
+      "longitude_latitude_bbox": [
+        80.15943786913193,
+        13.11105250246097,
+        80.1610991137769,
+        13.11193592401078
+      ],
+      "geodesic_area_square_metres_diagnostic_only": 16374.982252263493,
+      "perimeter_metres_diagnostic_only": 542.6230509667935,
+      "method": "Shapely validity and intersections; PyProj WGS84 geodesic diagnostic. No measurement is normalized as project capacity or land-area metric."
+    },
+    "explicit_conflicts": [
+      "CAF ne_extend labels southwest values and sw_extend labels northeast values; actual KML ring is selected without a midpoint or silent field repair.",
+      "CAF shape_of_project says Linear while its active attachment is a Polygon; source geometry object is used.",
+      "CAF response's site-layout attachment carries amendment SIA/TN/INFRA2/552921/2025, while it is returned for original SIA/TN/INFRA2/431276/2023. Original and amended CAFs reference the same KML UUID. The PDF names the exact Minerva legal entity and parcels; immutable 2023 response provenance is not asserted.",
+      "KML geodesic area is about 0.9% larger than the plan's superimposed area. No fitting or cadastral-boundary claim is made.",
+      "Prior search snippet truncated amendment proposal 552921 to 55292. The original raw CAF resolves the actual identifier; old held file remains unchanged."
+    ]
+  },
+  "capture_manifest": [
+    {
+      "url": "https://www.capitaland.com/content/dam/capitaland-newsroom/International/2026/july/clint-1h2026-results/2.%20CLINT%201H%202026%20slides_29%20July%202026.pdf",
+      "effective_url": "https://www.capitaland.com/content/dam/capitaland-newsroom/International/2026/july/clint-1h2026-results/2.%20CLINT%201H%202026%20slides_29%20July%202026.pdf",
+      "http_status": 200,
+      "content_type": "application/pdf",
+      "started_at": "2026-09-10T17:51:59.102Z",
+      "captured_at": "2026-09-10T17:52:01.185Z",
+      "bytes": 2016960,
+      "sha256": "5ce78c489021757c8e3f7978039ee3efc256cc58a569625c6f0fc446ea9321af",
+      "raw_path": "/Users/kian/Developer/datacenter_atlas/tmp/research-round33-europe-africa/r36-chennai-july29-status.pdf",
+      "request_credentials_supplied": false,
+      "capture_method": "credential-free Node fetch; no retry; content-decoded response bytes",
+      "raw_capture_redistributed": false
+    },
+    {
+      "url": "https://www.capitaland.com/en/find-a-property/global-property-listing/data-centres/capitaland-data-centrechennai.html",
+      "effective_url": "https://www.capitaland.com/en/find-a-property/global-property-listing/data-centres/capitaland-data-centrechennai.html",
+      "http_status": 200,
+      "content_type": "text/html;charset=utf-8",
+      "started_at": "2026-09-10T17:16:58.247Z",
+      "captured_at": "2026-09-10T17:16:59.727Z",
+      "bytes": 268262,
+      "sha256": "a9d500dfcdacad9ab7bedaaeecc08d7463781728facff62801879390ddc11faa",
+      "raw_path": "/Users/kian/Developer/datacenter_atlas/tmp/research-round33-europe-africa/r35-asia-chennai-page.html",
+      "request_credentials_supplied": false,
+      "capture_method": "credential-free Node fetch; no retry; content-decoded response bytes",
+      "raw_capture_redistributed": false
+    },
+    {
+      "url": "https://parivesh.nic.in/parivesh_api/proponentApplicant/getCafDataByProposalNo?proposal_no=SIA%2FTN%2FINFRA2%2F431276%2F2023",
+      "effective_url": "https://parivesh.nic.in/parivesh_api/proponentApplicant/getCafDataByProposalNo?proposal_no=SIA%2FTN%2FINFRA2%2F431276%2F2023",
+      "http_status": 200,
+      "content_type": "application/json",
+      "started_at": "2026-09-10T17:46:49.419Z",
+      "captured_at": "2026-09-10T17:46:51.913Z",
+      "bytes": 25958,
+      "sha256": "d09c603aef3a6c4e4c47d695ddb34e145b02d0adee474b48ee948f74b546d5a9",
+      "raw_path": "/Users/kian/Developer/datacenter_atlas/tmp/research-round33-europe-africa/r36-chennai-parivesh-caf-detail.json",
+      "request_credentials_supplied": false,
+      "capture_method": "credential-free Node fetch; no retry; content-decoded response bytes",
+      "raw_capture_redistributed": false
+    },
+    {
+      "url": "https://parivesh.nic.in/dms/okm/downloadDocument?docTypemappingId=40829&refId=5696080&refType=caf&uuid=963db531-1544-4984-8bef-f68e8a9a0ade&version=1.1",
+      "effective_url": "https://parivesh.nic.in/dms/okm/downloadDocument?docTypemappingId=40829&refId=5696080&refType=caf&uuid=963db531-1544-4984-8bef-f68e8a9a0ade&version=1.1",
+      "http_status": 200,
+      "content_type": "text/html;charset=utf-8",
+      "started_at": "2026-09-10T17:47:47.818Z",
+      "captured_at": "2026-09-10T17:47:49.338Z",
+      "bytes": 1764,
+      "sha256": "d81e269d9496bee594ba88fd2bcd218f9af430e15118e580b31ba20e6c3e8d4e",
+      "raw_path": "/Users/kian/Developer/datacenter_atlas/tmp/research-round33-europe-africa/r36-chennai-project-site.kml",
+      "request_credentials_supplied": false,
+      "capture_method": "credential-free Node fetch; no retry; content-decoded response bytes",
+      "raw_capture_redistributed": false
+    },
+    {
+      "url": "https://parivesh.nic.in/dms/okm/downloadDocument?docTypemappingId=58599&refId=5696201&refType=EC_TOR&uuid=ca1d526e-045f-43a7-a88e-59e18ba39bb0&version=1.1",
+      "effective_url": "https://parivesh.nic.in/dms/okm/downloadDocument?docTypemappingId=58599&refId=5696201&refType=EC_TOR&uuid=ca1d526e-045f-43a7-a88e-59e18ba39bb0&version=1.1",
+      "http_status": 200,
+      "content_type": "application/octet-stream",
+      "started_at": "2026-09-10T17:48:41.160Z",
+      "captured_at": "2026-09-10T17:48:46.090Z",
+      "bytes": 1138465,
+      "sha256": "ab7182a2bcbe6ed344f6a34858bf435bbfb54b6fe12153981a8419600974a05a",
+      "raw_path": "/Users/kian/Developer/datacenter_atlas/tmp/research-round33-europe-africa/r36-chennai-site-layout.pdf",
+      "request_credentials_supplied": false,
+      "capture_method": "credential-free Node fetch; no retry; content-decoded response bytes",
+      "raw_capture_redistributed": false
+    },
+    {
+      "url": "https://docs.ogc.org/is/07-147r2/07-147r2.pdf",
+      "effective_url": "https://docs.ogc.org/is/07-147r2/07-147r2.pdf",
+      "http_status": 200,
+      "content_type": "application/pdf",
+      "started_at": "2026-09-10T17:49:12.702Z",
+      "captured_at": "2026-09-10T17:49:14.607Z",
+      "bytes": 1270490,
+      "sha256": "fcad423c7700c13e4a25bcf1c305ee241d8470e94128b7185c377c47d6b82b77",
+      "raw_path": "/Users/kian/Developer/datacenter_atlas/tmp/research-round33-europe-africa/r36-chennai-ogc-kml22.pdf",
+      "request_credentials_supplied": false,
+      "capture_method": "credential-free Node fetch; no retry; content-decoded response bytes",
+      "raw_capture_redistributed": false
+    },
+    {
+      "url": "https://parivesh.nic.in/mis/v2/trackYourProposal/onBasesOfProposalNo?proposalNo=SIA%2FTN%2FINFRA2%2F431276%2F2023&isLogin=false",
+      "effective_url": "https://parivesh.nic.in/mis/v2/trackYourProposal/onBasesOfProposalNo?proposalNo=SIA%2FTN%2FINFRA2%2F431276%2F2023&isLogin=false",
+      "http_status": 200,
+      "content_type": "application/json",
+      "started_at": "2026-09-10T17:44:49.012Z",
+      "captured_at": "2026-09-10T17:44:53.579Z",
+      "bytes": 1065,
+      "sha256": "e3b9416c1c74d71081d7685877506840271a312fa64d1831114a05c58cb3e342",
+      "raw_path": "/Users/kian/Developer/datacenter_atlas/tmp/research-round33-europe-africa/r36-chennai-parivesh-public-proposal.json",
+      "request_credentials_supplied": false,
+      "capture_method": "credential-free Node fetch; no retry; content-decoded response bytes",
+      "raw_capture_redistributed": false
+    }
+  ],
+  "public_route_audit": {
+    "entry_point": "https://parivesh.nic.in/newupgrade/#/trackYourProposal/V1",
+    "proposal_number": "SIA/TN/INFRA2/431276/2023",
+    "public_proposal_capture": {
+      "url": "https://parivesh.nic.in/mis/v2/trackYourProposal/onBasesOfProposalNo?proposalNo=SIA%2FTN%2FINFRA2%2F431276%2F2023&isLogin=false",
+      "effective_url": "https://parivesh.nic.in/mis/v2/trackYourProposal/onBasesOfProposalNo?proposalNo=SIA%2FTN%2FINFRA2%2F431276%2F2023&isLogin=false",
+      "http_status": 200,
+      "content_type": "application/json",
+      "started_at": "2026-09-10T17:44:49.012Z",
+      "captured_at": "2026-09-10T17:44:53.579Z",
+      "bytes": 1065,
+      "sha256": "e3b9416c1c74d71081d7685877506840271a312fa64d1831114a05c58cb3e342",
+      "raw_path": "/Users/kian/Developer/datacenter_atlas/tmp/research-round33-europe-africa/r36-chennai-parivesh-public-proposal.json",
+      "request_credentials_supplied": false,
+      "capture_method": "credential-free Node fetch; no retry; content-decoded response bytes"
+    },
+    "public_client_method_capture": {
+      "url": "https://parivesh.nic.in/newupgrade/9218.94b31cc71349e473.js",
+      "raw_local_path": "/Users/kian/Developer/datacenter_atlas/tmp/research-round33-europe-africa/r36-chennai-parivesh-track-module.js",
+      "bytes": 178121,
+      "sha256": "1192a56c82e41cb7142af99fe31a36c8d584ddf0c350214997a663839570cb08",
+      "literal_pointer": "TrackYourProposal public methods getProposalDataPublic and getProposalDetails; public detail calls getCafDetailsByProposalId with proposal_no. Module 60490 reads CAF using POST {}.",
+      "raw_capture_redistributed": false
+    },
+    "caf_lookup": {
+      "method": "POST",
+      "body": "{}",
+      "content_type": "application/json",
+      "method_provenance": "Executed command used an in-memory global fetch wrapper to set POST, Content-Type application/json and the empty JSON body before importing the unchanged capture helper. The helper's adjacent metadata records response provenance but does not record the HTTP method; this field is the explicit execution-audit account, not an inference from response content. No second request was made to fill that metadata gap.",
+      "executed_invocation": "node --input-type=module -e 'const publicReadFetch=globalThis.fetch; globalThis.fetch=(url,options)=>publicReadFetch(url,{...options,method:\"POST\",headers:{\"Content-Type\":\"application/json\"},body:\"{}\"}); process.argv=[\"node\",\"capture.mjs\",\"https://parivesh.nic.in/parivesh_api/proponentApplicant/getCafDataByProposalNo?proposal_no=SIA%2FTN%2FINFRA2%2F431276%2F2023\",\"r36-chennai-parivesh-caf-detail.json\"]; await import(\"./tmp/research-round33-europe-africa/capture.mjs\");'",
+      "official_client_method_anchor": "getCafDetailsByProposalId builds the proposal_no query and calls this.http.post(At,{},{params:q}); its raw client capture and hash are recorded above.",
+      "url": "https://parivesh.nic.in/parivesh_api/proponentApplicant/getCafDataByProposalNo?proposal_no=SIA%2FTN%2FINFRA2%2F431276%2F2023",
+      "semantics": "Read-only public record retrieval discovered in the official public client. This did not create, amend or submit an application."
+    },
+    "download_derivation": "GET /dms/okm/downloadDocument parameters copied exactly from active CAF attachment metadata: document_mapping_id, ref_id, type, uuid and version. No guessed UUID, private endpoint, credential, login or auth token.",
+    "frontend_scope": "Frontend code served only to discover public lookup and download semantics. It is not selected site/status evidence or redistributed. Only minimal metadata retained here.",
+    "request_credentials_supplied": false,
+    "login_or_registration": false,
+    "account_changes": false,
+    "forms_submitted": false,
+    "access_control_bypassed": false
+  },
+  "access_stops": [
+    {
+      "url": "https://environmentclearance.nic.in/writereaddata/FormB/agenda/2603202658570212687thSEACScannedMinutes_11zon%281%29.pdf",
+      "started_at": "2026-09-10T17:40:15.422Z",
+      "failed_at": "2026-09-10T17:40:22.438Z",
+      "error": "TypeError: fetch failed",
+      "raw_path": null,
+      "retry_performed": false,
+      "metadata_path": "/Users/kian/Developer/datacenter_atlas/tmp/research-round33-europe-africa/r36-chennai-687-minutes.pdf.metadata.json",
+      "accepted_as_evidence": false,
+      "decision": "Transport failure, not an accepted PDF. One direct attempt; stopped without bytes, hash or visual inspection."
+    },
+    {
+      "url": "https://environmentclearance.nic.in/writereaddata/FormB/agenda/1509202349798700651SEIAAMeeting.pdf",
+      "started_at": "2026-09-10T17:40:52.642Z",
+      "failed_at": "2026-09-10T17:40:53.551Z",
+      "error": "TypeError: fetch failed",
+      "raw_path": null,
+      "retry_performed": false,
+      "metadata_path": "/Users/kian/Developer/datacenter_atlas/tmp/research-round33-europe-africa/r36-chennai-651-agenda.pdf.metadata.json",
+      "accepted_as_evidence": false,
+      "decision": "Transport failure, not an accepted PDF. One direct attempt; stopped without bytes, hash or visual inspection."
+    },
+    {
+      "url": "https://indiankanoon.org/doc/75341029/",
+      "effective_url": "https://indiankanoon.org/doc/75341029/",
+      "http_status": 403,
+      "content_type": "text/html; charset=UTF-8",
+      "started_at": "2026-09-10T17:41:35.264Z",
+      "captured_at": "2026-09-10T17:41:35.422Z",
+      "bytes": 5467,
+      "sha256": "a9a6f2c9e032bf4c81ccd47f5b8f306221b4969e8eebf24a9a9235d9cf8b877e",
+      "raw_path": null,
+      "request_credentials_supplied": false,
+      "capture_method": "credential-free Node fetch; no retry; content-decoded response bytes",
+      "metadata_path": "/Users/kian/Developer/datacenter_atlas/tmp/research-round33-europe-africa/r36-chennai-klite-june11.html.metadata.json",
+      "accepted_as_evidence": false,
+      "decision": "HTTP 403 denied; stopped. No alternate route, retry or accepted body. Court-case discovery about a separate neighbour's cable route is not campus geometry or construction evidence."
+    }
+  ],
+  "other_closed_routes": [
+    "Prior Nominatim 403 route was not retried.",
+    "New SEIAA Tamil Nadu development portal explicitly warns that it is not authorized for public use; no application form or underlying API was queried.",
+    "The unavailable government minutes and agenda were not used as evidence."
+  ],
+  "independent_status_review": {
+    "reviewer": "/root/round35_cgk2",
+    "reported_findings": "Reviewer independently rendered and read July29 PDF pages 1 and 34 and verified the raw hash; actual core/shell work and publication-date normalization pass. Reviewer independently checked the operator Minerva identity and bounded original-source successor searches through August20 without finding Chennai completion or cancellation.",
+    "review_state": "Reviewer fully read both proposed JSONs and independently verified all six selected source hashes and byte counts. JSON validity, physical-status date, identity and compact paraphrase/rights scope passed without a blocking finding. Root separately confirmed full KML/CAF/site-plan/OGC review and all-186-geometry comparison.",
+    "supporting_release_capture": {
+      "url": "https://www.capitaland.com/en/about-capitaland/newsroom/news-releases/international/2026/july/CapitaLand_India_Trust_records_8pc_increase_in_1H2026_distributable_income.html",
+      "effective_url": "https://www.capitaland.com/en/about-capitaland/newsroom/news-releases/international/2026/july/CapitaLand_India_Trust_records_8pc_increase_in_1H2026_distributable_income.html",
+      "http_status": 200,
+      "content_type": "text/html;charset=utf-8",
+      "started_at": "2026-09-10T17:56:00.789Z",
+      "captured_at": "2026-09-10T17:56:01.769Z",
+      "bytes": 305266,
+      "sha256": "cf87dabcd17754aa1429855c743419ebb25191cce58d1d33e6fcbe07156cc924",
+      "raw_path": "/Users/kian/Developer/datacenter_atlas/tmp/research-round33-europe-africa/r36-chennai-independent-july29-release.html",
+      "request_credentials_supplied": false,
+      "capture_method": "credential-free Node fetch; no retry; content-decoded response bytes"
+    },
+    "access_limitation": "Reviewer reported a non-retryable unsafe-open error for https://www.clint.com.sg/en/newsroom.html and stopped that route; no exhaustive absence claim."
+  },
+  "distinctness_review": {
+    "path": "verified_construction_core/2026-08-20-v0.18-draft-thirty-first-reviewed/sites.geojson",
+    "sha256": "e5d01d86c70f04bcde0ba91a8a6b72aa8c0500c42294722892d70f64814fa2aa",
+    "sites": 186,
+    "full_geometries_compared": 186,
+    "geometry_intersections": [],
+    "same_campus_alias_matches": [],
+    "method": "Shapely intersections against all complete selected Point, Polygon and MultiPolygon geometries, including holes, plus campus name and stable-key alias screening. No centroid-only duplicate decision.",
+    "nearest_selected_campus": {
+      "stable_key": "curated:capitaland-dc-itph-hyderabad",
+      "name": "CapitaLand DC ITPH Hyderabad Campus",
+      "approximate_distance_metres": 515058,
+      "distance_scope": "WGS84 geodesic distance used for coarse deduplication screening, from the candidate polygon centroid to the selected geometry representative point; not a selected locator or surveyed boundary clearance."
+    },
+    "excluded_aliases": [
+      "CapitaLand DC Chennai",
+      "CapitaLand Data Centre Chennai 01",
+      "Minerva Veritas Data Centre Private Limited",
+      "Ambattur Ward B Block 37 TS 19/2 and 20/2"
+    ],
+    "guardrail": "CapitaLand Hyderabad and Navi Mumbai are separately located campuses already selected. The Minerva DC, substation and annexes are one new physical campus, not multiple additions."
+  },
+  "scope": {
+    "new_files_only": true,
+    "contracts_snapshots_existing_sources_unmodified": true,
+    "raw_media_untracked": true,
+    "normalized_roles_metrics_workloads_or_imagery": false,
+    "pdf_review": "PDF skill used; complete relevant rendered pages reviewed: site plan page1; OGC standard pages33,250,251; July29 issuer report pages1,34. No PDF authoring."
+  },
+  "handoff_ownership": "Root owns further curated-source and geometry-proposal edits, including its explicitly derived interior display anchor and final successor accounting. This researcher has not changed those two files after ownership transfer. Source KML geometry is not replaced by a display anchor.",
+  "remaining_gate": "Source selection and contract integration by root, then contract/build/regression validation. Independent geometry and source reviews passed; this research alone does not increment site count."
+}

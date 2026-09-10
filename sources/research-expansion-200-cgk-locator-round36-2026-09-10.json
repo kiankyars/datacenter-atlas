@@ -1,0 +1,160 @@
+{
+  "schema_version": "1.0",
+  "research_date": "2026-09-10",
+  "reference_date": "2026-08-20",
+  "physical_observation_window": ["2026-05-22", "2026-08-20"],
+  "review_scope": "Bounded exact-campus locator correction research for the already selected Digital Edge CGK Campus. No frozen input, selected geometry, project, evidence row, contract or release artifact is changed. Public legal-entity filings were followed after the current campus page supplied only a host-estate locality. A separate EDGE2 phase-3 status lead found in those filings is recorded for later review, not admission.",
+  "new_site_count": 0,
+  "geometry_replacement_count": 0,
+  "candidate": {
+    "name": "Digital Edge CGK Campus",
+    "country": "Indonesia",
+    "existing_site_id": "vcc-site-f42f9f22874b1766554e",
+    "existing_site_stable_key": "curated:digital-edge-cgk-campus-bekasi",
+    "existing_project_stable_key": "curated:digital-edge-cgk-campus-bekasi:cgk1",
+    "decision": "hold_exact_campus_locator_correction",
+    "inherited_locator_id": "digital-edge-cgk1-osm-giic-host-estate-polygon",
+    "inherited_source_path": "sources/verified-construction-core-v0.16-seven-country-diversity-site-facts.json",
+    "inherited_geometry_finding": "The inherited source explicitly describes the entire GIIC host-estate polygon, not a CGK campus boundary, parcel or building footprint. Its diagnostic centroid is not an exact campus point. The prior round35 finding remains unresolved; retaining the frozen baseline does not make the host estate an acceptable campus locator.",
+    "proposed_geometry": null,
+    "source_crs": null,
+    "accuracy_m": null,
+    "current_operator_page": {
+      "capture_id": "r36-cgk-operator-campus",
+      "publication_date": null,
+      "finding": "The named CGK Campus page identifies GIIC Industrial Estate in Cikarang, Bekasi, and describes multiple buildings at one campus. Its publicly returned HTML contains no campus latitude/longitude, explicit numeric map locator or cadastral identifier. The M-Ten Building footer address is an office, not the CGK campus.",
+      "specification_sheet_route": "The visible Download Spec Sheet interface requires name, company, phone, email and consent fields. No form was submitted and no hidden or gated download was extracted or requested."
+    },
+    "legal_entity_bridge": {
+      "capture_id": "r36-cgk-milbank-finance",
+      "publication_date": "2026-03-20",
+      "finding": "The finance parties' adviser identifies PT Digital Gayana Ekagrata as the borrower and Digital Edge subsidiary for a 500 MW hyperscale data-center campus in Bekasi Regency, with financing for the first two buildings. This is a useful legal-entity identity bridge but supplies no street parcel, land-certificate number, coordinates or plan boundary.",
+      "non_equivalent_names": ["PT Digital Gayana Ekaprana", "PT Digital Gayana Ekatama", "PT Ekagrata Data Gemilang"],
+      "non_equivalence_note": "These are not treated as spelling variants of PT Digital Gayana Ekagrata. The consolidated issuer and guarantor identities do not automatically identify ownership of a particular campus parcel."
+    },
+    "public_filing_checks": [
+      {
+        "capture_id": "r36-cgk-indonet-loan",
+        "document_date": "2026-03-16",
+        "transaction_date": "2026-03-12",
+        "document_number": "009/Indonet-Corsec/Srt/III/2026",
+        "pages_reviewed": "All seven pages text-screened; page 3 collateral description visually reviewed.",
+        "finding": "The issuer discloses the USD665 million loan to PT Digital Gayana Ekagrata and security over its data-center project and subsidiary shares. It does not enumerate the secured project's cadastral certificates or parcel geometry. The repeated Rempoa Raya No.11 letterhead is the issuer office and cannot locate CGK.",
+        "render_note": "Poppler emitted bad-flate-block warnings during whole-document text extraction; the relevant page-3 collateral passage rendered legibly and agreed with the extracted bilingual text. No source repair or byte alteration was performed."
+      },
+      {
+        "capture_id": "r36-cgk-indonet-june2026",
+        "document_as_of_date": "2026-06-30",
+        "publication_date": null,
+        "pages_reviewed": "All 72 pages text-screened for locator and land-right terms; fixed-assets note on PDF page 47, printed Schedule 5/39, visually reviewed.",
+        "finding": "The fixed-assets note mentions group land rights in the form of HGB expiring in 2039-2049 without certificate numbers, coordinates or project-specific boundaries. The note separately identifies EDG's EDGE1 and EDGE2 land/buildings as loan collateral. Neither the generic HGB disclosure nor those downtown assets establish the CGK campus parcel.",
+        "date_policy": "June 30 is the statements' accounting and observation date, not a publication date. The August URL directory and current capture time are not substituted for publication."
+      }
+    ],
+    "next_missing_gate": "Obtain a freely accessible operator-issued campus-specific numeric point or an official cadastral/permit plan explicitly binding PT Digital Gayana Ekagrata and the CGK campus to a precise parcel. Preserve the original source CRS, coordinate meaning, precision, unknown accuracy and rights. Only then prepare a versioned correction and run full-geometry overlap/alias checks; do not replace the frozen host-estate outline in place."
+  },
+  "separate_unadmitted_status_lead": {
+    "name": "Digital Edge EDGE2 phase 3",
+    "country": "Indonesia",
+    "decision": "lead_requires_successor_and_exact_locator_review",
+    "capture_id": "r36-cgk-indonet-june2026",
+    "source_locator": "PDF page 47, printed Schedule 5/39, note 8 Fixed Assets, first two paragraphs",
+    "observation_date": "2026-06-30",
+    "publication_date": null,
+    "finding": "The issuer describes EDGE2 phase 2 as completed and operating in 2025, but reports EDGE2 phase 3 electrical/mechanical equipment construction in progress as of June 30, 2026, at 99 percent of estimated completion costs and expected to finish later in the current year. The source separates this from the DGE1 and DGE2 projects. This changes the next research action from relying on the original 2024 opening alone to reviewing the specifically unfinished phase-3 capital scope.",
+    "cost_completion_percent": 99,
+    "physical_completion_percent": null,
+    "capacity_mw_selected": null,
+    "locator_selected": null,
+    "lifecycle_cautions": [
+      "A cost-based percentage is not a measured physical-completion percentage.",
+      "The earlier campus opening and completed phase 2 do not prove phase 3 was complete, but neither does the June observation exclude a later completion before August 20.",
+      "The current operator's undated operational facility description and later update timestamps do not settle the phase-3 successor date.",
+      "DGE1 and DGE2 in the financial note are not normalized to CGK1 and CGK2 without an explicit name bridge. Their respective 27 and 7 percent cost completion figures are not assigned to the selected CGK projects."
+    ],
+    "preliminary_name_check": "All 186 baseline GeoJSON properties were screened for Ekagrata, EDGE2/EDGE 2 and Digital Edge Jakarta identities, with no matching feature returned. This is not full spatial duplicate clearance because no exact EDGE2 geometry has been selected.",
+    "next_missing_gates": [
+      "Independently review whether the named phase-3 electrical/mechanical construction-in-progress statement qualifies under the physical-work contract.",
+      "Resolve completion/cancellation successors specifically for phase 3 through August 20, 2026.",
+      "Obtain an exact source-specific EDGE2 campus point or parcel with coordinate semantics, CRS, accuracy and rights, then compare all 186 geometries and aliases.",
+      "Keep one physical EDGE2 site distinct from downtown EDGE1 and from GIIC CGK; do not use the marketing term virtual campus to merge separate physical locations."
+    ]
+  },
+  "baseline_review": {
+    "release": "verified_construction_core/2026-08-20-v0.18-draft-thirty-first-reviewed",
+    "site_count": 186,
+    "geometry_artifact": "verified_construction_core/2026-08-20-v0.18-draft-thirty-first-reviewed/sites.geojson",
+    "geometry_bytes": 291740,
+    "geometry_sha256": "e5d01d86c70f04bcde0ba91a8a6b72aa8c0500c42294722892d70f64814fa2aa",
+    "spatial_clearance": "Not performed for a new or replacement point because none was established. CGK is an already represented campus and cannot add a distinct site."
+  },
+  "prior_packets_reviewed": [
+    "sources/research-expansion-200-cgk2-round35-2026-09-10.json",
+    "sources/curated-official-2026-07-20-digital-edge-cgk1-bekasi.json",
+    "sources/verified-construction-core-v0.16-seven-country-diversity-site-facts.json"
+  ],
+  "raw_captures": [
+    {
+      "id": "r36-cgk-operator-campus",
+      "url": "https://id.digitaledgedc.com/data-centers/cgk-campus",
+      "publisher": "Digital Edge Indonesia",
+      "captured_at": "2026-09-10T17:54:51.352Z",
+      "http_status": 200,
+      "bytes": 356152,
+      "sha256": "d6eba3b7b30471d911f64ad4125ccf34385f757ce35fc17899c4baef0171d374",
+      "raw_path": "tmp/research-round33-europe-africa/r36-cgk-operator-campus.html"
+    },
+    {
+      "id": "r36-cgk-milbank-finance",
+      "url": "https://www.milbank.com/en/news/milbank-advises-on-dollar665m-green-loan-for-digital-edges-ai-ready-hyperscale-data-center-campus-in-indonesia.html",
+      "publisher": "Milbank LLP",
+      "captured_at": "2026-09-10T17:55:24.274Z",
+      "http_status": 200,
+      "bytes": 68174,
+      "sha256": "1cf24b8647b74d7a51b7dd6b1cfab091db17453d33643662439c030f51ecb5bb",
+      "raw_path": "tmp/research-round33-europe-africa/r36-cgk-milbank-finance.html"
+    },
+    {
+      "id": "r36-cgk-indonet-june2026",
+      "url": "https://indonet.id/wp-content/uploads/2026/08/FS-Indonet-30-June-2026.pdf",
+      "publisher": "PT Indointernet Tbk",
+      "captured_at": "2026-09-10T17:55:59.095Z",
+      "http_status": 200,
+      "bytes": 1601432,
+      "sha256": "9f1480b169d2df05a37977879ecb81f77ccadccf8cf619e830f4878beb64b6c0",
+      "raw_path": "tmp/research-round33-europe-africa/r36-cgk-indonet-june2026.pdf"
+    },
+    {
+      "id": "r36-cgk-indonet-loan",
+      "url": "https://indonet.id/wp-content/uploads/2026/03/Keterbukaan-Informasi_16-Mar-2026.pdf",
+      "publisher": "PT Indointernet Tbk",
+      "captured_at": "2026-09-10T17:56:04.657Z",
+      "http_status": 200,
+      "bytes": 598728,
+      "sha256": "84b36d20aa6842e4c2938a19274a5dfd8788cd3225d9c3e38ef5a3daa89a6d1a",
+      "raw_path": "tmp/research-round33-europe-africa/r36-cgk-indonet-loan.pdf"
+    },
+    {
+      "id": "r36-cgk-indonet-financial-index",
+      "url": "https://indonet.id/investor-relations-financial-report/",
+      "publisher": "PT Indointernet Tbk",
+      "captured_at": "2026-09-10T17:57:25.457Z",
+      "http_status": 200,
+      "bytes": 398910,
+      "sha256": "ac23eefa19dcad37beb66af0d33c4984ee48b7ffbf7e6af5266fd7e1c839e84d",
+      "raw_path": "tmp/research-round33-europe-africa/r36-cgk-indonet-financial-index.html",
+      "role": "Public publisher-controlled link to the June 2026 financial statements; the index does not state their publication day."
+    }
+  ],
+  "capture_method": "Single credential-free Node fetch per source, with SHA-256 over successful content-decoded response bytes and a sibling metadata JSON. No retries or credentials. Public web rendering was used for discovery; a web renderer timeout on the loan PDF did not indicate an access restriction. No deny/challenge response occurred in this bounded lane.",
+  "rights": {
+    "classification": "all-rights-reserved-or-no-open-license-found",
+    "publisher_terms_observed": [
+      "https://id.digitaledgedc.com/terms-of-use",
+      "https://id.digitaledgedc.com/privacy-policy",
+      "https://www.milbank.com/privacy-and-cookies.html"
+    ],
+    "basis": "Digital Edge and Indonet public pages assert all rights reserved. No open redistribution license for the captured HTML or issuer PDFs was established. Milbank's captured page links its privacy/cookies policy; that is not a redistribution grant.",
+    "redistribution_scope": "Compact paraphrased factual findings, source links, exact document/page locators, dates and capture hashes only. Raw publisher HTML, PDFs and local page renders remain ignored verification artifacts; no media is redistributed."
+  }
+}

@@ -1736,3 +1736,51 @@ incomplete. Expansion completion and final-publication claims are both false. Re
 .venv/bin/python scripts/build_expansion_200_draft.py --batch thirty-first-reviewed --output-dir /absolute/new/draft-directory
 .venv/bin/python scripts/build_expansion_200_draft.py --batch thirty-first-reviewed --validate-only
 ```
+
+## 2026-09-10: thirty-second reviewed checkpoint, 187 sites
+
+The [thirty-second reviewed draft](../verified_construction_core/2026-08-20-v0.18-draft-thirty-second-reviewed/README.md)
+adds one CapitaLand DC Chennai campus in Ambattur. It contains 187 physical sites, 190 projects,
+44 countries, 124 non-US sites and 847 evidence rows: 87 of the requested 100 additions, with
+13 remaining. All preceding rows, full geometries, source bindings and snapshots are preserved.
+
+The July 29 issuer results explicitly report ongoing Chennai core-and-shell work in the latest
+project-status table. The table incorporates July events, so July 29 is a publication-normalized
+observation, not an inspection day or the June 30 financial period end. The adjacent Q4 completion
+entry is a forecast. Independent bounded issuer and successor checks found no actual completion
+or cancellation through August 20. A differing future schedule in a separate investor report is
+retained as research context, not selected as a lifecycle event.
+
+The operator property page binds Chennai 01 to Minerva Veritas and Pattravakkam Road. Its Taramani
+office map pin remains rejected. The public environmental proposal supplies an active, versioned
+Project Site KML and a matching Minerva site layout for Ambattur Ward B, Block 37, TS 19/2 and 20/2.
+The public response includes both original and amended CAF records; both reference the same KML
+UUID. The site-layout attachment carries the amendment number, which is not concealed as a frozen
+2023 attachment. The exact public lookup method and document bindings are recorded in the
+[research audit](../sources/research-expansion-200-asia-round36-chennai-geometry-2026-09-10.json).
+
+The six-vertex source polygon is retained in WGS84 longitude/latitude under the normative KML
+format contract. Conflicting CAF extent labels and its Linear shape label do not override the
+actual KML polygon. The outline is a proponent-submitted project locator, not an officially
+certified cadastral boundary, building footprint or current work extent. Its area differs from
+the plan's superimposed area by approximately 0.9%; no fitting or silent correction is applied.
+Source decimal tuples are preserved and real-world positional accuracy remains unknown. A
+separate interior polygon centroid is derived solely for display. The combined data centre,
+substation and ancillary yard count once, and full-geometry checks against all 186 preceding
+sites found no overlap.
+
+Six exact raw source captures were independently rehashed. Relevant complete PDF pages were
+visually reviewed for status, site identity and the coordinate standard. Only compact factual
+projections, attribution, hashes and the project outline are distributed; publisher PDFs,
+HTML, KML, drawings, frontend code and personal details remain ignored local evidence.
+No new capacity, roles, workload, operating model or imagery observation is inferred.
+
+Imagery coverage remains 10/190; the fixed blind-review sample of 20 requiring 19 agreements is
+unfinished. The inherited CGK host-estate locator remains a separately logged correction hold;
+this addition does not certify that locator or alter the frozen baseline. Both expansion-complete
+and final-publication flags remain false. Reproduce or validate:
+
+```sh
+.venv/bin/python scripts/build_expansion_200_draft.py --batch thirty-second-reviewed --output-dir /absolute/new/draft-directory
+.venv/bin/python scripts/build_expansion_200_draft.py --batch thirty-second-reviewed --validate-only
+```

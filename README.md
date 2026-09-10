@@ -53,9 +53,9 @@ not as datasets to add to v0.17.
 The active [200-site expansion](docs/expansion_200.md), begun on 2026-09-08, targets another 100
 distinct physical sites under the same evidence standards. Candidate research is not included in
 the published 100-site count above. The separately labelled
-[thirty-first reviewed draft](verified_construction_core/2026-08-20-v0.18-draft-thirty-first-reviewed/README.md)
-contains 186 sites and is reproducible with `scripts/build_expansion_200_draft.py --batch thirty-first-reviewed`.
-This is 86 of the requested 100 additions. All earlier checkpoints remain frozen; this checkpoint
+[thirty-second reviewed draft](verified_construction_core/2026-08-20-v0.18-draft-thirty-second-reviewed/README.md)
+contains 187 sites and is reproducible with `scripts/build_expansion_200_draft.py --batch thirty-second-reviewed`.
+This is 87 of the requested 100 additions. All earlier checkpoints remain frozen; this checkpoint
 preserves every preceding project, site and evidence row, including the documented Helios correction.
 
 All eight inherited workload observations are machine-labelled `intended`, not operational. Nine
