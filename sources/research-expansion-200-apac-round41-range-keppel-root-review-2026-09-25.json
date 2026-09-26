@@ -1,0 +1,70 @@
+{
+  "schema_version": "expansion-200-apac-round41-range-keppel-root-review-1",
+  "reviewed_at": "2026-09-25",
+  "research_only": true,
+  "accepted_into_core": false,
+  "lifecycle_reference_date": "2026-08-20",
+  "campus_stable_keys": [
+    "curated:runze-hong-kong-sandy-ridge-data-facility-cluster",
+    "curated:keppel-genting-lane-data-centre-campus"
+  ],
+  "previous_research": "The inventory carried Range Sandy Ridge with a stale July status and no locator; Keppel SGP 9 had no earlier packet. The Range campus and project stable keys are reused.",
+  "review_outcome": "Two new physical campuses: Range's Sandy Ridge campus in Hong Kong, and Keppel's Genting Lane campus in Singapore, a country not previously represented.",
+  "lifecycle_review": {
+    "range": {
+      "source_sha256": "53b580a1144d7f73feb43319e2224119a8618d9b9e34eccb9bdecf3f8e6dfab1",
+      "finding": "The half-year report says the Hong Kong campus steadily advanced infrastructure works during the period ending June 30, alongside civil works and M&E installation at overseas nodes, and forecasts delivery in 2028.",
+      "date_semantics": "June 30 is the reporting-period end. The report was published on August 27-28, after the lifecycle reference date; the NEXTDC FY26 admissions set the precedent that an explicit in-window as-of date governs and publication does not create a later observation.",
+      "context": "A May 22 Xinhua report of piling on May 20 is secondary and before the window; it is not selected."
+    },
+    "keppel": {
+      "source_sha256": "fa83d1a76931aaa802b04fea880e6cef8fcee3dd3b02fd95fd19e963b58c3ce8",
+      "finding": "Slide 33 of Keppel's July 30 1H 2026 results presentation lists 'Keppel DC SGP 9 commenced construction' among Connectivity Division updates.",
+      "date_semantics": "The bullet sits beside a portfolio table labelled as at end-June 2026. July 30, the later publication date, is selected conservatively; both dates are in the window.",
+      "predecessor": "Keppel DC REIT's November 2024 announcement said SGP 9 construction had not commenced."
+    },
+    "successor_review": "Delivery is forecast for 2028 (Range) and construction began in 2026 (Keppel); the research lane found no completion or cancellation through August 20. Bounded, not exhaustive."
+  },
+  "identity_review": {
+    "range": "The March 2 ITIB tender result awards Lot 953 in DD 89, over 110,000 m2, to Hong Kong Range Intelligent Computing Technology Company Limited, ultimately held by Range Intelligent Computing Technology Group Company Limited, the issuer's own foreign-language name. The Lands Department lot record for LotCSUID 145000953 is DD 89 Lot 953, a New Grant Lot of about 116,365 m2.",
+    "keppel": "The REIT announcement locates SGP 7 and SGP 8 at 82 Genting Lane, Singapore 349567, and places planned SGP 9 on the same property. OSM way 1560974456 is named Keppel Genting Lane Campus and tagged industrial=data_centre. Singapore's official OneMap address search for 349567 returns a point inside that polygon; OneMap's terms require registration for API use, so its coordinates are a cross-check only and are not selected or redistributed.",
+    "campus_scope": "The Keppel campus counts once: operating SGP 7 and SGP 8 are not selected, and the SGP 9 build is the selected project. The Keppel floating data centre is a separate unlocated project."
+  },
+  "independent_geometry_review": {
+    "range": {
+      "service": "CSDI Portal, Lands Department lot layer (landsd_rcd_1637217253134_22729, FeatureServer 0)",
+      "recapture": "The native lot polygon and lot record were recaptured on September 25, byte-identical to the research lane.",
+      "source_crs": "EPSG:2326 Hong Kong 1980 Grid (wkid 102140, latestWkid 2326).",
+      "transformation": "PROJ 9.8.1 via pyproj 3.8.0, 'Inverse of Hong Kong 1980 Grid + Hong Kong 1980 to WGS 84 (1)', operation accuracy 1 m, allow_ballpark=False; 229 vertices rounded to seven decimals, valid under the draft validator.",
+      "server_geojson": "The service's generalized 156-vertex GeoJSON is not selected.",
+      "rights": "CSDI terms permit commercial and non-commercial reuse with attribution to the Government and the CSDI Portal."
+    },
+    "keppel": {
+      "source": "OSM way 1560974456 version 2, 21 ordered nodes, recaptured with elements identical to the lane capture.",
+      "history": "Created 2026-09-21 and edited 2026-09-25 with unchanged tags. Recent community mapping is disclosed; the edit date is geometry provenance only.",
+      "crs": "WGS84 per the captured OSM node documentation."
+    },
+    "horizontal_uncertainty_metres": null
+  },
+  "distinctness_review": {
+    "compared_release": "verified_construction_core/2026-08-20-v0.18-draft-thirty-fourth-reviewed",
+    "sites": 189,
+    "geojson_sha256": "ede8718f058653c0c2d220e5941983664bbc21415af1e2360fe7ee71f077c1ef",
+    "same_batch_screen": "Both geometries were also screened against the six other round41 admissions (Thane, three Mega D.C. plots and two Cipher points); none of the eight round41 geometries intersects another.",
+    "full_geometry_intersections": [],
+    "alias_matches": [],
+    "aliases_screened": ["Sandy Ridge", "Runze", "Range Intelligent", "Lot 953", "Keppel", "Genting", "SGP 7", "SGP 8", "SGP 9", "349567"],
+    "nearest_selected_campus": "Goodman HKG09 Kwai Chung, about 18.2 km from Range; Racks Central Johor, about 24.3 km from Keppel."
+  },
+  "round41_holds_preserved": [
+    {"candidate": "Digital Edge BOM, Navi Mumbai (SIA/MH/INFRA2/449922/2023)", "disposition": "hold_in_window_physical_observation", "finding": "The compliance report uploaded June 18 is explicitly for October 2025 to March 2026 and has no later current-status table; its data sheet also prints a coordinate about 27 km from Kalwa. The August 31 topping-out is after the window."},
+    {"candidate": "Range Batam; Keppel floating data centre; Haenam National AI Computing Center; Techno Digital Kolkata; DCI JK7/JK8", "disposition": "hold_exact_locator"},
+    {"candidate": "YTL Kulai; Zeus OSA1 Osaka; STT Chennai 4; Google-Adani Vizag; PDG JC3; ESR Cosmosquare", "disposition": "hold_in_window_primary_status"},
+    {"candidate": "Nxera Tuas; DayOne SG1; ESR-Colt Minoh; SUNeVision MEGA IDC Phase 2", "disposition": "reject", "finding": "Opened, stale, future-start or forward-looking only."}
+  ],
+  "rights_and_custody": {
+    "raw_captures": "Ignored local files under tmp/research-round41-apac and tmp/research-round41-root. Only compact facts, hashes, the transformed lot ring and the OSM node ring are committed.",
+    "licence": "Issuer reports carry no open licence. CSDI lot data is reusable with attribution; OSM is ODbL-1.0."
+  },
+  "separate_unfinished_work": "The inherited CGK host-estate locator still requires a versioned correction before a verified 200-site completion claim."
+}

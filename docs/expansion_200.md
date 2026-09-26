@@ -1922,3 +1922,94 @@ reviewed, and the CGK packet received a separate peer review. Only concise attri
 and custody metadata are retained in Git. Raw documents, maps, HTML, rendered pages and personal
 details remain ignored. No restricted-presentation content, denied-service bypass, or fabricated
 geometry is included. Eleven further distinct campuses and the CGK correction remain required.
+
+## 2026-09-25: thirty-fifth reviewed checkpoint, 197 sites
+
+The [thirty-fifth reviewed draft](../verified_construction_core/2026-08-20-v0.18-draft-thirty-fifth-reviewed/README.md)
+adds eight campuses: Amazon's Balkum & Majiwada site in Thane, India; Mega D.C.'s MDCIL-2 Masmiyya,
+MDCIL-5 Idan HaNegev and MDCIL-1 Modi'in campuses in Israel; Cipher Digital's Stingray and Black
+Pearl campuses in Texas; Range's Sandy Ridge campus in Hong Kong; and Keppel's Genting Lane campus
+in Singapore. It contains 197 physical sites, 200 projects, 46 countries, 131 non-US sites and 897
+evidence rows: 97 of the requested 100 additions, with 3 remaining. Israel and Singapore are new
+countries. Every preceding row, feature and source binding is preserved.
+
+**Thane.** Amazon's statutory six-monthly compliance report on PARIVESH, under a cover letter dated
+May 27 and uploaded May 30, reports excavation in progress on Building 1 and started on Building 2,
+with commencement on April 30. The previous report, filed in December 2025, said construction had not
+started. The locator is the whole-project polygon in the active CAF KML for proposal
+SIA/MH/INFRA2/477127/2024. Its extremes equal the EC annexure's site coordinates digit for digit.
+The polygon is WGS84 under the KML 2.2 standard and is about 5% smaller than the EC area; it is not
+fitted. Resident opposition reported through August 19 is recorded as context, not as a successor.
+The proponent's confidentiality footer is noted, and no report content beyond dated facts is
+restated.
+
+**Israel.** Mega Or's Q2 report (as of June 30, published August 10) lists MDCIL-2, MDCIL-5 Phase A
+and MDCIL-1 Phase B under data centres under construction. That table is separate from its
+future-development land table. Each selection also has project-specific corroboration:
+- MDCIL-2: construction had begun and was 13% complete at year-end 2025, with delivery due in
+  Q3 2026.
+- MDCIL-5: the Idan HaNegev park operator reports that works began.
+- MDCIL-1: FY2025 states that Phase B construction continued; Phase A already operates.
+
+The issuer's own plot references bind each campus to an approved-plan land-use plot in the Israel
+Planning Administration's Xplan service: 200A in plan 632-0649806, 10 in plan 625-0866855, and 62
+in plan 420-1456037. Native EPSG:2039 rings are transformed once with the recorded PROJ operation
+Israel 1993 to WGS 84 (2) (0.5 m operation accuracy) and rounded to seven decimals. The service's
+own WGS84 output differs by at most about 0.43 m and is not selected. Planning plots are not
+cadastral surveys, footprints or work extents.
+
+**Texas.** Cipher's August 4 update reports Stingray earthwork, grading, pads and underground
+electrical underway, and Black Pearl Phase II foundations, steel and underground electrical in
+progress. Black Pearl Phase I, delivered in August, is a separate project and is not selected. The
+round15 locator holds are closed by official TxGIO 9-1-1 address points for the exact site
+addresses in primary records:
+- Stingray: 110 SW 9001, Andrews, the Datacenter Facility Site in Cipher's June 15 Form 8-K.
+- Black Pearl: 11786 CR 209, Wink, registered with TCEQ as Black Pearl Data Center, owned by Cipher
+  Black Pearl LLC.
+
+Inverse Web Mercator reproduces each server WGS84 point, so no datum shift is involved. The
+research lanes also located Vantage Frontier and Cipher Barber Lake. Both stay on hold: Frontier's
+only in-window status is a dated photo caption, and Barber Lake's status is mixed with partial
+tenant occupancy.
+
+**Hong Kong.** Range's half-year report says the Sandy Ridge campus steadily advanced infrastructure
+works during the period ending June 30, with delivery forecast in 2028. The report was published on
+August 27, after the reference date; as with the NEXTDC FY26 admissions, its explicit in-window
+June 30 as-of date is selected and publication creates no later observation. The government's March 2
+tender result awards Lot 953 in DD 89 to Range's Hong Kong subsidiary. The Lands Department lot
+boundary from the CSDI Portal, reusable with attribution, is transformed from EPSG:2326 with the
+recorded operation Hong Kong 1980 to WGS 84 (1) (1 m operation accuracy).
+
+**Singapore.** Keppel's July 30 1H 2026 results presentation reports that Keppel DC SGP 9 commenced
+construction; its 2024 REIT filing places SGP 7, SGP 8 and planned SGP 9 at 82 Genting Lane. The
+campus is located by OSM way 1560974456, named Keppel Genting Lane Campus, which contains
+Singapore's official address point for the postal code. OneMap's API terms require registration, so
+that point is a cross-check only and is neither selected nor redistributed. The OSM feature was
+mapped in September; its edit date is provenance only. Operating SGP 7 and SGP 8 are not selected.
+
+Root reviews for [Thane](../sources/research-expansion-200-asia-round41-aws-thane-root-review-2026-09-25.json),
+[Mega D.C.](../sources/research-expansion-200-mea-round41-mega-dc-israel-root-review-2026-09-25.json) and
+[Cipher](../sources/research-expansion-200-americas-round41-cipher-root-review-2026-09-25.json) and
+[Range and Keppel](../sources/research-expansion-200-apac-round41-range-keppel-root-review-2026-09-25.json) record:
+- independent recaptures, which are byte-identical to the research lanes' captures;
+- visual page review;
+- full-geometry and alias screening against all 189 preceding sites and each other;
+- the round41 holds, including AWS Bharat Future City HYD-123, Mega D.C. Beit Shemesh, Google
+  Meitner and Digital Edge BOM.
+
+The [Europe round41 packet](../sources/research-expansion-200-europe-round41-2026-09-25.json) adds no
+admissions: Google Kronstorf has a named OSM construction polygon but only an April groundbreaking as
+dated status, and Microsoft Høje-Taastrup lacks a building-specific dated statement.
+
+Raw documents remain ignored local captures. No roles, capacity, workload, operating model or
+imagery outcome is selected.
+
+Imagery coverage remains 10/200 and the fixed 20-row blind review requiring 19 agreements is
+unfinished. The inherited CGK host-estate locator still needs a versioned correction before a
+verified 200-site completion claim. Expansion-complete and final-publication flags remain false.
+Reproduce or validate:
+
+```sh
+.venv/bin/python scripts/build_expansion_200_draft.py --batch thirty-fifth-reviewed --output-dir /absolute/new/draft-directory
+.venv/bin/python scripts/build_expansion_200_draft.py --batch thirty-fifth-reviewed --validate-only
+```

@@ -1,0 +1,64 @@
+{
+  "schema_version": "expansion-200-mea-round41-mega-dc-israel-root-review-1",
+  "reviewed_at": "2026-09-25",
+  "research_only": true,
+  "accepted_into_core": false,
+  "lifecycle_reference_date": "2026-08-20",
+  "campus_stable_keys": [
+    "curated:israel-mega-dc-mdcil2-masmiyya-site",
+    "curated:israel-mega-dc-mdcil5-idan-hanegev-site",
+    "curated:israel-mega-dc-mdcil1-modiin-site"
+  ],
+  "previous_research": "The frozen v97 inventory carries MDCIL-1 Phase B, MDCIL-2 and MDCIL-4 with stale Q1 2026 status and no geometry. No earlier research packet examined them. The existing MDCIL-1 and MDCIL-2 campus and project stable keys are reused; MDCIL-5 receives new keys.",
+  "review_outcome": "Three new physical campuses in Israel, a country not previously represented. Each pairs the issuer's June 30 under-construction classification with an approved statutory-plan plot that the issuer's own filings identify.",
+  "lifecycle_review": {
+    "status_source": "Mega Or Holdings Q2 2026 periodic report, 101 pages, sha256 c436004dc3b6e92c237d8b5e26e52cad8e7928359dd772f65628d1fbbe56b993",
+    "source_date": "2026-06-30",
+    "publication": "Approved August 9 and published August 10, 2026, as stated on the issuer's investors page.",
+    "classification_test": "The report's page 12 table of data centres under construction (בהקמה) is distinct from page 13's land held for future data-centre development, which lists MDCIL-5 Phase B, MDCIL-6, MDCIL-7 and MDCIL-8. Selection relies on that issuer-level distinction plus project-specific corroboration, not on the heading alone.",
+    "mdcil2": "Listed under construction; note 4(a) says the Masmiyya facility Mega D.C. is building is due for client delivery in Q3 2026. FY2025 records construction begun and 13% complete at year-end 2025.",
+    "mdcil5": "Listed under construction and separately appraised as a data centre under construction at June 30; the Idan HaNegev facility is due in halves in Q4 2027 and Q1 2028. The park operator's undated page, with a May 20 screenshot, reports works began. FY2025 recorded no construction progress, so physical works are dated to 2026.",
+    "mdcil1": "Phase B listed under construction while Phase A on plot 62 operates. FY2025 says Phase B construction works were continuing at its publication.",
+    "portfolio_caution": "Other rows in the same table, such as MDCIL-3 Haifa, Mevo Carmel and MDCIL-4 Phase B, lacked project-specific physical corroboration and are not selected.",
+    "successor_review": "The August 9 report describes all three deliveries as future. The issuer's website and captured August reporting show no delivery, completion or cancellation through August 20; a captured August 13 Calcalist Tech article still describes Masmiyya as being built. TASE Maya immediate reports block automated capture and were not bypassed, so this is a bounded, not exhaustive, successor review.",
+    "scope": "Broad project under_construction only. MW IT figures, customer allocations and delivery forecasts are identity or forecast context and are not normalized."
+  },
+  "identity_review": {
+    "mdcil2": "FY2025 binds MDCIL-2 to plot 200A, block 2604 parcel 12, about 19.9 dunam, with matching cumulative cost; the Q2 table names MDCIL-2's location as Yoav plot 200A. Xplan plot 200A of approved plan 632-0649806 has 19,860 m2.",
+    "mdcil5": "FY2025 identifies plot 10 of the Idan HaNegev industrial park, about 70 dunam in Bnei Shimon, with the same 185,125 thousand NIS cumulative cost as MDCIL-5 Phase A. Xplan plot 10 of approved plan 625-0866855 has a legal area of 70.1005 dunam. The Xplan jurisdiction field is empty; the park is a joint employment area of Rahat, Bnei Shimon and Lehavim.",
+    "mdcil1": "The Q2 report ties operating Phase A to plot 62 in Modi'in, and FY2025 appraises plot 62 at 14 Tzela HaHar / 17 HaMaayan in the technology park. Xplan plot 62 of approved plan 420-1456037, whose name refers to plot 62 in the Modi'in employment area, is selected; the research lane also reported the same polygon in earlier plan 420-0735944, which is not relied on.",
+    "campus_scope": "Each plot is one physical campus. MDCIL-5 Phase B and later Modi'in phases would be further projects on these campuses, not additional sites. Plot 201 and plot 502 in Yoav are separate issuer landholdings and are not merged with plot 200A."
+  },
+  "independent_geometry_review": {
+    "source": "Israel Planning Administration Xplan MapServer layer 4 (land-use designations), queried by plan number and plot number without credentials.",
+    "recapture": "All three plot queries and plan records were recaptured on September 25 and are byte-identical to the research lane's captures; two needed a separately named second attempt after network-layer failures.",
+    "source_crs": "EPSG:2039 Israel 1993 / Israeli TM Grid, declared in each response.",
+    "transformation": "PROJ 9.8.1 via pyproj 3.8.0, operation 'Inverse of Israeli TM + Israel 1993 to WGS 84 (2)', stated accuracy 0.5 m, allow_ballpark=False; results rounded to seven decimals.",
+    "server_crosscheck": "The same service's outSR=4326 output differs by at most about 0.43 m per vertex; its method is undisclosed and it is not selected.",
+    "native_areas_m2": {"mdcil2": 19860.0, "mdcil5": 70110.81, "mdcil1": 13547.77},
+    "vertex_counts": {"mdcil2": 26, "mdcil5": 36, "mdcil1": 40},
+    "validity": "Each transformed ring passes the draft validator's ring test, and each display anchor passes its point-in-ring test.",
+    "horizontal_uncertainty_metres": null,
+    "uncertainty_caveat": "The service disclaims official status and states no positional accuracy. The plots are planning cells, not surveyed boundaries, footprints or work extents."
+  },
+  "distinctness_review": {
+    "compared_release": "verified_construction_core/2026-08-20-v0.18-draft-thirty-fourth-reviewed",
+    "sites": 189,
+    "geojson_sha256": "ede8718f058653c0c2d220e5941983664bbc21415af1e2360fe7ee71f077c1ef",
+    "full_geometry_intersections": [],
+    "alias_matches": [],
+    "aliases_screened": ["MDCIL", "Mega D.C.", "Mega DC", "Mega Or", "Masmiyya", "Yoav", "Idan HaNegev", "Bnei Shimon", "Modi'in", "Modiin", "Israel"],
+    "nearest_selected_campus": "Telecom Egypt RDH2 Smart Village Campus, about 388-428 km away",
+    "mutual_separation": "MDCIL-2 is about 25 km from MDCIL-1 and about 42 km from MDCIL-5; no two plots intersect."
+  },
+  "round41_holds_preserved": [
+    {"candidate": "Mega D.C. MDCIL-4 Beit Shemesh Phase A", "existing_campus_stable_key": "curated:israel-mega-dc-mdcil4-beit-shemesh-site", "disposition": "hold_exact_plot_locator", "finding": "Physical start is documented (two buildings begun in Q4 2025, building permit in H1 2026, listed under construction at June 30), but no filing names the plot, block or parcel.", "next_step": "The Beit Shemesh building-permit record naming Mega D.C., then the matching Xplan plot."},
+    {"candidate": "Mega D.C. Mevo Carmel / Yokneam powered shell", "disposition": "hold_project_specific_physical_start", "finding": "FY2025 gives block 12818 parcels 3, 12 and 42 (plots 9 and 42), but no source beyond the portfolio table shows physical work."},
+    {"candidate": "Mega D.C. MDCIL-3 Haifa", "disposition": "hold_physical_start_and_plot", "finding": "Contract wording that Mega D.C. is building the facility is not project-specific physical evidence, and no plot is identified."}
+  ],
+  "rights_and_custody": {
+    "raw_captures": "Ignored local files under tmp/research-round41-latam-mea and tmp/research-round41-root. Only compact translated facts, page pointers, hashes, plot attributes and transformed rings are committed.",
+    "licence": "No open licence is asserted for the issuer reports, the park page or the planning GIS; the planning service's as-is, unofficial-information notice is retained."
+  },
+  "separate_unfinished_work": "The inherited CGK host-estate locator still requires a versioned correction before a verified 200-site completion claim."
+}

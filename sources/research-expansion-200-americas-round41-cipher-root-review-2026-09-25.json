@@ -1,0 +1,59 @@
+{
+  "schema_version": "expansion-200-americas-round41-cipher-root-review-1",
+  "reviewed_at": "2026-09-25",
+  "research_only": true,
+  "accepted_into_core": false,
+  "lifecycle_reference_date": "2026-08-20",
+  "campus_stable_keys": [
+    "curated:cipher-digital-stingray-andrews-texas-data-center-campus",
+    "curated:cipher-digital-black-pearl-wink-texas-data-center-campus"
+  ],
+  "previous_research": "sources/research-expansion-200-americas-round15-2026-09-09.json held both campuses after passing their August 4 physical-status gate: Stingray lacked an exact site address or locator, and Black Pearl's address was tied only to an older shop-building permit.",
+  "review_outcome": "Two new physical campuses. Official statewide 9-1-1 address points for the exact site addresses named by primary identity records close both round15 locator holds.",
+  "lifecycle_review": {
+    "source_url": "https://www.globenewswire.com/news-release/2026/08/04/3338166/0/en/cipher-digital-provides-second-quarter-2026-business-update.html",
+    "source_sha256": "e11b4a4092c3d7844d87a421aa1129dd1b18fd4fec50590a8630205a730a05bc",
+    "source_date": "2026-08-04",
+    "stingray": "Earthwork, grading, pad preparation and underground electrical work all underway; deck page 10 matches. Delivery forecast 1H 2027 is not selected.",
+    "black_pearl_phase_ii": "Phase II concrete foundations, building steel and underground electrical in progress; deck page 8 matches. Phase I first capacity delivered in August with rent commenced is a separate, unselected project on the same campus.",
+    "successor_review": "Research-lane review of Cipher's releases from August 4 to August 20 found only an unrelated August 10 statement; no Stingray or Phase II completion or cancellation. Bounded, not exhaustive.",
+    "scope": "Broad under_construction only; no capacity, tenant role, workload or operating model is normalized."
+  },
+  "identity_review": {
+    "stingray": "Cipher's June 15 Form 8-K indenture defines the Stingray Datacenter Facility Site as about 250 acres at 110 SW 9001, Andrews, Texas; the state environmental registry lists STINGRAY at physical location 110 SW 9001, Andrews County. The indenture ZIP 79717 and registry near-ZIP 79714 differ; the match relies on house number, street and county. Round15 had rejected directory use of SW 9001 as a corridor; the issuer's own filing now names the exact address.",
+    "black_pearl": "The state environmental registry lists BLACK PEARL DATA CENTER at 11786 CR 209, Wink, with Cipher Black Pearl LLC as owner and operator under a data-hosting NAICS code. Cipher's deck lists Cipher Black Pearl LLC as an operating entity and its Q2 10-Q describes the 300 MW Black Pearl Facility in Wink. This bridges the address to the data-centre campus, not only an ancillary building.",
+    "campus_scope": "Each address locates one campus. Black Pearl Phase I and Phase II count once; Barber Lake and Cipher's other sites are separate and are not merged."
+  },
+  "independent_geometry_review": {
+    "service": "https://feature.geographic.texas.gov/arcgis/rest/services/Address_Points/stratmap_address_points_48_most_recent/MapServer/0",
+    "recapture": "Root captures on September 25 of both outSR=4326 queries are byte-identical to the research lane's captures; native-CRS queries and the layer metadata were captured separately.",
+    "native_crs": "WKID 102100 / latest WKID 3857 (WGS84 Web Mercator), from the layer metadata and each native response.",
+    "reproduction": "Inverse spherical Web Mercator on a = 6378137 m reproduces the server's WGS84 point to within 1e-12 degrees for both addresses. No datum transformation is involved.",
+    "selected_points_longitude_latitude": {"stingray": [-102.9824436, 32.3720672], "black_pearl": [-103.0669994, 31.6913247]},
+    "address_authority": "Both points carry source CSEC (Commission on State Emergency Communications). TxGIO states each authoritative source has its own placement guideline and that TxGIO does not edit the points.",
+    "black_pearl_crosscheck": "The research lane reported that a separate TCEQ record for the older Black Pearl mining project carries a GPS point about 0.57 km away with no stated datum; it is not selected.",
+    "horizontal_uncertainty_metres": null,
+    "uncertainty_caveat": "Address points are 9-1-1 routing locations, not surveyed campus boundaries, parcels, building footprints or work extents."
+  },
+  "distinctness_review": {
+    "compared_release": "verified_construction_core/2026-08-20-v0.18-draft-thirty-fourth-reviewed",
+    "sites": 189,
+    "geojson_sha256": "ede8718f058653c0c2d220e5941983664bbc21415af1e2360fe7ee71f077c1ef",
+    "full_geometry_intersections": [],
+    "alias_matches": [],
+    "alias_note": "The token 9001 matched only unrelated numeric substrings in three Finnish and Colorado rows; no Cipher, Stingray, Black Pearl, Andrews or Wink match exists.",
+    "nearest_selected_campus": "Core Scientific Pecos Cottonwood Campus: about 121 km from Stingray and 72 km from Black Pearl."
+  },
+  "round41_holds_preserved": [
+    {"candidate": "Cipher Barber Lake, Colorado City", "existing_campus_stable_key": "curated:cipher-digital-barber-lake-colorado-city-texas-data-center-campus", "disposition": "hold_mixed_status_partial_occupancy", "finding": "The August 4 update reports the building progressing toward completion while the tenant has begun beneficial use and partial occupancy. That mixed status is not selected as under_construction without an explicit policy decision."},
+    {"candidate": "Vantage Frontier, Shackelford County", "existing_campus_stable_key": "curated:vantage-frontier-shackelford-campus", "disposition": "hold_status_is_photo_caption", "finding": "The official address point for 175 Private Road 1604 and the TCEQ 'VANTAGE DATA CENTERS TX3' record close the locator. The only in-window status is a dated construction aerial caption on Oracle's page, not a textual construction statement; it needs separate review before admission."},
+    {"candidate": "Google Meitner, Gray County", "disposition": "hold_locator", "finding": "TDLR and TCEQ records bind IP Meitner Land LLC to 8810 Co. Rd. 21, but no official address point or coordinate exists yet."},
+    {"candidate": "Riot Corsicana, IREN Childress Horizons 2-4, Aligned LBB01", "disposition": "hold_in_window_status"},
+    {"candidate": "Fermi Matador; Poolside Horizon; AWS Wharton and Pecos County filings", "disposition": "reject", "finding": "No physical construction statement, a terminated anchor lease, or permit filings without an operator statement."}
+  ],
+  "rights_and_custody": {
+    "raw_captures": "Ignored local files under tmp/research-round41-us-canada and tmp/research-round41-root. Only compact facts, hashes and two address points are committed.",
+    "sec_route": "SEC EDGAR refuses the capture client; the issuer's investor-relations mirrors of the filings were captured instead, without bypass."
+  },
+  "separate_unfinished_work": "The inherited CGK host-estate locator still requires a versioned correction before a verified 200-site completion claim."
+}
