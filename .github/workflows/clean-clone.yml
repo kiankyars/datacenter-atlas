@@ -82,6 +82,7 @@ jobs:
             datacenter_atlas.tests.test_expansion_200_thirty_fourth_reviewed \
             datacenter_atlas.tests.test_expansion_200_thirty_fifth_reviewed \
             datacenter_atlas.tests.test_publication_pair_v32 \
+            datacenter_atlas.tests.test_public_site \
             datacenter_atlas.tests.test_workspace_shim
       - name: Validate the frozen expansion research inventory
         working-directory: datacenter_atlas
@@ -199,6 +200,13 @@ jobs:
       - name: Validate thirty-fifth reviewed expansion draft
         working-directory: datacenter_atlas
         run: .venv/bin/python scripts/build_expansion_200_draft.py --batch thirty-fifth-reviewed --validate-only
+      - name: Build the public site
+        working-directory: datacenter_atlas
+        run: |
+          site_dir="$RUNNER_TEMP/public-site"
+          .venv/bin/python scripts/build_public_site.py --output "$site_dir" --source-commit "$GITHUB_SHA"
+          test -s "$site_dir/index.html"
+          test -s "$site_dir/api/v1/index.json"
       - name: Lint the clean-clone surface
         working-directory: datacenter_atlas
         run: |
@@ -248,11 +256,14 @@ jobs:
             datacenter_atlas/expansion_200_thirty_fourth_reviewed.py \
             datacenter_atlas/expansion_200_thirty_fifth_reviewed.py \
             datacenter_atlas/publication_pair_v32.py \
+            datacenter_atlas/public_site.py \
             europe_latam_official_discovery_20260721.py \
             scripts/build_verified_construction_core.py \
             scripts/generate_verified_construction_core_v017_inputs.py \
             scripts/build_expansion_200_inventory.py \
             scripts/build_expansion_200_draft.py \
+            scripts/build_public_site.py \
+            site/e2e/test_site_e2e.py \
             tests/test_models.py \
             tests/test_database.py \
             tests/test_timestamp_boundaries.py \
@@ -305,4 +316,5 @@ jobs:
             tests/test_expansion_200_thirty_fourth_reviewed.py \
             tests/test_expansion_200_thirty_fifth_reviewed.py \
             tests/test_publication_pair_v32.py \
+            tests/test_public_site.py \
             tests/test_workspace_shim.py

@@ -1,0 +1,87 @@
+name: Data correction
+description: Report a wrong, missing or outdated value for a site, project or evidence row.
+title: "Correction: "
+labels:
+  - data-correction
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping keep the atlas accurate. The **Report a correction** link on every
+        [site page](https://kiankyars.github.io/datacenter-atlas/sites/) opens this form with the
+        site ID filled in.
+
+        Published dataset versions are frozen. An accepted correction is applied, and documented,
+        in a later checkpoint; earlier versions are never silently rewritten.
+
+        A status is the last authoritative observation on or before the dataset's lifecycle
+        reference date, not a live status. News that a project finished, paused or was cancelled
+        after that date is still useful: it is checked before the next checkpoint.
+  - type: input
+    id: site_id
+    attributes:
+      label: Site ID
+      description: The `site_id` shown on the site page and in `sites.csv`.
+      placeholder: vcc-site-3c1f872aa59b74b065ea
+    validations:
+      required: true
+  - type: dropdown
+    id: field
+    attributes:
+      label: What needs correcting?
+      description: Choose every part of the record that is affected.
+      multiple: true
+      options:
+        - Physical status or status date
+        - Project finished, paused or cancelled
+        - Location, locator or geometry
+        - Site or project name, or identity
+        - Country
+        - Duplicate site, or project grouped under the wrong site
+        - Evidence row (title, URL, publisher, date or licence)
+        - Power, roles, workload or operating model
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem and proposed correction
+      description: >-
+        What the record says now, what it should say, and which project and column it concerns.
+        Column names are listed in the data dictionary at
+        https://kiankyars.github.io/datacenter-atlas/data/dictionary/.
+      placeholder: |
+        Project: ...
+        Column: last_observed_physical_status
+        Currently: ...
+        Should be: ...
+    validations:
+      required: true
+  - type: input
+    id: evidence_url
+    attributes:
+      label: Evidence URL
+      description: >-
+        A public source that supports the correction. Primary sources (company disclosures,
+        government records, regulatory filings) are strongly preferred.
+      placeholder: https://
+    validations:
+      required: true
+  - type: input
+    id: evidence_date
+    attributes:
+      label: Evidence date
+      description: >-
+        The date the source was published, or the date the facts it reports apply to
+        (YYYY-MM-DD). A later page edit or retrieval date is not an observation date.
+      placeholder: YYYY-MM-DD
+    validations:
+      required: false
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before you submit
+      options:
+        - label: The evidence is publicly accessible, and I have not included confidential documents or personal data.
+          required: true

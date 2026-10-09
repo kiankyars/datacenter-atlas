@@ -1,0 +1,96 @@
+name: Suggest a new site
+description: Suggest a data-centre construction project that is not in the atlas yet.
+title: "New site: "
+labels:
+  - new-site
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Suggestions go into a research queue and are reviewed against the
+        [selection rules](https://kiankyars.github.io/datacenter-atlas/methodology/#selection).
+        Nothing is added automatically, and a site may be held until its evidence is sufficient.
+        A site needs:
+
+        - **Dated evidence of physical work.** A primary public source stating that construction
+          is under way on the named project (site preparation, civil works, foundations, shell,
+          MEP/electrical, general construction or commissioning), with the date it applies to.
+          Announcements, land purchases, permits, grid-connection requests, groundbreaking plans
+          and expected opening dates do not qualify on their own.
+        - **A precise locator.** An official parcel or boundary, an official address point, a
+          coordinate published by the developer or a public authority, or a named map feature. A
+          city centre, head-office address or industrial-zone centroid is not enough.
+        - **A new physical site.** Another phase or building on a campus that is already listed
+          does not add a site. Please search the
+          [site list](https://kiankyars.github.io/datacenter-atlas/sites/) first.
+  - type: input
+    id: name
+    attributes:
+      label: Site or project name
+      placeholder: Example Data Centre Campus, Building 2
+    validations:
+      required: true
+  - type: textarea
+    id: location
+    attributes:
+      label: Location
+      description: >-
+        Country, city and the most precise location you have: street address, parcel or lot
+        number, or coordinates together with where they come from.
+    validations:
+      required: true
+  - type: input
+    id: operator
+    attributes:
+      label: Operator or developer
+      description: Who is building or will operate the site, if a source says so.
+    validations:
+      required: false
+  - type: input
+    id: construction_evidence_url
+    attributes:
+      label: Construction evidence URL
+      description: >-
+        A primary public source (company disclosure, government record, regulatory filing)
+        stating that physical work on this project is in progress.
+      placeholder: https://
+    validations:
+      required: true
+  - type: input
+    id: construction_evidence_date
+    attributes:
+      label: Construction evidence date
+      description: >-
+        The date the source says the work was observed or reported (YYYY-MM-DD). A later page
+        edit or retrieval date does not count.
+      placeholder: YYYY-MM-DD
+    validations:
+      required: true
+  - type: textarea
+    id: locator_evidence
+    attributes:
+      label: Locator evidence
+      description: >-
+        URL of the source that places the project at a parcel, boundary, address point or
+        coordinate, and what exactly it locates: the building, the project or the whole campus.
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Anything else
+      description: >-
+        Other phases on the same campus, aliases, capacity statements with their exact wording
+        and scope, later completion or cancellation news, or reasons the site might already be
+        listed under another name.
+    validations:
+      required: false
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before you submit
+      options:
+        - label: I searched the site list and this physical site is not already in the atlas.
+          required: true
+        - label: The evidence is publicly accessible, and I have not included confidential documents or personal data.
+          required: true

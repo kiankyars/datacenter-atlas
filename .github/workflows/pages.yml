@@ -1,0 +1,156 @@
+name: Public site
+
+# Builds the static site (HTML, JSON API, downloads) from the tracked datasets, runs its unit,
+# JavaScript and browser tests against a copy served under the /datacenter-atlas/ sub-path (as on
+# GitHub Pages), and deploys it to GitHub Pages on pushes to main.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  # One run at a time per ref. A newer push to a pull request cancels its older run; runs on main
+  # are never cancelled, and the deploy job serialises deployments in the "pages" group.
+  group: public-site-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+defaults:
+  run:
+    shell: bash
+
+env:
+  PYTHONDONTWRITEBYTECODE: "1"
+  PIP_DISABLE_PIP_VERSION_CHECK: "1"
+
+jobs:
+  build:
+    # Pinned instead of ubuntu-latest so the image, and the system packages that
+    # `playwright install --with-deps` adds to it, change only when this file does.
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    permissions:
+      contents: read
+      pages: read # actions/configure-pages reads the Pages settings
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: datacenter_atlas
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      # The builder and its unit tests are standard-library only: no install step is needed.
+      - name: Build the public site
+        run: >-
+          python datacenter_atlas/scripts/build_public_site.py
+          --output _site
+          --base-url https://kiankyars.github.io/datacenter-atlas/
+          --source-commit "$GITHUB_SHA"
+      - name: Run the public-site unit tests
+        run: python -m unittest -v datacenter_atlas.tests.test_public_site
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Run the JavaScript unit tests
+        run: |
+          # An explicit file list: Node 22 treats --test arguments as glob patterns, not directories.
+          # The frontend ships these tests, so finding none means they were not committed (the
+          # default-deny .gitignore must whitelist site/**/*.mjs); fail instead of skipping silently.
+          js_tests=()
+          while IFS= read -r test_file; do
+            js_tests+=("$test_file")
+          done < <(
+            find datacenter_atlas/site/js-tests -type f \
+              \( -name '*.test.mjs' -o -name '*.test.js' -o -name '*.test.cjs' \) 2>/dev/null | LC_ALL=C sort
+          )
+          if [ "${#js_tests[@]}" -eq 0 ]; then
+            echo "::error::no *.test.mjs files in site/js-tests; check that .gitignore tracks site/**/*.mjs"
+            exit 1
+          fi
+          node --test "${js_tests[@]}"
+      # The Pages artifact is captured before any third-party browser tooling is installed, so
+      # nothing the browser tests download can alter what gets deployed. The deploy job still
+      # waits for this whole job, browser tests included, to pass.
+      - name: Configure GitHub Pages
+        id: pages
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: actions/configure-pages@v5
+      - name: Compare the Pages URL with the built base URL
+        if: steps.pages.outcome == 'success'
+        env:
+          PAGES_BASE_URL: ${{ steps.pages.outputs.base_url }}
+        run: |
+          if [ "${PAGES_BASE_URL%/}/" != "https://kiankyars.github.io/datacenter-atlas/" ]; then
+            echo "::warning::GitHub Pages serves ${PAGES_BASE_URL} but the site was built for https://kiankyars.github.io/datacenter-atlas/; update --base-url here and base_url in site/config.json."
+          fi
+      - name: Upload the Pages artifact
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - name: Install the browser-test tooling
+        timeout-minutes: 10
+        run: |
+          python -m pip install --require-hashes --only-binary :all: \
+            -r datacenter_atlas/site/e2e/requirements.txt
+          python -m playwright install --with-deps chromium
+      - name: Run the browser tests against the site served under /datacenter-atlas/
+        timeout-minutes: 15
+        env:
+          ATLAS_BASE_URL: http://127.0.0.1:8000/datacenter-atlas/
+          ATLAS_E2E_REQUIRED: "1"
+          ATLAS_SCREENSHOT_DIR: site-screenshots
+        run: |
+          rm -rf serve
+          mkdir serve
+          cp -R _site serve/datacenter-atlas
+          python -m http.server 8000 --bind 127.0.0.1 --directory serve > http-server.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          for attempt in $(seq 1 50); do
+            if curl --silent --fail --max-time 5 --output /dev/null "${ATLAS_BASE_URL}api/v1/index.json"; then
+              break
+            fi
+            if [ "$attempt" -eq 50 ]; then
+              echo "::error::the local web server did not start"
+              cat http-server.log
+              exit 1
+            fi
+            sleep 0.2
+          done
+          python -m pytest datacenter_atlas/site/e2e -q -rs -p no:cacheprovider --durations=10
+      - name: Show the end of the web server log
+        if: failure()
+        run: tail -n 200 http-server.log || true
+      - name: Upload the screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-screenshots
+          path: site-screenshots/
+          if-no-files-found: warn
+          retention-days: 14
+
+  deploy:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    permissions:
+      pages: write # create the Pages deployment
+      id-token: write # prove the deployment comes from this workflow
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

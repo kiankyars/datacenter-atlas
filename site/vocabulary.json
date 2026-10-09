@@ -1,0 +1,206 @@
+{
+  "format": "datacenter-atlas-site-vocabulary-v1",
+  "note": "Labels and descriptions for coded values in the Data Center Atlas datasets. Each vocabulary maps a code to {label, description}. Codes found in a dataset but missing here fall back to a title-cased code. Statuses describe the last observed physical status on the status date, never a current state.",
+  "statuses": {
+    "lead": {"label": "Lead", "description": "Unverified lead about a possible project. Research pipeline status only; never used for selected construction projects."},
+    "candidate": {"label": "Candidate", "description": "Candidate project under research. Research pipeline status only; no construction claim."},
+    "announced": {"label": "Announced", "description": "The project was announced. No physical work is claimed."},
+    "proposed": {"label": "Proposed", "description": "The project was proposed or applied for. No physical work is claimed."},
+    "site_control": {"label": "Site control", "description": "The developer was reported to control the site, for example by purchase or lease. No physical work is claimed."},
+    "permitting": {"label": "Permitting", "description": "Permits were being sought. No physical work is claimed."},
+    "permitted": {"label": "Permitted", "description": "Permits were granted. No physical work is claimed."},
+    "site_preparation": {"label": "Site preparation", "description": "A dated authoritative source reported site preparation, such as clearing, grading or enabling works, as of the status date."},
+    "clearing": {"label": "Clearing", "description": "A dated source reported land clearing as of the status date."},
+    "civil_works": {"label": "Civil works", "description": "A dated authoritative source reported civil works, such as earthworks, drainage, roads or utility connections, as of the status date."},
+    "foundations": {"label": "Foundations", "description": "A dated authoritative source reported foundation work as of the status date."},
+    "shell": {"label": "Shell", "description": "A dated authoritative source reported work on the building shell or structure as of the status date."},
+    "mep_electrical": {"label": "MEP / electrical", "description": "A dated authoritative source reported mechanical, electrical and plumbing (MEP) or electrical installation work as of the status date."},
+    "under_construction": {"label": "Under construction", "description": "A dated authoritative source reported that construction was under way, without a more specific stage, as of the status date."},
+    "commissioning": {"label": "Commissioning", "description": "A dated authoritative source reported commissioning or testing before operation as of the status date. Not a claim that the facility is operating."},
+    "operational": {"label": "Operational", "description": "The facility was reported to be operating. Outside the construction-core selection."},
+    "expansion": {"label": "Expansion", "description": "A dated authoritative source reported physical expansion work at an existing facility as of the status date."},
+    "paused": {"label": "Paused", "description": "Work was reported as paused."},
+    "cancelled": {"label": "Cancelled", "description": "The project was reported as cancelled."},
+    "repurposed": {"label": "Repurposed", "description": "The site or building was reported as repurposed for another use."},
+    "decommissioned": {"label": "Decommissioned", "description": "The facility was reported as decommissioned."},
+    "demolished": {"label": "Demolished", "description": "The facility was reported as demolished."},
+    "unknown": {"label": "Unknown", "description": "The status is not established."}
+  },
+  "status_methods": {
+    "authoritative_physical_status_update": {"label": "Authoritative status update", "description": "A dated report from an authoritative source (developer, operator, contractor or government) on the project's physical construction status."},
+    "authoritative_construction_start": {"label": "Authoritative construction start", "description": "A dated report from an authoritative source that construction started. Later progress is not implied."},
+    "government_record": {"label": "Government record", "description": "A dated government record, such as a permit, inspection or registry entry, documenting the physical status."},
+    "physical_observation": {"label": "Physical observation", "description": "A dated, documented observation of physical work at the site."}
+  },
+  "geometry_use_scopes": {
+    "official_boundary": {"label": "Official boundary", "description": "An official parcel or surveyed boundary of the project site from an official source. It is a legal or permit boundary, not a building footprint or the extent of construction."},
+    "campus_locator": {"label": "Campus locator", "description": "Geometry that locates the parent campus. It is not the project's footprint and does not show where on the campus work is happening."},
+    "project_locator": {"label": "Project locator", "description": "Geometry that locates the project, such as a source-published project point. It is not a footprint or a surveyed boundary."},
+    "reviewed_site_locator": {"label": "Reviewed site locator", "description": "A reviewed point or shape that locates the physical site. It is not a footprint or a surveyed boundary."}
+  },
+  "geometry_authority_classes": {
+    "official_source": {"label": "Official source", "description": "Published by a government authority or by a first-party source such as the developer or operator."},
+    "community_source": {"label": "Community source", "description": "Taken from a community-maintained source, such as a named OpenStreetMap feature. Never treated as an official boundary."},
+    "community_mapped": {"label": "Community mapped", "description": "Contributor-mapped geometry, such as an OpenStreetMap polygon, accepted only as a locator. Never treated as an official boundary."}
+  },
+  "verification_postures": {
+    "recent_authoritative_physical_observation_plus_reviewed_site_locator": {"label": "Recent authoritative status + reviewed locator", "description": "A dated authoritative physical-status observation inside the status window, plus a reviewed locator. Not independent, imagery-based or on-site verification."},
+    "recent_authoritative_physical_observation_plus_official_boundary": {"label": "Recent authoritative status + official boundary", "description": "A dated authoritative physical-status observation inside the status window, plus an official boundary. Not independent, imagery-based or on-site verification."}
+  },
+  "power_metrics": {
+    "critical_it_mw": {"label": "Critical IT load", "unit": "MW", "description": "Power available to IT equipment for the project scope at the stated stage. A planned or design value is not installed or operating capacity."},
+    "gross_facility_mw": {"label": "Gross facility power", "unit": "MW", "description": "Total facility power, including cooling and other loads, for the project scope at the stated stage."},
+    "grid_connection_mw": {"label": "Grid connection", "unit": "MW", "description": "Grid connection capacity for the project scope at the stated stage, for example requested, contracted or planned."},
+    "generation_nameplate_mw": {"label": "Generation nameplate", "unit": "MW", "description": "Nameplate capacity of on-site or dedicated generation at the stated stage."},
+    "annual_energy_mwh": {"label": "Annual energy", "unit": "MWh/year", "description": "Annual energy for the project scope. Published only from scoped observations; never estimated from capacity."},
+    "pue": {"label": "PUE", "unit": "ratio", "description": "Power usage effectiveness (total facility energy divided by IT energy). A design value is not measured performance."}
+  },
+  "power_stages": {
+    "requested": {"label": "Requested", "description": "Capacity requested from a utility or authority; not granted or built."},
+    "contracted": {"label": "Contracted", "description": "Capacity covered by an agreement such as a grid or power-purchase contract; not necessarily installed."},
+    "design": {"label": "Design", "description": "Design capacity or value; not installed, energized or operating."},
+    "planned": {"label": "Planned", "description": "Planned capacity for the project scope; not installed, energized or operating."},
+    "installed": {"label": "Installed", "description": "Reported as installed; not necessarily energized or in use."},
+    "energized": {"label": "Energized", "description": "Reported as energized."},
+    "operational": {"label": "Operational", "description": "Reported as in operation."},
+    "measured": {"label": "Measured", "description": "A measured value."},
+    "forecast": {"label": "Forecast", "description": "A forecast value."},
+    "unknown": {"label": "Unknown stage", "description": "The stage of the reported value is not established."}
+  },
+  "estimate_methods": {
+    "reported": {"label": "Reported", "description": "The value is reported by the source."},
+    "calculated": {"label": "Calculated", "description": "Calculated from reported inputs."},
+    "permit_inference": {"label": "Permit inference", "description": "Inferred from permit documents."},
+    "equipment_inference": {"label": "Equipment inference", "description": "Inferred from equipment records, such as generator or transformer orders."},
+    "imagery_inference": {"label": "Imagery inference", "description": "Inferred from imagery."},
+    "modeled": {"label": "Modeled", "description": "Produced by a model."},
+    "unknown": {"label": "Unknown method", "description": "The method is not established."}
+  },
+  "evidence_kinds": {
+    "government_record": {"label": "Government record", "description": "A record published by a government body, such as a permit, planning, cadastral or registry record."},
+    "company_disclosure": {"label": "Company disclosure", "description": "A publication by the developer, operator, contractor or another company involved, such as a press release, project page or report."},
+    "utility_record": {"label": "Utility record", "description": "A record or announcement from a utility."},
+    "equipment_order": {"label": "Equipment order", "description": "An equipment order or procurement record."},
+    "satellite_imagery": {"label": "Satellite imagery", "description": "A satellite image record."},
+    "openstreetmap": {"label": "OpenStreetMap", "description": "An OpenStreetMap object (© OpenStreetMap contributors, ODbL 1.0)."},
+    "third_party_dataset": {"label": "Third-party dataset", "description": "A record from a third-party dataset."},
+    "news": {"label": "News", "description": "A news report."},
+    "other": {"label": "Other", "description": "Another kind of source, such as a technical specification used for coordinate handling."},
+    "commercial_directory_record": {"label": "Commercial directory record", "description": "An entry in a commercial data-centre directory."},
+    "company_facility_page": {"label": "Company facility page", "description": "A facility page published by the operator or developer."},
+    "company_facility_specification": {"label": "Company facility specification", "description": "A facility specification published by the operator or developer."},
+    "government_address_register": {"label": "Government address register", "description": "An entry in an official address register."},
+    "government_cadastral_api": {"label": "Government cadastral API", "description": "A record from an official cadastral (property) API."},
+    "government_cadastral_open_data": {"label": "Government cadastral open data", "description": "A record from official open cadastral data."},
+    "government_coordinate_transformation": {"label": "Government coordinate transformation", "description": "A result from an official coordinate transformation service."},
+    "government_event_project_locator": {"label": "Government event project locator", "description": "A project location published with an official government event notice."},
+    "government_municipal_project_map": {"label": "Government municipal project map", "description": "A municipal project map or project page."},
+    "government_permit": {"label": "Government permit", "description": "A permit decision published by a government authority."},
+    "government_planning_record": {"label": "Government planning record", "description": "An official planning document or record."},
+    "government_registry": {"label": "Government registry", "description": "An entry in an official registry or facilities list."},
+    "government_statistical_boundary": {"label": "Government statistical boundary", "description": "An official statistical-area boundary. It is not a site or parcel boundary."},
+    "open_dataset": {"label": "Open dataset", "description": "A record from an open dataset, such as OpenStreetMap edit history."},
+    "open_map": {"label": "Open map", "description": "An object from an open map such as OpenStreetMap."},
+    "open_map_geometry": {"label": "Open map geometry", "description": "Geometry from an open map such as OpenStreetMap."},
+    "open_map_record": {"label": "Open map record", "description": "A full record from an open map, such as an OpenStreetMap way with its nodes."},
+    "regulatory_filing": {"label": "Regulatory filing", "description": "A regulatory filing, such as a securities filing."}
+  },
+  "evidence_roles": {
+    "physical_status": {"label": "Physical status", "description": "Source of the project's last observed physical status."},
+    "geometry": {"label": "Geometry", "description": "Source of the published locator or boundary geometry."},
+    "context:geometry_identity": {"label": "Geometry identity context", "description": "Context used to tie the geometry to the named site. Not a status source."},
+    "context:site_distinctness": {"label": "Site distinctness context", "description": "Context used to establish that the site is distinct from the other sites in the checkpoint."},
+    "context:source_location_identity": {"label": "Source location context", "description": "Context tying the source's stated location to the site."},
+    "context:campus_address_identity": {"label": "Campus address context", "description": "Context tying a published address to the campus."},
+    "context:project_context": {"label": "Project context", "description": "Background context for the project. Creates no claim."},
+    "context:project_and_campus_identity": {"label": "Project and campus identity context", "description": "Context tying the project to its parent campus."},
+    "operating_model": {"label": "Operating model", "description": "Source of the published operating model."},
+    "workload": {"label": "Workload", "description": "Source of a published workload classification."},
+    "workload_scope:intended": {"label": "Intended workload", "description": "Supports a workload classification scoped as intended, not operational."},
+    "workload_scope:operational": {"label": "Operational workload", "description": "Supports a workload classification scoped as operational."},
+    "workload_scope:unknown": {"label": "Workload scope unknown", "description": "Supports a workload classification whose deployment scope is not established."},
+    "role:operator": {"label": "Operator claim", "description": "Supports an operator role claim."},
+    "role:owner": {"label": "Owner claim", "description": "Supports an owner role claim."},
+    "role:customer": {"label": "Customer claim", "description": "Supports a customer role claim."},
+    "role:tenant": {"label": "Tenant claim", "description": "Supports a tenant role claim."},
+    "role:user": {"label": "User claim", "description": "Supports a user role claim."},
+    "typed_metric:critical_it_mw": {"label": "Critical IT load observation", "description": "Supports a typed critical IT load observation."},
+    "typed_metric:gross_facility_mw": {"label": "Gross facility power observation", "description": "Supports a typed gross facility power observation."},
+    "typed_metric:grid_connection_mw": {"label": "Grid connection observation", "description": "Supports a typed grid connection observation."},
+    "typed_metric:generation_nameplate_mw": {"label": "Generation nameplate observation", "description": "Supports a typed generation nameplate observation."},
+    "typed_metric:annual_energy_mwh": {"label": "Annual energy observation", "description": "Supports a typed annual energy observation."},
+    "typed_metric:pue": {"label": "PUE observation", "description": "Supports a typed power usage effectiveness observation."}
+  },
+  "relationship_scopes": {
+    "current": {"label": "Current", "description": "The relationship is reported as current."},
+    "intended": {"label": "Intended", "description": "The relationship is reported as planned or intended; it is not necessarily in effect."},
+    "unknown": {"label": "Unknown scope", "description": "Whether the relationship is current or intended is not established."}
+  },
+  "workload_deployment_scopes": {
+    "intended": {"label": "Intended", "description": "The workload is reported as intended or planned. Not proof that it runs at the site."},
+    "operational": {"label": "Operational", "description": "The workload is reported as running at the site."},
+    "unknown": {"label": "Unknown scope", "description": "Whether the workload is intended or operational is not established."}
+  },
+  "party_roles": {
+    "operator": {"label": "Operator", "description": "The party that operates, or is to operate, the facility."},
+    "owner": {"label": "Owner", "description": "The party that owns, or is to own, the facility."},
+    "customer": {"label": "Customer", "description": "A customer of the facility or project."},
+    "tenant": {"label": "Tenant", "description": "A tenant of the facility."},
+    "user": {"label": "User", "description": "A user of the facility's capacity."}
+  },
+  "workloads": {
+    "ai_specialized_unspecified": {"label": "AI (unspecified)", "description": "Reported as AI-specialized without a split between training and inference."},
+    "ai_training": {"label": "AI training", "description": "AI model training."},
+    "ai_inference": {"label": "AI inference", "description": "AI inference."},
+    "hpc": {"label": "HPC", "description": "High-performance computing."},
+    "general_cloud": {"label": "General cloud", "description": "General-purpose cloud services."},
+    "enterprise_it": {"label": "Enterprise IT", "description": "Enterprise IT workloads."},
+    "content_delivery": {"label": "Content delivery", "description": "Content delivery."},
+    "crypto_mining": {"label": "Crypto mining", "description": "Cryptocurrency mining."},
+    "mixed": {"label": "Mixed", "description": "A mix of workloads."},
+    "unknown": {"label": "Unknown workload", "description": "The workload is not established."}
+  },
+  "workload_methods": {
+    "company_disclosure": {"label": "Company disclosure", "description": "Classification taken from a company disclosure."},
+    "government_record": {"label": "Government record", "description": "Classification taken from a government record."}
+  },
+  "operating_models": {
+    "hyperscaler": {"label": "Hyperscaler", "description": "Built or used by a hyperscale cloud provider."},
+    "hyperscale_self_build": {"label": "Hyperscale self-build", "description": "Built by the hyperscale provider that will use it."},
+    "hyperscale_lease": {"label": "Hyperscale lease", "description": "Built by a developer for lease to a hyperscale provider."},
+    "colocation": {"label": "Colocation", "description": "Space, power and cooling offered to customers."},
+    "wholesale_colocation": {"label": "Wholesale colocation", "description": "Colocation sold in large blocks to few customers."},
+    "retail_colocation": {"label": "Retail colocation", "description": "Colocation sold in smaller units to many customers."},
+    "neocloud": {"label": "Neocloud", "description": "Operated by a specialized GPU or AI cloud provider."},
+    "enterprise_private": {"label": "Enterprise private", "description": "Built for a single enterprise's own use."},
+    "government_research": {"label": "Government research", "description": "Government or research facility."},
+    "sovereign_research": {"label": "Sovereign research", "description": "National or sovereign research computing facility."},
+    "edge": {"label": "Edge", "description": "Edge data centre."},
+    "telecom_edge": {"label": "Telecom edge", "description": "Telecom edge facility."},
+    "unknown": {"label": "Unknown", "description": "The operating model is not established by the selected evidence."}
+  },
+  "development_types": {
+    "greenfield": {"label": "Greenfield", "description": "New development on an undeveloped site."},
+    "expansion": {"label": "Expansion", "description": "Expansion of an existing facility or campus."},
+    "retrofit": {"label": "Retrofit", "description": "Conversion or refit of an existing building."},
+    "unknown": {"label": "Unknown", "description": "The selected evidence does not establish the development type."}
+  },
+  "geometry_source_entity_kinds": {
+    "campus": {"label": "Campus", "description": "The source geometry describes the parent campus."},
+    "facility": {"label": "Facility", "description": "The source geometry describes a facility on the campus."},
+    "building": {"label": "Building", "description": "The source geometry describes a building."},
+    "project": {"label": "Project", "description": "The source geometry describes the project itself."},
+    "address_area": {"label": "Address area", "description": "The source geometry describes an address or statistical area, not the site itself."}
+  },
+  "release_gates": {
+    "site_count": {"label": "Site count", "description": "Physical sites in the checkpoint compared with the target."},
+    "additional_site_count": {"label": "Additional sites", "description": "Sites added beyond the frozen baseline preview compared with the target."},
+    "country_count": {"label": "Countries", "description": "Countries represented compared with the minimum."},
+    "non_us_site_count": {"label": "Non-US sites", "description": "Sites outside the United States compared with the minimum."},
+    "maximum_single_country_share": {"label": "Largest country share", "description": "Share of sites in the most represented country compared with the maximum allowed."},
+    "imagery_outcomes_complete": {"label": "Imagery outcomes", "description": "Projects with a recorded imagery review outcome compared with all projects."},
+    "blind_review": {"label": "Blind review", "description": "Independent blind re-review of a sample of projects: sample size and agreements."},
+    "clean_clone_rebuild": {"label": "Clean-clone rebuild", "description": "Whether the checkpoint has been rebuilt byte-for-byte from a clean public clone."},
+    "publication_authorized": {"label": "Publication authorized", "description": "Whether the checkpoint is authorized for final publication."}
+  }
+}

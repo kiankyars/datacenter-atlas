@@ -1,0 +1,505 @@
+// Unit tests for site/static/assets/atlas-core.js (run: node --test site/js-tests/).
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { loadCore, parseCsv } from './csv-helper.mjs';
+
+const Core = loadCore();
+
+function feature(props, geometry) {
+  return {
+    type: 'Feature',
+    id: props.site_id,
+    geometry: geometry || { type: 'Point', coordinates: [props.longitude, props.latitude] },
+    properties: props
+  };
+}
+
+function baseProps(overrides) {
+  return Object.assign({
+    site_id: 'vcc-site-a',
+    name: 'Alpha Campus',
+    country: 'Germany',
+    country_iso_a2: 'DE',
+    latitude: 50.1,
+    longitude: 8.6,
+    geometry_type: 'Point',
+    official_boundary: false,
+    locator_scopes: ['campus_locator'],
+    statuses: ['under_construction'],
+    newest_status_as_of: '2026-06-01',
+    oldest_status_as_of: '2026-06-01',
+    project_count: 1,
+    projects: [{ project_id: 'p-a', name: 'Alpha Phase 1', status: 'under_construction', status_as_of: '2026-06-01' }],
+    status_publishers: ['Alpha GmbH'],
+    power_observations: [],
+    verification_posture: 'recent_authoritative_physical_observation_plus_reviewed_site_locator',
+    independent_imagery_verification: false,
+    url: 'https://example.org/atlas/sites/vcc-site-a/',
+    api_url: 'https://example.org/atlas/api/v1/sites/vcc-site-a.json'
+  }, overrides || {});
+}
+
+const square = {
+  type: 'Polygon',
+  coordinates: [[[10, 50], [10.01, 50], [10.01, 50.01], [10, 50.01], [10, 50]]]
+};
+
+function fixtureSites() {
+  return Core.prepareSites({
+    type: 'FeatureCollection',
+    features: [
+      feature(baseProps()),
+      feature(baseProps({
+        site_id: 'vcc-site-b',
+        name: 'Mäntsälä Data Centre',
+        country: 'Finland',
+        country_iso_a2: 'FI',
+        latitude: 60.63,
+        longitude: 25.32,
+        statuses: ['site_preparation'],
+        newest_status_as_of: '2026-07-15',
+        oldest_status_as_of: '2026-07-15',
+        projects: [{ project_id: 'p-b', name: 'Verne Mäntsälä first 70 MW', status: 'site_preparation', status_as_of: '2026-07-15' }],
+        status_publishers: ['Verne'],
+        power_observations: [{ project_id: 'p-b', metric: 'critical_it_mw', stage: 'planned', low: 70, base: 70, high: 70, unit: 'MW', as_of_date: '2026-07-15' }]
+      })),
+      feature(baseProps({
+        site_id: 'vcc-site-c',
+        name: 'Jakarta Campus',
+        country: 'Indonesia',
+        country_iso_a2: 'ID',
+        latitude: 50.005,
+        longitude: 10.005,
+        geometry_type: 'Polygon',
+        official_boundary: true,
+        statuses: ['shell', 'under_construction'],
+        newest_status_as_of: '2026-08-10',
+        oldest_status_as_of: '2026-05-26',
+        project_count: 3,
+        projects: [
+          { project_id: 'p-c1', name: 'Jakarta Phase 1', status: 'under_construction', status_as_of: '2026-05-26' },
+          { project_id: 'p-c2', name: 'Jakarta Phase 2', status: 'shell', status_as_of: '2026-08-10' },
+          { project_id: 'p-c3', name: 'Jakarta Phase 3', status: 'under_construction', status_as_of: '2026-08-10' }
+        ],
+        status_publishers: ['STT GDC', 'Ministry']
+      }), square),
+      feature(baseProps({
+        site_id: 'vcc-site-d',
+        name: 'alpha two',
+        newest_status_as_of: '2026-08-01',
+        oldest_status_as_of: '2026-08-01',
+        projects: [{ project_id: 'p-d', name: 'Alpha Two', status: 'under_construction', status_as_of: '2026-08-01' }]
+      }))
+    ]
+  });
+}
+
+test('module exposes a frozen API and does not need a DOM', () => {
+  assert.equal(typeof Core.prepareSites, 'function');
+  assert.ok(Object.isFrozen(Core));
+  assert.equal(typeof globalThis.window, 'undefined');
+});
+
+test('status groups: three validated Okabe-Ito hues plus a neutral fallback', () => {
+  assert.deepEqual(Core.STATUS_GROUPS.map((group) => group.color), ['#0072B2', '#D55E00', '#009E73']);
+  assert.equal(Core.statusGroup('under_construction').id, 'active');
+  assert.equal(Core.statusGroup('foundations').id, 'early');
+  assert.equal(Core.statusGroup('mep_electrical').id, 'late');
+  assert.equal(Core.statusGroup('operational').id, 'other');
+  assert.equal(Core.statusGroup('no_such_code').id, 'other');
+  assert.deepEqual(
+    Core.sortStatusCodes(['shell', 'zzz_new', 'under_construction', 'foundations', 'site_preparation', 'shell']),
+    ['under_construction', 'site_preparation', 'foundations', 'shell', 'zzz_new']
+  );
+});
+
+test('vocabulary labels: bootstrap first, then built-in, then humanized code', () => {
+  const vocab = { statuses: { shell: { label: 'Building shell', description: 'Envelope' } } };
+  assert.equal(Core.statusLabel('shell', vocab), 'Building shell');
+  assert.equal(Core.vocabDescription(vocab, 'statuses', 'shell'), 'Envelope');
+  assert.equal(Core.statusLabel('mep_electrical', vocab), 'MEP / electrical');
+  assert.equal(Core.statusLabel('brand_new_stage', vocab), 'Brand new stage');
+  assert.equal(Core.vocabLabel(null, 'evidence_roles', 'typed_metric:critical_it_mw'), 'Typed metric: critical it mw');
+  assert.equal(Core.vocabLabel({}, 'statuses', ''), '');
+  assert.equal(Core.vocabLabel({ statuses: { __proto__: { label: 'x' } } }, 'statuses', 'toString'), 'ToString');
+});
+
+test('normalizeText folds case, diacritics, apostrophes and punctuation', () => {
+  assert.equal(Core.normalizeText('Mäntsälä'), 'mantsala');
+  assert.equal(Core.normalizeText('  São-Paulo   (Brasil) '), 'sao paulo brasil');
+  assert.equal(Core.normalizeText('Straße Ærøskøbing'), 'strasse aeroskobing');
+  assert.equal(Core.normalizeText('Latvijas “Valsts” centrs'), 'latvijas valsts centrs');
+  assert.equal(Core.normalizeText('O’Brien’s'), 'obriens');
+  assert.equal(Core.normalizeText('ＦＵＬＬ width'), 'full width');
+  assert.equal(Core.normalizeText(null), '');
+  assert.equal(Core.normalizeText(42), '42');
+});
+
+test('matchesTokens: word-prefix for Latin, substring for CJK', () => {
+  const text = Core.buildSearchText(['Frankfurt Campus', 'Germany', 'DE', ['Phase 2'], ['Example AG']]);
+  assert.ok(Core.matchesTokens(text, Core.tokenize('frank')));
+  assert.ok(Core.matchesTokens(text, Core.tokenize('campus germ')));
+  assert.ok(!Core.matchesTokens(text, Core.tokenize('furt')));
+  assert.ok(!Core.matchesTokens(text, Core.tokenize('us')));
+  assert.ok(Core.matchesTokens(text, Core.tokenize('de')));
+  assert.ok(Core.matchesTokens(text, []));
+  const cjk = Core.buildSearchText(['印西データセンター']);
+  assert.ok(Core.matchesTokens(cjk, Core.tokenize('データ')));
+});
+
+test('prepareSite builds explorer records and tolerates missing fields', () => {
+  const sites = fixtureSites();
+  assert.equal(sites.length, 4);
+  const [alpha, mantsala, jakarta] = sites;
+  assert.equal(alpha.id, 'vcc-site-a');
+  assert.equal(alpha.iso, 'DE');
+  assert.equal(alpha.hasLocation, true);
+  assert.equal(alpha.isArea, false);
+  assert.deepEqual(alpha.months, ['2026-06']);
+  assert.ok(alpha.searchText.includes('alpha gmbh'));
+  assert.ok(alpha.searchText.includes('vcc site a'));
+  assert.equal(mantsala.hasPower, true);
+  assert.ok(Core.matchesTokens(mantsala.searchText, Core.tokenize('mantsala verne')));
+  assert.equal(jakarta.isArea, true);
+  assert.equal(jakarta.officialBoundary, true);
+  assert.deepEqual(jakarta.statuses, ['under_construction', 'shell']);
+  assert.equal(jakarta.primaryStatus, 'shell', 'newest project, specific stage beats generic');
+  assert.deepEqual(jakarta.months, ['2026-05', '2026-08']);
+
+  const sparse = Core.prepareSite({ type: 'Feature', id: 'x1', geometry: { type: 'Point', coordinates: [1, 2] }, properties: {} });
+  assert.equal(sparse.name, 'x1');
+  assert.equal(sparse.lat, 2);
+  assert.equal(sparse.lon, 1);
+  assert.deepEqual(sparse.statuses, []);
+  assert.equal(sparse.projectCount, 0);
+
+  const noLocation = Core.prepareSite({ type: 'Feature', id: 'x2', geometry: null, properties: { latitude: 'abc', longitude: 500 } });
+  assert.equal(noLocation.hasLocation, false);
+  assert.equal(noLocation.lat, null);
+
+  assert.equal(Core.prepareSite(null), null);
+  assert.equal(Core.prepareSite({ properties: {} }), null);
+  const dupes = Core.prepareSites({ features: [feature(baseProps()), feature(baseProps())] });
+  assert.equal(dupes.length, 1);
+});
+
+test('buildContext lists countries by name, statuses by group, months contiguously', () => {
+  const ctx = Core.buildContext(fixtureSites());
+  assert.deepEqual(ctx.countries.map((c) => [c.iso, c.count]), [['FI', 1], ['DE', 2], ['ID', 1]]);
+  assert.deepEqual(ctx.countryCodes, ['DE', 'FI', 'ID']);
+  assert.deepEqual(ctx.statuses, ['under_construction', 'site_preparation', 'shell']);
+  assert.deepEqual(ctx.months, ['2026-05', '2026-06', '2026-07', '2026-08']);
+});
+
+test('filterSites applies every filter with AND semantics', () => {
+  const sites = fixtureSites();
+  const ids = (state) => Core.filterSites(sites, Object.assign(Core.defaultState(), state)).map((s) => s.id);
+  assert.deepEqual(ids({}), ['vcc-site-a', 'vcc-site-b', 'vcc-site-c', 'vcc-site-d']);
+  assert.deepEqual(ids({ q: 'alpha' }), ['vcc-site-a', 'vcc-site-d']);
+  assert.deepEqual(ids({ q: 'ALPHA two' }), ['vcc-site-d']);
+  assert.deepEqual(ids({ q: 'mantsälä' }), ['vcc-site-b']);
+  assert.deepEqual(ids({ country: 'DE' }), ['vcc-site-a', 'vcc-site-d']);
+  assert.deepEqual(ids({ status: ['shell'] }), ['vcc-site-c']);
+  assert.deepEqual(ids({ status: ['shell', 'site_preparation'] }), ['vcc-site-b', 'vcc-site-c']);
+  assert.deepEqual(ids({ locator: 'official_boundary' }), ['vcc-site-c']);
+  assert.deepEqual(ids({ locator: 'polygon' }), ['vcc-site-c']);
+  assert.deepEqual(ids({ locator: 'point' }), ['vcc-site-a', 'vcc-site-b', 'vcc-site-d']);
+  assert.deepEqual(ids({ power: true }), ['vcc-site-b']);
+  assert.deepEqual(ids({ from: '2026-07' }), ['vcc-site-b', 'vcc-site-c', 'vcc-site-d']);
+  assert.deepEqual(ids({ to: '2026-05' }), ['vcc-site-c']);
+  assert.deepEqual(ids({ from: '2026-06', to: '2026-06' }), ['vcc-site-a']);
+  assert.deepEqual(ids({ country: 'DE', q: 'campus' }), ['vcc-site-a']);
+  assert.deepEqual(ids({ country: 'FR' }), []);
+});
+
+test('facetCounts counts each facet against the other filters only', () => {
+  const sites = fixtureSites();
+  const all = Core.facetCounts(sites, Core.defaultState());
+  assert.equal(all.total, 4);
+  assert.deepEqual({ ...all.country }, { DE: 2, FI: 1, ID: 1 });
+  assert.deepEqual({ ...all.status }, { under_construction: 3, site_preparation: 1, shell: 1 });
+  assert.deepEqual(all.locator, { any: 4, official_boundary: 1, polygon: 1, point: 3 });
+  assert.equal(all.power, 1);
+
+  const de = Core.facetCounts(sites, Object.assign(Core.defaultState(), { country: 'DE' }));
+  assert.equal(de.total, 2);
+  assert.deepEqual({ ...de.country }, { DE: 2, FI: 1, ID: 1 }, 'own facet ignores its own selection');
+  assert.deepEqual({ ...de.status }, { under_construction: 2 });
+  assert.equal(de.power, 0);
+});
+
+test('sortSites orders by each key with deterministic tie-breaks', () => {
+  const sites = fixtureSites();
+  const order = (key) => Core.sortSites(sites, key).map((s) => s.id);
+  assert.deepEqual(order('name'), ['vcc-site-a', 'vcc-site-d', 'vcc-site-c', 'vcc-site-b']);
+  assert.deepEqual(order('country'), ['vcc-site-b', 'vcc-site-a', 'vcc-site-d', 'vcc-site-c']);
+  assert.deepEqual(order('newest'), ['vcc-site-c', 'vcc-site-d', 'vcc-site-b', 'vcc-site-a']);
+  assert.deepEqual(order('oldest'), ['vcc-site-c', 'vcc-site-a', 'vcc-site-b', 'vcc-site-d']);
+  assert.deepEqual(order('projects'), ['vcc-site-c', 'vcc-site-a', 'vcc-site-d', 'vcc-site-b']);
+  assert.deepEqual(order('bogus'), order('name'));
+  const original = sites.map((s) => s.id);
+  Core.sortSites(sites, 'newest');
+  assert.deepEqual(sites.map((s) => s.id), original, 'input array is not mutated');
+  const missing = Core.sortSites([{ id: 'b', name: 'B', newest: '', oldest: '' }, { id: 'a', name: 'A', newest: '2026-01-01', oldest: '2026-01-01' }], 'oldest');
+  assert.deepEqual(missing.map((s) => s.id), ['a', 'b'], 'missing dates sort last');
+});
+
+test('URL state round-trips through serializeState and parseQuery', () => {
+  const state = {
+    q: 'Frankfurt am Main & co',
+    country: 'DE',
+    status: ['under_construction', 'shell'],
+    locator: 'polygon',
+    power: true,
+    from: '2026-05',
+    to: '2026-08',
+    sort: 'newest'
+  };
+  const query = Core.serializeState(state);
+  assert.equal(query, '?q=Frankfurt+am+Main+%26+co&country=DE&status=under_construction,shell&locator=polygon&power=1&from=2026-05&to=2026-08&sort=newest');
+  assert.deepEqual(Core.parseQuery(query), state);
+  assert.equal(Core.serializeState(Core.defaultState()), '');
+  assert.deepEqual(Core.parseQuery(''), Core.defaultState());
+  assert.deepEqual(Core.parseQuery('?q=a%2Bb+c'), Object.assign(Core.defaultState(), { q: 'a+b c' }));
+});
+
+test('parseQuery drops malformed values', () => {
+  const parsed = Core.parseQuery('?country=Germany&status=SHELL,%3Cscript%3E,,shell&locator=all&power=yes&from=2026-13&to=26-08&sort=random&q=' + 'x'.repeat(500));
+  assert.equal(parsed.country, '');
+  assert.deepEqual(parsed.status, ['shell']);
+  assert.equal(parsed.locator, 'any');
+  assert.equal(parsed.power, false);
+  assert.equal(parsed.from, '');
+  assert.equal(parsed.to, '');
+  assert.equal(parsed.sort, 'name');
+  assert.equal(parsed.q.length, 200);
+  assert.deepEqual(Core.parseQuery('?status=shell&status=foundations').status, ['shell', 'foundations']);
+  assert.equal(Core.parseQuery('?country=de').country, 'DE');
+});
+
+test('hash state carries only a plausible site id', () => {
+  assert.equal(Core.parseHash('#site=vcc-site-52b1e1c3038357306a39'), 'vcc-site-52b1e1c3038357306a39');
+  assert.equal(Core.parseHash('site=abc'), 'abc');
+  assert.equal(Core.parseHash('#site=%3Cimg%3E'), '');
+  assert.equal(Core.parseHash('#map=3/1/2'), '');
+  assert.equal(Core.parseHash(''), '');
+  assert.equal(Core.buildHash('vcc-site-x'), '#site=vcc-site-x');
+  assert.equal(Core.buildHash(''), '');
+});
+
+test('normalizeState aligns a parsed state with the data domains', () => {
+  const ctx = Core.buildContext(fixtureSites());
+  const state = Core.normalizeState(Object.assign(Core.defaultState(), {
+    country: 'FR', status: ['shell', 'operational', 'under_construction'], from: '2026-08', to: '2026-06'
+  }), ctx);
+  assert.equal(state.country, '');
+  assert.deepEqual(state.status, ['under_construction', 'shell'], 'known statuses in context order');
+  assert.equal(state.from, '2026-06');
+  assert.equal(state.to, '2026-08');
+  const clamped = Core.normalizeState(Object.assign(Core.defaultState(), { from: '2025-01', to: '2030-01' }), ctx);
+  assert.equal(clamped.from, '');
+  assert.equal(clamped.to, '');
+  const past = Core.normalizeState(Object.assign(Core.defaultState(), { from: '2030-01', to: '2020-01' }), ctx);
+  assert.equal(past.from, '2026-05');
+  assert.equal(past.to, '2026-08');
+  const inside = Core.normalizeState(Object.assign(Core.defaultState(), { from: '2026-05', to: '2026-08' }), ctx);
+  assert.equal(inside.from, '2026-05', 'boundary months are kept as chosen');
+  assert.equal(inside.to, '2026-08');
+  assert.deepEqual(Core.normalizeState(null, null), Core.defaultState());
+});
+
+test('activeFilterCount ignores sort and blank search', () => {
+  assert.equal(Core.activeFilterCount(Core.defaultState()), 0);
+  assert.equal(Core.activeFilterCount(Object.assign(Core.defaultState(), { q: '  ', sort: 'newest' })), 0);
+  assert.equal(Core.activeFilterCount(Object.assign(Core.defaultState(), {
+    q: 'x', country: 'DE', status: ['shell'], locator: 'point', power: true, from: '2026-06'
+  })), 6);
+});
+
+test('month helpers', () => {
+  assert.deepEqual(Core.monthRange('2025-11', '2026-02'), ['2025-11', '2025-12', '2026-01', '2026-02']);
+  assert.deepEqual(Core.monthRange('2026-02', '2026-01'), []);
+  assert.deepEqual(Core.monthRange('2026-02', '2026-02'), ['2026-02']);
+  assert.deepEqual(Core.monthRange('bad', '2026-01'), []);
+  assert.equal(Core.monthOf('2026-08-20T10:00:00Z'), '2026-08');
+  assert.equal(Core.monthOf('20-08-2026'), '');
+  assert.equal(Core.formatMonth('2026-05'), 'May 2026');
+  assert.equal(Core.formatMonth('2026-5'), '');
+  assert.equal(Core.isoDateMinusDays('2026-08-20', 90), '2026-05-22');
+  assert.equal(Core.isoDateMinusDays('2024-03-01', 1), '2024-02-29');
+  assert.equal(Core.isoDateMinusDays('nope', 1), '');
+});
+
+test('csvField: RFC 4180 quoting and formula neutralisation for text only', () => {
+  assert.equal(Core.csvField('plain'), 'plain');
+  assert.equal(Core.csvField('a,b'), '"a,b"');
+  assert.equal(Core.csvField('say "hi"'), '"say ""hi"""');
+  assert.equal(Core.csvField('line\nbreak'), '"line\nbreak"');
+  assert.equal(Core.csvField('cr\rhere'), '"cr\rhere"');
+  assert.equal(Core.csvField('=HYPERLINK("x")'), '"\'=HYPERLINK(""x"")"');
+  assert.equal(Core.csvField('+1 555'), "'+1 555");
+  assert.equal(Core.csvField('-Minus'), "'-Minus");
+  assert.equal(Core.csvField('@SUM(A1)'), "'@SUM(A1)");
+  assert.equal(Core.csvField('\tTab'), "'\tTab");
+  assert.equal(Core.csvField('\rCR'), '"\'\rCR"');
+  assert.equal(Core.csvField('a=b'), 'a=b');
+  assert.equal(Core.csvField(-77.5), '-77.5', 'numbers are never neutralised');
+  assert.equal(Core.csvField(18.6467083333), '18.6467083333');
+  assert.equal(Core.csvField(0), '0');
+  assert.equal(Core.csvField(NaN), '');
+  assert.equal(Core.csvField(true), 'true');
+  assert.equal(Core.csvField(false), 'false');
+  assert.equal(Core.csvField(null), '');
+  assert.equal(Core.csvField(undefined), '');
+});
+
+test('sitesToCsv writes the documented columns and parses back exactly', () => {
+  const sites = fixtureSites();
+  sites[0].name = '=cmd|"/c calc"!A1, "quoted"\nnext line';
+  const text = Core.sitesToCsv(sites);
+  assert.ok(text.endsWith('\r\n'));
+  assert.ok(!text.includes('\n\n'));
+  const rows = parseCsv(text);
+  assert.deepEqual(rows[0], [
+    'site_id', 'name', 'country', 'country_iso_a2', 'latitude', 'longitude', 'statuses',
+    'newest_status_as_of', 'project_count', 'official_boundary', 'status_publishers', 'url'
+  ]);
+  assert.equal(rows.length, sites.length + 1);
+  assert.equal(rows[1][1], '\'=cmd|"/c calc"!A1, "quoted"\nnext line');
+  assert.equal(rows[1][4], '50.1');
+  assert.equal(rows[1][5], '8.6');
+  const jakarta = rows.find((row) => row[0] === 'vcc-site-c');
+  assert.equal(jakarta[6], 'shell;under_construction', 'dataset order, not display order');
+  assert.equal(jakarta[8], '3');
+  assert.equal(jakarta[9], 'true');
+  assert.equal(jakarta[10], 'STT GDC;Ministry');
+  for (const row of rows) {
+    assert.equal(row.length, 12);
+  }
+  assert.equal(Core.sitesToCsv([]), Core.CSV_COLUMNS.join(',') + '\r\n');
+});
+
+test('sitesToGeoJSON keeps geometry and original summaries', () => {
+  const sites = fixtureSites();
+  const text = Core.sitesToGeoJSON(sites.slice(1, 3), { dataset: { id: 'd1' }, query: '?status=shell' });
+  assert.ok(text.endsWith('\n'));
+  const fc = JSON.parse(text);
+  assert.equal(fc.type, 'FeatureCollection');
+  assert.deepEqual(Object.keys(fc), ['type', 'name', 'dataset', 'query', 'features']);
+  assert.equal(fc.query, '?status=shell');
+  assert.deepEqual(fc.features.map((f) => f.id), ['vcc-site-b', 'vcc-site-c']);
+  assert.equal(fc.features[1].geometry.type, 'Polygon');
+  assert.equal(fc.features[0].properties.name, 'Mäntsälä Data Centre');
+  const empty = JSON.parse(Core.sitesToGeoJSON([], {}));
+  assert.deepEqual(empty.features, []);
+  assert.equal(empty.dataset, null);
+});
+
+test('exportFilename is filesystem-safe', () => {
+  assert.equal(Core.exportFilename('2026-08-20-v0.18-draft', true, 'csv'), 'datacenter-atlas-2026-08-20-v0.18-draft-sites-filtered.csv');
+  assert.equal(Core.exportFilename('a/b c', false, 'geojson'), 'datacenter-atlas-a-b-c-sites.geojson');
+  assert.equal(Core.exportFilename('', false, 'csv'), 'datacenter-atlas-sites.csv');
+});
+
+test('safeHttpUrl accepts only absolute http(s) URLs', () => {
+  assert.equal(Core.safeHttpUrl('https://example.org/a b'), 'https://example.org/a%20b');
+  assert.equal(Core.safeHttpUrl(' http://example.org '), 'http://example.org/');
+  assert.equal(Core.safeHttpUrl('javascript:alert(1)'), '');
+  assert.equal(Core.safeHttpUrl('JaVaScRiPt:alert(1)'), '');
+  assert.equal(Core.safeHttpUrl('data:text/html,x'), '');
+  assert.equal(Core.safeHttpUrl('//example.org'), '');
+  assert.equal(Core.safeHttpUrl('/relative'), '');
+  assert.equal(Core.safeHttpUrl('https://'), '');
+  assert.equal(Core.safeHttpUrl(null), '');
+});
+
+test('externalMapLinks use the documented URL patterns at 6 dp', () => {
+  const links = Core.externalMapLinks(18.6467083333, -73.8072666667);
+  assert.deepEqual(links.map((l) => l.id), ['osm', 'google', 'bing', 'copernicus']);
+  assert.equal(links[0].url, 'https://www.openstreetmap.org/?mlat=18.646708&mlon=-73.807267#map=16/18.646708/-73.807267');
+  assert.equal(links[1].url, 'https://www.google.com/maps/search/?api=1&query=18.646708,-73.807267');
+  assert.equal(links[2].url, 'https://www.bing.com/maps?cp=18.646708~-73.807267&lvl=17&style=a');
+  assert.equal(links[3].url, 'https://browser.dataspace.copernicus.eu/?zoom=15&lat=18.646708&lng=-73.807267');
+  assert.deepEqual(Core.externalMapLinks(95, 0), []);
+  assert.deepEqual(Core.externalMapLinks('x', 0), []);
+  assert.equal(Core.formatCoordinate(18.6467083333, 5), '18.64671');
+});
+
+test('correctionUrl targets the correction issue form', () => {
+  assert.equal(
+    Core.correctionUrl('https://github.com/o/r/issues', 'Mäntsälä & Co', 'vcc-site-b'),
+    'https://github.com/o/r/issues/new?template=correction.yml&title=Correction%3A%20M%C3%A4nts%C3%A4l%C3%A4%20%26%20Co&site_id=vcc-site-b'
+  );
+  assert.equal(Core.correctionUrl('https://github.com/o/r/issues/', 'X', 'y'), 'https://github.com/o/r/issues/new?template=correction.yml&title=Correction%3A%20X&site_id=y');
+  assert.equal(Core.correctionUrl('javascript:alert(1)', 'X', 'y'), '');
+});
+
+test('relative URL helpers', () => {
+  assert.equal(Core.joinRoot('./', 'sites/x/'), './sites/x/');
+  assert.equal(Core.joinRoot('../..', '/api/v1/index.json'), '../../api/v1/index.json');
+  assert.equal(Core.joinRoot('', 'data/'), './data/');
+  assert.equal(Core.fillTemplate('api/v1/sites/{site_id}.json', { site_id: 'a b/c' }), 'api/v1/sites/a%20b%2Fc.json');
+  assert.equal(Core.fillTemplate('x/{other}', { site_id: 'a' }), 'x/{other}');
+});
+
+test('formatPowerValue shows a range only when bounds differ', () => {
+  assert.equal(Core.formatPowerValue({ low: 5.28, base: 5.28, high: 5.28, unit: 'MW' }), '5.28 MW');
+  assert.equal(Core.formatPowerValue({ low: 10, base: 20, high: 30, unit: 'MW' }), '10–30 MW');
+  assert.equal(Core.formatPowerValue({ low: null, base: 1.4, high: null, unit: 'ratio' }), '1.4 ratio');
+  assert.equal(Core.formatPowerValue({ low: 1200, base: null, high: null, unit: 'MWh/year' }), '1,200 MWh/year');
+  assert.equal(Core.formatPowerValue({}), '');
+  assert.equal(Core.formatNumber('x'), '');
+  assert.equal(Core.plural(1, 'site'), '1 site');
+  assert.equal(Core.plural(2, 'site'), '2 sites');
+  assert.equal(Core.plural(0, 'entry', 'entries'), '0 entries');
+});
+
+test('geometry helpers convert GeoJSON to Leaflet order and bounds', () => {
+  assert.deepEqual(Core.geometryLatLngs(square)[0][0], [50, 10]);
+  const multi = { type: 'MultiPolygon', coordinates: [square.coordinates, square.coordinates] };
+  const latlngs = Core.geometryLatLngs(multi);
+  assert.equal(latlngs.length, 2);
+  assert.deepEqual(latlngs[1][0][2], [50.01, 10.01]);
+  assert.equal(Core.geometryLatLngs({ type: 'Point', coordinates: [1, 2] }), null);
+  assert.equal(Core.geometryLatLngs({ type: 'Polygon', coordinates: [[[1, 2], [3]]] }), null);
+  assert.deepEqual(Core.geometryBounds(square), [[50, 10], [50.01, 10.01]]);
+  assert.deepEqual(Core.geometryBounds({ type: 'Point', coordinates: [8.6, 50.1] }), [[50.1, 8.6], [50.1, 8.6]]);
+  assert.equal(Core.geometryBounds({ type: 'LineString', coordinates: [[0, 0], [1, 1]] }), null);
+  assert.equal(Core.validGeometry({ type: 'Point', coordinates: [NaN, 1] }), null);
+  assert.equal(Core.validGeometry(null), null);
+});
+
+test('nearestPoint finds the closest point within the radius', () => {
+  const points = [{ x: 0, y: 0, id: 'a' }, { x: 10, y: 0, id: 'b' }, { x: 30, y: 30, id: 'c' }];
+  assert.equal(Core.nearestPoint(points, 7, 1, 12), 'b');
+  assert.equal(Core.nearestPoint(points, 2, 0, 12), 'a');
+  assert.equal(Core.nearestPoint(points, 100, 100, 12), null);
+  assert.equal(Core.nearestPoint([], 0, 0, 12), null);
+});
+
+test('basemaps: CARTO/OSM/EOX with attribution; stored choice validated', () => {
+  assert.deepEqual(Core.BASEMAPS.map((b) => b.id), ['light', 'dark', 'osm', 'satellite']);
+  for (const basemap of Core.BASEMAPS) {
+    assert.match(basemap.url, /^https:\/\//);
+    assert.ok(basemap.options.attribution.length > 10);
+    assert.ok(!/<script|on\w+=/i.test(basemap.options.attribution));
+  }
+  assert.match(Core.findBasemap('light').options.attribution, /OpenStreetMap.*CARTO/);
+  assert.match(Core.findBasemap('satellite').options.attribution, /EOX IT Services GmbH \(Contains modified Copernicus Sentinel data 2025\)/);
+  assert.equal(Core.findBasemap('satellite').options.maxNativeZoom, 18);
+  assert.equal(Core.findBasemap('osm').options.maxZoom, 19);
+  assert.equal(Core.chooseBasemap('', true), 'dark');
+  assert.equal(Core.chooseBasemap('', false), 'light');
+  assert.equal(Core.chooseBasemap('osm', true), 'osm');
+  assert.equal(Core.chooseBasemap('evil', false), 'light');
+  const store = new Map();
+  const storage = { getItem: (k) => (store.has(k) ? store.get(k) : null), setItem: (k, v) => store.set(k, v) };
+  assert.equal(Core.readStoredBasemap(storage), '');
+  assert.equal(Core.storeBasemap(storage, 'satellite'), true);
+  assert.equal(Core.readStoredBasemap(storage), 'satellite');
+  assert.equal(Core.storeBasemap(storage, 'nope'), false);
+  const throwing = { getItem() { throw new Error('denied'); }, setItem() { throw new Error('denied'); } };
+  assert.equal(Core.readStoredBasemap(throwing), '');
+  assert.equal(Core.storeBasemap(throwing, 'dark'), false);
+  assert.equal(Core.readStoredBasemap(null), '');
+});

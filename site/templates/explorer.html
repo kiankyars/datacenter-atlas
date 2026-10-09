@@ -1,0 +1,136 @@
+<div class="atlas-intro">
+  <div class="atlas-intro-copy">
+    <h1 id="atlas-title" class="atlas-title">Data-centre construction, site by site</h1>
+    <p class="atlas-lede">{{counts.physical_sites}} physical sites in {{counts.countries}} countries whose last observed physical status was a construction stage, each backed by cited, dated evidence. A reviewed sample, not a census; locators are not footprints.</p>
+    <p class="atlas-meta">{{dataset.label}} · checkpoint {{dataset.checkpoint_date}} · status observed {{dataset.window_start}} – {{dataset.lifecycle_reference_date}}</p>
+  </div>
+  <dl class="atlas-stats">
+    <div class="atlas-stat"><dt>Sites</dt><dd>{{counts.physical_sites}}</dd></div>
+    <div class="atlas-stat"><dt>Projects</dt><dd>{{counts.projects}}</dd></div>
+    <div class="atlas-stat"><dt>Countries</dt><dd>{{counts.countries}}</dd></div>
+    <div class="atlas-stat"><dt>Evidence rows</dt><dd>{{counts.evidence}}</dd></div>
+    <div class="atlas-stat"><dt>Non-US sites</dt><dd>{{counts.non_us_sites}}</dd></div>
+  </dl>
+</div>
+
+<noscript>
+  <div class="callout atlas-noscript">
+    <p><strong>The interactive map and filters need JavaScript.</strong> Everything else works without it: browse <a href="{{root}}sites/">all {{counts.physical_sites}} sites</a>, see <a href="{{root}}countries/">sites by country</a>, <a href="{{root}}data/">download the data</a> or use the <a href="{{root}}api/">JSON API</a>.</p>
+  </div>
+</noscript>
+
+<div id="atlas-app" class="atlas-app" data-view="list" hidden>
+  <div id="atlas-tabs" class="atlas-tabs" role="tablist" aria-label="Explorer view">
+    <button type="button" id="atlas-tab-list" class="atlas-tab" role="tab" aria-selected="true" aria-controls="atlas-panel">List</button>
+    <button type="button" id="atlas-tab-map" class="atlas-tab" role="tab" aria-selected="false" aria-controls="atlas-mapwrap" tabindex="-1">Map</button>
+  </div>
+
+  <section id="atlas-panel" class="atlas-panel" aria-label="Filters and matching sites">
+    <form id="atlas-filters" class="atlas-filters" role="search" action="./" method="get" novalidate>
+      <div class="atlas-field atlas-field-search">
+        <label for="atlas-search" class="atlas-label">Search sites</label>
+        <input id="atlas-search" class="atlas-input" type="search" name="q" autocomplete="off" spellcheck="false" placeholder="Name, country, project or source" aria-describedby="atlas-search-hint">
+        <p id="atlas-search-hint" class="sr-only">Matches site and project names, countries, country codes and status sources. Results update as you type.</p>
+      </div>
+      <details id="atlas-more" class="atlas-more" open>
+        <summary class="atlas-more-summary">Filters <span id="atlas-active-count" class="atlas-active-count"></span></summary>
+        <div class="atlas-more-body">
+          <div class="atlas-field">
+            <label for="atlas-country" class="atlas-label">Country</label>
+            <select id="atlas-country" class="atlas-select" name="country">
+              <option value="">All countries</option>
+            </select>
+          </div>
+          <div class="atlas-field">
+            <label for="atlas-locator" class="atlas-label">Locator</label>
+            <select id="atlas-locator" class="atlas-select" name="locator">
+              <option value="any">Any locator</option>
+              <option value="official_boundary">Official boundary</option>
+              <option value="polygon">Polygon or MultiPolygon</option>
+              <option value="point">Point</option>
+            </select>
+          </div>
+          <fieldset id="atlas-status" class="atlas-fieldset">
+            <legend class="atlas-label">Last observed status</legend>
+            <div id="atlas-status-options" class="atlas-chips"></div>
+          </fieldset>
+          <fieldset class="atlas-fieldset atlas-range">
+            <legend class="atlas-label">Status as of</legend>
+            <div class="atlas-range-row">
+              <div class="atlas-range-part">
+                <label for="atlas-from" class="atlas-sublabel">From</label>
+                <select id="atlas-from" class="atlas-select" name="from">
+                  <option value="">Earliest</option>
+                </select>
+              </div>
+              <div class="atlas-range-part">
+                <label for="atlas-to" class="atlas-sublabel">To</label>
+                <select id="atlas-to" class="atlas-select" name="to">
+                  <option value="">Latest</option>
+                </select>
+              </div>
+            </div>
+          </fieldset>
+          <div class="atlas-check">
+            <input id="atlas-power" type="checkbox" name="power" value="1">
+            <label for="atlas-power">Has reported power <span id="atlas-power-count" class="atlas-check-count"></span></label>
+          </div>
+        </div>
+      </details>
+    </form>
+
+    <div class="atlas-results-head">
+      <p class="atlas-count-line"><span id="atlas-count" class="atlas-count" aria-live="polite" aria-atomic="true">Loading sites…</span><span id="atlas-count-total" class="atlas-count-total"></span></p>
+      <button type="button" id="atlas-clear" class="atlas-link-btn">Clear filters</button>
+      <div class="atlas-sort">
+        <label for="atlas-sort" class="atlas-sublabel">Sort</label>
+        <select id="atlas-sort" class="atlas-select" name="sort">
+          <option value="name">Name A–Z</option>
+          <option value="country">Country</option>
+          <option value="newest">Newest status first</option>
+          <option value="oldest">Oldest status first</option>
+          <option value="projects">Most projects</option>
+        </select>
+      </div>
+    </div>
+    <div class="atlas-tools" role="group" aria-labelledby="atlas-tools-label">
+      <span id="atlas-tools-label" class="atlas-tools-label">Export</span>
+      <button type="button" id="atlas-export-csv" class="btn btn-small" aria-label="Download filtered CSV" disabled>CSV</button>
+      <button type="button" id="atlas-export-geojson" class="btn btn-small" aria-label="Download filtered GeoJSON" disabled>GeoJSON</button>
+      <button type="button" id="atlas-copy-link" class="btn btn-small" disabled>Copy link</button>
+    </div>
+
+    <div id="atlas-error" class="callout callout-warning atlas-error" role="alert" hidden>
+      <p><strong>The site data could not be loaded.</strong> The static pages still work: browse <a href="{{root}}sites/">all sites</a> or <a href="{{root}}data/">download the data</a>.</p>
+    </div>
+    <p id="atlas-loading" class="atlas-loading">Loading sites…</p>
+    <ul id="atlas-list" class="atlas-list" aria-label="Matching sites"></ul>
+    <div id="atlas-empty" class="atlas-empty" hidden>
+      <p>No sites match these filters.</p>
+      <button type="button" id="atlas-empty-clear" class="btn btn-small">Clear filters</button>
+    </div>
+  </section>
+
+  <div id="atlas-mapwrap" class="atlas-mapwrap">
+    <div id="atlas-map" class="atlas-map" role="region" aria-label="Map of matching sites. Every site is also listed in the results."></div>
+    <button type="button" id="atlas-fit" class="atlas-map-btn">Fit to results</button>
+    <details id="atlas-legend" class="atlas-legend" open>
+      <summary class="atlas-legend-summary">Legend</summary>
+      <ul id="atlas-legend-list" class="atlas-legend-list"></ul>
+      <p class="atlas-legend-note">Colour shows the stage group; the exact status is always written out.</p>
+    </details>
+  </div>
+
+  <section id="atlas-detail" class="atlas-detail" role="dialog" aria-modal="false" aria-labelledby="atlas-detail-title" hidden>
+    <div class="atlas-detail-head">
+      <div class="atlas-detail-heading-wrap">
+        <p id="atlas-detail-kicker" class="atlas-detail-kicker"></p>
+        <h2 id="atlas-detail-title" class="atlas-detail-title" tabindex="-1">Site details</h2>
+      </div>
+      <button type="button" id="atlas-detail-close" class="atlas-close" aria-label="Close site details"><span aria-hidden="true">×</span></button>
+    </div>
+    <div id="atlas-detail-body" class="atlas-detail-body"></div>
+  </section>
+
+  <p id="atlas-announce" class="sr-only" role="status" aria-live="polite"></p>
+</div>
