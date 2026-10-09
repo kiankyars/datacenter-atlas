@@ -48,6 +48,7 @@ jobs:
             datacenter_atlas.tests.test_expansion_200_inventory \
             datacenter_atlas.tests.test_expansion_200_sources \
             datacenter_atlas.tests.test_verified_construction_core_v018 \
+            datacenter_atlas.tests.test_verified_construction_core_v018_baseline_corrections \
             datacenter_atlas.tests.test_expansion_200_draft \
             datacenter_atlas.tests.test_expansion_200_finland \
             datacenter_atlas.tests.test_expansion_200_second_reviewed \
@@ -84,6 +85,7 @@ jobs:
             datacenter_atlas.tests.test_expansion_200_thirty_third_reviewed \
             datacenter_atlas.tests.test_expansion_200_thirty_fourth_reviewed \
             datacenter_atlas.tests.test_expansion_200_thirty_fifth_reviewed \
+            datacenter_atlas.tests.test_expansion_200_thirty_sixth_reviewed \
             datacenter_atlas.tests.test_publication_pair_v32 \
             datacenter_atlas.tests.test_public_site \
             datacenter_atlas.tests.test_workspace_shim
@@ -203,6 +205,9 @@ jobs:
       - name: Validate thirty-fifth reviewed expansion draft
         working-directory: datacenter_atlas
         run: .venv/bin/python scripts/build_expansion_200_draft.py --batch thirty-fifth-reviewed --validate-only
+      - name: Validate thirty-sixth reviewed expansion draft
+        working-directory: datacenter_atlas
+        run: .venv/bin/python scripts/build_expansion_200_draft.py --batch thirty-sixth-reviewed --validate-only
       - name: Build the public site
         working-directory: datacenter_atlas
         run: |
@@ -259,6 +264,7 @@ jobs:
             datacenter_atlas/expansion_200_thirty_third_reviewed.py \
             datacenter_atlas/expansion_200_thirty_fourth_reviewed.py \
             datacenter_atlas/expansion_200_thirty_fifth_reviewed.py \
+            datacenter_atlas/expansion_200_thirty_sixth_reviewed.py \
             datacenter_atlas/publication_pair_v32.py \
             datacenter_atlas/public_site.py \
             europe_latam_official_discovery_20260721.py \
@@ -288,6 +294,7 @@ jobs:
             tests/test_expansion_200_inventory.py \
             tests/test_expansion_200_sources.py \
             tests/test_verified_construction_core_v018.py \
+            tests/test_verified_construction_core_v018_baseline_corrections.py \
             tests/test_expansion_200_draft.py \
             tests/test_expansion_200_finland.py \
             tests/test_expansion_200_second_reviewed.py \
@@ -324,6 +331,7 @@ jobs:
             tests/test_expansion_200_thirty_third_reviewed.py \
             tests/test_expansion_200_thirty_fourth_reviewed.py \
             tests/test_expansion_200_thirty_fifth_reviewed.py \
+            tests/test_expansion_200_thirty_sixth_reviewed.py \
             tests/test_publication_pair_v32.py \
             tests/test_public_site.py \
             tests/test_workspace_shim.py

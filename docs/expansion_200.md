@@ -2013,3 +2013,142 @@ Reproduce or validate:
 .venv/bin/python scripts/build_expansion_200_draft.py --batch thirty-fifth-reviewed --output-dir /absolute/new/draft-directory
 .venv/bin/python scripts/build_expansion_200_draft.py --batch thirty-fifth-reviewed --validate-only
 ```
+
+## 2026-10-09: thirty-sixth reviewed checkpoint, 200 sites
+
+The [thirty-sixth reviewed draft](../verified_construction_core/2026-08-20-v0.18-draft-thirty-sixth-reviewed/README.md)
+adds three campuses: Goodman's HKG10 conversion of the Goodman Texaco Centre in Tsuen Wan, Hong Kong;
+LEITWERK's BADEN CLOUD data centre in Lahr, Germany; and Raiden Infotech's Turbhe MIDC campus in Navi
+Mumbai, India. It also applies the first schema-v2 baseline correction, described below. The draft contains
+200 physical sites, 203 projects, 46 countries, 134 non-US sites and 925 evidence rows: 100 of the requested
+100 additions. No country is new. Every preceding row, feature and source binding is preserved, except the
+enumerated CGK fields, the dropped superseded evidence row `8acab3b0` and the CGK association added to the shared
+CRS row `491b3b57`.
+
+**Hong Kong.** Goodman's FY26 results presentation lists HKG10, the 50 MW conversion of an existing
+industrial building in Tsuen Wan, among the data-centre projects in WIP at June 30. As for the six Goodman FY26
+admissions, the explicit June 30 as-of date is selected; the August 19 publication creates no later
+observation. Goodman's own HKG10 listing places HKG10 at 128 Texaco Road and links it to Goodman's Texaco
+data-centre page. The live page returns HTTP 403 to automated clients and was not worked around; the listing is
+read from an Internet Archive raw replay of August 26 whose payload matches the archive's own digest, following
+the archived-company-disclosure precedent recorded in the root review. The government Address Lookup Service
+puts the Goodman Texaco Centre at 126-140 Texaco Road, and the 2025 Considerate Contractors list places
+Goodman's works there on Section A of Lot 472 in D.D. 443. That lot's Lands Department boundary, from the CSDI
+Portal, is transformed from EPSG:2326 with the recorded operation Hong Kong 1980 to WGS 84 (1), as for Sandy
+Ridge. Older Goodman material swaps the HKG09 and HKG10 codes; the binding is date-specific, and HKG09 at Kwai
+Chung, about 1.7 km away, is a different campus. The lot is a land-grant boundary, not a footprint.
+
+**Germany.** Elektrizitätswerk Mittelbaden, one of the two equal owners of the joint venture, says in its June 19
+results release that the Lahr data centre is being built; works began in June 2025 and completion is planned for
+2027. As for envia Leipzig and STACK, the publication date normalizes a broad present-tense statement, and the
+pre-window topping-out is not converted into a finer stage. The operator's own pages give the site as
+Einsteinallee 14, 77933 Lahr. Baden-Württemberg's official INSPIRE address position for that address is
+transformed once from native ETRS89 / UTM 32N; the service's own ETRS89 output differs by about 5 mm. OSM way
+1546030396, tagged as a data centre under construction and read from a checksummed Geofabrik extract, contains
+the point. It is a cross-check only and is not selected. The operating Appenweier centre is a separate site.
+
+**India.** Raiden Infotech's signed compliance letter dated August 3, uploaded to PARIVESH on August 5, says the
+data centre is under construction phase. That present-tense sentence is read at the letter date, as for the
+Thane cover letter. Unlike Thane's report, which carried an April 30 commencement date, the letter has no internal
+in-window date; the proponent's August 4 portal entries show current site arrangements but state no construction
+status. If the sentence described the December to March reporting period instead, the campus would revert to hold.
+SEIAA's November 2025 EC records that nothing was built under the plot's earlier jewellery-park EC. The
+locator is the named Raiden Plot Boundary polygon in the active CAF KML for proposal SIA/MH/INFRA2/531703/2025,
+WGS84 under KML 2.2 with no transformation. SEIAA's EC site coordinate lies inside it, and its area is within
+0.13% of the EC plot area. Amanthin's Plot D-31 & D-32, 866 m away, is a separate plot under its own EC. These
+files replace the never-committed round42 Raiden drafts, which no longer sit in `sources/`.
+
+Root reviews for [HKG10](../sources/research-expansion-200-apac-round43-goodman-hkg10-root-review-2026-10-09.json),
+[Lahr](../sources/research-expansion-200-europe-round43-leitwerk-lahr-root-review-2026-10-09.json) and
+[Raiden](../sources/research-expansion-200-asia-round43-raiden-turbhe-root-review-2026-10-09.json) record:
+- independent recaptures of the selected sources;
+- complete-page visual review;
+- full-geometry and alias screening against all 197 preceding sites and each other, with no intersection or
+  alias match.
+
+The [round43 holds packet](../sources/research-expansion-200-round43-holds-2026-10-09.json) preserves every hold
+and rejection with capture hashes:
+- Google Meitner in Gray County: the June 4 release describes a data centre "to be built" and leaves Gray County
+  out of its under-construction list.
+- The admission-ready Google/Crusoe Armstrong County campus is kept as a reserve and not admitted.
+- In the Americas, Polaris Forge 3, Barber Lake, Frontier, Abernathy, Haskell, Wilbarger and Riot Corsicana stay
+  on hold.
+- In Europe, Emsland Meppen, YEXIO Herne and NTT Berlin stay on hold.
+- In Asia-Pacific, Goodman TY005, GSA02, Empyrion MY1, KOACC Haenam and YTL Kulai stay on hold; the SUNeVision
+  and Tokyo Tatemono leads are rejected.
+- The India lane's holds and rejections include Digital Edge BOM, ESR MU1, AWS HYD-123 and Amanthin's Turbhe plot.
+
+The packet also records that robots.txt disallows the OpenStreetMap API, Overpass and Nominatim search and lookup
+paths, which 52 evidence rows of the thirty-fifth draft used; 31 projects on 31 sites select one of them as geometry
+evidence. The round43 locators avoid those paths, and the admitted Keppel geometry was re-derived identically from a
+checksummed Geofabrik extract. The thirty-sixth draft still carries 52 such rows on the same 31 projects and sites:
+the CGK correction drops `8acab3b0` and re-keys the same 2026-08-23 OSM API capture as `60324cce` without a new
+request, and `7133f023` re-verifies it from a Geofabrik extract. That finding changes no frozen row.
+
+Raw documents remain ignored local captures. No roles, capacity, workload, operating model or imagery outcome is
+selected.
+
+The site-count gates now pass: 200 of 200 sites, 100 of 100 additions, 46 countries, 134 non-US sites and a
+largest country share of 33%. The final-release gates are still unmet. Imagery coverage is 10/203, and the fixed
+20-row blind review requiring 19 agreements is unfinished. The builder still records `objective_completion_claim`
+and `publishable_as_final` as false. Under the acceptance contract, the expansion is complete only once this
+release is committed and pushed with passing checks. Any 200-site claim must also state that CGK has host-estate
+context only. Reproduce or validate:
+
+```sh
+.venv/bin/python scripts/build_expansion_200_draft.py --batch thirty-sixth-reviewed --output-dir /absolute/new/draft-directory
+.venv/bin/python scripts/build_expansion_200_draft.py --batch thirty-sixth-reviewed --validate-only
+```
+
+### Explicit CGK host-estate locator correction
+
+The [versioned correction](../sources/verified-construction-core-v0.18-cgk-host-estate-locator-correction-v1.json)
+records that the inherited v0.17 locator for Digital Edge's CGK campus (CGK1) is the whole Greenland
+International Industrial Center host estate: OSM way 568349989, a closed way of 459 node references (458 distinct
+vertices) enclosing about 2,114 ha. The v0.16 batch had turned the operator's locality-only statement into that
+polygon and labelled it a campus locator. The polygon wholly contains the selected STT Jakarta campus, the only
+intersecting pair among all 200 site geometries, and named data-centre buildings of four other operators, so it
+cannot locate CGK. Its display anchor is the planar centroid of the estate's longitude/latitude ring; the v0.16
+record calls it a projected polygon centroid, but no projection is applied. The numbers are a faithful copy of OSM
+way version 13, re-verified against a checksummed Geofabrik extract; this is a scope and accounting error, not a
+datum or transcription error. The
+[round43 CGK packet](../sources/research-expansion-200-cgk-locator-round43-2026-10-09.json) records the locator
+routes checked, none of which yields an exact campus locator.
+
+Unlike Helios, the error sits in frozen v0.17 rows that every v0.18 draft copied byte for byte. The thirty-sixth
+contract therefore uses schema v2. Its pinned `baseline_corrections` entry is validated fail-closed against the
+frozen v0.17 rows, the superseded v0.16 record and the unchanged thirty-fifth rows. Only these fields change:
+- the CGK project row: geometry entity kind, method, scope class, use scope, precision scope, uncertainty reason,
+  geometry evidence ID and verification posture (8 fields);
+- the CGK site row: the corresponding 8 site fields;
+- feature 34 of `sites.geojson`: 4 properties.
+
+The superseded evidence row `8acab3b0` is dropped. Two correction evidence rows are added: the reused capture,
+under a new key with its raw hash and retrieval date unchanged, and the Geofabrik re-verification. The shared OSM
+WGS84 CRS record only gains the CGK project association; its factual content is unchanged. The physical site,
+project, identity, geometry, latitude, longitude, authority, unknown accuracy and June 8 shell observation are
+unchanged. Earlier contracts and drafts stay on schema v1 and remain byte-reproducible. Regression tests constrain
+these exact differences.
+
+The builder machine-checks every key of the record's `preservation_invariants` and rejects unrecognized ones. Two
+optional invariants are checked against data: the OSM way version (13) must equal the superseded v0.16 record's, and
+STT Jakarta, the listed intersecting site, must intersect the CGK polygon and keep its project and site lines byte
+for byte from the thirty-fifth draft. Every `unchanged_includes` entry must be a column of its table. The
+inherited-through release must be a later v0.18 draft built on the pinned v0.17 manifest, never the baseline itself.
+
+CGK now has use scope `host_estate_context` and posture
+`recent_authoritative_physical_observation_plus_host_estate_context_only`. It still counts as a physical site, but
+not as a reviewed site locator or an official boundary. The selection report lists it under `locator_exceptions`,
+and its display anchor is not a site position. The correction leaves physical sites and projects unchanged, adds
+one net evidence row and lowers `reviewed_site_locator_projects` by one: 197 of 203 projects rather than 198, with
+5 more on official boundaries. Read totals from the selection report's `counts` block. Its `baseline_counts` keep
+the frozen v0.17 values (252 evidence rows, 98 reviewed site locators including CGK), and
+`draft_delta_counts.evidence` (674) includes the two correction rows while the dropped row appears only under
+`baseline_corrections`, so baseline plus delta overstates the evidence total by one.
+
+The honest consequence is that the checkpoint has 200 sites, of which 199 have a reviewed locator or an official
+boundary; CGK has host-estate context only. A claim that every counted site has a reviewed locator needs one further
+addition, for which the Armstrong reserve is next, or an exact CGK locator applied through a further versioned
+correction. The CGK packet also flags three other v0.16 baseline locators, for SBOGZB01, RDH2 and RCJM1, that follow
+the same host-development pattern without intersecting another site; a strict verified-200 claim should review them
+under the same rule.

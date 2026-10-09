@@ -14,29 +14,31 @@ downloads, API documentation and methodology).
 ## Current dataset
 
 <!-- atlas:current-dataset -->
-- **Version:** `2026-08-20-v0.18-draft-thirty-fifth-reviewed`, the thirty-fifth reviewed checkpoint
-  of the v0.18 draft, dated **2026-09-25**.
-- **Contents:** **197 physical sites** with **200 construction projects** in **46 countries** (131
-  sites outside the United States), backed by **897 evidence rows**.
+- **Version:** `2026-08-20-v0.18-draft-thirty-sixth-reviewed`, the thirty-sixth reviewed checkpoint
+  of the v0.18 draft, dated **2026-10-09**.
+- **Contents:** **200 physical sites** with **203 construction projects** in **46 countries** (134
+  sites outside the United States), backed by **925 evidence rows**. One project (Digital Edge CGK1)
+  has host-estate context only, not a reviewed locator; see the
+  [methodology](https://kiankyars.github.io/datacenter-atlas/methodology/#locators).
 - **Lifecycle cutoff:** **2026-08-20**. Every status was observed no more than 90 days before it,
   between 2026-05-22 and 2026-08-20 inclusive.
 - **Release status:** a reviewed **draft**, not a final release (`publishable_as_final` is false).
-  Six of the nine final-release gates are not yet met:
+  Four of the nine final-release gates are not yet met:
 
 | Gate | Required | Current | Met |
 | --- | --- | --- | --- |
-| Physical sites | 200 | 197 | No |
-| Sites added since the v0.17 preview | 100 | 97 | No |
+| Physical sites | 200 | 200 | Yes |
+| Sites added since the v0.17 preview | 100 | 100 | Yes |
 | Countries | at least 40 | 46 | Yes |
-| Sites outside the United States | at least 100 | 131 | Yes |
-| Largest single-country share | at most 40% | 33.5% (United States) | Yes |
-| Projects with an imagery-review outcome | 200 | 10 | No |
+| Sites outside the United States | at least 100 | 134 | Yes |
+| Largest single-country share | at most 40% | 33% (United States) | Yes |
+| Projects with an imagery-review outcome | 203 | 10 | No |
 | Blind re-review of a fixed 20-project sample | 19 agreements | not started | No |
 | Clean-clone rebuild | checked at release | not yet recorded | No |
 | Publication authorised | explicit sign-off | never granted to drafts | No |
 
 The figures come from the dataset's
-[`selection-report.json`](verified_construction_core/2026-08-20-v0.18-draft-thirty-fifth-reviewed/selection-report.json).
+[`selection-report.json`](verified_construction_core/2026-08-20-v0.18-draft-thirty-sixth-reviewed/selection-report.json).
 The last preview, [v0.17](verified_construction_core/2026-08-20-preview-v0.17/README.md), has 100
 sites; the reviewed drafts extend it towards 200. Every version remains available on the
 [versions page](https://kiankyars.github.io/datacenter-atlas/versions/).
@@ -70,9 +72,9 @@ lists every file with its size and checksum. Language models and agents can star
 <!-- atlas:version-files -->
 `downloads/latest/` follows the current version. For reproducible work, use the version's own files,
 for example
-<https://kiankyars.github.io/datacenter-atlas/downloads/2026-08-20-v0.18-draft-thirty-fifth-reviewed/sites.csv>,
+<https://kiankyars.github.io/datacenter-atlas/downloads/2026-08-20-v0.18-draft-thirty-sixth-reviewed/sites.csv>,
 and check them against that directory's
-[`SHA256SUMS`](https://kiankyars.github.io/datacenter-atlas/downloads/2026-08-20-v0.18-draft-thirty-fifth-reviewed/SHA256SUMS).
+[`SHA256SUMS`](https://kiankyars.github.io/datacenter-atlas/downloads/2026-08-20-v0.18-draft-thirty-sixth-reviewed/SHA256SUMS).
 <!-- /atlas:version-files -->
 
 A version's original checkpoint files (the CSVs, GeoJSON, schema, selection report, attribution and
@@ -217,15 +219,17 @@ Read these before using the data.
 
 - **Not a census.** The atlas is a reviewed sample held to a strict evidence bar, not a complete
   list; a site's absence says nothing about whether it is being built. Coverage follows what
-  sources publish: the United States, Australia and Germany hold 98 of the 197 sites.
+  sources publish: the United States, Germany and Australia hold 99 of the 200 sites.
 - **Last observed physical status, not current status.** Each status is the latest qualifying
   observation on or before 2026-08-20. Projects may since have finished, paused or been cancelled.
-- **Locators are not footprints.** 145 sites are located by a point and 52 by a polygon or
-  multipolygon, and only 5 projects use an official site boundary. A polygon may outline a parcel,
+- **Locators are not footprints.** 146 sites are located by a point and 54 by a polygon or
+  multipolygon, and only 5 projects use an official site boundary. One of those polygons, the
+  Digital Edge CGK campus's, outlines its whole host industrial estate and is host-estate context
+  only, not a reviewed locator. A polygon may outline a parcel,
   a campus, a host estate or an existing building used only as a locator, rather than the works.
   Numeric positional uncertainty is known for 10 projects; elsewhere the record says why it is
   unknown.
-- **Capacity is unknown unless a typed observation exists.** 22 of the 200 projects carry one (24
+- **Capacity is unknown unless a typed observation exists.** 22 of the 203 projects carry one (24
   observations, mostly planned critical IT load). Critical IT load, grid connection and gross
   facility power are different measures and must not be added together. A missing value means
   unknown, never zero. There are no annual-energy observations and one PUE value.
@@ -250,7 +254,7 @@ and the site offers the same citation as
 
 <!-- atlas:citation -->
 > Kyars, K. (2026). *Data Center Atlas: Verified Construction Core* (Version
-> 2026-08-20-v0.18-draft-thirty-fifth-reviewed) [Data set].
+> 2026-08-20-v0.18-draft-thirty-sixth-reviewed) [Data set].
 > https://kiankyars.github.io/datacenter-atlas/
 
 ```bibtex
@@ -258,7 +262,7 @@ and the site offers the same citation as
   author = "Kyars, Kian",
   title  = "Data Center Atlas: Verified Construction Core",
   year   = "2026",
-  note   = "Dataset version 2026-08-20-v0.18-draft-thirty-fifth-reviewed, checkpoint 2026-09-25",
+  note   = "Dataset version 2026-08-20-v0.18-draft-thirty-sixth-reviewed, checkpoint 2026-10-09",
   url    = "https://kiankyars.github.io/datacenter-atlas/"
 }
 ```
@@ -321,7 +325,7 @@ git clone https://github.com/kiankyars/datacenter-atlas.git
 cd datacenter-atlas
 
 # Re-derive the current dataset from its hash-pinned inputs and compare every byte
-python3 scripts/build_expansion_200_draft.py --batch thirty-fifth-reviewed --validate-only
+python3 scripts/build_expansion_200_draft.py --batch thirty-sixth-reviewed --validate-only
 
 # Build the website, API and downloads into _site/ (add --force to rebuild over an earlier build),
 # check this README, CITATION.cff and DATA_LICENSE.md against it, then preview it the way GitHub
@@ -331,7 +335,7 @@ python3 site/e2e/check_public_metadata.py --site _site
 python3 site/e2e/pages_server.py --directory _site --port 8000
 
 # Tests for the site builder and the current checkpoint
-python3 -m unittest -v tests.test_public_site tests.test_expansion_200_thirty_fifth_reviewed
+python3 -m unittest -v tests.test_public_site tests.test_expansion_200_thirty_sixth_reviewed
 ```
 
 [docs/public_site.md](docs/public_site.md) covers the build options, the output layout, the API

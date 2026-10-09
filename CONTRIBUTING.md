@@ -83,8 +83,8 @@ tests yourself.
 ### Validate the datasets and lint
 
 ```sh
-python3 scripts/build_expansion_200_draft.py --batch thirty-fifth-reviewed --validate-only
-python3 -m unittest -v tests.test_verified_construction_core_v018 tests.test_expansion_200_thirty_fifth_reviewed
+python3 scripts/build_expansion_200_draft.py --batch thirty-sixth-reviewed --validate-only
+python3 -m unittest -v tests.test_verified_construction_core_v018 tests.test_expansion_200_thirty_sixth_reviewed
 uv run --locked --only-group lint ruff check datacenter_atlas/public_site.py scripts/build_public_site.py tests/test_public_site.py
 ```
 

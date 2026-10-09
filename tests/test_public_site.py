@@ -1172,12 +1172,21 @@ class RealSiteBuildTests(unittest.TestCase):
         downloads = self.site / "downloads"
         directories = sorted(path.name for path in downloads.iterdir() if path.is_dir())
         self.assertEqual(directories, sorted([*(path.name for path in version_dirs()), "latest"]))
+        derived = set(self.summary["derived_download_versions"])
+        self.assertIn(self.dataset_id, derived)
+        self.assertIn(public_site.FIRST_PUBLISHED_DATASET, derived)
         for name in directories:
             sums = self.check_checksums(downloads / name)
-            if name in {"latest", self.dataset_id}:
+            if name == "latest":
                 continue
             manifest = read_json(ROOT / self.config["versions_root"] / name / "manifest.json")
-            self.assertEqual(sorted(sums), sorted([*manifest["files"], "manifest.json", "manifest.sha256"]))
+            originals = sorted([*manifest["files"], "manifest.json", "manifest.sha256"])
+            if name in derived:
+                # Versions published as current keep their pinned derived formats and zip.
+                self.assertTrue(set(originals) < set(sums), name)
+                self.assertIn(f"datacenter-atlas-{name}.zip", sums)
+            else:
+                self.assertEqual(sorted(sums), originals)
             for file_name, meta in manifest["files"].items():
                 self.assertEqual(sums[file_name], meta["sha256"])
 
@@ -1278,7 +1287,8 @@ class RealSiteBuildTests(unittest.TestCase):
         self.assertEqual(keys, sorted(set(keys)))
         by_id = {item["id"]: item for item in versions["versions"]}
         expectations = {
-            self.dataset_id: ("v0.18 draft — thirty-fifth reviewed checkpoint", "2026-09-25"),
+            self.dataset_id: ("v0.18 draft — thirty-sixth reviewed checkpoint", "2026-10-09"),
+            "2026-08-20-v0.18-draft-thirty-fifth-reviewed": ("v0.18 draft — thirty-fifth reviewed checkpoint", "2026-09-25"),
             "2026-08-20-v0.18-draft-initial-five": ("v0.18 draft — initial five-site checkpoint", "2026-09-08"),
             "2026-08-20-v0.18-draft-second-reviewed": ("v0.18 draft — second reviewed checkpoint", "2026-09-08"),
             "2026-08-20-preview-v0.17": ("v0.17 preview", "2026-09-06"),

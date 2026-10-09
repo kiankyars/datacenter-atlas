@@ -4,13 +4,18 @@ Two phases are intentionally separate:
 
 1. ``validate_batch(contract_path, review_pins, root=ROOT)`` checks independently
    reviewed input pins, exact source facts, the fixed lifecycle cutoff, geometry
-   semantics, and distinct-campus review. It returns a validated batch without
-   writing anything or declaring the 200-site objective complete.
+   semantics, distinct-campus review, and any pinned baseline correction. It
+   returns a validated batch without writing anything or declaring the 200-site
+   objective complete.
 2. ``build_draft(contract_path, review_pins, output_dir, root=ROOT)`` derives all
    rows and denominators, validates a staged reconstruction, then publishes a
    new local draft directory. ``validate_draft`` reconstructs every output byte.
-   All inherited CSV bytes and GeoJSON features remain unchanged. No default
-   artifact, public CLI, baseline file, or researched candidate is modified.
+   Under schema v1 all inherited CSV bytes and GeoJSON features remain
+   unchanged. Under schema v2 every inherited byte also remains unchanged except
+   the exactly enumerated fields of rows named by a pinned baseline correction,
+   its dropped superseded evidence row and the project association it adds to
+   shared evidence rows (below). No default artifact, public CLI, baseline
+   file, or researched candidate is modified.
 
 Contract schema ``datacenter-atlas-v018-reviewed-batch-v1`` (all keys shown are
 required; unrecognized keys at these levels are rejected):
@@ -56,13 +61,101 @@ required; unrecognized keys at these levels are rejected):
       }]
     }
 
-``ReviewPins(contract_sha256, source_sha256, acceptance_sha256)`` is supplied
-separately by reviewed code, not loaded from this contract. Its maps bind every
-source-spec row by source_id and every acceptance row by project_stable_key.
-All record/row hashes use ``canonical_sha256``: sorted compact UTF-8 JSON plus
-one newline. File hashes use exact bytes. Campus-key-set hashes use sorted lists
-through ``canonical_sha256``. Review pins must never be automatically refreshed
-to make a validation error disappear.
+Contract schema ``datacenter-atlas-v018-reviewed-batch-v2`` is v1 plus exactly
+one more required key, a nonempty ``baseline_corrections`` array. A v1 contract
+that carries the key is rejected, and every v1 draft stays byte-for-byte
+reproducible. Each correction re-scopes the locator semantics of one inherited
+v0.17 project on a single-project site:
+
+    "baseline_corrections": [{
+      "correction_id": "a-correction-name",
+      "physical_site_stable_key": "frozen v0.17 site key",
+      "project_stable_key": "frozen v0.17 project key",
+      "frozen_rows": {
+        "release_path": BASELINE_RELATIVE_DIR,
+        "manifest_sha256": BASELINE_MANIFEST_SHA256,
+        "projects_csv": {"file_line_number": 37, "project_stable_key": "...",
+                         "row_canonical_sha256": "...", "raw_line_sha256": "..."},
+        "sites_csv": {"file_line_number": 36, "physical_site_stable_key": "...",
+                      "row_canonical_sha256": "...", "raw_line_sha256": "..."},
+        "evidence_csv": {"file_line_number": 136, "evidence_id": "...",
+                         "row_canonical_sha256": "...", "raw_line_sha256": "..."},
+        "sites_geojson": {"feature_index": 34, "feature_canonical_sha256": "..."}
+      },
+      "geometry": {
+        "source_id": "correction-source", "record_pointer": "/results/0",
+        "record_sha256": "..."
+      },
+      "identity_source_id": "unchanged-frozen-identity-binding",
+      "evidence_source_ids": ["correction-source", "other-geometry-source"],
+      "reason": "Why the inherited locator semantics are corrected."
+    }]
+
+File line numbers count the CSV header as line 1; raw-line hashes cover the
+line bytes without the newline. ``evidence_source_ids`` must equal the
+correction record's ``geometry_source_ids``; those sources receive only the
+``geometry`` role. The geometry source's document is the pinned correction
+record. Besides ``evidence`` and ``results`` it carries ``source_bindings``,
+``supersedes``, ``required_unchanged_identity_bindings``, ``exact_row_deltas``
+(projects.csv, sites.csv, sites.geojson, evidence.csv and one
+``counts_relative_to_*`` block) and ``preservation_invariants``, and states
+``lifecycle_reference_date`` 2026-08-20, ``accepted_additional_sites`` 0 and a
+``reviewed_at`` date between the cutoff and the contract's review date. Each
+correction is validated fail-closed:
+
+- Frozen rows: line numbers, canonical row hashes, raw-line hashes and the
+  feature hash must match the files of the pinned v0.17 manifest, and the raw
+  lines and feature must still match in the later release named by
+  ``supersedes.inherited_unchanged_through``. That release must be a v0.18
+  draft (manifest format v1 or v2) built on the pinned v0.17 manifest, never
+  the frozen baseline itself.
+- Supersedes: the superseded facts file must be a pinned v0.17 portable input,
+  and its hash-bound evidence and geometry records must reproduce the frozen
+  evidence row, geometry, display anchor and locator semantics.
+- Identity: ``identity_source_id`` names an unchanged binding to the frozen v0.17
+  curated input whose project, campus, lifecycle row and evidence reproduce the
+  frozen status. It is never a contract source; its evidence row is unchanged.
+- Geometry: a dedicated validator accepts location basis
+  ``host_estate_locality_context``, entity kind ``host_estate`` and use scope
+  ``host_estate_context`` ONLY for baseline corrections, never for acceptances.
+  Geometry and display anchor must equal the frozen row exactly; authority is
+  unchanged and no numeric uncertainty may be asserted.
+- Reused capture: the primary correction source must reuse the superseded
+  capture's URL, rights, publication value, retrieval value and content hash.
+  Only such a source may keep an inherited date-only ``retrieved_at``.
+- Deltas: corrected rows and feature are derived like acceptance rows and must
+  differ from the frozen bytes in exactly the enumerated fields; each
+  ``unchanged_includes`` entry must be a column of its table. The superseded
+  evidence row is dropped, the enumerated correction evidence rows are added,
+  and evidence already used by acceptances only gains the project association.
+  Count effects must equal the enumerated block. Every other byte is unchanged.
+- Invariants: every ``preservation_invariants`` key is machine-checked and
+  unrecognized keys are rejected. Optional ``osm_way_version_unchanged`` must
+  equal the superseded record's OSM way version; optional
+  ``intersecting_site_rows_unchanged`` lists other site keys, each of which
+  must intersect the corrected geometry and keep its project and site lines
+  byte for byte from the inherited-through draft.
+
+``host_estate_context`` maps to verification posture
+``recent_authoritative_physical_observation_plus_host_estate_context_only``. It
+is excluded from reviewed-locator and official-boundary counts, counted in
+``host_estate_context_projects``, and reported in the selection report's
+``baseline_corrections`` and ``locator_exceptions`` blocks; such a display
+anchor is not a site position. A baseline correction never adds, removes, moves
+or merges a site or project, refreshes a lifecycle observation, or certifies a
+locator. v2 drafts use manifest format
+``datacenter-atlas-verified-construction-core-v018-draft-v2`` and selection
+format ``datacenter-atlas-v018-draft-selection-v2``; v1 formats are unchanged.
+
+``ReviewPins(contract_sha256, source_sha256, acceptance_sha256,
+baseline_correction_sha256={})`` is supplied separately by reviewed code, not
+loaded from this contract. Its maps bind every source-spec row by source_id,
+every acceptance row by project_stable_key, and every baseline correction by
+correction_id; the optional correction map defaults to empty and must be empty
+for v1. All record/row hashes use ``canonical_sha256``: sorted compact UTF-8
+JSON plus one newline. File hashes use exact bytes. Campus-key-set hashes use
+sorted lists through ``canonical_sha256``. Review pins must never be
+automatically refreshed to make a validation error disappear.
 
 Source evidence objects use the existing curated shape: key, kind, title,
 source_url, publisher, source_family, license, attribution, published_at (ISO date,
@@ -80,7 +173,8 @@ Semantics has exactly geometry_source_entity_kind, geometry_derivation,
 geometry_method, geometry_scope_class, geometry_authority_class,
 geometry_use_scope, precision_scope, horizontal_uncertainty_metres, and
 horizontal_uncertainty_unknown_reason. ``LOCATION_BASES`` and ``USE_SCOPES``
-document the allowed evidence/semantic classes. Locality centroids are excluded.
+document the allowed evidence/semantic classes. Locality centroids are excluded,
+and the ``BASELINE_CORRECTION_*`` host-estate classes are never accepted here.
 
 Every acceptance is one project on one NEW physical campus. Additional projects
 on an already represented site require a different, explicitly reviewed update
@@ -89,6 +183,8 @@ or another acceptance. Exact coincident anchors fail closed. Geographic alias
 review is still a human/source judgment: hashes cannot establish physical truth.
 Shared evidence within the delta is supported; baseline evidence IDs may not be
 reused because their inherited usage rows must remain byte-for-byte unchanged.
+Only a pinned baseline correction may drop an inherited evidence row, and only
+the superseded geometry row it names.
 
 Draft output is CSV/GeoJSON plus provenance/report/schema/attribution and manifest.
 No public map is generated. Target-count achievement and final-publication
@@ -101,7 +197,7 @@ success claim. No roles, workload, capacity, efficiency, or energy are inferred.
 from __future__ import annotations
 
 from collections import Counter, defaultdict
-from collections.abc import Mapping
+from collections.abc import Mapping, Sequence
 from dataclasses import dataclass
 from datetime import date, datetime
 import hashlib
@@ -112,6 +208,7 @@ from pathlib import Path
 import re
 import shutil
 import tempfile
+from types import MappingProxyType
 from typing import Any
 from urllib.parse import urlsplit
 
@@ -125,6 +222,19 @@ BASELINE_MANIFEST_SHA256 = (
     "49cf79185742a2bd718a83683c924574ba8db4de1289d1228e56c5865154c8fc"
 )
 SCHEMA_VERSION = "datacenter-atlas-v018-reviewed-batch-v1"
+SCHEMA_VERSION_V2 = "datacenter-atlas-v018-reviewed-batch-v2"
+CONTRACT_KEYS = frozenset(
+    {
+        "schema_version",
+        "batch_id",
+        "base_preview_manifest_sha256",
+        "lifecycle_reference_date",
+        "geometry_identity_reviewed_at",
+        "sources",
+        "acceptances",
+    }
+)
+CONTRACT_KEYS_V2 = CONTRACT_KEYS | {"baseline_corrections"}
 LIFECYCLE_REFERENCE_DATE = date(2026, 8, 20)
 TARGET_ADDITIONAL_SITES = 100
 LOCATION_BASES = frozenset(
@@ -153,6 +263,98 @@ SEMANTIC_FIELDS = frozenset(
         "horizontal_uncertainty_unknown_reason",
     }
 )
+GEOMETRY_RECORD_KEYS = frozenset(
+    {
+        "project_stable_key",
+        "parent_campus_stable_key",
+        "geometry",
+        "display_anchor",
+        "geometry_source_ids",
+        "identity_source_ids",
+        "location_basis",
+        "semantics",
+    }
+)
+# Host-estate locality context is accepted ONLY through a pinned baseline
+# correction of an inherited row, never as the locator of a new acceptance.
+BASELINE_CORRECTION_LOCATION_BASES = frozenset({"host_estate_locality_context"})
+BASELINE_CORRECTION_ENTITY_KINDS = frozenset({"host_estate"})
+BASELINE_CORRECTION_USE_SCOPES = frozenset({"host_estate_context"})
+HOST_ESTATE_CONTEXT_POSTURE = (
+    "recent_authoritative_physical_observation_plus_host_estate_context_only"
+)
+BASELINE_CORRECTION_KEYS = frozenset(
+    {
+        "correction_id",
+        "physical_site_stable_key",
+        "project_stable_key",
+        "frozen_rows",
+        "geometry",
+        "identity_source_id",
+        "evidence_source_ids",
+        "reason",
+    }
+)
+SUPERSEDES_KEYS = frozenset(
+    {
+        "source_path",
+        "source_file_sha256",
+        "source_file_bytes",
+        "evidence_pointer",
+        "evidence_record_sha256",
+        "evidence_source_id",
+        "evidence_id",
+        "geometry_pointer",
+        "geometry_record_sha256",
+        "locator_id",
+        "frozen_baseline_rows",
+        "inherited_unchanged_through",
+        "correction_reason",
+        "frozen_artifact_mutated",
+    }
+)
+FROZEN_ROW_TABLES = (
+    ("projects_csv", "projects", "project_stable_key"),
+    ("sites_csv", "sites", "physical_site_stable_key"),
+    ("evidence_csv", "evidence", "evidence_id"),
+)
+CAPTURE_FIELDS = (
+    "kind",
+    "source_url",
+    "publisher",
+    "source_family",
+    "license",
+    "attribution",
+    "published_at",
+    "retrieved_at",
+    "content_hash",
+)
+BINDING_POINTERS = (
+    ("evidence_pointer", "evidence_record_sha256"),
+    ("project_pointer", "project_sha256"),
+    ("campus_pointer", "campus_sha256"),
+    ("lifecycle_pointer", "lifecycle_sha256"),
+    ("acceptance_pointer", "acceptance_sha256"),
+)
+CORRECTION_COUNT_KEYS = frozenset(
+    {
+        "physical_sites",
+        "projects",
+        "evidence",
+        "reviewed_site_locator_projects",
+        "host_estate_context_projects",
+        "official_boundary_projects",
+        "countries",
+        "non_us_sites",
+    }
+)
+DRAFT_MANIFEST_FORMAT_V1 = "datacenter-atlas-verified-construction-core-v018-draft-v1"
+DRAFT_MANIFEST_FORMAT_V2 = "datacenter-atlas-verified-construction-core-v018-draft-v2"
+# Every key of a correction's preservation_invariants is machine-checked: the
+# required keys against the frozen rows and records, these optional ones below.
+OPTIONAL_PRESERVATION_INVARIANTS = frozenset(
+    {"osm_way_version_unchanged", "intersecting_site_rows_unchanged"}
+)
 ISO_A2_CODES = frozenset(
     """
 AD AE AF AG AI AL AM AO AQ AR AS AT AU AW AX AZ BA BB BD BE BF BG BH BI BJ BL BM BN BO BQ
@@ -172,11 +374,20 @@ class DraftValidationError(core.VerifiedConstructionCoreError):
     """A reviewed input or draft invariant is missing or inconsistent."""
 
 
+TABLE_FIELDS = {
+    "projects": core.PROJECT_FIELDS,
+    "sites": core.SITE_FIELDS,
+    "evidence": core.EVIDENCE_FIELDS,
+}
+
+
 @dataclass(frozen=True)
 class ReviewPins:
     contract_sha256: str
     source_sha256: Mapping[str, str]
     acceptance_sha256: Mapping[str, str]
+    # One independent pin per v2 baseline correction_id; empty for v1 contracts.
+    baseline_correction_sha256: Mapping[str, str] = MappingProxyType({})
 
 
 @dataclass(frozen=True)
@@ -188,6 +399,7 @@ class ValidatedBatch:
     baseline: dict[str, Any]
     sources: dict[str, dict[str, Any]]
     acceptances: tuple[dict[str, Any], ...]
+    baseline_corrections: tuple[dict[str, Any], ...] = ()
 
 
 def canonical_sha256(value: Any) -> str:
@@ -378,7 +590,20 @@ def _load_baseline(root: Path) -> dict[str, Any]:
     return {"manifest": manifest, "files": files, **tables}
 
 
-def _source_evidence(evidence: Any, label: str) -> dict[str, Any]:
+def _date_only(value: Any) -> bool:
+    return isinstance(value, str) and re.fullmatch(r"\d{4}-\d{2}-\d{2}", value) is not None
+
+
+def _source_evidence(
+    evidence: Any, label: str, *, inherited_date_only_retrieval: bool = False
+) -> dict[str, Any]:
+    """Project curated evidence; date-only retrieval only for a reused v2 capture.
+
+    ``inherited_date_only_retrieval`` is set solely by ``validate_batch`` for a
+    v2 source whose literal ``retrieved_at`` is a calendar date. That source is
+    later required to be a baseline correction's reused frozen capture; every
+    other source keeps the timezone-bearing retrieval requirement.
+    """
     _require(isinstance(evidence, dict), f"{label} evidence is not an object")
     for field in (
         "key",
@@ -401,13 +626,26 @@ def _source_evidence(evidence: Any, label: str) -> dict[str, Any]:
         and not url.password,
         f"invalid {label} source URL",
     )
-    try:
-        retrieved = datetime.fromisoformat(
-            evidence["retrieved_at"].replace("Z", "+00:00")
+    if inherited_date_only_retrieval:
+        # A reused frozen capture keeps its literal calendar date; no time of
+        # day or timezone is invented, so comparisons below are day-level.
+        _require(
+            _date_only(evidence["retrieved_at"]),
+            f"{label} inherited retrieval must be a calendar date",
         )
-        _require(retrieved.tzinfo is not None, f"{label} retrieval needs timezone")
-    except ValueError as exc:
-        raise DraftValidationError(f"invalid {label} retrieval timestamp") from exc
+        retrieved = None
+        retrieval_day = _calendar(
+            evidence["retrieved_at"], f"{label} inherited retrieval date"
+        )
+    else:
+        try:
+            retrieved = datetime.fromisoformat(
+                evidence["retrieved_at"].replace("Z", "+00:00")
+            )
+            _require(retrieved.tzinfo is not None, f"{label} retrieval needs timezone")
+        except ValueError as exc:
+            raise DraftValidationError(f"invalid {label} retrieval timestamp") from exc
+        retrieval_day = retrieved.date()
     _require(
         "published_at" in evidence, f"{label} publication date must be explicit or null"
     )
@@ -415,7 +653,7 @@ def _source_evidence(evidence: Any, label: str) -> dict[str, Any]:
         publication_text = _text(evidence["published_at"], f"{label} publication date")
         if re.fullmatch(r"\d{4}-\d{2}-\d{2}", publication_text):
             publication_day = _calendar(publication_text, f"{label} publication date")
-            publication_precedes_retrieval = publication_day <= retrieved.date()
+            publication_precedes_retrieval = publication_day <= retrieval_day
         else:
             _require(
                 re.match(r"\d{4}-\d{2}-\d{2}[T ]\d{2}:\d{2}", publication_text)
@@ -433,8 +671,8 @@ def _source_evidence(evidence: Any, label: str) -> dict[str, Any]:
             # Preserve timezone-free source values without inventing a timezone.
             publication_precedes_retrieval = (
                 publication_time <= retrieved
-                if publication_time.tzinfo is not None
-                else publication_time.date() <= retrieved.date()
+                if publication_time.tzinfo is not None and retrieved is not None
+                else publication_time.date() <= retrieval_day
             )
         _require(
             publication_precedes_retrieval,
@@ -520,21 +758,9 @@ def _inside_ring(point: list[float], ring: list[list[float]]) -> bool:
     return inside
 
 
-def _geometry(record: dict[str, Any]) -> None:
-    _keys(
-        record,
-        {
-            "project_stable_key",
-            "parent_campus_stable_key",
-            "geometry",
-            "display_anchor",
-            "geometry_source_ids",
-            "identity_source_ids",
-            "location_basis",
-            "semantics",
-        },
-        "geometry record",
-    )
+def _geometry_shape(record: Any, label: str = "geometry record") -> str:
+    """Structural geometry/anchor checks shared by acceptances and corrections."""
+    _keys(record, GEOMETRY_RECORD_KEYS, label)
     geometry = _keys(record["geometry"], {"type", "coordinates"}, "geometry")
     anchor = _keys(record["display_anchor"], {"type", "coordinates"}, "display anchor")
     _require(
@@ -599,12 +825,39 @@ def _geometry(record: dict[str, Any]) -> None:
             ),
             "polygon display anchor is outside its geometry",
         )
+    return kind
+
+
+def _host_estate_semantics(record: Mapping[str, Any], semantics: Any) -> bool:
+    basis = record.get("location_basis")
+    return (
+        (isinstance(basis, str) and basis in BASELINE_CORRECTION_LOCATION_BASES)
+        or (
+            isinstance(semantics, Mapping)
+            and (
+                semantics.get("geometry_source_entity_kind")
+                in BASELINE_CORRECTION_ENTITY_KINDS
+                or semantics.get("geometry_use_scope")
+                in BASELINE_CORRECTION_USE_SCOPES
+            )
+        )
+    )
+
+
+def _geometry(record: dict[str, Any]) -> None:
+    """Validate an ACCEPTANCE locator; host-estate context is always rejected."""
+    kind = _geometry_shape(record)
     semantics = _keys(record["semantics"], SEMANTIC_FIELDS, "geometry semantics")
     for field in SEMANTIC_FIELDS - {
         "horizontal_uncertainty_metres",
         "horizontal_uncertainty_unknown_reason",
     }:
         _text(semantics[field], f"geometry semantics {field}")
+    _require(
+        not _host_estate_semantics(record, semantics),
+        "host-estate locality context is accepted only through a pinned baseline "
+        "correction, never as an acceptance locator",
+    )
     _require(
         isinstance(record["location_basis"], str)
         and record["location_basis"] in LOCATION_BASES,
@@ -657,6 +910,1277 @@ def _geometry(record: dict[str, Any]) -> None:
         )
 
 
+def _verification_posture(authority: str, use_scope: str) -> str:
+    if use_scope in BASELINE_CORRECTION_USE_SCOPES:
+        return HOST_ESTATE_CONTEXT_POSTURE
+    return core._verification_posture(authority, use_scope)
+
+
+def _is_host_estate_context(row: Mapping[str, Any]) -> bool:
+    return row.get("geometry_use_scope") in BASELINE_CORRECTION_USE_SCOPES
+
+
+def _is_reviewed_locator(row: Mapping[str, Any]) -> bool:
+    return not _is_host_estate_context(row) and core._is_reviewed_locator(row)
+
+
+def _json_cell(value: Any) -> str:
+    return core._json_bytes(value).decode().strip()
+
+
+def _json_field(text: Any, label: str) -> Any:
+    _require(isinstance(text, str), f"{label} is not text")
+    return _json(text.encode(), label)
+
+
+def _csv_line(row: Mapping[str, Any], fields: Sequence[str]) -> bytes:
+    """One CSV data line, without its newline, exactly as the table writer emits it."""
+    line = core._csv_bytes([row], fields).split(b"\n", 1)[1]
+    _require(
+        line.count(b"\n") == 1 and line.endswith(b"\n") and b"\r" not in line,
+        "CSV row would span lines",
+    )
+    return line[:-1]
+
+
+def _csv_lines(raw: bytes, count: int, label: str) -> list[bytes]:
+    lines = raw.split(b"\n")
+    _require(
+        len(lines) == count + 2 and lines[-1] == b"" and b"\r" not in raw,
+        f"{label} line numbering is ambiguous",
+    )
+    return lines
+
+
+def _pinned_v017_input(
+    baseline: Mapping[str, Any], path: Any, sha256: Any, size: Any
+) -> bool:
+    inputs = baseline["manifest"].get("portable_source_inputs")
+    return isinstance(inputs, list) and any(
+        isinstance(item, dict)
+        and item.get("path") == path
+        and item.get("sha256") == sha256
+        and type(item.get("bytes")) is int
+        and item.get("bytes") == size
+        for item in inputs
+    )
+
+
+def _frozen_rows(
+    frozen: Any, baseline: Mapping[str, Any], project_key: str, site_key: str
+) -> dict[str, Any]:
+    """Locate and hash-check the frozen v0.17 rows and feature a correction names."""
+    _keys(
+        frozen,
+        {
+            "release_path",
+            "manifest_sha256",
+            "projects_csv",
+            "sites_csv",
+            "evidence_csv",
+            "sites_geojson",
+        },
+        "baseline correction frozen rows",
+    )
+    _require(
+        frozen["release_path"] == BASELINE_RELATIVE_DIR
+        and frozen["manifest_sha256"] == BASELINE_MANIFEST_SHA256,
+        "baseline correction must name rows of the pinned v0.17 manifest",
+    )
+    located: dict[str, Any] = {}
+    for key, table, id_field in FROZEN_ROW_TABLES:
+        spec = _keys(
+            frozen[key],
+            {"file_line_number", id_field, "row_canonical_sha256", "raw_line_sha256"},
+            f"frozen {table} row",
+        )
+        rows = baseline[table]
+        lines = _csv_lines(
+            baseline["files"][f"{table}.csv"], len(rows), f"frozen {table}.csv"
+        )
+        number = spec["file_line_number"]
+        _require(
+            type(number) is int and 2 <= number <= len(rows) + 1,
+            f"frozen {table} line number differs",
+        )
+        row = rows[number - 2]
+        identifier = _text(spec[id_field], f"frozen {table} identifier")
+        _require(
+            row[id_field] == identifier
+            and sum(item[id_field] == identifier for item in rows) == 1,
+            f"frozen {table} row identity differs",
+        )
+        _require(
+            canonical_sha256(row)
+            == _hash(spec["row_canonical_sha256"], f"frozen {table} row hash"),
+            f"frozen {table} row SHA-256 differs",
+        )
+        raw = lines[number - 1]
+        _require(
+            hashlib.sha256(raw).hexdigest()
+            == _hash(spec["raw_line_sha256"], f"frozen {table} raw line hash"),
+            f"frozen {table} raw line SHA-256 differs",
+        )
+        _require(
+            _csv_line(row, TABLE_FIELDS[table]) == raw,
+            f"frozen {table} row does not reproduce its raw line",
+        )
+        located[table] = {"index": number - 2, "line": number, "row": row}
+    project, site, evidence = (
+        located[name]["row"] for name in ("projects", "sites", "evidence")
+    )
+    _require(
+        project["project_stable_key"] == project_key
+        and site["physical_site_stable_key"] == site_key
+        and project["physical_site_stable_key"] == site_key
+        and project["site_id"] == site["site_id"],
+        "baseline correction project/site rows differ",
+    )
+    _require(
+        site["project_count"] == "1"
+        and _json_field(site["project_ids_json"], "frozen site projects")
+        == [project["project_id"]]
+        and _json_field(site["project_stable_keys_json"], "frozen site project keys")
+        == [project_key]
+        and sum(
+            row["physical_site_stable_key"] == site_key for row in baseline["projects"]
+        )
+        == 1,
+        "baseline corrections support single-project sites only",
+    )
+    superseded = evidence["evidence_id"]
+    _require(
+        project["geometry_evidence_id"] == superseded
+        and _json_field(site["geometry_evidence_ids_json"], "frozen site evidence")
+        == [superseded]
+        and _json_field(evidence["roles_json"], "frozen evidence roles") == ["geometry"]
+        and _json_field(evidence["project_ids_json"], "frozen evidence projects")
+        == [project["project_id"]],
+        "superseded evidence row is not solely this project's geometry evidence",
+    )
+    for table in ("projects", "sites"):
+        for index, row in enumerate(baseline[table]):
+            _require(
+                index == located[table]["index"]
+                or not any(superseded in str(value) for value in row.values()),
+                "superseded evidence row is referenced by another inherited row",
+            )
+    spec = _keys(
+        frozen["sites_geojson"],
+        {"feature_index", "feature_canonical_sha256"},
+        "frozen GeoJSON feature",
+    )
+    geojson = _json(baseline["files"]["sites.geojson"], "baseline GeoJSON")
+    features = geojson.get("features") if isinstance(geojson, dict) else None
+    index = spec["feature_index"]
+    _require(
+        isinstance(features, list)
+        and type(index) is int
+        and 0 <= index < len(features),
+        "frozen GeoJSON feature index differs",
+    )
+    feature = features[index]
+    _require(
+        canonical_sha256(feature)
+        == _hash(spec["feature_canonical_sha256"], "frozen feature hash"),
+        "frozen GeoJSON feature SHA-256 differs",
+    )
+    _require(
+        feature == core._geojson([site])["features"][0],
+        "frozen GeoJSON feature does not reproduce its site row",
+    )
+    located["feature"] = {"index": index, "feature": feature}
+    return located
+
+
+def _inherited_unchanged_through(
+    spec: Any, root: Path, frozen: Mapping[str, Any]
+) -> dict[str, frozenset[bytes]]:
+    """Prove the frozen rows were still byte-identical in the named later draft.
+
+    The release must be a v0.18 draft built on the pinned v0.17 manifest, never
+    the frozen baseline itself. Returns that draft's project and site data lines.
+    """
+    _keys(
+        spec,
+        {"release_path", "manifest_sha256", "rows_byte_identical_to_v017"},
+        "inherited-through release",
+    )
+    _require(
+        spec["rows_byte_identical_to_v017"] is True,
+        "inherited-through release must preserve the frozen rows",
+    )
+    release = spec["release_path"]
+    directory = _portable_path(root, release, "inherited-through release path")
+    _require(
+        Path(release).parts[0] == "verified_construction_core"
+        and not directory.is_symlink()
+        and directory.is_dir(),
+        "inherited-through release is not a release directory",
+    )
+    _require(
+        Path(release).as_posix() != BASELINE_RELATIVE_DIR
+        and directory.resolve() != (root / BASELINE_RELATIVE_DIR).resolve()
+        and spec["manifest_sha256"] != BASELINE_MANIFEST_SHA256,
+        "inherited-through release must be a later v0.18 draft, not the frozen baseline",
+    )
+    manifest = _json(
+        _read_pinned(directory / "manifest.json", spec["manifest_sha256"]),
+        "inherited-through manifest",
+    )
+    _require(
+        isinstance(manifest, dict)
+        and manifest.get("format") in {DRAFT_MANIFEST_FORMAT_V1, DRAFT_MANIFEST_FORMAT_V2}
+        and manifest.get("release_status") == "draft"
+        and manifest.get("base_preview_manifest_sha256") == BASELINE_MANIFEST_SHA256
+        and manifest.get("base_preview_path") == BASELINE_RELATIVE_DIR,
+        "inherited-through release is not a v0.18 draft of the pinned v0.17 baseline",
+    )
+    files = manifest.get("files")
+    _require(isinstance(files, dict), "inherited-through manifest lacks files")
+    data = {}
+    for name in ("projects.csv", "sites.csv", "evidence.csv", "sites.geojson"):
+        entry = files.get(name)
+        _require(
+            isinstance(entry, dict) and type(entry.get("bytes")) is int,
+            f"inherited-through manifest lacks {name}",
+        )
+        data[name] = _read_pinned(directory / name, entry.get("sha256"), entry["bytes"])
+    for key, table, _ in FROZEN_ROW_TABLES:
+        lines = data[f"{table}.csv"].split(b"\n")
+        number = frozen[key]["file_line_number"]
+        _require(
+            number < len(lines)
+            and hashlib.sha256(lines[number - 1]).hexdigest()
+            == frozen[key]["raw_line_sha256"],
+            f"inherited {table} row changed after v0.17",
+        )
+    geojson = _json(data["sites.geojson"], "inherited-through GeoJSON")
+    features = geojson.get("features") if isinstance(geojson, dict) else None
+    index = frozen["sites_geojson"]["feature_index"]
+    _require(
+        isinstance(features, list)
+        and index < len(features)
+        and canonical_sha256(features[index])
+        == frozen["sites_geojson"]["feature_canonical_sha256"],
+        "inherited GeoJSON feature changed after v0.17",
+    )
+    return {
+        table: frozenset(
+            line for line in data[f"{table}.csv"].split(b"\n")[1:] if line
+        )
+        for table in ("projects", "sites")
+    }
+
+
+def _superseded(
+    supersedes: Any,
+    root: Path,
+    baseline: Mapping[str, Any],
+    located: Mapping[str, Any],
+    correction: Mapping[str, Any],
+) -> tuple[dict[str, Any], dict[str, frozenset[bytes]]]:
+    """Bind the frozen rows to the superseded record of the frozen v0.16 facts.
+
+    Returns the superseded evidence record and the inherited-through draft's
+    project and site data lines.
+    """
+    _keys(supersedes, SUPERSEDES_KEYS, "baseline correction supersedes")
+    relative = supersedes["source_path"]
+    path = _portable_path(root, relative, "superseded source path")
+    _require(Path(relative).parts[0] == "sources", "superseded source must be under sources/")
+    _require(
+        _pinned_v017_input(
+            baseline,
+            relative,
+            supersedes["source_file_sha256"],
+            supersedes["source_file_bytes"],
+        ),
+        "superseded source is not a pinned v0.17 portable input",
+    )
+    document = _json(
+        _read_pinned(
+            path, supersedes["source_file_sha256"], supersedes["source_file_bytes"]
+        ),
+        "superseded source",
+    )
+    evidence = _pointer(document, supersedes["evidence_pointer"])
+    _require(
+        isinstance(evidence, dict)
+        and canonical_sha256(evidence)
+        == _hash(supersedes["evidence_record_sha256"], "superseded evidence hash"),
+        "superseded evidence record SHA-256 differs",
+    )
+    project = located["projects"]["row"]
+    site = located["sites"]["row"]
+    frozen_evidence = located["evidence"]["row"]
+    _require(
+        evidence.get("source_id")
+        == _text(supersedes["evidence_source_id"], "superseded evidence source")
+        and evidence.get("evidence_id")
+        == supersedes["evidence_id"]
+        == frozen_evidence["evidence_id"],
+        "superseded evidence identity differs",
+    )
+    _require(
+        all(
+            frozen_evidence[field] == value
+            for field, value in core._v07_evidence_projection(evidence).items()
+        ),
+        "frozen evidence row is not the superseded record",
+    )
+    record = _pointer(document, supersedes["geometry_pointer"])
+    _require(
+        isinstance(record, dict)
+        and canonical_sha256(record)
+        == _hash(supersedes["geometry_record_sha256"], "superseded geometry hash"),
+        "superseded geometry record SHA-256 differs",
+    )
+    _require(
+        record.get("locator_id") == _text(supersedes["locator_id"], "superseded locator")
+        and record.get("project_stable_key") == correction["project_stable_key"]
+        and record.get("geometry_source_document_id")
+        == supersedes["evidence_source_id"],
+        "superseded geometry identity differs",
+    )
+    try:
+        geometry = core._v15_result_geometry(record)
+    except core.VerifiedConstructionCoreError as exc:
+        raise DraftValidationError("superseded geometry cannot be decoded") from exc
+    _require(
+        _json_cell(geometry) == project["geometry_json"] == site["geometry_json"]
+        and geometry["type"] == project["geometry_type"] == site["geometry_type"],
+        "frozen geometry is not the superseded record",
+    )
+    anchor = record.get("display_anchor")
+    _require(
+        isinstance(anchor, dict)
+        and anchor.get("coordinates")
+        == [float(project["longitude"]), float(project["latitude"])],
+        "frozen display anchor is not the superseded record",
+    )
+    semantics = record.get("semantics")
+    _require(
+        isinstance(semantics, dict)
+        and all(
+            project[field] == semantics.get(field)
+            for field in sorted(SEMANTIC_FIELDS)
+            if field.startswith("geometry_")
+        )
+        and project["geometry_precision_scope"] == semantics.get("precision_scope")
+        and project["horizontal_uncertainty_unknown_reason"]
+        == semantics.get("horizontal_uncertainty_unknown_reason")
+        and project["horizontal_uncertainty_metres"] == ""
+        and semantics.get("horizontal_uncertainty_metres") is None,
+        "frozen locator semantics are not the superseded record",
+    )
+    _require(
+        supersedes["frozen_baseline_rows"] == correction["frozen_rows"],
+        "contract frozen rows differ from the correction record",
+    )
+    _text(supersedes["correction_reason"], "superseded correction reason")
+    _require(
+        supersedes["frozen_artifact_mutated"] is False,
+        "a baseline correction cannot mutate a frozen artifact",
+    )
+    inherited_lines = _inherited_unchanged_through(
+        supersedes["inherited_unchanged_through"], root, correction["frozen_rows"]
+    )
+    return evidence, inherited_lines
+
+
+def _unchanged_bindings(
+    document: Mapping[str, Any],
+    root: Path,
+    baseline: Mapping[str, Any],
+    located: Mapping[str, Any],
+    correction: Mapping[str, Any],
+    sources: Mapping[str, Any],
+) -> None:
+    """Check every unchanged binding and the frozen identity/status it preserves."""
+    bindings = document.get("required_unchanged_identity_bindings")
+    _require(
+        isinstance(bindings, list) and bool(bindings),
+        "baseline correction lacks unchanged identity bindings",
+    )
+    resolved: dict[str, dict[str, Any]] = {}
+    for binding in bindings:
+        _require(isinstance(binding, dict), "unchanged binding is not an object")
+        pairs = [pair for pair in BINDING_POINTERS if pair[0] in binding]
+        expected = {"source_id", "source_path", "source_file_sha256", "source_file_bytes"}
+        expected.update(key for pair in pairs for key in pair)
+        if "note" in binding:
+            expected.add("note")
+            _text(binding["note"], "unchanged binding note")
+        _keys(binding, expected, "unchanged binding")
+        _require(bool(pairs), "unchanged binding pins no record")
+        source_id = _text(binding["source_id"], "unchanged binding ID")
+        _require(source_id not in resolved, "duplicate unchanged binding")
+        relative = binding["source_path"]
+        path = _portable_path(root, relative, "unchanged binding path")
+        _require(
+            Path(relative).parts[0] in {"sources", "definitions"},
+            "unchanged binding must be a sources/ or definitions/ input",
+        )
+        bound = _json(
+            _read_pinned(
+                path, binding["source_file_sha256"], binding["source_file_bytes"]
+            ),
+            source_id,
+        )
+        records = {}
+        for pointer_key, hash_key in pairs:
+            value = _pointer(bound, binding[pointer_key])
+            _require(
+                isinstance(value, dict)
+                and canonical_sha256(value)
+                == _hash(binding[hash_key], f"{source_id} {hash_key}"),
+                f"unchanged binding record SHA-256 differs: {source_id}",
+            )
+            records[pointer_key.removesuffix("_pointer")] = value
+        resolved[source_id] = {
+            "records": records,
+            "v017_input": _pinned_v017_input(
+                baseline,
+                relative,
+                binding["source_file_sha256"],
+                binding["source_file_bytes"],
+            ),
+        }
+    identity_id = correction["identity_source_id"]
+    identity = resolved.get(identity_id)
+    _require(
+        identity is not None and identity_id not in sources,
+        "identity source must be an unchanged frozen binding, not a contract source",
+    )
+    records = identity["records"]
+    _require(
+        identity["v017_input"]
+        and set(records) == {"evidence", "project", "campus", "lifecycle"},
+        "identity binding is not a pinned v0.17 curated input",
+    )
+    project = located["projects"]["row"]
+    _require(
+        records["project"].get("stable_key") == correction["project_stable_key"]
+        and records["campus"].get("stable_key")
+        == correction["physical_site_stable_key"],
+        "identity binding project/campus differs",
+    )
+    status = records["lifecycle"]
+    _require(
+        status.get("entity") == "project"
+        and status.get("value") == project["last_observed_physical_status"]
+        and status.get("as_of_date") == project["status_as_of"]
+        and status.get("method") == project["status_method"]
+        and status.get("evidence_key") == records["evidence"].get("key"),
+        "frozen lifecycle observation differs from the identity binding",
+    )
+    status_evidence = _source_evidence(records["evidence"], identity_id)
+    frozen_status = [
+        row
+        for row in baseline["evidence"]
+        if row["evidence_id"] == status_evidence["evidence_id"]
+    ]
+    _require(
+        status_evidence["evidence_id"] == project["status_evidence_id"]
+        and status_evidence["source_url"] == project["status_source_url"]
+        and len(frozen_status) == 1
+        and all(
+            frozen_status[0][field] == value for field, value in status_evidence.items()
+        ),
+        "identity binding is not the frozen status evidence",
+    )
+    for source_id, item in resolved.items():
+        if "acceptance" in item["records"]:
+            _require(
+                item["v017_input"]
+                and item["records"]["acceptance"].get("project_stable_key")
+                == correction["project_stable_key"],
+                f"unchanged acceptance binding differs: {source_id}",
+            )
+        if source_id in sources:
+            _require(
+                "evidence" in item["records"]
+                and sources[source_id]["evidence"] == item["records"]["evidence"],
+                f"correction evidence differs from its bound original: {source_id}",
+            )
+
+
+def _baseline_correction_geometry(
+    record: Any, correction: Mapping[str, Any], located: Mapping[str, Any]
+) -> None:
+    """Dedicated correction validator: host-estate context, frozen numbers only."""
+    _geometry_shape(record, "baseline correction geometry record")
+    semantics = _keys(
+        record["semantics"], SEMANTIC_FIELDS, "baseline correction geometry semantics"
+    )
+    for field in sorted(
+        SEMANTIC_FIELDS
+        - {"horizontal_uncertainty_metres", "horizontal_uncertainty_unknown_reason"}
+    ):
+        _text(semantics[field], f"baseline correction semantics {field}")
+    _require(
+        isinstance(record["location_basis"], str)
+        and record["location_basis"] in BASELINE_CORRECTION_LOCATION_BASES
+        and semantics["geometry_source_entity_kind"] in BASELINE_CORRECTION_ENTITY_KINDS
+        and semantics["geometry_use_scope"] in BASELINE_CORRECTION_USE_SCOPES,
+        "baseline correction must re-scope its locator to host-estate locality context",
+    )
+    project = located["projects"]["row"]
+    site = located["sites"]["row"]
+    _require(
+        record["project_stable_key"] == correction["project_stable_key"]
+        and record["parent_campus_stable_key"] == correction["physical_site_stable_key"],
+        "baseline correction geometry identity differs",
+    )
+    _require(
+        semantics["geometry_authority_class"] in {"official_source", "community_source"}
+        and semantics["geometry_authority_class"] == project["geometry_authority_class"],
+        "baseline correction cannot change geometry authority",
+    )
+    _require(
+        semantics["horizontal_uncertainty_metres"] is None
+        and project["horizontal_uncertainty_metres"] == "",
+        "host-estate context cannot assert a numeric site uncertainty",
+    )
+    _text(
+        semantics["horizontal_uncertainty_unknown_reason"],
+        "baseline correction unknown uncertainty reason",
+    )
+    geometry = record["geometry"]
+    _require(
+        _json_cell(geometry) == project["geometry_json"] == site["geometry_json"]
+        and geometry["type"] == project["geometry_type"] == site["geometry_type"],
+        "baseline correction geometry differs from the frozen row",
+    )
+    longitude, latitude = record["display_anchor"]["coordinates"]
+    _require(
+        repr(longitude) == project["longitude"] == site["longitude"]
+        and repr(latitude) == project["latitude"] == site["latitude"]
+        and [float(project["longitude"]), float(project["latitude"])]
+        == [longitude, latitude],
+        "baseline correction display anchor differs from the frozen row",
+    )
+
+
+def _correction_document(
+    document: Any,
+    sources: Mapping[str, Any],
+    source_id: str,
+    reviewed_at: date,
+) -> None:
+    _require(isinstance(document, dict), "correction record is not an object")
+    _require(
+        document.get("lifecycle_reference_date") == LIFECYCLE_REFERENCE_DATE.isoformat(),
+        "correction lifecycle cutoff cannot move",
+    )
+    _require(
+        type(document.get("accepted_additional_sites")) is int
+        and document["accepted_additional_sites"] == 0,
+        "a baseline correction cannot add sites",
+    )
+    corrected_at = _calendar(document.get("reviewed_at"), "correction review date")
+    _require(
+        LIFECYCLE_REFERENCE_DATE <= corrected_at <= reviewed_at,
+        "correction review date falls outside the checkpoint review",
+    )
+    path = sources[source_id]["spec"]["path"]
+    bound = sorted(
+        (other_id, source["spec"]["evidence_pointer"])
+        for other_id, source in sources.items()
+        if source["spec"]["path"] == path
+    )
+    declared = document.get("source_bindings")
+    _require(
+        isinstance(declared, list)
+        and all(
+            isinstance(item, dict)
+            and set(item) == {"source_id", "evidence_pointer"}
+            and isinstance(item["source_id"], str)
+            and isinstance(item["evidence_pointer"], str)
+            for item in declared
+        )
+        and sorted((item["source_id"], item["evidence_pointer"]) for item in declared)
+        == bound,
+        "correction source bindings differ from the contract sources",
+    )
+
+
+def _reused_capture(
+    evidence: Mapping[str, Any],
+    superseded: Mapping[str, Any],
+    supersedes: Mapping[str, Any],
+) -> None:
+    _require(
+        all(evidence.get(field) == superseded.get(field) for field in CAPTURE_FIELDS),
+        "primary correction source is not the reused frozen capture",
+    )
+    metadata = evidence.get("metadata")
+    if isinstance(metadata, dict) and "supersedes" in metadata:
+        claimed = metadata["supersedes"]
+        _require(
+            isinstance(claimed, dict)
+            and all(
+                key in supersedes and supersedes[key] == value
+                for key, value in claimed.items()
+            ),
+            "reused capture metadata names a different superseded record",
+        )
+
+
+def _preservation_invariants(
+    document: Mapping[str, Any],
+    located: Mapping[str, Any],
+    record: Mapping[str, Any],
+    superseded: Mapping[str, Any],
+    reused: Mapping[str, Any],
+) -> dict[str, Any]:
+    """Check every invariant key; unrecognized keys are rejected, not trusted.
+
+    ``osm_way_version_unchanged`` must equal the superseded record's OSM way
+    version (and the reused capture's, when its metadata states one).
+    ``intersecting_site_rows_unchanged`` lists other site keys; after the
+    batch is derived, each must intersect the corrected geometry and keep its
+    project and site lines byte for byte from the inherited-through draft.
+    """
+    invariants = document.get("preservation_invariants")
+    _require(isinstance(invariants, dict), "baseline correction lacks invariants")
+    project = located["projects"]["row"]
+    expected = {
+        "raw_evidence_body_sha256_unchanged": superseded["content_hash"],
+        "raw_capture_retrieved_at_unchanged": superseded["retrieved_at"],
+        "numeric_geometry_unchanged": True,
+        "display_anchor_unchanged": record["display_anchor"]["coordinates"],
+        "geometry_authority_class_unchanged": project["geometry_authority_class"],
+        "physical_campus_key_unchanged": True,
+        "construction_project_key_unchanged": True,
+        "lifecycle_observation_unchanged": {
+            "value": project["last_observed_physical_status"],
+            "as_of_date": project["status_as_of"],
+            "method": project["status_method"],
+        },
+        "horizontal_uncertainty_metres": None,
+        "site_count_unchanged": True,
+        "old_file_not_modified": True,
+        "frozen_v017_not_modified": True,
+    }
+    for key, value in expected.items():
+        _require(
+            key in invariants
+            and canonical_sha256(invariants[key]) == canonical_sha256(value),
+            f"baseline correction preservation invariant differs: {key}",
+        )
+    unchecked = set(invariants) - set(expected) - OPTIONAL_PRESERVATION_INVARIANTS
+    _require(
+        not unchecked,
+        "baseline correction preservation invariant is not machine-checked: "
+        + ", ".join(sorted(unchecked)),
+    )
+    if "osm_way_version_unchanged" in invariants:
+        version = invariants["osm_way_version_unchanged"]
+        facts = superseded.get("facts")
+        metadata = reused.get("metadata")
+        _require(
+            type(version) is int
+            and isinstance(facts, dict)
+            and type(facts.get("version")) is int
+            and facts["version"] == version
+            and (
+                not isinstance(metadata, dict)
+                or "osm_version" not in metadata
+                or (
+                    type(metadata["osm_version"]) is int
+                    and metadata["osm_version"] == version
+                )
+            ),
+            "baseline correction preservation invariant differs: "
+            "osm_way_version_unchanged",
+        )
+    if "intersecting_site_rows_unchanged" in invariants:
+        keys = _unique_text(
+            invariants["intersecting_site_rows_unchanged"],
+            "intersecting unchanged site keys",
+        )
+        _require(
+            keys == sorted(keys)
+            and located["sites"]["row"]["physical_site_stable_key"] not in keys,
+            "baseline correction preservation invariant differs: "
+            "intersecting_site_rows_unchanged",
+        )
+    return invariants
+
+
+def _intersecting_rows_unchanged(
+    batch: ValidatedBatch, delta: Mapping[str, list[dict[str, Any]]]
+) -> None:
+    """Check each declared intersecting site against the inherited-through draft."""
+    declared = [
+        item
+        for item in batch.baseline_corrections
+        if "intersecting_site_rows_unchanged" in item["invariants"]
+    ]
+    if not declared:
+        return
+    inherited, _, _ = _inherited(batch)
+    projects = [*inherited["projects"], *delta["projects"]]
+    sites = {
+        row["physical_site_stable_key"]: row
+        for row in [*inherited["sites"], *delta["sites"]]
+    }
+    for item in declared:
+        corrected = _json_field(item["site"]["geometry_json"], "corrected site geometry")
+        through = item["inherited_through_lines"]
+        for key in item["invariants"]["intersecting_site_rows_unchanged"]:
+            site = sites.get(key)
+            _require(
+                site is not None
+                and _geometries_intersect(
+                    corrected, _json_field(site["geometry_json"], "site geometry")
+                ),
+                f"declared intersecting site does not intersect the correction: {key}",
+            )
+            rows = [row for row in projects if row["physical_site_stable_key"] == key]
+            _require(
+                bool(rows)
+                and _csv_line(site, TABLE_FIELDS["sites"]) in through["sites"]
+                and all(
+                    _csv_line(row, TABLE_FIELDS["projects"]) in through["projects"]
+                    for row in rows
+                ),
+                f"intersecting site rows changed after the inherited-through draft: {key}",
+            )
+
+
+def _corrected_rows(
+    record: Mapping[str, Any],
+    located: Mapping[str, Any],
+    sources: Mapping[str, Any],
+    primary_source_id: str,
+) -> tuple[dict[str, Any], dict[str, Any], dict[str, Any]]:
+    """Derive the corrected rows exactly as acceptance rows derive locator fields."""
+    semantics = record["semantics"]
+    primary = sources[primary_source_id]["projection"]
+    posture = _verification_posture(
+        semantics["geometry_authority_class"], semantics["geometry_use_scope"]
+    )
+    reason = semantics["horizontal_uncertainty_unknown_reason"]
+    project = dict(located["projects"]["row"])
+    project.update(
+        {
+            **{
+                field: semantics[field]
+                for field in sorted(SEMANTIC_FIELDS)
+                if field.startswith("geometry_")
+            },
+            "geometry_precision_scope": semantics["precision_scope"],
+            "horizontal_uncertainty_metres": "",
+            "horizontal_uncertainty_unknown_reason": reason,
+            "geometry_evidence_id": primary["evidence_id"],
+            "verification_posture": posture,
+            "geometry_source_url": primary["source_url"],
+        }
+    )
+    site = dict(located["sites"]["row"])
+    site.update(
+        {
+            "geometry_source_entity_kinds_json": _json_cell(
+                [semantics["geometry_source_entity_kind"]]
+            ),
+            "geometry_derivations_json": _json_cell([semantics["geometry_derivation"]]),
+            "geometry_methods_json": _json_cell([semantics["geometry_method"]]),
+            "geometry_scope_classes_json": _json_cell(
+                [semantics["geometry_scope_class"]]
+            ),
+            "geometry_authority_classes_json": _json_cell(
+                [semantics["geometry_authority_class"]]
+            ),
+            "geometry_use_scopes_json": _json_cell([semantics["geometry_use_scope"]]),
+            "geometry_precision_scopes_json": _json_cell([semantics["precision_scope"]]),
+            "horizontal_uncertainty_metres": "",
+            "horizontal_uncertainty_unknown_reason": reason,
+            "geometry_evidence_ids_json": _json_cell(
+                sorted(
+                    {
+                        sources[source_id]["projection"]["evidence_id"]
+                        for source_id in record["geometry_source_ids"]
+                    }
+                )
+            ),
+            "verification_posture": posture,
+        }
+    )
+    for row, table in ((project, "projects"), (site, "sites")):
+        _csv_line(row, TABLE_FIELDS[table])
+    return project, site, core._geojson([site])["features"][0]
+
+
+def _changed(before: Mapping[str, Any], after: Mapping[str, Any]) -> dict[str, list]:
+    _require(set(before) == set(after), "corrected row fields differ")
+    return {key: [before[key], after[key]] for key in before if before[key] != after[key]}
+
+
+def _exact_row_deltas(
+    document: Mapping[str, Any],
+    located: Mapping[str, Any],
+    corrected: Mapping[str, Any],
+    correction: Mapping[str, Any],
+    sources: Mapping[str, Any],
+    geometry_ids: list[str],
+) -> dict[str, Any]:
+    """Require the derived correction to equal the enumerated exact deltas."""
+    deltas = document.get("exact_row_deltas")
+    _require(isinstance(deltas, dict), "baseline correction lacks exact row deltas")
+    count_keys = [key for key in deltas if key.startswith("counts_relative_to_")]
+    _require(len(count_keys) == 1, "baseline correction needs one count-effect block")
+    _keys(
+        deltas,
+        {"projects.csv", "sites.csv", "sites.geojson", "evidence.csv", *count_keys},
+        "exact row deltas",
+    )
+    changed_fields = {}
+    for name, table in (("projects.csv", "projects"), ("sites.csv", "sites")):
+        spec = _keys(
+            deltas[name],
+            {"file_line_number", "changed", "unchanged_includes"},
+            f"{name} exact delta",
+        )
+        changed = _changed(located[table]["row"], corrected[table])
+        _require(
+            spec["file_line_number"] == located[table]["line"]
+            and spec["changed"] == changed,
+            f"{name} correction differs from its enumerated exact delta",
+        )
+        unchanged = _unique_text(spec["unchanged_includes"], f"{name} unchanged fields")
+        _require(
+            set(unchanged).issubset(TABLE_FIELDS[table]),
+            f"{name} exact delta lists an unchanged field that is not a column",
+        )
+        _require(
+            not set(unchanged).intersection(changed),
+            f"{name} exact delta lists a changed field as unchanged",
+        )
+        changed_fields[name] = sorted(changed)
+    spec = _keys(
+        deltas["sites.geojson"],
+        {"feature_index", "changed_properties", "geometry_unchanged"},
+        "sites.geojson exact delta",
+    )
+    frozen_feature = located["feature"]["feature"]
+    feature = corrected["feature"]
+    properties = _changed(frozen_feature["properties"], feature["properties"])
+    _require(
+        {key: value for key, value in frozen_feature.items() if key != "properties"}
+        == {key: value for key, value in feature.items() if key != "properties"}
+        and spec["feature_index"] == located["feature"]["index"]
+        and spec["geometry_unchanged"] is True
+        and spec["changed_properties"] == properties,
+        "sites.geojson correction differs from its enumerated exact delta",
+    )
+    changed_fields["sites.geojson"] = sorted(properties)
+    evidence = _keys(
+        deltas["evidence.csv"],
+        {"removed", "added", "association_only"},
+        "evidence.csv exact delta",
+    )
+    frozen = correction["frozen_rows"]["evidence_csv"]
+    _require(
+        evidence["removed"]
+        == [
+            {
+                "evidence_id": frozen["evidence_id"],
+                "file_line_number": frozen["file_line_number"],
+                "row_canonical_sha256": frozen["row_canonical_sha256"],
+            }
+        ],
+        "evidence delta must remove exactly the superseded row",
+    )
+    by_id = {
+        sources[source_id]["projection"]["evidence_id"]: sources[source_id]
+        for source_id in geometry_ids
+    }
+    project_id = corrected["projects"]["project_id"]
+    added, shared = evidence["added"], evidence["association_only"]
+    _require(
+        isinstance(added, list) and isinstance(shared, list),
+        "evidence delta lists differ",
+    )
+    for item in added:
+        _keys(item, {"evidence_id", "key", "roles", "project_ids"}, "added evidence")
+        source = by_id.get(_text(item["evidence_id"], "added evidence ID"))
+        _require(
+            source is not None
+            and item["key"] == source["evidence"]["key"]
+            and item["roles"] == ["geometry"]
+            and item["project_ids"] == [project_id],
+            "added correction evidence differs from its enumerated delta",
+        )
+    for item in shared:
+        _require(isinstance(item, dict), "association-only evidence is not an object")
+        expected = {"evidence_id", "key", "changed_field", "after_adds_project_id"}
+        if "note" in item:
+            expected.add("note")
+            _text(item["note"], "association-only evidence note")
+        _keys(item, expected, "association-only evidence")
+        source = by_id.get(_text(item["evidence_id"], "association-only evidence ID"))
+        _require(
+            source is not None
+            and item["key"] == source["evidence"]["key"]
+            and item["changed_field"] == "project_ids_json"
+            and item["after_adds_project_id"] == project_id,
+            "association-only correction evidence differs from its enumerated delta",
+        )
+    added_ids = [item["evidence_id"] for item in added]
+    shared_ids = [item["evidence_id"] for item in shared]
+    _require(
+        len(set(added_ids)) == len(added_ids)
+        and len(set(shared_ids)) == len(shared_ids)
+        and not set(added_ids).intersection(shared_ids)
+        and set(added_ids) | set(shared_ids) == set(by_id),
+        "evidence delta does not cover exactly the correction evidence",
+    )
+    before, after = located["projects"]["row"], corrected["projects"]
+    effect = {
+        "physical_sites": 0,
+        "projects": 0,
+        "evidence": len(added) - len(evidence["removed"]),
+        "reviewed_site_locator_projects": int(_is_reviewed_locator(after))
+        - int(_is_reviewed_locator(before)),
+        "host_estate_context_projects": int(_is_host_estate_context(after))
+        - int(_is_host_estate_context(before)),
+        "official_boundary_projects": int(core._is_official_boundary(after))
+        - int(core._is_official_boundary(before)),
+        "countries": 0,
+        "non_us_sites": 0,
+    }
+    counts = _keys(deltas[count_keys[0]], CORRECTION_COUNT_KEYS, "correction count effect")
+    _require(
+        canonical_sha256(counts) == canonical_sha256(effect),
+        "baseline correction count effect differs from its enumerated delta",
+    )
+    return {"changed_fields": changed_fields, "evidence": evidence, "effect": effect}
+
+
+def _baseline_correction(
+    entry: Any,
+    root: Path,
+    baseline: Mapping[str, Any],
+    sources: Mapping[str, Any],
+    review_pins: ReviewPins,
+    reviewed_at: date,
+) -> dict[str, Any]:
+    """Validate one v2 baseline correction fail-closed and derive its rows."""
+    _keys(entry, BASELINE_CORRECTION_KEYS, "baseline correction")
+    correction_id = _text(entry["correction_id"], "correction ID")
+    _require(
+        re.fullmatch(r"[a-z0-9][a-z0-9-]{0,95}", correction_id) is not None,
+        "unsafe correction ID",
+    )
+    _require(
+        canonical_sha256(entry)
+        == review_pins.baseline_correction_sha256.get(correction_id),
+        f"independent baseline correction review pin differs: {correction_id}",
+    )
+    project_key = _text(entry["project_stable_key"], "corrected project key")
+    site_key = _text(entry["physical_site_stable_key"], "corrected site key")
+    _text(entry["reason"], "baseline correction reason")
+    identity_id = _text(entry["identity_source_id"], "correction identity source")
+    located = _frozen_rows(entry["frozen_rows"], baseline, project_key, site_key)
+    binding = _keys(
+        entry["geometry"],
+        {"source_id", "record_pointer", "record_sha256"},
+        "baseline correction geometry binding",
+    )
+    source_id = _text(binding["source_id"], "correction geometry source")
+    record = _record(
+        sources,
+        source_id,
+        binding["record_pointer"],
+        binding["record_sha256"],
+        "baseline correction geometry",
+    )
+    _baseline_correction_geometry(record, entry, located)
+    _require(
+        _unique_text(record["identity_source_ids"], "correction identity source IDs")
+        == [identity_id],
+        "baseline correction identity binding differs",
+    )
+    geometry_ids = _unique_text(
+        record["geometry_source_ids"], "correction geometry source IDs"
+    )
+    evidence_ids = _unique_text(entry["evidence_source_ids"], "correction evidence IDs")
+    _require(
+        source_id in geometry_ids
+        and set(evidence_ids) == set(geometry_ids)
+        and set(geometry_ids).issubset(sources),
+        "baseline correction evidence sources differ from its geometry sources",
+    )
+    document = sources[source_id]["document"]
+    _correction_document(document, sources, source_id, reviewed_at)
+    supersedes = document.get("supersedes")
+    superseded, inherited_lines = _superseded(
+        supersedes, root, baseline, located, entry
+    )
+    reused = sources[source_id]["evidence"]
+    _reused_capture(reused, superseded, supersedes)
+    _unchanged_bindings(document, root, baseline, located, entry, sources)
+    invariants = _preservation_invariants(
+        document, located, record, superseded, reused
+    )
+    project, site, feature = _corrected_rows(record, located, sources, source_id)
+    corrected = {"projects": project, "sites": site, "feature": feature}
+    deltas = _exact_row_deltas(document, located, corrected, entry, sources, geometry_ids)
+    return {
+        "entry": entry,
+        "correction_id": correction_id,
+        "located": located,
+        "record": record,
+        "supersedes": supersedes,
+        "primary_source_id": source_id,
+        "geometry_source_ids": geometry_ids,
+        "project": project,
+        "site": site,
+        "feature": feature,
+        "changed_fields": deltas["changed_fields"],
+        "evidence_delta": deltas["evidence"],
+        "count_effect": deltas["effect"],
+        "invariants": invariants,
+        "inherited_through_lines": inherited_lines,
+    }
+
+
+def _baseline_corrections(
+    entries: Any,
+    root: Path,
+    baseline: Mapping[str, Any],
+    sources: Mapping[str, Any],
+    review_pins: ReviewPins,
+    reviewed_at: date,
+    acceptance_sources: set[str],
+    date_only_sources: set[str],
+) -> list[dict[str, Any]]:
+    _require(
+        isinstance(entries, list) and bool(entries),
+        "v2 contracts need at least one baseline correction",
+    )
+    validated = []
+    for entry in entries:
+        item = _baseline_correction(
+            entry, root, baseline, sources, review_pins, reviewed_at
+        )
+        _require(
+            all(
+                item[key] != other[key]
+                for other in validated
+                for key in ("correction_id", "primary_source_id")
+            )
+            and all(
+                item["entry"][key] != other["entry"][key]
+                for other in validated
+                for key in ("project_stable_key", "physical_site_stable_key")
+            ),
+            "duplicate baseline correction target",
+        )
+        validated.append(item)
+    _require(
+        set(review_pins.baseline_correction_sha256)
+        == {item["correction_id"] for item in validated},
+        "baseline correction review pin inventory differs",
+    )
+    reused = {item["primary_source_id"] for item in validated}
+    for source_id in date_only_sources:
+        _require(
+            source_id in reused and source_id not in acceptance_sources,
+            "date-only retrieval is accepted only for a baseline correction's "
+            "reused frozen capture",
+        )
+    return validated
+
+
+def _geometry_positions(geometry: Mapping[str, Any]) -> list[list[float]]:
+    kind, coordinates = geometry["type"], geometry["coordinates"]
+    if kind == "Point":
+        return [coordinates]
+    polygons = [coordinates] if kind == "Polygon" else coordinates
+    return [point for polygon in polygons for ring in polygon for point in ring]
+
+
+def _geometry_polygons(geometry: Mapping[str, Any]) -> list[list[list[list[float]]]]:
+    kind, coordinates = geometry["type"], geometry["coordinates"]
+    if kind == "Point":
+        return []
+    return [coordinates] if kind == "Polygon" else coordinates
+
+
+def _on_ring(point: list[float], ring: list[list[float]]) -> bool:
+    x, y = point
+    return any(
+        abs((x - ax) * (by - ay) - (y - ay) * (bx - ax)) < 1e-12
+        and min(ax, bx) <= x <= max(ax, bx)
+        and min(ay, by) <= y <= max(ay, by)
+        for (ax, ay), (bx, by) in zip(ring, ring[1:])
+    )
+
+
+def _covers(polygons: list, point: list[float]) -> bool:
+    return any(
+        _inside_ring(point, polygon[0])
+        and not any(
+            _inside_ring(point, hole) and not _on_ring(point, hole)
+            for hole in polygon[1:]
+        )
+        for polygon in polygons
+    )
+
+
+def _geometries_intersect(first: Mapping[str, Any], second: Mapping[str, Any]) -> bool:
+    """Closed-set intersection of two validated Point/Polygon/MultiPolygon values."""
+    boxes = []
+    for geometry in (first, second):
+        points = _geometry_positions(geometry)
+        boxes.append(
+            (
+                min(point[0] for point in points),
+                min(point[1] for point in points),
+                max(point[0] for point in points),
+                max(point[1] for point in points),
+            )
+        )
+    (ax0, ay0, ax1, ay1), (bx0, by0, bx1, by1) = boxes
+    if ax1 < bx0 or bx1 < ax0 or ay1 < by0 or by1 < ay0:
+        return False
+    first_polygons, second_polygons = (
+        _geometry_polygons(first),
+        _geometry_polygons(second),
+    )
+    if not first_polygons and not second_polygons:
+        return first["coordinates"] == second["coordinates"]
+    if not first_polygons:
+        return _covers(second_polygons, first["coordinates"])
+    if not second_polygons:
+        return _covers(first_polygons, second["coordinates"])
+
+    def edges(polygons: list, box: tuple) -> list:
+        x0, y0, x1, y1 = box
+        return [
+            (a, b)
+            for polygon in polygons
+            for ring in polygon
+            for a, b in zip(ring, ring[1:])
+            if max(a[0], b[0]) >= x0
+            and min(a[0], b[0]) <= x1
+            and max(a[1], b[1]) >= y0
+            and min(a[1], b[1]) <= y1
+        ]
+
+    if any(
+        _segments_intersect(a, b, c, d)
+        for a, b in edges(first_polygons, boxes[1])
+        for c, d in edges(second_polygons, boxes[0])
+    ):
+        return True
+    return any(_covers(first_polygons, polygon[0][0]) for polygon in second_polygons) or any(
+        _covers(second_polygons, polygon[0][0]) for polygon in first_polygons
+    )
+
+
+def _locator_exceptions(
+    projects: list[dict[str, Any]],
+    sites: list[dict[str, Any]],
+    corrections: tuple[dict[str, Any], ...],
+) -> dict[str, Any]:
+    by_project = {item["entry"]["project_stable_key"]: item for item in corrections}
+    geometries = {
+        row["physical_site_stable_key"]: _json_field(row["geometry_json"], "site geometry")
+        for row in sites
+    }
+    rows = []
+    for project in projects:
+        if not _is_host_estate_context(project):
+            continue
+        correction = by_project.get(project["project_stable_key"])
+        _require(
+            correction is not None,
+            "host-estate context requires a pinned baseline correction",
+        )
+        site_key = project["physical_site_stable_key"]
+        rows.append(
+            {
+                "project_stable_key": project["project_stable_key"],
+                "project_id": project["project_id"],
+                "physical_site_stable_key": site_key,
+                "site_id": project["site_id"],
+                "correction_id": correction["correction_id"],
+                "geometry_use_scope": project["geometry_use_scope"],
+                "verification_posture": project["verification_posture"],
+                "counted_as_physical_site": True,
+                "counted_as_reviewed_site_locator": False,
+                "counted_as_official_boundary": False,
+                "display_anchor_is_site_position": False,
+                "geometry_intersects_site_keys": sorted(
+                    key
+                    for key, other in geometries.items()
+                    if key != site_key
+                    and _geometries_intersect(geometries[site_key], other)
+                ),
+            }
+        )
+    return {
+        "scope": "Counted projects whose inherited geometry is host-estate locality context only, set by a pinned baseline correction. They are excluded from reviewed_site_locator_projects and official_boundary_projects; the display anchor is not a site position, and other selected sites may lie inside the host estate. A site-count claim must disclose them.",
+        "host_estate_context_projects": len(rows),
+        "projects": rows,
+    }
+
+
+def _correction_report(
+    correction: Mapping[str, Any], batch: ValidatedBatch
+) -> dict[str, Any]:
+    entry = correction["entry"]
+    spec = batch.sources[correction["primary_source_id"]]["spec"]
+    supersedes = correction["supersedes"]
+    delta = correction["evidence_delta"]
+    return {
+        "correction_id": correction["correction_id"],
+        "physical_site_stable_key": entry["physical_site_stable_key"],
+        "project_stable_key": entry["project_stable_key"],
+        "site_id": correction["site"]["site_id"],
+        "project_id": correction["project"]["project_id"],
+        "correction_record": {
+            "source_id": correction["primary_source_id"],
+            "path": spec["path"],
+            "sha256": spec["sha256"],
+            "record_pointer": entry["geometry"]["record_pointer"],
+            "record_sha256": entry["geometry"]["record_sha256"],
+        },
+        "superseded_record": {
+            "source_path": supersedes["source_path"],
+            "source_file_sha256": supersedes["source_file_sha256"],
+            "evidence_id": supersedes["evidence_id"],
+            "locator_id": supersedes["locator_id"],
+        },
+        "frozen_rows": entry["frozen_rows"],
+        "changed_fields": correction["changed_fields"],
+        "evidence_rows": {
+            "removed": [item["evidence_id"] for item in delta["removed"]],
+            "added": sorted(item["evidence_id"] for item in delta["added"]),
+            "association_only": sorted(
+                item["evidence_id"] for item in delta["association_only"]
+            ),
+        },
+        "count_effect": correction["count_effect"],
+        "unchanged": [
+            "physical_site",
+            "project",
+            "geometry",
+            "display_anchor",
+            "geometry_authority",
+            "lifecycle_observation",
+            "status_evidence",
+        ],
+        "additional_sites": 0,
+        "reason": entry["reason"],
+    }
+
+
 def validate_batch(
     contract_path: Path, review_pins: ReviewPins, *, root: Path = ROOT
 ) -> ValidatedBatch:
@@ -675,21 +2199,23 @@ def validate_batch(
     contract = _json(
         _read_pinned(contract_path, review_pins.contract_sha256), "batch contract"
     )
+    # Only a v2 contract may carry baseline_corrections; v1 keeps its exact keys.
+    corrections_enabled = (
+        isinstance(contract, dict) and contract.get("schema_version") == SCHEMA_VERSION_V2
+    )
     _keys(
         contract,
-        {
-            "schema_version",
-            "batch_id",
-            "base_preview_manifest_sha256",
-            "lifecycle_reference_date",
-            "geometry_identity_reviewed_at",
-            "sources",
-            "acceptances",
-        },
+        CONTRACT_KEYS_V2 if corrections_enabled else CONTRACT_KEYS,
         "batch contract",
     )
     _require(
-        contract["schema_version"] == SCHEMA_VERSION, "batch schema version differs"
+        contract["schema_version"] == SCHEMA_VERSION or corrections_enabled,
+        "batch schema version differs",
+    )
+    _require(
+        isinstance(review_pins.baseline_correction_sha256, Mapping)
+        and (corrections_enabled or not review_pins.baseline_correction_sha256),
+        "baseline correction review pins require a v2 contract",
     )
     _require(
         re.fullmatch(
@@ -723,6 +2249,7 @@ def validate_batch(
     )
     sources = {}
     evidence_by_id = {}
+    date_only_sources: set[str] = set()
     for spec in source_specs:
         _keys(
             spec,
@@ -753,7 +2280,18 @@ def validate_batch(
             == _hash(spec["evidence_sha256"], "evidence record hash"),
             "evidence record SHA-256 differs",
         )
-        projection = _source_evidence(evidence, source_id)
+        # A v2 date-only retrieval must later prove it is a correction's reused
+        # frozen capture; v1 and every other source keep the timezone rule.
+        inherited_date = (
+            corrections_enabled
+            and isinstance(evidence, dict)
+            and _date_only(evidence.get("retrieved_at"))
+        )
+        projection = _source_evidence(
+            evidence, source_id, inherited_date_only_retrieval=inherited_date
+        )
+        if inherited_date:
+            date_only_sources.add(source_id)
         identifier = projection["evidence_id"]
         _require(
             identifier not in base_evidence,
@@ -1025,10 +2563,36 @@ def validate_batch(
         set(review_pins.acceptance_sha256) == projects_seen - base_projects,
         "acceptance review pin inventory differs",
     )
+    corrections: list[dict[str, Any]] = []
+    if corrections_enabled:
+        corrections = _baseline_corrections(
+            contract["baseline_corrections"],
+            root,
+            baseline,
+            sources,
+            review_pins,
+            reviewed_at,
+            set(used_sources),
+            date_only_sources,
+        )
+        for correction in corrections:
+            used_sources.update(correction["geometry_source_ids"])
     _require(used_sources == set(sources), "unused source documents are not allowed")
-    return ValidatedBatch(
-        root, contract_path, review_pins, contract, baseline, sources, tuple(validated)
+    batch = ValidatedBatch(
+        root,
+        contract_path,
+        review_pins,
+        contract,
+        baseline,
+        sources,
+        tuple(validated),
+        tuple(corrections),
     )
+    if corrections:
+        # The evidence deltas depend on acceptance usage, so phase one derives
+        # them once here; build and validate_draft derive them again identically.
+        _intersecting_rows_unchanged(batch, _delta_rows(batch))
+    return batch
 
 
 def _delta_rows(batch: ValidatedBatch) -> dict[str, list[dict[str, Any]]]:
@@ -1109,7 +2673,7 @@ def _delta_rows(batch: ValidatedBatch) -> dict[str, list[dict[str, Any]]]:
                 "status_evidence_id": batch.sources[status_source_id]["projection"][
                     "evidence_id"
                 ],
-                "verification_posture": core._verification_posture(
+                "verification_posture": _verification_posture(
                     semantics["geometry_authority_class"],
                     semantics["geometry_use_scope"],
                 ),
@@ -1193,6 +2757,41 @@ def _delta_rows(batch: ValidatedBatch) -> dict[str, list[dict[str, Any]]]:
             }
         )
         sites.append(site)
+    # Baseline corrections: geometry-only usage of the correction sources. A row
+    # enumerated as added must be new; a shared row must already exist through
+    # an acceptance with that role and only gains the project association.
+    acceptance_roles = {
+        identifier: frozenset(item["roles"]) for identifier, item in usage.items()
+    }
+    for correction in batch.baseline_corrections:
+        project_id = correction["project"]["project_id"]
+        delta = correction["evidence_delta"]
+        added = {item["evidence_id"] for item in delta["added"]}
+        shared = {item["evidence_id"] for item in delta["association_only"]}
+        for source_id in correction["geometry_source_ids"]:
+            evidence = batch.sources[source_id]["projection"]
+            identifier = evidence["evidence_id"]
+            if identifier in shared:
+                _require(
+                    "geometry" in acceptance_roles.get(identifier, frozenset()),
+                    "association-only correction evidence must already carry its role",
+                )
+            else:
+                _require(
+                    identifier in added and identifier not in acceptance_roles,
+                    "added correction evidence is already used by an acceptance",
+                )
+            evidence_pool[identifier] = evidence
+            usage[identifier]["roles"].add("geometry")
+            usage[identifier]["projects"].add(project_id)
+    for correction in batch.baseline_corrections:
+        for item in correction["evidence_delta"]["added"]:
+            usage_item = usage[item["evidence_id"]]
+            _require(
+                sorted(usage_item["roles"]) == item["roles"]
+                and sorted(usage_item["projects"]) == item["project_ids"],
+                "added correction evidence row differs from its enumerated delta",
+            )
     evidence_rows = [
         {
             **evidence_pool[identifier],
@@ -1206,9 +2805,52 @@ def _delta_rows(batch: ValidatedBatch) -> dict[str, list[dict[str, Any]]]:
     return {"projects": projects, "sites": sites, "evidence": evidence_rows}
 
 
+def _inherited(
+    batch: ValidatedBatch,
+) -> tuple[dict[str, list[dict[str, Any]]], dict[str, bytes], list[Any]]:
+    """Inherited rows, raw CSV bytes and features, with pinned corrections applied.
+
+    Without corrections these are the frozen v0.17 rows, bytes and features.
+    A correction replaces exactly its project/site lines and feature with the
+    validated derivations and drops the superseded evidence line; every other
+    inherited line keeps its frozen bytes.
+    """
+    rows = {name: batch.baseline[name] for name in TABLE_FIELDS}
+    raw = {name: batch.baseline["files"][f"{name}.csv"] for name in TABLE_FIELDS}
+    features = _json(batch.baseline["files"]["sites.geojson"], "baseline GeoJSON")[
+        "features"
+    ]
+    if not batch.baseline_corrections:
+        return rows, raw, features
+    rows = {name: list(value) for name, value in rows.items()}
+    lines = {
+        name: _csv_lines(raw[name], len(rows[name]), f"frozen {name}.csv")
+        for name in TABLE_FIELDS
+    }
+    features = list(features)
+    dropped: set[int] = set()
+    for correction in batch.baseline_corrections:
+        located = correction["located"]
+        for table, key in (("projects", "project"), ("sites", "site")):
+            index = located[table]["index"]
+            rows[table][index] = correction[key]
+            lines[table][index + 1] = _csv_line(correction[key], TABLE_FIELDS[table])
+        dropped.add(located["evidence"]["index"])
+        features[located["feature"]["index"]] = correction["feature"]
+    rows["evidence"] = [
+        row for index, row in enumerate(rows["evidence"]) if index not in dropped
+    ]
+    lines["evidence"] = [
+        line for number, line in enumerate(lines["evidence"]) if number - 1 not in dropped
+    ]
+    return rows, {name: b"\n".join(value) for name, value in lines.items()}, features
+
+
 def _payloads(batch: ValidatedBatch) -> tuple[dict[str, bytes], dict[str, Any]]:
+    corrected = batch.contract["schema_version"] == SCHEMA_VERSION_V2
     delta = _delta_rows(batch)
-    tables = {name: [*batch.baseline[name], *delta[name]] for name in delta}
+    inherited_rows, inherited_raw, inherited_features = _inherited(batch)
+    tables = {name: [*inherited_rows[name], *delta[name]] for name in delta}
     projects, sites, evidence = (
         tables[name] for name in ("projects", "sites", "evidence")
     )
@@ -1221,6 +2863,23 @@ def _payloads(batch: ValidatedBatch) -> tuple[dict[str, bytes], dict[str, Any]]:
             len({row[field] for row in tables[name]}) == len(tables[name]),
             f"duplicate {name} output ID",
         )
+    if batch.baseline_corrections:
+        output_evidence = {row["evidence_id"] for row in evidence}
+        for correction in batch.baseline_corrections:
+            referenced = {
+                correction["project"]["geometry_evidence_id"],
+                correction["project"]["status_evidence_id"],
+                *_json_field(
+                    correction["site"]["geometry_evidence_ids_json"],
+                    "corrected site evidence",
+                ),
+            }
+            _require(
+                referenced.issubset(output_evidence)
+                and correction["located"]["evidence"]["row"]["evidence_id"]
+                not in output_evidence,
+                "corrected rows and output evidence differ",
+            )
     country_counts = dict(sorted(Counter(row["country"] for row in sites).items()))
     imagery_counts = dict(
         sorted(Counter(row["imagery_review_outcome"] for row in projects).items())
@@ -1246,9 +2905,13 @@ def _payloads(batch: ValidatedBatch) -> tuple[dict[str, bytes], dict[str, Any]]:
         "non_us_sites": non_us,
         "official_boundary_projects": official_boundaries,
         "reviewed_site_locator_projects": sum(
-            core._is_reviewed_locator(row) for row in projects
+            _is_reviewed_locator(row) for row in projects
         ),
     }
+    if corrected:
+        counts["host_estate_context_projects"] = sum(
+            _is_host_estate_context(row) for row in projects
+        )
     gates = {
         "site_count": {
             "actual": len(sites),
@@ -1307,7 +2970,9 @@ def _payloads(batch: ValidatedBatch) -> tuple[dict[str, bytes], dict[str, Any]]:
         },
     }
     report = {
-        "format": "datacenter-atlas-v018-draft-selection-v1",
+        "format": "datacenter-atlas-v018-draft-selection-v2"
+        if corrected
+        else "datacenter-atlas-v018-draft-selection-v1",
         "batch_id": batch.contract["batch_id"],
         "release_status": "draft",
         "publishable_as_final": False,
@@ -1337,12 +3002,27 @@ def _payloads(batch: ValidatedBatch) -> tuple[dict[str, bytes], dict[str, Any]]:
         "source_inputs": batch.contract["sources"],
         "acceptances": batch.contract["acceptances"],
     }
+    if corrected:
+        report["baseline_corrections"] = [
+            _correction_report(correction, batch)
+            for correction in batch.baseline_corrections
+        ]
+        report["locator_exceptions"] = _locator_exceptions(
+            projects, sites, batch.baseline_corrections
+        )
+        provenance["independent_baseline_correction_review_sha256"] = dict(
+            batch.pins.baseline_correction_sha256
+        )
+        provenance["baseline_corrections"] = batch.contract["baseline_corrections"]
     geojson = _json(batch.baseline["files"]["sites.geojson"], "baseline GeoJSON")
     geojson = {
         **geojson,
         "name": "Data Center Atlas v0.18 expansion draft",
         "release_status": "draft",
-        "features": [*geojson["features"], *core._geojson(delta["sites"])["features"]],
+        "features": [
+            *inherited_features,
+            *core._geojson(delta["sites"])["features"],
+        ],
     }
     schema = _json(batch.baseline["files"]["schema.json"], "baseline schema")
     schema["format"] = "datacenter-atlas-verified-construction-core-schema-v018-draft"
@@ -1366,15 +3046,34 @@ def _payloads(batch: ValidatedBatch) -> tuple[dict[str, bytes], dict[str, Any]]:
                 )
                 field["allowed_values_scope"] = (
                     "frozen baseline schema plus values in reviewed draft rows"
+                    + (" and pinned baseline corrections" if corrected else "")
                 )
     schema["v018_draft_contract"] = {
-        "schema_version": SCHEMA_VERSION,
+        "schema_version": batch.contract["schema_version"],
         "release_status": "draft",
         "publishable_as_final": False,
         "location_bases": sorted(LOCATION_BASES),
         "geometry_use_scopes": sorted(USE_SCOPES),
         "schema_documentation": "datacenter_atlas/verified_construction_core_v018.py module docstring",
     }
+    if corrected:
+        schema["v018_draft_contract"].update(
+            {
+                "baseline_correction_location_bases": sorted(
+                    BASELINE_CORRECTION_LOCATION_BASES
+                ),
+                "baseline_correction_geometry_source_entity_kinds": sorted(
+                    BASELINE_CORRECTION_ENTITY_KINDS
+                ),
+                "baseline_correction_geometry_use_scopes": sorted(
+                    BASELINE_CORRECTION_USE_SCOPES
+                ),
+                "baseline_correction_verification_postures": [
+                    HOST_ESTATE_CONTEXT_POSTURE
+                ],
+                "baseline_correction_scope": "Accepted only through pinned baseline corrections of inherited v0.17 rows, never for acceptances. Host-estate context is not a reviewed site locator, official boundary or site position, and is excluded from reviewed_site_locator_projects.",
+            }
+        )
     attribution = (
         batch.baseline["files"]["ATTRIBUTION.txt"]
         + b"\n\nV0.18 DRAFT ADDITIONAL SOURCE ATTRIBUTION\n"
@@ -1384,15 +3083,58 @@ def _payloads(batch: ValidatedBatch) -> tuple[dict[str, bytes], dict[str, Any]]:
         attribution += (
             f"\n{source_id}\n{row['attribution']}\n{row['license']}\n{row['source_url']}\nSource input: {source['spec']['path']}\n"
         ).encode()
+    preservation = "All inherited rows and features are preserved. "
+    if corrected:
+        rescoped = len(batch.baseline_corrections)
+        removed = sum(
+            len(item["evidence_delta"]["removed"]) for item in batch.baseline_corrections
+        )
+        shared = sum(
+            len(item["evidence_delta"]["association_only"])
+            for item in batch.baseline_corrections
+        )
+
+        def plural(count: int, noun: str) -> str:
+            return f"{count} {noun}{'' if count == 1 else 's'}"
+
+        preservation = (
+            "All inherited rows and features are preserved, except the changes made "
+            "by pinned baseline corrections: the enumerated fields of "
+            f"{plural(rescoped, 're-scoped project row')}, "
+            f"{plural(rescoped, 'site row')} and {plural(rescoped, 'feature')}; "
+            f"{plural(removed, 'superseded evidence row')} dropped; and "
+            f"{plural(shared, 'shared evidence row')} gaining only the corrected "
+            "project association. "
+        )
+    corrections_text = ""
+    if corrected:
+        correction_count = len(batch.baseline_corrections)
+        host_estate = counts["host_estate_context_projects"]
+        correction_ids = ", ".join(
+            sorted(item["correction_id"] for item in batch.baseline_corrections)
+        )
+        corrections_text = (
+            f"Baseline corrections: {correction_count} pinned versioned "
+            f"correction{'' if correction_count == 1 else 's'} ({correction_ids}) "
+            f"re-scope{'s' if correction_count == 1 else ''} inherited locator "
+            "semantics and evidence only; no site, project, geometry, display anchor "
+            "or lifecycle observation is added, removed or moved. "
+            f"{host_estate} counted project{'' if host_estate == 1 else 's'} "
+            f"{'has' if host_estate == 1 else 'have'} host-estate locality context only, "
+            "not a reviewed site locator; such a display anchor is not a site position. "
+            "See selection-report.json baseline_corrections and locator_exceptions.\n\n"
+        )
     readme = (
         f"# Data Center Atlas v0.18 expansion draft\n\n"
         f"{counts['physical_sites']} physical sites, {counts['projects']} projects, {counts['countries']} countries. "
         f"The frozen v0.17 baseline has {baseline_count} sites; this reviewed draft adds {len(delta['sites'])}. "
         f"The requested expansion target remains {target} total sites ({TARGET_ADDITIONAL_SITES} additional).\n\n"
         "This is an opt-in local draft, not a public release or a claim of goal completion. "
-        "The public builder still defaults to v0.17. All inherited rows and features are preserved. "
+        "The public builder still defaults to v0.17. "
+        f"{preservation}"
         "Locators are not building footprints or surveyed boundaries unless their explicit semantics say otherwise. "
         "No additional roles, workloads, capacities, energy, or efficiency observations are inferred.\n\n"
+        f"{corrections_text}"
         f"Lifecycle cutoff: {LIFECYCLE_REFERENCE_DATE.isoformat()}. "
         f"Imagery outcomes: {reviewed_imagery}/{len(projects)}; additional blind reviews: 0. "
         "See selection-report.json for every gate and ATTRIBUTION.txt for source terms.\n"
@@ -1411,9 +3153,9 @@ def _payloads(batch: ValidatedBatch) -> tuple[dict[str, bytes], dict[str, Any]]:
         ("evidence", core.EVIDENCE_FIELDS),
     ):
         appended = core._csv_bytes(delta[name], fields).split(b"\n", 1)[1]
-        files[f"{name}.csv"] = batch.baseline["files"][f"{name}.csv"] + appended
+        files[f"{name}.csv"] = inherited_raw[name] + appended
     manifest = {
-        "format": "datacenter-atlas-verified-construction-core-v018-draft-v1",
+        "format": DRAFT_MANIFEST_FORMAT_V2 if corrected else DRAFT_MANIFEST_FORMAT_V1,
         "draft_id": f"2026-08-20-v0.18-draft-{batch.contract['batch_id']}",
         "release_status": "draft",
         "publishable_as_final": False,

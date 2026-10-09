@@ -1,0 +1,710 @@
+{
+  "schema_version": "1.0",
+  "research_date": "2026-10-09",
+  "reference_date": "2026-08-20",
+  "physical_observation_window": [
+    "2026-05-22",
+    "2026-08-20"
+  ],
+  "review_scope": "Round43 CGK lane. Determine exactly what is wrong with the inherited Digital Edge CGK host-estate locator, seek an exact reviewed campus locator from round42 captures and new primary sources, and otherwise draft the honest versioned correction in the Helios precedent's format. No tracked file, frozen input, selected geometry, contract or release artifact was changed. The correction adds and removes no site.",
+  "new_site_count": 0,
+  "numeric_geometry_replacement_count": 0,
+  "versioned_correction_count": 1,
+  "candidate": {
+    "name": "Digital Edge CGK Campus (CGK1)",
+    "country": "Indonesia",
+    "existing_site_id": "vcc-site-f42f9f22874b1766554e",
+    "existing_site_stable_key": "curated:digital-edge-cgk-campus-bekasi",
+    "existing_project_stable_key": "curated:digital-edge-cgk-campus-bekasi:cgk1",
+    "inherited_locator_id": "digital-edge-cgk1-osm-giic-host-estate-polygon",
+    "decision": "correction_ready_host_estate_context_rescope",
+    "exact_campus_locator_found": false,
+    "correction_record_draft": "sources/verified-construction-core-v0.18-cgk-host-estate-locator-correction-v1.json",
+    "correction_record_draft_bytes": 78791,
+    "correction_record_draft_sha256": "e2553c6d0264975cf98435f2d6835fcb5673d25e452b358a36096881fb18ab66",
+    "correction_record_commit_note": "Before the first commit, the correction record was revised from the lane draft (77,602 bytes, sha256 12c6b0f0cd45fd3338df77c1acd8fb5f87178bc52c176e8dd101ee38680dd2cb): raw_review_paths scan scripts and outputs now point to byte-identical ignored local copies under tmp/research-round43-cgk/review-scripts/ instead of the ephemeral job directory; free-text unchanged_includes entries became the actual column names; the unchecked stt_jakarta_rows_unchanged invariant became intersecting_site_rows_unchanged, which the builder checks; and the vertex and anchor wording now says 458 distinct vertices in a closed way of 459 node references and the planar centroid of the longitude/latitude ring. Geometry, anchor, evidence identities, frozen rows and count effects are unchanged.",
+    "what_is_wrong": [
+      "Scope: the inherited geometry is the entire GIIC host estate, labelled geometry_use_scope campus_locator. It is OSM way 568349989 v13, a 458-vertex community polygon (a closed way of 459 node references) of about 2,113.63 ha with a bounding box of about 7.84 by 6.29 km. The CGK1 source supports only locality: GIIC Industrial Estate, with method authoritative_locality and null coordinates and geometry.",
+      "Anchor: project and site latitude/longitude publish the planar centroid of the estate's longitude/latitude ring (107.18709493651593, -6.386820103966021; the v0.16 record labels it projected_polygon_centroid, but no map projection is applied). That is an industrial-estate centroid, which the acceptance contract and the v0.18 builder both exclude.",
+      "Collision: the polygon wholly contains the selected STT Jakarta Data Centre Campus geometry. That is the only intersecting pair among all 197 thirty-fifth-checkpoint site geometries.",
+      "Non-discrimination: six named data-centre buildings of five other operators lie inside the polygon in the 2026-10-08 OSM snapshot. The nearest to the inherited anchor is AWS, ref CGK Sukamahi, at about 977 m, which is an alias hazard for the generic CGK prefix.",
+      "Accounting: CGK is counted as a reviewed site locator, one of the 195 reviewed_site_locator_projects at the thirty-fifth checkpoint, and carries posture recent_authoritative_physical_observation_plus_reviewed_site_locator.",
+      "Not a numeric or datum defect: the ring is a byte-exact copy of OSM way v13. Canonical geometry is 11,415 bytes with sha256 bc2c85e9..., identical to the 2026-10-08 Geofabrik snapshot, in WGS84 node coordinates.",
+      "Inheritance: the rows are frozen in v0.17 (projects.csv line 37, sites.csv line 36, evidence.csv line 136, sites.geojson feature 34) and copied byte for byte into every v0.18 draft. The additive builder cannot rebind them, so unlike Helios a builder extension is required."
+    ]
+  },
+  "locator_routes_checked": [
+    {
+      "route": "Round42 captures: Indonet audited FY2025, KI afiliasi of 2025-10-29 and 2026-05-20, KI transaksi of 2025-10-06, Digital Edge ESG report 2026",
+      "result": "All rehash correctly and are byte-identical to fresh recaptures. FY2025 note 8 places the DGE data-centre project at about 6 percent cost completion with Q4 2026 completion expected. Group land stays at Rp338,810 million and HGB rights carry no certificate, parcel or address. The KI documents are capital injections into DGE and Digital Gayana Ekaprana and an EDG bank loan secured by EDGE1/EDGE2. The ESG report names only a CGK campus 'in Jakarta'. No CGK parcel, address, plot or coordinate appears. The Oct 29 PDF has flate-stream errors; all three pages were rendered and visually reviewed."
+    },
+    {
+      "route": "Digital Edge CGK campus page, recaptured 2026-10-09 (dateModified 2026-08-20)",
+      "result": "States GIIC Industrial Estate in Cikarang, Bekasi, four buildings and design facts. It has no latitude/longitude, map link or parcel. The spec sheet sits behind a personal-data form and Digital Edge's robots.txt disallows spec-sheet PDFs; it was not requested."
+    },
+    {
+      "route": "AMDALNET (Ministry of Environment) public WebGIS: robots.txt allows all; the projects-geom list exactly as the public UI loads it",
+      "result": "All 38,645 project titles with geometry were screened. None names Digital Edge, CGK, Digital Gayana, Ekagrata or Indonet. Seventeen data-centre and hosting-titled projects had their map-geojson-webgis records fetched; their proponents are BDx/Starone (CGK4, Purwakarta), Graha Teknologi Nusantara, NTT, Quintus, Karyagraha, Longmotive and others, none of them DGE. The four GIIC estate AMDAL site polygons from Puradelta (2009, 2013 and 2015 phases: 725.85, 168.6 and 260.98 ha) are partial estate phases that contain neither STT nor a CGK identity. publicInitiators returned HTTP 500 and was not retried."
+    },
+    {
+      "route": "OpenStreetMap through the Geofabrik Java extract java-261008: no robots.txt rule, and OSM's own robots.txt recommends extracts over site and API requests",
+      "result": "MD5 matches the published checksum. The whole extract was scanned with C++-side tag filters. No feature anywhere names Digital Edge CGK, CGK1, Digital Gayana or Ekagrata; the Digital Edge-named features are EDGE1 and EDGE2 in downtown Jakarta. All 806 identity-tagged features in the GIIC bounding box were listed and reviewed, and none identifies CGK. The GIIC way is unchanged at v13."
+    },
+    {
+      "route": "OSM API, Overpass and Nominatim",
+      "result": "Not queried. Their robots.txt files (captured) disallow /api/, /api/ and /search|/details|/reverse|/lookup respectively for generic agents."
+    }
+  ],
+  "excluded_routes": [
+    "Deltamas June 30, 2026 company presentation: confidential use restriction, already excluded in round39.",
+    "Estate masterplan and marketing map images: no tenant-to-plot bridge and no georeferencing controls; nothing was traced or georeferenced.",
+    "Third-party directories (datacentermap, baxtel, dcpulse) and news: discovery only, not authoritative locators.",
+    "Indonesian cadastral (BPN Bhumi) and permit portals: no public certificate or NIB binds DGE or CGK to a parcel, so a parcel cannot be selected without an identity bridge."
+  ],
+  "status_and_successor": {
+    "selected_observation_unchanged": "CGK1 structural topping out, shell, 2026-06-08. Source: https://id.digitaledgedc.com/news/digital-edge-tops-out-cgk1-secures-largest-indonesia-power-deal (curated /lifecycle/0, evidence key digital-edge-cgk1-topout-2026-06-08-captured-2026-07-20, content_hash 0a7bbd094f67937d1453e784c12c56e15e99c3ffab8a76c51b2fad9c7ffc2d25).",
+    "successor_check": "Indonet's June 30, 2026 interim statements (r36 capture, sha256 9f1480b169d2df05a37977879ecb81f77ccadccf8cf619e830f4878beb64b6c0, rehashed; PDF page 47, note 8) report the DGE 1 and DGE 2 data-centre projects at 27 and 7 percent cost completion, expected in Q4 2026; they are not normalized to CGK1/CGK2. The campus page, modified 2026-08-20, reports no completion. Digital Edge forecasts CGK1 ready-for-service in Q4 2026. No completion, opening or cancellation on or before 2026-08-20 was found in this bounded review, which is not exhaustive proof of absence."
+  },
+  "distinctness": {
+    "compared_release": "verified_construction_core/2026-08-20-v0.18-draft-thirty-fifth-reviewed",
+    "sites": 197,
+    "geojson_bytes": 315956,
+    "geojson_sha256": "e8e15ad84588019ae2a9e52c49e06be522b17984cf7208e2bd35bb58262cc79e",
+    "pairwise_intersections": [
+      {
+        "a": "curated:digital-edge-cgk-campus-bekasi",
+        "b": "curated:stt-jakarta-data-centre-campus",
+        "a_contains_b": true
+      }
+    ],
+    "method": "Shapely 2.1.1 STRtree, all 197 complete Point/Polygon/MultiPolygon geometries pairwise",
+    "correction_effect": "Adds and removes no site. CGK stays one distinct physical site, distinct from STT and the other GIIC campuses by operator, legal entity (PT Digital Gayana Ekagrata) and building identity, not by geometry. The CGK/STT overlap remains but is disclosed as host-estate context.",
+    "alias_hazards": [
+      "CGK alone is not an identity key: AWS uses ref CGK Sukamahi inside GIIC and BDx uses CGK4 in Purwakarta.",
+      "PT Digital Gayana Ekaprana and PT Ekagrata Data Gemilang are distinct entities, not variants of PT Digital Gayana Ekagrata."
+    ]
+  },
+  "consistency_flag": {
+    "finding": "Three other v0.16 baseline locators use the same host-development pattern labelled campus_locator. sources/verified-construction-core-v0.16-seven-country-diversity-site-facts.json results/0 is the SBOGZB01 IDECA Zona Franca address point, results/1 the RDH2 Smart Village polygon and results/2 the RCJM1 Iskandar Halal Park union. None intersects another selected site, so CGK is the only one with a demonstrated collision; a strict verified-200 claim should still review them under the same rule.",
+    "action_taken": "None. These are outside this lane's mandate and were not changed."
+  },
+  "round42_capture_verification": [
+    {
+      "round42_file": "tmp/research-round42-cgk-correction/indonet-audited-fy2025.pdf",
+      "url": "https://indonet.id/wp-content/uploads/2026/03/Audited-FS-Indonet-31-Dec-2025-1.pdf",
+      "bytes": 3942196,
+      "sha256": "91ca0a86f75d81c33757a8ad329f101ccb62259ad1bc3f0275ac2a50171bcbb6",
+      "local_rehash_matches": true,
+      "round43_recapture": "tmp/research-round43-cgk/r43-indonet-audited-fy2025.pdf",
+      "recaptured_at": "2026-10-09T11:37:24.292Z",
+      "recapture_byte_identical": true
+    },
+    {
+      "round42_file": "tmp/research-round42-cgk-correction/indonet-ki-afiliasi-material-2025-10-29.pdf",
+      "url": "https://indonet.id/wp-content/uploads/2025/10/KI-Afiliasi-dan-Transaksi-Material-29-Oct.pdf",
+      "bytes": 317085,
+      "sha256": "d43bfb96d4ab2eb65c55e5d55e96b63374dfdf371306e39916a16cdc28014937",
+      "local_rehash_matches": true,
+      "round43_recapture": "tmp/research-round43-cgk/r43-indonet-ki-afiliasi-material-2025-10-29.pdf",
+      "recaptured_at": "2026-10-09T11:37:28.801Z",
+      "recapture_byte_identical": true
+    },
+    {
+      "round42_file": "tmp/research-round42-cgk-correction/indonet-ki-afiliasi-material-2026-05-20.pdf",
+      "url": "https://indonet.id/wp-content/uploads/2026/05/200526-Keterbukaan-Informasi-Transaksi-Afiliasi-Material.pdf",
+      "bytes": 356681,
+      "sha256": "8d2d2afdf61a8043fa2aaac3fe0d11e262cfc363f4bf9a28220ac297b2867923",
+      "local_rehash_matches": true,
+      "round43_recapture": "tmp/research-round43-cgk/r43-indonet-ki-afiliasi-material-2026-05-20.pdf",
+      "recaptured_at": "2026-10-09T11:37:33.764Z",
+      "recapture_byte_identical": true
+    },
+    {
+      "round42_file": "tmp/research-round42-cgk-correction/indonet-ki-transaksi-2025-10-06.pdf",
+      "url": "https://indonet.id/wp-content/uploads/2025/10/KI-Transaksi-6-Okt-2025.pdf",
+      "bytes": 263548,
+      "sha256": "ce49eda3245f42eb6220bcebf28b277ce46488aa645e6dd474b5916608534a17",
+      "local_rehash_matches": true,
+      "round43_recapture": "tmp/research-round43-cgk/r43-indonet-ki-transaksi-2025-10-06.pdf",
+      "recaptured_at": "2026-10-09T11:37:37.653Z",
+      "recapture_byte_identical": true
+    },
+    {
+      "round42_file": "tmp/research-round42-cgk-correction/de-esg-report-2026.pdf",
+      "url": "https://www.digitaledgedc.com/wp-content/uploads/2026/04/digital_edge_esg_report_2026.pdf",
+      "bytes": 4982313,
+      "sha256": "516d5e2df9cfad891082329471b30da09b82d53af7bd25a560f15b214231722e",
+      "local_rehash_matches": true,
+      "round43_recapture": "tmp/research-round43-cgk/r43-de-esg-report-2026.pdf",
+      "recaptured_at": "2026-10-09T11:37:45.211Z",
+      "recapture_byte_identical": true
+    }
+  ],
+  "raw_captures": [
+    {
+      "file": "tmp/research-round43-cgk/amdalnet-announcements-uklupl-limit10.json",
+      "url": "https://amdalnet.kemenlh.go.id/api/announcements?keyword=UKL-UPL&limit=10",
+      "effective_url": "https://amdalnet.kemenlh.go.id/api/announcements?keyword=UKL-UPL&limit=10",
+      "http_status": 200,
+      "bytes": 85221,
+      "sha256": "660b497151860c9d82ae19aeec1540b77cc59fa19ece1a17ca0d0d3887363ae8",
+      "captured_at": "2026-10-09T11:05:15.452Z",
+      "body_saved": true,
+      "local_rehash_matches": true
+    },
+    {
+      "file": "tmp/research-round43-cgk/amdalnet-app.js",
+      "url": "https://amdalnet.kemenlh.go.id/js/app.js?id=2b3b1c81f539289de884",
+      "effective_url": "https://amdalnet.kemenlh.go.id/js/app.js?id=2b3b1c81f539289de884",
+      "http_status": 200,
+      "bytes": 3132950,
+      "sha256": "890eb68f80b177b0f631214aedf7cbd3d6af6382d5626395dec46a15498a4390",
+      "captured_at": "2026-10-09T11:03:57.847Z",
+      "body_saved": true,
+      "local_rehash_matches": true
+    },
+    {
+      "file": "tmp/research-round43-cgk/amdalnet-chunk212-webgis.js",
+      "url": "https://amdalnet.kemenlh.go.id/js/212.5e91d6.js",
+      "effective_url": "https://amdalnet.kemenlh.go.id/js/212.5e91d6.js",
+      "http_status": 200,
+      "bytes": 223628,
+      "sha256": "1279fed309fe5dfd331f79efcfb972127f782a51b7b782eb667831fc5788018d",
+      "captured_at": "2026-10-09T11:05:56.439Z",
+      "body_saved": true,
+      "local_rehash_matches": true
+    },
+    {
+      "file": "tmp/research-round43-cgk/amdalnet-chunk306.js",
+      "url": "https://amdalnet.kemenlh.go.id/js/306.ac0f8b.js",
+      "effective_url": "https://amdalnet.kemenlh.go.id/js/306.ac0f8b.js",
+      "http_status": 200,
+      "bytes": 9704,
+      "sha256": "46041c512f013cfab447e32c29b77430b4fd9401752c582adb4366c0f4b10c9f",
+      "captured_at": "2026-10-09T11:04:53.231Z",
+      "body_saved": true,
+      "local_rehash_matches": true
+    },
+    {
+      "file": "tmp/research-round43-cgk/amdalnet-chunk328.js",
+      "url": "https://amdalnet.kemenlh.go.id/js/328.64ad33.js",
+      "effective_url": "https://amdalnet.kemenlh.go.id/js/328.64ad33.js",
+      "http_status": 200,
+      "bytes": 8464,
+      "sha256": "1ef72d20a151e2e37ff1f5556ba3526f32a8f8cebd7f37f97d07ac5e44f33aa9",
+      "captured_at": "2026-10-09T11:04:53.974Z",
+      "body_saved": true,
+      "local_rehash_matches": true
+    },
+    {
+      "file": "tmp/research-round43-cgk/amdalnet-districts-prov12.json",
+      "url": "https://amdalnet.kemenlh.go.id/api/districts?idProv=12",
+      "effective_url": "https://amdalnet.kemenlh.go.id/api/districts?idProv=12",
+      "http_status": 200,
+      "bytes": 4977,
+      "sha256": "5bad861b525cf2a050996866f45765d52cbce6f9f4860d0d9261f97abd631902",
+      "captured_at": "2026-10-09T11:06:41.785Z",
+      "body_saved": true,
+      "local_rehash_matches": true
+    },
+    {
+      "file": "tmp/research-round43-cgk/amdalnet-home.html",
+      "url": "https://amdalnet.kemenlh.go.id/",
+      "effective_url": "https://amdalnet.kemenlh.go.id/",
+      "http_status": 200,
+      "bytes": 3134,
+      "sha256": "ca590072a860bd4a5b94915d343aa03e97ef977708abb8d20e7674a94dab4a6b",
+      "captured_at": "2026-10-09T11:03:41.808Z",
+      "body_saved": true,
+      "local_rehash_matches": true
+    },
+    {
+      "file": "tmp/research-round43-cgk/amdalnet-kemenlh-go-id-robots-txt",
+      "url": "https://amdalnet.kemenlh.go.id/robots.txt",
+      "effective_url": "https://amdalnet.kemenlh.go.id/robots.txt",
+      "http_status": 200,
+      "bytes": 24,
+      "sha256": "e5c4b84484ee4216e9373be99380320c25dd94805f99f0a805846f087636553f",
+      "captured_at": "2026-10-09T11:03:14.437Z",
+      "body_saved": true,
+      "local_rehash_matches": true
+    },
+    {
+      "file": "tmp/research-round43-cgk/amdalnet-manifest.js",
+      "url": "https://amdalnet.kemenlh.go.id/js/manifest.js?id=29b2529a8bd23d87a7d0",
+      "effective_url": "https://amdalnet.kemenlh.go.id/js/manifest.js?id=29b2529a8bd23d87a7d0",
+      "http_status": 200,
+      "bytes": 9216,
+      "sha256": "8237ef43529d3d574082045659003baca0d059cf244b53870212f14b033709c0",
+      "captured_at": "2026-10-09T11:04:36.337Z",
+      "body_saved": true,
+      "local_rehash_matches": true
+    },
+    {
+      "file": "tmp/research-round43-cgk/amdalnet-map-1140539.json",
+      "url": "https://amdalnet.kemenlh.go.id/api/map-geojson-webgis?id=1140539&step=ka&for_webgis=true",
+      "effective_url": "https://amdalnet.kemenlh.go.id/api/map-geojson-webgis?id=1140539&step=ka&for_webgis=true",
+      "http_status": 200,
+      "bytes": 16347,
+      "sha256": "57f7d5ebf60b8a16114f7a17198487f9645d786d9fca7b0213b768ab6f870159",
+      "captured_at": "2026-10-09T11:10:14.657Z",
+      "body_saved": true,
+      "local_rehash_matches": true
+    },
+    {
+      "file": "tmp/research-round43-cgk/amdalnet-map-1146599.json",
+      "url": "https://amdalnet.kemenlh.go.id/api/map-geojson-webgis?id=1146599&step=ka&for_webgis=true",
+      "effective_url": "https://amdalnet.kemenlh.go.id/api/map-geojson-webgis?id=1146599&step=ka&for_webgis=true",
+      "http_status": 200,
+      "bytes": 10709,
+      "sha256": "4774ab23e24ec27323f32d4bf215235fe3a83f7a2347d466d5877cec041aef0f",
+      "captured_at": "2026-10-09T11:10:13.382Z",
+      "body_saved": true,
+      "local_rehash_matches": true
+    },
+    {
+      "file": "tmp/research-round43-cgk/amdalnet-map-1185298.json",
+      "url": "https://amdalnet.kemenlh.go.id/api/map-geojson-webgis?id=1185298&step=ka&for_webgis=true",
+      "effective_url": "https://amdalnet.kemenlh.go.id/api/map-geojson-webgis?id=1185298&step=ka&for_webgis=true",
+      "http_status": 200,
+      "bytes": 10263,
+      "sha256": "5a46f4a5c2b73bf8b4073c77a561f7bc4b52f7039e8133fdabe181faf843f4d6",
+      "captured_at": "2026-10-09T11:10:12.062Z",
+      "body_saved": true,
+      "local_rehash_matches": true
+    },
+    {
+      "file": "tmp/research-round43-cgk/amdalnet-map-1382101.json",
+      "url": "https://amdalnet.kemenlh.go.id/api/map-geojson-webgis?id=1382101&step=ka&for_webgis=true",
+      "effective_url": "https://amdalnet.kemenlh.go.id/api/map-geojson-webgis?id=1382101&step=ka&for_webgis=true",
+      "http_status": 200,
+      "bytes": 1075,
+      "sha256": "3b0f8ee87801e31cc851d3cc4138f2f7d131acb9277d9ff61b05251f74aed873",
+      "captured_at": "2026-10-09T11:08:50.359Z",
+      "body_saved": true,
+      "local_rehash_matches": true
+    },
+    {
+      "file": "tmp/research-round43-cgk/amdalnet-map-1386811.json",
+      "url": "https://amdalnet.kemenlh.go.id/api/map-geojson-webgis?id=1386811&step=ka&for_webgis=true",
+      "effective_url": "https://amdalnet.kemenlh.go.id/api/map-geojson-webgis?id=1386811&step=ka&for_webgis=true",
+      "http_status": 200,
+      "bytes": 823,
+      "sha256": "0b12dae468fcd0699abb6ed8241dabe487dea4cab4d990ee051adeeac97cd60c",
+      "captured_at": "2026-10-09T11:08:20.525Z",
+      "body_saved": true,
+      "local_rehash_matches": true
+    },
+    {
+      "file": "tmp/research-round43-cgk/amdalnet-map-1528.json",
+      "url": "https://amdalnet.kemenlh.go.id/api/map-geojson-webgis?id=1528&step=ka&for_webgis=true",
+      "effective_url": "https://amdalnet.kemenlh.go.id/api/map-geojson-webgis?id=1528&step=ka&for_webgis=true",
+      "http_status": 200,
+      "bytes": 953,
+      "sha256": "9b888c25475459cc0e8536295def7f62c9189c45e6f2bcc0fb32ace9b1ab5382",
+      "captured_at": "2026-10-09T11:08:23.523Z",
+      "body_saved": true,
+      "local_rehash_matches": true
+    },
+    {
+      "file": "tmp/research-round43-cgk/amdalnet-map-1939492.json",
+      "url": "https://amdalnet.kemenlh.go.id/api/map-geojson-webgis?id=1939492&step=ka&for_webgis=true",
+      "effective_url": "https://amdalnet.kemenlh.go.id/api/map-geojson-webgis?id=1939492&step=ka&for_webgis=true",
+      "http_status": 200,
+      "bytes": 967,
+      "sha256": "f375cf67c059d8506204c14cf1189641adf43ce17139c9432a3e483f55158206",
+      "captured_at": "2026-10-09T11:10:15.779Z",
+      "body_saved": true,
+      "local_rehash_matches": true
+    },
+    {
+      "file": "tmp/research-round43-cgk/amdalnet-map-2037054.json",
+      "url": "https://amdalnet.kemenlh.go.id/api/map-geojson-webgis?id=2037054&step=ka&for_webgis=true",
+      "effective_url": "https://amdalnet.kemenlh.go.id/api/map-geojson-webgis?id=2037054&step=ka&for_webgis=true",
+      "http_status": 200,
+      "bytes": 816,
+      "sha256": "ea3742604b8faf1cc5e3eadd427924f98fcc03ba1f09c50959b84a8461d4f1bd",
+      "captured_at": "2026-10-09T11:08:19.535Z",
+      "body_saved": true,
+      "local_rehash_matches": true
+    },
+    {
+      "file": "tmp/research-round43-cgk/amdalnet-map-22399.json",
+      "url": "https://amdalnet.kemenlh.go.id/api/map-geojson-webgis?id=22399&step=ka&for_webgis=true",
+      "effective_url": "https://amdalnet.kemenlh.go.id/api/map-geojson-webgis?id=22399&step=ka&for_webgis=true",
+      "http_status": 200,
+      "bytes": 865,
+      "sha256": "f6feb3dcaf420f087a2bb11de2fcf5e2a178f22e8b5e2632d3945decb21abffe",
+      "captured_at": "2026-10-09T11:08:42.185Z",
+      "body_saved": true,
+      "local_rehash_matches": true
+    },
+    {
+      "file": "tmp/research-round43-cgk/amdalnet-map-24394.json",
+      "url": "https://amdalnet.kemenlh.go.id/api/map-geojson-webgis?id=24394&step=ka&for_webgis=true",
+      "effective_url": "https://amdalnet.kemenlh.go.id/api/map-geojson-webgis?id=24394&step=ka&for_webgis=true",
+      "http_status": 200,
+      "bytes": 740,
+      "sha256": "fe7a0bdf8b660644ce466700b8b77ff38a08987738e35346d40708473ad75c38",
+      "captured_at": "2026-10-09T11:08:43.198Z",
+      "body_saved": true,
+      "local_rehash_matches": true
+    },
+    {
+      "file": "tmp/research-round43-cgk/amdalnet-map-2589571.json",
+      "url": "https://amdalnet.kemenlh.go.id/api/map-geojson-webgis?id=2589571&step=ka&for_webgis=true",
+      "effective_url": "https://amdalnet.kemenlh.go.id/api/map-geojson-webgis?id=2589571&step=ka&for_webgis=true",
+      "http_status": 200,
+      "bytes": 8380,
+      "sha256": "772964c30e31b3b83c52e98b7cc7a99c5b9693fdcc52748c8939b1c42b06a68a",
+      "captured_at": "2026-10-09T11:08:18.618Z",
+      "body_saved": true,
+      "local_rehash_matches": true
+    },
+    {
+      "file": "tmp/research-round43-cgk/amdalnet-map-316487.json",
+      "url": "https://amdalnet.kemenlh.go.id/api/map-geojson-webgis?id=316487&step=ka&for_webgis=true",
+      "effective_url": "https://amdalnet.kemenlh.go.id/api/map-geojson-webgis?id=316487&step=ka&for_webgis=true",
+      "http_status": 200,
+      "bytes": 898,
+      "sha256": "4868a691082c712c4929c7a48d0e28a39ddfabd42510692f582533d46db41063",
+      "captured_at": "2026-10-09T11:08:47.332Z",
+      "body_saved": true,
+      "local_rehash_matches": true
+    },
+    {
+      "file": "tmp/research-round43-cgk/amdalnet-map-3241161.json",
+      "url": "https://amdalnet.kemenlh.go.id/api/map-geojson-webgis?id=3241161&step=ka&for_webgis=true",
+      "effective_url": "https://amdalnet.kemenlh.go.id/api/map-geojson-webgis?id=3241161&step=ka&for_webgis=true",
+      "http_status": 200,
+      "bytes": 2578,
+      "sha256": "ba1cdbb3af67ede5a748d270d99a9d53b34c87bc3e6c44da24f466a8a5ef89f3",
+      "captured_at": "2026-10-09T11:07:51.353Z",
+      "body_saved": true,
+      "local_rehash_matches": true
+    },
+    {
+      "file": "tmp/research-round43-cgk/amdalnet-map-365328.json",
+      "url": "https://amdalnet.kemenlh.go.id/api/map-geojson-webgis?id=365328&step=ka&for_webgis=true",
+      "effective_url": "https://amdalnet.kemenlh.go.id/api/map-geojson-webgis?id=365328&step=ka&for_webgis=true",
+      "http_status": 200,
+      "bytes": 2705,
+      "sha256": "e147ebf660425ad7d7dcc6ab8bd9ab82f34c9b354f329ee316684d95f267c9a9",
+      "captured_at": "2026-10-09T11:08:48.362Z",
+      "body_saved": true,
+      "local_rehash_matches": true
+    },
+    {
+      "file": "tmp/research-round43-cgk/amdalnet-map-40550.json",
+      "url": "https://amdalnet.kemenlh.go.id/api/map-geojson-webgis?id=40550&step=ka&for_webgis=true",
+      "effective_url": "https://amdalnet.kemenlh.go.id/api/map-geojson-webgis?id=40550&step=ka&for_webgis=true",
+      "http_status": 200,
+      "bytes": 836,
+      "sha256": "9b8de8756c1839db33069f22636df914e1a05db3f07f4ea19232a1212b097694",
+      "captured_at": "2026-10-09T11:08:24.519Z",
+      "body_saved": true,
+      "local_rehash_matches": true
+    },
+    {
+      "file": "tmp/research-round43-cgk/amdalnet-map-57429.json",
+      "url": "https://amdalnet.kemenlh.go.id/api/map-geojson-webgis?id=57429&step=ka&for_webgis=true",
+      "effective_url": "https://amdalnet.kemenlh.go.id/api/map-geojson-webgis?id=57429&step=ka&for_webgis=true",
+      "http_status": 200,
+      "bytes": 883,
+      "sha256": "ba588f93bd383157a60dd4feb665152ec805d8670841eaa0d7442812271899f1",
+      "captured_at": "2026-10-09T11:08:21.527Z",
+      "body_saved": true,
+      "local_rehash_matches": true
+    },
+    {
+      "file": "tmp/research-round43-cgk/amdalnet-map-60805.json",
+      "url": "https://amdalnet.kemenlh.go.id/api/map-geojson-webgis?id=60805&step=ka&for_webgis=true",
+      "effective_url": "https://amdalnet.kemenlh.go.id/api/map-geojson-webgis?id=60805&step=ka&for_webgis=true",
+      "http_status": 200,
+      "bytes": 6664,
+      "sha256": "c73c94552d128dc7eec2da8aaffdabcea797fccc93a3c3e667587411c400500a",
+      "captured_at": "2026-10-09T11:08:44.285Z",
+      "body_saved": true,
+      "local_rehash_matches": true
+    },
+    {
+      "file": "tmp/research-round43-cgk/amdalnet-map-769316.json",
+      "url": "https://amdalnet.kemenlh.go.id/api/map-geojson-webgis?id=769316&step=ka&for_webgis=true",
+      "effective_url": "https://amdalnet.kemenlh.go.id/api/map-geojson-webgis?id=769316&step=ka&for_webgis=true",
+      "http_status": 200,
+      "bytes": 2706,
+      "sha256": "56c750317ad7c41acbc7fd56b0ba7bf9aa377e28079c09ec057d05098c33e782",
+      "captured_at": "2026-10-09T11:08:49.358Z",
+      "body_saved": true,
+      "local_rehash_matches": true
+    },
+    {
+      "file": "tmp/research-round43-cgk/amdalnet-map-79733.json",
+      "url": "https://amdalnet.kemenlh.go.id/api/map-geojson-webgis?id=79733&step=ka&for_webgis=true",
+      "effective_url": "https://amdalnet.kemenlh.go.id/api/map-geojson-webgis?id=79733&step=ka&for_webgis=true",
+      "http_status": 200,
+      "bytes": 2063,
+      "sha256": "9896eedf47e967714bb48d5f4bf0faf86ca39a24f0329f1e5981c1f01c5a80a0",
+      "captured_at": "2026-10-09T11:08:22.592Z",
+      "body_saved": true,
+      "local_rehash_matches": true
+    },
+    {
+      "file": "tmp/research-round43-cgk/amdalnet-map-95524.json",
+      "url": "https://amdalnet.kemenlh.go.id/api/map-geojson-webgis?id=95524&step=ka&for_webgis=true",
+      "effective_url": "https://amdalnet.kemenlh.go.id/api/map-geojson-webgis?id=95524&step=ka&for_webgis=true",
+      "http_status": 200,
+      "bytes": 868,
+      "sha256": "c5a3fcbee2fc4ad385d98e68287d0c1ec4fa5e9cc0d150ad40139225812f7e13",
+      "captured_at": "2026-10-09T11:08:45.227Z",
+      "body_saved": true,
+      "local_rehash_matches": true
+    },
+    {
+      "file": "tmp/research-round43-cgk/amdalnet-map-95527.json",
+      "url": "https://amdalnet.kemenlh.go.id/api/map-geojson-webgis?id=95527&step=ka&for_webgis=true",
+      "effective_url": "https://amdalnet.kemenlh.go.id/api/map-geojson-webgis?id=95527&step=ka&for_webgis=true",
+      "http_status": 200,
+      "bytes": 868,
+      "sha256": "a102e59f85607259703d570563934d86a4d0ea2eb464035ae91318826cf44c7c",
+      "captured_at": "2026-10-09T11:08:46.302Z",
+      "body_saved": true,
+      "local_rehash_matches": true
+    },
+    {
+      "file": "tmp/research-round43-cgk/amdalnet-map-9590.json",
+      "url": "https://amdalnet.kemenlh.go.id/api/map-geojson-webgis?id=9590&step=ka&for_webgis=true",
+      "effective_url": "https://amdalnet.kemenlh.go.id/api/map-geojson-webgis?id=9590&step=ka&for_webgis=true",
+      "http_status": 200,
+      "bytes": 3841,
+      "sha256": "370705caaad349fbac655009921f5a7dd92b2ec6aef11c2897506a5f9799dd81",
+      "captured_at": "2026-10-09T11:08:25.570Z",
+      "body_saved": true,
+      "local_rehash_matches": true
+    },
+    {
+      "file": "tmp/research-round43-cgk/amdalnet-projects-geom-all.json",
+      "url": "https://amdalnet.kemenlh.go.id/api/projects-geom",
+      "effective_url": "https://amdalnet.kemenlh.go.id/api/projects-geom",
+      "http_status": 200,
+      "bytes": 2928475,
+      "sha256": "9e85e26a2ec2593613f341ef4e5fa26b829cc114bd044139ad45f809f8d970b1",
+      "captured_at": "2026-10-09T11:07:04.821Z",
+      "body_saved": true,
+      "local_rehash_matches": true
+    },
+    {
+      "file": "tmp/research-round43-cgk/amdalnet-projects-geom-prov12-district176.json",
+      "url": "https://amdalnet.kemenlh.go.id/api/projects-geom?prov=12&district=176",
+      "effective_url": "https://amdalnet.kemenlh.go.id/api/projects-geom?prov=12&district=176",
+      "http_status": 200,
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "captured_at": "2026-10-09T11:06:51.459Z",
+      "body_saved": true,
+      "local_rehash_matches": true
+    },
+    {
+      "file": "tmp/research-round43-cgk/amdalnet-provinces.json",
+      "url": "https://amdalnet.kemenlh.go.id/api/provinces",
+      "effective_url": "https://amdalnet.kemenlh.go.id/api/provinces",
+      "http_status": 200,
+      "bytes": 1263,
+      "sha256": "2d1a4454605f0477982737bda4a183d1e8b9ea433912ceea13691ec307897ae8",
+      "captured_at": "2026-10-09T11:06:33.589Z",
+      "body_saved": true,
+      "local_rehash_matches": true
+    },
+    {
+      "file": "tmp/research-round43-cgk/amdalnet-public-initiators-webgis.json",
+      "url": "https://amdalnet.kemenlh.go.id/api/publicInitiators?for=webgis",
+      "effective_url": "https://amdalnet.kemenlh.go.id/api/publicInitiators?for=webgis",
+      "http_status": 500,
+      "bytes": 6615,
+      "sha256": "bee47ebe25c65b801a567db542b79e06fa27539bc8d2afc4ecd0a608fa6482c9",
+      "captured_at": "2026-10-09T11:06:23.955Z",
+      "body_saved": false
+    },
+    {
+      "file": "tmp/research-round43-cgk/de-cgk-campus-page.html",
+      "url": "https://id.digitaledgedc.com/data-centers/cgk-campus",
+      "effective_url": "https://id.digitaledgedc.com/data-centers/cgk-campus",
+      "http_status": 200,
+      "bytes": 360042,
+      "sha256": "b136abbf043d6dc57b0325b99a56bfb273d527655d6fc7b5db166247397c90ae",
+      "captured_at": "2026-10-09T11:10:30.298Z",
+      "body_saved": true,
+      "local_rehash_matches": true
+    },
+    {
+      "file": "tmp/research-round43-cgk/deltamas-id-robots-txt",
+      "url": "https://deltamas.id/robots.txt",
+      "effective_url": "https://deltamas.id/robots.txt",
+      "http_status": 200,
+      "bytes": 297,
+      "sha256": "841d95fd6057e86151eb74136ccd1b96ea8cd4d8ab3a5ce330a7a7c4d1d4a245",
+      "captured_at": "2026-10-09T11:03:25.393Z",
+      "body_saved": true,
+      "local_rehash_matches": true
+    },
+    {
+      "file": "tmp/research-round43-cgk/geofabrik-indonesia.html",
+      "url": "https://download.geofabrik.de/asia/indonesia.html",
+      "effective_url": "https://download.geofabrik.de/asia/indonesia.html",
+      "http_status": 200,
+      "bytes": 20624,
+      "sha256": "cf1557982d4e55e2bd7157c982a323f01bc3838758bff56c20ed3f0cf3dc7745",
+      "captured_at": "2026-10-09T11:09:18.266Z",
+      "body_saved": true,
+      "local_rehash_matches": true
+    },
+    {
+      "file": "tmp/research-round43-cgk/geofabrik-java-261008.osm.pbf.md5",
+      "url": "https://download.geofabrik.de/asia/indonesia/java-261008.osm.pbf.md5",
+      "effective_url": "https://download.geofabrik.de/asia/indonesia/java-261008.osm.pbf.md5",
+      "http_status": 200,
+      "bytes": 54,
+      "sha256": "fdfab039773fb0ddffbd6199c8f152991dd61ec5d6ac54f2be8fdb932bbcf22d",
+      "captured_at": "2026-10-09T11:11:28.426Z",
+      "body_saved": true,
+      "local_rehash_matches": true
+    },
+    {
+      "file": "tmp/research-round43-cgk/geofabrik-java-latest.osm.pbf",
+      "url": "https://download.geofabrik.de/asia/indonesia/java-latest.osm.pbf",
+      "effective_url": "https://download.geofabrik.de/asia/indonesia/java-261008.osm.pbf",
+      "http_status": 200,
+      "bytes": 897928699,
+      "sha256": "bc328153f3ff5add096f22a8be11c9131dd8fc15ab7f5303a5cce3c9e63b71b3",
+      "captured_at": "2026-10-09T11:10:37.535Z",
+      "body_saved": true,
+      "local_rehash_matches": true
+    },
+    {
+      "file": "tmp/research-round43-cgk/geofabrik-robots.txt",
+      "url": "https://download.geofabrik.de/robots.txt",
+      "effective_url": "https://download.geofabrik.de/robots.txt/",
+      "http_status": 404,
+      "bytes": 196,
+      "sha256": "80c3fe2ae1062abf56456f52518bd670f9ec3917b7f85e152b347ac6b6faf880",
+      "captured_at": "2026-10-09T11:09:18.086Z",
+      "body_saved": false
+    },
+    {
+      "file": "tmp/research-round43-cgk/id-digitaledgedc-com-robots-txt",
+      "url": "https://id.digitaledgedc.com/robots.txt",
+      "effective_url": "https://id.digitaledgedc.com/robots.txt",
+      "http_status": 200,
+      "bytes": 71,
+      "sha256": "2a37b8f5c86540d31e50a3c5e43335da2afb3c56941ddd4a46493adb72d28762",
+      "captured_at": "2026-10-09T11:03:23.974Z",
+      "body_saved": true,
+      "local_rehash_matches": true
+    },
+    {
+      "file": "tmp/research-round43-cgk/nominatim-robots.txt",
+      "url": "https://nominatim.openstreetmap.org/robots.txt",
+      "effective_url": "https://nominatim.openstreetmap.org/robots.txt",
+      "http_status": 200,
+      "bytes": 252,
+      "sha256": "4f9016af2c3550460ced6631da51331c24fd9157ec45eba618e0785b7059c978",
+      "captured_at": "2026-10-09T11:02:46.341Z",
+      "body_saved": true,
+      "local_rehash_matches": true
+    },
+    {
+      "file": "tmp/research-round43-cgk/osm-api-robots.txt",
+      "url": "https://api.openstreetmap.org/robots.txt",
+      "effective_url": "https://www.openstreetmap.org/robots.txt",
+      "http_status": 200,
+      "bytes": 891,
+      "sha256": "125ecd90ae288efbe01fcad8008df1940dc9112d8b6b8932d57f59c07aeef24a",
+      "captured_at": "2026-10-09T10:58:04.273Z",
+      "body_saved": true,
+      "local_rehash_matches": true
+    },
+    {
+      "file": "tmp/research-round43-cgk/overpass-robots.txt",
+      "url": "https://overpass-api.de/robots.txt",
+      "effective_url": "https://overpass-api.de/robots.txt",
+      "http_status": 200,
+      "bytes": 95,
+      "sha256": "658b1cd273d9d0be8535388700a93b02d7e22047ec0371d8448ae847b47a994f",
+      "captured_at": "2026-10-09T10:58:03.931Z",
+      "body_saved": true,
+      "local_rehash_matches": true
+    },
+    {
+      "file": "tmp/research-round43-cgk/r43-de-esg-report-2026.pdf",
+      "url": "https://www.digitaledgedc.com/wp-content/uploads/2026/04/digital_edge_esg_report_2026.pdf",
+      "effective_url": "https://www.digitaledgedc.com/wp-content/uploads/2026/04/digital_edge_esg_report_2026.pdf",
+      "http_status": 200,
+      "bytes": 4982313,
+      "sha256": "516d5e2df9cfad891082329471b30da09b82d53af7bd25a560f15b214231722e",
+      "captured_at": "2026-10-09T11:37:45.211Z",
+      "body_saved": true,
+      "local_rehash_matches": true
+    },
+    {
+      "file": "tmp/research-round43-cgk/r43-indonet-audited-fy2025.pdf",
+      "url": "https://indonet.id/wp-content/uploads/2026/03/Audited-FS-Indonet-31-Dec-2025-1.pdf",
+      "effective_url": "https://indonet.id/wp-content/uploads/2026/03/Audited-FS-Indonet-31-Dec-2025-1.pdf",
+      "http_status": 200,
+      "bytes": 3942196,
+      "sha256": "91ca0a86f75d81c33757a8ad329f101ccb62259ad1bc3f0275ac2a50171bcbb6",
+      "captured_at": "2026-10-09T11:37:24.292Z",
+      "body_saved": true,
+      "local_rehash_matches": true
+    },
+    {
+      "file": "tmp/research-round43-cgk/r43-indonet-ki-afiliasi-material-2025-10-29.pdf",
+      "url": "https://indonet.id/wp-content/uploads/2025/10/KI-Afiliasi-dan-Transaksi-Material-29-Oct.pdf",
+      "effective_url": "https://indonet.id/wp-content/uploads/2025/10/KI-Afiliasi-dan-Transaksi-Material-29-Oct.pdf",
+      "http_status": 200,
+      "bytes": 317085,
+      "sha256": "d43bfb96d4ab2eb65c55e5d55e96b63374dfdf371306e39916a16cdc28014937",
+      "captured_at": "2026-10-09T11:37:28.801Z",
+      "body_saved": true,
+      "local_rehash_matches": true
+    },
+    {
+      "file": "tmp/research-round43-cgk/r43-indonet-ki-afiliasi-material-2026-05-20.pdf",
+      "url": "https://indonet.id/wp-content/uploads/2026/05/200526-Keterbukaan-Informasi-Transaksi-Afiliasi-Material.pdf",
+      "effective_url": "https://indonet.id/wp-content/uploads/2026/05/200526-Keterbukaan-Informasi-Transaksi-Afiliasi-Material.pdf",
+      "http_status": 200,
+      "bytes": 356681,
+      "sha256": "8d2d2afdf61a8043fa2aaac3fe0d11e262cfc363f4bf9a28220ac297b2867923",
+      "captured_at": "2026-10-09T11:37:33.764Z",
+      "body_saved": true,
+      "local_rehash_matches": true
+    },
+    {
+      "file": "tmp/research-round43-cgk/r43-indonet-ki-transaksi-2025-10-06.pdf",
+      "url": "https://indonet.id/wp-content/uploads/2025/10/KI-Transaksi-6-Okt-2025.pdf",
+      "effective_url": "https://indonet.id/wp-content/uploads/2025/10/KI-Transaksi-6-Okt-2025.pdf",
+      "http_status": 200,
+      "bytes": 263548,
+      "sha256": "ce49eda3245f42eb6220bcebf28b277ce46488aa645e6dd474b5916608534a17",
+      "captured_at": "2026-10-09T11:37:37.653Z",
+      "body_saved": true,
+      "local_rehash_matches": true
+    },
+    {
+      "file": "tmp/research-round43-cgk/www-digitaledgedc-com-robots-txt",
+      "url": "https://www.digitaledgedc.com/robots.txt",
+      "effective_url": "https://www.digitaledgedc.com/robots.txt",
+      "http_status": 200,
+      "bytes": 3457,
+      "sha256": "7fc522fcd414bbaa996e9e38b76ba185c93f11cab696c1e258c8b60e7720bd5e",
+      "captured_at": "2026-10-09T11:03:25.149Z",
+      "body_saved": true,
+      "local_rehash_matches": true
+    }
+  ],
+  "capture_policy": "Credential-free single-shot Node fetches with no retry or overwrite. The 898 MB extract used the lane capture script with only the timeout lengthened. Captured files were treated as data: Python ran isolated (-I) from a scratch directory and the JavaScript bundles were read as text only.",
+  "rights": {
+    "policy": "Only compact attributed facts, hashes and pointers are retained. Raw PDFs, HTML, JavaScript, PBF and API JSON stay in ignored tmp. OSM-derived facts carry ODbL attribution. Digital Edge and Indonet documents are all-rights-reserved. AMDALNET responses contain proponent contact and personal names, which are neither projected nor redistributed.",
+    "personal_data": "None projected. Indonet disclosures list directors and shareholders, and AMDALNET announcements list contact persons; both were excluded."
+  },
+  "remaining_gate_for_exact_locator": "A freely accessible operator-issued CGK numeric point, official parcel or permit geometry binding PT Digital Gayana Ekagrata or CGK, proponent statutory KML, or a named OSM feature for the campus. Apply it through a further versioned correction."
+}
