@@ -538,6 +538,8 @@
       geometry: geometry,
       geometryType: geometryType,
       isArea: geometryType === 'Polygon' || geometryType === 'MultiPolygon',
+      // [[south, west], [north, east]] of a polygon locator, so map fits keep the whole outline in view.
+      bounds: geometry && geometry.type !== 'Point' ? geometryBounds(geometry) : null,
       officialBoundary: props.official_boundary === true,
       locatorScopes: uniqueStrings(props.locator_scopes),
       statuses: sortStatusCodes(statuses),
@@ -708,17 +710,23 @@
   }
 
   /**
-   * Make a parsed state consistent with the data: unknown countries and
-   * statuses are dropped, months outside the data range are clamped, and a
-   * reversed from/to pair is swapped. Returns a new object.
+   * Make a state well-formed and canonical without changing what it asks
+   * for. A reversed from/to pair is swapped, and bounds that exclude nothing
+   * (a "from" before the first month of the data, a "to" after the last) are
+   * dropped. Anything that matches no site is kept, so a shared link that
+   * matches nothing shows nothing rather than other sites: a country or
+   * status code that is not in this dataset, a "from" after the last month,
+   * a "to" before the first. Known statuses come first in context order.
+   * Returns a new object.
    */
   function normalizeState(state, context) {
     var base = defaultState();
     var s = state || base;
     var ctx = context || {};
+    var country = str(s.country).toUpperCase();
     var out = {
       q: typeof s.q === 'string' ? s.q.slice(0, MAX_QUERY_LENGTH) : '',
-      country: '',
+      country: /^[A-Z]{2}$/.test(country) ? country : '',
       status: [],
       locator: LOCATORS.indexOf(s.locator) !== -1 ? s.locator : base.locator,
       power: s.power === true,
@@ -726,31 +734,39 @@
       to: isMonth(s.to) ? s.to : '',
       sort: SORTS.indexOf(s.sort) !== -1 ? s.sort : base.sort
     };
-    var countries = ctx.countryCodes || [];
-    if (s.country && countries.indexOf(s.country) !== -1) {
-      out.country = s.country;
-    }
     var known = ctx.statuses || [];
-    var wanted = uniqueStrings(s.status);
-    out.status = known.filter(function (code) { return wanted.indexOf(code) !== -1; });
+    var wanted = uniqueStrings(s.status).filter(function (code) { return STATUS_CODE_RE.test(code); });
+    out.status = known.filter(function (code) { return wanted.indexOf(code) !== -1; })
+      .concat(wanted.filter(function (code) { return known.indexOf(code) === -1; }));
+    if (out.from && out.to && out.from > out.to) {
+      var swap = out.from;
+      out.from = out.to;
+      out.to = swap;
+    }
     var months = ctx.months || [];
-    if (!months.length) {
-      out.from = '';
-      out.to = '';
-    } else {
-      var first = months[0];
-      var last = months[months.length - 1];
-      if (out.from && out.from < first) { out.from = ''; }
-      if (out.from && out.from > last) { out.from = last; }
-      if (out.to && out.to > last) { out.to = ''; }
-      if (out.to && out.to < first) { out.to = first; }
-      if (out.from && out.to && out.from > out.to) {
-        var swap = out.from;
-        out.from = out.to;
-        out.to = swap;
-      }
+    if (months.length) {
+      if (out.from && out.from < months[0]) { out.from = ''; }
+      if (out.to && out.to > months[months.length - 1]) { out.to = ''; }
     }
     return out;
+  }
+
+  /**
+   * Values of a state that this dataset does not contain (so they match no
+   * site): {country, statuses, from, to}; empty strings/arrays when fine.
+   */
+  function unmatchedFilters(state, context) {
+    var s = withDefaults(state);
+    var ctx = context || {};
+    var months = ctx.months || [];
+    var first = months[0] || '';
+    var last = months[months.length - 1] || '';
+    return {
+      country: s.country && (ctx.countryCodes || []).indexOf(s.country) === -1 ? s.country : '',
+      statuses: s.status.filter(function (code) { return (ctx.statuses || []).indexOf(code) === -1; }),
+      from: s.from && last && s.from > last ? s.from : '',
+      to: s.to && first && s.to < first ? s.to : ''
+    };
   }
 
   /** Number of active filters (search, country, statuses, locator, power, months). */
@@ -779,13 +795,39 @@
     }
   }
 
+  function monthInRange(month, from, to) {
+    return !!month && (!from || month >= from) && (!to || month <= to);
+  }
+
   function matchesMonths(months, from, to) {
     for (var i = 0; i < months.length; i++) {
-      if ((!from || months[i] >= from) && (!to || months[i] <= to)) {
+      if (monthInRange(months[i], from, to)) {
         return true;
       }
     }
     return false;
+  }
+
+  /** Projects carry their own status and date; only then can both filters be checked per project. */
+  function hasProjectStatuses(site) {
+    return site.projects.length > 0 && site.projects.every(function (project) { return project.status; });
+  }
+
+  /**
+   * Status codes of a site that were observed inside the month range: with a
+   * range, one project must have both the status and a date in range (a
+   * site whose shell observation is from May does not count as "shell in
+   * August" because another project was observed in August).
+   */
+  function statusesInRange(site, from, to) {
+    if ((!from && !to) || !hasProjectStatuses(site)) {
+      return site.statuses;
+    }
+    return site.statuses.filter(function (code) {
+      return site.projects.some(function (project) {
+        return project.status === code && monthInRange(monthOf(project.statusAsOf), from, to);
+      });
+    });
   }
 
   function siteMatches(site, state, tokens, skip) {
@@ -795,10 +837,12 @@
     if (skip !== 'country' && state.country && site.iso !== state.country) {
       return false;
     }
+    var monthsActive = skip !== 'months' && !!(state.from || state.to);
     if (skip !== 'status' && state.status.length) {
+      var codes = monthsActive ? statusesInRange(site, state.from, state.to) : site.statuses;
       var hit = false;
-      for (var i = 0; i < site.statuses.length && !hit; i++) {
-        hit = state.status.indexOf(site.statuses[i]) !== -1;
+      for (var i = 0; i < codes.length && !hit; i++) {
+        hit = state.status.indexOf(codes[i]) !== -1;
       }
       if (!hit) {
         return false;
@@ -810,7 +854,7 @@
     if (skip !== 'power' && state.power && !site.hasPower) {
       return false;
     }
-    if (skip !== 'months' && (state.from || state.to) && !matchesMonths(site.months, state.from, state.to)) {
+    if (monthsActive && !matchesMonths(site.months, state.from, state.to)) {
       return false;
     }
     return true;
@@ -860,7 +904,7 @@
         result.country[site.iso] = (result.country[site.iso] || 0) + 1;
       }
       if (siteMatches(site, s, tokens, 'status')) {
-        site.statuses.forEach(function (code) {
+        statusesInRange(site, s.from, s.to).forEach(function (code) {
           result.status[code] = (result.status[code] || 0) + 1;
         });
       }
@@ -918,9 +962,14 @@
   // Export (CSV per RFC 4180, GeoJSON)
   // ---------------------------------------------------------------------------
 
+  // The columns of the published per-country CSV files (the builder's
+  // CSV_EXPORT_COLUMNS), plus dataset_id: the version the rows come from.
+  // List columns hold compact JSON arrays: some publisher names contain ";"
+  // or ",", so a joined string could not be split back.
   var CSV_COLUMNS = [
-    'site_id', 'name', 'country', 'country_iso_a2', 'latitude', 'longitude', 'statuses',
-    'newest_status_as_of', 'project_count', 'official_boundary', 'status_publishers', 'url'
+    'site_id', 'name', 'country', 'country_iso_a2', 'latitude', 'longitude', 'statuses_json',
+    'newest_status_as_of', 'oldest_status_as_of', 'project_count', 'official_boundary', 'geometry_type',
+    'status_publishers_json', 'geometry_licenses_json', 'url', 'api_url', 'dataset_id'
   ];
 
   // Characters that make a spreadsheet treat a cell as a formula (OWASP).
@@ -957,10 +1006,12 @@
     return values.map(csvField).join(',');
   }
 
-  function siteCsvValues(site) {
+  function siteCsvValues(site, datasetId) {
     // Exports keep the dataset's own status order (display order is by colour group).
     var props = site.properties || {};
     var statuses = Array.isArray(props.statuses) ? uniqueStrings(props.statuses) : site.statuses;
+    // Data without geometry_licenses leaves the cell empty: unknown, not "none".
+    var licenses = Array.isArray(props.geometry_licenses) ? JSON.stringify(uniqueStrings(props.geometry_licenses)) : null;
     return [
       site.id,
       site.name,
@@ -968,23 +1019,73 @@
       site.iso,
       site.lat,
       site.lon,
-      statuses.join(';'),
+      JSON.stringify(statuses),
       site.newest,
+      site.oldest,
       site.projectCount,
       site.officialBoundary,
-      site.publishers.join(';'),
-      site.url
+      site.geometryType,
+      JSON.stringify(site.publishers),
+      licenses,
+      site.url,
+      site.apiUrl,
+      datasetId
     ];
   }
 
-  /** CSV text (CRLF line endings, header row first) of prepared sites. */
-  function sitesToCsv(sites) {
+  /**
+   * CSV text (CRLF line endings, header row first) of prepared sites.
+   * meta.datasetId fills the dataset_id column.
+   */
+  function sitesToCsv(sites, meta) {
+    var datasetId = str(meta && meta.datasetId);
     var lines = [csvRow(CSV_COLUMNS)];
-    (sites || []).forEach(function (site) { lines.push(csvRow(siteCsvValues(site))); });
+    (sites || []).forEach(function (site) { lines.push(csvRow(siteCsvValues(site, datasetId))); });
     return lines.join('\r\n') + '\r\n';
   }
 
-  /** GeoJSON FeatureCollection text of prepared sites with their original summaries. */
+  // Used only when neither sites.geojson nor the page bootstrap carries the
+  // dataset's licence object (it mirrors DATA_LICENSE.md).
+  var DEFAULT_EXPORT_LICENSE = {
+    data: { id: 'CC-BY-4.0', url: 'https://creativecommons.org/licenses/by/4.0/' },
+    openstreetmap_geometries: { id: 'ODbL-1.0', url: 'https://opendatacommons.org/licenses/odbl/1-0/' },
+    third_party: 'Third-party facts, titles, URLs and geometries keep their source terms (each evidence record\'s license and attribution).'
+  };
+
+  function plainObject(value) {
+    return value !== null && typeof value === 'object' && !Array.isArray(value) ? value : null;
+  }
+
+  /**
+   * Licence and attribution for an export, from the loaded sites.geojson
+   * first, then the page bootstrap, then the built-in default. The
+   * attribution names the dataset version and the attribution page.
+   */
+  function exportTerms(collection, boot) {
+    var data = plainObject(collection) || {};
+    var page = plainObject(boot) || {};
+    var dataset = plainObject(page.dataset) || {};
+    var base = safeHttpUrl(page.base_url);
+    var license = plainObject(data.license) || plainObject(page.license) || DEFAULT_EXPORT_LICENSE;
+    var attributionUrl = safeHttpUrl(page.attribution_url) || (base ? base.replace(/\/?$/, '/') + 'about/attribution/' : '');
+    var attribution = typeof data.attribution === 'string' && data.attribution ? data.attribution
+      : (typeof page.attribution === 'string' && page.attribution ? page.attribution : '');
+    if (!attribution) {
+      attribution = str(page.site_name || 'Data Center Atlas') + (base ? ', ' + base : '') +
+        (dataset.id ? ' (dataset ' + str(dataset.id) + ')' : '') +
+        '. Includes data © OpenStreetMap contributors (ODbL 1.0)' +
+        (attributionUrl ? '; other source terms: ' + attributionUrl : '') + '.';
+    }
+    return { license: license, attribution: attribution, attribution_url: attributionUrl };
+  }
+
+  /**
+   * GeoJSON FeatureCollection text of prepared sites with their original
+   * summaries. Foreign members say what the file is and under which terms:
+   * dataset, query, license, attribution, attribution_url, source_url (the
+   * full collection), view_url (the explorer view that was exported) and
+   * caveats (how to read the statuses and locators).
+   */
   function sitesToGeoJSON(sites, meta) {
     var info = meta || {};
     var collection = {
@@ -992,12 +1093,188 @@
       name: 'datacenter-atlas-sites',
       dataset: info.dataset || null,
       query: str(info.query),
+      license: plainObject(info.license),
+      attribution: str(info.attribution) || null,
+      attribution_url: str(info.attribution_url) || null,
+      source_url: str(info.source_url) || null,
+      view_url: str(info.view_url) || null,
+      caveats: Array.isArray(info.caveats) ? info.caveats.filter(function (text) { return typeof text === 'string'; }) : null,
       features: (sites || []).map(function (site) {
         var geometry = site.geometry || (site.hasLocation ? { type: 'Point', coordinates: [site.lon, site.lat] } : null);
         return { type: 'Feature', id: site.id, geometry: geometry, properties: site.properties };
       })
     };
     return JSON.stringify(collection) + '\n';
+  }
+
+  // ---------------------------------------------------------------------------
+  // Agent tools (WebMCP): schemas, strict input validation, result records
+  // ---------------------------------------------------------------------------
+
+  var AGENT_CAVEATS = [
+    'Each status is the last observed physical status as of a dated source (status_as_of), not the status today.',
+    'Locators place a site on the map; they are not building footprints or construction extents.',
+    'Unknown or missing values are unknown, not zero.',
+    'This is a reviewed preview dataset, not a census of all data-centre construction.'
+  ];
+  var TOOL_SEARCH_KEYS = ['query', 'country', 'statuses', 'locator', 'has_power', 'from', 'to', 'sort', 'limit'];
+  var TOOL_DEFAULT_LIMIT = 50;
+  var TOOL_MAX_LIMIT = 200;
+  var TOOL_SITE_ID_RE = /^vcc-site-[0-9a-f]{20}$/;
+
+  /** JSON Schemas of the explorer's agent tools, with enums taken from the loaded data. */
+  function agentToolSchemas(context) {
+    var ctx = context || {};
+    var month = { type: 'string', pattern: '^[0-9]{4}-(0[1-9]|1[0-2])$' };
+    return {
+      search: {
+        type: 'object',
+        properties: {
+          query: { type: 'string', maxLength: MAX_QUERY_LENGTH, description: 'Words that must all start a word of the site name, country, country code, project names, status sources or site id (case and accents ignored).' },
+          country: { type: 'string', enum: (ctx.countryCodes || []).slice(), description: 'ISO 3166-1 alpha-2 country code.' },
+          statuses: { type: 'array', items: { type: 'string', enum: (ctx.statuses || []).slice() }, uniqueItems: true, description: 'Last observed physical status codes; a site matches when any of its projects has one.' },
+          locator: { type: 'string', enum: LOCATORS.slice(), description: 'official_boundary, polygon (Polygon or MultiPolygon locator) or point.' },
+          has_power: { type: 'boolean', description: 'Only sites with a reported power observation.' },
+          from: { type: 'string', pattern: month.pattern, description: 'Earliest status_as_of month, YYYY-MM.' },
+          to: { type: 'string', pattern: month.pattern, description: 'Latest status_as_of month, YYYY-MM.' },
+          sort: { type: 'string', enum: SORTS.slice(), description: 'name (default), country, newest, oldest or projects.' },
+          limit: { type: 'integer', minimum: 1, maximum: TOOL_MAX_LIMIT, default: TOOL_DEFAULT_LIMIT, description: 'Maximum number of sites returned.' }
+        },
+        additionalProperties: false
+      },
+      site: {
+        type: 'object',
+        properties: {
+          site_id: { type: 'string', pattern: TOOL_SITE_ID_RE.source, description: 'Site id, e.g. from search_datacenter_sites.' }
+        },
+        required: ['site_id'],
+        additionalProperties: false
+      },
+      dataset: { type: 'object', properties: {}, additionalProperties: false }
+    };
+  }
+
+  function toolError(message) {
+    return new Error(message);
+  }
+
+  function checkToolObject(input, allowed) {
+    var value = input === undefined || input === null ? {} : input;
+    if (typeof value !== 'object' || Array.isArray(value)) {
+      throw toolError('Input must be a JSON object.');
+    }
+    Object.keys(value).forEach(function (key) {
+      if (allowed.indexOf(key) === -1) {
+        throw toolError('Unknown option "' + key + '". Allowed: ' + (allowed.join(', ') || 'none') + '.');
+      }
+    });
+    return value;
+  }
+
+  /**
+   * Validate search_datacenter_sites input strictly and turn it into an
+   * explorer state plus a result limit. Unknown keys, codes outside the data
+   * and malformed months are errors (agents get a reason, not a guess).
+   */
+  function toolInputToState(input, context) {
+    var ctx = context || {};
+    var value = checkToolObject(input, TOOL_SEARCH_KEYS);
+    var state = defaultState();
+    if (value.query !== undefined) {
+      if (typeof value.query !== 'string' || value.query.length > MAX_QUERY_LENGTH) {
+        throw toolError('query must be a string of at most ' + MAX_QUERY_LENGTH + ' characters.');
+      }
+      state.q = cleanQuery(value.query);
+    }
+    if (value.country !== undefined) {
+      var country = typeof value.country === 'string' ? value.country.trim().toUpperCase() : '';
+      if ((ctx.countryCodes || []).indexOf(country) === -1) {
+        throw toolError('country must be one of the ISO codes in this dataset: ' + (ctx.countryCodes || []).join(', ') + '.');
+      }
+      state.country = country;
+    }
+    if (value.statuses !== undefined) {
+      if (!Array.isArray(value.statuses)) {
+        throw toolError('statuses must be an array of status codes.');
+      }
+      value.statuses.forEach(function (code) {
+        if ((ctx.statuses || []).indexOf(code) === -1) {
+          throw toolError('Unknown status "' + str(code) + '". Statuses in this dataset: ' + (ctx.statuses || []).join(', ') + '.');
+        }
+      });
+      state.status = uniqueStrings(value.statuses);
+    }
+    if (value.locator !== undefined) {
+      if (LOCATORS.indexOf(value.locator) === -1) {
+        throw toolError('locator must be one of: ' + LOCATORS.join(', ') + '.');
+      }
+      state.locator = value.locator;
+    }
+    if (value.has_power !== undefined) {
+      if (typeof value.has_power !== 'boolean') {
+        throw toolError('has_power must be true or false.');
+      }
+      state.power = value.has_power;
+    }
+    ['from', 'to'].forEach(function (key) {
+      if (value[key] !== undefined) {
+        if (!isMonth(value[key])) {
+          throw toolError(key + ' must be a month written YYYY-MM.');
+        }
+        state[key] = value[key];
+      }
+    });
+    if (state.from && state.to && state.from > state.to) {
+      throw toolError('from must not be later than to.');
+    }
+    if (value.sort !== undefined) {
+      if (SORTS.indexOf(value.sort) === -1) {
+        throw toolError('sort must be one of: ' + SORTS.join(', ') + '.');
+      }
+      state.sort = value.sort;
+    }
+    var limit = TOOL_DEFAULT_LIMIT;
+    if (value.limit !== undefined) {
+      if (typeof value.limit !== 'number' || Math.floor(value.limit) !== value.limit || value.limit < 1 || value.limit > TOOL_MAX_LIMIT) {
+        throw toolError('limit must be a whole number from 1 to ' + TOOL_MAX_LIMIT + '.');
+      }
+      limit = value.limit;
+    }
+    return { state: normalizeState(state, ctx), limit: limit };
+  }
+
+  /** Validate get_datacenter_site input; returns the site id. */
+  function toolSiteId(input) {
+    var value = checkToolObject(input, ['site_id']);
+    if (typeof value.site_id !== 'string' || !TOOL_SITE_ID_RE.test(value.site_id)) {
+      throw toolError('site_id must look like vcc-site- followed by 20 hexadecimal characters.');
+    }
+    return value.site_id;
+  }
+
+  /** Compact, JSON-safe record of a prepared site for agent results. */
+  function toolSiteSummary(site) {
+    var props = site.properties || {};
+    return {
+      site_id: site.id,
+      name: site.name,
+      country: site.country,
+      country_iso_a2: site.iso,
+      latitude: site.lat,
+      longitude: site.lon,
+      statuses: Array.isArray(props.statuses) ? uniqueStrings(props.statuses) : site.statuses.slice(),
+      newest_status_as_of: site.newest || null,
+      oldest_status_as_of: site.oldest || null,
+      project_count: site.projectCount,
+      geometry_type: site.geometryType,
+      official_boundary: site.officialBoundary,
+      has_power_observation: site.hasPower,
+      status_publishers: site.publishers.slice(),
+      // Terms of the locator geometry (e.g. ODbL-1.0 for OpenStreetMap); null when the data does not say.
+      geometry_licenses: Array.isArray(props.geometry_licenses) ? uniqueStrings(props.geometry_licenses) : null,
+      url: site.url || null,
+      api_url: site.apiUrl || null
+    };
   }
 
   /** "datacenter-atlas-<dataset>-sites[-filtered].<ext>", safe for any OS. */
@@ -1059,6 +1336,58 @@
       encodeURIComponent('Correction: ' + str(siteName)) + '&site_id=' + encodeURIComponent(str(siteId));
   }
 
+  // Canonical pages of the licence codes used in evidence records. Codes that
+  // are not listed (custom or descriptive terms) stay plain text.
+  var LICENSE_URLS = {
+    'ODbL-1.0': 'https://opendatacommons.org/licenses/odbl/1-0/',
+    'CC-BY-4.0': 'https://creativecommons.org/licenses/by/4.0/',
+    'CC-BY-3.0': 'https://creativecommons.org/licenses/by/3.0/',
+    'CC-BY-SA-2.0': 'https://creativecommons.org/licenses/by-sa/2.0/',
+    'CC-BY-SA-4.0': 'https://creativecommons.org/licenses/by-sa/4.0/',
+    'CC0-1.0': 'https://creativecommons.org/publicdomain/zero/1.0/',
+    'Public-Domain-Mark-1.0': 'https://creativecommons.org/publicdomain/mark/1.0/',
+    'dl-de/by-2-0': 'https://www.govdata.de/dl-de/by-2-0'
+  };
+  var OSM_COPYRIGHT_URL = 'https://www.openstreetmap.org/copyright';
+
+  /** Canonical URL of a licence code, or "" when the code is not a known licence. */
+  function licenseUrl(code) {
+    var key = str(code).trim();
+    return hasOwn(LICENSE_URLS, key) ? LICENSE_URLS[key] : '';
+  }
+
+  /** True when a licence/attribution pair is OpenStreetMap's (ODbL credit needed). */
+  function isOpenStreetMapCredit(license, attribution) {
+    return str(license).trim() === 'ODbL-1.0' || /openstreetmap/i.test(str(attribution));
+  }
+
+  /**
+   * Relative prefix to the site root from a script's own src attribute
+   * ("../../assets/site-map.js" -> "../../", "assets/app.js" -> "./"); ""
+   * when the src is not a plain relative asset path (e.g. absolute).
+   */
+  function rootFromAssetSrc(src) {
+    var match = /^(\.\/|(?:\.\.\/){1,8})?assets\/[A-Za-z0-9._-]+\.js(?:[?#].*)?$/.exec(str(src));
+    return match ? (match[1] || './') : '';
+  }
+
+  function escapeAttribute(value) {
+    return str(value).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+
+  /**
+   * HTML snippet (text to copy, never inserted into this page) that embeds
+   * an explorer view in another page. "" unless src is an http(s) URL.
+   */
+  function embedSnippet(src, title) {
+    var url = safeHttpUrl(src);
+    if (!url) {
+      return '';
+    }
+    return '<iframe src="' + escapeAttribute(url) + '" title="' + escapeAttribute(title || 'Data Center Atlas map') +
+      '" width="100%" height="560" style="border:0" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>';
+  }
+
   /** Relative URL under the site root, e.g. ("../", "sites/x/") -> "../sites/x/". */
   function joinRoot(root, path) {
     var prefix = str(root) || './';
@@ -1105,80 +1434,165 @@
   // Basemaps (shared by the explorer and the site-page map)
   // ---------------------------------------------------------------------------
 
+  // Every name and attribution below is a constant: Leaflet writes both with
+  // innerHTML (layer control, attribution control). Nothing from the dataset
+  // or the page may reach them; site/js-tests/static-assets.test.mjs checks.
   var OSM_COPYRIGHT = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
-  var BASEMAPS = [
-    {
-      id: 'light',
-      name: 'Light',
-      url: 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
-      dark: false,
-      options: {
-        subdomains: 'abcd',
-        maxZoom: 19,
-        attribution: OSM_COPYRIGHT + ' &copy; <a href="https://carto.com/attributions">CARTO</a>'
-      }
-    },
-    {
-      id: 'dark',
-      name: 'Dark',
-      url: 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
-      dark: true,
-      options: {
-        subdomains: 'abcd',
-        maxZoom: 19,
-        attribution: OSM_COPYRIGHT + ' &copy; <a href="https://carto.com/attributions">CARTO</a>'
-      }
-    },
-    {
-      id: 'osm',
-      name: 'OpenStreetMap',
-      url: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-      dark: false,
-      options: {
-        maxZoom: 19,
-        attribution: OSM_COPYRIGHT
-      }
-    },
-    {
-      // Newest s2cloudless layer in the EOX WMTS capabilities (checked
-      // 2026-10-09): tiles exist up to z18, z19+ return 404. Layers from 2018
-      // on are CC BY-NC-SA 4.0; the attribution text is EOX's own wording.
-      id: 'satellite',
-      name: 'Satellite (Sentinel-2 cloudless)',
-      url: 'https://tiles.maps.eox.at/wmts/1.0.0/s2cloudless-2025_3857/default/g/{z}/{y}/{x}.jpg',
-      dark: true,
-      options: {
-        maxZoom: 19,
-        maxNativeZoom: 18,
-        attribution: 'EOxCloudless <a href="https://cloudless.eox.at">https://cloudless.eox.at</a> by EOX IT Services GmbH ' +
-          '(Contains modified Copernicus Sentinel data 2025), ' +
-          '<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>'
-      }
+  // The OSM tile usage policy asks for a "Report a map issue" link.
+  var OSM_ATTRIBUTION = OSM_COPYRIGHT + ' &middot; <a href="https://www.openstreetmap.org/fixthemap">Report a map issue</a>';
+  var CARTO_ATTRIBUTION = OSM_COPYRIGHT + ' &copy; <a href="https://carto.com/attributions">CARTO</a>';
+  // EOX's required attribution for the 2025 layer, with EOX's own links,
+  // plus the licence (layers from 2018 on are CC BY-NC-SA 4.0).
+  var EOX_ATTRIBUTION = '<a href="https://cloudless.eox.at">EOxCloudless</a> ' +
+    '<a href="https://cloudless.eox.at">https://cloudless.eox.at</a> by ' +
+    '<a href="https://eox.at">EOX IT Services GmbH</a> (Contains modified Copernicus Sentinel data 2025), ' +
+    '<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>';
+
+  var OSM_BASEMAP = {
+    id: 'osm',
+    name: 'OpenStreetMap',
+    role: 'light',
+    url: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+    dark: false,
+    options: {
+      maxZoom: 19,
+      attribution: OSM_ATTRIBUTION
     }
+  };
+  // The same OpenStreetMap tiles, darkened in the browser by a CSS filter
+  // (.atlas-tiles-dark in site.css): a dark map that needs no API key.
+  var OSM_DARK_BASEMAP = {
+    id: 'osm-dark',
+    name: 'OpenStreetMap, dark',
+    role: 'dark',
+    url: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+    dark: true,
+    options: {
+      maxZoom: 19,
+      className: 'atlas-tiles-dark',
+      attribution: OSM_ATTRIBUTION
+    }
+  };
+  var SATELLITE_BASEMAP = {
+    // Newest s2cloudless layer in the EOX WMTS capabilities (checked
+    // 2026-10-09): tiles exist up to z18, z19+ return 404.
+    id: 'satellite',
+    name: 'Satellite (Sentinel-2 cloudless)',
+    role: '',
+    url: 'https://tiles.maps.eox.at/wmts/1.0.0/s2cloudless-2025_3857/default/g/{z}/{y}/{x}.jpg',
+    dark: true,
+    options: {
+      maxZoom: 19,
+      maxNativeZoom: 18,
+      attribution: EOX_ATTRIBUTION
+    }
+  };
+  // CARTO raster basemaps need an API key (keyless requests get "API KEY
+  // REQUIRED" watermark tiles), so they are offered only when the page
+  // passes one. Keys are referrer-restricted public keys; only URL-safe
+  // characters are accepted, and the key only ever goes into the tile URL.
+  var CARTO_STYLES = [
+    { id: 'light', name: 'Light (CARTO)', role: 'light', style: 'light_all', dark: false },
+    { id: 'dark', name: 'Dark (CARTO)', role: 'dark', style: 'dark_all', dark: true }
   ];
+  var CARTO_KEY_RE = /^[A-Za-z0-9._~-]{8,256}$/;
+  var KNOWN_BASEMAP_IDS = ['light', 'dark', 'osm', 'osm-dark', 'satellite'];
   var BASEMAP_STORAGE_KEY = 'datacenter-atlas:basemap';
 
-  function findBasemap(id) {
-    for (var i = 0; i < BASEMAPS.length; i++) {
-      if (BASEMAPS[i].id === id) {
-        return BASEMAPS[i];
+  /** The CARTO key when it is a plausible URL-safe key, else "". */
+  function cartoKey(value) {
+    var key = typeof value === 'string' ? value.trim() : '';
+    return CARTO_KEY_RE.test(key) ? key : '';
+  }
+
+  /**
+   * Basemaps available on a page: CARTO Light/Dark first when a CARTO key is
+   * configured, then OpenStreetMap (plus its darkened variant when CARTO Dark
+   * is not available) and the Sentinel-2 satellite layer. New objects every
+   * call, so callers may hand the options straight to Leaflet.
+   */
+  function basemapsFor(options) {
+    var key = cartoKey(options && options.cartoKey);
+    var list = [];
+    if (key) {
+      CARTO_STYLES.forEach(function (style) {
+        list.push({
+          id: style.id,
+          name: style.name,
+          role: style.role,
+          url: 'https://{s}.basemaps.cartocdn.com/' + style.style + '/{z}/{x}/{y}{r}.png?key=' + encodeURIComponent(key),
+          dark: style.dark,
+          options: { subdomains: 'abcd', maxZoom: 19, attribution: CARTO_ATTRIBUTION }
+        });
+      });
+    }
+    list.push(OSM_BASEMAP);
+    if (!key) {
+      list.push(OSM_DARK_BASEMAP);
+    }
+    list.push(SATELLITE_BASEMAP);
+    return list.map(function (basemap) {
+      var copy = {};
+      Object.keys(basemap).forEach(function (name) { copy[name] = basemap[name]; });
+      copy.options = {};
+      Object.keys(basemap.options).forEach(function (name) { copy.options[name] = basemap.options[name]; });
+      return copy;
+    });
+  }
+
+  // What a page without a CARTO key offers (the default deployment).
+  var BASEMAPS = basemapsFor({});
+
+  function findBasemap(id, basemaps) {
+    var list = Array.isArray(basemaps) ? basemaps : BASEMAPS;
+    for (var i = 0; i < list.length; i++) {
+      if (list[i].id === id) {
+        return list[i];
       }
     }
     return null;
   }
 
-  /** Stored choice when valid, otherwise Light/Dark from prefers-color-scheme. */
-  function chooseBasemap(storedId, prefersDark) {
-    if (findBasemap(storedId)) {
-      return storedId;
+  function roleOf(id) {
+    if (id === 'light' || id === 'osm') {
+      return 'light';
     }
-    return prefersDark ? 'dark' : 'light';
+    if (id === 'dark' || id === 'osm-dark') {
+      return 'dark';
+    }
+    return '';
   }
 
+  /** First available basemap for a light/dark role (CARTO first when present). */
+  function basemapForRole(role, basemaps) {
+    var list = Array.isArray(basemaps) ? basemaps : BASEMAPS;
+    for (var i = 0; i < list.length; i++) {
+      if (list[i].role === role) {
+        return list[i].id;
+      }
+    }
+    return list.length ? list[0].id : '';
+  }
+
+  /**
+   * The stored choice when it is available on this page; a stored light or
+   * dark choice whose provider is not configured keeps its role (e.g. CARTO
+   * "dark" becomes the darkened OpenStreetMap); otherwise light or dark from
+   * prefers-color-scheme.
+   */
+  function chooseBasemap(storedId, prefersDark, basemaps) {
+    if (findBasemap(storedId, basemaps)) {
+      return storedId;
+    }
+    var role = roleOf(storedId) || (prefersDark ? 'dark' : 'light');
+    return basemapForRole(role, basemaps);
+  }
+
+  /** The stored basemap id when it is one this site has ever offered, else "". */
   function readStoredBasemap(storage) {
     try {
       var value = storage ? storage.getItem(BASEMAP_STORAGE_KEY) : null;
-      return findBasemap(value) ? value : '';
+      return KNOWN_BASEMAP_IDS.indexOf(value) !== -1 ? value : '';
     } catch (error) {
       return '';
     }
@@ -1186,7 +1600,7 @@
 
   function storeBasemap(storage, id) {
     try {
-      if (storage && findBasemap(id)) {
+      if (storage && KNOWN_BASEMAP_IDS.indexOf(id) !== -1) {
         storage.setItem(BASEMAP_STORAGE_KEY, id);
         return true;
       }
@@ -1196,8 +1610,22 @@
     return false;
   }
 
+  /** Same-origin relative prefix to the site root: "./" or "../" repeated. */
+  var ROOT_PREFIX_RE = /^(?:\.\/|(?:\.\.\/){1,8})$/;
+
+  /**
+   * Permanent map credit for the Atlas's own layer (markers and outlines):
+   * the data licence and the OpenStreetMap credit that ODbL requires for the
+   * OSM-derived geometries, whatever basemap is shown. `root` must be a
+   * relative prefix such as "./" or "../../"; anything else drops the link.
+   */
+  function dataCredit(root) {
+    var atlas = ROOT_PREFIX_RE.test(root) ? '<a href="' + root + 'about/attribution/">Data Center Atlas</a>' : 'Data Center Atlas';
+    return 'Sites: ' + atlas + ' (CC BY 4.0 + source terms); some geometries ' + OSM_COPYRIGHT + ' (ODbL)';
+  }
+
   return Object.freeze({
-    version: '1',
+    version: '2',
     LIFECYCLE_ORDER: LIFECYCLE_ORDER,
     STATUS_GROUPS: STATUS_GROUPS,
     OTHER_GROUP: OTHER_GROUP,
@@ -1206,6 +1634,8 @@
     CSV_COLUMNS: CSV_COLUMNS,
     BASEMAPS: BASEMAPS,
     BASEMAP_STORAGE_KEY: BASEMAP_STORAGE_KEY,
+    DEFAULT_EXPORT_LICENSE: DEFAULT_EXPORT_LICENSE,
+    AGENT_CAVEATS: AGENT_CAVEATS,
     statusGroup: statusGroup,
     sortStatusCodes: sortStatusCodes,
     statusLabel: statusLabel,
@@ -1239,7 +1669,9 @@
     buildHash: buildHash,
     serializeState: serializeState,
     normalizeState: normalizeState,
+    unmatchedFilters: unmatchedFilters,
     activeFilterCount: activeFilterCount,
+    statusesInRange: statusesInRange,
     filterSites: filterSites,
     facetCounts: facetCounts,
     compareText: compareText,
@@ -1247,17 +1679,31 @@
     neutralizeFormula: neutralizeFormula,
     csvField: csvField,
     sitesToCsv: sitesToCsv,
+    exportTerms: exportTerms,
     sitesToGeoJSON: sitesToGeoJSON,
     exportFilename: exportFilename,
+    agentToolSchemas: agentToolSchemas,
+    toolInputToState: toolInputToState,
+    toolSiteId: toolSiteId,
+    toolSiteSummary: toolSiteSummary,
     safeHttpUrl: safeHttpUrl,
     externalMapLinks: externalMapLinks,
     correctionUrl: correctionUrl,
+    licenseUrl: licenseUrl,
+    isOpenStreetMapCredit: isOpenStreetMapCredit,
+    OSM_COPYRIGHT_URL: OSM_COPYRIGHT_URL,
+    rootFromAssetSrc: rootFromAssetSrc,
+    embedSnippet: embedSnippet,
     joinRoot: joinRoot,
     fillTemplate: fillTemplate,
     formatPowerValue: formatPowerValue,
+    cartoKey: cartoKey,
+    basemapsFor: basemapsFor,
     findBasemap: findBasemap,
+    basemapForRole: basemapForRole,
     chooseBasemap: chooseBasemap,
     readStoredBasemap: readStoredBasemap,
-    storeBasemap: storeBasemap
+    storeBasemap: storeBasemap,
+    dataCredit: dataCredit
   });
 });

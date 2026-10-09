@@ -2,7 +2,8 @@
  * Data Center Atlas site page map: renders every div.site-map with Leaflet,
  * using the GeoJSON Feature in <script type="application/json" id="site-geometry">
  * and the container's data-lat / data-lon. Without JavaScript (or if Leaflet
- * fails to load) the container keeps its text fallback.
+ * fails to load) the container keeps its text fallback. An optional
+ * data-carto-key on the container enables CARTO's Light/Dark basemaps.
  */
 (function () {
   'use strict';
@@ -122,7 +123,11 @@
 
   function mapOptions() {
     var still = reducedMotion();
+    var L = window.L;
     return {
+      // On touch phones one finger scrolls the page, not the map (pinch,
+      // double tap and the +/- buttons still zoom); no scroll trap.
+      dragging: !(L && L.Browser && L.Browser.mobile),
       scrollWheelZoom: false,
       worldCopyJump: true,
       zoomSnap: 0.5,
@@ -135,8 +140,11 @@
 
   function drawMap(map, container, Core, feature, geometry, point) {
     var L = window.L;
-    var statuses = Core.sortStatusCodes(statusesOf(feature, container));
-    var group = Core.statusGroup(statuses[0] || 'under_construction');
+    // Same colour rule as the explorer: the newest project's status, a
+    // specific stage winning a same-day tie over generic construction.
+    var prepared = feature ? Core.prepareSite(feature) : null;
+    var group = Core.statusGroup((prepared && prepared.primaryStatus) ||
+      Core.sortStatusCodes(statusesOf(feature, container))[0] || 'under_construction');
     var name = feature && feature.properties && typeof feature.properties.name === 'string' ? feature.properties.name : '';
     container.classList.add('is-live');
     if (!container.hasAttribute('aria-label')) {
@@ -144,12 +152,15 @@
       container.setAttribute('aria-label', name ? 'Map of ' + name : 'Site map');
     }
     map.attributionControl.setPrefix('<a href="https://leafletjs.com">Leaflet</a>');
+    // Credit for the Atlas's own layer, whatever basemap is chosen.
+    map.attributionControl.addAttribution(Core.dataCredit(Core.rootFromAssetSrc(script && script.getAttribute('src'))));
 
+    var basemaps = Core.basemapsFor({ cartoKey: container.getAttribute('data-carto-key') });
     var store = storage();
-    var chosen = Core.chooseBasemap(Core.readStoredBasemap(store), prefersDark());
+    var chosen = Core.chooseBasemap(Core.readStoredBasemap(store), prefersDark(), basemaps);
     var layers = {};
     var byName = {};
-    Core.BASEMAPS.forEach(function (basemap) {
+    basemaps.forEach(function (basemap) {
       var layer = L.tileLayer(basemap.url, Object.assign({}, basemap.options));
       layers[basemap.id] = layer;
       byName[basemap.name] = layer;
@@ -158,7 +169,7 @@
     container.setAttribute('data-basemap', chosen);
     L.control.layers(byName, null, { position: 'topright' }).addTo(map);
     map.on('baselayerchange', function (event) {
-      Core.BASEMAPS.forEach(function (basemap) {
+      basemaps.forEach(function (basemap) {
         if (layers[basemap.id] === event.layer) {
           Core.storeBasemap(store, basemap.id);
           container.setAttribute('data-basemap', basemap.id);

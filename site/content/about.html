@@ -16,7 +16,7 @@
 
 <h2 id="what">What this is</h2>
 <p>{{site_name}} maps data-centre construction that can be checked. Each project in it has a dated report of physical work from an authoritative source, a reviewed locator whose precision is stated, and links to every source it rests on, with retrieval times, content hashes and licences. Unknowns stay unknown, and nothing is inferred to make a record look complete.</p>
-<p>The data is the Verified Construction Core, maintained by <a class="external" rel="noopener" href="https://github.com/kiankyars">Kian Kyars</a>. Browse it on the <a href="{{root}}">map</a>, as a <a href="{{root}}sites/">list of sites</a> or <a href="{{root}}countries/">by country</a>; download it in several formats from the <a href="{{root}}data/">data page</a>; or query the static <a href="{{root}}api/">JSON API</a>. The <a href="{{root}}methodology/">methodology</a> explains what qualifies and what the data does not claim.</p>
+<p>The data is the Verified Construction Core, maintained by <a class="external" rel="noopener" href="https://github.com/kiankyars">Kian Kyars</a>. Browse it on the <a href="{{root}}">map</a>, as a <a href="{{root}}sites/">list of sites</a> or <a href="{{root}}countries/">by country</a>; download it in several formats from the <a href="{{root}}data/">data page</a>; or query the static <a href="{{root}}api/">JSON API</a>, which is described by an <a href="{{root}}api/v1/openapi.json">OpenAPI document</a>. Language models and other agents can start from <a href="{{root}}llms.txt">llms.txt</a>. The <a href="{{root}}methodology/">methodology</a> explains what qualifies and what the data does not claim.</p>
 
 <h2 id="status">Current status</h2>
 <dl class="kv">
@@ -25,7 +25,7 @@
   <dt>Checkpoint</dt>
   <dd>{{dataset.checkpoint_date}}</dd>
   <dt>Lifecycle reference date</dt>
-  <dd>{{dataset.lifecycle_reference_date}}; every status was observed between {{dataset.window_start}} and this date</dd>
+  <dd>{{dataset.lifecycle_reference_date}}; every status was observed no more than {{dataset.status_window_days}} days before it, between {{dataset.window_start}} and {{dataset.lifecycle_reference_date}} inclusive</dd>
   <dt>Contents</dt>
   <dd>{{counts.physical_sites}} sites, {{counts.projects}} projects, {{counts.countries}} countries, {{counts.evidence}} evidence rows</dd>
   <dt>Release status</dt>
@@ -34,31 +34,16 @@
 <p>The {{last_preview.label}} was the last preview, with {{last_preview.counts.physical_sites}} sites; the reviewed v0.18 drafts extend it towards a 200-site target. Several release gates are still unmet (<a href="{{root}}methodology/#release-gates">see why</a>). All {{versions.count}} versions remain available on the <a href="{{root}}versions/">versions page</a>.</p>
 
 <h2 id="cite">How to cite</h2>
-<p>Cite the dataset version you used; its pinned downloads never change.</p>
-<p>Kyars, K. ({{dataset.checkpoint_year}}). Data Center Atlas: Verified Construction Core (Version {{dataset.id}}) [Data set]. {{base_url}}</p>
-<p><button type="button" class="copy-btn hidden-noscript" data-copy="Kyars, K. ({{dataset.checkpoint_year}}). Data Center Atlas: Verified Construction Core (Version {{dataset.id}}) [Data set]. {{base_url}}">Copy citation</button></p>
-<pre class="code">@misc{kyars{{dataset.checkpoint_year}}datacenteratlas,
-  author = "Kyars, Kian",
-  title  = "Data Center Atlas: Verified Construction Core",
-  year   = "{{dataset.checkpoint_year}}",
-  note   = "Dataset version {{dataset.id}}, checkpoint {{dataset.checkpoint_date}}",
-  url    = "{{base_url}}"
-}</pre>
-<p><button type="button" class="copy-btn hidden-noscript" data-copy="@misc{kyars{{dataset.checkpoint_year}}datacenteratlas,
-  author = &quot;Kyars, Kian&quot;,
-  title  = &quot;Data Center Atlas: Verified Construction Core&quot;,
-  year   = &quot;{{dataset.checkpoint_year}}&quot;,
-  note   = &quot;Dataset version {{dataset.id}}, checkpoint {{dataset.checkpoint_date}}&quot;,
-  url    = &quot;{{base_url}}&quot;
-}">Copy BibTeX</button></p>
+<p>Cite the dataset version you used; its original files stay available, unchanged, on the <a href="{{root}}versions/">versions page</a>.</p>
+{{{citation_block}}}
 <p>The repository's <a class="external" rel="noopener" href="{{repository_url}}/blob/main/CITATION.cff">CITATION.cff</a> carries the same metadata for reference managers and GitHub's "Cite this repository" button.</p>
 
 <h2 id="licence">Licence</h2>
 <ul>
   <li><strong>Atlas-authored data and documentation:</strong> <a class="external" rel="noopener" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Attribute it as "Data Center Atlas (Kian Kyars), {{base_url}}" and name the version.</li>
   <li><strong>Third-party facts, titles, URLs and geometries</strong> keep their sources' terms, recorded on each evidence row and listed on the <a href="{{root}}about/attribution/">attribution page</a>. Many sources are all-rights-reserved: the atlas cites them and records compact facts, and does not redistribute their documents, imagery or media.</li>
-  <li><strong>OpenStreetMap-derived geometries:</strong> © OpenStreetMap contributors, <a class="external" rel="noopener" href="https://opendatacommons.org/licenses/odbl/1-0/">ODbL 1.0</a>.</li>
-  <li><strong>Code:</strong> <a class="external" rel="noopener" href="{{repository_url}}/blob/main/LICENSE">MIT</a>. The maps use <a class="external" rel="noopener" href="https://leafletjs.com/">Leaflet</a> 1.9.4 (BSD 2-Clause).</li>
+  <li><strong>OpenStreetMap-derived geometries:</strong> © <a class="external" rel="noopener" href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>, <a class="external" rel="noopener" href="https://opendatacommons.org/licenses/odbl/1-0/">ODbL 1.0</a>. Each site's geometry licences are listed in the <code>geometry_licenses</code> field of its API record.</li>
+  <li><strong>Code:</strong> <a class="external" rel="noopener" href="{{repository_url}}/blob/main/LICENSE">MIT</a>. The maps use <a class="external" rel="noopener" href="https://leafletjs.com/">Leaflet</a> 1.9.4, under the <a class="external" rel="noopener" href="https://github.com/Leaflet/Leaflet/blob/v1.9.4/LICENSE">BSD 2-Clause licence</a>; the site ships that text as <a href="{{root}}assets/vendor/leaflet/LICENSE"><code>assets/vendor/leaflet/LICENSE</code></a>.</li>
 </ul>
 <p>The full terms are in <a class="external" rel="noopener" href="{{repository_url}}/blob/main/DATA_LICENSE.md">DATA_LICENSE.md</a>.</p>
 
@@ -67,15 +52,21 @@
 <p>Published versions are frozen: an accepted correction is applied, and documented, in a later checkpoint. Suggestions are reviewed against the <a href="{{root}}methodology/#selection">selection rules</a> and are never added automatically.</p>
 
 <h2 id="privacy">Privacy</h2>
-<p>This site sets no cookies and uses no analytics, advertising or tracking, and it loads no scripts or fonts from other sites. When a map is shown, your browser requests basemap tiles directly from CARTO, OpenStreetMap or EOX, which receive your IP address and the map area requested. The map remembers settings such as your basemap choice in your browser's local storage; they are not sent anywhere. The site is hosted on GitHub Pages, which logs visitors' IP addresses for security purposes (<a class="external" rel="noopener" href="https://docs.github.com/en/pages/getting-started-with-github-pages/about-github-pages#data-collection">GitHub's data-collection note</a>). The OpenStreetMap, Google Maps, Bing Maps and Copernicus Browser links on site pages are only followed if you click them.</p>
+<p>This site sets no cookies and uses no analytics, advertising or tracking, and it loads no scripts or fonts from other sites. When a map is shown, your browser requests basemap tiles directly from the OpenStreetMap Foundation's tile servers or from EOX (and from CARTO, where its maps are offered), which receive your IP address and the map area requested. The map remembers settings such as your basemap choice in your browser's local storage; they are not sent anywhere. The site is hosted on GitHub Pages, which logs visitors' IP addresses for security purposes (<a class="external" rel="noopener" href="https://docs.github.com/en/pages/getting-started-with-github-pages/about-github-pages#data-collection">GitHub's data-collection note</a>). The OpenStreetMap, Google Maps, Bing Maps and Copernicus Browser links and the "Archived copy" links to the Internet Archive on site pages are only followed if you click them.</p>
 
 <h2 id="legal">Legal notices</h2>
 <ul>
   <li>Source-specific notices, including the City of Chicago's required disclaimer, are on the <a href="{{root}}about/attribution/">attribution page</a>.</li>
-  <li>Basemaps: © OpenStreetMap contributors © CARTO (light and dark maps); © OpenStreetMap contributors (OpenStreetMap map); EOxCloudless by EOX IT Services GmbH, containing modified Copernicus Sentinel data (satellite map), which EOX licenses for non-commercial use under CC BY-NC-SA 4.0. Basemap tiles are not part of the dataset.</li>
+  <li>Basemaps, which are not part of the dataset and not covered by its CC BY 4.0 licence:
+    <ul>
+      <li>OpenStreetMap map (light, and a dark version recoloured in your browser): © <a class="external" rel="noopener" href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>, served by the OpenStreetMap Foundation under its <a class="external" rel="noopener" href="https://operations.osmfoundation.org/policies/tiles/">tile usage policy</a>. Errors in the basemap can be <a class="external" rel="noopener" href="https://www.openstreetmap.org/fixthemap">reported to OpenStreetMap</a>.</li>
+      <li>Satellite map: <a class="external" rel="noopener" href="https://cloudless.eox.at">EOxCloudless</a> by <a class="external" rel="noopener" href="https://eox.at">EOX IT Services GmbH</a> (Contains modified Copernicus Sentinel data 2025), licensed for non-commercial use under <a class="external" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>.</li>
+      <li>Where the map offers CARTO's light and dark styles: © <a class="external" rel="noopener" href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a> © <a class="external" rel="noopener" href="https://carto.com/attributions">CARTO</a>, under the <a class="external" rel="noopener" href="https://carto.com/legal/">CARTO terms</a>.</li>
+    </ul>
+  </li>
   <li>Company and product names identify the facilities described. Their use does not imply endorsement by, or affiliation with, those companies.</li>
   <li>The data is provided as is, without warranty of any kind, and is not legal, surveying, investment, engineering or operational advice. Statuses are the last observed physical status, not the current status; locators are not footprints; unknown values are not zero; and the dataset is not a census.</li>
 </ul>
 
 <h2 id="source">Source code and credits</h2>
-<p>The site, API and downloads are generated from the public repository <a class="external" rel="noopener" href="{{repository_url}}">kiankyars/datacenter-atlas</a> by a standard-library Python builder, and the frontend has no build step. The data rests on public disclosures and open data from hundreds of publishers, listed on the <a href="{{root}}about/attribution/">attribution page</a>, and on the work of OpenStreetMap contributors. New versions are announced in the <a href="{{root}}feed.xml">releases feed</a>.</p>
+<p>The site, API and downloads are generated from the public repository <a class="external" rel="noopener" href="{{repository_url}}">kiankyars/datacenter-atlas</a> by a standard-library Python builder, and the frontend has no build step. The data rests on public disclosures and open data from hundreds of publishers, listed on the <a href="{{root}}about/attribution/">attribution page</a>, and on the work of OpenStreetMap contributors. New versions are announced in the <a href="{{root}}feed.xml">releases feed</a>, and newly added sites in the <a href="{{root}}sites-feed.xml">sites feed</a>.</p>

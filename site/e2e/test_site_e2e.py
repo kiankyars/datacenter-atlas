@@ -9,9 +9,12 @@ sub-path (as GitHub Pages does) and runs, from the directory that contains the c
 Locally, after
 ``python -m pip install --require-hashes --only-binary :all: -r site/e2e/requirements.txt`` and
 ``python -m playwright install chromium``, ``python -m pytest site/e2e`` serves ``_site/`` (or
-``$ATLAS_SITE_DIR``) itself under the same sub-path on an ephemeral 127.0.0.1 port. Without
-Playwright the browser tests skip (the API and download checks still run when a built site is
-available); ``ATLAS_E2E_REQUIRED=1`` turns every skip into an error.
+``$ATLAS_SITE_DIR``) itself under the same sub-path on an ephemeral 127.0.0.1 port. Both servers
+are ``pages_server.py``, which follows GitHub Pages' rules (a directory URL answers with its
+``index.html`` or ``index.json`` and never with a listing; a missing path gets ``404.html`` with
+status 404), so a URL that passes here also works in production. Without Playwright the browser
+tests skip (the API, download and metadata checks still run when a built site is available);
+``ATLAS_E2E_REQUIRED=1`` turns every skip into an error.
 
 The tests are hermetic: every request to a host other than the local server is answered with a
 transparent 1x1 PNG (images) or aborted (everything else). The site promises no third-party
@@ -23,15 +26,15 @@ written to ``$ATLAS_SCREENSHOT_DIR`` (default ``site-screenshots/`` in the worki
 from __future__ import annotations
 
 import csv
-import functools
 import hashlib
-import http.server
+import importlib.util
 import io
 import json
 import os
 from pathlib import Path
 import re
 import struct
+import sys
 import threading
 import time
 import unicodedata
@@ -52,7 +55,24 @@ except ModuleNotFoundError:
 
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
+E2E_DIR = Path(__file__).resolve().parent
 SUB_PATH = "/datacenter-atlas/"
+
+
+def _load_sibling(name: str):
+    """Import a helper module that sits next to this file, whatever pytest's import mode."""
+    if name in sys.modules:
+        return sys.modules[name]
+    spec = importlib.util.spec_from_file_location(name, E2E_DIR / f"{name}.py")
+    module = importlib.util.module_from_spec(spec)
+    sys.modules[name] = module
+    spec.loader.exec_module(module)
+    return module
+
+
+pages_server = _load_sibling("pages_server")
+check_public_metadata = _load_sibling("check_public_metadata")
+
 VIEWPORTS = {
     "desktop": {"width": 1440, "height": 900},
     "tablet": {"width": 820, "height": 1180},
@@ -70,20 +90,10 @@ TILE_HOSTS = (
     re.compile(r"^tile\.openstreetmap\.org$"),
     re.compile(r"^tiles\.maps\.eox\.at$"),
 )
-EXPORT_CSV_COLUMNS = [
-    "site_id",
-    "name",
-    "country",
-    "country_iso_a2",
-    "latitude",
-    "longitude",
-    "statuses",
-    "newest_status_as_of",
-    "project_count",
-    "official_boundary",
-    "status_publishers",
-    "url",
-]
+# Columns every explorer CSV export must have (it may have more; see _expected_export_columns).
+EXPORT_CSV_REQUIRED_COLUMNS = (
+    "site_id", "name", "country", "country_iso_a2", "latitude", "longitude", "url", "dataset_id",
+)
 STATIC_PAGES = (
     "sites/",
     "countries/",
@@ -94,6 +104,8 @@ STATIC_PAGES = (
     "versions/",
     "about/",
     "about/attribution/",
+    "downloads/",
+    "downloads/latest/",
 )
 # Leaflet-generated markup is third-party; the accessibility check covers our own markup.
 AXE_CONTEXT = {"exclude": [".leaflet-pane", ".leaflet-control-container"]}
@@ -189,6 +201,85 @@ SNIPPET_TEXT_JS = """() => {
 }"""
 
 
+# Centres of the drawn site markers and the map's box, in viewport pixels.
+MARKER_GEOMETRY_JS = """() => {
+  const map = document.getElementById('atlas-map');
+  if (!map || !map.getClientRects().length) return null;
+  const box = map.getBoundingClientRect();
+  const markers = [];
+  for (const el of map.querySelectorAll('path.atlas-marker')) {
+    const d = (el.getAttribute('d') || '').trim();
+    if (!d || d === 'M0 0' || !el.getClientRects().length) continue;
+    const style = getComputedStyle(el);
+    if (style.visibility === 'hidden' || style.display === 'none') continue;
+    const r = el.getBoundingClientRect();
+    markers.push([Math.round((r.left + r.right) / 2), Math.round((r.top + r.bottom) / 2)]);
+  }
+  markers.sort((a, b) => a[0] - b[0] || a[1] - b[1]);
+  return {
+    box: [Math.round(box.left), Math.round(box.top), Math.round(box.right), Math.round(box.bottom)],
+    markers,
+    animating: !!map.querySelector('.leaflet-zoom-anim, .leaflet-pan-anim'),
+  };
+}"""
+FOCUS_IN_DETAIL_JS = """() => {
+  const detail = document.getElementById('atlas-detail');
+  const el = document.activeElement;
+  if (!detail || !el) return [false, 'nothing'];
+  const label = el.tagName.toLowerCase() + (el.id ? '#' + el.id : '') +
+    (el.textContent ? ' "' + el.textContent.trim().slice(0, 40) + '"' : '');
+  return [detail.contains(el), label];
+}"""
+FIRST_COLUMN_WIDTHS_JS = """() => Array.from(document.querySelectorAll('table.data-table tbody td:first-child'))
+  .filter((cell) => cell.getClientRects().length)
+  .map((cell) => [Math.round(cell.getBoundingClientRect().width), cell.textContent.trim().slice(0, 40)])"""
+# WebMCP stand-ins installed before any page script runs. The browser under test does not need to
+# support WebMCP: these cover "absent", "broken" and a recorder that captures what the page registers.
+WEBMCP_STUBS = {
+    "absent": "undefined",
+    "throws": "{ registerTool() { throw new Error('WebMCP stub: registration refused'); } }",
+    "rejects": "{ registerTool() { return Promise.reject(new Error('WebMCP stub: registration refused')); } }",
+}
+WEBMCP_INSTALL_JS = """(() => {
+  const context = %s;
+  for (const target of [document, navigator]) {
+    try { Object.defineProperty(target, 'modelContext', { value: context, configurable: true }); } catch (e) {}
+  }
+})();"""
+WEBMCP_RECORDER_JS = """(() => {
+  const calls = [];
+  const unregistered = [];
+  const context = {
+    registerTool(tool, options) { calls.push({ tool, signal: options && options.signal }); return Promise.resolve(); },
+    unregisterTool(name) { unregistered.push(String(name)); },
+    provideContext() {},
+    clearContext() {},
+  };
+  Object.defineProperty(window, '__atlasWebmcp', { value: { calls, unregistered } });
+  for (const target of [document, navigator]) {
+    try { Object.defineProperty(target, 'modelContext', { value: context, configurable: true }); } catch (e) {}
+  }
+})();"""
+WEBMCP_TOOLS_JS = """() => window.__atlasWebmcp.calls.map(({ tool }) => ({
+  name: tool && tool.name,
+  description: tool && tool.description,
+  annotations: (tool && tool.annotations) || {},
+  schemaType: tool && tool.inputSchema && tool.inputSchema.type,
+  executable: typeof (tool && tool.execute) === 'function',
+}))"""
+WEBMCP_EXECUTE_JS = """async ([name, input]) => {
+  const call = window.__atlasWebmcp.calls.find(({ tool }) => tool && tool.name === name);
+  if (!call) return { error: 'not registered' };
+  try {
+    const result = await call.tool.execute(input, { requestUserInteraction: async (callback) => callback() });
+    return { result: JSON.stringify(result === undefined ? null : result) };
+  } catch (error) {
+    return { error: String((error && error.message) || error) };
+  }
+}"""
+WEBMCP_TOOL_NAMES = ("search_datacenter_sites", "get_datacenter_site", "get_datacenter_dataset_info")
+
+
 # --------------------------------------------------------------------------------------------
 # The site under test
 
@@ -197,39 +288,43 @@ _NO_PROXY_OPENER = urllib.request.build_opener(urllib.request.ProxyHandler({}))
 
 
 def _http_get(url: str, *, timeout: float = 60.0) -> bytes:
+    return _http_fetch(url, timeout=timeout)[1]
+
+
+def _http_fetch(url: str, *, timeout: float = 60.0) -> tuple[dict[str, str], bytes]:
+    """(lower-cased headers, body) of a 200 response; any other status fails the test."""
     request = urllib.request.Request(url, headers={"User-Agent": "datacenter-atlas-e2e"})
     try:
         with _NO_PROXY_OPENER.open(request, timeout=timeout) as response:
-            return response.read()
+            headers = {key.lower(): value for key, value in response.headers.items()}
+            return headers, response.read()
     except urllib.error.HTTPError as error:
         raise AssertionError(f"GET {url} -> HTTP {error.code}") from None
 
 
-class _SubPathHandler(http.server.SimpleHTTPRequestHandler):
-    """Serve ``directory`` only under SUB_PATH, like a GitHub Pages project site."""
-
-    def translate_path(self, path: str) -> str:
-        prefix = SUB_PATH.rstrip("/")
-        request_path = urlsplit(path).path
-        if request_path != prefix and not request_path.startswith(SUB_PATH):
-            return os.path.join(self.directory, ".outside-the-site-sub-path")
-        return super().translate_path(path[len(prefix):] or "/")
-
-    def log_message(self, *args: object) -> None:  # keep pytest output readable
-        pass
+def _http_status(url: str, *, timeout: float = 60.0) -> int:
+    request = urllib.request.Request(url, headers={"User-Agent": "datacenter-atlas-e2e"})
+    try:
+        with _NO_PROXY_OPENER.open(request, timeout=timeout) as response:
+            response.read()
+            return response.status
+    except urllib.error.HTTPError as error:
+        return error.code
 
 
 class _LocalSite:
-    """A built ``_site`` on an ephemeral 127.0.0.1 port (used when ATLAS_BASE_URL is unset)."""
+    """A built ``_site`` on an ephemeral 127.0.0.1 port (used when ATLAS_BASE_URL is unset).
+
+    Served by ``pages_server.py``, as in CI: only under SUB_PATH and with GitHub Pages' rules.
+    """
 
     def __init__(self, directory: Path) -> None:
-        handler = functools.partial(_SubPathHandler, directory=str(directory))
-        self._server = http.server.ThreadingHTTPServer(("127.0.0.1", 0), handler)
+        self._server = pages_server.make_server(directory, port=0, sub_path=SUB_PATH)
         self._thread = threading.Thread(
             target=self._server.serve_forever, name="atlas-e2e-http", daemon=True
         )
         self._thread.start()
-        self.base_url = f"http://127.0.0.1:{self._server.server_address[1]}{SUB_PATH}"
+        self.base_url = pages_server.base_url(self._server, SUB_PATH)
 
     def close(self) -> None:
         self._server.shutdown()
@@ -414,14 +509,18 @@ def open_page(chromium, atlas):
         bypass_csp: bool = False,
         color_scheme: str = "light",
         permissions: tuple[str, ...] = (),
+        reduced_motion: str = "reduce",
+        init_script: str | None = None,
     ):
+        # Most tests ask for reduced motion, so map moves are instant and deterministic;
+        # test_auto_fit_follows_consecutive_filters exercises the animated code paths.
         context = chromium.new_context(
             viewport=viewport or VIEWPORTS["desktop"],
             device_scale_factor=1,
             java_script_enabled=javascript,
             bypass_csp=bypass_csp,
             color_scheme=color_scheme,
-            reduced_motion="reduce",
+            reduced_motion=reduced_motion,
             locale="en-US",
             timezone_id="UTC",
             service_workers="block",
@@ -433,6 +532,8 @@ def open_page(chromium, atlas):
             context.grant_permissions(list(permissions), origin=atlas.origin)
         guard = Guard(atlas)
         context.route("**/*", guard.handle_route)
+        if init_script:
+            context.add_init_script(script=init_script)
         page = context.new_page()
         guard.watch(page)
         return page, guard
@@ -678,7 +779,23 @@ def _expect_site_hash(page, site_id: str) -> None:
     )
 
 
+def _reveal_filters(page) -> None:
+    """Make the filter controls visible: the list panel on narrow layouts, then the collapsible
+    filter group (#atlas-more), which may start closed so that results show above the fold."""
+    if page.locator("#atlas-country").is_visible():
+        return
+    _show_list(page)
+    more = page.locator("#atlas-more")
+    if not page.locator("#atlas-country").is_visible() and more.count():
+        toggle = more.locator("summary").first
+        if not toggle.count():
+            toggle = page.locator('[aria-controls="atlas-more"]').first
+        toggle.click()
+    expect(page.locator("#atlas-country")).to_be_visible()
+
+
 def _select_country(page, country: dict) -> str:
+    _reveal_filters(page)
     options = page.locator("#atlas-country option").evaluate_all(
         "(els) => els.map((o) => [o.value, o.textContent || ''])"
     )
@@ -839,6 +956,199 @@ def test_not_found_page_uses_absolute_links(atlas):
     # GitHub Pages serves 404.html for any missing path, so relative links would break there.
     assert not relative, f"404.html must only use absolute links: {relative}"
     assert any(t.startswith(atlas.production_base_url) for t in targets)
+
+
+def test_server_follows_github_pages_rules(atlas):
+    # The tests only prove that URLs work in production if the server refuses what Pages refuses.
+    assert json.loads(_http_get(atlas.url("api/v1/"))) == atlas.index, "api/v1/ must serve index.json"
+    assert _http_status(atlas.url("api/v1/sites/")) == 404, "a directory without an index must be 404"
+    missing = atlas.url("this-page-does-not-exist/")
+    assert _http_status(missing) == 404
+    request = urllib.request.Request(missing, headers={"User-Agent": "datacenter-atlas-e2e"})
+    with pytest.raises(urllib.error.HTTPError) as raised:
+        _NO_PROXY_OPENER.open(request, timeout=60)
+    assert atlas.production_base_url in raised.value.read().decode("utf-8"), "404 must be the site's 404.html"
+
+
+def _absolute_site_urls(atlas: Atlas, text: str) -> set[str]:
+    """Absolute production URLs quoted in ``text`` (URL templates skipped), mapped onto the server."""
+    found = set()
+    for url in re.findall(re.escape(atlas.production_base_url) + r"[^\s\"'<>()`\\\]]*", text):
+        if "{" in url or "}" in url:
+            continue
+        url = urldefrag(url.rstrip(".,;:!?"))[0].split("?", 1)[0]
+        found.add(atlas.localize(url))
+    return found
+
+
+def test_llms_txt_is_a_working_entry_point(atlas):
+    headers, body = _http_fetch(atlas.url("llms.txt"))
+    assert headers.get("content-type", "").startswith("text/plain"), headers.get("content-type")
+    text = body.decode("utf-8")
+    first = next(line for line in text.splitlines() if line.strip())
+    assert first.startswith("# "), f"llms.txt must start with an H1 title, not {first!r}"
+    assert atlas.dataset_id in text, "llms.txt must name the current dataset version"
+    for needed in ("api/v1/", "downloads/"):
+        assert atlas.production_base_url + needed in text, f"llms.txt has no {needed} URL"
+    folded = text.casefold()
+    assert any(
+        name in folded for name in ("cc by 4.0", "cc-by-4.0", "creative commons attribution 4.0")
+    ), "llms.txt must state the licence"
+    for caveat in ("last observed", "footprint", "unknown", "census"):
+        assert caveat in folded, f"llms.txt must carry the {caveat!r} caveat"
+    urls = _absolute_site_urls(atlas, text)
+    broken = sorted(url for url in urls if _http_status(url) != 200)
+    assert not broken, f"llms.txt links to URLs that are not 200: {broken}"
+
+
+def _json_pointer(document, pointer: str):
+    node = document
+    for part in [item for item in pointer.split("/") if item]:
+        part = part.replace("~1", "/").replace("~0", "~")
+        node = node[int(part)] if isinstance(node, list) else node[part]
+    return node
+
+
+def _openapi_sample_values(atlas: Atlas) -> dict[str, str]:
+    site = _by_name(atlas.sites)[0]
+    doc = atlas.site_doc(site["site_id"])
+    return {
+        "site": site["site_id"],
+        "project": doc["projects"][0]["project_id"],
+        "evidence": doc["evidence"][0]["evidence_id"],
+        "iso": atlas.countries[0]["country_iso_a2"],
+        "country": atlas.countries[0]["country_iso_a2"],
+    }
+
+
+def _template_key(path: str) -> str:
+    return re.sub(r"\{[^}]*\}", "{}", path)
+
+
+def test_openapi_describes_every_static_endpoint(atlas):
+    endpoints = atlas.index["endpoints"]
+    assert "openapi" in endpoints, "api/v1/index.json must link the OpenAPI description"
+    openapi_url = atlas.localize(endpoints["openapi"])
+    spec = atlas.get_json(openapi_url)
+    assert str(spec.get("openapi", "")).startswith("3.1"), spec.get("openapi")
+    assert spec.get("info", {}).get("title") and spec.get("info", {}).get("version")
+    paths = spec.get("paths") or {}
+    assert paths, "the OpenAPI description has no paths"
+    servers = spec.get("servers") or [{}]
+    server = str(servers[0].get("url", "")).rstrip("/") + "/"
+    assert server.startswith(atlas.production_base_url), f"server {server!r} is not the production site"
+    described = {_template_key(path.lstrip("/")) for path in paths}
+    missing = [
+        name for name, url in endpoints.items()
+        if url.startswith(server) and _template_key(url[len(server):]) not in described
+    ]
+    assert not missing, f"index.json endpoints missing from the OpenAPI paths: {missing}"
+
+    documents = {openapi_url: spec}
+
+    def resolve(node, base: str):
+        seen = 0
+        while isinstance(node, dict) and "$ref" in node:
+            seen += 1
+            assert seen < 20, f"$ref loop at {node['$ref']}"
+            target, _, pointer = node["$ref"].partition("#")
+            if target:
+                base = atlas.localize(urljoin(base, target))
+                if base not in documents:
+                    documents[base] = atlas.get_json(base)
+            node = _json_pointer(documents[base], pointer)
+        return node, base
+
+    def all_refs(node, base: str) -> None:
+        if isinstance(node, dict):
+            if isinstance(node.get("$ref"), str):
+                resolve(node, base)
+            for value in node.values():
+                all_refs(value, base)
+        elif isinstance(node, list):
+            for value in node:
+                all_refs(value, base)
+
+    all_refs(spec, openapi_url)  # every schema the description points to must be served
+    samples = _openapi_sample_values(atlas)
+    for path, item in sorted(paths.items()):
+        operation = item.get("get")
+        assert operation, f"{path} has no GET operation"
+
+        def fill(match: re.Match) -> str:
+            name = match.group(1).casefold()
+            key = next((key for key in samples if key in name), None)
+            assert key is not None, f"{path}: no sample value for the {{{match.group(1)}}} parameter"
+            return quote(samples[key], safe="")
+
+        url = atlas.localize(urljoin(server, re.sub(r"\{([^}]*)\}", fill, path.lstrip("/"))))
+        raw = atlas.get_bytes(url)
+        response, base = resolve((operation.get("responses") or {}).get("200") or {}, openapi_url)
+        content = response.get("content") or {}
+        assert content, f"{path}: the 200 response has no content"
+        media_type, media = next(iter(content.items()))
+        if "json" not in media_type:
+            raw.decode("utf-8")  # e.g. text/csv: served and UTF-8
+            continue
+        body = json.loads(raw.decode("utf-8"))
+        schema, _ = resolve(media.get("schema") or {}, base)
+        kind = schema.get("type")
+        if kind == "array":
+            assert isinstance(body, list), f"{path}: the schema says array"
+        elif kind == "object":
+            assert isinstance(body, dict), f"{path}: the schema says object"
+            missing_keys = [key for key in schema.get("required", []) if key not in body]
+            assert not missing_keys, f"{path}: required keys missing from the response: {missing_keys}"
+
+
+def test_download_directories_have_landing_pages(atlas):
+    # Citations and the API point at downloads/<id>/ directories; on GitHub Pages they only
+    # resolve through an index.html, which must link every file the directory holds.
+    headers, body = _http_fetch(atlas.url("downloads/"))
+    assert headers.get("content-type", "").startswith("text/html")
+    listing = {urljoin(atlas.url("downloads/"), href) for href in re.findall(r'href="([^"]+)"', body.decode("utf-8"))}
+    for directory in ("latest", atlas.dataset_id):
+        assert atlas.url(f"downloads/{quote(directory)}/") in listing, f"downloads/ does not link {directory}/"
+    for directory in ("latest", atlas.dataset_id):
+        base = atlas.url(f"downloads/{quote(directory)}/")
+        headers, body = _http_fetch(base)
+        assert headers.get("content-type", "").startswith("text/html"), (directory, headers)
+        page = body.decode("utf-8")
+        sums = atlas.get_bytes(f"downloads/{quote(directory)}/SHA256SUMS").decode("utf-8")
+        names = [line.split("  ", 1)[1] for line in sums.splitlines() if line.strip()]
+        hrefs = {urljoin(base, href) for href in re.findall(r'href="([^"]+)"', page)}
+        unlinked = [name for name in names if urljoin(base, quote(name, safe="")) not in hrefs]
+        assert not unlinked, f"downloads/{directory}/ does not link {unlinked}"
+
+
+def test_public_metadata_matches_the_build(atlas):
+    """README.md, CITATION.cff and DATA_LICENSE.md state the facts of the build being tested."""
+    endpoints = atlas.index["endpoints"]
+    facts = check_public_metadata.facts_from_documents(
+        index=atlas.index,
+        stats=atlas.get_json(endpoints["stats"]),
+        versions=atlas.get_json(endpoints["versions"]),
+        countries=atlas.countries,
+        projects=atlas.get_json(endpoints["projects"]),
+        evidence=atlas.get_json(endpoints["evidence"]),
+        config=check_public_metadata.load_config(REPO_ROOT),
+        citation=atlas.get_json(endpoints["citation"]) if "citation" in endpoints else None,
+    )
+    problems = check_public_metadata.check(REPO_ROOT, facts)
+    assert not problems, "\n".join(problems)
+
+
+def test_live_checks_pass_against_this_build(atlas):
+    live_checks = _load_sibling("live_checks")
+
+    def fetch(url: str):
+        return live_checks.http_get(atlas.localize(url))
+
+    report = live_checks.check_deployment(
+        atlas.production_base_url, atlas.index, token="e2e", fetch=fetch
+    )
+    assert report.checked > 20
+    assert not report.problems, "\n".join(report.problems)
 
 
 # --------------------------------------------------------------------------------------------
@@ -1102,6 +1412,15 @@ def test_list_rows_support_arrow_keys_and_enter(open_page, atlas):
     guard.assert_clean()
 
 
+def _expected_export_columns(atlas: Atlas, country: dict) -> list[str] | None:
+    """The published per-country CSV's header plus dataset_id, when the API publishes one."""
+    template = atlas.index["endpoints"].get("country_csv")
+    if not template:
+        return None
+    text = atlas.get_bytes(template.replace("{iso2}", country["country_iso_a2"])).decode("utf-8-sig")
+    return next(csv.reader(io.StringIO(text, newline=""))) + ["dataset_id"]
+
+
 def test_exports_and_copy_link_follow_the_filtered_view(open_page, atlas, tmp_path):
     country = _country_probe(atlas)
     expected = set(country["site_ids"])
@@ -1112,11 +1431,19 @@ def test_exports_and_copy_link_follow_the_filtered_view(open_page, atlas, tmp_pa
 
     with page.expect_download() as download:
         page.locator("#atlas-export-csv").click()
+    assert atlas.dataset_id in download.value.suggested_filename, download.value.suggested_filename
     csv_path = tmp_path / "filtered.csv"
     download.value.save_as(csv_path)
     rows = list(csv.reader(io.StringIO(csv_path.read_text(encoding="utf-8-sig"), newline="")))
-    assert rows[0] == EXPORT_CSV_COLUMNS
+    header = rows[0]
+    missing = [column for column in EXPORT_CSV_REQUIRED_COLUMNS if column not in header]
+    assert not missing and header[0] == "site_id", f"CSV export header {header} lacks {missing}"
+    expected_header = _expected_export_columns(atlas, country)
+    if expected_header is not None:
+        assert header == expected_header, "the explorer CSV must match the published country CSV + dataset_id"
     assert sorted(row[0] for row in rows[1:]) == sorted(expected)
+    version = header.index("dataset_id")
+    assert {row[version] for row in rows[1:]} == {atlas.dataset_id}
 
     with page.expect_download() as download:
         page.locator("#atlas-export-geojson").click()
@@ -1124,6 +1451,9 @@ def test_exports_and_copy_link_follow_the_filtered_view(open_page, atlas, tmp_pa
     download.value.save_as(geojson_path)
     collection = json.loads(geojson_path.read_text(encoding="utf-8"))
     assert collection["type"] == "FeatureCollection"
+    # The file must say what it is and under which terms it may be reused.
+    assert (collection.get("dataset") or {}).get("id") == atlas.dataset_id, collection.get("dataset")
+    assert collection.get("license") and collection.get("attribution"), "GeoJSON export lacks its terms"
     exported = [
         feature.get("id") or feature.get("properties", {}).get("site_id")
         for feature in collection["features"]
@@ -1138,6 +1468,195 @@ def test_exports_and_copy_link_follow_the_filtered_view(open_page, atlas, tmp_pa
         "Copy link to put the current view on the clipboard",
     )
     assert _query(copied) == _query(page.url), (copied, page.url)
+    guard.assert_clean()
+
+
+def _settled_markers(page, expected: int, what: str, *, timeout_ms: int = 20_000) -> dict:
+    """Marker geometry once the map has stopped moving (four identical samples, no animation)."""
+    samples: list = []
+
+    def read():
+        samples.append(page.evaluate(MARKER_GEOMETRY_JS))
+        return samples[-1]
+
+    def settled(state) -> bool:
+        recent = samples[-4:]
+        return (
+            len(recent) == 4
+            and all(item is not None and item == recent[0] for item in recent)
+            and not state["animating"]
+            and len(state["markers"]) == expected
+        )
+
+    return _eventually(page, read, settled, what, timeout_ms=timeout_ms)
+
+
+def _markers_outside(state: dict, tolerance: int = 2) -> list:
+    left, top, right, bottom = state["box"]
+    return [
+        (x, y) for x, y in state["markers"]
+        if not (left - tolerance <= x <= right + tolerance and top - tolerance <= y <= bottom + tolerance)
+    ]
+
+
+def _country_bounds(atlas: Atlas, country: dict) -> tuple[float, float, float, float]:
+    sites = [atlas.sites_by_id[site_id] for site_id in country["site_ids"]]
+    lats = [site["latitude"] for site in sites]
+    lons = [site["longitude"] for site in sites]
+    return min(lats), min(lons), max(lats), max(lons)
+
+
+def _distant_countries(atlas: Atlas) -> tuple[dict, dict]:
+    """Two countries with several sites whose site bounding boxes do not overlap."""
+    candidates = sorted(
+        (country for country in atlas.countries if country["site_count"] >= 2),
+        key=lambda country: (-country["site_count"], country["country_iso_a2"]),
+    )
+    for first in candidates:
+        a = _country_bounds(atlas, first)
+        for second in candidates:
+            if second is first:
+                continue
+            b = _country_bounds(atlas, second)
+            if a[2] < b[0] or b[2] < a[0] or a[3] < b[1] or b[3] < a[1]:
+                return first, second
+    _skip_or_fail("needs two countries with several sites and disjoint extents")
+
+
+def test_auto_fit_follows_consecutive_filters(open_page, atlas):
+    # Animated map moves (no reduced-motion preference) must not count as the reader moving the
+    # map: every filter change keeps fitting the map to the matching sites.
+    first, second = _distant_countries(atlas)
+    page, guard = open_page(reduced_motion="no-preference")
+    _open_explorer(page, atlas)
+    for country in (first, second):
+        expected = set(country["site_ids"])
+        _select_country(page, country)
+        _expect_rows(page, expected, f"the {country['country']} filter")
+        state = _settled_markers(
+            page, len(expected), f"the map to settle on {country['country']}'s {len(expected)} markers"
+        )
+        outside = _markers_outside(state)
+        assert not outside, (
+            f"after filtering to {country['country']}, {len(outside)} of {len(expected)} markers lie "
+            f"outside the map {state['box']}: {outside[:5]}"
+        )
+    guard.assert_clean()
+
+
+def test_desktop_explorer_shows_results_above_the_fold(open_page, atlas):
+    page, guard = open_page(VIEWPORTS["desktop"])
+    _open_explorer(page, atlas)
+    assert _visible_row_ids(page), "no result rows"
+    bottom, height = page.evaluate(
+        """() => {
+          const row = document.querySelector('#atlas-list [data-site-id]');
+          return [row.getBoundingClientRect().bottom, window.innerHeight];
+        }"""
+    )
+    assert bottom <= height, (
+        f"the first result row ends at {bottom:.0f}px, below the {height}px viewport: the filters "
+        "push every result below the fold"
+    )
+    guard.assert_clean()
+
+
+def test_fit_to_results_shows_every_marker_on_a_narrow_phone(open_page, atlas):
+    page, guard = open_page(NARROW_VIEWPORT)
+    _open_explorer(page, atlas)
+    tab = page.locator("#atlas-tab-map")
+    if tab.is_visible():
+        tab.click()
+    expect(page.locator("#atlas-map")).to_be_visible()
+    page.locator("#atlas-fit").click()
+    state = _settled_markers(page, len(atlas.sites), "the map to settle after Fit to results")
+    outside = _markers_outside(state)
+    assert not outside, (
+        f"Fit to results leaves {len(outside)} of {len(atlas.sites)} markers outside the "
+        f"{NARROW_VIEWPORT['width']}px map: {outside[:5]}"
+    )
+    guard.assert_clean()
+
+
+def test_phone_detail_sheet_keeps_focus_inside(open_page, atlas):
+    # On narrow screens the detail sheet covers the explorer, so it must behave as a modal dialog:
+    # Tab and Shift+Tab cycle inside it until it is closed.
+    site = _multi_project_site(atlas)
+    page, guard = open_page(VIEWPORTS["phone"])
+    _open_explorer(page, atlas)
+    _open_drawer(page, atlas, site)
+    for presses, key in ((40, "Tab"), (10, "Shift+Tab")):
+        for number in range(1, presses + 1):
+            page.keyboard.press(key)
+            inside, label = page.evaluate(FOCUS_IN_DETAIL_JS)
+            assert inside, f"{key} press {number} moved focus outside the open sheet, to {label}"
+    page.keyboard.press("Escape")
+    expect(page.locator("#atlas-detail[hidden]")).to_have_count(1)
+    guard.assert_clean()
+
+
+@pytest.mark.parametrize("variant", sorted(WEBMCP_STUBS))
+def test_explorer_works_whatever_webmcp_support(open_page, atlas, variant):
+    # WebMCP is optional: without it, or when registration throws or rejects, the explorer must
+    # load normally and report no error.
+    page, guard = open_page(init_script=WEBMCP_INSTALL_JS % WEBMCP_STUBS[variant])
+    _open_explorer(page, atlas)
+    _expect_rows(page, set(atlas.sites_by_id), f"every site with WebMCP {variant}")
+    guard.assert_clean()
+
+
+def test_webmcp_tools_drive_the_explorer(open_page, atlas):
+    page, guard = open_page(init_script=WEBMCP_RECORDER_JS)
+    _open_explorer(page, atlas)
+    tools = _eventually(
+        page,
+        lambda: page.evaluate(WEBMCP_TOOLS_JS),
+        lambda found: set(WEBMCP_TOOL_NAMES) <= {tool["name"] for tool in found},
+        f"the explorer to register {WEBMCP_TOOL_NAMES} through document.modelContext",
+    )
+    for tool in tools:
+        if tool["name"] not in WEBMCP_TOOL_NAMES:
+            continue
+        assert tool["executable"] and tool["description"], tool
+        assert tool["schemaType"] == "object", tool
+        assert tool["annotations"].get("readOnlyHint") is True, tool
+        assert tool["annotations"].get("untrustedContentHint") is True, tool
+
+    country = _country_probe(atlas)
+    expected = set(country["site_ids"])
+    outcome = page.evaluate(
+        WEBMCP_EXECUTE_JS,
+        ["search_datacenter_sites", {"country": country["country_iso_a2"], "limit": 200}],
+    )
+    assert "result" in outcome, outcome
+    missing = [site_id for site_id in expected if site_id not in outcome["result"]]
+    assert not missing, f"search_datacenter_sites did not return {missing[:5]}"
+    _expect_rows(page, expected, "search_datacenter_sites to drive the visible list")
+    _eventually(
+        page, lambda: _query(page.url).get("country", [""])[0].upper(),
+        lambda value: value == country["country_iso_a2"].upper(), "the tool's filter to reach the URL",
+    )
+
+    site = _by_name([atlas.sites_by_id[site_id] for site_id in expected])[0]  # one of the listed sites
+    outcome = page.evaluate(WEBMCP_EXECUTE_JS, ["get_datacenter_site", {"site_id": site["site_id"]}])
+    assert site["site_id"] in outcome.get("result", ""), outcome
+    _expect_drawer_shows(page, site, atlas.site_doc(site["site_id"]))
+    page.evaluate(WEBMCP_EXECUTE_JS, ["get_datacenter_site", {"site_id": "vcc-site-00000000000000000000"}])
+
+    info = page.evaluate(WEBMCP_EXECUTE_JS, ["get_datacenter_dataset_info", {}])
+    assert atlas.dataset_id in info.get("result", ""), info
+    assert '"caveats"' in info["result"] and '"license"' in info["result"], info
+
+    ended = page.evaluate(
+        """(names) => {
+          window.dispatchEvent(new PageTransitionEvent('pagehide', { persisted: false }));
+          const { calls, unregistered } = window.__atlasWebmcp;
+          return names.every((name) => unregistered.includes(name) || calls.some(
+            ({ tool, signal }) => tool && tool.name === name && signal && signal.aborted));
+        }""",
+        list(WEBMCP_TOOL_NAMES),
+    )
+    assert ended, "pagehide must abort (or unregister) the registered tools"
     guard.assert_clean()
 
 
@@ -1243,6 +1762,26 @@ def test_site_page_map_renders_with_javascript(open_page, atlas):
     guard.assert_clean()
 
 
+def test_table_first_columns_stay_readable_at_820px(open_page, atlas):
+    # The first column names the row (site, source title, metric); it must never be squeezed
+    # to a sliver by wide neighbours.
+    sites = [_multi_project_site(atlas)]
+    powered = next((site for site in _by_name(atlas.sites) if site["power_observations"]), None)
+    if powered is not None and powered["site_id"] != sites[0]["site_id"]:
+        sites.append(powered)
+    page, guard = open_page(VIEWPORTS["tablet"])
+    failures = []
+    for path in ("sites/", *(atlas.localize(site["url"])[len(atlas.base_url):] for site in sites)):
+        _goto_ok(page, atlas.url(path))
+        widths = page.evaluate(FIRST_COLUMN_WIDTHS_JS)
+        assert widths, f"{path} has no table.data-table rows"
+        narrow = [item for item in widths if item[0] < 96]
+        if narrow:
+            failures.append(f"{path}: first-column cells narrower than 96px: {narrow[:3]}")
+    assert not failures, "\n".join(failures)
+    guard.assert_clean()
+
+
 def test_data_and_api_page_links_resolve(open_page, atlas):
     page, guard = open_page()
     failures = []
@@ -1260,11 +1799,12 @@ def test_data_and_api_page_links_resolve(open_page, atlas):
             if target.startswith(atlas.production_base_url):
                 target = atlas.localize(target)
             if target.startswith(atlas.base_url):
-                # GitHub Pages only serves a linked directory through its index.html.
-                targets.add(target + "index.html" if target.endswith("/") else target)
+                # The server follows GitHub Pages: a directory URL is 200 only through its
+                # index.html or index.json, never through a generated listing.
+                targets.add(target)
         assert targets, f"{path} links to nothing on the site"
-        # Absolute URLs quoted in snippets, prose and JSON-LD must exist as well (directory URLs
-        # there are API or download bases, so the directory itself is enough).
+        # Absolute URLs quoted in snippets, prose and JSON-LD must exist as well, directory URLs
+        # included: a reader who pastes one must not get a 404.
         text = page.evaluate(SNIPPET_TEXT_JS)
         for found in re.findall(re.escape(atlas.production_base_url) + r"[^\s\"'<>()`\\]*", text):
             if "{" in found or "}" in found:
@@ -1347,6 +1887,14 @@ def test_screenshots(open_page, atlas, screenshot_dir, name):
     page.screenshot(
         path=screenshot_dir / f"data-page-{size}.png", full_page=True, animations="disabled"
     )
+    # Long table pages: the viewport around the first table (a full-page capture of 200 rows
+    # would exceed the browser's maximum screenshot height on phones).
+    for name, path in (("sites-index", "sites/"), ("dictionary", "data/dictionary/"), ("api-page", "api/")):
+        _goto_ok(page, atlas.url(path))
+        table = page.locator("main table.data-table").first
+        if table.count():
+            table.scroll_into_view_if_needed()
+        page.screenshot(path=screenshot_dir / f"{name}-{size}.png", animations="disabled")
     guard.assert_clean()
 
     if wide:
@@ -1362,15 +1910,29 @@ def test_screenshots(open_page, atlas, screenshot_dir, name):
         dark_guard.assert_clean()
 
 
-def test_no_critical_accessibility_violations(open_page, atlas):
+# (viewport, colour scheme, what to audit). The phone run audits the open detail sheet, which
+# covers the explorer there; the others audit the explorer, its drawer and every static page.
+AXE_RUNS = {
+    "desktop-light": ("desktop", "light", "pages"),
+    "desktop-dark": ("desktop", "dark", "pages"),
+    "phone-sheet": ("phone", "light", "sheet"),
+}
+# Serious findings that fail the run (all critical ones do too); other serious ones are reported.
+AXE_BLOCKING_SERIOUS = frozenset({"color-contrast", "aria-dialog-name", "scrollable-region-focusable"})
+
+
+@pytest.mark.parametrize("run", list(AXE_RUNS))
+def test_no_blocking_accessibility_violations(open_page, atlas, run):
     if os.environ.get("ATLAS_E2E_REQUIRED") == "1":
         from axe_playwright_python.sync_playwright import Axe
     else:
         Axe = pytest.importorskip("axe_playwright_python.sync_playwright").Axe
     axe = Axe()
+    viewport, scheme, scope = AXE_RUNS[run]
     site = _multi_project_site(atlas)
-    page, guard = open_page(bypass_csp=True)  # axe is injected by evaluation
-    critical: list[str] = []
+    # axe is injected by evaluation, which the Content-Security-Policy would block.
+    page, guard = open_page(VIEWPORTS[viewport], bypass_csp=True, color_scheme=scheme)
+    blocking: list[str] = []
     serious: list[str] = []
 
     def audit(label: str) -> None:
@@ -1378,21 +1940,23 @@ def test_no_critical_accessibility_violations(open_page, atlas):
             nodes = violation.get("nodes", [])[:5]
             targets = [", ".join(map(str, node.get("target", []))) for node in nodes]
             impact = violation.get("impact")
-            line = f"{label}: {violation['id']} ({impact}): {violation.get('help')} {targets}"
-            if impact == "critical":
-                critical.append(line)
+            line = f"{run} {label}: {violation['id']} ({impact}): {violation.get('help')} {targets}"
+            if impact == "critical" or (impact == "serious" and violation["id"] in AXE_BLOCKING_SERIOUS):
+                blocking.append(line)
             elif impact == "serious":
                 serious.append(line)
 
     _open_explorer(page, atlas)
-    audit("explorer")
+    if scope == "pages":
+        audit("explorer")
     _open_drawer(page, atlas, site)
     audit("explorer with the detail drawer open")
-    for path in (*STATIC_PAGES, atlas.localize(site["url"])[len(atlas.base_url):]):
-        _goto_ok(page, atlas.url(path))
-        audit(path)
+    if scope == "pages":
+        for path in (*STATIC_PAGES, atlas.localize(site["url"])[len(atlas.base_url):]):
+            _goto_ok(page, atlas.url(path))
+            audit(path)
     if serious:
         report = "\n".join(serious)
         warnings.warn(f"serious accessibility findings (reported, not failing):\n{report}")
-    assert not critical, "\n".join(critical)
+    assert not blocking, "\n".join(blocking)
     guard.assert_clean()

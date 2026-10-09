@@ -36,7 +36,8 @@
     "official_boundary": {"label": "Official boundary", "description": "An official parcel or surveyed boundary of the project site from an official source. It is a legal or permit boundary, not a building footprint or the extent of construction."},
     "campus_locator": {"label": "Campus locator", "description": "Geometry that locates the parent campus. It is not the project's footprint and does not show where on the campus work is happening."},
     "project_locator": {"label": "Project locator", "description": "Geometry that locates the project, such as a source-published project point. It is not a footprint or a surveyed boundary."},
-    "reviewed_site_locator": {"label": "Reviewed site locator", "description": "A reviewed point or shape that locates the physical site. It is not a footprint or a surveyed boundary."}
+    "reviewed_site_locator": {"label": "Reviewed site locator", "description": "A reviewed point or shape that locates the physical site. It is not a footprint or a surveyed boundary."},
+    "host_estate_context": {"label": "Host-estate context only", "description": "Geometry of the industrial estate or business park that hosts the site, kept only as locality context. It does not locate the site or project within the estate: it is not a site locator, parcel, boundary, footprint or construction extent, and its display anchor is not a site position."}
   },
   "geometry_authority_classes": {
     "official_source": {"label": "Official source", "description": "Published by a government authority or by a first-party source such as the developer or operator."},
@@ -45,7 +46,8 @@
   },
   "verification_postures": {
     "recent_authoritative_physical_observation_plus_reviewed_site_locator": {"label": "Recent authoritative status + reviewed locator", "description": "A dated authoritative physical-status observation inside the status window, plus a reviewed locator. Not independent, imagery-based or on-site verification."},
-    "recent_authoritative_physical_observation_plus_official_boundary": {"label": "Recent authoritative status + official boundary", "description": "A dated authoritative physical-status observation inside the status window, plus an official boundary. Not independent, imagery-based or on-site verification."}
+    "recent_authoritative_physical_observation_plus_official_boundary": {"label": "Recent authoritative status + official boundary", "description": "A dated authoritative physical-status observation inside the status window, plus an official boundary. Not independent, imagery-based or on-site verification."},
+    "recent_authoritative_physical_observation_plus_host_estate_context_only": {"label": "Recent authoritative status + host-estate context only (no reviewed locator)", "description": "A dated authoritative physical-status observation inside the status window, but no reviewed locator: the geometry only shows the host estate around the site. Not independent, imagery-based or on-site verification, and the map position is not the site's position."}
   },
   "power_metrics": {
     "critical_it_mw": {"label": "Critical IT load", "unit": "MW", "description": "Power available to IT equipment for the project scope at the stated stage. A planned or design value is not installed or operating capacity."},
@@ -190,7 +192,8 @@
     "facility": {"label": "Facility", "description": "The source geometry describes a facility on the campus."},
     "building": {"label": "Building", "description": "The source geometry describes a building."},
     "project": {"label": "Project", "description": "The source geometry describes the project itself."},
-    "address_area": {"label": "Address area", "description": "The source geometry describes an address or statistical area, not the site itself."}
+    "address_area": {"label": "Address area", "description": "The source geometry describes an address or statistical area, not the site itself."},
+    "host_estate": {"label": "Host estate", "description": "The source geometry describes the estate or industrial park that hosts the site, not the site itself."}
   },
   "release_gates": {
     "site_count": {"label": "Site count", "description": "Physical sites in the checkpoint compared with the target."},
@@ -202,5 +205,17 @@
     "blind_review": {"label": "Blind review", "description": "Independent blind re-review of a sample of projects: sample size and agreements."},
     "clean_clone_rebuild": {"label": "Clean-clone rebuild", "description": "Whether the checkpoint has been rebuilt byte-for-byte from a clean public clone."},
     "publication_authorized": {"label": "Publication authorized", "description": "Whether the checkpoint is authorized for final publication."}
+  },
+  "imagery_review_outcomes": {
+    "not_reviewed_for_core_preview": {"label": "Not reviewed against imagery", "description": "No imagery review is recorded for this project. Its status rests only on the dated authoritative source."},
+    "first_party_contractor_drone_imagery_present_not_independently_verified": {"label": "Publisher or contractor drone imagery, not independently verified", "description": "The publisher or its contractor has published drone imagery of the works. The Atlas did not verify it independently and does not redistribute it. No construction, completion or progress claim is made from imagery."},
+    "tracked_blind_clear_locally_unsealed_identity_no_construction_claim": {"label": "Blind imagery review: clear visible change, identity link not public", "description": "A blind satellite-image comparison recorded clear visible change, but the link between the reviewed images and this project exists only in unpublished local files. Recorded for follow-up only. No construction, completion or progress claim is made from imagery."},
+    "tracked_blind_ambiguous_locally_unsealed_identity_no_construction_claim": {"label": "Blind imagery review: ambiguous, identity link not public", "description": "A blind satellite-image comparison was ambiguous (for example partly obscured), and the link between the reviewed images and this project exists only in unpublished local files. No construction, completion or progress claim is made from imagery."},
+    "tracked_blind_reject_locally_unsealed_identity_no_construction_claim": {"label": "Blind imagery review: rejected, identity link not public", "description": "A blind satellite-image review rejected the imagery as support, and the link between the reviewed images and this project exists only in unpublished local files. No construction, completion or progress claim is made from imagery."},
+    "tracked_identity_bound_reject_with_unadjudicated_later_conflict_no_construction_claim": {"label": "Imagery review: rejected; a later conflicting review is not adjudicated", "description": "An imagery review bound to this project rejected the imagery as support. A later review disagrees and has not been adjudicated. No construction, completion or progress claim is made from imagery."},
+    "tracked_identity_bound_uncertain_unsuperseded_no_construction_claim": {"label": "Imagery review: uncertain", "description": "An imagery review bound to this project was uncertain (image quality or ambiguous change), and no later review supersedes it. No construction, completion or progress claim is made from imagery."},
+    "tracked_identity_bound_uncertain_with_unadjudicated_later_clear_conflict_no_construction_claim": {"label": "Imagery review: uncertain; a later review saw clear change, not adjudicated", "description": "An imagery review bound to this project was uncertain. A later review recorded clear visible change but has not been adjudicated. No construction, completion or progress claim is made from imagery."},
+    "tracked_identity_bound_uncertain_with_unadjudicated_later_stricter_review_no_construction_claim": {"label": "Imagery review: uncertain; a later stricter review is not adjudicated", "description": "An imagery review bound to this project was uncertain. A later, stricter review exists but has not been adjudicated. No construction, completion or progress claim is made from imagery."},
+    "tracked_identity_bound_visible_change_followup_only_no_construction_claim": {"label": "Imagery review: visible change, follow-up only", "description": "An imagery review bound to this project saw visible change. It is kept for follow-up only and is not used as evidence of construction. No construction, completion or progress claim is made from imagery."}
   }
 }

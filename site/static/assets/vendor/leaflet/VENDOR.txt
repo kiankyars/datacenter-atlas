@@ -43,28 +43,45 @@ Cross-checks
 
 CSP notes
 ---------
-Leaflet only uses innerHTML with its own constant markup, the layer names and
-attribution strings passed by atlas-core.js (constants, not data), and
-tooltip/popup content given as a string. The explorer and site maps always
-pass DOM nodes as tooltip content, so no dataset value reaches innerHTML.
-Inline positioning is done through element.style (CSSOM), which the
-style-src 'self' policy allows.
+Leaflet writes some strings with innerHTML: its own constant markup, the
+attribution prefix, attribution strings, layer-control names and
+tooltip/popup content given as a string. The Atlas passes only constants
+there: basemap names and attributions are literals in atlas-core.js, the
+data credit comes from AtlasCore.dataCredit() (a relative root prefix is
+the only variable part, checked against a strict pattern), and tooltips are
+always DOM nodes. site/js-tests/static-assets.test.mjs fails if a script
+calls Leaflet's other HTML string APIs (bindTooltip, bindPopup, divIcon,
+setContent with a string, ...). Inline positioning is done through
+element.style (CSSOM), which the style-src 'self' policy allows.
 
-Basemaps used with it (checked 2026-10-09, HTTP status only)
--------------------------------------------------------------
+Basemaps used with it (checked 2026-10-09: HTTP status and tile content)
+-------------------------------------------------------------------------
 - CARTO light_all / dark_all, https://{a-d}.basemaps.cartocdn.com/...{r}.png:
-  200 (incl. @2x, up to z20). Attribution: (c) OpenStreetMap contributors
-  (c) CARTO, linked to https://www.openstreetmap.org/copyright and
+  keyless requests return HTTP 200 with an "API KEY REQUIRED" watermark
+  tile (ETag "wm-...", re-checked 2026-10-09), and CARTO's basemap terms
+  require a CARTO-issued key even for the free non-commercial tier. The
+  Light/Dark (CARTO) layers are therefore offered only when the page passes
+  a key (bootstrap "basemaps": {"carto_key": ...} in the explorer,
+  data-carto-key on div.site-map); every CARTO tile URL then ends in
+  ?key=<key>. Without a key the default light map is OpenStreetMap and the
+  default dark map is the same OpenStreetMap tiles darkened with a CSS
+  filter. Attribution with a key: (c) OpenStreetMap contributors (c) CARTO,
+  linked to https://www.openstreetmap.org/copyright and
   https://carto.com/attributions
 - OpenStreetMap, https://tile.openstreetmap.org/{z}/{x}/{y}.png: 200 up to
   z19 (z20 returns 400). Attribution: (c) OpenStreetMap contributors, linked
-  to https://www.openstreetmap.org/copyright
+  to https://www.openstreetmap.org/copyright, plus the "Report a map issue"
+  link (https://www.openstreetmap.org/fixthemap) that the tile usage policy
+  asks for.
 - EOX Sentinel-2 cloudless, WMTS capabilities
   https://tiles.maps.eox.at/wmts/1.0.0/WMTSCapabilities.xml (200). Newest
   3857 layer: s2cloudless-2025_3857, tile matrix sets g / GoogleMapsCompatible
   (levels 0-21, no per-layer limits); tiles return 200 up to z18 and 404 from
   z19, so maxNativeZoom is 18. Attribution, in EOX's own wording from the
-  layer abstract: "EOxCloudless https://cloudless.eox.at by EOX IT Services
-  GmbH (Contains modified Copernicus Sentinel data 2025)", licence CC BY-NC-SA
-  4.0 (https://creativecommons.org/licenses/by-nc-sa/4.0/; every layer from
-  2018 on). The 2016/2017 layers are CC BY 4.0.
+  layer abstract and its licence page (https://cloudless.eox.at/license-non-commercial):
+  "EOxCloudless https://cloudless.eox.at by EOX IT Services GmbH (Contains
+  modified Copernicus Sentinel data 2025)", with "EOxCloudless" and the URL
+  linked to https://cloudless.eox.at and "EOX IT Services GmbH" linked to
+  https://eox.at; licence CC BY-NC-SA 4.0
+  (https://creativecommons.org/licenses/by-nc-sa/4.0/; every layer from 2018
+  on). The 2016/2017 layers are CC BY 4.0.

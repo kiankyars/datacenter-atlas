@@ -1,22 +1,39 @@
 name: Public site
 
-# Builds the static site (HTML, JSON API, downloads) from the tracked datasets, runs its unit,
-# JavaScript and browser tests against a copy served under the /datacenter-atlas/ sub-path (as on
-# GitHub Pages), and deploys it to GitHub Pages on pushes to main.
+# Builds the static site (HTML, JSON API, downloads) from the tracked datasets, checks the
+# hand-written dataset facts against it, runs its unit, JavaScript and browser tests against the
+# build served the way GitHub Pages serves it (under /datacenter-atlas/, with no directory
+# listings), deploys it to GitHub Pages on pushes to main and then checks the live site. With the
+# repository variable ATLAS_GITHUB_RELEASES set to "true", each new dataset version also gets a
+# GitHub Release with its files attached. A weekly run re-checks the live site and reports dead
+# evidence links in an issue labelled "link-rot".
+#
+# Every action is pinned to a full commit SHA (the comment names its release), so a moved tag
+# cannot change what builds or deploys the site. To update one, resolve the new release's commit
+# with `gh api repos/<owner>/<action>/git/ref/tags/<tag>` and replace both the SHA and the comment.
 
 on:
   push:
     branches: [main]
   pull_request:
   workflow_dispatch:
+    inputs:
+      job:
+        description: "build: build and test (deploys only on pushes); monitor: check the live site and its evidence links"
+        type: choice
+        options: [build, monitor]
+        default: build
+  schedule:
+    - cron: "23 5 * * 1" # Mondays 05:23 UTC: the live-site monitor only
 
 permissions:
   contents: read
 
 concurrency:
   # One run at a time per ref. A newer push to a pull request cancels its older run; runs on main
-  # are never cancelled, and the deploy job serialises deployments in the "pages" group.
-  group: public-site-${{ github.ref }}
+  # are never cancelled, and the deploy job serialises deployments in the "pages" group. Monitor
+  # runs have their own group, so a scheduled run can never displace a pending deploy.
+  group: public-site-${{ github.ref }}${{ (github.event_name == 'schedule' || inputs.job == 'monitor') && '-monitor' || '' }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 defaults:
@@ -26,22 +43,24 @@ defaults:
 env:
   PYTHONDONTWRITEBYTECODE: "1"
   PIP_DISABLE_PIP_VERSION_CHECK: "1"
+  SITE_URL: https://kiankyars.github.io/datacenter-atlas/
 
 jobs:
   build:
+    if: github.event_name != 'schedule' && inputs.job != 'monitor'
     # Pinned instead of ubuntu-latest so the image, and the system packages that
     # `playwright install --with-deps` adds to it, change only when this file does.
     runs-on: ubuntu-24.04
-    timeout-minutes: 30
+    timeout-minutes: 40
     permissions:
       contents: read
       pages: read # actions/configure-pages reads the Pages settings
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
         with:
           path: datacenter_atlas
           persist-credentials: false
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
         with:
           python-version: "3.12"
       # The builder and its unit tests are standard-library only: no install step is needed.
@@ -49,11 +68,15 @@ jobs:
         run: >-
           python datacenter_atlas/scripts/build_public_site.py
           --output _site
-          --base-url https://kiankyars.github.io/datacenter-atlas/
+          --base-url "$SITE_URL"
           --source-commit "$GITHUB_SHA"
+      - name: Check README.md, CITATION.cff and DATA_LICENSE.md against the build
+        # Fails when a hand-written dataset fact (version, counts, gates, citation) is stale; the
+        # message says how to regenerate them (docs/public_site.md, "Making a new checkpoint current").
+        run: python datacenter_atlas/site/e2e/check_public_metadata.py --site _site --repo datacenter_atlas
       - name: Run the public-site unit tests
         run: python -m unittest -v datacenter_atlas.tests.test_public_site
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
           node-version: "22"
       - name: Run the JavaScript unit tests
@@ -79,18 +102,19 @@ jobs:
       - name: Configure GitHub Pages
         id: pages
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5.0.0
       - name: Compare the Pages URL with the built base URL
         if: steps.pages.outcome == 'success'
         env:
           PAGES_BASE_URL: ${{ steps.pages.outputs.base_url }}
         run: |
-          if [ "${PAGES_BASE_URL%/}/" != "https://kiankyars.github.io/datacenter-atlas/" ]; then
-            echo "::warning::GitHub Pages serves ${PAGES_BASE_URL} but the site was built for https://kiankyars.github.io/datacenter-atlas/; update --base-url here and base_url in site/config.json."
+          if [ "${PAGES_BASE_URL%/}/" != "$SITE_URL" ]; then
+            echo "::warning::GitHub Pages serves ${PAGES_BASE_URL} but the site was built for $SITE_URL; update SITE_URL here and base_url in site/config.json."
           fi
       - name: Upload the Pages artifact
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        uses: actions/upload-pages-artifact@v3
+        # This action uploads through actions/upload-artifact@v4, a tag it pins itself.
+        uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3.0.1
         with:
           path: _site
       - name: Install the browser-test tooling
@@ -99,17 +123,18 @@ jobs:
           python -m pip install --require-hashes --only-binary :all: \
             -r datacenter_atlas/site/e2e/requirements.txt
           python -m playwright install --with-deps chromium
-      - name: Run the browser tests against the site served under /datacenter-atlas/
-        timeout-minutes: 15
+      - name: Run the browser tests against the site served like GitHub Pages
+        timeout-minutes: 20
         env:
           ATLAS_BASE_URL: http://127.0.0.1:8000/datacenter-atlas/
           ATLAS_E2E_REQUIRED: "1"
           ATLAS_SCREENSHOT_DIR: site-screenshots
         run: |
-          rm -rf serve
-          mkdir serve
-          cp -R _site serve/datacenter-atlas
-          python -m http.server 8000 --bind 127.0.0.1 --directory serve > http-server.log 2>&1 &
+          # pages_server.py serves _site under /datacenter-atlas/ with GitHub Pages' rules: a
+          # directory answers with its index.html or index.json, never with a listing, and a
+          # missing path gets 404.html with status 404.
+          python datacenter_atlas/site/e2e/pages_server.py --directory _site --port 8000 --verbose \
+            > http-server.log 2>&1 &
           server_pid=$!
           trap 'kill "$server_pid" 2>/dev/null || true' EXIT
           for attempt in $(seq 1 50); do
@@ -129,7 +154,7 @@ jobs:
         run: tail -n 200 http-server.log || true
       - name: Upload the screenshots
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: site-screenshots
           path: site-screenshots/
@@ -153,4 +178,134 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4.0.5
+
+  verify-live:
+    # The deployment API reports success before every CDN edge serves the new files; this job
+    # waits until the live API reports this commit, then checks what users and scripts rely on.
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: deploy
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          path: datacenter_atlas
+          persist-credentials: false
+          sparse-checkout: site/e2e
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+        with:
+          python-version: "3.12"
+      - name: Check the live site
+        run: >-
+          python datacenter_atlas/site/e2e/live_checks.py
+          --base-url "$SITE_URL"
+          --wait-for-commit "$GITHUB_SHA"
+          --timeout 600
+          --summary "$GITHUB_STEP_SUMMARY"
+
+  release:
+    # Opt-in: set the repository variable ATLAS_GITHUB_RELEASES to "true" (Settings, Secrets and
+    # variables, Actions, Variables). Creates the release data-<dataset id> once per dataset
+    # version, from the exact files that were deployed; later pushes for the same version skip it.
+    if: >-
+      github.event_name == 'push' && github.ref == 'refs/heads/main'
+      && vars.ATLAS_GITHUB_RELEASES == 'true'
+    needs: verify-live
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    permissions:
+      contents: write # create the tag and the release
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          path: datacenter_atlas
+          persist-credentials: false
+          sparse-checkout: site/e2e
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+        with:
+          python-version: "3.12"
+      - name: Download the deployed site
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+        with:
+          name: github-pages
+          path: pages-artifact
+      - name: Create the release for a new dataset version
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          mkdir site
+          tar -xf pages-artifact/artifact.tar -C site
+          python datacenter_atlas/site/e2e/release_notes.py \
+            --site site --notes notes.md --assets assets.txt --commit "$GITHUB_SHA" > release.txt
+          tag=$(sed -n 1p release.txt)
+          title=$(sed -n 2p release.txt)
+          if gh release view "$tag" > /dev/null 2>&1; then
+            echo "Release $tag already exists; nothing to do."
+            exit 0
+          fi
+          mapfile -t assets < assets.txt
+          gh release create "$tag" "${assets[@]}" \
+            --target "$GITHUB_SHA" --title "$title" --notes-file notes.md
+          echo "Created release $tag with ${#assets[@]} files." >> "$GITHUB_STEP_SUMMARY"
+
+  monitor:
+    # Weekly (and on manual dispatch with job=monitor): re-check the live site and every evidence
+    # source URL. Dead links are listed in one open issue labelled "link-rot", which is updated
+    # each week and closed when none remain. Link results never fail the run; live-site problems do.
+    if: github.event_name == 'schedule' || inputs.job == 'monitor'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    permissions:
+      contents: read
+      issues: write # open, update or close the link-rot issue
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          path: datacenter_atlas
+          persist-credentials: false
+          sparse-checkout: site/e2e
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+        with:
+          python-version: "3.12"
+      - name: Check the live site and the evidence links
+        id: check
+        run: |
+          status=0
+          python datacenter_atlas/site/e2e/live_checks.py --base-url "$SITE_URL" \
+            --check-links --report link-report.md --summary "$GITHUB_STEP_SUMMARY" || status=$?
+          echo "status=$status" >> "$GITHUB_OUTPUT"
+      - name: Update the link-rot issue
+        if: always() && hashFiles('link-report.md') != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          if grep -q '^### Dead' link-report.md; then has_dead=1; else has_dead=0; fi
+          gh label create link-rot --color B60205 \
+            --description "Evidence source links that no longer resolve" --force > /dev/null
+          issue=$(gh issue list --label link-rot --state open --limit 1 --json number --jq '.[0].number // empty')
+          if [ "$has_dead" -eq 1 ]; then
+            if [ -n "$issue" ]; then
+              gh issue edit "$issue" --body-file link-report.md
+            else
+              gh issue create --title "Dead evidence links" --label link-rot --body-file link-report.md
+            fi
+          elif [ -n "$issue" ]; then
+            gh issue close "$issue" --comment "No dead evidence links in the check of $(date -u +%F)."
+          fi
+      - name: Upload the link report
+        if: always() && hashFiles('link-report.md') != ''
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: link-report
+          path: link-report.md
+          retention-days: 30
+      - name: Fail when the live site has problems
+        if: steps.check.outputs.status != '0'
+        run: |
+          echo "::error::the live site check failed (see the job summary)"
+          exit 1

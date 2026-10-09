@@ -6,7 +6,13 @@
  * #site=<id>). All data logic lives in atlas-core.js (window.AtlasCore),
  * which is loaded from next to this file when the page does not include it.
  * Every dataset value is untrusted: the DOM is built with createElement and
- * textContent, and only http(s) URLs become external hrefs.
+ * textContent, and only http(s) URLs become external hrefs. Leaflet's HTML
+ * string APIs (attribution, layer names, tooltip text) only ever receive
+ * constants from atlas-core.js or DOM nodes.
+ *
+ * Browser agents that support WebMCP (document.modelContext) get three tools
+ * that drive the same state as the visible controls: search_datacenter_sites,
+ * get_datacenter_site and get_datacenter_dataset_info.
  */
 (function () {
   'use strict';
@@ -17,6 +23,9 @@
   var NEAR_PX = 14;
   var TAP_PX = 22;
   var FILTERS_OPEN_KEY = 'datacenter-atlas:filters-open';
+  var SITES_TIMEOUT_MS = 20000;
+  var DOC_TIMEOUT_MS = 15000;
+  var TYPING_DELAY_MS = 150;
 
   function onReady(fn) {
     if (document.readyState === 'loading') {
@@ -91,6 +100,46 @@
     return value.replace(/^\/+/, '');
   }
 
+  /**
+   * Fetch and parse JSON, giving up after `timeout` ms (a stalled request
+   * then fails like any other instead of leaving "Loading…" forever).
+   */
+  function fetchJSONWithin(url, timeout) {
+    var controller = typeof AbortController === 'function' ? new AbortController() : null;
+    var timer = 0;
+    var options = { credentials: 'same-origin' };
+    if (controller) {
+      options.signal = controller.signal;
+    }
+    var request = window.fetch(url, options).then(function (response) {
+      if (!response.ok) {
+        throw new Error('HTTP ' + response.status);
+      }
+      return response.json();
+    });
+    var deadline = new Promise(function (resolve, reject) {
+      timer = window.setTimeout(function () {
+        if (controller) {
+          controller.abort();
+        }
+        reject(new Error('Timed out'));
+      }, timeout);
+    });
+    return Promise.race([request, deadline]).then(function (data) {
+      window.clearTimeout(timer);
+      return data;
+    }, function (error) {
+      window.clearTimeout(timer);
+      throw error;
+    });
+  }
+
+  function sitesPath(boot) {
+    var endpoints = boot.endpoints && typeof boot.endpoints === 'object' ? boot.endpoints : {};
+    var baseUrl = typeof boot.base_url === 'string' ? boot.base_url : '';
+    return rootRelative(endpoints.sites_geojson, 'api/v1/sites.geojson', baseUrl);
+  }
+
   /** Start downloading sites.geojson at once, in parallel with atlas-core.js. */
   function prefetchSites() {
     var boot = readBootstrap();
@@ -98,15 +147,7 @@
     if (root.charAt(root.length - 1) !== '/') {
       root += '/';
     }
-    var endpoints = boot.endpoints && typeof boot.endpoints === 'object' ? boot.endpoints : {};
-    var baseUrl = typeof boot.base_url === 'string' ? boot.base_url : '';
-    var url = root + rootRelative(endpoints.sites_geojson, 'api/v1/sites.geojson', baseUrl);
-    var promise = window.fetch(url, { credentials: 'same-origin' }).then(function (response) {
-      if (!response.ok) {
-        throw new Error('HTTP ' + response.status);
-      }
-      return response.json();
-    });
+    var promise = fetchJSONWithin(root + sitesPath(boot), SITES_TIMEOUT_MS);
     // Mark as handled now; start() attaches the real handlers.
     promise.catch(function () {});
     return promise;
@@ -121,10 +162,15 @@
       }
       if (!Core || !sitesPromise) {
         app.hidden = false;
+        app.classList.add('no-map');
         var error = document.getElementById('atlas-error');
         var loading = document.getElementById('atlas-loading');
+        var count = document.getElementById('atlas-count');
+        var list = document.getElementById('atlas-list');
         if (error) { error.hidden = false; }
         if (loading) { loading.hidden = true; }
+        if (count) { count.textContent = 'Site data unavailable'; }
+        if (list) { list.removeAttribute('aria-busy'); }
         return;
       }
       start(Core, sitesPromise);
@@ -139,13 +185,21 @@
     var vocab = boot.vocabularies && typeof boot.vocabularies === 'object' ? boot.vocabularies : {};
     var dataset = boot.dataset && typeof boot.dataset === 'object' ? boot.dataset : {};
     var store = safeStorage();
+    // CARTO's Light/Dark basemaps need a (referrer-restricted) key; without
+    // one the keyless OpenStreetMap layers are offered instead.
+    var basemapConfig = boot.basemaps && typeof boot.basemaps === 'object' ? boot.basemaps : {};
+    var basemaps = Core.basemapsFor({ cartoKey: basemapConfig.carto_key });
+    var sitesUrl = sitesPath(boot);
+    // embed/ renders this template with body.page-embed: just the explorer,
+    // for iframes in articles. The Embed button appears once that page exists.
+    var embedded = document.body.classList.contains('page-embed');
 
     var E = {};
     ['app', 'panel', 'filters', 'more', 'search', 'country', 'status', 'status-options', 'locator', 'power',
       'power-count', 'from', 'to', 'sort', 'clear', 'active-count', 'count', 'count-total', 'list', 'empty',
-      'empty-clear', 'error', 'loading', 'map', 'mapwrap', 'fit', 'legend', 'legend-list', 'detail',
-      'detail-title', 'detail-kicker', 'detail-body', 'detail-close', 'export-csv', 'export-geojson',
-      'copy-link', 'tabs', 'tab-list', 'tab-map', 'announce'
+      'empty-reason', 'empty-clear', 'error', 'loading', 'notice', 'map', 'mapwrap', 'fit', 'legend',
+      'legend-summary', 'legend-list', 'detail', 'detail-title', 'detail-kicker', 'detail-body', 'detail-close',
+      'export-csv', 'export-geojson', 'copy-link', 'copy-embed', 'tabs', 'tab-list', 'tab-map', 'announce'
     ].forEach(function (id) {
       var key = id.replace(/-([a-z])/g, function (m, c) { return c.toUpperCase(); });
       E[key] = document.getElementById('atlas-' + id);
@@ -156,6 +210,8 @@
 
     var S = {
       ready: false,
+      editedEarly: false,
+      collection: null,
       sites: [],
       byId: Object.create(null),
       context: null,
@@ -165,6 +221,7 @@
       rows: Object.create(null),
       tips: Object.create(null),
       docs: Object.create(null),
+      docRequests: Object.create(null),
       selectedId: '',
       hoverId: '',
       hover: { marker: '', near: '', polygon: '', list: '' },
@@ -172,8 +229,14 @@
       origin: null,
       detailToken: 0,
       urlTimer: 0,
+      typeTimer: 0,
       closingViaBack: false,
       closingTimer: 0,
+      reopenAfterBack: '',
+      missingSiteId: '',
+      embedLink: null,
+      inertNodes: [],
+      listScrollY: null,
       baseTitle: document.title,
       map: null,
       tooltip: null,
@@ -269,13 +332,48 @@
       return template ? Core.fillTemplate(template, { site_id: id }) : 'sites/' + encodeURIComponent(id) + '/';
     }
 
-    function fetchJSON(url) {
-      return window.fetch(url, { credentials: 'same-origin' }).then(function (response) {
-        if (!response.ok) {
-          throw new Error('HTTP ' + response.status);
-        }
-        return response.json();
-      });
+    /**
+     * Absolute URL of a root-relative path (or of "?query" / "#hash"):
+     * under base_url when known, else under this page's location. Plain
+     * concatenation keeps {placeholders} in URL templates readable.
+     */
+    function absoluteUrl(path) {
+      var rel = String(path || '').replace(/^\/+/, '');
+      var base = Core.safeHttpUrl(baseUrl);
+      if (base) {
+        return base.replace(/\/?$/, '/') + rel;
+      }
+      try {
+        return new URL(Core.joinRoot(root, rel), window.location.href).href;
+      } catch (error) {
+        return '';
+      }
+    }
+
+    /** Absolute URL of the current explorer view (filters, and the open site when given). */
+    function viewUrl(siteId) {
+      return absoluteUrl(Core.serializeState(S.state) + Core.buildHash(siteId || ''));
+    }
+
+    /** The site document, fetched once (concurrent callers share one request). */
+    function siteDoc(id) {
+      if (S.docs[id]) {
+        return Promise.resolve(S.docs[id]);
+      }
+      if (!S.docRequests[id]) {
+        S.docRequests[id] = fetchJSONWithin(siteDocUrl(id), DOC_TIMEOUT_MS).then(function (doc) {
+          delete S.docRequests[id];
+          if (!doc || typeof doc !== 'object') {
+            throw new Error('Unexpected site document');
+          }
+          S.docs[id] = doc;
+          return doc;
+        }, function (error) {
+          delete S.docRequests[id];
+          throw error;
+        });
+      }
+      return S.docRequests[id];
     }
 
     // -------------------------------------------------------------------------
@@ -378,6 +476,9 @@
     function flushUrl() {
       window.clearTimeout(S.urlTimer);
       S.urlTimer = 0;
+      if (S.embedLink) {
+        S.embedLink.href = viewUrl(S.selectedId);
+      }
       var url = urlFor(S.selectedId);
       var current = window.location.pathname + window.location.search + window.location.hash;
       if (url !== current) {
@@ -395,20 +496,33 @@
       return hs && typeof hs === 'object' && hs.atlasDoc === DOC_TOKEN ? hs : null;
     }
 
-    /** Opening a site adds one history entry; switching sites replaces it. */
-    function pushSiteState(id, wasOpen) {
-      window.clearTimeout(S.urlTimer);
-      var own = ownHistoryState();
-      if (wasOpen || (own && own.atlasSite)) {
-        replaceUrl({ atlasDoc: DOC_TOKEN, atlasSite: id, atlasPushed: !!(own && own.atlasPushed) }, urlFor(id));
-        return;
-      }
-      replaceUrl(window.history.state, urlFor(''));
+    function pushSiteEntry(id) {
       try {
         window.history.pushState({ atlasDoc: DOC_TOKEN, atlasSite: id, atlasPushed: true }, '', urlFor(id));
       } catch (error) {
         replaceUrl(null, urlFor(id));
       }
+    }
+
+    /**
+     * Opening a site adds one history entry; switching sites replaces it. The
+     * entry below is marked atlasBase, so browser Back from an open site only
+     * closes it and keeps filters changed meanwhile (see onPopState).
+     */
+    function pushSiteState(id, wasOpen) {
+      window.clearTimeout(S.urlTimer);
+      if (S.closingViaBack) {
+        // A close is still travelling back through history: push once it lands.
+        S.reopenAfterBack = id;
+        return;
+      }
+      var own = ownHistoryState();
+      if (wasOpen || (own && own.atlasSite)) {
+        replaceUrl({ atlasDoc: DOC_TOKEN, atlasSite: id, atlasPushed: !!(own && own.atlasPushed) }, urlFor(id));
+        return;
+      }
+      replaceUrl({ atlasDoc: DOC_TOKEN, atlasBase: true }, urlFor(''));
+      pushSiteEntry(id);
     }
 
     /** Closing goes back to the entry the site was opened from, keeping current filters. */
@@ -425,11 +539,33 @@
       }
     }
 
+    /** A fragment that is not explorer state, e.g. "#main" from the skip link. */
+    function foreignHash(hash) {
+      return !!hash && hash !== '#' && !/(?:^#|&)site=/.test(hash);
+    }
+
     function onPopState() {
       if (S.closingViaBack) {
         S.closingViaBack = false;
         window.clearTimeout(S.closingTimer);
         replaceUrl(window.history.state, urlFor(''));
+        if (S.reopenAfterBack) {
+          var reopen = S.reopenAfterBack;
+          S.reopenAfterBack = '';
+          if (reopen === S.selectedId && !E.detail.hidden) {
+            pushSiteEntry(reopen);
+          }
+        }
+        return;
+      }
+      if (foreignHash(window.location.hash)) {
+        return;
+      }
+      var own = ownHistoryState();
+      if (own && own.atlasBase && !E.detail.hidden && !Core.parseHash(window.location.hash)) {
+        // Back from an open site: close it, keep the current filters.
+        closeDetail({ history: false, restoreFocus: true });
+        replaceUrl(own, urlFor(''));
         return;
       }
       if (S.ready) {
@@ -438,27 +574,68 @@
     }
 
     function applyLocation(initial) {
+      cancelTyping();
       var next = Core.normalizeState(Core.parseQuery(window.location.search), S.context);
       var changed = initial || Core.serializeState(next) !== Core.serializeState(S.state);
       S.state = next;
       if (changed) {
         syncControls(false);
-        if (Core.activeFilterCount(S.state) && E.more) {
+        if (Core.activeFilterCount(S.state) && E.more && !E.more.open && !embedded) {
           E.more.open = true;
         }
         render({ fit: true, animate: !initial });
       }
-      var siteId = Core.parseHash(window.location.hash);
+      var hash = window.location.hash;
+      var siteId = Core.parseHash(hash);
       if (siteId && S.byId[siteId]) {
+        showMissingSite('');
         if (siteId !== S.selectedId || E.detail.hidden) {
           openSite(siteId, { history: false, zoom: true, origin: null, focus: !initial, animate: !initial });
         }
-      } else if (!E.detail.hidden) {
-        closeDetail({ history: false, restoreFocus: false });
+      } else {
+        showMissingSite(siteId);
+        if (!E.detail.hidden) {
+          closeDetail({ history: false, restoreFocus: false });
+        }
       }
       if (initial) {
-        replaceUrl(window.history.state, urlFor(S.selectedId));
+        // Keep a fragment the explorer does not own, and an unknown #site=
+        // (so the reader can see and fix it); otherwise write the canonical URL.
+        var keepHash = foreignHash(hash) || (siteId && !S.byId[siteId]);
+        var url = keepHash ? window.location.pathname + Core.serializeState(S.state) + hash : urlFor(S.selectedId);
+        replaceUrl(window.history.state, url);
       }
+    }
+
+    /** Callout for a #site= id that is not in this dataset ("" hides it). */
+    function showMissingSite(id) {
+      if (!E.notice || (id && id === S.missingSiteId && !E.notice.hidden)) {
+        S.missingSiteId = id || '';
+        return;
+      }
+      S.missingSiteId = id || '';
+      if (!id) {
+        E.notice.hidden = true;
+        E.notice.textContent = '';
+        return;
+      }
+      E.notice.textContent = '';
+      var p = h('p', '');
+      p.appendChild(h('strong', '', 'No site ' + id + ' in ' + (dataset.label || 'this dataset') + '.'));
+      p.appendChild(textNode(' It may have been merged with another site, removed, or the link may be mistyped. Compare '));
+      p.appendChild(internalLink('versions/', 'earlier versions'));
+      p.appendChild(textNode(' or search the list below.'));
+      E.notice.appendChild(p);
+      var dismiss = h('button', 'btn btn-small', 'Dismiss');
+      dismiss.type = 'button';
+      dismiss.addEventListener('click', function () {
+        showMissingSite('');
+        flushUrl();
+        E.search.focus({ preventScroll: true });
+      });
+      E.notice.appendChild(dismiss);
+      E.notice.hidden = false;
+      announce('No site ' + id + ' in this dataset.');
     }
 
     // -------------------------------------------------------------------------
@@ -475,10 +652,58 @@
       return codes;
     }
 
+    /**
+     * A value the state asks for but this dataset lacks (a shared link from
+     * another version, or a typo) gets a temporary, clearly labelled option,
+     * so the controls show what is filtered and the list honestly shows no
+     * sites instead of silently widening the filter.
+     */
+    function syncTemporaryOptions() {
+      var missing = Core.unmatchedFilters(S.state, S.context);
+      [E.country, E.from, E.to].forEach(function (select) {
+        if (!select) {
+          return;
+        }
+        Array.prototype.slice.call(select.querySelectorAll('option[data-atlas-temp]')).forEach(function (option) {
+          select.removeChild(option);
+        });
+      });
+      if (E.country && missing.country) {
+        var option = h('option', '', missing.country + ' (not in this dataset)');
+        option.value = missing.country;
+        option.setAttribute('data-atlas-temp', '');
+        E.country.appendChild(option);
+      }
+      [[E.from, missing.from], [E.to, missing.to]].forEach(function (pair) {
+        if (pair[0] && pair[1]) {
+          var month = h('option', '', Core.formatMonth(pair[1]) + ' (no data in this version)');
+          month.value = pair[1];
+          month.setAttribute('data-atlas-temp', '');
+          pair[0].appendChild(month);
+        }
+      });
+      if (E.statusOptions) {
+        Array.prototype.slice.call(E.statusOptions.querySelectorAll('[data-atlas-temp]')).forEach(function (chip) {
+          E.statusOptions.removeChild(chip);
+        });
+        missing.statuses.forEach(function (code) {
+          var chip = statusChip(code);
+          chip.setAttribute('data-atlas-temp', '');
+          chip.classList.add('is-empty');
+          chip.querySelector('.atlas-chip-label').textContent = Core.statusLabel(code, vocab) + ' (not in this dataset)';
+          E.statusOptions.appendChild(chip);
+        });
+      }
+      return missing;
+    }
+
     function syncControls(skipSearch) {
       var st = S.state;
       if (!skipSearch && E.search.value !== st.q) {
         E.search.value = st.q;
+      }
+      if (S.ready) {
+        syncTemporaryOptions();
       }
       if (E.country) { E.country.value = st.country; }
       if (E.status) {
@@ -496,18 +721,63 @@
     function onFilterChange(options) {
       var opts = options || {};
       if (!S.ready) {
+        // Kept and applied once the data arrives (see onData).
+        S.editedEarly = true;
         return;
       }
+      cancelTyping();
       S.state = Core.normalizeState(S.state, S.context);
       syncControls(true);
       render({ fit: opts.fit !== false, animate: true });
       scheduleUrl(opts.typing ? 400 : 60);
     }
 
+    /** Typing re-renders once the reader pauses, not on every keystroke. */
+    function onSearchInput() {
+      S.state.q = E.search.value;
+      if (!S.ready) {
+        S.editedEarly = true;
+        return;
+      }
+      window.clearTimeout(S.typeTimer);
+      S.typeTimer = window.setTimeout(function () {
+        S.typeTimer = 0;
+        onFilterChange({ typing: true });
+      }, TYPING_DELAY_MS);
+    }
+
+    function cancelTyping() {
+      window.clearTimeout(S.typeTimer);
+      S.typeTimer = 0;
+    }
+
+    /** Apply a search still waiting for the typing pause (before export, copy or an agent call). */
+    function flushTyping() {
+      if (S.typeTimer) {
+        window.clearTimeout(S.typeTimer);
+        S.typeTimer = 0;
+        onFilterChange({ typing: true });
+      }
+    }
+
+    /** Keep a month range the right way round by moving the other bound to the one just chosen. */
+    function onMonthChange(changed) {
+      var other = changed === 'from' ? 'to' : 'from';
+      S.state[changed] = (changed === 'from' ? E.from : E.to).value;
+      var from = S.state.from;
+      var to = S.state.to;
+      if (from && to && from > to) {
+        S.state[other] = S.state[changed];
+        announce((other === 'from' ? 'From' : 'To') + ' moved to ' + Core.formatMonth(S.state[other]));
+      }
+      onFilterChange();
+    }
+
     function clearFilters() {
       if (!S.ready) {
         return;
       }
+      cancelTyping();
       var sort = S.state.sort;
       S.state = Core.defaultState();
       S.state.sort = sort;
@@ -529,6 +799,27 @@
       }
     }
 
+    function statusChip(code) {
+      var label = h('label', 'atlas-chip');
+      var input = h('input');
+      input.type = 'checkbox';
+      input.name = 'status';
+      input.value = code;
+      var swatch = h('span', 'atlas-swatch atlas-grp-' + Core.statusGroup(code).id);
+      swatch.setAttribute('aria-hidden', 'true');
+      var count = h('span', 'atlas-chip-count');
+      count.setAttribute('data-status-count', code);
+      label.appendChild(input);
+      label.appendChild(swatch);
+      label.appendChild(h('span', 'atlas-chip-label', Core.statusLabel(code, vocab)));
+      label.appendChild(count);
+      var description = Core.vocabDescription(vocab, 'statuses', code);
+      if (description) {
+        label.title = description;
+      }
+      return label;
+    }
+
     function buildFilterOptions() {
       var ctx = S.context;
       if (E.country) {
@@ -544,24 +835,7 @@
       if (E.statusOptions) {
         E.statusOptions.textContent = '';
         ctx.statuses.forEach(function (code) {
-          var label = h('label', 'atlas-chip');
-          var input = h('input');
-          input.type = 'checkbox';
-          input.name = 'status';
-          input.value = code;
-          var swatch = h('span', 'atlas-swatch atlas-grp-' + Core.statusGroup(code).id);
-          swatch.setAttribute('aria-hidden', 'true');
-          var count = h('span', 'atlas-chip-count');
-          count.setAttribute('data-status-count', code);
-          label.appendChild(input);
-          label.appendChild(swatch);
-          label.appendChild(h('span', 'atlas-chip-label', Core.statusLabel(code, vocab)));
-          label.appendChild(count);
-          var description = Core.vocabDescription(vocab, 'statuses', code);
-          if (description) {
-            label.title = description;
-          }
-          E.statusOptions.appendChild(label);
+          E.statusOptions.appendChild(statusChip(code));
         });
       }
       [E.from, E.to].forEach(function (select) {
@@ -624,6 +898,34 @@
       if (E.app) {
         E.app.classList.toggle('has-filters', active > 0);
       }
+      if (E.tabMap) {
+        // The map view hides the list and its count: keep the number in reach.
+        E.tabMap.textContent = 'Map (' + n + ')';
+      }
+    }
+
+    /** Why nothing matches, when a filter asks for something this dataset does not contain. */
+    function emptyReasons() {
+      var missing = Core.unmatchedFilters(S.state, S.context);
+      var months = S.context.months;
+      var name = dataset.label || 'this dataset';
+      var reasons = [];
+      if (missing.country) {
+        reasons.push('No site in ' + name + ' has the country code ' + missing.country + '.');
+      }
+      if (missing.statuses.length) {
+        reasons.push('No site in ' + name + ' has the last observed status ' +
+          missing.statuses.map(function (code) { return Core.statusLabel(code, vocab); }).join(' or ') + '.');
+      }
+      if (missing.from) {
+        reasons.push('The status observations in ' + name + ' end in ' + Core.formatMonth(months[months.length - 1]) +
+          ', before the chosen start (' + Core.formatMonth(missing.from) + ').');
+      }
+      if (missing.to) {
+        reasons.push('The status observations in ' + name + ' start in ' + Core.formatMonth(months[0]) +
+          ', after the chosen end (' + Core.formatMonth(missing.to) + ').');
+      }
+      return reasons;
     }
 
     // -------------------------------------------------------------------------
@@ -690,6 +992,11 @@
       E.list.appendChild(fragment);
       if (E.empty) {
         E.empty.hidden = S.visible.length !== 0;
+        if (E.emptyReason) {
+          var reasons = S.visible.length ? [] : emptyReasons();
+          E.emptyReason.textContent = reasons.join(' ');
+          E.emptyReason.hidden = !reasons.length;
+        }
       }
       updateTabStop(focusedId);
       if (focusedId && S.visibleIds[focusedId]) {
@@ -774,12 +1081,33 @@
       return !!(S.map && E.map && E.map.clientWidth > 0 && E.map.clientHeight > 0);
     }
 
+    /**
+     * Run a map move made by the explorer itself. Leaflet starts animated
+     * zooms on the next animation frame, so the guard lasts until the move
+     * ends (or 2 s, if no moveend ever comes); movestart/zoomstart inside it
+     * are not counted as the reader moving the map.
+     */
     function programmatic(fn) {
+      var map = S.map;
+      var released = false;
+      var timer = 0;
+      var release = function () {
+        if (released) {
+          return;
+        }
+        released = true;
+        window.clearTimeout(timer);
+        map.off('moveend', release);
+        S.programmatic -= 1;
+      };
       S.programmatic += 1;
+      map.on('moveend', release);
       try {
         fn();
       } finally {
-        S.programmatic -= 1;
+        if (!released) {
+          timer = window.setTimeout(release, 2000);
+        }
       }
     }
 
@@ -847,6 +1175,10 @@
         tip = h('span', 'atlas-tip');
         tip.appendChild(h('strong', 'atlas-tip-name', site.name));
         var parts = [site.country].concat(site.statuses.map(function (code) { return Core.statusLabel(code, vocab); }));
+        // A status is an observation on a date, not the status today.
+        if (site.newest) {
+          parts.push('as of ' + site.newest);
+        }
         tip.appendChild(h('span', 'atlas-tip-meta', parts.filter(Boolean).join(' \u00b7 ')));
         S.tips[site.id] = tip;
       }
@@ -952,6 +1284,10 @@
       S.visible.forEach(function (site) {
         if (site.hasLocation) {
           bounds.extend([site.lat, site.lon]);
+          // Polygon locators: keep the whole outline in view, not just the anchor point.
+          if (site.isArea && site.bounds) {
+            bounds.extend(site.bounds[0]).extend(site.bounds[1]);
+          }
         }
       });
       return bounds.isValid() ? bounds : null;
@@ -1170,12 +1506,14 @@
       }
       var still = S.reduce.matches;
       try {
+        // minZoom 0 and quarter-level snapping let "Fit to results" show
+        // every site (Oregon to New Zealand) on a 360 px phone map.
         S.map = L.map(E.map, {
           zoomControl: true,
           worldCopyJump: true,
-          minZoom: 1,
+          minZoom: 0,
           maxZoom: 19,
-          zoomSnap: 0.5,
+          zoomSnap: 0.25,
           zoomAnimation: !still,
           fadeAnimation: !still,
           markerZoomAnimation: !still,
@@ -1188,6 +1526,8 @@
       }
       var map = S.map;
       map.attributionControl.setPrefix('<a href="https://leafletjs.com">Leaflet</a>');
+      // Credit for the Atlas's own layer, shown whatever basemap is chosen.
+      map.attributionControl.addAttribution(Core.dataCredit(root));
       map.createPane('atlasPolygons').style.zIndex = '410';
       map.createPane('atlasMarkers').style.zIndex = '420';
       S.polygonRenderer = L.svg({ pane: 'atlasPolygons', padding: 0.5 });
@@ -1198,9 +1538,9 @@
 
       var stored = Core.readStoredBasemap(store);
       S.basemapExplicit = !!stored;
-      var chosen = Core.chooseBasemap(stored, S.dark.matches);
+      var chosen = Core.chooseBasemap(stored, S.dark.matches, basemaps);
       var byName = {};
-      Core.BASEMAPS.forEach(function (basemap) {
+      basemaps.forEach(function (basemap) {
         var layer = L.tileLayer(basemap.url, Object.assign({}, basemap.options));
         S.baseLayers[basemap.id] = layer;
         byName[basemap.name] = layer;
@@ -1223,8 +1563,9 @@
         }
       });
       onMediaChange(S.dark, function () {
-        if (!S.basemapExplicit && (S.basemapId === 'light' || S.basemapId === 'dark')) {
-          useBasemap(S.dark.matches ? 'dark' : 'light');
+        var current = Core.findBasemap(S.basemapId, basemaps);
+        if (!S.basemapExplicit && current && current.role) {
+          useBasemap(Core.basemapForRole(S.dark.matches ? 'dark' : 'light', basemaps));
         }
       });
 
@@ -1232,6 +1573,10 @@
         if (!S.programmatic) {
           S.userMoved = true;
         }
+      });
+      // A drag always comes from the reader, even during an animated fit.
+      map.on('dragstart', function () {
+        S.userMoved = true;
       });
       map.on('mousemove', onMapMouseMove);
       map.on('mouseout', function () {
@@ -1260,6 +1605,19 @@
       }
     }
 
+    function legendKey(swatchClass, label) {
+      var key = h('span', 'atlas-legend-key');
+      var swatch = h('span', 'atlas-swatch ' + swatchClass);
+      swatch.setAttribute('aria-hidden', 'true');
+      key.appendChild(swatch);
+      key.appendChild(textNode(label));
+      return key;
+    }
+
+    /**
+     * The legend is a one-line key (its <summary>) that unfolds into the
+     * member statuses; folded by default so it does not hide sites.
+     */
     function renderLegend() {
       if (!E.legendList) {
         return;
@@ -1272,6 +1630,19 @@
           groups.push(group);
         }
       });
+      var hasAreas = S.sites.some(function (site) { return site.isArea; });
+      if (E.legendSummary) {
+        E.legendSummary.textContent = '';
+        E.legendSummary.appendChild(srOnly('Legend: '));
+        var keys = h('span', 'atlas-legend-keys');
+        groups.forEach(function (group) {
+          keys.appendChild(legendKey('atlas-grp-' + group.id, group.label));
+        });
+        if (hasAreas) {
+          keys.appendChild(legendKey('atlas-swatch-area', 'Polygon locator'));
+        }
+        E.legendSummary.appendChild(keys);
+      }
       groups.forEach(function (group) {
         var item = h('li', 'atlas-legend-item');
         var swatch = h('span', 'atlas-swatch atlas-grp-' + group.id);
@@ -1287,14 +1658,17 @@
         item.appendChild(text);
         E.legendList.appendChild(item);
       });
-      if (S.sites.some(function (site) { return site.isArea; })) {
+      if (hasAreas) {
+        var official = S.sites.filter(function (site) { return site.isArea && site.officialBoundary; }).length;
         var area = h('li', 'atlas-legend-item');
         var outline = h('span', 'atlas-swatch atlas-swatch-area');
         outline.setAttribute('aria-hidden', 'true');
         area.appendChild(outline);
         var label = h('span', 'atlas-legend-text');
-        label.appendChild(h('span', 'atlas-legend-label', 'Site polygon'));
-        label.appendChild(h('span', 'atlas-legend-members', 'Boundary or mapped outline; circles mark the locator point'));
+        label.appendChild(h('span', 'atlas-legend-label', 'Polygon locator'));
+        label.appendChild(h('span', 'atlas-legend-members',
+          'Locates the campus or project; not a footprint or construction extent. Official boundaries: ' + official +
+          '. A circle marks every locator point.'));
         area.appendChild(label);
         E.legendList.appendChild(area);
       }
@@ -1508,8 +1882,43 @@
         var metres = Core.formatNumber(record.horizontal_uncertainty_metres);
         kvRow(dl, 'Horizontal uncertainty', metres ? metres + ' m' : unknownText(record.horizontal_uncertainty_unknown_reason));
       }
+      var props = site.properties || {};
+      var licences = Array.isArray(props.geometry_licenses) ? props.geometry_licenses.filter(function (code) {
+        return typeof code === 'string' && code;
+      }) : [];
+      if (licences.length) {
+        var terms = h('span', '');
+        licences.forEach(function (code, index) {
+          if (index) {
+            terms.appendChild(textNode(', '));
+          }
+          var url = Core.licenseUrl(code);
+          terms.appendChild(url ? externalLink(url, code) : textNode(code));
+        });
+        if (licences.some(function (code) { return Core.isOpenStreetMapCredit(code, ''); })) {
+          terms.appendChild(textNode(' \u00b7 \u00a9 '));
+          terms.appendChild(externalLink(Core.OSM_COPYRIGHT_URL, 'OpenStreetMap contributors'));
+        }
+        kvRow(dl, 'Geometry licence', terms);
+      }
       el.appendChild(dl);
       return el;
+    }
+
+    /** "Licence: <code> · <attribution>", linking known licences and the OSM copyright page. */
+    function licenceLine(ev) {
+      var line = h('span', 'atlas-evidence-licence');
+      line.appendChild(textNode('Licence: '));
+      var url = Core.licenseUrl(ev.license);
+      line.appendChild(url ? externalLink(url, ev.license) : textNode(ev.license));
+      if (ev.attribution && ev.attribution !== ev.publisher) {
+        line.appendChild(textNode(' \u00b7 ' + ev.attribution));
+      }
+      if (Core.isOpenStreetMapCredit(ev.license, ev.attribution)) {
+        line.appendChild(textNode(' \u00b7 '));
+        line.appendChild(externalLink(Core.OSM_COPYRIGHT_URL, 'OpenStreetMap copyright'));
+      }
+      return line;
     }
 
     function evidenceSection(evidence) {
@@ -1520,7 +1929,16 @@
           return;
         }
         var item = h('li', 'atlas-evidence');
-        item.appendChild(externalLink(ev.source_url, ev.title || ev.source_url || ev.evidence_id, 'evidence-link'));
+        var title = ev.title || ev.source_url || ev.evidence_id;
+        item.appendChild(externalLink(ev.source_url, title, 'evidence-link'));
+        if (Core.safeHttpUrl(ev.archive_url)) {
+          // Wayback Machine capture nearest the retrieval time; it may be missing or differ from what was reviewed.
+          var archived = h('span', 'atlas-evidence-archive');
+          var archiveLink = externalLink(ev.archive_url, 'Archived copy');
+          archiveLink.setAttribute('aria-label', 'Archived copy of ' + title);
+          archived.appendChild(archiveLink);
+          item.appendChild(archived);
+        }
         var bits = [];
         if (ev.publisher) { bits.push(ev.publisher); }
         if (ev.kind) { bits.push(Core.vocabLabel(vocab, 'evidence_kinds', ev.kind)); }
@@ -1534,8 +1952,7 @@
           item.appendChild(h('span', 'atlas-evidence-roles', 'Supports: ' + roles));
         }
         if (ev.license) {
-          var licence = 'Licence: ' + ev.license + (ev.attribution && ev.attribution !== ev.publisher ? ' \u00b7 ' + ev.attribution : '');
-          item.appendChild(h('span', 'atlas-evidence-licence', licence));
+          item.appendChild(licenceLine(ev));
         }
         list.appendChild(item);
       });
@@ -1682,11 +2099,7 @@
         return;
       }
       renderDetail(site, null, false);
-      fetchJSON(siteDocUrl(site.id)).then(function (doc) {
-        if (!doc || typeof doc !== 'object') {
-          throw new Error('Unexpected site document');
-        }
-        S.docs[site.id] = doc;
+      siteDoc(site.id).then(function (doc) {
         if (token === S.detailToken && S.selectedId === site.id) {
           renderDetail(site, doc, false);
         }
@@ -1695,6 +2108,67 @@
           renderDetail(site, null, true);
         }
       });
+    }
+
+    /**
+     * On narrow screens the drawer is a full-screen sheet: make it modal so
+     * focus and screen-reader browsing stay inside it (everything around it
+     * becomes inert, except the live region). On desktop it stays non-modal.
+     */
+    function setSheetModal(on) {
+      S.inertNodes.forEach(function (node) { node.removeAttribute('inert'); });
+      S.inertNodes = [];
+      if (on) {
+        var node = E.detail;
+        while (node && node.parentNode && node !== document.body) {
+          var parent = node.parentNode;
+          for (var i = 0; i < parent.children.length; i++) {
+            var sibling = parent.children[i];
+            if (sibling !== node && sibling !== E.announce && sibling.tagName !== 'SCRIPT' && !sibling.hasAttribute('inert')) {
+              sibling.setAttribute('inert', '');
+              S.inertNodes.push(sibling);
+            }
+          }
+          node = parent;
+        }
+      }
+      E.detail.setAttribute('aria-modal', on ? 'true' : 'false');
+    }
+
+    var TABBABLE = 'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), ' +
+      'textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+
+    function tabbables(container) {
+      return Array.prototype.filter.call(container.querySelectorAll(TABBABLE), function (el) {
+        return !el.hidden && el.getClientRects().length > 0 && !el.closest('[inert]');
+      });
+    }
+
+    /**
+     * Tab and Shift+Tab cycle inside the modal sheet: with the page behind it
+     * inert, the browser would otherwise move focus out of the document.
+     */
+    function trapSheetFocus(event) {
+      if (event.key !== 'Tab' || E.detail.hidden || E.detail.getAttribute('aria-modal') !== 'true') {
+        return;
+      }
+      var items = tabbables(E.detail);
+      var active = document.activeElement;
+      var inside = !!active && E.detail.contains(active);
+      if (!items.length) {
+        event.preventDefault();
+        focusDetailTitle();
+        return;
+      }
+      var first = items[0];
+      var last = items[items.length - 1];
+      if (event.shiftKey && (!inside || active === first || active === E.detailTitle)) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && (!inside || active === last)) {
+        event.preventDefault();
+        first.focus();
+      }
     }
 
     function focusDetailTitle() {
@@ -1726,9 +2200,13 @@
       }
       E.detail.hidden = false;
       E.app.classList.add('has-detail');
+      if (S.missingSiteId) {
+        showMissingSite('');
+      }
       if (S.narrow.matches) {
         document.documentElement.classList.add('atlas-sheet-open');
       }
+      setSheetModal(S.narrow.matches);
       E.detailBody.scrollTop = 0;
       E.detail.scrollTop = 0;
       loadDetail(site);
@@ -1776,6 +2254,7 @@
       E.detail.hidden = true;
       E.app.classList.remove('has-detail');
       document.documentElement.classList.remove('atlas-sheet-open');
+      setSheetModal(false);
       S.selectedId = '';
       S.detailToken += 1;
       styleSite(id);
@@ -1793,7 +2272,14 @@
     // -------------------------------------------------------------------------
 
     function setView(view, focusTab) {
-      S.view = view === 'map' ? 'map' : 'list';
+      var next = view === 'map' ? 'map' : 'list';
+      var previous = S.view;
+      // The map view is shorter than the list, so the browser clamps the
+      // scroll position: remember the reader's place in the list.
+      if (S.narrow.matches && previous === 'list' && next === 'map') {
+        S.listScrollY = window.scrollY || window.pageYOffset || 0;
+      }
+      S.view = next;
       E.app.setAttribute('data-view', S.view);
       if (E.tabList && E.tabMap) {
         E.tabList.setAttribute('aria-selected', String(S.view === 'list'));
@@ -1809,6 +2295,8 @@
         if (top > 1) {
           window.scrollBy(0, top);
         }
+      } else if (S.view === 'list' && previous === 'map' && S.narrow.matches && typeof S.listScrollY === 'number') {
+        window.scrollTo(0, S.listScrollY);
       }
       if (S.map && mapVisible()) {
         S.map.invalidateSize({ pan: false });
@@ -1836,6 +2324,7 @@
       } else if (!E.detail.hidden) {
         document.documentElement.classList.add('atlas-sheet-open');
       }
+      setSheetModal(narrow && !E.detail.hidden);
       measure();
       if (S.map && mapVisible()) {
         S.map.invalidateSize({ pan: false });
@@ -1866,10 +2355,7 @@
       if (E.filters) {
         E.filters.addEventListener('submit', function (event) { event.preventDefault(); });
       }
-      E.search.addEventListener('input', function () {
-        S.state.q = E.search.value;
-        onFilterChange({ typing: true });
-      });
+      E.search.addEventListener('input', onSearchInput);
       if (E.country) {
         E.country.addEventListener('change', function () {
           S.state.country = E.country.value;
@@ -1897,16 +2383,10 @@
         });
       }
       if (E.from) {
-        E.from.addEventListener('change', function () {
-          S.state.from = E.from.value;
-          onFilterChange();
-        });
+        E.from.addEventListener('change', function () { onMonthChange('from'); });
       }
       if (E.to) {
-        E.to.addEventListener('change', function () {
-          S.state.to = E.to.value;
-          onFilterChange();
-        });
+        E.to.addEventListener('change', function () { onMonthChange('to'); });
       }
       if (E.sort) {
         E.sort.addEventListener('change', function () {
@@ -1920,13 +2400,23 @@
         }
       });
       if (E.more) {
+        // Only the reader's own toggles are remembered: 'toggle' also fires
+        // when the explorer folds or unfolds the filters itself.
+        var userToggled = false;
+        var summary = E.more.querySelector('summary');
+        if (summary) {
+          summary.addEventListener('click', function () { userToggled = true; });
+        }
         E.more.addEventListener('toggle', function () {
-          try {
-            if (store) {
-              store.setItem(FILTERS_OPEN_KEY, E.more.open ? '1' : '0');
+          if (userToggled) {
+            userToggled = false;
+            try {
+              if (store) {
+                store.setItem(FILTERS_OPEN_KEY, E.more.open ? '1' : '0');
+              }
+            } catch (error) {
+              // Remembering the panel state is a convenience only.
             }
-          } catch (error) {
-            // Remembering the panel state is a convenience only.
           }
           scheduleMeasure();
         });
@@ -1946,7 +2436,8 @@
       E.list.addEventListener('focusin', function (event) {
         var id = rowIdFromEvent(event);
         if (id) {
-          S.tabStopId = id;
+          // Mouse focus too: keep exactly one row in the tab order.
+          updateTabStop(id);
           setHover('list', id);
         }
       });
@@ -1967,6 +2458,7 @@
       if (E.detailClose) {
         E.detailClose.addEventListener('click', function () { closeDetail({}); });
       }
+      document.addEventListener('keydown', trapSheetFocus);
       document.addEventListener('keydown', function (event) {
         if (event.key !== 'Escape' || E.detail.hidden || event.defaultPrevented) {
           return;
@@ -1990,8 +2482,10 @@
           if (!S.ready) {
             return;
           }
+          flushTyping();
           var filtered = S.visible.length !== S.sites.length;
-          download('\ufeff' + Core.sitesToCsv(S.visible), Core.exportFilename(dataset.id, filtered, 'csv'), 'text/csv;charset=utf-8');
+          download('\ufeff' + Core.sitesToCsv(S.visible, { datasetId: dataset.id }),
+            Core.exportFilename(dataset.id, filtered, 'csv'), 'text/csv;charset=utf-8');
         });
       }
       if (E.exportGeojson) {
@@ -1999,16 +2493,33 @@
           if (!S.ready) {
             return;
           }
+          flushTyping();
           var filtered = S.visible.length !== S.sites.length;
-          var meta = {
+          // The file says what it is and under which terms it may be reused.
+          var meta = Object.assign({
             dataset: { id: dataset.id || null, label: dataset.label || null, release_status: dataset.release_status || null },
-            query: Core.serializeState(S.state)
-          };
+            query: Core.serializeState(S.state),
+            source_url: absoluteUrl(sitesUrl),
+            view_url: viewUrl(''),
+            caveats: Core.AGENT_CAVEATS
+          }, Core.exportTerms(S.collection, boot));
           download(Core.sitesToGeoJSON(S.visible, meta), Core.exportFilename(dataset.id, filtered, 'geojson'), 'application/geo+json');
+        });
+      }
+      var embedPath = boot.pages && typeof boot.pages.embed === 'string' ? relativeEndpoint(boot.pages.embed, '') : '';
+      if (E.copyEmbed && embedPath && !embedded) {
+        E.copyEmbed.hidden = false;
+        E.copyEmbed.addEventListener('click', function () {
+          flushTyping();
+          var snippet = Core.embedSnippet(absoluteUrl(embedPath + Core.serializeState(S.state)), 'Data Center Atlas map');
+          if (snippet) {
+            copyWithFeedback(snippet, E.copyEmbed, 'Embed code for this view copied');
+          }
         });
       }
       if (E.copyLink) {
         E.copyLink.addEventListener('click', function () {
+          flushTyping();
           flushUrl();
           copyWithFeedback(window.location.href, E.copyLink, 'Link to this view copied');
         });
@@ -2038,6 +2549,185 @@
     // Startup
     // -------------------------------------------------------------------------
 
+    // -------------------------------------------------------------------------
+    // Agent tools (WebMCP): the same state changes as the visible controls
+    // -------------------------------------------------------------------------
+
+    function datasetSummary() {
+      return {
+        id: dataset.id || null,
+        label: dataset.label || null,
+        release_status: dataset.release_status || null,
+        checkpoint_date: dataset.checkpoint_date || null,
+        lifecycle_reference_date: dataset.lifecycle_reference_date || null,
+        status_window_start: dataset.window_start || null
+      };
+    }
+
+    function toolSearch(input) {
+      var parsed = Core.toolInputToState(input, S.context);
+      cancelTyping();
+      S.state = parsed.state;
+      syncControls(false);
+      if (Core.activeFilterCount(S.state) && E.more && !E.more.open) {
+        E.more.open = true;
+      }
+      S.userMoved = false;
+      render({ fit: true, animate: true });
+      flushUrl();
+      var sites = S.visible.slice(0, parsed.limit).map(Core.toolSiteSummary);
+      return {
+        dataset: datasetSummary(),
+        caveats: Core.AGENT_CAVEATS.slice(),
+        total_sites: S.sites.length,
+        matching_sites: S.visible.length,
+        returned: sites.length,
+        query: Core.serializeState(S.state),
+        view_url: viewUrl(''),
+        sites: sites
+      };
+    }
+
+    function toolGetSite(input) {
+      var id = Core.toolSiteId(input);
+      var site = S.byId[id];
+      if (!site) {
+        throw new Error('No site ' + id + ' in ' + (dataset.label || 'this dataset') + '.');
+      }
+      openSite(id, { origin: null, focus: false, zoom: true });
+      var template = relativeEndpoint(endpoints.site, 'api/v1/sites/{site_id}.json');
+      return siteDoc(id).then(function (doc) {
+        return {
+          dataset: datasetSummary(),
+          caveats: Core.AGENT_CAVEATS.slice(),
+          site: Core.toolSiteSummary(site),
+          page_url: site.url || absoluteUrl(sitePagePath(id)),
+          api_url: site.apiUrl || absoluteUrl(Core.fillTemplate(template, { site_id: id })),
+          view_url: viewUrl(id),
+          document: doc
+        };
+      });
+    }
+
+    function toolDatasetInfo(input) {
+      if (input !== undefined && input !== null && (typeof input !== 'object' || Array.isArray(input) || Object.keys(input).length)) {
+        throw new Error('get_datacenter_dataset_info takes no options.');
+      }
+      var terms = Core.exportTerms(S.collection, boot);
+      var links = {};
+      Object.keys(endpoints).forEach(function (key) {
+        var path = relativeEndpoint(endpoints[key], '');
+        if (path) {
+          links[key] = absoluteUrl(path);
+        }
+      });
+      var files = (Array.isArray(boot.downloads) ? boot.downloads : []).filter(function (item) {
+        return item && typeof item === 'object';
+      }).map(function (item) {
+        return {
+          name: item.name || null,
+          format: item.format || null,
+          media_type: item.media_type || null,
+          url: absoluteUrl(relativeEndpoint(item.url, '')),
+          bytes: typeof item.bytes === 'number' ? item.bytes : null,
+          sha256: item.sha256 || null
+        };
+      });
+      var summary = datasetSummary();
+      summary.counts = dataset.counts && typeof dataset.counts === 'object' ? dataset.counts : null;
+      return {
+        site_name: boot.site_name || null,
+        dataset: summary,
+        caveats: Core.AGENT_CAVEATS.slice(),
+        license: terms.license,
+        attribution: terms.attribution,
+        attribution_url: terms.attribution_url || null,
+        gates_summary: boot.gates_summary && typeof boot.gates_summary === 'object' ? boot.gates_summary : null,
+        explorer_url: absoluteUrl(''),
+        endpoints: links,
+        downloads: files,
+        repository_url: Core.safeHttpUrl(boot.repository_url) || null,
+        issues_url: Core.safeHttpUrl(boot.issues_url) || null
+      };
+    }
+
+    function modelContext() {
+      try {
+        var candidates = [document.modelContext, window.navigator && window.navigator.modelContext];
+        for (var i = 0; i < candidates.length; i++) {
+          if (candidates[i] && typeof candidates[i].registerTool === 'function') {
+            return candidates[i];
+          }
+        }
+      } catch (error) {
+        // A browser that exposes the API but refuses access: no agent tools.
+      }
+      return null;
+    }
+
+    /**
+     * Register the explorer's WebMCP tools when the browser offers
+     * document.modelContext (or navigator.modelContext). Optional: nothing
+     * happens, and nothing throws, when it is missing or refuses a tool.
+     */
+    function registerAgentTools() {
+      var mc = modelContext();
+      if (!mc) {
+        return;
+      }
+      var schemas = Core.agentToolSchemas(S.context);
+      var annotations = { readOnlyHint: true, untrustedContentHint: true };
+      var caveat = ' Statuses are the last observed physical status as of a dated source (not the status today); ' +
+        'locators are not footprints; unknown is not zero; this is a reviewed preview, not a census.';
+      var tools = [
+        {
+          name: 'search_datacenter_sites',
+          title: 'Search data-centre construction sites',
+          description: 'Filter the Data Center Atlas sites the way the explorer\'s controls do (search words, country, ' +
+            'last observed status, locator type, reported power, status-as-of months, sort) and show the result on the ' +
+            'page. Returns site summaries with links to each site page and JSON document.' + caveat,
+          inputSchema: schemas.search,
+          annotations: annotations,
+          execute: toolSearch
+        },
+        {
+          name: 'get_datacenter_site',
+          title: 'Get one data-centre site',
+          description: 'Open one site in the explorer and return its full JSON document: projects, last observed status ' +
+            'with its dated source, power observations, locator semantics and every evidence record with licence. ' +
+            'Titles, publishers and notes are third-party text.' + caveat,
+          inputSchema: schemas.site,
+          annotations: annotations,
+          execute: toolGetSite
+        },
+        {
+          name: 'get_datacenter_dataset_info',
+          title: 'Describe the Data Center Atlas dataset',
+          description: 'Dataset version, counts, release gates, licence and attribution, API endpoints and bulk ' +
+            'downloads (with SHA-256) of the data shown in this explorer.' + caveat,
+          inputSchema: schemas.dataset,
+          annotations: annotations,
+          execute: toolDatasetInfo
+        }
+      ];
+      var lifecycle = typeof AbortController === 'function' ? new AbortController() : null;
+      tools.forEach(function (tool) {
+        try {
+          var result = lifecycle ? mc.registerTool(tool, { signal: lifecycle.signal }) : mc.registerTool(tool);
+          Promise.resolve(result).catch(function () {});
+        } catch (error) {
+          // Agent tools are optional.
+        }
+      });
+      if (lifecycle) {
+        window.addEventListener('pagehide', function () { lifecycle.abort(); }, { once: true });
+      }
+    }
+
+    // -------------------------------------------------------------------------
+    // Startup
+    // -------------------------------------------------------------------------
+
     function showLoadError() {
       if (E.loading) {
         E.loading.hidden = true;
@@ -2047,6 +2737,47 @@
       }
       E.list.removeAttribute('aria-busy');
       E.count.textContent = 'Site data unavailable';
+      // An empty map next to the error would only suggest there is nothing to show.
+      E.app.classList.add('no-map');
+      if (E.fit) {
+        E.fit.hidden = true;
+      }
+    }
+
+    /**
+     * Embed mode: one line of caveats and terms, and a link that opens the
+     * same view in the full explorer (kept current by flushUrl).
+     */
+    function setupEmbed() {
+      var bar = h('p', 'atlas-embed-bar');
+      var preview = dataset.release_status && dataset.release_status !== 'final' ? 'Preview data \u00b7 ' : '';
+      bar.appendChild(textNode(preview + 'Last observed status as of dated sources \u00b7 not a census \u00b7 '));
+      var terms = h('a', '', 'CC BY 4.0 + source terms');
+      terms.href = absoluteUrl('about/attribution/');
+      terms.target = '_blank';
+      terms.rel = 'noopener';
+      bar.appendChild(terms);
+      bar.appendChild(textNode(' \u00b7 '));
+      var open = h('a', 'atlas-embed-open', 'Open in ' + (boot.site_name || 'Data Center Atlas'));
+      open.href = viewUrl('');
+      open.target = '_blank';
+      open.rel = 'noopener';
+      bar.appendChild(open);
+      E.app.parentNode.insertBefore(bar, E.app);
+      S.embedLink = open;
+    }
+
+    /** The collection's own members (licence, attribution, dataset), without the features. */
+    function collectionMeta(collection) {
+      var meta = {};
+      if (collection && typeof collection === 'object') {
+        Object.keys(collection).forEach(function (key) {
+          if (key !== 'features') {
+            meta[key] = collection[key];
+          }
+        });
+      }
+      return meta;
     }
 
     function onData(collection) {
@@ -2054,6 +2785,7 @@
       if (!sites.length) {
         throw new Error('No sites in the data');
       }
+      S.collection = collectionMeta(collection);
       S.sites = sites;
       sites.forEach(function (site) { S.byId[site.id] = site; });
       S.context = Core.buildContext(sites);
@@ -2065,12 +2797,26 @@
         E.loading.hidden = true;
       }
       E.list.removeAttribute('aria-busy');
-      [E.exportCsv, E.exportGeojson, E.copyLink].forEach(function (button) {
+      [E.exportCsv, E.exportGeojson, E.copyLink, E.copyEmbed].forEach(function (button) {
         if (button) {
           button.disabled = false;
         }
       });
+      if (S.embedLink) {
+        S.embedLink.href = viewUrl(S.selectedId);
+      }
+      if (S.editedEarly) {
+        // Edits made while the data was loading win over the URL they started from.
+        var early = Core.normalizeState(S.state, S.context);
+        replaceUrl(window.history.state, window.location.pathname + Core.serializeState(early) + window.location.hash);
+      }
       applyLocation(true);
+      registerAgentTools();
+      window.addEventListener('pageshow', function (event) {
+        if (event.persisted) {
+          registerAgentTools();
+        }
+      });
       document.body.setAttribute('data-atlas-ready', 'true');
     }
 
@@ -2081,19 +2827,26 @@
     } catch (error) {
       filtersOpen = null;
     }
-    // Filters start open on wide screens and folded on narrow ones (the list
-    // comes first there); a reader's own choice wins, and active filters
-    // from the URL always unfold them (see applyLocation).
-    if (E.more && (filtersOpen === '0' || (filtersOpen === null && S.narrow.matches))) {
+    // The results list is the main content, so the filters start folded
+    // unless the window is tall enough for both (the summary shows how many
+    // are active). A reader's own choice wins, and active filters from the
+    // URL always unfold them (see applyLocation).
+    var roomy = !S.narrow.matches && media('(min-height: 1200px)').matches;
+    if (E.more && (embedded || filtersOpen === '0' || (filtersOpen !== '1' && !roomy))) {
       E.more.open = false;
     }
-    if (E.legend && S.narrow.matches) {
-      E.legend.open = false;
+    if (embedded) {
+      setupEmbed();
     }
+    // Controls show the URL's view at once; edits made before the data
+    // arrives are kept (see onFilterChange and onData).
+    S.state = Core.normalizeState(Core.parseQuery(window.location.search), null);
+    syncControls(false);
     E.list.setAttribute('aria-busy', 'true');
     document.querySelectorAll('.hidden-noscript').forEach(function (node) { node.classList.remove('hidden-noscript'); });
     wire();
-    setView('list', false);
+    // An embedded map shows the map first on narrow frames.
+    setView(embedded ? 'map' : 'list', false);
     applyLayoutMode();
     initMap();
 

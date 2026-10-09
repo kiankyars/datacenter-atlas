@@ -34,7 +34,8 @@ the following.
    commissioning, with the date the statement applies to. Announcements, land purchases, permits,
    grid-connection requests, groundbreaking plans and expected opening dates do not qualify by
    themselves, and a later page edit or retrieval date is not an observation date. Each checkpoint
-   accepts only observations from the 90 days before its fixed lifecycle reference date.
+   accepts only observations dated no more than 90 days before its fixed lifecycle reference date
+   (for the current v0.18 drafts, 2026-05-22 to 2026-08-20 inclusive).
 2. **A precise locator.** A source that places the project or its campus: an official parcel or
    boundary, an official address point, a coordinate published by the developer or a public
    authority, or a named map feature. Say what it locates (a building, the project or the whole
@@ -66,15 +67,18 @@ cd datacenter-atlas
 
 ```sh
 python3 scripts/build_public_site.py --output _site      # add --force to rebuild over an earlier build
-python3 -m http.server -d _site 8000                     # preview at http://localhost:8000/
+python3 site/e2e/check_public_metadata.py --site _site   # README, CITATION.cff and DATA_LICENSE.md agree with it
+python3 site/e2e/pages_server.py --directory _site       # preview at http://127.0.0.1:8000/datacenter-atlas/
 python3 -m unittest -v tests.test_public_site
 node --test site/js-tests/*.test.mjs                     # frontend logic; no browser needed
 ```
 
-The browser end-to-end tests in `site/e2e/` use Playwright and run in GitHub Actions
-([`pages.yml`](.github/workflows/pages.yml)); their hash-locked tooling is pinned in
-[`site/e2e/requirements.txt`](site/e2e/requirements.txt). [docs/public_site.md](docs/public_site.md)
-explains how the site is built and how to run those tests yourself.
+`pages_server.py` serves the build the way GitHub Pages does (no directory listings, `404.html` for
+missing paths), so a link that works there works in production. The browser end-to-end tests in
+`site/e2e/` use Playwright and run in GitHub Actions ([`pages.yml`](.github/workflows/pages.yml));
+their hash-locked tooling is pinned in [`site/e2e/requirements.txt`](site/e2e/requirements.txt).
+[docs/public_site.md](docs/public_site.md) explains how the site is built and how to run those
+tests yourself.
 
 ### Validate the datasets and lint
 

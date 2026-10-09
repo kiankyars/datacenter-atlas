@@ -102,21 +102,27 @@ test('every sort order is a permutation with a stable, total order', () => {
 });
 
 test('full CSV export round-trips every site', () => {
-  const text = Core.sitesToCsv(Core.sortSites(sites, 'name'));
+  const datasetId = data.config.current_dataset.split('/').pop();
+  const text = Core.sitesToCsv(Core.sortSites(sites, 'name'), { datasetId });
   const rows = parseCsv(text);
   assert.equal(rows.length, sites.length + 1);
+  const column = (name) => Core.CSV_COLUMNS.indexOf(name);
   const byId = new Map(data.sites.map((row) => [row.site_id, row]));
+  const featureById = new Map(data.features.map((feature) => [feature.id, feature]));
   for (const row of rows.slice(1)) {
     assert.equal(row.length, Core.CSV_COLUMNS.length);
     const source = byId.get(row[0]);
     assert.ok(source, `${row[0]} exists in sites.csv`);
-    assert.equal(row[1], source.name);
-    assert.equal(row[2], source.country);
-    assert.equal(Number(row[4]), Number(source.latitude));
-    assert.equal(Number(row[5]), Number(source.longitude));
-    assert.deepEqual(row[6].split(';').sort(), JSON.parse(source.statuses_json).slice().sort());
-    assert.equal(row[7], source.newest_status_as_of);
-    assert.equal(row[8], source.project_count);
+    assert.equal(row[column('name')], source.name);
+    assert.equal(row[column('country')], source.country);
+    assert.equal(Number(row[column('latitude')]), Number(source.latitude));
+    assert.equal(Number(row[column('longitude')]), Number(source.longitude));
+    assert.deepEqual(JSON.parse(row[column('statuses_json')]), JSON.parse(source.statuses_json));
+    assert.equal(row[column('newest_status_as_of')], source.newest_status_as_of);
+    assert.equal(row[column('project_count')], source.project_count);
+    assert.deepEqual(JSON.parse(row[column('status_publishers_json')]),
+      featureById.get(row[0]).properties.status_publishers, `${row[0]} publishers round-trip`);
+    assert.equal(row[column('dataset_id')], datasetId);
   }
 });
 

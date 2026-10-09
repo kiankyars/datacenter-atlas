@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import csv
 import json
 from pathlib import Path
 import sys
@@ -42,6 +43,10 @@ def main(argv: Sequence[str] | None = None) -> int:
             overwrite=arguments.force,
         )
     except public_site.PublicSiteError as error:
+        parser.exit(1, f"error: {error}\n")
+    except (UnicodeError, csv.Error) as error:  # inputs the builder could not decode or parse
+        parser.exit(1, f"error: unreadable input: {error}\n")
+    except OSError as error:  # an unreadable input or an unwritable output directory
         parser.exit(1, f"error: {error}\n")
     print(json.dumps(summary, indent=2, ensure_ascii=False))
     return 0

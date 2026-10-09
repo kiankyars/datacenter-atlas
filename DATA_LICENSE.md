@@ -31,9 +31,11 @@ The following were created by Data Center Atlas and are licensed under CC BY 4.0
 Attribute it as **Data Center Atlas (Kian Kyars), https://kiankyars.github.io/datacenter-atlas/**,
 name the dataset version you used, and say whether you changed the data. For example:
 
+<!-- atlas:attribution-example -->
 > Data: Data Center Atlas (Kian Kyars), https://kiankyars.github.io/datacenter-atlas/, version
 > 2026-08-20-v0.18-draft-thirty-fifth-reviewed, CC BY 4.0. Includes data © OpenStreetMap
 > contributors (ODbL 1.0) and from the other sources listed in the dataset's ATTRIBUTION.txt.
+<!-- /atlas:attribution-example -->
 
 ## Third-party material keeps its source terms
 
@@ -53,13 +55,15 @@ the rights to those sources, and CC BY 4.0 does not extend to them.
 - **Some open terms add conditions.** A few sources are share-alike, or restrict commercial use or
   derivatives. Check a row's `license` before reusing the material it describes.
 
-The basemaps shown on the website (CARTO, OpenStreetMap and EOX satellite tiles) are not part of
-the dataset. Your browser loads them directly from their providers, under the providers' terms.
+The basemaps shown on the website (OpenStreetMap and EOX satellite tiles, and CARTO's where they are
+offered) are not part of the dataset and are not covered by its CC BY 4.0 licence. Your browser loads
+them directly from their providers, under the providers' terms; the website's
+[about page](https://kiankyars.github.io/datacenter-atlas/about/#legal) credits each one.
 
 ## OpenStreetMap-derived geometries: ODbL 1.0
 
 Some locators are derived from OpenStreetMap; their geometry evidence row has `license` set to
-`ODbL-1.0` (50 of the 200 project geometries, on 48 sites, in the 2026-09-25 checkpoint). These
+`ODbL-1.0` (<!-- atlas:osm-geometry-count -->50 of the 200 project geometries, on 48 sites, in the 2026-09-25 checkpoint<!-- /atlas:osm-geometry-count -->). These
 geometries are © OpenStreetMap contributors and are available under the ODbL 1.0, not CC BY 4.0.
 Credit "© OpenStreetMap contributors" and link to <https://www.openstreetmap.org/copyright>. If you
 publicly use a derivative database of these geometries, the ODbL's share-alike terms apply to that

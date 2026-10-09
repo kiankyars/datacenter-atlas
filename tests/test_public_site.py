@@ -5,6 +5,7 @@ from __future__ import annotations
 from collections import Counter
 import csv
 import hashlib
+from html import escape as html_escape
 from html.parser import HTMLParser
 import json
 from pathlib import Path
@@ -15,6 +16,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
+from unittest import mock
 from urllib.parse import unquote, urljoin, urlsplit
 import xml.etree.ElementTree as ET
 import zipfile
@@ -45,10 +47,16 @@ VOCABULARY_CLASSES = {
 # Pages whose <main> content comes from the frontend and docs fragments (site/templates, site/content).
 FRAGMENT_PAGES = {"index.html", "methodology/index.html", "about/index.html"}
 DERIVED = {
-    "sites.csv": ["official_boundary", "country_slug", "url", "api_url"],
-    "projects.csv": ["evidence_ids", "status_source", "url", "api_url"],
-    "evidence.csv": ["site_ids", "url"],
+    "sites.csv": ["official_boundary", "country_slug", "url", "api_url", "geometry_licenses", "geometry_attributions"],
+    "projects.csv": ["evidence_ids", "status_source", "url", "api_url", "geometry_source"],
+    "evidence.csv": ["site_ids", "url", "api_url", "archive_url"],
 }
+SITE_SUMMARY_KEYS = [
+    "site_id", "name", "country", "country_iso_a2", "latitude", "longitude", "geometry_type",
+    "official_boundary", "locator_scopes", "statuses", "newest_status_as_of", "oldest_status_as_of",
+    "project_count", "projects", "status_publishers", "power_observations", "verification_posture",
+    "independent_imagery_verification", "url", "api_url", "geometry_licenses", "geometry_attributions",
+]
 
 
 def sha256(path: Path) -> str:
@@ -70,6 +78,29 @@ def tree_hashes(directory: Path) -> dict[str, str]:
         for path in sorted(directory.rglob("*"))
         if path.is_file()
     }
+
+
+def ring_sets(geometry):
+    """A geometry with every ring as a set of positions, so ring orientation does not matter."""
+    kind = geometry.get("type")
+    if kind == "Polygon":
+        return kind, [frozenset(map(tuple, ring)) for ring in geometry["coordinates"]]
+    if kind == "MultiPolygon":
+        return kind, [[frozenset(map(tuple, ring)) for ring in polygon] for polygon in geometry["coordinates"]]
+    return kind, geometry.get("coordinates")
+
+
+def follows_right_hand_rule(geometry) -> bool:
+    """RFC 7946: exterior rings counterclockwise, holes clockwise (planar shoelace sign)."""
+    polygons = {"Polygon": [geometry.get("coordinates")], "MultiPolygon": geometry.get("coordinates")}.get(
+        geometry.get("type"), []
+    )
+    for polygon in polygons:
+        for index, ring in enumerate(polygon):
+            area = sum(a[0] * b[1] - b[0] * a[1] for a, b in zip(ring, ring[1:]))
+            if area and (area > 0) != (index == 0):
+                return False
+    return True
 
 
 def version_dirs() -> list[Path]:
@@ -136,8 +167,12 @@ def scan(path: Path) -> PageScan:
 
 
 def builder_pages(site: Path) -> list[Path]:
-    """Every HTML page the builder wrote (dataset originals under downloads/ are excluded)."""
-    return sorted(path for path in site.rglob("*.html") if path.relative_to(site).parts[0] != "downloads")
+    """Every HTML page the builder wrote: dataset originals under downloads/ (such as the preview
+    map.html files) are excluded, the builder's index.html landing pages there are included."""
+    return sorted(
+        path for path in site.rglob("*.html")
+        if path.relative_to(site).parts[0] != "downloads" or path.name == "index.html"
+    )
 
 
 def link_problems(site: Path, base_url: str) -> list[str]:
@@ -168,9 +203,95 @@ def link_problems(site: Path, base_url: str) -> list[str]:
                 problems.append(f"{relative}: <{tag} {attribute}> {value} -> missing {target.relative_to(site)}")
                 continue
             fragment = unquote(resolved.fragment)
-            if fragment and target.suffix == ".html" and fragment not in ids_of(target):
+            # "#site=<id>" is explorer state read by app.js, not an element id.
+            if fragment and "=" not in fragment and target.suffix == ".html" and fragment not in ids_of(target):
                 problems.append(f"{relative}: {value} -> no element with id {fragment!r}")
     return problems
+
+
+class SchemaCheck:
+    """A small JSON Schema (2020-12) checker for the subset the builder emits, plus one strict rule:
+    an object schema with "properties" and no "additionalProperties" must declare every key."""
+
+    DATE = re.compile(r"\d{4}-\d{2}-\d{2}")
+    URI = re.compile(r"[A-Za-z][A-Za-z0-9+.-]*:")
+
+    def __init__(self, directory: Path) -> None:
+        self.schemas = {path.name: read_json(path) for path in directory.glob("*.schema.json")}
+
+    def errors(self, instance, schema, where: str = "$") -> list[str]:
+        if "$ref" in schema:
+            return self.errors(instance, self.schemas[schema["$ref"]], where)
+        problems: list[str] = []
+        for part in schema.get("allOf", []):
+            problems += self.errors(instance, part, where)
+        if "anyOf" in schema and all(self.errors(instance, part, where) for part in schema["anyOf"]):
+            problems.append(f"{where}: matches no anyOf branch")
+        kinds = schema.get("type")
+        if kinds is not None and not any(self._is(instance, kind) for kind in ([kinds] if isinstance(kinds, str) else kinds)):
+            return problems + [f"{where}: {type(instance).__name__} is not {kinds}"]
+        if "const" in schema and instance != schema["const"]:
+            problems.append(f"{where}: {instance!r} != const {schema['const']!r}")
+        if "enum" in schema and instance not in schema["enum"]:
+            problems.append(f"{where}: {instance!r} not in enum")
+        if isinstance(instance, str):
+            if "pattern" in schema and not re.search(schema["pattern"], instance):
+                problems.append(f"{where}: {instance!r} does not match {schema['pattern']}")
+            if schema.get("format") == "date" and not self.DATE.fullmatch(instance):
+                problems.append(f"{where}: {instance!r} is not a date")
+            if schema.get("format") == "uri" and not self.URI.match(instance):
+                problems.append(f"{where}: {instance!r} is not a URI")
+        if isinstance(instance, dict):
+            for key in schema.get("required", []):
+                if key not in instance:
+                    problems.append(f"{where}: missing {key}")
+            properties = schema.get("properties", {})
+            extra = schema.get("additionalProperties")
+            for key, value in instance.items():
+                if key in properties:
+                    problems += self.errors(value, properties[key], f"{where}.{key}")
+                elif isinstance(extra, dict):
+                    problems += self.errors(value, extra, f"{where}.{key}")
+                elif extra is False or ("properties" in schema and extra is None):
+                    problems.append(f"{where}: undeclared key {key!r}")
+        if isinstance(instance, list) and "items" in schema:
+            for index, item in enumerate(instance):
+                problems += self.errors(item, schema["items"], f"{where}[{index}]")
+        return problems
+
+    @staticmethod
+    def _is(value, kind: str) -> bool:
+        return {
+            "null": value is None,
+            "boolean": isinstance(value, bool),
+            "integer": isinstance(value, int) and not isinstance(value, bool),
+            "number": isinstance(value, (int, float)) and not isinstance(value, bool),
+            "string": isinstance(value, str),
+            "array": isinstance(value, list),
+            "object": isinstance(value, dict),
+        }[kind]
+
+
+def api_schema_for(relative: str) -> tuple[str, bool] | None:
+    """(schema file, is an array of that schema) of one api/v1 file, or None for non-JSON files."""
+    fixed = {
+        "index.json": ("index", False), "sites.json": ("site-summary", True), "sites.geojson": ("feature-collection", False),
+        "projects.json": ("project", True), "evidence.json": ("evidence", True),
+        "countries.json": ("country-summary", True), "stats.json": ("stats", False), "versions.json": ("versions", False),
+        "vocabularies.json": ("vocabularies", False), "citation.json": ("citation", False),
+        "schemas/index.json": ("schema-index", False),
+    }
+    if relative in fixed:
+        name, many = fixed[relative]
+        return f"{name}.schema.json", many
+    folder, _, name = relative.partition("/")
+    patterns = {
+        ("sites", ".json"): "site-document", ("sites", ".geojson"): "feature-collection",
+        ("projects", ".json"): "project-document", ("evidence", ".json"): "evidence-document",
+        ("countries", ".json"): "country-document", ("countries", ".geojson"): "feature-collection",
+    }
+    schema = patterns.get((folder, Path(name).suffix))
+    return (f"{schema}.schema.json", False) if schema and "/" not in name else None
 
 
 # --------------------------------------------------------------------------------------------
@@ -183,7 +304,7 @@ FIXTURE_PREVIEW = "2026-01-01-preview-v0.1"
 FIXTURE_DRAFT = "2026-01-01-v0.2-draft-initial-two"
 SITE_A, SITE_B = "vcc-site-aaaa", "vcc-site-bbbb"
 P1, P2, P3 = "p-0001", "p-0002", "p-0003"
-E1, E2, E3, E4 = "e-0001", "e-0002", "e-0003", "e-0004"
+E1, E2, E3, E4, E5 = "e-0001", "e-0002", "e-0003", "e-0004", "e-0005"
 GEOMETRY_URL = "https://example.org/geometry?x=1&y=2"
 
 
@@ -356,6 +477,21 @@ def _write_dataset(directory: Path, *, sites, projects, evidence, manifest: dict
     (directory / "manifest.sha256").write_text(f"{digest}  manifest.json\n", encoding="ascii")
 
 
+def _reseal(directory: Path, *, drop: tuple[str, ...] = (), add: tuple[str, ...] = ()) -> None:
+    """Re-hash the manifest-listed files of a fixture version (minus ``drop``, plus ``add``)."""
+    document = json.loads((directory / "manifest.json").read_text(encoding="utf-8"))
+    names = (set(document["files"]) - set(drop)) | set(add)
+    files = {}
+    for name in sorted(names):
+        data = (directory / name).read_bytes()
+        files[name] = {"bytes": len(data), "sha256": hashlib.sha256(data).hexdigest()}
+    document["files"] = files
+    manifest_bytes = (json.dumps(document, sort_keys=True, separators=(",", ":")) + "\n").encode()
+    (directory / "manifest.json").write_bytes(manifest_bytes)
+    digest = hashlib.sha256(manifest_bytes).hexdigest()
+    (directory / "manifest.sha256").write_text(f"{digest}  manifest.json\n", encoding="ascii")
+
+
 def _write_site_inputs(site: Path, about: str | None) -> None:
     default_about = (
         "<h1>About {{site_name}}</h1><p>{{versions.count}} versions; built {{build.commit_short}}; "
@@ -381,6 +517,8 @@ def _write_site_inputs(site: Path, about: str | None) -> None:
         ),
         "content/about.html": default_about if about is None else about,
     }
+    if about is None:
+        files["content/about.html"] += "<section id=\"cite\">{{{citation_block}}}</section>"
     for relative, text in files.items():
         path = site / relative
         path.parent.mkdir(parents=True, exist_ok=True)
@@ -414,19 +552,22 @@ def make_fixture_root(base: Path, *, about: str | None = None) -> Path:
                              ("site_preparation", "2025-11-15"), E4)
     status_1 = _evidence_row(E1, ["physical_status"], [P1], "Status of the evil site", "javascript:alert(1)", "2025-12-01")
     geometry_roles = ["geometry", "typed_metric:critical_it_mw"]
+    retired = _evidence_row(E5, ["context:project_context"], [P1], "Retired source", "https://example.org/retired", "")
     _write_dataset(
         versions / FIXTURE_PREVIEW,
         sites=[site_a],
         projects=[project_1],
-        evidence=[status_1, _evidence_row(E3, geometry_roles, [P1], EVIL_TITLE, GEOMETRY_URL, "")],
+        evidence=[status_1, _evidence_row(E3, geometry_roles, [P1], EVIL_TITLE, GEOMETRY_URL, ""), retired],
         manifest={"release_status": "preview", "reviewed_at": "2025-12-20", "preview_id": FIXTURE_PREVIEW},
         report={"final_release_gates": GATES, "publishable_as_final": False},
         readme=LEGAL_README,
     )
+    # The draft corrects one field of P1 and drops the retired evidence row E5.
+    corrected = {**project_1, "operating_model_unknown_reason": "not established by the selected evidence"}
     _write_dataset(
         versions / FIXTURE_DRAFT,
         sites=[site_a, site_b],
-        projects=[project_1, project_2, project_3],
+        projects=[corrected, project_2, project_3],
         evidence=[
             status_1,
             _evidence_row(E2, ["physical_status", "role:operator"], [P2, P3], "Beta status",
@@ -527,6 +668,26 @@ class FixtureBuildTests(unittest.TestCase):
         self.assertEqual(draft["lifecycle_reference_date"], "2025-12-31")
         self.assertEqual(preview["added_site_ids"], [SITE_A])
         self.assertEqual((draft["added_site_ids"], draft["removed_site_ids"]), ([SITE_B], []))
+        changes = draft["changes"]
+        self.assertEqual(changes["previous"], FIXTURE_PREVIEW)
+        self.assertEqual(changes["projects"], {
+            "added": [P2, P3], "removed": [], "changed": [{"id": P1, "fields": ["operating_model_unknown_reason"]}],
+        })
+        self.assertEqual(changes["evidence"]["removed"], [E5])
+        self.assertEqual(changes["evidence"]["changed"], [{"id": E3, "fields": ["project_ids_json"]}])
+        self.assertEqual(changes["schema"]["projects"], {"added_columns": [], "removed_columns": []})
+        self.assertIsNone(preview["changes"]["previous"])
+        page = self.page(f"versions/{FIXTURE_DRAFT}/index.html")
+        self.assertIn("not established by selected evidence → not established by the selected evidence", page)
+        self.assertIn("Retired source", page)
+        self.assertIn(f'href="../../versions/{FIXTURE_PREVIEW}/"', page)
+        feed = ET.parse(self.site / "feed.xml").getroot()
+        links = [entry.find(f"{ATOM}link").get("href") for entry in feed.findall(f"{ATOM}entry")]
+        self.assertEqual(links, [f"{self.base_url}versions/{FIXTURE_DRAFT}/", f"{self.base_url}versions/{FIXTURE_PREVIEW}/"])
+        sites_feed = ET.parse(self.site / "sites-feed.xml").getroot()
+        entries = sites_feed.findall(f"{ATOM}entry")
+        self.assertEqual([entry.find(f"{ATOM}title").text for entry in entries], ["Beta Campus", EVIL_NAME])
+        self.assertEqual(entries[0].find(f"{ATOM}updated").text, "2026-01-05T00:00:00Z")
 
     def test_hostile_text_is_escaped_everywhere(self):
         page = self.page(f"sites/{SITE_A}/index.html")
@@ -572,8 +733,11 @@ class FixtureBuildTests(unittest.TestCase):
         self.assertEqual(boundary["evidence_ids"], [E2, E3, E4])
         self.assertEqual(boundary["status_source"]["evidence_id"], E4)
         self.assertEqual(list(boundary["status_source"]), [
-            "evidence_id", "title", "publisher", "kind", "published_at", "source_url", "license",
+            "evidence_id", "title", "publisher", "kind", "published_at", "source_url", "license", "attribution",
         ])
+        self.assertEqual(boundary["geometry_source"]["evidence_id"], E3)
+        self.assertEqual(site["geometry_licenses"], ["CC-BY-4.0"])
+        self.assertEqual(site["geometry_attributions"], ["Fixture & Co"])
         evil = read_json(self.site / f"api/v1/sites/{SITE_A}.json")["site"]
         self.assertEqual(evil["local_note"], "free <note>")
         self.assertIsNone(evil["horizontal_uncertainty_metres"])
@@ -581,6 +745,10 @@ class FixtureBuildTests(unittest.TestCase):
         self.assertEqual(evidence["site_ids"], [SITE_A, SITE_B])
         self.assertIsNone(evidence["published_at"])
         self.assertEqual(evidence["url"], f"{self.base_url}api/v1/evidence/{E3}.json")
+        self.assertEqual(evidence["api_url"], evidence["url"])
+        self.assertEqual(evidence["archive_url"], f"https://web.archive.org/web/20260102000000/{GEOMETRY_URL}")
+        unsafe = read_json(self.site / f"api/v1/evidence/{E1}.json")["evidence"]
+        self.assertIsNone(unsafe["archive_url"])  # javascript: URLs get no archive link
 
     def test_summary_power_and_kml_escaping(self):
         summary = read_json(self.site / "api/v1/sites.json")
@@ -657,9 +825,8 @@ class FixtureBuildTests(unittest.TestCase):
     def test_broken_references_and_headers_fail_with_clear_errors(self):
         base = Path(tempfile.mkdtemp(prefix="references-", dir=self.base))
         root = make_fixture_root(base)
-        versions = public_site.discover_versions(root / "verified_construction_core")
-        draft = next(version for version in versions if version.id == FIXTURE_DRAFT)
-        projects = draft.path / "projects.csv"
+        directory = root / "verified_construction_core" / FIXTURE_DRAFT
+        projects = directory / "projects.csv"
         original = projects.read_bytes()
         cases = (  # projects.csv is written with minimal quoting: JSON cells double their quotes
             (b",e-0003,under_construction,", b",e-9999,under_construction,", "geometry_evidence_id 'e-9999'"),
@@ -671,9 +838,90 @@ class FixtureBuildTests(unittest.TestCase):
                 text = original.replace(old, new)
                 self.assertNotEqual(text, original)
                 projects.write_bytes(text)
+                _reseal(directory)
+                versions = public_site.discover_versions(root / "verified_construction_core")
+                draft = next(version for version in versions if version.id == FIXTURE_DRAFT)
                 with self.assertRaises(public_site.PublicSiteError) as caught:
                     public_site.load_atlas(draft, self.base_url)
                 self.assertIn(message, str(caught.exception))
+
+    def test_inputs_are_parsed_only_from_hash_checked_bytes(self):
+        base = Path(tempfile.mkdtemp(prefix="reread-", dir=self.base))
+        root = make_fixture_root(base)
+        versions = public_site.discover_versions(root / "verified_construction_core")
+        draft = next(version for version in versions if version.id == FIXTURE_DRAFT)
+        projects = draft.path / "projects.csv"
+        projects.write_bytes(projects.read_bytes().replace(b"Beta", b"Bete"))  # after validation
+        with self.assertRaises(public_site.PublicSiteError) as caught:
+            public_site.load_atlas(draft, self.base_url)
+        self.assertIn("changed after validation", str(caught.exception))
+
+    def test_unlisted_symlinked_and_active_originals_are_refused(self):
+        def unlisted_symlink(directory: Path, base: Path) -> None:
+            secret = base / "secret.txt"
+            secret.write_text("SECRET-OUTSIDE-DATASET\n", encoding="utf-8")
+            (directory / "ATTRIBUTION.txt").unlink()
+            (directory / "ATTRIBUTION.txt").symlink_to(secret)
+            _reseal(directory, drop=("ATTRIBUTION.txt",))
+
+        def active(directory: Path, base: Path) -> None:
+            (directory / "extra.html").write_text("<script>alert(1)</script>\n", encoding="utf-8")
+            _reseal(directory, add=("extra.html",))
+
+        def reserved(directory: Path, base: Path) -> None:
+            (directory / "atlas.json").write_text("{}\n", encoding="utf-8")
+            _reseal(directory, add=("atlas.json",))
+
+        def unlisted_table(directory: Path, base: Path) -> None:
+            _reseal(directory, drop=("schema.json",))
+
+        cases = {
+            "unlisted": (unlisted_symlink, "ATTRIBUTION.txt"),
+            "active": (active, "REVIEWED_ACTIVE_ORIGINALS"),
+            "reserved": (reserved, "reserved"),
+            "table": (unlisted_table, "schema.json"),
+        }
+        for name, (tamper, message) in cases.items():
+            with self.subTest(name=name):
+                base = Path(tempfile.mkdtemp(prefix=f"inputs-{name}-", dir=self.base))
+                root = make_fixture_root(base)
+                tamper(root / "verified_construction_core" / FIXTURE_DRAFT, base)
+                with self.assertRaises(public_site.PublicSiteError) as caught:
+                    public_site.build_site(base / "out", root=root)
+                self.assertIn(message, str(caught.exception))
+                self.assertFalse((base / "out").exists())
+
+    def test_lone_surrogates_and_long_csv_fields(self):
+        with self.assertRaises(public_site.PublicSiteError):
+            public_site.convert_value('["ok", "\\ud800"]', "json_array")
+        self.assertEqual(public_site.convert_value('["\\ud83d\\ude00"]', "json_array"), ["\U0001f600"])
+        self.assertEqual(public_site._x("a\ud800b"), "a\ufffdb")
+        geometry = "x" * 200_000  # beyond the csv module's default 131,072-character field limit
+        records = list(public_site._csv_records(f'site_id,geometry_json\ns-1,"{geometry}"\n', "fixture.csv"))
+        self.assertEqual(len(records[1][1][1]), 200_000)
+
+    def test_formerly_current_version_keeps_its_files(self):
+        """downloads/<id>/ of a version published as current is the same whichever version is current."""
+        base = Path(tempfile.mkdtemp(prefix="pinned-", dir=self.base))
+        root = make_fixture_root(base)
+        config = read_json(root / "site" / "config.json")
+        first = f"verified_construction_core/{FIXTURE_PREVIEW}"
+        builds = {}
+        for current in (FIXTURE_PREVIEW, FIXTURE_DRAFT):
+            path = base / f"config-{current}.json"
+            path.write_text(json.dumps({
+                **config, "current_dataset": f"verified_construction_core/{current}", "first_published_dataset": first,
+            }), encoding="utf-8")
+            builds[current] = base / f"out-{current}"
+            public_site.build_site(builds[current], root=root, config_path=path, base_url=self.base_url)
+        directories = [build / "downloads" / FIXTURE_PREVIEW for build in builds.values()]
+        hashes = [
+            {name: digest for name, digest in tree_hashes(directory).items() if name != "index.html"}
+            for directory in directories
+        ]
+        self.assertEqual(hashes[0], hashes[1])
+        for name in (f"datacenter-atlas-{FIXTURE_PREVIEW}.zip", "atlas.sqlite", "atlas.json", "datapackage.json"):
+            self.assertIn(name, hashes[1])
 
     def test_xml_outputs_drop_invalid_control_characters(self):
         self.assertEqual(public_site._x("a\x01b<c>"), "a�b&lt;c&gt;")
@@ -763,8 +1011,16 @@ class RealSiteBuildTests(unittest.TestCase):
         self.assertEqual(index["build"], {"source_commit": COMMIT})
         self.assertEqual(list(index), [
             "api_version", "name", "description", "base_url", "repository_url", "dataset", "endpoints",
-            "downloads", "license", "attribution_url", "docs_url", "build",
+            "downloads", "license", "attribution_url", "docs_url", "build", "title", "caveats", "attribution",
+            "citation", "citation_url", "openapi_url", "schemas_url", "llms_txt_url", "versions_url",
+            "downloads_url", "dataset_files_url", "feeds", "media_type_note",
         ])
+        self.assertEqual(index["license"]["openstreetmap_geometries"]["id"], "ODbL-1.0")
+        self.assertEqual(set(stats["units"]), {key for key in stats if key.startswith("by_")})
+        self.assertEqual(set(stats["units"].values()), {"projects", "sites", "evidence_rows", "observations"})
+        for item in index["downloads"]:
+            pinned = item["pinned_url"].removeprefix(self.base_url)
+            self.assertTrue((self.site / pinned).is_file(), pinned)
         projects = self.rows["projects.csv"]
         self.assertEqual(Counter(stats["by_status"]), Counter(row["last_observed_physical_status"] for row in projects))
         self.assertEqual(Counter(stats["by_status_month"]), Counter(row["status_as_of"][:7] for row in projects))
@@ -821,12 +1077,7 @@ class RealSiteBuildTests(unittest.TestCase):
 
     def test_site_summary_shape(self):
         summaries = read_json(self.api / "sites.json")
-        self.assertEqual(list(summaries[0]), [
-            "site_id", "name", "country", "country_iso_a2", "latitude", "longitude", "geometry_type",
-            "official_boundary", "locator_scopes", "statuses", "newest_status_as_of", "oldest_status_as_of",
-            "project_count", "projects", "status_publishers", "power_observations", "verification_posture",
-            "independent_imagery_verification", "url", "api_url",
-        ])
+        self.assertEqual(list(summaries[0]), SITE_SUMMARY_KEYS)
         order = sorted(summaries, key=lambda item: (item["name"].casefold(), item["name"], item["site_id"]))
         self.assertEqual(summaries, order)
         multi = read_json(self.api / "stats.json")["counts"]["multi_project_sites"]
@@ -844,9 +1095,25 @@ class RealSiteBuildTests(unittest.TestCase):
         geometries = {feature["id"]: feature["geometry"] for feature in original}
         names = [feature["properties"]["name"] for feature in collection["features"]]
         self.assertEqual(names, sorted(names, key=str.casefold))
+        self.assertEqual(collection["license"]["openstreetmap_geometries"]["id"], "ODbL-1.0")
+        self.assertIn("OpenStreetMap", collection["attribution"])
+        rewound = 0
         for feature in collection["features"]:
-            self.assertEqual(feature["geometry"], geometries[feature["id"]])
+            original_geometry = geometries[feature["id"]]
+            self.assertEqual(ring_sets(feature["geometry"]), ring_sets(original_geometry), feature["id"])
+            self.assertTrue(follows_right_hand_rule(feature["geometry"]), feature["id"])
+            rewound += feature["geometry"] != original_geometry
             self.assertEqual(feature["properties"]["site_id"], feature["id"])
+            single = read_json(self.api / "sites" / f"{feature['id']}.geojson")
+            self.assertEqual(single["features"], [feature])
+        self.assertGreater(rewound, 0)  # the checkpoint has clockwise rings; the API reorients them
+        for country in read_json(self.api / "countries.json"):
+            document = read_json(self.api / "countries" / f"{country['country_iso_a2']}.geojson")
+            self.assertEqual(sorted(item["id"] for item in document["features"]), country["site_ids"])
+            with (self.api / "countries" / f"{country['country_iso_a2']}.csv").open(encoding="utf-8", newline="") as handle:
+                rows = list(csv.DictReader(handle))
+            self.assertEqual(sorted(row["site_id"] for row in rows), country["site_ids"])
+            self.assertTrue(all(json.loads(row["statuses_json"]) for row in rows))
 
     def test_sqlite_database(self):
         path = self.site / "downloads" / "latest" / "atlas.sqlite"
@@ -893,14 +1160,17 @@ class RealSiteBuildTests(unittest.TestCase):
         lines = (directory / "SHA256SUMS").read_text(encoding="ascii").splitlines()
         sums = {name: digest for digest, name in (line.split("  ", 1) for line in lines)}
         self.assertEqual(list(sums), sorted(sums))
-        self.assertEqual(sorted(sums), sorted(path.name for path in directory.iterdir() if path.name != "SHA256SUMS"))
+        # The builder's index.html landing page is not a data file: it is in neither SHA256SUMS nor the zip.
+        self.assertTrue((directory / "index.html").is_file(), directory)
+        listed = sorted(path.name for path in directory.iterdir() if path.name not in {"SHA256SUMS", "index.html"})
+        self.assertEqual(sorted(sums), listed)
         for name, digest in sums.items():
             self.assertEqual(sha256(directory / name), digest, f"{directory.name}/{name}")
         return sums
 
     def test_checksums_cover_every_download_directory(self):
         downloads = self.site / "downloads"
-        directories = sorted(path.name for path in downloads.iterdir())
+        directories = sorted(path.name for path in downloads.iterdir() if path.is_dir())
         self.assertEqual(directories, sorted([*(path.name for path in version_dirs()), "latest"]))
         for name in directories:
             sums = self.check_checksums(downloads / name)
@@ -916,7 +1186,9 @@ class RealSiteBuildTests(unittest.TestCase):
         latest = self.site / "downloads" / "latest"
         latest_zip = latest / "datacenter-atlas-latest.zip"
         self.assertEqual((pinned / f"datacenter-atlas-{self.dataset_id}.zip").read_bytes(), latest_zip.read_bytes())
-        expected = sorted(path.name for path in latest.iterdir() if path.name not in {"SHA256SUMS", latest_zip.name})
+        expected = sorted(
+            path.name for path in latest.iterdir() if path.name not in {"SHA256SUMS", "index.html", latest_zip.name}
+        )
         with zipfile.ZipFile(latest_zip) as archive:
             self.assertEqual(archive.namelist(), expected)
             for info in archive.infolist():
@@ -925,8 +1197,8 @@ class RealSiteBuildTests(unittest.TestCase):
                 self.assertEqual(archive.read(info), (latest / info.filename).read_bytes())
         for name in expected:
             self.assertEqual((pinned / name).read_bytes(), (latest / name).read_bytes(), name)
-        unzipped = {path.name for path in pinned.iterdir() if not path.name.endswith(".zip")}
-        self.assertEqual(unzipped, {path.name for path in latest.iterdir() if not path.name.endswith(".zip")})
+        unzipped = {path.name for path in pinned.iterdir() if not path.name.endswith((".zip", ".html"))}
+        self.assertEqual(unzipped, {path.name for path in latest.iterdir() if not path.name.endswith((".zip", ".html"))})
 
     def test_datapackage_resources(self):
         directory = self.site / "downloads" / "latest"
@@ -972,8 +1244,25 @@ class RealSiteBuildTests(unittest.TestCase):
             for placemark in placemarks
         )
         geometry = Counter(row["geometry_type"] for row in self.rows["sites.csv"])
-        expected = {"Point": geometry["Point"], "Polygon": geometry["Polygon"], "MultiGeometry": geometry["MultiPolygon"]}
+        # Polygon sites are a MultiGeometry of a Point at the display anchor plus their polygons.
+        expected = {"Point": geometry["Point"], "MultiGeometry": geometry["Polygon"] + geometry["MultiPolygon"]}
         self.assertEqual(kinds, Counter(expected))
+        document = tree.getroot().find(f"{KML}Document")
+        style = document.find(f"{KML}Style")
+        self.assertEqual(style.get("id"), "atlas-site")
+        self.assertEqual(style.find(f"{KML}PolyStyle/{KML}color").text[:2], "40")  # translucent fill
+        polygons = Counter(row["geometry_type"] for row in self.rows["sites.csv"])
+        self.assertEqual(
+            sum(len(placemark.findall(f".//{KML}Polygon")) > 0 for placemark in placemarks),
+            polygons["Polygon"] + polygons["MultiPolygon"],
+        )
+        for placemark in placemarks:
+            self.assertEqual(placemark.find(f"{KML}styleUrl").text, "#atlas-site")
+            self.assertEqual(len(placemark.findall(f".//{KML}Point")), 1, placemark.get("id"))
+            children = [child.tag.removeprefix(KML) for child in placemark]
+            self.assertLess(children.index("description"), children.index("styleUrl"))
+            self.assertLess(children.index("styleUrl"), children.index("ExtendedData"))
+        self.assertIn("ODbL", document.find(f"{KML}description").text)
 
     def test_versions_document(self):
         versions = read_json(self.api / "versions.json")
@@ -1036,7 +1325,7 @@ class RealSiteBuildTests(unittest.TestCase):
 
     def test_every_schema_column_has_a_description(self):
         descriptions = read_json(ROOT / "site" / "field_descriptions.json")
-        dictionary = (self.site / "data" / "dictionary" / "index.html").read_text(encoding="utf-8")
+        dictionary = (self.site / "data" / "dictionary" / "index.html").read_text(encoding="utf-8").replace("<wbr>", "")
         for table, spec in self.schema["tables"].items():
             for field in spec["fields"]:
                 text = descriptions["tables"].get(table, {}).get(field["name"], "")
@@ -1048,6 +1337,23 @@ class RealSiteBuildTests(unittest.TestCase):
             self.assertEqual(list(descriptions["derived"][table.removesuffix(".csv")]), names)
         self.assertEqual(list(descriptions["site_summary"]), list(read_json(self.api / "sites.json")[0]))
         self.assertNotIn("Not yet documented.", dictionary)
+        stats = read_json(self.api / "stats.json")
+        for key in stats:
+            if key not in {"api_version", "dataset"}:
+                self.assertIn(key, descriptions["stats"], f"stats.json {key} is not described")
+        for key in stats["counts"]:
+            self.assertIn(key, descriptions["counts"], f"counts.{key} is not described")
+        self.assertIn("host_estate_context_projects", descriptions["counts"])  # arrives with the next checkpoint
+        self.assertEqual(list(descriptions["country_summary"]), list(read_json(self.api / "countries.json")[0]))
+        self.assertEqual(set(descriptions["version"]), set(read_json(self.api / "versions.json")["versions"][0]))
+        self.assertEqual(list(descriptions["index"]), list(read_json(self.api / "index.json")))
+        api_page = (self.site / "api" / "index.html").read_text(encoding="utf-8").replace("<wbr>", "")
+        for name in descriptions["stats"]:
+            self.assertIn(f"<code>{name}</code>", api_page)
+        # JSON array columns show a non-empty example of their objects, not "[]".
+        powered = re.search(r'power_observations_json</td>.*?<td class="mono small">([^<]*)</td>', dictionary)
+        self.assertTrue(powered and powered.group(1).startswith("[{"), powered and powered.group(1))
+        self.assertIn('id="dictionary-embedded"', dictionary)
 
     def test_internal_links_resolve(self):
         self.assertEqual(link_problems(self.site, self.base_url), [])
@@ -1133,9 +1439,25 @@ class RealSiteBuildTests(unittest.TestCase):
         gates = read_json(self.dataset_dir / "selection-report.json")["final_release_gates"]
         self.assertEqual(bootstrap["gates_summary"]["total"], len(gates))
         self.assertEqual(bootstrap["gates_summary"]["passed"], sum(1 for gate in gates.values() if gate["passed"]))
-        dataset = json.loads(parsed.data_blocks["application/ld+json"])
+        website = json.loads(parsed.data_blocks["application/ld+json"])
+        self.assertEqual(website["@type"], "WebSite")
+        self.assertEqual(website["about"], {"@id": f"{self.base_url}data/#dataset"})
+        dataset = json.loads(scan(self.site / "data" / "index.html").data_blocks["application/ld+json"])
         self.assertEqual(dataset["@type"], "Dataset")
+        self.assertEqual((dataset["@id"], dataset["url"]), (f"{self.base_url}data/#dataset", f"{self.base_url}data/"))
+        self.assertEqual(dataset["name"], "Data Center Atlas: Verified Construction Core")
         self.assertTrue(all(item["@type"] == "DataDownload" for item in dataset["distribution"]))
+        self.assertIn("https://opendatacommons.org/licenses/odbl/1-0/", dataset["license"])
+        south, west, north, east = map(float, dataset["spatialCoverage"]["geo"]["box"].split())
+        self.assertTrue(-90 <= south < north <= 90 and -180 <= west < east <= 180)
+        for row in self.rows["sites.csv"]:
+            self.assertTrue(south <= float(row["latitude"]) <= north and west <= float(row["longitude"]) <= east)
+        self.assertEqual(dataset["citation"], read_json(self.api / "citation.json")["apa"])
+        self.assertTrue(dataset["variableMeasured"])
+        catalog = json.loads(scan(self.site / "versions" / "index.html").data_blocks["application/ld+json"])
+        self.assertEqual(catalog["@type"], "DataCatalog")
+        self.assertEqual(len(catalog["dataset"]), len(version_dirs()))
+        self.assertEqual(bootstrap["license"]["openstreetmap_geometries"]["id"], "ODbL-1.0")
         stylesheets = parsed.stylesheets
         leaflet = next(index for index, href in enumerate(stylesheets) if href.endswith("leaflet.css"))
         site_css = next(index for index, href in enumerate(stylesheets) if href.endswith("site.css"))
@@ -1174,6 +1496,16 @@ class RealSiteBuildTests(unittest.TestCase):
             if not value.startswith("#"):
                 self.assertTrue(value.startswith(("https://", "http://")), f"<{tag}> {value}")
         self.assertTrue(any(value == f"{self.base_url}sites/" for _, _, value in not_found.links))
+        not_found_text = (self.site / "404.html").read_text(encoding="utf-8")
+        self.assertIn('<meta name="robots" content="noindex">', not_found_text)
+        home = (self.site / "index.html").read_text(encoding="utf-8")
+        self.assertNotIn('name="robots"', home)  # sitemap pages stay indexable
+        api_page = (self.site / "api" / "index.html").read_text(encoding="utf-8")
+        self.assertIn('id="explorer-links"', api_page)
+        self.assertIn("../methodology/#identifiers", api_page)
+        self.assertIn("../../methodology/#identifiers", (self.site / "data" / "dictionary" / "index.html").read_text(encoding="utf-8"))
+        # Identifier cells break at - as well (a hyphen before a digit is not a break opportunity on its own).
+        self.assertEqual(public_site._breakable("2026-08-20_a.b/c"), "2026-<wbr>08-<wbr>20_<wbr>a.<wbr>b/<wbr>c")
 
     def test_feed_and_sitemap(self):
         feed = ET.parse(self.site / "feed.xml").getroot()
@@ -1198,6 +1530,227 @@ class RealSiteBuildTests(unittest.TestCase):
         for path in static.rglob("*"):
             if path.is_file() and not any(part.startswith(".") for part in path.relative_to(static).parts):
                 self.assertEqual((self.site / path.relative_to(static)).read_bytes(), path.read_bytes(), path)
+
+    def test_api_files_follow_their_json_schemas(self):
+        checker = SchemaCheck(self.api / "schemas")
+        index = read_json(self.api / "schemas" / "index.json")
+        self.assertEqual(sorted(f"{name}.schema.json" for name in index["schemas"]), sorted(checker.schemas))
+        for schema in checker.schemas.values():
+            self.assertEqual(schema["$schema"], "https://json-schema.org/draft/2020-12/schema")
+        checked = Counter()
+        for path in sorted(self.api.rglob("*")):
+            relative = path.relative_to(self.api).as_posix()
+            target = api_schema_for(relative)
+            if target is None or relative.startswith("schemas/") and relative != "schemas/index.json":
+                continue
+            name, many = target
+            schema = {"type": "array", "items": {"$ref": name}} if many else {"$ref": name}
+            problems = checker.errors(read_json(path), schema)
+            self.assertEqual(problems[:5], [], relative)
+            checked[name] += 1
+        self.assertEqual(checked["site-document.schema.json"], len(self.rows["sites.csv"]))
+        self.assertEqual(checked["evidence-document.schema.json"], len(self.rows["evidence.csv"]))
+
+    def test_openapi_describes_every_endpoint(self):
+        document = read_json(self.api / "openapi.json")
+        self.assertEqual(document["openapi"], "3.1.0")
+        self.assertEqual(document["servers"], [{"url": self.base_url.rstrip("/"), "description": "GitHub Pages (static files)"}])
+        index = read_json(self.api / "index.json")
+        self.assertEqual(index["openapi_url"], f"{self.base_url}api/v1/openapi.json")
+        endpoints = {url.removeprefix(self.base_url) for url in index["endpoints"].values()}
+        self.assertEqual({path.lstrip("/") for path in document["paths"]}, endpoints)
+        components = document["components"]["schemas"]
+        operation_ids = set()
+        for path, item in document["paths"].items():
+            operation = item["get"]
+            operation_ids.add(operation["operationId"])
+            concrete = path.lstrip("/")
+            for parameter in operation.get("parameters", []):
+                self.assertTrue(re.fullmatch(parameter["schema"]["pattern"].strip("^$"), parameter["example"]), path)
+                concrete = concrete.replace("{" + parameter["name"] + "}", parameter["example"])
+            self.assertTrue((self.site / concrete).is_file(), concrete)
+            for content in operation["responses"]["200"]["content"].values():
+                for ref in re.findall(r'"\$ref": "#/components/schemas/([A-Za-z]+)"', json.dumps(content)):
+                    self.assertIn(ref, components)
+        self.assertEqual(len(operation_ids), len(document["paths"]))
+        for ref in re.findall(r'"\$ref": "([^"]+)"', json.dumps(components)):
+            self.assertTrue(ref.startswith("#/components/schemas/") and ref.rsplit("/", 1)[1] in components, ref)
+        self.assertIn('rel="service-desc"', (self.site / "api" / "index.html").read_text(encoding="utf-8"))
+
+    def test_llms_txt_is_a_caveat_first_entry_point(self):
+        text = (self.site / "llms.txt").read_text(encoding="utf-8")
+        self.assertTrue(text.startswith("# Data Center Atlas\n\n> "))
+        self.assertIn(self.dataset_id, text)
+        for phrase in ("not the status today", "not building footprints", "unknown, never zero", "not a census"):
+            self.assertIn(phrase, text)
+        full = (self.site / "llms-full.txt").read_text(encoding="utf-8")
+        self.assertTrue(full.startswith(text))
+        for row in self.rows["sites.csv"][:20]:
+            self.assertNotIn(row["name"], full)  # Atlas-authored text only: no site names or evidence titles
+        for link in re.findall(r"\]\((https?://[^)]+)\)", text) + re.findall(r"https?://\S+", full):
+            link = link.rstrip(".,;:)\"'")
+            if not link.startswith(self.base_url) or "{" in link:
+                continue
+            relative = unquote(link.removeprefix(self.base_url).split("#")[0])
+            target = self.site / relative / "index.html" if relative.endswith("/") or not relative else self.site / relative
+            self.assertTrue(target.is_file(), link)
+
+    def test_download_directories_have_landing_pages_and_urls_resolve(self):
+        downloads = self.site / "downloads"
+        self.assertTrue((downloads / "index.html").is_file())
+        for directory in downloads.iterdir():
+            if directory.is_dir():
+                page = (directory / "index.html").read_text(encoding="utf-8")
+                for name in (directory / "SHA256SUMS").read_text(encoding="ascii").split():
+                    if not re.fullmatch(r"[0-9a-f]{64}", name):
+                        self.assertIn(f'>{name}</a>', page)
+        versions = read_json(self.api / "versions.json")
+        current = next(item for item in versions["versions"] if item["id"] == self.dataset_id)
+        self.assertTrue(current["derived_downloads"])
+        derived = {item["name"] for item in current["files"] if item["derived"]}
+        self.assertIn(f"datacenter-atlas-{self.dataset_id}.zip", derived)
+        self.assertIn("SHA256SUMS", derived)
+        self.assertEqual({item["name"] for item in current["files"] if not item["derived"]},
+                         {*self.manifest["files"], "manifest.json", "manifest.sha256"})
+        urls = []
+        for item in versions["versions"]:
+            urls += [item["download_base_url"], item["page_url"], *(entry["url"] for entry in item["files"])]
+        citation = read_json(self.api / "citation.json")
+        urls += [citation["version_url"], citation["files_url"]]
+        for document in (self.site / "index.html", self.site / "data" / "index.html", self.site / "feed.xml",
+                         self.site / "llms.txt", self.api / "index.json", self.api / "sites.json"):
+            urls += re.findall(re.escape(self.base_url) + r"downloads/[^\s\"'<>)]*/(?=[\s\"'<>)])",
+                               document.read_text(encoding="utf-8"))
+        self.assertGreater(len(urls), 100)
+        for url in set(urls):
+            relative = unquote(url.removeprefix(self.base_url))
+            target = self.site / relative / "index.html" if relative.endswith("/") else self.site / relative
+            self.assertTrue(target.is_file(), url)
+
+    def test_citations_agree_everywhere(self):
+        citation = read_json(self.api / "citation.json")
+        apa = citation["apa"]
+        self.assertEqual(apa, f"Kyars, K. ({self.manifest_checkpoint_year()}). Data Center Atlas: Verified Construction "
+                              f"Core (Version {self.dataset_id}) [Data set]. {self.base_url}")
+        self.assertEqual(read_json(self.api / "index.json")["citation"], apa)
+        escaped = html_escape(apa)
+        for page in ("data/index.html", "api/index.html", "about/index.html"):
+            self.assertIn(escaped, (self.site / page).read_text(encoding="utf-8"), page)
+        self.assertTrue((self.api / "citation.bib").read_text(encoding="utf-8").startswith("@misc{kyars"))
+        ris = (self.api / "citation.ris").read_bytes()
+        self.assertTrue(ris.startswith(b"TY  - DATA\r\n") and ris.endswith(b"ER  - \r\n"))
+        self.assertEqual(citation["csl_json"][0]["type"], "dataset")
+
+    def manifest_checkpoint_year(self) -> str:
+        versions = read_json(self.api / "versions.json")["versions"]
+        return next(item for item in versions if item["id"] == self.dataset_id)["checkpoint_date"][:4]
+
+    def test_excel_workbook(self):
+        path = self.site / "downloads" / "latest" / "atlas.xlsx"
+        main = "{http://schemas.openxmlformats.org/spreadsheetml/2006/main}"
+        with zipfile.ZipFile(path) as archive:
+            self.assertEqual(archive.namelist()[0], "[Content_Types].xml")
+            for info in archive.infolist():
+                self.assertEqual(info.date_time, (1980, 1, 1, 0, 0, 0))
+            workbook = ET.fromstring(archive.read("xl/workbook.xml"))
+            names = [sheet.get("name") for sheet in workbook.iter(f"{main}sheet")]
+            self.assertEqual(names, ["README", "sites", "projects", "evidence"])
+            sheets = {}
+            for index, name in enumerate(names, start=1):
+                rows = []
+                for row in ET.fromstring(archive.read(f"xl/worksheets/sheet{index}.xml")).iter(f"{main}row"):
+                    cells = {}
+                    for cell in row.iter(f"{main}c"):
+                        text = "".join(cell.itertext())
+                        self.assertLessEqual(len(text), 32767)
+                        cells[re.sub(r"\d", "", cell.get("r"))] = (cell.get("t"), text)
+                    rows.append(cells)
+                sheets[name] = rows
+        for table in ("sites", "projects", "evidence"):
+            self.assertEqual(len(sheets[table]), len(self.rows[f"{table}.csv"]) + 1, table)
+        header = [value for _, value in sheets["sites"][0].values()]
+        self.assertNotIn("geometry_json", header)
+        self.assertIn("geojson_url", header)
+        latitude = header.index("latitude")
+        column = list(sheets["sites"][0])[latitude]
+        kind, value = sheets["sites"][1][column]
+        self.assertIsNone(kind)  # a number cell, not text
+        self.assertEqual(float(value), float(self.rows["sites.csv"][0]["latitude"]))
+        names = {value for row in sheets["sites"][1:] for kind, value in row.values() if kind == "inlineStr"}
+        lévis = next((row["name"] for row in self.rows["sites.csv"] if "é" in row["name"]), None)
+        if lévis:
+            self.assertIn(lévis, names)
+        readme = " ".join(value for row in sheets["README"] for _, value in row.values())
+        self.assertIn(self.dataset_id, readme)
+        self.assertIn("not a census", readme)
+
+    def test_sqlite_observation_tables_and_reproducible_bytes(self):
+        path = self.site / "downloads" / "latest" / "atlas.sqlite"
+        connection = sqlite3.connect(f"file:{path}?mode=ro", uri=True)
+        try:
+            for table, column in (
+                ("power_observations", "power_observations_json"), ("efficiency_observations", "efficiency_observations_json"),
+                ("annual_energy_observations", "annual_energy_observations_json"), ("role_claims", "role_claims_json"),
+                ("workload_observations", "workloads_json"),
+            ):
+                expected = sum(len(items) for items in self.json_list("projects.csv", column))
+                self.assertEqual(connection.execute(f"SELECT COUNT(*) FROM {table}").fetchone()[0], expected, table)
+                columns = [row[1] for row in connection.execute(f"PRAGMA table_info({table})")]
+                self.assertEqual(columns[:2], ["project_id", "ordinal"], table)
+            metadata = dict(connection.execute("SELECT key, value FROM metadata"))
+            self.assertEqual(metadata["odbl_license"], "ODbL-1.0")
+            self.assertIn("table:efficiency_observations", metadata)
+            self.assertEqual(connection.execute("PRAGMA page_size").fetchone()[0], 4096)
+        finally:
+            connection.close()
+        # The bytes must not depend on the SQLite build's secure_delete default (on for Debian/Ubuntu, off on macOS).
+        config = public_site.load_config(ROOT / "site" / "config.json")
+        context = public_site._prepare_context(ROOT, config, self.base_url, COMMIT)
+        connect = sqlite3.connect
+        results = []
+        for preset in ("OFF", "ON"):
+            def preset_connect(*args, preset=preset, **kwargs):
+                connection = connect(*args, **kwargs)
+                connection.execute(f"PRAGMA secure_delete = {preset}")
+                return connection
+            with mock.patch.object(public_site.sqlite3, "connect", preset_connect):
+                results.append(public_site._sqlite_database(context, context.atlas))
+        self.assertEqual(results[0], results[1])
+        self.assertEqual(results[1], path.read_bytes())
+
+    def test_site_pages_are_accessible_and_link_onwards(self):
+        site_id = read_json(self.api / "sites.json")[0]["site_id"]
+        text = (self.site / "sites" / site_id / "index.html").read_text(encoding="utf-8")
+        self.assertIn('<nav class="breadcrumbs" aria-label="Breadcrumb"><ol>', text)
+        self.assertNotIn("›", text)
+        self.assertIn(f'href="../../#site={site_id}"', text)
+        self.assertIn(f'href="../../api/v1/sites/{site_id}.geojson"', text)
+        self.assertIn('aria-label="Copy coordinates ', text)
+        self.assertIn('<caption class="small muted">Evidence for ', text)
+        self.assertIn('<td><code class="checksum">', text)
+        self.assertRegex(text, r'<time datetime="\d{4}-\d{2}-\d{2}T[^"]+" title="[^"]+">\d{4}-\d{2}-\d{2}</time>')
+        self.assertIn('rel="alternate" type="application/geo+json"', text)
+        self.assertIn("Cite this site", text)
+        country = read_json(self.api / "countries.json")[0]
+        page = (self.site / "countries" / country["slug"] / "index.html").read_text(encoding="utf-8")
+        self.assertIn(f'href="../../?country={country["country_iso_a2"]}"', page)
+        data = (self.site / "data" / "index.html").read_text(encoding="utf-8")
+        labels = re.findall(r'<button type="button" class="[^"]*copy-btn[^"]*"[^>]*?(?: aria-label="([^"]*)")?>', data)
+        self.assertTrue(labels)
+        self.assertEqual(len(labels), len(set(labels)), "copy buttons need distinct accessible names")
+        self.assertIn("keep_default_na", data)
+        self.assertIn('na = ""', data.replace("&quot;", '"'))
+        chicago = next((row for row in self.rows["evidence.csv"] if row["publisher"] == "City of Chicago"), None)
+        if chicago:
+            projects = set(json.loads(chicago["project_ids_json"]))
+            site_ids = {row["site_id"] for row in self.rows["projects.csv"] if row["project_id"] in projects}
+            for chicago_site in site_ids:
+                page = (self.site / "sites" / chicago_site / "index.html").read_text(encoding="utf-8")
+                self.assertIn("makes no claims as to the content, accuracy, timeliness, or completeness", page)
+            self.assertIn("makes no claims as to the content, accuracy, timeliness, or completeness", data)
+        footer = (self.site / "index.html").read_text(encoding="utf-8")
+        self.assertIn('rel="noopener license"', footer)
+        self.assertIn("https://opendatacommons.org/licenses/odbl/1-0/", footer)
 
     def test_rebuild_is_byte_identical(self):
         with tempfile.TemporaryDirectory(prefix="atlas-site-again-") as directory:

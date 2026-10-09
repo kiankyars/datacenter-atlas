@@ -127,13 +127,22 @@
 
   var liveRegion = null;
 
-  function announce(doc, message) {
-    if (!liveRegion) {
+  // The status region is created when the page starts, not on the first
+  // announcement: screen readers only follow live regions that already exist.
+  function ensureLiveRegion(doc) {
+    if (!liveRegion && doc.body) {
       liveRegion = doc.createElement('p');
       liveRegion.className = 'sr-only';
       liveRegion.setAttribute('role', 'status');
       liveRegion.setAttribute('aria-live', 'polite');
       doc.body.appendChild(liveRegion);
+    }
+    return liveRegion;
+  }
+
+  function announce(doc, message) {
+    if (!ensureLiveRegion(doc)) {
+      return;
     }
     liveRegion.textContent = '';
     window.setTimeout(function () { liveRegion.textContent = message; }, 30);
@@ -396,6 +405,7 @@
   }
 
   function init(doc) {
+    ensureLiveRegion(doc);
     revealScriptOnly(doc);
     initCopyButtons(doc);
     initTableFilters(doc);

@@ -1,8 +1,7 @@
 <div class="atlas-intro">
   <div class="atlas-intro-copy">
     <h1 id="atlas-title" class="atlas-title">Data-centre construction, site by site</h1>
-    <p class="atlas-lede">{{counts.physical_sites}} physical sites in {{counts.countries}} countries whose last observed physical status was a construction stage, each backed by cited, dated evidence. A reviewed sample, not a census; locators are not footprints.</p>
-    <p class="atlas-meta">{{dataset.label}} · checkpoint {{dataset.checkpoint_date}} · status observed {{dataset.window_start}} – {{dataset.lifecycle_reference_date}}</p>
+    <p class="atlas-lede">{{counts.physical_sites}} physical sites in {{counts.countries}} countries whose last observed physical status was a construction stage, each backed by cited, dated evidence. <span class="atlas-window">Status observed {{dataset.window_start}} – {{dataset.lifecycle_reference_date}}.</span> A reviewed sample, not a census; locators are not footprints.</p>
   </div>
   <dl class="atlas-stats">
     <div class="atlas-stat"><dt>Sites</dt><dd>{{counts.physical_sites}}</dd></div>
@@ -81,6 +80,7 @@
 
     <div class="atlas-results-head">
       <p class="atlas-count-line"><span id="atlas-count" class="atlas-count" aria-live="polite" aria-atomic="true">Loading sites…</span><span id="atlas-count-total" class="atlas-count-total"></span></p>
+      <span class="atlas-kbd-hint" aria-hidden="true">↑ ↓ move · Enter opens</span>
       <button type="button" id="atlas-clear" class="atlas-link-btn">Clear filters</button>
       <div class="atlas-sort">
         <label for="atlas-sort" class="atlas-sublabel">Sort</label>
@@ -98,15 +98,19 @@
       <button type="button" id="atlas-export-csv" class="btn btn-small" aria-label="Download filtered CSV" disabled>CSV</button>
       <button type="button" id="atlas-export-geojson" class="btn btn-small" aria-label="Download filtered GeoJSON" disabled>GeoJSON</button>
       <button type="button" id="atlas-copy-link" class="btn btn-small" disabled>Copy link</button>
+      <button type="button" id="atlas-copy-embed" class="btn btn-small" aria-label="Copy embed code for this view" hidden disabled>Embed</button>
+      <a class="atlas-tools-terms" href="{{root}}about/attribution/">Licence &amp; attribution</a>
     </div>
 
     <div id="atlas-error" class="callout callout-warning atlas-error" role="alert" hidden>
       <p><strong>The site data could not be loaded.</strong> The static pages still work: browse <a href="{{root}}sites/">all sites</a> or <a href="{{root}}data/">download the data</a>.</p>
     </div>
     <p id="atlas-loading" class="atlas-loading">Loading sites…</p>
-    <ul id="atlas-list" class="atlas-list" aria-label="Matching sites"></ul>
+    <div id="atlas-notice" class="callout callout-warning atlas-notice" hidden></div>
+    <ul id="atlas-list" class="atlas-list" aria-label="Matching sites. Arrow keys move between sites, Enter opens one."></ul>
     <div id="atlas-empty" class="atlas-empty" hidden>
       <p>No sites match these filters.</p>
+      <p id="atlas-empty-reason" class="atlas-empty-reason" hidden></p>
       <button type="button" id="atlas-empty-clear" class="btn btn-small">Clear filters</button>
     </div>
   </section>
@@ -114,8 +118,8 @@
   <div id="atlas-mapwrap" class="atlas-mapwrap">
     <div id="atlas-map" class="atlas-map" role="region" aria-label="Map of matching sites. Every site is also listed in the results."></div>
     <button type="button" id="atlas-fit" class="atlas-map-btn">Fit to results</button>
-    <details id="atlas-legend" class="atlas-legend" open>
-      <summary class="atlas-legend-summary">Legend</summary>
+    <details id="atlas-legend" class="atlas-legend">
+      <summary id="atlas-legend-summary" class="atlas-legend-summary">Legend</summary>
       <ul id="atlas-legend-list" class="atlas-legend-list"></ul>
       <p class="atlas-legend-note">Colour shows the stage group; the exact status is always written out.</p>
     </details>

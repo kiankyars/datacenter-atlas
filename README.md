@@ -13,14 +13,15 @@ downloads, API documentation and methodology).
 
 ## Current dataset
 
+<!-- atlas:current-dataset -->
 - **Version:** `2026-08-20-v0.18-draft-thirty-fifth-reviewed`, the thirty-fifth reviewed checkpoint
   of the v0.18 draft, dated **2026-09-25**.
-- **Contents:** **197 physical sites** with **200 construction projects** in **46 countries**
-  (131 sites outside the United States), backed by **897 evidence rows**.
-- **Lifecycle cutoff:** **2026-08-20**. Every status was observed between 2026-05-22 and
-  2026-08-20.
-- **Release status:** a reviewed **draft**, not a final release (`publishable_as_final` is
-  false). Six of the nine final-release gates are not yet met:
+- **Contents:** **197 physical sites** with **200 construction projects** in **46 countries** (131
+  sites outside the United States), backed by **897 evidence rows**.
+- **Lifecycle cutoff:** **2026-08-20**. Every status was observed no more than 90 days before it,
+  between 2026-05-22 and 2026-08-20 inclusive.
+- **Release status:** a reviewed **draft**, not a final release (`publishable_as_final` is false).
+  Six of the nine final-release gates are not yet met:
 
 | Gate | Required | Current | Met |
 | --- | --- | --- | --- |
@@ -37,7 +38,9 @@ downloads, API documentation and methodology).
 The figures come from the dataset's
 [`selection-report.json`](verified_construction_core/2026-08-20-v0.18-draft-thirty-fifth-reviewed/selection-report.json).
 The last preview, [v0.17](verified_construction_core/2026-08-20-preview-v0.17/README.md), has 100
-sites; the reviewed drafts extend it towards 200. All 53 versions remain available.
+sites; the reviewed drafts extend it towards 200. Every version remains available on the
+[versions page](https://kiankyars.github.io/datacenter-atlas/versions/).
+<!-- /atlas:current-dataset -->
 
 ## Get the data
 
@@ -48,43 +51,66 @@ browser tools can read them directly.
 | --- | --- |
 | [`sites.csv`](https://kiankyars.github.io/datacenter-atlas/downloads/latest/sites.csv) | One row per physical site: name, country, display coordinates, geometry, statuses and status dates |
 | [`projects.csv`](https://kiankyars.github.io/datacenter-atlas/downloads/latest/projects.csv) | One row per project: status, status date and method, locator semantics, typed power observations, unknown reasons |
-| [`evidence.csv`](https://kiankyars.github.io/datacenter-atlas/downloads/latest/evidence.csv) | One row per source: URL, publisher, kind, roles, dates, licence, attribution and content hash |
+| [`evidence.csv`](https://kiankyars.github.io/datacenter-atlas/downloads/latest/evidence.csv) | One row per evidence item, that is a source as used for specific projects and roles (the same URL can appear in several rows): URL, publisher, kind, roles, dates, licence, attribution and content hash |
 | [`sites.geojson`](https://kiankyars.github.io/datacenter-atlas/downloads/latest/sites.geojson) | Site geometries (Point, Polygon, MultiPolygon) with site attributes |
-| [`atlas.sqlite`](https://kiankyars.github.io/datacenter-atlas/downloads/latest/atlas.sqlite) | The three tables with keys, link tables and a `site_overview` view |
+| [`atlas.sqlite`](https://kiankyars.github.io/datacenter-atlas/downloads/latest/atlas.sqlite) | The three tables with keys, link and observation tables, and a `site_overview` view |
+| [`atlas.xlsx`](https://kiankyars.github.io/datacenter-atlas/downloads/latest/atlas.xlsx) | Excel workbook: a README sheet plus the sites, projects and evidence tables (geometry omitted) |
 | [`atlas.json`](https://kiankyars.github.io/datacenter-atlas/downloads/latest/atlas.json) | Every record as typed JSON: empty values become `null` and JSON columns are parsed |
 | [`sites.kml`](https://kiankyars.github.io/datacenter-atlas/downloads/latest/sites.kml) | Placemarks for Google Earth and GIS tools |
 | [`datapackage.json`](https://kiankyars.github.io/datacenter-atlas/downloads/latest/datapackage.json) | Frictionless Data Package descriptor: field types, keys, sizes and hashes |
-| [`SHA256SUMS`](https://kiankyars.github.io/datacenter-atlas/downloads/latest/SHA256SUMS) | SHA-256 checksum of every file in the directory |
-| [`datacenter-atlas-latest.zip`](https://kiankyars.github.io/datacenter-atlas/downloads/latest/datacenter-atlas-latest.zip) | Every file in the directory except `SHA256SUMS`, including NDJSON, `schema.json`, `selection-report.json`, `ATTRIBUTION.txt` and the manifest |
+| [`SHA256SUMS`](https://kiankyars.github.io/datacenter-atlas/downloads/latest/SHA256SUMS) | SHA-256 checksum of every data file in the directory |
+| [`datacenter-atlas-latest.zip`](https://kiankyars.github.io/datacenter-atlas/downloads/latest/datacenter-atlas-latest.zip) | Every data file in the directory except `SHA256SUMS`, including NDJSON, `schema.json`, `selection-report.json`, `ATTRIBUTION.txt` and the manifest |
 
 In the CSVs an empty cell means unknown or not applicable, and columns ending in `_json` hold JSON
 text. The [data dictionary](https://kiankyars.github.io/datacenter-atlas/data/dictionary/)
-describes every column.
+describes every column, and the [download page](https://kiankyars.github.io/datacenter-atlas/downloads/latest/)
+lists every file with its size and checksum. Language models and agents can start from
+[`llms.txt`](https://kiankyars.github.io/datacenter-atlas/llms.txt).
 
-`downloads/latest/` follows the current version. For reproducible work, use the pinned directory,
-which never changes:
-<https://kiankyars.github.io/datacenter-atlas/downloads/2026-08-20-v0.18-draft-thirty-fifth-reviewed/>
-(its zip is named `datacenter-atlas-2026-08-20-v0.18-draft-thirty-fifth-reviewed.zip`). Every
-earlier version has its own directory with its original files; see
-[versions](https://kiankyars.github.io/datacenter-atlas/versions/).
+<!-- atlas:version-files -->
+`downloads/latest/` follows the current version. For reproducible work, use the version's own files,
+for example
+<https://kiankyars.github.io/datacenter-atlas/downloads/2026-08-20-v0.18-draft-thirty-fifth-reviewed/sites.csv>,
+and check them against that directory's
+[`SHA256SUMS`](https://kiankyars.github.io/datacenter-atlas/downloads/2026-08-20-v0.18-draft-thirty-fifth-reviewed/SHA256SUMS).
+<!-- /atlas:version-files -->
+
+A version's original checkpoint files (the CSVs, GeoJSON, schema, selection report, attribution and
+manifest) never change, and its `manifest.json` binds each one by size and SHA-256. The derived
+formats (JSON, NDJSON, SQLite, Excel, KML, Data Package and the zip) are regenerated by the site
+builder, so their bytes can change when the builder does; verify them against the directory's
+`SHA256SUMS`, not against a copy taken earlier. Versions published since the website went live keep
+their derived formats in their own directory; earlier versions have their original files only. Every
+version and its files are listed on the [versions page](https://kiankyars.github.io/datacenter-atlas/versions/)
+and in [`downloads/`](https://kiankyars.github.io/datacenter-atlas/downloads/).
 
 ### API
 
 Static JSON over HTTPS, versioned under `https://kiankyars.github.io/datacenter-atlas/api/v1/`.
 Changes within `v1` are additive only. Reference:
-<https://kiankyars.github.io/datacenter-atlas/api/>.
+<https://kiankyars.github.io/datacenter-atlas/api/>. The machine-readable contract is an
+[OpenAPI 3.1 description](https://kiankyars.github.io/datacenter-atlas/api/v1/openapi.json) with a
+[JSON Schema](https://kiankyars.github.io/datacenter-atlas/api/v1/schemas/index.json) for every
+response.
 
 | Endpoint | Returns |
 | --- | --- |
 | [`index.json`](https://kiankyars.github.io/datacenter-atlas/api/v1/index.json) | Dataset metadata, endpoint templates, and downloads with hashes |
 | [`sites.json`](https://kiankyars.github.io/datacenter-atlas/api/v1/sites.json), [`sites.geojson`](https://kiankyars.github.io/datacenter-atlas/api/v1/sites.geojson) | Every site summary, as an array or as a FeatureCollection |
-| `sites/{site_id}.json` | One site with all its projects and evidence |
+| `sites/{site_id}.json`, `sites/{site_id}.geojson` | One site with all its projects and evidence, or as a GeoJSON feature |
 | [`projects.json`](https://kiankyars.github.io/datacenter-atlas/api/v1/projects.json), `projects/{project_id}.json` | Project records |
 | [`evidence.json`](https://kiankyars.github.io/datacenter-atlas/api/v1/evidence.json), `evidence/{evidence_id}.json` | Evidence records |
-| [`countries.json`](https://kiankyars.github.io/datacenter-atlas/api/v1/countries.json), `countries/{ISO2}.json` | Country summaries and their sites |
-| [`stats.json`](https://kiankyars.github.io/datacenter-atlas/api/v1/stats.json) | Aggregate counts by status, country, month, geometry and more |
-| [`versions.json`](https://kiankyars.github.io/datacenter-atlas/api/v1/versions.json) | Every dataset version, with hashes and the sites each one added or removed |
+| [`countries.json`](https://kiankyars.github.io/datacenter-atlas/api/v1/countries.json), `countries/{ISO2}.json`, `.geojson`, `.csv` | Country summaries, and each country's sites as JSON, GeoJSON or CSV |
+| [`stats.json`](https://kiankyars.github.io/datacenter-atlas/api/v1/stats.json) | Aggregate counts by status, country, month, geometry and more, each with its unit |
+| [`versions.json`](https://kiankyars.github.io/datacenter-atlas/api/v1/versions.json) | Every dataset version, with its files, hashes and changes |
 | [`vocabularies.json`](https://kiankyars.github.io/datacenter-atlas/api/v1/vocabularies.json) | Labels and descriptions for coded values |
+| [`citation.json`](https://kiankyars.github.io/datacenter-atlas/api/v1/citation.json) | The citation as APA, BibTeX, biblatex, RIS and CSL-JSON |
+
+The map explorer keeps its view in the URL, so links reproduce a filtered view, for example
+<https://kiankyars.github.io/datacenter-atlas/?country=AU&status=mep_electrical,shell>. The
+parameters (`q`, `country`, `status`, `locator`, `power`, `from`, `to`, `sort` and `#site=`) and the
+columns of its CSV and GeoJSON exports are documented in
+[docs/public_site.md](docs/public_site.md#explorer-links-and-exports).
 
 ### Examples
 
@@ -169,17 +195,19 @@ A project is included only when all of these hold. The full contract is in the
 [docs/verified_construction_core.md](docs/verified_construction_core.md).
 
 1. **Recent physical work.** An authoritative source, such as a company disclosure, government
-   record or regulatory filing, reports physical construction on the named project as of a date in
-   the 90 days ending on the fixed lifecycle cutoff (2026-05-22 to 2026-08-20). Site preparation,
-   civil works, foundations, shell, MEP/electrical work, general construction, commissioning and
-   expansion works count. Announcements, land deals, permits, grid requests and planned opening
-   dates do not, and a later page edit or retrieval does not refresh the date.
+   record or regulatory filing, reports physical construction on the named project as of a date no
+   more than 90 days before the fixed lifecycle cutoff (2026-05-22 to 2026-08-20 inclusive). Site
+   preparation, civil works, foundations, shell, MEP/electrical work, general construction,
+   commissioning and expansion works count. Announcements, land deals, permits, grid requests and
+   planned opening dates do not, and a later page edit or retrieval does not refresh the date.
 2. **One distinct physical site.** The project is linked to one reviewed campus. Further buildings
    or phases on a campus already in the atlas do not add a site.
 3. **A reviewed locator.** An official boundary or a source-specific point or polygon, such as an
    official parcel or address point, a coordinate published by the developer or an authority, or a
    named map feature, with its scope and precision recorded. Locality centroids, head offices and
-   unrelated nearby buildings are rejected.
+   unrelated nearby buildings are rejected. A locator that a later versioned correction finds to
+   show only the host estate around a project is relabelled as host-estate context and listed as a
+   locator exception.
 4. **Closed evidence.** The status, the locator and every typed value cite an evidence row with its
    URL, publisher, retrieval time, content hash, licence and attribution.
 
@@ -214,8 +242,13 @@ Read these before using the data.
 
 ## Cite
 
-Cite the version you used. GitHub's "Cite this repository" button reads [CITATION.cff](CITATION.cff).
+Cite the version you used. GitHub's "Cite this repository" button reads [CITATION.cff](CITATION.cff),
+and the site offers the same citation as
+[BibTeX](https://kiankyars.github.io/datacenter-atlas/api/v1/citation.bib),
+[RIS](https://kiankyars.github.io/datacenter-atlas/api/v1/citation.ris) and
+[CSL-JSON](https://kiankyars.github.io/datacenter-atlas/api/v1/citation.json).
 
+<!-- atlas:citation -->
 > Kyars, K. (2026). *Data Center Atlas: Verified Construction Core* (Version
 > 2026-08-20-v0.18-draft-thirty-fifth-reviewed) [Data set].
 > https://kiankyars.github.io/datacenter-atlas/
@@ -229,6 +262,7 @@ Cite the version you used. GitHub's "Cite this repository" button reads [CITATIO
   url    = "https://kiankyars.github.io/datacenter-atlas/"
 }
 ```
+<!-- /atlas:citation -->
 
 ## Licence
 
@@ -263,15 +297,15 @@ checkpoint.
 
 | Path | Contents |
 | --- | --- |
-| [`verified_construction_core/`](verified_construction_core/) | Every dataset version (17 previews, 36 drafts): CSVs, GeoJSON, schema, selection report, attribution and manifest. Frozen; never rewritten. |
+| [`verified_construction_core/`](verified_construction_core/) | Every dataset version (the v0.1-v0.17 previews and the v0.18 drafts): CSVs, GeoJSON, schema, selection report, attribution and manifest. Frozen; never rewritten. |
 | [`definitions/`](definitions/) | Hash-pinned contracts for each reviewed batch |
 | [`sources/`](sources/) | Compact, attributed source facts and research packets used as build inputs |
 | [`datacenter_atlas/`](datacenter_atlas/) | Standard-library Python package: dataset builders and validators, and `public_site.py`, the website builder |
 | [`scripts/`](scripts/) | Command-line entry points, including `build_expansion_200_draft.py` and `build_public_site.py` |
-| [`site/`](site/) | Website sources: `config.json` (which dataset is current), page content, templates, static assets, vocabularies, field descriptions and browser tests |
+| [`site/`](site/) | Website sources: `config.json` (which dataset is current), page content, templates, static assets, vocabularies and field descriptions; `site/e2e/` holds the browser tests and the CI helpers (GitHub Pages-like server, metadata check, live checks, release notes) |
 | [`tests/`](tests/) | `unittest` suites |
 | [`docs/`](docs/) | Methodology, selection contract, expansion log and maintainer notes ([public_site.md](docs/public_site.md)) |
-| [`.github/`](.github/) | CI workflows (clean-clone checks, website build and deploy) and issue forms |
+| [`.github/`](.github/) | CI workflows (clean-clone checks; website build, deploy, live checks, releases and weekly link monitor) and issue forms |
 
 The remaining top-level directories, and the small Python wrappers at the root, belong to the
 wider research workspace that preceded the core. Git keeps their code and provenance manifests but
@@ -290,9 +324,11 @@ cd datacenter-atlas
 python3 scripts/build_expansion_200_draft.py --batch thirty-fifth-reviewed --validate-only
 
 # Build the website, API and downloads into _site/ (add --force to rebuild over an earlier build),
-# then preview it at http://localhost:8000/
+# check this README, CITATION.cff and DATA_LICENSE.md against it, then preview it the way GitHub
+# Pages serves it, at http://127.0.0.1:8000/datacenter-atlas/
 python3 scripts/build_public_site.py --output _site
-python3 -m http.server -d _site 8000
+python3 site/e2e/check_public_metadata.py --site _site
+python3 site/e2e/pages_server.py --directory _site --port 8000
 
 # Tests for the site builder and the current checkpoint
 python3 -m unittest -v tests.test_public_site tests.test_expansion_200_thirty_fifth_reviewed

@@ -1,6 +1,6 @@
 {
   "format": "datacenter-atlas-field-descriptions-v1",
-  "note": "Plain-language descriptions of every CSV column, of the fields the site builder derives for the JSON API, and of the site summary objects. Locators are not footprints; statuses are the last observed physical status on the status date, not a current status; empty values mean unknown, never zero.",
+  "note": "Plain-language descriptions of every CSV column, of the fields the site builder derives for the JSON API, and of the API's summary, statistics, version and index objects. Locators are not footprints; statuses are the last observed physical status on the status date, not a current status; empty values mean unknown, never zero.",
   "tables": {
     "sites.csv": {
       "site_id": "Atlas identifier of the physical site (vcc-site-…), derived deterministically from physical_site_stable_key. Primary key.",
@@ -105,17 +105,22 @@
       "official_boundary": "true when at least one project at the site uses an official boundary geometry (geometry_use_scope = official_boundary).",
       "country_slug": "Lower-case ISO 3166-1 alpha-2 code, used in country page URLs.",
       "url": "Absolute URL of the site's HTML page.",
-      "api_url": "Absolute URL of the site's JSON document (api/v1/sites/<site_id>.json)."
+      "api_url": "Absolute URL of the site's JSON document (api/v1/sites/<site_id>.json).",
+      "geometry_licenses": "Sorted distinct license values of the evidence rows named in geometry_evidence_ids: the terms that govern the site's geometry. ODbL-1.0 marks OpenStreetMap-derived geometry (share-alike); other codes are the source's own terms. Empty when no geometry evidence row records a licence.",
+      "geometry_attributions": "Sorted distinct attribution values of the same geometry evidence rows, to credit when reusing the geometry."
     },
     "projects": {
       "evidence_ids": "Sorted evidence_id values of every evidence row whose project_ids include the project.",
-      "status_source": "Object describing the status evidence: evidence_id, title, publisher, kind, published_at, source_url and license.",
+      "status_source": "Object describing the status evidence: evidence_id, title, publisher, kind, published_at, source_url, license and attribution.",
       "url": "Absolute URL of the project's section on its site page.",
-      "api_url": "Absolute URL of the project's JSON document (api/v1/projects/<project_id>.json)."
+      "api_url": "Absolute URL of the project's JSON document (api/v1/projects/<project_id>.json).",
+      "geometry_source": "The same object for the evidence row named in geometry_evidence_id (whose licence governs the project's geometry), or null when the project has no geometry evidence row."
     },
     "evidence": {
       "site_ids": "Sorted site_id values of the sites reached through project_ids.",
-      "url": "Absolute URL of the evidence JSON document (api/v1/evidence/<evidence_id>.json)."
+      "url": "Absolute URL of the evidence JSON document (api/v1/evidence/<evidence_id>.json). Evidence rows have no HTML page of their own, so unlike sites and projects this url is the JSON document; it equals api_url.",
+      "api_url": "Absolute URL of the evidence JSON document; the same value as url.",
+      "archive_url": "Wayback Machine URL for source_url at retrieved_at (https://web.archive.org/web/<timestamp>/<source_url>); the archive redirects to its nearest capture, which may not exist or may differ from the reviewed capture identified by content_hash. null when source_url is not an http(s) URL."
     }
   },
   "site_summary": {
@@ -138,6 +143,95 @@
     "verification_posture": "Verification basis code (see vocabularies).",
     "independent_imagery_verification": "Whether imagery verification is claimed; false throughout.",
     "url": "Absolute URL of the site page.",
-    "api_url": "Absolute URL of the full site document."
+    "api_url": "Absolute URL of the full site document.",
+    "geometry_licenses": "Sorted distinct licences of the site's geometry evidence rows (see the derived site field of the same name).",
+    "geometry_attributions": "Sorted distinct attributions of the site's geometry evidence rows."
+  },
+  "country_summary": {
+    "country_iso_a2": "ISO 3166-1 alpha-2 code (upper case); used in the country API paths.",
+    "country": "Country or territory name.",
+    "slug": "Lower-case ISO code, used in the country page URL.",
+    "site_count": "Number of physical sites in the country.",
+    "project_count": "Number of projects at those sites.",
+    "statuses": "Number of projects per last observed physical status (counts projects, not sites), most frequent first.",
+    "site_ids": "Sorted site_id values of the country's sites.",
+    "url": "Absolute URL of the country page.",
+    "api_url": "Absolute URL of the country JSON document (api/v1/countries/<ISO>.json).",
+    "geojson_url": "Absolute URL of the country's sites as GeoJSON (api/v1/countries/<ISO>.geojson).",
+    "csv_url": "Absolute URL of the country's sites as CSV (api/v1/countries/<ISO>.csv)."
+  },
+  "stats": {
+    "counts": "Record counts of the version (see Counts). Keys come from the checkpoint manifest plus four derived counts.",
+    "by_status": "Projects per last observed physical status (unit: projects; sums to counts.projects).",
+    "by_country": "Sites per country name (unit: sites; sums to counts.physical_sites).",
+    "by_status_month": "Projects per month (YYYY-MM) of status_as_of (unit: projects).",
+    "by_geometry_type": "Sites per geometry type; Polygon and MultiPolygon are counted separately here (unit: sites).",
+    "by_locator_scope": "Projects per geometry_use_scope code (unit: projects). reviewed_site_locator here is one specific scope code; counts.reviewed_site_locator_projects instead counts every project with any reviewed locator.",
+    "by_verification_posture": "Projects per verification posture code (unit: projects).",
+    "by_evidence_kind": "Evidence rows per kind (unit: evidence rows; sums to counts.evidence).",
+    "by_evidence_license": "Evidence rows per licence code; rows without a licence count as 'unspecified' (unit: evidence rows).",
+    "by_power_metric": "Typed power observations per metric (unit: observations, not projects). Efficiency (PUE) and annual-energy observations are not included.",
+    "release_gates": "Final-release gates from selection-report.json; lists are replaced by their lengths.",
+    "units": "The unit each by_* map counts: projects, sites, evidence_rows or observations."
+  },
+  "counts": {
+    "physical_sites": "Physical sites (rows of sites.csv).",
+    "projects": "Construction projects (rows of projects.csv).",
+    "evidence": "Evidence rows (rows of evidence.csv).",
+    "countries": "Distinct countries and territories with at least one site.",
+    "non_us_sites": "Sites outside the United States.",
+    "official_boundary_projects": "Projects whose geometry is an official boundary (geometry_use_scope official_boundary).",
+    "reviewed_site_locator_projects": "Projects whose verification posture is 'recent authoritative status + reviewed locator': any reviewed locator (campus, project or site locator), not only the geometry_use_scope code reviewed_site_locator. Official-boundary and host-estate-context projects are not included.",
+    "host_estate_context_projects": "Projects whose geometry only gives host-estate locality context (geometry_use_scope host_estate_context): the estate around the site, not a locator of the site. Present only in checkpoints that have such projects.",
+    "polygon_sites": "Sites with a Polygon or MultiPolygon geometry (derived; MultiPolygon sites are included).",
+    "point_sites": "Sites with a Point geometry (derived).",
+    "power_observation_projects": "Projects with at least one typed power observation (derived). Efficiency and annual-energy observations do not count.",
+    "multi_project_sites": "Sites with more than one project (derived)."
+  },
+  "version": {
+    "id": "Version identifier: the dataset directory name.",
+    "kind": "preview (frozen releases of the original cohort) or draft (reviewed checkpoints of the expansion).",
+    "label": "Human-readable version name.",
+    "checkpoint_date": "Date the version was reviewed and frozen.",
+    "lifecycle_reference_date": "Fixed date the status window ends on.",
+    "release_status": "preview or draft; no version is a final release unless publishable_as_final is true.",
+    "publishable_as_final": "Whether every final-release gate passed.",
+    "counts": "Record counts from the version's manifest.",
+    "manifest_sha256": "SHA-256 of the version's manifest.json, which binds every original file.",
+    "files": "Every file in downloads/<id>/: the original checkpoint files (derived false; they never change) and, for versions published as current, the derived formats, zip and SHA256SUMS written by the site builder (derived true; rebuilt by each site build).",
+    "download_base_url": "The version's download directory; its index page lists every file with its checksum.",
+    "repository_url": "The version's directory in the source repository.",
+    "added_site_ids": "Sites in this version that were not in the previous one.",
+    "removed_site_ids": "Sites of the previous version that are not in this one.",
+    "page_url": "The version's HTML page with its changes and citation.",
+    "derived_downloads": "Whether downloads/<id>/ also holds derived formats and a zip.",
+    "changes": "Record-level changes from the previous version: for sites, projects and evidence the added, removed and changed IDs (with the names of the changed CSV columns), and columns added or removed per table."
+  },
+  "index": {
+    "api_version": "API version of this path (\"1\").",
+    "name": "Site name.",
+    "description": "Site tagline.",
+    "base_url": "Absolute URL every other URL starts with.",
+    "repository_url": "Source repository.",
+    "dataset": "The current dataset version with counts, status window and manifest hash.",
+    "endpoints": "Absolute URL templates of every endpoint; replace {site_id}, {project_id}, {evidence_id} or {iso2}.",
+    "downloads": "Files of downloads/latest/ with format, media type, size, SHA-256 and pinned URL under downloads/<id>/.",
+    "license": "Licence layering: Atlas data, code, OpenStreetMap-derived geometries (ODbL) and third-party terms.",
+    "attribution_url": "Attribution and legal notices page.",
+    "docs_url": "Human-readable API guide.",
+    "build": "Source commit the site was built from (null for a local build).",
+    "title": "Dataset title used in citations.",
+    "caveats": "The four rules every reader of the data needs.",
+    "attribution": "Attribution statement to use when reusing the data.",
+    "citation": "Citation of the current version (APA style).",
+    "citation_url": "All citation formats (api/v1/citation.json).",
+    "openapi_url": "OpenAPI 3.1 description of the API.",
+    "schemas_url": "Index of the JSON Schemas of every response.",
+    "llms_txt_url": "Plain-text guide for language models and agents.",
+    "versions_url": "Versions page.",
+    "downloads_url": "Index of the download directories.",
+    "dataset_files_url": "Download directory of the current version.",
+    "feeds": "Atom feeds of new versions and new sites.",
+    "media_type_note": "How GitHub Pages labels some download formats."
   }
 }
