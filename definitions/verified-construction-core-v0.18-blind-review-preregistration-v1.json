@@ -1,0 +1,249 @@
+{
+  "schema_version": "datacenter-atlas-v018-blind-review-preregistration-v1",
+  "registered_at": "2026-10-09",
+  "purpose": "Pre-registered fixed 20-row blind re-review of the expanded Verified Construction Core population, required by the final-release gate (at least 19 identity/construction agreements). Registered and published before any blind review begins.",
+  "population": {
+    "release_path": "verified_construction_core/2026-08-20-v0.18-draft-thirty-sixth-reviewed",
+    "manifest_sha256": "515159b79bb7263fe1cf88c054a75bfdbd817acba2ae6bc3452f004cf7e80208",
+    "published_in_commit": "1393e3267e1121ff33b648fbd1f58238aa956e41",
+    "eligible_project_count": 203,
+    "eligible_project_keys_sha256": "4e00fbbdf9cd6942bb9e96ecfe14b1d3aa99e9f863f8aa53949a59fc70920311",
+    "population_scope": "all expanded projects, including inherited baseline and reviewed draft additions"
+  },
+  "sampling": {
+    "method": "Rank every eligible project_stable_key by sha256(seed + '|' + key) as lowercase hex and take the 20 smallest. Fixed: no resampling, substitution or extension after registration.",
+    "seed_material": "datacenter-atlas-blind-review-v1|4e00fbbdf9cd6942bb9e96ecfe14b1d3aa99e9f863f8aa53949a59fc70920311|1393e3267e1121ff33b648fbd1f58238aa956e41",
+    "seed_sha256": "e7d83767639843aaa94d2981612ebd453d4216d37020cf9cf01d5766335d5c8f",
+    "sample_size": 20,
+    "formula_fixed_before_draw": true
+  },
+  "protocol": {
+    "lifecycle_reference_date": "2026-08-20",
+    "physical_observation_window": [
+      "2026-05-22",
+      "2026-08-20"
+    ],
+    "reviewers": "Independent research agents, one session per sampled project, given only the blind inputs below. They are AI agents, not human reviewers; this is disclosed wherever the result is reported.",
+    "blind_inputs": [
+      "project_name",
+      "campus_name",
+      "country",
+      "physical_observation_window"
+    ],
+    "withheld_from_reviewers": "Every Atlas status, status date, stage, method, evidence row, source URL, locator, coordinate, geometry and review note. Reviewers must not read this repository or its clones, the Atlas website, API or downloads, or any copy of them; they work only from public sources.",
+    "reviewer_outputs": {
+      "construction_determination": "One of under_construction_in_window (an authoritative, dated observation of physical construction work on the named project inside the window, and no authoritative completion, opening or cancellation on or before 2026-08-20), not_under_construction_in_window (authoritative evidence that it was complete, operating, cancelled or not started), or unable_to_verify; with source URL, observation date, a literal pointer and the capture SHA-256.",
+      "location": "An independently derived WGS84 campus point from a primary or official source, with method and source, or unable_to_locate.",
+      "identity_notes": "Aliases, operator or legal-entity bridges and any conflicting campus identity found."
+    },
+    "agreement_rules": {
+      "construction": "Agrees only when the reviewer reports under_construction_in_window. unable_to_verify counts as disagreement.",
+      "location": "Computed after all reviews are in, from the reviewer point and the Atlas site geometry: agrees if the point lies inside the geometry or within 1,000 m of it (geodesic). Between 1,000 m and 3,000 m an adjudicator who sees both sides decides, with written reasons, whether both name the same physical campus. Beyond 3,000 m, or unable_to_locate, it disagrees.",
+      "agreement": "A sampled project is an agreement only when construction and location both agree.",
+      "gate": "Passed when at least 19 of the 20 sampled projects agree."
+    },
+    "after_review": "Results are recorded with every reviewer output and the comparison. Disagreements are not fixed silently: each triggers a versioned review of that row. Stage-level differences inside 'under construction' are recorded but do not count as disagreement."
+  },
+  "sample": [
+    {
+      "position": 1,
+      "project_stable_key": "curated:ascenty-vinhedo-campus:vinhedo-3",
+      "rank_sha256": "0174cde2d77da892cbb9c32f28aef88cf2b148dfaa0bdb7a6900a33fc7492a1b",
+      "blind_inputs": {
+        "project_name": "Ascenty Vinhedo 3",
+        "campus_name": "Ascenty Vinhedo Campus",
+        "country": "Brazil"
+      }
+    },
+    {
+      "position": 2,
+      "project_stable_key": "curated:maincubes-mainhub-nauen-campus:ber02",
+      "rank_sha256": "04180791ffd1f3a992348ee18b260a205f805c4a9638fb95430059491c07d30e",
+      "blind_inputs": {
+        "project_name": "maincubes BER02",
+        "campus_name": "maincubes mainHub Nauen Campus",
+        "country": "Germany"
+      }
+    },
+    {
+      "position": 3,
+      "project_stable_key": "curated:trg-spring-cypress-campus:hou2",
+      "rank_sha256": "09ebaf88229265cf4bff261910cea2b670713af071265a39a8e6881cdefad0e3",
+      "blind_inputs": {
+        "project_name": "TRG HOU2",
+        "campus_name": "TRG Spring Cypress Campus",
+        "country": "United States"
+      }
+    },
+    {
+      "position": 4,
+      "project_stable_key": "curated:runze-hong-kong-sandy-ridge-data-facility-cluster:initial-build",
+      "rank_sha256": "0b6c6234b6abc28cfa965a5ec185b4e2d8d59efe36d9f03544b35fdebbb1ecd4",
+      "blind_inputs": {
+        "project_name": "Range Hong Kong Sandy Ridge Campus Current Infrastructure Build",
+        "campus_name": "Range Hong Kong Sandy Ridge Data Facility Cluster",
+        "country": "Hong Kong"
+      }
+    },
+    {
+      "position": 5,
+      "project_stable_key": "curated:amazon-falls-township-innovation-campus:active-buildout",
+      "rank_sha256": "0c5183a7e2b7cabb75a1654f9e76974c6e96da8963c9207c381b4f867a25888b",
+      "blind_inputs": {
+        "project_name": "Amazon Falls Township Active Campus Buildout",
+        "campus_name": "Amazon Falls Township Innovation Campus",
+        "country": "United States"
+      }
+    },
+    {
+      "position": 6,
+      "project_stable_key": "curated:prologis-trenton-project-mila-campus:current-campus-build",
+      "rank_sha256": "0e677923eedae484c5f09da5a59f583816f2a13ed5c633dfbfaa1777898ccc6b",
+      "blind_inputs": {
+        "project_name": "Prologis Trenton Project Mila Campus Construction",
+        "campus_name": "Prologis Trenton Project Mila Campus",
+        "country": "United States"
+      }
+    },
+    {
+      "position": 7,
+      "project_stable_key": "curated:flexbase-technologiezentrum-laufenburg-campus:new-technology-centre-current-build",
+      "rank_sha256": "0f6240e96fe4fbe2e1787bebca16487e6477195a002d91b8667445308ed79b88",
+      "blind_inputs": {
+        "project_name": "FlexBase New Technology Centre Current Build",
+        "campus_name": "FlexBase Technologiezentrum Laufenburg Campus",
+        "country": "Switzerland"
+      }
+    },
+    {
+      "position": 8,
+      "project_stable_key": "curated:green-campus-zrh1-lupfig:data-center-4",
+      "rank_sha256": "0fa089f97d408101bb6d68be1d7f8be4c09152aeab082ad08221292f60a4b100",
+      "blind_inputs": {
+        "project_name": "Green Campus ZRH1 Data Center 4",
+        "campus_name": "Green Campus ZRH1 Lupfig",
+        "country": "Switzerland"
+      }
+    },
+    {
+      "position": 9,
+      "project_stable_key": "curated:hyperco-loviisa-data-center-campus:current-development",
+      "rank_sha256": "12213bcc94bc146a03f011e0719ed021e28d49961a75c027d0873a7237de94dc",
+      "blind_inputs": {
+        "project_name": "Hyperco Loviisa Current Data Center Development",
+        "campus_name": "Hyperco Loviisa Data Center Campus",
+        "country": "Finland"
+      }
+    },
+    {
+      "position": 10,
+      "project_stable_key": "curated:scala-zona-franca-bogota-campus:sbogzb01",
+      "rank_sha256": "12cd714388b128ef687d0f16a49ab9bf6a6e1a9b0f0dbb645ccf405ad54c37b3",
+      "blind_inputs": {
+        "project_name": "Scala SBOGZB01",
+        "campus_name": "Scala Zona Franca Bogotá Campus",
+        "country": "Colombia"
+      }
+    },
+    {
+      "position": 11,
+      "project_stable_key": "curated:flexential-parker-compark-campus:first-data-center",
+      "rank_sha256": "16dfec2e9c042996bb6681af6e42977c0ecee3a58a0b91b0879d512f156aa830",
+      "blind_inputs": {
+        "project_name": "Flexential Parker Data Center Current Build",
+        "campus_name": "Flexential Parker Compark Campus",
+        "country": "United States"
+      }
+    },
+    {
+      "position": 12,
+      "project_stable_key": "curated:applied-digital-delta-forge-1-alexandria:current-build",
+      "rank_sha256": "179f8edef544a71c0f23ea67a2053cfa501a7ac4c3d63452b844a0e779d8c697",
+      "blind_inputs": {
+        "project_name": "Delta Forge 1 Current Construction",
+        "campus_name": "Applied Digital Delta Forge 1 Campus",
+        "country": "United States"
+      }
+    },
+    {
+      "position": 13,
+      "project_stable_key": "curated:csc-lumi-ai-data-center-renforsin-ranta-kajaani:current-build",
+      "rank_sha256": "1836ef0d49868fa9988acfa6736bc464bea5e16c7972b8316199323b71b66868",
+      "blind_inputs": {
+        "project_name": "CSC LUMI-AI Data Center Current Build",
+        "campus_name": "CSC LUMI-AI Data Center",
+        "country": "Finland"
+      }
+    },
+    {
+      "position": 14,
+      "project_stable_key": "curated:dc-blox-palm-coast-cls-campus:approved-first-building-current-build",
+      "rank_sha256": "18c7876e0f33e9ec8515dc66b593276b565cf45063a482887c172b0c30e73fe2",
+      "blind_inputs": {
+        "project_name": "DC BLOX Palm Coast Approved First Building Current Construction",
+        "campus_name": "DC BLOX Palm Coast Cable Landing Station and Colocation Campus",
+        "country": "United States"
+      }
+    },
+    {
+      "position": 15,
+      "project_stable_key": "curated:microsoft-etobicoke-ontario-campus:first-building",
+      "rank_sha256": "1973c8c2135f7c44c714ab0c24793fc3a03b7b7f31c9c827c5be33405222e87d",
+      "blind_inputs": {
+        "project_name": "Microsoft Etobicoke First Building Current Build",
+        "campus_name": "Microsoft Etobicoke Ontario Datacenter Campus",
+        "country": "Canada"
+      }
+    },
+    {
+      "position": 16,
+      "project_stable_key": "curated:beale-tulsa-county-project-clydesdale-campus:current-campus-build",
+      "rank_sha256": "1a49fa416026e066eee66483d86071e39be98ddd2a191e4be602fa41eaf9c94e",
+      "blind_inputs": {
+        "project_name": "Google / Beale Tulsa County Project Clydesdale Campus Construction",
+        "campus_name": "Google / Beale Tulsa County Project Clydesdale Campus",
+        "country": "United States"
+      }
+    },
+    {
+      "position": 17,
+      "project_stable_key": "curated:odata-dc-sp04-osasco-campus:phase-2-expansion",
+      "rank_sha256": "1a546387720db05c617fe7763b33b81c1708f97d5307480096cf8d30ae322db0",
+      "blind_inputs": {
+        "project_name": "ODATA DC SP04 Phase 2 Expansion",
+        "campus_name": "ODATA DC SP04 Osasco Campus",
+        "country": "Brazil"
+      }
+    },
+    {
+      "position": 18,
+      "project_stable_key": "curated:microsoft-finland-espoo-hepokorpi-campus:second-building",
+      "rank_sha256": "1e36bebcd50892aaaeeb716bca7c52f3bca20797c401d7aceaedf38732c18ac8",
+      "blind_inputs": {
+        "project_name": "Microsoft Espoo Second Datacenter Building",
+        "campus_name": "Microsoft Espoo Hepokorpi Datacenter Campus",
+        "country": "Finland"
+      }
+    },
+    {
+      "position": 19,
+      "project_stable_key": "curated:qts-cambois-data-centre-campus:2026-earthworks",
+      "rank_sha256": "1f3d5592a8c9a5edb864b42382bb7ecf044eddbfaa48edc480db73657a8f6931",
+      "blind_inputs": {
+        "project_name": "QTS Cambois 2026 Earthworks",
+        "campus_name": "QTS Cambois Data Centre Campus",
+        "country": "United Kingdom"
+      }
+    },
+    {
+      "position": 20,
+      "project_stable_key": "curated:telia-vilnius-data-center:new-data-center-current-build",
+      "rank_sha256": "25208be70ee1ff407a4a4f065e41e8fc0fa806378fd1b300aaf5bf376da9fe78",
+      "blind_inputs": {
+        "project_name": "Telia New Vilnius Data Center",
+        "campus_name": "Telia Vilnius Data Center",
+        "country": "Lithuania"
+      }
+    }
+  ]
+}
