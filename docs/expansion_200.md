@@ -2152,3 +2152,19 @@ addition, for which the Armstrong reserve is next, or an exact CGK locator appli
 correction. The CGK packet also flags three other v0.16 baseline locators, for SBOGZB01, RDH2 and RCJM1, that follow
 the same host-development pattern without intersecting another site; a strict verified-200 claim should review them
 under the same rule.
+
+## 2026-10-09: expansion target met and published
+
+The thirty-sixth reviewed checkpoint was committed as `1393e32` and pushed to `main` with the action updates
+in `e464fb3`. Both workflows passed on that push: the clean-clone checks (698 tests, the inventory snapshot and
+all 37 `--validate-only` checkpoint rebuilds) and the public-site build, browser and live-deployment checks.
+Under the acceptance contract above, the request to add another 100 distinct physical sites is therefore
+complete: 200 sites, 100 of them added since the v0.17 preview. Of the 200, 199 have a reviewed site locator
+or an official boundary; the baseline CGK campus has host-estate context only, as its versioned correction
+records.
+
+This is not a final release. Imagery outcomes cover 10 of 203 projects, the fixed 20-row blind review
+requiring 19 agreements has not started, and `publishable_as_final` stays false. The three host-development
+locators named in the CGK packet (SBOGZB01, RDH2 and RCJM1) and the 52 evidence rows recorded from
+robots-disallowed OpenStreetMap API, Overpass and Nominatim paths still need their own versioned reviews. The
+public site at <https://kiankyars.github.io/datacenter-atlas/> now serves this checkpoint as its current dataset.

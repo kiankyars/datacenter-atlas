@@ -9,7 +9,7 @@ a DOI).
 Usage (standard library only)::
 
     python3 site/e2e/release_notes.py --site _site --notes notes.md --assets assets.txt
-    # prints the tag on the first line and the title on the second
+    # prints the tag, the title and "prerelease" or "release" on three lines
 """
 
 from __future__ import annotations
@@ -161,6 +161,11 @@ def notes(index: Mapping[str, Any], versions: Mapping[str, Any], sites: Sequence
     return "\n".join(lines) + "\n"
 
 
+def is_prerelease(dataset: Mapping[str, Any]) -> bool:
+    """A dataset that is not publishable as final is released as a GitHub pre-release."""
+    return not bool(dataset.get("publishable_as_final"))
+
+
 def main(argv: Sequence[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Prepare a GitHub Release of the current dataset version.")
     parser.add_argument("--site", required=True, type=Path, help="built site directory")
@@ -185,6 +190,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         return 1
     print(release_tag(dataset["id"]))
     print(release_title(dataset))
+    print("prerelease" if is_prerelease(dataset) else "release")
     return 0
 
 

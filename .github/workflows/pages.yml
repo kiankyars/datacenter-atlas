@@ -243,13 +243,15 @@ jobs:
             --site site --notes notes.md --assets assets.txt --commit "$GITHUB_SHA" > release.txt
           tag=$(sed -n 1p release.txt)
           title=$(sed -n 2p release.txt)
+          flags=()
+          if [ "$(sed -n 3p release.txt)" = prerelease ]; then flags+=(--prerelease); fi
           if gh release view "$tag" > /dev/null 2>&1; then
             echo "Release $tag already exists; nothing to do."
             exit 0
           fi
           mapfile -t assets < assets.txt
           gh release create "$tag" "${assets[@]}" \
-            --target "$GITHUB_SHA" --title "$title" --notes-file notes.md
+            --target "$GITHUB_SHA" --title "$title" --notes-file notes.md "${flags[@]}"
           echo "Created release $tag with ${#assets[@]} files." >> "$GITHUB_STEP_SUMMARY"
 
   monitor:

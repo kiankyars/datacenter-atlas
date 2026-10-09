@@ -444,6 +444,8 @@ def test_release_notes_and_assets(tmp_path):
     assert "last observed physical status" in text and "not a census" in text
     assert "Built from commit abc123." in text
     assert release_notes.release_tag(DATASET_ID) == f"data-{DATASET_ID}"
+    assert release_notes.is_prerelease({"publishable_as_final": False})
+    assert not release_notes.is_prerelease({"publishable_as_final": True})
 
 
 def test_release_notes_require_the_version_zip(tmp_path):
