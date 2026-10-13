@@ -1,0 +1,1013 @@
+{
+  "format": "datacenter-atlas-country-research-followthrough-v1",
+  "researched_at": "2026-10-13",
+  "baseline": "verified_construction_core/2026-10-13-consolidated",
+  "baseline_manifest_sha256": "f7633d08f600db61aaaf2edce5bc25c77dca654dfa28b63fde462c14d2ee0eec",
+  "baseline_counts_at_read": {
+    "countries": 53,
+    "evidence": 2038,
+    "host_estate_context_projects": 3,
+    "imported_source_records": 231,
+    "imported_source_references": 1109,
+    "non_us_sites": 230,
+    "official_boundary_projects": 5,
+    "physical_sites": 389,
+    "projects": 413,
+    "snapshot_only_records": 8
+  },
+  "scope": "Bounded primary-source followthrough: US first, then Germany/UK; no dataset changes made by this packet.",
+  "prior_packets": [
+    "sources/research-countries-2026-10-13-us.json",
+    "sources/research-countries-2026-10-13-europe.json"
+  ],
+  "capture_directory": "/tmp/atlas-country-followthrough",
+  "counts": {
+    "candidates_reviewed": 8,
+    "new_candidates_ready": 1,
+    "existing_status_updates_ready": 2,
+    "context_only": 2,
+    "held_new_candidates": 1,
+    "queued_month_precision": 2
+  },
+  "integration_contract": {
+    "base_dataset": "verified_construction_core/2026-10-13-consolidated",
+    "new_sites": 1,
+    "new_projects": 1,
+    "existing_status_updates": 2,
+    "source_snapshot_records_added": 0,
+    "no_automatic_dataset_mutation": true,
+    "month_precision_required_for": [
+      "microsoft-silver-springs-rno18",
+      "microsoft-lyle-creek"
+    ],
+    "rule": "No invented date, private-road geocode, facility precision from town/county locator, planned completion as current status, or total-campus work stage from one building. Imported records must be updated by exact identity, not added again.",
+    "month_precision_policy": "Silver Springs and Lyle Creek remain queued; no invented day and no schema extension for month precision in this pass."
+  },
+  "candidates": [
+    {
+      "candidate_id": "microsoft-silver-springs-rno18",
+      "name": "Microsoft Silver Springs datacenter (RNO18)",
+      "country": "United States",
+      "country_iso_a2": "US",
+      "action": "queued_month_precision",
+      "admission_gate": "Geometry and fresh physical work evidence resolved; requires month-precision observation support, with no invented day.",
+      "deduplication": {
+        "result": "new_site",
+        "baseline_project_count": 413,
+        "reason": "No Silver Springs or RNO18 entry found among the 413 consolidated projects or 231 source records. Do not use town-centre, separate substation parcels 15/16, or the rejected east-of-junction Census match."
+      },
+      "suggested_project_stable_key": "curated:microsoft-silver-springs-rno18:current-campus-build",
+      "suggested_physical_site_stable_key": "curated:microsoft-silver-springs-rno18",
+      "owner": "Microsoft Corporation",
+      "operator": "Microsoft",
+      "contractor": "Q&D Construction LLC",
+      "development_type": "greenfield",
+      "workloads": [],
+      "power": null,
+      "observation": {
+        "last_observed_physical_status": "site_preparation",
+        "observation_date": "2026-09",
+        "date_precision": "month",
+        "status_scope": "Campus preparation, earthmoving and utility relocation. No completed data halls, vertical construction or energization inferred.",
+        "source_keys": [
+          "silver-status",
+          "silver-county-monthly"
+        ],
+        "date_semantics": "Operator heading dates the work to September 2026. The already-published October 15 county meeting packet reports September work; October 15 is not an observed future date.",
+        "independent_imagery_verification": false
+      },
+      "observation_interval": {
+        "start": "2026-09-01",
+        "end": "2026-09-30",
+        "age_days_at_review_min": 13,
+        "age_days_at_review_max": 42,
+        "interval_is_precision_envelope": true
+      },
+      "location": {
+        "address": "1700 W HWY 50, Silver Springs, Lyon County, Nevada, United States",
+        "parcel_identifier": "015-141-14",
+        "assessor_owner": "MICROSOFT CORPORATION",
+        "assessor_area_acres": 223.18,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -119.24379594248448,
+            39.41490935306584
+          ]
+        },
+        "geometry_source_url": "https://gis.lyon-county.org/server/rest/services/Landbase/Parcels___Not_Joined_to_Assessor_Table/FeatureServer/2/query?f=json&where=STRAP%3D%2701514114%27&outFields=OBJECTID%2CAPN%2CSTRAP%2CShape__Area%2CMap_Page%2Clast_edited_date&returnGeometry=true&returnCentroid=true&outSR=4326",
+        "geometry_derivation": "Official ArcGIS FeatureServer returns centroid in the same response as exact STRAP 01514114 parcel polygon with outSR=4326.",
+        "geometry_method": "official_gis_service_parcel_centroid",
+        "geometry_source_entity_kind": "tax_parcel",
+        "geometry_scope_class": "official_tax_parcel_centroid",
+        "geometry_authority_class": "official_source",
+        "geometry_use_scope": "campus_locator",
+        "geometry_precision_scope": "Centroid of Microsoft-owned county tax parcel 015-141-14 at the verified campus address, north of Highway 50 and west of Highway 95A. It locates the campus property, not a surveyed legal campus boundary, building or current works extent.",
+        "horizontal_uncertainty_metres": null,
+        "horizontal_uncertainty_unknown_reason": "County GIS and assessor provide no positional-accuracy estimate.",
+        "geometry_license": "Public county parcel record; no open-data license asserted.",
+        "geometry_attribution": "Lyon County Assessor and Lyon County GIS",
+        "supplemental_geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                -119.23699568965685,
+                39.418860711058784
+              ],
+              [
+                -119.2370262269292,
+                39.41535527839369
+              ],
+              [
+                -119.23722252127637,
+                39.41510171736691
+              ],
+              [
+                -119.23726721859268,
+                39.41234284314285
+              ],
+              [
+                -119.23799956384626,
+                39.41207518607908
+              ],
+              [
+                -119.23821198003087,
+                39.41199754280305
+              ],
+              [
+                -119.23897274380909,
+                39.411719470283884
+              ],
+              [
+                -119.23919353786685,
+                39.41163877249791
+              ],
+              [
+                -119.24046424104824,
+                39.4116484201409
+              ],
+              [
+                -119.24045651802959,
+                39.41117898407104
+              ],
+              [
+                -119.24278052738954,
+                39.41033197396246
+              ],
+              [
+                -119.24277634231164,
+                39.41347368954554
+              ],
+              [
+                -119.24740991599539,
+                39.413514884234246
+              ],
+              [
+                -119.24741695004458,
+                39.412513811356625
+              ],
+              [
+                -119.24741966877166,
+                39.41180324084736
+              ],
+              [
+                -119.24742031681545,
+                39.41163849969141
+              ],
+              [
+                -119.24742046148796,
+                39.411607139313
+              ],
+              [
+                -119.24742391317903,
+                39.41070027347675
+              ],
+              [
+                -119.24743327486298,
+                39.40990759620289
+              ],
+              [
+                -119.24512964283818,
+                39.40988845594737
+              ],
+              [
+                -119.24512841273874,
+                39.40988686460243
+              ],
+              [
+                -119.24513390981235,
+                39.40947518772083
+              ],
+              [
+                -119.24539319087833,
+                39.40938091088822
+              ],
+              [
+                -119.24904359807628,
+                39.40804806789384
+              ],
+              [
+                -119.24977712524156,
+                39.40803862961135
+              ],
+              [
+                -119.24977652467764,
+                39.40812097862837
+              ],
+              [
+                -119.2497497477447,
+                39.41174504194206
+              ],
+              [
+                -119.24974914286902,
+                39.411827414126826
+              ],
+              [
+                -119.24972300866376,
+                39.41536699980078
+              ],
+              [
+                -119.24970649507664,
+                39.41760592372712
+              ],
+              [
+                -119.24970540252714,
+                39.417752712994776
+              ],
+              [
+                -119.2496962384302,
+                39.41899178679234
+              ],
+              [
+                -119.24505200773169,
+                39.418937666435276
+              ],
+              [
+                -119.24282022477811,
+                39.418911580803794
+              ],
+              [
+                -119.24048422590846,
+                39.418884238942105
+              ],
+              [
+                -119.23699568965685,
+                39.418860711058784
+              ]
+            ]
+          ]
+        },
+        "supplemental_geometry_role": "source_tax_parcel_outline_only",
+        "source_feature_attributes": {
+          "OBJECTID": 7345,
+          "APN": "015-141-14",
+          "STRAP": "01514114",
+          "Shape__Area": 9705798.406462703,
+          "Map_Page": "015-14",
+          "last_edited_date": 1779829731000
+        },
+        "source_response_crs": {
+          "wkid": 4326,
+          "latestWkid": 4326
+        },
+        "polygon_area_note": "GIS native area 9705798.406462703 square feet differs slightly from assessor acreage223.18; preserve both as different source representations, with no claim of surveyed equivalence.",
+        "parcel_history_note": "Current assessor identifies a May19,2026 merger/resubdivision from015-141-13; linked instrument708353 differs from keyline text708323. Use APN015-141-14 as stable identity; do not silently correct the inconsistent document number."
+      },
+      "source_keys": [
+        "silver-status",
+        "silver-county-monthly",
+        "silver-assessor",
+        "silver-map-config",
+        "silver-gis-metadata",
+        "silver-gis-parcel"
+      ],
+      "successor_review": "Live Microsoft September update and county September report agree on active preparation. No later authoritative completion, halt or cancellation located in bounded review.",
+      "implementation_state": "queued_for_month_precision"
+    },
+    {
+      "candidate_id": "northc-frankfurt-fra01",
+      "name": "NorthC Frankfurt 1 (FRA01)",
+      "country": "Germany",
+      "country_iso_a2": "DE",
+      "action": "new_candidate_ready",
+      "admission_gate": "Fresh operator work-start post and exact official municipal building-address point are both available.",
+      "deduplication": {
+        "result": "new_site",
+        "reason": "No NorthC FRA01 or Mainzer Landstraße695 entry in consolidated projects/source records. Nearest existing site is CyrusOne FRA7 about683m away; different operator and site. Keep distinct from NorthC FRA03 at Rüsselsheimer Straße22 and planned FRA02/FRA04."
+      },
+      "suggested_project_stable_key": "curated:northc-frankfurt-fra01:current-facility-build",
+      "suggested_physical_site_stable_key": "curated:northc-frankfurt-fra01",
+      "operator": "NorthC Datacenters",
+      "owner": null,
+      "development_type": "new_facility",
+      "power": null,
+      "raw_power_observation": {
+        "value": 6,
+        "unit": "MW",
+        "source_label": "Load",
+        "power_scope": "unspecified",
+        "stage": "planned",
+        "note": "Current operator page does not explicitly type Load6MW as IT; no typed IT capacity invented."
+      },
+      "planned_availability": {
+        "value": "2028-01",
+        "date_precision": "month",
+        "kind": "planned",
+        "source_key": "northc-location"
+      },
+      "observation": {
+        "last_observed_physical_status": "site_preparation",
+        "observation_date": "2026-09-18",
+        "date_precision": "day",
+        "status_scope": "Preparatory physical work at FRA01 on Mainzer Landstraße. No foundation, shell or operating stage inferred.",
+        "source_keys": [
+          "northc-status"
+        ],
+        "date_semantics": "First-party post datePublished2026-09-18T12:59:23.547Z dates the operator statement that work has started; publication-normalized, not a separately dated inspection.",
+        "independent_imagery_verification": false
+      },
+      "location": {
+        "address": "Mainzer Landstraße 695, 65934 Frankfurt am Main, Germany",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            8.581028313722268,
+            50.099568066327265
+          ]
+        },
+        "geometry_source_url": "https://geoportal.frankfurt.de/elastic/basisgis/_search?source_content_type=application%2Fjson&source=%7B%22query%22%3A%7B%22match_phrase%22%3A%7B%22properties.searchField%22%3A%22Mainzer+Landstra%C3%9Fe+695%22%7D%7D%2C%22size%22%3A5%7D",
+        "geometry_derivation": "One exact official Geoportal building-address result in EPSG:25832 transformed to WGS84 using pyproj3.8.0 Transformer.from_crs(EPSG:25832,EPSG:4326,always_xy=True).",
+        "geometry_method": "official_municipal_address_point_crs_transform",
+        "geometry_source_entity_kind": "building_address",
+        "geometry_scope_class": "official_building_address_point",
+        "geometry_authority_class": "official_source",
+        "geometry_use_scope": "project_locator",
+        "geometry_precision_scope": "Official municipal building-address point for exact street and house number695. Binds the operator-published project address; does not delineate the new data-centre building, parcel or works boundary.",
+        "horizontal_uncertainty_metres": null,
+        "horizontal_uncertainty_unknown_reason": "Address source provides no positional accuracy. Transformation operation accuracy of1m is not site-location uncertainty.",
+        "geometry_license": "No general open license asserted; portal terms delegate reuse conditions to responsible geodata authority.",
+        "geometry_attribution": "Stadt Frankfurt am Main, Geoportal Frankfurt",
+        "source_crs": "EPSG:25832",
+        "target_crs": "EPSG:4326",
+        "source_feature": {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              470035.6299999999,
+              5549785.278999999
+            ]
+          },
+          "properties": {
+            "source": "Gebaeudeadresse",
+            "sortSource": 2,
+            "layerId": "12",
+            "id": "DEHEFALK30007nlo",
+            "searchField": "Mainzer Landstraße 695",
+            "sortResult": 695,
+            "geometry": "POINT (470035.6299999999 5549785.278999999)"
+          }
+        },
+        "source_result_count": 1,
+        "crs_evidence": "Official portal config.js registers EPSG:25832. config.json routing.geosearch selects the same elastic service with epsg25832; search response coordinates are native map coordinates.",
+        "transform_operation": "Inverse of UTM zone32N + ETRS89 to WGS84(1), axis order normalized for longitude/latitude",
+        "transform_operation_accuracy_metres": 1.0,
+        "source_coordinate_accuracy_metres": null
+      },
+      "source_keys": [
+        "northc-status",
+        "northc-location",
+        "northc-geoportal-config",
+        "northc-geoportal-search-config",
+        "northc-geoportal-rest-services",
+        "northc-municipal-address",
+        "northc-geoportal-terms"
+      ],
+      "successor_review": "Freshly re-read operator address and September work-start post. Availability remains January2028. No later authoritative completion or cancellation found."
+    },
+    {
+      "candidate_id": "microsoft-lyle-creek",
+      "name": "Microsoft Conover Lyle Creek Current Build",
+      "country": "United States",
+      "country_iso_a2": "US",
+      "action": "queued_month_precision",
+      "existing": {
+        "project_id": "eb451867-d1d3-5e41-bce7-d375e861167a",
+        "site_id": "vcc-site-9b86fe87cb674e474940",
+        "project_stable_key": "curated:microsoft-lyle-creek-conover-data-center:current-build",
+        "physical_site_stable_key": "curated:microsoft-lyle-creek-conover-data-center",
+        "name": "Microsoft Conover Lyle Creek Current Build",
+        "last_observed_physical_status": "under_construction",
+        "status_as_of": "2026-05-31",
+        "status_source_url": "https://local.microsoft.com/blog/lyle-creek-datacenter-construction-update/",
+        "geometry_source_url": "https://saw-reg.usace.army.mil/PN/2023/SAW-2023-00898-PN.pdf",
+        "geometry_scope_class": "permit_notice_project_point"
+      },
+      "observation": {
+        "last_observed_physical_status": "mep_electrical",
+        "observation_date": "2026-09",
+        "date_precision": "month",
+        "status_scope": "First building: exterior near completion, framing/drywall ongoing, mechanical/electrical works started. Underground work continues and additional building areas are beginning. Do not imply every campus building is at MEP stage.",
+        "source_keys": [
+          "lyle-status"
+        ],
+        "date_semantics": "Operator September2026 section is month precision; May31 in existing dataset is not a reason to invent September30.",
+        "independent_imagery_verification": false
+      },
+      "observation_interval": {
+        "start": "2026-09-01",
+        "end": "2026-09-30",
+        "age_days_at_review_min": 13,
+        "age_days_at_review_max": 42,
+        "interval_is_precision_envelope": true
+      },
+      "source_keys": [
+        "lyle-status"
+      ],
+      "implementation_note": "Update existing project status with scope and month precision; preserve reviewed project locator and avoid creating a separate first-building project without stable phase identity.",
+      "implementation_state": "queued_for_month_precision"
+    },
+    {
+      "candidate_id": "vantage-frontier",
+      "name": "Vantage Frontier campus (Stargate Shackelford County)",
+      "country": "United States",
+      "country_iso_a2": "US",
+      "action": "existing_status_update_ready",
+      "existing": {
+        "project_id": "126f2c37-cadc-5f20-9e3c-e544d70b5c37",
+        "site_id": "vcc-site-f3c14c6227b2ae418664",
+        "project_stable_key": "imported:semiconductor-atlas:openai-stargate-shackelford-county",
+        "physical_site_stable_key": "imported:semiconductor-atlas:openai-stargate-shackelford-county",
+        "name": "Vantage Frontier campus (Stargate Shackelford County)",
+        "last_observed_physical_status": "under_construction",
+        "status_as_of": "2026-04-17",
+        "status_source_url": "https://cleanview.co/reports/behind-the-meter-data-centers/full-report/stargate-frontier",
+        "geometry_source_url": "https://rebusinessonline.com/vantage-data-centers-to-invest-25b-for-mega-campus-in-shackleford-county-texas/",
+        "geometry_scope_class": "admin2"
+      },
+      "observation": {
+        "last_observed_physical_status": "under_construction",
+        "observation_date": "2026-09-08",
+        "date_precision": "day",
+        "status_scope": "Oracle-published campus/data-hall construction photographs dated9/8/26. Source-reported imagery only; no independent image analysis or precise stage asserted.",
+        "source_keys": [
+          "oracle-sites"
+        ],
+        "date_semantics": "Exact dated image captions, not page retrieval date. The page footer still says January2026 although dated captions are newer; use only explicit dated item.",
+        "independent_imagery_verification": false
+      },
+      "source_keys": [
+        "oracle-sites"
+      ],
+      "planned_delivery": {
+        "value": "2027-H1",
+        "kind": "planned",
+        "scope": "First customer delivery",
+        "source_key": "oracle-sites"
+      },
+      "geometry_update_ready": false,
+      "geometry_note": "Consolidation already imported Frontier using an openly labelled Shackelford County centroid. Preserve its admin2_context precision until a source-supported campus coordinate is resolved; state-filed street address alone is not a coordinate. Do not add a new site or merge with the existing Abilene campus.",
+      "corroborating_prior_packet": "sources/research-countries-2026-10-13-us.json",
+      "implementation_note": "Enrich exact imported existing record. Do not promote geometry precision or count TX301/TX305 as separate campuses."
+    },
+    {
+      "candidate_id": "saline-barn",
+      "name": "The Barn Stargate Current Data Center Build",
+      "country": "United States",
+      "country_iso_a2": "US",
+      "action": "existing_status_update_ready",
+      "existing": {
+        "project_id": "7d936c4e-29f2-592f-984b-61f5d6367fc8",
+        "site_id": "vcc-site-249f52c31025c0aa2ef2",
+        "project_stable_key": "curated:related-openai-oracle-stargate-michigan-saline:current-build",
+        "physical_site_stable_key": "curated:related-openai-oracle-stargate-michigan-saline",
+        "name": "The Barn Stargate Current Data Center Build",
+        "last_observed_physical_status": "under_construction",
+        "status_as_of": "2026-06-01",
+        "status_source_url": "https://www.related.com/press-releases/2026-06-01/related-digital-blackstone-oracle-openai-walbridge-and-governor-whitmer",
+        "geometry_source_url": "https://www.openstreetmap.org/way/1528327802",
+        "geometry_scope_class": "reviewed_openstreetmap_named_website_tagged_barn_construction_site_polygon"
+      },
+      "observation": {
+        "last_observed_physical_status": "under_construction",
+        "observation_date": "2026-09-28",
+        "date_precision": "day",
+        "status_scope": "Oracle reports more than2000 skilled tradespeople currently building The Barn and one million craft hours reached recently. Precise anniversary/milestone day is unspecified; current construction statement is datedSeptember28.",
+        "source_keys": [
+          "oracle-saline"
+        ],
+        "date_semantics": "Dated first-party article uses current-work statements. Observation is publication-normalized current status, not an inspection day or exact date of the millionth work hour.",
+        "independent_imagery_verification": false
+      },
+      "source_keys": [
+        "oracle-saline"
+      ],
+      "implementation_note": "Refresh existing June1 broad construction observation; keep current reviewed campus locator, no new project/site, no inferred MEP/completion stage."
+    },
+    {
+      "candidate_id": "virtus-wustermark",
+      "name": "VIRTUS Wustermark campus",
+      "country": "Germany",
+      "country_iso_a2": "DE",
+      "action": "existing_context_and_conflict_only",
+      "existing": {
+        "project_id": "b6d175dc-d92a-56ca-a1a7-85306c9de22a",
+        "site_id": "vcc-site-dba81c9003e655831d45",
+        "project_stable_key": "imported:semiconductor-atlas:virtus-wustermark",
+        "physical_site_stable_key": "imported:semiconductor-atlas:virtus-wustermark",
+        "name": "VIRTUS Wustermark campus",
+        "last_observed_physical_status": "under_construction",
+        "status_as_of": "2026-06-01",
+        "status_source_url": "https://virtusdatacentres.com/press-releases/virtus-installs-two-of-europes-largest-super-grid-transformers-at-wustermark-campus-in-brandenburg",
+        "geometry_source_url": "https://virtusdatacentres.com/press-releases/virtus-unveils-3bn-300mw-wustermark-megacampus-project",
+        "geometry_scope_class": "locality"
+      },
+      "source_record_id": "virtus-wustermark",
+      "status_refresh_ready": false,
+      "geometry_update_ready": false,
+      "reason": "Latest exact physical-work report located remains June1 transformer installation,134days old. The future October17 site event is not an October13 physical observation. New UVP evidence binds only Wustermark1 module5 backup generators, not the whole named campus or transformer works.",
+      "facts": {
+        "uvp_project": "077.01.00/24 +077.Z0.00/24",
+        "applicant": "Virtus Wustermark1",
+        "address": "Planstraße3,14641Wustermark",
+        "cadastral_identity": {
+          "district": "Wustermark",
+          "flur": "2",
+          "parcels": [
+            "138/2",
+            "1342",
+            "1344",
+            "1346",
+            "1348",
+            "147",
+            "145",
+            "1339"
+          ]
+        },
+        "uvp_scope": "Backup diesel generators for module5; whole referenced development comprises modules5–8.121MW is thermal fuel input of backup engines, not data-centre IT load.",
+        "decision_date": "2025-10-23",
+        "decision_not_physical_observation": true,
+        "portal_bbox": [
+          12.91897773742676,
+          52.55373290821567,
+          12.980775833129885,
+          52.57152490653213
+        ],
+        "portal_bbox_rejected_reason": "Portal explicitly labels it administrative Wustermark. Neither its midpoint nor existing town centroid is parcel-exact."
+      },
+      "conflicts": [
+        {
+          "field": "planned_it_power",
+          "english_visible_page": 204,
+          "german_visible_overview": 300,
+          "german_visible_fact_panel": 204,
+          "unit": "MW",
+          "resolution": "Unresolved same-publisher inconsistency; retain source-specific claims. Existing source already distinguishes300MW incoming power and204MW IT. Do not substitute300MW IT silently."
+        },
+        {
+          "field": "site_scope",
+          "source_2023_and_hidden_structured_page": "two campus locations",
+          "current_visible_english_page": "one megacampus with up to9data centres",
+          "resolution": "Could reflect changed campus description; contiguity/phase relationship unverified. Reconciliation team notified; avoid automatically binding Wustermark1 parcels to full programme."
+        }
+      ],
+      "source_keys": [
+        "virtus-campus-en",
+        "virtus-campus-de",
+        "virtus-uvp",
+        "virtus-2023"
+      ],
+      "unsuccessful_geometry_check": "Indexed UVP section PDFs at documents-ige-ng/igc_bb/358782d6-e594-4884-81d3-4391a473cebc returned404 on raw fetch. Current portal lacks document links and exposes only an administrative bounding box. No guessed coordinate.",
+      "implementation_note": "Source-context enrichment only. Preserve unknown precise site boundary and original transformer scope. Recheck final reconciliation before targeting a counted record; identity reviewer may classify programme scope differently."
+    },
+    {
+      "candidate_id": "kao-manchester-kman01",
+      "name": "Kao Data Manchester KMAN-01, Kenwood Point",
+      "country": "United Kingdom",
+      "country_iso_a2": "GB",
+      "action": "hold",
+      "status_refresh_ready": false,
+      "geometry_update_ready": false,
+      "reason": "July1 is104days old on October13, outside90day admission freshness. Exact street address is verified, but this pass still lacks a numeric source-supported project locator. September CFO appointment prose about developments progressing does not establish a fresh physical stage.",
+      "deduplication": {
+        "result": "no_matching_consolidated_record",
+        "reason": "No KaoManchester/KMAN01/KenwoodPoint record found in consolidated dataset or source snapshot. Do not confuse with existing KaoHarlow KLON03."
+      },
+      "observation": {
+        "last_observed_physical_status": "site_preparation",
+        "observation_date": "2026-07-01",
+        "date_precision": "day",
+        "status_scope": "Former concrete works demolished and site prepared; onsite substation/power cabling remains ongoing. Main data-centre buildings expected to be constructed2027 and operating2028.",
+        "source_keys": [
+          "kao-status"
+        ],
+        "date_semantics": "Dated operator statement; demolition and preparation completion dates are not separately specified. No later physical observation found.",
+        "independent_imagery_verification": false
+      },
+      "location": {
+        "address": "Kenwood Point,Kenwood Road,Reddish,Stockport SK56PH,United Kingdom",
+        "geometry": null
+      },
+      "schedule": {
+        "buildings_constructed": "2027",
+        "power_delivery": "2027-late",
+        "operational": "2028",
+        "kind": "planned",
+        "source_key": "kao-status",
+        "supersedes": "Older location-page Q3-2027 target"
+      },
+      "source_keys": [
+        "kao-status",
+        "kao-location"
+      ],
+      "next_step": "Obtain fresh specific primary work report plus official planning/parcel locator before admission; corporate hiring news is not enough."
+    },
+    {
+      "candidate_id": "oracle-jupiter-date-check",
+      "name": "Oracle Project Jupiter Doña Ana County Current Campus Build",
+      "country": "United States",
+      "country_iso_a2": "US",
+      "action": "corroboration_only_no_status_regression",
+      "existing": {
+        "project_id": "6f0acd88-cd04-5f3f-915c-48a71fd51f39",
+        "site_id": "vcc-site-f65d3c659a862ad07679",
+        "project_stable_key": "curated:oracle-project-jupiter-dona-ana-campus:current-campus-build",
+        "physical_site_stable_key": "curated:oracle-project-jupiter-dona-ana-campus",
+        "name": "Oracle Project Jupiter Doña Ana County Current Campus Build",
+        "last_observed_physical_status": "under_construction",
+        "status_as_of": "2026-09-14",
+        "status_source_url": "https://www.oracle.com/news/announcement/project-jupiter-statement-on-construction-permitting-2026-09-14/",
+        "geometry_source_url": "https://www.openstreetmap.org/way/1476734418",
+        "geometry_scope_class": "reviewed_openstreetmap_named_project_jupiter_development_polygon"
+      },
+      "source_keys": [
+        "oracle-jupiter"
+      ],
+      "reason": "September29 article explicitly anchors workforce numbers to August31. Existing September14 construction-permitting update is newer. Retain August31 as underlying dated fact; do not promote September29 publication into a later workforce observation.",
+      "facts": {
+        "workforce_as_of": "2026-08-31",
+        "union_workers_more_than": 1500,
+        "total_labor_hours_more_than": 2800000,
+        "scope": "Project Jupiter workforce; does not establish commissioned capacity or project completion."
+      }
+    }
+  ],
+  "sources": {
+    "silver-status": {
+      "url": "https://local.microsoft.com/blog/silver-springs-datacenter-construction-update/",
+      "error": "HTTP Error 403: Forbidden",
+      "publisher": "Microsoft",
+      "role": "status",
+      "summary": "September2026: early work includes preparation, earthmoving and utility relocation.",
+      "publication_or_update_date": "2026-09",
+      "date_precision": "month",
+      "raw_capture_redistributed": false,
+      "capture_note": "Live web-tool read succeeded on 2026-10-13; credential-free raw fetch returned 403. No fabricated content hash."
+    },
+    "silver-county-monthly": {
+      "url": "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_10152026-2121",
+      "publication_or_update_date": "2026-09",
+      "date_precision": "reporting_month",
+      "summary": "Already-published October 15 meeting packet, PDF page 36, reports September active construction at Microsoft campus north of Hwy 50 and west of Hwy 95A, north of NDOT yard. Administrative design review issued April 24; campus/substation grading plans approved.",
+      "raw_capture_file": "/tmp/atlas-country-research-us/lyon-monthly-oct15.pdf",
+      "raw_sha256": "16b83970c8f1398180cf6ccf72e420778f2f5a2bae883f357bdea990ac8722fb",
+      "publisher": "Lyon County",
+      "role": "status_and_geographic_binding",
+      "date_note": "September reporting month in already-published October15 agenda packet; no future observation.",
+      "raw_capture_redistributed": false
+    },
+    "silver-assessor": {
+      "url": "https://gsaportal.lyon-county.org/parcel/01514114",
+      "raw_capture_file": "/tmp/silver-parcel-source.html",
+      "raw_sha256": "d137c3b34fec539d90e371a238d9f5d5f96faf719aed1b8696dc0919f57c311a",
+      "retrieved_at": "2026-10-13T13:42:02.415584+00:00",
+      "bytes": 33979,
+      "publisher": "Lyon County Assessor",
+      "role": "parcel_identity",
+      "summary": "APN015-141-14 is Microsoft-owned223.18acres at1700W Highway50.",
+      "publication_or_update_date": null,
+      "date_precision": null,
+      "raw_capture_redistributed": false
+    },
+    "silver-map-config": {
+      "url": "https://gsaportal.lyon-county.org/map-config-gis.js",
+      "raw_capture_file": "/tmp/silver-map-config-gis.js",
+      "raw_sha256": "5647e9c5869134614d308c23914bddaeb86218aab0b316d9df19d135d9f04c6e",
+      "retrieved_at": "2026-10-13T13:42:42.865864+00:00",
+      "bytes": 23842,
+      "publisher": "Lyon County official parcel portal",
+      "role": "endpoint_provenance",
+      "summary": "Live parcel portal maps use this FeatureServer endpoint and STRAP identifier.",
+      "publication_or_update_date": null,
+      "date_precision": null,
+      "raw_capture_redistributed": false
+    },
+    "silver-gis-metadata": {
+      "url": "https://gis.lyon-county.org/server/rest/services/Landbase/Parcels___Not_Joined_to_Assessor_Table/FeatureServer/2?f=pjson",
+      "raw_capture_file": "/tmp/silver-metadata.json",
+      "raw_sha256": "733b97e017621ff958946597584c73eb8ca416daf0c677770b9a5a9db156a1c1",
+      "retrieved_at": "2026-10-13T13:42:56.664172+00:00",
+      "bytes": 10585,
+      "publisher": "Lyon County GIS",
+      "role": "geometry_metadata",
+      "summary": "Layer2 is county parcel polygon data, nativeEPSG3423; query outSR4326 returns geographic coordinates.",
+      "publication_or_update_date": null,
+      "date_precision": null,
+      "raw_capture_redistributed": false
+    },
+    "silver-gis-parcel": {
+      "url": "https://gis.lyon-county.org/server/rest/services/Landbase/Parcels___Not_Joined_to_Assessor_Table/FeatureServer/2/query?f=json&where=STRAP%3D%2701514114%27&outFields=OBJECTID%2CAPN%2CSTRAP%2CShape__Area%2CMap_Page%2Clast_edited_date&returnGeometry=true&returnCentroid=true&outSR=4326",
+      "raw_capture_file": "/tmp/silver-parcel-with-centroid.json",
+      "raw_sha256": "45d8c15399fad72b50bf113b85b386c4ef16a2042114204c59d7dbc1f47e3896",
+      "retrieved_at": "2026-10-13T13:43:18.419287+00:00",
+      "bytes": 2398,
+      "publisher": "Lyon County GIS",
+      "role": "geometry",
+      "summary": "Exactly one STRAP01514114 feature, APN015-141-14, polygon and service centroid inWGS84.",
+      "publication_or_update_date": null,
+      "date_precision": null,
+      "raw_capture_redistributed": false
+    },
+    "northc-status": {
+      "url": "https://www.linkedin.com/posts/northc-group_preparatory-work-has-started-on-our-fra01-activity-7506698388931821568-UW3t",
+      "raw_capture_file": "/tmp/atlas-country-followthrough/northc-status.html",
+      "raw_sha256": "d5c197d8ec0d6e13e9afa6e1a96d71ecf30debbeb196ca68bca16415c22a11d3",
+      "retrieved_at": "2026-10-13T13:53:54.115564+00:00",
+      "bytes": 286355,
+      "publisher": "NorthC Group",
+      "role": "status",
+      "summary": "Operator confirms FRA01 preparatory work started on Mainzer Landstraße.",
+      "publication_or_update_date": "2026-09-18",
+      "date_precision": "day",
+      "raw_capture_redistributed": false,
+      "date_note": "JSON-LD datePublished2026-09-18T12:59:23.547Z; freshly verified."
+    },
+    "northc-location": {
+      "url": "https://www.northcdatacenters.com/de/frankfurt-1/",
+      "raw_capture_file": "/tmp/atlas-country-followthrough/northc-location.html",
+      "raw_sha256": "72265758c4266ef3a3667db841f58810b6287f3b72c7ccdd387de144834eb1ae",
+      "retrieved_at": "2026-10-13T13:48:48.097079+00:00",
+      "content_type": "text/html; charset=UTF-8",
+      "bytes": 234638,
+      "publisher": "NorthC Datacenters",
+      "role": "address_capacity_schedule",
+      "summary": "FRA01 address MainzerLandstraße695; Load6MW; January2028 availability.",
+      "publication_or_update_date": null,
+      "date_precision": null,
+      "raw_capture_redistributed": false
+    },
+    "northc-geoportal-config": {
+      "url": "https://geoportal.frankfurt.de/karte/config.js",
+      "raw_capture_file": "/tmp/frankfurt-config.js",
+      "raw_sha256": "b1e44812e388cd6ce7da6a4179b9b50dd2562f74328465a0dc03b371d6b4e7cc",
+      "retrieved_at": "2026-10-13T13:49:37.664311+00:00",
+      "bytes": 2131,
+      "publisher": "Stadt Frankfurt am Main",
+      "role": "crs_configuration",
+      "summary": "Official masterportal registers EPSG25832 and named projection definitions.",
+      "publication_or_update_date": null,
+      "date_precision": null,
+      "raw_capture_redistributed": false
+    },
+    "northc-geoportal-search-config": {
+      "url": "https://geoportal.frankfurt.de/karte/config.json",
+      "raw_capture_file": "/tmp/frankfurt-config.json",
+      "raw_sha256": "8fa247f3d47a09de7f6b91a6ce3a5253a0a561a2b217466076ed627b92aaae78",
+      "retrieved_at": "2026-10-13T13:49:37.750531+00:00",
+      "bytes": 88743,
+      "publisher": "Stadt Frankfurt am Main",
+      "role": "search_and_crs_configuration",
+      "summary": "Address search uses elastic service; routing geosearch sets same service toEPSG25832.",
+      "publication_or_update_date": null,
+      "date_precision": null,
+      "raw_capture_redistributed": false
+    },
+    "northc-geoportal-rest-services": {
+      "url": "https://geoportal.frankfurt.de/karte/resources/rest-services-internet.json",
+      "raw_capture_file": "/tmp/frankfurt-rest-services.json",
+      "raw_sha256": "86be7f45c6a447445737cf28880007eb3bc18ac9ce0656bc9d27d78c7aa6d27f",
+      "retrieved_at": "2026-10-13T13:49:44.403641+00:00",
+      "bytes": 1090,
+      "publisher": "Stadt Frankfurt am Main",
+      "role": "endpoint_provenance",
+      "summary": "Official portal configuration declares elastic search URL used for exact address query.",
+      "publication_or_update_date": null,
+      "date_precision": null,
+      "raw_capture_redistributed": false
+    },
+    "northc-municipal-address": {
+      "url": "https://geoportal.frankfurt.de/elastic/basisgis/_search?source_content_type=application%2Fjson&source=%7B%22query%22%3A%7B%22match_phrase%22%3A%7B%22properties.searchField%22%3A%22Mainzer+Landstra%C3%9Fe+695%22%7D%7D%2C%22size%22%3A5%7D",
+      "raw_capture_file": "/tmp/atlas-country-followthrough/northc-municipal-address-get.json",
+      "raw_sha256": "868fd3497e5841cc0a79fd115834bf9f8d014700ca6d41891d9901d584feb6f9",
+      "retrieved_at": "2026-10-13T13:53:53.301377+00:00",
+      "bytes": 555,
+      "publisher": "Stadt Frankfurt am Main",
+      "role": "geometry",
+      "summary": "Exactly one municipal building-address feature matches MainzerLandstraße695; idDEHEFALK30007nlo.",
+      "publication_or_update_date": null,
+      "date_precision": null,
+      "raw_capture_redistributed": false
+    },
+    "northc-geoportal-terms": {
+      "url": "https://geoportal.frankfurt.de/info/nutzungsbedingungen.html",
+      "publisher": "Stadt Frankfurt am Main",
+      "role": "rights",
+      "summary": "Portal is free to use; geodata reuse conditions are set by the responsible authority. No general open license or source positional accuracy claimed.",
+      "retrieved_at": "2026-10-13",
+      "capture_note": "Read via live web tool; no raw content hash.",
+      "raw_capture_redistributed": false
+    },
+    "lyle-status": {
+      "url": "https://local.microsoft.com/blog/lyle-creek-datacenter-construction-update/",
+      "error": "HTTP Error 403: Forbidden",
+      "publisher": "Microsoft",
+      "role": "status",
+      "summary": "September2026 first-building MEP/interior work started; other areas earlier.",
+      "publication_or_update_date": "2026-09",
+      "date_precision": "month",
+      "raw_capture_redistributed": false,
+      "capture_note": "Live web-tool read succeeded on 2026-10-13; credential-free raw fetch returned 403. No fabricated content hash."
+    },
+    "oracle-sites": {
+      "url": "https://www.oracle.com/data-centers/",
+      "raw_capture_file": "/tmp/atlas-country-followthrough/oracle-sites.html",
+      "raw_sha256": "accb17d2cdcd1dce771770f81e553fa1cdafd49f659f19fde05a237af85c6847",
+      "retrieved_at": "2026-10-13T13:48:47.958784+00:00",
+      "content_type": "text/html; charset=UTF-8",
+      "bytes": 76483,
+      "publisher": "Oracle",
+      "role": "dated_construction_imagery",
+      "summary": "Shackelford campus/data-hall captions datedSeptember8; first customer delivery1H27.",
+      "publication_or_update_date": "2026-09-08",
+      "date_precision": "day",
+      "raw_capture_redistributed": false,
+      "date_note": "Dated image captions, not overall page publication. January2026 footer is stale and not used."
+    },
+    "oracle-saline": {
+      "url": "https://www.oracle.com/news/announcement/blog/one-million-union-craft-hours-building-michigans-future-2026-09-28/",
+      "raw_capture_file": "/tmp/atlas-country-followthrough/oracle-saline.html",
+      "raw_sha256": "b8b074eef24186566d2fdb50c7fff36d211ff0f0ada123157fc1cf4c474e262b",
+      "retrieved_at": "2026-10-13T13:48:47.979386+00:00",
+      "content_type": "text/html; charset=UTF-8",
+      "bytes": 31798,
+      "publisher": "Oracle",
+      "role": "status",
+      "summary": "Dated article says more than2000 tradespeople currently building The Barn.",
+      "publication_or_update_date": "2026-09-28",
+      "date_precision": "day",
+      "raw_capture_redistributed": false
+    },
+    "oracle-jupiter": {
+      "url": "https://www.oracle.com/news/announcement/blog/union-workers-power-project-jupiter-and-new-mexicos-future-2026-09-29/",
+      "raw_capture_file": "/tmp/atlas-country-followthrough/oracle-jupiter.html",
+      "raw_sha256": "214833cefa275302630bedefeb5e158ebf7d19fa351d80a0850929a2234c4127",
+      "retrieved_at": "2026-10-13T13:53:53.475805+00:00",
+      "bytes": 30914,
+      "publisher": "Oracle",
+      "role": "status_context",
+      "summary": "September29 article dates workforce count toAugust31; no upgrade over existingSeptember14.",
+      "publication_or_update_date": "2026-09-29",
+      "date_precision": "day",
+      "raw_capture_redistributed": false,
+      "underlying_observation_date": "2026-08-31"
+    },
+    "virtus-campus-en": {
+      "url": "https://virtusdatacentres.com/locations/germany/berlin-data-centres-wustermark-campus",
+      "raw_capture_file": "/tmp/atlas-country-followthrough/virtus-campus-en.html",
+      "raw_sha256": "fcd26348eff22bfa1befdafae6fb45af179b7902b40dcd96a744dc55aabdb3a7",
+      "retrieved_at": "2026-10-13T13:48:48.924058+00:00",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 105728,
+      "publisher": "VIRTUS Data Centres",
+      "role": "scope_capacity_schedule",
+      "summary": "Visible current page:204MW IT, one megacampus, up to9centres,350000sqm, early2028. Hidden structured text retains two locations.",
+      "publication_or_update_date": null,
+      "date_precision": null,
+      "raw_capture_redistributed": false
+    },
+    "virtus-campus-de": {
+      "url": "https://de.virtusdatacentres.com/standorte/deutschland/rechenzentren-berlin-campus-wustermark",
+      "raw_capture_file": "/tmp/atlas-country-followthrough/virtus-campus-de.html",
+      "raw_sha256": "638659c7486c4d3956298edf48ef10a455bb001e23124297826cd133bcc41f7c",
+      "retrieved_at": "2026-10-13T13:48:49.123652+00:00",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 108674,
+      "publisher": "VIRTUS Data Centres",
+      "role": "conflicting_capacity",
+      "summary": "German visible overview says300MW IT; visible facts say204MW; early2028 target.",
+      "publication_or_update_date": null,
+      "date_precision": null,
+      "raw_capture_redistributed": false
+    },
+    "virtus-uvp": {
+      "url": "https://www.uvp-verbund.de/trefferanzeige?docid=1D6934F9-E271-4FB1-A7E8-4B34E60AF051&docuuid=358782d6-e594-4884-81d3-4391a473cebc&modtime=last_three_month&plugid=%2Fingrid-group%3Aige-iplug-hb",
+      "raw_capture_file": "/tmp/atlas-country-followthrough/virtus-uvp.html",
+      "raw_sha256": "e985f2f365305fb147164f5cf990cc8e53a6af1f306ded286c26e63a1ecb21bf",
+      "retrieved_at": "2026-10-13T13:48:47.977409+00:00",
+      "content_type": "text/html;charset=UTF-8",
+      "bytes": 39300,
+      "publisher": "Landesamt für Umwelt Brandenburg via UVP portal",
+      "role": "official_identity_permit_scope",
+      "summary": "Wustermark1 module5 backup power application identifies Planstraße3 and listed parcels. ApprovalOctober23,2025, not construction stage.",
+      "publication_or_update_date": null,
+      "date_precision": null,
+      "raw_capture_redistributed": false
+    },
+    "virtus-2023": {
+      "url": "https://virtusdatacentres.com/press-releases/virtus-unveils-3bn-300mw-wustermark-megacampus-project",
+      "raw_capture_file": "/tmp/atlas-country-followthrough/virtus-2023.html",
+      "raw_sha256": "9ae9145e2a3e10efff43c036466b63f82b34028a8980bd347e32302fd69bd4b7",
+      "retrieved_at": "2026-10-13T13:53:55.055909+00:00",
+      "bytes": 70489,
+      "publisher": "VIRTUS Data Centres",
+      "role": "historical_scope",
+      "summary": "Original programme described two campus locations and300MW incoming power.",
+      "publication_or_update_date": "2023-09-04",
+      "date_precision": "day",
+      "raw_capture_redistributed": false
+    },
+    "kao-status": {
+      "url": "https://kaodata.com/discover/news/response-to-youtube-video/",
+      "raw_capture_file": "/tmp/atlas-country-followthrough/kao-status.html",
+      "raw_sha256": "865edb3bd6a9732d04992120894ef1677aaaeb606725aee8d2685511ee0dca14",
+      "retrieved_at": "2026-10-13T13:48:48.125734+00:00",
+      "content_type": "text/html; charset=UTF-8",
+      "bytes": 149292,
+      "publisher": "Kao Data",
+      "role": "status_schedule",
+      "summary": "July1 work statement: preparation complete, substation/cabling ongoing, buildings2027, operations2028.",
+      "publication_or_update_date": "2026-07-01",
+      "date_precision": "day",
+      "raw_capture_redistributed": false
+    },
+    "kao-location": {
+      "url": "https://kaodata.com/locations/manchester/",
+      "raw_capture_file": "/tmp/atlas-country-followthrough/kao-location.html",
+      "raw_sha256": "d92ca2f6e5f58acf539742c595c70e2589df6791a8276c11bc92b237ade9c29c",
+      "retrieved_at": "2026-10-13T13:48:48.108829+00:00",
+      "content_type": "text/html; charset=UTF-8",
+      "bytes": 163057,
+      "publisher": "Kao Data",
+      "role": "address",
+      "summary": "KMAN01 at KenwoodPoint,KenwoodRoad,Reddish,StockportSK56PH; older schedule superseded.",
+      "publication_or_update_date": null,
+      "date_precision": null,
+      "raw_capture_redistributed": false
+    }
+  },
+  "geometry_reproduction": {
+    "silver_springs": {
+      "method": "GET",
+      "url": "https://gis.lyon-county.org/server/rest/services/Landbase/Parcels___Not_Joined_to_Assessor_Table/FeatureServer/2/query?f=json&where=STRAP%3D%2701514114%27&outFields=OBJECTID%2CAPN%2CSTRAP%2CShape__Area%2CMap_Page%2Clast_edited_date&returnGeometry=true&returnCentroid=true&outSR=4326",
+      "headers": {
+        "User-Agent": "Mozilla/5.0",
+        "Referer": "https://gsaportal.lyon-county.org/"
+      },
+      "expected_features": 1,
+      "identifier": "STRAP01514114"
+    },
+    "northc_fra01": {
+      "method": "GET",
+      "url": "https://geoportal.frankfurt.de/elastic/basisgis/_search?source_content_type=application%2Fjson&source=%7B%22query%22%3A%7B%22match_phrase%22%3A%7B%22properties.searchField%22%3A%22Mainzer+Landstra%C3%9Fe+695%22%7D%7D%2C%22size%22%3A5%7D",
+      "equivalent_post_url": "https://geoportal.frankfurt.de/elastic/basisgis/_search",
+      "equivalent_post_body": {
+        "sort": [
+          {
+            "properties.sortSource": {
+              "order": "asc"
+            }
+          },
+          {
+            "properties.sortResult": {
+              "order": "asc"
+            }
+          }
+        ],
+        "query": {
+          "bool": {
+            "should": [
+              {
+                "fuzzy": {
+                  "properties.searchField": "Mainzer Landstraße 695"
+                }
+              },
+              {
+                "match_phrase_prefix": {
+                  "properties.searchField": "Mainzer Landstraße 695"
+                }
+              }
+            ]
+          }
+        },
+        "size": 20
+      },
+      "expected_features": 1,
+      "identifier": "DEHEFALK30007nlo",
+      "source_crs": "EPSG:25832",
+      "target_crs": "EPSG:4326",
+      "transform_code": "Transformer.from_crs(\"EPSG:25832\", \"EPSG:4326\", always_xy=True).transform(470035.6299999999, 5549785.278999999)",
+      "tool": "pyproj3.8.0"
+    }
+  }
+}

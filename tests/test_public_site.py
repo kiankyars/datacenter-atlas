@@ -637,6 +637,25 @@ def add_published_fixture(root: Path, updated: str = "2026-04-01") -> Path:
 
 
 class PublishedSnapshotTests(unittest.TestCase):
+    def test_same_day_suffixed_archive_preserves_earlier_release(self):
+        with tempfile.TemporaryDirectory(prefix="atlas-same-day-") as temporary:
+            root = make_fixture_root(Path(temporary))
+            first = add_published_fixture(root)
+            original = tree_hashes(first)
+            second = first.with_name(first.name + "-consolidated")
+            shutil.copytree(first, second)
+            versions = public_site.discover_versions(root / "verified_construction_core")
+            self.assertEqual([v.id for v in versions[-2:]], [first.name, second.name])
+            self.assertEqual(versions[-1].checkpoint_date, "2026-04-01")
+            self.assertEqual(tree_hashes(first), original)
+
+    def test_coarse_locations_do_not_claim_schema_org_facility_coordinates(self):
+        site = {'site_id': 'sample', 'name': 'Example', 'url': LOCAL, 'latitude': 51, 'longitude': 1}
+        context = mock.Mock(base_url=LOCAL)
+        for scope in ('locality_context', 'admin2_context', 'admin1_context', 'host_estate_context'):
+            self.assertNotIn('geo', public_site._place_json_ld(context, {**site, 'geometry_use_scopes': [scope]}))
+        self.assertEqual(public_site._place_json_ld(context, {**site, 'geometry_use_scopes': ['project_locator']})['geo']['latitude'], 51)
+
     def test_lifecycle_statuses_survive_pages_api_downloads_and_counts(self):
         for status in ("announced", "permitted", "completed", "operational"):
             with self.subTest(status=status), tempfile.TemporaryDirectory(prefix="atlas-lifecycle-") as temporary:
@@ -1867,7 +1886,11 @@ class RealSiteBuildTests(unittest.TestCase):
                 self.assertEqual(info.date_time, (1980, 1, 1, 0, 0, 0))
             workbook = ET.fromstring(archive.read("xl/workbook.xml"))
             names = [sheet.get("name") for sheet in workbook.iter(f"{main}sheet")]
-            self.assertEqual(names, ["README", "sites", "projects", "evidence"])
+            self.assertEqual(names[:4], ["README", "sites", "projects", "evidence"])
+            if any(json.loads(row.get("project_details_json") or "[]") for row in self.rows["projects.csv"]):
+                self.assertEqual(names[4:], ["metrics", "parties", "milestones", "power_sources"])
+            else:
+                self.assertEqual(names[4:], [])
             sheets = {}
             for index, name in enumerate(names, start=1):
                 rows = []
@@ -1881,6 +1904,12 @@ class RealSiteBuildTests(unittest.TestCase):
                 sheets[name] = rows
         for table in ("sites", "projects", "evidence"):
             self.assertEqual(len(sheets[table]), len(self.rows[f"{table}.csv"]) + 1, table)
+        snapshot_path = self.dataset_dir / "source-records.json"
+        if snapshot_path.is_file():
+            records = [entry["record"] for entry in read_json(snapshot_path)["records"]]
+            for sheet in ("metrics", "parties", "milestones", "power_sources"):
+                expected = Counter({record["id"]: len(record.get(sheet, [])) for record in records if record.get(sheet)})
+                self.assertEqual(Counter(row["B"][1] for row in sheets[sheet][1:]), expected, sheet)
         header = [value for _, value in sheets["sites"][0].values()]
         self.assertNotIn("geometry_json", header)
         self.assertIn("geojson_url", header)
@@ -1941,7 +1970,7 @@ class RealSiteBuildTests(unittest.TestCase):
         self.assertIn('aria-label="Copy coordinates ', text)
         self.assertIn('<caption class="small muted">Evidence for ', text)
         self.assertIn('<td><code class="checksum">', text)
-        self.assertRegex(text, r'<time datetime="\d{4}-\d{2}-\d{2}T[^"]+" title="[^"]+">\d{4}-\d{2}-\d{2}</time>')
+        self.assertRegex(text, r'<time datetime="\d{4}-\d{2}-\d{2}(?:T[^"]+)?"(?: title="[^"]+")?>\d{4}-\d{2}-\d{2}</time>')
         self.assertIn('rel="alternate" type="application/geo+json"', text)
         self.assertIn("Cite this site", text)
         country = read_json(self.api / "countries.json")[0]

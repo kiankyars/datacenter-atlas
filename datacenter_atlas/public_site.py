@@ -60,6 +60,8 @@ import uuid
 import zipfile
 import zlib
 
+from .project_details import detail_sheets, render_record
+
 
 __all__ = [
     "API_VERSION",
@@ -188,7 +190,7 @@ THIRD_PARTY_TERMS = (
 # The four rules every reader of the data needs; repeated in llms.txt, the workbook and the API description.
 DATA_CAVEATS = (
     "Each status is the last reported project status as of a dated source (status_as_of), not the status today.",
-    "Locators place a site on the map; they are not building footprints or construction extents.",
+    "Locators are not building footprints or construction extents; some markers identify only a town or region, not a facility position.",
     "Empty or null values are unknown, never zero.",
     "Coverage is incomplete and varies by country.",
 )
@@ -350,6 +352,8 @@ DOWNLOAD_INFO = {
     "schema.json": ("JSON", "application/json", "Field definitions for the source files."),
     "selection-report.json": ("JSON", "application/json", "Research and selection audit."),
     "review-provenance.json": ("JSON", "application/json", "Source and review records for additions."),
+    "source-records.json": ("JSON", "application/json", "Complete project records with figures, organizations, milestones and original sources."),
+    "identity-mapping.json": ("JSON", "application/json", "Project and campus matches, scope distinctions and unresolved identities."),
     "README.md": (
         "Markdown", "text/markdown",
         "Original research notes retained with the archived data.",
@@ -657,8 +661,10 @@ def _load_version(path: Path) -> DatasetVersion:
 
 def _version_label_and_order(identifier: str, kind: str, counts: Mapping[str, int]) -> tuple[str, tuple[Any, ...]]:
     if kind == "published":
-        _require_date(identifier, "published dataset directory name")
-        return identifier, (2, identifier)
+        if not re.fullmatch(r"\d{4}-\d{2}-\d{2}(?:-[a-z][a-z0-9-]*)?", identifier):
+            raise PublicSiteError("published dataset directory name needs a date and optional descriptive suffix")
+        _require_date(identifier[:10], "published dataset directory date")
+        return identifier[:10], (2, identifier)
     if kind == "preview":
         match = PREVIEW_DIR.fullmatch(identifier)
         if match is None:
@@ -685,7 +691,7 @@ def _checkpoint_date(identifier: str, kind: str, manifest: Mapping[str, Any]) ->
     if kind == "published":
         value = manifest.get("updated_at")
         _require_date(value, f"{identifier}: update date")
-        if value != identifier:
+        if value != identifier[:10]:
             raise PublicSiteError(f"{identifier}: updated_at must match the dataset directory name")
         return value
     if kind == "preview":
@@ -1134,6 +1140,11 @@ def _site_summary(atlas: Atlas, site: Mapping[str, Any]) -> dict[str, Any]:
                 "name": project.get("name"),
                 "status": project.get("last_observed_physical_status"),
                 "status_as_of": project.get("status_as_of"),
+                "search_terms": " ".join(
+                    str(value) for detail in project.get("project_details") or []
+                    for value in [detail["record"].get("summary", ""), *detail["record"].get("aliases", []),
+                                  *(party.get("name", "") for party in detail["record"].get("parties", []))]
+                ),
             }
             for project in projects
         ],
@@ -2478,10 +2489,12 @@ def _json_schemas(context: _Context) -> dict[str, dict[str, Any]]:
     for kind, name in EMBEDDED_ITEM_SCHEMAS.items():
         spec = embedded.get(kind) if isinstance(embedded.get(kind), dict) else {}
         required = [str(field) for field in spec.get("required_fields") or []]
-        properties = {field: EMBEDDED_FIELD_TYPES.get(field, {"type": ["string", "null"]}) for field in required}
+        optional = [str(field) for field in spec.get("optional_fields") or []]
+        properties = {field: EMBEDDED_FIELD_TYPES.get(field, {"type": ["string", "null"]}) for field in required + optional}
         schemas[name] = _object(
             properties, title=kind.replace("_", " ").capitalize(),
             description=f"One item of an embedded JSON array (schema.json embedded_types.{kind}).",
+            required=required,
         )
     array_items = atlas.schema.get("embedded_array_items") if isinstance(atlas.schema.get("embedded_array_items"), dict) else {}
     titles = {"sites.csv": "Site record", "projects.csv": "Project record", "evidence.csv": "Evidence record"}
@@ -2548,6 +2561,7 @@ def _json_schemas(context: _Context) -> dict[str, dict[str, Any]]:
         "projects": {"type": "array", "items": _object({
             "project_id": {"type": "string"}, "name": {"type": ["string", "null"]},
             "status": {"type": ["string", "null"]}, "status_as_of": {"type": ["string", "null"], "format": "date"},
+            "search_terms": {"type": "string"},
         })},
         "status_publishers": _string_array(),
         "power_observations": {"type": "array", "items": _object({
@@ -2974,7 +2988,7 @@ def _download_file(name: str, meta: tuple[int, str], *, derived: bool = False) -
         )
     else:
         file_format, media_type = EXTENSION_INFO.get(Path(name).suffix, ("File", "application/octet-stream"))
-        description = "Original checkpoint file."
+        description = "Source data file."
     return DownloadFile(name, meta[0], meta[1], file_format, media_type, description, derived)
 
 
@@ -3317,6 +3331,19 @@ def _xlsx_workbook(context: _Context, atlas: Atlas) -> bytes:
             row += [function(record) for _, function in extras[file_name]]
             rows.append(row)
         sheets.append((TABLE_NAMES[file_name], rows))
+    detail_projects = list(atlas.projects)
+    if "source-records.json" in context.current.manifest["files"]:
+        mapped_records: dict[str, list[str]] = {}
+        for project in atlas.projects:
+            for detail in project.get("project_details") or []:
+                mapped_records.setdefault(detail["record"]["id"], []).append(project["project_id"])
+        snapshot = _verified_json(context.current, "source-records.json")
+        detail_projects = []
+        for entry in snapshot["records"]:
+            targets = mapped_records.get(entry["record"]["id"], [])
+            detail_projects.append({"project_id": targets[0] if len(targets) == 1 else "",
+                                    "project_details": [{"record": entry["record"]}]})
+    sheets.extend(detail_sheets(detail_projects))
     return _xlsx_package(sheets)
 
 
@@ -3350,6 +3377,9 @@ def _xlsx_readme_rows(context: _Context, atlas: Atlas) -> list[list[Any]]:
         ["", ""],
         ["Sheets", "sites, projects and evidence hold the CSV columns (geometry_json is omitted: use the GeoJSON "
                    "link in each row), followed by link columns added by the site builder."],
+        ["Project details", "Additional metrics, parties, milestones and power_sources sheets preserve original source scopes. "
+                            "Each source record appears once; an empty project_id identifies a multi-site or unresolved record; "
+                            "source_record_id identifies its original record."],
         ["Cells", "Empty cells are unknown values, never zero. *_json columns hold JSON text. A cell longer than "
                   "Excel's limit ends with a truncation note; the CSV files hold the full value."],
         ["Licence", f"{config.data_license.get('name')} ({config.data_license.get('url')}) for Atlas-authored data. "
@@ -4367,6 +4397,55 @@ def _write_pages(writer: _Writer, context: _Context) -> None:
     _write_page(writer, context, _content_page(context, "about"))
     _write_page(writer, context, _attribution_page(context))
     _write_page(writer, context, _not_found_page(context))
+    _write_project_record_pages(writer, context)
+
+
+def _write_project_record_pages(writer: _Writer, context: _Context) -> None:
+    """Keep old project URLs useful, including programs without a resolved single site."""
+    listed = {item.name for item in context.current.files}
+    if "source-records.json" not in listed:
+        return
+    snapshot = _verified_json(context.current, "source-records.json")
+    resolutions = {r["source_record_id"]: r for r in context.atlas.selection_report["source_record_resolutions"]}
+    entries = {entry["record"]["id"]: entry["record"] for entry in snapshot["records"]}
+    context_links = []
+    for slug, record in sorted(entries.items()):
+        if not SAFE_ID.fullmatch(slug):
+            raise PublicSiteError("unsafe source-record ID")
+        resolution = resolutions[slug]
+        targets = [resolution.get("project_id"), *resolution.get("related_project_ids", [])]
+        links = []
+        for pid in dict.fromkeys(targets):
+            if pid in context.atlas.project_by_id:
+                project = context.atlas.project_by_id[pid]
+                links.append(f'<li><a href="../../sites/{_e(project["site_id"])}/#project-{_e(pid)}">{_e(project["name"])}</a></li>')
+        note = ""
+        if resolution["decision"] == "multi_site_program":
+            note = '<p>This record covers several sites. It is not counted as an additional site or project.</p>'
+        elif resolution["decision"] == "unresolved":
+            note = '<p>The relationship to another recorded project is unresolved. This record is retained without adding to site or project totals.</p>'
+        if resolution.get("resolution_note"):
+            note += f'<p>{_e(resolution["resolution_note"])}</p>'
+        if not resolution.get("project_id"):
+            context_links.append(f'<li><a href="{_e(slug)}/">{_e(record["name"])}</a></li>')
+        body = (f'<p><a href="../">Projects</a></p><h1>{_e(record["name"])}</h1>{note}'
+                + ('<h2>Site records</h2><ul>' + ''.join(links) + '</ul>' if links else '')
+                + render_record(record)
+                + '<p><a href="../../downloads/latest/source-records.json">Download full project records</a> · '
+                  '<a href="../../downloads/latest/identity-mapping.json">Identity and scope decisions</a></p>')
+        _write_page(writer, context, _Page(path=f"projects/{slug}/index.html", slug="project-record", section="sites",
+                    title=record["name"], description=record.get("summary", ""), body=body, main_class="page page-wide", scripts=(SITE_JS,)))
+    rows = []
+    for project in sorted(context.atlas.projects, key=lambda p: p["name"].casefold()):
+        rows.append('<tr>'
+                    f'<td><a href="../sites/{_e(project["site_id"])}/#project-{_e(project["project_id"])}">{_e(project["name"])}</a></td>'
+                    f'<td>{_e(project["country"])}</td><td>{_badge(context.vocabulary, project["last_observed_physical_status"])}</td>'
+                    f'<td>{_time(project["status_as_of"])}</td></tr>')
+    body = f'<h1>Projects</h1><p>{len(rows)} projects across {len(context.atlas.sites)} sites.</p>'
+    body += _table(None, (("Project", ""), ("Country", ""), ("Status", ""), ("As of", "")), rows)
+    body += '<h2>Multi-site programs and unresolved identities</h2><p>These records retain their sources and details without increasing the totals above.</p><ul>' + ''.join(context_links) + '</ul>'
+    _write_page(writer, context, _Page(path="projects/index.html", slug="projects", section="sites", title="Projects",
+                description="Data center projects, multi-site programs and their sources.", body=body, main_class="page page-wide", scripts=(SITE_JS,)))
 
 
 def _explorer_page(context: _Context) -> _Page:
@@ -4612,6 +4691,10 @@ def _site_summary_kv(context: _Context, site: Mapping[str, Any], coordinates: st
         "campus_locator": "Campus reference; individual project footprints are not mapped.",
         "project_locator": "Project locator; building footprints are not mapped.",
         "reviewed_site_locator": "Site locator; building footprints are not mapped.",
+        "approximate_site_locator": "Approximate site reference; the exact facility position is unverified.",
+        "locality_context": "Town or locality reference only; the facility position is not established.",
+        "admin2_context": "County or district reference only; the facility position is not established.",
+        "admin1_context": "State or region reference only; the facility position is not established.",
     }
     precision = " ".join(dict.fromkeys(
         precision_labels[scope] for scope in site.get("geometry_use_scopes") or []
@@ -4663,6 +4746,10 @@ def _project_section(context: _Context, project: Mapping[str, Any], anchors: _Ev
         if observations:
             parts.append(f"<h4>{_e(title)}</h4>")
             parts.append(_observation_table(context, observations, anchors))
+    for detail in project.get("project_details") or []:
+        record = detail["record"]
+        parts.append(f'<h4>{_e(record["name"])}</h4>')
+        parts.append(render_record(record, current_status=status, current_date=project.get("status_as_of")))
     parts.append("</section>")
     return "\n".join(parts)
 
@@ -4687,11 +4774,18 @@ def _project_facts(context: _Context, project: Mapping[str, Any], anchors: _Evid
         ("Companies", _role_claims_html(context, project, anchors)),
         ("Workloads", _workloads_html(context, project, anchors)),
     ]
+    if project.get("project_details"):
+        # The structured details below hold these values with their original scope.
+        facts = [(name, value) for name, value in facts
+                 if name == "Status source" or name == "Companies"
+                 or (name == "Operating model" and project.get("operating_model") not in (None, "", "unknown"))
+                 or (name == "Development type" and project.get("development_type") not in (None, "", "unknown"))
+                 or (name == "Workloads" and project.get("workloads"))]
     for key, reason_key, title in OBSERVATION_FIELDS:
         count = len(_dict_items(project.get(key)))
         if count:
             facts.append((title, _e(f"{count} reported value{'s' if count != 1 else ''} (below)")))
-        else:
+        elif not project.get("project_details"):
             facts.append((title, _muted_unknown(project.get(reason_key))))
     facts.append(("Locator", _project_locator_html(context, project, anchors)))
     review = project.get("imagery_review_outcome")
@@ -4869,6 +4963,8 @@ def _evidence_table(context: _Context, site: Mapping[str, Any]) -> str:
             )
         roles = ", ".join(vocabulary.label("evidence_roles", role) for role in evidence.get("roles") or [])
         digest = str(evidence.get("content_hash") or "")
+        hash_scope = ("Factual source record; not the publisher page" if evidence.get("content_hash_scope") == "source_record_projection"
+                      else "Retained source material; see source provenance")
         kind = vocabulary.label("evidence_kinds", evidence.get("kind"))
         rows.append(
             f'<tr id="evidence-{_e(evidence["evidence_id"])}">'
@@ -4879,7 +4975,7 @@ def _evidence_table(context: _Context, site: Mapping[str, Any]) -> str:
             f"<td>{_time(evidence.get('retrieved_at'))}</td>"
             f"<td>{_license_link(evidence.get('license'), evidence.get('publisher'))}</td>"
             f"<td>{_attribution_html(evidence.get('attribution'))}</td>"
-            f'<td><code class="checksum">{_e(digest)}</code></td>'
+            f'<td><code class="checksum">{_e(digest)}</code><br><span class="small muted">{_e(hash_scope)}</span></td>'
             "</tr>"
         )
     headers = (
@@ -4888,24 +4984,27 @@ def _evidence_table(context: _Context, site: Mapping[str, Any]) -> str:
     )
     note = (
         '<p class="small muted">Sources are linked, not redistributed; each keeps its own terms. An archived copy is '
-        "the Wayback Machine capture nearest the retrieval time and may differ from what was reviewed; the content "
-        "hash identifies the reviewed capture.</p>"
+        "a lookup for the Wayback Machine capture nearest the retrieval date and may be unavailable or differ from what was reviewed. "
+        "Each hash states what it covers; imported factual records are not publisher-page captures.</p>"
     )
     return note + _table("evidence-table", headers, rows, caption=f"Evidence for {site.get('name')}")
 
 
 def _place_json_ld(context: _Context, site: Mapping[str, Any]) -> dict[str, Any]:
-    return {
+    result = {
         "@context": "https://schema.org",
         "@type": "Place",
         "name": site.get("name"),
         "identifier": site["site_id"],
         "url": site["url"],
-        "geo": {"@type": "GeoCoordinates", "latitude": site["latitude"], "longitude": site["longitude"]},
         "address": {"@type": "PostalAddress", "addressCountry": site.get("country_iso_a2")},
         "containedInPlace": {"@type": "Country", "name": site.get("country")},
         "subjectOf": {"@id": f"{context.base_url}data/#dataset"},
     }
+    coarse = {"locality_context", "admin2_context", "admin1_context", "host_estate_context"}
+    if not set(site.get("geometry_use_scopes") or []) & coarse:
+        result["geo"] = {"@type": "GeoCoordinates", "latitude": site["latitude"], "longitude": site["longitude"]}
+    return result
 
 
 def _breakable(code: Any) -> str:
@@ -5306,6 +5405,10 @@ def _data_page(context: _Context) -> _Page:
         f'<a class="btn" href="{root}downloads/{LATEST}/sites.csv">Sites CSV</a> '
         f'<a class="btn" href="{root}downloads/{LATEST}/sites.geojson">GeoJSON</a> '
         f'<a class="btn" href="{root}downloads/{LATEST}/atlas.sqlite">SQLite</a></p>',
+        (f'<p><a href="{root}projects/">Browse all projects and multi-site programs</a>. '
+         'Project details preserve investment, hardware, capacity, organizations and timelines with their sources. '
+         'The workbook includes separate sheets for these figures and events.</p>')
+        if any(project.get("project_details") for project in context.atlas.projects) else "",
         toc,
         _heading(2, "files", "Files"),
         zip_button,

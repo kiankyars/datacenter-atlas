@@ -41,27 +41,47 @@ does not assert completion or cancellation.
   report of building construction. The adjacent microgrid permitting case is a different scope.
 - Corrected the inherited Scala source-date issues and three locations whose geometry represents
   surrounding industrial estates. Full change lists and source projections accompany the data.
+- After consolidating the 231 source records, added NorthC FRA01 using its 18 September
+  preparatory-work statement and the exact Frankfurt municipal building-address point for
+  Mainzer Landstraße 695. The point locates the address; it is not a construction boundary.
+- Refreshed the existing Frontier record from Oracle's construction media dated 8 September
+  and the existing Saline Barn record from Oracle's 28 September current-work statement.
+  Frontier retains its explicitly labelled county locator; neither refresh adds another site.
 
 ## Candidate queue
 
-- **United States:** Microsoft Silver Springs and Vantage Frontier have physical-work evidence,
-  but their precise map locations remain unresolved. Exact addresses alone are not numeric
-  locations; street and town centres were rejected. Microsoft Lyle Creek's September work update
-  has only month precision, so it has not been converted into an invented observation day.
+- **United States:** Microsoft Silver Springs now has the service-provided centroid and outline
+  of Microsoft-owned county parcel 015-141-14, but its September work report has only month
+  precision. Silver Springs and Microsoft Lyle Creek therefore remain queued without invented
+  observation days. Frontier's status has been refreshed; its exact campus locator remains
+  unresolved, so the imported county-centre point retains its administrative precision.
 - **China:** the [GDS second-quarter results](https://investors.gds-services.com/index.php/news-releases/news-release-details/gds-holdings-limited-reports-second-quarter-2026-results)
   are an operator lead; aggregate construction area does not identify individual sites. Review
   the [China Mobile Beijing No.6 parcel procurement](https://ggzyfw.beijing.gov.cn/jyxxzbhxrgs/20260901/5692101.html)
   for a named proposal and location. The procurement does not itself establish development consent
   or physical work. Start with Beijing, Shanghai and Guangdong operator portfolios and local records.
+  The follow-up reviewed VNET, GDS, China Mobile and regional government reports; no additional
+  scope met the location and recent-evidence gates. VNET's August results report June observations.
 - **United Kingdom:** keep Edinburgh's CR4 extension on the existing ACF campus as its status
   changes. Kao Manchester has evidence of site preparation and electrical enabling works; confirm
-  its precise site location and retain the distinction from future data-centre building work.
-- **Germany:** NorthC FRA01 has physical-work evidence and an official address but needs a precise
-  map location. VIRTUS Wustermark needs the electrical works tied to the correct campus and phase.
+  its precise site location and obtain a later primary observation than 1 July, now 104 days old.
+  The operator expects building construction in 2027 and operations in 2028; those are forecasts.
+- **Germany:** NorthC FRA01 is admitted. VIRTUS Wustermark still needs the electrical works tied
+  to the correct campus and phase. The UVP record identifies Wustermark1 module5 backup power,
+  not the whole development; its administrative bounding box is not a precise locator.
+  The current operator pages conflict on 204 versus 300 MW IT and retain inconsistent one-campus
+  versus two-location descriptions, so source-specific claims remain separate.
 - **Japan:** Zeus OSA1's December 2025 start predates the new-admission window. Look for later
   primary evidence of its actual status and exact campus location, including any completion or
   opening. Keep IIJ Shiroi and Tomakomai updates separate from new campuses.
+  The follow-up also checked CyrusOne OSK1 and DayOne Kodaira. A lease or ceremony does not
+  establish physical work; later evidence and exact phase identity remain necessary.
 
 The country packets under `sources/research-countries-2026-10-13-*` retain checked candidates,
 sources and the missing fact for each hold. The Scala audit is in
 `sources/research-scala-status-2026-10-13.json`. A held candidate does not count as a site.
+The exact-day successor is defined in `definitions/atlas-research-2026-10-13.json` and published
+as `verified_construction_core/2026-10-13-research`: 414 projects across 390 sites. Its three
+actions preserve the complete consolidated source snapshot and identity mapping. Oracle's
+Frontier caption date is stored as an explicit observation date; the undated containing page
+retains an unknown publication date.

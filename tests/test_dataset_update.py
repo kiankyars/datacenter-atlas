@@ -1,15 +1,18 @@
 """Observation dates, provenance and inherited rows survive routine updates."""
 
 import copy
+from contextlib import redirect_stdout
 import csv
 from datetime import date, timedelta
 import hashlib
 import io
 import json
 from pathlib import Path
+import runpy
 import shutil
 import tempfile
 import unittest
+from unittest.mock import patch
 
 try:
     from datacenter_atlas.dataset_update import ROOT, UpdateError, build_update, update_payloads, validate_update
@@ -117,6 +120,27 @@ class DatasetUpdateTests(unittest.TestCase):
     def test_published_physical_snapshot_remains_byte_reproducible(self):
         validate_update(ROOT / "definitions/atlas-update-2026-10-13.json",
                         ROOT / "verified_construction_core/2026-10-13")
+
+    def test_dated_media_observation_does_not_invent_publication_date(self):
+        source = self.sources["sources"][0]
+        source.update(published_at=None, source_observation_date="2026-09-21",
+                      source_observation_date_precision="day",
+                      date_semantics="Operator construction photograph caption gives September21.")
+        payloads, _ = self.payloads()
+        evidence = list(csv.DictReader(io.StringIO(payloads["evidence.csv"].decode())))
+        selected = next(row for row in evidence if row["source_url"] == source["source_url"])
+        self.assertEqual(selected["published_at"], "")
+        source["source_observation_date"] = "2026-09-20"
+        with self.assertRaisesRegex(UpdateError, "explicit source observation"):
+            self.payloads()
+        source["source_observation_date"] = "2026-09-21"
+        source["source_observation_date_precision"] = "month"
+        with self.assertRaisesRegex(UpdateError, "dated source"):
+            self.payloads()
+        source["source_observation_date_precision"] = "day"
+        source["retrieved_at"] = "2026-09-20T08:00:00Z"
+        with self.assertRaisesRegex(UpdateError, "capture predates observation"):
+            self.payloads()
 
     def test_announced_and_permitted_admissions_do_not_claim_physical_work(self):
         for status, method, role in (
@@ -251,6 +275,23 @@ class DatasetUpdateTests(unittest.TestCase):
         self.spec["status_corrections"] = [{"project_stable_key": self.spec["additions"][0]["project_stable_key"]}]
         with self.assertRaisesRegex(UpdateError, "only one action"):
             self.payloads()
+
+    def test_cli_uses_definition_output_unless_explicitly_overridden(self):
+        self.spec["output"] = "verified_construction_core/2026-10-13-research"
+        self.write()
+        script = ROOT / "scripts/build_dataset_update.py"
+        module = build_update.__module__
+        for override in (None, self.root / "explicit-output"):
+            argv = [str(script), "--input", str(self.input)]
+            if override:
+                argv += ["--output", str(override)]
+            with patch("sys.argv", argv), patch(module + ".build_update", return_value={"counts": {}}) as build, redirect_stdout(io.StringIO()):
+                runpy.run_path(str(script), run_name="__main__")
+            self.assertEqual(build.call_args.args, (self.input.resolve(), override or ROOT / self.spec["output"]))
+        self.spec["output"] = "../outside-repository"
+        self.write()
+        with patch("sys.argv", [str(script), "--input", str(self.input)]), self.assertRaisesRegex(UpdateError, "unsafe input path"):
+            runpy.run_path(str(script), run_name="__main__")
 
     def test_all_published_codes_are_allowed_by_schema(self):
         original = next(csv.DictReader(io.StringIO((BASE / "projects.csv").read_text())))

@@ -19,13 +19,14 @@
 <h2 id="scope">Coverage and dates</h2>
 <p>The atlas contains {{counts.physical_sites}} physical sites and {{counts.projects}} projects in {{counts.countries}} countries, from announced projects to operating facilities. A site is a campus or facility; a project is a building, phase or expansion at that site. Several projects can share one site.</p>
 <p>The data was updated on {{dataset.checkpoint_date}}. Its status evidence spans {{dataset.window_start}} to {{dataset.window_end}}. Each project keeps its last supported status and evidence date; an Atlas update does not mean every project was rechecked. Retrieval and review dates do not change the evidence date. Sites remain listed as they are completed, open, pause, close or change status.</p>
+<p>Records consolidated from the earlier data centre project retain their original sources, dates and location precision. Some use industry reporting and town or region reference points. They are labelled accordingly; consolidation does not make them newly verified observations. Campus figures and individual phases remain separate and must not be added together. <a href="{{root}}projects/">Browse projects and multi-site programs</a>.</p>
 <p id="limitations">Coverage follows available public sources and varies across countries and languages. The atlas is not a complete list of data centres worldwide.</p>
 
 <h2 id="selection">Selection criteria</h2>
 <ol>
   <li><strong>A dated primary source.</strong> A company disclosure, government record or regulatory filing identifies the named project and supports its status. New sites need status evidence from the 90 days before the data update. Proposals, permits, physical construction and operation are recorded distinctly. Later reports are checked before adding or updating a record.</li>
   <li><strong>A distinct site.</strong> Each project is linked to one campus or facility and checked against existing records. Additional buildings, phases and alternative names at the same campus do not increase the site count.</li>
-  <li><strong>A sourced location.</strong> An official boundary, address, published coordinate or named map feature locates the project or its campus. Its scope and precision are recorded. Town centres, corporate offices and unrelated neighbouring buildings do not qualify.</li>
+  <li><strong>A sourced location.</strong> An official boundary, address, published coordinate or named map feature locates the project or its campus. Its scope and precision are recorded. A town or region reference point does not qualify as a precise site location. Inherited records with these points retain their labels while better locations are researched.</li>
   <li><strong>Traceable facts.</strong> Each status, location and capacity or other recorded detail links to its supporting source. Missing information remains unknown.</li>
 </ol>
 <p>The <a href="{{root}}data/dictionary/">data dictionary</a> describes the published fields and their source requirements.</p>
@@ -49,16 +50,18 @@
   <dt>Campus location</dt><dd>A point or area locating the parent campus, which may contain several projects.</dd>
   <dt>Project location</dt><dd>A point or area locating the named project at the precision of its source.</dd>
   <dt>Site reference point</dt><dd>A reviewed address, parcel or shared-campus reference point.</dd>
+  <dt>Locality, county or region reference</dt><dd>A place reference retained from earlier research. It does not locate the facility itself.</dd>
+  <dt>Approximate site reference</dt><dd>An approximate position from the cited project record; it has not been independently surveyed.</dd>
   <dt>Host estate</dt><dd>The surrounding industrial estate or business park. Where a correction identifies this broader scope, it is labelled as an exception: the marker does not identify the project's position.</dd>
 </dl>
 <p>The API and downloads preserve the location's source, method, scope and any stated uncertainty. An unknown accuracy is left unknown. For a polygon, latitude and longitude are a convenient display anchor; use the full geometry for spatial analysis.</p>
 
 <h2 id="evidence">Sources</h2>
-<p>Each source record includes a URL, publisher, title, publication date where known, retrieval time, licence and SHA-256 hash of the captured content. The atlas publishes extracted facts and links, rather than redistributing source documents or imagery. See <a href="{{root}}about/attribution/">source attribution</a> for applicable terms.</p>
-<p>Site pages also link to the Internet Archive's nearest capture. A capture may be unavailable or differ from the material reviewed; the content hash identifies the reviewed material.</p>
+<p>Each source record includes a URL, publisher, title, publication date where known, retrieval time, licence and SHA-256 hash with its scope recorded. For imported references the hash covers the retained factual source record, not the publisher’s web page. The atlas publishes extracted facts and links, rather than redistributing source documents or imagery. See <a href="{{root}}about/attribution/">source attribution</a> for applicable terms.</p>
+<p>Site pages also link to the Internet Archive's nearest capture. A capture may be unavailable or differ from the material reviewed; the content hash identifies the material described by its hash scope.</p>
 
 <h2 id="unknowns">Capacity and other details</h2>
-<p>{{counts.power_observation_projects}} of {{counts.projects}} projects have a recorded power observation. Each value keeps its source, date, scope, unit and stage, such as planned or installed. These metrics measure different things:</p>
+<p>{{counts.power_observation_projects}} of {{counts.projects}} projects have a normalized power observation. Additional capacity, investment, hardware and timeline details retain their original units, qualifiers and phase scope in project details and the spreadsheet’s separate sheets. Each value keeps its source, date, scope, unit and stage, such as planned or installed. These metrics measure different things:</p>
 <ul>
   <li><strong>Critical IT load:</strong> power available to IT equipment.</li>
   <li><strong>Gross facility power:</strong> total facility power, including cooling.</li>

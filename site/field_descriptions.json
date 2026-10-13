@@ -82,7 +82,8 @@
       "tenants": "Tenant name(s) from evidence-linked tenant role claims, separated by '; '. Empty when no tenant claim is published.",
       "customers": "Customer name(s) from evidence-linked customer role claims, separated by '; '. Empty when no customer claim is published.",
       "status_source_url": "URL of the status source; the same as the source_url of the status evidence row.",
-      "geometry_source_url": "URL of the primary geometry source; the same as the source_url of the geometry evidence row."
+      "geometry_source_url": "URL of the primary geometry source; the same as the source_url of the geometry evidence row.",
+      "project_details_json": "Full source-linked project records, including investment, capacity, hardware, organizations, milestones, power supply and original scope. Status and location on these records can differ from a selected phase. Local source IDs resolve within record.sources; source_evidence_ids maps them to evidence.csv."
     },
     "evidence.csv": {
       "evidence_id": "Atlas identifier (UUID) of the evidence record. Primary key; referenced by status_evidence_id, geometry_evidence_id and the evidence_id of typed observations and role claims in projects.csv.",
@@ -97,7 +98,12 @@
       "attribution": "Attribution text required or recommended for the source.",
       "published_at": "Publication date or timestamp of the source (ISO 8601) when the source states one; empty when it does not.",
       "retrieved_at": "Date and time (ISO 8601) at which the source was retrieved or captured.",
-      "content_hash": "SHA-256 of the captured source content or compact capture, binding the evidence to exactly what was reviewed."
+      "content_hash": "SHA-256 of retained source material or a factual record projection. Read content_hash_scope and source provenance to identify exactly what was hashed; this is not always publisher-page content.",
+      "publication_date_precision": "Precision of published_at: day, month, datetime or unknown. Unknown dates remain empty; month dates are not padded.",
+      "content_hash_scope": "What content_hash covers; imported source_record_projection hashes a canonical factual record projection, never the publisher page.",
+      "source_record_id": "Original source inventory record ID, when imported.",
+      "source_local_id": "Original record-local source ID, when imported.",
+      "source_record_sha256": "SHA-256 of the full canonical source inventory object, when imported."
     }
   },
   "derived": {
@@ -186,7 +192,10 @@
     "polygon_sites": "Sites with a Polygon or MultiPolygon geometry (derived; MultiPolygon sites are included).",
     "point_sites": "Sites with a Point geometry (derived).",
     "power_observation_projects": "Projects with at least one typed power observation (derived). Efficiency and annual-energy observations do not count.",
-    "multi_project_sites": "Sites with more than one project (derived)."
+    "multi_project_sites": "Sites with more than one project (derived).",
+    "imported_source_records": "Original project records preserved by consolidation, including multi-site programs and unresolved identities.",
+    "snapshot_only_records": "Multi-site or unresolved source records retained outside the counted site and project tables.",
+    "imported_source_references": "Original record-local source references preserved in the evidence table."
   },
   "version": {
     "id": "Version identifier: the dataset directory name.",

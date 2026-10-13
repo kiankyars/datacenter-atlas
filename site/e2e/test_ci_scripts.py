@@ -236,7 +236,7 @@ def test_metadata_names_locator_exceptions(tmp_path):
     repo = _write_repo(tmp_path)
     check_public_metadata.write(repo, facts)
     citation = " ".join((repo / "CITATION.cff").read_text(encoding="utf-8").split())
-    assert "(or, for a listed locator exception, host-estate context only)" in citation
+    assert "industrial-estate context points" in citation
     assert check_public_metadata.check(repo, facts) == []
     plain = tmp_path / "plain"
     plain.mkdir()

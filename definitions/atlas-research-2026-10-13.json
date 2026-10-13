@@ -1,0 +1,86 @@
+{
+  "format": "datacenter-atlas-update-input-v1",
+  "updated_at": "2026-10-13",
+  "output": "verified_construction_core/2026-10-13-research",
+  "base_dataset": "verified_construction_core/2026-10-13-consolidated",
+  "base_manifest_sha256": "f7633d08f600db61aaaf2edce5bc25c77dca654dfa28b63fde462c14d2ee0eec",
+  "source_files": [
+    {
+      "path": "sources/atlas-research-2026-10-13-primary-sources.json",
+      "sha256": "f416ea018416a1423578fc2d9b37970abc77aade2d4d4fc8aed74c1fd89da140"
+    }
+  ],
+  "additions": [
+    {
+      "project_stable_key": "curated:northc-frankfurt-fra01:current-facility-build",
+      "physical_site_stable_key": "curated:northc-frankfurt-fra01",
+      "site_name": "NorthC Frankfurt1 (FRA01)",
+      "name": "NorthC Frankfurt1 (FRA01) Current Facility Build",
+      "country": "Germany",
+      "country_iso_a2": "DE",
+      "status": {
+        "value": "site_preparation",
+        "as_of": "2026-09-18",
+        "source_id": "northc-status",
+        "summary": "Preparatory physical work at FRA01 on Mainzer Landstraße. No foundation, shell or operating stage inferred."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            8.581028313722268,
+            50.099568066327265
+          ]
+        },
+        "source_id": "northc-municipal-address",
+        "scope": "project_locator",
+        "scope_class": "official_building_address_point",
+        "authority": "official_source",
+        "method": "official_municipal_address_point_crs_transform",
+        "precision": "Official municipal building-address point for exact street and house number695. Binds the operator-published project address; does not delineate the new data-centre building, parcel or works boundary.",
+        "identity_review": "Exact NorthC official FRA01 address matches the one municipal building-address feature Mainzer Landstraße695, idDEHEFALK30007nlo. NativeEPSG25832 coordinate470035.6299999999,5549785.278999999 transformed toWGS84 usingpyproj3.8.0; same elastic service CRS declared in official portal routing search config. Source numeric precision is not a claim of positional accuracy.",
+        "uncertainty_reason": "Address source provides no positional accuracy. Transformation operation accuracy of1m is not site-location uncertainty."
+      },
+      "context_source_ids": [
+        "northc-location",
+        "northc-geoportal-config",
+        "northc-geoportal-search-config",
+        "northc-geoportal-rest-services"
+      ],
+      "distinctness_review": "No NorthC FRA01 or Mainzer Landstraße695 entry in consolidated projects/source records. Nearest existing site is CyrusOne FRA7 about683m away; different operator and site. Keep distinct from NorthC FRA03 at Rüsselsheimer Straße22 and planned FRA02/FRA04.",
+      "successor_review": "Freshly re-read operator address and September work-start post. Availability remains January2028. No later authoritative completion or cancellation found.",
+      "roles": [
+        {
+          "role": "operator",
+          "party": "NorthC Datacenters",
+          "relationship_scope": "intended",
+          "source_id": "northc-location"
+        }
+      ]
+    }
+  ],
+  "status_updates": [
+    {
+      "project_stable_key": "imported:semiconductor-atlas:openai-stargate-shackelford-county",
+      "status": {
+        "value": "under_construction",
+        "as_of": "2026-09-08",
+        "source_id": "oracle-sites",
+        "summary": "Oracle-published campus/data-hall construction photographs dated9/8/26. Source-reported imagery only; no independent image analysis or precise stage asserted."
+      },
+      "identity_review": "Oracle Shackelford campus matches the already imported Vantage Frontier/Stargate Shackelford County record. It is distinct from Lancium/Crusoe Abilene. TX301 andTX305 are same-campus buildings, not separate sites.",
+      "successor_review": "Oracle current page has September8 construction media and forecasts first customer delivery1H27. No later authoritative completion/cancellation found. County-centroid location remains openly labelled administrative context."
+    },
+    {
+      "project_stable_key": "curated:related-openai-oracle-stargate-michigan-saline:current-build",
+      "status": {
+        "value": "under_construction",
+        "as_of": "2026-09-28",
+        "source_id": "oracle-saline",
+        "summary": "Oracle reports more than2000 skilled tradespeople currently building The Barn and one million craft hours reached recently. Precise anniversary/milestone day is unspecified; current construction statement is datedSeptember28."
+      },
+      "identity_review": "Oracle identifies The Barn in Saline Township; matches existing Related/OpenAI/Oracle current campus build, not a new project.",
+      "successor_review": "September28 dated Oracle article explicitly says more than2000 tradespeople currently building The Barn. No later authoritative completion/cancellation found. Keep existing reviewed campus locator."
+    }
+  ]
+}

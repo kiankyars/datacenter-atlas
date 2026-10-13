@@ -60,7 +60,7 @@
       label: 'Completed / operating',
       note: 'Completed construction or reported operation; see each project status',
       color: '#009E73',
-      codes: ['completed', 'operational']
+      codes: ['completed', 'partially_operational', 'operational']
     }
   ];
   var OTHER_GROUP = {
@@ -102,7 +102,7 @@
       site_preparation: 'Site preparation', clearing: 'Clearing', civil_works: 'Civil works',
       foundations: 'Foundations', shell: 'Shell', mep_electrical: 'MEP / electrical',
       under_construction: 'Under construction', commissioning: 'Commissioning',
-      completed: 'Completed', operational: 'Operational', expansion: 'Expansion', paused: 'Paused', cancelled: 'Cancelled',
+      completed: 'Completed', partially_operational: 'Partially operational', operational: 'Operational', expansion: 'Expansion', paused: 'Paused', cancelled: 'Cancelled',
       repurposed: 'Repurposed', decommissioned: 'Decommissioned', demolished: 'Demolished',
       unknown: 'Unknown'
     },
@@ -504,6 +504,7 @@
         return {
           id: str(project.project_id),
           name: str(project.name),
+          searchTerms: str(project.search_terms),
           status: str(project.status),
           statusAsOf: isoDate(project.status_as_of)
         };
@@ -558,7 +559,7 @@
       apiUrl: str(props.api_url),
       searchText: buildSearchText([
         name, country, iso,
-        projects.map(function (project) { return project.name; }),
+        projects.map(function (project) { return project.name + ' ' + project.searchTerms; }),
         publishers, id
       ]),
       properties: props

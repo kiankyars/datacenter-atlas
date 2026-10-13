@@ -106,7 +106,7 @@ def _source(row, updated):
     }
 
 
-def _status(spec, sources, updated, *, admission=False):
+def _status(spec, sources, updated, *, admission=False, source_details=None):
     observed = _date(spec["as_of"])
     _require(spec["value"] in STATUS_VALUES, "unrecognized project status")
     _require(observed <= updated, "future status observation")
@@ -115,8 +115,22 @@ def _status(spec, sources, updated, *, admission=False):
                  "new admission needs an announced, permitted or construction project")
         _require((updated - observed).days <= 90, "new admission observation is older than 90 days")
     source = sources[spec["source_id"]]
-    _require(source.get("published_at"), "status observation needs a dated source")
-    _require(observed <= _date(source["published_at"]), "observation postdates its source")
+    if source.get("published_at"):
+        _require(observed <= _date(source["published_at"]), "observation postdates its source")
+    else:
+        # A dated construction photograph can establish its observation day even
+        # when the containing web page has no publication date. Keep that date
+        # distinct from publication and retrieval rather than fabricating either.
+        details = (source_details or {}).get(spec["source_id"], {})
+        _require(details.get("source_observation_date") and
+                 details.get("source_observation_date_precision") == "day" and
+                 spec["value"] in ACTIVE_STATUSES,
+                 "status observation needs a dated source")
+        _text(details.get("date_semantics"), "source observation date semantics")
+        _require(_date(details["source_observation_date"]) == observed,
+                 "status must match the explicit source observation date")
+        retrieved_day = datetime.fromisoformat(source["retrieved_at"].replace("Z", "+00:00")).date()
+        _require(observed <= retrieved_day, "source capture predates observation")
     _require(source["kind"] in {"company_disclosure", "government_record", "regulatory_filing"}, "status observation needs a primary source")
     _text(spec.get("summary"), "project status summary")
     if spec["value"] == LifecycleStatus.PERMITTED.value:
@@ -191,6 +205,10 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
     schema = json.loads((base_path / "schema.json").read_bytes())
     tables = {name: list(csv.DictReader(io.StringIO((base_path / name).read_text()))) for name in ("sites.csv", "projects.csv", "evidence.csv")}
     sites, projects, evidence = (tables[name] for name in ("sites.csv", "projects.csv", "evidence.csv"))
+    has_consolidation = "source-records.json" in base["files"]
+    inherited_report = json.loads((base_path / "selection-report.json").read_bytes()) if has_consolidation else {}
+    inherited_resolutions = copy.deepcopy(inherited_report.get("source_record_resolutions", []))
+    evidence_fields = [field["name"] for field in schema["tables"]["evidence.csv"]["fields"]]
     by_key = {row["project_stable_key"]: row for row in projects}
     site_keys = {row["physical_site_stable_key"] for row in sites}
     evidence_by_id = {row["evidence_id"]: row for row in evidence}
@@ -207,7 +225,13 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
         source = sources[source_id]
         identifier = source["evidence_id"]
         if identifier not in evidence_by_id:
-            evidence_by_id[identifier] = copy.deepcopy(source)
+            row = {name: "" for name in evidence_fields}
+            row.update(copy.deepcopy(source))
+            if "publication_date_precision" in evidence_fields:
+                row["publication_date_precision"] = "day" if source.get("published_at") else "unknown"
+            if "content_hash_scope" in evidence_fields:
+                row["content_hash_scope"] = source_details[source_id].get("content_hash_scope") or "source_provided_digest"
+            evidence_by_id[identifier] = row
             evidence.append(evidence_by_id[identifier])
         row = evidence_by_id[identifier]
         row["roles_json"] = _json(sorted(set(json.loads(row["roles_json"])) | {role}))
@@ -220,7 +244,7 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
         _text(item.get("distinctness_review"), "site distinctness review")
         _text(item.get("successor_review"), "later-status review")
         status, locator = item["status"], item["locator"]
-        _status(status, sources, updated, admission=True)
+        _status(status, sources, updated, admission=True, source_details=source_details)
         status_method, status_role = _status_metadata(status["value"])
         geometry = locator["geometry"]
         _require(geometry["type"] == "Point", "new point admissions only; complex boundary changes require a separate geometry review")
@@ -240,7 +264,7 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
         _require(len(iso) == 2 and iso.isascii() and iso.isupper(), "invalid ISO country code")
         pid = str(uuid5(NAMESPACE_URL, key))
         sid = "vcc-site-" + _sha(site_key.encode())[:20]
-        row = {field["name"]: "" for field in schema["tables"]["projects.csv"]["fields"]}
+        row = {field["name"]: "[]" if field["logical_type"] == "json_array" else "" for field in schema["tables"]["projects.csv"]["fields"]}
         row.update(
             project_id=pid, project_stable_key=key, site_id=sid, physical_site_stable_key=site_key,
             name=_text(item["name"], "project name"), country=_text(item["country"], "country"), country_iso_a2=iso,
@@ -283,7 +307,7 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
         _require(key in by_key and key not in touched, "unknown or repeated project update")
         touched.add(key)
         row, status = by_key[key], item["status"]
-        _status(status, sources, updated)
+        _status(status, sources, updated, source_details=source_details)
         status_method, status_role = _status_metadata(status["value"])
         if correction:
             _require(item.get("replaces_status_evidence_id") == row["status_evidence_id"], "correction must name the replaced status evidence")
@@ -312,7 +336,10 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
         sites[:] = [site for site in sites if site["site_id"] != row["site_id"]]
         for source in evidence:
             source["project_ids_json"] = _json([pid for pid in json.loads(source["project_ids_json"]) if pid != row["project_id"]])
-        evidence[:] = [source for source in evidence if json.loads(source["project_ids_json"])]
+        # Unmapped program and unresolved inventory sources deliberately have no
+        # project association. Keep them, and keep withdrawn imported sources,
+        # so their preserved source objects retain complete resolvable provenance.
+        evidence[:] = [source for source in evidence if json.loads(source["project_ids_json"]) or source.get("source_record_id")]
         withdrawn.append(key)
 
     for row in projects:
@@ -325,12 +352,28 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
         site["statuses_json"] = _json(sorted({row["last_observed_physical_status"] for row in members}))
         if any(row["verification_posture"] == PROJECT_RECORD_POSTURE for row in members):
             site["verification_posture"] = PROJECT_RECORD_POSTURE
+        if has_consolidation:
+            postures = {row["verification_posture"] for row in members}
+            site["verification_posture"] = next(iter(postures)) if len(postures) == 1 else "mixed_review_postures"
     counts = {
         "physical_sites": len(sites), "projects": len(projects), "evidence": len(evidence),
         "countries": len({row["country_iso_a2"] for row in sites}), "non_us_sites": sum(row["country_iso_a2"] != "US" for row in sites),
         "host_estate_context_projects": sum(row["geometry_use_scope"] == "host_estate_context" for row in projects),
         "official_boundary_projects": sum(row["geometry_use_scope"] == "official_boundary" for row in projects),
     }
+    if has_consolidation:
+        remaining_projects = {row["project_id"]: row for row in projects}
+        for resolution in inherited_resolutions:
+            project_id = resolution.get("project_id")
+            if project_id and project_id not in remaining_projects:
+                resolution.update(previous_project_id=project_id, previous_site_id=resolution.get("site_id"),
+                                  project_id=None, site_id=None,
+                                  resolution_note="Project withdrawn from the published site inventory; its original source record remains preserved.")
+            resolution["related_project_ids"] = [pid for pid in resolution.get("related_project_ids", []) if pid in remaining_projects]
+            resolution["related_site_ids"] = sorted({remaining_projects[pid]["site_id"] for pid in resolution["related_project_ids"]})
+        counts.update(imported_source_records=len(inherited_resolutions),
+                      snapshot_only_records=sum(not item.get("project_id") for item in inherited_resolutions),
+                      imported_source_references=sum(bool(row.get("source_record_id")) for row in evidence))
     schema = {key: value for key, value in schema.items() if key not in {"draft_id", "base_preview_id", "v018_draft_contract", "inherited_baseline_annotations"}}
     for name, table in schema["tables"].items():
         for field in table["fields"]:
@@ -349,6 +392,10 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
         "base_dataset": spec["base_dataset"],
         "observation_policy": "Last documented observations; records are not a claim that all projects are still under construction on the update date.",
     }
+    if has_consolidation:
+        report.update(source_record_resolutions=inherited_resolutions,
+                      consolidation_policy=inherited_report.get("consolidation_policy", ""),
+                      decisions=inherited_report.get("decisions", {}))
     attribution = (base_path / "ATTRIBUTION.txt").read_text()
     attribution += "\nSources added in " + updated.isoformat() + ":\n" + "\n".join(
         f"{row['publisher']}: {row['title']} — {row['source_url']} ({row['license']})" for row in sources.values()
@@ -361,6 +408,10 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
         "ATTRIBUTION.txt": attribution.encode(),
         "README.md": (f"# Data Center Atlas — {updated.isoformat()}\n\n{len(sites)} sites in {counts['countries']} countries.\n\nEach status retains its observation date. This update does not reverify every inherited record.\nEarlier observations and correction history are preserved in the base dataset.\n\nAtlas-authored structure and annotations: CC BY 4.0. Third-party source facts retain their source terms; see ATTRIBUTION.txt.\n").encode(),
     })
+    if has_consolidation:
+        for name in ("source-records.json", "identity-mapping.json"):
+            _require(name in base["files"], f"consolidated base is missing {name}")
+            payloads[name] = (base_path / name).read_bytes()
     manifest = {
         "format": "datacenter-atlas-update-v1", "release_status": "published", "updated_at": updated.isoformat(),
         "cohort_lifecycle_reference_date": updated.isoformat(), "observation_window_start": min(row["status_as_of"] for row in projects),

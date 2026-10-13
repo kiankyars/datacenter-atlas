@@ -519,3 +519,11 @@ One-time repository and account settings:
 | `site/static/... is missing` or an output path is written twice | Restore the asset the page layout needs (`assets/site.css`, `site.js`, `site-map.js`, `app.js`, the vendored Leaflet files, `favicon.svg`), or rename a static file that collides with a generated path such as `api/` or `downloads/`. |
 | A browser test passes locally but the URL is 404 in production | Serve the build with `pages_server.py`, not `http.server`: GitHub Pages never lists directories. |
 | The live site is not updated | Check that the `deploy` and `verify-live` jobs ran for the push to `main` and that Pages uses GitHub Actions as its source. |
+
+## Consolidated project records
+
+The 13 October consolidation is reproduced with `scripts/build_consolidated_dataset.py` and
+`definitions/atlas-consolidation-2026-10-13.json`. See [repository_consolidation.md](repository_consolidation.md)
+for identity mapping, complete source records and the additional project-detail fields. Published
+dataset directories may have a descriptive suffix after the date when there are multiple
+archives on one day. The manifest update date must still match the date prefix.

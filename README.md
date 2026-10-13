@@ -11,9 +11,9 @@ Search by location or company, filter by status, and open a site to see its proj
 ## Coverage
 
 <!-- atlas:current-dataset -->
-- **Coverage:** **198 physical sites**, **201 projects** and **44 countries**.
+- **Coverage:** **390 physical sites**, **414 projects** and **53 countries**.
 - **Data updated:** 2026-10-13.
-- **Status observations:** 2026-05-26 to 2026-09-22. Each record includes its source and observation
+- **Status observations:** 2023-12-01 to 2026-10-09. Each record includes its source and observation
   date.
 <!-- /atlas:current-dataset -->
 
@@ -44,9 +44,9 @@ lists every file with its size and checksum. Language models and agents can star
 
 <!-- atlas:version-files -->
 `downloads/latest/` contains the current data. For reproducible work, use the
-[archived files](https://kiankyars.github.io/datacenter-atlas/downloads/2026-10-13/) and verify them
-against their
-[`SHA256SUMS`](https://kiankyars.github.io/datacenter-atlas/downloads/2026-10-13/SHA256SUMS).
+[archived files](https://kiankyars.github.io/datacenter-atlas/downloads/2026-10-13-research/) and
+verify them against their
+[`SHA256SUMS`](https://kiankyars.github.io/datacenter-atlas/downloads/2026-10-13-research/SHA256SUMS).
 <!-- /atlas:version-files -->
 
 Archived CSVs, GeoJSON and source records remain unchanged. Generated formats such as SQLite,
@@ -157,6 +157,12 @@ To explore the SQLite file in a browser, open it in
 The [data page](https://kiankyars.github.io/datacenter-atlas/data/) has more recipes, including
 geopandas, JavaScript, QGIS and Google Earth.
 
+The consolidated records preserve investment, hardware, capacity, organizations and timelines in
+`project_details_json`, with linked sources and original units, dates, qualifiers and scope. Excel
+also provides separate metrics, parties, milestones and power-supply sheets.
+[All projects and multi-site programs](https://kiankyars.github.io/datacenter-atlas/projects/) are browsable.
+The [consolidation notes](docs/repository_consolidation.md) explain project matches and retained identities.
+
 ## How a site qualifies
 
 1. A dated company disclosure, government record or regulatory filing identifies the project and
@@ -192,7 +198,7 @@ and the site offers the same citation as
 
 <!-- atlas:citation -->
 > Kyars, K. (2026). *Data Center Atlas* (2026-10-13) [Data set].
-> https://kiankyars.github.io/datacenter-atlas/downloads/2026-10-13/
+> https://kiankyars.github.io/datacenter-atlas/downloads/2026-10-13-research/
 
 ```bibtex
 @misc{kyars2026datacenteratlas,
@@ -200,7 +206,7 @@ and the site offers the same citation as
   title  = "Data Center Atlas",
   year   = "2026",
   note   = "Data as published 2026-10-13",
-  url    = "https://kiankyars.github.io/datacenter-atlas/downloads/2026-10-13/"
+  url    = "https://kiankyars.github.io/datacenter-atlas/downloads/2026-10-13-research/"
 }
 ```
 <!-- /atlas:citation -->
@@ -270,7 +276,7 @@ git clone https://github.com/kiankyars/datacenter-atlas.git
 cd datacenter-atlas
 
 # Re-derive the current dataset from its hash-pinned inputs and compare every byte
-python3 scripts/build_dataset_update.py --input definitions/atlas-update-2026-10-13.json --validate-only
+python3 scripts/build_consolidated_dataset.py --input definitions/atlas-consolidation-2026-10-13.json --validate-only
 
 # Build the website, API and downloads into _site/ (add --force to rebuild over an earlier build),
 # check this README, CITATION.cff and DATA_LICENSE.md against it, then preview it the way GitHub

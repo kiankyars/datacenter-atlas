@@ -1826,7 +1826,7 @@
         src.appendChild(externalLink(source.source_url || project.status_source_url, source.title || 'Source document'));
         var bits = [];
         if (source.publisher) { bits.push(source.publisher); }
-        if (source.published_at) { bits.push('published ' + Core.isoDate(source.published_at)); }
+        if (source.published_at) { bits.push('published ' + (Core.isoDate(source.published_at) || String(source.published_at))); }
         if (source.kind) { bits.push(Core.vocabLabel(vocab, 'evidence_kinds', source.kind)); }
         if (bits.length) {
           src.appendChild(h('span', 'muted', ' \u2014 ' + bits.join(', ')));
@@ -1872,7 +1872,11 @@
       var el = section('Map location');
       var scopes = record ? record.geometry_use_scopes : site.locatorScopes;
       var estateOnly = Array.isArray(scopes) && scopes.indexOf('host_estate_context') !== -1;
-      el.appendChild(h('p', 'small muted', estateOnly
+      var coarse = Array.isArray(scopes) && scopes.some(function (scope) {
+        return ['locality_context', 'admin2_context', 'admin1_context'].indexOf(scope) !== -1;
+      });
+      el.appendChild(h('p', 'small muted', coarse
+        ? 'The marker identifies only the town or region. The facility’s position is not established.' : estateOnly
         ? 'The marker locates the surrounding industrial estate. The project’s position within it is not established.'
         : 'The map identifies the site or campus, not individual buildings or the extent of construction.'));
       var dl = h('dl', 'kv atlas-kv');
@@ -1959,7 +1963,7 @@
         var bits = [];
         if (ev.publisher) { bits.push(ev.publisher); }
         if (ev.kind) { bits.push(Core.vocabLabel(vocab, 'evidence_kinds', ev.kind)); }
-        if (ev.published_at) { bits.push('published ' + Core.isoDate(ev.published_at)); }
+        if (ev.published_at) { bits.push('published ' + (Core.isoDate(ev.published_at) || String(ev.published_at))); }
         if (ev.retrieved_at) { bits.push('retrieved ' + Core.isoDate(ev.retrieved_at)); }
         if (bits.length) {
           item.appendChild(h('span', 'atlas-evidence-meta', bits.join(' \u00b7 ')));

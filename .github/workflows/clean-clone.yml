@@ -88,6 +88,8 @@ jobs:
             datacenter_atlas.tests.test_expansion_200_thirty_sixth_reviewed \
             datacenter_atlas.tests.test_publication_pair_v32 \
             datacenter_atlas.tests.test_dataset_update \
+            datacenter_atlas.tests.test_consolidation \
+            datacenter_atlas.tests.test_project_details \
             datacenter_atlas.tests.test_verified_construction_core_v018_blind_review \
             datacenter_atlas.tests.test_verified_construction_core_v018_baseline_withdrawals \
             datacenter_atlas.tests.test_verified_construction_core_v018_round44_corrections \
@@ -107,6 +109,8 @@ jobs:
         run: |
           .venv/bin/python scripts/build_expansion_200_draft.py --batch thirty-seventh-reviewed --validate-only
           .venv/bin/python scripts/build_dataset_update.py --input definitions/atlas-update-2026-10-13.json --validate-only
+          .venv/bin/python scripts/build_consolidated_dataset.py --input definitions/atlas-consolidation-2026-10-13.json --validate-only
+          .venv/bin/python scripts/build_dataset_update.py --input definitions/atlas-research-2026-10-13.json --validate-only
       - name: Smoke-test the public CLI
         run: datacenter_atlas/.venv/bin/python -m datacenter_atlas --help
       - name: Validate the cumulative-five draft
@@ -276,6 +280,11 @@ jobs:
             datacenter_atlas/expansion_200_thirty_sixth_reviewed.py \
             datacenter_atlas/publication_pair_v32.py \
             datacenter_atlas/dataset_update.py \
+            datacenter_atlas/consolidation.py \
+            datacenter_atlas/project_details.py \
+            scripts/build_consolidated_dataset.py \
+            tests/test_consolidation.py \
+            tests/test_project_details.py \
             scripts/build_dataset_update.py \
             tests/test_dataset_update.py \
             datacenter_atlas/expansion_200_thirty_seventh_reviewed.py \

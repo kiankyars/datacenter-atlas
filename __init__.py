@@ -11,7 +11,7 @@ from pathlib import Path
 import sys
 
 from .datacenter_atlas import *  # noqa: F401,F403
-from .datacenter_atlas import __all__, __version__
+from .datacenter_atlas import __all__ as __all__, __version__ as __version__
 
 
 _project_root = str(Path(__file__).resolve().parent)
@@ -28,6 +28,7 @@ for _module_name in (
     "chile_sea_pertinence",
     "cli",
     "cleanview_assessment",
+    "consolidation",
     "construction_master",
     "construction_master_v2",
     "construction_map",
@@ -37,6 +38,7 @@ for _module_name in (
     "cross_release",
     "current_coverage",
     "database",
+    "dataset_update",
     "denmark_plandata_local_plans",
     "edgemode_assessment",
     "england_planning_data",
@@ -85,6 +87,9 @@ for _module_name in (
     "poland_gdos_sios_ekoportal",
     "pnnl",
     "pwc_build_out_assessment",
+    "project_details",
+    "public_site",
+    "publication_pair_v32",
     "publication_release",
     "release",
     "release_contract_v4",
@@ -124,9 +129,14 @@ for _module_name in (
     "timestamps",
     "uva",
     "verified_construction_core",
+    "verified_construction_core_v017",
+    "verified_construction_core_v018",
     "virginia_deq_air_permits",
     "wikidata",
     "within_release_resolution",
+) + tuple(
+    path.stem
+    for path in sorted((Path(_project_root) / "datacenter_atlas").glob("expansion_200_*.py"))
 ):
     _module = importlib.import_module(f".datacenter_atlas.{_module_name}", __name__)
     sys.modules[f"{__name__}.{_module_name}"] = _module

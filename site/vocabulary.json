@@ -5,7 +5,7 @@
     "lead": {"label": "Lead", "description": "Unverified lead about a possible project, kept in the research queue."},
     "candidate": {"label": "Candidate", "description": "Candidate project under research. Research pipeline status only; no construction claim."},
     "announced": {"label": "Announced", "description": "A dated primary source identifies the proposed data-centre project. Construction has not been established."},
-    "proposed": {"label": "Proposed", "description": "The project was proposed or applied for. No physical work is claimed."},
+    "proposed": {"label": "Proposed", "description": "A proposed development; announcement, permission or physical work is not established."},
     "site_control": {"label": "Site control", "description": "The developer was reported to control the site, for example by purchase or lease. No physical work is claimed."},
     "permitting": {"label": "Permitting", "description": "Permits were being sought. No physical work is claimed."},
     "permitted": {"label": "Permitted", "description": "Issued consent covers the data-centre development identified in the record. The authority, decision date and approved work are recorded; construction is established separately."},
@@ -25,7 +25,8 @@
     "repurposed": {"label": "Repurposed", "description": "The site or building was reported as repurposed for another use."},
     "decommissioned": {"label": "Decommissioned", "description": "The facility was reported as decommissioned."},
     "demolished": {"label": "Demolished", "description": "The facility was reported as demolished."},
-    "unknown": {"label": "Unknown", "description": "The status is not established."}
+    "unknown": {"label": "Unknown", "description": "The status is not established."},
+    "partially_operational": {"label": "Partially operational", "description": "Part of the project is operating; this does not establish completion of every phase."}
   },
   "status_methods": {
     "authoritative_physical_status_update": {"label": "Authoritative status update", "description": "A dated report from the developer, operator, contractor or government on the project's physical status."},
@@ -33,26 +34,34 @@
     "authoritative_construction_permit": {"label": "Development consent", "description": "An issued government consent for the data-centre development, with its decision date and approved work recorded."},
     "authoritative_construction_start": {"label": "Authoritative construction start", "description": "A dated report from an authoritative source that construction started. Later progress is not implied."},
     "government_record": {"label": "Government record", "description": "A dated government record documenting the project's status, such as development consent, an inspection or a registry entry."},
-    "physical_observation": {"label": "Physical observation", "description": "A dated, documented observation of physical work at the site."}
+    "physical_observation": {"label": "Physical observation", "description": "A dated, documented observation of physical work at the site."},
+    "imported_documented_status": {"label": "Reported status", "description": "Status and observation date retained from the original project record; see its sources and scope."}
   },
   "geometry_use_scopes": {
     "official_boundary": {"label": "Official boundary", "description": "An official parcel or surveyed boundary of the project site from an official source. It is a legal or permit boundary, not a building footprint or the extent of construction."},
     "campus_locator": {"label": "Campus locator", "description": "Geometry that locates the parent campus. It is not the project's footprint and does not show where on the campus work is happening."},
     "project_locator": {"label": "Project locator", "description": "Geometry that locates the project, such as a source-published project point. It is not a footprint or a surveyed boundary."},
     "reviewed_site_locator": {"label": "Reviewed site locator", "description": "A reviewed point or shape that locates the physical site. It is not a footprint or a surveyed boundary."},
-    "host_estate_context": {"label": "Host-estate context only", "description": "Geometry of the industrial estate or business park that hosts the site, kept only as locality context. It does not locate the site or project within the estate: it is not a site locator, parcel, boundary, footprint or construction extent, and its display anchor is not a site position."}
+    "host_estate_context": {"label": "Host-estate context only", "description": "Geometry of the industrial estate or business park that hosts the site, kept only as locality context. It does not locate the site or project within the estate: it is not a site locator, parcel, boundary, footprint or construction extent, and its display anchor is not a site position."},
+    "locality_context": {"label": "Locality reference only", "description": "The point identifies a town or locality, not the facility position."},
+    "admin2_context": {"label": "County or district reference only", "description": "The point identifies a county or district, not the facility position."},
+    "admin1_context": {"label": "State or region reference only", "description": "The point identifies a state or region, not the facility position."},
+    "approximate_site_locator": {"label": "Approximate site reference", "description": "Approximate facility position inherited from the cited record; not a surveyed location."}
   },
   "geometry_authority_classes": {
     "official_source": {"label": "Official source", "description": "Published by a government authority or by a first-party source such as the developer or operator."},
     "community_source": {"label": "Community source", "description": "Taken from a community-maintained source, such as a named OpenStreetMap feature. Never treated as an official boundary."},
-    "community_mapped": {"label": "Community mapped", "description": "Contributor-mapped geometry, such as an OpenStreetMap polygon, accepted only as a locator. Never treated as an official boundary."}
+    "community_mapped": {"label": "Community mapped", "description": "Contributor-mapped geometry, such as an OpenStreetMap polygon, accepted only as a locator. Never treated as an official boundary."},
+    "compiled_reference": {"label": "Compiled location reference", "description": "Coordinates retained with the original source record precision. Administrative points do not locate the facility."}
   },
   "verification_postures": {
     "authoritative_project_record_plus_scoped_location": {"label": "Reported project and sourced location", "description": "A dated primary project record and a sourced location with its scope recorded. The status and evidence date identify what is supported."},
     "authoritative_physical_observation_plus_reviewed_site_locator": {"label": "Reported status and sourced location", "description": "A dated authoritative physical-status observation and a reviewed location. Check status_as_of for its age. This does not claim independent imagery or on-site verification."},
     "recent_authoritative_physical_observation_plus_reviewed_site_locator": {"label": "Reported status and sourced location", "description": "A dated authoritative physical-status observation and a reviewed location. Check status_as_of for its age. This does not claim independent imagery or on-site verification."},
     "recent_authoritative_physical_observation_plus_official_boundary": {"label": "Reported status and official boundary", "description": "A dated authoritative physical-status observation and an official boundary. Check status_as_of for its age. This does not claim independent imagery or on-site verification."},
-    "recent_authoritative_physical_observation_plus_host_estate_context_only": {"label": "Reported status; surrounding estate only", "description": "A dated authoritative physical-status observation, with a map of the surrounding estate rather than the site's position. Check status_as_of for its age. This does not claim independent imagery or on-site verification."}
+    "recent_authoritative_physical_observation_plus_host_estate_context_only": {"label": "Reported status; surrounding estate only", "description": "A dated authoritative physical-status observation, with a map of the surrounding estate rather than the site's position. Check status_as_of for its age. This does not claim independent imagery or on-site verification."},
+    "imported_source_record": {"label": "Sourced project record", "description": "Status, dates and location precision retained from the cited record; not independently reverified during consolidation."},
+    "mixed_review_postures": {"label": "Multiple project sources", "description": "The site contains projects with different source and location reviews; consult each project."}
   },
   "power_metrics": {
     "critical_it_mw": {"label": "Critical IT load", "unit": "MW", "description": "Power available to IT equipment for the project scope at the stated stage. A planned or design value is not installed or operating capacity."},
@@ -110,7 +119,11 @@
     "open_map": {"label": "Open map", "description": "An object from an open map such as OpenStreetMap."},
     "open_map_geometry": {"label": "Open map geometry", "description": "Geometry from an open map such as OpenStreetMap."},
     "open_map_record": {"label": "Open map record", "description": "A full record from an open map, such as an OpenStreetMap way with its nodes."},
-    "regulatory_filing": {"label": "Regulatory filing", "description": "A regulatory filing, such as a securities filing."}
+    "regulatory_filing": {"label": "Regulatory filing", "description": "A regulatory filing, such as a securities filing."},
+    "analyst_report": {"label": "Analyst report", "description": "Analysis published by a research organization."},
+    "court_record": {"label": "Court record", "description": "A court filing or decision."},
+    "trade_press": {"label": "Trade publication", "description": "Industry news reporting."},
+    "utility_disclosure": {"label": "Utility disclosure", "description": "Information published by an electricity or infrastructure utility."}
   },
   "evidence_roles": {
     "announcement": {"label": "Project announcement", "description": "Supports the announcement of the named data-centre project."},
@@ -139,7 +152,48 @@
     "typed_metric:grid_connection_mw": {"label": "Grid connection observation", "description": "Supports a typed grid connection observation."},
     "typed_metric:generation_nameplate_mw": {"label": "Generation nameplate observation", "description": "Supports a typed generation nameplate observation."},
     "typed_metric:annual_energy_mwh": {"label": "Annual energy observation", "description": "Supports a typed annual energy observation."},
-    "typed_metric:pue": {"label": "PUE observation", "description": "Supports a typed power usage effectiveness observation."}
+    "typed_metric:pue": {"label": "PUE observation", "description": "Supports a typed power usage effectiveness observation."},
+    "context:multi_site_program": {"label": "Context: Multi Site Program", "description": "Source for the context multi site program claim, retaining its original scope and date."},
+    "imported:geometry": {"label": "Imported: Geometry", "description": "Source for the imported geometry claim, retaining its original scope and date."},
+    "imported:record": {"label": "Imported: Record", "description": "Source for the imported record claim, retaining its original scope and date."},
+    "imported:status": {"label": "Imported: Status", "description": "Source for the imported status claim, retaining its original scope and date."},
+    "metric:accelerators": {"label": "Metric: Accelerators", "description": "Source for the metric accelerators claim, retaining its original scope and date."},
+    "metric:buildings": {"label": "Metric: Buildings", "description": "Source for the metric buildings claim, retaining its original scope and date."},
+    "metric:floor_area": {"label": "Metric: Floor Area", "description": "Source for the metric floor area claim, retaining its original scope and date."},
+    "metric:investment": {"label": "Metric: Investment", "description": "Source for the metric investment claim, retaining its original scope and date."},
+    "metric:jobs_construction": {"label": "Metric: Jobs Construction", "description": "Source for the metric jobs construction claim, retaining its original scope and date."},
+    "metric:jobs_permanent": {"label": "Metric: Jobs Permanent", "description": "Source for the metric jobs permanent claim, retaining its original scope and date."},
+    "metric:land_area": {"label": "Metric: Land Area", "description": "Source for the metric land area claim, retaining its original scope and date."},
+    "metric:power_capacity": {"label": "Metric: Power Capacity", "description": "Source for the metric power capacity claim, retaining its original scope and date."},
+    "milestone:announced": {"label": "Milestone: Announced", "description": "Source for the milestone announced claim, retaining its original scope and date."},
+    "milestone:cancelled": {"label": "Milestone: Cancelled", "description": "Source for the milestone cancelled claim, retaining its original scope and date."},
+    "milestone:construction_started": {"label": "Milestone: Construction Started", "description": "Source for the milestone construction started claim, retaining its original scope and date."},
+    "milestone:expansion_announced": {"label": "Milestone: Expansion Announced", "description": "Source for the milestone expansion announced claim, retaining its original scope and date."},
+    "milestone:first_operational": {"label": "Milestone: First Operational", "description": "Source for the milestone first operational claim, retaining its original scope and date."},
+    "milestone:fully_operational": {"label": "Milestone: Fully Operational", "description": "Source for the milestone fully operational claim, retaining its original scope and date."},
+    "milestone:other": {"label": "Milestone: Other", "description": "Source for the milestone other claim, retaining its original scope and date."},
+    "milestone:paused": {"label": "Milestone: Paused", "description": "Source for the milestone paused claim, retaining its original scope and date."},
+    "milestone:permit_approved": {"label": "Milestone: Permit Approved", "description": "Source for the milestone permit approved claim, retaining its original scope and date."},
+    "milestone:site_acquired": {"label": "Milestone: Site Acquired", "description": "Source for the milestone site acquired claim, retaining its original scope and date."},
+    "milestone:zoning_approved": {"label": "Milestone: Zoning Approved", "description": "Source for the milestone zoning approved claim, retaining its original scope and date."},
+    "power_source:battery_storage": {"label": "Power Source: Battery Storage", "description": "Source for the power source battery storage claim, retaining its original scope and date."},
+    "power_source:diesel_backup": {"label": "Power Source: Diesel Backup", "description": "Source for the power source diesel backup claim, retaining its original scope and date."},
+    "power_source:fuel_cell": {"label": "Power Source: Fuel Cell", "description": "Source for the power source fuel cell claim, retaining its original scope and date."},
+    "power_source:geothermal": {"label": "Power Source: Geothermal", "description": "Source for the power source geothermal claim, retaining its original scope and date."},
+    "power_source:grid": {"label": "Power Source: Grid", "description": "Source for the power source grid claim, retaining its original scope and date."},
+    "power_source:hydro": {"label": "Power Source: Hydro", "description": "Source for the power source hydro claim, retaining its original scope and date."},
+    "power_source:natural_gas_onsite": {"label": "Power Source: Natural Gas Onsite", "description": "Source for the power source natural gas onsite claim, retaining its original scope and date."},
+    "power_source:nuclear": {"label": "Power Source: Nuclear", "description": "Source for the power source nuclear claim, retaining its original scope and date."},
+    "power_source:other": {"label": "Power Source: Other", "description": "Source for the power source other claim, retaining its original scope and date."},
+    "power_source:solar": {"label": "Power Source: Solar", "description": "Source for the power source solar claim, retaining its original scope and date."},
+    "power_source:wind": {"label": "Power Source: Wind", "description": "Source for the power source wind claim, retaining its original scope and date."},
+    "role:builder": {"label": "Role: Builder", "description": "Source for the role builder claim, retaining its original scope and date."},
+    "role:developer": {"label": "Role: Developer", "description": "Source for the role developer claim, retaining its original scope and date."},
+    "role:government": {"label": "Role: Government", "description": "Source for the role government claim, retaining its original scope and date."},
+    "role:hardware_supplier": {"label": "Role: Hardware Supplier", "description": "Source for the role hardware supplier claim, retaining its original scope and date."},
+    "role:investor": {"label": "Role: Investor", "description": "Source for the role investor claim, retaining its original scope and date."},
+    "role:power_supplier": {"label": "Role: Power Supplier", "description": "Source for the role power supplier claim, retaining its original scope and date."},
+    "role:utility": {"label": "Role: Utility", "description": "Source for the role utility claim, retaining its original scope and date."}
   },
   "relationship_scopes": {
     "current": {"label": "Current", "description": "The relationship is reported as current."},
@@ -156,7 +210,14 @@
     "owner": {"label": "Owner", "description": "The party that owns, or is to own, the facility."},
     "customer": {"label": "Customer", "description": "A customer of the facility or project."},
     "tenant": {"label": "Tenant", "description": "A tenant of the facility."},
-    "user": {"label": "User", "description": "A user of the facility's capacity."}
+    "user": {"label": "User", "description": "A user of the facility's capacity."},
+    "builder": {"label": "Builder", "description": "Source for the builder claim, retaining its original scope and date."},
+    "developer": {"label": "Developer", "description": "Source for the developer claim, retaining its original scope and date."},
+    "government": {"label": "Government", "description": "Source for the government claim, retaining its original scope and date."},
+    "hardware_supplier": {"label": "Hardware Supplier", "description": "Source for the hardware supplier claim, retaining its original scope and date."},
+    "investor": {"label": "Investor", "description": "Source for the investor claim, retaining its original scope and date."},
+    "power_supplier": {"label": "Power Supplier", "description": "Source for the power supplier claim, retaining its original scope and date."},
+    "utility": {"label": "Utility", "description": "Source for the utility claim, retaining its original scope and date."}
   },
   "workloads": {
     "ai_specialized_unspecified": {"label": "AI (unspecified)", "description": "Reported as AI-specialized without a split between training and inference."},
