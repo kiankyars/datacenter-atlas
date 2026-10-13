@@ -256,6 +256,10 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
         _require(locator["scope"] in {"project_locator", "reviewed_site_locator", "campus_locator"}, "new locator must locate the project or campus")
         for field in ("method", "precision", "identity_review"):
             _text(locator.get(field), f"locator {field}")
+        derivation = locator.get("derivation", "direct_geometry")
+        _require(derivation in {"direct_geometry", "georeferenced_source_map"}, "unsupported locator derivation")
+        if derivation == "georeferenced_source_map":
+            _require(locator["authority"] == "compiled_reference", "georeferenced map locator must be a compiled reference")
         uncertainty = locator.get("horizontal_uncertainty_metres")
         if uncertainty is None:
             _text(locator.get("uncertainty_reason"), "locator uncertainty reason")
@@ -270,7 +274,7 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
             project_id=pid, project_stable_key=key, site_id=sid, physical_site_stable_key=site_key,
             name=_text(item["name"], "project name"), country=_text(item["country"], "country"), country_iso_a2=iso,
             latitude=str(lat), longitude=str(lon), geometry_json=_json(geometry), geometry_type="Point",
-            geometry_source_entity_kind="campus", geometry_derivation="direct_geometry", geometry_method=locator["method"],
+            geometry_source_entity_kind="campus", geometry_derivation=derivation, geometry_method=locator["method"],
             geometry_scope_class=locator["scope_class"], geometry_authority_class=locator["authority"], geometry_use_scope=locator["scope"],
             geometry_precision_scope=locator["precision"], horizontal_uncertainty_metres=str(uncertainty) if uncertainty is not None else "",
             horizontal_uncertainty_unknown_reason=locator.get("uncertainty_reason", ""),

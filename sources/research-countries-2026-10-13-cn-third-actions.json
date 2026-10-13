@@ -1,0 +1,80 @@
+{
+  "format": "datacenter-atlas-update-action-projection-v1",
+  "reviewed_at": "2026-10-13",
+  "base_dataset": "verified_construction_core/2026-10-13-research-followup",
+  "base_manifest_sha256": "6bf459ac00b1e8bd950289a6d934bafced7c52367b344b3053038e66dffcd4a3",
+  "source_files": [
+    {
+      "path": "sources/research-countries-2026-10-13-cn-third-primary-sources.json",
+      "sha256": "b034cfe41bbc4524ea5eccaf96ad4335c92e39d8a2531a3f0639aab0eaa8405f"
+    }
+  ],
+  "additions": [
+    {
+      "project_stable_key": "curated:china-unicom-tianjin-jingjinji-digital-technology-park:south-zone-dc1-dc2",
+      "physical_site_stable_key": "curated:china-unicom-tianjin-jingjinji-digital-technology-park",
+      "site_name": "China Unicom Jing-Jin-Ji Digital Technology Industrial Park, Tianjin",
+      "name": "China Unicom Tianjin Jing-Jin-Ji Park South Zone DC1 / DC2",
+      "country": "China",
+      "country_iso_a2": "CN",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-09-09",
+        "source_id": "cn-third-tianjin-south-operating",
+        "summary": "The participating consultant’s September 9 report confirms the south-zone DC1/DC2 operating-management certification and service context. This is dated confirmation of an existing operating project, not a new opening or the original certification award day. It does not characterize the north-zone fit-out."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            116.8344899,
+            39.61740245
+          ]
+        },
+        "source_id": "cn-third-tianjin-campus-osm",
+        "scope": "campus_locator",
+        "scope_class": "community_mapped_named_data_center_campus_representative_point",
+        "authority": "community_mapped",
+        "method": "openstreetmap_named_campus_polygon_bbox_center_verified_inside_polygon",
+        "precision": "Representative point within a named mapped China Unicom Jing-Jin-Ji park area. Campus locator only; does not identify a DC1/DC2 building footprint, the south-zone boundary or a surveyed full-campus centroid.",
+        "identity_review": "OSM way1263404569 is explicitly named 中国联通京津冀数字科技产业园项目数据中心一期. Contractor CSCEC places the identically named south-zone project at Gaocun Technology Innovation Park, Wuqing, Tianjin; the direct consultant identifies DC1/DC2 as the south-zone facilities, and the operator report distinguishes north and south at this campus. The arithmetic bounding-box center is checked inside the mapped polygon. OSM phase name does not establish a legal phase boundary or lifecycle state.",
+        "uncertainty_reason": "Community mapping has no measured positional accuracy. Exact DC1/DC2 building positions and distance from this campus marker are unknown; coordinate decimals reflect calculation, not survey accuracy."
+      },
+      "context_source_ids": [
+        "cn-third-tianjin-south-civil",
+        "cn-third-tianjin-uptime-registry",
+        "cn-third-tianjin-zone-identity"
+      ],
+      "distinctness_review": "Reviewed all 423 base projects, 399 sites and 231 complete imported records for Unicom, Tianjin, Wuqing, Jing-Jin-Ji and Chinese aliases; no match. Nearest existing marker is China Mobile International Information Port Beijing, 78.163 km away. DC1 and DC2 are retained as one south-zone project at one physical campus. The north zone is distinct scope and receives no additional counted record in this packet.",
+      "successor_review": "Checked primary consultant report and live certifier registry on October 13. No subsequent closure or cancellation found. September 30 press coverage concerns north-zone MEP installation, and is not a reversal of south-zone operation. No north/DC3 project is inferred or counted.",
+      "roles": [
+        {
+          "role": "operator",
+          "party": "China Unicom Smart Technology Industry Co., Ltd.",
+          "relationship_scope": "current",
+          "source_id": "cn-third-tianjin-south-operating"
+        }
+      ],
+      "scoped_project_details": {
+        "aliases": [
+          "中国联通京津冀数字科技产业园南区",
+          "Beijing-Tianjin-Hebei Digital Technology Industrial Park DC1",
+          "Beijing-Tianjin-Hebei Digital Technology Industrial Park DC2"
+        ],
+        "facility_scope": "Existing south-zone DC1 and DC2 grouped as one development; no separate north-zone admission.",
+        "IT_power_MW": null,
+        "south_civil_scope_floor_area_sqm_approx": 104000,
+        "south_civil_scope_source_id": "cn-third-tianjin-south-civil",
+        "power_exclusion": "108MW reported by Tianjin Unicom belongs to planned north-zone IT load and is not assigned to this south-zone project.",
+        "certification_type": "Uptime M&O Stamp of Approval",
+        "certification_event_date": "2026-09-09",
+        "certification_grant_date": null,
+        "badge_expiry_date": "2028-06-16",
+        "opening_date": null,
+        "status_date_scope": "Dated operating confirmation in direct participant report; no claim of physical opening on that day."
+      }
+    }
+  ],
+  "status_updates": [],
+  "context_updates": []
+}

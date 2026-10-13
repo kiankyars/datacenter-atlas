@@ -132,3 +132,33 @@ Portus MUC2 is a different campus. Each new marker states its campus scope and s
 Pure DC Brent Cross B2 advances to the September 2 piling report. Wustermark gains utility
 evidence without changing status, location or capacity. The 231 original source records and
 identity mapping remain byte-identical, with all earlier evidence retained.
+
+The third continuation, `definitions/atlas-research-third-2026-10-13.json`, publishes
+`verified_construction_core/2026-10-13-research-third`: **426 projects across 402 sites**.
+China and Japan remain the priority, with clearly labelled campus and parent-property markers.
+
+- China Unicom's Tianjin south-zone DC1/DC2 is one operating project, confirmed by the
+  participating consultant's September 9 report and the certifier's named facility registry.
+  September 9 is neither the original opening nor an inferred certification grant date.
+  The named community-mapped campus point does not distinguish individual buildings;
+  north-zone fit-out and its planned 108 MW do not transfer to this south-zone record.
+- Kobe's former conveyor-tunnel project is announced on October 6. Its approximate marker
+  comes from the D4 machine-room symbol in the city's exact leased-section map, registered
+  to GSI tiles. The source symbol spans about 219 metres; image-registration residuals do
+  not establish total ground accuracy. The output explicitly records a georeferenced source
+  map with compiled-reference authority, not direct surveyed coordinates. The distant coastal
+  marker for the full historic conveyor system is excluded.
+- Aligned's Project Phoenix at Shippingport is announced on September 10. The park's
+  selected map supplies a parent-property entrance point; it is not a DC building or campus
+  boundary. The park's 128 Ferry Hill Road address differs from Aligned's 100 Church Lane;
+  identity rests on the explicitly named park. October 8 commencement filing, reported permit
+  numbers and an undated future blasting schedule do not establish an exact achieved work day.
+
+The latest China operator packet identifies GDS's Langfang Qihan ceremony label and a VNET
+Phase 3 contractor article pointer, but still lacks the remaining evidence needed for admission.
+Boda Langfang Phase 1 and Qianhai No.1 have fresh operating reports and named campus markers;
+their Baidu BD-09 coordinates await a verified WGS84 location bridge. Wujiang has a fresh
+September 2 supervision tender but no resolved campus marker. Miyagi retains achieved
+completion and network-service evidence, but its exact host property remains unresolved.
+All holds, native coordinates and capture limitations are retained in the new `*-third` packets.
+The 231 original source records and identity mapping remain byte-identical.

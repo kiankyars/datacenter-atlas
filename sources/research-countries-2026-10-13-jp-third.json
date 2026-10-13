@@ -1,0 +1,97 @@
+{
+  "format": "datacenter-atlas-country-research-resolution-v1",
+  "researched_at": "2026-10-13T18:18:55.536586+00:00",
+  "country": "Japan",
+  "baseline": "verified_construction_core/2026-10-13-research-followup",
+  "baseline_commit": "68df5d856b1b5a8a2d6d6f4ae086e000c27412c2",
+  "previous_packet": "sources/research-countries-2026-10-13-jp-next.json",
+  "maximum_new_admission_status_age_days": 90,
+  "coverage_note": "Third bounded Japan pass resolves Kobe to an explicitly approximate host-tunnel marker through the official lease map and GSI map registration. Miyagi AI remains held for missing exact property geometry.",
+  "raw_capture_directory": "local_data/country-research-2026-10-13-jp-third",
+  "raw_retention_note": "Exact source captures and map review images stay in ignored local_data. Public files contain derived facts, source metadata and SHA-256 provenance only.",
+  "integration_actions_file": "sources/research-countries-2026-10-13-jp-third-actions.json",
+  "normalized_sources_file": "sources/research-countries-2026-10-13-jp-third-primary-sources.json",
+  "geometry_facts_file": "sources/research-countries-2026-10-13-jp-third-geometry-facts.json",
+  "publishable_action_counts": {
+    "additions": 1,
+    "status_updates": 0
+  },
+  "candidates": [
+    {
+      "id": "kobe-conveyor-tunnel-dc",
+      "name": "Kobe Former Conveyor Tunnel Data Center",
+      "action": "ready_announced_admission_with_approximate_host_tunnel_marker",
+      "status": "announced",
+      "status_as_of": "2026-10-06",
+      "publication_date": "2026-10-06",
+      "geometry": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            135.0901,
+            34.7393
+          ]
+        },
+        "source_id": "jp-third-kobe-lease-map",
+        "scope": "campus_locator",
+        "scope_class": "official_lease_map_d4_host_tunnel_symbol_georeferenced_to_gsi",
+        "authority": "compiled_reference",
+        "method": "official_lease_map_d4_symbol_registered_to_gsi_xyz_tiles",
+        "precision": "Approximate D4 machine-room symbol centre within the named leased host-tunnel section. It locates the parent underground facility only; no surveyed portal, tunnel footprint, container installation point or building boundary is established.",
+        "identity_review": "Kobe city award identifies approximately 3 km from Komi to Mitsugaoka and directly links the map highlighting D4 machine room, D4 tunnel and D3 machine room. The selected D4 circle lies within that exact map scope. Nineteen distributed controls register the official diagram to GSI tiles. The coastal locator for the full 14.5-km conveyor system is explicitly excluded.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The municipal diagram does not state geodetic or surveyed accuracy and uses a large symbolic room marker. A low registration residual does not establish ground accuracy. Rounded four-decimal coordinates identify the host-tunnel area only."
+      },
+      "source_ids": [
+        "jp-third-kobe-announcement",
+        "jp-third-kobe-city-award",
+        "jp-third-kobe-lease-map",
+        "jp-third-kobe-gsi-registration",
+        "jp-third-gsi-tile-specification"
+      ],
+      "map_review": {
+        "control_points": 19,
+        "registration_rms_pixels": 1.56860432250938,
+        "source_symbol_diameter_metres_approx": 218.86826760177672,
+        "total_horizontal_accuracy": "unknown; fit residual is not total ground accuracy",
+        "private_review_images": [
+          "local_data/country-research-2026-10-13-jp-third/city-map-controls.png",
+          "local_data/country-research-2026-10-13-jp-third/gsi-map-controls.png",
+          "local_data/country-research-2026-10-13-jp-third/registration-overlay.png",
+          "local_data/country-research-2026-10-13-jp-third/d4-overlay-crop.png"
+        ]
+      },
+      "capacity_scope_note": "Eventual maximum receiving capacity 20 MW is planned; no live IT power selected."
+    },
+    {
+      "id": "miyagi-ai-data-center",
+      "name": "Miyagi AI Data Center, Shichigahama",
+      "action": "hold_geometry",
+      "known_status": "completed",
+      "known_status_as_of": "2026-07-24",
+      "later_evidence": "OCX connection node opened September 1 as disclosed September 30.",
+      "source_ids": [
+        "jp-third-miyagi-completion",
+        "jp-third-miyagi-bbix",
+        "jp-third-miyagi-ocx-sites"
+      ],
+      "bounded_check": "Re-read official completion and network-node releases and checked current OCX site list; all disclose municipality only. Targeted Getworks, Tohoku Electric and municipal searches yielded no exact facility address, unique parent property or numeric point.",
+      "blocker": "No primary exact-address/parcel/property identity bridge or uniquely sourced facility geometry established.",
+      "rejected_inference": "Do not infer Sendai thermal power-station location from Tohoku Electric ownership alone.",
+      "next_step": "Obtain operator or municipal map/parcel identifying the named facility before selecting a marker."
+    }
+  ],
+  "validation": {
+    "baseline_sites": 399,
+    "baseline_projects": 423,
+    "geometry_control_points": 19,
+    "selected_marker_inside_control_point_hull": true,
+    "unrelated_files_modified": false,
+    "commit_performed": false
+  },
+  "integration_review": {
+    "derived_geometry": "Action explicitly selects georeferenced_source_map with compiled-reference authority; the exporter preserves this classification.",
+    "roles": "Getworks remains intended operator. Developer and intended contractor roles are retained in scoped_project_details/reporting evidence because the current typed role contract accepts owner/operator/user/tenant/customer only.",
+    "root_visual_review": "Inspected registration-overlay.png and d4-overlay-crop.png; matching surrounding roads and terrain support approximate host-location scope. Independently recomputed XYZ conversion and rounded coordinates."
+  }
+}

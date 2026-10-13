@@ -1,0 +1,87 @@
+{
+  "format": "datacenter-atlas-action-specs-v1",
+  "as_of": "2026-10-13",
+  "base_dataset": "verified_construction_core/2026-10-13-research-followup",
+  "base_manifest_sha256": "6bf459ac00b1e8bd950289a6d934bafced7c52367b344b3053038e66dffcd4a3",
+  "source_file": "sources/research-countries-2026-10-13-jp-third-primary-sources.json",
+  "additions": [
+    {
+      "project_stable_key": "curated:kobe-conveyor-tunnel-dc:initial-development",
+      "physical_site_stable_key": "curated:kobe-conveyor-tunnel-dc",
+      "site_name": "Kobe Former Conveyor Tunnel Data Center",
+      "name": "Kobe Former Conveyor Tunnel Data Center Initial Development",
+      "country": "Japan",
+      "country_iso_a2": "JP",
+      "status": {
+        "value": "announced",
+        "as_of": "2026-10-06",
+        "source_id": "jp-third-kobe-announcement",
+        "summary": "Joint developer announcement identifies a commercial data center in the awarded former conveyor tunnel section, with initial service targeted for end-2027. Existing tunnel, September 4 award and announced development do not establish achieved physical DC construction."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            135.0901,
+            34.7393
+          ]
+        },
+        "source_id": "jp-third-kobe-lease-map",
+        "scope": "campus_locator",
+        "scope_class": "official_lease_map_d4_host_tunnel_symbol_georeferenced_to_gsi",
+        "authority": "compiled_reference",
+        "method": "official_lease_map_d4_symbol_registered_to_gsi_xyz_tiles",
+        "precision": "Approximate D4 machine-room symbol centre within the named leased host-tunnel section. It locates the parent underground facility only; no surveyed portal, tunnel footprint, container installation point or building boundary is established.",
+        "identity_review": "Kobe city award identifies approximately 3 km from Komi to Mitsugaoka and directly links the map highlighting D4 machine room, D4 tunnel and D3 machine room. The selected D4 circle lies within that exact map scope. Nineteen distributed controls register the official diagram to GSI tiles. The coastal locator for the full 14.5-km conveyor system is explicitly excluded.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The municipal diagram does not state geodetic or surveyed accuracy and uses a large symbolic room marker. A low registration residual does not establish ground accuracy. Rounded four-decimal coordinates identify the host-tunnel area only.",
+        "derivation": "georeferenced_source_map"
+      },
+      "context_source_ids": [
+        "jp-third-kobe-city-award",
+        "jp-third-kobe-gsi-registration",
+        "jp-third-gsi-tile-specification"
+      ],
+      "distinctness_review": "All 399 baseline sites, 423 projects and source records checked for Kobe, conveyor and Getworks; no existing project/site match. Nearest mapped site is SoftBank Osaka Sakai AI data center about 35.20 km away. One awarded host-tunnel section and one initial-development project; D3/D4 rooms and eventual containers are not separately counted.",
+      "successor_review": "Primary city and developer pages reviewed October 13; October 6 remains the latest dated named-project announcement established in this bounded pass. End-2027 service and eventual maximum 20 MW receiving capacity remain prospective. No later achieved physical works or operation observation established.",
+      "roles": [
+        {
+          "party": "Getworks",
+          "role": "operator",
+          "relationship_scope": "intended",
+          "source_id": "jp-third-kobe-announcement"
+        }
+      ],
+      "scoped_project_details": {
+        "leased_section_length_km_approx": 3,
+        "leased_section_area_m2_approx": 17000,
+        "service_target": "end-2027",
+        "eventual_maximum_receiving_capacity_MW": 20,
+        "capacity_scope": "Future maximum receiving capacity only; no selected live IT load or delivered capacity.",
+        "locator_scope": "Approximate D4 host-tunnel symbol, not an installation or portal survey",
+        "physical_work_status_exact_day_established": false,
+        "reported_additional_roles": [
+          {
+            "party": "Mitsui Fudosan",
+            "role": "developer",
+            "relationship_scope": "current",
+            "source_id": "jp-third-kobe-announcement"
+          },
+          {
+            "party": "Kumagai Gumi",
+            "role": "developer",
+            "relationship_scope": "current",
+            "source_id": "jp-third-kobe-announcement"
+          },
+          {
+            "party": "Kumagai Gumi",
+            "role": "contractor",
+            "relationship_scope": "intended",
+            "source_id": "jp-third-kobe-announcement"
+          }
+        ]
+      }
+    }
+  ],
+  "status_updates": []
+}

@@ -1,0 +1,116 @@
+{
+  "format": "datacenter-atlas-country-research-v1",
+  "reviewed_at": "2026-10-13",
+  "checked_dataset": "verified_construction_core/2026-10-13-research-followup",
+  "checked_manifest_sha256": "6bf459ac00b1e8bd950289a6d934bafced7c52367b344b3053038e66dffcd4a3",
+  "checked_repository_commit": "68df5d856b1b5a8a2d6d6f4ae086e000c27412c2",
+  "countries": [
+    "US"
+  ],
+  "scope": "Bounded US pass while parallel China/Japan priority research resolves queued identities. Clearly labelled parent-property locator authorized by user.",
+  "summary": {
+    "publishable_additions": 1,
+    "publishable_status_updates": 0,
+    "held_candidates": 1
+  },
+  "ready": [
+    {
+      "candidate_id": "aligned-project-phoenix",
+      "normalized_action": {
+        "project_stable_key": "curated:aligned-shippingport-project-phoenix:campus-development",
+        "physical_site_stable_key": "curated:aligned-shippingport-project-phoenix",
+        "site_name": "Aligned Project Phoenix, Shippingport",
+        "name": "Aligned Project Phoenix / PIT-01 Campus Development",
+        "country": "United States",
+        "country_iso_a2": "US",
+        "status": {
+          "value": "announced",
+          "as_of": "2026-09-10",
+          "source_id": "us-third-phoenix-announcement",
+          "summary": "Operator announces the named three-facility campus and September 10 groundbreaking. Retain announced as the latest exact-day supported lifecycle classification: undated site-operations and planned-blasting text has no exact achieved work observation, and the October 8 legal commencement filing is not such an observation."
+        },
+        "locator": {
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              -80.414552,
+              40.632068
+            ]
+          },
+          "source_id": "us-third-shippingport-entrance-map",
+          "scope": "campus_locator",
+          "scope_class": "property_selected_parent_industrial_property_entrance_marker",
+          "authority": "compiled_reference",
+          "method": "direct_unique_named_point_from_property_embedded_google_mymaps_kml",
+          "precision": "Main entrance marker for the parent Shippingport Industrial Park property. It does not locate an individual Aligned building, the three-facility campus centroid, construction work limits or a legal parcel boundary.",
+          "identity_review": "Aligned explicitly identifies Project Phoenix inside Shippingport Industrial Park. The named property website embeds the exact map whose unique Main Site Entrance point is selected. Its 128 Ferry Hill Road address differs from Aligned PIT-01 address 100 Church Lane; no exact address match is claimed. State filing independently links the named Aligned project to Shippingport parcels. Adjacent power-station equipment is not selected as the DC location.",
+          "horizontal_uncertainty_metres": null,
+          "uncertainty_reason": "Source gives no measured positional accuracy. Offset from the parent entrance to individual proposed DC buildings is unknown; decimal precision is not survey accuracy."
+        },
+        "context_source_ids": [
+          "us-third-phoenix-address",
+          "us-third-shippingport-map-bridge",
+          "us-third-phoenix-state-notice",
+          "us-third-phoenix-community",
+          "us-third-phoenix-blast-plan"
+        ],
+        "distinctness_review": "Checked all 423 project rows, 399 sites and 231 preserved source records for Shippingport, Bruce Mansfield, Project Phoenix, PIT-01 and Steel Curtain. No match. Nearest existing site is Bitdeer Weathersfield (Niles), 67.24 km away. One campus project and one physical site; the three facilities are not counted separately, and the adjacent power station is not a DC project.",
+        "successor_review": "As of October 13: reviewed operator announcement, facility and community pages and October 8 state filing. Later undated community schedule gives proposed blasting dates, not achieved works; filing reports permit numbers without grant dates or approved scope. No newer exact-day physical construction/completion/operation observation established. Announced is a conservative evidence classification, not a claim that no site work has occurred.",
+        "roles": [
+          {
+            "party": "Aligned Data Centers, LLC",
+            "role": "owner",
+            "relationship_scope": "current",
+            "source_id": "us-third-phoenix-state-notice"
+          },
+          {
+            "party": "Aligned Data Centers",
+            "role": "operator",
+            "relationship_scope": "intended",
+            "source_id": "us-third-phoenix-announcement"
+          }
+        ],
+        "scoped_project_details": {
+          "planned_facilities": 3,
+          "planned_campus_capacity_GW": 2,
+          "capacity_scope": "Developer headline; IT-versus-facility power unspecified, planned not delivered",
+          "individual_building_footprint_established": false,
+          "physical_work_status_exact_day_established": false,
+          "commencement_notice_date": "2026-10-08",
+          "notice_does_not_refresh_status": true
+        }
+      }
+    }
+  ],
+  "holds": [
+    {
+      "candidate_id": "google-cheyenne-black-hills",
+      "source_url": "https://ir.blackhillscorp.com/news-releases/news-release-details/black-hills-corp-executes-definitive-agreements-serve-googles",
+      "review_result": "October 6 utility announcement is a named fresh project lead; exact data-center campus locator remains unresolved. Direct capture blocked (403), no admission source constructed from the failed fetch.",
+      "next_evidence": "Primary exact campus/address/parcel bridge. Utility generation site is not assumed to be the data-center location."
+    }
+  ],
+  "capture_failures": [
+    {
+      "name": "google-cheyenne.html",
+      "url": "https://ir.blackhillscorp.com/news-releases/news-release-details/black-hills-corp-executes-definitive-agreements-serve-googles",
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "name": "pa-phoenix-commencement.pdf",
+      "url": "https://www.pa.gov/dgs/state-construction-notices-directory/Pdf/Commencement/16473",
+      "error": "The read operation timed out"
+    },
+    {
+      "name": "beaver-parcels-metadata.json",
+      "url": "https://gis.beavercountypa.gov/server/rest/services/InfoAtlas/Parcels_with_Owner/MapServer/22?f=pjson",
+      "error": "<urlopen error timed out>"
+    },
+    {
+      "name": "pasda-metadata.json",
+      "url": "https://services.pasda.psu.edu/server/rest/services/PA_Parcels/MapServer?f=pjson",
+      "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)>"
+    }
+  ],
+  "preservation": "Earlier source packets unchanged; raw third-party captures remain ignored."
+}
