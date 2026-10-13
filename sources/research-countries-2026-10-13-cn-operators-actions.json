@@ -1,0 +1,57 @@
+{
+  "format": "datacenter-atlas-update-action-projection-v1",
+  "reviewed_at": "2026-10-13",
+  "base_dataset": "verified_construction_core/2026-10-13-research",
+  "base_manifest_sha256": "562f706b21d01359004056e3c27ca8fb50cee3510d1b190eba0f57cc48215b82",
+  "source_files": [
+    {
+      "path": "sources/research-countries-2026-10-13-cn-operators-primary-sources.json",
+      "sha256": "99bfd21570fa627df83a0ba6c84526c5b643db37894b27ed89f4858913af069c"
+    }
+  ],
+  "additions": [
+    {
+      "project_stable_key": "curated:china-telecom-shaotang-shaoguan:announced-campus-development",
+      "physical_site_stable_key": "curated:china-telecom-shaotang-shaoguan",
+      "site_name": "China Telecom Shaotang Campus, Shaoguan",
+      "name": "China Telecom Shaotang Campus Development",
+      "country": "China",
+      "country_iso_a2": "CN",
+      "status": {
+        "value": "announced",
+        "as_of": "2026-09-21",
+        "source_id": "cn-shaotang-start",
+        "summary": "City government records September 21 project commencement event. Ceremony supports announced project status; actual physical works stage is not independently established."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            113.66191861111112,
+            24.787517222222224
+          ]
+        },
+        "source_id": "cn-shaotang-eia",
+        "scope": "campus_locator",
+        "scope_class": "official_eia_on_campus_substation_locator",
+        "authority": "official_source",
+        "method": "official_eia_geographic_dms_point_transcription",
+        "precision": "Reported center point of the campus 220kV substation in its northwest corner. Locates the campus through named on-campus support infrastructure; not a data-hall center, parcel centroid, or construction boundary.",
+        "identity_review": "Official EIA pages 3 and 17 name China Telecom Guangdong Shaotang data-center campus and GJ0202A-17A-1 parcel; page 18 explicitly places the proposed substation in the northwest corner of that data-center campus. Source geographic DMS 113 degrees 39 minutes 42.907 seconds east, 24 degrees 47 minutes 15.062 seconds north transcribed arithmetically to decimal degrees. Datum not stated; no WGS84 survey accuracy or CRS transformation asserted.",
+        "uncertainty_reason": "No positional accuracy or coordinate datum stated. Numeric precision is source transcription precision, not positional accuracy; offset to individual data halls is unknown."
+      },
+      "context_source_ids": [],
+      "distinctness_review": "Reviewed 414-project 2026-10-13-research dataset and all 231 original imported source records. Only existing Chinese project is China Mobile Haidong Phase2. No Shaotang/China Telecom/Shaoguan source entry. Shaotang is distinct from China Telecom Zhenjiang campus and other operators in Shaoguan.",
+      "successor_review": "Re-read September 22 government report of September 21 commencement; September 30 environmental approval relates only to the substation and does not upgrade data-center construction stage. No later verified building completion, operating or cancellation record found.",
+      "roles": [
+        {
+          "role": "operator",
+          "party": "China Telecom",
+          "relationship_scope": "intended",
+          "source_id": "cn-shaotang-eia"
+        }
+      ]
+    }
+  ],
+  "status_updates": []
+}

@@ -1,7 +1,8 @@
 # Country research
 
-Work in this order: **United States → China → United Kingdom → Germany → Japan**. Give each
-contributor a bounded country pass using local primary sources. Each pass finds missing sites,
+Prioritize **China and Japan** in the current continuation. The wider country sequence remains
+United States → China → United Kingdom → Germany → Japan. Give each contributor a bounded
+country pass using local primary sources. Each pass finds missing sites,
 checks later reports for existing sites and resolves known corrections. Share the same record
 format and check names and campus aliases across assignments before adding a site.
 
@@ -47,6 +48,21 @@ does not assert completion or cancellation.
 - Refreshed the existing Frontier record from Oracle's construction media dated 8 September
   and the existing Saline Barn record from Oracle's 28 September current-work statement.
   Frontier retains its explicitly labelled county locator; neither refresh adds another site.
+- The China/Japan continuation adds TECRA's Ome Takinouecho building B as permitted, using the
+  September 15 approval-status report and the exact permit bridge from original DC5B to OME07.
+  It adds Ome Shinmachi9-A from the July 15 building-construction report, exactly 90 days before
+  this review. Both markers locate the developer's parent property, not a new building footprint.
+- Adds China Telecom Guizhou B5/B6 **civil works** as completed on September 20. Equipment
+  commissioning and operation remain unverified. The official campus reference is approximate,
+  published to two decimal places with no datum stated.
+- Adds China Telecom Shaotang as announced on September 21. Its source point identifies the
+  proposed substation inside the named campus; the commencement ceremony does not establish a
+  particular physical work stage. Refreshes Haidong Phase 2 construction to the September 2
+  official site visit without inferring completion of any individual building.
+- Adds JERA/RHAELM's Chiba development as announced on October 1, with the operator-selected
+  host power-station address feature. The AI plot remains unknown. Refreshes SoftBank Tomakomai
+  to August 4 from a separate dated operator article that explicitly makes its information current
+  at publication; the September annual report is not used to invent a later observation.
 
 ## Candidate queue
 
@@ -60,8 +76,10 @@ does not assert completion or cancellation.
   the [China Mobile Beijing No.6 parcel procurement](https://ggzyfw.beijing.gov.cn/jyxxzbhxrgs/20260901/5692101.html)
   for a named proposal and location. The procurement does not itself establish development consent
   or physical work. Start with Beijing, Shanghai and Guangdong operator portfolios and local records.
-  The follow-up reviewed VNET, GDS, China Mobile and regional government reports; no additional
-  scope met the location and recent-evidence gates. VNET's August results report June observations.
+  Earlier follow-up found no additions; the subsequent resolution pass admits Guizhou B5/B6 and
+  Shaotang as described above. VNET's August results report June observations. Beijing No6 still
+  needs a numerical parcel locator; the GDS Langfang pair needs individual project identities.
+  China Mobile Shaoguan C/D has an official site plan, but its survey coordinate system is unstated.
 - **United Kingdom:** keep Edinburgh's CR4 extension on the existing ACF campus as its status
   changes. Kao Manchester has evidence of site preparation and electrical enabling works; confirm
   its precise site location and obtain a later primary observation than 1 July, now 104 days old.
@@ -76,6 +94,9 @@ does not assert completion or cancellation.
   opening. Keep IIJ Shiroi and Tomakomai updates separate from new campuses.
   The follow-up also checked CyrusOne OSK1 and DayOne Kodaira. A lease or ceremony does not
   establish physical work; later evidence and exact phase identity remain necessary.
+  SoftBank's September annual report discusses construction but does not give an exact observation
+  date for those statements within its mixed reporting period; publication alone does not refresh
+  Sakai's observation. Tomakomai instead has the distinct August 4 source described above.
 
 The country packets under `sources/research-countries-2026-10-13-*` retain checked candidates,
 sources and the missing fact for each hold. The Scala audit is in
@@ -85,3 +106,10 @@ as `verified_construction_core/2026-10-13-research`: 414 projects across 390 sit
 actions preserve the complete consolidated source snapshot and identity mapping. Oracle's
 Frontier caption date is stored as an explicit observation date; the undated containing page
 retains an unknown publication date.
+
+The China/Japan continuation is defined in `definitions/atlas-research-asia-2026-10-13.json` and
+published as `verified_construction_core/2026-10-13-research-asia`: **419 projects across 395 sites**.
+It adds five sites and refreshes two existing projects. Both the 231-record consolidated source
+snapshot and its identity mapping remain byte-identical. Its integration review records why
+Google's exact selected address features replace map viewport centres, with compiled-reference
+authority and explicit parent-campus precision.

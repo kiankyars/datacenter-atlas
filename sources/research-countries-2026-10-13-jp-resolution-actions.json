@@ -1,0 +1,71 @@
+{
+  "format": "datacenter-atlas-action-specs-v1",
+  "as_of": "2026-10-13",
+  "source_file": "sources/research-countries-2026-10-13-jp-resolution-primary-sources.json",
+  "additions": [
+    {
+      "project_stable_key": "curated:jera-chiba-thermal-power-station:ai-datacenter-campus",
+      "physical_site_stable_key": "curated:jera-chiba-thermal-power-station",
+      "site_name": "JERA Chiba Thermal Power Station AI Infrastructure",
+      "name": "JERA / RHAELM Chiba AI Data Center Infrastructure",
+      "country": "Japan",
+      "country_iso_a2": "JP",
+      "status": {
+        "value": "announced",
+        "as_of": "2026-10-01",
+        "source_id": "jp-resolution-jera-chiba-announcement",
+        "summary": "October1 MoU announces the Chiba power-station AI infrastructure project; development and feasibility stage, with around2028 operations targeted. No physical works or achieved capacity inferred."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            140.105612,
+            35.564504
+          ]
+        },
+        "source_id": "jp-resolution-jera-chiba-plant",
+        "scope": "campus_locator",
+        "scope_class": "operator_published_host_campus_map_reference",
+        "authority": "official_source",
+        "method": "operator_embedded_map_reference_coordinates",
+        "precision": "Operator-provided address-map reference for host Chiba Thermal Power Station. Campus locator only; neither an AI-building footprint nor a phase boundary.",
+        "identity_review": "October1 announcement explicitly selects JERA Chiba Thermal Power Station. JERA plant page gives exact address2-1377 Sogacho and embeds a Google map for that address with numeric reference center. Coordinates are read directly from embedded source, not inferred from city centroid.",
+        "uncertainty_reason": "No positional accuracy or AI plot is published. The plant spans about76ha and the DC location within it is unknown. Decimal precision reflects map parameters, not surveyed accuracy."
+      },
+      "context_source_ids": [],
+      "distinctness_review": "No JERA, RHAELM or Chiba thermal power-station project exists in baseline414projects or source snapshot231records. Nearest baseline record is NTT TKY12 Shiroi about26km away; distinct facility/operator. Admission covers only this named campus, not the nationwide MoU program.",
+      "successor_review": "October1 primary announcement is12days old. Primary pages do not establish later physical works, completion, operations or cancellation. Keep announced status and target dates.",
+      "roles": []
+    }
+  ],
+  "status_updates": [
+    {
+      "project_stable_key": "imported:semiconductor-atlas:softbank-tomakomai",
+      "status": {
+        "value": "under_construction",
+        "as_of": "2026-08-04",
+        "source_id": "jp-resolution-softbank-tomakomai-august",
+        "summary": "Dated operator article describes the named Tomakomai campus as under construction. The article declares information current at publication; precise construction milestone and independently inspected date are not claimed."
+      },
+      "identity_review": "Article explicitly names SoftBank Hokkaido Tomakomai AI Data Center. This is the imported SoftBank campus, distinct from AI Tech Tomakomai phase1. No changes to inherited locality-context geometry.",
+      "successor_review": "September30 report and current operator pages retain future FY2026 opening target, but their own observation cutoffs are not used as newer physical dates. No later explicit achieved opening or cancellation found. August14-republished April2025ceremony was excluded."
+    }
+  ],
+  "withheld_status_updates": [
+    {
+      "project_stable_key": "imported:semiconductor-atlas:softbank-sakai",
+      "proposed_status": "under_construction",
+      "source_id": "jp-resolution-softbank-report-strategy",
+      "decision": "retain_existing_status_date",
+      "reason": "Annual-report period ends2026-03-31; September30 is publication only. Page45 lacks a distinct current observation date. Preserve the qualified new disclosure as context rather than mechanically refreshing status."
+    },
+    {
+      "project_stable_key": "imported:semiconductor-atlas:softbank-tomakomai",
+      "proposed_status": "under_construction",
+      "source_id": "jp-resolution-softbank-report-strategy",
+      "decision": "reject_september_report_date_use_august_news_instead",
+      "reason": "September30report physical-date ambiguity remains; a separate explicitly datedAugust4 operator article supports the included refresh."
+    }
+  ]
+}

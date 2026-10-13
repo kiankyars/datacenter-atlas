@@ -360,7 +360,10 @@ passes, check all proposed names, campus aliases and identifiers against the ful
 other country assignments. Publish supported changes through the routine update process below;
 publication does not depend on reaching a site-count target or product-version milestone.
 
-1. Gather a dated primary source for physical construction and a source for the location. Check
+1. Gather a dated primary source for the claimed project status and a source for the location.
+   Admissions may be announced, permitted, under construction, completed or operating; the
+   observation must fall within 90 days of the update. Completion of a named work package must
+   retain that scope and must not imply an operating campus. Check
    existing campus names and aliases before adding a site; add a project to the existing site when
    the work is another building or phase at the same campus.
 2. Record source URLs, retrieval dates, licences and supported facts. Preserve the observation date

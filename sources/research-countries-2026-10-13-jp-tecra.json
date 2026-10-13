@@ -1,0 +1,111 @@
+{
+  "format": "datacenter-atlas-country-research-v1",
+  "reviewed_at": "2026-10-13",
+  "country": "Japan",
+  "base_dataset": "verified_construction_core/2026-10-13-research",
+  "additions": [
+    {
+      "project_stable_key": "curated:tecra-ome-takinouecho:building-b",
+      "physical_site_stable_key": "curated:tecra-ome-takinouecho",
+      "site_name": "TECRA Ome Takinouecho",
+      "name": "OME Data Center07 / DC5 Building B",
+      "country": "Japan",
+      "country_iso_a2": "JP",
+      "status": {
+        "value": "permitted",
+        "as_of": "2026-09-15",
+        "source_id": "tecra-report96",
+        "summary": "September15 developer progress report confirms building approvals; certificate for DC5B was issued May27. Successor OME07 is the same approved building B. No physical start or operation inferred from fund dates.",
+        "permit_scope": "data_center_development",
+        "permit_type": "building_permit",
+        "permit_decision": "granted",
+        "permit_reference": "Japan ERI ERI-26012911 (issued2026-05-27)",
+        "permit_identity_review": "Published certificate identifies OmeDC5B new server-room warehouse; successor fund103 repeats exact permit number, date,331.64m² site and317.54m² floor area. Original parcel1325-1 part subdivides to1325-9 and1325-12."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            139.25694444444446,
+            35.78761111111111
+          ]
+        },
+        "source_id": "tecra-fund103",
+        "scope": "campus_locator",
+        "scope_class": "developer_selected_parent_parcel_locator",
+        "authority": "official_source",
+        "method": "developer_embedded_explicit_dms_target",
+        "precision": "Developer-selected original campus point decoded from explicit DMS target; not a building-B centroid or legal boundary.",
+        "identity_review": "Fund103 and original fund96 embed the identical named DMS target. Exact permit, floor area and subdivision statement bridge current OME07 to DC5B on the original Takinouecho site.",
+        "uncertainty_reason": "No positional accuracy stated. Locator identifies the parent property; the exact subdivided data-center parcel and building outline are not established numerically."
+      },
+      "context_source_ids": [
+        "tecra-report96",
+        "tecra-certificate96",
+        "tecra-fund96",
+        "tecra-infrastructure-reports"
+      ],
+      "distinctness_review": "No TECRA/Ome site occurs in current consolidated site or project names/aliases. Takinouecho and Shinmachi9-A are distinct addresses around5.5km apart. Original fund96 and successor103 are one campus, not two sites. Nearest existing record: (72101.93418951688, 'NTT Global Data Centers Tokyo TKY12 campus, Shiroi').",
+      "successor_review": "Reviewed Sep15 progress report, successor fund103 specifications and current report index onOct13. Fund operation beginsOct1 but no physical-start or completed-building evidence is provided. Retain permitted.",
+      "roles": []
+    },
+    {
+      "project_stable_key": "curated:tecra-ome-shinmachi-9a:building",
+      "physical_site_stable_key": "curated:tecra-ome-shinmachi-9a",
+      "site_name": "OME Data Center04 (Shinmachi9-A)",
+      "name": "OME Data Center04 Shinmachi9-A Building",
+      "country": "Japan",
+      "country_iso_a2": "JP",
+      "status": {
+        "value": "under_construction",
+        "as_of": "2026-07-15",
+        "source_id": "tecra-report93",
+        "summary": "Developer explicitly reports current building construction with progress photographs. The report is90days beforeOct13; autumn completion remains a forecast."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            139.3177428,
+            35.782779
+          ]
+        },
+        "source_id": "tecra-map93-feature",
+        "scope": "campus_locator",
+        "scope_class": "developer_selected_parent_parcel_locator",
+        "authority": "compiled_reference",
+        "method": "developer_selected_map_feature_coordinates",
+        "precision": "Developer-selected mapped parent-parcel address point; not the exact subdivided data-center lot or new-building footprint.",
+        "identity_review": "Developer property page names parcel2053-1 and embeds exact feature CID3463469169659058608; developer diagram labels that parent parcel and the smaller project subdivision. Maps feature still bears the former restaurant address. !3d/!4d feature coordinates differ from iframe viewport coordinates and are used here.",
+        "uncertainty_reason": "No positional accuracy stated. Locator identifies the parent property; the exact subdivided data-center parcel and building outline are not established numerically."
+      },
+      "context_source_ids": [
+        "tecra-fund93",
+        "tecra-map93",
+        "tecra-infrastructure-reports"
+      ],
+      "distinctness_review": "No TECRA/Ome site occurs in current consolidated inventory. Shinmachi9-A differs from Takinouecho and from other developer funds named Shinmachi6-B; no duplicate from fund and building names. Nearest existing record: (66625.84233814519, 'NTT Global Data Centers Tokyo TKY12 campus, Shiroi').",
+      "successor_review": "Reviewed current property page, Jul15 report and developer progress index onOct13. No later scoped completion/opening report found. Autumn2026 planned completion does not establish completion.",
+      "roles": [
+        {
+          "role": "operator",
+          "party": "Unsung Fields",
+          "relationship_scope": "intended",
+          "source_id": "tecra-fund93"
+        }
+      ]
+    }
+  ],
+  "status_updates": [],
+  "holds": [
+    {
+      "candidate": "Other TECRA Ome/Osaka projects",
+      "reason": "Available indexed physical/permit reports precedeJul15 freshness cutoff; fund-active labels are not facility operation. Retain candidates for newer reports."
+    }
+  ],
+  "review_notes": [
+    "Primary raw documents remain locally hash-bound; only factual projections redistributed.",
+    "Google feature coordinates are secondary mapping content explicitly selected by the primary developer; parent-parcel scope and third-party source terms retained.",
+    "Reported incoming power, cooling, roles and forecast figures are preserved in source facts; no IT capacity or current energized supply is inferred."
+  ]
+}

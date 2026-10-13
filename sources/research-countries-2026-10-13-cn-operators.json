@@ -1,0 +1,295 @@
+{
+  "format": "datacenter-atlas-country-research-v1",
+  "reviewed_at": "2026-10-13",
+  "checked_dataset": "verified_construction_core/2026-10-13-research",
+  "checked_manifest_sha256": "562f706b21d01359004056e3c27ca8fb50cee3510d1b190eba0f57cc48215b82",
+  "countries": [
+    "CN"
+  ],
+  "scope": "China coastal/operator identity and current-stage followthrough; excludes Baoji, Haidong, Digital Qinghai and Guizhou B5/B6 owned by separate inland review.",
+  "raw_capture_directory": "/Users/kian/Developer/datacenter_atlas/local_data/country-research-2026-10-13-cn-operators",
+  "summary": {
+    "publishable_additions": 1,
+    "publishable_status_updates": 0,
+    "held_candidates": 6
+  },
+  "ready": [
+    {
+      "candidate_id": "china-telecom-shaotang-shaoguan",
+      "action": "add_announced_campus",
+      "source_ids": [
+        "cn-shaotang-start",
+        "cn-shaotang-eia"
+      ],
+      "normalized_action": {
+        "project_stable_key": "curated:china-telecom-shaotang-shaoguan:announced-campus-development",
+        "physical_site_stable_key": "curated:china-telecom-shaotang-shaoguan",
+        "site_name": "China Telecom Shaotang Campus, Shaoguan",
+        "name": "China Telecom Shaotang Campus Development",
+        "country": "China",
+        "country_iso_a2": "CN",
+        "status": {
+          "value": "announced",
+          "as_of": "2026-09-21",
+          "source_id": "cn-shaotang-start",
+          "summary": "City government records September 21 project commencement event. Ceremony supports announced project status; actual physical works stage is not independently established."
+        },
+        "locator": {
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              113.66191861111112,
+              24.787517222222224
+            ]
+          },
+          "source_id": "cn-shaotang-eia",
+          "scope": "campus_locator",
+          "scope_class": "official_eia_on_campus_substation_locator",
+          "authority": "official_source",
+          "method": "official_eia_geographic_dms_point_transcription",
+          "precision": "Reported center point of the campus 220kV substation in its northwest corner. Locates the campus through named on-campus support infrastructure; not a data-hall center, parcel centroid, or construction boundary.",
+          "identity_review": "Official EIA pages 3 and 17 name China Telecom Guangdong Shaotang data-center campus and GJ0202A-17A-1 parcel; page 18 explicitly places the proposed substation in the northwest corner of that data-center campus. Source geographic DMS 113 degrees 39 minutes 42.907 seconds east, 24 degrees 47 minutes 15.062 seconds north transcribed arithmetically to decimal degrees. Datum not stated; no WGS84 survey accuracy or CRS transformation asserted.",
+          "uncertainty_reason": "No positional accuracy or coordinate datum stated. Numeric precision is source transcription precision, not positional accuracy; offset to individual data halls is unknown."
+        },
+        "context_source_ids": [],
+        "distinctness_review": "Reviewed 414-project 2026-10-13-research dataset and all 231 original imported source records. Only existing Chinese project is China Mobile Haidong Phase2. No Shaotang/China Telecom/Shaoguan source entry. Shaotang is distinct from China Telecom Zhenjiang campus and other operators in Shaoguan.",
+        "successor_review": "Re-read September 22 government report of September 21 commencement; September 30 environmental approval relates only to the substation and does not upgrade data-center construction stage. No later verified building completion, operating or cancellation record found.",
+        "roles": [
+          {
+            "role": "operator",
+            "party": "China Telecom",
+            "relationship_scope": "intended",
+            "source_id": "cn-shaotang-eia"
+          }
+        ]
+      },
+      "evidence_review": "September 21 ceremony is deliberately kept announced. Official EIA supplies an explicitly campus-bound substation coordinate. Publication date and event date kept distinct. No customer, IT MW, building count, or phase classification inferred from aggregated or electrical-load figures."
+    }
+  ],
+  "holds": [
+    {
+      "candidate_id": "china-mobile-beijing-international-information-port-no6",
+      "name": "China Mobile Beijing International Information Port No6 / C18",
+      "source_ids": [
+        "cn-beijing-no6-tender",
+        "cn-beijing-no6-registration"
+      ],
+      "supported_status": "announced",
+      "source_event_date": "2026-09-01",
+      "location_identity": "Changping; northeast C18/No6 parcel within China Mobile International Information Port at North Sixth Ring / Badaling Expressway junction.",
+      "hold_reason": "Exact reliable numeric campus/parcel coordinate not recovered. Official later notices say northeast; secondary design article says southeast, so secondary directional claim rejected. Nominatim unqualified query returned a China Mobile shop in Baotou and was rejected. Tender candidates and future supervision contract dates do not prove physical construction.",
+      "next_evidence": "Official C18 cadastral/permit site plan or exact named-campus mapped point with documented CRS; actual site works source needed to upgrade beyond announced."
+    },
+    {
+      "candidate_id": "gds-langfang-two-september-projects",
+      "name": "GDS two Langfang projects announced at China Computing Power Conference",
+      "source_ids": [
+        "cn-gds-langfang-september"
+      ],
+      "supported_status": "announced",
+      "source_event_date_interval": [
+        "2026-09-11",
+        "2026-09-13"
+      ],
+      "hold_reason": "Operator does not name either project. Regional Anci/Xianghe cluster totals and 21 operating centers cannot be allocated to the two launched projects. No exact numeric location or individual exact-day event.",
+      "next_evidence": "Conference project launch list, named SPV/plot/building, then phase-scoped coordinate and dated stage evidence."
+    },
+    {
+      "candidate_id": "vnet-ulanqab-northern-two-buildings",
+      "name": "VNET Ulanqab northern campus two topped-out buildings",
+      "source_ids": [
+        "cn-vnet-xinhua-october"
+      ],
+      "supported_status": "under_construction",
+      "hold_reason": "Recent first-hand reporter observation is physical work, but text says recent visit without day; September 10 image captions describe No1 base and cannot safely date separate northern two-building observation. Exact numeric geometry and mapping to N-OR02A/02B/03 unresolved. Existing No1 base operating structures must not be conflated with northern expansion.",
+      "next_evidence": "Exact VNET campus code to local planning SPV/campus binding, numeric geometry, and exact-day physical work report."
+    },
+    {
+      "candidate_id": "vnet-q2-coded-campus-queue",
+      "name": "VNET E-JS03B / N-HB02 / N-HB04 / N-OR02A / N-OR02B / N-OR03",
+      "source_urls": [
+        "https://ir.vnet.com/static-files/2014bb1b-a571-469a-945d-dd3231799de0"
+      ],
+      "hold_reason": "Q2 presentation published August 18 observes June 30, 105 days before October13. Preserve operating successor recognition for N-HB03 and N-OR01; do not re-admit them as current construction. Other six coded construction components have unresolved local aliases/geometry.",
+      "next_evidence": "Fresh exact campus work evidence and public parcel/permit geometry; never use investor publication date to refresh quarter-end observation."
+    },
+    {
+      "candidate_id": "china-unicom-wujiang-dc1",
+      "name": "China Unicom Yangtze River Delta Wujiang Phase1 DC1",
+      "source_urls": [
+        "https://jsggzy.jszwfw.gov.cn/jyxx/003001/003001001/20260716/e9c2e43a-d76d-4db4-a6cd-ed711463025d.html"
+      ],
+      "supported_status": "announced",
+      "source_event_date": "2026-07-16",
+      "location_identity": "North of Yinjia Road, west of Fujia Road, Wujiang, Suzhou.",
+      "hold_reason": "Official EPC tender supplies exact project and planned October6 construction start, but no sourced numeric site coordinate recovered. Passing planned start date does not prove actual construction.",
+      "next_evidence": "DC1 planning parcel/site geometry and actual stage evidence; July16 announcement is 89 days old at review."
+    },
+    {
+      "candidate_id": "china-mobile-shaoguan-c-d-buildings",
+      "name": "China Mobile Shaoguan C and D buildings, maintenance and switching buildings",
+      "source_urls": [
+        "https://www.sg.gov.cn/bmpdlm/zrzyj/ghgs/ghzd/pqgs/content/post_2886351.html"
+      ],
+      "supported_status": "announced",
+      "source_event_date": "2026-09-30",
+      "hold_reason": "Official September30 plan image recovered and visually read. Pre-approval notice does not establish a granted planning permission or construction. Numeric projected X/Y coordinates are printed for C and D buildings, but coordinate reference system/datum is absent from displayed plan; do not silently assume CGCS2000 versus a legacy Chinese system.",
+      "next_evidence": "Recover same-parcel cadastral/architectural drawing with explicit CRS, or primary exact-campus longitude/latitude. Then use September30 announced stage unless later genuine permission/works evidence is recovered.",
+      "location_identity": "ZC0201A-15 parcel in Shaoguan Zhenjiang data-center cluster; proposed C and D buildings are distinct from A/B explicitly marked Phase1 already built in the official plan.",
+      "geometry_research": {
+        "official_plan_url": "https://www.sg.gov.cn/img/0/649/649497/2886351.jpg",
+        "raw_capture": {
+          "url": "https://www.sg.gov.cn/img/0/649/649497/2886351.jpg",
+          "raw_capture_file": "/Users/kian/Developer/datacenter_atlas/local_data/country-research-2026-10-13-cn-operators/china-mobile-shaoguan-plan.jpg",
+          "sha256": "2734c774cc1155871c6b59e1a164a905d114c268f2cc51830c5b44da419aa846",
+          "bytes": 2115746,
+          "retrieved_at": "2026-10-13T17:22:18.208216+00:00",
+          "http_status": 200
+        },
+        "transcribed_C_building_corners_X_Y": [
+          [
+            2756182.98,
+            38454685.146
+          ],
+          [
+            2756141.401,
+            38454804.038
+          ],
+          [
+            2756079.337,
+            38454782.332
+          ],
+          [
+            2756120.916,
+            38454663.443
+          ]
+        ],
+        "axis_interpretation": "Source labels X and Y; numeric pattern suggests northing/easting with zone prefix, but specific CRS not established. No decimal-degree transformation or admission performed.",
+        "plan_assertion": "Four requested buildings: C, D, maintenance building and switching building; public notice period September30-October10. A/B expressly marked phase1 built.",
+        "independent_imagery_verification": false
+      }
+    }
+  ],
+  "source_metadata": [
+    {
+      "id": "cn-shaotang-start",
+      "kind": "government_record",
+      "title": "Shaoguan city records September 21 Shaotang project commencement event",
+      "source_url": "https://www.sg.gov.cn/smsg/sgqmshggn/content/post_2883361.html",
+      "publisher": "Shaoguan Municipal Government / Shaoguan Daily",
+      "source_family": "cn-shaotang",
+      "license": "all-rights-reserved",
+      "attribution": "Shaoguan Municipal Government / Shaoguan Daily",
+      "published_at": "2026-09-22",
+      "retrieved_at": "2026-10-13T17:18:54.522614+00:00",
+      "content_hash": "97a84f3f4da119f90d695253507b0573850f13129c2069a1f1e4862c1527893c",
+      "content_hash_scope": "sha256_exact_content_decoded_response_bytes",
+      "summary": "Government report records a September 21 commencement event for China Telecom Shaotang. Event supports announced status; no physical work stage is inferred.",
+      "raw_capture_file": "/Users/kian/Developer/datacenter_atlas/local_data/country-research-2026-10-13-cn-operators/shaotang-start.html",
+      "raw_capture_redistributed": false,
+      "source_observation_date": "2026-09-21",
+      "date_semantics": "Publication September 22 explicitly dates the commencement event September 21. Ceremony treated as project announcement, not physical construction observation."
+    },
+    {
+      "id": "cn-shaotang-eia",
+      "kind": "government_record",
+      "title": "China Telecom Shaotang campus 220kV substation environmental impact report, public version",
+      "source_url": "https://www.sg.gov.cn/attachment/0/315/315394/2880917.pdf",
+      "publisher": "Shaoguan Ecology and Environment Bureau / Guangdong Shaoke Environmental Technology",
+      "source_family": "cn-shaotang",
+      "license": "all-rights-reserved",
+      "attribution": "Shaoguan Ecology and Environment Bureau / Guangdong Shaoke Environmental Technology",
+      "published_at": null,
+      "retrieved_at": "2026-10-13T17:17:12.412775+00:00",
+      "content_hash": "99b928814f3e35012fe500511ea456f1581dd257ac736ef713adac3ba7896f65",
+      "content_hash_scope": "sha256_exact_content_decoded_response_bytes",
+      "summary": "Scanned PDF pages 3 and 17 give substation center geographic coordinates; page 18 places it in northwest corner of the data-center campus. Only on-campus support-infrastructure location is used.",
+      "raw_capture_file": "/Users/kian/Developer/datacenter_atlas/local_data/country-research-2026-10-13-cn-operators/shaotang-eia-retry.pdf",
+      "raw_capture_redistributed": false,
+      "date_semantics": "Undated PDF. Linked by official September 17 acceptance notice; publication date not inferred from the PDF itself.",
+      "parent_source_url": "https://www.sg.gov.cn/zw/zdlyxxgk/dzjg/sgssthjj/hjbhxxgk/jsxmhjyxpjxx/content/post_2880917.html",
+      "reviewed_pages": [
+        3,
+        17,
+        18
+      ],
+      "coordinate_crs": "Geographic longitude/latitude; datum not stated in inspected source. No datum transform asserted."
+    },
+    {
+      "id": "cn-beijing-no6-tender",
+      "kind": "government_record",
+      "title": "China Mobile Beijing International Information Port No6 supervision tender candidates",
+      "source_url": "https://ggzyfw.beijing.gov.cn/jyxxzbhxrgs/20260901/5692101.html",
+      "publisher": "Beijing Public Resources Trading Service",
+      "source_family": "cn-beijing-no6",
+      "license": "all-rights-reserved",
+      "attribution": "Beijing Public Resources Trading Service",
+      "published_at": "2026-09-01",
+      "retrieved_at": "2026-10-13T17:16:35.335812+00:00",
+      "content_hash": "82a0dac5c1c39d762ae324bded3b3147f4309caac85ccbb7c528822f293f296f",
+      "content_hash_scope": "sha256_exact_content_decoded_response_bytes",
+      "summary": "No6/C18 location northeast of the existing International Information Port; procurement stage only. Prospective service dates do not establish site works.",
+      "raw_capture_file": "/Users/kian/Developer/datacenter_atlas/local_data/country-research-2026-10-13-cn-operators/beijing-cm-no6-tender.html",
+      "raw_capture_redistributed": false
+    },
+    {
+      "id": "cn-beijing-no6-registration",
+      "kind": "government_record",
+      "title": "China Mobile Beijing No6 project registration",
+      "source_url": "https://ggzyfw.beijing.gov.cn/jylcgcjs/20260709/5616948.html",
+      "publisher": "Beijing Public Resources Trading Service",
+      "source_family": "cn-beijing-no6",
+      "license": "all-rights-reserved",
+      "attribution": "Beijing Public Resources Trading Service",
+      "published_at": "2026-07-09",
+      "retrieved_at": "2026-10-13T17:16:32.930372+00:00",
+      "content_hash": "69873d7ebd80fa3527529c6b934917d4b921e2dcbf5808c5454548ac091158c1",
+      "content_hash_scope": "sha256_exact_content_decoded_response_bytes",
+      "summary": "Two data-center buildings, two power buildings and basement, at International Information Port northeast C18 parcel. Listed project approvals are internal China Mobile approvals, not government construction permissions.",
+      "raw_capture_file": "/Users/kian/Developer/datacenter_atlas/local_data/country-research-2026-10-13-cn-operators/beijing-cm-no6-registration.html",
+      "raw_capture_redistributed": false
+    },
+    {
+      "id": "cn-gds-langfang-september",
+      "kind": "company_disclosure",
+      "title": "GDS announces two Langfang data-center projects entered implementation",
+      "source_url": "https://www.gds-services.com/zh_cn/newsshow_343.html",
+      "publisher": "GDS",
+      "source_family": "cn-gds-langfang",
+      "license": "all-rights-reserved",
+      "attribution": "GDS",
+      "published_at": "2026-09-14",
+      "retrieved_at": "2026-10-13T17:11:37.978886+00:00",
+      "content_hash": "213db583e7c8cf2166f074b6e9ecb496f3115dfb79b83cad6495154aab60db24",
+      "content_hash_scope": "sha256_exact_content_decoded_response_bytes",
+      "summary": "Two unnamed projects launched at September 11-13 conference. Anci/Xianghe cluster totals and 21 operating centers cannot identify the two projects or their sites.",
+      "raw_capture_file": "/Users/kian/Developer/datacenter_atlas/local_data/country-research-2026-10-13-cn-operators/gds-september-langfang.html",
+      "raw_capture_redistributed": false,
+      "date_semantics": "Conference event interval September 11-13; September 14 is publication. No exact individual project construction date established."
+    },
+    {
+      "id": "cn-vnet-xinhua-october",
+      "kind": "news_report",
+      "title": "Xinhua first-hand reporting from Inner Mongolia computing campuses",
+      "source_url": "https://www.xinhuanet.com/20261012/3a2dff722ecd4e3e9f9e3b38c51dfbc7/c.html",
+      "publisher": "Xinhua Daily Telegraph / Xinhua",
+      "source_family": "cn-vnet-xinhua",
+      "license": "all-rights-reserved",
+      "attribution": "Xinhua Daily Telegraph / Xinhua",
+      "published_at": "2026-10-12",
+      "retrieved_at": "2026-10-13T17:16:32.925250+00:00",
+      "content_hash": "552399f20188b4c954c76e8e701a2fe3dbb242d3d74af1bc9f038a59fe02a138",
+      "content_hash_scope": "sha256_exact_content_decoded_response_bytes",
+      "summary": "Reporter describes two VNET northern-campus buildings topped out with mechanical equipment arriving; September 10 photos identify Ulanqab No1 base. Text does not exactly date the separate northern-campus observation or bind it to VNET N-OR investor codes.",
+      "raw_capture_file": "/Users/kian/Developer/datacenter_atlas/local_data/country-research-2026-10-13-cn-operators/vnet-xinhua.html",
+      "raw_capture_redistributed": false,
+      "date_semantics": "Published October 12. Photos have September 10 captions, but those captions do not prove the separate described northern-campus two-building work observation happened on the same date."
+    }
+  ],
+  "rejected_inferences": [
+    "No substation MVA or phase electrical load converted to IT MW.",
+    "No data-hall position inferred from on-campus substation.",
+    "No current year publication used to redate earlier commissioning or quarter-end data.",
+    "No project counts inferred from regional aggregate campuses."
+  ]
+}

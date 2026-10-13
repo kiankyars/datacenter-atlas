@@ -1,0 +1,66 @@
+{
+  "format": "datacenter-atlas-country-action-projections-v1",
+  "researched_at": "2026-10-13",
+  "base_dataset": "verified_construction_core/2026-10-13-research",
+  "base_manifest_sha256": "562f706b21d01359004056e3c27ca8fb50cee3510d1b190eba0f57cc48215b82",
+  "source_files": [
+    {
+      "path": "sources/cn-resolution-2026-10-13-primary-sources.json",
+      "sha256": "49b04f9fc9c253bef84d176e6055f036921d4835b8269b4fd8fac33af2a13057"
+    }
+  ],
+  "additions": [
+    {
+      "project_stable_key": "curated:china-telecom-cloud-computing-guizhou-information-park:phase-2-1-b5-b6-data-center-build",
+      "physical_site_stable_key": "curated:china-telecom-cloud-computing-guizhou-information-park",
+      "site_name": "China Telecom Cloud Computing Guizhou Information Park",
+      "name": "China Telecom Guizhou Information Park B5/B6 Civil Works",
+      "country": "China",
+      "country_iso_a2": "CN",
+      "status": {
+        "value": "completed",
+        "as_of": "2026-09-20",
+        "source_id": "cn-guizhou-b5b6-civil-completed-20260920",
+        "summary": "Contractor reports civil-works acceptance on September 20 for the B5/B6 2.1-phase second contract. Completion is limited to civil works; equipment commissioning and operation are explicitly subsequent and unconfirmed."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            106.54,
+            26.38
+          ]
+        },
+        "source_id": "cn-guizhou-campus-sasac-20260219",
+        "scope": "campus_locator",
+        "scope_class": "institutional_report_approximate_campus_reference_point",
+        "authority": "official_source",
+        "method": "literal_reported_campus_coordinates_no_transformation",
+        "precision": "The SASAC official account names the China Telecom Guizhou Information Park and publishes 26.38 N, 106.54 E to two decimal places. This is an approximate campus reference, not a B5/B6 building, parcel, entrance or work-extent locator. The original datum is not stated; values are retained literally without a claimed CRS conversion.",
+        "identity_review": "Contractor names B5/B6 in the China Telecom Cloud Computing Guizhou Information Park; the SASAC institutional report and China Telecom official social account explicitly name that same campus beside the numeric coordinates. The campus point is inherited only as campus-level context for the named civil works.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "Coordinates published to 0.01 degree; datum, surveyed reference feature and measured horizontal accuracy are unknown. Rounding alone is roughly kilometre scale, and no precise building position or accuracy radius is inferred."
+      },
+      "context_source_ids": [
+        "cn-guizhou-campus-operator-20260224"
+      ],
+      "distinctness_review": "Compared against all 414 current-release project rows and their site keys: China contains only the Haidong China Mobile project, in Qinghai. No Guizhou Information Park project or site is present. Retains the stable keys of the prior held B5/B6 candidate and narrows its display name to the supported civil-works scope. Two buildings in one contract remain one project at one campus.",
+      "successor_review": "Contractor September 22 report explicitly dates civil-works acceptance September 20 and leaves equipment commissioning/operation subsequent. Older campus operation statements concern existing facilities; none is applied to B5/B6. September design procurements do not prove equipment installed or commissioning underway.",
+      "roles": []
+    }
+  ],
+  "status_updates": [
+    {
+      "project_stable_key": "curated:china-mobile-plateau-big-data-center-haidong:phase-2-build",
+      "status": {
+        "value": "under_construction",
+        "as_of": "2026-09-02",
+        "source_id": "cn-haidong-phase2-20260902",
+        "summary": "Qinghai government leadership report records the September 2 inspection at the named Phase 2 construction site. This refreshes the aggregate construction observation; individual stage completion and operation remain unverified."
+      },
+      "identity_review": "Same China Mobile Plateau Big Data Center Phase 2 in Haidong as the existing June 23 project. Existing Phase 2 stage 1 EIA reference point remains a project locator; no geometry change or new campus is implied.",
+      "successor_review": "Reviewed April near-launch statements, August report of stage-one work nearing completion, and September 2 official construction-site visit. No later primary source establishing complete operation of the full Phase 2 scope was identified."
+    }
+  ],
+  "integration_note": "Action projections for root integration, not a core update definition. Completed admission requires updater support; retain civil-only status scope and approximate campus coordinate metadata."
+}

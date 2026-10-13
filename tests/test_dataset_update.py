@@ -108,14 +108,39 @@ class DatasetUpdateTests(unittest.TestCase):
                 with self.assertRaisesRegex(UpdateError, expected):
                     self.payloads()
 
-    def test_operational_admission_and_undated_observation_fail(self):
-        self.spec["additions"][0]["status"]["value"] = "operational"
-        with self.assertRaisesRegex(UpdateError, "announced, permitted or construction"):
+    def test_exact_ninety_day_admission_boundary(self):
+        self.spec["additions"][0]["status"]["as_of"] = "2026-07-15"
+        self.payloads()
+        self.spec["additions"][0]["status"]["as_of"] = "2026-07-14"
+        with self.assertRaisesRegex(UpdateError, "older than 90"):
+            self.payloads()
+
+    def test_closed_admission_and_undated_observation_fail(self):
+        self.spec["additions"][0]["status"]["value"] = "demolished"
+        with self.assertRaisesRegex(UpdateError, "new admission needs"):
             self.payloads()
         self.spec["additions"][0]["status"]["value"] = "under_construction"
         self.sources["sources"][0]["published_at"] = ""
         with self.assertRaisesRegex(UpdateError, "dated source"):
             self.payloads()
+
+    def test_completed_and_operating_admissions_keep_primary_and_freshness_gates(self):
+        for status in ("completed", "operational"):
+            with self.subTest(status=status):
+                self.spec["additions"][0]["status"]["value"] = status
+                payloads, _ = self.payloads()
+                project = next(row for row in csv.DictReader(io.StringIO(payloads["projects.csv"].decode()))
+                               if row["project_stable_key"] == self.spec["additions"][0]["project_stable_key"])
+                self.assertEqual(project["last_observed_physical_status"], status)
+                self.assertEqual(project["status_as_of"], "2026-09-21")
+                self.sources["sources"][0]["kind"] = "news"
+                with self.assertRaisesRegex(UpdateError, "primary source"):
+                    self.payloads()
+                self.sources["sources"][0]["kind"] = "company_disclosure"
+                self.spec["additions"][0]["status"]["as_of"] = "2026-01-01"
+                with self.assertRaisesRegex(UpdateError, "older than 90"):
+                    self.payloads()
+                self.spec["additions"][0]["status"]["as_of"] = "2026-09-21"
 
     def test_published_physical_snapshot_remains_byte_reproducible(self):
         validate_update(ROOT / "definitions/atlas-update-2026-10-13.json",

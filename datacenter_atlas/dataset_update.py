@@ -34,6 +34,7 @@ ACTIVE_STATUSES = {
 LEGACY_STATUS_VALUES = ACTIVE_STATUSES | {"operational", "paused", "cancelled", "repurposed", "decommissioned", "demolished"}
 PLANNED_STATUSES = {LifecycleStatus.ANNOUNCED.value, LifecycleStatus.PERMITTED.value}
 STATUS_VALUES = LEGACY_STATUS_VALUES | PLANNED_STATUSES | {LifecycleStatus.COMPLETED.value}
+ADMISSION_STATUSES = ACTIVE_STATUSES | PLANNED_STATUSES | {LifecycleStatus.COMPLETED.value, LifecycleStatus.OPERATIONAL.value}
 PROJECT_RECORD_POSTURE = "authoritative_project_record_plus_scoped_location"
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -111,8 +112,8 @@ def _status(spec, sources, updated, *, admission=False, source_details=None):
     _require(spec["value"] in STATUS_VALUES, "unrecognized project status")
     _require(observed <= updated, "future status observation")
     if admission:
-        _require(spec["value"] in ACTIVE_STATUSES | PLANNED_STATUSES,
-                 "new admission needs an announced, permitted or construction project")
+        _require(spec["value"] in ADMISSION_STATUSES,
+                 "new admission needs an announced, permitted, construction, completed or operational project")
         _require((updated - observed).days <= 90, "new admission observation is older than 90 days")
     source = sources[spec["source_id"]]
     if source.get("published_at"):

@@ -1,0 +1,268 @@
+{
+  "format": "datacenter-atlas-update-input-v1",
+  "updated_at": "2026-10-13",
+  "output": "verified_construction_core/2026-10-13-research-asia",
+  "base_dataset": "verified_construction_core/2026-10-13-research",
+  "base_manifest_sha256": "562f706b21d01359004056e3c27ca8fb50cee3510d1b190eba0f57cc48215b82",
+  "source_files": [
+    {
+      "path": "sources/atlas-research-2026-10-13-jera-map-source.json",
+      "sha256": "537024cfe9155539e97d748a4c90ae428d0d2d7f58a3fec2ec95bb78bb852370"
+    },
+    {
+      "path": "sources/atlas-research-2026-10-13-jp-tecra-primary-sources.json",
+      "sha256": "69b2bdd60e9561947a0a3266a0a606dd7c3b89190c4a16cc7963bc1e613d9b43"
+    },
+    {
+      "path": "sources/cn-resolution-2026-10-13-primary-sources.json",
+      "sha256": "49b04f9fc9c253bef84d176e6055f036921d4835b8269b4fd8fac33af2a13057"
+    },
+    {
+      "path": "sources/research-countries-2026-10-13-cn-operators-primary-sources.json",
+      "sha256": "99bfd21570fa627df83a0ba6c84526c5b643db37894b27ed89f4858913af069c"
+    },
+    {
+      "path": "sources/research-countries-2026-10-13-jp-resolution-primary-sources.json",
+      "sha256": "a2242754773776be0d28443f8e6c37691f042a10a1197490ff355267a3e79a67"
+    }
+  ],
+  "additions": [
+    {
+      "project_stable_key": "curated:tecra-ome-takinouecho:building-b",
+      "physical_site_stable_key": "curated:tecra-ome-takinouecho",
+      "site_name": "TECRA Ome Takinouecho",
+      "name": "OME Data Center07 / DC5 Building B",
+      "country": "Japan",
+      "country_iso_a2": "JP",
+      "status": {
+        "value": "permitted",
+        "as_of": "2026-09-15",
+        "source_id": "tecra-report96",
+        "summary": "September15 developer progress report confirms building approvals; certificate for DC5B was issued May27. Successor OME07 is the same approved building B. No physical start or operation inferred from fund dates.",
+        "permit_scope": "data_center_development",
+        "permit_type": "building_permit",
+        "permit_decision": "granted",
+        "permit_reference": "Japan ERI ERI-26012911 (issued2026-05-27)",
+        "permit_identity_review": "Published certificate identifies OmeDC5B new server-room warehouse; successor fund103 repeats exact permit number, date,331.64m² site and317.54m² floor area. Original parcel1325-1 part subdivides to1325-9 and1325-12."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            139.25694444444446,
+            35.78761111111111
+          ]
+        },
+        "source_id": "tecra-fund103",
+        "scope": "campus_locator",
+        "scope_class": "developer_selected_parent_parcel_locator",
+        "authority": "official_source",
+        "method": "developer_embedded_explicit_dms_target",
+        "precision": "Developer-selected original campus point decoded from explicit DMS target; not a building-B centroid or legal boundary.",
+        "identity_review": "Fund103 and original fund96 embed the identical named DMS target. Exact permit, floor area and subdivision statement bridge current OME07 to DC5B on the original Takinouecho site.",
+        "uncertainty_reason": "No positional accuracy stated. Locator identifies the parent property; the exact subdivided data-center parcel and building outline are not established numerically."
+      },
+      "context_source_ids": [
+        "tecra-report96",
+        "tecra-certificate96",
+        "tecra-fund96",
+        "tecra-infrastructure-reports"
+      ],
+      "distinctness_review": "No TECRA/Ome site occurs in current consolidated site or project names/aliases. Takinouecho and Shinmachi9-A are distinct addresses around5.5km apart. Original fund96 and successor103 are one campus, not two sites. Nearest existing record: (72101.93418951688, 'NTT Global Data Centers Tokyo TKY12 campus, Shiroi').",
+      "successor_review": "Reviewed Sep15 progress report, successor fund103 specifications and current report index onOct13. Fund operation beginsOct1 but no physical-start or completed-building evidence is provided. Retain permitted.",
+      "roles": []
+    },
+    {
+      "project_stable_key": "curated:tecra-ome-shinmachi-9a:building",
+      "physical_site_stable_key": "curated:tecra-ome-shinmachi-9a",
+      "site_name": "OME Data Center04 (Shinmachi9-A)",
+      "name": "OME Data Center04 Shinmachi9-A Building",
+      "country": "Japan",
+      "country_iso_a2": "JP",
+      "status": {
+        "value": "under_construction",
+        "as_of": "2026-07-15",
+        "source_id": "tecra-report93",
+        "summary": "Developer explicitly reports current building construction with progress photographs. The report is90days beforeOct13; autumn completion remains a forecast."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            139.3177428,
+            35.782779
+          ]
+        },
+        "source_id": "tecra-map93-feature",
+        "scope": "campus_locator",
+        "scope_class": "developer_selected_parent_parcel_locator",
+        "authority": "compiled_reference",
+        "method": "developer_selected_map_feature_coordinates",
+        "precision": "Developer-selected mapped parent-parcel address point; not the exact subdivided data-center lot or new-building footprint.",
+        "identity_review": "Developer property page names parcel2053-1 and embeds exact feature CID3463469169659058608; developer diagram labels that parent parcel and the smaller project subdivision. Maps feature still bears the former restaurant address. !3d/!4d feature coordinates differ from iframe viewport coordinates and are used here.",
+        "uncertainty_reason": "No positional accuracy stated. Locator identifies the parent property; the exact subdivided data-center parcel and building outline are not established numerically."
+      },
+      "context_source_ids": [
+        "tecra-fund93",
+        "tecra-map93",
+        "tecra-infrastructure-reports"
+      ],
+      "distinctness_review": "No TECRA/Ome site occurs in current consolidated inventory. Shinmachi9-A differs from Takinouecho and from other developer funds named Shinmachi6-B; no duplicate from fund and building names. Nearest existing record: (66625.84233814519, 'NTT Global Data Centers Tokyo TKY12 campus, Shiroi').",
+      "successor_review": "Reviewed current property page, Jul15 report and developer progress index onOct13. No later scoped completion/opening report found. Autumn2026 planned completion does not establish completion.",
+      "roles": [
+        {
+          "role": "operator",
+          "party": "Unsung Fields",
+          "relationship_scope": "intended",
+          "source_id": "tecra-fund93"
+        }
+      ]
+    },
+    {
+      "project_stable_key": "curated:china-telecom-cloud-computing-guizhou-information-park:phase-2-1-b5-b6-data-center-build",
+      "physical_site_stable_key": "curated:china-telecom-cloud-computing-guizhou-information-park",
+      "site_name": "China Telecom Cloud Computing Guizhou Information Park",
+      "name": "China Telecom Guizhou Information Park B5/B6 Civil Works",
+      "country": "China",
+      "country_iso_a2": "CN",
+      "status": {
+        "value": "completed",
+        "as_of": "2026-09-20",
+        "source_id": "cn-guizhou-b5b6-civil-completed-20260920",
+        "summary": "Contractor reports civil-works acceptance on September 20 for the B5/B6 2.1-phase second contract. Completion is limited to civil works; equipment commissioning and operation are explicitly subsequent and unconfirmed."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            106.54,
+            26.38
+          ]
+        },
+        "source_id": "cn-guizhou-campus-sasac-20260219",
+        "scope": "campus_locator",
+        "scope_class": "institutional_report_approximate_campus_reference_point",
+        "authority": "official_source",
+        "method": "literal_reported_campus_coordinates_no_transformation",
+        "precision": "The SASAC official account names the China Telecom Guizhou Information Park and publishes 26.38 N, 106.54 E to two decimal places. This is an approximate campus reference, not a B5/B6 building, parcel, entrance or work-extent locator. The original datum is not stated; values are retained literally without a claimed CRS conversion.",
+        "identity_review": "Contractor names B5/B6 in the China Telecom Cloud Computing Guizhou Information Park; the SASAC institutional report and China Telecom official social account explicitly name that same campus beside the numeric coordinates. The campus point is inherited only as campus-level context for the named civil works.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "Coordinates published to 0.01 degree; datum, surveyed reference feature and measured horizontal accuracy are unknown. Rounding alone is roughly kilometre scale, and no precise building position or accuracy radius is inferred."
+      },
+      "context_source_ids": [
+        "cn-guizhou-campus-operator-20260224"
+      ],
+      "distinctness_review": "Compared against all 414 current-release project rows and their site keys: China contains only the Haidong China Mobile project, in Qinghai. No Guizhou Information Park project or site is present. Retains the stable keys of the prior held B5/B6 candidate and narrows its display name to the supported civil-works scope. Two buildings in one contract remain one project at one campus.",
+      "successor_review": "Contractor September 22 report explicitly dates civil-works acceptance September 20 and leaves equipment commissioning/operation subsequent. Older campus operation statements concern existing facilities; none is applied to B5/B6. September design procurements do not prove equipment installed or commissioning underway.",
+      "roles": []
+    },
+    {
+      "project_stable_key": "curated:china-telecom-shaotang-shaoguan:announced-campus-development",
+      "physical_site_stable_key": "curated:china-telecom-shaotang-shaoguan",
+      "site_name": "China Telecom Shaotang Campus, Shaoguan",
+      "name": "China Telecom Shaotang Campus Development",
+      "country": "China",
+      "country_iso_a2": "CN",
+      "status": {
+        "value": "announced",
+        "as_of": "2026-09-21",
+        "source_id": "cn-shaotang-start",
+        "summary": "City government records September 21 project commencement event. Ceremony supports announced project status; actual physical works stage is not independently established."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            113.66191861111112,
+            24.787517222222224
+          ]
+        },
+        "source_id": "cn-shaotang-eia",
+        "scope": "campus_locator",
+        "scope_class": "official_eia_on_campus_substation_locator",
+        "authority": "official_source",
+        "method": "official_eia_geographic_dms_point_transcription",
+        "precision": "Reported center point of the campus 220kV substation in its northwest corner. Locates the campus through named on-campus support infrastructure; not a data-hall center, parcel centroid, or construction boundary.",
+        "identity_review": "Official EIA pages 3 and 17 name China Telecom Guangdong Shaotang data-center campus and GJ0202A-17A-1 parcel; page 18 explicitly places the proposed substation in the northwest corner of that data-center campus. Source geographic DMS 113 degrees 39 minutes 42.907 seconds east, 24 degrees 47 minutes 15.062 seconds north transcribed arithmetically to decimal degrees. Datum not stated; no WGS84 survey accuracy or CRS transformation asserted.",
+        "uncertainty_reason": "No positional accuracy or coordinate datum stated. Numeric precision is source transcription precision, not positional accuracy; offset to individual data halls is unknown."
+      },
+      "context_source_ids": [],
+      "distinctness_review": "Reviewed 414-project 2026-10-13-research dataset and all 231 original imported source records. Only existing Chinese project is China Mobile Haidong Phase2. No Shaotang/China Telecom/Shaoguan source entry. Shaotang is distinct from China Telecom Zhenjiang campus and other operators in Shaoguan.",
+      "successor_review": "Re-read September 22 government report of September 21 commencement; September 30 environmental approval relates only to the substation and does not upgrade data-center construction stage. No later verified building completion, operating or cancellation record found.",
+      "roles": [
+        {
+          "role": "operator",
+          "party": "China Telecom",
+          "relationship_scope": "intended",
+          "source_id": "cn-shaotang-eia"
+        }
+      ]
+    },
+    {
+      "project_stable_key": "curated:jera-chiba-thermal-power-station:ai-datacenter-campus",
+      "physical_site_stable_key": "curated:jera-chiba-thermal-power-station",
+      "site_name": "JERA Chiba Thermal Power Station AI Infrastructure",
+      "name": "JERA / RHAELM Chiba AI Data Center Infrastructure",
+      "country": "Japan",
+      "country_iso_a2": "JP",
+      "status": {
+        "value": "announced",
+        "as_of": "2026-10-01",
+        "source_id": "jp-resolution-jera-chiba-announcement",
+        "summary": "October1 MoU announces the Chiba power-station AI infrastructure project; development and feasibility stage, with around2028 operations targeted. No physical works or achieved capacity inferred."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            140.1019756,
+            35.5638142
+          ]
+        },
+        "source_id": "jp-jera-selected-map-feature",
+        "scope": "campus_locator",
+        "scope_class": "operator_published_host_campus_map_reference",
+        "authority": "compiled_reference",
+        "method": "operator_selected_map_feature_coordinates",
+        "precision": "Operator-selected host power-station address feature; no AI data-center plot, building footprint or phase boundary is established.",
+        "identity_review": "JERA October1 announcement explicitly places the AI development inside Chiba Thermal Power Station. Official plant page gives2-1377 Sogacho and embeds feature0x60229b9f4f8ac451:0x6f14f435f60d5633. That exact feature CID8004290950342727219 resolves in public Maps UI to35.5638142N140.1019756E. These are the feature coordinates (!3d/!4d), not the embedded map viewport center; parent power-station address only.",
+        "uncertainty_reason": "No positional accuracy or AI plot is published. The plant spans about76ha and the DC location within it is unknown. Decimal precision reflects map parameters, not surveyed accuracy."
+      },
+      "context_source_ids": [
+        "jp-resolution-jera-chiba-plant"
+      ],
+      "distinctness_review": "No JERA, RHAELM or Chiba thermal power-station project exists in baseline414projects or source snapshot231records. Nearest baseline record is NTT TKY12 Shiroi about26km away; distinct facility/operator. Admission covers only this named campus, not the nationwide MoU program.",
+      "successor_review": "October1 primary announcement is12days old. Primary pages do not establish later physical works, completion, operations or cancellation. Keep announced status and target dates.",
+      "roles": []
+    }
+  ],
+  "status_updates": [
+    {
+      "project_stable_key": "curated:china-mobile-plateau-big-data-center-haidong:phase-2-build",
+      "status": {
+        "value": "under_construction",
+        "as_of": "2026-09-02",
+        "source_id": "cn-haidong-phase2-20260902",
+        "summary": "Qinghai government leadership report records the September 2 inspection at the named Phase 2 construction site. This refreshes the aggregate construction observation; individual stage completion and operation remain unverified."
+      },
+      "identity_review": "Same China Mobile Plateau Big Data Center Phase 2 in Haidong as the existing June 23 project. Existing Phase 2 stage 1 EIA reference point remains a project locator; no geometry change or new campus is implied.",
+      "successor_review": "Reviewed April near-launch statements, August report of stage-one work nearing completion, and September 2 official construction-site visit. No later primary source establishing complete operation of the full Phase 2 scope was identified."
+    },
+    {
+      "project_stable_key": "imported:semiconductor-atlas:softbank-tomakomai",
+      "status": {
+        "value": "under_construction",
+        "as_of": "2026-08-04",
+        "source_id": "jp-resolution-softbank-tomakomai-august",
+        "summary": "Dated operator article describes the named Tomakomai campus as under construction. The article declares information current at publication; precise construction milestone and independently inspected date are not claimed."
+      },
+      "identity_review": "Article explicitly names SoftBank Hokkaido Tomakomai AI Data Center. This is the imported SoftBank campus, distinct from AI Tech Tomakomai phase1. No changes to inherited locality-context geometry.",
+      "successor_review": "September30 report and current operator pages retain future FY2026 opening target, but their own observation cutoffs are not used as newer physical dates. No later explicit achieved opening or cancellation found. August14-republished April2025ceremony was excluded."
+    }
+  ],
+  "integration_review": {
+    "jera_locator": "Replaces proposed viewport center with exact operator-selected map feature. Coordinate supplier is Google Maps, operator supplies identity bridge. Published locator remains at host-campus address level; AI development plot unknown.",
+    "tecra_certificate_date": "May27 is retained as certificate issue date; unknown web-publication date remains null.",
+    "tecra_independent_review": "Second agent reviewed nine captures, permit identity, DMS/CID source chain and duplicate search. Google-supplied point is labelled compiled_reference."
+  }
+}

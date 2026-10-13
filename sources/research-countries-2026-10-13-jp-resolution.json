@@ -1,0 +1,655 @@
+{
+  "format": "datacenter-atlas-country-research-resolution-v1",
+  "researched_at": "2026-10-13T17:33:15.354112+00:00",
+  "country": "Japan",
+  "baseline": "verified_construction_core/2026-10-13-research",
+  "previous_packet": "sources/research-countries-2026-10-13-cn-jp-continuation.json",
+  "maximum_new_admission_status_age_days": 90,
+  "coverage_note": "Primary Japanese operator, developer, contractor and government pass across10targetprojects. Parent separately researchesTECRAOme. ExistingAirTrunkTOK1/EdgeConneXKyotanabe inspected in baseline inventory but not deeply rereviewed here.",
+  "raw_capture_directory": "/Users/kian/Developer/datacenter_atlas/local_data/country-research-2026-10-13-jp-resolution",
+  "raw_retention_note": "Raw source captures stay in ignoredlocal_data; public files retain factual projections, provenance hashes and explicit source limitations. No hash of inaccessiblepage is invented.",
+  "integration_actions_file": "/Users/kian/Developer/datacenter_atlas/sources/research-countries-2026-10-13-jp-resolution-actions.json",
+  "normalized_sources_file": "/Users/kian/Developer/datacenter_atlas/sources/research-countries-2026-10-13-jp-resolution-primary-sources.json",
+  "publishable_action_counts": {
+    "additions": 1,
+    "status_updates": 1
+  },
+  "candidates": [
+    {
+      "id": "jera-chiba",
+      "name": "JERA / RHAELM Chiba AI infrastructure",
+      "country": "Japan",
+      "action": "propose_announced_admission",
+      "findings": [
+        "October1 first-party announcement identifies one first project at Chiba Thermal Power Station within a wider national MoU. Keep this campus separate from the national program.",
+        "Future up-to400MW AI infrastructure and around2028 opening are planned, not live capacity or construction completion.",
+        "Original numeric viewport reference was replaced in parent integration review with selected Google Maps feature coordinates for the operator-linked exact plant address."
+      ],
+      "remaining_blockers": [
+        "AI facility plot within host plant remains unknown; use campus locator only."
+      ],
+      "sources": [
+        "jp-resolution-jera-chiba-announcement",
+        "jp-resolution-jera-chiba-plant"
+      ],
+      "project_stable_key": "curated:jera-chiba-thermal-power-station:ai-datacenter-campus",
+      "status": {
+        "value": "announced",
+        "as_of": "2026-10-01"
+      },
+      "geometry_review": {
+        "original_proposal": [
+          140.105612,
+          35.564504
+        ],
+        "original_kind": "operator map viewport/reference center",
+        "parent_selected_feature_coordinates": [
+          140.1019756,
+          35.5638142
+        ],
+        "parent_source_id": "jp-jera-selected-map-feature",
+        "parent_source_file": "sources/atlas-research-2026-10-13-jera-map-source.json",
+        "review_status": "parent integration owns selected map feature evidence and override",
+        "scope": "campus_locator",
+        "ai_plot_boundary": null
+      }
+    },
+    {
+      "id": "softbank-tomakomai",
+      "name": "SoftBank Hokkaido Tomakomai AI Data Center",
+      "country": "Japan",
+      "action": "propose_status_refresh",
+      "findings": [
+        "August4operator article describes construction progressing and explicitly says its information is current at publication; use broad under_construction and retain exact milestone unknown.",
+        "September30annual report is context only because principal reporting period endsMarch31.",
+        "Exact named parcel bridge found in Hokkaido forest-permit record: Kashiwabara49-91 and8otherparcels. The matching public-coordinate parcel is a narrow strip; it is not a published campus or phase1 boundary."
+      ],
+      "remaining_blockers": [
+        "All9parcels or an authoritative campus address/locator are needed before replacing inherited locality point."
+      ],
+      "sources": [
+        "jp-resolution-softbank-tomakomai-august",
+        "jp-resolution-softbank-report-strategy",
+        "jp-resolution-softbank-report-full",
+        {
+          "url": "https://www.pref.hokkaido.lg.jp/fs/1/2/6/8/1/4/8/0/_/%E8%B3%87%E6%96%992%20%E5%8C%97%E6%B5%B7%E9%81%93%E6%A3%AE%E6%9E%97%E5%AF%A9%E8%AD%B0%E4%BC%9A%E6%9E%97%E5%9C%B0%E4%BF%9D%E5%85%A8%E9%83%A8%E4%BC%9A%E3%81%8B%E3%82%89%E3%81%AE%E5%A0%B1%E5%91%8A%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6.pdf",
+          "summary": "2024forest-permit applicant SoftBank;17.3611ha data-center site formation at Kashiwabara49-91 and8otherparcels.",
+          "access": "Primary indexed PDF text read; direct raw fetch503 and subsequent openfailed."
+        }
+      ],
+      "project_stable_key": "imported:semiconductor-atlas:softbank-tomakomai",
+      "status": {
+        "value": "under_construction",
+        "as_of": "2026-08-04"
+      },
+      "rejected_date_refresh": {
+        "source": "jp-resolution-softbank-tomakomai-republished-ceremony",
+        "displayed_page_date": "2026-08-14",
+        "actual_event_date": "2025-04-15",
+        "reason": "Republished ceremony does not prove August2026work."
+      },
+      "parcel_evidence": {
+        "feature": {
+          "type": "Feature",
+          "properties": {
+            "ID": "H000000836",
+            "市区町村C": "01213",
+            "大字コード": "000",
+            "丁目コード": "000",
+            "小字コード": "0020",
+            "予備コード": "00",
+            "市区町村名": "苫小牧市",
+            "小字名": "字柏原",
+            "地番": "49-91",
+            "座標値種別": "図上測量",
+            "地図名": "苫連Ｇ（３０００）Ｂ図有Ｈ１４",
+            "座標系": "公共座標12系",
+            "測地系判別": "変換"
+          },
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [
+              [
+                [
+                  141.758880208,
+                  42.705319895
+                ],
+                [
+                  141.763548009,
+                  42.706525595
+                ],
+                [
+                  141.763626561,
+                  42.706477196
+                ],
+                [
+                  141.75886018,
+                  42.705245041
+                ],
+                [
+                  141.759874118,
+                  42.703130793
+                ],
+                [
+                  141.759741952,
+                  42.703212496
+                ],
+                [
+                  141.758773753,
+                  42.705220678
+                ],
+                [
+                  141.758506832,
+                  42.705152102
+                ],
+                [
+                  141.758622206,
+                  42.70525314
+                ],
+                [
+                  141.758712872,
+                  42.705277188
+                ],
+                [
+                  141.758751024,
+                  42.705287309
+                ],
+                [
+                  141.758725216,
+                  42.70534334
+                ],
+                [
+                  141.758794706,
+                  42.7054042
+                ],
+                [
+                  141.758843321,
+                  42.705310365
+                ],
+                [
+                  141.758880208,
+                  42.705319895
+                ]
+              ]
+            ]
+          }
+        },
+        "source_metadata": {
+          "id": "tomakomai-parcels",
+          "url": "https://gsic-opendata.s3.ap-northeast-1.amazonaws.com/aigid/aigid-moj/2026/01/aigid-moj-01213/01213_%E8%8B%AB%E5%B0%8F%E7%89%A7%E5%B8%82_%E5%85%AC%E5%85%B1%E5%BA%A7%E6%A8%9912%E7%B3%BB_%E7%AD%86R_2026.geojson",
+          "retrieved_at": "2026-10-13T17:18:31.015766+00:00",
+          "raw_sha256": "0b62da38a45a5da642d35338c3a43ca765ad46875dae2e97f7bfed6ad56223c7",
+          "raw_capture_file": "/Users/kian/Developer/datacenter_atlas/local_data/country-research-2026-10-13-jp-resolution/tomakomai-parcels.geojson",
+          "bytes": 74941409
+        },
+        "retained_geometry_action": "none",
+        "warning": "Diagram-derived cadastral geometry is a source parcel only. Source precision is not accuracy. Do not present this strip or its centroid as the campus boundary."
+      }
+    },
+    {
+      "id": "softbank-sakai",
+      "name": "SoftBank Osaka Sakai AI Data Center",
+      "country": "Japan",
+      "action": "retain_existing_status",
+      "findings": [
+        "Report p45 says conversion progressing towardFY2027completion; future140MW incoming supply is not liveITcapacity.",
+        "Main report period isApril2025–March2026; no page-specific later construction date. September30publication cannot safely refresh observation."
+      ],
+      "remaining_blockers": [
+        "Dated current physical-work statement or achieved opening for this SoftBank conversion."
+      ],
+      "sources": [
+        "jp-resolution-softbank-report-strategy",
+        "jp-resolution-softbank-report-full",
+        "jp-resolution-softbank-report-date"
+      ],
+      "project_stable_key": "imported:semiconductor-atlas:softbank-sakai",
+      "retained_status": {
+        "value": "under_construction",
+        "as_of": "2026-06-23"
+      },
+      "scope_note": "Do not assign operational status from nationwide existingAIcompute or the separate KDDI Sharp-site conversion."
+    },
+    {
+      "id": "cyrusone-osk1",
+      "name": "CyrusOne KEP OSK1 Seika Current Facility Build",
+      "country": "Japan",
+      "action": "retain_hold_geometry_partly_resolved",
+      "findings": [
+        "Exact operator address2-2-7Hikaridai now matches prefecture earthworks row5 naming OSK1applicant and numeric site coordinates.",
+        "October1 KEPCO report printedp30 says construction began and development progressing towardFY2027operation;48MWIT/70MWincoming remain future scope.",
+        "Report backcover defines principal periodApril2025–March2026; no later physical observation date is established by the p30paragraph."
+      ],
+      "remaining_blockers": [
+        "Recent dated primary physical work observation for OSK1.",
+        "Numeric prefecture row is available in primary search-index text; rawPDFcurrently404. Reacquire original to verify table/CRS before admission."
+      ],
+      "sources": [
+        "jp-resolution-cyrusone-osk1-location",
+        {
+          "url": "https://www.pref.kyoto.jp/morido/documents/21todoke_yamaminami.pdf",
+          "summary": "Row5 OSK1 applicant, Hikaridai2-2-7,34°44′34.4″N135°46′2.8″E, earthworks19693.9m²; rowpublished2025-05-30.",
+          "access": "Primary indexed PDF table read; direct PDF404. Factual projection retained, not original-page hash."
+        },
+        {
+          "url": "https://www.kepco.co.jp/share_corporate/pdf/2026/report2026.pdf",
+          "summary": "Printedp30 project discussion and backcover period endMarch31; used as context only.",
+          "access": "primary page read in web tool; no raw hash claimed"
+        }
+      ],
+      "project_stable_key": "curated:cyrusone-kep-osk1-seika-data-center:current-facility-build",
+      "candidate_geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.76744444444446,
+          34.74288888888889
+        ]
+      },
+      "geometry_identity": {
+        "applicant": "関西電力サイラスワンOSK1合同会社",
+        "address": "精華町光台二丁目２番７",
+        "row": "5",
+        "source_dms": {
+          "latitude": "34度44分34.4秒",
+          "longitude": "135度46分2.8秒"
+        },
+        "source_datum": "not stated in extracted table",
+        "different_nearby_project": "NTT row6 Hikaridai2-4 is distinct and must not be substituted."
+      },
+      "next_evidence_needed": "Operator or Kajima dated current works/photos plus recovered official coordinate row; avoid using contractor order receipt as physical progress."
+    },
+    {
+      "id": "dayone-kodaira",
+      "name": "DayOne Kodaira Phase One",
+      "country": "Japan",
+      "action": "retain_hold_identity_bridge_improved",
+      "findings": [
+        "Municipal February2026question identifies initial applicant SSG10, September2025 transfer to Digital Land IV Japan and DayOne operating role; earlier identity gap is narrowed.",
+        "Public construction portal by Towa links current plan materials and September15updatedFAQ. GoogleDrive explicitly denies downloads; document contents were not inferred.",
+        "September4ceremony documents project announcement; it does not prove actual work afterward. Resident reports of fence-removal plans are discovery leads only."
+      ],
+      "remaining_blockers": [
+        "Retrieve viewable first-party site plan and exact numeric site geometry.",
+        "For under_construction, dated achieved works after ceremony; alternatively announced admission can use ceremony/announcement when geometry is verified."
+      ],
+      "sources": [
+        {
+          "url": "https://www.city.kodaira.tokyo.jp/event/files/125084/125084/att_0000001.pdf",
+          "summary": "Municipal question packet connects SSG10 applicant, Digital Land IV Japan and DayOne.",
+          "access": "Primary indexed text read earlier in this pass; later PDF opens17pages without extractable text, raw fetch404."
+        },
+        {
+          "url": "https://www.machidukuri-kodaira.org/ippanshitumon/202603/",
+          "summary": "Councilor transcript reproduces mayor answer that the September2025applicant change inherits the basic landuse plan.",
+          "access": "primary page read in web tool; no raw hash claimed"
+        },
+        "jp-resolution-kodaira-contractor-index"
+      ],
+      "project_stable_key": "curated:dayone-kodaira-campus:phase-one",
+      "candidate_address": "小平市天神町一丁目59番1",
+      "public_notice_urls": [
+        "https://drive.google.com/file/d/1XnYwJhoQMCs5zEfZgER2WBCERwvXoN-e/view",
+        "https://drive.google.com/file/d/1P6VTmKaL-Buu3JHt4SVG-GgUytGmzSga/view",
+        "https://drive.google.com/file/d/1thgGkLPCwsftcNn-s6dSg9nROrRKydKk/view"
+      ],
+      "parcel_lookup_result": "2026public-coordinate KodairaMOJ subset has1752features across6areas but noTenjincho. Absence in subset is not evidence site does not exist.",
+      "geometry": null
+    },
+    {
+      "id": "dayone-fuchu",
+      "name": "DayOne / Gaw Fuchu Phase One",
+      "country": "Japan",
+      "action": "retain_hold",
+      "findings": [
+        "Contractor Haseko September29,2025release confirms August2025construction start for phase1,18MWIT and17000m², plannedFY2027completion.",
+        "Phase1 remains distinct from80MWcampus and from Kodaira. SEC powered-shell lease or combined financial development category is not a construction-stage observation."
+      ],
+      "remaining_blockers": [
+        "Recent dated phase1physical progress; exact numeric site geometry."
+      ],
+      "sources": [
+        {
+          "url": "https://www.haseko.co.jp/hc/information/press/20250929_1.html",
+          "summary": "Primary contractor release was reread;18MWphase1 start isAugust2025, dayunknown.",
+          "access": "primary page read in web tool; no raw hash claimed"
+        },
+        {
+          "url": "https://dayonedc.com/market/tokyo",
+          "summary": "Undated market page lists Fuchu and Kodaira separately.",
+          "access": "primary page read in web tool; no raw hash claimed"
+        }
+      ],
+      "project_stable_key": "curated:dayone-gaw-fuchu-tokyo-data-center-campus:phase-one-building",
+      "prior_precision_correction": "Previous packet rendered2025-08-01; contractor source statesAugust2025only. Do not invent day1 as actual construction start.",
+      "next_evidence_needed": "Dated Haseko physicalprogress at exact firstbuilding plus landlord/city cadastralcoordinatebridge."
+    },
+    {
+      "id": "zeus-osa1",
+      "name": "Zeus OSA1 Osaka Nanko",
+      "country": "Japan",
+      "action": "retain_hold_exact_parcel_resolved",
+      "findings": [
+        "January30TokyoTatemonoannouncement gives exact cadastral addressOsakaSuminoeNankokita1-14-1 andDecember2025workstart.",
+        "25MWIT is firstphase; undated Zeus profile up-to70MWIT and100MWsecuredpower covers planned broader scope."
+      ],
+      "remaining_blockers": [
+        "Fresh dated primary status within90days and numeric parcel/address geometry."
+      ],
+      "sources": [
+        "jp-resolution-zeus-tatemono-start",
+        "jp-resolution-zeus-current"
+      ],
+      "candidate_address": "大阪市住之江区南港北一丁目14番1",
+      "candidate_geometry": null,
+      "next_evidence_needed": "TokyoTatemono or Zeus site-specific physicalprogress disclosure and Osaka cadastral feature; do not use Tokyo headquarters footermap."
+    },
+    {
+      "id": "ai-tech-phase1",
+      "name": "AI Tech Tomakomai Phase I Foundation Works",
+      "country": "Japan",
+      "action": "retain_existing_status",
+      "findings": [
+        "July17Verda10MWMoU,August14results andOctober13fuel-cellcooperation are new commercial/infrastructure context, without new specific phase1physical work.",
+        "September4company notice says exclusive MoU expiredSeptember1without finalizedlease/SLA and discussions continue nonexclusively; this is not proof of cancellation.",
+        "PhaseII66kVsubstation milestones cannot be assigned to phaseIbuilding work."
+      ],
+      "remaining_blockers": [
+        "New dated physical foundation/building observation explicitly scopedphase1."
+      ],
+      "sources": [
+        "jp-resolution-ef-july-phase1",
+        "jp-resolution-ef-august-results",
+        "jp-resolution-ef-october",
+        {
+          "url": "https://www.ef-hd.com/wp-content/uploads/2026/09/2026090401_1ef.pdf",
+          "summary": "September4notice distinguishes expired exclusiveMoU from continuingnegotiations.",
+          "access": "primary page read in web tool; no raw hash claimed"
+        }
+      ],
+      "project_stable_key": "curated:ai-tech-tomakomai-kashiwabara:phase1-foundations",
+      "retained_status": {
+        "value": "under_construction",
+        "as_of": "2026-06-19"
+      },
+      "retained_geometry": "Existing reviewed campuslocator remains unchanged."
+    },
+    {
+      "id": "iij-shiroi-phase3",
+      "name": "IIJ Shiroi DCC Phase3",
+      "country": "Japan",
+      "action": "retain_existing_status",
+      "findings": [
+        "August7first-quarter report confirms plannedMarch2027operations and targeted capex; these are future and financial facts, not a newly achieved construction stage.",
+        "Historical startJune2025 remains distinct from2026reportdates. Existing source-date semantics should remain visible."
+      ],
+      "remaining_blockers": [
+        "Dated physicalprogress or actualcompletion/commissioning explicitly phase3."
+      ],
+      "sources": [
+        "jp-resolution-iij-august"
+      ],
+      "project_stable_key": "curated:iij-shiroi-data-center-campus:phase-3-server-building",
+      "retained_status": {
+        "value": "under_construction",
+        "as_of": "2026-06-25"
+      }
+    },
+    {
+      "id": "ntt-tky12",
+      "name": "NTT Tokyo TKY12 Shiroi Campus",
+      "country": "Japan",
+      "action": "retain_existing_announced_status",
+      "findings": [
+        "April17NTTrelease describes development plan,6buildings andabout200MWIT forTKY12; firstservice2030or later is contingent onutilitysupply.",
+        "250MWheadline encompassesTKY12plusnearby50MWTKY11, a differentfacility. No dated actual constructionstart or numericTKY12plot was found."
+      ],
+      "remaining_blockers": [
+        "Site-specific permit/map exactnumericgeometry anddatednewstatus."
+      ],
+      "sources": [
+        {
+          "url": "https://www.nttdata.com/global/ja/news/release/2026/041700/",
+          "summary": "Original Japanese operator announcement rechecked; future plans only.",
+          "access": "primary page read in web tool; no raw hash claimed"
+        }
+      ],
+      "project_stable_key": "imported:semiconductor-atlas:ntt-gdc-tokyo-tky12-shiroi",
+      "retained_status": {
+        "value": "announced",
+        "as_of": "2026-04-22"
+      },
+      "geometry_scope": "locality_context",
+      "caution": "Do not match older Tokyo12brochures or nearbyTKY11site toTKY12."
+    }
+  ],
+  "raw_capture_manifest": [
+    {
+      "id": "jera-chiba-announcement",
+      "url": "https://www.jera.co.jp/news/information/20261001_2535",
+      "resolved_url": "https://www.jera.co.jp/news/information/20261001_2535",
+      "retrieved_at": "2026-10-13T17:14:10.758503+00:00",
+      "raw_sha256": "bdef802fc144c1e7fd6582b2aee2a5cbdfd40461aa2ae1fd71beaff3e9afd29f",
+      "raw_capture_file": "/Users/kian/Developer/datacenter_atlas/local_data/country-research-2026-10-13-jp-resolution/jera-chiba-announcement.html",
+      "content_type": "text/html; charset=UTF-8",
+      "bytes": 100566,
+      "evidence_capture": true
+    },
+    {
+      "id": "ef-news-index",
+      "url": "https://www.ef-hd.com/news/",
+      "resolved_url": "https://www.ef-hd.com/news/",
+      "retrieved_at": "2026-10-13T17:14:48.545827+00:00",
+      "raw_sha256": "7c6129a1da4d59a6ead1cf4ae783ef2b0b15a7980076c5464e56afd0c1cc6c4a",
+      "raw_capture_file": "/Users/kian/Developer/datacenter_atlas/local_data/country-research-2026-10-13-jp-resolution/ef-news-index.html",
+      "content_type": "text/html; charset=UTF-8",
+      "bytes": 826498,
+      "evidence_capture": true
+    },
+    {
+      "id": "iij-financial-index",
+      "url": "https://www.iij.ad.jp/ir/library/financial/",
+      "resolved_url": "https://www.iij.ad.jp/ir/library/financial/",
+      "retrieved_at": "2026-10-13T17:14:50.779113+00:00",
+      "raw_sha256": "53d61c1a4ac3adb8466dad070a5dc3c539fdfd98c3abffac5df796e56bb9d5ab",
+      "raw_capture_file": "/Users/kian/Developer/datacenter_atlas/local_data/country-research-2026-10-13-jp-resolution/iij-financial-index.html",
+      "content_type": "text/html",
+      "bytes": 106505,
+      "evidence_capture": true
+    },
+    {
+      "id": "zeus-tatemono-start",
+      "url": "https://tatemono.com/news/20260130.html",
+      "resolved_url": "https://tatemono.com/news/20260130.html",
+      "retrieved_at": "2026-10-13T17:14:55.287806+00:00",
+      "raw_sha256": "ea924f9af081dda3113809cac41c2a54bf1b7f7536fe175ac7388f7684c9dc5d",
+      "raw_capture_file": "/Users/kian/Developer/datacenter_atlas/local_data/country-research-2026-10-13-jp-resolution/zeus-tatemono-start.html",
+      "content_type": "text/html; charset=UTF-8",
+      "bytes": 60709,
+      "evidence_capture": true
+    },
+    {
+      "id": "softbank-report-strategy",
+      "url": "https://www.softbank.jp/corp/set/data/ir/documents/integrated_reports/pdf/sbkk_integrated_report_2026_03.pdf",
+      "resolved_url": "https://www.softbank.jp/corp/set/data/ir/documents/integrated_reports/pdf/sbkk_integrated_report_2026_03.pdf",
+      "retrieved_at": "2026-10-13T17:16:11.730984+00:00",
+      "raw_sha256": "85afae8f6c078c5e34e91a68788fb105e489848a2e71217e9377fb485833985a",
+      "raw_capture_file": "/Users/kian/Developer/datacenter_atlas/local_data/country-research-2026-10-13-jp-resolution/softbank-report-strategy.pdf",
+      "content_type": "application/pdf",
+      "bytes": 6857475,
+      "evidence_capture": true
+    },
+    {
+      "id": "jera-chiba-plant",
+      "url": "https://www.jera.co.jp/corporate/business/thermal-power/list/chiba",
+      "resolved_url": "https://www.jera.co.jp/corporate/business/thermal-power/list/chiba",
+      "retrieved_at": "2026-10-13T17:16:13.350285+00:00",
+      "raw_sha256": "f34f4932ed917da8110a5d3763f140492c5e8c37f18fb555f72534131c2b0154",
+      "raw_capture_file": "/Users/kian/Developer/datacenter_atlas/local_data/country-research-2026-10-13-jp-resolution/jera-chiba-plant.html",
+      "content_type": "text/html; charset=UTF-8",
+      "bytes": 106698,
+      "evidence_capture": true
+    },
+    {
+      "id": "iij-august",
+      "url": "https://www.iij.ad.jp/ir/library/financial/pdf/IIJ1Q26J_presentation.pdf",
+      "resolved_url": "https://www.iij.ad.jp/ir/library/financial/pdf/IIJ1Q26J_presentation.pdf",
+      "retrieved_at": "2026-10-13T17:16:17.932319+00:00",
+      "raw_sha256": "2733b927b374cb5caee231980b53a157005501d25d7fc1979256957e0a0d1af1",
+      "raw_capture_file": "/Users/kian/Developer/datacenter_atlas/local_data/country-research-2026-10-13-jp-resolution/iij-august.pdf",
+      "content_type": "application/pdf",
+      "bytes": 2246729,
+      "evidence_capture": true
+    },
+    {
+      "id": "ef-october",
+      "url": "https://www.ef-hd.com/wp-content/uploads/2026/10/2026101301_1ef.pdf",
+      "resolved_url": "https://www.ef-hd.com/wp-content/uploads/2026/10/2026101301_1ef.pdf",
+      "retrieved_at": "2026-10-13T17:16:40.019006+00:00",
+      "raw_sha256": "c622fb14b80a5d8f4e2fb3d384ccc405ea9317afaf967ebf8bb923bd0d3bc904",
+      "raw_capture_file": "/Users/kian/Developer/datacenter_atlas/local_data/country-research-2026-10-13-jp-resolution/ef-october.pdf",
+      "content_type": "application/pdf",
+      "bytes": 277960,
+      "evidence_capture": true
+    },
+    {
+      "id": "ef-august-results",
+      "url": "https://www.ef-hd.com/wp-content/uploads/2026/08/20260814_1ef.pdf",
+      "resolved_url": "https://www.ef-hd.com/wp-content/uploads/2026/08/20260814_1ef.pdf",
+      "retrieved_at": "2026-10-13T17:16:41.959033+00:00",
+      "raw_sha256": "a2a90897208b84d7be033cd7034518541632e23da30ac00ecd3b0e1b32b66225",
+      "raw_capture_file": "/Users/kian/Developer/datacenter_atlas/local_data/country-research-2026-10-13-jp-resolution/ef-august-results.pdf",
+      "content_type": "application/pdf",
+      "bytes": 234545,
+      "evidence_capture": true
+    },
+    {
+      "id": "ef-july-phase1",
+      "url": "https://www.ef-hd.com/wp-content/uploads/2026/07/2026071701_1ef.pdf",
+      "resolved_url": "https://www.ef-hd.com/wp-content/uploads/2026/07/2026071701_1ef.pdf",
+      "retrieved_at": "2026-10-13T17:16:44.551549+00:00",
+      "raw_sha256": "0dfafe1a8ff286c8f6dd9cf30f662f8b8a00aa5cb8020af9384c3ca6e77794eb",
+      "raw_capture_file": "/Users/kian/Developer/datacenter_atlas/local_data/country-research-2026-10-13-jp-resolution/ef-july-phase1.pdf",
+      "content_type": "application/pdf",
+      "bytes": 379979,
+      "evidence_capture": true
+    },
+    {
+      "id": "zeus-current",
+      "url": "https://www.zeusdatacenters.com/OSA1.html",
+      "resolved_url": "https://www.zeusdatacenters.com/OSA1.html",
+      "retrieved_at": "2026-10-13T17:16:45.677421+00:00",
+      "raw_sha256": "99766617400bc30a045c8939f2286897ff2f34e59ecd69fcffa49626f922bf6f",
+      "raw_capture_file": "/Users/kian/Developer/datacenter_atlas/local_data/country-research-2026-10-13-jp-resolution/zeus-current.html",
+      "content_type": "text/html; charset=UTF-8",
+      "bytes": 32937,
+      "evidence_capture": true
+    },
+    {
+      "id": "softbank-report-date",
+      "url": "https://www.softbank.jp/corp/sustainability/info/",
+      "resolved_url": "https://www.softbank.jp/corp/sustainability/info/",
+      "retrieved_at": "2026-10-13T17:16:46.146608+00:00",
+      "raw_sha256": "c872703538254d1a27b5f8f5e5504add54493c8dda6a9834969353dfd19987bc",
+      "raw_capture_file": "/Users/kian/Developer/datacenter_atlas/local_data/country-research-2026-10-13-jp-resolution/softbank-report-date.html",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 93053,
+      "evidence_capture": true
+    },
+    {
+      "id": "cyrusone-osk1-location",
+      "url": "https://www.cyrusone.com/data-centers/apac/osaka-japan",
+      "resolved_url": "https://www.cyrusone.com/data-centers/apac/osaka-japan",
+      "retrieved_at": "2026-10-13T17:18:17.587503+00:00",
+      "raw_sha256": "de888ba32baeccd7761229d0e24844c6b141da12ea197c45e12295036918a549",
+      "raw_capture_file": "/Users/kian/Developer/datacenter_atlas/local_data/country-research-2026-10-13-jp-resolution/cyrusone-osk1-location.html",
+      "content_type": "text/html; charset=UTF-8",
+      "bytes": 88395,
+      "evidence_capture": true
+    },
+    {
+      "id": "kodaira-contractor-index",
+      "url": "https://linktr.ee/kodaira",
+      "resolved_url": "https://linktr.ee/kodaira",
+      "retrieved_at": "2026-10-13T17:19:35.942894+00:00",
+      "raw_sha256": "fa89d42d7c8595245de52fd7c369e5cc1237795afbaaab6bf0841bda9bc9d302",
+      "raw_capture_file": "/Users/kian/Developer/datacenter_atlas/local_data/country-research-2026-10-13-jp-resolution/kodaira-contractor-index.html",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 234546,
+      "evidence_capture": true
+    },
+    {
+      "id": "kodaira-qa",
+      "url": "https://drive.google.com/uc?export=download&id=1XnYwJhoQMCs5zEfZgER2WBCERwvXoN-e",
+      "resolved_url": "https://drive.usercontent.google.com/download?id=1XnYwJhoQMCs5zEfZgER2WBCERwvXoN-e&export=download",
+      "retrieved_at": "2026-10-13T17:24:04.875650+00:00",
+      "raw_sha256": "6203fb03a7e91796062440bdf628a29258bb3a9b10b4dde3d5ea8ab319ba07e1",
+      "raw_capture_file": "/Users/kian/Developer/datacenter_atlas/local_data/country-research-2026-10-13-jp-resolution/kodaira-qa.html",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 1820,
+      "evidence_capture": false,
+      "capture_note": "Permission-denied download HTML only, not the intended document; excluded from source evidence."
+    },
+    {
+      "id": "kodaira-owner",
+      "url": "https://drive.google.com/uc?export=download&id=1P6VTmKaL-Buu3JHt4SVG-GgUytGmzSga",
+      "resolved_url": "https://drive.usercontent.google.com/download?id=1P6VTmKaL-Buu3JHt4SVG-GgUytGmzSga&export=download",
+      "retrieved_at": "2026-10-13T17:24:05.336015+00:00",
+      "raw_sha256": "d289ba42edc4fa2dae60253b1d0a87318563a4e8618dd976aaed4256e52f607c",
+      "raw_capture_file": "/Users/kian/Developer/datacenter_atlas/local_data/country-research-2026-10-13-jp-resolution/kodaira-owner.html",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 1820,
+      "evidence_capture": false,
+      "capture_note": "Permission-denied download HTML only, not the intended document; excluded from source evidence."
+    },
+    {
+      "id": "kodaira-land-notice",
+      "url": "https://drive.google.com/uc?export=download&id=1thgGkLPCwsftcNn-s6dSg9nROrRKydKk",
+      "resolved_url": "https://drive.usercontent.google.com/download?id=1thgGkLPCwsftcNn-s6dSg9nROrRKydKk&export=download",
+      "retrieved_at": "2026-10-13T17:24:05.839118+00:00",
+      "raw_sha256": "3f47a6282eabb1a6fb8efe814f646120788e355f8c7c8d5cfc123e2db847d08e",
+      "raw_capture_file": "/Users/kian/Developer/datacenter_atlas/local_data/country-research-2026-10-13-jp-resolution/kodaira-land-notice.html",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 1820,
+      "evidence_capture": false,
+      "capture_note": "Permission-denied download HTML only, not the intended document; excluded from source evidence."
+    },
+    {
+      "id": "softbank-report-full",
+      "url": "https://www.softbank.jp/corp/set/data/ir/documents/integrated_reports/pdf/sbkk_integrated_report_2026.pdf",
+      "resolved_url": "https://www.softbank.jp/corp/set/data/ir/documents/integrated_reports/pdf/sbkk_integrated_report_2026.pdf",
+      "retrieved_at": "2026-10-13T17:24:51.886897+00:00",
+      "raw_sha256": "81bba6761e58c4ea8cde49ba5972caa47c6825df8304e209ceeb91c311952b39",
+      "raw_capture_file": "/Users/kian/Developer/datacenter_atlas/local_data/country-research-2026-10-13-jp-resolution/softbank-report-full.pdf",
+      "content_type": "application/pdf",
+      "bytes": 24954089,
+      "evidence_capture": true
+    },
+    {
+      "id": "softbank-tomakomai-august",
+      "url": "https://www.softbank.jp/sbnews/entry/20260804_02",
+      "resolved_url": "https://www.softbank.jp/sbnews/entry/20260804_02",
+      "retrieved_at": "2026-10-13T17:28:28.613049+00:00",
+      "raw_sha256": "1682e713ba8080ad7a8a47c4e2bd4c9a802b291d8e89e858383601b8a978dd70",
+      "raw_capture_file": "/Users/kian/Developer/datacenter_atlas/local_data/country-research-2026-10-13-jp-resolution/softbank-tomakomai-august.html",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 142896,
+      "evidence_capture": true
+    },
+    {
+      "id": "softbank-tomakomai-republished-ceremony",
+      "url": "https://www.softbank.jp/sbnews/entry/20250421_01",
+      "resolved_url": "https://www.softbank.jp/sbnews/entry/20250421_01",
+      "retrieved_at": "2026-10-13T17:28:29.098590+00:00",
+      "raw_sha256": "9403f1c7e5bab483fa79ec7caab3f39bb75d1a0ac29251988d2a8fb15629e0c5",
+      "raw_capture_file": "/Users/kian/Developer/datacenter_atlas/local_data/country-research-2026-10-13-jp-resolution/softbank-tomakomai-republished-ceremony.html",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 140385,
+      "evidence_capture": true
+    }
+  ],
+  "validation": {
+    "normalized_sources_sha256": "a2242754773776be0d28443f8e6c37691f042a10a1197490ff355267a3e79a67",
+    "actions_sha256": "7d79d2c57e743a49a52396b1aa7a2248a53dcd55f23e69cc6f51c7998b0c50db",
+    "raw_hashes_recomputed": true
+  }
+}
