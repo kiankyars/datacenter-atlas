@@ -225,11 +225,9 @@ def citation_cff(facts: Facts) -> str:
     dataset, counts, config = facts.dataset, facts.counts, facts.config
     base = facts.base_url
     family, given = author_parts(config)
-    window = int(dataset.get("status_window_days") or config.get("status_window_days") or 90)
     abstract = (
         "An open dataset of data-centre construction worldwide. Each project has a dated, "
-        "authoritative observation of physical construction work no more than "
-        f"{window} days before a fixed lifecycle reference date ({dataset['lifecycle_reference_date']}), a "
+        "authoritative observation of physical construction work, a "
         "sourced location with its precision recorded"
         f"{' (or, for a listed locator exception, host-estate context only)' if locator_exceptions(facts) else ''}"
         ", and source records with URLs, licences, retrieval times and content hashes. "
@@ -290,7 +288,8 @@ def readme_current_dataset(facts: Facts) -> str:
         f"projects** and **{counts['countries']} countries**.",
         f"**Data updated:** {dataset['checkpoint_date']}.",
         f"**Construction observations:** {dataset.get('window_start', '?')} to "
-        f"{dataset['lifecycle_reference_date']}. Each record includes its source and observation date.",
+        f"{dataset.get('observation_window_end', dataset['lifecycle_reference_date'])}. "
+        "Each record includes its source and observation date.",
     ]
     return "\n".join(wrap(text, first="- ", rest="  ") for text in bullets)
 
@@ -340,7 +339,7 @@ def readme_version_files(facts: Facts) -> str:
 def license_example(facts: Facts) -> str:
     text = (
         f"Data: {facts.config.get('site_name', 'Data Center Atlas')} ({facts.config['author']['name']}), "
-        f"{facts.base_url}, version {facts.dataset['id']}, CC BY 4.0. Includes data © OpenStreetMap "
+        f"{facts.base_url}, data updated {facts.dataset['checkpoint_date']}, CC BY 4.0. Includes data © OpenStreetMap "
         "contributors (ODbL 1.0) and from the other sources listed in the dataset's ATTRIBUTION.txt."
     )
     return wrap(text, first="> ", rest="> ")
@@ -350,7 +349,7 @@ def license_osm_count(facts: Facts) -> str:
     projects, sites = osm_geometry_counts(facts)
     return (
         f"{projects} of the {facts.counts['projects']} project geometries, on {sites} sites, in the "
-        f"{facts.dataset['checkpoint_date']} checkpoint"
+        f"{facts.dataset['checkpoint_date']} data snapshot"
     )
 
 

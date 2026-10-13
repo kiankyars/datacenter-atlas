@@ -1,8 +1,8 @@
-"""Release notes, tag and asset list for a GitHub Release of the current dataset version.
+"""Release notes, tag and asset list for a GitHub Release of the current data snapshot.
 
 The ``release`` job of ``.github/workflows/pages.yml`` (enabled by the repository variable
 ``ATLAS_GITHUB_RELEASES=true``) runs this on the deployed site's files, then creates the release
-``data-<dataset id>`` once per version with the files listed here attached, so every checkpoint
+``data-<dataset id>`` once per snapshot with the files listed here attached, so every update
 gets an immutable, citable copy of its derived formats (and, with the Zenodo GitHub integration,
 a DOI).
 
@@ -38,7 +38,7 @@ CAVEATS = (
     "Each status is the **last observed physical status** as of a dated source, not the status today.",
     "Locators place a site on the map; they are **not building footprints** or construction extents.",
     "A missing capacity, role or workload is **unknown, not zero**.",
-    "The dataset is a **reviewed sample, not a census** of data-centre construction.",
+    "Coverage is incomplete and varies by country.",
 )
 MAX_LISTED_SITES = 60
 
@@ -59,7 +59,8 @@ def release_tag(dataset_id: str) -> str:
 
 
 def release_title(dataset: Mapping[str, Any]) -> str:
-    return f"{dataset['label']} ({dataset['id']})"
+    updated = dataset.get("updated_at", dataset["checkpoint_date"])
+    return f"Data Center Atlas · {updated}"
 
 
 def asset_paths(site: Path, dataset_id: str) -> list[Path]:
@@ -96,16 +97,14 @@ def notes(index: Mapping[str, Any], versions: Mapping[str, Any], sites: Sequence
     identifier = dataset["id"]
     entry = next((item for item in versions.get("versions", []) if item.get("id") == identifier), {})
     by_id = {site.get("site_id"): site for site in sites}
-    final = bool(dataset.get("publishable_as_final"))
+    updated = dataset.get("updated_at", dataset["checkpoint_date"])
+    start = dataset.get("observation_window_start", dataset.get("window_start"))
+    end = dataset.get("observation_window_end", dataset["lifecycle_reference_date"])
     lines = [
-        f"Dataset version `{identifier}`: {dataset['label']}, checkpoint {dataset['checkpoint_date']}, "
-        f"lifecycle reference date {dataset['lifecycle_reference_date']}.",
+        f"Data updated {updated}.",
         "",
-        (
-            "**A final release.**" if final else
-            f"**A reviewed {dataset.get('release_status', 'draft')}, not a final release**: some release gates are "
-            f"not met ([release gates]({base}methodology/#release-gates))."
-        ),
+        f"Construction observations: {start} to {end}. Each project retains its last reported status and "
+        "observation date; an Atlas update does not mean every project was rechecked.",
         "",
         f"- {counts['physical_sites']} physical sites with {counts['projects']} construction projects in "
         f"{counts['countries']} countries ({counts.get('non_us_sites', '?')} sites outside the United States)",
@@ -115,13 +114,13 @@ def notes(index: Mapping[str, Any], versions: Mapping[str, Any], sites: Sequence
     added = list(entry.get("added_site_ids") or [])
     removed = list(entry.get("removed_site_ids") or [])
     if added or removed:
-        lines += ["", "## Changes since the previous version", ""]
+        lines += ["", "## Additions and corrections", ""]
         if added:
             lines.append(f"{len(added)} site{'s' if len(added) != 1 else ''} added:")
             lines.append("")
             lines += [_site_line(base, by_id.get(site_id), site_id) for site_id in added[:MAX_LISTED_SITES]]
             if len(added) > MAX_LISTED_SITES:
-                lines.append(f"- and {len(added) - MAX_LISTED_SITES} more (see the versions page)")
+                lines.append(f"- and {len(added) - MAX_LISTED_SITES} more (see the data history)")
         if removed:
             if added:
                 lines.append("")
@@ -129,16 +128,16 @@ def notes(index: Mapping[str, Any], versions: Mapping[str, Any], sites: Sequence
                          + ", ".join(f"`{site_id}`" for site_id in removed))
     lines += [
         "",
-        f"The [versions page]({base}versions/) compares every version with the one before it.",
+        f"The [data history]({base}versions/) lists additions, corrections and earlier snapshots.",
         "",
-        "## Read before use",
+        "## Coverage and interpretation",
         "",
         *[f"- {caveat}" for caveat in CAVEATS],
         "",
         "## Files",
         "",
         f"The attached files are the derived formats and checksums published at <{base}downloads/{identifier}/>; "
-        f"the zip holds every file of the version, including the original checkpoint files bound by "
+        "the zip holds every file of the snapshot, including the original data files bound by "
         "`manifest.json`. Verify downloads with `sha256sum --check --ignore-missing SHA256SUMS`. The same data is served by the "
         f"static JSON API at <{base}api/v1/>.",
         "",
@@ -150,7 +149,7 @@ def notes(index: Mapping[str, Any], versions: Mapping[str, Any], sites: Sequence
         "",
         (
             f"Cite as: {citation['apa']}" if citation and isinstance(citation.get("apa"), str)
-            else f"Cite the version you used ({base}versions/ lists every version)."
+            else f"Cite the dated snapshot you used ([data history]({base}versions/))."
         ),
         "",
         f"The same citation as BibTeX, RIS and CSL-JSON: <{base}api/v1/citation.json>; `CITATION.cff` in the "
@@ -162,12 +161,14 @@ def notes(index: Mapping[str, Any], versions: Mapping[str, Any], sites: Sequence
 
 
 def is_prerelease(dataset: Mapping[str, Any]) -> bool:
-    """A dataset that is not publishable as final is released as a GitHub pre-release."""
+    """Date-based updates are releases; historical snapshots retain their archive status."""
+    if dataset.get("release_status") == "published":
+        return False
     return not bool(dataset.get("publishable_as_final"))
 
 
 def main(argv: Sequence[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description="Prepare a GitHub Release of the current dataset version.")
+    parser = argparse.ArgumentParser(description="Prepare a GitHub Release of the current data snapshot.")
     parser.add_argument("--site", required=True, type=Path, help="built site directory")
     parser.add_argument("--notes", required=True, type=Path, help="write the release notes (Markdown) here")
     parser.add_argument("--assets", required=True, type=Path, help="write the asset paths, one per line, here")

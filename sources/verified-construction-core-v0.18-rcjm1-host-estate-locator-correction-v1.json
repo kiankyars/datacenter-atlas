@@ -1,0 +1,924 @@
+{
+  "schema_version": "v018-rcjm1-host-estate-locator-correction-1",
+  "reviewed_at": "2026-10-09",
+  "lifecycle_reference_date": "2026-08-20",
+  "accepted_into_core": false,
+  "accepted_additional_sites": 0,
+  "correction_scope": "Versioned semantic and accounting correction for the inherited v0.17 baseline locator of Racks Central RCJM1 Phase A (Racks Central Johor AI Campus). The selected geometry is the union of the two named OSM Iskandar Halal Park host-development phases, about 123.31 ha, labelled and counted as a campus locator, and its display anchor lies outside both phase polygons. The numeric MultiPolygon, display anchor, raw capture hashes, physical site, project, identity and construction observation are unchanged. The entity kind, use scope, method, scope class, precision and uncertainty statements, evidence keys and verification posture are corrected to host-development locality context, following the CGK host-estate precedent. No added or removed campus or project, lifecycle refresh, finer location, boundary, precision gain or acceptance claim.",
+  "supersedes": {
+    "source_path": "sources/verified-construction-core-v0.16-seven-country-diversity-site-facts.json",
+    "source_file_sha256": "aa7703fdce30b2ab8767096d3eb8749841ea3dcbfa541dd41911595fe4f7adba",
+    "source_file_bytes": 31597,
+    "evidence_pointer": "/source_documents/2",
+    "evidence_record_sha256": "4caf7f9851badcffe39c625092cd2ea1ed5d26b53cd138f964db6cb5a52f4655",
+    "evidence_source_id": "racks-central-rcjm-osm-iskandar-halal-park-phase-1",
+    "evidence_id": "d4d4c451-8160-5936-8b49-30b9cebad256",
+    "geometry_pointer": "/results/2",
+    "geometry_record_sha256": "8e8bf5de4dab18924b54361ac4b13660435300cb55ef5d41346c9545c6b464da",
+    "locator_id": "racks-central-rcjm1-osm-iskandar-halal-park-two-phase-union",
+    "additional_superseded_evidence": [
+      {
+        "evidence_pointer": "/source_documents/3",
+        "evidence_record_sha256": "6968bd4df570cad5753e1d2d94698f5b9513e02b77be8d60f9fbd558f0e01d28",
+        "evidence_source_id": "racks-central-rcjm-osm-iskandar-halal-park-phase-2",
+        "evidence_id": "0f041ac1-c722-588c-bb02-442fcb4c53b3",
+        "replacement_source_id": "rcjm1-ihp-phase-2-host-estate-context"
+      }
+    ],
+    "frozen_baseline_rows": {
+      "release_path": "verified_construction_core/2026-08-20-preview-v0.17",
+      "manifest_sha256": "49cf79185742a2bd718a83683c924574ba8db4de1289d1228e56c5865154c8fc",
+      "projects_csv": {
+        "file_line_number": 84,
+        "project_stable_key": "curated:racks-central-johor-ai-campus:rcjm1-first-phase",
+        "row_canonical_sha256": "96de7baf78e578115994bf7c17ab8b0e09482144eed467e6da4c42df26523922",
+        "raw_line_sha256": "840e9476c79d78bba2fd88e3363f9a350c09b3365c2203e1bf2c4c4e63a5e8dd"
+      },
+      "sites_csv": {
+        "file_line_number": 83,
+        "physical_site_stable_key": "curated:racks-central-johor-ai-campus",
+        "row_canonical_sha256": "7b8471f83129a7855b4311e295d2a43781e9e2a5942f589d0be344deef2a0ebd",
+        "raw_line_sha256": "c6a012debd74e14fdde6c5020119b3bee0819ea9ae79ca78bb62b885911e5adb"
+      },
+      "evidence_csv": {
+        "file_line_number": 215,
+        "evidence_id": "d4d4c451-8160-5936-8b49-30b9cebad256",
+        "row_canonical_sha256": "cd59d954a4310b0bf776621eaec222c8b83d1c745439a379db48c4663f53742a",
+        "raw_line_sha256": "581597df179e782dcdbaa7cf71d8e40c0bf0709834929fc0259c52891d2d6209"
+      },
+      "sites_geojson": {
+        "feature_index": 81,
+        "feature_canonical_sha256": "97c8725ba244b3f4ee50332d6a7eeb2ad7d4ea448d0a4e11181bd86d235e4fd8"
+      },
+      "additional_evidence_csv": [
+        {
+          "file_line_number": 13,
+          "evidence_id": "0f041ac1-c722-588c-bb02-442fcb4c53b3",
+          "row_canonical_sha256": "334f30723a8a4ffc39ae49e2862027552b85baaa3d33acfa909eddbb34b815bb",
+          "raw_line_sha256": "2c18e314b4cf523cd6578a771788e462edc316330146ffaeb4fa02743def533e"
+        }
+      ]
+    },
+    "inherited_unchanged_through": {
+      "release_path": "verified_construction_core/2026-08-20-v0.18-draft-thirty-sixth-reviewed",
+      "manifest_sha256": "515159b79bb7263fe1cf88c054a75bfdbd817acba2ae6bc3452f004cf7e80208",
+      "rows_byte_identical_to_v017": true
+    },
+    "correction_reason": "The v0.16 seven-country batch turned the operator's locality-only statement (Iskandar Halal Park, Johor; curated method authoritative_locality with null coordinates and geometry) into the topological union of the two OSM Iskandar Halal Park phase polygons labelled geometry_use_scope campus_locator. v0.17 and every v0.18 draft therefore count RCJM1 as a reviewed site locator and publish the planar centroid of the two longitude/latitude rings as its latitude and longitude. The union is about 123.31 ha, about 61 times the five-acre first plot Racks Central reports buying in the park; the anchor lies about 3.3 m outside the Phase 2 ring and inside neither polygon; and no reviewed source places RCJM1 within either polygon.",
+    "frozen_artifact_mutated": false
+  },
+  "source_bindings": [
+    {
+      "source_id": "rcjm1-ihp-phase-1-host-estate-context",
+      "evidence_pointer": "/evidence/0"
+    },
+    {
+      "source_id": "rcjm1-ihp-phase-2-host-estate-context",
+      "evidence_pointer": "/evidence/1"
+    },
+    {
+      "source_id": "rcjm1-ihp-geofabrik-gpkg-reverification",
+      "evidence_pointer": "/evidence/2"
+    },
+    {
+      "source_id": "rcjm1-racks-central-first-plot-acquisition",
+      "evidence_pointer": "/evidence/3"
+    },
+    {
+      "source_id": "rcjm1-osm-wgs84-node-crs",
+      "evidence_pointer": "/evidence/4"
+    }
+  ],
+  "evidence": [
+    {
+      "key": "racks-central-rcjm1-osm-iskandar-halal-park-phase-1-host-estate-context-rescope-v1-captured-2026-08-23",
+      "kind": "open_map_record",
+      "title": "OpenStreetMap way 639973556 Iskandar Halal Park (Phase 1) - host-development context only, not an RCJM1 campus locator",
+      "source_url": "https://api.openstreetmap.org/api/0.6/way/639973556/full.json",
+      "publisher": "OpenStreetMap contributors",
+      "source_family": "openstreetmap_way_full_api",
+      "published_at": "2025-02-10T09:07:36Z",
+      "retrieved_at": "2026-08-23",
+      "license": "ODbL-1.0",
+      "attribution": "Contains information from OpenStreetMap, which is made available under the Open Database License (ODbL).",
+      "excerpt": "The community OSM way for Iskandar Halal Park Phase 1, retained only as host-development locality context for Racks Central RCJM1.",
+      "content_hash": "523924a2f7af099493df9076ea379253c7d043f9d1af135f468de0f8c04ed03a",
+      "metadata": {
+        "content_hash_scope": "SHA-256 of the exact 3416-byte raw OSM API way/full response recorded by the frozen v0.16 site-facts source document; the raw body is not redistributed",
+        "content_hash_verification": "inherited_frozen_record_value; the raw body is not present in this workspace and was not re-fetched. The ring it yields is independently reproduced vertex for vertex from the Geofabrik GeoPackage snapshot in the companion evidence record.",
+        "raw_capture_reuse": "No new OSM API request. source_url, content_hash, published_at, retrieved_at, way version, node count and numeric ring are copied unchanged from the frozen v0.16 record; only the key, title, excerpt and scope metadata are corrected.",
+        "retrieved_at_semantics": "Date-only value inherited verbatim from the frozen v0.16 record. No time of day or timezone is invented; a checkpoint must accept this inherited date-only retrieval through its baseline-correction path because the v0.18 acceptance validator requires a timezone.",
+        "osm_way": 639973556,
+        "osm_version": 4,
+        "osm_timestamp": "2025-02-10T09:07:36Z",
+        "node_count": 17,
+        "distinct_vertex_count": 16,
+        "selected_tags": {
+          "name": "Iskandar Halal Park (Phase 1)",
+          "landuse": "industrial",
+          "industrial": "halal"
+        },
+        "ring_geodesic_area_ha_diagnostic": 39.76,
+        "geometry_use_scope": "host_estate_context",
+        "official_boundary": false,
+        "location_precision": "Union of the two named Iskandar Halal Park host-development phases as mapped by OpenStreetMap: way 639973556 version 4 (Phase 1; 16 distinct vertices in a closed way of 17 node references; about 39.76 ha) and way 639973557 version 3 (tagged Phase 2, U/C; 19 distinct vertices in a closed way of 20 node references; about 83.55 ha), two disjoint community polygons about 22 m apart totalling about 123.31 ha (WGS84 geodesic, diagnostic). Racks Central places its RCJM campus only in Iskandar Halal Park, 81700 Pasir Gudang, and reports its first Johor land as a five-acre (about 2.02 ha) plot in the park; no reviewed source places RCJM1, Phase A or that plot at any position within, or confirms containment in, either phase polygon. Host-development locality context only: not an RCJM campus, RCJM1 or Phase A locator, parcel, boundary, footprint or work extent. The display anchor is the planar centroid of the two longitude/latitude rings, kept unchanged only because the row schema requires a point; it lies about 3.3 m outside the Phase 2 ring and about 402 m from the Phase 1 ring, inside neither polygon, and is not an RCJM1 position.",
+        "horizontal_uncertainty_metres": null,
+        "horizontal_uncertainty_unknown_reason": "RCJM1's position relative to this host-development outline is unknown and no source bounds it; OpenStreetMap states no positional accuracy for either outline. No numeric uncertainty is asserted.",
+        "coordinate_system": "OSM node longitude/latitude in WGS84 (EPSG:4326) as documented for OSM nodes; no transformation, snapping, tracing or fitting.",
+        "temporal_guardrail": "Locator semantics only. No retrieval or OSM edit date advances the fixed August 20 lifecycle cutoff or the inherited June 30 RCJM1 under-construction observation. The OSM U/C tag on Phase 2 is a 2020 host-development edit, never status evidence.",
+        "access_route_note": "The inherited capture route is the OSM editing API host, whose robots.txt (served from www.openstreetmap.org; captured 2026-10-09 by the round43 CGK lane, sha256 125ecd90...) disallows /api/ for generic crawlers and points to planet and regional extracts. This correction makes no API request; the companion record re-verifies the same rings from a Geofabrik regional GeoPackage extract.",
+        "rights_scope": "Compact factual projection with ODbL attribution only. No raw API body, tiles, imagery or mapper identifiers are redistributed.",
+        "role_note": "Primary reused capture: its source_url remains the project row's geometry_source_url.",
+        "supersedes": {
+          "source_path": "sources/verified-construction-core-v0.16-seven-country-diversity-site-facts.json",
+          "source_file_sha256": "aa7703fdce30b2ab8767096d3eb8749841ea3dcbfa541dd41911595fe4f7adba",
+          "evidence_pointer": "/source_documents/2",
+          "evidence_source_id": "racks-central-rcjm-osm-iskandar-halal-park-phase-1",
+          "evidence_id": "d4d4c451-8160-5936-8b49-30b9cebad256",
+          "evidence_record_sha256": "4caf7f9851badcffe39c625092cd2ea1ed5d26b53cd138f964db6cb5a52f4655",
+          "geometry_pointer": "/results/2",
+          "geometry_record_sha256": "8e8bf5de4dab18924b54361ac4b13660435300cb55ef5d41346c9545c6b464da",
+          "frozen_artifact_mutated": false
+        }
+      }
+    },
+    {
+      "key": "racks-central-rcjm1-osm-iskandar-halal-park-phase-2-host-estate-context-rescope-v1-captured-2026-08-23",
+      "kind": "open_map_record",
+      "title": "OpenStreetMap way 639973557 Iskandar Halal Park (Phase 2, U/C) - host-development context only, not an RCJM1 campus locator",
+      "source_url": "https://api.openstreetmap.org/api/0.6/way/639973557/full.json",
+      "publisher": "OpenStreetMap contributors",
+      "source_family": "openstreetmap_way_full_api",
+      "published_at": "2020-01-29T10:35:08Z",
+      "retrieved_at": "2026-08-23",
+      "license": "ODbL-1.0",
+      "attribution": "Contains information from OpenStreetMap, which is made available under the Open Database License (ODbL).",
+      "excerpt": "The community OSM way for Iskandar Halal Park Phase 2, retained only as host-development locality context for Racks Central RCJM1.",
+      "content_hash": "fcce549196511b88ae93f3fc2180f9b90fb31aafbc89e2fd9599224530a47aed",
+      "metadata": {
+        "content_hash_scope": "SHA-256 of the exact 3887-byte raw OSM API way/full response recorded by the frozen v0.16 site-facts source document; the raw body is not redistributed",
+        "content_hash_verification": "inherited_frozen_record_value; the raw body is not present in this workspace and was not re-fetched. The ring it yields is independently reproduced vertex for vertex from the Geofabrik GeoPackage snapshot in the companion evidence record.",
+        "raw_capture_reuse": "No new OSM API request. source_url, content_hash, published_at, retrieved_at, way version, node count and numeric ring are copied unchanged from the frozen v0.16 record; only the key, title, excerpt and scope metadata are corrected.",
+        "retrieved_at_semantics": "Date-only value inherited verbatim from the frozen v0.16 record. No time of day or timezone is invented; a checkpoint must accept this inherited date-only retrieval through its baseline-correction path because the v0.18 acceptance validator requires a timezone.",
+        "osm_way": 639973557,
+        "osm_version": 3,
+        "osm_timestamp": "2020-01-29T10:35:08Z",
+        "node_count": 20,
+        "distinct_vertex_count": 19,
+        "selected_tags": {
+          "name": "Iskandar Halal Park (Phase 2, U/C)",
+          "landuse": "industrial",
+          "industrial": "halal"
+        },
+        "ring_geodesic_area_ha_diagnostic": 83.55,
+        "geometry_use_scope": "host_estate_context",
+        "official_boundary": false,
+        "location_precision": "Union of the two named Iskandar Halal Park host-development phases as mapped by OpenStreetMap: way 639973556 version 4 (Phase 1; 16 distinct vertices in a closed way of 17 node references; about 39.76 ha) and way 639973557 version 3 (tagged Phase 2, U/C; 19 distinct vertices in a closed way of 20 node references; about 83.55 ha), two disjoint community polygons about 22 m apart totalling about 123.31 ha (WGS84 geodesic, diagnostic). Racks Central places its RCJM campus only in Iskandar Halal Park, 81700 Pasir Gudang, and reports its first Johor land as a five-acre (about 2.02 ha) plot in the park; no reviewed source places RCJM1, Phase A or that plot at any position within, or confirms containment in, either phase polygon. Host-development locality context only: not an RCJM campus, RCJM1 or Phase A locator, parcel, boundary, footprint or work extent. The display anchor is the planar centroid of the two longitude/latitude rings, kept unchanged only because the row schema requires a point; it lies about 3.3 m outside the Phase 2 ring and about 402 m from the Phase 1 ring, inside neither polygon, and is not an RCJM1 position.",
+        "horizontal_uncertainty_metres": null,
+        "horizontal_uncertainty_unknown_reason": "RCJM1's position relative to this host-development outline is unknown and no source bounds it; OpenStreetMap states no positional accuracy for either outline. No numeric uncertainty is asserted.",
+        "coordinate_system": "OSM node longitude/latitude in WGS84 (EPSG:4326) as documented for OSM nodes; no transformation, snapping, tracing or fitting.",
+        "temporal_guardrail": "Locator semantics only. No retrieval or OSM edit date advances the fixed August 20 lifecycle cutoff or the inherited June 30 RCJM1 under-construction observation. The OSM U/C tag on Phase 2 is a 2020 host-development edit, never status evidence.",
+        "access_route_note": "The inherited capture route is the OSM editing API host, whose robots.txt (served from www.openstreetmap.org; captured 2026-10-09 by the round43 CGK lane, sha256 125ecd90...) disallows /api/ for generic crawlers and points to planet and regional extracts. This correction makes no API request; the companion record re-verifies the same rings from a Geofabrik regional GeoPackage extract.",
+        "rights_scope": "Compact factual projection with ODbL attribution only. No raw API body, tiles, imagery or mapper identifiers are redistributed.",
+        "role_note": "Second reused capture: the frozen site row binds both phase captures, so both superseded evidence rows are re-keyed together.",
+        "supersedes": {
+          "source_path": "sources/verified-construction-core-v0.16-seven-country-diversity-site-facts.json",
+          "source_file_sha256": "aa7703fdce30b2ab8767096d3eb8749841ea3dcbfa541dd41911595fe4f7adba",
+          "evidence_pointer": "/source_documents/3",
+          "evidence_source_id": "racks-central-rcjm-osm-iskandar-halal-park-phase-2",
+          "evidence_id": "0f041ac1-c722-588c-bb02-442fcb4c53b3",
+          "evidence_record_sha256": "6968bd4df570cad5753e1d2d94698f5b9513e02b77be8d60f9fbd558f0e01d28",
+          "geometry_pointer": "/results/2",
+          "geometry_record_sha256": "8e8bf5de4dab18924b54361ac4b13660435300cb55ef5d41346c9545c6b464da",
+          "frozen_artifact_mutated": false
+        }
+      }
+    },
+    {
+      "key": "racks-central-rcjm1-osm-geofabrik-msb-261008-free-gpkg-reverification-2026-10-09",
+      "kind": "open_map_record",
+      "title": "Geofabrik OpenStreetMap Malaysia-Singapore-Brunei GeoPackage extract 261008: re-verification of Iskandar Halal Park ways 639973556 and 639973557",
+      "source_url": "https://download.geofabrik.de/asia/malaysia-singapore-brunei-latest-free.gpkg.zip",
+      "publisher": "OpenStreetMap contributors; regional extract published by Geofabrik GmbH",
+      "source_family": "geofabrik_osm_regional_extract",
+      "published_at": null,
+      "retrieved_at": "2026-10-09T16:30:13.745Z",
+      "license": "ODbL-1.0",
+      "attribution": "Contains information from OpenStreetMap, which is made available under the Open Database License (ODbL). Extract by Geofabrik GmbH.",
+      "excerpt": "The 2026-10-08 regional OSM snapshot reproduces both inherited Iskandar Halal Park rings vertex for vertex and shows no Racks Central or RCJM feature in or near the park.",
+      "content_hash": "af7f6c0814283cce4643b02d1ee39e79daa47c0c48b80570d1a580d58dea5cc9",
+      "metadata": {
+        "content_hash_scope": "SHA-256 of the exact 518483359-byte ZIP response body; the extract is not redistributed",
+        "content_hash_verification": "fetched_bytes_sha256",
+        "integrity_check": "Geofabrik's robots.txt at capture time disallows *.md5 for all agents, so the published checksum was not requested. The archive unzipped cleanly to README and malaysia-singapore-brunei.gpkg; the README states OSM data as of 2026-10-08T20:21:06Z, which equals the download page's statement and the replication timestamp of the 261008 PBF header.",
+        "requested_url": "https://download.geofabrik.de/asia/malaysia-singapore-brunei-latest-free.gpkg.zip",
+        "effective_url": "https://download.geofabrik.de/asia/malaysia-singapore-brunei-261008-free.gpkg.zip",
+        "capture_started_at": "2026-10-09T16:29:51.435Z",
+        "capture_finished_at": "2026-10-09T16:30:13.745Z",
+        "http_status": 200,
+        "raw_capture_bytes": 518483359,
+        "request_credentials_supplied": false,
+        "capture_method": "credential-free Node fetch with the lane capture script's long-timeout variant (timeout only changed); single request; no retry; content-decoded response bytes",
+        "unzipped_gpkg": {
+          "bytes": 1069957120,
+          "sha256": "d966880682171de734e0b7e14d11c329548119324b1636de83d2b3e3acf6a349",
+          "layer": "gis_osm_landuse_a_free",
+          "crs": "OGC:CRS84 (WGS 84 longitude/latitude, srs_id 100000 in the GeoPackage)"
+        },
+        "snapshot_statement": "This file contains OpenStreetMap data as of 2026-10-08T20:21:06Z (archive README).",
+        "robots": {
+          "download.geofabrik.de/robots.txt": "HTTP 200 captured 2026-10-09T16:28:41.896Z, 171 bytes, sha256 cbf7891c69738be030f73dcee59d616f445054d32c4526674a69c34b7a02c494. Disallows *.osm.pbf, *.osm.bz2, *.osc.gz, *.shp.zip, state files, *updates* and *.md5 for all agents; *.gpkg.zip is not disallowed.",
+          "earlier_observation": "The round43 CGK lane recorded HTTP 404 (no rule) for the same URL at 2026-10-09T11:09:18Z; the disallowing file was first observed by round44 lanes at 2026-10-09T16:15:54Z.",
+          "openstreetmap_org_robots_sha256": "125ecd90ae288efbe01fcad8008df1940dc9112d8b6b8932d57f59c07aeef24a"
+        },
+        "derived_facts": {
+          "way_639973556": {
+            "fclass": "industrial",
+            "name": "Iskandar Halal Park (Phase 1)",
+            "exterior_vertices": 17,
+            "holes": 0,
+            "vertex_set_equal_to_inherited_part_0": true,
+            "max_abs_coordinate_difference_deg": 0.0,
+            "symmetric_difference_area_deg2": 0.0
+          },
+          "way_639973557": {
+            "fclass": "industrial",
+            "name": "Iskandar Halal Park (Phase 2, U/C)",
+            "exterior_vertices": 20,
+            "holes": 0,
+            "vertex_set_equal_to_inherited_part_1": true,
+            "max_abs_coordinate_difference_deg": 0.0,
+            "symmetric_difference_area_deg2": 0.0
+          },
+          "racks_central_feature_search": "No GeoPackage feature in any layer has a name matching Racks Central, RCJM or a data-centre term inside Johor's Iskandar Halal Park; the only Racks Central-tagged OSM feature in the region (operator tag, owner AIMS APAC REIT) is the Tai Seng building in Singapore.",
+          "version_note": "The GeoPackage carries no OSM version. A supplementary local scan of the round43 synthesis copy of the 261008 PBF (sha256 88b4a68a..., MD5 equal to Geofabrik's published value; captured 2026-10-09T12:03:27Z, with its MD5 file at 12:03:12Z, before the disallowing robots.txt was first observed at 16:15:54Z; the last direct robots observation before that, at 11:09:18Z, was HTTP 404) shows way 639973556 at version 4 (2025-02-10T09:07:36Z) and way 639973557 at version 3 (2020-01-29T10:35:08Z), equal to the frozen v0.16 facts, and no node, way or relation in Malaysia whose name, operator, brand, owner, description or note names Racks Central or RCJM. That scan is corroboration only and no row depends on it.",
+          "bbox_review": "All 1,734 identity-, building-, landuse-, power- or road-tagged nodes and ways in the 103.905-103.952 E, 1.508-1.557 N box were classified against the union: only the two phase ways lie inside; no building, construction, data-centre or power feature is mapped inside either polygon, and none outside names Racks Central or RCJM.",
+          "distance_method": "WGS84 geodesic areas with pyproj Geod; anchor-to-ring distances in UTM 48N (EPSG:32648) with Shapely 2.1.1. Screening diagnostics, not boundary clearances."
+        },
+        "rights_scope": "Compact factual projections with ODbL attribution. No extract, tiles or mapper identifiers are redistributed.",
+        "lifecycle_selected": false
+      }
+    },
+    {
+      "key": "racks-central-rcjm1-first-johor-plot-acquisition-iskandar-halal-park-captured-2026-10-09",
+      "kind": "company_disclosure",
+      "title": "Racks Central Expands Data Center Capacity with Landmark Acquisition in Iskandar Halal Park, Johor",
+      "source_url": "https://www.rackscentral.com/news/racks-central-expands-data-center-capacity-with-landmark-acquisition-in-iskandar-halal-park-johor",
+      "publisher": "Racks Central",
+      "source_family": "racks_central_newsroom",
+      "published_at": "2025-05-19",
+      "retrieved_at": "2026-10-09T16:20:08.585Z",
+      "license": "all-rights-reserved",
+      "attribution": "Racks Central",
+      "excerpt": "Racks Central reports acquiring a five-acre plot in Iskandar Halal Park, 81700 Pasir Gudang, finalized on 18 October 2024, as its first major investment outside Singapore.",
+      "content_hash": "771b8d0d1b73a515bb2e678648b669f7a361b773c228219523163cec4b98250b",
+      "metadata": {
+        "content_hash_scope": "SHA-256 of the exact 200588-byte content-decoded first-party HTML response body",
+        "content_hash_verification": "fetched_bytes_sha256",
+        "requested_url": "https://www.rackscentral.com/news/racks-central-expands-data-center-capacity-with-landmark-acquisition-in-iskandar-halal-park-johor",
+        "effective_url": "https://www.rackscentral.com/news/racks-central-expands-data-center-capacity-with-landmark-acquisition-in-iskandar-halal-park-johor",
+        "capture_started_at": "2026-10-09T16:20:08.039Z",
+        "capture_finished_at": "2026-10-09T16:20:08.585Z",
+        "http_status": 200,
+        "request_credentials_supplied": false,
+        "robots": "https://www.rackscentral.com/robots.txt HTTP 200 captured 2026-10-09T16:20:02.186Z (sha256 a5a1e460f76133438d27751b837124cef708ac6f43f2feb3a464280508a4f10a): User-agent * Allow /.",
+        "published_at_semantics": "The page displays 'May 19, 2025'; no structured publication field was found. The acquisition date stated in the text, 2024-10-18, is not a publication date.",
+        "literal_pointer": "Body paragraph 1: a five-acre plot in Iskandar Halal Park, located in 81700 Pasir Gudang, Johor, Malaysia; acquisition finalized on October 18, 2024.",
+        "area_conversion": "5 acres x 4,046.8564224 m2 = about 2.0234 ha (international acre).",
+        "scope_guardrail": "Plot size and locality only. The page gives no lot, title, address number, coordinate, map or boundary, and does not itself name RCJM1; the RCJM2A location page describes RCJM2A as a 12.9-acre expansion adjacent to the existing RCJM facility. No position, parcel or containment in an OSM phase polygon is inferred.",
+        "rights_scope": "Compact factual extraction from an all-rights-reserved operator page; raw HTML and publisher media are not redistributed.",
+        "lifecycle_selected": false
+      }
+    },
+    {
+      "key": "ap41-keppel-osm-wgs84",
+      "kind": "other",
+      "title": "OSM node documentation: WGS84 geographic coordinates",
+      "source_url": "https://wiki.openstreetmap.org/wiki/Node",
+      "publisher": "OpenStreetMap Wiki contributors",
+      "source_family": "openstreetmap_documentation",
+      "published_at": null,
+      "retrieved_at": "2026-09-25T23:49:39.466Z",
+      "license": "CC-BY-SA-2.0",
+      "attribution": "OpenStreetMap Wiki contributors",
+      "excerpt": "The OSM node documentation defines node latitude and longitude in the WGS84 datum.",
+      "content_hash": "0f8940aa3c499d4037565e4c0b0c3ece058a7d73ac7e1bd37ab91b94796b00fa",
+      "metadata": {
+        "content_hash_scope": "SHA-256 of exact content-decoded response bytes, not extracted text or rendered pages.",
+        "content_hash_verification": "fetched_bytes_sha256",
+        "raw_capture_temp_path": "/Users/kian/Developer/datacenter_atlas/tmp/research-round41-root/osm-wiki-node.html",
+        "raw_capture_bytes": 58104,
+        "capture_metadata_path": "/Users/kian/Developer/datacenter_atlas/tmp/research-round41-root/osm-wiki-node.html.metadata.json",
+        "capture_started_at": "2026-09-25T23:49:38.488Z",
+        "capture_finished_at": "2026-09-25T23:49:39.466Z",
+        "http_status": 200,
+        "effective_url": "https://wiki.openstreetmap.org/wiki/Node",
+        "content_type": "text/html; charset=UTF-8",
+        "capture_method": "credential-free Node fetch; no retry; content-decoded response bytes",
+        "request_credentials_supplied": false,
+        "raw_capture_redistributed": false,
+        "rights_url": "https://wiki.openstreetmap.org/wiki/Wiki_content_license",
+        "rights_scope": "Standard identification and a compact restated coordinate-system fact only.",
+        "literal_pointer": "Node page: latitude and longitude coordinates in WGS84.",
+        "lifecycle_selected": false
+      }
+    }
+  ],
+  "results": [
+    {
+      "project_stable_key": "curated:racks-central-johor-ai-campus:rcjm1-first-phase",
+      "parent_campus_stable_key": "curated:racks-central-johor-ai-campus",
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              [
+                103.922809,
+                1.53287
+              ],
+              [
+                103.9227875,
+                1.5295023
+              ],
+              [
+                103.9237102,
+                1.5294809
+              ],
+              [
+                103.9236887,
+                1.5320763
+              ],
+              [
+                103.9269223,
+                1.5283479
+              ],
+              [
+                103.9266284,
+                1.5272286
+              ],
+              [
+                103.9252337,
+                1.5272715
+              ],
+              [
+                103.9252122,
+                1.5258129
+              ],
+              [
+                103.9260705,
+                1.5257915
+              ],
+              [
+                103.9261349,
+                1.5229601
+              ],
+              [
+                103.9233659,
+                1.5231239
+              ],
+              [
+                103.9213069,
+                1.5233033
+              ],
+              [
+                103.921264,
+                1.5244187
+              ],
+              [
+                103.9219507,
+                1.5244401
+              ],
+              [
+                103.9220365,
+                1.5272501
+              ],
+              [
+                103.9221438,
+                1.5336636
+              ],
+              [
+                103.922809,
+                1.53287
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                103.9333146,
+                1.5381301
+              ],
+              [
+                103.9369629,
+                1.5339147
+              ],
+              [
+                103.9352193,
+                1.5310101
+              ],
+              [
+                103.9338295,
+                1.5323601
+              ],
+              [
+                103.9327567,
+                1.5328534
+              ],
+              [
+                103.9332502,
+                1.5347839
+              ],
+              [
+                103.9323919,
+                1.5354489
+              ],
+              [
+                103.9319627,
+                1.5328749
+              ],
+              [
+                103.9311259,
+                1.5325531
+              ],
+              [
+                103.9306002,
+                1.531856
+              ],
+              [
+                103.9285939,
+                1.5324888
+              ],
+              [
+                103.9284519,
+                1.5324819
+              ],
+              [
+                103.9270382,
+                1.5324137
+              ],
+              [
+                103.9269845,
+                1.5285849
+              ],
+              [
+                103.9236108,
+                1.5327481
+              ],
+              [
+                103.9237736,
+                1.5352799
+              ],
+              [
+                103.9283755,
+                1.5353514
+              ],
+              [
+                103.9294093,
+                1.5397903
+              ],
+              [
+                103.9293968,
+                1.5426635
+              ],
+              [
+                103.9333146,
+                1.5381301
+              ]
+            ]
+          ]
+        ],
+        "type": "MultiPolygon"
+      },
+      "display_anchor": {
+        "type": "Point",
+        "coordinates": [
+          103.92817067682181,
+          1.5324382237091367
+        ]
+      },
+      "geometry_source_ids": [
+        "rcjm1-ihp-phase-1-host-estate-context",
+        "rcjm1-ihp-phase-2-host-estate-context",
+        "rcjm1-ihp-geofabrik-gpkg-reverification",
+        "rcjm1-racks-central-first-plot-acquisition",
+        "rcjm1-osm-wgs84-node-crs"
+      ],
+      "identity_source_ids": [
+        "rcjm1-phase-a-status-identity"
+      ],
+      "location_basis": "host_estate_locality_context",
+      "semantics": {
+        "geometry_source_entity_kind": "host_estate",
+        "geometry_derivation": "topological_union_of_two_osm_host_development_way_polygons",
+        "geometry_method": "osm_iskandar_halal_park_phase_1_v4_phase_2_v3_union_retained_as_host_estate_context_not_campus_locator",
+        "geometry_scope_class": "community_multi_phase_host_development_polygon_context_only",
+        "geometry_authority_class": "community_source",
+        "geometry_use_scope": "host_estate_context",
+        "precision_scope": "Union of the two named Iskandar Halal Park host-development phases as mapped by OpenStreetMap: way 639973556 version 4 (Phase 1; 16 distinct vertices in a closed way of 17 node references; about 39.76 ha) and way 639973557 version 3 (tagged Phase 2, U/C; 19 distinct vertices in a closed way of 20 node references; about 83.55 ha), two disjoint community polygons about 22 m apart totalling about 123.31 ha (WGS84 geodesic, diagnostic). Racks Central places its RCJM campus only in Iskandar Halal Park, 81700 Pasir Gudang, and reports its first Johor land as a five-acre (about 2.02 ha) plot in the park; no reviewed source places RCJM1, Phase A or that plot at any position within, or confirms containment in, either phase polygon. Host-development locality context only: not an RCJM campus, RCJM1 or Phase A locator, parcel, boundary, footprint or work extent. The display anchor is the planar centroid of the two longitude/latitude rings, kept unchanged only because the row schema requires a point; it lies about 3.3 m outside the Phase 2 ring and about 402 m from the Phase 1 ring, inside neither polygon, and is not an RCJM1 position.",
+        "horizontal_uncertainty_metres": null,
+        "horizontal_uncertainty_unknown_reason": "RCJM1's position relative to this host-development outline is unknown and no source bounds it; OpenStreetMap states no positional accuracy for either outline. No numeric uncertainty is asserted."
+      }
+    }
+  ],
+  "required_unchanged_identity_bindings": [
+    {
+      "source_id": "rcjm1-phase-a-status-identity",
+      "source_path": "sources/curated-official-2026-08-23-racks-central-rcjm1-johor-current-build-successor.json",
+      "source_file_sha256": "28424c99d4b71daf37f2c778e30da5a59d39c2a8d4c7119fcf8739552b67ec40",
+      "source_file_bytes": 3779,
+      "evidence_pointer": "/evidence/0",
+      "evidence_record_sha256": "84cc745172e61a4a87c0ca0559e80868235af3897de252398786a62c94485703",
+      "project_pointer": "/project",
+      "project_sha256": "081f8f9347d84fa3e6eb051a565bb046c48b624bc628aaa9577c3cca55eac4f8",
+      "campus_pointer": "/campus",
+      "campus_sha256": "0a3f47142abeba4128664d43a72d7aa515c4b98065d8688a15aca051b18e02ff",
+      "lifecycle_pointer": "/lifecycle/0",
+      "lifecycle_sha256": "1f41d2e96a52dd8962afe0885d07483271d5b5b95f7fa88ee5ec44c738464754",
+      "note": "Frozen v0.17 portable input. Its evidence keeps the inherited date-only retrieved_at 2026-08-23, which builder rule B4 accepts only because the evidence projects field for field to the frozen status evidence row 6f81ed11."
+    },
+    {
+      "source_id": "v016-rcjm1-acceptance",
+      "source_path": "definitions/verified-construction-core-v0.16-seven-country-diversity-site-batch.json",
+      "source_file_sha256": "d88bcf04caacbcdbd52c0c18b0b70028ec2c7681665a32e1c8d9f5cd41b01fe3",
+      "source_file_bytes": 33941,
+      "acceptance_pointer": "/acceptances/2",
+      "acceptance_sha256": "9be066fd58d61b30f2e293572ec2251db13c7821428259326144e5e8b5fce041"
+    },
+    {
+      "source_id": "rcjm1-osm-wgs84-node-crs",
+      "source_path": "sources/verified-construction-core-v0.18-apac-round41-keppel-sgp9-geometry-proposal.json",
+      "source_file_sha256": "e585f95ccc3655c73f01253abd3a30f3ca67f223c4e17c12ca20f8053b84a22f",
+      "source_file_bytes": 11653,
+      "evidence_pointer": "/evidence/1",
+      "evidence_record_sha256": "347aaf5cd972e35d9ba5b1883db53ad87d10c411dcf175638adbf3b66e38ce44",
+      "note": "Shared CRS record copied byte-identically into /evidence/4, as the CGK correction shared it."
+    }
+  ],
+  "exact_row_deltas": {
+    "projects.csv": {
+      "file_line_number": 84,
+      "changed": {
+        "geometry_source_entity_kind": [
+          "campus",
+          "host_estate"
+        ],
+        "geometry_method": [
+          "osm_iskandar_halal_park_phase_1_2_union_as_host_development_campus_locator",
+          "osm_iskandar_halal_park_phase_1_v4_phase_2_v3_union_retained_as_host_estate_context_not_campus_locator"
+        ],
+        "geometry_scope_class": [
+          "community_multi_phase_host_development_as_campus_locator",
+          "community_multi_phase_host_development_polygon_context_only"
+        ],
+        "geometry_use_scope": [
+          "campus_locator",
+          "host_estate_context"
+        ],
+        "geometry_precision_scope": [
+          "The union locates the two named Iskandar Halal Park host-development phases only. It is not an RCJM campus, RCJM1, Phase A, parcel, building, project footprint, or current-work boundary.",
+          "Union of the two named Iskandar Halal Park host-development phases as mapped by OpenStreetMap: way 639973556 version 4 (Phase 1; 16 distinct vertices in a closed way of 17 node references; about 39.76 ha) and way 639973557 version 3 (tagged Phase 2, U/C; 19 distinct vertices in a closed way of 20 node references; about 83.55 ha), two disjoint community polygons about 22 m apart totalling about 123.31 ha (WGS84 geodesic, diagnostic). Racks Central places its RCJM campus only in Iskandar Halal Park, 81700 Pasir Gudang, and reports its first Johor land as a five-acre (about 2.02 ha) plot in the park; no reviewed source places RCJM1, Phase A or that plot at any position within, or confirms containment in, either phase polygon. Host-development locality context only: not an RCJM campus, RCJM1 or Phase A locator, parcel, boundary, footprint or work extent. The display anchor is the planar centroid of the two longitude/latitude rings, kept unchanged only because the row schema requires a point; it lies about 3.3 m outside the Phase 2 ring and about 402 m from the Phase 1 ring, inside neither polygon, and is not an RCJM1 position."
+        ],
+        "horizontal_uncertainty_unknown_reason": [
+          "OpenStreetMap supplies no bounded numeric accuracy for either community host-development geometry.",
+          "RCJM1's position relative to this host-development outline is unknown and no source bounds it; OpenStreetMap states no positional accuracy for either outline. No numeric uncertainty is asserted."
+        ],
+        "geometry_evidence_id": [
+          "d4d4c451-8160-5936-8b49-30b9cebad256",
+          "c9c2d9bd-d6b3-5738-9ca0-78a9c351954f"
+        ],
+        "verification_posture": [
+          "recent_authoritative_physical_observation_plus_reviewed_site_locator",
+          "recent_authoritative_physical_observation_plus_host_estate_context_only"
+        ]
+      },
+      "unchanged_includes": [
+        "project_id",
+        "site_id",
+        "name",
+        "latitude",
+        "longitude",
+        "geometry_json",
+        "geometry_type",
+        "geometry_derivation",
+        "geometry_authority_class",
+        "horizontal_uncertainty_metres",
+        "last_observed_physical_status",
+        "status_as_of",
+        "status_method",
+        "status_evidence_id",
+        "status_source_url",
+        "geometry_source_url",
+        "role_claims_json",
+        "owner",
+        "operator",
+        "users",
+        "tenants",
+        "customers",
+        "workloads_json",
+        "workload_unknown_reason",
+        "power_observations_json",
+        "power_unknown_reason",
+        "annual_energy_observations_json",
+        "annual_energy_unknown_reason",
+        "efficiency_observations_json",
+        "efficiency_unknown_reason"
+      ]
+    },
+    "sites.csv": {
+      "file_line_number": 83,
+      "changed": {
+        "geometry_source_entity_kinds_json": [
+          "[\"campus\"]",
+          "[\"host_estate\"]"
+        ],
+        "geometry_methods_json": [
+          "[\"osm_iskandar_halal_park_phase_1_2_union_as_host_development_campus_locator\"]",
+          "[\"osm_iskandar_halal_park_phase_1_v4_phase_2_v3_union_retained_as_host_estate_context_not_campus_locator\"]"
+        ],
+        "geometry_scope_classes_json": [
+          "[\"community_multi_phase_host_development_as_campus_locator\"]",
+          "[\"community_multi_phase_host_development_polygon_context_only\"]"
+        ],
+        "geometry_use_scopes_json": [
+          "[\"campus_locator\"]",
+          "[\"host_estate_context\"]"
+        ],
+        "geometry_precision_scopes_json": [
+          "[\"The union locates the two named Iskandar Halal Park host-development phases only. It is not an RCJM campus, RCJM1, Phase A, parcel, building, project footprint, or current-work boundary.\"]",
+          "[\"Union of the two named Iskandar Halal Park host-development phases as mapped by OpenStreetMap: way 639973556 version 4 (Phase 1; 16 distinct vertices in a closed way of 17 node references; about 39.76 ha) and way 639973557 version 3 (tagged Phase 2, U/C; 19 distinct vertices in a closed way of 20 node references; about 83.55 ha), two disjoint community polygons about 22 m apart totalling about 123.31 ha (WGS84 geodesic, diagnostic). Racks Central places its RCJM campus only in Iskandar Halal Park, 81700 Pasir Gudang, and reports its first Johor land as a five-acre (about 2.02 ha) plot in the park; no reviewed source places RCJM1, Phase A or that plot at any position within, or confirms containment in, either phase polygon. Host-development locality context only: not an RCJM campus, RCJM1 or Phase A locator, parcel, boundary, footprint or work extent. The display anchor is the planar centroid of the two longitude/latitude rings, kept unchanged only because the row schema requires a point; it lies about 3.3 m outside the Phase 2 ring and about 402 m from the Phase 1 ring, inside neither polygon, and is not an RCJM1 position.\"]"
+        ],
+        "horizontal_uncertainty_unknown_reason": [
+          "OpenStreetMap supplies no bounded numeric accuracy for either community host-development geometry.",
+          "RCJM1's position relative to this host-development outline is unknown and no source bounds it; OpenStreetMap states no positional accuracy for either outline. No numeric uncertainty is asserted."
+        ],
+        "geometry_evidence_ids_json": [
+          "[\"d4d4c451-8160-5936-8b49-30b9cebad256\",\"0f041ac1-c722-588c-bb02-442fcb4c53b3\"]",
+          "[\"491b3b57-f2fb-53b4-ad33-07902a6d2e19\",\"509271d0-17c4-5ef8-a5a2-58c9ccc5a9a2\",\"a005d1f9-e99d-504f-8c0b-c8c1f03a29a4\",\"b7d02532-d340-5ead-b9ab-84b2ca52a197\",\"c9c2d9bd-d6b3-5738-9ca0-78a9c351954f\"]"
+        ],
+        "verification_posture": [
+          "recent_authoritative_physical_observation_plus_reviewed_site_locator",
+          "recent_authoritative_physical_observation_plus_host_estate_context_only"
+        ]
+      },
+      "unchanged_includes": [
+        "site_id",
+        "name",
+        "latitude",
+        "longitude",
+        "geometry_json",
+        "geometry_type",
+        "geometry_derivations_json",
+        "geometry_authority_classes_json",
+        "project_ids_json",
+        "statuses_json",
+        "oldest_status_as_of",
+        "newest_status_as_of",
+        "independent_imagery_verification",
+        "imagery_review_outcomes_json"
+      ]
+    },
+    "sites.geojson": {
+      "feature_index": 81,
+      "changed_properties": {
+        "geometry_precision_scopes": [
+          [
+            "The union locates the two named Iskandar Halal Park host-development phases only. It is not an RCJM campus, RCJM1, Phase A, parcel, building, project footprint, or current-work boundary."
+          ],
+          [
+            "Union of the two named Iskandar Halal Park host-development phases as mapped by OpenStreetMap: way 639973556 version 4 (Phase 1; 16 distinct vertices in a closed way of 17 node references; about 39.76 ha) and way 639973557 version 3 (tagged Phase 2, U/C; 19 distinct vertices in a closed way of 20 node references; about 83.55 ha), two disjoint community polygons about 22 m apart totalling about 123.31 ha (WGS84 geodesic, diagnostic). Racks Central places its RCJM campus only in Iskandar Halal Park, 81700 Pasir Gudang, and reports its first Johor land as a five-acre (about 2.02 ha) plot in the park; no reviewed source places RCJM1, Phase A or that plot at any position within, or confirms containment in, either phase polygon. Host-development locality context only: not an RCJM campus, RCJM1 or Phase A locator, parcel, boundary, footprint or work extent. The display anchor is the planar centroid of the two longitude/latitude rings, kept unchanged only because the row schema requires a point; it lies about 3.3 m outside the Phase 2 ring and about 402 m from the Phase 1 ring, inside neither polygon, and is not an RCJM1 position."
+          ]
+        ],
+        "geometry_scope_classes": [
+          [
+            "community_multi_phase_host_development_as_campus_locator"
+          ],
+          [
+            "community_multi_phase_host_development_polygon_context_only"
+          ]
+        ],
+        "geometry_use_scopes": [
+          [
+            "campus_locator"
+          ],
+          [
+            "host_estate_context"
+          ]
+        ],
+        "verification_posture": [
+          "recent_authoritative_physical_observation_plus_reviewed_site_locator",
+          "recent_authoritative_physical_observation_plus_host_estate_context_only"
+        ]
+      },
+      "geometry_unchanged": true
+    },
+    "evidence.csv": {
+      "removed": [
+        {
+          "evidence_id": "d4d4c451-8160-5936-8b49-30b9cebad256",
+          "file_line_number": 215,
+          "row_canonical_sha256": "cd59d954a4310b0bf776621eaec222c8b83d1c745439a379db48c4663f53742a"
+        },
+        {
+          "evidence_id": "0f041ac1-c722-588c-bb02-442fcb4c53b3",
+          "file_line_number": 13,
+          "row_canonical_sha256": "334f30723a8a4ffc39ae49e2862027552b85baaa3d33acfa909eddbb34b815bb"
+        }
+      ],
+      "added": [
+        {
+          "evidence_id": "c9c2d9bd-d6b3-5738-9ca0-78a9c351954f",
+          "key": "racks-central-rcjm1-osm-iskandar-halal-park-phase-1-host-estate-context-rescope-v1-captured-2026-08-23",
+          "roles": [
+            "geometry"
+          ],
+          "project_ids": [
+            "f6d1bce2-6fc7-5fd8-a1fb-55d5fe4cd8e9"
+          ]
+        },
+        {
+          "evidence_id": "509271d0-17c4-5ef8-a5a2-58c9ccc5a9a2",
+          "key": "racks-central-rcjm1-osm-iskandar-halal-park-phase-2-host-estate-context-rescope-v1-captured-2026-08-23",
+          "roles": [
+            "geometry"
+          ],
+          "project_ids": [
+            "f6d1bce2-6fc7-5fd8-a1fb-55d5fe4cd8e9"
+          ]
+        },
+        {
+          "evidence_id": "a005d1f9-e99d-504f-8c0b-c8c1f03a29a4",
+          "key": "racks-central-rcjm1-osm-geofabrik-msb-261008-free-gpkg-reverification-2026-10-09",
+          "roles": [
+            "geometry"
+          ],
+          "project_ids": [
+            "f6d1bce2-6fc7-5fd8-a1fb-55d5fe4cd8e9"
+          ]
+        },
+        {
+          "evidence_id": "b7d02532-d340-5ead-b9ab-84b2ca52a197",
+          "key": "racks-central-rcjm1-first-johor-plot-acquisition-iskandar-halal-park-captured-2026-10-09",
+          "roles": [
+            "geometry"
+          ],
+          "project_ids": [
+            "f6d1bce2-6fc7-5fd8-a1fb-55d5fe4cd8e9"
+          ]
+        }
+      ],
+      "association_only": [
+        {
+          "evidence_id": "491b3b57-f2fb-53b4-ad33-07902a6d2e19",
+          "key": "ap41-keppel-osm-wgs84",
+          "changed_field": "project_ids_json",
+          "after_adds_project_id": "f6d1bce2-6fc7-5fd8-a1fb-55d5fe4cd8e9",
+          "note": "Identical shared CRS record (same derived ID); its factual content is unchanged. It already carries the Keppel SGP9 and CGK project associations in the thirty-sixth draft."
+        }
+      ]
+    },
+    "counts_relative_to_thirty_sixth": {
+      "physical_sites": 0,
+      "projects": 0,
+      "evidence": 2,
+      "reviewed_site_locator_projects": -1,
+      "host_estate_context_projects": 1,
+      "official_boundary_projects": 0,
+      "countries": 0,
+      "non_us_sites": 0
+    }
+  },
+  "exact_row_delta_notes": {
+    "removed_line_numbers": "evidence.csv removed line numbers are frozen v0.17 positions. In the thirty-sixth draft the phase-1 row sits at line 214 after the CGK drop and the phase-2 row stays at line 13; builder rule B5 locates inherited-through rows by their frozen bytes, so the thirty-sixth draft can be named.",
+    "thirty_sixth_counts_before": {
+      "countries": 46,
+      "evidence": 925,
+      "host_estate_context_projects": 1,
+      "non_us_sites": 134,
+      "official_boundary_projects": 5,
+      "physical_sites": 200,
+      "projects": 203,
+      "reviewed_site_locator_projects": 197
+    },
+    "two_removed_rows": "Both superseded rows are listed, the primary first. Builder rule B2 validates the second through supersedes.additional_superseded_evidence and frozen_baseline_rows.additional_evidence_csv, and preservation_invariants.additional_superseded_captures_unchanged restates its capture."
+  },
+  "preservation_invariants": {
+    "raw_evidence_body_sha256_unchanged": "523924a2f7af099493df9076ea379253c7d043f9d1af135f468de0f8c04ed03a",
+    "raw_capture_retrieved_at_unchanged": "2026-08-23",
+    "osm_way_version_unchanged": 4,
+    "numeric_geometry_unchanged": true,
+    "display_anchor_unchanged": [
+      103.92817067682181,
+      1.5324382237091367
+    ],
+    "geometry_authority_class_unchanged": "community_source",
+    "physical_campus_key_unchanged": true,
+    "construction_project_key_unchanged": true,
+    "lifecycle_observation_unchanged": {
+      "value": "under_construction",
+      "as_of_date": "2026-06-30",
+      "method": "authoritative_physical_status_update"
+    },
+    "horizontal_uncertainty_metres": null,
+    "site_count_unchanged": true,
+    "old_file_not_modified": true,
+    "frozen_v017_not_modified": true,
+    "additional_superseded_captures_unchanged": [
+      {
+        "evidence_id": "0f041ac1-c722-588c-bb02-442fcb4c53b3",
+        "raw_evidence_body_sha256_unchanged": "fcce549196511b88ae93f3fc2180f9b90fb31aafbc89e2fd9599224530a47aed",
+        "raw_capture_retrieved_at_unchanged": "2026-08-23",
+        "osm_way_version_unchanged": 3
+      }
+    ],
+    "display_anchor_outside_geometry": true
+  },
+  "defect_findings": [
+    {
+      "id": "scope",
+      "finding": "The selected geometry is the union of the two named OSM Iskandar Halal Park host-development phases (way 639973556 v4, 16 distinct vertices, about 39.76 ha; way 639973557 v3 tagged Phase 2 U/C, 19 distinct vertices, about 83.55 ha; together about 123.31 ha in two disjoint parts about 22 m apart; bounding box about 1.75 km by 2.18 km), labelled geometry_use_scope campus_locator and geometry_source_entity_kind campus. Both RCJM1 curated sources support locality only (method authoritative_locality, null coordinates and geometry). The v0.16 precision text already said the union is not an RCJM campus, RCJM1 or Phase A boundary, yet the row was counted as a reviewed campus locator."
+    },
+    {
+      "id": "scale",
+      "finding": "Racks Central reports buying a five-acre (about 2.02 ha) plot in the park in October 2024 and a 14.4-acre (about 5.83 ha) parcel in March 2025, and describes RCJM2A as a 12.9-acre expansion adjacent to the existing RCJM facility. The union is about 61 times the first plot and about 16 times both purchases together, so it cannot discriminate the campus within the host development."
+    },
+    {
+      "id": "anchor",
+      "finding": "Project and site latitude/longitude publish the planar centroid of the two longitude/latitude rings (103.92817067682181, 1.5324382237091367; v0.16 method planar_multipolygon_centroid). It lies about 3.3 m outside the Phase 2 ring and about 402 m from the Phase 1 ring, inside neither polygon; vertices lie up to about 1.27 km away. The v0.18 shared geometry validator rejects it (polygon display anchor is outside its geometry), so even the CGK-style re-scope cannot pass the current builder unchanged."
+    },
+    {
+      "id": "collision",
+      "finding": "No selected site geometry intersects the union among all 200 thirty-sixth-checkpoint sites (Shapely 2.1.1 STRtree); the only intersecting pair remains CGK/STT Jakarta. The nearest selected site is Keppel Genting Lane in Singapore, about 23.6 km from the anchor. Unlike CGK, the defect is scope, anchor and accounting, not a demonstrated collision."
+    },
+    {
+      "id": "non_discrimination",
+      "finding": "In the 2026-10-08 OSM snapshot no building, construction, data-centre or power feature is mapped inside either phase polygon, and no feature in Malaysia names Racks Central or RCJM (the only Racks Central-tagged feature is its Tai Seng building in Singapore). OSM therefore offers no named campus feature to upgrade to."
+    },
+    {
+      "id": "accounting",
+      "finding": "RCJM1 is counted in reviewed_site_locator_projects (197 at the thirty-sixth checkpoint) with posture recent_authoritative_physical_observation_plus_reviewed_site_locator. Under the CGK rule a host-development polygon is locality context, not a reviewed locator."
+    },
+    {
+      "id": "not_numeric",
+      "finding": "The numbers are a faithful copy: canonical union 927 bytes, sha256 bd636e9b..., reproduced by Shapely unary_union over both Geofabrik 261008 rings, and each ring equals the 261008 GeoPackage polygon vertex for vertex in OGC:CRS84. This is a scope, anchor and accounting error, not a datum or transcription error."
+    },
+    {
+      "id": "inheritance",
+      "finding": "Frozen in v0.17 (projects.csv line 84, sites.csv line 83, evidence.csv lines 215 and 13, sites.geojson feature 81) and copied byte for byte into every v0.18 draft through the thirty-sixth (where the phase-1 evidence line moved to 214 after the CGK drop)."
+    }
+  ],
+  "checkpoint_application": {
+    "summary": "Apply through the schema-v2 baseline_corrections path as a further pinned correction after the narrow builder rules B2 (additional superseded rows), B3 (declared frozen exterior anchor), B4 (date-only frozen identity evidence) and B5 (inherited-through rows located by bytes) of the round44 correction design.",
+    "steps": [
+      "Commit this file under sources/ and pin its bytes and SHA-256 in reviewed code (ReviewPins.baseline_correction_sha256 for correction_id rcjm1-host-estate-locator-rescope-v1, plus the five source pins).",
+      "B2: supersedes.additional_superseded_evidence names the phase-2 v0.16 record and its replacement source; frozen_baseline_rows.additional_evidence_csv names its frozen v0.17 row; both superseded rows must be this project's only geometry evidence, and evidence.csv.removed lists both.",
+      "B3: the unchanged frozen anchor lies outside both phase polygons; preservation_invariants.display_anchor_outside_geometry is true and is required exactly when the anchor is exterior; acceptances keep the anchor-inside rule.",
+      "B4: the identity binding's frozen evidence keeps its date-only retrieved_at because it reproduces frozen row 6f81ed11 field for field.",
+      "B5: inherited_unchanged_through names the thirty-sixth draft; rows are located there by their frozen bytes (the phase-1 evidence line moved from 215 to 214 after the CGK drop).",
+      "Rewrite only the enumerated fields of the RCJM1 projects/sites rows and feature 81 properties. Drop evidence rows d4d4c451 and 0f041ac1, add the four correction evidence rows, and add the RCJM1 project to the shared CRS row's project_ids_json.",
+      "Add exact-delta regression tests modelled on the CGK ones, a selection-report locator_exceptions entry with geometry_intersects_site_keys [] and display_anchor_is_site_position false, and a docs/expansion_200.md section parallel to the CGK one."
+    ],
+    "count_consequence": "Physical sites and projects are unchanged; evidence rises by two net rows (925 to 927 against the thirty-sixth counts). reviewed_site_locator_projects falls from 197 to 196 and host_estate_context_projects rises from 1 to 2; official_boundary_projects stays 5.",
+    "completion_claim_consequence": "A 200-site claim must state that two baseline sites, CGK and RCJM1, have host-estate or host-development locality context only; 198 of 200 sites then have a reviewed locator or official boundary. A strict verified-200 claim needs two further additions or exact locators.",
+    "future_upgrade_gate": "A freely accessible operator-issued RCJM1 numeric point or site plan with controls, an official Johor land-title, lot (PTD/HSD, Mukim Plentong or as stated) or planning-permission geometry binding Racks Central or its Malaysian entity to the plot, a statutory EIA/planning KML, or a named OSM feature for the campus obtained through a robots-compliant route. Apply it through a further versioned correction with full geometry and alias screening against RCJM2A/RCJM2B."
+  },
+  "raw_review_paths": {
+    "geofabrik_gpkg_zip": "tmp/research-round44-quality/rackscentral-osm/geofabrik-msb-latest-free.gpkg.zip",
+    "geofabrik_gpkg_unzipped": "tmp/research-round44-quality/rackscentral-osm/unzipped/malaysia-singapore-brunei.gpkg",
+    "geofabrik_robots": "tmp/research-round44-quality/rackscentral-lane-geofabrik-robots.txt",
+    "geofabrik_msb_page": "tmp/research-round44-quality/rackscentral-lane-geofabrik-msb.html",
+    "supplementary_msb_pbf": "tmp/research-round43-synthesis/geofabrik-msb-latest.osm.pbf",
+    "racks_central_captures": [
+      "tmp/research-round44-quality/rackscentral-robots.txt",
+      "tmp/research-round44-quality/rackscentral-sitemap.xml",
+      "tmp/research-round44-quality/rackscentral-iskandar-halal-park-acquisition.html",
+      "tmp/research-round44-quality/rackscentral-second-land-parcel.html",
+      "tmp/research-round44-quality/rackscentral-rcjm1-milestone-2026-06-30.html",
+      "tmp/research-round44-quality/rackscentral-locations.html",
+      "tmp/research-round44-quality/rackscentral-locations-rcjm1.html",
+      "tmp/research-round44-quality/rackscentral-locations-rcjm2a.html",
+      "tmp/research-round44-quality/rackscentral-locations-rcjm2b.html",
+      "tmp/research-round44-quality/rackscentral-tnb-esa.html"
+    ],
+    "scan_scripts": [
+      "tmp/research-round44-quality/rackscentral-review-scripts/scan_msb.py",
+      "tmp/research-round44-quality/rackscentral-review-scripts/bbox_review.py",
+      "tmp/research-round44-quality/rackscentral-review-scripts/geom_check.py",
+      "tmp/research-round44-quality/rackscentral-review-scripts/anchor_check.py",
+      "tmp/research-round44-quality/rackscentral-review-scripts/gpkg_check.py",
+      "tmp/research-round44-quality/rackscentral-review-scripts/gpkg_compare.py",
+      "tmp/research-round44-quality/rackscentral-review-scripts/pbf_header.py",
+      "tmp/research-round44-quality/rackscentral-review-scripts/html_text.py",
+      "tmp/research-round44-quality/rackscentral-review-scripts/capture-long-timeout.mjs"
+    ],
+    "scan_outputs": [
+      "tmp/research-round44-quality/rackscentral-review-scripts/msb_scan.json",
+      "tmp/research-round44-quality/rackscentral-review-scripts/bbox_review.out",
+      "tmp/research-round44-quality/rackscentral-review-scripts/geom_check.out",
+      "tmp/research-round44-quality/rackscentral-review-scripts/anchor_check.out",
+      "tmp/research-round44-quality/rackscentral-review-scripts/gpkg_check.out",
+      "tmp/research-round44-quality/rackscentral-review-scripts/gpkg_compare.out",
+      "tmp/research-round44-quality/rackscentral-review-scripts/hashes.json"
+    ]
+  },
+  "validation_scope": "Inherited geometry decoded and hash-checked against the v0.16 canonical encoding (927 bytes, bd636e9b...). Both rings were compared with the 2026-10-08 Geofabrik GeoPackage (vertex-identical); the supplementary 261008 PBF scan predates the robots change and no row depends on it. Pairwise intersections were recomputed for all 200 thirty-sixth-checkpoint geometries with Shapely 2.1.1. Frozen v0.17 rows were hashed with the v0.18 canonical_sha256 and confirmed byte-identical in the thirty-sixth draft. A scratch-root build of a thirty-seventh contract carrying this correction with the CGK, SBOGZB01 and RDH2 corrections validated under builder rules B2 to B5 of the round44 correction design, and the unpatched builder rejects it as the lane recorded."
+}

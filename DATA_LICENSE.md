@@ -29,12 +29,12 @@ The following were created by Data Center Atlas and are licensed under CC BY 4.0
 - documentation, including the README, the `docs/` directory and the website's text.
 
 Attribute it as **Data Center Atlas (Kian Kyars), https://kiankyars.github.io/datacenter-atlas/**,
-name the dataset version you used, and say whether you changed the data. For example:
+name the dated data snapshot you used, and say whether you changed the data. For example:
 
 <!-- atlas:attribution-example -->
-> Data: Data Center Atlas (Kian Kyars), https://kiankyars.github.io/datacenter-atlas/, version
-> 2026-08-20-v0.18-draft-thirty-sixth-reviewed, CC BY 4.0. Includes data © OpenStreetMap
-> contributors (ODbL 1.0) and from the other sources listed in the dataset's ATTRIBUTION.txt.
+> Data: Data Center Atlas (Kian Kyars), https://kiankyars.github.io/datacenter-atlas/, data updated
+> 2026-10-13, CC BY 4.0. Includes data © OpenStreetMap contributors (ODbL 1.0) and from the other
+> sources listed in the dataset's ATTRIBUTION.txt.
 <!-- /atlas:attribution-example -->
 
 ## Third-party material keeps its source terms
@@ -63,7 +63,7 @@ them directly from their providers, under the providers' terms; the website's
 ## OpenStreetMap-derived geometries: ODbL 1.0
 
 Some locators are derived from OpenStreetMap; their geometry evidence row has `license` set to
-`ODbL-1.0` (<!-- atlas:osm-geometry-count -->50 of the 203 project geometries, on 48 sites, in the 2026-10-09 checkpoint<!-- /atlas:osm-geometry-count -->). These
+`ODbL-1.0` (<!-- atlas:osm-geometry-count -->51 of the 201 project geometries, on 49 sites, in the 2026-10-13 data snapshot<!-- /atlas:osm-geometry-count -->). These
 geometries are © OpenStreetMap contributors and are available under the ODbL 1.0, not CC BY 4.0.
 Credit "© OpenStreetMap contributors" and link to <https://www.openstreetmap.org/copyright>. If you
 publicly use a derivative database of these geometries, the ODbL's share-alike terms apply to that

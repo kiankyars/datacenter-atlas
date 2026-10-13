@@ -4,18 +4,21 @@ Two phases are intentionally separate:
 
 1. ``validate_batch(contract_path, review_pins, root=ROOT)`` checks independently
    reviewed input pins, exact source facts, the fixed lifecycle cutoff, geometry
-   semantics, distinct-campus review, and any pinned baseline correction. It
-   returns a validated batch without writing anything or declaring the 200-site
-   objective complete.
+   semantics, distinct-campus review, any pinned baseline correction and, for
+   schema v3, the pinned pre-registered blind review and any pinned baseline
+   withdrawal. It returns a validated batch without writing anything or
+   declaring the 200-site objective complete.
 2. ``build_draft(contract_path, review_pins, output_dir, root=ROOT)`` derives all
    rows and denominators, validates a staged reconstruction, then publishes a
    new local draft directory. ``validate_draft`` reconstructs every output byte.
    Under schema v1 all inherited CSV bytes and GeoJSON features remain
    unchanged. Under schema v2 every inherited byte also remains unchanged except
    the exactly enumerated fields of rows named by a pinned baseline correction,
-   its dropped superseded evidence row and the project association it adds to
-   shared evidence rows (below). No default artifact, public CLI, baseline
-   file, or researched candidate is modified.
+   its dropped superseded evidence rows and the project association it adds to
+   shared evidence rows (below). Under schema v3 a pinned baseline withdrawal
+   also removes whole inherited lines: its project row, its single-project site
+   row and GeoJSON feature, and the evidence rows only it used. No default
+   artifact, public CLI, baseline file, or researched candidate is modified.
 
 Contract schema ``datacenter-atlas-v018-reviewed-batch-v1`` (all keys shown are
 required; unrecognized keys at these levels are rejected):
@@ -100,33 +103,58 @@ record. Besides ``evidence`` and ``results`` it carries ``source_bindings``,
 (projects.csv, sites.csv, sites.geojson, evidence.csv and one
 ``counts_relative_to_*`` block) and ``preservation_invariants``, and states
 ``lifecycle_reference_date`` 2026-08-20, ``accepted_additional_sites`` 0 and a
-``reviewed_at`` date between the cutoff and the contract's review date. Each
+``reviewed_at`` date between the cutoff and the contract's review date.
+
+A frozen site that binds several geometry captures (an OSM multi-way union) is
+corrected as a whole: ``frozen_rows`` may add ``additional_evidence_csv`` (a
+nonempty list of evidence row specs shaped like ``evidence_csv``) and the
+record's ``supersedes`` then carries ``additional_superseded_evidence``, one
+entry per row in the same order: ``evidence_pointer``,
+``evidence_record_sha256``, ``evidence_source_id``, ``evidence_id`` and
+``replacement_source_id``. Single-capture corrections carry neither key. Each
 correction is validated fail-closed:
 
 - Frozen rows: line numbers, canonical row hashes, raw-line hashes and the
   feature hash must match the files of the pinned v0.17 manifest, and the raw
   lines and feature must still match in the later release named by
-  ``supersedes.inherited_unchanged_through``. That release must be a v0.18
-  draft (manifest format v1 or v2) built on the pinned v0.17 manifest, never
-  the frozen baseline itself.
+  ``supersedes.inherited_unchanged_through``. There each frozen raw line, and
+  the frozen feature's canonical hash, must occur exactly once; they are
+  located by their bytes, not by line number or feature index, because an
+  earlier correction's dropped evidence row shifts later evidence lines and an
+  earlier withdrawal shifts later lines and features. That release must be a
+  v0.18 draft (manifest format v1 or v2; v3 too under a v3 contract) built on
+  the pinned v0.17 manifest, never the frozen baseline itself.
 - Supersedes: the superseded facts file must be a pinned v0.17 portable input,
   and its hash-bound evidence and geometry records must reproduce the frozen
-  evidence row, geometry, display anchor and locator semantics.
+  evidence row, geometry, display anchor and locator semantics. Every superseded
+  evidence row (primary and additional) must be solely this project's geometry
+  evidence, the frozen site must bind exactly those rows, and the superseded
+  locator's ``geometry_source_document_ids`` must equal the primary source
+  followed by the additional sources.
 - Identity: ``identity_source_id`` names an unchanged binding to the frozen v0.17
   curated input whose project, campus, lifecycle row and evidence reproduce the
   frozen status. It is never a contract source; its evidence row is unchanged.
+  Its evidence may keep an inherited date-only ``retrieved_at`` only because it
+  must then equal the frozen status evidence row field for field.
 - Geometry: a dedicated validator accepts location basis
   ``host_estate_locality_context``, entity kind ``host_estate`` and use scope
   ``host_estate_context`` ONLY for baseline corrections, never for acceptances.
   Geometry and display anchor must equal the frozen row exactly; authority is
-  unchanged and no numeric uncertainty may be asserted.
+  unchanged and no numeric uncertainty may be asserted. A frozen polygon anchor
+  that lies outside its geometry is kept only when the record declares
+  ``display_anchor_outside_geometry`` true; acceptances keep the anchor-inside
+  rule.
 - Reused capture: the primary correction source must reuse the superseded
-  capture's URL, rights, publication value, retrieval value and content hash.
-  Only such a source may keep an inherited date-only ``retrieved_at``.
+  capture's URL, rights, publication value, retrieval value and content hash,
+  and each additional superseded row is likewise reused by its own distinct
+  replacement source. A reused null ``published_at`` equals a frozen empty
+  string (both project to the same empty cell); every other value is compared
+  literally. Only such sources may keep an inherited date-only ``retrieved_at``.
 - Deltas: corrected rows and feature are derived like acceptance rows and must
   differ from the frozen bytes in exactly the enumerated fields; each
   ``unchanged_includes`` entry must be a column of its table. The superseded
-  evidence row is dropped, the enumerated correction evidence rows are added,
+  evidence rows are dropped (``removed`` lists the primary row, then the
+  additional rows), the enumerated correction evidence rows are added,
   and evidence already used by acceptances only gains the project association.
   Count effects must equal the enumerated block. Every other byte is unchanged.
 - Invariants: every ``preservation_invariants`` key is machine-checked and
@@ -134,7 +162,12 @@ correction is validated fail-closed:
   equal the superseded record's OSM way version; optional
   ``intersecting_site_rows_unchanged`` lists other site keys, each of which
   must intersect the corrected geometry and keep its project and site lines
-  byte for byte from the inherited-through draft.
+  byte for byte from the inherited-through draft;
+  ``additional_superseded_captures_unchanged`` is required exactly when
+  additional rows are superseded (per row: ``evidence_id``,
+  ``raw_evidence_body_sha256_unchanged``, ``raw_capture_retrieved_at_unchanged``
+  and optional ``osm_way_version_unchanged``); ``display_anchor_outside_geometry``
+  is required, as true, exactly when the frozen anchor is exterior.
 
 ``host_estate_context`` maps to verification posture
 ``recent_authoritative_physical_observation_plus_host_estate_context_only``. It
@@ -147,15 +180,291 @@ locator. v2 drafts use manifest format
 ``datacenter-atlas-verified-construction-core-v018-draft-v2`` and selection
 format ``datacenter-atlas-v018-draft-selection-v2``; v1 formats are unchanged.
 
+Contract schema ``datacenter-atlas-v018-reviewed-batch-v3`` is v2 plus exactly
+one more required key, ``blind_review``, and one optional key,
+``baseline_withdrawals`` (below). In v3 ``baseline_corrections`` may be an empty
+list (every entry is still validated as in v2, and a correction's
+inherited-through release may also be a v3 draft). A v1 or v2 contract that
+carries ``blind_review`` or ``baseline_withdrawals`` is rejected; v1 and v2
+behaviour and bytes, and a v3 contract's without ``baseline_withdrawals``, are
+unchanged. The ``blind_review`` entry pins two committed files by exact bytes:
+
+    "blind_review": {
+      "preregistration": {"path": "definitions/a-preregistration.json",
+                          "bytes": 12141, "sha256": "..."},
+      "results": {"path": "sources/a-results-record.json",
+                  "bytes": 34567, "sha256": "..."}
+    }
+
+The pre-registration (schema
+``datacenter-atlas-v018-blind-review-preregistration-v1``) must be exactly the
+file that ``BLIND_REVIEW_PREREGISTRATIONS`` registers, by path, bytes and
+SHA-256, for its population's manifest SHA-256: a contract can neither register
+a second sample of a population nor choose a seed. It is recomputed before any
+result is read. Its population must name a v0.18 draft (manifest format
+v1, v2 or v3, pinned by ``manifest_sha256``, built on the pinned v0.17
+manifest, never the baseline itself) whose pinned projects.csv yields
+exactly ``eligible_project_count`` sorted project keys hashing to
+``eligible_project_keys_sha256``; its scope must be the full expanded
+population; ``seed_material`` must be
+``datacenter-atlas-blind-review-v1|<eligible_project_keys_sha256>|<published_in_commit>``
+and hash to ``seed_sha256``; and the sample must be exactly the 20 keys with the
+smallest ``sha256(seed_sha256 + "|" + key)`` (UTF-8, lower-case hex) as
+positions 1..20 in rank order, carrying those rank hashes and blind inputs
+equal to the release's project name, site (campus) name and country. The
+protocol must keep the 2026-08-20 cutoff, the 2026-05-22..2026-08-20 window and
+the four blind inputs. ``published_in_commit`` is checked for form and bound
+through the seed; a shallow clean clone cannot verify git history, which is why
+the accepted pre-registration is registered in builder code.
+
+The results record (schema ``datacenter-atlas-v018-blind-review-results-v1``, a
+committed ``sources/`` file; every key is required unless marked optional, and
+unrecognized keys are rejected at every level):
+
+    {
+      "schema_version": "datacenter-atlas-v018-blind-review-results-v1",
+      "recorded_at": "YYYY-MM-DD",
+      "preregistration": {"path": "<contract pin path>", "sha256": "<pin>"},
+      "population": {<the pre-registration's population object, verbatim>},
+      "reviews": [{
+        "position": 1,
+        "project_stable_key": "<pre-registered key at that position>",
+        "reviewer_session_id": "unique-session-id",
+        "session_sequence": 7,  # start order: a positive integer, unique
+        "session_status": "completed",
+        "reviewed_at": "YYYY-MM-DD",
+        "counted": true,
+        # only, and always, when counted is false:
+        # "uncounted_reason": "later_duplicate", "counted_session_id": "...",
+        "construction_determination": "under_construction_in_window",
+        "construction_evidence": [{
+          "source_url": "https://...", "observation_date": "YYYY-MM-DD",
+          "literal_pointer": "quoted text or locator", "capture_sha256": "..."
+          # optional nonempty text: title, publisher, note, and retrieved_at
+          # (YYYY-MM-DD or an ISO datetime with a timezone)
+        }],
+        "successor_check": {"status": "none_found_on_or_before_cutoff",
+                            "notes": "what was checked"},
+        "location": {"status": "located", "longitude": 1.5, "latitude": 2.5,
+                     "method": "how the point was derived",
+                     "source_url": "https://..."
+                     # optional: literal_pointer, capture_sha256, notes
+                     },
+        "identity_notes": "aliases, operator/legal-entity bridges, conflicts",
+        "blindness_attestation": {"atlas_materials_accessed": false,
+                                  "statement": "what the session did not use"},
+        "reviewer_output": {...}  # optional: the session's verbatim output
+      }, {
+        "position": 2, "project_stable_key": "...",
+        "reviewer_session_id": "an-interrupted-session", "session_sequence": 3,
+        "session_status": "aborted", "reviewed_at": "YYYY-MM-DD",
+        "counted": false, "uncounted_reason": "aborted",
+        "counted_session_id": "...", "abort_notes": "what happened"
+      }],
+      "comparison": [{
+        "position": 1, "project_stable_key": "...",
+        "construction_agrees": true, "location_distance_m": 0.0,
+        "location_rule": "inside", "adjudication": null,
+        # in the 1,000-3,000 m band: {"adjudicated_by": "...",
+        #   "adjudicated_at": "YYYY-MM-DD", "reason": "..."}
+        "agreement": true
+        # optional "notes", e.g. a stage difference that does not disagree
+      }],
+      "totals": {"sample_size": 20, "agreements": 19, "gate_passed": true},
+      "disclosures": ["The reviewers were AI agents ...", "..."]
+    }
+
+Record rules, each fail-closed:
+
+- Dates: the pre-registration's ``registered_at`` <= every session's
+  ``reviewed_at`` <= ``recorded_at`` <= the contract's
+  ``geometry_identity_reviewed_at``. No construction observation follows its
+  review, and an evidence ``retrieved_at`` day lies between its observation and
+  the review.
+- Binding: ``preregistration`` equals the contract's pre-registration path and
+  SHA-256, and ``population`` equals the pre-registration's population.
+- Sessions: ``position`` is 1..20 and ``project_stable_key`` is the
+  pre-registered key there; session IDs and ``session_sequence`` values are
+  unique. A completed session is blind when it attests
+  ``atlas_materials_accessed`` false and none of its evidence or location URLs
+  names an Atlas surface (``ATLAS_SURFACE_URL_PATTERNS``). The counted session
+  is not the writer's choice: at each position exactly one session is counted,
+  and it must be the blind completed session with the lowest
+  ``session_sequence`` there (``BLIND_REVIEW_COUNTED_SESSION_RULE``). Every other
+  session names that ``counted_session_id`` and its machine-checked
+  ``uncounted_reason``: ``aborted`` (an aborted session, which carries only
+  ``abort_notes`` and no reviewer output), ``blindness_breach`` (a completed
+  session that is not blind) or ``later_duplicate`` (a later blind completed
+  session). An optional ``reviewer_output`` keeps a completed session's verbatim
+  output; when it carries an integer position, a canonical determination or a
+  numeric point, they must equal the recorded ones.
+- Determinations are ``under_construction_in_window`` (needs an evidence row
+  observed inside 2026-05-22..2026-08-20 and successor status
+  ``none_found_on_or_before_cutoff``), ``not_under_construction_in_window``
+  (needs an evidence row) or ``unable_to_verify``. Successor statuses are
+  ``none_found_on_or_before_cutoff``, ``found_on_or_before_cutoff`` and
+  ``not_checked``.
+- Location: ``located`` needs finite WGS84 coordinates, a method and an http(s)
+  source URL; ``unable_to_locate`` needs null coordinates and notes, and its
+  method and source URL may be null.
+- Comparison: one row per position, in order, recomputed from the counted
+  review. ``construction_agrees`` is true only for
+  ``under_construction_in_window``. The location rule is recomputed from the
+  reviewer point and the site geometry of that project's site in the
+  PRE-REGISTERED population release, never the checkpoint being built:
+  ``inside`` (distance 0), ``within_1000m`` (0 < d <= 1,000 m), the adjudication
+  band (1,000 < d <= 3,000 m) or ``beyond_3000m`` (d > 3,000 m); an unlocated
+  review compares as ``unable_to_locate`` with a null distance. In the band only
+  ``adjudicated_same_campus`` or ``adjudicated_different_campus`` is accepted,
+  with an ``adjudication`` whose ``adjudicated_by`` is no reviewer session ID,
+  whose ``adjudicated_at`` falls between the latest counted ``reviewed_at`` and
+  ``recorded_at``, and whose ``reason`` is nonempty; elsewhere the rule must
+  equal the recomputation and ``adjudication`` must be null.
+  ``location_distance_m`` must agree with the recomputed distance within
+  max(5 m, 1 %) and lie in its rule's band (exactly 0 for ``inside``), but the
+  rule is always classified from the recomputed distance. ``agreement`` is
+  ``construction_agrees`` and a rule of ``inside``, ``within_1000m`` or
+  ``adjudicated_same_campus``.
+- Totals: ``sample_size`` 20, ``agreements`` the number of agreements, and
+  ``gate_passed`` exactly when ``agreements`` >= 19. ``disclosures`` is a
+  nonempty list of unique texts.
+
+Location method (standard library only): a reviewer point covered by a
+Polygon or MultiPolygon in longitude/latitude (RFC 7946 straight edges,
+boundary inclusive, holes excluded), or equal to a Point, is ``inside`` at
+distance 0. Otherwise the distance is the minimum WGS84 ellipsoidal geodesic
+distance to the Point or to any ring edge, using Vincenty's inverse formula
+(converged to 1e-12 rad; a nearly antipodal pair that does not converge falls
+back to the great circle on the mean-radius sphere), minimized along each edge
+by golden-section search with both endpoints checked; edges whose
+triangle-inequality lower bound cannot beat the best distance are skipped,
+which never changes the result. ``blind_review_location_comparison`` exposes
+the computation to the comparator.
+
+Gate: v3 drafts use manifest format
+``datacenter-atlas-verified-construction-core-v018-draft-v3`` and selection
+format ``datacenter-atlas-v018-draft-selection-v3``. A checkpoint is the
+pre-registered population only when it has exactly the reviewed release's
+sorted eligible project keys and, for every project, the same blind-reviewed
+claims: ``BLIND_REVIEW_PROJECT_CLAIM_FIELDS`` of its project row and
+``BLIND_REVIEW_SITE_CLAIM_FIELDS`` of its site row (identity, status and
+location; imagery outcomes, evidence and semantics are not blind-reviewed).
+Then the ``blind_review`` gate reports the recomputed ``sample_size`` and
+``agreements``, ``passed`` (at least 19 of 20), both file pins, the seed, the
+reviewed population and claim fields, the per-position outcomes with any
+adjudication, every uncounted session, the counted-session rule and the
+record's disclosures. Otherwise, for example after a later checkpoint adds or
+drops projects or edits a reviewed name, status or geometry, it reports the
+same inherited result with ``population_mismatch`` details (including the
+projects whose claims changed and the sampled positions no longer covered) and
+``passed`` false: a different population never passes, and a disagreement
+cannot be re-scored by editing its row. ``validate_blind_review_preregistration``
+recomputes a pinned pre-registration on its own, without a contract or results
+record.
+
+Baseline withdrawals (schema v3 only; when present the list is nonempty) remove
+one inherited v0.17 project each from the selection, because its selected
+evidence no longer meets the acceptance contract, without asserting any
+physical status for it:
+
+    "baseline_withdrawals": [{
+      "withdrawal_id": "a-withdrawal-name",
+      "physical_site_stable_key": "frozen v0.17 site key",
+      "project_stable_key": "frozen v0.17 project key",
+      "frozen_rows": {
+        "release_path": BASELINE_RELATIVE_DIR,
+        "manifest_sha256": BASELINE_MANIFEST_SHA256,
+        "projects_csv": {"file_line_number": 91, "project_stable_key": "...",
+                         "row_canonical_sha256": "...", "raw_line_sha256": "..."},
+        "sites_csv": {"file_line_number": 90, "physical_site_stable_key": "...",
+                      "row_canonical_sha256": "...", "raw_line_sha256": "..."},
+        "evidence_csv": [{"file_line_number": 29, "evidence_id": "...",
+                          "row_canonical_sha256": "...", "raw_line_sha256": "..."}],
+        "sites_geojson": {"feature_index": 88, "feature_canonical_sha256": "..."}
+      },
+      "record": {"path": "sources/a-withdrawal-record.json",
+                 "bytes": 5429, "sha256": "..."},
+      "reason": "Why the inherited selection is withdrawn."
+    }]
+
+The record (schema ``datacenter-atlas-v018-baseline-withdrawal-v1``, a committed
+``sources/`` file pinned by exact bytes and never a contract source; exactly
+these keys) carries ``schema_version``, ``withdrawal_id``, ``project_stable_key``
+and ``physical_site_stable_key`` equal to the entry's; ``reviewed_at`` between the
+cutoff and the contract's review date; ``lifecycle_reference_date`` 2026-08-20;
+``accepted_additional_sites`` 0; ``decision`` ``withdraw_from_selection``;
+``withdrawal_basis`` from ``BASELINE_WITHDRAWAL_BASES``; ``claim_boundary``,
+exactly ``BASELINE_WITHDRAWAL_CLAIM_BOUNDARY`` plus a nonempty ``statement`` (no
+asserted status; the status on the cutoff is ``unknown``; it does not assert
+paused, cancelled, completed or not under construction);
+``frozen_baseline_rows`` equal to the entry's ``frozen_rows``;
+``inherited_unchanged_through`` as for corrections (a v1, v2 or v3 draft in
+which every withdrawn line and the feature still occur exactly once, byte for
+byte); ``withdrawn_observation_binding``, one binding shaped like a correction's
+unchanged identity binding, to the frozen v0.17 curated input whose project,
+campus, lifecycle row and evidence reproduce the frozen status observation that
+is withdrawn; ``review_basis``, a nonempty list of ``{path, bytes, sha256}`` pins
+of other committed ``sources/`` files (the versioned review); ``count_effect``,
+the checkpoint-independent effect over ``WITHDRAWAL_COUNT_KEYS`` (physical
+sites and projects -1, evidence minus the withdrawn rows, and the withdrawn
+project's non-US, reviewed-locator, host-estate and official-boundary
+membership); ``shared_capture_rows``, exactly ``{rows, statement}``, where
+``rows`` lists in frozen file order every other frozen evidence row that
+shares a withdrawn row's source capture (the same ``source_url`` and
+``content_hash``) as ``{evidence_id, project_stable_keys,
+withdrawn_evidence_id}`` (an empty list when none does) and ``statement`` is
+nonempty text on how the review treated them; and a nonempty
+``withdrawal_reason``. Validation is fail-closed:
+
+- Frozen rows: located and hash-checked as for corrections. The project must be
+  the only project of its single-project site, and ``evidence_csv`` must list,
+  once each in file order, exactly the frozen evidence rows whose project
+  association names it, each naming it alone. A project on a shared site or
+  with a shared evidence row is rejected: it would need a reviewed
+  re-derivation of those rows. No other inherited row may reference the
+  withdrawn project, site or evidence IDs, and the feature must reproduce the
+  site row.
+- A withdrawn project or site can be neither corrected nor named as a
+  correction's ``intersecting_site_rows_unchanged`` site, and each withdrawal
+  targets a distinct project. ``ReviewPins.baseline_withdrawal_sha256`` holds
+  exactly one pin per withdrawal_id.
+- Output: the project line, site line, evidence lines and feature are dropped,
+  every other inherited byte keeps its order, and the builder checks that no
+  remaining row names a withdrawn ID and that every remaining evidence row is
+  used by a remaining project. Counts, country counts and every gate are
+  recomputed from the remaining rows. The selection report's
+  ``baseline_withdrawals`` block lists each withdrawal (keys, IDs, record pin,
+  basis, claim boundary, the withdrawn selected observation, removed rows,
+  review basis, count effect, shared-capture rows, reason), the combined count
+  effect (including ``countries`` lost) and the countries left without a
+  selected site; the schema's ``v018_draft_contract`` lists the withdrawal
+  vocabulary and IDs; the README and provenance disclose them. ATTRIBUTION.txt
+  keeps every inherited v0.17 notice.
+- Shared captures: a withdrawal neither changes nor re-reviews any other row.
+  The ``withdrawal_shared_capture_review`` final-release gate (present only
+  with withdrawals) lists every selected project of this checkpoint with an
+  evidence row that shares a withdrawn row's source capture, and passes only
+  when there is none.
+- Blind review: a withdrawn project is absent from the checkpoint, so a
+  withdrawn reviewed project always yields ``population_mismatch`` and
+  ``passed`` false; the mismatch then also lists ``reviewed_projects_withdrawn``
+  and ``sampled_projects_withdrawn`` (position, key, withdrawal_id). A
+  withdrawn sampled project is reported, never re-scored.
+
 ``ReviewPins(contract_sha256, source_sha256, acceptance_sha256,
-baseline_correction_sha256={})`` is supplied separately by reviewed code, not
+baseline_correction_sha256={}, blind_review_sha256=None,
+baseline_withdrawal_sha256={})`` is supplied separately by reviewed code, not
 loaded from this contract. Its maps bind every source-spec row by source_id,
-every acceptance row by project_stable_key, and every baseline correction by
-correction_id; the optional correction map defaults to empty and must be empty
-for v1. All record/row hashes use ``canonical_sha256``: sorted compact UTF-8
-JSON plus one newline. File hashes use exact bytes. Campus-key-set hashes use
-sorted lists through ``canonical_sha256``. Review pins must never be
-automatically refreshed to make a validation error disappear.
+every acceptance row by project_stable_key, every baseline correction by
+correction_id and every baseline withdrawal by withdrawal_id; the optional
+correction map defaults to empty and must be empty for v1, and the withdrawal
+map must be empty unless the v3 contract carries ``baseline_withdrawals``.
+``blind_review_sha256`` is the ``canonical_sha256`` of the v3 ``blind_review``
+entry; it is required for v3 and must be None or empty for v1 and v2. All
+record/row hashes use ``canonical_sha256``: sorted compact UTF-8 JSON plus one
+newline. File hashes use exact bytes. Campus-key-set hashes use sorted lists through
+``canonical_sha256``. Review pins must never be automatically refreshed to make
+a validation error disappear.
 
 Source evidence objects use the existing curated shape: key, kind, title,
 source_url, publisher, source_family, license, attribution, published_at (ISO date,
@@ -168,7 +477,8 @@ method, evidence_key. Evidence IDs are derived from curated key/content_hash.
 A geometry record has exactly project_stable_key, parent_campus_stable_key,
 geometry, display_anchor, geometry_source_ids, identity_source_ids,
 location_basis, and semantics. Geometry supports Point, Polygon, MultiPolygon.
-The anchor is a Point; it must equal a Point geometry or lie within a polygon.
+The anchor is a Point; it must equal a Point geometry or lie within a polygon
+(the only exception is a declared frozen anchor kept by a baseline correction).
 Semantics has exactly geometry_source_entity_kind, geometry_derivation,
 geometry_method, geometry_scope_class, geometry_authority_class,
 geometry_use_scope, precision_scope, horizontal_uncertainty_metres, and
@@ -183,8 +493,10 @@ or another acceptance. Exact coincident anchors fail closed. Geographic alias
 review is still a human/source judgment: hashes cannot establish physical truth.
 Shared evidence within the delta is supported; baseline evidence IDs may not be
 reused because their inherited usage rows must remain byte-for-byte unchanged.
-Only a pinned baseline correction may drop an inherited evidence row, and only
-the superseded geometry row it names.
+Only a pinned baseline correction may drop an inherited evidence row (only the
+superseded geometry rows it names), and only a pinned v3 baseline withdrawal
+may drop an inherited project, site, feature or evidence row (only the rows of
+the project it withdraws).
 
 Draft output is CSV/GeoJSON plus provenance/report/schema/attribution and manifest.
 No public map is generated. Target-count achievement and final-publication
@@ -198,9 +510,11 @@ from __future__ import annotations
 
 from collections import Counter, defaultdict
 from collections.abc import Mapping, Sequence
-from dataclasses import dataclass
-from datetime import date, datetime
+import csv
+from dataclasses import dataclass, replace
+from datetime import date, datetime, timedelta
 import hashlib
+import io
 import json
 import math
 import os
@@ -210,7 +524,7 @@ import shutil
 import tempfile
 from types import MappingProxyType
 from typing import Any
-from urllib.parse import urlsplit
+from urllib.parse import unquote, urlsplit
 
 from . import verified_construction_core_v017 as v17
 
@@ -223,6 +537,7 @@ BASELINE_MANIFEST_SHA256 = (
 )
 SCHEMA_VERSION = "datacenter-atlas-v018-reviewed-batch-v1"
 SCHEMA_VERSION_V2 = "datacenter-atlas-v018-reviewed-batch-v2"
+SCHEMA_VERSION_V3 = "datacenter-atlas-v018-reviewed-batch-v3"
 CONTRACT_KEYS = frozenset(
     {
         "schema_version",
@@ -235,6 +550,7 @@ CONTRACT_KEYS = frozenset(
     }
 )
 CONTRACT_KEYS_V2 = CONTRACT_KEYS | {"baseline_corrections"}
+CONTRACT_KEYS_V3 = CONTRACT_KEYS_V2 | {"blind_review"}
 LIFECYCLE_REFERENCE_DATE = date(2026, 8, 20)
 TARGET_ADDITIONAL_SITES = 100
 LOCATION_BASES = frozenset(
@@ -313,6 +629,29 @@ SUPERSEDES_KEYS = frozenset(
         "frozen_artifact_mutated",
     }
 )
+# Optional supersedes key for a frozen locator whose site binds more than one
+# geometry capture (e.g. an OSM multi-way union). Absent for single-capture rows.
+SUPERSEDES_OPTIONAL_KEYS = frozenset({"additional_superseded_evidence"})
+ADDITIONAL_SUPERSEDED_KEYS = frozenset(
+    {
+        "evidence_pointer",
+        "evidence_record_sha256",
+        "evidence_source_id",
+        "evidence_id",
+        "replacement_source_id",
+    }
+)
+FROZEN_ROWS_KEYS = frozenset(
+    {
+        "release_path",
+        "manifest_sha256",
+        "projects_csv",
+        "sites_csv",
+        "evidence_csv",
+        "sites_geojson",
+    }
+)
+FROZEN_ROWS_OPTIONAL_KEYS = frozenset({"additional_evidence_csv"})
 FROZEN_ROW_TABLES = (
     ("projects_csv", "projects", "project_stable_key"),
     ("sites_csv", "sites", "physical_site_stable_key"),
@@ -350,10 +689,282 @@ CORRECTION_COUNT_KEYS = frozenset(
 )
 DRAFT_MANIFEST_FORMAT_V1 = "datacenter-atlas-verified-construction-core-v018-draft-v1"
 DRAFT_MANIFEST_FORMAT_V2 = "datacenter-atlas-verified-construction-core-v018-draft-v2"
+DRAFT_MANIFEST_FORMAT_V3 = "datacenter-atlas-verified-construction-core-v018-draft-v3"
+# A v2 correction's inherited-through release keeps exactly its v2 formats; a
+# v3 contract may also name a v3 draft. Any v0.18 draft may be a population.
+INHERITED_THROUGH_FORMATS_V2 = frozenset(
+    {DRAFT_MANIFEST_FORMAT_V1, DRAFT_MANIFEST_FORMAT_V2}
+)
+INHERITED_THROUGH_FORMATS_V3 = INHERITED_THROUGH_FORMATS_V2 | {DRAFT_MANIFEST_FORMAT_V3}
+# Schema v3 only: a pinned baseline withdrawal removes one inherited v0.17 project
+# (with its single-project site, feature and the evidence rows only it used) from
+# the selection. It never asserts a physical status for the withdrawn project.
+BASELINE_WITHDRAWAL_KEYS = frozenset(
+    {
+        "withdrawal_id",
+        "physical_site_stable_key",
+        "project_stable_key",
+        "frozen_rows",
+        "record",
+        "reason",
+    }
+)
+BASELINE_WITHDRAWAL_RECORD_SCHEMA = "datacenter-atlas-v018-baseline-withdrawal-v1"
+BASELINE_WITHDRAWAL_RECORD_KEYS = frozenset(
+    {
+        "schema_version",
+        "withdrawal_id",
+        "reviewed_at",
+        "lifecycle_reference_date",
+        "accepted_additional_sites",
+        "project_stable_key",
+        "physical_site_stable_key",
+        "decision",
+        "withdrawal_basis",
+        "claim_boundary",
+        "frozen_baseline_rows",
+        "inherited_unchanged_through",
+        "withdrawn_observation_binding",
+        "review_basis",
+        "count_effect",
+        "shared_capture_rows",
+        "withdrawal_reason",
+    }
+)
+# A withdrawal record acknowledges every other frozen evidence row that shares a
+# withdrawn row's source capture (the same source URL and content hash): a
+# withdrawal neither changes nor re-reviews those rows.
+SHARED_CAPTURE_KEYS = frozenset({"rows", "statement"})
+WITHDRAWAL_SHARED_CAPTURE_GATE = "withdrawal_shared_capture_review"
+BASELINE_WITHDRAWAL_DECISION = "withdraw_from_selection"
+BASELINE_WITHDRAWAL_BASES = frozenset(
+    {"status_evidence_does_not_meet_contract", "identity_evidence_does_not_meet_contract"}
+)
+# The exact claim boundary every withdrawal record carries, besides its
+# ``statement`` text: a withdrawal removes a selection, never states a status.
+BASELINE_WITHDRAWAL_CLAIM_BOUNDARY: Mapping[str, Any] = MappingProxyType(
+    {
+        "asserted_physical_status": None,
+        "physical_status_on_lifecycle_reference_date": "unknown",
+        "asserts_not_under_construction": False,
+        "asserts_paused": False,
+        "asserts_cancelled": False,
+        "asserts_completed": False,
+    }
+)
+# Checkpoint-independent count effect of one withdrawal. The country effect
+# depends on the other selected sites and is derived for the checkpoint only.
+WITHDRAWAL_COUNT_KEYS = frozenset(
+    {
+        "physical_sites",
+        "projects",
+        "evidence",
+        "non_us_sites",
+        "reviewed_site_locator_projects",
+        "host_estate_context_projects",
+        "official_boundary_projects",
+    }
+)
+# Schema v3: the pinned, pre-registered blind review of the eligible population.
+BLIND_REVIEW_PREREGISTRATION_SCHEMA = "datacenter-atlas-v018-blind-review-preregistration-v1"
+BLIND_REVIEW_RESULTS_SCHEMA = "datacenter-atlas-v018-blind-review-results-v1"
+BLIND_REVIEW_SEED_PREFIX = "datacenter-atlas-blind-review-v1"
+BLIND_REVIEW_SAMPLE_SIZE = 20
+BLIND_REVIEW_REQUIRED_AGREEMENTS = 19
+BLIND_REVIEW_POPULATION_SCOPE = (
+    "all expanded projects, including inherited baseline and reviewed draft additions"
+)
+# The only accepted pre-registration of each population, keyed by the SHA-256 of
+# the population release's manifest. A contract cannot choose another sample of a
+# registered population; a new population needs a new, separately published
+# pre-registration added here by a reviewed change.
+BLIND_REVIEW_PREREGISTRATIONS: Mapping[str, Mapping[str, Any]] = MappingProxyType(
+    {
+        "515159b79bb7263fe1cf88c054a75bfdbd817acba2ae6bc3452f004cf7e80208": MappingProxyType(
+            {
+                "path": "definitions/verified-construction-core-v0.18-blind-review-preregistration-v1.json",
+                "bytes": 12141,
+                "sha256": "df104f1d7a59af535ab919a9ab842988afbae039970eb8808eb228863f8f8dd3",
+            }
+        ),
+    }
+)
+# The blind-reviewed claims of an eligible project: its identity, its construction
+# status and its location, with its site's identity and geometry. Other fields
+# (imagery outcomes, evidence, semantics, posture) are not blind-reviewed.
+BLIND_REVIEW_PROJECT_CLAIM_FIELDS = (
+    "physical_site_stable_key",
+    "name",
+    "country",
+    "country_iso_a2",
+    "geometry_json",
+    "last_observed_physical_status",
+    "status_as_of",
+)
+BLIND_REVIEW_SITE_CLAIM_FIELDS = ("name", "country", "country_iso_a2", "geometry_json")
+BLIND_REVIEW_WINDOW = (LIFECYCLE_REFERENCE_DATE - timedelta(days=90), LIFECYCLE_REFERENCE_DATE)
+BLIND_REVIEW_INPUTS = ("project_name", "campus_name", "country", "physical_observation_window")
+PREREGISTRATION_KEYS = frozenset(
+    {"schema_version", "registered_at", "purpose", "population", "sampling", "protocol", "sample"}
+)
+PREREGISTRATION_POPULATION_KEYS = frozenset(
+    {
+        "release_path",
+        "manifest_sha256",
+        "published_in_commit",
+        "eligible_project_count",
+        "eligible_project_keys_sha256",
+        "population_scope",
+    }
+)
+PREREGISTRATION_SAMPLING_KEYS = frozenset(
+    {"method", "seed_material", "seed_sha256", "sample_size", "formula_fixed_before_draw"}
+)
+PREREGISTRATION_PROTOCOL_KEYS = frozenset(
+    {
+        "lifecycle_reference_date",
+        "physical_observation_window",
+        "reviewers",
+        "blind_inputs",
+        "withheld_from_reviewers",
+        "reviewer_outputs",
+        "agreement_rules",
+        "after_review",
+    }
+)
+PREREGISTRATION_TEXT_BLOCKS = (
+    ("reviewer_outputs", frozenset({"construction_determination", "location", "identity_notes"})),
+    ("agreement_rules", frozenset({"construction", "location", "agreement", "gate"})),
+)
+RESULTS_KEYS = frozenset(
+    {
+        "schema_version",
+        "recorded_at",
+        "preregistration",
+        "population",
+        "reviews",
+        "comparison",
+        "totals",
+        "disclosures",
+    }
+)
+SESSION_KEYS = frozenset(
+    {
+        "position",
+        "project_stable_key",
+        "reviewer_session_id",
+        "session_sequence",
+        "session_status",
+        "reviewed_at",
+        "counted",
+    }
+)
+REVIEW_KEYS = SESSION_KEYS | {
+    "construction_determination",
+    "construction_evidence",
+    "successor_check",
+    "location",
+    "identity_notes",
+    "blindness_attestation",
+}
+UNCOUNTED_SESSION_KEYS = frozenset({"uncounted_reason", "counted_session_id"})
+ABORTED_SESSION_KEYS = SESSION_KEYS | UNCOUNTED_SESSION_KEYS | {"abort_notes"}
+UNCOUNTED_REASONS = frozenset({"aborted", "blindness_breach", "later_duplicate"})
+REVIEW_EVIDENCE_KEYS = frozenset(
+    {"source_url", "observation_date", "literal_pointer", "capture_sha256"}
+)
+REVIEW_EVIDENCE_OPTIONAL_KEYS = frozenset({"title", "publisher", "retrieved_at", "note"})
+REVIEW_LOCATION_KEYS = frozenset({"status", "longitude", "latitude", "method", "source_url"})
+REVIEW_LOCATION_OPTIONAL_KEYS = frozenset({"literal_pointer", "capture_sha256", "notes"})
+COMPARISON_KEYS = frozenset(
+    {
+        "position",
+        "project_stable_key",
+        "construction_agrees",
+        "location_distance_m",
+        "location_rule",
+        "adjudication",
+        "agreement",
+    }
+)
+ADJUDICATION_KEYS = frozenset({"adjudicated_by", "adjudicated_at", "reason"})
+BLIND_REVIEW_COUNTED_SESSION_RULE = (
+    "At each position the counted session is the completed blind session with the "
+    "lowest session_sequence; a blind session attests no Atlas access and cites no "
+    "Atlas surface in its evidence or location URLs. Every other session is recorded "
+    "uncounted with a machine-checked reason: aborted (no reviewer output), "
+    "blindness_breach (attested Atlas access or a cited Atlas surface) or "
+    "later_duplicate (a blind session started after the counted one)."
+)
+# Atlas surfaces a blind session must not cite: the public site, the repository
+# and any fork or clone of it on GitHub, its raw, codeload, API and jsDelivr
+# mirrors, and archived copies of any of these (matched inside the whole URL,
+# case-insensitively, after percent-decoding).
+ATLAS_SURFACE_URL_PATTERNS = (
+    re.compile(r"[a-z0-9-]+\.github\.io/datacenter[-_]atlas(?![a-z0-9_-])"),
+    re.compile(
+        r"github(?:usercontent)?\.com/(?:repos/)?[a-z0-9_.-]+/datacenter[-_]atlas(?![a-z0-9_-])"
+    ),
+    re.compile(r"cdn\.jsdelivr\.net/gh/[a-z0-9_.-]+/datacenter[-_]atlas(?![a-z0-9_-])"),
+)
+CONSTRUCTION_DETERMINATIONS = frozenset(
+    {"under_construction_in_window", "not_under_construction_in_window", "unable_to_verify"}
+)
+SUCCESSOR_CHECK_STATUSES = frozenset(
+    {"none_found_on_or_before_cutoff", "found_on_or_before_cutoff", "not_checked"}
+)
+LOCATION_RULES = (
+    "inside",
+    "within_1000m",
+    "adjudicated_same_campus",
+    "adjudicated_different_campus",
+    "beyond_3000m",
+    "unable_to_locate",
+)
+ADJUDICATED_LOCATION_RULES = frozenset(
+    {"adjudicated_same_campus", "adjudicated_different_campus"}
+)
+AGREEING_LOCATION_RULES = frozenset({"inside", "within_1000m", "adjudicated_same_campus"})
+LOCATION_AGREEMENT_METRES = 1000.0
+LOCATION_ADJUDICATION_METRES = 3000.0
+DISTANCE_TOLERANCE_METRES = 5.0
+DISTANCE_TOLERANCE_FRACTION = 0.01
+WGS84_A = 6378137.0
+WGS84_F = 1 / 298.257223563
+WGS84_B = WGS84_A * (1 - WGS84_F)
+WGS84_MEAN_RADIUS = (2 * WGS84_A + WGS84_B) / 3
+# The largest meridional radius of curvature (at the poles) and the equatorial
+# radius bound the length of any longitude/latitude-straight edge from above.
+WGS84_MAX_MERIDIONAL_RADIUS = WGS84_A / math.sqrt(1 - WGS84_F * (2 - WGS84_F))
+BLIND_REVIEW_LOCATION_METHOD = (
+    "Against the site geometry of the pre-registered population release, in WGS84: "
+    "a point covered by a Polygon/MultiPolygon in longitude/latitude "
+    "(RFC 7946 straight edges, boundary inclusive, holes excluded) or equal to a "
+    "Point is inside at 0 m; otherwise the minimum ellipsoidal geodesic distance "
+    "(Vincenty inverse, converged to 1e-12 rad; mean-sphere great circle if a "
+    "nearly antipodal pair does not converge) to the Point or to any ring edge, "
+    "minimized along each edge by golden-section search with both endpoints "
+    "checked. within_1000m: 0 < d <= 1000 m; adjudication band: 1000 < d <= "
+    "3000 m; beyond_3000m: d > 3000 m. The rule is classified from the recomputed "
+    "distance; a recorded distance must agree with it within max(5 m, 1 %) and lie "
+    "in the same band (exactly 0 m for inside)."
+)
 # Every key of a correction's preservation_invariants is machine-checked: the
 # required keys against the frozen rows and records, these optional ones below.
 OPTIONAL_PRESERVATION_INVARIANTS = frozenset(
-    {"osm_way_version_unchanged", "intersecting_site_rows_unchanged"}
+    {
+        "osm_way_version_unchanged",
+        "intersecting_site_rows_unchanged",
+        "additional_superseded_captures_unchanged",
+        "display_anchor_outside_geometry",
+    }
+)
+ADDITIONAL_CAPTURE_INVARIANT_KEYS = frozenset(
+    {
+        "evidence_id",
+        "raw_evidence_body_sha256_unchanged",
+        "raw_capture_retrieved_at_unchanged",
+    }
 )
 ISO_A2_CODES = frozenset(
     """
@@ -388,6 +999,11 @@ class ReviewPins:
     acceptance_sha256: Mapping[str, str]
     # One independent pin per v2 baseline correction_id; empty for v1 contracts.
     baseline_correction_sha256: Mapping[str, str] = MappingProxyType({})
+    # canonical_sha256 of a v3 contract's blind_review entry; None for v1 and v2.
+    blind_review_sha256: str | None = None
+    # One independent pin per v3 baseline withdrawal_id; empty unless the v3
+    # contract carries baseline_withdrawals.
+    baseline_withdrawal_sha256: Mapping[str, str] = MappingProxyType({})
 
 
 @dataclass(frozen=True)
@@ -400,6 +1016,10 @@ class ValidatedBatch:
     sources: dict[str, dict[str, Any]]
     acceptances: tuple[dict[str, Any], ...]
     baseline_corrections: tuple[dict[str, Any], ...] = ()
+    # The recomputed v3 blind-review result; None for v1 and v2 contracts.
+    blind_review: Mapping[str, Any] | None = None
+    # Validated v3 baseline withdrawals; empty for v1, v2 and v3 without them.
+    baseline_withdrawals: tuple[dict[str, Any], ...] = ()
 
 
 def canonical_sha256(value: Any) -> str:
@@ -758,8 +1378,26 @@ def _inside_ring(point: list[float], ring: list[list[float]]) -> bool:
     return inside
 
 
-def _geometry_shape(record: Any, label: str = "geometry record") -> str:
-    """Structural geometry/anchor checks shared by acceptances and corrections."""
+def _anchor_in_polygons(anchor: list[float], polygons: list) -> bool:
+    return any(
+        _inside_ring(anchor, polygon[0])
+        and not any(_inside_ring(anchor, hole) for hole in polygon[1:])
+        for polygon in polygons
+    )
+
+
+def _geometry_shape(
+    record: Any,
+    label: str = "geometry record",
+    *,
+    exterior_anchor_allowed: bool = False,
+) -> str:
+    """Structural geometry/anchor checks shared by acceptances and corrections.
+
+    ``exterior_anchor_allowed`` is set ONLY by the baseline-correction validator,
+    which then requires the anchor to equal the frozen row and the record to
+    declare the exterior anchor as a machine-checked preservation invariant.
+    """
     _keys(record, GEOMETRY_RECORD_KEYS, label)
     geometry = _keys(record["geometry"], {"type", "coordinates"}, "geometry")
     anchor = _keys(record["display_anchor"], {"type", "coordinates"}, "display anchor")
@@ -816,16 +1454,24 @@ def _geometry_shape(record: Any, label: str = "geometry record") -> str:
                             "polygon holes overlap",
                         )
         _require(
-            any(
-                _inside_ring(anchor["coordinates"], polygon[0])
-                and not any(
-                    _inside_ring(anchor["coordinates"], hole) for hole in polygon[1:]
-                )
-                for polygon in polygons
-            ),
+            exterior_anchor_allowed
+            or _anchor_in_polygons(anchor["coordinates"], polygons),
             "polygon display anchor is outside its geometry",
         )
     return kind
+
+
+def _anchor_inside_geometry(record: Mapping[str, Any]) -> bool:
+    """True for a Point geometry (anchor equals it) or an anchor inside a polygon."""
+    geometry = record["geometry"]
+    if geometry["type"] == "Point":
+        return True
+    polygons = (
+        [geometry["coordinates"]]
+        if geometry["type"] == "Polygon"
+        else geometry["coordinates"]
+    )
+    return _anchor_in_polygons(record["display_anchor"]["coordinates"], polygons)
 
 
 def _host_estate_semantics(record: Mapping[str, Any], semantics: Any) -> bool:
@@ -966,21 +1612,63 @@ def _pinned_v017_input(
     )
 
 
+def _locate_frozen_row(
+    spec: Any, baseline: Mapping[str, Any], table: str, id_field: str
+) -> dict[str, Any]:
+    """Hash-check one frozen v0.17 data line named by line number and identifier."""
+    spec = _keys(
+        spec,
+        {"file_line_number", id_field, "row_canonical_sha256", "raw_line_sha256"},
+        f"frozen {table} row",
+    )
+    rows = baseline[table]
+    lines = _csv_lines(
+        baseline["files"][f"{table}.csv"], len(rows), f"frozen {table}.csv"
+    )
+    number = spec["file_line_number"]
+    _require(
+        type(number) is int and 2 <= number <= len(rows) + 1,
+        f"frozen {table} line number differs",
+    )
+    row = rows[number - 2]
+    identifier = _text(spec[id_field], f"frozen {table} identifier")
+    _require(
+        row[id_field] == identifier
+        and sum(item[id_field] == identifier for item in rows) == 1,
+        f"frozen {table} row identity differs",
+    )
+    _require(
+        canonical_sha256(row)
+        == _hash(spec["row_canonical_sha256"], f"frozen {table} row hash"),
+        f"frozen {table} row SHA-256 differs",
+    )
+    raw = lines[number - 1]
+    _require(
+        hashlib.sha256(raw).hexdigest()
+        == _hash(spec["raw_line_sha256"], f"frozen {table} raw line hash"),
+        f"frozen {table} raw line SHA-256 differs",
+    )
+    _require(
+        _csv_line(row, TABLE_FIELDS[table]) == raw,
+        f"frozen {table} row does not reproduce its raw line",
+    )
+    return {"index": number - 2, "line": number, "row": row, "raw": raw}
+
+
 def _frozen_rows(
     frozen: Any, baseline: Mapping[str, Any], project_key: str, site_key: str
 ) -> dict[str, Any]:
-    """Locate and hash-check the frozen v0.17 rows and feature a correction names."""
-    _keys(
-        frozen,
-        {
-            "release_path",
-            "manifest_sha256",
-            "projects_csv",
-            "sites_csv",
-            "evidence_csv",
-            "sites_geojson",
-        },
-        "baseline correction frozen rows",
+    """Locate and hash-check the frozen v0.17 rows and feature a correction names.
+
+    ``additional_evidence_csv`` (optional, nonempty when present) names further
+    frozen geometry evidence rows of the same project that the correction also
+    supersedes, for a frozen site that binds several geometry captures.
+    """
+    _require(
+        isinstance(frozen, dict)
+        and FROZEN_ROWS_KEYS <= set(frozen)
+        and set(frozen) <= FROZEN_ROWS_KEYS | FROZEN_ROWS_OPTIONAL_KEYS,
+        "baseline correction frozen rows keys differ",
     )
     _require(
         frozen["release_path"] == BASELINE_RELATIVE_DIR
@@ -989,43 +1677,17 @@ def _frozen_rows(
     )
     located: dict[str, Any] = {}
     for key, table, id_field in FROZEN_ROW_TABLES:
-        spec = _keys(
-            frozen[key],
-            {"file_line_number", id_field, "row_canonical_sha256", "raw_line_sha256"},
-            f"frozen {table} row",
-        )
-        rows = baseline[table]
-        lines = _csv_lines(
-            baseline["files"][f"{table}.csv"], len(rows), f"frozen {table}.csv"
-        )
-        number = spec["file_line_number"]
-        _require(
-            type(number) is int and 2 <= number <= len(rows) + 1,
-            f"frozen {table} line number differs",
-        )
-        row = rows[number - 2]
-        identifier = _text(spec[id_field], f"frozen {table} identifier")
-        _require(
-            row[id_field] == identifier
-            and sum(item[id_field] == identifier for item in rows) == 1,
-            f"frozen {table} row identity differs",
-        )
-        _require(
-            canonical_sha256(row)
-            == _hash(spec["row_canonical_sha256"], f"frozen {table} row hash"),
-            f"frozen {table} row SHA-256 differs",
-        )
-        raw = lines[number - 1]
-        _require(
-            hashlib.sha256(raw).hexdigest()
-            == _hash(spec["raw_line_sha256"], f"frozen {table} raw line hash"),
-            f"frozen {table} raw line SHA-256 differs",
-        )
-        _require(
-            _csv_line(row, TABLE_FIELDS[table]) == raw,
-            f"frozen {table} row does not reproduce its raw line",
-        )
-        located[table] = {"index": number - 2, "line": number, "row": row}
+        located[table] = _locate_frozen_row(frozen[key], baseline, table, id_field)
+    additional_specs = frozen.get("additional_evidence_csv", None)
+    _require(
+        "additional_evidence_csv" not in frozen
+        or (isinstance(additional_specs, list) and bool(additional_specs)),
+        "additional frozen evidence rows must be a nonempty list",
+    )
+    located["additional_evidence"] = [
+        _locate_frozen_row(spec, baseline, "evidence", "evidence_id")
+        for spec in additional_specs or []
+    ]
     project, site, evidence = (
         located[name]["row"] for name in ("projects", "sites", "evidence")
     )
@@ -1049,24 +1711,45 @@ def _frozen_rows(
         "baseline corrections support single-project sites only",
     )
     superseded = evidence["evidence_id"]
+    superseded_rows = [evidence, *(item["row"] for item in located["additional_evidence"])]
+    superseded_ids = [row["evidence_id"] for row in superseded_rows]
+    site_evidence = _json_field(site["geometry_evidence_ids_json"], "frozen site evidence")
     _require(
-        project["geometry_evidence_id"] == superseded
-        and _json_field(site["geometry_evidence_ids_json"], "frozen site evidence")
-        == [superseded]
-        and _json_field(evidence["roles_json"], "frozen evidence roles") == ["geometry"]
-        and _json_field(evidence["project_ids_json"], "frozen evidence projects")
-        == [project["project_id"]],
+        len(set(superseded_ids)) == len(superseded_ids)
+        and project["geometry_evidence_id"] == superseded
+        and isinstance(site_evidence, list)
+        and len(site_evidence) == len(set(site_evidence)) == len(superseded_ids)
+        and set(site_evidence) == set(superseded_ids)
+        and all(
+            _json_field(row["roles_json"], "frozen evidence roles") == ["geometry"]
+            and _json_field(row["project_ids_json"], "frozen evidence projects")
+            == [project["project_id"]]
+            for row in superseded_rows
+        ),
         "superseded evidence row is not solely this project's geometry evidence",
     )
     for table in ("projects", "sites"):
         for index, row in enumerate(baseline[table]):
             _require(
                 index == located[table]["index"]
-                or not any(superseded in str(value) for value in row.values()),
+                or not any(
+                    identifier in str(value)
+                    for identifier in superseded_ids
+                    for value in row.values()
+                ),
                 "superseded evidence row is referenced by another inherited row",
             )
+    located["superseded_evidence_ids"] = superseded_ids
+    located["feature"] = _locate_frozen_feature(frozen["sites_geojson"], baseline, site)
+    return located
+
+
+def _locate_frozen_feature(
+    spec: Any, baseline: Mapping[str, Any], site: Mapping[str, Any]
+) -> dict[str, Any]:
+    """Hash-check the frozen v0.17 GeoJSON feature of a frozen site row."""
     spec = _keys(
-        frozen["sites_geojson"],
+        spec,
         {"feature_index", "feature_canonical_sha256"},
         "frozen GeoJSON feature",
     )
@@ -1089,12 +1772,125 @@ def _frozen_rows(
         feature == core._geojson([site])["features"][0],
         "frozen GeoJSON feature does not reproduce its site row",
     )
-    located["feature"] = {"index": index, "feature": feature}
+    return {"index": index, "feature": feature}
+
+
+def _withdrawn_frozen_rows(
+    frozen: Any, baseline: Mapping[str, Any], project_key: str, site_key: str
+) -> dict[str, Any]:
+    """Locate and hash-check every frozen v0.17 row and feature a withdrawal removes.
+
+    The project must be the only project of its site, and ``evidence_csv`` must
+    list, in file order, exactly the frozen evidence rows whose project
+    association names it; each must name it alone. A project on a shared site or
+    with a shared evidence row needs a reviewed re-derivation of those rows,
+    which a withdrawal never performs, so both fail closed.
+    """
+    _keys(frozen, FROZEN_ROWS_KEYS, "baseline withdrawal frozen rows")
+    _require(
+        frozen["release_path"] == BASELINE_RELATIVE_DIR
+        and frozen["manifest_sha256"] == BASELINE_MANIFEST_SHA256,
+        "baseline withdrawal must name rows of the pinned v0.17 manifest",
+    )
+    located: dict[str, Any] = {
+        "projects": _locate_frozen_row(
+            frozen["projects_csv"], baseline, "projects", "project_stable_key"
+        ),
+        "sites": _locate_frozen_row(
+            frozen["sites_csv"], baseline, "sites", "physical_site_stable_key"
+        ),
+    }
+    specs = frozen["evidence_csv"]
+    _require(
+        isinstance(specs, list) and bool(specs),
+        "withdrawn evidence rows must be a nonempty list",
+    )
+    evidence = [
+        _locate_frozen_row(spec, baseline, "evidence", "evidence_id") for spec in specs
+    ]
+    _require(
+        all(first["line"] < second["line"] for first, second in zip(evidence, evidence[1:])),
+        "withdrawn evidence rows must be listed once each, in file order",
+    )
+    project, site = located["projects"]["row"], located["sites"]["row"]
+    _require(
+        project["project_stable_key"] == project_key
+        and site["physical_site_stable_key"] == site_key
+        and project["physical_site_stable_key"] == site_key
+        and project["site_id"] == site["site_id"],
+        "baseline withdrawal project/site rows differ",
+    )
+    project_id = project["project_id"]
+    _require(
+        site["project_count"] == "1"
+        and _json_field(site["project_ids_json"], "frozen site projects") == [project_id]
+        and _json_field(site["project_stable_keys_json"], "frozen site project keys")
+        == [project_key]
+        and sum(
+            row["physical_site_stable_key"] == site_key for row in baseline["projects"]
+        )
+        == 1,
+        "baseline withdrawals support single-project sites only; withdrawing a project "
+        "from a shared site needs a reviewed re-derivation of the site row",
+    )
+    named = [item["row"]["evidence_id"] for item in evidence]
+    associated = [
+        row["evidence_id"]
+        for row in baseline["evidence"]
+        if project_id in _json_field(row["project_ids_json"], "frozen evidence projects")
+    ]
+    _require(
+        named == associated,
+        "withdrawn evidence rows differ from the frozen evidence rows of the project",
+    )
+    _require(
+        all(
+            _json_field(item["row"]["project_ids_json"], "frozen evidence projects")
+            == [project_id]
+            for item in evidence
+        ),
+        "withdrawn evidence row is shared with another project; a shared-row "
+        "withdrawal needs a reviewed re-derivation of its usage",
+    )
+    known = {row["evidence_id"] for row in baseline["evidence"]}
+    _require(
+        {
+            identifier
+            for identifier in known
+            for row in (project, site)
+            if any(identifier in str(value) for value in row.values())
+        }
+        <= set(named),
+        "the withdrawn project or site row references evidence that is not withdrawn",
+    )
+    removed = {project_id, site["site_id"], *named}
+    skip = {
+        "projects": {located["projects"]["index"]},
+        "sites": {located["sites"]["index"]},
+        "evidence": {item["index"] for item in evidence},
+    }
+    for table, indices in skip.items():
+        for index, row in enumerate(baseline[table]):
+            _require(
+                index in indices
+                or not any(
+                    identifier in str(value)
+                    for identifier in removed
+                    for value in row.values()
+                ),
+                "a withdrawn row is referenced by another inherited row",
+            )
+    located["evidence"] = evidence
+    located["evidence_ids"] = named
+    located["feature"] = _locate_frozen_feature(frozen["sites_geojson"], baseline, site)
     return located
 
 
 def _inherited_unchanged_through(
-    spec: Any, root: Path, frozen: Mapping[str, Any]
+    spec: Any,
+    root: Path,
+    frozen: Mapping[str, Any],
+    formats: frozenset[str] = INHERITED_THROUGH_FORMATS_V2,
 ) -> dict[str, frozenset[bytes]]:
     """Prove the frozen rows were still byte-identical in the named later draft.
 
@@ -1130,7 +1926,8 @@ def _inherited_unchanged_through(
     )
     _require(
         isinstance(manifest, dict)
-        and manifest.get("format") in {DRAFT_MANIFEST_FORMAT_V1, DRAFT_MANIFEST_FORMAT_V2}
+        and isinstance(manifest.get("format"), str)
+        and manifest["format"] in formats
         and manifest.get("release_status") == "draft"
         and manifest.get("base_preview_manifest_sha256") == BASELINE_MANIFEST_SHA256
         and manifest.get("base_preview_path") == BASELINE_RELATIVE_DIR,
@@ -1146,23 +1943,41 @@ def _inherited_unchanged_through(
             f"inherited-through manifest lacks {name}",
         )
         data[name] = _read_pinned(directory / name, entry.get("sha256"), entry["bytes"])
-    for key, table, _ in FROZEN_ROW_TABLES:
-        lines = data[f"{table}.csv"].split(b"\n")
-        number = frozen[key]["file_line_number"]
+    # Rows are located by their frozen raw bytes, not by line number: an earlier
+    # correction's dropped evidence row shifts later evidence lines up by one,
+    # and only byte identity, not position, is being proven here.
+    digests = {
+        table: Counter(
+            hashlib.sha256(line).hexdigest()
+            for line in data[f"{table}.csv"].split(b"\n")[1:]
+            if line
+        )
+        for table in ("projects", "sites", "evidence")
+    }
+    # A correction names one primary evidence row plus optional additional rows;
+    # a withdrawal names its list of removed evidence rows.
+    evidence_specs = (
+        list(frozen["evidence_csv"])
+        if isinstance(frozen["evidence_csv"], list)
+        else [frozen["evidence_csv"], *frozen.get("additional_evidence_csv", [])]
+    )
+    expected = [
+        ("projects", frozen["projects_csv"]["raw_line_sha256"]),
+        ("sites", frozen["sites_csv"]["raw_line_sha256"]),
+    ] + [("evidence", item["raw_line_sha256"]) for item in evidence_specs]
+    for table, digest in expected:
         _require(
-            number < len(lines)
-            and hashlib.sha256(lines[number - 1]).hexdigest()
-            == frozen[key]["raw_line_sha256"],
+            digests[table][digest] == 1,
             f"inherited {table} row changed after v0.17",
         )
+    # The feature is located by its frozen canonical hash, exactly once, for the
+    # same reason: a v3 withdrawal drops a feature and shifts the later ones.
     geojson = _json(data["sites.geojson"], "inherited-through GeoJSON")
     features = geojson.get("features") if isinstance(geojson, dict) else None
-    index = frozen["sites_geojson"]["feature_index"]
+    feature_digest = frozen["sites_geojson"]["feature_canonical_sha256"]
     _require(
         isinstance(features, list)
-        and index < len(features)
-        and canonical_sha256(features[index])
-        == frozen["sites_geojson"]["feature_canonical_sha256"],
+        and sum(canonical_sha256(feature) == feature_digest for feature in features) == 1,
         "inherited GeoJSON feature changed after v0.17",
     )
     return {
@@ -1179,13 +1994,20 @@ def _superseded(
     baseline: Mapping[str, Any],
     located: Mapping[str, Any],
     correction: Mapping[str, Any],
-) -> tuple[dict[str, Any], dict[str, frozenset[bytes]]]:
+    formats: frozenset[str] = INHERITED_THROUGH_FORMATS_V2,
+) -> tuple[dict[str, Any], list[dict[str, Any]], dict[str, frozenset[bytes]]]:
     """Bind the frozen rows to the superseded record of the frozen v0.16 facts.
 
-    Returns the superseded evidence record and the inherited-through draft's
+    Returns the superseded evidence record, the additional superseded evidence
+    entries (each with its v0.16 record), and the inherited-through draft's
     project and site data lines.
     """
-    _keys(supersedes, SUPERSEDES_KEYS, "baseline correction supersedes")
+    _require(
+        isinstance(supersedes, dict)
+        and SUPERSEDES_KEYS <= set(supersedes)
+        and set(supersedes) <= SUPERSEDES_KEYS | SUPERSEDES_OPTIONAL_KEYS,
+        "baseline correction supersedes keys differ",
+    )
     relative = supersedes["source_path"]
     path = _portable_path(root, relative, "superseded source path")
     _require(Path(relative).parts[0] == "sources", "superseded source must be under sources/")
@@ -1243,6 +2065,50 @@ def _superseded(
         == supersedes["evidence_source_id"],
         "superseded geometry identity differs",
     )
+    declared = supersedes.get("additional_superseded_evidence", None)
+    _require(
+        "additional_superseded_evidence" not in supersedes
+        or (isinstance(declared, list) and bool(declared)),
+        "additional superseded evidence must be a nonempty list",
+    )
+    declared = declared or []
+    frozen_additional = located["additional_evidence"]
+    _require(
+        len(declared) == len(frozen_additional),
+        "additional superseded evidence differs from the additional frozen rows",
+    )
+    additional = []
+    for item, frozen_item in zip(declared, frozen_additional):
+        _keys(item, ADDITIONAL_SUPERSEDED_KEYS, "additional superseded evidence")
+        value = _pointer(document, item["evidence_pointer"])
+        frozen_row = frozen_item["row"]
+        _require(
+            isinstance(value, dict)
+            and canonical_sha256(value)
+            == _hash(item["evidence_record_sha256"], "additional superseded evidence hash")
+            and value.get("source_id")
+            == _text(item["evidence_source_id"], "additional superseded source")
+            and value.get("evidence_id")
+            == item["evidence_id"]
+            == frozen_row["evidence_id"]
+            and all(
+                frozen_row[field] == cell
+                for field, cell in core._v07_evidence_projection(value).items()
+            ),
+            "additional frozen evidence row is not its superseded record",
+        )
+        _text(item["replacement_source_id"], "additional replacement source")
+        additional.append({**item, "record": value})
+    # Every geometry source of the superseded locator must be superseded, and
+    # only those: a correction cannot leave part of a frozen locator unbound.
+    _require(
+        record.get(
+            "geometry_source_document_ids", [supersedes["evidence_source_id"]]
+        )
+        == [supersedes["evidence_source_id"]]
+        + [item["evidence_source_id"] for item in additional],
+        "superseded evidence does not cover the frozen locator's geometry sources",
+    )
     try:
         geometry = core._v15_result_geometry(record)
     except core.VerifiedConstructionCoreError as exc:
@@ -1284,9 +2150,127 @@ def _superseded(
         "a baseline correction cannot mutate a frozen artifact",
     )
     inherited_lines = _inherited_unchanged_through(
-        supersedes["inherited_unchanged_through"], root, correction["frozen_rows"]
+        supersedes["inherited_unchanged_through"],
+        root,
+        correction["frozen_rows"],
+        formats,
     )
-    return evidence, inherited_lines
+    return evidence, additional, inherited_lines
+
+
+def _resolve_binding(
+    binding: Any,
+    root: Path,
+    baseline: Mapping[str, Any],
+    *,
+    seen: Mapping[str, Any] | frozenset[str] = frozenset(),
+    label: str = "unchanged binding",
+) -> tuple[str, dict[str, Any]]:
+    """Resolve one pinned file binding to its hash-checked records.
+
+    Returns its source ID and ``{"records", "v017_input"}``; ``seen`` holds the
+    source IDs already resolved alongside it, which must not repeat.
+    """
+    _require(isinstance(binding, dict), f"{label} is not an object")
+    pairs = [pair for pair in BINDING_POINTERS if pair[0] in binding]
+    expected = {"source_id", "source_path", "source_file_sha256", "source_file_bytes"}
+    expected.update(key for pair in pairs for key in pair)
+    if "note" in binding:
+        expected.add("note")
+        _text(binding["note"], f"{label} note")
+    _keys(binding, expected, label)
+    _require(bool(pairs), f"{label} pins no record")
+    source_id = _text(binding["source_id"], f"{label} ID")
+    _require(source_id not in seen, f"duplicate {label}")
+    relative = binding["source_path"]
+    path = _portable_path(root, relative, f"{label} path")
+    _require(
+        Path(relative).parts[0] in {"sources", "definitions"},
+        f"{label} must be a sources/ or definitions/ input",
+    )
+    bound = _json(
+        _read_pinned(path, binding["source_file_sha256"], binding["source_file_bytes"]),
+        source_id,
+    )
+    records = {}
+    for pointer_key, hash_key in pairs:
+        value = _pointer(bound, binding[pointer_key])
+        _require(
+            isinstance(value, dict)
+            and canonical_sha256(value)
+            == _hash(binding[hash_key], f"{source_id} {hash_key}"),
+            f"{label} record SHA-256 differs: {source_id}",
+        )
+        records[pointer_key.removesuffix("_pointer")] = value
+    return source_id, {
+        "records": records,
+        "v017_input": _pinned_v017_input(
+            baseline,
+            relative,
+            binding["source_file_sha256"],
+            binding["source_file_bytes"],
+        ),
+    }
+
+
+def _frozen_status_identity(
+    resolved: Mapping[str, Any],
+    project: Mapping[str, Any],
+    project_key: str,
+    site_key: str,
+    baseline: Mapping[str, Any],
+    source_id: str,
+    label: str = "identity binding",
+) -> dict[str, Any]:
+    """Require a resolved binding to be the frozen v0.17 curated input of a project.
+
+    Its project, campus, lifecycle row and evidence must reproduce the frozen
+    project row's identity, lifecycle observation and status evidence row.
+    Returns the status evidence projection.
+    """
+    records = resolved["records"]
+    _require(
+        resolved["v017_input"]
+        and set(records) == {"evidence", "project", "campus", "lifecycle"},
+        f"{label} is not a pinned v0.17 curated input",
+    )
+    _require(
+        records["project"].get("stable_key") == project_key
+        and records["campus"].get("stable_key") == site_key,
+        f"{label} project/campus differs",
+    )
+    status = records["lifecycle"]
+    _require(
+        status.get("entity") == "project"
+        and status.get("value") == project["last_observed_physical_status"]
+        and status.get("as_of_date") == project["status_as_of"]
+        and status.get("method") == project["status_method"]
+        and status.get("evidence_key") == records["evidence"].get("key"),
+        f"frozen lifecycle observation differs from the {label}",
+    )
+    # A frozen v0.17 curated input may itself carry an inherited date-only
+    # retrieval. It is accepted here only because the projection must then equal
+    # the frozen status evidence row field for field (checked just below).
+    status_evidence = _source_evidence(
+        records["evidence"],
+        source_id,
+        inherited_date_only_retrieval=_date_only(records["evidence"].get("retrieved_at")),
+    )
+    frozen_status = [
+        row
+        for row in baseline["evidence"]
+        if row["evidence_id"] == status_evidence["evidence_id"]
+    ]
+    _require(
+        status_evidence["evidence_id"] == project["status_evidence_id"]
+        and status_evidence["source_url"] == project["status_source_url"]
+        and len(frozen_status) == 1
+        and all(
+            frozen_status[0][field] == value for field, value in status_evidence.items()
+        ),
+        f"{label} is not the frozen status evidence",
+    )
+    return status_evidence
 
 
 def _unchanged_bindings(
@@ -1305,90 +2289,21 @@ def _unchanged_bindings(
     )
     resolved: dict[str, dict[str, Any]] = {}
     for binding in bindings:
-        _require(isinstance(binding, dict), "unchanged binding is not an object")
-        pairs = [pair for pair in BINDING_POINTERS if pair[0] in binding]
-        expected = {"source_id", "source_path", "source_file_sha256", "source_file_bytes"}
-        expected.update(key for pair in pairs for key in pair)
-        if "note" in binding:
-            expected.add("note")
-            _text(binding["note"], "unchanged binding note")
-        _keys(binding, expected, "unchanged binding")
-        _require(bool(pairs), "unchanged binding pins no record")
-        source_id = _text(binding["source_id"], "unchanged binding ID")
-        _require(source_id not in resolved, "duplicate unchanged binding")
-        relative = binding["source_path"]
-        path = _portable_path(root, relative, "unchanged binding path")
-        _require(
-            Path(relative).parts[0] in {"sources", "definitions"},
-            "unchanged binding must be a sources/ or definitions/ input",
-        )
-        bound = _json(
-            _read_pinned(
-                path, binding["source_file_sha256"], binding["source_file_bytes"]
-            ),
-            source_id,
-        )
-        records = {}
-        for pointer_key, hash_key in pairs:
-            value = _pointer(bound, binding[pointer_key])
-            _require(
-                isinstance(value, dict)
-                and canonical_sha256(value)
-                == _hash(binding[hash_key], f"{source_id} {hash_key}"),
-                f"unchanged binding record SHA-256 differs: {source_id}",
-            )
-            records[pointer_key.removesuffix("_pointer")] = value
-        resolved[source_id] = {
-            "records": records,
-            "v017_input": _pinned_v017_input(
-                baseline,
-                relative,
-                binding["source_file_sha256"],
-                binding["source_file_bytes"],
-            ),
-        }
+        source_id, item = _resolve_binding(binding, root, baseline, seen=resolved)
+        resolved[source_id] = item
     identity_id = correction["identity_source_id"]
     identity = resolved.get(identity_id)
     _require(
         identity is not None and identity_id not in sources,
         "identity source must be an unchanged frozen binding, not a contract source",
     )
-    records = identity["records"]
-    _require(
-        identity["v017_input"]
-        and set(records) == {"evidence", "project", "campus", "lifecycle"},
-        "identity binding is not a pinned v0.17 curated input",
-    )
-    project = located["projects"]["row"]
-    _require(
-        records["project"].get("stable_key") == correction["project_stable_key"]
-        and records["campus"].get("stable_key")
-        == correction["physical_site_stable_key"],
-        "identity binding project/campus differs",
-    )
-    status = records["lifecycle"]
-    _require(
-        status.get("entity") == "project"
-        and status.get("value") == project["last_observed_physical_status"]
-        and status.get("as_of_date") == project["status_as_of"]
-        and status.get("method") == project["status_method"]
-        and status.get("evidence_key") == records["evidence"].get("key"),
-        "frozen lifecycle observation differs from the identity binding",
-    )
-    status_evidence = _source_evidence(records["evidence"], identity_id)
-    frozen_status = [
-        row
-        for row in baseline["evidence"]
-        if row["evidence_id"] == status_evidence["evidence_id"]
-    ]
-    _require(
-        status_evidence["evidence_id"] == project["status_evidence_id"]
-        and status_evidence["source_url"] == project["status_source_url"]
-        and len(frozen_status) == 1
-        and all(
-            frozen_status[0][field] == value for field, value in status_evidence.items()
-        ),
-        "identity binding is not the frozen status evidence",
+    _frozen_status_identity(
+        identity,
+        located["projects"]["row"],
+        correction["project_stable_key"],
+        correction["physical_site_stable_key"],
+        baseline,
+        identity_id,
     )
     for source_id, item in resolved.items():
         if "acceptance" in item["records"]:
@@ -1408,9 +2323,17 @@ def _unchanged_bindings(
 
 def _baseline_correction_geometry(
     record: Any, correction: Mapping[str, Any], located: Mapping[str, Any]
-) -> None:
-    """Dedicated correction validator: host-estate context, frozen numbers only."""
-    _geometry_shape(record, "baseline correction geometry record")
+) -> bool:
+    """Dedicated correction validator: host-estate context, frozen numbers only.
+
+    Returns whether the display anchor lies inside the geometry. A frozen
+    exterior anchor is tolerated here because the numbers must equal the frozen
+    row exactly; ``_preservation_invariants`` then requires the record to declare
+    it (``display_anchor_outside_geometry``), and never otherwise.
+    """
+    _geometry_shape(
+        record, "baseline correction geometry record", exterior_anchor_allowed=True
+    )
     semantics = _keys(
         record["semantics"], SEMANTIC_FIELDS, "baseline correction geometry semantics"
     )
@@ -1461,6 +2384,7 @@ def _baseline_correction_geometry(
         == [longitude, latitude],
         "baseline correction display anchor differs from the frozen row",
     )
+    return _anchor_inside_geometry(record)
 
 
 def _correction_document(
@@ -1506,13 +2430,29 @@ def _correction_document(
     )
 
 
+def _same_capture_value(field: str, reused: Any, frozen: Any) -> bool:
+    """Literal equality, except one projection-equivalent publication value.
+
+    A frozen v0.16 record may store an unknown publication date as the empty
+    string, which the curated evidence shape cannot carry (it requires null or
+    nonempty text). Null and the empty string project to the same empty evidence
+    cell, so exactly that pair is equal for ``published_at``; nothing else is.
+    """
+    if field == "published_at" and reused is None and frozen == "":
+        return True
+    return reused == frozen
+
+
 def _reused_capture(
     evidence: Mapping[str, Any],
     superseded: Mapping[str, Any],
     supersedes: Mapping[str, Any],
 ) -> None:
     _require(
-        all(evidence.get(field) == superseded.get(field) for field in CAPTURE_FIELDS),
+        all(
+            _same_capture_value(field, evidence.get(field), superseded.get(field))
+            for field in CAPTURE_FIELDS
+        ),
         "primary correction source is not the reused frozen capture",
     )
     metadata = evidence.get("metadata")
@@ -1528,12 +2468,35 @@ def _reused_capture(
         )
 
 
+def _osm_version_matches(
+    version: Any, superseded: Mapping[str, Any], reused: Mapping[str, Any]
+) -> bool:
+    facts = superseded.get("facts")
+    metadata = reused.get("metadata")
+    return (
+        type(version) is int
+        and isinstance(facts, dict)
+        and type(facts.get("version")) is int
+        and facts["version"] == version
+        and (
+            not isinstance(metadata, dict)
+            or "osm_version" not in metadata
+            or (
+                type(metadata["osm_version"]) is int
+                and metadata["osm_version"] == version
+            )
+        )
+    )
+
+
 def _preservation_invariants(
     document: Mapping[str, Any],
     located: Mapping[str, Any],
     record: Mapping[str, Any],
     superseded: Mapping[str, Any],
     reused: Mapping[str, Any],
+    additional: Sequence[Mapping[str, Any]] = (),
+    anchor_inside: bool = True,
 ) -> dict[str, Any]:
     """Check every invariant key; unrecognized keys are rejected, not trusted.
 
@@ -1542,6 +2505,11 @@ def _preservation_invariants(
     ``intersecting_site_rows_unchanged`` lists other site keys; after the
     batch is derived, each must intersect the corrected geometry and keep its
     project and site lines byte for byte from the inherited-through draft.
+    ``additional_superseded_captures_unchanged`` is required exactly when the
+    correction supersedes additional evidence rows: one entry per row, in order,
+    restating its evidence ID, raw-body hash, retrieval value and (optionally)
+    OSM way version. ``display_anchor_outside_geometry`` is required, and must be
+    true, exactly when the unchanged frozen anchor lies outside its polygons.
     """
     invariants = document.get("preservation_invariants")
     _require(isinstance(invariants, dict), "baseline correction lacks invariants")
@@ -1577,25 +2545,53 @@ def _preservation_invariants(
         + ", ".join(sorted(unchecked)),
     )
     if "osm_way_version_unchanged" in invariants:
-        version = invariants["osm_way_version_unchanged"]
-        facts = superseded.get("facts")
-        metadata = reused.get("metadata")
         _require(
-            type(version) is int
-            and isinstance(facts, dict)
-            and type(facts.get("version")) is int
-            and facts["version"] == version
-            and (
-                not isinstance(metadata, dict)
-                or "osm_version" not in metadata
-                or (
-                    type(metadata["osm_version"]) is int
-                    and metadata["osm_version"] == version
-                )
+            _osm_version_matches(
+                invariants["osm_way_version_unchanged"], superseded, reused
             ),
             "baseline correction preservation invariant differs: "
             "osm_way_version_unchanged",
         )
+    _require(
+        ("additional_superseded_captures_unchanged" in invariants) == bool(additional),
+        "baseline correction preservation invariant differs: "
+        "additional_superseded_captures_unchanged",
+    )
+    if additional:
+        entries = invariants["additional_superseded_captures_unchanged"]
+        _require(
+            isinstance(entries, list) and len(entries) == len(additional),
+            "baseline correction preservation invariant differs: "
+            "additional_superseded_captures_unchanged",
+        )
+        for entry, item in zip(entries, additional):
+            value = item["record"]
+            _require(
+                isinstance(entry, dict)
+                and ADDITIONAL_CAPTURE_INVARIANT_KEYS <= set(entry)
+                and set(entry)
+                <= ADDITIONAL_CAPTURE_INVARIANT_KEYS | {"osm_way_version_unchanged"}
+                and entry["evidence_id"] == item["evidence_id"]
+                and entry["raw_evidence_body_sha256_unchanged"] == value["content_hash"]
+                and entry["raw_capture_retrieved_at_unchanged"] == value["retrieved_at"]
+                and (
+                    "osm_way_version_unchanged" not in entry
+                    or _osm_version_matches(
+                        entry["osm_way_version_unchanged"], value, item["reused"]
+                    )
+                ),
+                "baseline correction preservation invariant differs: "
+                "additional_superseded_captures_unchanged",
+            )
+    _require(
+        (
+            invariants.get("display_anchor_outside_geometry") is True
+            if not anchor_inside
+            else "display_anchor_outside_geometry" not in invariants
+        ),
+        "baseline correction preservation invariant differs: "
+        "display_anchor_outside_geometry",
+    )
     if "intersecting_site_rows_unchanged" in invariants:
         keys = _unique_text(
             invariants["intersecting_site_rows_unchanged"],
@@ -1782,7 +2778,10 @@ def _exact_row_deltas(
         {"removed", "added", "association_only"},
         "evidence.csv exact delta",
     )
-    frozen = correction["frozen_rows"]["evidence_csv"]
+    frozen_specs = [
+        correction["frozen_rows"]["evidence_csv"],
+        *correction["frozen_rows"].get("additional_evidence_csv", []),
+    ]
     _require(
         evidence["removed"]
         == [
@@ -1791,6 +2790,7 @@ def _exact_row_deltas(
                 "file_line_number": frozen["file_line_number"],
                 "row_canonical_sha256": frozen["row_canonical_sha256"],
             }
+            for frozen in frozen_specs
         ],
         "evidence delta must remove exactly the superseded row",
     )
@@ -1867,6 +2867,7 @@ def _baseline_correction(
     sources: Mapping[str, Any],
     review_pins: ReviewPins,
     reviewed_at: date,
+    formats: frozenset[str] = INHERITED_THROUGH_FORMATS_V2,
 ) -> dict[str, Any]:
     """Validate one v2 baseline correction fail-closed and derive its rows."""
     _keys(entry, BASELINE_CORRECTION_KEYS, "baseline correction")
@@ -1898,7 +2899,7 @@ def _baseline_correction(
         binding["record_sha256"],
         "baseline correction geometry",
     )
-    _baseline_correction_geometry(record, entry, located)
+    anchor_inside = _baseline_correction_geometry(record, entry, located)
     _require(
         _unique_text(record["identity_source_ids"], "correction identity source IDs")
         == [identity_id],
@@ -1917,14 +2918,52 @@ def _baseline_correction(
     document = sources[source_id]["document"]
     _correction_document(document, sources, source_id, reviewed_at)
     supersedes = document.get("supersedes")
-    superseded, inherited_lines = _superseded(
-        supersedes, root, baseline, located, entry
+    superseded, additional, inherited_lines = _superseded(
+        supersedes, root, baseline, located, entry, formats
     )
     reused = sources[source_id]["evidence"]
     _reused_capture(reused, superseded, supersedes)
+    # Each additional superseded row is replaced by its own reused capture: a
+    # distinct geometry source of this correction with the same capture fields.
+    replacements = [item["replacement_source_id"] for item in additional]
+    _require(
+        len(set(replacements)) == len(replacements)
+        and source_id not in replacements
+        and set(replacements).issubset(geometry_ids),
+        "additional superseded evidence needs distinct replacement geometry sources",
+    )
+    shared_claim = {
+        key: supersedes[key]
+        for key in (
+            "source_path",
+            "source_file_sha256",
+            "geometry_pointer",
+            "geometry_record_sha256",
+            "frozen_artifact_mutated",
+        )
+    }
+    for item in additional:
+        replacement = sources[item["replacement_source_id"]]["evidence"]
+        _reused_capture(
+            replacement,
+            item["record"],
+            {
+                **shared_claim,
+                **{
+                    key: item[key]
+                    for key in (
+                        "evidence_pointer",
+                        "evidence_record_sha256",
+                        "evidence_source_id",
+                        "evidence_id",
+                    )
+                },
+            },
+        )
+        item["reused"] = replacement
     _unchanged_bindings(document, root, baseline, located, entry, sources)
     invariants = _preservation_invariants(
-        document, located, record, superseded, reused
+        document, located, record, superseded, reused, additional, anchor_inside
     )
     project, site, feature = _corrected_rows(record, located, sources, source_id)
     corrected = {"projects": project, "sites": site, "feature": feature}
@@ -1936,6 +2975,8 @@ def _baseline_correction(
         "record": record,
         "supersedes": supersedes,
         "primary_source_id": source_id,
+        "reused_source_ids": [source_id, *replacements],
+        "superseded_evidence_ids": located["superseded_evidence_ids"],
         "geometry_source_ids": geometry_ids,
         "project": project,
         "site": site,
@@ -1957,15 +2998,21 @@ def _baseline_corrections(
     reviewed_at: date,
     acceptance_sources: set[str],
     date_only_sources: set[str],
+    *,
+    allow_empty: bool = False,
+    formats: frozenset[str] = INHERITED_THROUGH_FORMATS_V2,
 ) -> list[dict[str, Any]]:
+    if allow_empty:
+        # Schema v3 carries the key even when it corrects nothing.
+        _require(isinstance(entries, list), "v3 baseline corrections must be a list")
     _require(
-        isinstance(entries, list) and bool(entries),
+        isinstance(entries, list) and (allow_empty or bool(entries)),
         "v2 contracts need at least one baseline correction",
     )
     validated = []
     for entry in entries:
         item = _baseline_correction(
-            entry, root, baseline, sources, review_pins, reviewed_at
+            entry, root, baseline, sources, review_pins, reviewed_at, formats
         )
         _require(
             all(
@@ -1986,7 +3033,16 @@ def _baseline_corrections(
         == {item["correction_id"] for item in validated},
         "baseline correction review pin inventory differs",
     )
-    reused = {item["primary_source_id"] for item in validated}
+    reused_lists = [item["reused_source_ids"] for item in validated]
+    reused = {source_id for ids in reused_lists for source_id in ids}
+    superseded_ids = [
+        identifier for item in validated for identifier in item["superseded_evidence_ids"]
+    ]
+    _require(
+        len(reused) == sum(len(ids) for ids in reused_lists)
+        and len(set(superseded_ids)) == len(superseded_ids),
+        "duplicate baseline correction target",
+    )
     for source_id in date_only_sources:
         _require(
             source_id in reused and source_id not in acceptance_sources,
@@ -1994,6 +3050,375 @@ def _baseline_corrections(
             "reused frozen capture",
         )
     return validated
+
+
+def _shared_capture_rows(
+    evidence: Sequence[Mapping[str, str]],
+    projects: Sequence[Mapping[str, str]],
+    withdrawn: Sequence[Mapping[str, str]],
+) -> list[dict[str, Any]]:
+    """Evidence rows, other than ``withdrawn``, sharing a withdrawn row's source capture.
+
+    A source capture is the same source URL and content hash, that is the same
+    source bytes. Rows keep the order of ``evidence``; each names its projects'
+    stable keys and the first withdrawn row (in the given order) it shares with.
+    """
+    captures: dict[tuple[str, str], str] = {}
+    for row in withdrawn:
+        captures.setdefault((row["source_url"], row["content_hash"]), row["evidence_id"])
+    removed = {row["evidence_id"] for row in withdrawn}
+    keys = {row["project_id"]: row["project_stable_key"] for row in projects}
+    shared = []
+    for row in evidence:
+        match = captures.get((row["source_url"], row["content_hash"]))
+        if match is None or row["evidence_id"] in removed:
+            continue
+        project_ids = _json_field(row["project_ids_json"], "shared-capture evidence projects")
+        _require(
+            isinstance(project_ids, list) and set(project_ids) <= set(keys),
+            "a shared-capture evidence row names an unknown project",
+        )
+        shared.append(
+            {
+                "evidence_id": row["evidence_id"],
+                "project_stable_keys": sorted(keys[project_id] for project_id in project_ids),
+                "withdrawn_evidence_id": match,
+            }
+        )
+    return shared
+
+
+def _shared_capture_gate(
+    withdrawals: Sequence[Mapping[str, Any]],
+    projects: Sequence[Mapping[str, str]],
+    evidence: Sequence[Mapping[str, str]],
+) -> dict[str, Any]:
+    """The final-release gate over selected rows sharing a withdrawn source capture.
+
+    A withdrawal neither changes nor re-reviews such rows, so their projects stay
+    selected unchanged and the gate stays open while any remains in this checkpoint.
+    """
+    owners = {
+        spec["row"]["evidence_id"]: item["withdrawal_id"]
+        for item in withdrawals
+        for spec in item["located"]["evidence"]
+    }
+    rows = _shared_capture_rows(
+        evidence,
+        projects,
+        [spec["row"] for item in withdrawals for spec in item["located"]["evidence"]],
+    )
+    for row in rows:
+        row["withdrawal_id"] = owners[row["withdrawn_evidence_id"]]
+    affected = sorted({key for row in rows for key in row["project_stable_keys"]})
+    return {
+        "actual": len(affected),
+        "required": 0,
+        "passed": not affected,
+        "projects": affected,
+        "evidence_rows": rows,
+        "reason": "selected projects whose evidence rows share a source capture (the same source URL and content hash) with an evidence row of a withdrawn project; a withdrawal neither changes nor re-reviews them, so each needs its own versioned review before a final release",
+    }
+
+
+def _withdrawal_effect(located: Mapping[str, Any]) -> dict[str, int]:
+    """The checkpoint-independent count effect of removing the located rows."""
+    project, site = located["projects"]["row"], located["sites"]["row"]
+    return {
+        "physical_sites": -1,
+        "projects": -1,
+        "evidence": -len(located["evidence"]),
+        "non_us_sites": -int(site["country_iso_a2"] != "US"),
+        "reviewed_site_locator_projects": -int(_is_reviewed_locator(project)),
+        "host_estate_context_projects": -int(_is_host_estate_context(project)),
+        "official_boundary_projects": -int(core._is_official_boundary(project)),
+    }
+
+
+def _baseline_withdrawal(
+    entry: Any,
+    root: Path,
+    baseline: Mapping[str, Any],
+    review_pins: ReviewPins,
+    reviewed_at: date,
+) -> dict[str, Any]:
+    """Validate one v3 baseline withdrawal and its pinned record fail-closed."""
+    _keys(entry, BASELINE_WITHDRAWAL_KEYS, "baseline withdrawal")
+    withdrawal_id = _text(entry["withdrawal_id"], "withdrawal ID")
+    _require(
+        re.fullmatch(r"[a-z0-9][a-z0-9-]{0,95}", withdrawal_id) is not None,
+        "unsafe withdrawal ID",
+    )
+    _require(
+        canonical_sha256(entry)
+        == review_pins.baseline_withdrawal_sha256.get(withdrawal_id),
+        f"independent baseline withdrawal review pin differs: {withdrawal_id}",
+    )
+    project_key = _text(entry["project_stable_key"], "withdrawn project key")
+    site_key = _text(entry["physical_site_stable_key"], "withdrawn site key")
+    _text(entry["reason"], "baseline withdrawal reason")
+    located = _withdrawn_frozen_rows(entry["frozen_rows"], baseline, project_key, site_key)
+    record_pin = entry["record"]
+    document = _json(
+        _pinned_review_file(root, record_pin, "sources", "baseline withdrawal record"),
+        "baseline withdrawal record",
+    )
+    _keys(document, BASELINE_WITHDRAWAL_RECORD_KEYS, "baseline withdrawal record")
+    _require(
+        document["schema_version"] == BASELINE_WITHDRAWAL_RECORD_SCHEMA,
+        "baseline withdrawal record schema differs",
+    )
+    _require(
+        document["withdrawal_id"] == withdrawal_id
+        and document["project_stable_key"] == project_key
+        and document["physical_site_stable_key"] == site_key,
+        "baseline withdrawal record names a different withdrawal",
+    )
+    _require(
+        document["lifecycle_reference_date"] == LIFECYCLE_REFERENCE_DATE.isoformat(),
+        "withdrawal lifecycle cutoff cannot move",
+    )
+    _require(
+        type(document["accepted_additional_sites"]) is int
+        and document["accepted_additional_sites"] == 0,
+        "a baseline withdrawal cannot add sites",
+    )
+    withdrawn_at = _calendar(document["reviewed_at"], "withdrawal review date")
+    _require(
+        LIFECYCLE_REFERENCE_DATE <= withdrawn_at <= reviewed_at,
+        "withdrawal review date falls outside the checkpoint review",
+    )
+    _require(
+        document["decision"] == BASELINE_WITHDRAWAL_DECISION,
+        "baseline withdrawal decision differs",
+    )
+    basis = _choice(
+        document["withdrawal_basis"], BASELINE_WITHDRAWAL_BASES, "baseline withdrawal basis"
+    )
+    boundary = _keys(
+        document["claim_boundary"],
+        {*BASELINE_WITHDRAWAL_CLAIM_BOUNDARY, "statement"},
+        "baseline withdrawal claim boundary",
+    )
+    _require(
+        canonical_sha256({key: boundary[key] for key in BASELINE_WITHDRAWAL_CLAIM_BOUNDARY})
+        == canonical_sha256(dict(BASELINE_WITHDRAWAL_CLAIM_BOUNDARY)),
+        "a baseline withdrawal asserts no physical status: it cannot claim the project "
+        "is paused, cancelled, completed or not under construction",
+    )
+    _text(boundary["statement"], "baseline withdrawal claim boundary statement")
+    _require(
+        canonical_sha256(document["frozen_baseline_rows"])
+        == canonical_sha256(entry["frozen_rows"]),
+        "contract frozen rows differ from the withdrawal record",
+    )
+    # The withdrawn rows must still be byte-identical in a named later draft, so
+    # the rows removed are exactly the rows that draft published.
+    _inherited_unchanged_through(
+        document["inherited_unchanged_through"],
+        root,
+        entry["frozen_rows"],
+        INHERITED_THROUGH_FORMATS_V3,
+    )
+    source_id, observation = _resolve_binding(
+        document["withdrawn_observation_binding"],
+        root,
+        baseline,
+        label="withdrawn observation binding",
+    )
+    status_evidence = _frozen_status_identity(
+        observation,
+        located["projects"]["row"],
+        project_key,
+        site_key,
+        baseline,
+        source_id,
+        "withdrawn observation binding",
+    )
+    _require(
+        status_evidence["evidence_id"] in located["evidence_ids"],
+        "withdrawn observation binding is not a withdrawn evidence row",
+    )
+    basis_pins = document["review_basis"]
+    _require(
+        isinstance(basis_pins, list) and bool(basis_pins),
+        "baseline withdrawal needs a pinned review basis",
+    )
+    review_basis = []
+    for pin in basis_pins:
+        _pinned_review_file(root, pin, "sources", "baseline withdrawal review basis")
+        review_basis.append({field: pin[field] for field in ("path", "bytes", "sha256")})
+    paths = [pin["path"] for pin in review_basis]
+    _require(
+        len(set(paths)) == len(paths) and record_pin["path"] not in paths,
+        "baseline withdrawal review basis repeats a file or names the record itself",
+    )
+    effect = _withdrawal_effect(located)
+    counts = _keys(document["count_effect"], WITHDRAWAL_COUNT_KEYS, "withdrawal count effect")
+    _require(
+        canonical_sha256(counts) == canonical_sha256(effect),
+        "baseline withdrawal count effect differs from the frozen rows it removes",
+    )
+    # The record must acknowledge, exactly, every other frozen evidence row that
+    # rests on a withdrawn row's source capture; the withdrawal leaves them as they are.
+    shared = _keys(
+        document["shared_capture_rows"],
+        SHARED_CAPTURE_KEYS,
+        "baseline withdrawal shared-capture rows",
+    )
+    _require(
+        isinstance(shared["rows"], list)
+        and canonical_sha256(shared["rows"])
+        == canonical_sha256(
+            _shared_capture_rows(
+                baseline["evidence"],
+                baseline["projects"],
+                [item["row"] for item in located["evidence"]],
+            )
+        ),
+        "baseline withdrawal shared-capture rows differ from the frozen evidence rows "
+        "that share a withdrawn row's source capture",
+    )
+    _text(shared["statement"], "baseline withdrawal shared-capture statement")
+    _text(document["withdrawal_reason"], "baseline withdrawal record reason")
+    return {
+        "entry": entry,
+        "withdrawal_id": withdrawal_id,
+        "located": located,
+        "document": document,
+        "record_pin": {field: record_pin[field] for field in ("path", "bytes", "sha256")},
+        "basis": basis,
+        "review_basis": review_basis,
+        "observation_source_id": source_id,
+        "count_effect": effect,
+    }
+
+
+def _baseline_withdrawals(
+    entries: Any,
+    root: Path,
+    baseline: Mapping[str, Any],
+    review_pins: ReviewPins,
+    reviewed_at: date,
+    corrections: Sequence[Mapping[str, Any]],
+) -> list[dict[str, Any]]:
+    """Validate every v3 baseline withdrawal; none may touch a corrected row."""
+    _require(
+        isinstance(entries, list) and bool(entries),
+        "v3 baseline withdrawals must be a nonempty list when present",
+    )
+    validated: list[dict[str, Any]] = []
+    for entry in entries:
+        item = _baseline_withdrawal(entry, root, baseline, review_pins, reviewed_at)
+        _require(
+            all(
+                item["withdrawal_id"] != other["withdrawal_id"]
+                and item["entry"]["record"]["path"] != other["entry"]["record"]["path"]
+                and all(
+                    item["entry"][key] != other["entry"][key]
+                    for key in ("project_stable_key", "physical_site_stable_key")
+                )
+                for other in validated
+            ),
+            "duplicate baseline withdrawal target",
+        )
+        validated.append(item)
+    _require(
+        set(review_pins.baseline_withdrawal_sha256)
+        == {item["withdrawal_id"] for item in validated},
+        "baseline withdrawal review pin inventory differs",
+    )
+    corrected = {
+        correction["entry"][key]
+        for correction in corrections
+        for key in ("project_stable_key", "physical_site_stable_key")
+    }
+    intersecting = {
+        key
+        for correction in corrections
+        for key in correction["invariants"].get("intersecting_site_rows_unchanged", [])
+    }
+    for item in validated:
+        _require(
+            item["entry"]["project_stable_key"] not in corrected
+            and item["entry"]["physical_site_stable_key"] not in corrected,
+            "a baseline project cannot be both corrected and withdrawn",
+        )
+        _require(
+            item["entry"]["physical_site_stable_key"] not in intersecting,
+            "a withdrawn site cannot be a correction's intersecting unchanged site",
+        )
+    return validated
+
+
+def _withdrawal_report(withdrawal: Mapping[str, Any]) -> dict[str, Any]:
+    entry, document = withdrawal["entry"], withdrawal["document"]
+    located = withdrawal["located"]
+    project, site = located["projects"]["row"], located["sites"]["row"]
+    return {
+        "withdrawal_id": withdrawal["withdrawal_id"],
+        "physical_site_stable_key": entry["physical_site_stable_key"],
+        "project_stable_key": entry["project_stable_key"],
+        "site_id": site["site_id"],
+        "project_id": project["project_id"],
+        "country": site["country"],
+        "country_iso_a2": site["country_iso_a2"],
+        "withdrawal_record": withdrawal["record_pin"],
+        "record_reviewed_at": document["reviewed_at"],
+        "decision": document["decision"],
+        "withdrawal_basis": withdrawal["basis"],
+        "claim_boundary": document["claim_boundary"],
+        # The observation the selection relied on; it no longer qualifies, and no
+        # other status is asserted in its place.
+        "withdrawn_selected_observation": {
+            "last_observed_physical_status": project["last_observed_physical_status"],
+            "status_as_of": project["status_as_of"],
+            "status_method": project["status_method"],
+            "status_evidence_id": project["status_evidence_id"],
+            "observation_binding_source_id": withdrawal["observation_source_id"],
+            "qualifies_for_selection": False,
+        },
+        "frozen_rows": entry["frozen_rows"],
+        "inherited_unchanged_through": document["inherited_unchanged_through"],
+        "removed_rows": {
+            "projects": [project["project_id"]],
+            "sites": [site["site_id"]],
+            "evidence": list(located["evidence_ids"]),
+            "sites_geojson_frozen_feature_indices": [located["feature"]["index"]],
+        },
+        "review_basis": withdrawal["review_basis"],
+        "count_effect": withdrawal["count_effect"],
+        # Other frozen rows on a withdrawn row's source capture, as the record
+        # acknowledges them; the withdrawal_shared_capture_review gate tracks those
+        # still selected in this checkpoint.
+        "shared_capture_rows": document["shared_capture_rows"],
+        "additional_sites": 0,
+        "reason": entry["reason"],
+    }
+
+
+def _withdrawals_summary(
+    withdrawals: Sequence[Mapping[str, Any]], sites: Sequence[Mapping[str, Any]]
+) -> dict[str, Any]:
+    """The selection report's baseline_withdrawals block for this checkpoint.
+
+    Each withdrawal's count effect is checkpoint-independent; the combined
+    effect adds the countries left without any selected site in this checkpoint.
+    """
+    remaining = {row["country"] for row in sites}
+    removed = {item["located"]["sites"]["row"]["country"] for item in withdrawals}
+    effect = {
+        key: sum(item["count_effect"][key] for item in withdrawals)
+        for key in sorted(WITHDRAWAL_COUNT_KEYS)
+    }
+    effect["countries"] = -len(removed - remaining)
+    return {
+        "scope": "Inherited v0.17 projects removed from the selection by a pinned schema-v3 baseline withdrawal, because their selected evidence does not meet the acceptance contract. A withdrawal removes the project row, its single-project site row and GeoJSON feature, and every evidence row only it referenced; every other inherited byte is unchanged. It asserts no physical status: a withdrawn project is not claimed to be paused, cancelled, completed or not under construction, and its physical status on the lifecycle reference date is unknown. It neither changes nor re-reviews other rows: selected rows that share a withdrawn row's source capture (the same source URL and content hash) stay selected unchanged, are acknowledged in each record's shared_capture_rows, and keep the withdrawal_shared_capture_review gate open. ATTRIBUTION.txt keeps every inherited v0.17 notice, including notices for sources that only withdrawn rows used. A site-count claim must disclose withdrawals.",
+        "withdrawn_projects": len(withdrawals),
+        "count_effect": effect,
+        "countries_without_selected_site": sorted(removed - remaining),
+        "withdrawals": [_withdrawal_report(item) for item in withdrawals],
+    }
 
 
 def _geometry_positions(geometry: Mapping[str, Any]) -> list[list[float]]:
@@ -2138,6 +3563,17 @@ def _correction_report(
     spec = batch.sources[correction["primary_source_id"]]["spec"]
     supersedes = correction["supersedes"]
     delta = correction["evidence_delta"]
+    superseded_record = {
+        "source_path": supersedes["source_path"],
+        "source_file_sha256": supersedes["source_file_sha256"],
+        "evidence_id": supersedes["evidence_id"],
+        "locator_id": supersedes["locator_id"],
+    }
+    if "additional_superseded_evidence" in supersedes:
+        # Added only when present, so single-capture reports keep their bytes.
+        superseded_record["additional_evidence_ids"] = [
+            item["evidence_id"] for item in supersedes["additional_superseded_evidence"]
+        ]
     return {
         "correction_id": correction["correction_id"],
         "physical_site_stable_key": entry["physical_site_stable_key"],
@@ -2151,12 +3587,7 @@ def _correction_report(
             "record_pointer": entry["geometry"]["record_pointer"],
             "record_sha256": entry["geometry"]["record_sha256"],
         },
-        "superseded_record": {
-            "source_path": supersedes["source_path"],
-            "source_file_sha256": supersedes["source_file_sha256"],
-            "evidence_id": supersedes["evidence_id"],
-            "locator_id": supersedes["locator_id"],
-        },
+        "superseded_record": superseded_record,
         "frozen_rows": entry["frozen_rows"],
         "changed_fields": correction["changed_fields"],
         "evidence_rows": {
@@ -2181,6 +3612,1185 @@ def _correction_report(
     }
 
 
+# Schema v3: the pinned, pre-registered blind review ------------------------
+
+
+def _wgs84_distance_m(first: Sequence[float], second: Sequence[float]) -> float:
+    """WGS84 ellipsoidal geodesic distance in metres between [lon, lat] points.
+
+    Vincenty's inverse formula, iterated until the longitude change is at most
+    1e-12 rad (sub-millimetre). A nearly antipodal pair, for which it may not
+    converge, falls back to the great circle on the mean-radius sphere; such a
+    pair is thousands of kilometres beyond every agreement threshold.
+    """
+    lon1, lat1 = float(first[0]), float(first[1])
+    lon2, lat2 = float(second[0]), float(second[1])
+    if lon1 == lon2 and lat1 == lat2:
+        return 0.0
+    f = WGS84_F
+    longitude = math.radians(lon2 - lon1)
+    u1 = math.atan((1 - f) * math.tan(math.radians(lat1)))
+    u2 = math.atan((1 - f) * math.tan(math.radians(lat2)))
+    sin_u1, cos_u1 = math.sin(u1), math.cos(u1)
+    sin_u2, cos_u2 = math.sin(u2), math.cos(u2)
+    lam = longitude
+    for _ in range(200):
+        sin_lam, cos_lam = math.sin(lam), math.cos(lam)
+        sin_sigma = math.hypot(
+            cos_u2 * sin_lam, cos_u1 * sin_u2 - sin_u1 * cos_u2 * cos_lam
+        )
+        if sin_sigma == 0:
+            return 0.0
+        cos_sigma = sin_u1 * sin_u2 + cos_u1 * cos_u2 * cos_lam
+        sigma = math.atan2(sin_sigma, cos_sigma)
+        sin_alpha = cos_u1 * cos_u2 * sin_lam / sin_sigma
+        cos2_alpha = 1 - sin_alpha * sin_alpha
+        cos_2sm = cos_sigma - 2 * sin_u1 * sin_u2 / cos2_alpha if cos2_alpha else 0.0
+        c = f / 16 * cos2_alpha * (4 + f * (4 - 3 * cos2_alpha))
+        previous = lam
+        lam = longitude + (1 - c) * f * sin_alpha * (
+            sigma
+            + c * sin_sigma * (cos_2sm + c * cos_sigma * (-1 + 2 * cos_2sm * cos_2sm))
+        )
+        if abs(lam - previous) <= 1e-12:
+            break
+    else:
+        phi1, phi2 = math.radians(lat1), math.radians(lat2)
+        haversine = (
+            math.sin((phi2 - phi1) / 2) ** 2
+            + math.cos(phi1) * math.cos(phi2) * math.sin(longitude / 2) ** 2
+        )
+        return 2 * WGS84_MEAN_RADIUS * math.asin(min(1.0, math.sqrt(haversine)))
+    u_sq = cos2_alpha * (WGS84_A**2 - WGS84_B**2) / WGS84_B**2
+    big_a = 1 + u_sq / 16384 * (4096 + u_sq * (-768 + u_sq * (320 - 175 * u_sq)))
+    big_b = u_sq / 1024 * (256 + u_sq * (-128 + u_sq * (74 - 47 * u_sq)))
+    delta = big_b * sin_sigma * (
+        cos_2sm
+        + big_b
+        / 4
+        * (
+            cos_sigma * (-1 + 2 * cos_2sm * cos_2sm)
+            - big_b
+            / 6
+            * cos_2sm
+            * (-3 + 4 * sin_sigma * sin_sigma)
+            * (-3 + 4 * cos_2sm * cos_2sm)
+        )
+    )
+    return WGS84_B * big_a * (sigma - delta)
+
+
+def _wgs84_edge_distance_m(
+    point: Sequence[float], start: Sequence[float], end: Sequence[float]
+) -> float:
+    """Minimum WGS84 distance from ``point`` to a longitude/latitude-straight edge.
+
+    The distance along a site-scale edge is unimodal in the edge parameter, so a
+    golden-section search, with both endpoints also checked, finds the minimum
+    to far below a millimetre.
+    """
+
+    def at(fraction: float) -> float:
+        return _wgs84_distance_m(
+            point,
+            (
+                start[0] + fraction * (end[0] - start[0]),
+                start[1] + fraction * (end[1] - start[1]),
+            ),
+        )
+
+    ratio = (math.sqrt(5) - 1) / 2
+    low, high = 0.0, 1.0
+    left, right = high - ratio * (high - low), low + ratio * (high - low)
+    left_value, right_value = at(left), at(right)
+    for _ in range(64):
+        if left_value <= right_value:
+            high, right, right_value = right, left, left_value
+            left = high - ratio * (high - low)
+            left_value = at(left)
+        else:
+            low, left, left_value = left, right, right_value
+            right = low + ratio * (high - low)
+            right_value = at(right)
+    return min(at(0.0), at(1.0), left_value, right_value)
+
+
+def _edge_length_bound_m(start: Sequence[float], end: Sequence[float]) -> float:
+    """An upper bound on the WGS84 length of a longitude/latitude-straight edge."""
+    return WGS84_MAX_MERIDIONAL_RADIUS * abs(math.radians(end[1] - start[1])) + (
+        WGS84_A * abs(math.radians(end[0] - start[0]))
+    )
+
+
+def _wgs84_distance_to_geometry_m(
+    point: Sequence[float], geometry: Mapping[str, Any]
+) -> tuple[bool, float]:
+    """(covered, metres) from a WGS84 point to a Point/Polygon/MultiPolygon."""
+    point = [float(point[0]), float(point[1])]
+    if geometry["type"] == "Point":
+        target = [float(value) for value in geometry["coordinates"]]
+        return point == target, _wgs84_distance_m(point, target)
+    polygons = _geometry_polygons(geometry)
+    if _covers(polygons, point):
+        return True, 0.0
+    vertices: dict[tuple[float, float], float] = {}
+    edges = []
+    for polygon in polygons:
+        for ring in polygon:
+            for position in ring:
+                vertex = (float(position[0]), float(position[1]))
+                if vertex not in vertices:
+                    vertices[vertex] = _wgs84_distance_m(point, vertex)
+            for start, end in zip(ring, ring[1:]):
+                a = (float(start[0]), float(start[1]))
+                b = (float(end[0]), float(end[1]))
+                # Triangle inequality: no edge point is nearer than this bound.
+                bound = (vertices[a] + vertices[b] - _edge_length_bound_m(a, b)) / 2
+                edges.append((bound, a, b))
+    best = min(vertices.values())
+    for bound, a, b in sorted(edges):
+        if bound >= best:
+            break
+        best = min(best, _wgs84_edge_distance_m(point, a, b))
+    return False, best
+
+
+def _location_band(covered: bool, distance: float) -> str:
+    if covered:
+        return "inside"
+    if distance <= LOCATION_AGREEMENT_METRES:
+        return "within_1000m"
+    if distance <= LOCATION_ADJUDICATION_METRES:
+        return "adjudication_band"
+    return "beyond_3000m"
+
+
+def blind_review_location_comparison(
+    point: Sequence[float], geometry: Mapping[str, Any]
+) -> dict[str, Any]:
+    """Recompute one pre-registered location comparison.
+
+    ``point`` is the reviewer's [longitude, latitude]; ``geometry`` is a site's
+    validated GeoJSON Point, Polygon or MultiPolygon. Returns ``distance_m`` (0
+    when inside) and ``band``: ``inside``, ``within_1000m``,
+    ``adjudication_band`` (a written adjudication must decide) or
+    ``beyond_3000m``. See the module docstring for the method. The distance
+    uses platform trigonometry, so it is only ever compared with tolerances and
+    thresholds; draft outputs never contain it, which keeps them byte-stable.
+    """
+    _require(
+        isinstance(point, (list, tuple)) and _point(list(point)),
+        "blind review point is not WGS84 longitude/latitude",
+    )
+    _require(
+        isinstance(geometry, Mapping)
+        and isinstance(geometry.get("type"), str)
+        and geometry["type"] in {"Point", "Polygon", "MultiPolygon"},
+        "blind review site geometry is not a Point, Polygon or MultiPolygon",
+    )
+    try:
+        positions = _geometry_positions(geometry)
+        rings = [ring for polygon in _geometry_polygons(geometry) for ring in polygon]
+    except (KeyError, TypeError) as exc:
+        raise DraftValidationError("blind review site geometry is malformed") from exc
+    _require(
+        bool(positions)
+        and all(_point(position) for position in positions)
+        and all(len(ring) >= 4 and ring[0] == ring[-1] for ring in rings),
+        "blind review site geometry is malformed",
+    )
+    covered, distance = _wgs84_distance_to_geometry_m(point, geometry)
+    distance = 0.0 if covered else distance
+    return {"distance_m": distance, "band": _location_band(covered, distance)}
+
+
+def _keys_with_optional(
+    value: Any, required: frozenset[str], optional: frozenset[str], label: str
+) -> dict[str, Any]:
+    _require(
+        isinstance(value, dict)
+        and set(required) <= set(value) <= set(required) | set(optional),
+        f"{label} keys differ",
+    )
+    return value
+
+
+def _choice(value: Any, choices: Any, label: str) -> str:
+    _require(isinstance(value, str) and value in choices, f"invalid {label}")
+    return value
+
+
+def _review_url(value: Any, label: str) -> str:
+    _text(value, label)
+    try:
+        url = urlsplit(value)
+        valid = (
+            url.scheme in {"https", "http"}
+            and bool(url.hostname)
+            and not url.username
+            and not url.password
+        )
+    except ValueError:
+        valid = False
+    _require(valid, f"invalid {label}")
+    return value
+
+
+def _atlas_surface(url: str) -> bool:
+    """Whether a URL names an Atlas surface (``ATLAS_SURFACE_URL_PATTERNS``)."""
+    text = url
+    for _ in range(3):
+        text = unquote(text)
+    text = text.lower()
+    return any(pattern.search(text) for pattern in ATLAS_SURFACE_URL_PATTERNS)
+
+
+def _review_day(value: Any, label: str) -> date:
+    """A YYYY-MM-DD day, or the written day of an ISO datetime with a timezone."""
+    if _date_only(value):
+        return _calendar(value, label)
+    _require(
+        isinstance(value, str)
+        and re.fullmatch(
+            r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(?::\d{2}(?:\.\d{1,6})?)?(?:Z|[+-]\d{2}:\d{2})",
+            value,
+        )
+        is not None,
+        f"{label} must be YYYY-MM-DD or an ISO datetime with a timezone",
+    )
+    try:
+        return datetime.fromisoformat(value.replace("Z", "+00:00")).date()
+    except ValueError as exc:
+        raise DraftValidationError(f"invalid {label}") from exc
+
+
+def _keyed(rows: Sequence[Mapping[str, str]], field: str, label: str) -> dict[str, Any]:
+    keyed = {row[field]: row for row in rows}
+    _require(len(keyed) == len(rows), f"{label} repeats a {field}")
+    return keyed
+
+
+def _csv_rows(raw: bytes, fields: Sequence[str], label: str) -> list[dict[str, str]]:
+    try:
+        reader = csv.DictReader(io.StringIO(raw.decode("utf-8"), newline=""))
+        _require(tuple(reader.fieldnames or ()) == tuple(fields), f"{label} fields differ")
+        rows = list(reader)
+    except (UnicodeDecodeError, csv.Error) as exc:
+        raise DraftValidationError(f"invalid CSV: {label}") from exc
+    _require(
+        all(None not in row and None not in row.values() for row in rows),
+        f"{label} row width differs",
+    )
+    return rows
+
+
+def _pinned_review_file(root: Path, value: Any, directory: str, label: str) -> bytes:
+    spec = _keys(value, {"path", "bytes", "sha256"}, f"{label} pin")
+    path = _portable_path(root, spec["path"], f"{label} path")
+    _require(Path(spec["path"]).parts[0] == directory, f"{label} must be under {directory}/")
+    return _read_pinned(path, spec["sha256"], spec["bytes"])
+
+
+def _blind_review_population_release(
+    root: Path, population: Mapping[str, Any]
+) -> dict[str, list[dict[str, str]]]:
+    """Read the pinned projects and sites of the draft a pre-registration names."""
+    release = population["release_path"]
+    directory = _portable_path(root, release, "pre-registered population release path")
+    _require(
+        Path(release).parts[0] == "verified_construction_core"
+        and not directory.is_symlink()
+        and directory.is_dir(),
+        "pre-registered population release is not a release directory",
+    )
+    _require(
+        Path(release).as_posix() != BASELINE_RELATIVE_DIR
+        and directory.resolve() != (root / BASELINE_RELATIVE_DIR).resolve(),
+        "pre-registered population must be a v0.18 draft, not the frozen baseline",
+    )
+    manifest = _json(
+        _read_pinned(
+            directory / "manifest.json",
+            _hash(population["manifest_sha256"], "pre-registered population manifest"),
+        ),
+        "pre-registered population manifest",
+    )
+    _require(
+        isinstance(manifest, dict)
+        and isinstance(manifest.get("format"), str)
+        and manifest["format"] in INHERITED_THROUGH_FORMATS_V3
+        and manifest.get("release_status") == "draft"
+        and manifest.get("base_preview_manifest_sha256") == BASELINE_MANIFEST_SHA256
+        and manifest.get("base_preview_path") == BASELINE_RELATIVE_DIR,
+        "pre-registered population is not a v0.18 draft of the pinned v0.17 baseline",
+    )
+    files = manifest.get("files")
+    _require(isinstance(files, dict), "pre-registered population manifest lacks files")
+    tables = {}
+    for name in ("projects", "sites"):
+        entry = files.get(f"{name}.csv")
+        _require(
+            isinstance(entry, dict) and type(entry.get("bytes")) is int,
+            f"pre-registered population manifest lacks {name}.csv",
+        )
+        raw = _read_pinned(directory / f"{name}.csv", entry.get("sha256"), entry["bytes"])
+        tables[name] = _csv_rows(
+            raw, TABLE_FIELDS[name], f"pre-registered population {name}.csv"
+        )
+    return tables
+
+
+def _blind_review_ranking(seed_sha256: str, keys: Sequence[str]) -> list[tuple[str, str]]:
+    """Every key ranked by sha256(seed_sha256 + "|" + key), smallest first."""
+    return sorted(
+        (hashlib.sha256(f"{seed_sha256}|{key}".encode("utf-8")).hexdigest(), key)
+        for key in keys
+    )
+
+
+def _blind_review_preregistration(
+    document: Any, root: Path
+) -> tuple[dict[str, Any], dict[str, dict[str, Any]]]:
+    """Recompute a pre-registration's population, seed, ranking and sample.
+
+    Returns the validated summary and the population release's projects and
+    sites keyed by stable key: the rows that were sampled and reviewed.
+    """
+    _keys(document, PREREGISTRATION_KEYS, "blind review pre-registration")
+    _require(
+        document["schema_version"] == BLIND_REVIEW_PREREGISTRATION_SCHEMA,
+        "blind review pre-registration schema differs",
+    )
+    registered_at = _calendar(document["registered_at"], "pre-registration date")
+    _require(
+        registered_at >= LIFECYCLE_REFERENCE_DATE,
+        "pre-registration predates the lifecycle cutoff",
+    )
+    _text(document["purpose"], "pre-registration purpose")
+    population = _keys(
+        document["population"], PREREGISTRATION_POPULATION_KEYS, "pre-registered population"
+    )
+    commit = population["published_in_commit"]
+    _require(
+        isinstance(commit, str) and re.fullmatch(r"[0-9a-f]{40}", commit) is not None,
+        "pre-registered population commit is not a full lower-case git SHA-1",
+    )
+    keys_sha256 = _hash(
+        population["eligible_project_keys_sha256"], "pre-registered population keys"
+    )
+    count = population["eligible_project_count"]
+    _require(
+        type(count) is int and count >= BLIND_REVIEW_SAMPLE_SIZE,
+        "pre-registered population count is invalid",
+    )
+    _require(
+        population["population_scope"] == BLIND_REVIEW_POPULATION_SCOPE,
+        "pre-registered population must be the full expanded eligible population",
+    )
+    tables = _blind_review_population_release(root, population)
+    projects = _keyed(
+        tables["projects"], "project_stable_key", "pre-registered population release"
+    )
+    sites = _keyed(
+        tables["sites"], "physical_site_stable_key", "pre-registered population release"
+    )
+    keys = sorted(projects)
+    _require(
+        len(keys) == count and canonical_sha256(keys) == keys_sha256,
+        "pre-registered population differs from its named release",
+    )
+    sampling = _keys(
+        document["sampling"], PREREGISTRATION_SAMPLING_KEYS, "pre-registered sampling"
+    )
+    _text(sampling["method"], "pre-registered sampling method")
+    material = _text(sampling["seed_material"], "pre-registered seed material")
+    _require(
+        material == f"{BLIND_REVIEW_SEED_PREFIX}|{keys_sha256}|{commit}",
+        "pre-registered seed material is not bound to the population and its commit",
+    )
+    seed = _hash(sampling["seed_sha256"], "pre-registered seed")
+    _require(
+        hashlib.sha256(material.encode("utf-8")).hexdigest() == seed,
+        "pre-registered seed SHA-256 differs from its seed material",
+    )
+    _require(
+        type(sampling["sample_size"]) is int
+        and sampling["sample_size"] == BLIND_REVIEW_SAMPLE_SIZE,
+        "pre-registered sample size must be 20",
+    )
+    _require(
+        sampling["formula_fixed_before_draw"] is True,
+        "pre-registered sampling formula was not fixed before the draw",
+    )
+    protocol = _keys(
+        document["protocol"], PREREGISTRATION_PROTOCOL_KEYS, "pre-registered protocol"
+    )
+    _require(
+        protocol["lifecycle_reference_date"] == LIFECYCLE_REFERENCE_DATE.isoformat(),
+        "pre-registered lifecycle cutoff cannot move",
+    )
+    _require(
+        protocol["physical_observation_window"]
+        == [day.isoformat() for day in BLIND_REVIEW_WINDOW],
+        "pre-registered observation window differs",
+    )
+    _require(
+        protocol["blind_inputs"] == list(BLIND_REVIEW_INPUTS),
+        "pre-registered blind inputs differ",
+    )
+    for field in ("reviewers", "withheld_from_reviewers", "after_review"):
+        _text(protocol[field], f"pre-registered protocol {field}")
+    for field, names in PREREGISTRATION_TEXT_BLOCKS:
+        block = _keys(protocol[field], names, f"pre-registered protocol {field}")
+        for name in sorted(block):
+            _text(block[name], f"pre-registered protocol {field} {name}")
+    sample = document["sample"]
+    _require(
+        isinstance(sample, list) and len(sample) == BLIND_REVIEW_SAMPLE_SIZE,
+        "pre-registered sample must list 20 positions",
+    )
+    ranked = _blind_review_ranking(seed, keys)[:BLIND_REVIEW_SAMPLE_SIZE]
+    for position, (entry, (rank, key)) in enumerate(zip(sample, ranked), 1):
+        _keys(
+            entry,
+            {"position", "project_stable_key", "rank_sha256", "blind_inputs"},
+            "pre-registered sample entry",
+        )
+        _require(
+            type(entry["position"]) is int and entry["position"] == position,
+            "pre-registered sample positions must run 1..20 in rank order",
+        )
+        _require(
+            entry["project_stable_key"] == key and entry["rank_sha256"] == rank,
+            f"pre-registered sample does not match its seed at position {position}",
+        )
+        project = projects[key]
+        site = sites.get(project["physical_site_stable_key"])
+        _require(
+            site is not None
+            and entry["blind_inputs"]
+            == {
+                "project_name": project["name"],
+                "campus_name": site["name"],
+                "country": project["country"],
+            },
+            f"pre-registered blind inputs differ from the population release at position {position}",
+        )
+    summary = {
+        "registered_at": registered_at,
+        "population": population,
+        "keys": keys,
+        "seed_material": material,
+        "seed_sha256": seed,
+        "sample": {entry["position"]: entry["project_stable_key"] for entry in sample},
+        "reviewers": protocol["reviewers"],
+    }
+    return summary, {"projects": projects, "sites": sites}
+
+
+def validate_blind_review_preregistration(
+    pin: Mapping[str, Any], *, root: Path = ROOT
+) -> dict[str, Any]:
+    """Recompute a pinned ``definitions/`` pre-registration against its release.
+
+    ``pin`` is ``{"path", "bytes", "sha256"}``, as in a v3 contract. Returns the
+    pre-registered population, its sorted eligible keys, the seed and the
+    validated sample by position; raises DraftValidationError otherwise. A v3
+    contract additionally requires the pin to be the one that
+    ``BLIND_REVIEW_PREREGISTRATIONS`` registers for the population.
+    """
+    root = Path(root).absolute().resolve()
+    raw = _pinned_review_file(root, pin, "definitions", "blind review pre-registration")
+    summary, _ = _blind_review_preregistration(
+        _json(raw, "blind review pre-registration"), root
+    )
+    return summary
+
+
+def _reviewer_output(output: Any, review: Mapping[str, Any], label: str) -> None:
+    """A session's optional verbatim output, kept for audit; mapped facts must agree."""
+    _require(
+        isinstance(output, dict) and bool(output),
+        f"{label} reviewer output must be a nonempty object",
+    )
+    if type(output.get("position")) is int:
+        _require(
+            output["position"] == review["position"],
+            f"{label}: reviewer output names a different position",
+        )
+    determination = output.get("construction_determination")
+    if isinstance(determination, str) and determination in CONSTRUCTION_DETERMINATIONS:
+        _require(
+            determination == review["construction_determination"],
+            f"{label}: reviewer output determination differs from the recorded one",
+        )
+    place = output.get("location")
+    if isinstance(place, dict) and all(
+        type(place.get(axis)) in {int, float} for axis in ("longitude", "latitude")
+    ):
+        location = review["location"]
+        _require(
+            location["status"] == "located"
+            and [location["longitude"], location["latitude"]]
+            == [place["longitude"], place["latitude"]],
+            f"{label}: reviewer output point differs from the recorded point",
+        )
+
+
+def _blind_review_session(
+    review: Any, registered_at: date, recorded_at: date
+) -> dict[str, Any]:
+    """Validate one reviewer session; return it with its date and blindness facts."""
+    _require(isinstance(review, dict), "blind review session is not an object")
+    aborted = (
+        _choice(
+            review.get("session_status"),
+            {"completed", "aborted"},
+            "blind review session status",
+        )
+        == "aborted"
+    )
+    if aborted:
+        _keys(review, ABORTED_SESSION_KEYS, "aborted blind review session")
+    else:
+        _keys_with_optional(
+            review,
+            REVIEW_KEYS,
+            UNCOUNTED_SESSION_KEYS | {"reviewer_output"},
+            "blind review",
+        )
+    position = review["position"]
+    _require(
+        type(position) is int and 1 <= position <= BLIND_REVIEW_SAMPLE_SIZE,
+        "blind review position must be 1..20",
+    )
+    label = f"blind review at position {position}"
+    _text(review["project_stable_key"], f"{label} project key")
+    _text(review["reviewer_session_id"], f"{label} session ID")
+    _require(
+        type(review["session_sequence"]) is int and review["session_sequence"] >= 1,
+        f"{label} session_sequence must be a positive integer",
+    )
+    reviewed_at = _calendar(review["reviewed_at"], f"{label} date")
+    _require(
+        registered_at <= reviewed_at <= recorded_at,
+        f"{label} is dated outside pre-registration..recording",
+    )
+    _require(type(review["counted"]) is bool, f"{label} counted must be true or false")
+    if aborted:
+        _require(review["counted"] is False, f"{label}: an aborted session is never counted")
+    _require(
+        all(review["counted"] == (key not in review) for key in UNCOUNTED_SESSION_KEYS),
+        f"{label}: exactly the uncounted sessions carry uncounted_reason and "
+        "counted_session_id",
+    )
+    if not review["counted"]:
+        _choice(review["uncounted_reason"], UNCOUNTED_REASONS, f"{label} uncounted reason")
+        _text(review["counted_session_id"], f"{label} counted session ID")
+    if aborted:
+        _text(review["abort_notes"], f"{label} abort notes")
+        return {
+            "review": review,
+            "reviewed_at": reviewed_at,
+            "blind": False,
+            "atlas_materials_accessed": None,
+            "atlas_surface_urls": [],
+        }
+    determination = _choice(
+        review["construction_determination"],
+        CONSTRUCTION_DETERMINATIONS,
+        f"{label} construction determination",
+    )
+    evidence = review["construction_evidence"]
+    _require(isinstance(evidence, list), f"{label} construction evidence is not a list")
+    urls = []
+    observed_in_window = False
+    for item in evidence:
+        _keys_with_optional(
+            item,
+            REVIEW_EVIDENCE_KEYS,
+            REVIEW_EVIDENCE_OPTIONAL_KEYS,
+            f"{label} construction evidence",
+        )
+        urls.append(_review_url(item["source_url"], f"{label} evidence source URL"))
+        observed = _calendar(item["observation_date"], f"{label} observation date")
+        _require(observed <= reviewed_at, f"{label} observation follows its review")
+        _text(item["literal_pointer"], f"{label} evidence literal pointer")
+        _hash(item["capture_sha256"], f"{label} evidence capture")
+        for field in sorted(REVIEW_EVIDENCE_OPTIONAL_KEYS.intersection(item)):
+            _text(item[field], f"{label} evidence {field}")
+        if "retrieved_at" in item:
+            retrieved = _review_day(item["retrieved_at"], f"{label} evidence retrieval")
+            _require(
+                observed <= retrieved <= reviewed_at,
+                f"{label} evidence retrieval must fall between its observation and the review",
+            )
+        observed_in_window |= BLIND_REVIEW_WINDOW[0] <= observed <= BLIND_REVIEW_WINDOW[1]
+    successor = _keys(review["successor_check"], {"status", "notes"}, f"{label} successor check")
+    status = _choice(successor["status"], SUCCESSOR_CHECK_STATUSES, f"{label} successor status")
+    _text(successor["notes"], f"{label} successor notes")
+    if determination == "under_construction_in_window":
+        _require(
+            observed_in_window,
+            f"{label}: under_construction_in_window needs an observation inside the window",
+        )
+        _require(
+            status == "none_found_on_or_before_cutoff",
+            f"{label}: under_construction_in_window needs no completion, opening or "
+            "cancellation found on or before the cutoff",
+        )
+    elif determination == "not_under_construction_in_window":
+        _require(bool(evidence), f"{label}: not_under_construction_in_window needs evidence")
+    location = _keys_with_optional(
+        review["location"],
+        REVIEW_LOCATION_KEYS,
+        REVIEW_LOCATION_OPTIONAL_KEYS,
+        f"{label} location",
+    )
+    located = (
+        _choice(location["status"], {"located", "unable_to_locate"}, f"{label} location status")
+        == "located"
+    )
+    if located:
+        _require(
+            _point([location["longitude"], location["latitude"]]),
+            f"{label} point is not finite WGS84 longitude/latitude",
+        )
+        _text(location["method"], f"{label} location method")
+        urls.append(_review_url(location["source_url"], f"{label} location source URL"))
+    else:
+        _require(
+            location["longitude"] is None and location["latitude"] is None,
+            f"{label}: unable_to_locate carries no coordinates",
+        )
+        _require("notes" in location, f"{label}: unable_to_locate needs notes")
+        if location["method"] is not None:
+            _text(location["method"], f"{label} location method")
+        if location["source_url"] is not None:
+            urls.append(_review_url(location["source_url"], f"{label} location source URL"))
+    for field in ("literal_pointer", "notes"):
+        if field in location:
+            _text(location[field], f"{label} location {field}")
+    if "capture_sha256" in location:
+        _hash(location["capture_sha256"], f"{label} location capture")
+    _text(review["identity_notes"], f"{label} identity notes")
+    attestation = _keys(
+        review["blindness_attestation"],
+        {"atlas_materials_accessed", "statement"},
+        f"{label} blindness attestation",
+    )
+    _require(
+        type(attestation["atlas_materials_accessed"]) is bool,
+        f"{label} blindness attestation must be true or false",
+    )
+    _text(attestation["statement"], f"{label} blindness statement")
+    if "reviewer_output" in review:
+        _reviewer_output(review["reviewer_output"], review, label)
+    atlas = sorted({url for url in urls if _atlas_surface(url)})
+    return {
+        "review": review,
+        "reviewed_at": reviewed_at,
+        "blind": attestation["atlas_materials_accessed"] is False and not atlas,
+        "atlas_materials_accessed": attestation["atlas_materials_accessed"],
+        "atlas_surface_urls": atlas,
+    }
+
+
+def _recorded_distance_in_band(rule: str, distance: float) -> bool:
+    if rule == "inside":
+        return distance == 0
+    if rule == "within_1000m":
+        return distance <= LOCATION_AGREEMENT_METRES
+    if rule in ADJUDICATED_LOCATION_RULES:
+        return LOCATION_AGREEMENT_METRES < distance <= LOCATION_ADJUDICATION_METRES
+    return distance > LOCATION_ADJUDICATION_METRES
+
+
+def _blind_review_comparison(
+    row: Any,
+    position: int,
+    key: str,
+    review: Mapping[str, Any],
+    release: Mapping[str, Mapping[str, Mapping[str, str]]],
+    session_ids: set[str],
+    adjudication_window: tuple[date, date],
+) -> dict[str, Any]:
+    """Recompute one comparison row against the pre-registered release's geometry."""
+    _keys_with_optional(row, COMPARISON_KEYS, frozenset({"notes"}), "blind review comparison")
+    label = f"comparison at position {position}"
+    _require(
+        type(row["position"]) is int and row["position"] == position,
+        "blind review comparison positions must run 1..20 in order",
+    )
+    _require(row["project_stable_key"] == key, f"{label} names a different project")
+    if "notes" in row:
+        _text(row["notes"], f"{label} notes")
+    construction = review["construction_determination"] == "under_construction_in_window"
+    _require(
+        row["construction_agrees"] is construction,
+        f"{label}: construction agreement differs from the determination",
+    )
+    rule = _choice(row["location_rule"], LOCATION_RULES, f"{label} location rule")
+    distance = row["location_distance_m"]
+    adjudication = row["adjudication"]
+    location = review["location"]
+    if location["status"] == "unable_to_locate":
+        _require(
+            rule == "unable_to_locate" and distance is None and adjudication is None,
+            f"{label}: an unlocated review compares as unable_to_locate with no distance "
+            "or adjudication",
+        )
+    else:
+        _require(rule != "unable_to_locate", f"{label}: the review located a point")
+        # The sampled rows are the reviewed ones: never the checkpoint being built,
+        # whose later edits cannot re-score a review.
+        site = release["sites"][release["projects"][key]["physical_site_stable_key"]]
+        recomputed = blind_review_location_comparison(
+            [location["longitude"], location["latitude"]],
+            _json_field(site["geometry_json"], "pre-registered site geometry"),
+        )
+        computed, band = recomputed["distance_m"], recomputed["band"]
+        _require(
+            type(distance) in {int, float} and math.isfinite(distance) and distance >= 0,
+            f"{label}: location distance must be finite metres",
+        )
+        _require(
+            abs(distance - computed)
+            <= max(DISTANCE_TOLERANCE_METRES, DISTANCE_TOLERANCE_FRACTION * computed),
+            f"{label}: recorded distance differs from the recomputed {computed:.1f} m",
+        )
+        if band == "adjudication_band":
+            _require(
+                rule in ADJUDICATED_LOCATION_RULES,
+                f"{label}: 1,000-3,000 m needs a written adjudication",
+            )
+        else:
+            _require(
+                rule not in ADJUDICATED_LOCATION_RULES,
+                f"{label}: adjudication is accepted only in the 1,000-3,000 m band",
+            )
+            _require(rule == band, f"{label}: location rule differs from the recomputed {band}")
+        _require(
+            _recorded_distance_in_band(rule, distance),
+            f"{label}: recorded distance {distance} m lies outside the {rule} band",
+        )
+        if rule in ADJUDICATED_LOCATION_RULES:
+            _require(
+                isinstance(adjudication, dict),
+                f"{label}: 1,000-3,000 m needs a written adjudication",
+            )
+            _keys(adjudication, ADJUDICATION_KEYS, f"{label} adjudication")
+            _require(
+                _text(adjudication["adjudicated_by"], f"{label} adjudicator")
+                not in session_ids,
+                f"{label}: the adjudicator must not be a reviewer session",
+            )
+            adjudicated_at = _calendar(
+                adjudication["adjudicated_at"], f"{label} adjudication date"
+            )
+            _require(
+                adjudication_window[0] <= adjudicated_at <= adjudication_window[1],
+                f"{label}: adjudication must follow every counted review and precede "
+                "the recording",
+            )
+            _text(adjudication["reason"], f"{label} adjudication reason")
+        else:
+            _require(
+                adjudication is None, f"{label}: only an adjudicated rule has an adjudication"
+            )
+    agreement = construction and rule in AGREEING_LOCATION_RULES
+    _require(
+        row["agreement"] is agreement, f"{label}: agreement differs from the recomputation"
+    )
+    # Report the pinned recorded distance, never the platform-computed float.
+    return {
+        "position": position,
+        "project_stable_key": key,
+        "reviewer_session_id": review["reviewer_session_id"],
+        "session_sequence": review["session_sequence"],
+        "construction_determination": review["construction_determination"],
+        "construction_agrees": construction,
+        "location_rule": rule,
+        "recorded_location_distance_m": distance,
+        "adjudication": None
+        if adjudication is None
+        else {field: adjudication[field] for field in sorted(ADJUDICATION_KEYS)},
+        "agreement": agreement,
+    }
+
+
+def _counted_sessions(
+    sessions: Sequence[Mapping[str, Any]], sample: Mapping[int, str]
+) -> tuple[dict[int, Mapping[str, Any]], list[dict[str, Any]]]:
+    """Apply ``BLIND_REVIEW_COUNTED_SESSION_RULE``: the counted session is fixed."""
+    groups: dict[int, list[Mapping[str, Any]]] = defaultdict(list)
+    for item in sessions:
+        position = item["review"]["position"]
+        _require(
+            item["review"]["project_stable_key"] == sample[position],
+            f"blind review at position {position} names a different project",
+        )
+        groups[position].append(item)
+    counted: dict[int, Mapping[str, Any]] = {}
+    for position, group in groups.items():
+        flagged = [item for item in group if item["review"]["counted"]]
+        _require(len(flagged) <= 1, f"position {position} has more than one counted review")
+        if flagged:
+            counted[position] = flagged[0]
+    missing = sorted(set(sample) - set(counted))
+    _require(
+        not missing,
+        "every pre-registered position needs exactly one counted review; missing: "
+        + ", ".join(str(position) for position in missing),
+    )
+    uncounted = []
+    for position in sorted(groups):
+        chosen = counted[position]
+        label = f"blind review at position {position}"
+        _require(
+            chosen["atlas_materials_accessed"] is False,
+            f"{label}: a counted session must not have accessed Atlas materials",
+        )
+        _require(
+            not chosen["atlas_surface_urls"],
+            f"{label}: a counted session cites an Atlas surface: "
+            + ", ".join(chosen["atlas_surface_urls"]),
+        )
+        group = sorted(groups[position], key=lambda item: item["review"]["session_sequence"])
+        earliest = next(item for item in group if item["blind"])
+        _require(
+            earliest is chosen,
+            f"{label}: the counted session must be the earliest blind completed session, "
+            + earliest["review"]["reviewer_session_id"],
+        )
+        for item in group:
+            if item is chosen:
+                continue
+            review = item["review"]
+            session = review["reviewer_session_id"]
+            _require(
+                review["counted_session_id"] == chosen["review"]["reviewer_session_id"],
+                f"uncounted session at position {position} must name its counted session",
+            )
+            reason = (
+                "aborted"
+                if review["session_status"] == "aborted"
+                else "later_duplicate"
+                if item["blind"]
+                else "blindness_breach"
+            )
+            _require(
+                review["uncounted_reason"] == reason,
+                f"uncounted session {session} at position {position} is {reason}, "
+                f"not {review['uncounted_reason']}",
+            )
+            uncounted.append(
+                {
+                    "position": position,
+                    "project_stable_key": review["project_stable_key"],
+                    "reviewer_session_id": session,
+                    "session_sequence": review["session_sequence"],
+                    "session_status": review["session_status"],
+                    "reviewed_at": review["reviewed_at"],
+                    "uncounted_reason": reason,
+                    "counted_session_id": review["counted_session_id"],
+                    "construction_determination": review.get("construction_determination"),
+                    "location_status": review["location"]["status"]
+                    if "location" in review
+                    else None,
+                    "atlas_materials_accessed": item["atlas_materials_accessed"],
+                    "atlas_surface_urls": item["atlas_surface_urls"],
+                }
+            )
+    uncounted.sort(key=lambda entry: entry["session_sequence"])
+    return counted, uncounted
+
+
+def _blind_review_results(
+    record: Any,
+    preregistration: Mapping[str, Any],
+    release: Mapping[str, Mapping[str, Mapping[str, str]]],
+    pin: Mapping[str, Any],
+    contract_reviewed_at: date,
+) -> dict[str, Any]:
+    """Validate a results record and recompute every comparison and the totals."""
+    _keys(record, RESULTS_KEYS, "blind review results")
+    _require(
+        record["schema_version"] == BLIND_REVIEW_RESULTS_SCHEMA,
+        "blind review results schema differs",
+    )
+    registered_at = preregistration["registered_at"]
+    recorded_at = _calendar(record["recorded_at"], "blind review results date")
+    _require(
+        registered_at <= recorded_at <= contract_reviewed_at,
+        "blind review results must be recorded after pre-registration and by the "
+        "contract review date",
+    )
+    binding = _keys(record["preregistration"], {"path", "sha256"}, "results pre-registration")
+    _require(
+        binding == {"path": pin["path"], "sha256": pin["sha256"]},
+        "blind review results name a different pre-registration",
+    )
+    _require(
+        isinstance(record["population"], dict)
+        and canonical_sha256(record["population"])
+        == canonical_sha256(preregistration["population"]),
+        "blind review results population differs from the pre-registration",
+    )
+    sample = preregistration["sample"]
+    reviews = record["reviews"]
+    _require(isinstance(reviews, list) and bool(reviews), "blind review results list no reviews")
+    sessions = [_blind_review_session(review, registered_at, recorded_at) for review in reviews]
+    session_ids = [item["review"]["reviewer_session_id"] for item in sessions]
+    _require(len(set(session_ids)) == len(session_ids), "blind reviewer session IDs repeat")
+    sequences = [item["review"]["session_sequence"] for item in sessions]
+    _require(len(set(sequences)) == len(sequences), "blind review session sequences repeat")
+    counted, uncounted = _counted_sessions(sessions, sample)
+    disclosures = _unique_text(record["disclosures"], "blind review disclosures")
+    comparison = record["comparison"]
+    _require(
+        isinstance(comparison, list) and len(comparison) == BLIND_REVIEW_SAMPLE_SIZE,
+        "blind review comparison must list all 20 positions",
+    )
+    # Adjudication is part of the comparison, made after every counted review.
+    window = (max(item["reviewed_at"] for item in counted.values()), recorded_at)
+    outcomes = [
+        _blind_review_comparison(
+            row,
+            position,
+            sample[position],
+            counted[position]["review"],
+            release,
+            set(session_ids),
+            window,
+        )
+        for position, row in enumerate(comparison, 1)
+    ]
+    agreements = sum(item["agreement"] for item in outcomes)
+    totals = _keys(
+        record["totals"], {"sample_size", "agreements", "gate_passed"}, "blind review totals"
+    )
+    _require(
+        type(totals["sample_size"]) is int
+        and totals["sample_size"] == BLIND_REVIEW_SAMPLE_SIZE
+        and type(totals["agreements"]) is int
+        and totals["agreements"] == agreements
+        and totals["gate_passed"] is (agreements >= BLIND_REVIEW_REQUIRED_AGREEMENTS),
+        "blind review totals differ from the recomputation",
+    )
+    rules = Counter(item["location_rule"] for item in outcomes)
+    return {
+        "recorded_at": recorded_at,
+        "sample_size": len(outcomes),
+        "agreements": agreements,
+        "construction_agreements": sum(item["construction_agrees"] for item in outcomes),
+        "location_agreements": sum(
+            item["location_rule"] in AGREEING_LOCATION_RULES for item in outcomes
+        ),
+        "location_rule_counts": {rule: rules[rule] for rule in LOCATION_RULES},
+        "uncounted_sessions": uncounted,
+        "outcomes": outcomes,
+        "disclosures": list(disclosures),
+    }
+
+
+def _blind_review_claims(
+    projects: Mapping[str, Mapping[str, str]], sites: Mapping[str, Mapping[str, str]]
+) -> dict[str, list[Any]]:
+    """Each project's blind-reviewed claims (``BLIND_REVIEW_*_CLAIM_FIELDS``)."""
+    claims = {}
+    for key, row in projects.items():
+        site = sites.get(row["physical_site_stable_key"])
+        claims[key] = [
+            [row[field] for field in BLIND_REVIEW_PROJECT_CLAIM_FIELDS],
+            None if site is None else [site[field] for field in BLIND_REVIEW_SITE_CLAIM_FIELDS],
+        ]
+    return claims
+
+
+def _blind_review(
+    batch: ValidatedBatch,
+    delta: Mapping[str, list[dict[str, Any]]],
+    reviewed_at: date,
+) -> dict[str, Any]:
+    """Validate a v3 contract's pinned pre-registration and results record."""
+    entry = _keys(batch.contract["blind_review"], {"preregistration", "results"}, "blind review")
+    pins = {}
+    raw = {}
+    for name, directory in (("preregistration", "definitions"), ("results", "sources")):
+        raw[name] = _pinned_review_file(
+            batch.root, entry[name], directory, f"blind review {name}"
+        )
+        pins[name] = {field: entry[name][field] for field in ("path", "bytes", "sha256")}
+    preregistration, release = _blind_review_preregistration(
+        _json(raw["preregistration"], "blind review pre-registration"), batch.root
+    )
+    registered = BLIND_REVIEW_PREREGISTRATIONS.get(
+        preregistration["population"]["manifest_sha256"]
+    )
+    _require(
+        registered is not None and dict(registered) == pins["preregistration"],
+        "blind review pre-registration is not the one registered in builder code for "
+        "its population",
+    )
+    results = _blind_review_results(
+        _json(raw["results"], "blind review results"),
+        preregistration,
+        release,
+        pins["preregistration"],
+        reviewed_at,
+    )
+    # The checkpoint being built, read back exactly as its CSV files will read.
+    _, inherited_raw, _ = _inherited(batch)
+    tables = _table_bytes(inherited_raw, delta)
+    current = {
+        name: _keyed(
+            _csv_rows(tables[f"{name}.csv"], TABLE_FIELDS[name], f"draft {name}.csv"),
+            field,
+            f"draft {name}.csv",
+        )
+        for name, field in (
+            ("projects", "project_stable_key"),
+            ("sites", "physical_site_stable_key"),
+        )
+    }
+    reviewed_claims = _blind_review_claims(release["projects"], release["sites"])
+    current_claims = _blind_review_claims(current["projects"], current["sites"])
+    return {
+        "preregistration": {
+            **pins["preregistration"],
+            "registered_at": preregistration["registered_at"].isoformat(),
+            "seed_material": preregistration["seed_material"],
+            "seed_sha256": preregistration["seed_sha256"],
+        },
+        "results_record": {
+            **pins["results"],
+            "recorded_at": results["recorded_at"].isoformat(),
+        },
+        "reviewed_population": dict(preregistration["population"]),
+        "reviewed_project_keys": list(preregistration["keys"]),
+        "current_project_keys": sorted(current_claims),
+        "projects_with_changed_claims": sorted(
+            key
+            for key in set(reviewed_claims) & set(current_claims)
+            if reviewed_claims[key] != current_claims[key]
+        ),
+        "sample": dict(preregistration["sample"]),
+        "reviewers": preregistration["reviewers"],
+        **{key: value for key, value in results.items() if key != "recorded_at"},
+    }
+
+
+def _blind_review_gate(
+    summary: Mapping[str, Any],
+    projects: Sequence[Mapping[str, Any]],
+    inherited_blind: Any,
+    withdrawals: Sequence[Mapping[str, Any]] = (),
+) -> dict[str, Any]:
+    """The v3 gate: evaluated only for exactly the pre-registered population.
+
+    A project removed by a baseline withdrawal is absent from this checkpoint,
+    so a withdrawn reviewed project always makes the population differ and a
+    withdrawn sampled project can never pass or be re-scored.
+    """
+    keys = sorted(row["project_stable_key"] for row in projects)
+    _require(
+        keys == summary["current_project_keys"],
+        "draft projects differ from the validated blind review",
+    )
+    reviewed = summary["reviewed_project_keys"]
+    changed = summary["projects_with_changed_claims"]
+    population = summary["reviewed_population"]
+    matches = keys == reviewed and not changed
+    withdrawn = {
+        item["entry"]["project_stable_key"]: item["withdrawal_id"] for item in withdrawals
+    }
+    _require(
+        not withdrawn.keys() & set(keys)
+        and not (matches and withdrawn.keys() & set(reviewed)),
+        "a withdrawn project cannot remain in a matching blind-review population",
+    )
+    mismatch = None
+    if not matches:
+        current = set(keys)
+        mismatch = {
+            "reviewed_release_path": population["release_path"],
+            "reviewed_manifest_sha256": population["manifest_sha256"],
+            "reviewed_eligible_project_count": len(reviewed),
+            "reviewed_eligible_project_keys_sha256": population[
+                "eligible_project_keys_sha256"
+            ],
+            "current_eligible_project_count": len(keys),
+            "current_eligible_project_keys_sha256": canonical_sha256(keys),
+            "current_projects_not_in_reviewed_population": sorted(current - set(reviewed)),
+            "reviewed_projects_not_in_current_population": sorted(set(reviewed) - current),
+            "projects_with_changed_reviewed_claims": changed,
+            "sampled_positions_not_covered": [
+                position
+                for position, key in sorted(summary["sample"].items())
+                if key not in current or key in changed
+            ],
+            "reason": "The pinned blind review sampled a different eligible population: its project keys, or the identity, status or location claims of its projects, differ from this checkpoint's. Its result is reported but cannot pass this checkpoint's gate; a new pre-registered sample of the current eligible population is required.",
+        }
+        if withdrawals:
+            # Reported only by a checkpoint with withdrawals, so v3 checkpoints
+            # without them keep their exact report bytes.
+            mismatch["reviewed_projects_withdrawn"] = sorted(
+                withdrawn.keys() & set(reviewed)
+            )
+            mismatch["sampled_projects_withdrawn"] = [
+                {
+                    "position": position,
+                    "project_stable_key": key,
+                    "withdrawal_id": withdrawn[key],
+                }
+                for position, key in sorted(summary["sample"].items())
+                if key in withdrawn
+            ]
+    sample_size, agreements = summary["sample_size"], summary["agreements"]
+    record_passed = (
+        sample_size == BLIND_REVIEW_SAMPLE_SIZE
+        and agreements >= BLIND_REVIEW_REQUIRED_AGREEMENTS
+    )
+    return {
+        "sample_size": sample_size,
+        "agreements": agreements,
+        "required_sample_size": BLIND_REVIEW_SAMPLE_SIZE,
+        "required_agreements": BLIND_REVIEW_REQUIRED_AGREEMENTS,
+        "eligible_project_count": len(keys),
+        "eligible_project_stable_keys": keys,
+        "eligible_project_keys_sha256": canonical_sha256(keys),
+        "population_scope": BLIND_REVIEW_POPULATION_SCOPE,
+        "sample_scope": "the pinned pre-registered fixed 20-project blind review, drawn from exactly this checkpoint's eligible population: the same project keys and blind-reviewed claims"
+        if matches
+        else "the pinned pre-registered blind review was drawn from a different eligible population (see population_mismatch); its inherited result is reported but does not cover this checkpoint",
+        "inherited_baseline_review": inherited_blind,
+        "population_matches": matches,
+        "population_mismatch": mismatch,
+        "reviewed_population": population,
+        "reviewed_claim_fields": {
+            "projects": list(BLIND_REVIEW_PROJECT_CLAIM_FIELDS),
+            "sites": list(BLIND_REVIEW_SITE_CLAIM_FIELDS),
+        },
+        "preregistration": summary["preregistration"],
+        "results_record": summary["results_record"],
+        "reviewed_population_gate_passed": record_passed,
+        "construction_agreements": summary["construction_agreements"],
+        "location_agreements": summary["location_agreements"],
+        "location_rule_counts": summary["location_rule_counts"],
+        "counted_session_rule": BLIND_REVIEW_COUNTED_SESSION_RULE,
+        "uncounted_review_sessions": summary["uncounted_sessions"],
+        "sample_outcomes": summary["outcomes"],
+        "disagreement_positions": [
+            item["position"] for item in summary["outcomes"] if not item["agreement"]
+        ],
+        "location_method": BLIND_REVIEW_LOCATION_METHOD,
+        "reviewers": summary["reviewers"],
+        "disclosures": summary["disclosures"],
+        "passed": matches and record_passed,
+    }
+
+
 def validate_batch(
     contract_path: Path, review_pins: ReviewPins, *, root: Path = ROOT
 ) -> ValidatedBatch:
@@ -2199,13 +4809,22 @@ def validate_batch(
     contract = _json(
         _read_pinned(contract_path, review_pins.contract_sha256), "batch contract"
     )
-    # Only a v2 contract may carry baseline_corrections; v1 keeps its exact keys.
-    corrections_enabled = (
-        isinstance(contract, dict) and contract.get("schema_version") == SCHEMA_VERSION_V2
-    )
+    # Only a v2 or v3 contract may carry baseline_corrections and only a v3
+    # contract a blind_review and, optionally, baseline_withdrawals; v1 and v2
+    # keep their exact keys.
+    schema_version = contract.get("schema_version") if isinstance(contract, dict) else None
+    blind_review_enabled = schema_version == SCHEMA_VERSION_V3
+    corrections_enabled = schema_version == SCHEMA_VERSION_V2 or blind_review_enabled
+    withdrawals_enabled = blind_review_enabled and "baseline_withdrawals" in contract
     _keys(
         contract,
-        CONTRACT_KEYS_V2 if corrections_enabled else CONTRACT_KEYS,
+        CONTRACT_KEYS_V3 | {"baseline_withdrawals"}
+        if withdrawals_enabled
+        else CONTRACT_KEYS_V3
+        if blind_review_enabled
+        else CONTRACT_KEYS_V2
+        if corrections_enabled
+        else CONTRACT_KEYS,
         "batch contract",
     )
     _require(
@@ -2217,6 +4836,24 @@ def validate_batch(
         and (corrections_enabled or not review_pins.baseline_correction_sha256),
         "baseline correction review pins require a v2 contract",
     )
+    _require(
+        isinstance(review_pins.baseline_withdrawal_sha256, Mapping)
+        and (withdrawals_enabled or not review_pins.baseline_withdrawal_sha256),
+        "baseline withdrawal review pins require a v3 contract with baseline_withdrawals",
+    )
+    if blind_review_enabled:
+        _require(
+            isinstance(review_pins.blind_review_sha256, str)
+            and canonical_sha256(contract["blind_review"])
+            == review_pins.blind_review_sha256,
+            "independent blind review pin differs",
+        )
+    else:
+        _require(
+            review_pins.blind_review_sha256 is None
+            or review_pins.blind_review_sha256 == "",
+            "a blind review pin requires a v3 contract",
+        )
     _require(
         re.fullmatch(
             r"[a-z0-9][a-z0-9-]{0,95}", _text(contract["batch_id"], "batch ID")
@@ -2574,10 +5211,26 @@ def validate_batch(
             reviewed_at,
             set(used_sources),
             date_only_sources,
+            allow_empty=blind_review_enabled,
+            formats=INHERITED_THROUGH_FORMATS_V3
+            if blind_review_enabled
+            else INHERITED_THROUGH_FORMATS_V2,
         )
         for correction in corrections:
             used_sources.update(correction["geometry_source_ids"])
     _require(used_sources == set(sources), "unused source documents are not allowed")
+    withdrawals: list[dict[str, Any]] = []
+    if withdrawals_enabled:
+        # Validated before any row is derived: every later step, including the
+        # blind-review population comparison, reads the post-withdrawal rows.
+        withdrawals = _baseline_withdrawals(
+            contract["baseline_withdrawals"],
+            root,
+            baseline,
+            review_pins,
+            reviewed_at,
+            corrections,
+        )
     batch = ValidatedBatch(
         root,
         contract_path,
@@ -2587,11 +5240,21 @@ def validate_batch(
         sources,
         tuple(validated),
         tuple(corrections),
+        baseline_withdrawals=tuple(withdrawals),
     )
+    delta = None
     if corrections:
         # The evidence deltas depend on acceptance usage, so phase one derives
         # them once here; build and validate_draft derive them again identically.
-        _intersecting_rows_unchanged(batch, _delta_rows(batch))
+        delta = _delta_rows(batch)
+        _intersecting_rows_unchanged(batch, delta)
+    if blind_review_enabled:
+        # The blind review is recomputed against the pre-registered release's rows,
+        # and this checkpoint's rows are compared with them for the gate.
+        blind_review = _blind_review(
+            batch, delta if delta is not None else _delta_rows(batch), reviewed_at
+        )
+        batch = replace(batch, blind_review=blind_review)
     return batch
 
 
@@ -2810,17 +5473,18 @@ def _inherited(
 ) -> tuple[dict[str, list[dict[str, Any]]], dict[str, bytes], list[Any]]:
     """Inherited rows, raw CSV bytes and features, with pinned corrections applied.
 
-    Without corrections these are the frozen v0.17 rows, bytes and features.
-    A correction replaces exactly its project/site lines and feature with the
-    validated derivations and drops the superseded evidence line; every other
-    inherited line keeps its frozen bytes.
+    Without corrections or withdrawals these are the frozen v0.17 rows, bytes
+    and features. A correction replaces exactly its project/site lines and
+    feature with the validated derivations and drops the superseded evidence
+    lines; a withdrawal drops its project, site and evidence lines and its
+    feature. Every other inherited line keeps its frozen bytes and order.
     """
     rows = {name: batch.baseline[name] for name in TABLE_FIELDS}
     raw = {name: batch.baseline["files"][f"{name}.csv"] for name in TABLE_FIELDS}
     features = _json(batch.baseline["files"]["sites.geojson"], "baseline GeoJSON")[
         "features"
     ]
-    if not batch.baseline_corrections:
+    if not batch.baseline_corrections and not batch.baseline_withdrawals:
         return rows, raw, features
     rows = {name: list(value) for name, value in rows.items()}
     lines = {
@@ -2828,26 +5492,65 @@ def _inherited(
         for name in TABLE_FIELDS
     }
     features = list(features)
-    dropped: set[int] = set()
+    dropped: dict[str, set[int]] = {name: set() for name in TABLE_FIELDS}
     for correction in batch.baseline_corrections:
         located = correction["located"]
         for table, key in (("projects", "project"), ("sites", "site")):
             index = located[table]["index"]
             rows[table][index] = correction[key]
             lines[table][index + 1] = _csv_line(correction[key], TABLE_FIELDS[table])
-        dropped.add(located["evidence"]["index"])
+        dropped["evidence"].add(located["evidence"]["index"])
+        dropped["evidence"].update(item["index"] for item in located["additional_evidence"])
         features[located["feature"]["index"]] = correction["feature"]
-    rows["evidence"] = [
-        row for index, row in enumerate(rows["evidence"]) if index not in dropped
-    ]
-    lines["evidence"] = [
-        line for number, line in enumerate(lines["evidence"]) if number - 1 not in dropped
+    removed_features: set[int] = set()
+    for withdrawal in batch.baseline_withdrawals:
+        located = withdrawal["located"]
+        dropped["projects"].add(located["projects"]["index"])
+        dropped["sites"].add(located["sites"]["index"])
+        dropped["evidence"].update(item["index"] for item in located["evidence"])
+        removed_features.add(located["feature"]["index"])
+    for name in TABLE_FIELDS:
+        rows[name] = [row for index, row in enumerate(rows[name]) if index not in dropped[name]]
+        # Line 0 is the header and the last element the empty string after the
+        # final newline; data line number n holds row index n - 1.
+        lines[name] = [
+            line for number, line in enumerate(lines[name]) if number - 1 not in dropped[name]
+        ]
+    features = [
+        feature for index, feature in enumerate(features) if index not in removed_features
     ]
     return rows, {name: b"\n".join(value) for name, value in lines.items()}, features
 
 
+def _table_bytes(
+    inherited_raw: Mapping[str, bytes], delta: Mapping[str, list[dict[str, Any]]]
+) -> dict[str, bytes]:
+    """The draft's CSV files: the inherited bytes, then the delta rows."""
+    return {
+        f"{name}.csv": inherited_raw[name]
+        + core._csv_bytes(delta[name], fields).split(b"\n", 1)[1]
+        for name, fields in (
+            ("projects", core.PROJECT_FIELDS),
+            ("sites", core.SITE_FIELDS),
+            ("evidence", core.EVIDENCE_FIELDS),
+        )
+    }
+
+
 def _payloads(batch: ValidatedBatch) -> tuple[dict[str, bytes], dict[str, Any]]:
-    corrected = batch.contract["schema_version"] == SCHEMA_VERSION_V2
+    # v3 is v2 plus the pinned blind review and optional baseline withdrawals;
+    # v1 and v2 outputs, and v3 outputs without withdrawals, are unchanged.
+    blind = batch.contract["schema_version"] == SCHEMA_VERSION_V3
+    corrected = batch.contract["schema_version"] == SCHEMA_VERSION_V2 or blind
+    withdrawn = blind and "baseline_withdrawals" in batch.contract
+    _require(
+        blind == (batch.blind_review is not None),
+        "a v3 draft needs exactly its validated blind review",
+    )
+    _require(
+        withdrawn == bool(batch.baseline_withdrawals),
+        "a draft with baseline withdrawals needs exactly its validated v3 withdrawals",
+    )
     delta = _delta_rows(batch)
     inherited_rows, inherited_raw, inherited_features = _inherited(batch)
     tables = {name: [*inherited_rows[name], *delta[name]] for name in delta}
@@ -2876,10 +5579,43 @@ def _payloads(batch: ValidatedBatch) -> tuple[dict[str, bytes], dict[str, Any]]:
             }
             _require(
                 referenced.issubset(output_evidence)
-                and correction["located"]["evidence"]["row"]["evidence_id"]
-                not in output_evidence,
+                and not output_evidence.intersection(
+                    correction["superseded_evidence_ids"]
+                ),
                 "corrected rows and output evidence differ",
             )
+    if withdrawn:
+        # Nothing that remains may name a withdrawn project, site or evidence
+        # row, and every remaining evidence row is used by a remaining project.
+        removed = {
+            identifier
+            for withdrawal in batch.baseline_withdrawals
+            for identifier in (
+                withdrawal["located"]["projects"]["row"]["project_id"],
+                withdrawal["located"]["sites"]["row"]["site_id"],
+                *withdrawal["located"]["evidence_ids"],
+            )
+        }
+        _require(
+            not any(
+                identifier in str(value)
+                for table in tables.values()
+                for row in table
+                for value in row.values()
+                for identifier in removed
+            ),
+            "a remaining row references a withdrawn project, site or evidence row",
+        )
+        output_projects = {row["project_id"] for row in projects}
+        _require(
+            all(
+                bool(_json_field(row["project_ids_json"], "evidence projects"))
+                and set(_json_field(row["project_ids_json"], "evidence projects"))
+                <= output_projects
+                for row in evidence
+            ),
+            "a remaining evidence row is not used by a remaining project",
+        )
     country_counts = dict(sorted(Counter(row["country"] for row in sites).items()))
     imagery_counts = dict(
         sorted(Counter(row["imagery_review_outcome"] for row in projects).items())
@@ -2969,8 +5705,20 @@ def _payloads(batch: ValidatedBatch) -> tuple[dict[str, bytes], dict[str, Any]]:
             "reason": "this builder emits opt-in drafts only",
         },
     }
+    if blind:
+        gates["blind_review"] = _blind_review_gate(
+            batch.blind_review, projects, inherited_blind, batch.baseline_withdrawals
+        )
+    if withdrawn:
+        # Only a checkpoint with withdrawals carries this gate, so v3 checkpoints
+        # without them keep their exact report bytes.
+        gates[WITHDRAWAL_SHARED_CAPTURE_GATE] = _shared_capture_gate(
+            batch.baseline_withdrawals, projects, evidence
+        )
     report = {
-        "format": "datacenter-atlas-v018-draft-selection-v2"
+        "format": "datacenter-atlas-v018-draft-selection-v3"
+        if blind
+        else "datacenter-atlas-v018-draft-selection-v2"
         if corrected
         else "datacenter-atlas-v018-draft-selection-v1",
         "batch_id": batch.contract["batch_id"],
@@ -3014,6 +5762,17 @@ def _payloads(batch: ValidatedBatch) -> tuple[dict[str, bytes], dict[str, Any]]:
             batch.pins.baseline_correction_sha256
         )
         provenance["baseline_corrections"] = batch.contract["baseline_corrections"]
+    if blind:
+        provenance["independent_blind_review_sha256"] = batch.pins.blind_review_sha256
+        provenance["blind_review"] = batch.contract["blind_review"]
+    withdrawal_summary: dict[str, Any] = {}
+    if withdrawn:
+        withdrawal_summary = _withdrawals_summary(batch.baseline_withdrawals, sites)
+        report["baseline_withdrawals"] = withdrawal_summary
+        provenance["independent_baseline_withdrawal_review_sha256"] = dict(
+            batch.pins.baseline_withdrawal_sha256
+        )
+        provenance["baseline_withdrawals"] = batch.contract["baseline_withdrawals"]
     geojson = _json(batch.baseline["files"]["sites.geojson"], "baseline GeoJSON")
     geojson = {
         **geojson,
@@ -3046,7 +5805,16 @@ def _payloads(batch: ValidatedBatch) -> tuple[dict[str, bytes], dict[str, Any]]:
                 )
                 field["allowed_values_scope"] = (
                     "frozen baseline schema plus values in reviewed draft rows"
-                    + (" and pinned baseline corrections" if corrected else "")
+                    + (
+                        " and pinned baseline corrections"
+                        if corrected and batch.baseline_corrections
+                        else ""
+                    )
+                    + (
+                        "; pinned baseline withdrawals remove rows but add no value"
+                        if withdrawn
+                        else ""
+                    )
                 )
     schema["v018_draft_contract"] = {
         "schema_version": batch.contract["schema_version"],
@@ -3074,6 +5842,38 @@ def _payloads(batch: ValidatedBatch) -> tuple[dict[str, bytes], dict[str, Any]]:
                 "baseline_correction_scope": "Accepted only through pinned baseline corrections of inherited v0.17 rows, never for acceptances. Host-estate context is not a reviewed site locator, official boundary or site position, and is excluded from reviewed_site_locator_projects.",
             }
         )
+    if blind:
+        schema["v018_draft_contract"].update(
+            {
+                "blind_review_preregistration_schema": BLIND_REVIEW_PREREGISTRATION_SCHEMA,
+                "blind_review_results_schema": BLIND_REVIEW_RESULTS_SCHEMA,
+                "blind_review_location_rules": list(LOCATION_RULES),
+                "blind_review_agreeing_location_rules": sorted(AGREEING_LOCATION_RULES),
+                "blind_review_location_method": BLIND_REVIEW_LOCATION_METHOD,
+                "blind_review_counted_session_rule": BLIND_REVIEW_COUNTED_SESSION_RULE,
+                "blind_review_claim_fields": {
+                    "projects": list(BLIND_REVIEW_PROJECT_CLAIM_FIELDS),
+                    "sites": list(BLIND_REVIEW_SITE_CLAIM_FIELDS),
+                },
+                "blind_review_gate": "Evaluated only when this draft is exactly the pre-registered population: the same sorted eligible project keys and, for every project, the same blind-reviewed claim values. At least 19 of the 20 pre-registered projects must then agree on construction and location, recomputed against the pre-registered release. A different population is reported with population_mismatch and never passes.",
+            }
+        )
+    if withdrawn:
+        schema["v018_draft_contract"].update(
+            {
+                "baseline_withdrawal_record_schema": BASELINE_WITHDRAWAL_RECORD_SCHEMA,
+                "baseline_withdrawal_decisions": [BASELINE_WITHDRAWAL_DECISION],
+                "baseline_withdrawal_bases": sorted(BASELINE_WITHDRAWAL_BASES),
+                "baseline_withdrawal_claim_boundary": dict(
+                    BASELINE_WITHDRAWAL_CLAIM_BOUNDARY
+                ),
+                "baseline_withdrawal_ids": sorted(
+                    item["withdrawal_id"] for item in batch.baseline_withdrawals
+                ),
+                "baseline_withdrawal_scope": "Accepted only through pinned schema-v3 baseline withdrawals of inherited v0.17 projects on single-project sites. A withdrawal removes the project row, its site row, its GeoJSON feature and every evidence row only it referenced, and changes no other byte. It asserts no physical status (not paused, cancelled, completed or not under construction); the withdrawn project's status on the lifecycle reference date is unknown, and no status value is added. Selected rows that share a withdrawn row's source capture (the same source URL and content hash) are neither changed nor re-reviewed; they keep the withdrawal_shared_capture_review final-release gate open.",
+                "baseline_withdrawal_shared_capture_gate": WITHDRAWAL_SHARED_CAPTURE_GATE,
+            }
+        )
     attribution = (
         batch.baseline["files"]["ATTRIBUTION.txt"]
         + b"\n\nV0.18 DRAFT ADDITIONAL SOURCE ATTRIBUTION\n"
@@ -3083,31 +5883,69 @@ def _payloads(batch: ValidatedBatch) -> tuple[dict[str, bytes], dict[str, Any]]:
         attribution += (
             f"\n{source_id}\n{row['attribution']}\n{row['license']}\n{row['source_url']}\nSource input: {source['spec']['path']}\n"
         ).encode()
+
+    def plural(count: int, noun: str) -> str:
+        return f"{count} {noun}{'' if count == 1 else 's'}"
+
     preservation = "All inherited rows and features are preserved. "
-    if corrected:
+    corrections_detail = ""
+    # v2 always has a correction; a v3 draft without one keeps the v1 wording.
+    if corrected and batch.baseline_corrections:
         rescoped = len(batch.baseline_corrections)
         removed = sum(
             len(item["evidence_delta"]["removed"]) for item in batch.baseline_corrections
         )
-        shared = sum(
+        shared = len(
+            {
+                row["evidence_id"]
+                for item in batch.baseline_corrections
+                for row in item["evidence_delta"]["association_only"]
+            }
+        )
+        associations = sum(
             len(item["evidence_delta"]["association_only"])
             for item in batch.baseline_corrections
         )
-
-        def plural(count: int, noun: str) -> str:
-            return f"{count} {noun}{'' if count == 1 else 's'}"
-
-        preservation = (
-            "All inherited rows and features are preserved, except the changes made "
-            "by pinned baseline corrections: the enumerated fields of "
+        corrections_detail = (
+            "the enumerated fields of "
             f"{plural(rescoped, 're-scoped project row')}, "
             f"{plural(rescoped, 'site row')} and {plural(rescoped, 'feature')}; "
             f"{plural(removed, 'superseded evidence row')} dropped; and "
-            f"{plural(shared, 'shared evidence row')} gaining only the corrected "
-            "project association. "
+            + (
+                f"{plural(shared, 'shared evidence row')} gaining only the corrected "
+                "project association"
+                if associations == shared
+                else f"{plural(shared, 'shared evidence row')} gaining only "
+                f"{associations} corrected project associations"
+            )
+        )
+    withdrawals_detail = ""
+    if withdrawn:
+        effect = withdrawal_summary["count_effect"]
+        withdrawals_detail = (
+            f"{plural(-effect['projects'], 'project row')}, "
+            f"{plural(-effect['physical_sites'], 'site row')}, "
+            f"{plural(-effect['physical_sites'], 'feature')} and "
+            f"{plural(-effect['evidence'], 'evidence row')}"
+        )
+    if corrections_detail and withdrawals_detail:
+        preservation = (
+            "All inherited rows and features are preserved, except the changes made "
+            f"by pinned baseline corrections ({corrections_detail}) and the rows "
+            f"removed by pinned baseline withdrawals ({withdrawals_detail}). "
+        )
+    elif corrections_detail:
+        preservation = (
+            "All inherited rows and features are preserved, except the changes made "
+            f"by pinned baseline corrections: {corrections_detail}. "
+        )
+    elif withdrawals_detail:
+        preservation = (
+            "All inherited rows and features are preserved, except the rows removed "
+            f"by pinned baseline withdrawals: {withdrawals_detail}. "
         )
     corrections_text = ""
-    if corrected:
+    if corrected and batch.baseline_corrections:
         correction_count = len(batch.baseline_corrections)
         host_estate = counts["host_estate_context_projects"]
         correction_ids = ", ".join(
@@ -3124,10 +5962,101 @@ def _payloads(batch: ValidatedBatch) -> tuple[dict[str, bytes], dict[str, Any]]:
             "not a reviewed site locator; such a display anchor is not a site position. "
             "See selection-report.json baseline_corrections and locator_exceptions.\n\n"
         )
+    withdrawals_text = ""
+    delta_sentence = (
+        f"The frozen v0.17 baseline has {baseline_count} sites; this reviewed draft adds "
+        f"{len(delta['sites'])}. "
+    )
+    if withdrawn:
+        effect = withdrawal_summary["count_effect"]
+        count = len(batch.baseline_withdrawals)
+        one = count == 1
+        withdrawal_ids = ", ".join(
+            sorted(item["withdrawal_id"] for item in batch.baseline_withdrawals)
+        )
+        lost = withdrawal_summary["countries_without_selected_site"]
+        affected = gates[WITHDRAWAL_SHARED_CAPTURE_GATE]["projects"]
+        single = len(affected) == 1
+        shared_text = (
+            f"{plural(len(affected), 'selected project')} ({', '.join(affected)}) "
+            f"{'keeps' if single else 'keep'} evidence from the same source capture (the same "
+            "URL and content hash) as a withdrawn evidence row; a withdrawal neither changes "
+            f"nor re-reviews {'it' if single else 'them'}, so the "
+            f"{WITHDRAWAL_SHARED_CAPTURE_GATE} gate is not passed. "
+            if affected
+            else "No selected project shares a source capture with a withdrawn evidence row. "
+        )
+        delta_sentence = (
+            f"The frozen v0.17 baseline has {baseline_count} sites; this reviewed draft adds "
+            f"{len(delta['sites'])} and withdraws {-effect['physical_sites']}. "
+        )
+        withdrawals_text = (
+            f"Baseline withdrawals: {count} pinned versioned "
+            f"withdrawal{'' if one else 's'} ({withdrawal_ids}) "
+            f"remove{'s' if one else ''} {plural(-effect['projects'], 'inherited project')} "
+            f"and {plural(-effect['physical_sites'], 'site')} from the selection, because "
+            f"{'its' if one else 'their'} selected evidence does not meet the acceptance "
+            f"contract, and drop{'s' if one else ''} the "
+            f"{plural(-effect['evidence'], 'evidence row')} that only "
+            f"{'it' if one else 'they'} referenced. A withdrawal asserts no physical "
+            "status: it does not claim that a project is paused, cancelled, completed or "
+            "not under construction, and a withdrawn project's physical status on "
+            f"{LIFECYCLE_REFERENCE_DATE.isoformat()} is unknown. "
+            + (f"No selected site remains in {', '.join(lost)}. " if lost else "")
+            + shared_text
+            + "ATTRIBUTION.txt keeps every inherited v0.17 notice, including notices for "
+            "sources that only withdrawn rows used. "
+            + "See selection-report.json baseline_withdrawals.\n\n"
+        )
+    blind_text = (
+        f"Imagery outcomes: {reviewed_imagery}/{len(projects)}; additional blind reviews: 0. "
+    )
+    if blind:
+        gate = gates["blind_review"]
+        result = f"{gate['agreements']}/{gate['sample_size']} agreements"
+        if gate["population_matches"]:
+            blind_text = (
+                f"Imagery outcomes: {reviewed_imagery}/{len(projects)}. "
+                f"Blind review: {result} in the pre-registered fixed sample of all "
+                f"{len(projects)} eligible projects; the blind-review gate (at least "
+                f"{BLIND_REVIEW_REQUIRED_AGREEMENTS} of {BLIND_REVIEW_SAMPLE_SIZE}) is "
+                f"{'passed' if gate['passed'] else 'not passed'}. "
+            )
+        else:
+            blind_text = (
+                f"Imagery outcomes: {reviewed_imagery}/{len(projects)}. "
+                f"Blind review: the pinned pre-registered result ({result}) was drawn "
+                "from a different eligible population "
+                f"({gate['reviewed_population']['eligible_project_count']} projects, "
+                "whose keys or blind-reviewed claims differ), not this checkpoint's "
+                f"{len(projects)} projects, so the blind-review gate is not passed. "
+            )
+            sampled_withdrawn = gate["population_mismatch"].get(
+                "sampled_projects_withdrawn", []
+            )
+            if sampled_withdrawn:
+                single = len(sampled_withdrawn) == 1
+                blind_text += (
+                    f"Sampled position{'' if single else 's'} "
+                    + ", ".join(str(item["position"]) for item in sampled_withdrawn)
+                    + f" {'was' if single else 'were'} removed by a pinned baseline "
+                    "withdrawal and cannot be re-scored against this checkpoint. "
+                )
+        uncounted = len(gate["uncounted_review_sessions"])
+        if uncounted:
+            blind_text += (
+                f"{uncounted} further review session{'' if uncounted == 1 else 's'} "
+                f"{'was' if uncounted == 1 else 'were'} recorded but not counted under "
+                "the counted-session rule; see selection-report.json. "
+            )
+        blind_text += (
+            "The blind reviewers were independent AI research agents, not human "
+            "reviewers. "
+        )
     readme = (
         f"# Data Center Atlas v0.18 expansion draft\n\n"
         f"{counts['physical_sites']} physical sites, {counts['projects']} projects, {counts['countries']} countries. "
-        f"The frozen v0.17 baseline has {baseline_count} sites; this reviewed draft adds {len(delta['sites'])}. "
+        f"{delta_sentence}"
         f"The requested expansion target remains {target} total sites ({TARGET_ADDITIONAL_SITES} additional).\n\n"
         "This is an opt-in local draft, not a public release or a claim of goal completion. "
         "The public builder still defaults to v0.17. "
@@ -3135,8 +6064,9 @@ def _payloads(batch: ValidatedBatch) -> tuple[dict[str, bytes], dict[str, Any]]:
         "Locators are not building footprints or surveyed boundaries unless their explicit semantics say otherwise. "
         "No additional roles, workloads, capacities, energy, or efficiency observations are inferred.\n\n"
         f"{corrections_text}"
+        f"{withdrawals_text}"
         f"Lifecycle cutoff: {LIFECYCLE_REFERENCE_DATE.isoformat()}. "
-        f"Imagery outcomes: {reviewed_imagery}/{len(projects)}; additional blind reviews: 0. "
+        f"{blind_text}"
         "See selection-report.json for every gate and ATTRIBUTION.txt for source terms.\n"
     ).encode()
     files = {
@@ -3147,15 +6077,13 @@ def _payloads(batch: ValidatedBatch) -> tuple[dict[str, bytes], dict[str, Any]]:
         "selection-report.json": core._json_bytes(report),
         "review-provenance.json": core._json_bytes(provenance),
     }
-    for name, fields in (
-        ("projects", core.PROJECT_FIELDS),
-        ("sites", core.SITE_FIELDS),
-        ("evidence", core.EVIDENCE_FIELDS),
-    ):
-        appended = core._csv_bytes(delta[name], fields).split(b"\n", 1)[1]
-        files[f"{name}.csv"] = inherited_raw[name] + appended
+    files.update(_table_bytes(inherited_raw, delta))
     manifest = {
-        "format": DRAFT_MANIFEST_FORMAT_V2 if corrected else DRAFT_MANIFEST_FORMAT_V1,
+        "format": DRAFT_MANIFEST_FORMAT_V3
+        if blind
+        else DRAFT_MANIFEST_FORMAT_V2
+        if corrected
+        else DRAFT_MANIFEST_FORMAT_V1,
         "draft_id": f"2026-08-20-v0.18-draft-{batch.contract['batch_id']}",
         "release_status": "draft",
         "publishable_as_final": False,

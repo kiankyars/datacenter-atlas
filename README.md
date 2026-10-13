@@ -11,9 +11,9 @@ filter by construction stage, and open a site to see its projects and sources.
 ## Coverage
 
 <!-- atlas:current-dataset -->
-- **Coverage:** **200 physical sites**, **203 construction projects** and **46 countries**.
-- **Data updated:** 2026-10-09.
-- **Construction observations:** 2026-05-22 to 2026-08-20. Each record includes its source and
+- **Coverage:** **198 physical sites**, **201 construction projects** and **44 countries**.
+- **Data updated:** 2026-10-13.
+- **Construction observations:** 2026-05-26 to 2026-09-22. Each record includes its source and
   observation date.
 <!-- /atlas:current-dataset -->
 
@@ -44,9 +44,9 @@ lists every file with its size and checksum. Language models and agents can star
 
 <!-- atlas:version-files -->
 `downloads/latest/` contains the current data. For reproducible work, use the
-[archived files](https://kiankyars.github.io/datacenter-atlas/downloads/2026-08-20-v0.18-draft-thirty-sixth-reviewed/)
-and verify them against their
-[`SHA256SUMS`](https://kiankyars.github.io/datacenter-atlas/downloads/2026-08-20-v0.18-draft-thirty-sixth-reviewed/SHA256SUMS).
+[archived files](https://kiankyars.github.io/datacenter-atlas/downloads/2026-10-13/) and verify them
+against their
+[`SHA256SUMS`](https://kiankyars.github.io/datacenter-atlas/downloads/2026-10-13/SHA256SUMS).
 <!-- /atlas:version-files -->
 
 Archived CSVs, GeoJSON and source records remain unchanged. Generated formats such as SQLite,
@@ -185,16 +185,16 @@ and the site offers the same citation as
 [CSL-JSON](https://kiankyars.github.io/datacenter-atlas/api/v1/citation.json).
 
 <!-- atlas:citation -->
-> Kyars, K. (2026). *Data Center Atlas* (2026-10-09) [Data set].
-> https://kiankyars.github.io/datacenter-atlas/downloads/2026-08-20-v0.18-draft-thirty-sixth-reviewed/
+> Kyars, K. (2026). *Data Center Atlas* (2026-10-13) [Data set].
+> https://kiankyars.github.io/datacenter-atlas/downloads/2026-10-13/
 
 ```bibtex
 @misc{kyars2026datacenteratlas,
   author = "Kyars, Kian",
   title  = "Data Center Atlas",
   year   = "2026",
-  note   = "Data as published 2026-10-09",
-  url    = "https://kiankyars.github.io/datacenter-atlas/downloads/2026-08-20-v0.18-draft-thirty-sixth-reviewed/"
+  note   = "Data as published 2026-10-13",
+  url    = "https://kiankyars.github.io/datacenter-atlas/downloads/2026-10-13/"
 }
 ```
 <!-- /atlas:citation -->

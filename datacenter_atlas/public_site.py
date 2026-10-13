@@ -603,7 +603,7 @@ def _load_version(path: Path) -> DatasetVersion:
     if not isinstance(report, dict):
         raise PublicSiteError(f"{identifier}/selection-report.json: expected a JSON object")
     kind = manifest.get("release_status")
-    if kind not in {"preview", "draft"}:
+    if kind not in {"preview", "draft", "published"}:
         raise PublicSiteError(f"{identifier}: unsupported release_status {kind!r}")
     counts = manifest.get("counts")
     if not isinstance(counts, dict):
@@ -613,6 +613,19 @@ def _load_version(path: Path) -> DatasetVersion:
             raise PublicSiteError(f"{identifier}: manifest counts.{key} must be an integer")
     label, sort_key = _version_label_and_order(identifier, kind, counts)
     checkpoint = _checkpoint_date(identifier, kind, manifest)
+    if kind == "draft":
+        # Corrections can reduce counts; chronology must not depend on growth.
+        sort_key = (1, checkpoint, *sort_key[1:])
+    if kind == "published":
+        if manifest.get("format") != "datacenter-atlas-update-v1":
+            raise PublicSiteError(f"{identifier}: unsupported published dataset format")
+        start, end = manifest.get("observation_window_start"), manifest.get("observation_window_end")
+        _require_date(start, f"{identifier}: observation window start")
+        _require_date(end, f"{identifier}: observation window end")
+        if not start <= end <= checkpoint:
+            raise PublicSiteError(f"{identifier}: observation dates must end on or before the update date")
+        if manifest.get("cohort_lifecycle_reference_date") != checkpoint:
+            raise PublicSiteError(f"{identifier}: published lifecycle reference must equal updated_at")
     site_count = counts.get("physical_sites", 0)
     label = f"{checkpoint} · {site_count} {'site' if site_count == 1 else 'sites'}"
     lifecycle = (
@@ -621,7 +634,10 @@ def _load_version(path: Path) -> DatasetVersion:
         or report.get("lifecycle_reference_date")
     )
     _require_date(lifecycle, f"{identifier}: lifecycle reference date")
-    publishable = manifest.get("publishable_as_final", report.get("publishable_as_final", False))
+    # Published updates have no legacy gate record; expose a consistent compatibility flag.
+    publishable = kind == "published" or manifest.get(
+        "publishable_as_final", report.get("publishable_as_final", False)
+    ) is True
     return DatasetVersion(
         id=identifier,
         path=path,
@@ -630,7 +646,7 @@ def _load_version(path: Path) -> DatasetVersion:
         checkpoint_date=checkpoint,
         lifecycle_reference_date=lifecycle,
         release_status=kind,
-        publishable_as_final=publishable is True,
+        publishable_as_final=publishable,
         counts=counts,
         manifest=manifest,
         manifest_sha256=digest,
@@ -640,6 +656,9 @@ def _load_version(path: Path) -> DatasetVersion:
 
 
 def _version_label_and_order(identifier: str, kind: str, counts: Mapping[str, int]) -> tuple[str, tuple[Any, ...]]:
+    if kind == "published":
+        _require_date(identifier, "published dataset directory name")
+        return identifier, (2, identifier)
     if kind == "preview":
         match = PREVIEW_DIR.fullmatch(identifier)
         if match is None:
@@ -663,6 +682,12 @@ def _draft_phrase(name: str) -> str:
 
 
 def _checkpoint_date(identifier: str, kind: str, manifest: Mapping[str, Any]) -> str:
+    if kind == "published":
+        value = manifest.get("updated_at")
+        _require_date(value, f"{identifier}: update date")
+        if value != identifier:
+            raise PublicSiteError(f"{identifier}: updated_at must match the dataset directory name")
+        return value
     if kind == "preview":
         value = manifest.get("geometry_identity_reviewed_at") or manifest.get("reviewed_at")
         _require_date(value, f"{identifier}: checkpoint date")
@@ -812,6 +837,18 @@ def load_atlas(version: DatasetVersion, base_url: str) -> Atlas:
         name: [convert_row(row, fields[name], where=f"{version.id}/{name}") for row in raw[name]]
         for name in TABLE_FILES
     }
+    if version.kind == "published":
+        dates = []
+        for project in typed["projects.csv"]:
+            observed = project.get("status_as_of")
+            _require_date(observed, f"{version.id}: project observation date")
+            dates.append(observed)
+            age = (date.fromisoformat(version.checkpoint_date) - date.fromisoformat(observed)).days
+            if age < 0 or project.get("status_age_days_at_review") != age:
+                raise PublicSiteError(f"{version.id}: project status age does not match the update date")
+        bounds = (version.manifest["observation_window_start"], version.manifest["observation_window_end"])
+        if not dates or (min(dates), max(dates)) != bounds:
+            raise PublicSiteError(f"{version.id}: observation date range does not match project records")
     listed = {record.name for record in version.files}
     report = _verified_json(version, "selection-report.json") if "selection-report.json" in listed else {}
     if not isinstance(report, dict):
@@ -1392,6 +1429,10 @@ class _Context:
         return _window_start(self.config, self.current)
 
     @property
+    def window_end(self) -> str:
+        return _window_end(self.current)
+
+    @property
     def commit_short(self) -> str:
         return self.commit[:7] if self.commit else "local build"
 
@@ -1404,8 +1445,20 @@ class _Context:
 
 
 def _window_start(config: SiteConfig, version: DatasetVersion) -> str:
+    if version.kind == "published":
+        return version.manifest["observation_window_start"]
     reference = date.fromisoformat(version.lifecycle_reference_date)
     return (reference - timedelta(days=config.status_window_days)).isoformat()
+
+
+def _window_end(version: DatasetVersion) -> str:
+    return version.manifest.get("observation_window_end", version.lifecycle_reference_date)
+
+
+def _status_window_days(config: SiteConfig, version: DatasetVersion) -> int:
+    if version.kind == "published":
+        return (date.fromisoformat(_window_end(version)) - date.fromisoformat(_window_start(config, version))).days
+    return config.status_window_days
 
 
 def _zip_name(version: DatasetVersion) -> str:
@@ -1686,6 +1739,9 @@ def _dataset_ref(context: _Context, version: DatasetVersion | None = None) -> di
         "publishable_as_final": version.publishable_as_final,
         "checkpoint_date": version.checkpoint_date,
         "lifecycle_reference_date": version.lifecycle_reference_date,
+        "updated_at": version.checkpoint_date,
+        "observation_window_start": _window_start(context.config, version),
+        "observation_window_end": _window_end(version),
     }
 
 
@@ -1694,7 +1750,7 @@ def _dataset_full(context: _Context, atlas: Atlas | None = None) -> dict[str, An
     version = atlas.version
     return {
         **_dataset_ref(context, version),
-        "status_window_days": context.config.status_window_days,
+        "status_window_days": _status_window_days(context.config, version),
         "counts": atlas.counts,
         "manifest_sha256": version.manifest_sha256,
         "repository_path": f"{context.config.versions_root}/{version.id}",
@@ -1769,6 +1825,8 @@ def _gates(context: _Context) -> dict[str, Any]:
 
 
 def _gates_summary(context: _Context) -> dict[str, Any]:
+    if context.current.kind == "published":
+        return {"total": 0, "passed": 0, "failed": 0, "failed_gates": [], "text": "Published data update"}
     gates = _gates(context)
     failed = [name for name, gate in gates.items() if not (isinstance(gate, dict) and gate.get("passed") is True)]
     total = len(gates)
@@ -2509,19 +2567,23 @@ def _json_schemas(context: _Context) -> dict[str, dict[str, Any]]:
         title="Site summary", description="One site in sites.json, sites.geojson properties and country files.",
     )
     schemas["dataset-ref"] = _object({
-        "id": {"type": "string"}, "label": {"type": "string"}, "release_status": {"type": "string"},
+        "id": {"type": "string"}, "label": {"type": "string"},
+        "release_status": {"type": "string", "enum": ["preview", "draft", "published"]},
         "publishable_as_final": {"type": "boolean"}, "checkpoint_date": {"type": "string", "format": "date"},
         "lifecycle_reference_date": {"type": "string", "format": "date"},
+        "updated_at": {"type": "string", "format": "date"},
+        "observation_window_start": {"type": "string", "format": "date"},
+        "observation_window_end": {"type": "string", "format": "date"},
     }, title="Dataset reference", description="The dataset version a document belongs to.")
     index_descriptions = descriptions.get("index") or {}
     schemas["dataset"] = _object({
         **schemas["dataset-ref"]["properties"],
-        "status_window_days": {"type": "integer"},
+        "status_window_days": {"type": "integer", "description": "Observation span in days for dated updates; historical snapshots used a fixed selection window."},
         "counts": _count_map("Record counts; see stats.json for the meaning of each key."),
         "manifest_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
         "repository_path": {"type": "string"},
         "window_start": {"type": "string", "format": "date"},
-    }, title="Dataset", description="Dataset version metadata with counts and the status window.")
+    }, title="Dataset", description="Dataset metadata with counts, update date and observation dates.")
     schemas["license"] = _object({
         "data": {"type": "object"}, "code": {"type": "object"}, "openstreetmap_geometries": {"type": "object"},
         "third_party": {"type": "string"},
@@ -2602,7 +2664,8 @@ def _json_schemas(context: _Context) -> dict[str, dict[str, Any]]:
         "id": {"type": "string"}, "kind": {"type": "string"}, "label": {"type": "string"},
         "checkpoint_date": {"type": "string", "format": "date"},
         "lifecycle_reference_date": {"type": "string", "format": "date"},
-        "release_status": {"type": "string"}, "publishable_as_final": {"type": "boolean"},
+        "release_status": {"type": "string", "enum": ["preview", "draft", "published"]},
+        "publishable_as_final": {"type": "boolean"},
         "counts": _count_map(), "manifest_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
         "files": {"type": "array", "items": _object({
             "name": {"type": "string"}, "bytes": {"type": "integer"},
@@ -3174,7 +3237,10 @@ def _sqlite_metadata(context: _Context, atlas: Atlas) -> list[tuple[str, str]]:
         ("publishable_as_final", "true" if version.publishable_as_final else "false"),
         ("checkpoint_date", version.checkpoint_date),
         ("lifecycle_reference_date", version.lifecycle_reference_date),
-        ("status_window_days", str(config.status_window_days)),
+        ("updated_at", version.checkpoint_date),
+        ("observation_window_start", _window_start(config, version)),
+        ("observation_window_end", _window_end(version)),
+        ("status_window_days", str(_status_window_days(config, version))),
         ("manifest_sha256", version.manifest_sha256),
         ("repository_url", config.repository_url),
         ("repository_path", f"{config.versions_root}/{version.id}"),
@@ -3271,7 +3337,7 @@ def _xlsx_readme_rows(context: _Context, atlas: Atlas) -> list[list[Any]]:
         ["Data Center Atlas workbook", ""],
         ["Dataset", config.title],
         ["Updated", version.checkpoint_date],
-        ["Status window", f"{window} to {version.lifecycle_reference_date}"],
+        ["Observation dates", f"{window} to {_window_end(version)}"],
         ["Sites", counts.get("physical_sites")],
         ["Projects", counts.get("projects")],
         ["Countries", counts.get("countries")],
@@ -3432,7 +3498,7 @@ def _kml(context: _Context, atlas: Atlas) -> bytes:
     version = atlas.version
     title = f"{context.config.site_name} — {version.label}"
     description = (
-        f"<p>{_e(version.label)} (checkpoint {_e(version.checkpoint_date)}). "
+        f"<p>Updated {_e(version.checkpoint_date)}. "
         "Statuses are the last observed physical status on the status date, not today; locators are not "
         "footprints; empty values are unknown. Each polygon site also has a point at its display anchor.</p>"
         f"<p>Atlas data: {_e(context.config.data_license.get('id'))} ({_e(context.config.data_license.get('url'))}). "
@@ -3598,11 +3664,10 @@ def _datapackage(context: _Context, atlas: Atlas, blobs: Mapping[str, bytes]) ->
         "name": "datacenter-atlas",
         "title": f"{config.title} — {version.label}",
         "description": (
-            f"{config.tagline}. {version.label}, checkpoint {version.checkpoint_date}, "
-            f"lifecycle reference date {version.lifecycle_reference_date}. "
-            f"Release status: {version.release_status}; not a final release unless publishable_as_final is true. "
+            f"{config.tagline}. Updated {version.checkpoint_date}; observations from "
+            f"{_window_start(config, version)} to {_window_end(version)}. "
             "Statuses are the last observed physical status on the status date, not the current status; "
-            "locators are not footprints; empty values are unknown, never zero; a reviewed preview, not a census."
+            "locators are not footprints; empty values are unknown, never zero. Coverage varies by country."
         ),
         "version": version.id,
         "homepage": context.base_url,
@@ -3924,8 +3989,9 @@ def _token_values(context: _Context, root: str) -> tuple[dict[str, str], dict[st
         "dataset.checkpoint_date": current.checkpoint_date,
         "dataset.checkpoint_year": current.checkpoint_date[:4],
         "dataset.lifecycle_reference_date": current.lifecycle_reference_date,
-        "dataset.status_window_days": str(config.status_window_days),
+        "dataset.status_window_days": str(_status_window_days(config, current)),
         "dataset.window_start": context.window_start,
+        "dataset.window_end": context.window_end,
         "last_preview.label": preview.label,
         "versions.count": str(len(context.versions)),
         "build.commit_short": context.commit_short,
@@ -4244,7 +4310,7 @@ def _dataset_json_ld(context: _Context) -> dict[str, Any]:
             "sameAs": str(config.author.get("url", "")),
         },
         "keywords": list(DATASET_KEYWORDS),
-        "temporalCoverage": f"{context.window_start}/{current.lifecycle_reference_date}",
+        "temporalCoverage": f"{context.window_start}/{context.window_end}",
         "datePublished": context.versions[0].checkpoint_date,
         "dateModified": current.checkpoint_date,
         "measurementTechnique": (
@@ -4342,7 +4408,7 @@ def _bootstrap(context: _Context) -> dict[str, Any]:
         "issues_url": config.issues_url,
         "dataset": {
             **_dataset_ref(context),
-            "status_window_days": config.status_window_days,
+            "status_window_days": _status_window_days(config, context.current),
             "counts": context.atlas.counts,
             "window_start": context.window_start,
         },
@@ -4541,7 +4607,16 @@ def _site_summary_kv(context: _Context, site: Mapping[str, Any], coordinates: st
         f'<span class="small muted">{_e(vocabulary.description("verification_postures", posture))}</span>'
     )
     licenses = ", ".join(_license_link(code) for code in site.get("geometry_licenses") or [])
-    precision = " ".join(str(value) for value in site.get("geometry_precision_scopes") or [] if value)
+    precision_labels = {
+        "official_boundary": "Official parcel or permit boundary.",
+        "campus_locator": "Campus reference; individual project footprints are not mapped.",
+        "project_locator": "Project locator; building footprints are not mapped.",
+        "reviewed_site_locator": "Site locator; building footprints are not mapped.",
+    }
+    precision = " ".join(dict.fromkeys(
+        precision_labels[scope] for scope in site.get("geometry_use_scopes") or []
+        if scope in precision_labels
+    ))
     if "host_estate_context" in (site.get("geometry_use_scopes") or []):
         precision = "Surrounding industrial estate; the project's position within it is not established."
     return _kv([
@@ -4596,7 +4671,9 @@ def _project_facts(context: _Context, project: Mapping[str, Any], anchors: _Evid
     vocabulary = context.vocabulary
     age = project.get("status_age_days_at_review")
     age_html = (
-        _e(f"{age} days before the lifecycle reference date {context.current.lifecycle_reference_date}")
+        _e(f"{age} days before the data update on {context.current.checkpoint_date}")
+        if age is not None and context.current.kind == "published" else
+        _e(f"{age} days before the observation cutoff {context.current.lifecycle_reference_date}")
         if age is not None else _muted_unknown(None)
     )
     facts = [
@@ -5224,7 +5301,7 @@ def _data_page(context: _Context) -> _Page:
         f'<p class="lede">{counts.get("physical_sites")} sites in {counts.get("countries")} countries. '
         'Download a spreadsheet, map file or database.</p>',
         f'<p class="small muted">Updated {_e(current.checkpoint_date)}. Construction observations: '
-        f'{_e(context.window_start)} to {_e(current.lifecycle_reference_date)}.</p>',
+        f'{_e(context.window_start)} to {_e(context.window_end)}. Each project keeps its last reported status and date.</p>',
         f'<p><a class="btn btn-primary" href="{root}downloads/{LATEST}/atlas.xlsx">Excel workbook</a> '
         f'<a class="btn" href="{root}downloads/{LATEST}/sites.csv">Sites CSV</a> '
         f'<a class="btn" href="{root}downloads/{LATEST}/sites.geojson">GeoJSON</a> '
@@ -5727,9 +5804,8 @@ def _version_page(context: _Context, version: DatasetVersion) -> _Page:
     counts = version.counts
     previous_version = next((item for item in context.versions if item.id == previous), None)
     facts = [
-        ("Added to the archive", _time(version.checkpoint_date)),
-        ("Construction as of", _time(version.lifecycle_reference_date)),
-        ("Observation dates", f"{_time(_window_start(context.config, version))} to {_time(version.lifecycle_reference_date)}"),
+        ("Updated", _time(version.checkpoint_date)),
+        ("Observation dates", f"{_time(_window_start(context.config, version))} to {_time(_window_end(version))}"),
         ("Counts", _e(
             f"{counts.get('physical_sites')} sites, {counts.get('projects')} projects, "
             f"{counts.get('countries')} countries, {counts.get('evidence')} evidence rows"
@@ -5901,8 +5977,8 @@ def _download_directory_page(context: _Context, directory: str) -> _Page:
         f'<p class="lede">{intro}</p>',
         _kv([
             ("Data history", f'<a href="{root}versions/{_e(version.id)}/">View additions and corrections</a>'),
-            ("Archive date", _time(version.checkpoint_date)),
-            ("Construction as of", _time(version.lifecycle_reference_date)),
+            ("Updated", _time(version.checkpoint_date)),
+            ("Observation dates", f"{_time(_window_start(context.config, version))} to {_time(_window_end(version))}"),
             ("Counts", _e(
                 f"{counts.get('physical_sites')} sites, {counts.get('projects')} projects, "
                 f"{counts.get('countries')} countries, {counts.get('evidence')} evidence rows"
@@ -5998,7 +6074,8 @@ def _llms_txt(context: _Context) -> str:
         f"> {config.tagline}. Updated {current.checkpoint_date}: "
         f"{counts.get('physical_sites')} physical sites, {counts.get('projects')} "
         f"construction projects in {counts.get('countries')} countries, {counts.get('evidence')} evidence rows. "
-        f"Statuses were observed from {context.window_start} to {current.lifecycle_reference_date}.",
+        f"Statuses were observed from {context.window_start} to {context.window_end}. "
+        "Existing records retain their last observation; an Atlas update does not mean every project was rechecked.",
         "",
         "## About the data",
         "",

@@ -87,6 +87,10 @@ jobs:
             datacenter_atlas.tests.test_expansion_200_thirty_fifth_reviewed \
             datacenter_atlas.tests.test_expansion_200_thirty_sixth_reviewed \
             datacenter_atlas.tests.test_publication_pair_v32 \
+            datacenter_atlas.tests.test_dataset_update \
+            datacenter_atlas.tests.test_verified_construction_core_v018_blind_review \
+            datacenter_atlas.tests.test_verified_construction_core_v018_baseline_withdrawals \
+            datacenter_atlas.tests.test_verified_construction_core_v018_round44_corrections \
             datacenter_atlas.tests.test_public_site \
             datacenter_atlas.tests.test_workspace_shim
       - name: Validate the frozen expansion research inventory
@@ -98,6 +102,11 @@ jobs:
       - name: Validate the reviewed initial-three draft
         working-directory: datacenter_atlas
         run: .venv/bin/python scripts/build_expansion_200_draft.py --validate-only
+      - name: Verify corrected observations and the current data update
+        working-directory: datacenter_atlas
+        run: |
+          .venv/bin/python scripts/build_expansion_200_draft.py --batch thirty-seventh-reviewed --validate-only
+          .venv/bin/python scripts/build_dataset_update.py --input definitions/atlas-update-2026-10-13.json --validate-only
       - name: Smoke-test the public CLI
         run: datacenter_atlas/.venv/bin/python -m datacenter_atlas --help
       - name: Validate the cumulative-five draft
@@ -266,6 +275,10 @@ jobs:
             datacenter_atlas/expansion_200_thirty_fifth_reviewed.py \
             datacenter_atlas/expansion_200_thirty_sixth_reviewed.py \
             datacenter_atlas/publication_pair_v32.py \
+            datacenter_atlas/dataset_update.py \
+            scripts/build_dataset_update.py \
+            tests/test_dataset_update.py \
+            datacenter_atlas/expansion_200_thirty_seventh_reviewed.py \
             datacenter_atlas/public_site.py \
             europe_latam_official_discovery_20260721.py \
             scripts/build_verified_construction_core.py \

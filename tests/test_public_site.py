@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from collections import Counter
 import csv
+from datetime import date, timedelta
 import hashlib
 from html import escape as html_escape
 from html.parser import HTMLParser
@@ -606,6 +607,123 @@ def make_fixture_root(base: Path, *, about: str | None = None) -> Path:
     return root
 
 
+def add_published_fixture(root: Path, updated: str = "2026-04-01") -> Path:
+    """Carry existing observations into a dated update without pretending to refresh them."""
+    directory = root / "verified_construction_core" / updated
+    shutil.copytree(root / "verified_construction_core" / FIXTURE_DRAFT, directory)
+    projects = read_csv(directory / "projects.csv")
+    for project in projects:
+        project["status_age_days_at_review"] = str(
+            (date.fromisoformat(updated) - date.fromisoformat(project["status_as_of"])).days
+        )
+    _write_csv(directory / "projects.csv", PROJECT_FIELDS, projects)
+    manifest = read_json(directory / "manifest.json")
+    manifest.pop("draft_id")
+    manifest.pop("publishable_as_final")
+    manifest.update({
+        "format": "datacenter-atlas-update-v1", "release_status": "published", "updated_at": updated,
+        "cohort_lifecycle_reference_date": updated,
+        "observation_window_start": min(row["status_as_of"] for row in projects),
+        "observation_window_end": max(row["status_as_of"] for row in projects),
+    })
+    (directory / "manifest.json").write_text(json.dumps(manifest), encoding="utf-8")
+    (directory / "selection-report.json").write_text(json.dumps({"updated_at": updated}), encoding="utf-8")
+    _reseal(directory)
+    config_path = root / "site/config.json"
+    config = read_json(config_path)
+    config["current_dataset"] = f"verified_construction_core/{updated}"
+    config_path.write_text(json.dumps(config), encoding="utf-8")
+    return directory
+
+
+class PublishedSnapshotTests(unittest.TestCase):
+    def test_update_preserves_observation_dates_and_reports_their_actual_range(self):
+        with tempfile.TemporaryDirectory(prefix="atlas-published-") as temporary:
+            base = Path(temporary)
+            root = make_fixture_root(base)
+            originals = tree_hashes(root / "verified_construction_core")
+            add_published_fixture(root, "2026-03-01")
+            add_published_fixture(root)
+            output = base / "out"
+            public_site.build_site(output, root=root, base_url=LOCAL)
+            versions = read_json(output / "api/v1/versions.json")
+            self.assertEqual([item["id"] for item in versions["versions"]],
+                             [FIXTURE_PREVIEW, FIXTURE_DRAFT, "2026-03-01", "2026-04-01"])
+            self.assertEqual([item["publishable_as_final"] for item in versions["versions"]],
+                             [False, False, True, True])
+            index = read_json(output / "api/v1/index.json")
+            dataset = index["dataset"]
+            self.assertEqual(dataset["label"], "2026-04-01 · 2 sites")
+            self.assertEqual(dataset["release_status"], "published")
+            self.assertIs(dataset["publishable_as_final"], True)
+            self.assertEqual(dataset["updated_at"], "2026-04-01")
+            self.assertEqual((dataset["observation_window_start"], dataset["observation_window_end"]),
+                             ("2025-11-15", "2025-12-10"))
+            self.assertEqual(dataset["status_window_days"], 25)
+            with sqlite3.connect(output / "downloads/latest/atlas.sqlite") as connection:
+                metadata = dict(connection.execute("SELECT key, value FROM metadata"))
+            self.assertEqual(metadata["updated_at"], "2026-04-01")
+            self.assertEqual(metadata["observation_window_end"], "2025-12-10")
+            self.assertEqual(metadata["status_window_days"], "25")
+            self.assertEqual(metadata["publishable_as_final"], "true")
+            projects = read_json(output / "api/v1/projects.json")
+            old_projects = read_csv(root / "verified_construction_core" / FIXTURE_DRAFT / "projects.csv")
+            self.assertEqual([row["status_as_of"] for row in projects], [row["status_as_of"] for row in old_projects])
+            for project in projects:
+                expected_age = (date(2026, 4, 1) - date.fromisoformat(project["status_as_of"])).days
+                self.assertEqual(project["status_age_days_at_review"], expected_age)
+                page = (output / "sites" / project["site_id"] / "index.html").read_text(encoding="utf-8")
+                self.assertIn(f"{expected_age} days before the data update on 2026-04-01", page)
+            structured = json.loads(scan(output / "data/index.html").data_blocks["application/ld+json"])
+            self.assertEqual(structured["temporalCoverage"], "2025-11-15/2025-12-10")
+            bootstrap = json.loads(scan(output / "index.html").data_blocks["atlas-bootstrap"])
+            self.assertEqual(bootstrap["dataset"]["observation_window_end"], "2025-12-10")
+            self.assertIs(bootstrap["dataset"]["publishable_as_final"], True)
+            self.assertEqual(bootstrap["gates_summary"], {
+                "total": 0, "passed": 0, "failed": 0, "failed_gates": [], "text": "Published data update",
+            })
+            self.assertIn("Existing records retain their last observation", (output / "llms.txt").read_text())
+            after = tree_hashes(root / "verified_construction_core")
+            self.assertEqual({name: after[name] for name in originals}, originals)
+
+    def test_corrections_with_fewer_sites_still_follow_their_predecessor(self):
+        with tempfile.TemporaryDirectory(prefix="atlas-correction-order-") as temporary:
+            root = make_fixture_root(Path(temporary))
+            directory = root / "verified_construction_core/2026-01-01-v0.2-draft-corrected"
+            shutil.copytree(root / "verified_construction_core" / FIXTURE_PREVIEW, directory)
+            manifest = read_json(directory / "manifest.json")
+            manifest.update({"release_status": "draft", "draft_id": f"{directory.name}-2026-01-06"})
+            (directory / "manifest.json").write_text(json.dumps(manifest), encoding="utf-8")
+            _reseal(directory)
+            versions = public_site.discover_versions(root / "verified_construction_core")
+            self.assertEqual([item.id for item in versions], [FIXTURE_PREVIEW, FIXTURE_DRAFT, directory.name])
+            self.assertEqual([item.counts["physical_sites"] for item in versions], [1, 2, 1])
+
+    def test_update_rejects_misleading_dates_and_ages(self):
+        cases = [
+            ({"updated_at": "2026-04-02"}, None, "updated_at must match"),
+            ({"cohort_lifecycle_reference_date": "2025-12-31"}, None, "reference must equal"),
+            ({"observation_window_end": "2026-04-02"}, None, "on or before the update date"),
+            ({"observation_window_start": "2025-11-14"}, None, "range does not match"),
+            ({}, "30", "status age does not match"),
+        ]
+        for fields, age, message in cases:
+            with self.subTest(fields=fields, age=age), tempfile.TemporaryDirectory(prefix="atlas-bad-update-") as temporary:
+                root = make_fixture_root(Path(temporary))
+                directory = add_published_fixture(root)
+                manifest = read_json(directory / "manifest.json")
+                manifest.update(fields)
+                (directory / "manifest.json").write_text(json.dumps(manifest), encoding="utf-8")
+                if age is not None:
+                    projects = read_csv(directory / "projects.csv")
+                    projects[0]["status_age_days_at_review"] = age
+                    _write_csv(directory / "projects.csv", PROJECT_FIELDS, projects)
+                _reseal(directory)
+                with self.assertRaisesRegex(public_site.PublicSiteError, message):
+                    versions = public_site.discover_versions(root / "verified_construction_core")
+                    public_site.load_atlas(versions[-1], LOCAL)
+
+
 # --------------------------------------------------------------------------------------------
 
 
@@ -1054,7 +1172,10 @@ class RealSiteBuildTests(unittest.TestCase):
         self.assertEqual(counts["polygon_sites"] + counts["point_sites"], counts["physical_sites"])
         powered = sum(1 for items in self.json_list("projects.csv", "power_observations_json") if items)
         self.assertEqual(counts["power_observation_projects"], powered)
-        self.assertIsInstance(stats["release_gates"]["blind_review"]["eligible_project_stable_keys"], int)
+        if "blind_review" in stats["release_gates"]:
+            self.assertIsInstance(stats["release_gates"]["blind_review"]["eligible_project_stable_keys"], int)
+        else:
+            self.assertEqual(stats["release_gates"], {})
         expected = tuple(self.manifest["counts"][key] for key in ("physical_sites", "projects", "evidence"))
         self.assertEqual((self.summary["sites"], self.summary["projects"], self.summary["evidence"]), expected)
 
@@ -1304,15 +1425,15 @@ class RealSiteBuildTests(unittest.TestCase):
         self.assertEqual(versions["current"], self.dataset_id)
         self.assertEqual(versions["versions"][-1]["id"], self.dataset_id)
         kinds = [item["kind"] for item in versions["versions"]]
-        self.assertEqual(kinds, sorted(kinds, key=lambda kind: kind != "preview"))
+        self.assertEqual(kinds, sorted(kinds, key={"preview": 0, "draft": 1, "published": 2}.__getitem__))
         for item in versions["versions"]:
             self.assertEqual(item["label"], f"{item['checkpoint_date']} · {item['counts']['physical_sites']} sites")
-        drafts = [item["counts"] for item in versions["versions"] if item["kind"] == "draft"]
-        keys = [(counts["physical_sites"], counts["projects"], counts["evidence"]) for counts in drafts]
-        self.assertEqual(keys, sorted(set(keys)))
+        updates = [item["checkpoint_date"] for item in versions["versions"] if item["kind"] != "preview"]
+        self.assertEqual(updates, sorted(updates))
         by_id = {item["id"]: item for item in versions["versions"]}
         expectations = {
-            self.dataset_id: ("2026-10-09 · 200 sites", "2026-10-09"),
+            "2026-08-20-v0.18-draft-thirty-sixth-reviewed": ("2026-10-09 · 200 sites", "2026-10-09"),
+            "2026-08-20-v0.18-draft-thirty-seventh-reviewed": ("2026-10-10 · 199 sites", "2026-10-10"),
             "2026-08-20-v0.18-draft-thirty-fifth-reviewed": ("2026-09-25 · 197 sites", "2026-09-25"),
             "2026-08-20-v0.18-draft-initial-five": ("2026-09-08 · 105 sites", "2026-09-08"),
             "2026-08-20-v0.18-draft-second-reviewed": ("2026-09-08 · 112 sites", "2026-09-08"),
@@ -1464,14 +1585,23 @@ class RealSiteBuildTests(unittest.TestCase):
         bootstrap = json.loads(parsed.data_blocks["atlas-bootstrap"])
         self.assertEqual(bootstrap["root"], "./")
         self.assertEqual(bootstrap["dataset"]["counts"]["physical_sites"], self.manifest["counts"]["physical_sites"])
-        self.assertEqual(bootstrap["dataset"]["window_start"], "2026-05-22")
+        if self.manifest["release_status"] == "published":
+            dates = [row["status_as_of"] for row in self.rows["projects.csv"]]
+            start, end = min(dates), max(dates)
+            self.assertEqual(bootstrap["dataset"]["updated_at"], self.manifest["updated_at"])
+        else:
+            end = bootstrap["dataset"]["lifecycle_reference_date"]
+            start = (date.fromisoformat(end) - timedelta(days=self.config["status_window_days"])).isoformat()
+        self.assertEqual(bootstrap["dataset"]["window_start"], start)
+        self.assertEqual(bootstrap["dataset"]["observation_window_start"], start)
+        self.assertEqual(bootstrap["dataset"]["observation_window_end"], end)
         for path in bootstrap["endpoints"].values():
             self.assertFalse(urlsplit(path).scheme)
             if "{" not in path:
                 self.assertTrue((self.site / path).is_file(), path)
         for item in bootstrap["downloads"]:
             self.assertEqual(sha256(self.site / item["url"]), item["sha256"])
-        gates = read_json(self.dataset_dir / "selection-report.json")["final_release_gates"]
+        gates = read_json(self.dataset_dir / "selection-report.json").get("final_release_gates", {})
         self.assertEqual(bootstrap["gates_summary"]["total"], len(gates))
         self.assertEqual(bootstrap["gates_summary"]["passed"], sum(1 for gate in gates.values() if gate["passed"]))
         website = json.loads(parsed.data_blocks["application/ld+json"])
@@ -1481,6 +1611,7 @@ class RealSiteBuildTests(unittest.TestCase):
         self.assertEqual(dataset["@type"], "Dataset")
         self.assertEqual((dataset["@id"], dataset["url"]), (f"{self.base_url}data/#dataset", f"{self.base_url}data/"))
         self.assertEqual(dataset["name"], "Data Center Atlas")
+        self.assertEqual(dataset["temporalCoverage"], f"{start}/{end}")
         self.assertTrue(all(item["@type"] == "DataDownload" for item in dataset["distribution"]))
         self.assertIn("https://opendatacommons.org/licenses/odbl/1-0/", dataset["license"])
         south, west, north, east = map(float, dataset["spatialCoverage"]["geo"]["box"].split())

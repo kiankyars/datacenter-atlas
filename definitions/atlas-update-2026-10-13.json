@@ -1,0 +1,114 @@
+{
+  "format": "datacenter-atlas-update-input-v1",
+  "updated_at": "2026-10-13",
+  "base_dataset": "verified_construction_core/2026-08-20-v0.18-draft-thirty-seventh-reviewed",
+  "base_manifest_sha256": "7a383263ac1007a2577dd3e51a9b1fa6c6c7175528c75b20a71ba6f70139b0a2",
+  "source_files": [
+    {
+      "path": "sources/atlas-update-2026-10-13-primary-sources.json",
+      "sha256": "8e195f6e126d1194c6ea574950c6109ab67c22be6255d46dbaf08294d07c0d17"
+    }
+  ],
+  "additions": [
+    {
+      "project_stable_key": "curated:university-edinburgh-acf:cr4-extension",
+      "physical_site_stable_key": "curated:university-edinburgh-acf",
+      "site_name": "University of Edinburgh Advanced Computing Facility",
+      "name": "ACF CR4 extension",
+      "country": "United Kingdom",
+      "country_iso_a2": "GB",
+      "status": {
+        "value": "shell",
+        "as_of": "2026-09-22",
+        "source_id": "epcc-0",
+        "summary": "CR4 extension for the Next National Supercomputer. Steel frame complete; external construction still nearing completion. This is not completion of the data centre or commissioning of the supercomputer."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -3.19949765,
+            55.85566265
+          ]
+        },
+        "source_id": "epcc-4",
+        "scope": "campus_locator",
+        "scope_class": "community_mapped_existing_campus_building_reference_point",
+        "authority": "community_source",
+        "method": "bbox_center_of_named_osm_building",
+        "precision": "Campus locator derived from the bounding-box centre of the existing named ACF building. OSM object address and name agree with the university procurement address. It does not delineate the CR4 extension, construction footprint, parcel or legal campus boundary.",
+        "identity_review": "The named ACF Building has the same campus name and EH26 0QA postcode as university procurement. The university identifies CR4 as an extension on this campus.",
+        "uncertainty_reason": "OSM object states no positional accuracy"
+      },
+      "context_source_ids": [
+        "epcc-1",
+        "epcc-2",
+        "epcc-3"
+      ],
+      "distinctness_review": "No Edinburgh, Penicuik, EPCC or Advanced Computing Facility campus exists among the five GB baseline sites. CR4 is an extension at the existing ACF campus; use one campus record, not separate records for the supercomputer, plant room and extension.",
+      "successor_review": "Latest targeted university and contractor results remain the September22 steel-frame milestone with early2028 supercomputer opening target. Contractor news listing is current through October7. No later authoritative opening, halt or cancellation located.",
+      "roles": [
+        {
+          "role": "owner",
+          "party": "University of Edinburgh",
+          "relationship_scope": "current",
+          "source_id": "epcc-2"
+        },
+        {
+          "role": "operator",
+          "party": "EPCC, University of Edinburgh",
+          "relationship_scope": "current",
+          "source_id": "epcc-0"
+        }
+      ]
+    }
+  ],
+  "status_updates": [
+    {
+      "project_stable_key": "curated:oracle-project-jupiter-dona-ana-campus:current-campus-build",
+      "status": {
+        "value": "under_construction",
+        "as_of": "2026-09-14",
+        "source_id": "oracle-jupiter-september",
+        "summary": "Oracle states that work to date is on the data center campus and buildings are being constructed under county permits. Its statement distinguishes those works from the adjacent microgrid air-permit proceeding."
+      },
+      "identity_review": "Oracle identifies Project Jupiter in Dona Ana County; source explicitly distinguishes campus building works from adjacent microgrid permits.",
+      "successor_review": "Latest reviewed operator statement explicitly says buildings are being constructed. Microgrid air-permit stay does not establish that data center building works stopped. No subsequent operator completion/cancellation found."
+    }
+  ],
+  "withdrawals": [
+    {
+      "project_stable_key": "curated:scala-huechuraba-campus:ssclhb01",
+      "replaces_status_evidence_id": "d4f91e87-3ea2-5833-b19d-fd5a3ca7b591",
+      "reason": "No recent dated exact-HB01 physical-work source was found. Newer campus references can describe the HB02 expansion. The selected July 21 status is only a retrieval of the undated portfolio. Do not change it to completed or cancelled without a matching source.",
+      "source_ids": [
+        "scala-archived-portfolio-ssclhb01"
+      ],
+      "physical_status_claim": "unknown; withdrawal does not imply cancellation"
+    },
+    {
+      "project_stable_key": "curated:scala-lampa-campus:sscllp01",
+      "replaces_status_evidence_id": "97007edb-ddfc-5984-884a-8222ded41e29",
+      "reason": "Government-hosted applicant report supports campus construction during first half 2026, replacing the unsupported July 21 date. It does not isolate LP01 or establish that all phases remained in construction after June 30. The campus-wide first-half2026 report cannot replace a status for the specific LP01 building.",
+      "source_ids": [
+        "scala-archived-portfolio-sscllp01"
+      ],
+      "physical_status_claim": "unknown; withdrawal does not imply cancellation"
+    }
+  ],
+  "status_corrections": [
+    {
+      "project_stable_key": "curated:scala-praia-do-futuro-campus:sforpf01",
+      "replaces_status_evidence_id": "62b2a499-44a6-59c1-b956-78abbbc1b8d5",
+      "reason": "Replace July21 retrieval-derived status with a dated prospective-acquirer document identifying PF01 and its final construction stage.",
+      "status": {
+        "value": "under_construction",
+        "as_of": "2026-08-04",
+        "source_id": "scala-fortaleza-prospectus",
+        "summary": "Fortaleza PhaseI at Praia do Futuro is reported in final construction in the August4 prospectus."
+      },
+      "identity_review": "Prospectus p13 identifies PF01; p242 identifies Fortaleza PhaseI at Praia do Futuro. Both match the existing SFORPF01 site, distinct from the separately listed PF01 substation.",
+      "successor_review": "Checked October13. Later fund acquisition and fundraising reports do not establish completed construction. No subsequent dated authoritative opening or cancellation found."
+    }
+  ]
+}

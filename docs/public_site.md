@@ -15,6 +15,18 @@ and never change. The output is ignored by Git and deployed by GitHub Actions.
 This page is for maintainers. Users should start with the [README](../README.md) and the
 [methodology](https://kiankyars.github.io/datacenter-atlas/methodology/).
 
+Date-based updates use a `YYYY-MM-DD` directory and manifest format
+`datacenter-atlas-update-v1`, with `release_status: published`. `updated_at` is the archive date;
+`observation_window_start` and `observation_window_end` are the actual earliest and latest
+project `status_as_of` dates. Existing rows retain their observation dates. Their
+`status_age_days_at_review` is recalculated against the update date. The public builder checks
+these dates against every project and sorts these updates chronologically after the historical
+archives. Historical snapshots retain their original date semantics and bytes.
+
+The API adds `updated_at`, `observation_window_start` and `observation_window_end` to dataset
+references. For published updates, `status_window_days` measures the observation span, rather
+than imposing an age limit. It retains its original meaning for historical snapshots.
+
 ## Inputs
 
 | Path | Role |
@@ -229,7 +241,7 @@ Tokens:
   `{{base_url}}`, `{{repository_url}}`, `{{issues_url}}`, `{{dataset.id}}`, `{{dataset.label}}`,
   `{{dataset.title}}`, `{{dataset.release_status}}`, `{{dataset.checkpoint_date}}`,
   `{{dataset.checkpoint_year}}`, `{{dataset.lifecycle_reference_date}}`,
-  `{{dataset.status_window_days}}`, `{{dataset.window_start}}`, `{{counts.physical_sites}}`,
+  `{{dataset.status_window_days}}`, `{{dataset.window_start}}`, `{{dataset.window_end}}`, `{{counts.physical_sites}}`,
   `{{counts.projects}}`, `{{counts.countries}}`, `{{counts.evidence}}`, `{{counts.non_us_sites}}`,
   `{{counts.official_boundary_projects}}`, `{{counts.polygon_sites}}`,
   `{{counts.power_observation_projects}}`, `{{last_preview.label}}`,
@@ -301,8 +313,8 @@ Markup rules:
 - A breaking change needs a new path, `/api/v2/`, published alongside v1; v1 is not changed in
   place.
 - Clients should ignore fields they do not know.
-- The API always serves the current dataset, so values change at each checkpoint. Check
-  `dataset.id` in responses. For a snapshot, use a version's original files in
+- The API always serves the current dataset, so values change with data updates. Check
+  `dataset.id` in responses. For a snapshot, use its original files in
   `downloads/<dataset_id>/`, which never change, or the files attached to its GitHub Release.
 
 ## Identifier and URL stability policy
@@ -327,7 +339,7 @@ The methodology page states this policy for users
   curation keys, not external identifiers.
 
 Keep identifiers stable: never change a stable key just to rename a record. If a key must change,
-record the change in the checkpoint's contract and in `docs/expansion_200.md`.
+record the reason and the old and new identifiers in the data update's definition.
 
 ## Updating the data
 
@@ -346,9 +358,12 @@ publication does not depend on reaching a site-count target or product-version m
    the work is another building or phase at the same campus.
 2. Record source URLs, retrieval dates, licences and supported facts. Preserve the observation date
    and location precision. Check for subsequent opening, cancellation or other status changes.
-3. Use the dataset pipeline to produce a new immutable data directory, retaining stable site and
-   project identifiers. The current pipeline and archived batch names are documented in
-   [expansion_200.md](expansion_200.md). Run its validation and relevant dataset tests. Existing
+3. Record the reviewed changes in `definitions/atlas-update-YYYY-MM-DD.json`, retaining stable
+   site and project identifiers and pinning the previous dataset manifest. Build the dated
+   snapshot with `python3 scripts/build_dataset_update.py --input definitions/atlas-update-YYYY-MM-DD.json`,
+   then repeat with `--validate-only` and run `tests.test_dataset_update`. The builder keeps
+   existing observation dates and recalculates their age at the update date. Historical batch
+   reproduction is documented separately in [expansion_200.md](expansion_200.md). Existing
    published files remain unchanged so earlier analyses can be reproduced.
 4. Ensure Git tracks every file listed in the new manifest, then point `current_dataset` in
    `site/config.json` at the directory. Add dictionary and vocabulary entries for any new fields

@@ -45,9 +45,10 @@
     "community_mapped": {"label": "Community mapped", "description": "Contributor-mapped geometry, such as an OpenStreetMap polygon, accepted only as a locator. Never treated as an official boundary."}
   },
   "verification_postures": {
-    "recent_authoritative_physical_observation_plus_reviewed_site_locator": {"label": "Recent authoritative status + reviewed locator", "description": "A dated authoritative physical-status observation inside the status window, plus a reviewed locator. Not independent, imagery-based or on-site verification."},
-    "recent_authoritative_physical_observation_plus_official_boundary": {"label": "Recent authoritative status + official boundary", "description": "A dated authoritative physical-status observation inside the status window, plus an official boundary. Not independent, imagery-based or on-site verification."},
-    "recent_authoritative_physical_observation_plus_host_estate_context_only": {"label": "Recent authoritative status + host-estate context only (no reviewed locator)", "description": "A dated authoritative physical-status observation inside the status window, but no reviewed locator: the geometry only shows the host estate around the site. Not independent, imagery-based or on-site verification, and the map position is not the site's position."}
+    "authoritative_physical_observation_plus_reviewed_site_locator": {"label": "Reported status and sourced location", "description": "A dated authoritative physical-status observation and a reviewed location. Check status_as_of for its age. This does not claim independent imagery or on-site verification."},
+    "recent_authoritative_physical_observation_plus_reviewed_site_locator": {"label": "Reported status and sourced location", "description": "A dated authoritative physical-status observation and a reviewed location. Check status_as_of for its age. This does not claim independent imagery or on-site verification."},
+    "recent_authoritative_physical_observation_plus_official_boundary": {"label": "Reported status and official boundary", "description": "A dated authoritative physical-status observation and an official boundary. Check status_as_of for its age. This does not claim independent imagery or on-site verification."},
+    "recent_authoritative_physical_observation_plus_host_estate_context_only": {"label": "Reported status; surrounding estate only", "description": "A dated authoritative physical-status observation, with a map of the surrounding estate rather than the site's position. Check status_as_of for its age. This does not claim independent imagery or on-site verification."}
   },
   "power_metrics": {
     "critical_it_mw": {"label": "Critical IT load", "unit": "MW", "description": "Power available to IT equipment for the project scope at the stated stage. A planned or design value is not installed or operating capacity."},
@@ -110,8 +111,9 @@
   "evidence_roles": {
     "physical_status": {"label": "Physical status", "description": "Source of the project's last observed physical status."},
     "geometry": {"label": "Geometry", "description": "Source of the published locator or boundary geometry."},
+    "context:identity": {"label": "Site and project identity", "description": "Connects the named project, campus or facility to the record. Does not establish construction status."},
     "context:geometry_identity": {"label": "Geometry identity context", "description": "Context used to tie the geometry to the named site. Not a status source."},
-    "context:site_distinctness": {"label": "Site distinctness context", "description": "Context used to establish that the site is distinct from the other sites in the checkpoint."},
+    "context:site_distinctness": {"label": "Site distinctness context", "description": "Context used to establish that the site is distinct from the other sites in the Atlas."},
     "context:source_location_identity": {"label": "Source location context", "description": "Context tying the source's stated location to the site."},
     "context:campus_address_identity": {"label": "Campus address context", "description": "Context tying a published address to the campus."},
     "context:project_context": {"label": "Project context", "description": "Background context for the project. Creates no claim."},
@@ -207,6 +209,7 @@
     "publication_authorized": {"label": "Publication authorized", "description": "Whether the checkpoint is authorized for final publication."}
   },
   "imagery_review_outcomes": {
+    "not_reviewed": {"label": "Not reviewed against imagery", "description": "No imagery review is recorded for this project. Its status rests only on the dated authoritative source."},
     "not_reviewed_for_core_preview": {"label": "Not reviewed against imagery", "description": "No imagery review is recorded for this project. Its status rests only on the dated authoritative source."},
     "first_party_contractor_drone_imagery_present_not_independently_verified": {"label": "Publisher or contractor drone imagery, not independently verified", "description": "The publisher or its contractor has published drone imagery of the works. The Atlas did not verify it independently and does not redistribute it. No construction, completion or progress claim is made from imagery."},
     "tracked_blind_clear_locally_unsealed_identity_no_construction_claim": {"label": "Blind imagery review: clear visible change, identity link not public", "description": "A blind satellite-image comparison recorded clear visible change, but the link between the reviewed images and this project exists only in unpublished local files. Recorded for follow-up only. No construction, completion or progress claim is made from imagery."},

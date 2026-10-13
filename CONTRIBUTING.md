@@ -16,9 +16,9 @@ The "Report a correction" link on every site page opens it with the site ID fill
 Accepted corrections appear in the next data update. Earlier published files remain available
 unchanged in the data archive.
 
-A status is the last authoritative observation on or before the dataset's lifecycle reference
-date. News that a project finished, paused or was cancelled after that date does not make the
-record wrong, but please report it: newer reports are checked for the next data update.
+A status is the last authoritative observation for that project, with its own date. An Atlas
+update does not renew older observations. Please report newer evidence of progress, completion,
+pauses or cancellation so the record can be updated.
 
 ## Suggest a new site
 
@@ -33,8 +33,8 @@ the following evidence.
    commissioning, with the date the statement applies to. Announcements, land purchases, permits,
    grid-connection requests, groundbreaking plans and expected opening dates do not qualify by
    themselves, and a later page edit or retrieval date is not an observation date. Observations must
-   fall within 90 days before the dataset's reference date; the current date range is listed in the
-   [methodology](https://kiankyars.github.io/datacenter-atlas/methodology/#scope).
+   fall within 90 days before the update that first adds the site. Existing records keep their
+   observation dates until newer evidence is reviewed.
 2. **A precise locator.** A source that places the project or its campus: an official parcel or
    boundary, an official address point, a coordinate published by the developer or a public
    authority, or a named map feature. Say what it locates (a building, the project or the whole
@@ -82,13 +82,25 @@ tests yourself.
 ### Validate the datasets and lint
 
 ```sh
-python3 scripts/build_expansion_200_draft.py --batch thirty-sixth-reviewed --validate-only
-python3 -m unittest -v tests.test_verified_construction_core_v018 tests.test_expansion_200_thirty_sixth_reviewed
+python3 scripts/build_dataset_update.py --input definitions/atlas-update-2026-10-13.json --validate-only
+python3 -m unittest -v tests.test_dataset_update tests.test_public_site
 uv run --locked --only-group lint ruff check datacenter_atlas/public_site.py scripts/build_public_site.py tests/test_public_site.py
 ```
 
 [`clean-clone.yml`](.github/workflows/clean-clone.yml) lists the full set of corpus-free tests and
 lint targets that CI runs.
+
+### Publish a data update
+
+Research one country at a time, starting with the largest markets and gaps recorded in
+[country research](docs/country_research.md). Keep compact source projections under `sources/`
+and a dated change list under `definitions/`. Each change identifies its source, observation
+date, site identity and later-status check. Pin the source files and base manifest by SHA-256.
+
+`scripts/build_dataset_update.py --input definitions/atlas-update-YYYY-MM-DD.json` builds a new
+dated directory. Use `--validate-only` to reproduce and compare it, then select that directory
+in `site/config.json`. Build the website and run the metadata check with `--write` to refresh
+README and citation counts. New updates need no numbered release or site-count milestone.
 
 ### Ground rules
 

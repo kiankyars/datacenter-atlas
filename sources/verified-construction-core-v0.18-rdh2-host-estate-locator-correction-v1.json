@@ -1,0 +1,864 @@
+{
+  "schema_version": "v018-rdh2-host-estate-locator-correction-1",
+  "reviewed_at": "2026-10-09",
+  "lifecycle_reference_date": "2026-08-20",
+  "accepted_into_core": false,
+  "accepted_additional_sites": 0,
+  "correction_scope": "Versioned semantic and accounting correction for the inherited v0.17 baseline locator of Telecom Egypt RDH2 Smart Village Campus (Regional Data Hub 2). The selected OSM polygon is the whole Smart Village business park; it was labelled and counted as a campus locator. The numeric polygon, display anchor, raw capture hash, physical site, project, identity and commissioning observation are unchanged. The entity kind, use scope, method, scope class, precision and uncertainty statements, evidence key and verification posture are corrected to host-development locality context. No added or removed campus or project, lifecycle refresh, finer location, boundary, precision gain or acceptance claim.",
+  "supersedes": {
+    "source_path": "sources/verified-construction-core-v0.16-seven-country-diversity-site-facts.json",
+    "source_file_sha256": "aa7703fdce30b2ab8767096d3eb8749841ea3dcbfa541dd41911595fe4f7adba",
+    "source_file_bytes": 31597,
+    "evidence_pointer": "/source_documents/1",
+    "evidence_record_sha256": "cf4510d82a2d9468ef9fbc503d67ef059cd51756ba5edb6072fc3ac175e4b654",
+    "evidence_source_id": "telecom-egypt-rdh2-osm-smart-village",
+    "evidence_id": "5b8fa185-405c-56fd-86c4-a0a295820be1",
+    "geometry_pointer": "/results/1",
+    "geometry_record_sha256": "90c1b75867f4fafca87921bab4f55577a72ad093f27c076fcff9038b67be9042",
+    "locator_id": "telecom-egypt-rdh2-osm-smart-village-host-polygon",
+    "frozen_baseline_rows": {
+      "release_path": "verified_construction_core/2026-08-20-preview-v0.17",
+      "manifest_sha256": "49cf79185742a2bd718a83683c924574ba8db4de1289d1228e56c5865154c8fc",
+      "projects_csv": {
+        "file_line_number": 97,
+        "project_stable_key": "curated:telecom-egypt-rdh2-smart-village-campus:regional-data-hub-2",
+        "row_canonical_sha256": "ac3ccdf89eff21d3b54eb04d6f7b47b3fedcb196137dfc5eef5537d885510f42",
+        "raw_line_sha256": "8712e63e98d204eb4fde793b002c6b1d13dac288cf0cab0b3a171ff30787f821"
+      },
+      "sites_csv": {
+        "file_line_number": 93,
+        "physical_site_stable_key": "curated:telecom-egypt-rdh2-smart-village-campus",
+        "row_canonical_sha256": "b95c764feab768daf66be9687085fe6cdeb183fbc080352863133fd0d5fb5474",
+        "raw_line_sha256": "efa65e60a56bacf8678aa51cfd2a770d252b322b861dc592d831887716f8b3f4"
+      },
+      "evidence_csv": {
+        "file_line_number": 88,
+        "evidence_id": "5b8fa185-405c-56fd-86c4-a0a295820be1",
+        "row_canonical_sha256": "010501916085a8b0a90da6e13535b430d2d0235b92e3b249b660adf27629828e",
+        "raw_line_sha256": "4e5c08ffc447178ba62dc1872b5fd323f12b6e71c46a3fda85d4871aca017055"
+      },
+      "sites_geojson": {
+        "feature_index": 91,
+        "feature_canonical_sha256": "a5743f744459e2012b67159f5fba2c2cb9848f340a2a4acff37bc4f522b58b99"
+      }
+    },
+    "inherited_unchanged_through": {
+      "release_path": "verified_construction_core/2026-08-20-v0.18-draft-thirty-sixth-reviewed",
+      "manifest_sha256": "515159b79bb7263fe1cf88c054a75bfdbd817acba2ae6bc3452f004cf7e80208",
+      "rows_byte_identical_to_v017": true
+    },
+    "correction_reason": "The v0.16 seven-country batch turned a locality-only statement (Smart Village, Giza; curated method authoritative_locality with null coordinates and geometry) into the whole named OSM Smart Village polygon and labelled it geometry_use_scope campus_locator, although its own precision scope calls it the broad host development. v0.17 and every v0.18 draft therefore count RDH2 as a reviewed site locator and publish the planar centroid of the business park's longitude/latitude ring as its latitude and longitude. The polygon is about 382.32 ha, roughly 1,000 times the 3,825 m2 land area the contractor reports for RDH2; it contains 88 mapped buildings, 38 of them named for many other organisations and for separate Telecom Egypt and TE Data buildings, and Telecom Egypt's own releases place its RDH data-centre phases, including RDH phase 1 launched in Q1 2021, in Smart Village. No reviewed source places RDH2 at any position within it. It intersects no other selected site.",
+    "frozen_artifact_mutated": false
+  },
+  "source_bindings": [
+    {
+      "source_id": "rdh2-smart-village-host-estate-context",
+      "evidence_pointer": "/evidence/0"
+    },
+    {
+      "source_id": "rdh2-smart-village-geofabrik-reverification",
+      "evidence_pointer": "/evidence/1"
+    },
+    {
+      "source_id": "rdh2-osm-wgs84-node-crs",
+      "evidence_pointer": "/evidence/2"
+    }
+  ],
+  "evidence": [
+    {
+      "key": "telecom-egypt-rdh2-smart-village-osm-host-estate-context-rescope-v1-captured-2026-08-23",
+      "kind": "open_map_record",
+      "title": "OpenStreetMap way 545580264 Smart Village - host-development context only, not an RDH2 campus locator",
+      "source_url": "https://api.openstreetmap.org/api/0.6/way/545580264/full.json",
+      "publisher": "OpenStreetMap contributors",
+      "source_family": "openstreetmap_way_full_api",
+      "published_at": "2023-08-24T07:35:08Z",
+      "retrieved_at": "2026-08-23",
+      "license": "ODbL-1.0",
+      "attribution": "Contains information from OpenStreetMap, which is made available under the Open Database License (ODbL).",
+      "excerpt": "The community OSM way for the whole Smart Village business park, retained only as host-development locality context for Telecom Egypt RDH2.",
+      "content_hash": "a1dc95ddb661859dfe320048959ef6522d40e2361500db7747a09ddb5995cbe8",
+      "metadata": {
+        "content_hash_scope": "SHA-256 of the exact 2903-byte raw OSM API way/full response recorded by the frozen v0.16 site-facts source document; the raw body is not redistributed",
+        "content_hash_verification": "inherited_frozen_record_value; the raw body is not present in this workspace and was not re-fetched. Its derived canonical geometry is independently reproduced byte for byte from the Geofabrik free GeoPackage snapshot in the companion evidence record.",
+        "raw_capture_reuse": "No new OSM API request. source_url, content_hash, published_at, retrieved_at, way version, node count and numeric geometry are copied unchanged from the frozen v0.16 record; only the key, title, excerpt and scope metadata are corrected.",
+        "retrieved_at_semantics": "Date-only value inherited verbatim from the frozen v0.16 record. No time of day or timezone is invented; a checkpoint must accept this inherited date-only retrieval through its baseline-correction path because the v0.18 acceptance validator requires a timezone.",
+        "osm_way": 545580264,
+        "osm_version": 6,
+        "osm_timestamp": "2023-08-24T07:35:08Z",
+        "node_count": 13,
+        "canonical_geometry_bytes_without_newline": 343,
+        "canonical_geometry_sha256_without_newline": "818708eae04bd7222e021c9ad64889e4cd7d956ec56f7c6a14a7ddf86145c4b2",
+        "recorded_name": "Smart Village",
+        "recorded_name_note": "Name as recorded by the frozen v0.16 facts for version 6. The 2026-10-08 Geofabrik free layer gives the name attribute as the Arabic name of Smart Village; that layer carries no version, so whether the way was renamed after version 6 or the v0.16 value came from another name key is not resolved. Geometry is unaffected.",
+        "geometry_use_scope": "host_estate_context",
+        "official_boundary": false,
+        "location_precision": "Entire Smart Village business park in Giza as mapped by OSM way 545580264 version 6: a 12-vertex community polygon (a closed way of 13 node references) of about 382.32 ha (WGS84 geodesic, diagnostic). The selected project evidence places RDH2 only in Smart Village; no reviewed source places RDH2 at any position within, or confirms containment in, this polygon. In the 2026-10-08 OSM snapshot it contains 88 mapped buildings, 38 of them named, among them Vodafone Egypt, Orange Egypt, Microsoft, Oracle, IBM, Huawei, Ericsson, HSBC, the National Telecom Regulatory Authority and the communications ministry, plus a separate Telecom Egypt office building and a TE Data building; none is named or tagged as RDH2 or a data centre. Host-development locality context only: not an RDH2 locator, parcel, boundary, footprint or work extent. The display anchor is the planar centroid of the business park's longitude/latitude ring, kept unchanged only because the row schema requires a point; it is not an RDH2 position.",
+        "horizontal_uncertainty_metres": null,
+        "horizontal_uncertainty_unknown_reason": "RDH2's position relative to this host-development outline is unknown and no source bounds it; OpenStreetMap states no positional accuracy for the outline. No numeric uncertainty is asserted.",
+        "coordinate_system": "OSM node longitude/latitude in WGS84 (EPSG:4326) as documented for OSM nodes; no transformation, snapping, tracing or fitting.",
+        "temporal_guardrail": "Locator semantics only. No retrieval or OSM edit date advances the fixed August 20 lifecycle cutoff or the inherited June 10 RDH2 commissioning observation.",
+        "access_route_note": "The inherited capture route is the OSM editing API host, whose robots.txt (served from www.openstreetmap.org; captured 2026-10-09 in round43, sha256 125ecd90...) disallows /api/ for generic crawlers and points to planet and regional extracts. This correction makes no API request; the companion record re-verifies the same ring from the Geofabrik free GeoPackage extract.",
+        "rights_scope": "Compact factual projection with ODbL attribution only. No raw API body, tiles, imagery or mapper identifiers are redistributed.",
+        "supersedes": {
+          "source_path": "sources/verified-construction-core-v0.16-seven-country-diversity-site-facts.json",
+          "source_file_sha256": "aa7703fdce30b2ab8767096d3eb8749841ea3dcbfa541dd41911595fe4f7adba",
+          "evidence_pointer": "/source_documents/1",
+          "evidence_source_id": "telecom-egypt-rdh2-osm-smart-village",
+          "evidence_id": "5b8fa185-405c-56fd-86c4-a0a295820be1",
+          "evidence_record_sha256": "cf4510d82a2d9468ef9fbc503d67ef059cd51756ba5edb6072fc3ac175e4b654",
+          "geometry_pointer": "/results/1",
+          "geometry_record_sha256": "90c1b75867f4fafca87921bab4f55577a72ad093f27c076fcff9038b67be9042",
+          "frozen_artifact_mutated": false
+        }
+      }
+    },
+    {
+      "key": "telecom-egypt-rdh2-smart-village-osm-geofabrik-egypt-261008-free-gpkg-reverification-2026-10-09",
+      "kind": "open_map_record",
+      "title": "Geofabrik OpenStreetMap Egypt free GeoPackage egypt-261008: re-verification of Smart Village way 545580264 and named buildings inside it",
+      "source_url": "https://download.geofabrik.de/africa/egypt-261008-free.gpkg.zip",
+      "publisher": "OpenStreetMap contributors; regional extract published by Geofabrik GmbH",
+      "source_family": "geofabrik_osm_free_gpkg_regional_extract",
+      "published_at": null,
+      "retrieved_at": "2026-10-09T16:22:01.733Z",
+      "license": "ODbL-1.0",
+      "attribution": "Contains information from OpenStreetMap, which is made available under the Open Database License (ODbL). Extract by Geofabrik GmbH.",
+      "excerpt": "The 2026-10-08 regional OSM snapshot reproduces the inherited Smart Village ring and shows no RDH, RDH2 or data-centre feature, while 38 named buildings of many organisations lie inside the polygon.",
+      "content_hash": "b1f4668e856b6e80f75c54ff9253addaa6c7ded2d9e59166abffdd2281a5cf6d",
+      "metadata": {
+        "content_hash_scope": "SHA-256 of the exact 306403238-byte ZIP response body; the extract is not redistributed",
+        "content_hash_verification": "fetched_bytes_sha256",
+        "integrity_check": "Geofabrik publishes no checksum file for the free GeoPackage ZIP (and its robots.txt disallows *.md5); integrity rests on the fetched-bytes hash. The ZIP holds README (653 bytes) and egypt.gpkg (608182272 bytes, sha256 50ef7c306142053eb71f0d95da008501bb2d0227922bdaa5bb278ecf83d228ba).",
+        "requested_url": "https://download.geofabrik.de/africa/egypt-261008-free.gpkg.zip",
+        "effective_url": "https://download.geofabrik.de/africa/egypt-261008-free.gpkg.zip",
+        "capture_started_at": "2026-10-09T16:21:36.544Z",
+        "capture_finished_at": "2026-10-09T16:22:01.733Z",
+        "http_status": 200,
+        "raw_capture_bytes": 306403238,
+        "request_credentials_supplied": false,
+        "capture_method": "credential-free Node fetch with the lane capture script's long-timeout variant (timeout only changed); single request; no retry; content-decoded response bytes",
+        "data_snapshot": "The archive README states OpenStreetMap data as of 2026-10-08T20:21:06Z.",
+        "publication_date_unknown_reason": "The snapshot time is the data time, not a publication date; Geofabrik states no separate publication date for the file.",
+        "robots": {
+          "download.geofabrik.de/robots.txt": "HTTP 200 at 2026-10-09T16:15:54Z (171 bytes, sha256 cbf7891c69738be030f73dcee59d616f445054d32c4526674a69c34b7a02c494). For all user agents it disallows *.osm.pbf, *.osm.bz2, *.osc.gz, *.shp.zip, state.txt, *.state.txt, *updates* and *.md5. No rule matches the requested *-free.gpkg.zip path. The round43 request at 2026-10-09T11:09Z had received HTTP 404.",
+          "pbf_route_not_used": "The Egypt .osm.pbf extract was not requested because the current rules disallow it; download.openstreetmap.fr disallows /*.pbf$ and planet.openstreetmap.org disallows / for generic agents.",
+          "openstreetmap_org_robots_sha256": "125ecd90ae288efbe01fcad8008df1940dc9112d8b6b8932d57f59c07aeef24a",
+          "openstreetmap_org_robots_guidance": "Disallows /api/ and recommends planet and regional extracts instead of site scraping."
+        },
+        "coordinate_system": "GeoPackage srs_id 100000, WGS 84 (CRS84), longitude/latitude axis order; values are OSM node coordinates.",
+        "layer_limits": "The free layers carry osm_id, a feature class, the name attribute and (for buildings) the building type only. Operator, brand, description, version and timestamp tags are absent, so the search below covers names and building types only.",
+        "derived_facts": {
+          "way_545580264": {
+            "gpkg_layer": "gis_osm_landuse_a_free",
+            "fclass": "commercial",
+            "name_attribute": "القرية الذكية",
+            "stored_geometry": "single-part MultiPolygon with the opposite ring orientation",
+            "ring_identical_to_inherited_geometry_after_unwrapping_and_reversing_vertex_order": true,
+            "canonical_geometry_bytes_without_newline": 343,
+            "canonical_geometry_sha256_without_newline": "818708eae04bd7222e021c9ad64889e4cd7d956ec56f7c6a14a7ddf86145c4b2",
+            "version_and_timestamp": "not carried by the free layers; version 6 is not re-verified here",
+            "area_ha_wgs84_geodesic": 382.32,
+            "bounding_box_extent_m": [
+              2689,
+              2719
+            ],
+            "max_vertex_distance_from_inherited_anchor_m": 1388
+          },
+          "buildings_within_way_545580264": {
+            "intersecting": 89,
+            "wholly_within": 88,
+            "named": 38,
+            "building_type_construction_unnamed": [
+              {
+                "osm_way": 648005480,
+                "footprint_ha": 0.1817,
+                "distance_from_inherited_anchor_m": 798,
+                "identity": "unnamed; no source binds it to RDH2"
+              }
+            ]
+          },
+          "named_buildings_within_way_545580264": [
+            {
+              "osm_way": 336802979,
+              "name": "HSBC Bank",
+              "distance_from_inherited_anchor_m": 47
+            },
+            {
+              "osm_way": 345201916,
+              "name": "Ericsson",
+              "distance_from_inherited_anchor_m": 223
+            },
+            {
+              "osm_way": 291688439,
+              "name": "Huawei",
+              "distance_from_inherited_anchor_m": 244
+            },
+            {
+              "osm_way": 380933542,
+              "name": "أي إف جي هرمس",
+              "distance_from_inherited_anchor_m": 271
+            },
+            {
+              "osm_way": 293130215,
+              "name": "TE Data",
+              "distance_from_inherited_anchor_m": 288
+            },
+            {
+              "osm_way": 293130239,
+              "name": "Raya View",
+              "distance_from_inherited_anchor_m": 288
+            },
+            {
+              "osm_way": 345199774,
+              "name": "IBM",
+              "distance_from_inherited_anchor_m": 309
+            },
+            {
+              "osm_way": 648005408,
+              "name": "National Telecom Regulary Authority",
+              "distance_from_inherited_anchor_m": 345
+            },
+            {
+              "osm_way": 297504003,
+              "name": "Vodafone Egypt",
+              "distance_from_inherited_anchor_m": 361
+            },
+            {
+              "osm_way": 648005400,
+              "name": "Valeo",
+              "distance_from_inherited_anchor_m": 437
+            },
+            {
+              "osm_way": 452254133,
+              "name": "Vodafone Egypt",
+              "distance_from_inherited_anchor_m": 449
+            },
+            {
+              "osm_way": 452254134,
+              "name": "Vodafone Egypt",
+              "distance_from_inherited_anchor_m": 519
+            },
+            {
+              "osm_way": 45242901,
+              "name": "مجموعة طلال أبوغزاله",
+              "distance_from_inherited_anchor_m": 551
+            },
+            {
+              "osm_way": 45242900,
+              "name": "معهد تكنولوجيا المعلومات",
+              "distance_from_inherited_anchor_m": 632
+            },
+            {
+              "osm_way": 45242899,
+              "name": "مبنى الشركات الصغيرة",
+              "distance_from_inherited_anchor_m": 644
+            },
+            {
+              "osm_way": 648031778,
+              "name": "Smart Village Conference Center",
+              "distance_from_inherited_anchor_m": 667
+            },
+            {
+              "osm_way": 648005340,
+              "name": "e-finance",
+              "distance_from_inherited_anchor_m": 710
+            },
+            {
+              "osm_way": 45242898,
+              "name": "البريد المصري",
+              "distance_from_inherited_anchor_m": 726
+            },
+            {
+              "osm_way": 45242896,
+              "name": "بنك مصر",
+              "distance_from_inherited_anchor_m": 753
+            },
+            {
+              "osm_way": 45242895,
+              "name": "Egyptian Competition Authority",
+              "distance_from_inherited_anchor_m": 783
+            },
+            {
+              "osm_way": 291688096,
+              "name": "مايكروسوفت",
+              "distance_from_inherited_anchor_m": 784
+            },
+            {
+              "osm_way": 291688100,
+              "name": "Orange Egypt - Saqqara Building",
+              "distance_from_inherited_anchor_m": 788
+            },
+            {
+              "osm_way": 291688098,
+              "name": "Orange Egypt - Sphinx Building",
+              "distance_from_inherited_anchor_m": 819
+            },
+            {
+              "osm_way": 452252249,
+              "name": "Smart Villages Company",
+              "distance_from_inherited_anchor_m": 835
+            },
+            {
+              "osm_way": 45242893,
+              "name": "سمارت كيدز",
+              "distance_from_inherited_anchor_m": 843
+            },
+            {
+              "osm_way": 291688095,
+              "name": "أوراكل",
+              "distance_from_inherited_anchor_m": 844
+            },
+            {
+              "osm_way": 291686240,
+              "name": "مسجد",
+              "distance_from_inherited_anchor_m": 850
+            },
+            {
+              "osm_way": 45242890,
+              "name": "إكسيد",
+              "distance_from_inherited_anchor_m": 892
+            },
+            {
+              "osm_way": 1111611763,
+              "name": "NAEEM Holding Egypt",
+              "distance_from_inherited_anchor_m": 918
+            },
+            {
+              "osm_way": 270809613,
+              "name": "المصرية للاتصالات",
+              "distance_from_inherited_anchor_m": 934
+            },
+            {
+              "osm_way": 297504004,
+              "name": "البنك الأهلي المصري",
+              "distance_from_inherited_anchor_m": 935
+            },
+            {
+              "osm_way": 298275597,
+              "name": "CIB 1",
+              "distance_from_inherited_anchor_m": 950
+            },
+            {
+              "osm_way": 45242892,
+              "name": "مركز الخدمات التكنولوجية",
+              "distance_from_inherited_anchor_m": 982
+            },
+            {
+              "osm_way": 45242891,
+              "name": "KPMG Building",
+              "distance_from_inherited_anchor_m": 1003
+            },
+            {
+              "osm_way": 45242889,
+              "name": "الجهاز القومي لتنظيم الاتصالات",
+              "distance_from_inherited_anchor_m": 1075
+            },
+            {
+              "osm_way": 45244538,
+              "name": "مدرسة الدولية لغات",
+              "distance_from_inherited_anchor_m": 1112
+            },
+            {
+              "osm_way": 45242888,
+              "name": "مركز توثيق التراث الحضاري والطبيعي",
+              "distance_from_inherited_anchor_m": 1166
+            },
+            {
+              "osm_way": 45242887,
+              "name": "وزارة الاتصالات وتكنولوجيا المعلومات",
+              "distance_from_inherited_anchor_m": 1226
+            }
+          ],
+          "telecom_egypt_named_buildings_within_way_545580264": [
+            {
+              "osm_way": 293130215,
+              "name": "TE Data",
+              "building_type": "commercial",
+              "footprint_ha": 0.1122,
+              "distance_from_inherited_anchor_m": 288,
+              "identity": "not named or tagged RDH, RDH2 or data centre; no source binds RDH2 to it"
+            },
+            {
+              "osm_way": 270809613,
+              "name": "المصرية للاتصالات",
+              "building_type": "office",
+              "footprint_ha": 0.8572,
+              "distance_from_inherited_anchor_m": 934,
+              "identity": "not named or tagged RDH, RDH2 or data centre; no source binds RDH2 to it"
+            }
+          ],
+          "rdh_or_data_centre_feature_search": "No feature in any layer of the whole Egypt extract has a name matching RDH, Regional Data Hub, data center/centre or the Arabic for data centre, and no building in the extract has building type data_center. The only name containing 'data' near Smart Village is the TE Data building listed above.",
+          "selected_site_screen": "No other selected checkpoint site geometry intersects the polygon; RDH2 is the only Egypt site among the 200.",
+          "distance_method": "WGS84 geodesic (pyproj Geod) between the inherited display anchor and each feature's Shapely representative point; screening diagnostics, not boundary clearances."
+        },
+        "rights_scope": "Compact factual projections with ODbL attribution. No GeoPackage, tiles or mapper identifiers are redistributed.",
+        "lifecycle_selected": false
+      }
+    },
+    {
+      "key": "ap41-keppel-osm-wgs84",
+      "kind": "other",
+      "title": "OSM node documentation: WGS84 geographic coordinates",
+      "source_url": "https://wiki.openstreetmap.org/wiki/Node",
+      "publisher": "OpenStreetMap Wiki contributors",
+      "source_family": "openstreetmap_documentation",
+      "published_at": null,
+      "retrieved_at": "2026-09-25T23:49:39.466Z",
+      "license": "CC-BY-SA-2.0",
+      "attribution": "OpenStreetMap Wiki contributors",
+      "excerpt": "The OSM node documentation defines node latitude and longitude in the WGS84 datum.",
+      "content_hash": "0f8940aa3c499d4037565e4c0b0c3ece058a7d73ac7e1bd37ab91b94796b00fa",
+      "metadata": {
+        "content_hash_scope": "SHA-256 of exact content-decoded response bytes, not extracted text or rendered pages.",
+        "content_hash_verification": "fetched_bytes_sha256",
+        "raw_capture_temp_path": "/Users/kian/Developer/datacenter_atlas/tmp/research-round41-root/osm-wiki-node.html",
+        "raw_capture_bytes": 58104,
+        "capture_metadata_path": "/Users/kian/Developer/datacenter_atlas/tmp/research-round41-root/osm-wiki-node.html.metadata.json",
+        "capture_started_at": "2026-09-25T23:49:38.488Z",
+        "capture_finished_at": "2026-09-25T23:49:39.466Z",
+        "http_status": 200,
+        "effective_url": "https://wiki.openstreetmap.org/wiki/Node",
+        "content_type": "text/html; charset=UTF-8",
+        "capture_method": "credential-free Node fetch; no retry; content-decoded response bytes",
+        "request_credentials_supplied": false,
+        "raw_capture_redistributed": false,
+        "rights_url": "https://wiki.openstreetmap.org/wiki/Wiki_content_license",
+        "rights_scope": "Standard identification and a compact restated coordinate-system fact only.",
+        "literal_pointer": "Node page: latitude and longitude coordinates in WGS84.",
+        "lifecycle_selected": false
+      }
+    }
+  ],
+  "results": [
+    {
+      "project_stable_key": "curated:telecom-egypt-rdh2-smart-village-campus:regional-data-hub-2",
+      "parent_campus_stable_key": "curated:telecom-egypt-rdh2-smart-village-campus",
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              31.0077962,
+              30.0745846
+            ],
+            [
+              31.0188618,
+              30.0889733
+            ],
+            [
+              31.0264751,
+              30.0844865
+            ],
+            [
+              31.029532,
+              30.0827558
+            ],
+            [
+              31.0356892,
+              30.0790277
+            ],
+            [
+              31.03553,
+              30.0786226
+            ],
+            [
+              31.030441,
+              30.0719243
+            ],
+            [
+              31.0245365,
+              30.0645072
+            ],
+            [
+              31.0241265,
+              30.0644458
+            ],
+            [
+              31.0184214,
+              30.0679704
+            ],
+            [
+              31.0175488,
+              30.069243
+            ],
+            [
+              31.0161526,
+              30.0694819
+            ],
+            [
+              31.0077962,
+              30.0745846
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "display_anchor": {
+        "type": "Point",
+        "coordinates": [
+          31.021793794673577,
+          30.07671059884446
+        ]
+      },
+      "geometry_source_ids": [
+        "rdh2-smart-village-host-estate-context",
+        "rdh2-smart-village-geofabrik-reverification",
+        "rdh2-osm-wgs84-node-crs"
+      ],
+      "identity_source_ids": [
+        "rdh2-commissioning-status-identity"
+      ],
+      "location_basis": "host_estate_locality_context",
+      "semantics": {
+        "geometry_source_entity_kind": "host_estate",
+        "geometry_derivation": "osm_way_nodes_to_polygon",
+        "geometry_method": "osm_smart_village_way_545580264_v6_retained_as_host_estate_context_not_campus_locator",
+        "geometry_scope_class": "community_host_development_polygon_context_only",
+        "geometry_authority_class": "community_source",
+        "geometry_use_scope": "host_estate_context",
+        "precision_scope": "Entire Smart Village business park in Giza as mapped by OSM way 545580264 version 6: a 12-vertex community polygon (a closed way of 13 node references) of about 382.32 ha (WGS84 geodesic, diagnostic). The selected project evidence places RDH2 only in Smart Village; no reviewed source places RDH2 at any position within, or confirms containment in, this polygon. In the 2026-10-08 OSM snapshot it contains 88 mapped buildings, 38 of them named, among them Vodafone Egypt, Orange Egypt, Microsoft, Oracle, IBM, Huawei, Ericsson, HSBC, the National Telecom Regulatory Authority and the communications ministry, plus a separate Telecom Egypt office building and a TE Data building; none is named or tagged as RDH2 or a data centre. Host-development locality context only: not an RDH2 locator, parcel, boundary, footprint or work extent. The display anchor is the planar centroid of the business park's longitude/latitude ring, kept unchanged only because the row schema requires a point; it is not an RDH2 position.",
+        "horizontal_uncertainty_metres": null,
+        "horizontal_uncertainty_unknown_reason": "RDH2's position relative to this host-development outline is unknown and no source bounds it; OpenStreetMap states no positional accuracy for the outline. No numeric uncertainty is asserted."
+      }
+    }
+  ],
+  "required_unchanged_identity_bindings": [
+    {
+      "source_id": "rdh2-commissioning-status-identity",
+      "source_path": "sources/curated-official-2026-07-21-telecom-egypt-rdh2-commissioning.json",
+      "source_file_sha256": "910f4a3240f17c33454a09746dc3d1761f33c4ce5c7b80ce423db1d8b6113d88",
+      "source_file_bytes": 9305,
+      "evidence_pointer": "/evidence/0",
+      "evidence_record_sha256": "9c86b815f3c653fc05047f97d261417dbe65eed69bdda6922b048c299ee1cb35",
+      "project_pointer": "/project",
+      "project_sha256": "75b96bc7f8c0de0faa97ef5e1a35b734fbc125f27a87b6852679ef972e91c30a",
+      "campus_pointer": "/campus",
+      "campus_sha256": "0f466bb8bdbcea474cc128b0f7ea6ae094ef9eb2f05adb5b4eef3dcede713203",
+      "lifecycle_pointer": "/lifecycle/0",
+      "lifecycle_sha256": "5c3a83c4af414075e3901dbcd7c193916acad5688e69c1d05f37ba88cf3f4807"
+    },
+    {
+      "source_id": "v016-rdh2-acceptance",
+      "source_path": "definitions/verified-construction-core-v0.16-seven-country-diversity-site-batch.json",
+      "source_file_sha256": "d88bcf04caacbcdbd52c0c18b0b70028ec2c7681665a32e1c8d9f5cd41b01fe3",
+      "source_file_bytes": 33941,
+      "acceptance_pointer": "/acceptances/5",
+      "acceptance_sha256": "7ee61aacdf7ea1e0e091915f61057d4413678d4b97299640fe3cf870e8af7722"
+    },
+    {
+      "source_id": "rdh2-osm-wgs84-node-crs",
+      "source_path": "sources/verified-construction-core-v0.18-apac-round41-keppel-sgp9-geometry-proposal.json",
+      "source_file_sha256": "e585f95ccc3655c73f01253abd3a30f3ca67f223c4e17c12ca20f8053b84a22f",
+      "source_file_bytes": 11653,
+      "evidence_pointer": "/evidence/1",
+      "evidence_record_sha256": "347aaf5cd972e35d9ba5b1883db53ad87d10c411dcf175638adbf3b66e38ce44",
+      "note": "Shared CRS record copied byte-identically into /evidence/2, as the Helios and CGK corrections shared their datum and CRS records."
+    }
+  ],
+  "exact_row_deltas": {
+    "projects.csv": {
+      "file_line_number": 97,
+      "changed": {
+        "geometry_source_entity_kind": [
+          "campus",
+          "host_estate"
+        ],
+        "geometry_method": [
+          "osm_named_smart_village_polygon_as_host_development_campus_locator",
+          "osm_smart_village_way_545580264_v6_retained_as_host_estate_context_not_campus_locator"
+        ],
+        "geometry_scope_class": [
+          "community_host_development_polygon_as_campus_locator",
+          "community_host_development_polygon_context_only"
+        ],
+        "geometry_use_scope": [
+          "campus_locator",
+          "host_estate_context"
+        ],
+        "geometry_precision_scope": [
+          "The named Smart Village polygon locates the broad host development identified by the project evidence. It is not an official boundary, RDH2 parcel, campus boundary, project footprint, building footprint, or current-work extent.",
+          "Entire Smart Village business park in Giza as mapped by OSM way 545580264 version 6: a 12-vertex community polygon (a closed way of 13 node references) of about 382.32 ha (WGS84 geodesic, diagnostic). The selected project evidence places RDH2 only in Smart Village; no reviewed source places RDH2 at any position within, or confirms containment in, this polygon. In the 2026-10-08 OSM snapshot it contains 88 mapped buildings, 38 of them named, among them Vodafone Egypt, Orange Egypt, Microsoft, Oracle, IBM, Huawei, Ericsson, HSBC, the National Telecom Regulatory Authority and the communications ministry, plus a separate Telecom Egypt office building and a TE Data building; none is named or tagged as RDH2 or a data centre. Host-development locality context only: not an RDH2 locator, parcel, boundary, footprint or work extent. The display anchor is the planar centroid of the business park's longitude/latitude ring, kept unchanged only because the row schema requires a point; it is not an RDH2 position."
+        ],
+        "horizontal_uncertainty_unknown_reason": [
+          "OpenStreetMap supplies no bounded numeric accuracy for this community host-development geometry.",
+          "RDH2's position relative to this host-development outline is unknown and no source bounds it; OpenStreetMap states no positional accuracy for the outline. No numeric uncertainty is asserted."
+        ],
+        "geometry_evidence_id": [
+          "5b8fa185-405c-56fd-86c4-a0a295820be1",
+          "d222545d-ed52-5967-9482-5e9fff4d291b"
+        ],
+        "verification_posture": [
+          "recent_authoritative_physical_observation_plus_reviewed_site_locator",
+          "recent_authoritative_physical_observation_plus_host_estate_context_only"
+        ]
+      },
+      "unchanged_includes": [
+        "project_id",
+        "site_id",
+        "name",
+        "latitude",
+        "longitude",
+        "geometry_json",
+        "geometry_type",
+        "geometry_derivation",
+        "geometry_authority_class",
+        "horizontal_uncertainty_metres",
+        "last_observed_physical_status",
+        "status_as_of",
+        "status_method",
+        "status_evidence_id",
+        "status_source_url",
+        "geometry_source_url",
+        "role_claims_json",
+        "owner",
+        "operator",
+        "users",
+        "tenants",
+        "customers",
+        "workloads_json",
+        "workload_unknown_reason",
+        "power_observations_json",
+        "power_unknown_reason",
+        "annual_energy_observations_json",
+        "annual_energy_unknown_reason",
+        "efficiency_observations_json",
+        "efficiency_unknown_reason"
+      ]
+    },
+    "sites.csv": {
+      "file_line_number": 93,
+      "changed": {
+        "geometry_source_entity_kinds_json": [
+          "[\"campus\"]",
+          "[\"host_estate\"]"
+        ],
+        "geometry_methods_json": [
+          "[\"osm_named_smart_village_polygon_as_host_development_campus_locator\"]",
+          "[\"osm_smart_village_way_545580264_v6_retained_as_host_estate_context_not_campus_locator\"]"
+        ],
+        "geometry_scope_classes_json": [
+          "[\"community_host_development_polygon_as_campus_locator\"]",
+          "[\"community_host_development_polygon_context_only\"]"
+        ],
+        "geometry_use_scopes_json": [
+          "[\"campus_locator\"]",
+          "[\"host_estate_context\"]"
+        ],
+        "geometry_precision_scopes_json": [
+          "[\"The named Smart Village polygon locates the broad host development identified by the project evidence. It is not an official boundary, RDH2 parcel, campus boundary, project footprint, building footprint, or current-work extent.\"]",
+          "[\"Entire Smart Village business park in Giza as mapped by OSM way 545580264 version 6: a 12-vertex community polygon (a closed way of 13 node references) of about 382.32 ha (WGS84 geodesic, diagnostic). The selected project evidence places RDH2 only in Smart Village; no reviewed source places RDH2 at any position within, or confirms containment in, this polygon. In the 2026-10-08 OSM snapshot it contains 88 mapped buildings, 38 of them named, among them Vodafone Egypt, Orange Egypt, Microsoft, Oracle, IBM, Huawei, Ericsson, HSBC, the National Telecom Regulatory Authority and the communications ministry, plus a separate Telecom Egypt office building and a TE Data building; none is named or tagged as RDH2 or a data centre. Host-development locality context only: not an RDH2 locator, parcel, boundary, footprint or work extent. The display anchor is the planar centroid of the business park's longitude/latitude ring, kept unchanged only because the row schema requires a point; it is not an RDH2 position.\"]"
+        ],
+        "horizontal_uncertainty_unknown_reason": [
+          "OpenStreetMap supplies no bounded numeric accuracy for this community host-development geometry.",
+          "RDH2's position relative to this host-development outline is unknown and no source bounds it; OpenStreetMap states no positional accuracy for the outline. No numeric uncertainty is asserted."
+        ],
+        "geometry_evidence_ids_json": [
+          "[\"5b8fa185-405c-56fd-86c4-a0a295820be1\"]",
+          "[\"491b3b57-f2fb-53b4-ad33-07902a6d2e19\",\"6b5a280d-e799-5d2a-bbd6-ec92effbe2e0\",\"d222545d-ed52-5967-9482-5e9fff4d291b\"]"
+        ],
+        "verification_posture": [
+          "recent_authoritative_physical_observation_plus_reviewed_site_locator",
+          "recent_authoritative_physical_observation_plus_host_estate_context_only"
+        ]
+      },
+      "unchanged_includes": [
+        "site_id",
+        "name",
+        "latitude",
+        "longitude",
+        "geometry_json",
+        "geometry_type",
+        "geometry_derivations_json",
+        "geometry_authority_classes_json",
+        "project_ids_json",
+        "statuses_json",
+        "oldest_status_as_of",
+        "newest_status_as_of",
+        "independent_imagery_verification",
+        "imagery_review_outcomes_json"
+      ]
+    },
+    "sites.geojson": {
+      "feature_index": 91,
+      "changed_properties": {
+        "geometry_precision_scopes": [
+          [
+            "The named Smart Village polygon locates the broad host development identified by the project evidence. It is not an official boundary, RDH2 parcel, campus boundary, project footprint, building footprint, or current-work extent."
+          ],
+          [
+            "Entire Smart Village business park in Giza as mapped by OSM way 545580264 version 6: a 12-vertex community polygon (a closed way of 13 node references) of about 382.32 ha (WGS84 geodesic, diagnostic). The selected project evidence places RDH2 only in Smart Village; no reviewed source places RDH2 at any position within, or confirms containment in, this polygon. In the 2026-10-08 OSM snapshot it contains 88 mapped buildings, 38 of them named, among them Vodafone Egypt, Orange Egypt, Microsoft, Oracle, IBM, Huawei, Ericsson, HSBC, the National Telecom Regulatory Authority and the communications ministry, plus a separate Telecom Egypt office building and a TE Data building; none is named or tagged as RDH2 or a data centre. Host-development locality context only: not an RDH2 locator, parcel, boundary, footprint or work extent. The display anchor is the planar centroid of the business park's longitude/latitude ring, kept unchanged only because the row schema requires a point; it is not an RDH2 position."
+          ]
+        ],
+        "geometry_scope_classes": [
+          [
+            "community_host_development_polygon_as_campus_locator"
+          ],
+          [
+            "community_host_development_polygon_context_only"
+          ]
+        ],
+        "geometry_use_scopes": [
+          [
+            "campus_locator"
+          ],
+          [
+            "host_estate_context"
+          ]
+        ],
+        "verification_posture": [
+          "recent_authoritative_physical_observation_plus_reviewed_site_locator",
+          "recent_authoritative_physical_observation_plus_host_estate_context_only"
+        ]
+      },
+      "geometry_unchanged": true
+    },
+    "evidence.csv": {
+      "removed": [
+        {
+          "evidence_id": "5b8fa185-405c-56fd-86c4-a0a295820be1",
+          "file_line_number": 88,
+          "row_canonical_sha256": "010501916085a8b0a90da6e13535b430d2d0235b92e3b249b660adf27629828e"
+        }
+      ],
+      "added": [
+        {
+          "evidence_id": "d222545d-ed52-5967-9482-5e9fff4d291b",
+          "key": "telecom-egypt-rdh2-smart-village-osm-host-estate-context-rescope-v1-captured-2026-08-23",
+          "roles": [
+            "geometry"
+          ],
+          "project_ids": [
+            "35c427dc-af95-5011-b3ab-3fa7c90fcb30"
+          ]
+        },
+        {
+          "evidence_id": "6b5a280d-e799-5d2a-bbd6-ec92effbe2e0",
+          "key": "telecom-egypt-rdh2-smart-village-osm-geofabrik-egypt-261008-free-gpkg-reverification-2026-10-09",
+          "roles": [
+            "geometry"
+          ],
+          "project_ids": [
+            "35c427dc-af95-5011-b3ab-3fa7c90fcb30"
+          ]
+        }
+      ],
+      "association_only": [
+        {
+          "evidence_id": "491b3b57-f2fb-53b4-ad33-07902a6d2e19",
+          "key": "ap41-keppel-osm-wgs84",
+          "changed_field": "project_ids_json",
+          "after_adds_project_id": "35c427dc-af95-5011-b3ab-3fa7c90fcb30",
+          "note": "Identical shared CRS record (same derived ID); its factual content is unchanged."
+        }
+      ]
+    },
+    "counts_relative_to_thirty_sixth": {
+      "physical_sites": 0,
+      "projects": 0,
+      "evidence": 1,
+      "reviewed_site_locator_projects": -1,
+      "host_estate_context_projects": 1,
+      "official_boundary_projects": 0,
+      "countries": 0,
+      "non_us_sites": 0
+    }
+  },
+  "preservation_invariants": {
+    "raw_evidence_body_sha256_unchanged": "a1dc95ddb661859dfe320048959ef6522d40e2361500db7747a09ddb5995cbe8",
+    "raw_capture_retrieved_at_unchanged": "2026-08-23",
+    "osm_way_version_unchanged": 6,
+    "numeric_geometry_unchanged": true,
+    "display_anchor_unchanged": [
+      31.021793794673577,
+      30.07671059884446
+    ],
+    "geometry_authority_class_unchanged": "community_source",
+    "physical_campus_key_unchanged": true,
+    "construction_project_key_unchanged": true,
+    "lifecycle_observation_unchanged": {
+      "value": "commissioning",
+      "as_of_date": "2026-06-10",
+      "method": "authoritative_physical_status_update"
+    },
+    "horizontal_uncertainty_metres": null,
+    "site_count_unchanged": true,
+    "old_file_not_modified": true,
+    "frozen_v017_not_modified": true
+  },
+  "defect_findings": [
+    {
+      "id": "scope",
+      "finding": "The selected geometry is the whole Smart Village business park (OSM way 545580264 v6; 12 distinct vertices in a closed way of 13 node references; about 382.32 ha WGS84 geodesic; bounding box about 2.69 km by 2.72 km), labelled geometry_use_scope campus_locator and entity kind campus. The v0.16 record's own precision scope calls it 'the broad host development'. The RDH2 source supports locality only (curated method authoritative_locality, null coordinates and geometry, address 'Smart Village, Giza, Egypt'). Smart Villages Development and Management Company describes the park as Egypt's largest gated business community, with 2.5 million m2 of land, 94 operating buildings and 244 business partners."
+    },
+    {
+      "id": "anchor",
+      "finding": "Project and site latitude/longitude publish the planar centroid of the business park's longitude/latitude ring (31.021793794673577, 30.07671059884446; the v0.16 record labels it planar_polygon_centroid), a host-development centroid with spurious precision. Polygon vertices lie up to 1.388 km away, and the nearest mapped building outline to it is HSBC Bank's (OSM way 336802979), about 17 m away; the anchor lies inside no mapped building."
+    },
+    {
+      "id": "size",
+      "finding": "ECG's captured RDH2 project page (2026-07-21, sha256 6d7c0708...) reports a 3,825 m2 land area and 2,300 m2 built area; the polygon is roughly 1,000 times that land area."
+    },
+    {
+      "id": "non_discrimination",
+      "finding": "In the 2026-10-08 OSM snapshot 88 buildings lie wholly inside the polygon, 38 of them named for other organisations and units (Vodafone Egypt, Orange Egypt, Microsoft, Oracle, IBM, Huawei, Ericsson, HSBC, NTRA, the communications ministry and others), including a separate Telecom Egypt office building (way 270809613) and a TE Data building (way 293130215) that are alias hazards. Telecom Egypt press release 132 (2020) places its then-new international data centre, due for commissioning in early 2021, in Smart Village among many other companies and authorities; press release 188 (2023) says RDH's first phase launched in Q1 2021, makes RDH2 its second phase and plans two further phases 'within the Smart Village availability zone'. The polygon therefore cannot distinguish RDH2 from RDH1, future RDH phases or other tenants."
+    },
+    {
+      "id": "collision",
+      "finding": "Unlike CGK, the polygon intersects no other selected site geometry, and RDH2 is the only Egypt site among the 200. The defect is scope and accounting, not a demonstrated collision."
+    },
+    {
+      "id": "accounting",
+      "finding": "RDH2 is counted in reviewed_site_locator_projects (197 at the thirty-sixth checkpoint) with posture recent_authoritative_physical_observation_plus_reviewed_site_locator. Under the CGK rule a host-development polygon is not a reviewed site locator; the v0.18 docstring states that locality centroids are excluded."
+    },
+    {
+      "id": "not_numeric",
+      "finding": "The numbers are a faithful copy: canonical geometry 343 bytes, sha256 818708ea..., reproduced from the 2026-10-08 Geofabrik free GeoPackage after unwrapping its single-part MultiPolygon and reversing the vertex order. OSM node coordinates are WGS84, so this is a scope, selection and accounting error, not a datum or transcription error."
+    },
+    {
+      "id": "inheritance",
+      "finding": "Frozen in v0.17 (projects.csv line 97, sites.csv line 93, evidence.csv line 88, sites.geojson feature 91) and copied byte for byte into every v0.18 draft through the thirty-sixth. The v2 baseline-correction path added for CGK can correct it without a further builder extension."
+    }
+  ],
+  "checkpoint_application": {
+    "summary": "The thirty-sixth checkpoint already added contract schema v2 and the baseline-correction validator for CGK, so this correction needs a second baseline_corrections entry, its pins and regression tests, not a new builder path. Earlier contracts and drafts stay byte-reproducible.",
+    "steps": [
+      "Commit this file as sources/verified-construction-core-v0.18-rdh2-host-estate-locator-correction-v1.json and pin its bytes and SHA-256 in reviewed code.",
+      "In the next v2 contract, keep the CGK entry and add a baseline_corrections entry with correction_id rdh2-host-estate-locator-rescope-v1, physical_site_stable_key curated:telecom-egypt-rdh2-smart-village-campus, project_stable_key curated:telecom-egypt-rdh2-smart-village-campus:regional-data-hub-2, frozen_rows equal to supersedes.frozen_baseline_rows, geometry {source_id rdh2-smart-village-host-estate-context, record_pointer /results/0, record_sha256}, identity_source_id rdh2-commissioning-status-identity and evidence_source_ids [rdh2-smart-village-host-estate-context, rdh2-smart-village-geofabrik-reverification, rdh2-osm-wgs84-node-crs].",
+      "Add contract sources rdh2-smart-village-host-estate-context (/evidence/0), rdh2-smart-village-geofabrik-reverification (/evidence/1) and rdh2-osm-wgs84-node-crs (/evidence/2) for this file, and an independent ReviewPins.baseline_correction_sha256 pin for rdh2-host-estate-locator-rescope-v1.",
+      "If the next draft follows the thirty-sixth, keep supersedes.inherited_unchanged_through at the thirty-sixth draft (or move it to the latest draft that still holds the frozen rows byte for byte) and rename the counts_relative_to_* block accordingly.",
+      "The builder then rewrites only the enumerated fields of the RDH2 project and site rows and feature properties, drops evidence row 5b8fa185-..., adds the two correction evidence rows and adds the RDH2 project to the shared CRS row's project_ids_json.",
+      "Add exact-delta regression tests for two corrections in one v2 contract: only the enumerated RDH2 fields change, geometry, latitude and longitude are unchanged, 5b8fa185 is absent and the two new IDs are present, the CRS row changes only project_ids_json, reviewed_site_locator_projects falls by one, host_estate_context_projects rises to two, and locator_exceptions lists RDH2 with an empty geometry_intersects_site_keys list.",
+      "Update docs/expansion_200.md with an 'Explicit RDH2 host-estate locator correction' section parallel to the CGK one."
+    ],
+    "count_consequence": "Physical sites and projects are unchanged; evidence rises by one net row. reviewed_site_locator_projects falls by one (197 to 196 of 203 projects, before any other correction) and host_estate_context_projects rises from 1 to 2.",
+    "completion_claim_consequence": "A 200-site claim must state that two baseline sites, CGK and RDH2, have host-development locality context only. If a verified-200 claim requires every counted site to have a reviewed locator or official boundary, 198 of 200 would qualify after this correction, before the SBOGZB01 and RCJM1 reviews.",
+    "future_upgrade_gate": "A freely accessible Telecom Egypt or Smart Villages Development and Management Company numeric point, plot or building identifier for RDH2 (or the RDH campus) with an official plot map or coordinate, an official parcel or permit geometry naming RDH2, a proponent statutory submission with coordinates, or a named OSM feature for RDH2 or the RDH campus reached through a robots-compliant route. Apply it through a further versioned correction with full geometry and alias screening against RDH phase 1, the Telecom Egypt office and the TE Data building."
+  },
+  "raw_review_paths": {
+    "geofabrik_free_gpkg_zip": "tmp/research-round44-quality/rdh2-osm/geofabrik-egypt-261008-free.gpkg.zip",
+    "geofabrik_free_gpkg_unzipped": "tmp/research-round44-quality/rdh2-osm/unzipped/egypt.gpkg",
+    "geofabrik_robots": "tmp/research-round44-quality/rdh2-geofabrik-robots.txt",
+    "geofabrik_egypt_page": "tmp/research-round44-quality/rdh2-geofabrik-egypt.html",
+    "osm_fr_robots": "tmp/research-round44-quality/rdh2-osmfr-download-robots.txt",
+    "planet_robots": "tmp/research-round44-quality/rdh2-planet-osm-robots.txt",
+    "osm_robots_round43": "tmp/research-round43-cgk/osm-api-robots.txt",
+    "telecom_egypt_press_releases": [
+      "tmp/research-round44-quality/rdh2-te-ir-pr132.html",
+      "tmp/research-round44-quality/rdh2-te-ir-pr188.html",
+      "tmp/research-round44-quality/rdh2-te-ir-pr211.html",
+      "tmp/research-round44-quality/rdh2-te-ir-pr227.html",
+      "tmp/research-round44-quality/rdh2-te-ir-pr237.html"
+    ],
+    "smart_village_about": "tmp/research-round44-quality/rdh2-smart-villages-about.html",
+    "scan_scripts": [
+      "tmp/research-round44-quality/rdh2-review-scripts/scan_gpkg.py",
+      "tmp/research-round44-quality/rdh2-review-scripts/area.py",
+      "tmp/research-round44-quality/rdh2-review-scripts/text.py",
+      "tmp/research-round44-quality/rdh2-review-scripts/capture-long-timeout.mjs"
+    ],
+    "scan_outputs": [
+      "tmp/research-round44-quality/rdh2-review-scripts/gpkg_scan.json"
+    ]
+  },
+  "validation_scope": "Draft only; not committed or pinned. Hashes, frozen rows, superseded records, identity bindings and the corrected rows were computed with the repository's own v0.18 builder functions and the record was run through the baseline-correction validator (_baseline_correction) with mock contract sources and pins. The ring was compared with the 2026-10-08 Geofabrik free GeoPackage (identical up to ring orientation) and screened against all 200 thirty-sixth-checkpoint site geometries with Shapely 2.1.1 (no intersection). The parent owns the contract entry, pins, docs and regression tests."
+}

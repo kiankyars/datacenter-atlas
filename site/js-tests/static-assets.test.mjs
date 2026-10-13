@@ -59,7 +59,7 @@ test('explorer.html ids are unique and it uses only documented tokens', () => {
   const allowed = new Set([
     'root', 'site_name', 'tagline', 'base_url', 'repository_url', 'issues_url', 'dataset.id', 'dataset.label',
     'dataset.release_status', 'dataset.checkpoint_date', 'dataset.checkpoint_year', 'dataset.lifecycle_reference_date',
-    'dataset.status_window_days', 'dataset.window_start', 'counts.physical_sites', 'counts.projects',
+    'dataset.status_window_days', 'dataset.window_start', 'dataset.window_end', 'counts.physical_sites', 'counts.projects',
     'counts.countries', 'counts.evidence', 'counts.non_us_sites', 'counts.official_boundary_projects',
     'counts.polygon_sites', 'counts.power_observation_projects', 'last_preview.label',
     'last_preview.counts.physical_sites', 'versions.count', 'build.commit_short', 'gates_table', 'status_legend'

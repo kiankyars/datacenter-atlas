@@ -2568,7 +2568,10 @@
         release_status: dataset.release_status || null,
         checkpoint_date: dataset.checkpoint_date || null,
         lifecycle_reference_date: dataset.lifecycle_reference_date || null,
-        status_window_start: dataset.window_start || null
+        status_window_start: dataset.window_start || null,
+        updated_at: dataset.updated_at || dataset.checkpoint_date || null,
+        observation_window_start: dataset.observation_window_start || dataset.window_start || null,
+        observation_window_end: dataset.observation_window_end || dataset.lifecycle_reference_date || null
       };
     }
 

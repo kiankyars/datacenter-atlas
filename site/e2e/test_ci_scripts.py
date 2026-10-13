@@ -446,15 +446,32 @@ def test_release_notes_and_assets(tmp_path):
     versions = {"versions": [{"id": DATASET_ID, "added_site_ids": ["vcc-site-1", "vcc-site-9"], "removed_site_ids": []}]}
     sites = [{"site_id": "vcc-site-1", "name": "Alpha <campus>", "country": "Chile"}]
     text = release_notes.notes(index, versions, sites, commit="abc123", citation={"apa": "Kyars, K. (2026). X."})
-    assert f"Dataset version `{DATASET_ID}`" in text
-    assert "not a final release" in text
+    assert "Data updated 2026-10-02." in text
+    assert "Construction observations: 2026-05-22 to 2026-08-20." in text
+    assert "not a final release" not in text and "release-gates" not in text
     assert f"[Alpha \\<campus\\>]({BASE}sites/vcc-site-1/) (Chile)" in text and "- `vcc-site-9`" in text
     assert "Cite as: Kyars, K. (2026). X." in text
-    assert "last observed physical status" in text and "not a census" in text
+    assert "last observed physical status" in text and "Coverage is incomplete" in text
     assert "Built from commit abc123." in text
     assert release_notes.release_tag(DATASET_ID) == f"data-{DATASET_ID}"
     assert release_notes.is_prerelease({"publishable_as_final": False})
     assert not release_notes.is_prerelease({"publishable_as_final": True})
+
+
+def test_published_data_update_is_a_regular_dated_release():
+    dataset = {
+        **_facts().index["dataset"], "id": "2026-10-13", "release_status": "published",
+        "updated_at": "2026-10-13", "checkpoint_date": "2026-10-13",
+        "observation_window_start": "2026-05-22", "observation_window_end": "2026-09-15",
+    }
+    index = {"base_url": BASE, "dataset": dataset}
+    text = release_notes.notes(index, {"versions": []}, [])
+    assert release_notes.release_title(dataset) == "Data Center Atlas · 2026-10-13"
+    assert not release_notes.is_prerelease(dataset)
+    assert "Data updated 2026-10-13." in text
+    assert "Construction observations: 2026-05-22 to 2026-09-15." in text
+    assert "an Atlas update does not mean every project was rechecked" in text
+    assert "checkpoint" not in text and "draft" not in text and "release gates" not in text
 
 
 def test_release_notes_require_the_version_zip(tmp_path):
