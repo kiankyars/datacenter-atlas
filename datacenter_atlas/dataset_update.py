@@ -188,7 +188,7 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
     input_bytes = input_path.read_bytes()
     spec = json.loads(input_bytes)
     _require(spec["format"] == "datacenter-atlas-update-input-v1", "unsupported update format")
-    actions = [item["project_stable_key"] for group in ("additions", "status_updates", "status_corrections", "withdrawals") for item in spec.get(group, [])]
+    actions = [item["project_stable_key"] for group in ("additions", "status_updates", "status_corrections", "context_updates", "withdrawals") for item in spec.get(group, [])]
     _require(len(actions) == len(set(actions)), "a project may occur in only one action per update")
     updated = _date(spec["updated_at"])
     base_path = _path(root, spec["base_dataset"])
@@ -323,6 +323,21 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
         if status["value"] in PLANNED_STATUSES:
             row["verification_posture"] = PROJECT_RECORD_POSTURE
 
+    contextualized = []
+    for item in spec.get("context_updates", []):
+        key = item["project_stable_key"]
+        _require(key in by_key, "unknown context project")
+        row = by_key[key]
+        _text(item.get("identity_review"), "context identity review")
+        _text(item.get("summary"), "context summary")
+        _require(item.get("preserve_status_as_of") == row["status_as_of"], "context update must preserve the existing observation date")
+        _require(item.get("context_kind") in {"identity", "power_readiness"}, "unsupported context kind")
+        source_ids = item.get("source_ids")
+        _require(isinstance(source_ids, list) and source_ids and all(sid in sources for sid in source_ids), "context update needs reviewed sources")
+        for source_id in source_ids:
+            associate(source_id, row["project_id"], "context:" + item["context_kind"])
+        contextualized.append(key)
+
     withdrawn = []
     for item in spec.get("withdrawals", []):
         key = item["project_stable_key"]
@@ -393,6 +408,8 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
         "base_dataset": spec["base_dataset"],
         "observation_policy": "Last documented observations; records are not a claim that all projects are still under construction on the update date.",
     }
+    if contextualized:
+        report["context_enriched_projects"] = sorted(contextualized)
     if has_consolidation:
         report.update(source_record_resolutions=inherited_resolutions,
                       consolidation_policy=inherited_report.get("consolidation_policy", ""),

@@ -1,0 +1,115 @@
+{
+  "format": "datacenter-atlas-country-research-resolution-v1",
+  "researched_at": "2026-10-13T17:49:12.983886+00:00",
+  "country": "Japan",
+  "baseline": "verified_construction_core/2026-10-13-research-asia",
+  "baseline_commit": "a2c0510713eba276c3b71a0e91430e53394146a2",
+  "previous_packet": "sources/research-countries-2026-10-13-jp-resolution.json",
+  "maximum_new_admission_status_age_days": 90,
+  "coverage_note": "Second Japan pass sought current evidence beyond repeatedly stale OSK1/Zeus material, prioritizing newly operational named facilities. Result: one geometry-resolved operational admission, with bounded fresh leads retained.",
+  "raw_capture_directory": "local_data/country-research-2026-10-13-jp-next",
+  "raw_retention_note": "Exact raw source bytes retained only in ignored local_data. Public files carry minimal factual summaries, SHA-256 provenance and one licensed cadastral feature extract.",
+  "integration_actions_file": "sources/research-countries-2026-10-13-jp-next-actions.json",
+  "normalized_sources_file": "sources/research-countries-2026-10-13-jp-next-primary-sources.json",
+  "geometry_facts_file": "sources/research-countries-2026-10-13-jp-next-geometry-facts.json",
+  "publishable_action_counts": {
+    "additions": 1,
+    "status_updates": 0
+  },
+  "candidates": [
+    {
+      "id": "ishikari-renewable-energy-dc-1",
+      "name": "Ishikari Renewable Energy Data Center No.1",
+      "action": "ready_operational_admission",
+      "status": "operational",
+      "status_as_of": "2026-08-01",
+      "publication_date": "2026-08-05",
+      "geometry": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            141.298122,
+            43.178556
+          ]
+        },
+        "source_id": "jp-next-ishikari-moj-parcel",
+        "scope": "campus_locator",
+        "scope_class": "exact_operator_parcel_cadastral_bridge",
+        "authority": "compiled_reference",
+        "method": "moj_aigid_exact_address_parcel_interior_centroid",
+        "precision": "Interior centroid of uniquely matched published campus parcel. Six decimal coordinates do not imply equivalent horizontal accuracy; no building or tenant footprint.",
+        "identity_review": "Tokyu April22 PDF page4 specifies Ishikari Shinko Chuo1-chome722-1.2026 MOJ/AIGID collection has exactly one feature for municipality01235 +大字新港中央 +丁目１丁目 +地番722-1. Other722-1 parcels in Shinko Nishi/Minami and other districts were excluded. FeatureH000000005 on map01235_2022_1 has consistent site area.",
+        "uncertainty_reason": "No quantified positional accuracy established; source parcel classification is retained. Six decimal places describe calculation, not surveyed accuracy."
+      },
+      "source_ids": [
+        "jp-next-ishikari-opening",
+        "jp-next-ishikari-tokyu-april-pdf",
+        "jp-next-ishikari-bbt-oct",
+        "jp-next-ishikari-tokyu-site",
+        "jp-next-ishikari-moj-parcel"
+      ],
+      "capacity_scope_note": "August5 owner release describes15MW receiving capacity and1140rack facility with6halls, not liveITload, installedGPUcount or occupancy. April22TokyuPDF instead writes15000kVA; retain unit difference, do not numerically equate kVA withMW. Typed power deliberately unselected.",
+      "tenant_scope_note": "October7GMO deployment is announced within BroadBand Tower floor and remains future2026target. It does not make a second physical site."
+    },
+    {
+      "id": "miyagi-ai-data-center",
+      "name": "Miyagi AI Data Center, Shichigahama",
+      "action": "hold_geometry",
+      "known_status": "completed",
+      "known_status_as_of": "2026-07-24",
+      "later_evidence": "OCX network node achieved opening September1, documentedSeptember30. Supports facility network service, not proof of all-container GPU commissioning.",
+      "source_ids": [
+        "jp-next-miyagi-completion",
+        "jp-next-miyagi-bbix",
+        "jp-next-miyagi-tohoku-summary"
+      ],
+      "blocker": "Primary facility deck and releases disclose municipality only. No parcel, street address or sourced numeric facility point established. Do not infer Sendai thermal power-station campus from owner identity.",
+      "next_step": "Find an explicit operator or municipal site-address map for this named facility; retain July24completion as conservative achieved physical status if geometry becomes available."
+    },
+    {
+      "id": "cyrusone-kep-osk1",
+      "name": "CyrusOne KEP OSK1, Seika",
+      "action": "retain_previous_hold",
+      "previous_packet": "sources/research-countries-2026-10-13-jp-resolution.json",
+      "bounded_check": "Targeted primary operator search did not establish a newly dated physical stage afterJuly15. Existing2025work and2026report fiscal-period caveat remain; do not refresh to report publication day.",
+      "next_step": "Dated2026construction photo or contractor/operator current-stage report for exactOSK1scope; previously resolved prefectural numeric earthworks point remains relevant."
+    },
+    {
+      "id": "zeus-osa1",
+      "name": "Zeus OSA1, Osaka Nanko",
+      "action": "retain_previous_hold",
+      "previous_packet": "sources/research-countries-2026-10-13-jp-resolution.json",
+      "bounded_check": "Operator indexed current material still supplies undated development specifications rather than a new dated physical observation. January30TokyoTatemono announcement remains stale for new admission.",
+      "next_step": "Recent TokyoTatemono contractor or permit/project report plus exact Nankokita1-14-1 parcel bridge."
+    },
+    {
+      "id": "cyrusone-kep-osk2-minoh",
+      "name": "CyrusOne KEP OSK2, Minoh",
+      "action": "discovery_only_primary_evidence_missing",
+      "discovery_url": "https://kansai-sanpo.com/kanden-dc-osk2/",
+      "discovery_date": "2026-07-23",
+      "discovery_note": "Secondary discovery links proposed OSK2 to Kawai-Yamanokuchi land-readjustment area in Aomatanihigashi2-chome. Planned midOctober2026work is not achieved construction. No primary operator/municipal status or numeric exact site bridge obtained.",
+      "next_step": "Inspect Minoh development/building records for the named OSK2 applicant; a recent primary planned-development notice could support announced status without claiming work."
+    },
+    {
+      "id": "kobe-conveyor-tunnel-dc",
+      "name": "Kobe former conveyor tunnel underground data center",
+      "action": "fresh_announced_lead_geometry_queued",
+      "source_ids": [
+        "jp-next-kobe-tunnel-announcement"
+      ],
+      "known_status": "announced",
+      "known_status_as_of": "2026-10-06",
+      "finding": "Fresh first-party announcement identifies about3km leased section of former14.5km municipal conveyor tunnel, followingSeptember4award; planned end2027service. Need exact leased-section/portal bridge before choosing a point.",
+      "next_step": "Retrieve KobeCitySeptember4lease award and facility map, distinguish the leased3km section from the full14.5km corridor; one clearly labeled host-tunnel marker may be viable. Future20MWreceiving capacity is not liveITload."
+    }
+  ],
+  "validation": {
+    "baseline_sites": 395,
+    "baseline_projects": 419,
+    "original_source_records": 231,
+    "unique_parcel_match_count": 1,
+    "point_inside_polygon": true,
+    "first_batch_files_modified": false
+  }
+}

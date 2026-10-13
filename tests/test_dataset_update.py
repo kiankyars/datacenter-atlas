@@ -108,6 +108,40 @@ class DatasetUpdateTests(unittest.TestCase):
                 with self.assertRaisesRegex(UpdateError, expected):
                     self.payloads()
 
+    def test_grid_context_preserves_project_status_geometry_and_capacity(self):
+        original = next(csv.DictReader(io.StringIO((BASE / "projects.csv").read_text())))
+        self.spec["additions"] = []
+        self.sources["sources"][0]["kind"] = "utility_record"
+        self.spec["context_updates"] = [{
+            "project_stable_key": original["project_stable_key"],
+            "source_ids": ["work"], "context_kind": "power_readiness",
+            "identity_review": "Utility names this project as the intended connected customer.",
+            "summary": "Upstream substation works; no data-centre stage or energized capacity established.",
+            "preserve_status_as_of": original["status_as_of"],
+        }]
+        payloads, _ = self.payloads()
+        project = next(row for row in csv.DictReader(io.StringIO(payloads["projects.csv"].decode()))
+                       if row["project_id"] == original["project_id"])
+        project["status_age_days_at_review"] = original["status_age_days_at_review"]
+        self.assertEqual(project, original)
+        evidence = next(row for row in csv.DictReader(io.StringIO(payloads["evidence.csv"].decode()))
+                        if row["source_url"] == "https://example.org/progress")
+        self.assertEqual(json.loads(evidence["roles_json"]), ["context:power_readiness"])
+        self.assertEqual(json.loads(evidence["project_ids_json"]), [original["project_id"]])
+        report = json.loads(payloads["selection-report.json"])
+        self.assertEqual(report["refreshed_projects"], [])
+        self.assertEqual(report["context_enriched_projects"], [original["project_stable_key"]])
+        self.spec["context_updates"][0]["source_ids"] = ["missing"]
+        with self.assertRaisesRegex(UpdateError, "needs reviewed sources"):
+            self.payloads()
+        self.spec["context_updates"][0]["source_ids"] = ["work"]
+        self.spec["context_updates"][0]["preserve_status_as_of"] = "2026-10-13"
+        with self.assertRaisesRegex(UpdateError, "preserve the existing"):
+            self.payloads()
+        self.spec["context_updates"][0]["project_stable_key"] = "unknown"
+        with self.assertRaisesRegex(UpdateError, "unknown context project"):
+            self.payloads()
+
     def test_exact_ninety_day_admission_boundary(self):
         self.spec["additions"][0]["status"]["as_of"] = "2026-07-15"
         self.payloads()

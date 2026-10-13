@@ -1,0 +1,60 @@
+{
+  "format": "datacenter-atlas-action-specs-v1",
+  "as_of": "2026-10-13",
+  "source_file": "sources/research-countries-2026-10-13-jp-next-primary-sources.json",
+  "additions": [
+    {
+      "project_stable_key": "curated:ishikari-renewable-energy-dc-1:facility",
+      "physical_site_stable_key": "curated:ishikari-renewable-energy-dc-1",
+      "site_name": "Ishikari Renewable Energy Data Center No.1",
+      "name": "Ishikari Renewable Energy Data Center No.1",
+      "country": "Japan",
+      "country_iso_a2": "JP",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-08-01",
+        "source_id": "jp-next-ishikari-opening",
+        "summary": "Owner confirms fit-out completion and commencement of services to data halls on August1. Operational host facility; no claim that every hall is occupied or that the later GMO GPU deployment is live."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            141.298122,
+            43.178556
+          ]
+        },
+        "source_id": "jp-next-ishikari-moj-parcel",
+        "scope": "campus_locator",
+        "scope_class": "exact_operator_parcel_cadastral_bridge",
+        "authority": "compiled_reference",
+        "method": "moj_aigid_exact_address_parcel_interior_centroid",
+        "precision": "Interior centroid of uniquely matched published campus parcel. Six decimal coordinates do not imply equivalent horizontal accuracy; no building or tenant footprint.",
+        "identity_review": "Tokyu April22 PDF page4 specifies Ishikari Shinko Chuo1-chome722-1.2026 MOJ/AIGID collection has exactly one feature for municipality01235 +大字新港中央 +丁目１丁目 +地番722-1. Other722-1 parcels in Shinko Nishi/Minami and other districts were excluded. FeatureH000000005 on map01235_2022_1 has consistent site area.",
+        "uncertainty_reason": "No quantified positional accuracy established; source parcel classification is retained. Six decimal places describe calculation, not surveyed accuracy."
+      },
+      "context_source_ids": [
+        "jp-next-ishikari-tokyu-april-pdf",
+        "jp-next-ishikari-bbt-oct",
+        "jp-next-ishikari-tokyu-site"
+      ],
+      "distinctness_review": "No Ishikari, Tokyu, ISRD or Flower facility occurs among395baseline sites/419projects or231original records. Nearest baseline site is SoftBank Tomakomai about65.5km away. One physical facility; BroadBand Tower tenant floor and prospective GMO deployment are nested uses, not extra sites.",
+      "successor_review": "August1 achieved opening is73days before October13. October7 joint release confirms host service commencement and gives future2026GMO deployment target. Undated marketing forecast is stale and does not undo achieved opening. No later closure/cancellation found.",
+      "roles": [
+        {
+          "party": "Ishikari Renewable Energy Data Center No.1 LLC",
+          "role": "operator",
+          "relationship_scope": "Operates the host facility; data halls can be occupied by separate DC operators. Do not assign this role to every tenant workload.",
+          "source_id": "jp-next-ishikari-opening"
+        },
+        {
+          "party": "BroadBand Tower",
+          "role": "tenant",
+          "relationship_scope": "Uses part of the host facility as Ishikari Shinko site; its floor is not a separate physical campus.",
+          "source_id": "jp-next-ishikari-bbt-oct"
+        }
+      ]
+    }
+  ],
+  "status_updates": []
+}

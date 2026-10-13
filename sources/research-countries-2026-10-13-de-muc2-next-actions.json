@@ -1,0 +1,64 @@
+{
+  "format": "datacenter-atlas-country-action-projections-v1",
+  "researched_at": "2026-10-13",
+  "base_dataset": "verified_construction_core/2026-10-13-research-asia",
+  "base_commit": "a2c0510713eba276c3b71a0e91430e53394146a2",
+  "base_manifest_sha256": "8a5c2b129e7347b90fce646fcbe77c20552636d2d54cd11355c5833fb38494e8",
+  "source_files": [
+    {
+      "path": "sources/atlas-research-2026-10-13-de-muc2-next-primary-sources.json",
+      "sha256": "9932632a2aa55889d111fe648bf817d3ab11eaa5b6794129f42859f8c5f6fc13"
+    }
+  ],
+  "additions": [
+    {
+      "project_stable_key": "curated:ntt-munich2-unterschleissheim-campus:operating-campus",
+      "physical_site_stable_key": "curated:ntt-munich2-unterschleissheim-campus",
+      "site_name": "NTT Munich 2 Data Center (MUC2)",
+      "name": "NTT Munich 2 Operating Campus",
+      "country": "Germany",
+      "country_iso_a2": "DE",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-10-07",
+        "source_id": "de-muc2-next-live-20261007",
+        "summary": "NTT’s October 7 announcement explicitly places the newly opened AI Factory inside its live Munich 2 Data Center. Confirms current operation of the existing campus; original campus opening was May 18, 2017. No claim that a new campus or all campus capacity opened in October 2026."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            11.5739274,
+            48.2927153
+          ]
+        },
+        "source_id": "de-muc2-next-osm-address",
+        "scope": "campus_locator",
+        "scope_class": "exact_address_matched_community_building_point_as_campus_locator",
+        "authority": "compiled_reference",
+        "method": "nominatim_osm_way_address_point_matched_to_operator_campus_address",
+        "precision": "Source-supplied reference point for OSM industrial building way 452201257, whose street, house number, postcode and town match the operator’s Munich 2 address. Campus locator only; not a verified AI Factory hall, building A/B allocation, entrance, legal parcel or campus boundary.",
+        "identity_review": "NTT official campus page names Landshuter Straße 7, 85716 Unterschleißheim. Nominatim and raw OSM way 452201257 match all address components. OSM has no operator/name tag, so identity rests on the explicit exact-address match; community edits do not establish status.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "No measured horizontal accuracy, current imagery inspection or exact AI deployment footprint. Numerical precision does not imply surveyed accuracy."
+      },
+      "context_source_ids": [
+        "de-muc2-next-campus-location",
+        "de-muc2-next-opening-20170518",
+        "de-muc2-next-osm-way"
+      ],
+      "distinctness_review": "No NTT Munich 2/Unterschleissheim/Landshuter named campus occurs in the 419-project baseline. Existing Portus MUC2 is a different operator in Kirchheim at Marsstraße 5, about 20.76 km away; it is not an alias. Nearest existing site is Deutsche Telekom Industrial AI Cloud, Munich Tucherpark about 15.68 km away. Add one campus and one campus project; AI Factory is a hosted use, not another physical site.",
+      "successor_review": "October 7 primary announcement describes live production data-center operation and an achieved AI Factory opening that day. Current operator facility page corroborates campus address and operating service offering. Historical 2017 campus opening is preserved independently.",
+      "roles": [
+        {
+          "role": "operator",
+          "party": "NTT Global Data Centers",
+          "relationship_scope": "current",
+          "source_id": "de-muc2-next-live-20261007"
+        }
+      ]
+    }
+  ],
+  "status_updates": [],
+  "integration_note": "Operational-campus admission is supported by a current primary observation. Keep original 2017 opening and hosted AI Factory milestone distinct. Campus geometry comes from exact-address-matched OSM, not the restricted PeeringDB discovery record. Preserve ODbL attribution and geometry uncertainty."
+}

@@ -1,0 +1,82 @@
+{
+  "format": "datacenter-atlas-country-action-projections-v1",
+  "researched_at": "2026-10-13",
+  "base_dataset": "verified_construction_core/2026-10-13-research-asia",
+  "base_commit": "a2c0510713eba276c3b71a0e91430e53394146a2",
+  "base_manifest_sha256": "8a5c2b129e7347b90fce646fcbe77c20552636d2d54cd11355c5833fb38494e8",
+  "source_files": [
+    {
+      "path": "sources/atlas-research-2026-10-13-europe-next-primary-sources.json",
+      "sha256": "cca5b1d82d53641f491b5e060f6d5f8d9ed05aaa66d1717f999d0f25b12d29b6"
+    }
+  ],
+  "additions": [
+    {
+      "project_stable_key": "curated:datum-farnborough-campus:frn2-building",
+      "physical_site_stable_key": "curated:datum-farnborough-campus",
+      "site_name": "Datum Farnborough Campus",
+      "name": "Datum FRN2 Data Centre Building",
+      "country": "United Kingdom",
+      "country_iso_a2": "GB",
+      "status": {
+        "value": "under_construction",
+        "as_of": "2026-09-04",
+        "source_id": "europe-next-datum-frn2-20260904",
+        "summary": "Operator reports frame erected, stair/precast and architectural metalwork installation, and roof construction beginning. This is a dated current work report; completed shell, fit-out, commissioning and operation are not established."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -0.7967507,
+            51.2803199
+          ]
+        },
+        "source_id": "europe-next-datum-map",
+        "scope": "campus_locator",
+        "scope_class": "operator_selected_existing_facility_marker_as_parent_campus_locator",
+        "authority": "compiled_reference",
+        "method": "operator_selected_google_maps_feature_coordinates",
+        "precision": "Google Maps feature for Datum Datacentres selected by the operator. Parent campus marker only; not a surveyed FRN2 point, new-building centroid, footprint or legal boundary.",
+        "identity_review": "Datum states FRN2 is linked adjacent to FRN1 at its Farnborough campus and publishes the exact Maps link in the footer. That link resolves to the named Datum Datacentres feature. Source -0.7967507,51.2803199 is distinct from viewport longitude -0.7993256.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "No measured positional accuracy or FRN2 boundary is published. Source decimal digits are retained without an accuracy claim."
+      },
+      "context_source_ids": [
+        "europe-next-datum-campus",
+        "europe-next-datum-visit-20260925",
+        "europe-next-datum-specifications"
+      ],
+      "distinctness_review": "No Datum, FRN1, FRN2, Cody Technology Park or Farnborough named project occurs in the 419-project base. Nearest recorded project is Iron Mountain LON-3 about 29.36 km away. FRN2 is one new project at one previously uncatalogued Datum campus; existing FRN1 is locator context, not another addition.",
+      "successor_review": "September 25 report still calls FRN2 construction ongoing but dates the visit only as last week. Retain exact September 4 progress observation. Current operator site targets 2027 go-live, not achieved operation.",
+      "roles": []
+    }
+  ],
+  "status_updates": [
+    {
+      "project_stable_key": "curated:pure-dc-brent-cross-lon01-campus:b2-composite-build",
+      "status": {
+        "value": "under_construction",
+        "as_of": "2026-09-02",
+        "source_id": "europe-next-pure-lon01b2-20260902",
+        "summary": "Glencar reports B2 West Cold Shell piling underway, with simultaneous construction and fit-out elsewhere in the live LON01 campus. Updates the existing composite B2 project; does not treat the entire B2 as completed shell or operational."
+      },
+      "identity_review": "Same LON01B2/Brent Cross named project as the existing May 28 B2 composite record. West Shell is one component of the existing project; preserve project/site keys and geometry, with no extra phase/site count.",
+      "successor_review": "September 2 is a dated present-tense work report. Planned B2 completion Q2 2029 remains a forecast; existing operational campus does not mean B2 is operational."
+    }
+  ],
+  "context_updates": [
+    {
+      "project_stable_key": "imported:semiconductor-atlas:virtus-wustermark",
+      "source_ids": [
+        "europe-next-wustermark-grid-20261007",
+        "europe-next-wustermark-grid-project"
+      ],
+      "action": "append_power_readiness_context_only",
+      "summary": "Upstream 50Hertz substation expansion has commenced as of October 7; planned 300 MW N-1 connection, completion 2028. No energized capacity or new data-centre physical observation. Preserve 300 MVA undated-page inconsistency.",
+      "preserve_status_as_of": "2026-06-01",
+      "preserve_geometry": true
+    }
+  ],
+  "integration_note": "Research action projections only; root integrates. Campus marker is explicitly third-party mapping selected by the operator. The broader B2 phase remains one project. Wustermark context must not change physical date or map position."
+}

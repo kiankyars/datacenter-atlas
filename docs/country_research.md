@@ -77,16 +77,20 @@ does not assert completion or cancellation.
   for a named proposal and location. The procurement does not itself establish development consent
   or physical work. Start with Beijing, Shanghai and Guangdong operator portfolios and local records.
   Earlier follow-up found no additions; the subsequent resolution pass admits Guizhou B5/B6 and
-  Shaotang as described above. VNET's August results report June observations. Beijing No6 still
-  needs a numerical parcel locator; the GDS Langfang pair needs individual project identities.
+  Shaotang as described above. VNET's August results report June observations; the GDS Langfang
+  pair still needs individual project identities.
+  Beijing No6 is now admitted with a clearly labelled marker inside the broader existing campus;
+  its exact C18 parcel remains unresolved, including conflicting northeast/southeast descriptions.
   China Mobile Shaoguan C/D has an official site plan, but its survey coordinate system is unstated.
 - **United Kingdom:** keep Edinburgh's CR4 extension on the existing ACF campus as its status
   changes. Kao Manchester has evidence of site preparation and electrical enabling works; confirm
   its precise site location and obtain a later primary observation than 1 July, now 104 days old.
   The operator expects building construction in 2027 and operations in 2028; those are forecasts.
-- **Germany:** NorthC FRA01 is admitted. VIRTUS Wustermark still needs the electrical works tied
-  to the correct campus and phase. The UVP record identifies Wustermark1 module5 backup power,
+- **Germany:** NorthC FRA01 is admitted. VIRTUS Wustermark still needs a newer observation of
+  data-centre building works. The UVP record identifies Wustermark1 module5 backup power,
   not the whole development; its administrative bounding box is not a precise locator.
+  October 7 utility evidence now attaches to Wustermark as grid context only: its June 1
+  data-centre observation remains unchanged, and the 300 MW / 300 MVA source discrepancy remains.
   The current operator pages conflict on 204 versus 300 MW IT and retain inconsistent one-campus
   versus two-location descriptions, so source-specific claims remain separate.
 - **Japan:** Zeus OSA1's December 2025 start predates the new-admission window. Look for later
@@ -97,6 +101,11 @@ does not assert completion or cancellation.
   SoftBank's September annual report discusses construction but does not give an exact observation
   date for those statements within its mixed reporting period; publication alone does not refresh
   Sakai's observation. Tomakomai instead has the distinct August 4 source described above.
+  Ishikari Renewable Energy Data Center No.1 is now admitted with achieved August 1 operations
+  and an exact campus-parcel match. Miyagi AI DC has achieved completion and a live network node,
+  but only municipality-level location evidence; do not assume the Sendai power-station site.
+  The October 6 Kobe tunnel announcement is a fresh lead requiring the exact leased tunnel
+  segment to be tied to geometry. Hosted tenants and prospective GPU installations are not new sites.
 
 The country packets under `sources/research-countries-2026-10-13-*` retain checked candidates,
 sources and the missing fact for each hold. The Scala audit is in
@@ -113,3 +122,13 @@ It adds five sites and refreshes two existing projects. Both the 231-record cons
 snapshot and its identity mapping remain byte-identical. Its integration review records why
 Google's exact selected address features replace map viewport centres, with compiled-reference
 authority and explicit parent-campus precision.
+
+The next continuation, `definitions/atlas-research-followup-2026-10-13.json`, publishes
+`verified_construction_core/2026-10-13-research-followup`: **423 projects across 399 sites**.
+It adds Beijing No6/C18 (September 1 announcement), Datum FRN2 (September 4 construction),
+Ishikari No.1 (August 1 operations), and NTT Munich 2 (October 7 confirmation of current operations).
+Munich 2's original 2017 opening remains separate from its hosted 2026 AI Factory opening;
+Portus MUC2 is a different campus. Each new marker states its campus scope and source authority.
+Pure DC Brent Cross B2 advances to the September 2 piling report. Wustermark gains utility
+evidence without changing status, location or capacity. The 231 original source records and
+identity mapping remain byte-identical, with all earlier evidence retained.

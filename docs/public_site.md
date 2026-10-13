@@ -368,6 +368,9 @@ publication does not depend on reaching a site-count target or product-version m
    the work is another building or phase at the same campus.
 2. Record source URLs, retrieval dates, licences and supported facts. Preserve the observation date
    and location precision. Check for subsequent opening, cancellation or other status changes.
+   Supporting grid-work records can be associated with an existing project using `context_updates`
+   and `context_kind: power_readiness`. Include the identity review, source IDs and unchanged
+   `preserve_status_as_of`. This adds evidence only: status, location and capacity stay unchanged.
 3. Record the reviewed changes in `definitions/atlas-update-YYYY-MM-DD.json`, retaining stable
    site and project identifiers and pinning the previous dataset manifest. Build the dated
    snapshot with `python3 scripts/build_dataset_update.py --input definitions/atlas-update-YYYY-MM-DD.json`,
