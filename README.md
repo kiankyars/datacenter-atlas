@@ -1,7 +1,7 @@
 # Data Center Atlas
 
-Data Center Atlas maps data centres under construction worldwide. Search by location or company,
-filter by construction stage, and open a site to see its projects and sources.
+Data Center Atlas maps data centres worldwide, from announced projects to operating facilities.
+Search by location or company, filter by status, and open a site to see its projects and sources.
 
 [**Open the atlas**](https://kiankyars.github.io/datacenter-atlas/) ·
 [Browse sites](https://kiankyars.github.io/datacenter-atlas/sites/) ·
@@ -11,10 +11,10 @@ filter by construction stage, and open a site to see its projects and sources.
 ## Coverage
 
 <!-- atlas:current-dataset -->
-- **Coverage:** **198 physical sites**, **201 construction projects** and **44 countries**.
+- **Coverage:** **198 physical sites**, **201 projects** and **44 countries**.
 - **Data updated:** 2026-10-13.
-- **Construction observations:** 2026-05-26 to 2026-09-22. Each record includes its source and
-  observation date.
+- **Status observations:** 2026-05-26 to 2026-09-22. Each record includes its source and observation
+  date.
 <!-- /atlas:current-dataset -->
 
 ## Get the data
@@ -159,18 +159,24 @@ geopandas, JavaScript, QGIS and Google Earth.
 
 ## How a site qualifies
 
-1. A dated company disclosure, government record or regulatory filing reports physical construction.
-   Announcements, land purchases and permits alone do not qualify.
+1. A dated company disclosure, government record or regulatory filing identifies the project and
+   supports its status: announced, permitted, under construction, completed or operational.
+   A permit's scope is recorded; approval of one part does not mean the whole project is approved.
 2. The project has a sourced location with its precision recorded and is checked against existing
    sites. A new building or phase at a known campus adds a project, rather than another site.
 3. Each status, location and other fact links to its supporting source. Missing values stay unknown.
 
+Sites stay in the Atlas as they open, pause, close or change status. An opening target does not
+establish completion or operation; those changes need evidence. Unsupported or misidentified
+records can still be corrected or removed.
+
 The [methodology](https://kiankyars.github.io/datacenter-atlas/methodology/) explains selection,
-construction stages, location precision and source handling.
+project statuses, location precision and source handling.
 
 ## Reading the data
 
-- Check each status date: it describes the source's observation, and construction may have progressed.
+- Check each status date: it describes what the source reported, and the project may have changed.
+  Dataset updates preserve earlier evidence dates unless newer evidence supports a change.
 - Locations can represent a project, campus or surrounding estate. A marker is not a surveyed boundary.
 - Capacity values distinguish IT load, facility power, grid connection and generation, with their scope
   and stage recorded. Do not add these measures together. A missing value is not zero.
@@ -222,18 +228,19 @@ accompany the data.
   Every site page has a "Report a correction" link that fills in the site ID.
 - **New site:** use the
   [new-site form](https://github.com/kiankyars/datacenter-atlas/issues/new?template=new-site.yml),
-  with dated evidence of physical work and a precise locator.
+  with a dated primary source for its status and a precise locator.
 - **Code and docs:** see [CONTRIBUTING.md](CONTRIBUTING.md).
 
-Ongoing work is to add sites, update construction progress and improve existing records. Accepted
+Ongoing work is to add sites, update their statuses and improve existing records. Accepted
 changes appear in the next data update, while earlier files remain available in the archive.
 Maintainers can follow the [data update workflow](docs/public_site.md#updating-the-data).
 
-Research country by country: give each contributor a bounded country pass to find missing sites,
-refresh existing construction statuses and resolve known factual corrections using local primary
-sources. Use the same record format and check names and campus aliases against the full atlas so
-parallel country assignments do not add duplicates. Publish supported additions and corrections
-as they are ready.
+Research in this order: **United States → China → United Kingdom → Germany → Japan**. Give each
+contributor a bounded country pass to find missing sites, review later statuses and resolve known
+corrections using local primary sources. Use the same record format and check names and campus
+aliases against the full atlas so parallel assignments do not add duplicates. The
+[country research notes](docs/country_research.md) track the candidate queue. Publish supported
+additions and updates as they are ready.
 
 ## Repository layout
 
@@ -263,7 +270,7 @@ git clone https://github.com/kiankyars/datacenter-atlas.git
 cd datacenter-atlas
 
 # Re-derive the current dataset from its hash-pinned inputs and compare every byte
-python3 scripts/build_expansion_200_draft.py --batch thirty-sixth-reviewed --validate-only
+python3 scripts/build_dataset_update.py --input definitions/atlas-update-2026-10-13.json --validate-only
 
 # Build the website, API and downloads into _site/ (add --force to rebuild over an earlier build),
 # check this README, CITATION.cff and DATA_LICENSE.md against it, then preview it the way GitHub

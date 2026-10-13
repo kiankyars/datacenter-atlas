@@ -2,6 +2,7 @@
 
 import copy
 import csv
+from datetime import date, timedelta
 import hashlib
 import io
 import json
@@ -10,7 +11,12 @@ import shutil
 import tempfile
 import unittest
 
-from datacenter_atlas.dataset_update import ROOT, UpdateError, build_update, update_payloads, validate_update
+try:
+    from datacenter_atlas.dataset_update import ROOT, UpdateError, build_update, update_payloads, validate_update
+    from datacenter_atlas import models, public_site
+except ImportError:
+    from datacenter_atlas.datacenter_atlas.dataset_update import ROOT, UpdateError, build_update, update_payloads, validate_update
+    from datacenter_atlas.datacenter_atlas import models, public_site
 
 
 BASE = ROOT / "verified_construction_core/2026-08-20-v0.18-draft-thirty-seventh-reviewed"
@@ -99,14 +105,111 @@ class DatasetUpdateTests(unittest.TestCase):
                 with self.assertRaisesRegex(UpdateError, expected):
                     self.payloads()
 
-    def test_nonphysical_announcement_and_undated_observation_fail(self):
+    def test_operational_admission_and_undated_observation_fail(self):
         self.spec["additions"][0]["status"]["value"] = "operational"
-        with self.assertRaisesRegex(UpdateError, "needs physical construction"):
+        with self.assertRaisesRegex(UpdateError, "announced, permitted or construction"):
             self.payloads()
         self.spec["additions"][0]["status"]["value"] = "under_construction"
         self.sources["sources"][0]["published_at"] = ""
         with self.assertRaisesRegex(UpdateError, "dated source"):
             self.payloads()
+
+    def test_published_physical_snapshot_remains_byte_reproducible(self):
+        validate_update(ROOT / "definitions/atlas-update-2026-10-13.json",
+                        ROOT / "verified_construction_core/2026-10-13")
+
+    def test_announced_and_permitted_admissions_do_not_claim_physical_work(self):
+        for status, method, role in (
+            ("announced", "authoritative_project_announcement", "announcement"),
+            ("permitted", "authoritative_construction_permit", "permit"),
+        ):
+            with self.subTest(status=status):
+                self.spec["additions"][0]["status"].update(
+                    value=status, summary="The named project is announced or has planning permission; no physical work reported.",
+                    permit_scope="data_center_development", permit_type="planning_permission", permit_decision="granted",
+                    permit_reference="DC/2026/123", permit_identity_review="The decision names this data-centre campus and address.",
+                )
+                payloads, _ = self.payloads()
+                project = next(row for row in csv.DictReader(io.StringIO(payloads["projects.csv"].decode()))
+                               if row["project_stable_key"] == self.spec["additions"][0]["project_stable_key"])
+                self.assertEqual(project["last_observed_physical_status"], status)
+                self.assertEqual(project["status_method"], method)
+                self.assertEqual(project["verification_posture"], "authoritative_project_record_plus_scoped_location")
+                evidence = next(row for row in csv.DictReader(io.StringIO(payloads["evidence.csv"].decode()))
+                                if row["evidence_id"] == project["status_evidence_id"])
+                self.assertIn(role, json.loads(evidence["roles_json"]))
+                self.assertNotIn("physical_status", json.loads(evidence["roles_json"]))
+        self.sources["sources"][0]["kind"] = "news"
+        with self.assertRaisesRegex(UpdateError, "primary source"):
+            self.payloads()
+
+    def test_permitted_requires_a_granted_data_center_permission(self):
+        status = self.spec["additions"][0]["status"]
+        valid = {
+            **status, "value": "permitted", "permit_scope": "data_center_development",
+            "permit_type": "building_permit", "permit_decision": "granted", "permit_reference": "DC/2026/123",
+            "permit_identity_review": "The granted building permit identifies this exact data-centre building.",
+        }
+        for changes, message in (
+            ({"permit_scope": "power_plant"}, "data-center development"),
+            ({"permit_type": "air_permit"}, "authorize the planned development"),
+            ({"permit_decision": "pending"}, "granted decision"),
+            ({"permit_reference": ""}, "permit reference"),
+            ({"permit_identity_review": ""}, "permit identity review"),
+        ):
+            with self.subTest(changes=changes):
+                self.spec["additions"][0]["status"] = {**valid, **changes}
+                with self.assertRaisesRegex(UpdateError, message):
+                    self.payloads()
+
+    def test_lifecycle_transitions_retain_site_identity_and_previous_evidence(self):
+        key = self.spec["additions"][0]["project_stable_key"]
+        summaries = {
+            "announced": "The operator announced the named campus; no physical work is reported.",
+            "permitted": "The authority granted planning permission for this data-centre campus; no physical work is reported.",
+            "under_construction": "The operator reports construction work underway at the campus.",
+            "completed": "Construction of the data-centre building is complete. Operation is not yet established.",
+            "operational": "The operator reports that this data-centre facility is open and operating.",
+        }
+        identities, evidence_ids = None, set()
+        for offset, (status, summary) in enumerate(summaries.items()):
+            updated = (date(2026, 10, 13) + timedelta(days=offset)).isoformat()
+            source = self.sources["sources"][0]
+            source.update(title=status, summary=summary, published_at=updated, retrieved_at=updated + "T08:00:00Z",
+                          content_hash=hashlib.sha256(summary.encode()).hexdigest())
+            self.spec["updated_at"] = updated
+            observation = {"value": status, "as_of": updated, "source_id": "work", "summary": summary}
+            if status == "permitted":
+                observation.update(permit_scope="data_center_development", permit_type="planning_permission",
+                                   permit_decision="granted", permit_reference="DC/2026/123",
+                                   permit_identity_review="The permission is for the named campus, not its power plant.")
+            if offset == 0:
+                self.spec["additions"][0]["status"] = observation
+            else:
+                self.spec["additions"] = []
+                self.spec["status_updates"] = [{"project_stable_key": key, "status": observation,
+                                                "identity_review": "Same campus and project.",
+                                                "successor_review": "Latest dated primary observation."}]
+            self.write()
+            output = self.root / "updates" / updated
+            manifest = build_update(self.input, output, root=self.root)
+            self.assertEqual(manifest["counts"]["physical_sites"], 200)
+            atlas = public_site.load_atlas(public_site.discover_versions(output.parent)[-1], "https://example.org/")
+            project = next(row for row in atlas.projects if row["project_stable_key"] == key)
+            identity = (project["project_id"], project["site_id"], project["physical_site_stable_key"])
+            if identities is None:
+                identities = identity
+            self.assertEqual(identity, identities)
+            self.assertEqual(project["last_observed_physical_status"], status)
+            self.assertEqual(atlas.site_by_id[project["site_id"]]["statuses"], [status])
+            self.assertTrue(evidence_ids <= set(atlas.evidence_by_id))
+            evidence_ids.add(project["status_evidence_id"])
+            self.assertEqual(len(evidence_ids), offset + 1)
+            if status == "completed":
+                self.assertEqual(models.LifecycleStatus.COMPLETED.value, status)
+                self.assertNotEqual(status, models.LifecycleStatus.OPERATIONAL.value)
+            self.spec["base_dataset"] = output.relative_to(self.root).as_posix()
+            self.spec["base_manifest_sha256"] = hashlib.sha256((output / "manifest.json").read_bytes()).hexdigest()
 
     def test_base_and_source_hash_mismatch_fail(self):
         self.write()

@@ -1,5 +1,5 @@
 name: Suggest a new site
-description: Suggest a data-centre construction project that is not in the atlas yet.
+description: Suggest a data centre at any stage, from announcement to operation.
 title: "New site: "
 labels:
   - new-site
@@ -7,22 +7,23 @@ body:
   - type: markdown
     attributes:
       value: |
-        Suggestions go into a research queue and are reviewed against the
+        Please include public sources for the project's status and location. See the
         [selection rules](https://kiankyars.github.io/datacenter-atlas/methodology/#selection).
-        Nothing is added automatically, and a site may be held until its evidence is sufficient.
-        A site needs:
 
-        - **Dated evidence of physical work.** A primary public source stating that construction
-          is under way on the named project (site preparation, civil works, foundations, shell,
-          MEP/electrical, general construction or commissioning), with the date it applies to.
-          Announcements, land purchases, permits, grid-connection requests, groundbreaking plans
-          and expected opening dates do not qualify on their own.
+        - **Dated status evidence.** A primary source identifies the project and supports its
+          announcement, permit, construction, completion or operation. New sites need evidence
+          dated within 90 days before the data update. Permitted status requires issued consent
+          for the data-centre development itself, with the approved work identified. Utility,
+          microgrid or air permits alone are insufficient. Planned opening dates do not establish
+          completion or operation.
         - **A precise locator.** An official parcel or boundary, an official address point, a
           coordinate published by the developer or a public authority, or a named map feature. A
           city centre, head-office address or industrial-zone centroid is not enough.
         - **A new physical site.** Another phase or building on a campus that is already listed
           does not add a site. Please search the
           [site list](https://kiankyars.github.io/datacenter-atlas/sites/) first.
+        - **Later reports.** Include later changes in status. Sites stay listed when they open,
+          pause, close or change status.
   - type: input
     id: name
     attributes:
@@ -43,27 +44,27 @@ body:
     id: operator
     attributes:
       label: Operator or developer
-      description: Who is building or will operate the site, if a source says so.
+      description: Who develops or operates the site, or plans to, according to a source.
     validations:
       required: false
   - type: input
-    id: construction_evidence_url
+    id: status_evidence_url
     attributes:
-      label: Construction evidence URL
+      label: Status evidence URL
       description: >-
         A primary public source (company disclosure, government record, regulatory filing)
-        stating that physical work on this project is in progress.
+        supporting the named project's announcement, permit, construction, completion or operation.
       placeholder: https://
     validations:
       required: true
   - type: input
-    id: construction_evidence_date
+    id: status_evidence_date
     attributes:
-      label: Construction evidence date
+      label: Status evidence date
       description: >-
-        The date the source says the work was observed or reported (YYYY-MM-DD). A later page
-        edit or retrieval date does not count.
-      placeholder: YYYY-MM-DD
+        The date the evidence applies to. If the source gives only a month, say so without
+        inventing a day. A later page edit or retrieval date does not count.
+      placeholder: YYYY-MM-DD, or YYYY-MM if only a month is known
     validations:
       required: true
   - type: textarea
@@ -81,7 +82,7 @@ body:
       label: Anything else
       description: >-
         Other phases on the same campus, aliases, capacity statements with their exact wording
-        and scope, later completion or cancellation news, or reasons the site might already be
+        and scope, the permit authority and approved work, later status reports, or reasons the site might already be
         listed under another name.
     validations:
       required: false

@@ -144,7 +144,7 @@
     // specific stage winning a same-day tie over generic construction.
     var prepared = feature ? Core.prepareSite(feature) : null;
     var group = Core.statusGroup((prepared && prepared.primaryStatus) ||
-      Core.sortStatusCodes(statusesOf(feature, container))[0] || 'under_construction');
+      Core.sortStatusCodes(statusesOf(feature, container))[0] || 'unknown');
     var name = feature && feature.properties && typeof feature.properties.name === 'string' ? feature.properties.name : '';
     container.classList.add('is-live');
     if (!container.hasAttribute('aria-label')) {

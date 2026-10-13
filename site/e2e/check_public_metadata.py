@@ -226,8 +226,8 @@ def citation_cff(facts: Facts) -> str:
     base = facts.base_url
     family, given = author_parts(config)
     abstract = (
-        "An open dataset of data-centre construction worldwide. Each project has a dated, "
-        "authoritative observation of physical construction work, a "
+        "An open dataset of data centres worldwide. Each project has a dated, "
+        "source-backed project status, a "
         "sourced location with its precision recorded"
         f"{' (or, for a listed locator exception, host-estate context only)' if locator_exceptions(facts) else ''}"
         ", and source records with URLs, licences, retrieval times and content hashes. "
@@ -235,7 +235,7 @@ def citation_cff(facts: Facts) -> str:
         f"{counts['physical_sites']} physical sites with {counts['projects']} projects in "
         f"{counts['countries']} countries, backed by {counts['evidence']} evidence rows. "
         f"{_exception_sentence(facts, markdown=False) + ' ' if locator_exceptions(facts) else ''}"
-        "Statuses are the last observed physical status, not the current status; locators are not building "
+        "Statuses are the last reported project status, not the current status; locators are not building "
         "footprints; capacity is unknown unless a typed observation exists; and the dataset is not a census. "
         "Atlas-authored data are licensed CC BY 4.0; geometries derived from OpenStreetMap are © "
         "OpenStreetMap contributors under the ODbL 1.0, and other third-party facts keep their source terms "
@@ -284,10 +284,10 @@ def citation_cff(facts: Facts) -> str:
 def readme_current_dataset(facts: Facts) -> str:
     dataset, counts = facts.dataset, facts.counts
     bullets = [
-        f"**Coverage:** **{counts['physical_sites']} physical sites**, **{counts['projects']} construction "
+        f"**Coverage:** **{counts['physical_sites']} physical sites**, **{counts['projects']} "
         f"projects** and **{counts['countries']} countries**.",
         f"**Data updated:** {dataset['checkpoint_date']}.",
-        f"**Construction observations:** {dataset.get('window_start', '?')} to "
+        f"**Status observations:** {dataset.get('window_start', '?')} to "
         f"{dataset.get('observation_window_end', dataset['lifecycle_reference_date'])}. "
         "Each record includes its source and observation date.",
     ]

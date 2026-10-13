@@ -35,7 +35,7 @@ ASSET_NAMES = (
     "datapackage.json",
 )
 CAVEATS = (
-    "Each status is the **last observed physical status** as of a dated source, not the status today.",
+    "Each status is the **last reported project status** as of a dated source, not the status today.",
     "Locators place a site on the map; they are **not building footprints** or construction extents.",
     "A missing capacity, role or workload is **unknown, not zero**.",
     "Coverage is incomplete and varies by country.",
@@ -106,7 +106,7 @@ def notes(index: Mapping[str, Any], versions: Mapping[str, Any], sites: Sequence
         f"Construction observations: {start} to {end}. Each project retains its last reported status and "
         "observation date; an Atlas update does not mean every project was rechecked.",
         "",
-        f"- {counts['physical_sites']} physical sites with {counts['projects']} construction projects in "
+        f"- {counts['physical_sites']} physical sites with {counts['projects']} projects in "
         f"{counts['countries']} countries ({counts.get('non_us_sites', '?')} sites outside the United States)",
         f"- {counts['evidence']} evidence rows, each with its source URL, retrieval time, content hash, licence "
         "and attribution",

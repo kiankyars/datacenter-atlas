@@ -2693,7 +2693,7 @@
       var tools = [
         {
           name: 'search_datacenter_sites',
-          title: 'Search data-centre construction sites',
+          title: 'Search data-centre sites',
           description: 'Filter the Data Center Atlas sites the way the explorer\'s controls do (search words, country, ' +
             'last observed status, locator type, reported power, status-as-of months, sort) and show the result on the ' +
             'page. Returns site summaries with links to each site page and JSON document.' + caveat,

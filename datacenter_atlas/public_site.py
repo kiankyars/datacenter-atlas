@@ -121,7 +121,7 @@ ATLAS_CORE_JS = "assets/atlas-core.js"
 FAVICON = "favicon.svg"
 # Optional social preview image (site/static); pages reference it only when it exists.
 OG_IMAGE = "og-image.png"
-OG_IMAGE_ALT = "Data Center Atlas: map of data-centre construction sites"
+OG_IMAGE_ALT = "Data Center Atlas: map of data-centre sites"
 
 SAFE_ID = re.compile(r"[A-Za-z0-9][A-Za-z0-9._-]{0,127}")
 SAFE_FILE_NAME = re.compile(r"[A-Za-z0-9][A-Za-z0-9._-]{0,127}")
@@ -187,7 +187,7 @@ THIRD_PARTY_TERMS = (
 )
 # The four rules every reader of the data needs; repeated in llms.txt, the workbook and the API description.
 DATA_CAVEATS = (
-    "Each status is the last observed physical status as of a dated source (status_as_of), not the status today.",
+    "Each status is the last reported project status as of a dated source (status_as_of), not the status today.",
     "Locators place a site on the map; they are not building footprints or construction extents.",
     "Empty or null values are unknown, never zero.",
     "Coverage is incomplete and varies by country.",
@@ -325,7 +325,7 @@ DOWNLOAD_INFO = {
     "sites.csv": ("CSV", "text/csv", "One row per physical site."),
     "projects.csv": (
         "CSV", "text/csv",
-        "One row per construction project: last observed status, locator semantics and typed observations.",
+        "One row per project: last observed status, locator semantics and typed observations.",
     ),
     "evidence.csv": (
         "CSV", "text/csv", "Sources for site records, with URLs, usage terms and content hashes.",
@@ -3025,7 +3025,7 @@ SQLITE_OBSERVATION_TABLES = (
 )
 SQLITE_TABLE_NOTES = {
     "sites": "One row per physical site; the columns of sites.csv.",
-    "projects": "One row per construction project; the columns of projects.csv.",
+    "projects": "One row per project; the columns of projects.csv.",
     "evidence": "One row per evidence item; the columns of evidence.csv.",
     "project_evidence": "Which evidence rows support which project (from evidence.project_ids_json).",
     "evidence_roles": "The roles each evidence row plays (from evidence.roles_json).",
@@ -3261,8 +3261,8 @@ def _sqlite_metadata(context: _Context, atlas: Atlas) -> list[tuple[str, str]]:
             "array item's position in 'ordinal' (0-based)."
         )),
         ("semantics", (
-            "Statuses are the last observed physical status as of status_as_of, not the current status; "
-            "locators are not footprints; NULL means unknown, never zero; a reviewed preview, not a census."
+            "Statuses are the last reported project status as of status_as_of, not the current status; "
+            "locators are not footprints; NULL means unknown, never zero; coverage varies by country."
         )),
     ]
     rows += [(f"table:{name}", note) for name, note in SQLITE_TABLE_NOTES.items()]
@@ -3499,7 +3499,7 @@ def _kml(context: _Context, atlas: Atlas) -> bytes:
     title = f"{context.config.site_name} — {version.label}"
     description = (
         f"<p>Updated {_e(version.checkpoint_date)}. "
-        "Statuses are the last observed physical status on the status date, not today; locators are not "
+        "Statuses are the last reported project status on the status date, not today; locators are not "
         "footprints; empty values are unknown. Each polygon site also has a point at its display anchor.</p>"
         f"<p>Atlas data: {_e(context.config.data_license.get('id'))} ({_e(context.config.data_license.get('url'))}). "
         f"Includes geometries {_e(ODBL['attribution'])}, {_e(ODBL['id'])} ({_e(ODBL['url'])}). "
@@ -3529,7 +3529,7 @@ def _kml_placemark(context: _Context, atlas: Atlas, summary: Mapping[str, Any]) 
     status_text = ", ".join(context.vocabulary.label("statuses", code) for code in statuses) or "Unknown"
     description = (
         f"<p><strong>{_e(summary.get('name'))}</strong></p>"
-        f"<p>Last observed physical status: {_e(status_text)} "
+        f"<p>Last reported project status: {_e(status_text)} "
         f"(newest status date {_e(summary.get('newest_status_as_of'))}).</p>"
         f"<p>Projects: {_e(summary.get('project_count'))}. Country: {_e(summary.get('country'))}.</p>"
         f'<p><a href="{_e(summary["url"])}">Site page with evidence</a></p>'
@@ -3666,7 +3666,7 @@ def _datapackage(context: _Context, atlas: Atlas, blobs: Mapping[str, bytes]) ->
         "description": (
             f"{config.tagline}. Updated {version.checkpoint_date}; observations from "
             f"{_window_start(config, version)} to {_window_end(version)}. "
-            "Statuses are the last observed physical status on the status date, not the current status; "
+            "Statuses are the last reported project status on the status date, not the current status; "
             "locators are not footprints; empty values are unknown, never zero. Coverage varies by country."
         ),
         "version": version.id,
@@ -4288,8 +4288,8 @@ def _dataset_json_ld(context: _Context) -> dict[str, Any]:
         "alternateName": [current.label, f"{config.site_name}: {current.label}"],
         "description": (
             f"{config.tagline}. Evidence-linked records of {counts.get('physical_sites')} physical data-centre sites "
-            f"and {counts.get('projects')} construction projects in {counts.get('countries')} countries, each with a "
-            "dated last observed physical status from an authoritative source and a reviewed locator. "
+            f"and {counts.get('projects')} projects in {counts.get('countries')} countries, each with a "
+            "dated last reported project status from an authoritative source and a reviewed locator. "
             "Statuses describe their "
             "status date, not today; locators are not footprints; empty values are unknown."
         ),
@@ -4315,7 +4315,7 @@ def _dataset_json_ld(context: _Context) -> dict[str, Any]:
         "dateModified": current.checkpoint_date,
         "measurementTechnique": (
             "Review of dated authoritative sources (company disclosures, government records and filings) for "
-            "physical construction status, with reviewed locators; no independent imagery verification."
+            "project status, with reviewed locators; no independent imagery verification."
         ),
         "variableMeasured": variable_measured,
         "citation": _citations(context)["apa"],
@@ -4374,8 +4374,8 @@ def _explorer_page(context: _Context) -> _Page:
     body = _render_fragment(context, "templates/explorer.html", _relative_root(path))
     counts = context.atlas.counts
     description = (
-        f"Map and list of {counts.get('physical_sites')} data-centre construction sites in "
-        f"{counts.get('countries')} countries, each with a dated, evidence-linked last observed physical status."
+        f"Map and list of {counts.get('physical_sites')} data-centre sites in "
+        f"{counts.get('countries')} countries, each with a dated, evidence-linked last reported project status."
     )
     return _Page(
         path=path,
@@ -4480,7 +4480,7 @@ def _sites_index_page(context: _Context) -> _Page:
     counts = atlas.counts
     body = (
         "<h1>Sites</h1>\n"
-        f'<p class="lede">Browse {len(atlas.summaries)} data-centre sites by name, country and construction stage.</p>\n'
+        f'<p class="lede">Browse {len(atlas.summaries)} data-centre sites by name, country and project status.</p>\n'
         f"{_filter_controls('sites-table', len(atlas.summaries), 'sites')}\n"
         f"{_sites_table(context, atlas.summaries, root, 'sites-table')}\n"
         f'<p class="small muted">{counts.get("projects")} projects, {counts.get("countries")} countries. '
@@ -4491,7 +4491,7 @@ def _sites_index_page(context: _Context) -> _Page:
         slug="sites",
         section="sites",
         title="Sites",
-        description=f"Table of all {len(atlas.summaries)} data-centre construction sites with status, date and source.",
+        description=f"Table of all {len(atlas.summaries)} data-centre sites with status, date and source.",
         body=body,
         main_class="page page-wide",
         scripts=(SITE_JS,),
@@ -4570,7 +4570,7 @@ def _site_page(context: _Context, summary: Mapping[str, Any]) -> _Page:
     ])
     status_text = ", ".join(vocabulary.label("statuses", code) for code in statuses) or "unknown"
     description = (
-        f"{site.get('name')}, {site.get('country')}: last observed physical status {status_text} as of "
+        f"{site.get('name')}, {site.get('country')}: last reported project status {status_text} as of "
         f"{site.get('newest_status_as_of')}, with locator semantics and source evidence."
     )
     return _Page(
@@ -5121,7 +5121,7 @@ def _countries_page(context: _Context) -> _Page:
     count = len(context.atlas.countries)
     body = (
         "<h1>Countries</h1>\n"
-        f'<p class="lede">Explore data-centre construction in {count} countries and territories.</p>\n'
+        f'<p class="lede">Explore data centres in {count} countries and territories.</p>\n'
         # atlas.countries is ordered by site count (descending), then name.
         + _table("countries-table", headers, rows, classes="data-table sortable", sorted_by=(2, "descending"))
     )
@@ -5130,7 +5130,7 @@ def _countries_page(context: _Context) -> _Page:
         slug="countries",
         section="countries",
         title="Countries",
-        description=f"Data-centre construction sites by country: {count} countries with site and project counts.",
+        description=f"Data-centre sites by country: {count} countries with site and project counts.",
         body=body,
         main_class="page page-wide",
         scripts=(SITE_JS,),
@@ -5168,7 +5168,7 @@ def _country_page(context: _Context, country: Mapping[str, Any]) -> _Page:
         slug="country",
         section="countries",
         title=str(country["country"]),
-        description=f"{country['site_count']} data-centre construction sites in {country['country']} with status and sources.",
+        description=f"{country['site_count']} data-centre sites in {country['country']} with status and sources.",
         body=body,
         main_class="page page-wide",
         scripts=(SITE_JS,),
@@ -5300,7 +5300,7 @@ def _data_page(context: _Context) -> _Page:
         "<h1>Download the data</h1>",
         f'<p class="lede">{counts.get("physical_sites")} sites in {counts.get("countries")} countries. '
         'Download a spreadsheet, map file or database.</p>',
-        f'<p class="small muted">Updated {_e(current.checkpoint_date)}. Construction observations: '
+        f'<p class="small muted">Updated {_e(current.checkpoint_date)}. Status observations: '
         f'{_e(context.window_start)} to {_e(context.window_end)}. Each project keeps its last reported status and date.</p>',
         f'<p><a class="btn btn-primary" href="{root}downloads/{LATEST}/atlas.xlsx">Excel workbook</a> '
         f'<a class="btn" href="{root}downloads/{LATEST}/sites.csv">Sites CSV</a> '
@@ -5564,7 +5564,7 @@ def _api_page(context: _Context) -> _Page:
         _heading(2, "fields", "Response fields"),
         "<p>Records are typed from the source schema.json: empty CSV values become <code>null</code>; "
         "<code>*_json</code> columns become parsed JSON without the suffix; numbers, integers and booleans are JSON "
-        "types. Statuses are the last observed physical status on the status date. Absolute URLs in responses "
+        "types. Statuses are the last reported project status on the status date. Absolute URLs in responses "
         "start with the <code>base_url</code> given in <code>api/v1/index.json</code>. The "
         f'<a href="{root}data/dictionary/">field dictionary</a> describes every column and coded value, and the '
         f'<a href="{root}{_methodology_link(context, "identifiers")}">methodology</a> explains how identifiers are '
@@ -5599,7 +5599,7 @@ def _content_page(context: _Context, name: str) -> _Page:
     path = f"{name}/index.html"
     body = _render_fragment(context, f"content/{name}.html", _relative_root(path))
     titles = {
-        "methodology": ("Methodology", "How sites are researched, and how to read construction stages, locations and sources."),
+        "methodology": ("Methodology", "How sites are researched, and how to read project statuses, locations and sources."),
         "about": ("About", "About the Data Center Atlas: license, citation, corrections and legal notices."),
     }
     title, description = titles[name]
@@ -6073,7 +6073,7 @@ def _llms_txt(context: _Context) -> str:
         "",
         f"> {config.tagline}. Updated {current.checkpoint_date}: "
         f"{counts.get('physical_sites')} physical sites, {counts.get('projects')} "
-        f"construction projects in {counts.get('countries')} countries, {counts.get('evidence')} evidence rows. "
+        f"projects in {counts.get('countries')} countries, {counts.get('evidence')} evidence rows. "
         f"Statuses were observed from {context.window_start} to {context.window_end}. "
         "Existing records retain their last observation; an Atlas update does not mean every project was rechecked.",
         "",
@@ -6116,7 +6116,7 @@ def _llms_txt(context: _Context) -> str:
         "",
         "## Docs",
         "",
-        f"- [Methodology]({base}methodology/): sources, construction statuses and location precision",
+        f"- [Methodology]({base}methodology/): sources, project statuses and location precision",
         f"- [Field dictionary]({base}data/dictionary/): every column, type and coded value",
         f"- [API guide]({base}api/): endpoints, fields and examples",
         f"- [Data history]({base}versions/): additions, corrections and earlier snapshots",

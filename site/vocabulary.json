@@ -1,14 +1,14 @@
 {
   "format": "datacenter-atlas-site-vocabulary-v1",
-  "note": "Labels and descriptions for coded values in the Data Center Atlas datasets. Each vocabulary maps a code to {label, description}. Codes found in a dataset but missing here fall back to a title-cased code. Statuses describe the last observed physical status on the status date, never a current state.",
+  "note": "Labels and descriptions for coded values in the Data Center Atlas datasets. Each vocabulary maps a code to {label, description}. Codes found in a dataset but missing here fall back to a title-cased code. Statuses describe the last reported project status on the evidence date.",
   "statuses": {
-    "lead": {"label": "Lead", "description": "Unverified lead about a possible project. Research pipeline status only; never used for selected construction projects."},
+    "lead": {"label": "Lead", "description": "Unverified lead about a possible project, kept in the research queue."},
     "candidate": {"label": "Candidate", "description": "Candidate project under research. Research pipeline status only; no construction claim."},
-    "announced": {"label": "Announced", "description": "The project was announced. No physical work is claimed."},
+    "announced": {"label": "Announced", "description": "A dated primary source identifies the proposed data-centre project. Construction has not been established."},
     "proposed": {"label": "Proposed", "description": "The project was proposed or applied for. No physical work is claimed."},
     "site_control": {"label": "Site control", "description": "The developer was reported to control the site, for example by purchase or lease. No physical work is claimed."},
     "permitting": {"label": "Permitting", "description": "Permits were being sought. No physical work is claimed."},
-    "permitted": {"label": "Permitted", "description": "Permits were granted. No physical work is claimed."},
+    "permitted": {"label": "Permitted", "description": "Issued consent covers the data-centre development identified in the record. The authority, decision date and approved work are recorded; construction is established separately."},
     "site_preparation": {"label": "Site preparation", "description": "A dated authoritative source reported site preparation, such as clearing, grading or enabling works, as of the status date."},
     "clearing": {"label": "Clearing", "description": "A dated source reported land clearing as of the status date."},
     "civil_works": {"label": "Civil works", "description": "A dated authoritative source reported civil works, such as earthworks, drainage, roads or utility connections, as of the status date."},
@@ -17,7 +17,8 @@
     "mep_electrical": {"label": "MEP / electrical", "description": "A dated authoritative source reported mechanical, electrical and plumbing (MEP) or electrical installation work as of the status date."},
     "under_construction": {"label": "Under construction", "description": "A dated authoritative source reported that construction was under way, without a more specific stage, as of the status date."},
     "commissioning": {"label": "Commissioning", "description": "A dated authoritative source reported commissioning or testing before operation as of the status date. Not a claim that the facility is operating."},
-    "operational": {"label": "Operational", "description": "The facility was reported to be operating. Outside the construction-core selection."},
+    "completed": {"label": "Completed", "description": "A dated primary source reports construction of the named project complete. Operation is established separately."},
+    "operational": {"label": "Operational", "description": "A dated primary source confirms that the facility was operating."},
     "expansion": {"label": "Expansion", "description": "A dated authoritative source reported physical expansion work at an existing facility as of the status date."},
     "paused": {"label": "Paused", "description": "Work was reported as paused."},
     "cancelled": {"label": "Cancelled", "description": "The project was reported as cancelled."},
@@ -27,9 +28,11 @@
     "unknown": {"label": "Unknown", "description": "The status is not established."}
   },
   "status_methods": {
-    "authoritative_physical_status_update": {"label": "Authoritative status update", "description": "A dated report from an authoritative source (developer, operator, contractor or government) on the project's physical construction status."},
+    "authoritative_physical_status_update": {"label": "Authoritative status update", "description": "A dated report from the developer, operator, contractor or government on the project's physical status."},
+    "authoritative_project_announcement": {"label": "Project announcement", "description": "A dated primary source announcing the named data-centre project."},
+    "authoritative_construction_permit": {"label": "Development consent", "description": "An issued government consent for the data-centre development, with its decision date and approved work recorded."},
     "authoritative_construction_start": {"label": "Authoritative construction start", "description": "A dated report from an authoritative source that construction started. Later progress is not implied."},
-    "government_record": {"label": "Government record", "description": "A dated government record, such as a permit, inspection or registry entry, documenting the physical status."},
+    "government_record": {"label": "Government record", "description": "A dated government record documenting the project's status, such as development consent, an inspection or a registry entry."},
     "physical_observation": {"label": "Physical observation", "description": "A dated, documented observation of physical work at the site."}
   },
   "geometry_use_scopes": {
@@ -45,6 +48,7 @@
     "community_mapped": {"label": "Community mapped", "description": "Contributor-mapped geometry, such as an OpenStreetMap polygon, accepted only as a locator. Never treated as an official boundary."}
   },
   "verification_postures": {
+    "authoritative_project_record_plus_scoped_location": {"label": "Reported project and sourced location", "description": "A dated primary project record and a sourced location with its scope recorded. The status and evidence date identify what is supported."},
     "authoritative_physical_observation_plus_reviewed_site_locator": {"label": "Reported status and sourced location", "description": "A dated authoritative physical-status observation and a reviewed location. Check status_as_of for its age. This does not claim independent imagery or on-site verification."},
     "recent_authoritative_physical_observation_plus_reviewed_site_locator": {"label": "Reported status and sourced location", "description": "A dated authoritative physical-status observation and a reviewed location. Check status_as_of for its age. This does not claim independent imagery or on-site verification."},
     "recent_authoritative_physical_observation_plus_official_boundary": {"label": "Reported status and official boundary", "description": "A dated authoritative physical-status observation and an official boundary. Check status_as_of for its age. This does not claim independent imagery or on-site verification."},
@@ -109,6 +113,8 @@
     "regulatory_filing": {"label": "Regulatory filing", "description": "A regulatory filing, such as a securities filing."}
   },
   "evidence_roles": {
+    "announcement": {"label": "Project announcement", "description": "Supports the announcement of the named data-centre project."},
+    "permit": {"label": "Development consent", "description": "Supports issued consent for the named data-centre development and identifies the approved work."},
     "physical_status": {"label": "Physical status", "description": "Source of the project's last observed physical status."},
     "geometry": {"label": "Geometry", "description": "Source of the published locator or boundary geometry."},
     "context:identity": {"label": "Site and project identity", "description": "Connects the named project, campus or facility to the record. Does not establish construction status."},

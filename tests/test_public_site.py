@@ -637,6 +637,34 @@ def add_published_fixture(root: Path, updated: str = "2026-04-01") -> Path:
 
 
 class PublishedSnapshotTests(unittest.TestCase):
+    def test_lifecycle_statuses_survive_pages_api_downloads_and_counts(self):
+        for status in ("announced", "permitted", "completed", "operational"):
+            with self.subTest(status=status), tempfile.TemporaryDirectory(prefix="atlas-lifecycle-") as temporary:
+                base = Path(temporary)
+                root = make_fixture_root(base)
+                directory = add_published_fixture(root)
+                projects = read_csv(directory / "projects.csv")
+                sites = read_csv(directory / "sites.csv")
+                for project in projects:
+                    project["last_observed_physical_status"] = status
+                for site in sites:
+                    site["statuses_json"] = _compact([status])
+                _write_csv(directory / "projects.csv", PROJECT_FIELDS, projects)
+                _write_csv(directory / "sites.csv", SITE_FIELDS, sites)
+                _reseal(directory)
+                output = base / "out"
+                public_site.build_site(output, root=root, base_url=LOCAL)
+                actual = read_json(output / "api/v1/projects.json")
+                self.assertEqual({row["project_id"] for row in actual}, {row["project_id"] for row in projects})
+                self.assertEqual({row["last_observed_physical_status"] for row in actual}, {status})
+                self.assertEqual(read_json(output / "api/v1/stats.json")["by_status"], {status: len(projects)})
+                for site in sites:
+                    self.assertIn(status.capitalize(), (output / "sites" / site["site_id"] / "index.html").read_text())
+                with sqlite3.connect(output / "downloads/latest/atlas.sqlite") as connection:
+                    self.assertEqual(connection.execute(
+                        "SELECT last_observed_physical_status, COUNT(*) FROM projects GROUP BY 1"
+                    ).fetchall(), [(status, len(projects))])
+
     def test_update_preserves_observation_dates_and_reports_their_actual_range(self):
         with tempfile.TemporaryDirectory(prefix="atlas-published-") as temporary:
             base = Path(temporary)

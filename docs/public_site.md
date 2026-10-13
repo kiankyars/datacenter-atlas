@@ -27,6 +27,13 @@ The API adds `updated_at`, `observation_window_start` and `observation_window_en
 references. For published updates, `status_window_days` measures the observation span, rather
 than imposing an age limit. It retains its original meaning for historical snapshots.
 
+Project records cover announcements, granted development permits, construction and subsequent
+completion or operation. Existing sites keep their identifiers and URLs when their status changes.
+The legacy CSV/API field `last_observed_physical_status` now carries this project status;
+`announced` and `permitted` do not assert physical work, and `completed` does not assert operation.
+Each change retains its dated source and earlier evidence. See
+[country research](country_research.md) for the agreed research order and admission rules.
+
 ## Inputs
 
 | Path | Role |

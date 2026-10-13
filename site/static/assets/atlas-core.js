@@ -30,7 +30,7 @@
   var LIFECYCLE_ORDER = [
     'lead', 'candidate', 'announced', 'proposed', 'site_control', 'permitting', 'permitted',
     'site_preparation', 'clearing', 'civil_works', 'foundations', 'shell', 'mep_electrical',
-    'under_construction', 'commissioning', 'operational', 'expansion', 'paused', 'cancelled',
+    'under_construction', 'commissioning', 'completed', 'operational', 'expansion', 'paused', 'cancelled',
     'repurposed', 'decommissioned', 'demolished', 'unknown'
   ];
 
@@ -44,29 +44,29 @@
     {
       id: 'active',
       label: 'Under construction',
-      note: 'Source reports construction without a narrower stage',
+      note: 'Site preparation through construction and commissioning',
       color: '#0072B2',
-      codes: ['under_construction']
+      codes: ['under_construction', 'site_preparation', 'clearing', 'civil_works', 'foundations', 'shell', 'mep_electrical', 'commissioning', 'expansion']
     },
     {
       id: 'early',
-      label: 'Early works',
-      note: 'Site preparation, clearing, civil works, foundations',
+      label: 'Planning & permits',
+      note: 'Announced, proposed or permitted; physical work is not established',
       color: '#D55E00',
-      codes: ['site_preparation', 'clearing', 'civil_works', 'foundations']
+      codes: ['announced', 'proposed', 'site_control', 'permitting', 'permitted']
     },
     {
       id: 'late',
-      label: 'Building & fit-out',
-      note: 'Shell, MEP / electrical, commissioning',
+      label: 'Completed / operating',
+      note: 'Completed construction or reported operation; see each project status',
       color: '#009E73',
-      codes: ['shell', 'mep_electrical', 'commissioning']
+      codes: ['completed', 'operational']
     }
   ];
   var OTHER_GROUP = {
     id: 'other',
     label: 'Other status',
-    note: 'Any status outside the construction stages',
+    note: 'Paused, cancelled, closed or an unknown status',
     color: '#767676',
     codes: []
   };
@@ -83,7 +83,7 @@
   function statusRank(code) {
     var group = statusGroup(code);
     var groupIndex = group === OTHER_GROUP ? STATUS_GROUPS.length : STATUS_GROUPS.indexOf(group);
-    var lifecycle = LIFECYCLE_ORDER.indexOf(String(code));
+    var lifecycle = code === 'under_construction' ? 0 : LIFECYCLE_ORDER.indexOf(String(code));
     return groupIndex * 100 + (lifecycle === -1 ? 99 : lifecycle);
   }
 
@@ -102,7 +102,7 @@
       site_preparation: 'Site preparation', clearing: 'Clearing', civil_works: 'Civil works',
       foundations: 'Foundations', shell: 'Shell', mep_electrical: 'MEP / electrical',
       under_construction: 'Under construction', commissioning: 'Commissioning',
-      operational: 'Operational', expansion: 'Expansion', paused: 'Paused', cancelled: 'Cancelled',
+      completed: 'Completed', operational: 'Operational', expansion: 'Expansion', paused: 'Paused', cancelled: 'Cancelled',
       repurposed: 'Repurposed', decommissioned: 'Decommissioned', demolished: 'Demolished',
       unknown: 'Unknown'
     },
@@ -1112,7 +1112,7 @@
   // ---------------------------------------------------------------------------
 
   var AGENT_CAVEATS = [
-    'Each status is the last observed physical status as of a dated source (status_as_of), not the status today.',
+    'Each status is the last reported project status as of a dated source (status_as_of), not the status today.',
     'Locators place a site on the map; they are not building footprints or construction extents.',
     'Unknown or missing values are unknown, not zero.',
     'Coverage is incomplete and varies by country.'
@@ -1132,7 +1132,7 @@
         properties: {
           query: { type: 'string', maxLength: MAX_QUERY_LENGTH, description: 'Words that must all start a word of the site name, country, country code, project names, status sources or site id (case and accents ignored).' },
           country: { type: 'string', enum: (ctx.countryCodes || []).slice(), description: 'ISO 3166-1 alpha-2 country code.' },
-          statuses: { type: 'array', items: { type: 'string', enum: (ctx.statuses || []).slice() }, uniqueItems: true, description: 'Last observed physical status codes; a site matches when any of its projects has one.' },
+          statuses: { type: 'array', items: { type: 'string', enum: (ctx.statuses || []).slice() }, uniqueItems: true, description: 'Last reported project status codes; a site matches when any of its projects has one.' },
           locator: { type: 'string', enum: LOCATORS.slice(), description: 'official_boundary, polygon (Polygon or MultiPolygon locator) or point.' },
           has_power: { type: 'boolean', description: 'Only sites with a reported power observation.' },
           from: { type: 'string', pattern: month.pattern, description: 'Earliest status_as_of month, YYYY-MM.' },

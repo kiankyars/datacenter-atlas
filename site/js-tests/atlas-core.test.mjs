@@ -103,14 +103,33 @@ test('module exposes a frozen API and does not need a DOM', () => {
 test('status groups: three validated Okabe-Ito hues plus a neutral fallback', () => {
   assert.deepEqual(Core.STATUS_GROUPS.map((group) => group.color), ['#0072B2', '#D55E00', '#009E73']);
   assert.equal(Core.statusGroup('under_construction').id, 'active');
-  assert.equal(Core.statusGroup('foundations').id, 'early');
-  assert.equal(Core.statusGroup('mep_electrical').id, 'late');
-  assert.equal(Core.statusGroup('operational').id, 'other');
+  assert.equal(Core.statusGroup('foundations').id, 'active');
+  assert.equal(Core.statusGroup('mep_electrical').id, 'active');
+  assert.equal(Core.statusGroup('announced').id, 'early');
+  assert.equal(Core.statusGroup('permitted').id, 'early');
+  assert.equal(Core.statusGroup('completed').id, 'late');
+  assert.equal(Core.statusGroup('operational').id, 'late');
   assert.equal(Core.statusGroup('no_such_code').id, 'other');
   assert.deepEqual(
     Core.sortStatusCodes(['shell', 'zzz_new', 'under_construction', 'foundations', 'site_preparation', 'shell']),
     ['under_construction', 'site_preparation', 'foundations', 'shell', 'zzz_new']
   );
+});
+
+test('planned and retained sites remain separately filterable with stable URLs', () => {
+  const codes = ['announced', 'permitted', 'under_construction', 'completed', 'operational'];
+  const sites = Core.prepareSites({ type: 'FeatureCollection', features: codes.map((status) =>
+    feature(baseProps({
+      site_id: `site-${status}`, statuses: [status],
+      projects: [{ project_id: `project-${status}`, status, status_as_of: '2026-09-01' }]
+    }))) });
+  const ctx = Core.buildContext(sites);
+  for (const status of codes) {
+    const state = Core.normalizeState({ status: [status] }, ctx);
+    assert.deepEqual(Core.filterSites(sites, state).map((site) => site.id), [`site-${status}`]);
+    assert.equal(Core.serializeState(state), `?status=${status}`);
+  }
+  assert.notEqual(Core.statusLabel('completed'), Core.statusLabel('operational'));
 });
 
 test('vocabulary labels: bootstrap first, then built-in, then humanized code', () => {
@@ -594,8 +613,8 @@ test('site-page colour rule matches the explorer: newest project, specific stage
     ]
   })));
   assert.equal(tie.primaryStatus, 'shell');
-  assert.equal(Core.statusGroup(tie.primaryStatus).id, 'late');
-  assert.equal(Core.sortStatusCodes(tie.statuses)[0], 'under_construction', 'the old site-page rule picked another group');
+  assert.equal(Core.statusGroup(tie.primaryStatus).id, 'active');
+  assert.equal(Core.sortStatusCodes(tie.statuses)[0], 'under_construction');
 });
 
 test('exportFilename is filesystem-safe', () => {

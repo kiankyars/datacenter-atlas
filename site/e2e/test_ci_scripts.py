@@ -209,7 +209,7 @@ def test_metadata_write_then_check_is_clean(tmp_path):
     readme = (repo / "README.md").read_text(encoding="utf-8")
     assert "**4 physical sites**" in readme
     assert "**Data updated:** 2026-10-02" in readme
-    assert "**Construction observations:** 2026-05-22 to 2026-08-20" in readme
+    assert "**Status observations:** 2026-05-22 to 2026-08-20" in readme
     current = check_public_metadata.block_content(readme, "current-dataset")
     assert DATASET_ID not in current
     assert "gate" not in current and "draft" not in current and "release" not in current
@@ -451,7 +451,7 @@ def test_release_notes_and_assets(tmp_path):
     assert "not a final release" not in text and "release-gates" not in text
     assert f"[Alpha \\<campus\\>]({BASE}sites/vcc-site-1/) (Chile)" in text and "- `vcc-site-9`" in text
     assert "Cite as: Kyars, K. (2026). X." in text
-    assert "last observed physical status" in text and "Coverage is incomplete" in text
+    assert "last reported project status" in text and "Coverage is incomplete" in text
     assert "Built from commit abc123." in text
     assert release_notes.release_tag(DATASET_ID) == f"data-{DATASET_ID}"
     assert release_notes.is_prerelease({"publishable_as_final": False})

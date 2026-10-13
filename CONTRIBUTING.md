@@ -16,9 +16,10 @@ The "Report a correction" link on every site page opens it with the site ID fill
 Accepted corrections appear in the next data update. Earlier published files remain available
 unchanged in the data archive.
 
-A status is the last authoritative observation for that project, with its own date. An Atlas
-update does not renew older observations. Please report newer evidence of progress, completion,
-pauses or cancellation so the record can be updated.
+A status is the last supported report for that project, with its own date. An Atlas update does
+not renew older evidence. Sites remain listed as they are completed, open, pause, close or change
+status. Please report newer evidence so their records can be updated. Correcting or removing an
+unsupported record is separate from a documented change in the project's status.
 
 ## Suggest a new site
 
@@ -27,22 +28,27 @@ Suggestions are checked against the
 [selection criteria](https://kiankyars.github.io/datacenter-atlas/methodology/#selection). Include
 the following evidence.
 
-1. **Dated evidence of physical work.** A primary public source (company disclosure, government
-   record, regulatory filing) stating that construction is under way on the named project: site
-   preparation, civil works, foundations, shell, MEP/electrical work, general construction or
-   commissioning, with the date the statement applies to. Announcements, land purchases, permits,
-   grid-connection requests, groundbreaking plans and expected opening dates do not qualify by
-   themselves, and a later page edit or retrieval date is not an observation date. Observations must
-   fall within 90 days before the update that first adds the site. Existing records keep their
-   observation dates until newer evidence is reviewed.
+1. **Dated evidence for the status.** A primary public source (company disclosure, government
+   record or regulatory filing) identifies the named project and supports its proposal, permit,
+   physical construction, completion or operation. Record the date the evidence applies to;
+   a later page edit or retrieval date does not replace it. New sites need status evidence dated
+   within 90 days before the data update. Keep month-only dates in the research notes without
+   inventing a day; existing records retain their dates until newer evidence supports a change.
 2. **A precise locator.** A source that places the project or its campus: an official parcel or
    boundary, an official address point, a coordinate published by the developer or a public
    authority, or a named map feature. Say what it locates (a building, the project or the whole
    campus). City centres, head-office addresses and industrial-zone centroids are not accepted.
 3. **A new physical site.** Search the [site list](https://kiankyars.github.io/datacenter-atlas/sites/)
    first. Another building or phase on a listed campus does not add a site.
-4. **No completion or cancellation by the reference date.** If you know of a later status, include
-   it.
+4. **A check for later reports.** Include any later completion, opening, pause, cancellation or
+   other status report. Keep the latest supported status and its date; do not infer a change from
+   elapsed time or an expected opening date.
+
+An announcement supports an announced project. A permitted status requires issued consent for
+the data-centre development itself: record the authority, decision date and scope. A permit
+application, utility approval, microgrid consent or air permit alone is insufficient. Construction
+requires evidence of physical work. Completion and operation require their own evidence;
+a completed shell or commissioning milestone does not establish operation.
 
 Link public sources only. Please do not upload confidential documents, copies of paywalled
 material or personal data.
@@ -92,8 +98,9 @@ lint targets that CI runs.
 
 ### Publish a data update
 
-Research one country at a time, starting with the largest markets and gaps recorded in
-[country research](docs/country_research.md). Keep compact source projections under `sources/`
+Research in this order: **United States → China → United Kingdom → Germany → Japan**, with bounded
+assignments recorded in [country research](docs/country_research.md). Each pass adds missing sites
+and reviews existing ones across all statuses. Keep compact source projections under `sources/`
 and a dated change list under `definitions/`. Each change identifies its source, observation
 date, site identity and later-status check. Pin the source files and base manifest by SHA-256.
 

@@ -994,7 +994,7 @@ def test_llms_txt_is_a_working_entry_point(atlas):
     assert any(
         name in folded for name in ("cc by 4.0", "cc-by-4.0", "creative commons attribution 4.0")
     ), "llms.txt must state the licence"
-    for caveat in ("last observed", "footprint", "unknown", "coverage"):
+    for caveat in ("last reported", "footprint", "unknown", "coverage"):
         assert caveat in folded, f"llms.txt must carry the {caveat!r} caveat"
     urls = _absolute_site_urls(atlas, text)
     broken = sorted(url for url in urls if _http_status(url) != 200)

@@ -5,7 +5,7 @@
   <ol>
     <li><a href="#scope">Coverage and dates</a></li>
     <li><a href="#selection">Selection criteria</a></li>
-    <li><a href="#statuses">Construction status</a></li>
+    <li><a href="#statuses">Project status</a></li>
     <li><a href="#locators">Location precision</a></li>
     <li><a href="#evidence">Sources</a></li>
     <li><a href="#unknowns">Capacity and other details</a></li>
@@ -17,26 +17,33 @@
 </nav>
 
 <h2 id="scope">Coverage and dates</h2>
-<p>The atlas contains {{counts.physical_sites}} physical sites and {{counts.projects}} construction projects in {{counts.countries}} countries. A site is a campus or facility; a project is a building, phase or expansion at that site. Several projects can share one site.</p>
-<p>The data was updated on {{dataset.checkpoint_date}}. Its construction observations span {{dataset.window_start}} to {{dataset.window_end}}. Each project keeps its last reported status and observation date; an Atlas update does not mean every project was rechecked. A project may since have progressed, opened, paused or been cancelled. Retrieval and review dates do not change the observation date.</p>
-<p id="limitations">Coverage follows available public sources and varies across countries and languages. The atlas is not a complete list of construction worldwide.</p>
+<p>The atlas contains {{counts.physical_sites}} physical sites and {{counts.projects}} projects in {{counts.countries}} countries, from announced projects to operating facilities. A site is a campus or facility; a project is a building, phase or expansion at that site. Several projects can share one site.</p>
+<p>The data was updated on {{dataset.checkpoint_date}}. Its status evidence spans {{dataset.window_start}} to {{dataset.window_end}}. Each project keeps its last supported status and evidence date; an Atlas update does not mean every project was rechecked. Retrieval and review dates do not change the evidence date. Sites remain listed as they are completed, open, pause, close or change status.</p>
+<p id="limitations">Coverage follows available public sources and varies across countries and languages. The atlas is not a complete list of data centres worldwide.</p>
 
 <h2 id="selection">Selection criteria</h2>
 <ol>
-  <li><strong>Dated physical construction.</strong> A company disclosure, government record or regulatory filing reports physical work on the named project. The observation date is recorded separately from the date the Atlas was updated. Announcements, land purchases, permits and planned opening dates alone do not qualify. Later completion or cancellation reports are checked during review.</li>
+  <li><strong>A dated primary source.</strong> A company disclosure, government record or regulatory filing identifies the named project and supports its status. New sites need status evidence from the 90 days before the data update. Proposals, permits, physical construction and operation are recorded distinctly. Later reports are checked before adding or updating a record.</li>
   <li><strong>A distinct site.</strong> Each project is linked to one campus or facility and checked against existing records. Additional buildings, phases and alternative names at the same campus do not increase the site count.</li>
   <li><strong>A sourced location.</strong> An official boundary, address, published coordinate or named map feature locates the project or its campus. Its scope and precision are recorded. Town centres, corporate offices and unrelated neighbouring buildings do not qualify.</li>
   <li><strong>Traceable facts.</strong> Each status, location and capacity or other recorded detail links to its supporting source. Missing information remains unknown.</li>
 </ol>
-<p>The <a class="external" rel="noopener" href="{{repository_url}}/blob/main/docs/verified_construction_core.md">data specification</a> documents the underlying fields and review process.</p>
+<p>The <a href="{{root}}data/dictionary/">data dictionary</a> describes the published fields and their source requirements.</p>
 
-<h2 id="statuses">Construction status</h2>
-<p>Every project records a status, the date it was observed (<code>status_as_of</code>) and its source. The date, rather than the page's update date, tells you how recent the construction information is.</p>
+<h2 id="statuses">Project status</h2>
+<p>Every project records a status, the date the supporting evidence applies to (<code>status_as_of</code>) and its source. Month-only source dates stay in the research notes without an invented day. An expected opening date or the passage of time does not establish completion or operation.</p>
+<ul>
+  <li><strong>Announced:</strong> a dated primary source identifies a proposed project.</li>
+  <li><strong>Permitted:</strong> an authority has issued consent for the data-centre development itself. The record states the decision date and the work covered. A permit application, utility approval, microgrid consent or air permit alone is insufficient.</li>
+  <li><strong>Under construction:</strong> a primary source reports physical work, with the stage recorded where known.</li>
+  <li><strong>Completed:</strong> a primary source reports that construction of the named project is complete. A finished shell alone does not establish completion of the project.</li>
+  <li><strong>Operational:</strong> a primary source confirms that the facility is operating. Completion or commissioning alone does not establish operation.</li>
+</ul>
 {{{status_legend}}}
-<p>The map groups stages by colour: blue for general construction, vermillion for early works, and green for building and fit-out. A site's colour follows its most recently observed project. The exact status is also shown in text.</p>
+<p>The map groups statuses by colour and also shows the exact status in text. A site's colour follows its project with the latest evidence date.</p>
 
 <h2 id="locators">Location precision</h2>
-<p>{{counts.polygon_sites}} sites have a polygon or multipolygon; the rest have a point. {{counts.official_boundary_projects}} projects use an official site boundary. A map shape may represent a parcel or campus rather than the building under construction. Each record says what its location represents:</p>
+<p>{{counts.polygon_sites}} sites have a polygon or multipolygon; the rest have a point. {{counts.official_boundary_projects}} projects use an official site boundary. A map shape may represent a parcel or campus rather than a particular building. Each record says what its location represents:</p>
 <dl class="kv">
   <dt>Official boundary</dt><dd>An official parcel, cadastral or surveyed boundary of the site or campus.</dd>
   <dt>Campus location</dt><dd>A point or area locating the parent campus, which may contain several projects.</dd>
@@ -62,11 +69,12 @@
 <p>Operator, owner, tenant and customer relationships, workloads and operating models require evidence for the named project and scope. Intended workloads are distinguished from operational workloads.</p>
 
 <h2 id="imagery">Imagery</h2>
-<p>Construction statuses in the current data come from source reports. No project is marked as independently verified by imagery. Where an imagery review is available, its result is recorded separately from the reported status.</p>
+<p>Project statuses in the current data come from source reports. No project is marked as independently verified by imagery. Where an imagery review is available, its result is recorded separately from the reported status.</p>
 
 <h2 id="versions">Additions and corrections</h2>
 <p>Suggest a project with the <a class="external" rel="noopener" href="{{issues_url}}/new?template=new-site.yml">new-site form</a>, or use the <a class="external" rel="noopener" href="{{issues_url}}/new?template=correction.yml">correction form</a> to update a record. Include a dated primary source and a location source. Each site page has a correction link with its identifier filled in.</p>
 <p>Accepted changes appear in the next data update. Earlier data files remain unchanged in the <a href="{{root}}versions/">data archive</a>, so previous analyses can be reproduced. <code>downloads/latest/</code> always contains the current data.</p>
+<p>A documented status change updates the existing record. An unsupported claim or mistaken identity may instead require a correction or removal; removal does not imply that the project was cancelled or completed.</p>
 
 <h2 id="identifiers">Identifiers and stable URLs</h2>
 <p>Use <code>site_id</code>, <code>project_id</code> and <code>evidence_id</code> to join records. Site and project identifiers are derived from stable curation keys and retained when a record is renamed or updated. Evidence identifiers refer to a particular captured source; changed content receives a new identifier.</p>

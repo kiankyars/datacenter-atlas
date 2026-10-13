@@ -18,6 +18,7 @@ from pathlib import Path
 from urllib.parse import urlsplit
 from uuid import NAMESPACE_URL, uuid5
 
+from .models import LifecycleStatus
 from .public_site import validate_dataset
 
 
@@ -29,7 +30,11 @@ ACTIVE_STATUSES = {
     "site_preparation", "clearing", "civil_works", "foundations", "shell",
     "mep_electrical", "commissioning", "under_construction", "expansion",
 }
-STATUS_VALUES = ACTIVE_STATUSES | {"operational", "paused", "cancelled", "repurposed", "decommissioned", "demolished"}
+# Keep this original schema set when reproducing updates that predate lifecycle expansion.
+LEGACY_STATUS_VALUES = ACTIVE_STATUSES | {"operational", "paused", "cancelled", "repurposed", "decommissioned", "demolished"}
+PLANNED_STATUSES = {LifecycleStatus.ANNOUNCED.value, LifecycleStatus.PERMITTED.value}
+STATUS_VALUES = LEGACY_STATUS_VALUES | PLANNED_STATUSES | {LifecycleStatus.COMPLETED.value}
+PROJECT_RECORD_POSTURE = "authoritative_project_record_plus_scoped_location"
 ROOT = Path(__file__).resolve().parents[1]
 
 
@@ -103,17 +108,32 @@ def _source(row, updated):
 
 def _status(spec, sources, updated, *, admission=False):
     observed = _date(spec["as_of"])
-    _require(spec["value"] in STATUS_VALUES, "unrecognized physical status")
-    _require(observed <= updated, "future physical observation")
+    _require(spec["value"] in STATUS_VALUES, "unrecognized project status")
+    _require(observed <= updated, "future status observation")
     if admission:
-        _require(spec["value"] in ACTIVE_STATUSES, "new admission needs physical construction")
+        _require(spec["value"] in ACTIVE_STATUSES | PLANNED_STATUSES,
+                 "new admission needs an announced, permitted or construction project")
         _require((updated - observed).days <= 90, "new admission observation is older than 90 days")
     source = sources[spec["source_id"]]
-    _require(source.get("published_at"), "physical observation needs a dated source")
+    _require(source.get("published_at"), "status observation needs a dated source")
     _require(observed <= _date(source["published_at"]), "observation postdates its source")
-    _require(source["kind"] in {"company_disclosure", "government_record", "regulatory_filing"}, "physical observation needs a primary source")
-    _text(spec.get("summary"), "physical work summary")
+    _require(source["kind"] in {"company_disclosure", "government_record", "regulatory_filing"}, "status observation needs a primary source")
+    _text(spec.get("summary"), "project status summary")
+    if spec["value"] == LifecycleStatus.PERMITTED.value:
+        _require(spec.get("permit_scope") == "data_center_development", "permit must cover data-center development, not ancillary infrastructure")
+        _require(spec.get("permit_type") in {"planning_permission", "building_permit", "construction_permit"}, "permit must authorize the planned development or building works")
+        _require(spec.get("permit_decision") == "granted", "permitted status needs a granted decision")
+        _text(spec.get("permit_reference"), "permit reference")
+        _text(spec.get("permit_identity_review"), "permit identity review")
     return source
+
+
+def _status_metadata(value):
+    if value == LifecycleStatus.ANNOUNCED.value:
+        return "authoritative_project_announcement", "announcement"
+    if value == LifecycleStatus.PERMITTED.value:
+        return "authoritative_construction_permit", "permit"
+    return "authoritative_physical_status_update", "physical_status"
 
 
 def _site_from_project(project, name):
@@ -201,6 +221,7 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
         _text(item.get("successor_review"), "later-status review")
         status, locator = item["status"], item["locator"]
         _status(status, sources, updated, admission=True)
+        status_method, status_role = _status_metadata(status["value"])
         geometry = locator["geometry"]
         _require(geometry["type"] == "Point", "new point admissions only; complex boundary changes require a separate geometry review")
         coords = geometry["coordinates"]
@@ -229,9 +250,9 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
             geometry_precision_scope=locator["precision"], horizontal_uncertainty_metres=str(uncertainty) if uncertainty is not None else "",
             horizontal_uncertainty_unknown_reason=locator.get("uncertainty_reason", ""),
             geometry_evidence_id=associate(locator["source_id"], pid, "geometry"),
-            last_observed_physical_status=status["value"], status_as_of=status["as_of"], status_method="authoritative_physical_status_update",
-            status_evidence_id=associate(status["source_id"], pid, "physical_status"),
-            verification_posture="authoritative_physical_observation_plus_reviewed_site_locator",
+            last_observed_physical_status=status["value"], status_as_of=status["as_of"], status_method=status_method,
+            status_evidence_id=associate(status["source_id"], pid, status_role),
+            verification_posture=(PROJECT_RECORD_POSTURE if status["value"] in PLANNED_STATUSES else "authoritative_physical_observation_plus_reviewed_site_locator"),
             independent_imagery_verification="false", imagery_review_outcome="not_reviewed",
             development_type="unknown", development_type_unknown_reason="not established by selected evidence",
             operating_model="unknown", operating_model_unknown_reason="not established by selected evidence",
@@ -263,6 +284,7 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
         touched.add(key)
         row, status = by_key[key], item["status"]
         _status(status, sources, updated)
+        status_method, status_role = _status_metadata(status["value"])
         if correction:
             _require(item.get("replaces_status_evidence_id") == row["status_evidence_id"], "correction must name the replaced status evidence")
             _text(item.get("reason"), "status correction reason")
@@ -271,8 +293,10 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
         _text(item.get("identity_review"), "status identity review")
         _text(item.get("successor_review"), "later-status review")
         row.update(last_observed_physical_status=status["value"], status_as_of=status["as_of"],
-                   status_evidence_id=associate(status["source_id"], row["project_id"], "physical_status"),
-                   status_source_url=sources[status["source_id"]]["source_url"], status_method="authoritative_physical_status_update")
+                   status_evidence_id=associate(status["source_id"], row["project_id"], status_role),
+                   status_source_url=sources[status["source_id"]]["source_url"], status_method=status_method)
+        if status["value"] in PLANNED_STATUSES:
+            row["verification_posture"] = PROJECT_RECORD_POSTURE
 
     withdrawn = []
     for item in spec.get("withdrawals", []):
@@ -299,6 +323,8 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
         site["oldest_status_as_of"] = min(row["status_as_of"] for row in members)
         site["newest_status_as_of"] = max(row["status_as_of"] for row in members)
         site["statuses_json"] = _json(sorted({row["last_observed_physical_status"] for row in members}))
+        if any(row["verification_posture"] == PROJECT_RECORD_POSTURE for row in members):
+            site["verification_posture"] = PROJECT_RECORD_POSTURE
     counts = {
         "physical_sites": len(sites), "projects": len(projects), "evidence": len(evidence),
         "countries": len({row["country_iso_a2"] for row in sites}), "non_us_sites": sum(row["country_iso_a2"] != "US" for row in sites),
@@ -313,7 +339,7 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
                 field["allowed_values"] = sorted(set(field["allowed_values"]) | values)
                 field["allowed_values_scope"] = "Published observations and retained historical codes."
             if field["name"] == "last_observed_physical_status":
-                field["allowed_values"] = sorted(STATUS_VALUES)
+                field["allowed_values"] = sorted(LEGACY_STATUS_VALUES | set(field["allowed_values"]))
     schema.update(format="datacenter-atlas-tables-v1", observation_policy="Each status has its own observation date. Dataset updates do not renew older observations.")
     report = {
         "updated_at": updated.isoformat(), "lifecycle_reference_date": updated.isoformat(), "counts": counts,

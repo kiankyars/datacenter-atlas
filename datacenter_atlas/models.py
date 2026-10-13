@@ -30,6 +30,7 @@ class LifecycleStatus(StrEnum):
     MEP_ELECTRICAL = "mep_electrical"
     UNDER_CONSTRUCTION = "under_construction"
     COMMISSIONING = "commissioning"
+    COMPLETED = "completed"
     OPERATIONAL = "operational"
     EXPANSION = "expansion"
     PAUSED = "paused"
