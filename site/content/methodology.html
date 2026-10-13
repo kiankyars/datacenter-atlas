@@ -1,128 +1,78 @@
 <h1>Methodology</h1>
-<p class="lede">How {{site_name}} decides what counts as a data-centre construction site, how each site is located and documented, and what the data does not claim.</p>
-
-<div class="callout callout-warning" role="note">
-  <p><strong>A preview, not a final release.</strong> The current dataset is the {{dataset.label}}, a reviewed draft dated {{dataset.checkpoint_date}}. Several final-release gates are still unmet; see <a href="#release-gates">release gates</a>. It is not a census: a site's absence says nothing about whether it is being built.</p>
-</div>
+<p class="lede">How projects are selected, located and sourced.</p>
 
 <nav class="toc" aria-label="On this page">
   <ol>
-    <li><a href="#scope">What the dataset contains</a></li>
-    <li><a href="#selection">Selection rules</a></li>
-    <li><a href="#statuses">Physical status</a></li>
-    <li><a href="#locators">Locators are not footprints</a></li>
-    <li><a href="#evidence">Evidence and provenance</a></li>
-    <li><a href="#unknowns">Capacity, roles and workloads</a></li>
-    <li><a href="#imagery">Imagery and verification</a></li>
-    <li><a href="#release-gates">Release gates</a></li>
-    <li><a href="#versions">Versions and corrections</a></li>
+    <li><a href="#scope">Coverage and dates</a></li>
+    <li><a href="#selection">Selection criteria</a></li>
+    <li><a href="#statuses">Construction status</a></li>
+    <li><a href="#locators">Location precision</a></li>
+    <li><a href="#evidence">Sources</a></li>
+    <li><a href="#unknowns">Capacity and other details</a></li>
+    <li><a href="#imagery">Imagery</a></li>
+    <li><a href="#versions">Additions and corrections</a></li>
     <li><a href="#identifiers">Identifiers and stable URLs</a></li>
-    <li><a href="#limitations">Limitations</a></li>
-    <li><a href="#reproducibility">Reproducibility</a></li>
+    <li><a href="#reproducibility">Reproducing the data</a></li>
   </ol>
 </nav>
 
-<h2 id="scope">What the dataset contains</h2>
-<p>The unit of analysis is the <strong>physical site</strong>: one campus or facility location, with one or more <strong>construction projects</strong> on it (a building, phase or expansion). The current version contains {{counts.physical_sites}} sites with {{counts.projects}} projects in {{counts.countries}} countries ({{counts.non_us_sites}} sites outside the United States), backed by {{counts.evidence}} evidence rows.</p>
-<p>Projects are grouped into sites by reviewed project-to-campus identity links, compared against every site already in the atlas. This is not a global deduplication of every source that mentions a campus.</p>
-<p>Two dates frame every version. The <strong>lifecycle reference date</strong>, {{dataset.lifecycle_reference_date}}, is fixed: each status was observed no more than {{dataset.status_window_days}} days before it, between {{dataset.window_start}} and {{dataset.lifecycle_reference_date}} inclusive. The <strong>checkpoint date</strong>, {{dataset.checkpoint_date}}, records when this version was reviewed and frozen. Later research, retrievals and reviews never move a status forward in time.</p>
+<h2 id="scope">Coverage and dates</h2>
+<p>The atlas contains {{counts.physical_sites}} physical sites and {{counts.projects}} construction projects in {{counts.countries}} countries. A site is a campus or facility; a project is a building, phase or expansion at that site. Several projects can share one site.</p>
+<p>The data was updated on {{dataset.checkpoint_date}}. Its construction observations span {{dataset.window_start}} to {{dataset.lifecycle_reference_date}}; each observation falls within {{dataset.status_window_days}} days before the dataset's reference date. A status describes the source's observation on that date; a project may since have progressed, opened, paused or been cancelled. Retrieval and review dates do not change the observation date.</p>
+<p id="limitations">Coverage follows available public sources and varies across countries and languages. The atlas is not a complete list of construction worldwide.</p>
 
-<h2 id="selection">Selection rules</h2>
-<p>A project is included only when every rule below holds. The full contract is in <a class="external" rel="noopener" href="{{repository_url}}/blob/main/docs/verified_construction_core.md">docs/verified_construction_core.md</a> and, for the v0.18 expansion, <a class="external" rel="noopener" href="{{repository_url}}/blob/main/docs/expansion_200.md">docs/expansion_200.md</a>.</p>
+<h2 id="selection">Selection criteria</h2>
 <ol>
-  <li><strong>Recent, authoritative physical work.</strong> A company disclosure, government record, regulatory filing or comparable authoritative source reports that physical construction on the named project had started or was progressing, as of a date between {{dataset.window_start}} and {{dataset.lifecycle_reference_date}} inclusive. A later web retrieval, page edit, permit, budget or expected opening date does not refresh that date, and completion or cancellation successors are checked before a project is accepted.</li>
-  <li><strong>A physical construction stage.</strong> The status must be a physical stage: site preparation, civil works, foundations, shell, MEP/electrical, general construction (<code>under_construction</code>), commissioning, or construction of an expansion. Announcements, land purchases, permitting, permits, grid-connection requests and planned dates do not qualify on their own, and neither does an operational facility.</li>
-  <li><strong>One distinct physical site.</strong> Each project is linked to exactly one reviewed parent campus. A further building, phase or alias on a campus that is already represented does not add a site.</li>
-  <li><strong>A reviewed locator.</strong> The exact named project is bound to an official boundary or to a source-specific locator, such as an official parcel, an official address point, a coordinate published by the developer or a public authority, or a named official or community map feature. The source's precision is preserved, and an unknown accuracy stays unknown. Locality centres, corporate offices, industrial-zone centroids and unrelated neighbouring buildings are rejected. If a versioned correction later finds that an inherited locator shows only the host estate around a project, the record is kept but relabelled as <a href="#locators">host-estate context</a> and listed as a locator exception; it no longer counts as a reviewed locator.</li>
-  <li><strong>Closed evidence.</strong> The status, the locator and every typed value cite evidence rows in the same dataset.</li>
-  <li><strong>Nothing unsupported.</strong> Roles, workloads, operating models, capacity, energy and efficiency are recorded only where a source states them for the right scope. Unknowns stay unknown: nothing is filled in to make a record look complete.</li>
+  <li><strong>Dated physical construction.</strong> A company disclosure, government record or regulatory filing reports physical work on the named project within the observation window. Announcements, land purchases, permits and planned opening dates alone do not qualify. Later completion or cancellation reports are checked during review.</li>
+  <li><strong>A distinct site.</strong> Each project is linked to one campus or facility and checked against existing records. Additional buildings, phases and alternative names at the same campus do not increase the site count.</li>
+  <li><strong>A sourced location.</strong> An official boundary, address, published coordinate or named map feature locates the project or its campus. Its scope and precision are recorded. Town centres, corporate offices and unrelated neighbouring buildings do not qualify.</li>
+  <li><strong>Traceable facts.</strong> Each status, location and capacity or other recorded detail links to its supporting source. Missing information remains unknown.</li>
 </ol>
-<p>The release gates add cohort-level requirements on top of these rules: a site-count target and geographic diversity (minimum numbers of countries and of sites outside the United States, and a maximum share for any one country).</p>
+<p>The <a class="external" rel="noopener" href="{{repository_url}}/blob/main/docs/verified_construction_core.md">data specification</a> documents the underlying fields and review process.</p>
 
-<h2 id="statuses">Physical status</h2>
-<p>Each project records its <strong>last observed physical status</strong> (<code>last_observed_physical_status</code>), the date it applies to (<code>status_as_of</code>), how it was established (<code>status_method</code>) and its evidence row (<code>status_evidence_id</code>). It is the latest qualifying observation on or before {{dataset.lifecycle_reference_date}}, not a statement about today: the project may since have been completed, paused or cancelled. A site lists the distinct statuses of its projects. Status codes and their meaning:</p>
+<h2 id="statuses">Construction status</h2>
+<p>Every project records a status, the date it was observed (<code>status_as_of</code>) and its source. The date, rather than the page's update date, tells you how recent the construction information is.</p>
 {{{status_legend}}}
-<p>Two status methods occur in the current data: <code>authoritative_<wbr>physical_<wbr>status_<wbr>update</code>, where the source reports the state of physical work, and <code>authoritative_<wbr>construction_<wbr>start</code>, where it reports that physical construction began. The number of days between the observation and the reference date is in <code>status_age_days_at_review</code>.</p>
-<p>On the maps, colour shows one of three stage groups, chosen so that they stay distinguishable for colour-blind readers: blue for general construction (<code>under_construction</code>), vermillion for early works (site preparation, clearing, civil works, foundations) and bluish green for building and fit-out (shell, MEP/electrical, commissioning). Any other status is grey. The exact status is always written out in text. A site with several projects takes the colour of its most recently observed project; when dates tie, a specific stage is preferred over general construction.</p>
+<p>The map groups stages by colour: blue for general construction, vermillion for early works, and green for building and fit-out. A site's colour follows its most recently observed project. The exact status is also shown in text.</p>
 
-<h2 id="locators">Locators are not footprints</h2>
-<p>Each project has one reviewed geometry, and each site carries the geometry of its projects. {{counts.polygon_sites}} of the {{counts.physical_sites}} sites have a polygon or multipolygon; the rest are points. Only {{counts.official_boundary_projects}} projects use an official site boundary. Everything else is a <em>locator</em>: it shows where the project or its campus is, at a stated scope and precision. It is not the outline of a building or of the construction works.</p>
+<h2 id="locators">Location precision</h2>
+<p>{{counts.polygon_sites}} sites have a polygon or multipolygon; the rest have a point. {{counts.official_boundary_projects}} projects use an official site boundary. A map shape may represent a parcel or campus rather than the building under construction. Each record says what its location represents:</p>
 <dl class="kv">
-  <dt><code>official_boundary</code></dt>
-  <dd>An official parcel, cadastral or surveyed boundary of the project site or its parent campus. Even this is not a building footprint or the extent of current works.</dd>
-  <dt><code>campus_locator</code></dt>
-  <dd>Locates the parent campus or host development (for example a campus or address point, or a parcel or estate polygon), not necessarily the current project.</dd>
-  <dt><code>project_locator</code></dt>
-  <dd>Locates the named project itself, at the precision of its source.</dd>
-  <dt><code>reviewed_site_locator</code></dt>
-  <dd>A reviewed reference point labelled by what it actually marks, such as a shared-campus reference point, a facility address point or a parcel reference point.</dd>
-  <dt><code>host_estate_context</code></dt>
-  <dd>Host-estate context only: the geometry shows the industrial estate or business park that contains the project, not the project or its campus. It is not a reviewed locator, and its display anchor is not a site position. It arises only when a versioned correction finds that an inherited locator was really a host estate; the site stays in the dataset and the selection report lists it under <code>locator_exceptions</code>.</dd>
+  <dt>Official boundary</dt><dd>An official parcel, cadastral or surveyed boundary of the site or campus.</dd>
+  <dt>Campus location</dt><dd>A point or area locating the parent campus, which may contain several projects.</dd>
+  <dt>Project location</dt><dd>A point or area locating the named project at the precision of its source.</dd>
+  <dt>Site reference point</dt><dd>A reviewed address, parcel or shared-campus reference point.</dd>
+  <dt>Host estate</dt><dd>The surrounding industrial estate or business park. Where a correction identifies this broader scope, it is labelled as an exception: the marker does not identify the project's position.</dd>
 </dl>
-<p>Further fields qualify every geometry. <code>geometry_authority_class</code> says who published it (an official or first-party source, a community source, or a community-mapped feature such as OpenStreetMap). <code>geometry_scope_class</code> and <code>geometry_source_entity_kind</code> say what the source geometry represents. <code>geometry_method</code> and <code>geometry_derivation</code> say how it was obtained, and <code>geometry_precision_scope</code> states its limits in words. <code>horizontal_uncertainty_metres</code> gives a numeric uncertainty where the source supports one; otherwise <code>horizontal_<wbr>uncertainty_<wbr>unknown_<wbr>reason</code> explains why there is none.</p>
-<p>The <code>latitude</code> and <code>longitude</code> columns are a display anchor for maps and lists. For a point they repeat the locator, with the same scope and precision limits. For a polygon or multipolygon the full geometry is the published locator, and the anchor is only a convenient marker position.</p>
+<p>The API and downloads preserve the location's source, method, scope and any stated uncertainty. An unknown accuracy is left unknown. For a polygon, latitude and longitude are a convenient display anchor; use the full geometry for spatial analysis.</p>
 
-<h2 id="evidence">Evidence and provenance</h2>
-<p>Every evidence row in <code>evidence.csv</code> records the source URL, publisher, kind and title; the roles the row plays (physical status, geometry, identity context, a typed metric and so on); the publication date where known; the retrieval time; a SHA-256 hash of the captured source content; and the source's licence and attribution. The atlas stores compact factual extractions with links; it does not redistribute source documents, imagery or media. Each version's <code>manifest.json</code> binds every file to its size and SHA-256 digest. Source terms are summarised on the <a href="{{root}}about/attribution/">attribution page</a>.</p>
-<p>Sources go offline or change. Each evidence record therefore also carries an <code>archive_url</code>, shown as "Archived copy" on site pages: a link to the Internet Archive's Wayback Machine capture nearest the retrieval time. The atlas does not make these captures, so one may not exist or may differ from what was reviewed; the content hash identifies the reviewed capture.</p>
+<h2 id="evidence">Sources</h2>
+<p>Each source record includes a URL, publisher, title, publication date where known, retrieval time, licence and SHA-256 hash of the captured content. The atlas publishes extracted facts and links, rather than redistributing source documents or imagery. See <a href="{{root}}about/attribution/">source attribution</a> for applicable terms.</p>
+<p>Site pages also link to the Internet Archive's nearest capture. A capture may be unavailable or differ from the material reviewed; the content hash identifies the reviewed material.</p>
 
-<h2 id="unknowns">Capacity, roles and workloads stay unknown unless evidenced</h2>
-<p>Capacity is unknown unless a typed observation exists. {{counts.power_observation_projects}} of the {{counts.projects}} projects carry a typed power observation. Each observation keeps its metric, stage, low, base and high values, unit, method, confidence, as-of date and evidence. The metrics measure different things and must not be added together or substituted for one another:</p>
+<h2 id="unknowns">Capacity and other details</h2>
+<p>{{counts.power_observation_projects}} of {{counts.projects}} projects have a recorded power observation. Each value keeps its source, date, scope, unit and stage, such as planned or installed. These metrics measure different things:</p>
 <ul>
-  <li><strong>Critical IT load</strong> (<code>critical_it_mw</code>): power available to IT equipment.</li>
-  <li><strong>Gross facility power</strong> (<code>gross_facility_mw</code>): total facility power, including cooling and other loads.</li>
-  <li><strong>Grid connection</strong> (<code>grid_connection_mw</code>): utility connection capacity, which is not the data-centre load.</li>
-  <li><strong>Generation nameplate</strong> (<code>generation_nameplate_mw</code>): on-site generation capacity, which is not load either.</li>
+  <li><strong>Critical IT load:</strong> power available to IT equipment.</li>
+  <li><strong>Gross facility power:</strong> total facility power, including cooling.</li>
+  <li><strong>Grid connection:</strong> utility connection capacity.</li>
+  <li><strong>Generation nameplate:</strong> on-site generation capacity.</li>
 </ul>
-<p>Stages such as <code>planned</code>, <code>design</code> and <code>contracted</code> describe intent or agreements, not installed or measured capacity. Annual energy and PUE are kept separate from power and are not estimated without scoped inputs. A missing value is unknown, never zero, and absent typed values carry an explicit <code>*_unknown_reason</code>.</p>
-<p>Roles (operator, owner, tenant, customer, user), workloads and operating models are recorded only with specific evidence; roles also carry a relationship scope, and workloads a deployment scope. A workload observation records a source's classification and whether it is intended or operational; it is not proof of what a facility runs. Company names in site and project names identify facilities and do not by themselves establish any role.</p>
+<p>These values should not be added together. Annual energy and PUE are recorded separately. A missing value means unknown, not zero.</p>
+<p>Operator, owner, tenant and customer relationships, workloads and operating models require evidence for the named project and scope. Intended workloads are distinguished from operational workloads.</p>
 
-<h2 id="imagery">Imagery and verification</h2>
-<p>In the current dataset no project is marked as independently verified by imagery (<code>independent_<wbr>imagery_<wbr>verification</code>). A small number of projects carry a satellite or drone imagery-review outcome, kept for provenance; none of these outcomes changes a status or creates a construction or capacity claim. The <code>verification_posture</code> field states what each record rests on: a recent authoritative physical observation plus a reviewed site locator or an official boundary, or, for a locator exception, host-estate context only. The <a href="{{root}}data/dictionary/">data dictionary</a> lists every posture and scope code with its meaning.</p>
+<h2 id="imagery">Imagery</h2>
+<p>Construction statuses in the current data come from source reports. No project is marked as independently verified by imagery. Where an imagery review is available, its result is recorded separately from the reported status.</p>
 
-<section id="release-gates" aria-labelledby="release-gates-title">
-  <h2 id="release-gates-title">Release gates</h2>
-  <p>A version can be published as final only when every gate passes. The current version has release status <code>{{dataset.release_status}}</code> and is not publishable as final. The table is generated from the dataset's <a href="{{root}}downloads/latest/selection-report.json"><code>selection-report.json</code></a>.</p>
-  {{{gates_table}}}
-  <p>Five gates measure scale and diversity: the site count, the sites added beyond the frozen {{last_preview.label}} baseline, the number of countries, the number of sites outside the United States and the largest single-country share. The others concern verification and release: an imagery-review outcome for every project, a blind re-review of a fixed sample drawn from the whole cohort, a byte-exact rebuild from a fresh clone of the public repository, and an explicit publication decision. The draft builder never authorizes publication, so reaching the site-count target alone does not make a version final.</p>
-</section>
-
-<h2 id="versions">Versions and corrections</h2>
-<p>There are {{versions.count}} dataset versions: the v0.1 to v0.17 previews (the last of which, the {{last_preview.label}}, has {{last_preview.counts.physical_sites}} sites) and the reviewed v0.18 draft checkpoints that extend it. Each version is a complete, frozen snapshot, so never add counts from different versions together. Older versions' original files stay byte-for-byte unchanged so that any earlier result can be audited: each version's original files stay at <code>downloads/&lt;version&gt;/</code>, bound by its <code>manifest.json</code>, while <code>downloads/latest/</code> follows the current version. The derived formats (JSON, SQLite, Excel and so on) are regenerated by the site builder, so check them against the directory's <code>SHA256SUMS</code>. Errors found later are fixed by a documented, versioned correction in a new checkpoint, not by rewriting a published version. See <a href="{{root}}versions/">all versions</a>.</p>
+<h2 id="versions">Additions and corrections</h2>
+<p>Suggest a project with the <a class="external" rel="noopener" href="{{issues_url}}/new?template=new-site.yml">new-site form</a>, or use the <a class="external" rel="noopener" href="{{issues_url}}/new?template=correction.yml">correction form</a> to update a record. Include a dated primary source and a location source. Each site page has a correction link with its identifier filled in.</p>
+<p>Accepted changes appear in the next data update. Earlier data files remain unchanged in the <a href="{{root}}versions/">data archive</a>, so previous analyses can be reproduced. <code>downloads/latest/</code> always contains the current data.</p>
 
 <h2 id="identifiers">Identifiers and stable URLs</h2>
-<p>Join tables and cite records by their identifiers. They are derived deterministically from curation keys, so the same entity keeps the same identifier from one version to the next:</p>
-<dl class="kv">
-  <dt><code>site_id</code></dt>
-  <dd><code>vcc-site-</code> followed by the first 20 hexadecimal characters of the SHA-256 of the site's <code>physical_site_stable_key</code>. It stays the same as long as the site's curation key does.</dd>
-  <dt><code>project_id</code></dt>
-  <dd>A version 5 UUID derived from the project's <code>project_stable_key</code>. It stays the same as long as the project's curation key does.</dd>
-  <dt><code>evidence_id</code></dt>
-  <dd>A version 5 UUID derived from the kind of source, the source's identifier or curation key and the SHA-256 of its captured content (for some sources also the retrieval time). It identifies one captured revision of a source: when a source is captured again with different content, or filed under a new key, the capture gets a new <code>evidence_id</code> and the old one is retired.</dd>
-  <dt><code>*_stable_key</code></dt>
-  <dd>Curation keys, used to derive the identifiers above and to group records. They are not external identifiers and do not claim de-duplication against other databases.</dd>
-</dl>
-<ul>
-  <li>An identifier is never reused for a different entity. When sites or projects are merged or split, an identifier that no longer describes the same entity is retired, and any new entity gets a new identifier.</li>
-  <li>The <a href="{{root}}versions/">versions page</a> and <a href="{{root}}api/v1/versions.json"><code>versions.json</code></a> list the sites each version added or removed, so a retired <code>site_id</code> can be traced to the last version that contains it.</li>
-  <li>A retired identifier's records stay in the original files of every version that contained it, at <code>downloads/&lt;version&gt;/</code>, which never change.</li>
-  <li>The site pages (<code>sites/&lt;site_id&gt;/</code>) and the API files under <code>api/v1/</code> describe the current version only. A site, project or evidence record that is not in the current version returns HTTP 404 there.</li>
-  <li>Version identifiers and the version download directories (<code>downloads/&lt;version&gt;/</code>) are permanent.</li>
-</ul>
+<p>Use <code>site_id</code>, <code>project_id</code> and <code>evidence_id</code> to join records. Site and project identifiers are derived from stable curation keys and retained when a record is renamed or updated. Evidence identifiers refer to a particular captured source; changed content receives a new identifier.</p>
+<p>Identifiers are never reused for a different entity. A merge or split retires identifiers that no longer describe the same entity. The <a href="{{root}}api/v1/versions.json">archive index</a> lists added and removed sites. Retired records remain in the archived downloads that contained them.</p>
+<p>Site pages and <code>api/v1/</code> describe the current data. A record absent from the current data returns HTTP 404 there. Archived download paths remain available.</p>
 
-<h2 id="limitations">Limitations</h2>
-<ul>
-  <li><strong>Not a census.</strong> The atlas is a reviewed sample held to a strict evidence bar. Coverage follows what sources publish and is uneven across countries and languages; many projects never disclose a dated physical status and a precise location.</li>
-  <li><strong>Last observed physical status, not current status.</strong> Statuses are fixed at the lifecycle reference date and age from then on.</li>
-  <li><strong>Locators are not footprints.</strong> Most sites are points. A polygon may outline a parcel, a campus, a host estate or an existing building used only as a locator; even a building outline is not necessarily the building under construction.</li>
-  <li><strong>Sparse typed values.</strong> Capacity, roles, workloads and operating models are unknown for most projects.</li>
-  <li><strong>Validation is not ground truth.</strong> Hash checks show that the data matches its pinned sources and review decisions. They do not independently establish physical truth or resolve undisclosed campus aliases.</li>
-  <li><strong>No benchmark parity.</strong> No licensed row-level benchmark is available, so no completeness or accuracy parity with commercial trackers, such as SemiAnalysis, is claimed.</li>
-  <li><strong>Not advice.</strong> The data is provided as is and is not legal, surveying, investment, engineering or operational advice.</li>
-</ul>
-
-<h2 id="reproducibility">Reproducibility</h2>
-<p>Every file of every version is bound by size and SHA-256 in its <code>manifest.json</code>, and the manifest's own digest is in <code>manifest.sha256</code>. Each v0.18 checkpoint can be re-derived and compared byte for byte from its hash-pinned inputs with the repository's draft builder:</p>
-<pre class="code">python3 scripts/build_expansion_200_draft.py --batch &lt;batch&gt; --validate-only</pre>
-<p>where <code>&lt;batch&gt;</code> is the part of the version identifier after <code>v0.18-draft-</code>, for example <code>thirty-fifth-reviewed</code> for <code>2026-08-20-v0.18-draft-thirty-fifth-reviewed</code>.</p>
-<p>This website, its API and its downloads are generated from the tracked dataset by a standard-library Python builder; the same inputs produce byte-identical output. Build and test instructions are in the <a class="external" rel="noopener" href="{{repository_url}}#rebuild-and-test">repository README</a>; the data itself is on the <a href="{{root}}data/">data page</a> and through the <a href="{{root}}api/">API</a>.</p>
+<h2 id="reproducibility">Reproducing the data</h2>
+<p>Each archived dataset includes a <code>manifest.json</code> with file sizes and SHA-256 hashes; <code>manifest.sha256</code> identifies the manifest. Generated formats such as SQLite and Excel have checksums in <code>SHA256SUMS</code>.</p>
+<p>The <a class="external" rel="noopener" href="{{repository_url}}#rebuild-and-test">repository README</a> explains how to build and test the website and data. Browse the <a href="{{root}}data/dictionary/">data dictionary</a> for field definitions, or use the <a href="{{root}}api/">API documentation</a> for endpoints and examples.</p>

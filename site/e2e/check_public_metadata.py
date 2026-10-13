@@ -1,8 +1,7 @@
 """Check (or rewrite) the dataset facts written outside the site build.
 
-README.md, CITATION.cff and DATA_LICENSE.md state the current dataset version, its checkpoint date,
-counts, release gates and citation. They are not produced by ``scripts/build_public_site.py``, so
-they go stale when a new checkpoint becomes current unless someone updates them. This script reads
+README.md, CITATION.cff and DATA_LICENSE.md state dataset dates, counts and citation metadata. They are not produced by ``scripts/build_public_site.py``, so
+they need to be refreshed when the data changes. This script reads
 the built site's API (``api/v1/*.json``) and the repository's ``site/config.json`` and:
 
 - regenerates ``CITATION.cff`` and the marked blocks in README.md and DATA_LICENSE.md
@@ -53,18 +52,6 @@ NUMBER_WORDS = (
     "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen",
     "nineteen", "twenty",
 )
-# Display order of the release gates in README.md; gates the builder adds later follow in name order.
-GATE_ORDER = (
-    "site_count",
-    "additional_site_count",
-    "country_count",
-    "non_us_site_count",
-    "maximum_single_country_share",
-    "imagery_outcomes_complete",
-    "blind_review",
-    "clean_clone_rebuild",
-    "publication_authorized",
-)
 
 
 class MetadataError(RuntimeError):
@@ -96,14 +83,6 @@ class Facts:
     @property
     def base_url(self) -> str:
         return str(self.index.get("base_url") or self.config["base_url"])
-
-    @property
-    def last_preview(self) -> Mapping[str, Any]:
-        wanted = self.versions.get("last_preview")
-        for version in self.versions.get("versions", []):
-            if version.get("id") == wanted:
-                return version
-        raise MetadataError(f"versions.json has no entry for last_preview {wanted!r}")
 
     @property
     def batch(self) -> str | None:
@@ -171,11 +150,6 @@ def number_word(value: int) -> str:
     return NUMBER_WORDS[value] if 0 <= value < len(NUMBER_WORDS) else str(value)
 
 
-def percent(value: float) -> str:
-    text = f"{value * 100:.1f}".rstrip("0").rstrip(".")
-    return f"{text}%"
-
-
 _UNBREAKABLE = re.compile(r"\[[^\]]*\]\([^)]*\)|\*\*[^*]+\*\*|`[^`]+`")
 
 
@@ -187,20 +161,6 @@ def wrap(text: str, *, width: int = 100, first: str = "", rest: str = "") -> str
         break_long_words=False, break_on_hyphens=False,
     )
     return filled.replace("\x00", " ")
-
-
-def version_phrase(label: str) -> str:
-    """'v0.18 draft — thirty-fifth reviewed checkpoint' -> 'the thirty-fifth reviewed checkpoint of the v0.18 draft'."""
-    for separator in (" — ", " - "):
-        if separator in label:
-            head, tail = label.split(separator, 1)
-            return f"the {tail.strip()} of the {head.strip()}"
-    return f"the {label.strip()}"
-
-
-def preview_short(version: Mapping[str, Any]) -> str:
-    match = re.search(r"preview-(v\d+(?:\.\d+)*)$", str(version.get("id", "")))
-    return match.group(1) if match else str(version.get("label", "last preview"))
 
 
 def author_parts(config: Mapping[str, Any]) -> tuple[str, str]:
@@ -223,10 +183,6 @@ def _country(facts: Facts, name_or_code: str) -> Mapping[str, Any] | None:
         if wanted in (str(country.get("country", "")).casefold(), str(country.get("country_iso_a2", "")).casefold()):
             return country
     return None
-
-
-def _top_country(facts: Facts) -> Mapping[str, Any]:
-    return min(facts.countries, key=lambda item: (-int(item["site_count"]), str(item["country"])))
 
 
 def locator_exceptions(facts: Facts) -> list[str]:
@@ -270,23 +226,17 @@ def citation_cff(facts: Facts) -> str:
     base = facts.base_url
     family, given = author_parts(config)
     window = int(dataset.get("status_window_days") or config.get("status_window_days") or 90)
-    release = (
-        "It is a final release."
-        if dataset.get("publishable_as_final")
-        else f"It is a reviewed {dataset.get('release_status', 'draft')}, not a final release; the release gates it "
-        f"has not met are listed at {base}methodology/#release-gates."
-    )
     abstract = (
-        "An open, evidence-backed dataset of data-centre construction worldwide. Each project has a dated, "
+        "An open dataset of data-centre construction worldwide. Each project has a dated, "
         "authoritative observation of physical construction work no more than "
         f"{window} days before a fixed lifecycle reference date ({dataset['lifecycle_reference_date']}), a "
-        "reviewed locator with explicit precision semantics"
+        "sourced location with its precision recorded"
         f"{' (or, for a listed locator exception, host-estate context only)' if locator_exceptions(facts) else ''}"
-        ", and closed-set evidence rows with source URLs, licences, retrieval times and content hashes. "
-        f"Version {dataset['id']} (checkpoint {dataset['checkpoint_date']}) contains "
+        ", and source records with URLs, licences, retrieval times and content hashes. "
+        f"Data updated {dataset['checkpoint_date']}: "
         f"{counts['physical_sites']} physical sites with {counts['projects']} projects in "
         f"{counts['countries']} countries, backed by {counts['evidence']} evidence rows. "
-        f"{_exception_sentence(facts, markdown=False) + ' ' if locator_exceptions(facts) else ''}{release} "
+        f"{_exception_sentence(facts, markdown=False) + ' ' if locator_exceptions(facts) else ''}"
         "Statuses are the last observed physical status, not the current status; locators are not building "
         "footprints; capacity is unknown unless a typed observation exists; and the dataset is not a census. "
         "Atlas-authored data are licensed CC BY 4.0; geometries derived from OpenStreetMap are © "
@@ -294,8 +244,8 @@ def citation_cff(facts: Facts) -> str:
         "(see DATA_LICENSE.md)."
     )
     message = (
-        "If you use this dataset, please cite it as below and name the dataset version you used. Each "
-        f"version's original files stay available, unchanged, at {base}downloads/<version>/<file> and are "
+        "If you use this dataset, please cite it as below. Archived data files remain unchanged at "
+        f"{base}downloads/<dataset_id>/<file> and are "
         f"listed at {base}versions/."
     )
     repository = str(config["repository_url"]).rstrip("/")
@@ -333,92 +283,16 @@ def citation_cff(facts: Facts) -> str:
     return "\n".join(lines) + "\n"
 
 
-def _gate_rows(facts: Facts) -> list[tuple[str, str, str, bool]]:
-    gates = facts.stats.get("release_gates") or {}
-    if not isinstance(gates, Mapping) or not gates:
-        raise MetadataError("api/v1/stats.json has no release_gates")
-    preview = preview_short(facts.last_preview)
-    rows = []
-    names = [name for name in GATE_ORDER if name in gates] + sorted(set(gates) - set(GATE_ORDER))
-    for name in names:
-        gate = gates[name]
-        passed = bool(gate.get("passed"))
-        if name == "site_count":
-            row = ("Physical sites", f"{gate['required']}", f"{gate['actual']}")
-        elif name == "additional_site_count":
-            row = (f"Sites added since the {preview} preview", f"{gate['required']}", f"{gate['actual']}")
-        elif name == "country_count":
-            row = ("Countries", f"at least {gate['required_minimum']}", f"{gate['actual']}")
-        elif name == "non_us_site_count":
-            row = ("Sites outside the United States", f"at least {gate['required_minimum']}", f"{gate['actual']}")
-        elif name == "maximum_single_country_share":
-            top = _top_country(facts)["country"]
-            row = (
-                "Largest single-country share", f"at most {percent(gate['required_maximum'])}",
-                f"{percent(gate['actual'])} ({top})",
-            )
-        elif name == "imagery_outcomes_complete":
-            row = ("Projects with an imagery-review outcome", f"{gate['required']}", f"{gate['actual']}")
-        elif name == "blind_review":
-            sample = int(gate.get("sample_size") or 0)
-            current = "not started" if sample == 0 else f"{gate.get('agreements', 0)} of {sample} agree"
-            row = (
-                f"Blind re-review of a fixed {gate['required_sample_size']}-project sample",
-                f"{gate['required_agreements']} agreements", current,
-            )
-        elif name == "clean_clone_rebuild":
-            row = ("Clean-clone rebuild", "checked at release", "recorded" if passed else "not yet recorded")
-        elif name == "publication_authorized":
-            draft = facts.dataset.get("release_status") == "draft"
-            current = "granted" if passed else ("never granted to drafts" if draft else "not granted")
-            row = ("Publication authorised", "explicit sign-off", current)
-        else:
-            required = next((gate[key] for key in ("required", "required_minimum", "required_maximum") if key in gate), "")
-            row = (name.replace("_", " ").capitalize(), str(required), str(gate.get("actual", "")))
-        rows.append((*row, passed))
-    return rows
-
-
 def readme_current_dataset(facts: Facts) -> str:
     dataset, counts = facts.dataset, facts.counts
-    window = int(dataset.get("status_window_days") or facts.config.get("status_window_days") or 90)
-    rows = _gate_rows(facts)
-    unmet = sum(1 for row in rows if not row[3])
-    if dataset.get("publishable_as_final"):
-        release = "a **final release** (`publishable_as_final` is true). Every final-release gate is met:"
-    else:
-        release = (
-            f"a reviewed **{dataset.get('release_status', 'draft')}**, not a final release (`publishable_as_final` "
-            f"is false). {number_word(unmet).capitalize()} of the {number_word(len(rows))} final-release gates "
-            f"{'is' if unmet == 1 else 'are'} not yet met:"
-        )
     bullets = [
-        f"**Version:** `{dataset['id']}`, {version_phrase(str(dataset['label']))}, dated "
-        f"**{dataset['checkpoint_date']}**.",
-        f"**Contents:** **{counts['physical_sites']} physical sites** with **{counts['projects']} construction "
-        f"projects** in **{counts['countries']} countries** ({counts['non_us_sites']} sites outside the United "
-        f"States), backed by **{counts['evidence']} evidence rows**. {_exception_sentence(facts, markdown=True)}".rstrip(),
-        f"**Lifecycle cutoff:** **{dataset['lifecycle_reference_date']}**. Every status was observed no more than "
-        f"{window} days before it, between {dataset.get('window_start', '?')} and "
-        f"{dataset['lifecycle_reference_date']} inclusive.",
-        f"**Release status:** {release}",
+        f"**Coverage:** **{counts['physical_sites']} physical sites**, **{counts['projects']} construction "
+        f"projects** and **{counts['countries']} countries**.",
+        f"**Data updated:** {dataset['checkpoint_date']}.",
+        f"**Construction observations:** {dataset.get('window_start', '?')} to "
+        f"{dataset['lifecycle_reference_date']}. Each record includes its source and observation date.",
     ]
-    lines = [wrap(text, first="- ", rest="  ") for text in bullets]
-    lines += ["", "| Gate | Required | Current | Met |", "| --- | --- | --- | --- |"]
-    lines += [f"| {gate} | {required} | {current} | {'Yes' if met else 'No'} |" for gate, required, current, met in rows]
-    repository_path = str(dataset.get("repository_path") or f"{facts.config.get('versions_root', 'verified_construction_core')}/{dataset['id']}")
-    preview = facts.last_preview
-    preview_path = f"{facts.config.get('versions_root', 'verified_construction_core')}/{preview['id']}/README.md"
-    target = (facts.stats.get("release_gates") or {}).get("site_count", {}).get("required")
-    towards = f" towards {target}" if target else ""
-    closing = (
-        f"The figures come from the dataset's [`selection-report.json`]({repository_path}/selection-report.json). "
-        f"The last preview, [{preview_short(preview)}]({preview_path}), has "
-        f"{preview.get('counts', {}).get('physical_sites', '?')} sites; the reviewed drafts extend it{towards}. "
-        f"Every version remains available on the [versions page]({facts.base_url}versions/)."
-    )
-    lines += ["", wrap(closing)]
-    return "\n".join(lines)
+    return "\n".join(wrap(text, first="- ", rest="  ") for text in bullets)
 
 
 def citation_parts(facts: Facts) -> tuple[str, str]:
@@ -432,7 +306,7 @@ def citation_parts(facts: Facts) -> tuple[str, str]:
     year = str(facts.dataset["checkpoint_date"])[:4]
     title = dataset_title(facts)
     reference = (
-        f"{family}, {given[:1]}. ({year}). *{title}* (Version {facts.dataset['id']}) [Data set]. {facts.base_url}"
+        f"{family}, {given[:1]}. ({year}). *{title}* [Data set; updated {facts.dataset['checkpoint_date']}]. {facts.base_url}"
     )
     key = re.sub(r"[^a-z0-9]", "", f"{family}{year}datacenteratlas".lower())
     bibtex = "\n".join([
@@ -440,7 +314,7 @@ def citation_parts(facts: Facts) -> tuple[str, str]:
         f'  author = "{family}, {given}",',
         f'  title  = "{title}",',
         f'  year   = "{year}",',
-        f'  note   = "Dataset version {facts.dataset["id"]}, checkpoint {facts.dataset["checkpoint_date"]}",',
+        f'  note   = "Data updated {facts.dataset["checkpoint_date"]}; archive ID {facts.dataset["id"]}",',
         f'  url    = "{facts.base_url}"',
         "}",
     ])
@@ -456,8 +330,8 @@ def readme_citation(facts: Facts) -> str:
 def readme_version_files(facts: Facts) -> str:
     base, identifier = facts.base_url, facts.dataset["id"]
     text = (
-        "`downloads/latest/` follows the current version. For reproducible work, use the version's own files, "
-        f"for example <{base}downloads/{identifier}/sites.csv>, and check them against that directory's "
+        "`downloads/latest/` contains the current data. For reproducible work, use the "
+        f"[archived files]({base}downloads/{identifier}/) and verify them against their "
         f"[`SHA256SUMS`]({base}downloads/{identifier}/SHA256SUMS)."
     )
     return wrap(text)

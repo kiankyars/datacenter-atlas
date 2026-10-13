@@ -9,7 +9,7 @@ zip archives also depend on the SQLite and zlib libraries. The builder writes `a
 `PRAGMA secure_delete = ON`, a fixed page size and the header field that records the writing
 library's version zeroed, so it does not depend on the defaults a particular SQLite build was
 compiled with; a future SQLite or zlib whose file layout or compression differs could still change
-those bytes (and their published checksums). The original checkpoint files are copied verbatim
+those bytes (and their published checksums). The archived source data files are copied verbatim
 and never change. The output is ignored by Git and deployed by GitHub Actions.
 
 This page is for maintainers. Users should start with the [README](../README.md) and the
@@ -80,7 +80,7 @@ countries/<iso2>/index.html        one page per country (lower-case ISO code)
 data/index.html                    downloads, checksums, usage recipes, licence, citation
 data/dictionary/index.html         field dictionary and coded values
 api/index.html                     API documentation with examples
-methodology/index.html             selection rules, statuses, locators, identifiers, release gates
+methodology/index.html             selection criteria, statuses, location precision, sources, updates
 versions/index.html                every dataset version and what each one changed
 versions/<dataset_id>/index.html   one page per version
 about/index.html                   about, licence, citation, corrections, legal notices
@@ -98,7 +98,7 @@ api/v1/sites/<site_id>.json        one site with its projects and evidence (also
 api/v1/projects.json               all projects; api/v1/projects/<project_id>.json each
 api/v1/evidence.json               all evidence; api/v1/evidence/<evidence_id>.json each
 api/v1/countries.json              country summaries; api/v1/countries/<ISO2>.json, .geojson and .csv each
-api/v1/stats.json                  aggregate counts (each map states its unit) and release gates
+api/v1/stats.json                  aggregate counts (each map states its unit); legacy gate metadata
 api/v1/versions.json               every dataset version, its files and its changes
 api/v1/vocabularies.json           labels and descriptions for coded values
 api/v1/citation.json               the citation as APA, BibTeX, biblatex, RIS and CSL-JSON (also citation.bib, citation.ris)
@@ -208,8 +208,7 @@ unregistered when the page is left:
   shows the result on the page and returns site summaries with their page, API and view URLs;
 - `get_datacenter_site` (`site_id`): opens the site's drawer and returns its full
   `api/v1/sites/<site_id>.json` document;
-- `get_datacenter_dataset_info` (no options): the dataset version, counts, release gates, licence
-  and attribution, API endpoints and bulk downloads with their SHA-256.
+- `get_datacenter_dataset_info` (no options): dataset dates, counts, licence and attribution, API endpoints and bulk downloads with their SHA-256.
 
 Each result repeats the data caveats. Invalid input is rejected with a reason; elsewhere nothing is
 registered and the explorer works as usual.
@@ -218,9 +217,9 @@ registered and the explorer works as usual.
 
 `site/content/*.html` and `site/templates/explorer.html` are HTML fragments without `<html>`,
 `<head>` or `<body>`; the builder wraps them in the shared layout. A content page starts with one
-`<h1>`, followed by `<h2>` sections that carry `id` attributes. The methodology page must contain
-`id="release-gates"` (a `<section id="release-gates">`) and use the `{{{gates_table}}}` token, or
-the build fails.
+`<h1>`, followed by `<h2>` sections that carry `id` attributes. Public copy should describe the
+data and how to use it. Keep internal snapshot names, review milestones and historical release
+gates out of navigation, introductions and instructions.
 
 Tokens:
 
@@ -330,38 +329,45 @@ The methodology page states this policy for users
 Keep identifiers stable: never change a stable key just to rename a record. If a key must change,
 record the change in the checkpoint's contract and in `docs/expansion_200.md`.
 
-## Making a new checkpoint current
+## Updating the data
 
-1. Produce the new version directory under `verified_construction_core/` with the dataset pipeline
-   (see [expansion_200.md](expansion_200.md)), with its contract, tests and a passing
-   `--validate-only` run. Never modify an existing version.
-2. Make sure Git tracks every file its manifest lists. `.gitignore` is default-deny, and
-   `review-provenance.json` is whitelisted one directory at a time.
-3. Set `current_dataset` in `site/config.json` to the new directory, and `last_preview_dataset` as
-   well if the new version is a preview.
-4. Add `site/field_descriptions.json` entries for any new columns and `site/vocabulary.json`
-   entries for any new codes; `tests/test_public_site.py` fails otherwise.
-5. Rebuild, then update the facts written outside the build:
+The atlas is an ongoing dataset. Add sites, refresh dated construction observations and correct
+locations or other facts as evidence becomes available.
+
+Divide research into bounded country passes. Each contributor searches local primary sources for
+missing sites, checks existing records for newer construction statuses, and resolves known factual
+corrections. Use the shared site, project and evidence record formats. Before combining parallel
+passes, check all proposed names, campus aliases and identifiers against the full atlas and the
+other country assignments. Publish supported changes through the routine update process below;
+publication does not depend on reaching a site-count target or product-version milestone.
+
+1. Gather a dated primary source for physical construction and a source for the location. Check
+   existing campus names and aliases before adding a site; add a project to the existing site when
+   the work is another building or phase at the same campus.
+2. Record source URLs, retrieval dates, licences and supported facts. Preserve the observation date
+   and location precision. Check for subsequent opening, cancellation or other status changes.
+3. Use the dataset pipeline to produce a new immutable data directory, retaining stable site and
+   project identifiers. The current pipeline and archived batch names are documented in
+   [expansion_200.md](expansion_200.md). Run its validation and relevant dataset tests. Existing
+   published files remain unchanged so earlier analyses can be reproduced.
+4. Ensure Git tracks every file listed in the new manifest, then point `current_dataset` in
+   `site/config.json` at the directory. Add dictionary and vocabulary entries for any new fields
+   or codes. Historical directory names are storage identifiers, not public product versions.
+5. Build and refresh generated metadata:
 
    ```sh
    python3 scripts/build_public_site.py --output _site --force
    python3 site/e2e/check_public_metadata.py --site _site --write
+   python3 site/e2e/check_public_metadata.py --site _site
    ```
 
-   [`check_public_metadata.py`](../site/e2e/check_public_metadata.py) regenerates `CITATION.cff` and
-   the marked blocks of `README.md` (current dataset and release gates, version files, citation)
-   and `DATA_LICENSE.md` (attribution example, OpenStreetMap geometry count) from the build's API.
-   It then lists the hand-written figures and commands that are still stale: totals such as "of the
-   197 sites", point and polygon counts, the countries named as holding most sites, typed-value
-   counts in the README's limitations, and `--batch` names and checkpoint test modules in
-   `README.md` and `CONTRIBUTING.md`. Fix those by hand and run it again without `--write` until it
-   passes; CI runs the same check after every build and fails while anything is stale. Also review
-   any checkpoint-specific statements in `site/content/methodology.html`; pages built from
-   `site/content/` take counts, dates and the citation from tokens.
-6. Run the tests, then commit and push to `main`. CI deploys the site and checks the live copy;
-   `downloads/<previous id>/` stays where it is, with its derived formats, and `downloads/latest/`
-   moves to the new version. With releases enabled, CI then publishes the GitHub Release
-   `data-<new id>` (and, with the Zenodo integration, its DOI).
+   The metadata script updates `CITATION.cff` and marked blocks in `README.md` and `DATA_LICENSE.md`
+   from the built API. Fix any stale hand-written figures or validation commands it reports. Public
+   pages use tokens for counts and dates; describe the data by its update and observation dates.
+6. Run the relevant tests and inspect the map, changed site pages and downloads. Commit and push
+   to `main`; CI builds, deploys and checks the live site. `downloads/latest/` follows the new data,
+   and existing archive paths remain available. Optional GitHub Releases archive data files; they
+   do not define a separate public product lifecycle.
 
 ## Tests
 
@@ -487,7 +493,7 @@ One-time repository and account settings:
 | Unknown template token | Correct the token in `site/content/` or `site/templates/` using the list above. |
 | Output directory is not empty | Choose a new directory, or pass `--force` to replace an earlier build. |
 | A column has no dictionary description | Add it to `site/field_descriptions.json`. |
-| "The public metadata disagrees with the build" | Run `check_public_metadata.py --write` and fix the listed prose (step 5 above). |
+| "The public metadata disagrees with the build" | Run `check_public_metadata.py --write` and fix the listed prose in the data update workflow. |
 | `site/static/... is missing` or an output path is written twice | Restore the asset the page layout needs (`assets/site.css`, `site.js`, `site-map.js`, `app.js`, the vendored Leaflet files, `favicon.svg`), or rename a static file that collides with a generated path such as `api/` or `downloads/`. |
 | A browser test passes locally but the URL is 404 in production | Serve the build with `pages_server.py`, not `http.server`: GitHub Pages never lists directories. |
 | The live site is not updated | Check that the `deploy` and `verify-live` jobs ran for the push to `main` and that Pages uses GitHub Actions as its source. |

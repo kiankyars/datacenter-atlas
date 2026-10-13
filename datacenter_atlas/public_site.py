@@ -91,7 +91,7 @@ TABLE_FILES = ("sites.csv", "projects.csv", "evidence.csv")
 TABLE_NAMES = {"sites.csv": "sites", "projects.csv": "projects", "evidence.csv": "evidence"}
 LATEST = "latest"
 GEOJSON_LAYER_NAME = "datacenter-atlas-sites"
-FEED_TITLE = "Data Center Atlas releases"
+FEED_TITLE = "Data Center Atlas updates"
 ZIP_DATE_TIME = (1980, 1, 1, 0, 0, 0)
 EXAMPLE_LIMIT = 80
 JSON_EXAMPLE_LIMIT = 400
@@ -106,10 +106,7 @@ NAVIGATION = (
     ("explore", "", "Explore"),
     ("sites", "sites/", "Sites"),
     ("countries", "countries/", "Countries"),
-    ("data", "data/", "Data"),
-    ("api", "api/", "API"),
-    ("methodology", "methodology/", "Methodology"),
-    ("versions", "versions/", "Versions"),
+    ("data", "data/", "Downloads"),
     ("about", "about/", "About"),
 )
 LEAFLET_JS = "assets/vendor/leaflet/leaflet.js"
@@ -193,7 +190,7 @@ DATA_CAVEATS = (
     "Each status is the last observed physical status as of a dated source (status_as_of), not the status today.",
     "Locators place a site on the map; they are not building footprints or construction extents.",
     "Empty or null values are unknown, never zero.",
-    "This is a reviewed preview dataset, not a final release and not a census of all data-centre construction.",
+    "Coverage is incomplete and varies by country.",
 )
 DATASET_KEYWORDS = ("data centres", "data centers", "construction", "infrastructure", "geospatial", "open data")
 SITES_FEED_TITLE = "Data Center Atlas sites"
@@ -331,7 +328,7 @@ DOWNLOAD_INFO = {
         "One row per construction project: last observed status, locator semantics and typed observations.",
     ),
     "evidence.csv": (
-        "CSV", "text/csv", "Every evidence row the checkpoint references, with source URL, rights and content hash.",
+        "CSV", "text/csv", "Sources for site records, with URLs, usage terms and content hashes.",
     ),
     "sites.geojson": ("GeoJSON", "application/geo+json", "Site locators and boundaries as a GeoJSON FeatureCollection."),
     "atlas.xlsx": (
@@ -350,18 +347,17 @@ DOWNLOAD_INFO = {
     "datapackage.json": (
         "Data Package", "application/json", "Frictionless Data Package descriptor: table schemas, sizes and hashes.",
     ),
-    "schema.json": ("JSON", "application/json", "Machine-readable schema of the checkpoint files."),
-    "selection-report.json": ("JSON", "application/json", "Selection accounting and final-release gates."),
-    "review-provenance.json": ("JSON", "application/json", "Review provenance of the draft additions."),
+    "schema.json": ("JSON", "application/json", "Field definitions for the source files."),
+    "selection-report.json": ("JSON", "application/json", "Research and selection audit."),
+    "review-provenance.json": ("JSON", "application/json", "Source and review records for additions."),
     "README.md": (
         "Markdown", "text/markdown",
-        "Checkpoint readme, frozen when the checkpoint was reviewed. It predates this website, so a note that the "
-        "public builder defaults to v0.17 refers to the earlier release builder.",
+        "Original research notes retained with the archived data.",
     ),
     "ATTRIBUTION.txt": ("Text", "text/plain", "Source attribution and third-party terms."),
-    "manifest.json": ("JSON", "application/json", "Byte sizes and SHA-256 hashes of the original checkpoint files."),
+    "manifest.json": ("JSON", "application/json", "File sizes and SHA-256 hashes of the source files."),
     "manifest.sha256": ("Text", "text/plain", "SHA-256 of manifest.json."),
-    "map.html": ("HTML", "text/html", "Offline map shipped with the preview."),
+    "map.html": ("HTML", "text/html", "Archived offline map."),
     "SHA256SUMS": ("Text", "text/plain", "SHA-256 of every file in this directory (sha256sum -c format)."),
 }
 DERIVED_DOWNLOADS = frozenset({
@@ -617,6 +613,8 @@ def _load_version(path: Path) -> DatasetVersion:
             raise PublicSiteError(f"{identifier}: manifest counts.{key} must be an integer")
     label, sort_key = _version_label_and_order(identifier, kind, counts)
     checkpoint = _checkpoint_date(identifier, kind, manifest)
+    site_count = counts.get("physical_sites", 0)
+    label = f"{checkpoint} · {site_count} {'site' if site_count == 1 else 'sites'}"
     lifecycle = (
         manifest.get("cohort_lifecycle_reference_date")
         or manifest.get("reviewed_at")
@@ -1900,7 +1898,7 @@ ENDPOINT_DESCRIPTIONS = {
     "evidence_item": "One evidence record with the projects and sites it supports.",
     "countries": "Country summaries, by site count.",
     "country": "One country (upper-case ISO code) with its site summaries.",
-    "stats": "Aggregate counts by status, month, country, locator, evidence kind and licence, each map's unit, and release gates.",
+    "stats": "Counts by status, month, country, location type and source, with units and research audit metadata.",
     "versions": "Every dataset version with counts, files, checksums and record-level changes from the previous version.",
     "vocabularies": "Labels and descriptions for coded values.",
     "site_geojson": "One site as a GeoJSON FeatureCollection (one feature), for GIS tools.",
@@ -2247,9 +2245,10 @@ def _citations(context: _Context, version: DatasetVersion | None = None) -> dict
     config = context.config
     family, given = _citation_author(config)
     apa_author, full_author, year = _citation_names(config, version)
-    title, url = config.title, context.base_url
+    title = config.title
+    url = f"{context.base_url}downloads/{version.id}/"
     key = re.sub(r"[^a-z0-9]", "", family.lower()) + year + re.sub(r"[^a-z0-9]", "", config.site_name.lower())
-    note = f"Dataset version {version.id}, checkpoint {version.checkpoint_date}"
+    note = f"Data as published {version.checkpoint_date}"
     bibtex = "\n".join([
         f"@misc{{{key},",
         f'  author = "{_bibtex_value(full_author)}",',
@@ -2294,14 +2293,14 @@ def _citations(context: _Context, version: DatasetVersion | None = None) -> dict
         "note": f"{version.label}; {note}",
     }
     return {
-        "apa": f"{apa_author} ({year}). {title} (Version {version.id}) [Data set]. {url}",
+        "apa": f"{apa_author} ({year}). {title} ({version.checkpoint_date}) [Data set]. {url}",
         "bibtex": bibtex,
         "biblatex": biblatex,
         "ris": "\r\n".join(ris_lines) + "\r\n",
         "csl_json": [csl],
         "citation_cff_url": f"{config.repository_url}/blob/main/CITATION.cff",
-        "version_url": f"{url}versions/{version.id}/",
-        "files_url": f"{url}downloads/{version.id}/",
+        "version_url": f"{context.base_url}versions/{version.id}/",
+        "files_url": url,
     }
 
 
@@ -2309,7 +2308,8 @@ def _site_citation(context: _Context, site: Mapping[str, Any]) -> str:
     apa_author, _, year = _citation_names(context.config, context.current)
     return (
         f"{apa_author} ({year}). {site.get('name')} [site {site['site_id']}]. In {context.config.title} "
-        f"(Version {context.current.id}) [Data set]. {site['url']}"
+        f"({context.current.checkpoint_date}) [Data set]. {site['url']} "
+        f"Source files: {context.base_url}downloads/{context.current.id}/"
     )
 
 
@@ -3270,10 +3270,7 @@ def _xlsx_readme_rows(context: _Context, atlas: Atlas) -> list[list[Any]]:
     rows: list[list[Any]] = [
         ["Data Center Atlas workbook", ""],
         ["Dataset", config.title],
-        ["Version", version.id],
-        ["Label", version.label],
-        ["Release status", f"{version.release_status} (not a final release)" if not version.publishable_as_final else "final"],
-        ["Checkpoint date", version.checkpoint_date],
+        ["Updated", version.checkpoint_date],
         ["Status window", f"{window} to {version.lifecycle_reference_date}"],
         ["Sites", counts.get("physical_sites")],
         ["Projects", counts.get("projects")],
@@ -3792,8 +3789,9 @@ def _badges(vocabulary: Vocabulary, statuses: Iterable[Any]) -> str:
 
 
 def _muted_unknown(reason: Any) -> str:
-    text = str(reason).strip() if reason else "not established"
-    return f'<span class="muted">Unknown: {_e(text)}</span>'
+    if reason:
+        return f'<details><summary>Not reported</summary><p class="small muted">{_e(reason)}</p></details>'
+    return '<span class="muted">Not reported</span>'
 
 
 def _copy_button(text: str, label: str = "Copy", aria_label: str | None = None) -> str:
@@ -4114,7 +4112,6 @@ def _render_page(context: _Context, page: _Page) -> str:
         f'<body class="page-{_class_token(page.slug).replace("_", "-")}">',
         '<a class="skip-link" href="#main">Skip to content</a>',
         _render_header(context, root, page.section),
-        _render_banner(context, root),
         f'<main id="main" class="{_e(page.main_class)}">',
         page.body,
         "</main>",
@@ -4138,18 +4135,6 @@ def _render_header(context: _Context, root: str, section: str | None) -> str:
         '  <nav class="site-nav" aria-label="Primary">\n    '
         + "\n    ".join(links)
         + "\n  </nav>\n</header>"
-    )
-
-
-def _render_banner(context: _Context, root: str) -> str:
-    if context.current.publishable_as_final:
-        return ""
-    current = context.current
-    return (
-        '<div class="preview-banner" role="note"><strong>Preview data.</strong> '
-        f"{_e(current.label)}, checkpoint {_e(current.checkpoint_date)}. "
-        f"Not a final release: {_e(_gates_summary(context)['text'])}. "
-        f'<a href="{_e(root)}methodology/#release-gates">Why</a></div>'
     )
 
 
@@ -4189,9 +4174,9 @@ def _render_footer(context: _Context, root: str) -> str:
         f'(<a href="{_e(root)}about/attribution/">attribution</a> &amp; '
         f'<a href="{_e(root)}about/attribution/#legal-notice">legal notices</a>). Code: {code_link}.</p>\n'
         f'  <p><a class="external" rel="noopener" href="{_e(config.repository_url)}">Source on GitHub</a> · '
-        f'<a href="{_e(root)}api/">API</a> · <a href="{_e(root)}downloads/">Downloads</a> · '
-        f'<a href="{_e(root)}feed.xml">Releases feed</a> · <a href="{_e(root)}llms.txt">llms.txt</a> · '
-        f"Built from {built} · Dataset {_e(context.current.id)}</p>\n"
+        f'<a href="{_e(root)}methodology/">Methodology</a> · <a href="{_e(root)}api/">API</a> · '
+        f'<a href="{_e(root)}versions/">Data history</a> · <a href="{_e(root)}feed.xml">Updates</a> · '
+        f"Updated {_e(context.current.checkpoint_date)} · {built}</p>\n"
         "</footer>"
     )
 
@@ -4239,7 +4224,7 @@ def _dataset_json_ld(context: _Context) -> dict[str, Any]:
             f"{config.tagline}. Evidence-linked records of {counts.get('physical_sites')} physical data-centre sites "
             f"and {counts.get('projects')} construction projects in {counts.get('countries')} countries, each with a "
             "dated last observed physical status from an authoritative source and a reviewed locator. "
-            f"{current.label}; a reviewed preview, not a final release and not a census. Statuses describe their "
+            "Statuses describe their "
             "status date, not today; locators are not footprints; empty values are unknown."
         ),
         "url": data_url,
@@ -4429,9 +4414,7 @@ def _sites_index_page(context: _Context) -> _Page:
     counts = atlas.counts
     body = (
         "<h1>Sites</h1>\n"
-        f'<p class="lede">All {len(atlas.summaries)} physical sites in {_e(context.current.label)}, with the last '
-        "observed physical status of their projects. Statuses come from dated authoritative sources and describe "
-        "the status date, not today; locators are not footprints.</p>\n"
+        f'<p class="lede">Browse {len(atlas.summaries)} data-centre sites by name, country and construction stage.</p>\n'
         f"{_filter_controls('sites-table', len(atlas.summaries), 'sites')}\n"
         f"{_sites_table(context, atlas.summaries, root, 'sites-table')}\n"
         f'<p class="small muted">{counts.get("projects")} projects, {counts.get("countries")} countries. '
@@ -4499,9 +4482,8 @@ def _site_page(context: _Context, summary: Mapping[str, Any]) -> _Page:
         _breadcrumbs(root, (("sites/", "Sites"), (f"countries/{slug}/", str(site.get("country")))), str(site.get("name"))),
         f"<h1>{_e(site.get('name'))}</h1>",
         f"<p>{_badges(vocabulary, statuses)}{boundary_tag}</p>",
-        f'<p class="lede">Last observed physical status of {len(projects)} {noun} at this site, each from a dated '
-        "authoritative source. A status describes its status date, not today. The locator shows where the site "
-        "is; it is not a building footprint.</p>",
+        f'<p class="lede">{_e(site.get("country"))} · {len(projects)} {noun} · '
+        f'Last reported {_time(site.get("newest_status_as_of"))}</p>',
         '<div class="grid-2">',
         '<section aria-labelledby="summary-heading"><h2 id="summary-heading">Summary</h2>'
         f"{_site_summary_kv(context, site, coordinates, root)}</section>",
@@ -4511,12 +4493,13 @@ def _site_page(context: _Context, summary: Mapping[str, Any]) -> _Page:
         f'<section aria-labelledby="projects-heading"><h2 id="projects-heading">Projects ({len(projects)})</h2>',
         *(_project_section(context, project, anchors) for project in projects),
         "</section>",
-        '<section id="locator" aria-labelledby="locator-heading"><h2 id="locator-heading">Locator semantics</h2>'
-        f"{_locator_section(context, site, anchors)}</section>",
+        '<details id="locator"><summary>Location details</summary>'
+        f"{_locator_section(context, site, anchors)}</details>",
         '<section id="evidence" aria-labelledby="evidence-heading"><h2 id="evidence-heading">Evidence</h2>'
         f"{_evidence_table(context, site)}{''.join(notices)}</section>",
-        '<section id="cite" aria-labelledby="cite-heading"><h2 id="cite-heading">Cite this site</h2>'
-        f'<p>{_e(citation)}</p><p>{_copy_button(citation, "Copy citation", "Copy citation for this site")}</p></section>',
+        '<details id="cite"><summary>Cite this site</summary>'
+        f'<p>{_e(citation.split("Source files:", 1)[0])}</p>'
+        f'<p>{_copy_button(citation, "Copy citation", "Copy citation for this site")}</p></details>',
         f'<p class="small">{actions}</p>',
     ])
     status_text = ", ".join(vocabulary.label("statuses", code) for code in statuses) or "unknown"
@@ -4558,15 +4541,19 @@ def _site_summary_kv(context: _Context, site: Mapping[str, Any], coordinates: st
         f'<span class="small muted">{_e(vocabulary.description("verification_postures", posture))}</span>'
     )
     licenses = ", ".join(_license_link(code) for code in site.get("geometry_licenses") or [])
+    precision = " ".join(str(value) for value in site.get("geometry_precision_scopes") or [] if value)
+    if "host_estate_context" in (site.get("geometry_use_scopes") or []):
+        precision = "Surrounding industrial estate; the project's position within it is not established."
     return _kv([
         ("Country", country),
         ("Coordinates", f'<span class="mono">{_e(coordinates)}</span> '
                         f'{_copy_button(coordinates, "Copy", f"Copy coordinates {coordinates}")}'),
         ("Geometry type", _e(site.get("geometry_type"))),
         ("Locator scope", _e(scopes) or _muted_unknown(None)),
+        ("Location precision", _e(precision) or _muted_unknown(None)),
         ("Geometry licence", licenses or _muted_unknown(None)),
-        ("Verification posture", posture_html),
-        ("Independent imagery verification", _e(imagery_text)),
+        ("Source checks", f'<details><summary>Review details</summary>{posture_html}'
+         f'<p>Independent imagery verification: {_e(imagery_text)}</p></details>'),
         ("Newest status as of", _time(site.get("newest_status_as_of")) or _muted_unknown(None)),
         ("Oldest status as of", _time(site.get("oldest_status_as_of")) or _muted_unknown(None)),
         ("Projects", _e(site.get("project_count"))),
@@ -4614,20 +4601,19 @@ def _project_facts(context: _Context, project: Mapping[str, Any], anchors: _Evid
     )
     facts = [
         ("Status source", _status_source_html(context, project.get("status_source") or {}, anchors)),
-        ("Status age", age_html),
         ("Operating model", _coded_or_unknown(
             vocabulary, "operating_models", project.get("operating_model"), project.get("operating_model_unknown_reason")
         ) + anchors(project.get("operating_model_evidence_id"))),
         ("Development type", _coded_or_unknown(
             vocabulary, "development_types", project.get("development_type"), project.get("development_type_unknown_reason")
         )),
-        ("Role claims", _role_claims_html(context, project, anchors)),
+        ("Companies", _role_claims_html(context, project, anchors)),
         ("Workloads", _workloads_html(context, project, anchors)),
     ]
     for key, reason_key, title in OBSERVATION_FIELDS:
         count = len(_dict_items(project.get(key)))
         if count:
-            facts.append((title, _e(f"{count} typed observation{'s' if count != 1 else ''} (table below)")))
+            facts.append((title, _e(f"{count} reported value{'s' if count != 1 else ''} (below)")))
         else:
             facts.append((title, _muted_unknown(project.get(reason_key))))
     facts.append(("Locator", _project_locator_html(context, project, anchors)))
@@ -4644,7 +4630,8 @@ def _project_facts(context: _Context, project: Mapping[str, Any], anchors: _Evid
         outcome = _muted_unknown(None)
     if project.get("independent_imagery_verification") is not True:
         outcome += " · no independent imagery verification"
-    facts.append(("Imagery review", outcome))
+    facts.append(("Source checks", f'<details><summary>Review details</summary><p>{outcome}</p>'
+                  f'<p>Status age at review: {age_html}</p></details>'))
     return facts
 
 
@@ -4912,9 +4899,7 @@ def _license_statements_html(statements: Sequence[tuple[str, str]]) -> str:
 def _legal_notice_callout(context: _Context, heading_id: str | None = None) -> str:
     identifier = f' id="{_e(heading_id)}"' if heading_id else ""
     return (
-        f'<div class="callout callout-warning" role="note"><p><strong{identifier}>Data notice.</strong> Some of the data '
-        "is used under terms that require the following notice wherever an application using it, or the data "
-        "itself, is offered.</p>"
+        f'<div class="callout" role="note"><p><strong{identifier}>Source terms</strong></p>'
         f"{context.legal_notice_html}</div>"
     )
 
@@ -4958,7 +4943,7 @@ def _data_catalog_json_ld(context: _Context) -> dict[str, Any]:
         "@context": "https://schema.org",
         "@type": "DataCatalog",
         "name": f"{config.site_name} versions",
-        "description": "Every frozen version of the dataset, oldest preview to current draft.",
+        "description": "Archived data with additions, corrections and source files.",
         "url": f"{base}versions/",
         "dataset": datasets,
     }
@@ -4968,8 +4953,11 @@ def _citation_html(context: _Context, root: str, citations: Mapping[str, Any] | 
     """The citation of the current version with copy buttons and links to the citation files."""
     citations = citations or _citations(context)
     root_files = f"{_e(root)}api/v1/"
+    apa = str(citations["apa"])
+    files_url = str(citations["files_url"])
+    visible = _e(apa.removesuffix(files_url)) + _external_link(files_url, "Source files")
     return "\n".join([
-        f"<p>{_e(citations['apa'])}</p>",
+        f"<p>{visible}</p>",
         f'<p>{_copy_button(citations["apa"], "Copy citation", "Copy citation (APA)")}</p>',
         _code_block(citations["bibtex"], title="BibTeX"),
         f'<p class="small">Also as <a href="{root_files}citation.bib">BibTeX file</a>, '
@@ -5056,8 +5044,7 @@ def _countries_page(context: _Context) -> _Page:
     count = len(context.atlas.countries)
     body = (
         "<h1>Countries</h1>\n"
-        f'<p class="lede">{count} countries and territories with at least one site in {_e(context.current.label)}. '
-        "Coverage reflects the selection rules, not the size of each market: this is not a census.</p>\n"
+        f'<p class="lede">Explore data-centre construction in {count} countries and territories.</p>\n'
         # atlas.countries is ordered by site count (descending), then name.
         + _table("countries-table", headers, rows, classes="data-table sortable", sorted_by=(2, "descending"))
     )
@@ -5094,8 +5081,7 @@ def _country_page(context: _Context, country: Mapping[str, Any]) -> _Page:
         _breadcrumbs(root, (("countries/", "Countries"),), str(country["country"])),
         f"<h1>{_e(country['country'])}</h1>",
         stats,
-        f'<p class="lede">Sites in {_e(country["country"])} in {_e(context.current.label)}, with the last observed '
-        "physical status of their projects.</p>",
+        f'<p class="lede">Construction sites in {_e(country["country"])}, with reported stages and sources.</p>',
         _filter_controls(table_id, len(summaries), "sites"),
         _sites_table(context, summaries, root, table_id),
         f'<p class="small">{actions}</p>',
@@ -5215,7 +5201,6 @@ def _data_page(context: _Context) -> _Page:
     current, counts = context.current, context.atlas.counts
     config = context.config
     latest = f"{context.base_url}downloads/{LATEST}/"
-    pinned = f"{context.base_url}downloads/{current.id}/"
     zip_item = next((item for item in context.downloads if item.name.endswith(".zip")), None)
     zip_button = (
         f'<p><a class="btn btn-primary" href="{root}downloads/{LATEST}/{_e(zip_item.name)}">All files (zip, '
@@ -5228,23 +5213,22 @@ def _data_page(context: _Context) -> _Page:
     datasette = f"https://lite.datasette.io/?url={quote(latest + 'atlas.sqlite', safe=':/')}"
     toc_items = (
         ("files", "Files"), ("pinned", "Pinned URLs"), ("use", "Use the data"), ("gis", "QGIS and Google Earth"),
-        ("more", "Dictionary, API and versions"), ("cite", "Licence and citation"), ("legal-notice", "Data notices"),
+        ("more", "Dictionary and API"), ("cite", "Licence and citation"), ("legal-notice", "Data notices"),
     )
     toc = '<nav class="toc" aria-label="On this page"><ul>' + "".join(
         f'<li><a href="#{anchor}">{_e(text)}</a></li>' for anchor, text in toc_items
     ) + "</ul></nav>"
-    status_note = "preview, not final" if not current.publishable_as_final else "final release"
     citations = _citations(context)
     body = "\n".join([
         "<h1>Download the data</h1>",
-        '<p class="lede">Every file is static, free to download and checksummed. Open the workbook or the CSVs in a '
-        "spreadsheet, load the GeoJSON in a GIS, query the SQLite database, or use the JSON API.</p>",
-        f'<div class="callout callout-warning" role="note"><p><strong>{_e(current.label)}</strong> · checkpoint '
-        f"{_e(current.checkpoint_date)} · release status {_e(current.release_status)} ({_e(status_note)}).</p>"
-        f"<p>{counts.get('physical_sites')} sites, {counts.get('projects')} projects, {counts.get('countries')} countries, "
-        f"{counts.get('evidence')} evidence rows. Statuses are the last observed physical status in the window "
-        f"{_e(context.window_start)} to {_e(current.lifecycle_reference_date)}; locators are not footprints; empty "
-        "values are unknown, never zero; a reviewed preview, not a census.</p></div>",
+        f'<p class="lede">{counts.get("physical_sites")} sites in {counts.get("countries")} countries. '
+        'Download a spreadsheet, map file or database.</p>',
+        f'<p class="small muted">Updated {_e(current.checkpoint_date)}. Construction observations: '
+        f'{_e(context.window_start)} to {_e(current.lifecycle_reference_date)}.</p>',
+        f'<p><a class="btn btn-primary" href="{root}downloads/{LATEST}/atlas.xlsx">Excel workbook</a> '
+        f'<a class="btn" href="{root}downloads/{LATEST}/sites.csv">Sites CSV</a> '
+        f'<a class="btn" href="{root}downloads/{LATEST}/sites.geojson">GeoJSON</a> '
+        f'<a class="btn" href="{root}downloads/{LATEST}/atlas.sqlite">SQLite</a></p>',
         toc,
         _heading(2, "files", "Files"),
         zip_button,
@@ -5252,13 +5236,10 @@ def _data_page(context: _Context) -> _Page:
                _download_rows(context, root), classes="data-table download-list"),
         f'<p class="small muted">{_e(MEDIA_TYPE_NOTE)}</p>',
         _heading(2, "pinned", "Pinned URLs"),
-        f'<div class="callout" role="note"><p><a href="{root}downloads/{_e(current.id)}/"><code>{_e(pinned)}</code></a> '
-        "holds this checkpoint's files. Its original files never change: manifest.json lists their sizes and "
-        "SHA-256 hashes. The derived formats (workbook, JSON, NDJSON, SQLite, KML, Data Package and the zip) are "
-        "rebuilt from those originals by each site build and may gain additive fields, so check them against that "
-        f"directory's SHA256SUMS. <code>{_e(latest)}</code> always points at the current checkpoint and moves when a "
-        f'new one is published. Every checkpoint has its own <a href="{root}downloads/">download directory</a> and '
-        f'<a href="{root}versions/">version page</a>.</p></div>',
+        f'<p>The <a href="{root}downloads/{LATEST}/">current downloads</a> update as records are added or corrected. '
+        f'For reproducible analysis, use the <a href="{root}downloads/{_e(current.id)}/">archived source files '
+        f'from {_e(current.checkpoint_date)}</a>. Their original bytes are fixed; generated formats can change '
+        'with the site builder. Check files against the SHA256SUMS in their directory.</p>',
         _heading(2, "use", "Use the data"),
         snippets,
         _heading(2, "gis", "QGIS and Google Earth"),
@@ -5267,11 +5248,11 @@ def _data_page(context: _Context) -> _Page:
         "geometry licence). "
         f'In Google Earth open <a href="{root}downloads/{LATEST}/sites.kml">sites.kml</a>. To browse the SQLite database in '
         f"the browser, open it in {_external_link(datasette, 'Datasette Lite')}.</p>",
-        _heading(2, "more", "Dictionary, API and versions"),
+        _heading(2, "more", "Dictionary and API"),
         f'<ul><li><a href="{root}data/dictionary/">Field dictionary</a>: every column, type and coded value.</li>'
         f'<li><a href="{root}api/">JSON API</a>: per-site documents, GeoJSON, aggregates, an '
         f'<a href="{root}api/v1/openapi.json">OpenAPI description</a> and JSON Schemas.</li>'
-        f'<li><a href="{root}versions/">All versions</a>: every checkpoint with its changes, files and checksums.</li>'
+        f'<li><a href="{root}versions/">Data history</a>: additions, corrections and archived files.</li>'
         f'<li><a href="{root}llms.txt">llms.txt</a>: a plain-text guide for language models and agents.</li></ul>',
         _heading(2, "cite", "Licence and citation"),
         f'<p>{_external_link(config.data_license.get("url"), config.data_license.get("name"))} for Atlas-authored '
@@ -5291,7 +5272,7 @@ def _data_page(context: _Context) -> _Page:
         section="data",
         title="Download the data",
         description=(
-            f"Download {current.label}: Excel, CSV, GeoJSON, SQLite, JSON, NDJSON, KML and a Frictionless Data Package "
+            "Download Data Center Atlas: Excel, CSV, GeoJSON, SQLite, JSON, NDJSON, KML and a Frictionless Data Package "
             "with checksums."
         ),
         body=body,
@@ -5383,6 +5364,8 @@ def _vocabulary_tables(context: _Context) -> str:
         "<code>geometry_derivation</code> and <code>geometry_scope_class</code> are shown verbatim.</p>"
     )
     for name, entries in context.vocabularies.items():
+        if name == "release_gates":
+            continue  # Historical workflow metadata remains in the machine-readable vocabulary.
         rows = []
         for code, entry in entries.items():
             unit = f'<td class="mono">{_e(entry.get("unit"))}</td>' if name == "power_metrics" else ""
@@ -5486,7 +5469,7 @@ def _api_page(context: _Context) -> _Page:
         f'<p><a href="{root}api/v1/openapi.json">api/v1/openapi.json</a> is an OpenAPI 3.1 description of every '
         "endpoint; import it into Swagger UI, Postman or a code generator. Each response and record type also has a "
         f'JSON Schema (2020-12), listed in <a href="{root}api/v1/schemas/index.json">api/v1/schemas/index.json</a>. '
-        "The schemas are generated from the current checkpoint's schema.json and the descriptions on this page; "
+        "The schemas are generated from the dataset's schema.json and the descriptions on this page; "
         "new optional fields may appear within v1. Language models and agents can start from "
         f'<a href="{root}llms.txt">llms.txt</a>.</p>',
         _heading(2, "explorer-links", "Explorer links"),
@@ -5502,14 +5485,14 @@ def _api_page(context: _Context) -> _Page:
         f'<a class="external" rel="noopener" href="{_e(context.config.repository_url)}/blob/main/docs/public_site.md'
         '#explorer-links-and-exports">maintainer notes</a>.</p>',
         _heading(2, "fields", "Response fields"),
-        "<p>Records are typed from each checkpoint's schema.json: empty CSV values become <code>null</code>; "
+        "<p>Records are typed from the source schema.json: empty CSV values become <code>null</code>; "
         "<code>*_json</code> columns become parsed JSON without the suffix; numbers, integers and booleans are JSON "
         "types. Statuses are the last observed physical status on the status date. Absolute URLs in responses "
         "start with the <code>base_url</code> given in <code>api/v1/index.json</code>. The "
         f'<a href="{root}data/dictionary/">field dictionary</a> describes every column and coded value, and the '
         f'<a href="{root}{_methodology_link(context, "identifiers")}">methodology</a> explains how identifiers are '
         "formed and how long they stay valid. GeoJSON responses orient polygon rings as RFC 7946 requires (exterior "
-        "rings counterclockwise); the CSV files and typed records keep the checkpoint's own ring order.</p>",
+        "rings counterclockwise); the CSV files and typed records keep the original ring order.</p>",
         *field_sections,
         _heading(2, "examples", "Examples"),
         *(f"<h3>{_e(title)}</h3>\n{_code_block(code, title=title)}" for title, code in examples),
@@ -5538,15 +5521,8 @@ def _api_page(context: _Context) -> _Page:
 def _content_page(context: _Context, name: str) -> _Page:
     path = f"{name}/index.html"
     body = _render_fragment(context, f"content/{name}.html", _relative_root(path))
-    if name == "methodology":
-        source = _load_fragment(context, "content/methodology.html")
-        uses_gates = any(match.group(1) == "gates_table" for match in TOKEN.finditer(source))
-        if 'id="release-gates"' not in body or not uses_gates:
-            raise PublicSiteError(
-                'site/content/methodology.html must contain id="release-gates" and insert {{{gates_table}}} there'
-            )
     titles = {
-        "methodology": ("Methodology", "How sites are selected, what statuses and locators mean, release gates and limits."),
+        "methodology": ("Methodology", "How sites are researched, and how to read construction stages, locations and sources."),
         "about": ("About", "About the Data Center Atlas: license, citation, corrections and legal notices."),
     }
     title, description = titles[name]
@@ -5559,7 +5535,10 @@ def _version_files_html(context: _Context, version: DatasetVersion, root: str) -
     if context.has_derived(version):
         wanted.append(_zip_name(version))
     wanted.append("SHA256SUMS")
-    links = " ".join(f'<a href="{root}downloads/{_e(version.id)}/{_e(name)}">{_e(name)}</a>' for name in wanted)
+    links = " ".join(
+        f'<a href="{root}downloads/{_e(version.id)}/{_e(name)}">{_e("All files (ZIP)" if name.endswith(".zip") else name)}</a>'
+        for name in wanted
+    )
     return f'{links} <a href="{root}downloads/{_e(version.id)}/">all files</a>'
 
 
@@ -5588,10 +5567,7 @@ def _versions_page(context: _Context) -> _Page:
         marker = ' <span class="tag">current</span>' if version.id == context.current.id else ""
         rows.append(
             f'<tr id="version-{_e(version.id)}">'
-            f'<td><a href="{root}versions/{_e(version.id)}/">{_e(version.label)}</a>{marker}'
-            f'<br><span class="mono small muted">{_breakable(version.id)}</span></td>'
-            f"<td>{_e(version.kind)}</td>"
-            f"<td>{_time(version.checkpoint_date)}</td>"
+            f'<td><a href="{root}versions/{_e(version.id)}/">{_e(version.label)}</a>{marker}</td>'
             f'<td class="num">{_e(counts.get("physical_sites"))}</td>'
             f'<td class="num">{_e(counts.get("projects"))}</td>'
             f'<td class="num">{_e(counts.get("countries"))}</td>'
@@ -5603,33 +5579,24 @@ def _versions_page(context: _Context) -> _Page:
             "</tr>"
         )
     headers = (
-        ("Version", ""), ("Kind", ""), ("Checkpoint", ""), ("Sites", "num"), ("Projects", "num"),
+        ("Snapshot", ""), ("Sites", "num"), ("Projects", "num"),
         ("Countries", "num"), ("Evidence", "num"), ("Added sites", ""), ("Changes", ""), ("Files", ""), ("Source", ""),
     )
-    previews = [version for version in context.versions if version.kind == "preview"]
-    drafts = [version for version in context.versions if version.kind == "draft"]
     body = "\n".join([
-        "<h1>Versions</h1>",
-        f'<p class="lede">All {len(context.versions)} dataset versions, newest first. Each is a frozen, hash-validated '
-        "snapshot: later versions build on earlier ones instead of overwriting them, and every version's original "
-        "files stay downloadable byte for byte. Each version page lists the records it added, removed or "
-        "changed.</p>",
-        f"<p><strong>Previews</strong> ({len(previews)}) are the frozen releases of the original cohort, up to "
-        f"{_e(context.last_preview.label)} with {_e(context.last_preview.counts.get('physical_sites'))} sites. "
-        f"<strong>Drafts</strong> ({len(drafts)}) are reviewed checkpoints of the expansion that follows; each adds "
-        "independently reviewed sites. No version is a final release: see the "
-        f'<a href="{root}methodology/#release-gates">release gates</a>. The '
-        f'<a href="{root}feed.xml">releases feed</a> announces new versions and the '
-        f'<a href="{root}sites-feed.xml">sites feed</a> announces new sites. The same history is in '
-        f'<a href="{root}api/v1/versions.json">versions.json</a>.</p>',
+        "<h1>Data history</h1>",
+        '<p class="lede">Additions and corrections to the Atlas, newest first. Open a snapshot to see '
+        "what changed or download its data.</p>",
+        f'<p>Subscribe to <a href="{root}feed.xml">data updates</a> or the '
+        f'<a href="{root}sites-feed.xml">new sites feed</a>. '
+        f'<a href="{root}api/v1/versions.json">Download this history as JSON</a>.</p>',
         _table("versions-table", headers, rows, classes="data-table"),
     ])
     return _Page(
         path=path,
         slug="versions",
         section="versions",
-        title="Versions",
-        description=f"Every Data Center Atlas dataset version ({len(context.versions)}) with counts, changes and files.",
+        title="Data history",
+        description="Additions, corrections and dated snapshots of the Data Center Atlas, with downloads.",
         body=body,
         main_class="page page-wide",
         scripts=(SITE_JS,),
@@ -5645,6 +5612,8 @@ def _legal_notice(version: DatasetVersion) -> str:
     if match is None or not match.group(1).strip():
         raise PublicSiteError(f"{version.id}/README.md: no '## Legal notice' section")
     paragraphs = [block.strip() for block in re.split(r"\n\s*\n", match.group(1)) if block.strip()]
+    # This Atlas-authored product description is not part of the source's required notice.
+    paragraphs = [block for block in paragraphs if not block.startswith("This preview is an evidence product,")]
     return "\n".join(f"<p>{_join_notice_lines(block.splitlines())}</p>" for block in paragraphs)
 
 
@@ -5672,28 +5641,20 @@ def _attribution_page(context: _Context) -> _Page:
             + "".join(f"<li>{_e(statement)} {_external_link(url, 'Licence terms')}</li>" for statement, url in statements)
             + "</ul>"
         )
-    draft_note = ""
-    if current.kind == "draft":
-        draft_note = (
-            '<p class="small muted">This file is byte-identical to the checkpoint\'s. A draft extends the attribution '
-            "file of the preview it builds on, so its first lines can name that preview; the draft's own sources "
-            "follow later in the file.</p>"
-        )
     body = "\n".join([
         _breadcrumbs(root, (("about/", "About"),), "Attribution"),
         "<h1>Attribution and legal notices</h1>",
-        f'<p class="lede">Third-party facts, titles, URLs and geometries in {_e(current.label)} keep their source terms. '
+        '<p class="lede">Third-party facts, titles, URLs and geometries keep their source terms. '
         "Below is the dataset's full attribution file; every evidence row also records its own license and "
         "attribution. The Atlas links to sources and does not redistribute third-party documents or imagery.</p>",
         f'<p>Geometries derived from OpenStreetMap are © {_external_link(OSM_COPYRIGHT_URL, "OpenStreetMap contributors")}, '
         f'available under the {_external_link(ODBL["url"], ODBL["name"])}.</p>',
-        '<section class="callout callout-warning" aria-labelledby="legal-notice"><h2 id="legal-notice">Legal notice</h2>'
-        f'<p class="small muted">From the {_e(context.last_preview.label)} readme.</p>{context.legal_notice_html}</section>',
+        '<section class="callout" aria-labelledby="legal-notice"><h2 id="legal-notice">Legal notice</h2>'
+        f'{context.legal_notice_html}</section>',
         statements_html,
-        f'<h2 id="attribution-file">ATTRIBUTION.txt of {_e(current.id)}</h2>',
-        draft_note,
+        '<h2 id="attribution-file">Source attribution</h2>',
         f'<p class="small"><a href="{root}downloads/{_e(current.id)}/ATTRIBUTION.txt">Download the file</a></p>',
-        f'<pre class="code">{_linkify(context.attribution_text)}</pre>',
+        f'<details><summary>Full source attribution</summary><pre class="code">{_linkify(context.attribution_text)}</pre></details>',
     ])
     return _Page(
         path=path,
@@ -5764,33 +5725,31 @@ def _version_page(context: _Context, version: DatasetVersion) -> _Page:
     previous = change.previous
     current_sites = context.atlas.site_by_id
     counts = version.counts
-    status = "final release" if version.publishable_as_final else f"{version.release_status}, not a final release"
+    previous_version = next((item for item in context.versions if item.id == previous), None)
     facts = [
-        ("Version", f'<span class="mono">{_breakable(version.id)}</span>'),
-        ("Kind", _e(version.kind)),
-        ("Checkpoint date", _time(version.checkpoint_date)),
-        ("Lifecycle reference date", _time(version.lifecycle_reference_date)),
-        ("Status window", f"{_time(_window_start(context.config, version))} to {_time(version.lifecycle_reference_date)}"),
-        ("Release status", _e(status)),
+        ("Added to the archive", _time(version.checkpoint_date)),
+        ("Construction as of", _time(version.lifecycle_reference_date)),
+        ("Observation dates", f"{_time(_window_start(context.config, version))} to {_time(version.lifecycle_reference_date)}"),
         ("Counts", _e(
             f"{counts.get('physical_sites')} sites, {counts.get('projects')} projects, "
             f"{counts.get('countries')} countries, {counts.get('evidence')} evidence rows"
         )),
-        ("Previous version", (
-            f'<a href="{root}versions/{_e(previous)}/">{_e(previous)}</a>' if previous else "none (first version)"
+        ("Previous snapshot", (
+            f'<a href="{root}versions/{_e(previous)}/">{_e(previous_version.label)}</a>'
+            if previous_version else "none (first snapshot)"
         )),
         ("Manifest SHA-256", f'<code class="checksum">{_e(version.manifest_sha256)}</code>'),
-        ("Files", f'<a href="{root}downloads/{_e(version.id)}/">downloads/{_e(version.id)}/</a> · '
+        ("Files", f'<a href="{root}downloads/{_e(version.id)}/">Download this snapshot</a> · '
                   f"{_external_link(_tree_url(context, version), 'GitHub')}"),
     ]
     if version.id == context.current.id:
-        facts.insert(0, ("Current", '<span class="tag">current version</span>'))
+        facts.insert(0, ("Current", '<span class="tag">latest data</span>'))
     sections = [
         _heading(2, "summary", "Summary"),
         _kv(facts),
-        _heading(2, "changes", "Changes from the previous version"),
+        _heading(2, "changes", "Changes from the previous snapshot"),
         f"<p>{_e(_change_summary(change))}.</p>" if previous else
-        "<p>The first version: every record is new.</p>",
+        "<p>The first snapshot: every record is new.</p>",
     ]
     schema_rows = []
     for table, item in document["schema"].items():
@@ -5824,8 +5783,8 @@ def _version_page(context: _Context, version: DatasetVersion) -> _Page:
     if removed_rows:
         sections += [
             _heading(3, "removed", f"Records removed ({len(removed_rows)})"),
-            "<p>Removed records are not in this version; their identifiers no longer resolve in the current API "
-            "unless a later version restores them.</p>",
+            "<p>These records were removed from this snapshot. Their identifiers resolve in the current API "
+            "only if the records were subsequently restored.</p>",
             _table("removed-table", (("Table", ""), ("Name or title", ""), ("ID", "")), removed_rows),
         ]
     if change.field_changes:
@@ -5833,7 +5792,7 @@ def _version_page(context: _Context, version: DatasetVersion) -> _Page:
         for item in change.field_changes:
             empty = '<span class="muted">empty</span>'
             if item.field.endswith("_json"):
-                values = '<span class="muted">JSON value changed (see the CSV files of both versions)</span>'
+                values = '<span class="muted">JSON value changed (see the CSV files of both snapshots)</span>'
             else:
                 before = _e(_change_value(item.before)) or empty
                 after = _e(_change_value(item.after)) or empty
@@ -5848,21 +5807,20 @@ def _version_page(context: _Context, version: DatasetVersion) -> _Page:
             )
         sections += [
             _heading(3, "changed", f"Fields changed ({len(change.field_changes)})"),
-            "<p>Records present in both versions whose CSV values differ. A changed record is a documented "
-            "correction or refinement; the earlier version stays available unchanged.</p>",
+            "<p>Values that changed between the two snapshots. The earlier data remains available.</p>",
             _table("changed-table", (("Table", ""), ("Record", ""), ("Field", ""), ("Before → after", "")), rows),
         ]
     citation = _citations(context, version)
     sections += [
-        _heading(2, "cite", "Cite this version"),
+        _heading(2, "cite", "Cite this snapshot"),
         f"<p>{_e(citation['apa'])}</p>",
         f'<p>{_copy_button(citation["apa"], "Copy citation", f"Copy citation for {version.label}")}</p>',
     ]
     body = "\n".join([
-        _breadcrumbs(root, (("versions/", "Versions"),), version.label),
+        _breadcrumbs(root, (("versions/", "Data history"),), version.label),
         f"<h1>{_e(version.label)}</h1>",
-        f'<p class="lede">A frozen, hash-validated version of the dataset, checkpoint {_e(version.checkpoint_date)}. '
-        "Its original files never change.</p>",
+        f'<p class="lede">Atlas data archived on {_e(version.checkpoint_date)}, with additions and corrections '
+        "listed below.</p>",
         *sections,
     ])
     return _Page(
@@ -5872,7 +5830,7 @@ def _version_page(context: _Context, version: DatasetVersion) -> _Page:
         title=version.label,
         description=(
             f"{version.label} of the Data Center Atlas: {counts.get('physical_sites')} sites, what changed from the "
-            "previous version, files and citation."
+            "previous snapshot, files and citation."
         ),
         body=body,
         main_class="page page-wide",
@@ -5884,30 +5842,29 @@ def _downloads_index_page(context: _Context) -> _Page:
     path = "downloads/index.html"
     root = _relative_root(path)
     rows = [
-        f'<tr><td><a href="{root}downloads/{LATEST}/">{LATEST}</a></td><td>Mirrors the current version '
-        f'(<span class="mono">{_breakable(context.current.id)}</span>); moves when a new one is published.</td>'
+        f'<tr><td><a href="{root}downloads/{LATEST}/">Latest data</a></td><td>Always the latest Atlas data.</td>'
         f"<td>{_time(context.current.checkpoint_date)}</td><td>{len(context.download_dirs.get(LATEST, ()))}</td></tr>"
     ]
     for version in reversed(context.versions):
         marker = ' <span class="tag">current</span>' if version.id == context.current.id else ""
         rows.append(
-            f'<tr><td><a href="{root}downloads/{_e(version.id)}/">{_breakable(version.id)}</a>{marker}</td>'
-            f"<td>{_e(version.label)}</td><td>{_time(version.checkpoint_date)}</td>"
+            f'<tr><td><a href="{root}downloads/{_e(version.id)}/">{_e(version.label)}</a>{marker}</td>'
+            f"<td>Archived data</td><td>{_time(version.checkpoint_date)}</td>"
             f"<td>{len(context.download_dirs.get(version.id, ()))}</td></tr>"
         )
     body = "\n".join([
         _breadcrumbs(root, (("data/", "Data"),), "Downloads"),
-        "<h1>Download directories</h1>",
-        '<p class="lede">One directory per dataset version, plus <code>latest/</code>. Each lists its files with '
-        "sizes and SHA-256 hashes; the original files of a version never change.</p>",
-        _table("download-directories", (("Directory", ""), ("Version", ""), ("Checkpoint", ""), ("Files", "")), rows),
+        "<h1>Download archive</h1>",
+        '<p class="lede">Download the latest data or an earlier snapshot. Each directory lists its files, '
+        "sizes and checksums.</p>",
+        _table("download-directories", (("Data", ""), ("Contents", ""), ("Date", ""), ("Files", "")), rows),
     ])
     return _Page(
         path=path,
         slug="downloads",
         section="data",
-        title="Download directories",
-        description="Every Data Center Atlas download directory: one per dataset version, plus latest.",
+        title="Download archive",
+        description="Download the latest Data Center Atlas data or an earlier dated snapshot.",
         body=body,
         main_class="page page-wide",
         scripts=(SITE_JS,),
@@ -5924,15 +5881,13 @@ def _download_directory_page(context: _Context, directory: str) -> _Page:
     if directory == LATEST:
         title = "Latest downloads"
         intro = (
-            f"This directory mirrors the current version, <span class=\"mono\">{_breakable(version.id)}</span> "
-            f"({_e(version.label)}), and moves when a new version is published. For a permanent URL use "
-            f'<a href="{root}downloads/{_e(version.id)}/">downloads/{_e(version.id)}/</a>.'
+            "The latest Atlas data in CSV, GeoJSON, Excel and other formats. For a reproducible reference, use "
+            f'<a href="{root}downloads/{_e(version.id)}/">the {_e(version.checkpoint_date)} snapshot</a>.'
         )
     else:
         title = f"{version.label} downloads"
         intro = (
-            f"The files of <span class=\"mono\">{_breakable(version.id)}</span>, checkpoint "
-            f"{_e(version.checkpoint_date)}. The original files are byte-identical to the checkpoint and never change."
+            f"Atlas data archived on {_e(version.checkpoint_date)}. The original data files remain unchanged."
         )
     derived = any(item.derived for item in items)
     derived_note = (
@@ -5941,14 +5896,13 @@ def _download_directory_page(context: _Context, directory: str) -> _Page:
     )
     verify = f"curl -LO {url}SHA256SUMS\nsha256sum --check --ignore-missing SHA256SUMS"
     body = "\n".join([
-        _breadcrumbs(root, (("data/", "Data"), ("downloads/", "Downloads")), directory),
+        _breadcrumbs(root, (("data/", "Data"), ("downloads/", "Downloads")), title),
         f"<h1>{_e(title)}</h1>",
         f'<p class="lede">{intro}</p>',
         _kv([
-            ("Version", f'<a href="{root}versions/{_e(version.id)}/">{_e(version.label)}</a>'),
-            ("Checkpoint date", _time(version.checkpoint_date)),
-            ("Lifecycle reference date", _time(version.lifecycle_reference_date)),
-            ("Release status", _e("final release" if version.publishable_as_final else f"{version.release_status}, not final")),
+            ("Data history", f'<a href="{root}versions/{_e(version.id)}/">View additions and corrections</a>'),
+            ("Archive date", _time(version.checkpoint_date)),
+            ("Construction as of", _time(version.lifecycle_reference_date)),
             ("Counts", _e(
                 f"{counts.get('physical_sites')} sites, {counts.get('projects')} projects, "
                 f"{counts.get('countries')} countries, {counts.get('evidence')} evidence rows"
@@ -5976,7 +5930,7 @@ def _download_directory_page(context: _Context, directory: str) -> _Page:
 
 
 def _write_sites_feed(writer: _Writer, context: _Context) -> None:
-    """One Atom entry per current site, dated by the checkpoint of the version that first added it."""
+    """One Atom entry per current site, dated by the snapshot that first added it."""
     base = context.base_url
     atlas, vocabulary = context.atlas, context.vocabulary
     first_seen: dict[str, DatasetVersion] = {}
@@ -5997,7 +5951,7 @@ def _write_sites_feed(writer: _Writer, context: _Context) -> None:
         '<?xml version="1.0" encoding="utf-8"?>',
         '<feed xmlns="http://www.w3.org/2005/Atom">',
         f"<title>{_x(SITES_FEED_TITLE)}</title>",
-        f"<subtitle>{_x('New sites in the dataset, newest version first.')}</subtitle>",
+        f"<subtitle>{_x('New sites added to the Atlas, newest first.')}</subtitle>",
         f"<id>{_x(_feed_id(context, '#sites'))}</id>",
         f"<updated>{updated}T00:00:00Z</updated>",
         f'<link rel="self" type="application/atom+xml" href="{_x(base)}sites-feed.xml"/>',
@@ -6008,9 +5962,9 @@ def _write_sites_feed(writer: _Writer, context: _Context) -> None:
         version = first_seen.get(summary["site_id"], context.current)
         statuses = ", ".join(vocabulary.label("statuses", code) for code in summary.get("statuses") or []) or "unknown"
         text = (
-            f"{summary.get('name')} ({summary.get('country')}): last observed physical status {statuses} as of "
+            f"{summary.get('name')} ({summary.get('country')}): {statuses} as of "
             f"{summary.get('newest_status_as_of')}; source: {'; '.join(summary.get('status_publishers') or []) or 'not stated'}. "
-            f"Added in {version.label}."
+            f"Added to the Atlas on {version.checkpoint_date}."
         )
         lines += [
             "<entry>",
@@ -6032,22 +5986,21 @@ def _write_llms_txt(writer: _Writer, context: _Context) -> None:
 
 
 def _llms_txt(context: _Context) -> str:
-    """llms.txt (llmstxt.org): a caveat-first entry point for language models, Atlas-authored text only."""
+    """llms.txt (llmstxt.org): data and documentation for language models, Atlas-authored text only."""
     config, current, atlas = context.config, context.current, context.atlas
     base = context.base_url
     counts = atlas.counts
     latest = f"{base}downloads/{LATEST}/"
     citation = _citations(context)["apa"]
-    status = "a final release" if current.publishable_as_final else "a reviewed preview, not a final release"
     lines = [
         f"# {config.site_name}",
         "",
-        f"> {config.tagline}. {config.title}, version {current.id} ({current.label}; checkpoint date "
-        f"{current.checkpoint_date}): {counts.get('physical_sites')} physical sites, {counts.get('projects')} "
+        f"> {config.tagline}. Updated {current.checkpoint_date}: "
+        f"{counts.get('physical_sites')} physical sites, {counts.get('projects')} "
         f"construction projects in {counts.get('countries')} countries, {counts.get('evidence')} evidence rows. "
-        f"Statuses were observed from {context.window_start} to {current.lifecycle_reference_date}. It is {status}.",
+        f"Statuses were observed from {context.window_start} to {current.lifecycle_reference_date}.",
         "",
-        "Read before using:",
+        "## About the data",
         "",
         *(f"- {caveat}" for caveat in DATA_CAVEATS),
         "- Every status, locator and metric is backed by an evidence row with a source URL, retrieval time, "
@@ -6069,7 +6022,7 @@ def _llms_txt(context: _Context) -> str:
         f"- [Countries]({base}api/v1/countries.json): per country {base}api/v1/countries/{{iso2}}.json, .geojson and .csv",
         f"- [Statistics]({base}api/v1/stats.json): counts by status, month, country and more, with units",
         f"- [Vocabularies]({base}api/v1/vocabularies.json): labels and meanings of every coded value",
-        f"- [Versions]({base}api/v1/versions.json): every version with files, checksums and record-level changes",
+        f"- [Data history]({base}api/v1/versions.json): snapshots with files, checksums and record-level changes",
         f"- [Citation]({base}api/v1/citation.json): APA, BibTeX, RIS and CSL-JSON",
         "",
         "## Downloads",
@@ -6082,14 +6035,14 @@ def _llms_txt(context: _Context) -> str:
         f"- [atlas.xlsx]({latest}atlas.xlsx): Excel workbook",
         f"- [datapackage.json]({latest}datapackage.json): Frictionless Data Package with table schemas",
         f"- [SHA256SUMS]({latest}SHA256SUMS): checksums of every file",
-        f"- [Pinned directory for this version]({base}downloads/{current.id}/): original files never change",
+        f"- [Current archived snapshot]({base}downloads/{current.id}/): original data files remain unchanged",
         "",
         "## Docs",
         "",
-        f"- [Methodology]({base}methodology/): selection rules, status and locator semantics, release gates",
+        f"- [Methodology]({base}methodology/): sources, construction statuses and location precision",
         f"- [Field dictionary]({base}data/dictionary/): every column, type and coded value",
         f"- [API guide]({base}api/): endpoints, fields and examples",
-        f"- [Versions]({base}versions/): every checkpoint and what it changed",
+        f"- [Data history]({base}versions/): additions, corrections and earlier snapshots",
         f"- [Attribution and legal notices]({base}about/attribution/): source terms and required notices",
         f"- [About and citation]({base}about/#cite)",
         "",
@@ -6097,7 +6050,7 @@ def _llms_txt(context: _Context) -> str:
         "",
         f"- [Full guide for language models]({base}llms-full.txt): methodology, field dictionary and vocabularies "
         "in one text file",
-        f"- [Releases feed]({base}feed.xml) and [sites feed]({base}sites-feed.xml)",
+        f"- [Data updates feed]({base}feed.xml) and [new sites feed]({base}sites-feed.xml)",
         f"- [Source repository]({config.repository_url})",
     ]
     return "\n".join(lines) + "\n"
@@ -6228,11 +6181,10 @@ def _write_feed(writer: _Writer, context: _Context) -> None:
         change = context.history[version.id]
         added, removed = change.ids("sites.csv", "added"), change.ids("sites.csv", "removed")
         counts = version.counts
-        status = "final release" if version.publishable_as_final else f"{version.kind}, not a final release"
         summary = (
             f"{counts.get('physical_sites')} sites, {counts.get('projects')} projects, {counts.get('countries')} countries, "
             f"{counts.get('evidence')} evidence rows; {len(added)} sites added, {len(removed)} removed. "
-            f"Checkpoint {version.checkpoint_date} ({status})."
+            f"Data archived on {version.checkpoint_date}."
         )
         names = change.labels["sites"]
         added_items = "".join(f"<li>{_e(names.get(site_id, site_id))}</li>" for site_id in added[:50])

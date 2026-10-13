@@ -253,6 +253,16 @@ test('og-image.png is a 1200x630 PNG under 300 KB', () => {
 });
 
 test('explorer layout defaults keep results and sites visible', () => {
+  assert.doesNotMatch(elementWithId('atlas-more').html, /\sopen\b/, 'additional filters start collapsed');
+  const moreStart = template.indexOf('<details id="atlas-more"');
+  const moreEnd = template.indexOf('</details>', moreStart);
+  const more = template.slice(moreStart, moreEnd);
+  for (const id of ['atlas-search', 'atlas-country']) {
+    assert.ok(template.indexOf(`id="${id}"`) < moreStart, `${id} stays visible above additional filters`);
+  }
+  for (const id of ['atlas-status', 'atlas-locator', 'atlas-power', 'atlas-from', 'atlas-to']) {
+    assert.ok(more.includes(`id="${id}"`), `${id} is an additional filter`);
+  }
   assert.doesNotMatch(elementWithId('atlas-legend').html, /\sopen\b/, 'the legend starts folded (one-line key)');
   assert.match(elementWithId('atlas-legend-summary').html, /<summary\b/);
   assert.match(elementWithId('atlas-empty-reason').html, /\bhidden\b/);
@@ -263,7 +273,8 @@ test('explorer layout defaults keep results and sites visible', () => {
   assert.match(elementWithId('atlas-copy-embed').html, /\bhidden\b/, 'Embed appears only when the builder publishes embed/');
   const app = read(assetDir + 'app.js');
   assert.match(app, /minZoom: 0,/, 'phones can fit every site');
-  assert.match(app, /media\('\(min-height: 1200px\)'\)/, 'filters fold unless the window is tall');
+  assert.match(app, /E\.more\.open = !embedded && filtersOpen === '1'/, 'additional filters open only when requested');
+  assert.match(app, /if \(moreFilterCount\(S\.state\) && E\.more/, 'shared links expand only the additional filters they use');
   assert.match(app, /setAttribute\('inert', ''\)/, 'the narrow-screen sheet is modal');
   assert.match(app, /document\.addEventListener\('keydown', trapSheetFocus\)/, 'Tab cycles inside the modal sheet');
 });

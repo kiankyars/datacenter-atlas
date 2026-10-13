@@ -22,7 +22,7 @@
   var RADIUS = { base: 5, hover: 7, selected: 8 };
   var NEAR_PX = 14;
   var TAP_PX = 22;
-  var FILTERS_OPEN_KEY = 'datacenter-atlas:filters-open';
+  var FILTERS_OPEN_KEY = 'datacenter-atlas:more-filters-open';
   var SITES_TIMEOUT_MS = 20000;
   var DOC_TIMEOUT_MS = 15000;
   var TYPING_DELAY_MS = 150;
@@ -580,7 +580,7 @@
       S.state = next;
       if (changed) {
         syncControls(false);
-        if (Core.activeFilterCount(S.state) && E.more && !E.more.open && !embedded) {
+        if (moreFilterCount(S.state) && E.more && !E.more.open && !embedded) {
           E.more.open = true;
         }
         render({ fit: true, animate: !initial });
@@ -621,10 +621,8 @@
       }
       E.notice.textContent = '';
       var p = h('p', '');
-      p.appendChild(h('strong', '', 'No site ' + id + ' in ' + (dataset.label || 'this dataset') + '.'));
-      p.appendChild(textNode(' It may have been merged with another site, removed, or the link may be mistyped. Compare '));
-      p.appendChild(internalLink('versions/', 'earlier versions'));
-      p.appendChild(textNode(' or search the list below.'));
+      p.appendChild(h('strong', '', 'Site not found.'));
+      p.appendChild(textNode(' Search by name below to find the site.'));
       E.notice.appendChild(p);
       var dismiss = h('button', 'btn btn-small', 'Dismiss');
       dismiss.type = 'button';
@@ -676,7 +674,7 @@
       }
       [[E.from, missing.from], [E.to, missing.to]].forEach(function (pair) {
         if (pair[0] && pair[1]) {
-          var month = h('option', '', Core.formatMonth(pair[1]) + ' (no data in this version)');
+          var month = h('option', '', Core.formatMonth(pair[1]) + ' (no observations)');
           month.value = pair[1];
           month.setAttribute('data-atlas-temp', '');
           pair[0].appendChild(month);
@@ -874,14 +872,20 @@
         });
       }
       if (E.locator) {
-        optionCount(E.locator, 'any', 'Any locator (' + facets.locator.any + ')');
+        optionCount(E.locator, 'any', 'All locations (' + facets.locator.any + ')');
         optionCount(E.locator, 'official_boundary', 'Official boundary (' + facets.locator.official_boundary + ')');
-        optionCount(E.locator, 'polygon', 'Polygon or MultiPolygon (' + facets.locator.polygon + ')');
-        optionCount(E.locator, 'point', 'Point (' + facets.locator.point + ')');
+        optionCount(E.locator, 'polygon', 'Mapped area (' + facets.locator.polygon + ')');
+        optionCount(E.locator, 'point', 'Location point (' + facets.locator.point + ')');
       }
       if (E.powerCount) {
         E.powerCount.textContent = '(' + facets.power + ')';
       }
+    }
+
+    function moreFilterCount(state) {
+      return (state.status && state.status.length ? 1 : 0) +
+        (state.locator && state.locator !== 'any' ? 1 : 0) +
+        (state.power ? 1 : 0) + (state.from || state.to ? 1 : 0);
     }
 
     function updateSummary() {
@@ -893,7 +897,8 @@
       }
       var active = Core.activeFilterCount(S.state);
       if (E.activeCount) {
-        E.activeCount.textContent = active ? active + ' active' : '';
+        var moreActive = moreFilterCount(S.state);
+        E.activeCount.textContent = moreActive ? moreActive + ' active' : '';
       }
       if (E.app) {
         E.app.classList.toggle('has-filters', active > 0);
@@ -908,7 +913,7 @@
     function emptyReasons() {
       var missing = Core.unmatchedFilters(S.state, S.context);
       var months = S.context.months;
-      var name = dataset.label || 'this dataset';
+      var name = 'the atlas';
       var reasons = [];
       if (missing.country) {
         reasons.push('No site in ' + name + ' has the country code ' + missing.country + '.');
@@ -1639,7 +1644,7 @@
           keys.appendChild(legendKey('atlas-grp-' + group.id, group.label));
         });
         if (hasAreas) {
-          keys.appendChild(legendKey('atlas-swatch-area', 'Polygon locator'));
+          keys.appendChild(legendKey('atlas-swatch-area', 'Mapped area'));
         }
         E.legendSummary.appendChild(keys);
       }
@@ -1665,10 +1670,9 @@
         outline.setAttribute('aria-hidden', 'true');
         area.appendChild(outline);
         var label = h('span', 'atlas-legend-text');
-        label.appendChild(h('span', 'atlas-legend-label', 'Polygon locator'));
+        label.appendChild(h('span', 'atlas-legend-label', 'Mapped area'));
         label.appendChild(h('span', 'atlas-legend-members',
-          'Locates the campus or project; not a footprint or construction extent. Official boundaries: ' + official +
-          '. A circle marks every locator point.'));
+          'Campus or project area, not a building footprint. ' + official + ' official boundaries.'));
         area.appendChild(label);
         E.legendList.appendChild(area);
       }
@@ -1865,22 +1869,34 @@
     }
 
     function locatorSection(site, record) {
-      var el = section('Locator');
-      el.appendChild(h('p', 'small muted', 'Locators place a site on the map; they are not building footprints or construction extents.'));
+      var el = section('Map location');
+      var scopes = record ? record.geometry_use_scopes : site.locatorScopes;
+      var estateOnly = Array.isArray(scopes) && scopes.indexOf('host_estate_context') !== -1;
+      el.appendChild(h('p', 'small muted', estateOnly
+        ? 'The marker locates the surrounding industrial estate. The project’s position within it is not established.'
+        : 'The map identifies the site or campus, not individual buildings or the extent of construction.'));
       var dl = h('dl', 'kv atlas-kv');
-      kvRow(dl, 'Geometry type', site.geometryType);
-      kvRow(dl, 'Locator scope', labelList('geometry_use_scopes', record ? record.geometry_use_scopes : site.locatorScopes));
+      kvRow(dl, 'Location type', labelList('geometry_use_scopes', record ? record.geometry_use_scopes : site.locatorScopes));
       if (record) {
-        kvRow(dl, 'Scope class', monoList(record.geometry_scope_classes));
-        kvRow(dl, 'Authority', labelList('geometry_authority_classes', record.geometry_authority_classes));
-        kvRow(dl, 'Method', monoList(record.geometry_methods));
-        kvRow(dl, 'Derivation', monoList(record.geometry_derivations));
         var precision = Array.isArray(record.geometry_precision_scopes) ? record.geometry_precision_scopes.filter(Boolean) : [];
         if (precision.length) {
           kvRow(dl, 'Precision', precision.join(' '));
         }
         var metres = Core.formatNumber(record.horizontal_uncertainty_metres);
-        kvRow(dl, 'Horizontal uncertainty', metres ? metres + ' m' : unknownText(record.horizontal_uncertainty_unknown_reason));
+        kvRow(dl, 'Position uncertainty', metres ? metres + ' m' : unknownText(record.horizontal_uncertainty_unknown_reason));
+      }
+      el.appendChild(dl);
+      var details = h('details', 'atlas-location-details');
+      details.appendChild(h('summary', '', 'Location sources and methods'));
+      var methods = h('dl', 'kv atlas-kv');
+      kvRow(methods, 'Geometry type', site.geometryType);
+      kvRow(methods, 'Verification', Core.vocabLabel(vocab, 'verification_postures', site.verificationPosture));
+      kvRow(methods, 'Imagery checked', site.imageryVerified ? 'Yes' : 'No');
+      if (record) {
+        kvRow(methods, 'Scope class', monoList(record.geometry_scope_classes));
+        kvRow(methods, 'Authority', labelList('geometry_authority_classes', record.geometry_authority_classes));
+        kvRow(methods, 'Method', monoList(record.geometry_methods));
+        kvRow(methods, 'Derivation', monoList(record.geometry_derivations));
       }
       var props = site.properties || {};
       var licences = Array.isArray(props.geometry_licenses) ? props.geometry_licenses.filter(function (code) {
@@ -1899,9 +1915,10 @@
           terms.appendChild(textNode(' \u00b7 \u00a9 '));
           terms.appendChild(externalLink(Core.OSM_COPYRIGHT_URL, 'OpenStreetMap contributors'));
         }
-        kvRow(dl, 'Geometry licence', terms);
+        kvRow(methods, 'Geometry licence', terms);
       }
-      el.appendChild(dl);
+      details.appendChild(methods);
+      el.appendChild(details);
       return el;
     }
 
@@ -1985,14 +2002,14 @@
       }
       body.appendChild(badges);
 
-      var asOf = 'Last observed physical status as of ' + (site.newest || 'unknown date');
+      var asOf = 'Status observed ' + (site.newest || 'on an unknown date');
       if (site.oldest && site.newest && site.oldest !== site.newest) {
         asOf += ' (projects observed ' + site.oldest + ' \u2013 ' + site.newest + ')';
       }
       body.appendChild(h('p', 'atlas-detail-asof', asOf + '.'));
 
       var actions = h('p', 'atlas-detail-actions');
-      actions.appendChild(internalLink(sitePagePath(site.id), 'Permalink', 'btn btn-small'));
+      actions.appendChild(internalLink(sitePagePath(site.id), 'Site page', 'btn btn-small'));
       var json = h('a', 'btn btn-small', 'JSON');
       json.href = siteDocUrl(site.id);
       actions.appendChild(json);
@@ -2028,10 +2045,6 @@
         }
       }
       var facts = h('dl', 'kv atlas-kv');
-      kvRow(facts, 'Verification posture', Core.vocabLabel(vocab, 'verification_postures', site.verificationPosture));
-      kvRow(facts, 'Independent imagery verification', site.imageryVerified ? 'Yes' : 'No');
-      kvRow(facts, 'Newest status as of', site.newest);
-      kvRow(facts, 'Oldest status as of', site.oldest);
       kvRow(facts, 'Projects', String(site.projectCount));
       where.appendChild(facts);
       body.appendChild(where);
@@ -2081,11 +2094,6 @@
       } else {
         body.appendChild(h('p', 'atlas-detail-loading muted', 'Loading projects and evidence\u2026'));
       }
-
-      var foot = h('p', 'small muted atlas-detail-foot');
-      foot.textContent = 'Last observed physical status from cited sources' +
-        (dataset.label ? ' \u00b7 ' + dataset.label : '') + '. Preview data, not a final release.';
-      body.appendChild(foot);
 
       E.detailBody.textContent = '';
       E.detailBody.appendChild(body);
@@ -2569,7 +2577,7 @@
       cancelTyping();
       S.state = parsed.state;
       syncControls(false);
-      if (Core.activeFilterCount(S.state) && E.more && !E.more.open) {
+      if (moreFilterCount(S.state) && E.more && !E.more.open) {
         E.more.open = true;
       }
       S.userMoved = false;
@@ -2592,7 +2600,7 @@
       var id = Core.toolSiteId(input);
       var site = S.byId[id];
       if (!site) {
-        throw new Error('No site ' + id + ' in ' + (dataset.label || 'this dataset') + '.');
+        throw new Error('Site ' + id + ' was not found in the atlas.');
       }
       openSite(id, { origin: null, focus: false, zoom: true });
       var template = relativeEndpoint(endpoints.site, 'api/v1/sites/{site_id}.json');
@@ -2677,8 +2685,8 @@
       }
       var schemas = Core.agentToolSchemas(S.context);
       var annotations = { readOnlyHint: true, untrustedContentHint: true };
-      var caveat = ' Statuses are the last observed physical status as of a dated source (not the status today); ' +
-        'locators are not footprints; unknown is not zero; this is a reviewed preview, not a census.';
+      var caveat = ' Each status includes its observation date. Mapped locations may identify a campus or project area; ' +
+        'they do not establish building footprints. Missing values are unknown.';
       var tools = [
         {
           name: 'search_datacenter_sites',
@@ -2703,7 +2711,7 @@
         {
           name: 'get_datacenter_dataset_info',
           title: 'Describe the Data Center Atlas dataset',
-          description: 'Dataset version, counts, release gates, licence and attribution, API endpoints and bulk ' +
+          description: 'Dataset counts, licence and attribution, API endpoints and bulk ' +
             'downloads (with SHA-256) of the data shown in this explorer.' + caveat,
           inputSchema: schemas.dataset,
           annotations: annotations,
@@ -2745,14 +2753,12 @@
     }
 
     /**
-     * Embed mode: one line of caveats and terms, and a link that opens the
+     * Embed mode: attribution terms and a link that opens the
      * same view in the full explorer (kept current by flushUrl).
      */
     function setupEmbed() {
       var bar = h('p', 'atlas-embed-bar');
-      var preview = dataset.release_status && dataset.release_status !== 'final' ? 'Preview data \u00b7 ' : '';
-      bar.appendChild(textNode(preview + 'Last observed status as of dated sources \u00b7 not a census \u00b7 '));
-      var terms = h('a', '', 'CC BY 4.0 + source terms');
+      var terms = h('a', '', 'Licence & attribution');
       terms.href = absoluteUrl('about/attribution/');
       terms.target = '_blank';
       terms.rel = 'noopener';
@@ -2827,13 +2833,10 @@
     } catch (error) {
       filtersOpen = null;
     }
-    // The results list is the main content, so the filters start folded
-    // unless the window is tall enough for both (the summary shows how many
-    // are active). A reader's own choice wins, and active filters from the
-    // URL always unfold them (see applyLocation).
-    var roomy = !S.narrow.matches && media('(min-height: 1200px)').matches;
-    if (E.more && (embedded || filtersOpen === '0' || (filtersOpen !== '1' && !roomy))) {
-      E.more.open = false;
+    // Search and country stay visible. Additional filters open only by choice
+    // or when a shared link uses them (see applyLocation).
+    if (E.more) {
+      E.more.open = !embedded && filtersOpen === '1';
     }
     if (embedded) {
       setupEmbed();

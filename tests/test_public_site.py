@@ -35,7 +35,7 @@ ATOM = "{http://www.w3.org/2005/Atom}"
 SITEMAP = "{http://www.sitemaps.org/schemas/sitemap/0.9}"
 LOCAL = "https://local.invalid/"
 LAYOUT_CLASSES = {
-    "skip-link", "site-header", "brand", "site-nav", "preview-banner", "site-footer", "explorer",
+    "skip-link", "site-header", "brand", "site-nav", "site-footer", "explorer",
 }
 VOCABULARY_CLASSES = {
     "page", "page-wide", "lede", "muted", "small", "mono", "breadcrumbs", "stats", "stat", "stat-value",
@@ -164,6 +164,30 @@ def scan(path: Path) -> PageScan:
     parser.feed(path.read_text(encoding="utf-8"))
     parser.close()
     return parser
+
+
+class VisibleProse(HTMLParser):
+    """Ordinary page text, excluding code, embedded data and technical file names."""
+
+    def __init__(self):
+        super().__init__(convert_charrefs=True)
+        self.parts = []
+        self.skipped = []
+
+    def handle_starttag(self, tag, attrs):
+        if tag in {"script", "style", "pre", "code"}:
+            self.skipped.append(tag)
+
+    def handle_endtag(self, tag):
+        if self.skipped and tag == self.skipped[-1]:
+            self.skipped.pop()
+
+    def handle_data(self, data):
+        if self.skipped:
+            return
+        text = data.strip()
+        if text and not re.fullmatch(r"(?:https?://\S+|[\w.-]+\.(?:zip|json|csv|geojson|md|txt))", text):
+            self.parts.append(text)
 
 
 def builder_pages(site: Path) -> list[Path]:
@@ -513,7 +537,7 @@ def _write_site_inputs(site: Path, about: str | None) -> None:
         ),
         "content/methodology.html": (
             '<h1>Methodology</h1><section id="release-gates"><h2>Gates</h2>{{{gates_table}}}</section>'
-            "{{{status_legend}}}<p>{{last_preview.label}} had {{last_preview.counts.physical_sites}} sites.</p>"
+            "{{{status_legend}}}<p>{{last_preview.label}}; sites: {{last_preview.counts.physical_sites}}.</p>"
         ),
         "content/about.html": default_about if about is None else about,
     }
@@ -662,8 +686,8 @@ class FixtureBuildTests(unittest.TestCase):
         versions = read_json(self.site / "api/v1/versions.json")
         self.assertEqual([item["id"] for item in versions["versions"]], [FIXTURE_PREVIEW, FIXTURE_DRAFT])
         preview, draft = versions["versions"]
-        self.assertEqual(preview["label"], "v0.1 preview")
-        self.assertEqual(draft["label"], "v0.2 draft — initial two-site checkpoint")
+        self.assertEqual(preview["label"], "2025-12-20 · 1 site")
+        self.assertEqual(draft["label"], "2026-01-05 · 2 sites")
         self.assertEqual((preview["checkpoint_date"], draft["checkpoint_date"]), ("2025-12-20", "2026-01-05"))
         self.assertEqual(draft["lifecycle_reference_date"], "2025-12-31")
         self.assertEqual(preview["added_site_ids"], [SITE_A])
@@ -775,7 +799,7 @@ class FixtureBuildTests(unittest.TestCase):
     def test_tokens_render_on_content_pages(self):
         methodology = self.page("methodology/index.html")
         self.assertIn('id="release-gates-table"', methodology)
-        self.assertIn("v0.1 preview had 1 sites.", methodology)
+        self.assertIn("2025-12-20 · 1 site; sites: 1.", methodology)
         self.assertIn("100.0%", methodology)
         self.assertIn("agreements ≥ 19", methodology)
         self.assertIn('class="badge status-shell"', methodology)
@@ -936,15 +960,16 @@ class FixtureBuildTests(unittest.TestCase):
         self.assertEqual(list(base.glob(".out.*")), [])
         self.assertFalse((base / "out").exists())
 
-    def test_methodology_must_carry_the_release_gates_table(self):
+    def test_methodology_does_not_require_internal_release_gates(self):
         base = Path(tempfile.mkdtemp(prefix="gates-", dir=self.base))
         root = make_fixture_root(base)
         (root / "site" / "content" / "methodology.html").write_text(
-            '<h1>Methodology</h1><section id="release-gates"><h2>Gates</h2></section>', encoding="utf-8"
+            '<h1>Methodology</h1><p>Construction stages come from dated sources.</p>', encoding="utf-8"
         )
-        with self.assertRaises(public_site.PublicSiteError) as caught:
-            public_site.build_site(base / "out", root=root)
-        self.assertIn("gates_table", str(caught.exception))
+        public_site.build_site(base / "out", root=root)
+        text = (base / "out" / "methodology" / "index.html").read_text(encoding="utf-8")
+        self.assertIn("Construction stages come from dated sources.", text)
+        self.assertNotIn('id="release-gates-table"', text)
 
     def test_output_directory_safety(self):
         base = Path(tempfile.mkdtemp(prefix="output-", dir=self.base))
@@ -1280,19 +1305,19 @@ class RealSiteBuildTests(unittest.TestCase):
         self.assertEqual(versions["versions"][-1]["id"], self.dataset_id)
         kinds = [item["kind"] for item in versions["versions"]]
         self.assertEqual(kinds, sorted(kinds, key=lambda kind: kind != "preview"))
-        previews = [item for item in versions["versions"] if item["kind"] == "preview"]
-        self.assertEqual([item["label"] for item in previews], [f"v0.{minor} preview" for minor in range(1, len(previews) + 1)])
+        for item in versions["versions"]:
+            self.assertEqual(item["label"], f"{item['checkpoint_date']} · {item['counts']['physical_sites']} sites")
         drafts = [item["counts"] for item in versions["versions"] if item["kind"] == "draft"]
         keys = [(counts["physical_sites"], counts["projects"], counts["evidence"]) for counts in drafts]
         self.assertEqual(keys, sorted(set(keys)))
         by_id = {item["id"]: item for item in versions["versions"]}
         expectations = {
-            self.dataset_id: ("v0.18 draft — thirty-sixth reviewed checkpoint", "2026-10-09"),
-            "2026-08-20-v0.18-draft-thirty-fifth-reviewed": ("v0.18 draft — thirty-fifth reviewed checkpoint", "2026-09-25"),
-            "2026-08-20-v0.18-draft-initial-five": ("v0.18 draft — initial five-site checkpoint", "2026-09-08"),
-            "2026-08-20-v0.18-draft-second-reviewed": ("v0.18 draft — second reviewed checkpoint", "2026-09-08"),
-            "2026-08-20-preview-v0.17": ("v0.17 preview", "2026-09-06"),
-            "2026-08-19-preview-v0.1": ("v0.1 preview", "2026-08-19"),
+            self.dataset_id: ("2026-10-09 · 200 sites", "2026-10-09"),
+            "2026-08-20-v0.18-draft-thirty-fifth-reviewed": ("2026-09-25 · 197 sites", "2026-09-25"),
+            "2026-08-20-v0.18-draft-initial-five": ("2026-09-08 · 105 sites", "2026-09-08"),
+            "2026-08-20-v0.18-draft-second-reviewed": ("2026-09-08 · 112 sites", "2026-09-08"),
+            "2026-08-20-preview-v0.17": ("2026-09-06 · 100 sites", "2026-09-06"),
+            "2026-08-19-preview-v0.1": ("2026-08-19 · 8 sites", "2026-08-19"),
         }
         for identifier, (label, checkpoint) in expectations.items():
             self.assertEqual((by_id[identifier]["label"], by_id[identifier]["checkpoint_date"]), (label, checkpoint))
@@ -1455,7 +1480,7 @@ class RealSiteBuildTests(unittest.TestCase):
         dataset = json.loads(scan(self.site / "data" / "index.html").data_blocks["application/ld+json"])
         self.assertEqual(dataset["@type"], "Dataset")
         self.assertEqual((dataset["@id"], dataset["url"]), (f"{self.base_url}data/#dataset", f"{self.base_url}data/"))
-        self.assertEqual(dataset["name"], "Data Center Atlas: Verified Construction Core")
+        self.assertEqual(dataset["name"], "Data Center Atlas")
         self.assertTrue(all(item["@type"] == "DataDownload" for item in dataset["distribution"]))
         self.assertIn("https://opendatacommons.org/licenses/odbl/1-0/", dataset["license"])
         south, west, north, east = map(float, dataset["spatialCoverage"]["geo"]["box"].split())
@@ -1495,8 +1520,8 @@ class RealSiteBuildTests(unittest.TestCase):
 
     def test_methodology_attribution_and_not_found(self):
         methodology = scan(self.site / "methodology" / "index.html")
-        self.assertIn("release-gates", methodology.ids)
-        self.assertIn("release-gates-table", methodology.ids)
+        self.assertNotIn("release-gates-table", methodology.ids)
+        self.assertTrue({"selection", "statuses", "locators", "evidence"}.issubset(methodology.ids))
         attribution = (self.site / "about" / "attribution" / "index.html").read_text(encoding="utf-8")
         self.assertIn("City of Chicago", attribution)
         self.assertIn("makes no claims as to the content, accuracy, timeliness, or completeness", attribution)
@@ -1516,6 +1541,26 @@ class RealSiteBuildTests(unittest.TestCase):
         self.assertIn("../../methodology/#identifiers", (self.site / "data" / "dictionary" / "index.html").read_text(encoding="utf-8"))
         # Identifier cells break at - as well (a hyphen before a digit is not a break opportunity on its own).
         self.assertEqual(public_site._breakable("2026-08-20_a.b/c"), "2026-<wbr>08-<wbr>20_<wbr>a.<wbr>b/<wbr>c")
+
+    def test_public_prose_does_not_present_the_atlas_as_an_unfinished_release(self):
+        # Inspect ordinary product pages, not raw source evidence or archived record diffs.
+        paths = (
+            "index.html", "sites/index.html", "countries/index.html", "data/index.html",
+            "about/index.html", "methodology/index.html", "api/index.html", "versions/index.html",
+            "downloads/index.html", "downloads/latest/index.html",
+        )
+        forbidden = re.compile(r"\b(?:preview|draft|final[- ]release|guarded|checkpoint)s?\b", re.IGNORECASE)
+        for relative in paths:
+            with self.subTest(page=relative):
+                page = self.site / relative
+                self.assertNotIn("preview-banner", scan(page).classes)
+                prose = VisibleProse()
+                prose.feed(page.read_text(encoding="utf-8"))
+                prose.close()
+                text = " ".join(prose.parts)
+                match = forbidden.search(text)
+                context = text[max(0, match.start() - 80):match.end() + 80] if match else ""
+                self.assertIsNone(match, f"Public process language in {relative}: {context}")
 
     def test_feed_and_sitemap(self):
         feed = ET.parse(self.site / "feed.xml").getroot()
@@ -1587,11 +1632,11 @@ class RealSiteBuildTests(unittest.TestCase):
             self.assertTrue(ref.startswith("#/components/schemas/") and ref.rsplit("/", 1)[1] in components, ref)
         self.assertIn('rel="service-desc"', (self.site / "api" / "index.html").read_text(encoding="utf-8"))
 
-    def test_llms_txt_is_a_caveat_first_entry_point(self):
+    def test_llms_txt_explains_data_and_links_to_documentation(self):
         text = (self.site / "llms.txt").read_text(encoding="utf-8")
         self.assertTrue(text.startswith("# Data Center Atlas\n\n> "))
         self.assertIn(self.dataset_id, text)
-        for phrase in ("not the status today", "not building footprints", "unknown, never zero", "not a census"):
+        for phrase in ("not the status today", "not building footprints", "unknown, never zero", "Coverage is incomplete"):
             self.assertIn(phrase, text)
         full = (self.site / "llms-full.txt").read_text(encoding="utf-8")
         self.assertTrue(full.startswith(text))
@@ -1640,8 +1685,11 @@ class RealSiteBuildTests(unittest.TestCase):
     def test_citations_agree_everywhere(self):
         citation = read_json(self.api / "citation.json")
         apa = citation["apa"]
-        self.assertEqual(apa, f"Kyars, K. ({self.manifest_checkpoint_year()}). Data Center Atlas: Verified Construction "
-                              f"Core (Version {self.dataset_id}) [Data set]. {self.base_url}")
+        versions = read_json(self.api / "versions.json")["versions"]
+        published = next(item for item in versions if item["id"] == self.dataset_id)["checkpoint_date"]
+        self.assertEqual(apa, f"Kyars, K. ({published[:4]}). Data Center Atlas "
+                              f"({published}) [Data set]. {self.base_url}downloads/{self.dataset_id}/")
+        self.assertEqual(citation["csl_json"][0]["URL"], citation["files_url"])
         self.assertEqual(read_json(self.api / "index.json")["citation"], apa)
         escaped = html_escape(apa)
         for page in ("data/index.html", "api/index.html", "about/index.html"):
@@ -1650,10 +1698,6 @@ class RealSiteBuildTests(unittest.TestCase):
         ris = (self.api / "citation.ris").read_bytes()
         self.assertTrue(ris.startswith(b"TY  - DATA\r\n") and ris.endswith(b"ER  - \r\n"))
         self.assertEqual(citation["csl_json"][0]["type"], "dataset")
-
-    def manifest_checkpoint_year(self) -> str:
-        versions = read_json(self.api / "versions.json")["versions"]
-        return next(item for item in versions if item["id"] == self.dataset_id)["checkpoint_date"][:4]
 
     def test_excel_workbook(self):
         path = self.site / "downloads" / "latest" / "atlas.xlsx"
@@ -1692,7 +1736,7 @@ class RealSiteBuildTests(unittest.TestCase):
             self.assertIn(lévis, names)
         readme = " ".join(value for row in sheets["README"] for _, value in row.values())
         self.assertIn(self.dataset_id, readme)
-        self.assertIn("not a census", readme)
+        self.assertIn("Coverage is incomplete and varies by country.", readme)
 
     def test_sqlite_observation_tables_and_reproducible_bytes(self):
         path = self.site / "downloads" / "latest" / "atlas.sqlite"

@@ -994,7 +994,7 @@ def test_llms_txt_is_a_working_entry_point(atlas):
     assert any(
         name in folded for name in ("cc by 4.0", "cc-by-4.0", "creative commons attribution 4.0")
     ), "llms.txt must state the licence"
-    for caveat in ("last observed", "footprint", "unknown", "census"):
+    for caveat in ("last observed", "footprint", "unknown", "coverage"):
         assert caveat in folded, f"llms.txt must carry the {caveat!r} caveat"
     urls = _absolute_site_urls(atlas, text)
     broken = sorted(url for url in urls if _http_status(url) != 200)
@@ -1172,7 +1172,7 @@ def test_explorer_lists_and_maps_every_site(open_page, atlas):
     assert page.locator("#atlas-detail[hidden]").count() == 1, "the detail drawer starts closed"
     expect(page.locator("#atlas-error")).to_be_hidden()
     summary = page.evaluate(EXPLORER_SUMMARY_TEXT_JS)
-    for key in ("physical_sites", "projects", "countries", "evidence", "non_us_sites"):
+    for key in ("physical_sites", "projects", "countries"):
         assert _count_text_shows(summary, atlas.counts[key]), f"summary strip lacks {key}"
     guard.assert_clean()
 

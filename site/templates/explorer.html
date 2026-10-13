@@ -1,15 +1,9 @@
 <div class="atlas-intro">
   <div class="atlas-intro-copy">
-    <h1 id="atlas-title" class="atlas-title">Data-centre construction, site by site</h1>
-    <p class="atlas-lede">{{counts.physical_sites}} physical sites in {{counts.countries}} countries whose last observed physical status was a construction stage, each backed by cited, dated evidence. <span class="atlas-window">Status observed {{dataset.window_start}} – {{dataset.lifecycle_reference_date}}.</span> A reviewed sample, not a census; locators are not footprints.</p>
+    <h1 id="atlas-title" class="atlas-title">Data center construction</h1>
+    <p class="atlas-lede">{{counts.physical_sites}} sites · {{counts.projects}} projects · {{counts.countries}} countries</p>
+    <p class="atlas-window">Status observations: {{dataset.window_start}} – {{dataset.lifecycle_reference_date}}</p>
   </div>
-  <dl class="atlas-stats">
-    <div class="atlas-stat"><dt>Sites</dt><dd>{{counts.physical_sites}}</dd></div>
-    <div class="atlas-stat"><dt>Projects</dt><dd>{{counts.projects}}</dd></div>
-    <div class="atlas-stat"><dt>Countries</dt><dd>{{counts.countries}}</dd></div>
-    <div class="atlas-stat"><dt>Evidence rows</dt><dd>{{counts.evidence}}</dd></div>
-    <div class="atlas-stat"><dt>Non-US sites</dt><dd>{{counts.non_us_sites}}</dd></div>
-  </dl>
 </div>
 
 <noscript>
@@ -31,30 +25,32 @@
         <input id="atlas-search" class="atlas-input" type="search" name="q" autocomplete="off" spellcheck="false" placeholder="Name, country, project or source" aria-describedby="atlas-search-hint">
         <p id="atlas-search-hint" class="sr-only">Matches site and project names, countries, country codes and status sources. Results update as you type.</p>
       </div>
-      <details id="atlas-more" class="atlas-more" open>
-        <summary class="atlas-more-summary">Filters <span id="atlas-active-count" class="atlas-active-count"></span></summary>
+      <div class="atlas-primary-filters">
+        <div class="atlas-field">
+          <label for="atlas-country" class="atlas-label">Country</label>
+          <select id="atlas-country" class="atlas-select" name="country">
+            <option value="">All countries</option>
+          </select>
+        </div>
+      </div>
+      <details id="atlas-more" class="atlas-more">
+        <summary class="atlas-more-summary">More filters <span id="atlas-active-count" class="atlas-active-count"></span></summary>
         <div class="atlas-more-body">
-          <div class="atlas-field">
-            <label for="atlas-country" class="atlas-label">Country</label>
-            <select id="atlas-country" class="atlas-select" name="country">
-              <option value="">All countries</option>
-            </select>
-          </div>
-          <div class="atlas-field">
-            <label for="atlas-locator" class="atlas-label">Locator</label>
-            <select id="atlas-locator" class="atlas-select" name="locator">
-              <option value="any">Any locator</option>
-              <option value="official_boundary">Official boundary</option>
-              <option value="polygon">Polygon or MultiPolygon</option>
-              <option value="point">Point</option>
-            </select>
-          </div>
           <fieldset id="atlas-status" class="atlas-fieldset">
-            <legend class="atlas-label">Last observed status</legend>
+            <legend class="atlas-label">Construction stage</legend>
             <div id="atlas-status-options" class="atlas-chips"></div>
           </fieldset>
+          <div class="atlas-field">
+            <label for="atlas-locator" class="atlas-label">Map detail</label>
+            <select id="atlas-locator" class="atlas-select" name="locator">
+              <option value="any">All locations</option>
+              <option value="official_boundary">Official boundary</option>
+              <option value="polygon">Mapped area</option>
+              <option value="point">Location point</option>
+            </select>
+          </div>
           <fieldset class="atlas-fieldset atlas-range">
-            <legend class="atlas-label">Status as of</legend>
+            <legend class="atlas-label">Observation date</legend>
             <div class="atlas-range-row">
               <div class="atlas-range-part">
                 <label for="atlas-from" class="atlas-sublabel">From</label>
@@ -121,7 +117,7 @@
     <details id="atlas-legend" class="atlas-legend">
       <summary id="atlas-legend-summary" class="atlas-legend-summary">Legend</summary>
       <ul id="atlas-legend-list" class="atlas-legend-list"></ul>
-      <p class="atlas-legend-note">Colour shows the stage group; the exact status is always written out.</p>
+      <p class="atlas-legend-note">Colour shows the construction stage.</p>
     </details>
   </div>
 

@@ -207,15 +207,25 @@ def test_metadata_write_then_check_is_clean(tmp_path):
     assert check_public_metadata.check(repo, facts) == []
     assert check_public_metadata.write(repo, facts) == [], "write is idempotent"
     readme = (repo / "README.md").read_text(encoding="utf-8")
-    assert f"`{DATASET_ID}`" in readme and "**4 physical sites**" in readme
-    assert "| Largest single-country share | at most 40% | 50% (United States) | No |" in readme
-    assert "Six of the six final-release gates are not yet met" in readme
-    assert "between 2026-05-22 and 2026-08-20 inclusive" in readme
+    assert "**4 physical sites**" in readme
+    assert "**Data updated:** 2026-10-02" in readme
+    assert "**Construction observations:** 2026-05-22 to 2026-08-20" in readme
+    current = check_public_metadata.block_content(readme, "current-dataset")
+    assert DATASET_ID not in current
+    assert "gate" not in current and "draft" not in current and "release" not in current
     license_text = (repo / "DATA_LICENSE.md").read_text(encoding="utf-8")
     assert "(<!-- atlas:osm-geometry-count -->2 of the 5 project geometries, on 2 sites, in the 2026-10-02" in license_text
     citation = (repo / "CITATION.cff").read_text(encoding="utf-8")
     assert f'version: "{DATASET_ID}"' in citation and 'date-released: "2026-10-02"' in citation
     assert "ODbL 1.0" in citation and "doi:" not in citation
+    assert "final release" not in citation and "release gates" not in citation
+
+
+def test_metadata_does_not_require_release_gates(tmp_path):
+    repo = _write_repo(tmp_path)
+    facts = _facts(stats={})
+    check_public_metadata.write(repo, facts)
+    assert check_public_metadata.check(repo, facts) == []
 
 
 def test_metadata_names_locator_exceptions(tmp_path):
@@ -225,8 +235,6 @@ def test_metadata_names_locator_exceptions(tmp_path):
     facts = _facts(projects=projects)
     repo = _write_repo(tmp_path)
     check_public_metadata.write(repo, facts)
-    readme = " ".join((repo / "README.md").read_text(encoding="utf-8").split())
-    assert "One project (Digital Edge CGK1) has host-estate context only, not a reviewed locator" in readme
     citation = " ".join((repo / "CITATION.cff").read_text(encoding="utf-8").split())
     assert "(or, for a listed locator exception, host-estate context only)" in citation
     assert check_public_metadata.check(repo, facts) == []
@@ -241,6 +249,7 @@ def test_metadata_reports_a_new_checkpoint_until_rewritten(tmp_path):
     check_public_metadata.write(repo, _facts())
     newer = copy.deepcopy(_facts().index)
     newer["dataset"]["id"] = "2026-08-20-v0.18-draft-thirty-seventh-reviewed"
+    newer["dataset"]["checkpoint_date"] = "2026-10-03"
     problems = check_public_metadata.check(repo, _facts(index=newer))
     assert any(problem.startswith("CITATION.cff") for problem in problems)
     assert any("current-dataset block is stale" in problem for problem in problems)

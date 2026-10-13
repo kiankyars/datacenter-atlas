@@ -13,29 +13,28 @@ The "Report a correction" link on every site page opens it with the site ID fill
 - what the record says now and what it should say;
 - a public source that supports the correction, with its date.
 
-Published versions are frozen and never rewritten. An accepted correction is applied, and
-documented, in a later checkpoint.
+Accepted corrections appear in the next data update. Earlier published files remain available
+unchanged in the data archive.
 
 A status is the last authoritative observation on or before the dataset's lifecycle reference
 date. News that a project finished, paused or was cancelled after that date does not make the
-record wrong, but please report it: such successors are checked before the next checkpoint.
+record wrong, but please report it: newer reports are checked for the next data update.
 
 ## Suggest a new site
 
 Use the [new-site form](https://github.com/kiankyars/datacenter-atlas/issues/new?template=new-site.yml).
-Suggestions enter a research queue and are reviewed against the
-[selection rules](https://kiankyars.github.io/datacenter-atlas/methodology/#selection). Nothing is
-added automatically, and a site may be held until its evidence is sufficient. A site needs all of
-the following.
+Suggestions are checked against the
+[selection criteria](https://kiankyars.github.io/datacenter-atlas/methodology/#selection). Include
+the following evidence.
 
 1. **Dated evidence of physical work.** A primary public source (company disclosure, government
    record, regulatory filing) stating that construction is under way on the named project: site
    preparation, civil works, foundations, shell, MEP/electrical work, general construction or
    commissioning, with the date the statement applies to. Announcements, land purchases, permits,
    grid-connection requests, groundbreaking plans and expected opening dates do not qualify by
-   themselves, and a later page edit or retrieval date is not an observation date. Each checkpoint
-   accepts only observations dated no more than 90 days before its fixed lifecycle reference date
-   (for the current v0.18 drafts, 2026-05-22 to 2026-08-20 inclusive).
+   themselves, and a later page edit or retrieval date is not an observation date. Observations must
+   fall within 90 days before the dataset's reference date; the current date range is listed in the
+   [methodology](https://kiankyars.github.io/datacenter-atlas/methodology/#scope).
 2. **A precise locator.** A source that places the project or its campus: an official parcel or
    boundary, an official address point, a coordinate published by the developer or a public
    authority, or a named map feature. Say what it locates (a building, the project or the whole
@@ -93,10 +92,10 @@ lint targets that CI runs.
 
 ### Ground rules
 
-- **Frozen data stays frozen.** Never edit files under `verified_construction_core/`,
-  `definitions/`, `sources/` or `releases/` in place; manifests and tests bind their bytes. New data
-  arrives as a new checkpoint directory produced by the dataset builder, and corrections are
-  versioned.
+- **Preserve published data.** Never edit files under `verified_construction_core/`,
+  `definitions/`, `sources/` or `releases/` in place; manifests and tests bind their bytes. Additions
+  and corrections go into a new data directory produced by the dataset builder, keeping earlier
+  files available for reproducibility.
 - **Standard library only** for Python code, with deterministic output: the same inputs must
   produce byte-identical files.
 - **Treat data as untrusted text.** Escape it in HTML, never insert it with `innerHTML`, and link

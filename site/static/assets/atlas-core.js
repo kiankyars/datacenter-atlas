@@ -1115,7 +1115,7 @@
     'Each status is the last observed physical status as of a dated source (status_as_of), not the status today.',
     'Locators place a site on the map; they are not building footprints or construction extents.',
     'Unknown or missing values are unknown, not zero.',
-    'This is a reviewed preview dataset, not a census of all data-centre construction.'
+    'Coverage is incomplete and varies by country.'
   ];
   var TOOL_SEARCH_KEYS = ['query', 'country', 'statuses', 'locator', 'has_power', 'from', 'to', 'sort', 'limit'];
   var TOOL_DEFAULT_LIMIT = 50;
