@@ -581,7 +581,35 @@ def discover_versions(versions_root: Path) -> tuple[DatasetVersion, ...]:
     for previous, current in zip(versions, versions[1:]):
         if previous.sort_key == current.sort_key:
             raise PublicSiteError(f"ambiguous version order: {previous.id} and {current.id}")
-    return tuple(versions)
+    return _order_published_successors(versions)
+
+
+def _order_published_successors(versions: Sequence[DatasetVersion]) -> tuple[DatasetVersion, ...]:
+    """Keep checkpoint order, using verified base provenance to order same-day updates."""
+    ordered = [version for version in versions if version.kind != "published"]
+    checkpoints: dict[str, dict[str, DatasetVersion]] = defaultdict(dict)
+    for version in versions:
+        if version.kind == "published":
+            checkpoints[version.checkpoint_date][version.id] = version
+    for checkpoint, same_day in checkpoints.items():
+        parents = {}
+        for version in same_day.values():
+            base = version.manifest.get("base_dataset")
+            parent = same_day.get(Path(base).name) if isinstance(base, str) else None
+            if parent is not None:
+                if version.manifest.get("base_manifest_sha256") != parent.manifest_sha256:
+                    raise PublicSiteError(f"{version.id}: base manifest hash differs for {parent.id}")
+                parents[version.id] = parent.id
+        pending = dict(same_day)
+        while pending:
+            # Dict order retains the lexical tie-breaker for unrelated same-day releases.
+            ready = next((version for version in pending.values() if parents.get(version.id) not in pending), None)
+            if ready is None:
+                raise PublicSiteError(f"cyclic published version ancestry on {checkpoint}")
+            # All consumers, including derived-download bounds and feeds, share this order.
+            ordered.append(replace(ready, sort_key=(2, checkpoint, len(same_day) - len(pending))))
+            del pending[ready.id]
+    return tuple(ordered)
 
 
 def _load_version(path: Path) -> DatasetVersion:

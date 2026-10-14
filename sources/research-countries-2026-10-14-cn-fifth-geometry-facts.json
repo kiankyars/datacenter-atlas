@@ -1,0 +1,106 @@
+{
+  "format": "datacenter-atlas-country-geometry-facts-v1",
+  "reviewed_at": "2026-10-14",
+  "base_dataset": "verified_construction_core/2026-10-14-research-fourth",
+  "base_commit": "872fbf0",
+  "base_manifest_sha256": "ed72986c114ac429342657abbc615958d7c012de5eb139b3bb1323f9023905c2",
+  "source_files": [
+    {
+      "path": "sources/research-countries-2026-10-14-cn-fifth-primary-sources.json",
+      "sha256": "1ce1919eeb921b1199d89bf8b34ada6bfe29ca4896b763b53a06931eb6fbb0ff"
+    }
+  ],
+  "facts": [
+    {
+      "candidate": "China Mobile Hohhot Data Center named campus",
+      "decision": "campus_geometry_resolved_status_held",
+      "source_id": "cn-fifth-hohhot-mobile-osm",
+      "osm_way_id": 699967332,
+      "osm_way_version": 2,
+      "source_ring_lon_lat": [
+        [
+          111.8205849,
+          40.542275
+        ],
+        [
+          111.8212812,
+          40.5404939
+        ],
+        [
+          111.8215645,
+          40.5398418
+        ],
+        [
+          111.8223452,
+          40.5382196
+        ],
+        [
+          111.8240074,
+          40.5350207
+        ],
+        [
+          111.8125107,
+          40.5314792
+        ],
+        [
+          111.8087118,
+          40.5386019
+        ],
+        [
+          111.8205849,
+          40.542275
+        ]
+      ],
+      "source_coordinate_system": "WGS84",
+      "derived_geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.8163596,
+          40.5368771
+        ]
+      },
+      "derivation": "componentwise bounding-box midpoint, verified inside source ring by ray casting",
+      "inside_source_polygon": true,
+      "source_scope": "community_mapped_named_parent_campus",
+      "precision_scope": "Representative point in the named mapped China Mobile Hohhot Data Center campus. Does not locate B17, B18, B25, B27, active work, entrances, a survey point or full current campus boundary.",
+      "horizontal_uncertainty_metres": null,
+      "horizontal_uncertainty_unknown_reason": "No measured positional accuracy in selected mapping. Building offsets from this campus marker are unknown.",
+      "independent_imagery_verification": false,
+      "identity_bridge": "OSM names 中国移动呼和浩特数据中心. CSCEC primary disclosure names the same data center and B25/B27 project in Hohhot Helingeer New District. B17/B18 names are found only in fresh secondary procurement mirrors pending primary recovery.",
+      "next_required_evidence": "Fresh primary project-specific announcement or current-state confirmation, with exact milestone day left null when unknown. Existing marker may be reused only for explicitly labeled named-campus scope."
+    },
+    {
+      "candidate": "China Telecom Lingang Information Park Phase 2.1",
+      "decision": "held_numeric_location",
+      "source_id": "cn-fifth-lingang-phase21-shell",
+      "project_identity": "中国电信临港信息园区二期（2.1期）",
+      "primary_plan_reference": "https://www.lingang.gov.cn/html/website/lg/index/government/gonggaogongshi/qitagongshi/1991403628034871298.html",
+      "plan_identity": "沪临港方(2025)DA310035202500877; phase-two design plan dated 2025-11-20",
+      "indexed_location_context": "The separate 2025-10-11 government design notice places the project site east of Runhe Road and north of Zhoude Road. Procurement mirrors specify Yebo Road east, Zongqi River south, Runhe Road west, Canghong Road north; not yet reconciled against the plan.",
+      "older_phase_warning": "The accessible indexed phase-one F07-01 plan lies south of Zhoude Road and is not substituted for the phase-two parcel.",
+      "numeric_geometry": null,
+      "rejected_geocoding": "Nominatim returned an unrelated Shanghai Electric Power University building; rejected. Overpass DE returned 406; Kumi timed out.",
+      "next_required_evidence": "Recover phase-two government plan and auditable CRS or locate the named phase-two/parent campus in numeric mapping with explicit scope."
+    },
+    {
+      "candidate": "Baozhiyun Huabei A4/A5 MEP works",
+      "decision": "held_numeric_parent_property",
+      "source_id": "cn-fifth-baozhiyun-designer-location",
+      "named_parent_property": "宣钢厂区 / Xuanhua Steel plant, Xuanhua District, Zhangjiakou",
+      "identity_caution": "Issuer project filing specifies west plant for A4/A5/A6; designer uses broader plant. Select the mapped west plant or expressly label a broader documented parent marker, without claiming building positions.",
+      "numeric_geometry": null,
+      "rejected_geocoding": "Nominatim search returned unrelated Nanning railway and Xuancheng locality features; rejected.",
+      "capacity_caution": "Designer campus totals and CSCEC six-building totals are not assigned to A4/A5."
+    },
+    {
+      "candidate": "China Telecom Wujiang Compute Center",
+      "decision": "held_location_and_raw_primary_recovery",
+      "identity_caution": "Different operator and project from held China Unicom Wujiang DC1.",
+      "eia_url": "https://sthjj.suzhou.gov.cn/szhbj/fsslgs/202408/7b883c0b5b014d31a7407059e8e09bb9/files/f85e75ca5611435e990faaeccaa3c928.pdf",
+      "eia_finding": "Indexed official EIA identifies the 110kV substation inside the Wujiang compute campus; geographic coordinates are redacted. Full PDF fetch redirected in a loop; tool fetch timed out. No map was visually inspected or georeferenced.",
+      "numeric_geometry": null,
+      "rejected_geocoding": "Two named-campus Nominatim searches returned no result."
+    }
+  ],
+  "approved_geometries": []
+}

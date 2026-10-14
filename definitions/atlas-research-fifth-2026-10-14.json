@@ -1,0 +1,104 @@
+{
+  "format": "datacenter-atlas-update-input-v1",
+  "updated_at": "2026-10-14",
+  "output": "verified_construction_core/2026-10-14-research-fifth",
+  "base_dataset": "verified_construction_core/2026-10-14-research-fourth",
+  "base_manifest_sha256": "ed72986c114ac429342657abbc615958d7c012de5eb139b3bb1323f9023905c2",
+  "source_files": [
+    {
+      "path": "sources/research-countries-2026-10-14-cn-boda-fifth-primary-sources.json",
+      "sha256": "5e5e9717d3208de527a9b1549fb7fda1407ac0ecc37fb01089ecfe99c9f04d70"
+    },
+    {
+      "path": "sources/research-countries-2026-10-14-uk-fifth-primary-sources.json",
+      "sha256": "5dd9e05e3076db4b8e5af8a4b526fc9a6459c3fa157136431d7bb20557748554"
+    }
+  ],
+  "additions": [
+    {
+      "project_stable_key": "curated:kao-data-park-royal-frogmore:revised-data-centre-development",
+      "physical_site_stable_key": "curated:kao-data-park-royal-frogmore",
+      "site_name": "Kao Data Park Royal, Frogmore Industrial Estate",
+      "name": "Kao Data Park Royal Revised Data Centre Development",
+      "country": "United Kingdom",
+      "country_iso_a2": "GB",
+      "status": {
+        "value": "announced",
+        "as_of": "2026-07-21",
+        "source_id": "uk-fifth-kao-letter",
+        "summary": "Signed operator letter confirms development of a proposed data centre at the named Frogmore property. It forecasts demolition from July 27 and explicitly separates demolition from the data-centre design/construction application. September consultation retains a revised proposal requiring further planning approval. No dated achieved demolition, construction or revised-project consent is established."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -0.264505,
+            51.530912
+          ]
+        },
+        "source_id": "uk-fifth-gla-property-point",
+        "scope": "campus_locator",
+        "scope_class": "official_named_parent_property_application_marker",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "direct_gla_planning_datahub_named_property_centroid",
+        "precision": "Authority-published application centroid for the named Frogmore Industrial Estate parent property. It is not the revised data-centre building position, a surveyed campus centroid, work extent or legal boundary.",
+        "identity_review": "Operator July 21 letter names the former Frogmore Industrial Site on Acton Lane, Park Royal. Its September plan shows the parent property bounded by Acton Lane, Harold Road and Newark Crescent, with Wesley Avenue to the north. The GLA record identifies Frogmore Industrial Estate, Acton Lane, NW10 7NQ and a property-specific centroid. The exact numeric point lies inside OSM way1542072469, whose address is Frogmore Industrial Estate and outline matches the operator site-plan shape. No postcode mean, unrelated Frogmore site, generic viewport or neighbouring data centre is selected.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The authority provides no measured positional accuracy for its application centroid; offset to the revised building is unknown. Source decimal places and the small accompanying wgs84_polygon are not survey accuracy or a property boundary."
+      },
+      "context_source_ids": [
+        "uk-fifth-kao-boards",
+        "uk-fifth-kao-proposals",
+        "uk-fifth-gla-demolition-context",
+        "uk-fifth-gla-api-docs",
+        "uk-fifth-osm-estate-check",
+        "uk-fifth-gla-dataset"
+      ],
+      "distinctness_review": "Checked all 405 base sites, 429 projects and 231 preserved source records for Frogmore, Park Royal and Acton Lane; no matches. Nearest existing site is Pure DC Brent Cross LON01 Campus, 4.803 km away. Current revised proposal is one project at one parent property; historic outline permission and separate demolition/enabling applications are not additional data centres.",
+      "successor_review": "Reviewed September operator consultation boards, current proposals and official GLA records on October 14. Ealing NOOBJ responses concern demolition/enabling proposals and are not OPDC permission decisions or achieved-work observations. July 27 demolition was planned; the operator boards expect a separate detailed application in late autumn/early winter 2026 and a 2027 committee decision. No status upgrade inferred from these documents.",
+      "roles": [
+        {
+          "role": "owner",
+          "party": "Kao Data",
+          "relationship_scope": "intended",
+          "source_id": "uk-fifth-kao-boards"
+        },
+        {
+          "role": "operator",
+          "party": "Kao Data",
+          "relationship_scope": "intended",
+          "source_id": "uk-fifth-kao-boards"
+        }
+      ],
+      "scoped_project_details": {
+        "parent_property": "Former Frogmore Industrial Estate, Acton Lane, Park Royal, NW10 7NQ",
+        "status_date_scope": "Exact signed proposal confirmation; not a demolition commencement observation",
+        "planned_demolition_start": "2026-07-27",
+        "planned_demolition_completion": "2027-01",
+        "achieved_demolition_date": null,
+        "revised_data_centre_permission_established": false,
+        "IT_power_MW": null,
+        "capacity_note": "No typed power claim in this packet. Historical outline floor areas are not transferred to the revised design.",
+        "historical_outline_reference": "21/0182/OUTOPDC",
+        "property_locator_record_id": "Ealing-263070OPDCOB",
+        "property_locator_record_scope": "Out-of-borough enabling-works consultation, not the revised DC building permission",
+        "parent_property_point_only": true
+      }
+    }
+  ],
+  "status_updates": [
+    {
+      "project_stable_key": "curated:boda-shenzhen-qianhai-no1-intelligent-computing-campus:operating-campus",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-08-26",
+        "source_id": "cn-boda-fifth-qianhai-fubon-operation",
+        "summary": "Dated operator report confirms Qianhai No. 1 providing infrastructure for the active core systems of Fubon Bank (Hong Kong) Shenzhen branch, with ongoing operations support. August 26 is a current-service confirmation; exact facility-opening and customer go-live dates remain unknown. No full-campus occupancy or energized capacity is inferred."
+      },
+      "identity_review": "The report explicitly names 博大数据前海一号智算基地 in Shenzhen Nanshan Qianhai and describes its dual-active infrastructure. This is the same campus already admitted, not the bank branch building or the separately named Humeng Wulian site.",
+      "successor_review": "Reviewed five successfully captured later operator articles dated September 3-17; linked article 920 was unavailable (HTTP 404). Later general industry and resource-layout discussions do not supply a newer Qianhai-specific operating observation. Preserve site geometry and all previous evidence."
+    }
+  ],
+  "context_updates": []
+}

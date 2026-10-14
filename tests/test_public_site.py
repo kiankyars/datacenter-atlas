@@ -637,6 +637,70 @@ def add_published_fixture(root: Path, updated: str = "2026-04-01") -> Path:
 
 
 class PublishedSnapshotTests(unittest.TestCase):
+    def test_same_day_successors_keep_ancestor_order_and_derived_downloads(self):
+        with tempfile.TemporaryDirectory(prefix="atlas-same-day-ancestry-") as temporary:
+            base = Path(temporary)
+            root = make_fixture_root(base)
+            earlier = add_published_fixture(root, "2026-03-01")
+            first = add_published_fixture(root)
+            first = first.rename(first.with_name("2026-04-01-z-original"))
+            config_path = root / "site/config.json"
+            config = read_json(config_path)
+            config.update({
+                "current_dataset": f"verified_construction_core/{first.name}",
+                "first_published_dataset": f"verified_construction_core/{first.name}",
+            })
+            config_path.write_text(json.dumps(config), encoding="utf-8")
+            original_output = base / "original"
+            public_site.build_site(original_output, root=root, base_url=LOCAL)
+
+            releases = [first]
+            for name in ("2026-04-01-m-successor", "2026-04-01-a-latest"):
+                parent = releases[-1]
+                successor = parent.with_name(name)
+                shutil.copytree(parent, successor)
+                manifest = read_json(successor / "manifest.json")
+                manifest.update({
+                    "base_dataset": f"verified_construction_core/{parent.name}",
+                    "base_manifest_sha256": sha256(parent / "manifest.json"),
+                })
+                (successor / "manifest.json").write_text(json.dumps(manifest), encoding="utf-8")
+                _reseal(successor)
+                releases.append(successor)
+            config["current_dataset"] = f"verified_construction_core/{releases[-1].name}"
+            config_path.write_text(json.dumps(config), encoding="utf-8")
+
+            output = base / "successor"
+            summary = public_site.build_site(output, root=root, base_url=LOCAL)
+            versions = read_json(output / "api/v1/versions.json")
+            self.assertEqual([item["id"] for item in versions["versions"]],
+                             [FIXTURE_PREVIEW, FIXTURE_DRAFT, earlier.name, *(path.name for path in releases)])
+            self.assertEqual(summary["derived_download_versions"], [path.name for path in releases])
+            for release in releases:
+                directory = output / "downloads" / release.name
+                for name in ("atlas.sqlite", "atlas.json", f"datacenter-atlas-{release.name}.zip"):
+                    self.assertTrue((directory / name).is_file(), f"{release.name}/{name}")
+            original_hashes = tree_hashes(original_output / "downloads" / first.name)
+            retained_hashes = tree_hashes(output / "downloads" / first.name)
+            self.assertEqual({name: digest for name, digest in original_hashes.items() if name != "index.html"},
+                             {name: digest for name, digest in retained_hashes.items() if name != "index.html"})
+
+    def test_same_day_ancestry_rejects_a_mismatched_base_hash(self):
+        with tempfile.TemporaryDirectory(prefix="atlas-same-day-base-hash-") as temporary:
+            root = make_fixture_root(Path(temporary))
+            parent = add_published_fixture(root)
+            successor = parent.with_name(parent.name + "-successor")
+            shutil.copytree(parent, successor)
+            manifest = read_json(successor / "manifest.json")
+            manifest.update({
+                "base_dataset": f"verified_construction_core/{parent.name}",
+                "base_manifest_sha256": "0" * 64,
+            })
+            (successor / "manifest.json").write_text(json.dumps(manifest), encoding="utf-8")
+            _reseal(successor)
+            with self.assertRaisesRegex(public_site.PublicSiteError, "base manifest hash differs"):
+                public_site.discover_versions(root / "verified_construction_core")
+
     def test_same_day_suffixed_archive_preserves_earlier_release(self):
         with tempfile.TemporaryDirectory(prefix="atlas-same-day-") as temporary:
             root = make_fixture_root(Path(temporary))
