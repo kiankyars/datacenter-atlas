@@ -1,0 +1,233 @@
+{
+  "format": "datacenter-atlas-independent-geometry-review-v1",
+  "reviewed_at": "2026-10-14",
+  "reviewer": "boda_geometry_resolution",
+  "candidate": "KCCS Zero Emission Data Center Ishikari / ZED Ishikari",
+  "decision": "accepted_reviewed_campus_marker_for_integration_review",
+  "base_commit": "5b99a01a1bea364b5cfdcac6d9afe18e025b4c64",
+  "base_dataset": "verified_construction_core/2026-10-14-research-seventh",
+  "base_manifest_sha256": "e75e29166643aad0aceddd7b31252ad9f3a768a2da25a0a4975e7484bd5b4476",
+  "locator": {
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        141.3001,
+        43.18
+      ]
+    },
+    "source_entity_kind": "campus",
+    "scope": "campus_locator",
+    "authority": "compiled_reference",
+    "derivation": "georeferenced_source_map",
+    "method": "manual_architect_plan_and_designer_photo_match_to_esri_wgs84_imagery",
+    "scope_class": "architect_named_campus_matched_to_georeferenced_imagery",
+    "precision": "Approximate analyst-selected point on the interior of the identified ZED Ishikari main building, used only as a parent-campus marker and rounded to four decimals. It is not an operator-published pin, surveyed centroid, building footprint, legal boundary or tenant/phase marker.",
+    "horizontal_uncertainty_metres": null,
+    "uncertainty_reason": "Image acquisition date and absolute geolocation accuracy are unestablished. Roof parallax, plan-to-built differences and manual identification introduce unquantified uncertainty; display resolution and coordinate decimal places are not ground accuracy."
+  },
+  "identity_review": {
+    "primary_bridge": "The Taisei designer page names ZED Ishikari and publishes the distinctive five-box exterior photograph. The directly captured architect-supplied ArchDaily article names Taisei Design and client Kyocera Communication Systems and links the exact site/roof plan. These identify the facility rather than relying on an unnamed map shape alone.",
+    "north_orientation": "The plan north-arrow symbol at lower left points toward the upper right of the sheet. The plan is not north-up: an approximately 45-degree counterclockwise rotation aligns its arrow with north. The horizontal main-block axis then runs southwest to northeast, and the top/left roads align with the northwest/southwest campus edges in the north-up georeferenced imagery. Rotation is a qualitative identity check, not a fitted survey control.",
+    "distinctive_matches": [
+      "Exactly five repeated roof/cooling boxes on the northwest side of a long main roof, including the differently notched southwest-end box.",
+      "Main block runs southwest to northeast after accounting for the plan north arrow.",
+      "Broad landscaped wedge northwest of the building, bounded by roads meeting at the western corner; building occupies the southeast side of the property.",
+      "Small entrance structure and a narrow parking strip at the southwest end, beside the southwest bordering road.",
+      "Separate parking court at the northeast end, with the same side-of-building relationship as the plan.",
+      "The designer west-exterior photo shows five projecting concrete boxes above the naturalistic landscaped ground, consistent with the plan and imagery."
+    ],
+    "surrounding_property_checks": "Imagery shows a separate vehicle-storage yard immediately southeast of the roof and road separation from the properties southwest. The round-roof structure farther southeast and solar rows across the northwest road provide context, but their names or operators are not inferred from pixels. These surrounding objects are not features claimed to appear on the architect plan.",
+    "rejected_inferences": [
+      "No facility status, opening date, rack capacity or completeness inferred from imagery.",
+      "No cadastral boundary or building footprint extracted.",
+      "No assumption that the raw plan is north-up.",
+      "No reuse of a nearby Sakura or Renewable Energy DC No.1 marker."
+    ]
+  },
+  "coordinate_arithmetic": {
+    "source_extent_file": "local_data/country-research-2026-10-14-jp-next-kccs/detail-export-extent.json",
+    "source_extent_sha256": "4604e24dedf5af82494d6c38478ee6ad074d2a4f98caf3b02e5669c09acc4a52",
+    "source_image_file": "local_data/country-research-2026-10-14-jp-next-kccs/ishikari-esri-detail.png",
+    "source_image_sha256": "6b51b98a0fe11e74e5b4a0d8331143d6dacce77db48a0cdaf505f782d170b97e",
+    "returned_image_pixels": [
+      1600,
+      1200
+    ],
+    "extent": {
+      "xmin": 141.29800000000003,
+      "ymin": 43.17850000000001,
+      "xmax": 141.30200000000002,
+      "ymax": 43.18150000000001,
+      "spatialReference": {
+        "wkid": 4326,
+        "latestWkid": 4326
+      }
+    },
+    "selected_pixel_zero_based_upper_left_origin": [
+      850,
+      600
+    ],
+    "pixel_center_offset": 0.5,
+    "selected_pixel_review": "Zero-based pixel [850,600] lies in the visible main roof interior, away from the neighboring car yard and bordering roads. The point identifies the campus; it is not a calculated centroid.",
+    "longitude_formula": "xmin + (850 + 0.5) / 1600 * (xmax - xmin)",
+    "latitude_formula": "ymax - (600 + 0.5) / 1200 * (ymax - ymin)",
+    "calculated_wgs84_lon_lat": [
+      141.30012625000003,
+      43.17999875000001
+    ],
+    "rounded_wgs84_lon_lat": [
+      141.3001,
+      43.18
+    ],
+    "image_extent_crs": "Retained ArcGIS export response explicitly gives wkid4326 and latestWkid4326; export request specifies bboxSR4326 and imageSR4326. Returned dimensions are independently checked against the PNG header.",
+    "rounding_offset_metres": 2.133,
+    "rounding_warning": "The rounding offset describes only this numeric rounding; it does not bound position or identity uncertainty.",
+    "separate_response_caveat": "Image and f=pjson response were requested separately with the same explicit bbox, dimensions and CRS. Response hashes and retrieval times are retained; the f=pjson transient href is not a second independent source."
+  },
+  "duplicate_review": {
+    "base_site_count": 409,
+    "base_project_count": 434,
+    "alias_regex": "KCCS|Kyocera Communication|ZED[ -]?Ishikari|Zero[ -]?Emission Data Cent(?:er|re)|ゼロエミッションデータセンター|京セラコミュニケーション",
+    "matching_site_records": 0,
+    "matching_project_records": 0,
+    "nearest_five_sites": [
+      {
+        "site_id": "vcc-site-2b082c2af5f1a4774370",
+        "physical_site_stable_key": "curated:ishikari-renewable-energy-dc-1",
+        "name": "Ishikari Renewable Energy Data Center No.1",
+        "geometry": [
+          141.298122,
+          43.178556
+        ],
+        "distance_metres_from_selected_rounded_point": 226.9
+      },
+      {
+        "site_id": "vcc-site-c94f01a0c2d16cea9689",
+        "physical_site_stable_key": "curated:sakura-ishikari-data-center",
+        "name": "Sakura Ishikari Data Center",
+        "geometry": [
+          141.3003,
+          43.1772
+        ],
+        "distance_metres_from_selected_rounded_point": 311.8
+      },
+      {
+        "site_id": "vcc-site-6fc591eaf0edc175a75c",
+        "physical_site_stable_key": "imported:semiconductor-atlas:softbank-tomakomai",
+        "name": "SoftBank Hokkaido Tomakomai AI Data Center",
+        "geometry": [
+          141.6055,
+          42.6341
+        ],
+        "distance_metres_from_selected_rounded_point": 65599.8
+      },
+      {
+        "site_id": "vcc-site-f9661fed6650ccc21ce2",
+        "physical_site_stable_key": "curated:ai-tech-tomakomai-kashiwabara",
+        "name": "AI Tech Tomakomai Kashiwabara Data Center Campus",
+        "geometry": [
+          141.76624601705532,
+          42.69518558066431
+        ],
+        "distance_metres_from_selected_rounded_point": 65925.0
+      },
+      {
+        "site_id": "vcc-site-d3117bafca6bdcc5007e",
+        "physical_site_stable_key": "imported:semiconductor-atlas:airtrunk-tok1-inzai",
+        "name": "AirTrunk TOK1 Tokyo East",
+        "geometry": [
+          140.1453,
+          35.8323
+        ],
+        "distance_metres_from_selected_rounded_point": 822988.2
+      }
+    ],
+    "neighbor_distinctness": "Renewable Energy Data Center No.1 is southwest across the road network at its separate parcel-based marker; Sakura Ishikari is farther south at a distinct multi-building property. The distinctive ZED plan/photo match identifies a third building/property. Numerical proximity alone neither proves nor disproves identity.",
+    "distance_method": "Haversine great-circle distance with Earth mean radius6371008.8m from the rounded selected point to existing published site locators. These are locator distances, not surveyed boundary separation."
+  },
+  "verified_captures": [
+    {
+      "id": "jp-seventh-kccs-operating",
+      "source_url": "https://www.kccs.co.jp/news/topics/2026/0728/",
+      "publisher": "Kyocera Communication Systems",
+      "attribution": "Kyocera Communication Systems",
+      "retrieved_at": "2026-10-14T13:13:42.035387+00:00",
+      "content_hash": "10e9eaf04f17530f6bba38bdae3dddafbce4b5cb80b06609224d2d26669684a9",
+      "raw_capture_file": "local_data/country-research-2026-10-14-jp-seventh/kccs-probe/kccs-dcc.html"
+    },
+    {
+      "id": "jp-seventh-kccs-campus-profile",
+      "source_url": "https://biz.kccs.co.jp/service/zero-emission-dc/",
+      "publisher": "Kyocera Communication Systems",
+      "attribution": "Kyocera Communication Systems",
+      "retrieved_at": "2026-10-14T13:13:42.050573+00:00",
+      "content_hash": "4fa074afad0f3839af0ead8104d73254b5d1b709389d4b78afb7ec086a38c76b",
+      "raw_capture_file": "local_data/country-research-2026-10-14-jp-seventh/kccs-probe/kccs-campus.html"
+    },
+    {
+      "id": "jp-seventh-taisei-zed-design",
+      "source_url": "https://www.taisei-design.jp/de/works/2024/zedishikari.html",
+      "publisher": "Taisei Design",
+      "attribution": "Taisei Design",
+      "retrieved_at": "2026-10-14T13:19:07.334115+00:00",
+      "content_hash": "2fc4a855c9c4f9633adf6b3ab1703a9e25cd1be57c9a28ad8c9681607dae50ac",
+      "raw_capture_file": "local_data/country-research-2026-10-14-jp-seventh/kccs-probe/taisei-zed.html"
+    },
+    {
+      "id": "jp-seventh-architect-site-plan-context",
+      "source_url": "https://www.archdaily.com/1035309/zero-emission-data-center-ishikari-zed-ishikari-taisei-design-planners-architects-and-engineers",
+      "publisher": "ArchDaily / Taisei Design",
+      "attribution": "ArchDaily / Taisei Design",
+      "retrieved_at": "2026-10-14T13:19:21.057670+00:00",
+      "content_hash": "75342abe0bf76b68dd085829fe334e6838e244aa69df6f55331d23e5dc675646",
+      "raw_capture_file": "local_data/country-research-2026-10-14-jp-seventh/archdaily-architect.html"
+    },
+    {
+      "id": "jp-seventh-architect-site-plan",
+      "source_url": "https://images.adsttc.com/media/images/68f8/d977/683c/c479/b566/122d/large_jpg/site-planroof-plan-28.jpg?1761139077",
+      "publisher": "ArchDaily / Taisei Design",
+      "attribution": "ArchDaily / Taisei Design",
+      "retrieved_at": "2026-10-14T13:19:41.730642+00:00",
+      "content_hash": "3962e7fe40fba85fad995bf83564366309cb847870bf10931446d5feaf117a4d",
+      "raw_capture_file": "local_data/country-research-2026-10-14-jp-seventh/archdaily-site-plan.jpg"
+    },
+    {
+      "url": "https://www.taisei-design.jp/de/works/2024/img/ph_zed_02.jpg",
+      "final_url": "https://www.taisei-design.jp/de/works/2024/img/ph_zed_02.jpg",
+      "retrieved_at": "2026-10-14T13:19:25.137094+00:00",
+      "raw_capture_file": "local_data/country-research-2026-10-14-jp-seventh/kccs-probe/taisei-ph-zed-02.jpg",
+      "content_hash": "e434ac368f0c945fb067c3b7c8dc032434ec3f5001b15540e03e6ab5d2c9a26c",
+      "bytes": 413404
+    },
+    {
+      "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=141.298,43.1785,141.302,43.1815&bboxSR=4326&imageSR=4326&size=1600,1200&format=png&f=image",
+      "retrieved_at": "2026-10-14T13:32:14.480037+00:00",
+      "raw_capture_file": "local_data/country-research-2026-10-14-jp-next-kccs/ishikari-esri-detail.png",
+      "sha256": "6b51b98a0fe11e74e5b4a0d8331143d6dacce77db48a0cdaf505f782d170b97e",
+      "bytes": 1312002
+    },
+    {
+      "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=141.298,43.1785,141.302,43.1815&bboxSR=4326&imageSR=4326&size=1600,1200&format=png&f=pjson",
+      "retrieved_at": "2026-10-14T13:36:19.414970+00:00",
+      "raw_capture_file": "local_data/country-research-2026-10-14-jp-next-kccs/detail-export-extent.json",
+      "sha256": "4604e24dedf5af82494d6c38478ee6ad074d2a4f98caf3b02e5669c09acc4a52",
+      "bytes": 419
+    },
+    {
+      "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=141.29,43.175,141.305,43.185&bboxSR=4326&imageSR=4326&size=1500,1000&format=png&f=image",
+      "retrieved_at": "2026-10-14T13:31:30.902588+00:00",
+      "raw_capture_file": "local_data/country-research-2026-10-14-jp-next-kccs/ishikari-esri-context.png",
+      "sha256": "0a28729efd46663b6b1729b29f877ad2c02f5243d7a45e6b47e497327dd4682b",
+      "bytes": 1163099
+    }
+  ],
+  "status_scope": "July28 operator operating confirmation remains separate status evidence. This review supplies geometry only and does not change its publication-date semantics.",
+  "image_acquisition_date": null,
+  "absolute_accuracy_unknown": true,
+  "raw_imagery_redistributed": false,
+  "remaining_integration_work": [
+    "Assign new geometry evidence source IDs while preserving canonical metadata for reused source URLs.",
+    "Record exact Esri service attribution and official export documentation in the admission packet.",
+    "Retain old seventh-pass hold as historical research rather than editing the frozen packet."
+  ]
+}
