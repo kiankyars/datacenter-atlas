@@ -11,7 +11,7 @@ Search by location or company, filter by status, and open a site to see its proj
 ## Coverage
 
 <!-- atlas:current-dataset -->
-- **Coverage:** **415 physical sites**, **441 projects** and **53 countries**.
+- **Coverage:** **416 physical sites**, **442 projects** and **53 countries**.
 - **Data updated:** 2026-10-14.
 - **Status observations:** 2023-12-01 to 2026-10-10. Each record includes its source and observation
   date.
@@ -44,9 +44,9 @@ lists every file with its size and checksum. Language models and agents can star
 
 <!-- atlas:version-files -->
 `downloads/latest/` contains the current data. For reproducible work, use the
-[archived files](https://kiankyars.github.io/datacenter-atlas/downloads/2026-10-14-research-twelfth/)
+[archived files](https://kiankyars.github.io/datacenter-atlas/downloads/2026-10-14-research-thirteenth/)
 and verify them against their
-[`SHA256SUMS`](https://kiankyars.github.io/datacenter-atlas/downloads/2026-10-14-research-twelfth/SHA256SUMS).
+[`SHA256SUMS`](https://kiankyars.github.io/datacenter-atlas/downloads/2026-10-14-research-thirteenth/SHA256SUMS).
 <!-- /atlas:version-files -->
 
 Archived CSVs, GeoJSON and source records remain unchanged. Generated formats such as SQLite,
@@ -198,7 +198,7 @@ and the site offers the same citation as
 
 <!-- atlas:citation -->
 > Kyars, K. (2026). *Data Center Atlas* (2026-10-14) [Data set].
-> https://kiankyars.github.io/datacenter-atlas/downloads/2026-10-14-research-twelfth/
+> https://kiankyars.github.io/datacenter-atlas/downloads/2026-10-14-research-thirteenth/
 
 ```bibtex
 @misc{kyars2026datacenteratlas,
@@ -206,7 +206,7 @@ and the site offers the same citation as
   title  = "Data Center Atlas",
   year   = "2026",
   note   = "Data as published 2026-10-14",
-  url    = "https://kiankyars.github.io/datacenter-atlas/downloads/2026-10-14-research-twelfth/"
+  url    = "https://kiankyars.github.io/datacenter-atlas/downloads/2026-10-14-research-thirteenth/"
 }
 ```
 <!-- /atlas:citation -->

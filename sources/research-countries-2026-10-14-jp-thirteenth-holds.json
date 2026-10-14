@@ -1,0 +1,344 @@
+{
+  "format": "datacenter-atlas-country-research-v1",
+  "country": "Japan",
+  "as_of": "2026-10-14",
+  "created_at": "2026-10-14T16:46:20.320173+00:00",
+  "baseline": {
+    "dataset": "verified_construction_core/2026-10-14-research-twelfth",
+    "manifest_sha256": "c0a09c159ad9686fb4929ebcea2bdcf2f597722a2493a58781fdbd541e428e90",
+    "counts": {
+      "countries": 53,
+      "evidence": 2221,
+      "host_estate_context_projects": 3,
+      "imported_source_records": 231,
+      "imported_source_references": 1109,
+      "non_us_sites": 255,
+      "official_boundary_projects": 5,
+      "physical_sites": 415,
+      "projects": 441,
+      "snapshot_only_records": 8
+    },
+    "parent_reported_head": "07a515b"
+  },
+  "result": "No admission or physical-status refresh selected. Preserve current dataset. Two specific new geometry leads are retained; no centroid substitute selected.",
+  "selected_actions": [],
+  "priority_leads": [
+    {
+      "candidate": "TOHKnet Sendai Central Data Center Existing Operations",
+      "newly_established": "Joint BBIX / TOHKnet October 1 original explicitly describes TOHKnet as currently operating the named facility. This existing-facility assertion is separate from the same-day future-tense OCF node/service launch.",
+      "candidate_status": "operational",
+      "candidate_status_as_of": "2026-10-01",
+      "status_source": "https://www.bbix.net/information/press/2026-10-01/",
+      "status_capture": "bbix-tohknet-october1.html",
+      "status_sha256": "a4071dcb58f3b5dff1c8853d055a32f3294ffc9d36f778b9df4fc6026d829bc4",
+      "independent_original": "https://www.tohknet.co.jp/info/2026/id-407.html",
+      "exact_scope": "Existing tenant DC floors only; no entire office tower operating DC claim; no new OCF-host campus.",
+      "location_findings": "Current official site explicitly describes an unnamed tenant building near Sendai Station. PeeringDB 10707 gives ichiban-cho 1, aoba-ku without coordinates. Operator headquarters at Ichibancho 3-7-1 is not the selected facility.",
+      "location_sources": [
+        "https://www.tohknet.co.jp/service/datacenter/sendaichuodc/",
+        "https://www.as6206.peeringdb.com/fac/10707",
+        "https://www.jpserve.jp/service/dc.php"
+      ],
+      "excluded_geometry": "No point selected. Do not substitute headquarters, Sendai Station, Ichibancho district, or infer Sendai Trust Tower from nearby provider office.",
+      "capture_limitations": "Current official service page and exterior candidate URL returned 1085-byte Bot Verification HTML. Older official service/PDF URLs returned 404. Readable web extraction exists; failed/bot captures retained and labelled unusable. JPSERVE images are interior rack views and cannot identify the host building.",
+      "next_step": "Resolve a named parent-building bridge from the current operator service image or operator-published 2020 introduction, then a georeferenced named property feature. Do not repeat generic address searches.",
+      "deduplication": "No TOHKnet, Tohoku Intelligent Communication, Sendai Central or Japanese facility alias found among all 415 sites / 441 projects / 231 original records. Exact spatial duplicate check remains pending geometry."
+    },
+    {
+      "candidate": "OPTAGE Mihama AI container data center",
+      "newly_established": "Kansai Electric August 14 field report explicitly states construction is progressing in Mihama, Fukui. This is a current physical-stage statement, separate from fiscal-year target.",
+      "candidate_status": "under_construction",
+      "candidate_status_as_of": "2026-08-14",
+      "status_source": "https://www.kepco.co.jp/corporate/report/yous/16/kanden-update/article1_2.html",
+      "status_pointer": "Section 日本の通信インフラ強靱化に向けて汗をかく; sentence beginning オプテージは26年度中を目途に福井県美浜町に生成AI向けコンテナ型データセンターの建設を進めている.",
+      "status_capture": "kepco-august14-web-extract.json",
+      "status_capture_scope": "JSON serialization of exact web tool extraction, not origin HTTP bytes; direct fetch returned 403.",
+      "status_capture_sha256": "e27dbf910c98b48763f61484dd3a5f2db37641b6b7b1a8a0469c2318da6917ac",
+      "location_findings": "Operator service and public policy material name Mihama only. No exact host property established. A map symbol for Kansai Electric nuclear headquarters does not itself assert the DC occupies that campus. July 24 municipal land-sale offer has no selected-operator bridge and must not be assigned to OPTAGE.",
+      "location_sources": [
+        "https://optage.co.jp/business/service/datacenter/location/aidc/",
+        "https://www.meti.go.jp/shingikai/energy_environment/fukui_kyosokaigi/pdf/007_06_00.pdf",
+        "https://www.town.fukui-mihama.lg.jp/soshiki/12/16548.html"
+      ],
+      "corroboration_route": {
+        "meeting_date": "2026-08-27",
+        "primary_pdf": "https://www.meti.go.jp/shingikai/energy_environment/fukui_kyosokaigi/pdf/009_07_00.pdf",
+        "status": "Primary returned 403. Secondary index summary says local explanation finished and installation works begun; not promoted to primary-verified evidence.",
+        "secondary_index": "https://policyscope.jp/policy/f3d1a04a-ae08-4dbd-b1bd-f69ec65fabd1"
+      },
+      "selected_geometry": null,
+      "next_step": "Obtain exact property link from municipality project records, operator installation photo with distinctive surroundings, or readable original August 27 operator slide. No capacity, full commissioning or operating inference."
+    }
+  ],
+  "older_project_reviews": [
+    {
+      "candidate": "AI Tech Tomakomai Phase I",
+      "baseline_status_as_of": "2026-06-19",
+      "new_source": "https://www.ef-hd.com/wp-content/uploads/2026/09/2026090401_1ef.pdf",
+      "finding": "September 4 confirms the Verda MOU ended September 1, final lease and SLA remain unsigned, and talks continue nonexclusively. Source says project plans unchanged but does not give a fresh physical construction observation. Do not assign Verda a signed tenant role; do not infer paused, cancelled, completed or operating. July 17 predecessor also concerns an MOU.",
+      "proposed_action": "Research context only; preserve physical status and June 19 date."
+    },
+    {
+      "candidate": "OME Data Center04 Shinmachi9-A",
+      "baseline_status_as_of": "2026-07-15",
+      "new_source": "https://tecrowd.jp/column/construction-report/home/",
+      "finding": "Current report index still points to July 15 DC04 construction. October 9 report concerns Mongolia residence; September 15 DC05/renamed07 already admitted. Current index crawl cannot refresh old physical observation.",
+      "proposed_action": "Hold refresh."
+    },
+    {
+      "candidate": "IIJ Shiroi Phase 3",
+      "baseline_status_as_of": "2026-06-25",
+      "finding": "August inventory distinguishes existing Phases 1/2 already admitted from future Phase 3 service. No new exact-date achieved physical stage found in bounded operator/IR check.",
+      "proposed_action": "Hold refresh; do not replace existing Phase 3 project or duplicate operational campus."
+    },
+    {
+      "candidate": "SoftBank Osaka Sakai",
+      "baseline_status_as_of": "2026-06-23",
+      "finding": "No new specific primary observation found. Prior September annual-report reporting-period caveat remains. KDDI separate acquired property already admitted and must not merge.",
+      "proposed_action": "Hold refresh."
+    },
+    {
+      "candidate": "AirTrunk TOK1",
+      "baseline_status_as_of": "2026-03-10",
+      "finding": "October 7 DCD report cites Nikkei for additional investment; no matching fresh primary physical-stage source established. Official September 15 quantum-cooling partnership does not name a Japan deployment site. March financing and expansion source remains outside window.",
+      "secondary_route": "https://www.datacenterdynamics.com/en/news/airtrunk-plans-additional-1bn-investment-in-data-center-campus-in-inzai-japan/",
+      "proposed_action": "Hold refresh; no construction inference from financing."
+    },
+    {
+      "candidate": "EdgeConneX Kagoya Greater Osaka",
+      "baseline_status_as_of": "2026-03-18",
+      "finding": "Bounded operator/campus searches found March 18 commencement source; no fresh primary physical observation.",
+      "proposed_action": "Hold refresh."
+    },
+    {
+      "candidate": "NTT TKY12",
+      "baseline_status_as_of": "2026-04-22",
+      "finding": "No newer exact project status established. Original operator release is April 17; keep TKY11 separate and do not infer work from future 2030 target.",
+      "proposed_action": "Hold refresh; primary date discrepancy retained for parent review."
+    }
+  ],
+  "other_screened": [
+    {
+      "candidate": "IIJ Fukuoka Airport",
+      "finding": "Fresh August inventory known; original 2016 release explicitly withholds precise location. No exact host-property bridge; airport or district centroid rejected."
+    },
+    {
+      "candidate": "OPTAGE Sonezaki OC1",
+      "finding": "September 25 parent-company interview predominantly recalls January operation; server-room photograph explicitly January 2026. September 14 governor visit confirms visit but no standalone current operations assertion selected. July 24 Minecraft education release is generic DC context.",
+      "source": "https://media.kepco.co.jp/project/17865019"
+    },
+    {
+      "candidate": "OEC Oita Data Center",
+      "finding": "August 26 joint primary confirms OCF service began during August and existing Toyonokuni IaaS continues. Exact host still unresolved; old OEC page names SoftBank Telecom Oita DC, so corporate headquarters must not be substituted. August milestone has month precision only.",
+      "source": "https://www.bbix.net/information/press/2026-08-26/"
+    },
+    {
+      "candidate": "BroadBand Tower Ishikari Shinko",
+      "finding": "September 14 opening is a nested tenant in already-admitted Ishikari Renewable Energy DC No.1. October 7 context already retained. No duplicate campus or inferred full-capacity completion."
+    },
+    {
+      "candidate": "Highreso Genkai",
+      "finding": "Prior exact former Yutoku Elementary School identity remains useful but September demonstration release still lacks independent unambiguous current operation observation; no new admitted status."
+    }
+  ],
+  "capture_manifest": {
+    "path": "local_data/country-research-2026-10-14-jp-thirteenth/capture-manifest.json",
+    "sha256": "9e030647aabb758c0a7ea4aab6a9f6826cb810d502531901abdf23a4a448a9e6"
+  },
+  "tracked_edits": false,
+  "git_commands": false,
+  "local_findings": {
+    "path": "local_data/country-research-2026-10-14-jp-thirteenth/research-report.json",
+    "sha256": "079d06f96024f9ac5cebc3c3950ffe813805c365dd6055938f57c16bc67a9b7f"
+  },
+  "raw_captures_redistributed": false,
+  "captures": [
+    {
+      "url": "https://www.ef-hd.com/wp-content/uploads/2026/09/2026090401_1ef.pdf",
+      "retrieved_at": "2026-10-14T16:36:32.873426+00:00",
+      "resolved_url": "https://www.ef-hd.com/wp-content/uploads/2026/09/2026090401_1ef.pdf",
+      "content_type": "application/pdf",
+      "file": "local_data/country-research-2026-10-14-jp-thirteenth/efhd-september4-mou.pdf",
+      "sha256": "c483b17460fa2c16f9a1ea2f1945075b2b54362e02902a4ba95894eb6bb3c520",
+      "bytes": 178511,
+      "verified_sha256": "c483b17460fa2c16f9a1ea2f1945075b2b54362e02902a4ba95894eb6bb3c520",
+      "hash_matches": true,
+      "usable_source_capture": true,
+      "root_hash_verified": true
+    },
+    {
+      "url": "https://www.ef-hd.com/wp-content/uploads/2026/07/2026071701_1ef.pdf",
+      "retrieved_at": "2026-10-14T16:36:35.228678+00:00",
+      "resolved_url": "https://www.ef-hd.com/wp-content/uploads/2026/07/2026071701_1ef.pdf",
+      "content_type": "application/pdf",
+      "file": "local_data/country-research-2026-10-14-jp-thirteenth/efhd-july17-mou.pdf",
+      "sha256": "0dfafe1a8ff286c8f6dd9cf30f662f8b8a00aa5cb8020af9384c3ca6e77794eb",
+      "bytes": 379979,
+      "verified_sha256": "0dfafe1a8ff286c8f6dd9cf30f662f8b8a00aa5cb8020af9384c3ca6e77794eb",
+      "hash_matches": true,
+      "usable_source_capture": true,
+      "root_hash_verified": true
+    },
+    {
+      "url": "https://tecrowd.jp/column/construction-report/home/",
+      "retrieved_at": "2026-10-14T16:36:37.380784+00:00",
+      "resolved_url": "https://tecrowd.jp/column/construction-report/home/",
+      "content_type": "text/html; charset=UTF-8",
+      "file": "local_data/country-research-2026-10-14-jp-thirteenth/tecrowd-current-report-index.html",
+      "sha256": "671199a45345348381cc3f601651cc196c1dca97dba01eddca7b6a2866a390a6",
+      "bytes": 96258,
+      "verified_sha256": "671199a45345348381cc3f601651cc196c1dca97dba01eddca7b6a2866a390a6",
+      "hash_matches": true,
+      "usable_source_capture": true,
+      "root_hash_verified": true
+    },
+    {
+      "url": "https://media.kepco.co.jp/project/17865019?o=0&tg=%E6%8E%A8%E3%82%B7%E3%82%B4%E3%83%88%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB",
+      "retrieved_at": "2026-10-14T16:40:06.827775+00:00",
+      "resolved_url": "https://media.kepco.co.jp/project/17865019?o=0&tg=%E6%8E%A8%E3%82%B7%E3%82%B4%E3%83%88%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB",
+      "content_type": "text/html; charset=utf-8",
+      "file": "local_data/country-research-2026-10-14-jp-thirteenth/optage-kepco-september25.html",
+      "sha256": "c357ec46b8d0b977d28cd480a63de47e0fa47a9fba1a5f54542764b6c9137d8d",
+      "bytes": 151144,
+      "verified_sha256": "c357ec46b8d0b977d28cd480a63de47e0fa47a9fba1a5f54542764b6c9137d8d",
+      "hash_matches": true,
+      "usable_source_capture": true,
+      "root_hash_verified": true
+    },
+    {
+      "url": "https://optage.co.jp/business/service/datacenter/location/sonezaki/",
+      "retrieved_at": "2026-10-14T16:40:08.707306+00:00",
+      "resolved_url": "https://optage.co.jp/business/service/datacenter/location/sonezaki/",
+      "content_type": "text/html",
+      "file": "local_data/country-research-2026-10-14-jp-thirteenth/optage-oc1-service.html",
+      "sha256": "b9e17b3f9406e2a682e8e9fa46effc981b24bea9e853b87b84118fcc99be27dc",
+      "bytes": 43037,
+      "verified_sha256": "b9e17b3f9406e2a682e8e9fa46effc981b24bea9e853b87b84118fcc99be27dc",
+      "hash_matches": true,
+      "usable_source_capture": true,
+      "root_hash_verified": true
+    },
+    {
+      "url": "https://www.kepco.co.jp/corporate/report/yous/16/kanden-update/article1_2.html",
+      "retrieved_at": "2026-10-14T16:41:00.565647+00:00",
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "url": "https://www.bbix.net/information/press/2026-08-26/",
+      "retrieved_at": "2026-10-14T16:42:05.260476+00:00",
+      "resolved_url": "https://www.bbix.net/information/press/2026-08-26/",
+      "content_type": "text/html; charset=UTF-8",
+      "file": "local_data/country-research-2026-10-14-jp-thirteenth/bbix-oec-august26.html",
+      "sha256": "2b282a6d9864eed282bd09627466b9094d0d6d8fd572ebf521e15f916a02279f",
+      "bytes": 62411,
+      "verified_sha256": "2b282a6d9864eed282bd09627466b9094d0d6d8fd572ebf521e15f916a02279f",
+      "hash_matches": true,
+      "usable_source_capture": true,
+      "root_hash_verified": true
+    },
+    {
+      "url": "https://www.bbix.net/information/press/2026-10-01/",
+      "retrieved_at": "2026-10-14T16:42:08.197514+00:00",
+      "resolved_url": "https://www.bbix.net/information/press/2026-10-01/",
+      "content_type": "text/html; charset=UTF-8",
+      "file": "local_data/country-research-2026-10-14-jp-thirteenth/bbix-tohknet-october1.html",
+      "sha256": "a4071dcb58f3b5dff1c8853d055a32f3294ffc9d36f778b9df4fc6026d829bc4",
+      "bytes": 62860,
+      "verified_sha256": "a4071dcb58f3b5dff1c8853d055a32f3294ffc9d36f778b9df4fc6026d829bc4",
+      "hash_matches": true,
+      "usable_source_capture": true,
+      "root_hash_verified": true
+    },
+    {
+      "url": "https://www.tohknet.co.jp/service/datacenter/sendai/",
+      "retrieved_at": "2026-10-14T16:42:28.221424+00:00",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://www.tohknet.co.jp/service/datacenter/",
+      "retrieved_at": "2026-10-14T16:42:38.403834+00:00",
+      "resolved_url": "https://www.tohknet.co.jp/service/datacenter/",
+      "content_type": "text/html; charset=UTF-8",
+      "file": "local_data/country-research-2026-10-14-jp-thirteenth/tohknet-dc-index.html",
+      "sha256": "5ecb211cb100f7b973d34e458fab9104343a6be1fd3589c6b17a6976cb3f9b4f",
+      "bytes": 47358,
+      "verified_sha256": "5ecb211cb100f7b973d34e458fab9104343a6be1fd3589c6b17a6976cb3f9b4f",
+      "hash_matches": true,
+      "usable_source_capture": true,
+      "root_hash_verified": true
+    },
+    {
+      "url": "https://www.tohknet.co.jp/uploads/2020/impress_sendai_dc.pdf",
+      "retrieved_at": "2026-10-14T16:42:39.871123+00:00",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://www.tohknet.co.jp/service/datacenter/sendaichuodc/",
+      "retrieved_at": "2026-10-14T16:42:56.717770+00:00",
+      "resolved_url": "https://www.tohknet.co.jp/service/datacenter/sendaichuodc/",
+      "content_type": "text/html; charset=utf-8",
+      "file": "local_data/country-research-2026-10-14-jp-thirteenth/tohknet-sendai-current-service.html",
+      "sha256": "929edd8ff05568d92dacec71b1fcd4499d8aac0826f87ab519b13f2fa5379057",
+      "bytes": 1085,
+      "verified_sha256": "929edd8ff05568d92dacec71b1fcd4499d8aac0826f87ab519b13f2fa5379057",
+      "hash_matches": true,
+      "usable_source_capture": false,
+      "capture_limitation": "Bot verification HTML, not the requested facility page/image; excluded from evidence.",
+      "root_hash_verified": true
+    },
+    {
+      "url": "https://www.tohknet.co.jp/assets/img/service/layer3/servicelist/f5e34692720002ff95e74ca4167b28193cb95f5e.jpeg",
+      "retrieved_at": "2026-10-14T16:42:57.536457+00:00",
+      "resolved_url": "https://www.tohknet.co.jp/assets/img/service/layer3/servicelist/f5e34692720002ff95e74ca4167b28193cb95f5e.jpeg",
+      "content_type": "text/html; charset=utf-8",
+      "file": "local_data/country-research-2026-10-14-jp-thirteenth/tohknet-sendai-property-photo.jpeg",
+      "sha256": "929edd8ff05568d92dacec71b1fcd4499d8aac0826f87ab519b13f2fa5379057",
+      "bytes": 1085,
+      "verified_sha256": "929edd8ff05568d92dacec71b1fcd4499d8aac0826f87ab519b13f2fa5379057",
+      "hash_matches": true,
+      "usable_source_capture": false,
+      "capture_limitation": "Bot verification HTML, not the requested facility page/image; excluded from evidence.",
+      "root_hash_verified": true
+    },
+    {
+      "url": "https://www.jpserve.jp/service/dc.php",
+      "retrieved_at": "2026-10-14T16:43:34.697867+00:00",
+      "resolved_url": "https://www.jpserve.jp/service/dc.php",
+      "content_type": "text/html; charset=UTF-8",
+      "file": "local_data/country-research-2026-10-14-jp-thirteenth/jpserve-sendai-service.html",
+      "sha256": "a031a61f990ad1b7c214c3a6edaa71685992c4d57b2697ce0df4da48a7db8cdd",
+      "bytes": 11827,
+      "verified_sha256": "a031a61f990ad1b7c214c3a6edaa71685992c4d57b2697ce0df4da48a7db8cdd",
+      "hash_matches": true,
+      "usable_source_capture": true,
+      "root_hash_verified": true
+    },
+    {
+      "url": "https://www.jpserve.jp/assets/img/service/img-dtc01.jpg",
+      "retrieved_at": "2026-10-14T16:43:43.691007+00:00",
+      "resolved_url": "https://www.jpserve.jp/assets/img/service/img-dtc01.jpg",
+      "content_type": "image/jpeg",
+      "file": "local_data/country-research-2026-10-14-jp-thirteenth/jpserve-sendai-property1.jpg",
+      "sha256": "35ef54d42f71d0336ee7d0e222516653335e403f87aecc56d527d641ebd2b231",
+      "bytes": 176359,
+      "verified_sha256": "35ef54d42f71d0336ee7d0e222516653335e403f87aecc56d527d641ebd2b231",
+      "hash_matches": true,
+      "usable_source_capture": true,
+      "root_hash_verified": true
+    },
+    {
+      "url": "https://www.jpserve.jp/assets/img/service/img-dtc02.jpg",
+      "retrieved_at": "2026-10-14T16:43:45.454409+00:00",
+      "resolved_url": "https://www.jpserve.jp/assets/img/service/img-dtc02.jpg",
+      "content_type": "image/jpeg",
+      "file": "local_data/country-research-2026-10-14-jp-thirteenth/jpserve-sendai-property2.jpg",
+      "sha256": "42364a747c1d0b97169c51df5593470814860662c1be76cce277cc49499d3695",
+      "bytes": 310342,
+      "verified_sha256": "42364a747c1d0b97169c51df5593470814860662c1be76cce277cc49499d3695",
+      "hash_matches": true,
+      "usable_source_capture": true,
+      "root_hash_verified": true
+    }
+  ],
+  "root_review": "All captured bytes independently rehashed and counted. Root read the joint October 1 release: existing TOHKnet facility operation is distinct from future-tense OCF node/service launch. Exact tenant-building geometry remains unresolved. No headquarters or municipality point substituted."
+}
