@@ -1,0 +1,285 @@
+{
+  "format": "datacenter-atlas-country-research-resolution-v1",
+  "researched_at": "2026-10-14T12:02:46.692003+00:00",
+  "country": "Japan",
+  "baseline": "verified_construction_core/2026-10-13-research-third",
+  "baseline_commit": "4494e7a8d5453462e0666cbe54be977cfbea8b06",
+  "previous_packet": "sources/research-countries-2026-10-13-jp-third.json",
+  "maximum_new_admission_status_age_days": 90,
+  "coverage_note": "Fresh DayOne Imari primary announcement found after bounded unchanged OSK1/OSA1/Kodaira checks. Conservative announced admission with specifically named parent-property map point; no existing Japanese status changed. Miyagi location search deliberately not repeated.",
+  "raw_capture_directory": "local_data/country-research-2026-10-14-jp-fourth",
+  "raw_retention_note": "Copyright source captures stay in ignored local_data; tracked files contain factual projections and hashes only.",
+  "integration_actions_file": "sources/research-countries-2026-10-14-jp-fourth-actions.json",
+  "normalized_sources_file": "sources/research-countries-2026-10-14-jp-fourth-primary-sources.json",
+  "geometry_facts_file": "sources/research-countries-2026-10-14-jp-fourth-geometry-facts.json",
+  "publishable_action_counts": {
+    "additions": 1,
+    "status_updates": 0
+  },
+  "candidates": [
+    {
+      "id": "dayone-imari",
+      "name": "DayOne Imari Data Center Campus",
+      "action": "ready_announced_admission_with_parent_property_marker",
+      "status": "announced",
+      "status_as_of": "2026-10-02",
+      "publication_date": "2026-10-02",
+      "geometry": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            129.937257,
+            33.260395
+          ]
+        },
+        "source_id": "jp-fourth-imari-park-map",
+        "scope": "campus_locator",
+        "scope_class": "named_parent_industrial_property_map_point",
+        "authority": "compiled_reference",
+        "method": "named_property_embedded_map_coordinates",
+        "derivation": "direct_geometry",
+        "precision": "Published marker for the specifically named Imari East Industrial Park parent property; not a surveyed DayOne parcel, building, phase boundary or active work extent.",
+        "identity_review": "DayOne and Imari City identify Imari East Industrial Park. Saga prefecture guide identifies a single approximately 13.6 ha park with one approximately 7 ha industrial plateau in Matsuuracho Yamagata. Nikkan Kogyo embeds these coordinates beneath that exact park name. The map point is used only at parent-property scope.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "Publisher gives no measured horizontal accuracy or datum realization. Six decimal places are retained from embedded map attributes and do not imply survey precision."
+      },
+      "source_ids": [
+        "jp-fourth-imari-announcement",
+        "jp-fourth-imari-city-agreement",
+        "jp-fourth-imari-park-map",
+        "jp-fourth-saga-park-guide"
+      ],
+      "capacity_scope_note": "Source-specific grid/powered-land figures; no selected IT load or arithmetic addition."
+    },
+    {
+      "id": "cyrusone-kep-osk1",
+      "action": "retain_previous_hold",
+      "source_ids": [
+        "jp-fourth-cyrusone-osk1-current"
+      ],
+      "bounded_check": "Current facility page hash exactly equals October 13 capture; targeted 2026 primary search found ceremony/historical work and undated specs only.",
+      "next_step": "Dated operator/Kajima physical-progress observation within 90 days plus recovered Kyoto earthworks coordinate PDF."
+    },
+    {
+      "id": "zeus-osa1",
+      "action": "retain_previous_hold",
+      "source_ids": [
+        "jp-fourth-zeus-current"
+      ],
+      "bounded_check": "Current facility profile is byte-identical to October 13 capture. January 30 release and December 2025 start remain stale for new admission.",
+      "next_step": "Dated TokyoTatemono/Zeus physical progress or new project announcement, then exact Nankokita 1-14-1 parcel geometry."
+    },
+    {
+      "id": "dayone-kodaira",
+      "action": "retain_previous_hold",
+      "source_ids": [
+        "jp-fourth-dayone-tokyo-current"
+      ],
+      "bounded_check": "Undated market profile and indexed September ceremony repeat prior evidence. No new primary numeric property bridge obtained. Prior restricted downloads not repeated.",
+      "next_step": "Publicly viewable first-party site plan/numeric property point. Ceremony can support announced admission once geometry resolves."
+    }
+  ],
+  "existing_japan_review": {
+    "inventory": [
+      {
+        "key": "curated:jera-chiba-thermal-power-station:ai-datacenter-campus",
+        "status": "announced",
+        "as_of": "2026-10-01"
+      },
+      {
+        "key": "curated:ai-tech-tomakomai-kashiwabara:phase1-foundations",
+        "status": "under_construction",
+        "as_of": "2026-06-19"
+      },
+      {
+        "key": "curated:iij-shiroi-data-center-campus:phase-3-server-building",
+        "status": "under_construction",
+        "as_of": "2026-06-25"
+      },
+      {
+        "key": "curated:ishikari-renewable-energy-dc-1:facility",
+        "status": "operational",
+        "as_of": "2026-08-01"
+      },
+      {
+        "key": "imported:semiconductor-atlas:airtrunk-tok1-inzai",
+        "status": "partially_operational",
+        "as_of": "2026-03-10"
+      },
+      {
+        "key": "curated:tecra-ome-takinouecho:building-b",
+        "status": "permitted",
+        "as_of": "2026-09-15"
+      },
+      {
+        "key": "imported:semiconductor-atlas:ntt-gdc-tokyo-tky12-shiroi",
+        "status": "announced",
+        "as_of": "2026-04-22"
+      },
+      {
+        "key": "curated:kobe-conveyor-tunnel-dc:initial-development",
+        "status": "announced",
+        "as_of": "2026-10-06"
+      },
+      {
+        "key": "imported:semiconductor-atlas:softbank-sakai",
+        "status": "under_construction",
+        "as_of": "2026-06-23"
+      },
+      {
+        "key": "curated:tecra-ome-shinmachi-9a:building",
+        "status": "under_construction",
+        "as_of": "2026-07-15"
+      },
+      {
+        "key": "imported:semiconductor-atlas:softbank-tomakomai",
+        "status": "under_construction",
+        "as_of": "2026-08-04"
+      },
+      {
+        "key": "imported:semiconductor-atlas:edgeconnex-kyotanabe-greater-osaka",
+        "status": "under_construction",
+        "as_of": "2026-03-18"
+      }
+    ],
+    "bounded_fresh_searches": [
+      {
+        "project": "AirTrunk TOK1",
+        "url": "https://airtrunk.com/category/japan/",
+        "result": "Japan archive latest entry remains March 10; September 15 media entry is generic cryogenic partnership, not TOK1 status."
+      },
+      {
+        "project": "EdgeConneX Kyotanabe",
+        "result": "Targeted primary search did not produce a later dated site-stage observation."
+      }
+    ],
+    "scope_note": "Inventory compared for duplicate identity; this bounded pass does not claim a complete new-source audit of every inherited Japanese row."
+  },
+  "raw_capture_manifest": [
+    {
+      "id": "dayone-imari-announcement",
+      "url": "https://dayonedc.com/markets/dayone-announces-plans-for-new-data-center-development-in-kyushu-japan",
+      "resolved_url": "https://dayonedc.com/markets/dayone-announces-plans-for-new-data-center-development-in-kyushu-japan",
+      "retrieved_at": "2026-10-14T11:57:49.905746+00:00",
+      "raw_sha256": "81e48dd9147a11c9f54be43216f695314d23261cd39ed39707aa21e60db4c2d7",
+      "raw_capture_file": "local_data/country-research-2026-10-14-jp-fourth/dayone-imari-announcement.html",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 68996,
+      "evidence_capture": true
+    },
+    {
+      "id": "imari-city-agreement",
+      "url": "https://www.city.imari.lg.jp/27187.htm",
+      "resolved_url": "https://www.city.imari.lg.jp/27187.htm",
+      "retrieved_at": "2026-10-14T11:57:49.858250+00:00",
+      "raw_sha256": "7a415118df75e8bf9b824fd071b64685bbb9ca28b26a98eec8efc182436c9a2c",
+      "raw_capture_file": "local_data/country-research-2026-10-14-jp-fourth/imari-city-agreement.html",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 50841,
+      "evidence_capture": true
+    },
+    {
+      "id": "zeus-current",
+      "url": "https://www.zeusdatacenters.com/OSA1.html",
+      "resolved_url": "https://www.zeusdatacenters.com/OSA1.html",
+      "retrieved_at": "2026-10-14T11:57:49.797057+00:00",
+      "raw_sha256": "99766617400bc30a045c8939f2286897ff2f34e59ecd69fcffa49626f922bf6f",
+      "raw_capture_file": "local_data/country-research-2026-10-14-jp-fourth/zeus-current.html",
+      "content_type": "text/html; charset=UTF-8",
+      "bytes": 32937,
+      "evidence_capture": true
+    },
+    {
+      "id": "dayone-tokyo-current",
+      "url": "https://dayonedc.com/market/tokyo",
+      "resolved_url": "https://dayonedc.com/market/tokyo",
+      "retrieved_at": "2026-10-14T11:57:49.879251+00:00",
+      "raw_sha256": "3cc9ef257cb4cc63d3b68596ef71a5c3045d23151fbacffc2a124bf84c497b61",
+      "raw_capture_file": "local_data/country-research-2026-10-14-jp-fourth/dayone-tokyo-current.html",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 57430,
+      "evidence_capture": true
+    },
+    {
+      "id": "cyrusone-osk1-current",
+      "url": "https://www.cyrusone.com/data-centers/apac/osaka-japan",
+      "resolved_url": "https://www.cyrusone.com/data-centers/apac/osaka-japan",
+      "retrieved_at": "2026-10-14T11:57:48.900858+00:00",
+      "raw_sha256": "de888ba32baeccd7761229d0e24844c6b141da12ea197c45e12295036918a549",
+      "raw_capture_file": "local_data/country-research-2026-10-14-jp-fourth/cyrusone-osk1-current.html",
+      "content_type": "text/html; charset=UTF-8",
+      "bytes": 88395,
+      "evidence_capture": true
+    },
+    {
+      "id": "imari-datacentermap",
+      "url": "https://www.datacentermap.com/japan/imari/dayone-imari-city/",
+      "error": "HTTP Error 429: Too Many Requests",
+      "evidence_capture": false
+    },
+    {
+      "id": "saga-park-guide",
+      "url": "https://www.saga-kigyorichi.jp/Portals/0/%E7%94%A3%E6%A5%AD%E5%9B%A3%E5%9C%B0%E3%81%AE%E3%81%93%E3%82%99%E6%A1%88%E5%86%852024.pdf",
+      "resolved_url": "https://www.saga-kigyorichi.jp/Portals/0/%E7%94%A3%E6%A5%AD%E5%9B%A3%E5%9C%B0%E3%81%AE%E3%81%93%E3%82%99%E6%A1%88%E5%86%852024.pdf",
+      "retrieved_at": "2026-10-14T11:58:40.895117+00:00",
+      "raw_sha256": "1365d5615bdd9780c34bc41e14e88caf3402c4738dd04413f6679b38316abbf2",
+      "raw_capture_file": "local_data/country-research-2026-10-14-jp-fourth/saga-park-guide.pdf",
+      "content_type": "application/pdf",
+      "bytes": 1984442,
+      "evidence_capture": true
+    },
+    {
+      "id": "saga-property-index",
+      "url": "https://www.saga-kigyorichi.jp/property/",
+      "resolved_url": "https://www.saga-kigyorichi.jp/property/",
+      "retrieved_at": "2026-10-14T11:58:37.657951+00:00",
+      "raw_sha256": "c9585023ca1c99e56ded19c9e4e4e8e5fbc7c3df6056486e8fc9e9592181f137",
+      "raw_capture_file": "local_data/country-research-2026-10-14-jp-fourth/saga-property-index.html",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 65224,
+      "evidence_capture": true
+    },
+    {
+      "id": "saga-imari-park",
+      "url": "https://www.saga-kigyorichi.jp/property/industrialpark05.html",
+      "resolved_url": "https://www.saga-kigyorichi.jp/property/tabid/124/ctl/Login/Default.aspx?returnurl=%2fproperty%2findustrialpark05.html",
+      "retrieved_at": "2026-10-14T11:59:05.223039+00:00",
+      "raw_sha256": "3aab1427da81311a5a04c8203d6e078becd80d02f7e1210478d6d6001309ca13",
+      "raw_capture_file": "local_data/country-research-2026-10-14-jp-fourth/saga-imari-park.html",
+      "bytes": 30848,
+      "evidence_capture": false,
+      "capture_note": "Redirected login page with historical title metadata only; not selected as project or geometry evidence."
+    },
+    {
+      "id": "nikkan-imari-park",
+      "url": "https://estate.nikkan.co.jp/info/qpu6ygncwdngfb2",
+      "resolved_url": "https://estate.nikkan.co.jp/info/qpu6ygncwdngfb2",
+      "retrieved_at": "2026-10-14T12:00:11.562722+00:00",
+      "raw_sha256": "a60b02c2b56ee1472903f8221298eac9d0994195a4e0524c705c6955c0afb760",
+      "raw_capture_file": "local_data/country-research-2026-10-14-jp-fourth/nikkan-imari-park.html",
+      "bytes": 85748,
+      "evidence_capture": true
+    },
+    {
+      "id": "imari-gsi-std",
+      "url": "https://cyberjapandata.gsi.go.jp/xyz/std/16/56422/26341.png",
+      "resolved_url": "https://cyberjapandata.gsi.go.jp/xyz/std/16/56422/26341.png",
+      "retrieved_at": "2026-10-14T12:00:29.435117+00:00",
+      "raw_sha256": "98410bf32a060fd522db64bbae5dce51d0e1ab1536860d5bf2812a0834eb5eff",
+      "raw_capture_file": "local_data/country-research-2026-10-14-jp-fourth/imari-gsi-std.png",
+      "bytes": 18268,
+      "evidence_capture": true
+    }
+  ],
+  "validation": {
+    "baseline_sites": 402,
+    "baseline_projects": 426,
+    "baseline_japan_projects": 12,
+    "raw_hashes_recomputed": true,
+    "normalized_sources_sha256": "f48cb2aa72a05dffa24d024bca584b709583eca1541ba6199ee8eba581350f2d",
+    "actions_sha256": "181aae11dbca2456211e094284cb27e5e0319a234fcaaa9dc7261a15bf0d37bb",
+    "geometry_facts_sha256": "5377150a2eb3e064cc5ec5f66dee1e60af1af36cceaf2cd49e16c8ea84ec97db",
+    "unrelated_files_modified": false,
+    "commit_performed": false
+  }
+}

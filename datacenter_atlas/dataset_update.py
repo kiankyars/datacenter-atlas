@@ -257,9 +257,9 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
         for field in ("method", "precision", "identity_review"):
             _text(locator.get(field), f"locator {field}")
         derivation = locator.get("derivation", "direct_geometry")
-        _require(derivation in {"direct_geometry", "georeferenced_source_map"}, "unsupported locator derivation")
-        if derivation == "georeferenced_source_map":
-            _require(locator["authority"] == "compiled_reference", "georeferenced map locator must be a compiled reference")
+        _require(derivation in {"direct_geometry", "georeferenced_source_map", "coordinate_transform"}, "unsupported locator derivation")
+        if derivation != "direct_geometry":
+            _require(locator["authority"] == "compiled_reference", "derived locator must be a compiled reference")
         uncertainty = locator.get("horizontal_uncertainty_metres")
         if uncertainty is None:
             _text(locator.get("uncertainty_reason"), "locator uncertainty reason")

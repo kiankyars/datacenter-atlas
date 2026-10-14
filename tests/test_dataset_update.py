@@ -108,21 +108,25 @@ class DatasetUpdateTests(unittest.TestCase):
                 with self.assertRaisesRegex(UpdateError, expected):
                     self.payloads()
 
-    def test_georeferenced_map_locator_preserves_derived_authority(self):
+    def test_derived_locator_preserves_derivation_and_compiled_authority(self):
         locator = self.spec["additions"][0]["locator"]
-        locator.update(derivation="georeferenced_source_map", authority="compiled_reference",
-                       method="source_map_registered_to_reference_tiles")
-        payloads, _ = self.payloads()
-        project = next(row for row in csv.DictReader(io.StringIO(payloads["projects.csv"].decode()))
-                       if row["project_stable_key"] == self.spec["additions"][0]["project_stable_key"])
-        site = next(row for row in csv.DictReader(io.StringIO(payloads["sites.csv"].decode()))
-                    if row["site_id"] == project["site_id"])
-        self.assertEqual(project["geometry_derivation"], "georeferenced_source_map")
-        self.assertEqual(project["geometry_authority_class"], "compiled_reference")
-        self.assertEqual(json.loads(site["geometry_derivations_json"]), ["georeferenced_source_map"])
-        locator["authority"] = "official_source"
-        with self.assertRaisesRegex(UpdateError, "must be a compiled reference"):
-            self.payloads()
+        for derivation, method in (
+            ("georeferenced_source_map", "source_map_registered_to_reference_tiles"),
+            ("coordinate_transform", "operator_marker_converted_to_wgs84"),
+        ):
+            with self.subTest(derivation=derivation):
+                locator.update(derivation=derivation, authority="compiled_reference", method=method)
+                payloads, _ = self.payloads()
+                project = next(row for row in csv.DictReader(io.StringIO(payloads["projects.csv"].decode()))
+                               if row["project_stable_key"] == self.spec["additions"][0]["project_stable_key"])
+                site = next(row for row in csv.DictReader(io.StringIO(payloads["sites.csv"].decode()))
+                            if row["site_id"] == project["site_id"])
+                self.assertEqual(project["geometry_derivation"], derivation)
+                self.assertEqual(project["geometry_authority_class"], "compiled_reference")
+                self.assertEqual(json.loads(site["geometry_derivations_json"]), [derivation])
+                locator["authority"] = "official_source"
+                with self.assertRaisesRegex(UpdateError, "must be a compiled reference"):
+                    self.payloads()
         locator["derivation"] = "unreviewed_guess"
         with self.assertRaisesRegex(UpdateError, "unsupported locator derivation"):
             self.payloads()

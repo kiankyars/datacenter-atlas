@@ -1,0 +1,334 @@
+{
+  "format": "datacenter-atlas-country-geometry-facts-v1",
+  "reviewed_at": "2026-10-14",
+  "base_dataset": "verified_construction_core/2026-10-13-research-third",
+  "base_commit": "4494e7a8d5453462e0666cbe54be977cfbea8b06",
+  "base_manifest_sha256": "165adc9a4d9f8a8727bbb70c964fe9be2d4cc0946c7860f9d89c00384a39c4c4",
+  "source_files": [
+    {
+      "path": "sources/research-countries-2026-10-14-cn-boda-primary-sources.json",
+      "sha256": "a83296af9a03957d3776520ec57c7d4d1d2733c0ac2380e6fc14bffb7318a0bf"
+    }
+  ],
+  "facts": [
+    {
+      "candidate": "Boda Langfang No. 2 Intelligent Computing Campus",
+      "project_stable_key": "curated:boda-langfang-no2-intelligent-computing-campus:phase1",
+      "decision": "accepted_transformed_parent_campus_marker",
+      "source_id": "cn-boda-boda-northern-map",
+      "source_coordinates_xy": [
+        116.661689,
+        39.490269
+      ],
+      "source_coordinate_system": "BD09 longitude/latitude",
+      "source_scope": "operator_published_parent_campus_marker",
+      "coordinate_semantics_source_id": "cn-boda-baidu-coordinate-semantics",
+      "identity_bridge": "The HTML slide named 博大数据廊坊二号智算基地 carries the exact data-zuo coordinate and the page copies it unchanged into its corresponding BMap.Point marker. The dated Boda status report names this campus and specifically Phase 1. This is a named campus marker, not a generic viewport, city centroid or nearby property.",
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            116.649453,
+            39.483004
+          ]
+        },
+        "source_id": "cn-boda-boda-northern-map",
+        "scope": "campus_locator",
+        "scope_class": "operator_selected_parent_campus_marker",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "operator_bd09_marker_to_wgs84_by_reviewed_official_forward_eoia",
+        "precision": "Operator-selected parent-campus marker transformed from BD09 by EOIA inversion of the documented Baidu GPS-to-BD09 API. It does not identify a phase building, footprint, construction extent or surveyed campus centroid.",
+        "identity_review": "The HTML slide named 博大数据廊坊二号智算基地 carries the exact data-zuo coordinate and the page copies it unchanged into its corresponding BMap.Point marker. The dated Boda status report names this campus and specifically Phase 1. This is a named campus marker, not a generic viewport, city centroid or nearby property.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "Operator provides no measured positional accuracy. Absolute transformation accuracy and offset to individual phase buildings remain unknown. Numerical API roundtrip residuals and six output decimal places are not ground accuracy bounds."
+      },
+      "coordinate_transformation": {
+        "method": "equivalent_offset_iterative_approximation",
+        "method_source_id": "cn-boda-eoia-paper",
+        "equation": "estimate_next = estimate + native_bd09_target - baidu_forward(estimate)",
+        "forward_api_semantics_source_id": "cn-boda-baidu-mapwrapper-source",
+        "initial_estimate_xy": [
+          116.661689,
+          39.490269
+        ],
+        "input_crs": "BD09",
+        "output_crs": "WGS84",
+        "stop_criterion": "API forward residual below 0.01 metres using local equirectangular approximation; maximum 8 evaluations",
+        "iterations": [
+          {
+            "iteration": 0,
+            "input_xy": [
+              116.661689,
+              39.490269
+            ],
+            "forward_output_xy": [
+              116.6740323389962,
+              39.497361720917745
+            ],
+            "residual_xy": [
+              -0.012343338996203101,
+              -0.007092720917746931
+            ],
+            "residual_metres_local_approx": 1322.0708275415236,
+            "capture_id": "langfang-eoia-0"
+          },
+          {
+            "iteration": 1,
+            "input_xy": [
+              116.64934566100379,
+              39.48317627908225
+            ],
+            "forward_output_xy": [
+              116.66158101188368,
+              39.49044242804879
+            ],
+            "residual_xy": [
+              0.00010798811631218541,
+              -0.00017342804878950346
+            ],
+            "residual_metres_local_approx": 21.419339791078563,
+            "capture_id": "langfang-eoia-1"
+          },
+          {
+            "iteration": 2,
+            "input_xy": [
+              116.6494536491201,
+              39.48300285103346
+            ],
+            "forward_output_xy": [
+              116.66168956593785,
+              39.49026765116063
+            ],
+            "residual_xy": [
+              -5.659378530253889e-07,
+              1.3488393690863631e-06
+            ],
+            "residual_metres_local_approx": 0.1578280716234741,
+            "capture_id": "langfang-eoia-2"
+          },
+          {
+            "iteration": 3,
+            "input_xy": [
+              116.64945308318225,
+              39.48300419987283
+            ],
+            "forward_output_xy": [
+              116.66168899750632,
+              39.490269007385216
+            ],
+            "residual_xy": [
+              2.493678152859502e-09,
+              -7.3852177706612565e-09
+            ],
+            "residual_metres_local_approx": 0.0008495762686957103,
+            "capture_id": "langfang-eoia-3"
+          }
+        ],
+        "unrounded_result_xy": [
+          116.64945308318225,
+          39.48300419987283
+        ],
+        "rounded_result_xy": [
+          116.649453,
+          39.483004
+        ],
+        "rounded_check_source_id": "cn-boda-langfang-rounded-check",
+        "rounded_forward_xy": [
+          116.66168891352406,
+          39.49026880833001
+        ],
+        "rounded_roundtrip_residual_metres": 0.022593056645333103,
+        "numerical_residual_is_ground_accuracy": false,
+        "transform_script_local": "local_data/country-research-2026-10-14-cn-boda/eoia.py",
+        "transform_script_sha256": "ae46c22f9a4b83cc99c93d977ef615462d4e22c78ccd280524d6ecbd7f55e470"
+      },
+      "horizontal_uncertainty_metres": null,
+      "horizontal_uncertainty_unknown_reason": "Operator provides no measured positional accuracy. Absolute transformation accuracy and offset to individual phase buildings remain unknown. Numerical API roundtrip residuals and six output decimal places are not ground accuracy bounds.",
+      "independent_ground_marker_obtained": false
+    },
+    {
+      "candidate": "Boda Shenzhen Qianhai No. 1 Intelligent Computing Campus",
+      "project_stable_key": "curated:boda-shenzhen-qianhai-no1-intelligent-computing-campus:operating-campus",
+      "decision": "accepted_transformed_parent_campus_marker",
+      "source_id": "cn-boda-boda-southern-map",
+      "source_coordinates_xy": [
+        113.908988,
+        22.520355
+      ],
+      "source_coordinate_system": "BD09 longitude/latitude",
+      "source_scope": "operator_published_parent_campus_marker",
+      "coordinate_semantics_source_id": "cn-boda-baidu-coordinate-semantics",
+      "identity_bridge": "The HTML slide named 深圳前海一号智算基地 carries the exact data-zuo coordinate and the page copies it unchanged into its corresponding BMap.Point marker. The dated Boda status report names this campus. This is a named campus marker, not a generic viewport, city centroid or nearby property.",
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            113.89766,
+            22.517282
+          ]
+        },
+        "source_id": "cn-boda-boda-southern-map",
+        "scope": "campus_locator",
+        "scope_class": "operator_selected_parent_campus_marker",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "operator_bd09_marker_to_wgs84_by_reviewed_official_forward_eoia",
+        "precision": "Operator-selected parent-campus marker transformed from BD09 by EOIA inversion of the documented Baidu GPS-to-BD09 API. It does not identify a phase building, footprint, construction extent or surveyed campus centroid.",
+        "identity_review": "The HTML slide named 深圳前海一号智算基地 carries the exact data-zuo coordinate and the page copies it unchanged into its corresponding BMap.Point marker. The dated Boda status report names this campus. This is a named campus marker, not a generic viewport, city centroid or nearby property.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "Operator provides no measured positional accuracy. Absolute transformation accuracy and offset to individual phase buildings remain unknown. Numerical API roundtrip residuals and six output decimal places are not ground accuracy bounds."
+      },
+      "coordinate_transformation": {
+        "method": "equivalent_offset_iterative_approximation",
+        "method_source_id": "cn-boda-eoia-paper",
+        "equation": "estimate_next = estimate + native_bd09_target - baidu_forward(estimate)",
+        "forward_api_semantics_source_id": "cn-boda-baidu-mapwrapper-source",
+        "initial_estimate_xy": [
+          113.908988,
+          22.520355
+        ],
+        "input_crs": "BD09",
+        "output_crs": "WGS84",
+        "stop_criterion": "API forward residual below 0.01 metres using local equirectangular approximation; maximum 8 evaluations",
+        "iterations": [
+          {
+            "iteration": 0,
+            "input_xy": [
+              113.908988,
+              22.520355
+            ],
+            "forward_output_xy": [
+              113.92034603414491,
+              22.523230130256838
+            ],
+            "residual_xy": [
+              -0.011358034144919316,
+              -0.0028751302568394976
+            ],
+            "residual_metres_local_approx": 1211.0191625977877,
+            "capture_id": "qianhai-eoia-0"
+          },
+          {
+            "iteration": 1,
+            "input_xy": [
+              113.89762996585507,
+              22.51747986974316
+            ],
+            "forward_output_xy": [
+              113.90895766220532,
+              22.520553769920014
+            ],
+            "residual_xy": [
+              3.0337794669321738e-05,
+              -0.00019876992001499616
+            ],
+            "residual_metres_local_approx": 22.34590465462349,
+            "capture_id": "qianhai-eoia-1"
+          },
+          {
+            "iteration": 2,
+            "input_xy": [
+              113.89766030364974,
+              22.517281099823144
+            ],
+            "forward_output_xy": [
+              113.90898820879009,
+              22.520354516277663
+            ],
+            "residual_xy": [
+              -2.0879009809959825e-07,
+              4.837223350762088e-07
+            ],
+            "residual_metres_local_approx": 0.057970423715720656,
+            "capture_id": "qianhai-eoia-2"
+          },
+          {
+            "iteration": 3,
+            "input_xy": [
+              113.89766009485965,
+              22.51728158354548
+            ],
+            "forward_output_xy": [
+              113.90898799917056,
+              22.52035500343188
+            ],
+            "residual_xy": [
+              8.294307463074801e-10,
+              -3.431882333870817e-09
+            ],
+            "residual_metres_local_approx": 0.0003914421837947722,
+            "capture_id": "qianhai-eoia-3"
+          }
+        ],
+        "unrounded_result_xy": [
+          113.89766009485965,
+          22.51728158354548
+        ],
+        "rounded_result_xy": [
+          113.89766,
+          22.517282
+        ],
+        "rounded_check_source_id": "cn-boda-qianhai-rounded-check",
+        "rounded_forward_xy": [
+          113.90898790379781,
+          22.520355421422696
+        ],
+        "rounded_roundtrip_residual_metres": 0.04794446325036871,
+        "numerical_residual_is_ground_accuracy": false,
+        "transform_script_local": "local_data/country-research-2026-10-14-cn-boda/eoia.py",
+        "transform_script_sha256": "ae46c22f9a4b83cc99c93d977ef615462d4e22c78ccd280524d6ecbd7f55e470"
+      },
+      "horizontal_uncertainty_metres": null,
+      "horizontal_uncertainty_unknown_reason": "Operator provides no measured positional accuracy. Absolute transformation accuracy and offset to individual phase buildings remain unknown. Numerical API roundtrip residuals and six output decimal places are not ground accuracy bounds.",
+      "independent_ground_marker_obtained": false
+    }
+  ],
+  "approved_geometries": [
+    {
+      "project_stable_key": "curated:boda-langfang-no2-intelligent-computing-campus:phase1",
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            116.649453,
+            39.483004
+          ]
+        },
+        "source_id": "cn-boda-boda-northern-map",
+        "scope": "campus_locator",
+        "scope_class": "operator_selected_parent_campus_marker",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "operator_bd09_marker_to_wgs84_by_reviewed_official_forward_eoia",
+        "precision": "Operator-selected parent-campus marker transformed from BD09 by EOIA inversion of the documented Baidu GPS-to-BD09 API. It does not identify a phase building, footprint, construction extent or surveyed campus centroid.",
+        "identity_review": "The HTML slide named 博大数据廊坊二号智算基地 carries the exact data-zuo coordinate and the page copies it unchanged into its corresponding BMap.Point marker. The dated Boda status report names this campus and specifically Phase 1. This is a named campus marker, not a generic viewport, city centroid or nearby property.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "Operator provides no measured positional accuracy. Absolute transformation accuracy and offset to individual phase buildings remain unknown. Numerical API roundtrip residuals and six output decimal places are not ground accuracy bounds."
+      }
+    },
+    {
+      "project_stable_key": "curated:boda-shenzhen-qianhai-no1-intelligent-computing-campus:operating-campus",
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            113.89766,
+            22.517282
+          ]
+        },
+        "source_id": "cn-boda-boda-southern-map",
+        "scope": "campus_locator",
+        "scope_class": "operator_selected_parent_campus_marker",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "operator_bd09_marker_to_wgs84_by_reviewed_official_forward_eoia",
+        "precision": "Operator-selected parent-campus marker transformed from BD09 by EOIA inversion of the documented Baidu GPS-to-BD09 API. It does not identify a phase building, footprint, construction extent or surveyed campus centroid.",
+        "identity_review": "The HTML slide named 深圳前海一号智算基地 carries the exact data-zuo coordinate and the page copies it unchanged into its corresponding BMap.Point marker. The dated Boda status report names this campus. This is a named campus marker, not a generic viewport, city centroid or nearby property.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "Operator provides no measured positional accuracy. Absolute transformation accuracy and offset to individual phase buildings remain unknown. Numerical API roundtrip residuals and six output decimal places are not ground accuracy bounds."
+      }
+    }
+  ],
+  "review_scope": "Researcher reviewed the published EOIA equation, Baidu-authored API argument semantics, exact operator identity bridge and captured numerical results. Parent integrator independently accepted the documented forward-API/EOIA method with coordinate_transform derivation and compiled_reference authority; no claim of an independent ground control check."
+}
