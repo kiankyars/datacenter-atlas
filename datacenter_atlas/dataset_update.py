@@ -186,6 +186,59 @@ def _site_from_project(project, name):
     site.update({key + "_json": _json([project[field]]) for key, field in lists.items()})
     return site
 
+def _inherited_campus_locator(locator, site, baseline_projects, baseline_evidence):
+    """Reuse a pinned baseline locator, without reinterpreting its legacy sources."""
+    allowed = {"reuse_from_project_id", "geometry_evidence_id", "geometry_identity_evidence_ids",
+               "scope", "identity_review"}
+    _require(set(locator) <= allowed, "inherited campus locator does not permit geometry or provenance overrides")
+    _require(site is not None, "locator inheritance requires an existing baseline site")
+    reference_id = _text(locator.get("reuse_from_project_id"), "baseline locator project reference")
+    reference = baseline_projects.get(reference_id)
+    _require(reference is not None, "locator reference must name a baseline project")
+    _require(reference["site_id"] == site["site_id"]
+             and reference["physical_site_stable_key"] == site["physical_site_stable_key"],
+             "locator reference must belong to the same baseline site")
+    _require(locator.get("scope") == reference["geometry_use_scope"] == "campus_locator",
+             "locator inheritance requires campus scope")
+    _text(locator.get("identity_review"), "locator identity review")
+    _require(reference["geometry_type"] in {"Point", "Polygon"}
+             and json.loads(reference["geometry_json"])["type"] == reference["geometry_type"],
+             "only baseline Point or Polygon campus locators can be inherited")
+    scalar_fields = ("latitude", "longitude", "geometry_json", "geometry_type",
+                     "horizontal_uncertainty_metres", "horizontal_uncertainty_unknown_reason")
+    _require(all(reference[field] == site[field] for field in scalar_fields),
+             "baseline project and site locator geometry, coordinates and uncertainty must agree exactly")
+    provenance_fields = {
+        "geometry_source_entity_kinds": "geometry_source_entity_kind", "geometry_derivations": "geometry_derivation",
+        "geometry_methods": "geometry_method", "geometry_scope_classes": "geometry_scope_class",
+        "geometry_authority_classes": "geometry_authority_class", "geometry_use_scopes": "geometry_use_scope",
+        "geometry_precision_scopes": "geometry_precision_scope", "geometry_evidence_ids": "geometry_evidence_id",
+    }
+    _require(all(json.loads(site[field + "_json"]) == [reference[target]]
+                 for field, target in provenance_fields.items()),
+             "baseline project and site locator provenance and precision must agree exactly")
+    geometry_id = _text(locator.get("geometry_evidence_id"), "inherited geometry evidence ID")
+    _require(geometry_id == reference["geometry_evidence_id"], "inherited geometry evidence ID must match the baseline project")
+    identity_ids = locator.get("geometry_identity_evidence_ids")
+    _require(isinstance(identity_ids, list) and all(isinstance(value, str) and value for value in identity_ids)
+             and len(identity_ids) == len(set(identity_ids)), "inherited geometry identity evidence IDs must be an explicit unique list")
+    for evidence_id, role in [(geometry_id, "geometry")] + [(value, "context:geometry_identity") for value in identity_ids]:
+        evidence = baseline_evidence.get(evidence_id)
+        _require(evidence is not None, "inherited locator evidence must exist in the baseline")
+        _require(reference_id in json.loads(evidence["project_ids_json"])
+                 and role in json.loads(evidence["roles_json"]),
+                 "inherited locator evidence must have its baseline project association and geometry role")
+    _require(baseline_evidence[geometry_id]["source_url"] == reference["geometry_source_url"],
+             "inherited geometry source URL must match the baseline evidence")
+    expected_identity_ids = {evidence_id for evidence_id, evidence in baseline_evidence.items()
+                             if reference_id in json.loads(evidence["project_ids_json"])
+                             and "context:geometry_identity" in json.loads(evidence["roles_json"])}
+    _require(set(identity_ids) == expected_identity_ids,
+             "inherited locator must pin all baseline geometry identity evidence")
+    fields = scalar_fields + tuple(provenance_fields.values()) + ("geometry_source_url",)
+    return {field: reference[field] for field in fields}, [geometry_id, *identity_ids]
+
+
 
 def _feature(site):
     properties = {key: site[key] for key in (
@@ -229,6 +282,10 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
     by_key = {row["project_stable_key"]: row for row in projects}
     sites_by_key = {row["physical_site_stable_key"]: row for row in sites}
     base_site_keys = set(sites_by_key)
+    # Later actions and source associations must never become inheritance inputs.
+    baseline_projects = {row["project_id"]: copy.deepcopy(row) for row in projects}
+    baseline_sites = copy.deepcopy(sites_by_key)
+    baseline_evidence = {row["evidence_id"]: copy.deepcopy(row) for row in evidence}
     expanded_site_keys = set()
     evidence_by_id = {row["evidence_id"]: row for row in evidence}
     touched = set()
@@ -277,44 +334,58 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
         status_method, status_role = _status_metadata(status["value"])
         if sources[status["source_id"]]["kind"] == "news":
             status_method = "attributed_firsthand_physical_status_report"
-        geometry = locator["geometry"]
-        _require(geometry["type"] == "Point", "new point admissions only; complex boundary changes require a separate geometry review")
-        coords = geometry["coordinates"]
-        _require(isinstance(coords, list) and len(coords) == 2 and all(isinstance(n, (int, float)) and not isinstance(n, bool) and math.isfinite(n) for n in coords), "invalid point coordinates")
-        lon, lat = coords
-        _require(-180 <= lon <= 180 and -90 <= lat <= 90, "point outside coordinate range")
-        _require(locator["scope"] in {"project_locator", "reviewed_site_locator", "campus_locator"}, "new locator must locate the project or campus")
-        for field in ("method", "precision", "identity_review"):
-            _text(locator.get(field), f"locator {field}")
-        derivation = locator.get("derivation", "direct_geometry")
-        _require(derivation in {"direct_geometry", "georeferenced_source_map", "coordinate_transform"}, "unsupported locator derivation")
-        if derivation != "direct_geometry":
-            _require(locator["authority"] == "compiled_reference", "derived locator must be a compiled reference")
-        uncertainty = locator.get("horizontal_uncertainty_metres")
-        if uncertainty is None:
-            _text(locator.get("uncertainty_reason"), "locator uncertainty reason")
+        inherited_evidence_ids = []
+        if "reuse_from_project_id" in locator:
+            geometry_fields, inherited_evidence_ids = _inherited_campus_locator(
+                locator, baseline_sites.get(site_key), baseline_projects, baseline_evidence)
         else:
-            _require(isinstance(uncertainty, (int, float)) and not isinstance(uncertainty, bool) and math.isfinite(uncertainty) and uncertainty >= 0, "invalid horizontal uncertainty")
-        if existing_site:
-            _require(locator["scope"] == "campus_locator" and geometry == json.loads(existing_site["geometry_json"]),
-                     "existing site addition must reuse its reviewed campus point")
-            _require((str(uncertainty) if uncertainty is not None else "") == existing_site["horizontal_uncertainty_metres"]
-                     and locator.get("uncertainty_reason", "") == existing_site["horizontal_uncertainty_unknown_reason"],
-                     "existing campus locator uncertainty must be preserved")
+            _require("geometry" in locator, "locator needs point geometry or an explicit baseline project reference")
+            geometry = locator["geometry"]
+            _require(geometry["type"] == "Point", "new point admissions only; complex boundary changes require a separate geometry review")
+            coords = geometry["coordinates"]
+            _require(isinstance(coords, list) and len(coords) == 2 and all(isinstance(n, (int, float)) and not isinstance(n, bool) and math.isfinite(n) for n in coords), "invalid point coordinates")
+            lon, lat = coords
+            _require(-180 <= lon <= 180 and -90 <= lat <= 90, "point outside coordinate range")
+            _require(locator["scope"] in {"project_locator", "reviewed_site_locator", "campus_locator"}, "new locator must locate the project or campus")
+            for field in ("method", "precision", "identity_review"):
+                _text(locator.get(field), f"locator {field}")
+            derivation = locator.get("derivation", "direct_geometry")
+            _require(derivation in {"direct_geometry", "georeferenced_source_map", "coordinate_transform"}, "unsupported locator derivation")
+            if derivation != "direct_geometry":
+                _require(locator["authority"] == "compiled_reference", "derived locator must be a compiled reference")
+            uncertainty = locator.get("horizontal_uncertainty_metres")
+            if uncertainty is None:
+                _text(locator.get("uncertainty_reason"), "locator uncertainty reason")
+            else:
+                _require(isinstance(uncertainty, (int, float)) and not isinstance(uncertainty, bool) and math.isfinite(uncertainty) and uncertainty >= 0, "invalid horizontal uncertainty")
+            if existing_site:
+                _require(locator["scope"] == "campus_locator" and geometry == json.loads(existing_site["geometry_json"]),
+                         "existing site addition must reuse its reviewed campus point")
+                _require((str(uncertainty) if uncertainty is not None else "") == existing_site["horizontal_uncertainty_metres"]
+                         and locator.get("uncertainty_reason", "") == existing_site["horizontal_uncertainty_unknown_reason"],
+                         "existing campus locator uncertainty must be preserved")
+            geometry_fields = dict(
+                latitude=str(lat), longitude=str(lon), geometry_json=_json(geometry), geometry_type="Point",
+                geometry_source_entity_kind="campus", geometry_derivation=derivation, geometry_method=locator["method"],
+                geometry_scope_class=locator["scope_class"], geometry_authority_class=locator["authority"], geometry_use_scope=locator["scope"],
+                geometry_precision_scope=locator["precision"], horizontal_uncertainty_metres=str(uncertainty) if uncertainty is not None else "",
+                horizontal_uncertainty_unknown_reason=locator.get("uncertainty_reason", ""),
+                geometry_source_url=sources[locator["source_id"]]["source_url"],
+            )
         iso = item["country_iso_a2"]
         _require(len(iso) == 2 and iso.isascii() and iso.isupper(), "invalid ISO country code")
         pid = str(uuid5(NAMESPACE_URL, key))
         sid = existing_site["site_id"] if existing_site else "vcc-site-" + _sha(site_key.encode())[:20]
+        if inherited_evidence_ids:
+            for evidence_id in inherited_evidence_ids:
+                evidence_row = evidence_by_id[evidence_id]
+                evidence_row["project_ids_json"] = _json(sorted(set(json.loads(evidence_row["project_ids_json"])) | {pid}))
+        else:
+            geometry_fields["geometry_evidence_id"] = associate(locator["source_id"], pid, "geometry")
         row = {field["name"]: "[]" if field["logical_type"] == "json_array" else "" for field in schema["tables"]["projects.csv"]["fields"]}
         row.update(
             project_id=pid, project_stable_key=key, site_id=sid, physical_site_stable_key=site_key,
             name=_text(item["name"], "project name"), country=_text(item["country"], "country"), country_iso_a2=iso,
-            latitude=str(lat), longitude=str(lon), geometry_json=_json(geometry), geometry_type="Point",
-            geometry_source_entity_kind="campus", geometry_derivation=derivation, geometry_method=locator["method"],
-            geometry_scope_class=locator["scope_class"], geometry_authority_class=locator["authority"], geometry_use_scope=locator["scope"],
-            geometry_precision_scope=locator["precision"], horizontal_uncertainty_metres=str(uncertainty) if uncertainty is not None else "",
-            horizontal_uncertainty_unknown_reason=locator.get("uncertainty_reason", ""),
-            geometry_evidence_id=associate(locator["source_id"], pid, "geometry"),
             last_observed_physical_status=status["value"], status_as_of=status["as_of"], status_method=status_method,
             status_evidence_id=associate(status["source_id"], pid, status_role),
             verification_posture=(PROJECT_RECORD_POSTURE if status["value"] in PLANNED_STATUSES else "authoritative_physical_observation_plus_reviewed_site_locator"),
@@ -325,8 +396,9 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
             power_observations_json="[]", power_unknown_reason="no typed power observation selected; not estimated",
             annual_energy_observations_json="[]", annual_energy_unknown_reason="no scoped annual-energy inputs; not estimated",
             efficiency_observations_json="[]", efficiency_unknown_reason="no scoped PUE or WUE observation",
-            status_source_url=sources[status["source_id"]]["source_url"], geometry_source_url=sources[locator["source_id"]]["source_url"],
+            status_source_url=sources[status["source_id"]]["source_url"],
         )
+        row.update(geometry_fields)
         if existing_site:
             locator_fields = (
                 "geometry_source_entity_kind", "geometry_derivation", "geometry_method", "geometry_scope_class",

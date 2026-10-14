@@ -13,6 +13,7 @@ import shutil
 import tempfile
 import unittest
 from unittest.mock import patch
+from uuid import NAMESPACE_URL, uuid5
 
 try:
     from datacenter_atlas.dataset_update import ROOT, UpdateError, build_update, update_payloads, validate_update
@@ -163,6 +164,24 @@ class DatasetUpdateTests(unittest.TestCase):
                 self.spec["additions"] = [{**valid, **changes}]
                 with self.assertRaisesRegex(UpdateError, expected):
                     self.payloads()
+
+    def test_explicit_existing_point_locator_reuse_preserves_original_fields(self):
+        original = self.prepare_existing_campus()
+        self.spec["additions"][0]["locator"] = {
+            "reuse_from_project_id": original["project_id"], "geometry_evidence_id": original["geometry_evidence_id"],
+            "geometry_identity_evidence_ids": [], "scope": "campus_locator",
+            "identity_review": "The second phase is on the same reviewed campus.",
+        }
+        payloads, manifest = self.payloads()
+        members = [row for row in csv.DictReader(io.StringIO(payloads["projects.csv"].decode()))
+                   if row["site_id"] == original["site_id"]]
+        self.assertEqual(manifest["counts"]["physical_sites"], 200)
+        self.assertEqual(len(members), 2)
+        self.assertIn(original, members)
+        added = next(row for row in members if row != original)
+        for field in original:
+            if field.startswith("geometry_") or field.startswith("horizontal_uncertainty") or field in {"latitude", "longitude"}:
+                self.assertEqual(added[field], original[field], field)
 
     def test_news_requires_attributed_firsthand_physical_status_and_preserves_kind(self):
         source = self.sources["sources"][0]
@@ -499,6 +518,250 @@ class DatasetUpdateTests(unittest.TestCase):
         self.assertNotIn(original["project_id"].encode(), payloads["evidence.csv"])
         self.spec["withdrawals"][0]["replaces_status_evidence_id"] = "wrong"
         with self.assertRaisesRegex(UpdateError, "name the removed status evidence"):
+            self.payloads()
+
+
+class InheritedCampusLocatorTests(unittest.TestCase):
+    """Exercise the actual legacy Shiroi polygon and evidence, not a reimported facsimile."""
+
+    write = DatasetUpdateTests.write
+    payloads = DatasetUpdateTests.payloads
+
+    def setUp(self):
+        DatasetUpdateTests.setUp(self)
+        self.baseline = ROOT / "verified_construction_core/2026-10-14-research-ninth"
+        shutil.copytree(self.baseline, self.root / "ninth")
+        self.tables = {name: list(csv.DictReader(io.StringIO((self.baseline / name).read_text())))
+                       for name in ("sites.csv", "projects.csv", "evidence.csv")}
+        self.reference = next(row for row in self.tables["projects.csv"]
+                              if row["project_id"] == "1f33fed8-b0f9-50e2-8fac-56d135325c27")
+        self.site = next(row for row in self.tables["sites.csv"] if row["site_id"] == self.reference["site_id"])
+        self.identity_id = "846dc1a1-5268-544e-92c2-2df087877703"
+        source_ids = {"jp-ninth-iij-matsue-operating-inventory-ja", "jp-ninth-iij-matsue-operating-inventory-en",
+                      "jp-ninth-iij-financial-library"}
+        packet = json.loads((ROOT / "sources/research-countries-2026-10-14-jp-ninth-iij-primary-sources.json").read_bytes())
+        self.sources = {"sources": [source for source in packet["sources"] if source["id"] in source_ids]}
+        self.spec.update(updated_at="2026-10-14", base_dataset="ninth",
+                         base_manifest_sha256=hashlib.sha256((self.baseline / "manifest.json").read_bytes()).hexdigest())
+        self.addition = {
+            "project_stable_key": "curated:iij-shiroi-data-center-campus:existing-operations",
+            "physical_site_stable_key": self.reference["physical_site_stable_key"],
+            "existing_site_id": self.site["site_id"], "site_name": self.site["name"],
+            "country": "Japan", "country_iso_a2": "JP", "name": "IIJ Shiroi Existing Operations (Phases 1 and 2)",
+            "site_identity_review": "Same Shiroi campus, operating phases distinct from Phase 3 construction.",
+            "distinctness_review": "Existing operations at the same campus; Phase 3 remains a separate project.",
+            "successor_review": "August inventory explicitly separates existing operations and Phase 3.",
+            "status": {"value": "operational", "as_of": "2026-08-07", "source_id": "jp-ninth-iij-matsue-operating-inventory-ja",
+                       "summary": "The August inventory confirms operation of Shiroi Phases 1 and 2."},
+            "locator": {"reuse_from_project_id": self.reference["project_id"],
+                        "geometry_evidence_id": self.reference["geometry_evidence_id"],
+                        "geometry_identity_evidence_ids": [self.identity_id], "scope": "campus_locator",
+                        "identity_review": "Retain the reviewed broad Sakuradai 5-chome address-area locator and all caveats."},
+            "roles": [{"party": "Internet Initiative Japan", "role": role, "relationship_scope": "current",
+                       "source_id": "jp-ninth-iij-matsue-operating-inventory-ja"} for role in ("owner", "operator")],
+            "context_source_ids": ["jp-ninth-iij-matsue-operating-inventory-en", "jp-ninth-iij-financial-library"],
+        }
+        self.spec["additions"] = [copy.deepcopy(self.addition)]
+
+    def replace_baseline_table(self, name, rows):
+        """Repin a corrupted baseline fixture so inheritance itself must reject it."""
+        out = io.StringIO(newline="")
+        writer = csv.DictWriter(out, fieldnames=list(self.tables[name][0]), lineterminator="\n")
+        writer.writeheader()
+        writer.writerows(rows)
+        raw = out.getvalue().encode()
+        (self.root / "ninth" / name).write_bytes(raw)
+        manifest_path = self.root / "ninth/manifest.json"
+        manifest = json.loads(manifest_path.read_bytes())
+        manifest["files"][name] = {"bytes": len(raw), "sha256": hashlib.sha256(raw).hexdigest()}
+        manifest_path.write_text(json.dumps(manifest))
+        digest = hashlib.sha256(manifest_path.read_bytes()).hexdigest()
+        (manifest_path.parent / "manifest.sha256").write_text(digest + "  manifest.json\n")
+        self.spec["base_manifest_sha256"] = digest
+
+    def test_shiroi_preserves_polygon_legacy_evidence_and_independent_phase(self):
+        payloads, manifest = self.payloads()
+        self.assertEqual(manifest["counts"]["physical_sites"], 412)
+        self.assertEqual(manifest["counts"]["projects"], 438)
+        self.assertEqual(manifest["counts"]["evidence"], 2192)
+        projects = {row["project_id"]: row for row in csv.DictReader(io.StringIO(payloads["projects.csv"].decode()))}
+        for original in self.tables["projects.csv"]:
+            self.assertEqual(projects[original["project_id"]], original)
+        added = next(row for row in projects.values() if row["project_stable_key"] == self.addition["project_stable_key"])
+        self.assertEqual(added["last_observed_physical_status"], "operational")
+        self.assertEqual(added["status_as_of"], "2026-08-07")
+        for field in self.reference:
+            if field.startswith("geometry_") or field.startswith("horizontal_uncertainty") or field in {"latitude", "longitude"}:
+                self.assertEqual(added[field], self.reference[field], field)
+        self.assertEqual(added["geometry_type"], "Polygon")
+        self.assertEqual(added["geometry_source_entity_kind"], "address_area")
+        self.assertEqual((added["longitude"], added["latitude"]), ("140.099553", "35.799113"))
+        for field in ("power_observations_json", "annual_energy_observations_json", "efficiency_observations_json", "workloads_json", "project_details_json"):
+            self.assertEqual(added[field], "[]")
+        self.assertEqual(added["independent_imagery_verification"], "false")
+        site = next(row for row in csv.DictReader(io.StringIO(payloads["sites.csv"].decode())) if row["site_id"] == self.site["site_id"])
+        self.assertEqual(site["project_count"], "2")
+        self.assertEqual(json.loads(site["statuses_json"]), ["operational", "under_construction"])
+        for field in self.site:
+            if field.startswith("geometry_") or field.startswith("horizontal_uncertainty") or field in {"latitude", "longitude"}:
+                self.assertEqual(site[field], self.site[field], field)
+        evidence = {row["evidence_id"]: row for row in csv.DictReader(io.StringIO(payloads["evidence.csv"].decode()))}
+        selected_ids = {self.reference["geometry_evidence_id"], self.identity_id}
+        selected_ids.update(str(uuid5(NAMESPACE_URL, source["source_url"] + "#" + source["content_hash"]))
+                            for source in self.sources["sources"])
+        for original in self.tables["evidence.csv"]:
+            expected = copy.deepcopy(original)
+            if original["evidence_id"] in selected_ids:
+                expected["project_ids_json"] = json.dumps(sorted(set(json.loads(original["project_ids_json"])) | {added["project_id"]}), separators=(",", ":"))
+            self.assertEqual(evidence[original["evidence_id"]], expected)
+        for evidence_id in (self.reference["geometry_evidence_id"], self.identity_id):
+            self.assertEqual(evidence[evidence_id]["retrieved_at"], "2026-08-23")
+        feature = next(feature for feature in json.loads(payloads["sites.geojson"])["features"] if feature["id"] == self.site["site_id"])
+        self.assertEqual(feature["geometry"], json.loads(self.site["geometry_json"]))
+        self.assertEqual(feature["properties"]["project_count"], 2)
+        out = self.root / "2026-10-14-shiroi-test"
+        out.mkdir()
+        for name, raw in payloads.items():
+            (out / name).write_bytes(raw)
+        atlas = public_site.load_atlas(public_site._load_version(out), "https://example.org")
+        self.assertEqual(len(atlas.projects_by_site[self.site["site_id"]]), 2)
+        self.assertEqual(atlas.site_by_id[self.site["site_id"]]["geometry"], feature["geometry"])
+        self.assertTrue(selected_ids <= {row["evidence_id"] for row in atlas.evidence_by_project[added["project_id"]]})
+
+    def test_reuse_requires_explicit_baseline_site_and_project(self):
+        wrong_project = next(row for row in self.tables["projects.csv"] if row["site_id"] != self.site["site_id"])
+        for changes, message in (
+            ({"existing_site_id": None}, "explicit matching"),
+            ({"existing_site_id": "wrong"}, "explicit matching"),
+            ({"site_identity_review": ""}, "site identity review"),
+            ({"site_name": "Wrong campus"}, "name and country"),
+            ({"country": "China"}, "name and country"),
+            ({"country_iso_a2": "CN"}, "name and country"),
+            ({"physical_site_stable_key": "new-site", "existing_site_id": None}, "existing baseline site"),
+            ({"locator": {**self.addition["locator"], "reuse_from_project_id": ""}}, "project reference"),
+            ({"locator": {**self.addition["locator"], "reuse_from_project_id": "unknown"}}, "baseline project"),
+            ({"locator": {**self.addition["locator"], "reuse_from_project_id": wrong_project["project_id"]}}, "same baseline site"),
+        ):
+            with self.subTest(changes=changes):
+                self.spec["additions"] = [{**self.addition, **changes}]
+                with self.assertRaisesRegex(UpdateError, message):
+                    self.payloads()
+        first = copy.deepcopy(self.addition)
+        second = copy.deepcopy(self.addition)
+        second["project_stable_key"] += ":later"
+        second["locator"]["reuse_from_project_id"] = str(uuid5(NAMESPACE_URL, first["project_stable_key"]))
+        self.spec["additions"] = [first, second]
+        with self.assertRaisesRegex(UpdateError, "baseline project"):
+            self.payloads()
+
+    def test_reuse_rejects_missing_or_substituted_evidence_and_overrides(self):
+        valid = self.addition["locator"]
+        cases = [
+            ({**valid, "geometry_evidence_id": "wrong"}, "must match"),
+            ({**valid, "geometry_identity_evidence_ids": ["unknown"]}, "exist in the baseline"),
+            ({**valid, "geometry_identity_evidence_ids": [self.reference["status_evidence_id"]]}, "association and geometry role"),
+            ({**valid, "geometry_identity_evidence_ids": [self.identity_id, self.identity_id]}, "unique list"),
+            ({**valid, "geometry_identity_evidence_ids": []}, "pin all baseline"),
+            ({**valid, "scope": "official_boundary"}, "campus scope"),
+            ({**valid, "identity_review": ""}, "locator identity review"),
+        ]
+        for field, message in (("reuse_from_project_id", "explicit baseline project reference"),
+                               ("geometry_evidence_id", "geometry evidence ID"),
+                               ("geometry_identity_evidence_ids", "explicit unique list")):
+            cases.append(({key: value for key, value in valid.items() if key != field}, message))
+        for field in ("geometry", "latitude", "longitude", "source_id", "method", "derivation", "authority",
+                      "precision", "scope_class", "horizontal_uncertainty_metres", "uncertainty_reason"):
+            cases.append(({**valid, field: "override"}, "does not permit"))
+        for locator, message in cases:
+            with self.subTest(locator=locator):
+                self.spec["additions"] = [{**self.addition, "locator": locator}]
+                with self.assertRaisesRegex(UpdateError, message):
+                    self.payloads()
+
+    def test_reuse_rejects_invalid_baseline_evidence_roles_associations_and_urls(self):
+        for evidence_id in (self.reference["geometry_evidence_id"], self.identity_id):
+            for field, value, message in ((None, None, "exist in the baseline"),
+                                          ("roles_json", "[]", "association and geometry role"),
+                                          ("project_ids_json", "[]", "association and geometry role")):
+                with self.subTest(evidence=evidence_id, field=field):
+                    rows = copy.deepcopy(self.tables["evidence.csv"])
+                    if field is None:
+                        rows = [row for row in rows if row["evidence_id"] != evidence_id]
+                    else:
+                        next(row for row in rows if row["evidence_id"] == evidence_id)[field] = value
+                    self.replace_baseline_table("evidence.csv", rows)
+                    with self.assertRaisesRegex(UpdateError, message):
+                        self.payloads()
+        rows = copy.deepcopy(self.tables["evidence.csv"])
+        next(row for row in rows if row["evidence_id"] == self.reference["geometry_evidence_id"])["source_url"] = "https://example.org/wrong-map"
+        self.replace_baseline_table("evidence.csv", rows)
+        with self.assertRaisesRegex(UpdateError, "source URL"):
+            self.payloads()
+
+    def test_evidence_introduced_earlier_in_update_cannot_backfill_baseline_locator(self):
+        new_source = {**self.sources["sources"][0], "id": "new-map", "source_url": "https://example.org/new-map"}
+        self.sources["sources"].append(new_source)
+        new_evidence_id = str(uuid5(NAMESPACE_URL, new_source["source_url"] + "#" + new_source["content_hash"]))
+        rows = copy.deepcopy(self.tables["projects.csv"])
+        reference = next(row for row in rows if row["project_id"] == self.reference["project_id"])
+        reference.update(geometry_evidence_id=new_evidence_id, geometry_source_url=new_source["source_url"])
+        self.replace_baseline_table("projects.csv", rows)
+        rows = copy.deepcopy(self.tables["sites.csv"])
+        next(row for row in rows if row["site_id"] == self.site["site_id"])["geometry_evidence_ids_json"] = json.dumps([new_evidence_id])
+        self.replace_baseline_table("sites.csv", rows)
+        first = copy.deepcopy(self.addition)
+        first.update(project_stable_key="curated:new-campus:operations", physical_site_stable_key="curated:new-campus")
+        first.pop("existing_site_id")
+        first["locator"] = {
+            "geometry": {"type": "Point", "coordinates": [130, 30]}, "source_id": "new-map",
+            "scope": "campus_locator", "scope_class": "official_address_point", "authority": "official_source",
+            "method": "official_address", "precision": "Campus locator only.",
+            "identity_review": "Separate named campus.", "uncertainty_reason": "No accuracy stated.",
+        }
+        second = copy.deepcopy(self.addition)
+        second["locator"]["geometry_evidence_id"] = new_evidence_id
+        self.spec["additions"] = [first, second]
+        with self.assertRaisesRegex(UpdateError, "exist in the baseline"):
+            self.payloads()
+
+    def test_reuse_rejects_incoherent_baseline_geometry_and_provenance(self):
+        fields = ("latitude", "longitude", "geometry_json", "geometry_type", "horizontal_uncertainty_metres",
+                  "horizontal_uncertainty_unknown_reason")
+        provenance = tuple(field for field in self.site if field.startswith("geometry_") and field.endswith("_json"))
+        for field in fields + provenance:
+            with self.subTest(field=field):
+                rows = copy.deepcopy(self.tables["sites.csv"])
+                next(row for row in rows if row["site_id"] == self.site["site_id"])[field] = '["changed"]' if field in provenance else "changed"
+                self.replace_baseline_table("sites.csv", rows)
+                with self.assertRaisesRegex(UpdateError, "must agree exactly"):
+                    self.payloads()
+        self.replace_baseline_table("sites.csv", self.tables["sites.csv"])
+        for field, value, message in (("geometry_use_scope", "official_boundary", "campus scope"),
+                                      ("geometry_type", "MultiPolygon", "Point or Polygon")):
+            rows = copy.deepcopy(self.tables["projects.csv"])
+            next(row for row in rows if row["project_id"] == self.reference["project_id"])[field] = value
+            self.replace_baseline_table("projects.csv", rows)
+            with self.assertRaisesRegex(UpdateError, message):
+                self.payloads()
+
+    def test_inheritance_keeps_freshness_and_new_geometry_admission_gates(self):
+        for observed, message in (("2026-07-01", "older than 90"), ("2026-10-15", "future")):
+            with self.subTest(observed=observed):
+                self.spec["additions"][0]["status"]["as_of"] = observed
+                with self.assertRaisesRegex(UpdateError, message):
+                    self.payloads()
+        self.spec["additions"] = [copy.deepcopy(self.addition)]
+        self.sources["sources"].append({**self.sources["sources"][0], "id": "unreviewed-status", "kind": "news",
+                                        "source_url": "https://example.org/unreviewed-status"})
+        self.spec["additions"][0]["status"]["source_id"] = "unreviewed-status"
+        with self.assertRaisesRegex(UpdateError, "primary source"):
+            self.payloads()
+        self.spec["additions"] = [copy.deepcopy(self.addition)]
+        addition = self.spec["additions"][0]
+        addition.pop("existing_site_id")
+        addition["physical_site_stable_key"] = "curated:new-polygon"
+        addition["locator"] = {"geometry": json.loads(self.reference["geometry_json"])}
+        with self.assertRaisesRegex(UpdateError, "new point admissions only"):
             self.payloads()
 
 

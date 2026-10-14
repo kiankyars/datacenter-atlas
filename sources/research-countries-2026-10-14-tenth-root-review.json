@@ -1,0 +1,71 @@
+{
+  "format": "datacenter-atlas-country-research-root-review-v1",
+  "reviewed_at": "2026-10-14",
+  "base_commit": "3cb01c95ab8485dd160a51c60d892a97b8f17be4",
+  "base_dataset": "verified_construction_core/2026-10-14-research-ninth",
+  "base_manifest_sha256": "6c18a86ac185028db69a4444d44ffdc5072ff43ada87f1548b245d1746c6b5b7",
+  "source_packets": [
+    {
+      "path": "sources/research-countries-2026-10-14-cn-tenth-hohhot-actions.json",
+      "sha256": "df0e0aca4c03ca105f23dd32be6db1dd2f7897e2b0ee4366cba8e7310d243d32"
+    },
+    {
+      "path": "sources/research-countries-2026-10-14-cn-tenth-hohhot-geometry-facts.json",
+      "sha256": "ef82a6fcc9c70596fb0454a63e4d0eaef15f3d960605e702c5e1c913330f1991"
+    },
+    {
+      "path": "sources/research-countries-2026-10-14-cn-tenth-hohhot-primary-sources.json",
+      "sha256": "5ddb15666fd99a975f4135fa2c6563f1a9963c7be0d9189f8819efffb16d998a"
+    },
+    {
+      "path": "sources/research-countries-2026-10-14-cn-tenth-hohhot.json",
+      "sha256": "eec27dd36e97afc53be43b896b60682297244ff27cd450fefb1e39953c8d0a29"
+    },
+    {
+      "path": "sources/research-countries-2026-10-14-jp-tenth-shiroi-actions.json",
+      "sha256": "ca69dc2c67c8daf9c19f0dd9f36f55b6ddaedcddc50baff0e7d7e2a21fc1c2b5"
+    },
+    {
+      "path": "sources/research-countries-2026-10-14-jp-tenth-shiroi-geometry-facts.json",
+      "sha256": "a6149b9e57e0e36e44e54bc17f7b122f2c7f5f9e72b2139669138686538df5a9"
+    },
+    {
+      "path": "sources/research-countries-2026-10-14-jp-tenth-shiroi-primary-sources.json",
+      "sha256": "32d7d6c6b3cb217928f5db6904b80156081c9c92ff4b18a231c46c4bb2c049f3"
+    },
+    {
+      "path": "sources/research-countries-2026-10-14-jp-tenth-shiroi.json",
+      "sha256": "fa60895c7f07930b4f20a2a86300463da499aa7a4728fb9207f4bff66d5a1f5e"
+    }
+  ],
+  "definition": {
+    "path": "definitions/atlas-research-tenth-2026-10-14.json",
+    "sha256": "be6293864160cf9a48bcf26113e75412e97021b5ed035d156605b7de204581a4"
+  },
+  "accepted_new_sites": 1,
+  "accepted_new_projects": 2,
+  "existing_project_status_updates": 0,
+  "decisions": {
+    "IIJ Shiroi existing Phases 1 and 2": "Accept current operations confirmed by the August 7 operator presentation and its explicit August 2026 inventory. Root inspected the Japanese slide and English counterpart. Historical opening months remain separate. Reuse the exact reviewed Sakuradai 5-chome address-area polygon and representative coordinates through the frozen baseline; this is not a physical campus or phase boundary. Original Phase 3 remains under construction as of June 25, with its entire row unchanged. No Phase 3 capacity, status or future full-occupancy forecast transfers to existing operations.",
+    "China Mobile Hohhot B25/B27": "Accept reported construction completion from the October 10 HVRAC technical case study explicitly credited to contractor CSCEC Third Bureau First Company. Source remains news with publisher-attributed institutional authorship. Treating this dated case study as a contemporary completed-state confirmation is an explicit editorial inference from its article-wide contractor credit and present completed-state presentation; the contractor original was not recovered or authenticated. October 10 is report/relay publication, not a measured site-visit day or exact acceptance day. No operation or whole-campus completion inferred. The older CSCEC award supports exact B25/B27 identity only. Root and independent reviewer reconstructed the named OSM campus ring, reproduced the bbox midpoint and verified containment. The community-mapped point is solely a parent-campus marker with unknown positional accuracy, not individual buildings. No power or owner/operator role selected.",
+    "Wuwei": "September 11 contractor report supports shell completion for an unnamed single-DC package. The owner/parcel bridge to the six-DC Volcengine campus is unresolved. Historical parcel 2024-G14 is an identity lead, not a numeric locator or fresh achieved state. Retain holds with captured 403 routes and no coordinate guess.",
+    "China Unicom Wujiang": "Retain exact-campus geometry hold. Discovered attachment name lacks its accessible original URL; distinct 63mu and 93.3mu scopes require a primary bridge."
+  },
+  "implementation_review": {
+    "purpose": "Permit a new project on an existing campus to inherit its exact frozen baseline Point or Polygon locator and legacy evidence without reimporting or redating the sources.",
+    "constraints": "Explicit same-site baseline project and complete geometry-identity evidence pins required. Reject geometry/provenance overrides, mismatched site provenance and evidence introduced earlier in the same update. Only baseline Point/Polygon campus locators with matching singleton site provenance supported. Existing freshness, primary-source and new-point admission gates unchanged.",
+    "independent_review": "No blockers in importer, tests, Shiroi packets or final Hohhot source and geometry packets."
+  },
+  "verification_scope": [
+    "All 437 inherited project rows are exactly unchanged. All inherited sites are unchanged except seven expected Shiroi project/status rollup fields; its geometry remains exact.",
+    "All 2192 inherited evidence records retain exact metadata and prior associations. Five Shiroi records gain only the new project association. Three Hohhot records produce 2195 evidence records.",
+    "Source-records.json and identity-mapping.json remain byte-identical: 231 imported records, 1109 references and eight snapshot-only records retained.",
+    "All six selected raw captures and source-file pins verified. The three IIJ and two China canonical reused source objects remain exact. Raw source material is not redistributed.",
+    "All 118 focused dataset-update, consolidation, project-detail and public-site tests passed. Ruff passed for changed Python files. All 12 dated updates replay byte for byte.",
+    "Public metadata matches 413 sites and 439 projects in 53 countries. Twenty-three previous downloadable data files are byte-identical; archive HTML differs only in its generated commit footer.",
+    "Preview APIs and site pages expose the two scoped statuses and exact locator qualifications. Shiroi has one site with separate operations and Phase 3 construction projects; Hohhot has one parent-campus marker and one B25/B27 project.",
+    "Commit, push, CI, live checks and release-asset results are verified separately after publication; this prepublication review does not assert those outcomes."
+  ],
+  "output_dataset": "verified_construction_core/2026-10-14-research-tenth",
+  "output_manifest_sha256": "dbe35db8cc539280bc55a2fc1a32e7ae073da18db555e40494ab7ab9775a7bbe"
+}

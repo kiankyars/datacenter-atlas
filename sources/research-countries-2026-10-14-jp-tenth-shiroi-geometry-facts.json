@@ -1,0 +1,49 @@
+{
+  "format": "datacenter-atlas-existing-campus-locator-review-v1",
+  "reviewed_at": "2026-10-14",
+  "candidate": "IIJ Shiroi Existing Operations (Phases 1 and 2)",
+  "decision": "reuse_exact_reviewed_baseline_campus_address_area_locator",
+  "baseline": {
+    "dataset": "verified_construction_core/2026-10-14-research-ninth",
+    "manifest_sha256": "6c18a86ac185028db69a4444d44ffdc5072ff43ada87f1548b245d1746c6b5b7",
+    "projects_sha256": "29d67c3e7167110ea5736c976e744a2de05b0f9652bda276ce6e73c74c2af219",
+    "sites_sha256": "d84fdf95d84ff1ffb0339232af706ec7f7b9ea7ed302f13e71aef2d6e07f5532",
+    "evidence_sha256": "d26b28b64f81d1a944a95b886e362fbaa73be8378efba026f39cb7ff9bdb5416"
+  },
+  "source_project_id": "1f33fed8-b0f9-50e2-8fac-56d135325c27",
+  "existing_site_id": "vcc-site-38f7e55e7e55aaed6c27",
+  "reviewed_original_bridge": {
+    "path": "sources/verified-construction-core-v0.11-iij-shiroi-phase3-campus-address-area-geometry-bridge.json",
+    "sha256": "2dc78a324b0eb00d66c9d714ff7d989862577ea77d75ae0f2b8fbf195335ce74",
+    "bytes": 31503
+  },
+  "identity": "The exact Chiba Prefecture row 白井データセンターキャンパス / 白井市桜台５－１－１ binds the existing campus. Its address prefix corresponds textually to 桜台五丁目. No address-point containment is asserted.",
+  "false_match": "IIJSDCプロジェクト 新築工事 / 白井市桜台５－７３６－８ is a separate registry row retained solely as a false-match guardrail, not evidence identifying Phase 3.",
+  "inherited_fields": {
+    "latitude": "35.799113",
+    "longitude": "140.099553",
+    "geometry_json": "{\"coordinates\":[[[140.09911080382673,35.800780964478854],[140.09918568342744,35.8007044915439],[140.0993927109607,35.80049305352369],[140.10183610031837,35.797997462232104],[140.10206283572526,35.79779873739954],[140.101406272744,35.79784388608275],[140.10123490872218,35.79787083798487],[140.10112970286696,35.798149097963645],[140.101087862169,35.79816411151416],[140.1010812483405,35.79823080976086],[140.1010337580364,35.798255251292765],[140.10094862640523,35.798272568156385],[140.10084255118034,35.798312467497574],[140.10080832801106,35.79833417539454],[140.1004287796823,35.79831610597334],[140.10026998717862,35.79790961527002],[140.10021518352028,35.797902311286244],[140.10014784335345,35.79790608736053],[140.09980879464837,35.79803088875358],[140.09777824849593,35.798745225012446],[140.09784830786168,35.79901546024741],[140.0986295441498,35.8001984775378],[140.09883507748614,35.80012230769439],[140.09913714043944,35.80039819866151],[140.09842111241122,35.80115663401991],[140.09861239078475,35.80128680169417],[140.09911055684375,35.80078121616053],[140.09911080382673,35.800780964478854]]],\"type\":\"Polygon\"}",
+    "geometry_type": "Polygon",
+    "geometry_source_entity_kind": "address_area",
+    "geometry_derivation": "cross_source_geometry",
+    "geometry_method": "estat_2020_jgd2011_exact_sakuradai_5_chome_polygon_as_campus_address_area_locator",
+    "geometry_scope_class": "official_census_small_area_address_area_polygon",
+    "geometry_authority_class": "official_source",
+    "geometry_use_scope": "campus_locator",
+    "geometry_precision_scope": "Official e-Stat 2020 census small-area polygon for 桜台五丁目, used only as a broad address-area locator for the named campus. It is not a campus, parcel, cadastral, building, Phase 3, security, construction, or current-work boundary. The reported 55,117.019 square metres is only the selected statistical feature's area, never an IIJ campus, site, parcel, building, Phase 3, or construction area. Statistical small-area boundaries may not match general regional or administrative boundaries.",
+    "horizontal_uncertainty_metres": "",
+    "horizontal_uncertainty_unknown_reason": "The e-Stat download does not provide a numeric horizontal positional-accuracy statement for this selected feature.",
+    "geometry_evidence_id": "f6d41f05-04ff-5e9b-8be6-164d895d24d6",
+    "geometry_source_url": "https://www.e-stat.go.jp/gis/statmap-search/data?dlserveyId=A002005212020&code=12232&coordSys=1&format=shape&downloadType=5&datum=2011"
+  },
+  "geometry_identity_evidence_ids": [
+    "846dc1a1-5268-544e-92c2-2df087877703"
+  ],
+  "reuse_limits": [
+    "The exact JGD2011 statistical small-area Polygon locates the named campus only at address-area scope. It does not identify campus ownership, construction extent, individual phases or building footprints.",
+    "Representative longitude and latitude are source-published statistical feature values, retained as exact baseline strings. No centroid or standalone point is substituted.",
+    "No new geometry, positional accuracy, imagery review, physical status, power, role or workload is inherited.",
+    "Legacy evidence identifiers and day-only retrieval dates are preserved. Only new project associations are added to the pinned baseline geometry and geometry-identity records."
+  ],
+  "review": "The prior bridge independently binds the exact campus name and address through the Chiba registry and e-Stat feature. The next-pass reviewer and root checked the current baseline fields and source identifiers. Root reviewed the original bridge and the operator inventory, with no reinterpretation of the polygon as a physical campus boundary."
+}

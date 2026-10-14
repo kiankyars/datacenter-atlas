@@ -1,0 +1,147 @@
+{
+  "format": "datacenter-atlas-country-geometry-facts-v1",
+  "reviewed_at": "2026-10-14",
+  "base_dataset": "verified_construction_core/2026-10-14-research-ninth",
+  "base_commit": "3cb01c95ab8485dd160a51c60d892a97b8f17be4",
+  "base_manifest_sha256": "6c18a86ac185028db69a4444d44ffdc5072ff43ada87f1548b245d1746c6b5b7",
+  "source_files": [
+    {
+      "path": "sources/research-countries-2026-10-14-cn-tenth-hohhot-primary-sources.json",
+      "sha256": "5ddb15666fd99a975f4135fa2c6563f1a9963c7be0d9189f8819efffb16d998a"
+    }
+  ],
+  "candidate": "China Mobile Hohhot Data Center B25/B27 expansion",
+  "selected_locator": {
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        111.8163596,
+        40.5368771
+      ]
+    },
+    "source_id": "cn-fourth-hohhot-mobile-osm",
+    "scope": "campus_locator",
+    "scope_class": "community_mapped_named_parent_campus_point",
+    "authority": "community_mapped",
+    "derivation": "direct_geometry",
+    "method": "osm_named_campus_vector_polygon_bounding_box_midpoint_verified_inside",
+    "precision": "Representative point inside the community-mapped named China Mobile Hohhot Data Center parent campus. It does not identify B25/B27 buildings, active work, entrance, survey point, parcel boundary or full current campus boundary.",
+    "identity_review": "The official March 24 CSCEC award identifies China Mobile Hohhot Data Center B25/B27 in Hohhot Helingeer New District. The October 10 contractor-attributed report names the same campus and B25/B27. OSM way 699967332 is explicitly named 中国移动呼和浩特数据中心. The source polygon identifies the named parent campus only; it does not resolve the B25/B27 building positions.",
+    "horizontal_uncertainty_metres": null,
+    "uncertainty_reason": "No measured horizontal accuracy is supplied for the OSM campus polygon. Offsets between this parent-campus marker and B25/B27 are unknown."
+  },
+  "source_geometry": {
+    "osm_way_id": 699967332,
+    "osm_way_version": 2,
+    "name": "中国移动呼和浩特数据中心",
+    "source_id": "cn-fourth-hohhot-mobile-osm",
+    "source_coordinate_system": "WGS84 longitude/latitude from OpenStreetMap API",
+    "source_ring_lon_lat": [
+      [
+        111.8205849,
+        40.542275
+      ],
+      [
+        111.8212812,
+        40.5404939
+      ],
+      [
+        111.8215645,
+        40.5398418
+      ],
+      [
+        111.8223452,
+        40.5382196
+      ],
+      [
+        111.8240074,
+        40.5350207
+      ],
+      [
+        111.8125107,
+        40.5314792
+      ],
+      [
+        111.8087118,
+        40.5386019
+      ],
+      [
+        111.8205849,
+        40.542275
+      ]
+    ],
+    "raw_capture_file": "/Users/kian/Developer/datacenter_atlas/local_data/country-research-2026-10-14-cn-fourth/hohhot-mobile-osm.json",
+    "content_hash": "01899534bd9f84a892a9b88e2ea15d1d76352e70b79796d779512caec35e272a",
+    "osm_edit_date_is_not_project_status": true
+  },
+  "derivation_review": {
+    "operation": "For each axis, compute (minimum coordinate + maximum coordinate) / 2, round to seven decimals, then verify point-in-polygon by ray casting against the closed source ring.",
+    "bounding_box_lon_lat": [
+      111.8087118,
+      40.5314792,
+      111.8240074,
+      40.542275
+    ],
+    "result_lon_lat": [
+      111.8163596,
+      40.5368771
+    ],
+    "point_inside_source_ring": true,
+    "source_ring_replayed_from_raw_nodes": true,
+    "schema_derivation": "direct_geometry",
+    "schema_derivation_explanation": "Existing direct-vector geometry category; the explicit method records the bounding-box midpoint operation. This is not a source-published point, polygon centroid, raster georeferencing or CRS transformation.",
+    "positional_accuracy_inferred": false
+  },
+  "distinctness": {
+    "baseline_sites": 412,
+    "baseline_projects": 437,
+    "china_sites": 9,
+    "china_projects": 10,
+    "name_alias_matches": [],
+    "searched_aliases": [
+      "Hohhot",
+      "呼和浩特",
+      "中国移动呼和浩特数据中心"
+    ],
+    "nearest_existing_representative_points": [
+      {
+        "name": "China Mobile International Information Port, Beijing",
+        "site_id": "vcc-site-d176c3ca87edba6d0517",
+        "country_iso_a2": "CN",
+        "distance_metres_to_representative_point": 376529.6,
+        "geometry_type": "Point"
+      },
+      {
+        "name": "Haoyang Langfang No. 1 Data Center",
+        "site_id": "vcc-site-65c5c08cfcc359b83ade",
+        "country_iso_a2": "CN",
+        "distance_metres_to_representative_point": 395819.7,
+        "geometry_type": "Point"
+      },
+      {
+        "name": "Boda Langfang No. 2 Intelligent Computing Campus",
+        "site_id": "vcc-site-358391d4dd9bae1018fd",
+        "country_iso_a2": "CN",
+        "distance_metres_to_representative_point": 427914.7,
+        "geometry_type": "Point"
+      },
+      {
+        "name": "China Unicom Jing-Jin-Ji Digital Technology Industrial Park, Tianjin",
+        "site_id": "vcc-site-5cd249b4adc6b7c38a4c",
+        "country_iso_a2": "CN",
+        "distance_metres_to_representative_point": 438964.7,
+        "geometry_type": "Point"
+      },
+      {
+        "name": "China Mobile Plateau Big Data Center Haidong",
+        "site_id": "vcc-site-f1171e4b8e247993d773",
+        "country_iso_a2": "CN",
+        "distance_metres_to_representative_point": 962884.5,
+        "geometry_type": "Point"
+      }
+    ],
+    "distance_semantics": "Great-circle distances to existing representative points for duplicate screening; not positional uncertainty or full-geometry separation."
+  },
+  "independent_imagery_verification": false,
+  "rights": "OpenStreetMap contributors; ODbL-1.0. Point and source-ring facts remain explicitly attributed community geometry, never an official boundary. Raw response remains ignored."
+}
