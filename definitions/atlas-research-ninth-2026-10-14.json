@@ -1,0 +1,172 @@
+{
+  "format": "datacenter-atlas-update-input-v1",
+  "updated_at": "2026-10-14",
+  "output": "verified_construction_core/2026-10-14-research-ninth",
+  "base_dataset": "verified_construction_core/2026-10-14-research-eighth",
+  "base_manifest_sha256": "e08296abc723a9f99f4f8aec29b4acebfe63fa63fc9a36df9f68884cad15de78",
+  "source_files": [
+    {
+      "path": "sources/research-countries-2026-10-14-jp-ninth-highreso-primary-sources.json",
+      "sha256": "ee7ad4a83ddcce1419bdfb919bdee6012e06b8937795e520219431ee822c70d5"
+    },
+    {
+      "path": "sources/research-countries-2026-10-14-jp-ninth-iij-primary-sources.json",
+      "sha256": "ea67bd92df70788c5133d999aa8de10f3eb3a96a976d6a970dad2f885b6079e7"
+    }
+  ],
+  "additions": [
+    {
+      "project_stable_key": "curated:highreso-kagawa-takamatsu:existing-operations",
+      "physical_site_stable_key": "curated:highreso-kagawa-takamatsu",
+      "site_name": "Highreso Kagawa Takamatsu City Data Center",
+      "name": "Highreso Kagawa Takamatsu Existing Operations",
+      "country": "Japan",
+      "country_iso_a2": "JP",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-09-24",
+        "source_id": "jp-ninth-highreso-takamatsu-operating",
+        "summary": "Dated operator announcement explicitly describes current operation and GPU provision at the named Takamatsu facility. This is current-operation confirmation, not opening or expansion completion."
+      },
+      "roles": [
+        {
+          "party": "Highreso Kagawa",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "jp-ninth-highreso-takamatsu-operating"
+        }
+      ],
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            134.0723,
+            34.2942
+          ]
+        },
+        "scope": "campus_locator",
+        "authority": "compiled_reference",
+        "derivation": "georeferenced_source_map",
+        "method": "manual_property_manager_map_and_operator_photo_match_to_esri_wgs84_imagery",
+        "scope_class": "named_rist_kagawa_host_property_matched_to_georeferenced_imagery",
+        "precision": "Approximate analyst-selected marker for the RIST Kagawa host property, rounded to four decimals. Highreso occupies part of the facility; this is not the DC room, occupied floor, building footprint, surveyed point or legal parcel boundary.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "Imagery acquisition date and absolute geolocation accuracy are unestablished. Schematic-map alignment, roof parallax and manual matching introduce unquantified uncertainty; coordinate decimal places are not ground accuracy.",
+        "source_id": "jp-ninth-takamatsu-esri-image",
+        "identity_review": "The property manager names Highreso Kagawa as a RIST tenant. Its labelled access map and exterior photo, the operator exterior photo and the historical DBJ interview identify the same host property, south of Sunshine Street opposite Sunmesse and west of the separate administration building. Root and an independent reviewer inspected the match. The marker does not assert that the DC occupies the entire host facility."
+      },
+      "context_source_ids": [
+        "jp-ninth-highreso-takamatsu-opening",
+        "jp-ninth-kagawa-highreso-location",
+        "jp-ninth-rist-manager-profile",
+        "jp-ninth-rist-access",
+        "jp-ninth-rist-campus-map",
+        "jp-ninth-rist-manager-photo",
+        "jp-ninth-highreso-takamatsu-photo",
+        "jp-ninth-dbj-rist-identity",
+        "jp-ninth-takamatsu-esri-extent",
+        "cn-seventh-haoyang-esri-metadata",
+        "jp-eighth-kccs-esri-export-documentation"
+      ],
+      "scoped_project_details": {
+        "historical_opening_date": "2024-12-19",
+        "SINET6_connection_month": "2026-09",
+        "IT_power_MW": null,
+        "facility_scope": "Existing operations in part of the RIST Kagawa research facility",
+        "aliases": [
+          "高松市データセンター",
+          "Highreso Takamatsu",
+          "Highreso Kagawa Takamatsu",
+          "ハイレゾ香川 高松市データセンター"
+        ],
+        "capacity_exclusion": "Floor area, investment and historical GPU quantities are not IT load or current installed capacity.",
+        "address_caveat": "The administrative address 2217-15 and RIST address 2217-43 are not used as coordinate sources; the named map/photo property match resolves the locator."
+      },
+      "distinctness_review": "No Highreso, Takamatsu, GPUSOROBAN or RIST aliases match 410 sites, 435 projects or imported identity records. The nearest existing Atlas site is Kobe, approximately 105.6 km away. Genkai and Ayagawa are separate facilities. Nearest-point distance supports, but does not alone establish, distinctness.",
+      "successor_review": "September 24 explicitly confirms ongoing operation. The December 19, 2024 opening is separately historical; September connection has month precision only. No later closure or replacement was found in the bounded official-source review, and no physical status is inferred from image vintage or elapsed time."
+    },
+    {
+      "project_stable_key": "curated:iij-matsue-data-center-park:existing-operations",
+      "physical_site_stable_key": "curated:iij-matsue-data-center-park",
+      "site_name": "IIJ Matsue Data Center Park",
+      "name": "IIJ Matsue Existing Operations",
+      "country": "Japan",
+      "country_iso_a2": "JP",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-08-07",
+        "source_id": "jp-ninth-iij-matsue-operating-inventory-ja",
+        "summary": "The dated August 7 operator presentation explicitly includes Matsue DCP in its current operated data-center inventory as of August 2026. This confirms existing campus operations; it is not an opening date or a claim that every room or future phase is complete."
+      },
+      "roles": [
+        {
+          "party": "Internet Initiative Japan",
+          "role": "owner",
+          "relationship_scope": "current",
+          "source_id": "jp-ninth-iij-matsue-operating-inventory-ja"
+        },
+        {
+          "party": "Internet Initiative Japan",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "jp-ninth-iij-matsue-operating-inventory-ja"
+        }
+      ],
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            133.0636,
+            35.4942
+          ]
+        },
+        "scope": "campus_locator",
+        "authority": "compiled_reference",
+        "derivation": "georeferenced_source_map",
+        "method": "manual_named_operator_aerial_match_to_esri_wgs84_imagery",
+        "scope_class": "operator_named_campus_matched_to_georeferenced_imagery",
+        "precision": "Approximate analyst-selected point within the identified northern Matsue DCP property, used only as a campus marker and rounded to four decimals. It is not an operator-published pin, surveyed centroid, parcel boundary, building footprint or individual phase marker.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "Image acquisition date and absolute geolocation accuracy are unestablished. Roof parallax, historical building changes and manual identification introduce unquantified uncertainty; image resolution and decimal places are not ground accuracy.",
+        "source_id": "jp-ninth-iij-matsue-esri-image",
+        "identity_review": "The named IIJ profile and service page link the two operator aerials. Their adjacent properties, broad northern roof and retained eastern array, southern container arrays, curved road and wooded surroundings match the Esri image. Root independently viewed both operator aerials and the georeferenced context image."
+      },
+      "context_source_ids": [
+        "jp-ninth-iij-matsue-operating-inventory-en",
+        "jp-ninth-iij-financial-library",
+        "jp-ninth-iij-matsue-campus-profile",
+        "jp-ninth-iij-matsue-service-profile",
+        "jp-ninth-iij-matsue-updated-aerial",
+        "jp-ninth-iij-matsue-service-aerial",
+        "jp-ninth-iij-matsue-historical-property",
+        "jp-ninth-iij-matsue-esri-extent",
+        "cn-seventh-haoyang-esri-metadata",
+        "jp-eighth-kccs-esri-export-documentation"
+      ],
+      "scoped_project_details": {
+        "facility_scope": "Existing Matsue Data Center Park campus operations",
+        "status_date_scope": "August 7 is publication of the explicit operator confirmation; the inventory itself is labelled August 2026. No precise activation day is inferred.",
+        "reported_operating_inventory_month": "2026-08",
+        "opening_months_historical": {
+          "Site 1 IT modules": "2011-04",
+          "Site 1 system-module building": "2025-06",
+          "Site 2": "2013-11"
+        },
+        "IT_power_MW": null,
+        "planned_or_future_phase_status_inferred": false,
+        "geometry_total_accuracy_unknown": true,
+        "capacity_exclusion": "No receiving-capacity or rack figure is selected as IT load. The undated profile table reports combined 4,000 kVA receiving capacity, while service prose reports 4 MW receiving capacity; neither is converted or treated as installed IT MW.",
+        "aliases": [
+          "松江データセンターパーク",
+          "IIJ松江データセンターパーク",
+          "松江DCP",
+          "Matsue DCP"
+        ]
+      },
+      "distinctness_review": "No Matsue identity matches among 410 sites, 435 projects and 231 imported source records. The nearest existing site is Kobe Former Conveyor Tunnel Data Center, approximately 202.5 km away. Names and geography were reviewed; distance alone is not an identity test.",
+      "successor_review": "July 13 maintenance coverage is outside the 90-day freshness window and is historical context only. The October 5 battery and disaster-support release does not refresh the data-center operational-status date. The selected August 7 inventory is a direct current operator disclosure."
+    }
+  ],
+  "status_updates": [],
+  "context_updates": []
+}

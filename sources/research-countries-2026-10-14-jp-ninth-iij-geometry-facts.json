@@ -1,0 +1,105 @@
+{
+  "format": "datacenter-atlas-independent-geometry-review-v1",
+  "reviewed_at": "2026-10-14",
+  "reviewer": "jp_ninth_iij with independent root visual review",
+  "candidate": "IIJ Matsue Data Center Park",
+  "decision": "accepted_reviewed_campus_marker_for_integration",
+  "base_commit": "f7c8c5ff2f43dab2bfc0eb42c1481adcaac6ad33",
+  "base_dataset": "verified_construction_core/2026-10-14-research-eighth",
+  "base_manifest_sha256": "e08296abc723a9f99f4f8aec29b4acebfe63fa63fc9a36df9f68884cad15de78",
+  "locator": {
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        133.0636,
+        35.4942
+      ]
+    },
+    "scope": "campus_locator",
+    "authority": "compiled_reference",
+    "derivation": "georeferenced_source_map",
+    "method": "manual_named_operator_aerial_match_to_esri_wgs84_imagery",
+    "scope_class": "operator_named_campus_matched_to_georeferenced_imagery",
+    "precision": "Approximate analyst-selected point within the identified northern Matsue DCP property, used only as a campus marker and rounded to four decimals. It is not an operator-published pin, surveyed centroid, parcel boundary, building footprint or individual phase marker.",
+    "horizontal_uncertainty_metres": null,
+    "uncertainty_reason": "Image acquisition date and absolute geolocation accuracy are unestablished. Roof parallax, historical building changes and manual identification introduce unquantified uncertainty; image resolution and decimal places are not ground accuracy.",
+    "source_id": "jp-ninth-iij-matsue-esri-image",
+    "identity_review": "The named IIJ profile and service page link the two operator aerials. Their adjacent properties, broad northern roof and retained eastern array, southern container arrays, curved road and wooded surroundings match the Esri image. Root independently viewed both operator aerials and the georeferenced context image."
+  },
+  "identity_review": {
+    "primary_bridge": "IIJ publishes both aerials on pages explicitly naming Matsue Data Center Park. The historical prefecture property notice corroborates the Hokuryo-cho location but is not used as a surveyed boundary.",
+    "distinctive_matches": [
+      "The northern campus property has a broad main roof with a separate utility block and a retained container array along its eastern side.",
+      "The older operator service aerial shows the corresponding container-array layout and central spine before the broad-roof change; its eastern row and perimeter-road relationship remain identifiable.",
+      "The second container-array property lies immediately south, beside the same curved north-south road.",
+      "The road follows the eastern campus edges; wooded slopes and a pond lie to its east."
+    ],
+    "review_limits": [
+      "The two operator images depict different configurations; their acquisition dates are unknown. Configuration differences are not dated construction observations.",
+      "No construction status, IT load, opening date, fitted-room count or completeness is inferred from imagery.",
+      "No cadastral polygon or building footprint is extracted.",
+      "The point represents the campus; it is not a separate new-building or Site 2 project locator."
+    ]
+  },
+  "coordinate_arithmetic": {
+    "source_image_file": "local_data/country-research-2026-10-14-jp-ninth-iij/matsue-esri-context.png",
+    "source_image_sha256": "748b8983f3a77f757cf0b2e561b12c4a50a483994ef47b707f83cdd848002ca7",
+    "source_extent_file": "local_data/country-research-2026-10-14-jp-ninth-iij/matsue-esri-context-extent.json",
+    "source_extent_sha256": "c665866c273ac56d5b45df36ad87ef079e5521902ef5dfa7b616ea5e2891b9a9",
+    "returned_image_pixels": [
+      1600,
+      1200
+    ],
+    "extent": {
+      "xmin": 133.05299999999997,
+      "ymin": 35.486999999999995,
+      "xmax": 133.07299999999998,
+      "ymax": 35.502,
+      "spatialReference": {
+        "wkid": 4326,
+        "latestWkid": 4326
+      }
+    },
+    "selected_pixel_zero_based_upper_left_origin": [
+      850,
+      620
+    ],
+    "pixel_center_offset": 0.5,
+    "formula": {
+      "longitude": "xmin + (x + 0.5) / width * (xmax - xmin)",
+      "latitude": "ymax - (y + 0.5) / height * (ymax - ymin)"
+    },
+    "computed_unrounded": [
+      133.06363125,
+      35.494243749999995
+    ],
+    "selected_rounded_coordinates": [
+      133.0636,
+      35.4942
+    ]
+  },
+  "deduplication": {
+    "sites_checked": 410,
+    "projects_checked": 435,
+    "source_records_checked": 231,
+    "terms": [
+      "Matsue",
+      "松江",
+      "IIJ Matsue"
+    ],
+    "matching_existing_site_or_project": false,
+    "matching_original_source_record": false,
+    "nearest_existing_site": {
+      "site_id": "vcc-site-b2fcc0a6771c39846412",
+      "site_name": null,
+      "distance_m": 202528.4
+    },
+    "qualification": "Distance is only a secondary duplicate screen; named identity and distinct property geography establish separation."
+  },
+  "rejected_geometry_inputs": [
+    "The Soft Business Park embedded marker refers to the entire industrial park, not the IIJ campus.",
+    "Three detail-image requests returned HTTP 500; their corresponding JSON responses have zero image dimensions. None is used for geometry."
+  ],
+  "independent_root_review": "Root independently viewed both primary aerials and the Esri context and confirmed the campus match at [133.0636, 35.4942].",
+  "imagery_status_boundary": "Imagery is spatial evidence only; independent_imagery_verification remains false because no imagery-derived physical-status observation is asserted."
+}
