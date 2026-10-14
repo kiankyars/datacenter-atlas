@@ -101,6 +101,100 @@ class DatasetUpdateTests(unittest.TestCase):
         with self.assertRaisesRegex(UpdateError, "must be newer"):
             self.payloads()
 
+    def prepare_existing_campus(self):
+        self.write()
+        out = self.root / "first"
+        build_update(self.input, out, root=self.root)
+        project = next(row for row in csv.DictReader(io.StringIO((out / "projects.csv").read_text()))
+                       if row["project_stable_key"] == "curated:test-campus:construction")
+        self.spec.update(base_dataset="first", base_manifest_sha256=hashlib.sha256((out / "manifest.json").read_bytes()).hexdigest())
+        addition = self.spec["additions"][0]
+        addition.update(project_stable_key="curated:test-campus:phase2", name="Example Phase 2",
+                        existing_site_id=project["site_id"],
+                        site_identity_review="The new phase is explicitly on the same named campus.")
+        addition["status"].update(value="commissioning")
+        return project
+
+    def test_existing_campus_adds_phase_without_duplicating_site_or_rewriting_first_phase(self):
+        original = self.prepare_existing_campus()
+        self.write()
+        out = self.root / "second"
+        manifest = build_update(self.input, out, root=self.root)
+        self.assertEqual(manifest, validate_update(self.input, out, root=self.root))
+        self.assertEqual(manifest["counts"]["physical_sites"], 200)
+        rows = list(csv.DictReader(io.StringIO((out / "projects.csv").read_text())))
+        members = [row for row in rows if row["site_id"] == original["site_id"]]
+        self.assertEqual(len(members), 2)
+        self.assertIn(original, members)
+        site = next(row for row in csv.DictReader(io.StringIO((out / "sites.csv").read_text())) if row["site_id"] == original["site_id"])
+        self.assertEqual(site["project_count"], "2")
+        self.assertEqual(json.loads(site["statuses_json"]), ["commissioning", "site_preparation"])
+        self.assertEqual(set(json.loads(site["project_ids_json"])), {row["project_id"] for row in members})
+        self.assertEqual(set(json.loads(site["project_stable_keys_json"])), {row["project_stable_key"] for row in members})
+        self.assertEqual(site["geometry_json"], original["geometry_json"])
+        report = json.loads((out / "selection-report.json").read_bytes())
+        self.assertEqual(report["added_sites"], [])
+        self.assertEqual(report["expanded_sites"], ["curated:test-campus"])
+        self.assertEqual(report["added_projects"], ["curated:test-campus:phase2"])
+
+    def test_existing_campus_requires_explicit_identity_and_unchanged_scoped_point(self):
+        self.prepare_existing_campus()
+        valid = copy.deepcopy(self.spec["additions"][0])
+        self.sources["sources"].append({**self.sources["sources"][0], "id": "different-map", "source_url": "https://example.org/other-map"})
+        cases = [
+            ({"existing_site_id": None}, "explicit matching"),
+            ({"existing_site_id": "wrong-site"}, "explicit matching"),
+            ({"site_identity_review": ""}, "site identity review"),
+            ({"country_iso_a2": "CA"}, "name and country"),
+            ({"site_name": "A different campus"}, "name and country"),
+            ({"project_stable_key": "curated:test-campus:construction"}, "duplicate project"),
+            ({"physical_site_stable_key": "curated:different-campus"}, "does not resolve"),
+            ({"locator": {**valid["locator"], "scope": "project_locator"}}, "reviewed campus point"),
+            ({"locator": {**valid["locator"], "geometry": {"type": "Point", "coordinates": [-100, 30]}}}, "reviewed campus point"),
+            ({"locator": {**valid["locator"], "horizontal_uncertainty_metres": 5}}, "uncertainty must be preserved"),
+            ({"locator": {**valid["locator"], "source_id": "different-map"}}, "provenance and precision"),
+        ]
+        for field, value in (("method", "different_method"), ("scope_class", "different_scope"),
+                             ("authority", "compiled_reference"), ("precision", "Surveyed building point")):
+            cases.append(({"locator": {**valid["locator"], field: value}}, "provenance and precision"))
+        cases.append(({"locator": {**valid["locator"], "derivation": "georeferenced_source_map", "authority": "compiled_reference"}}, "provenance and precision"))
+        for changes, expected in cases:
+            with self.subTest(changes=changes):
+                self.spec["additions"] = [{**valid, **changes}]
+                with self.assertRaisesRegex(UpdateError, expected):
+                    self.payloads()
+
+    def test_news_requires_attributed_firsthand_physical_status_and_preserves_kind(self):
+        source = self.sources["sources"][0]
+        source["kind"] = "news"
+        statement = {
+            "basis": "attributed_project_participant_statement", "speaker": "Named project manager",
+            "speaker_role": "Manager responsible for the named project", "project_identity": "Example campus construction",
+            "statement": "The manager says earthworks are currently in progress.", "date_semantics": "Dated on-site interview.",
+            "observed_on": "2026-09-21", "supported_status": "site_preparation",
+            "review": "Reviewed the original report and explicit attribution; no forecast treated as achieved work.",
+        }
+        source["firsthand_status_statement"] = statement
+        payloads, _ = self.payloads()
+        row = next(row for row in csv.DictReader(io.StringIO(payloads["projects.csv"].decode())) if row["project_stable_key"] == self.spec["additions"][0]["project_stable_key"])
+        self.assertEqual(row["status_method"], "attributed_firsthand_physical_status_report")
+        evidence = next(row for row in csv.DictReader(io.StringIO(payloads["evidence.csv"].decode())) if row["source_url"] == source["source_url"])
+        self.assertEqual(evidence["kind"], "news")
+        for changes, expected in (
+            ({"basis": "reporter_narrative"}, "primary source"),
+            ({"speaker": ""}, "firsthand status speaker"),
+            ({"observed_on": "2026-09-20"}, "selected status and observation date"),
+            ({"supported_status": "operational"}, "selected status and observation date"),
+        ):
+            with self.subTest(changes=changes):
+                source["firsthand_status_statement"] = {**statement, **changes}
+                with self.assertRaisesRegex(UpdateError, expected):
+                    self.payloads()
+        source["firsthand_status_statement"] = statement
+        self.spec["additions"][0]["status"]["value"] = "announced"
+        with self.assertRaisesRegex(UpdateError, "primary source"):
+            self.payloads()
+
     def test_future_and_stale_admissions_fail(self):
         for value, expected in (("2026-11-01", "future"), ("2026-01-01", "older than 90")):
             with self.subTest(value=value):

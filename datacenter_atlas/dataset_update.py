@@ -132,7 +132,23 @@ def _status(spec, sources, updated, *, admission=False, source_details=None):
                  "status must match the explicit source observation date")
         retrieved_day = datetime.fromisoformat(source["retrieved_at"].replace("Z", "+00:00")).date()
         _require(observed <= retrieved_day, "source capture predates observation")
-    _require(source["kind"] in {"company_disclosure", "government_record", "regulatory_filing"}, "status observation needs a primary source")
+    if source["kind"] == "news":
+        # A named project participant's firsthand statement can be primary
+        # evidence inside a report. Ordinary reporting and syndicated summaries
+        # do not qualify, and the source remains labelled as news.
+        details = (source_details or {}).get(spec["source_id"], {})
+        firsthand = details.get("firsthand_status_statement", {})
+        _require(firsthand.get("basis") == "attributed_project_participant_statement"
+                 and source.get("published_at")
+                 and spec["value"] in ACTIVE_STATUSES | {"completed", "operational"},
+                 "status observation needs a primary source or reviewed firsthand physical-status statement")
+        for field in ("speaker", "speaker_role", "project_identity", "statement", "date_semantics", "review"):
+            _text(firsthand.get(field), f"firsthand status {field}")
+        _require(firsthand.get("observed_on") == spec["as_of"]
+                 and firsthand.get("supported_status") == spec["value"],
+                 "firsthand statement must support the selected status and observation date")
+    else:
+        _require(source["kind"] in {"company_disclosure", "government_record", "regulatory_filing"}, "status observation needs a primary source")
     _text(spec.get("summary"), "project status summary")
     if spec["value"] == LifecycleStatus.PERMITTED.value:
         _require(spec.get("permit_scope") == "data_center_development", "permit must cover data-center development, not ancillary infrastructure")
@@ -211,7 +227,9 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
     inherited_resolutions = copy.deepcopy(inherited_report.get("source_record_resolutions", []))
     evidence_fields = [field["name"] for field in schema["tables"]["evidence.csv"]["fields"]]
     by_key = {row["project_stable_key"]: row for row in projects}
-    site_keys = {row["physical_site_stable_key"] for row in sites}
+    sites_by_key = {row["physical_site_stable_key"]: row for row in sites}
+    base_site_keys = set(sites_by_key)
+    expanded_site_keys = set()
     evidence_by_id = {row["evidence_id"]: row for row in evidence}
     touched = set()
     canonical = {key: value for key, value in evidence_by_id.items()}
@@ -241,12 +259,24 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
 
     for item in spec.get("additions", []):
         key, site_key = item["project_stable_key"], item["physical_site_stable_key"]
-        _require(key not in by_key and site_key not in site_keys, "duplicate project or physical site; use a status update for existing sites")
+        _require(key not in by_key, "duplicate project; use a status update for an existing project")
+        existing_site = sites_by_key.get(site_key)
+        if existing_site:
+            _require(site_key in base_site_keys and item.get("existing_site_id") == existing_site["site_id"],
+                     "existing physical site requires an explicit matching base site ID")
+            _text(item.get("site_identity_review"), "existing site identity review")
+            _require(all(item.get(field) == existing_site[target] for field, target in (
+                ("site_name", "name"), ("country", "country"), ("country_iso_a2", "country_iso_a2"))),
+                "existing site name and country must match")
+        else:
+            _require(not item.get("existing_site_id"), "existing site ID does not resolve to the physical site key")
         _text(item.get("distinctness_review"), "site distinctness review")
         _text(item.get("successor_review"), "later-status review")
         status, locator = item["status"], item["locator"]
         _status(status, sources, updated, admission=True, source_details=source_details)
         status_method, status_role = _status_metadata(status["value"])
+        if sources[status["source_id"]]["kind"] == "news":
+            status_method = "attributed_firsthand_physical_status_report"
         geometry = locator["geometry"]
         _require(geometry["type"] == "Point", "new point admissions only; complex boundary changes require a separate geometry review")
         coords = geometry["coordinates"]
@@ -265,10 +295,16 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
             _text(locator.get("uncertainty_reason"), "locator uncertainty reason")
         else:
             _require(isinstance(uncertainty, (int, float)) and not isinstance(uncertainty, bool) and math.isfinite(uncertainty) and uncertainty >= 0, "invalid horizontal uncertainty")
+        if existing_site:
+            _require(locator["scope"] == "campus_locator" and geometry == json.loads(existing_site["geometry_json"]),
+                     "existing site addition must reuse its reviewed campus point")
+            _require((str(uncertainty) if uncertainty is not None else "") == existing_site["horizontal_uncertainty_metres"]
+                     and locator.get("uncertainty_reason", "") == existing_site["horizontal_uncertainty_unknown_reason"],
+                     "existing campus locator uncertainty must be preserved")
         iso = item["country_iso_a2"]
         _require(len(iso) == 2 and iso.isascii() and iso.isupper(), "invalid ISO country code")
         pid = str(uuid5(NAMESPACE_URL, key))
-        sid = "vcc-site-" + _sha(site_key.encode())[:20]
+        sid = existing_site["site_id"] if existing_site else "vcc-site-" + _sha(site_key.encode())[:20]
         row = {field["name"]: "[]" if field["logical_type"] == "json_array" else "" for field in schema["tables"]["projects.csv"]["fields"]}
         row.update(
             project_id=pid, project_stable_key=key, site_id=sid, physical_site_stable_key=site_key,
@@ -291,6 +327,15 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
             efficiency_observations_json="[]", efficiency_unknown_reason="no scoped PUE or WUE observation",
             status_source_url=sources[status["source_id"]]["source_url"], geometry_source_url=sources[locator["source_id"]]["source_url"],
         )
+        if existing_site:
+            locator_fields = (
+                "geometry_source_entity_kind", "geometry_derivation", "geometry_method", "geometry_scope_class",
+                "geometry_authority_class", "geometry_use_scope", "geometry_precision_scope",
+                "geometry_evidence_id", "geometry_source_url",
+            )
+            _require(any(project["site_id"] == sid and all(project[field] == row[field] for field in locator_fields)
+                         for project in projects),
+                     "existing campus locator provenance and precision must be preserved")
         for source_id in item.get("context_source_ids", []):
             associate(source_id, pid, "context:identity")
         roles = []
@@ -302,8 +347,16 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
             row[column] = "; ".join(sorted({entry["party"] for entry in roles if entry["role"] == role}))
         projects.append(row)
         by_key[key] = row
-        sites.append(_site_from_project(row, item["site_name"]))
-        site_keys.add(site_key)
+        if existing_site:
+            expanded_site_keys.add(site_key)
+            projection = _site_from_project(row, item["site_name"])
+            for field, value in projection.items():
+                if field.endswith("_json") and field != "geometry_json":
+                    existing_site[field] = _json(sorted(set(json.loads(existing_site[field])) | set(json.loads(value))))
+        else:
+            site = _site_from_project(row, item["site_name"])
+            sites.append(site)
+            sites_by_key[site_key] = site
 
     changes = [(item, False) for item in spec.get("status_updates", [])]
     changes += [(item, True) for item in spec.get("status_corrections", [])]
@@ -314,6 +367,8 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
         row, status = by_key[key], item["status"]
         _status(status, sources, updated, source_details=source_details)
         status_method, status_role = _status_metadata(status["value"])
+        if sources[status["source_id"]]["kind"] == "news":
+            status_method = "attributed_firsthand_physical_status_report"
         if correction:
             _require(item.get("replaces_status_evidence_id") == row["status_evidence_id"], "correction must name the replaced status evidence")
             _text(item.get("reason"), "status correction reason")
@@ -367,6 +422,11 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
         _require(int(row["status_age_days_at_review"]) >= 0, "base has observations after update date")
     for site in sites:
         members = [row for row in projects if row["site_id"] == site["site_id"]]
+        if site["physical_site_stable_key"] in expanded_site_keys:
+            site["project_count"] = str(len(members))
+            site["independent_imagery_verification"] = str(all(row["independent_imagery_verification"] == "true" for row in members)).lower()
+            postures = {row["verification_posture"] for row in members}
+            site["verification_posture"] = next(iter(postures)) if len(postures) == 1 else "mixed_review_postures"
         site["oldest_status_as_of"] = min(row["status_as_of"] for row in members)
         site["newest_status_as_of"] = max(row["status_as_of"] for row in members)
         site["statuses_json"] = _json(sorted({row["last_observed_physical_status"] for row in members}))
@@ -406,12 +466,15 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
     schema.update(format="datacenter-atlas-tables-v1", observation_policy="Each status has its own observation date. Dataset updates do not renew older observations.")
     report = {
         "updated_at": updated.isoformat(), "lifecycle_reference_date": updated.isoformat(), "counts": counts,
-        "added_sites": [item["physical_site_stable_key"] for item in spec.get("additions", [])],
+        "added_sites": [item["physical_site_stable_key"] for item in spec.get("additions", []) if item["physical_site_stable_key"] not in base_site_keys],
         "refreshed_projects": sorted(touched - set(withdrawn)), "withdrawn_projects": withdrawn,
         "withdrawal_note": "Unsupported construction selections are removed; no cancellation or other physical status is inferred.",
         "base_dataset": spec["base_dataset"],
         "observation_policy": "Last documented observations; records are not a claim that all projects are still under construction on the update date.",
     }
+    if expanded_site_keys:
+        report["expanded_sites"] = sorted(expanded_site_keys)
+        report["added_projects"] = [item["project_stable_key"] for item in spec.get("additions", [])]
     if contextualized:
         report["context_enriched_projects"] = sorted(contextualized)
     if has_consolidation:

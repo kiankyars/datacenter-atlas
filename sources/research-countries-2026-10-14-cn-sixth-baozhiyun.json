@@ -1,0 +1,472 @@
+{
+  "format": "datacenter-atlas-country-research-v1",
+  "reviewed_at": "2026-10-14",
+  "base_dataset": "verified_construction_core/2026-10-14-research-fifth",
+  "base_commit": "a978381534cc2db8c94d83a2a68fe47e4a6aaef7",
+  "base_manifest_sha256": "795c19835f7f190332135aba68dacc242d6f4fd24a1073b2a4b082bb4b45c124",
+  "countries": [
+    "CN"
+  ],
+  "scope": "Bounded sixth China geometry follow-up for Baozhiyun Huabei A4/A5 MEP works. Research only; campus and parent-property locators considered with explicit identity and coordinate-system checks.",
+  "base_site_count": 406,
+  "base_project_count": 430,
+  "freshness_window": {
+    "cutoff": "2026-07-16",
+    "review_date": "2026-10-14"
+  },
+  "summary": {
+    "publishable_additions": 0,
+    "publishable_status_updates": 0,
+    "held_candidates": 1,
+    "new_primary_location_bridges": 2
+  },
+  "source_files": [
+    {
+      "path": "sources/research-countries-2026-10-14-cn-fifth.json",
+      "sha256": "cd3d4aab55625b951c032d37869ca1642ec692e9d98c0ce39cf2af41baca5d01"
+    },
+    {
+      "path": "sources/research-countries-2026-10-14-cn-fifth-primary-sources.json",
+      "sha256": "1ce1919eeb921b1199d89bf8b34ada6bfe29ca4896b763b53a06931eb6fbb0ff"
+    },
+    {
+      "path": "sources/research-countries-2026-10-14-cn-fifth-geometry-facts.json",
+      "sha256": "b3c0f43e7bfd162b6691dd4d417bbd5e143f56b2db8411a5de05a485ded0344a"
+    }
+  ],
+  "raw_capture_directory": "/Users/kian/Developer/datacenter_atlas/local_data/country-research-2026-10-14-cn-sixth-baozhiyun",
+  "ready_additions": [],
+  "ready_status_updates": [],
+  "ready_context_updates": [],
+  "holds": [
+    {
+      "candidate": "Baozhiyun Huabei A4/A5 MEP works",
+      "decision": "fresh_primary_status_resolved_numeric_geometry_hold",
+      "confirmed_status": "completed",
+      "status_observed_on": "2026-09-02",
+      "exact_acceptance_day": null,
+      "exact_operational_day": null,
+      "status_source_id": "cn-fifth-baozhiyun-a4-a5-acceptance",
+      "date_semantics": "The contractor publication confirms achieved MEP completion acceptance as of September2; its recent wording does not give the exact acceptance day. Completed MEP is not a claim of operation.",
+      "scope": "A4/A5 MEP works only; A1/A2 and A3/A6 are separate phases. Six-building campus capacity and area and the A4/A5/A6 filing total are not allocated to A4/A5.",
+      "new_primary_identity_bridge": {
+        "issuer_filing": "Baosight announcement 临2025-017, April26 2025, page2 explicitly places A4/A5/A6 data-centre buildings and B4/B5/B6 generator buildings inside 宣钢西厂区 (Xuanhua Steel west plant), Xuanhua, Zhangjiakou.",
+        "actual_campus_road": "July27 2026 Baohua tender explicitly locates the project at 河北省张家口市宣化区滨河北路宝之云华北基地 (Baozhiyun Huabei campus, Binhe North Road).",
+        "office_address_not_campus": "The same tender separately lists the tenderer office at 宣府大街93号宣钢公司大楼五层. That office address is not selected as project geometry."
+      },
+      "new_schedule_scope": {
+        "primary_notice_date": "2026-07-27",
+        "scheduled_property_service_start_a4_a5": "2026-08-08",
+        "scheduled_property_service_start_a3_a6": "2026-10-30",
+        "reason_not_status_update": "The notice describes procurement and service periods according to delivery plans. Neither a tender nor passage of the planned start establishes operation or achieved A3/A6 construction."
+      },
+      "geometry": null,
+      "geometry_scope_if_later_resolved": "Named Baozhiyun campus or explicitly labelled Xuanhua Steel west-plant parent-property locator. Unknown offset to A4/A5 must remain explicit.",
+      "rejected_geometry_leads": [
+        {
+          "kind": "ecology_surveyed_subparcel_center",
+          "source_url": "https://hbepb.hebei.gov.cn/zycms/ewebeditor/uploadfile/20211124100323814.pdf",
+          "native_coordinate_dms": {
+            "longitude": "115°1′53.78″E",
+            "latitude": "40°35′50.70″N"
+          },
+          "native_crs": null,
+          "reason": "A surveyed subparcel inside the broader west plant is not established as the Baozhiyun campus or a whole-parent property marker. Source datum is unstated and primary bytes unavailable. The arithmetic conversion does not establish WGS84.",
+          "primary_http_body_captured": false
+        },
+        {
+          "kind": "osm_context_only",
+          "source_url": "https://www.openstreetmap.org/api/0.6/map?bbox=115.010,40.575,115.070,40.610",
+          "reason": "Named 宣钢集团 bus stops and notes on disused steelworks railway spurs are not an independently named campus or west-plant parent locator."
+        },
+        {
+          "kind": "baidu_named_map_search",
+          "reason": "Both exact named campus and west-plant queries returned403; no numeric marker obtained."
+        },
+        {
+          "kind": "tenderer_office",
+          "reason": "The registered/contact office at Xuanfu Street93 is distinguished from the Binhe North Road campus."
+        },
+        {
+          "kind": "primary_render_without_controls",
+          "reason": "Designer and supplier artistic renders have no defensible ground controls; they cannot be georeferenced from appearance alone."
+        },
+        {
+          "kind": "company_plant_point_without_west_plant_identity",
+          "source_url": "https://www.gem.wiki/Xuanhua_Iron_and_Steel_Group_Co_Ltd",
+          "reason": "Known WGS84 datum does not cure unresolved identity between separate eastern and western steelworks."
+        },
+        {
+          "kind": "reposted_schematic_whole_property_diagram",
+          "source_url": "https://www.sohu.com/a/405426209_675875",
+          "reason": "Original operator provenance is unverified; stylized map has no numeric controls and is not adopted."
+        },
+        {
+          "kind": "map_provider_search_shell",
+          "reason": "Google default viewport and Bing query shell are not numeric named campus features."
+        }
+      ],
+      "next_specific_evidence": [
+        "Recover a Baosight/Hebei Baoxuan-selected named campus map feature, or a primary A4/A5/A6 land/EIA/site plan with numeric controls and stated CRS.",
+        "Recover an original operator or municipal whole-west-plant property map with sufficient identifiable controls for a reproducible, reviewed georeference. Preserve unknown ground accuracy and unknown A4/A5 offset.",
+        "Do not substitute the GEM company-plant point, tenderer office, ecological subparcel, provider viewport or schematic region for the campus or whole parent property."
+      ],
+      "followup_review": {
+        "review_completed_at": "2026-10-14T12:54:17.767952+00:00",
+        "decision": "hold_numeric_location_unresolved_after_bounded_new_routes",
+        "primary_images": [
+          {
+            "parent_source_url": "https://www.cabrtech.com/cabrtech/xwzx/xmzs/2025/10/I1430205011878477824.html",
+            "raw_capture_file": "/Users/kian/Developer/datacenter_atlas/local_data/country-research-2026-10-14-cn-sixth-baozhiyun/designer-campus-image.png",
+            "raw_capture_sha256": "ba60461d7740e12e783c1a7da3990d26079ebd87c623c880651787322b1500b5",
+            "visual_review": "Designer-linked oblique campus rendering; no labelled external streets, map control coordinates, north arrow or scale. Six-building appearance is not enough to place the scene on the ground. No georeference attempted."
+          },
+          {
+            "parent_source_url": "https://www.tellhowpower.com.cn/news/details-28.html",
+            "published_at": "2025-09-02",
+            "raw_capture_file": "/Users/kian/Developer/datacenter_atlas/local_data/country-research-2026-10-14-cn-sixth-baozhiyun/tellhow-campus-image.jpg",
+            "raw_capture_sha256": "bd3a81fd51e42f5711c28fbff1e64402cae7f4bd3fd26018f398adf2f6bd7209",
+            "visual_review": "Equipment supplier repeats the same artistic campus rendering at lower resolution. The old supplier account is not a new A4/A5 observation and adds no geometric controls."
+          }
+        ],
+        "operator_website": {
+          "urls": [
+            "https://www.baocloud.cn/",
+            "https://www.baocloud.cn/AboutUs"
+          ],
+          "finding": "Captured operator pages contain a national coverage graphic and Shanghai campus descriptions, but no numeric named Huabei or Xuanhua campus feature. No point derived from the graphic."
+        },
+        "map_provider_search": {
+          "google": "The captured exact-name search contains the query and a default Helsinki viewport, not a returned Baozhiyun feature. Viewport coordinates are excluded.",
+          "bing": "The captured exact-name search returns a map shell and query text, with no independently identified numeric campus feature."
+        },
+        "compiled_steel_plant_locator": {
+          "source_url": "https://www.gem.wiki/Xuanhua_Iron_and_Steel_Group_Co_Ltd",
+          "coordinates_lon_lat": [
+            115.090889,
+            40.589591
+          ],
+          "source_declared_crs": "WGS84",
+          "source_address": "No. 30 Pailou East Street, Xuanhua District, Zhangjiakou City, Hebei Province",
+          "adopted": false,
+          "reason": "The record identifies the steel company plant, not the west-plant parent property or Baozhiyun campus. It gives a different address from the primary Binhe North Road campus identity. A company-name match does not resolve multiple works; do not repurpose this numeric marker.",
+          "historical_ambiguity_source": "https://www.david-longman.internationalsteam.co.uk/China_Xuanhau.html",
+          "historical_ambiguity_review": "The firsthand January2004 visit describes separate western and eastern plants on opposite sides of the main railway, 3–4km apart. This is historical discovery context only, with no current campus coordinate or status claim."
+        },
+        "whole_property_schematic": {
+          "source_url": "https://www.sohu.com/a/405426209_675875",
+          "published_at": "2020-07-02",
+          "displayed_author": "宣化TV",
+          "displayed_original_credit": "河钢宣钢青年",
+          "provenance_limit": "The repost account official identity and the original operator publication were not independently recovered. It is a discovery lead, not a primary property map.",
+          "source_reported_boundary_context": {
+            "east": "河沿街",
+            "west": "西城村土地、柳川河",
+            "south": "滨河北路",
+            "north": "京包铁路"
+          },
+          "source_reported_whole_property_area_mu": 2307.9,
+          "visual_review": "Of three article images, two are scenic river/bridge photographs and one is a stylized city diagram with a labelled western-plant region. The diagram has no CRS or numeric controls and schematic road/rail geometry. It does not support a reviewed numeric locator or surveyed boundary.",
+          "adopted": false
+        },
+        "stopped_routes": [
+          "No retries of blocked Baidu, unsafe TLS, slider/captcha or the previously rejected ecology subparcel.",
+          "District report and municipal homepage requests failed; no response body is asserted.",
+          "Exact EIA/land/site-plan searches yielded no new captured primary record with numeric campus geometry."
+        ],
+        "remaining_missing_fact": "A defensible numeric locator for the exact named Baozhiyun campus or whole Xuanhua Steel west-plant property, with a stated or independently justified CRS. Identity and fresh A4/A5 MEP completion are already supported."
+      }
+    }
+  ],
+  "new_primary_sources": [
+    {
+      "id": "cn-sixth-baozhiyun-issuer-west-plant",
+      "publisher": "Shanghai Baosight Software Co., Ltd. / Baowu hosted issuer filing",
+      "title": "关于投资宝之云华北基地A4A5A6楼项目的公告",
+      "published_at": "2025-04-26",
+      "url": "https://res.baowugroup.com/attach/2025/04/27/cabbdef414cf4812a663b294d923fa71.pdf",
+      "role": "primary_identity_bridge",
+      "relevant_page": 2,
+      "source_scope": "A4/A5/A6 combined plan; 76800sqm,7236racks,90MW are explicitly combined planned totals, not A4/A5 measurements.",
+      "raw_capture_file": "/Users/kian/Developer/datacenter_atlas/local_data/country-research-2026-10-14-cn-sixth-baozhiyun/issuer-west-plant.pdf",
+      "raw_capture_sha256": "b8c57c679eae2c81b09917fe90ac63b5a0cda81f74a314e962ac9e58a24bd14e"
+    },
+    {
+      "id": "cn-sixth-baozhiyun-july27-property-tender",
+      "publisher": "Shanghai Baohua International Tendering / Hebei Baoxuan Data Technology",
+      "title": "宝宣数据宝之云华北基地园区第二阶段物业服务[招标公告]",
+      "published_at": "2026-07-27",
+      "url": "https://www.baohuabidding.cn/shbhgjzb/jyxx/018001/018001003/018001003002/20260727/ddf5484b-5c5d-4e7d-85ae-6da4a4219eb0.html",
+      "role": "primary_campus_road_identity_and_planned_service_schedule",
+      "raw_capture_file": "/Users/kian/Developer/datacenter_atlas/local_data/country-research-2026-10-14-cn-sixth-baozhiyun/baohua-july27-property-tender.html",
+      "raw_capture_sha256": "3c0b79fde2f1a3397813319d79d5ce7f8e425273addd55f8d7c34fa1d5449f83"
+    }
+  ],
+  "duplicate_review": {
+    "basis": "Searched all 406 current site rows and 430 project rows for Baozhi, 宝之云, 宝宣, Xuanhua and 宣化. No match. No location adopted, so no distance-based identity conclusion.",
+    "name_key_matches": []
+  },
+  "raw_capture_manifest": [
+    {
+      "key": "issuer-west-plant.pdf",
+      "url": "https://res.baowugroup.com/media/mater/cabbdef414cf4812a663b294d923fa71.pdf",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "key": "xuangang-home.html",
+      "url": "https://www.xuangang.com.cn/",
+      "error": "<urlopen error timed out>"
+    },
+    {
+      "key": "xuangang-osm.xml",
+      "url": "https://www.openstreetmap.org/api/0.6/map?bbox=115.010,40.575,115.070,40.610",
+      "final_url": "https://www.openstreetmap.org/api/0.6/map?bbox=115.010,40.575,115.070,40.610",
+      "http_status": 200,
+      "content_type": "application/xml; charset=utf-8",
+      "retrieved_at": "2026-10-14T12:30:54.576213+00:00",
+      "sha256": "ede5ca7a74fde9b168e733b8193b34c4d2ac14ccd5b7279dc4a8f6694bed77cc",
+      "bytes": 1275835,
+      "raw_capture_file": "/Users/kian/Developer/datacenter_atlas/local_data/country-research-2026-10-14-cn-sixth-baozhiyun/xuangang-osm.xml"
+    },
+    {
+      "key": "issuer-west-plant.pdf",
+      "url": "https://res.baowugroup.com/attach/2025/04/27/cabbdef414cf4812a663b294d923fa71.pdf",
+      "final_url": "https://res.baowugroup.com/attach/2025/04/27/cabbdef414cf4812a663b294d923fa71.pdf",
+      "http_status": 200,
+      "content_type": "application/pdf",
+      "retrieved_at": "2026-10-14T12:33:16.015638+00:00",
+      "sha256": "b8c57c679eae2c81b09917fe90ac63b5a0cda81f74a314e962ac9e58a24bd14e",
+      "bytes": 145669,
+      "raw_capture_file": "/Users/kian/Developer/datacenter_atlas/local_data/country-research-2026-10-14-cn-sixth-baozhiyun/issuer-west-plant.pdf",
+      "original_request_note": "The original public asset link carried an opaque query value. It redirected to this verified query-free canonical URL; that query is omitted from the public research projection."
+    },
+    {
+      "key": "issuer-west-plant.html",
+      "url": "https://epaper.cs.com.cn/zgzqb/wap/html/2025-04/26/nw.D110000zgzqb_20250426_1-B067.htm",
+      "final_url": "https://epaper.cs.com.cn/zgzqb/wap/html/2025-04/26/nw.D110000zgzqb_20250426_1-B067.htm",
+      "http_status": 200,
+      "content_type": "text/html",
+      "retrieved_at": "2026-10-14T12:33:15.709863+00:00",
+      "sha256": "74ed712b9989adddbe408653ce33924d69535be139170067dcd651c2bc3df169",
+      "bytes": 27732,
+      "raw_capture_file": "/Users/kian/Developer/datacenter_atlas/local_data/country-research-2026-10-14-cn-sixth-baozhiyun/issuer-west-plant.html"
+    },
+    {
+      "key": "hebei-west-plant-list.pdf",
+      "url": "https://shj.chengde.gov.cn/module/download/downfile.jsp?classid=0&filename=adb5841ee65f443d8967264b8748ed41.pdf",
+      "error": "<urlopen error [Errno 65] No route to host>"
+    },
+    {
+      "key": "baidu-baozhiyun-search.json",
+      "url": "https://map.baidu.com/?qt=s&wd=%E5%AE%9D%E4%B9%8B%E4%BA%91%E5%8D%8E%E5%8C%97%E5%9F%BA%E5%9C%B0&c=264&rn=20&ie=utf-8",
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "key": "baidu-west-plant-search.json",
+      "url": "https://map.baidu.com/?qt=s&wd=%E5%AE%A3%E9%92%A2%E8%A5%BF%E5%8E%82%E5%8C%BA&c=264&rn=20&ie=utf-8",
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "url": "https://hbepb.hebei.gov.cn/zycms/ewebeditor/uploadfile/20211124100323814.pdf",
+      "error": "<urlopen error [Errno 65] No route to host>"
+    },
+    {
+      "url": "https://www.baohuabidding.cn/shbhgjzb/jyxx/018001/018001003/018001003002/20260727/ddf5484b-5c5d-4e7d-85ae-6da4a4219eb0.html",
+      "final_url": "https://www.baohuabidding.cn/shbhgjzb/jyxx/018001/018001003/018001003002/20260727/ddf5484b-5c5d-4e7d-85ae-6da4a4219eb0.html",
+      "http_status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 23807,
+      "sha256": "3c0b79fde2f1a3397813319d79d5ce7f8e425273addd55f8d7c34fa1d5449f83",
+      "retrieved_at": "2026-10-14T12:34:59.756931+00:00",
+      "raw_capture_file": "/Users/kian/Developer/datacenter_atlas/local_data/country-research-2026-10-14-cn-sixth-baozhiyun/baohua-july27-property-tender.html"
+    },
+    {
+      "url": "https://mmbiz.qpic.cn/mmbiz_png/9bGDiaBGdWibjWPGP98GuqEaSQOjxUDG4B7gdXJy8FYS1qncK71BF0o4P0PEber3qBHFIHibMnfaCkWTXtbHV9TgQ/640?wx_fmt=png#imgIndex=1",
+      "final_url": "https://mmbiz.qpic.cn/mmbiz_png/9bGDiaBGdWibjWPGP98GuqEaSQOjxUDG4B7gdXJy8FYS1qncK71BF0o4P0PEber3qBHFIHibMnfaCkWTXtbHV9TgQ/640?wx_fmt=png#imgIndex=1",
+      "http_status": 200,
+      "content_type": "image/png",
+      "bytes": 1097684,
+      "sha256": "ba60461d7740e12e783c1a7da3990d26079ebd87c623c880651787322b1500b5",
+      "retrieved_at": "2026-10-14T12:44:13.752869+00:00",
+      "raw_capture_file": "/Users/kian/Developer/datacenter_atlas/local_data/country-research-2026-10-14-cn-sixth-baozhiyun/designer-campus-image.png"
+    },
+    {
+      "url": "https://www.tellhowpower.com.cn/Util/upload/ueditor/upload/image/20250902/6389241020852527724238877.jpg",
+      "final_url": "https://www.tellhowpower.com.cn/Util/upload/ueditor/upload/image/20250902/6389241020852527724238877.jpg",
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "bytes": 110106,
+      "sha256": "bd3a81fd51e42f5711c28fbff1e64402cae7f4bd3fd26018f398adf2f6bd7209",
+      "retrieved_at": "2026-10-14T12:45:59.224145+00:00",
+      "raw_capture_file": "/Users/kian/Developer/datacenter_atlas/local_data/country-research-2026-10-14-cn-sixth-baozhiyun/tellhow-campus-image.jpg"
+    },
+    {
+      "key": "tellhow-campus-render.html",
+      "url": "https://www.tellhowpower.com.cn/news/details-28.html",
+      "final_url": "https://www.tellhowpower.com.cn/news/details-28.html",
+      "http_status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 17019,
+      "sha256": "cef2307e81b676adc95883b1e7f655848a68defaa3fc87332f42c126b1029ba0",
+      "retrieved_at": "2026-10-14T12:44:55.361787+00:00",
+      "raw_capture_file": "/Users/kian/Developer/datacenter_atlas/local_data/country-research-2026-10-14-cn-sixth-baozhiyun/tellhow-campus-render.html"
+    },
+    {
+      "key": "district-campus-report.html",
+      "url": "https://zjk.hebccw.cn/system/2023/05/15/101149019.shtml",
+      "error": "The read operation timed out"
+    },
+    {
+      "key": "baocloud-home.html",
+      "url": "https://www.baocloud.cn/",
+      "final_url": "https://www.baocloud.cn/",
+      "http_status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 138923,
+      "sha256": "a2db20dc2f6285c8e5e6755f157a0f98be7f1fa3f3511c1fc83f85f05d0b307f",
+      "retrieved_at": "2026-10-14T12:45:47.125437+00:00",
+      "raw_capture_file": "/Users/kian/Developer/datacenter_atlas/local_data/country-research-2026-10-14-cn-sixth-baozhiyun/baocloud-home.html"
+    },
+    {
+      "key": "baocloud-about.html",
+      "url": "https://www.baocloud.cn/AboutUs",
+      "final_url": "https://www.baocloud.cn/AboutUs",
+      "http_status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 121803,
+      "sha256": "281659286dd3b6b18fae05a330091b39c65efbed86a0de9d4f8d7e06bf89da98",
+      "retrieved_at": "2026-10-14T12:45:45.574544+00:00",
+      "raw_capture_file": "/Users/kian/Developer/datacenter_atlas/local_data/country-research-2026-10-14-cn-sixth-baozhiyun/baocloud-about.html"
+    },
+    {
+      "key": "google-campus-search.html",
+      "url": "https://www.google.com/maps/search/%E5%AE%9D%E4%B9%8B%E4%BA%91%E5%8D%8E%E5%8C%97%E5%9F%BA%E5%9C%B0",
+      "final_url": "https://www.google.com/maps/search/%E5%AE%9D%E4%B9%8B%E4%BA%91%E5%8D%8E%E5%8C%97%E5%9F%BA%E5%9C%B0?ucbcb=1",
+      "http_status": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "bytes": 227724,
+      "sha256": "5df2721d5e46fdc203a9253fc92da345da28a1e0b778bf24e566334e81757251",
+      "retrieved_at": "2026-10-14T12:47:53.238884+00:00",
+      "raw_capture_file": "/Users/kian/Developer/datacenter_atlas/local_data/country-research-2026-10-14-cn-sixth-baozhiyun/google-campus-search.html"
+    },
+    {
+      "key": "bing-campus-search.html",
+      "url": "https://www.bing.com/maps?q=%E5%AE%9D%E4%B9%8B%E4%BA%91%E5%8D%8E%E5%8C%97%E5%9F%BA%E5%9C%B0",
+      "final_url": "https://www.bing.com/maps?q=%E5%AE%9D%E4%B9%8B%E4%BA%91%E5%8D%8E%E5%8C%97%E5%9F%BA%E5%9C%B0",
+      "http_status": 200,
+      "content_type": "text/html",
+      "bytes": 78211,
+      "sha256": "73eb1aec31af2a055332503193a0e77139089b42ad57c1f93b56463c8df69b6b",
+      "retrieved_at": "2026-10-14T12:47:53.222243+00:00",
+      "raw_capture_file": "/Users/kian/Developer/datacenter_atlas/local_data/country-research-2026-10-14-cn-sixth-baozhiyun/bing-campus-search.html"
+    },
+    {
+      "url": "https://www.zjkxuanhua.gov.cn/",
+      "error": "<urlopen error [Errno 65] No route to host>"
+    },
+    {
+      "key": "gem-steel-plant.html",
+      "url": "https://www.gem.wiki/Xuanhua_Iron_and_Steel_Group_Co_Ltd",
+      "retrieved_at": "2026-10-14T12:51:56.122436+00:00",
+      "final_url": "https://www.gem.wiki/Xuanhua_Iron_and_Steel_Group_Co_Ltd",
+      "http_status": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "bytes": 83218,
+      "sha256": "7a9fea27be67c7293dadb34c6c639c2e55e3aa14d18cedfdf1ef9cb886cb063c",
+      "raw_capture_file": "/Users/kian/Developer/datacenter_atlas/local_data/country-research-2026-10-14-cn-sixth-baozhiyun/gem-steel-plant.html"
+    },
+    {
+      "key": "historic-two-plants.html",
+      "url": "https://www.david-longman.internationalsteam.co.uk/China_Xuanhau.html",
+      "retrieved_at": "2026-10-14T12:51:56.122703+00:00",
+      "final_url": "https://www.david-longman.internationalsteam.co.uk/China_Xuanhau.html",
+      "http_status": 200,
+      "content_type": "text/html",
+      "bytes": 40828,
+      "sha256": "777f4c36b3a4c7ee2bf7ca879dabb6d9d80e3cdedf997d7dc0c0e4f7deb545d5",
+      "raw_capture_file": "/Users/kian/Developer/datacenter_atlas/local_data/country-research-2026-10-14-cn-sixth-baozhiyun/historic-two-plants.html"
+    },
+    {
+      "key": "west-plant-planning-repost.html",
+      "url": "https://www.sohu.com/a/405426209_675875",
+      "retrieved_at": "2026-10-14T12:51:56.122769+00:00",
+      "final_url": "https://www.sohu.com/a/405426209_675875",
+      "http_status": 200,
+      "content_type": "text/html;charset=UTF-8",
+      "bytes": 22657,
+      "sha256": "982bcd03e318cefa9d77560a57e3958879a03d03f3231071146a5a13c51dcb55",
+      "raw_capture_file": "/Users/kian/Developer/datacenter_atlas/local_data/country-research-2026-10-14-cn-sixth-baozhiyun/west-plant-planning-repost.html"
+    },
+    {
+      "key": "west-plant-planning-image.jpeg",
+      "url": "https://p7.itc.cn/q_70/images03/20200703/1e1afafb224a42e699f50742cd1ec42e.jpeg",
+      "retrieved_at": "2026-10-14T12:52:22.271659+00:00",
+      "final_url": "https://p7.itc.cn/q_70/images03/20200703/1e1afafb224a42e699f50742cd1ec42e.jpeg",
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "bytes": 65997,
+      "sha256": "7aac60c15ba6410a9a04c91cd767a7eec2beee01758789313a93646f48053f7d",
+      "raw_capture_file": "/Users/kian/Developer/datacenter_atlas/local_data/country-research-2026-10-14-cn-sixth-baozhiyun/west-plant-planning-image.jpeg"
+    },
+    {
+      "key": "west-plant-planning-image2.png",
+      "url": "https://p7.itc.cn/q_70/images03/20200703/9e94e27e86d04410b68818b42233cfca.png",
+      "retrieved_at": "2026-10-14T12:52:22.271978+00:00",
+      "final_url": "https://p7.itc.cn/q_70/images03/20200703/9e94e27e86d04410b68818b42233cfca.png",
+      "http_status": 200,
+      "content_type": "image/png",
+      "bytes": 192001,
+      "sha256": "5e8534232de7ba573493a0154f6ad42dce905a2813d30986b99eae7b0e2ea6c7",
+      "raw_capture_file": "/Users/kian/Developer/datacenter_atlas/local_data/country-research-2026-10-14-cn-sixth-baozhiyun/west-plant-planning-image2.png"
+    },
+    {
+      "key": "west-plant-planning-image3.jpeg",
+      "url": "https://p1.itc.cn/q_70/images03/20200703/8169489bc6eb4ae4a8cf41fab40be3c7.jpeg",
+      "retrieved_at": "2026-10-14T12:53:01.105830+00:00",
+      "final_url": "https://p1.itc.cn/q_70/images03/20200703/8169489bc6eb4ae4a8cf41fab40be3c7.jpeg",
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "bytes": 79486,
+      "sha256": "49e862694563c81093df626e85d8f0dd562060bc86b043b12c719193fbc2c845",
+      "raw_capture_file": "/Users/kian/Developer/datacenter_atlas/local_data/country-research-2026-10-14-cn-sixth-baozhiyun/west-plant-planning-image3.jpeg"
+    }
+  ],
+  "retained_prior_primary_capture_metadata": [
+    {
+      "key": "baozhiyun-current",
+      "url": "https://5bur.cscec.com/5bur/oa/dtxw/202609/3957943.html",
+      "final_url": "https://5bur.cscec.com/5bur/oa/dtxw/202609/3957943.html",
+      "http_status": 200,
+      "raw_capture_file": "local_data/country-research-2026-10-14-cn-fifth/baozhiyun-current.html",
+      "raw_capture_sha256": "13f44903acbc2eb386f3d05cfbd2e2c8f906341ec7c82766b8e749689746c72a",
+      "bytes": 22641
+    },
+    {
+      "key": "baozhiyun-designer",
+      "url": "https://www.cabrtech.com/cabrtech/xwzx/xmzs/2025/10/I1430205011878477824.html",
+      "final_url": "https://www.cabrtech.com/cabrtech/xwzx/xmzs/2025/10/I1430205011878477824.html",
+      "http_status": 200,
+      "raw_capture_file": "local_data/country-research-2026-10-14-cn-fifth/baozhiyun-designer.html",
+      "raw_capture_sha256": "2045cd41beebfcf5969ee1cb2536efcda3275f446798826c80dff545fe2b656f",
+      "bytes": 115476
+    }
+  ],
+  "review_artifacts": [
+    {
+      "path": "local_data/country-research-2026-10-14-cn-sixth-baozhiyun/ecology-indexed-lead-notes.json",
+      "sha256": "ba19655797436935da670f859bd957185c4c4dc7267d82cb264f2c38d8c08a22"
+    },
+    {
+      "path": "local_data/country-research-2026-10-14-cn-sixth-baozhiyun/osm-named-feature-review.json",
+      "sha256": "03d1e646b1020ea10b00035032f5c483c1425bec281b6f96ed2b84ef5f0989c4"
+    }
+  ],
+  "quality_notes": [
+    "No selected WGS84 coordinate; native unknown-datum degrees and non-campus map context remain excluded.",
+    "All successful HTTP response hashes recorded and checked. Failed requests are recorded without inventing response-body evidence.",
+    "No operating claim derived from planned property-service dates or MEP acceptance.",
+    "No city/postcode geocode used; previously rejected Nominatim matches were not retried.",
+    "Only this source findings file and ignored raw research files authored; no core, code, configuration or Git mutation.",
+    "The second bounded pass captured designer/supplier images, operator pages, map-provider shells, a compiled steel-company locator and a whole-property schematic repost. None resolves numeric campus/whole-west-plant geometry; hold remains explicit."
+  ]
+}

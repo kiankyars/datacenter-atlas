@@ -1,0 +1,248 @@
+{
+  "format": "datacenter-atlas-country-geometry-facts-v1",
+  "reviewed_at": "2026-10-14",
+  "base_dataset": "verified_construction_core/2026-10-14-research-fifth",
+  "base_commit": "a978381534cc2db8c94d83a2a68fe47e4a6aaef7",
+  "base_manifest_sha256": "795c19835f7f190332135aba68dacc242d6f4fd24a1073b2a4b082bb4b45c124",
+  "source_files": [
+    {
+      "path": "sources/research-countries-2026-10-14-cn-sixth-lingang-primary-sources.json",
+      "sha256": "22a30c19409034f708f3a64a82ff5ab17a01917c234e428054095b3e02cfee97"
+    }
+  ],
+  "candidate": "China Telecom Lingang Information Park Phase 2.1",
+  "selected_locator": {
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        121.9415,
+        30.9535
+      ]
+    },
+    "source_id": "cn-sixth-lingang-osm-road-controls",
+    "scope": "campus_locator",
+    "scope_class": "official_phase2_parent_property_plan_georeferenced_to_osm_roads",
+    "authority": "compiled_reference",
+    "method": "scaled_official_plan_similarity_registered_to_named_osm_road_junctions",
+    "derivation": "georeferenced_source_map",
+    "precision": "Approximate representative point inside the named Phase 2 parent property, rounded to four decimals. It does not locate the Phase 2.1 buildings, active work, entrance, surveyed centroid, parcel boundary or Phase 1 property.",
+    "identity_review": "CSCEC explicitly confirms Phase 2.1. The authority-approved Phase 2 plan names the same project and shows a unique property east of Runhe Road, west of Yebo Road, south of Canghong Road and north of Zongqi River. The consultation drawing confirms these four limits. Runhe/Canghong and Runhe/Zhoude junctions anchor the plan, with Runhe/Danyi withheld as a check. No Phase 1 F07-01 point is used.",
+    "horizontal_uncertainty_metres": null,
+    "uncertainty_reason": "The plan and community road map provide no measured absolute accuracy. Two fit controls and the withheld check are collinear; the official north-up 1:750 plan supports isotropic scale, but the 8.44 m residual does not independently verify east-west or absolute ground accuracy. Rounded point denotes only the broad Phase 2 property."
+  },
+  "registration": {
+    "method": "two_control_similarity_registration_of_official_scaled_north_up_plan_to_named_OSM_road_junctions",
+    "pdf_render_dpi": 72,
+    "pdf_page_size_pixels": [
+      3370,
+      2384
+    ],
+    "pdf_page_1_based": 1,
+    "pixel_origin": "top_left",
+    "source_pdf_sha256": "ab4ff9c392c81e36b09456ccf0abc44901ab118323e6f5994ef93d226baa23b7",
+    "controls": [
+      {
+        "label": "Runhe / Canghong road centerline intersection",
+        "pdf_pixel_xy": [
+          411,
+          724
+        ],
+        "lon_lat": [
+          121.9390732,
+          30.9550722
+        ],
+        "osm_node_ids": [
+          7624376576
+        ],
+        "role": "fit",
+        "osm_node_versions": [
+          1
+        ]
+      },
+      {
+        "label": "Runhe / Zhoude road centerline intersection",
+        "pdf_pixel_xy": [
+          411,
+          2329
+        ],
+        "lon_lat": [
+          121.93904380000001,
+          30.95123045
+        ],
+        "osm_node_ids": [
+          7624376572,
+          12500896168
+        ],
+        "role": "fit",
+        "derivation": "midpoint of northbound/southbound Zhoude carriageway intersection nodes",
+        "osm_node_versions": [
+          1,
+          1
+        ]
+      },
+      {
+        "label": "Runhe / Danyi road centerline intersection",
+        "pdf_pixel_xy": [
+          411,
+          1386
+        ],
+        "lon_lat": [
+          121.9390605,
+          30.9534115
+        ],
+        "osm_node_ids": [
+          7624376574
+        ],
+        "role": "withheld_check",
+        "osm_node_versions": [
+          1
+        ]
+      }
+    ],
+    "local_metric_frame": {
+      "ellipsoid": "WGS84",
+      "a_m": 6378137.0,
+      "e_squared": 0.0066943799901413165,
+      "reference_latitude_degrees": 30.953,
+      "metres_per_degree_longitude": 95551.07126036285,
+      "metres_per_degree_latitude": 110868.65682895502
+    },
+    "transform": {
+      "source_complex": "x - i*y in pixels",
+      "target_complex": "east + i*north in local metric frame",
+      "source_origin_pixel": [
+        411,
+        724
+      ],
+      "target_origin_lon_lat": [
+        121.9390732,
+        30.9550722
+      ],
+      "complex_coefficient_real": 0.2653767366807314,
+      "complex_coefficient_imag": -0.0017502813046334645,
+      "formula": "target_ground = coefficient * (source_complex - source_origin_complex); lon = origin_lon + east / metres_per_degree_longitude; lat = origin_lat + north / metres_per_degree_latitude"
+    },
+    "registration_scale_m_per_pixel": 0.26538250857198487,
+    "printed_scale": 750,
+    "printed_scale_expected_m_per_pixel_at_72_dpi": 0.26458333333333334,
+    "scale_difference_percent": 0.30205048389979616,
+    "withheld_control_predicted_lon_lat": [
+      121.93906107364487,
+      30.953487627725856
+    ],
+    "withheld_control_residual_m": 8.440356692928868,
+    "selected_interior_marker_pixel": [
+      1300,
+      1380
+    ],
+    "derived_unrounded_lon_lat": [
+      121.94153022880435,
+      30.953487954782585
+    ],
+    "selected_lon_lat": [
+      121.9415,
+      30.9535
+    ],
+    "rough_parcel_outline_pixel_for_sanity_check_only": [
+      [
+        532,
+        754
+      ],
+      [
+        1788,
+        548
+      ],
+      [
+        2275,
+        2026
+      ],
+      [
+        532,
+        2026
+      ],
+      [
+        532,
+        754
+      ]
+    ],
+    "rough_outline_transformed_area_m2": 146975.44112867114,
+    "official_property_area_m2": 142607.67,
+    "area_check_note": "Rough hand-picked outline is solely a scale sanity check; not emitted as a boundary or project footprint.",
+    "limitations": [
+      "Only a coarse representative marker for the full named Phase 2 parent property.",
+      "Two fit controls determine a similarity transform; the third collinear road junction checks along-road consistency but does not independently validate east-west scale. The printed 1:750 plan scale and north arrow support isotropic scale; no affine warp or unknown-datum survey coordinate conversion is used.",
+      "OSM roads are community mapping with no surveyed positional accuracy; the 8-10 m check residual is not a ground-accuracy claim.",
+      "Phase 2.1 building position, active construction extent and facility boundary are not asserted.",
+      "No independent satellite-image verification."
+    ]
+  },
+  "visual_review": {
+    "approved_plan_page_1_reviewed": true,
+    "consultation_plan_identity_and_four_limits_reviewed": true,
+    "approved_notes_reviewed": true,
+    "source_survey_system_note": "The plan says Shanghai city plane coordinates and Wusong elevations; no datum transformation is inferred or applied. Registration uses drawn road centerlines and OSM WGS84 junctions.",
+    "reference_roads_only": true,
+    "independent_imagery_verification": false,
+    "review_images": [
+      "local_data/country-research-2026-10-14-cn-sixth-lingang/approved-plan.png",
+      "local_data/country-research-2026-10-14-cn-sixth-lingang/approved-plan-notes.png",
+      "local_data/country-research-2026-10-14-cn-sixth-lingang/runhe-control-strip.png",
+      "local_data/country-research-2026-10-14-cn-sixth-lingang/consultation-plan.png"
+    ]
+  },
+  "phase_scope_exclusions": [
+    "Phase 1 F07-01 lies beyond Zhoude Road south of this property and is not substituted.",
+    "Full Phase 2 design includes planned B1-B6 data-center buildings, support buildings and substation. Shell status is attached only to the contractor-described Phase 2.1 scope.",
+    "No full-property completion, operation, phase capacity or footprint is inferred."
+  ],
+  "approved_geometries": [
+    {
+      "type": "Point",
+      "coordinates": [
+        121.9415,
+        30.9535
+      ],
+      "scope": "campus_locator"
+    }
+  ],
+  "osm_reference_ways": [
+    {
+      "way_id": 1351219384,
+      "version": 1,
+      "name": "润荷路"
+    },
+    {
+      "way_id": 1351219385,
+      "version": 1,
+      "name": "润荷路"
+    },
+    {
+      "way_id": 1351219386,
+      "version": 1,
+      "name": "润荷路"
+    },
+    {
+      "way_id": 816361885,
+      "version": 3,
+      "name": "苍泓路"
+    },
+    {
+      "way_id": 816361884,
+      "version": 4,
+      "name": "丹漪路"
+    },
+    {
+      "way_id": 816361883,
+      "version": 6,
+      "name": "洲德路"
+    },
+    {
+      "way_id": 1351219378,
+      "version": 3,
+      "name": "洲德路"
+    }
+  ],
+  "marker_inside_rough_source_outline": true,
+  "minimum_marker_distance_to_rough_source_outline_m": 171.43710053750223,
+  "geometry_rights_scope": "The derived point uses OpenStreetMap numeric road controls and is attributed to OpenStreetMap contributors under ODbL-1.0. The official plan remains separately attributed identity/shape context with its own source terms; no plan or boundary is redistributed."
+}

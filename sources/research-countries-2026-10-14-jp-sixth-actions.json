@@ -1,0 +1,78 @@
+{
+  "format": "datacenter-atlas-action-specs-v1",
+  "as_of": "2026-10-14",
+  "base_dataset": "verified_construction_core/2026-10-14-research-fifth",
+  "base_commit": "a978381534cc2db8c94d83a2a68fe47e4a6aaef7",
+  "base_manifest_sha256": "795c19835f7f190332135aba68dacc242d6f4fd24a1073b2a4b082bb4b45c124",
+  "source_file": "sources/research-countries-2026-10-14-jp-sixth-primary-sources.json",
+  "additions": [
+    {
+      "project_stable_key": "curated:sakura-ishikari-data-center:existing-operations",
+      "physical_site_stable_key": "curated:sakura-ishikari-data-center",
+      "site_name": "Sakura Ishikari Data Center",
+      "name": "Sakura Ishikari Data Center Existing Operations",
+      "country": "Japan",
+      "country_iso_a2": "JP",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-07-28",
+        "source_id": "jp-sixth-sakura-dcc-operating",
+        "summary": "Dated operator announcement confirms continued operation of the named Ishikari campus since 2011. July 28 is current operating confirmation, not first opening or proof of Building 3 C/D completion."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            141.3003,
+            43.1772
+          ]
+        },
+        "source_id": "jp-sixth-sakura-city-map",
+        "scope": "campus_locator",
+        "scope_class": "named_municipal_campus_matched_to_gsi_map",
+        "authority": "compiled_reference",
+        "method": "manual_named_campus_match_to_gsi_xyz_map",
+        "derivation": "georeferenced_source_map",
+        "precision": "Approximate analyst-selected point inside the named Sakura Ishikari parent campus. It is not an operator-published pin, surveyed centroid, campus boundary, building footprint, or Building 3 C/D fit-out location.",
+        "identity_review": "The municipal plan labels Sakura Internet Ishikari Data Center on the compound south of Minato-dori and west of the parallel main road. Its perpendicular long buildings, the circular Sun Village sports hall across Minato-dori, the northwest small compound, and the surrounding road geometry match the GSI map. The point is selected within that identified campus only.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "Municipal and GSI maps provide no surveyed accuracy for this analyst-selected point; map vintage and manual matching add unquantified uncertainty. Four decimal places are output to avoid implying building or survey precision."
+      },
+      "context_source_ids": [
+        "jp-sixth-sakura-power-maintenance",
+        "jp-sixth-sakura-soc-renewal",
+        "jp-sixth-sakura-gsi-map",
+        "jp-sixth-gsi-tile-specification",
+        "jp-sixth-sakura-campus-profile",
+        "jp-sixth-ishikari-distinct-facilities",
+        "jp-sixth-ishikari-dcc-context"
+      ],
+      "distinctness_review": "All 406 baseline sites, 430 projects and 231 source records checked across Sakura, さくら, Ishikari and 石狩 aliases. No Sakura site/project or source-record identity match. The IIJ Shiroi text mention is context only. Nearest existing site is Ishikari Renewable Energy Data Center No.1 about 232 m northwest, with a different operator/property and BroadBand Tower tenancy. City directory separately lists both facilities. Regional DCC cooperation does not establish shared-campus or lease identity; no contrary primary identity bridge was found.",
+      "successor_review": "July 27 completed power maintenance independently corroborates live container-facility services. August 3 SOC notice calls Ishikari an operated campus, while its audit period ends May 31; audit receipt is not used as a physical opening or later audit observation. July 28 remains the selected unambiguous whole-campus present-tense confirmation. No dated achieved C/D fit-out observation was established in the July 28 presentation or 2026 integrated report.",
+      "roles": [
+        {
+          "party": "Sakura Internet",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "jp-sixth-sakura-dcc-operating"
+        }
+      ],
+      "scoped_project_details": {
+        "aliases": [
+          "さくらインターネット 石狩データセンター",
+          "グリーンエナジーデータセンター第1号"
+        ],
+        "facility_scope": "Existing operating facilities at the named parent campus, independently of planned or incomplete expansions",
+        "opening_date": null,
+        "reported_operation_start_year": 2011,
+        "status_date_scope": "Dated present-tense confirmation of continued campus operation",
+        "Building_3_C_D_achieved_status_established": false,
+        "individual_buildings_or_containers_separately_counted": false,
+        "IT_power_MW": null,
+        "power_exclusion": "No planned or campus aggregate power, GPU count, rack count or electrical-feed figure is selected as live project IT load.",
+        "locator_scope": "Approximate parent-campus point; no building or phase precision"
+      }
+    }
+  ],
+  "status_updates": []
+}

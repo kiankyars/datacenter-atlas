@@ -1,0 +1,229 @@
+{
+  "format": "datacenter-atlas-country-research-v1",
+  "reviewed_at": "2026-10-14",
+  "base_dataset": "verified_construction_core/2026-10-14-research-fifth",
+  "base_commit": "a978381534cc2db8c94d83a2a68fe47e4a6aaef7",
+  "base_manifest_sha256": "795c19835f7f190332135aba68dacc242d6f4fd24a1073b2a4b082bb4b45c124",
+  "source_files": [
+    {
+      "path": "sources/research-countries-2026-10-14-cn-sixth-lingang-primary-sources.json",
+      "sha256": "22a30c19409034f708f3a64a82ff5ab17a01917c234e428054095b3e02cfee97"
+    }
+  ],
+  "countries": [
+    "CN"
+  ],
+  "scope": "Resolve Lingang Phase 2.1 numeric parent-property location using recovered official plan and named reference roads.",
+  "base_site_count": 406,
+  "base_project_count": 430,
+  "freshness_window": {
+    "cutoff": "2026-07-16",
+    "review_date": "2026-10-14"
+  },
+  "summary": {
+    "publishable_additions": 1,
+    "publishable_status_updates": 0,
+    "held_candidates": 0
+  },
+  "admissions": [
+    {
+      "candidate": "China Telecom Lingang Information Park Phase 2.1",
+      "decision": "proposed_addition_with_explicit_approximate_parent_property_marker",
+      "project_stable_key": "curated:china-telecom-lingang-information-park-phase2:phase21",
+      "confirmed_status": "shell",
+      "status_observed_on": "2026-09-14",
+      "exact_topping_out_day": null,
+      "date_semantics": "Contractor September 14 report confirms Phase 2.1 main structures have topped out. This is a dated confirmation of achieved shell state; the exact recent topping-out day remains unknown. Data center, supporting machine room and 220 kV substation are the stated scope. No completion, operation or Phase 2.2 status is inferred.",
+      "geometry": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            121.9415,
+            30.9535
+          ]
+        },
+        "source_id": "cn-sixth-lingang-osm-road-controls",
+        "scope": "campus_locator",
+        "scope_class": "official_phase2_parent_property_plan_georeferenced_to_osm_roads",
+        "authority": "compiled_reference",
+        "method": "scaled_official_plan_similarity_registered_to_named_osm_road_junctions",
+        "derivation": "georeferenced_source_map",
+        "precision": "Approximate representative point inside the named Phase 2 parent property, rounded to four decimals. It does not locate the Phase 2.1 buildings, active work, entrance, surveyed centroid, parcel boundary or Phase 1 property.",
+        "identity_review": "CSCEC explicitly confirms Phase 2.1. The authority-approved Phase 2 plan names the same project and shows a unique property east of Runhe Road, west of Yebo Road, south of Canghong Road and north of Zongqi River. The consultation drawing confirms these four limits. Runhe/Canghong and Runhe/Zhoude junctions anchor the plan, with Runhe/Danyi withheld as a check. No Phase 1 F07-01 point is used.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The plan and community road map provide no measured absolute accuracy. Two fit controls and the withheld check are collinear; the official north-up 1:750 plan supports isotropic scale, but the 8.44 m residual does not independently verify east-west or absolute ground accuracy. Rounded point denotes only the broad Phase 2 property."
+      },
+      "scope_exclusions": [
+        "Phase 1 F07-01 lies beyond Zhoude Road south of this property and is not substituted.",
+        "Full Phase 2 design includes planned B1-B6 data-center buildings, support buildings and substation. Shell status is attached only to the contractor-described Phase 2.1 scope.",
+        "No full-property completion, operation, phase capacity or footprint is inferred."
+      ]
+    }
+  ],
+  "duplicate_review": {
+    "project_rows_checked": 430,
+    "site_rows_checked": 406,
+    "name_key_matches": [],
+    "nearest_baseline_sites": [
+      {
+        "distance_km": 592.836,
+        "name": "National AI Computing Center, Solaseado (Haenam)",
+        "site_id": "vcc-site-af1774a8d4eb3398e76e"
+      },
+      {
+        "distance_km": 795.327,
+        "name": "DayOne Imari Data Center Campus",
+        "site_id": "vcc-site-458af89082928e776bd0"
+      },
+      {
+        "distance_km": 851.178,
+        "name": "Digital Edge Seoul Bupyeong Campus",
+        "site_id": "vcc-site-5750ea0ecd6d7c900211"
+      }
+    ]
+  },
+  "resolved_previous_holds": [
+    "Official approved and consultation plan PDFs recovered through public attachment links; exact response bytes preserved.",
+    "The four limits reconcile: Zhoude Road is south of Zongqi River, not the direct Phase 2 southern boundary.",
+    "Numeric WGS84 road anchors recovered directly from OSM API after Overpass timeout; Phase 1 not substituted."
+  ],
+  "access_limitations": [
+    {
+      "url": "https://biz.ghzyj.sh.gov.cn/shtdsc/jy/api/wholeLife/info/0/5ab77cf4-8f67-4565-998f-311c063e26a8/0",
+      "finding": "Official search index identifies F03-03 parcel, owner and matching four limits. Direct raw capture failed due unsafe legacy TLS renegotiation; TLS was not weakened. Not used as admitted evidence."
+    },
+    {
+      "url": "https://overpass.private.coffee/api/interpreter",
+      "finding": "Alternate Overpass request timed out. Direct official OSM map API succeeded; no repeated blocked query."
+    }
+  ],
+  "quality_notes": [
+    "Primary status raw hash revalidated; historical plans supply geometry only.",
+    "Exact milestone day remains null; no publication-to-milestone equality.",
+    "No ceremony, procurement, forecast or capacity-transfer inference.",
+    "The georeferenced point is a compiled-reference campus locator, not an official coordinate or boundary.",
+    "Two collinear fit controls, third collinear withheld check, nominal scale check and remaining cross-track uncertainty are disclosed.",
+    "No independent imagery claim.",
+    "Geometry evidence is the ODbL numeric road-control source. Official plans remain separately attributed context; derivative geometry attribution is not lost under the plan licence."
+  ],
+  "owned_files": [
+    "sources/research-countries-2026-10-14-cn-sixth-lingang.json",
+    "sources/research-countries-2026-10-14-cn-sixth-lingang-actions.json",
+    "sources/research-countries-2026-10-14-cn-sixth-lingang-primary-sources.json",
+    "sources/research-countries-2026-10-14-cn-sixth-lingang-geometry-facts.json"
+  ],
+  "raw_capture_manifest": [
+    {
+      "path": "local_data/country-research-2026-10-14-cn-sixth-lingang/approved-plan-capture.json",
+      "sha256": "8348fa62e71e62ccab5ee47fdf04903e2a1a760a47a3b4431a58ad797e2ea10e",
+      "bytes": 401
+    },
+    {
+      "path": "local_data/country-research-2026-10-14-cn-sixth-lingang/approved-plan-notes.png",
+      "sha256": "c4a7e4cc463df47091fce03c11e5f4cbfd412b351d254a3338923a2132401928",
+      "bytes": 138941
+    },
+    {
+      "path": "local_data/country-research-2026-10-14-cn-sixth-lingang/approved-plan.pdf",
+      "sha256": "ab4ff9c392c81e36b09456ccf0abc44901ab118323e6f5994ef93d226baa23b7",
+      "bytes": 1856128
+    },
+    {
+      "path": "local_data/country-research-2026-10-14-cn-sixth-lingang/approved-plan.png",
+      "sha256": "a528713eafd754c9d60704ba4a15172598ec27423c16de822a016c2b8651687e",
+      "bytes": 1089175
+    },
+    {
+      "path": "local_data/country-research-2026-10-14-cn-sixth-lingang/approved-plan.txt",
+      "sha256": "b2e0598d8a75e071f0e4b00481195654b75e976e62f9ff6b5075528ec8b5d9c7",
+      "bytes": 24968
+    },
+    {
+      "path": "local_data/country-research-2026-10-14-cn-sixth-lingang/consultation-plan-capture.json",
+      "sha256": "f3fc3d1ff4f5e43c0ebaf45e39e265a0c4de4d461ea5453d639e0db2ac5b29d1",
+      "bytes": 401
+    },
+    {
+      "path": "local_data/country-research-2026-10-14-cn-sixth-lingang/consultation-plan.pdf",
+      "sha256": "e57f7178016de407d7233e54e6a417d14c25a1acd71efdb6ba20fb637ffad3ec",
+      "bytes": 1576882
+    },
+    {
+      "path": "local_data/country-research-2026-10-14-cn-sixth-lingang/consultation-plan.png",
+      "sha256": "da76030ac85abaab2bb7943bde41ebc45584e5b867fa582a792cc13bdaa9ba3d",
+      "bytes": 1168344
+    },
+    {
+      "path": "local_data/country-research-2026-10-14-cn-sixth-lingang/east-control-strip.png",
+      "sha256": "23ccffa0dd0ab434a557b1df92d77206501e30f8f3247e01d12686a8a572e3e3",
+      "bytes": 19500
+    },
+    {
+      "path": "local_data/country-research-2026-10-14-cn-sixth-lingang/georeference-result.json",
+      "sha256": "9472329aa5081140aef2c1f5c8a7491ecaf1417ac6d2f1b1c8f57ef1dadc1340",
+      "bytes": 3877
+    },
+    {
+      "path": "local_data/country-research-2026-10-14-cn-sixth-lingang/georeference.py",
+      "sha256": "88e57ec0e5da2d82c863c2d87034cd075952698dd911f5b36ccdb724abf1eba0",
+      "bytes": 4647
+    },
+    {
+      "path": "local_data/country-research-2026-10-14-cn-sixth-lingang/land-market-capture.json",
+      "sha256": "6720d8c12f80c4b08a8f37fd6fd370dd8caef4f98495593929b962103b980943",
+      "bytes": 292
+    },
+    {
+      "path": "local_data/country-research-2026-10-14-cn-sixth-lingang/lingang-phase21-status.html",
+      "sha256": "e002ad27c3ff6b4a254b0af5d3b2f4ed3ebc5323d290791881b4fcbd2e8eabf5",
+      "bytes": 79200
+    },
+    {
+      "path": "local_data/country-research-2026-10-14-cn-sixth-lingang/osm-property-context-capture.json",
+      "sha256": "ab070e2e8ba401d5a2723b53f9267c955d901a05d632edb38adbd04975cdb0e0",
+      "bytes": 266
+    },
+    {
+      "path": "local_data/country-research-2026-10-14-cn-sixth-lingang/osm-property-context-parsed.json",
+      "sha256": "7291dd5c1f0a043c490ea08933c3021f90889f44806ba13202fc3c3311f41e35",
+      "bytes": 10524
+    },
+    {
+      "path": "local_data/country-research-2026-10-14-cn-sixth-lingang/osm-property-context.osm",
+      "sha256": "94d2e1f99fe5eb0769a1992fe5c1a63eff7a8df12f02865592dfee6ff80fd3cc",
+      "bytes": 50260
+    },
+    {
+      "path": "local_data/country-research-2026-10-14-cn-sixth-lingang/roads-overpass-capture.json",
+      "sha256": "c384aa38f832f7fc9aa4dcaeb33792a765aaf43fa34b25ec68554bbeddf5899a",
+      "bytes": 557
+    },
+    {
+      "path": "local_data/country-research-2026-10-14-cn-sixth-lingang/runhe-control-strip.png",
+      "sha256": "82cf20b8a955d1cc29229022f263f1ff666a22af582953d2c9f89ad3aae22e79",
+      "bytes": 109282
+    },
+    {
+      "path": "local_data/country-research-2026-10-14-cn-sixth-lingang/runhe-road-nominatim-capture.json",
+      "sha256": "e805ab6ad789b006844c784dc4a8edc2fae6477b663108860764d3b5530ad29a",
+      "bytes": 311
+    },
+    {
+      "path": "local_data/country-research-2026-10-14-cn-sixth-lingang/runhe-road-nominatim.json",
+      "sha256": "b3e0cf67f3fa2292ead95bd35980eaf4420d92fb62ed2c3d63daf4aecc4958fe",
+      "bytes": 632
+    },
+    {
+      "path": "local_data/country-research-2026-10-14-cn-sixth-lingang/write_packet.py",
+      "sha256": "3778e513945bbb6c01b72ac39d541212757ec51e96f61523acc9ad611bae5938",
+      "bytes": 13209
+    }
+  ],
+  "validation": {
+    "source_hashes_rechecked": 4,
+    "all_control_nodes_reproduced_from_raw_osm": true,
+    "marker_inside_rough_plan_outline": true,
+    "minimum_marker_distance_to_rough_source_outline_m": 171.44,
+    "area_outline_not_published_geometry": true
+  }
+}
