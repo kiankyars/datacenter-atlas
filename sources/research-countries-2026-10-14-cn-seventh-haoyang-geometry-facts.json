@@ -1,0 +1,469 @@
+{
+  "format": "datacenter-atlas-country-geometry-facts-v1",
+  "reviewed_at": "2026-10-14",
+  "base_dataset": "verified_construction_core/2026-10-14-research-sixth",
+  "base_commit": "ebed271ab7495ebf3c9538506e5e10cfd21af161",
+  "base_manifest_sha256": "f7f29f123e2784183cc88f7750bcbdb4eb6f94c75eb6e194683821f148266082",
+  "source_files": [
+    {
+      "path": "sources/research-countries-2026-10-14-cn-seventh-haoyang-primary-sources.json",
+      "sha256": "4d4173c92abf40114a3ce9ec65dd887018925c65eda4cb12fd895a1ceeb8a207"
+    }
+  ],
+  "facts": [
+    {
+      "candidate": "Haoyang Langfang No. 1 Data Center / former Guan Fuai Electronics Internet-of-Intelligence Cloud Exchange Center",
+      "project_stable_key": "curated:haoyang-langfang-no1-data-center:existing-operations",
+      "decision": "accepted_reviewed_parent_campus_marker",
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            116.2462,
+            39.4604
+          ]
+        },
+        "source_id": "cn-seventh-haoyang-esri-image",
+        "scope": "campus_locator",
+        "scope_class": "operator_named_campus_plan_matched_to_georeferenced_imagery",
+        "authority": "compiled_reference",
+        "derivation": "georeferenced_source_map",
+        "method": "operator_plan_affine_registered_to_esri_wgs84_imagery",
+        "precision": "Approximate analyst-selected parent-campus marker between the two data-center blocks, rounded to four decimals. It is not an operator-published pin, surveyed centroid, parcel boundary, individual building footprint or phase location.",
+        "identity_review": "Operator history explicitly bridges the former Guan Fuai Electronics project to Langfang No. 1; CQC certifies No.27 Dongfang Street. The operator plan and rendering match two side-by-side data-center blocks, southwest substation, southeast support building and east/south roads in the georeferenced image. Root independently reviewed these images and replayed the eight-control affine calculation.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "Historic low-resolution plan, manual control selection, roof displacement/parallax and unknown imagery geolocation/date leave absolute positional accuracy unbounded. Internal fit residuals are not ground accuracy; no status is inferred from imagery."
+      },
+      "identity_chain": [
+        {
+          "source_id": "cn-seventh-haoyang-certified-address",
+          "fact": "CQC certificate CQC250920355034 register page16 row46 identifies 皓扬廊坊1号数据中心 at 河北省廊坊市固安县东方街27号 (No.27 Dongfang Street)."
+        },
+        {
+          "source_id": "cn-seventh-haoyang-operator-history",
+          "fact": "Operator development history identifies the 2019 38,227-square-metre Guan Fuai Electronics reused-factory project and explicitly records its May2021 renaming to Langfang No.1. The 2019 entry embeds the selected A/B/C/substation plan."
+        },
+        {
+          "source_id": "cn-seventh-haoyang-operator-plan",
+          "fact": "Operator plan labels buildings A and B side by side, research/support building C southeast, 110kV substation southwest, and Shidai Road along the east. The distinctive arrangement matches the operator campus rendering and georeferenced imagery."
+        },
+        {
+          "source_id": "cn-seventh-haoyang-esri-image",
+          "fact": "Reviewed imagery shows the same two north-south blocks with repeated rooftop equipment arrays, southwest substation, southeast support building, and roads along east and south. The selected marker lies between the blocks; imagery is used for geometry only."
+        }
+      ],
+      "source_coordinate_system": "EPSG:4326 WGS84 longitude/latitude confirmed by the retained ArcGIS export response extent and spatialReference; pixel conversion uses the returned extent, width and height.",
+      "selected_captures": {
+        "source_plan": {
+          "url": "https://www.haoyangcloud.com/repository/portal-local/new2022031615401492937/cms/image/ad07d9a2-5219-4804-baf8-2c662a9db9e0.jpg",
+          "retrieved_at": "2026-10-14T13:14:46.035186+00:00",
+          "http_status": 200,
+          "final_url": "https://www.haoyangcloud.com/repository/portal-local/new2022031615401492937/cms/image/ad07d9a2-5219-4804-baf8-2c662a9db9e0.jpg",
+          "raw_capture_file": "local_data/country-research-2026-10-14-cn-seventh-haoyang-geometry/ad07d9a2-5219-4804-baf8-2c662a9db9e0.jpg",
+          "sha256": "c74827bd23cc71021345a4ac21b75beec3ebcd0acdd71cb6c9b5d07ffd0b68fb",
+          "bytes": 64671,
+          "content_type": "image/jpeg"
+        },
+        "reference_image": {
+          "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=116.242,39.458,116.249,39.463&bboxSR=4326&imageSR=4326&size=1400,1000&format=png&f=image",
+          "retrieved_at": "2026-10-14T13:19:42.945252+00:00",
+          "http_status": 200,
+          "final_url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=116.242,39.458,116.249,39.463&bboxSR=4326&imageSR=4326&size=1400,1000&format=png&f=image",
+          "raw_capture_file": "local_data/country-research-2026-10-14-cn-seventh-haoyang-geometry/esri-west-campus-context.png",
+          "sha256": "62c0c76d3d1bee18cb2fd04ceb46b4c5511cd92b35ae29e3bd04aa55aaecf63b",
+          "bytes": 967308,
+          "content_type": "image/png"
+        },
+        "reference_export_extent": {
+          "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=116.242,39.458,116.249,39.463&bboxSR=4326&imageSR=4326&size=1400,1000&format=png&f=pjson",
+          "retrieved_at": "2026-10-14T13:21:59.773056+00:00",
+          "raw_capture_file": "local_data/country-research-2026-10-14-cn-seventh-haoyang-geometry/esri-export-extent.json",
+          "sha256": "412582d6f09103badd496d1e56ec93a604531fdbfc330e97fa959f0341d22941",
+          "bytes": 419
+        },
+        "reference_service_metadata": {
+          "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer?f=pjson",
+          "retrieved_at": "2026-10-14T13:22:45.021829+00:00",
+          "raw_capture_file": "local_data/country-research-2026-10-14-cn-seventh-haoyang-geometry/esri-service-metadata.json",
+          "sha256": "3c41ca79d7ddc2267fa1ac60c43263acbfed04915e3b2433e6b8e5d30378e2dc",
+          "bytes": 11142
+        },
+        "operator_rendering_context": {
+          "url": "https://www.haoyangcloud.com/repository/portal-local/new2022031615401492937/cms/image/b0671d22-2075-47f1-b447-7b391b6b229d.jpg",
+          "retrieved_at": "2026-10-14T13:14:46.035148+00:00",
+          "http_status": 200,
+          "final_url": "https://www.haoyangcloud.com/repository/portal-local/new2022031615401492937/cms/image/b0671d22-2075-47f1-b447-7b391b6b229d.jpg",
+          "raw_capture_file": "local_data/country-research-2026-10-14-cn-seventh-haoyang-geometry/b0671d22-2075-47f1-b447-7b391b6b229d.jpg",
+          "sha256": "7a54554a9529fd882b4023afadf68404eceaba43b45960d600d74f94e4baba61",
+          "bytes": 262196,
+          "content_type": "image/jpeg"
+        },
+        "export_api_documentation": {
+          "url": "https://developers.arcgis.com/rest/services-reference/enterprise/export-map/",
+          "retrieved_at": "2026-10-14T13:21:39.673589+00:00",
+          "http_status": 200,
+          "final_url": "https://developers.arcgis.com/rest/services-reference/enterprise/export-map/",
+          "raw_capture_file": "local_data/country-research-2026-10-14-cn-seventh-haoyang-geometry/esri-export-docs.html",
+          "sha256": "e212442a844acedae5b0c71b79944f9e7b523e83ed02e11ce2249a6fa8367ae9",
+          "bytes": 347657,
+          "content_type": "text/html"
+        }
+      },
+      "reviewed_registration": {
+        "format": "datacenter-atlas-reviewed-image-control-fit-v1",
+        "method": "Unweighted affine least squares, eight manually selected corresponding A/B building outline corners; image-pixel coordinates use upper-left origin.",
+        "source_plan_pixels": [
+          380,
+          260
+        ],
+        "reference_image_pixels": [
+          1400,
+          1000
+        ],
+        "reference_extent": {
+          "xmin": 116.24199999999998,
+          "ymin": 39.45799999999999,
+          "xmax": 116.24899999999998,
+          "ymax": 39.462999999999994,
+          "spatialReference": {
+            "wkid": 4326,
+            "latestWkid": 4326
+          }
+        },
+        "controls": [
+          {
+            "label": "A northwest roof-outline corner",
+            "plan_pixel": [
+              66,
+              4
+            ],
+            "imagery_pixel": [
+              677,
+              382
+            ],
+            "predicted_imagery_pixel": [
+              672.3005037121396,
+              381.78393296489236
+            ],
+            "fit_residual_metres": 2.0230762020293427
+          },
+          {
+            "label": "A northeast roof-outline corner",
+            "plan_pixel": [
+              166,
+              4
+            ],
+            "imagery_pixel": [
+              825,
+              391
+            ],
+            "predicted_imagery_pixel": [
+              821.246458537019,
+              392.5472131798898
+            ],
+            "fit_residual_metres": 1.8284941696685677
+          },
+          {
+            "label": "A southwest roof-outline corner",
+            "plan_pixel": [
+              66,
+              197
+            ],
+            "imagery_pixel": [
+              643,
+              604
+            ],
+            "predicted_imagery_pixel": [
+              643.2292863843331,
+              603.2964290115156
+            ],
+            "fit_residual_metres": 0.40381317622647817
+          },
+          {
+            "label": "A southeast roof-outline corner",
+            "plan_pixel": [
+              166,
+              199
+            ],
+            "imagery_pixel": [
+              797,
+              616
+            ],
+            "predicted_imagery_pixel": [
+              791.8739850711005,
+              616.3551755067889
+            ],
+            "fit_residual_metres": 2.2116750228710718
+          },
+          {
+            "label": "B northwest roof-outline corner",
+            "plan_pixel": [
+              208,
+              4
+            ],
+            "imagery_pixel": [
+              870,
+              398
+            ],
+            "predicted_imagery_pixel": [
+              883.8037595634684,
+              397.06779087018873
+            ],
+            "fit_residual_metres": 5.954498784069842
+          },
+          {
+            "label": "B northeast roof-outline corner",
+            "plan_pixel": [
+              306,
+              4
+            ],
+            "imagery_pixel": [
+              1035,
+              408
+            ],
+            "predicted_imagery_pixel": [
+              1029.7707952918502,
+              407.6158054808862
+            ],
+            "fit_residual_metres": 2.2572844170141826
+          },
+          {
+            "label": "B southwest roof-outline corner",
+            "plan_pixel": [
+              208,
+              203
+            ],
+            "imagery_pixel": [
+              844,
+              625
+            ],
+            "predicted_imagery_pixel": [
+              853.8287738213259,
+              625.4666857576395
+            ],
+            "fit_residual_metres": 4.231739222870805
+          },
+          {
+            "label": "B southeast roof-outline corner",
+            "plan_pixel": [
+              306,
+              202
+            ],
+            "imagery_pixel": [
+              1005,
+              635
+            ],
+            "predicted_imagery_pixel": [
+              999.9464376187636,
+              634.8669672281991
+            ],
+            "fit_residual_metres": 2.1729515563208572
+          }
+        ],
+        "coefficients_image_x_y": [
+          [
+            1.4894595482487936,
+            -0.15062806905599213,
+            574.5986858039432
+          ],
+          [
+            0.1076328021499744,
+            1.147733140137944,
+            370.0892354624423
+          ]
+        ],
+        "selected_plan_pixel": [
+          187,
+          111
+        ],
+        "selected_marker_semantics": "Approximate inter-building parent-campus marker between A and B; neither a surveyed centroid nor a phase footprint.",
+        "derived_imagery_pixel": [
+          836.4079056612525,
+          517.6149480197993
+        ],
+        "derived_wgs84_lon_lat": [
+          116.24618453952829,
+          39.4604094252599
+        ],
+        "rounded_wgs84_lon_lat": [
+          116.2462,
+          39.4604
+        ],
+        "fit_rms_metres": 3.0755390535867857,
+        "fit_max_metres": 5.954498784069842,
+        "horizontal_uncertainty_metres": null,
+        "accuracy_limit": "Fit residual is internal registration agreement, not ground accuracy. Plan is a 380x260 historic cropped drawing with upper building edges near crop boundary. Operator rendering and photographed roofs differ from ground footprints; roof displacement/parallax, source plan scale/change, manual corner choice, basemap geolocation and acquisition date are not independently bounded. Reference imagery is used only for spatial context, not lifecycle status."
+      },
+      "reproduction": {
+        "script": "local_data/country-research-2026-10-14-cn-seventh-haoyang-geometry/georeference.py",
+        "script_sha256": "3bf6c234b458a3c316f00bbce4f511114bb3bf5d08e271210474a5e896251da6",
+        "result": "local_data/country-research-2026-10-14-cn-seventh-haoyang-geometry/georeference-result.json",
+        "result_sha256": "93a9a1d2e327c67134be3f2c7494cb9abcd95b8296415fb7a9569c08bdae409e",
+        "algorithm": "For each image axis, solve (X transpose X) beta = X transpose y for X rows [plan_x, plan_y, 1] using unweighted least squares and Gauss-Jordan elimination with pivoting. Apply the resulting two affine coefficient triples to plan pixel [187,111]. Convert image pixels to the returned EPSG4326 extent with lon=xmin+(x+0.5)/width*(xmax-xmin); lat=ymax-(y+0.5)/height*(ymax-ymin). Round longitude and latitude to four decimal places.",
+        "residual_definition": "Internal Euclidean registration residual after local degree-to-metre scaling, using 111320 metres/degree and cosine(latitude) longitude scaling. RMS3.08m and maximum5.95m measure control fit only and are not an estimate of absolute ground accuracy."
+      },
+      "independent_review": {
+        "reviewed_at": "2026-10-14",
+        "reviewer": "root",
+        "visual_sources": [
+          "ad07d9a2-5219-4804-baf8-2c662a9db9e0.jpg",
+          "b0671d22-2075-47f1-b447-7b391b6b229d.jpg",
+          "esri-west-campus-context.png"
+        ],
+        "finding": "Independent visual match passes for parent campus: two north-south data-center blocks side by side, southwest substation, southeast support building, road along east and southern frontage. No footprint, building completion or ground positional accuracy inferred.",
+        "requested_marker": [
+          116.2462,
+          39.4604
+        ],
+        "export_extent_verified": "esri-export-extent.json confirms returned EPSG4326 extent equal to requested bbox and1400x1000 image. Root replayed eight-control affine fit byte for byte, mapped plan[187,111] to imagery[836.4079,517.6149] and rounded WGS84[116.2462,39.4604].",
+        "precision": "Approximate analyst-selected parent-campus point, four decimals, total accuracy unknown.",
+        "source_selection": "Esri georeferenced imagery as numeric geometry evidence; operator plan and CQC address as primary identity context. OSM only supplementary street context, not numeric geometry. Source imagery not redistributed.",
+        "attribution": "Source: Esri, Vantor, Earthstar Geographics, and the GIS User Community (captured service metadata).",
+        "decision": "Accept candidate campus locator and finalize geometry/source packet. Root independently viewed plan, rendering and imagery. Both the independently selected and fitted marker lie within same inter-building campus corridor; precision remains campus only, absolute accuracy unknown."
+      },
+      "supplementary_spatial_check": {
+        "osm_way_id": "894858912",
+        "tags": {
+          "landuse": "industrial"
+        },
+        "geometry_lon_lat": [
+          [
+            116.2451453,
+            39.4612108
+          ],
+          [
+            116.2451141,
+            39.4609277
+          ],
+          [
+            116.2449425,
+            39.4594698
+          ],
+          [
+            116.2470131,
+            39.4593539
+          ],
+          [
+            116.2472277,
+            39.4595278
+          ],
+          [
+            116.2474423,
+            39.4610851
+          ],
+          [
+            116.2451453,
+            39.4612108
+          ]
+        ],
+        "selected_point_inside": true,
+        "approximate_projected_area_sqm": 38043.93357487481,
+        "operator_property_area_sqm": 38227,
+        "scope_warning": "Unlabelled community-mapped industrial polygon used as geometric consistency context only, not an independently named parcel, legal boundary or selected exported footprint. Area agreement is corroboration, not proof of identity.",
+        "nearest_current_sites": [
+          {
+            "name": "Boda Langfang No. 2 Intelligent Computing Campus",
+            "site_id": "vcc-site-358391d4dd9bae1018fd",
+            "distance_metres": 34704.6
+          },
+          {
+            "name": "China Unicom Jing-Jin-Ji Digital Technology Industrial Park, Tianjin",
+            "site_id": "vcc-site-5cd249b4adc6b7c38a4c",
+            "distance_metres": 53382.7
+          },
+          {
+            "name": "China Mobile International Information Port, Beijing",
+            "site_id": "vcc-site-d176c3ca87edba6d0517",
+            "distance_metres": 76177.7
+          },
+          {
+            "name": "LG Uplus Paju AIDC",
+            "site_id": "vcc-site-0fd8442bfe3dc0c487e5",
+            "distance_metres": 930441.4
+          },
+          {
+            "name": "Digital Edge Seoul Bupyeong Campus",
+            "site_id": "vcc-site-5750ea0ecd6d7c900211",
+            "distance_metres": 935454.1
+          }
+        ]
+      },
+      "duplicate_review": {
+        "base_site_count": 408,
+        "base_project_count": 433,
+        "alias_patterns": [
+          "Haoyang",
+          "Hao Yang",
+          "Fuai",
+          "Zhi Sheng",
+          "皓扬",
+          "福爱",
+          "智联网"
+        ],
+        "matching_existing_site_or_project_records": 0,
+        "nearest_existing_site": {
+          "name": "Boda Langfang No. 2 Intelligent Computing Campus",
+          "site_id": "vcc-site-358391d4dd9bae1018fd",
+          "distance_metres": 34704.6
+        },
+        "scope": "One existing-operations campus record. No individual A/B count, no Haoyang No.2 geometry, and no Beijing corporate-headquarters marker."
+      },
+      "rejected_locators": [
+        {
+          "candidate": "Operator contact-page point",
+          "coordinates_native": [
+            116.480882,
+            39.909383
+          ],
+          "reason": "Operator contact page explicitly identifies Beijing headquarters at Huamao Center; not Langfang No.1."
+        },
+        {
+          "candidate": "ColoMap named listing",
+          "coordinates_as_published": [
+            116.25292,
+            39.46062
+          ],
+          "reason": "Exact name and Dongfang27 address appear, but its point is about580m east of the campus identified by the primary plan and imagery. Native datum/accuracy not established; schema.org formatting does not prove datum compliance. No guessed CRS conversion applied."
+        },
+        {
+          "candidate": "OSM way894858912 industrial polygon",
+          "reason": "Unnamed landuse polygon supplies supplementary road/area context only. It is not primary identity evidence, a legal cadastral boundary or selected exported footprint."
+        },
+        {
+          "candidate": "Generic Dongfang Street / city geocode",
+          "reason": "Does not locate the named property; no such point selected."
+        }
+      ],
+      "evidence_role": "Geometry and campus identity only. Historic plan, render and imagery do not establish current physical status, installed capacity, building completion or commissioning.",
+      "absolute_accuracy_unknown": true,
+      "reference_imagery_acquisition_date": null,
+      "raw_imagery_redistributed": false,
+      "attribution": "Source: Esri, Vantor, Earthstar Geographics, and the GIS User Community (captured service metadata)."
+    }
+  ],
+  "approved_geometries": [
+    {
+      "project_stable_key": "curated:haoyang-langfang-no1-data-center:existing-operations",
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            116.2462,
+            39.4604
+          ]
+        },
+        "source_id": "cn-seventh-haoyang-esri-image",
+        "scope": "campus_locator",
+        "scope_class": "operator_named_campus_plan_matched_to_georeferenced_imagery",
+        "authority": "compiled_reference",
+        "derivation": "georeferenced_source_map",
+        "method": "operator_plan_affine_registered_to_esri_wgs84_imagery",
+        "precision": "Approximate analyst-selected parent-campus marker between the two data-center blocks, rounded to four decimals. It is not an operator-published pin, surveyed centroid, parcel boundary, individual building footprint or phase location.",
+        "identity_review": "Operator history explicitly bridges the former Guan Fuai Electronics project to Langfang No. 1; CQC certifies No.27 Dongfang Street. The operator plan and rendering match two side-by-side data-center blocks, southwest substation, southeast support building and east/south roads in the georeferenced image. Root independently reviewed these images and replayed the eight-control affine calculation.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "Historic low-resolution plan, manual control selection, roof displacement/parallax and unknown imagery geolocation/date leave absolute positional accuracy unbounded. Internal fit residuals are not ground accuracy; no status is inferred from imagery."
+      }
+    }
+  ],
+  "integration_review": "Parent independently viewed the operator plan, rendering and georeferenced image, replayed the affine controls and accepted a parent-campus point with unknown absolute accuracy. Status evidence is maintained separately in the primary-source/action packet."
+}

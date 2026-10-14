@@ -1,0 +1,81 @@
+{
+  "format": "datacenter-atlas-action-specs-v1",
+  "as_of": "2026-10-14",
+  "base_dataset": "verified_construction_core/2026-10-14-research-sixth",
+  "base_commit": "ebed271ab7495ebf3c9538506e5e10cfd21af161",
+  "base_manifest_sha256": "f7f29f123e2784183cc88f7750bcbdb4eb6f94c75eb6e194683821f148266082",
+  "source_file": "sources/research-countries-2026-10-14-cn-seventh-haoyang-primary-sources.json",
+  "additions": [
+    {
+      "project_stable_key": "curated:haoyang-langfang-no1-data-center:existing-operations",
+      "physical_site_stable_key": "curated:haoyang-langfang-no1-data-center",
+      "site_name": "Haoyang Langfang No. 1 Data Center",
+      "name": "Haoyang Langfang No. 1 Existing Operations",
+      "country": "China",
+      "country_iso_a2": "CN",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-08-13",
+        "source_id": "cn-seventh-haoyang-current-operations",
+        "summary": "Dated television report identifies the named campus operations manager describing implemented service and equipment controls sustaining stable operation; contemporaneous reporter observations show running servers. August 13 is publication confirmation, not an exact visit or opening day."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            116.2462,
+            39.4604
+          ]
+        },
+        "source_id": "cn-seventh-haoyang-esri-image",
+        "scope": "campus_locator",
+        "scope_class": "operator_named_campus_plan_matched_to_georeferenced_imagery",
+        "authority": "compiled_reference",
+        "derivation": "georeferenced_source_map",
+        "method": "operator_plan_affine_registered_to_esri_wgs84_imagery",
+        "precision": "Approximate analyst-selected parent-campus marker between the two data-center blocks, rounded to four decimals. It is not an operator-published pin, surveyed centroid, parcel boundary, individual building footprint or phase location.",
+        "identity_review": "Operator history explicitly bridges the former Guan Fuai Electronics project to Langfang No. 1; CQC certifies No.27 Dongfang Street. The operator plan and rendering match two side-by-side data-center blocks, southwest substation, southeast support building and east/south roads in the georeferenced image. Root independently reviewed these images and replayed the eight-control affine calculation.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "Historic low-resolution plan, manual control selection, roof displacement/parallax and unknown imagery geolocation/date leave absolute positional accuracy unbounded. Internal fit residuals are not ground accuracy; no status is inferred from imagery."
+      },
+      "context_source_ids": [
+        "cn-seventh-haoyang-cnr-corroboration",
+        "cn-seventh-haoyang-operator-campus",
+        "cn-seventh-haoyang-operator-history",
+        "cn-seventh-haoyang-certified-address",
+        "cn-seventh-haoyang-eaton-context",
+        "cn-seventh-haoyang-esri-extent",
+        "cn-seventh-haoyang-esri-metadata",
+        "cn-seventh-haoyang-operator-plan",
+        "cn-seventh-haoyang-operator-render"
+      ],
+      "distinctness_review": "All 408 sites,433 projects and231 preserved source records checked for Haoyang, Hao Yang, Fuai, Zhi Sheng and Chinese aliases; no existing identity match. Nearest existing campus is Boda Langfang No.2 about34.7km away. Haoyang No.2 is a separate proposed campus and is excluded; no separate A/B count.",
+      "successor_review": "October12 Hebei Daily report repeats No.1 operating observations but its exact dated No.1 participant operating assertion is not established, so status_as_of remains the August13 manager report. October No.2 civil work narrative, ongoing equipment deliveries and January2023 first customer history do not change this existing-operations scope.",
+      "roles": [
+        {
+          "party": "Haoyang Data",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "cn-seventh-haoyang-operator-campus"
+        }
+      ],
+      "scoped_project_details": {
+        "aliases": [
+          "皓扬廊坊1号数据中心",
+          "固安福爱电子有限公司 智联网云交换中心"
+        ],
+        "facility_scope": "Existing operations at the named parent campus; no inference that every building or future expansion is complete.",
+        "address": "No.27 Dongfang Street, Guan County, Langfang, Hebei, China",
+        "opening_date": null,
+        "reported_first_customer_operation_month": "2023-01",
+        "status_date_scope": "Dated confirmation of ongoing operations; exact interview/visit date unknown.",
+        "IT_power_MW": null,
+        "capacity_exclusion": "Undated185MW, rack-design and aggregate computational-capacity statements are not selected as installed project IT load.",
+        "individual_buildings_separately_counted": false,
+        "geometry_total_accuracy_unknown": true
+      }
+    }
+  ],
+  "status_updates": [],
+  "context_updates": []
+}
