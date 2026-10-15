@@ -1,0 +1,165 @@
+{
+  "format": "datacenter-atlas-update-input-v1",
+  "updated_at": "2026-10-15",
+  "output": "verified_construction_core/2026-10-15-research-twentyseventh",
+  "base_dataset": "verified_construction_core/2026-10-15-research-twentysixth",
+  "base_manifest_sha256": "067c853c7b3d620ccc50096506ac173e03f7a0621610df612c8a8e960f98a51a",
+  "source_files": [
+    {
+      "path": "sources/research-countries-2026-10-15-twentyseventh-universities-primary-sources.json",
+      "sha256": "47ce39a2565a4ea15f5e292bae9be95aded0e41bea58fb9e7d520a0839ca0db4"
+    }
+  ],
+  "additions": [
+    {
+      "project_stable_key": "curated:ustc-gaoxin-campus:data-centre-room",
+      "physical_site_stable_key": "curated:ustc-gaoxin-campus-data-centre",
+      "site_name": "USTC Gaoxin Campus Data Centre",
+      "name": "University of Science and Technology of China — Gaoxin Campus Data Centre",
+      "country": "China",
+      "country_iso_a2": "CN",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-09-07",
+        "source_id": "cn-thirtyfirst-ustc-sept7-operations",
+        "summary": "The University of Science and Technology of China operates a data-centre room at its Gaoxin campus in Hefei. During a September 7 visit, university leaders inspected its infrastructure, core campus-network equipment and server operations. The university also provides equipment hosting there for research groups."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            117.12384485,
+            31.82246755
+          ]
+        },
+        "source_id": "cn-thirtyfirst-ustc-campus-osm",
+        "scope": "campus_locator",
+        "scope_class": "community_mapped_named_parent_campus_point",
+        "authority": "community_mapped",
+        "derivation": "direct_geometry",
+        "method": "osm_named_campus_multipolygon_bounding_box_midpoint_verified_inside",
+        "precision": "Representative point inside USTC’s named Gaoxin parent campus at 100 Fuxing Road, Hefei. It locates the campus, not a data-centre building, room, entrance, phase boundary or surveyed parcel.",
+        "identity_review": "The September 9 operator report explicitly identifies Gaoxin campus for the September 7 data-centre visit. The university’s official campus list distinguishes Gaoxin at 100 Fuxing Road from its other Hefei campuses and identifies its southern Fuxing Road and western Shilian South Road entrances. OSM relation 14093671 exactly names 中国科学技术大学（高新校区）, lists USTC as operator, and matches those surrounding roads. Its two outer components are labelled Phase 1 and Phase 2; the relation bounding-box midpoint lies inside southern outer way 875338394 and outside the inner exclusion. This geometric choice does not assign the data-centre room to Phase 1. The news-site footer’s 96 Jinzhai Road is the separately listed East campus and is not used as the facility address.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The native community map supplies no measured horizontal accuracy. The data-centre building and room are not identified, so displacement from this parent-campus marker is unknown."
+      },
+      "context_source_ids": [
+        "cn-thirtyfirst-ustc-hosting-context",
+        "cn-thirtyfirst-ustc-campus-address-gates",
+        "cn-thirtyfirst-ustc-campus-map-context",
+        "cn-thirtyfirst-ustc-campus-edit-provenance"
+      ],
+      "roles": [
+        {
+          "party": "University of Science and Technology of China — Network Information Center",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "cn-thirtyfirst-ustc-sept7-operations"
+        }
+      ],
+      "distinctness_review": "All 459 projects, 433 sites, 2345 evidence records, 231 original source records and identity mapping screened without identity, selected-source or containing-geometry collisions. Nearest baseline marker: NUIST Changwang Building Data Centre at 155704.82 metres. See ustc-dedup.json.",
+      "successor_review": "The September 9 operator article explicitly dates the achieved physical visit to September 7; publication is not used as the observation day. Current original network-centre index and bounded exact-campus/year/month searches revealed no later scoped physical-status observation or contradiction. The September 12 model-service notice and September 29 planning meeting do not establish a new room-status date. The July 2025 hosting-management system is historical context; its trial designation concerns software, not the data-centre facility. No capacity or original opening date is inferred.",
+      "scoped_project_details": {
+        "aliases": [
+          "中国科学技术大学高新校区数据中心机房",
+          "中国科大高新校区数据中心",
+          "USTC Gaoxin data-centre room"
+        ],
+        "facility_scope": "Existing institutional data-centre room serving university network infrastructure and research-group equipment hosting.",
+        "campus_address": "100 Fuxing Road, Hefei, Anhui, China",
+        "campus_name_original": "中国科学技术大学高新校区",
+        "operator_role_scope": "University Network Information Center hosted the September 7 inspection and operates the equipment-hosting management service.",
+        "host_building": null,
+        "data_centre_room_number": null,
+        "data_centre_phase": null,
+        "IT_power_MW": null,
+        "rack_count": null,
+        "room_area_square_metres": null,
+        "opening_date": null,
+        "excluded_footer_address": "96 Jinzhai Road is the separately identified East campus, not the Gaoxin facility location."
+      }
+    },
+    {
+      "project_stable_key": "curated:science-tokyo-yokohama-tsubame:existing-operations",
+      "physical_site_stable_key": "curated:science-tokyo-yokohama-tsubame",
+      "site_name": "Science Tokyo Yokohama TSUBAME Data Center",
+      "name": "TSUBAME4 G4-A Data Center Existing Operations",
+      "country": "Japan",
+      "country_iso_a2": "JP",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-09-29",
+        "source_id": "jp-thirtysecond-tsubame-sep29-status",
+        "summary": "Science Tokyo reported TSUBAME4 available on September 29, 2026, with its compute queues, login nodes and storage also available. The service operates in the converted G4-A data-center building at Yokohama campus, formerly Suzukakedai."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            139.4839008,
+            35.5142302
+          ]
+        },
+        "source_id": "jp-thirtysecond-tsubame-campus-point",
+        "identity_source_ids": [
+          "jp-thirtysecond-tsubame-host-building",
+          "jp-thirtysecond-tsubame-current-campus",
+          "jp-thirtysecond-tsubame-campus-map",
+          "jp-thirtysecond-tsubame-renaming"
+        ],
+        "scope": "campus_locator",
+        "scope_class": "selected_named_university_host_campus_point",
+        "authority": "compiled_reference",
+        "derivation": "direct_geometry",
+        "method": "direct_google_maps_selected_named_host_campus_coordinates",
+        "precision": "Wider Yokohama university host-campus marker for the TSUBAME4 data center in G4-A. It does not map the G4-A building, machine room, cooling plant, entrance or surveyed campus boundary.",
+        "identity_review": "The operator’s April 9, 2024 guidance page 9 names Suzukakedai G4-A as the building converted into the TSUBAME4 data center, with a named exterior photo and campus map. Current operator visitor information explicitly locates TSUBAME4 at Yokohama (formerly Suzukakedai), excluding Ookayama. The university’s current campus map lists G4-A as building 34, and its April 2026 renaming announcement bridges the two campus names. A name-only Google Maps search returned and the browser selected the exact Yokohama host campus at 4259 Nagatsutacho with the official isct.ac.jp website. The original selected-place response pairs the campus name and feature ID with its coordinates, separate from viewport coordinates. The selected point is the wider university host campus, not the identified G4-A building itself.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "Google provides no measured accuracy for the campus feature or offset to G4-A. Decimal precision is not survey accuracy; the actual building position is not selected."
+      },
+      "context_source_ids": [
+        "jp-thirtysecond-tsubame-sep7-service",
+        "jp-thirtysecond-tsubame-sep29-status",
+        "jp-thirtysecond-tsubame-host-building",
+        "jp-thirtysecond-tsubame-current-campus",
+        "jp-thirtysecond-tsubame-campus-map",
+        "jp-thirtysecond-tsubame-renaming",
+        "jp-thirtysecond-tsubame-campus-point",
+        "jp-thirtysecond-tsubame-opening-history"
+      ],
+      "roles": [
+        {
+          "role": "operator",
+          "party": "Institute of Science Tokyo",
+          "relationship_scope": "current",
+          "source_id": "jp-thirtysecond-tsubame-sep7-service"
+        }
+      ],
+      "distinctness_review": "All serialized fields in433 sites, 459 projects, 2345 evidence records, 231 original source records and identity mapping checked. No alias or source collisions and no geometry-envelope overlap. See dedup-review.json.",
+      "successor_review": "The operator status board explicitly dates achieved availability to September 29, 2026, later than the September 7 completed-maintenance notice. The September 29 observation is selected while the containing homepage publication day remains unknown. Later application notices and future maintenance schedules do not establish a newer facility-status observation. Historical 2024 startup dates remain separate.",
+      "scoped_project_details": {
+        "aliases": [
+          "TSUBAME4.0",
+          "TSUBAME4",
+          "東京科学大学 横浜キャンパス G4-A棟",
+          "東京工業大学 すずかけ台キャンパス G4-A棟",
+          "Suzukakedai G4-A Data Center"
+        ],
+        "facility_scope": "Existing institutional data-center building converted for sustained academic and corporate research computing; not a demonstration-only installation.",
+        "host_building": "G4-A",
+        "host_campus": "Science Tokyo Yokohama Campus, formerly Suzukakedai",
+        "host_address": "4259 Nagatsutacho, Midori-ku, Yokohama, Kanagawa, Japan",
+        "campus_renamed_effective": "2026-04-01",
+        "parent_campus_marker_not_building": true,
+        "new_construction_or_expansion_inferred": false,
+        "selected_power_MW": null,
+        "selected_building_area_sqm": null,
+        "historical_machine_room_area_not_total_building_area": 210,
+        "later_explicit_operational_observation": "2026-09-29",
+        "later_homepage_publication_date": null
+      }
+    }
+  ],
+  "status_updates": [],
+  "context_updates": []
+}

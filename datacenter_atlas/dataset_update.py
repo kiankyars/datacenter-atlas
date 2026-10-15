@@ -119,13 +119,13 @@ def _status(spec, sources, updated, *, admission=False, source_details=None):
     if source.get("published_at"):
         _require(observed <= _date(source["published_at"]), "observation postdates its source")
     else:
-        # A dated construction photograph can establish its observation day even
-        # when the containing web page has no publication date. Keep that date
-        # distinct from publication and retrieval rather than fabricating either.
+        # A dated construction photograph or operational-status entry can establish
+        # its observation day even when the containing page has no publication date.
+        # Keep observation, publication and retrieval dates distinct.
         details = (source_details or {}).get(spec["source_id"], {})
         _require(details.get("source_observation_date") and
                  details.get("source_observation_date_precision") == "day" and
-                 spec["value"] in ACTIVE_STATUSES,
+                 spec["value"] in ACTIVE_STATUSES | {LifecycleStatus.OPERATIONAL.value},
                  "status observation needs a dated source")
         _text(details.get("date_semantics"), "source observation date semantics")
         _require(_date(details["source_observation_date"]) == observed,

@@ -337,6 +337,46 @@ class DatasetUpdateTests(unittest.TestCase):
         with self.assertRaisesRegex(UpdateError, "capture predates observation"):
             self.payloads()
 
+    def test_operational_entry_preserves_observation_without_inventing_publication(self):
+        source = self.sources["sources"][0]
+        source.update(published_at=None, source_observation_date="2026-09-29",
+                      source_observation_date_precision="day",
+                      date_semantics="Operator status panel explicitly reports Available on September29.")
+        self.spec["additions"][0]["status"].update(
+            value="operational", as_of="2026-09-29", summary="The operator reports the facility in service.")
+        payloads, _ = self.payloads()
+        project = next(row for row in csv.DictReader(io.StringIO(payloads["projects.csv"].decode()))
+                       if row["project_stable_key"] == self.spec["additions"][0]["project_stable_key"])
+        self.assertEqual(project["last_observed_physical_status"], "operational")
+        self.assertEqual(project["status_as_of"], "2026-09-29")
+        evidence = next(row for row in csv.DictReader(io.StringIO(payloads["evidence.csv"].decode()))
+                        if row["evidence_id"] == project["status_evidence_id"])
+        self.assertEqual(evidence["published_at"], "")
+        self.assertEqual(evidence["retrieved_at"], "2026-10-13T08:00:00Z")
+
+    def test_undated_operational_entry_requires_primary_evidence_and_exact_observation(self):
+        valid_source = {**self.sources["sources"][0], "published_at": None,
+                        "source_observation_date": "2026-09-29", "source_observation_date_precision": "day",
+                        "date_semantics": "Operator status panel explicitly reports Available on September29."}
+        valid_status = {**self.spec["additions"][0]["status"], "value": "operational", "as_of": "2026-09-29"}
+        cases = [
+            ({"source_observation_date": None}, {}, "dated source"),
+            ({"source_observation_date_precision": "month"}, {}, "dated source"),
+            ({"source_observation_date": "2026-09-28"}, {}, "explicit source observation"),
+            ({"date_semantics": ""}, {}, "date semantics"),
+            ({"retrieved_at": "2026-09-28T08:00:00Z"}, {}, "capture predates observation"),
+            ({"kind": "news"}, {}, "primary source"),
+            ({"kind": "map"}, {}, "primary source"),
+            ({"source_observation_date": "2026-10-14"}, {"as_of": "2026-10-14"}, "future status"),
+            ({"source_observation_date": "2026-01-01"}, {"as_of": "2026-01-01"}, "older than 90"),
+        ]
+        for source_changes, status_changes, error in cases:
+            with self.subTest(source=source_changes, status=status_changes):
+                self.sources["sources"][0] = {**valid_source, **source_changes}
+                self.spec["additions"][0]["status"] = {**valid_status, **status_changes}
+                with self.assertRaisesRegex(UpdateError, error):
+                    self.payloads()
+
     def test_announced_and_permitted_admissions_do_not_claim_physical_work(self):
         for status, method, role in (
             ("announced", "authoritative_project_announcement", "announcement"),
