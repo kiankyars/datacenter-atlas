@@ -8,8 +8,8 @@ import pytest
 
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
-import publish_release as publication
-import check_pages_size
+import publish_release as publication  # noqa: E402 -- load adjacent CI helpers after adding their directory
+import check_pages_size  # noqa: E402
 
 REPO = "https://github.com/example/atlas"
 IDENTIFIER = "2026-10-15-research"

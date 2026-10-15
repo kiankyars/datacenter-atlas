@@ -684,7 +684,8 @@ class RemoteArchiveTests(unittest.TestCase):
                 if href.startswith("#") or urlsplit(href).scheme:
                     continue
                 target = (page.parent / unquote(urlsplit(href).path)).resolve()
-                if target.is_dir(): target /= "index.html"
+                if target.is_dir():
+                    target /= "index.html"
                 self.assertTrue(target.is_file(), f"{page}: {href}")
         text = (site / "downloads" / current / "index.html").read_text()
         self.assertIn(frozen["SHA256SUMS"]["url"], text)
@@ -723,18 +724,26 @@ class RemoteArchiveTests(unittest.TestCase):
 
     def test_inventory_rejects_missing_unsafe_duplicate_and_changed_original_entries(self):
         cases = []
-        missing = json.loads(json.dumps(self.inventory)); missing["files"] = missing["files"][1:]; cases.append(missing)
-        duplicate = json.loads(json.dumps(self.inventory)); duplicate["files"].append(duplicate["files"][0]); cases.append(duplicate)
-        unsafe = json.loads(json.dumps(self.inventory)); unsafe["files"][0]["url"] = "https://evil.invalid/asset"; cases.append(unsafe)
+        missing = json.loads(json.dumps(self.inventory))
+        missing["files"] = missing["files"][1:]
+        cases.append(missing)
+        duplicate = json.loads(json.dumps(self.inventory))
+        duplicate["files"].append(duplicate["files"][0])
+        cases.append(duplicate)
+        unsafe = json.loads(json.dumps(self.inventory))
+        unsafe["files"][0]["url"] = "https://evil.invalid/asset"
+        cases.append(unsafe)
         changed = json.loads(json.dumps(self.inventory))
         next(f for f in changed["files"] if f["name"] == "sites.csv")["sha256"] = "0" * 64
         cases.append(changed)
         for i, inventory in enumerate(cases):
             with self.subTest(i=i):
                 self.inventory_path.write_text(json.dumps(inventory))
-                with self.assertRaises(public_site.PublicSiteError): self.build(f"bad-{i}")
+                with self.assertRaises(public_site.PublicSiteError):
+                    self.build(f"bad-{i}")
         self.inventory_path.unlink()
-        with self.assertRaisesRegex(public_site.PublicSiteError, "missing regular frozen"): self.build("absent")
+        with self.assertRaisesRegex(public_site.PublicSiteError, "missing regular frozen"):
+            self.build("absent")
 
     def test_release_staging_cannot_overlap_site_or_source_and_inventory_cannot_overwrite(self):
         site = self.base / "site"
