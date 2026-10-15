@@ -1,0 +1,54 @@
+{
+  "reviewer": "root",
+  "status": "accepted_for_integration",
+  "date_interpretation": "A dated operator current-operation report is an observation of continuing operation, not a dated site visit or opening. Explicitly qualify that distinction in visible summary.",
+  "source_hashes_verified": 4,
+  "original_fields_unchanged": true,
+  "projection_changes": [
+    "Source metadata normalized for dataset schema",
+    "Google headers and cookies excluded from tracked geometry projection",
+    "Only SI3-scoped metrics selected; campus latency and capacity of SI1/SI2 excluded"
+  ],
+  "reviewed_at": "2026-10-15T13:52:10.349372+00:00",
+  "independent_status_review": {
+    "path": "local_data/country-research-2026-10-15-jp-thirtyfourth-commercial/independent-status-review.json",
+    "sha256": "53e06cc1caceaa483392ae7095e84a865c2569fd179646ab57254a3eea5140b4",
+    "result": {
+      "reviewer": "/root/japan_thirtysecond_new_sites/zeus_commercial_check",
+      "review_type": "Read-only primary-source date semantics; no browser, new search or edits",
+      "reviewed_at": "2026-10-15",
+      "decision": "supports dated current-operation reporting with explicit limits",
+      "conclusion": "The October 1 article supports a dated operator report of continuing SI3 operation, combining the named facility and May2022 service start, current campus operational measurements, current SI3 cooling arrangements, and a prior physical visit reporting hot/cold server aisles. October1 does not date the physical visit or commissioning.",
+      "selected_public_wording": "SCSK reported SI3 in operation on October 1, describing current facility operation and an earlier visit whose date is unstated.",
+      "line_references": {
+        "publication": 25,
+        "si3_identity_and_historical_service_start": 85,
+        "visit_after_august_earthquake": 104,
+        "ongoing_campus_temperature_measurement": 116,
+        "si3_current_cooling_and_visited_aisles": [
+          120,
+          124
+        ]
+      },
+      "source_file": "scsk-october1-visit.html.txt",
+      "source_original_sha256": "9f09b85542c100edde5805618fb89b73cef3f00432529743e151976d8567172c",
+      "status_date_semantics": "Publication/current-operation reporting date only; physical visit date unknown."
+    }
+  },
+  "geometry_node_reparsed": true,
+  "canonical_dedup_report": {
+    "path": "local_data/country-research-2026-10-15-jp-thirtyfourth-commercial/dedup-review.json",
+    "sha256": "eae27ed96520f85f5f7f8deb88f11b0312e3eb62330dfa4b990dead1b7375bf5"
+  },
+  "final_projection_review": {
+    "agent_action_packet": "local_data/country-research-2026-10-15-jp-thirtyfourth-commercial/proposed-actions.json",
+    "agent_action_sha256": "49e299ed997c5e7b5835a292652d338be3ca2b98f964657f52b9c466e4f0e1fc",
+    "agreement": "Same physical campus, selected SI3 project, report date and exact marker. Both proposals preserve the unknown visit day and historical service-start month.",
+    "parent_transformations": [
+      "Parent project stable key uses shorter SI3 suffix for the same new project.",
+      "Named SI3 point is labelled a campus locator for the Inzai physical site, matching the agent proposal.",
+      "Known cooling and backup-power details are in the visible status summary.",
+      "Facility metrics and contractor completion context retained with original scope; map-query capture remains provenance in geometry facts rather than a separate evidence row."
+    ]
+  }
+}

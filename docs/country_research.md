@@ -18,9 +18,11 @@ more local-language research.
 
 ## Coverage and updates
 
-Prioritize facilities serving commercial or institutional computing workloads. Small experimental
-installations used only to demonstrate or test equipment are outside the Atlas scope. Shinkiba's
-MIRAIT ONE test container is excluded on that basis; this does not imply a change to its physical status.
+Prioritize new commercial data centres in China and Japan. Future passes set standalone university
+and institutional supercomputer leads aside; existing institutional records remain in the Atlas.
+Small experimental installations used only to demonstrate or test equipment are outside the Atlas
+scope. Shinkiba's MIRAIT ONE test container is excluded on that basis; this does not imply a change
+to its physical status.
 
 Catalogue announced, permitted, under-construction, completed and operating projects distinctly. An
 announcement needs a dated primary source naming the project. Permitted status needs issued
@@ -166,3 +168,21 @@ September 2 supervision tender but no resolved campus marker. Miyagi retains ach
 completion and network-service evidence, but its exact host property remains unresolved.
 All holds, native coordinates and capture limitations are retained in the new `*-third` packets.
 The 231 original source records and identity mapping remain byte-identical.
+
+## Commercial research continuation
+
+The next addition, `verified_construction_core/2026-10-15-research-twentyeighth`, adds
+SCSK netXDC Chiba No.3 (SI3) at its Inzai campus: **436 sites and 462 projects**. The operator’s
+October 1 report describes continuing operations; that date is not the inspection day or an
+opening milestone. May 2022 remains the service-start month, and April 2022 the contractor’s
+completion month. SI3’s 12,919-square-metre gross floor area, eight server rooms and capacity
+equivalent to 1,600 racks remain facility specifications rather than occupancy or measured IT load.
+The selected named SI3 map feature links the official operator campus page and is labelled as
+a facility point, not a surveyed boundary.
+
+Commercial candidates at Chindata Lingqiu, China Telecom Taihu and Wujiang, and Zeus OSA1 remain
+queued. Lingqiu’s newly recovered contractor signage designs contain no georeferenced site plan;
+Taihu and Wujiang need an exact named-property locator and original status-context confirmation.
+OSA1’s September 30 power-allocation and completed-design report does not establish a newer
+physical-construction milestone, and its property marker remains unresolved. Their research
+captures and precise reopening conditions remain in the local country packets.
