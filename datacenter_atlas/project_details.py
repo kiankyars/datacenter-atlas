@@ -29,7 +29,7 @@ def number(value):
     return str(value if value is not None else '')
 
 
-def render_record(record, *, current_status=None, current_date=None):
+def render_record(record, *, current_status=None, current_date=None, include_summary=True):
     """Render an original structured record without inferring new facts or dates."""
     sources = {item["id"]: item for item in record.get("sources", [])}
 
@@ -43,7 +43,7 @@ def render_record(record, *, current_status=None, current_date=None):
                 '</tr></thead><tbody>' + "".join('<tr>' + ''.join(f'<td>{cell}</td>' for cell in row) + '</tr>' for row in rows) +
                 '</tbody></table></div>')
 
-    parts = [f'<p>{text(record.get("summary"))}</p>']
+    parts = [f'<p>{text(record.get("summary"))}</p>'] if include_summary else []
     if record.get("status") != current_status or record.get("status_as_of") != current_date:
         parts.append(f'<p class="small">This record reports {text(label(record.get("status"))).lower()} '
                      f'as of {text(record.get("status_as_of"))}. '

@@ -88,6 +88,7 @@ for _module_name in (
     "pnnl",
     "pwc_build_out_assessment",
     "project_details",
+    "project_narratives",
     "public_site",
     "publication_pair_v32",
     "publication_release",

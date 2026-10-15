@@ -78,7 +78,11 @@ jobs:
         # message says how to regenerate them (docs/public_site.md, "Making a new checkpoint current").
         run: python datacenter_atlas/site/e2e/check_public_metadata.py --site _site --repo datacenter_atlas
       - name: Run the public-site unit tests
-        run: python -m unittest -v datacenter_atlas.tests.test_public_site
+        run: >-
+          python -m unittest -v
+          datacenter_atlas.tests.test_public_site
+          datacenter_atlas.tests.test_project_narratives
+          datacenter_atlas.tests.test_project_page_content
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version: "22"

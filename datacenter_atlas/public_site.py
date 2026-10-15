@@ -63,6 +63,7 @@ import zipfile
 import zlib
 
 from .project_details import detail_sheets, render_record
+from .project_narratives import ProjectNarrativeError, load_project_narratives
 
 
 __all__ = [
@@ -1465,6 +1466,8 @@ class _Context:
     og_image_size: tuple[int, int] | None = None
     remote_versions: tuple[DatasetVersion, ...] = ()
     release_inventories: Mapping[str, Mapping[str, Any]] = field(default_factory=dict)
+    # HTML-only enrichment; frozen dataset rows and download bytes stay unchanged.
+    project_narratives: Mapping[str, Any] = field(default_factory=dict)
 
     @property
     def site_dir(self) -> Path:
@@ -1603,6 +1606,10 @@ def _prepare_context(root: Path, config: SiteConfig, base_url: str, commit: str 
     descriptions = _read_json(root / "site" / "field_descriptions.json")
     if not isinstance(descriptions, dict) or not isinstance(descriptions.get("tables"), dict):
         raise PublicSiteError("site/field_descriptions.json: expected an object with 'tables'")
+    try:
+        narratives = load_project_narratives(root, versions, current, atlas, _verified_json)
+    except ProjectNarrativeError as error:
+        raise PublicSiteError(str(error)) from error
     return _Context(
         config=config,
         base_url=base_url,
@@ -1615,6 +1622,7 @@ def _prepare_context(root: Path, config: SiteConfig, base_url: str, commit: str 
         vocabulary=vocabulary,
         vocabularies=vocabulary.export(collect_vocabulary_codes(atlas)),
         descriptions=descriptions,
+        project_narratives=narratives,
         history=_version_history(versions),
         derived_versions=derived_versions,
         remote_versions=remote_versions,
@@ -4776,9 +4784,9 @@ def _site_page(context: _Context, summary: Mapping[str, Any]) -> _Page:
         f'Last reported {_time(site.get("newest_status_as_of"))}</p>',
         '<div class="grid-2">',
         '<section aria-labelledby="summary-heading"><h2 id="summary-heading">Summary</h2>'
-        f"{_site_summary_kv(context, site, coordinates, root)}</section>",
+        f"{_site_overview(context, projects, anchors)}</section>",
         '<section aria-labelledby="location-heading"><h2 id="location-heading">Location</h2>'
-        f"{_site_location(site, latitude, longitude, coordinates)}</section>",
+        f"{_site_location(site, latitude, longitude, coordinates)}{_location_precision(site)}</section>",
         "</div>",
         f'<section aria-labelledby="projects-heading"><h2 id="projects-heading">Projects ({len(projects)})</h2>',
         *(_project_section(context, project, anchors) for project in projects),
@@ -4815,22 +4823,40 @@ def _site_page(context: _Context, summary: Mapping[str, Any]) -> _Page:
     )
 
 
-def _site_summary_kv(context: _Context, site: Mapping[str, Any], coordinates: str, root: str) -> str:
-    vocabulary = context.vocabulary
-    slug = str(site["country_iso_a2"]).lower()
-    scopes = ", ".join(vocabulary.label("geometry_use_scopes", code) for code in site.get("geometry_use_scopes") or [])
-    posture = site.get("verification_posture")
-    imagery = site.get("independent_imagery_verification")
-    imagery_text = "Yes" if imagery is True else "No" if imagery is False else "Not stated"
-    country = (
-        f'<a href="{root}countries/{_e(slug)}/">{_e(site.get("country"))}</a> '
-        f'<span class="mono small">{_e(site.get("country_iso_a2"))}</span>'
+def _narrative_html(context: _Context, narrative: Mapping[str, Any], anchors: _EvidenceAnchors) -> str:
+    source = context.atlas.evidence_by_id[narrative["evidence_id"]]
+    date = f" · published {_e(source['published_at'])}" if source.get("published_at") else " · publication date not stated"
+    return (
+        f'<p>{_e(narrative["text"])}{anchors(source["evidence_id"])}</p>'
+        f'<p class="small muted">{_external_link(source.get("source_url"), source.get("publisher") or source.get("title"))}'
+        f'{date}</p>'
     )
-    posture_html = (
-        f"{_e(vocabulary.label('verification_postures', posture))}<br>"
-        f'<span class="small muted">{_e(vocabulary.description("verification_postures", posture))}</span>'
-    )
-    licenses = ", ".join(_license_link(code) for code in site.get("geometry_licenses") or [])
+
+
+def _site_overview(context: _Context, projects: Sequence[Mapping[str, Any]], anchors: _EvidenceAnchors) -> str:
+    parts = []
+    for project in projects:
+        if len(projects) > 1:
+            parts.append(f'<h3><a href="#project-{_e(project["project_id"])}">{_e(project["name"])}</a></h3>')
+        details = project.get("project_details") or []
+        for detail in details:
+            record = detail["record"]
+            if record.get("summary"):
+                parts.append(f'<p>{_e(record["summary"])}</p>')
+                parts.append(f'<p class="small muted">Source record as of {_e(record.get("status_as_of"))} · '
+                             f'<a href="#project-{_e(project["project_id"])}">Details and sources</a></p>')
+        status = context.project_narratives.get(project["project_id"], {}).get("status")
+        if status:
+            parts.append(_narrative_html(context, status, anchors))
+        elif not details:
+            parts.append(f'<p>{_e(project["name"])} was reported '
+                         f'{_e(context.vocabulary.label("statuses", project.get("last_observed_physical_status"))).lower()} '
+                         f'as of {_time(project.get("status_as_of"))}.</p>')
+            parts.append(f'<p class="small">{_status_source_html(context, project.get("status_source") or {}, anchors)}</p>')
+    return "\n".join(parts)
+
+
+def _location_precision(site: Mapping[str, Any]) -> str:
     precision_labels = {
         "official_boundary": "Official parcel or permit boundary.",
         "campus_locator": "Campus reference; individual project footprints are not mapped.",
@@ -4847,20 +4873,7 @@ def _site_summary_kv(context: _Context, site: Mapping[str, Any], coordinates: st
     ))
     if "host_estate_context" in (site.get("geometry_use_scopes") or []):
         precision = "Surrounding industrial estate; the project's position within it is not established."
-    return _kv([
-        ("Country", country),
-        ("Coordinates", f'<span class="mono">{_e(coordinates)}</span> '
-                        f'{_copy_button(coordinates, "Copy", f"Copy coordinates {coordinates}")}'),
-        ("Geometry type", _e(site.get("geometry_type"))),
-        ("Locator scope", _e(scopes) or _muted_unknown(None)),
-        ("Location precision", _e(precision) or _muted_unknown(None)),
-        ("Geometry licence", licenses or _muted_unknown(None)),
-        ("Source checks", f'<details><summary>Review details</summary>{posture_html}'
-         f'<p>Independent imagery verification: {_e(imagery_text)}</p></details>'),
-        ("Newest status as of", _time(site.get("newest_status_as_of")) or _muted_unknown(None)),
-        ("Oldest status as of", _time(site.get("oldest_status_as_of")) or _muted_unknown(None)),
-        ("Projects", _e(site.get("project_count"))),
-    ])
+    return f'<p class="small">{_e(precision)}</p>' if precision else ""
 
 
 def _site_location(site: Mapping[str, Any], latitude: float, longitude: float, coordinates: str) -> str:
@@ -4884,22 +4897,46 @@ def _project_section(context: _Context, project: Mapping[str, Any], anchors: _Ev
         f"<h3>{_e(project.get('name'))}</h3>",
         f'<p>{_badge(vocabulary, status)} last observed as of <time datetime="{as_of}">{as_of}</time> '
         f'· <span class="muted">{method}</span></p>',
-        _kv(_project_facts(context, project, anchors)),
     ]
+    for detail in project.get("project_details") or []:
+        record = detail["record"]
+        if len(project.get("project_details") or []) > 1:
+            parts.append(f'<h4>{_e(record["name"])}</h4>')
+        parts.append(render_record(record, current_status=status, current_date=project.get("status_as_of"),
+                                   include_summary=False))
+    for narrative in context.project_narratives.get(project["project_id"], {}).get("context", []):
+        parts.append(_narrative_html(context, narrative, anchors))
+    facts = _project_facts(context, project, anchors)
+    if facts:
+        parts.append(_kv(facts))
     for key, _, title in OBSERVATION_FIELDS:
         observations = _dict_items(project.get(key))
         if observations:
             parts.append(f"<h4>{_e(title)}</h4>")
             parts.append(_observation_table(context, observations, anchors))
-    for detail in project.get("project_details") or []:
-        record = detail["record"]
-        parts.append(f'<h4>{_e(record["name"])}</h4>')
-        parts.append(render_record(record, current_status=status, current_date=project.get("status_as_of")))
+    parts.append('<details><summary>Source and location review</summary>'
+                 + _kv(_project_review(context, project, anchors)) + '</details>')
     parts.append("</section>")
     return "\n".join(parts)
 
 
 def _project_facts(context: _Context, project: Mapping[str, Any], anchors: _EvidenceAnchors) -> list[tuple[str, str]]:
+    """Only reported facts belong in the main view; missing fields remain in the data."""
+    vocabulary = context.vocabulary
+    facts = []
+    if project.get("operating_model") not in (None, "", "unknown"):
+        facts.append(("Operating model", _e(vocabulary.label("operating_models", project["operating_model"]))
+                      + anchors(project.get("operating_model_evidence_id"))))
+    if project.get("development_type") not in (None, "", "unknown"):
+        facts.append(("Development type", _e(vocabulary.label("development_types", project["development_type"]))))
+    if project.get("role_claims"):
+        facts.append(("Companies", _role_claims_html(context, project, anchors)))
+    if project.get("workloads"):
+        facts.append(("Workloads", _workloads_html(context, project, anchors)))
+    return facts
+
+
+def _project_review(context: _Context, project: Mapping[str, Any], anchors: _EvidenceAnchors) -> list[tuple[str, str]]:
     vocabulary = context.vocabulary
     age = project.get("status_age_days_at_review")
     age_html = (
@@ -4910,28 +4947,7 @@ def _project_facts(context: _Context, project: Mapping[str, Any], anchors: _Evid
     )
     facts = [
         ("Status source", _status_source_html(context, project.get("status_source") or {}, anchors)),
-        ("Operating model", _coded_or_unknown(
-            vocabulary, "operating_models", project.get("operating_model"), project.get("operating_model_unknown_reason")
-        ) + anchors(project.get("operating_model_evidence_id"))),
-        ("Development type", _coded_or_unknown(
-            vocabulary, "development_types", project.get("development_type"), project.get("development_type_unknown_reason")
-        )),
-        ("Companies", _role_claims_html(context, project, anchors)),
-        ("Workloads", _workloads_html(context, project, anchors)),
     ]
-    if project.get("project_details"):
-        # The structured details below hold these values with their original scope.
-        facts = [(name, value) for name, value in facts
-                 if name == "Status source" or name == "Companies"
-                 or (name == "Operating model" and project.get("operating_model") not in (None, "", "unknown"))
-                 or (name == "Development type" and project.get("development_type") not in (None, "", "unknown"))
-                 or (name == "Workloads" and project.get("workloads"))]
-    for key, reason_key, title in OBSERVATION_FIELDS:
-        count = len(_dict_items(project.get(key)))
-        if count:
-            facts.append((title, _e(f"{count} reported value{'s' if count != 1 else ''} (below)")))
-        elif not project.get("project_details"):
-            facts.append((title, _muted_unknown(project.get(reason_key))))
     facts.append(("Locator", _project_locator_html(context, project, anchors)))
     review = project.get("imagery_review_outcome")
     if review:
@@ -4946,8 +4962,7 @@ def _project_facts(context: _Context, project: Mapping[str, Any], anchors: _Evid
         outcome = _muted_unknown(None)
     if project.get("independent_imagery_verification") is not True:
         outcome += " · no independent imagery verification"
-    facts.append(("Source checks", f'<details><summary>Review details</summary><p>{outcome}</p>'
-                  f'<p>Status age at review: {age_html}</p></details>'))
+    facts.append(("Source checks", f'<p>{outcome}</p><p>Status age at review: {age_html}</p>'))
     return facts
 
 
@@ -4966,12 +4981,6 @@ def _status_source_html(context: _Context, source: Mapping[str, Any], anchors: _
         f"{title}{anchors(source.get('evidence_id'), 'evidence row')}<br>"
         f'<span class="small">{separator.join(details)}</span>'
     )
-
-
-def _coded_or_unknown(vocabulary: Vocabulary, name: str, code: Any, reason: Any) -> str:
-    if code in (None, "", "unknown"):
-        return _muted_unknown(reason)
-    return _e(vocabulary.label(name, code))
 
 
 def _role_claims_html(context: _Context, project: Mapping[str, Any], anchors: _EvidenceAnchors) -> str:
@@ -5071,7 +5080,12 @@ def _locator_section(context: _Context, site: Mapping[str, Any], anchors: _Evide
     evidence_links = "".join(
         anchors(evidence_id, str(evidence_id)[:8]) for evidence_id in site.get("geometry_evidence_ids") or []
     ).strip()
+    coordinates = _coordinates_text(float(site["latitude"]), float(site["longitude"]))
     items = [
+        ("Coordinates", f'<span class="mono">{_e(coordinates)}</span> '
+                        f'{_copy_button(coordinates, "Copy", f"Copy coordinates {coordinates}")}'),
+        ("Geometry licence", ", ".join(_license_link(code) for code in site.get("geometry_licenses") or [])
+         or _muted_unknown(None)),
         ("Use scope", listed("geometry_use_scopes", "geometry_use_scopes")),
         ("Scope class", listed("geometry_scope_classes")),
         ("Authority", listed("geometry_authority_classes", "geometry_authority_classes")),
