@@ -1,0 +1,105 @@
+{
+  "format": "datacenter-atlas-country-research-findings-v1",
+  "reviewed_at": "2026-10-15",
+  "country": "China",
+  "scope": "Bounded new-site discovery for Shanghai/Guangdong/Zhejiang, excluding Wuhu/Jiujiang/Longteng; root requested closeout after the PBOC packet became ready.",
+  "base_dataset": "verified_construction_core/2026-10-15-research-eighteenth",
+  "base_commit": "f30952100b56caa798e8c5621715719ed73bade1",
+  "selected_candidate": {
+    "name": "PBOC Shanghai Same-City Data Centre — Jindianyun Retrofit",
+    "decision": "accepted_after_independent_review",
+    "status": "announced",
+    "status_as_of": "2026-10-10",
+    "status_date_basis": "Visible original procurement announcement publication; not a first-ever announcement or achieved work date.",
+    "marker": [
+      121.37865575,
+      31.2509982
+    ],
+    "marker_scope": "Community-mapped historical named host-building/property point, not future data-hall or legal parcel.",
+    "source_count": 6,
+    "planned_capacity": "Approximately650 cabinets;6kW general-compute and25kW AI cabinet types; aggregateITMW not calculated.",
+    "artifacts": [
+      "pboc-primary-sources.json",
+      "pboc-actions.json",
+      "pboc-geometry-facts.json",
+      "pboc-dedup.json",
+      "pboc-validation.json",
+      "pboc-preview-input.json"
+    ],
+    "no_published_changes": true
+  },
+  "queued_candidates": [
+    {
+      "candidate": "Tongji University Siping Data Centre, East Campus A-building fit-out",
+      "decision": "queued_for_next_bounded_pass_and_independent_review",
+      "not_a_failed_identity_route": true,
+      "primary_evidence": {
+        "url": "https://www.ccgp.gov.cn/cggg/zygg/gkzb/202609/t20260922_27384116.htm",
+        "capture": "tongji-sept22-fitout-tender.html",
+        "date": "2026-09-22",
+        "project_id": "Z20260266",
+        "facts": "Tender for physicalDCroom fit-out onfloor1 ofEastCampusA at1230SipingRoad;267m²machine room plus84m²electrical/battery rooms,351m²total. WorksincludeITbusbar,cabling,fireprotectionandmonitoring.60-dayduration is planned."
+      },
+      "additional_exact_primary_routes": [
+        {
+          "url": "https://xxgk.tongji.edu.cn/index.php?classid=3190&newsid=21750&t=show",
+          "finding": "University September22 original tender indexedwithsamefloor,addressandphysicalworks."
+        },
+        {
+          "url": "https://czb.tongji.edu.cn/sggl/cgw/index.jsp",
+          "finding": "University originalhomepage lists October14 candidate-awardnotice with exactprojecttitle. Resolve linkedoriginalnotice; candidate ranking doesnotmeanfinalcontractaward orphysicalstart."
+        },
+        {
+          "url": "https://nic.tongji.edu.cn/info/1126/1375.htm",
+          "finding": "2024 universitycloudlaunch describes separate Jiadingfacility and existingSipingDC. Review this historybeforelabeling2026EastAroom asnewfacility versusmigration/retrofit."
+        }
+      ],
+      "geometry_lead": {
+        "url": "https://api.openstreetmap.org/api/0.6/way/871639330/full.json",
+        "capture": "tongji-east-campus-osm.json",
+        "native_name": "同济大学东校区",
+        "official_address_bridge": "https://baowei.tongji.edu.cn/43/17/c3060a344855/page.htm",
+        "bridge_capture": "tongji-official-campus-gates.html",
+        "bridge_date": "2025-01-06",
+        "bridge_fact": "Officialuniversitygate list says1230SipingRoad isEastCampusmainentrance.",
+        "selected_point": null,
+        "status": "Originalcampuspolygon saved,butgeometryderivation,fullspatialdedupandindependentreviewnotperformed."
+      },
+      "next_trigger": "Resolve originalOct14awardcandidatepage,reviewexistingSipingidentityand2026scope,deriveexplicitcampuslocatorfromsaveddirectOSM,thencomplete449/423/231+spatialdedupandindependentreview. No furtherbroadsearchneededfirst."
+    },
+    {
+      "candidate": "Southern Grid developer-zone DC in Guangzhou, Huixu DC in Huizhou, Gui’an energy DC",
+      "decision": "lead_only_original_capture_incomplete",
+      "url": "https://cxwt.sc.csg.cn/zbgg/1200443915.jhtml",
+      "facts": "OriginalSouthernGridpropertyservicetender isindexedwithGuangzhouKaifazhanB1unit101/floor2unit202 atKaiyuanAvenueEnterpriseAccelerator;Huixu1#DC inBoluo;Gui’anbuilding1 operating asofAugust2026monthonly. Separatefacilitiesmustnotsharestatusdates.",
+      "capture_failure": "OrdinaryHTTPSGET failed certificateexpiry; verificationnotdisabled. Browserindextextonly is not selected sourceprojection.",
+      "next_trigger": "Obtain verifiedoriginalcapturethroughnormalaccessiblechannelandinspectdate/scopes.Thenexactpropertygeometryanddedup.Nostatusselected."
+    },
+    {
+      "candidate": "Huzhou North Zhejiang Token Operations Centre",
+      "decision": "not_selected_platform_launch_only",
+      "url": "https://cs.zjol.com.cn/kzl/202608/t20260831_31879897.shtml",
+      "finding": "August31reportedlaunch iscitywidecompute/modelorchestrationplatform consolidatingdistributedresources. DoesnotbyitselfestablishnewphysicalDCatYunshangxinpark.",
+      "next_trigger": "Onlyreopenifprimarysourceidentifiesphysicalhostfacility/roomandachievedstatus."
+    },
+    {
+      "candidate": "Shanghai Yangtze Delta AI4S computing cluster",
+      "decision": "not_selected_host_identity_missing",
+      "url": "https://www.shanghai.gov.cn/nw15343/20260914/5c1708c741634e2380e93dbdb2f07dbc.html",
+      "finding": "GovernmentSeptember14release reportsSeptember11clusterlaunchwithINESA,ThinkSiliconandShanghaiDataPort. Acomputeclusterlaunchalone doesnotidentifyauniquephysicalnewcampus.",
+      "next_trigger": "Primaryhostcampusidentificationandfacilitystatusbeforegeometryoradmission."
+    }
+  ],
+  "existing_holds_not_repeated": [
+    "BaozhiyunLuojingBuilding9South remainsheldexacthostgeometryperlatesttrackedpacket; no exhaustedroutesrepeated.",
+    "Wuhu/Jiujiang/Longteng assignedtootheragentandexcluded."
+  ],
+  "capture_policy": "OriginalbytesandSHA256saved. FailedTLSrequestsrecordedwithoutcertificatebypass. Mapcartausedfordiscoveryonly; nativeOSMAPIselectedforgeometry.",
+  "captured_originals": 11,
+  "failed_captures": 2,
+  "preservation": "No trackededits,commitsorpublication. All22inheriteduntrackedhashesverifiedunchanged; proposedpayloadsretainall449projects423sites2279evidencerowsand231sourcesnapshot/mappingbytes.",
+  "independent_review": {
+    "path": "local_data/country-research-2026-10-15-cn-south-twentieth/independent-review.json",
+    "sha256": "281ce916bd948369e2384ddff0d6d8d53dd295edc41594cd83dd07655fd1045f"
+  }
+}

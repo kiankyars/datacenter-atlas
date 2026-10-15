@@ -1,0 +1,77 @@
+{
+  "format": "datacenter-atlas-action-specs-v1",
+  "country": "China",
+  "as_of": "2026-10-15",
+  "reviewed_at": "2026-10-15",
+  "base_dataset": "verified_construction_core/2026-10-15-research-eighteenth",
+  "base_commit": "f30952100b56caa798e8c5621715719ed73bade1",
+  "base_manifest_sha256": "c3c3fac9c6834d84722178eb773b5c49ea16fc24a804e03c92ce98a34f73ed15",
+  "source_file": "sources/research-countries-2026-10-15-cn-nineteenth-pboc-primary-sources.json",
+  "source_files": [
+    {
+      "path": "sources/research-countries-2026-10-15-cn-nineteenth-pboc-primary-sources.json",
+      "sha256": "07e47605d4357008c7fe727307c7d44ee56a2c96307ebeb9bdaa3b00b02c18a9"
+    }
+  ],
+  "additions": [
+    {
+      "project_stable_key": "curated:pboc-shanghai-zhenguang-same-city:retrofit",
+      "physical_site_stable_key": "curated:pboc-shanghai-zhenguang-same-city",
+      "site_name": "PBOC Shanghai Zhenguang Road Data Centre",
+      "name": "PBOC Shanghai Same-City Data Centre — Jindianyun Retrofit",
+      "country": "China",
+      "country_iso_a2": "CN",
+      "status": {
+        "value": "announced",
+        "as_of": "2026-10-10",
+        "source_id": "cn-twentieth-pboc-shanghai-design",
+        "summary": "An October 10 design tender proposes converting and strengthening the existing Jindianyun Shanghai building at 1581 Zhenguang Road into the People’s Bank of China’s same-city data centre. The plan includes about 650 cabinets with 6 kW general-compute and 25 kW AI cabinet types, plus auxiliary and outdoor support facilities. Lower floors would contain machine rooms and support areas; upper floors would support operations. This records an announced retrofit, with no achieved construction or opening date established."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            121.37865575,
+            31.2509982
+          ]
+        },
+        "source_id": "cn-twentieth-pboc-shanghai-host-osm",
+        "scope": "campus_locator",
+        "scope_class": "community_mapped_named_host_property_point",
+        "authority": "community_mapped",
+        "derivation": "direct_geometry",
+        "method": "osm_named_host_building_polygon_bounding_box_midpoint_verified_inside",
+        "precision": "Representative point inside the community-mapped Shanghai Bill Clearing Centre building at the project’s host property. It is a host-property locator for the proposed Jindianyun/PBOC retrofit, not an official surveyed parcel, campus boundary, data-hall footprint, construction boundary or entrance.",
+        "identity_review": "The October10 PBOC design tender identifies the Jindianyun Shanghai campus and proposed main-building retrofit at1581 Zhenguang Road. Putuo Archives explicitly gives1581 Zhenguang Road for Shanghai Bill Clearing Centre; native OSM way957024148 bears that exact historical property name. The October10 tender describes a main building with auxiliary/outdoor areas. The selected point stays inside the mapped named host building and is labelled for the host property, with no inference that the community polygon equals the legal campus or the future machine-room area. The four surrounding named roads are consistent with the official address and broad boundary directions. A corporate-renaming/legal-ownership relationship is not inferred from the address bridge.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The community map supplies no measured positional accuracy or verified displacement to future machine rooms. Decimal precision is not survey accuracy."
+      },
+      "context_source_ids": [
+        "cn-twentieth-pboc-shanghai-consultancy-award",
+        "cn-twentieth-pboc-shanghai-host-history",
+        "cn-twentieth-pboc-shanghai-host-osm-context",
+        "cn-twentieth-pboc-shanghai-host-osm-edit"
+      ],
+      "roles": [],
+      "distinctness_review": "Complete baseline screen:449projects,423sites,2279evidence and231original source records. No normalized identity match, exact selectedsource URL/hash collision, containing site envelope or polygon. Nearest existing marker is China Telecom Lingang Information Park Phase 2 at 62976.44m. The separate PBOC Credit Reference Center same-city maintenance references are not treated as this project.",
+      "successor_review": "Bounded exact project-name, filing-number and named-campus searches recovered the October10 original design procurement as the latest captured primary announcement. Earlier September syndicated design notices have differing tender schedules; the actual October10 original says October11–16 document access and November2 submission. No achieved construction, completion, operation or project-specific consent was established; intended420-day construction duration and third-party November2026 start forecasts are not events.",
+      "scoped_project_details": {
+        "aliases": [
+          "人民银行上海同城数据中心建设项目",
+          "金电云（上海）园区",
+          "上海票据交换中心"
+        ],
+        "facility_scope": "Proposed retrofit of the business building with auxiliary and outdoor equipment at1581 Zhenguang Road; a host-property marker locates the proposal.",
+        "planned_cabinets": "Approximately650 combined general-compute and AI cabinets; no installed capacity asserted.",
+        "capacity_scope": "6kW and25kW are proposed cabinet types, not a known aggregate IT load. Existing13,240m² host-building area is not data-hall area.",
+        "construction_start_date": null,
+        "operation_start_date": null,
+        "owner": null,
+        "operator": null,
+        "source_role_limit": "Jindianyun is the named tendering entity. The technical consultancy winner is not treated as construction contractor or operator."
+      }
+    }
+  ],
+  "status_updates": [],
+  "context_updates": []
+}

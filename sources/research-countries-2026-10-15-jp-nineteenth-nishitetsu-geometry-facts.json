@@ -1,0 +1,79 @@
+{
+  "format": "datacenter-atlas-country-geometry-facts-v1",
+  "reviewed_at": "2026-10-15",
+  "base_dataset": "verified_construction_core/2026-10-15-research-eighteenth",
+  "base_commit": "f30952100b56caa798e8c5621715719ed73bade1",
+  "base_manifest_sha256": "c3c3fac9c6834d84722178eb773b5c49ea16fc24a804e03c92ce98a34f73ed15",
+  "candidate": "Nishitetsu Fukuoka Data Center Existing Operations",
+  "selected_locator": {
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        130.4143405,
+        33.602851
+      ]
+    },
+    "source_id": "jp-twentyfirst-nishitetsu-google-host",
+    "identity_source_ids": [
+      "jp-twentyfirst-nishitetsu-tenant-certificate",
+      "jp-twentyfirst-nishitetsu-host-property"
+    ],
+    "scope": "campus_locator",
+    "scope_class": "selected_named_map_place_property_point",
+    "authority": "compiled_reference",
+    "derivation": "direct_geometry",
+    "method": "direct_google_maps_selected_named_place_coordinates",
+    "precision": "Google Maps selected named host-building point for Nishitetsu Chiyo-Kenchoguchi Building, 4-1-33 Chiyo, Fukuoka. The data center occupies space within this mixed-use building; the point is a labelled host-property locator, not an individual data hall, floor footprint, entrance or surveyed boundary.",
+    "identity_review": "The BSI certificate’s page 10 explicitly names Nishitetsu Data Center (Colocation) at Nishitetsu Chiyo-Kenchoguchi Building, 4-1-33 Chiyo. The owner’s official property page names the same building and address. An independent name-only Google Maps search selected this exact named building and address, with the owner property website; its original response associates the selected name, feature ID and coordinates. The DC is not inferred merely from the coincident headquarters address. The adjacent Lacleis apartment tower and map viewport are excluded. The certificate’s 2025 revision is retained as historical address evidence; current named-building public map evidence was retrieved October 15, 2026.",
+    "horizontal_uncertainty_metres": null,
+    "uncertainty_reason": "Google Maps supplies no measured horizontal accuracy or data-center-floor position; decimal precision does not imply survey accuracy."
+  },
+  "source_geometry": {
+    "selected_place_name": "西鉄千代県庁口ビル",
+    "feature_id": "0x3541913def331b4b:0x8f13ed4a6236f649",
+    "entity_id": "/g/11gv_4yzby",
+    "source_point_lon_lat": [
+      130.4143405,
+      33.602851
+    ],
+    "selected_coordinate_tuple": "[null,null,33.602851,130.4143405]",
+    "selected_object_tuple_verified_in_original_response": true,
+    "source_response_sha256": "21d590ccda4f31e599b7f9f4dc3f33f97d5ba6be468fe27221d89b32aa385f77",
+    "browser_observation": {
+      "path": "local_data/country-research-2026-10-15-jp-twentyfirst/google-selected-place-observation.json",
+      "sha256": "0b5021e0f352dcfddb81d9e527eec66f7d8847f004bdc59787aee6a8fe7c7142"
+    },
+    "html_field_limit": "Selected name, feature ID, entity and coordinates are in the original HTML. Address and owner website were separately read in public rendered UI."
+  },
+  "derivation_review": {
+    "operation": "Direct selected-object point, reordered to longitude/latitude; no viewport or georeferencing used.",
+    "crs": "WGS84 geographic lon/lat as served by Google Maps",
+    "positional_accuracy_inferred": false
+  },
+  "baseline_geometry_envelopes": {
+    "sites.csv": {
+      "checked": 423,
+      "containing_point": []
+    },
+    "projects.csv": {
+      "checked": 449,
+      "containing_point": []
+    }
+  },
+  "certificate_visual_review": {
+    "pdf_page": 10,
+    "render": "local_data/country-research-2026-10-15-jp-twentyfirst/nishitetsu-certificate-page10.png",
+    "render_sha256": "52ee467dde85af7a097c0a961b1146b0e94d55d8c4bafb2f04c9a07999f719c1",
+    "address_named_for_colocation_scope": true,
+    "certificate_revision_date": "2025-10-16",
+    "date_not_status_observation": true
+  },
+  "excluded_geometry": [
+    "Headquarters-only inference",
+    "Adjacent Lacleis apartment tower",
+    "Property-page map viewport ll=33.602856,130.414317",
+    "Unrelated offices in same host",
+    "Data-center floor or rack location inferred from whole-building marker"
+  ],
+  "raw_capture_redistributed": false
+}

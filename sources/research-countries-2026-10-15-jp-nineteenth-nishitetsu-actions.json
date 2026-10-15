@@ -1,0 +1,91 @@
+{
+  "format": "datacenter-atlas-action-specs-v1",
+  "as_of": "2026-10-15",
+  "reviewed_at": "2026-10-15",
+  "country": "Japan",
+  "base_dataset": "verified_construction_core/2026-10-15-research-eighteenth",
+  "base_commit": "f30952100b56caa798e8c5621715719ed73bade1",
+  "base_manifest_sha256": "c3c3fac9c6834d84722178eb773b5c49ea16fc24a804e03c92ce98a34f73ed15",
+  "source_files": [
+    {
+      "path": "sources/research-countries-2026-10-15-jp-nineteenth-nishitetsu-primary-sources.json",
+      "sha256": "e021cb0ada10e8ee0db2b96df2c4b8bbc93f80062dbc46aebeabe4463b626064"
+    }
+  ],
+  "additions": [
+    {
+      "project_stable_key": "curated:nishitetsu-fukuoka-data-center:existing-operations",
+      "physical_site_stable_key": "curated:nishitetsu-fukuoka-data-center",
+      "site_name": "Nishitetsu Fukuoka Data Center",
+      "name": "Nishitetsu Fukuoka Data Center Existing Operations",
+      "country": "Japan",
+      "country_iso_a2": "JP",
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            130.4143405,
+            33.602851
+          ]
+        },
+        "source_id": "jp-twentyfirst-nishitetsu-google-host",
+        "identity_source_ids": [
+          "jp-twentyfirst-nishitetsu-tenant-certificate",
+          "jp-twentyfirst-nishitetsu-host-property"
+        ],
+        "scope": "campus_locator",
+        "scope_class": "selected_named_map_place_property_point",
+        "authority": "compiled_reference",
+        "derivation": "direct_geometry",
+        "method": "direct_google_maps_selected_named_place_coordinates",
+        "precision": "Google Maps selected named host-building point for Nishitetsu Chiyo-Kenchoguchi Building, 4-1-33 Chiyo, Fukuoka. The data center occupies space within this mixed-use building; the point is a labelled host-property locator, not an individual data hall, floor footprint, entrance or surveyed boundary.",
+        "identity_review": "The BSI certificate’s page 10 explicitly names Nishitetsu Data Center (Colocation) at Nishitetsu Chiyo-Kenchoguchi Building, 4-1-33 Chiyo. The owner’s official property page names the same building and address. An independent name-only Google Maps search selected this exact named building and address, with the owner property website; its original response associates the selected name, feature ID and coordinates. The DC is not inferred merely from the coincident headquarters address. The adjacent Lacleis apartment tower and map viewport are excluded. The certificate’s 2025 revision is retained as historical address evidence; current named-building public map evidence was retrieved October 15, 2026.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "Google Maps supplies no measured horizontal accuracy or data-center-floor position; decimal precision does not imply survey accuracy."
+      },
+      "status": {
+        "value": "operational",
+        "as_of": "2026-08-03",
+        "source_id": "jp-twentyfirst-nishitetsu-current-interview",
+        "summary": "Nishitetsu Information System’s president describes current operations in two floors with about 250 racks and approximately 80% occupancy in the external-customer area. August 3 is the interview article’s publication date; the interview day is undisclosed. This records existing service, with no new opening or expansion inferred."
+      },
+      "context_source_ids": [
+        "jp-twentyfirst-nishitetsu-facility",
+        "jp-twentyfirst-nishitetsu-tenant-certificate",
+        "jp-twentyfirst-nishitetsu-host-property",
+        "jp-twentyfirst-nishitetsu-history"
+      ],
+      "roles": [
+        {
+          "role": "operator",
+          "party": "Nishitetsu Information System Co., Ltd.",
+          "relationship_scope": "current",
+          "source_id": "jp-twentyfirst-nishitetsu-current-interview"
+        }
+      ],
+      "distinctness_review": "All 423 sites, 449 projects, 2279 evidence rows and 231 original source records screened across all serialized fields and aliases. No identity or selected-source collision; no baseline geometry envelope contains the marker. Nearest current site is DayOne Imari Data Center Campus, 58,395.4 metres away.",
+      "successor_review": "Existing two-floor Nishitetsu operations are one site within the named shared host building. Do not create a new site for its tenant ICT Construction, fractional-rack services, proposed GPU hosting, or speculative second building. Later phases here attach to this site only after their identities are supported.",
+      "scoped_project_details": {
+        "aliases": [
+          "にしてつデータセンター",
+          "Nishitetsu Data Center",
+          "NISHITETSU DATA CENTER (Colocation)"
+        ],
+        "facility_scope": "Existing data-center operations occupying two floors in Nishitetsu Chiyo-Kenchoguchi Building, Hakata, Fukuoka.",
+        "primary_street_address": "4-1-33 Chiyo, Hakata-ku, Fukuoka 812-0044, Japan",
+        "host_building": "Nishitetsu Chiyo-Kenchoguchi Building / 西鉄千代県庁口ビル",
+        "operator_description": "Nishitetsu Information System Co., Ltd., a Nishi-Nippon Railroad group company.",
+        "reported_racks": "About 250 across two floors, operator president’s August 3 interview publication.",
+        "reported_occupancy": "About 80% in the external-customer area, not the entire facility.",
+        "historical_building_completion": "February 2008 (month precision).",
+        "historical_service_opening": "May 8, 2014 in parent-company history.",
+        "status_date_scope": "August 3, 2026 is article publication; interview date unknown.",
+        "development_scope_limit": "GPU hosting and a second building are considerations only; no achieved expansion or installed AI workload selected.",
+        "capacity_scope_limit": "No site MW or measured efficiency is stated. Whole-building area and standard office floor-load/electrical specifications are not data-center capacity.",
+        "individual_data_center_floor_geometry_established": false
+      }
+    }
+  ],
+  "status_updates": [],
+  "context_updates": []
+}

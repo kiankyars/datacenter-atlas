@@ -1,0 +1,90 @@
+{
+  "format": "datacenter-atlas-country-research-proposal-review-v1",
+  "candidate": "Nishitetsu Fukuoka Data Center Existing Operations",
+  "reviewed_at": "2026-10-15",
+  "base_dataset": "verified_construction_core/2026-10-15-research-eighteenth",
+  "base_commit": "f30952100b56caa798e8c5621715719ed73bade1",
+  "base_manifest_sha256": "c3c3fac9c6834d84722178eb773b5c49ea16fc24a804e03c92ce98a34f73ed15",
+  "decision": "admit_one_existing_operational_site_reviewed",
+  "selected_status": {
+    "value": "operational",
+    "as_of": "2026-08-03",
+    "source_id": "jp-twentyfirst-nishitetsu-current-interview",
+    "summary": "Nishitetsu Information System’s president describes current operations in two floors with about 250 racks and approximately 80% occupancy in the external-customer area. August 3 is the interview article’s publication date; the interview day is undisclosed. This records existing service, with no new opening or expansion inferred."
+  },
+  "selected_locator": {
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        130.4143405,
+        33.602851
+      ]
+    },
+    "source_id": "jp-twentyfirst-nishitetsu-google-host",
+    "identity_source_ids": [
+      "jp-twentyfirst-nishitetsu-tenant-certificate",
+      "jp-twentyfirst-nishitetsu-host-property"
+    ],
+    "scope": "campus_locator",
+    "scope_class": "selected_named_map_place_property_point",
+    "authority": "compiled_reference",
+    "derivation": "direct_geometry",
+    "method": "direct_google_maps_selected_named_place_coordinates",
+    "precision": "Google Maps selected named host-building point for Nishitetsu Chiyo-Kenchoguchi Building, 4-1-33 Chiyo, Fukuoka. The data center occupies space within this mixed-use building; the point is a labelled host-property locator, not an individual data hall, floor footprint, entrance or surveyed boundary.",
+    "identity_review": "The BSI certificate’s page 10 explicitly names Nishitetsu Data Center (Colocation) at Nishitetsu Chiyo-Kenchoguchi Building, 4-1-33 Chiyo. The owner’s official property page names the same building and address. An independent name-only Google Maps search selected this exact named building and address, with the owner property website; its original response associates the selected name, feature ID and coordinates. The DC is not inferred merely from the coincident headquarters address. The adjacent Lacleis apartment tower and map viewport are excluded. The certificate’s 2025 revision is retained as historical address evidence; current named-building public map evidence was retrieved October 15, 2026.",
+    "horizontal_uncertainty_metres": null,
+    "uncertainty_reason": "Google Maps supplies no measured horizontal accuracy or data-center-floor position; decimal precision does not imply survey accuracy."
+  },
+  "acceptance_reason": "Named operator president’s current-operation statement satisfies the explicit firsthand participant news-source contract; named tenant certificate resolves its host building, independently matched to the owner property record and selected named Google place.",
+  "status_authority_caveat": "Publication date is used conservatively; interview date unknown. Source remains news with explicit firsthand_status_statement metadata.",
+  "scope_limits": [
+    "Existing two-floor Nishitetsu operations are one site within the named shared host building. Do not create a new site for its tenant ICT Construction, fractional-rack services, proposed GPU hosting, or speculative second building. Later phases here attach to this site only after their identities are supported.",
+    "Google Maps selected named host-building point for Nishitetsu Chiyo-Kenchoguchi Building, 4-1-33 Chiyo, Fukuoka. The data center occupies space within this mixed-use building; the point is a labelled host-property locator, not an individual data hall, floor footprint, entrance or surveyed boundary.",
+    "Google Maps supplies no measured horizontal accuracy or data-center-floor position; decimal precision does not imply survey accuracy.",
+    "No site MW or measured efficiency is stated. Whole-building area and standard office floor-load/electrical specifications are not data-center capacity."
+  ],
+  "validation": {
+    "schema_validation": "passed",
+    "deterministic_replay": "passed",
+    "status_age_days": 73,
+    "original_capture_hashes_rechecked": 6,
+    "selected_source_collisions": 0,
+    "sites.csv": {
+      "inherited_rows_unchanged": 423,
+      "added_rows": 1
+    },
+    "projects.csv": {
+      "inherited_rows_unchanged": 449,
+      "added_rows": 1
+    },
+    "evidence.csv": {
+      "inherited_rows_unchanged": 2279,
+      "added_rows": 6
+    },
+    "source-records.json": "byte_identical",
+    "identity-mapping.json": "byte_identical"
+  },
+  "new_counts": {
+    "physical_sites": 424,
+    "projects": 450,
+    "evidence": 2285,
+    "countries": 53,
+    "non_us_sites": 264,
+    "host_estate_context_projects": 3,
+    "official_boundary_projects": 5,
+    "imported_source_records": 231,
+    "snapshot_only_records": 8,
+    "imported_source_references": 1109
+  },
+  "tracked_changes_by_this_agent": false,
+  "independent_review": {
+    "reviewer": "root",
+    "decision": "accept",
+    "original_captures_verified": 6,
+    "visual_pages_reviewed": [
+      "BSI certificate PDF page10",
+      "Corporate history PDF page28"
+    ],
+    "basis": "Root reviewed original interview attribution, facility specifications, exact building/address bridge, historic dates and selected-feature coordinate tuple; complete baseline dedup and unchanged inherited-data validation checked."
+  }
+}
