@@ -1,0 +1,85 @@
+{
+  "format": "datacenter-atlas-action-specs-v1",
+  "country": "China",
+  "as_of": "2026-10-15",
+  "reviewed_at": "2026-10-15",
+  "base_dataset": "verified_construction_core/2026-10-15-research-twentieth",
+  "base_commit": "20a4c0c63cc16b3f521695f013dad65d7e06f755",
+  "base_manifest_sha256": "c9c177469633127d4405dcd84f987cf38698822be53c49101217daf6e2a6b51a",
+  "source_file": "sources/research-countries-2026-10-15-cn-twentyfirst-huizhou-primary-sources.json",
+  "source_files": [
+    {
+      "path": "sources/research-countries-2026-10-15-cn-twentyfirst-huizhou-primary-sources.json",
+      "sha256": "32eeabf4a58aba33fe2dcd4bb184af794c55826409f574e032f3a1bc2f36181a"
+    }
+  ],
+  "additions": [
+    {
+      "project_stable_key": "curated:huizhou-university-yanda-campus:2026-modular-data-centre-upgrade",
+      "physical_site_stable_key": "curated:huizhou-university-yanda-campus",
+      "site_name": "Huizhou University Campus Data Centre",
+      "name": "Huizhou University — Modular Data-Centre Room Upgrade",
+      "country": "China",
+      "country_iso_a2": "CN",
+      "status": {
+        "value": "announced",
+        "as_of": "2026-10-15",
+        "source_id": "cn-twentysecond-huizhou-oct15-amendment",
+        "summary": "Huizhou University is procuring a modular data-centre room, refurbishment and an 800 kVA electrical supply package as part of its campus-network upgrade. The amended schedule lists CNY 3,245,895.53 for the modular room and CNY 846,981.98 for refurbishment; the electrical rating is not IT capacity. The October 15 amendment moves bidding to November 2. Construction and operation of this upgrade have not been confirmed."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            114.41396515,
+            23.0403259
+          ]
+        },
+        "source_id": "cn-twentysecond-huizhou-campus-osm",
+        "scope": "campus_locator",
+        "scope_class": "community_mapped_named_parent_campus_point",
+        "authority": "community_mapped",
+        "derivation": "direct_geometry",
+        "method": "osm_named_campus_polygon_bounding_box_midpoint_verified_inside",
+        "precision": "Representative point inside the named Huizhou University campus at 46 Yanda Avenue. It locates the parent campus named in the tender, not the proposed modular room, a building, entrance or surveyed parcel. The tender allows purchaser-designated service placement; the final room location remains unspecified.",
+        "identity_review": "The September 30 primary university tender identifies Huizhou University at 46 Yanda Avenue as its service location, with a purchaser-designation proviso. Native OSM way 677010358 independently has the exact university name, street, house number, district and university website. The point derives from that named campus polygon. It is not a city, district or unrelated industrial-park centre. No claim is made that the proposed room occupies the point or that the mapped boundary is a legal parcel.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The community vector source provides no measured positional accuracy. The tender identifies no room/building, so displacement from the marker to the future room is unknown."
+      },
+      "context_source_ids": [
+        "cn-twentysecond-huizhou-sept30-scope",
+        "cn-twentysecond-huizhou-campus-osm-provenance"
+      ],
+      "roles": [],
+      "distinctness_review": "All 427 sites, 453 projects, 2303 evidence rows, 231 original source records and the complete identity mapping screened across serialized fields with no candidate identity or selected-source collision. No baseline site geometry envelope contains the campus marker. Tongji and Mirai are included in this current baseline. See the pinned independent reviews for complete dedup and preservation checks.",
+      "successor_review": "October 15 amendment identifies the same HZSF-2026-015 project as the September 30 university tender and retains other original provisions. This is procurement for physical modular-room and electrical infrastructure, not a software-only data platform. Existing-infrastructure upgrade language does not establish current room operations. The future contract periods overlap (service begins in April 2027 while the construction period extends to August 2027); no exact opening is inferred. The university campus is explicitly named but service placement is subject to purchaser designation, so the locator remains campus context only. Exact-title/domain searches found only the original and amendment, with no achieved start, completion or opening.",
+      "scoped_project_details": {
+        "aliases": [
+          "惠州学院校园网升级改造及运维服务项目",
+          "HZSF-2026-015"
+        ],
+        "facility_scope": "Modular data-centre room, room refurbishment and supporting external electrical supply within the broader campus-network upgrade procurement.",
+        "tender_named_service_address": "Huizhou University, 46 Yanda Avenue, Huicheng District, Huizhou, Guangdong; tender permits purchaser-designated service placement.",
+        "planned_modular_room_cost_CNY": 3245895.53,
+        "planned_room_refurbishment_cost_CNY": 846981.98,
+        "planned_external_electrical_package": "One 800 kVA European-style copper-winding box transformer and associated supply works; not IT power.",
+        "overall_procurement_minimum_investment_CNY": 15290000,
+        "investment_scope": "Entire campus-network and information-infrastructure project, not solely the data-centre room.",
+        "planned_bid_deadline": "2026-11-02",
+        "construction_start_date": null,
+        "operation_start_date": null,
+        "selected_IT_power_MW": null,
+        "selected_racks": null,
+        "room_area_square_metres": null,
+        "owner": null,
+        "operator": null
+      }
+    }
+  ],
+  "status_updates": [],
+  "context_updates": [],
+  "original_action_packet": {
+    "path": "local_data/country-research-2026-10-15-cn-twentysecond/huizhou-actions.json",
+    "sha256": "36689e8c4cadc0596eaad81b3fe258e8dfb7e414783177322c6a29cb85c59ec3"
+  }
+}
