@@ -201,3 +201,15 @@ feature still needs a documented coordinate datum or an independent property loc
 Lhasa district plans do not identify the Mobile or Unicom plots. AT TOKYO CC1 and CC3 still
 need original status evidence and named-facility geometry; CC1’s corporate-office map result
 is excluded. Demonstration-only and standalone university facilities are outside future additions.
+
+The next commercial addition, `verified_construction_core/2026-10-15-research-thirtieth`, adds
+Kai Shin’s Satsumasendai AI campus at Circular Park Kyushu: **437 sites and 463 projects**.
+The July 18 location agreement supports announced status. The proposed cumulative 350 MW
+scale, March 2033 target and roughly JPY 850 billion investment remain forecasts; the source
+does not identify the capacity as IT load. The initial pilot remains context within the
+commercial development. The prefecture separately identifies the proposed facility’s host
+property, and the property owner’s access map selects its exact named Google feature.
+That point is labelled as a parent-property marker and does not locate the proposed AI plot.
+The city’s October concept allocates about 15 hectares to AI use within the 25-hectare host
+property; this remains a conceptual allocation. The adjacent Karahama land and prospective
+1 GW regional concept are excluded. All inherited records and earlier evidence are retained.
