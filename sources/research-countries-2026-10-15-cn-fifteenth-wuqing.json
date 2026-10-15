@@ -1,0 +1,83 @@
+{
+  "format": "datacenter-atlas-country-research-report-v1",
+  "as_of": "2026-10-15",
+  "reviewed_at": "2026-10-15",
+  "country": "China",
+  "base_dataset": "verified_construction_core/2026-10-15-research-fourteenth",
+  "base_commit": "ac4f831fad41c63f548f6a901b729e0a46cf194c",
+  "base_manifest_sha256": "975e0e8ccf811222e659d21631bf3440ecc1ffa65964a18d9507ec1e25c3fd04",
+  "decision": "accept_new_site_existing_operational_facilities_only",
+  "candidate": "China Telecom Wuqing Jing-Jin-Ji existing operational facilities",
+  "source_files": [
+    {
+      "path": "sources/research-countries-2026-10-15-cn-fifteenth-wuqing-primary-sources.json",
+      "sha256": "6c92534b9d1eff9f18162779fbf55fc3537a0a0e674d36c29b7774186d88a77b"
+    }
+  ],
+  "actions_file": {
+    "path": "sources/research-countries-2026-10-15-cn-fifteenth-wuqing-actions.json",
+    "sha256": "1814c0e3b62c574511e0def443f1ae7da057a311c0332bd117a4cbdee48a9c59"
+  },
+  "geometry_facts_file": {
+    "path": "sources/research-countries-2026-10-15-cn-fifteenth-wuqing-geometry-facts.json",
+    "sha256": "1da7ccc7463930d86db4e1a3dad94c1b65e792fbbe74d172cef37e1c326723f9"
+  },
+  "status_adjudication": "Accept only existing operational facilities at the named campus. The named centre representative describes serving customers in the Beijing-surrounding region and current demand exceeding available intelligent-compute supply. This participant statement is distinct from the reporter observation of a control screen displaying power/card use, which corroborates actual operation. Neither statement identifies all operating buildings, proves completion of the whole campus, or completes Phase 4. The 2024 construction sentence alone would be insufficient for current status.",
+  "identity_adjudication": "The CQC original register identifies 中国电信股份有限公司京津冀大数据产业园数据中心 at 武清高村科技创新园汇旺道6号. IITime original field reporting locates 中国电信京津冀智能算力中心 at 武清高村数智创新园; the original CS report names the same centre and its representative 贾晋宁. OSM way 961236748 is named 中国电信股份有限公司京津冀大数据产业园分公司 and lies immediately south of mapped 汇旺路. This is a reviewed same-operator/same-locality/named-property triangulation, not an explicit source alias declaration, cadastral match or exact address geocode. The 道/路 road-label difference is retained. The much larger Gaocun park is not used as geometry.",
+  "selected_confirmation_date": "2026-09-14",
+  "status_age_days_at_review": 31,
+  "selected_point": [
+    116.8418499,
+    39.61580515
+  ],
+  "new_facts": [
+    "Original CS report explicitly identifies named centre participant 贾晋宁 and describes existing customer service/current demand; reporter control-room observation separately corroborates operation.",
+    "Original CQC register page 14 gives exact named China Telecom data-centre address 汇旺道6号 in Wuqing Gaocun.",
+    "Original IITime reporter visits the same named centre in Wuqing Gaocun and attributes standing-building inventory to 贾晋宁.",
+    "Direct OSM map API road context supports the named property south of 汇旺路, retaining the 道/路 spelling difference."
+  ],
+  "independent_review": {
+    "reviewer": "/root/cn_ninth_geometry/road_label_review",
+    "decision": "accept_narrow_existing_operations_scope",
+    "source_hashes_verified": 3,
+    "caveats": [
+      "Participant claims and reporter observations kept separate.",
+      "September 14 is publication confirmation, not interview or opening day.",
+      "Identity is triangulation, not explicit alias declaration/address geocode.",
+      "No Phase 4 or whole-campus completion; no selected capacity."
+    ]
+  },
+  "separate_phase_4_hold": {
+    "candidate": "China Telecom Wuqing Phase 4 A3/A4 and A7/A8",
+    "decision": "hold",
+    "reason": "Fresh Sept14 progress found only in secondary relay credited to the park. Original June22 park report is older than 90 days. Existing operation admission does not require or establish a Phase4 transition.",
+    "next_evidence_needed": "An independently accessible original dated participant/government/operator report confirming the exact Phase4 physical state."
+  },
+  "blocked_routes": [
+    {
+      "url": "https://ghhzrzy.tj.gov.cn/",
+      "result": "403",
+      "retried": false
+    },
+    {
+      "url": "https://sthj.tj.gov.cn/YWGZ7406/HJGL7886/DQHJGL389/202101/W020210107601489848027.pdf",
+      "result": "403",
+      "retried": false
+    }
+  ],
+  "prior_blocked_routes_not_retried": [
+    "Older China Telecom page 412",
+    "CHEC Aug28 JavaScript challenge",
+    "Overpass 406"
+  ],
+  "not_selected": [
+    "Secondary reproduced planning image does not become a primary plan capture.",
+    "Historical CQC certification does not independently establish current operation.",
+    "No industrial-zone centroid, registered-office point, projected capacity, nearby Unicom capacity or opening date inferred."
+  ],
+  "repository_changes": "This reviewed factual packet accompanies the fifteenth dated release; original response captures remain ignored and are not redistributed.",
+  "reviewed_proposal": {
+    "path": "local_data/country-research-2026-10-15-cn-fourteenth-wuqing/findings.json",
+    "sha256": "e05c526360a55e936267bfcf10966f63e425f5923dd08ba219575d4365aee6da"
+  }
+}

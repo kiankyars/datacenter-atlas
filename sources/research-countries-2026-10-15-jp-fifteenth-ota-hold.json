@@ -1,0 +1,176 @@
+{
+  "format": "datacenter-atlas-country-research-findings-v1",
+  "country": "Japan",
+  "reviewed_at": "2026-10-15",
+  "completed_at": "2026-10-15T06:50:47.505349+00:00",
+  "base_dataset": "verified_construction_core/2026-10-15-research-fourteenth",
+  "base_commit": "ac4f831fad41c63f548f6a901b729e0a46cf194c",
+  "selected_actions": [],
+  "held_candidates": [
+    {
+      "candidate": "NTT docomo Business / TEPCO Power Grid Ota Container DC Park",
+      "status_candidate": "announced",
+      "status_as_of": "2026-08-27",
+      "status_age_days_at_review": 49,
+      "status_source": "https://www.ntt.com/about-us/press-releases/news/article/2026/0827.html",
+      "status_scope": "Joint operator announcement of a first Ota-ward deployment and opening of applications; future construction wording does not establish achieved physical construction, permission, completion or operations.",
+      "location_scope": "Tokyo Ota ward only. TEPCO-owned assets/land are described generally, with no named host property, street address, parcel, site plan or location map.",
+      "geometry": null,
+      "hold": "A named property-to-project bridge remains unresolved. No ward centroid or generic TEPCO asset selected.",
+      "routes_reviewed": [
+        "Original NTT joint announcement captured and reviewed.",
+        "Original current NTT container-DC service page captured: generic customer-property and hosted-park models; no Ota address or host campus.",
+        "BUSINESS NETWORK article, dated August 28, captured and reviewed only in its publicly visible section. The labelled photograph depicts a showroom within Yokohama No.1 Data Center, a separate place from future Ota. Continuation is member-only and was not accessed or bypassed.",
+        "TEPCO 2026 press index direct original request returned HTTP403 once; route stopped without retry or bypass.",
+        "Bounded searches for exact project name plus address/site/ward-government references yielded the same ward-level announcement and secondary summaries, not a named-property bridge."
+      ],
+      "excluded_inferences": [
+        "Yokohama showroom marker for Ota",
+        "2027 autumn target as current operations",
+        "generic TEPCO substation coordinates",
+        "secondary blog MW and IT-load values as operator-confirmed values"
+      ],
+      "next_decisive_route": "Original operator or municipal site plan, land-use agreement or building filing naming the Ota host property; do not repeat generic ward searches."
+    }
+  ],
+  "subsequent_route": {
+    "candidate": "NTT / Enecom / HOTnet September18 distributed-DC demonstration",
+    "source": "https://www.ntt.com/about-us/press-releases/news/article/2026/0918.html",
+    "publication_date": "2026-09-18",
+    "status_age_days_at_review": 27,
+    "supported_scope": "Demonstration began during August2026; exact August day unspecified. Release describes test environments using Mitaka, Sapporo, Hiroshima, Akihabara and Yokohama DCs. Existing-service participation is not a new physical construction phase.",
+    "figure_review": "Original figure1 visually reviewed. Labels include HOTnet Sapporo DC, Enecom Hiroshima DC, NTT Mitaka/Akihabara/Otemachi and Yokohama1/2. The geographic background and icons are schematic, not georeferenced property markers.",
+    "operator_confirmation": "HOTnet own Sept18 notice captured and confirms consortium demonstration began August.",
+    "identity_and_location_limits": "No unique numbered facility identifier or property location for the Sapporo/Hiroshima DC in the release; exact link to a named property remains necessary. Yokohama1/2 image labels should not automatically be assigned to commercial facility names.",
+    "dedup_result": "No matching city/facility aliases found in 417site/443project rows or serialized source-records using recorded multilingual term checks; this alone does not prove identity.",
+    "potential_next_specific_route": {
+      "name": "Enecom Hiroshima Data Center",
+      "current_service_page": "https://www.enecom.co.jp/enecombiz/service/hiroshima-dc/",
+      "service_location_scope": "Hiroshima East ward only; not exact property.",
+      "dated_notice_index": "https://www.enecom.co.jp/enecombiz/news/",
+      "dated_notice": "2026-10-01 Hiroshima Data Center terms publication/change notice",
+      "observed_link": "https://www.enecom.co.jp/info/news/2026/20261001-1.pdf",
+      "pdf_not_fetched_in_this_bounded_pass": true,
+      "next_needed": "Review terms/ISO certification facility schedule for exact property link; distinguish corporate HQ at Naka ward Otemachi2-11-10 from HiroshimaDC in Eastward. New operational evidence may be usable only after identity/property resolution."
+    },
+    "selected_actions": []
+  },
+  "dedup_artifact": "/Users/kian/Developer/datacenter_atlas/local_data/country-research-2026-10-15-jp-fifteenth-ota/dedup-review.json",
+  "captures": [
+    {
+      "requested_url": "https://businessnetwork.jp/article/36828/",
+      "captured_at": "2026-10-15T06:48:30.572030+00:00",
+      "body_type": "original_http_response_body",
+      "status": 200,
+      "final_url": "https://businessnetwork.jp/article/36828/",
+      "content_type": "text/html; charset=UTF-8",
+      "bytes": 123392,
+      "sha256": "f61b71be27175c985d026fdbc1dfcf9cccac455601c0b69661deae1cacdfd71b",
+      "local_path": "/Users/kian/Developer/datacenter_atlas/local_data/country-research-2026-10-15-jp-fifteenth-ota/businessnetwork-ota.html",
+      "metadata_path": "/Users/kian/Developer/datacenter_atlas/local_data/country-research-2026-10-15-jp-fifteenth-ota/businessnetwork-ota.html.capture.json"
+    },
+    {
+      "requested_url": "https://www.enecom.co.jp/enecombiz/service/hiroshima-dc/",
+      "captured_at": "2026-10-15T06:49:54.366280+00:00",
+      "body_type": "original_http_response_body",
+      "status": 200,
+      "final_url": "https://www.enecom.co.jp/enecombiz/service/hiroshima-dc/",
+      "content_type": "text/html",
+      "bytes": 32603,
+      "sha256": "a67583e7a025543cefae6ac0901ef89b2c2571b48d3beb0d0aacc78a12683d22",
+      "local_path": "/Users/kian/Developer/datacenter_atlas/local_data/country-research-2026-10-15-jp-fifteenth-ota/enecom-current-dc-services.html",
+      "metadata_path": "/Users/kian/Developer/datacenter_atlas/local_data/country-research-2026-10-15-jp-fifteenth-ota/enecom-current-dc-services.html.capture.json"
+    },
+    {
+      "requested_url": "https://www.enecom.co.jp/enecombiz/news/",
+      "captured_at": "2026-10-15T06:49:56.505900+00:00",
+      "body_type": "original_http_response_body",
+      "status": 200,
+      "final_url": "https://www.enecom.co.jp/enecombiz/news/",
+      "content_type": "text/html",
+      "bytes": 40328,
+      "sha256": "cfe2e97d0ae11b174121d6347d978070c49365e2199ed0220edbf27727b78636",
+      "local_path": "/Users/kian/Developer/datacenter_atlas/local_data/country-research-2026-10-15-jp-fifteenth-ota/enecom-current-notices.html",
+      "metadata_path": "/Users/kian/Developer/datacenter_atlas/local_data/country-research-2026-10-15-jp-fifteenth-ota/enecom-current-notices.html.capture.json"
+    },
+    {
+      "requested_url": "https://www.hotnet.co.jp/information/7836/",
+      "captured_at": "2026-10-15T06:49:52.160643+00:00",
+      "body_type": "original_http_response_body",
+      "status": 200,
+      "final_url": "https://www.hotnet.co.jp/information/7836/",
+      "content_type": "text/html; charset=UTF-8",
+      "bytes": 41753,
+      "sha256": "3518af3ad4591bbd7a574584a649f97c1e41110d4727c1edb4546edad7f06cf4",
+      "local_path": "/Users/kian/Developer/datacenter_atlas/local_data/country-research-2026-10-15-jp-fifteenth-ota/hotnet-sept18-demo.html",
+      "metadata_path": "/Users/kian/Developer/datacenter_atlas/local_data/country-research-2026-10-15-jp-fifteenth-ota/hotnet-sept18-demo.html.capture.json"
+    },
+    {
+      "requested_url": "https://www.ntt.com/business/services/container-dc.html",
+      "captured_at": "2026-10-15T06:49:48.938802+00:00",
+      "body_type": "original_http_response_body",
+      "status": 200,
+      "final_url": "https://www.ntt.com/business/services/container-dc.html",
+      "content_type": "text/html; charset=UTF-8",
+      "bytes": 271908,
+      "sha256": "8c85524111dfbfc097ab4ba77160ee21a840008d3a4953cafe1e425f2edf8a92",
+      "local_path": "/Users/kian/Developer/datacenter_atlas/local_data/country-research-2026-10-15-jp-fifteenth-ota/ntt-container-service.html",
+      "metadata_path": "/Users/kian/Developer/datacenter_atlas/local_data/country-research-2026-10-15-jp-fifteenth-ota/ntt-container-service.html.capture.json"
+    },
+    {
+      "requested_url": "https://www.ntt.com/about-us/press-releases/news/article/2026/0827.html",
+      "captured_at": "2026-10-15T06:48:29.253960+00:00",
+      "body_type": "original_http_response_body",
+      "status": 200,
+      "final_url": "https://www.ntt.com/about-us/press-releases/news/article/2026/0827.html",
+      "content_type": "text/html; charset=UTF-8",
+      "bytes": 157278,
+      "sha256": "b42a9a7734822583d2363397b3790f7cb17ede505bbf3a58a2b58731a7cee11e",
+      "local_path": "/Users/kian/Developer/datacenter_atlas/local_data/country-research-2026-10-15-jp-fifteenth-ota/ntt-ota-announcement.html",
+      "metadata_path": "/Users/kian/Developer/datacenter_atlas/local_data/country-research-2026-10-15-jp-fifteenth-ota/ntt-ota-announcement.html.capture.json"
+    },
+    {
+      "requested_url": "https://www.ntt.com/content/dam/nttcom/hq/jp/about-us/press-releases/img/2026/0918a.png",
+      "captured_at": "2026-10-15T06:49:50.458403+00:00",
+      "body_type": "original_http_response_body",
+      "status": 200,
+      "final_url": "https://www.ntt.com/content/dam/nttcom/hq/jp/about-us/press-releases/img/2026/0918a.png",
+      "content_type": "image/png",
+      "bytes": 113701,
+      "sha256": "c3d9de9a69901f9a8fc46c01f71d0cc3d6cfae1466fac26b1a0cdc203e4c6e9f",
+      "local_path": "/Users/kian/Developer/datacenter_atlas/local_data/country-research-2026-10-15-jp-fifteenth-ota/ntt-sept18-demo-figure1.png",
+      "metadata_path": "/Users/kian/Developer/datacenter_atlas/local_data/country-research-2026-10-15-jp-fifteenth-ota/ntt-sept18-demo-figure1.png.capture.json"
+    },
+    {
+      "requested_url": "https://www.ntt.com/about-us/press-releases/news/article/2026/0918.html",
+      "captured_at": "2026-10-15T06:48:33.243770+00:00",
+      "body_type": "original_http_response_body",
+      "status": 200,
+      "final_url": "https://www.ntt.com/about-us/press-releases/news/article/2026/0918.html",
+      "content_type": "text/html; charset=UTF-8",
+      "bytes": 165650,
+      "sha256": "b841a18bed698c33414cc884df47808838579b0fed370203a4649fa06763a4a4",
+      "local_path": "/Users/kian/Developer/datacenter_atlas/local_data/country-research-2026-10-15-jp-fifteenth-ota/ntt-sept18-distributed-demo.html",
+      "metadata_path": "/Users/kian/Developer/datacenter_atlas/local_data/country-research-2026-10-15-jp-fifteenth-ota/ntt-sept18-distributed-demo.html.capture.json"
+    },
+    {
+      "requested_url": "https://www.tepco.co.jp/pg/company/press-information/press/2026/",
+      "captured_at": "2026-10-15T06:48:33.093597+00:00",
+      "body_type": "original_http_response_body",
+      "error": "HTTP Error 403: Forbidden",
+      "local_path": "/Users/kian/Developer/datacenter_atlas/local_data/country-research-2026-10-15-jp-fifteenth-ota/tepco-2026-press-index.html",
+      "metadata_path": "/Users/kian/Developer/datacenter_atlas/local_data/country-research-2026-10-15-jp-fifteenth-ota/tepco-2026-press-index.html.capture.json"
+    }
+  ],
+  "checks": {
+    "original_success_bodies_hashed": 8,
+    "failed_routes_recorded": 1,
+    "tracked_files_changed": false,
+    "no_selected_geometry": true
+  },
+  "source_report": {
+    "path": "local_data/country-research-2026-10-15-jp-fifteenth-ota/research-report.json",
+    "sha256": "49fed9bf692dd07c6a94d33fdf8d9796ce761e6710f3ebe1ebba0fb054e38a01"
+  },
+  "root_review": "Root checked the announcement-only scope and source report pins. No exact Ota property is identified. The labelled Yokohama showroom cannot locate Ota; no action or geometry is selected."
+}
