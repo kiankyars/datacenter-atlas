@@ -1,0 +1,143 @@
+{
+  "format": "datacenter-atlas-country-research-proposal-review-v1",
+  "candidate": "Enecom Hiroshima Data Center Existing Operations",
+  "reviewed_at": "2026-10-15",
+  "completed_at": "2026-10-15T07:10:46.292907+00:00",
+  "reviewer": "jp_fifteenth_ota",
+  "base_dataset": "verified_construction_core/2026-10-15-research-fifteenth",
+  "base_commit": "c79a036e0f3a9123aad2bc96cbceb193afc3862c",
+  "base_manifest_sha256": "264ed27fddb26470b175c05551d93ec9aca7e6282c0fd705814da42070d83e4e",
+  "decision": "admit_one_existing_operational_site_pending_root_review",
+  "selected_status": {
+    "value": "operational",
+    "as_of": "2026-10-01",
+    "source_id": "jp-sixteenth-hiroshima-oct1-current-service",
+    "summary": "October 1 dated operator notice addresses continuing Hiroshima DC customers and its active housing, cabling and managed-service arrangements. Together with the explicit continuity of existing customer contracts in the name-change terms and September 18 participant report of the August demonstration, it confirms existing operation as of the notice. This is a publication confirmation date, not an opening or completed construction date."
+  },
+  "selected_locator": {
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        132.4758742,
+        34.4005909
+      ]
+    },
+    "source_id": "jp-sixteenth-hiroshima-osm-dc-node",
+    "scope": "campus_locator",
+    "scope_class": "community_mapped_named_host_property_point",
+    "authority": "community_mapped",
+    "derivation": "direct_geometry",
+    "method": "direct_osm_data_center_node_inside_named_operator_building",
+    "precision": "Community-mapped data-center point used only as a locator for the named Enecom Hiroshima Building property. It does not identify particular data halls, an entrance, surveyed building limits or the whole East ward.",
+    "identity_review": "OSM node 12514280890 is explicitly tagged as an Enecom data center and links the former EneWings service URL. That exact URL currently redirects 301 to the operator Hiroshima DC page, and housing terms page 36 explicitly confirm the old-to-new service name. The node lies within OSM way 1025347627 named Enecom Hiroshima Building. Enecom itself identifies Hiroshima ICT Center at this named building, Futabanosato 3-5-1, separately from headquarters and its 3-5-7 office. This is reviewed operator/service/map triangulation, not an operator-published coordinate, cadastral survey or data-hall boundary.",
+    "horizontal_uncertainty_metres": null,
+    "uncertainty_reason": "The community-mapped source provides no measured horizontal accuracy. Decimal places are retained from the source and do not imply survey precision or known offsets to operating data halls."
+  },
+  "acceptance_reason": "The current operator service identity is tied through an exact former-service URL redirect and an explicit service-name-change clause to an OSM data-center node inside the operator-named host building. Original operator customer notice and maintained preexisting housing-service contracts support operation as of October 1; September 18 regional DC demonstration independently supplies recent service-use context. This fits the authorized labelled named-property marker scope.",
+  "date_review": {
+    "selected_date": "2026-10-01",
+    "selected_date_kind": "dated operator publication confirming continuing named services",
+    "days_before_review": 14,
+    "not_opening_date": true,
+    "sept18_support": "The September 18 release says demonstration began in August; no exact August day invented.",
+    "housing_terms_publication_date": null,
+    "housing_terms_effective_date": "2026-10-01",
+    "future_option_date": "2027-04-01",
+    "future_option_does_not_establish_current_power_use": true
+  },
+  "identity_review_steps": [
+    "OSM node 12514280890 explicitly tags an Enecom data center and supplies former EneWings service URL.",
+    "Fresh original HTTP capture records301 from exact old URL to the current Hiroshima DC service page.",
+    "Original housing-terms printed page 36 explicitly changes old EneWings Hiroshima DC name to current Hiroshima DC, with earlier customer contracts continuing.",
+    "Exact source node lies within raw OSM named Enecom Hiroshima Building way 1025347627, independently recomputed from source nodes using decimal ray casting.",
+    "Original Enecom company page places its Hiroshima ICT Center in that exact named building at Futabanosato 3-5-1, separating HQ and 3-5-7 office."
+  ],
+  "independent_visual_review": [
+    "October 1 customer notice complete page1",
+    "Housing terms complete printed page 36",
+    "September 18 joint release complete pages 1, 2 and 5",
+    "2015 planned-facility page 2 reviewed only as historical context and excluded from selected sources"
+  ],
+  "source_capture_review": {
+    "source_count": 7,
+    "all_original_response_hashes_recomputed": true,
+    "canonical_urls_and_capture_ids_screened_against_baseline_evidence": true,
+    "source_collisions": 0,
+    "redirect_metadata_file": "local_data/country-research-2026-10-15-jp-sixteenth-hiroshima/enecom-old-service-redirect.html.capture.json",
+    "redirect_metadata_sha256": "b1a6d64a67de67f739f011a4ded813c7d0b9851311214504679e26eefe7b656d",
+    "no_takenaka_dependency": true,
+    "takenaka_blocked_requests_not_retried": true,
+    "raw_captures_redistributed": false
+  },
+  "limits": [
+    "The service-to-property link is reviewed source triangulation, not an official published DC coordinate.",
+    "OSM source precision does not establish measured accuracy. Source point is a named host-property locator, not a surveyed footprint or data-hall polygon.",
+    "Operator company-page address alone identifies its ICT Center, so the separate service-node URL and explicit name continuity are essential to the match.",
+    "No current owner/operator roles, power, rack count, active-floor count, occupancy, opening or completion dates selected.",
+    "The current service page describes renewable option without its future date; the dated October 1 notice governs that timing.",
+    "Generic server-room promotional image and ISO logo contribute no geometry proof."
+  ],
+  "validation": {
+    "sites.csv": {
+      "inherited_rows_unchanged": 418,
+      "added_rows": 1
+    },
+    "projects.csv": {
+      "inherited_rows_unchanged": 444,
+      "added_rows": 1
+    },
+    "evidence.csv": {
+      "inherited_rows_unchanged": 2249,
+      "added_rows": 7
+    },
+    "source-records.json": "byte_identical",
+    "identity-mapping.json": "byte_identical",
+    "status_age_days": 14,
+    "point": [
+      132.4758742,
+      34.4005909
+    ],
+    "project_id": "6a90d22d-a459-5781-bee3-0f28f1fb17eb",
+    "site_id": "vcc-site-cb4f286ac3fc6ea5a153",
+    "selected_current_roles": [],
+    "preview_replay": "passed",
+    "schema_validation": "passed",
+    "original_source_hashes_rechecked": 7,
+    "canonical_evidence_collisions": 0,
+    "wording_cleanup": "English narrative spacing only; source IDs, canonical URLs, hashes, dates, licensing and publishers preserved"
+  },
+  "artifacts": [
+    {
+      "path": "local_data/country-research-2026-10-15-jp-sixteenth-hiroshima/primary-sources.json",
+      "sha256": "08129b383016e02991d9bafd69d4a851696e2ff02730858ca716c2a7224f1d4a"
+    },
+    {
+      "path": "local_data/country-research-2026-10-15-jp-sixteenth-hiroshima/proposed-actions.json",
+      "sha256": "9144c53cbf53deb133e3d7c953d97581feafe3ac3acbdaa52d8107799b3f5d82"
+    },
+    {
+      "path": "local_data/country-research-2026-10-15-jp-sixteenth-hiroshima/proposed-geometry-facts.json",
+      "sha256": "3c9dfaad7e6b56a5522dfa9e9087342e73d57cf08aa81eac028fc74fa1fccd93"
+    },
+    {
+      "path": "local_data/country-research-2026-10-15-jp-sixteenth-hiroshima/independent-dedup-review.json",
+      "sha256": "9a5f10ce4d0b4455bc69a4d4a90abe22e051c103d57016da1afb5966bf8b659e"
+    },
+    {
+      "path": "local_data/country-research-2026-10-15-jp-sixteenth-hiroshima/proposal-validation.json",
+      "sha256": "37666a59ce67f97633e5a1c9379e6de5aeb1ed6e754d513df34b5892229ea875"
+    },
+    {
+      "path": "local_data/country-research-2026-10-15-jp-sixteenth-hiroshima/preview-definition.json",
+      "sha256": "1daa9b0b4ff4d5b771cd1e40ca61475afab3bb4062944a7354fcebe34e0792b2"
+    }
+  ],
+  "new_counts": {
+    "sites": 419,
+    "projects": 445,
+    "evidence": 2256,
+    "countries": 53
+  },
+  "tracked_changes_by_this_agent": false,
+  "root_review": "Root accepted identity, October 1 operational confirmation and labelled property marker; English wording cleanup applied."
+}

@@ -1,0 +1,90 @@
+{
+  "format": "datacenter-atlas-action-specs-v1",
+  "as_of": "2026-10-15",
+  "reviewed_at": "2026-10-15",
+  "country": "Japan",
+  "base_dataset": "verified_construction_core/2026-10-15-research-fifteenth",
+  "base_commit": "c79a036e0f3a9123aad2bc96cbceb193afc3862c",
+  "base_manifest_sha256": "264ed27fddb26470b175c05551d93ec9aca7e6282c0fd705814da42070d83e4e",
+  "source_files": [
+    {
+      "path": "sources/research-countries-2026-10-15-jp-sixteenth-hiroshima-primary-sources.json",
+      "sha256": "08129b383016e02991d9bafd69d4a851696e2ff02730858ca716c2a7224f1d4a"
+    }
+  ],
+  "additions": [
+    {
+      "project_stable_key": "curated:enecom-hiroshima-data-center:existing-operations",
+      "physical_site_stable_key": "curated:enecom-hiroshima-data-center",
+      "site_name": "Enecom Hiroshima Data Center",
+      "name": "Enecom Hiroshima Data Center Existing Operations",
+      "country": "Japan",
+      "country_iso_a2": "JP",
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            132.4758742,
+            34.4005909
+          ]
+        },
+        "source_id": "jp-sixteenth-hiroshima-osm-dc-node",
+        "scope": "campus_locator",
+        "scope_class": "community_mapped_named_host_property_point",
+        "authority": "community_mapped",
+        "derivation": "direct_geometry",
+        "method": "direct_osm_data_center_node_inside_named_operator_building",
+        "precision": "Community-mapped data-center point used only as a locator for the named Enecom Hiroshima Building property. It does not identify particular data halls, an entrance, surveyed building limits or the whole East ward.",
+        "identity_review": "OSM node 12514280890 is explicitly tagged as an Enecom data center and links the former EneWings service URL. That exact URL currently redirects 301 to the operator Hiroshima DC page, and housing terms page 36 explicitly confirm the old-to-new service name. The node lies within OSM way 1025347627 named Enecom Hiroshima Building. Enecom itself identifies Hiroshima ICT Center at this named building, Futabanosato 3-5-1, separately from headquarters and its 3-5-7 office. This is reviewed operator/service/map triangulation, not an operator-published coordinate, cadastral survey or data-hall boundary.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The community-mapped source provides no measured horizontal accuracy. Decimal places are retained from the source and do not imply survey precision or known offsets to operating data halls."
+      },
+      "status": {
+        "value": "operational",
+        "as_of": "2026-10-01",
+        "source_id": "jp-sixteenth-hiroshima-oct1-current-service",
+        "summary": "October 1 dated operator notice addresses continuing Hiroshima DC customers and its active housing, cabling and managed-service arrangements. Together with the explicit continuity of existing customer contracts in the name-change terms and September 18 participant report of the August demonstration, it confirms existing operation as of the notice. This is a publication confirmation date, not an opening or completed construction date."
+      },
+      "context_source_ids": [
+        "jp-sixteenth-hiroshima-housing-name-continuity",
+        "jp-sixteenth-hiroshima-sept18-demo",
+        "jp-sixteenth-hiroshima-company-address",
+        "jp-sixteenth-hiroshima-current-service",
+        "jp-sixteenth-hiroshima-osm-building"
+      ],
+      "roles": [],
+      "distinctness_review": "All 418 site rows, 444 project rows and 231 original source records screened across serialized fields for Hiroshima, 広島, Enecom, エネコム, EneWings, Futaba, 二葉 and mapped feature identifiers; no candidate match. Nearest existing site is IIJ Matsue Data Center Park, 132,878.7 metres away. One named facility and one existing-operations project proposed.",
+      "successor_review": "October 1 operator customer notice is the selected fresh continuity confirmation. September 18 demonstration release and explicit October 1 service-name-change terms are corroborating context. April 2027 renewable option remains prospective. No later physical-status event or expansion selected.",
+      "scoped_project_details": {
+        "facility_scope": "Existing operational data-center facilities within Enecom Hiroshima Building; no exact data-hall subset, new construction phase or occupied-floor claim selected.",
+        "aliases": [
+          "EneWings Hiroshima Data Center",
+          "EneWings広島データセンター",
+          "広島データセンター"
+        ],
+        "service_name_change_effective_date": "2026-10-01",
+        "service_name_change_source_id": "jp-sixteenth-hiroshima-housing-name-continuity",
+        "named_host_property": "エネコム広島ビル",
+        "operator_named_address": "広島市東区二葉の里三丁目5番1号",
+        "address_scope": "Operator Hiroshima ICT Center at the named host building; full data-center identity uses reviewed OSM service-link triangulation.",
+        "status_date_scope": "Publication of dated operator notice confirming continuity of existing named data-center services",
+        "operation_start_date": null,
+        "construction_start_date": null,
+        "construction_end_date": null,
+        "demonstration_start_month": "2026-08",
+        "demonstration_exact_start_day": null,
+        "demonstration_report_publication_date": "2026-09-18",
+        "future_renewable_option_start": "2027-04-01",
+        "renewable_option_is_current_power_usage": false,
+        "owner": null,
+        "operator": null,
+        "IT_power_MW": null,
+        "capacity_exclusion": "No rack count, per-rack kVA, historic planned capacity, utility voltage or floor area converted to power or current utilization.",
+        "building_geometry_established": false,
+        "geometry_note": "Only the source node is selected. The named building ring is identity containment context; no official/surveyed footprint is asserted."
+      }
+    }
+  ],
+  "status_updates": [],
+  "context_updates": []
+}

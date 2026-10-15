@@ -1,0 +1,159 @@
+{
+  "format": "datacenter-atlas-update-input-v1",
+  "updated_at": "2026-10-15",
+  "output": "verified_construction_core/2026-10-15-research-sixteenth",
+  "base_dataset": "verified_construction_core/2026-10-15-research-fifteenth",
+  "base_manifest_sha256": "264ed27fddb26470b175c05551d93ec9aca7e6282c0fd705814da42070d83e4e",
+  "source_files": [
+    {
+      "path": "sources/research-countries-2026-10-15-cn-sixteenth-langfang-primary-sources.json",
+      "sha256": "63e539f5e7b25f90262f0dcb21d03b4b341134843a0b3684eb546dd563299f91"
+    },
+    {
+      "path": "sources/research-countries-2026-10-15-jp-sixteenth-hiroshima-primary-sources.json",
+      "sha256": "08129b383016e02991d9bafd69d4a851696e2ff02730858ca716c2a7224f1d4a"
+    }
+  ],
+  "additions": [
+    {
+      "project_stable_key": "curated:china-unicom-langfang-zhiyun:existing-operations",
+      "physical_site_stable_key": "curated:china-unicom-langfang-zhiyun",
+      "site_name": "China Unicom Langfang Zhi Yun Data Center",
+      "name": "China Unicom Langfang Zhi Yun — Existing Operational Facilities",
+      "country": "China",
+      "country_iso_a2": "CN",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-09-14",
+        "source_id": "cn-fourteenth-wuqing-cs-participant-report",
+        "summary": "Original China Securities Journal field reporting explicitly attributes already commissioned facilities at the named centre to operations department head 温源. Selected scope is existing operation; no individual building set, opening day, full-campus completion or expansion status is inferred."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            116.71704,
+            39.6021711
+          ]
+        },
+        "source_id": "cn-sixteenth-langfang-unicom-osm",
+        "scope": "campus_locator",
+        "scope_class": "community_mapped_named_parent_campus_point",
+        "authority": "community_mapped",
+        "derivation": "direct_geometry",
+        "method": "osm_named_campus_vector_polygon_bounding_box_midpoint_verified_inside",
+        "precision": "Representative point inside the community-mapped named Unicom Cloud Data Langfang branch campus. It does not identify individual operating buildings, planned expansion parcels, an entrance, a survey point or the full current campus boundary.",
+        "identity_review": "The original Securities Times field visit explicitly locates 中国联通廊坊云数据中心 at 廊坊市广阳区楼庄路100号. The original appointed-agent notice names 联通云数据有限公司廊坊市分公司 as the DC5 procurer and explicitly gives that same street number as the generator-testing service location in section 1.5; ODCC explicitly connects the corporate data-centre name to 中国联通廊坊云数据中心 in one assessment entry. Current CS original reporting names 中国联通廊坊智·云数据中心 and participant 温源. OSM way 697624944 bears the exact branch name and its eastern boundary follows mapped 娄庄路, beside separately mapped Runze. This supports a named parent-campus locator through identity triangulation, not an official parcel boundary or address-number geocode. The primary 楼庄/OSM娄庄 spelling difference and the 智·云/云 facility-name variants are retained. The service-location clause and original physical site visit establish facility use at the address; the registered/contact address alone was not used to locate the facility.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "OSM supplies no measured horizontal accuracy or displacement to particular operating buildings."
+      },
+      "context_source_ids": [
+        "cn-sixteenth-langfang-unicom-agent-address",
+        "cn-sixteenth-langfang-unicom-stcn-address",
+        "cn-sixteenth-langfang-unicom-odcc",
+        "cn-sixteenth-langfang-unicom-osm-roads",
+        "cn-sixteenth-langfang-unicom-hebei-daily"
+      ],
+      "distinctness_review": "All 418 sites, 444 projects and 231 original source records screened by independent reviewer across complete normalized serialized fields. Candidate polygon intersects no existing site geometry. Other Langfang records are Boda and Haoyang; existing Unicom Tianjin is about 10.20 km away using the reviewer comparison point. Distances are not accuracy estimates.",
+      "successor_review": "September 14 original named-participant report confirms existing facilities are commissioned. August 1 attributed Hebei Daily reporting corroborates daily service. Separate three-building 315 MW and year-end single-building 15 MW statements are not assigned to existing capacity, do not establish physical work stages here and are not assumed to be the same expansion.",
+      "roles": [],
+      "scoped_project_details": {
+        "aliases": [
+          "中国联通廊坊智·云数据中心",
+          "中国联通廊坊云数据中心",
+          "联通云数据有限公司廊坊数据中心",
+          "联通云数据有限公司廊坊市分公司"
+        ],
+        "alias_review": "ODCC explicitly bridges the corporate data-centre and cloud-centre names; current 智·云 and branch-property identity are triangulated from named participant, city, data-centre context and address. No corporate rename is claimed.",
+        "facility_scope": "Existing operational facilities at the named parent campus. No exact list of operating buildings assigned.",
+        "status_date_scope": "Original CS field-report publication confirmation",
+        "exact_interview_date": null,
+        "operation_start_date": null,
+        "construction_start_date": null,
+        "construction_end_date": null,
+        "owner": null,
+        "operator": null,
+        "IT_power_MW": null,
+        "reported_commissioned_racks": 18600,
+        "rack_count_scope": "Named participant reported commissioned racks, not occupied count, installed IT MW or separate buildings.",
+        "selected_power_capacity": null,
+        "capacity_exclusion": "No power selected. Three proposed new buildings totalling 315 MW are separate from existing operations; the earlier 15 MW year-end building forecast is not merged with them.",
+        "whole_campus_complete_claimed": false,
+        "building_geometry_established": false
+      }
+    },
+    {
+      "project_stable_key": "curated:enecom-hiroshima-data-center:existing-operations",
+      "physical_site_stable_key": "curated:enecom-hiroshima-data-center",
+      "site_name": "Enecom Hiroshima Data Center",
+      "name": "Enecom Hiroshima Data Center Existing Operations",
+      "country": "Japan",
+      "country_iso_a2": "JP",
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            132.4758742,
+            34.4005909
+          ]
+        },
+        "source_id": "jp-sixteenth-hiroshima-osm-dc-node",
+        "scope": "campus_locator",
+        "scope_class": "community_mapped_named_host_property_point",
+        "authority": "community_mapped",
+        "derivation": "direct_geometry",
+        "method": "direct_osm_data_center_node_inside_named_operator_building",
+        "precision": "Community-mapped data-center point used only as a locator for the named Enecom Hiroshima Building property. It does not identify particular data halls, an entrance, surveyed building limits or the whole East ward.",
+        "identity_review": "OSM node 12514280890 is explicitly tagged as an Enecom data center and links the former EneWings service URL. That exact URL currently redirects 301 to the operator Hiroshima DC page, and housing terms page 36 explicitly confirm the old-to-new service name. The node lies within OSM way 1025347627 named Enecom Hiroshima Building. Enecom itself identifies Hiroshima ICT Center at this named building, Futabanosato 3-5-1, separately from headquarters and its 3-5-7 office. This is reviewed operator/service/map triangulation, not an operator-published coordinate, cadastral survey or data-hall boundary.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The community-mapped source provides no measured horizontal accuracy. Decimal places are retained from the source and do not imply survey precision or known offsets to operating data halls."
+      },
+      "status": {
+        "value": "operational",
+        "as_of": "2026-10-01",
+        "source_id": "jp-sixteenth-hiroshima-oct1-current-service",
+        "summary": "October 1 dated operator notice addresses continuing Hiroshima DC customers and its active housing, cabling and managed-service arrangements. Together with the explicit continuity of existing customer contracts in the name-change terms and September 18 participant report of the August demonstration, it confirms existing operation as of the notice. This is a publication confirmation date, not an opening or completed construction date."
+      },
+      "context_source_ids": [
+        "jp-sixteenth-hiroshima-housing-name-continuity",
+        "jp-sixteenth-hiroshima-sept18-demo",
+        "jp-sixteenth-hiroshima-company-address",
+        "jp-sixteenth-hiroshima-current-service",
+        "jp-sixteenth-hiroshima-osm-building"
+      ],
+      "roles": [],
+      "distinctness_review": "All 418 site rows, 444 project rows and 231 original source records screened across serialized fields for Hiroshima, 広島, Enecom, エネコム, EneWings, Futaba, 二葉 and mapped feature identifiers; no candidate match. Nearest existing site is IIJ Matsue Data Center Park, 132,878.7 metres away. One named facility and one existing-operations project proposed.",
+      "successor_review": "October 1 operator customer notice is the selected fresh continuity confirmation. September 18 demonstration release and explicit October 1 service-name-change terms are corroborating context. April 2027 renewable option remains prospective. No later physical-status event or expansion selected.",
+      "scoped_project_details": {
+        "facility_scope": "Existing operational data-center facilities within Enecom Hiroshima Building; no exact data-hall subset, new construction phase or occupied-floor claim selected.",
+        "aliases": [
+          "EneWings Hiroshima Data Center",
+          "EneWings広島データセンター",
+          "広島データセンター"
+        ],
+        "service_name_change_effective_date": "2026-10-01",
+        "service_name_change_source_id": "jp-sixteenth-hiroshima-housing-name-continuity",
+        "named_host_property": "エネコム広島ビル",
+        "operator_named_address": "広島市東区二葉の里三丁目5番1号",
+        "address_scope": "Operator Hiroshima ICT Center at the named host building; full data-center identity uses reviewed OSM service-link triangulation.",
+        "status_date_scope": "Publication of dated operator notice confirming continuity of existing named data-center services",
+        "operation_start_date": null,
+        "construction_start_date": null,
+        "construction_end_date": null,
+        "demonstration_start_month": "2026-08",
+        "demonstration_exact_start_day": null,
+        "demonstration_report_publication_date": "2026-09-18",
+        "future_renewable_option_start": "2027-04-01",
+        "renewable_option_is_current_power_usage": false,
+        "owner": null,
+        "operator": null,
+        "IT_power_MW": null,
+        "capacity_exclusion": "No rack count, per-rack kVA, historic planned capacity, utility voltage or floor area converted to power or current utilization.",
+        "building_geometry_established": false,
+        "geometry_note": "Only the source node is selected. The named building ring is identity containment context; no official/surveyed footprint is asserted."
+      }
+    }
+  ],
+  "status_updates": [],
+  "context_updates": []
+}

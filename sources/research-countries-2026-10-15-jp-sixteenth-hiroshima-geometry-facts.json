@@ -1,0 +1,190 @@
+{
+  "format": "datacenter-atlas-country-geometry-facts-v1",
+  "reviewed_at": "2026-10-15",
+  "base_dataset": "verified_construction_core/2026-10-15-research-fifteenth",
+  "base_commit": "c79a036e0f3a9123aad2bc96cbceb193afc3862c",
+  "base_manifest_sha256": "264ed27fddb26470b175c05551d93ec9aca7e6282c0fd705814da42070d83e4e",
+  "source_files": [
+    {
+      "path": "sources/research-countries-2026-10-15-jp-sixteenth-hiroshima-primary-sources.json",
+      "sha256": "08129b383016e02991d9bafd69d4a851696e2ff02730858ca716c2a7224f1d4a"
+    }
+  ],
+  "candidate": "Enecom Hiroshima Data Center Existing Operations",
+  "selected_locator": {
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        132.4758742,
+        34.4005909
+      ]
+    },
+    "source_id": "jp-sixteenth-hiroshima-osm-dc-node",
+    "scope": "campus_locator",
+    "scope_class": "community_mapped_named_host_property_point",
+    "authority": "community_mapped",
+    "derivation": "direct_geometry",
+    "method": "direct_osm_data_center_node_inside_named_operator_building",
+    "precision": "Community-mapped data-center point used only as a locator for the named Enecom Hiroshima Building property. It does not identify particular data halls, an entrance, surveyed building limits or the whole East ward.",
+    "identity_review": "OSM node 12514280890 is explicitly tagged as an Enecom data center and links the former EneWings service URL. That exact URL currently redirects 301 to the operator Hiroshima DC page, and housing terms page 36 explicitly confirm the old-to-new service name. The node lies within OSM way 1025347627 named Enecom Hiroshima Building. Enecom itself identifies Hiroshima ICT Center at this named building, Futabanosato 3-5-1, separately from headquarters and its 3-5-7 office. This is reviewed operator/service/map triangulation, not an operator-published coordinate, cadastral survey or data-hall boundary.",
+    "horizontal_uncertainty_metres": null,
+    "uncertainty_reason": "The community-mapped source provides no measured horizontal accuracy. Decimal places are retained from the source and do not imply survey precision or known offsets to operating data halls."
+  },
+  "source_geometry": {
+    "node": {
+      "type": "node",
+      "id": 12514280890,
+      "lat": 34.4005909,
+      "lon": 132.4758742,
+      "timestamp": "2025-08-31T14:53:42Z",
+      "version": 6,
+      "changeset": 171273175,
+      "user": "Wish_F",
+      "uid": 6972989,
+      "tags": {
+        "operator": "エネコム",
+        "telecom": "data_center",
+        "website": "https://www.enecom.co.jp/business/enewings/data_center/index.html",
+        "wikidata": "Q11290456",
+        "wikipedia": "ja:エネコム"
+      }
+    },
+    "named_building": {
+      "type": "way",
+      "id": 1025347627,
+      "timestamp": "2022-01-27T21:55:02Z",
+      "version": 1,
+      "changeset": 116683862,
+      "user": "Imagener",
+      "uid": 9322792,
+      "nodes": [
+        9454084637,
+        9454084638,
+        9454084639,
+        9454084640,
+        9454084641,
+        9454084642,
+        9454084643,
+        9454084644,
+        9454084645,
+        9454084646,
+        9454084647,
+        9454084648,
+        9454084649,
+        9454084650,
+        9454084652,
+        9454084651,
+        9454084637
+      ],
+      "tags": {
+        "building": "office",
+        "building:levels": "10",
+        "height": "57",
+        "name": "エネコム広島ビル"
+      }
+    },
+    "building_ring_lon_lat": [
+      [
+        132.4760945,
+        34.4003303
+      ],
+      [
+        132.4757087,
+        34.4005319
+      ],
+      [
+        132.4757243,
+        34.4005522
+      ],
+      [
+        132.4757193,
+        34.4005548
+      ],
+      [
+        132.4758877,
+        34.4007742
+      ],
+      [
+        132.4758927,
+        34.4007716
+      ],
+      [
+        132.4759068,
+        34.4007899
+      ],
+      [
+        132.4759313,
+        34.4007771
+      ],
+      [
+        132.4759357,
+        34.4007828
+      ],
+      [
+        132.4762402,
+        34.4006236
+      ],
+      [
+        132.4762358,
+        34.400618
+      ],
+      [
+        132.4762926,
+        34.4005883
+      ],
+      [
+        132.4762745,
+        34.4005648
+      ],
+      [
+        132.4762808,
+        34.4005615
+      ],
+      [
+        132.4761284,
+        34.4003629
+      ],
+      [
+        132.4761221,
+        34.4003662
+      ],
+      [
+        132.4760945,
+        34.4003303
+      ]
+    ],
+    "selected_source_point_lon_lat": [
+      132.4758742,
+      34.4005909
+    ],
+    "source_node_sha256": "6f22790fdcb29bca83fc3d3e7f8904098c3fdf295084a7562ae1bd10d20b6cea",
+    "source_building_sha256": "5bb4d28a79591b456174a56b8f1a325bb71d7e01509b2a44338a32de3f8f6854"
+  },
+  "derivation_review": {
+    "operation": "Direct copy of source node longitude and latitude; no rounding, centroid calculation, georeferencing or CRS transform. Independently ray-cast source point against ring recreated from original way nodes.",
+    "point_inside_named_building": true,
+    "decimal_ray_crossings": [
+      {
+        "edge_index": 3,
+        "intersection_longitude": "132.4757470084776663628076572",
+        "to_right": false
+      },
+      {
+        "edge_index": 10,
+        "intersection_longitude": "132.4762876276094276094276094",
+        "to_right": true
+      }
+    ],
+    "source_ring_replayed_from_raw_nodes": true,
+    "positional_accuracy_inferred": false
+  },
+  "identity_review": "OSM node 12514280890 is explicitly tagged as an Enecom data center and links the former EneWings service URL. That exact URL currently redirects 301 to the operator Hiroshima DC page, and housing terms page 36 explicitly confirm the old-to-new service name. The node lies within OSM way 1025347627 named Enecom Hiroshima Building. Enecom itself identifies Hiroshima ICT Center at this named building, Futabanosato 3-5-1, separately from headquarters and its 3-5-7 office. This is reviewed operator/service/map triangulation, not an operator-published coordinate, cadastral survey or data-hall boundary.",
+  "excluded_geometry": [
+    "Corporate headquarters at Otemachi 2-11-10",
+    "Ekikita office at Futabanosato 3-5-7",
+    "Google embedded-map viewport",
+    "National demonstration map",
+    "Generic server-room photograph",
+    "ISO certification logo"
+  ]
+}
