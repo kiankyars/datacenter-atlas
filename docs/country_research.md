@@ -171,7 +171,7 @@ The 231 original source records and identity mapping remain byte-identical.
 
 ## Commercial research continuation
 
-The next addition, `verified_construction_core/2026-10-15-research-twentyeighth`, adds
+The published addition, `verified_construction_core/2026-10-15-research-twentyeighth`, adds
 SCSK netXDC Chiba No.3 (SI3) at its Inzai campus: **436 sites and 462 projects**. The operator’s
 October 1 report describes continuing operations; that date is not the inspection day or an
 opening milestone. May 2022 remains the service-start month, and April 2022 the contractor’s
@@ -186,3 +186,18 @@ Taihu and Wujiang need an exact named-property locator and original status-conte
 OSA1’s September 30 power-allocation and completed-design report does not establish a newer
 physical-construction milestone, and its property marker remains unresolved. Their research
 captures and precise reopening conditions remain in the local country packets.
+
+The following update, `verified_construction_core/2026-10-15-research-twentyninth`, refreshes
+Goodman HKG10 in Tsuen Wan from the operator’s September 15 construction report. The report
+describes converting an existing warehouse and forecasts first service in early 2028. It also
+explains that partnership equity will predominantly fund HKG10’s mechanical and electrical
+fit-out. September 15 is the report date, not a photograph date or a fit-out commencement
+milestone. The prior June 30 evidence and reviewed site geometry remain intact; HKG09 and
+partnership-wide capacity remain separate. Counts stay at **436 sites and 462 projects**.
+
+New-site research continues with commercial facilities in China and Japan. Guangzhou Hengsuan
+has a captured municipal energy review and exact street address, but its selected mainland map
+feature still needs a documented coordinate datum or an independent property location. The
+Lhasa district plans do not identify the Mobile or Unicom plots. AT TOKYO CC1 and CC3 still
+need original status evidence and named-facility geometry; CC1’s corporate-office map result
+is excluded. Demonstration-only and standalone university facilities are outside future additions.
