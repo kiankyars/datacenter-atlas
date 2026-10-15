@@ -540,7 +540,7 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
         "updated_at": updated.isoformat(), "lifecycle_reference_date": updated.isoformat(), "counts": counts,
         "added_sites": [item["physical_site_stable_key"] for item in spec.get("additions", []) if item["physical_site_stable_key"] not in base_site_keys],
         "refreshed_projects": sorted(touched - set(withdrawn)), "withdrawn_projects": withdrawn,
-        "withdrawal_note": "Unsupported construction selections are removed; no cancellation or other physical status is inferred.",
+        "withdrawal_note": _text(spec.get("withdrawal_note", "Unsupported construction selections are removed; no cancellation or other physical status is inferred."), "withdrawal note"),
         "base_dataset": spec["base_dataset"],
         "observation_policy": "Last documented observations; records are not a claim that all projects are still under construction on the update date.",
     }

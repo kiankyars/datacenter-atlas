@@ -516,6 +516,9 @@ class DatasetUpdateTests(unittest.TestCase):
         self.assertEqual(manifest["counts"]["physical_sites"], 199)
         self.assertNotIn(original["project_id"].encode(), payloads["projects.csv"])
         self.assertNotIn(original["project_id"].encode(), payloads["evidence.csv"])
+        self.spec["withdrawal_note"] = "Experimental installations are outside the inventory scope; no physical status change is inferred."
+        payloads, _ = self.payloads()
+        self.assertEqual(json.loads(payloads["selection-report.json"])["withdrawal_note"], self.spec["withdrawal_note"])
         self.spec["withdrawals"][0]["replaces_status_evidence_id"] = "wrong"
         with self.assertRaisesRegex(UpdateError, "name the removed status evidence"):
             self.payloads()

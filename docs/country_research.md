@@ -18,6 +18,10 @@ more local-language research.
 
 ## Coverage and updates
 
+Prioritize facilities serving commercial or institutional computing workloads. Small experimental
+installations used only to demonstrate or test equipment are outside the Atlas scope. Shinkiba's
+MIRAIT ONE test container is excluded on that basis; this does not imply a change to its physical status.
+
 Catalogue announced, permitted, under-construction, completed and operating projects distinctly. An
 announcement needs a dated primary source naming the project. Permitted status needs issued
 consent for the data-centre development itself, with authority, date and approved work recorded;
