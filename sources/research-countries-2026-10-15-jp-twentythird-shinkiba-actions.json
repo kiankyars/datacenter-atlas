@@ -1,0 +1,104 @@
+{
+  "format": "datacenter-atlas-action-specs-v1",
+  "as_of": "2026-10-15",
+  "reviewed_at": "2026-10-15",
+  "country": "Japan",
+  "base_dataset": "verified_construction_core/2026-10-15-research-twentysecond",
+  "base_commit": "f4e5a37bbf8cd5f5d601421d52965c9ffb55e5ae",
+  "base_manifest_sha256": "b72c9953dfd5a76cadb408a7a82c48b81168e9b33f22c7c9dd59ca0d4dd19ae4",
+  "source_files": [
+    {
+      "path": "sources/research-countries-2026-10-15-jp-twentythird-shinkiba-primary-sources.json",
+      "sha256": "973364221e953b3ff68334659b496ae3a51ca9603e6c149bf56cb080a5c7dfd7"
+    }
+  ],
+  "additions": [
+    {
+      "project_stable_key": "curated:mirait-one-shinkiba:liquid-cooled-container-demonstrator",
+      "physical_site_stable_key": "curated:mirait-one-shinkiba",
+      "site_name": "MIRAIT ONE Shinkiba Container Data Center Demonstrator",
+      "name": "MIRAIT ONE Shinkiba Liquid-Cooled Container Demonstrator",
+      "country": "Japan",
+      "country_iso_a2": "JP",
+      "status": {
+        "value": "completed",
+        "as_of": "2026-10-13",
+        "source_id": "jp-twentyfifth-mirait-shinkiba-current-testing",
+        "summary": "MIRAIT ONE reports that its 20-foot liquid-cooled container at the Shinkiba building is installed and undergoing GPU-equipment testing. This is a completed installation for demonstration and testing; a commercial service opening has not been confirmed."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            139.8221806,
+            35.6393249
+          ]
+        },
+        "source_id": "jp-twentyfifth-mirait-shinkiba-host-map",
+        "identity_source_ids": [
+          "jp-twentyfifth-mirait-shinkiba-current-testing",
+          "jp-twentyfifth-mirait-shinkiba-installation",
+          "jp-twentyfifth-mirait-shinkiba-host-address",
+          "jp-twentyfifth-mirait-shinkiba-access"
+        ],
+        "scope": "campus_locator",
+        "scope_class": "selected_named_host_building_property_point",
+        "authority": "compiled_reference",
+        "derivation": "direct_geometry",
+        "method": "direct_google_maps_selected_named_host_building_coordinates",
+        "precision": "Named MIRAIT Shinkiba host-building property point at 2-15-20 Shinkiba. The installed container is reported within these premises; its exact outdoor position and footprint are not mapped. The office building is not itself asserted to be a dedicated data center.",
+        "identity_review": "The October 13 and July 3 MIRAIT ONE reports explicitly place this installed container on the company’s Shinkiba Building property. The operator’s group directory and MIRAIT Mobile East access page identify that named building at 2-15-20 Shinkiba. The access page’s original Google embed resolves the exact named host building and address, with a selected-object coordinate separate from the input viewport. The floor 7 office and headquarters are not assumed to be the data center; the separate container reports establish its physical presence at this host property.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "Google supplies no measured positional accuracy or displacement from the selected host-building point to the installed container. Coordinate decimal precision is not survey accuracy."
+      },
+      "context_source_ids": [
+        "jp-twentyfifth-mirait-shinkiba-current-testing",
+        "jp-twentyfifth-mirait-shinkiba-installation",
+        "jp-twentyfifth-mirait-shinkiba-video-date",
+        "jp-twentyfifth-mirait-shinkiba-lab-history",
+        "jp-twentyfifth-mirait-shinkiba-host-address",
+        "jp-twentyfifth-mirait-shinkiba-access",
+        "jp-twentyfifth-mirait-shinkiba-site-report"
+      ],
+      "roles": [
+        {
+          "role": "operator",
+          "party": "MIRAIT ONE Corporation",
+          "relationship_scope": "current",
+          "source_id": "jp-twentyfifth-mirait-shinkiba-current-testing"
+        }
+      ],
+      "distinctness_review": "All serialized fields screened across 430 sites, 456 projects, 2324 evidence and 231 original records plus identity mapping. No identity/source collision. All current site/project geometry envelopes and original coordinates checked. Nearest recorded site is CEC Tokyo No.2 Data Center (Sunshine 60) at 13733.2 m. See dedup-review.json.",
+      "successor_review": "The July 3 source already reported installation. The October 13 corporate article describes the installed equipment and present testing; it is a confirmation, not a new completion event. The September-or-later demonstration-service target from July is not promoted to achieved commercial operation. The March 18, 2025 lab opening is separate from this container.",
+      "scoped_project_details": {
+        "aliases": [
+          "ミライト・ワン新木場ビル 水冷コンテナ型データセンター",
+          "MM先進イノベーションラボ",
+          "MM Advanced Innovation Lab"
+        ],
+        "facility_scope": "One installed 20-foot liquid-cooled container for demonstration and equipment verification on MIRAIT ONE Shinkiba Building premises. The wider building and every lab unit are not separate data centers.",
+        "host_address": "2-15-20 Shinkiba, Koto-ku, Tokyo 136-0082, Japan",
+        "historical_lab_opening_date": "2025-03-18",
+        "container_installation_reported_by": "2026-07-03",
+        "exact_container_installation_day": null,
+        "selected_observation_date_semantics": "October 13 corporate publication explicitly describes current equipment verification; article refers to a September 11 video whose filming date is undisclosed.",
+        "commercial_service_opening_confirmed": false,
+        "cooling": "Delta GoCool-80 liquid-to-air CDU; no external primary-water circuit.",
+        "capacity_scope": "October article envisages up to 96 kW cooling; July report gives an 80 kW CDU and three 30 kW in-row units. These are differently dated/scoped cooling figures and are not aggregated or converted to IT MW.",
+        "selected_it_power_MW": null,
+        "exact_container_plot_geometry_established": false,
+        "role_scope": "MIRAIT ONE installs and conducts the demonstration facility. MORGENROT participates in joint laboratory research; a separate property-owner or current container-operator role is not inferred."
+      }
+    }
+  ],
+  "status_updates": [],
+  "context_updates": [],
+  "original_action_packet": {
+    "path": "local_data/country-research-2026-10-15-jp-twentyfifth/proposed-actions.json",
+    "sha256": "fa55f457a4a2d2202a34269c3da196b2c8d98468801936aecbe8d369e51055a4"
+  },
+  "independent_review": {
+    "path": "local_data/country-research-2026-10-15-jp-twentyfifth/independent-review.json",
+    "sha256": "07a6d2368d7070e162e6d9415e7a0d92d9c00171ed50ed593c65dd7857b2d890"
+  }
+}
