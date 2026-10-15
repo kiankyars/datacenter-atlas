@@ -1,0 +1,90 @@
+{
+  "format": "datacenter-atlas-action-specs-v1",
+  "as_of": "2026-10-15",
+  "reviewed_at": "2026-10-15",
+  "country": "Japan",
+  "base_dataset": "verified_construction_core/2026-10-15-research-sixteenth",
+  "base_commit": "bcb4b2da6b6e8cd6860f0d1bf60fc1d06a12b284",
+  "base_manifest_sha256": "3348897a9eb1f3e000599c7ccc3e77597ac972ff31cfa6d95f97a26aec5135d4",
+  "source_files": [
+    {
+      "path": "sources/research-countries-2026-10-15-jp-seventeenth-stt-tokyo1-primary-sources.json",
+      "sha256": "bb9a01d4814d745d43ffea420a3d8145e711868d038af0cd53163432954d9c22"
+    }
+  ],
+  "additions": [
+    {
+      "project_stable_key": "curated:stt-tokyo-inzai-campus:tokyo1-existing-operations",
+      "physical_site_stable_key": "curated:stt-tokyo-inzai-campus",
+      "site_name": "STT Tokyo Inzai Campus",
+      "name": "STT Tokyo 1 Existing Operations",
+      "country": "Japan",
+      "country_iso_a2": "JP",
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            140.134879,
+            35.8173944
+          ]
+        },
+        "source_id": "jp-nineteenth-stt-tokyo1-google-selected-place",
+        "scope": "campus_locator",
+        "scope_class": "selected_named_map_place_property_point",
+        "authority": "compiled_reference",
+        "derivation": "direct_geometry",
+        "method": "direct_google_maps_selected_named_place_coordinates",
+        "precision": "Google Maps selected place point for STT Tokyo 1, used as a labelled property locator for the STT Tokyo Inzai Campus within Goodman Business Park. It does not establish a surveyed building or campus boundary, entrance, individual data hall or exact Tokyo 2 location.",
+        "identity_review": "The original Google Maps response independently names the selected place STT GDC STT Tokyo 1 and attaches its exact selected-object coordinates to feature 0x60227d00058ce471:0x6a7f5e3a91b8fee5, entity /g/11n567bc0p. The operator release and currently linked Tokyo 1 factsheet establish the same facility name, Inzai location, Goodman Business Park host and first building of the two-building STT campus. The factsheet lists 2-2-5 Kaguro-Minami; the independent CASBEE Stage 7 certificate includes that exact address. Root separately observed the matching operator website, Kaguro-Minami address and plus code in the browser; those fields are not represented as present in the hashed HTTP body. No excluded directory coordinate or unnamed building containment supplies selected identity or geometry.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "Google Maps supplies no measured horizontal accuracy for the selected place. Decimal places are retained from its selected-object record and do not imply survey precision or known offsets to operating data halls."
+      },
+      "status": {
+        "value": "operational",
+        "as_of": "2026-08-21",
+        "source_id": "jp-nineteenth-stt-tokyo1-aug21-ja",
+        "summary": "August 21 dated operator release explicitly describes STT Tokyo 1 as a data center it operates and describes continuing operations since service commencement. This confirms existing operation as of publication; it does not date the original opening, completion or certification grant and does not assert full capacity utilization."
+      },
+      "context_source_ids": [
+        "jp-nineteenth-stt-tokyo1-aug21-en",
+        "jp-nineteenth-stt-tokyo1-factsheet",
+        "jp-nineteenth-stt-tokyo1-locations",
+        "jp-nineteenth-stt-tokyo1-casbee-stage7"
+      ],
+      "roles": [],
+      "distinctness_review": "All 420 site rows, 446 project rows, 2,262 evidence rows and 231 original source records screened for facility, campus, organization, address, identifiers, URLs and canonical response identities. No exact existing campus match, selected-source collision or overlapping baseline geometry envelope. Nearest existing site is AirTrunk TOK1 Tokyo East, 1,905.2 metres away; its marker has broader municipality-scale precision. One new STT campus and one Tokyo 1 project are proposed.",
+      "successor_review": "Tokyo 1 and Tokyo 2 are buildings in the same operator-defined STT Inzai campus. Future Tokyo 2 project evidence must attach to this physical site key if that identity remains supported; a separate directory or map identifier is not grounds for another physical site. No current Tokyo 2 operating status, construction event or capacity is selected. The whole Goodman Business Park is a larger host property containing other operators and is not merged into this site.",
+      "scoped_project_details": {
+        "facility_scope": "Existing operations of STT Tokyo 1, the first building in the STT two-building campus at Goodman Business Park.",
+        "aliases": [
+          "STT Tokyo 1",
+          "STT GDC Inzai Campus",
+          "STT Tokyo campus"
+        ],
+        "operator_named_address": "2-2-5 Kaguro-Minami, Inzai-shi, Chiba 270-1369, Japan",
+        "named_host_property": "Goodman Business Park",
+        "campus_successor_project": "STT Tokyo 2",
+        "campus_successor_site_key": "curated:stt-tokyo-inzai-campus",
+        "campus_successor_is_current_project": false,
+        "status_date_scope": "Dated operator confirmation of continuing Tokyo 1 operations",
+        "operation_start_date": null,
+        "construction_start_date": null,
+        "construction_end_date": null,
+        "certification_grant_date": null,
+        "certification_date_note": "The factsheet lists LEED Gold (2024), while the operator reports certification on August 21, 2026. No exact grant date inferred from either.",
+        "factsheet_exact_publication_date": null,
+        "factsheet_revision_hint": "April 2025 in source filename and path; copyright 2025",
+        "owner": null,
+        "operator": null,
+        "IT_power_MW": null,
+        "capacity_exclusion": "No typed capacity selected. Operator August 2026 release says up to 32 MW when fully operational and approximately 70 MW for the completed two-building campus; the older factsheet says 32.4 MW and the undated location page uses more than 32 MW. These source-specific full-build/design figures are not reconciled into current operating load. Aggregate campus power and Tokyo 2 figures are excluded.",
+        "efficiency_exclusion": "PUE below 1.25 is a design target, not measured operating PUE. No carbon claim is translated into renewable electricity or annual energy use.",
+        "building_geometry_established": false,
+        "historical_project_alias": "Goodman Business Park Stage 7",
+        "address_reconciliation": "Operator factsheet page 2 gives 2-2-5 Kaguro-Minami. The May 24, 2024 CASBEE certificate independently identifies the Stage 7 data center property as Kaguro-Minami 2-chome 2-5, 2-8 and 2-9. This is historical property identity context, not a surveyed parcel union or achieved completion date."
+      }
+    }
+  ],
+  "status_updates": [],
+  "context_updates": []
+}

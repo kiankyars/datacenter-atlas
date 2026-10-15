@@ -1,0 +1,140 @@
+{
+  "format": "datacenter-atlas-country-geometry-facts-v1",
+  "reviewed_at": "2026-10-15",
+  "base_dataset": "verified_construction_core/2026-10-15-research-sixteenth",
+  "base_commit": "bcb4b2da6b6e8cd6860f0d1bf60fc1d06a12b284",
+  "base_manifest_sha256": "3348897a9eb1f3e000599c7ccc3e77597ac972ff31cfa6d95f97a26aec5135d4",
+  "source_files": [
+    {
+      "path": "sources/research-countries-2026-10-15-jp-seventeenth-stt-tokyo1-primary-sources.json",
+      "sha256": "bb9a01d4814d745d43ffea420a3d8145e711868d038af0cd53163432954d9c22"
+    }
+  ],
+  "candidate": "STT Tokyo 1 Existing Operations",
+  "selected_locator": {
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        140.134879,
+        35.8173944
+      ]
+    },
+    "source_id": "jp-nineteenth-stt-tokyo1-google-selected-place",
+    "scope": "campus_locator",
+    "scope_class": "selected_named_map_place_property_point",
+    "authority": "compiled_reference",
+    "derivation": "direct_geometry",
+    "method": "direct_google_maps_selected_named_place_coordinates",
+    "precision": "Google Maps selected place point for STT Tokyo 1, used as a labelled property locator for the STT Tokyo Inzai Campus within Goodman Business Park. It does not establish a surveyed building or campus boundary, entrance, individual data hall or exact Tokyo 2 location.",
+    "identity_review": "The original Google Maps response independently names the selected place STT GDC STT Tokyo 1 and attaches its exact selected-object coordinates to feature 0x60227d00058ce471:0x6a7f5e3a91b8fee5, entity /g/11n567bc0p. The operator release and currently linked Tokyo 1 factsheet establish the same facility name, Inzai location, Goodman Business Park host and first building of the two-building STT campus. The factsheet lists 2-2-5 Kaguro-Minami; the independent CASBEE Stage 7 certificate includes that exact address. Root separately observed the matching operator website, Kaguro-Minami address and plus code in the browser; those fields are not represented as present in the hashed HTTP body. No excluded directory coordinate or unnamed building containment supplies selected identity or geometry.",
+    "horizontal_uncertainty_metres": null,
+    "uncertainty_reason": "Google Maps supplies no measured horizontal accuracy for the selected place. Decimal places are retained from its selected-object record and do not imply survey precision or known offsets to operating data halls."
+  },
+  "source_geometry": {
+    "selected_place_name": "STT GDC STT Tokyo 1",
+    "selected_place_feature_id": "0x60227d00058ce471:0x6a7f5e3a91b8fee5",
+    "selected_place_entity_id": "/g/11n567bc0p",
+    "source_point_lon_lat": [
+      140.134879,
+      35.8173944
+    ],
+    "selected_object_tuple": "[\"0x60227d00058ce471:0x6a7f5e3a91b8fee5\",\"STT GDC STT Tokyo 1\",null,null,null,null,null,[null,null,35.8173944,140.134879],null,null,null,null,null,null,null,\"/g/11n567bc0p\"]",
+    "selected_tuple_found_in_original_body": true,
+    "source_response_sha256": "c1319d1d2ba9ab7023846952f620e229903d576ad99ca6f6bec42cd032ac1ca1",
+    "source_publication_date": null,
+    "browser_observation_artifact": {
+      "path": "local_data/country-research-2026-10-15-jp-nineteenth/root-google-selected-place-observation.json",
+      "sha256": "773965aabb4f9e3cbd2c3455f612a782701b18be6428c0b15326c3e69278bc45"
+    },
+    "browser_corroboration_scope": "Root independently selected the facility through Google Maps search, observed its address, operator website and plus code, and supplied the selected-place URL. Those three fields are not asserted to occur in the hashed HTML."
+  },
+  "derivation_review": {
+    "operation": "Direct copy from original Google Maps selected-object tuple [null,null,35.8173944,140.134879], reversing latitude/longitude order to GeoJSON longitude/latitude. No centroid, georeferencing, CRS transform or viewport-coordinate inference.",
+    "selected_source_tuple_lat_lon": [
+      35.8173944,
+      140.134879
+    ],
+    "selected_output_lon_lat": [
+      140.134879,
+      35.8173944
+    ],
+    "distance_radius_metres": 6371000,
+    "distance_formula": "2R atan2(sqrt(h), sqrt(1-h)), h = sin²(delta_lat/2) + cos(lat1)cos(lat2)sin²(delta_lon/2); angles in radians",
+    "positional_accuracy_inferred": false
+  },
+  "identity_review": "The original Google Maps response independently names the selected place STT GDC STT Tokyo 1 and attaches its exact selected-object coordinates to feature 0x60227d00058ce471:0x6a7f5e3a91b8fee5, entity /g/11n567bc0p. The operator release and currently linked Tokyo 1 factsheet establish the same facility name, Inzai location, Goodman Business Park host and first building of the two-building STT campus. The factsheet lists 2-2-5 Kaguro-Minami; the independent CASBEE Stage 7 certificate includes that exact address. Root separately observed the matching operator website, Kaguro-Minami address and plus code in the browser; those fields are not represented as present in the hashed HTTP body. No excluded directory coordinate or unnamed building containment supplies selected identity or geometry.",
+  "spatial_context_only": [
+    {
+      "way_id": 786007713,
+      "tags": {
+        "building": "yes"
+      },
+      "selected_point_inside": false,
+      "bounds_lon_lat": [
+        140.1313872,
+        35.8152126,
+        140.1341391,
+        35.8173902
+      ],
+      "role": "Spatial context only; supplies neither selected identity nor geometry."
+    },
+    {
+      "way_id": 1352478531,
+      "tags": {
+        "addr:block_number": "２−４",
+        "addr:city": "印西市",
+        "addr:neighbourhood": "２丁目",
+        "addr:province": "千葉県",
+        "addr:quarter": "鹿黒南",
+        "building": "yes",
+        "name": "Google 印西データセンター",
+        "operator": "Google",
+        "operator:wikidata": "Q95",
+        "telecom": "data_center",
+        "website": "https://datacenters.google/intl/ja_ALL/locations/inzai-japan/"
+      },
+      "selected_point_inside": false,
+      "bounds_lon_lat": [
+        140.1315165,
+        35.8173858,
+        140.133969,
+        35.8192308
+      ],
+      "role": "Spatial context only; supplies neither selected identity nor geometry."
+    },
+    {
+      "way_id": 1352478533,
+      "tags": {
+        "building": "yes"
+      },
+      "selected_point_inside": false,
+      "bounds_lon_lat": [
+        140.1338472,
+        35.8169962,
+        140.1350837,
+        35.8180638
+      ],
+      "role": "Spatial context only; supplies neither selected identity nor geometry."
+    }
+  ],
+  "baseline_geometry_envelope_review": {
+    "sites.csv": {
+      "checked": 420,
+      "containing_selected_point": []
+    },
+    "projects.csv": {
+      "checked": 446,
+      "containing_selected_point": []
+    }
+  },
+  "excluded_geometry": [
+    "Superseded PeeringDB-derived coordinates and facts",
+    "Map viewport and search-query coordinates",
+    "Whole Goodman Business Park centroid",
+    "Inzai municipality centroid",
+    "Google Inzai building or other business-park tenant",
+    "Unnamed OSM building footprint as identity proof",
+    "Promotional building photo as a geolocation proof"
+  ],
+  "license_note": "The Google Maps source is attributed and retained as an all-rights-reserved reference. No raw HTML, imagery or bulk map data is redistributed. PeeringDB sources and values are excluded from the replacement action and selected evidence."
+}
