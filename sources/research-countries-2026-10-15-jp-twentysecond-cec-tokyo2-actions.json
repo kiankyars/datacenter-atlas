@@ -1,0 +1,107 @@
+{
+  "format": "datacenter-atlas-action-specs-v1",
+  "as_of": "2026-10-15",
+  "reviewed_at": "2026-10-15",
+  "country": "Japan",
+  "base_dataset": "verified_construction_core/2026-10-15-research-twentyfirst",
+  "base_commit": "91ecb4c4cd50b39400e7f65a2384bf30388dfebb",
+  "base_manifest_sha256": "349e8b5255c33a034b69dd74707609cc343a1a45496a4434ebf540c0bee59057",
+  "source_files": [
+    {
+      "path": "sources/research-countries-2026-10-15-jp-twentysecond-cec-tokyo2-primary-sources.json",
+      "sha256": "cb4f02eeb08bbb5de79db74490621752b555ffa058d7960ead69d38c8d66deaf"
+    }
+  ],
+  "additions": [
+    {
+      "project_stable_key": "curated:cec-tokyo-no2-sunshine60:existing-operations",
+      "physical_site_stable_key": "curated:cec-tokyo-no2-sunshine60",
+      "site_name": "CEC Tokyo No.2 Data Center (Sunshine 60)",
+      "name": "CEC Tokyo No.2 Existing Operations at Sunshine 60",
+      "country": "Japan",
+      "country_iso_a2": "JP",
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            139.71815675,
+            35.72940595
+          ]
+        },
+        "source_id": "jp-twentyfourth-cec-tokyo2-host-building-map",
+        "identity_source_ids": [
+          "jp-twentyfourth-cec-tokyo2-current-facility",
+          "jp-twentyfourth-cec-tokyo2-opening",
+          "jp-twentyfourth-cec-tokyo2-legacy-host",
+          "jp-twentyfourth-cec-tokyo2-service-identity",
+          "jp-twentyfourth-cec-tokyo2-property-access"
+        ],
+        "scope": "campus_locator",
+        "scope_class": "named_host_building_reference_point",
+        "authority": "community_mapped",
+        "derivation": "direct_geometry",
+        "method": "openstreetmap_named_host_building_way_bounding_box_center_verified_inside_polygon",
+        "precision": "Community-mapped reference point inside the named Sunshine 60 office tower, the host building for CEC Tokyo No.2. It is not a separately mapped data-center suite, floor, boundary or rack location. The point does not assert that the entire tower is a data center.",
+        "identity_review": "CEC’s 2010 opening release identifies Tokyo No.2 as the acquired MEX data-center business in Ikebukuro, occupying three floors in a 60-story tower. The current CEC contracts index explicitly maps MEX service to Tokyo No.2. The original legacy MEX facility page names the installation environment as Ikebukuro Sunshine 60. OSM way314155355 independently names exactly Sunshine 60, and the property operator’s access illustration identifies the tower within the complex. No headquarters-only inference or general Sunshine City complex marker is used.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The community geometry has no measured positional-accuracy statement. Decimal precision is not survey accuracy; the source polygon is used only to choose a host-building reference point."
+      },
+      "status": {
+        "value": "operational",
+        "as_of": "2026-08-05",
+        "source_id": "jp-twentyfourth-cec-tokyo2-incident",
+        "summary": "CEC operated Tokyo No.2 in Sunshine 60, Ikebukuro, when a service disruption occurred on August 5. It later reported restoring the affected services in a separate environment. CEC plans to move customer equipment by the end of October 2026; completion of the move and closure of the Sunshine 60 facility have not been confirmed."
+      },
+      "context_source_ids": [
+        "jp-twentyfourth-cec-tokyo2-recovery",
+        "jp-twentyfourth-cec-tokyo2-final-report",
+        "jp-twentyfourth-cec-tokyo2-current-facility",
+        "jp-twentyfourth-cec-tokyo2-opening",
+        "jp-twentyfourth-cec-tokyo2-legacy-host",
+        "jp-twentyfourth-cec-tokyo2-service-identity",
+        "jp-twentyfourth-cec-tokyo2-relocation-plan",
+        "jp-twentyfourth-cec-tokyo2-property-access"
+      ],
+      "roles": [
+        {
+          "role": "operator",
+          "party": "Computer Engineering & Consulting Ltd. (CEC)",
+          "relationship_scope": "current",
+          "source_id": "jp-twentyfourth-cec-tokyo2-incident"
+        }
+      ],
+      "distinctness_review": "Current baseline of 428 sites, 454 projects, 2307 evidence records, 231 original source records and the complete identity mapping independently screened. No candidate identity or source collision, containing site envelope or matching original site. Huizhou is included in this baseline; the other addition in this release is a distinct facility in the other country. See the pinned independent review for textual and spatial checks.",
+      "successor_review": "This is an existing facility observed on August 5, not a new opening. CEC plans to move customer equipment by the end of October 2026 and restore/return the leased premises by April 2027. Neither completion nor closure is inferred from these deadlines. Recovery notices describe another environment without locating it; the new Tokyo No.3 and hybrid-cloud facilities are not placed here.",
+      "scoped_project_details": {
+        "aliases": [
+          "東京第二データセンター",
+          "CEC Tokyo No.2",
+          "Media EXchange Internet Data Center",
+          "MEX iDC",
+          "Sunshine 60"
+        ],
+        "facility_scope": "CEC tenant data-center operation within Sunshine60 office tower, Ikebukuro; not the entire tower.",
+        "historical_cec_business_takeover_and_opening_date": "2010-09-01",
+        "first_building_opening_not_asserted": true,
+        "historical_2010_floor_area_m2": 2700,
+        "historical_2010_floor_count": 3,
+        "historical_specification_scope": "CEC opening release, September1,2010; not refreshed as installed/occupied area in2026.",
+        "planned_customer_equipment_move_deadline": "2026-10-31",
+        "planned_premises_return_deadline": "2027-04-30",
+        "move_completion_or_closure_verified": false,
+        "status_date_scope": "August5 physical facility service event, reported August6; outage is not treated as lifecycle closure.",
+        "later_recovery_environment": "Separate environment, exact property not specified in the operator notices.",
+        "current_it_power_MW": null,
+        "capacity_limit": "No conversion of historical rack power, backbone bandwidth, floor area or tower size into current IT capacity.",
+        "ownership_limit": "CEC operator role established; building ownership not normalized from the operating or legacy service sources."
+      }
+    }
+  ],
+  "status_updates": [],
+  "context_updates": [],
+  "source_file": "sources/research-countries-2026-10-15-jp-twentysecond-cec-tokyo2-primary-sources.json",
+  "original_action_packet": {
+    "path": "local_data/country-research-2026-10-15-jp-twentyfourth/proposed-actions.json",
+    "sha256": "ec4e544ab8f67d487588f4283a4c2e27802e563107137ebe35b491a596381814"
+  }
+}

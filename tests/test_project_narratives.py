@@ -28,9 +28,10 @@ class ProjectNarrativeTests(unittest.TestCase):
         self.version = SimpleNamespace(path=self.root / "datasets/current", manifest={}, manifest_sha256="current")
         self.provenance = {}
 
-    def load(self, versions=None):
+    def load(self, versions=None, provenances=None):
         return load_project_narratives(self.root, versions or [self.version], self.version,
-                                      self.atlas, lambda version, name: self.provenance)
+                                      self.atlas, lambda version, name:
+                                      (provenances or {}).get(version.path, self.provenance))
 
     def add_source(self, key, *, curated=False, text="Useful fact.", url=None, digest=None,
                    roles=None, projects=None, kind="company_disclosure"):
@@ -100,6 +101,87 @@ class ProjectNarrativeTests(unittest.TestCase):
         result = self.load()["p"]
         self.assertIsNotNone(result["status"])
         self.assertEqual(result["context"], [])
+
+    def test_shared_document_context_is_project_scoped_and_preserves_other_prose(self):
+        other_project = {**self.project, "project_id": "q", "project_stable_key": "curated:two"}
+        self.atlas.projects.append(other_project)
+        self.atlas.evidence_by_project["q"] = []
+        shared, sid = self.add_source("register", projects=["p", "q"],
+                                      text="Campus Two is listed at 27 East Street on page 16.")
+        other, oid = self.add_source("equipment", text="Two feeds and redundant UPS; no IT-load figure is reported.")
+        scoped = ("Campus One is listed at 6 West Street on page 14. "
+                  "The certificate is valid from November 2024 through November 2027; "
+                  "these dates are not construction, opening or current-operation observations.")
+        self.version.manifest["files"] = {"review-provenance.json": {}}
+        self.provenance = {"source_projections": {"register": shared, "equipment": other}, "update": {
+            "additions": [
+                {"project_stable_key": "curated:one", "context_source_ids": ["register", "equipment"]},
+                {"project_stable_key": "curated:two", "context_source_ids": ["register"]},
+            ],
+            "context_updates": [{"project_stable_key": "curated:one",
+                                 "source_ids": ["register"], "summary": scoped}],
+        }}
+        before = copy.deepcopy((vars(self.atlas), self.provenance))
+        result = self.load()
+        self.assertEqual(result["p"]["context"], [
+            {"text": scoped, "evidence_id": sid},
+            {"text": other["summary"], "evidence_id": oid},
+        ])
+        self.assertEqual(result["q"]["context"], [{"text": shared["summary"], "evidence_id": sid}])
+        self.assertEqual((vars(self.atlas), self.provenance), before)
+
+    def test_newest_scoped_context_wins_across_lineage_without_generic_duplicates(self):
+        shared, sid = self.add_source("register", text="Generic document excerpt for another campus.")
+        base = SimpleNamespace(path=self.root / "datasets/base", manifest={
+            "files": {"review-provenance.json": {}}}, manifest_sha256="base")
+        self.version.manifest.update(base_dataset="datasets/base", base_manifest_sha256="base",
+                                     files={"review-provenance.json": {}})
+        newer = "Reviewed correction: this campus occupies two floors; whole-building area is excluded."
+        older = "Earlier review identified this campus in the building."
+        provenances = {
+            self.version.path: {"source_projections": {"register": shared}, "update": {
+                "context_updates": [{"project_stable_key": "curated:one", "source_ids": ["register"],
+                                     "summary": newer}]}},
+            base.path: {"source_projections": {"register": shared}, "update": {
+                "additions": [{"project_stable_key": "curated:one", "context_source_ids": ["register"]}],
+                "context_updates": [{"project_stable_key": "curated:one", "source_ids": ["register"],
+                                     "summary": older}]}},
+        }
+        before = copy.deepcopy(provenances)
+        result = self.load([self.version, base], provenances)["p"]
+        self.assertEqual(result["context"], [{"text": newer, "evidence_id": sid}])
+        self.assertEqual(provenances, before)
+
+    def test_current_status_source_can_supply_context_without_reviving_stale_or_map_evidence(self):
+        source, identifier = self.add_source("interview", roles=["physical_status"])
+        self.modern(source, identifier)
+        stale, _ = self.add_source("old-interview", roles=["physical_status"])
+        geo, gid = self.add_source("map", roles=["geometry"], kind="openstreetmap")
+        self.project["geometry_evidence_id"] = gid
+        self.provenance["source_projections"].update({"old-interview": stale, "map": geo})
+        context = ("The operator describes groundwater-assisted cooling and says the facilities are not "
+                   "designed for high-density GPU workloads. Publication is October 1; interview day is unknown.")
+        self.provenance["update"]["context_updates"] = [
+            {"project_stable_key": "curated:one", "source_ids": ["interview"], "summary": context},
+            {"project_stable_key": "curated:one", "source_ids": ["old-interview"], "summary": "Old claim."},
+            {"project_stable_key": "curated:one", "source_ids": ["map"], "summary": "Geometry metadata."},
+        ]
+        result = self.load()["p"]
+        self.assertEqual(result["status"]["text"], "Operating campus; the exact opening day is unknown.")
+        self.assertEqual(result["status"]["evidence_id"], identifier)
+        self.assertEqual(result["context"], [{"text": context, "evidence_id": identifier}])
+
+    def test_multisource_update_keeps_each_complete_source_summary(self):
+        first, fid = self.add_source("first", text="Building A supports 200 racks as of 2024; occupancy is unknown.")
+        second, sid = self.add_source("second", text="Building B supports 300 racks as of 2024; this is not IT power.")
+        self.version.manifest["files"] = {"review-provenance.json": {}}
+        self.provenance = {"source_projections": {"first": first, "second": second}, "update": {
+            "context_updates": [{"project_stable_key": "curated:one", "source_ids": ["first", "second"],
+                                 "summary": "Review note covering both sources."}]}}
+        self.assertEqual(self.load()["p"]["context"], [
+            {"text": first["summary"], "evidence_id": fid},
+            {"text": second["summary"], "evidence_id": sid},
+        ])
 
     def test_curated_exact_id_prevents_shared_page_excerpt_cross_wiring(self):
         one, oid = self.add_source("one", curated=True, text="Only campus One is operational.",

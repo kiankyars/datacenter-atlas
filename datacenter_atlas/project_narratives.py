@@ -159,18 +159,21 @@ def load_project_narratives(
     the same item shape. Inputs are read-only and Atlas records are never mutated.
     The callback must verify manifest file hashes, as public_site._verified_json
     does. The newest matching status summary wins; stale status summaries cannot
-    replace the current status. All report wording and its caveats stay intact.
+    replace the current status. A single-source context update supplies reviewed
+    prose for that project and evidence; its newest summary supersedes generic
+    document prose. All report wording and its caveats stay intact.
     """
     root = root.resolve()
     projects = {row["project_stable_key"]: row for row in atlas.projects if row.get("project_stable_key")}
     evidence_by_id = atlas.evidence_by_id
     result: dict[str, dict[str, Any]] = {}
+    scoped_context: dict[tuple[str, str], str] = {}
 
     def item(project: Mapping[str, Any]) -> dict[str, Any]:
         return result.setdefault(project["project_id"], {"status": None, "context": []})
 
     def report(project: Mapping[str, Any], evidence: Mapping[str, Any], text: Any) -> None:
-        text = _text(text)
+        text = scoped_context.get((project["project_id"], evidence["evidence_id"]), _text(text))
         if not text or not _associated(evidence, project) or not _suitable_report(evidence, project):
             return
         narrative = item(project)
@@ -191,12 +194,28 @@ def load_project_narratives(
             return evidence
         return None
 
-    lineage = _lineage(root, versions, current)
-    pinned_specs: list[Mapping[str, Any]] = []
-    for version in lineage:
+    lineage = []
+    for version in _lineage(root, versions, current):
         files = version.manifest.get("files", {})
         provenance = (read_verified_json(version, "review-provenance.json")
                       if "review-provenance.json" in files else {})
+        lineage.append((version, provenance))
+        sources = provenance.get("source_projections", {})
+        for change in provenance.get("update", {}).get("context_updates", []) or []:
+            project = projects.get(change.get("project_stable_key"))
+            source_ids = change.get("source_ids", [])
+            summary = _text(change.get("summary"))
+            if not project or not summary or len(source_ids) != 1:
+                continue
+            evidence = modern_evidence(sources.get(source_ids[0]), project)
+            if evidence and _suitable_report(evidence, project):
+                # Lineage is newest first. A shared document may have different
+                # reviewed excerpts for each project, so neither source ID nor
+                # document hash alone is a sufficient prose key.
+                scoped_context.setdefault((project["project_id"], evidence["evidence_id"]), summary)
+
+    pinned_specs: list[Mapping[str, Any]] = []
+    for version, provenance in lineage:
         sources = provenance.get("source_projections", {})
         update = provenance.get("update", {})
         for change in [*update.get("additions", []), *update.get("status_updates", []),

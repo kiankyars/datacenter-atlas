@@ -1,0 +1,101 @@
+{
+  "format": "datacenter-atlas-action-specs-v1",
+  "country": "China",
+  "as_of": "2026-10-15",
+  "reviewed_at": "2026-10-15",
+  "base_dataset": "verified_construction_core/2026-10-15-research-twentyfirst",
+  "base_commit": "91ecb4c4cd50b39400e7f65a2384bf30388dfebb",
+  "base_manifest_sha256": "349e8b5255c33a034b69dd74707609cc343a1a45496a4434ebf540c0bee59057",
+  "source_file": "sources/research-countries-2026-10-15-cn-twentysecond-jiujiang-primary-sources.json",
+  "source_files": [
+    {
+      "path": "sources/research-countries-2026-10-15-cn-twentysecond-jiujiang-primary-sources.json",
+      "sha256": "624959efa53225939cd8d0ef78ec365b79c814efec5cf1a1edf5ea25870c9931"
+    }
+  ],
+  "additions": [
+    {
+      "project_stable_key": "curated:jiujiang-university-danfengyuan:data-centre-room",
+      "physical_site_stable_key": "curated:jiujiang-university-danfengyuan",
+      "site_name": "Jiujiang University Danfengyuan Campus Data Centre",
+      "name": "Jiujiang University — Danfengyuan Campus Data Centre",
+      "country": "China",
+      "country_iso_a2": "CN",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-09-30",
+        "source_id": "cn-twentythird-jiujiang-sept30-ups-notice",
+        "summary": "Jiujiang University’s Danfengyuan data-centre room serves academic affairs, student services, office administration and finance systems. On September 30 the university scheduled an October 2–3 outage to upgrade its aging UPS supply. The room was operating before that planned maintenance; completion of the cutover and subsequent service restoration have not been confirmed."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            116.0070627,
+            29.68125085
+          ]
+        },
+        "source_id": "cn-twentythird-jiujiang-campus-osm",
+        "scope": "campus_locator",
+        "scope_class": "community_mapped_named_parent_campus_point",
+        "authority": "community_mapped",
+        "derivation": "direct_geometry",
+        "method": "osm_named_campus_polygon_bounding_box_midpoint_verified_inside",
+        "precision": "Representative point inside Jiujiang University’s Danfengyuan campus at 551 Qianjin East Road. It locates the named parent campus, not the data-centre building, room, entrance or a surveyed parcel.",
+        "identity_review": "The September 30 notice names Danfengyuan campus. The March 11 university tender explicitly identifies that campus at 551 Qianjin East Road. The March 7 university notice places Jingzhi Building (竞知楼) on Danfengyuan and directs entry through the same address. Native OSM places the exact named Jingzhi Building entirely within university way 264303327, while separately naming adjacent Ziweiyuan way 666099948. The selected point is inside the former and outside the latter. The campus map is therefore bridged by primary address and landmark identity, not a generic university name alone. The data-centre building itself remains unidentified.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "Community vector geometry supplies no measured positional accuracy; displacement from the campus marker to the unidentified room is unknown."
+      },
+      "context_source_ids": [
+        "cn-twentythird-jiujiang-july20-ups-tender",
+        "cn-twentythird-jiujiang-march7-campus-bridge",
+        "cn-twentythird-jiujiang-march11-campus-address",
+        "cn-twentythird-jiujiang-campus-context-osm",
+        "cn-twentythird-jiujiang-campus-osm-provenance"
+      ],
+      "roles": [
+        {
+          "party": "Jiujiang University — Information Technology Centre",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "cn-twentythird-jiujiang-sept30-ups-notice"
+        }
+      ],
+      "distinctness_review": "Current baseline of 428 sites, 454 projects, 2307 evidence records, 231 original source records and the complete identity mapping independently screened. No candidate identity or source collision, containing site envelope or matching original site. Huizhou is included in this baseline; the other addition in this release is a distinct facility in the other country. See the pinned independent review for textual and spatial checks.",
+      "successor_review": "September 30 establishes existing operations through named live services and installed equipment scheduled for shutdown. Its planned October 2–3 cutover is not treated as started, completed or restored merely because time has passed. Exact-title/domain searches and captured current university notices/IT-centre indices found no verified later cutover completion. One existing-room entry absorbs the UPS context; no second project/site is manufactured for maintenance. The separate March electrical-works tender supplies campus address only. The native campus polygon is matched through primary named-building and address evidence; no exact room or building is selected.",
+      "scoped_project_details": {
+        "aliases": [
+          "丹枫园校区数据中心机房",
+          "九江学院信息技术中心丹枫园校区数据中心机房模块化UPS采购项目第二次"
+        ],
+        "facility_scope": "Existing university data-centre room on Danfengyuan campus, with a separately planned UPS cutover.",
+        "operator_role_scope": "Information Technology Centre is the university operations unit responsible for this room and UPS maintenance as of September 30; its Data Services Centre is the named service contact. This does not assert post-maintenance service restoration.",
+        "campus_address": "551 Qianjin East Road, Lianxi District, Jiujiang, Jiangxi, China",
+        "observed_services": [
+          "academic affairs",
+          "student affairs and registration",
+          "office administration",
+          "finance contract management",
+          "Danfengyuan dormitory electricity controls",
+          "campus-card electricity purchases including Ziweiyuan buildings 4–6"
+        ],
+        "planned_maintenance_start_local": "2026-10-02T08:00:00+08:00",
+        "planned_maintenance_end_local": "2026-10-03T08:00:00+08:00",
+        "maintenance_completion_confirmed": false,
+        "ups_procurement_budget_CNY": 320000,
+        "ups_procurement_ceiling_CNY": 304000,
+        "budget_scope": "July tender for one batch of modular UPS equipment only; no award or actual spending asserted.",
+        "IT_power_MW": null,
+        "racks": null,
+        "room_area_square_metres": null,
+        "opening_date": null
+      }
+    }
+  ],
+  "status_updates": [],
+  "context_updates": [],
+  "original_action_packet": {
+    "path": "local_data/country-research-2026-10-15-cn-twentythird/jiujiang-actions.json",
+    "sha256": "6c0d5fbce57277d044f689d642cbc34b5b091ba71c00eba5e104575154f03036"
+  }
+}

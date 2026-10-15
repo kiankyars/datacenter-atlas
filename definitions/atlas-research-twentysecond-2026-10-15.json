@@ -1,0 +1,206 @@
+{
+  "format": "datacenter-atlas-update-input-v1",
+  "updated_at": "2026-10-15",
+  "output": "verified_construction_core/2026-10-15-research-twentysecond",
+  "base_dataset": "verified_construction_core/2026-10-15-research-twentyfirst",
+  "base_manifest_sha256": "349e8b5255c33a034b69dd74707609cc343a1a45496a4434ebf540c0bee59057",
+  "source_files": [
+    {
+      "path": "sources/research-countries-2026-10-15-cn-twentysecond-jiujiang-primary-sources.json",
+      "sha256": "624959efa53225939cd8d0ef78ec365b79c814efec5cf1a1edf5ea25870c9931"
+    },
+    {
+      "path": "sources/research-countries-2026-10-15-jp-twentysecond-cec-tokyo2-primary-sources.json",
+      "sha256": "cb4f02eeb08bbb5de79db74490621752b555ffa058d7960ead69d38c8d66deaf"
+    },
+    {
+      "path": "sources/research-countries-2026-10-15-twentysecond-display-context-primary-sources.json",
+      "sha256": "98f334e102572531d178ffd40c9046f589e6f5272cf20fbe57f43cad04d64182"
+    }
+  ],
+  "additions": [
+    {
+      "project_stable_key": "curated:jiujiang-university-danfengyuan:data-centre-room",
+      "physical_site_stable_key": "curated:jiujiang-university-danfengyuan",
+      "site_name": "Jiujiang University Danfengyuan Campus Data Centre",
+      "name": "Jiujiang University — Danfengyuan Campus Data Centre",
+      "country": "China",
+      "country_iso_a2": "CN",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-09-30",
+        "source_id": "cn-twentythird-jiujiang-sept30-ups-notice",
+        "summary": "Jiujiang University’s Danfengyuan data-centre room serves academic affairs, student services, office administration and finance systems. On September 30 the university scheduled an October 2–3 outage to upgrade its aging UPS supply. The room was operating before that planned maintenance; completion of the cutover and subsequent service restoration have not been confirmed."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            116.0070627,
+            29.68125085
+          ]
+        },
+        "source_id": "cn-twentythird-jiujiang-campus-osm",
+        "scope": "campus_locator",
+        "scope_class": "community_mapped_named_parent_campus_point",
+        "authority": "community_mapped",
+        "derivation": "direct_geometry",
+        "method": "osm_named_campus_polygon_bounding_box_midpoint_verified_inside",
+        "precision": "Representative point inside Jiujiang University’s Danfengyuan campus at 551 Qianjin East Road. It locates the named parent campus, not the data-centre building, room, entrance or a surveyed parcel.",
+        "identity_review": "The September 30 notice names Danfengyuan campus. The March 11 university tender explicitly identifies that campus at 551 Qianjin East Road. The March 7 university notice places Jingzhi Building (竞知楼) on Danfengyuan and directs entry through the same address. Native OSM places the exact named Jingzhi Building entirely within university way 264303327, while separately naming adjacent Ziweiyuan way 666099948. The selected point is inside the former and outside the latter. The campus map is therefore bridged by primary address and landmark identity, not a generic university name alone. The data-centre building itself remains unidentified.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "Community vector geometry supplies no measured positional accuracy; displacement from the campus marker to the unidentified room is unknown."
+      },
+      "context_source_ids": [
+        "cn-twentythird-jiujiang-july20-ups-tender",
+        "cn-twentythird-jiujiang-march7-campus-bridge",
+        "cn-twentythird-jiujiang-march11-campus-address",
+        "cn-twentythird-jiujiang-campus-context-osm",
+        "cn-twentythird-jiujiang-campus-osm-provenance"
+      ],
+      "roles": [
+        {
+          "party": "Jiujiang University — Information Technology Centre",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "cn-twentythird-jiujiang-sept30-ups-notice"
+        }
+      ],
+      "distinctness_review": "Current baseline of 428 sites, 454 projects, 2307 evidence records, 231 original source records and the complete identity mapping independently screened. No candidate identity or source collision, containing site envelope or matching original site. Huizhou is included in this baseline; the other addition in this release is a distinct facility in the other country. See the pinned independent review for textual and spatial checks.",
+      "successor_review": "September 30 establishes existing operations through named live services and installed equipment scheduled for shutdown. Its planned October 2–3 cutover is not treated as started, completed or restored merely because time has passed. Exact-title/domain searches and captured current university notices/IT-centre indices found no verified later cutover completion. One existing-room entry absorbs the UPS context; no second project/site is manufactured for maintenance. The separate March electrical-works tender supplies campus address only. The native campus polygon is matched through primary named-building and address evidence; no exact room or building is selected.",
+      "scoped_project_details": {
+        "aliases": [
+          "丹枫园校区数据中心机房",
+          "九江学院信息技术中心丹枫园校区数据中心机房模块化UPS采购项目第二次"
+        ],
+        "facility_scope": "Existing university data-centre room on Danfengyuan campus, with a separately planned UPS cutover.",
+        "operator_role_scope": "Information Technology Centre is the university operations unit responsible for this room and UPS maintenance as of September 30; its Data Services Centre is the named service contact. This does not assert post-maintenance service restoration.",
+        "campus_address": "551 Qianjin East Road, Lianxi District, Jiujiang, Jiangxi, China",
+        "observed_services": [
+          "academic affairs",
+          "student affairs and registration",
+          "office administration",
+          "finance contract management",
+          "Danfengyuan dormitory electricity controls",
+          "campus-card electricity purchases including Ziweiyuan buildings 4–6"
+        ],
+        "planned_maintenance_start_local": "2026-10-02T08:00:00+08:00",
+        "planned_maintenance_end_local": "2026-10-03T08:00:00+08:00",
+        "maintenance_completion_confirmed": false,
+        "ups_procurement_budget_CNY": 320000,
+        "ups_procurement_ceiling_CNY": 304000,
+        "budget_scope": "July tender for one batch of modular UPS equipment only; no award or actual spending asserted.",
+        "IT_power_MW": null,
+        "racks": null,
+        "room_area_square_metres": null,
+        "opening_date": null
+      }
+    },
+    {
+      "project_stable_key": "curated:cec-tokyo-no2-sunshine60:existing-operations",
+      "physical_site_stable_key": "curated:cec-tokyo-no2-sunshine60",
+      "site_name": "CEC Tokyo No.2 Data Center (Sunshine 60)",
+      "name": "CEC Tokyo No.2 Existing Operations at Sunshine 60",
+      "country": "Japan",
+      "country_iso_a2": "JP",
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            139.71815675,
+            35.72940595
+          ]
+        },
+        "source_id": "jp-twentyfourth-cec-tokyo2-host-building-map",
+        "identity_source_ids": [
+          "jp-twentyfourth-cec-tokyo2-current-facility",
+          "jp-twentyfourth-cec-tokyo2-opening",
+          "jp-twentyfourth-cec-tokyo2-legacy-host",
+          "jp-twentyfourth-cec-tokyo2-service-identity",
+          "jp-twentyfourth-cec-tokyo2-property-access"
+        ],
+        "scope": "campus_locator",
+        "scope_class": "named_host_building_reference_point",
+        "authority": "community_mapped",
+        "derivation": "direct_geometry",
+        "method": "openstreetmap_named_host_building_way_bounding_box_center_verified_inside_polygon",
+        "precision": "Community-mapped reference point inside the named Sunshine 60 office tower, the host building for CEC Tokyo No.2. It is not a separately mapped data-center suite, floor, boundary or rack location. The point does not assert that the entire tower is a data center.",
+        "identity_review": "CEC’s 2010 opening release identifies Tokyo No.2 as the acquired MEX data-center business in Ikebukuro, occupying three floors in a 60-story tower. The current CEC contracts index explicitly maps MEX service to Tokyo No.2. The original legacy MEX facility page names the installation environment as Ikebukuro Sunshine 60. OSM way314155355 independently names exactly Sunshine 60, and the property operator’s access illustration identifies the tower within the complex. No headquarters-only inference or general Sunshine City complex marker is used.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The community geometry has no measured positional-accuracy statement. Decimal precision is not survey accuracy; the source polygon is used only to choose a host-building reference point."
+      },
+      "status": {
+        "value": "operational",
+        "as_of": "2026-08-05",
+        "source_id": "jp-twentyfourth-cec-tokyo2-incident",
+        "summary": "CEC operated Tokyo No.2 in Sunshine 60, Ikebukuro, when a service disruption occurred on August 5. It later reported restoring the affected services in a separate environment. CEC plans to move customer equipment by the end of October 2026; completion of the move and closure of the Sunshine 60 facility have not been confirmed."
+      },
+      "context_source_ids": [
+        "jp-twentyfourth-cec-tokyo2-recovery",
+        "jp-twentyfourth-cec-tokyo2-final-report",
+        "jp-twentyfourth-cec-tokyo2-current-facility",
+        "jp-twentyfourth-cec-tokyo2-opening",
+        "jp-twentyfourth-cec-tokyo2-legacy-host",
+        "jp-twentyfourth-cec-tokyo2-service-identity",
+        "jp-twentyfourth-cec-tokyo2-relocation-plan",
+        "jp-twentyfourth-cec-tokyo2-property-access"
+      ],
+      "roles": [
+        {
+          "role": "operator",
+          "party": "Computer Engineering & Consulting Ltd. (CEC)",
+          "relationship_scope": "current",
+          "source_id": "jp-twentyfourth-cec-tokyo2-incident"
+        }
+      ],
+      "distinctness_review": "Current baseline of 428 sites, 454 projects, 2307 evidence records, 231 original source records and the complete identity mapping independently screened. No candidate identity or source collision, containing site envelope or matching original site. Huizhou is included in this baseline; the other addition in this release is a distinct facility in the other country. See the pinned independent review for textual and spatial checks.",
+      "successor_review": "This is an existing facility observed on August 5, not a new opening. CEC plans to move customer equipment by the end of October 2026 and restore/return the leased premises by April 2027. Neither completion nor closure is inferred from these deadlines. Recovery notices describe another environment without locating it; the new Tokyo No.3 and hybrid-cloud facilities are not placed here.",
+      "scoped_project_details": {
+        "aliases": [
+          "東京第二データセンター",
+          "CEC Tokyo No.2",
+          "Media EXchange Internet Data Center",
+          "MEX iDC",
+          "Sunshine 60"
+        ],
+        "facility_scope": "CEC tenant data-center operation within Sunshine60 office tower, Ikebukuro; not the entire tower.",
+        "historical_cec_business_takeover_and_opening_date": "2010-09-01",
+        "first_building_opening_not_asserted": true,
+        "historical_2010_floor_area_m2": 2700,
+        "historical_2010_floor_count": 3,
+        "historical_specification_scope": "CEC opening release, September1,2010; not refreshed as installed/occupied area in2026.",
+        "planned_customer_equipment_move_deadline": "2026-10-31",
+        "planned_premises_return_deadline": "2027-04-30",
+        "move_completion_or_closure_verified": false,
+        "status_date_scope": "August5 physical facility service event, reported August6; outage is not treated as lifecycle closure.",
+        "later_recovery_environment": "Separate environment, exact property not specified in the operator notices.",
+        "current_it_power_MW": null,
+        "capacity_limit": "No conversion of historical rack power, backbone bandwidth, floor area or tower size into current IT capacity.",
+        "ownership_limit": "CEC operator role established; building ownership not normalized from the operating or legacy service sources."
+      }
+    }
+  ],
+  "status_updates": [],
+  "context_updates": [
+    {
+      "project_stable_key": "curated:china-telecom-wuqing-jingjinji:existing-operational-facilities",
+      "source_ids": [
+        "cn-seventh-haoyang-certified-address"
+      ],
+      "context_kind": "identity",
+      "identity_review": "Visually verified original PDF page 14, entry 41: China Telecom Jing-Jin-Ji Big Data Industry Park Data Center; certificate CQC240920355029; Enhanced Level L3; validity 2024-11-27 through 2027-11-26; Tianjin Wuqing Gaocun Science and Technology Innovation Park, Huiwangdao 6. The existing attached summary instead describes Haoyang entry 46 on page 16.",
+      "summary": "CQC’s register identifies China Telecom’s Jing-Jin-Ji Big Data Industry Park Data Center at 6 Huiwangdao, Gaocun Science and Technology Innovation Park, Wuqing District, Tianjin. Entry 41 on page 14 lists certificate CQC240920355029, CQC Enhanced Level (L3), valid from November 27, 2024 to November 26, 2027. This is certification and address evidence; it does not establish an opening or a later operating observation.",
+      "preserve_status_as_of": "2026-09-14"
+    },
+    {
+      "project_stable_key": "curated:mirai-ogaki-data-center-campus:existing-operations",
+      "source_ids": [
+        "jp-twentysecond-mirai-current-interview"
+      ],
+      "context_kind": "identity",
+      "identity_review": "Read the original September 29 interview capture and live original. Named president Ito describes use of abundant Ogaki groundwater to improve air-conditioning efficiency. In response to a GPU-hosting question he reports very few enquiries and says the facilities are not specifically designed for high power density. No numerical PUE or building-specific cooling design is supplied.",
+      "summary": "In an interview published on September 29, 2026, Mirai president Yoshihito Ito said the Ogaki operation uses groundwater to improve cooling efficiency. He described very few GPU-server enquiries and said its facilities were not designed specifically for high power density. These statements concern the Ogaki operation collectively; they do not provide building-specific cooling specifications or a numeric PUE.",
+      "preserve_status_as_of": "2026-09-29"
+    }
+  ]
+}

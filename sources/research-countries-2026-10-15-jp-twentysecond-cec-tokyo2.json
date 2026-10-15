@@ -1,0 +1,84 @@
+{
+  "format": "datacenter-atlas-country-research-proposal-review-v1",
+  "candidate": "CEC Tokyo No.2 Existing Operations at Sunshine 60",
+  "reviewed_at": "2026-10-15",
+  "base_dataset": "verified_construction_core/2026-10-15-research-twentyfirst",
+  "base_commit": "91ecb4c4cd50b39400e7f65a2384bf30388dfebb",
+  "base_manifest_sha256": "c9c177469633127d4405dcd84f987cf38698822be53c49101217daf6e2a6b51a",
+  "decision": "accepted_after_independent_review",
+  "selected_status": {
+    "value": "operational",
+    "as_of": "2026-08-05",
+    "source_id": "jp-twentyfourth-cec-tokyo2-incident",
+    "summary": "CEC identifies a service incident at Tokyo No.2 at about 11:00 on August 5. This establishes an operating service at the named physical site on that day, with an outage qualification. Later recovery in an unspecified separate environment is not used to extend this physical-site observation. October relocation remains planned."
+  },
+  "selected_locator": {
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        139.71815675,
+        35.72940595
+      ]
+    },
+    "source_id": "jp-twentyfourth-cec-tokyo2-host-building-map",
+    "identity_source_ids": [
+      "jp-twentyfourth-cec-tokyo2-current-facility",
+      "jp-twentyfourth-cec-tokyo2-opening",
+      "jp-twentyfourth-cec-tokyo2-legacy-host",
+      "jp-twentyfourth-cec-tokyo2-service-identity",
+      "jp-twentyfourth-cec-tokyo2-property-access"
+    ],
+    "scope": "campus_locator",
+    "scope_class": "named_host_building_reference_point",
+    "authority": "community_mapped",
+    "derivation": "direct_geometry",
+    "method": "openstreetmap_named_host_building_way_bounding_box_center_verified_inside_polygon",
+    "precision": "Community-mapped reference point inside the named Sunshine 60 office tower, the host building for CEC Tokyo No.2. It is not a separately mapped data-center suite, floor, boundary or rack location. The point does not assert that the entire tower is a data center.",
+    "identity_review": "CEC’s 2010 opening release identifies Tokyo No.2 as the acquired MEX data-center business in Ikebukuro, occupying three floors in a 60-story tower. The current CEC contracts index explicitly maps MEX service to Tokyo No.2. The original legacy MEX facility page names the installation environment as Ikebukuro Sunshine 60. OSM way314155355 independently names exactly Sunshine 60, and the property operator’s access illustration identifies the tower within the complex. No headquarters-only inference or general Sunshine City complex marker is used.",
+    "horizontal_uncertainty_metres": null,
+    "uncertainty_reason": "The community geometry has no measured positional-accuracy statement. Decimal precision is not survey accuracy; the source polygon is used only to choose a host-building reference point."
+  },
+  "required_independent_review": "Confirm August5 named facility service incident is sufficient evidence for operational lifecycle status on the exact event day. Do not treat August21/September3 restored service in a separate environment as a new physical-site observation. The planned October relocation is prominently qualified. If this operational classification is not accepted, retain as a precise status hold; geometry and identity are resolved.",
+  "validation": {
+    "schema_validation": "passed",
+    "deterministic_replay": "passed",
+    "status_age_days": 71,
+    "original_capture_hashes_rechecked": 10,
+    "selected_source_collisions": 0,
+    "sites.csv": {
+      "inherited_rows_unchanged": 427,
+      "added_rows": 1
+    },
+    "projects.csv": {
+      "inherited_rows_unchanged": 453,
+      "added_rows": 1
+    },
+    "evidence.csv": {
+      "inherited_rows_unchanged": 2303,
+      "added_rows": 10
+    },
+    "source-records.json": "byte_identical",
+    "identity-mapping.json": "byte_identical"
+  },
+  "new_counts": {
+    "physical_sites": 428,
+    "projects": 454,
+    "evidence": 2313,
+    "countries": 53,
+    "non_us_sites": 268,
+    "host_estate_context_projects": 3,
+    "official_boundary_projects": 5,
+    "imported_source_records": 231,
+    "snapshot_only_records": 8,
+    "imported_source_references": 1109
+  },
+  "tracked_changes_by_this_agent": false,
+  "independent_review": {
+    "path": "local_data/country-research-2026-10-15-jp-twentyfourth/independent-review.json",
+    "sha256": "7fcdd4fbffccbe71d884d62f53786eda9d2246ab4ca36d512b95775310c1c27f"
+  },
+  "original_action_packet": {
+    "path": "local_data/country-research-2026-10-15-jp-twentyfourth/proposed-actions.json",
+    "sha256": "ec4e544ab8f67d487588f4283a4c2e27802e563107137ebe35b491a596381814"
+  }
+}
