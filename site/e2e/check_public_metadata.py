@@ -242,9 +242,8 @@ def citation_cff(facts: Facts) -> str:
         "(see DATA_LICENSE.md)."
     )
     message = (
-        "If you use this dataset, please cite it as below. Archived data files remain unchanged at "
-        f"{base}downloads/<dataset_id>/<file> and are "
-        f"listed at {base}versions/."
+        "If you use this dataset, please cite it as below. Archived source data files remain unchanged. "
+        f"Each snapshot at {base}versions/ links its files and checksums."
     )
     repository = str(config["repository_url"]).rstrip("/")
     lines = [
@@ -328,10 +327,13 @@ def readme_citation(facts: Facts) -> str:
 
 def readme_version_files(facts: Facts) -> str:
     base, identifier = facts.base_url, facts.dataset["id"]
+    sums = next((item["pinned_url"] for item in facts.index.get("downloads", [])
+                 if item.get("name") == "SHA256SUMS" and item.get("pinned_url")),
+                f"{base}downloads/{identifier}/SHA256SUMS")
     text = (
         "`downloads/latest/` contains the current data. For reproducible work, use the "
         f"[archived files]({base}downloads/{identifier}/) and verify them against their "
-        f"[`SHA256SUMS`]({base}downloads/{identifier}/SHA256SUMS)."
+        f"[`SHA256SUMS`]({sums})."
     )
     return wrap(text)
 

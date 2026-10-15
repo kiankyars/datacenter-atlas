@@ -934,6 +934,15 @@ def test_downloads_match_their_published_checksums(atlas):
         assert len(body) == item["bytes"], item["url"]
         assert hashlib.sha256(body).hexdigest() == item["sha256"], item["url"]
     for directory in ("latest", atlas.dataset_id):
+        if directory != "latest":
+            versions = atlas.get_json(atlas.index["endpoints"]["versions"])["versions"]
+            version = next(item for item in versions if item["id"] == directory)
+            # Frozen remote assets are verified by publish_release.py before deployment.
+            # The hermetic browser test does not fetch a release that is not published yet.
+            if any(not item["url"].startswith(atlas.production_base_url) for item in version["files"]):
+                assert all(item["url"].startswith(atlas.index["repository_url"] + "/releases/download/")
+                           for item in version["files"])
+                continue
         sums = atlas.get_bytes(f"downloads/{quote(directory)}/SHA256SUMS").decode("utf-8")
         entries = [line.split("  ", 1) for line in sums.splitlines() if line.strip()]
         names = [name for _, name in entries]
@@ -1114,10 +1123,15 @@ def test_download_directories_have_landing_pages(atlas):
         headers, body = _http_fetch(base)
         assert headers.get("content-type", "").startswith("text/html"), (directory, headers)
         page = body.decode("utf-8")
-        sums = atlas.get_bytes(f"downloads/{quote(directory)}/SHA256SUMS").decode("utf-8")
-        names = [line.split("  ", 1)[1] for line in sums.splitlines() if line.strip()]
         hrefs = {urljoin(base, href) for href in re.findall(r'href="([^"]+)"', page)}
-        unlinked = [name for name in names if urljoin(base, quote(name, safe="")) not in hrefs]
+        if directory == "latest":
+            expected = [atlas.localize(item["url"]) for item in atlas.index["downloads"]]
+        else:
+            versions = atlas.get_json(atlas.index["endpoints"]["versions"])["versions"]
+            version = next(item for item in versions if item["id"] == directory)
+            expected = [atlas.localize(item["url"]) if item["url"].startswith(atlas.production_base_url)
+                        else item["url"] for item in version["files"]]
+        unlinked = [url for url in expected if url not in hrefs]
         assert not unlinked, f"downloads/{directory}/ does not link {unlinked}"
 
 

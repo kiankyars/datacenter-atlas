@@ -20,7 +20,9 @@ from datacenter_atlas import public_site  # noqa: E402
 
 def main(argv: Sequence[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--output", type=Path, required=True, help="directory to write the site into")
+    parser.add_argument("--output", type=Path, help="directory to write the site into")
+    parser.add_argument("--release-assets", type=Path, help="separate release staging directory (default: <output>-release-assets)")
+    parser.add_argument("--write-release-inventory", type=Path, help="seal current assets to a new inventory file instead of building the site")
     parser.add_argument(
         "--base-url",
         help="absolute site URL used in JSON, the feed and the sitemap (default: site/config.json base_url)",
@@ -33,7 +35,19 @@ def main(argv: Sequence[str] | None = None) -> int:
     )
     parser.add_argument("--config", type=Path, help="site configuration (default: site/config.json)")
     arguments = parser.parse_args(argv)
+    if not arguments.output and not arguments.write_release_inventory:
+        parser.error("--output or --write-release-inventory is required")
+    if arguments.write_release_inventory and (arguments.output or arguments.release_assets):
+        parser.error("--write-release-inventory cannot be combined with output directories")
     try:
+        if arguments.write_release_inventory:
+            inventory = public_site.write_release_inventory(
+                arguments.write_release_inventory, root=PROJECT_ROOT,
+                config_path=arguments.config, base_url=arguments.base_url,
+            )
+            print(json.dumps({"inventory": str(arguments.write_release_inventory), "dataset": inventory["dataset_id"],
+                              "files": len(inventory["files"])}, indent=2))
+            return 0
         summary = public_site.build_site(
             arguments.output,
             root=PROJECT_ROOT,
@@ -41,6 +55,7 @@ def main(argv: Sequence[str] | None = None) -> int:
             source_commit=arguments.source_commit,
             config_path=arguments.config,
             overwrite=arguments.force,
+            release_assets_dir=arguments.release_assets,
         )
     except public_site.PublicSiteError as error:
         parser.exit(1, f"error: {error}\n")

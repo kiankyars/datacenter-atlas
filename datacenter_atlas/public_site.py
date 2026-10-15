@@ -32,7 +32,9 @@ Download directories: ``downloads/<id>/`` holds every version's original files v
 ``SHA256SUMS``. Every version from the first one published as current (``FIRST_PUBLISHED_DATASET``
 or ``first_published_dataset`` in the config) up to the current one also keeps its derived
 formats and its zip, built from that version alone, so a directory's files never disappear when
-a newer checkpoint becomes current. ``downloads/latest/`` mirrors the current version.
+a newer checkpoint becomes current. An optional ``release_downloads_from`` boundary makes only
+new dated archives use frozen GitHub Release inventories and separate asset staging; existing
+local file URLs and all landing pages remain. ``downloads/latest/`` stays local.
 """
 
 from __future__ import annotations
@@ -407,6 +409,8 @@ class SiteConfig:
     first_published_dataset: str | None = None
     # Optional: the dataset title used in citations (default "<site_name>: <versions_root as words>").
     dataset_title: str | None = None
+    # New versions at/after this boundary use frozen GitHub Release assets.
+    release_downloads_from: str | None = None
 
     @property
     def title(self) -> str:
@@ -428,7 +432,7 @@ def load_config(path: Path) -> SiteConfig:
     for key in text_keys:
         if not isinstance(raw.get(key), str) or not raw[key].strip():
             raise PublicSiteError(f"{path}: '{key}' must be a non-empty string")
-    for key in ("first_published_dataset", "dataset_title"):
+    for key in ("first_published_dataset", "dataset_title", "release_downloads_from"):
         if key in raw and (not isinstance(raw[key], str) or not raw[key].strip()):
             raise PublicSiteError(f"{path}: '{key}' must be a non-empty string when present")
     window = raw.get("status_window_days")
@@ -457,6 +461,7 @@ def load_config(path: Path) -> SiteConfig:
         code_license=raw["code_license"],
         first_published_dataset=raw.get("first_published_dataset"),
         dataset_title=raw.get("dataset_title"),
+        release_downloads_from=raw.get("release_downloads_from"),
     )
 
 
@@ -1458,6 +1463,8 @@ class _Context:
     downloads: tuple[DownloadFile, ...] = ()
     download_dirs: Mapping[str, tuple[DownloadFile, ...]] = field(default_factory=dict)
     og_image_size: tuple[int, int] | None = None
+    remote_versions: tuple[DatasetVersion, ...] = ()
+    release_inventories: Mapping[str, Mapping[str, Any]] = field(default_factory=dict)
 
     @property
     def site_dir(self) -> Path:
@@ -1512,6 +1519,7 @@ def build_site(
     source_commit: str | None = None,
     config_path: str | os.PathLike[str] | None = None,
     overwrite: bool = False,
+    release_assets_dir: str | os.PathLike[str] | None = None,
 ) -> dict[str, Any]:
     """Build the public site into ``output_dir`` and return a summary.
 
@@ -1527,12 +1535,27 @@ def build_site(
     commit = _normalize_commit(source_commit)
     _check_output_location(output.resolve(), root_path, config)
     _check_output_directory(output, overwrite=overwrite)
+    release_output = Path(release_assets_dir).expanduser().absolute() if release_assets_dir else output.with_name(output.name + "-release-assets")
+    _check_output_location(release_output.resolve(), root_path, config)
+    if (release_output.resolve() == output.resolve() or release_output.resolve() in output.resolve().parents
+            or output.resolve() in release_output.resolve().parents):
+        raise PublicSiteError("release assets output must be separate from the public site output")
+    _check_output_directory(release_output, overwrite=overwrite)
     context = _prepare_context(root_path, config, site_url, commit)
     staging = _make_staging(output)
+    release_staging = _make_staging(release_output)
     try:
         writer = _Writer(staging)
         _copy_static(writer, context.site_dir / "static")
-        context = _write_downloads(writer, context)
+        release_writer = _Writer(release_staging)
+        context = _write_downloads(writer, context, release_writer)
+        release_writer.write_json("publication.json", {
+            "schema": "datacenter-atlas-release-publication-v1",
+            "current_dataset": context.current.id,
+            "repository_url": context.config.repository_url,
+            "inventories": [context.release_inventories[version.id] for version in context.remote_versions],
+        }, pretty=True)
+        release_writer.write_text(MARKER_NAME, MARKER_TEXT)
         _write_api(writer, context)
         _write_pages(writer, context)
         _write_feed(writer, context)
@@ -1544,7 +1567,9 @@ def build_site(
         summary = _summary(writer, context, output)
     except BaseException:
         shutil.rmtree(staging, ignore_errors=True)
+        shutil.rmtree(release_staging, ignore_errors=True)
         raise
+    _publish_staging(release_staging, release_output)
     _publish_staging(staging, output)
     return summary
 
@@ -1564,6 +1589,15 @@ def _prepare_context(root: Path, config: SiteConfig, base_url: str, commit: str 
             "to an older version deliberately if that is intended"
         )
     derived_versions = tuple(version for version in versions if first.sort_key <= version.sort_key <= current.sort_key)
+    remote_versions = ()
+    if config.release_downloads_from:
+        boundary_path = config.release_downloads_from if "/" in config.release_downloads_from else f"{config.versions_root}/{config.release_downloads_from}"
+        boundary = _find_version(versions, boundary_path, root, "release_downloads_from")
+        if boundary.sort_key < first.sort_key or boundary.sort_key > current.sort_key:
+            raise PublicSiteError("release_downloads_from must be a published-download version no newer than current")
+        if not re.fullmatch(r"https://github\.com/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+", config.repository_url):
+            raise PublicSiteError("remote downloads require a canonical https://github.com/owner/repository URL")
+        remote_versions = tuple(version for version in derived_versions if version.sort_key >= boundary.sort_key)
     atlas = load_atlas(current, base_url)
     vocabulary = Vocabulary(_read_json(root / "site" / "vocabulary.json"))
     descriptions = _read_json(root / "site" / "field_descriptions.json")
@@ -1583,6 +1617,7 @@ def _prepare_context(root: Path, config: SiteConfig, base_url: str, commit: str 
         descriptions=descriptions,
         history=_version_history(versions),
         derived_versions=derived_versions,
+        remote_versions=remote_versions,
         static_files=frozenset(relative for relative, _ in _static_files(root / "site" / "static")),
         attribution_text=_verified_text(current, "ATTRIBUTION.txt"),
         legal_notice_html=_legal_notice(last_preview),
@@ -1758,6 +1793,7 @@ def _summary(writer: _Writer, context: _Context, output: Path) -> dict[str, Any]
         "files": len(writer.paths),
         "bytes": total,
         "derived_download_versions": [version.id for version in context.derived_versions],
+        "remote_download_versions": [version.id for version in context.remote_versions],
         # atlas.sqlite and the zip archives also depend on these libraries (see the module docstring).
         "python_version": platform.python_version(),
         "sqlite_version": sqlite3.sqlite_version,
@@ -1822,19 +1858,18 @@ def _endpoint_paths() -> dict[str, str]:
 
 
 def _download_objects(context: _Context, prefix: str) -> list[dict[str, Any]]:
-    pinned = f"{prefix}downloads/{context.current.id}/"
-    return [
-        {
-            "name": item.name,
-            "format": item.format,
-            "media_type": item.media_type,
-            "url": f"{prefix}downloads/{LATEST}/{item.name}",
-            "bytes": item.size,
-            "sha256": item.sha256,
-            "pinned_url": pinned + (context.zip_name if item.name == f"datacenter-atlas-{LATEST}.zip" else item.name),
-        }
-        for item in context.downloads
-    ]
+    pinned = {item.name: item for item in context.download_dirs[context.current.id]}
+    result = []
+    for item in context.downloads:
+        pinned_name = context.zip_name if item.name == f"datacenter-atlas-{LATEST}.zip" else item.name
+        frozen = pinned[pinned_name]
+        result.append({
+            "name": item.name, "format": item.format, "media_type": item.media_type,
+            "url": f"{prefix}downloads/{LATEST}/{item.name}", "bytes": item.size, "sha256": item.sha256,
+            "pinned_url": _dated_download_url(context, context.current, pinned_name, prefix),
+            "pinned_bytes": frozen.size, "pinned_sha256": frozen.sha256,
+        })
+    return result
 
 
 def _license_block(context: _Context) -> dict[str, Any]:
@@ -1899,7 +1934,7 @@ def _site_document(context: _Context, site: Mapping[str, Any]) -> dict[str, Any]
         "links": {
             "html": site["url"],
             "sites": f"{base}api/v1/sites.json",
-            "dataset_download": f"{base}downloads/{context.current.id}/{context.zip_name}",
+            "dataset_download": _dated_download_url(context, context.current, context.zip_name),
             "geojson": f"{base}api/v1/sites/{site_id}.geojson",
             "explorer": f"{base}#site={site_id}",
             "dataset_files": f"{base}downloads/{context.current.id}/",
@@ -2183,7 +2218,7 @@ def _project_document(context: _Context, project: Mapping[str, Any]) -> dict[str
         "links": {
             "html": project["url"],
             "site": atlas.site_by_id[project["site_id"]]["api_url"],
-            "dataset_download": f"{base}downloads/{context.current.id}/{context.zip_name}",
+            "dataset_download": _dated_download_url(context, context.current, context.zip_name),
             "dataset_files": f"{base}downloads/{context.current.id}/",
             "latest_download": f"{base}downloads/{LATEST}/datacenter-atlas-{LATEST}.zip",
         },
@@ -2260,7 +2295,7 @@ def _versions_document(context: _Context) -> dict[str, Any]:
                 "name": item.name,
                 "bytes": item.size,
                 "sha256": item.sha256,
-                "url": f"{base}downloads/{version.id}/{item.name}",
+                "url": _dated_download_url(context, version, item.name),
                 "derived": False,
             }
             for item in version.files
@@ -2270,7 +2305,7 @@ def _versions_document(context: _Context) -> dict[str, Any]:
                 "name": item.name,
                 "bytes": item.size,
                 "sha256": item.sha256,
-                "url": f"{base}downloads/{version.id}/{item.name}",
+                "url": _dated_download_url(context, version, item.name),
                 "derived": True,
             }
             for item in sorted(listing, key=lambda value: value.name)
@@ -2633,7 +2668,8 @@ def _json_schemas(context: _Context) -> dict[str, dict[str, Any]]:
     schemas["download"] = _object({
         "name": {"type": "string"}, "format": {"type": "string"}, "media_type": {"type": "string"}, "url": url,
         "bytes": {"type": "integer"}, "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}, "pinned_url": url,
-    }, title="Download", description="One file of downloads/latest/ with its pinned URL under downloads/<id>/.")
+        "pinned_bytes": {"type": "integer"}, "pinned_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    }, title="Download", description="One local latest file and its dated target, with separate byte sizes and SHA-256 hashes.")
     dataset_ref = _ref("dataset-ref")
     schemas["site-document"] = _object({
         "api_version": {"type": "string", "const": API_VERSION}, "dataset": dataset_ref, "site": _ref("site"),
@@ -2922,35 +2958,116 @@ def _write_contract(writer: _Writer, context: _Context) -> None:
 # Downloads
 
 
-def _write_downloads(writer: _Writer, context: _Context) -> _Context:
-    """Write every download directory; return the context with their file listings.
+RELEASE_INVENTORY_SCHEMA = "datacenter-atlas-release-assets-v1"
 
-    ``downloads/<id>/`` gets the version's originals and ``SHA256SUMS``. Versions from the first
-    one published as current up to the current one also get the derived formats and the zip,
-    built from that version alone, so the files of a formerly current version stay where they
-    were. ``downloads/latest/`` repeats the current version with a stable zip name.
-    """
+
+def _release_url(context: _Context, version: DatasetVersion, name: str) -> str:
+    return f"{context.config.repository_url}/releases/download/data-{quote(version.id, safe='')}/{quote(name, safe='')}"
+
+
+def _dated_download_url(context: _Context, version: DatasetVersion, name: str, prefix: str | None = None) -> str:
+    if version.id in context.release_inventories:
+        return next(item["url"] for item in context.release_inventories[version.id]["files"] if item["name"] == name)
+    return f"{context.base_url if prefix is None else prefix}downloads/{version.id}/{name}"
+
+
+def _write_version_assets(writer: _Writer, context: _Context, version: DatasetVersion, directory: str) -> dict[str, tuple[int, str]]:
+    files = _copy_originals(writer, version, directory)
+    atlas = context.atlas if version.id == context.current.id else load_atlas(version, context.base_url)
+    files.update(_write_named(writer, directory, _derived_downloads(context, atlas)))
+    files.update(_write_named(writer, directory, {_zip_name(version): _zip_archive(writer, directory, files)}))
+    files["SHA256SUMS"] = _write_checksums(writer, directory, files)
+    return files
+
+
+def _inventory_document(context: _Context, version: DatasetVersion, files: Mapping[str, tuple[int, str]]) -> dict[str, Any]:
+    return {
+        "schema": RELEASE_INVENTORY_SCHEMA,
+        "dataset_id": version.id,
+        "manifest_sha256": version.manifest_sha256,
+        "release_tag": f"data-{version.id}",
+        "repository_url": context.config.repository_url,
+        "files": [{"name": name, "bytes": files[name][0], "sha256": files[name][1],
+                   "url": _release_url(context, version, name)} for name in sorted(files)],
+    }
+
+
+def write_release_inventory(output: Path, *, root: Path, config_path: Path | None = None,
+                            base_url: str | None = None) -> dict[str, Any]:
+    """Seal the current candidate's complete release inventory without changing config or publishing."""
+    config = load_config(config_path or root / "site/config.json")
+    context = _prepare_context(root, config, normalize_base_url(base_url) if base_url else config.base_url, None)
+    with tempfile.TemporaryDirectory(prefix="atlas-release-inventory-") as temporary:
+        files = _write_version_assets(_Writer(Path(temporary)), context, context.current, context.current.id)
+    inventory = _inventory_document(context, context.current, files)
+    output.parent.mkdir(parents=True, exist_ok=True)
+    # An inventory seals an archive: never replace one implicitly, even with identical data.
+    with output.open("x", encoding="utf-8") as handle:
+        handle.write(_json_text(inventory, pretty=True))
+    return inventory
+
+
+def _load_release_inventory(context: _Context, version: DatasetVersion) -> Mapping[str, Any]:
+    path = context.site_dir / "release-inventories" / f"{version.id}.json"
+    if (path.parent.is_symlink() or path.is_symlink() or not path.is_file()
+            or path.resolve().parent != context.site_dir.resolve() / "release-inventories"):
+        raise PublicSiteError(f"{path}: missing regular frozen release inventory")
+    document = _read_json(path)
+    expected = {"schema": RELEASE_INVENTORY_SCHEMA, "dataset_id": version.id,
+                "manifest_sha256": version.manifest_sha256, "release_tag": f"data-{version.id}",
+                "repository_url": context.config.repository_url}
+    if not isinstance(document, dict) or any(document.get(key) != value for key, value in expected.items()):
+        raise PublicSiteError(f"{path}: release inventory metadata does not match the dataset")
+    items = document.get("files")
+    if not isinstance(items, list) or not items:
+        raise PublicSiteError(f"{path}: release inventory needs a nonempty files list")
+    files = {}
+    for item in items:
+        if not isinstance(item, dict):
+            raise PublicSiteError(f"{path}: invalid release inventory file")
+        name = item.get("name")
+        if (not isinstance(name, str) or not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._-]*", name)
+                or name in files or not isinstance(item.get("bytes"), int) or isinstance(item["bytes"], bool)
+                or item["bytes"] < 0 or not re.fullmatch(r"[0-9a-f]{64}", str(item.get("sha256", "")))
+                or item.get("url") != _release_url(context, version, name)):
+            raise PublicSiteError(f"{path}: unsafe, duplicate or invalid release inventory file {name!r}")
+        files[name] = item
+    required = {record.name for record in version.files} | {
+        "atlas.json", "sites.ndjson", "projects.ndjson", "evidence.ndjson", "atlas.sqlite", "atlas.xlsx",
+        "sites.kml", "datapackage.json", _zip_name(version), "SHA256SUMS",
+    }
+    if not required <= files.keys():
+        raise PublicSiteError(f"{path}: missing release inventory files {sorted(required - files.keys())}")
+    for record in version.files:
+        if (files[record.name]["bytes"], files[record.name]["sha256"]) != (record.size, record.sha256):
+            raise PublicSiteError(f"{path}: original file {record.name} differs from the dataset manifest")
+    return document
+
+
+def _write_downloads(writer: _Writer, context: _Context, release_writer: _Writer) -> _Context:
+    """Retain legacy local paths; newer dated assets use frozen inventories and separate staging."""
     current = context.current
+    inventories = {version.id: _load_release_inventory(context, version) for version in context.remote_versions}
+    context = replace(context, release_inventories=inventories)
     directories: dict[str, tuple[DownloadFile, ...]] = {}
-    current_derived: dict[str, bytes] = {}
     for version in context.versions:
         directory = f"downloads/{version.id}"
-        files = _copy_originals(writer, version, directory)
-        if context.has_derived(version):
-            atlas = context.atlas if version.id == current.id else load_atlas(version, context.base_url)
-            derived = _derived_downloads(context, atlas)
+        if version.id in inventories:
+            files = {item["name"]: (item["bytes"], item["sha256"]) for item in inventories[version.id]["files"]}
             if version.id == current.id:
-                current_derived = derived
-            files.update(_write_named(writer, directory, derived))
-            zip_name = _zip_name(version)
-            files.update(_write_named(writer, directory, {zip_name: _zip_archive(writer, directory, files)}))
-        files["SHA256SUMS"] = _write_checksums(writer, directory, files)
+                # These are candidates, not claimed frozen bytes. The publisher checks them against
+                # the inventory before creating a new tag; an existing tag is only verified.
+                _write_version_assets(release_writer, context, version, version.id)
+        elif context.has_derived(version):
+            files = _write_version_assets(writer, context, version, directory)
+        else:
+            files = _copy_originals(writer, version, directory)
+            files["SHA256SUMS"] = _write_checksums(writer, directory, files)
         directories[version.id] = _download_listing(version, files)
     latest = f"downloads/{LATEST}"
     files = _copy_originals(writer, current, latest)
-    files.update(_write_named(writer, latest, current_derived))
-    latest_zip = f"datacenter-atlas-{LATEST}.zip"
-    files.update(_write_named(writer, latest, {latest_zip: _zip_archive(writer, latest, files)}))
+    files.update(_write_named(writer, latest, _derived_downloads(context, context.atlas)))
+    files.update(_write_named(writer, latest, {f"datacenter-atlas-{LATEST}.zip": _zip_archive(writer, latest, files)}))
     files["SHA256SUMS"] = _write_checksums(writer, latest, files)
     directories[LATEST] = _download_listing(current, files)
     return replace(context, downloads=directories[LATEST], download_dirs=directories)
@@ -3035,7 +3152,7 @@ def _derived_downloads(context: _Context, atlas: Atlas) -> dict[str, bytes]:
             "sites": atlas.sites,
             "projects": atlas.projects,
             "evidence": atlas.evidence,
-        }, pretty=True).encode("utf-8"),
+        }).encode("utf-8"),
         "sites.ndjson": _ndjson(atlas.sites),
         "projects.ndjson": _ndjson(atlas.projects),
         "evidence.ndjson": _ndjson(atlas.evidence),
@@ -5138,7 +5255,7 @@ def _data_catalog_json_ld(context: _Context) -> dict[str, Any]:
                     "@type": "DataDownload",
                     "name": name,
                     "encodingFormat": EXTENSION_INFO.get(Path(name).suffix, ("", "application/octet-stream"))[1],
-                    "contentUrl": f"{base}downloads/{version.id}/{name}",
+                    "contentUrl": _dated_download_url(context, version, name),
                 }
                 for name in wanted
             ],
@@ -5309,11 +5426,14 @@ def _country_page(context: _Context, country: Mapping[str, Any]) -> _Page:
 
 def _download_rows(context: _Context, root: str, directory: str = LATEST, items: Sequence[DownloadFile] | None = None) -> list[str]:
     rows = []
+    version = next((item for item in context.versions if item.id == directory), None)
     for item in context.downloads if items is None else items:
+        url = (_dated_download_url(context, version, item.name, root) if version is not None
+               else f"{root}downloads/{directory}/{item.name}")
         kind = '<br><span class="small muted">derived</span>' if item.derived else ""
         rows.append(
             "<tr>"
-            f'<td><a href="{root}downloads/{_e(directory)}/{_e(item.name)}">{_e(item.name)}</a>{kind}</td>'
+            f'<td><a href="{_e(url)}">{_e(item.name)}</a>{kind}</td>'
             f"<td>{_e(item.format)}</td>"
             f"<td>{_e(item.description)}</td>"
             f'<td class="num">{_e(_human_size(item.size))}</td>'
@@ -5744,7 +5864,7 @@ def _version_files_html(context: _Context, version: DatasetVersion, root: str) -
         wanted.append(_zip_name(version))
     wanted.append("SHA256SUMS")
     links = " ".join(
-        f'<a href="{root}downloads/{_e(version.id)}/{_e(name)}">{_e("All files (ZIP)" if name.endswith(".zip") else name)}</a>'
+        f'<a href="{_e(_dated_download_url(context, version, name, root))}">{_e("All files (ZIP)" if name.endswith(".zip") else name)}</a>'
         for name in wanted
     )
     return f'{links} <a href="{root}downloads/{_e(version.id)}/">all files</a>'
@@ -5861,7 +5981,7 @@ def _attribution_page(context: _Context) -> _Page:
         f'{context.legal_notice_html}</section>',
         statements_html,
         '<h2 id="attribution-file">Source attribution</h2>',
-        f'<p class="small"><a href="{root}downloads/{_e(current.id)}/ATTRIBUTION.txt">Download the file</a></p>',
+        f'<p class="small"><a href="{_e(_dated_download_url(context, current, "ATTRIBUTION.txt", root))}">Download the file</a></p>',
         f'<details><summary>Full source attribution</summary><pre class="code">{_linkify(context.attribution_text)}</pre></details>',
     ])
     return _Page(
@@ -6101,7 +6221,10 @@ def _download_directory_page(context: _Context, directory: str) -> _Page:
         " Files marked derived are rebuilt from the originals by each site build and may gain additive fields; "
         "SHA256SUMS lists the files as currently published." if derived else ""
     )
-    verify = f"curl -LO {url}SHA256SUMS\nsha256sum --check --ignore-missing SHA256SUMS"
+    if directory in context.release_inventories:
+        derived_note = " These files are frozen GitHub Release assets; their published checksums do not change when the site builder changes."
+    sums_url = url + "SHA256SUMS" if directory == LATEST else _dated_download_url(context, version, "SHA256SUMS")
+    verify = f"curl -fLO {sums_url}\nsha256sum --check --ignore-missing SHA256SUMS"
     body = "\n".join([
         _breadcrumbs(root, (("data/", "Data"), ("downloads/", "Downloads")), title),
         f"<h1>{_e(title)}</h1>",
@@ -6407,7 +6530,7 @@ def _write_feed(writer: _Writer, context: _Context) -> None:
             f"<id>{_x(_feed_id(context, '#dataset/' + version.id))}</id>",
             f"<updated>{version.checkpoint_date}T00:00:00Z</updated>",
             f'<link rel="alternate" type="text/html" href="{_x(base)}versions/{_x(version.id)}/"/>',
-            f'<link rel="related" type="application/json" href="{_x(base)}downloads/{_x(version.id)}/manifest.json"/>',
+            f'<link rel="related" type="application/json" href="{_x(_dated_download_url(context, version, "manifest.json"))}"/>',
             f"<summary>{_x(summary)}</summary>",
             f'<content type="html">{_x(content)}</content>',
             "</entry>",

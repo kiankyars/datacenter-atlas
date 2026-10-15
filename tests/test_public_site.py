@@ -551,6 +551,7 @@ def _write_site_inputs(site: Path, about: str | None) -> None:
     shutil.copyfile(ROOT / "site" / "vocabulary.json", site / "vocabulary.json")
     shutil.copyfile(ROOT / "site" / "field_descriptions.json", site / "field_descriptions.json")
     config = read_json(ROOT / "site" / "config.json")
+    config.pop("release_downloads_from", None)
     config.update({
         "tagline": EVIL_TAGLINE,
         "versions_root": "verified_construction_core",
@@ -634,6 +635,114 @@ def add_published_fixture(root: Path, updated: str = "2026-04-01") -> Path:
     config["current_dataset"] = f"verified_construction_core/{updated}"
     config_path.write_text(json.dumps(config), encoding="utf-8")
     return directory
+
+
+class RemoteArchiveTests(unittest.TestCase):
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory(prefix="atlas-remote-fixture-")
+        self.addCleanup(self.temp.cleanup)
+        self.base = Path(self.temp.name)
+        self.root = make_fixture_root(self.base)
+        self.current = add_published_fixture(self.root)
+        self.config_path = self.root / "site/config.json"
+        self.config = read_json(self.config_path)
+        self.config["first_published_dataset"] = f"verified_construction_core/{FIXTURE_DRAFT}"
+        self.config_path.write_text(json.dumps(self.config))
+        self.inventory_path = self.root / "site/release-inventories" / f"{self.current.name}.json"
+        self.inventory = public_site.write_release_inventory(self.inventory_path, root=self.root)
+        self.config["release_downloads_from"] = self.current.name
+        self.config_path.write_text(json.dumps(self.config))
+
+    def build(self, name="site", **kwargs):
+        output = self.base / name
+        summary = public_site.build_site(output, root=self.root, **kwargs)
+        return output, output.with_name(output.name + "-release-assets"), summary
+
+    def test_remote_archive_has_all_assets_separate_from_pages_and_truthful_urls(self):
+        site, assets, summary = self.build()
+        current = self.current.name
+        self.assertEqual(summary["remote_download_versions"], [current])
+        self.assertEqual([p.name for p in (site / "downloads" / current).iterdir()], ["index.html"])
+        frozen = {f["name"]: f for f in self.inventory["files"]}
+        self.assertEqual(set(frozen), {p.name for p in (assets / current).iterdir()})
+        for name, item in frozen.items():
+            path = assets / current / name
+            self.assertEqual((path.stat().st_size, sha256(path)), (item["bytes"], item["sha256"]))
+        self.assertTrue((site / "downloads" / FIXTURE_DRAFT / "atlas.json").is_file())
+        publication = read_json(assets / "publication.json")
+        self.assertEqual(publication["inventories"], [self.inventory])
+        index = read_json(site / "api/v1/index.json")
+        for item in index["downloads"]:
+            name = f"datacenter-atlas-{current}.zip" if item["name"] == "datacenter-atlas-latest.zip" else item["name"]
+            self.assertEqual(item["pinned_url"], frozen[name]["url"])
+            self.assertEqual(item["pinned_sha256"], frozen[name]["sha256"])
+            self.assertEqual(item["pinned_bytes"], frozen[name]["bytes"])
+            self.assertTrue(item["url"].startswith(self.config["base_url"] + "downloads/latest/"))
+        # Every same-origin HTML link is still real; no hidden legacy-path 404s.
+        for page in builder_pages(site):
+            for _, _, href in scan(page).links:
+                if href.startswith("#") or urlsplit(href).scheme:
+                    continue
+                target = (page.parent / unquote(urlsplit(href).path)).resolve()
+                if target.is_dir(): target /= "index.html"
+                self.assertTrue(target.is_file(), f"{page}: {href}")
+        text = (site / "downloads" / current / "index.html").read_text()
+        self.assertIn(frozen["SHA256SUMS"]["url"], text)
+        self.assertIn("frozen GitHub Release assets", text)
+
+    def test_frozen_metadata_survives_later_builder_change_and_successor(self):
+        older = self.current.name
+        successor = add_published_fixture(self.root, "2026-04-02")
+        successor_inventory = self.root / "site/release-inventories" / f"{successor.name}.json"
+        public_site.write_release_inventory(successor_inventory, root=self.root)
+        original = public_site._derived_downloads
+        def changed(context, atlas):
+            # Historical remote payloads must not be regenerated at all.
+            self.assertNotEqual(atlas.version.id, older)
+            blobs = original(context, atlas)
+            blobs["atlas.json"] += b" \n"
+            return blobs
+        with mock.patch.object(public_site, "_derived_downloads", side_effect=changed):
+            site, assets, _ = self.build()
+        historical = next(v for v in read_json(site / "api/v1/versions.json")["versions"] if v["id"] == older)
+        self.assertEqual({f["name"]: (f["bytes"], f["sha256"], f["url"]) for f in historical["files"]},
+                         {f["name"]: (f["bytes"], f["sha256"], f["url"]) for f in self.inventory["files"]})
+        item = next(f for f in read_json(site / "api/v1/index.json")["downloads"] if f["name"] == "atlas.json")
+        self.assertNotEqual(item["sha256"], item["pinned_sha256"])
+        self.assertNotEqual(item["bytes"], item["pinned_bytes"])
+        self.assertFalse((assets / older).exists())
+
+    def test_download_payloads_do_not_depend_on_source_commit(self):
+        first, assets_one, _ = self.build("first", source_commit="a" * 40)
+        second, assets_two, _ = self.build("second", source_commit="b" * 40)
+        self.assertEqual(tree_hashes(assets_one), tree_hashes(assets_two))
+        for name in ("latest", FIXTURE_DRAFT):
+            a = {p: h for p, h in tree_hashes(first / "downloads" / name).items() if p != "index.html"}
+            b = {p: h for p, h in tree_hashes(second / "downloads" / name).items() if p != "index.html"}
+            self.assertEqual(a, b)
+
+    def test_inventory_rejects_missing_unsafe_duplicate_and_changed_original_entries(self):
+        cases = []
+        missing = json.loads(json.dumps(self.inventory)); missing["files"] = missing["files"][1:]; cases.append(missing)
+        duplicate = json.loads(json.dumps(self.inventory)); duplicate["files"].append(duplicate["files"][0]); cases.append(duplicate)
+        unsafe = json.loads(json.dumps(self.inventory)); unsafe["files"][0]["url"] = "https://evil.invalid/asset"; cases.append(unsafe)
+        changed = json.loads(json.dumps(self.inventory))
+        next(f for f in changed["files"] if f["name"] == "sites.csv")["sha256"] = "0" * 64
+        cases.append(changed)
+        for i, inventory in enumerate(cases):
+            with self.subTest(i=i):
+                self.inventory_path.write_text(json.dumps(inventory))
+                with self.assertRaises(public_site.PublicSiteError): self.build(f"bad-{i}")
+        self.inventory_path.unlink()
+        with self.assertRaisesRegex(public_site.PublicSiteError, "missing regular frozen"): self.build("absent")
+
+    def test_release_staging_cannot_overlap_site_or_source_and_inventory_cannot_overwrite(self):
+        site = self.base / "site"
+        for output in (site, site / "assets", self.base, self.root / "site" / "assets"):
+            with self.subTest(output=output), self.assertRaises(public_site.PublicSiteError):
+                public_site.build_site(site, root=self.root, release_assets_dir=output)
+        with self.assertRaises(FileExistsError):
+            public_site.write_release_inventory(self.inventory_path, root=self.root)
 
 
 class PublishedSnapshotTests(unittest.TestCase):
@@ -1273,8 +1382,14 @@ class RealSiteBuildTests(unittest.TestCase):
         self.assertEqual(set(stats["units"]), {key for key in stats if key.startswith("by_")})
         self.assertEqual(set(stats["units"].values()), {"projects", "sites", "evidence_rows", "observations"})
         for item in index["downloads"]:
-            pinned = item["pinned_url"].removeprefix(self.base_url)
-            self.assertTrue((self.site / pinned).is_file(), pinned)
+            if item["pinned_url"].startswith(self.base_url):
+                pinned = self.site / item["pinned_url"].removeprefix(self.base_url)
+                self.assertTrue(pinned.is_file(), pinned)
+                self.assertEqual((item["pinned_bytes"], item["pinned_sha256"]), (pinned.stat().st_size, sha256(pinned)))
+            else:
+                inventory = read_json(ROOT / "site/release-inventories" / f"{self.dataset_id}.json")
+                frozen = next(f for f in inventory["files"] if f["url"] == item["pinned_url"])
+                self.assertEqual((item["pinned_bytes"], item["pinned_sha256"]), (frozen["bytes"], frozen["sha256"]))
         projects = self.rows["projects.csv"]
         self.assertEqual(Counter(stats["by_status"]), Counter(row["last_observed_physical_status"] for row in projects))
         self.assertEqual(Counter(stats["by_status_month"]), Counter(row["status_as_of"][:7] for row in projects))
@@ -1433,7 +1548,12 @@ class RealSiteBuildTests(unittest.TestCase):
         self.assertIn(self.dataset_id, derived)
         self.assertIn(public_site.FIRST_PUBLISHED_DATASET, derived)
         for name in directories:
-            sums = self.check_checksums(downloads / name)
+            if name in self.summary["remote_download_versions"]:
+                self.assertEqual(sorted(p.name for p in (downloads / name).iterdir()), ["index.html"])
+                inventory = read_json(ROOT / "site/release-inventories" / f"{name}.json")
+                sums = {item["name"]: item["sha256"] for item in inventory["files"] if item["name"] != "SHA256SUMS"}
+            else:
+                sums = self.check_checksums(downloads / name)
             if name == "latest":
                 continue
             manifest = read_json(ROOT / self.config["versions_root"] / name / "manifest.json")
@@ -1448,7 +1568,9 @@ class RealSiteBuildTests(unittest.TestCase):
                 self.assertEqual(sums[file_name], meta["sha256"])
 
     def test_zip_archives_are_complete_and_identical(self):
-        pinned = self.site / "downloads" / self.dataset_id
+        pinned = ((self.site.with_name(self.site.name + "-release-assets") / self.dataset_id)
+                  if self.dataset_id in self.summary["remote_download_versions"]
+                  else self.site / "downloads" / self.dataset_id)
         latest = self.site / "downloads" / "latest"
         latest_zip = latest / "datacenter-atlas-latest.zip"
         self.assertEqual((pinned / f"datacenter-atlas-{self.dataset_id}.zip").read_bytes(), latest_zip.read_bytes())
@@ -1898,7 +2020,12 @@ class RealSiteBuildTests(unittest.TestCase):
         for directory in downloads.iterdir():
             if directory.is_dir():
                 page = (directory / "index.html").read_text(encoding="utf-8")
-                for name in (directory / "SHA256SUMS").read_text(encoding="ascii").split():
+                if directory.name in self.summary["remote_download_versions"]:
+                    inventory = read_json(ROOT / "site/release-inventories" / f"{directory.name}.json")
+                    names = [item["name"] for item in inventory["files"]]
+                else:
+                    names = (directory / "SHA256SUMS").read_text(encoding="ascii").split()
+                for name in names:
                     if not re.fullmatch(r"[0-9a-f]{64}", name):
                         self.assertIn(f'>{name}</a>', page)
         versions = read_json(self.api / "versions.json")
@@ -1919,7 +2046,11 @@ class RealSiteBuildTests(unittest.TestCase):
             urls += re.findall(re.escape(self.base_url) + r"downloads/[^\s\"'<>)]*/(?=[\s\"'<>)])",
                                document.read_text(encoding="utf-8"))
         self.assertGreater(len(urls), 100)
+        remote_urls = {file["url"] for version in self.summary["remote_download_versions"]
+                       for file in read_json(ROOT / "site/release-inventories" / f"{version}.json")["files"]}
         for url in set(urls):
+            if url in remote_urls:
+                continue
             relative = unquote(url.removeprefix(self.base_url))
             target = self.site / relative / "index.html" if relative.endswith("/") else self.site / relative
             self.assertTrue(target.is_file(), url)

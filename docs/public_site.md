@@ -38,7 +38,7 @@ Each change retains its dated source and earlier evidence. See
 
 | Path | Role |
 | --- | --- |
-| [`site/config.json`](../site/config.json) | Site name, tagline, base URL, repository and issue URLs, `versions_root`, `current_dataset`, `last_preview_dataset`, `status_window_days`, author and licence metadata. Optional: `first_published_dataset` (see [Download directories](#download-directories)) and `dataset_title` (the title used in citations). |
+| [`site/config.json`](../site/config.json) | Site name, tagline, base URL, repository and issue URLs, `versions_root`, `current_dataset`, `last_preview_dataset`, `status_window_days`, author and licence metadata. Optional: `first_published_dataset` and `release_downloads_from` (see [Download directories](#download-directories)) and `dataset_title` (the title used in citations). |
 | `verified_construction_core/*/` | Every direct child containing a `manifest.json` is a dataset version, and every version is published |
 | `site/content/*.html` | Prose fragments for the methodology and about pages |
 | `site/templates/explorer.html` | Markup for the map explorer at `/` |
@@ -123,12 +123,13 @@ api/v1/vocabularies.json           labels and descriptions for coded values
 api/v1/citation.json               the citation as APA, BibTeX, biblatex, RIS and CSL-JSON (also citation.bib, citation.ris)
 downloads/index.html               every download directory
 downloads/latest/                  current version: original files, derived formats, SHA256SUMS, index.html
-downloads/<dataset_id>/            every version: byte-identical originals, SHA256SUMS, index.html
+downloads/<dataset_id>/            local archives: originals/formats; remote archives: permanent index.html
 ```
 
 ### Download directories
 
-`downloads/<id>/` holds a version's original files byte for byte, a `SHA256SUMS` and an
+For versions before the optional `release_downloads_from` boundary, `downloads/<id>/` holds a
+version's original files byte for byte, a `SHA256SUMS` and an
 `index.html` landing page that lists every file with its size and checksum (GitHub Pages serves a
 directory URL only through its `index.html`, so citations and API links to `downloads/<id>/`
 resolve). Every version from the first one the live site published as current
@@ -145,11 +146,65 @@ The derived formats are `atlas.json`, `sites.ndjson`, `projects.ndjson`, `eviden
 page) in GNU format. The zip is deterministic: sorted entries, fixed timestamps and fixed
 permissions.
 
-Only the original files are immutable. The derived formats are rebuilt by every build, so an
+For these local archives, only the original files are immutable. The derived formats are rebuilt by every build, so an
 additive builder change (a new column, sheet or table) changes their bytes and checksums; users
 verify them against the current `SHA256SUMS`, and the README, `CITATION.cff` and the about page say
 so. A frozen copy of each version's derived formats is what the GitHub Release of that version is
 for (see [CI and deployment](#ci-and-deployment)).
+
+### New archives hosted as GitHub Release assets
+
+Set `release_downloads_from` in `site/config.json` to the **first never-published version** whose
+files will be hosted by GitHub Releases. It accepts a dataset ID or repository-relative dataset
+path. Versions before this boundary retain every existing local file URL. `downloads/latest/`
+always remains local, and every dated `downloads/<id>/` landing page remains local and permanent.
+For remote versions, the landing page and API link directly to canonical release asset URLs;
+there are no HTML redirects masquerading as data files. Consumers should use each file's `url`,
+not construct a file URL by appending its name to the landing-page `download_base_url`.
+
+Each remote version has a checked-in `site/release-inventories/<id>.json`. It pins the dataset
+manifest, release tag, repository, and every data filename, byte size, SHA-256 and canonical
+release URL, including the complete ZIP and `SHA256SUMS`. The builder validates original entries
+against the tracked dataset manifest. Historical remote derived formats are never regenerated
+for their listings: the inventory describes the actual frozen release. Do not revise a published
+inventory to match a newer builder. For current downloads, `bytes` and `sha256` describe the
+local latest file; `pinned_bytes` and `pinned_sha256` describe the dated target, which can differ.
+
+To prepare the first remote version after adding its dataset and making it current:
+
+```sh
+python3 scripts/build_public_site.py \
+  --write-release-inventory site/release-inventories/<dataset-id>.json
+# Set release_downloads_from to this first new version, then build:
+python3 scripts/build_public_site.py --output _site --release-assets _release-assets
+```
+
+The sealing command refuses to overwrite an existing inventory. It makes no network requests
+and does not publish anything. Use the same Python, SQLite and zlib implementations as CI when
+sealing a new inventory; a mismatch must be resolved before publication, never by replacing an
+already published asset. Source commit metadata does not affect any download payload.
+
+`--release-assets` defaults to a sibling `<output>-release-assets` directory. It must neither
+contain nor be inside the site output or protected source directories. The builder writes the
+current remote candidate's complete asset directory and `publication.json` there. This directory
+must not be included in the Pages artifact. The candidate files may differ from a frozen current
+release after a builder change: the site still publishes the inventory's correct frozen hashes,
+while local latest downloads describe the regenerated files.
+
+The publication gate must finish before Pages deployment. For a new tag it verifies **every**
+staged asset against the checked-in inventory, uploads into a draft release, downloads and verifies
+the exact asset set, then makes the release public and verifies the public result. Partial draft
+uploads can resume only when the existing draft matches the same commit and inventory.
+For an existing tag it verifies the frozen inventory against GitHub and never uploads or replaces
+assets. It must distinguish a genuine missing release from authentication, rate-limit or network
+failures. Historical remote releases are also verified so a deployment cannot introduce dead or
+falsely checksummed archive links. GitHub Release assets are cross-origin; the browser-facing API
+and current downloads retain Pages behavior and do not depend on release-asset CORS support.
+
+This arrangement removes full-snapshot growth from the Pages artifact. It does not make its
+capacity unlimited: legacy local archives plus the growing current dataset/API still count.
+Measure actual file and uncompressed tar sizes before upload and leave headroom under the
+[documented Pages size limit](https://docs.github.com/en/pages/getting-started-with-github-pages/github-pages-limits).
 
 ### Typed JSON
 
@@ -322,7 +377,8 @@ Markup rules:
 - Clients should ignore fields they do not know.
 - The API always serves the current dataset, so values change with data updates. Check
   `dataset.id` in responses. For a snapshot, use its original files in
-  `downloads/<dataset_id>/`, which never change, or the files attached to its GitHub Release.
+  the file links on `downloads/<dataset_id>/`, which resolve to unchanged originals locally or
+  on its GitHub Release.
 
 ## Identifier and URL stability policy
 
@@ -394,8 +450,8 @@ publication does not depend on reaching a site-count target or product-version m
    pages use tokens for counts and dates; describe the data by its update and observation dates.
 6. Run the relevant tests and inspect the map, changed site pages and downloads. Commit and push
    to `main`; CI builds, deploys and checks the live site. `downloads/latest/` follows the new data,
-   and existing archive paths remain available. Optional GitHub Releases archive data files; they
-   do not define a separate public product lifecycle.
+   and existing archive paths remain available. GitHub Releases are required for remote archives
+   and optional for legacy local archives; they do not define a separate public product lifecycle.
 
 ## Tests
 
@@ -479,13 +535,14 @@ when a built site is available.
     with JSON (or CSV) and `Access-Control-Allow-Origin: *`, that the main pages, `llms.txt`, the
     feeds and the sitemap answer 200, and that every file in `downloads/latest/SHA256SUMS` matches
     its checksum.
-  - `release` (`contents: write`; opt-in): with the repository variable `ATLAS_GITHUB_RELEASES` set
-    to `true`, after `verify-live`, creates the GitHub Release `data-<dataset id>` once per dataset
-    version from the deployed files: the version's zip, `SHA256SUMS`, the three CSVs,
-    `sites.geojson`, `atlas.sqlite`, `atlas.xlsx`, `atlas.json` and `datapackage.json`, with notes
-    from [`site/e2e/release_notes.py`](../site/e2e/release_notes.py) (counts, added and removed
-    sites, caveats, licence). Later pushes for the same version skip it. Releases give each version
-    an immutable copy of its derived formats and a release event people can watch.
+  - `release` (`contents: write`): runs after the complete build/test job and before `deploy`.
+    With `ATLAS_GITHUB_RELEASES=true`, creates the GitHub Release `data-<dataset id>` for a new
+    version. Legacy local archives attach the original ten selected assets; remote archives attach
+    every inventoried asset from the separate `release-assets` artifact. Existing remote releases
+    are verified against their frozen inventories; existing legacy releases are left untouched.
+    Remote archives cannot deploy when releases are disabled. Notes come from
+    [`site/e2e/release_notes.py`](../site/e2e/release_notes.py); publication and verification are
+    handled by [`site/e2e/publish_release.py`](../site/e2e/publish_release.py).
   - `monitor` (`contents: read`, `issues: write`): weekly (Mondays 05:23 UTC) and on manual
     dispatch with `job` set to `monitor`, re-runs the live checks and checks every evidence
     `source_url` politely (one request per second, 15-second timeout). URLs answering 404 or 410,

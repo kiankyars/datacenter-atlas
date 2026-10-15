@@ -1,9 +1,9 @@
 """Release notes, tag and asset list for a GitHub Release of the current data snapshot.
 
 The ``release`` job of ``.github/workflows/pages.yml`` (enabled by the repository variable
-``ATLAS_GITHUB_RELEASES=true``) runs this on the deployed site's files, then creates the release
+``ATLAS_GITHUB_RELEASES=true``) runs after tests and before deployment, then creates the release
 ``data-<dataset id>`` once per snapshot with the files listed here attached, so every update
-gets an immutable, citable copy of its derived formats (and, with the Zenodo GitHub integration,
+gets a frozen, citable copy of its derived formats (and, with the Zenodo GitHub integration,
 a DOI).
 
 Usage (standard library only)::
@@ -136,7 +136,7 @@ def notes(index: Mapping[str, Any], versions: Mapping[str, Any], sites: Sequence
         "",
         "## Files",
         "",
-        f"The attached files are the derived formats and checksums published at <{base}downloads/{identifier}/>; "
+        f"The snapshot's downloads and checksums are listed at <{base}downloads/{identifier}/>; "
         "the zip holds every file of the snapshot, including the original data files bound by "
         "`manifest.json`. Verify downloads with `sha256sum --check --ignore-missing SHA256SUMS`. The same data is served by the "
         f"static JSON API at <{base}api/v1/>.",

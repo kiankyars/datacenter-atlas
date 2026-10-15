@@ -3,10 +3,10 @@ name: Public site
 # Builds the static site (HTML, JSON API, downloads) from the tracked datasets, checks the
 # hand-written dataset facts against it, runs its unit, JavaScript and browser tests against the
 # build served the way GitHub Pages serves it (under /datacenter-atlas/, with no directory
-# listings), deploys it to GitHub Pages on pushes to main and then checks the live site. With the
-# repository variable ATLAS_GITHUB_RELEASES set to "true", each new dataset version also gets a
-# GitHub Release with its files attached. A weekly run re-checks the live site and reports dead
-# evidence links in an issue labelled "link-rot".
+# listings), verifies any release-backed downloads, deploys to GitHub Pages on pushes to main,
+# then checks the live site. ATLAS_GITHUB_RELEASES=true is required when future snapshots use
+# GitHub Release downloads; existing Pages download paths remain available. A weekly run checks
+# the live site and reports dead evidence links in an issue labelled "link-rot".
 #
 # Every action is pinned to a full commit SHA (the comment names its release), so a moved tag
 # cannot change what builds or deploys the site. To update one, resolve the new release's commit
@@ -70,6 +70,9 @@ jobs:
           --output _site
           --base-url "$SITE_URL"
           --source-commit "$GITHUB_SHA"
+          --release-assets release-assets
+      - name: Check Pages file and archive size
+        run: python datacenter_atlas/site/e2e/check_pages_size.py --site _site
       - name: Check README.md, CITATION.cff and DATA_LICENSE.md against the build
         # Fails when a hand-written dataset fact (version, counts, gates, citation) is stale; the
         # message says how to regenerate them (docs/public_site.md, "Making a new checkpoint current").
@@ -117,6 +120,14 @@ jobs:
         uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
         with:
           path: _site
+      - name: Upload the frozen release candidates
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: release-assets
+          path: release-assets/
+          if-no-files-found: error
+          retention-days: 7
       - name: Install the browser-test tooling
         timeout-minutes: 10
         run: |
@@ -163,7 +174,7 @@ jobs:
 
   deploy:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-    needs: build
+    needs: [build, release]
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     permissions:
@@ -207,17 +218,14 @@ jobs:
           --summary "$GITHUB_STEP_SUMMARY"
 
   release:
-    # Opt-in: set the repository variable ATLAS_GITHUB_RELEASES to "true" (Settings, Secrets and
-    # variables, Actions, Variables). Creates the release data-<dataset id> once per dataset
-    # version, from the exact files that were deployed; later pushes for the same version skip it.
-    if: >-
-      github.event_name == 'push' && github.ref == 'refs/heads/main'
-      && vars.ATLAS_GITHUB_RELEASES == 'true'
-    needs: verify-live
+    # Publish and verify remote snapshot assets before Pages can link to them. Legacy releases
+    # remain optional and are never replaced. Remote archives require the opt-in variable.
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: build
     runs-on: ubuntu-24.04
-    timeout-minutes: 15
+    timeout-minutes: 20
     permissions:
-      contents: write # create the tag and the release
+      contents: write
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -227,32 +235,26 @@ jobs:
       - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
           python-version: "3.12"
-      - name: Download the deployed site
+      - name: Download the tested site
         uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
         with:
           name: github-pages
           path: pages-artifact
-      - name: Create the release for a new dataset version
+      - name: Download the frozen release candidates
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: release-assets
+          path: release-assets
+      - name: Publish or verify snapshot downloads
         env:
           GH_TOKEN: ${{ github.token }}
-          GH_REPO: ${{ github.repository }}
+          RELEASES_ENABLED: ${{ vars.ATLAS_GITHUB_RELEASES == 'true' && 'true' || 'false' }}
         run: |
           mkdir site
           tar -xf pages-artifact/artifact.tar -C site
-          python datacenter_atlas/site/e2e/release_notes.py \
-            --site site --notes notes.md --assets assets.txt --commit "$GITHUB_SHA" > release.txt
-          tag=$(sed -n 1p release.txt)
-          title=$(sed -n 2p release.txt)
-          flags=()
-          if [ "$(sed -n 3p release.txt)" = prerelease ]; then flags+=(--prerelease); fi
-          if gh release view "$tag" > /dev/null 2>&1; then
-            echo "Release $tag already exists; nothing to do."
-            exit 0
-          fi
-          mapfile -t assets < assets.txt
-          gh release create "$tag" "${assets[@]}" \
-            --target "$GITHUB_SHA" --title "$title" --notes-file notes.md "${flags[@]}"
-          echo "Created release $tag with ${#assets[@]} files." >> "$GITHUB_STEP_SUMMARY"
+          python datacenter_atlas/site/e2e/publish_release.py \
+            --site site --release-assets release-assets --commit "$GITHUB_SHA" \
+            --enabled "$RELEASES_ENABLED"
 
   monitor:
     # Weekly (and on manual dispatch with job=monitor): re-check the live site and every evidence
