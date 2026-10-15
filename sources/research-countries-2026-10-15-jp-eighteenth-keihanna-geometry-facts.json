@@ -1,0 +1,76 @@
+{
+  "format": "datacenter-atlas-country-geometry-facts-v1",
+  "reviewed_at": "2026-10-15",
+  "base_dataset": "verified_construction_core/2026-10-15-research-seventeenth",
+  "base_commit": "7c08312d5dbdfe59cd7ef1c9bf43a6d00954c199",
+  "base_manifest_sha256": "c19d25fbb79d0196745518fee4d398caebb139d9f0b6dcad155eccd5dfff554b",
+  "source_files": [
+    {
+      "path": "sources/research-countries-2026-10-15-jp-eighteenth-keihanna-primary-sources.json",
+      "sha256": "a8458fd08c1571bf754d9b96ab2ae79b00a07a136e919894d0354266fac26934"
+    }
+  ],
+  "candidate": "KAGOYA Japan Keihanna Lab Existing Operations",
+  "selected_locator": {
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        135.7847233,
+        34.748595
+      ]
+    },
+    "source_id": "jp-twentieth-keihanna-google-place",
+    "scope": "campus_locator",
+    "scope_class": "selected_named_map_place_property_point",
+    "authority": "compiled_reference",
+    "derivation": "direct_geometry",
+    "method": "direct_google_maps_selected_named_place_coordinates",
+    "precision": "Google Maps named facility point for KAGOYA Japan Keihanna Lab, used as a labelled campus/property locator for the A/B facility. It does not establish a surveyed campus boundary, individual A/B building footprint, entrance, data hall or proposed future container facility.",
+    "identity_review": "Independent name-only Google Maps search selected KAGOYA Japan Keihanna Lab (Data Center). Its original response explicitly joins that exact name and selected-object coordinates; the root separately observed the official kagoya.jp/datacenter/ website and Seikadai 7-4-5 address in the rendered UI. The operator page names the same lab and groups A and B buildings in one facility; the dated October 13 release names its Kyoto lab and continuing DC-backed services. The current Kansai Research Institute Seika/Nishi-Kizu directory independently lists the same lab and links KAGOYA. Current primary pages inspected do not supply the street address: 7-4-5 is identified as the compiled-reference map address, not falsely attributed to the operator. Neither the Kyoto headquarters nor the different Kagoya Tatara/EdgeConneX campus in Kyotanabe is selected.",
+    "horizontal_uncertainty_metres": null,
+    "uncertainty_reason": "Google Maps provides no measured horizontal accuracy for the selected place. Source decimal places are retained without implying survey precision or a known offset to operational data halls."
+  },
+  "source_geometry": {
+    "selected_place_name": "カゴヤ・ジャパン けいはんなラボ（データセンター）",
+    "feature_id": "0x60013d0000598f2b:0xba4fc4360534c33a",
+    "entity_id": "/g/11y37csvxj",
+    "source_point_lon_lat": [
+      135.7847233,
+      34.748595
+    ],
+    "selected_object_tuple": "[\"0x60013d0000598f2b:0xba4fc4360534c33a\",\"カゴヤ・ジャパン けいはんなラボ（データセンター）\",null,null,null,null,null,[null,null,34.748595,135.7847233],null,null,null,null,null,null,null,\"/g/11y37csvxj\"]",
+    "tuple_verified_in_original_response": true,
+    "source_response_sha256": "11bc9f7e5fc85a60d9cbda44c7dd3797caffaf804ad79fe00fafd06601710810",
+    "browser_observation": {
+      "path": "local_data/country-research-2026-10-15-jp-twentieth/root-google-selected-place-observation.json",
+      "sha256": "9296759327778815894af002da3c5d776f4e3aaf36e8da676ec4a5e96f9e531a"
+    },
+    "html_field_limit": "Name, object identifiers and selected coordinates occur in original HTML. Address, website and plus code occur only in the separately transcribed root browser observation."
+  },
+  "derivation_review": {
+    "operation": "Direct selected-object latitude/longitude copied from [null,null,34.748595,135.7847233] and reordered to GeoJSON longitude/latitude. No viewport, centroid, georeferencing, CRS transform or inferred building point.",
+    "distance_radius_metres": 6371000,
+    "distance_formula": "2R atan2(sqrt(h),sqrt(1-h)), h=sin²(delta_lat/2)+cos(lat1)cos(lat2)sin²(delta_lon/2), angles in radians.",
+    "positional_accuracy_inferred": false
+  },
+  "baseline_geometry_envelopes": {
+    "sites.csv": {
+      "checked": 422,
+      "containing_point": []
+    },
+    "projects.csv": {
+      "checked": 448,
+      "containing_point": []
+    }
+  },
+  "excluded_geometry": [
+    "KRI stylized district-map symbol",
+    "Unverified historical address geocoding",
+    "Neighbouring Dynamic Tools property",
+    "Kyoto headquarters",
+    "Kagoya Tatara/EdgeConneX campus in Kyotanabe",
+    "Map viewport or municipality centre",
+    "PeeringDB or derived records"
+  ],
+  "raw_capture_redistributed": false
+}
