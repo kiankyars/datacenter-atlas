@@ -1,0 +1,87 @@
+{
+  "format": "datacenter-atlas-country-geometry-facts-v1",
+  "reviewed_at": "2026-10-15",
+  "base_dataset": "verified_construction_core/2026-10-15-research-nineteenth",
+  "base_commit": "94f73384f75a9005bdaf32bb47ea670881974537",
+  "base_manifest_sha256": "857cfddb2c243de8bb551855f389710504cc15ec653143dcaef3f2de90f0cb79",
+  "candidate": "Mirai Ogaki Data Center Campus Existing Operations",
+  "selected_locator": {
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        136.6401464,
+        35.3681578
+      ]
+    },
+    "source_id": "jp-twentysecond-mirai-google-property",
+    "identity_source_ids": [
+      "jp-twentysecond-mirai-facilities",
+      "jp-twentysecond-mirai-specification",
+      "jp-twentysecond-mirai-adjacency",
+      "jp-twentysecond-mirai-access"
+    ],
+    "scope": "campus_locator",
+    "scope_class": "selected_named_map_place_property_point",
+    "authority": "compiled_reference",
+    "derivation": "direct_geometry",
+    "method": "direct_google_maps_selected_named_place_coordinates",
+    "precision": "Operator-embedded Google named-property point at Mirai Ogaki No.1, Kagano 4-1-12. This labels the adjacent MiraiDC campus, whose No.2 facility is across the road. It is not a campus polygon, individual data-hall footprint or separate No.2 building locator.",
+    "identity_review": "Operator specification page 1 explicitly names Mirai Ogaki No.1 Data Center at Kagano 4-1-12; its parking notice independently repeats that address and places No.2 directly across the road. The current official facilities index groups both under MiraiDC. The operator access page embeds this exact named Google property; original embed response associates its feature ID, address, selected coordinates and operator website. The page viewport coordinate is excluded. This is one adjacent named campus with its marker on No.1, not an assumed office-only location.",
+    "horizontal_uncertainty_metres": null,
+    "uncertainty_reason": "The mapping service supplies no measured positional accuracy; coordinate decimal precision does not imply survey accuracy."
+  },
+  "source_geometry": {
+    "selected_place_name": "株式会社 ミライコミュニケーションネットワーク",
+    "feature_id": "0x6003b19aea05135d:0xd8878d2a68aaf971",
+    "entity_id": "/g/1v3grvmb",
+    "source_point_lon_lat": [
+      136.6401464,
+      35.3681578
+    ],
+    "selected_object_tuple": "[35.3681578,136.6401464]",
+    "selected_object_identity_address_and_tuple_verified_in_original_response": true,
+    "source_response_sha256": "15ace5c5057e6be5cd4a2deb5b05323b9a66d4efc4616333c90067d8a435c765",
+    "operator_selected_embed_file": "local_data/country-research-2026-10-15-jp-twentysecond/mirai-access.html",
+    "operator_access_sha256": "578cc6aeaa526cb1707ab8f05eeb4e87523a106458f8c7c3a079857fb6f96cd6"
+  },
+  "derivation_review": {
+    "operation": "Direct operator-selected Google object point, reordered longitude/latitude.",
+    "crs": "WGS84 geographic lon/lat served by Google Maps",
+    "ui_limit": "Browser API unavailable during this pass; all selected identity/address/coordinate fields were inspected in the original embed response. No claim of UI visual verification.",
+    "positional_accuracy_inferred": false
+  },
+  "specification_visual_review": {
+    "pdf_pages": [
+      1,
+      3
+    ],
+    "renders": [
+      {
+        "path": "local_data/country-research-2026-10-15-jp-twentysecond/mirai-specification-page1.png",
+        "sha256": "d0ae62f0fcd3936ae5246ea92cc21f08c975c3cd4b11231855226aa2d8b1059a"
+      },
+      {
+        "path": "local_data/country-research-2026-10-15-jp-twentysecond/mirai-specification-page3.png",
+        "sha256": "53c1b6cf49d28735052a6ebb0effc152316b5eeb61c97c97ec32a01a6f859f22"
+      }
+    ],
+    "no1_address_explicit": true,
+    "specification_as_of": "2024-05-30"
+  },
+  "excluded_geometry": [
+    "Operator embed viewport [136.6375714766257,35.36815777269009]",
+    "Headquarters-only inference without named DC specification",
+    "No.2 hall or campus boundary inferred from No.1 selected point"
+  ],
+  "baseline_geometry_envelopes": {
+    "sites.csv": {
+      "checked": 425,
+      "containing_point": []
+    },
+    "projects.csv": {
+      "checked": 451,
+      "containing_point": []
+    }
+  },
+  "raw_capture_redistributed": false
+}

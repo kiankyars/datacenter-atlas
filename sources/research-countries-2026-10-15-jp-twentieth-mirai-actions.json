@@ -1,0 +1,94 @@
+{
+  "format": "datacenter-atlas-action-specs-v1",
+  "as_of": "2026-10-15",
+  "reviewed_at": "2026-10-15",
+  "country": "Japan",
+  "base_dataset": "verified_construction_core/2026-10-15-research-nineteenth",
+  "base_commit": "94f73384f75a9005bdaf32bb47ea670881974537",
+  "base_manifest_sha256": "857cfddb2c243de8bb551855f389710504cc15ec653143dcaef3f2de90f0cb79",
+  "source_files": [
+    {
+      "path": "sources/research-countries-2026-10-15-jp-twentieth-mirai-primary-sources.json",
+      "sha256": "5481a68537734c5d3e41654e0984c092412993dc36fec71cabf13d9389fb7f57"
+    }
+  ],
+  "additions": [
+    {
+      "project_stable_key": "curated:mirai-ogaki-data-center-campus:existing-operations",
+      "physical_site_stable_key": "curated:mirai-ogaki-data-center-campus",
+      "site_name": "Mirai Ogaki Data Center Campus",
+      "name": "Mirai Ogaki Data Center Campus Existing Operations",
+      "country": "Japan",
+      "country_iso_a2": "JP",
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            136.6401464,
+            35.3681578
+          ]
+        },
+        "source_id": "jp-twentysecond-mirai-google-property",
+        "identity_source_ids": [
+          "jp-twentysecond-mirai-facilities",
+          "jp-twentysecond-mirai-specification",
+          "jp-twentysecond-mirai-adjacency",
+          "jp-twentysecond-mirai-access"
+        ],
+        "scope": "campus_locator",
+        "scope_class": "selected_named_map_place_property_point",
+        "authority": "compiled_reference",
+        "derivation": "direct_geometry",
+        "method": "direct_google_maps_selected_named_place_coordinates",
+        "precision": "Operator-embedded Google named-property point at Mirai Ogaki No.1, Kagano 4-1-12. This labels the adjacent MiraiDC campus, whose No.2 facility is across the road. It is not a campus polygon, individual data-hall footprint or separate No.2 building locator.",
+        "identity_review": "Operator specification page 1 explicitly names Mirai Ogaki No.1 Data Center at Kagano 4-1-12; its parking notice independently repeats that address and places No.2 directly across the road. The current official facilities index groups both under MiraiDC. The operator access page embeds this exact named Google property; original embed response associates its feature ID, address, selected coordinates and operator website. The page viewport coordinate is excluded. This is one adjacent named campus with its marker on No.1, not an assumed office-only location.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The mapping service supplies no measured positional accuracy; coordinate decimal precision does not imply survey accuracy."
+      },
+      "status": {
+        "value": "operational",
+        "as_of": "2026-09-29",
+        "source_id": "jp-twentysecond-mirai-current-interview",
+        "summary": "The operator president describes existing Ogaki colocation, hosting and network services. September 29 is the article publication date; interview day is unknown. This is a campus-level operating observation, not a new opening or separate utilization report for each building."
+      },
+      "context_source_ids": [
+        "jp-twentysecond-mirai-facilities",
+        "jp-twentysecond-mirai-specification",
+        "jp-twentysecond-mirai-adjacency",
+        "jp-twentysecond-mirai-access"
+      ],
+      "roles": [
+        {
+          "role": "operator",
+          "party": "Mirai Communication Network Inc.",
+          "relationship_scope": "current",
+          "source_id": "jp-twentysecond-mirai-current-interview"
+        }
+      ],
+      "distinctness_review": "All 425 current sites, 451 projects, 2291 evidence rows and 231 original source records screened across all serialized fields and aliases, plus identity mapping and original spatial coordinates. No candidate identity matches, source collisions or geometry envelopes containing the marker. Nearest site: EdgeConneX Greater Osaka campus (Kagoya Tatara Campus, Kyotanabe), 100,451.8 metres.",
+      "successor_review": "One campus-level record for the operator’s adjacent Ogaki No.1 and No.2 properties. The fresh interview describes the current Ogaki business collectively and does not separately refresh each building’s specifications. Future expansion or refurbishment must be separately evidenced at this campus.",
+      "scoped_project_details": {
+        "aliases": [
+          "MiraiDC",
+          "Mirai Data Center Park",
+          "ミライデータセンターパーク",
+          "ミライ大垣第1データセンター",
+          "ミライ大垣第2データセンター"
+        ],
+        "facility_scope": "Existing adjacent Ogaki No.1 and No.2 data-center campus; marker at No.1 property.",
+        "primary_street_address": "No.1: Kagano 4-1-12, Ogaki, Gifu 503-0006, Japan. No.2 is directly across the road.",
+        "historical_service_start_months": {
+          "No.1": "2003-06",
+          "No.2": "2015-08"
+        },
+        "historical_specification_scope": "May 30, 2024 version 3.1: No.1 maximum 200 racks; No.2 maximum 300 racks. No total occupied-rack or MW claim selected.",
+        "status_date_scope": "Publication-based September 29, 2026 current operator testimony; interview day unknown; campus-level observation.",
+        "ownership_scope": "2024 specification lists No.1 leased from Mirai Industry and No.2 owned by Mirai Communication Network; no single current campus owner normalized.",
+        "individual_building_observation_dates_established": false,
+        "capacity_scope_limit": "Do not sum historical rack maxima into installed or occupied capacity, convert kVA specifications or generator ratings into IT MW, or refresh 2024 specifications to 2026."
+      }
+    }
+  ],
+  "status_updates": [],
+  "context_updates": []
+}
