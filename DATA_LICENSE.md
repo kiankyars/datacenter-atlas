@@ -33,7 +33,7 @@ name the dated data snapshot you used, and say whether you changed the data. For
 
 <!-- atlas:attribution-example -->
 > Data: Data Center Atlas (Kian Kyars), https://kiankyars.github.io/datacenter-atlas/, data updated
-> 2026-10-14, CC BY 4.0. Includes data © OpenStreetMap contributors (ODbL 1.0) and from the other
+> 2026-10-15, CC BY 4.0. Includes data © OpenStreetMap contributors (ODbL 1.0) and from the other
 > sources listed in the dataset's ATTRIBUTION.txt.
 <!-- /atlas:attribution-example -->
 
@@ -63,7 +63,7 @@ them directly from their providers, under the providers' terms; the website's
 ## OpenStreetMap-derived geometries: ODbL 1.0
 
 Some locators are derived from OpenStreetMap; their geometry evidence row has `license` set to
-`ODbL-1.0` (<!-- atlas:osm-geometry-count -->57 of the 442 project geometries, on 55 sites, in the 2026-10-14 data snapshot<!-- /atlas:osm-geometry-count -->). These
+`ODbL-1.0` (<!-- atlas:osm-geometry-count -->57 of the 443 project geometries, on 55 sites, in the 2026-10-15 data snapshot<!-- /atlas:osm-geometry-count -->). These
 geometries are © OpenStreetMap contributors and are available under the ODbL 1.0, not CC BY 4.0.
 Credit "© OpenStreetMap contributors" and link to <https://www.openstreetmap.org/copyright>. If you
 publicly use a derivative database of these geometries, the ODbL's share-alike terms apply to that
