@@ -807,6 +807,25 @@ class InheritedCampusLocatorTests(unittest.TestCase):
         with self.assertRaisesRegex(UpdateError, "new point admissions only"):
             self.payloads()
 
+    def test_roles_use_published_role_and_relationship_scope_codes(self):
+        for scope in ("current", "intended", "unknown"):
+            with self.subTest(scope=scope):
+                self.spec["additions"] = [copy.deepcopy(self.addition)]
+                for role in self.spec["additions"][0]["roles"]:
+                    role["relationship_scope"] = scope
+                payloads, _ = self.payloads()
+                added = next(row for row in csv.DictReader(io.StringIO(payloads["projects.csv"].decode()))
+                             if row["project_stable_key"] == self.addition["project_stable_key"])
+                self.assertEqual({claim["relationship_scope"] for claim in json.loads(added["role_claims_json"])}, {scope})
+        for field, value, expected in (("relationship_scope", "intended; consent applicant", "unknown relationship scope"),
+                                       ("relationship_scope", "Current", "unknown relationship scope"),
+                                       ("role", "developer", "unknown party role")):
+            with self.subTest(field=field, value=value):
+                self.spec["additions"] = [copy.deepcopy(self.addition)]
+                self.spec["additions"][0]["roles"][0][field] = value
+                with self.assertRaisesRegex(UpdateError, expected):
+                    self.payloads()
+
 
 class RetainedImportedStatusTests(unittest.TestCase):
     """Imported partially_operational and proposed records: refreshed, never admitted or assigned."""

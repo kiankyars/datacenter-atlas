@@ -1,0 +1,60 @@
+{
+  "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+  "candidate": "Microsoft Vaughan datacentre (YTO11) — first building",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -79.62864671042952,
+      43.792644152673475
+    ]
+  },
+  "coordinate_reference_system": "WGS84 longitude/latitude returned by the York Region ArcGIS FeatureServer for outSR=4326 with returnCentroid=true; layer native CRS EPSG:26917 (NAD83 / UTM zone 17N). The reprojection and centroid are produced by the regional service; the Atlas applies no further transformation.",
+  "source_url": "https://ww8.yorkmaps.ca/arcgis/rest/services/OpenData/DevelopmentApplicationStatusAndTeams/FeatureServer/0/query?where=APPL_GISID%3D%2722556%27&outFields=OBJECTID,APPL_GISID,REG_FILE_NUM,EXT_REF_NUM,APPL_NAME,APPL_DESC,ADDRESS,LOCATION,MUN_NAME,APPL_STATUS&f=json&returnGeometry=true&returnCentroid=true&outSR=4326",
+  "raw_capture_file": "local_data/country-research-2026-10-16-hyperscaler_sweep/york-yto11-application-centroid.json",
+  "raw_capture_sha256": "2d84dba79611f9e87a795ba6ce18c19251dda2be74e7ae122e881aaa98259ba9",
+  "retrieved_at": "2026-10-16T17:43:37.377+00:00",
+  "extraction": {
+    "feature_count": 1,
+    "attributes": {
+      "OBJECTID": 11997,
+      "APPL_GISID": "22556",
+      "REG_FILE_NUM": "SP.22.V.0111",
+      "EXT_REF_NUM": "DA.22.008",
+      "APPL_NAME": "3288212 Nova Scotia Ltd.; Microsoft Data Processing Centre YTO11",
+      "ADDRESS": "6100 Langstaff Road",
+      "LOCATION": "North of Langstaff Rd and west of Hwy 27",
+      "MUN_NAME": "Vaughan",
+      "APPL_STATUS": "In Progress"
+    },
+    "application_description_projection": "Site plan application for two two-storey data centre buildings, each with a one-storey office component, about 38 at-grade generators, a future utility substation and an interlinked driveway system.",
+    "json_path": "features[0].centroid",
+    "service_centroid_x_y": [-79.62864671042952, 43.792644152673475],
+    "centroid_inside_polygon": true,
+    "polygon_ring_count": 1,
+    "polygon_ring_vertex_count": 18,
+    "polygon_bounds_lon_lat": [-79.63117245702854, 43.790583957862815, -79.62647950004039, 43.79506260117203],
+    "geodesic_area_hectares_wgs84": 11.31,
+    "max_centroid_to_vertex_metres": 286.8,
+    "check_script": "geo/esri_poly_check.py (shapely 2.1.1, pyproj 3.7.1 Geod WGS84)"
+  },
+  "cross_check": {
+    "source_url": "https://ww8.yorkmaps.ca/arcgis/rest/services/OpenData/Location/MapServer/0/query?where=ADDRESS_NUMBER%3D6100%20AND%20STREET_NAME%3D%27LANGSTAFF%27&outFields=PNT_GIS_ID,FULL_CIVIC_ADDR,MUNICIPALITY,ADDRS_PNT_TYPE,PARID,LIFESTATUS,MODDATE&f=json&returnGeometry=true&outSR=4326",
+    "raw_capture_file": "local_data/country-research-2026-10-16-hyperscaler_sweep/york-6100-langstaff-address-point.json",
+    "raw_capture_sha256": "0109089a9d7f99a2f63daca8708dea1dbf0f7b3b060e1e43e2b8517aac21e03d",
+    "result": "York Region address point 259374 (6100 Langstaff Road, Vaughan, type Parcel, Active) at -79.62940004, 43.79223517 lies inside the application polygon, 75.8 m from the service centroid. It is not used as the locator."
+  },
+  "identity_chain": [
+    "Microsoft's August 5, 2026 construction update names its Vaughan datacentre in the City of Vaughan, Ontario, with EllisDon as construction contact, and refers to a second building.",
+    "York Region's official active development application layer returns exactly one feature whose applicant name contains Microsoft: application 22556 (SP.22.V.0111 / DA.22.008), '3288212 Nova Scotia Ltd.; Microsoft Data Processing Centre YTO11', at 6100 Langstaff Road in Vaughan, for two data centre buildings.",
+    "The two-building application matches Microsoft's first building plus planned second building at the Vaughan site.",
+    "The service returns a centroid inside the application polygon; the region's own address point for 6100 Langstaff Road lies inside the same polygon."
+  ],
+  "authority": "official_source",
+  "derivation": "direct_geometry",
+  "scope": "campus_locator",
+  "scope_class": "official_named_development_application_boundary_service_centroid",
+  "precision": "Service centroid of York Region's boundary for Microsoft's two-building YTO11 site plan application (about 11.3 ha). A campus marker; not the first building's footprint, entrance, substation, or a surveyed property boundary.",
+  "horizontal_uncertainty_metres": null,
+  "uncertainty_reason": "The regional service publishes no positional accuracy. The application boundary extends up to about 287 m from the centroid, and the first building's position within it is not mapped.",
+  "excluded_geometry": "Microsoft Canada offices, the Woodbridge postal-code area and third-party directory coordinates are not used. The address point is used only as a cross-check."
+}

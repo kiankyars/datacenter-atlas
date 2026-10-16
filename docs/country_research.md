@@ -72,11 +72,11 @@ does not assert completion or cancellation.
 
 ## Candidate queue
 
-- **United States:** Microsoft Silver Springs now has the service-provided centroid and outline
-  of Microsoft-owned county parcel 015-141-14, but its September work report has only month
-  precision. Silver Springs and Microsoft Lyle Creek therefore remain queued without invented
-  observation days. Frontier's status has been refreshed; its exact campus locator remains
-  unresolved, so the imported county-centre point retains its administrative precision.
+- **United States:** Microsoft Silver Springs and Lyle Creek are resolved in the thirty-first
+  update: each construction page carries a dated modification, bounded by an archived copy, so
+  neither observation day is invented. Frontier's status has been refreshed; its exact campus
+  locator remains unresolved, so the imported county-centre point retains its administrative
+  precision. A locator replacement needs a separate reviewed geometry correction.
 - **China:** the [GDS second-quarter results](https://investors.gds-services.com/index.php/news-releases/news-release-details/gds-holdings-limited-reports-second-quarter-2026-results)
   are an operator lead; aggregate construction area does not identify individual sites. Review
   the [China Mobile Beijing No.6 parcel procurement](https://ggzyfw.beijing.gov.cn/jyxxzbhxrgs/20260901/5692101.html)
@@ -87,7 +87,9 @@ does not assert completion or cancellation.
   pair still needs individual project identities.
   Beijing No6 is now admitted with a clearly labelled marker inside the broader existing campus;
   its exact C18 parcel remains unresolved, including conflicting northeast/southeast descriptions.
-  China Mobile Shaoguan C/D has an official site plan, but its survey coordinate system is unstated.
+  China Mobile Shaoguan C/D is now admitted. Its site plan states no survey coordinate system, so
+  the point rests on an inferred CGCS2000 zone checked against imagery and is labelled as a
+  compiled coordinate transform; the same applies to the neighbouring Telecom and Unicom phases.
 - **United Kingdom:** keep Edinburgh's CR4 extension on the existing ACF campus as its status
   changes. Kao Manchester has evidence of site preparation and electrical enabling works; confirm
   its precise site location and obtain a later primary observation than 1 July, now 104 days old.
@@ -213,3 +215,35 @@ That point is labelled as a parent-property marker and does not locate the propo
 The city’s October concept allocates about 15 hectares to AI use within the 25-hectare host
 property; this remains a conceptual allocation. The adjacent Karahama land and prospective
 1 GW regional concept are excluded. All inherited records and earlier evidence are retained.
+
+## 16 October 2026
+
+Two research waves ran in parallel: eight regional lanes (United States, China, United Kingdom
+and Ireland, continental Europe, Japan, India with the Middle East and Africa, other Asia-Pacific
+and other Americas) and twelve wider lanes (Africa, eastern Europe, Korea and Taiwan, Mexico and
+Central America, the Middle East, Russia and Central Asia, Southeast Asia, sovereign programmes,
+and sweeps of hyperscaler, neocloud and investor disclosures and US permit records). A synthesis
+per wave rehashed every relied-on capture, re-read each decisive status statement, recomputed the
+locators and screened every candidate against the full Atlas and the other wave.
+
+`verified_construction_core/2026-10-16-research-thirtyfirst` publishes the result:
+**516 sites and 543 projects in 60 countries**. It adds 79 sites and 80 projects, refreshes 18
+projects and attaches context to 6. The six new countries are the Democratic Republic of the
+Congo, Uganda, Mozambique, Angola, Tanzania and Taiwan, and the first Chilean records come from
+the national environmental assessment register. New South Wales planning records add eleven
+consented or proposed developments, and Texas building registrations add seven announced
+buildings in the Austin and Dallas areas and the Rio Grande Valley.
+
+The update is dated 16 October because several observations leave the 90-day window after
+18 October. Galaxy Helios Phase II was proposed by both waves from the same letter; one action
+is kept. Firmus Bell Bay's planning permit was granted, but a lodged appeal means it has not taken
+effect, so the project is announced until the tribunal decides. Microsoft Vaughan records
+completed building construction only. Page modification dates, inferred datums and inferential
+parcel links are disclosed in the records that rely on them.
+
+The 461 candidates reviewed but not admitted are listed with their reasons and reopening
+conditions in
+[`sources/research-countries-2026-10-16-thirtyfirst-holds.json`](../sources/research-countries-2026-10-16-thirtyfirst-holds.json).
+They include Raxio Ethiopia and Côte d'Ivoire (portfolio statements only), Global Switch London
+and AdaniConneX Chennai (no present-tense operating statement), a second Soluna Kati project and
+locator corrections for existing records, which the update format cannot yet express.

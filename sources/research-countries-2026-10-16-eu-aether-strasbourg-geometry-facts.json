@@ -1,0 +1,52 @@
+{
+  "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+  "candidate": "Aether Infrastructures FR-SXB2 AI Factory campus, former Dumarey Powerglide site, Port du Rhin, Strasbourg",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      7.777093,
+      48.514718
+    ]
+  },
+  "coordinate_reference_system": "WGS84 longitude/latitude as returned by the IGN Geoplateforme geocoding service (BAN housenumber); the response also gives Lambert-93 x=1052597.55, y=6834499.36, which pyproj 3.7.1 reproduces exactly from the WGS84 pair. No transformation applied to the published point.",
+  "source_url": "https://data.geopf.fr/geocodage/search?q=81%20rue%20de%20la%20Rochelle%2067100%20Strasbourg&limit=5",
+  "raw_capture_file": "local_data/country-research-2026-10-16-europe/geopf-geocode-81-rue-de-la-rochelle.json",
+  "raw_capture_sha256": "fa817721fac44ed7154578a42dff37c25f7027c885a69389808613a339886ab7",
+  "retrieved_at": "2026-10-16T18:09:44.442Z",
+  "extraction": {
+    "result_index": 0,
+    "label": "81 Rue de La Rochelle 67100 Strasbourg",
+    "type": "housenumber",
+    "id": "67482_3870_00081",
+    "banId": "3cf60786-63fa-4f36-9ccb-3a9aa4a04de1",
+    "score": 0.9733227272727271
+  },
+  "authority": "official_source",
+  "derivation": "direct_geometry",
+  "scope": "campus_locator",
+  "scope_class": "official_address_point_parent_property_marker",
+  "identity_chain": [
+    "2CRSi's October 12, 2026 release says Aether Infrastructures signed a preliminary sale agreement on October 9 for the Dumarey Powerglide industrial site (formerly Punch Powerglide and General Motors) in Strasbourg's Port du Rhin district, named FR-SXB2.",
+    "The official company register (recherche-entreprises.api.gouv.fr, INSEE SIRENE data) lists DUMAREY POWERGLIDE STRASBOURG SAS (SIREN 542094750), whose only active establishment and registered seat is SIRET 54209475000081 at 81 rue de la Rochelle, 67100 Strasbourg. All its other establishments are closed and lie outside Strasbourg.",
+    "The IGN Geoplateforme geocoder returns that exact housenumber (BAN id 67482_3870_00081). The registry establishment coordinate lies 19.1 m from it.",
+    "IGN API Carto places the point inside cadastral parcel 67482000KC0305 (Strasbourg section KC no. 305, 251,134 m2), 94.1 m from the parcel boundary. The release describes the whole site as around 90 ha, so the parcel is one part of it."
+  ],
+  "containment_check": {
+    "parcel_source": "local_data/country-research-2026-10-16-europe/apicarto-parcelle-81-rochelle.json",
+    "parcel_source_sha256": "4c5d571de5fe66af6f1dacf0c0e74cca13788b200d9e7b7fc7bd31008d0a82af",
+    "parcel_idu": "67482000KC0305",
+    "parcel_contenance_m2": 251134,
+    "parcel_area_m2_computed_lambert93": 251016.3,
+    "point_inside_parcel": true,
+    "point_distance_to_parcel_boundary_m": 94.1,
+    "parcel_bbox_diagonal_m": 1036.1,
+    "tools": "pyproj 3.7.1 (EPSG:4326 -> EPSG:2154), shapely 2.1.1",
+    "use": "Verification only; the parcel polygon is not published."
+  },
+  "excluded_routes": [
+    "api-adresse.data.gouv.fr: its robots.txt disallows all paths. One query was sent in the same command that fetched robots.txt, before the result was read. That capture (ban-81-rue-de-la-rochelle.json) is not relied on, and the Geoplateforme successor service was used instead."
+  ],
+  "not_located": "The AI Factory buildings (\"recently built premises\"), the server-manufacturing workshops, the energy plant, the occupied lease areas and the full roughly 90 ha site boundary.",
+  "horizontal_uncertainty_metres": null,
+  "uncertainty_reason": "The address point has no published source-specific horizontal accuracy; it marks the industrial site address, not the AI Factory building within a site of about 90 ha."
+}

@@ -1,0 +1,41 @@
+{
+  "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+  "candidate": "Chief Telecom LY2 (聯雲 AI 智能資料中心), Neihu, Taipei",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      121.5777771,
+      25.0627495
+    ]
+  },
+  "coordinate_reference_system": "Native Taipei City house-number coordinates read as TWD97 / TM2 zone 121 (EPSG:3826) and transformed to WGS84 (EPSG:4326) with pyproj 3.7.1 (always_xy); output rounded to 7 decimals.",
+  "source_url": "https://data.taipei/api/dataset/b7c8e724-1e98-45ee-a0bd-f3840623ed97/resource/ce76ca0c-7f94-4935-ab47-1d2a41ca2abb/download",
+  "raw_capture_file": "local_data/country-research-2026-10-16-korea_taiwan/taipei-house-number-points-20261002.csv",
+  "raw_capture_sha256": "7212058161f10a13d52ee46e74155526ca4ebf182b151562ba0e533f882a89ab",
+  "dataset_metadata_file": "local_data/country-research-2026-10-16-korea_taiwan/taipei-house-number-dataset-metadata.json",
+  "extraction": {
+    "match_rule": "鄉鎮市區代碼 63000100 (Neihu), 街路段 舊宗路一段, empty 巷/弄, 號 ２５５號 and its floor variants (二樓..七樓, 六樓之１)",
+    "matched_rows": 8,
+    "distinct_native_coordinates": 1,
+    "village_neighbourhood": "湖元里 鄰018",
+    "native_xy": [
+      308291.80319999997,
+      2772852.3426
+    ],
+    "transform_script": "/Users/kian/.claude/jobs/ca498c66/tmp/research-2026-10-16-wide/korea_taiwan/ly2_transform.py"
+  },
+  "crs_review": "The captured dataset metadata does not name the datum. The values fit TM2 zone 121 (false easting 250000). A control transform of the same file's 市府路1號 (Taipei City Hall) row gives 25.037523 N, 121.5637838 E, consistent with WGS84 only under the TWD97 reading; the TWD67 projected grid would be offset by roughly 800 m. This is a consistency check, not a stated CRS.",
+  "authority": "compiled_reference",
+  "derivation": "coordinate_transform",
+  "scope": "project_locator",
+  "scope_class": "official_house_number_door_plate_point",
+  "identity_chain": [
+    "Chief Telecom's 2025 sustainability report (June 30, 2026) states that its LY2 machine room is the 聯雲大樓 at 台北市內湖區舊宗路一段255號.",
+    "The 2025 annual report (May 2026) says LY2 was built on Jiuzong Road in Neihu from October 2021, offers 20 MW and has provided commercial service since June 2024; its GHG-assurance scope lists 舊宗路一段255號 floors 1 to 7 as the company's only Jiuzong Road site, and its leased land is 內湖區舊宗段55地號 (50-year lease).",
+    "The Taipei City Department of Civil Affairs house-number dataset (file dated 2026-10-02) contains exactly one native coordinate for 舊宗路一段255號 and all of its floor variants."
+  ],
+  "precision": "Official door-plate (house-number) point for No. 255, Sec. 1, Jiuzong Rd, the LY2 building address. It does not delineate the building footprint, the leased 舊宗段55 parcel or any campus boundary.",
+  "horizontal_uncertainty_metres": null,
+  "uncertainty_reason": "The house-number dataset publishes no positional accuracy and does not declare its datum in the captured metadata; transformation accuracy is not site-location accuracy.",
+  "excluded_geometry": "Chief Telecom's registered head office (瑞光路68號2樓) and its other Neihu buildings (LY 麗源, HD 宏鼎, TF) are separate addresses and are not used."
+}

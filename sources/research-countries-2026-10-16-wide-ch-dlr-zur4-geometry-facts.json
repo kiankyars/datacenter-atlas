@@ -1,0 +1,103 @@
+{
+  "candidate_id": "digital-realty-zur4-glattbrugg",
+  "decision": "Selected the GWR official entrance-address point of ZUR2 (Bäulerwisenstrasse 4) as a parent-campus marker for ZUR4; ZUR4's own building or plot is not identified.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      8.556645,
+      47.433812
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_register_existing_campus_building_address_point_as_parent_campus_locator",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-2026-10-16-investor_filings/gwr-egid-210221229.json",
+  "source_sha256": "6d531e86313c0fa61aee1b3f62585e27f1ca9381e9b08dd61fe56f113a9367fe",
+  "source_url": "https://api3.geo.admin.ch/rest/services/ech/MapServer/find?layer=ch.bfs.gebaeude_wohnungs_register&searchText=210221229&searchField=egid&returnGeometry=true&geometryFormat=geojson&sr=4326&contains=false",
+  "retrieved_at": "2026-10-16T18:35:52.582Z",
+  "selected_properties": {
+    "egid": "210221229",
+    "strname_deinr": "Bäulerwisenstrasse 4",
+    "dplz4": 8152,
+    "dplzname": "Glattbrugg",
+    "ggdename": "Rümlang",
+    "ggdenr": 97,
+    "egrid": "CH640217779803",
+    "lparz": "5711",
+    "gstat": 1004,
+    "gbauj": 2021,
+    "garea": 4326,
+    "gkode": 2684350.483,
+    "gkodn": 1254230.647,
+    "dkode": 2684342.293,
+    "dkodn": 1254268.563,
+    "gexpdat": "14.10.2026"
+  },
+  "identity_bridge": [
+    "Digital Realty (August 27, 2026): ZUR4 expands the Glattbrugg campus comprising ZUR1, ZUR2 and ZUR3.",
+    "Digital Realty ZUR2 page and Zurich metro page: ZUR2 is at Bäulerwisenstrasse 4, 8152 Glattbrugg.",
+    "GWR EGID 210221229 is the existing 2021 building at Bäulerwisenstrasse 4, 8152 Glattbrugg."
+  ],
+  "consistency_checks": {
+    "service_point": [
+      8.556645,
+      47.433812
+    ],
+    "pyproj_from_gkode_gkodn": [
+      8.5567462,
+      47.4334695
+    ],
+    "service_vs_pyproj_m": 38.83,
+    "operator_zur2_point": [
+      8.55659,
+      47.43339
+    ],
+    "service_vs_operator_zur2_m": 47.1,
+    "operator_zur1_point": [
+      8.55763,
+      47.43313
+    ],
+    "service_vs_operator_zur1_m": 106.0,
+    "operator_zur3_point": [
+      8.55698,
+      47.43404
+    ],
+    "service_vs_operator_zur3_m": 35.7,
+    "gwr_projected_baeulerstrasse9_point": [
+      8.556483,
+      47.434691
+    ],
+    "service_vs_baeulerstrasse9_m": 98.5,
+    "kix10_operator_point": [
+      135.5158993,
+      34.8614235
+    ],
+    "kix10_vs_kix11_m": 349.2,
+    "kix10_vs_kix12_m": 247.8,
+    "kix10_vs_kix13_m": 382.9,
+    "kix10_vs_gsi_chome_centroid_m": 182.8,
+    "versions": {
+      "pyproj": "3.7.1",
+      "proj": "9.5.1"
+    }
+  },
+  "transform_check": "Service point equals LV95 dkode/dkodn transformed with pyproj 3.7.1 (EPSG:2056 to EPSG:4326); the building coordinate gkode/gkodn lies 38.8 m south.",
+  "excluded_coordinates": [
+    {
+      "kind": "GWR projected building Bäulerstrasse 9 (EGID 192044495)",
+      "point": [
+        8.556483,
+        47.434691
+      ],
+      "reason": "Projected industrial building about 99 m north; no source ties it to ZUR4."
+    },
+    {
+      "kind": "operator metro hero coordinate",
+      "point": [
+        8.54236,
+        47.37503
+      ],
+      "reason": "Zurich city-level map centre on the metro page, not the campus."
+    }
+  ]
+}

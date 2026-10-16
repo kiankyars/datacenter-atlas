@@ -1,0 +1,51 @@
+{
+  "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+  "candidate": "Digital Realty (iColo) Nairobi Karen Campus — NBO2",
+  "intended_repository_path": "sources/research-countries-2026-10-16-india-mea-icolo-nairobi-geometry-facts.json",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      36.7485148,
+      -1.3497326
+    ]
+  },
+  "coordinate_reference_system": "WGS84 longitude/latitude as published in the operator-linked Google Maps place URL (!3d latitude, !4d longitude); no transformation applied",
+  "source_url": "https://www.google.com/maps/place/icolo.io+NBO+1+Data+Center/@-1.3497272,36.7463261,17z/data=!3m1!4b1!4m5!3m4!1s0x182f053f4c70a2ad:0xa26bc4ab8dd5fef8!8m2!3d-1.3497326!4d36.7485148",
+  "raw_capture_file": "local_data/country-research-2026-10-16-india_mea/icolo-nbo1-operator-linked-gmap.html",
+  "raw_capture_sha256": "65d63bc71bfc6adaf03a39e73e68f7c1398aecf23306240f8c2c0cb5302e94ad",
+  "retrieved_at": "2026-10-16T16:42:34.993Z",
+  "source_selection": "The operator's official NBO1 location page (iColo, now Digital Realty) links this exact Google Maps place from its 'Locate us' control.",
+  "official_map_selector_file": "local_data/country-research-2026-10-16-india_mea/icolo-nbo1.html",
+  "official_map_selector_sha256": "38d9322a42f180aaeecb452cc58eeb8b573d50e266c01586c4c48e6dfb28a3de",
+  "extraction": {
+    "feature_name": "icolo.io NBO 1 Data Center",
+    "feature_id": "0x182f053f4c70a2ad:0xa26bc4ab8dd5fef8",
+    "source_tuple_latitude_longitude": [
+      -1.3497326,
+      36.7485148
+    ],
+    "tuple_location": "URL data parameters !8m2!3d-1.3497326!4d36.7485148, present verbatim in the operator page href and echoed in the captured Google place response"
+  },
+  "excluded_viewport_center": {
+    "longitude": 36.7463261,
+    "latitude": -1.3497272
+  },
+  "excluded_geometry": [
+    "Digital Realty NBO1 and NBO2 facility pages both publish field_latitude -1.32226 and field_longitude 36.70718. The identical pair for two facilities lies about 5.5 km north-west of the selected operator-linked NBO1 point, in the wider Karen suburb; it is treated as a metro/suburb placeholder, not a facility locator.",
+    "An unofficial Google listing labelled 'iColo.io NBO2' (Bogani East Road, about -1.35324, 36.75176, roughly 0.53 km south-east of the selected point) was seen only in exploratory search output. It is not operator-selected and is not used.",
+    "Exploratory Google search output reported the same NBO1 feature ID at about -1.35024, 36.74915, roughly 90 m from the operator-linked tuple; the operator-published tuple is retained and the discrepancy is recorded as unresolved."
+  ],
+  "authority": "compiled_reference",
+  "derivation": "direct_geometry",
+  "scope": "campus_locator",
+  "scope_class": "operator_linked_named_constituent_facility_marker_as_parent_campus_locator",
+  "identity_chain": [
+    "Digital Realty's September 7, 2026 release announces the opening of NBO2, 'built alongside' NBO1, expanding its Nairobi campus.",
+    "Digital Realty's Nairobi Karen Campus factsheet places both NBO1 and NBO2 on LRC Road in Karen, near the IBM Research facility, at Langata South Road and LRC Road.",
+    "The official iColo (now Digital Realty) NBO1 location page links the exact named Google place 'icolo.io NBO 1 Data Center', feature 0x182f053f4c70a2ad:0xa26bc4ab8dd5fef8.",
+    "The iColo contact page gives the Kenya office as LRC Road off Langata South Road, Karen, and lists NBO1 and NBO2 as visitable facilities."
+  ],
+  "precision": "Operator-linked NBO1 constituent-facility marker used as the parent locator for the two-facility Nairobi Karen campus. It does not locate the NBO2 building, its footprint, entrance, parcel or campus boundary.",
+  "horizontal_uncertainty_metres": null,
+  "uncertainty_reason": "The operator-linked map place publishes no surveyed horizontal accuracy, and NBO2's position relative to NBO1 within the campus is not published."
+}

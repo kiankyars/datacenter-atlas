@@ -1,0 +1,52 @@
+{
+  "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+  "candidate": "ENKA Data Solutions EDS IST 02 Gebze Data Center — first phase",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      29.38437845554731,
+      40.79967444069151
+    ]
+  },
+  "coordinate_reference_system": "Decimal latitude/longitude published by the operator page for a Google Maps-based widget and outbound Google/Yandex links; WGS84 web-map convention; no transformation applied",
+  "source_url": "https://enkadatasolutions.com/locations/eds-ist-02-gebze/",
+  "raw_capture_file": "local_data/country-research-2026-10-16-middle_east/enka-eds-ist02-gebze.html",
+  "raw_capture_sha256": "b9d6ab93978b16a3006267ca852ee54348cb4efe3b3be97bf82afbadcb2deec2",
+  "retrieved_at": "2026-10-16T17:57:25.987Z",
+  "source_selection": "The first-party ENKA Data Solutions EDS IST 02 Gebze facility page publishes the Gebze Data Center address and map pins. It is the same page family and method as the existing EDS IST 01 Tuzla project locator.",
+  "extraction": {
+    "selected_pin": {
+      "element": "premium-pin with datacenter_pin icon",
+      "data_lat": "40.79967444069151",
+      "data_lng": "29.38437845554731",
+      "info_title": "Gebze Data Center",
+      "outbound_links": [
+        "https://www.google.com/maps/?q=40.79967444069151,29.384378455554731",
+        "https://yandex.com/maps/?ll=29.384378455554731,40.79967444069151&z=16"
+      ],
+      "zero_based_character_offset": 416041
+    },
+    "address_as_reported": "Beylikbağı, İstanbul Cd. No:27, 41400 Gebze, Kocaeli, Türkiye",
+    "consistency": "Both Gebze info windows on the page link to 40.79967444069151, 29.384378455554731. The selected datacenter_pin data attributes match that pair; the extra trailing digit in the link longitude differs by about 1e-11 degrees. The same page's Tuzla footer pin (40.835152897406935, 29.323671897992956) equals the existing Atlas IST 01 locator exactly, so this page family uses one consistent convention.",
+    "unselected": [
+      {
+        "element": "premium-pin with MapPin_blue icon in the FIND MY WAY widget",
+        "data_lat": "40.79973129267585",
+        "data_lng": "29.384292624859054",
+        "reason": "This header widget pin is about 9.6 m from the selected point. Its own info-window links point to the selected coordinate pair instead, so it is treated as a display offset."
+      },
+      {
+        "element": "widget map centres",
+        "reason": "Map viewport centres, not features."
+      }
+    ]
+  },
+  "authority": "official_source",
+  "derivation": "direct_geometry",
+  "scope": "project_locator",
+  "scope_class": "first_party_facility_page_reference_point",
+  "precision": "Operator map reference point for the planned EDS IST 02 Gebze Data Center at Beylikbağı, İstanbul Cd. No:27, Gebze. It is not a parcel, building footprint, construction extent or surveyed position; source decimal places do not imply survey accuracy.",
+  "horizontal_uncertainty_metres": null,
+  "uncertainty_reason": "The page does not identify a geodetic datum, surveyed reference feature, collection method or numeric horizontal accuracy.",
+  "excluded_geometry": "No street-address geocoding, map-tile reading or imagery was used."
+}

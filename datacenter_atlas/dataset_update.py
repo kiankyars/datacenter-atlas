@@ -432,6 +432,7 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
         roles = []
         for role in item.get("roles", []):
             _require(role["role"] in {"owner", "operator", "user", "tenant", "customer"}, "unknown party role")
+            _require(role["relationship_scope"] in {"current", "intended", "unknown"}, "unknown relationship scope")
             roles.append({"party": _text(role["party"], "party"), "role": role["role"], "relationship_scope": role["relationship_scope"], "evidence_id": associate(role["source_id"], pid, "role:" + role["role"])})
         row["role_claims_json"] = _json(roles)
         for role, column in (("owner", "owner"), ("operator", "operator"), ("user", "users"), ("tenant", "tenants"), ("customer", "customers")):

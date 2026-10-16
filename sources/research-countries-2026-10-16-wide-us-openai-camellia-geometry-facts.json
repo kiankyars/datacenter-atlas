@@ -1,0 +1,74 @@
+{
+  "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+  "candidate": "OpenAI Project Camellia, Effingham County, Georgia — planned AI data-centre campus",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -81.2629871231605,
+      32.25854279027115
+    ]
+  },
+  "coordinate_reference_system": "WGS84 longitude/latitude returned by Effingham County's public ArcGIS feature service (Parcels2024, owner account Effingham_GIS) for outSR=4326 with returnCentroid=true; layer native CRS Web Mercator (EPSG:3857). The reprojection and centroid are produced by the service; the Atlas applies no further transformation.",
+  "source_url": "https://services.arcgis.com/9scQWTgPOi3GxJRr/arcgis/rest/services/Parcels2024/FeatureServer/0/query?where=UPPER(LASTNAME)%20LIKE%20%27%25OCTANS%25%27&outFields=FID,PIN,PARCEL_NO,LASTNAME,TOTALACRES,ACRES,StreetAdd,SalesDate,DEEDPAGE,PLOTPAGE,zoningcode,LEGAL_DESC&returnGeometry=true&returnCentroid=true&outSR=4326&f=json",
+  "raw_capture_file": "local_data/country-research-2026-10-16-hyperscaler_sweep/effingham-parcels-octans-centroid.json",
+  "raw_capture_sha256": "baf15f23a649bd9140a30c0bd54847052cc939a8ee28630fb83ae57de87349c0",
+  "retrieved_at": "2026-10-16T18:15:33.398+00:00",
+  "extraction": {
+    "feature_count": 3,
+    "selected_feature": {
+      "PARCEL_NO": "04330001E00",
+      "LEGAL_DESC": "739.95 AC PAR 3M1 (OUT 433-1) PLT 30/354",
+      "StreetAdd": "0 GATEWAY PKWY",
+      "zoningcode": "I-1",
+      "SalesDate": "2026-07-24",
+      "DEEDPAGE": "3059 291"
+    },
+    "other_features_same_sale": [
+      {
+        "PARCEL_NO": "04330001",
+        "LEGAL_DESC": "607.19 AC (SPLT 433-1RW1) PLT 30/358",
+        "StreetAdd": "0 GOSHEN RD",
+        "SalesDate": "2026-07-24",
+        "DEEDPAGE": "3059 291"
+      },
+      {
+        "PARCEL_NO": "04330001A00",
+        "LEGAL_DESC": "121.77 AC TRCT B2 (OUT 433-1)",
+        "StreetAdd": "0 HODGEVILLE RD",
+        "SalesDate": "2026-07-24",
+        "DEEDPAGE": "3059 291"
+      }
+    ],
+    "json_path": "features[PARCEL_NO=04330001E00].centroid",
+    "service_centroid_x_y": [
+      -81.2629871231605,
+      32.25854279027115
+    ],
+    "centroid_inside_polygon": true,
+    "selected_parcel_geodesic_area_acres_wgs84": 739.97,
+    "selected_parcel_max_centroid_to_vertex_metres": 1324,
+    "three_parcel_union_geodesic_area_acres_wgs84": 1443.8,
+    "three_parcel_union_bounds_lon_lat": [
+      -81.285035,
+      32.234441,
+      -81.250408,
+      32.268036
+    ],
+    "check_script": "geo/octans_check.py (shapely 2.1.1, pyproj 3.7.1 Geod WGS84); visual comparison img/octans-site.png against presentation page 6"
+  },
+  "identity_chain": [
+    "OpenAI's July 22, 2026 post names Project Camellia, a datacenter project OpenAI is designing and developing in Effingham County, Georgia, and places the proposed site in the Savannah Gateway Industrial Hub.",
+    "Effingham County's August 29, 2026 Board of Commissioners work-session presentation describes the site as the Savannah Gateway Industrial Hub (former Research Forest Tract, acquired by the Effingham County Industrial Development Authority in 2006). It records that OpenAI entered into an MOU and purchased the property in July/August 2026. Its page-6 concept plan shows data-centre buildings DC01 to DC04 along Effingham Parkway and the Gateway Parkway extension, between Blue Jay Road, McCall Road and Goshen Road.",
+    "The county's official resource page states that the Industrial Development Authority's tax-relief commitment follows the land sale to OpenAI.",
+    "The county parcel service records three Savannah Gateway Industrial Hub parcels (433-1, 433-1E and 433-1A, about 1,469 assessed acres) sold together on 2026-07-24 under deed book/page 3059/291 to OCTANS GA LLC, a Delaware-addressed buyer. Rendered with the county road centrelines, their union reproduces the concept plan's outline: a jagged northern edge, a block crossed diagonally by Effingham Parkway, and the Gateway Parkway split. The Industrial Development Authority retains its other parcels in the hub.",
+    "No official record found names OCTANS GA LLC as an OpenAI entity. The buyer's identity rests on the matching sale timing, location and plan footprint."
+  ],
+  "authority": "official_source",
+  "derivation": "direct_geometry",
+  "scope": "campus_locator",
+  "scope_class": "official_county_parcel_service_centroid_matching_project_concept_plan",
+  "precision": "County-service centroid of the largest of three parcels (about 740 acres) whose union matches the county's Project Camellia concept plan. It is a campus marker for the eastern block, planned for buildings DC01 and DC02. It does not mark a building, entrance, substation or the planned construction extent. The full site is about 1,444 acres across three parcels.",
+  "horizontal_uncertainty_metres": null,
+  "uncertainty_reason": "The county service publishes no positional accuracy. The selected parcel extends up to about 1.3 km from its centroid, the three-parcel site spans about 3.3 km by 3.7 km, and the final site plan is still in development.",
+  "excluded_geometry": "Effingham County centre, Rincon town centre, the industrial hub's other authority-owned parcels and any georeferencing of the concept-plan image are not used. The concept plan is used only for visual identity comparison."
+}

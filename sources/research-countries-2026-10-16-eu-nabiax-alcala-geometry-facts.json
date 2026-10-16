@@ -1,0 +1,60 @@
+{
+  "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+  "candidate": "Nabiax Alcalá Data Center Campus - ADC3 (Alcalá Data Center 3)",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -3.3409773439880954,
+      40.5195016897773
+    ]
+  },
+  "coordinate_reference_system": "WGS84 longitude/latitude (EPSG:4326) as returned by the CartoCiudad geocoder service; the CartoCiudad FAQ states that its services other than the download centre deliver EPSG:4326. No transformation applied.",
+  "source_url": "https://www.cartociudad.es/geocoder/api/geocoder/candidates?q=Avenida%20Punto%20Com%2023%20Alcal%C3%A1%20de%20Henares&limit=5",
+  "raw_capture_file": "local_data/country-research-2026-10-16-europe/cartociudad-punto-com-23.json",
+  "raw_capture_sha256": "51bc6366cbf69d61670a80e20efc7c884164bba1df3edb3b79d6da084e1a3417",
+  "retrieved_at": "2026-10-16T16:46:26.608Z",
+  "extraction": {
+    "result_index": 0,
+    "id": "13.PV.MUN_280050410134",
+    "type": "portal",
+    "address": "AVENIDA PUNTO COM 23, Alcalá de Henares",
+    "postalCode": "28805",
+    "portalNumber": 23,
+    "refCatastral": "1156716VK7815S",
+    "lat": 40.5195016897773,
+    "lng": -3.3409773439880954,
+    "excluded_results": "Results 1-4 are portals 13, 9, 7 and 5 on other cadastral parcels and are not used."
+  },
+  "authority": "official_source",
+  "derivation": "direct_geometry",
+  "scope": "campus_locator",
+  "scope_class": "official_address_point_campus_locator",
+  "identity_chain": [
+    "Nabiax's official contact page lists 'Alcalá Data Center Campus' at Avenida Punto Com, 23, 28805 Alcalá de Henares, separate from its Julián Camarillo head office.",
+    "The selected CartoCiudad portal result is the exact street number and carries cadastral reference 1156716VK7815S.",
+    "Catastro Consulta_DNPRC for 1156716VK7815S returns AV PUNTO COM 23, urban industrial use, a 78,394 m2 parcel, 43,474 m2 built and construction year 2012 (ADC1 opened in 2013 per the operator).",
+    "The Alcalá de Henares infrastructure special plan (initial-approval version, January 2023; Internet Archive copy) places the planned ST Cisneros substation on a 3,726.30 m2 subparcel of that same 78,394 m2 parcel (plan parcel 6-7) and says it is needed for NABIAX's power request for its new hosting centre in Alcalá. Parcel 6-7 has 61,533 m2 maximum buildability, of which 31,201.43 m2 was consumed.",
+    "The city record of September 18, 2026 describes ADC3 as the construction of a third building within the Campus Externo, taking the complex past 100 MW IT. The operator campus page says the campus has its first two phases built and 100 MW expansion potential."
+  ],
+  "containment_check": {
+    "parcel_source": "local_data/country-research-2026-10-16-europe/catastro-inspire-parcel-1156716VK7815S-http.gml",
+    "parcel_source_sha256": "8e28d8e964ac8f421d01eac83bcbd3f40ca6be5aadd27194715a4a968fb18883",
+    "parcel_crs": "EPSG:25830 (ETRS89 / UTM 30N) as served by the Catastro INSPIRE WFS",
+    "transform": "pyproj 3.7.1 EPSG:4326 -> EPSG:25830, always_xy; shapely 2.1.1",
+    "parcel_area_m2_computed": 78393.5,
+    "parcel_area_m2_declared": 78394,
+    "point_inside_parcel": true,
+    "point_distance_to_parcel_boundary_m": 17.2,
+    "point_max_distance_to_parcel_vertex_m": 388.6,
+    "catastro_cpmrc_reference_point": [
+      -3.34152101176825,
+      40.5190127432984
+    ],
+    "catastro_point_inside_parcel": true,
+    "portal_to_catastro_point_m": 71.2,
+    "use": "Verification only; the parcel polygon is not published as geometry and the Catastro point is not substituted."
+  },
+  "not_located": "ADC3 building footprint, the ST Cisneros subparcel, construction extent, entrances and any adjacent parcel. Whether every part of ADC3 lies inside parcel 1156716VK7815S is not confirmed by a primary source.",
+  "horizontal_uncertainty_metres": null,
+  "uncertainty_reason": "The returned address point has no published source-specific horizontal accuracy; decimal precision is not accuracy."
+}

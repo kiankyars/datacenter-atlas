@@ -1,0 +1,53 @@
+{
+  "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+  "candidate": "Google Horndal data centre (Avesta, Sweden)",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      16.402072554128004,
+      60.3205311307345
+    ]
+  },
+  "coordinate_reference_system": "WGS84 longitude/latitude. The municipal GeoServer (karta.vdmb.se) reprojects the property polygon to EPSG:4326 for srsName=EPSG:4326; the layer's native CRS is EPSG:3010 (SWEREF99 16 30). The Atlas computes only the planar area centroid of the returned WGS84 ring, applying no coordinate transformation. Cross-check: transforming the native EPSG:3010 polygon with pyproj 3.7.1 reproduces the server vertices within 0.003 m and the centroid within 0.10 m.",
+  "source_url": "https://karta.vdmb.se/geoserver/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=konsult:rk_fastighet_y&outputFormat=application/json&srsName=EPSG:4326&propertyName=rk_fastighet,rk_kommun,rk_trakt,rk_block_enhet,rk_omrade,rk_xyfel,rk_objektid,td_andrad_datum,geom&CQL_FILTER=rk_fastighet%3D%27HORNDALSBYN%2012%3A28%27",
+  "raw_capture_file": "local_data/country-research-2026-10-16-hyperscaler_sweep/vdmb-horndalsbyn-12-28-wgs84.json",
+  "raw_capture_sha256": "c4ab6bbe686811a4b19357c2d0ec5b4f429f27bfe690b9bda5073b6ba4e004cf",
+  "retrieved_at": "2026-10-16T18:20:28.353+00:00",
+  "native_cross_check_capture": {
+    "raw_capture_file": "local_data/country-research-2026-10-16-hyperscaler_sweep/vdmb-horndalsbyn-12-28-native.json",
+    "raw_capture_sha256": "51ecc6fd14c7774d5ba5891fb4b5d8d1027b3f9a46a74929f4bf7c9342a862b3",
+    "crs": "EPSG:3010"
+  },
+  "extraction": {
+    "feature_count": 1,
+    "feature_id": "rk_fastighet_y.99",
+    "attributes": {
+      "rk_fastighet": "HORNDALSBYN 12:28",
+      "rk_kommun": "AVESTA",
+      "rk_omrade": "1",
+      "rk_xyfel": 0.05,
+      "rk_objektid": "5a3aac7a-52db-432c-e053-7e44ed8f92f3",
+      "td_andrad_datum": "2024-09-20T21:00:19.986Z"
+    },
+    "geometry_type": "Polygon (single ring, 13 vertices)",
+    "geodesic_area_hectares_wgs84": 108.79,
+    "centroid_method": "shapely 2.1.1 planar area centroid of the server-returned WGS84 ring",
+    "centroid_inside_polygon": true,
+    "max_centroid_to_vertex_metres": 1329,
+    "check_script": "geo/horndal_check.py (shapely 2.1.1, pyproj 3.7.1)"
+  },
+  "identity_chain": [
+    "Svenska kraftnät's consultation report for its grid project records consultation response #83 from DSC International, described as part of the Google group. DSC International states that it plans to build a data centre on the property Horndalsbyn 12:28, then undergoing permitting, and that it is majority owner of the access road.",
+    "Google's Horndal location page states that construction of its Horndal data centre followed a June 2026 groundbreaking.",
+    "Avesta municipality's September 30, 2026 article states that Google has made an investment decision to build a data centre in Horndal, at the Krångede power-infrastructure area.",
+    "The municipal map service (Västmanland-Dalarna miljö- och byggförvaltning, karta.vdmb.se) returns exactly one property feature named HORNDALSBYN 12:28 in Avesta, with stated positional error 0.05."
+  ],
+  "authority": "official_source",
+  "derivation": "direct_geometry",
+  "scope": "campus_locator",
+  "scope_class": "official_named_property_polygon_centroid",
+  "precision": "Planar centroid of the 108.8 ha registered property Horndalsbyn 12:28 named by Google's subsidiary as its data-centre property. A campus marker; not a building, entrance, substation or construction-extent location. Other properties Google may have added to the site are not included.",
+  "horizontal_uncertainty_metres": null,
+  "uncertainty_reason": "The property boundary's stated positional error is 0.05, but the data-centre buildings' positions within the 108.8 ha property are unmapped and its farthest vertex lies about 1.33 km from the centroid. The marker's uncertainty as a building locator is therefore unquantified.",
+  "excluded_geometry": "The Horndal village centre, Krångede power station and earlier approximate locality point 60.29, 16.41 are not used. Detailed-plan B17 (Industrimark norr om Horndal) is context only and is not used as geometry."
+}
