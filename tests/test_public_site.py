@@ -27,9 +27,13 @@ try:
 except ImportError:  # the repository used as a package without the editable install
     from datacenter_atlas.datacenter_atlas import public_site
 from datacenter_atlas import models
+import importlib.util
 
 
 ROOT = Path(__file__).resolve().parents[1]
+_RELEASE_NOTES_SPEC = importlib.util.spec_from_file_location("atlas_release_notes", ROOT / "site/e2e/release_notes.py")
+release_notes = importlib.util.module_from_spec(_RELEASE_NOTES_SPEC)
+_RELEASE_NOTES_SPEC.loader.exec_module(release_notes)
 COMMIT = "0123456789abcdef0123456789abcdef01234567"
 KML = "{http://www.opengis.net/kml/2.2}"
 ATOM = "{http://www.w3.org/2005/Atom}"
@@ -752,6 +756,209 @@ class RemoteArchiveTests(unittest.TestCase):
                 public_site.build_site(site, root=self.root, release_assets_dir=output)
         with self.assertRaises(FileExistsError):
             public_site.write_release_inventory(self.inventory_path, root=self.root)
+
+
+LEGACY_ASSET_NAMES = (
+    "SHA256SUMS", "atlas.json", "atlas.sqlite", "atlas.xlsx", "datapackage.json", "evidence.csv",
+    "projects.csv", "sites.csv", "sites.geojson",
+)
+# Derived formats the fixture's inventory keeps locally: one release asset (atlas.sqlite) and three
+# formats the release only has inside its zip. atlas.json, atlas.xlsx and datapackage.json are
+# linked to the release, and sites.kml is only inside the zip.
+LEGACY_LOCAL_FILES = ["atlas.sqlite", "evidence.ndjson", "projects.ndjson", "sites.ndjson"]
+
+
+def legacy_inventory_from(directory: Path, repository_url: str, local_files=LEGACY_LOCAL_FILES) -> dict:
+    """A legacy inventory for a directory as a release once froze it (the selected assets plus its zip)."""
+    version = directory.name
+    names = sorted({*LEGACY_ASSET_NAMES, f"datacenter-atlas-{version}.zip"})
+    sums = [{"name": name, "sha256": digest}
+            for digest, name in (line.split("  ", 1) for line in (directory / "SHA256SUMS").read_text().splitlines())]
+    return {
+        "schema": "datacenter-atlas-legacy-release-assets-v1",
+        "dataset_id": version,
+        "manifest_sha256": sha256(directory / "manifest.json"),
+        "release_tag": f"data-{version}",
+        "repository_url": repository_url,
+        "files": [{"name": name, "bytes": (directory / name).stat().st_size, "sha256": sha256(directory / name),
+                   "url": f"{repository_url}/releases/download/data-{version}/{name}"} for name in names],
+        "sha256sums": sums,
+        "local_files": list(local_files),
+    }
+
+
+class LegacyReleaseArchiveTests(unittest.TestCase):
+    """An older version with a frozen legacy release keeps originals and matching files locally."""
+
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory(prefix="atlas-legacy-fixture-")
+        self.addCleanup(self.temp.cleanup)
+        self.base = Path(self.temp.name)
+        self.root = make_fixture_root(self.base)
+        self.current = add_published_fixture(self.root)
+        self.config_path = self.root / "site/config.json"
+        self.config = read_json(self.config_path)
+        self.config["first_published_dataset"] = f"verified_construction_core/{FIXTURE_DRAFT}"
+        self.config_path.write_text(json.dumps(self.config))
+        # The draft's directory as it was published when it was current: its release froze these bytes.
+        frozen_site = self.base / "frozen"
+        public_site.build_site(frozen_site, root=self.root)
+        self.frozen = frozen_site / "downloads" / FIXTURE_DRAFT
+        self.inventory = legacy_inventory_from(self.frozen, self.config["repository_url"])
+        self.inventory_path = self.root / "site/release-inventories" / f"{FIXTURE_DRAFT}.json"
+        self.inventory_path.parent.mkdir()
+        self.write_inventory(self.inventory)
+        self.originals = {*read_json(self.root / "verified_construction_core" / FIXTURE_DRAFT / "manifest.json")["files"],
+                          "manifest.json", "manifest.sha256"}
+
+    def write_inventory(self, inventory):
+        self.inventory_path.write_text(json.dumps(inventory, indent=2) + "\n")
+
+    def build(self, name="site", **options):
+        output = self.base / name
+        summary = public_site.build_site(output, root=self.root, **options)
+        return output, summary
+
+    def test_originals_frozen_checksums_and_matching_derived_files_stay_local(self):
+        site, summary = self.build()
+        self.assertEqual(summary["legacy_release_download_versions"], [FIXTURE_DRAFT])
+        self.assertEqual(summary["remote_download_versions"], [])
+        directory = site / "downloads" / FIXTURE_DRAFT
+        kept = {*self.originals, *LEGACY_LOCAL_FILES}
+        self.assertEqual(sorted(path.name for path in directory.iterdir()), sorted([*kept, "SHA256SUMS", "index.html"]))
+        self.assertEqual((directory / "SHA256SUMS").read_bytes(), (self.frozen / "SHA256SUMS").read_bytes())
+        for name in kept:
+            self.assertEqual((directory / name).read_bytes(), (self.frozen / name).read_bytes(), name)
+        release = {item["name"]: item for item in self.inventory["files"]}
+        entry = next(item for item in read_json(site / "api/v1/versions.json")["versions"] if item["id"] == FIXTURE_DRAFT)
+        self.assertTrue(entry["derived_downloads"])
+        local = f"{self.config['base_url']}downloads/{FIXTURE_DRAFT}/"
+        files = {item["name"]: item for item in entry["files"]}
+        self.assertEqual(set(files), self.originals | set(release) | set(LEGACY_LOCAL_FILES))
+        linked = {"atlas.json", "atlas.xlsx", "datapackage.json", f"datacenter-atlas-{FIXTURE_DRAFT}.zip"}
+        for name, item in files.items():
+            if name in linked:
+                self.assertEqual((item["url"], item["bytes"], item["sha256"]),
+                                 (release[name]["url"], release[name]["bytes"], release[name]["sha256"]))
+                self.assertTrue(item["derived"])
+            else:
+                self.assertEqual(item["url"], local + name)
+                self.assertEqual(item["sha256"], sha256(directory / name), name)
+        page = (directory / "index.html").read_text()
+        self.assertIn(f"checksum file of the GitHub Release data-{FIXTURE_DRAFT}", page)
+        self.assertIn(f"datacenter-atlas-{FIXTURE_DRAFT}.zip, atlas.xlsx, atlas.json and datapackage.json link to "
+                      "that release&#x27;s frozen assets; the other derived formats are served here, byte for byte",
+                      page)
+        self.assertIn("sites.kml is only inside the zip.", page)
+        self.assertIn(release[f"datacenter-atlas-{FIXTURE_DRAFT}.zip"]["url"], page)
+        self.assertIn(f"curl -fLO {local}SHA256SUMS", page)
+        publication = read_json(site.with_name(site.name + "-release-assets") / "publication.json")
+        self.assertEqual(publication["legacy_inventories"], [self.inventory])
+        for page_path in builder_pages(site):
+            for _, _, href in scan(page_path).links:
+                if href.startswith("#") or urlsplit(href).scheme:
+                    continue
+                target = (page_path.parent / unquote(urlsplit(href).path)).resolve()
+                if target.is_dir():
+                    target /= "index.html"
+                self.assertTrue(target.is_file(), f"{page_path}: {href}")
+
+    def test_local_files_must_keep_their_frozen_bytes(self):
+        original = public_site._derived_downloads
+
+        def changed(name):
+            def derived(context, atlas):
+                blobs = original(context, atlas)
+                if atlas.version.id == FIXTURE_DRAFT:
+                    blobs[name] += b" \n"
+                return blobs
+            return derived
+
+        # A builder change to a format the release links is harmless: the frozen asset is served.
+        with mock.patch.object(public_site, "_derived_downloads", side_effect=changed("atlas.json")):
+            site, _ = self.build("linked-changed")
+        entry = next(item for item in read_json(site / "api/v1/versions.json")["versions"] if item["id"] == FIXTURE_DRAFT)
+        frozen = {item["name"]: item["sha256"] for item in self.inventory["sha256sums"]}
+        self.assertEqual({item["name"]: item["sha256"] for item in entry["files"] if item["name"] != "SHA256SUMS"},
+                         {name: digest for name, digest in frozen.items() if name != "sites.kml"})
+        self.assertEqual((site / "downloads" / FIXTURE_DRAFT / "SHA256SUMS").read_bytes(),
+                         (self.frozen / "SHA256SUMS").read_bytes())
+        # A change to a format kept locally would change bytes at a permanent URL: the build fails.
+        for name in ("sites.ndjson", "atlas.sqlite"):
+            with self.subTest(name=name), mock.patch.object(public_site, "_derived_downloads", side_effect=changed(name)):
+                with self.assertRaisesRegex(public_site.PublicSiteError,
+                                            f"no longer reproduces {re.escape(name)} exactly as the frozen GitHub "
+                                            f"Release data-{FIXTURE_DRAFT}"):
+                    self.build(f"local-changed-{name}")
+
+    def test_local_files_keep_their_frozen_bytes_at_another_base_url(self):
+        preview = "http://127.0.0.1:8000/preview/"
+        site, summary = self.build("preview", base_url=preview)
+        self.assertEqual(summary["base_url"], preview)
+        directory = site / "downloads" / FIXTURE_DRAFT
+        for name in LEGACY_LOCAL_FILES:
+            # The frozen files name the configured site, as the release's copies do.
+            self.assertEqual((directory / name).read_bytes(), (self.frozen / name).read_bytes(), name)
+        self.assertIn(self.config["base_url"].encode(), (directory / "sites.ndjson").read_bytes())
+        self.assertIn(preview.encode(), (site / "downloads/latest/sites.ndjson").read_bytes())
+
+    def test_rebuilt_digests_name_the_files_a_seal_keeps_locally(self):
+        digests = public_site.rebuilt_derived_digests([FIXTURE_DRAFT], root=self.root)
+        self.assertEqual(set(digests[FIXTURE_DRAFT]), public_site.DERIVED_DOWNLOADS)
+        for name, digest in digests[FIXTURE_DRAFT].items():
+            self.assertEqual(digest, sha256(self.frozen / name), name)
+        for identifier in (self.current.name, FIXTURE_PREVIEW, "2099-01-01-unknown"):
+            with self.subTest(identifier=identifier):
+                with self.assertRaisesRegex(public_site.PublicSiteError, "not an older version"):
+                    public_site.rebuilt_derived_digests([identifier], root=self.root)
+
+    def test_inconsistent_or_misplaced_legacy_inventories_fail_the_build(self):
+        zip_name = f"datacenter-atlas-{FIXTURE_DRAFT}.zip"
+
+        def mutated(change):
+            value = json.loads(json.dumps(self.inventory))
+            change(value)
+            return value
+
+        def tamper(name):
+            def change(value):
+                next(item for item in value["sha256sums"] if item["name"] == name)["sha256"] = "0" * 64
+            return change
+
+        cases = {
+            "original file schema.json differs": tamper("schema.json"),
+            "release asset sites.csv is not the file": tamper("sites.csv"),
+            "release asset atlas.json is not the file": tamper("atlas.json"),
+            "do not reproduce": tamper("sites.kml"),
+            f"no {zip_name} asset": lambda value: value["files"].__setitem__(
+                slice(None), [item for item in value["files"] if item["name"] != zip_name]),
+            "unsafe, duplicate or invalid release inventory file": lambda value: value["files"][0].update(
+                url="https://evil.invalid/SHA256SUMS"),
+            "metadata does not match": lambda value: value.update(schema="datacenter-atlas-release-assets-v1"),
+            "sorted by name": lambda value: value["sha256sums"].reverse(),
+            "never publishes": lambda value: value["sha256sums"].append({"name": "zz-extra.bin", "sha256": "0" * 64}),
+        }
+        for local_files in (None, ["sites.ndjson", "evidence.ndjson"], [zip_name], ["sites.csv"], ["SHA256SUMS"],
+                            ["sites.ndjson", "sites.ndjson"]):
+            cases[f"local_files must be ({local_files})"] = (
+                lambda value, local_files=local_files: value.pop("local_files") if local_files is None
+                else value.update(local_files=local_files))
+        for position, (message, change) in enumerate(cases.items()):
+            with self.subTest(message=message):
+                self.write_inventory(mutated(change))
+                with self.assertRaisesRegex(public_site.PublicSiteError, re.escape(message.split(" (")[0])):
+                    self.build(f"bad-{position}")
+        self.write_inventory(self.inventory)
+        for stray in (FIXTURE_PREVIEW, "2099-01-01-unknown", self.current.name):
+            with self.subTest(stray=stray):
+                path = self.inventory_path.with_name(f"{stray}.json")
+                path.write_text("{}")
+                with self.assertRaisesRegex(public_site.PublicSiteError, "uses this inventory"):
+                    self.build(f"stray-{stray}")
+                path.unlink()
+        self.inventory_path.unlink()
+        _, summary = self.build("without-inventory")
+        self.assertEqual(summary["legacy_release_download_versions"], [])
 
 
 class PublishedSnapshotTests(unittest.TestCase):
@@ -1556,11 +1763,28 @@ class RealSiteBuildTests(unittest.TestCase):
         derived = set(self.summary["derived_download_versions"])
         self.assertIn(self.dataset_id, derived)
         self.assertIn(public_site.FIRST_PUBLISHED_DATASET, derived)
+        legacy = set(self.summary["legacy_release_download_versions"])
+        self.assertTrue(legacy <= derived)
         for name in directories:
             if name in self.summary["remote_download_versions"]:
                 self.assertEqual(sorted(p.name for p in (downloads / name).iterdir()), ["index.html"])
                 inventory = read_json(ROOT / "site/release-inventories" / f"{name}.json")
                 sums = {item["name"]: item["sha256"] for item in inventory["files"] if item["name"] != "SHA256SUMS"}
+            elif name in legacy:
+                # Originals and the derived formats rebuilt byte for byte stay local next to the
+                # frozen release SHA256SUMS; the others (and the zip) are the release's.
+                inventory = read_json(ROOT / "site/release-inventories" / f"{name}.json")
+                manifest = read_json(ROOT / self.config["versions_root"] / name / "manifest.json")
+                local = sorted([*manifest["files"], "manifest.json", "manifest.sha256", *inventory["local_files"],
+                                "SHA256SUMS", "index.html"])
+                self.assertEqual(sorted(p.name for p in (downloads / name).iterdir()), local)
+                frozen = next(item for item in inventory["files"] if item["name"] == "SHA256SUMS")
+                self.assertEqual(sha256(downloads / name / "SHA256SUMS"), frozen["sha256"])
+                lines = (downloads / name / "SHA256SUMS").read_text(encoding="ascii").splitlines()
+                sums = {name: digest for digest, name in (line.split("  ", 1) for line in lines)}
+                for file_name in local:
+                    if file_name not in {"SHA256SUMS", "index.html"}:
+                        self.assertEqual(sha256(downloads / name / file_name), sums[file_name], f"{name}/{file_name}")
             else:
                 sums = self.check_checksums(downloads / name)
             if name == "latest":
@@ -1575,6 +1799,28 @@ class RealSiteBuildTests(unittest.TestCase):
                 self.assertEqual(sorted(sums), originals)
             for file_name, meta in manifest["files"].items():
                 self.assertEqual(sums[file_name], meta["sha256"])
+
+    def test_every_release_inventory_backs_a_download_directory(self):
+        stems = {path.stem for path in (ROOT / "site/release-inventories").glob("*.json")}
+        remote, legacy = (set(self.summary[key]) for key in ("remote_download_versions", "legacy_release_download_versions"))
+        self.assertEqual(stems, remote | legacy)
+        self.assertFalse(remote & legacy)
+        self.assertNotIn(self.dataset_id, legacy)
+        kept = 0
+        for name in legacy:
+            inventory = read_json(ROOT / "site/release-inventories" / f"{name}.json")
+            self.assertEqual(inventory["schema"], "datacenter-atlas-legacy-release-assets-v1")
+            directory = self.site / "downloads" / name
+            listed = {item["name"]: item["sha256"] for item in inventory["sha256sums"]}
+            for file_name in public_site.DERIVED_DOWNLOADS | {f"datacenter-atlas-{name}.zip"}:
+                # A rebuilt derived copy is published only when it is byte for byte the release's file.
+                self.assertEqual((directory / file_name).exists(), file_name in inventory["local_files"], f"{name}/{file_name}")
+                if file_name in inventory["local_files"]:
+                    self.assertEqual(sha256(directory / file_name), listed[file_name], f"{name}/{file_name}")
+                    kept += 1
+        if legacy:
+            # The derived formats sealed as byte-identical on 16 October 2026 (see docs/public_site.md).
+            self.assertGreaterEqual(kept, 118)
 
     def test_zip_archives_are_complete_and_identical(self):
         pinned = ((self.site.with_name(self.site.name + "-release-assets") / self.dataset_id)
@@ -1940,7 +2186,13 @@ class RealSiteBuildTests(unittest.TestCase):
         entries = feed.findall(f"{ATOM}entry")
         versions = read_json(self.api / "versions.json")["versions"]
         self.assertEqual(len(entries), len(versions))
-        self.assertEqual(entries[0].find(f"{ATOM}title").text, versions[-1]["label"])
+        titles = [entry.find(f"{ATOM}title").text for entry in entries]
+        # The same unique title as the version's GitHub Release, naming its dataset ID.
+        self.assertEqual(titles, [release_notes.release_title(item) for item in reversed(versions)])
+        self.assertEqual(len(set(titles)), len(titles))
+        for title, item in zip(titles, reversed(versions)):
+            self.assertTrue(title.startswith(f"Data Center Atlas · {item['checkpoint_date']}"), title)
+            self.assertTrue(title.endswith(item["id"].removeprefix(item["checkpoint_date"] + "-")), title)
         newest = max(item["checkpoint_date"] for item in versions)
         self.assertEqual(feed.find(f"{ATOM}updated").text, f"{newest}T00:00:00Z")
         sitemap = ET.parse(self.site / "sitemap.xml").getroot()
@@ -2032,6 +2284,16 @@ class RealSiteBuildTests(unittest.TestCase):
                 if directory.name in self.summary["remote_download_versions"]:
                     inventory = read_json(ROOT / "site/release-inventories" / f"{directory.name}.json")
                     names = [item["name"] for item in inventory["files"]]
+                elif directory.name in self.summary["legacy_release_download_versions"]:
+                    inventory = read_json(ROOT / "site/release-inventories" / f"{directory.name}.json")
+                    names = sorted({item["name"] for item in inventory["files"]}
+                                   | {path.name for path in directory.iterdir() if path.name != "index.html"})
+                    zip_only = [item["name"] for item in inventory["sha256sums"] if item["name"] not in names]
+                    if zip_only:
+                        self.assertIn(f"{public_site._word_list(zip_only)} {'is' if len(zip_only) == 1 else 'are'} "
+                                      "only inside the zip.", page)
+                    else:
+                        self.assertNotIn("only inside the zip", page)
                 else:
                     names = (directory / "SHA256SUMS").read_text(encoding="ascii").split()
                 for name in names:
@@ -2055,7 +2317,8 @@ class RealSiteBuildTests(unittest.TestCase):
             urls += re.findall(re.escape(self.base_url) + r"downloads/[^\s\"'<>)]*/(?=[\s\"'<>)])",
                                document.read_text(encoding="utf-8"))
         self.assertGreater(len(urls), 100)
-        remote_urls = {file["url"] for version in self.summary["remote_download_versions"]
+        remote_urls = {file["url"] for version in [*self.summary["remote_download_versions"],
+                                                   *self.summary["legacy_release_download_versions"]]
                        for file in read_json(ROOT / "site/release-inventories" / f"{version}.json")["files"]}
         for url in set(urls):
             if url in remote_urls:

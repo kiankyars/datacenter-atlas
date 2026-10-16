@@ -121,7 +121,10 @@ README and citation counts. New updates need no numbered release or site-count m
   only `http` and `https` URLs.
 - **No third-party requests** from the site except basemap tiles: no analytics, web fonts or CDNs.
 - **`.gitignore` is default-deny.** Only whitelisted paths are tracked. If `git status` does not
-  show a new file, it needs a whitelist entry.
+  show a new file, it needs a whitelist entry. Every dataset directory may hold the manifest-listed
+  file names, including `review-provenance.json`, `source-records.json` and `identity-mapping.json`;
+  `python3 scripts/check_tracked_dataset_files.py` fails when Git does not track a file a dataset
+  manifest lists.
 - Add or update tests with every behaviour change, and keep commits focused.
 
 ## Licensing of contributions

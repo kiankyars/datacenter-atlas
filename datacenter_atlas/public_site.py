@@ -33,8 +33,13 @@ Download directories: ``downloads/<id>/`` holds every version's original files v
 or ``first_published_dataset`` in the config) up to the current one also keeps its derived
 formats and its zip, built from that version alone, so a directory's files never disappear when
 a newer checkpoint becomes current. An optional ``release_downloads_from`` boundary makes only
-new dated archives use frozen GitHub Release inventories and separate asset staging; existing
-local file URLs and all landing pages remain. ``downloads/latest/`` stays local.
+new dated archives use frozen GitHub Release inventories and separate asset staging; all landing
+pages remain. An older version with a legacy release inventory (a frozen GitHub Release created
+when it was current) keeps its original files, that release's ``SHA256SUMS`` and every derived
+format the builder still writes byte for byte as that file lists it (the inventory's
+``local_files``, checked on every build) locally; its other derived formats and its zip link to
+the frozen release assets or are only inside that zip. Other older versions keep every local
+file. ``downloads/latest/`` stays local.
 """
 
 from __future__ import annotations
@@ -1466,6 +1471,9 @@ class _Context:
     og_image_size: tuple[int, int] | None = None
     remote_versions: tuple[DatasetVersion, ...] = ()
     release_inventories: Mapping[str, Mapping[str, Any]] = field(default_factory=dict)
+    # Older derived versions whose downloads point at an existing frozen (legacy) GitHub Release.
+    legacy_release_versions: tuple[DatasetVersion, ...] = ()
+    legacy_releases: Mapping[str, "_LegacyRelease"] = field(default_factory=dict)
     # HTML-only enrichment; frozen dataset rows and download bytes stay unchanged.
     project_narratives: Mapping[str, Any] = field(default_factory=dict)
 
@@ -1557,6 +1565,8 @@ def build_site(
             "current_dataset": context.current.id,
             "repository_url": context.config.repository_url,
             "inventories": [context.release_inventories[version.id] for version in context.remote_versions],
+            "legacy_inventories": [context.legacy_releases[version.id].document
+                                   for version in context.legacy_release_versions],
         }, pretty=True)
         release_writer.write_text(MARKER_NAME, MARKER_TEXT)
         _write_api(writer, context)
@@ -1601,6 +1611,7 @@ def _prepare_context(root: Path, config: SiteConfig, base_url: str, commit: str 
         if not re.fullmatch(r"https://github\.com/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+", config.repository_url):
             raise PublicSiteError("remote downloads require a canonical https://github.com/owner/repository URL")
         remote_versions = tuple(version for version in derived_versions if version.sort_key >= boundary.sort_key)
+    legacy_release_versions = _legacy_release_versions(root, versions, current, derived_versions, remote_versions)
     atlas = load_atlas(current, base_url)
     vocabulary = Vocabulary(_read_json(root / "site" / "vocabulary.json"))
     descriptions = _read_json(root / "site" / "field_descriptions.json")
@@ -1626,11 +1637,45 @@ def _prepare_context(root: Path, config: SiteConfig, base_url: str, commit: str 
         history=_version_history(versions),
         derived_versions=derived_versions,
         remote_versions=remote_versions,
+        legacy_release_versions=legacy_release_versions,
         static_files=frozenset(relative for relative, _ in _static_files(root / "site" / "static")),
         attribution_text=_verified_text(current, "ATTRIBUTION.txt"),
         legal_notice_html=_legal_notice(last_preview),
         og_image_size=_png_size(root / "site" / "static" / OG_IMAGE),
     )
+
+
+def _legacy_release_versions(root: Path, versions: Sequence[DatasetVersion], current: DatasetVersion,
+                             derived_versions: Sequence[DatasetVersion],
+                             remote_versions: Sequence[DatasetVersion]) -> tuple[DatasetVersion, ...]:
+    """Older derived versions with a checked-in legacy inventory, in version order.
+
+    Every inventory file must belong to a release-hosted (remote) version or to an older version
+    that keeps derived downloads; a stray or misplaced inventory is an error, never ignored.
+    """
+    directory = root / "site" / "release-inventories"
+    if not os.path.lexists(directory):
+        return ()
+    if directory.is_symlink() or not directory.is_dir():
+        raise PublicSiteError(f"{directory}: expected a directory of release inventories")
+    remote = {version.id for version in remote_versions}
+    eligible = {version.id for version in derived_versions
+                if version.id not in remote and version.sort_key < current.sort_key}
+    found = set()
+    for path in sorted(directory.iterdir()):
+        if path.suffix != ".json":
+            continue
+        identifier = path.name.removesuffix(".json")
+        if identifier in remote:
+            continue
+        if identifier not in eligible:
+            raise PublicSiteError(
+                f"{path}: no release-hosted or older published-download version {identifier!r} uses this "
+                "inventory; remote versions start at release_downloads_from, legacy inventories describe an "
+                "older version's existing release"
+            )
+        found.add(identifier)
+    return tuple(version for version in versions if version.id in found)
 
 
 def _png_size(path: Path) -> tuple[int, int] | None:
@@ -1802,6 +1847,7 @@ def _summary(writer: _Writer, context: _Context, output: Path) -> dict[str, Any]
         "bytes": total,
         "derived_download_versions": [version.id for version in context.derived_versions],
         "remote_download_versions": [version.id for version in context.remote_versions],
+        "legacy_release_download_versions": [version.id for version in context.legacy_release_versions],
         # atlas.sqlite and the zip archives also depend on these libraries (see the module docstring).
         "python_version": platform.python_version(),
         "sqlite_version": sqlite3.sqlite_version,
@@ -2967,6 +3013,35 @@ def _write_contract(writer: _Writer, context: _Context) -> None:
 
 
 RELEASE_INVENTORY_SCHEMA = "datacenter-atlas-release-assets-v1"
+# A frozen GitHub Release created, before release_downloads_from, for a version that was current:
+# its assets, every entry of its SHA256SUMS (which also covers the files inside its zip) and the
+# derived formats the site keeps at their local URLs because this builder still writes them byte
+# for byte ("local_files").
+LEGACY_RELEASE_INVENTORY_SCHEMA = "datacenter-atlas-legacy-release-assets-v1"
+
+
+@dataclass(frozen=True)
+class _LegacyRelease:
+    """A validated legacy release inventory and what the site serves from it."""
+
+    document: Mapping[str, Any]
+    # Derived assets of the release (formats and the zip) at their canonical asset URLs. Those not
+    # in local_files are served only by the release.
+    release_files: Mapping[str, Mapping[str, Any]]
+    # The release's SHA256SUMS, byte for byte; also published at its existing local URL.
+    sha256sums: bytes
+    # Every entry of that SHA256SUMS: name -> SHA-256.
+    listed: Mapping[str, str]
+    # Derived formats kept at their local URLs; each rebuilt copy must equal its listed SHA-256.
+    local_files: tuple[str, ...]
+    # Derived formats listed in SHA256SUMS that are neither kept locally nor release assets: they
+    # are only inside the release's zip.
+    archive_only: tuple[str, ...]
+
+    @property
+    def linked_files(self) -> tuple[str, ...]:
+        """Derived assets that the site links to on the release instead of serving them."""
+        return tuple(name for name in _download_display_order(self.release_files) if name not in self.local_files)
 
 
 def _release_url(context: _Context, version: DatasetVersion, name: str) -> str:
@@ -2976,6 +3051,9 @@ def _release_url(context: _Context, version: DatasetVersion, name: str) -> str:
 def _dated_download_url(context: _Context, version: DatasetVersion, name: str, prefix: str | None = None) -> str:
     if version.id in context.release_inventories:
         return next(item["url"] for item in context.release_inventories[version.id]["files"] if item["name"] == name)
+    legacy = context.legacy_releases.get(version.id)
+    if legacy is not None and name in legacy.release_files and name not in legacy.local_files:
+        return legacy.release_files[name]["url"]
     return f"{context.base_url if prefix is None else prefix}downloads/{version.id}/{name}"
 
 
@@ -3015,18 +3093,24 @@ def write_release_inventory(output: Path, *, root: Path, config_path: Path | Non
     return inventory
 
 
-def _load_release_inventory(context: _Context, version: DatasetVersion) -> Mapping[str, Any]:
+def _inventory_path(context: _Context, version: DatasetVersion) -> Path:
     path = context.site_dir / "release-inventories" / f"{version.id}.json"
     if (path.parent.is_symlink() or path.is_symlink() or not path.is_file()
             or path.resolve().parent != context.site_dir.resolve() / "release-inventories"):
         raise PublicSiteError(f"{path}: missing regular frozen release inventory")
-    document = _read_json(path)
-    expected = {"schema": RELEASE_INVENTORY_SCHEMA, "dataset_id": version.id,
+    return path
+
+
+def _inventory_metadata(context: _Context, version: DatasetVersion, path: Path, document: Any, schema: str) -> None:
+    expected = {"schema": schema, "dataset_id": version.id,
                 "manifest_sha256": version.manifest_sha256, "release_tag": f"data-{version.id}",
                 "repository_url": context.config.repository_url}
     if not isinstance(document, dict) or any(document.get(key) != value for key, value in expected.items()):
         raise PublicSiteError(f"{path}: release inventory metadata does not match the dataset")
-    items = document.get("files")
+
+
+def _inventory_files(context: _Context, version: DatasetVersion, path: Path, items: Any) -> dict[str, Mapping[str, Any]]:
+    """Name-keyed release assets with safe names, sizes, SHA-256 digests and canonical URLs."""
     if not isinstance(items, list) or not items:
         raise PublicSiteError(f"{path}: release inventory needs a nonempty files list")
     files = {}
@@ -3040,10 +3124,15 @@ def _load_release_inventory(context: _Context, version: DatasetVersion) -> Mappi
                 or item.get("url") != _release_url(context, version, name)):
             raise PublicSiteError(f"{path}: unsafe, duplicate or invalid release inventory file {name!r}")
         files[name] = item
-    required = {record.name for record in version.files} | {
-        "atlas.json", "sites.ndjson", "projects.ndjson", "evidence.ndjson", "atlas.sqlite", "atlas.xlsx",
-        "sites.kml", "datapackage.json", _zip_name(version), "SHA256SUMS",
-    }
+    return files
+
+
+def _load_release_inventory(context: _Context, version: DatasetVersion) -> Mapping[str, Any]:
+    path = _inventory_path(context, version)
+    document = _read_json(path)
+    _inventory_metadata(context, version, path, document, RELEASE_INVENTORY_SCHEMA)
+    files = _inventory_files(context, version, path, document.get("files"))
+    required = {record.name for record in version.files} | DERIVED_DOWNLOADS | {_zip_name(version), "SHA256SUMS"}
     if not required <= files.keys():
         raise PublicSiteError(f"{path}: missing release inventory files {sorted(required - files.keys())}")
     for record in version.files:
@@ -3052,11 +3141,112 @@ def _load_release_inventory(context: _Context, version: DatasetVersion) -> Mappi
     return document
 
 
+def _load_legacy_release_inventory(context: _Context, version: DatasetVersion) -> _LegacyRelease:
+    """Validate a legacy inventory offline against the tracked dataset and its own SHA256SUMS."""
+    path = _inventory_path(context, version)
+    document = _read_json(path)
+    _inventory_metadata(context, version, path, document, LEGACY_RELEASE_INVENTORY_SCHEMA)
+    files = _inventory_files(context, version, path, document.get("files"))
+    entries = document.get("sha256sums")
+    if not isinstance(entries, list) or not entries:
+        raise PublicSiteError(f"{path}: legacy release inventory needs its release's sha256sums entries")
+    listed: dict[str, str] = {}
+    for entry in entries:
+        name = entry.get("name") if isinstance(entry, dict) else None
+        if (not isinstance(entry, dict) or set(entry) != {"name", "sha256"} or not isinstance(name, str)
+                or not SAFE_FILE_NAME.fullmatch(name) or name in listed or name in {"SHA256SUMS", "index.html"}
+                or not SHA256_HEX.fullmatch(str(entry.get("sha256", "")))):
+            raise PublicSiteError(f"{path}: unsafe, duplicate or invalid sha256sums entry {name!r}")
+        listed[name] = entry["sha256"]
+    if list(listed) != sorted(listed):
+        raise PublicSiteError(f"{path}: sha256sums entries must be sorted by name")
+    zip_name = _zip_name(version)
+    for required in ("SHA256SUMS", zip_name):
+        if required not in files:
+            raise PublicSiteError(f"{path}: the release has no {required} asset")
+    for name, item in files.items():
+        if name != "SHA256SUMS" and listed.get(name) != item["sha256"]:
+            raise PublicSiteError(f"{path}: release asset {name} is not the file its SHA256SUMS lists")
+    originals = {record.name: record for record in version.files}
+    for record in version.files:
+        if listed.get(record.name) != record.sha256:
+            raise PublicSiteError(f"{path}: original file {record.name} differs from the dataset manifest")
+        if record.name in files and (files[record.name]["bytes"], files[record.name]["sha256"]) != (record.size, record.sha256):
+            raise PublicSiteError(f"{path}: original file {record.name} differs from the dataset manifest")
+    extra = sorted(name for name in listed if name not in originals and name not in DERIVED_DOWNLOADS
+                   and name != zip_name)
+    if extra:
+        raise PublicSiteError(f"{path}: sha256sums lists files the builder never publishes: {extra}")
+    sums = "".join(f"{digest}  {name}\n" for name, digest in listed.items()).encode("ascii")
+    if (len(sums), _sha256(sums)) != (files["SHA256SUMS"]["bytes"], files["SHA256SUMS"]["sha256"]):
+        raise PublicSiteError(f"{path}: sha256sums entries do not reproduce the release's SHA256SUMS")
+    local_files = document.get("local_files")
+    if (not isinstance(local_files, list) or local_files != sorted(set(local_files))
+            or not all(name in DERIVED_DOWNLOADS and name in listed for name in local_files)):
+        raise PublicSiteError(
+            f"{path}: local_files must be a sorted list of derived formats that the release's SHA256SUMS lists"
+        )
+    release_files = {name: item for name, item in files.items() if name not in originals and name != "SHA256SUMS"}
+    archive_only = tuple(name for name in listed
+                         if name not in originals and name not in files and name not in local_files)
+    return _LegacyRelease(document, release_files, sums, listed, tuple(local_files), archive_only)
+
+
+def _frozen_derived_downloads(context: _Context, version: DatasetVersion) -> dict[str, bytes]:
+    """An older version's derived formats as its frozen release has them: built for the configured
+    base URL, which the release files name, whatever base URL this build uses."""
+    canonical = context.config.base_url
+    frozen = context if context.base_url == canonical else replace(context, base_url=canonical)
+    return _derived_downloads(frozen, load_atlas(version, canonical))
+
+
+def _legacy_local_copies(context: _Context, version: DatasetVersion, release: _LegacyRelease) -> dict[str, bytes]:
+    """The derived formats a legacy release-backed version keeps locally, checked byte for byte."""
+    if not release.local_files:
+        return {}
+    rebuilt = _frozen_derived_downloads(context, version)
+    changed = [name for name in release.local_files if _sha256(rebuilt[name]) != release.listed[name]]
+    if changed:
+        raise PublicSiteError(
+            f"downloads/{version.id}/: the builder no longer reproduces {', '.join(changed)} exactly as the "
+            f"frozen GitHub Release {release.document['release_tag']} lists it in SHA256SUMS. These local URLs "
+            "must keep their bytes: keep the builder's output for this version unchanged or, as a documented URL "
+            f"change (docs/public_site.md), remove the names from local_files in "
+            f"site/release-inventories/{version.id}.json so they are served from the release or its zip"
+        )
+    return {name: rebuilt[name] for name in release.local_files}
+
+
+def rebuilt_derived_digests(dataset_ids: Sequence[str], *, root: str | os.PathLike[str],
+                            config_path: str | os.PathLike[str] | None = None) -> dict[str, dict[str, str]]:
+    """SHA-256 of each derived format of older published versions, as this builder writes them for
+    the configured base URL.
+
+    ``site/e2e/seal_legacy_release.py`` records as a legacy inventory's ``local_files`` the formats
+    whose digest equals the release's ``SHA256SUMS``; the site then keeps those at their local URLs.
+    """
+    root = Path(root)
+    config = load_config(Path(config_path) if config_path else root / "site/config.json")
+    context = _prepare_context(root, config, config.base_url, None)
+    by_id = {version.id: version for version in context.derived_versions if version.id != context.current.id}
+    missing = [identifier for identifier in dataset_ids if identifier not in by_id]
+    if missing:
+        raise PublicSiteError(f"not an older version with published derived downloads: {', '.join(missing)}")
+    return {identifier: {name: _sha256(data) for name, data in _frozen_derived_downloads(context, by_id[identifier]).items()}
+            for identifier in dataset_ids}
+
+
 def _write_downloads(writer: _Writer, context: _Context, release_writer: _Writer) -> _Context:
-    """Retain legacy local paths; newer dated assets use frozen inventories and separate staging."""
+    """Retain legacy local paths; newer dated assets use frozen inventories and separate staging.
+
+    A legacy release-backed version keeps its original files, its release's SHA256SUMS and the
+    derived formats in its inventory's local_files (rebuilt and checked against that SHA256SUMS) at
+    their local URLs; its other derived formats and its zip are the frozen release's.
+    """
     current = context.current
     inventories = {version.id: _load_release_inventory(context, version) for version in context.remote_versions}
-    context = replace(context, release_inventories=inventories)
+    legacy = {version.id: _load_legacy_release_inventory(context, version) for version in context.legacy_release_versions}
+    context = replace(context, release_inventories=inventories, legacy_releases=legacy)
     directories: dict[str, tuple[DownloadFile, ...]] = {}
     for version in context.versions:
         directory = f"downloads/{version.id}"
@@ -3066,6 +3256,13 @@ def _write_downloads(writer: _Writer, context: _Context, release_writer: _Writer
                 # These are candidates, not claimed frozen bytes. The publisher checks them against
                 # the inventory before creating a new tag; an existing tag is only verified.
                 _write_version_assets(release_writer, context, version, version.id)
+        elif version.id in legacy:
+            release = legacy[version.id]
+            files = _copy_originals(writer, version, directory)
+            files.update(_write_named(writer, directory, {"SHA256SUMS": release.sha256sums}))
+            files.update(_write_named(writer, directory, _legacy_local_copies(context, version, release)))
+            files.update({name: (release.release_files[name]["bytes"], release.release_files[name]["sha256"])
+                          for name in release.linked_files})
         elif context.has_derived(version):
             files = _write_version_assets(writer, context, version, directory)
         else:
@@ -5580,8 +5777,11 @@ def _data_page(context: _Context) -> _Page:
         _heading(2, "pinned", "Pinned URLs"),
         f'<p>The <a href="{root}downloads/{LATEST}/">current downloads</a> update as records are added or corrected. '
         f'For reproducible analysis, use the <a href="{root}downloads/{_e(current.id)}/">archived source files '
-        f'from {_e(current.checkpoint_date)}</a>. Their original bytes are fixed; generated formats can change '
-        'with the site builder. Check files against the SHA256SUMS in their directory.</p>',
+        f'from {_e(current.checkpoint_date)}</a>. '
+        + ('Their bytes are fixed: the generated formats are frozen GitHub Release files. Check files against '
+           'the SHA256SUMS listed there.</p>' if current.id in context.release_inventories else
+           'Their original bytes are fixed; generated formats can change with the site builder. Check files '
+           'against the SHA256SUMS in their directory.</p>'),
         _heading(2, "use", "Use the data"),
         snippets,
         _heading(2, "gis", "QGIS and Google Earth"),
@@ -6212,6 +6412,11 @@ def _downloads_index_page(context: _Context) -> _Page:
     )
 
 
+def _word_list(words: Sequence[str]) -> str:
+    """"a", "a and b", "a, b and c"."""
+    return " and ".join(words) if len(words) < 3 else f"{', '.join(words[:-1])} and {words[-1]}"
+
+
 def _download_directory_page(context: _Context, directory: str) -> _Page:
     path = f"downloads/{directory}/index.html"
     root = _relative_root(path)
@@ -6237,6 +6442,18 @@ def _download_directory_page(context: _Context, directory: str) -> _Page:
     )
     if directory in context.release_inventories:
         derived_note = " These files are frozen GitHub Release assets; their published checksums do not change when the site builder changes."
+    legacy = context.legacy_releases.get(directory)
+    if legacy is not None:
+        derived_note = (
+            f" SHA256SUMS is the checksum file of the GitHub Release {legacy.document['release_tag']}, created "
+            "when this was the current data, and every file listed here matches it; these checksums do not change "
+            f"when the site builder changes. {_word_list(legacy.linked_files)} link to that release's frozen assets"
+            + ("; the other derived formats are served here, byte for byte as the release lists them."
+               if legacy.local_files else ".")
+        )
+        if legacy.archive_only:
+            only = legacy.archive_only
+            derived_note += f" {_word_list(only)} {'is' if len(only) == 1 else 'are'} only inside the zip."
     sums_url = url + "SHA256SUMS" if directory == LATEST else _dated_download_url(context, version, "SHA256SUMS")
     verify = f"curl -fLO {sums_url}\nsha256sum --check --ignore-missing SHA256SUMS"
     body = "\n".join([
@@ -6504,6 +6721,15 @@ def _llms_full_txt(context: _Context) -> str:
 # Feed, sitemap, robots
 
 
+def _release_title(version: DatasetVersion) -> str:
+    """The unique title of a version's feed entry, also given to GitHub Releases created from now on
+    (site/e2e/release_notes.py); existing releases keep their original titles."""
+    updated = version.checkpoint_date
+    if version.id == updated:
+        return f"Data Center Atlas · {updated}"
+    return f"Data Center Atlas · {updated} · {version.id.removeprefix(updated + '-')}"
+
+
 def _feed_id(context: _Context, suffix: str) -> str:
     return f"urn:uuid:{uuid.uuid5(uuid.NAMESPACE_URL, context.config.repository_url + suffix)}"
 
@@ -6540,7 +6766,7 @@ def _write_feed(writer: _Writer, context: _Context) -> None:
         )
         lines += [
             "<entry>",
-            f"<title>{_x(version.label)}</title>",
+            f"<title>{_x(_release_title(version))}</title>",
             f"<id>{_x(_feed_id(context, '#dataset/' + version.id))}</id>",
             f"<updated>{version.checkpoint_date}T00:00:00Z</updated>",
             f'<link rel="alternate" type="text/html" href="{_x(base)}versions/{_x(version.id)}/"/>',

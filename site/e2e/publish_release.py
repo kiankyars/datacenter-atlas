@@ -2,7 +2,10 @@
 
 Existing published releases are read-only. A new release is uploaded as a draft,
 read back and checked, then published. A failed draft can resume without replacing
-any asset. GitHub CLI supplies authentication; tokens never enter command arguments.
+any asset. Legacy releases that back an older version's derived downloads (a legacy
+inventory) are only verified: exact asset set, sizes, digests, the manifest at the tag
+and anonymous availability. GitHub CLI supplies authentication; tokens never enter
+command arguments.
 """
 
 from __future__ import annotations
@@ -130,6 +133,60 @@ def checked_inventory(inventory, repository_url):
     if manifest["sha256"] != inventory["manifest_sha256"]:
         raise PublicationError(f"Manifest hash differs from inventory: {identifier}")
     return files
+
+
+LEGACY_SCHEMA = "datacenter-atlas-legacy-release-assets-v1"
+
+
+def checked_legacy_inventory(inventory, repository_url):
+    """A legacy inventory: the release's exact assets plus every entry of its SHA256SUMS."""
+    identifier = inventory.get("dataset_id", "")
+    if not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._-]*", identifier):
+        raise PublicationError("Invalid legacy inventory dataset identifier")
+    tag = f"data-{identifier}"
+    if (inventory.get("schema") != LEGACY_SCHEMA
+            or inventory.get("repository_url") != repository_url
+            or inventory.get("release_tag") != tag
+            or not re.fullmatch(r"[0-9a-f]{64}", inventory.get("manifest_sha256", ""))):
+        raise PublicationError(f"Invalid legacy inventory: {identifier}")
+    files = inventory.get("files", [])
+    names = [item.get("name", "") for item in files]
+    if names != sorted(set(names)) or not {"SHA256SUMS", f"datacenter-atlas-{identifier}.zip"} <= set(names):
+        raise PublicationError(f"Incomplete or duplicate legacy inventory files: {identifier}")
+    for item in files:
+        name = item["name"]
+        expected_url = f"{repository_url}/releases/download/{tag}/{quote(name, safe='')}"
+        if (not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._-]*", name)
+                or type(item.get("bytes")) is not int or item["bytes"] < 0
+                or not re.fullmatch(r"[0-9a-f]{64}", item.get("sha256", ""))
+                or item.get("url") != expected_url):
+            raise PublicationError(f"Invalid frozen legacy asset: {identifier}/{name}")
+    entries = inventory.get("sha256sums", [])
+    listed = {entry.get("name", ""): entry.get("sha256", "") for entry in entries}
+    if (not entries or list(listed) != sorted(listed) or len(listed) != len(entries) or "SHA256SUMS" in listed
+            or not all(re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._-]*", name) for name in listed)
+            or not all(re.fullmatch(r"[0-9a-f]{64}", digest) for digest in listed.values())):
+        raise PublicationError(f"Invalid legacy checksums: {identifier}")
+    by_name = {item["name"]: item for item in files}
+    if any(listed.get(name) != item["sha256"] for name, item in by_name.items() if name != "SHA256SUMS"):
+        raise PublicationError(f"Legacy assets differ from their SHA256SUMS: {identifier}")
+    if listed.get("manifest.json", inventory["manifest_sha256"]) != inventory["manifest_sha256"]:
+        raise PublicationError(f"Manifest hash differs from legacy inventory: {identifier}")
+    sums = "".join(f"{digest}  {name}\n" for name, digest in listed.items()).encode("ascii")
+    if (len(sums), sha256(sums)) != (by_name["SHA256SUMS"]["bytes"], by_name["SHA256SUMS"]["sha256"]):
+        raise PublicationError(f"Legacy checksums do not reproduce SHA256SUMS: {identifier}")
+    return files
+
+
+def verify_legacy_inventory(github, inventory, *, versions_root, public_verify=verify_public_downloads):
+    """A legacy release is never created, edited or uploaded to here; it must already match."""
+    release = find_release(github, inventory["release_tag"])
+    if release is None or release.get("draft"):
+        raise PublicationError(f"Legacy release backing archived downloads is absent or a draft: {inventory['release_tag']}")
+    verify_assets(github, release, inventory)
+    verify_manifest_at_tag(github, inventory, versions_root)
+    public_verify(inventory, read_bytes=False)
+    return "verified_legacy"
 
 
 def check_staged(directory, inventory):
@@ -270,24 +327,35 @@ def main(argv=None):
         if publication["current_dataset"] != current:
             raise PublicationError("Publication inventory belongs to another current dataset")
         inventories = publication["inventories"]
-        if len({item["dataset_id"] for item in inventories}) != len(inventories):
+        legacy_inventories = publication.get("legacy_inventories", [])
+        identifiers = [item["dataset_id"] for item in [*inventories, *legacy_inventories]]
+        if len(set(identifiers)) != len(identifiers):
             raise PublicationError("Duplicate dataset inventories")
+        if current in {item["dataset_id"] for item in legacy_inventories}:
+            raise PublicationError("The current dataset cannot use a legacy release inventory")
         for inventory in inventories:
             checked_inventory(inventory, repository_url)
+        for inventory in legacy_inventories:
+            checked_legacy_inventory(inventory, repository_url)
         if args.enabled != "true":
-            if inventories:
+            if inventories or legacy_inventories:
                 raise PublicationError("Release-backed downloads require ATLAS_GITHUB_RELEASES=true")
             print("GitHub Releases are disabled; no remote downloads depend on them.")
             return 0
         github = GitHub(repository)
+        dataset = index["dataset"]
+        versions_root = dataset["repository_path"].rsplit("/", 1)[0]
+        # Legacy releases are only read. Verify all of them before anything is written to GitHub,
+        # so a broken one blocks the deployment without leaving a new, unlinked release behind.
+        for inventory in legacy_inventories:
+            result = verify_legacy_inventory(github, inventory, versions_root=versions_root)
+            print(f"{inventory['release_tag']}: {result} ({len(inventory['files'])} assets)")
         versions = json.loads((args.site / "api/v1/versions.json").read_text())
         sites = json.loads((args.site / "api/v1/sites.json").read_text())
         citation = json.loads((args.site / "api/v1/citation.json").read_text())
-        dataset = index["dataset"]
         notes = release_notes.notes(index, versions, sites, commit=args.commit, citation=citation)
         title = release_notes.release_title(dataset)
         prerelease = release_notes.is_prerelease(dataset)
-        versions_root = dataset["repository_path"].rsplit("/", 1)[0]
         for inventory in inventories:
             result = publish_inventory(github, inventory, staged_root=args.release_assets,
                                        current=current, commit=args.commit, title=title, notes=notes,

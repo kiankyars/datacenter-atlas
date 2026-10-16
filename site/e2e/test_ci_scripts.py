@@ -407,6 +407,52 @@ def test_classify_link():
     assert live_checks.classify_link("https://a", fetch=timeout).outcome == "unverified"
 
 
+def _canned_http_server(reply: bytes):
+    """A local server that answers every connection with ``reply`` (raw bytes), then closes it."""
+    listener = socket.socket()
+    listener.bind(("127.0.0.1", 0))
+    listener.listen()
+    listener.settimeout(5)
+
+    def serve():
+        while True:
+            try:
+                connection, _ = listener.accept()
+            except OSError:
+                return
+            with connection:
+                connection.settimeout(5)
+                request = b""
+                while b"\r\n\r\n" not in request:
+                    chunk = connection.recv(4096)
+                    if not chunk:
+                        break
+                    request += chunk
+                connection.sendall(reply)
+
+    threading.Thread(target=serve, daemon=True).start()
+    return listener, f"http://127.0.0.1:{listener.getsockname()[1]}/"
+
+
+def test_malformed_responses_are_unverified_and_never_abort_the_link_check():
+    replies = {
+        "status-line": b"GARBAGE\r\n\r\n",
+        "chunked-body": b"HTTP/1.1 200 OK\r\nTransfer-Encoding: chunked\r\nContent-Type: text/html\r\n\r\nzz\r\n",
+    }
+    servers = {name: _canned_http_server(reply) for name, reply in replies.items()}
+    try:
+        for name, (_, url) in servers.items():
+            result = live_checks.classify_link(url, timeout=5)
+            assert result.outcome == "unverified", name
+            assert result.detail.split(":")[0] in {"BadStatusLine", "IncompleteRead"}, result.detail
+        evidence = [{"evidence_id": name, "source_url": url} for name, (_, url) in servers.items()]
+        results, _ = live_checks.check_links(evidence, delay=0, timeout=5, workers=2)
+        assert [result.outcome for result in results] == ["unverified", "unverified"]
+    finally:
+        for listener, _ in servers.values():
+            listener.close()
+
+
 def test_link_report_groups_evidence_and_fits_an_issue():
     evidence = [
         {"evidence_id": "e1", "source_url": "https://dead.example/a", "site_ids": ["vcc-site-1"]},
@@ -424,6 +470,97 @@ def test_link_report_groups_evidence_and_fits_an_issue():
     assert "### Dead" in text and "`e1`, `e2`" in text
     assert f"[vcc-site-1]({BASE}sites/vcc-site-1/)" in text
     assert "more |" in text
+
+
+def test_check_links_is_polite_per_host_and_concurrent_across_hosts():
+    evidence = [{"evidence_id": f"{host}{i}", "source_url": f"https://{host}.example/{i}"}
+                for host in ("a", "b", "c", "d") for i in range(3)]
+    lock = threading.Lock()
+    active: dict[str, int] = {}
+    overlap = {"max_total": 0, "max_per_host": 0}
+    total = [0]
+    release = threading.Barrier(2, timeout=5)
+
+    def classify(url):
+        host = live_checks.link_host(url)
+        with lock:
+            active[host] = active.get(host, 0) + 1
+            total[0] += 1
+            overlap["max_per_host"] = max(overlap["max_per_host"], active[host])
+            overlap["max_total"] = max(overlap["max_total"], total[0])
+        if url.endswith("/0") and host in ("a.example", "b.example"):
+            release.wait()  # proves two hosts are in flight at once
+        with lock:
+            active[host] -= 1
+            total[0] -= 1
+        return live_checks.LinkResult(url, "ok", "HTTP 200")
+
+    sleeps = []
+    results, grouped = live_checks.check_links(evidence, delay=1.0, classify=classify, workers=2,
+                                               sleep=sleeps.append)
+    assert [result.url for result in results] == list(grouped) == sorted(item["source_url"] for item in evidence)
+    assert overlap["max_per_host"] == 1, "one request at a time per host"
+    assert overlap["max_total"] == 2, "bounded by the worker count"
+    assert sleeps == [1.0] * 8, "a pause between consecutive requests to the same host only"
+
+
+def test_check_links_deadline_reports_unstarted_urls_as_unverified():
+    evidence = [{"evidence_id": str(i), "source_url": f"https://slow.example/{i}"} for i in range(5)]
+    ticks = iter([0, 1, 2, 3, 4, 5])
+    checked = []
+
+    def classify(url):
+        checked.append(url)
+        return live_checks.LinkResult(url, "ok", "HTTP 200")
+
+    results, _ = live_checks.check_links(evidence, delay=0, classify=classify, deadline=2,
+                                         clock=lambda: next(ticks))
+    assert len(checked) == 2
+    assert [result.outcome for result in results] == ["ok", "ok", "unverified", "unverified", "unverified"]
+    assert results[-1].detail == live_checks.NOT_CHECKED
+    with pytest.raises(ValueError):
+        live_checks.check_links(evidence, workers=0, classify=classify)
+
+
+def test_non_ascii_urls_are_requested_percent_encoded():
+    assert live_checks.ascii_url("https://example.org/a%20b?x=1&y=%C3%A9") == "https://example.org/a%20b?x=1&y=%C3%A9"
+    assert (live_checks.ascii_url("https://megaor.co.il/uploads/דוח-2026.pdf")
+            == "https://megaor.co.il/uploads/%D7%93%D7%95%D7%97-2026.pdf")
+    assert (live_checks.ascii_url("https://thearabianpost.com/tcs-commits-₹700-billion/")
+            == "https://thearabianpost.com/tcs-commits-%E2%82%B9700-billion/")
+    assert live_checks.ascii_url("https://bücher.example:8443/ä?q=ö#teil") == "https://xn--bcher-kva.example:8443/%C3%A4?q=%C3%B6#teil"
+    assert live_checks.ascii_url("https://example.org/a b") == "https://example.org/a%20b"
+    requested = []
+
+    class Handle:
+        status = 200
+        headers = {}
+
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *args):
+            return False
+
+        def read(self, _limit=None):
+            return b""
+
+        def geturl(self):
+            return requested[-1]
+
+    class Opener:
+        def open(self, request, timeout):
+            requested.append(request.full_url)
+            return Handle()
+
+    original = live_checks._opener
+    live_checks._opener = Opener
+    try:
+        result = live_checks.classify_link("https://example.org/ré sumé")
+    finally:
+        live_checks._opener = original
+    assert requested == ["https://example.org/r%C3%A9%20sum%C3%A9"]
+    assert (result.url, result.outcome) == ("https://example.org/ré sumé", "ok"), "reports keep the URL as written"
 
 
 # --------------------------------------------------------------------------------------------
@@ -447,7 +584,8 @@ def test_release_notes_and_assets(tmp_path):
     sites = [{"site_id": "vcc-site-1", "name": "Alpha <campus>", "country": "Chile"}]
     text = release_notes.notes(index, versions, sites, commit="abc123", citation={"apa": "Kyars, K. (2026). X."})
     assert "Data updated 2026-10-02." in text
-    assert "Construction observations: 2026-05-22 to 2026-08-20." in text
+    assert "Status observations: 2026-05-22 to 2026-08-20." in text
+    assert "onstruction observations" not in text
     assert "not a final release" not in text and "release-gates" not in text
     assert f"[Alpha \\<campus\\>]({BASE}sites/vcc-site-1/) (Chile)" in text and "- `vcc-site-9`" in text
     assert "Cite as: Kyars, K. (2026). X." in text
@@ -469,9 +607,24 @@ def test_published_data_update_is_a_regular_dated_release():
     assert release_notes.release_title(dataset) == "Data Center Atlas · 2026-10-13"
     assert not release_notes.is_prerelease(dataset)
     assert "Data updated 2026-10-13." in text
-    assert "Construction observations: 2026-05-22 to 2026-09-15." in text
+    assert "Status observations: 2026-05-22 to 2026-09-15." in text
+    assert "onstruction observations" not in text
     assert "an Atlas update does not mean every project was rechecked" in text
     assert "checkpoint" not in text and "draft" not in text and "release gates" not in text
+
+
+def test_release_titles_are_unique_and_name_the_dataset():
+    def title(identifier, updated):
+        return release_notes.release_title({"id": identifier, "updated_at": updated, "checkpoint_date": updated})
+
+    assert title("2026-10-15-research-thirtieth", "2026-10-15") == "Data Center Atlas · 2026-10-15 · research-thirtieth"
+    assert title("2026-10-13", "2026-10-13") == "Data Center Atlas · 2026-10-13"
+    assert title(DATASET_ID, "2026-10-02") == f"Data Center Atlas · 2026-10-02 · {DATASET_ID}"
+    assert (release_notes.release_title({"id": DATASET_ID, "checkpoint_date": "2026-10-02"})
+            == f"Data Center Atlas · 2026-10-02 · {DATASET_ID}")
+    same_day = [f"2026-10-15-research-{name}" for name in ("twentyninth", "thirtieth", "fourteenth")]
+    titles = {title(identifier, "2026-10-15") for identifier in [*same_day, "2026-10-15"]}
+    assert len(titles) == 4
 
 
 def test_release_notes_require_the_version_zip(tmp_path):

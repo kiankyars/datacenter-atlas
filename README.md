@@ -49,8 +49,10 @@ and verify them against their
 [`SHA256SUMS`](https://github.com/kiankyars/datacenter-atlas/releases/download/data-2026-10-15-research-thirtieth/SHA256SUMS).
 <!-- /atlas:version-files -->
 
-Archived CSVs, GeoJSON and source records remain unchanged. Generated formats such as SQLite,
-Excel and ZIP may change when the builder changes; verify them against the current `SHA256SUMS`.
+Archived CSVs, GeoJSON and source records remain unchanged. Where an archive has a GitHub
+Release, its generated formats such as SQLite, Excel and ZIP are that release's frozen files,
+linked from its download page. A few earlier archives without one rebuild them with the site, so
+they may change when the builder changes; verify them against the current `SHA256SUMS`.
 Earlier data is available in the [data archive](https://kiankyars.github.io/datacenter-atlas/versions/).
 
 ### API

@@ -33,8 +33,26 @@ ACTIVE_STATUSES = {
 # Keep this original schema set when reproducing updates that predate lifecycle expansion.
 LEGACY_STATUS_VALUES = ACTIVE_STATUSES | {"operational", "paused", "cancelled", "repurposed", "decommissioned", "demolished"}
 PLANNED_STATUSES = {LifecycleStatus.ANNOUNCED.value, LifecycleStatus.PERMITTED.value}
-STATUS_VALUES = LEGACY_STATUS_VALUES | PLANNED_STATUSES | {LifecycleStatus.COMPLETED.value}
+# Codes carried by imported source records (the 13 October consolidation). Neither is an admission
+# status (the documented admissions are announced, permitted, construction, completed and
+# operating), and no other record can move to them; a record that has one can be moved to any
+# other recognised status.
+# "partially_operational" is an operating status: part of the project operates, which says nothing
+# about the remaining phases. A record that has it can also be refreshed with a newer dated primary
+# observation of the same status.
+# "proposed" means that announcement, permission and physical work are not established
+# (site/vocabulary.json), so no update can set it: a dated primary source that identifies the
+# project establishes "announced", which is how a proposed record is refreshed.
+PARTIALLY_OPERATIONAL = "partially_operational"
+PROPOSED = LifecycleStatus.PROPOSED.value
+PROPOSED_REFUSAL = (
+    "proposed means announcement, permission and physical work are not established, so no dated source "
+    "can establish it: record a primary source that identifies the project as announced or another status"
+)
+STATUS_VALUES = LEGACY_STATUS_VALUES | PLANNED_STATUSES | {LifecycleStatus.COMPLETED.value, PARTIALLY_OPERATIONAL}
 ADMISSION_STATUSES = ACTIVE_STATUSES | PLANNED_STATUSES | {LifecycleStatus.COMPLETED.value, LifecycleStatus.OPERATIONAL.value}
+# Statuses a dated operating-status entry or a firsthand participant statement can establish.
+OBSERVED_STATUSES = ACTIVE_STATUSES | {LifecycleStatus.OPERATIONAL.value, PARTIALLY_OPERATIONAL}
 PROJECT_RECORD_POSTURE = "authoritative_project_record_plus_scoped_location"
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -109,6 +127,7 @@ def _source(row, updated):
 
 def _status(spec, sources, updated, *, admission=False, source_details=None):
     observed = _date(spec["as_of"])
+    _require(spec["value"] != PROPOSED, PROPOSED_REFUSAL)
     _require(spec["value"] in STATUS_VALUES, "unrecognized project status")
     _require(observed <= updated, "future status observation")
     if admission:
@@ -125,7 +144,7 @@ def _status(spec, sources, updated, *, admission=False, source_details=None):
         details = (source_details or {}).get(spec["source_id"], {})
         _require(details.get("source_observation_date") and
                  details.get("source_observation_date_precision") == "day" and
-                 spec["value"] in ACTIVE_STATUSES | {LifecycleStatus.OPERATIONAL.value},
+                 spec["value"] in OBSERVED_STATUSES,
                  "status observation needs a dated source")
         _text(details.get("date_semantics"), "source observation date semantics")
         _require(_date(details["source_observation_date"]) == observed,
@@ -140,7 +159,7 @@ def _status(spec, sources, updated, *, admission=False, source_details=None):
         firsthand = details.get("firsthand_status_statement", {})
         _require(firsthand.get("basis") == "attributed_project_participant_statement"
                  and source.get("published_at")
-                 and spec["value"] in ACTIVE_STATUSES | {"completed", "operational"},
+                 and spec["value"] in OBSERVED_STATUSES | {"completed"},
                  "status observation needs a primary source or reviewed firsthand physical-status statement")
         for field in ("speaker", "speaker_role", "project_identity", "statement", "date_semantics", "review"):
             _text(firsthand.get(field), f"firsthand status {field}")
@@ -437,6 +456,10 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
         _require(key in by_key and key not in touched, "unknown or repeated project update")
         touched.add(key)
         row, status = by_key[key], item["status"]
+        if status.get("value") == PARTIALLY_OPERATIONAL:
+            _require(row["last_observed_physical_status"] == PARTIALLY_OPERATIONAL,
+                     "partially_operational is a retained imported status: only a record that already has it "
+                     "can be refreshed with it")
         _status(status, sources, updated, source_details=source_details)
         status_method, status_role = _status_metadata(status["value"])
         if sources[status["source_id"]]["kind"] == "news":

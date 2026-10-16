@@ -59,8 +59,18 @@ def release_tag(dataset_id: str) -> str:
 
 
 def release_title(dataset: Mapping[str, Any]) -> str:
-    updated = dataset.get("updated_at", dataset["checkpoint_date"])
-    return f"Data Center Atlas · {updated}"
+    """A unique title naming the dataset: its update date, then the rest of its ID.
+
+    ``2026-10-15-research-thirtieth`` becomes "Data Center Atlas · 2026-10-15 · research-thirtieth";
+    an ID that is only the date gives "Data Center Atlas · 2026-10-13". An ID that does not start
+    with the update date is shown whole.
+    """
+    updated = str(dataset.get("updated_at", dataset["checkpoint_date"]))
+    identifier = str(dataset["id"])
+    if identifier == updated:
+        return f"Data Center Atlas · {updated}"
+    suffix = identifier.removeprefix(f"{updated}-")
+    return f"Data Center Atlas · {updated} · {suffix}"
 
 
 def asset_paths(site: Path, dataset_id: str) -> list[Path]:
@@ -103,7 +113,7 @@ def notes(index: Mapping[str, Any], versions: Mapping[str, Any], sites: Sequence
     lines = [
         f"Data updated {updated}.",
         "",
-        f"Construction observations: {start} to {end}. Each project retains its last reported status and "
+        f"Status observations: {start} to {end}. Each project retains its last reported status and "
         "observation date; an Atlas update does not mean every project was rechecked.",
         "",
         f"- {counts['physical_sites']} physical sites with {counts['projects']} projects in "

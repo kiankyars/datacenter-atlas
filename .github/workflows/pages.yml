@@ -4,9 +4,10 @@ name: Public site
 # hand-written dataset facts against it, runs its unit, JavaScript and browser tests against the
 # build served the way GitHub Pages serves it (under /datacenter-atlas/, with no directory
 # listings), verifies any release-backed downloads, deploys to GitHub Pages on pushes to main,
-# then checks the live site. ATLAS_GITHUB_RELEASES=true is required when future snapshots use
-# GitHub Release downloads; existing Pages download paths remain available. A weekly run checks
-# the live site and reports dead evidence links in an issue labelled "link-rot".
+# then checks the live site. ATLAS_GITHUB_RELEASES=true is required while downloads link to GitHub
+# Release assets (remote archives and older archives backed by their existing release); landing
+# pages and original files stay on Pages. A weekly run checks the live site and reports dead
+# evidence links in an issue labelled "link-rot".
 #
 # Every action is pinned to a full commit SHA (the comment names its release), so a moved tag
 # cannot change what builds or deploys the site. To update one, resolve the new release's commit
@@ -64,6 +65,8 @@ jobs:
         with:
           python-version: "3.12"
       # The builder and its unit tests are standard-library only: no install step is needed.
+      - name: Check that Git tracks every manifest-listed dataset file
+        run: python datacenter_atlas/scripts/check_tracked_dataset_files.py --root datacenter_atlas
       - name: Build the public site
         run: >-
           python datacenter_atlas/scripts/build_public_site.py
@@ -222,8 +225,9 @@ jobs:
           --summary "$GITHUB_STEP_SUMMARY"
 
   release:
-    # Publish and verify remote snapshot assets before Pages can link to them. Legacy releases
-    # remain optional and are never replaced. Remote archives require the opt-in variable.
+    # Publish and verify remote snapshot assets before Pages can link to them. Legacy releases are
+    # never replaced; those backing an older archive's derived downloads are verified. Release-backed
+    # archives require the opt-in variable.
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     needs: build
     runs-on: ubuntu-24.04
@@ -264,9 +268,12 @@ jobs:
     # Weekly (and on manual dispatch with job=monitor): re-check the live site and every evidence
     # source URL. Dead links are listed in one open issue labelled "link-rot", which is updated
     # each week and closed when none remain. Link results never fail the run; live-site problems do.
+    # Links are checked by 8 workers, one request at a time per host and 1 s apart (an estimated
+    # 15 minutes for about 2,100 URLs on 900 hosts); URLs not started within 75 minutes are
+    # reported as unverified, so the report is always written before the job timeout.
     if: github.event_name == 'schedule' || inputs.job == 'monitor'
     runs-on: ubuntu-24.04
-    timeout-minutes: 60
+    timeout-minutes: 100
     permissions:
       contents: read
       issues: write # open, update or close the link-rot issue
@@ -284,7 +291,8 @@ jobs:
         run: |
           status=0
           python datacenter_atlas/site/e2e/live_checks.py --base-url "$SITE_URL" \
-            --check-links --report link-report.md --summary "$GITHUB_STEP_SUMMARY" || status=$?
+            --check-links --link-workers 8 --link-delay 1 --link-deadline 4500 \
+            --report link-report.md --summary "$GITHUB_STEP_SUMMARY" || status=$?
           echo "status=$status" >> "$GITHUB_OUTPUT"
       - name: Update the link-rot issue
         if: always() && hashFiles('link-report.md') != ''

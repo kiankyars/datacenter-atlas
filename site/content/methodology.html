@@ -82,7 +82,7 @@
 <h2 id="identifiers">Identifiers and stable URLs</h2>
 <p>Use <code>site_id</code>, <code>project_id</code> and <code>evidence_id</code> to join records. Site and project identifiers are derived from stable curation keys and retained when a record is renamed or updated. Evidence identifiers refer to a particular captured source; changed content receives a new identifier.</p>
 <p>Identifiers are never reused for a different entity. A merge or split retires identifiers that no longer describe the same entity. The <a href="{{root}}api/v1/versions.json">archive index</a> lists added and removed sites. Retired records remain in the archived downloads that contained them.</p>
-<p>Site pages and <code>api/v1/</code> describe the current data. A record absent from the current data returns HTTP 404 there. Archived download paths remain available.</p>
+<p>Site pages and <code>api/v1/</code> describe the current data. A record absent from the current data returns HTTP 404 there. Archived download pages and their original data files remain available at the same paths. Where an archive has a GitHub Release, its generated formats (such as SQLite, Excel, JSON and the zip) are that release's frozen files, linked from the archive's download page and the <a href="{{root}}api/v1/versions.json">archive index</a>.</p>
 
 <h2 id="reproducibility">Reproducing the data</h2>
 <p>Each archived dataset includes a <code>manifest.json</code> with file sizes and SHA-256 hashes; <code>manifest.sha256</code> identifies the manifest. Generated formats such as SQLite and Excel have checksums in <code>SHA256SUMS</code>.</p>

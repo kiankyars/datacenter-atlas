@@ -39,6 +39,7 @@ Each change retains its dated source and earlier evidence. See
 | Path | Role |
 | --- | --- |
 | [`site/config.json`](../site/config.json) | Site name, tagline, base URL, repository and issue URLs, `versions_root`, `current_dataset`, `last_preview_dataset`, `status_window_days`, author and licence metadata. Optional: `first_published_dataset` and `release_downloads_from` (see [Download directories](#download-directories)) and `dataset_title` (the title used in citations). |
+| [`site/release-inventories/`](../site/release-inventories/) | One frozen inventory per version whose downloads link to GitHub Release assets: remote archives (see [New archives hosted as GitHub Release assets](#new-archives-hosted-as-github-release-assets)) and older archives backed by their existing release (see [Older archives backed by their GitHub Release](#older-archives-backed-by-their-github-release)). An inventory no version uses stops the build. |
 | `verified_construction_core/*/` | Every direct child containing a `manifest.json` is a dataset version, and every version is published |
 | `site/content/*.html` | Prose fragments for the methodology and about pages |
 | `site/templates/explorer.html` | Markup for the map explorer at `/` |
@@ -123,7 +124,9 @@ api/v1/vocabularies.json           labels and descriptions for coded values
 api/v1/citation.json               the citation as APA, BibTeX, biblatex, RIS and CSL-JSON (also citation.bib, citation.ris)
 downloads/index.html               every download directory
 downloads/latest/                  current version: original files, derived formats, SHA256SUMS, index.html
-downloads/<dataset_id>/            local archives: originals/formats; remote archives: permanent index.html
+downloads/<dataset_id>/            local archives: originals/formats; release-backed older archives: originals,
+                                   the release's SHA256SUMS, the formats still rebuilt byte for byte and
+                                   index.html; remote archives: permanent index.html
 ```
 
 ### Download directories
@@ -137,7 +140,10 @@ resolve). Every version from the first one the live site published as current
 `first_published_dataset` in the config) up to the current one also keeps its derived formats
 and its zip, `datacenter-atlas-<id>.zip`, built from that version alone. So a formerly current
 version's files never disappear when a newer checkpoint becomes current. Earlier versions were
-never published with derived formats and have only their originals.
+never published with derived formats and have only their originals. A version that has a frozen
+GitHub Release from the time it was current keeps the derived formats the builder still writes
+byte for byte as that release lists them, and serves the others from the release (see
+[Older archives backed by their GitHub Release](#older-archives-backed-by-their-github-release)).
 
 `downloads/latest/` repeats the current version, with the zip named `datacenter-atlas-latest.zip`.
 The derived formats are `atlas.json`, `sites.ndjson`, `projects.ndjson`, `evidence.ndjson`,
@@ -150,14 +156,18 @@ For these local archives, only the original files are immutable. The derived for
 additive builder change (a new column, sheet or table) changes their bytes and checksums; users
 verify them against the current `SHA256SUMS`, and the README, `CITATION.cff` and the about page say
 so. A frozen copy of each version's derived formats is what the GitHub Release of that version is
-for (see [CI and deployment](#ci-and-deployment)).
+for (see [CI and deployment](#ci-and-deployment)). Three older versions have no release and are
+still rebuilt locally: `2026-08-20-v0.18-draft-thirty-fifth-reviewed`,
+`2026-08-20-v0.18-draft-thirty-seventh-reviewed` and `2026-10-13-consolidated`.
 
 ### New archives hosted as GitHub Release assets
 
 Set `release_downloads_from` in `site/config.json` to the **first never-published version** whose
 files will be hosted by GitHub Releases. It accepts a dataset ID or repository-relative dataset
-path. Versions before this boundary retain every existing local file URL. `downloads/latest/`
-always remains local, and every dated `downloads/<id>/` landing page remains local and permanent.
+path. Versions before this boundary retain their landing page and every original-file URL; their
+derived formats stay local unless the version has a legacy release inventory (next section).
+`downloads/latest/` always remains local, and every dated `downloads/<id>/` landing page remains
+local and permanent.
 For remote versions, the landing page and API link directly to canonical release asset URLs;
 there are no HTML redirects masquerading as data files. Consumers should use each file's `url`,
 not construct a file URL by appending its name to the landing-page `download_base_url`.
@@ -202,9 +212,82 @@ falsely checksummed archive links. GitHub Release assets are cross-origin; the b
 and current downloads retain Pages behavior and do not depend on release-asset CORS support.
 
 This arrangement removes full-snapshot growth from the Pages artifact. It does not make its
-capacity unlimited: legacy local archives plus the growing current dataset/API still count.
+capacity unlimited: local archives plus the growing current dataset/API still count.
 Measure actual file and uncompressed tar sizes before upload and leave headroom under the
-[documented Pages size limit](https://docs.github.com/en/pages/getting-started-with-github-pages/github-pages-limits).
+[documented Pages size limit](https://docs.github.com/en/pages/getting-started-with-github-pages/github-pages-limits);
+`site/e2e/check_pages_size.py --site _site` reports both and fails above 1,000,000,000 bytes.
+
+### Older archives backed by their GitHub Release
+
+Before `release_downloads_from`, the `release` job attached ten files of each new current version
+to a GitHub Release `data-<id>`: the zip, `SHA256SUMS`, the three CSVs, `sites.geojson`,
+`atlas.sqlite`, `atlas.xlsx`, `atlas.json` and `datapackage.json`. Those assets are frozen, while
+the site rebuilt its own copies of every derived format on each build. Most rebuilt copies still
+match the frozen files byte for byte; some no longer do. The builder now writes `atlas.json`
+without indentation (with unchanged content for 16 of the 18 versions sealed on 16 October 2026).
+For the two oldest, `2026-08-20-v0.18-draft-thirty-sixth-reviewed` and `2026-10-13`, the dataset
+metadata and caveats also changed, and with them their SQLite, Excel, KML and Data Package files.
+Every zip contains `atlas.json`. Rebuilding all of this also filled the Pages artifact: on
+16 October 2026 it held 992,470,950 file bytes (997,478,400 as an uncompressed tar), 2.5 MB below
+the limit.
+
+A version before the boundary that has such a release has a checked-in
+`site/release-inventories/<id>.json` with schema `datacenter-atlas-legacy-release-assets-v1`. It
+lists the release's exact assets (name, bytes, SHA-256, canonical URL), every entry of the
+release's `SHA256SUMS` (which also covers the files that are only inside the zip: the NDJSON files
+and `sites.kml`), and `local_files`: the derived formats that the builder still writes byte for
+byte as that `SHA256SUMS` lists them (never the zip). For such a version the builder:
+
+- publishes the original files byte for byte at their existing `downloads/<id>/` URLs (the builder
+  checks that the release's `SHA256SUMS` lists each of them with its manifest hash);
+- publishes the release's `SHA256SUMS` byte for byte at its existing local URL, rebuilt from the
+  inventory and checked against the asset's size and SHA-256;
+- rebuilds each file in `local_files` for the configured `base_url` (the URL the release files
+  name, whatever `--base-url` the build uses), checks it against the release's `SHA256SUMS` and
+  publishes it at its existing local URL. **The build fails if one of them would change**;
+- links its other derived formats and its zip, on the landing page and in `api/v1/versions.json`,
+  to the frozen release assets, and notes which formats are only inside the zip.
+
+When a builder change would alter a file in `local_files`, the build names the version and the
+file. Either keep the builder's output for that version unchanged, or remove the name from
+`local_files`. Removing it is a URL change: record it here and in the
+[URL stability policy](#identifier-and-url-stability-policy). The file is then served from the
+release, or only from its zip. Never add a name whose bytes differ, and never edit the release
+facts (`files` and `sha256sums`) of a sealed inventory.
+
+Seal an inventory from an existing published release. The tool only reads: it downloads every
+asset and checks it against GitHub's digest, the release's `SHA256SUMS`, the zip's members and the
+tracked manifest. It also checks the manifest at the release tag, records `local_files` by
+rebuilding the derived formats with this checkout's builder (offline), and refuses to overwrite an
+inventory:
+
+```sh
+python3 site/e2e/seal_legacy_release.py --dataset 2026-10-13-research
+```
+
+Never create or edit a legacy release to fit an inventory. Before the `release` job publishes
+anything, it verifies every legacy inventory (exact asset set, sizes, digests, the manifest at the
+tag and anonymous availability), and it fails without `ATLAS_GITHUB_RELEASES=true`. A version
+without a release keeps its rebuilt local derived files.
+
+This changed URLs once, on 16 October 2026, for the 18 versions sealed then
+(`2026-08-20-v0.18-draft-thirty-sixth-reviewed`, `2026-10-13` and the research updates from
+`2026-10-13-research` to `2026-10-15-research-fifteenth`). 44 local URLs of rebuilt derived files
+that no longer matched the frozen release files now return 404:
+
+- `atlas.json` and `datacenter-atlas-<id>.zip` of each of the 18 versions;
+- `atlas.sqlite`, `atlas.xlsx`, `sites.kml` and `datapackage.json` of
+  `2026-08-20-v0.18-draft-thirty-sixth-reviewed` and `2026-10-13`.
+
+GitHub Pages cannot redirect a file, and an HTML page at a data file's URL would be a redirect
+masquerading as data. Serving the rebuilt bytes there would contradict the frozen `SHA256SUMS`
+next to them. The frozen bytes of these files are release assets, except `sites.kml` of those two
+versions, which is only inside their release zip. The other 118 rebuilt derived files
+(294,157,326 bytes) matched byte for byte and keep their URLs: the three NDJSON files of all 18
+versions, and `atlas.sqlite`, `atlas.xlsx`, `sites.kml` and `datapackage.json` of the 16 research
+updates. Every landing page and original file keeps its URL and bytes. `SHA256SUMS` keeps its URL,
+now with the release's frozen checksums. The Pages build fell to 697,420,477 file bytes
+(702,402,560 as a tar), leaving 297.6 MB of headroom.
 
 ### Typed JSON
 
@@ -398,15 +481,24 @@ The methodology page states this policy for users
 - `api/v1/` files and `sites/<site_id>/` pages exist only for records in the current version; a
   retired identifier returns 404 there, and its records remain in the original files of every
   `downloads/<id>/` that contained it.
-- Version identifiers and `downloads/<id>/` directories are permanent. `*_stable_key` values are
-  curation keys, not external identifiers.
+- Version identifiers and `downloads/<id>/` directories are permanent, and so are the URLs of the
+  original files and `SHA256SUMS` in them. `*_stable_key` values are curation keys, not external
+  identifiers.
+- Derived formats (JSON, NDJSON, SQLite, Excel, KML, the Data Package and the zip) are served
+  either from `downloads/<id>/` or from the version's frozen GitHub Release; consumers should use
+  each file's `url` from the landing page or `api/v1/versions.json`. Amendment of 16 October 2026:
+  18 older versions whose existing GitHub Release now backs their derived formats lost, once, the
+  44 local URLs of rebuilt derived copies that no longer matched that release. Their 118 copies
+  that still matched keep their URLs and bytes, and the build fails if one would change; see
+  [Older archives backed by their GitHub Release](#older-archives-backed-by-their-github-release).
+  A derived-format URL is otherwise never removed.
 
 Keep identifiers stable: never change a stable key just to rename a record. If a key must change,
 record the reason and the old and new identifiers in the data update's definition.
 
 ## Updating the data
 
-The atlas is an ongoing dataset. Add sites, refresh dated construction observations and correct
+The atlas is an ongoing dataset. Add sites, refresh dated status observations and correct
 locations or other facts as evidence becomes available.
 
 Divide research into bounded country passes. Each contributor searches local primary sources for
@@ -427,6 +519,13 @@ publication does not depend on reaching a site-count target or product-version m
    Supporting grid-work records can be associated with an existing project using `context_updates`
    and `context_kind: power_readiness`. Include the identity review, source IDs and unchanged
    `preserve_status_as_of`. This adds evidence only: status, location and capacity stay unchanged.
+   Records imported with the status `partially_operational` (part of the project operates; the other
+   phases are not established) or `proposed` (announcement, permission and physical work are not
+   established) can be moved to any other recognised status. A `partially_operational` record can
+   also be refreshed with a newer dated primary observation of the same status. No update sets
+   `proposed`: a dated primary source that identifies the project establishes `announced`, so a
+   proposed record is refreshed as `announced` (or a later status). Neither code is an admission
+   status, and no other record can be moved to them.
 3. Record the reviewed changes in `definitions/atlas-update-YYYY-MM-DD.json`, retaining stable
    site and project identifiers and pinning the previous dataset manifest. Build the dated
    snapshot with `python3 scripts/build_dataset_update.py --input definitions/atlas-update-YYYY-MM-DD.json`,
@@ -434,7 +533,10 @@ publication does not depend on reaching a site-count target or product-version m
    existing observation dates and recalculates their age at the update date. Historical batch
    reproduction is documented separately in [expansion_200.md](expansion_200.md). Existing
    published files remain unchanged so earlier analyses can be reproduced.
-4. Ensure Git tracks every file listed in the new manifest, then point `current_dataset` in
+4. Ensure Git tracks every file listed in the new manifest
+   (`python3 scripts/check_tracked_dataset_files.py` names any that are missing; `.gitignore`
+   allows the dataset file names, including `review-provenance.json`, `source-records.json` and
+   `identity-mapping.json`, in every dataset directory), then point `current_dataset` in
    `site/config.json` at the directory. Add dictionary and vocabulary entries for any new fields
    or codes. Historical directory names are storage identifiers, not public product versions.
 5. Build and refresh generated metadata:
@@ -540,12 +642,21 @@ when a built site is available.
     version. Legacy local archives attach the original ten selected assets; remote archives attach
     every inventoried asset from the separate `release-assets` artifact. Existing remote releases
     are verified against their frozen inventories; existing legacy releases are left untouched.
-    Remote archives cannot deploy when releases are disabled. Notes come from
+    Older versions with a legacy inventory are verified against their existing releases, which are
+    never edited, before any release is created or changed, so a broken legacy release stops the
+    job before it writes anything. Remote and legacy release-backed archives cannot deploy when
+    releases are disabled. Releases created from now on get unique titles that name the dataset
+    ("Data Center Atlas · 2026-10-15 · research-thirtieth"), the same titles as the entries of
+    `feed.xml`. Existing releases are never edited and keep their original titles (many read "Data
+    Center Atlas · 2026-10-15"), so their feed entries' titles differ from them. Notes come from
     [`site/e2e/release_notes.py`](../site/e2e/release_notes.py); publication and verification are
     handled by [`site/e2e/publish_release.py`](../site/e2e/publish_release.py).
   - `monitor` (`contents: read`, `issues: write`): weekly (Mondays 05:23 UTC) and on manual
     dispatch with `job` set to `monitor`, re-runs the live checks and checks every evidence
-    `source_url` politely (one request per second, 15-second timeout). URLs answering 404 or 410,
+    `source_url` politely: eight hosts at a time, one request at a time per host and at least a
+    second apart, 15-second timeout, non-ASCII URLs percent-encoded. URLs not started within 75
+    minutes are listed as unverified, so the job (timeout 100 minutes) always reports; about 2,100
+    URLs on 900 hosts should take an estimated 15 minutes. URLs answering 404 or 410,
     or whose host no longer exists, are listed in a single open issue labelled `link-rot`, which is
     updated each week and closed when none remain; blocked or failing requests are listed as
     unverified. The report is also kept as the `link-report` artifact. Monitor runs have their own
@@ -554,9 +665,12 @@ when a built site is available.
   the new release's commit (`gh api repos/<owner>/<action>/git/ref/tags/<tag>`, following an
   annotated tag to its commit) and replace both. A Dependabot configuration for the
   `github-actions` ecosystem, if added, proposes these updates as pull requests.
-- [`.github/workflows/clean-clone.yml`](../.github/workflows/clean-clone.yml) also builds the site
-  into a temporary directory, runs `check_public_metadata.py`, `tests.test_public_site` and `ruff`
-  on the builder. Its checkout does not persist the token.
+- [`.github/workflows/clean-clone.yml`](../.github/workflows/clean-clone.yml) (on `ubuntu-24.04`)
+  first runs `scripts/check_tracked_dataset_files.py`, which fails with the missing paths when Git
+  does not track a file a dataset manifest lists (or an update's definition or pinned sources),
+  then builds the site into a temporary directory, runs `check_public_metadata.py`,
+  `tests.test_public_site` and `ruff` on the builder. Its checkout does not persist the token. The
+  `build` job of `pages.yml` runs the same tracked-file check before building.
 - To roll back, revert the offending commit on `main`; the next push redeploys.
 
 One-time repository and account settings:

@@ -7,9 +7,14 @@ what users and scripts rely on: every API endpoint answers 200 with JSON and
 ``downloads/latest/SHA256SUMS`` (and in the index's download list) matches its checksum.
 
 The weekly monitor also runs ``--check-links``: one polite GET per distinct evidence ``source_url``
-(at most one request per second, 15-second timeout, the first 64 KiB read). Only 404, 410 and
-unknown hosts count as dead; 401, 403, 429, 5xx, timeouts and TLS errors are listed as unverified,
-because many publishers refuse automated requests. The link report never fails the run.
+(15-second timeout, the first 64 KiB read). A small pool of workers (``--link-workers``, default 8)
+checks different hosts in parallel, but each host gets one request at a time and at least
+``--link-delay`` seconds (default 1) between them, and an optional ``--link-deadline`` leaves any
+URL not started in time as unverified, so the run finishes within its job timeout. URLs with
+non-ASCII characters are requested percent-encoded (IDNA for host names) and reported as written.
+Only 404, 410 and unknown hosts count as dead; 401, 403, 429, 5xx, timeouts, TLS errors and malformed
+responses are listed as unverified, because many publishers refuse automated requests. The link
+report never fails the run.
 
 Usage (standard library only)::
 
@@ -21,15 +26,19 @@ Usage (standard library only)::
 from __future__ import annotations
 
 import argparse
+from collections import defaultdict
+from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass, field
 import hashlib
+import http.client
 import json
 import socket
 import sys
+import threading
 import time
 from typing import Any, Callable, Iterable, Mapping, Sequence
 import urllib.error
-from urllib.parse import quote, urljoin, urlsplit
+from urllib.parse import quote, urljoin, urlsplit, urlunsplit
 import urllib.request
 
 USER_AGENT = "datacenter-atlas-live-check/1 (+https://github.com/kiankyars/datacenter-atlas)"
@@ -73,9 +82,39 @@ def _opener() -> urllib.request.OpenerDirector:
     return urllib.request.build_opener(urllib.request.ProxyHandler({}))
 
 
+# Characters left as they are in a path or query: RFC 3986 reserved and unreserved characters and
+# "%", so existing percent-escapes and the URL's structure survive.
+_URL_SAFE = "!#$%&'()*+,/:;=?@[]~-._"
+
+
+def ascii_url(url: str) -> str:
+    """``url`` as an ASCII request target: IDNA host name, UTF-8 percent-encoded path and query.
+
+    A URL that is already plain ASCII without spaces or control characters is returned unchanged.
+    Raises ValueError for a host name that cannot be IDNA-encoded.
+    """
+    if url.isascii() and not any(char.isspace() or ord(char) < 32 or ord(char) == 127 for char in url):
+        return url
+    parts = urlsplit(url)
+    host = parts.hostname or ""
+    try:
+        ascii_host = host.encode("idna").decode("ascii") if host and not host.isascii() else host
+    except UnicodeError as error:
+        raise ValueError(f"cannot encode host name {host!r}: {error}") from None
+    if ":" in ascii_host:
+        ascii_host = f"[{ascii_host}]"
+    netloc = ascii_host + (f":{parts.port}" if parts.port is not None else "")
+    if parts.username is not None:
+        userinfo = quote(parts.username, safe="") + (
+            ":" + quote(parts.password, safe="") if parts.password is not None else "")
+        netloc = f"{userinfo}@{netloc}"
+    return urlunsplit((parts.scheme, netloc, quote(parts.path, safe=_URL_SAFE),
+                       quote(parts.query, safe=_URL_SAFE), quote(parts.fragment, safe=_URL_SAFE)))
+
+
 def http_get(url: str, *, timeout: float = 30.0, limit: int | None = None) -> Response:
     """GET ``url``; HTTP errors become a Response with their status instead of an exception."""
-    request = urllib.request.Request(url, headers={"User-Agent": USER_AGENT, "Accept": "*/*"})
+    request = urllib.request.Request(ascii_url(url), headers={"User-Agent": USER_AGENT, "Accept": "*/*"})
     try:
         with _opener().open(request, timeout=timeout) as response:
             body = response.read(limit) if limit else response.read()
@@ -246,7 +285,9 @@ def classify_link(url: str, *, timeout: float = 15.0, fetch: Callable[..., Respo
         if isinstance(reason, socket.gaierror):
             return LinkResult(url, "dead", f"unknown host ({reason})")
         return LinkResult(url, "unverified", f"{type(reason).__name__}: {reason}")
-    except (OSError, ValueError) as error:
+    except (OSError, ValueError, http.client.HTTPException) as error:
+        # HTTPException covers malformed responses (a bad status line, a truncated chunked body):
+        # one misbehaving publisher must not abort the whole link check.
         return LinkResult(url, "unverified", f"{type(error).__name__}: {error}")
     if response.status in DEAD_STATUSES:
         return LinkResult(url, "dead", f"HTTP {response.status}")
@@ -265,17 +306,59 @@ def evidence_links(evidence: Iterable[Mapping[str, Any]]) -> dict[str, list[Mapp
     return dict(sorted(grouped.items()))
 
 
+DEFAULT_LINK_WORKERS = 8
+NOT_CHECKED = "not checked: the link-check time budget ran out"
+
+
+def link_host(url: str) -> str:
+    """The politeness key of a URL: its lower-case host name (the whole URL if it has none)."""
+    try:
+        return (urlsplit(url).hostname or url).lower()
+    except ValueError:
+        return url
+
+
 def check_links(evidence: Iterable[Mapping[str, Any]], *, delay: float = 1.0, timeout: float = 15.0,
                 classify: Callable[[str], LinkResult] | None = None,
-                sleep: Callable[[float], None] = time.sleep) -> tuple[list[LinkResult], dict[str, list[Mapping[str, Any]]]]:
+                sleep: Callable[[float], None] = time.sleep, workers: int = 1,
+                deadline: float | None = None,
+                clock: Callable[[], float] = time.monotonic) -> tuple[list[LinkResult], dict[str, list[Mapping[str, Any]]]]:
+    """Classify every distinct evidence URL; results come back in URL order, whatever the timing.
+
+    Each host's URLs are checked one at a time, ``delay`` seconds apart; up to ``workers`` hosts
+    are checked at once, the hosts with the most URLs first. A URL whose turn comes after the
+    ``deadline`` (a ``clock()`` value) is not requested and is reported as unverified.
+    """
+    if workers < 1:
+        raise ValueError("workers must be at least 1")
     grouped = evidence_links(evidence)
     run = classify or (lambda url: classify_link(url, timeout=timeout))
-    results = []
-    for position, url in enumerate(grouped):
-        if position and delay > 0:
-            sleep(delay)
-        results.append(run(url))
-    return results, grouped
+    hosts: dict[str, list[str]] = defaultdict(list)
+    for url in grouped:
+        hosts[link_host(url)].append(url)
+    queue = sorted(hosts.values(), key=lambda urls: (-len(urls), urls[0]))
+    results: dict[str, LinkResult] = {}
+    lock = threading.Lock()
+
+    def check_host(urls: Sequence[str]) -> None:
+        for position, url in enumerate(urls):
+            if deadline is not None and clock() >= deadline:
+                result = LinkResult(url, "unverified", NOT_CHECKED)
+            else:
+                if position and delay > 0:
+                    sleep(delay)
+                result = run(url)
+            with lock:
+                results[url] = result
+
+    if workers == 1:
+        for urls in queue:
+            check_host(urls)
+    else:
+        with ThreadPoolExecutor(max_workers=workers, thread_name_prefix="link-check") as pool:
+            for future in [pool.submit(check_host, urls) for urls in queue]:
+                future.result()
+    return [results[url] for url in grouped], grouped
 
 
 # GitHub issue bodies hold at most 65,536 characters; the report is trimmed to fit.
@@ -332,7 +415,12 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--timeout", type=float, default=600.0, help="seconds to wait for the commit (default 600)")
     parser.add_argument("--skip-deployment-checks", action="store_true", help="only run --check-links")
     parser.add_argument("--check-links", action="store_true", help="also check every evidence source URL")
-    parser.add_argument("--link-delay", type=float, default=1.0, help="seconds between link requests (default 1)")
+    parser.add_argument("--link-delay", type=float, default=1.0,
+                        help="seconds between requests to the same host (default 1)")
+    parser.add_argument("--link-workers", type=int, default=DEFAULT_LINK_WORKERS,
+                        help=f"hosts checked at the same time (default {DEFAULT_LINK_WORKERS})")
+    parser.add_argument("--link-deadline", type=float,
+                        help="seconds after which unstarted link checks are reported as not checked")
     parser.add_argument("--report", help="write the link report (Markdown) to this file")
     parser.add_argument("--summary", help="append a Markdown summary to this file (e.g. $GITHUB_STEP_SUMMARY)")
     args = parser.parse_args(argv)
@@ -369,7 +457,9 @@ def main(argv: Sequence[str] | None = None) -> int:
         if response.status != 200:
             print(f"live_checks: evidence.json: HTTP {response.status}", file=sys.stderr)
             return 1
-        results, grouped = check_links(json.loads(response.body.decode("utf-8")), delay=args.link_delay)
+        deadline = time.monotonic() + args.link_deadline if args.link_deadline is not None else None
+        results, grouped = check_links(json.loads(response.body.decode("utf-8")), delay=args.link_delay,
+                                       workers=args.link_workers, deadline=deadline)
         text = link_report(
             base_url, results, grouped, dataset_id=str(index.get("dataset", {}).get("id", "?")),
             checked_on=time.strftime("%Y-%m-%d", time.gmtime()),

@@ -808,5 +808,162 @@ class InheritedCampusLocatorTests(unittest.TestCase):
             self.payloads()
 
 
+class RetainedImportedStatusTests(unittest.TestCase):
+    """Imported partially_operational and proposed records: refreshed, never admitted or assigned."""
+
+    BASELINE = ROOT / "verified_construction_core/2026-10-14-research-ninth"
+    PARTIAL = "imported:semiconductor-atlas:riot-corsicana"
+    PROPOSED = "imported:semiconductor-atlas:airtrunk-kurri-kurri"
+    BUILDING = "imported:semiconductor-atlas:datavolt-oxagon"
+
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.temp.cleanup)
+        self.root = Path(self.temp.name)
+        shutil.copytree(self.BASELINE, self.root / "ninth")
+        self.base = {row["project_stable_key"]: row
+                     for row in csv.DictReader(io.StringIO((self.BASELINE / "projects.csv").read_text()))}
+        self.sources = {"sources": [{
+            "id": "report", "kind": "company_disclosure", "title": "Quarterly project report",
+            "source_url": "https://example.org/quarterly-report", "publisher": "Example Operator",
+            "source_family": "example", "license": "all-rights-reserved", "attribution": "Example Operator",
+            "published_at": "2026-10-01", "retrieved_at": "2026-10-02T08:00:00Z",
+            "content_hash": hashlib.sha256(b"quarterly project report").hexdigest(),
+            "summary": "The report states the project status.",
+        }]}
+        self.spec = {
+            "format": "datacenter-atlas-update-input-v1", "updated_at": "2026-10-14", "base_dataset": "ninth",
+            "base_manifest_sha256": hashlib.sha256((self.BASELINE / "manifest.json").read_bytes()).hexdigest(),
+            "source_files": [], "status_updates": [],
+        }
+        self.input = self.root / "update.json"
+
+    write = DatasetUpdateTests.write
+    payloads = DatasetUpdateTests.payloads
+
+    def refresh(self, key, value, *, correction=False, **status):
+        item = {"project_stable_key": key,
+                "status": {"value": value, "as_of": "2026-10-01", "source_id": "report",
+                           "summary": f"The operator reports the project as {value}.", **status},
+                "identity_review": "Same named project and campus.", "successor_review": "No later report."}
+        if correction:
+            item.update(replaces_status_evidence_id=self.base[key]["status_evidence_id"], reason="Corrected source.")
+            self.spec["status_corrections"] = [item]
+        else:
+            self.spec["status_updates"] = [item]
+
+    def projects(self, payloads):
+        return {row["project_stable_key"]: row for row in csv.DictReader(io.StringIO(payloads["projects.csv"].decode()))}
+
+    def test_partially_operational_record_refreshes_as_an_operating_status(self):
+        self.assertEqual(self.base[self.PARTIAL]["last_observed_physical_status"], "partially_operational")
+        self.refresh(self.PARTIAL, "partially_operational")
+        payloads, manifest = self.payloads()
+        row = self.projects(payloads)[self.PARTIAL]
+        self.assertEqual((row["last_observed_physical_status"], row["status_as_of"]), ("partially_operational", "2026-10-01"))
+        self.assertEqual(row["status_method"], "authoritative_physical_status_update")
+        self.assertEqual(row["verification_posture"], self.base[self.PARTIAL]["verification_posture"])
+        evidence = {item["evidence_id"]: item for item in csv.DictReader(io.StringIO(payloads["evidence.csv"].decode()))}
+        self.assertIn("physical_status", json.loads(evidence[row["status_evidence_id"]]["roles_json"]))
+        self.assertIn(self.base[self.PARTIAL]["status_evidence_id"], evidence, "earlier evidence is retained")
+        self.assertEqual(json.loads(payloads["selection-report.json"])["refreshed_projects"], [self.PARTIAL])
+        out = self.root / "out"
+        build_update(self.input, out, root=self.root)
+        self.assertEqual(manifest, validate_update(self.input, out, root=self.root))
+
+    def test_proposed_record_is_refreshed_as_announced_never_as_proposed(self):
+        # The published vocabulary defines the rule: a dated primary source identifying the project
+        # establishes "announced", while "proposed" says that announcement is not established.
+        vocabulary = json.loads((ROOT / "site/vocabulary.json").read_text())
+        self.assertIn("announcement, permission or physical work is not established",
+                      vocabulary["statuses"]["proposed"]["description"])
+        self.assertIn("A dated primary source identifies the proposed data-centre project",
+                      vocabulary["statuses"]["announced"]["description"])
+        self.assertNotIn("authoritative_project_proposal", vocabulary["status_methods"])
+        self.assertEqual(self.base[self.PROPOSED]["last_observed_physical_status"], "proposed")
+        self.refresh(self.PROPOSED, "proposed")
+        with self.assertRaisesRegex(UpdateError, "proposed means announcement, permission and physical work are not"):
+            self.payloads()
+        self.spec["status_updates"] = []
+        self.refresh(self.PROPOSED, "announced")
+        payloads, _ = self.payloads()
+        row = self.projects(payloads)[self.PROPOSED]
+        self.assertEqual((row["last_observed_physical_status"], row["status_as_of"]), ("announced", "2026-10-01"))
+        self.assertEqual(row["status_method"], "authoritative_project_announcement")
+        self.assertEqual(row["verification_posture"], "authoritative_project_record_plus_scoped_location")
+        evidence = {item["evidence_id"]: item for item in csv.DictReader(io.StringIO(payloads["evidence.csv"].decode()))}
+        self.assertEqual(json.loads(evidence[row["status_evidence_id"]]["roles_json"]), ["announcement"])
+        schema = json.loads(payloads["schema.json"])
+        allowed = next(field["allowed_values"] for field in schema["tables"]["projects.csv"]["fields"]
+                       if field["name"] == "last_observed_physical_status")
+        # Codes that other imported records still carry stay documented in the schema.
+        self.assertTrue({"proposed", "partially_operational"} <= set(allowed))
+
+    def test_retained_records_can_move_to_other_statuses(self):
+        self.refresh(self.PROPOSED, "announced")
+        row = self.projects(self.payloads()[0])[self.PROPOSED]
+        self.assertEqual((row["last_observed_physical_status"], row["status_method"]),
+                         ("announced", "authoritative_project_announcement"))
+        self.refresh(self.PARTIAL, "operational")
+        self.assertEqual(self.projects(self.payloads()[0])[self.PARTIAL]["last_observed_physical_status"], "operational")
+
+    def test_other_records_cannot_move_to_retained_statuses(self):
+        messages = {"partially_operational": "retained imported status", "proposed": "proposed means announcement"}
+        for value, message in messages.items():
+            for correction in (False, True):
+                with self.subTest(value=value, correction=correction):
+                    self.spec.pop("status_updates", None)
+                    self.spec.pop("status_corrections", None)
+                    self.refresh(self.BUILDING, value, correction=correction)
+                    with self.assertRaisesRegex(UpdateError, message):
+                        self.payloads()
+        self.spec.pop("status_corrections", None)
+        self.refresh(self.PROPOSED, "partially_operational")
+        with self.assertRaisesRegex(UpdateError, "retained imported status"):
+            self.payloads()
+
+    def test_retained_statuses_are_not_admission_statuses(self):
+        reference = self.base[self.BUILDING]
+        for value, message in (("partially_operational", "new admission needs"), ("proposed", "proposed means")):
+            with self.subTest(value=value):
+                self.spec["additions"] = [{
+                    "project_stable_key": f"curated:new-{value}", "physical_site_stable_key": f"curated:new-{value}",
+                    "site_name": "New campus", "name": "New project", "country": reference["country"],
+                    "country_iso_a2": reference["country_iso_a2"],
+                    "status": {"value": value, "as_of": "2026-10-01", "source_id": "report", "summary": "Reported."},
+                    "locator": {"geometry": {"type": "Point", "coordinates": [10.0, 20.0]}, "source_id": "report",
+                                "scope": "campus_locator", "scope_class": "official_address_point",
+                                "authority": "official_source", "method": "official_address",
+                                "precision": "Campus address point.", "identity_review": "Named campus.",
+                                "uncertainty_reason": "No accuracy stated."},
+                    "distinctness_review": "New campus.", "successor_review": "No later report.",
+                }]
+                with self.assertRaisesRegex(UpdateError, message):
+                    self.payloads()
+
+    def test_dated_entries_and_firsthand_reports_establish_partial_operation_never_proposed(self):
+        source = self.sources["sources"][0]
+        source.pop("published_at")
+        source.update(source_observation_date="2026-10-01", source_observation_date_precision="day",
+                      date_semantics="Dated project register entry.")
+        # A dated operating-status entry can establish partial operation, as it can full operation.
+        self.refresh(self.PARTIAL, "partially_operational")
+        row = self.projects(self.payloads()[0])[self.PARTIAL]
+        self.assertEqual(row["status_as_of"], "2026-10-01")
+        self.spec["status_updates"] = []
+        self.refresh(self.PROPOSED, "proposed")
+        with self.assertRaisesRegex(UpdateError, "proposed means"):
+            self.payloads()
+        source.update(kind="news", published_at="2026-10-01")
+        for key in ("source_observation_date", "source_observation_date_precision", "date_semantics"):
+            source.pop(key)
+        with self.assertRaisesRegex(UpdateError, "proposed means"):
+            self.payloads()
+        self.spec["status_updates"] = []
+        self.refresh(self.PARTIAL, "partially_operational")
+        with self.assertRaisesRegex(UpdateError, "primary source or reviewed firsthand"):
+            self.payloads()
+
+
 if __name__ == "__main__":
     unittest.main()

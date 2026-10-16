@@ -9,7 +9,8 @@ permissions:
 
 jobs:
   core:
-    runs-on: ubuntu-latest
+    # Pinned instead of ubuntu-latest so the image changes only when this file does.
+    runs-on: ubuntu-24.04
     steps:
       # Actions are pinned to full commit SHAs (the comment names the release), and the checkout
       # does not keep the token in .git/config while the tests run.
@@ -20,6 +21,11 @@ jobs:
       - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
           python-version: "3.12"
+      # A file that a dataset manifest lists but Git does not track breaks every clean clone; name
+      # it before the slower steps fail with a less obvious missing-file or checksum error.
+      - name: Check that Git tracks every manifest-listed dataset file
+        working-directory: datacenter_atlas
+        run: python scripts/check_tracked_dataset_files.py
       - uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
         with:
           version: "0.10.4"
@@ -94,6 +100,7 @@ jobs:
             datacenter_atlas.tests.test_verified_construction_core_v018_baseline_withdrawals \
             datacenter_atlas.tests.test_verified_construction_core_v018_round44_corrections \
             datacenter_atlas.tests.test_public_site \
+            datacenter_atlas.tests.test_tracked_dataset_files \
             datacenter_atlas.tests.test_workspace_shim
       - name: Validate the frozen expansion research inventory
         working-directory: datacenter_atlas
@@ -325,12 +332,17 @@ jobs:
             scripts/build_expansion_200_inventory.py \
             scripts/build_expansion_200_draft.py \
             scripts/build_public_site.py \
+            scripts/check_tracked_dataset_files.py \
             site/e2e/test_site_e2e.py \
             site/e2e/test_ci_scripts.py \
+            site/e2e/test_release_publication.py \
             site/e2e/pages_server.py \
             site/e2e/check_public_metadata.py \
+            site/e2e/check_pages_size.py \
             site/e2e/live_checks.py \
+            site/e2e/publish_release.py \
             site/e2e/release_notes.py \
+            site/e2e/seal_legacy_release.py \
             tests/test_models.py \
             tests/test_database.py \
             tests/test_timestamp_boundaries.py \
@@ -386,4 +398,5 @@ jobs:
             tests/test_expansion_200_thirty_sixth_reviewed.py \
             tests/test_publication_pair_v32.py \
             tests/test_public_site.py \
+            tests/test_tracked_dataset_files.py \
             tests/test_workspace_shim.py
