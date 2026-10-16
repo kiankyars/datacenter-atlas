@@ -448,7 +448,8 @@ def test_a_broken_legacy_release_blocks_deployment_before_any_release_is_written
     assert "Legacy release asset changed" in capsys.readouterr().err
 
 
-def test_legacy_inventories_require_releases_enabled(tmp_path, capsys):
+def test_legacy_inventories_require_releases_enabled(tmp_path, monkeypatch, capsys):
+    monkeypatch.setenv("GITHUB_REPOSITORY", "example/atlas")
     directory, assets, originals = _legacy_release()
     inventory = _seal(directory, assets, originals)
     (tmp_path / "site/api/v1").mkdir(parents=True)
