@@ -247,3 +247,17 @@ conditions in
 They include Raxio Ethiopia and Côte d'Ivoire (portfolio statements only), Global Switch London
 and AdaniConneX Chennai (no present-tense operating statement), a second Soluna Kati project and
 locator corrections for existing records, which the update format cannot yet express.
+
+## 19 October 2026
+
+The 17 October research wave ran fourteen lanes at once and was interrupted before any lane was
+synthesised; its captures remain in the local country packets. Work resumes one lane at a time,
+starting with the northern United States.
+
+`verified_construction_core/2026-10-19-research-thirtysecond` adds Sabey's SDC Umatilla campus in
+Northeast Oregon: **517 sites and 544 projects**. The 16 October update held it for want of a
+locator. Umatilla County's tax-lot service now supplies one: tax lot 5N28130000200 at 31266
+Wanapa Rd, 55.7 acres, owned by SDC Umatilla I LLC in care of Sabey Corporation. Sabey's
+22 July release reports the first steel rising after a 15 July Going Vertical ceremony, so the
+project is under construction as of the release date; the ceremony day itself is outside the
+90-day window. The status is not carried forward into completion or operation.
