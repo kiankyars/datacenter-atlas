@@ -1,0 +1,81 @@
+{
+  "candidate_id": "luxconnect-bettembourg-wolser-data-center-campus",
+  "decision": "Selected the official ACT national address-register point for 202, Z.A.E. Wolser F, L-3290 Bettembourg (CACLR building 227211), returned in WGS84 by the geoportail.lu geocoder, as the campus locator. LuxConnect publishes this address for each of its three Bettembourg data centres (DC 1.1, DC 1.2, DC 1.3) and for its Bettembourg site.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      6.113516916,
+      49.504914634
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_address_register_point_of_operator_published_data_centre_campus_address",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-nl-be-lu-at-ch-p1/geoportail-geocode-bettembourg-202-wolser-f.json",
+  "source_url": "https://apiv3.geoportail.lu/geocode/search?queryString=202%20Z.A.E.%20Wolser%20F%2C%203290%20Bettembourg",
+  "selected_properties": {
+    "address": "202, Z.A.E. WOLSER F 3290 Bettembourg",
+    "accuracy_code": 8,
+    "id_caclr_building": "227211",
+    "id_caclr_street": "9554",
+    "luref_easting_northing": [
+      76045.0528,
+      63354.8595
+    ],
+    "storage_crs": "EPSG:2169 (LUREF)",
+    "served_wgs84": [
+      6.113516916,
+      49.504914634
+    ]
+  },
+  "identity_bridge": [
+    "LuxConnect data-centre pages DC 1.1, DC 1.2 and DC 1.3 each give the address 202, Z.A.E. Wolser F, L-3290 Bettembourg (operational since June 2009, January 2011 and mid-2015 respectively).",
+    "LuxConnect CSR Report 2025/2026, page 9: 'Bettembourg site 202, Z.A.E. Wolser F L-3290 Bettembourg'; page 10: four Tier IV data centres, three in Bettembourg and one in Bissen.",
+    "The geocoder returns exactly one ACT address-register record for 202, Z.A.E. WOLSER F 3290 Bettembourg (ratio 1.0, accuracy 8 = house-number level)."
+  ],
+  "consistency_checks": {
+    "luref_to_wgs84_pyproj_vs_service_m": 0.001,
+    "neighbouring_official_address_points": {
+      "204_zae_wolser_f": {
+        "wgs84": [
+          6.112329244,
+          49.505038942
+        ],
+        "id_caclr_building": "221861",
+        "distance_from_selected_m": 87.1
+      },
+      "206_zae_wolser_f": {
+        "wgs84": [
+          6.112302087,
+          49.505812929
+        ],
+        "id_caclr_building": "236679",
+        "distance_from_selected_m": 133.1
+      }
+    },
+    "repository_osm_layer_check": "The Atlas's pinned local OpenStreetMap layer (sources/consolidation-2026-10-13/original/layers/osm/features.geojson; not fetched from OpenStreetMap servers) names 'ICT Campus Bettembourg DC 1.2' (operator LuxConnect, housenumber 202) 26.4 m from the selected point, 'DC 1.1' (housenumber 204) 90.7 m and 'DC 1.3' (housenumber 206) 131.3 m away. Used only as a consistency check.",
+    "reverse_geocode_check": "A reverse query at the selected LUREF coordinates returns the same 202 Z.A.E. WOLSER F record (id_caclr_bat 227211, contributor ACT) at 0.0 m (capture geoportail-reverse-bettembourg-202.json; the server redirected to apiv4.geoportail.lu; check only).",
+    "versions": {
+      "pyproj": "3.7.1",
+      "proj": "9.5.1",
+      "shapely": "2.1.1"
+    }
+  },
+  "source_sha256": {
+    "geocode_202": "63b1bc20024b425f139666e28ddd4e95928ec6870afe6eb3aece6f103b8fa666",
+    "geocode_204": "64bd0d6f82a9e4eae38d767894779c82db33b38b1d009cfb24f4c8a36dea9a5c",
+    "geocode_206": "76c802264f79066f0f01c819c1e2355859e3d6ecfd633dfc1693413195a53285",
+    "reverse_202": "6de7760dbb07a120e4b71a5df9101bada13f8e83f48294b43d73deb274611bd9"
+  },
+  "transform_check": "The geocoder serves LUREF (EPSG:2169) coordinates and a WGS84 'geomlonlat'; an independent pyproj 3.7.1 (PROJ 9.5.1) EPSG:2169 to EPSG:4326 transform of the LUREF values differs from the served WGS84 point by 0.001 m.",
+  "excluded_coordinates": [
+    {
+      "kind": "Address points 204 and 206 Z.A.E. Wolser F",
+      "reason": "Neighbouring campus buildings (OpenStreetMap names them DC 1.1 and DC 1.3), but LuxConnect publishes 202 as the address of all three data centres; kept as checks."
+    },
+    {
+      "kind": "Centroid of the three address points",
+      "reason": "Not an official geometry; not used."
+    }
+  ]
+}

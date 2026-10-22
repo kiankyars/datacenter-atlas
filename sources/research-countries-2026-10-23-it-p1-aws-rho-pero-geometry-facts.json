@@ -1,0 +1,133 @@
+{
+  "capture_file": "aws-rhopero-int2-studio-diffusionale-2025-04.pdf",
+  "capture_sha256": "c69049162857b525db184f62ad3bd7c0b77ca4dca668ffd0762bbdea4fa695ca",
+  "source_table": "Untitled BPIP building table on PDF page 11 ('Coordinate geografiche dei vertici edifici WGS84-F32 [m]'), April 2025 integration to the air-dispersion study of the Edifici A/B Rho-Pero SIA",
+  "source_crs": "UTM zone 32N on WGS84 (EPSG:32632), as printed ('WGS84-F32')",
+  "vertices_edificio_A": [
+    [
+      505118.96,
+      5041020.7
+    ],
+    [
+      505145.58,
+      5040959.85
+    ],
+    [
+      505308.04,
+      5041023.42
+    ],
+    [
+      505292.83,
+      5041063.63
+    ],
+    [
+      505298.26,
+      5041065.8
+    ],
+    [
+      505290.11,
+      5041088.08
+    ]
+  ],
+  "vertices_edificio_B": [
+    [
+      505216.76,
+      5040901.71
+    ],
+    [
+      505292.54,
+      5040841.07
+    ],
+    [
+      505336.01,
+      5040889.66
+    ],
+    [
+      505254.83,
+      5040957.42
+    ],
+    [
+      505239.49,
+      5040939.52
+    ],
+    [
+      505243.32,
+      5040935.04
+    ]
+  ],
+  "computed_area_m2_epsg32632": {
+    "edificio_A": 11864.4,
+    "edificio_B": 6673.4
+  },
+  "union_geometry_type": "MultiPolygon",
+  "centroid_epsg32632": [
+    505236.88,
+    5040978.12
+  ],
+  "centroid_inside_a_building": false,
+  "centroid_distance_to_edificio_A_m": 16.3,
+  "centroid_distance_to_edificio_B_m": 27.4,
+  "centroid_inside_convex_hull_of_both_outlines": true,
+  "max_vertex_distance_from_centroid_m": 147.9,
+  "bbox_extent_m": [
+    217.0,
+    247.0
+  ],
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      9.067057,
+      45.5223177
+    ]
+  },
+  "method": "shapely 2.1.1 area centroid of the union of the two printed building outlines in EPSG:32632, inverse-projected to WGS84 longitude/latitude with pyproj 3.7.1 (no datum change)",
+  "cross_check_wells": {
+    "capture_file": "aws-rhopero-vp-relazione-descrittiva.pdf",
+    "capture_sha256": "26bb25d35748b2f76890e5edd69d4e5ea01980946b69d85bdd588c2e72ba9012",
+    "source_table": "Tabella 1 'coordinate delle opere di presa' (Gauss-Boaga), PDF page 6",
+    "wells_gauss_boaga": [
+      [
+        1505305.23,
+        5040862.0
+      ],
+      [
+        1505319.23,
+        5040867.61
+      ],
+      [
+        1505333.24,
+        5040872.74
+      ],
+      [
+        1505319.87,
+        5040848.1
+      ]
+    ],
+    "wells_epsg32632_via_pyproj_epsg3003": [
+      [
+        505277.39,
+        5040841.82
+      ],
+      [
+        505291.39,
+        5040847.43
+      ],
+      [
+        505305.4,
+        5040852.56
+      ],
+      [
+        505292.03,
+        5040827.93
+      ]
+    ],
+    "well_distance_to_edificio_B_outline_m": [
+      8.9,
+      0.0,
+      1.9,
+      13.2
+    ],
+    "note": "The four planned industrial-water wells, given in Monte Mario / Gauss-Boaga west zone (EPSG:3003) in a different filing, fall 0-13 m from the south-east edge of the Edificio B outline, where the report places the new water-treatment building; this independent datum agrees with the WGS84 reading of the building table to within metres."
+  },
+  "imagery_check": "Qualitative only: in an Esri World Imagery export in EPSG:32632 (esri-aws-rhopero-utm32.jpg) the two outlines fall on the cleared brownfield lot bounded by the motorway to the west, the railway to the north and the Rho Fiera car parks to the east, as the filing describes; imagery date unknown, not a status observation."
+}

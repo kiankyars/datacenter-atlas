@@ -1,0 +1,190 @@
+{
+  "reviewer": "root",
+  "reviewed_at": "2026-10-23",
+  "decision": "accepted_for_integration",
+  "update": "verified_construction_core/2026-10-23-research-fortyfourth",
+  "base_dataset": "verified_construction_core/2026-10-23-research-fortythird",
+  "process": "continuous: one researcher per beat, one adversarial verifier per fragment",
+  "fragments": [
+    {
+      "fragment": "in-west-north-p1",
+      "verdict": "accept",
+      "checks": [
+        "base re-read from site/config.json: verified_construction_core/2026-10-23-research-fortythird (580 sites, 613 projects, 3116 evidence)",
+        "all 8 relied-on captures rehashed: sha256 equals content_hash and .metadata.json sha256; captured_at equals retrieved_at; HTTP 200; no credentials",
+        "SEAC-2 331st agenda (doc-15.pdf, pdftotext): item 1 'Proposed expansion of data centre at TTC MIDC, Village: Koparkhairane' by STT Global Data Centres India, statement 593234, B1, 21/10/2026",
+        "ecmpcb listing page-2: 'Agenda of 331st ... Published by SEAC-II on October 15, 2026' links exactly the doc-15 URL; PDF CreationDate 15 Oct 2026; announced as_of 2026-10-15 is 8 days old",
+        "EC24B038MH162952 page 2 rendered at 150 dpi and read: row 9 'Latitude: 19 06'19.80\"N, Longitude: 73 01'08.01\"E', row 8 Gen-51, Gen-51/1 Part & Gen-50/1 TTC MIDC Khairane, plot 46,459 m2",
+        "DMS recomputed independently: 19.1055000 N, 73.0188917 E, equals the locator; campus_locator, direct_geometry, datum unstated and disclosed, uncertainty null with reason",
+        "corroboration: point lies inside round-43 PARIVESH CAF extent for proposal 434015 (lat 19.10412-19.10756, lon 73.01782-73.02073), 112 m from nearest edge; Esri image shows DC-type building with rooftop plant and two building sites at the point",
+        "STT Mumbai page HTML structure checked: label tags precede items, so Navi Mumbai 1 (28 MW) is unlabelled and Navi Mumbai 2-4 (49/42/36 MW) are 'Under Development'; source summary accurate; factsheet 11.48 acres matches EC plot area",
+        "Digital Edge 31 Aug 2026 release read: 'construction is underway on BOM3' and 'BOM1, which is already operational'; JSON-LD datePublished 2026-08-31",
+        "Digital Edge 6 Oct 2026 article read: 'BOM1 is operational and has achieved LEED Gold certification'; datePublished 2026-10-06 (also bounded by the 31 Aug release stating BOM1 operational)",
+        "India page read: '350MW on 47 acres', 'Phase 1 (BOM1)' on the single BOM campus",
+        "BOM1/BOM3 locator reuse: baseline site vcc-site-238b8f47b49203fa68ee and BOM2 project 10e4ebee campus_locator with geometry evidence d3f04c77 confirmed; no geometry-identity evidence to pin; reused DE evidence rows (709300db, ca16a364, 9596fcd9) metadata identical",
+        "BOM1/BOM3 meet the reopen condition of the 2026-10-22 thirty-fourth hold for this campus",
+        "distinctness: no STT, Khairane, Koparkhairane, Mahape, TTC MIDC, 593234, 434015, Gen-51 or EC24B038 match in sites/projects/evidence/source-records/identity-mapping; STT matches only Tokyo, Jaipur, Fairview, Jakarta; no BOM1/BOM3 record",
+        "proximity (pyproj 3.7.1 Geod WGS84): nearest to STT point Sify Rabale 4415 m and Raiden Turbhe 5563 m; no coordinates in source-records or identity-mapping within 3 km of STT; DE campus only CapitaLand at 1178 m (different operator)",
+        "queue fragments and sources/*-holds.json screened: no other STT Navi Mumbai or Digital Edge India proposal; thirty-fourth PARIVESH hold names the 434015 proposal only",
+        "roles: STT operator intended; Digital Edge operator current (BOM1) and intended (BOM3); scopes valid",
+        "commercial colocation operators; no demonstrator or institutional supercomputer",
+        "no third-party personal data in changes, sources, holds, notes or geometry facts (EC proponent officer name/phone/email not copied)",
+        "robots.txt captures reviewed: ecmpcb.in disallows only /public/*; digitaledgedc.com disallows listed PDFs only; sttgdc.com allows /in-en/; assets host 404; arcgis allows",
+        "geometry facts file sha256 001572924e... matches sources.json geometry_facts_sha256",
+        "dryrun_fragment.py ok: 581 sites, 616 projects, 3121 evidence"
+      ],
+      "residual_risks": [
+        "SEAC-2 agenda gives no plot for statement 593234; tying it to the Gen-51 campus rests on same proponent, same TTC MIDC/Khairane (Koparkhairane node) area, 'expansion of data centre' wording and B2->B1 step",
+        "EC coordinate datum unstated (taken as WGS84) and proponent-supplied; positional accuracy unknown",
+        "new STT site will show only the announced expansion although DC1 likely operates; existing buildings held for lack of an in-window dated status",
+        "ecmpcb.in documents are served under a /login/ path segment; they were fetched without credentials and the path is not robots-disallowed",
+        "BOM1 may lie outside EC 449922's building list (BOM 02-08); its placement on the campus point rests on operator campus statements (47 acres, Phase 1 BOM1)",
+        "BOM1 operational status is an operator marketing-article statement without capacity or opening date"
+      ]
+    },
+    {
+      "fragment": "it-p1",
+      "verdict": "accept",
+      "checks": [
+        "Base read at start: verified_construction_core/2026-10-23-research-fortythird (580 sites, 613 projects); window floor 2026-07-30 (85 days before 2026-10-23)",
+        "All 25 original source captures rehashed: file sha256 == metadata sha256 == content_hash, URL/effective URL match, HTTP 200, captured_at == retrieved_at; geometry-facts files match their sha256 and capture_sha256",
+        "AWS Rho/Pero: MASE_2026-0207141 read (register stamp 06-10-2026, signed 05/10/2026) naming 'Data Center edificio A ed edificio B Rho/Pero (MI)' for Amazon Data Services Italy; portal object 12028 lists outcome 06/10/2026; government_record; 17 days old; announced only",
+        "AWS locator recomputed from the April 2025 BPIP table (PDF p.11, listed under VIA 13213): union area centroid 505236.88E 5040978.12N -> 9.067057, 45.522318 (0.005 m from claim); 16.3/27.4 m from A/B; Gauss-Boaga wells convert to 0-13 m from Edificio B; imagery overlay fits cleared lot between motorway, railway and Rho Fiera",
+        "AWS proponent report (Mar 2026) read: Rho permit 11/12/2025 and CILA 30/01/2026 are outside the window and correctly not used; Oct 2026 condition-5 filing reports no works start",
+        "Microsoft MIL03: MASE_2026-0173385 read (12-08-2026) determining condition 6 of DM 255/2025 complied with for 'Data Center MIL03, Settimo Milanese (MI)', Microsoft 4825 Italy; listed 27/08/2026; 72 days old; announced only",
+        "MIL03 locator recomputed from Tabella 5-2 (PDF p.50; values in metres despite km header): GENSET1-8 mean 503393.08E 5035565.75N -> 9.043410, 45.473612 (0.003 m); Figura 5-3 shows the mean inside the single building between W and E generator rows; imagery shows the empty field NE of an existing DC compound",
+        "STACK MIL07: ISS opinion AOO-ISS 0042479 / MASE incoming 0205835 of 02/10/2026 read, naming construction of new site MIL07 in VIA 14473; listed 06/10/2026; 21 days old; announced only",
+        "MIL07 locator recomputed from Tabella 12 (PDF pp.42-43): BLD_6 area centroid 516704.62E 5019149.59N -> 9.213157, 45.325654 (0.003 m), 14.4 m inside; Figura 9 labels Bld_6 as MIL07; nine MIL07 stacks 6.1-6.9 m off its south side; BLD_5/7/8 centroids 253/283/154 m away; imagery overlay puts BLD_6 on the existing industrial building north of SP40",
+        "Locator derivation relabelled to coordinate_transform with compiled_reference authority on all three (projected UTM inputs transformed and centroided/averaged), matching Atlas precedent",
+        "STACK MIL07 page capture was requested 8.9 s into a 10 s crawl-delay: source removed, its operator role and alias dropped (held with reopen condition), identity/precision/successor texts rewritten to rest on VIA documents",
+        "MIL07 status summary corrected: Nov 2025 SNT records an alternative SCIA filed 20 Oct 2025 (protocol 15344) and a building permit still to be submitted; BLD_6 dimensions corrected to about 202 x 29 m",
+        "MIL03 successor review rewritten to cite the properly paced Italy community page instead of the Microsoft Local sitemap fetched under the crawl-delay",
+        "Roles: AWS and Microsoft proponents as owner/intended (proponent wording in their own filings); MIL07 now has no role claim",
+        "Distinctness: no Atlas site within 2 km of any point (nearest 20.1, 18.8, 6.3 km); no AWS/MIL03/STACK Italian record in sites, projects, evidence, source-records or identity-mapping; no other queue fragment addition within 5 km; only holds hit is the thirty-fourth Stack Siziano hold, whose reopen condition (coordinates in a dated VIA document) MIL07 meets",
+        "No third-party personal data in changes, sources, holds or notes (officials' and authors' names and emails in captures not copied)",
+        "dryrun_fragment.py: ok (583 sites, 616 projects, 3140 evidence) against fortythird"
+      ],
+      "residual_risks": [
+        "AWS Rho/Pero may already be under construction (Rho permit Dec 2025, works-start communication Jan 2026 per the proponent); announced is a floor, not a claim that works have not begun",
+        "AWS point is a union centroid lying between the two planned buildings, not inside one; outlines are modelling inputs",
+        "MIL03 point is a mean of modelled 2024 generator positions; observation leaves the 90-day status window on 10 Nov 2026",
+        "MIL07 is admitted as its own STACK site although the VIA treats MIL01-MIL03, MIL07 and MIL08A/B as one 'Data Center Stack Campus Siziano'; later STACK Siziano admissions must decide campus grouping consistently",
+        "Status sources for AWS and MIL03 are procedural MASE outcomes on conditions/modifications rather than project announcements as such; they name the projects and proponents"
+      ]
+    },
+    {
+      "fragment": "nl-be-lu-at-ch-p1",
+      "verdict": "accept",
+      "checks": [
+        "current_dataset read at start and end: verified_construction_core/2026-10-23-research-fortythird",
+        "all 17 relied-on captures rehashed: file sha256 == metadata sha256 == source content_hash; urls match; HTTP 200",
+        "6 supporting check captures (geocode 204/206, reverse 202, LV95 address, SearchServer, GWR 600 m box) rehashed against metadata",
+        "robots.txt read for luxconnect.lu (no disallow on /news, /data-center, /sites/default/files), northcdatacenters.com (allow all), api3.geo.admin.ch (paths allowed), apiv3/apiv4.geoportail.lu (404, no rules)",
+        "CSR PDF read with pdfinfo/pdftotext: p.10 'four Tier IV Data Centers (three in Bettembourg, one in Bissen) ... offering colocation'; p.9 site addresses; CreationDate/XMP 2026-10-22T09:48Z, captured 2026-10-22T21:46Z, linked from LuxConnect CSR page flipbook",
+        "LuxConnect operational as_of 2026-10-22 (1 day) and NorthC announced as_of 2026-09-30 (23 days) within the 85-day window; both company_disclosure",
+        "NorthC blog datePublished/dateModified 2026-09-30 matches post sitemap lastmod; text 'Im 2027 wird ein neues KI Enterprise Data Center in Basel eroeffnet' read; forecast not used as a stage",
+        "NorthC Basel 3 page gives 'Adresse: Schorenweg 21, 4144 Arlesheim', uptownBasel, 7.5 MW, from 2027; 2025 release confirms new building on uptownBasel campus in Arlesheim",
+        "locators recomputed with pyproj 3.7.1: EPSG:2169->4326 diffs 0.001 m (Bettembourg 202, Bissen 3); EPSG:2056->4326 diff 0.038 m (Schorenweg 21); point inside parcel 4484 (1,639.7 m2), 5.2 m from centroid",
+        "pinned OSM layer check: 'ICT Campus Bettembourg DC 1.2' (housenumber 202, telecom=data_center) 26.4 m; DC 1.1 90.7 m; DC 1.3 131.4 m; Bissen data-centre feature 17.5 m; 202 is a DC building, not a remote HQ",
+        "distinctness: no LuxConnect/Bettembourg/Bissen/Wolser/Poukewiss/NorthC Basel/Arlesheim/Schorenweg/uptownBasel match in sites, projects, evidence, source-records or identity-mapping; no LU site; nearest Atlas sites 163 km, 138 km and 27 km; no other queue fragment, claim or holds entry for these sites (thirty-fourth hold for Basel 3 is the one this resolves)",
+        "one project per new site; roles operator current (LuxConnect, CSR) and operator intended (NorthC, Basel 3 page); no personal data in sources, changes, holds or geometry files",
+        "corrected NorthC geometry facts and uncertainty_reason: two projected unnamed class-1251 GWR buildings on campus parcel 6606 about 146 m away could be the new DC (geometry facts sha256 updated in sources.json)",
+        "dryrun_fragment.py ok before and after corrections (583 sites, 616 projects)"
+      ],
+      "residual_risks": [
+        "LuxConnect statuses rely on a present-tense CSR report statement; its revised-upload date (22 Oct) is bounded by the PDF CreationDate and the capture, but the Last-Modified header cited in date_semantics was not saved as a capture",
+        "NorthC 30 Sep 2026 post carries 'Quelle: Swiss IT Magazine' (likely advertorial republished on NorthC's own site) and names only 'a new AI enterprise data centre in Basel'; identity to Basel 3 rests on undated/out-of-window NorthC pages",
+        "Schorenweg 21 is attached in GWR to a 1908 assembly hall; the new DC footprint is unpublished and may lie up to about 150 m away on the uptownBasel campus",
+        "Bettembourg campus point is one building's address (DC 1.2); DC 1.1 and DC 1.3 lie 87-133 m away; 202 is also LuxConnect's registered address",
+        "Bettembourg reverse-geocode check request was redirected to apiv4.geoportail.lu before its robots.txt (404) was read; used only as a check"
+      ]
+    },
+    {
+      "fragment": "nordics-p1",
+      "verdict": "accept",
+      "checks": [
+        "base re-read from site/config.json: 2026-10-23-research-fortythird; window floor 2026-07-30 (85 days before 2026-10-23)",
+        "all 19 sources rehashed: capture sha256 = source content_hash = .metadata.json sha256; both geometry-facts files re-hashed after edits",
+        "SJK01: archived city page (IA 2026-09-20, findkit metadata modified 2026-08-20) read in Finnish: first-phase construction is under way in Kivenneva by Itavayla; live page (modified 2026-10-08) and the 2026-08-08 city notice say the same",
+        "SJK01: Ryhti permit 3024006057 on 743-16-4-2 decided 2026-02-17; 21 records (3 two-storey 15,040-15,615 m2, 18 ancillary, 3 of them lapsed); the three large ones started 2026-04-29 (code 2), none completed",
+        "SJK01 locator: building 104272864S point; pyproj EPSG:3067 to 4326 of the native point agrees within 3e-8 deg; the other phase-1 buildings are 153 m away; farthest permit-3024006057 building is 277 m",
+        "SJK01 identity: city 2026-04-10 sale of a 22.3 ha plot to Pure DC (FIN01) PROJECTS Oy for three data centres under a permit already in force; plan 16003 puts phase 1 between Seinajoentie and Ammalantie",
+        "SJK01 role: Pure DC community page says Pure DC develops and operates the data centre, so operator/intended",
+        "EcoDC: Smedjebacken KF 2026-09-21 s.44 PDF read: option/share/lease agreements of 2026-08-17 approved for c. 51.6 ha, part of Vastansjo 2:7, Robackens industriomrade, for a data centre; posted 2026-09-23; groundworks and road works are plans only, so announced is correct",
+        "EcoDC locator: shapely/pyproj recomputed reservation polygon OBJECTID 1608 (Eco Data Center AB): 23.6 ha, centroid 15.3999722, 60.1245304, inside the polygon, inside plan D 203 and inside Vastansjo 2:7 area 1; plan centroid (not used) is 251 m away; farthest vertex is 547 m",
+        "EcoDC roles: 2026-08-25 company release (operator, intended); KF decision (owner, intended)",
+        "Bulk N01: Q3 2026 PDF (pdftotext) says construction of a new facility at the N01 Campus is progressing according to schedule; period end 2026-09-30 is strictly newer than the existing 2026-06-30 observation; same scope; signed Oslo 2026-10-22",
+        "distinctness: no Atlas site, queued addition or claimed coordinate within 20 km; nearest are DayOne Kiverio (242.6 km) and EcoDataCenter 2 Borlange (40.2 km), whose imported note already calls Smedjebacken a separate site; holds name Smedjebacken only as an unverified lead",
+        "personal data: no names, phones or emails of private individuals or officials in changes, sources, holds or geometry facts; contact-person GIS field not requested",
+        "corrected: ancillary building count 19 to 18 (21 records for permit 3024006057) in facility_scope, source summary and geometry facts; reservation Datum field described as its service alias Tillträdesdag (possession date), not an agreement date",
+        "dryrun_fragment.py: ok (582 sites, 615 projects)"
+      ],
+      "residual_risks": [
+        "SJK01 observation date rests on WordPress modification metadata bounded by one archived copy (2026-09-20); the 2026-08-08 dated city notice corroborates it",
+        "EcoDC locator: the 2021 reservation polygon (23.6 ha) is smaller than the 2026 option (c. 51.6 ha, boundary not published) and may not match it exactly; the uncertainty is recorded, with no metre value",
+        "EcoDC: 'Eco Data Center AB' in the municipal GIS is taken to be EcoDataCenter (the dialogue started in 2019 and the reservation is dated 2021); no organisation number confirms this",
+        "SJK01 facility_scope also counts the two 302400373R buildings on the same property as part of phase 1; that tie rests on the shared property and address only"
+      ]
+    },
+    {
+      "fragment": "sea-th-vn-ph-p1",
+      "verdict": "accept",
+      "checks": [
+        "All 17 relied-on captures rehashed: sha256 equals sources.json content_hash and .metadata.json sha256 (HTTP 200); 7 BodaData case-image hashes in capture_note also match; 3 geometry-facts files match geometry_facts_sha256",
+        "ecoDC/VN01: live Evolution markets page JSON-LD dateModified 2026-08-01T11:32:54+01:00 reads 'VN01 Hanoi ... RFS: In Operation; Location: EcoDC E4 within Hoa Lac Hi-tech Park; Partner: HITC'; IA copy of 2026-05-16 is the preceding version (dateModified 2026-04-17), same label; sitemap lastmod 2026-08-01; same lower-bound-plus-capture pattern accepted for LEV002 in de-south-west-p1; company_disclosure; 83 days old",
+        "ecoDC identity: JV release (2025-12-09) names HITC = HTC International Telecommunication JSC and EcoDC as HITC's existing Hoa Lac facility (owner, current); ecoDC home says built on Lot E4 (4.47 ha) of Hoa Lac Hi-tech Park, 900 racks in 2 phases",
+        "GSA01: Gulf Q2 2026 Oppday deck (index lists it 26 Aug 2026; viewer -> hub.optiwise.io PDF chain traced) slide 27 'GSA01 25 MW In operation (COD 2025) Location: Samut Prakan', outlook 'GSA01 (25 MW) fully ramp up since Jun'26'; company_disclosure; 58 days old; SET letter 2026-10-14 confirms Gulf's 40% indirect holding via GSA Holdings (owner, current)",
+        "HIVE: BodaData release dated 2026-10-20 (日期：2026-10-20, 下一篇：无); case images read visually: 'In Bridgetowne East, Pasig City ... developed by BodaData with ZTE', 'The HIVE operates under a telco-neutral model ... The facility serves local government agencies and businesses ... global cloud service providers', Chinese '目前，该基地已服务于'; company_disclosure; 3 days old; Beeinfotech PH home names The HIVE Data Center at 88 Bridgetowne East, Pasig (operator, current)",
+        "Locators recomputed by parsing the raw Google tbm=map responses: EcoDC HITC 20.9872951,105.5510259 (links ecodc.vn, same feature id in two queries); GSA01 Bang Phli 13.592908,100.7654867 (Data center, '(Owner)' profile label, 7-digit phone prefix matches Gulf head-office number, digits not reproduced); Beeinfotech PH 14.5951583,121.0869047 (Data center, links beeinfotech.ph) - all match changes.json exactly",
+        "Imagery: re-mosaicked the 9 captured Esri z17 tiles for GSA01 (point at north forecourt of multi-storey building with rows of rooftop plant); fetched fresh Esri z17 tiles (robots Disallow empty) for ecoDC (point at south edge of a multi-storey building in a wooded lake compound, ICT Park feature 0.22 km N on another building) and HIVE (point on a large white-roofed single building in Bridgetowne East)",
+        "Robots: google.com robots allows /search?*tbm=map; bodadata, evolutiondatacentres, ecodc.vn, beeinfotech, investor.gulf.co.th, hub.optiwise.io and arcgisonline robots allow the paths used",
+        "Distinctness: names, aliases, operators, addresses and coordinates screened against fortythird sites/projects/evidence/source-records/identity-mapping, all other queue changes/holds/claims.tsv and sources/*-holds.json: no match; nearest Atlas sites 608 km (VN), 34.6 km (TH), 7.43 km (PH); only prior mention is the 2026-10-16 VN01 hold this resolves; GSA02 curated source treats GSA01 as separate",
+        "Each addition is a new site with exactly one project; scopes campus_locator with direct_geometry and null uncertainty plus reasons; roles owner/operator with relationship_scope current",
+        "Added to the ecoDC identity_review that ecoDC's own location-page map widget pin (21.0304,105.7871, Cau Giay, ~25 km east) contradicts its printed Lot E4 address on a page with placeholder template text and was excluded",
+        "Privacy: no individuals' names (the case's quoted university dean is not reproduced), phones or e-mails in changes, sources, holds, notes or geometry facts",
+        "dryrun_fragment.py ok against verified_construction_core/2026-10-23-research-fortythird (583 sites, 616 projects, 62 countries)"
+      ],
+      "residual_risks": [
+        "ecoDC/VN01 observation (2026-08-01) leaves the 85-day window after 2026-10-25; it must be published with updated_at no later than 2026-10-25",
+        "ecoDC observation date rests on WordPress dateModified bounded only below by the 2026-05-16 archived prior version and above by the 22 Oct capture; the VN01 label itself is unchanged since April",
+        "ecoDC Google feature is categorised 'Corporate office'; GSA01 feature has no website link and the GSA01 district rests on the map feature (Gulf publishes no street address); imagery checks are qualitative with unknown acquisition dates",
+        "HIVE status comes from a developer's republished case text compiled for a September 2026 collection; capacity, utilisation and phases are not asserted"
+      ]
+    },
+    {
+      "fragment": "us-neocloud-p1",
+      "verdict": "accept",
+      "checks": [
+        "base re-read from site/config.json: 2026-10-23-research-fortythird; window floor 2026-07-30 (85 days before 2026-10-23)",
+        "all 17 sources rehashed: capture sha256 = source content_hash = .metadata.json sha256, URLs and HTTP 200 match; both geometry-facts files re-hashed after edits",
+        "NC-1: corrected WhiteFiber Q2 release (PR Newswire dateline 12 Aug 2026) read: business highlights say phased delivery and commissioning of NC-1 advanced, initial capacity delivered, equipment startup and customer testing underway, initial billing commenced; commissioning as of 2026-08-12 is in window and claims no completion",
+        "NC-1 locator: pyproj/shapely recompute of the NC OneMap ring (86 vertices, one ring, no holes): UTM 17N centroid -79.9894218, 36.4036125, inside, 96.55 geodesic acres, 644 x 1070 m; service parcel point within 0.001 m",
+        "NC-1 identity: only Enovum-owned Rockingham parcel (Enovum NC-1 Bidco LLC, sale 2025-05-20); 18 Dec 2025 release names Enovum as WhiteFiber subsidiary and Nscale's 40 MW agreement at NC-1; blog quotes the former Unifi facility and 96 acres; Nscale 31 Aug release gives a 96-acre Madison colocation site with up to 40 MW",
+        "Keel: campus page carousel read in raw HTML: each post div pairs post-date 10.09.26 with 'Spread footings concrete pour via pump truck' (also 10.08.26 structural beam, 09.22-09.29 foundations and duct banks); 09.29.26 fixes the MM.DD.YY format; observation 2026-10-09 is before the 2026-10-22 retrieval",
+        "Keel locator: union of six Grant County parcels recomputed in UTM 11N: one part, no holes, 5.97 acres, 241 x 158 m, centroid -119.2939255, 47.1969153, inside; intersection of Tyndall Rd NE and Randolph Rd NE from county centerlines is 11 m from the union; centroid is 134 m from it",
+        "Keel identity: Moses Lake hearing-examiner agenda (pdftotext) for 28 Jan 2026 lists PLN2025-0092 Grant Node CUP, a 60,000 sq ft data center, as the proposed Bitfarms data center on 6 acres in the SW corner of Tyndall and Randoph [sic] Rd NE; permitted status correctly not asserted",
+        "Monarch refresh: Nscale release (Point Pleasant, 25 Aug 2026) says the project is currently building significant computing capacity (the CEO says 'we are building it in Mason County'); strictly newer than 2026-07-14; status, campus locator, name and scope unchanged",
+        "Monarch adverse checks: the S-1 (Wayback capture from 16 Oct) calls Monarch a prospective site only in notes on the March 2026 acquisition; the WVDEP notice of 29 Sep covers pending air and state-waters permit applications. Neither withdraws construction",
+        "roles: owners from the parcel records (current); WhiteFiber operator (current), Nscale tenant (current), Keel operator (intended); all scopes valid",
+        "distinctness: nothing in sites, projects, evidence, source-records (231) or identity-mapping matches WhiteFiber, Enovum, Unifi, Keel, Bitfarms, Grant Node or Backbone; nearest sites are 70.1 km and 73.1 km away; no queue fragment or claim lies within 60 km; this resolves the 16 Oct Nscale Madison hold",
+        "robots: keelinfra allows all; nscale robots is empty; nconemap services returns 404 (no rules); cityofml AgendaCenter is allowed; the bitfarms investor release paths are allowed; no login or paywall was used",
+        "personal data: no private individuals' names, phones or emails in changes, sources, holds or geometry facts; WVDEP staff contact and executive names are not copied",
+        "corrected: the quoted parcel legal description now reads 'ENOVUM DATAU [sic] CENTERS' as in the raw record (changes, sources, geometry facts, notes); the agenda quote reads 'Randoph [sic]'; the Keel corner_check now notes that the parcel north edge overlaps the Tyndall centerline by up to 3.4 m (575 m2) and no longer says 'entirely south'; the Keel project name no longer implies 18 MW of data-center capacity",
+        "dryrun_fragment.py: ok (582 sites, 615 projects, 3133 evidence)"
+      ],
+      "residual_risks": [
+        "Monarch refresh rests on a general present-tense sentence in a community-gift release, with no physical detail; WVDEP still called the campus 'proposed' on 29 Sep with key permits pending",
+        "Keel observation date comes from undated-page post labels (MM.DD.YY) with no archived copy; the September posts and the 22 Oct retrieval bound it",
+        "Backbone Mining Solutions LLC's tie to Bitfarms/Keel is inferred from the sale dates, acreage and CUP location, not documented",
+        "NC-1 commissioning may understate the status: initial billing had commenced on 12 Aug, so part of the capacity may already be operating; the 90-day status window closes on 10 Nov 2026"
+      ]
+    }
+  ],
+  "packet_pins": {
+    "definitions/atlas-research-fortyfourth-2026-10-23.json": "248c2ee23943c1d6467148c82159139a0d9d18bd4225a1a60b40e47bc6ea2c89",
+    "sources/research-countries-2026-10-23-fortyfourth-primary-sources.json": "742d3d9d2b099666b41dab6322701dc53caa394d7f9f44582632abb7d7b29621",
+    "sources/research-countries-2026-10-23-fortyfourth-actions.json": "e8c5f8d75eec05a26c66c60e116d7234ec4ce7e775a19873a3953687a7bfdcdb",
+    "sources/research-countries-2026-10-23-fortyfourth-holds.json": "a8d37e38db57a9174b6605d292fcdd1001a094a087b69329a250833375bcb272"
+  },
+  "raw_captures_redistributed": false
+}

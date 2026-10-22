@@ -1,0 +1,79 @@
+{
+  "candidate_id": "ecodatacenter-smedjebacken-robacken-campus",
+  "decision": "Selected the planar centroid of the municipal reservation-agreement polygon recorded for Eco Data Center AB on property Västansjö 2:7 in Smedjebacken's map service (EPSG:3009), transformed to WGS84, as the campus locator for EcoDataCenter's third campus. It marks the land reserved for the data-centre establishment in Röbackens industriområde; it is not a building, the 2026 option boundary, the detailed-plan area or the industrial area's centroid.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      15.3999722,
+      60.1245304
+    ]
+  },
+  "authority_class": "compiled_reference",
+  "scope_class": "official_municipal_land_reservation_polygon_centroid",
+  "use_scope": "campus_locator",
+  "derivation": "coordinate_transform",
+  "source_file": "local_data/country-research-nordics-p1/smb-reservationsavtal-eco-sweref.json",
+  "source_sha256": "0c2604f9c624eebecdbdd2be0a9938a2b0294f7b3d1b523a53f595701b12ca39",
+  "source_url": "https://geodata.smedjebacken.se/arcgis/rest/services/Karta/Mark___Exploatering/MapServer/9/query?where=UPPER%28Namn_F%C3%B6retag%29%20LIKE%20%27%25ECO%25%27&outFields=OBJECTID,Namn_F%C3%B6retag,Datum,Areal_kvm,Fastighetsbeteckning,AB_nummer&returnGeometry=true&f=json",
+  "selected_properties": {
+    "layer": "Karta/Mark___Exploatering MapServer layer 9 'Reservationsavtal'",
+    "OBJECTID": 1608,
+    "Namn_Företag": "Eco Data Center AB",
+    "Fastighetsbeteckning": "Västansjö 2:7",
+    "Datum": "1610712000000 ms epoch = 2021-01-15 (Datum field, service alias 'Tillträdesdag', possession date; not a status observation)",
+    "Areal_kvm": null,
+    "native_crs": "EPSG:3009 (SWEREF 99 15 00), from the service spatialReference",
+    "vertices": 20,
+    "area_m2": 236078.1,
+    "bbox_m": [
+      883,
+      645
+    ],
+    "personal_data_note": "The layer's contact-person field was not requested."
+  },
+  "computation": {
+    "centroid_epsg3009": [
+      172234.427,
+      6668014.463
+    ],
+    "centroid_wgs84": [
+      15.3999722,
+      60.1245304
+    ],
+    "centroid_inside_polygon": true,
+    "farthest_vertex_m": 547,
+    "nearest_edge_m": 120,
+    "server_outsr4326_check": "The same feature requested with outSR=4326 (local_data/country-research-nordics-p1/smb-reservationsavtal-eco.geojson, sha256 1e2b2cf4c4e6ef1264ca7b6ebd5669ef4e3f45c16c3b6ceb245b53b9dc8217cf) has a planar centroid of [15.3999721, 60.1245304], agreeing within 1e-7 degrees.",
+    "versions": {
+      "pyproj": "3.7.1",
+      "proj": "9.5.1",
+      "shapely": "2.1.1"
+    }
+  },
+  "identity_bridge": [
+    "Smedjebacken kommunfullmäktige 21 September 2026 § 44 (Dnr 2024/00349): approves EcoDC's option to acquire industrial land in Röbackens industriområde (about 51.6 ha, part of the property Smedjebacken Västansjö 2:7) for the establishment of a data centre, through the municipal company Röbacken 1 AB.",
+    "Smedjebacken news of 25 August 2026: dialogue since 2019 between the municipality and EcoDataCenter about acquiring parts of Röbackens industriområde for data centres; option agreement for 52 ha.",
+    "Municipal GIS: the only reservation-agreement feature for the company (query on company names containing ECO or DATA) is OBJECTID 1608, 'Eco Data Center AB', property 'Västansjö 2:7', 23.6 ha, which lies entirely within detailed plan D 203 Röbacken (75.5 ha) and 83% within area 1 of Västansjö 2:7 (214.1 ha)."
+  ],
+  "consistency_checks": {
+    "plan_d203": "Detailed plan D 203 Röbacken (plan information layer, local_data/country-research-nordics-p1/smb-dpinfo-roback.json, sha256 535773c8a163ca07dda05b3b6ccbb8bcde1baba6d3856f5662676c375d12e555): 755,143 m2; the reservation polygon lies 100% inside it; plan-area centroid [15.3965191, 60.1259813] is 251 m from the selected point and is not used.",
+    "property_vastansjo_2_7": "Fastighetsytor layer (local_data/country-research-nordics-p1/smb-fastighetsytor-vastansjo-2-7.json, sha256 8785aa7d8d5e560a1546055d5d04a2d4e5d5c7fa45b02f92931cbca6010aa583): Västansjö 2:7 has five areas; area 1 is 214.1 ha and holds 83.3% of the reservation polygon; the property's centroid is not used.",
+    "area_discrepancy": "The 2021 reservation covers 23.6 ha, while the 2026 option covers about 51.6 ha of Västansjö 2:7 (exact area to be fixed by cadastral procedure) plus a 6.5 ha lease; the option boundary is not published, so the reservation is used as the best project-specific municipal geometry.",
+    "nearest_atlas_site_km": 40.19
+  },
+  "transform_check": "Planar centroid computed in EPSG:3009 with shapely 2.1.1 and transformed with pyproj 3.7.1 (PROJ 9.5.1, always_xy) to EPSG:4326; SWEREF 99 is treated as coincident with WGS84 at this precision.",
+  "excluded_coordinates": [
+    {
+      "kind": "Centroid of detailed plan D 203 Röbacken",
+      "reason": "Industrial-area centroid, not the project."
+    },
+    {
+      "kind": "Centroid of Västansjö 2:7 area 1 (214.1 ha)",
+      "reason": "Parent property far larger than the data-centre land."
+    },
+    {
+      "kind": "Smedjebacken town or municipal office",
+      "reason": "Administrative locations, not the site."
+    }
+  ]
+}

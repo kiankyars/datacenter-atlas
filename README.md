@@ -11,9 +11,9 @@ Search by location or company, filter by status, and open a site to see its proj
 ## Coverage
 
 <!-- atlas:current-dataset -->
-- **Coverage:** **580 physical sites**, **613 projects** and **61 countries**.
+- **Coverage:** **594 physical sites**, **629 projects** and **63 countries**.
 - **Data updated:** 2026-10-23.
-- **Status observations:** 2023-12-01 to 2026-10-21. Each record includes its source and observation
+- **Status observations:** 2023-12-01 to 2026-10-22. Each record includes its source and observation
   date.
 <!-- /atlas:current-dataset -->
 
@@ -44,9 +44,9 @@ lists every file with its size and checksum. Language models and agents can star
 
 <!-- atlas:version-files -->
 `downloads/latest/` contains the current data. For reproducible work, use the
-[archived files](https://kiankyars.github.io/datacenter-atlas/downloads/2026-10-23-research-fortythird/)
+[archived files](https://kiankyars.github.io/datacenter-atlas/downloads/2026-10-23-research-fortyfourth/)
 and verify them against their
-[`SHA256SUMS`](https://github.com/kiankyars/datacenter-atlas/releases/download/data-2026-10-23-research-fortythird/SHA256SUMS).
+[`SHA256SUMS`](https://github.com/kiankyars/datacenter-atlas/releases/download/data-2026-10-23-research-fortyfourth/SHA256SUMS).
 <!-- /atlas:version-files -->
 
 Archived CSVs, GeoJSON and source records remain unchanged. Where an archive has a GitHub
@@ -200,7 +200,7 @@ and the site offers the same citation as
 
 <!-- atlas:citation -->
 > Kyars, K. (2026). *Data Center Atlas* (2026-10-23) [Data set].
-> https://kiankyars.github.io/datacenter-atlas/downloads/2026-10-23-research-fortythird/
+> https://kiankyars.github.io/datacenter-atlas/downloads/2026-10-23-research-fortyfourth/
 
 ```bibtex
 @misc{kyars2026datacenteratlas,
@@ -208,7 +208,7 @@ and the site offers the same citation as
   title  = "Data Center Atlas",
   year   = "2026",
   note   = "Data as published 2026-10-23",
-  url    = "https://kiankyars.github.io/datacenter-atlas/downloads/2026-10-23-research-fortythird/"
+  url    = "https://kiankyars.github.io/datacenter-atlas/downloads/2026-10-23-research-fortyfourth/"
 }
 ```
 <!-- /atlas:citation -->

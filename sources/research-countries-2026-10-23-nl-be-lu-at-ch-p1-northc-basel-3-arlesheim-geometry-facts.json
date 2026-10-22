@@ -1,0 +1,93 @@
+{
+  "candidate_id": "northc-basel-3-uptownbasel-arlesheim-data-center",
+  "decision": "Selected the official federal building-address record EGAID 101087698 (Schorenweg 21, 4144 Arlesheim; EGID 2348834), served in WGS84 by api3.geo.admin.ch, as the project locator. NorthC publishes Schorenweg 21, 4144 Arlesheim as the address of its Münchenstein (Basel) 3 data centre on the uptownBasel campus.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      7.612002,
+      47.508571
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_building_address_point_of_operator_published_project_address",
+  "use_scope": "project_locator",
+  "source_file": "local_data/country-research-nl-be-lu-at-ch-p1/geoadmin-gebaeudeadresse-101087698-wgs84.json",
+  "source_url": "https://api3.geo.admin.ch/rest/services/ech/MapServer/ch.swisstopo.amtliches-gebaeudeadressverzeichnis/101087698?sr=4326&geometryFormat=geojson",
+  "selected_properties": {
+    "adr_egaid": 101087698,
+    "bdg_egid": 2348834,
+    "address": "Schorenweg 21, 4144 Arlesheim (BFS 2763, canton BL)",
+    "adr_official": true,
+    "adr_status": "1",
+    "bdg_category": "non_residential",
+    "adr_modified": "20261003",
+    "lv95": [
+      2613061.6,
+      1261994.7
+    ],
+    "served_wgs84": [
+      7.612002,
+      47.508571
+    ],
+    "gwr_building": {
+      "gbez": "Montagehalle",
+      "gstat": 1004,
+      "gkat": 1060,
+      "gklas": 1251,
+      "gbauj": 1908,
+      "garea_m2": 838,
+      "lparz": "4484",
+      "egrid": "CH357182794944",
+      "gexpdat": "21.10.2026"
+    },
+    "cadastral_parcel": {
+      "number": "4484",
+      "egrid": "CH357182794944",
+      "area_m2_lv95": 1639.7,
+      "min_rect_sides_m": [
+        24.1,
+        70.4
+      ]
+    }
+  },
+  "identity_bridge": [
+    "NorthC page 'Datacenter Münchenstein (Basel) 3': in the middle of the uptownBasel innovation campus; Adresse: Schorenweg 21, 4144 Arlesheim; total power 7.5 MW; available from 2027; designed for AI (GPU-ready, high density).",
+    "NorthC blog of 30 September 2026: a new AI enterprise data centre in Basel will open in 2027; the site menu lists Münchenstein (Basel) 3 among NorthC's Swiss data centres.",
+    "NorthC release of 11 September 2025: contract signed to build a regional data centre on the uptownBasel innovation campus in Arlesheim (new building, first phase 2,500 m2 and 6 MVA).",
+    "The federal search returns exactly one official address for Schorenweg 21 4144 Arlesheim, linked to EGAID 101087698 and GWR EGID 2348834."
+  ],
+  "consistency_checks": {
+    "lv95_to_wgs84_pyproj_vs_service_m": 0.04,
+    "search_server_point_vs_selected_m": 0.06,
+    "address_inside_parcel_4484": true,
+    "address_to_parcel_boundary_m": 9.9,
+    "address_to_parcel_centroid_m": 5.2,
+    "parcel_max_vertex_distance_m": 41.8,
+    "gwr_identify_600m_box": "63 GWR records in a 600 m box around the point; none carries a data-centre designation. The projected or permitted records (gstat 1001/1002) are Tramstrasse 64c (commercial building J5, about 311 m away), Schorenweg 12 (office and production building with bicycle shelters, about 240 m), two parking garages on campus parcel 6606 (about 190-203 m) and two unnamed projected buildings on parcel 6606 ('Gebäude 2' and 'Gewerbe- und Industriegebäude', class 1251, about 146-147 m) whose use is not stated, so either could be the new data-centre building (verifier correction, 23 October 2026). The new building is therefore not identifiable in the register and may lie up to about 150 m from the address point.",
+    "versions": {
+      "pyproj": "3.7.1",
+      "proj": "9.5.1",
+      "shapely": "2.1.1"
+    }
+  },
+  "source_sha256": {
+    "address_wgs84": "9681297666d92e8731393c5e8e3ea0936bf5b56a4548f813bd2f4739cceaec52",
+    "address_lv95": "df16225bd3274dbd6f7cc5b19d6411e58be24322aab9559df620fe9b112b1c74",
+    "gwr_2348834": "b49f5434e4b4cfdefc2873a1e87e3a9c54c467281c0479546b20d985cff7f545",
+    "av_parcel_identify": "3f72b15973d315819eb091cb711d106d9bb0d32a46d28192f17a28aa16df53e2",
+    "search_server": "976f0946b04be28963bd399f400d0878caab62cdc38c2405b6d40e57c164ff82",
+    "gwr_identify_600m": "c0e7e768eeae98943006933e2e34cb37446b4521a8aed61752b64656b348ddef"
+  },
+  "transform_check": "The service serves the record in WGS84 (6 decimals) when asked for sr=4326; an independent pyproj 3.7.1 (PROJ 9.5.1) EPSG:2056 to EPSG:4326 transform of the LV95 record differs by 0.04 m.",
+  "excluded_coordinates": [
+    {
+      "kind": "Cadastral parcel 4484 centroid",
+      "reason": "Recorded as a check (5.2 m from the selected point); the parcel is only 1,640 m2 and the new building's footprint is not published, so the official address point is kept."
+    },
+    {
+      "kind": "uptownBasel campus as a whole",
+      "reason": "A campus-wide point would be an industrial-zone style centroid; not used."
+    }
+  ],
+  "overlap_note": "The register attaches Schorenweg 21 to an existing 1908 assembly hall (Montagehalle, 838 m2). NorthC describes the data centre as a new building; whether it replaces or adjoins that hall is not published."
+}

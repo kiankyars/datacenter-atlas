@@ -1,0 +1,47 @@
+{
+  "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+  "candidate": "STT Navi Mumbai campus (Gen-51, Gen-51/1 Part and Gen-50/1, TTC MIDC, Village Khairane, Thane) - proposed further expansion (Maharashtra SEAC-2 statement 593234)",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      73.0188917,
+      19.1055
+    ]
+  },
+  "coordinate_reference_system": "Latitude/longitude as printed in the SEIAA Maharashtra environmental clearance; no datum is stated. It is taken as WGS84 without transformation, which is the usual basis of coordinates entered in Maharashtra EC applications; the datum is an assumption and is disclosed as such.",
+  "source_url": "https://assets.sttelemediagdc.com/sttgdc/global_en/public/2026-09/EC-Navi-Mumbai.pdf",
+  "raw_capture_file": "local_data/country-research-in-west-north-p1/stt-navi-mumbai-ec.pdf",
+  "raw_capture_sha256": "eaac95c0c61d324180b80fd7485db442b3bdbeba3885b1b0136f75b445310aeb",
+  "retrieved_at": "2026-10-22T21:38:02.802Z",
+  "earlier_identical_capture": "tmp/research-round43-india/stt-navi-mumbai-ec.pdf (2026-10-09T11:13:11.431Z), byte-identical (same sha256)",
+  "extraction": {
+    "document": "SEIAA Maharashtra environmental clearance EC24B038MH162952, file SIA/MH/INFRA2/434015/2023, dated 2 February 2024, as published by STT GDC India on its compliance page (folder 2026-09)",
+    "page_and_field": "Page 2 of 11, table 'Brief Information of the project', row 9 'Latitude and Longitude'",
+    "printed_value": "Latitude: 19° 06'19.80\"N, Longitude: 73° 01'08.01\"E",
+    "reading_method": "The EC body pages are scanned images; the page was rendered with pdftoppm at 150 and 300 dpi, read with tesseract 5 and confirmed visually on a 300 dpi crop of the row.",
+    "conversion": "19 + 6/60 + 19.80/3600 = 19.1055000 N; 73 + 1/60 + 8.01/3600 = 73.0188917 E (rounded to 7 decimals)",
+    "plot_identity_in_same_document": "Row 8 'Location of the project': Gen-51, Gen-51/1 Part & Gen-50/1, TTC MIDC, Village: Khairane, Dist: Thane - 400709. Row 10 'Plot Area': 46,459.00 m2 (30,881 existing + 15,578 proposed). Proposed built-up area 1,43,542.44 m2.",
+    "tooling": "pyproj 3.7.1 Geod(WGS84) distances; shapely 2.1.1; EPSG:32643 for planar distance to the extent edge"
+  },
+  "identity_chain": [
+    "The EC grants SIA/MH/INFRA2/434015/2023 to STT Global Data Centres India Private Limited for the 'Proposed expansion of existing Data Centre [IT/ITes] Project at Gen-51, Gen-51/1 Part & Gen-50/1, TTC MIDC, Village: Khairane, Dist: Thane - 400709', and prints the project latitude and longitude used here.",
+    "STT's Navi Mumbai factsheet (operator assets folder 2023-09) describes three DC buildings at 'MIDC Mahape, Navi Mumbai' on a gross area of 11.48 acres (46,458 m2), matching the EC plot area of 46,459 m2 to within 1 m2.",
+    "STT's Mumbai locations page lists STT Navi Mumbai 1 to 4 on 'the latest Mumbai campus located in MIDC Mahape, Navi Mumbai' (Navi Mumbai 2 to 4 'Under Development').",
+    "The Maharashtra SEAC-2 agenda for its 331st meeting (21 October 2026, published 15 October 2026) lists 'Proposed expansion of data centre at TTC MIDC, Village: Koparkhairane, Dist: Thane - 400709 Maharashtra by M/s. STT Global Data Centres India Private Limited' (statement 593234, category B1). Koparkhairane is the node name of Khairane village. The agenda gives no plot number; tying the further expansion to the Gen-51 campus rests on the same proponent, the same industrial area and village, the wording 'expansion of data centre', and the move from category B2 (EC 434015, 1,43,542 m2 built-up area) to B1, which applies above 1,50,000 m2.",
+    "Corroboration only, not used to derive the point: the round-43 PARIVESH CAF record for proposal 434015 (tmp/research-round43-india/stt-navi-mumbai-caf.json, captured 9 October 2026 by a POST to the public CAF API; sha256 5432a930...) gives the extent of its 'STT Plot Boundary .kml' attachment as latitude 19.10412 to 19.10756 and longitude 73.01782 to 73.02073 (about 306 by 381 m; the record's ne/sw labels are swapped). The EC point lies inside that extent, 112 m from its nearest edge and 55 m from its centre. The KML document record is flagged is_deleted and the KML itself was not retrieved.",
+    "Visual check only: an Esri World Imagery export of the surrounding 1.0 by 0.7 km (local esri-stt-navi-mumbai.jpg, imagery date not stated) places the point on a block holding one completed multi-storey building with roof-top plant and two adjoining building sites with exposed concrete frames, consistent with an operating first data centre and buildings under construction. This is not used as status evidence."
+  ],
+  "excluded_geometry": [
+    "The CAF KML extent centre is not used because the KML itself was not retrieved, its document record is flagged deleted, and PARIVESH could not be reached from this environment on 22 October 2026 (robots.txt request failed at the network layer; no retry).",
+    "STT's head-office address at Bandra Kurla Complex is not used.",
+    "No map-service feature was used; Google search map routes are robots-disallowed."
+  ],
+  "authority": "official_source",
+  "derivation": "direct_geometry",
+  "scope": "campus_locator",
+  "scope_class": "official_environmental_clearance_reported_project_coordinate",
+  "method": "SEIAA_Maharashtra_EC24B038MH162952_printed_project_latitude_longitude_DMS_to_decimal_no_datum_transform",
+  "precision": "Project coordinate printed in the SEIAA Maharashtra environmental clearance for STT's data-centre project on plots Gen-51, Gen-51/1 Part and Gen-50/1, TTC MIDC, Khairane (4.65 ha, about 0.3 by 0.4 km). It locates the existing STT Navi Mumbai campus property, not a particular building, a surveyed boundary or the plot of the further expansion, which the SEAC-2 agenda does not state.",
+  "horizontal_uncertainty_metres": null,
+  "uncertainty_reason": "The EC states no datum, survey method or positional accuracy for its coordinate; the point stands for a campus plot of about 4.65 ha, and whether the further expansion stays within it is not stated."
+}
