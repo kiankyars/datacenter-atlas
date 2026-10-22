@@ -261,3 +261,11 @@ Wanapa Rd, 55.7 acres, owned by SDC Umatilla I LLC in care of Sabey Corporation.
 22 July release reports the first steel rising after a 15 July Going Vertical ceremony, so the
 project is under construction as of the release date; the ceremony day itself is outside the
 90-day window. The status is not carried forward into completion or operation.
+
+`verified_construction_core/2026-10-19-research-thirtythird` adds the proposed Carbon Node East
+campus in Nesquehoning, Carbon County, Pennsylvania: **518 sites and 545 projects**. On
+19 August the state Department of Environmental Protection announced a public meeting and hearing
+on its pending water-encroachment and stormwater permit applications, which establishes the
+announced project. Every permit is still pending, so no consent, site work or construction is
+asserted. The point is the centroid of the two county parcels owned by Carbon Node East Property
+LLC on Industrial Road. No capacity is published.
