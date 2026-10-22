@@ -1,0 +1,80 @@
+{
+  "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+  "candidate": "CloudHQ Project Asahi Technology Campus (BIG HOP Garden Mall Inzai redevelopment), Inzai Makinohara, Chiba",
+  "decision": "Selected the planar centroid of Ministry of Justice registry-map lot 原一丁目2-1 (Inzai City), the BIG HOP Garden Mall Inzai parent property on which CloudHQ's Project Asahi plan places two data-centre blocks, as a campus_locator. The point locates the parent property only, not either planned data-centre building.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      140.162869,
+      35.802903
+    ]
+  },
+  "coordinate_reference_system": "CRS84 longitude/latitude as published by AIGID in the GeoJSON conversion of the MOJ registry-map data (source coordinate system 公共座標9系, JGD2011 Japan Plane Rectangular CS IX per the AIGID dataset). The centroid was computed in the published lon/lat plane; recomputing it in EPSG:6677 and transforming back gives the same six-decimal point (0.0 m offset).",
+  "authority_class": "compiled_reference",
+  "scope_class": "official_registry_map_parent_property_parcel_centroid",
+  "use_scope": "campus_locator",
+  "source_url": "https://gsic-opendata.s3.ap-northeast-1.amazonaws.com/aigid/aigid-moj/2026/12/aigid-moj-12231/12231_%E5%8D%B0%E8%A5%BF%E5%B8%82_%E5%85%AC%E5%85%B1%E5%BA%A7%E6%A8%999%E7%B3%BB_%E7%AD%86R_2026.geojson",
+  "raw_capture_file": "local_data/country-research-jp-kanto-p1/moj-12231-2026-long.geojson",
+  "raw_capture_sha256": "c2bfc49a5ab84b0cc23f5664a70da73a4c4a384cc6f3218f50270fa3121e7f67",
+  "raw_capture_bytes": 18767138,
+  "retrieved_at": "2026-10-22T16:38:33.278Z",
+  "capture_custody_note": "A first capture with the standard 45 s capture script timed out (moj-12231-2026.geojson.metadata.json records the failure; nothing was written). One further request was made with the otherwise identical 600 s timeout variant used by the 2026-10-17 japan_east lane, under a new file name; no other retry. The file's internal collection name ends _2025 although it is the 2026 catalog resource (catalog last updated 2026-08-10).",
+  "selected_feature": {
+    "ID": "H000007100",
+    "市区町村C": "12231",
+    "大字名": "原",
+    "丁目名": "１丁目",
+    "地番": "2-1",
+    "精度区分": "甲二",
+    "座標値種別": "図上測量",
+    "地図名": "平成30年度公図再編7駅",
+    "座標系": "公共座標9系",
+    "geodesic_area_m2_grs80": 133186.7,
+    "planar_area_m2_epsg6677": 133163.0,
+    "bounds_lon_lat": [
+      140.159623,
+      35.801291,
+      140.166243,
+      35.804535
+    ],
+    "centroid_inside": true,
+    "centroid_distance_to_parcel_boundary_m": 122.4
+  },
+  "identity_chain": [
+    "BIG HOP Garden Mall Inzai's own access page (bighop-access.html, sha256 709fe613...) gives the mall's address as 〒270-1335 千葉県印西市原1-2.",
+    "The 2026 MOJ/AIGID registry data for Inzai holds three lots under 原一丁目 2番: 2-1 (H000007100, 133,187 m2), 2-2 (H000006792, 23,038 m2) and 2-3 (H000007101, 956 m2). Lots 2-2 and 2-3 lie together in the south-west corner (bounds 140.1593-140.1614 E, 35.8012-35.8028 N).",
+    "GSI's address search returns 千葉県印西市原一丁目２番地 at 140.164886, 35.803074, which falls inside lot 2-1 (183 m from the selected centroid); GSI places 印西牧の原駅 at 140.166716, 35.803497, 354 m east of the centroid, matching the mall's position beside the station.",
+    "Inzai City's 29 September 2026 council briefing (sisakusei.pdf, page 16) outlines the BIG HOP block west of 印西牧の原駅 with a separately boxed '既存DC' in its south-west corner; CloudHQ's Project Asahi site plan (zigyousya.pdf, page 31) shows the same arrangement: railway to the north, Inzai Makinohara Station to the east, 'EXISTING DCs' in the south-west corner, and two new 'DC' blocks in the south-centre of the redeveloped site.",
+    "Qualitative imagery check only: overlaying lots 2-1, 2-2 and 2-3 on twelve GSI seamless aerial photo tiles (z17, x116565-116568, y51557-51559; capture date not stated by GSI) puts the BIG HOP mall building (roof lettering visible) and its surface car parks inside lot 2-1 and a separate cleared or parking plot inside lot 2-2, consistent with the south-west 'existing DC' plot of the two plans. This is not a measured accuracy."
+  ],
+  "excluded_coordinates": [
+    {
+      "point": [140.15830532616073, 35.80290707066439],
+      "kind": "Google Maps embed viewport centre on the BIG HOP access page",
+      "reason": "Map viewport parameter, not a selected feature or surveyed point."
+    },
+    {
+      "point": [140.164886, 35.803074],
+      "kind": "GSI address-search point for 原一丁目２番地",
+      "reason": "Kept as an identity check only; the registry-map parcel centroid is the better parent-property locator."
+    },
+    {
+      "kind": "Lots 原一丁目2-2 and 2-3",
+      "reason": "South-west plot shown as existing data centres in both the city map and the CloudHQ plan; not part of the new Project Asahi data-centre blocks."
+    }
+  ],
+  "consistency_checks": {
+    "nearest_atlas_sites_km": {
+      "STT Tokyo Inzai Campus": 2.99,
+      "AirTrunk TOK1 Tokyo East (imported Inzai city-centre point)": 3.63,
+      "SCSK netXDC Inzai Campus": 4.08,
+      "IIJ Shiroi Data Center Campus": 5.73
+    },
+    "versions": {
+      "pyproj": "3.7.1",
+      "proj": "9.5.1",
+      "shapely": "2.1.1"
+    }
+  },
+  "precision_statement": "Centroid of the roughly 13.3 ha BIG HOP parent parcel. The two planned data-centre blocks occupy an unmeasured part of it (south-centre on the plan); the point is not a building footprint, phase boundary, entrance or construction extent. Six decimals are calculation precision, not accuracy."
+}

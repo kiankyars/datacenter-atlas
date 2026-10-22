@@ -1,0 +1,64 @@
+{
+  "candidate_id": "colovore-alliance-fort-worth",
+  "decision": "Selected the centroid of Denton County parcel 206703 (A1130A T.S. Rayburn, Tract 2B, 24.8413 legal acres, owner AIL Investment LP c/o Hillwood) as the campus locator for Colovore Alliance. It locates the landowner's tract named by the City of Fort Worth's data-centre building-permit application, not the building footprint or a surveyed lot.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -97.2963204,
+      32.9992394
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_tax_parcel_centroid",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-us-tx-p1/txgio-parcel-ail-206703.json",
+  "source_sha256": "28851490f282d6b00e55c6db53a9957da4a3c1982e20f54177e5b09c709f70b3",
+  "source_url": "https://feature.geographic.texas.gov/arcgis/rest/services/Parcels/stratmap_land_parcels_48_most_recent/MapServer/identify?geometry=-97.2963204%2C32.9992394&geometryType=esriGeometryPoint&sr=4326&layers=all%3A0&tolerance=1&mapExtent=-97.3463204%2C32.9492394%2C-97.2463204%2C33.0492394&imageDisplay=1000%2C1000%2C96&returnGeometry=true&f=json",
+  "retrieved_at": "2026-10-22T16:23:08.585Z",
+  "selected_properties": {
+    "PROP_ID": "206703",
+    "GEO_ID": "A1130A-000-0002-000B",
+    "OWNER_NAME": "AIL INVESTMENT LP",
+    "MAIL_ADDR": "C/O HILLWOOD 9800 HILLWOOD PKWY STE 300, FORT WORTH, TX 76177",
+    "LEGAL_DESC": "A1130A T.S. RAYBURN, TR 2B, 24.8413 ACRES",
+    "LEGAL_AREA": "24.8413",
+    "SITUS_ADDR": ", FORT WORTH, TX 76177 (no street number)",
+    "IMP_VALUE": "0",
+    "SOURCE": "DENTON APPRAISAL DISTRICT",
+    "TAX_YEAR": "2026",
+    "DATE_ACQ": "46204 (Excel serial, 1 July 2026)"
+  },
+  "computed": {
+    "crs": "EPSG:4326 as served (wkid 4326)",
+    "geodesic_acres": 24.08,
+    "centroid_inside": true,
+    "bounds_lon_lat": [
+      -97.29748,
+      32.99653,
+      -97.29457,
+      33.00144
+    ],
+    "extent_m": {
+      "east_west": 272,
+      "north_south": 544
+    },
+    "method": "shapely 2.1.1 polygon centroid; pyproj 3.7.1 WGS84 geodesic area"
+  },
+  "identity_bridge": [
+    "TDLR TABS2027001701 'Colovore Alliance' (registered 2026-09-22): one-story data center of 156,500 sq ft with an admin area and four data halls at 14700 Heritage Parkway, Fort Worth 76177, Denton County; owner AIL Investment LP, 9800 Hillwood Parkway Suite 300 (the parcel's mailing address).",
+    "City of Fort Worth permit application PB26-13452 (filed 2026-09-25; latest status Awaiting Client Reply 2026-10-15): 'construct a 1 story 156,866 sf data center with attached administration area' on 'A1130A T.S. RAYBURN, TR 2B, 24.8413 ACRES' (Lot 3, Block 1), applicant label DFW SPE 2 LLC, addresses 14460/14664 Heritage Pkwy, owner of record ADL Development LP (tie to Hillwood not shown in the captured records).",
+    "The TxGIO 9-1-1 points place 14372 Heritage Pkwy at 32.99075 N and 15000 Heritage Pkwy at 33.00235 N on the even-numbered (east) side; by address order 14664-14700 falls between them, alongside Tract 2B (32.9965-33.0014 N).",
+    "Colovore's Dallas market page lists a Fort Worth site, DFW02, with four data halls (undated; identity context only)."
+  ],
+  "alternatives_rejected": [
+    "Adjacent AIL Investment LP parcel 207925 (A1130A T.S. Rayburn TR 1A(PT), 54.6179 acres) and the AIL/ADL tracts west of Heritage Pkwy: not named by the data-centre permit.",
+    "Union of the two AIL parcels: would blur the permit-named tract.",
+    "Census or commercial geocoders: not used."
+  ],
+  "consistency_checks": {
+    "owner_match": "parcel owner and mailing address equal the TABS owner and address",
+    "size_match": "TABS 156,500 sq ft vs permit 156,866 sq ft, both one-storey data centres with admin space, filed three days apart",
+    "datum": "served in WGS 84 (wkid 4326)",
+    "geocoder_used": false
+  }
+}

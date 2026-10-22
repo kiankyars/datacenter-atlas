@@ -1,0 +1,97 @@
+{
+  "reviewer": "root",
+  "reviewed_at": "2026-10-22",
+  "decision": "accepted_for_integration",
+  "update": "verified_construction_core/2026-10-22-research-thirtysixth",
+  "base_dataset": "verified_construction_core/2026-10-22-research-thirtyfifth",
+  "process": "continuous: one researcher per beat, one adversarial verifier per fragment",
+  "fragments": [
+    {
+      "fragment": "jp-kanto-p1",
+      "verdict": "accept",
+      "checks": [
+        "Rehashed all 6 relied-on captures plus companion GSI station query, MOJ catalog page, Inzai RSS, CloudHQ sitemap/feed and leaflet: sha256 match metadata and source content_hash",
+        "Geometry facts file sha256 matches sources.json (c14f644f...)",
+        "Deck (37 pp, pdftotext + page 31 render): dated 令和8年9月29日 council briefing material; Gensler plan shows two new DC blocks, EXISTING DCs SW corner",
+        "City notice HTML: page dated 2026-09-29; byte pointers 9615/9953/10770/12442 verified; FAQ confirms two new DC buildings, early stage, no permit procedure",
+        "City briefing p16 render: BIGHOP operator is a landowner (地権者); 既存DC box SW; no district-plan decision for BIG HOP district",
+        "Status announced, company_disclosure, as_of 2026-09-29 = 23 days before 2026-10-22 (inside 85-day window); no permit or works claimed",
+        "Locator recomputed with pyproj 3.7.1/shapely 2.1.1: lot 原一丁目2-1 H000007100 centroid 140.162869,35.802903 (lon/lat and EPSG:6677 identical), inside, 122.4 m from boundary, 133,186.7 m2",
+        "GSI address 原一丁目2番地 inside lot 2-1 (183.3 m); station 353.9 m east; BIG HOP access page gives 印西市原1-2; overlay shows mall in 2-1, SW plot 2-2/2-3 excluded",
+        "Distinctness: thirtyfourth and thirtyfifth datasets (all five tables), six sources/*-holds.json, all queue fragments and claims: nearest Atlas site 2.99 km (STT Tokyo Inzai); CloudHQ only Paulinia/Queretaro",
+        "Fixed: status summary and scoped details claimed no schedule published; city FAQ gives operator's mid-2030s operating target (target only) and no permit procedure",
+        "Fixed: role party CloudHQ LLC -> CloudHQ, because deck disclaimer says projects are owned by affiliates of CloudHQ LLC; owner/intended kept",
+        "Fixed: successor_review no longer says the page only added session logistics; FAQ first-appearance date unbounded",
+        "No third-party personal data in changes, sources or holds; dryrun_fragment.py ok against thirtyfifth base (544 sites, 577 projects)"
+      ],
+      "residual_risks": [
+        "Owner role rests on the deck's generic investor-memorandum disclaimer plus the city's description of the presenter as the BIG HOP landowner; title holder entity not named",
+        "Centroid of a 13.3 ha parcel; offset to the two planned DC blocks unmeasured; uncertainty left null with reason",
+        "Plan is early-stage and Inzai City's pending district-plan revision could restrict data centres on the site",
+        "Deck carries a 'strictly confidential' banner although published by the city; only compact paraphrase recorded",
+        "Existing DCs on SW lots 2-2/2-3 are unidentified and not in the Atlas; a future record there must stay distinct from this one"
+      ]
+    },
+    {
+      "fragment": "us-tx-p1",
+      "verdict": "accept",
+      "checks": [
+        "all 15 relied-on captures rehash to their .metadata.json sha256 and the source content_hash; URLs match metadata",
+        "TABS pages read directly: registration dates 9/22/2026 (TABS2027001701), 10/15/2026 (TABS2027003683/3693/3697), 9/24/2026 (TABS2027001907); scope, address, owner and Project Registered status match the source summaries",
+        "all three status observations are regulatory_filing registrations 7-30 days old (window start 2026-07-29); estimated start/completion dates not used as stages",
+        "locators recomputed from raw TxGIO rings with pyproj 3.7.1/shapely 2.1.1: AIL Tr 2B centroid, C1 Fort Worth parcel centroid and 18-parcel Compass union centroid reproduce to <=0.01 m, all inside, acreage and extents match",
+        "Compass 9-1-1 points 550/580/590 N Austin Blvd fall in Compass-owned Cardinal II lots 1R/4/5; CyrusOne TFO and DFW8 generator-yard permits carry Block 2 Lot 4, the locator parcel; parcel mailing address equals CyrusOne HQ in its own release",
+        "Colovore tract choice checked: PB26-13452 legal description equals parcel 206703; tract lies on the even (east) side of Heritage Pkwy; verifier GET of the Fort Worth permit table found no other 2026 data-centre building permit on Heritage Pkwy or in ZIP 76177",
+        "distinctness re-screened against the thirty-fifth base that replaced the thirty-fourth during review (543 sites, 576 projects; only new site is in Slough), its source records and identity mapping, all sources/*-holds.json and every queue fragment: no match, nearest Atlas sites 5.75-38.9 km away",
+        "earlier holds for Colovore Alliance, Compass DFW III and CyrusOne DFW8 had reopen conditions (plat/permit tract, campus locator, Tarrant parcel) that are now met",
+        "no private-individual names, phones or emails in sources, changes, holds, notes or geometry facts",
+        "edited the Colovore identity review and geometry facts to drop the unsupported 'another Hillwood entity' claim about ADL Development LP (geometry_facts_sha256 updated); appended re-screen note to each distinctness_review",
+        "dryrun_fragment.py ok: 546 sites, 579 projects, base 2026-10-22-research-thirtyfifth"
+      ],
+      "residual_risks": [
+        "Colovore Alliance locator rests on matching the TABS registration (14700 Heritage Pkwy) to permit application PB26-13452 (DFW SPE 2 LLC, 14460/14664 Heritage Pkwy) by landowner parcel, near-identical size and filing week; no record names Colovore on Tract 2B",
+        "Colovore operator role (intended) is inferred from the TABS project name 'Colovore Alliance'; the filing has no operator field",
+        "Compass and CyrusOne projects are fit-outs only; campus buildings already exist and carry no status; the CyrusOne Sept registration may re-register the May 2026 DFW8 TFO (TABS2026019605)",
+        "Compass B8 registration owner (DFW IIIJ LLC) differs from the lot 4 appraisal owner (DFW IIIH LLC), so the locator is campus-scoped (2.1 km union)",
+        "parcel centroids have no published positional accuracy (uncertainty recorded as null with reason)"
+      ]
+    },
+    {
+      "fragment": "us-va-p1",
+      "verdict": "accept",
+      "checks": [
+        "current_dataset re-read mid-run: base moved thirty-fourth -> thirty-fifth (adds only Tritax Manor Farm, Slough); all screens re-run against thirty-fifth",
+        "all 11 relied-on captures rehashed: SHA-256 equals .metadata.json sha256 and sources.json content_hash; both geometry-facts files match their geometry_facts_sha256",
+        "Bogle: Fairfax PLUS record read directly: SP-2024-00038 Site Plan, APPROVED_DATE 2026-08-21T04:00Z (midnight EDT 21 Aug), RECORD_STATUS Approved (status date 2026-10-15), no CLOSED_DATE, project status Pre-Construction Meeting; government_record; 62 days before 2026-10-22",
+        "Bogle: PLUS detail page approves demolition of five office buildings for two new two-storey sprinklered data storage structures, land use Data Center, I-5, 548,266 sq ft proposed GFA, five whole parcels; consent is for the data-centre development itself (authority, date, reference and approved work all present); no completed inspections, so no physical stage claimed",
+        "Bogle locator recomputed with pyproj 3.7.1/shapely 2.1.1: centroid -77.4631345, 38.8948573 inside a valid 96-vertex ring, 21.88 geodesic acres, 421 x 480 m; five-parcel union 21.80 ac, Hausdorff 3.5 m, centroid 0.9 m away; 14/14 stormwater points inside",
+        "Bogle fix: removed the alias 'Bogle Corporate Center redevelopment'. PLUS records for Bogle Corporate Center are on parcel 0442 01 0003, centroid 2.6 km away, with no overlap with the site plan polygon",
+        "Appomattox: minutes PDF text read with pdftotext: 31 Aug 2026 resolution adopted 4-1 approving a performance agreement with ADP Appomattox Data Hub, LLC, which 'proposes to develop and operate data center facilities' on Tax Map Parcel 63 A 80; section 5 confers no land-use approval, so announced only; 52 days in window; portal publishOn of the minutes is 2026-10-13",
+        "Appomattox: 21 Sep and 19 Oct agendas contain no further project item (21 Sep only approves the draft minutes); no later status found",
+        "Appomattox locator recomputed: three features for GIS account 63 A 80 with identical geometry; centroid -78.8577799, 37.3723027 inside, 453.06 ac, 2013 x 1835 m; operator point 32.4 m outside, 863.6 m from the centroid. The county homepage 'GIS Maps' link leads to the experience that uses service org wnL4os9xzGCi48td",
+        "Appomattox parcel is the specific named parcel, not a business-park centroid: separate lots 63 A 80B, 80E and 82B exist on Industrial Park Ln",
+        "identity bridge: AVAIO Dec 2024 release names the 452-acre EDA site 'Appomattox Data Hub'; campus page Hercules at 267 Industrial Park Ln, 436 ac",
+        "roles allowed: ADP Appomattox Data Hub, LLC operator/intended (resolution); Appomattox County EDA owner/current (parcel owner class LOCAL GOVT, option agreement in minutes)",
+        "distinctness: no name, alias, address, parcel or reference hits in the thirty-fifth sites/projects/evidence/source-records/identity-mapping (AVAIO hits are the Brandon MS Taurus campus only); nearest coordinates 7.75 km (Digital Dulles) and 77.4 km (Balico); no hits in other queue fragments, in claims.tsv beyond this lane, in the 6 sources/*-holds.json, or anywhere else in sources/*.json",
+        "robots.txt: fairfaxcounty.gov allows /mercator; plus.fairfaxcounty.gov and appomattoxcova.api.civicclerk.com 404; avaiodigital.com and arcgis.com allow all; services6.arcgis.com 403 (treated as no rules); appomattoxcountyva.gov homepage allowed",
+        "no private-individual names, phones or emails in changes, sources, holds, notes or geometry files (officials named in the minutes are not copied)",
+        "dryrun_fragment.py ok after fix: 545 sites, 578 projects, 2,901 evidence rows, base thirty-fifth"
+      ],
+      "residual_risks": [
+        "Bogle developer/operator is undisclosed; commercial scope is inferred from I-5 zoning and the data-storage use, with no named owner",
+        "Fairfax site-plan approval is ministerial plan approval; building and site permits were not reviewed, and Virginia site plans can lapse if work does not begin",
+        "ADP Appomattox Data Hub, LLC is tied to AVAIO by name, acreage, EDA option and parcel; no primary source states the parent company outright",
+        "both locators are centroids of large application or parcel areas (22 ac and 453 ac) with no published positional accuracy",
+        "services6.arcgis.com returned 403 for robots.txt and was treated as having no rules (RFC 9309 4xx)",
+        "the researcher self-reported compliance incidents (prnewswire fetched before robots.txt; crawl-delay shortfalls at local.microsoft.com and botetourtva.gov) on sources the accepted items do not use"
+      ]
+    }
+  ],
+  "packet_pins": {
+    "definitions/atlas-research-thirtysixth-2026-10-22.json": "0bef319521a37cdb356ae488a40fd6ed2f13cdc4c5e59ac030c9cb74492cf397",
+    "sources/research-countries-2026-10-22-thirtysixth-primary-sources.json": "328db8fd3a95b1bc506fdfd852ed7c5fd58b472ade614932c56901089935668b",
+    "sources/research-countries-2026-10-22-thirtysixth-actions.json": "a31601a0b69d7558f4f29e60fdec8cd3708cfe836c669d533d70c0707e7f109b",
+    "sources/research-countries-2026-10-22-thirtysixth-holds.json": "6e48f09d65a89340dd0c53d7b02ef77548748d8d783c67a12765560844fd47c9"
+  },
+  "raw_captures_redistributed": false
+}
