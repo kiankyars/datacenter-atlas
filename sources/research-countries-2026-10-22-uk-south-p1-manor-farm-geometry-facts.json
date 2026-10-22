@@ -1,0 +1,45 @@
+{
+  "candidate_id": "tritax-manor-farm-slough-phase-1-data-centre",
+  "decision": "Selected the applicant-declared site point in the planning application form for Slough application P/10076/013 (the application the Secretary of State allowed on appeal APP/J0350/W/25/3366043) as the project locator for the consented Manor Farm data centre. The point lies inside Area A, the northern parcel that holds the data-centre building; it is not a building footprint, boundary or surveyed position.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -0.5189138,
+      51.4756994
+    ]
+  },
+  "authority_class": "compiled_reference",
+  "derivation": "coordinate_transform",
+  "scope_class": "planning_application_form_site_point",
+  "use_scope": "project_locator",
+  "source_file": "local_data/country-research-uk-south-p1/slough-manor-farm-cd1-1-application-form.pdf",
+  "source_sha256": "8fe755713e995e56df98525a222917c5cd763f8019fc5f6eca10c25e7878ec04",
+  "source_url": "https://www.slough.gov.uk/downloads/file/4977/cd-1-1-application-form",
+  "retrieved_at": "2026-10-22T16:19:42.455Z",
+  "selected_properties": {
+    "form": "Application for Planning Permission, Planning Portal reference PP-13468765, stamped received by Slough Borough Council 17 December 2024; published by the council as inquiry core document CD 1.1",
+    "property_name": "Manor Farm and land north of Wraysbury Reservoir",
+    "address": "Poyle Road, Slough, SL3 0BL (the Planning Inspectorate and council pages use SL3 0AA)",
+    "easting": 502958,
+    "northing": 176233,
+    "site_description": "Land at Manor Farm and north of Wraysbury Reservoir, Slough.",
+    "site_area_hectares": 8.16
+  },
+  "transform": {
+    "source_crs": "EPSG:27700 (British National Grid; the form does not name the grid, but the values are BNG eastings and northings consistent with the Inspector's Report and the air-quality model coordinates)",
+    "target_crs": "EPSG:4326",
+    "tool": "pyproj 3.7.1 Transformer.from_crs('EPSG:27700', 'EPSG:4326', always_xy=True)",
+    "result_lat_lon": [
+      51.4756994,
+      -0.5189138
+    ]
+  },
+  "consistency_checks": {
+    "air_quality_model_flue": "The applicant's Air Quality Assessment (13 December 2024, CD 1.29, Table A3-3) models the data centre's generator flue, 1 m above the building roof, at (502919.75, 176291.37), which converts to 51.476231, -0.5194473: 69.8 m north-west of the selected point and inside the same parcel. The flue is a single modelled release point for 47 roof flues, so it is used only as a cross-check.",
+    "postcode_centroid": "The ONS centroid of SL3 0AA (postcodes.io: 503132, 176232; 51.4756588, -0.5164095) lies 174.0 m east, across Poyle Road on the Poyle trading estate, so it is not used.",
+    "imagery": "Esri World Imagery (MapServer export, Web Mercator, about 0.9 m per pixel) was viewed locally and not redistributed: the selected point and the modelled flue both fall on the hard-standing and vehicle-storage parcel west of Poyle Road, south of the Poyle Channel woodland and the hotel and north of the track to Area B, matching the Inspector's Report description of Area A.",
+    "site_description": "The Inspector's Report (paras 2.1-2.6) places the 8.16 ha appeal site west of Poyle Road, Heathrow, the M25 and the Poyle trading estate, with a northern Area A (data centre), a link road and a southern Area B (battery storage).",
+    "geocoder_used": false
+  },
+  "uncertainty": "The form gives no positional accuracy; the 8.16 ha application site, including Area B to the south, extends a few hundred metres around the point, and the data-centre building's exact position relative to it is shown only on unreferenced plans."
+}

@@ -1,0 +1,45 @@
+{
+  "reviewer": "root",
+  "reviewed_at": "2026-10-22",
+  "decision": "accepted_for_integration",
+  "update": "verified_construction_core/2026-10-22-research-thirtyfifth",
+  "base_dataset": "verified_construction_core/2026-10-22-research-thirtyfourth",
+  "process": "continuous: one researcher per beat, one adversarial verifier per fragment",
+  "fragments": [
+    {
+      "fragment": "uk-south-p1",
+      "verdict": "accept",
+      "checks": [
+        "All 10 relied-on captures rehashed: sha256 matches both .metadata.json and sources.json content_hash",
+        "Decisive statement read in the Investegate capture of the Tritax RNS half-year report dated 05 August 2026: 'Planning consent secured at Manor Farm', 107MW Phase 1 pre-let in solicitors' hands, site preparation to begin H2 2026, PC expected Q2 2028",
+        "Source kind company_disclosure (issuer RNS republished verbatim by Investegate); observation 2026-08-05 is 78 days before 2026-10-22, inside the 85-day window; observation <= published_at",
+        "Status announced only; consent (SoS decision 10 Jun 2026, APP/J0350/W/25/3366043, P/10076/013) and challenge-period end (27 Jul 2026) are outside the window and kept as context; forecasts not used as a stage",
+        "Later Tritax RNS (circular 6 Aug, equity issue 5 Aug, 23 Sep, 7 Oct, 14 Oct) read: no newer Manor Farm status",
+        "Identity bridge confirmed: 10 Jun RNS links the GOV.UK decision page for ref 3366043; 27 Jul RNS ties the 107MW facility to the 74-acre Manor Farm site; IR para 2.4 says appellant-owned land lies west of the 8.16 ha appeal site",
+        "Decision letter PDF read with pdftotext: appeal allowed and permission granted for data centre (B8) + BESS; IR gives 8.16 ha, Area A data centre ~36,368 sqm GIA, 100 MW BESS",
+        "Application form CD 1.1 page 1 rendered with pdftoppm: Easting 502958, Northing 176233, Poyle Road, SL3 0BL, PP-13468765",
+        "Locator recomputed with pyproj 3.7.1 EPSG:27700->4326: 51.4756994, -0.5189138 (0.004 m from the fragment); AQ flue (502919.75,176291.37) found in CD 1.29 at 69.8 m; SL3 0AA centroid 174.0 m E (not used)",
+        "Locator scope project_locator, compiled_reference, coordinate_transform; not a city, HQ or estate centroid; precision, identity review and null uncertainty with reason recorded",
+        "Role owner Tritax Big Box REIT plc (current) supported: report says the Group purchased the 74-acre site (GBP 70.0m land purchase), EDF JV is a separate 50% power stake",
+        "Distinctness screened against current dataset sites/projects/evidence/source-records/identity-mapping, sources/*-holds.json, other queue fragments and claims.tsv: no Tritax/Manor Farm/Poyle/Wraysbury/Colnbrook/3366043/P/10076 match; nearest Atlas site AWS Ridgeway Iver 4.25 km; no other queue addition within 20 km",
+        "One project on a new site; robots.txt for investegate, slough.gov.uk, gov.uk, PINS, assets.publishing and postcodes.io reviewed; no third-party personal names, phones or emails in changes, sources, holds or notes",
+        "Fix: context source uk-south-p1-postcodes-io-sl30aa kind changed from government_record to other (postcodes.io is a third-party service; dataset precedent)",
+        "dryrun_fragment.py ok against verified_construction_core/2026-10-22-research-thirtyfourth (543 sites, 576 projects)"
+      ],
+      "residual_risks": [
+        "Status understates the project: consent is in effect (granted 10 Jun 2026, unchallenged) but dated outside the window, so announced is recorded; permitted held with a reopen condition",
+        "Status source is an Investegate republication of the RNS (tritaxbigbox.co.uk and lse.co.uk robots-blocked); Investegate's AI summary on the page is not relied on",
+        "Locator is an applicant-declared form point, not a surveyed building position; horizontal uncertainty is unknown and the 8.16 ha site extends a few hundred metres around it",
+        "'107 MW' is secured grid power, not IT load; '74-acre' Tritax holding is larger than the 8.16 ha consented site",
+        "Compliance log records two pre-robots WebFetch incidents (creherald.com paywall, hl.co.uk rejected); nothing from either is relied on"
+      ]
+    }
+  ],
+  "packet_pins": {
+    "definitions/atlas-research-thirtyfifth-2026-10-22.json": "dbb796d3ade8234239ced4e3f61714c48b83311ee2262fee4684d4282aa147c1",
+    "sources/research-countries-2026-10-22-thirtyfifth-primary-sources.json": "66dd6bee91c93e21886920067de5c46665f3474194cf33abff5c55d4c0454d0d",
+    "sources/research-countries-2026-10-22-thirtyfifth-actions.json": "df8fcdeb36b5763af1e6f850d34678c31003ce2cd9e110237313e1f3ccb81dbf",
+    "sources/research-countries-2026-10-22-thirtyfifth-holds.json": "7f64add082c1543622b8b2f1bda651502c0f25343d345f71647acbef9872f7a2"
+  },
+  "raw_captures_redistributed": false
+}

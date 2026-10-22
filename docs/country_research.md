@@ -298,3 +298,9 @@ China East and Japan West admitted nothing: regional hosts were unreachable or b
 are robots-disallowed, and the session's web-search budget was exhausted. The 389 candidates not
 admitted are listed with their reasons and reopening conditions in
 [`sources/research-countries-2026-10-22-thirtyfourth-holds.json`](../sources/research-countries-2026-10-22-thirtyfourth-holds.json).
+
+## Continuous additions
+
+From 22 October 2026 sites are added continuously: researchers each work a narrow beat, an independent verifier re-checks every find against its captures, the rules and the current data, and each batch of verified finds is published as its own dated update.
+
+`verified_construction_core/2026-10-22-research-thirtyfifth`: **543 sites and 576 projects in 61 countries**. Adds Tritax Manor Farm Data Centre, Slough - 107 MW Phase 1 (appeal APP/J0350/W/25/3366043).
