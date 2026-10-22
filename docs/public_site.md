@@ -651,6 +651,15 @@ when a built site is available.
     Center Atlas · 2026-10-15"), so their feed entries' titles differ from them. Notes come from
     [`site/e2e/release_notes.py`](../site/e2e/release_notes.py); publication and verification are
     handled by [`site/e2e/publish_release.py`](../site/e2e/publish_release.py).
+    The job creates a release only for the version that is current in the pushed commit, so push
+    each data update on its own and let its run finish before pushing the next. A version that never
+    became current on `main` has no release, and every later run stops on it ("Previously frozen
+    release is absent") until it is published from its own commit: build that commit with
+    `--release-assets`, then run `publish_release.py` there. On 22 October 2026
+    `2026-10-19-research-thirtysecond`, pushed together with its successor, was published this way.
+    `publish_release.py` names the exact commit as the release target. The workflow's
+    `GITHUB_TOKEN` can do that; a local `gh` login with classic scopes `repo`, `gist` and `read:org`
+    got HTTP 404 for every commit SHA, so the tag was pushed over SSH and the release created on it.
   - `monitor` (`contents: read`, `issues: write`): weekly (Mondays 05:23 UTC) and on manual
     dispatch with `job` set to `monitor`, re-runs the live checks and checks every evidence
     `source_url` politely: eight hosts at a time, one request at a time per host and at least a

@@ -1,0 +1,73 @@
+{
+  "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+  "candidate": "AWS data centre \"CAR\", Zaragoza - La Cartuja (sector Acampo del Marqués, site ZAZ102), Spain",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -0.8060209,
+      41.571531
+    ]
+  },
+  "coordinate_reference_system": "The BOA annex lists vertex coordinates without naming a reference system. Their magnitudes are UTM zone 30N; 216 of the 240 published ring vertices lie within 0.5 m (median 0.0 m) of the boundary of Catastro parcel 50900A07200005 served in EPSG:25830 (ETRS89 / UTM 30N), so ETRS89 / UTM 30N is inferred and verified. The area centroid is transformed to EPSG:4326 with pyproj 3.7.1 always_xy=True.",
+  "source_url": "https://www.boa.aragon.es/cgi-bin/EBOA/BRSCGI?CMD=VEROBJ&MLKOB=1351954121212",
+  "raw_capture_file": "local_data/country-research-2026-10-17-europe_rest/boa-aws-expansion-reajuste-2024.pdf",
+  "raw_capture_sha256": "0f1a44babe74079dd3dea20938d0bc078cafa57aa9942a21503d8f3309d76c64",
+  "retrieved_at": "2026-10-16T20:32:35.551Z",
+  "source_selection": "Annex I of ORDEN PEJ/1072/2024 (BOA no. 184, 20 September 2024, csv BOA20240920023), which republishes the delimitation of site \"5. ZARAGOZA (ZAZ102) - ZARAGOZA - LA CARTUJA\" of the AWS regional-expansion declaration. Entry 1 is polygon 72 parcel 5 (cadastral reference 50900A07200005) with a closed ring of 240 vertices for the included area. Entries 2-6 are slivers of a few hundred to about 2,200 m2 and are not used.",
+  "extraction": {
+    "pdftotext": "poppler pdftotext -layout; vertex pairs parsed from lines 3907-3985 of the text layer, page headers removed",
+    "ring_vertices": 240,
+    "polygon_valid": true,
+    "polygon_area_m2_epsg25830": 1476650.2,
+    "stated_site_area_after_readjustment_ha": 148.1,
+    "centroid_epsg25830_xy": [
+      682919.36,
+      4604530.08
+    ],
+    "centroid_wgs84_lonlat": [
+      -0.8060209,
+      41.571531
+    ],
+    "centroid_inside_polygon": true,
+    "centroid_distance_to_boundary_m": 330.6,
+    "max_centroid_to_vertex_m": 1281.6,
+    "june_2024_version": {
+      "source_url": "https://www.boa.aragon.es/cgi-bin/EBOA/BRSCGI?CMD=VEROBJ&MLKOB=1337070580606",
+      "raw_capture_sha256": "c3e3b28aa6c91dbab14e7e2579ee02d6d0a71e4d74b5e43f2d18329f38f02aa2",
+      "ring_vertices": 232,
+      "polygon_area_m2": 1456159.5,
+      "centroid_shift_m": 10.4
+    },
+    "datum_check": {
+      "catastro_parcel": "50900A07200005",
+      "raw_capture_file": "local_data/country-research-2026-10-17-europe_rest/catastro-cp-50900A07200005-r.gml",
+      "raw_capture_sha256": "aa813e6460f4ea162d5140af0fa13e859a45a06ce5329be6475f8eafd6a7144b",
+      "source_url": "https://ovc.catastro.meh.es/INSPIRE/wfsCP.aspx?service=wfs&version=2&request=getfeature&STOREDQUERIE_ID=GetParcel&refcat=50900A07200005&srsname=EPSG::25830",
+      "catastro_parcel_area_m2": 3007073.3,
+      "published_vertices_within_0_5m_of_parcel_boundary": 216,
+      "published_vertices": 240,
+      "published_polygon_share_inside_parcel": 1.0
+    },
+    "catastro_point_lookup": {
+      "source_url": "https://ovc.catastro.meh.es/ovcservweb/OVCSWLocalizacionRC/OVCCoordenadas.asmx/Consulta_RCCOOR?SRS=EPSG:4326&Coordenada_X=-0.8060209&Coordenada_Y=41.571531",
+      "raw_capture_file": "local_data/country-research-2026-10-17-europe_rest/catastro-rccoor-aws-car-point.xml",
+      "raw_capture_sha256": "98e6682da7861f761460fa4b2d0b1961b02e1ca225359d1d68a7e622f3fb002a",
+      "result": "Polígono 72 Parcela 5 ACAMPO MARQUES DEL. ZARAGOZA (ZARAGOZA), reference 50900A07200005"
+    }
+  },
+  "identity_chain": [
+    "The Government of Aragón declaration of 22 May 2024 for the AWS regional expansion (ORDEN EEI/579/2024, BOA 10 June 2024) places site ZAZ102 in the municipality of Zaragoza, about 13 km south-east of the city centre, about 145 ha; its annex I titles the site \"ZARAGOZA - LA CARTUJA\". The September 2024 readjustment raises it to 148.1 ha without adding parcels.",
+    "INAGA resolution of 6 October 2025 (BOA 5 November 2025) names the new AWS data centre \"CAR\" in the paraje Acampo del Marqués, Zaragoza, and its text refers to the new sector Acampo del Marqués of 1,432,277 m2 and to the \"La Cartuja\" data centre.",
+    "INAGA resolution of 10 July 2026 (BOA 27 July 2026) grants the environmental impact statement and integrated environmental authorisation for the data-storage centre \"CAR\" at La Cartuja Baja, Zaragoza, promoted by Amazon Data Services Spain, SL.",
+    "ORDEN VFL/1438/2026 and its announcement (BOA 8 October 2026) re-approve initially the reparcelling project of sector \"Acampo del Marqués\" in volume VI \"Zaragoza - La Cartuja\" of the AWS PIGA and the fibre link between the El Burgo de Ebro and La Cartuja data centres.",
+    "Catastro reverse lookup of the area centroid returns polygon 72 parcel 5, described as Acampo Marqués del, the parcel of annex I entry 1."
+  ],
+  "authority": "compiled_reference",
+  "derivation": "coordinate_transform",
+  "scope": "campus_locator",
+  "scope_class": "official_declaration_published_delimitation_polygon_centroid",
+  "precision": "Area centroid of the 147.7 ha included area of cadastral parcel 50900A07200005 published as the delimitation of AWS site ZAZ102 (Zaragoza - La Cartuja) in 2024. It marks the declared campus area of sector Acampo del Marqués, not the CAR building footprint, substation, entrance or a surveyed construction extent; the 2026 reparcelling may adjust parcel boundaries.",
+  "horizontal_uncertainty_metres": null,
+  "uncertainty_reason": "The published delimitation carries no stated accuracy and its reference system is inferred (verified against Catastro). The building position within the 147.7 ha area is not published; the farthest boundary vertex is about 1280 m from the centroid.",
+  "excluded_geometry": "The 2024 site address \"polígono 72, parcela 4, Acampo Arpal\" given in the declaration body is not used; the annex lists polygon 72 parcel 5, which Catastro names Acampo Marqués del. Microsoft's Zaragoza (Puerto Venecia) campus, 7.9 km away, is a different project."
+}

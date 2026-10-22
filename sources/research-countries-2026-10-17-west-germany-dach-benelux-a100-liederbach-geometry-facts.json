@@ -1,0 +1,72 @@
+{
+  "candidate_id": "a100-row-liederbach-data-centers",
+  "decision": "Selected the permit's site coordinate (Rechts-/Hochwert 464449 / 5551450, read as ETRS89/UTM zone 32N) transformed to WGS84 as the project locator.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      8.5027621,
+      50.1142317
+    ]
+  },
+  "authority_class": "compiled_reference",
+  "scope_class": "official_permit_site_reference_coordinate",
+  "use_scope": "project_locator",
+  "source_file": "local_data/country-research-2026-10-17-germany_dach_benelux/rpda-a100row-liederbach-2026-08-14.pdf",
+  "source_sha256": "3901b72344430b5ea448928265c2c5f69f5bd90f5886a9b591f0b0167ab07791",
+  "source_url": "https://rp-darmstadt.hessen.de/sites/rp-darmstadt.hessen.de/files/2026-10/besch-ie-rl_a100rwo-20notstrom_2026-08-14.pdf",
+  "selected_properties": {
+    "gemarkung": "Liederbach",
+    "flur": "7",
+    "flurstueck": "24/4",
+    "gebaeude": "Rechenzentrum Liederbach",
+    "address": "Sindlinger Weg 1, 65835 Liederbach (also written Am Sindlinger Weg 1)",
+    "rechts_hochwert_as_printed": "46 44 49 / 55 51 450",
+    "crs_reading": "EPSG:25832 (ETRS89 / UTM zone 32N, no zone prefix)"
+  },
+  "identity_bridge": [
+    "RP Darmstadt decision 14.08.2026: emergency generators for the Rechenzentren Liederbach at Sindlinger Weg 1 on Flur 7 Flurstück 24/4; DC building permit 09.04.2026 (Main-Taunus-Kreis, 63-0550 SB 00125.25-1100) for two data centres; B-Plan \"STACK Liederbach\"."
+  ],
+  "consistency_checks": {
+    "crs_test": {
+      "sha256": "3c726e271d22d57c1e99a31135086aee65e11819ec24c9f824f3cd10c71f184d",
+      "area_km2": 6.05,
+      "utm32_reading": {
+        "xy_25832": [
+          464449,
+          5551450
+        ],
+        "inside": true,
+        "distance_to_boundary_m": 158.9
+      },
+      "gk3_reading_reprojected_to_utm32": {
+        "xy_25832": [
+          464388.2,
+          5549669.0
+        ],
+        "inside": false,
+        "distance_to_boundary_m": 953.9
+      }
+    },
+    "note": "The UTM32 reading lies inside the official (generalised) Liederbach municipality polygon; a Gauss-Krüger zone-3 reading (3464449 / 5551450) would fall about 954 m outside it. Other RP Darmstadt decisions in the same listing print ETRS89/UTM32 values in the same field (Hofheim with zone prefix 32; Raunheim FRA31 and Data4 Hanau labelled ETRS89/UTM).",
+    "nearest_atlas_sites_km": {
+      "NorthC Frankfurt1 (FRA01)": 5.815,
+      "noris network FRA1 Schwalbach Campus": 5.816,
+      "CyrusOne FRA7 Frankfurt Westside Campus": 6.008
+    },
+    "versions": {
+      "pyproj": "3.7.1",
+      "proj": "9.5.1"
+    }
+  },
+  "transform_check": "pyproj 3.7.1 (PROJ 9.5.1) EPSG:25832 -> EPSG:4326, always_xy.",
+  "excluded_coordinates": [
+    {
+      "kind": "Gauss-Krüger zone 3 reading of the same digits",
+      "point": [
+        8.5020869,
+        50.0982148
+      ],
+      "reason": "Requires an absent zone prefix and lies outside Liederbach."
+    }
+  ]
+}

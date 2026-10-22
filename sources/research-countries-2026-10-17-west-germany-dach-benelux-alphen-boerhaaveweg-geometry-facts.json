@@ -1,0 +1,81 @@
+{
+  "candidate_id": "alphen-aan-den-rijn-boerhaaveweg-10-data-center",
+  "decision": "Selected the official BAG verblijfsobject point 0484010002041571 (status Verblijfsobject gevormd, document 04843840789 of 30 July 2026) as the project locator; it lies inside the planned BAG pand 0484100002030043 (status Bouwvergunning verleend, same document number).",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      4.635035543394948,
+      52.12424652903161
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_register_address_object_point_of_permitted_building",
+  "use_scope": "project_locator",
+  "source_file": "local_data/country-research-2026-10-17-germany_dach_benelux/pdok-bag-vbo-0484010002041571.json",
+  "source_url": "https://api.pdok.nl/kadaster/bag/ogc/v2/collections/verblijfsobject/items?f=json&identificatie=0484010002041571",
+  "selected_properties": {
+    "verblijfsobject": "0484010002041571",
+    "status": "Verblijfsobject gevormd",
+    "gebruiksdoel": "industriefunctie",
+    "oppervlakte_m2": 9637,
+    "documentdatum": "2026-07-30",
+    "documentnummer": "04843840789",
+    "nummeraanduiding": "0484200002048495",
+    "address": "Boerhaaveweg 10, 2408 AD Alphen aan den Rijn",
+    "pand": "0484100002030043",
+    "pand_status": "Bouwvergunning verleend",
+    "pand_bouwjaar": 2026,
+    "storage_crs": "EPSG:28992",
+    "served_crs": "OGC CRS84"
+  },
+  "identity_bridge": [
+    "Gemeenteblad 2026, 370288 (published 3 August 2026): permit granted 30-07-2026 for a datacenter building of 8292 m2 and 18 m height at Boerhaaveweg 10, 2408 AD Alphen aan den Rijn, registered under no. 04843840789.",
+    "BAG verblijfsobject 0484010002041571 and pand 0484100002030043 both carry documentnummer 04843840789 and documentdatum 2026-07-30; the pand links to this verblijfsobject."
+  ],
+  "consistency_checks": {
+    "pand_area_m2_rd": 4707.6,
+    "pand_min_rect_sides_m": [
+      44.2,
+      107.9
+    ],
+    "vbo_inside_pand": true,
+    "vbo_dist_to_pand_boundary_m": 11.8,
+    "vbo_rd": [
+      103490.983,
+      459826.02
+    ],
+    "vbo_pyproj_from_rd": [
+      4.635035543,
+      52.124246529
+    ],
+    "api_vs_pyproj_m": 0.0,
+    "pand_centroid_wgs84": [
+      4.634485,
+      52.1240928
+    ],
+    "old_vbo_to_new_vbo_m": 23.2,
+    "versions": {
+      "pyproj": "3.7.1",
+      "proj": "9.5.1",
+      "shapely": "2.1.1"
+    }
+  },
+  "source_sha256": {
+    "pand_rd": "2f6ebda9dadcdc14c4cfb6f04e77d1eb177cf1ecc002e9f38e4b33f35504c2aa",
+    "pand_crs84": "389b3c9e30d0963bde97b47e17339c77338258b5cf3a70fc003f0f805bf1060f",
+    "vbo_rd": "e1ebb7ed127d23bbf3088d4d079093bf1f3748a6c5d9b2942d5695e894b4094f",
+    "adres_vbo_crs84_query": "1dbd262eb90ce322706e926d7fc7d971b4992f5048fbc90b3d2c3666aa3c4ed0"
+  },
+  "transform_check": "The service returns CRS84 coordinates from RD storage; an independent pyproj 3.7.1 (PROJ 9.5.1) EPSG:28992 to EPSG:4326 transform of the RD response differs by 0.0 m.",
+  "excluded_coordinates": [
+    {
+      "kind": "BAG verblijfsobject 0484010000003209 (same address, in use since a 2010 document, 11,594 m2)",
+      "reason": "Existing industrial unit in the 1990 pand 0484100000010138; not the permitted building (23.2 m from the selected point)."
+    },
+    {
+      "kind": "Pand footprint centroid",
+      "reason": "Not an official point; recorded only as a check (inside the footprint)."
+    }
+  ],
+  "overlap_note": "The planned pand overlaps about 86% of its area with the existing 1990 pand 0484100000010138 (status Pand in gebruik), so the permitted building appears to replace part of the existing structure; no demolition record is used."
+}

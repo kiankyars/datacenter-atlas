@@ -1,0 +1,173 @@
+{
+  "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+  "candidate": "GBA Power-Computing Synergy Integrated Intelligent Computing Center computing infrastructure project (Phase 1), parcel ZC0201A-28, Shaoguan",
+  "prepared_at": "2026-10-22",
+  "selected_point_crs84": [
+    113.5589144,
+    24.9067146
+  ],
+  "selected_point_role": "centroid of the official ZC0201A-28 planning red line (eight printed vertices); campus parcel marker, not a building, entrance or construction extent",
+  "source_sheet": {
+    "file": "local_data/country-research-2026-10-17-china_south/sg-dsxt-p1-sheet.jpg",
+    "sha256": "76b999e39486bc8cb15b2e6f9cf796d806c3bddb9d98d00960c628a556a4d21d"
+  },
+  "earlier_sheet_same_redline": {
+    "file": "local_data/country-research-2026-10-17-china_south/sg-shuntong-0430-sheet.jpg",
+    "sha256": "97415a59081ec93d30c06669c0a0d3f5c5375a3b8e062b479778b08b050e048d"
+  },
+  "transcribed_redline_X_Y": {
+    "NW": [
+      2756014.807,
+      38455406.332
+    ],
+    "NE": [
+      2755981.031,
+      38455525.638
+    ],
+    "inner": [
+      2755811.545,
+      38455492.994
+    ],
+    "E": [
+      2755780.365,
+      38455595.384
+    ],
+    "SE": [
+      2755637.09,
+      38455529.808
+    ],
+    "S": [
+      2755610.766,
+      38455515.804
+    ],
+    "SW": [
+      2755684.953,
+      38455279.333
+    ],
+    "W_on_curve": [
+      2755836.163,
+      38455343.404
+    ]
+  },
+  "transcribed_road_centreline_points_X_Y": {
+    "r1": [
+      2756100.344,
+      38455406.272
+    ],
+    "r2": [
+      2756038.434,
+      38455620.5
+    ],
+    "r3": [
+      2755754.266,
+      38455602.245
+    ],
+    "r4": [
+      2755601.286,
+      38455535.389
+    ],
+    "r5": [
+      2755692.572,
+      38455298.895
+    ],
+    "r6": [
+      2755605.557,
+      38455219.546
+    ]
+  },
+  "crs_interpretation": "CGCS2000 3-degree Gauss-Kruger zone 38 (EPSG:4526), the interpretation validated for the neighbouring China Mobile ZC0201A-15 and China Telecom plans in the thirty-first update; transformed with pyproj 3.7.1",
+  "computed": {
+    "with_SE_a": {
+      "planar_area_m2": 69852.8,
+      "centroid_XY": [
+        2755792.975,
+        38455438.525
+      ],
+      "centroid_lonlat": [
+        113.5589144,
+        24.9067146
+      ]
+    },
+    "without_SE_a": {
+      "planar_area_m2": 69712.7,
+      "centroid_XY": [
+        2755793.21,
+        38455438.307
+      ],
+      "centroid_lonlat": [
+        113.5589123,
+        24.9067167
+      ]
+    },
+    "vertices_lonlat": {
+      "NW": [
+        113.5585887,
+        24.9087162
+      ],
+      "NE": [
+        113.5597707,
+        24.9084148
+      ],
+      "inner": [
+        113.559453,
+        24.9068838
+      ],
+      "E": [
+        113.5604674,
+        24.9066053
+      ],
+      "SE_a": [
+        113.559823,
+        24.90531
+      ],
+      "S": [
+        113.5596852,
+        24.905072
+      ],
+      "SW": [
+        113.5573422,
+        24.9057348
+      ],
+      "W_mid": [
+        113.5579715,
+        24.9071017
+      ]
+    },
+    "road_points_lonlat": {
+      "r1": [
+        113.5585853,
+        24.9094883
+      ],
+      "r2": [
+        113.5607078,
+        24.9089357
+      ],
+      "r3": [
+        113.5605362,
+        24.9063699
+      ],
+      "r4": [
+        113.5598793,
+        24.904987
+      ],
+      "r5": [
+        113.5575356,
+        24.9058041
+      ],
+      "r6": [
+        113.556753,
+        24.9050163
+      ]
+    },
+    "dist_to_CM_site_m": 716.8,
+    "dist_to_CT_A7_m": 854.8,
+    "dist_to_CU_DC5_m": 398.8
+  },
+  "area_check": "Polygon of the eight printed vertices (west edge chorded through the printed on-curve point) gives 69,853 m2 against 64,222 m2 stated as planned construction land (+8.8%); the April 30, 2026 sheet prints the same vertices and area. The discrepancy is unexplained (possibly an excluded strip); it does not move the centroid materially.",
+  "imagery_check": "EOX Sentinel-2 cloudless 2025 (local s2c2025-zj-wide.jpg): the transformed red line fits a graded parcel between the north-east-trending road on its west (Shitang Road) and the north-south road on its east (Huanggang Avenue North / S246); all six printed road-centreline points fall on visible roads; overlay research workspace (not redistributed) research-2026-10-17-east/china_south/img/dsxt-s2-overlay.png",
+  "scripts": [
+    "research workspace (not redistributed) research-2026-10-17-east/china_south/scripts/dsxt_geom.py",
+    "research workspace (not redistributed) research-2026-10-17-east/china_south/scripts/llpoly_overlay.py"
+  ],
+  "synthesis_check": "The synthesis recomputed the polygon from the eight transcribed vertices with pyproj 3.7.1 (EPSG:4526 to EPSG:4326) and shapely 2.1.1: planar area 69,852.8 m2, centroid 113.5589144, 24.9067146, inside the polygon; distances to China Unicom DC5 398.8 m, China Mobile ZC0201A-15 716.8 m and China Telecom A7 854.8 m. The October 16 construction-project planning permit sheet (sha256 3579f4cb...2a03) prints the same red-line vertices."
+}

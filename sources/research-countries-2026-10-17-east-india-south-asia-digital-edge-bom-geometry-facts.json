@@ -1,0 +1,53 @@
+{
+  "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+  "candidate": "Digital Edge Navi Mumbai campus - BOM2",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      73.00324427769986,
+      19.186009104537128
+    ]
+  },
+  "coordinate_reference_system": "WGS84 longitude/latitude: OGC KML 2.2 defines KML coordinates as WGS84 lon,lat; the attachment's coordinates are used without transformation. The centroid is computed in that lon/lat plane.",
+  "source_url": "https://parivesh.nic.in/dms/okm/downloadDocument?docTypemappingId=40829&refId=11542906&refType=caf&uuid=0325d368-081c-4477-af40-61cbfa0e0877&version=1.0",
+  "raw_capture_file": "tmp/research-round43-india/de-bom-site-r43.kml",
+  "raw_capture_sha256": "0326190ff454663eea823237224bc00ddca5264389c85578ba0a35b649f4b7d0",
+  "retrieved_at": "2026-10-09T11:42:00.351Z",
+  "earlier_identical_capture": "tmp/research-round41-apac/r41-apac-de-bom-site.kml (2026-09-25T23:29:53.243Z), byte-identical (same sha256)",
+  "capture_custody_note": "PARIVESH refused TCP connections from this environment on 2026-10-16 (robots.txt request failed with ECONNREFUSED; no retry or bypass), so the 9 October recapture held in the repository's ignored tmp/ folder was rehashed against its metadata and reused. The CAF record response that listed this attachment for proposal SIA/MH/INFRA2/449922/2023 in round 41 was not retained; the proposal binding below therefore rests on the attachment itself plus independent in-filing evidence.",
+  "extraction": {
+    "document_name": "Project Site - Data Center .kml",
+    "placemark_name": "Project Location",
+    "geometry_kind": "closed LineString (first vertex equals last), 53 vertices, read as a polygon ring; valid, non-self-intersecting",
+    "ring_bounds_lon_lat": [
+      72.99578150817057,
+      19.18273741682219,
+      73.00490659972054,
+      19.19046428511654
+    ],
+    "geodesic_area_m2": 189834,
+    "geodesic_area_acres": 46.9,
+    "selected_point": "Planar centroid of the ring in lon/lat, verified inside the ring (95 m from the nearest boundary in UTM 43N)",
+    "tooling": "shapely 2.1.1 centroid; pyproj 3.7.1 Geod(WGS84) area; distances in EPSG:32643"
+  },
+  "identity_chain": [
+    "PARIVESH's public compliance index and previous-compliance listing for proposal SIA/MH/INFRA2/449922/2023 name 'Proposed Data Center Project BOM at Survey No: 238/2, Part of Village: Kalwa, Thane Belapur Road, Thane by M/s. Digital Edge DC (India) Pvt. Ltd.', organisation Digital Edge DC (India) Private Limited, district Thane.",
+    "The compliance report for that proposal (EC/M/COMPLIANCE/1232521181/2026, uploaded 18 June 2026) lists EC EC24B039MH149609 of 08/02/2024 and buildings BOM 02 to BOM 08; its SEIAA condition 2 excludes BOM-4 to BOM-8 and restricts BOM 2 and BOM 3 to 53 m height, so BOM2 and BOM3 are the buildings this EC covers.",
+    "The same compliance report's monitoring annexes give three sampling points labelled 'At Project site': soil SQ-1 19 11 07.96 N, 73 00 13.39 E; air AQ-1 19 11 10.00 N, 73 00 13.86 E; noise AQ-1 19 11 06.72 N, 73 00 14.05 E. All three lie inside this ring (about 100 to 122 m from the nearest vertex).",
+    "Digital Edge's India page describes '350MW on 47 acres'; 47 acres is about 190,200 m2, within 0.2% of the ring's geodesic area (189,834 m2). The EC data sheet's 'Total Plot area: 172354 sq.m' is about 9% smaller than the ring.",
+    "Digital Edge's 31 August 2026 release places BOM1 (operational), BOM2 (topped out) and BOM3 (under construction) on its Navi Mumbai campus.",
+    "Corroboration only, not used: the Google feature 'DIGITAL EDGE DC INDIA PRIVATE LIMITED - Site office' (19.1842984, 73.0026091) lies inside the ring, 21 m from a vertex."
+  ],
+  "excluded_geometry": [
+    "The compliance data sheet's 'Latitude: 18 58 33.84 N, Longitude: 73 11 40.05 E' lies about 30 km south-east of the ring and of every 'At Project site' sampling point; it is treated as a filing error and not used.",
+    "The Google 'site office' feature (category Association/Organization, no operator link) and the Digital Edge corporate office at One BKC, Bandra Kurla Complex are not used.",
+    "The individual sampling points are not used as the locator: their datum is not stated, whereas the KML format fixes WGS84."
+  ],
+  "authority": "official_source",
+  "derivation": "direct_geometry",
+  "scope": "campus_locator",
+  "scope_class": "proponent_submitted_environmental_project_ring_centroid",
+  "precision": "Centroid of the proponent-submitted 'Project Site - Data Center' ring (about 19.0 ha, roughly 0.96 by 0.86 km) hosted by PARIVESH for the Digital Edge BOM proposal. It locates the campus property, not the BOM2 building, a surveyed boundary or the current works extent.",
+  "horizontal_uncertainty_metres": null,
+  "uncertainty_reason": "Neither the KML nor the compliance filing states a positional accuracy, survey method or control points; the centroid represents a campus of about 0.9 km across."
+}

@@ -269,3 +269,32 @@ on its pending water-encroachment and stormwater permit applications, which esta
 announced project. Every permit is still pending, so no consent, site work or construction is
 asserted. The point is the centroid of the two county parcels owned by Carbon Node East Property
 LLC on Industrial Road. No capacity is published.
+
+## 22 October 2026
+
+The 17 October wave resumed on 22 October, after a session limit stopped eleven of its fourteen
+lanes; the three finished lanes were reused and every date was re-checked against the new
+window. A synthesis per wave (east: China, Japan, India and Asia-Pacific holds; west: the United
+States, the United Kingdom and Ireland, Germany and its neighbours, the rest of Europe, Latin
+America and western holds) rehashed the captures, re-read each decisive statement, recomputed
+every new locator and screened against the full Atlas and the other wave.
+
+`verified_construction_core/2026-10-22-research-thirtyfourth` publishes the result:
+**542 sites and 575 projects in 61 countries**. It adds 24 sites and 30 projects, refreshes 14
+projects and attaches context to one. Colombia is new, with Equinix BG2 in Bogotá. Zhongwei's
+planning permits add China Mobile and China Unicom data-centre buildings in Ningxia; their points
+are substation centres from environmental reports that state no datum and were checked against
+imagery. German records add Liederbach, Hofheim, Bedburg and Trebbin; French, Spanish and Dutch
+records add Blyes, Petit-Landau, two Zaragoza campuses and Alphen aan den Rijn. Texas building
+registrations, county records and operator releases add Edged Fort Worth, Project Longhorn,
+Google's GreenPoint campus in Columbia County, Georgia, Aligned Pataskala and Yondr Allegro in
+Loudoun. New projects at existing sites include Soluna Kati 1, the Meta Eagle Mountain expansion,
+Telehouse West 2, Key Point Vladivostok's second phase and Digital Realty Garland DFW39.
+
+GreenPoint is announced: the county schedules blasting but names no completed work stage. Trebbin
+is announced because its permits have no published authority, date or reference. Project
+Longhorn's parcel matches the registration's owner, a private individual who is not named here.
+China East and Japan West admitted nothing: regional hosts were unreachable or blocked, map routes
+are robots-disallowed, and the session's web-search budget was exhausted. The 389 candidates not
+admitted are listed with their reasons and reopening conditions in
+[`sources/research-countries-2026-10-22-thirtyfourth-holds.json`](../sources/research-countries-2026-10-22-thirtyfourth-holds.json).

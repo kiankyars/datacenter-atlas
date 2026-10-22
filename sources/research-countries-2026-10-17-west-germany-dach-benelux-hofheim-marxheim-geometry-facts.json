@@ -1,0 +1,70 @@
+{
+  "candidate_id": "hofheim-marxheim-data-centre",
+  "decision": "Selected the permit's UTM32N site coordinate (32459517.4445 / 5545160.0063) transformed to WGS84 as the project locator.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      8.4344557,
+      50.0573469
+    ]
+  },
+  "authority_class": "compiled_reference",
+  "scope_class": "official_permit_site_reference_coordinate",
+  "use_scope": "project_locator",
+  "source_file": "local_data/country-research-2026-10-17-germany_dach_benelux/rpda-dch-hofheim-2026-08-19.pdf",
+  "source_sha256": "9973a81b9206af690ad41d5ff56eafb8025be1d2218ffec499df766c7865d29a",
+  "source_url": "https://rp-darmstadt.hessen.de/sites/rp-darmstadt.hessen.de/files/2026-09/besch-ie-rl_dch-14notstrom_2026-08-19.pdf",
+  "selected_properties": {
+    "gemarkung": "Marxheim",
+    "flur": "30",
+    "flurstueck": "17/3 (formerly 17/2, 18/3, 19/1, 19/3)",
+    "gebaeude": "Rechenzentrum Hofheim-Marxheim",
+    "address": "Rheingaustraße 201, 65719 Hofheim am Taunus",
+    "rechts_hochwert": "32459517.4445 / 5545160.0063",
+    "crs": "ETRS89 / UTM zone 32N (zone prefix 32; the decision states UTM Zone 32N for its coordinates)"
+  },
+  "identity_bridge": [
+    "RP Darmstadt decision 19.08.2026: Rechenzentrum Hofheim-Marxheim at Rheingaustraße 201, B-Plan Nr. 150 \"Rechenzentrum Marxheim\"; noise report 250226-BPH-DCG.",
+    "Data Center Group 01.10.2026: new data centre in Hofheim-Marxheim (11,000 m2, up to 30 MVA) for an unnamed international operator."
+  ],
+  "consistency_checks": {
+    "inside_hofheim_vg250": {
+      "sha256": "370c5f7f7f3ae30d92254bf3fea90cf327542bb0ee4b256320e36423a9969f93",
+      "area_km2": 57.16,
+      "utm32": {
+        "xy_25832": [
+          459517.4,
+          5545160.0
+        ],
+        "inside": true,
+        "distance_to_boundary_m": 39.7
+      }
+    },
+    "ip7_roemerwiesen_point_from_same_decision": {
+      "utm32": [
+        459710,
+        5546256
+      ],
+      "wgs84": [
+        8.4370303,
+        50.0672168
+      ],
+      "note": "Planned residential receptor about 1.1 km north, consistent with the site south of Marxheim."
+    },
+    "nearest_atlas_sites_km": {
+      "CyrusOne FRA7 Frankfurt Westside Campus": 11.169,
+      "NorthC Frankfurt1 (FRA01)": 11.464
+    },
+    "versions": {
+      "pyproj": "3.7.1",
+      "proj": "9.5.1"
+    }
+  },
+  "transform_check": "pyproj 3.7.1 (PROJ 9.5.1) EPSG:25832 (zone prefix removed) -> EPSG:4326, always_xy.",
+  "excluded_coordinates": [
+    {
+      "kind": "Hofheim-Diedenbergen \"In der Lach\" area reportedly sold to an undisclosed buyer",
+      "reason": "Different site; not established as a data-centre project."
+    }
+  ]
+}

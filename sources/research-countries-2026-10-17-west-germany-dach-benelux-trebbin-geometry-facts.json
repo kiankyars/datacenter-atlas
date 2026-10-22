@@ -1,0 +1,72 @@
+{
+  "candidate_id": "trebbin-krumme-kabeln-data-centre",
+  "decision": "Selected the centroid of ALKIS parcel Trebbin Flur 2 Flurstück 1117 (the parcel the municipal heat-planning report names for the data centre) as the project locator; the two building footprints within it are not separately located.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      13.2245702,
+      52.2288433
+    ]
+  },
+  "authority_class": "compiled_reference",
+  "scope_class": "official_plan_named_cadastral_parcel_centroid",
+  "use_scope": "project_locator",
+  "source_file": "local_data/country-research-2026-10-17-germany_dach_benelux/bb-alkis-trebbin-1117-b.gml",
+  "source_sha256": "7c0c804140e62f141bf340fe71f88da4e199399958b48d5d28a8cefa9a3b98f0",
+  "source_url": "https://isk.geobasis-bb.de/ows/alkis_vereinf_wfs?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=ave:Flurstueck&FILTER=%3Cfes%3AFilter%20xmlns%3Afes%3D%22http%3A//www.opengis.net/fes/2.0%22%20xmlns%3Aave%3D%22http%3A//repository.gdi-de.org/schemas/adv/produkt/alkis-vereinfacht/2.0%22%3E%3Cfes%3AAnd%3E%3Cfes%3APropertyIsEqualTo%3E%3Cfes%3AValueReference%3Eave%3Agemarkung%3C/fes%3AValueReference%3E%3Cfes%3ALiteral%3ETrebbin%3C/fes%3ALiteral%3E%3C/fes%3APropertyIsEqualTo%3E%3Cfes%3APropertyIsEqualTo%3E%3Cfes%3AValueReference%3Eave%3Aflstnrzae%3C/fes%3AValueReference%3E%3Cfes%3ALiteral%3E1117%3C/fes%3ALiteral%3E%3C/fes%3APropertyIsEqualTo%3E%3C/fes%3AAnd%3E%3C/fes%3AFilter%3E",
+  "selected_properties": {
+    "flstkennz": "12338100201117______",
+    "gemarkung": "Trebbin",
+    "gemaschl": "123381",
+    "flur": "002",
+    "flstnrzae": "1117",
+    "gemeinde": "Trebbin",
+    "kreis": "Teltow-Fläming",
+    "lagebeztxt": "Krumme Kabeln",
+    "flaeche_m2": 92411.0,
+    "aktualit": "2024-06-04",
+    "native_crs": "EPSG:25833"
+  },
+  "identity_bridge": [
+    "Stadt Trebbin heat-planning final report (EWE NETZ for the city): the data centre is to be built on Flurstück 1117 of Flur 2 in Gemarkung Trebbin; two data-centre buildings per the building-application documents provided by the city; developer calculations about 180 MW total electrical load.",
+    "Stadt Trebbin article (7 October 2026, updated 12 October 2026): planned data centre at the town entrance in the area of the Porta furniture warehouse; binding B-Plan; permits issued for two larger buildings and a substation.",
+    "Report Figure 32 shows the two data-centre footprints north-east of the Porta logistics centre beside the B101; ALKIS large storage and forwarding buildings (An der B101 2) lie about 460 m south-west of the parcel centroid, consistent with the figure."
+  ],
+  "consistency_checks": {
+    "area_m2_computed": 92368.6,
+    "area_m2_stated": 92411.0,
+    "parcel_extent_m": [
+      449.5,
+      336.3
+    ],
+    "centroid_inside_parcel": true,
+    "max_vertex_distance_from_centroid_m": 247.1,
+    "representative_point_wgs84": [
+      13.2242466,
+      52.2288125
+    ],
+    "centroid_25833": [
+      378743.093,
+      5787976.57
+    ],
+    "other_parcel_1117_same_gemarkung": "Flur 008 Flurstück 1117 (Bahnhofstraße 2, 2,143 m2) excluded: the report names Flur 2.",
+    "large_alkis_buildings_southwest": "Speditionsgebäude centred about (378436, 5787635) and Lagerhalle An der B101 2 about (378389, 5787562), EPSG:25833",
+    "nearest_atlas_site_km": 40.2,
+    "versions": {
+      "pyproj": "3.7.1",
+      "proj": "9.5.1",
+      "shapely": "2.1.1"
+    }
+  },
+  "transform_check": "Parcel polygon (EPSG:25833, ALKIS vereinfacht WFS) centroid computed with shapely 2.1.1 and transformed to WGS84 with pyproj 3.7.1 (PROJ 9.5.1), always_xy.",
+  "excluded_coordinates": [
+    {
+      "kind": "Trebbin town centre",
+      "reason": "Administrative centre, not the site."
+    },
+    {
+      "kind": "18.1 ha B-Plan area reported by DataCenter-Insider",
+      "reason": "Plan boundary not obtained from an official source; the named parcel is used instead."
+    }
+  ]
+}

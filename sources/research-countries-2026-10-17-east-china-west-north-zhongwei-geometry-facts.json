@@ -1,0 +1,181 @@
+{
+  "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+  "researched_at": "2026-10-22T00:00:00+00:00",
+  "candidate": "Zhongwei (Ningxia) West Cloud Base and Xuanhe campus locators: China Unicom Zhongwei Cloud Data Center (DC9), China Mobile (Ningxia Zhongwei) Data Center B-zone (B07) and Xuanhe campus (D07-D10)",
+  "method": "Each selected point is the station-centre coordinate of an on-campus 110 kV substation printed in geographic degrees-minutes-seconds in an official environmental impact report published by the Zhongwei Ecology and Environment Bureau, transcribed arithmetically to decimal degrees (deg + min/60 + sec/3600) with no datum transformation. The reports name no datum. Precedent: the China Telecom Shaotang substation locator (official_eia_on_campus_substation_locator).",
+  "selected_points": {
+    "china_unicom_dc9_campus": {
+      "source_url": "https://www.nxzw.gov.cn/zwgk/bmxxgkml/ssthjj/fdzdgknr_49584/jsxmhjyxpj_49608/202607/P020260731564598154440.pdf",
+      "source_sha256": "248716cb5e624c9509ac60c80222afa989b1e645d9641a7dca6dcda5d05950b5",
+      "printed": "东经 105°20′1.052″，北纬 37°38′7.613″ (No.3 substation centre)",
+      "lon_lat": [
+        105.333625556,
+        37.635448056
+      ]
+    },
+    "china_mobile_b_zone_campus": {
+      "source_url": "https://www.nxzw.gov.cn/zwgk/bmxxgkml/ssthjj/fdzdgknr_49584/jsxmhjyxpj_49608/202507/P020250714578605687925.pdf",
+      "source_sha256": "25736d5fae6e69e8eb1bc70384b40571659c31eb5d2d581d8d520737df562ef4",
+      "printed": "东经 105°19′33.173″，北纬 37°38′18.905″ (B-zone 110 kV substation centre)",
+      "lon_lat": [
+        105.325881389,
+        37.638584722
+      ]
+    },
+    "china_mobile_xuanhe_campus": {
+      "source_url": "https://www.nxzw.gov.cn/zwgk/bmxxgkml/ssthjj/fdzdgknr_49584/jsxmhjyxpj_49608/202604/P020260423604233760644.pdf",
+      "source_sha256": "efef0f26613da541eca58211837aa2ece8e7d70a38345e8545aa1b5cb9d678e0",
+      "printed": "东经 105°30′15.586″，北纬 37°22′13.181″ (D-zone 110 kV substation centre)",
+      "lon_lat": [
+        105.504329444,
+        37.370328056
+      ]
+    }
+  },
+  "synthesis_check": "The synthesis re-extracted each printed coordinate from the hashed PDF captures with pdftotext and recomputed the decimal values; all agree to the stated precision.",
+  "registration_check": "Qualitative only: with the printed values read directly as WGS84 longitude/latitude, the cloud-base EIA points fall on the expected parcels of the road grid north and south of Fengyun Road in Esri World Imagery and EOX Sentinel-2 cloudless 2025 (the CIDC point on the built CIDC campus, the Unicom points inside the built Unicom block); none shows the several-hundred-metre systematic offset a GCJ-02 web-map coordinate would produce. The Xuanhe point was matched against the report's own satellite figure and Esri imagery. This is not a measured accuracy.",
+  "other_published_points_for_context": {
+    "unicom_sub1_2025": {
+      "dms_lon": "105:20:2.404",
+      "dms_lat": "37:38:19.111",
+      "lon": 105.334001111,
+      "lat": 37.638641944
+    },
+    "cm_bzone_sub2": {
+      "dms_lon": "105:19:2.855",
+      "dms_lat": "37:38:19.203",
+      "lon": 105.317459722,
+      "lat": 37.6386675
+    },
+    "zl_cloudbase_330": {
+      "dms_lon": "105:18:58.033",
+      "dms_lat": "37:37:48.589",
+      "lon": 105.316120278,
+      "lat": 37.630163611
+    },
+    "zl_xuanhe_330": {
+      "dms_lon": "105:29:25.851",
+      "dms_lat": "37:22:6.045",
+      "lon": 105.490514167,
+      "lat": 37.368345833
+    },
+    "cidc_cloudbase_sub1": {
+      "dms_lon": "105:18:22.409",
+      "dms_lat": "37:37:55.737",
+      "lon": 105.306224722,
+      "lat": 37.632149167
+    },
+    "cidc_xuanhe_330": {
+      "dms_lon": "105:29:53.933",
+      "dms_lat": "37:22:42.025",
+      "lon": 105.498314722,
+      "lat": 37.378340278
+    },
+    "ct_t2": {
+      "dms_lon": "105:20:21.089",
+      "dms_lat": "37:37:45.371",
+      "lon": 105.339191389,
+      "lat": 37.629269722
+    }
+  },
+  "pairwise_metres": {
+    "unicom_sub3|unicom_sub1_2025": 356.0,
+    "unicom_sub3|cm_bzone_sub1": 767.1,
+    "unicom_sub3|cm_bzone_sub2": 1470.9,
+    "unicom_sub3|cm_xuanhe_dzone_sub": 33070.4,
+    "unicom_sub3|zl_cloudbase_330": 1652.7,
+    "unicom_sub3|zl_xuanhe_330": 32730.2,
+    "unicom_sub3|cidc_cloudbase_sub1": 2446.2,
+    "unicom_sub3|cidc_xuanhe_330": 32036.2,
+    "unicom_sub3|ct_t2": 843.6,
+    "unicom_sub1_2025|cm_bzone_sub1": 716.7,
+    "unicom_sub1_2025|cm_bzone_sub2": 1460.0,
+    "unicom_sub1_2025|cm_xuanhe_dzone_sub": 33371.1,
+    "unicom_sub1_2025|zl_cloudbase_330": 1837.5,
+    "unicom_sub1_2025|zl_xuanhe_330": 33037.6,
+    "unicom_sub1_2025|cidc_cloudbase_sub1": 2555.4,
+    "unicom_sub1_2025|cidc_xuanhe_330": 32337.3,
+    "unicom_sub1_2025|ct_t2": 1136.6,
+    "cm_bzone_sub1|cm_bzone_sub2": 743.4,
+    "cm_bzone_sub1|cm_xuanhe_dzone_sub": 33695.6,
+    "cm_bzone_sub1|zl_cloudbase_330": 1271.2,
+    "cm_bzone_sub1|zl_xuanhe_330": 33339.0,
+    "cm_bzone_sub1|cidc_cloudbase_sub1": 1876.3,
+    "cm_bzone_sub1|cidc_xuanhe_330": 32660.5,
+    "cm_bzone_sub1|ct_t2": 1565.0,
+    "cm_bzone_sub2|cm_xuanhe_dzone_sub": 34058.6,
+    "cm_bzone_sub2|zl_cloudbase_330": 951.2,
+    "cm_bzone_sub2|zl_xuanhe_330": 33679.0,
+    "cm_bzone_sub2|cidc_cloudbase_sub1": 1227.5,
+    "cm_bzone_sub2|cidc_xuanhe_330": 33022.7,
+    "cm_bzone_sub2|ct_t2": 2183.4,
+    "cm_xuanhe_dzone_sub|zl_cloudbase_330": 33296.0,
+    "cm_xuanhe_dzone_sub|zl_xuanhe_330": 1243.4,
+    "cm_xuanhe_dzone_sub|cidc_cloudbase_sub1": 33930.3,
+    "cm_xuanhe_dzone_sub|cidc_xuanhe_330": 1036.6,
+    "cm_xuanhe_dzone_sub|ct_t2": 32236.2,
+    "zl_cloudbase_330|zl_xuanhe_330": 32896.7,
+    "zl_cloudbase_330|cidc_cloudbase_sub1": 900.9,
+    "zl_cloudbase_330|cidc_xuanhe_330": 32259.5,
+    "zl_cloudbase_330|ct_t2": 2039.0,
+    "zl_xuanhe_330|cidc_cloudbase_sub1": 33508.2,
+    "zl_xuanhe_330|cidc_xuanhe_330": 1306.8,
+    "zl_xuanhe_330|ct_t2": 31901.1,
+    "cidc_cloudbase_sub1|cidc_xuanhe_330": 32893.7,
+    "cidc_cloudbase_sub1|ct_t2": 2927.5,
+    "cidc_xuanhe_330|ct_t2": 31202.2
+  },
+  "nearest_atlas_site": {
+    "unicom_sub3": {
+      "nearest_atlas_site": "China Mobile Plateau Big Data Center Haidong",
+      "site_id": "vcc-site-f1171e4b8e247993d773",
+      "metres": 321080.3
+    },
+    "unicom_sub1_2025": {
+      "nearest_atlas_site": "China Mobile Plateau Big Data Center Haidong",
+      "site_id": "vcc-site-f1171e4b8e247993d773",
+      "metres": 321243.4
+    },
+    "cm_bzone_sub1": {
+      "nearest_atlas_site": "China Mobile Plateau Big Data Center Haidong",
+      "site_id": "vcc-site-f1171e4b8e247993d773",
+      "metres": 320576.4
+    },
+    "cm_bzone_sub2": {
+      "nearest_atlas_site": "China Mobile Plateau Big Data Center Haidong",
+      "site_id": "vcc-site-f1171e4b8e247993d773",
+      "metres": 319890.8
+    },
+    "cm_xuanhe_dzone_sub": {
+      "nearest_atlas_site": "China Mobile Plateau Big Data Center Haidong",
+      "site_id": "vcc-site-f1171e4b8e247993d773",
+      "metres": 325812.9
+    },
+    "zl_cloudbase_330": {
+      "nearest_atlas_site": "China Mobile Plateau Big Data Center Haidong",
+      "site_id": "vcc-site-f1171e4b8e247993d773",
+      "metres": 319427.9
+    },
+    "zl_xuanhe_330": {
+      "nearest_atlas_site": "China Mobile Plateau Big Data Center Haidong",
+      "site_id": "vcc-site-f1171e4b8e247993d773",
+      "metres": 324575.9
+    },
+    "cidc_cloudbase_sub1": {
+      "nearest_atlas_site": "China Mobile Plateau Big Data Center Haidong",
+      "site_id": "vcc-site-f1171e4b8e247993d773",
+      "metres": 318700.2
+    },
+    "cidc_xuanhe_330": {
+      "nearest_atlas_site": "China Mobile Plateau Big Data Center Haidong",
+      "site_id": "vcc-site-f1171e4b8e247993d773",
+      "metres": 325547.3
+    },
+    "ct_t2": {
+      "nearest_atlas_site": "China Mobile Plateau Big Data Center Haidong",
+      "site_id": "vcc-site-f1171e4b8e247993d773",
+      "metres": 321281.6
+    }
+  },
+  "uncertainty": "Not established: no datum, survey method or accuracy is stated. Each point marks an on-campus substation, not a data-centre building footprint."
+}
