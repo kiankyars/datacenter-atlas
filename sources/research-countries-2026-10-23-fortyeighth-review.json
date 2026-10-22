@@ -1,0 +1,49 @@
+{
+  "reviewer": "root",
+  "reviewed_at": "2026-10-23",
+  "decision": "accepted_for_integration",
+  "update": "verified_construction_core/2026-10-23-research-fortyeighth",
+  "base_dataset": "verified_construction_core/2026-10-23-research-fortyseventh",
+  "process": "continuous: one researcher per beat, one adversarial verifier per fragment",
+  "fragments": [
+    {
+      "fragment": "ca-p1",
+      "verdict": "accept",
+      "checks": [
+        "base read from site/config.json: 2026-10-23-research-fortyseventh (602 sites, 637 projects, 3255 evidence); unchanged at verdict time",
+        "all 11 relied-on captures rehashed: file sha256 == .metadata.json sha256 == source content_hash, metadata URL == source_url, HTTP 200; 3 geometry-facts files match their recorded sha256",
+        "window: 85 days before 2026-10-23 is 2026-07-30; observations 2026-09-22 (31 d), 2026-10-15 (8 d), 2026-08-05 (79 d)",
+        "MTL8: read the live page: '7350 Frederick-Banting Street', 'MTL8 delivers 206K SQFT', 'Site capacity: 21 MW', 24/7 onsite security, plus the 2026 Datacloud award sentence for MTL8; JSON-LD dateModified 2026-09-22T16:33:25Z = sitemap lastmod; IA 2026-06-30 copy carries dateModified 2026-01-23 without the award block or 'Site capacity:' label, so the MTL8 content edit is bounded 30 Jun to 22 Oct; CDX shows only 504s on 6 Oct",
+        "MTL8 context: 5 Mar 2026 release read: 'the AI-ready data centre is in service', Technoparc, 'will deliver 21 MW'; used as context only",
+        "MTL8 locator: adresses.csv has exactly one 7350 Frederick-Banting record (ID_ADRESSE 379228; neighbours 7290/7220 are separate records); published WGS84 used as is; MTM8 X/Y via EPSG:32188 lands 0.036 m away (EPSG:2950 1.05 m), recomputed with pyproj 3.7.1; the city's dataset page says civic numbers are placed inside the lot, then manually inside the building; CC BY 4.0 licence page read",
+        "VAN4: read the live page: 175 West Cordova Street, 'VAN4 provides access to over 200 carriers', 2 MMRs + 2 PoP rooms controlled by Cologix, 24x7x365 NOC, 'Site Capacity: 6.5 MW'; dateModified 2026-10-15T21:29:33Z = sitemap lastmod; IA 2026-10-06 copy is the 2026-06-22 version with '68K SQFT' and '4 MW of colocation capacity', so the 15 Oct version is a real content edit, bounded 6 Oct to 22 Oct",
+        "corrected the VAN4 IA source summary and VAN4 date_semantics, which wrongly said only footer wording differed; noted the earlier 4 MW figure in capacity_qualification",
+        "VAN4 locator recomputed: one parcel (PropertyID 58915707) in the raw layer-63 response; area centroid in EPSG:26910 = -123.1086748, 49.2835679 (0.002 m from the claimed point); area 1525.3 m2; the single 175 W CORDOVA ST address point is inside the parcel 4.13 m from the centroid; max vertex distance 28.6 m",
+        "Vaughan phase 2: read Microsoft's 5 Aug 2026 update: 'The second phase of construction is anticipated to begin in mid-2027' and the second building will be discussed in fall 2026; JSON-LD datePublished 2026-08-05, matches the post-sitemap lastmod; recorded as announced only, with the forecast not treated as a stage",
+        "Vaughan locator: reuses project 288845bc's campus point and geometry evidence 8c37f5bf; the baseline has no context:geometry_identity evidence (fbdaa36a is context:identity), so the empty list is correct; York capture recomputed in EPSG:2958: YTO11 11.30 ha, Phase 2 10.969 ha, overlap 10.934 ha, campus point inside Phase 2 and 34.0 m from its edge, Phase 2 centroid 2.4 m away",
+        "York register attributes read: SP.25.V.0005 / DA.24.070 'Data Centre Phase 2', 3-storey data processing centre, stage Intake, 'Awaiting Mandatory Docs', 5th submission 2026-07-30; not used as a permit",
+        "distinctness: sites, projects, evidence, source-records and identity-mapping searched for Cologix, MTL8, VAN4, Cordova, Frederick-Banting, Technoparc, Montreal, Vancouver, Vaughan, Langstaff, YTO11 and DA.24.070; the only hits are the Vaughan campus, its first-building project and its 3 evidence rows; the nearest sites are 230.5 km (MTL8) and 298.5 km (VAN4) away; no other queue fragment matches or lies within 5 km; claims.tsv matches only ca-p1; holds match only the 31st placeholder and the 34th-hold Cologix Columbus entry",
+        "roles: Cologix operator current (MTL8, VAN4), Microsoft operator intended (Vaughan), matching the baseline first-building role",
+        "no third-party personal data in changes, sources, holds or notes: no emails or phone numbers, only corporate applicant names",
+        "robots.txt: cologix.com, local.microsoft.com, maps.vancouver.ca and donnees.montreal.ca captures read (relied-on paths allowed); web.archive.org and ww8.yorkmaps.ca returned 404",
+        "dryrun_fragment.py ok: 604 sites, 640 projects, 3265 evidence"
+      ],
+      "residual_risks": [
+        "MTL8 and VAN4 observation dates are WordPress dateModified values bounded only below by an archived prior version and above by the 22 Oct capture; no archived copy of either new version exists; the operating statements are present-tense marketing text (the same method was accepted for CtrlS Bengaluru, LEV002 and ecoDC)",
+        "a 34th-update hold treated Cologix Columbus pages as undated marketing pages; this fragment instead bounds the versions with archived copies",
+        "175 West Cordova hosts several telecom carriers ('all major Canadian telecommunications providers colocating'); the parcel point stands for the building, not VAN4's four floors",
+        "MTL8 address point: the city publishes no positional accuracy, and the lot and footprint were not retrieved",
+        "Vaughan: whether Microsoft's 'second building' is the second YTO11 building (DA.22.008) or the DA.24.070 3-storey building is not stated; the second phase's position on the campus is not published",
+        "Montreal CSV reached through the city's redirect to a signed storage link; that host's robots.txt answered 403 (RFC 9309 treats a 4xx as unavailable, so access is allowed); the CSV was not re-downloaded for verification (36 MB), only rehashed",
+        "notes.md still says the IA VAN4 copy has identical facility statements; the source records were corrected, notes were not"
+      ]
+    }
+  ],
+  "packet_pins": {
+    "definitions/atlas-research-fortyeighth-2026-10-23.json": "05c6f48da49c2363d9496e1585d8c5814622baf1d792e6741aa9e238ce76007d",
+    "sources/research-countries-2026-10-23-fortyeighth-primary-sources.json": "4eb602baacd0456f2afe39b8028295f2597d0c1a685c4d03e3d240c7c3052a3b",
+    "sources/research-countries-2026-10-23-fortyeighth-actions.json": "40a8844eb404ac5e097a9ba18340eb81d46200f003a6b8150d7de4c90498e4e5",
+    "sources/research-countries-2026-10-23-fortyeighth-holds.json": "1d846631956d5288ae1dfd2502b3a34c713d3b43e772990bc6d3d9abc9096b58"
+  },
+  "raw_captures_redistributed": false
+}

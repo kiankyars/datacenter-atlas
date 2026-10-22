@@ -1,0 +1,183 @@
+{
+  "format": "datacenter-atlas-update-input-v1",
+  "updated_at": "2026-10-23",
+  "output": "verified_construction_core/2026-10-23-research-fortyeighth",
+  "base_dataset": "verified_construction_core/2026-10-23-research-fortyseventh",
+  "base_manifest_sha256": "2952fd4c1537606b548e6149b72e2185776a24dd09f9efc44ec5e9e0477b2ac9",
+  "source_files": [
+    {
+      "path": "sources/research-countries-2026-10-23-fortyeighth-primary-sources.json",
+      "sha256": "4eb602baacd0456f2afe39b8028295f2597d0c1a685c4d03e3d240c7c3052a3b"
+    }
+  ],
+  "additions": [
+    {
+      "project_stable_key": "curated:cologix-mtl8-montreal-frederick-banting:existing-operations",
+      "physical_site_stable_key": "curated:cologix-mtl8-montreal-frederick-banting",
+      "site_name": "Cologix MTL8 Data Centre, Technoparc Montréal (7350 rue Frederick-Banting)",
+      "name": "Cologix MTL8 — existing data-centre operations",
+      "country": "Canada",
+      "country_iso_a2": "CA",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-09-22",
+        "source_id": "ca-p1-cologix-mtl8-page-20260922",
+        "summary": "Cologix's MTL8 page, in its version modified on 22 September 2026, states that MTL8 at 7350 Frederick-Banting Street in Technoparc Montréal 'delivers 206K SQFT of state-of-the-art data center space', is LEED Gold certified and 'consumes minimal energy, water and natural resources', and reports Cologix's 2026 Datacloud Global Awards sustainability award for MTL8 as 'a LEED Gold-certified data center located in Montréal'. Cologix's 5 March 2026 release had already said the AI-ready data centre was in service. This records MTL8 as operating on 22 September 2026, the modification day of the captured version (bounded by the Internet Archive copy of 30 June 2026 and the live capture of 22 October 2026); it is not an opening date. The 21 MW site capacity is not load in service, and occupancy is not established."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -73.767768,
+            45.481549
+          ]
+        },
+        "source_id": "ca-p1-montreal-adresse-7350-frederick-banting",
+        "scope": "project_locator",
+        "scope_class": "official_municipal_address_point_of_operator_stated_facility_address",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "ville_de_montreal_adresses_ponctuelles_id_adresse_379228_published_wgs84_longitude_latitude",
+        "precision": "Ville de Montréal address point for 7350 rue Frederick-Banting, the address Cologix gives for MTL8; the city's dataset page says civic numbers are positioned inside the corresponding lot by default and then manually inside the building. It locates the civic address, not the building footprint, lot centroid or a surveyed position.",
+        "identity_review": "Cologix's MTL8 page names 7350 Frederick-Banting Street, Montréal, in Technoparc Montréal, and its 5 March 2026 release places MTL8 in Technoparc near Montréal-Trudeau airport. The city's address-point file has exactly one record for that address (ID_ADRESSE 379228, 'rue Frederick-Banting'), in Technoparc Montréal; its published WGS84 pair agrees within 0.04 m with its own MTM zone 8 coordinates transformed from EPSG:32188. No other Cologix facility or other operator's data centre is given at that address on the selected pages.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The city publishes no positional accuracy for its address points, and the address point's position relative to the 206K-square-foot MTL8 building and its lot is not documented; the building footprint and lot boundary were not retrieved."
+      },
+      "context_source_ids": [
+        "ca-p1-cologix-mtl8-page-ia-20260630",
+        "ca-p1-cologix-mtl8-la-caisse-20260305"
+      ],
+      "roles": [
+        {
+          "party": "Cologix",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "ca-p1-cologix-mtl8-page-20260922"
+        }
+      ],
+      "distinctness_review": "Sites, projects and evidence of 2026-10-23-research-fortyseventh (602 sites, 637 projects, 3255 evidence rows), its 231 source records and its identity mapping were searched for Cologix, MTL8, Frederick-Banting, Technoparc, Saint-Laurent and Montréal/Montreal: nothing matches, and the Atlas has no site in Montréal. No Atlas site, pending queue addition or claim lies within 2 km; the nearest Atlas sites are QScale Q01 Lévis (230.5 km) and the two Microsoft Québec City-area sites (236.7 km). The sources/*-holds.json files mention Cologix only for its Columbus (Ohio) facilities and Montréal only for a rejected server-room renovation permit at 3665 boulevard Poirier, Saint-Laurent (a different address). The other Cologix Montréal facilities listed on the MTL8 and MTL12 pages are at other addresses (625 and 1250 boulevard René-Lévesque Ouest, 875 rue Saint-Antoine, 7171 rue Jean-Talon Est, 3000 boulevard René-Lévesque in Verdun, 530 rue Bériault in Longueuil) and are not added. Earlier curated source packets (sources/curated-official-2026-07-21-cologix-mtl8-operational-closure.json) are not part of the current dataset.",
+      "successor_review": "Cologix's news sitemap (captured 22 October 2026) lists nothing after its 11-14 August 2026 ESG-report items, and its resource posts modified on 19-21 October 2026 have general titles; no closure, pause or new MTL8 phase was found. The live MTL8 page of 22 October 2026 is the 22 September version.",
+      "scoped_project_details": {
+        "aliases": [
+          "MTL8",
+          "Cologix MTL8",
+          "Cologix Montréal MTL8"
+        ],
+        "facility_scope": "Single colocation and hyperscale data centre at 7350 rue Frederick-Banting in Technoparc Montréal",
+        "floor_area_sqft_stated": 206000,
+        "site_capacity_mw_stated": 21,
+        "capacity_qualification": "Site capacity stated by the operator; the March 2026 release says the facility will deliver 21 MW; not IT load in service",
+        "certification": "LEED Gold (2025, per the operator)",
+        "operating_statement_dates": "5 March 2026 (release: in service) and 22 September 2026 (page version)"
+      }
+    },
+    {
+      "project_stable_key": "curated:cologix-van4-vancouver-west-cordova:existing-operations",
+      "physical_site_stable_key": "curated:cologix-van4-vancouver-west-cordova",
+      "site_name": "Cologix VAN4 Data Centre, Vancouver (175 West Cordova Street)",
+      "name": "Cologix VAN4 — existing data-centre operations",
+      "country": "Canada",
+      "country_iso_a2": "CA",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-10-15",
+        "source_id": "ca-p1-cologix-van4-page-20261015",
+        "summary": "Cologix's VAN4 page, in its version modified on 15 October 2026, describes VAN4 at 175 West Cordova Street, Cologix's fourth Vancouver data center, as an interconnection hub in downtown Vancouver and states that 'VAN4 provides access to over 200 carriers' and cloud on-ramps, with 2 meet-me rooms and 2 PoP rooms controlled by Cologix, 24/7 NOC and DCIM power monitoring and a 6.5 MW site capacity. This records VAN4 as operating on 15 October 2026, the modification day of the captured version (bounded by the Internet Archive copy of 6 October 2026 and the live capture of 22 October 2026); it is not an opening date. Capacity in service, floor area (58K versus 68K square feet on the same page) and occupancy are not established."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -123.1086748,
+            49.2835679
+          ]
+        },
+        "source_id": "ca-p1-vancouver-parcel-175-w-cordova",
+        "scope": "project_locator",
+        "scope_class": "official_property_parcel_centroid_of_operator_stated_facility_address",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "city_of_vancouver_propertyviewer_layer63_parcel_58915707_area_centroid_computed_in_epsg26910_returned_to_wgs84",
+        "precision": "Area centroid of the 1,525 m2 City of Vancouver property parcel (PropertyID 58915707, about 47 by 49 m) that contains the city's 175 W Cordova St address point, the address Cologix gives for VAN4. It locates the property; the building occupies most of this small downtown lot, but its footprint was not retrieved.",
+        "identity_review": "Cologix's VAN4 page names 175 West Cordova Street, Vancouver, in Gastown, two blocks from VAN1, which it calls Vancouver's primary carrier hotel. The City of Vancouver address-number layer has exactly one 175 W CORDOVA ST point; the property-parcel layer returns one parcel at that point (PropertyID 58915707, SiteAddressID 004168666), and the address point lies inside it 4.1 m from the centroid. The page says all major Canadian telecommunications providers colocate at 175 West Cordova; VAN4 is the Cologix facility at that address, and no other operator's data centre is added for it.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The city map service publishes no positional accuracy; the point is the centroid of a 1,525 m2 parcel whose vertices lie up to 28.6 m away, and the building footprint within it was not retrieved."
+      },
+      "context_source_ids": [
+        "ca-p1-cologix-van4-page-ia-20261006",
+        "ca-p1-vancouver-address-175-w-cordova"
+      ],
+      "roles": [
+        {
+          "party": "Cologix",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "ca-p1-cologix-van4-page-20261015"
+        }
+      ],
+      "distinctness_review": "Sites, projects and evidence of 2026-10-23-research-fortyseventh (602 sites, 637 projects, 3255 evidence rows), its 231 source records and its identity mapping were searched for Cologix, VAN4, Cordova and Vancouver: nothing matches, and the Atlas has no site in British Columbia. No Atlas site, pending queue addition or claim lies within 2 km; the nearest Atlas sites are Bitdeer Wenatchee (298.5 km) and Keel Moses Lake (365.5 km) in Washington State. The sources/*-holds.json files mention Cologix only for Columbus (Ohio). The other Cologix Vancouver facilities listed on the VAN4 page (555 West Hastings Street, 1050 West Pender Street, 2828 Natal Street) are at other addresses and are not added; an earlier Uniserve 369 Terminal Avenue source packet in sources/ concerns a different address and is not in the current dataset.",
+      "successor_review": "Cologix's news sitemap (captured 22 October 2026) lists nothing after its 11-14 August 2026 ESG-report items; no closure, pause or relocation of VAN4 was found. The 15 October 2026 version is the live page on 22 October 2026.",
+      "scoped_project_details": {
+        "aliases": [
+          "VAN4",
+          "Cologix VAN4",
+          "Cologix Vancouver VAN4"
+        ],
+        "facility_scope": "Colocation and interconnection data centre occupying four floors at 175 West Cordova Street, downtown Vancouver (Gastown)",
+        "site_capacity_mw_stated": 6.5,
+        "capacity_qualification": "Site capacity stated by the operator in the 15 October 2026 page version (the 6 October 2026 archived version gave '4 MW of colocation capacity'); not IT load in service",
+        "floor_area_note": "The page states both 58K SQFT across four floors and 68,000 square feet; neither is recorded as the floor area"
+      }
+    },
+    {
+      "project_stable_key": "curated:microsoft-vaughan-ontario-campus:second-phase-building",
+      "physical_site_stable_key": "curated:microsoft-vaughan-ontario-campus",
+      "existing_site_id": "vcc-site-f1711beb19eaf65e19e2",
+      "site_name": "Microsoft Vaughan Datacentre Campus (YTO11)",
+      "name": "Microsoft Vaughan — second phase (second datacentre building)",
+      "country": "Canada",
+      "country_iso_a2": "CA",
+      "site_identity_review": "The second phase is part of Microsoft's Vaughan datacentre, whose first building is the existing project curated:microsoft-vaughan-ontario-campus:first-building on site vcc-site-f1711beb19eaf65e19e2: Microsoft's 5 August 2026 Vaughan update describes both phases of the same Vaughan datacentre, and York Region's register places the 'Data Centre Phase 2' site plan (SP.25.V.0005 / DA.24.070, 6100 Langstaff Road and 55 Line Drive) on lands that overlap the YTO11 site-plan boundary behind the campus locator by 10.93 of its 10.97 ha. It is a new project on the existing campus, not a new site.",
+      "status": {
+        "value": "announced",
+        "as_of": "2026-08-05",
+        "source_id": "ca-p1-microsoft-vaughan-update-20260805",
+        "summary": "Microsoft's Vaughan construction update published on 5 August 2026 reports the first building completed on 2 July 2026 and states that 'The second phase of construction is anticipated to begin in mid-2027' and that Microsoft 'will share additional information about the second building with neighbours in the fall of 2026'. This announces a second phase, with a second datacentre building, of the Vaughan datacentre as of 5 August 2026. The mid-2027 start is a forecast; no permit, site work or construction of the second phase is asserted. York Region's register separately records the 'Data Centre Phase 2' site plan (3-storey data processing centre with office) on the same lands, at intake with a fifth submission on 30 July 2026 and not approved."
+      },
+      "locator": {
+        "reuse_from_project_id": "288845bc-d2e7-566b-8a48-3a6c6b2892fb",
+        "geometry_evidence_id": "8c37f5bf-931a-5268-84ce-460e30d2b7a3",
+        "geometry_identity_evidence_ids": [],
+        "scope": "campus_locator",
+        "identity_review": "This reuses the existing Vaughan campus point of the first-building project 288845bc-d2e7-566b-8a48-3a6c6b2892fb: York Region's service centroid of the YTO11 site-plan boundary (application 22556), with its pinned geometry evidence 8c37f5bf-931a-5268-84ce-460e30d2b7a3; the baseline project has no geometry-identity evidence, so none is pinned. The re-captured register gives the same centroid for YTO11, and the Phase 2 boundary contains the point (34 m inside) with its own centroid 2.4 m away. The point does not locate the second building, whose position on the campus is not published."
+      },
+      "context_source_ids": [
+        "ca-p1-york-devapp-vaughan-yto11-phase2"
+      ],
+      "roles": [
+        {
+          "party": "Microsoft",
+          "role": "operator",
+          "relationship_scope": "intended",
+          "source_id": "ca-p1-microsoft-vaughan-update-20260805"
+        }
+      ],
+      "distinctness_review": "Screened against 2026-10-23-research-fortyseventh (602 sites, 637 projects, 3255 evidence rows), its 231 source records and identity mapping, the pending queue fragments, claims.tsv and sources/*-holds.json for Vaughan, Langstaff, Line Drive, YTO11, DA.24.070, SP.25.V.0005, 'Data Centre Phase 2' and Microsoft Vaughan. The only matches are the existing campus site and its first-building project (completed 2 July 2026, observed 5 August 2026), whose scope is the first building only; no second-phase or Phase 2 project exists. The only Atlas site within 2 km is this campus itself (0 m); the nearest other is Microsoft Etobicoke (11.4 km). The 2026-10-16 thirty-first hold 'Microsoft Vaughan / Markham' was a not-researched placeholder. Whether Microsoft's 'second building' is the second of the two buildings in the YTO11 site plan (DA.22.008) or the 3-storey building of the Phase 2 site plan (DA.24.070) is not stated, so the project is defined by Microsoft's second phase and neither application is recorded as its permit.",
+      "successor_review": "The Microsoft Local post sitemap captured on 22 October 2026 lists no Vaughan post after the 5 August 2026 update (the promised fall 2026 information has not appeared), and York Region's register on 22 October 2026 still shows the Phase 2 site plan at intake (Awaiting Mandatory Docs) with no approval. No later status was found.",
+      "scoped_project_details": {
+        "aliases": [
+          "Microsoft Vaughan second phase",
+          "Microsoft Vaughan second building",
+          "Data Centre Phase 2 (York SP.25.V.0005 / Vaughan DA.24.070)"
+        ],
+        "facility_scope": "Second phase of Microsoft's Vaughan datacentre, comprising a second datacentre building, on the YTO11 campus north of Langstaff Road and west of Highway 27",
+        "construction_start_forecast": "mid-2027 (Microsoft forecast; not an observation)",
+        "related_site_plan": "York Region SP.25.V.0005 / City of Vaughan DA.24.070, Data Centre Phase 2, 3-storey data processing centre with office; received 14 January 2025, fifth submission 30 July 2026, stage Intake, not approved",
+        "capacity": null,
+        "physical_construction_verified": false
+      }
+    }
+  ],
+  "status_updates": [],
+  "context_updates": []
+}
