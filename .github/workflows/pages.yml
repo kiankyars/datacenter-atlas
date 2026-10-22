@@ -52,7 +52,7 @@ jobs:
     # Pinned instead of ubuntu-latest so the image, and the system packages that
     # `playwright install --with-deps` adds to it, change only when this file does.
     runs-on: ubuntu-24.04
-    timeout-minutes: 40
+    timeout-minutes: 55
     # Each attempt uploads its own Pages artifact, so re-running a failed build does not leave the
     # run with two artifacts of the same name, which actions/deploy-pages refuses.
     outputs:
@@ -142,7 +142,9 @@ jobs:
           if-no-files-found: error
           retention-days: 7
       - name: Install the browser-test tooling
-        timeout-minutes: 10
+        # --with-deps installs fonts and libraries with apt; the runner's Ubuntu mirror is
+        # sometimes very slow, and waiting is cheaper than re-running the whole build.
+        timeout-minutes: 25
         run: |
           python -m pip install --require-hashes --only-binary :all: \
             -r datacenter_atlas/site/e2e/requirements.txt
