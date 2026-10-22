@@ -1,0 +1,43 @@
+{
+  "reviewer": "root",
+  "reviewed_at": "2026-10-22",
+  "decision": "accepted_for_integration",
+  "update": "verified_construction_core/2026-10-22-research-thirtyeighth",
+  "base_dataset": "verified_construction_core/2026-10-22-research-thirtyseventh",
+  "process": "continuous: one researcher per beat, one adversarial verifier per fragment",
+  "fragments": [
+    {
+      "fragment": "cn-ningxia-gansu-p1",
+      "verdict": "accept",
+      "checks": [
+        "All 13 relied-on captures rehashed: SHA-256 equals both .metadata.json sha256 and sources.json content_hash; HTTP 200; URLs match; geometry-facts file hashes match sources.json",
+        "GDS A-zone Phase 1 permit capture read: 6405022026GG0074699, builder Ningxia Wanguo Yunning, Xuanhe Town, east Sandang Hwy / south Weiliu Rd / north Phase 2 land, 179,752.78 m2, issued 2026-09-30, validity 有效, page generated 2026-10-10",
+        "Volcano Phase 1 permit capture read: 6405022026GG0076614, builder Zhongwei Shuofang Xinghe, C1/C2 super-core buildings and ancillaries, east Sandang Hwy / north planned Weisi Rd, 20,982.59 m2, issued 2026-09-30, 有效; land-use permit 42,587 m2, 2 data machine-room buildings, 2,988 racks, 7.47 MW",
+        "Both status sources are government_record; observation 2026-09-30 is the permit issue date, 22 days before 2026-10-22 (inside the 85-day window); construction-project planning permits authorise the data-centre buildings themselves; no appeal or suspension found",
+        "Phase 1 board viewed: 15.3235 ha, machine-room and generator buildings, 330 kV substation; 1:1000 north-up plan shows 纬六路 on the south red line and an 8 m 城市规划支路 on the north; Phase 2 board 220.23 mu",
+        "Volcano board viewed: parcel 卫地(G)[2026]-29, Xuanhe, east 三党公路, north 纬四路, 4.2587 ha, VOLCANO ENGINE renderings; north arrow measured at about 15 deg anticlockwise",
+        "Independent registration of the plan p4 land-use map to the Esri export (own NCC code, own manual prior, 72 inliers, 3.4 m RMS): affine within about 3 m of the researcher's at the parcel",
+        "GDS locator recomputed from my own parcel trace: 105.483487, 37.364459 (29.5 ha), 4.6 m from the submitted 105.483456, 37.364492",
+        "Volcano locator recomputed from my own board vertex reading, area scaling, 15.0 deg rotation and my registered block corner: 105.486972, 37.370595, 6.9 m from the submitted point",
+        "19 Oct infrastructure board read: 字节跳动大门 gate on the south side of 纬四路 at the Sandang junction with a dashed outline of the parcel's shape; four 万国大门 gate labels around the A-zone parcel south of it; GDS-to-Volcano bearing about 204 deg matches the locators",
+        "Distinctness re-screened against 2026-10-22-research-thirtyseventh (all five tables), all sources/*holds*.json and the other queue fragments: only China Mobile Xuanhe (1.5-2.0 km, different operator and parcel) nearby; the thirty-fourth holds for both candidates are resolved; cn-north-p1 Volcano Horinger is a different campus about 656 km away",
+        "Roles (owner, current, from the permit builder) match existing Zhongwei records; no personal data in the fragment; one project per new site",
+        "Verifier edit: appended the thirty-seventh re-screen (and, for GDS, the Wanguo gate labels) to both distinctness_review texts; dryrun_fragment.py ok against thirty-seventh (553 sites, 586 projects)"
+      ],
+      "residual_risks": [
+        "The Volcano permits print real-estate unit 640502102227GB00383W, which is in the West Cloud Base cadastral sub-zone and next to China Unicom DC9's GB00384W; the text location, the parcel board, the ByteDance gate label and the elevations all place the parcel at Xuanhe, so the code is treated as clerical",
+        "Both points come from a georeferenced planning raster (6.5 m/px) and Esri imagery with no stated date or absolute accuracy; the Volcano point also assumes the parcel fills the block corner, and the Weisi Road curve near the junction adds about 15 m",
+        "The GDS operator link rests on the official 万国数据 project name and the Wanguo gate labels; no GDS corporate filing names the campus. The 示范 (demonstration) wording is a policy label on a large commercial campus",
+        "No construction-permit (施工许可) or housing-bureau list was checked; an unnamed Xuanhe data-centre project served by the batching plant 'began construction in 2026', so permitted could understate a stage if that project is one of these",
+        "No fresh network successor check was made by the verifier; the researcher's lists were captured 22 Oct 16:11-16:31Z"
+      ]
+    }
+  ],
+  "packet_pins": {
+    "definitions/atlas-research-thirtyeighth-2026-10-22.json": "d82009c062822eadca037c15192b2aebdfa5242e1323b6fdd9829151d8a782e8",
+    "sources/research-countries-2026-10-22-thirtyeighth-primary-sources.json": "d469279485a937aefce60e5763697830864eaf4153211118ad89b2646a5d876e",
+    "sources/research-countries-2026-10-22-thirtyeighth-actions.json": "cef9821a43d6a2038f1d505853c8c03aab9b09e2e382d61eb31ef499159e3cb1",
+    "sources/research-countries-2026-10-22-thirtyeighth-holds.json": "3fb69ce5c0c9379069ee81fdacf4d98137a56bb0bc1e644c8ca6a9fd0d38887b"
+  },
+  "raw_captures_redistributed": false
+}

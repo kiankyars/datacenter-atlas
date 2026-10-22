@@ -1,0 +1,89 @@
+{
+  "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+  "candidate": "Volcano Engine Ningxia Zhongwei Xuanhe Compute Centre Phase 1 (parcel 卫地(G)[2026]-29)",
+  "prepared_at": "2026-10-22",
+  "selected_point_crs84": [
+    105.486903,
+    37.370623
+  ],
+  "selected_point_role": "area centroid of the 4.2587 ha land parcel 卫地(G)[2026]-29 (the Phase 1 land in the land-use planning permit), placed in the north-east corner of the block bounded by planned Weisi Road (north) and the Sandang Highway corridor (east) on the georeferenced official Xuanhe detailed plan; locates the compute-centre parcel, not a building footprint or surveyed boundary",
+  "method": {
+    "parcel_shape": {
+      "source": "local_data/country-research-cn-ningxia-gansu-p1/zw-g2026-29-plan.jpeg",
+      "sha256": "1044e5081bd5f3ac78ffa07305b6c60a308d446ac3f299b56516365a371a117f",
+      "board_image_px": "9922x7016",
+      "land_line_vertices_board_px_nw_kink_ne_se_sw": [
+        [
+          3880,
+          2728
+        ],
+        [
+          6972,
+          1579
+        ],
+        [
+          7698,
+          1527
+        ],
+        [
+          7750,
+          4176
+        ],
+        [
+          3880,
+          4177
+        ]
+      ],
+      "notes": "Vertices read at the centre of the thick land-boundary line of the 总平面图 at full resolution (about +-6 px). The north side follows 纬四路 to a chamfer near the Sandang Highway corner; the east side faces 三党公路 across the setback corridor.",
+      "scale": "0.07194 m per board px, from the permit land area 42,587 m2 (63.88 mu) and the traced board area 8,228,677 px2; resulting sides about 237 m (Weisi Road side), 191 m (east), 278 m (south), 104 m (west)",
+      "orientation": "Board north arrow is tilted about 15.5 deg anticlockwise from board-up; with that rotation the board Weisi Road side has bearing 85 deg and the east side 14.4 deg, against 86.6 deg and 14.2 deg for the same block edges on the registered detailed plan. Varying the rotation by +-1 deg moves the point about 3 m."
+    },
+    "anchor": {
+      "source": "local_data/country-research-cn-ningxia-gansu-p1/zw-xuanhe-detailed-plan-0820.pdf (page 4 land-use map, registered as in sources/research-countries-2026-10-22-cn-ningxia-gansu-p1-gds-xuanhe-a-zone-geometry-facts.json)",
+      "block_corner_plan_px": [
+        512.3,
+        471.0
+      ],
+      "block_corner_crs84": [
+        105.488615,
+        37.371432
+      ],
+      "rule": "The board virtual corner (intersection of the Weisi Road side and the east side, board px 7693.8, 1310.8) is placed on the plan block corner where the red north line (Weisi Road) meets the red east line (Sandang Highway corridor). The same east line is the east edge of the A-zone parcel whose traced area matches the GDS permits within 0.3%."
+    },
+    "centroid_offset_from_corner_m": {
+      "east": -151.5,
+      "north": -89.8,
+      "distance": 176.1
+    },
+    "parcel_crs84_nw_kink_ne_se_sw": [
+      [
+        105.485319,
+        37.371207
+      ],
+      [
+        105.487991,
+        37.371389
+      ],
+      [
+        105.488571,
+        37.371296
+      ],
+      [
+        105.488037,
+        37.369632
+      ],
+      [
+        105.485004,
+        37.370302
+      ]
+    ],
+    "derivation_output": "local_data/country-research-cn-ningxia-gansu-p1/derived/volcano-parcel-derivation.txt",
+    "script": "local_data/country-research-cn-ningxia-gansu-p1/derived/volc.py"
+  },
+  "independent_checks": {
+    "infrastructure_plan_gate": "The 19 October 2026 Xuanhe infrastructure-roads scheme (Zhongwei Housing and Urban-Rural Development Bureau; local zw-xhinfra-plan-1019.curl.jpg) marks 字节跳动大门标高1368.784 (ByteDance gate elevation) on a driveway from the south side of 纬四路 into a dashed parcel outline just west of 三党公路, and three 联通大门 (China Unicom gate) labels on the north side of the same road; crop local_data/country-research-cn-ningxia-gansu-p1/derived/infra-plan-1019-weisi-sandang-junction.jpg.",
+    "elevations": "Spot heights on the parcel board (about 1366-1372 m) match the infrastructure plan design levels at the Weisi Road/Sandang Highway junction (1367.86-1370.35 m; ByteDance gate 1368.78 m) and differ from the West Cloud Base (about 1297-1299 m on the China Unicom Park No.2 board).",
+    "cadastral_code_anomaly": "Both Volcano permit notices print real-estate unit 640502102227GB00383W00000000, a code in the West Cloud Base cadastral zone (China Unicom DC9 is ...102227GB00384W), whereas the same notices locate the land at Xuanhe Town between Sandang Highway and planned Weisi Road, and the GDS and China Mobile Xuanhe permits use zone 640502105212. The text location, project name, elevations and the ByteDance gate label all place the parcel in Xuanhe; the code is treated as an unexplained registry or clerical anomaly."
+  },
+  "uncertainty": "Not established. Combines the detailed-plan registration (about 5 m RMS image-to-image, unstated imagery accuracy), the manual block-corner pick (about 1 plan px, 6.5 m), the board vertex reading and the assumption that the parcel fills the block corner. Estimated within roughly 60 m; the parcel is about 280 x 190 m."
+}
