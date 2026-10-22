@@ -1643,8 +1643,13 @@ def test_webmcp_tools_drive_the_explorer(open_page, atlas):
         ["search_datacenter_sites", {"country": country["country_iso_a2"], "limit": 200}],
     )
     assert "result" in outcome, outcome
-    missing = [site_id for site_id in expected if site_id not in outcome["result"]]
-    assert not missing, f"search_datacenter_sites did not return {missing[:5]}"
+    # The tool returns at most 200 sites but always reports how many match, so the largest
+    # country can exceed the limit without any match being lost.
+    result = json.loads(outcome["result"])
+    returned = {site["site_id"] for site in result["sites"]}
+    assert result["matching_sites"] == len(expected), (result["matching_sites"], len(expected))
+    assert result["returned"] == len(returned) == min(len(expected), 200), result["returned"]
+    assert returned <= expected, f"search_datacenter_sites returned other countries' sites: {sorted(returned - expected)[:5]}"
     _expect_rows(page, expected, "search_datacenter_sites to drive the visible list")
     _eventually(
         page, lambda: _query(page.url).get("country", [""])[0].upper(),
