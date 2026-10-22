@@ -1,0 +1,41 @@
+{
+  "reviewer": "root",
+  "reviewed_at": "2026-10-23",
+  "decision": "accepted_for_integration",
+  "update": "verified_construction_core/2026-10-23-research-fortyfifth",
+  "base_dataset": "verified_construction_core/2026-10-23-research-fortyfourth",
+  "process": "continuous: one researcher per beat, one adversarial verifier per fragment",
+  "fragments": [
+    {
+      "fragment": "in-south-east-p1",
+      "verdict": "accept",
+      "checks": [
+        "All 15 relied-on captures rehashed: file SHA-256 = metadata sha256 = source content_hash; metadata URL = source_url, HTTP 200, byte counts match, no credentials; both geometry-facts files match geometry_facts_sha256; the three Esri exports match their metadata",
+        "Hyderabad status: read the CtrlS blog capture (JSON-LD datePublished 2026-09-24T11:50:02+05:30, page date 'September 24, 2026'): 'Its three Hyderabad datacenters support requirements ranging from individual racks and secure cages to dedicated halls'; company_disclosure in the operator's voice; 29 days old",
+        "Hyderabad identity: DC3 releases (24 Apr and 29 May 2024) and the 20 Jan 2025 release put two facilities in the Gachibowli Financial District and one in HITEC City; the April 2024 release places the pre-DC3 pair in HITEC City and Gachibowli; the Hyderabad page (dateModified 2026-09-22, bounded by IA copies of 29 Aug [prior version 2026-07-29] and 1 Oct [same version]) lists DC 1-3 and has one 'Map Location' link, placed after the DC3 tour/resilience sections",
+        "Hyderabad locator recomputed from the raw redirect capture: place 'CtrlS data center', feature 0x3bcb93279e17eb1b:0x3f1aebcc1ae9ec8f, !3d17.4233287 !4d78.3303868 echoed in the place payload; viewport centre 316.3 m away (pyproj geodesic) correctly excluded; Esri export centred on the point shows a large building with dense rooftop plant",
+        "Bengaluru status: page JSON-LD dateModified 2026-08-12T16:47:12+05:30 (= page-sitemap lastmod); IA copy of 3 Aug 2026 shows prior version 2026-07-28 with identical facility text; the only content edit is the heading typo 'Bengalore' -> 'Bangalore', so the version is genuinely post-3 Aug; lower-archive-bound plus capture pattern as accepted for LEV002 and ecoDC VN01; 72 days old",
+        "Bengaluru locator recomputed: place 'Ctrls Datacenters Bangalore DC', feature 0x3bae6c8c23b299c5:0xec3d8f241288b411, 12.8425375, 77.6712825 (!3d/!4d and payload); same link in the 3 Aug archive; Esri export shows a multi-storey building with rooftop plant, consistent with a B+G+7 building; airport 39.6 km straight-line vs the page's 52 km road figure",
+        "Sify Chennai 02 refresh: article:modified_time 2026-09-29T12:13:08Z bounded by IA 28 Jul (prior version 2026-07-10, same text) and IA 1 Oct (this version); decisive present-tense 'onboards multiple telecom service providers ... enables enterprises to run their critical applications seamlessly' read in all three copies; strictly newer than 2025-10-16; record already partially_operational so same-status refresh is allowed; campus scope and locality locator untouched; Chennai 01 not touched",
+        "Distinctness re-screened against the advanced base 2026-10-23-research-fortyfourth (594 sites, 629 projects, 3,213 evidence, source-records, identity-mapping), all sources/*-holds.json and every other queue fragment plus claims.tsv: no CtrlS Hyderabad Financial District or Bengaluru record; nearest Atlas sites 5.85 km (CapitaLand ITPH) and 271.7 km (CapitaLand Ambattur); only CtrlS matches are Chandanvelly, Kolkata and Patna/Bodh Gaya holds; distinctness_review texts updated to cite the forty-fourth base and the 27.0 km geodesic distance",
+        "Roles: CtrlS Datacenters Ltd operator, relationship_scope current, sourced to the status captures; each addition is the only project on a new site",
+        "No private-individual names, e-mails or phones in changes, sources, holds or notes (blog author and release contacts omitted); robots.txt captures allow www.ctrls.com, www.sifytechnologies.com pages, google.com /maps/place/ and server.arcgisonline.com",
+        "dryrun_fragment.py ok against 2026-10-23-research-fortyfourth (596 sites, 631 projects, 3,225 evidence); three unreferenced Sify sources (two bounding IA copies and the Chennai 02 page) are retained as documentation of the bounds and produce no evidence rows"
+      ],
+      "residual_risks": [
+        "The Hyderabad operating statement is a generic marketing sentence about all three Hyderabad facilities; operation of the mapped facility follows by inference from the three-facility listing",
+        "The operator map place is not identified as DC2 or DC3, and whether DC2 and DC3 share one property is unknown; the record is scoped to the operator-mapped facility with no capacity, and a later DC2/DC3-specific record must reconcile against this point",
+        "Bengaluru's observation date rests on a WordPress dateModified bounded only below by the 3 Aug archived prior version and above by the 22 Oct capture; the facility text itself is unchanged since at least July",
+        "Sify's 29 Sep page modification appears to be a site-wide refresh of unchanged Chennai 02 text; partially_operational is retained without evidence on the remaining campus build-out",
+        "Google Maps place coordinates carry no published accuracy; Esri imagery checks are visual plausibility only"
+      ]
+    }
+  ],
+  "packet_pins": {
+    "definitions/atlas-research-fortyfifth-2026-10-23.json": "19452b8103cb302d6c2968985769de5f33708bad8581159c8f6761f0d13756eb",
+    "sources/research-countries-2026-10-23-fortyfifth-primary-sources.json": "83a0156c2a04d473591c859c6b3de87c81ee5d63f45b89d2e3ed2218d21abd66",
+    "sources/research-countries-2026-10-23-fortyfifth-actions.json": "619d73db4fb5b337371355eb8788f628358d43783fe6e20ab94ac84bffda0978",
+    "sources/research-countries-2026-10-23-fortyfifth-holds.json": "36a3fa5ae145cf82d1ddfc0fdcfbaa5935f47fd8efd9f3d4c2d07f9c74651f74"
+  },
+  "raw_captures_redistributed": false
+}

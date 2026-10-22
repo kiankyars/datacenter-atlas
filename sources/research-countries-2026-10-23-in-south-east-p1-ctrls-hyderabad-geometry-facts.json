@@ -1,0 +1,52 @@
+{
+  "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+  "candidate": "CtrlS Hyderabad Financial District datacenter (operator-mapped facility) - existing operations",
+  "intended_repository_path": "sources/research-countries-2026-10-23-in-south-east-p1-ctrls-hyderabad-geometry-facts.json",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      78.3303868,
+      17.4233287
+    ]
+  },
+  "coordinate_reference_system": "WGS84 longitude/latitude as published in the Google Maps place URL reached from the operator's map link (!3d latitude, !4d longitude) and echoed in the place payload; no transformation applied",
+  "source_url": "https://maps.app.goo.gl/UJkTsDZruw3MyvbMA",
+  "effective_url": "https://www.google.com/maps/place/CtrlS+data+center/@17.4228236,78.3274561,16.52z/data=!4m6!3m5!1s0x3bcb93279e17eb1b:0x3f1aebcc1ae9ec8f!8m2!3d17.4233287!4d78.3303868!16s%2Fg%2F11h3ghjc_h?entry=tts&ucbcb=1",
+  "raw_capture_file": "local_data/country-research-in-south-east-p1/ctrls-hyderabad-operator-linked-gmap.html",
+  "raw_capture_sha256": "44c145544d780ceaff51c0eb0233a593c74bf299627c3d0d3f70a468c1a9b4da",
+  "retrieved_at": "2026-10-22T21:53:49.581Z",
+  "source_selection": "The operator's Hyderabad Data Centers page (https://www.ctrls.com/datacenter-hyderabad/) links this short URL from the 'Map Location' control of its 'Strategic Location' section. The same link is present in the live capture (page version dateModified 2026-09-22) and in the Internet Archive copies of 29 August 2026 (version 2026-07-29) and 1 October 2026 (version 2026-09-22).",
+  "official_map_selector_file": "local_data/country-research-in-south-east-p1/ctrls-datacenter-hyderabad.html",
+  "official_map_selector_sha256": "34ba1e5949c9ae1a848f4bac8d8e65538df4e804510620248bbe5c7755ec5969",
+  "extraction": {
+    "feature_name": "CtrlS data center",
+    "feature_id": "0x3bcb93279e17eb1b:0x3f1aebcc1ae9ec8f",
+    "feature_kg_id": "/g/11h3ghjc_h",
+    "source_tuple_latitude_longitude": [
+      17.4233287,
+      78.3303868
+    ],
+    "tuple_location": "Redirect target data parameters !8m2!3d17.4233287!4d78.3303868, echoed in the captured place payload [null,null,17.4233287,78.3303868] beside the feature ID and name"
+  },
+  "excluded_viewport_center": {
+    "note": "The redirect's @17.4228236,78.3274561 (zoom 16.52) is the map viewport centre, about 316 m west of the place tuple (WGS84 geodesic, pyproj 3.7.1); it is not used."
+  },
+  "excluded_geometry": [
+    "CtrlS's registered office (Pioneer Towers, Plot 16, Software Units Layout, Madhapur) is a head-office address and, by the name of its first Hyderabad facility (PTDC), appears to be the HITEC City facility; it is not used.",
+    "No address, survey number or plot boundary for CtrlS's Financial District facilities was found, so the point is not snapped to a building or parcel."
+  ],
+  "imagery_check": "Esri World Imagery exports captured 2026-10-22 (local esri-ctrls-hyderabad.jpg and esri-ctrls-hyderabad-zoom.jpg) show the point on the eastern side of a large multi-storey building with dense rooftop plant, next to a second plant-heavy building about 100 m to the south-east, in the developed Financial District grid. This is a visual plausibility check only and does not establish which building is DC2 or DC3.",
+  "authority": "compiled_reference",
+  "derivation": "direct_geometry",
+  "scope": "campus_locator",
+  "scope_class": "operator_linked_named_facility_marker_as_campus_locator",
+  "identity_chain": [
+    "CtrlS's 29 May 2024 release says the company 'now operates 3 facilities in Hyderabad - one in HITEC City and two in the Gachibowli financial district', after launching Hyderabad DC3 'located in the financial district of Gachibowli'.",
+    "CtrlS's 20 January 2025 release repeats that it operates three Hyderabad facilities, one in HITEC City and two in Financial District, Gachibowli.",
+    "The operator's about-us timeline lists the 2008 launch of its first Rated-4 facility in Hyderabad (PTDC) and the 2020 launch of Hyderabad DC2; PTDC appears from its name and the Pioneer Towers registered office in Madhapur to be the HITEC City facility (an inference).",
+    "The operator's Hyderabad page lists Hyderabad DC 1, DC 2 and DC 3 and links one map location, which resolves to the named place 'CtrlS data center' in the Gachibowli/Nanakramguda Financial District area, not to HITEC City or the Madhapur office address; the marked facility is therefore one of the two Financial District facilities (DC3 and, by the inference above, DC2). The link follows the page's DC3 tour and DC3 resilience sections, but the page does not say which facility it marks."
+  ],
+  "precision": "Operator-linked named facility marker for a CtrlS datacenter in Hyderabad's Financial District (Gachibowli/Nanakramguda), one of CtrlS's two facilities there (DC2 and DC3). It does not give a building footprint, plot boundary or entrance and does not resolve which of the two facilities it marks or whether they share one property.",
+  "horizontal_uncertainty_metres": null,
+  "uncertainty_reason": "The operator-linked map place publishes no surveyed horizontal accuracy, and no official address point or plot boundary for CtrlS's Financial District facilities was found."
+}
