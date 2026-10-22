@@ -1,0 +1,417 @@
+{
+  "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+  "candidate": "SUNeVision MEGA-i (Chai Wan), MEGA Two (Fo Tan, Sha Tin) and MEGA Gateway (Tsuen Wan): Lands Department lot locators",
+  "prepared_at": "2026-10-23",
+  "lot_identity_source": {
+    "file": "local_data/country-research-2026-10-16-investor_filings/snv-fy26-annual-report-20260922.pdf",
+    "sha256": "142d0c5c1a2fb2d04806e4b90ddf90b8e2eba57eeae67a5a4a729de2494672d9",
+    "pages": "PDF page 134 (printed 132) Particulars of Properties Held by the Group at 30 June 2026; PDF page 40 Directors' Report connected transactions",
+    "statement": "MEGA-i: 399 Chai Wan Road and 1 Sun Yip Street, Chai Wan, Remaining Portion of Chai Wan Inland Lot No. 30; MEGA Two: 8-12 Wong Chuk Yeung Street, Fo Tan, Sha Tin, Sha Tin Town Lot No. 135; MEGA Gateway: Tsuen Wan Town Lot No. 428, Ma Kok Street, Tsuen Wan (also 'data hall of MEGA Gateway located at TWTL428')."
+  },
+  "service": "https://portal.csdi.gov.hk/server/rest/services/common/landsd_rcd_1637217253134_22729/FeatureServer (layer 1000 LandInformation for LotDisplayName -> LotCSUID; layer 0 lot polygons). robots.txt captured 2026-10-22 (local robots-portal.csdi.gov.hk.txt) disallows only /geoportal/, /portal/ and /notice/.",
+  "transformation": {
+    "software": "pyproj 3.7.1, PROJ 9.5.1, TransformerGroup(EPSG:2326->EPSG:4326, always_xy=True, allow_ballpark=False), first operation",
+    "operation": "axis order change (2D) + Inverse of Hong Kong 1980 Grid + Hong Kong 1980 to WGS 84 (1) + axis order change (2D)",
+    "accuracy_m": 1.0,
+    "pipeline": "proj=pipeline step inv proj=tmerc lat_0=22.3121333333333 lon_0=114.178555555556 k=1 x_0=836694.05 y_0=819069.8 ellps=intl step proj=push v_3 step proj=cart ellps=intl step proj=helmert x=-162.619 y=-276.959 z=-161.764 rx=-0.067753 ry=2.243648 rz=1.158828 s=-1.094246 convention=coordinate_frame step inv proj=cart ellps=WGS84 step proj=pop v_3 step proj=unitconvert xy_in=rad xy_out=deg",
+    "rounding": "7 decimal places per vertex; centroid rounded to 7 decimal places"
+  },
+  "lots": [
+    {
+      "facility": "SUNeVision MEGA-i",
+      "lot": "Remaining Portion of Chai Wan Inland Lot No. 30 (CWIL 30 RP)",
+      "lot_csuid": "028000030    RP",
+      "lot_search": {
+        "file": "local_data/country-research-kr-tw-hk-p1/csdi-landinfo-cwil30-search.json",
+        "sha256": "41c2ce55da7498ce074dfd492ecfa606fda288abbcde287f3cb7333b69da4a03",
+        "result": "LandInformation row for Remaining Portion of Chai Wan Inland Lot No. 30 (CWIL 30 RP) -> LotCSUID '028000030    RP', Class New Grant Lot"
+      },
+      "lot_polygon": {
+        "file": "local_data/country-research-kr-tw-hk-p1/csdi-lot-cwil30rp.json",
+        "sha256": "e2b7423071f130d6a66c1a5631c11d6a1069bf9d03a2c31a01c4917df1e1700e",
+        "spatial_reference": "wkid 102140 / latestWkid 2326 (Hong Kong 1980 Grid)",
+        "shape_area_m2_reported": 2165.2,
+        "shape_area_m2_from_ring": 2165.2,
+        "vertices": 15,
+        "ring_closed": true,
+        "extent": "about 56 m east-west by 46 m north-south"
+      },
+      "native_centroid_hk1980": [
+        843446.224,
+        814143.112
+      ],
+      "ring_wgs84_7dp": [
+        [
+          114.24624,
+          22.2662682
+        ],
+        [
+          114.2467719,
+          22.2662839
+        ],
+        [
+          114.2467812,
+          22.266009
+        ],
+        [
+          114.2467217,
+          22.2659068
+        ],
+        [
+          114.2466015,
+          22.2658692
+        ],
+        [
+          114.2465884,
+          22.265874
+        ],
+        [
+          114.2465449,
+          22.2658891
+        ],
+        [
+          114.246501,
+          22.2659034
+        ],
+        [
+          114.2464569,
+          22.2659171
+        ],
+        [
+          114.2464126,
+          22.26593
+        ],
+        [
+          114.246368,
+          22.2659422
+        ],
+        [
+          114.2463232,
+          22.2659537
+        ],
+        [
+          114.2462782,
+          22.2659645
+        ],
+        [
+          114.2462496,
+          22.2659708
+        ],
+        [
+          114.24624,
+          22.2662682
+        ]
+      ],
+      "selected_point_crs84": [
+        114.2465195,
+        22.2660964
+      ],
+      "selected_point_role": "planar centroid of the transformed lot ring (Shapely 2.1.1, source vertex order), verified inside the ring; locates the land lot carrying the facility, not a building footprint, entrance or data hall",
+      "centroid_inside_ring": true,
+      "government_crosscheck": {
+        "file": "local_data/country-research-kr-tw-hk-p1/geodetic-transform-cwil30rp-centroid.json",
+        "sha256": "306dd025944a18cf7170c936b8ac0fd97095609a5055e2500f5e5c9635723be6",
+        "input_hk1980": [
+          843446.224,
+          814143.112
+        ],
+        "result_lat_lon": [
+          22.266096447,
+          114.246519533
+        ],
+        "difference": "under 1e-7 degrees from the pyproj-transformed native centroid"
+      },
+      "address_lookup_crosscheck": {
+        "file": "local_data/country-research-kr-tw-hk-p1/als-399-chai-wan-road.xml",
+        "sha256": "421264122baacb624f7f0254bd26a9d9927e0673bfd267853c1375fc1b53cc24",
+        "query": "399 Chai Wan Road",
+        "result": "CHAI WAN ROAD 399, Eastern District (no building name returned); Latitude 22.26607, Longitude 114.2465",
+        "point_hk1980": [
+          843444,
+          814140
+        ],
+        "inside_lot": true,
+        "distance_to_lot_centroid_m": 3.8
+      }
+    },
+    {
+      "facility": "SUNeVision MEGA Two",
+      "lot": "Sha Tin Town Lot No. 135 (STTL 135)",
+      "lot_csuid": "732000135",
+      "lot_search": {
+        "file": "local_data/country-research-kr-tw-hk-p1/csdi-landinfo-sttl135-search.json",
+        "sha256": "f6cbc0c4731121668fc491c755c186fdb5c734b2f77f085433b117ca83fc7f4b",
+        "result": "LandInformation row for Sha Tin Town Lot No. 135 (STTL 135) -> LotCSUID '732000135', Class New Grant Lot"
+      },
+      "lot_polygon": {
+        "file": "local_data/country-research-kr-tw-hk-p1/csdi-lot-sttl135.json",
+        "sha256": "5f6e95df543c3a71298071627a4afdb37170a088a44c067fe0726884d1e2ac2b",
+        "spatial_reference": "wkid 102140 / latestWkid 2326 (Hong Kong 1980 Grid)",
+        "shape_area_m2_reported": 4344.84,
+        "shape_area_m2_from_ring": 4344.84,
+        "vertices": 13,
+        "ring_closed": true,
+        "extent": "about 99 m east-west by 87 m north-south"
+      },
+      "native_centroid_hk1980": [
+        837670.822,
+        828741.603
+      ],
+      "ring_wgs84_7dp": [
+        [
+          114.1909759,
+          22.3979364
+        ],
+        [
+          114.1905781,
+          22.3975554
+        ],
+        [
+          114.1901162,
+          22.3978586
+        ],
+        [
+          114.1901043,
+          22.3978665
+        ],
+        [
+          114.1900902,
+          22.397876
+        ],
+        [
+          114.1900761,
+          22.3978857
+        ],
+        [
+          114.1900645,
+          22.3978938
+        ],
+        [
+          114.1900506,
+          22.3979037
+        ],
+        [
+          114.1900391,
+          22.397912
+        ],
+        [
+          114.1900254,
+          22.3979221
+        ],
+        [
+          114.1900126,
+          22.3979318
+        ],
+        [
+          114.1904422,
+          22.3983432
+        ],
+        [
+          114.1909759,
+          22.3979364
+        ]
+      ],
+      "selected_point_crs84": [
+        114.1904977,
+        22.3979437
+      ],
+      "selected_point_role": "planar centroid of the transformed lot ring (Shapely 2.1.1, source vertex order), verified inside the ring; locates the land lot carrying the facility, not a building footprint, entrance or data hall",
+      "centroid_inside_ring": true,
+      "government_crosscheck": {
+        "file": "local_data/country-research-kr-tw-hk-p1/geodetic-transform-sttl135-centroid.json",
+        "sha256": "e50cd6c706455d5d965d95eacb8420aba591dc975c2054a01cfc94f4e76daffd",
+        "input_hk1980": [
+          837670.822,
+          828741.603
+        ],
+        "result_lat_lon": [
+          22.397943666,
+          114.190497766
+        ],
+        "difference": "under 1e-7 degrees from the pyproj-transformed native centroid"
+      },
+      "address_lookup_crosscheck": {
+        "file": "local_data/country-research-kr-tw-hk-p1/als-8-wong-chuk-yeung-street.xml",
+        "sha256": "af98f101a1306577300903eb94128d20cd3cb3bd9c7c0882ff68bc8d7352446c",
+        "query": "8 Wong Chuk Yeung Street",
+        "result": "building name MEGA TWO, 8-12 Wong Chuk Yeung Street, Fo Tan, Sha Tin; Latitude 22.39789, Longitude 114.19049",
+        "point_hk1980": [
+          837670,
+          828736
+        ],
+        "inside_lot": true,
+        "distance_to_lot_centroid_m": 5.7
+      }
+    },
+    {
+      "facility": "SUNeVision MEGA Gateway",
+      "lot": "Tsuen Wan Town Lot No. 428 (TWTL 428)",
+      "lot_csuid": "812000428",
+      "lot_search": {
+        "file": "local_data/country-research-kr-tw-hk-p1/csdi-landinfo-twtl428-search.json",
+        "sha256": "b81c6d3f91bb01bfe0ce10f35f7942101a5f76dddfef97bd7f8429a0fabb55d8",
+        "result": "LandInformation row for Tsuen Wan Town Lot No. 428 (TWTL 428) -> LotCSUID '812000428', Class New Grant Lot"
+      },
+      "lot_polygon": {
+        "file": "local_data/country-research-kr-tw-hk-p1/csdi-lot-twtl428.json",
+        "sha256": "0190948a2f7fb48371e1d4234cdf088c03e23426d1089a1e3d4cc144e0cc798e",
+        "spatial_reference": "wkid 102140 / latestWkid 2326 (Hong Kong 1980 Grid)",
+        "shape_area_m2_reported": 1972.94,
+        "shape_area_m2_from_ring": 1972.52,
+        "vertices": 27,
+        "ring_closed": true,
+        "extent": "about 97 m east-west by 50 m north-south"
+      },
+      "native_centroid_hk1980": [
+        830313.951,
+        825109.105
+      ],
+      "ring_wgs84_7dp": [
+        [
+          114.1196129,
+          22.3649856
+        ],
+        [
+          114.1195898,
+          22.3649503
+        ],
+        [
+          114.1195489,
+          22.3649261
+        ],
+        [
+          114.1190277,
+          22.365011
+        ],
+        [
+          114.1190008,
+          22.3650161
+        ],
+        [
+          114.1189743,
+          22.3650225
+        ],
+        [
+          114.1189482,
+          22.3650303
+        ],
+        [
+          114.1189226,
+          22.3650395
+        ],
+        [
+          114.1188976,
+          22.3650499
+        ],
+        [
+          114.1188732,
+          22.3650615
+        ],
+        [
+          114.1188496,
+          22.3650744
+        ],
+        [
+          114.1187144,
+          22.3651528
+        ],
+        [
+          114.1187046,
+          22.3651593
+        ],
+        [
+          114.1186958,
+          22.3651669
+        ],
+        [
+          114.1186881,
+          22.3651755
+        ],
+        [
+          114.1186817,
+          22.365185
+        ],
+        [
+          114.1186766,
+          22.3651951
+        ],
+        [
+          114.1186729,
+          22.3652057
+        ],
+        [
+          114.1186708,
+          22.3652167
+        ],
+        [
+          114.1186701,
+          22.3652279
+        ],
+        [
+          114.118671,
+          22.3652391
+        ],
+        [
+          114.1186734,
+          22.36525
+        ],
+        [
+          114.1187004,
+          22.3653422
+        ],
+        [
+          114.1188276,
+          22.365261
+        ],
+        [
+          114.1188956,
+          22.3653775
+        ],
+        [
+          114.1194226,
+          22.3650445
+        ],
+        [
+          114.1196129,
+          22.3649856
+        ]
+      ],
+      "selected_point_crs84": [
+        114.1190657,
+        22.3651306
+      ],
+      "selected_point_role": "planar centroid of the transformed lot ring (Shapely 2.1.1, source vertex order), verified inside the ring; locates the land lot carrying the facility, not a building footprint, entrance or data hall",
+      "centroid_inside_ring": true,
+      "government_crosscheck": {
+        "file": "local_data/country-research-kr-tw-hk-p1/geodetic-transform-twtl428-centroid.json",
+        "sha256": "b2bb3f3f9fd10ae9c7aae6728a55732e8cf9e53f8628f00c11d3a7ba30aff6cf",
+        "input_hk1980": [
+          830313.951,
+          825109.105
+        ],
+        "result_lat_lon": [
+          22.365130571,
+          114.119065715
+        ],
+        "difference": "under 1e-7 degrees from the pyproj-transformed native centroid"
+      },
+      "address_lookup_crosscheck": {
+        "file": "local_data/country-research-kr-tw-hk-p1/als-ma-kok-street-tsuen-wan.xml",
+        "sha256": "4cc10ad143f5d665861e6d40577c5d5a82ee8be4200f2f7ff53b0f33f1a1bd77",
+        "query": "Ma Kok Street Tsuen Wan",
+        "result": "an unnamed entry for 1 Ma Kok Street lies inside TWTL 428; the Wah Hing (2-6) and Sun Fung (8-12) industrial buildings lie about 20 m outside it. No ALS entry is named MEGA Gateway; the street number is not used for identity.",
+        "point_hk1980": [
+          830311,
+          825110
+        ],
+        "inside_lot": true,
+        "distance_to_lot_centroid_m": 3.0
+      }
+    }
+  ],
+  "uncertainty": "Not established. The lot layer states no positional tolerance; the 1 m datum-operation accuracy is not a boundary accuracy. Each point lies inside its lot, which is at most about 100 m across.",
+  "scripts": [
+    "research workspace (not redistributed) scratchpad kr-tw-hk-p1/scripts/lots.py",
+    "research workspace (not redistributed) scratchpad kr-tw-hk-p1/scripts/als_check.py"
+  ]
+}

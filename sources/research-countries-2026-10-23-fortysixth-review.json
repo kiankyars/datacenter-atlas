@@ -1,0 +1,101 @@
+{
+  "reviewer": "root",
+  "reviewed_at": "2026-10-23",
+  "decision": "accepted_for_integration",
+  "update": "verified_construction_core/2026-10-23-research-fortysixth",
+  "base_dataset": "verified_construction_core/2026-10-23-research-fortyfifth",
+  "process": "continuous: one researcher per beat, one adversarial verifier per fragment",
+  "fragments": [
+    {
+      "fragment": "cee-p1",
+      "verdict": "accept",
+      "checks": [
+        "All 13 relied-on captures rehashed: file sha256 == .metadata.json sha256 == sources.json content_hash; URLs and HTTP 200 match; 7 Stargard parcel captures and both geometry-facts files (49d826..., dec3e5...) also match",
+        "Beyond.pl EN article (datePublished 2026-09-11, JSON-LD and visible date) read: 'The AI Factory operates at Beyond.pl's Data Center Campus in Poznan'; PL version corroborates ('działa na kampusie'); company_disclosure, 42 days old, inside 85-day window; dateModified 2026-09-16 not used",
+        "GUNB RWDZ wielkopolskie row read: decision 180 of 2021-02-02, investor 'Beuond.pl Sp. z o.o.', DC3 service hall at Kręglewskiego, unit 306401_1 precinct 0006 sheet 28 parcel 6/2 (sheet matters: 6/2 sheet 02 is an unrelated car dealer); used only as identity/locator bridge",
+        "Beyond locator recomputed from raw ULDK WKT with pyproj 3.7.1/shapely 2.1.1: centroid 16.976736, 52.3776022 (0.003 m from claimed), inside parcel, area 17,775 m2, max vertex 105.8 m; XY lookup returns same parcel",
+        "Independent check: KINA street layer image places parcel 6/2 on the odd-numbered (precinct 0006) side of ul. Kręglewskiego, ~4 m from the street line near the Zwierzchowskiego corner; GUNB rows put Kręglewskiego 5 in precinct 0006 and 2 in precinct 0008; Google embed is a 19 km viewport centre, rightly excluded",
+        "Alter GPU notice PDF rendered and HTML read: Starosta Stargardzki NA.6740.471.4.2026.AA1/BE9 of 15.10.2026, art. 72(6) notice that a building permit was issued to Alter GPU Center P.S.A. for a Centrum Przetwarzania Danych on parcels 96/124-96/160 obr. 23 Stargard; day of public notice 16.10.2026 (BIP metadata 16 Oct 10:10)",
+        "GUNB RWDZ zachodniopomorskie rows read: decision 785/2026 of 2026-10-15, 94,208 m3, same seven parcels; finality not shown, so announced (not permitted) is correct; government_record, 7 days old",
+        "Alter locator recomputed: union of seven ULDK parcels is one Polygon 54,288.6 m2, centroid 14.9734641, 53.2819096 (0.004 m from claimed), inside parcel 96/125, max vertex 192 m; EGiB shows no buildings",
+        "Distinctness re-screened against the now-current verified_construction_core/2026-10-23-research-fortyfifth (596 sites, 631 projects, 3,225 evidence rows, source-records.json, identity-mapping.json): no Beyond/Kręglewskiego/Poznań/Żegrze/Alter GPU/Stargard match; nearest sites 214 km and 129 km",
+        "Other queue fragments, claims.tsv and sources/*-holds.json screened: only the two prior Beyond.pl locator holds (31st and 34th), whose reopen condition (permit-named parcel resolvable via ULDK) is met; no other fragment within 5 km",
+        "Roles checked: Beyond.pl owner+operator current (page states it owns and operates the campus); Alter GPU owner scope unknown (permit applicant/investor)",
+        "No third-party personal names, phones or emails in changes, sources, holds, notes or geometry files (designer names and officials stay in local captures only)",
+        "dryrun_fragment.py ok against base 2026-10-23-research-fortyfifth (598 sites, 633 projects)"
+      ],
+      "residual_risks": [
+        "Beyond.pl Data Center 2 (Kręglewskiego 11) is not independently geocoded; it may stand on an adjoining parcel within ~100-200 m, so the locator is a campus parcel centroid, not a DC2 building point",
+        "The parcel tie rests on a 2021 permit for DC3, whose construction is not established; the register spells the investor 'Beuond.pl'",
+        "Beyond.pl operational scope covers the existing campus only; the 100 MW design scale and DC3 are not asserted",
+        "Alter GPU permit finality, appeal status, capacity and operator are unknown; the Alter locator source URL is the ULDK centroid point lookup, with the seven parcel captures documented in the geometry-facts file",
+        "Base dataset moved to -fortyfifth after the researcher's screen; re-screened here, but further base changes before publish are not covered"
+      ]
+    },
+    {
+      "fragment": "gulf-p1",
+      "verdict": "accept",
+      "checks": [
+        "sha256 of datavolt-20261022-nebius-oxagon.html matches metadata and source content_hash fc32105f...5fb3",
+        "sha256 of NEOM corroborating copy matches 78e2cd83...ffd2",
+        "all 5 DataVolt literal byte pointers match exactly",
+        "decisive text read: 'half of the initial 100 MW currently under construction as part of the first phase's planned 360 MW', dateline 21 October 2026",
+        "JSON-LD datePublished 2026-10-21T14:38Z, dateModified 14:55Z same day; NEOM copy dated October 21, 2026",
+        "company_disclosure by the developer/operator DataVolt; primary",
+        "as_of 2026-10-21 is 2 days before 2026-10-23, inside the 85-day window",
+        "strictly newer than existing status_as_of 2026-09-07 in 2026-10-23-research-fortyfifth",
+        "scope kept: campus record under construction through initial 100 MW block; Nebius offtake preliminary, Q4 2027 a forecast, 1.5 GW not claimed",
+        "no locator, role or site change; imported locality locator untouched",
+        "source URL not already in evidence.csv or source-records.json; no other queue fragment or sources/*-holds.json touches Oxagon",
+        "robots.txt for data-volt.com and www.neom.com captured and allow these paths",
+        "no private individuals' names, phones or emails in sources, changes or holds",
+        "corrected successor_review: the release is listed in the page sitemap (lastmod 2026-10-22), not the post sitemap; index lastmod discrepancy noted",
+        "corrected NEOM byte-offset note (date at 128953, wording at 423 and 129170)",
+        "dryrun_fragment.py ok against 2026-10-23-research-fortyfifth"
+      ],
+      "residual_risks": [
+        "status is the operator's own present-tense statement inside a commercial framework release; no independent imagery or government record of site works",
+        "locator remains an imported OSM Nominatim locality point for Oxagon, not a parcel",
+        "captured breaking-news index HTML may be a cached copy (JSON-LD 1 September vs sitemap lastmod 21 October)"
+      ]
+    },
+    {
+      "fragment": "kr-tw-hk-p1",
+      "verdict": "accept",
+      "checks": [
+        "base re-read from site/config.json: verified_construction_core/2026-10-23-research-fortyfifth (596 sites, 631 projects)",
+        "all 11 relied-on captures rehashed: sha256 matches both .metadata.json and source content_hash; metadata URLs match source_url; HTTP 200",
+        "HKEX results PDF (0a3ae7c8...) and annual report PDF (142d0c5c...) byte-identical to the 2026-10-16 captures; source metadata matches base evidence rows ddfa1577 and d4aec943 field-for-field",
+        "results p.6 (pdftotext) read directly: MEGA-i 'maintains its status as the premier connectivity hub'; MEGA Two 'remain effectively fully occupied'; MEGA Gateway 'over 90% of its deployed capacity taken up'; signed Hong Kong, 1 September 2026",
+        "regulatory_filing (HKEXnews, stock 1686); observation 2026-09-01 is 52 days before 2026-10-23, inside the 85-day brief window and the builder's 90-day check",
+        "annual report p.134 (printed 132) property table: MEGA-i on RP of CWIL 30 (399 Chai Wan Road / 1 Sun Yip Street), MEGA Two on STTL 135 (8-12 Wong Chuk Yeung Street), MEGA Gateway on TWTL 428 (Ma Kok Street); p.39-40 TWTL428 21-storey building contract and 'data hall of MEGA Gateway located at TWTL428'",
+        "CSDI LandInformation search captures map CWIL 30 RP, STTL 135, TWTL 428 to the queried LotCSUIDs; each polygon query returns exactly one ring in EPSG:2326",
+        "locators recomputed independently with pyproj 3.7.1/PROJ 9.5.1 (HK1980 to WGS 84 (1), 1.0 m): 7dp vertex transform + planar centroid reproduces all three points exactly, each inside its ring; native-centroid route agrees to <1 cm; Geodetic Survey captures agree to <1e-7 deg",
+        "ALS cross-checks: 399 Chai Wan Road point inside CWIL 30 RP (3.8 m); building 'MEGA TWO' point inside STTL 135 (5.7 m); unnamed 1 Ma Kok Street inside TWTL 428 (3.1 m) and not used for identity",
+        "geometry facts file rings match the raw captures vertex-for-vertex",
+        "distinctness: only SUNeVision record in base is MEGA IDC (TKOTL 131) 4.19 km from MEGA-i; no name/alias/address/lot hits for MEGA-i/Two/Gateway in sites, projects, evidence, source-records, identity-mapping, other queue fragments, claims.tsv or sources/*-holds.json",
+        "MEGA Gateway 100.5 m from Goodman HKG10: HKG10 polygon (D.D. 443 Lot 472 S.A) does not contain the point or intersect the TWTL 428 ring (19.1 m apart); different operator and lot; BDx HKG8 529 m (KCTL 524)",
+        "each new site carries exactly one project; roles operator (results) and owner (annual report property holdings), relationship_scope current",
+        "successor review confirmed in captured SUNeVision press and company-announcement indexes: nothing after 1 Sep besides 24 Sep award, 22 Sep AGM/annual-report papers, 11 Sep note conversion, 6 Oct monthly return",
+        "robots: sunevision.com index pages not under disallowed paths; www1.hkexnews.hk robots 404; CSDI/ALS/Geodetic robots captured",
+        "no third-party personal data in changes, sources, holds or notes",
+        "fix: annual report printed page corrected 131 -> 132 in sources.json and geometry facts; facts sha256 updated to 93286c56...8555 in the three locator sources",
+        "dryrun_fragment.py ok: 599 sites, 634 projects, 3,234 evidence against fortyfifth"
+      ],
+      "residual_risks": [
+        "lot-centroid locators mark land lots, not building footprints; horizontal uncertainty is unquantified (reason recorded)",
+        "MEGA-i is placed on the RP of CWIL 30 per the property table; sections A and B are excluded, and if the building straddles sections the point is still within the facility's land",
+        "MEGA Gateway identity rests on the annual report's lot; no ALS entry names the building",
+        "operational status rests on a present-tense business review in an annual-results announcement, not a site inspection; the same source type already supports MEGA IDC Phase One in the base",
+        "successor_review text cites the builder's 90-day window (to 30 Nov) rather than the brief's 85-day window (to 25 Nov); harmless for a 23 Oct update"
+      ]
+    }
+  ],
+  "packet_pins": {
+    "definitions/atlas-research-fortysixth-2026-10-23.json": "d56453d59050576ed3c83f12eb9f232426ab25895672f2923cb554950427f5c6",
+    "sources/research-countries-2026-10-23-fortysixth-primary-sources.json": "61fe323cdab590e6dde4ce7a8b38253f251867477af63d0bc665d4d845762cbc",
+    "sources/research-countries-2026-10-23-fortysixth-actions.json": "4bf636878a035b65dcaf2474cf0c4095f32c0186ded4c989407aaa30f0fab507",
+    "sources/research-countries-2026-10-23-fortysixth-holds.json": "a41a034fdd12cb40bdc0a3c57c6158c7db8ccd762ba4ba22c0dc1ffc4a86cea6"
+  },
+  "raw_captures_redistributed": false
+}

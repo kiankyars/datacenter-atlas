@@ -1,0 +1,384 @@
+{
+  "format": "datacenter-atlas-update-input-v1",
+  "updated_at": "2026-10-23",
+  "output": "verified_construction_core/2026-10-23-research-fortysixth",
+  "base_dataset": "verified_construction_core/2026-10-23-research-fortyfifth",
+  "base_manifest_sha256": "be7c9083ed3272558876de2461c288eaf8b54e1280973b77a774852a1db375f0",
+  "source_files": [
+    {
+      "path": "sources/research-countries-2026-10-23-fortysixth-primary-sources.json",
+      "sha256": "61fe323cdab590e6dde4ce7a8b38253f251867477af63d0bc665d4d845762cbc"
+    }
+  ],
+  "additions": [
+    {
+      "project_stable_key": "curated:beyond-pl-poznan-kreglewskiego-data-center-campus:existing-campus-operations",
+      "physical_site_stable_key": "curated:beyond-pl-poznan-kreglewskiego-data-center-campus",
+      "site_name": "Beyond.pl Data Center Campus (Kręglewskiego, Poznań)",
+      "name": "Beyond.pl Data Center Campus — existing operations (Data Center 2 and AI Factory)",
+      "country": "Poland",
+      "country_iso_a2": "PL",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-09-11",
+        "source_id": "cee-p1-beyond-gigafactories-en",
+        "summary": "Beyond.pl's 11 September 2026 article states in the present tense that its AI Factory operates at the company's Data Center Campus in Poznań and that it is steadily increasing the GPU capacity available to customers. The campus's Data Center 2 is at ul. A. Kręglewskiego 11. This supports current operation of the existing campus on that date only; the 100 MW design scale, further high-density halls and the DC3 building permitted in 2021 are not established as built or operating."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            16.976736,
+            52.3776022
+          ]
+        },
+        "source_id": "cee-p1-uldk-zegrze-6-2",
+        "scope": "campus_locator",
+        "scope_class": "official_permit_named_cadastral_parcel_centroid",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "gugik_uldk_epsg2180_parcel_centroid_pyproj_to_wgs84",
+        "precision": "Centroid of cadastral parcel 306401_1.0006.AR_28.6/2 (Poznań, Żegrze, 1.7784 ha), the parcel named in Beyond.pl's 2021 building permit for its DC3 data-centre hall at ul. Kręglewskiego. It locates the operator's Kręglewskiego campus property, not a particular building, entrance or surveyed campus boundary; Data Center 2's own footprint and the house number Kręglewskiego 11 are not separately located.",
+        "identity_review": "The national building-permit register (GUNB RWDZ) records decision 180 of 2 February 2021 by the Mayor of Poznań to Beyond.pl (recorded as \"Beuond.pl Sp. z o.o.\") for a new service hall DC3 at ul. Adama Kręglewskiego on unit 306401_1, precinct 0006, sheet 28, parcel 6/2. GUGiK ULDK resolves that identifier to one 17,775 m2 polygon in precinct Żegrze (register area 1.7784 ha); a point lookup at its centroid returns the same parcel. The operator gives Data Center 2's address as Kręglewskiego 11 and calls DC2 part of its Poznań campus; the EGiB layer shows a five-storey, about 4,303 m2 commercial-service building and a three-storey office building on the parcel. The national address-point service returned no point here, so the house number is not independently geocoded, and whether DC2 stands on this parcel or an adjoining one is not established. The operator's Google Maps embed is a viewport centre about 363 m east and is excluded.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The cadastral service publishes no positional accuracy; the centroid is a derived interior anchor of a parcel about 177 by 202 m (farthest vertex 106 m), and the operating buildings of the wider campus may extend to adjoining parcels."
+      },
+      "context_source_ids": [
+        "cee-p1-beyond-gigafabryki-pl",
+        "cee-p1-beyond-dc2-page",
+        "cee-p1-gunb-rwdz-wielkopolskie",
+        "cee-p1-uldk-zegrze-centroid-check",
+        "cee-p1-egib-buildings-zegrze",
+        "cee-p1-kieg-parcel-info"
+      ],
+      "roles": [
+        {
+          "party": "Beyond.pl sp. z o.o.",
+          "role": "owner",
+          "relationship_scope": "current",
+          "source_id": "cee-p1-beyond-gigafactories-en"
+        },
+        {
+          "party": "Beyond.pl sp. z o.o.",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "cee-p1-beyond-gigafactories-en"
+        }
+      ],
+      "distinctness_review": "Screened on 23 October 2026 against sites.csv (594), projects.csv (629), evidence.csv (3,213), source-records.json (231) and identity-mapping.json of verified_construction_core/2026-10-23-research-fortyfourth (and earlier against -fortythird) for Beyond, Beyond.pl, Kręglewskiego/Kreglewskiego, Poznań/Poznan, Żegrze/Zegrze and Franowo: no record names this operator or location (the word \"beyond\" occurs only as ordinary English in unrelated records). No Atlas site or project lies within 2 km; the nearest site is Schwarz Digits Lübbenau, about 214 km away, and the only Polish records are Sien Real Piaseczno and WBS Power Baltic Lublewo. No pending queue fragment or claims.tsv entry from another fragment names Beyond.pl or lies within 2 km. The holds files list this campus twice (2026-10-16 thirty-first eastern_europe lane and 2026-10-22 thirty-fourth holds_west lane), both for want of a locator; their reopen condition, a Poznań permit naming the campus parcels that ULDK can resolve, is met by the GUNB-registered permit 180/2021. Beyond.pl Data Center 1 (ul. Półwiejska 42, 800 m2) is a separate city-centre facility and is not part of this record.",
+      "successor_review": "Beyond.pl's post sitemap captured 22 October 2026 (local beyond-post-sitemap.xml) lists nothing newer than the 16 September 2026 modification of this article; the 10 September entry is a re-save of the September 2025 F.I.N. commissioning release. No later report of a pause, closure, sale or new campus phase was found, so operational as of 11 September 2026 is kept: 42 days before a 23 October update and inside the 85-day research window until 5 December 2026.",
+      "scoped_project_details": {
+        "aliases": [
+          "Beyond.pl Data Center 2",
+          "Beyond.pl DC2",
+          "Beyond.pl Data Center Campus Poznań",
+          "Fabryka AI Beyond.pl",
+          "Beyond.pl AI Factory"
+        ],
+        "facility_scope": "Existing operating Beyond.pl campus at ul. A. Kręglewskiego, Poznań, including Data Center 2 (Kręglewskiego 11) and the AI Factory (F.I.N. supercomputer) it hosts",
+        "address": "ul. A. Kręglewskiego 11, Poznań (operator facility pages)",
+        "capacity": null,
+        "capacity_note": "Operator figures: DC2 53 MW total power allocation and 42 MW IT load; campus 100 MW total power allocation and 70 MW IT load, designed to scale to 100 MW. These are allocations and design values, not measured or contracted load, and are not recorded as typed observations.",
+        "related_permit": "Building permit 180 of 2 February 2021 (Mayor of Poznań, UA-VII.6740.3228.2020) for the DC3 service hall on parcel 306401_1.0006.AR_28.6/2; DC3 construction or completion is not asserted.",
+        "permit_status_not_asserted": true,
+        "physical_construction_verified": false
+      }
+    },
+    {
+      "project_stable_key": "curated:alter-gpu-center-stargard-data-processing-centre:data-processing-centre-building",
+      "physical_site_stable_key": "curated:alter-gpu-center-stargard-data-processing-centre",
+      "site_name": "Alter GPU Center Stargard Data Processing Centre",
+      "name": "Alter GPU Center Stargard — data processing centre building (building permit 785/2026)",
+      "country": "Poland",
+      "country_iso_a2": "PL",
+      "status": {
+        "value": "announced",
+        "as_of": "2026-10-16",
+        "source_id": "cee-p1-stargard-alter-gpu-permit-notice",
+        "summary": "On 16 October 2026 the Starosta Stargardzki publicly announced (notice NA.6740.471.4.2026.AA1/BE9 of 15 October 2026) that a building permit had been issued, on the application of Alter GPU Center P.S.A., for a data processing centre building with an adjoining office building, two MV switchgear buildings, fuel tanks, external energy storage and site development on seven parcels of precinct 23, Stargard; the national register records it as decision 785/2026 of 15 October 2026 (94,208 m3). Under the Polish administrative code a building permit can be executed only once it is final, and neither source establishes finality on this date, so the project is recorded as announced rather than permitted. No physical work, capacity, operator or customer is established."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            14.9734641,
+            53.2819096
+          ]
+        },
+        "source_id": "cee-p1-uldk-stargard-centroid",
+        "scope": "campus_locator",
+        "scope_class": "official_permit_named_cadastral_parcel_union_centroid",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "gugik_uldk_epsg2180_seven_parcel_union_centroid_pyproj_to_wgs84",
+        "precision": "Centroid of the union of the seven cadastral parcels (about 5.4 ha) named in the building-permit notice for the data processing centre. It locates the permitted development site, not the building footprint, an entrance or a construction extent.",
+        "identity_review": "The Starosta Stargardzki notice and the GUNB register row for decision 785/2026 both name Alter GPU Center P.S.A. and parcels 96/124, 96/125, 96/126, 96/128, 96/129, 96/130 and 96/160 of precinct 23 (0023), Stargard town (unit 321401_1). GUGiK ULDK resolves all seven, each by its full identifier, to Stargard (miasto), powiat stargardzki; they form one contiguous polygon of about 54,289 m2, its centroid lies inside the union, and a ULDK point lookup at the centroid returns named parcel 96/125. The cadastral building layer shows no building on the parcels, consistent with a new build. The investor's Łódź registered office and the surrounding industrial estate are not used.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The cadastral service publishes no positional accuracy; the centroid is a derived interior anchor of a parcel union about 307 by 354 m whose farthest vertex is 192 m away, and the building position within it is not published."
+      },
+      "context_source_ids": [
+        "cee-p1-stargard-alter-gpu-permit-notice-pdf",
+        "cee-p1-gunb-rwdz-zachodniopomorskie",
+        "cee-p1-egib-buildings-stargard"
+      ],
+      "roles": [
+        {
+          "party": "Alter GPU Center P.S.A. (Alter GPU Center Prosta Spółka Akcyjna)",
+          "role": "owner",
+          "relationship_scope": "unknown",
+          "source_id": "cee-p1-stargard-alter-gpu-permit-notice"
+        }
+      ],
+      "distinctness_review": "Screened on 23 October 2026 against sites.csv (594), projects.csv (629), evidence.csv (3,213), source-records.json (231) and identity-mapping.json of verified_construction_core/2026-10-23-research-fortyfourth for Alter GPU, Alter, Stargard, Metalowa, Szczecin and centrum przetwarzania danych: no Atlas record names this investor or town. No site or project lies within 2 km; the nearest site is R44 Vision DC in Berlin-Marzahn, about 129 km away. No pending queue fragment or claims.tsv entry from another fragment names it or lies within 2 km, and no holds file lists it (the only \"centrum przetwarzania danych\" hold is the unrelated Gliwice municipal centre). The GUNB register shows no other Alter GPU permit in any voivodeship.",
+      "successor_review": "The Starosta Stargardzki 2026 notices list captured 22 October 2026 (local bip-stargard-obwieszczenia-2026.html) has no later notice for this case, and the GUNB register file generated on 22 October 2026 UTC has no later decision, change or transfer for these parcels. Neither source reports finality of the permit, works, a pause or cancellation, so the project stays announced as of 16 October 2026: 7 days before a 23 October update. A later record of finality or works would support a refresh to permitted or a construction stage.",
+      "scoped_project_details": {
+        "aliases": [
+          "Centrum Przetwarzania Danych w Stargardzie (Alter GPU Center)",
+          "Alter GPU Center Stargard"
+        ],
+        "facility_scope": "One data processing centre building with an adjoining office building, two MV switchgear buildings (PZO), fire-water tank and pump station, fuel tanks, external energy-storage units and technical infrastructure",
+        "parcels": [
+          "321401_1.0023.96/124",
+          "321401_1.0023.96/125",
+          "321401_1.0023.96/126",
+          "321401_1.0023.96/128",
+          "321401_1.0023.96/129",
+          "321401_1.0023.96/130",
+          "321401_1.0023.96/160"
+        ],
+        "parcel_union_area_m2": 54288.6,
+        "building_permit": "Decision 785/2026 of 15 October 2026, Starosta Powiatu Stargard Szczeciński (public notice NA.6740.471.4.2026.AA1/BE9; register office number 30811; GUNB application ST-ZP-ST/WNIOSEK/8245/2026 of 25 June 2026); finality not established",
+        "permitted_volume_m3": 94208,
+        "capacity": null,
+        "capacity_note": "No IT or electrical capacity is published.",
+        "permit_status_not_asserted": true,
+        "physical_construction_verified": false
+      }
+    },
+    {
+      "project_stable_key": "curated:sunevision-mega-i-chai-wan:mega-i-operations",
+      "physical_site_stable_key": "curated:sunevision-mega-i-chai-wan",
+      "site_name": "SUNeVision MEGA-i, 399 Chai Wan Road, Chai Wan",
+      "name": "SUNeVision MEGA-i — operating carrier-neutral connectivity-hub data centre",
+      "country": "Hong Kong",
+      "country_iso_a2": "HK",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-09-01",
+        "source_id": "kr-tw-hk-p1-snv-fy26-results",
+        "summary": "SUNeVision's results announcement of 1 September 2026 states that MEGA-i maintains its status as Hong Kong's premier connectivity hub, with an ecosystem of about 15,000 cross-connects serving carriers, ISPs, enterprises and cloud providers, and that power upgrades and liquid-cooling solutions have been deployed at the facility. This establishes an operating data centre on that date. It gives no MEGA-i capacity, occupancy or opening date, and the upgrades are not separate projects."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            114.2465195,
+            22.2660964
+          ]
+        },
+        "source_id": "kr-tw-hk-p1-csdi-lot-cwil30rp",
+        "scope": "project_locator",
+        "scope_class": "official_landsd_lot_centroid",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "CSDI_LandsD_lot_layer_query_LotCSUID_028000030_RP_native_ring_PROJ_HK1980_to_WGS84_1_round7_planar_centroid_verified_inside",
+        "precision": "Centroid of the 2,165 m2 Remaining Portion of Chai Wan Inland Lot No. 30, the lot SUNeVision gives for MEGA-i at 399 Chai Wan Road and 1 Sun Yip Street. It is a lot-level marker, not a surveyed building outline, entrance or data-hall location.",
+        "identity_review": "SUNeVision's 2025/26 annual report lists MEGA-i at 399 Chai Wan Road and 1 Sun Yip Street, Chai Wan, on the Remaining Portion of Chai Wan Inland Lot No. 30 (property table) and again on Chai Wan Inland Lot No. 30 (Directors' Report). The CSDI LandInformation table maps CWIL 30 RP to LotCSUID '028000030    RP'; sections A and B of the lot are separate records and are not used. The official Address Lookup Service point for 399 Chai Wan Road falls inside the RP ring, 3.8 m from the centroid. The Geodetic Survey transformation service reproduces the transformed centroid to under 1e-7 degrees.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The lot layer states no positional tolerance; the 1 m datum-operation accuracy is not a boundary accuracy. The point lies inside a lot about 56 m by 46 m."
+      },
+      "context_source_ids": [
+        "kr-tw-hk-p1-snv-fy26-annual-report",
+        "kr-tw-hk-p1-csdi-search-cwil30",
+        "kr-tw-hk-p1-als-399-chai-wan-road"
+      ],
+      "roles": [
+        {
+          "party": "SUNeVision Holdings Ltd. (iAdvantage)",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "kr-tw-hk-p1-snv-fy26-results"
+        },
+        {
+          "party": "SUNeVision Holdings Ltd.",
+          "role": "owner",
+          "relationship_scope": "current",
+          "source_id": "kr-tw-hk-p1-snv-fy26-annual-report"
+        }
+      ],
+      "distinctness_review": "Screened on 23 October 2026 against the names, aliases, operators, addresses and coordinates in all five tables of verified_construction_core/2026-10-23-research-fortyfifth (596 sites, 631 projects, 3,225 evidence rows, 231 source records, 231 identity mappings), every pending queue fragment's changes.json and holds.json, the claims list and every sources/*holds*.json file, for SUNeVision, iAdvantage, MEGA-i, MEGA Two, MEGA Gateway, MEGA Plus, MEGA Fanling, MEGA Campus, 新意網 and the addresses and lots below. The only SUNeVision record is the existing MEGA IDC site in Tseung Kwan O (TKOTL 131) with its Phase One project; 'mega-i' text hits are substrings of 'MEGA IDC'. The 16 October synthesis that admitted MEGA IDC named MEGA Plus, MEGA-i, MEGA Two, MEGA Gateway and MEGA Fanling as separate SUNeVision facilities that it did not admit; no hold, claim or pending fragment covers them. MEGA-i, 399 Chai Wan Road, 1 Sun Yip Street and CWIL 30 have no matches. No Atlas record, pending addition or claim lies within 2 km: the nearest is SUNeVision MEGA IDC in Tseung Kwan O, 4.19 km away (a different facility on TKOTL 131), then Goodman HKG09 Kwai Chung at 16.0 km. Within this fragment MEGA Two (Fo Tan) and MEGA Gateway (Tsuen Wan) are separate SUNeVision buildings more than 15 km away.",
+      "successor_review": "SUNeVision's press-release index (captured 22 October 2026, local sunevision-press.html) lists only a 24 September sustainability award after the 1 September results, and its company-announcements index (captured 22 October, local sunevision-company-announcements.html) lists only the 22 September annual report, ESG report, AGM papers and a 6 October monthly return; the 22 September annual report repeats the 1 September statements unchanged. No later closure, pause, sale or redevelopment of this facility was found, so operational is kept as of 1 September 2026: 52 days before a 23 October update and within the 90-day window until 30 November 2026. The annual report's 'revitalization of MEGA-i' project-management agreement dates from 2018 and does not describe a current closure; the deployed upgrades are part of the operating facility.",
+      "scoped_project_details": {
+        "aliases": [
+          "MEGA-i",
+          "iAdvantage MEGA-i",
+          "399 Chai Wan Road and 1 Sun Yip Street, Chai Wan",
+          "Chai Wan Inland Lot No. 30 (Remaining Portion)",
+          "新意網 MEGA-i"
+        ],
+        "facility_scope": "Existing SUNeVision (iAdvantage) carrier-neutral data centre and interconnection hub at 399 Chai Wan Road / 1 Sun Yip Street, Chai Wan, Hong Kong Island",
+        "address": "399 Chai Wan Road and 1 Sun Yip Street, Chai Wan, Hong Kong",
+        "lot": "Remaining Portion of Chai Wan Inland Lot No. 30 (lease held from Government for 75 years from 1 January 1963, renewable)",
+        "cross_connects_approx": 15000,
+        "capacity": null,
+        "capacity_note": "No MEGA-i power or floor-area figure is given; the 150 MW and 2.3 million sq ft portfolio totals are not allocated by facility.",
+        "physical_construction_verified": false
+      }
+    },
+    {
+      "project_stable_key": "curated:sunevision-mega-two-fo-tan:mega-two-operations",
+      "physical_site_stable_key": "curated:sunevision-mega-two-fo-tan",
+      "site_name": "SUNeVision MEGA Two, 8-12 Wong Chuk Yeung Street, Fo Tan",
+      "name": "SUNeVision MEGA Two — operating data centre",
+      "country": "Hong Kong",
+      "country_iso_a2": "HK",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-09-01",
+        "source_id": "kr-tw-hk-p1-snv-fy26-results",
+        "summary": "SUNeVision's results announcement of 1 September 2026 states that MEGA Two in Shatin remains effectively fully occupied and that SUNeVision continues to deliver revitalisation projects there to capture high-density hyperscale and cloud demand. This establishes an operating data centre on that date. It gives no MEGA Two capacity or opening date, and the revitalisation works are not a separate project."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            114.1904977,
+            22.3979437
+          ]
+        },
+        "source_id": "kr-tw-hk-p1-csdi-lot-sttl135",
+        "scope": "project_locator",
+        "scope_class": "official_landsd_lot_centroid",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "CSDI_LandsD_lot_layer_query_LotCSUID_732000135_native_ring_PROJ_HK1980_to_WGS84_1_round7_planar_centroid_verified_inside",
+        "precision": "Centroid of the 4,345 m2 Sha Tin Town Lot No. 135, the lot SUNeVision gives for MEGA Two at 8-12 Wong Chuk Yeung Street, Fo Tan. It is a lot-level marker, not a surveyed building outline, entrance or data-hall location.",
+        "identity_review": "SUNeVision's 2025/26 annual report lists MEGA Two at 8-12 Wong Chuk Yeung Street, Fo Tan, Sha Tin, on Sha Tin Town Lot No. 135. The CSDI LandInformation table maps STTL 135 to LotCSUID 732000135. The official Address Lookup Service returns a building named MEGA TWO at 8-12 Wong Chuk Yeung Street, and its point falls inside the STTL 135 ring, 5.7 m from the centroid. The Geodetic Survey transformation service reproduces the transformed centroid to under 1e-7 degrees.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The lot layer states no positional tolerance; the 1 m datum-operation accuracy is not a boundary accuracy. The point lies inside a lot about 99 m by 87 m."
+      },
+      "context_source_ids": [
+        "kr-tw-hk-p1-snv-fy26-annual-report",
+        "kr-tw-hk-p1-csdi-search-sttl135",
+        "kr-tw-hk-p1-als-mega-two"
+      ],
+      "roles": [
+        {
+          "party": "SUNeVision Holdings Ltd. (iAdvantage)",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "kr-tw-hk-p1-snv-fy26-results"
+        },
+        {
+          "party": "SUNeVision Holdings Ltd.",
+          "role": "owner",
+          "relationship_scope": "current",
+          "source_id": "kr-tw-hk-p1-snv-fy26-annual-report"
+        }
+      ],
+      "distinctness_review": "Screened on 23 October 2026 against the names, aliases, operators, addresses and coordinates in all five tables of verified_construction_core/2026-10-23-research-fortyfifth (596 sites, 631 projects, 3,225 evidence rows, 231 source records, 231 identity mappings), every pending queue fragment's changes.json and holds.json, the claims list and every sources/*holds*.json file, for SUNeVision, iAdvantage, MEGA-i, MEGA Two, MEGA Gateway, MEGA Plus, MEGA Fanling, MEGA Campus, 新意網 and the addresses and lots below. The only SUNeVision record is the existing MEGA IDC site in Tseung Kwan O (TKOTL 131) with its Phase One project; 'mega-i' text hits are substrings of 'MEGA IDC'. The 16 October synthesis that admitted MEGA IDC named MEGA Plus, MEGA-i, MEGA Two, MEGA Gateway and MEGA Fanling as separate SUNeVision facilities that it did not admit; no hold, claim or pending fragment covers them. MEGA Two, Wong Chuk Yeung Street, Fo Tan and STTL 135 have no matches. No Atlas record, pending addition or claim lies within 2 km: the nearest are Goodman HKG09 Kwai Chung (6.5 km), Goodman HKG10 Tsuen Wan (8.2 km) and BDx HKG8 Kwai Chung (8.5 km).",
+      "successor_review": "SUNeVision's press-release index (captured 22 October 2026, local sunevision-press.html) lists only a 24 September sustainability award after the 1 September results, and its company-announcements index (captured 22 October, local sunevision-company-announcements.html) lists only the 22 September annual report, ESG report, AGM papers and a 6 October monthly return; the 22 September annual report repeats the 1 September statements unchanged. No later closure, pause, sale or redevelopment of this facility was found, so operational is kept as of 1 September 2026: 52 days before a 23 October update and within the 90-day window until 30 November 2026. The revitalisation projects described at MEGA Two take place within the operating facility.",
+      "scoped_project_details": {
+        "aliases": [
+          "MEGA Two",
+          "MEGA TWO",
+          "iAdvantage MEGA Two",
+          "8-12 Wong Chuk Yeung Street, Fo Tan",
+          "Sha Tin Town Lot No. 135",
+          "新意網 MEGA Two"
+        ],
+        "facility_scope": "Existing SUNeVision (iAdvantage) data centre at 8-12 Wong Chuk Yeung Street, Fo Tan, Sha Tin, New Territories",
+        "address": "8-12 Wong Chuk Yeung Street, Fo Tan, Sha Tin, New Territories",
+        "lot": "Sha Tin Town Lot No. 135 (medium-term lease)",
+        "capacity": null,
+        "capacity_note": "No MEGA Two power or floor-area figure is given; portfolio totals are not allocated by facility.",
+        "physical_construction_verified": false
+      }
+    },
+    {
+      "project_stable_key": "curated:sunevision-mega-gateway-tsuen-wan:mega-gateway-operations",
+      "physical_site_stable_key": "curated:sunevision-mega-gateway-tsuen-wan",
+      "site_name": "SUNeVision MEGA Gateway, Ma Kok Street, Tsuen Wan",
+      "name": "SUNeVision MEGA Gateway — operating data centre",
+      "country": "Hong Kong",
+      "country_iso_a2": "HK",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-09-01",
+        "source_id": "kr-tw-hk-p1-snv-fy26-results",
+        "summary": "SUNeVision's results announcement of 1 September 2026 states that MEGA Gateway in Tsuen Wan has seen over 90% of its deployed capacity taken up by cloud, telco and banking clients, increasingly for AI-related deployments, and positions it as a connectivity extension of MEGA-i. This establishes an operating data centre on that date. 'Deployed capacity' is not quantified, so no capacity or fit-out extent is asserted."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            114.1190657,
+            22.3651306
+          ]
+        },
+        "source_id": "kr-tw-hk-p1-csdi-lot-twtl428",
+        "scope": "project_locator",
+        "scope_class": "official_landsd_lot_centroid",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "CSDI_LandsD_lot_layer_query_LotCSUID_812000428_native_ring_PROJ_HK1980_to_WGS84_1_round7_planar_centroid_verified_inside",
+        "precision": "Centroid of the 1,973 m2 Tsuen Wan Town Lot No. 428 on Ma Kok Street, which SUNeVision gives as MEGA Gateway's lot; SUNeVision's 2020 building contract provides for a single 21-storey building on it. It is a lot-level marker, not a surveyed building outline, entrance or data-hall location.",
+        "identity_review": "SUNeVision's 2025/26 annual report lists MEGA Gateway on Tsuen Wan Town Lot No. 428, Ma Kok Street, Tsuen Wan, refers to the 'data hall of MEGA Gateway located at TWTL428', and describes the 2020 contract for a 21-storey building on TWTL428. The CSDI LandInformation table maps TWTL 428 to LotCSUID 812000428. The Address Lookup Service has no entry named MEGA Gateway; an unnamed 1 Ma Kok Street entry lies inside the lot ring, consistent with the lot fronting Ma Kok Street, but the street number is not used. The Geodetic Survey transformation service reproduces the transformed centroid to under 1e-7 degrees.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The lot layer states no positional tolerance; the 1 m datum-operation accuracy is not a boundary accuracy. The point lies inside a lot about 97 m by 50 m."
+      },
+      "context_source_ids": [
+        "kr-tw-hk-p1-snv-fy26-annual-report",
+        "kr-tw-hk-p1-csdi-search-twtl428",
+        "kr-tw-hk-p1-als-ma-kok-street"
+      ],
+      "roles": [
+        {
+          "party": "SUNeVision Holdings Ltd. (iAdvantage)",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "kr-tw-hk-p1-snv-fy26-results"
+        },
+        {
+          "party": "SUNeVision Holdings Ltd.",
+          "role": "owner",
+          "relationship_scope": "current",
+          "source_id": "kr-tw-hk-p1-snv-fy26-annual-report"
+        }
+      ],
+      "distinctness_review": "Screened on 23 October 2026 against the names, aliases, operators, addresses and coordinates in all five tables of verified_construction_core/2026-10-23-research-fortyfifth (596 sites, 631 projects, 3,225 evidence rows, 231 source records, 231 identity mappings), every pending queue fragment's changes.json and holds.json, the claims list and every sources/*holds*.json file, for SUNeVision, iAdvantage, MEGA-i, MEGA Two, MEGA Gateway, MEGA Plus, MEGA Fanling, MEGA Campus, 新意網 and the addresses and lots below. The only SUNeVision record is the existing MEGA IDC site in Tseung Kwan O (TKOTL 131) with its Phase One project; 'mega-i' text hits are substrings of 'MEGA IDC'. The 16 October synthesis that admitted MEGA IDC named MEGA Plus, MEGA-i, MEGA Two, MEGA Gateway and MEGA Fanling as separate SUNeVision facilities that it did not admit; no hold, claim or pending fragment covers them. MEGA Gateway, Ma Kok Street and TWTL 428 have no matches. Records within 2 km: Goodman HKG10 Tsuen Wan (D.D. 443 Lot 472 S.A; campus point 100.5 m away, and its lot ring about 20 m from the TWTL 428 ring with no overlap) is a different operator's warehouse conversion on a different lot; BDx HKG8 at 38 Wing Kei Road, Kwai Chung (KCTL 524) is 529 m away; Goodman HKG09 Kwai Chung is 1.80 km away. The held BDx HKG2 (16-22 Kung Yip Street, Kwai Chung) and DayOne Kwai Chung cluster entries carry no coordinates and name other operators and streets. SUNeVision's JUMBO property (145-159 Yeung Uk Road, D.D. 443 Lot 476) is a separate 'other specified uses' holding that the results do not describe as a data centre; it is not admitted.",
+      "successor_review": "SUNeVision's press-release index (captured 22 October 2026, local sunevision-press.html) lists only a 24 September sustainability award after the 1 September results, and its company-announcements index (captured 22 October, local sunevision-company-announcements.html) lists only the 22 September annual report, ESG report, AGM papers and a 6 October monthly return; the 22 September annual report repeats the 1 September statements unchanged. No later closure, pause, sale or redevelopment of this facility was found, so operational is kept as of 1 September 2026: 52 days before a 23 October update and within the 90-day window until 30 November 2026. ",
+      "scoped_project_details": {
+        "aliases": [
+          "MEGA Gateway",
+          "iAdvantage MEGA Gateway",
+          "Tsuen Wan Town Lot No. 428",
+          "TWTL428",
+          "Ma Kok Street, Tsuen Wan",
+          "新意網 MEGA Gateway"
+        ],
+        "facility_scope": "Existing SUNeVision (iAdvantage) 21-storey data centre building on Tsuen Wan Town Lot No. 428, Ma Kok Street, Tsuen Wan, New Territories",
+        "address": "Ma Kok Street, Tsuen Wan, New Territories (Tsuen Wan Town Lot No. 428)",
+        "lot": "Tsuen Wan Town Lot No. 428 (medium-term lease)",
+        "building_max_gfa_sqft_contract": 201700,
+        "capacity": null,
+        "capacity_note": "Over 90% of 'deployed capacity' is taken up; deployed capacity is not quantified. The 201,700 sq ft is the 2020 building contract's maximum GFA, not a measured figure.",
+        "physical_construction_verified": false
+      }
+    }
+  ],
+  "status_updates": [
+    {
+      "project_stable_key": "imported:semiconductor-atlas:datavolt-oxagon",
+      "status": {
+        "value": "under_construction",
+        "as_of": "2026-10-21",
+        "source_id": "gulf-p1-datavolt-nebius-oxagon-20261021",
+        "summary": "DataVolt's 21 October 2026 release on the HUMAIN-DataVolt-Nebius framework for the Oxagon AI campus describes the initial 100 MW, part of the first phase's planned 360 MW, as currently under construction. The status stays under construction with a newer observation date. Nebius's up-to-50 MW offtake is a preliminary framework, and operation from Q4 2027 is a forecast; no completion or operation of any part of the campus is established, and the planned 1.5 GW total is not under construction."
+      },
+      "identity_review": "Same project as the existing record 'DataVolt Oxagon AI data centre campus (NEOM)' (project 016877e7-a475-5ebe-9219-0ac699cfff53, site vcc-site-a55b68896de9ae43657e). The record's 31 August 2026 status evidence is the HUMAIN-DataVolt release on jointly developing 100 MW of a 360 MW AI data-centre project in NEOM, and its aliases include 'Oxagon AI data center campus'. The new release names the same developers, the same Oxagon site in NEOM, the same 360 MW first phase and the same initial 100 MW block, and says construction began about six weeks before 21 October. That matches DataVolt's 31 August release, listed on its news index as 'DataVolt & HUMAIN Break Ground on the First AI Data Center in NEOM', 51 days earlier. The scope is unchanged: the campus record under construction through its initial 100 MW block. No new phase, site or locator is introduced, and the imported Oxagon locality locator is kept.",
+      "successor_review": "Strictly newer than the existing 7 September 2026 observation. DataVolt's page sitemap (captured 22 October 2026, local datavolt-page-sitemap.xml) lists this release with lastmod 22 October 2026 06:45 UTC as its newest breaking-news item, after the 31 August groundbreaking release and the 1 September Zain KSA item; the sitemap gives the breaking-news index a lastmod of 21 October, although the captured index HTML (datavolt-breaking-news-index.html, JSON-LD dateModified 1 September) does not yet list the release. NEOM's newsroom copy of the same release, dated 21 October (neom-intl-agreement-dc.html), is the newest NEOM newsroom item on the project. No statement of completion, operation, pause or cancellation was found, so the record is refreshed to under construction as of 21 October 2026."
+    }
+  ],
+  "context_updates": []
+}

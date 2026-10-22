@@ -1,0 +1,96 @@
+{
+  "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+  "candidate": "Beyond.pl Data Center Campus, ul. Adama Kręglewskiego, Poznań (Data Center 2 at Kręglewskiego 11)",
+  "decision": "Selected the centroid of cadastral parcel 306401_1.0006.AR_28.6/2 (Poznań, precinct Żegrze, sheet 28), the parcel named in Beyond.pl's building permit 180/2021 for its DC3 data-centre hall at ul. Kręglewskiego, as the campus locator. Individual buildings are not separately located.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      16.976736,
+      52.3776022
+    ]
+  },
+  "authority_class": "compiled_reference",
+  "scope_class": "official_permit_named_cadastral_parcel_centroid",
+  "use_scope": "campus_locator",
+  "coordinate_reference_system": "Source parcel in EPSG:2180 (ETRF2000-PL / CS92) from GUGiK ULDK; centroid transformed to EPSG:4326 longitude/latitude with pyproj always_xy=True.",
+  "source_url": "https://uldk.gugik.gov.pl/?request=GetParcelById&id=306401_1.0006.AR_28.6/2&result=id,voivodeship,county,commune,region,parcel,geom_wkt",
+  "source_file": "local_data/country-research-cee-p1/pl-poznan-uldk-0006-ar28-6-2.txt",
+  "source_sha256": "358fb26ea10e198ce23bd607de2e83e82bf77b1701e145124bb6e02a9c0d23be",
+  "selected_properties": {
+    "teryt_id": "306401_1.0006.AR_28.6/2",
+    "voivodeship": "wielkopolskie",
+    "county": "powiat Poznań",
+    "commune": "Poznań (miasto)",
+    "precinct": "Zegrze",
+    "parcel": "6/2",
+    "native_crs": "EPSG:2180"
+  },
+  "identity_bridge": [
+    "GUNB RWDZ building-permit register (wielkopolskie file captured 22 October 2026): decision 180 of 2 February 2021 (case UA-VII.6740.3228.2020) by the Mayor of Poznań to the investor recorded as \"Beuond.pl Sp. z o.o.\" (sic) for a new service hall DC3 with site, technical and access works, ul. Adama Kręglewskiego, Poznań, category XVII, 66,729 m3, unit 306401_1, precinct 0006, sheet 28, parcel 6/2.",
+    "Beyond.pl's Data Center 2 page gives the facility location as A. Kręglewskiego 11 Street, Poznań, as part of Beyond.pl Campus; its 11 September 2026 article says the AI Factory operates at the company's Data Center Campus in Poznań.",
+    "GUGiK KIEG parcel information at the parcel: Poznań, precinct ZEGRZE, parcel 6/2, register area 1.7784 ha, data publication date 2026-10-22.",
+    "EGiB collective WFS buildings within the parcel bounding box include building 6/2.1 (commercial-service class, five storeys above ground, about 4,303 m2 footprint) and office building 6/2.2 (three storeys, about 1,168 m2); which building is Data Center 2 or DC3 is not established."
+  ],
+  "consistency_checks": {
+    "area_m2_computed_epsg2180": 17775.0,
+    "area_m2_register": 17784.0,
+    "parcel_extent_m": [
+      177.0,
+      202.4
+    ],
+    "centroid_epsg2180_e_n": [
+      362322.127,
+      503221.681
+    ],
+    "centroid_inside_parcel": true,
+    "max_vertex_distance_from_centroid_m": 105.8,
+    "uldk_point_lookup_at_centroid": "306401_1.0006.AR_28.6/2 (local pl-poznan-uldk-xy-centroid.txt)",
+    "buildings_in_parcel": [
+      {
+        "egib_building_id": "306401_1.0006.AR_28.6/2.3_BUD",
+        "egib_class_text_as_served": "pozostałe budynki ni",
+        "storeys_above_ground": 1,
+        "footprint_area_m2_epsg2180": 68.8,
+        "inside_parcel": true,
+        "centroid_distance_from_parcel_centroid_m": 50.4
+      },
+      {
+        "egib_building_id": "306401_1.0006.AR_28.6/2.2_BUD",
+        "egib_class_text_as_served": "budynki biurowe",
+        "storeys_above_ground": 3,
+        "footprint_area_m2_epsg2180": 1168.2,
+        "inside_parcel": true,
+        "centroid_distance_from_parcel_centroid_m": 53.9
+      },
+      {
+        "egib_building_id": "306401_1.0006.AR_28.6/2.1_BUD",
+        "egib_class_text_as_served": "budynki handlowo-usł",
+        "storeys_above_ground": 5,
+        "footprint_area_m2_epsg2180": 4303.0,
+        "inside_parcel": true,
+        "centroid_distance_from_parcel_centroid_m": 26.7
+      }
+    ],
+    "nearest_atlas_site_km": 214.2,
+    "versions": {
+      "pyproj": "3.7.1",
+      "proj": "9.5.1",
+      "shapely": "2.1.1"
+    }
+  },
+  "transform_check": "Parcel polygon (EPSG:2180, GUGiK ULDK GetParcelById) centroid computed with shapely and transformed to WGS84 with pyproj, always_xy.",
+  "excluded_coordinates": [
+    {
+      "kind": "Google Maps embed viewport centre on the operator contact page (52.37866, 16.98180)",
+      "reason": "Viewport centre, not a feature coordinate; about 360 m east of the parcel."
+    },
+    {
+      "kind": "Poznań city centre / Beyond.pl Data Center 1 at ul. Półwiejska 42",
+      "reason": "Different facility (800 m2 city-centre DC1); not the Kręglewskiego campus."
+    },
+    {
+      "kind": "GUGiK KINA address point for Kręglewskiego 11",
+      "reason": "The national address-point layer returned no point in this area of Poznań, so the house number is not independently geocoded."
+    }
+  ]
+}
