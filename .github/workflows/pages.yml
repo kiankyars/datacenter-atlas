@@ -53,6 +53,10 @@ jobs:
     # `playwright install --with-deps` adds to it, change only when this file does.
     runs-on: ubuntu-24.04
     timeout-minutes: 40
+    # Each attempt uploads its own Pages artifact, so re-running a failed build does not leave the
+    # run with two artifacts of the same name, which actions/deploy-pages refuses.
+    outputs:
+      pages_artifact: github-pages-${{ github.run_attempt }}
     permissions:
       contents: read
       pages: read # actions/configure-pages reads the Pages settings
@@ -126,6 +130,7 @@ jobs:
         # This action uploads through actions/upload-artifact@v4, a tag it pins itself.
         uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
         with:
+          name: github-pages-${{ github.run_attempt }}
           path: _site
       - name: Upload the frozen release candidates
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
@@ -197,6 +202,8 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1
+        with:
+          artifact_name: ${{ needs.build.outputs.pages_artifact }}
 
   verify-live:
     # The deployment API reports success before every CDN edge serves the new files; this job

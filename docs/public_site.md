@@ -630,7 +630,9 @@ when a built site is available.
   - `deploy` (permissions `pages: write`, `id-token: write`): only for pushes to `main`, after the
     whole `build` job has passed; publishes with `actions/deploy-pages` to the `github-pages`
     environment. Deployments share the `pages` concurrency group and do not cancel each other; a
-    newer push to a pull request cancels that pull request's older run.
+    newer push to a pull request cancels that pull request's older run. Each build attempt names
+    its Pages artifact `github-pages-<attempt>` and `deploy` takes that name from the build job's
+    output, so re-running a failed run deploys instead of finding two artifacts of the same name.
   - `verify-live` (`contents: read`): after each deploy,
     [`site/e2e/live_checks.py`](../site/e2e/live_checks.py) waits (up to 10 minutes) until the live
     `api/v1/index.json` reports the pushed commit, then checks that every API endpoint answers 200
