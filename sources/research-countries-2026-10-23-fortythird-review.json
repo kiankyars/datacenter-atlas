@@ -1,0 +1,97 @@
+{
+  "reviewer": "root",
+  "reviewed_at": "2026-10-23",
+  "decision": "accepted_for_integration",
+  "update": "verified_construction_core/2026-10-23-research-fortythird",
+  "base_dataset": "verified_construction_core/2026-10-22-research-fortysecond",
+  "process": "continuous: one researcher per beat, one adversarial verifier per fragment",
+  "fragments": [
+    {
+      "fragment": "es-pt-p1",
+      "verdict": "accept",
+      "checks": [
+        "date +%F 2026-10-23; 85-day floor 2026-07-30; base verified_construction_core/2026-10-22-research-fortysecond from site/config.json",
+        "all six source captures rehash to sources.json content_hash and their .metadata.json sha256; five Catastro INSPIRE GML, five DNPRC records and startcampus-media.html also rehash to metadata",
+        "BOE-B-2026-29930 read in capture: BOE 228 of 15 Sep 2026, applicant Data Riocaya SLU, purpose 'conexion ... futuro Data Center (DC) Nostrum Evergreen de 300 MW'; data centre processed in separate files; government_record; announced only",
+        "DOE 173 (7 Sep 2026) PDF read with pdftotext: prior administrative authorisation of 220 kV consumption infrastructure only, 06/AT-2025/26906; not development consent; context only",
+        "Decreto 151/2025 PDF read: plots L.I-12, L.I-13, C.E.S-2, C.E.S-4, C.E.S-4A, 222,735 m2, promoter Data Riocaya SLU, 300 MW grid access, EUR 1,913,163,000",
+        "Catastro DNPRC labels confirm one parcel per plot (3582902PD7038D L.I-12, 3485901PD7038E LI-13, 3485903PD7038E C.E.S.-2, 3582905PD7038D C.E.S.-4, 3582904PD7038D C.E.S.-4A); no duplicate labels among 44 captured platform parcels; land use unbuilt",
+        "locator recomputed independently (uv pyproj 3.7.1 / shapely 2.1.1): GML EPSG:25829 areaValues sum 222,734 m2, union is one polygon (one self-intersecting ring repaired, same area), area centroid -7.0010102, 38.9061756 (0.003 m from claim), inside LI-13, farthest vertex 414.4 m; RCCOOR capture returns 3485901PD7038E at the point",
+        "locator is a scoped campus_locator (decree-named plot union), coordinate_transform with compiled_reference authority, uncertainty null with reason; not a zone or city centroid",
+        "role Data Riocaya SLU owner/intended sourced to BOE applicant statement",
+        "distinctness rescreened: no Nostrum/Riocaya/Badajoz/Extremadura/Plataforma Logistica match in sites, projects, evidence, source-records or identity-mapping; nearest site 170.0 km (MERLIN Lisbon); no other queue fragment, claim or sources/*-holds.json entry admits it; thirty-fourth hold reopen condition (cadastral plot references) met",
+        "successor review rechecked against captured BOE open-data summaries and DOE indexes 29 Jul-23 Oct 2026: only the 7 Sep DOE and 15 Sep BOE records name Nostrum/Riocaya",
+        "Start Campus release read in capture: dateline 'BERLIN, October 21 2026', describes Nscale's operations within the SIN01 data center on the SINES Data Campus (live AI factory); media index lists 'PR October 21, 2026'; stale June JSON-LD not used",
+        "Start Campus refresh: existing record partially_operational 2026-08-03; new observation 2026-10-21 strictly newer, same status (allowed since record already has it), campus scope kept, SIN02 project untouched",
+        "robots.txt copies for boe.es, doe.juntaex.es, startcampus.pt permit the fetched paths; Catastro robots 404",
+        "no third-party personal data in changes, sources or holds",
+        "dryrun_fragment.py ok: 578 sites, 611 projects, 3,103 evidence"
+      ],
+      "residual_risks": [
+        "Nostrum Evergreen announced status rests on a grid-connection public-information notice, not on a data-centre development filing",
+        "locator is the centroid of declared land (22.3 ha); building positions unknown; Catastro boundary accuracy unpublished",
+        "possible future duplicate with an IREN Badajoz record if IREN is later admitted without screening against this project",
+        "Start Campus operating statement is indirect (digital-twin pilot on Nscale operations in SIN01) and gives no capacity in service"
+      ]
+    },
+    {
+      "fragment": "us-hyperscalers-p1",
+      "verdict": "accept",
+      "checks": [
+        "current dataset verified_construction_core/2026-10-22-research-fortysecond (re-read from site/config.json before verdict)",
+        "rehashed 10 relied-on captures (Building Texas live + IA 20260813 copy, IA CDX, Fort Worth info-sheet PDF, US locations, TxGIO parcel identify, TxGIO address points, two CFW permit queries, Meta post sitemap): all match .metadata.json and source content_hash; geometry facts sha256 fd9f852d... matches",
+        "decisive statement read in both live and archived copies: 'In Fort Worth alone, which has been operational since 2017' plus three-community statement; JSON-LD datePublished 2026-08-12T10:17:49Z; IA copy dateModified 2026-08-12T10:17:51Z bounds the content, captured 2026-08-13",
+        "source kind company_disclosure (Meta Data Centers site); observation 2026-08-12 = published_at, 72 days before 2026-10-23, inside the 85-day window (from 2026-07-30)",
+        "operational is a present statement by the operator, not an opening target or elapsed-time inference; campus scope kept (no capacity, no new building asserted)",
+        "locator recomputed independently with pyproj 3.7.1 / shapely 2.1.1 from raw TxGIO capture objectid 11800951 (PROP_ID 414K-3-7R2, Winner LLC, Lot 7R2, year built 2017): EPSG:3083 area centroid -97.2575676, 32.9855232 exact match, inside, 91.8 m to boundary, 145.77 geodesic acres",
+        "Tarrant 911 point 4500 Like Way inside Lot 7R2; adjacent QTS parcels (Lots 4R-1R3, 4R-1R4, 4R-1R5, 4R-2) have zero overlap with the lot and do not contain the centroid; QTS tenant personal-property accounts sharing the polygon not used",
+        "identity: tax mail 1 Hacker Way (Meta HQ); CFW permits PE17-11410 owner Facebook, PB17-13620/13621/PB20-17288 Project Ernst FTW4-FTW6 owner Winner LLC on Lot 7R2, all finaled; newest Like Way filing 2024-07-24",
+        "roles: Winner LLC owner current (2026 parcel roll), Meta operator current (Meta page); both allowed roles/scopes",
+        "distinctness: no Meta Fort Worth, Facebook Fort Worth, Winner LLC, Like Way, Project Ernst or 414K-3-7R2 match in sites/projects/evidence/source-records/identity-mapping of current dataset or any older dataset, other queue fragments, claims.tsv or sources/*; nearest Atlas site Colovore Alliance 3.92 km; only one project on the new site",
+        "successor check: Meta post sitemap has no Fort Worth item after 12 August; no closure or new phase found",
+        "no private individuals' names, phones or emails in changes, sources, holds, notes or geometry facts; robots.txt allows datacenters.atmeta.com and archive copies",
+        "corrected CFW permit source title/summary: PE18-07099 is on predecessor Lot 7R, foundation-only and expired (context only)",
+        "dryrun_fragment.py ok (578 sites, 611 projects) after the edit"
+      ],
+      "residual_risks": [
+        "the operational statement is generic community-page text rather than a dated operations update; it is current as of publication only",
+        "parcel centroid represents a 147-acre campus, not an individual building; TAD polygons carry no published positional accuracy",
+        "Winner LLC's link to Meta rests on the HQ tax-mail address and the city permits naming Facebook, not on a Meta statement naming the entity",
+        "admission must publish before 5 November 2026 to stay inside the 85-day research window"
+      ]
+    },
+    {
+      "fragment": "us-west-mountain-p1",
+      "verdict": "accept",
+      "checks": [
+        "Base re-read from site/config.json at start and end: verified_construction_core/2026-10-22-research-fortysecond (577 sites, 610 projects); 85-day window from 2026-10-23 starts 2026-07-30",
+        "Rehashed all 9 cited captures plus crook-taxlots-apple-attrs.json: every sha256 matches its .metadata.json and the source content_hash; HTTP 200, credential-free",
+        "Apple status: pdftotext of the 13 Oct packet p.24 Resolution 1654 'Apple, Inc. owns and operates a data center within Prineville city limits' and p.25 recital A 'owns and operates a data center campus'; government_record; PDF CreationDate 2026-10-08 17:29Z; 15 days old, inside window",
+        "Apple adoption confirmed in 27 Oct packet brief (PDF created 2026-10-22): Resolution 1654 motion carried, all in favour; no later Apple item",
+        "Apple locator recomputed (uv pyproj 3.7.1, shapely 2.1.1, python -I): 3 APPLE INC lots, valid single-part union, 364.33 geodesic acres, UTM 10N centroid -120.8659538, 44.2845822 (0.005 m from proposal), inside union",
+        "Rendered Exhibit A (p.36, 300 dpi): APPLE CAMPUS label beside the white-roofed building east of the Meta/Connect Way buildings; county 2020 imagery building footprint (-120.8727..-120.8674, 44.2862..44.2885) lies 100% inside Apple lot 1515000000312",
+        "Apple distinctness: 0 hits for Apple/Prineville/Crook/Baldwin/Vitesse/Connect Way in fortysecond sites, projects, evidence, source-records, identity-mapping; no Atlas site within 40 km; no other queue fragment, claim or sources/*-holds.json entry (only a lead_only mention of Meta Prineville)",
+        "Apple roles: owner (current) from county tax lots owned by APPLE INC; operator (current) from the resolution recital; scope campus_locator/official_tax_parcel_union_centroid has 10 base precedents; one project on the new site",
+        "Jade refresh: memo PDF (created 2026-07-08) read: Project Jade, applied for by Crusoe, received governing-body approvals for the Switchgrass PUD zone change and the Commercial Site Plan; Crusoe withdrew; Google (Jupiter Star Holdings) revision, smaller than the 'previously approved Site Plan', to be processed administratively",
+        "Jade permit: Legistar 26-023 history (minutes final 2026-01-21) records the Board's 6 Jan 2026 motion 'to grant approval of the Project Jade site plan permit' with conditions precedent to a Certificate of Review; the power-hub site plan was a separate motion; permit_scope data_center_development, planning_permission, granted",
+        "Jade refresh is strictly newer (2026-07-08 > 2025-07-24) and keeps the record's campus scope; government_record; status refreshes carry no admission window in dataset_update.py; no later Board action, building permit (June-Sept reports) or Google location page found",
+        "No private individuals' names, phones or e-mails in changes, sources, holds, geometry or notes (regex and name scan clean)",
+        "dryrun_fragment.py: ok on fortysecond base (578 sites, 611 projects); geometry facts sha256 80b27046... matches"
+      ],
+      "residual_risks": [
+        "Apple operational rests on a recital in a utility development agreement and draft resolution, not an inspection; observation date is the packet PDF creation time (AgendaCenter shows no posting time), bounded by the 13 Oct meeting",
+        "Apple campus locator lies in eastern lot 1516070000102 (PRZ 06 expansion area), about 460 m from the existing building on lot 1515000000312; county assessor class for all three lots reads 'Ind Unimp'",
+        "Jade/Tembo permitted relies on the 6 Jan 2026 approval of Crusoe's five-building plan; Crusoe withdrew and Google's smaller revision was pending administrative review on 2026-07-08; if the approval is treated as lapsed or superseded, the refresh should fall back to announced",
+        "Jade observation (2026-07-08) is 107 days old: outside the 85-day admission window, acceptable only because status refreshes have no window; Certificate of Review issuance and the Legistar staff reports (robots-disallowed host) were not read",
+        "Jade record keeps its imported Laramie County centroid about 28 km north of Sections 5 and 7, T12N R66W, and its Crusoe developer role (scope unknown); locator correction is held"
+      ]
+    }
+  ],
+  "packet_pins": {
+    "definitions/atlas-research-fortythird-2026-10-23.json": "bcf11cee59b30251a0bc88e604679850d0400bb45b42869a030de424c7a52649",
+    "sources/research-countries-2026-10-23-fortythird-primary-sources.json": "72d95ce4c5416e1e25d439b351a8822993214dce7419eb271cdd9b667080de4d",
+    "sources/research-countries-2026-10-23-fortythird-actions.json": "47b8f6079250b7f152293eceb1b51105f94b9c097274b98f16431b6c99031a35",
+    "sources/research-countries-2026-10-23-fortythird-holds.json": "4b343846d45fab41c345fb35a623eadad06332e49986471fac78e83f7f2baa6d"
+  },
+  "raw_captures_redistributed": false
+}

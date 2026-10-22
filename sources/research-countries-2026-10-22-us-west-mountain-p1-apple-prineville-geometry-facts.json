@@ -1,0 +1,45 @@
+{
+  "candidate_id": "us-west-mountain-p1-apple-prineville-data-center-campus",
+  "decision": "Selected the planar centroid (computed in WGS 84 / UTM zone 10N) of the union of the three Crook County tax lots whose recorded owner is Apple Inc, as a campus locator for Apple's Prineville data-centre campus. The union is one contiguous polygon and the centroid lies inside it.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -120.8659538,
+      44.2845822
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_tax_parcel_union_centroid",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-us-west-mountain-p1/crook-taxlots-apple-geom.json",
+  "source_sha256": "52acd61b8b092863d600f64e1425c9ccd4d5d48b7162dcf93716f58362ba1a50",
+  "source_url": "https://gis.crookcountyor.gov/server/rest/services/CC_Taxlots_Helion/MapServer/0/query?where=OWNER_NAME%3D%27APPLE+INC%27&outFields=MAPTAXLOT%2CACCOUNT%2COWNER_NAME%2CSITUS_ADDRESS%2CPC_DESC%2CSUM_TOT_ACRES%2CGIS_ACRES%2CZONE%2CZONE_DESC%2CMAP_NUMBER&returnGeometry=true&outSR=4326&f=json",
+  "retrieved_at": "2026-10-22T20:51:22.133Z",
+  "selected_tax_lots": [
+    {"maptaxlot": "1515000000312", "account": 19406, "situs": "1600 SW Baldwin Rd", "county_acres": 154.4, "geodesic_acres": 154.22, "zone": "M1 Light Industrial"},
+    {"maptaxlot": "1516070000101", "account": 19495, "situs": null, "county_acres": 114.06, "geodesic_acres": 114.18, "zone": "M1 Light Industrial"},
+    {"maptaxlot": "1516070000102", "account": 19494, "situs": null, "county_acres": 96.9, "geodesic_acres": 95.93, "zone": "M1 Light Industrial"}
+  ],
+  "facts": {
+    "query": "OWNER_NAME = 'APPLE INC' returns exactly these three tax lots; the earlier OWNER_NAME LIKE 'APPLE INC%' attribute query (crook-taxlots-apple-attrs.json) returned the same three",
+    "union_valid": true,
+    "union_parts": 1,
+    "union_holes": 0,
+    "union_geodesic_acres": 364.33,
+    "utm10n_centroid_lonlat": [-120.8659538, 44.2845822],
+    "lonlat_planar_centroid": [-120.8659541, 44.2845822],
+    "centroid_difference_m": 0.0,
+    "centroid_inside_union": true,
+    "bounds_lon_lat": [-120.876729, 44.276186, -120.854657, 44.290775],
+    "approx_extent_m": [1762, 1621],
+    "imagery_check": "The county's 2020 orthoimagery export of the area (crook-imagery-2020-campus.jpg, sha256 267006db08991e9124eba8c40522a510583a24ce8d6f28fc4035d3c9e6ebe18f) shows a large two-hall data-centre-type building at about -120.873 to -120.867, 44.286 to 44.289, inside tax lot 1515000000312; a separate multi-building campus on lots of Vitesse LLC on SW Connect Way lies about 1.5 to 2 km to the north-west, outside the Apple lots.",
+    "exhibit_check": "Exhibit A of the 13 October 2026 development agreement (an aerial plan by Parametrix) labels APPLE CAMPUS east of the SW Connect Way buildings and north-east of Prineville Airport, beside the PRZ06 offsite utility lines along SW Baldwin Road, consistent with the Apple-owned lots.",
+    "coordinate_reference_system": "WGS84 longitude/latitude returned with outSR=4326 from the county service stored in NAD83(HARN) / Oregon GIC Lambert (EPSG:2914); centroid computed in EPSG:32610 and transformed back",
+    "personal_data_note": "Only lots owned by Apple Inc were requested with owner fields; nearby lots were read without owner fields except six industrial lots checked by tax-lot number, one of which belongs to a private trust whose name is not recorded anywhere in this packet.",
+    "verification_script": "parcel_geom.py (pyproj 3.7.1, PROJ 9.5.1, shapely 2.1.1; uv run --no-project, python -I)"
+  },
+  "excluded_locators": [
+    {"kind": "1600 SW Baldwin Rd situs label", "reason": "An assessor situs label without a published address point; the selected lot polygon contains it."},
+    {"kind": "Prineville city centre or Prineville Airport", "reason": "Not the campus."}
+  ]
+}
