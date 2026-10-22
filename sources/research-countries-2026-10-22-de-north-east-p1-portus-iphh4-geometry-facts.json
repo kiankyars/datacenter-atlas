@@ -1,0 +1,73 @@
+{
+  "candidate_id": "portus-iphh4-hamburg-wendenstrasse-285",
+  "decision": "Selected the centroid of ALKIS parcel Hamm Marsch 949 (Wendenstraße 285), the parcel the Bezirksamt Hamburg-Mitte preliminary decision M-BP-864-2024 names for the IPHH4 data centres, as the project locator for the IPHH4 plot; the two building footprints within it are not separately located. Verifier change: scope corrected from campus_locator to project_locator because the operator's Wendenstraße 408 address lies about 0.56 km away and the selected sources do not locate IPHH2 or IPHH3 on or beside this parcel.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      10.0400694,
+      53.5511422
+    ]
+  },
+  "authority_class": "compiled_reference",
+  "scope_class": "official_permit_named_cadastral_parcel_centroid",
+  "use_scope": "project_locator",
+  "source_file": "local_data/country-research-de-north-east-p1/hh-alkis-flst-949.gml",
+  "source_sha256": "24873925284f40984f33c8a1238f461bbd291785028295d05372021f7d4a2447",
+  "source_url": "https://geodienste.hamburg.de/WFS_HH_ALKIS_vereinfacht?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=ave:Flurstueck&FILTER=%3Cfes%3AFilter%20xmlns%3Afes%3D%22http%3A//www.opengis.net/fes/2.0%22%20xmlns%3Aave%3D%22http%3A//repository.gdi-de.org/schemas/adv/produkt/alkis-vereinfacht/2.0%22%3E%3Cfes%3APropertyIsEqualTo%3E%3Cfes%3AValueReference%3Eave%3Aflstnrzae%3C/fes%3AValueReference%3E%3Cfes%3ALiteral%3E949%3C/fes%3ALiteral%3E%3C/fes%3APropertyIsEqualTo%3E%3C/fes%3AFilter%3E",
+  "selected_properties": {
+    "flstkennz": "020109___00949______",
+    "gemarkung": "Hamm Marsch",
+    "gemaschl": "020109",
+    "flstnrzae": "949",
+    "gemeinde": "Freie und Hansestadt Hamburg",
+    "lagebeztxt": "Wendenstraße 285",
+    "flaeche_m2": 2207.0,
+    "aktualit": "2022-01-20Z",
+    "native_crs": "EPSG:25832"
+  },
+  "identity_bridge": [
+    "Bezirksamt Hamburg-Mitte preliminary decision (Vorbescheid) M-BP-864-2024 of 23 May 2025, published on the Transparenzportal on 27 March 2026: new build of two data centres with generator towers and offices on Flurstück 949, Gemarkung Hamm Marsch; its plan attachments are numbered DE-IPHH4-...; the neighbouring building at Wendenstraße 255 is cited for the permitted height.",
+    "Bezirksamt Hamburg-Mitte building permit M-BP-2262-2025 of 20 July 2026 (Transparenzportal, published 29 July 2026): new build of two data centres with generator platforms, Gemarkung Hamm Marsch (address and parcel redacted), granted on site plan no. DE-IPHH4-BA-E0-INV-LA-M-52000; it cites preliminary decision M-BP-864-2024 and permits felling of trees on the embankment to the Mittelkanal.",
+    "Portus Data Centers release of September 2024: IPHH4 is located on the IPHH Internet Port Hamburg Wendenstrasse campus, adjacent to the existing IPHH3 data centre; two buildings with 12.8 MW IT load in total."
+  ],
+  "consistency_checks": {
+    "area_m2_computed": 2204.7,
+    "area_m2_stated": 2207.0,
+    "n_polygons": 1,
+    "parcel_extent_m": [
+      48.8,
+      67.9
+    ],
+    "centroid_inside_parcel": true,
+    "max_vertex_distance_from_centroid_m": 35.6,
+    "centroid_25832": [
+      568906.251,
+      5934086.501
+    ],
+    "representative_point_wgs84": [
+      10.0400656,
+      53.5511486
+    ],
+    "adjoining_parcels": "ALKIS bbox query (hh-alkis-flst-bbox-wenden285.gml): parcel 949 shares about 38 m of boundary with Mittelkanal parcel 174 (consistent with the permit's trees on the Mittelkanal embankment), about 36 m with Wendenstraße street parcel 581, and about 62 m with parcel 948 (Wendenstraße 279).",
+    "other_parcels_numbered_949": "The same query returns 56 parcels numbered 949; the 55 in other Hamburg Gemarkungen are excluded because the Vorbescheid names Gemarkung Hamm Marsch.",
+    "nearest_atlas_site_km": 14.45,
+    "versions": {
+      "pyproj": "3.7.1",
+      "proj": "9.5.1",
+      "shapely": "2.1.1"
+    },
+    "adjoining_parcel_445": "Parcel 445 (Wendenstraße; östlich Wendenstraße 285, 1,462 m2) adjoins parcel 949 to the east; the permit's trees 445-01 to 445-06 may stand on it. The union 949+445 has its centroid about 16 m east of the selected point, which lies inside the union.",
+    "operator_address_distance": "ALKIS parcel Hamm Marsch 194 (Wendenstraße 408, the IPHH office address) has its centroid about 564 m from the selected point (verifier query, not a fragment source)."
+  },
+  "transform_check": "Parcel polygon (EPSG:25832, LGV Hamburg ALKIS vereinfacht WFS) centroid computed with shapely 2.1.1 and transformed to WGS84 with pyproj 3.7.1 (PROJ 9.5.1), always_xy.",
+  "excluded_coordinates": [
+    {
+      "kind": "IPHH corporate address, Wendenstraße 408",
+      "reason": "Operator head-office address (ALKIS parcel centroid about 0.56 km from parcel 949), not the IPHH4 plot named in the permit file."
+    },
+    {
+      "kind": "Existing IPHH2 and IPHH3 buildings",
+      "reason": "Not located by the selected sources; the point marks only the IPHH4 parcel."
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "candidate_id": "r44-vision-dc-berlin-rhinstrasse-44",
+  "decision": "Selected the official Berlin address point for Rhinstraße 44, 12681 Berlin (the plot named in both BImSchG notices), as returned in WGS84 by the state address service, as the project locator. It locates the address, not the data-centre building, the emergency-power plant or the plot boundary.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      13.5205789,
+      52.51677505
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_permit_notice_named_address_point",
+  "use_scope": "project_locator",
+  "source_file": "local_data/country-research-de-north-east-p1/berlin-adressen-rhinstrasse-44-wgs84.gml",
+  "source_sha256": "71ee7f1976d254b9a11c0dda6e5317afbdbb7c1bb3a0129b5c323fdc71409615",
+  "source_url": "https://gdi.berlin.de/services/wfs/adressen_berlin?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=adressen_berlin:adressen_berlin&SRSNAME=urn:ogc:def:crs:EPSG::4326&FILTER=%3Cfes%3AFilter%20xmlns%3Afes%3D%22http%3A//www.opengis.net/fes/2.0%22%3E%3Cfes%3AAnd%3E%3Cfes%3APropertyIsEqualTo%3E%3Cfes%3AValueReference%3Estr_name%3C/fes%3AValueReference%3E%3Cfes%3ALiteral%3ERhinstra%C3%9Fe%3C/fes%3ALiteral%3E%3C/fes%3APropertyIsEqualTo%3E%3Cfes%3APropertyIsEqualTo%3E%3Cfes%3AValueReference%3Ehnr%3C/fes%3AValueReference%3E%3Cfes%3ALiteral%3E44%3C/fes%3ALiteral%3E%3C/fes%3APropertyIsEqualTo%3E%3C/fes%3AAnd%3E%3C/fes%3AFilter%3E",
+  "selected_properties": {
+    "adressid": "51798",
+    "str_name": "Rhinstraße",
+    "hnr": "44",
+    "hnr_zusatz": null,
+    "plz": "12681",
+    "bez_name": "Marzahn-Hellersdorf",
+    "ort_name": "Marzahn",
+    "blk": "183002",
+    "qualitaet": "Qualitaet B",
+    "typ": "Adresse",
+    "adr_datum": "2008-01-28",
+    "hko_id": "DEBE10YYS00012X9",
+    "native_crs": "EPSG:25833 (service default); requested and returned in EPSG:4326"
+  },
+  "identity_bridge": [
+    "SenMVKU notice of 13 July 2026 (file MVKU I C 210-14099): R44 Vision DC GmbH applied under section 4 BImSchG for an emergency-power plant of 111.846 MW thermal input (14 engines of 7.989 MW) on the plot Rhinstraße 44 in 12681 Berlin, to supply the data centre applied for under building law on the plot Rhinstraße 44, 12681 Berlin-Marzahn-Hellersdorf; plant commissioning planned for August 2028.",
+    "SenMVKU notice of 1 October 2026 (same file, published in the Amtsblatt für Berlin on 9 October 2026): no objections were received to the application of R44 Vision DC GmbH for the emergency-power plant on the plot Rhinstraße 44 in 12681 Berlin, so the hearing set for 16 October 2026 is cancelled.",
+    "Berlin address register: exactly one address Rhinstraße 44 (no suffix), postcode 12681, Bezirk Marzahn-Hellersdorf, Ortsteil Marzahn, block 183002."
+  ],
+  "consistency_checks": {
+    "native_point_25833": [
+      399613.467,
+      5819546.472
+    ],
+    "pyproj_check_wgs84": [
+      13.5205789,
+      52.516775
+    ],
+    "pyproj_check_note": "Independent EPSG:25833 to WGS84 transform of the native point (pyproj 3.7.1, PROJ 9.5.1, always_xy) agrees with the service's WGS84 output to 1e-7 degrees.",
+    "street_query": "The Rhinstraße query (berlin-adressen-rhinstrasse.gml, 175 addresses) has one Rhinstraße 44; neighbouring 42, 42A, 46 and 48 are separate address points.",
+    "containing_parcel": "The point lies on the western edge of ALKIS parcel Marzahn Flur 189 Flurstück 288 (12,953 m2, about 152 by 90 m; berlin-alkis-flst-bbox-rhin44.gml). The notices name the plot by address only, so the parcel is context, not the locator.",
+    "nearest_atlas_site_km": 37.8,
+    "versions": {
+      "pyproj": "3.7.1",
+      "proj": "9.5.1",
+      "shapely": "2.1.1"
+    }
+  },
+  "transform_check": "No Atlas transformation: the WGS84 point is the service's own EPSG:4326 output. An independent pyproj check of the native EPSG:25833 point agrees.",
+  "excluded_coordinates": [
+    {
+      "kind": "Applicant's registered office, Kurfürstendamm 212, 10719 Berlin",
+      "reason": "Company office address, not the plot."
+    },
+    {
+      "kind": "Secondary reports of a 'Bluestar' data centre on Rhinstraße in Lichtenberg",
+      "reason": "Not verified from a primary source and not linked to this record."
+    }
+  ]
+}

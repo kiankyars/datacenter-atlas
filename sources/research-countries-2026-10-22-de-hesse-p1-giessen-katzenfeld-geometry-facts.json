@@ -1,0 +1,123 @@
+{
+  "candidate_id": "revikon-giessen-katzenfeld-data-center",
+  "decision": "Selected the area centroid of the 'Sonstiges Sondergebiet Rechenzentrum' (SO, legend item 1.4.2) as drawn in the in-force Bebauungsplan GI 05/23 'Katzenfeld', after registering the plan sheet to the official basemap.de raster (BKG) with two building control features, as the project locator.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      8.659472,
+      50.6036056
+    ]
+  },
+  "authority_class": "compiled_reference",
+  "derivation": "georeferenced_source_map",
+  "scope_class": "official_plan_designated_data_centre_zone_centroid",
+  "use_scope": "project_locator",
+  "source_file": "local_data/country-research-de-hesse-p1/giessen-katzenfeld-plan.pdf",
+  "source_sha256": "adc47b054d2a88b61e87cbdf340dacd80c48658066f645c09238bbe35a77d468",
+  "source_url": "https://www.giessen.de/media/custom/2874_16130_1.PDF?1790948071",
+  "reference_map": {
+    "file": "local_data/country-research-de-hesse-p1/bkg-basemapde-grau-katzenfeld-800m-3150px.png",
+    "sha256": "672d3adcbcf00cf9fbfedf2f2b8c3eb90f02c81c6c31737050fadea53e09e58b",
+    "request": "basemap.de WMS GetMap, layer de_basemapde_web_raster_grau, CRS EPSG:25832, BBOX 475500,5605300,476300,5606100, 3150 x 3150 px (0.253968 m per pixel)",
+    "license": "CC BY 4.0, © GeoBasis-DE / BKG (2026)"
+  },
+  "selected_properties": {
+    "plan": "Bebauungsplan GI 05/23 'Katzenfeld', Universitätsstadt Gießen, scale 1:1000, north arrow vertical; raster sheet 4183.2 x 2323.44 pt, rendered with pdftoppm at 100 dpi (1 px = 0.254 m at plan scale)",
+    "zone": "Sonstiges Sondergebiet SO 'Rechenzentrum' (§ 11 BauNVO), GRZ 0.8, Baumassenzahl 10, abweichende Bauweise",
+    "zone_area_measured_m2": 59274,
+    "zone_area_stated_m2": 59400,
+    "zone_area_note": "Orange legend-1.4.2 pixels classified, closed by 6 px and hole-filled; the largest component (918,749 px at 0.0645 m2) agrees with the Begründung's 5.94 ha Sondergebiet.",
+    "zone_centroid_plan_px_100dpi": [
+      1100.42,
+      821.5
+    ],
+    "zone_extent_utm32": {
+      "easting_min": 475766.0,
+      "easting_max": 476034.3,
+      "northing_min": 5605632.6,
+      "northing_max": 5605982.4
+    },
+    "max_distance_centroid_to_zone_pixel_m": 182.2,
+    "centroid_inside_zone": true,
+    "centroid_utm32": [
+      475902.29,
+      5605801.18
+    ]
+  },
+  "registration": {
+    "model": "translation with the plan's stated scale (1:1000) and north-up orientation held fixed; base_px = a + s*plan_px, s = 0.254 / 0.253968 = 1.000126",
+    "transform_utm32": "E = 475622.788 + 0.254000 * x ; N = 5606009.838 - 0.254000 * y (x, y = plan pixel indices at 100 dpi, pixel centres)",
+    "control_points": [
+      {
+        "feature": "round building (house number 29) in the plan's Gemeinbedarf area: centre of the plan's drawn inner circle vs centre of the basemap ring building's inner edge",
+        "plan_px": [
+          1852.7,
+          1886.98
+        ],
+        "base_px": [
+          2335.07,
+          2242.13
+        ],
+        "fit": "least-squares circle fits, plan radius 39.57 px (10.05 m), basemap radius 40.50 px (10.29 m)",
+        "residual_m": [
+          -0.21,
+          0.1
+        ]
+      },
+      {
+        "feature": "existing combined heat and power (KWK) building in the Versorgungsfläche: centroid of the plan's grey building footprint (206 m2) vs centroid of the basemap building (215 m2)",
+        "plan_px": [
+          1150.94,
+          222.26
+        ],
+        "base_px": [
+          1634.9,
+          576.4
+        ],
+        "residual_m": [
+          0.21,
+          -0.1
+        ]
+      }
+    ],
+    "independent_checks": [
+      "Telekom building at Krofdorfer Straße 200 (plan outline next to the 'T' Versorgungsfläche): the basemap building coincides with the plan outline in a blended overlay at 200 dpi after applying the fitted translation.",
+      "Free-scale check: the control-point separation is 458.88 m on the plan and 458.89 m on the basemap; the bearing differs by 0.06 degrees, so neither scale nor rotation needed fitting."
+    ],
+    "rejected_attempts": "A global FFT correlation of plan linework against basemap linework gave unstable peaks (labels and hatching dominate) and was not used."
+  },
+  "identity_bridge": [
+    "The plan's title block names Bebauungsplan Nr. GI 05/23, Gebiet 'Katzenfeld', Universitätsstadt Gießen; the Verfahrensvermerke record the Satzungsbeschluss of the Stadtverordnetenversammlung on 27.08.2026 and Ausfertigung on 02.10.2026.",
+    "Legend item 1.4.2 identifies the orange zone as 'Sonstige Sondergebiete hier: Rechenzentrum (§ 11 BauNVO)'; Textliche Festsetzung 1.2.1 restricts it to a data centre with its ancillary facilities.",
+    "The city's notice signed 02.10.2026 and listed on 05.10.2026 puts B-Plan GI 05/23 'Katzenfeld' into force; the zusammenfassende Erklärung and Begründung describe the roughly 6 ha Sondergebiet for a data centre of about 65 MW nominal power prepared with Revikon."
+  ],
+  "consistency_checks": {
+    "nearest_atlas_sites_km": {
+      "firstcolo FRA7 Rosbach Campus": 34.453,
+      "noris network FRA1 Schwalbach Campus": 49.821,
+      "NTT Frankfurt 1 Data Center Campus": 52.901
+    },
+    "screened_dataset": "verified_construction_core/2026-10-22-research-thirtyfourth",
+    "versions": {
+      "pyproj": "3.7.1",
+      "proj": "9.5.1",
+      "pillow": "11.3.0",
+      "numpy": "2.3.3"
+    }
+  },
+  "transform_check": "pyproj 3.7.1 (PROJ 9.5.1) EPSG:25832 -> EPSG:4326, always_xy.",
+  "excluded_coordinates": [
+    {
+      "kind": "centroid of the whole 16.6 ha plan area (Geltungsbereich)",
+      "reason": "The plan area also contains a 6 ha Gewerbegebiet, a Versorgungsfläche, public green, compensation areas and a Gemeinbedarf area, so its centroid would not locate the data-centre zone."
+    },
+    {
+      "kind": "street address 'Krofdorfer Str. 200' shown by third-party listings",
+      "reason": "Not from a primary source; in the plan, house number 200 is the existing Telekom building in a Versorgungsfläche outside the data-centre zone."
+    },
+    {
+      "kind": "Umspannwerk Gießen-Nord",
+      "reason": "Adjacent substation north of the plan area; grid context only."
+    }
+  ]
+}

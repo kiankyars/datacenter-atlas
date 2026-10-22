@@ -1,0 +1,41 @@
+{
+  "candidate_id": "pulsant-birmingham-wm1",
+  "decision": "Selected the Environment Agency public-register site location for permit EPR/BP3322LU (holder Pulsant Limited, 20 Westwood Avenue, Birmingham B11 3RZ) as the project locator for Pulsant's Birmingham WM-1 data centre. The register's own WGS84 latitude and longitude are copied without transformation.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -1.853127,
+      52.451436
+    ]
+  },
+  "authority_class": "official_source",
+  "derivation": "direct_geometry",
+  "scope_class": "environmental_permit_register_site_location",
+  "use_scope": "project_locator",
+  "source_file": "local_data/country-research-uk-regions-p1/ea-ii-registration-EPR-BP3322LU.json",
+  "source_sha256": "654cb79b5617f80e6cbf7ef5fdd3ff8cb6160ed578accd533d24f7bf914bcce9",
+  "source_url": "https://environment.data.gov.uk/public-register/industrial-installations/registration/EPR-BP3322LU.json",
+  "retrieved_at": "2026-10-22T17:25:27.039Z",
+  "selected_properties": {
+    "register": "Environmental Permitting Regulations – Installations for England",
+    "permit": "EPR/BP3322LU",
+    "activity": "MCP (medium combustion plant)",
+    "registration_date": "2025-12-08",
+    "holder": "Pulsant Limited",
+    "site_address": "Pulsant, 20 Westwood Avenue, Birmingham, B11 3RZ",
+    "grid_reference": "SP1007883731",
+    "easting": 410078,
+    "northing": 283731,
+    "lat": 52.451436,
+    "long": -1.853127,
+    "local_authority": "Birmingham (E08000025)"
+  },
+  "consistency_checks": {
+    "pyproj": "Transforming the register's easting and northing with pyproj 3.7.1 (EPSG:27700 to EPSG:4326) gives 52.4514451, -1.8531340, 1.1 m from the register's published latitude and longitude.",
+    "postcode_centroid": "The register's easting and northing (410078, 283731) equal the ONS centroid of postcode B11 3RZ (postcodes.io: 410078, 283731), so the register point was evidently derived from the site postcode.",
+    "operator_address": "Pulsant's Birmingham WM-1 datasheet gives the facility address as Westwood Avenue, Tyseley, Birmingham B11 3RZ, matching the permit's site address and holder.",
+    "imagery": "Esri World Imagery z17 tiles (x 64859-64863, y 43025-43028) viewed locally and not redistributed: the point falls on the roof of a large rectangular building almost fully covered by photovoltaic panels, on the south-west side of the main road, with a fenced service yard and parking; the datasheet notes on-site solar panels generating more than 400,000 kWh a year.",
+    "geocoder_used": false
+  },
+  "uncertainty": "The register publishes no positional accuracy and its point coincides with the postcode centroid; the imagery check places it on the PV-roofed building, but the building outline itself is not taken from an official source."
+}

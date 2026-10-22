@@ -1,0 +1,116 @@
+{
+  "reviewer": "root",
+  "reviewed_at": "2026-10-22",
+  "decision": "accepted_for_integration",
+  "update": "verified_construction_core/2026-10-22-research-thirtyninth",
+  "base_dataset": "verified_construction_core/2026-10-22-research-thirtyeighth",
+  "process": "continuous: one researcher per beat, one adversarial verifier per fragment",
+  "fragments": [
+    {
+      "fragment": "de-hesse-p1",
+      "verdict": "accept",
+      "checks": [
+        "All 13 relied-on captures rehashed: SHA-256 equals .metadata.json sha256 and source content_hash",
+        "Gießen notice PDF read: council adopted B-Plan GI 05/23 on 27.08.2026; plan in force on publication (§ 10(3) BauGB); signed 02.10.2026",
+        "Gießen notices listing links 2874_16144_1.PDF dated 05.10.2026; zusammenfassende Erklärung gives Bekanntmachung der Rechtskraft 05.10.2026; as_of 2026-10-05 is 17 days old",
+        "Identity: plan legend 1.4.2 'Sonstige Sondergebiete hier: Rechenzentrum'; TF 1.2.1 restricts SO to a data centre; Begründung: about 65 MW hyperscale centre prepared with Revikon, 5.94 ha SO, operator not yet selected",
+        "Announced only (B-Plan is a by-law, not a permit); no roles claimed (developer is not an allowed role)",
+        "Locator recomputed independently: orange SO mask 59,182 m2, centroid plan px (1100.35, 822.03); my circle fit and KWK centroids give a 2-point fixed-scale registration with 0.30 m residuals; third check: basemap Telekom building outline coincides with the plan outline; result 0.15 m from the claimed point",
+        "Plan is north-up (north arrow checked), 1:1000 at 100 dpi = 0.254 m/px; separation 458.87 vs 458.84 m, bearing difference 0.08 degrees",
+        "robots.txt for giessen.de and sgx.geodatenzentrum.de was captured before use and allows the paths used",
+        "Distinctness re-screened against research-thirtyseventh and research-thirtyeighth, the other queue fragments and sources/*-holds.json: only the 16 Oct Revikon hold matches, and its reopen condition is met",
+        "FR15 refuted: status and locator came from a Staatsanzeiger PDF fetched via /asset/secure-link, which staatsanzeiger-hessen.de robots.txt disallows for all agents; the compliant contents page and UVP record do not state that FR15 is new, or give its site or coordinate",
+        "Removed the 5 FR15-only sources; moved the FR15 geometry facts file to removed/; added the FR15 hold; added compliance notes to the Karben, FRA23 and Uniper holds, which used Staatsanzeiger PDFs from the same disallowed path",
+        "dryrun_fragment.py ok against research-thirtyeighth (554 sites, 587 projects)"
+      ],
+      "residual_risks": [
+        "The Gießen zone centroid relies on a two-point translation of a raster plan without a coordinate grid. Registration error is sub-metre, but the building position within the 270 by 350 m zone is unknown.",
+        "No operator has been selected and the plan is an Angebotsplan. The project could be re-scoped or abandoned before any permit.",
+        "The Karben, FRA23 and Uniper hold texts contain details from robots-disallowed Staatsanzeiger PDF captures; those details are now flagged in the holds but not deleted.",
+        "The researcher's notes wrongly state that robots.txt allows the publisher's secure-link path."
+      ]
+    },
+    {
+      "fragment": "de-north-east-p1",
+      "verdict": "accept",
+      "checks": [
+        "All 11 relied-on captures rehashed: SHA-256 equals .metadata.json sha256 and sources.json content_hash; HTTP 200, credential-free; URLs match; both geometry-facts hashes matched (IPHH4 facts re-hashed after verifier edit)",
+        "IPHH4 permit PDF read with pdftotext (41 pp.): Bezirksamt Hamburg-Mitte GZ M-BP-2262-2025, 20 Juli 2026, section 72 HBauO GENEHMIGUNG for 'Neubau von zwei Rechenzentren mit Generatorbuehnen, sowie Herstellen von 8 KFZ-Stellplaetzen', Gemarkung Hamm Marsch, site plan DE-IPHH4-BA-E0-INV-LA-M-52000, Vorbescheid M-BP-864-2024 cited; suspensive condition (Ergaenzungsbescheid Standsicherheit) and species-protection condition confirmed; 3-year lapse; 4 Vollgeschosse, Gebaeudeklasse 5",
+        "Transparenzportal dataset page: Veroeffentlichungsdatum 29.07.2026, Zeitbezug from 20.07.2026, links the captured PDF (5b761175); PDF ModDate 28 Jul 2026 consistent; as_of 2026-07-29 is exactly 85 days before 2026-10-22 (inside the window, at its edge); permit is in effect, data-centre development itself, granted building permit",
+        "Vorbescheid M-BP-864-2024 (23 May 2025, published 27.03.2026) read: Flurstueck 949 Hamm Marsch, Baublock 118-002, DE-IPHH4 drawings, +26.90 m attic and +39.00 m chimneys approvable, western neighbour Flurstueck 948 consent; permit's '23.05.2026' citation date is a clerical error (noted in permit_identity_review)",
+        "IPHH4 locator recomputed independently from the raw ALKIS GML (shapely 2.1.1, pyproj 3.7.1): centroid 568906.251/5934086.501 EPSG:25832 -> 10.0400694, 53.5511422, inside parcel, area 2204.7 m2 (stated 2,207), max vertex 35.6 m; adjacency to parcels 948, 174 (Mittelkanal) and 581 confirmed",
+        "Verifier query of Hamburg ALKIS (robots.txt read; only spatineo disallowed): Wendenstrasse 408 (IPHH office) parcel centroid is ~564 m from parcel 949 and no data-centre building stands beside it, so locator re-scoped campus_locator -> project_locator and site re-keyed/renamed to the IPHH4 plot (curated:portus-iphh4-hamburg-wendenstrasse-285) to stop wrong campus inheritance",
+        "Corrected facts: 55 (not 59) other parcels numbered 949; possible extension onto adjoining parcel 445 (permit trees 445-01..06; union centroid ~16 m east) added to uncertainty; capacity_basis keeps 12.8 MW (release and HH4 page agree) and drops conflicting white-space figures; Portus Hamburg page date_semantics corrected (JSON-LD dateModified 2026-09-17, unbounded, unused)",
+        "IPHH4 role: Portus 2024 release names IPHH4 as its planned new data centre; operator/intended is supported",
+        "R44 notices read with pdftotext: 1 Oct 2026 MVKU I C 210-14099 notice (no objections, 16 Oct hearing cancelled, R44 Vision DC GmbH, Netzersatzanlage, Rhinstrasse 44, 12681 Berlin); SenMVKU listing confirms Amtsblatt publication 09.10.2026; 13 July notice states the 14-engine 111.846 MW plant is the emergency supply of the data centre applied for under building law on the same plot; announced only, consistent with the Bedburg NRW08/NRW09 BImSchG precedent; observation 21 days old",
+        "R44 locator: Berlin address WFS returns one Rhinstrasse 44 (adressid 51798, numberMatched 1) at 52.51677505 N 13.5205789 E; independent EPSG:25833 -> WGS84 transform of the native street-query point agrees to <1 cm; lies on the edge of ALKIS parcel Marzahn Flur 189 Flurstueck 288 (12,953 m2)",
+        "Distinctness re-screened against 2026-10-22-research-thirtyeighth (sites, projects, evidence, source-records, identity-mapping), claims.tsv, all other queue fragments and sources/*-holds.json by names, aliases, operators, addresses, file numbers and coordinates: only Portus Munich/MUC2 records (distinct); nothing within 2 km of either point (nearest 14.45 km and 37.8 km)",
+        "No third-party personal data in changes, sources, holds or notes (officials' e-mail and company officers' names in captures not reproduced); dryrun_fragment.py ok against thirty-eighth (555 sites, 588 projects); originals of edited files kept in pre-verify/"
+      ],
+      "residual_risks": [
+        "IPHH4's 2026-07-29 observation is at the 85-day edge today and passes the builder's 90-day limit only through 2026-10-27; publish promptly or it must be held",
+        "The IPHH4 observation date is the portal publication date, not the 20 July permit date; a stricter reading would place the permit outside the window",
+        "IPHH4 identity rests on the DE-IPHH4 drawing numbers and the Vorbescheid parcel bridge; Portus's 'adjacent to IPHH3' wording is not reconciled with the ~0.56 km distance to its Wendenstrasse 408 address, and the works may extend onto parcel 445",
+        "R44's in-window notice names only the Netzersatzanlage; the data-centre identity and the intended-operator role come from the out-of-window 13 July notice in the same file",
+        "claims.tsv still lists the IPHH4 claim under its old campus key (coordinates unchanged)"
+      ]
+    },
+    {
+      "fragment": "ie-p1",
+      "verdict": "accept",
+      "checks": [
+        "All 19 original captures rehashed: file sha256 == .metadata.json sha256 == sources content_hash; URL, HTTP 200, capture time and byte counts match",
+        "Clonshaugh: rendered licence p.3 - EPA introduction (sealed 24 Sep 2026) says ADSIL currently operates the facility; licensed installation = Buildings X, Y, W; TC report (10 Sep 2026) says existing combustion plant is already operating and commissioned",
+        "Clonshaugh: LEAP API confirms licence issued 24 Sep 2026, Final Decision, Licensed; docs list confirms Final Determination_218.pdf is the c5c4a9be capture",
+        "Huntstown: operational report (document control issue date 14 Sep 2026, posted 13 Oct) sections 1.1 and 2.3 state construction is under way and main works ongoing for all elements; NTS says not yet operational; Q2 2028/2029 targets unused",
+        "Huntstown: FW21A/0151 final grant 21 Mar 2025 (ABP-313583-22) confirmed in register capture; EPA 15 Oct RFI only asks for notices to be republished",
+        "Window: as_of 2026-09-24 (28 days) and 2026-09-14 (38 days) against 2026-10-22, floor 2026-07-29; all sources government_record or regulatory_filing",
+        "Locators recomputed from EPA register NGRs and application-form Site Centre Points with pyproj 3.7.1 EPSG:29903->4326: both within 1 cm; alternative operation offsets 2.28 m and 2.24 m; ITM reading lands offshore",
+        "Cross-checks reproduced: Clonshaugh 3.5 m from DCC 3400/19 and inside the 52 Schedule B stack extent (rendered p.49); Huntstown 39.8 m from FW21A/0151",
+        "Distinctness re-screened against the current dataset 2026-10-22-research-thirtyeighth (553 sites, 586 projects, evidence, source-records, identity-mapping), 9 sources/*-holds.json and all other queue fragments: no name, operator, address or reference match; nearest candidates 1.64 km and 1.86 km from Huntstown (Equinix and Pure DC Ballycoolin, different operators)",
+        "Roles: ADSIL operator current (licensee); Microsoft Ireland Operations operator intended (applicant)",
+        "KIC B1: diff of the June and September operational reports shows section 1.4 unchanged, including the lapsed mid-2026 forecast; removed and held",
+        "No private individuals' names in changes, sources or holds; dryrun_fragment.py ok (555 sites, 588 projects)"
+      ],
+      "residual_risks": [
+        "The Clonshaugh operation statement is in the licence introduction, which the licence says is not part of the licence; the TC report corroborates it but neither names a per-building operating date",
+        "Huntstown as_of uses the report's issue date (14 Sep); the PDF was created on 9 Oct, so the construction statement could reflect any day from 14 Sep to 9 Oct",
+        "Both locators are applicant site-centre points with unknown survey accuracy; register cross-check points have undocumented derivation",
+        "Fingal FW26A/0163E at Huntstown Power Station (533 m) has a truncated description and could be related data-centre development"
+      ]
+    },
+    {
+      "fragment": "uk-regions-p1",
+      "verdict": "accept",
+      "checks": [
+        "Base re-read from site/config.json at start and end: verified_construction_core/2026-10-22-research-thirtyeighth; 85-day window from 2026-10-22 starts 2026-07-29",
+        "All 17 relied-on captures rehashed: sha256 equals .metadata.json and sources.json content_hash; URLs match; geometry facts files match their recorded sha256; Chapelcross Esri tile combined digest 8c692553... reproduced",
+        "Pulsant: read 'Published 01 Sep 2026' announcement (JSON-LD datePublished/dateModified same minute): present-tense integrated facility hosting regional businesses' own infrastructure -> operational 2026-09-01 (51 days), company_disclosure; GBP 1m upgrades treated as plans only",
+        "Pulsant locator: EA register EPR/BP3322LU JSON gives lat 52.451436 long -1.853127, holder Pulsant Limited, 20 Westwood Avenue B11 3RZ; pyproj 3.7.1 E/N transform lands 1.1 m away; equals B11 3RZ postcode centroid (postcodes.io quality 1, disclosed); my Esri z17 mosaic puts the point on the PV-roofed rectangular building matching the datasheet's on-site solar array",
+        "CX: read 29 Sep 2026 post ('has today submitted' PPiP; JSON-LD datePublished 2026-09-29) -> announced 2026-09-29 (23 days), developer company_disclosure; dateModified 2026-10-07 not relied on",
+        "CX locator recomputed independently: extracted page-7 JPEG (sha256 4565857...), SIFT+RANSAC similarity registration to the Esri z16 mosaic (scale 1.239, rot -1.97 deg, 10 inliers, RMS ~2.3 m), red-line polygon snapped to detected red pixels, area centroid in EPSG:27700 with pyproj 3.7.1/shapely 2.1.1: 55.0228679, -3.2219048, 6.9 m from the proposed point; my polygon 58.1 ha vs 56.1 ha, IoU 0.953; proposed point inside, ~70 m from edge; overlay follows the bounding roads",
+        "CX reopens the thirty-fourth uk_ie hold (same candidate); developer-plan-registered-to-imagery locators have Atlas precedent as georeferenced_source_map/compiled_reference",
+        "Wilton: read 14 Oct 2026 council highways consultee response on pending R/2026/0337/FFM (register lists it 14/10/2026; status Valid, no decision, expiry 30/10/2026) -> announced 2026-10-14 (8 days), government_record",
+        "Wilton locator: form E 456113 N 520827 read in redacted application form; pyproj 3.7.1 EPSG:27700->4326 gives 54.5795449, -1.1333869 exactly; plan-scale comparison against the 1:2500 location plan and Esri z17 tiles puts it inside the 15.45 ha red line on cleared former Invista land; TS6 8JH centroid 420 m north not used",
+        "Distinctness: names, aliases, references, postcodes and 2 km proximity screened against thirtyeighth sites/projects/evidence/source-records/identity-mapping, all sources/*-holds.json, every other queue fragment and claims.tsv: only this lane's own claims and the CX thirty-fourth hold match; nearest Atlas sites 68-101 km",
+        "Roles: Pulsant Limited operator/current only; no roles for CX or Wilton; one project per new site; no status refreshes",
+        "Privacy: no officer names, emails or phones from the council email/PDF or executive quotes copied into changes, sources, holds or notes",
+        "dryrun_fragment.py: ok (556 sites, 589 projects, 2961 evidence)"
+      ],
+      "residual_risks": [
+        "Pulsant point is the EA register's postcode-derived site point, not a surveyed or official building outline; identity on the PV-roofed building rests on imagery interpretation",
+        "CX boundary comes from an April 2026 consultation graphic without coordinates; the council's PPiP red line (portal behind a Cloudflare challenge) was not compared and may differ",
+        "CX post was modified 2026-10-07 with no archived copy; only the datePublished 'has today submitted' statement is used",
+        "Wilton announced status rests on a council consultee response rather than an applicant statement; a decision is due by 30 Oct 2026 and would be a later observation",
+        "Wilton containment check relied on visual plan-to-imagery comparison using plan scale and north, not a formal georeferencing of the location plan"
+      ]
+    }
+  ],
+  "packet_pins": {
+    "definitions/atlas-research-thirtyninth-2026-10-22.json": "fcd3f50f2f9eaed0e71fdb2681906cc2e5a12802ed0f63526ae322dc1d509b85",
+    "sources/research-countries-2026-10-22-thirtyninth-primary-sources.json": "88e0c8781698d0e2b9052db72a1b0e7404070a3c393dc4a9468b28daabea63e5",
+    "sources/research-countries-2026-10-22-thirtyninth-actions.json": "9d197a7c7895fd8bab66e90ffc5e50beb7f4a7608874dccc78a32a9851e2ec79",
+    "sources/research-countries-2026-10-22-thirtyninth-holds.json": "c5e64dabd43f0cbbc75f12bf2207c523e3366b67dd139c30f4948a7ddca6da05"
+  },
+  "raw_captures_redistributed": false
+}
