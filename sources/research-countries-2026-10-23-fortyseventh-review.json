@@ -1,0 +1,41 @@
+{
+  "reviewer": "root",
+  "reviewed_at": "2026-10-23",
+  "decision": "accepted_for_integration",
+  "update": "verified_construction_core/2026-10-23-research-fortyseventh",
+  "base_dataset": "verified_construction_core/2026-10-23-research-fortysixth",
+  "process": "continuous: one researcher per beat, one adversarial verifier per fragment",
+  "fragments": [
+    {
+      "fragment": "mena-tr-il-p1",
+      "verdict": "accept",
+      "checks": [
+        "Rehashed all 7 relied-on captures (3 patt.gov.gr PDFs, 1 patt post, 3 digitalrealty.com pages): sha256 matches both .metadata.json and sources.json content_hash; credential-free fetches, HTTP 200; geometry-facts file sha256 bdaa2fac... matches",
+        "OPS-ADE 586011 rendered with pdftotext: 'Τροποποίηση Γνωστοποίησης Λειτουργίας', 07/09/2026 16:23, 'Οριστικά Υποβληθείσα', economic operator Digital Realty Hellas, Ifestou 72-76 'Bota' BIOPA Koropi; 'provides services to third parties'; field 18 covers ATH1-ATH4 with the per-building IT kW as transcribed",
+        "Source kind regulatory_filing (primary), filed 2026-09-07 and published by the Region of Attica 2026-09-08 (post datePublished 06:31:55Z; PDF CreationDate 8 Sep); 46 days before 2026-10-23, inside the 85-day window",
+        "PPD decision prot. 2834 read: 'υφιστάμενα κτίρια ΑΤΗ-1..ΑΤΗ-4', 17.779 MW IT, legal basis YA 96038/2024 (data-centre operation notifications under art. 321 L.4442/2016); environmental decision only, used as context",
+        "Operating scope ATH1-ATH3: the 22 Oct operator metro page lists exactly 3 data centres (ATH1, ATH2 Ifestou 76; ATH3 Ifestou 74) with 'Request a tour'; independently fetched Wayback copy of 4 Jun 2026 (id_ raw) also lists the same 3, so the listing predates the 7 Sep filing; ATH4 absent in both and correctly held",
+        "Locator recomputed from raw PDFs: both 584789 and 586011 print 37.87155141033321 / 23.870614305559798; pyproj 3.7.1 geodesic 34.8 m (az 280.8) to the ATH1/ATH2 operator point and 107.4 m (az 318.0) to ATH3; EPSG:2100 488470.88, 4191283.44; campus_locator, direct_geometry, uncertainty null with reason",
+        "Distinctness re-screened against the newer current dataset 2026-10-23-research-fortysixth (601 sites, 636 projects, evidence, source-records, identity-mapping), all queue fragments, claims.tsv and sources/*-holds.json: no Digital Realty Athens, Lamda Hellix, Koropi/Kropia or Ifestou match; nearest site Ten Brinke Spata 11.03 km; only the 2026-10-16 thirty-first ATH4 hold names the campus",
+        "Successor check: patt post-sitemap71 (index lastmod 2026-10-22) holds no later Digital Realty notification, cessation or modification; only the 3 posts of 8 and 14 Sep",
+        "Role: Digital Realty Hellas Monoprosopi A.E. operator, relationship_scope current (OPS-ADE economic operator; PPD 'Φορέας της δραστηριότητας')",
+        "Commercial third-party colocation; no demonstrator or institutional HPC; no personal data (officials' names/e-mails and engineer filenames in the PDFs not reproduced)",
+        "robots.txt for www.patt.gov.gr (allow all except /imunify-bot-check) and www.digitalrealty.com (disallows /taxonomy/, /node/ only) permit the captured paths; verifier's own requests: archive.org robots then Wayback CDX and one id_ snapshot",
+        "Edits: Lamda Hellix alias reworded to the filename basis only; IT-power note records that the per-building values sum to 17,716.20 kW against the filed total 17,719.20 kW; distinctness review records the fortysixth re-screen",
+        "dryrun_fragment.py ok against verified_construction_core/2026-10-23-research-fortysixth (602 sites, 637 projects)"
+      ],
+      "residual_risks": [
+        "An operation notification is a statutory filing made before or at the start of operation (the same filing covers the unopened ATH4); operation of ATH1-ATH3 on 7 Sep rests on that filing read with the 'existing buildings' PPD and the operator's facility listing (archived 4 Jun and live 22 Oct), not on an explicit dated 'in operation' sentence",
+        "The register coordinate has no stated datum or accuracy and the installation is named after ATH3; it is a campus point, not a building or parcel geometry",
+        "The filing gives installed IT power, not load in service; its own IT total is internally inconsistent by 3 kW"
+      ]
+    }
+  ],
+  "packet_pins": {
+    "definitions/atlas-research-fortyseventh-2026-10-23.json": "04ec6e306dd83e4919ea4fb2ef8831c4cc6e945556828a5d4bd1f0f9babe8633",
+    "sources/research-countries-2026-10-23-fortyseventh-primary-sources.json": "327a7c3594905f1980647bcc7fb00845ed42f36d4c94d6f5444225af0948da93",
+    "sources/research-countries-2026-10-23-fortyseventh-actions.json": "a003f09ae6d2ffc35408c55222f9b2cc9cb257656fa817621c83c0813d92c08b",
+    "sources/research-countries-2026-10-23-fortyseventh-holds.json": "81db9d5d92df942e2d716b194ba47c2417550f7041a5e007aa42d82d57821363"
+  },
+  "raw_captures_redistributed": false
+}

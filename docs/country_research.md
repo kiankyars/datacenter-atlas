@@ -326,3 +326,5 @@ From 22 October 2026 sites are added continuously: researchers each work a narro
 `verified_construction_core/2026-10-23-research-fortyfifth`: **596 sites and 631 projects in 63 countries**. Adds CtrlS Hyderabad Financial District datacenter — existing operations (operator-mapped facility, DC2 or DC3); CtrlS Bengaluru Datacenter — existing operations. Refreshes Sify Chennai 02 data center campus, Siruseri (partially operational).
 
 `verified_construction_core/2026-10-23-research-fortysixth`: **601 sites and 636 projects in 63 countries**. Adds Beyond.pl Data Center Campus — existing operations (Data Center 2 and AI Factory); Alter GPU Center Stargard — data processing centre building (building permit 785/2026); SUNeVision MEGA-i — operating carrier-neutral connectivity-hub data centre; SUNeVision MEGA Two — operating data centre; SUNeVision MEGA Gateway — operating data centre. Refreshes DataVolt Oxagon AI data centre campus (NEOM) (under construction).
+
+`verified_construction_core/2026-10-23-research-fortyseventh`: **602 sites and 637 projects in 63 countries**. Adds Digital Realty Athens Campus — ATH1, ATH2 and ATH3 data-centre operations.
