@@ -1,0 +1,62 @@
+{
+  "candidate_id": "statesboro-burkhalter-road-data-center",
+  "decision": "Selected the centroid of the current Bulloch County parcel polygon (PIN 7887-33-7607, 27.05 geodesic acres) that contains the official 9-1-1 address point for 6539 Burkhalter Rd, the address named by Statesboro rezoning case RZ 26-07-05 for a proposed data center, as the project locator. The conceptual building footprint inside the parcel is not located.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -81.7531068,
+      32.4014009
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_tax_parcel_centroid",
+  "use_scope": "project_locator",
+  "source_file": "local_data/country-research-us-southeast-p1/stabull-parcellayer-at-6539-address.json",
+  "source_sha256": "ba2ddb1eeec586425b06f492e71ac8f0a194e9266ab9f156a87e93d90491d19a",
+  "source_url": "https://stabull.org/agserver/rest/services/Bulloch_Parcel_layer/FeatureServer/10/query?geometry=-81.75390239354141%2C32.39959163897248&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=OBJECTID_12%2CACRES%2CDATE_%2CPROP_PIN&returnGeometry=true&outSR=4326&f=json",
+  "retrieved_at": "2026-10-22T17:02:14.962Z",
+  "selected_properties": {
+    "OBJECTID_12": 103666,
+    "PROP_PIN": "7887-33-7607",
+    "ACRES": 27.04603589,
+    "DATE_": null,
+    "layer": "Bulloch_Parcel_layer (FeatureServer layer 10), Statesboro-Bulloch County GIS (stabull.org); no parcel number, owner or edit-date attributes are published in this layer"
+  },
+  "computed": {
+    "parts": 1,
+    "geodesic_acres": 27.05,
+    "centroid_lon_lat": [
+      -81.7531068,
+      32.4014009
+    ],
+    "centroid_inside_polygon": true,
+    "extent_m": [
+      438,
+      580
+    ],
+    "bounds_lon_lat": [
+      -81.754899,
+      32.398808,
+      -81.75024,
+      32.404043
+    ],
+    "max_vertex_distance_from_centroid_m": 333.3,
+    "method": "Polygon ring returned by the service with outSR=4326 (native EPSG:2239, NAD83 Georgia East ftUS); centroid computed in EPSG:32617 and returned to WGS84; geodesic area on the WGS84 ellipsoid",
+    "native_crs_cross_check": "Centroid of the native EPSG:2239 ring transformed locally with pyproj: (-81.7531034, 32.4013947), 0.76 m from the selected point",
+    "tools": "pyproj 3.7.1, shapely 2.1.1 (scripts kept in the session scratchpad: statesboro_geom.py, statesboro_final.py)"
+  },
+  "identity_bridge": [
+    "Statesboro City Council minutes of 18 August 2026 (agenda item 8): application RZ 26-07-05 by 4AM Development, LLC for a zoning map amendment from R-4 to O (Office and Business District) for one parcel of 26.49 acres at 6539 Burkhalter Road for a proposed data center, listed as Tax Parcel 101 000001 000; approved 3-2. Staff describe the site as containing an older single-family home, lying between a solar farm and residential subdivisions, with a conceptual 230,000 sq ft two-story facility centred on the parcel.",
+    "Bulloch County 9-1-1 address layer (stabull.org Bulloch_addresses, layer 6): exactly one ACTIVE point for 6539 BURKHALTER RD (modified 2026-01-23) at (-81.7539024, 32.3995916).",
+    "That address point lies inside the current parcel polygon PIN 7887-33-7607 (27.05 geodesic acres, layer acreage 27.046), consistent with the 26.49 acres stated in the minutes (2.1% difference).",
+    "The 2022 Bulloch County parcel table (Bulloch_Parcels MapServer, 'Bulloch GIS 2022') lists 6539 BURKHALTER RD as parcel 108 000001 000 (PIN 7887-44-0136, 50 acres, county zoning R-40/AG-5). The current polygons 7887-33-7607 (27.05 ac) and 7887-44-4600 (23.76 ac) together reproduce that 50.63-acre parcel (union/2022 area ratio 1.004), so the 2022 parcel has been split and the addressed part is 7887-33-7607.",
+    "The Statesboro zoning layer (Statesboro_Zoning MapServer, the city's definitive zoning layer) maps a polygon coded S(O) (Statesboro Office) of 27.99 geodesic acres that contains 99.99% of parcel 7887-33-7607; the minutes record the parcel as R-4 before the 18 August decision, so the layer reflects the approved rezoning."
+  ],
+  "consistency_checks": {
+    "parcel_number_discrepancy": "The minutes and action agenda print the tax parcel as 101 000001 000. No parcel with a 101 map prefix exists in the 2022 county parcel table, which gives the address as 108 000001 000 before the split; the current parcel layer publishes PINs only. The identity therefore rests on the street address, the acreage and the rezoned zoning polygon, not on the printed parcel number.",
+    "vintage": "The current parcel layer carries no edit dates; it post-dates the 2022 table because it shows the split. The address point was modified 2026-01-23 and the zoning layer already shows the 18 August 2026 rezoning.",
+    "datum": "WGS84 output from the service (outSR=4326)",
+    "geocoder_used": false,
+    "personal_data": "Owner-name and contact fields of the county layers were not requested; only parcel, PIN, acreage, address and zoning attributes were retrieved."
+  }
+}

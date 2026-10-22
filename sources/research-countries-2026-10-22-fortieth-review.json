@@ -1,0 +1,71 @@
+{
+  "reviewer": "root",
+  "reviewed_at": "2026-10-22",
+  "decision": "accepted_for_integration",
+  "update": "verified_construction_core/2026-10-22-research-fortieth",
+  "base_dataset": "verified_construction_core/2026-10-22-research-thirtyninth",
+  "process": "continuous: one researcher per beat, one adversarial verifier per fragment",
+  "fragments": [
+    {
+      "fragment": "de-south-west-p1",
+      "verdict": "accept",
+      "checks": [
+        "All 20 relied-on captures rehashed: file SHA-256 = metadata sha256 = source content_hash; metadata URL = source_url, HTTP 200, no credentials",
+        "STR001: operator post (JSON-LD datePublished 2026-10-02) says in its own voice that STR001 is customer-ready and runs on 100% renewable electricity; Stuttgart page (2026-08-14) and Wayback copy of 2 Aug (version of 30 Jul) both list 'STR001 (In operation)' at Schickardstrasse 19; 20 days old",
+        "STR001 locator recomputed: ALKIS-BW building DEBWL001000uLA5J centroid (EPSG:25832) is 8.967214, 48.6761416 (0.002 m off), 3,238.9 m2, 42.0 m to farthest vertex; LGL street catalogue 202606 confirms key 01885 = Schickardstrasse, Boeblingen 08115003; footprint and operator-linked map place are inside parcel Dagersheim 3908/21; the place is 8.6 m from the footprint",
+        "LEV002: live page dateModified 2026-08-14 lists 'LEV002 (Under construction)', with the LEV002 text rewritten in that version; the Wayback copy of 2026-08-02 is the preceding version (dateModified 2026-04-24) with the same label, so the modification is bounded between 2 Aug and the 22 Oct capture; 69 days old; the 16 Apr release confirms adjacency to LEV001 and the February 2026 start, used only as context",
+        "LEV002 locator recomputed: union of NRW ALKIS parcels Luetzenkirchen Flur 20 640/961/962 (exactly the three 'Dornierstrasse 10' parcels of 13 returned) = 6,916 m2, centroid 7.0200495, 51.058417 (0.002 m off), inside the union; building DENW38ALdF00003ABL is 22.7 m away; campus scope and unknown LEV002 offset are recorded",
+        "Polarise Amberg: dated release (time 2026-09-09) states the Amberg (Unterallgaeu) AI factory, initial 65 MW and scalable to 120 MW, on the former Wertachtal transmitter site; announced only, 43 days old; the 10 Mar release supports identity and the intended-owner role (acquisition of the transmission building)",
+        "Amberg locator recomputed: ATKIS Basis-DLM area DEBYBDLMbM0001yz 'Ehemalige Kurzwellensendeanlage Wertachtal' = 32,177 m2, centroid 10.6946238, 48.0868088 (0.004 m off), 103 m to farthest vertex; inside municipal area 09778111 (AX_Gemeinde 'Amberg', not 09361000), 561 m from its boundary; the DOK map shows the circular hub with a central building",
+        "Roles checked: AtlasEdge operator current (STR001), AtlasEdge operator intended (LEV002), Polarise operator and owner intended; relationship_scope values are valid",
+        "Distinctness re-screened against current dataset 2026-10-22-research-thirtyninth (561 sites, 594 projects, 2,991 evidence rows, source-records and identity-mapping), the other 79 queue and holds JSON files and claims.tsv: no name, alias, operator, address or 5 km coordinate match; the only AtlasEdge hit is the HAM002 Ahrensburg hold; distinctness_review texts updated to cite the thirty-ninth base",
+        "No private-individual names, emails or phones in changes, sources, holds or notes; robots.txt captures confirm atlasedge.com (/o365/ only), polarise.eu (allow) and google.com /maps/place/ (allowed)",
+        "Geometry-facts files match the sha256 values in sources.json; every source is referenced; dryrun_fragment.py ok against thirty-ninth (564 sites, 597 projects, 3,011 evidence)"
+      ],
+      "residual_risks": [
+        "STR001's 2 Oct post relays a Capacity feature (the operating statement is in the operator's voice); Schickardstrasse 19 is also AtlasEdge's German registered address, but the operator's data-centre page gives it as STR001's address, and the located building is a Betriebsgebaeude with four transformer structures",
+        "LEV002's dateModified has only a lower archive bound (2 Aug) and the live capture (22 Oct); no archived copy of the 14 Aug version exists; the stage label is operator-asserted and physical work is not independently verified",
+        "LEV002's own plot is not published; the campus point is LEV001's address parcel group, and LEV002 may lie on parcel 961 or on an adjacent parcel",
+        "Polarise Amberg's 65 MW measure (IT or facility) is unstated; the acquisition and municipal approvals are not confirmed; the observation expires on 3 Dec 2026",
+        "LGL OGC API is beta and cadastral services publish no numeric positional accuracy"
+      ]
+    },
+    {
+      "fragment": "us-southeast-p1",
+      "verdict": "accept",
+      "checks": [
+        "All 15 relied-on captures (plus 3 supporting Bessemer GIS captures) rehashed: file sha256 == .metadata.json sha256 == source content_hash",
+        "Statesboro minutes (pdftotext): item 8 RZ 26-07-05, 4AM Development LLC, 26.49 ac at 6539 Burkhalter Rd 'for a proposed data center', approved 3-2 on 2026-08-18; SUP still required, so announced only; action agenda agrees",
+        "Statesboro successor: 1 Sep/15 Sep/6 Oct/9 Oct/20 Oct/23 Oct records contain no SUP or data-centre item for the site; 1 Sep city presentation confirms SUP not yet received",
+        "Statesboro locator recomputed (pyproj 3.7.1/shapely 2.1.1, EPSG:32617): parcel 7887-33-7607 centroid (-81.7531068, 32.4014009), 0.003 m from claim, inside parcel; 27.05 ac; 9-1-1 point inside; S(O) zoning polygon covers 99.99%; parcel inside 2022 parcel 108 000001 000",
+        "QTS page 2026-10-22 capture: 'have started to mobilize equipment onsite, begin clearing and earthwork operations, and start conducting pre-blast surveys'; schema dateModified 2026-10-20; 16 Oct capture (dateModified 2026-10-02) was future tense only, so the dateModified is bounded by a dated earlier copy",
+        "QTS map centre (33.34453, -87.03927) lies in parcel 3700352000001000 (5761 Rock Mountain Lake Rd); used for identity only",
+        "Ordinance 3698 scan rendered (pdftoppm) and read: AL Bessemer Land LLC rezoning A-1 to I-1 'for construction and operation of a multi-phased data center', adopted 2026-04-21, Inst. 2026036834; five parcels/addresses match GIS one-to-one",
+        "Bessemer locator recomputed (EPSG:32616): union of 5 parcels 960.96 ac, 2 parts, centroid (-87.0439199, 33.3558048), 0.004 m from claim, inside union; 90.35% I-1; I-1 polygons form one 1,556.6-ac component (2 m tolerance) containing both locator and QTS map centre; RML tract 676.0 ac touches ordinance land",
+        "Bessemer locator scope_class relabelled official_tax_parcel_centroid -> official_tax_parcel_union_centroid (dataset convention for parcel unions) in changes.json and geometry facts; geometry_facts_sha256 updated",
+        "Digi Power X 13 Oct 2026 release (ACCESS Newswire on via.tt.se): 'Construction at the 40 MW Alabama campus remains on target'; CEO 'construction on schedule in Alabama'; same campus as existing 7 Jul shell record; 2026-10-13 > 2026-07-07; completion dates are forecasts",
+        "All observations within 85 days of 2026-10-22 (cutoff 2026-07-29); status sources are government_record/company_disclosure",
+        "Roles: 4AM Development LLC owner/current (applicant with clear title per minutes); QTS Data Centers operator/intended",
+        "Distinctness re-screened against current dataset 2026-10-22-research-thirtyninth (561 sites/594 projects), evidence, source-records, identity-mapping, all sources/*-holds.json and other queue fragments: only matches are the 16 Oct QTS Bessemer hold and the 22 Oct Statesboro lead, which these additions resolve; nearest Atlas sites 48.7 km and 28.2 km",
+        "Personal data: redacted a private landowner surname from the QTS Blakely hold; no other private names, phones or emails in changes, sources, holds, notes or geometry facts",
+        "Compliance log incidents (Effingham CivicAlerts, Rockdale crawl-delay, services5 pre-robots request) concern captures not relied on",
+        "dryrun_fragment.py ok against 2026-10-22-research-thirtyninth: 563 sites, 596 projects"
+      ],
+      "residual_risks": [
+        "No captured primary source names QTS and Project Marvel together; the QTS-to-ordinance-land identity rests on the QTS map centre lying in the contiguous I-1 cluster plus the city's January 2026 adjacent-land release (news reports, e.g. WBRC 2 July 2026, say the city named QTS as the Project Marvel company, which corroborates this but is not relied on)",
+        "The Bessemer campus locator sits on the northern Ordinance 3698 land, 1.32 km from QTS's map centre; the reported site work could be anywhere in the 1,555-acre campus",
+        "QTS achieved-work wording is dated by schema dateModified (2026-10-20), bounded only by the 16 Oct and 22 Oct captures",
+        "Ordinance and city press release were read from Internet Archive copies because the city's CDN robots.txt returned 403",
+        "Statesboro rezoning is reportedly challenged in court (news, not captured); announced status does not depend on it, but the project may not proceed",
+        "The Digi Power X status statement is generic ('remains on target'); under_construction replaces the more specific July shell stage without asserting a later stage"
+      ]
+    }
+  ],
+  "packet_pins": {
+    "definitions/atlas-research-fortieth-2026-10-22.json": "b5a397818a43996e70c03523510a2c4a5bb550ffa2eca06de3f6a0176abe77ba",
+    "sources/research-countries-2026-10-22-fortieth-primary-sources.json": "2cf73ba71f60925c99a524a86ecd12b86cdc07416aebfa89e715d5acd24d6c1d",
+    "sources/research-countries-2026-10-22-fortieth-actions.json": "0854a6de1937971fae2dffd123df2a1aaa2f40f7de2869438b8115c2a7076aeb",
+    "sources/research-countries-2026-10-22-fortieth-holds.json": "90ecebba4792b41715d4e4b4a538d1613141dc0cf0f4d8dda090b844ccfeb379"
+  },
+  "raw_captures_redistributed": false
+}

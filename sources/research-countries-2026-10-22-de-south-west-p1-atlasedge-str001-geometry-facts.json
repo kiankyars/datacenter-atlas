@@ -1,0 +1,92 @@
+{
+  "candidate_id": "atlasedge-str001-boeblingen-data-centre",
+  "decision": "Selected the centroid of the ALKIS-BW building whose location key is Schickardstraße 19, Böblingen (the operator's STR001 address) as the project locator.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      8.967214,
+      48.6761416
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_cadastral_building_footprint_centroid",
+  "use_scope": "project_locator",
+  "source_file": "local_data/country-research-de-south-west-p1/lglbw-oaf-gebaeude-schickardstr.json",
+  "source_sha256": "24b68cbc9885966f6b1f051e10ccc715cc2c9c2a0f3349c1f769ed39924ca600",
+  "source_url": "https://ogcapi.lgl-bw.de/beta/pygeoapi/collections/gebaeude/items?f=json&bbox=8.9650,48.6745,8.9690,48.6770&limit=100",
+  "retrieved_at": "2026-10-22T19:19:01.497Z",
+  "selected_properties": {
+    "gml_id": "DEBWL001000uLA5J",
+    "lage_id": "08115003018850019000",
+    "lage_id_reading": "Gemeinde 08115003 (Böblingen), Straßenschlüssel 01885, Hausnummer 0019",
+    "street_key_01885": "Schickardstraße (LGL Lageschlüssel-/Straßenverzeichnis, file 202606_lageschluessel.csv)",
+    "gebaeudefunktion": "Betriebsgebäude",
+    "qualitaet": "Katastervermessung",
+    "record_version_beginn": "2025-11-17T16:29:39",
+    "adressen": 1
+  },
+  "computed": {
+    "crs": "CRS84 as served by the OGC API Features endpoint (storage CRS EPSG:25832 per the collection metadata)",
+    "footprint_area_m2": 3238.9,
+    "extent_m": {
+      "east_west": 79.6,
+      "north_south": 80.4
+    },
+    "centroid_inside": true,
+    "max_vertex_distance_from_centroid_m": 42.0,
+    "centroid_crs84_planar_vs_utm32_centroid_m": 0.0,
+    "method": "shapely polygon centroid on the served CRS84 coordinates; areas and distances in EPSG:25832 via pyproj"
+  },
+  "identity_bridge": [
+    "AtlasEdge Stuttgart page: 'STR001 (In operation)', Schickardstraße 19, 71034 Böblingen, Germany.",
+    "The same page's footer links 'Stuttgart, Schickardstraße 19, 71034 Böblingen' to maps.app.goo.gl/etPb8GKJCq5v51er9, which resolves to the Google Maps place 'AtlasEdge Data Centres | Stuttgart' at 48.6757596, 8.9669419 (!3d/!4d, repeated in the payload).",
+    "LGL street catalogue: Böblingen (08115003) street key 01885 = Schickardstraße; ALKIS-BW building lage_id 08115003018850019000 therefore carries Schickardstraße 19."
+  ],
+  "consistency_checks": {
+    "google_place_to_building_footprint_m": 8.6,
+    "google_place_to_centroid_m": 46.9,
+    "google_viewport_centre_to_place_m": 190.0,
+    "containing_parcel": {
+      "kennzeichen": "08154100003908002100",
+      "gemarkung": "Dagersheim",
+      "flurstueck": "3908/21",
+      "amtliche_flaeche_m2": 15921,
+      "contains_google_place": true
+    },
+    "ancillary_structures_same_address_key": {
+      "ids": [
+        "DEBWL001000uLA5F",
+        "DEBWL001000uLA5H",
+        "DEBWL001000uLA5B",
+        "DEBWL001000uLA5D"
+      ],
+      "function": "Umformer (transformer)",
+      "note": "Linked to the same street and house number without an address of their own; excluded from the footprint."
+    },
+    "other_addressed_building_in_query_box": "Apothekerstraße 5 (street key 00587), about 161 m north-west of the place point; not the operator's address."
+  },
+  "transform_check": "No CRS transformation was needed for the locator (served in CRS84); pyproj EPSG:4326 -> EPSG:25832 used only for areas and distances.",
+  "versions": {
+    "pyproj": "3.7.1",
+    "proj": "9.5.1",
+    "shapely": "2.1.1"
+  },
+  "excluded_coordinates": [
+    {
+      "kind": "Operator-linked Google Maps place point",
+      "point": [
+        8.9669419,
+        48.6757596
+      ],
+      "reason": "Corroborates the address (inside the same parcel, 8.6 m from the footprint) but is a commercial map marker; the official building footprint is preferred."
+    },
+    {
+      "kind": "Google Maps viewport centre (@ parameter)",
+      "point": [
+        8.9643616,
+        48.6757631
+      ],
+      "reason": "Viewport centre about 190 m west of the place; not a feature coordinate."
+    }
+  ]
+}

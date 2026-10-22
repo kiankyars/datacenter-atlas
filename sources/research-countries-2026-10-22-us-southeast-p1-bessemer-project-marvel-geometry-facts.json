@@ -1,0 +1,98 @@
+{
+  "candidate_id": "qts-bessemer-project-marvel-campus",
+  "decision": "Selected the centroid of the union of the five Jefferson County tax parcels that City of Bessemer Ordinance No. 3698 (adopted 21 April 2026) lists as the property rezoned from A-1 to I-1 Light Industrial 'for construction and operation of a multi-phased data center' as the campus locator. The parcels form the northern 961 acres of the Project Marvel campus; the 676-acre Rock Mountain Lake Road tract to the south, which holds QTS's project-location map centre, is used for identity only. No building, work area, or the first-phase footprint is located.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -87.0439199,
+      33.3558048
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_tax_parcel_union_centroid",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-us-southeast-p1/bessemer-parcels-ordinance3698-five-wgs84.json",
+  "source_sha256": "877b0f353cbe9fddd86f2de59f9d95d24be1164c118964ac2bf00fc8ab05e302",
+  "source_url": "https://services3.arcgis.com/SDcIl6cLonwsLfu4/arcgis/rest/services/Bessemer_Zoning/FeatureServer/1/query?where=PARCELID%20IN%20(%273700270000001000%27%2C%273700263000001000%27%2C%273700262000001000%27%2C%273700261000001000%27%2C%273700264000002000%27)&outFields=OBJECTID%2CPARCELID%2COWNERNAME%2CADDR_APR%2CGIS_ACRES%2CZONING_BOE%2CMaintDate%2CSEC&returnGeometry=true&outSR=4326&f=json",
+  "retrieved_at": "2026-10-22T19:32:44.915Z",
+  "selected_properties": {
+    "layer": "Bessemer_Zoning FeatureServer layer 1 'Parcels', ArcGIS Online organisation 'Bessemer Interactive Maps' (bessemergis), the City of Bessemer's GIS; layer description: static copy generated from data owned and managed by Jefferson County departments (copyright Jefferson County Commission, Information Technology Services - GIS Division); data last edited 2026-06-18",
+    "parcels": [
+      {
+        "PARCELID": "3700270000001000",
+        "address": "6380 OLD LAWSONTOWN RD",
+        "layer_acres": 640.17,
+        "geodesic_acres": 640.23,
+        "parts": 2,
+        "note": "returned twice (OBJECTID 2158 and 12386) with identical geometry; counted once"
+      },
+      {
+        "PARCELID": "3700263000001000",
+        "address": "6042 OLD LAWSONTOWN RD",
+        "layer_acres": 158.68,
+        "geodesic_acres": 158.69,
+        "parts": 2
+      },
+      {
+        "PARCELID": "3700262000001000",
+        "address": "6030 OLD LAWSONTOWN RD",
+        "layer_acres": 80.98,
+        "geodesic_acres": 80.99,
+        "parts": 1
+      },
+      {
+        "PARCELID": "3700261000001000",
+        "address": "5515 FREEMAN AVE",
+        "layer_acres": 40.41,
+        "geodesic_acres": 40.41,
+        "parts": 1
+      },
+      {
+        "PARCELID": "3700264000002000",
+        "address": "5400 POLARA LN",
+        "layer_acres": 40.63,
+        "geodesic_acres": 40.63,
+        "parts": 1
+      }
+    ],
+    "owner_in_layer_snapshot": "VALLEY CREEK LAND & TIMBER LLC for all five parcels (June 2026 snapshot); the ordinance names AL Bessemer Land, LLC as applicant for the owner. No ownership role is asserted from either."
+  },
+  "computed": {
+    "parts": 2,
+    "geodesic_acres": 960.96,
+    "centroid_lon_lat": [
+      -87.0439199,
+      33.3558048
+    ],
+    "centroid_inside_polygon": true,
+    "extent_m": [
+      3230,
+      1647
+    ],
+    "bounds_lon_lat": [
+      -87.057555,
+      33.348845,
+      -87.02285,
+      33.363693
+    ],
+    "max_vertex_distance_from_centroid_m": 1996.0,
+    "method": "Polygon rings returned by the service with outSR=4326 (native service CRS EPSG:3857; the layer was originally compiled in Alabama State Plane West, US feet); union of the five parcels; centroid computed in EPSG:32616 (UTM 16N) and returned to WGS84; geodesic areas on the WGS84 ellipsoid",
+    "native_crs_cross_check": "The same five parcels requested in the native EPSG:3857 geometry (bessemer-parcels-ordinance3698-five-native.json, sha256 e285d556d56bce2f13a68a05425f2c3052bff0baad8aa14ee33b9866798ac642) and transformed locally with pyproj give the same centroid (difference 0.0 m); the planar-degree centroid differs by 0.02 m",
+    "zoning_check": "90.35% of the union lies in City of Bessemer I-1 Light Industrial zoning polygons (Bessemer_Zoning layer 0), consistent with an ordinance that rezones 'part of' these parcels; the centroid itself is zoned I-1. The centroid of the I-1-only part is 112 m from the selected point.",
+    "tools": "pyproj 3.7.1, shapely 2.1.1 (scripts kept in the session scratchpad: bessemer_geom.py, bessemer_final.py, bessemer_native.py)"
+  },
+  "identity_bridge": [
+    "City of Bessemer press release of 20 January 2026 (Internet Archive copy): the City announces updated development plans for 'the proposed Project Marvel Data Center'; additional land adjacent to the currently zoned parcel has been identified and an affiliate of the data center developer has agreed to acquire it.",
+    "City of Bessemer Ordinance No. 3698, adopted 21 April 2026 and recorded with the Jefferson County Judge of Probate on 28 April 2026 (Inst. 2026036834; Internet Archive copy of the city's posted PDF): AL Bessemer Land, LLC applied to rezone the property from A-1 vacant agricultural to I-1 Light Industrial for the entire property for construction and operation of a multi-phased data center; addresses 5515 Freeman Ave, 5400 Polara Lane and 6380, 6042 and 6030 Old Lawsontown Road; tax parcels part of 3700270000001000, 3700263000001000, 3700262000001000, 3700261000001000 and 3700264000002000; legal description in Sections 26 and 27, Township 19 South, Range 5 West.",
+    "The five parcel numbers and their addresses match the Jefferson County parcel polygons in the City of Bessemer GIS one-to-one (961 geodesic acres).",
+    "City zoning layer: the ordinance land is part of a contiguous I-1 Light Industrial cluster of 1,555 acres. Almost all of the rest of the cluster is the Rock Mountain Lake Road tract (5761, 5851, 5921, 5945, 5951 and 5959 Rock Mountain Lake Rd; 676.0 geodesic acres, 99.2% zoned I-1), which adjoins the ordinance land, consistent with the 'currently zoned parcel' that the 20 January release says adjoins the newly acquired land.",
+    "QTS's Bessemer page (dateModified 2026-10-20) states that QTS is developing a data center facility in the Bessemer area and publishes a 'Project Location' map described as showing the general area; the map is centred at (33.3445330, -87.0392730), which lies inside parcel 3700352000001000 (5761 Rock Mountain Lake Rd) of that tract, 1.32 km from the selected point and 0.48 km from the nearest ordinance-parcel boundary. The map centre is a viewport centre and is used only as identity evidence, never as the locator; the map's only pin is a hidden placeholder for an unrelated Colorado Springs address."
+  ],
+  "consistency_checks": {
+    "vintage": "The parcel layer was last edited 2026-06-18, after the April 2026 ordinance; it still shows Valley Creek Land & Timber LLC as owner of all five parcels, so the deed to the developer's affiliate may postdate the snapshot. Ownership is therefore not used for identity.",
+    "partial_parcels": "The ordinance rezones 'part of' the listed parcels; the locator uses the full parcels and discloses the 90.35% I-1 share.",
+    "datum": "WGS84 output from the service (outSR=4326), cross-checked against the native EPSG:3857 geometry",
+    "geocoder_used": false,
+    "personal_data": "The ordinance names an applicant's agent and city officials; they are not copied into any record. Parcel owner fields were requested only for parcels owned by companies; an exploratory envelope query that returned some individually owned parcels is kept only as a local capture, and no individual owner is recorded."
+  }
+}

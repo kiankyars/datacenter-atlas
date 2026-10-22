@@ -1,0 +1,87 @@
+{
+  "candidate_id": "atlasedge-leverkusen-dornierstrasse-campus",
+  "decision": "Selected the centroid of the union of the three NRW ALKIS parcels with location text 'Dornierstraße 10' (LEV001's address) as the campus locator for LEV002, which the operator places adjacent to LEV001.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      7.0200495,
+      51.058417
+    ]
+  },
+  "authority_class": "compiled_reference",
+  "scope_class": "official_cadastral_address_parcel_group_centroid",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-de-south-west-p1/nrw-alkis-leverkusen-dornierstrasse.gml",
+  "source_sha256": "f91037a29c471653f8a84d8294200add0d6ba27193e9bece98c0ec91d5921706",
+  "source_url": "https://www.wfs.nrw.de/geobasis/wfs_nw_alkis_vereinfacht?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=ave:Flurstueck&FILTER=%3Cfes%3AFilter%20xmlns%3Afes%3D%22http%3A//www.opengis.net/fes/2.0%22%20xmlns%3Aave%3D%22http%3A//repository.gdi-de.org/schemas/adv/produkt/alkis-vereinfacht/2.0%22%3E%3Cfes%3AAnd%3E%3Cfes%3APropertyIsEqualTo%3E%3Cfes%3AValueReference%3Eave%3Agemeinde%3C/fes%3AValueReference%3E%3Cfes%3ALiteral%3ELeverkusen%3C/fes%3ALiteral%3E%3C/fes%3APropertyIsEqualTo%3E%3Cfes%3APropertyIsLike%20wildCard%3D%22%2A%22%20singleChar%3D%22.%22%20escapeChar%3D%22%21%22%3E%3Cfes%3AValueReference%3Eave%3Alagebeztxt%3C/fes%3AValueReference%3E%3Cfes%3ALiteral%3E%2ADornierstr%2A%3C/fes%3ALiteral%3E%3C/fes%3APropertyIsLike%3E%3C/fes%3AAnd%3E%3C/fes%3AFilter%3E",
+  "retrieved_at": "2026-10-22T17:25:00.878Z",
+  "selected_properties": {
+    "gemeinde": "Leverkusen",
+    "gemarkung": "Lützenkirchen (054604)",
+    "flur": "20",
+    "parcels": {
+      "640": {
+        "flstkennz": "05460402000640______",
+        "lagebeztxt": "Dornierstraße 10",
+        "flaeche_m2": "1001.0",
+        "aktualit": "2024-08-19Z"
+      },
+      "961": {
+        "flstkennz": "05460402000961______",
+        "lagebeztxt": "Dornierstraße 10",
+        "flaeche_m2": "3511.0",
+        "aktualit": "2026-03-23Z"
+      },
+      "962": {
+        "flstkennz": "05460402000962______",
+        "lagebeztxt": "Dornierstraße 10",
+        "flaeche_m2": "2406.0",
+        "aktualit": "2024-08-19Z"
+      }
+    },
+    "query": "ave:Flurstueck with gemeinde = Leverkusen and lagebeztxt like *Dornierstr*; 13 parcels returned, three carry 'Dornierstraße 10'"
+  },
+  "computed": {
+    "crs": "EPSG:25832 as served; transformed to WGS84 with pyproj (always_xy)",
+    "union_area_m2": 6916.0,
+    "union_type": "Polygon",
+    "union_extent_m": {
+      "east_west": 100.2,
+      "north_south": 126.0
+    },
+    "union_centroid_25832": [
+      361247.97,
+      5658186.11
+    ],
+    "centroid_inside": true,
+    "max_vertex_distance_from_centroid_m": 82.5
+  },
+  "identity_bridge": [
+    "AtlasEdge Leverkusen page: 'LEV001 (In operation)', Dornierstraße 10, 51381 Leverkusen; 'LEV002 (Under construction)' without its own address.",
+    "AtlasEdge release of 16 April 2026: LEV002 is located adjacent to the existing LEV001 facility.",
+    "NRW ALKIS building DENW38ALdF00003ABL ('Dornierstraße 10', Gebäude für Wirtschaft oder Gewerbe, 1,757.1 m2) lies on parcel 962, 22.7 m from the locator; LEV001's stated white space is 1,732 m2."
+  ],
+  "consistency_checks": {
+    "alkis_building_dornierstrasse_10": {
+      "id": "DENW38ALdF00003ABL",
+      "area_m2": 1757.1,
+      "centroid_wgs84": [
+        7.0201495,
+        51.0586115
+      ],
+      "parcel": [
+        "962"
+      ],
+      "distance_to_union_centroid_m": 22.7
+    },
+    "parcel_961_note": "Parcel 961 (3,510 m2, record updated 2026-03-23) holds only small structures in the ALKIS building layer; it may be LEV002's plot, but no source says so.",
+    "neighbouring_addresses": "Dornierstraße 8 (parcel 963) and Dornierstraße 11 (parcel 1070) are separate addressed parcels and are excluded."
+  },
+  "transform_check": "pyproj EPSG:25832 -> EPSG:4326, always_xy.",
+  "versions": {
+    "pyproj": "3.7.1",
+    "proj": "9.5.1",
+    "shapely": "2.1.1"
+  },
+  "excluded_coordinates": []
+}

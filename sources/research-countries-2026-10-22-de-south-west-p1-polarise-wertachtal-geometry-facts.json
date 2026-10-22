@@ -1,0 +1,80 @@
+{
+  "candidate_id": "polarise-amberg-wertachtal-ai-factory",
+  "decision": "Selected the centroid of the ATKIS Basis-DLM area 'Ehemalige Kurzwellensendeanlage Wertachtal' as the campus locator for the Polarise Amberg AI factory.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      10.6946238,
+      48.0868088
+    ]
+  },
+  "authority_class": "compiled_reference",
+  "scope_class": "official_named_topographic_feature_centroid",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-de-south-west-p1/by-atkis-AX_FlaecheBesondererFunktionalerPraegung-transmitter-hub.xml",
+  "source_sha256": "9c3a927d12e5d25016b71e3436bcee7f59558efd6cf95bb7ec1264cde5ee70d8",
+  "source_url": "https://geoservices.bayern.de/wfs/v1/ogc_atkis_basisdlm.cgi?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=adv:AX_FlaecheBesondererFunktionalerPraegung&NAMESPACES=xmlns%28adv%2Chttp%3A//www.adv-online.de/namespaces/adv/gid/7.1%29&BBOX=626150,5327300,626260,5327400,urn:ogc:def:crs:EPSG::25832&COUNT=50",
+  "retrieved_at": "2026-10-22T17:22:03.412Z",
+  "selected_properties": {
+    "feature_type": "AX_FlaecheBesondererFunktionalerPraegung",
+    "gml_id": "DEBYBDLMbM0001yz",
+    "name": "Ehemalige Kurzwellensendeanlage Wertachtal",
+    "artDerBebauung": "1000",
+    "lebenszeitintervall_beginnt": "2023-06-24T19:52:17Z",
+    "municipal_area": "AX_KommunalesGebiet DEBYBDLMjK0000qH, Gemeindekennzeichen 09 7 78 111 (Amberg, Landkreis Unterallgäu); AX_Gemeinde 09778111 bezeichnung 'Amberg'"
+  },
+  "computed": {
+    "crs": "EPSG:25832 as served; transformed to WGS84 with pyproj (always_xy)",
+    "area_m2": 32176.9,
+    "extent_m": {
+      "east_west": 203.9,
+      "north_south": 204.0
+    },
+    "interior_rings": 1,
+    "centroid_25832": [
+      626197.14,
+      5327337.72
+    ],
+    "centroid_inside": true,
+    "max_vertex_distance_from_centroid_m": 103.4,
+    "centroid_inside_municipal_area_09778111": true,
+    "centroid_to_municipal_boundary_m": 561.0
+  },
+  "identity_bridge": [
+    "Polarise, 10 March 2026: Polarise will acquire the former Wertachtal shortwave transmission building and the adjacent land and convert it into an AI-ready data centre in the Amberg municipality (Unterallgäu).",
+    "Polarise, 9 September 2026: the Amberg (Unterallgäu) AI factory will be powered largely by on-site renewable energy on the former Wertachtal transmitter site.",
+    "Bavarian ATKIS Basis-DLM: one area named 'Ehemalige Kurzwellensendeanlage Wertachtal' inside municipal area 09778111 (Amberg)."
+  ],
+  "consistency_checks": {
+    "lod2_main_building": {
+      "id": "DEBY_LOD2_2003010",
+      "function_code": "31001_2000",
+      "measured_height_m": 14.287,
+      "footprint_area_m2": 4876.2,
+      "centroid_wgs84": [
+        10.6950379,
+        48.086959
+      ],
+      "inside_hub": true,
+      "distance_to_hub_centroid_m": 35.1
+    },
+    "lod2_note": "The LoD2 model does not name buildings; DEBY_LOD2_2003010 is the largest and tallest building in the named area (function 31001_2000, building for trade or industry).",
+    "dok_map": "The official topographic map (by_dok WMS, 1 m per pixel over 625400-627200 E, 5326600-5328000 N) shows the circular hub with a large central building, surrounded by fenced areas labelled 'Solar'."
+  },
+  "transform_check": "pyproj EPSG:25832 -> EPSG:4326, always_xy.",
+  "versions": {
+    "pyproj": "3.7.1",
+    "proj": "9.5.1",
+    "shapely": "2.1.1"
+  },
+  "excluded_coordinates": [
+    {
+      "kind": "LoD2 main building centroid",
+      "point": [
+        10.6950379,
+        48.086959
+      ],
+      "reason": "Unnamed building; its identification as the transmission building is inferential, so the named facility area is used and the building is recorded as a consistency check."
+    }
+  ]
+}

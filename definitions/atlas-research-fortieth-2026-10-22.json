@@ -1,0 +1,357 @@
+{
+  "format": "datacenter-atlas-update-input-v1",
+  "updated_at": "2026-10-22",
+  "output": "verified_construction_core/2026-10-22-research-fortieth",
+  "base_dataset": "verified_construction_core/2026-10-22-research-thirtyninth",
+  "base_manifest_sha256": "f125fc13bf8e57496d63528d32741345f4b0cecc5314dea0830c99ec410d2ec0",
+  "source_files": [
+    {
+      "path": "sources/research-countries-2026-10-22-fortieth-primary-sources.json",
+      "sha256": "2cf73ba71f60925c99a524a86ecd12b86cdc07416aebfa89e715d5acd24d6c1d"
+    }
+  ],
+  "additions": [
+    {
+      "project_stable_key": "curated:atlasedge-str001-boeblingen-data-centre:str001-operating-facility",
+      "physical_site_stable_key": "curated:atlasedge-str001-boeblingen-data-centre",
+      "site_name": "AtlasEdge STR001 Stuttgart Data Centre (Schickardstraße 19, Böblingen)",
+      "name": "AtlasEdge STR001 Stuttgart — operating data centre",
+      "country": "Germany",
+      "country_iso_a2": "DE",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-10-02",
+        "source_id": "de-south-west-p1-atlasedge-str001-capacity-post",
+        "summary": "AtlasEdge's own post published on 2 October 2026 says the company took STR001 in Stuttgart from an almost empty site to customer-ready infrastructure in less than a year and that it runs on 100% renewable electricity with highly efficient cooling. The operator's Stuttgart page lists STR001 at Schickardstraße 19, 71034 Böblingen as 'In operation', in its 14 August 2026 version and already in the 30 July version archived on 2 August 2026. Operation of the STR001 facility is established as of the post's publication day. The 11.2 MW IT capacity and 6,160 m2 white space are final-expansion figures, so no capacity in service is asserted."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            8.967214,
+            48.6761416
+          ]
+        },
+        "source_id": "de-south-west-p1-lglbw-alkis-gebaeude-schickardstr",
+        "scope": "project_locator",
+        "scope_class": "official_cadastral_building_footprint_centroid",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "lgl_bw_ogc_api_features_alkis_gebaeude_DEBWL001000uLA5J_footprint_centroid_crs84",
+        "precision": "Centroid of ALKIS-BW building DEBWL001000uLA5J (Betriebsgebäude, survey quality Katastervermessung), whose location key 08115003-01885-0019 is Schickardstraße 19, Böblingen. The footprint is 3,238.9 m2, about 80 by 80 m, on parcel Dagersheim 3908/21. The point locates the STR001 building, not the 15,921 m2 parcel, the four transformer structures under the same address key, a yard or an entrance.",
+        "identity_review": "AtlasEdge's Stuttgart page gives STR001's address as Schickardstraße 19, 71034 Böblingen, and its footer links the same address to the Google Maps place 'AtlasEdge Data Centres | Stuttgart' (48.6757596, 8.9669419). The LGL street catalogue (June 2026 edition) resolves Böblingen street key 01885 to Schickardstraße. The ALKIS building with location key 08115003 01885 0019 000 is therefore the addressed building at Schickardstraße 19; it is the only addressed building under that key in the query box. The operator-linked place lies 8.6 m outside this footprint, inside the same parcel and 46.9 m from the centroid. The map viewport centre, 190 m west, is not used.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "ALKIS records the footprint at cadastral survey quality but publishes no numeric positional accuracy. The centroid represents a building about 80 m across (42 m from the centroid to the farthest vertex)."
+      },
+      "context_source_ids": [
+        "de-south-west-p1-atlasedge-stuttgart-page",
+        "de-south-west-p1-atlasedge-stuttgart-archive-20260802",
+        "de-south-west-p1-atlasedge-stuttgart-gmap",
+        "de-south-west-p1-lglbw-alkis-flurstueck-schickardstr",
+        "de-south-west-p1-lglbw-strassenverzeichnis",
+        "de-south-west-p1-atlasedge-datacentre-sitemap"
+      ],
+      "roles": [
+        {
+          "party": "AtlasEdge Data Centres",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "de-south-west-p1-atlasedge-str001-capacity-post"
+        }
+      ],
+      "distinctness_review": "Screened on 22 October 2026 against all 553 sites, 586 projects and 2,944 evidence rows, the 231 source records and 231 identity mappings of 2026-10-22-research-thirtyeighth, the changes and holds of every other queue fragment and every sources/*-holds.json, by name, alias, operator, address and coordinate. AtlasEdge appears only in the 16 October hold for HAM002 Ahrensburg (Schleswig-Holstein), a different facility; no record names STR001, Schickardstraße, Dagersheim or any Stuttgart or Böblingen data centre. No Atlas record, queue item or hold lies within 2 km. The nearest Atlas sites are Aether FR-SXB2 Strasbourg (89.3 km) and LEITWERK BADEN CLOUD Lahr (91.6 km). Verifier re-screen on 22 October 2026 against 2026-10-22-research-thirtyninth (561 sites, 594 projects, 2,991 evidence rows, 231 source records and identity mappings), the other queue fragments and sources/*-holds.json found no match by name, alias, operator, address or coordinate; the nearest site remains Aether FR-SXB2 Strasbourg (89.3 km).",
+      "successor_review": "The live Stuttgart page (version of 14 August 2026, captured 22 October) still lists STR001 as 'In operation'. In the operator's post sitemap (captured 22 October), the only entries after the 6 October batch of edits are the 12 October '60 seconds' items and the resources index. No pause, closure, sale or new STR001 phase was found. The observation uses the post's visible publication day, 2 October 2026; its unbounded 6 October modification is not used.",
+      "scoped_project_details": {
+        "aliases": [
+          "AtlasEdge Stuttgart",
+          "STR001",
+          "AtlasEdge Data Centres | Stuttgart"
+        ],
+        "address": "Schickardstraße 19, 71034 Böblingen",
+        "white_space_m2_final_expansion": 6160,
+        "it_capacity_mw_final_expansion": 11.2,
+        "capacity_basis": "Operator page figures for final expansion (version of 14 August 2026); the 30 July version gave 10,000 m2 of data centre space and 20 MW of power in final expansion. Neither is capacity in service.",
+        "alkis_building": "DEBWL001000uLA5J (3,239 m2 footprint) on parcel Dagersheim 3908/21"
+      }
+    },
+    {
+      "project_stable_key": "curated:atlasedge-leverkusen-dornierstrasse-campus:lev002-new-data-centre",
+      "physical_site_stable_key": "curated:atlasedge-leverkusen-dornierstrasse-campus",
+      "site_name": "AtlasEdge Leverkusen Campus (Dornierstraße 10)",
+      "name": "AtlasEdge LEV002 — new data centre adjacent to LEV001",
+      "country": "Germany",
+      "country_iso_a2": "DE",
+      "status": {
+        "value": "under_construction",
+        "as_of": "2026-08-14",
+        "source_id": "de-south-west-p1-atlasedge-leverkusen-page",
+        "summary": "AtlasEdge's Leverkusen page, in its version modified on 14 August 2026, lists LEV002 as 'Under construction'. LEV002 is a data centre that will deliver 4.4 MW of IT capacity and 1,800 m2 of white space for AI and high-density workloads, next to the operating LEV001 at Dornierstraße 10. The Internet Archive copy of 2 August 2026 (the preceding page version, dated 24 April) carries the same label. The operator's 16 April 2026 release says construction began in February 2026 and ready for service is scheduled for Q2 2027. Construction is established as of 14 August 2026. No completion or operation is asserted, and Q2 2027 is a target."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            7.0200495,
+            51.058417
+          ]
+        },
+        "source_id": "de-south-west-p1-nrw-alkis-flurstueck-dornierstrasse",
+        "scope": "campus_locator",
+        "scope_class": "official_cadastral_address_parcel_group_centroid",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "nrw_alkis_vereinfacht_wfs_flurstuecke_luetzenkirchen_flur20_640_961_962_union_centroid_epsg25832_pyproj_to_wgs84",
+        "precision": "Centroid of the union of the three cadastral parcels with location text 'Dornierstraße 10' (Gemarkung Lützenkirchen, Flur 20, Flurstücke 640, 961 and 962). Together they cover 6,916.0 m2, about 100 by 126 m. The point marks the AtlasEdge Leverkusen campus at LEV001's address. LEV002 is described as adjacent to LEV001 but its plot is not published, so the point does not locate the LEV002 building, its footprint or works.",
+        "identity_review": "The operator gives LEV001's address as Dornierstraße 10, 51381 Leverkusen, and its 16 April release places LEV002 adjacent to LEV001. NRW ALKIS returns exactly three Leverkusen parcels with location text 'Dornierstraße 10', all in Gemarkung Lützenkirchen Flur 20. The only building addressed 'Dornierstraße 10' is DENW38ALdF00003ABL (1,757 m2, on parcel 962), close to LEV001's stated 1,732 m2 white space. Its centroid lies 22.7 m from the locator. Parcel 961 (3,510 m2) holds only small structures in the cadastre and may be LEV002's plot, but no source says so. Dornierstraße 8 and 11 are separate addressed parcels and are excluded.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The ALKIS service publishes no positional accuracy. The centroid represents a 6,916 m2 parcel group (82.5 m to its farthest vertex). LEV002's position next to LEV001 is not published, so its offset from the point is unknown."
+      },
+      "context_source_ids": [
+        "de-south-west-p1-atlasedge-leverkusen-archive-20260802",
+        "de-south-west-p1-atlasedge-lev002-release",
+        "de-south-west-p1-atlasedge-datacentre-sitemap",
+        "de-south-west-p1-nrw-alkis-gebaeude-dornierstrasse"
+      ],
+      "roles": [
+        {
+          "party": "AtlasEdge Data Centres",
+          "role": "operator",
+          "relationship_scope": "intended",
+          "source_id": "de-south-west-p1-atlasedge-lev002-release"
+        }
+      ],
+      "distinctness_review": "Screened on 22 October 2026 against all 553 sites, 586 projects and 2,944 evidence rows, the 231 source records and 231 identity mappings of 2026-10-22-research-thirtyeighth, the changes and holds of every other queue fragment and every sources/*-holds.json, by name, alias, operator, address and coordinate. AtlasEdge appears only in the 16 October hold for HAM002 Ahrensburg; no record names LEV001, LEV002, Dornierstraße, Lützenkirchen or any Leverkusen data centre. No Atlas record, queue item or hold lies within 2 km. The nearest Atlas site is Microsoft Bedburg (34.5 km) and the nearest queue item is Gießen Katzenfeld (125.8 km). LEV001, the operating facility on the same parcels, is held below because only one project can be added to a site that is new in the same update. Verifier re-screen on 22 October 2026 against 2026-10-22-research-thirtyninth (561 sites, 594 projects, 2,991 evidence rows, 231 source records and identity mappings), the other queue fragments and sources/*-holds.json found no match by name, alias, operator, address or coordinate; Gießen Katzenfeld (125.8 km) is now a published site, and Microsoft Bedburg (34.5 km) remains the nearest.",
+      "successor_review": "The live page captured on 22 October 2026 is still the 14 August version with LEV002 'Under construction'. The operator's sitemap gives the same lastmod. The Wayback CDX, re-queried on 22 October, lists no copy after 2 August. The AtlasEdge posts captured from 16 September to 2 October mention Leverkusen only in boilerplate. No completion, opening, pause or cancellation was found, so the status stays under construction as of 14 August 2026: 69 days before 22 October and inside the 85-day window until 7 November 2026.",
+      "scoped_project_details": {
+        "aliases": [
+          "LEV002",
+          "AtlasEdge Leverkusen 2",
+          "zweites Rechenzentrum in Leverkusen"
+        ],
+        "it_capacity_mw_planned": 4.4,
+        "white_space_m2_planned": 1800,
+        "technical_space_m2_release": 3400,
+        "capacity_basis": "Operator statements of planned capacity: the 14 August page gives 4.4 MW IT and 1,800 m2 white space; the 16 April release gives 4.4 MW and about 3,400 m2 of technical space. Neither is in service.",
+        "construction_start_reported": "2026-02 (operator release of 16 April 2026; outside the window, not the observation)",
+        "ready_for_service_target": "Q2 2027 (forecast)",
+        "physical_construction_verified": false
+      }
+    },
+    {
+      "project_stable_key": "curated:polarise-amberg-wertachtal-ai-factory:ai-factory-development",
+      "physical_site_stable_key": "curated:polarise-amberg-wertachtal-ai-factory",
+      "site_name": "Polarise AI Factory Amberg (former Wertachtal shortwave transmitter site)",
+      "name": "Polarise Amberg (Unterallgäu) AI Factory — conversion of the former Wertachtal transmitter building",
+      "country": "Germany",
+      "country_iso_a2": "DE",
+      "status": {
+        "value": "announced",
+        "as_of": "2026-09-09",
+        "source_id": "de-south-west-p1-polarise-cra-prague-20260909",
+        "summary": "Polarise's release dated Düsseldorf, 9 September 2026 states that its Amberg (Unterallgäu) AI factory in the greater Augsburg area is designed for an initial 65 MW, scalable to 120 MW. It is due to go live in mid-2027 and will be powered largely by on-site solar, wind and battery storage on the former Wertachtal transmitter site. This supports an announced project. No completed acquisition, permit, physical work or operation is established. Mid-2027 is a target, and the release does not say whether 65 MW is IT load."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            10.6946238,
+            48.0868088
+          ]
+        },
+        "source_id": "de-south-west-p1-by-atkis-wertachtal-hub",
+        "scope": "campus_locator",
+        "scope_class": "official_named_topographic_feature_centroid",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "bavaria_atkis_basisdlm_wfs_ax_flaechebesondererfunktionalerpraegung_DEBYBDLMbM0001yz_polygon_centroid_epsg25832_pyproj_to_wgs84",
+        "precision": "Centroid of the ATKIS Basis-DLM area 'Ehemalige Kurzwellensendeanlage Wertachtal' (DEBYBDLMbM0001yz), a 3.2 ha ring about 204 m across at the hub of the former antenna field, in the municipality of Amberg, Landkreis Unterallgäu. It marks the former transmitter facility whose transmission building Polarise plans to convert. The largest building in it (LoD2 DEBY_LOD2_2003010, 4,876 m2 footprint, 14.3 m high) lies 35 m away. The point does not locate the adjacent land Polarise plans to acquire, the surrounding solar parks or a construction extent.",
+        "identity_review": "Polarise's 10 March 2026 release names the site: Polarise will acquire the former Wertachtal shortwave transmission building and the adjacent land and convert them into an AI-ready data centre in the Amberg municipality (Unterallgäu). The 9 September release ties the Amberg (Unterallgäu) AI factory to the former Wertachtal transmitter site. The Bavarian ATKIS Basis-DLM has one area of that name. Its centroid lies inside the ATKIS municipal area 09778111 (Amberg, Landkreis Unterallgäu, not the Upper Palatinate city of Amberg, 09361000), 561 m from the boundary. The official topographic map shows the circular hub with a large central building, surrounded by fenced areas labelled 'Solar'. The LoD2 model does not name buildings, so the transmission building is not separately located.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The Basis-DLM extract states no positional accuracy. The centroid represents a 3.2 ha named area (103 m to its farthest vertex), and the land Polarise will use is not delineated."
+      },
+      "context_source_ids": [
+        "de-south-west-p1-polarise-amberg-20260310",
+        "de-south-west-p1-polarise-swi-20260818",
+        "de-south-west-p1-by-atkis-amberg-municipal-area",
+        "de-south-west-p1-by-lod2-626-5326",
+        "de-south-west-p1-by-dok-wertachtal"
+      ],
+      "roles": [
+        {
+          "party": "Polarise",
+          "role": "operator",
+          "relationship_scope": "intended",
+          "source_id": "de-south-west-p1-polarise-cra-prague-20260909"
+        },
+        {
+          "party": "Polarise",
+          "role": "owner",
+          "relationship_scope": "intended",
+          "source_id": "de-south-west-p1-polarise-amberg-20260310"
+        }
+      ],
+      "distinctness_review": "Screened on 22 October 2026 against all 553 sites, 586 projects and 2,944 evidence rows, the 231 source records and 231 identity mappings of 2026-10-22-research-thirtyeighth, the changes and holds of every other queue fragment and every sources/*-holds.json, by name, alias, operator, address and coordinate. Polarise appears in the Atlas only as a party at Deutsche Telekom Industrial AI Cloud, Munich Tucherpark (67.5 km away) and in the evidence for CRA Prague Gateway (Czechia); neither is Amberg. No record names Amberg, Wertachtal, Unterallgäu or the Wertachtal transmitter, and none lies within 2 km. The nearest Atlas sites are Munich Tucherpark (67.5 km) and NTT Munich 2 (69.1 km). The 9 September release's 'second Munich site currently under development' is a separate, unlocated lead, held below. Verifier re-screen on 22 October 2026 against 2026-10-22-research-thirtyninth (561 sites, 594 projects, 2,991 evidence rows, 231 source records and identity mappings), the other queue fragments and sources/*-holds.json found no match by name, alias, operator, address or coordinate; the nearest site remains Munich Tucherpark (67.5 km).",
+      "successor_review": "The Polarise newsroom captured on 22 October 2026 lists only the 22 October GTC Berlin release after 9 September, and that release does not mention Amberg. The 18 August release already listed Amberg as a planned AI Factory with the same 65/120 MW figures. No completed acquisition, permit, construction start, pause or cancellation was found. Municipal Bauleitplanung for the site could not be checked because the Verwaltungsgemeinschaft Türkheim host did not respond. The project stays announced as of 9 September 2026: 43 days before 22 October and inside the 85-day window until 3 December 2026.",
+      "scoped_project_details": {
+        "aliases": [
+          "Polarise AI Factory Amberg",
+          "KI-Rechenzentrum Amberg (Unterallgäu)",
+          "Kurzwellensender Wertachtal"
+        ],
+        "initial_capacity_mw": 65,
+        "scalable_capacity_mw": 120,
+        "capacity_basis": "Polarise statements of 18 August and 9 September 2026; the 10 March release gave an initial 30 MW. The measure (IT or facility power) is not stated.",
+        "go_live_target": "mid-2027 (forecast)",
+        "energy_partner": "WV Energie AG (operates about 70 MWp of solar parks on the former transmitter site)",
+        "physical_construction_verified": false,
+        "permit_status_not_asserted": true
+      }
+    },
+    {
+      "project_stable_key": "curated:statesboro-burkhalter-road-data-center:proposed-data-center",
+      "physical_site_stable_key": "curated:statesboro-burkhalter-road-data-center",
+      "site_name": "Statesboro Burkhalter Road Data Center Site",
+      "name": "Statesboro Burkhalter Road proposed data center (4AM Development, RZ 26-07-05)",
+      "country": "United States",
+      "country_iso_a2": "US",
+      "status": {
+        "value": "announced",
+        "as_of": "2026-08-18",
+        "source_id": "us-southeast-p1-statesboro-council-minutes-20260818",
+        "summary": "On 18 August 2026 the Statesboro City Council, Georgia, approved 3-2 application RZ 26-07-05, in which 4AM Development, LLC asked to rezone one 26.49-acre parcel at 6539 Burkhalter Road from R-4 to O (Office and Business District) for a proposed data center; the applicant's conceptual plan shows an approximately 230,000 sq ft two-story facility. This dated city record names the project, its developer and its site, which supports announced status. A rezoning is not consent for the data-centre development itself: the city's data-center ordinance still requires a Special Use Permit approved by the council before any building permit, and none had been considered by 20 October 2026, so no permitted status or physical work is asserted."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -81.7531068,
+            32.4014009
+          ]
+        },
+        "source_id": "us-southeast-p1-stabull-parcel-7887-33-7607",
+        "scope": "project_locator",
+        "scope_class": "official_tax_parcel_centroid",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "official_county_parcel_service_centroid_of_parcel_containing_official_address_point",
+        "precision": "Centroid of the current Bulloch County parcel polygon PIN 7887-33-7607 (27.05 geodesic acres, about 438 by 580 m) that contains the county 9-1-1 point for 6539 Burkhalter Rd, the 26.49-acre parcel rezoned for the proposed data center. It locates the project parcel, not the conceptual building, a surveyed boundary or the extent of any works.",
+        "identity_review": "The 18 August 2026 minutes and action agenda name 6539 Burkhalter Road, one parcel of 26.49 acres, as the site of the proposed data center in case RZ 26-07-05. The county address layer has exactly one point for 6539 BURKHALTER RD, and it lies inside current parcel 7887-33-7607 (27.05 acres, 2.1% above the deed-style acreage in the minutes). That parcel and its neighbour 7887-44-4600 (23.76 acres) together reproduce the 50-acre 2022 parcel 108 000001 000 at the same address, so the addressed part of the split is the rezoned tract; the city's zoning layer now codes a 27.99-acre polygon covering 99.99% of it S(O), the Office district approved on 18 August. The minutes print the parcel number as 101 000001 000, which does not occur in the 2022 county table; identity therefore rests on the address, acreage and zoning polygon rather than that number. No geocoder, map viewport, city centre or industrial-park centroid is used.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The county publishes no positional accuracy for its parcels; the centroid represents a 27-acre parcel about 438 by 580 m, and the planned building position within it is not published."
+      },
+      "context_source_ids": [
+        "us-southeast-p1-statesboro-action-agenda-20260818",
+        "us-southeast-p1-statesboro-council-agenda-20261020",
+        "us-southeast-p1-stabull-address-6539-burkhalter",
+        "us-southeast-p1-stabull-parcel-2022-6539-burkhalter",
+        "us-southeast-p1-stabull-statesboro-zoning-o-31098"
+      ],
+      "roles": [
+        {
+          "party": "4AM Development, LLC",
+          "role": "owner",
+          "relationship_scope": "current",
+          "source_id": "us-southeast-p1-statesboro-council-minutes-20260818"
+        }
+      ],
+      "distinctness_review": "Screened on 22 October 2026 against every row of sites.csv (553), projects.csv (586) and evidence.csv, the source records and the identity mapping of verified_construction_core/2026-10-22-research-thirtyeighth (the current dataset when this fragment was finished), all pending queue fragments and all sources/*-holds.json, for Statesboro, Burkhalter, 4AM/4AM Development, Bulloch, Brannen, Ogeechee and PIN 7887-33: the only match is the 22 October hold that lists this Statesboro rezoning as a news lead without a city record or parcel, which this addition resolves. No Atlas site, project, source record or pending fragment lies within 2 km; the nearest site is OpenAI Project Camellia in Effingham County (48.7 km). A separate small facility on Brannen Street that a councilmember described as operating since 2020 is not this project and is not in the Atlas. Re-screened by the verifier on 22 October 2026 against verified_construction_core/2026-10-22-research-thirtyninth (561 sites, 594 projects), its holds and the other queue fragments: no new match.",
+      "successor_review": "The city council agenda page (captured 22 October 2026) lists meetings to 23 October; the action agendas and minutes of 1 September, 15 September and 6 October and the 20 October agenda contain no Special Use Permit or other item for this data center (the 6 October items concern Burkhalter Road road improvements only). A city presentation on 1 September 2026 notes that the end user will be analysed when a Special Use Permit application is received and that the city may never host a data center. Local reporting of a September 2026 court petition seeking to void the rezoning is not relied on and does not change announced status. A council Special Use Permit decision, building permit or dated record of site work would support a later refresh.",
+      "scoped_project_details": {
+        "aliases": [
+          "RZ 26-07-05",
+          "6539 Burkhalter Road data center",
+          "Burkhalter Road data center (Statesboro)"
+        ],
+        "site_address": "6539 Burkhalter Road, Statesboro, Bulloch County, GA",
+        "rezoning_case": "RZ 26-07-05, R-4 (High-Density Residential) to O (Office and Business District), approved 3-2 by the City Council on 2026-08-18 after a 5-1 Planning Commission recommendation on 2026-08-04; staff condition: right-of-way dedication along Burkhalter Road",
+        "parcel_as_printed": "Tax Parcel 101 000001 000 (as printed in the minutes; not found in the 2022 county table)",
+        "parcel_matched": "PIN 7887-33-7607 (current split of 2022 parcel 108 000001 000)",
+        "site_acres": 26.49,
+        "conceptual_building": "about 230,000 sq ft, two stories, centred on the parcel (applicant conceptual plan; not an approved plan)",
+        "further_consent_required": "Special Use Permit approved by the City Council before any building permit (city data-center ordinance); wetland impacts, if any, require U.S. Army Corps of Engineers review",
+        "end_user": "not identified",
+        "capacity": null,
+        "permitted_status_not_asserted": "Rezoning only; no Special Use Permit or building permit found",
+        "physical_construction_verified": false
+      }
+    },
+    {
+      "project_stable_key": "curated:qts-bessemer-project-marvel-campus:data-center-campus",
+      "physical_site_stable_key": "curated:qts-bessemer-project-marvel-campus",
+      "site_name": "QTS Bessemer Data Center Campus (Project Marvel)",
+      "name": "QTS Bessemer data center campus (Project Marvel) - site preparation",
+      "country": "United States",
+      "country_iso_a2": "US",
+      "status": {
+        "value": "site_preparation",
+        "as_of": "2026-10-20",
+        "source_id": "us-southeast-p1-qts-bessemer-page-20261020",
+        "summary": "QTS's Bessemer, Alabama page, last modified on 20 October 2026, reports that QTS and its partners have started to mobilize equipment onsite, begin clearing and earthwork operations, and start conducting pre-blast surveys for the data center facility QTS is developing in Bessemer. A capture of the same page on 16 October 2026 still said only that equipment 'will begin mobilizing', so the achieved-work wording dates from 16 to 20 October and is observed as of the 20 October modification. This supports site preparation for the campus as a whole; blasting is still to come, and no foundations, building shell, completion or operation is established."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -87.0439199,
+            33.3558048
+          ]
+        },
+        "source_id": "us-southeast-p1-bessemer-gis-ordinance-parcels",
+        "scope": "campus_locator",
+        "scope_class": "official_tax_parcel_union_centroid",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "official_parcel_service_centroid_of_union_of_tax_parcels_named_in_rezoning_ordinance",
+        "precision": "Centroid of the union of the five Jefferson County tax parcels (960.96 geodesic acres in two parts, about 3.2 by 1.6 km) that City of Bessemer Ordinance No. 3698 rezoned, in part, to I-1 for a multi-phased data center. It locates the northern part of the Project Marvel campus (a contiguous 1,555-acre I-1 cluster in the city zoning layer), not a building, the first-phase work area or a surveyed boundary; the 676-acre Rock Mountain Lake Road tract of the campus lies immediately south.",
+        "identity_review": "QTS's Bessemer page says QTS is developing a data center facility in the Bessemer area and maps its general area with a map centred at (33.34453, -87.03927). That centre lies in parcel 3700352000001000 at 5761 Rock Mountain Lake Rd, part of a 676-acre tract of six Valley Creek Land & Timber LLC parcels that is 99.2% zoned I-1. The City of Bessemer's 20 January 2026 release says an affiliate of the Project Marvel developer agreed to acquire additional land adjacent to the currently zoned parcel, and Ordinance No. 3698 (adopted 21 April 2026) rezones land of AL Bessemer Land, LLC to I-1 for construction and operation of a multi-phased data center: tax parcels 3700270000001000, 3700263000001000, 3700262000001000, 3700261000001000 and 3700264000002000 at 6380, 6042 and 6030 Old Lawsontown Road, 5515 Freeman Ave and 5400 Polara Lane. These parcel numbers and addresses match the city GIS parcel polygons one-to-one. In the city zoning layer they form one contiguous 1,555-acre I-1 cluster with the Rock Mountain Lake Road tract, consistent with the release's 'currently zoned parcel' and the adjacent newly acquired land. The map centre is a viewport centre and is used only for identity, never as the locator. Owner fields (Valley Creek Land & Timber LLC in the June 2026 snapshot) are not used for identity. No geocoder, city centre or industrial-park centroid is used.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "Neither the county nor the city publishes positional accuracy for the parcel layer. The point represents about 961 acres spanning 3.2 by 1.6 km, up to 2.0 km from the centroid, within a 1,555-acre I-1 campus cluster, and the position of the buildings and of the reported site work is not published."
+      },
+      "context_source_ids": [
+        "us-southeast-p1-qts-bessemer-page-20261016-prior",
+        "us-southeast-p1-bessemer-press-release-20260120",
+        "us-southeast-p1-bessemer-ordinance-3698",
+        "us-southeast-p1-bessemer-gis-zoning-i1",
+        "us-southeast-p1-bessemer-gis-campus-tract-parcels"
+      ],
+      "roles": [
+        {
+          "party": "QTS Data Centers",
+          "role": "operator",
+          "relationship_scope": "intended",
+          "source_id": "us-southeast-p1-qts-bessemer-page-20261020"
+        }
+      ],
+      "distinctness_review": "Screened on 22 October 2026 against every row of sites.csv (553), projects.csv (586) and evidence.csv, the source records and the identity mapping of verified_construction_core/2026-10-22-research-thirtyeighth, all pending queue fragments and all sources/*-holds.json, for QTS, Bessemer, Project Marvel, Rock Mountain Lake, Lawsontown, AL Bessemer Land, Valley Creek Land and Logistic Land. No Atlas site, project, source record or pending fragment lies within 2 km of the locator or of QTS's map centre. The nearest sites are Nebius Birmingham AI factory on Lakeshore Parkway (28.2 km), Applied Digital Delta Forge 2 (29.4 km) and Digi Power X Columbiana (44.0 km). The only matches are the 16 October hold 'QTS Bessemer, Alabama campus (pre-site-work notice)', held because its wording was future tense and no parcel locator was found, and its 22 October re-listing; this addition resolves both. The Bessemer City Council's 2025 rezoning of the Rock Mountain Lake Road tract was not captured and is not relied on. Re-screened by the verifier on 22 October 2026 against verified_construction_core/2026-10-22-research-thirtyninth (561 sites, 594 projects), its holds and the other queue fragments: no new match.",
+      "successor_review": "The QTS page captured on 22 October 2026 is the latest version: the Internet Archive has no copy after 5 August 2026, and the QTS news sitemap (captured 22 October 2026, latest entry 14 October) has no Bessemer item. No later completion, pause or cancellation statement was found. The described blasting is future work and establishes no further stage. A dated QTS, City of Bessemer or permit record of foundations, vertical construction or building completion would support a later refresh.",
+      "scoped_project_details": {
+        "aliases": [
+          "Project Marvel",
+          "Project Marvel Data Center",
+          "QTS Bessemer"
+        ],
+        "operator_statement": "QTS is developing a data center facility in the Bessemer area (QTS Bessemer page)",
+        "rezoning": "City of Bessemer Ordinance No. 3698, A-1 to I-1 Light Industrial for construction and operation of a multi-phased data center, adopted 2026-04-21 and recorded 2026-04-28 (instrument 2026036834); the earlier rezoning of the Rock Mountain Lake Road tract was not captured",
+        "campus_land": "Ordinance No. 3698 parcels about 961 acres (Old Lawsontown Road, Freeman Ave, Polara Lane) plus the adjoining 676-acre Rock Mountain Lake Road tract; 1,555 acres zoned I-1 in the city layer",
+        "physical_status_statement": "have started to mobilize equipment onsite, begin clearing and earthwork operations, and start conducting pre-blast surveys (page modified 2026-10-20)",
+        "permitted_status_not_asserted": "A rezoning is not development consent; no building or land-disturbance permit was captured",
+        "capacity": null,
+        "end_user": "not identified"
+      }
+    }
+  ],
+  "status_updates": [
+    {
+      "project_stable_key": "curated:digipowerx-columbiana-ai-data-center-campus:purpose-built-flagship-vertical-build",
+      "status": {
+        "value": "under_construction",
+        "as_of": "2026-10-13",
+        "source_id": "us-southeast-p1-digipowerx-alabama-financing-20261013",
+        "summary": "Digi Power X's 13 October 2026 release on a US$200 million debt-financing commitment for its 40 MW AI data center in Columbiana, Alabama states that construction at the 40 MW Alabama campus remains on target, and its chief executive says that construction is on schedule in Alabama. The record moves to the general construction stage as of the release date. The release names no specific stage, so the July 7 building-shell stage is not carried forward and no mechanical, electrical, commissioning or completion stage is inferred. The Phase 1 (December 2026) and Phase 2 (March 2027) completion dates are forecasts."
+      },
+      "identity_review": "The release concerns the company's 40 MW AI data center in Columbiana, Alabama: the same Digi Power X project as the existing purpose-built flagship vertical build record. That record carries the company's 7 July 2026 operations update and a campus locator at 130 Industrial Pkwy, Columbiana. The release describes the 40 MW campus in two phases and names no second Alabama site. The ARMS 200 modular unit said to operate since May 2026 is not located in the release and is not attributed to this record. The existing locator, capacity fields and roles are unchanged.",
+      "successor_review": "No later Digi Power X statement on the Alabama campus was found after 13 October 2026 (web search and the TT/ACCESS Newswire listing checked on 22 October 2026). The new observation (13 October) is strictly newer than the existing 7 July one and keeps the same campus-wide scope; the forecast completion dates are not used as observations. A dated company statement of energization, commissioning or completion of Phase 1 would support a later refresh."
+    }
+  ],
+  "context_updates": []
+}
