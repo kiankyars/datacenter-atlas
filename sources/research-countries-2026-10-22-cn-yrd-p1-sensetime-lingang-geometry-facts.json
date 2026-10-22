@@ -1,0 +1,45 @@
+{
+  "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+  "researched_at": "2026-10-22T20:00:00+00:00",
+  "candidate": "SenseTime Lingang AIDC (商汤科技上海新一代人工智能计算与赋能平台项目), plot H34-07a, Lingang heavy-equipment industrial area, 999 Lianggang Avenue, Nicheng Town, Pudong, Shanghai",
+  "selected_point_crs84": [121.795717, 30.882871],
+  "selected_point_role": "Area centroid of the plot H34-07a outline of the official adjusted design-scheme site plan (published by the Lingang Special Area Administration on 23 May 2025), registered to Esri World Imagery. Locates the whole SenseTime Lingang AIDC plot (Phase 1 buildings A1/A2, A3, B and Phase 2 building A4 and the C 220 kV substation); it is not a Phase 2 building footprint, entrance, surveyed boundary or construction extent.",
+  "plan_source": {
+    "source_url": "https://www.lingang.gov.cn/upload/1/cms/content/editor/38af8cee-3162-4b8d-ae4d-a0b62ef13b53.pdf",
+    "local_capture": "local_data/country-research-cn-yrd-p1/lingang-sensetime-scheme-adj-20250523.pdf",
+    "sha256": "7ca85c5b62d21ffd38ff993fa786710178578122d1b98ec90f356bc392e4c5e4",
+    "rendering": "pdftoppm -r 60 (page rotation 270 applied by the renderer): 2809 x 1987 px; north arrow points straight up the sheet",
+    "printed_facts": "Builder Shanghai SenseTime Technology Development Co., Ltd.; site plot H34-07a of the Lingang heavy-equipment industrial area, bounded east by a line 300 m east of Baixu Road, west by Baixu Road, south by the green belt on the north side of Lianggang Avenue and north by plot H34-07; land area 57,997.4 m2; total GFA 114,268.6 m2. Building labels: A1/A2 supercomputing centre (Phase 1, 84.00 m wide), B operations centre (Phase 1, 52.00 m), A3 supercomputing centre (Phase 1, 85.70 m), A4 building (Phase 2, 5 storeys, 97.70 m wide), C 220 kV substation (Phase 2, 35.00 m), F spare-parts warehouse, D underground pump house.",
+    "plan_scale_check": "Dimension labels give 5.33 (A1/A2), 5.34 (A3) and 5.35 (A4) plan px per m at 60 dpi; the outer site-boundary line measures 1600.7 px (299.6 m, the stated 300 m east-west extent) by 1031 px (193.0 m); 299.6 m x 193.0 m is consistent with the stated 57,997.4 m2 less the curved north-west corner."
+  },
+  "imagery_reference": {
+    "source_url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=121.7915,30.8805,121.7985,30.8865&bboxSR=4326&imageSR=4326&size=1750,1500&format=jpg&f=image",
+    "local_capture": "local_data/country-research-cn-yrd-p1/esri-sensetime-zoom.jpg",
+    "sha256": "6d5a3655bbb77543e933bad927c17edfa838552f564aa7c8de8a3466ecbff904",
+    "extent_as_returned": "f=json request (local esri-sensetime-zoom-extent.json, sha256 6b8a197cd99f5faa1c4abe5b51d302be748bac5c230f75530bb56a2b57c9dec9): xmin 121.7915, ymin 30.8805, xmax 121.7985, ymax 30.8865, EPSG:4326, 1750 x 1500 px, i.e. exactly 1/250000 degree per px (about 0.382 m east-west and 0.443 m north-south)",
+    "pixel_to_lonlat": "lon = 121.7915 + x/250000; lat = 30.8865 - y/250000 (pixel corner convention)"
+  },
+  "identification": "In the imagery a fenced plot immediately north of the Lianggang Avenue green belt and east of a north-south road that ends in a cul-de-sac (Baixu Road on the plan, whose north-west plot corner curves around it) contains: a square roof about 82 x 82 m with two north-south rows of rooftop plant (A1/A2, plan 84.00 x 82.80 m), a central building with an oval inner court (B), an eastern building about 85 m wide with a row of six round tanks along its north side (A3; the plan draws the same six circles), a separate low building in the north-west corner (C 220 kV substation) and a cleared construction area with piling rigs in the north-east quarter (the Phase 2 A4 site). The fenced plot measures about 296 m x 189 m. The geocoder hint used only to choose the search strip (Esri World Geocoding street-level match for Lianggang Avenue, Nicheng Town, at about 30.8814 N) is not part of the locator.",
+  "registration": {
+    "model": "2-D similarity (scale, rotation, translation), least squares, plan px (60 dpi, y down) to a local metric frame (east = (lon - 121.795) x 111320 cos 30.8835 deg; north = (lat - 30.8835) x 110860)",
+    "controls": [
+      {"control": "plot SW corner (outer site-boundary line / south fence and west fence lines)", "plan_px_60dpi": [281.0, 1480.0], "image_px": [667.0, 1122.0], "residual_east_m": 0.28, "residual_north_m": -0.32},
+      {"control": "plot SE corner", "plan_px_60dpi": [1881.7, 1468.0], "image_px": [1441.0, 1122.0], "residual_east_m": -0.78, "residual_north_m": -0.10},
+      {"control": "plot NE corner", "plan_px_60dpi": [1881.7, 436.7], "image_px": [1441.0, 695.0], "residual_east_m": 0.50, "residual_north_m": 0.42}
+    ],
+    "fit": {"scale_m_per_plan_px": 0.184118, "plan_px_per_m": 5.4313, "rotation_deg": -0.387, "note": "The fitted scale is 1.6% smaller than the printed dimensions (5.343 px per m): the imagery fence lines lie slightly inside the plan's outer boundary line. Three controls leave two degrees of freedom of redundancy; residuals measure image-to-plan fit only."},
+    "independent_checks_plan_minus_image": {
+      "south gate road centre on the south fence line": {"east_m": -0.6, "north_m": -0.3},
+      "substation C north-west outline corner (low building, about 13.7 m)": {"east_m": 6.3, "north_m": 0.7},
+      "A3 building centre (roof, 37.6 m to parapet)": {"east_m": 5.8, "north_m": 4.4},
+      "A1/A2 building centre (roof, 37.6 m to parapet)": {"east_m": 11.0, "north_m": 5.4},
+      "interpretation": "Roofs appear displaced west and south of their plan positions in proportion to building height, and the east facades are visible, consistent with off-nadir imagery; ground-level controls (fence corners, gate road) agree within 1 m."
+    }
+  },
+  "plot_outline_crs84_sw_se_ne_nw": [[121.7941709, 30.8820091], [121.7972558, 30.8820111], [121.7972693, 30.8837238], [121.7941845, 30.8837418]],
+  "plot_outline_area_m2": 56286.6,
+  "centroid_computation": "Polygon area centroid of the four transformed plan corners (the curved north-west corner around the cul-de-sac is ignored; it moves the centroid by less than 2 m). Result 121.795717 E, 30.882871 N.",
+  "synthesis_check": "Recomputed from the stated control points with the script logic recorded here; an independent tracing of the imagery fence lines (west 665, east 1441, south 1122, north 695 image px) gives 121.795712 E, 30.882866 N, 0.7 m away.",
+  "datum": "Esri World Imagery is served in WGS84 (EPSG:4326 export). The plan publishes no coordinates; no Chinese web-map (GCJ-02/BD-09) coordinates are used.",
+  "uncertainty": "Absolute accuracy of the Esri imagery at this location and its acquisition date are not stated. Control residuals are below 1 m; manual corner reading adds about 2 px (about 1 m). Estimated within roughly 20 m of the plot centroid; the plot extends about 150 m east-west and 95 m north-south from the point."
+}

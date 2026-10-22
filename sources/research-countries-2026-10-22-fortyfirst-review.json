@@ -1,0 +1,127 @@
+{
+  "reviewer": "root",
+  "reviewed_at": "2026-10-22",
+  "decision": "accepted_for_integration",
+  "update": "verified_construction_core/2026-10-22-research-fortyfirst",
+  "base_dataset": "verified_construction_core/2026-10-22-research-fortieth",
+  "process": "continuous: one researcher per beat, one adversarial verifier per fragment",
+  "fragments": [
+    {
+      "fragment": "cn-yrd-p1",
+      "verdict": "accept",
+      "checks": [
+        "All 11 relied-on captures rehashed (permit xlsx/page 0921-1020, SenseTime 2025 notice + plan PDF, 2025-0621-0720 xlsx + page, 0321-0420 xlsx, Esri zoom jpg + extent json, CT 2026-10-19 plan PDF + notice): SHA-256 equals .metadata.json sha256 and sources.json content_hash; HTTP 200; URLs match; geometry-facts file sha256 dd253a8d... matches sources.json",
+        "Permit xlsx parsed with stdlib (-I): sheet 房建 item 1 = 商汤科技上海新一代人工智能计算与赋能平台项目二期-二标段; not in the 废止 (revoked) sheet; workbook modified 2026-10-21",
+        "Permit page read: 发表时间 2026-10-21; 35 construction permits 核发 (issued) 21 Sep-20 Oct 2026, 5 房建 incl. pile works; government_record; as_of 2026-10-20 is 2 days old (inside 85-day window) and not after publication",
+        "Scanned all 13 captured Lingang permit lists (May 2025-Oct 2026, Apr-May 2026 page has no list): only SenseTime entries are the Phase 2 pile works (2025-06-21..07-20), the Phase 1 A1/A3 data-hall fit-out (2026-03-21..04-20) and this Phase 2 lot 2 permit",
+        "SenseTime plan PDF rendered (pdftoppm): '二期—A4楼项目用地分界线' and 'C-220kV变电站（二期）' confirm Phase 2 = A4 (5F, 97.70 m, roof plant grid, logistics platform) + substation; A1/A2 and A3 labelled 超算中心 (一期); builder 上海商汤科技开发有限公司 confirmed in the 2025-05-23 notice; address 两港大道999号",
+        "Locator recomputed independently from the Esri export (1/250000 deg per px, extent as returned): fence corners SW (666,1121), SE (1442,1122), NE/N edge ~693 give centroid 121.795716 E, 30.88287 N, under 1 m from the submitted 121.795717, 30.882871; plot 296.6 m x 189.8 m vs plan 300 x 193 m",
+        "Identity: imagery reproduces the plan's NW cul-de-sac corner, square A1/A2 roof with plant rows, B with inner court, A3 with six round tanks on its north side, NW substation-sized building and NE piling area; campus_locator / compiled_reference / georeferenced_source_map, not a geocoder or zone centroid (geocoder hint for Lianggang Ave is ~4.8 km east and unused)",
+        "CT 2026-10-19 plan rendered: two leader labels '2.1期已建范围' point to the cross-hatched extent covering B1, C1a/C1b and D1; B3 and the other data centres unhatched; neighbouring plots labelled (正在施工)/(无已建成工程建筑); four limits Runhe/Yebo/Canghong/Zongqi and 142,607.76 m2 match the existing record's approved Phase 2 property",
+        "CT refresh: shell 2026-09-14 -> shell 2026-10-19, strictly newer, same Phase 2.1 scope (data centre, power centres, 220 kV substation), locator unchanged, completion not asserted",
+        "Distinctness re-screened against 2026-10-22-research-fortieth (sites, projects, evidence, source-records, identity-mapping), all sources/*holds*.json, every queue fragment and claims.tsv: no SenseTime/商汤/Lianggang/Baixu/H34-07 match; nothing within 5 km (nearest CT Lingang Phase 2, 15.97 km); no competing CT Lingang update in the queue",
+        "Role: owner (current) Shanghai SenseTime Technology Development Co., Ltd. from the 建设单位 line; one project on a new site; no personal data in changes, sources, holds or notes (plan contact names/phones not reproduced)",
+        "dryrun_fragment.py ok against 2026-10-22-research-fortieth (567 sites, 600 projects, 3034 evidence)"
+      ],
+      "residual_risks": [
+        "The SenseTime permit list gives no permit number, issue day or lot contents; 'bid section 2' could in principle cover only part of Phase 2 (undated imagery suggests the Phase 2 substation already stands and A4 is being piled, so lot 2 is most likely the A4 building works)",
+        "A4's use is not labelled on the 2025 plan; it is treated as data-centre scope because it is Phase 2 of the AI computing platform and drawn with roof plant like A1/A2",
+        "An earlier hold (thirty-fourth, China Mobile Lingang renovation) said a list entry without permit reference or day cannot support permitted; this admission differs (new phase, building-works sheet) but rests on the list entry alone",
+        "The CT refresh rests on a design-scheme drawing label (builder-drawn, PDF plotted 2026-10-16, published 2026-10-19), not a site report; the drawing may predate publication by an unknown margin",
+        "Esri imagery acquisition date and absolute accuracy are unstated; uncertainty left null with a ~20 m estimate in the reason"
+      ]
+    },
+    {
+      "fragment": "jp-north-p1",
+      "verdict": "accept",
+      "checks": [
+        "current_dataset re-read: verified_construction_core/2026-10-22-research-fortieth; dry run used that base",
+        "sakura-20261021-mfeed-hokkaido.html rehashed: sha256 4859f2d4...3742 matches .metadata.json and source content_hash; 61,779 bytes; HTTP 200",
+        "all four literal byte pointers (45166, 46423, 45701, 50923) match the capture exactly",
+        "decisive statement read in capture: present-tense 'さくらインターネットが運営する石狩データセンター' in body and meta description; company profile lists data-centre operation",
+        "date: <time class=post-article__date>2026.10.21</time>, URL path /2026/10/21/, and newsroom index (rehashed a687059b...) lists it as newest item; no dateModified reliance",
+        "source kind company_disclosure on Sakura's own newsroom (joint release with Internet Multifeed); not news",
+        "85-day window: 2026-10-21 is 1 day before 2026-10-22; strictly newer than existing 2026-07-28 status_as_of",
+        "scope kept: whole existing campus, status value unchanged (operational), no phase/building added; JPNAP winter-2026 verification treated as future work and not used as a stage",
+        "consistency: prior 2026-07-28 status rested on a comparable present-tense operator statement in a Sakura release",
+        "identity: Sakura names only one Ishikari data centre; matches site curated:sakura-ishikari-data-center; locator untouched (campus_locator 43.1772,141.3003)",
+        "roles: no role changes; existing operator claim Sakura Internet (current) consistent with release",
+        "successor review: newsroom releases 17 Aug-16 Oct (security incident, service, partnership, event items) report no pause/closure at Ishikari",
+        "distinctness: no other queue fragment or sources/*-holds.json entry updates this project; thirtyfourth hold concerns separate third-phase container DC lead",
+        "robots: www.sakura.ad.jp robots.txt captured 17:05Z before page capture 17:12Z; only /search and /corporate/search/ disallowed",
+        "privacy: no personal names, phones or emails in sources.json, changes.json or holds.json (release executive names and PR contacts not copied)",
+        "holds.json (14 entries) reviewed for shape and personal data",
+        "dryrun_fragment.py: ok"
+      ],
+      "residual_risks": [
+        "operational observation rests on a present-tense relative clause identifying the facility rather than an explicit operating-status sentence",
+        "joint release headline says verification 'starts'; actual start is forecast for winter 2026 (source title paraphrases headline)",
+        "campus locator remains an approximate analyst-selected point with unquantified uncertainty (unchanged by this refresh)"
+      ]
+    },
+    {
+      "fragment": "us-midwest-east-p1",
+      "verdict": "accept",
+      "checks": [
+        "Every relied-on capture (15 originals) rehashed: sha256 matches both .metadata.json and the source content_hash",
+        "Cannoli status: Wayne County statement shows 'Published on October 01, 2026' and calls it 'the proposed Google data center ... Project Cannoli'; says the vote did not approve construction; government_record, 21 days old, inside 85 days",
+        "Cannoli locator recomputed from the raw shapefile with an independent shp/dbf reader: all 38 Exhibit A tax IDs (re-parsed from the development agreement PDF) match; union 281.8 geodesic acres (274.8 + 7.0); centroid -83.4351731, 42.2258431 matches exactly, inside the union, 153.5 m from the boundary",
+        "Cannoli identity: the development agreement (19 May 2026) and McKenna review VBT-25-041 give the same Haggerty/I-94 NSD/Hannan/I-275 bounds and 282.2 acres; the DA records preliminary site plans approved 11 Feb and 13 May 2026, which are not a construction consent, so announced is correct",
+        "Cannoli roles: Google intended operator (Wayne statement; Google blog 2026-03-17 'evaluating a site in Van Buren Township'); PDC VBT, LLC intended owner (holds an option to buy, DA recital A)",
+        "Piqua status: 6 Oct 2026 packet (CivicClerk version published 2026-10-07) has the R-109-26 staff report (J5 LLC escrow funds 100% of the road works 'to prepare the project site area'), the 15 Sep draft minutes ('access to Washington Rd data center property') and O-19-26; 16 days old; the 3 Aug and 15 Sep packets (also in window) name 'J5 LLC is a hyperscale data center operator' on 607.656 acres and the 'J5 LLC d/b/a Shaytura LLC data center project'",
+        "Piqua locator recomputed from the raw parcel JSON in EPSG:3735: N44-101834 (J5 LLC, 591.43 geodesic acres) centroid -84.2516214, 40.1131174 matches exactly, inside the parcel, 634.3 m from the boundary",
+        "Piqua publisher: I fetched the ArcGIS portal record for org wCWf4EGMg4PzHwzA (robots.txt allows); it names 'Miami County, Ohio'. Added as a context source and capture; the web map source summary was trimmed to what its own capture shows",
+        "Piqua successor: the 20 Oct packet minutes confirm the commission voted not to repeal O-7-26, set a 2 Feb 2027 special election and suspended the ordinance; the 3 Nov 2026 charter amendment vote is confirmed in the 6 Oct packet; no withdrawal recorded",
+        "Distinctness: names, aliases, parcel IDs and addresses screened against sites/projects/evidence/source-records/identity-mapping of 2026-10-22-research-fortieth, every other queue fragment (json/md), claims.tsv and sources/*-holds.json: no matches; nearest Atlas points 38.5 km (The Barn Stargate) and 75.2 km (Prologis Trenton)",
+        "Both additions are new sites with one project each; Point geometry, campus_locator, null uncertainty with reasons; roles use the allowed vocabulary",
+        "No private individuals' names, phones or emails in changes, sources, holds or notes (residents and account usernames in the captures are not copied)",
+        "Fixes: Cannoli scope_class set to official_tax_parcel_union_centroid (38-parcel union, as precedent); consent_status reworded per DA 2.1.2; Piqua identity_review wording on the unmapped ~12 acres corrected; Wayne portal capture registered as a context source",
+        "dryrun_fragment.py ok against verified_construction_core/2026-10-22-research-fortieth (568 sites, 601 projects)"
+      ],
+      "residual_risks": [
+        "Cannoli final site plan approval (14 Oct 2026, news only) is not captured, so the project may already be permitted; held as lead_only",
+        "The Wayne County parcel shapefile is 2012 vintage with no published accuracy, and 4 parcels are only partly included; the centroid locates a 282-acre property, not buildings",
+        "Piqua: Meta named only in news; the AES Ohio franchise is suspended pending the 2 Feb 2027 referendum, and a 3 Nov 2026 charter amendment on data centres may affect the project",
+        "The Piqua locator uses the 591-acre main parcel only; buildings may lie up to about 1 km from the point",
+        "The Wayne portal record says 'Wayne County' without naming the state; Michigan is inferred from the Michigan South CRS, the Van Buren Township parcel IDs and waynecounty.lan endpoints"
+      ]
+    },
+    {
+      "fragment": "us-midwest-plains-p1",
+      "verdict": "accept",
+      "checks": [
+        "base re-read from site/config.json: verified_construction_core/2026-10-22-research-fortieth (566 sites, 599 projects); unchanged at verdict time",
+        "all 17 cited captures rehashed: file sha256 == .metadata.json sha256 == sources.json content_hash; metadata URLs match source_url; 3 geometry-facts files match geometry_facts_sha256",
+        "Bedrock: read 28 Sep 2026 minutes in 12 Oct packet (item 7C, Resolution 2026-209 approving 54,070 sq ft data center, 4-1) and the draft resolution in 28 Sep packet (PID 20-74900-01-010, Lot 1 Block 1 Taylor Addition, four conditions); CivicClerk publishOn 2026-10-08 (event 2156) >= observation; 24 days old",
+        "Bedrock: resolution approves the data-center building itself (permit_scope data_center_development, planning_permission, granted); moratorium exemption, EAW petition exempt (EQB Monitor v50n31) and city newsflash approval recap confirmed; 26 Oct packet has no appeal/reconsideration (only Bedrock legal invoice and moratorium-study consultant)",
+        "Bedrock locator recomputed from Dakota County capture: planar centroid -93.0379905,44.8626591 (UTM15N agrees <1 mm), inside, 13.90 geodesic acres; owner FIG ION TIMBER LLC matches SIA 'Owner' in 28 Sep packet",
+        "Monticello: scanned 18 Aug 2026 city letter rendered with pdftoppm and read: 16 PIDs, PC File #2026.34, 'proposed Monticello DC/Edmonson Business Center', applications complete as of 11 Aug, deadline 8 Dec; city project page confirms ~3M sq ft data center campus on ~550 ac and PC 4-1 recommendation 6 Oct, not yet at council; 65 days old; announced only",
+        "Monticello locator recomputed: 16 MnGeo parcels exactly match the letter's PIDs; union one polygon, no holes, 549.98 geodesic acres; UTM15N centroid -93.8077828,45.2669965 inside union",
+        "Kearney: read 8 Sep 2026 minutes: Ordinance 8823 grants CUP 2026-04 'to locate a Data Center' on Lot 1 Tech One Third and Lot 1 Tech One Fifth Subdivisions to Horizon 1 Kearney Owner, LP (Owner), passed 5-0; 22 Sep minutes approve 8 Sep minutes and deed Fifth Sub lot to Horizon 1 Kearney Owner LP (Ord. 8827); 13 Oct agenda has no related item; 44 days old",
+        "Kearney locator recomputed independently: Resolution 2026-99 traverse (25 courses, arcs densified) from BLM CadNSDI NW corner of Sec 29, rotated +0.2121 deg onto BLM west line; closure 0.011 ft, 58.770 ac vs stated 58.77; centroid within 0.03 m of claimed point and inside lot; derivation coordinate_transform with compiled_reference authority as dataset_update.py requires",
+        "distinctness: name/alias/operator/PIN/address terms and 2 km coordinate screen against fortieth sites.csv, projects.csv, evidence.csv, source-records.json, identity-mapping.json, every other queue fragment, claims.tsv and sources/*-holds.json: only hits are this lane's own claims and the unrelated IREN Childress 'Horizon 1' phase; nearest Atlas sites 344/302/280 km away",
+        "Monticello Tech distinct from the city's separate Scannell Technology Park concept (106 ac, north of 90th Street NW, no formal application; held)",
+        "roles: owner/current only, both LLC/LP entities with precedent for parcel-sourced owner roles; no roles for Monticello",
+        "commercial scope: all three are private commercial data-centre developments; no demonstrator or institutional supercomputer",
+        "personal data: no private-individual or official names, phones or emails in changes, sources, holds or geometry files; parcel query with a private owner name is uncited and in gitignored local_data",
+        "robots: CivicPlus/CivicClerk/GIS paths used are not disallowed; logged 8.0 s crawl-delay shortfall concerned an uncited 404 request, and cited Kearney captures were spaced >= 22 s",
+        "dryrun_fragment.py: ok (569 sites, 602 projects on the fortieth base)"
+      ],
+      "residual_risks": [
+        "Bedrock: Minnesota certiorari window (60 days from 28 Sep) is still open; a third-party challenge would reduce the record to announced",
+        "Kearney: Ordinance 8823 takes effect on pamphlet publication, whose date is not in the captures (statute requires publication within 15 days; land deed followed on 22 Sep)",
+        "Kearney: published_at 2026-09-22 is the minutes approval date; the archive posting time is unknown (PDF created 17 Sep)",
+        "Kearney locator depends on the BLM CadNSDI corner position, which has no stated accuracy; it locates the 58.77-ac Fifth Subdivision lot, not the adjoining Third Subdivision lot",
+        "Monticello: the letter is posted on the city website without a posting date; annexation, rezoning and CUP are undecided and the 550-ac locator includes planned open-space areas",
+        "Monticello application narrative text layer is garbled; acreage split relied on rendered pages and the fragment's reading (context only)"
+      ]
+    }
+  ],
+  "packet_pins": {
+    "definitions/atlas-research-fortyfirst-2026-10-22.json": "9afb6a43a51899775d7bfe652ae011ccf4f5b85322a64798e4f3c53acea55e41",
+    "sources/research-countries-2026-10-22-fortyfirst-primary-sources.json": "0534a41aa6434765d9c309a21bce9197c9fd26769bc040e425c2c24bd31b91ef",
+    "sources/research-countries-2026-10-22-fortyfirst-actions.json": "7809b1c46252e2c4b055c1b16cca6a8311c162eb417fcac09845e920e1a21f64",
+    "sources/research-countries-2026-10-22-fortyfirst-holds.json": "9d621183c622200b6d99cced6bfdcfead0578054c419d404bb23d65828ed6ee0"
+  },
+  "raw_captures_redistributed": false
+}

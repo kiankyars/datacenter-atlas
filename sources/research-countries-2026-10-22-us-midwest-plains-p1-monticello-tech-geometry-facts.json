@@ -1,0 +1,74 @@
+{
+  "candidate_id": "us-midwest-plains-p1-monticello-tech-technology-campus",
+  "decision": "Selected the planar centroid (computed in NAD83 / UTM zone 15N) of the union of the 16 Wright County tax parcels that the City of Monticello's 18 August 2026 letter lists as the Monticello Tech subject property, as a campus locator for the whole proposed technology campus.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -93.8077828,
+      45.2669965
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_tax_parcel_union_centroid",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-us-midwest-plains-p1/mngeo-wright-monticello-tech-16-parcels.json",
+  "source_sha256": "7507bda486579a06c9fc6726a826f8ca3c82af5f99067515daeea49c8ea7a16e",
+  "source_url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_mngeo/plan_parcels_open/MapServer/1/query?where=co_name%3D%27Wright%27%20AND%20county_pin%20IN%20%28%27213100224401%27%2C%27213100224100%27%2C%27213100224400%27%2C%27213100224300%27%2C%27213100224203%27%2C%27213100233100%27%2C%27213100233101%27%2C%27213100234403%27%2C%27213100233300%27%2C%27213100262300%27%2C%27213100262400%27%2C%27213100262200%27%2C%27213100271100%27%2C%27213100271300%27%2C%27213100271301%27%2C%27213100271302%27%29&outFields=county_pin%2Cco_name%2Cctu_name%2Cabb_legal%2Cacres_poly%2Cacres_deed%2Cuseclass1%2Cplat_name%2Cedit_date&returnGeometry=true&outSR=4326&f=json",
+  "retrieved_at": "2026-10-22T19:50:06.018Z",
+  "selected_parcels_county_pin": [
+    "213100224100",
+    "213100224203",
+    "213100224300",
+    "213100224400",
+    "213100224401",
+    "213100233100",
+    "213100233101",
+    "213100233300",
+    "213100234403",
+    "213100262200",
+    "213100262300",
+    "213100262400",
+    "213100271100",
+    "213100271300",
+    "213100271301",
+    "213100271302"
+  ],
+  "facts": {
+    "parcels_returned": 16,
+    "parcels_listed_in_city_letter": 16,
+    "parcel_set_matches_city_letter_exactly": true,
+    "sum_of_layer_acres_poly": 550.03,
+    "union_valid": true,
+    "union_parts": 1,
+    "union_holes": 0,
+    "union_geodesic_acres": 549.98,
+    "utm15n_centroid_lonlat": [
+      -93.8077828,
+      45.2669965
+    ],
+    "lonlat_planar_centroid": [
+      -93.8077826,
+      45.2669966
+    ],
+    "centroid_difference_m": 0.0,
+    "centroid_inside_union": true,
+    "bounds_lon_lat": [
+      -93.817407,
+      45.259359,
+      -93.796494,
+      45.273954
+    ],
+    "approx_extent_m": [
+      1648,
+      1620
+    ],
+    "plss": "the parcels make up the SE quarter of Section 22 east of State Highway 25, the SW quarter of Section 23 and the NW quarter of Section 26 west of County Road 117, and the NE quarter of Section 27, T121N R25W; each parcel's abbreviated legal description matches an element of the applicant's rezoning legal description",
+    "stated_site_acres": {
+      "city_project_page": "approximately 550",
+      "application_narrative": "547 (DCPUD 370.2, A-O 131.5, IBC 11.2)"
+    },
+    "coordinate_reference_system": "WGS84 longitude/latitude returned with outSR=4326 from the MnGeo service stored in NAD83 / UTM zone 15N (EPSG:26915); centroid computed in EPSG:26915 and transformed back",
+    "personal_data_note": "The query requested no owner, taxpayer or address fields; several parcels are privately owned and no owner is recorded here.",
+    "verification_script": "geom_union.py (pyproj 3.7.1, shapely 2.1.1; uv run --no-project, python -I)"
+  }
+}
