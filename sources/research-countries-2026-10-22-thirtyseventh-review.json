@@ -1,0 +1,45 @@
+{
+  "reviewer": "root",
+  "reviewed_at": "2026-10-22",
+  "decision": "accepted_for_integration",
+  "update": "verified_construction_core/2026-10-22-research-thirtyseventh",
+  "base_dataset": "verified_construction_core/2026-10-22-research-thirtysixth",
+  "process": "continuous: one researcher per beat, one adversarial verifier per fragment",
+  "fragments": [
+    {
+      "fragment": "us-southwest-p1",
+      "verdict": "accept",
+      "checks": [
+        "base re-read: current_dataset verified_construction_core/2026-10-22-research-thirtysixth (fragment had screened thirtyfourth); re-screened against it",
+        "all 12 relied-on captures rehashed: sha256 matches .metadata.json and sources.json content_hash",
+        "Colovore release read in capture: dated 9 Sep 2026, 'has officially opened the first liquid-cooled AI data center on its RNO01 campus'; company_disclosure; 43 days old",
+        "Storey County quorum notice rendered (scanned PDF): Colovore Data Center ribbon cutting 9 Sep 2026 at 100 Italy Dr, McCarran NV 89437",
+        "GOED packet pdftotext: Colovore Reno 1 LLC facility address 100 Italy Drive, McCarran, Storey County; first Nevada presence; RNO01 first Reno site",
+        "NDOT 2018 parcel at 100 ITALY DR: single feature, centroid recomputed (EPSG:32611) -119.480936, 39.531425, inside, 7.73 ac; vintage disclosed",
+        "Phoenix permit layer capture: 23003918, 23020602, 23008884, 23009281 DONE with complete date 2026-08-26; 23009280 first-floor data OPEN; layer fields Permit Status/Permit Complete Date; 57 days old",
+        "Aligned page: PHX-05 at 2500 W Union Hills Dr, 55-acre campus; assessor parcel 209-15-008A owner Aligned Data Centers Phoenix PropCo LLC; centroid recomputed (EPSG:32612) -112.1113011, 33.6587258, inside",
+        "published_at 2026-10-21 for permit capture is a content-derived lower bound (layer max issue timestamp 21 Oct 12:02 MST); observation precedes it",
+        "Aligned geometry facts corrected: 23003918 address point is ~17 m outside the parcel (shapely check); sha updated in sources.json",
+        "Iron Mountain AZP-3 removed: 23 Sep evidence is fire-system finals under open TCOs; repository's reviewed Iron Mountain Q2 2026 supplemental (5 Aug 2026) lists AZP-3 stabilized, contradicting under_construction",
+        "distinctness: name/alias/address keyword screen and 2 km proximity vs thirtysixth sites/projects/evidence/source-records/identity-mapping, all other queue fragments and sources/*-holds.json: no match (nearest 24.1 km and 37.5 km)",
+        "roles: Colovore operator current (release); Aligned PropCo owner current (assessor), Aligned operator current (page)",
+        "no third-party personal names, phones or emails in changes, sources, holds or geometry files",
+        "dryrun_fragment.py: ok (551 sites, 584 projects)"
+      ],
+      "residual_risks": [
+        "Colovore locator is a 2018 statewide parcel snapshot; the parcel may have been re-platted and the RNO01 campus may extend beyond it",
+        "Phoenix 'DONE'/'Permit Complete Date' is read as final inspection; the layer publishes no field definitions beyond aliases",
+        "Permit-source published_at (2026-10-21) is a lower bound from layer content, not a published snapshot or edit date",
+        "Aligned PHX-05 may already be partly operating (first-floor data TCO April 2026); completion is scoped to core/shell/common areas/2nd-floor TI only",
+        "Colovore 6 MW (release) vs 16 MW in two 8 MW halls (market page) not reconciled; no capacity recorded"
+      ]
+    }
+  ],
+  "packet_pins": {
+    "definitions/atlas-research-thirtyseventh-2026-10-22.json": "72cf7f393cbb0aa708ccc9cc6b542cf492031367761954688351d8e55ea08fb1",
+    "sources/research-countries-2026-10-22-thirtyseventh-primary-sources.json": "d7e70b9f715d418693d2737c922cf61b484a41ec8b7c53dfbd8fc8f8b40ada11",
+    "sources/research-countries-2026-10-22-thirtyseventh-actions.json": "6fc9508670287a599019effb1ba7d2a86f4342fc0270e24d8a17561e9639b4ba",
+    "sources/research-countries-2026-10-22-thirtyseventh-holds.json": "64aa6125aae85765e0d0e749461fc1b2ff12dd6fcfef34221dfac3a66e0f0d07"
+  },
+  "raw_captures_redistributed": false
+}

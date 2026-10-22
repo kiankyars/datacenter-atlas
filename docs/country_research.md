@@ -306,3 +306,5 @@ From 22 October 2026 sites are added continuously: researchers each work a narro
 `verified_construction_core/2026-10-22-research-thirtyfifth`: **543 sites and 576 projects in 61 countries**. Adds Tritax Manor Farm Data Centre, Slough - 107 MW Phase 1 (appeal APP/J0350/W/25/3366043).
 
 `verified_construction_core/2026-10-22-research-thirtysixth`: **549 sites and 582 projects in 61 countries**. Adds CloudHQ Project Asahi Technology Campus — planned data-centre buildings at BIG HOP Garden Mall Inzai; Colovore Alliance Data Center — planned building; Compass DFW III Building 8 — interior/tenant fit-out; CyrusOne DFW8 interior fit-out (data halls and generator yard); Bogle Drive Data Center Facility — two two-storey data centre buildings (site plan SP-2024-00038, 14901 Bogle Dr); ADP Appomattox Data Hub — proposed data center facilities (AVAIO Project Hercules, tax parcel 63 A 80).
+
+`verified_construction_core/2026-10-22-research-thirtyseventh`: **551 sites and 584 projects in 61 countries**. Adds Colovore RNO01 — first data center; Aligned PHX-05 Data Center — core and shell.

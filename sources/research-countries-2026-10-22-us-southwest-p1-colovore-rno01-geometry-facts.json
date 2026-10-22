@@ -1,0 +1,61 @@
+{
+  "candidate_id": "colovore-rno01-campus",
+  "decision": "Selected the centroid of the statewide-parcel polygon whose situs is 100 Italy Dr in Storey County, the facility address that Colovore Reno 1 LLC gave on its GOED incentive application, as the campus locator for RNO01. The building positions inside the parcel are not published.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -119.480936,
+      39.531425
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_tax_parcel_centroid",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-us-southwest-p1/ndot-parcel-100-italy-dr.json",
+  "source_sha256": "ef10a60df42903a32eeef4fc099d42de6342b5a897096dd875c983e01496eb9c",
+  "source_url": "https://gis.dot.nv.gov/agsphs/rest/services/Reference/Statewide_Parcels/MapServer/0/query?where=County%3D%27Storey%27+AND+SiteAddress%3D%27100+ITALY+DR%27&outFields=APN%2CSiteAddress%2CSiteCity%2CAcres%2CCounty%2CSourceDate%2COwnerName&returnGeometry=true&outSR=4326&f=json",
+  "retrieved_at": "2026-10-22T16:16:50.857Z",
+  "selected_properties": {
+    "APN": "509110 (as listed in the layer)",
+    "SiteAddress": "100 ITALY DR",
+    "SiteCity": "INDUSTRIAL GID",
+    "County": "Storey",
+    "Acres": 7.73,
+    "SourceDate": "2018-07-09 (epoch ms 1531119600000)",
+    "OwnerName_2018": "STORMO PROPERTIES LLC (a company; not used as a current owner role)"
+  },
+  "computed": {
+    "parts": 1,
+    "geodesic_acres": 7.73,
+    "centroid_lon_lat": [
+      -119.480936,
+      39.531425
+    ],
+    "centroid_inside_polygon": true,
+    "extent_m": [
+      226,
+      249
+    ],
+    "bounds_lon_lat": [
+      -119.48225,
+      39.5303,
+      -119.47959,
+      39.53255
+    ],
+    "method": "Polygon ring returned with outSR=4326 (native EPSG:26911); centroid computed in EPSG:32611 and returned to WGS84; geodesic area on the WGS84 ellipsoid",
+    "tools": "pyproj 3.7.1, shapely 2.1.1"
+  },
+  "identity_bridge": [
+    "Colovore release (9 September 2026): the first data center on the RNO01 campus in Sparks, Nevada (Reno metro) has officially opened; a second data center is under construction on the same campus.",
+    "Storey County notice of a possible quorum (posted on or before 4 September 2026): Colovore Data Center ribbon cutting, 9 September 2026, at Colovore Data Center, 100 Italy Dr., McCarran, NV 89437.",
+    "GOED board packet for Colovore Reno 1 LLC (summary page dated 5 August 2026): proposed facility address 100 Italy Drive, McCarran, Storey County 89437; the application says the project is the company's first Nevada data-centre presence, and the company timeline in the packet names RNO01 as its first Reno site (16 MW).",
+    "Colovore Reno market page (undated, captured 22 October 2026): RNO01 is in Sparks, NV, 16 MW in two 8 MW halls, sold out; RNO02 is a separate Reno site.",
+    "Statewide parcel layer: situs 100 ITALY DR, Storey County, APN 509110, 7.73 acres, in the Tahoe-Reno Industrial (TRI) general improvement district, whose mailing addresses are given as McCarran or Sparks."
+  ],
+  "consistency_checks": {
+    "vintage": "The statewide layer is the Nevada Division of State Lands compilation dated 2018-12-31 with SourceDate 2018-07-09 for Storey County; the parcel may since have been re-platted. A current Storey County parcel could not be retrieved: the county's assessor parcel pages (storeynv.devnetwedge.com/parcel/*) are disallowed by robots.txt, the county publishes only PDF assessor maps, and the 2024 statewide copy on arcgis.water.nv.gov is restricted from redistribution under NRS 250.",
+    "situs_match": "exact street-number and street-name match to the application address",
+    "datum": "WGS84 output from the service (outSR=4326)",
+    "geocoder_used": false
+  }
+}
