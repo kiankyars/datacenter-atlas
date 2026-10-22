@@ -1,0 +1,61 @@
+{
+  "candidate_id": "plainsmen-project-thunderbird-enid-west-campus",
+  "decision": "Selected the centroid of Garfield County parcel 0000-16-22N-06W-3-100-00 (the SW/4 of Section 16, T22N, R6W of the Indian Meridian, less a 183 by 187 ft excepted residence tract; 159 roll acres), the parcel named in the Enid MAPC agenda for the Project Thunderbird West Campus western-quarter rezoning (A to I-3), as the campus locator. It locates the rezoning tract, not a data-centre building, site plan or works.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -97.8502975,
+      36.3798725
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_tax_parcel_centroid",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-us-south-central-p1/enid-gis-parcel-west-campus-sw4-sec16.json",
+  "source_sha256": "a485157590e31c2b89c7cb75c5536525a953d0d8b3cfc7ec0ee7ca702633a2ce",
+  "source_url": "https://gis.enid.org/server/rest/services/GC_Parcels/MapServer/32/query?where=parcelid%20IN%20%28%270000-16-22N-06W-3-100-00%27%2C%270000-16-22N-06W-3-625-00%27%2C%270000-16-22N-06W-4-150-00%27%29&outFields=parcelid,account,propclass,legal,lotsize,sizetype,situs&returnGeometry=true&outSR=4326&f=json",
+  "retrieved_at": "2026-10-22T20:19:14.530Z",
+  "selected_properties": {
+    "parcelid": "0000-16-22N-06W-3-100-00",
+    "account": "240034055",
+    "propclass": "UA",
+    "legal": "SW/4 16-22-6 (EX TR BEG SW/C OF SW/4, N 183, E 187, S 183, W 187 TO BEG)",
+    "lotsize": "159 Acres",
+    "situs": "(blank)",
+    "owner_field": "not requested in the capture; the county roll owner predates the 30 March 2026 special warranty deed to Two Boots Land and Cattle, LLC (recorded 2 April 2026, Book 2751, Pages 723-727) cited in the application, and is not used"
+  },
+  "computed": {
+    "crs": "EPSG:4326 as served (outSR 4326; service native WKID 102100)",
+    "geodesic_acres": 158.77,
+    "centroid_inside": true,
+    "bounds_lon_lat": [
+      -97.85481,
+      36.376226,
+      -97.845822,
+      36.383485
+    ],
+    "extent_m": {
+      "east_west": 806,
+      "north_south": 806
+    },
+    "method": "planar centroid in EPSG:32614 (pyproj 3.7.1, shapely 2.1.1) transformed back to WGS84; WGS84 geodesic area"
+  },
+  "identity_bridge": [
+    "Application 2 (West Campus, Western Quarter), received by the City of Enid on 27 August 2026: SW/4 of Section 16, T22N, R6W, Garfield County, less a tract beginning at the SW corner running N 183 ft, E 187 ft, S 183 ft, W 187 ft; legal owner Two Boots Land and Cattle, LLC; applicant Plainsmen Holdings, LLC.",
+    "MAPC special meeting agenda of 28 September 2026 (posted 25 September), items 10-11: the same request 'to rezone the property with Parcel ID 0000-16-22N-06W-3-100-00' with the identical legal description.",
+    "The parcel's roll legal description repeats the application's exception exactly, and the excepted tract is the separate 1-acre parcel 0000-16-22N-06W-3-625-00 at the SW corner.",
+    "The applicant's area map (sheet 2 of 4) draws the subject property between S 16th St and S 30th St, north of E Rupe Ave, with the Application 3 I-2 tract (S/2 SE/4, parcel 0000-16-22N-06W-4-150-00) to the east; the parcel polygon spans lon -97.8548 to -97.8458 and lat 36.3762 to 36.3835, consistent with that quarter section."
+  ],
+  "alternatives_rejected": [
+    "Parcel 0000-16-22N-06W-4-150-00 (SE/4 less Pioneer Trail Addition, 147 acres): its southern half is the I-2 transition tract, where the application and the MAPC plan amendment exclude any data center or generating facility.",
+    "North Campus parcels in Section 23, T23N, R6W (four parcels, 560 acres): a separate tract about 10 km north whose application lists electric generation, energy storage and data center among possible uses; held separately.",
+    "City or industrial-park centroids: not acceptable locators."
+  ],
+  "consistency_checks": {
+    "legal_description_match": "roll legal description equals the application and MAPC legal description (SW/4 less the 183 x 187 ft SW-corner tract)",
+    "parcel_id_match": "0000-16-22N-06W-3-100-00 is the parcel ID named in MAPC agenda items 10 and 11",
+    "area_check": "158.77 geodesic acres versus 159 roll acres and a 160-acre quarter section less about 0.79 acre",
+    "datum": "served in WGS 84 (wkid 4326)",
+    "geocoder_used": false
+  }
+}

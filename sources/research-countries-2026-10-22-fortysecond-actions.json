@@ -1,0 +1,353 @@
+{
+  "additions": [
+    {
+      "project_stable_key": "curated:ndc-paris-1-velizy-morane-saulnier-data-center:7-mw-it-data-centre",
+      "physical_site_stable_key": "curated:ndc-paris-1-velizy-morane-saulnier-data-center",
+      "site_name": "NDC Paris 1 Data Center, Vélizy-Villacoublay (8-10 avenue Morane Saulnier)",
+      "name": "NDC Paris 1 — 7 MW IT data centre (permit PC 078 640 24 V1008)",
+      "country": "France",
+      "country_iso_a2": "FR",
+      "status": {
+        "value": "under_construction",
+        "as_of": "2026-10-21",
+        "source_id": "fr-p1-altarea-q3-2026-activite",
+        "summary": "Altarea's release of 21 October 2026 reports that the group launched works this summer on its 7 MW IT data centre at Vélizy-Villacoublay (headlined as the project's first stone), with delivery to its user expected within 18 months. Its 29 July 2026 half-year report already stated that the group holds a final building permit for the 7 MW IT Vélizy data centre and that works were launched at the end of the half-year. Construction is therefore under way as of the 21 October report; no work stage, completion or operation is asserted, and the delivery horizon is a forecast."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            2.2127298,
+            48.7822084
+          ]
+        },
+        "source_id": "fr-p1-apicarto-velizy-ae-parcels",
+        "scope": "project_locator",
+        "scope_class": "official_cadastral_parcel_union_centroid_of_building_permit_land",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "ign_api_carto_cadastre_parcels_78640000AE0447_AE0532_AE0533_union_area_centroid_computed_in_epsg2154_returned_to_wgs84",
+        "precision": "Centroid of the 1.19 ha land of building permit PC 078 640 24 V1008 (current parcels AE 447, AE 532 and AE 533, about 177 by 138 m) at 8-10 avenue Morane Saulnier. The permit covers the data centre together with a student residence and shops, so the point locates the permit plot that contains the data centre, not the data-centre building itself.",
+        "identity_review": "The SDES register lists permit PC 078 640 24 V1008 to ALTA NDC VELIZY (NAF 63.11Z, data processing and hosting) at 8-10 avenue Morane Saulnier on parcels AE 444 and AE 447 (11,892 m2), creating 10,160 m2 of housing and 5,579 m2 of non-residential floor; this matches Altarea's NDC Paris 1 data centre with its neighbouring Cogedim student residence and its 'Alta NDC' project-company naming (SNC ALTA NDC NOYAL at Noyal). AE 444 is absent from the current cadastre; AE 532 (5,663 m2) and AE 533 (5,761 m2) sum to 11,424 m2, equal within 1 m2 to the permit land less AE 447 (469 m2), and with AE 447 form one contiguous polygon fronting avenue Morane Saulnier, so they are taken as the successors of AE 444: of all combinations of up to five other parcels in the queried box whose areas with AE 447 total the permit land within 10 m2, only AE 532 + AE 533 is contiguous with AE 447. The avenue's street-level geocoder point is not used.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The cadastral service publishes no positional accuracy; the point is the centroid of a 1.2 ha mixed-use plot whose vertices lie up to 117 m away, the data-centre building's position within it is not published, and the successor parcels of AE 444 are inferred from area and adjacency rather than from a published parcel filiation."
+      },
+      "context_source_ids": [
+        "fr-p1-sitadel-78640-velizy",
+        "fr-p1-altarea-h1-2026-rapport",
+        "fr-p1-altarea-ndc-velizy-page",
+        "fr-p1-apicarto-velizy-ae444-query",
+        "fr-p1-bdtopo-velizy-roads",
+        "fr-p1-altarea-q3-2026-page"
+      ],
+      "roles": [
+        {
+          "party": "Nation Data Center (NDC), Altarea group",
+          "role": "operator",
+          "relationship_scope": "intended",
+          "source_id": "fr-p1-altarea-ndc-velizy-page"
+        }
+      ],
+      "distinctness_review": "Sites, projects, evidence (3,069 rows), the 231 source records and the identity mapping of 2026-10-22-research-fortyfirst (572 sites, 605 projects) were searched for Vélizy, Velizy, Villacoublay, Morane Saulnier, Nation Data Center, NDC Paris, Alta NDC and Altarea: nothing matches. No Atlas site, queued addition or claim lies within 2 km; the nearest Atlas site is Colt Villebon-sur-Yvette Campus, 10.2 km away, then Goodman PAR02, 17.4 km. The only earlier mention is the 2026-10-16 thirty-first hold for 'NDC Paris 1, Vélizy-Villacoublay', held for want of an address or parcel; this addition meets its reopen condition with the official permit record and an API Carto parcel locator. Other queue fragments and claims.tsv contain no Vélizy candidate. The Microsoft 1985 France permit at 21 rue du Général Valérie André in the same register is a different site and is not added.",
+      "successor_review": "The 21 October 2026 release is Altarea's newest publication (post and regulated-information sitemaps captured on 22 October 2026 list nothing later). It reports works under way and forecasts delivery within 18 months; no completion, pause or cancellation was found. The register records no completion declaration for the permit.",
+      "scoped_project_details": {
+        "aliases": [
+          "NDC Paris 1",
+          "NDC Vélizy",
+          "ALTA NDC VELIZY"
+        ],
+        "facility_scope": "Data centre of 2,268 m2 IT floor within a mixed-use permit that also covers a student residence and shops",
+        "it_capacity_mw_planned": 7,
+        "it_capacity_qualification": "Target IT power stated by the developer; not measured load",
+        "it_floor_m2": 2268,
+        "permit": "PC 078 640 24 V1008, authorised 12 September 2025 (SDES register), stated by Altarea as final",
+        "permit_land_m2": 11892,
+        "cadastral_parcels_in_permit": [
+          "78640000AE0444",
+          "78640000AE0447"
+        ],
+        "physical_construction_verified": true,
+        "completion_verified": false
+      }
+    },
+    {
+      "project_stable_key": "curated:ndc-noyal-sur-vilaine-alain-fournier-data-center:existing-data-centre-operations",
+      "physical_site_stable_key": "curated:ndc-noyal-sur-vilaine-alain-fournier-data-center",
+      "site_name": "NDC Noyal Data Center, Noyal-sur-Vilaine near Rennes (7 rue Alain Fournier)",
+      "name": "NDC Noyal (Rennes) — existing 3 MW IT proximity data centre operations",
+      "country": "France",
+      "country_iso_a2": "FR",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-10-21",
+        "source_id": "fr-p1-altarea-q3-2026-activite",
+        "summary": "Altarea's release of 21 October 2026 reports that during the third quarter the group fully let its 3 MW IT proximity data centre at Noyal (Rennes). Its 29 July 2026 half-year report describes the same Noyal data centre as one of two Altarea data centres in operation near Rennes, inaugurated in October 2025 and holding all the certifications needed for its operation and marketing. The data centre is therefore operating and fully let as of the 21 October report; the statement says nothing about utilisation of the 3 MW IT."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -1.5361261,
+            48.1124635
+          ]
+        },
+        "source_id": "fr-p1-apicarto-noyal-0a-2886",
+        "scope": "project_locator",
+        "scope_class": "official_cadastral_parcel_centroid_of_building_permit_land",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "ign_api_carto_cadastre_parcel_352070000A2886_area_centroid_computed_in_epsg2154_returned_to_wgs84",
+        "precision": "Centroid of cadastral parcel A 2886 in Noyal-sur-Vilaine (4,062 m2, about 93 by 76 m), the whole land of the data centre's building permit at 7 rue Alain Fournier. It locates the data centre's plot, not the building footprint.",
+        "identity_review": "The SDES register lists permit PC 035 207 23 P0004 to SNC ALTA NDC NOYAL at 7 rue Alain Fournier, lieu-dit Les Maldries, on parcel A 2886 (4,062 m2), creating 3,312 m2 of warehouse-class and office floor; Géorisques lists 'NATION DATA CENTER NOYAL' at the same address, and Altarea names the Noyal 3 MW IT data centre developed by the group near Rennes. API Carto returns a single parcel 352070000A2886 with exactly the permit's 4,062 m2, and the official address point of 7 rue Alain Fournier lies inside it, 39 m from the centroid. Noyal-sur-Vilaine (INSEE 35207) is confirmed by both registers; Noyal-Châtillon-sur-Seiche (35206) is a different commune and is not used. The Géorisques register point, 105 m outside the parcel, is not used.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The cadastral service publishes no positional accuracy; the point is the centroid of a 4,062 m2 parcel whose vertices lie up to 51 m away, and the building's position within the parcel is not published."
+      },
+      "context_source_ids": [
+        "fr-p1-altarea-h1-2026-rapport",
+        "fr-p1-sitadel-35207-noyal",
+        "fr-p1-geopf-noyal-7-alain-fournier",
+        "fr-p1-georisques-35207-noyal",
+        "fr-p1-altarea-q3-2026-page"
+      ],
+      "roles": [
+        {
+          "party": "Altarea",
+          "role": "owner",
+          "relationship_scope": "current",
+          "source_id": "fr-p1-altarea-h1-2026-rapport"
+        },
+        {
+          "party": "Nation Data Center (NDC), Altarea group",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "fr-p1-georisques-35207-noyal"
+        }
+      ],
+      "distinctness_review": "Sites, projects, evidence (3,069 rows), the 231 source records and the identity mapping of 2026-10-22-research-fortyfirst (572 sites, 605 projects) were searched for Noyal, Rennes, Roazhon, Les Maldries, Alain Fournier, Nation Data Center, NDC, Alta NDC and Altarea: nothing matches, and the Atlas has no site in Brittany. No Atlas site, queued addition or claim lies within 2 km; the nearest Atlas site is Colt Villebon-sur-Yvette Campus, about 285 km away. The sources/*-holds.json files, the other queue fragments and claims.tsv contain no Noyal or Rennes candidate. Altarea's second Rennes-area data centre at Mordelles is a different site and is held separately.",
+      "successor_review": "The 21 October 2026 release is Altarea's newest publication (sitemaps captured on 22 October 2026 list nothing later) and reports the data centre fully let; no pause, closure or expansion was found. The register shows no completion declaration for the permit, which does not affect the operating statements.",
+      "scoped_project_details": {
+        "aliases": [
+          "Nation Data Center Noyal",
+          "ALTA NDC NOYAL"
+        ],
+        "facility_scope": "Single proximity (colocation and edge) data-centre building of 3,312 m2 created floor on a 4,062 m2 plot",
+        "it_capacity_mw": 3,
+        "it_capacity_qualification": "IT power stated by the owner; fully let per the 21 October 2026 release; not measured load",
+        "inaugurated": "October 2025 (per the 29 July 2026 Altarea report)",
+        "permit": "PC 035 207 23 P0004, authorised 4 April 2023 (SDES register)",
+        "cadastral_parcel": "352070000A2886"
+      }
+    },
+    {
+      "project_stable_key": "curated:telehouse-th3-paris-magny-campus:campus-data-centre-operations",
+      "physical_site_stable_key": "curated:telehouse-th3-paris-magny-campus",
+      "site_name": "Telehouse TH3 Paris Magny Campus, Magny-les-Hameaux (1 rue Pablo Picasso)",
+      "name": "Telehouse TH3 Paris Magny — campus data-centre operations (23 MW available after the new 3 MW AI module)",
+      "country": "France",
+      "country_iso_a2": "FR",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-10-20",
+        "source_id": "fr-p1-telehouse-th3-magny-20261020",
+        "summary": "Telehouse's press flash of 20 October 2026 reports the commissioning of a new 3 MW module for AI infrastructure on its TH3 Paris Magny campus, describes the new capacity as now operational and states that the extension brings the campus's available power to 23 MW. The campus is therefore operating as of 20 October 2026. The module's commissioning day is not given, 23 MW is available power rather than measured IT load, and the further data-centre building under environmental-authorisation review is not part of this status."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            2.0781628,
+            48.7262938
+          ]
+        },
+        "source_id": "fr-p1-apicarto-magny-ax-0086",
+        "scope": "campus_locator",
+        "scope_class": "official_cadastral_parcel_centroid_of_operator_campus_named_in_building_permits",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "ign_api_carto_cadastre_parcel_78356000AX0086_area_centroid_computed_in_epsg2154_returned_to_wgs84",
+        "precision": "Centroid of cadastral parcel AX 86 in Magny-les-Hameaux (6.6 ha, about 372 by 311 m), the land of all five Telehouse building permits (2018 to 2025) at 1 rue Pablo Picasso. It locates the TH3 campus parcel, not any individual building or the new 3 MW module.",
+        "identity_review": "Telehouse's TH3 page gives the Telehouse Paris Magny-Les-Hameaux address as 1, rue Pablo Picasso, 78114 Magny-les-Hameaux. The SDES register lists five permits (two authorised in 2018, then 2022, 2023 and 2025) to TELEHOUSE INT CORPORATION EUROPE LIMITED (NAF 63.11Z) at that address on parcel AX 86 of 65,969 m2, and Géorisques lists TELEHOUSE EUROPE, an authorised computer-centre installation, at ZAC de Gomberville, 1 rue Pablo Picasso, with its register point inside the parcel. API Carto returns a single parcel 78356000AX0086 with exactly that area, and the official address point of 1 rue Pablo Picasso lies inside it, 94 m from the centroid. The commune centre is not used.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The cadastral service publishes no positional accuracy; the point is the centroid of a 6.6 ha campus parcel whose vertices lie up to 205 m away, and the positions of the individual buildings and of the new module are not published."
+      },
+      "context_source_ids": [
+        "fr-p1-telehouse-paris-magny-page",
+        "fr-p1-sitadel-78356-magny",
+        "fr-p1-geopf-magny-1-pablo-picasso",
+        "fr-p1-georisques-78356-telehouse",
+        "fr-p1-registre-7391-telehouse-magny"
+      ],
+      "roles": [
+        {
+          "party": "Telehouse (Telehouse France)",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "fr-p1-telehouse-th3-magny-20261020"
+        }
+      ],
+      "distinctness_review": "Sites, projects, evidence, the 231 source records and the identity mapping of 2026-10-22-research-fortyfirst (572 sites, 605 projects) were searched for Telehouse, TH3, Magny, Magny-les-Hameaux, Gomberville and Pablo Picasso: the only Telehouse records are the Telehouse London Docklands Campus with its two projects (existing operations and Telehouse West 2) and holds for Telehouse Frankfurt Building N and London; no French Telehouse site exists. No Atlas site, queued addition or claim lies within 2 km; the nearest Atlas site is Colt Villebon-sur-Yvette Campus, 11.1 km away. Telehouse TH2 Paris Voltaire (Paris 11e) and TH1 Marseille are different sites and are not added. The sources/*-holds.json files and other queue fragments contain no Magny candidate.",
+      "successor_review": "Checked on 22 October 2026: the 20 October 2026 press flash is the newest item in the Telehouse France post sitemap (lastmod 2026-10-20). The environmental-authorisation consultation for a further data-centre building on the campus closed on 18 September 2026 with no decision found; it is a separate future project and is held. No pause or closure was found.",
+      "scoped_project_details": {
+        "aliases": [
+          "TH3 Paris Magny",
+          "Telehouse Paris Magny-Les-Hameaux",
+          "Magny 2",
+          "Telehouse Magny"
+        ],
+        "facility_scope": "Operating multi-building colocation campus; includes the 3 MW AI-ready module commissioned by 20 October 2026",
+        "available_power_mw": 23,
+        "power_qualification": "Campus available power stated by the operator; not measured IT load",
+        "new_module_mw": 3,
+        "cadastral_parcel": "78356000AX0086",
+        "permits": [
+          "PC 078 356 18 E0001",
+          "PC 078 356 18 E0005",
+          "PC 078 356 21 E0039",
+          "PC 078 356 23 E0003",
+          "PC 078 356 24 E0017"
+        ]
+      }
+    },
+    {
+      "project_stable_key": "curated:plainsmen-project-thunderbird-enid-west-campus:western-tract-data-center",
+      "physical_site_stable_key": "curated:plainsmen-project-thunderbird-enid-west-campus",
+      "site_name": "Project Thunderbird West Campus (Enid, Oklahoma)",
+      "name": "Project Thunderbird West Campus — proposed data center on the western tract (rezoning A to I-3)",
+      "country": "United States",
+      "country_iso_a2": "US",
+      "status": {
+        "value": "announced",
+        "as_of": "2026-08-27",
+        "source_id": "us-south-central-p1-enid-thunderbird-west-campus-rezoning-application",
+        "summary": "On 27 August 2026 the City of Enid received Plainsmen Holdings, LLC's application to rezone the Project Thunderbird West Campus western quarter, the SW/4 of Section 16, T22N, R6W (Indian Meridian), Garfield County, about 159 acres less a 183 by 187 ft excepted tract, from A Agricultural to I-3 Industrial (Heavy) for heavy industrial use 'which may include data center and associated support facilities', with no electric generating facility proposed on the property. It is one of three coordinated Project Thunderbird rezoning applications. The application is not a consent: the Planning Commission's 28 September recommendation is advisory, the City Commission decides on 27 October 2026, and the City states that no data-center site plan, intensive-use application or construction approval has been submitted, so no permit, site work or construction is established."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -97.8502975,
+            36.3798725
+          ]
+        },
+        "source_id": "us-south-central-p1-enid-gis-parcel-west-campus",
+        "scope": "campus_locator",
+        "scope_class": "official_tax_parcel_centroid",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "official_county_parcel_service_parcel_centroid",
+        "precision": "Centroid of Garfield County parcel 0000-16-22N-06W-3-100-00 (the SW/4 of Section 16, T22N, R6W less the 183 by 187 ft southwest-corner tract; 158.77 geodesic acres, about 0.81 by 0.81 km), from the City of Enid's GC_Parcels service. It locates the West Campus western rezoning tract, not a data-centre building, a site plan or any works, and excludes the I-2 transition tract to the east.",
+        "identity_review": "The Enid MAPC agenda of 28 September 2026 (items 10-11) names Parcel ID 0000-16-22N-06W-3-100-00 for this exact request, and the parcel's roll legal description repeats the application's description, including the SW-corner exception, which is the separate 1-acre parcel 0000-16-22N-06W-3-625-00. The applicant's area map places the tract between S 16th St and S 30th St north of E Rupe Ave, matching the parcel polygon. The county roll's owner predates the 2 April 2026 deed recording to Two Boots Land and Cattle, LLC, so identity rests on the parcel ID and legal description, not the owner field.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "County parcel polygons carry no published positional accuracy; the centroid represents a quarter-section tract about 0.81 km across, and no building position has been proposed."
+      },
+      "context_source_ids": [
+        "us-south-central-p1-enid-project-thunderbird-press-release",
+        "us-south-central-p1-enid-mapc-2026-09-28-agenda",
+        "us-south-central-p1-enid-project-thunderbird-city-page",
+        "us-south-central-p1-enid-october-27-special-meeting-page"
+      ],
+      "roles": [],
+      "distinctness_review": "Searched every field of the 2026-10-22-research-fortieth base (566 sites, 599 projects) and again the 2026-10-22-research-fortyfirst base that superseded it (572 sites, 605 projects; its six new sites are in China, Minnesota, Nebraska, Michigan and Ohio), each with its evidence, source records and identity mapping, the pending queue fragments and all sources/*-holds.json for Thunderbird, Plainsmen, Enid, Garfield County, Two Boots, Vance Air Force Base and Patriot Utility. The only hit is the unrelated DC BLOX 'Thunderbird' campus in Indianapolis held by us-midwest-east-p1. No Atlas or queued record lies within 25 km; the nearest Atlas site is Google Stillwater (76.8 km), then Meta Tulsa (168 km). The North Campus (Section 23, T23N, R6W, about 10 km north) is a separate tract and is held, not added.",
+      "successor_review": "The City's Project Thunderbird page and Oct. 27 meeting page (captured 22 October 2026) show the MAPC recommendation of 28 September and the City Commission hearing still scheduled for 27 October 2026; no rezoning decision, intensive-use application, site plan or permit exists. The project stays announced.",
+      "scoped_project_details": {
+        "aliases": [
+          "Project Thunderbird",
+          "Application 2 - West Campus, Western Quarter"
+        ],
+        "applicant": "Plainsmen Holdings, LLC",
+        "parcel_id": "0000-16-22N-06W-3-100-00",
+        "legal_description": "SW/4 of Section 16, T22N, R6W of the Indian Meridian, Garfield County, Oklahoma, less a 183 by 187 ft tract at its southwest corner",
+        "tract_area_acres": 159,
+        "zoning_request": "A Agricultural (General) to I-3 Industrial (Heavy)",
+        "stated_use": "heavy industrial use which may include data center and associated support facilities; no electric generating facility on this property",
+        "related_applications": [
+          "North Campus, Section 23, T23N, R6W, about 560 acres, A to I-3 (uses may include electric generation, energy storage, data center, water treatment and switchyard)",
+          "West Campus eastern transition tract, S/2 SE/4 of Section 16, about 80 acres, A to I-2 (no data center or generating facility)"
+        ],
+        "mapc_recommendation": "approval recommended 2026-09-28 (advisory)",
+        "city_commission_hearing": "scheduled 2026-10-27",
+        "project_wide_statements": "about 1,735 acres across four campuses and up to 3.3 GW of planned on-site generation (press release of 8 September 2026; generation, not IT load)",
+        "physical_construction_verified": false,
+        "capacity": null
+      }
+    },
+    {
+      "project_stable_key": "curated:okc2-6000-n-shartel-ave-oklahoma-city:okc2-data-center",
+      "physical_site_stable_key": "curated:okc2-6000-n-shartel-ave-oklahoma-city",
+      "site_name": "OKC2 (6000 N Shartel Ave, Oklahoma City)",
+      "name": "OKC2 — GPU computing data center with on-site gas-engine power (proposed new facility)",
+      "country": "United States",
+      "country_iso_a2": "US",
+      "status": {
+        "value": "announced",
+        "as_of": "2026-09-21",
+        "source_id": "us-south-central-p1-okdeq-okc2-major-source-application-letter",
+        "summary": "On 21 September 2026 the Oklahoma DEQ Air Quality Division confirmed that 6000 N Shartel Ave, LLC had filed, on 4 September 2026, an administratively complete application for a major source construction permit (MAC000520) for OKC2, a facility classified as SIC 7374 / NAICS 518210 (data processing and hosting) in Section 9, T12N, R3W, Oklahoma County. DEQ's July 2026 evaluation of the facility's earlier minor-source application states that OKC2 'will be a newly constructed facility' whose island-mode natural-gas engines and battery banks are to power GPU-based computing. The application covers engine emissions only; it is not consent for the data-centre development, and no construction, completion or operation is established."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -97.52242,
+            35.53351
+          ]
+        },
+        "source_id": "us-south-central-p1-okdeq-okc2-minor-source-permit-memo",
+        "scope": "project_locator",
+        "scope_class": "official_permit_facility_coordinate",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "official_permit_memorandum_facility_coordinate",
+        "precision": "Facility coordinate printed in the Oklahoma DEQ evaluation memorandum for permit 2026-0216-C (35.53351 N, 97.52242 W, five decimal places, no datum stated), inside the NE/4 NW/4 of Section 9, T12N, R3W (Indian Meridian) named by DEQ. It locates the permitted OKC2 facility as reported to the regulator, not a surveyed building footprint or the leased site's boundary.",
+        "identity_review": "The DEQ memorandum of 23 July 2026 (permit 2026-0216-C) and DEQ's letter of 21 September 2026 (MAC000520) name the same permittee, 6000 N Shartel Ave, LLC, the same facility, OKC2 (Facility ID 25431, SIC 7374 / NAICS 518210), and the same Section 9, T12N, R3W. The BLM CadNSDI PLSS service places the coordinate in Section 09, T12N, R3W, aliquot NE/4 NW/4, in the north part of the section, and the memorandum's directions put the site on the east side of N Shartel Ave north of I-44, consistent with the permittee's name. No parcel polygon could be used: the City of Oklahoma City GIS returned a bot challenge and the county assessor's robots.txt returned HTTP 403.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The memorandum gives no datum, collection method or accuracy for the applicant-reported facility coordinate, and the size of the leased site is not published."
+      },
+      "context_source_ids": [
+        "us-south-central-p1-okdeq-okc2-permit-status-pages"
+      ],
+      "roles": [
+        {
+          "party": "6000 N Shartel Ave, LLC",
+          "role": "operator",
+          "relationship_scope": "intended",
+          "source_id": "us-south-central-p1-okdeq-okc2-major-source-application-letter"
+        }
+      ],
+      "distinctness_review": "Searched every field of the current base (2026-10-22-research-fortyfirst: 572 sites, 605 projects), its evidence, source records and identity mapping, the pending queue fragments and all sources/*-holds.json for Shartel, OKC2, Oklahoma City and Oklahoma County: the only hits are news URLs on okcfox.com attached to IREN Kiowa. No Atlas or queued record lies within 25 km; the nearest are Google Stillwater (77 km) and this fragment's Project Thunderbird West Campus in Enid (99 km). The 22 October holds list no Oklahoma City candidate.",
+      "successor_review": "The DEQ public-review records captured on 22 October 2026 show MAC000520 in technical review (Under DEQ Review) and the earlier minor-source permit 2026-0216-C as issued; no later DEQ document, operator statement or other record of construction or operation was found. The project stays announced.",
+      "scoped_project_details": {
+        "aliases": [
+          "OKC2",
+          "6000 N Shartel Ave, LLC"
+        ],
+        "address_basis": "permittee name and DEQ directions (N Shartel Ave north of I-44, Oklahoma City); no street address is printed by DEQ",
+        "plss": "NE/4 NW/4 of Section 9, T12N, R3W, Indian Meridian, Oklahoma County",
+        "deq_facility_id": "25431",
+        "classification": "SIC 7374 / NAICS 518210 (data processing and hosting); GPU-based computing per the July 2026 memorandum",
+        "air_permits": [
+          "2026-0216-C minor source construction permit (application 2026-03-18; draft memorandum 2026-07-23; status Permit Issued)",
+          "MAC000520 v1.0 major source construction permit (application 2026-09-04; administratively complete 2026-09-21; technical review)"
+        ],
+        "onsite_generation": "up to eight Wartsila 20V34SG (12,704 hp each) and three 18V34SG (8,212 hp each) natural-gas engines in island mode, with battery banks; engine ratings, not IT load",
+        "site_tenure": "the applicant states it holds a current lease for the site",
+        "physical_construction_verified": false,
+        "capacity": null
+      }
+    }
+  ],
+  "status_updates": [
+    {
+      "project_stable_key": "curated:iij-matsue-data-center-park:existing-operations",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-10-05",
+        "source_id": "jp-west-p1-iij-matsue-power-agreement-20261005",
+        "summary": "In its release of 5 October 2026 IIJ states that the large-capacity lithium-ion batteries installed at its IIJ Matsue Data Center Park are operated as backup power for the data-centre facilities, and commits about 1,000 kWh of that stored power to Matsue City's evacuation shelters under a disaster power-supply agreement concluded that day. This is the operator's present-tense description of the existing campus in service on 5 October 2026. It establishes no new building, phase, capacity, utilisation or construction; the planned disaster drills are future work."
+      },
+      "identity_review": "The release names IIJ松江データセンターパーク (Matsue DCP), IIJ's own campus in Matsue, Shimane, which is the existing site IIJ Matsue Data Center Park and its single project IIJ Matsue Existing Operations (owner and operator Internet Initiative Japan; identity pages iij.ad.jp/biz/dc/matsue.html and iij.ad.jp/datacenter/tech/iijdc/matsuedcp.html already attached). The release names no other IIJ facility in Matsue. The batteries and EV chargers are equipment installed at that campus, not a separate facility, so the refresh keeps the whole-campus scope and the reviewed campus locator unchanged. Checked against the current dataset (2026-10-22-research-fortyfirst): the only Atlas record within 2 km of the campus point is the site itself; the nearest other site is Enecom Hiroshima Data Center, 132.9 km away. No pending queue fragment or hold concerns Matsue.",
+      "successor_review": "Strictly newer than the existing 7 August 2026 observation (IIJ's first-quarter results presentation). IIJ's 2026 press-release index captured on 22 October 2026 (iij-pressrelease-2026.html, sha256 8d38da7e...0860c) lists items to 21 October; the only later Matsue item is this 5 October release, and no release reports a pause, closure, expansion or new phase at Matsue DCP. The 18 September Watt-bit demonstration release concerns IIJ's Fukuoka Airport DC and Kyushu sites, not Matsue. IIJ's second-quarter results are not yet published. The status therefore stays operational as of 5 October 2026."
+    }
+  ],
+  "context_updates": []
+}

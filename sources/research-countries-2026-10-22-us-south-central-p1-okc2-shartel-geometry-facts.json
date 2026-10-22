@@ -1,0 +1,50 @@
+{
+  "candidate_id": "okc2-6000-n-shartel-ave-oklahoma-city",
+  "decision": "Selected the facility coordinate printed in the Oklahoma DEQ Air Quality Division evaluation memorandum for permit 2026-0216-C (OKC2, Facility ID 25431): latitude 35.53351 N, longitude 97.52242 W. It is used as a project locator for the permitted OKC2 facility, not a building footprint or property boundary.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -97.52242,
+      35.53351
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_permit_facility_coordinate",
+  "use_scope": "project_locator",
+  "source_file": "local_data/country-research-us-south-central-p1/okdeq-okc2-draft-permit-20260723.pdf",
+  "source_sha256": "0215364b6aa86b144c761745fa0abd2097ac617b77a62ad4a1410e6f9f5108d2",
+  "source_url": "https://applications.deq.ok.gov/PermitsPublicReview/download.ashx?docid=6363277&cs=6cc3e83d2d1bbc94807f",
+  "retrieved_at": "2026-10-22T20:36:36.012Z",
+  "source_literal_coordinate_tokens": [
+    "Latitude: 35.53351°N",
+    "Longitude: 97.52242°W",
+    "Section 9, Township 12N, Range 3W, Oklahoma County, Oklahoma"
+  ],
+  "datum_note": "The memorandum states no datum, collection method or accuracy; the decimal degrees are used as WGS 84 without transformation (NAD83 and WGS 84 differ by about 1 m here, far below the unknown positional uncertainty).",
+  "consistency_checks": {
+    "plss_section": "BLM CadNSDI PLSS service: the point lies in Section 09, T12N, R3W of the Indian Meridian (PLSSID OK170120N0030W0, FRSTDIVID OK170120N0030W0SN090), as the memorandum and the 21 September 2026 DEQ letter state; aliquot part NE/4 NW/4 (40 acres).",
+    "position_in_section": "about 42% from the west and 77% from the south edge of the section polygon (section bounds -97.5299 to -97.5120, 35.5223 to 35.5369), i.e. in the northern part of the section, consistent with a 6000-block address south of the section's north line",
+    "directions": "The memorandum's directions (west on I-44 from I-235, Western Ave exit, east on NW Grand Blvd/I-44 service road, north on N Shartel Ave 0.3 miles, facility on the right) place the site on the east side of N Shartel Ave north of I-44, consistent with the applicant's name, 6000 N Shartel Ave, LLC.",
+    "facility_identity": "The 23 July 2026 memorandum (2026-0216-C) and the 21 September 2026 letter (MAC000520) share facility name OKC2, Facility ID 25431, SIC 7374 / NAICS 518210 and Section 9, T12N, R3W.",
+    "geocoder_used": false
+  },
+  "check_sources": [
+    {
+      "file": "local_data/country-research-us-south-central-p1/blm-plss-section-okc2-point.json",
+      "sha256": "23684189318b6af06a63134418e08ea45db05043699b9adea8004db6123bad5e",
+      "url": "https://gis.blm.gov/arcgis/rest/services/Cadastral/BLM_Natl_PLSS_CadNSDI/MapServer/2/query?geometry=-97.52242%2C35.53351&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=*&returnGeometry=true&outSR=4326&f=json",
+      "retrieved_at": "2026-10-22T20:39:33.882Z"
+    },
+    {
+      "file": "local_data/country-research-us-south-central-p1/blm-plss-intersected-okc2-point.json",
+      "sha256": "ae43d6f9bf20ea1ec753cefb713110ea94416dbfcc19b9fcb915bdc8a775b473",
+      "url": "https://gis.blm.gov/arcgis/rest/services/Cadastral/BLM_Natl_PLSS_CadNSDI/MapServer/3/query?geometry=-97.52242%2C35.53351&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=*&returnGeometry=false&f=json",
+      "retrieved_at": "2026-10-22T20:40:13.868Z"
+    }
+  ],
+  "alternatives_rejected": [
+    "City of Oklahoma City GIS (gis.okc.gov): returned an Incapsula bot challenge; not pursued, so no parcel polygon was used.",
+    "Oklahoma County Assessor site: robots.txt returned HTTP 403; not accessed.",
+    "Census TIGERweb: request rejected; not used. No geocoder was used."
+  ]
+}

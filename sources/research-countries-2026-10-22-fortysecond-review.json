@@ -1,0 +1,97 @@
+{
+  "reviewer": "root",
+  "reviewed_at": "2026-10-22",
+  "decision": "accepted_for_integration",
+  "update": "verified_construction_core/2026-10-22-research-fortysecond",
+  "base_dataset": "verified_construction_core/2026-10-22-research-fortyfirst",
+  "process": "continuous: one researcher per beat, one adversarial verifier per fragment",
+  "fragments": [
+    {
+      "fragment": "fr-p1",
+      "verdict": "accept",
+      "checks": [
+        "Base re-read from site/config.json: verified_construction_core/2026-10-22-research-fortyfirst (572 sites, 605 projects, 3,069 evidence rows)",
+        "All 19 relied-on captures rehashed: file SHA-256 = .metadata.json sha256 = sources.json content_hash; metadata url = source_url, HTTP 200, captured_at = retrieved_at, no credentials; 3 geometry-facts files match geometry_facts_sha256; every source is referenced",
+        "Altarea Q3 PDF (pdftotext, 4 pages; cover 'Paris, le 21 octobre 2026, 17h35'; created 21 Oct): 'a lancé cet été les travaux d'un data center de 7 MW IT à Vélizy-Villacoublay', headline 'Première pierre du projet de 7 MW IT à Vélizy'; 18-month delivery is forecast only; company_disclosure, 1 day old",
+        "Altarea Q3 PDF: Noyal 3 MW IT proximity data centre 'intégralement loué' during Q3; H1 release of 29 Jul 2026 (85 days, in window) says Altarea 'détient deux data centers en exploitation' near Rennes, Noyal inaugurated October 2025 and certified for operation",
+        "Telehouse press flash (page date 20/10/2026, JSON-LD published and modified the same day): 'mise en service d'un nouveau module de 3 MW' on campus TH3 Paris Magny, 'cette nouvelle capacité désormais opérationnelle', campus available power 23 MW; company_disclosure, 2 days old",
+        "Sitadel rows read in the CSV captures: PC 07864024V1008 to ALTA NDC VELIZY (63.11Z), 8-10 ave Morane Saulnier, AE 444 + AE 447, 11,892 m2, state commencé; PC 03520723P0004 to SNC ALTA NDC NOYAL, 7 rue Alain Fournier, A 2886, 4,062 m2; five Telehouse permits on AX 86 (65,969 m2)",
+        "Vélizy locator recomputed in EPSG:2154 (pyproj 3.7.1, shapely 2.1.1): union AE 447+532+533 is one Polygon, centroid 2.2127298, 48.7822084 (exact), inside, 34.2 m from boundary, 117.1 m max vertex; AE 444 query returns no feature (also with source_ign=BDP)",
+        "Vélizy parcel filiation independently re-tested: of all 1-5 parcel combinations in the box whose stated areas total 11,423 m2 within 10 m2, only AE 532 + AE 533 is contiguous with AE 447; the adjacent BD TOPO segment of avenue Morane Saulnier carries even number 6 on the union's side, consistent with 8-10",
+        "Noyal locator recomputed: parcel 352070000A2886 (contenance 4,062 m2) centroid -1.5361261, 48.1124635, inside; BAN housenumber 7 rue Alain Fournier inside, 38.8 m away; Géorisques NATION DATA CENTER NOYAL has the same SIRET (91896576500012) as the permit applicant",
+        "Magny locator recomputed: parcel 78356000AX0086 (65,969 m2, matching the operator's 'avoisinant 66 000 m2') centroid 2.0781628, 48.7262938, inside; BAN 1 rue Pablo Picasso and Géorisques TELEHOUSE EUROPE points inside the parcel; operator page gives the same address",
+        "Roles: NDC intended operator at Vélizy (portfolio page 'conçu ... pour NDC'); Altarea current owner and NDC current operator at Noyal; Telehouse current operator at TH3; all relationship_scope values valid",
+        "Distinctness re-screened against fortyfirst sites/projects/evidence/source-records/identity-mapping (Vélizy, Villacoublay, Morane, NDC, Alta NDC, Altarea, Noyal, Rennes, Maldries, Alain Fournier, Telehouse, TH3, Magny, Gomberville, Pablo Picasso): only Telehouse London Docklands hits; nearest sites 10.2, 284.6 and 11.1 km; no queue addition or claims.tsv entry within 30 km; the only holds hit is the thirty-first Vélizy hold_locator, whose reopen condition (official parcel) is met",
+        "Corrections: removed unsourced aliases 'NDC Roazhon', 'NDC Rennes Noyal' and 'Nation Data Center Vélizy-Villacoublay'; dropped the unsupported '(Nation Data Center)' expansion from the Altarea page summary; Magny register summary, identity review, precision and permit list corrected from three to the five Telehouse permits the capture lists; Magny nearest-site distance 11.0 to 11.1 km",
+        "No private individuals' names, emails or phones in changes, sources, holds, notes or geometry files; robots.txt captures allow altarea.com, telehouse.fr and Géorisques /api/ (Sitadel, API Carto, Géoplateforme robots 404)",
+        "dryrun_fragment.py ok against fortyfirst (575 sites, 608 projects, 3,088 evidence)"
+      ],
+      "residual_risks": [
+        "Vélizy successor parcels of AE 444 are inferred from area (1 m2 match) and adjacency, not from a published parcel filiation; the point is the centroid of a 1.2 ha mixed-use plot that also holds a student residence, so the data-centre building may be up to about 117 m away",
+        "Vélizy under_construction rests on the developer's own statement that works were launched this summer (first stone); the Sitadel opening-of-works date (15 Sep 2025) predates Altarea's stated launch and is not used",
+        "Noyal operational as of 21 Oct relies on the Q3 'fully let' statement read with the 29 Jul 'en exploitation' statement (85 days old, at the window edge); the October release does not itself say 'operational'",
+        "TH3 point is the 6.6 ha campus parcel centroid; buildings and the new 3 MW module are not individually located; 23 MW is available power, not measured IT load",
+        "Cadastral services publish no positional accuracy; horizontal uncertainty is left null with reasons"
+      ]
+    },
+    {
+      "fragment": "jp-west-p1",
+      "verdict": "accept",
+      "checks": [
+        "rehashed iij-20261005-matsue.html = d9657943...55ab5 (metadata and source content_hash agree, 20,438 bytes)",
+        "rehashed iij-20261005-matsue.pdf = 21a16071...dff8b; pdftotext and rendered page 1 carry the same text and battery photos",
+        "all four literal_byte_pointers match exactly at the stated offsets",
+        "decisive statement read in capture: installed batteries are operated as backup power for the data-centre equipment at IIJ Matsue DCP; ~1,000 kWh reserved for Matsue City shelters",
+        "kind company_disclosure by owner-operator IIJ; dated 2026-10-05; 17 days before 2026-10-22, inside the 85-day window",
+        "strictly newer than existing 2026-08-07 observation; whole-campus scope and reviewed campus locator unchanged",
+        "successor check: IIJ 2026 press index (sha256 8d38da7e...0860c, rehashed) lists items to 2026-10-21; the only Matsue item is 1005",
+        "distinctness: only Atlas site within 2 km is the record itself; nearest other is Enecom Hiroshima at 132.9 km; no other queue fragment or sources/*-holds.json concerns Matsue",
+        "robots: www.iij.ad.jp robots.txt read (404, allow all) at 20:27:45Z before the 20:27:49Z and 20:27:55Z captures",
+        "privacy: removed two executive surnames from the Ryobi hold; no names, phones or e-mails in sources, summaries or holds",
+        "holds: reopen conditions aligned to the 85-day window (Ryobi until 2027-01-09)",
+        "dryrun_fragment.py ok against 2026-10-22-research-fortyfirst: 572 sites, 605 projects, evidence 3,070"
+      ],
+      "residual_risks": [
+        "operational status rests on a present-tense description of DC backup-power use in an agreement release, not an explicit operating-inventory statement",
+        "Japanese non-past verb could be read as dispositional or future; the batteries are pictured installed and the campus has operated since 2011",
+        "compliance incident in notes: one S3 sitemap redirect reached before its robots.txt was read; no fact relies on it"
+      ]
+    },
+    {
+      "fragment": "us-south-central-p1",
+      "verdict": "accept",
+      "checks": [
+        "All 9 relied-on captures rehashed: sha256 equals .metadata.json and source content_hash (OKC2 letter copies a and b identical)",
+        "Thunderbird West: rendered application p.2 (Page 19 of 46) shows a RECEIVED AUG 27 2026 stamp; item 4 reads heavy industrial use which may include data center and associated support facilities, no generating facility",
+        "Thunderbird West: regulatory_filing dated 2026-08-27, 56 days before 2026-10-22 (window start 2026-07-29); City Oct 27 page calls the three applications rezoning applications for a proposed data center; press release of 8 Sep announces a data center initiative",
+        "Thunderbird West: MAPC staff report (p.120) names parcel 0000-16-22N-06W-3-100-00 and the same legal description; the plan amendment designates the western tract Major Industrial Production and excludes data centres only from the eastern I-2 tract",
+        "Thunderbird West: City page confirms no data-centre site plan, intensive-use application or construction approval and a 27 Oct decision; announced is the correct ceiling",
+        "Thunderbird West locator recomputed from raw GIS JSON (pyproj 3.7.1, shapely 2.1.1): centroid -97.8502975, 36.3798725 exact, inside polygon, 158.77 geodesic acres, about 806 by 805 m; area map p.5 matches",
+        "OKC2: DEQ letter dated 2026-09-21 (31 days old) names facility OKC2 (SIC 7374/NAICS 518210), MAC000520, Section 9 T12N R3W; government_record",
+        "OKC2: July 23 memo prints Latitude 35.53351 N, Longitude 97.52242 W, says the facility will be newly constructed and that battery banks serve GPU-based computing; air permits cover engines only, so announced stands",
+        "OKC2: BLM CadNSDI captures (hashes verified) put the point in Sec 09 T12N R3W, aliquot NENW; latitude fits a 6000 N address block",
+        "Distinctness: no name, alias, operator, address or ID hits (Thunderbird, Plainsmen, Enid, Two Boots, Shartel, OKC2, MAC000520) in fortyfirst sites/projects/evidence/source-records/identity-mapping, other queue fragments or sources/*-holds.json; the only Thunderbird hit is DC BLOX Indianapolis",
+        "Distinctness: no Atlas site, source-record coordinate or queued coordinate within 30 km; nearest is Google Stillwater (76.8 and 77.1 km)",
+        "Fixed: dropped the Two Boots Land and Cattle owner/current role because the source shows land ownership, not ownership of the facility (added a hold entry)",
+        "Fixed: removed the street addresses of neighbouring private parcels (1602 E Rupe Ave, 1702 S 30th St) from changes, sources and geometry facts, and updated geometry_facts_sha256",
+        "Fixed: OKC2 status summary now quotes will be a newly constructed facility, so it no longer implies the facility has been built",
+        "No personal emails, phones or private names in changes, sources, holds, notes or geometry; dryrun_fragment ok against 2026-10-22-research-fortyfirst (574 sites, 607 projects)"
+      ],
+      "residual_risks": [
+        "Thunderbird: the application hedges (may include data center), and the press release does not allocate data halls among four campuses, so the data centre could end up on the held North Campus instead",
+        "Thunderbird: the City Commission decides on 27 Oct 2026; a denial or continuance should prompt a withdrawal or status review",
+        "Thunderbird: the campus locator is a 159-acre parcel centroid; no building position exists",
+        "OKC2: the data-centre identity rests on the SIC/NAICS codes in the in-window letter and on the out-of-window July memo; no operator, IT load or street address is published (the address comes only from the LLC name)",
+        "OKC2: the DEQ coordinate has no stated datum or accuracy, and no parcel was obtainable (OKC GIS bot challenge)",
+        "OKC2: the issued minor-source engine permit means construction may already be under way, but no record establishes it"
+      ]
+    }
+  ],
+  "packet_pins": {
+    "definitions/atlas-research-fortysecond-2026-10-22.json": "e544aa3e81055de5ca38db4cce39a5c0677bf18cb5395c1e3732e1327490e4cd",
+    "sources/research-countries-2026-10-22-fortysecond-primary-sources.json": "f22c03ec25ce9b7817aeac2ceb24f26e0bda3bf51439e7bd8208f5b4e83fe783",
+    "sources/research-countries-2026-10-22-fortysecond-actions.json": "a651ba67a2d989a3febcd45ce0ee42bb59dac3f72414ab01736a137d1d3d221f",
+    "sources/research-countries-2026-10-22-fortysecond-holds.json": "09f4743e2ffb738d7467a6a66a3a078749cb7bbcbd18ea2954790449d91c7638"
+  },
+  "raw_captures_redistributed": false
+}
