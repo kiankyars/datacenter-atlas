@@ -1,0 +1,69 @@
+{
+  "reviewer": "root",
+  "reviewed_at": "2026-10-23",
+  "decision": "accepted_for_integration",
+  "update": "verified_construction_core/2026-10-23-research-fiftyeighth",
+  "base_dataset": "verified_construction_core/2026-10-23-research-fiftyseventh",
+  "process": "continuous: one researcher per beat, one adversarial verifier per fragment",
+  "fragments": [
+    {
+      "fragment": "cn-south-p2",
+      "verdict": "accept",
+      "checks": [
+        "All 16 relied-on captures rehashed: sha256 matches .metadata.json and source content_hash; HTTP 200; metadata URL and captured_at equal source_url and retrieved_at; all 81 Esri tiles in the capture folder also rehash",
+        "All 51 literal_byte_pointers resolve at their stated offsets",
+        "Read decisive text myself: Guangdong Energy Bureau 粤能许可〔2026〕85号 (PubDate 2026-10-16 19:20) ZSCN-D4-1, A1/A3/A4 reuse, 71132kW, 2730 racks, MEP and racking only; Guangzhou DRC Keli opinion (PubDate and signature 2026-08-21) floors 1-3 of Building 2#, 200 racks / 2998 standard; Guangzhou DRC Pazhou Xinyue opinion (PubDate and signature 2026-09-16) AH090633 Building 2, leased 5-storey building, 6998 kW",
+        "Status sources are government_record; announced only (energy reviews, not consent); observations 2026-08-21, 2026-09-16, 2026-10-16 are within 85 days of 2026-10-23 (cutoff 2026-07-30); no physical status claimed",
+        "Register JSON records 8637481, 10778498 and 10970119 read directly: lnglat literals, itemName, proveNum, buildUnit and begTime match; nine-decimal rounding checked",
+        "Map code read: getValidMapLocation passes lnglat through without transformation and the page plots it with spatialReference wkid 4326 over Tianditu vec_c/cva_c CGCS2000 tiles, so the values are geographic CGCS2000, not GCJ-02",
+        "Independent locator recompute: GCJ-02 alternatives derived offline (612 m, 611 m and 629 m WNW, matching the fragment); my own z16/z17 Esri mosaics show the WGS84 reading on the walled China Telecom machine-room campus, on the middle of three data-centre halls at Keli, and on the AH090633 building site, while each GCJ-02 alternative falls on the expressway edge, woodland or an orchard",
+        "Same-parcel register records recomputed from local query captures: ZSCN-D4-1 32-129 m, ZSCXN-C4-1 13-49 m and AH090633 0-74 m from the selected markers; parcel-level markers, not zone centroids",
+        "Stamped sheets rendered with pdftoppm or viewed as JPG: 穗规划资源核实〔2026〕812号 (2026-04-13; 1#-3# data-centre machine rooms of 8 storeys), 〔2026〕2012号 (2026-08-06; 2# 6061.96 m2, 5 storeys), 〔2022〕2596号 (2022-10-22; A3/A4)",
+        "Distinctness: no Guangzhou, Pazhou, Keli, Knowledge City, ZSCN or ZSCXN record in the five tables of 2026-10-23-research-fiftyseventh; nearest Atlas site is 64.5-69.9 km away; the existing China Telecom Guangdong Branch projects are in Shaoguan; the only matches in the 35 sources/*holds*.json files and the queue are the thirty-fourth and cn-south-p1 holds that this fragment resolves (reopen conditions met by official register coordinates); no other fragment's addition lies within 110 km",
+        "Successor indexes re-read (drc.gd.gov.cn xmgg and fgw.gz.gov.cn xmgg pages 1-2 captured 2026-10-23): no later opinion for these projects",
+        "Roles: removed the Pazhou tenant/current role, because the same party is the project owner and the lease relates to the host building, not the computing centre, so the claim was redundant and overstated; the owner/current roles rest on the addressed project units",
+        "One project per new site; commercial scope; no phone numbers, e-mails, private names or Tianditu key in changes, sources, holds or geometry facts",
+        "dryrun_fragment.py ok against verified_construction_core/2026-10-23-research-fiftyseventh: 645 sites, 685 projects, 3500 evidence rows"
+      ],
+      "residual_risks": [
+        "Register marker placement rules and positional accuracy are undocumented (markers for one parcel spread up to 160 m); the WGS84 reading rests on the map code and a qualitative imagery check",
+        "The Esri imagery is undated and predates the Pazhou completion",
+        "The China Telecom marker locates the A3/A4 as-built record, not Building A1",
+        "The Pazhou energy-review floor area (7,057.67 m2) differs from the verified GFA (6,061.96 m2), with no explanation",
+        "Keli announced status lapses from the 85-day window about 2026-11-14 unless it is refreshed"
+      ]
+    },
+    {
+      "fragment": "uk-regions-p2",
+      "verdict": "accept",
+      "checks": [
+        "base re-read from site/config.json: verified_construction_core/2026-10-23-research-fiftyseventh; dry run against it ok (683 projects)",
+        "all six relied-on captures rehashed: sha256 matches .metadata.json and each source content_hash (Harworth 620680..., notices 427245..., d365f8..., 278e15..., QTS page dbac04..., EA ESSD PDF 25235f...)",
+        "25 Sep 2026 notice read in capture: 26/03028/REM, Renaissance Land Limited, reserved matters on approved 24/04112/OUTES for two data centre buildings on Phase 2 of the data centre campus, former power station site, Cambois; signed 25.09.26; no decision",
+        "window: 2026-09-25 and 2026-08-19 are on/after 2026-07-30 (85 days before 2026-10-23)",
+        "ESSD PDF (pdftotext) p.2-3: QTS Cambois Campus outline 24/04112/OUTES (up to ten DC buildings, 540,000 m2, granted 8 May 2025); Phase A = two units; NGR NZ 29820 84164 wider-campus approximate centre",
+        "EA consultation finder capture ties NE22 7BL, Rainton Construction Limited, EPR/JP3321LF/A001 to Project Wind, QTS Data Centres",
+        "locator recomputed with pyproj 3.7.1 EPSG:27700->4326 from E429820 N584164: 55.15092301981584, -1.533627047468273, 0.0 m from the existing site point; reuse of baseline project 5b11c034 and evidence a4ff7674 passes the builder's inheritance checks",
+        "Phase 2 distinct from the campus-wide record (identity flag campus_and_phase_scopes_must_remain_separate), the 2026 earthworks record and phase one (reserved matters Dec 2025); no 26/03028/REM, 24/04112/OUTES or Cambois Phase 2 match in fiftyseventh sites/projects/evidence/source-records/identity-mapping, other queue fragments, sources/*-holds.json or claims.tsv",
+        "role: QTS page capture says QTS is proud to develop and operate this project (Cambois campus); operator with relationship_scope intended",
+        "Harworth 19 Aug 2026 release read: GBP 106m two-plot powered land sale at Skelton Grange to Microsoft, transaction progressing towards completion; datePublished 2026-08-19 and URL path date agree; strictly newer than 2026-04-27, same project and scope, announced only",
+        "context notices read: 26/02919/FUL 60kV temporary substation and 26/02818/FUL 11/33kV temporary substations for construction and early operation of the proposed Cambois Data Centre Campus; preserve_status_as_of 2026-08-06 matches base",
+        "privacy: officer and private applicant names in the notices are not reproduced in sources, changes, holds or notes",
+        "edit: removed the unverified claim that the West Sleekburn substation land lies outside the campus boundary (context identity_review and source date_semantics); noted verifier re-screen against fiftyseventh in the distinctness review"
+      ],
+      "residual_risks": [
+        "Northumberland and Leeds planning portals are robots-disallowed: a later decision on 26/03028/REM or the Microsoft application cannot be excluded (announced stays a true dated observation)",
+        "Phase 2 uses the wider-campus approximate centre, not the Phase 2 plot or buildings",
+        "Skelton Grange refresh rests on a landowner statement about the land transaction; the thirty-first holds declined it for physical or permitted status, while the thirty-ninth holds judged it admissible as an announced refresh",
+        "Phase 2 is a sub-scope of the existing campus-wide QTS record; campus metrics (ten buildings, 720 MW) are not apportioned"
+      ]
+    }
+  ],
+  "packet_pins": {
+    "definitions/atlas-research-fiftyeighth-2026-10-23.json": "867cbd0a60227bd3112f1ab4815b3d3e952a6aeb8775e2cf4b1096044036507d",
+    "sources/research-countries-2026-10-23-fiftyeighth-primary-sources.json": "bf5bc4c0b078479beb5532108c6e580a34f4f65033a2b870461d6626943efa54",
+    "sources/research-countries-2026-10-23-fiftyeighth-actions.json": "732c3324b6ec6939e01a73f10d8e006fa388cdc173b7919a352bea04da85f693",
+    "sources/research-countries-2026-10-23-fiftyeighth-holds.json": "84c026a6ffa37067e280497c0efdaf7200fb648c2d684930713f7e99a2214137"
+  },
+  "raw_captures_redistributed": false
+}
