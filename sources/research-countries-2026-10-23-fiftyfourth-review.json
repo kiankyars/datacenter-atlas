@@ -1,0 +1,37 @@
+{
+  "reviewer": "root",
+  "reviewed_at": "2026-10-23",
+  "decision": "accepted_for_integration",
+  "update": "verified_construction_core/2026-10-23-research-fiftyfourth",
+  "base_dataset": "verified_construction_core/2026-10-23-research-fiftythird",
+  "process": "continuous: one researcher per beat, one adversarial verifier per fragment",
+  "fragments": [
+    {
+      "fragment": "de-north-east-p2",
+      "verdict": "accept",
+      "checks": [
+        "All 7 dataR captures rehashed: SHA-256 equals .metadata.json sha256 and sources.json content_hash/supporting sha256 (progress page 3dbd6215, Front-2 c8808094, Kransicht bb698d5e, news index 29ef1d89, feed dd9255f4, sitemap 82720da8, press 1a0c6e04); HTTP 200, credential-free",
+        "Progress page parsed independently: H1 'Baufortschritt in Bildern', post-info datePublished <time>2026-09-01</time>, newest section H3 'August 2026' holds exactly 16 images, all file names '2026-08-27__dataR_Baustelle-von-oben-...' in uploads/2026/09; month sections back to 'Die Anfaenge' (Jan 2024); Sep/Nov 2025 heading swap confirmed and irrelevant",
+        "Publication bound: RSS pubDate Tue, 01 Sep 2026 12:34:42 +0000 and WP core sitemap lastmod 2026-09-01T14:34:42+02:00 are identical (post not modified since publication); feed content:encoded already carries the August 2026 section with the 2026-08-27 files; news index lists it as newest (1. September 2026); Atlas round30 capture of the news index on 2026-09-09 already recorded the 1 September item",
+        "Both captured August photos viewed (downscaled copies): Front-2 shows finished facade, rooftop chillers and three stacks, with tower crane and construction fencing/barrier on the street; Kransicht shows crane jib over the roof, site containers and a temporary heat trailer on the plot; operator file names call the scene 'Baustelle' (construction site)",
+        "Status: under_construction (ACTIVE) as of 2026-08-27 is strictly newer than existing 2026-07-17, observation <= published_at 2026-09-01 <= retrieval 2026-10-23; company_disclosure (dataR GmbH own site); 57 days before 2026-10-23; no opening target or elapsed time relied on",
+        "Identity/scope: dataR press page describes a single colocation data centre in Rellingen near Hamburg (construction began Jan 2024, opening for customers forecast early Q4 2026); existing record is the same single project; scope kept, locator untouched; no completion/opening found in news index, feed or sitemap at 23 Oct capture",
+        "Distinctness: only one dataR record in fiftythird (site vcc-site-8511f5b23fe433a2c61f); no other queue fragment or claims.tsv row acts on dataR; thirty-fourth holds' generic note (no newer dated dataR statement) predates no conflicting record and is superseded by the explicit dated August section plus sitemap/RSS bounds",
+        "Privacy: no names, phones or e-mails of individuals (press contact, founders, WordPress author) in changes, sources, holds or notes",
+        "dryrun_fragment.py: ok against verified_construction_core/2026-10-23-research-fiftythird (evidence 3424, projects 669)"
+      ],
+      "residual_risks": [
+        "Day precision rests on operator file-name dates (no EXIF capture date); month is independently given by the 'August 2026' heading and the 1 Sept publication",
+        "Photos show an externally complete building; the site may have been in late fit-out/commissioning on 27 Aug, recorded conservatively as under_construction",
+        "Opening was forecast for early Q4 2026; an opening after 1 Sept without a dataR news post would make this record stale soon"
+      ]
+    }
+  ],
+  "packet_pins": {
+    "definitions/atlas-research-fiftyfourth-2026-10-23.json": "bcd5151152ee17a80afc0d3fa3b204a8a6abd640ae2ae8509348aa4fb9f703f7",
+    "sources/research-countries-2026-10-23-fiftyfourth-primary-sources.json": "199abd1af975565761d5bbaf695dccd426e566bac8cb1ca5ea9df3a07044428b",
+    "sources/research-countries-2026-10-23-fiftyfourth-actions.json": "34a7e4c27aa45a50776f8ae2f33c22bac345f89fca520bd1c48894915cdd2ca8",
+    "sources/research-countries-2026-10-23-fiftyfourth-holds.json": "9c7718e5f884d5d2d05c9f2d987da8fd6c6d5e18f94bf9fc5f636e4d6ea30e72"
+  },
+  "raw_captures_redistributed": false
+}
