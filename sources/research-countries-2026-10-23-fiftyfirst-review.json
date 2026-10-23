@@ -1,0 +1,42 @@
+{
+  "reviewer": "root",
+  "reviewed_at": "2026-10-23",
+  "decision": "accepted_for_integration",
+  "update": "verified_construction_core/2026-10-23-research-fiftyfirst",
+  "base_dataset": "verified_construction_core/2026-10-23-research-fiftieth",
+  "process": "continuous: one researcher per beat, one adversarial verifier per fragment",
+  "fragments": [
+    {
+      "fragment": "global-operators-p1",
+      "verdict": "accept",
+      "checks": [
+        "All 27 relied-on captures (22 sources, including 5 recaptures) rehashed: SHA-256 equals .metadata.json sha256 and the source content_hash; HTTP 200, captured_at equals retrieved_at/recaptured_at; the 3 geometry facts files match their recorded sha256",
+        "Five reused STACK sources produce the same evidence_id as existing Atlas evidence rows, with identical kind/title/url/publisher/license/published_at/retrieved_at/hash metadata",
+        "SYD2: live page JSON-LD dateModified 2026-08-19T03:12:55Z; IA id_ copy of 2026-08-14 carries the 2026-07-24 version and the IA copy of 2026-10-01 carries the 19 Aug version (CDX listing confirms), so the modification is bounded; the text is present tense: campus 'delivering' infrastructure, 120+ MW, 100% availability SLAs; Shell C under construction Apr 2026 is excluded",
+        "SYD2 successor: the AirTrunk post and location sitemaps have no later SYD2 item (Emergence Quantum and GRESB posts mention SYD2 only in navigation)",
+        "SYD2 locator recomputed with pyproj 3.7.1/shapely 2.1.1: the EPSG:7856 planar centroid of Lot 1 DP1271404 is (151.1447176, -33.8077875), inside the lot and 70.8 m from its boundary; IoU with propid 4350595 is 1.0 and 0.0 with the 10.6 ha propid 4257241; the point falls on the main data-centre roof in Esri imagery; SSD-9741 is listed at 1 Sirius Road",
+        "MIL08A: ISS opinion AOO-ISS 02/10/2026 0042479 (government_record) read: 'costruzione dei nuovi siti MIL07 e MIL08A', MIL08A generators cut from 19 to 18, SCR for MIL07/MIL07+/MIL08A; the proponent notice of 10 Sep 2026 still calls MIL08A 'in fase di progettazione', so announced is correct and permitted is correctly not asserted",
+        "MIL08 locator: Tabella 12 rendered (pdftoppm p42-43); cell borders confirm BLD_7 has 6 vertices across the page break and BLD_8 has 4; union centroid recomputed (516749.59, 5018906.52) -> (9.213723, 45.3234652), inside BLD_7, 27.9 m from its edge; the 18 MIL8A stacks lie 8-19 m from BLD_7; the BLD_6 centroid equals the Atlas MIL07 point, 247 m away",
+        "MIL08 is a separate STACK campus: the STACK MIL08 page lists it apart from MIL07 (24 acres, 25 MW, MIL08A 20 MW + MIL08B 5 MW), so it is a new site with one project",
+        "ML10x: the notice 'AVVISO AL PUBBLICO DEL 12/10/2026' (ID_VIP 14381) was read; the portal list p8 gives MASE-2026-0211346 dated 12/10/2026; the revised SNT states one building ML10x, 32 x 3 MWe generators, foglio 15 particella 55, works start Q3 2028 (a schedule, not a stage); the procedure status is technical review with no decree",
+        "ML10x locator: Appendice A4 pages rendered; cell borders confirm 8 vertices for ML10x_1 and 4 for each other block (ML10x_3_1 spans the page break); union centroid recomputed (502713.66, 5035934.55) -> (9.0347199, 45.4769341), inside ML10x_1, 14.4 m from its edge; all 16 ML10x stacks fall inside the generator gantries",
+        "Distinctness screened against 2026-10-23-research-fiftieth (sites, projects, evidence, source-records, identity-mapping) by name and coordinates: no SYD2/Sirius/Lane Cove, MIL08 or Equinix Italy record. Nearest records are ISPT Julius Ave (1,048 m), STACK MIL07 (247 m, a separate campus) and Microsoft MIL03 (772 m, a different lot and developer); no other queue fragment is within 5 km apart from those already published; related holds' reopen conditions are met",
+        "Roles: AirTrunk operator (current) from its own page; there are no roles for MIL08A/ML10x. No personal data in changes, sources or holds; robots.txt captured and permitting for every host used (STACK crawl delay respected)",
+        "dryrun_fragment.py ok against 2026-10-23-research-fiftieth (618 sites, 654 projects)"
+      ],
+      "residual_risks": [
+        "SYD2's 19 Aug 2026 page version changed only navigation and footer links from the 24 Jul version. The operating claim is a publication-normalised restatement, not a new event, and capacity in service is unknown.",
+        "MIL08A has a March 2025 building permit for a 'commercial-use building' (SNT), and imagery shows the northern half of BLD_7 inside a works compound. Announced could understate the stage if works on MIL08A have begun, but the 10 Sep 2026 notice still calls it in design.",
+        "The MIL08 and ML10x points are centroids of modelled building outlines in VIA air studies; the final designs may move them.",
+        "ML10x is in consultation until 11 Nov 2026 and the VIA could be refused or redesigned again; the neighbouring Equinix ML5-ML9 buildings must not reuse its campus locator."
+      ]
+    }
+  ],
+  "packet_pins": {
+    "definitions/atlas-research-fiftyfirst-2026-10-23.json": "ea4d361455b90181c84a5b0e184311c8180c7a4b6f1c000aa4a252caf175783b",
+    "sources/research-countries-2026-10-23-fiftyfirst-primary-sources.json": "ead8394949229a2b8b4adb59570c8f6b1c948fc908b71545fcbd8f297978e93d",
+    "sources/research-countries-2026-10-23-fiftyfirst-actions.json": "6af0026f8214db53b6d753708ba5a9d79ec008aa5cc2a9a590f82cf820bd4e50",
+    "sources/research-countries-2026-10-23-fiftyfirst-holds.json": "2ab35799d1682544e355e2b855adb4740429812c1d86b7f2618faeefd8bb5753"
+  },
+  "raw_captures_redistributed": false
+}
