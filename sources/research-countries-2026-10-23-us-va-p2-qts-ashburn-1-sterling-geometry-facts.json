@@ -1,0 +1,99 @@
+{
+  "candidate_id": "us-va-p2-qts-ashburn-1-campus",
+  "decision": "Selected the planar centroid of the union of Loudoun County parcels 044152877000 (22271 Broderick Drive, DC1) and 044155625000 (22280 Randolph Drive, DC2), Broad Run Business Center A2, as the campus locator for QTS Ashburn 1.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -77.4498323,
+      38.9991033
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_tax_parcel_union_centroid",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-us-va-p2/loudoun-parcels-qts-ash1.json",
+  "source_sha256": "a5545458fe523ffa9c4d5ad28289c0c926d7af1bcd4277515c0a2632e19745f2",
+  "source_url": "https://logis.loudoun.gov/gis/rest/services/COL/LandRecords/MapServer/5/query?where=PA_MCPI%20IN%20(%27044152877000%27%2C%27044155625000%27)&outFields=PA_MCPI,PA_TYPE,PA_PLAT_NUM,PA_LEGAL_ACRE,PA_SUBD_NAME,PA_SUBD_PHASE,PA_LEGAL_SQFT,PA_UPD_DATE&returnGeometry=true&outSR=4326&f=json",
+  "retrieved_at": "2026-10-23T00:57:11.309Z",
+  "selected_properties": {
+    "044152877000": {
+      "PA_MCPI": "044152877000",
+      "PA_TYPE": "P",
+      "PA_PLAT_NUM": "2022-0098",
+      "PA_LEGAL_ACRE": 16.331,
+      "PA_SUBD_NAME": "BROAD RUN BUSINESS CENTER A2"
+    },
+    "044155625000": {
+      "PA_MCPI": "044155625000",
+      "PA_TYPE": "P",
+      "PA_PLAT_NUM": "2022-0098",
+      "PA_LEGAL_ACRE": 7.256,
+      "PA_SUBD_NAME": "BROAD RUN BUSINESS CENTER A2"
+    }
+  },
+  "facts": {
+    "parcels": {
+      "044152877000": {
+        "legal_acres": 16.331,
+        "geodesic_acres": 16.33,
+        "rings": 1,
+        "vertices": 59,
+        "valid": true,
+        "plat": "2022-0098",
+        "subdivision": "BROAD RUN BUSINESS CENTER A2",
+        "parcel_type": "P"
+      },
+      "044155625000": {
+        "legal_acres": 7.256,
+        "geodesic_acres": 7.26,
+        "rings": 1,
+        "vertices": 9,
+        "valid": true,
+        "plat": "2022-0098",
+        "subdivision": "BROAD RUN BUSINESS CENTER A2",
+        "parcel_type": "P"
+      }
+    },
+    "union_geometry_type": "Polygon",
+    "union_valid": true,
+    "union_geodesic_acres": 23.59,
+    "centroid_inside": true,
+    "bounds_lon_lat": [
+      -77.451959,
+      38.997202,
+      -77.447389,
+      39.001155
+    ],
+    "approx_extent_m": [
+      396,
+      439
+    ],
+    "centroid_method": "shapely planar centroid in WGS84 longitude/latitude; the NAD83/UTM 18N (EPSG:32618) planar centroid transformed back differs by 0.00 m",
+    "address_points_on_locator_parcels": [
+      {
+        "address": "22271 BRODERICK DR, STERLING",
+        "mcpi": "044152877000",
+        "lon_lat": [
+          -77.450148,
+          38.999497
+        ],
+        "inside_locator_parcels": true,
+        "distance_to_point_m": 51.5
+      },
+      {
+        "address": "22280 RANDOLPH DR, STERLING",
+        "mcpi": "044155625000",
+        "lon_lat": [
+          -77.4491275,
+          38.9982475
+        ],
+        "inside_locator_parcels": true,
+        "distance_to_point_m": 112.9
+      }
+    ],
+    "address_source_file": "local_data/country-research-us-va-p2/loudoun-addresses-qts-ash1.json",
+    "address_source_sha256": "4ed5b0188c18da5088ed3c72d585b769617c582fdd9f39749f992c75d469cae4",
+    "coordinate_reference_system": "WGS84 longitude/latitude as returned by the county service with outSR=4326; no further transformation",
+    "verification_script": "make_geom_facts.py (pyproj 3.7.1, shapely 2.1.1)"
+  }
+}

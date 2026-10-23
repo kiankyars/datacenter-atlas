@@ -1,0 +1,50 @@
+{
+  "candidate_id": "telehouse-frankfurt-kleyerstrasse-campus",
+  "decision": "Selected the City of Frankfurt's official building-address point for Kleyerstraße 75-87, the address Telehouse publishes for its Frankfurt campus and its new data centre, transformed from EPSG:25832 to WGS84, as a campus locator.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      8.6290298,
+      50.0964652
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_building_address_point",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-de-hesse-p2/frankfurt-geoportal-kleyerstrasse-75-87.json",
+  "source_sha256": "7a63c345a1f77c02317706653a027879b06b1b39427d6e723d7c3fea476075d3",
+  "source_url": "https://geoportal.frankfurt.de/elastic/basisgis/_search?source_content_type=application%2Fjson&source=%7B%22query%22%3A%7B%22match_phrase%22%3A%7B%22properties.searchField%22%3A%22Kleyerstra%C3%9Fe+75-87%22%7D%7D%2C%22size%22%3A5%7D",
+  "selected_properties": {
+    "source_layer": "Gebaeudeadresse (layerId 12)",
+    "address_object_id": "DEHEFALK4mb00001",
+    "searchField": "Kleyerstraße 75-87",
+    "native_coordinates_epsg25832": [
+      473466.9179999996,
+      5549422.126
+    ],
+    "operator_published_address": "Kleyerstrasse 75-87, 60326 Frankfurt (Telehouse Deutschland, page 'Rechenzentrum 2026')"
+  },
+  "identity_bridge": [
+    "Telehouse press release of 1 September 2026: official opening of the new data centre Building N on the Telehouse Frankfurt campus (2,200 m2 colocation, 3.6 MW IT, 4.5 MW electrical infrastructure, PUE 1.25).",
+    "Telehouse Deutschland page 'Rechenzentrum 2026' (dateModified 2025-10-07): the campus's newest data centre with the same figures (about 2,200 m2 colocation, 3.6 MW, 4.5 MW total), on Telehouse's own campus, contact address Kleyerstrasse 75-87, 60326 Frankfurt; connected to the 30 kV ring through a substation on the data-centre campus.",
+    "Telehouse Deutschland 'Standorte' page: Telehouse Frankfurt operates its campus in the Kleyerstrasse."
+  ],
+  "consistency_checks": {
+    "exact_address_query": "match_phrase 'Kleyerstraße 75-87' returns exactly one Gebaeudeadresse feature (DEHEFALK4mb00001).",
+    "street_listing": "A match_phrase_prefix query for 'Kleyerstraße' returns 129 features; the single house numbers 75, 77, 79, 81, 83, 85 and 87 all resolve to the same address object DEHEFALK4mb00001 at the same coordinates, so the range is one registered address. Kleyerstraße 87a (DEHEFALKFK000006, 202 m south-west) and the even-numbered addresses opposite (94 and 96, 30.5 m and 32.0 m away) are separate address objects and are not used.",
+    "crs": "The geoportal configuration (https://geoportal.frankfurt.de/karte/config.json, sha256 8fa247f3d47a09de7f6b91a6ce3a5253a0a561a2b217466076ed627b92aaae78, byte-identical to the copy pinned for the NorthC FRA01 precedent) sets the routing geosearch on the same elastic service to epsg 25832; the coordinates are ETRS89 / UTM zone 32N metres.",
+    "round_trip_m": 0.002,
+    "nearest_atlas_sites_km": {
+      "NorthC Frankfurt1 (FRA01)": 3.441,
+      "CyrusOne FRA7 Frankfurt Westside Campus": 3.477,
+      "NTT Frankfurt 1 Data Center Campus": 4.126,
+      "Colt Frankfurt 3 Sossenheim Campus": 4.299
+    },
+    "versions": {
+      "pyproj": "3.7.1",
+      "proj": "9.5.1"
+    }
+  },
+  "transform_check": "pyproj 3.7.1 (PROJ 9.5.1) EPSG:25832 -> EPSG:4326, always_xy; rounded to 7 decimal places.",
+  "limitations": "The point is a register address point at the street frontage of the campus. It does not locate Building N, whose position on the roughly 67,000 m2 campus Telehouse does not publish, and it is not a parcel or campus boundary."
+}

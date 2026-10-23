@@ -1,0 +1,98 @@
+{
+  "reviewer": "root",
+  "reviewed_at": "2026-10-23",
+  "decision": "accepted_for_integration",
+  "update": "verified_construction_core/2026-10-23-research-fiftythird",
+  "base_dataset": "verified_construction_core/2026-10-23-research-fiftysecond",
+  "process": "continuous: one researcher per beat, one adversarial verifier per fragment",
+  "fragments": [
+    {
+      "fragment": "de-hesse-p2",
+      "verdict": "accept",
+      "checks": [
+        "All 24 relied-on captures rehashed: SHA-256 equals .metadata.json sha256 and each source content_hash; URLs and captured_at match",
+        "Telehouse release read in capture: 'annonce l'ouverture officielle de son nouveau datacenter, le batiment N, sur son campus de Francfort. Mis en service cet ete'; page date 1/09/2026, JSON-LD datePublished 2026-09-01T13:01:27Z, sitemap lastmod 2026-09-01T13:25:13Z; company_disclosure on Telehouse's own host; 52 days old, inside the 85-day window (from 2026-07-30)",
+        "Scope kept to Building N (2,200 m2, 3.6 MW IT on 4.5 MW); Building M (Dec 2023, fifth DC, launched Oct 2023) is a different building by timeline; the further planned DC is held",
+        "Identity: Telehouse DE 'Rechenzentrum 2026' page (own campus extended, 2,200 qm, 3.6 MW, address Kleyerstrasse 75-87) and Standorte page (campus in the Kleyerstrasse) tie Building N to the campus",
+        "Locator recomputed: geoportal config declares epsg 25832 for the elastic search; DEHEFALK4mb00001 473466.918/5549422.126 -> 50.0964652 N, 8.6290298 E with pyproj 3.7.1, round trip < 1 nm; nos. 75-87 all resolve to the same object in the 129-feature street listing",
+        "Distinctness re-screened against 2026-10-23-research-fiftysecond (sites, projects, evidence, source-records, identity-mapping), all queue changes/holds, claims.tsv and sources/*-holds.json: no Telehouse Frankfurt record; nearest Atlas sites NorthC FRA01 3.45 km, CyrusOne FRA7 3.49 km; the 16 Oct Building N hold and fr-p1 lead point to this same release",
+        "Role: Telehouse operator, relationship_scope current, from the release; no third-party personal data in changes, sources or holds (executive cited by role only)",
+        "robots.txt for telehouse.fr, telehouse.net (Crawl-delay 10 respected), telehouse-rechenzentrum.de, mainova.de captured before first request; geoportal.frankfurt.de robots 404",
+        "NTT FRA2 and FRA1 refuted: p.22 'Certifications (for sites under operational control)' list is undated, 'About this report' scopes the report to FY25 (1 Apr 2025-31 Mar 2026), PDF ModDate 13 Oct 2026 postdates the 5 Oct release with no archived copy; location pages undated; moved to holds with reopen conditions, 14 sources dropped, FRA2 geometry facts moved to removed/",
+        "FRA3/FRA4 hold texts amended so they no longer state that operating status is supported as of 5 October 2026",
+        "dryrun_fragment.py ok against 2026-10-23-research-fiftysecond (627 sites, 664 projects)"
+      ],
+      "residual_risks": [
+        "The campus locator is the registered street-frontage address point of a roughly 67,000 m2 campus; Building N's position on it is unpublished, and the 16 Oct hold's 'former Databurg' trade report was not independently resolved beyond Telehouse's statement that Building N is on its own campus",
+        "The French release (seventh DC, three levels) and German page (sixth DC, four floors) disagree on building count and floors; neither is relied on",
+        "Kleyerstrasse 75-87 is also Telehouse Deutschland's company address; it is used as the published campus address, not as a head-office proxy",
+        "Equinix Campus Kleyer (Kleyerstrasse 90, about 340 m away) is not in the Atlas; a later addition must be screened against this site"
+      ]
+    },
+    {
+      "fragment": "uk-south-p2",
+      "verdict": "accept",
+      "checks": [
+        "All 14 relied-on captures rehashed: file sha256 equals both .metadata.json sha256 and sources.json content_hash; geometry facts files match their recorded sha256",
+        "Base re-read from site/config.json at start and end: verified_construction_core/2026-10-23-research-fiftysecond",
+        "Window: 2026-10-23 minus 85 days = 2026-07-30; observations 2026-09-24 and 2026-08-06 inside; EA consultation (2026-07-28) correctly used as context only",
+        "VIRTUS release (company_disclosure) read in capture: dateline 24 Sep 2026, JSON-LD datePublished 2026-09-24; names 'the development of the company's 78 MW, AI-ready Saunderton campus in Buckinghamshire'; supports announced only, no stage asserted",
+        "Saunderton hold (uk-south-p1, thirty-fifth holds) reopen condition met by an in-window VIRTUS statement naming the campus",
+        "NTS PDF text and rendered figures 1.1/1.2: London 15-18 at Haw Lane HP14 4JD, OS grid ref 480790 198500, site west of railway near Saunderton station",
+        "Independent pyproj 3.7.1 EPSG:27700->4326: 480790,198500 -> 51.679464,-0.8329119 (0.002 m from claim); HP14 4JD centroid 183 m away, not used",
+        "Cherwell decision notice read: approval of reserved matters 25/03310/REM, Date of Decision 6 Aug 2026, Condition 1 binds 60MW/15MW typical data-centre unit plans and the data-centre area schedule",
+        "Officer report read: 8 data-centre units, 103,605 sq m GIA within approved B8 outline 22/01829/OUT (10 Oct 2023); sui generis objection addressed; recommendation approval",
+        "Register page: status Permitted, decision issued 06/08/2026, appeal fields empty; 26/02446/REM alternative warehouse RMA under consultation (does not revoke)",
+        "Independent shapely 2.1.1 centroid of 102-vertex polygon (identical for OBJECTIDs 69207/77943/79754): 459269.85,219831.94 -> 51.8739179,-1.1404842 exact; inside, 190.2 m from edge; area 323,338.6 m2 matches 32.3 ha; form point 459219,219802 inside, 59 m away",
+        "Map-service attributes: 25/03310/REM, 'Unit D1 Graven Hill, Circular Road, Ambrosden', Permitted, L_9 = 2026-08-06",
+        "Distinctness: no Saunderton/Haw Lane/HP14/SP3429LN/Graven Hill/Ambrosden/Bicester/Cherwell/reference matches in sites, projects, evidence, source-records, identity-mapping; only VIRTUS record is Wustermark (DE); nearest Atlas sites 23.0 km and 29.1 km; no other queue fragment or sources/*-holds.json adds either (only the prior Saunderton hold)",
+        "Roles: VIRTUS owner/current ('the company's ... campus'); Virtus Holdco Limited operator/intended (permit applicant/operator in NTS 1.2); Graven Hill has no roles",
+        "Privacy: no officer, objector, PR-contact or NTS-contact names, phones or emails in changes, sources, holds or notes",
+        "Robots: virtusdatacentres.com, consult.environment-agency.gov.uk (crawl-delay 5), planningregister.cherwell.gov.uk (404), utility.arcgis.com (no rules), api.postcodes.io (404) read before relied-on captures; logged incidents involve nothing relied on",
+        "dryrun_fragment.py: ok (628 sites, 665 projects on base fiftysecond)"
+      ],
+      "residual_risks": [
+        "Graven Hill: applicant's pending alternative ten-warehouse RMA (26/02446/REM) 'to safeguard commercial viability' means the data-centre scheme may not be built; no end user, owner or operator established",
+        "Graven Hill: data-centre-as-B8 contested by objectors; no appeal on register and the 6-week JR window closed about 17 Sep 2026, but a legal challenge record was not independently searched",
+        "Saunderton: may be further along than announced (2024 schedule targeted Q2 2026 service); status is conservative; EA permit undecided",
+        "VIRTUS owner/current role rests on a possessive phrase plus the 2024 freehold-acquisition release",
+        "Locators are site reference points (grid ref / polygon centroid) with no stated positional accuracy; uncertainty recorded as unknown"
+      ]
+    },
+    {
+      "fragment": "us-va-p2",
+      "verdict": "accept",
+      "checks": [
+        "All 22 relied-on captures rehashed: SHA-256 equals both .metadata.json sha256 and sources.json content_hash; request URL equals source_url; HTTP 200, no credentials",
+        "Geometry-facts files rehashed against geometry_facts_sha256 (3/3 match)",
+        "Cologix ASH2 live page (dateModified/article:modified 2026-10-15T21:28:48Z, = sitemap lastmod) reads 'Cologix-owned facility under construction at 21673 Beaumeade Circle'; IA 2026-06-30 copy (dateModified 2026-05-11) has DC space 99K / site capacity 51 MW vs live 226K / 64 MW; CDX has no copy after 30 June; same bounded page-version method as accepted MTL8/VAN4",
+        "Cologix LandMARC (snapshot 2026-10-22): FIREC-2026-040763 'COLOGIX ASH2 ... LINKED TO BLDC-2026-005227' issued 2026-09-10 on parcel 060189720000; BLDC-2026-005227 absent from layers 1 and 2 (confirmed); no permitted status asserted",
+        "DataBank campus page diff vs IA 2026-05-12 (dateModified 2024-08-01 -> 2026-09-17): carriers 20/19/20 -> 18/18/17, Raised -> IT square feet; IAD4 page 2026-08-13 says IAD1, IAD3 'already in operation'; IAD3 page 2026-09-28 says 'Opened in 2023'; all in window",
+        "QTS Ashburn 1 page dateModified 2026-09-09 bounded by IA copies of 2026-08-05 (version 2026-06-10) and 2026-09-20 (same 9 Sep version); 'ASH1 DC2: 22280 Randolph Drive ... (under construction)' in all three; Q2 2026 target not used; q.com confirmed as QTS domain (www.qtsdatacenters.com redirects there)",
+        "QTS LandMARC: BLDC-2024-056493 DC2 core-and-shell issued 2025-01-15, not finalized; DC2 fit-out/sprinkler/rack permits issued to 2026-10-15",
+        "All as_of dates (2026-10-15, 2026-09-17, 2026-09-09) within 85 days of 2026-10-23 (window start 2026-07-30); all status sources company_disclosure",
+        "Locators recomputed independently from raw Loudoun parcel JSON with pyproj 3.7.1/shapely 2.1.1: centroids reproduce to 0.005 m (WGS84 planar) and <=0.01 m via EPSG:32618; centroids inside; acres 22.63 / 26.19 / 23.59; operator address points inside parcels at stated distances",
+        "Locator scope campus_locator, Point, official_source/direct_geometry; scope classes and methods have dataset precedent; uncertainty null with reasons; identity reviews match county records",
+        "Roles checked: Cologix owner current + operator intended; DataBank operator current; QTS Data Centers operator intended; party names consistent with dataset",
+        "Distinctness screened (names, aliases, addresses, MCPIs, coordinates within 2-3 km) against fiftysecond sites/projects/evidence/source-records/identity-mapping, all other queue fragments and sources/*-holds.json: only EdgeCore AS02 (0.55-0.71 km from QTS union, different parcel) nearby; us-tx-p2 cites 22271 Broderick Dr only as QTS HQ address; no conflicts",
+        "Each addition is the only project on a new site; sister buildings (ASH1, DC1, IAD4) held",
+        "No personal data in sources, summaries, URLs or holds (NAME/ASSIGNEDTO omitted; contractor names not copied)",
+        "dryrun_fragment.py: ok (629 sites, 666 projects, base fiftysecond)"
+      ],
+      "residual_risks": [
+        "ASH2 building permit BLDC-2026-005227 is not in LandMARC issued/submitted tables; under_construction rests on the operator page plus site conduit and fire-line permits, so the stage may be early site works",
+        "DataBank campus page 'home to IAD1, IAD3 and IAD4' also covers IAD4; the explicit operating language comes from IAD4/IAD3 page versions that repeat 2023-2024 narrative",
+        "QTS 9 Sep version changed only the resources feed; facility text unchanged since 10 June and the Q2 2026 target is stale; DC2 'existing data center (DH3100)' permits suggest a status refresh may soon be due",
+        "Parcel-union locators differ from operator acreage (DataBank 26.2 vs 18 ac; QTS 23.6 vs 28 ac); locators represent property, not buildings",
+        "Page-version dating relies on structured-data dateModified bounded by Internet Archive copies and sitemap lastmod"
+      ]
+    }
+  ],
+  "packet_pins": {
+    "definitions/atlas-research-fiftythird-2026-10-23.json": "c600d80684f0efe51b0e0bf305edc41c5ce52b22f6649d312c9b3843a22fd73f",
+    "sources/research-countries-2026-10-23-fiftythird-primary-sources.json": "50af009e528533226098edaaea7db37d85f7c40868b48a100a67350deeb5110a",
+    "sources/research-countries-2026-10-23-fiftythird-actions.json": "ee8035d2a2b405b41d6c52676b065a9a1d74efdebfce66f8c27624b815437c6a",
+    "sources/research-countries-2026-10-23-fiftythird-holds.json": "00ba4bd36e5bcd71133ddd38e79a9657dacc2d1d757d8ec802d573c406ddfc78"
+  },
+  "raw_captures_redistributed": false
+}

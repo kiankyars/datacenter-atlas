@@ -1,0 +1,119 @@
+{
+  "candidate_id": "us-va-p2-databank-ashburn-campus",
+  "decision": "Selected the planar centroid of the union of Loudoun County parcels 088381462000 (Red Rum Land Condo; addresses 21625, 21631 and 21635 Red Rum Drive) and 088481748000 (21630 Red Rum Drive), the parcels that carry the operator-stated IAD1, IAD3 and IAD4 addresses, as the campus locator for the DataBank Ashburn Campus.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -77.4821506,
+      39.0165204
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_tax_parcel_union_centroid",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-us-va-p2/loudoun-parcels-databank-ashburn.json",
+  "source_sha256": "7d0f155af692e86067af2c68c7bcf760f0e7430277a6bad9835a53d2b4dae452",
+  "source_url": "https://logis.loudoun.gov/gis/rest/services/COL/LandRecords/MapServer/5/query?where=PA_MCPI%20IN%20(%27088381462000%27%2C%27088481748000%27)&outFields=PA_MCPI,PA_TYPE,PA_PLAT_NUM,PA_LEGAL_ACRE,PA_SUBD_NAME,PA_SUBD_PHASE,PA_LEGAL_SQFT,PA_UPD_DATE&returnGeometry=true&outSR=4326&f=json",
+  "retrieved_at": "2026-10-23T00:57:09.608Z",
+  "selected_properties": {
+    "088381462000": {
+      "PA_MCPI": "088381462000",
+      "PA_TYPE": "C",
+      "PA_PLAT_NUM": "2024-0105",
+      "PA_LEGAL_ACRE": 15.21,
+      "PA_SUBD_NAME": "RED RUM LAND CONDO"
+    },
+    "088481748000": {
+      "PA_MCPI": "088481748000",
+      "PA_TYPE": "P",
+      "PA_PLAT_NUM": "2007-0102",
+      "PA_LEGAL_ACRE": 10.974,
+      "PA_SUBD_NAME": ""
+    }
+  },
+  "facts": {
+    "parcels": {
+      "088381462000": {
+        "legal_acres": 15.21,
+        "geodesic_acres": 15.19,
+        "rings": 1,
+        "vertices": 46,
+        "valid": true,
+        "plat": "2024-0105",
+        "subdivision": "RED RUM LAND CONDO",
+        "parcel_type": "C"
+      },
+      "088481748000": {
+        "legal_acres": 10.974,
+        "geodesic_acres": 11.0,
+        "rings": 1,
+        "vertices": 62,
+        "valid": true,
+        "plat": "2007-0102",
+        "subdivision": "",
+        "parcel_type": "P"
+      }
+    },
+    "union_geometry_type": "MultiPolygon",
+    "union_valid": true,
+    "union_geodesic_acres": 26.19,
+    "centroid_inside": true,
+    "bounds_lon_lat": [
+      -77.484073,
+      39.014253,
+      -77.480087,
+      39.019069
+    ],
+    "approx_extent_m": [
+      345,
+      535
+    ],
+    "centroid_method": "shapely planar centroid in WGS84 longitude/latitude; the NAD83/UTM 18N (EPSG:32618) planar centroid transformed back differs by 0.00 m",
+    "address_points_on_locator_parcels": [
+      {
+        "address": "21631 RED RUM DR, ASHBURN",
+        "mcpi": "088381462000",
+        "lon_lat": [
+          -77.4825778,
+          39.0156882
+        ],
+        "inside_locator_parcels": true,
+        "distance_to_point_m": 99.5
+      },
+      {
+        "address": "21635 RED RUM DR, ASHBURN",
+        "mcpi": "088381462000",
+        "lon_lat": [
+          -77.4817237,
+          39.0154851
+        ],
+        "inside_locator_parcels": true,
+        "distance_to_point_m": 120.7
+      },
+      {
+        "address": "21625 RED RUM DR, ASHBURN",
+        "mcpi": "088381462000",
+        "lon_lat": [
+          -77.4833098,
+          39.0156538
+        ],
+        "inside_locator_parcels": true,
+        "distance_to_point_m": 139.0
+      },
+      {
+        "address": "21630 RED RUM DR, ASHBURN",
+        "mcpi": "088481748000",
+        "lon_lat": [
+          -77.4818195,
+          39.0178729
+        ],
+        "inside_locator_parcels": true,
+        "distance_to_point_m": 152.9
+      }
+    ],
+    "address_source_file": "local_data/country-research-us-va-p2/loudoun-addresses-red-rum-dr.json",
+    "address_source_sha256": "bb510a6113c70ecc7ce60f8985737b307421cb9d214829b7a060687477364923",
+    "coordinate_reference_system": "WGS84 longitude/latitude as returned by the county service with outSR=4326; no further transformation",
+    "verification_script": "make_geom_facts.py (pyproj 3.7.1, shapely 2.1.1)"
+  }
+}

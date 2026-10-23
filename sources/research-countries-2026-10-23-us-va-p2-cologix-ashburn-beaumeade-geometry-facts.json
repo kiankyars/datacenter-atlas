@@ -1,0 +1,82 @@
+{
+  "candidate_id": "us-va-p2-cologix-ashburn-beaumeade-circle-campus",
+  "decision": "Selected the planar centroid of Loudoun County parcel 060189720000 (Beaumeade Phase 1), the parcel that carries the ASH1 address 21745 Beaumeade Circle and the ASH2 permits (21673/21741 Beaumeade Circle), as the campus locator for Cologix's two Beaumeade Circle data centres.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -77.4588976,
+      39.0185075
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_tax_parcel_centroid",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-us-va-p2/loudoun-parcel-060189720000.json",
+  "source_sha256": "ee502f1a9db5291e985b34103023756155289178004b93403f8c74d79c07a9da",
+  "source_url": "https://logis.loudoun.gov/gis/rest/services/COL/LandRecords/MapServer/5/query?where=PA_MCPI%3D%27060189720000%27&outFields=PA_MCPI,PA_TYPE,PA_PLAT_NUM,PA_LEGAL_ACRE,PA_SUBD_NAME,PA_SUBD_PHASE,PA_LEGAL_SQFT,PA_UPD_DATE&returnGeometry=true&outSR=4326&f=json",
+  "retrieved_at": "2026-10-23T00:49:50.879Z",
+  "selected_properties": {
+    "060189720000": {
+      "PA_MCPI": "060189720000",
+      "PA_TYPE": "P",
+      "PA_PLAT_NUM": "1995-0200",
+      "PA_LEGAL_ACRE": 22.6,
+      "PA_SUBD_NAME": "BEAUMEADE"
+    }
+  },
+  "facts": {
+    "parcels": {
+      "060189720000": {
+        "legal_acres": 22.6,
+        "geodesic_acres": 22.63,
+        "rings": 1,
+        "vertices": 40,
+        "valid": true,
+        "plat": "1995-0200",
+        "subdivision": "BEAUMEADE",
+        "parcel_type": "P"
+      }
+    },
+    "union_geometry_type": "Polygon",
+    "union_valid": true,
+    "union_geodesic_acres": 22.63,
+    "centroid_inside": true,
+    "bounds_lon_lat": [
+      -77.461968,
+      39.017114,
+      -77.456615,
+      39.020502
+    ],
+    "approx_extent_m": [
+      464,
+      376
+    ],
+    "centroid_method": "shapely planar centroid in WGS84 longitude/latitude; the NAD83/UTM 18N (EPSG:32618) planar centroid transformed back differs by 0.00 m",
+    "address_points_on_locator_parcels": [
+      {
+        "address": "21745 BEAUMEADE CIR, ASHBURN",
+        "mcpi": "060189720000",
+        "lon_lat": [
+          -77.4593151,
+          39.0180045
+        ],
+        "inside_locator_parcels": true,
+        "distance_to_point_m": 66.5
+      },
+      {
+        "address": "21741 BEAUMEADE CIR, ASHBURN",
+        "mcpi": "060189720000",
+        "lon_lat": [
+          -77.4580288,
+          39.0193231
+        ],
+        "inside_locator_parcels": true,
+        "distance_to_point_m": 117.7
+      }
+    ],
+    "address_source_file": "local_data/country-research-us-va-p2/loudoun-addresses-beaumeade-circle.json",
+    "address_source_sha256": "e97df737b0cc8225865536bd7df203cda7c85e9211ae05b6f0658d75d79b11b9",
+    "coordinate_reference_system": "WGS84 longitude/latitude as returned by the county service with outSR=4326; no further transformation",
+    "verification_script": "make_geom_facts.py (pyproj 3.7.1, shapely 2.1.1)"
+  }
+}

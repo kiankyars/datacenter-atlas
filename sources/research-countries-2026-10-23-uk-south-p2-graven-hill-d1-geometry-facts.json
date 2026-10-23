@@ -1,0 +1,45 @@
+{
+  "candidate_id": "graven-hill-d1-data-centre-campus-bicester",
+  "decision": "Selected the area centroid of the application-site polygon that Cherwell District Council's public planning register map service publishes for reserved matters approval 25/03310/REM (the same polygon it holds for outline permission 22/01829/OUT) as the project locator for the eight-unit Graven Hill D1 data-centre campus. The centroid was computed in British National Grid and converted to WGS84 with pyproj 3.7.1. It is a site marker inside the consented boundary, not a building footprint or surveyed position.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -1.1404842,
+      51.8739179
+    ]
+  },
+  "authority_class": "compiled_reference",
+  "derivation": "coordinate_transform",
+  "scope_class": "official_planning_application_boundary_area_centroid",
+  "use_scope": "project_locator",
+  "source_file": "local_data/country-research-uk-south-p2/cherwell-graven-d1-polygons.json",
+  "source_sha256": "bdc250c062816c47f3edf09b9be6da434dfbd0ceddef024f5a1746df52f19149",
+  "source_url": "https://utility.arcgis.com/usrsvcs/servers/3b969cb8886849d993863e4c913c82fc/rest/services/Public_Map_Services/Cherwell_Public_Planning_Register/MapServer/0/query?where=OBJECTID+IN+(77943,69207,79754)&outFields=*&returnGeometry=true&f=json",
+  "retrieved_at": "2026-10-23T01:09:48.207Z",
+  "selected_properties": {
+    "service": "Cherwell District Council, Cherwell Public Planning Register map service (layer 0, Planning Applications), linked from the council's planning register page and its 'Cherwell Public Planning Register' web map",
+    "feature": "OBJECTID 77943, application 25/03310/REM, location 'Unit D1 Graven Hill, Circular Road, Ambrosden', status Permitted, decision 2026-08-06",
+    "same_polygon_as": "OBJECTID 69207 (outline 22/01829/OUT, permitted 2023-10-10) and OBJECTID 79754 (pending alternative reserved matters 26/02446/REM)",
+    "spatial_reference": "EPSG:27700 (wkid 27700)",
+    "polygon": "one ring, 102 vertices, valid, area 323,338.6 m2 (32.3 ha; the officer report gives 32.3 ha), perimeter 4,074.5 m; it includes the constructed access road corridor north-east to the A41 roundabout",
+    "centroid_epsg27700": [
+      459269.85,
+      219831.94
+    ]
+  },
+  "transform": {
+    "method": "shapely 2.1.1 Polygon.centroid of the service ring in EPSG:27700, then pyproj 3.7.1 Transformer.from_crs('EPSG:27700', 'EPSG:4326', always_xy=True)",
+    "result_lat_lon": [
+      51.8739179,
+      -1.1404842
+    ]
+  },
+  "consistency_checks": {
+    "inside_polygon": "The centroid lies inside the polygon, 190.2 m from its nearest edge.",
+    "application_form_point": "The applicant's planning application form for 25/03310/REM (Planning Portal PP-14036983) gives the site location as easting 459219, northing 219802 (51.8736541, -1.1412278 after the same transform), 59.0 m from the centroid and inside the same polygon.",
+    "site_description": "The officer report describes 32.3 ha of former MOD land south of the Graven Hill residential area and St David's Barracks, bounded by the MOD railway and a solar farm to the south and west and farmland to the east, with the Employment Access Road along the northern boundary linking to Pioneer Road and the A41.",
+    "imagery": "Esri World Imagery z16 tiles (x 32559-32561, y 21682-21685) viewed locally with the polygon overlaid and not redistributed: the polygon encloses the cleared former depot (demolished building slabs and yards) between the railway and a large solar farm to the south-west, plus the access-road corridor to the A41 roundabout; the centroid falls inside the main cleared site. The imagery date is unknown and is not used as status evidence.",
+    "geocoder_used": false
+  },
+  "uncertainty": "The point is a computed centroid of the application boundary, which covers the whole 32.3 ha site and its access-road corridor; individual data-centre units lie up to several hundred metres from it, and the council publishes no positional accuracy for the boundary."
+}

@@ -1,0 +1,48 @@
+{
+  "candidate_id": "virtus-saunderton-data-centre-campus",
+  "decision": "Selected the Ordnance Survey National Grid reference that Virtus Holdco Limited's environmental-permit non-technical summary gives for the Saunderton Data Centre Campus (480790 198500), published by the Environment Agency with application EPR/SP3429LN/A001, as the campus locator. It was converted from British National Grid to WGS84 with pyproj 3.7.1. It is a site reference point for the four-building campus, not a building footprint, boundary or surveyed position.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -0.8329119,
+      51.679464
+    ]
+  },
+  "authority_class": "compiled_reference",
+  "derivation": "coordinate_transform",
+  "scope_class": "environmental_permit_application_site_grid_reference",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-uk-south-p2/virtus-saunderton-nts.pdf",
+  "source_sha256": "8e152cd0789c389c82b6860f2ba2e82ce4da5afc30b5ab8b9e8d8404f10ecab0",
+  "source_url": "https://consult.environment-agency.gov.uk/psc/hp14-4jd-virtus-holdco-limited-epr-sp3429ln-a001/supporting_documents/non-technical-summarypdf",
+  "retrieved_at": "2026-10-23T00:43:50.178Z",
+  "selected_properties": {
+    "document": "Environmental Permit Application - Non-Technical Summary, Saunderton Data Centre Campus (prepared by Ramboll UK for Virtus Holdco Ltd; document control version 4.0, 23 April 2026)",
+    "permit_application": "EPR/SP3429LN/A001 (new bespoke permit; Environment Agency consultation opened 28 July 2026, closed 25 August 2026)",
+    "site_name": "Saunderton Data Centre Campus",
+    "address": "Haw Lane, Saunderton, Buckinghamshire HP14 4JD",
+    "buildings": "four newly constructed data centre buildings: London 15, London 16, London 17 and London 18",
+    "national_grid_reference": "480790 198500",
+    "easting": 480790,
+    "northing": 198500,
+    "standby_generation": "57 diesel standby generators, 356.22 MWth total rated thermal input on completion of all four buildings",
+    "grid_supply": "on-site 132/20 kV primary substation fed from Amersham Grid, 120 MVA firm site capacity"
+  },
+  "transform": {
+    "source_crs": "EPSG:27700 (the document calls the values the Ordnance Survey National Grid reference)",
+    "target_crs": "EPSG:4326",
+    "tool": "pyproj 3.7.1 Transformer.from_crs('EPSG:27700', 'EPSG:4326', always_xy=True)",
+    "result_lat_lon": [
+      51.679464,
+      -0.8329119
+    ]
+  },
+  "consistency_checks": {
+    "site_location_figure": "NTS Figure 1.1 (rendered locally with pdftoppm) outlines the site west of the railway and Saunderton station, south of Haw Lane, and Figure 1.2 shows the four data-centre buildings (London 15 to 18), an electrical substation and an office building inside a quadrilateral installation boundary with Haw Lane along its north-western edge.",
+    "postcode_centroid": "The ONS centroid of HP14 4JD (postcodes.io: 480788, 198683; 51.681113, -0.832877) lies about 183 m north of the selected point, at the Haw Lane frontage of the site, so the grid reference is not a copy of the postcode centroid; the centroid is not used.",
+    "imagery": "Esri World Imagery z17 tiles (x 65231-65233, y 43482-43484) viewed locally and not redistributed: the point falls near the middle of a large cleared and graded compound south of Haw Lane and west of the railway, with plant, stockpiles and a retained shed, matching the outline in Figure 1.1. The imagery date is unknown and is not used as status evidence.",
+    "operator_pages": "VIRTUS's Saunderton campus page describes four data centres delivering 78 MW of IT load on more than 50 acres; its February 2024 release calls the site a 50-acre freehold plot in Saunderton, Buckinghamshire.",
+    "geocoder_used": false
+  },
+  "uncertainty": "The non-technical summary gives the grid reference to 10 m without a stated accuracy or a statement of which part of the site it marks; the campus covers more than 50 acres (about 20 ha), so its buildings extend a few hundred metres around the point."
+}
