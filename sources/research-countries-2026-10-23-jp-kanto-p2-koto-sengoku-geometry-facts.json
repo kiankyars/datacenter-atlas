@@ -1,0 +1,177 @@
+{
+ "format": "datacenter-atlas-geometry-facts-v1",
+ "candidate": "(仮称)江東区千石三丁目計画 — planned data-centre building, Sengoku 3-chome, Koto-ku, Tokyo",
+ "prepared_at": "2026-10-23",
+ "selected_point_crs84": [
+  139.818184,
+  35.677183
+ ],
+ "selected_point_role": "area centroid of the 計画地 (planned building site) outline drawn on Koto City's 25 June 2026 committee reference map, registered to GSI z18 tiles; it locates the planned data-centre site, not a building footprint, entrance, surveyed lot boundary or construction extent",
+ "registration": {
+  "source_map": {
+   "file": "local_data/country-research-jp-kanto-p2/koto-080625boumachi-sankou1.pdf",
+   "sha256": "0eaa3f1aa39b697025df063f51f1dab3afe3ec59a97bc3acd491d3b3294427bc",
+   "page": 1,
+   "embedded_image": "685x674 px JPX raster at 200 ppi (pdfimages page 1 object 22): Koto ward block map with the red 計画地 outline filled yellow, photo positions 写真① and 写真②, north arrow pointing up",
+   "render": "page 1 rendered with pdftoppm at 300 dpi (2480x3509); map cropped at (403,1322)-(1440,2340); control and outline pixels are in this crop's frame",
+   "page_title": "江東区千石３丁目データセンター建設計画に関する陳情について (令和８年６月２５日 都市整備部建築調整課)"
+  },
+  "gsi": {
+   "layer_control": "std (GSI standard map, z18, tiles x 232882-232886, y 103228-103231)",
+   "layer_check": "seamlessphoto (z18, same tiles) and std z17 overview",
+   "z": 18,
+   "x0": 232882,
+   "y0": 103228,
+   "ground_m_per_px_at_35.6775N": 0.4851,
+   "manifest": "local_data/country-research-jp-kanto-p2/gsi-sengoku/sengoku-gsi-manifest.json",
+   "manifest_sha256": "c5f2c204f77b0d76338631a5e2e81278d334fb2c165b0c6e6cedec59fc275012"
+  },
+  "transform": "least-squares 2D similarity (rotation, uniform scale, translation) from three block-corner control points; no area forcing",
+  "fit": {
+   "scale_gsi_px_per_ward_px": 1.5916,
+   "rotation_deg": -0.033,
+   "ward_m_per_px": 0.7721,
+   "gsi_m_per_px": 0.4851
+  },
+  "control_points": {
+   "block_sw_corner_west_street_x_canal_park_road": {
+    "map_px": [
+     508,
+     428
+    ],
+    "gsi_px": [
+     508,
+     667
+    ],
+    "residual_m": 3.11,
+    "used_in_fit": true
+   },
+   "block_se_corner_at_yokojikken_canal": {
+    "map_px": [
+     788,
+     418
+    ],
+    "gsi_px": [
+     944,
+     655
+    ],
+    "residual_m": 2.35,
+    "used_in_fit": true
+   },
+   "block_nw_corner_west_street_x_north_road": {
+    "map_px": [
+     506,
+     116
+    ],
+    "gsi_px": [
+     495,
+     168
+    ],
+    "residual_m": 2.11,
+    "used_in_fit": true
+   }
+  },
+  "independent_check": "The registered north-east site corner (GSI px 735.5, 457.4) falls 3.2 m from the north-east corner of the paved lot visible on the GSI seamless photo (734, 451), bounded by the apartment complex to the north and a tree strip to the east.",
+  "notes": "Control points are corners of the block that holds the site: its west street, the road along the north edge of Sendaibori River Park (仙台堀川公園) to the south, the Yokojikken River (横十間川) bank to the east and the slanted road to the north, all drawn on both the ward map and the GSI standard map. The ward map's north arrow points up and the fit rotation is -0.03 degrees.",
+  "script": "work/sengoku_fit.py in the jp-kanto-p2 queue directory (pure-Python least squares; spherical Web-Mercator pixel to CRS84)"
+ },
+ "site_polygon_map_px": [
+  [
+   513,
+   298
+  ],
+  [
+   655,
+   296
+  ],
+  [
+   660,
+   425
+  ],
+  [
+   550,
+   430
+  ],
+  [
+   550,
+   345
+  ],
+  [
+   513,
+   345
+  ]
+ ],
+ "site_polygon_gsi_px": [
+  [
+   509.4,
+   460.7
+  ],
+  [
+   735.5,
+   457.4
+  ],
+  [
+   743.5,
+   662.7
+  ],
+  [
+   568.5,
+   670.7
+  ],
+  [
+   568.4,
+   535.4
+  ],
+  [
+   509.5,
+   535.5
+  ]
+ ],
+ "site_polygon_crs84": [
+  [
+   139.8174912,
+   35.6776022
+  ],
+  [
+   139.8187036,
+   35.6776167
+  ],
+  [
+   139.8187469,
+   35.676722
+  ],
+  [
+   139.8178078,
+   35.6766869
+  ],
+  [
+   139.8178073,
+   35.6772764
+  ],
+  [
+   139.8174914,
+   35.6772763
+  ]
+ ],
+ "area_check": {
+  "registered_polygon_planar_m2": 9404.9,
+  "official_site_area_m2": 9478.42,
+  "difference_pct": -0.78,
+  "basis": "Outline traced by hand from the 300-dpi render; the official 敷地面積 is from the same ward document. The near-equal area is an independent check of the fitted scale."
+ },
+ "context_points_crs84": {
+  "gsi_address_search_千石三丁目1番": [
+   139.818619,
+   35.677711
+  ],
+  "gsi_address_search_千石三丁目2番": [
+   139.817993,
+   35.679283
+  ],
+  "note": "GSI residential-address block points, used only for orientation; the Tokyo notification gives lot numbers 千石三丁目2-19, 20, 71, 89 (地番), which are not residential-address blocks and for which no public-coordinate registry map exists in the 2026 MOJ/AIGID Koto file (it covers no part of 千石)."
+ },
+ "uncertainty": {
+  "horizontal_uncertainty_metres": null,
+  "reason": "The ward map prints no coordinates or datum and is a 200-ppi raster; control-point residuals (2-3 m) measure only the map-to-GSI fit, and hand tracing of the outline adds a few metres. GSI map accuracy is not stated per feature. Estimated within roughly 15 m of the site centroid; the site extends about 60 m from the point. Decimal places are arithmetic precision."
+ }
+}

@@ -1,0 +1,43 @@
+{
+  "reviewer": "root",
+  "reviewed_at": "2026-10-23",
+  "decision": "accepted_for_integration",
+  "update": "verified_construction_core/2026-10-23-research-fiftyfifth",
+  "base_dataset": "verified_construction_core/2026-10-23-research-fiftyfourth",
+  "process": "continuous: one researcher per beat, one adversarial verifier per fragment",
+  "fragments": [
+    {
+      "fragment": "jp-kanto-p2",
+      "verdict": "accept",
+      "checks": [
+        "base re-read from site/config.json: verified_construction_core/2026-10-23-research-fiftythird (632 sites, 669 projects); unchanged at verdict time",
+        "rehashed all relied-on captures: SCSK report and campus page (thirty-fourth and kanto-p2 copies byte-identical, 9f09b855/52c73ac6 = existing evidence aae3591c/d0ca01f5 hashes), SCSK 20260623.pdf, Koto agenda PDF and page, Koto 25 Jun reference PDF, Tokyo sign-notification CSV and PDF: sha256 = content_hash = .metadata.json sha256, HTTP 200, no credentials; all 18 literal byte pointers match",
+        "70 GSI tiles rehashed against sengoku-gsi-manifest.json (manifest sha256 c5f2c204...), geometry-facts file sha256 211dc06e... matches sources.json",
+        "Koto agenda PDF read (pdftotext): 16 Oct 2026 committee, items 7陳情13/43 and 8陳情08/09/11/15 name the Sengoku 3-chome data-centre plan, all (継); page 更新日 2026-10-09, PDF created 8 Oct; government_record, 14 days old, inside 85-day window; announced only",
+        "Koto 25 Jun reference read (text + page 1 rendered 150/300 dpi): 千石3丁目2番, 9,478.42 m2, 6,310 m2, 22,640 m2, 51.4 m, steel 5F, works planned R8.7-R11.3 (forecast), notice timeline and 12x100,000 L tanks verified; Tokyo CSV row 7 (R8.5.8, lots 2-19/20/71/89, 準工業, 51.40 m, data centre) verified",
+        "Koto locator recomputed independently: own 4 control points (block NW/NE/SW/SE corners) similarity fit residuals 0.9-3.0 m (affine 1.0-1.4 m), own line-centre trace of the red outline; centroid 2.5-3.0 m from the claimed point (139.818184, 35.677183), which lies 35 m inside the registered outline; researcher outline area 9,486 m2 vs official 9,478 m2; point sits in the paved lot on the GSI seamless photo",
+        "SCSK report read: 'キャンパス内にはSI1～SI3の3つのデータセンターが建っており、SI3は2022年5月にサービスを開始した一番新しい施設' plus present-tense campus noise/heat measures; JSON-LD datePublished 2026-10-01 (22 days); company_disclosure; campus page lists SI1 (2002, 14,353 m2) and SI2 (2015, 15,586 m2)",
+        "SCSK locator reuses SI3 project 400c245c campus point exactly with geometry evidence f5507327; existing site vcc-site-82a8dc81ee48bf577b42; no geometry-identity evidence to pin",
+        "distinctness: no 千石/Sengoku match in sites, projects, evidence, source-records, identity-mapping, sources/*-holds.json or other queue fragments; no coordinate within 2.5 km of either point in other fragments/holds; nearest Atlas site to Koto CEC Sunshine 60 10.75 km; near SCSK only SCSK SI3 (0 km), STT Tokyo Inzai 1.76 km, IIJ Shiroi 2.02 km; Keppel TDC4/TDC5 holds are 2021/2024 buildings, not SI1/SI2",
+        "roles: Koto none (no party in official records); SCSK operator current; commercial scope; no personal data (SCSK officer/contact names and phone in the PDF not copied)",
+        "robots.txt for www.city.koto.lg.jp, www.toshiseibi.metro.tokyo.lg.jp, www.scsk.jp and cyberjapandata.gsi.go.jp (404) recorded before capture and allow the paths",
+        "edits: Koto status summary and council_context reworded to 'listed for continued deliberation' (minutes unpublished, agenda subject to change); SCSK split-notice summary, successor_review and operator_note corrected to the notice's own words (transferred business = データセンター運用事業 of the service-infrastructure department, JPY 891 m in year to March 2026; brand/buildings not mentioned)",
+        "dryrun_fragment.py ok on fiftythird (633 sites, 671 projects, 3,428 evidence)"
+      ],
+      "residual_risks": [
+        "Koto announced status rests on a council agenda listing citizens' petitions about the plan; the ward's own project description (25 Jun) is outside the window and the Tokyo list's row dates are May",
+        "Koto works were planned to start in July 2026; if they began, announced understates the stage; no developer or operator is named in official records",
+        "Koto locator: ward map has no coordinates; hand-drawn outline and map-to-GSI fit give a few metres of error (estimated within ~15 m); the drawn west edge sits ~3 m over the street curb",
+        "SI1/SI2 operation is inferred from the dated report's present-tense description of three data centres on SCSK's netXDC campus and campus-level operating measures, read with the undated live campus page; there is no explicit dated 'SI1/SI2 in operation' sentence",
+        "SCSK moved its data-centre operation business to SCSK System Management from 1 Oct 2026; the operator role stays SCSK on the report's framing, but day-to-day operation may now sit with the subsidiary"
+      ]
+    }
+  ],
+  "packet_pins": {
+    "definitions/atlas-research-fiftyfifth-2026-10-23.json": "76dbdef10496583c4791f034eac7b324bc0aaae04ce8d4ee1c65baeaaabb51dc",
+    "sources/research-countries-2026-10-23-fiftyfifth-primary-sources.json": "844a4456663ec35ba37e2ebac4b608d093ceaf13882efb8709fa02b732b3cb57",
+    "sources/research-countries-2026-10-23-fiftyfifth-actions.json": "f6f62c631f111a6e43dc8eafa2da44b2f3bde717977d7ed7ac7c4be5b12e6c7f",
+    "sources/research-countries-2026-10-23-fiftyfifth-holds.json": "642c13f91b1b854eee07f09eb73ad35c65bba31b19697346971d9ef9b16a44a2"
+  },
+  "raw_captures_redistributed": false
+}

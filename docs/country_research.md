@@ -342,3 +342,5 @@ From 22 October 2026 sites are added continuously: researchers each work a narro
 `verified_construction_core/2026-10-23-research-fiftythird`: **632 sites and 669 projects in 63 countries**. Adds Telehouse Frankfurt Building N — new 3.6 MW IT data centre; VIRTUS Saunderton Campus - LONDON15 to LONDON18 (four data centres, 78 MW IT planned); Graven Hill D1 Data Centre Campus - eight data-centre units (Cherwell reserved matters 25/03310/REM); Cologix ASH2 — two-storey data centre under construction (21673 Beaumeade Circle); DataBank Ashburn Campus — existing IAD1 and IAD3 data-centre operations; QTS Ashburn 1 DC2 — data centre under construction (22280 Randolph Drive).
 
 `verified_construction_core/2026-10-23-research-fiftyfourth`: **632 sites and 669 projects in 63 countries**. Refreshes dataR Rellingen Current Construction (under construction).
+
+`verified_construction_core/2026-10-23-research-fiftyfifth`: **633 sites and 671 projects in 63 countries**. Adds (仮称)江東区千石三丁目計画 — planned five-storey data-centre building, Sengoku 3-chome, Koto; SCSK netXDC Chiba Center (SI1) and Chiba No.2 Center (SI2) Existing Operations.
