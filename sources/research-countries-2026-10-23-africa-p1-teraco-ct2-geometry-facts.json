@@ -1,0 +1,52 @@
+{
+  "candidate_id": "teraco-ct2-brackenfell",
+  "decision": "Selected Teraco's own published GPS coordinate for CT2 at 57 Tiber Road, Brackengate 2, Brackenfell. Literal operator coordinate, no geocoding or transformation.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      18.67936,
+      -33.907417
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_source_reported_facility_reference_point",
+  "use_scope": "campus_locator",
+  "precision_scope": "Teraco's published GPS point for the CT2 data centre at 57 Tiber Road, Brackengate 2, Brackenfell. It locates the CT2 facility; it is not a centroid, parcel, building outline or boundary, and it does not separate the original CT2 halls from the expansion completed in November 2025.",
+  "horizontal_uncertainty_metres": null,
+  "horizontal_uncertainty_unknown_reason": "The page states no datum, reference feature, collection method or horizontal accuracy.",
+  "source_url": "https://www.teraco.co.za/data-centre-locations/cape-town/",
+  "source_file": "teraco-cpt-locations.html",
+  "source_sha256": "734700e2bef1c138e7be9b803590f1e8631dfb2e4f786cf95e19204d240021b2",
+  "retrieved_at": "2026-10-22T23:47:45.477Z",
+  "source_literal_coordinate_tokens": [
+    "CT2 Data Centre / Address: 57 Tiber Road, Brackengate 2, Brackenfell / GPS Co-ordinates: -33.907417, 18.679360"
+  ],
+  "axis_note": "The page prints latitude then longitude; GeoJSON coordinates are [longitude, latitude].",
+  "excluded_coordinates": [
+    {
+      "kind": "Teraco CT1 Rondebosch published point (existing Atlas site)",
+      "latitude": -33.9712,
+      "longitude": 18.4649,
+      "distance_m": 21016.9,
+      "reason": "CT1 is the existing Atlas site 'Teraco CT1 Data Centre' in Rondebosch, a separate building about 21 km away; Teraco calls both part of its Cape Town campus but they are physically separate sites."
+    }
+  ],
+  "consistency_checks": [
+    {
+      "check": "independent self-reported point",
+      "result": "PeeringDB facility 14858 'Teraco CT2 Cape Town, South Africa', Brackengate 2, 57 Tiber Rd, lies 24.2 m from the selected point (local peeringdb-fac-ssa10.json)."
+    },
+    {
+      "check": "qualitative imagery placement",
+      "result": "In Esri World Imagery (z17 tiles captured 22 October 2026) the point falls on the southern edge of a large walled complex of data-hall buildings with rows of rooftop plant, north of the arterial road. Imagery date and accuracy are unknown; not used for status.",
+      "tiles": [
+        {
+          "file": "tiles/ct2-z17-72336-78672.jpg",
+          "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/17/78672/72336",
+          "sha256": "f55bc5d9a22b1020865ca871e3a48fae90e1479e940ed4c083e6b3ad03397f80",
+          "retrieved_at": "2026-10-22T23:49:03.233Z"
+        }
+      ]
+    }
+  ]
+}

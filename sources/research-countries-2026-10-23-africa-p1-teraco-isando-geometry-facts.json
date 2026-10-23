@@ -1,0 +1,87 @@
+{
+  "candidate_id": "teraco-isando-campus",
+  "decision": "Selected Teraco's own published GPS coordinate for JB1 East & West at 5 Brewery Street, Isando (also the Isando campus address and the Teleport), as the Isando campus locator. Literal operator coordinate, no geocoding or transformation.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      28.19802,
+      -26.138
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_source_reported_facility_reference_point",
+  "use_scope": "campus_locator",
+  "precision_scope": "Teraco's published GPS point for JB1 East & West at 5 Brewery Street, Isando, used to locate the Isando campus (JB1 East and West, JB3 and JB5). JB3 (14 Kiln Road) and JB5 (29 Kiln Road) carry their own published points 261 m and 452 m to the north-east. It is not a centroid, parcel, building outline or campus boundary.",
+  "horizontal_uncertainty_metres": null,
+  "horizontal_uncertainty_unknown_reason": "The page states no datum, reference feature, collection method or horizontal accuracy; the campus buildings span about 450 m between their published points.",
+  "source_url": "https://www.teraco.co.za/data-centre-locations/johannesburg/",
+  "source_file": "teraco-jhb-locations.html",
+  "source_sha256": "b9cbaba9ce45487d8cea632187254a5a348eaaa36a583712c503a781386e6929",
+  "retrieved_at": "2026-10-22T23:46:29.028Z",
+  "source_literal_coordinate_tokens": [
+    "JB1 East & West Data Centre / Address: 5 Brewery Street, Isando, Johannesburg / GPS Co-ordinates: -26.138000, 28.198020",
+    "JB3 Data Centre / Address: 14 Kiln Road, Isando, Johannesburg / GPS Co-ordinates: -26.136132, 28.199605",
+    "JB5 Data Centre / Address: 29 Kiln Road, Isando, Johannesburg / GPS Co-ordinates: -26.135302, 28.201401"
+  ],
+  "constituent_points": {
+    "JB1_east_west": {
+      "lat": -26.138,
+      "lon": 28.19802
+    },
+    "JB3": {
+      "lat": -26.136132,
+      "lon": 28.199605,
+      "distance_from_selected_m": 261.1
+    },
+    "JB5": {
+      "lat": -26.135302,
+      "lon": 28.201401,
+      "distance_from_selected_m": 451.6
+    }
+  },
+  "axis_note": "The page prints latitude then longitude; GeoJSON coordinates are [longitude, latitude].",
+  "excluded_coordinates": [
+    {
+      "kind": "Teraco JB2 (Bredell) published point",
+      "latitude": -26.0751953,
+      "longitude": 28.2783355,
+      "distance_m": 10634.1,
+      "reason": "Separate Bredell facility at 0A, 1st Road, Glen Marais, Kempton Park; not part of the Isando campus."
+    },
+    {
+      "kind": "Teraco JB4 (Bredell Campus, Birkenhead Street) published point",
+      "latitude": -26.0250175,
+      "longitude": 28.2697322,
+      "distance_m": 14461.2,
+      "reason": "Separate facility at Birkenhead Street, Glen Marais, Kempton Park; not part of the Isando campus."
+    }
+  ],
+  "consistency_checks": [
+    {
+      "check": "independent self-reported point",
+      "result": "PeeringDB facility 850 'Teraco Johannesburg Campus, South Africa', 5 Brewery Street, lies 50.4 m from the selected point (local peeringdb-fac-ssa10.json)."
+    },
+    {
+      "check": "qualitative imagery placement",
+      "result": "In Esri World Imagery (z17 tiles captured 22 October 2026) the JB1 point falls on a large plant-roofed industrial building south of the Kiln Road block, and the JB5 point on a large building with extensive rooftop plant at the north-east of the block. Imagery date and accuracy are unknown; not used for status.",
+      "tiles": [
+        {
+          "file": "tiles/isando-z17-75802-75400.jpg",
+          "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/17/75400/75802",
+          "sha256": "af38edec6735d167d7ee16f72555125d1b47421fead0770542b3888558819fd3",
+          "retrieved_at": "2026-10-22T23:48:59.755Z"
+        },
+        {
+          "file": "tiles/isando-z17-75803-75399.jpg",
+          "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/17/75399/75803",
+          "sha256": "f541d35fb925fe371d09eb953fe85814388d72af8bedad2f69904895bc1a0a58",
+          "retrieved_at": "2026-10-22T23:49:00.259Z"
+        }
+      ]
+    },
+    {
+      "check": "other operators nearby (not Atlas records)",
+      "result": "PeeringDB places OADC JNB1 (18 Electron Avenue, Isando) 239 m from the selected point and 51 m from Teraco's JB3 point, and Equinix JN1 (103 Brollo Road) 2024 m away. Both are other operators' facilities and neither is in the Atlas."
+    }
+  ]
+}

@@ -1,0 +1,141 @@
+{
+  "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+  "candidate": "ODATA DC QR01, QR02 and QR03 (Mexico): operator-published facility coordinates on ODATA's locations map",
+  "prepared_at": "2026-10-23",
+  "decision": "Use ODATA's own locations-map coordinate for each facility as that site's campus locator. QR04 is not used (held): the operator's current coordinate lies 422 m north of the named Google Maps place 'Data Center ODATA QR04' that ODATA's earlier facility page linked, and imagery shows different features at the two points.",
+  "source": {
+    "url": "https://odatadc.com/es/localidades/",
+    "file": "local_data/country-research-mx-p1/odata-es-localidades.html",
+    "sha256": "7bf59e30736985746c4c03571c1b757f7b6e295435d3267329300fe2483c029d",
+    "retrieved_at": "2026-10-22T23:37:07.796Z",
+    "robots": "odatadc.com/robots.txt (captured 2026-10-22, local robots-odatadc.com.txt) disallows only /wp-admin/, /healthcheck and /cdn-cgi/.",
+    "page_dates": "JSON-LD datePublished 2026-08-15T16:58:01+00:00, dateModified 2026-09-25T12:13:23+00:00 (locator only; not a status date)",
+    "extraction": "The page's store-locator element carries an HTML-escaped data-locations JSON array of 12 ODATA facilities. The four entries with category 'Mexico' (ids 8621-8624) were parsed with Python json after html.unescape; the coordinates field is a single 'lat, lon' string, transcribed literally and split on the comma. No geocoder or map search was used."
+  },
+  "facilities": [
+    {
+      "facility": "ODATA DC QR01",
+      "location_id": 8624,
+      "address_as_published": "Carretera Estatal 500, km 0+600, Localidad de Agua Azul, lots 24, 25, 26, 27, 28 and 29, El Marqués municipality, Queretaro, México",
+      "coordinates_literal": "20.58817081212714, -100.2004110879323",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -100.2004110879323,
+          20.58817081212714
+        ]
+      },
+      "authority_class": "official_source",
+      "scope_class": "operator_published_facility_coordinate",
+      "use_scope": "campus_locator",
+      "imagery_check": {
+        "file": "local_data/country-research-mx-p1/esri-odata-qr01.jpg",
+        "sha256": "8bbb88d8812e17e4b5f3189bac57f73e8636afc057c73621d65af731bf8858d9",
+        "bbox_wgs84": [
+          -100.2034,
+          20.5852,
+          -100.1974,
+          20.5912
+        ],
+        "size_px": [
+          800,
+          800
+        ],
+        "point_px": [
+          399,
+          404
+        ],
+        "observation": "The point falls at the north-west corner of a large flat-roofed building at the junction of the estate road and the north-south access road; a row of about two dozen generator or plant enclosures runs along the building's south side and a second fenced data-centre-type compound with a generator yard lies immediately south. Consistent with an operating data centre; the building is not labelled in the imagery."
+      }
+    },
+    {
+      "facility": "ODATA DC QR02",
+      "location_id": 8623,
+      "address_as_published": "GCRF+H4, 38188 Parque Industrial Amexhe, Gto., México",
+      "coordinates_literal": "20.541647361178175, -100.5771870195581",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -100.5771870195581,
+          20.541647361178175
+        ]
+      },
+      "authority_class": "official_source",
+      "scope_class": "operator_published_facility_coordinate",
+      "use_scope": "campus_locator",
+      "imagery_check": {
+        "file": "local_data/country-research-mx-p1/esri-odata-qr02.jpg",
+        "sha256": "dfba23723462c3d4b15cc7489166a765c8ee07ccd30deda1fc8d87c227af17c7",
+        "bbox_wgs84": [
+          -100.5811,
+          20.5376,
+          -100.5731,
+          20.5456
+        ],
+        "size_px": [
+          800,
+          800
+        ],
+        "point_px": [
+          391,
+          395
+        ],
+        "observation": "The point falls on a small gatehouse/office annex at the south-west corner of a white-roofed building with rooftop plant and a row of generator enclosures along its south (road) side; a parking and laydown area lies to the west. Consistent with a data centre; the building is not labelled in the imagery."
+      }
+    },
+    {
+      "facility": "ODATA DC QR03",
+      "location_id": 8622,
+      "address_as_published": "Carretera Estatal 431 - Los Cues km.5.8 San Antonio de la Galera, Santiago de Querétaro, Qro., México",
+      "coordinates_literal": "20.536622709154294, -100.23711810421601",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -100.23711810421601,
+          20.536622709154294
+        ]
+      },
+      "authority_class": "official_source",
+      "scope_class": "operator_published_facility_coordinate",
+      "use_scope": "campus_locator",
+      "imagery_check": {
+        "file": "local_data/country-research-mx-p1/esri-odata-qr03.jpg",
+        "sha256": "885a83aa2dea4f73ea6297a1d33fd0690d62b8cdf75cefb3289c85b84356ac77",
+        "bbox_wgs84": [
+          -100.2411,
+          20.5326,
+          -100.2331,
+          20.5406
+        ],
+        "size_px": [
+          800,
+          800
+        ],
+        "point_px": [
+          398,
+          398
+        ],
+        "observation": "The point falls on the perimeter road at the north edge of a large walled campus containing one long data-centre building flanked by rows of generator enclosures, two outdoor high-voltage substations to its east and an undeveloped graded plot to its west. It locates the campus edge near its north entrance, not a building."
+      }
+    }
+  ],
+  "excluded": {
+    "facility": "ODATA DC QR04",
+    "operator_coordinate": "20.911166387156698, -100.61976501952108 (id 8621; address Carretera Federal 111 Querétaro-San Miguel de Allende km 21, Cruce Carretera Corral de Piedras, Pesma II Industrial Park, CP 37888)",
+    "earlier_operator_linked_place": "https://maps.app.goo.gl/ZeiffYzow68Jk87C7 (linked from ODATA's former QR04 facility page, captured in the 2026-07-21 packet) resolves to Google Maps place 'Data Center ODATA QR04', feature 0x842b530024a12323:0x25d741732ef97f32, !3d20.907398!4d-100.62028 (re-captured 2026-10-22, local odata-qr04-july-operator-linked-gmap.html)",
+    "separation_m": 422,
+    "imagery": {
+      "file": "local_data/country-research-mx-p1/esri-odata-qr04.jpg",
+      "sha256": "25079830eaa9568761c7ad112411ab473364226ac60a6775b87eb4998c3ce182",
+      "observation": "The named place sits beside a completed white-roofed building with plant and a substation immediately south; the current operator coordinate falls on a graded plot about 420 m north with works in progress. Which point ODATA intends for QR04, and whether the northern plot is ODATA's, is not established."
+    }
+  },
+  "consistency_checks": {
+    "datum": "not stated (web map; WGS 84 assumed by the map library, not asserted by the operator)",
+    "coordinate_order": "each string is 'latitude, longitude'; latitudes 20.5-20.9 N and longitudes -100.2 to -100.6 place all four in the Bajío between Querétaro and San Miguel de Allende, matching the addresses",
+    "qr02_plus_code": "The QR02 coordinate encodes (Open Location Code) to 75GXGCRF+M4; the published address code GCRF+H4 is the same 1/400-degree cell, two 1/8000-degree rows (about 28 m) south.",
+    "areas": "ODATA's Mexico page gives campus areas QR01 52,350 m2, QR02 22,373 m2 and QR03 275,000 m2; ODATA's May 2022 QR01 release gives the same 52,350 m2 campus and its April 2025 QR03 release about 275,000 m2.",
+    "imagery_source": "Esri World Imagery MapServer export (server.arcgisonline.com; robots.txt allows all), captured 2026-10-22; imagery acquisition dates are not stated; used only as a qualitative check, not as a locator.",
+    "geocoder_used": false
+  }
+}

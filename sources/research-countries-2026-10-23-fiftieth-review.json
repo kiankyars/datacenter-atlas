@@ -1,0 +1,67 @@
+{
+  "reviewer": "root",
+  "reviewed_at": "2026-10-23",
+  "decision": "accepted_for_integration",
+  "update": "verified_construction_core/2026-10-23-research-fiftieth",
+  "base_dataset": "verified_construction_core/2026-10-23-research-fortyninth",
+  "process": "continuous: one researcher per beat, one adversarial verifier per fragment",
+  "fragments": [
+    {
+      "fragment": "africa-p1",
+      "verdict": "accept",
+      "checks": [
+        "All 10 relied-on captures rehashed: sha256 and byte counts match sources.json content_hash and .metadata.json; capture times equal retrieved_at; iXAfrica geometry-facts sha256 matches sources.json; all 3 geometry-facts source hashes and 5 referenced Esri tile hashes match",
+        "iXAfrica: read release text: dateline 'Nairobi, Kenya, Wednesday October 21, 2026' (21 Oct 2026 is a Wednesday); Workonline 'has established a new Point of Presence at iXAfrica Data Centres' NBOX1 campus'; CEO quote 'for everyone already connected here'; post-sitemap lastmod 2026-10-21T11:09:46+03:00 is newest of 46 items; 23 Oct recapture byte-identical; company_disclosure on operator site; 2 days old, inside 85-day window (from 2026-07-30)",
+        "iXAfrica scope: campus-specs page 'NBOX1.1: 4.5MW (Live) & NBOX1.2: 18MW', 4.3-acre campus on Mombasa Road; NBOX1.2 stage not asserted and held",
+        "iXAfrica locator recomputed from raw Google response: single feature at node [0,1,0,14], name 'iXAfrica Data Centre', website ixafrica.co.ke, feature id 0x183bc6c6a6552a1d:0xd868cf8613a4337d, coords [9] = -1.3293377, 36.8859905 = changes.json point; search URL is the link in the captured maps HTML; robots allows /maps?hl= and /search?*tbm=map",
+        "iXAfrica imagery (own z18 mosaic): point inside the walled compound at its Mombasa Road gate corner; compound holds a large plant-roofed building with rows of generator/plant units; PeeringDB NBOX1 point 471 m SE (geodesic 470.7 m) correctly excluded",
+        "Teraco JHB: live page JSON-LD dateModified 2026-09-28T10:34:08Z = article:modified_time = page-sitemap lastmod; IA raw copy 2026-09-06 carries dateModified 2026-08-13; text diff live vs IA differs only by three 'Tech Sheet' links; 'Teraco operates vendor-neutral colocation data centres in Johannesburg', Isando Campus 'provides the cloud on-ramps', 16,000+ cross-connects read in capture; CDX confirms no later IA copy; same lower-archive-bound-plus-capture pattern accepted for Cologix, LEV002, ecoDC and CtrlS",
+        "Teraco CPT: live dateModified 2026-09-28T10:37:16Z = sitemap lastmod; IA copy 2026-08-14 (version 2026-08-13) differs only by 'Tech Sheet' links; CT2 'is an extension of Teraco's Cape Town data centre campus', 18,000 sqm, 50 MW, 7,000+ cross-connects; 25 days old; 10 Nov 2025 completion release read as context only",
+        "Locators: Teraco page literals 'GPS Co-ordinates: -26.138000, 28.198020' (JB1, 5 Brewery Street) and '-33.907417, 18.679360' (CT2, 57 Tiber Road) reordered to [lon,lat] exactly; JB3 260.7 m, JB5 451.3 m, PeeringDB JHB campus 50.5 m, PeeringDB CT2 24.2 m (pyproj geodesic); own Esri mosaics place both points on data-centre complexes; method matches existing CT1 record",
+        "Distinctness rescreened against 2026-10-23-research-fortyninth (609 sites/645 projects): only Teraco record is CT1 Rondebosch (21.0 km from CT2); no site or project within 2 km of any point (nearest 15.5 km, 16.2 km, 21.0 km geodesic); no keyword hit in other fragments' changes.json, other queue holds or sources/*-holds.json beyond the 16 Oct iXAfrica/Teraco holds whose reopen condition is now met; claims.tsv hits are this fragment's own claims",
+        "Roles: Teraco party renamed from unevidenced legal name 'Teraco Data Environments (Pty) Ltd' to 'Teraco' as named in the captured pages (publisher/attribution set to 'Teraco (a Digital Realty company)' per page footer); 'iXAfrica Data Centre Limited' appears verbatim in the release; all operator/current",
+        "One project per new site; commercial colocation only; no personal names, phones or emails in changes, sources, holds, notes or geometry facts (release media contact and spokespeople omitted)",
+        "dryrun_fragment.py: ok (612 sites, 648 projects, 3,300 evidence on fortyninth)"
+      ],
+      "residual_risks": [
+        "Teraco observation dates rest on WordPress dateModified bounded only below by a pre-change archive copy and above by the 22 Oct capture; the 28 Sep edit only added Tech Sheet links, though the operating text is independently present in in-window archive copies (6 Sep, 14 Aug)",
+        "CT2's operating status rests on present-tense marketing-page text plus the operator's 'operates ... in Cape Town' statement rather than a dated event",
+        "iXAfrica locator is a Google compiled-reference feature categorised 'Corporate office' that marks the compound gate corner, not data halls; HQ and campus share the Cabanas, Mombasa Road address and imagery date/accuracy are unknown",
+        "Isando record groups JB1, JB3 and JB5 (about 450 m apart) under the JB1 point; distances in the review text are spherical approximations differing from geodesic by under 0.3%",
+        "Compliance log notes one paratus.africa sitemap request made before that host's robots.txt was fetched (later shown to allow it); unrelated to the accepted items"
+      ]
+    },
+    {
+      "fragment": "mx-p1",
+      "verdict": "accept",
+      "checks": [
+        "All 7 original relied-on captures rehashed: file SHA-256 = .metadata.json sha256 = source content_hash; metadata URL = source_url, HTTP 200, no credentials; geometry-facts file matches geometry_facts_sha256; the four Esri exports match their metadata (bbox/size as stated)",
+        "Status read in the live es/localidades-mexico capture: operator-voice present tense 'Nuestros centros de datos combinan ... operación continua las 24 horas ... 365 días del año. Programa una visita' plus QR01/QR02/QR03/QR04 cards each 'Diseñado según el estándar Tier III. Disponibilidad 24/7/365 / Acceso y funcionamiento continuos'; company_disclosure; same generic-card standard accepted for ODATA Brazil (br-p1), CtrlS and Cologix",
+        "DATE DEFECT FIXED: researcher dated all three to datePublished 2026-08-15, but the captured text is the dateModified 2026-09-25 version and the August date predates the public relaunch (verifier CDX: old odatacolocation.com dc-qr01/dc-qr03/es dc-qr03 pages archived live 200 on 16 and 20 Sep 2026; DeltaFlow release of 17 Sep still points to odatacolocation.com). Re-dated status.as_of to 2026-09-25 and status source published_at to 2026-09-25",
+        "dateModified bound: verifier fetched the Internet Archive's only copy (2026-10-13T22:55:25Z) of the page's rel=canonical URL odatadc.com/es/ubicaciones-en-M%C3%A9xico/ (researcher had queried only the non-canonical slug); it carries the same datePublished/dateModified and identical text bar form labels; added as source mx-p1-odata-mexico-locations-es-ia-20261013 (context on all three); 28 days old, inside 85",
+        "Locator source published_at nulled (August CMS date not established as public; locator-only); QR04 hold re-dated to the 25 Sep observation",
+        "Locators recomputed from the raw store-locator data-locations JSON (ids 8622/8624/8623): literal 'lat, lon' strings equal the changes coordinates; Esri pixel positions recomputed (QR01 398.5/403.9) and images viewed: QR03 north perimeter road of a walled campus with long DC hall, generator rows, two substations; QR01 NW corner of a generator-lined building; QR02 annex of a generator-lined white-roofed building",
+        "Not zone centroids: old operator pages linked only park places; QR01 point is 423 m from the Google place of VYNMSA Queretaro Industrial Park (resolved from the old page's short link, 20.58451,-100.20151); QR03 point is 1,265 m from the old-page 'Parque Industrial PyME' place; QR02 coordinate encodes to 75GXGCRF+M4, 23 m from the published GCRF+H4 cell centre",
+        "Identity context read in captures: QR01 2022 release (El Marqués, phase 1 8.4 MW in operation, 52,350 m2), QR03 2025 release (Parque Industrial PyME, five buildings, ~275,000 m2, first building 72 MW), 2024 releases (QR02 in Guanajuato, delivered to a customer); scope, null uncertainty with reasons and identity reviews accurate",
+        "Distinctness re-screened against current base 2026-10-23-research-fortyninth (609 sites/645 projects; only Mexican sites KIO QRO3 and CloudHQ QRO): no ODATA Mexico/QR0x/VYNMSA/Amexhe/Pesma match in sites, projects, evidence, source-records or identity-mapping; nearest KIO QRO3 3.89 km (QR03); no coordinate within 5 km in any other queue fragment or sources/*-holds.json; 2026-10-16 QR03/QR04 holds are the reopen trigger; each addition is the only project on a new site",
+        "Roles: ODATA operator, relationship_scope current, sourced to the status page; no private-individual names, emails or phones in changes, sources or holds (executives not named)",
+        "robots: odatadc.com allows pages; web.archive.org robots 404; google /maps/place/ and /maps/preview allowed; maps.app.goo.gl robots 400; verifier captures stored as local_data/country-research-mx-p1/verifier2-* with metadata (Google preview JSON with reviews not stored)",
+        "dryrun_fragment.py ok against 2026-10-23-research-fortyninth (612 sites, 648 projects, 3,298 evidence)"
+      ],
+      "residual_risks": [
+        "Operating status rests on generic present-tense marketing cards applied identically to all four Mexican facilities (QR04 included, whose operating point is unresolved); capacity in service and which QR03 buildings operate are not established",
+        "The 25 September dateModified is bounded above by one archived copy (13 Oct) and below only by old-site archive copies (16-20 Sep); the version could date anywhere in that interval",
+        "Store-locator coordinates have no stated datum or accuracy; the operator's QR04 coordinate is 422 m from its earlier named place, so web-map points from this source may be loosely placed; Esri checks are qualitative and imagery dates unknown",
+        "QR01 lies in a multi-operator data-centre cluster: a second data-centre-type compound directly south is not attributed; which building is ODATA's is inferred from the operator point only",
+        "QR02's page labels Parque Industrial Amexhe as Querétaro while the 2024 release places QR02 in Guanajuato; the Plus Code and coordinate agree with each other, not with an official parcel"
+      ]
+    }
+  ],
+  "packet_pins": {
+    "definitions/atlas-research-fiftieth-2026-10-23.json": "5e644fdf2a53483c2d8ea848884127d45da9113e4fdfcb90c0ef56353a24f4b6",
+    "sources/research-countries-2026-10-23-fiftieth-primary-sources.json": "8b1580ec98ad3dbb6afddb892fa6a62263484612b538a929995e17d47b70bee1",
+    "sources/research-countries-2026-10-23-fiftieth-actions.json": "0468f4de1aacd9e56a09d8e6cb7ab02b10020b53b771d9df8afc57d6c416d63e",
+    "sources/research-countries-2026-10-23-fiftieth-holds.json": "8bfdd7f5304916ed83cf280ec0bf48ec8f85eea6d03055bab03df9e66d83a361"
+  },
+  "raw_captures_redistributed": false
+}
