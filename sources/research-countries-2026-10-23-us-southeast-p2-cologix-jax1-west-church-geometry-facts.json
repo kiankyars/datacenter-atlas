@@ -1,0 +1,90 @@
+{
+ "candidate_id": "us-southeast-p2-cologix-jax1-jacksonville",
+ "decision": "Selected the centroid of Duval County parcel 0738420000R, the only property-roll parcel for 421 West Church Street (one 257,884 sq ft building on 0.73 acres), as the project locator for Cologix JAX1, a data centre and meet-me room inside that multi-storey building.",
+ "geometry": {
+  "type": "Point",
+  "coordinates": [
+   -81.6624451,
+   30.3314574
+  ]
+ },
+ "authority_class": "official_source",
+ "scope_class": "official_tax_parcel_centroid",
+ "use_scope": "project_locator",
+ "source_file": "local_data/country-research-us-southeast-p2/flgio-cadastral-421-w-church-wgs84.json",
+ "source_sha256": "19ae07e75e8493cc0aff963ae5aa97aac63de1dc37f8f8fbfc22a597775f3220",
+ "source_url": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?where=PARCEL_ID%3D%270738420000R%27%20AND%20CO_NO%3D26&geometry=-81.675,30.318,-81.645,30.336&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=PARCEL_ID,CO_NO,PHY_ADDR1,PHY_CITY,PHY_ZIPCD,DOR_UC,PA_UC,ACT_YR_BLT,EFF_YR_BLT,TOT_LVG_AR,NO_BULDNG,NO_RES_UNT,ASMNT_YR,LND_SQFOOT,OWN_NAME,S_LEGAL&returnGeometry=true&outSR=4326&f=json",
+ "retrieved_at": "2026-10-23T02:27:43.246Z",
+ "selected_properties": {
+  "PARCEL_ID": "0738420000R",
+  "CO_NO": 26,
+  "PHY_ADDR1": "421 W CHURCH ST",
+  "PHY_CITY": "JACKSONVILLE",
+  "PHY_ZIPCD": 32202,
+  "DOR_UC": "003",
+  "ACT_YR_BLT": 1959,
+  "EFF_YR_BLT": 1990,
+  "TOT_LVG_AR": 257884,
+  "NO_BULDNG": 1,
+  "NO_RES_UNT": 92,
+  "ASMNT_YR": 2026,
+  "LND_SQFOOT": 31734,
+  "S_LEGAL": "39-2S-26E    .756"
+ },
+ "layer": "Florida Statewide Cadastral (FeatureServer layer 0, FloridaGIO organisation on ArcGIS Online): Florida Department of Revenue Property Tax Oversight compilation of county property-appraiser parcel polygons joined to the 2026 real property roll (exported August 2026); CO_NO 26 is Duval County",
+ "facts": {
+  "parcels": {
+   "0738420000R": {
+    "geodesic_acres": 0.729,
+    "rings": 1,
+    "vertices": 15,
+    "valid": true,
+    "parcel_centroid_lon_lat": [
+     -81.6624451,
+     30.3314574
+    ]
+   }
+  },
+  "union_geometry_type": "Polygon",
+  "union_valid": true,
+  "union_parts": 1,
+  "union_geodesic_acres": 0.729,
+  "centroid_lon_lat": [
+   -81.6624451,
+   30.3314574
+  ],
+  "centroid_inside": true,
+  "approx_extent_m": [
+   98,
+   54
+  ],
+  "bounds_lon_lat": [
+   -81.662943,
+   30.331212,
+   -81.661924,
+   30.331696
+  ],
+  "max_vertex_distance_from_centroid_m": 51.2,
+  "native_crs_cross_check": {
+   "native_epsg": 6439,
+   "centroid_lon_lat": [
+    -81.6624419,
+    30.3314515
+   ],
+   "distance_m": 0.715
+  },
+  "centroid_method": "planar centroid in EPSG:32617 (WGS84 / UTM) of the polygon(s) returned with outSR=4326, transformed back to WGS84; geodesic areas on the WGS84 ellipsoid; native-CRS rings transformed locally with pyproj as a cross-check",
+  "tools": "pyproj 3.7.1, shapely 2.1.1"
+ },
+ "identity_bridge": [
+  "Cologix's JAX1 page (version of 22 September 2026) gives the facility address as 421 West Church Street, Jacksonville, Florida, and says Cologix operates a Jacksonville data center and the Meet-Me-Room at 421 West Church Street in the central business district; the JAX2 page links JAX1 at '421 W. Church St.'.",
+  "An envelope query over downtown Jacksonville returns exactly one parcel with PHY_ADDR1 '421 W CHURCH ST': 0738420000R (land 31,734 sq ft, one building of 257,884 sq ft built 1959, effective year 1990).",
+  "The roll's owner of 0738420000R is SBA Edge Jax LLC, an organisation, consistent with a carrier-hotel building in which Cologix is an occupant; ownership is recorded here only as an identity check and is not used as a role claim.",
+  "The roll codes the parcel DOR 003 (multi-family, 10 units or more) with 92 residential units, so the building is mixed-use; the operator's JAX1 is an 11K SQFT data-centre space inside it, not the whole building."
+ ],
+ "consistency_checks": {
+  "datum": "WGS84 output from the service (outSR=4326); native layer CRS NAD83(2011) Florida GDL Albers (EPSG:6439), cross-checked locally",
+  "geocoder_used": false,
+  "personal_data": "Only organisation names occur in the owner field returned; no mailing-address or personal fields are reproduced."
+ }
+}

@@ -1,0 +1,89 @@
+{
+ "candidate_id": "us-southeast-p2-cologix-jax2-jacksonville",
+ "decision": "Selected the centroid of Duval County parcel 1530840120R, the property-roll parcel for 4800 Spring Park Road (one 121,784 sq ft building, DOR use code 091), as the project locator for Cologix JAX2. A 553 sq ft parcel sharing the address (1530840105R, no building) is excluded.",
+ "geometry": {
+  "type": "Point",
+  "coordinates": [
+   -81.613832,
+   30.2731897
+  ]
+ },
+ "authority_class": "official_source",
+ "scope_class": "official_tax_parcel_centroid",
+ "use_scope": "project_locator",
+ "source_file": "local_data/country-research-us-southeast-p2/flgio-cadastral-4800-spring-park-wgs84.json",
+ "source_sha256": "3addf1f613fb277976bcd469080b28ce0b109996e4881db6d794e85696d54968",
+ "source_url": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0/query?where=PARCEL_ID%20IN%20(%271530840120R%27,%271530840105R%27)%20AND%20CO_NO%3D26&geometry=-81.70,30.22,-81.55,30.33&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=PARCEL_ID,CO_NO,PHY_ADDR1,PHY_CITY,PHY_ZIPCD,DOR_UC,PA_UC,ACT_YR_BLT,EFF_YR_BLT,TOT_LVG_AR,NO_BULDNG,ASMNT_YR,LND_SQFOOT,OWN_NAME,S_LEGAL,SALE_YR1,SALE_MO1&returnGeometry=true&outSR=4326&f=json",
+ "retrieved_at": "2026-10-23T02:16:01.528Z",
+ "selected_properties": {
+  "PARCEL_ID": "1530840120R",
+  "CO_NO": 26,
+  "PHY_ADDR1": "4800 SPRING PARK RD",
+  "PHY_CITY": "JACKSONVILLE",
+  "PHY_ZIPCD": 32207,
+  "DOR_UC": "091",
+  "ACT_YR_BLT": 1971,
+  "EFF_YR_BLT": 1981,
+  "TOT_LVG_AR": 121784,
+  "NO_BULDNG": 1,
+  "ASMNT_YR": 2026,
+  "LND_SQFOOT": 209808,
+  "S_LEGAL": "6-91     56-3S-27E  4.858"
+ },
+ "layer": "Florida Statewide Cadastral (FeatureServer layer 0, FloridaGIO organisation on ArcGIS Online): Florida Department of Revenue Property Tax Oversight compilation of county property-appraiser parcel polygons joined to the 2026 real property roll (exported August 2026); CO_NO 26 is Duval County",
+ "facts": {
+  "parcels": {
+   "1530840120R": {
+    "geodesic_acres": 4.817,
+    "rings": 1,
+    "vertices": 15,
+    "valid": true,
+    "parcel_centroid_lon_lat": [
+     -81.613832,
+     30.2731897
+    ]
+   }
+  },
+  "union_geometry_type": "Polygon",
+  "union_valid": true,
+  "union_parts": 1,
+  "union_geodesic_acres": 4.817,
+  "centroid_lon_lat": [
+   -81.613832,
+   30.2731897
+  ],
+  "centroid_inside": true,
+  "approx_extent_m": [
+   191,
+   227
+  ],
+  "bounds_lon_lat": [
+   -81.614835,
+   30.272156,
+   -81.612844,
+   30.2742
+  ],
+  "max_vertex_distance_from_centroid_m": 116.3,
+  "native_crs_cross_check": {
+   "native_epsg": 6439,
+   "centroid_lon_lat": [
+    -81.6138288,
+    30.2731839
+   ],
+   "distance_m": 0.713
+  },
+  "centroid_method": "planar centroid in EPSG:32617 (WGS84 / UTM) of the polygon(s) returned with outSR=4326, transformed back to WGS84; geodesic areas on the WGS84 ellipsoid; native-CRS rings transformed locally with pyproj as a cross-check",
+  "tools": "pyproj 3.7.1, shapely 2.1.1"
+ },
+ "identity_bridge": [
+  "Cologix's JAX2 page (version of 22 September 2026) gives the facility address as 4800 Spring Park Road, Jacksonville, Florida, and describes a 125K SQFT enterprise-grade data center and disaster recovery facility in a hurricane-rated building.",
+  "In an envelope query over south Jacksonville the statewide cadastral layer returns two parcels with PHY_ADDR1 '4800 SPRING PARK RD': 1530840120R (land 209,808 sq ft, one building of 121,784 sq ft built 1971, effective year 1981, DOR use code 091) and 1530840105R (553 sq ft, no building, DOR use code 096).",
+  "The 121,784 sq ft building on 1530840120R matches the operator's 125K SQFT figure within 3 percent; the tiny second parcel cannot hold the facility and is excluded.",
+  "The roll's legal description gives 4.858 acres for 1530840120R; the polygon measures 4.817 geodesic acres (0.8 percent less)."
+ ],
+ "consistency_checks": {
+  "datum": "WGS84 output from the service (outSR=4326); native layer CRS NAD83(2011) Florida GDL Albers (EPSG:6439), cross-checked locally",
+  "geocoder_used": false,
+  "personal_data": "The roll's owner field for these parcels holds organisation names only; no owner, mailing-address or personal fields are reproduced here."
+ }
+}

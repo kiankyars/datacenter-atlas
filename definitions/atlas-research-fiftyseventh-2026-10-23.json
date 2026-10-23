@@ -1,0 +1,224 @@
+{
+  "format": "datacenter-atlas-update-input-v1",
+  "updated_at": "2026-10-23",
+  "output": "verified_construction_core/2026-10-23-research-fiftyseventh",
+  "base_dataset": "verified_construction_core/2026-10-23-research-fiftysixth",
+  "base_manifest_sha256": "817080d38e1fd6393ec2aae566eb8eef95c490033a6d36ca62185408d48ae9af",
+  "source_files": [
+    {
+      "path": "sources/research-countries-2026-10-23-fiftyseventh-primary-sources.json",
+      "sha256": "7ab79849b1b62b98ed6457e9ea08b4ba2a48f6dd3c81103c350d4f2e9e2ed3bd"
+    }
+  ],
+  "additions": [
+    {
+      "project_stable_key": "curated:cologix-jax2-jacksonville-spring-park-road:existing-operations",
+      "physical_site_stable_key": "curated:cologix-jax2-jacksonville-spring-park-road",
+      "site_name": "Cologix JAX2 Data Center (4800 Spring Park Road, Jacksonville)",
+      "name": "Cologix JAX2 — existing data-centre operations",
+      "country": "United States",
+      "country_iso_a2": "US",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-09-22",
+        "source_id": "us-southeast-p2-cologix-jax2-page-20260922",
+        "summary": "Cologix's JAX2 page, in its version modified on 22 September 2026, gives the facility address as 4800 Spring Park Road, Jacksonville, and states that 'Our JAX2 data center is in a hurricane-rated building housing the leading enterprise-grade data center and disaster recovery facility in Jacksonville' and that customers choose JAX2 for its power density, redundancy and disaster-recovery integration; it lists a 125K SQFT facility with 24/7 building and suite guards onsite, a Cologix-controlled meet-me room with 8+ networks and EPA ENERGY STAR certification, and this version adds 'Site capacity: 3 MW'. This records JAX2 as operating on 22 September 2026, the modification day of the captured version (bounded by the Internet Archive copy of 30 June 2026 and the live capture of 23 October 2026); it is not an opening date. The 3 MW site capacity is not load in service, and occupancy is not established."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -81.613832,
+            30.2731897
+          ]
+        },
+        "source_id": "us-southeast-p2-fdor-parcel-duval-1530840120r",
+        "scope": "project_locator",
+        "scope_class": "official_tax_parcel_centroid",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "official_statewide_cadastral_parcel_centroid_of_parcel_at_operator_stated_address",
+        "precision": "Planar centroid of Duval County parcel 1530840120R (4.82 geodesic acres, about 191 by 227 m) in the Florida Department of Revenue statewide cadastral compilation, the 2026-roll parcel for 4800 Spring Park Road carrying one 121,784 sq ft building. It locates the data-centre property, not the building footprint, a surveyed position or the extent of data-centre space.",
+        "identity_review": "Cologix's JAX2 page names 4800 Spring Park Road, Jacksonville, Florida, and a 125K SQFT facility in a hurricane-rated building. The statewide cadastral layer has two parcels with that physical address: 1530840120R (land 209,808 sq ft, one building of 121,784 sq ft built 1971, DOR use code 091) and 1530840105R (553 sq ft, no building). The building on 1530840120R matches the operator's floor area within 3 percent, so it is selected; the 553 sq ft parcel cannot hold the facility and is excluded. The roll's owner is an organisation and is not used as a role claim. No geocoder, map viewport, city centre or industrial-area centroid is used.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The statewide compilation publishes no positional accuracy for county parcel polygons; the centroid represents a 4.8-acre parcel about 191 by 227 m, and the position of the data-centre space within the building is not published."
+      },
+      "context_source_ids": [
+        "us-southeast-p2-cologix-jax2-page-ia-20260630",
+        "us-southeast-p2-fdor-parcel-search-spring-park-rd"
+      ],
+      "roles": [
+        {
+          "party": "Cologix",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "us-southeast-p2-cologix-jax2-page-20260922"
+        }
+      ],
+      "distinctness_review": "Screened on 23 October 2026 against every row of sites.csv, projects.csv and evidence.csv, the 231 source records and the identity mapping of verified_construction_core/2026-10-23-research-fiftysixth (639 sites, 679 projects, 3471 evidence rows), all pending queue fragments and claims, and all sources/*-holds.json, for Cologix, JAX2, JAX1, Jacksonville, Spring Park, 4800 Spring Park, Duval and parcel 1530840120R: the only Cologix records are MTL8, VAN4 and the Ashburn Beaumeade Circle campus, earlier holds mention Cologix only for its Columbus facilities, and the only Jacksonville and Spring Park strings in holds refer to Jacksonville Road in Prince William County, Virginia, and Ark's Spring Park campus in England; nothing matches this facility. No Atlas site, project, source record or pending addition lies within 2 km; the nearest Atlas site is DC BLOX Palm Coast (95.4 km). This fragment's JAX1 point at 421 West Church Street is 8.0 km north-west and is a separate building and site.",
+      "successor_review": "The live JAX2 page captured on 23 October 2026 is the 22 September 2026 version, and Cologix's data-centers sitemap of the same day gives that modification time. Cologix's news sitemap (captured 23 October 2026) has nothing after its August 2026 ESG-report items, and its only Jacksonville item is a June 2022 connectivity release. No closure, pause, sale or expansion of JAX2 was found.",
+      "scoped_project_details": {
+        "aliases": [
+          "JAX2",
+          "Cologix JAX2",
+          "Cologix Jacksonville JAX2",
+          "4800 Spring Park Road data center"
+        ],
+        "site_address": "4800 Spring Park Road, Jacksonville, Duval County, FL 32207",
+        "facility_scope": "Single enterprise colocation and disaster-recovery data centre building",
+        "floor_area_sqft_stated": 125000,
+        "floor_area_sqft_property_roll": 121784,
+        "site_capacity_mw_stated": 3,
+        "capacity_qualification": "Site capacity stated by the operator in the 22 September 2026 version; not IT load in service",
+        "parcel": "Duval County 1530840120R (2026 roll, DOR use code 091)",
+        "operating_statement_date": "22 September 2026 (page version)"
+      }
+    },
+    {
+      "project_stable_key": "curated:cologix-jax1-jacksonville-west-church-street:existing-operations",
+      "physical_site_stable_key": "curated:cologix-jax1-jacksonville-west-church-street",
+      "site_name": "Cologix JAX1 Data Center (421 West Church Street, Jacksonville)",
+      "name": "Cologix JAX1 — existing data-centre and meet-me-room operations",
+      "country": "United States",
+      "country_iso_a2": "US",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-09-22",
+        "source_id": "us-southeast-p2-cologix-jax1-page-20260922",
+        "summary": "Cologix's JAX1 page, in its version modified on 22 September 2026, states that 'Cologix operates a Jacksonville data center and the Meet-Me-Room (MMR) at 421 West Church Street' in Jacksonville's central business district, and lists 11K SQFT of racks, cabinets, cages and private suites in a hurricane-rated building with 2N UPS, an N+1 generator, 24/7 onsite guards, 30+ networks in Cologix's onsite meet-me room and a 24x7x365 NOC; this version adds 'Site capacity: 740kW'. This records JAX1 as operating on 22 September 2026, the modification day of the captured version (bounded by the Internet Archive copy of 30 June 2026 and the live capture of 23 October 2026); it is not an opening date. JAX1 is a data-centre space inside a larger multi-storey building; 740 kW is a site capacity, not load in service."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -81.6624451,
+            30.3314574
+          ]
+        },
+        "source_id": "us-southeast-p2-fdor-parcel-duval-0738420000r",
+        "scope": "project_locator",
+        "scope_class": "official_tax_parcel_centroid",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "official_statewide_cadastral_parcel_centroid_of_parcel_at_operator_stated_address",
+        "precision": "Planar centroid of Duval County parcel 0738420000R (0.73 geodesic acres, about 98 by 54 m) in the Florida Department of Revenue statewide cadastral compilation, the only 2026-roll parcel for 421 West Church Street, which carries one 257,884 sq ft building. It locates the building lot that houses JAX1, not the 11K SQFT data-centre space, its floor or a surveyed position.",
+        "identity_review": "Cologix's JAX1 page names 421 West Church Street, Jacksonville, and the JAX2 page links JAX1 at '421 W. Church St.'. An envelope query over downtown Jacksonville returns exactly one statewide-cadastral parcel with that physical address, 0738420000R (one 257,884 sq ft building built 1959, effective year 1990), owned by SBA Edge Jax LLC, an organisation, consistent with a carrier-hotel building in which Cologix operates a data centre and meet-me room. The roll codes the parcel DOR 003 with 92 residential units, so the building is mixed-use; the locator is scoped to the building lot accordingly. Ownership is used only as an identity check, not as a role claim. No geocoder, map viewport or city centre is used.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The statewide compilation publishes no positional accuracy for county parcel polygons; the centroid represents a 0.73-acre lot about 98 by 54 m, and the floor and position of the JAX1 space inside the building are not published."
+      },
+      "context_source_ids": [
+        "us-southeast-p2-cologix-jax1-page-ia-20260630",
+        "us-southeast-p2-fdor-parcel-search-downtown-church-st",
+        "us-southeast-p2-cologix-jax2-page-20260922"
+      ],
+      "roles": [
+        {
+          "party": "Cologix",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "us-southeast-p2-cologix-jax1-page-20260922"
+        }
+      ],
+      "distinctness_review": "Screened on 23 October 2026 against every row of sites.csv, projects.csv and evidence.csv, the 231 source records and the identity mapping of verified_construction_core/2026-10-23-research-fiftysixth (639 sites, 679 projects, 3471 evidence rows), all pending queue fragments and claims, and all sources/*-holds.json, for Cologix, JAX1, Jacksonville, Church Street, 421 West Church, SBA Edge, Duval and parcel 0738420000R: nothing matches; the only Cologix records are MTL8, VAN4 and the Ashburn campus, and the only Jacksonville string in holds refers to Jacksonville Road in Prince William County, Virginia. No Atlas site, project, source record or pending addition lies within 2 km; the nearest Atlas site is DC BLOX Palm Coast (103.2 km). This fragment's JAX2 addition at 4800 Spring Park Road is 8.0 km south-east, a separate building and site. Other occupants of the 421 West Church Street building, if any, are not in the Atlas and are not added.",
+      "successor_review": "The live JAX1 page captured on 23 October 2026 is the 22 September 2026 version, and Cologix's data-centers sitemap of the same day gives that modification time. Cologix's news sitemap (captured 23 October 2026) has nothing after its August 2026 ESG-report items, and its only Jacksonville item is a June 2022 connectivity release. No closure, pause or relocation of JAX1 was found.",
+      "scoped_project_details": {
+        "aliases": [
+          "JAX1",
+          "Cologix JAX1",
+          "Cologix International Interconnect Hub (Jacksonville)",
+          "421 West Church Street meet-me room"
+        ],
+        "site_address": "421 West Church Street, Jacksonville, Duval County, FL 32202",
+        "facility_scope": "Data-centre space (11K SQFT) and meet-me room inside a multi-storey, mixed-use building",
+        "floor_area_sqft_stated": 11000,
+        "building_area_sqft_property_roll": 257884,
+        "site_capacity_kw_stated": 740,
+        "capacity_qualification": "Site capacity stated by the operator in the 22 September 2026 version; not IT load in service",
+        "parcel": "Duval County 0738420000R (2026 roll, DOR use code 003, 92 residential units; owner SBA Edge Jax LLC)",
+        "operating_statement_date": "22 September 2026 (page version)"
+      }
+    },
+    {
+      "project_stable_key": "curated:qts-suwanee-satellite-boulevard-campus:existing-operations",
+      "physical_site_stable_key": "curated:qts-suwanee-satellite-boulevard-campus",
+      "site_name": "QTS Suwanee Data Center Campus (120 and 300 Satellite Boulevard)",
+      "name": "QTS Suwanee campus — existing data-centre campus operations (DC1 and DC2)",
+      "country": "United States",
+      "country_iso_a2": "US",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-10-02",
+        "source_id": "us-southeast-p2-qts-suwanee-1-page-20261002",
+        "summary": "QTS's Suwanee 1 page, in its version modified on 2 October 2026, states that 'QTS's Suwanee, Georgia data center campus is home to some of our largest customers with 100+ MW current planned critical campus capacity in the north suburbs of Atlanta', lists 50+ MW critical campus capacity, a dedicated on-site substation, customer amenities and the QTS Operations Support Center, and maps DC1 at 300 Satellite Blvd NW and DC2 at 120 Satellite Blvd NW. QTS's Fayetteville page (version of 19 August 2026) says QTS operates the Suwanee campus, 'since 2005'. This records the campus as operating on 2 October 2026, the modification day of the captured Suwanee version (bounded by the Internet Archive copy of 21 September 2026 and the live capture of 23 October 2026); it is not an opening date. Which halls or buildings are in service is not stated separately, and the capacities are campus figures, not load in service."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -84.0593726,
+            34.0362323
+          ]
+        },
+        "source_id": "us-southeast-p2-gwinnett-parcels-qts-suwanee",
+        "scope": "campus_locator",
+        "scope_class": "official_tax_parcel_union_centroid",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "official_county_parcel_union_centroid_of_operator_stated_building_addresses",
+        "precision": "Planar centroid of the union of Gwinnett County parcels 7194 029 (300 Satellite Blvd) and 7194 180 (120 Satellite Blvd), which adjoin (one part, 39.50 geodesic acres, about 796 by 553 m). It locates the two-parcel campus carrying QTS's DC1 and DC2, not either building footprint, an entrance or a surveyed boundary. QTS states a 53-acre campus, larger than these two parcels: an adjoining 15.37-acre parcel, PIN 7169 197 (3224 Wanstead Park Dr, property class 300 Commercial Vacant Land, owner Quality Investment Properties Gateway LLC, a QTS-named organisation), shares a boundary with the union; it is classed as vacant land and is not part of this locator.",
+        "identity_review": "QTS's Suwanee 1 page gives DC1 at 300 Satellite Blvd NW and DC2 at 120 Satellite Blvd NW, Suwanee, and the Operations Support Center at 300 Satellite Boulevard. The county tax master table has exactly one record for each address: PIN 7194 029 ('300 SATELLITE BLVD STE 204', owner Quality Inv Properties Suwanee LLC) and PIN 7194 180 ('120 SATELLITE BLVD', owner QTS Suwanee I DC2 LLC), both zoned M1 and both in property class 391, 'Data Center'. The two parcels share a boundary, and the union centroid lies inside the union between the parcel centroids (401 m apart). No geocoder, map viewport or city centre is used.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "Gwinnett County publishes no positional accuracy for its parcel polygons; the centroid represents a 39.5-acre two-parcel campus about 796 by 553 m and does not distinguish DC1 from DC2. If the operator's 53-acre campus includes the adjoining vacant parcel 7169 197, the three-parcel centroid (54.7 geodesic acres) lies about 48 m south-south-east of this point, still inside the two-parcel union (verifier check, 23 October 2026: local verifier1-gwinnett-parcels-7169-197-7194-029-7194-180-wgs84.json and verifier1-gwinnett-taxtable-owner-qts-quality-inv.json)."
+      },
+      "context_source_ids": [
+        "us-southeast-p2-qts-suwanee-1-page-ia-20260921",
+        "us-southeast-p2-qts-fayetteville-page-20260819",
+        "us-southeast-p2-gwinnett-tax-master-satellite-blvd"
+      ],
+      "roles": [
+        {
+          "party": "QTS Data Centers",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "us-southeast-p2-qts-suwanee-1-page-20261002"
+        },
+        {
+          "party": "QTS Suwanee I DC2 LLC",
+          "role": "owner",
+          "relationship_scope": "current",
+          "source_id": "us-southeast-p2-gwinnett-tax-master-satellite-blvd"
+        },
+        {
+          "party": "Quality Inv Properties Suwanee LLC",
+          "role": "owner",
+          "relationship_scope": "current",
+          "source_id": "us-southeast-p2-gwinnett-tax-master-satellite-blvd"
+        }
+      ],
+      "distinctness_review": "Screened on 23 October 2026 against every row of sites.csv, projects.csv and evidence.csv, the 231 source records and the identity mapping of verified_construction_core/2026-10-23-research-fiftysixth (639 sites, 679 projects, 3471 evidence rows), all pending queue fragments and claims, and all sources/*-holds.json, for QTS Suwanee, Suwanee, Satellite Blvd, Atlanta-Suwanee, Gwinnett and PINs 7194 029 and 7194 180: the Atlas QTS sites are Fayetteville, York County, Bessemer, Ashburn 1, Aurora DEN1, Cedar Rapids, Eagle Mountain SLC1, Irving, South Dallas, the Hall County (Texas) campus with Lancium and four European campuses; none is in Gwinnett County and nothing matches Suwanee. No Atlas site, project, source record or pending addition lies within 2 km; the nearest Atlas sites are Flexential Douglasville (61.2 km), Microsoft Union City (62.5 km) and QTS Fayetteville (75.3 km). QTS's Atlanta 1 campus on Jefferson Street, which the Fayetteville page also mentions, is a different campus in the city of Atlanta and is held, not added.",
+      "successor_review": "The live Suwanee 1 page captured on 23 October 2026 is the 2 October 2026 version; the QTS data-centers sitemap of 22 October 2026 gives the same modification time. The QTS Fayetteville page of 19 August 2026 still describes Suwanee as an operating QTS campus. No closure, pause, sale or new Suwanee building was found; the campus fiber conduit for future buildings is described as in progress and is not treated as a construction stage.",
+      "scoped_project_details": {
+        "aliases": [
+          "QTS Suwanee 1",
+          "QTS Atlanta-Suwanee",
+          "QTS Suwanee DC1",
+          "QTS Suwanee DC2",
+          "300 Satellite Boulevard",
+          "120 Satellite Boulevard"
+        ],
+        "site_address": "DC1 300 Satellite Blvd NW and DC2 120 Satellite Blvd NW, Suwanee, Gwinnett County, GA 30024",
+        "buildings_listed": {
+          "DC1": "300 Satellite Blvd NW (PIN 7194 029, legal 18.61 ac)",
+          "DC2": "120 Satellite Blvd NW (PIN 7194 180, legal 20.08 ac)"
+        },
+        "critical_capacity_mw_stated": "50+ MW critical campus capacity; 100+ MW current planned critical campus capacity",
+        "capacity_qualification": "Campus critical capacities stated by the operator; not IT load in service",
+        "operating_since_stated": "2005 (QTS Fayetteville page, version of 19 August 2026)",
+        "per_building_status": "not separately established",
+        "operating_statement_date": "2 October 2026 (page version)"
+      }
+    }
+  ],
+  "status_updates": [],
+  "context_updates": []
+}

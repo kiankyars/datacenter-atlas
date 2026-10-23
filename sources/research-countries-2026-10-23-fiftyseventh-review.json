@@ -1,0 +1,44 @@
+{
+  "reviewer": "root",
+  "reviewed_at": "2026-10-23",
+  "decision": "accepted_for_integration",
+  "update": "verified_construction_core/2026-10-23-research-fiftyseventh",
+  "base_dataset": "verified_construction_core/2026-10-23-research-fiftysixth",
+  "process": "continuous: one researcher per beat, one adversarial verifier per fragment",
+  "fragments": [
+    {
+      "fragment": "us-southeast-p2",
+      "verdict": "accept",
+      "checks": [
+        "Claimed with mkdir verifying.lock; screened against current_dataset verified_construction_core/2026-10-23-research-fiftysixth (639 sites, 679 projects), rechecked at the end",
+        "Rehashed all 13 relied-on captures: each sha256 equals its .metadata.json sha256 and the source content_hash, and each metadata URL equals source_url (HTTP 200); the 3 geometry-facts files match geometry_facts_sha256",
+        "JAX2: read the live capture: '4800 Spring Park Road', 'Our JAX2 data center is in a hurricane-rated building housing the leading enterprise-grade data center and disaster recovery facility', 125K SQFT, 24/7 guards, 'Site capacity: 3 MW'; JSON-LD dateModified 2026-09-22T21:06:09Z equals the sitemap lastmod; the IA copy of 30 Jun 2026 is the 2024-10-16 version without the capacity line; the last CDX row is 20260630, so the version is bounded",
+        "JAX1: read the live capture: 'Cologix operates a Jacksonville data center and the Meet-Me-Room (MMR) at 421 West Church Street', 11K SQFT, 'Site capacity: 740kW'; dateModified 2026-09-22T16:18:20Z equals the sitemap lastmod; the IA copy of 30 Jun 2026 is the 2024-10-02 version with the same operating sentence and no capacity line; the same method was accepted for Cologix MTL8 (ca-p1)",
+        "QTS Suwanee: read the live capture: 'campus is home to some of our largest customers', 50+ MW critical campus capacity, on-site substation, Operations Support Center, DC1 300 and DC2 120 Satellite Blvd NW; dateModified 2026-10-02T15:50:09Z; the IA copy of 21 Sep 2026 is the 2026-06-10 version; diff shows only the Good Neighbor heading and the resources list changed; Fayetteville page (dateModified 2026-08-19) says Suwanee has operated 'since 2005'",
+        "All three are company_disclosure status sources; observations of 22 Sep and 2 Oct are 31 and 21 days old, inside the 85-day window (on or after 2026-07-30); present-tense operating statements, and no opening date is used",
+        "Locators recomputed from the raw WGS84 rings with shapely 2.1.1/pyproj 3.7.1: JAX2 (-81.613832, 30.2731897), 4.817 ac; JAX1 (-81.6624451, 30.3314574), 0.729 ac; QTS two-parcel union (-84.0593726, 34.0362323), 39.498 ac, one part, the parcels touch; each centroid is inside and lies 0.005 m or less from the claimed point; native EPSG:6439/2240 cross-checks 0.71, 0.71 and 0.81 m",
+        "Address identity: the envelope attribute queries return exactly one building parcel for 4800 Spring Park Rd (the 553 sq ft parcel has no building) and one for 421 W Church St; the Gwinnett tax master has one record each for 120 and 300 Satellite Blvd, both class 391 'Data Center' with QTS-named owners",
+        "FIX: verifier owner query of the Gwinnett tax master (saved as local verifier1-gwinnett-taxtable-owner-qts-quality-inv.json) found adjoining PIN 7169 197 (15.37 ac vacant commercial land, owner Quality Investment Properties Gateway LLC), which accounts for QTS's stated 53-acre campus; the precision and uncertainty_reason now disclose it and the 48 m SSE three-parcel centroid shift; the point is unchanged",
+        "Distinctness: no hits for Cologix JAX/Jacksonville/Spring Park/Church St/SBA Edge/Suwanee/Satellite Blvd/Gwinnett/parcel ids in fiftysixth sites, projects, evidence, source-records or identity-mapping; queue changes, holds and claims hit only this fragment's own claims and unrelated Cologix MTL8/VAN4/Ashburn and QTS Irving records; nearest Atlas sites are 95.4 km (JAX2), 103.2 km (JAX1) and 61.2 km (QTS); no pending addition is within 5 km",
+        "Roles: Cologix is current operator (company pages); QTS Data Centers is current operator; QTS Suwanee I DC2 LLC and Quality Inv Properties Suwanee LLC are current owners from the tax master; relationship_scope values are valid; owner names are organisations",
+        "Scope: commercial colocation and hyperscale campuses; no demonstrator or institutional supercomputer; no third-party personal data in changes, sources, holds or notes (QTS employee-spotlight names in the archived page were not copied)",
+        "Each new site has exactly one project; no existing-campus locator reuse needed; all 13 sources still referenced",
+        "dryrun_fragment.py ok after the fix: 642 sites, 682 projects, 3484 evidence rows against fiftysixth"
+      ],
+      "residual_risks": [
+        "All three observation dates rest on WordPress dateModified values bounded only below by an archived prior version and above by the 23 Oct live capture; no archived copy of any new version exists",
+        "QTS's 2 Oct edit changed only page-wide modules; the campus operating text is unchanged since at least the 10 Jun version (it is present in the 21 Sep archive copy)",
+        "JAX1 sits in a mixed-use building (DOR 003, 92 residential units); the locator is the building lot, not the 11K SQFT data-centre space",
+        "QTS locator covers the two DC parcels; if the 53-acre campus includes vacant PIN 7169 197, the campus centroid is about 48 m away; per-building status of DC1 and DC2 is not established",
+        "Capacities (3 MW, 740 kW, 50+ MW) are operator-stated site or campus figures, not load in service"
+      ]
+    }
+  ],
+  "packet_pins": {
+    "definitions/atlas-research-fiftyseventh-2026-10-23.json": "127a57e719fc572e66df683e4a00ee42d2c298614d98300ad203fb9665173814",
+    "sources/research-countries-2026-10-23-fiftyseventh-primary-sources.json": "7ab79849b1b62b98ed6457e9ea08b4ba2a48f6dd3c81103c350d4f2e9e2ed3bd",
+    "sources/research-countries-2026-10-23-fiftyseventh-actions.json": "493231299b4d00c329aee4e58d2b75a3ac5d426a2722d0458ef1389d747da93c",
+    "sources/research-countries-2026-10-23-fiftyseventh-holds.json": "2562714cad119b7178cfdda80b4ccfcdfb30c8970c34eff5e7a2b1021960e00f"
+  },
+  "raw_captures_redistributed": false
+}

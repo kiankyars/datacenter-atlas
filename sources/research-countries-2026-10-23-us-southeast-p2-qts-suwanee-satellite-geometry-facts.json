@@ -1,0 +1,122 @@
+{
+ "candidate_id": "us-southeast-p2-qts-suwanee-campus",
+ "decision": "Selected the planar centroid of the union of Gwinnett County parcels 7194 029 (300 Satellite Blvd, QTS DC1) and 7194 180 (120 Satellite Blvd, QTS DC2), which adjoin and are both classed 'Data Center' in the county tax master table, as the campus locator for QTS's Suwanee campus.",
+ "geometry": {
+  "type": "Point",
+  "coordinates": [
+   -84.0593726,
+   34.0362323
+  ]
+ },
+ "authority_class": "official_source",
+ "scope_class": "official_tax_parcel_union_centroid",
+ "use_scope": "campus_locator",
+ "source_file": "local_data/country-research-us-southeast-p2/gwinnett-parcels-qts-suwanee-wgs84.json",
+ "source_sha256": "d6c6a093c0f8f1cbdd47f2a221db2664c4eb8e3bd1fec57f37c7677b13493060",
+ "source_url": "https://services3.arcgis.com/RfpmnkSAQleRbndX/arcgis/rest/services/Property_and_Tax/FeatureServer/0/query?where=PIN%20IN%20(%277194%20180%27,%277194%20029%27)&outFields=OBJECTID,PIN,ADDRESS,PARCELTYPE,DEEDEDACREAGE,CALCULATEDACREAGE,TAXPIN,last_edited_date&returnGeometry=true&outSR=4326&f=json",
+ "retrieved_at": "2026-10-23T02:26:04.841Z",
+ "selected_properties": {
+  "7194 029": {
+   "PIN": "7194 029",
+   "ADDRESS": "300",
+   "PARCELTYPE": "P",
+   "DEEDEDACREAGE": 18.61,
+   "CALCULATEDACREAGE": 19.10931344,
+   "TAXPIN": "R7194 029",
+   "LOCADDR": "300 SATELLITE BLVD STE 204",
+   "LOCCITY": "SUWANEE",
+   "LOCZIP": "30024",
+   "LEGALAC": "     18.6100",
+   "ZONING": "M1",
+   "ZONEDESC": "M1-Light Industry",
+   "PROPCLAS": "391",
+   "PCDESC": "Data Center",
+   "OWNER1": "QUALITY INV PROPERTIES SUWANEE LLC"
+  },
+  "7194 180": {
+   "PIN": "7194 180",
+   "ADDRESS": "120",
+   "PARCELTYPE": "P",
+   "DEEDEDACREAGE": 20.08,
+   "CALCULATEDACREAGE": 20.38056593,
+   "TAXPIN": "R7194 180",
+   "LOCADDR": "120 SATELLITE BLVD",
+   "LOCCITY": "SUWANEE",
+   "LOCZIP": "30024",
+   "LEGALAC": "     20.0800",
+   "ZONING": "M1",
+   "ZONEDESC": "M1-Light Industry",
+   "PROPCLAS": "391",
+   "PCDESC": "Data Center",
+   "OWNER1": "QTS SUWANEE I DC2 LLC"
+  }
+ },
+ "layer": "Gwinnett County GIS 'Land Parcels' (Property_and_Tax FeatureServer layer 0) joined by PIN to the county 'Tax Master Table' (layer 3); native CRS NAD83 Georgia West ftUS (EPSG:2240)",
+ "attribute_source_file": "local_data/country-research-us-southeast-p2/gwinnett-taxtable-satellite-120-300.json",
+ "attribute_source_sha256": "5b7d7083be1723b80982c5d3ef431ad6cd4327e3c20d89982e2ceb9ca31cda7b",
+ "attribute_source_url": "https://services3.arcgis.com/RfpmnkSAQleRbndX/arcgis/rest/services/Property_and_Tax/FeatureServer/3/query?where=STRNAME%20LIKE%20%27SATELLITE%25%27%20AND%20STRNUM%20IN%20(%27120%27,%27300%27)&outFields=PIN,RPIN,LOCADDR,LOCCITY,LOCZIP,STRNUM,STRNAME,LEGALAC,ZONING,ZONEDESC,PROPCLAS,PCDESC,OWNER1&f=json",
+ "facts": {
+  "parcels": {
+   "7194 029": {
+    "geodesic_acres": 19.113,
+    "rings": 1,
+    "vertices": 74,
+    "valid": true,
+    "parcel_centroid_lon_lat": [
+     -84.0612736,
+     34.035238
+    ]
+   },
+   "7194 180": {
+    "geodesic_acres": 20.385,
+    "rings": 1,
+    "vertices": 47,
+    "valid": true,
+    "parcel_centroid_lon_lat": [
+     -84.0575902,
+     34.0371645
+    ]
+   }
+  },
+  "union_geometry_type": "Polygon",
+  "union_valid": true,
+  "union_parts": 1,
+  "union_geodesic_acres": 39.498,
+  "centroid_lon_lat": [
+   -84.0593726,
+   34.0362323
+  ],
+  "centroid_inside": true,
+  "approx_extent_m": [
+   796,
+   553
+  ],
+  "bounds_lon_lat": [
+   -84.064157,
+   34.033818,
+   -84.055465,
+   34.038661
+  ],
+  "max_vertex_distance_from_centroid_m": 462.5,
+  "native_crs_cross_check": {
+   "native_epsg": 2240,
+   "centroid_lon_lat": [
+    -84.0593685,
+    34.0362258
+   ],
+   "distance_m": 0.817
+  },
+  "centroid_method": "planar centroid in EPSG:32616 (WGS84 / UTM) of the polygon(s) returned with outSR=4326, transformed back to WGS84; geodesic areas on the WGS84 ellipsoid; native-CRS rings transformed locally with pyproj as a cross-check",
+  "tools": "pyproj 3.7.1, shapely 2.1.1"
+ },
+ "identity_bridge": [
+  "QTS's Suwanee 1 page (version of 2 October 2026) maps the campus with DC1 at 300 Satellite Blvd NW and DC2 at 120 Satellite Blvd NW, Suwanee, GA 30024, and gives the Operations Support Center at 300 Satellite Boulevard.",
+  "The county tax master table has exactly one record for each address on Satellite Blvd: PIN 7194 029 (LOCADDR '300 SATELLITE BLVD STE 204', legal 18.61 ac, owner QUALITY INV PROPERTIES SUWANEE LLC) and PIN 7194 180 ('120 SATELLITE BLVD', legal 20.08 ac, owner QTS SUWANEE I DC2 LLC); both are zoned M1 (Light Industry) and carry property class 391, 'Data Center'.",
+  "In the parcel layer the two PINs are single-ring polygons (19.11 and 20.39 geodesic acres) that share a boundary, so their union is one 39.50-acre part; the planar centroid lies inside the union, between the two parcel centroids (401 m apart)."
+ ],
+ "consistency_checks": {
+  "datum": "WGS84 output from the service (outSR=4326); native rings (outSR=2240) transformed locally as a cross-check",
+  "geocoder_used": false,
+  "personal_data": "The owner field holds the two organisation names quoted; no mailing-address or personal fields were requested."
+ }
+}
