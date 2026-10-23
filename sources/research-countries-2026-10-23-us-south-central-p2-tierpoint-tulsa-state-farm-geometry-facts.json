@@ -1,0 +1,66 @@
+{
+ "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+ "candidate": "TierPoint Tulsa - State Farm (TL2) data center, 12151 E. State Farm Boulevard (alternate address 12151 E. 48th St.), Tulsa, Tulsa County, Oklahoma",
+ "prepared_at": "2026-10-23",
+ "selected_point_crs84": [
+  -95.8400326,
+  36.0963433
+ ],
+ "selected_point_role": "planar centroid (lon/lat) of Tulsa County Assessor parcel 74685942962460 (situs 12151 E 48 ST S, Tulsa 74146; business name DATA CENTER; occupancy Computer Centers) as served by INCOG; locates the data-centre property, not the building footprint",
+ "authority_class": "official_source",
+ "scope_class": "official_tax_parcel_centroid",
+ "use_scope": "project_locator",
+ "source": {
+  "file": "local_data/country-research-us-south-central-p2/incog-parcel-74685942962460.json",
+  "sha256": "d7ff65f41fa1ee8f524859e77bf3b32222f15d2494195c8a9a5eab7db565196d",
+  "url": "https://map11.incog.org/arcgis11wa/rest/services/Parcels_TulsaCo/FeatureServer/0/query?where=ParcelNo%3D%2774685942962460%27&outFields=ParcelNo,AccountNo,AcctType,PropertyAddress,PropertyCity,PropertyZIP,UseCode,Legal,GrossAcre,GrossSF,ImpSFTotal,BuiltAsSF,YearBuilt,BuiltAsOccCode,OccCode,BusinessName,Owner,TR_SEC,LoadDate&returnGeometry=true&outSR=4326&f=json",
+  "retrieved_at": "2026-10-23T03:37:54.029Z",
+  "service": "INCOG map11 Parcels_TulsaCo FeatureServer layer 0 (Tulsa County Assessor parcels; record LoadDate 2026-10-03)",
+  "discovery": {
+   "file": "local_data/country-research-us-south-central-p2/incog-parcel-q-12151.json",
+   "sha256": "30fcf5708583caf4922aa5e914045c651b3f51a240528518360e3a04ea281ace",
+   "query": "PropertyAddress LIKE '12151%' (6 parcels county-wide; only 74685942962460 is on E 48th St in Tulsa 74146, and it is the only commercial computer-centre parcel)"
+  }
+ },
+ "parcel_attributes_used": {
+  "ParcelNo": "74685942962460",
+  "PropertyAddress": "12151 E 48 ST S",
+  "PropertyZIP": "74146",
+  "AcctType": "Commercial",
+  "UseCode": "SPCL PUR",
+  "OccCode": "Computer Centers",
+  "BusinessName": "DATA CENTER",
+  "ImpSFTotal": 28978,
+  "YearBuilt": 2018,
+  "GrossAcre": 5.4167,
+  "Owner": "COMPASS DATACENTERS TUL I LLC (an organisation)"
+ },
+ "geometry_checks": {
+  "centroid_inside_polygon": true,
+  "geodesic_area_m2": 21833.0,
+  "geodesic_acres": 5.395,
+  "bbox_m": [
+   113.8,
+   205.7
+  ],
+  "bounds_lon_lat": [
+   -95.8406784,
+   36.0953566,
+   -95.8394152,
+   36.0972106
+  ],
+  "rings": 1,
+  "vertices": 8,
+  "verification": "pyproj 3.7.1 and shapely 2.1.1 on the returned outSR 4326 ring"
+ },
+ "identity_checks": {
+  "address": "TierPoint's page (version modified 2026-09-03) gives 12151 E. State Farm Boulevard and, as 'Alternate address (for shipping & GPS)', 12151 E. 48th St., Tulsa, OK 74146; the parcel situs is 12151 E 48 ST S, ZIP 74146.",
+  "developer": "TierPoint's 26 February 2018 release reports completing construction of its new Tulsa data center, partnering with Compass Data Centers, with about 16,000 sq ft of raised floor in the initial phase; the parcel's owner is Compass Datacenters TUL I LLC, its building was built in 2018 and is classed Computer Centers, and the current page lists 16,000+ sq ft of raised floor.",
+  "floor_area": "TierPoint states 32,000+ total square feet; the assessor records 28,978 sq ft of improvements (about 10 percent less; office or support space measured differently is not resolved)."
+ },
+ "datum_note": "WGS 84 (outSR 4326) as projected by the ArcGIS server from NAD83 Oklahoma State Plane North (ftUS); no further transformation.",
+ "geocoder_used": false,
+ "alternatives_rejected": [
+  "No geocoder, map viewport or business-park centroid used."
+ ]
+}

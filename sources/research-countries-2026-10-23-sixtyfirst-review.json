@@ -1,0 +1,42 @@
+{
+  "reviewer": "root",
+  "reviewed_at": "2026-10-23",
+  "decision": "accepted_for_integration",
+  "update": "verified_construction_core/2026-10-23-research-sixtyfirst",
+  "base_dataset": "verified_construction_core/2026-10-23-research-sixtieth",
+  "process": "continuous: one researcher per beat, one adversarial verifier per fragment",
+  "fragments": [
+    {
+      "fragment": "us-south-central-p2",
+      "verdict": "accept",
+      "checks": [
+        "Rehashed all 12 relied-on captures (and every other capture in local_data/country-research-us-south-central-p2) against .metadata.json sha256/bytes and sources.json content_hash: all match; all HTTP 200; source_url equals capture URL",
+        "Little Rock: read in live capture 'the state-of-the-art TierPoint Little Rock data center and colocation facility', 15707 Chenal Parkway, 30,000+ sq ft, cabinets and cages available, 24x7 remote hands; JSON-LD dateModified and article:modified_time 2026-09-03T05:58:22Z",
+        "Little Rock date bound: IA id_ copy 2026-07-04 is the 2026-04-07 version; text diff shows only nav-menu changes plus the added '2025 Sustainability Report' banner; CDX (captured 23 Oct) has no 2026 copy other than 4 Jul; upper bound is the 23 Oct capture",
+        "Sitemap: 34 TierPoint data-center pages carry lastmod 2026-09-03, edited one by one from 05:58 to 07:45 UTC (Little Rock first), a manual banner pass, not a bulk re-save; the same pass is bounded above by the IA 8 Oct copies of both Tulsa pages, which already carry the banner and dateModified 2026-09-03",
+        "Tulsa Archer: read 'In the historic Brady district, the state-of-the-art TierPoint Tulsa (Archer St.) data center and colocation facility...', 322 E. Archer Street, 36,000+ sq ft; facility-specific edit vs IA 2026-06-18 (2024-07-31 version): generator line reworded; IA 2026-10-08 copy is the same 3 Sep version",
+        "Tulsa State Farm: read 'the state-of-the-art TierPoint Tulsa (State Farm Blvd.) data center and colocation facility', 12151 E. State Farm Boulevard plus new 'Alternate address (for shipping & GPS): 12151 E. 48th St.'; vs IA 2026-01-12 (2024-07-31 version) the UPS line was removed and alternate address added; IA 2026-10-08 copy carries the same version",
+        "All three: company_disclosure in operator voice, present tense, as_of 2026-09-03 = published_at, 50 days old (window start 2026-07-30); not opening dates; generator ratings not used as capacity",
+        "Successor: data-centers overview (dateModified 2026-10-01) still lists Little Rock, Tulsa - Archer and Tulsa - State Farm; news sitemap newest item 2026-08-12, no closure/sale item",
+        "Locators recomputed independently from raw parcel JSON (outSR 4326) with pyproj 3.7.1/shapely 2.1.1: centroids match to <=0.01 m, all inside their polygons; geodesic acres 2.757, 0.406, 5.395 match; geometry facts files' sha256 match sources",
+        "Parcel identity: PAGIS returns one parcel for 15707 Chenal (owner TIERPOINT PROPERTIES LLC, CAMADATE 2026-10-19); Archer ZIP 74120 query: 17 parcels, none at 322, only 318 E Archer has business name TIERPOINT DATA (36,360 sq ft vs 36,000+); county-wide 12151 query: one E 48 St parcel, Computer Centers, built 2018, owner COMPASS DATACENTERS TUL I LLC (LoadDate 2026-10-03), consistent with the 2018 TierPoint release on partnering with Compass",
+        "Roles: operator TierPoint current (pages); owners TierPoint Properties LLC and Compass Datacenters TUL I LLC current (organisation owner fields in dated parcel rolls); Archer landlord not used",
+        "Distinctness: no TierPoint/Chenal/Archer/State Farm/12151/15707/Compass TUL hit in sixtieth sites/projects/evidence/source-records/identity-mapping, any other queue fragment, or sources/*-holds.json (15707 hit is a Vancouver PropertyID); nearest coordinates: LIT 207.5 km (Google West Memphis), TUL 0.46 km Meta Tulsa Nominatim locality point for a 2M sq ft East Tulsa campus under construction (distinct), TL2 15.3 km",
+        "Robots/compliance: www.tierpoint.com Crawl-delay 10 respected (>=11 s spacing); pagis.org and map11.incog.org robots 404; no private individuals' names, phones or emails in changes, sources, holds, notes or geometry facts (testimonial name and residential owners only in raw captures)",
+        "Dry run ok against verified_construction_core/2026-10-23-research-sixtieth: 653 sites, 695 projects"
+      ],
+      "residual_risks": [
+        "Little Rock's observation date rests on a WordPress dateModified bounded below only by the 4 Jul archived prior version (before the 30 Jul window start) and above by the 23 Oct capture; its 3 Sep edit only added a portfolio-wide banner, so the facility text itself is unchanged since April (same method accepted for ecoDC VN01, Teraco and Sify Bengaluru)",
+        "Archer locator rests on business name and floor area: the assessor situs is 318 E Archer while TierPoint says 322 E Archer",
+        "Operating status is operator marketing text; no independent physical inspection; parcel centroids locate whole tax parcels, not the data halls"
+      ]
+    }
+  ],
+  "packet_pins": {
+    "definitions/atlas-research-sixtyfirst-2026-10-23.json": "bef711e4830a025aec9482d464b61eb7a3eec72d91480e18ac1fc29a471d78cd",
+    "sources/research-countries-2026-10-23-sixtyfirst-primary-sources.json": "a7b3b04d7da34fc132d422c7a4c0ddb3e3d8a0449b5313a14a7bf2d848da1fe3",
+    "sources/research-countries-2026-10-23-sixtyfirst-actions.json": "b808f94193f70a264c2b86d6ce6976e448120c20c1b9792cb2c081895f5865ce",
+    "sources/research-countries-2026-10-23-sixtyfirst-holds.json": "c32ef4093a38c316cb7f27a6b326be136dd0f324402db96f37f3855d269343b0"
+  },
+  "raw_captures_redistributed": false
+}

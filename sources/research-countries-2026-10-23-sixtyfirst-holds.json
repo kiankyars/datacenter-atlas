@@ -1,0 +1,65 @@
+{
+  "format": "datacenter-atlas-country-research-holds-v1",
+  "reviewed_at": "2026-10-23",
+  "base_dataset": "verified_construction_core/2026-10-23-research-sixtieth",
+  "update": "verified_construction_core/2026-10-23-research-sixtyfirst",
+  "raw_captures_redistributed": false,
+  "note": "Candidates reviewed for this update but not admitted, with the reason and the evidence that would reopen each.",
+  "entries": [
+    {
+      "lane": "us-south-central",
+      "candidate": "TierPoint Oklahoma City data centers OKC and OK2 (4121 and 4114 Perimeter Center Place, Oklahoma City, OK 73112)",
+      "country_iso_a2": "US",
+      "disposition": "hold",
+      "existing_project_stable_key": null,
+      "status_candidate": "operational",
+      "status_as_of": "2026-09-03",
+      "reason": "TierPoint's Oklahoma City page (captured tierpoint-okc-20261023.html; dateModified 2026-09-03, bounded below by the Internet Archive copy of 15 February 2026 listed in ia-cdx-tierpoint-okc.json) says 'TierPoint operates two state-of-the-art data centers' at 4121 Perimeter Center Place (22,000+ sq ft, 14,000+ sq ft raised floor) and 4114 Perimeter Center Place (69,000+ sq ft, 34,000+ sq ft raised floor), so operational status on 3 September 2026 is supportable. No allowed parcel source was found: the City of Oklahoma City GIS returned a bot challenge to the previous pass, the Oklahoma County Assessor's robots.txt returns HTTP 403, and the ArcGIS Online proxy of the City's licensing/zoning layer (utility.arcgis.com) was not used because it would route around the City's challenge. No geocoder or city centre is acceptable.",
+      "reopen_condition": "An Oklahoma County Assessor or City of Oklahoma City parcel (or address point) for 4121/4114 Perimeter Center Place reachable by plain GET without a challenge, while the 3 September 2026 observation is within 85 days (until 2026-11-27); then admit as one site with one project covering both buildings, or two sites if the parcels are separate campuses."
+    },
+    {
+      "lane": "us-south-central",
+      "candidate": "Meta 'Project Anthem', Wagoner County, Oklahoma (Oklahoma DEQ air permit 2026-0325-NOI, facility 'META PROJECT ANTHEM', permittee Mobicon Crushing and Recycling LLC)",
+      "country_iso_a2": "US",
+      "disposition": "lead_only",
+      "existing_project_stable_key": "imported:semiconductor-atlas:meta-tulsa",
+      "status_candidate": null,
+      "status_as_of": null,
+      "reason": "The Oklahoma DEQ list of air permits issued in the past year (captured by the previous pass, okdeq-permits-issued-past-year.csv) shows a crusher notice of intent issued on 1 May 2026 for a facility named 'META PROJECT ANTHEM' in Wagoner County. It is a contractor's portable-crusher permit, outside the 85-day window, and it most likely concerns the existing Atlas record imported:semiconductor-atlas:meta-tulsa, whose locator is a Tulsa city point (locality context; Meta says East Tulsa). A locator replacement for an existing record cannot be expressed, and the permit is not a data-centre status observation.",
+      "reopen_condition": "A separate geometry correction for the Meta Tulsa record using a Meta, City of Tulsa, Wagoner County or DEQ record that places Project Anthem on a parcel or coordinate; the crusher NOI can then be attached as identity context."
+    },
+    {
+      "lane": "us-south-central",
+      "candidate": "Atmoss Data Center (Atmoss LLC), Wagoner County, Oklahoma (Oklahoma DEQ air permit 2026-0025-O)",
+      "country_iso_a2": "US",
+      "disposition": "lead_only",
+      "existing_project_stable_key": null,
+      "status_candidate": null,
+      "status_as_of": null,
+      "reason": "The DEQ list of air permits issued in the past year shows permit 2026-0025-O issued on 15 January 2026 to Atmoss LLC for 'ATMOSS DATA CENTER' in Wagoner County. The issue date is outside the window, the permit document (use, scale and facility coordinate) was not read, and no operator, county or other in-window record was found.",
+      "reopen_condition": "An in-window DEQ document, operator statement or Wagoner County record naming the Atmoss data centre with its coordinate or parcel; check first whether it is a commercial data centre or a crypto-mining or enterprise installation."
+    },
+    {
+      "lane": "us-south-central",
+      "candidate": "Texas Panhandle and West Texas TDLR registrations surfaced by a county screen of the previous pass's TABS captures: ADC - LBB01 (Hale County, TABS2026023621, registered 23 June 2026, $425 million), Project Pumpkin Data Center Buildings 1A-3A (Gray County, TABS2026011989/14814/14835, February-March 2026), AMA1 RDC Install (Potter County, TABS2026022144, June 2026), Project Caprock (Wheeler County, TABS2026028993 and TABS2027001324-1339, dining, retail, guest-services, fitness and housekeeping buildings) and Project Drover / Red River Rise Lodge (Wilbarger County, TABS2027000823)",
+      "country_iso_a2": "US",
+      "disposition": "lead_only",
+      "existing_project_stable_key": null,
+      "status_candidate": null,
+      "status_as_of": null,
+      "reason": "LBB01, Project Pumpkin and AMA1 were registered before 30 July 2026, so their registrations are outside the 85-day window; Project Pumpkin's Gray County buildings probably belong to the existing Google Meitner record (imported:semiconductor-atlas:google-meitner-energy-center-texas), and AMA1 is an equipment install whose use was not read. Project Caprock and Project Drover are lodging and service buildings, not data centres, although they may house workforces for nearby data-centre construction. The in-window Floyd, Pecos, Childress and Spur registrations remain held by the previous pass for want of locators and are not repeated here.",
+      "reopen_condition": "A dated in-window record (new TDLR registration, county abatement, operator release) for a named data-centre building with a parcel or address-point locator; for Project Pumpkin, an identity record tying it to Google Meitner before any context update."
+    },
+    {
+      "lane": "us-south-central",
+      "candidate": "Hosts not accessed or stopped under the compliance rules in this pass",
+      "country_iso_a2": "US",
+      "disposition": "lead_only",
+      "existing_project_stable_key": null,
+      "status_candidate": null,
+      "status_as_of": null,
+      "reason": "asps0305.tulsacounty.org (Tulsa County Assessor ArcGIS): the robots.txt request failed with no response, a single metadata request issued immediately afterwards also failed, and the host was not used; gis.tulsacounty.org and gis.incog.org: robots.txt requests failed; services.arcgis.com: robots.txt returned HTTP 403, not used; utility.arcgis.com proxies of City of Oklahoma City services: not used. The shared web-search budget was exhausted before this pass began, so discovery used operator sitemaps, state agency lists and ArcGIS Online item search only.",
+      "reopen_condition": "Reopen only through an allowed route (an official page or file reachable by plain GET without challenge, after its robots.txt is read)."
+    }
+  ]
+}

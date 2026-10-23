@@ -354,3 +354,5 @@ From 22 October 2026 sites are added continuously: researchers each work a narro
 `verified_construction_core/2026-10-23-research-fiftyninth`: **645 sites and 686 projects in 63 countries**. Refreshes KDDI Osaka Sakai Existing Operations (operational); Ishikari Renewable Energy Data Center No.1 (operational).
 
 `verified_construction_core/2026-10-23-research-sixtieth`: **650 sites and 692 projects in 63 countries**. Adds AtlasEdge DUS001 Düsseldorf — operating data centre; noris network München Ost (MUC5) — existing data-centre operations; AtlasEdge LEV001 — operating data centre; Google New Albany — existing data-centre campus operations; HJS — new 189,378 sq ft data building (2565 Harrison Road); DataBank Orangeburg LGA3 — existing data-centre operations.
+
+`verified_construction_core/2026-10-23-research-sixtyfirst`: **653 sites and 695 projects in 63 countries**. Adds TierPoint Little Rock (LIT) — existing data-centre and colocation operations; TierPoint Tulsa - Archer (TUL) — existing data-centre and colocation operations; TierPoint Tulsa - State Farm (TL2) — existing data-centre and colocation operations.

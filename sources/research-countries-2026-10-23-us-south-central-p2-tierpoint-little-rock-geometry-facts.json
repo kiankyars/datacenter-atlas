@@ -1,0 +1,66 @@
+{
+ "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+ "candidate": "TierPoint Little Rock (LIT) data center, 15707 Chenal Parkway, Little Rock, Pulaski County, Arkansas",
+ "prepared_at": "2026-10-23",
+ "selected_point_crs84": [
+  -92.4447834,
+  34.7562277
+ ],
+ "selected_point_role": "planar centroid (lon/lat) of Pulaski Area GIS parcel 44L-075.02-001.00 (ONE SOURCE ADDN, Lot 1A; situs 15707 CHENAL PKWY, Little Rock 72211); locates the data-centre property, not the building footprint or a surveyed position",
+ "authority_class": "official_source",
+ "scope_class": "official_tax_parcel_centroid",
+ "use_scope": "project_locator",
+ "source": {
+  "file": "local_data/country-research-us-south-central-p2/pagis-parcel-q-15707-chenal.json",
+  "sha256": "af3d9b2850bbf905300ec40a0eef9a26b2b9a2cad1033a30da272a01cb5a7cd6",
+  "url": "https://www.pagis.org/ArcGIS/rest/services/APPS/OperationalLayers/MapServer/39/query?where=ADRNUM%3D15707%20AND%20PSTRNAM%20LIKE%20%27%25CHENAL%25%27&outFields=PARCELID,PIN,PARCELLGL,ADRLABEL,ADRCITY,ADRZIP5,PARCELTYPE,SUBDIV,STR,LOT,BLOCK,SOURCEDATE,CAMADATE,OWNERNAME,IMPVALUE,LANDVALUE&returnGeometry=true&outSR=4326&f=json",
+  "retrieved_at": "2026-10-23T03:38:45.467Z",
+  "service": "PAGIS (Pulaski Area Geographic Information System) APPS/OperationalLayers MapServer layer 39 'Parcels' (layer list captured as pagis-operational-layers.json)",
+  "query": "ADRNUM = 15707 AND PSTRNAM LIKE '%CHENAL%', outSR 4326; exactly one feature returned"
+ },
+ "parcel_attributes_used": {
+  "PARCELID": "44L-075.02-001.00",
+  "PIN": "44L0750200100",
+  "ADRLABEL": "15707 CHENAL PKWY",
+  "ADRCITY": "LITTLE ROCK",
+  "ADRZIP5": 72211,
+  "PARCELTYPE": "CI",
+  "SUBDIV": "ONE SOURCE ADDN",
+  "LOT": "1A",
+  "STR": "S06-T1N-R13W",
+  "OWNERNAME": "TIERPOINT PROPERTIES LLC (an organisation)",
+  "IMPVALUE": 3359475,
+  "LANDVALUE": 2140525,
+  "SOURCEDATE": "2012-08-20 (parcel geometry source date)",
+  "CAMADATE": "2026-10-19 (assessment-record date)"
+ },
+ "geometry_checks": {
+  "centroid_inside_polygon": true,
+  "geodesic_area_m2": 11157.2,
+  "geodesic_acres": 2.757,
+  "bbox_m": [
+   123.8,
+   188.8
+  ],
+  "bounds_lon_lat": [
+   -92.4454392,
+   34.7553285,
+   -92.444087,
+   34.75703
+  ],
+  "rings": 1,
+  "vertices": 111,
+  "verification": "pyproj 3.7.1 Geod(WGS84).geometry_area_perimeter and shapely 2.1.1 Polygon.centroid/contains on the returned outSR 4326 ring"
+ },
+ "identity_checks": {
+  "address": "TierPoint's Little Rock page (version modified 2026-09-03) gives 'Little Rock (LIT) 15707 Chenal Parkway, Little Rock, AR 72211'; the parcel situs is the same number and street.",
+  "owner": "The parcel owner is TierPoint Properties LLC, an affiliate name of the operator.",
+  "uniqueness": "The address query returned a single parcel."
+ },
+ "datum_note": "The service returns WGS 84 (outSR 4326) from the native NAD83 Arkansas State Plane North (ftUS, wkid 102651/3433) geometry projected by the ArcGIS server; NAD83 and WGS 84 differ by about 1 m here, far below the parcel's extent.",
+ "geocoder_used": false,
+ "alternatives_rejected": [
+  "Arkansas GIS Office statewide cadastre (gis.arkansas.gov Planning_Cadastre) not needed: PAGIS is the county-level source for Pulaski County parcels.",
+  "No geocoder, map viewport, city centre or business-park centroid used."
+ ]
+}

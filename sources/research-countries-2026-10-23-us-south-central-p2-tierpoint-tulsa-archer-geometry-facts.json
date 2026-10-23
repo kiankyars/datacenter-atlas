@@ -1,0 +1,69 @@
+{
+ "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+ "candidate": "TierPoint Tulsa - Archer (TUL) data center, 322 E. Archer Street, Tulsa, Tulsa County, Oklahoma",
+ "prepared_at": "2026-10-23",
+ "selected_point_crs84": [
+  -95.9885595,
+  36.1586833
+ ],
+ "selected_point_role": "planar centroid (lon/lat) of Tulsa County Assessor parcel 00500920131140 (situs 318 E ARCHER ST N, Tulsa 74120; business name TIERPOINT DATA) as served by INCOG; locates the data-centre building's lot, not a surveyed footprint",
+ "authority_class": "official_source",
+ "scope_class": "official_tax_parcel_centroid",
+ "use_scope": "project_locator",
+ "source": {
+  "file": "local_data/country-research-us-south-central-p2/incog-parcel-00500920131140.json",
+  "sha256": "53f47ef77290249097ce90b05534e881b6ccba879eb30c1a11474a8df26c8243",
+  "url": "https://map11.incog.org/arcgis11wa/rest/services/Parcels_TulsaCo/FeatureServer/0/query?where=ParcelNo%3D%2700500920131140%27&outFields=ParcelNo,AccountNo,AcctType,PropertyAddress,PropertyCity,PropertyZIP,UseCode,Legal,GrossAcre,GrossSF,ImpSFTotal,BuiltAsSF,YearBuilt,BuiltAsOccCode,OccCode,BusinessName,Owner,TR_SEC,LoadDate&returnGeometry=true&outSR=4326&f=json",
+  "retrieved_at": "2026-10-23T03:37:50.170Z",
+  "service": "INCOG map11 Parcels_TulsaCo FeatureServer layer 0 (layer description: 'Tulsa County Parcels. Last updated February 3, 2025. Tulsa County Assessor'; LoadDate of the returned record 2026-10-03), metadata captured as incog-parcels-tulsaco-layer0-meta.json (sha256 7594b04dc7872e0b81cbac29bb878063667361c4b18c9ae4ecc69b03ac0858da)",
+  "discovery": {
+   "file": "local_data/country-research-us-south-central-p2/incog-parcel-q-archer-74120.json",
+   "sha256": "032eff95dc91aa3050d081f9b8e015e3c203ceffe23c47eb07fc68ec698bf6b0",
+   "query": "PropertyAddress LIKE '%ARCHER%' AND PropertyZIP LIKE '74120%' (17 parcels; no parcel carries 322 E Archer; only 00500920131140 carries a TierPoint business name)"
+  }
+ },
+ "parcel_attributes_used": {
+  "ParcelNo": "00500920131140",
+  "PropertyAddress": "318 E ARCHER ST N",
+  "PropertyZIP": "74120",
+  "AcctType": "Commercial",
+  "UseCode": "Office",
+  "OccCode": "Office Building",
+  "BusinessName": "TIERPOINT DATA",
+  "ImpSFTotal": 36360,
+  "YearBuilt": 1920,
+  "GrossAcre": 0.4242,
+  "Legal": "LT 1 & PRT LT 2 ... BLK 56",
+  "Owner": "an organisation (building landlord; not used as a role)"
+ },
+ "geometry_checks": {
+  "centroid_inside_polygon": true,
+  "geodesic_area_m2": 1644.7,
+  "geodesic_acres": 0.406,
+  "bbox_m": [
+   53.7,
+   53.0
+  ],
+  "bounds_lon_lat": [
+   -95.9888581,
+   36.158443,
+   -95.988261,
+   36.1589207
+  ],
+  "rings": 1,
+  "vertices": 8,
+  "verification": "pyproj 3.7.1 and shapely 2.1.1 on the returned outSR 4326 ring"
+ },
+ "identity_checks": {
+  "address": "TierPoint gives 322 E. Archer Street; the assessor's situs for the TierPoint-named parcel is 318 E Archer St N. No Tulsa County parcel in ZIP 74120 carries 322 E Archer, and the neighbouring numbered parcels (301, 305, 310) are a hotel, lofts and offices of other businesses.",
+  "floor_area": "TierPoint states 36,000+ total square feet; the assessor records 36,360 sq ft of improvements on this parcel; TierPoint's 30 May 2017 release describes its Brady district facility as 37,000 sq ft.",
+  "business_name": "The assessor's business-name field for this parcel is 'TIERPOINT DATA'.",
+  "district": "TierPoint places the facility 'In the historic Brady district'; the parcel lies in Block 56 on E Archer St immediately north of downtown Tulsa; no district boundary was checked, so the district statement is the operator's."
+ },
+ "datum_note": "WGS 84 (outSR 4326) as projected by the ArcGIS server from NAD83 Oklahoma State Plane North (ftUS, wkid 102724/2267); no further transformation.",
+ "geocoder_used": false,
+ "alternatives_rejected": [
+  "Tulsa County Assessor's own ArcGIS host (asps0305.tulsacounty.org): robots.txt request failed (no network response); not used.",
+  "No geocoder, map viewport or city centre used."
+ ]
+}
