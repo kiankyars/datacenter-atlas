@@ -1,0 +1,79 @@
+{
+  "candidate_id": "switch-las-vegas-nap-17-18-maule-avenue-site",
+  "decision": "Selected the centroid of the union of Clark County Assessor parcels 176-02-610-002 (NV LAS NAP 17 & 18 LLC, 6240 W Maule Ave), 176-02-610-003 (NV LAS NAP 17 LLC) and 176-02-610-004 (NV LAS NAP 18 LLC) as the site locator. The three lots form one contiguous 28.39-acre polygon (the two smaller lots fill the two interior rings of 176-02-610-002); the data-center building footprints are not published.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -115.2278717,
+      36.0648579
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_tax_parcel_union_centroid",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-us-southwest-p2/clark-assessor-parcels-176-02-610-002-003-004.json",
+  "source_sha256": "95f5628f7cb471563d015af2f1463480875f2a9a47f46644ea5cfa99b5bb41fd",
+  "source_url": "https://maps.clarkcountynv.gov/arcgis/rest/services/Assessor/Layers/MapServer/1/query?where=APN+IN+%28%2717602610002%27%2C%2717602610003%27%2C%2717602610004%27%29&outFields=APN%2CCALC_ACRES%2CASSR_ACRES%2CPARCELTYPE%2CTAX_DIST&returnGeometry=true&outSR=4326&f=json",
+  "retrieved_at": "2026-10-23T02:00:27.442Z",
+  "owner_source_file": "local_data/country-research-us-southwest-p2/clark-accela-owner-points-nv-las-nap.json",
+  "owner_source_sha256": "60fd929c62c933bab6a36253e518cea37782522d4e1546fcf51be488d5deafb2",
+  "selected_properties": {
+    "176-02-610-002": {
+      "ASSR_ACRES": 16.37,
+      "CALC_ACRES": 16.337269,
+      "owner": "NV LAS NAP 17 & 18 LLC",
+      "situs": "6240 W MAULE AVE",
+      "owner_record_modified": "2025-09-08"
+    },
+    "176-02-610-003": {
+      "ASSR_ACRES": 4.76,
+      "CALC_ACRES": 4.755997,
+      "owner": "NV LAS NAP 17 LLC",
+      "owner_record_modified": "2025-09-08"
+    },
+    "176-02-610-004": {
+      "ASSR_ACRES": 7.29,
+      "CALC_ACRES": 7.289965,
+      "owner": "NV LAS NAP 18 LLC",
+      "owner_record_modified": "2025-09-08"
+    },
+    "TAX_DIST": "635"
+  },
+  "computed": {
+    "union_parts": 1,
+    "union_geodesic_acres": 28.39,
+    "parcel_geodesic_acres": {
+      "176-02-610-002": 16.34,
+      "176-02-610-003": 4.76,
+      "176-02-610-004": 7.29
+    },
+    "centroid_lon_lat": [
+      -115.2278717,
+      36.0648579
+    ],
+    "centroid_inside_union": true,
+    "extent_m": [
+      493,
+      296
+    ],
+    "bounds_lon_lat": [
+      -115.230309,
+      36.063665,
+      -115.22483,
+      36.066306
+    ],
+    "method": "Parcel rings returned with outSR=4326 (176-02-610-002 has one outer ring and two interior rings); union and centroid computed in EPSG:32611 and returned to WGS84; geodesic area on the WGS84 ellipsoid",
+    "tools": "pyproj 3.7.1, shapely 2.1.1"
+  },
+  "identity_bridge": [
+    "Clark County Building Department inspection-site layer: permit BD24-61043 'CONSTRUCT A SINGLE-STORY CLOSED WATER LOOPED-COOLED DATA CENTER PER PLANS' at 6240 W Maule Ave; its point (-115.226528, 36.063992) lies inside parcel 176-02-610-002, about 155 m from the union centroid. The pump-house permit BD25-02287 at the same address also lies inside 176-02-610-002.",
+    "Permit BD25-00549 'CONSTRUCT A SINGLE-STORY CLOSED WATER LOOPED-COOLED DATA CENTER (NAP 17)' is recorded at 6322 W Maule Ave; its address point (-115.227847, 36.063609) lies about 15 m south of the union on the Maule Avenue frontage and about 139 m from the centroid. It is a second building of the same development and is not part of the admitted project.",
+    "Clark County Accela owner points (active owners): 176-02-610-002 NV LAS NAP 17 & 18 LLC (situs 6240 W MAULE AVE), 176-02-610-003 NV LAS NAP 17 LLC, 176-02-610-004 NV LAS NAP 18 LLC, all recorded 8 September 2025; each owner point lies inside its parcel.",
+    "Switch affiliation (inferred, not asserted as a role): the same owner-name series holds 176-01-810-001 at 7135 Decatur Blvd (NV LAS NAP 7 LLC), the address at which Clark County's air-quality (AQM) stationary-source register lists the major-source data center of SWITCH LTD (source 16304); that register also lists a SWITCH LTD data-center major source at 5660 Badura Ave (source 18024), whose point lies about 108 m south-east of this union."
+  ],
+  "nearby_records": "No Atlas site, project, source record, pending fragment or claim lies within 3 km; the nearest Atlas site is about 346 km away. Other Switch-pattern parcels nearby (NV LAS NAP 14, 15 and 16 LLC on W Badura/W Maule Ave, about 0.5 to 0.9 km east; NV LAS NAP 7 LLC at 7135 Decatur Blvd, about 1.7 km south-east) are separate properties and are not part of this locator.",
+  "consistency_checks": {
+    "datum": "WGS84 output from the county service (outSR=4326); source layer spatial reference NAD83 Nevada State Plane East (EPSG:3421)",
+    "geocoder_used": false
+  }
+}

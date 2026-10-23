@@ -1,0 +1,93 @@
+{
+  "reviewer": "root",
+  "reviewed_at": "2026-10-23",
+  "decision": "accepted_for_integration",
+  "update": "verified_construction_core/2026-10-23-research-fiftysixth",
+  "base_dataset": "verified_construction_core/2026-10-23-research-fiftyfifth",
+  "process": "continuous: one researcher per beat, one adversarial verifier per fragment",
+  "fragments": [
+    {
+      "fragment": "cn-north-p2",
+      "verdict": "accept",
+      "checks": [
+        "All 10 relied-on captures rehashed: SHA-256 equals .metadata.json sha256 and sources.json content_hash; HTTP 200; byte counts and URLs match; geometry-facts file hash matches sources.json",
+        "BONC status read in capture: Horinger New Area item 2026-08-10 (source 内蒙古和林格尔新区党群服务中心, government_record) says 当前基地客户覆盖科研机构、AI服务商 for 东方国信和林格尔智算中心; present-tense operation, 74 days old; 100,000 P is a target and not asserted",
+        "China Mobile status read in capture: approvals-bureau item 2026-08-27 (government_record) says 中国移动智算中心 部署了约2万张AI加速卡, 6.7 EFLOPS; 57 days old; predates B25/B27 completion (2026-10-10), so scope is distinct",
+        "Identity bridge read: Hohhot DRC 2026-10-15 item (news, context only) says China Mobile Hohhot Data Center B25/B27 adds to the world's largest single operator ICC, satisfying the cn-north-p1 hold reopen condition",
+        "BONC locator recomputed from rendered EIA pages 14 and 18: DMS 111°48'38.413\" / 40°32'31.242\" = 111.810670278, 40.542011667; CGCS2000 corners (EPSG:4546, pyproj 3.7.1) enclose 1,151.5 m2 (49 x 23.5 m) with centroid 1.44 m from the point; text places it 厂区内中部东侧",
+        "Esri export overlay: point falls in the central-east of the BONC block with data halls west and south, residential compound east, China Mobile block across the road to the south-east; EIA site plan (appendix figure 3) agrees",
+        "Phase 2 filing appendix rendered: 2406-150123-89-04-770345, Inner Mongolia BONC Technology, 198 mu, six DC buildings, CNY 3 billion; Phase 2 not asserted; EIA states Phase 1 in operation since 2025",
+        "China Mobile locator inherits baseline project d4f5ee02 campus point and evidence 7ca96b06 exactly; baseline has no geometry-identity evidence",
+        "Roles checked: BONC owner (EIA 建设单位 and land-right holder), BONC operator (10 Aug item), China Mobile operator (27 Aug item); all relationship_scope current",
+        "Distinctness re-screened against 2026-10-23-research-fiftyfifth (all five tables), sources/*holds*.json (33 files), claims.tsv and all other queue fragments: no BONC record; only Atlas site within 20 km is China Mobile Hohhot (747 m); appended verifier note to both distinctness reviews",
+        "Robots.txt for hlgena, sthjj, fgw.huhhot and www.bonc.com.cn returned 404 (allowed); Esri robots allows all",
+        "No third-party personal data in fragment: EIA contact name and mobile number not reproduced",
+        "dryrun_fragment.py ok against fiftyfifth (634 sites, 673 projects)"
+      ],
+      "residual_risks": [
+        "BONC operating status rests on a promotional present-tense government item; no building or phase is named",
+        "BONC locator is a planned (August 2025) 2# substation point, not an operating building; survey accuracy unstated",
+        "China Mobile ICC buildings are not individually located; the inherited OSM parent-campus point may sit some hundreds of metres from them",
+        "BONC operator party label adds the listed-company legal name (北京东方国信科技股份有限公司), which the 10 Aug item does not print"
+      ]
+    },
+    {
+      "fragment": "ie-p2",
+      "verdict": "accept",
+      "checks": [
+        "All 24 captures rehashed: file sha256 == .metadata.json sha256 == sources content_hash; effective URL == source_url, HTTP 200, captured_at == retrieved_at; every source referenced, none missing",
+        "Echelon: NMP v1.0 (document control 21/09/2026; PDF created 22 Sep) rendered p.4 s.4.1 'The licensed installation operates on a continuous basis and comprises the DUB10 Energy Centre, associated data centre buildings...'; EPA notice confirms submission 28 Sep; LEAP docs list dates NMP 22 Oct",
+        "Echelon corroboration: SV35471 'Licensable activity commenced on 06/02/2026 ... not yet operating at full capacity'; SV35719 EPA-commissioned survey 13-14 Aug finds facility noise audible; licence intro: EC powers the ICTF buildings (transitional, grid later)",
+        "Microsoft: noise survey 267501.0593NR03 rendered p.1-1 'operates a facility at Unit 74 ... P1191-01'; 'operates 24 hours a day, 7 days a week'; issue 31 Aug 2026 (PDF created 31 Aug); 22 Sep CRAMP letter names Dub 6,7,8,9,10,12 & 13 and 'operational status of the site'",
+        "EdgeConneX: licence P1204-01 sealed 3 Sep 2026, intro 'will include 1 no. energy centre, 2 no. data centres' (EDCDUB04/05, ESSDUB97); Dec 2025 inspector report: greenfield/brownfield, derelict farm buildings, 'When constructed'; announced (not permitted) is conservative and follows the ie-p1 reopen condition",
+        "Window: as_of 2026-09-21 (32 d), 2026-08-31 (53 d), 2026-09-03 (50 d) vs 2026-10-23, floor 2026-07-30; status sources regulatory_filing / regulatory_filing / government_record",
+        "Locators recomputed from raw register PDFs and application forms (EPSG:29903->4326, pyproj 3.7.1): all within 1 cm; alternative operation 2.11-2.15 m; ITM reading lands offshore; EdgeConneX literal reading 99.8 km away in the midlands, swapped reading 30.0/30.1 m from SD21A/0042 and SD19A/0042 register points",
+        "Planning-register cross-checks reproduced: Echelon 7.1-10.8 m from SD18A/0068, SD23A/0158, SD20A/0309, SD13A/0271 (3-4 Crag Avenue); Microsoft 121.5-228.9 m from DUB07/08, DUB12, ED26/0001, SD16A/0088 records",
+        "LEAP doc lists are sorted newest-first (page 1 of 220/215/210), so successor reviews' newest items are verified; LEAP licence records show Licensed / Authorisation Issued, no surrender",
+        "Distinctness re-screened against fiftyfourth and then the newer fiftyfifth dataset (633 sites/671 projects; new records are Japanese), all 5 tables, 25 sources/*-holds.json and all queue fragments incl. newly created ones: no Echelon/Crag Avenue/Clondalkin, Microsoft Grange Castle or Irish EdgeConneX record; nearest Atlas site Google Grange Castle 1.03/1.80/4.75 km (different operator); EdgeConneX P1204 hold in ie-p1/thirty-ninth is this same candidate",
+        "Roles: Echelon Clondalkin DC Services operator current; Microsoft Ireland Operations operator current; Edgeconnex Ireland operator intended - each from its licensee/regulator source",
+        "No private individuals' names, emails or phones in changes, sources, holds or notes (EPA notice and site-visit names not copied); robots.txt recorded for all four hosts",
+        "dryrun_fragment.py ok against fiftyfifth (636 sites, 674 projects)"
+      ],
+      "residual_risks": [
+        "Echelon scope is the installation 'as it operates': which of the four ICT buildings are in service is unknown; the NMP was rejected by the EPA for missing content (not its facility description), and 'operates on a continuous basis' could partly describe the design operating mode",
+        "Microsoft P1191-01 noise survey is a template shared with P1187-01 and reuses the P1187-01 site figure (western boundary); building list and eastern extent rely on Microsoft's 22 Sep letter; per-building operation of DUB6-DUB13 is inferred from installation-level statements",
+        "EdgeConneX locator depends on an axis-order correction of values printed swapped in both the register and the application form; corroborating register points have undocumented derivation",
+        "All three locators are applicant/register site-centre points with unknown survey accuracy for multi-hectare sites",
+        "EdgeConneX announced may understate a permitted or started project: SD21A/0042 (2022) may still be in effect but its duration and commencement were not established"
+      ]
+    },
+    {
+      "fragment": "us-southwest-p2",
+      "verdict": "accept",
+      "checks": [
+        "All 10 relied-on captures (plus the p1 originals of the two Colovore captures) rehashed with SHA-256; each matches its .metadata.json sha256, the source content_hash, the URL and the captured_at/retrieved_at values; HTTP 200 for each",
+        "Colovore release read in the capture: dated September 9, 2026, it says 'A second data center is under construction on the RNO01 campus with projected completion in February 2027'; company_disclosure; 44 days old, inside the 85-day window (on or after 2026-07-30); February 2027 is treated as a forecast only",
+        "Colovore: the published site vcc-site-3d19adbe27ca545ec17c has a single first-data-center project; the item reuses project fc372246's campus locator exactly (the builder's inherited-locator checks pass, with no geometry-identity evidence to pin); this is exactly the reopen condition of the thirty-seventh hold; operator Colovore is recorded with scope 'intended'",
+        "1G Servers: Phoenix Planning_Permit capture decoded. Permit 26000895 'GSERVER LASALLE DATA CENTER' (BLD STRUC/ELEC/PLMB/MECH, COMMERCIAL REMODEL, issued 2026-01-21) is DONE with PER_COMPL_DATE 2026-09-04T07:00Z, midnight MST, i.e. 4 September (49 days old); 26006606 'LA SALLE 1G SERVERS DATA CENTER T.I F/A' is DONE (2026-08-24); the battery and flammable-liquids permits are OPEN. The layer-currency capture shows a maximum issue date of 2026-10-21, so published_at 2026-10-21 is a valid lower bound. Precedent: the Aligned PHX-05 completion (DONE, as distinct from OPEN/EXPR/VOID)",
+        "1G Servers locator recomputed with pyproj 3.7.1 and shapely 2.1.1: parcel 122-76-036 centroid is (-112.0001143, 33.3965725), inside the parcel; 0.96 ac; 49.5 x 87.0 m; the permit point is inside, 1.29 m away; owner LaSalle Technology Solutions LLC (current, assessor); operator 1G Servers with scope 'unknown' (permit names)",
+        "NV LAS NAP 17 & 18: Clark County InspectionSites capture decoded. BD24-61043 'CONSTRUCT A SINGLE-STORY CLOSED WATER LOOPED-COOLED DATA CENTER PER PLANS', USD 188,121,238, issued 2025-06-03, structural progress approved 2025-10-06, last inspection 'Suspended Ceiling Frame' 20260921 (32 days old). The currency capture's maximum is 20261016, matching published_at. A fresh read-only query of the layer (robots.txt 404) found 0 rows with Last_Inspection_Date after 2026-10-23, so the field records past inspections, not scheduled ones; BD24-61043 still shows the same inspection live",
+        "NAP locator recomputed: the union of parcels 176-02-610-002/-003/-004 is a single polygon with no holes (the two lots fill the interior rings of -002); 28.39 geodesic ac; centroid (-115.2278717, 36.0648579), inside the union; the BD24-61043 point is inside -002, 154.5 m from the centroid; BD25-00549 is outside (15.4 m) and held as a separate future project; owner NV LAS NAP 17 & 18 LLC (Accela, current)",
+        "Geometry facts files hash to the geometry_facts_sha256 values in sources.json",
+        "Distinctness: base re-screened after it moved to fiftyfifth (that update added only Japanese records). Coordinate proximity (3 km) and keyword checks run against sites.csv, projects.csv, evidence.csv, source-records.json, identity-mapping.json, every other queue fragment, claims.tsv and all sources/*.json including *-holds.json. Only match: the Colovore campus itself (0 m). The nearest sites are 16.7 km from 1G Servers and 346 km from NAP. The only 'gserver' hit is a false positive ('agserver' in a URL)",
+        "Each new site has one project; status values are admission statuses; roles and relationship_scope values are in the allowed sets; derivation is direct_geometry with official_source authority (matching precedent for official_tax_parcel_union_centroid)",
+        "No third-party personal data: no e-mails, phone numbers or person names in changes, sources, holds, notes or geometry; Phoenix and AQM queries exclude contact fields; Accela owners are LLCs only; the compliance log shows robots.txt checked per host, the 1gservers.com 403 was not bypassed, and the two logged incidents involve nothing relied on",
+        "dryrun_fragment.py: ok against verified_construction_core/2026-10-23-research-fiftyfifth (635 sites, 674 projects, 3,437 evidence rows)"
+      ],
+      "residual_risks": [
+        "Colovore second data center: its position on the RNO01 campus, its parcel and its capacity are unpublished; the campus point locates the 100 Italy Dr property, not the building",
+        "1G Servers: the building's prior use is unknown (permit 24017680 of October 2024 predates the May 2025 deed); a whole-building conversion is inferred from the permit names and the single-parcel ownership, not stated; the operator site returned 403, so there is no operator statement; operation and capacity are not established",
+        "NAP 17 & 18: the Switch attribution in the site name and key is inferred from the NV LAS NAP owner-entity series and the AQM register (no Switch role is asserted); the layer publishes no inspection result",
+        "NAP 17 & 18: the property is adjacent to other Switch-pattern parcels (NAP 14-16, 0.5-0.9 km east; 5660 Badura Ave, 108 m away), so a later update may need to reconcile it with a wider Switch Las Vegas campus record",
+        "The distinctness_review text cites the fiftyfourth counts; the re-screen against fiftyfifth found no new conflicts"
+      ]
+    }
+  ],
+  "packet_pins": {
+    "definitions/atlas-research-fiftysixth-2026-10-23.json": "a11cd9df6a6525350eb6270c2b4d05ad19e940b2fc66e5d2845b01db43cb0d6e",
+    "sources/research-countries-2026-10-23-fiftysixth-primary-sources.json": "03759322a788ef3d98b11a497503b3ef99fe7950db9ef2ef1496be66a5332172",
+    "sources/research-countries-2026-10-23-fiftysixth-actions.json": "d7cde3092b1fe266e23a8c8982d1090d943f06938063693fe9f22c1a9b24b6ae",
+    "sources/research-countries-2026-10-23-fiftysixth-holds.json": "044900460e9f87f84bbe5435769afa869d974e5c92334accc6ee5cf846a23de3"
+  },
+  "raw_captures_redistributed": false
+}

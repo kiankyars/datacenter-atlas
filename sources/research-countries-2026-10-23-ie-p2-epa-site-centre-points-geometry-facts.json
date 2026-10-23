@@ -1,0 +1,107 @@
+{
+  "format": "datacenter-atlas-geometry-facts-v1",
+  "prepared_at": "2026-10-23",
+  "fragment": "ie-p2",
+  "method": "EPA register 'National Grid Reference' and application-form 'Site Centre Point (Irish Grid Reference - 6 digits)' read as EPSG:29903 (TM75 / Irish Grid) and transformed to WGS84 with pyproj 3.7.1, default operation 'Inverse of Irish Grid + TM75 to WGS 84 (2)' (stated accuracy 1 m); the alternative operation (3) moves each point by 2.1-2.2 m. Read as ITM (EPSG:2157) every value would lie far offshore west of Ireland, so Irish Grid is the only plausible reading. The same transform reproduces the ie-p1 Clonshaugh point (318420 / 240501 -> 53.4015963, -6.2203039) to the stated decimals. Cross-check distances are WGS84 geodesic distances (pyproj Geod, WGS84 ellipsoid) to points of the merged national planning register (IrishPlanningApplications feature service, outSR 4326), whose point derivation is undocumented.",
+  "points": {
+    "echelon_dub10_clondalkin": {
+      "licence": "P1113-02",
+      "register_capture": "echelon-P1113-02-register-20260624.pdf",
+      "register_capture_sha256": "0f675163957675338ff182fd13727e05f01dfaddd54b57e7228bee41ff4d9a3f",
+      "application_form_capture": "echelon-P1113-02-application-form.pdf",
+      "application_form_capture_sha256": "6d286df1d7050a70a241e8049d0b210cf03fe485a0031b0e09ebfabff96e67c7",
+      "irish_grid": {
+        "easting": 307760,
+        "northing": 232304,
+        "stated_as": "National Grid Reference N232304 E307760 (register of 24 June 2026); Site Centre Point easting 307760 / northing 232304 (application form section 3.2)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -6.3832932,
+          53.3302571
+        ]
+      },
+      "alternative_transformation_offset_m": 2.15,
+      "cross_checks_m": {
+        "South Dublin SD18A/0068 register point (2-storey data centre with energy centre, 3-4 Crag Avenue, Clondalkin Industrial Estate; granted 2019)": 7.0,
+        "South Dublin SD23A/0158 register point (revised energy centre with 10 gas turbines, 3-4 Crag Avenue; granted 2024)": 9.1,
+        "South Dublin SD20A/0309 register point (4 ICT Facility buildings, 3-4 Crag Avenue; granted 2021; extension of duration SD20A/0309/EP decided 16 June 2026)": 10.0,
+        "South Dublin SD13A/0271 register point (original data centre permission, 3-4 Crag Avenue; granted 2014)": 10.8,
+        "South Dublin SD25A/0301W register point (retention of amendments to ICT Facility 1 arising during construction; granted 19 May 2026)": 160.7,
+        "South Dublin SD25A/0257W register point (generators between ICT Facility 2 and ICT Facility 3; granted 7 April 2026)": 182.9
+      },
+      "context": "The EPA-commissioned noise report in site visit report SV35719 describes the site as bounded by the Grand Canal to the south and the M50 to the east and north-east, which matches the point's position in the south-eastern part of Clondalkin Industrial Estate."
+    },
+    "microsoft_dublin_p1191": {
+      "licence": "P1191-01",
+      "register_capture": "msft-P1191-01-register-20230707.pdf",
+      "register_capture_sha256": "fc3c61a11793d2672abbde2c0da292309e31771ca164e927e3fe323374c0a568",
+      "irish_grid": {
+        "easting": 303630,
+        "northing": 231310,
+        "stated_as": "National Grid Reference N231310 E303630 (register of 7 July 2023)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -6.4455824,
+          53.3221532
+        ]
+      },
+      "alternative_transformation_offset_m": 2.12,
+      "other_campus_licence_points": {
+        "P1187-01 (register of 4 July 2023, N231237 E303206; the smaller installation to the west per Microsoft's 22 September 2026 letter)": {
+          "coordinates": [
+            -6.4519665,
+            53.3215802
+          ],
+          "distance_m": 430.2
+        },
+        "P1190-01 (register of 16 June 2023, N231598 E303001)": {
+          "coordinates": [
+            -6.4549244,
+            53.3248625
+          ],
+          "distance_m": 691.7
+        }
+      },
+      "cross_checks_m": {
+        "South Dublin SD15A/0343 register point (2 data centres DUB07 and DUB08 immediately west of existing DUB06, Grange Castle Business Park; granted 2016)": 121.5,
+        "South Dublin SD21A/0288 register point (photovoltaic panels on the roof of building DUB12, Unit 75 (DUB12), Grange Castle Business Park; granted 2022)": 153.6,
+        "South Dublin ED26/0001 register point (flue-monitoring platforms at DUB07, DUB09, DUB13 and DUB14; declared exempt 9 February 2026)": 181.9,
+        "South Dublin SD20A/0283 register point (DUB14 and DUB15 with Central Administration Building; thirty-fourth hold)": 189.9,
+        "South Dublin SD16A/0088 register point (4 single-storey data centres, Microsoft, Grange Castle Business Park; granted 2016)": 228.9
+      }
+    },
+    "edgeconnex_newcastle_road_lucan": {
+      "licence": "P1204-01",
+      "register_capture": "edgeconnex-P1204-01-register.pdf",
+      "register_capture_sha256": "8f641b2957d652d369aa0e38df9895f095edb4cd35e6ef490b0bdf4f7f92ca60",
+      "application_form_capture": "edgeconnex-P1204-01-application-form.pdf",
+      "application_form_capture_sha256": "48cba65ea94f6c35848e0a9affd8aa4113e4cbd676bc73cd80732b1d8b486981",
+      "irish_grid": {
+        "easting": 302644,
+        "northing": 231915,
+        "stated_as": "National Grid Reference 'N302644 E231915' (register of 3 September 2026); Site Centre Point 'Easting 231915 / Northing 302644' (application form section 3.2). Both sources carry the two values in swapped fields."
+      },
+      "axis_order_review": "Read literally (E 231915, N 302644) the point would fall at 53.9722037, -7.5143932, in the north midlands (Cavan/Longford border area) 100.0 km from the swapped reading, which contradicts the stated location (Newcastle Road, Lucan, K78 P3K1), the planning authority (South Dublin County Council) and the inspector's site description. Read with the values swapped (E 302644, N 231915) it falls 30 m from the national planning register points for SD19A/0042 and SD21A/0042, both described as the site in the townland of Ballymakaily west of Newcastle Road (R120), Lucan. Only the swapped reading is used.",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -6.4601775,
+          53.327779
+        ]
+      },
+      "alternative_transformation_offset_m": 2.11,
+      "cross_checks_m": {
+        "South Dublin SD21A/0042 register point (two data centres and three gas-powered generation plant buildings, Ballymakaily, west of Newcastle Road (R120); granted 24 March 2022)": 30.0,
+        "South Dublin SD19A/0042 register point (phased data-hall development, Newcastle Road, Lucan; An Bord Pleanala ABP-305948-19 grant 5 October 2020)": 30.1,
+        "South Dublin SD22A/0289 register point (amendment of condition 3 of SD21A/0042, gas plant; granted 10 February 2023)": 31.9,
+        "South Dublin SD22A/0105 register point (GIS substation compound amendments; granted 19 July 2022)": 45.5,
+        "South Dublin SD23A/0151 register point (reduction of SD19A/0042 back-up generators from 32 to 24; granted 2 October 2023)": 164.0,
+        "South Dublin SD22A/0333 register point (EDCDUB06, separate data centre; not part of this licence)": 172.8
+      }
+    }
+  }
+}

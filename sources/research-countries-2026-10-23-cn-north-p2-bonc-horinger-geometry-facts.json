@@ -1,0 +1,70 @@
+{
+  "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+  "researched_at": "2026-10-23T00:00:00+00:00",
+  "candidate": "BONC (东方国信) Horinger Intelligent Computing Centre: the BONC Industrial Internet Northern Regional Center (东方国信工业互联网北方区域中心) campus in the Yungu area of Horinger New Area, Hohhot, Inner Mongolia",
+  "method": "The selected point is the station-centre coordinate of the campus's planned 2# 110 kV substation, printed in geographic degrees-minutes-seconds in the environmental impact report form published with the Hohhot Ecology and Environment Bureau acceptance notice of 26 August 2025. It was transcribed arithmetically to decimal degrees (deg + min/60 + sec/3600) with no datum transformation. The same report gives the four corner coordinates of the substation footprint in the 2000 national system (CGCS2000) as Gauss-Kruger grid values. Read as the 3-degree zone with central meridian 111 deg E (EPSG:4546) and converted with pyproj 3.7.1, their centroid falls 1.44 m from the printed geographic centre. The corners enclose 1,151.5 m2, which is the 49 m x 23.5 m footprint of the substation building given in the report. The printed geographic coordinates are therefore CGCS2000, which agrees with WGS84 to well under a metre. Precedent for the scope class: official_eia_on_campus_substation_locator (China Telecom Shaotang; Zhongwei West Cloud Base and Xuanhe).",
+  "selected_points": {
+    "bonc_horinger_campus": {
+      "source_url": "http://sthjj.huhhot.gov.cn/ywgz/hjyxpj/xmslqk/202508/P020250826591746698166.pdf",
+      "local_capture": "local_data/country-research-cn-north-p2/hh-bonc-p2-2-110kv-eia-report-20250826.pdf",
+      "source_sha256": "fa5305341ec1d747a0067923a8f0155d2c3ee6a2896639376211a3ac8a6d0df9",
+      "printed": "地理坐标 站址中心坐标：40°32'31.242\"北；111°48'38.413\"东 (project table, page 1); repeated in section 2 as 北纬：40°32'31.242\"，东经：111°48'38.413\"",
+      "lon_lat": [111.810670278, 40.542011667],
+      "on_campus_statement": "The report places the 2# 110 kV substation inside the BONC Industrial Internet Northern Regional Center plant area, in its central-east part (厂区内中部东侧 / 中部靠东侧), with no new land take. The substation was planned and not yet built when the report was written (August 2025). Appended figure 3 marks it on the campus site plan."
+    }
+  },
+  "cgcs2000_corner_check": {
+    "printed_table": "表 2-4 变电站拐点坐标（2000 系坐标）",
+    "corners_x_northing_y_easting": [
+      [4490032.333, 568649.912],
+      [4490051.149, 568695.155],
+      [4490029.451, 568704.179],
+      [4490010.635, 568658.936]
+    ],
+    "crs_reading": "EPSG:4546 (CGCS2000 / 3-degree Gauss-Kruger CM 111E; the easting carries no zone prefix)",
+    "corner_lon_lat": [
+      [111.8103605, 40.5420372],
+      [111.8108966, 40.5422029],
+      [111.8110007, 40.5420068],
+      [111.8104647, 40.5418411]
+    ],
+    "corner_polygon_area_m2": 1151.5,
+    "centroid_lon_lat": [111.8106806, 40.542022],
+    "printed_centre_to_centroid_metres": 1.44
+  },
+  "synthesis_check": "The printed coordinates were re-extracted from the hashed PDF capture with pdftotext. The decimal values and the CGCS2000 corner conversion were recomputed with uv run --no-project --with pyproj==3.7.1 --with shapely==2.1.1 python -I.",
+  "registration_check": "Qualitative check in an Esri World Imagery export (EPSG:4326, 111.800-111.822E, 40.533-40.548N; local esri-bonc-horinger.jpg; imagery dates not stated). The point falls in the central-east, largely unbuilt part of a road-bounded block. Built data-hall buildings occupy the west part of the block, a residential compound adjoins it to the east, and an east-west road separates it from the large China Mobile Hohhot data-centre block to the south. This matches the report, which puts the 克略和苑 residential compound 62 m east of the substation wall. The CGCS2000 corner check above is the quantitative datum check; the imagery check is not a measured accuracy.",
+  "other_published_points_for_context": {
+    "bonc_line_terminal_DJ2": {
+      "source": "BONC 110 kV supply-line EIA report form (Hohhot EEB acceptance notice of 10 June 2025), table 2-2: cable joint well DJ2, the boundary point north of the campus's own (1#) 110 kV substation on the Shengle line",
+      "dms_lon": "111:48:25.93",
+      "dms_lat": "40:32:34.53",
+      "lon": 111.807202778,
+      "lat": 40.542925
+    },
+    "bonc_line_terminal_DJ1": {
+      "source": "Same report, table 2-3: cable joint well DJ1 north of the campus's own (1#) 110 kV substation on the Hesheng line",
+      "dms_lon": "111:48:25.78",
+      "dms_lat": "40:32:34.22",
+      "lon": 111.807161111,
+      "lat": 40.542838889
+    }
+  },
+  "pairwise_metres": {
+    "bonc_2#_substation|line_terminal_DJ2": 310.8,
+    "bonc_2#_substation|line_terminal_DJ1": 311.1,
+    "line_terminal_DJ2|line_terminal_DJ1": 10.2,
+    "bonc_2#_substation|china_mobile_hohhot_dc_atlas_site": 746.6,
+    "bonc_2#_substation|china_telecom_cloud_110kv_substation_eia_point_cn_north_p1_hold": 1746.5
+  },
+  "nearest_atlas_site": {
+    "bonc_horinger_campus": {
+      "nearest_atlas_site": "China Mobile Hohhot Data Center",
+      "site_id": "vcc-site-23ffbb893f12f178d8d3",
+      "metres": 746.6,
+      "bearing_degrees_from_point": 140,
+      "relation": "Different operator and parcel: the China Mobile campus is the large block south of the east-west road; the Atlas point is a community-mapped China Mobile parent-campus point."
+    }
+  },
+  "uncertainty": "The datum and transcription are checked: the printed point agrees with the report's own CGCS2000 corner coordinates to 1.4 m. Its survey accuracy is not stated. The point marks the planned 2# substation in the central-east of the 130,939 m2 plant area, not an operating data-centre building; the campus extends a few hundred metres around it, and the 1# substation terminals lie about 310 m west-north-west."
+}
