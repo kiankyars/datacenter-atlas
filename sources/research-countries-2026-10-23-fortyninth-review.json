@@ -1,0 +1,64 @@
+{
+  "reviewer": "root",
+  "reviewed_at": "2026-10-23",
+  "decision": "accepted_for_integration",
+  "update": "verified_construction_core/2026-10-23-research-fortyninth",
+  "base_dataset": "verified_construction_core/2026-10-23-research-fortyeighth",
+  "process": "continuous: one researcher per beat, one adversarial verifier per fragment",
+  "fragments": [
+    {
+      "fragment": "au-nz-p1",
+      "verdict": "accept",
+      "checks": [
+        "config re-read: current_dataset moved to 2026-10-23-research-fortyeighth during review; re-screened and dry-run against it",
+        "all 14 captures rehashed: file sha256 == metadata sha256 == source content_hash (Road 1 assessment report reused from country-research-2026-10-16-apac_other, metadata URL matches)",
+        "Narellan: scoping report text read (pdftotext): SSD request for SEARs, MoreHuman Property Group, 192 Narellan Road, Lot 102 DP 1323758, ~100 MW, two buildings 26 m/30 m; doc control v4 08.10.2026; folder listing AttachRef 20261021T051439 GMT; regulatory_filing; as_of 2026-10-21 = published_at, 2 days old",
+        "Narellan locator recomputed (pyproj 3.7.1/shapely 2.1.1, EPSG:7856): centroid 150.7937945,-34.0630528 exact, inside, 96.1 m to boundary, farthest vertex 273.8 m; portal point 272.5 m outside in Lot 3098 DP1230014; lot outline matches report Figure 1 zoning map; property register 180 Narellan Rd polygon = Lot 102 (121,121 m2 overlap), 192 property adjoining with zero overlap",
+        "Road 1: notice of decision and signed s4.38 instrument read: SSD-80814238, Stockland Development Pty Ltd, 1-5 Khartoum Road, Part Lot 2 DP 1043041, construction and 24/7 operation of 49 MW data centre, decision 1 Oct 2026 (22 days), A5 lapse/A6 49 MW cap present; data-centre consent itself, no appeal found",
+        "Road 1 locator recomputed: union of Lots 20+21 DP1319168 centroid 151.1251473,-33.781037 exact, inside, 31.4 m to boundary; 2//DP1043041 absent from envelope lot capture while 3,4,6,7//DP1043041 remain; union edges match 2024 survey plan of Lot 2 (359.3 vs 358.115 m, 96.33 vs 96.38 m, 73.13 vs 73.175 m, 216.7 vs 216.13 m, bearings 39.9/129.9/219.9 deg = 39°56'); frontages Khartoum 9.5, Murrell 6.3, Talavera 12.0, Waterloo 14.3 m; portal point 16.2 m outside",
+        "S4 refresh: MOD2 assessment report read: 'At the time of writing this report, construction of the approved development has commenced', SSD-63741210, Lot 305 DP 1275011, recommendation and determination signed 23 Sep 2026; AttachRef matches portal MOD-2 folder; same consent/lot as existing record (no finer stage), 2026-09-23 strictly newer than 2026-06-30; post-approval folders show nothing later",
+        "distinctness: no name/alias/reference matches (Narellan, Campbelltown, Genesis, MoreHuman, SSD-150514738, DP1323758, Khartoum, Road 1, SSD-80814238, DP1043041, DP1319168, Murrell) in sites/projects/evidence/source-records/identity-mapping of fortyseventh and fortyeighth, other queue fragments or sources/*-holds.json except the 16 Oct Road 1 hold_locator (reopen condition met by current cadastral lots)",
+        "proximity: nothing within 2 km of Narellan (nearest CDC KC1 24.0 km); Road 1 nearest Macquarie IC3 Super West polygon 8.2 m across Murrell St with zero overlap (different consent SSD-24299707/operator), Goodman Project Apollo 334 m from lot; no queue additions within 50 km",
+        "one project per new site; roles empty; all 14 sources referenced; no third-party personal names/phones/emails in changes, sources or holds",
+        "dryrun_fragment.py ok against fortyeighth: 606 sites, 642 projects"
+      ],
+      "residual_risks": [
+        "Road 1 successor-lot link (Lot 2 DP1043041 -> Lots 20/21 DP1319168) rests on shape/area/frontage match and LDA2024/0225, not a plan-history record",
+        "Both new locators are parent-property markers, not building positions (farthest vertex 274 m Narellan, 249 m Road 1)",
+        "The separate approved 1-5 Khartoum Road Data Centre (SSD-63235720, not in Atlas, portal point ~40 m north of the parent lot) may be a Stockland sibling; a later admission should be screened against this site",
+        "Narellan applicant address (192) differs from the NSW property register address (180) of its stated legal lot; report gives 12.71 ha vs cadastre 12.02 ha",
+        "S4 statement does not identify which building is under construction; inherited S4 campus point remains 72 m outside Lot 305 (pre-existing geometry review lead)"
+      ]
+    },
+    {
+      "fragment": "br-p1",
+      "verdict": "accept",
+      "checks": [
+        "All 11 relied-on captures rehashed: file SHA-256 = .metadata.json sha256 = source content_hash; metadata URL = source_url, HTTP 200, no credentials; the three geometry-facts files match geometry_facts_sha256; the three Esri exports match their metadata",
+        "Status read in the live Brazil locations page capture: SP01, SP02 and RJ01 cards each list the address, 'Projetado conforme padrao Tier III' and 'Disponibilidade 24x7x365 / Acesso e operacao continua'; the page adds on-site staff 24x7x365 and continuous monitoring; company_disclosure in the operator's voice; JSON-LD dateModified 2026-09-25T12:21:12Z = page-sitemap lastmod; 28 days old",
+        "dateModified bound (no IA copy of the URL): IA copies of 16 Sep 2026 show the old odatacolocation.com SP01/SP02/RJ01 pages still served live; the dated ODATA/Aligned DeltaFlow release of 17 Sep 2026 (modified 18 Sep) still directs readers to odatacolocation.com; a verifier CDX prefix query (saved as local verifier-ia-cdx-odatadc-prefix-2026.json, 453 rows) shows no odatadc.com capture in 2026 before 4 Oct; odatadc.com root was a 302 in Jul 2025; all odatadc.com page-sitemap lastmods are 28 Aug 2026 or later; old URLs now redirect; live capture bounds above. Source date_semantics rewritten to state these bounds",
+        "Archived facility pages (16 Sep IA, version 19 May 2026) read: SP01 '100% construido, gerenciado e operado pela ODATA', Tier III Facility, 22,000/13,500/5,600 m2, 19.4 MW; SP02 63,000/9,600/5,600 m2, '24 MW contratados e 16 MW disponiveis', 30,000 m2 free for up to two buildings; RJ01 20,000/19,000 m2, 23.4 MW; scoped_project_details figures match and are labelled as non-status",
+        "Locators recomputed from raw captures: each archived page's 'Acesse o mapa' href carries !3d/!4d equal to the payload [null,null,lat,lon] in the Google capture (SP01 named place 'ODATA DATA CENTER SP01'; SP02 and RJ01 address places); pyproj viewport offsets 223.6, 224.6 and 745.8 m, correctly excluded; Esri exports centred on the points show plant-roofed buildings (SP02 at the road-facing NW end of the complex)",
+        "Scope campus_locator, compiled_reference, direct_geometry, null uncertainty with reasons; no city centre, HQ or zone centroid; each addition is the only project on a new site",
+        "Distinctness re-screened against the advanced base 2026-10-23-research-fortyeighth (604 sites, 640 projects, 3,265 evidence, source-records, identity-mapping), all sources/*-holds.json, every other queue fragment and claims.tsv: only ODATA site is SP04 Osasco (14.55/77.59/358.24 km); nearest Atlas sites 7.57 km (Scala Tambore), 9.82 km (Ascenty Sumare), 20.28 km (Rio AI City); nothing within 2 km; distinctness_review texts updated to the forty-eighth base and to mention the Lampa (Chile) ODATA distinctness-reference evidence row",
+        "Roles: ODATA (an Aligned Data Centers company) operator, relationship_scope current, sourced to the status page",
+        "No private-individual names, e-mails or phones in changes, sources or holds (release officers and media contacts not reproduced); robots.txt captures allow odatadc.com pages, google /maps/place/, arcgisonline; web.archive.org robots 404",
+        "dryrun_fragment.py ok against 2026-10-23-research-fortyeighth (607 sites, 643 projects, 3,276 evidence)"
+      ],
+      "residual_risks": [
+        "The observation date rests on a WordPress dateModified with no archived copy of the same URL; it is bounded only by dated second sources on the site relaunch (old site live 16-18 Sep, first odatadc.com archive 4 Oct) and the 22 Oct live capture",
+        "The operating statements are generic present-tense marketing cards ('Disponibilidade 24x7x365 / Acesso e operacao continua'), as accepted for CtrlS Bengaluru and Cologix MTL8/VAN4; capacity in service is not established",
+        "SP02 and RJ01 points are Google address places (RJ01 on a numbered federal-highway frontage, possibly interpolated); whether the RJ01 plant-roofed building is ODATA's rather than a neighbour's is not independently established",
+        "Google place coordinates carry no published accuracy; Esri checks are visual plausibility only",
+        "ODATA SP03 is held only for the per-pass cap and must be screened against these three sites when admitted"
+      ]
+    }
+  ],
+  "packet_pins": {
+    "definitions/atlas-research-fortyninth-2026-10-23.json": "412172f0ba7a64c38f446190d3110c9eeda0511f365208f1b01cad4a9e833f8e",
+    "sources/research-countries-2026-10-23-fortyninth-primary-sources.json": "13380e7c13c6e32c927cd8944d8e438781b95c36b58080f3f9935c8ab671fb3c",
+    "sources/research-countries-2026-10-23-fortyninth-actions.json": "46ead37bae093c11d76f324618c4a288273834d710a4ee2711d88f573a3bcfd1",
+    "sources/research-countries-2026-10-23-fortyninth-holds.json": "459c7509e8a10fe0f6986302cebb905df6408d77fec76eb92936cd1421891d79"
+  },
+  "raw_captures_redistributed": false
+}

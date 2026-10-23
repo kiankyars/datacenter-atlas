@@ -330,3 +330,5 @@ From 22 October 2026 sites are added continuously: researchers each work a narro
 `verified_construction_core/2026-10-23-research-fortyseventh`: **602 sites and 637 projects in 63 countries**. Adds Digital Realty Athens Campus — ATH1, ATH2 and ATH3 data-centre operations.
 
 `verified_construction_core/2026-10-23-research-fortyeighth`: **604 sites and 640 projects in 63 countries**. Adds Cologix MTL8 — existing data-centre operations; Cologix VAN4 — existing data-centre operations; Microsoft Vaughan — second phase (second datacentre building).
+
+`verified_construction_core/2026-10-23-research-fortyninth`: **609 sites and 645 projects in 63 countries**. Adds 192 Narellan Road Data Centre (Project Genesis) — proposed 100 MW two-building data centre (SSD-150514738); Road 1 Data Centre — approved 49 MW data centre (SSD-80814238); ODATA DC SP01 — existing data centre operations; ODATA DC SP02 — existing data centre operations; ODATA DC RJ01 — existing data centre operations. Refreshes NEXTDC S4 Initial Development (under construction).
