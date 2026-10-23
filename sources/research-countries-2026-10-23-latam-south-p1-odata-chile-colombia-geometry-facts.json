@@ -1,0 +1,195 @@
+{
+  "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+  "candidate": "ODATA DC BG01 (Cota, Colombia), DC ST01 (Lampa, Chile) and DC ST02 (San Bernardo, Chile)",
+  "prepared_at": "2026-10-23",
+  "decision": "BG01 and ST01 use ODATA's own locations-map coordinate as the campus locator. ST02 uses the proponent-declared reference point of the Chilean environmental-assessment service (SEA) record for 'Modificaciones proyecto ODATA San Bernardo' (PERTI-2025-15840), because ODATA's own ST02 coordinate is identical to the street-address map position 'Cam. San Esteban 1365' and falls on a road junction 293 m west of the data-centre building, whereas the SEA point falls on that building.",
+  "sources": {
+    "operator_locations_map": {
+      "url": "https://odatadc.com/es/localidades/",
+      "file": "local_data/country-research-latam-south-p1/odata-es-localidades.html",
+      "sha256": "7bf59e30736985746c4c03571c1b757f7b6e295435d3267329300fe2483c029d",
+      "retrieved_at": "2026-10-23T00:21:48.589Z",
+      "robots": "odatadc.com/robots.txt (captured 2026-10-23T00:10:41Z, local robots-odatadc.com.txt) disallows only /wp-admin/, /healthcheck and /cdn-cgi/.",
+      "page_dates": "JSON-LD datePublished 2026-08-15T16:58:01+00:00, dateModified 2026-09-25T12:13:23+00:00 (locator only; not a status date). The bytes are identical to the mx-p1 capture of 2026-10-22T23:37:07Z.",
+      "extraction": "The page's store-locator element carries an HTML-escaped JSON array of 12 ODATA facilities. After html.unescape the entries were read with a regular expression and Python json; the coordinates field is a single 'lat,lon' string, transcribed literally and split on the comma. No geocoder or map search was used. The Portuguese locations page (https://odatadc.com/localidades/, local odata-pt-localidades.html) carries the same three entries with identical coordinates."
+    },
+    "sea_odata_san_bernardo": {
+      "url": "https://pertinencia.sea.gob.cl/api/public/expediente/getPertinenciaFull/4AA3F87D-531E-4FDA-9F36-1E383F69BDF6",
+      "file": "local_data/country-research-latam-south-p1/cl-perti-2025-15840-full.json",
+      "sha256": "9dd6675e2e69ca5d280fc93c1162ed4e708483bd10cc605ab5e2832b1beb2fff",
+      "retrieved_at": "2026-10-23T00:18:37.716Z",
+      "robots": "pertinencia.sea.gob.cl/robots.txt (captured 2026-10-23, local robots-pertinencia.sea.gob.cl.txt) is 'User-agent: * / Disallow:' (nothing disallowed).",
+      "extraction": "pertinencia.puntosMapa[0]: label 'Punto de referencia', field 'longitud' = '-33.531615603589', field 'latitud' = '-70.709639399984'. The two labels are swapped (the value labelled longitude is a southern-hemisphere latitude for the Santiago region), as in the other SEA records already used by the Atlas; the point is therefore latitude -33.531615603589, longitude -70.709639399984. No datum is stated (WGS 84 assumed, as in the SEA web map)."
+    },
+    "sea_odata_lampa": {
+      "url": "https://pertinencia.sea.gob.cl/api/public/expediente/getPertinenciaFull/7F9C1CAC-3228-4BC0-BDAC-F56B4A7B2338",
+      "file": "local_data/country-research-latam-south-p1/cl-perti-2023-16026-full.json",
+      "sha256": "e7b0147e5f38f0c513588c1cbcdf2826140bc49069cef76f89cfb6182bd82e6f",
+      "retrieved_at": "2026-10-23T00:18:41.210Z",
+      "extraction": "pertinencia.puntosMapa[0]: label 'Punto representativo', 'longitud' = '-33.30643494728', 'latitud' = '-70.727656335228' (labels swapped as above). Used only as a cross-check of the ST01 operator coordinate."
+    }
+  },
+  "facilities": [
+    {
+      "facility": "ODATA DC BG01",
+      "location_id": 8625,
+      "address_as_published": "Zona Franca Metropolitana, Cota, Cundinamarca, Colômbia",
+      "coordinates_literal": "4.7552422,-74.1388944",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.1388944,
+          4.7552422
+        ]
+      },
+      "authority_class": "official_source",
+      "scope_class": "operator_published_facility_coordinate",
+      "use_scope": "campus_locator",
+      "cross_checks": [
+        "ODATA's archived BG01 facility page (Internet Archive copy of 18 May 2026, local ia-20260518-odata-dc-bg01.html) links 'Acesse o mapa' to https://maps.app.goo.gl/EzNC5de9XqbaVVb49; a header-only request on 2026-10-23 (local head-goo-bg01.metadata.json) shows it redirects to the Google Maps place 'ODATA DATA CENTER BG01' (feature 0x8e3f839ea306bd25:0x24742869846536f4, !3d4.7549818 !4d-74.138923), whose place payload (local gmap-odata-bg01.html) echoes the same name, feature and coordinates. That place is 29.1 m from the operator coordinate. Its search parameter decodes to 'Zona Franca Metropolitana, Predio San Rafael Vereda Vuelta Grande del municipio de Cota'.",
+        "The Atlas's nearest site, Equinix BG2 in the Zona Franca de Bogotá, is 9.14 km away."
+      ],
+      "imagery_check": {
+        "file": "local_data/country-research-latam-south-p1/esri-odata-bg01-op.png",
+        "sha256": "829cb8cd502fb8ecd65f3e8013e554654b5a035109ca64c0daf75429a4e5a045",
+        "bbox_wgs84": [
+          -74.1423944,
+          4.7517422,
+          -74.1353944,
+          4.7587422
+        ],
+        "size_px": [
+          800,
+          800
+        ],
+        "point_px": [
+          400,
+          400
+        ],
+        "google_place_px": [
+          397,
+          430
+        ],
+        "observation": "The operator point falls at the north-west corner of a white-roofed building on an estate-road junction; a grey-roofed block carrying dense rooftop mechanical plant adjoins it to the south-west, and a vacant graded plot lies to the north-west. The Google place point falls on the west side of the same building. Consistent with a data centre; the building is not labelled in the imagery and the acquisition date is not stated."
+      }
+    },
+    {
+      "facility": "ODATA DC ST01",
+      "location_id": 8615,
+      "address_as_published": "Av. Pdte. Eduardo Frei Montalva 17400, Lampa, Región Metropolitana, Chile",
+      "coordinates_literal": "-33.3066668,-70.72767259999999",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -70.72767259999999,
+          -33.3066668
+        ]
+      },
+      "authority_class": "official_source",
+      "scope_class": "operator_published_facility_coordinate",
+      "use_scope": "campus_locator",
+      "cross_checks": [
+        "SEA record PERTI-2023-16026 ('Modificaciones ODATA Datacenter Lampa', resolved 22 January 2024 as not requiring SEIA entry; it modifies the 'Proyecto ODATA Datacenter' approved by RCA N°098/2021 and states the changes stay at the same coordinates and boundaries) gives a representative point 25.8 m from the operator coordinate.",
+        "ODATA's archived ST01 facility page (Internet Archive copy of 16 September 2026) links 'Acesse o mapa' to https://maps.app.goo.gl/xWUXrnHMkBfff25Q7, which redirects (header-only request, local head-goo-st01.metadata.json) to the Google Maps address 'Av. Pdte. Eduardo Frei Montalva 17400, Lampa' at -33.3071452, -70.7282118, 73.1 m from the operator coordinate.",
+        "Campo de Datos Lampa (CI GMF II) is 3.92 km away; no Atlas site lies within 2 km."
+      ],
+      "imagery_check": {
+        "file": "local_data/country-research-latam-south-p1/esri-odata-st01-op.png",
+        "sha256": "fa1f9afe59e1f4effae56488e4d30d46340582df593848bf41f3f1fb5f993d69",
+        "bbox_wgs84": [
+          -70.7311726,
+          -33.3101668,
+          -70.7241726,
+          -33.3031668
+        ],
+        "size_px": [
+          800,
+          800
+        ],
+        "point_px": [
+          400,
+          400
+        ],
+        "sea_point_px": [
+          402,
+          374
+        ],
+        "google_address_px": [
+          338,
+          455
+        ],
+        "observation": "The operator point falls at the north-east corner of a long white-roofed building complex beside the Ruta 5 frontage road, by a small gatehouse at the site entrance. The complex extends roughly 350 m south-west, with rows of dark plant or generator enclosures along its south-east side; open ground lies to the south. The SEA point is at the same entrance corner and the Google address point on the north-eastern part of the building. Consistent with an operating multi-building data centre; not labelled in the imagery, acquisition date not stated."
+      }
+    },
+    {
+      "facility": "ODATA DC ST02",
+      "location_id": 8614,
+      "address_as_published": "Cam. San Esteban 1365, San Joaquín, San Bernardo, Región Metropolitana, Chile (store locator); Camino San Esteban, 01268, San Bernardo (current Chile locations page); Avenida Lo Espejo 03474, San Bernardo (archived facility page)",
+      "operator_coordinates_literal": "-33.5308186,-70.71265369999999",
+      "operator_coordinate_not_used_reason": "Identical to the Google Maps address position for 'Cam. San Esteban 1365, San Joaquín, San Bernardo' that ODATA's archived ST02 page linked (https://maps.app.goo.gl/XwQtc4e2pVEWjiJG6, local head-goo-st02.metadata.json). In imagery it falls on a road junction between warehouses, 293 m west of the data-centre building, so it is an address geocode rather than a facility position.",
+      "selected_point_literal": "longitud -33.531615603589 / latitud -70.709639399984 (labels swapped in the SEA record)",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -70.709639399984,
+          -33.531615603589
+        ]
+      },
+      "authority_class": "official_source",
+      "scope_class": "proponent_declared_project_point_in_regulatory_filing",
+      "use_scope": "campus_locator",
+      "cross_checks": [
+        "The SEA record is the 12 November 2025 relevance consultation 'Modificaciones proyecto ODATA San Bernardo' by Lo Espejo Data Center SpA, modifying the project approved as 'PROYECTO ODATA SAN BERNARDO'. It describes a new 110 kV GIS bay and two 110/12 kV 50 MVA transformers inside the existing ODATA San Bernardo substation, located within the data-centre installations in San Bernardo with access from Av. Lo Espejo. The case was still 'En análisis' when re-captured on 23 October 2026.",
+        "Google Cerrillos (Dataluna) is 1.68 km north-west of the selected point; its SEA KMZ outline (local_data/country-research-2026-10-16-americas_other/cl-perti-7923-kmz.kmz) is at least 1.23 km away at its nearest vertex, so the two are different properties."
+      ],
+      "imagery_check": {
+        "file": "local_data/country-research-latam-south-p1/esri-odata-st02-sea.png",
+        "sha256": "87c646c12ce10a7283de065fb4b8babbcf300929c9336b5465b14e870752ba85",
+        "bbox_wgs84": [
+          -70.7118394,
+          -33.5338156,
+          -70.7074394,
+          -33.5294156
+        ],
+        "size_px": [
+          800,
+          800
+        ],
+        "point_px": [
+          400,
+          400
+        ],
+        "observation": "The SEA point falls on the central plant spine between two large white-roofed halls whose long sides are lined with rows of generator enclosures, with an outdoor substation at the north-west corner of the compound beside the main road. A steel-frame construction site lies immediately south. A typical hyperscale data-centre building with its own substation, consistent with ODATA's description of ST02 (dedicated on-site substation, dual utility feeds). Not labelled in the imagery; acquisition date not stated.",
+        "context_file": "local_data/country-research-latam-south-p1/esri-odata-st02-op.png",
+        "context_file_sha256": "e91add35718cc22614659bb490b70aad71575bcf1b6790b4b49a437ed36c51ed",
+        "context_bbox_wgs84": [
+          -70.7171537,
+          -33.5353186,
+          -70.7081537,
+          -33.5263186
+        ],
+        "context_points_px": {
+          "operator_coordinate": [
+            400,
+            400
+          ],
+          "sea_point": [
+            668,
+            471
+          ]
+        }
+      }
+    }
+  ],
+  "consistency_checks": {
+    "coordinate_order": "Operator store-locator strings are 'lat,lon'; SEA labels are swapped and resolved by the hemisphere and longitude range of the Santiago region.",
+    "datum": "Neither ODATA nor SEA states a datum; WGS 84 is assumed by both web maps, not asserted.",
+    "geocoder_used": false,
+    "distances_m": {
+      "BG01_operator_to_google_place": 29.1,
+      "ST01_operator_to_sea_point": 25.8,
+      "ST01_operator_to_google_address": 73.1,
+      "ST02_operator_to_sea_point": 293.1
+    }
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "reviewer": "root",
+  "reviewed_at": "2026-10-23",
+  "decision": "accepted_for_integration",
+  "update": "verified_construction_core/2026-10-23-research-fiftysecond",
+  "base_dataset": "verified_construction_core/2026-10-23-research-fiftyfirst",
+  "process": "continuous: one researcher per beat, one adversarial verifier per fragment",
+  "fragments": [
+    {
+      "fragment": "cn-ningxia-gansu-p2",
+      "verdict": "accept",
+      "checks": [
+        "All 23 relied-on captures rehashed: sha256 equals .metadata.json and source content_hash; URLs match metadata",
+        "GDS Phase 2: permit page read - 6405022026GG0075620, issued 2026-09-30, validity 有效, builder 宁夏万国数卫, unit GB00039W; land-use permit YG0024667 (2026-09-23); 23 days old, in window",
+        "GDS Phase 2: Phase 1 permit has unit GB00038W and north boundary at the Phase 2 land; existing site vcc-site-f6ace3da50c7c2c3c50e and project 5162c73e locator reused exactly; source rows match existing evidence rows field for field",
+        "Status record read in capture (Shapotou District market-supervision branch, 2026-10-20): 数据中心重点在建项目 ... 对接中国移动、中金、中联等项目负责人, 指导新建4家工地食堂; government_record, 3 days old",
+        "Identity: 24 July Xuanhe Town article names China Mobile, 中联零碳智算 and 中金数据 as the three Xuanhe core projects; captures show town-named market-supervision offices (宣和, 迎水桥, 柔远, 兴仁)",
+        "Zhonglian EIA read with pdftotext: printed point 105°29′25.851″, 37°22′6.045″ (single printed value); park 500 mu, 1#-8#, formally started construction, camp >11,000 m2; substation on park west side",
+        "CIDC EIA read: main centre 105°29′53.933″, 37°22′42.025″ (twice) and monitoring point 5# match; Phases 1-2 正在建设中 (March 2026, context only)",
+        "DMS-to-decimal recomputed for both points; independent projection onto the registered Xuanhe detailed plan: Zhonglian on the west red line of the Sandang aux/Weisi/Jingwu/Weiwu block, CIDC just north of Weier Road west of Jingsi Road",
+        "Sentinel-2 2025 crop viewed: Zhonglian point at the west edge of the levelled area; CIDC land unbuilt in 2025",
+        "19 Oct roads scheme zoomed: 中金大门标高1346.8 with freight entrance on north side of 纬二路 and 中金大门标高1343.80 on 经四路; CIDC Phase 1 board shows 330 kV substation in the site's south-east",
+        "Zhonglian permits read: A-zone GG0054519 (1#-4# and 330 kV substation, 2025-07-02), A-zone YG0026516, B-zone YG0027526 to a different Zhonglian company; all bounded west by Sandang Highway",
+        "Distinctness screened against 2026-10-23-research-fiftyfirst (new current dataset; nothing added in Ningxia), all sources/*holds*.json and every other queue fragment: no Zhonglian/CIDC record; proximity distances reproduced (407/757/1242 m; 1036/1324 m)",
+        "Amended: CIDC locator and geometry facts now disclose a second printed centre (special assessment section 1.1, about 190 m NW, same block) and the 2025 board's 纬三路 label; geometry_facts_sha256 updated in sources.json",
+        "No contact names (EIA 建设单位联系人) or private phone numbers in changes, sources, holds or geometry facts",
+        "dryrun_fragment.py ok (620 sites, 657 projects) against fiftyfirst"
+      ],
+      "residual_risks": [
+        "Both under-construction statuses rest on one indirect district food-safety record that names companies (中金, 中联), not phases, zones or buildings",
+        "Neither EIA states a datum; the WGS84 reading rests on a planning raster registered to imagery of unstated accuracy",
+        "CIDC EIA prints two station centres about 190 m apart; the selected one is better corroborated but an error up to about 200 m is possible",
+        "Zhonglian point lies on the park's west red line, possibly on the boundary or access strip rather than inside the park",
+        "Zhonglian owner role is taken from the June 2026 EIA for the whole park, while the B-zone land-use permit was issued to a different Zhonglian company",
+        "Park- and base-level scopes include later buildings and phases (B-zone, CIDC Phase 2) that have no construction permit"
+      ]
+    },
+    {
+      "fragment": "latam-south-p1",
+      "verdict": "accept",
+      "checks": [
+        "All 14 relied-on captures (15 files including the byte-identical mx-p1 locations-page capture) rehashed: file SHA-256 = .metadata.json sha256 = source content_hash; metadata URL = source_url, HTTP 200, no credentials; geometry-facts file matches geometry_facts_sha256; Esri exports match their metadata hashes and bboxes",
+        "BG01 status read in the capture: 'El centro de datos BG01 está operativo y cuenta con capacidad disponible'; Portuguese original has 'O Data Center BG01 está em operação, com capacidade disponível'; company_disclosure in the operator's voice",
+        "ST01/ST02 status read in the capture: 'Estas instalaciones ofrecen infraestructura para operaciones digitales críticas', both cards 'Disponibilidad 24/7/365 / Acceso y funcionamiento continuos', on-site staff 24x7x365; same generic-card standard accepted for ODATA Brazil (br-p1) and Mexico (mx-p1); ST02 inauguration (Nov 2023 press note) read",
+        "Date: JSON-LD dateModified 2026-09-25 on ES and PT pages; bounded by the Internet Archive raw copy of page-sitemap.xml of 2026-10-13 (its SHA-1 equals the CDX digest; byte-identical to the live sitemap) listing the PT Chile/Colombia pages with the same lastmod, and below by CDX rows showing the old odatacolocation.com ST01 page live on 2026-09-16; 28 days old, inside 85",
+        "Found and recorded that the /es/ pages are GTranslate renderings of the Portuguese originals (same JSON-LD dates and same statements); added to the two status sources' date_semantics. Verifier CDX prefix query for odatadc.com/es/ from 2026-09 finds only the Mexico page (saved as verifier2-ia-cdx-odatadc-es-prefix-202609.json); /en/ query HTTP 503, not retried",
+        "Locators recomputed from raw captures: store-locator JSON entries 8625 (4.7552422,-74.1388944) and 8615 (-33.3066668,-70.72767259999999) match; SEA PERTI-2025-15840 puntosMapa labels swapped, giving -33.531615603589,-70.709639399984; geodesic checks (pyproj): BG01 to operator-linked Google place 29.0 m, ST01 to SEA PERTI-2023-16026 point 25.8 m and to Google address 73.1 m, ST02 SEA point to operator address coordinate 293.6 m",
+        "Imagery viewed with points plotted: ST02 SEA point on the central plant spine of a generator-lined two-hall building with outdoor substation (about 26,000 m2 footprint, consistent with 27,000 m2 built); ST01 point at the entrance corner of a long plant-lined complex west of Ruta 5, as the SEA record states; BG01 point at the NW side of a white-roofed building adjoining a plant-roofed block, at a specific building rather than a city, HQ or zone centroid",
+        "SEA identity read: PERTI-2025-15840 'Modificaciones proyecto ODATA San Bernardo' (Lo Espejo Data Center SpA; RCA 'PROYECTO ODATA SAN BERNARDO'; works inside 'SE Odata San Bernardo' within the Datacenter installations, access via Av. Lo Espejo; En análisis); PERTI-2023-16026 modifies 'PROYECTO ODATA DATACENTER' (RCA 098/2021) at Panamericana Norte 17.400, Lampa, same coordinates",
+        "Scope fix: ST01 facility_scope no longer implies the November 2023 second building is in service; BG01 precision now states which adjoining building houses BG01 is not established (operator 6,400 m2 total area vs the larger white building plus plant block; point about 80 m from the plant block)",
+        "Distinctness re-screened against the advanced base 2026-10-23-research-fiftyfirst (618 sites, 654 projects, 3,325 evidence, source-records, identity-mapping), all 21 sources/*-holds.json, every other queue fragment and claims.tsv: no ODATA Chile/Colombia, BG01/ST01/ST02, Lo Espejo or San Esteban match (EcoDataCenter substring false positive; PERTI-2023-16026 appears only as a Campo de Datos Lampa distinctness row with a different hash); nearest sites Equinix BG2 9.14 km, Campo de Datos Lampa 3.92 km, Google Cerrillos 1.685 km from ST02 whose SEA KMZ outline is 1.23 km away (shapely, UTM 19S); no queue or hold coordinate within 5 km; each addition is the only project on a new site; distinctness texts updated to the fifty-first base",
+        "Reused locator source metadata equals published evidence row c00f9a5e (URL, hash, retrieved_at, title, family); the 2026-10-16 SNIFA hold ('ODATA San Bernardo and Lampa') is the reopen this fragment answers",
+        "Roles: ODATA operator, relationship_scope current, sourced to the status pages; no private-individual names, RUTs, e-mails or phones in changes, sources, holds, geometry facts or notes (SEA filer names not reproduced)",
+        "robots: odatadc.com, pertinencia.sea.gob.cl and server.arcgisonline.com allow; google /maps/place/ allowed; web.archive.org 404; verifier did not query Overpass/OSM/Nominatim because their robots disallow /api/ and /search (robots captures saved as verifier2-robots-*)",
+        "dryrun_fragment.py ok against 2026-10-23-research-fiftyfirst (621 sites, 657 projects, 3,338 evidence)"
+      ],
+      "residual_risks": [
+        "ST01 and ST02 operating status rests on generic present-tense marketing text and Tier III / 24x7x365 cards on a GTranslate-rendered page; capacity in service and which buildings operate are not established",
+        "The 25 September dateModified is bounded above only by an archived sitemap lastmod (13 Oct), not an archived copy of the page itself; the version could date anywhere from 16 September to 13 October",
+        "BG01: which adjoining building is ODATA's is inferred from operator-linked points only; the point may sit about 80 m from the plant-roofed block, and whether the store-locator point was hand-placed or geocoded from 'Zona Franca Metropolitana' is not established (no free-zone boundary could be checked under robots rules)",
+        "Store-locator, Google and SEA points have no stated datum or accuracy; Esri imagery checks are qualitative with unknown acquisition dates",
+        "ST02's SEA point is the reference point of a pending substation-modification consultation, used as campus locator; a construction site immediately south is not attributed",
+        "BG03 (Zona Franca Metropolitana, Tenjo) must be screened against the BG01 point if admitted later",
+        "Researcher process incident: the www.google.com.br place page was requested seconds before that host's robots.txt was captured (path allowed; robots byte-identical to www.google.com's)"
+      ]
+    },
+    {
+      "fragment": "us-tx-p2",
+      "verdict": "accept",
+      "checks": [
+        "22/22 relied-on captures rehashed: sha256 equals .metadata.json and source content_hash, HTTP 200, no credentials, retrieved_at and URL match",
+        "Decisive TABS text read in captures: TABS2027001867 registered 2026-09-24 (DFW44 data hall 4 shell addition, owner Digital Realty); TABS2026028410 registered 2026-08-20 (EDCAUS13 729,537 sq ft data center, 6682 FM 535); TABS2027001697 registered 2026-09-22 (DFW1-DC1 DH1.2 fit-out, owner Quality Technology Services LLC); all Project Registered",
+        "All three are regulatory_filing primary sources inside the 85-day window (on or after 2026-07-30); status announced only; forecast start/completion dates not used as stages; TABS-announcement precedent in base (Garland DFW39, CyrusOne DFW8, Compass DFW III B8)",
+        "Locators recomputed independently from the raw TxGIO identify captures with pyproj 3.7.1/shapely 2.1.1 (Esri CW exterior, CCW holes): DLR (-97.0015209, 33.0004451) 168.50 ac 1 part; EdgeConneX (-97.5581192, 30.1423628) 293.18 ac 1 part; QTS (-96.9815339, 32.895929) 55.76 ac 2 parts 17.7 m apart; all centroids inside a selected parcel; exact match to fragment",
+        "Registered addresses tie to parcels: 2501 Edmonds Ln 9-1-1 point in lot 1RA2; 6431 Longhorn Dr point in 322587700A1R10000; 6682 FM 535 is situs of tract 22339 (EdgeConneX MCN Austin Property 5 LLC, Herndon HQ address), 9-1-1 point 19 m outside",
+        "Operator identity read in captures: DLR DFW26 page (168-acre Digital Convergence campus, 2501 SH 121 Lewisville); EdgeConneX Austin page (AUS01 6752 FM535 Cedar Creek, HQ 2201 Cooperative Way Herndon); EdgeConneX release datelined Bastrop 2026-08-07 (Bastrop County campus); TABS AUS02 'ECX AUSTIN DFW33220N' owner at the Herndon HQ; QTS Irving page (56-acre, DC1-DC6 Longhorn Dr addresses)",
+        "Envelope captures checked for omitted operator parcels: all QTS parcels on Longhorn Dr included; EdgeConneX tract 35120 is 1.45 km from the union (correctly excluded); Uppingham Adams parcel 297683 touches the union (held, not admitted)",
+        "Earlier EDCAUS holds (thirtyfirst, thirtyfourth, thirtysixth, us-tx-p1) asked for a company statement or county record naming the operator at FM 535; EdgeConneX's AUS01 address and the EdgeConneX-named landowner of 6682 FM 535 meet it for EDCAUS13",
+        "Distinctness: no base site/project/geojson, pending queue addition or holds coordinate within 9.9 km of any locator (nearest CoreSite DA1 9.98/20.66 km, Project Longhorn 14.71 km); no base, source-record or identity-mapping hit for Lewisville, DFW44, DFW26, Edmonds, DFW1, Longhorn Dr QTS, EDCAUS, FM 535 EdgeConneX or the five TABS numbers; 'Project Gold Phase 2' only names Garland DFW39 33 km away",
+        "One project per new site; roles owner/operator with relationship_scope current/intended, each sourced",
+        "No third-party personal names, phones or emails in changes, sources, holds, notes or geometry facts (TABS contact/RAS names screened by token); survey abstract names (A53 Navarro) are legal descriptions",
+        "Geometry facts files' sha256 match sources' geometry_facts_sha256 and source captures; all source ids referenced, none missing",
+        "robots.txt captures reviewed for TDLR, Digital Realty, EdgeConneX, q.com: no requested path disallowed",
+        "Holds: corrected EDCAUS31/32 reason (parcel 34648 is about 0.27 km from the union, its address point 0.54 km; parcel 297683 touches the union)",
+        "dryrun_fragment.py ok: 621 sites, 657 projects, 3347 evidence against the fifty-first base"
+      ],
+      "residual_risks": [
+        "EDCAUS13's registration owner Burr Computer Environment Inc is not shown to be an EdgeConneX entity; the EdgeConneX operator role rests on the landowner of record, the EDC/AUS naming and the campus statements, not on a statement naming EDCAUS13",
+        "Parcel snapshots (TxGIO, tax year 2026) are undated identity evidence; ownership could have changed after DATE_ACQ",
+        "Campus points are parcel-union centroids, not building positions; horizontal uncertainty unquantified",
+        "QTS DH1.2 is a small fit-out ($2.4 million, 9,500 sq ft) and the DFW44 item is a shell addition; both represent long-operating campuses with an announced project status only",
+        "q.com: first https request preceded fetching https://q.com/robots.txt (the http variant fetched 20 s earlier was byte-identical and allows the paths used)",
+        "No municipal or county permits reviewed; later registrations or permits could advance the stages"
+      ]
+    }
+  ],
+  "packet_pins": {
+    "definitions/atlas-research-fiftysecond-2026-10-23.json": "af4dddc7733202cddca6af13acd538b280472cf4e71e6ccd1183acd3a8d93fb7",
+    "sources/research-countries-2026-10-23-fiftysecond-primary-sources.json": "51f59de49076bdf35232b98abfa16c4d5f1bd37b23e9703422b33c7818a6195e",
+    "sources/research-countries-2026-10-23-fiftysecond-actions.json": "8dbae22fcc1434d68ac7da1520bd4f4546e38f272d6c5dd7a706c6cba3cf1d12",
+    "sources/research-countries-2026-10-23-fiftysecond-holds.json": "c7cdcd4cda6733e42b136bdfd1b5015e52a8f8d800a51508cf517d96fa41f00f"
+  },
+  "raw_captures_redistributed": false
+}

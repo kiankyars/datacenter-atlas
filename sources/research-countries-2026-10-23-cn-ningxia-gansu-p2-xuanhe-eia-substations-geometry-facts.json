@@ -1,0 +1,102 @@
+{
+  "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+  "candidate": "Zhonglian Zero-Carbon Intelligent Computing (Xuanhe) Industrial Park and CIDC Zhongwei Green Intelligent Computing Industrial Base (Xuanhe): official EIA 330 kV substation-centre locators",
+  "prepared_at": "2026-10-23",
+  "method": "Each selected point is the station-centre coordinate of the park's own 330 kV substation, printed in geographic degrees-minutes-seconds in an environmental impact report form published by the Zhongwei Ecology and Environment Bureau, transcribed arithmetically to decimal degrees (deg + min/60 + sec/3600) with no datum transformation. Neither report names a datum. Precedent: the China Mobile Xuanhe D-zone and West Cloud Base substation locators (sources/research-countries-2026-10-17-east-china-west-north-zhongwei-geometry-facts.json; scope class official_eia_on_campus_substation_locator).",
+  "selected_points": {
+    "zhonglian_xuanhe_park": {
+      "source_url": "https://www.nxzw.gov.cn/zwgk/bmxxgkml/ssthjj/fdzdgknr_49584/jsxmhjyxpj_49608/202606/P020260609636232435863.pdf",
+      "local_capture": "local_data/country-research-cn-ningxia-gansu-p2/zw-zlxh-330-eia.pdf",
+      "source_sha256": "86626d44fe095170acab4a55e8a1b6971b4c7a8077a1269011f5668ff35f0df5",
+      "printed": "地理坐标 105°29′25.851″，37°22′6.045″ (project information table; report form for 中联零碳智算（宣和）产业园A区项目330千伏变电站工程, accepted by the Zhongwei EEB on 9 June 2026)",
+      "lon_lat": [
+        105.490514167,
+        37.368345833
+      ],
+      "on_campus_statement": "The report places the substation inside the Xuanhe compute-centre industrial park on reserved park land (本次不新增用地), on the park's west side, with the No.2 data-centre building to its east, the No.3 diesel-generator building to its north and the complex building and No.5 diesel-generator building to its south."
+    },
+    "cidc_xuanhe_base": {
+      "source_url": "https://www.nxzw.gov.cn/zwgk/bmxxgkml/ssthjj/fdzdgknr_49584/jsxmhjyxpj_49608/202603/P020260312539399643273.pdf",
+      "local_capture": "local_data/country-research-cn-ningxia-gansu-p2/zw-cidcxh-330-eia.pdf",
+      "source_sha256": "6531413d6494a012d45072445941b613b238516b8f4ba795b909ea2c42384afd",
+      "printed": "330kV 变电站中心坐标：东经 105°29′53.933″，北纬 37°22′42.025″ (project table and section 2; the electromagnetic special assessment repeats the centre as 105°29′53.93381″, 37°22′42.02568″)",
+      "lon_lat": [
+        105.498314722,
+        37.378340278
+      ],
+      "on_campus_statement": "The report places the substation inside the CIDC Zhongwei Green Intelligent Computing Industrial Base site (厂区内), with base land (under construction) to its north and west and open land to its east and south.",
+      "station_boundary_monitoring_points_offsets_m_east_north": {
+        "N": [
+          9,
+          73
+        ],
+        "E": [
+          104,
+          -3
+        ],
+        "S": [
+          -8,
+          -57
+        ],
+        "W": [
+          -85,
+          33
+        ]
+      },
+      "station_boundary_note": "The four station-boundary monitoring points of the special assessment (table 4) lie 57-104 m from the printed centre, i.e. the compound is roughly 190 x 130 m.",
+      "conflicting_printed_centre": {
+        "printed": "330kV 变电站中心坐标为：东经 105°29′48.314″，北纬 37°22′46.293″ (electromagnetic special assessment, section 1.1 地理位置)",
+        "lon_lat": [
+          105.496753889,
+          37.379525833
+        ],
+        "offset_from_selected_m_east_north": [
+          -138,
+          132
+        ],
+        "disposition": "Not selected. Section 1.1 of the special assessment prints a second station centre about 190 m north-west of the selected value. The selected value is printed twice in the main report (project table and section 2) and equals monitoring point 5# (station centre) to 0.00001 arcsec, and the four station-boundary monitoring points bracket it; the November 2025 Phase 1 board places the 330 kV substation in the south-east of the site, which matches the selected value within about 25 m and not the section 1.1 value (about 115 m further north and 160 m further west). On the registered detailed plan both values fall inside the same CIDC block north of Weier Road, so the campus attribution does not depend on the choice.",
+        "added_by": "verifier worker 1, 23 October 2026"
+      }
+    }
+  },
+  "datum_checks": {
+    "gcj02_alternative": "If the printed values were GCJ-02 web-map coordinates, the WGS84 positions would be 105.486460, 37.367833 (Zhonglian; 359 m west, 57 m south) and 105.494282, 37.377847 (CIDC; 357 m west, 55 m south). The Zhonglian alternative falls about 250 m west of Sandang Highway in eroded gully land, contradicting the park permits (west boundary at Sandang Highway); the CIDC alternative falls on Weier Road near the south-west corner of the CIDC block, contradicting the report (base land to the west and north of the substation). Both printed values read directly as WGS84 fit the official plans, so no transformation is applied.",
+    "script": "local_data/country-research-cn-ningxia-gansu-p2/derived/eia_points_check.py",
+    "output": "local_data/country-research-cn-ningxia-gansu-p2/derived/eia_points_check.out.txt"
+  },
+  "registration_check_on_official_detailed_plan": {
+    "basis": "Page-4 land-use map of the 20 August 2026 official Xuanhe detailed plan (local_data/country-research-cn-ningxia-gansu-p1/zw-xuanhe-detailed-plan-0820.pdf, sha256 7d0c7a664373bf609305b1862393ea7a7e11c3640949cb87cdddd00e04134991) as registered to Esri World Imagery in sources/research-countries-2026-10-22-cn-ningxia-gansu-p1-gds-xuanhe-a-zone-geometry-facts.json (affine local_data/country-research-cn-ningxia-gansu-p1/derived/xuanhe-plan-esri-registration.json, sha256 60c93d71c8d6b64bb1b704637725d2144647cc39bb819f88ec811258172329a1; about 5 m RMS image-to-image; plan pixel about 6.46 m). Edge positions below are manual reads from zoomed crops, about +-1 plan px.",
+    "zhonglian": {
+      "plan_px": [
+        538.6,
+        523.8
+      ],
+      "block": "Data-centre block bounded by the Sandang Highway auxiliary road (west), Weisi Road (north, with a small north-west jog), Jingwu Road (east) and Weiwu Road (south); about 460 m wide and 640 m long (about 30 ha), comparable within about 10% to the park outline on the 17 September board (north side about 455 m, south side about 487 m, east side about 705 m) that combines the A-zone and B-zone land (16.95 + 16.94 ha in the land-use permits; 500 mu in the EIA).",
+      "position": "On the block's west edge (within about 20 m of the red line), about 200 m south of the north-west jog line.",
+      "board_comparison": "The 17 September 2026 adjustment board (local_data/country-research-cn-ningxia-gansu-p2/zw-zlxh-a-adj-board-0917.curl.png, sha256 15042a155b4e1a5522e373fe4fcd0a616f3e8da1e18272c04012f19cc2f0db27; byte-identical to the 17 October china_west_north capture) reproduces the originally approved 1:1000 general plan of both zones (data-centre buildings 1#-4# in the A-zone, 5#-8# in the B-zone). Its 1# 330 kV substation compound lies on the A-zone west side beside the 137 m access strip to Sandang Highway; measured at the drawing scale (about 0.49 m per board px from the printed 137.15, 190.51, 327.06 and 487.15 m sides), the compound centre is about 50 m east of the park's west red line and about 185 m south of the line of its north-west jog (sides 62.01 m and 77.75 m). The registered detailed-plan block shows the same north-west jog (about 60 x 60 m). The printed point lies 0-20 m inside the block's west line and about 200 m south of the jog line, so the agreement is within about 50 m east-west and 15 m north-south."
+    },
+    "cidc": {
+      "plan_px": [
+        644.7,
+        351.8
+      ],
+      "block": "Data-centre block bounded by the Sandang Highway auxiliary road (west), Weier Road (south) and Jingsi Road (east); about 550 m wide at Weier Road, matching the about 557 m width implied by the Phase 1 board (233 mu site, 2:1 outline).",
+      "position": "About 30 m north of the block's south red line (Weier Road), about 116 m west of the Jingsi Road centre line and about 430 m east of the auxiliary road, i.e. in the south-east part of the block.",
+      "board_comparison": "The November 2025 Phase 1 scheme board (local zw-cidcxh-plan-1106.jpg) shows the 330 kV outdoor substation in the south-east of the site, its centre about 83% of the site width from the west and about 47 m north of the south boundary (about 93 m from the east boundary at the board's implied scale). Agreement with the printed point is within about 25 m.",
+      "gate_labels_19_october_2026": "The official 19 October 2026 Xuanhe roads scheme (local_data/country-research-cn-ningxia-gansu-p1/zw-xhinfra-plan-1019.curl.jpg, sha256 423f207bf1478fbb49b6bd29badc0e3c1096b0dd417fbf5f1161fd90068784ce) labels a CIDC gate (中金大门标高1346.8, with a freight-entrance arrow) on the north side of Weier Road about midway between the auxiliary road and Jingsi Road, and a second CIDC gate (中金大门标高1343.80) on Jingsi Road further north; Chindata gates (秦淮大门) are labelled for the block east of Jingsi Road. The freight gate position (about 52% of the block width) matches the south freight entrance on the Phase 1 board (about 53%)."
+    }
+  },
+  "imagery_check": {
+    "source": "local_data/country-research-cn-ningxia-gansu-p2/eox-s2cloudless-2025-xuanhe.jpg",
+    "source_sha256": "278d5fb520a5e616f115beb946c82d5554d30b13dce04fe7c408571b4ee24946",
+    "extent": "EPSG:4326 105.47-105.53 E, 37.35-37.39 N, 1500 x 1000 px (about 3.5 m x 4.4 m per px; native 10 m)",
+    "zhonglian": "The point (px 512.9, 541.4) lies at the west edge of an about 480 m wide levelled, light-toned area that begins about 40 m east of it and whose north edge lies about 180 m north of it, with a vegetated strip along Sandang Highway to the west and blue-roofed site buildings east of the area. This matches the EIA statement that the park site was enclosed and levelled with a construction camp built, and the board's substation position on the park's west side. The GCJ-02 alternative (px 411.5, 554.2) lies in gully land west of the highway.",
+    "cidc": "The 2025 mosaic shows unbuilt land at and around the point; it predates the construction that the March 2026 EIA reports, so the imagery cannot confirm the CIDC point. The plan registration and gate labels are the CIDC checks.",
+    "date_semantics": "Annual 2025 cloudless mosaic; acquisition dates per pixel not stated. Not a lifecycle observation."
+  },
+  "uncertainty": {
+    "zhonglian": "Not established: no datum or positional accuracy is stated. The WGS84 reading agrees with the official board layout on the registered plan within about 50 m and with the levelled ground in the 2025 Sentinel-2 mosaic within about 40 m of the park edge. Estimated within roughly 100 m of the planned substation centre; the point may fall on the park's west edge or access strip, and the park extends up to about 650 m from it. Decimal places are transcription precision.",
+    "cidc": "Not established: no datum or positional accuracy is stated. The WGS84 reading agrees with the Phase 1 board on the registered plan within about 25 m. Estimated within roughly 60 m of the substation centre, but the special assessment also prints a second, unselected station centre about 190 m north-west (still inside the CIDC block), so an error of up to about 200 m cannot be excluded. The Phase 1 site extends up to about 500 m from the point. Decimal places are transcription precision."
+  },
+  "road_name_note": "The November 2025 CIDC Phase 1 board labels the road on the south side of the site 纬三路; the 20 August 2026 detailed plan and the 19 October 2026 roads scheme name the road on the south side of the same block 纬二路 (Weier Road), with 纬三路 further south. The block identity rests on Sandang Highway (west), Jingsi Road (east) and the CIDC gate and freight-entrance labels of the 19 October scheme, which match the board; the earlier label is treated as a superseded road number. Added by verifier worker 1, 23 October 2026."
+}
