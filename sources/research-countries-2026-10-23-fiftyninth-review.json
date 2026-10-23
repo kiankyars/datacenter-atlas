@@ -1,0 +1,67 @@
+{
+  "reviewer": "root",
+  "reviewed_at": "2026-10-23",
+  "decision": "accepted_for_integration",
+  "update": "verified_construction_core/2026-10-23-research-fiftyninth",
+  "base_dataset": "verified_construction_core/2026-10-23-research-fiftyeighth",
+  "process": "continuous: one researcher per beat, one adversarial verifier per fragment",
+  "fragments": [
+    {
+      "fragment": "jp-kansai-p2",
+      "verdict": "accept",
+      "checks": [
+        "Rehashed kddi-kddi_260807_qa_XwYNx6.pdf: sha256 6677e97d...2521 matches .metadata.json and source content_hash (312,729 bytes, HTTP 200)",
+        "Rehashed kddi-ir-presentation.html: ce4de263...a0a8 matches metadata; entry at byte ~32413 labelled 2027年3月期第1四半期決算説明会（2026年8月7日） links the QA PDF; Q2 briefing listed as 2026-11-06 (future)",
+        "pdftotext + rendered page 5: 'AIDC の堺 DC で既に採用した企業には自動運転企業など多様なユースケースがあり' present; page 1 header 日時 2026年8月7日（金）",
+        "PDF CreationDate=ModDate 2026-08-10, bounding the document; published_at null; source_observation_date 2026-08-07 day precision with date_semantics",
+        "Source kind company_disclosure (KDDI's own IR results-briefing record); primary",
+        "Window: 2026-08-07 is 77 days before 2026-10-23 (cutoff 2026-07-30)",
+        "Strictly newer than existing operational 2026-07-28 (also unchanged in current dataset fiftyeighth)",
+        "Identity: KDDI's only Sakai AI data centre is the Osaka Sakai Data Center (January 22 opening release, 5 Aug release names autonomous-driving GPU use there); distinct from SoftBank Sakai record",
+        "Scope kept: whole existing facility; no locator change; no new site or roles",
+        "No other queue fragment or sources/*-holds.json touches this project; source URL not already in evidence.csv/source-records.json",
+        "robots: www.kddi.com robots.txt 404 logged 02:44:44Z before 02:51 capture",
+        "No third-party personal data in changes, sources or holds",
+        "Corrected successor_review wording: 18 Sep release reports a demonstration begun in September (not prospective)",
+        "dryrun_fragment.py ok against 2026-10-23-research-fiftyeighth"
+      ],
+      "residual_risks": [
+        "'Already adopted' (既に採用) is a customer-adoption statement rather than an explicit physical-operation statement; accepted because the facility has operated since 22 Jan 2026 and the statement is present-tense",
+        "PDF posting date unknown; observation date is the briefing date reported in the document itself",
+        "KDDI 18 Sep 2026 release (demonstration begun September using the Sakai DC) may support a later refresh; not used",
+        "newsroom.kddi.com returned 403, so releases after early October could not be screened directly"
+      ]
+    },
+    {
+      "fragment": "jp-north-p2",
+      "verdict": "accept",
+      "checks": [
+        "rehashed hix-news-202610.html (d220e0bd...3a30, 13267 B), hix-news-202610.pdf (d09523c0...421b, 482780 B), hix-top.html, tokyuland-news.html, gmo-news-pr.html: all match .metadata.json and source content_hash",
+        "all 7 literal byte pointers verified in the HTML capture; status_basis_quote_ja present verbatim",
+        "PDF rendered (pdftoppm p1) and pdftotext: joint BroadBand Tower / Hokuden IT release dated 2026-10-15; resale of BBT services from its 石狩新港サイト hall inside 石狩再エネデータセンター第1号 began 'today 10月15日', 提供開始時期 2026-10-15; present-tense statement of services provided inside the facility",
+        "source kind company_disclosure: co-issuer Hokuden IT's own H-IX site; BroadBand Tower is the existing project's current tenant; both first-hand participants",
+        "status operational, as_of 2026-10-15 = publication date; not a target or forecast; 8 days old (window 85 days from 2026-10-23)",
+        "strictly newer than existing status_as_of 2026-10-07 (evidence bf2b1182, Tokyu Land 7 Oct release); scope stays facility-wide; locator and roles unchanged",
+        "successor review confirmed: H-IX news index lists 2026.10.15 release as newest; Tokyu Land index has no DC item after 10-07 (10-23 item is Niseko resort); GMO PR list through 10-22 has no Ishikari item",
+        "identity: release names 石狩再エネデータセンター第1号 (北海道石狩市); thirty-fourth holds (2026-10-22) already reject 石狩新港サイト as separate site and route tenant/reseller changes to this record; H-IX Sapporo DC held separately (location undisclosed)",
+        "distinctness: no other queue fragment or repo holds file touches this project key or the h-ix.jp source; h-ix URL not in current evidence.csv/source-records.json",
+        "robots: www.h-ix.jp robots.txt captured 03:13:43Z before page (03:13:57Z) and PDF (03:14:01Z); disallows only /contact/",
+        "privacy: no private individuals' names, phones or e-mails in sources, summaries or holds (release officer names and contact lines not copied)",
+        "current_dataset re-read: verified_construction_core/2026-10-23-research-fiftyeighth; dryrun_fragment.py ok against it",
+        "compliance incident 3 check: queue/uk-south-p2/holds.json entries all present in published fiftythird holds (11/11 content-equal)"
+      ],
+      "residual_risks": [
+        "operating evidence is a tenant hall's present-tense service statement used for the facility-wide record (same pattern as the 7 Oct refresh); it gives no capacity or occupancy",
+        "BroadBand Tower and Hokuden IT corporate hosts returned 503 to robots.txt, so only the co-issuer's H-IX copy was captured",
+        "release was already known (as news) to the 2026-10-16 thirty-first holds; the primary copy is used only for the date refresh, not a new site"
+      ]
+    }
+  ],
+  "packet_pins": {
+    "definitions/atlas-research-fiftyninth-2026-10-23.json": "907d1813b449ac55c690d2bdd05cbf45c6a7841598d22b277c2618ecdc975428",
+    "sources/research-countries-2026-10-23-fiftyninth-primary-sources.json": "790e2f36e2e7888dfe301144f313ffda867feea052adf89d32d3e6fd9f9e5cca",
+    "sources/research-countries-2026-10-23-fiftyninth-actions.json": "c6f0f5696442f9e77dfb9c25a26841a3679b9e62cbe7b82af9db1d841a7f5f28",
+    "sources/research-countries-2026-10-23-fiftyninth-holds.json": "bb755f2f80b057fa1fb90445714baab80d3d42f177407f2fc4ad26f7c8434bb1"
+  },
+  "raw_captures_redistributed": false
+}

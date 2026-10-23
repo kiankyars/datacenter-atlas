@@ -44,9 +44,9 @@ lists every file with its size and checksum. Language models and agents can star
 
 <!-- atlas:version-files -->
 `downloads/latest/` contains the current data. For reproducible work, use the
-[archived files](https://kiankyars.github.io/datacenter-atlas/downloads/2026-10-23-research-fiftyeighth/)
+[archived files](https://kiankyars.github.io/datacenter-atlas/downloads/2026-10-23-research-fiftyninth/)
 and verify them against their
-[`SHA256SUMS`](https://github.com/kiankyars/datacenter-atlas/releases/download/data-2026-10-23-research-fiftyeighth/SHA256SUMS).
+[`SHA256SUMS`](https://github.com/kiankyars/datacenter-atlas/releases/download/data-2026-10-23-research-fiftyninth/SHA256SUMS).
 <!-- /atlas:version-files -->
 
 Archived CSVs, GeoJSON and source records remain unchanged. Where an archive has a GitHub
@@ -200,7 +200,7 @@ and the site offers the same citation as
 
 <!-- atlas:citation -->
 > Kyars, K. (2026). *Data Center Atlas* (2026-10-23) [Data set].
-> https://kiankyars.github.io/datacenter-atlas/downloads/2026-10-23-research-fiftyeighth/
+> https://kiankyars.github.io/datacenter-atlas/downloads/2026-10-23-research-fiftyninth/
 
 ```bibtex
 @misc{kyars2026datacenteratlas,
@@ -208,7 +208,7 @@ and the site offers the same citation as
   title  = "Data Center Atlas",
   year   = "2026",
   note   = "Data as published 2026-10-23",
-  url    = "https://kiankyars.github.io/datacenter-atlas/downloads/2026-10-23-research-fiftyeighth/"
+  url    = "https://kiankyars.github.io/datacenter-atlas/downloads/2026-10-23-research-fiftyninth/"
 }
 ```
 <!-- /atlas:citation -->
