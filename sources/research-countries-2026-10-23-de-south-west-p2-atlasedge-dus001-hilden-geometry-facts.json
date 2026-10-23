@@ -1,0 +1,65 @@
+{
+  "candidate_id": "atlasedge-dus001-hilden-data-centre",
+  "decision": "Selected the centroid of the only NRW ALKIS parcel with location text 'Zum Jägerhof 10' in Hilden (Gemarkung Hilden, Flur 25, Flurstück 271), the address the operator gives for DUS001, as the reviewed site locator.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      6.9391931,
+      51.1910348
+    ]
+  },
+  "authority_class": "compiled_reference",
+  "scope_class": "official_cadastral_address_parcel_centroid",
+  "use_scope": "reviewed_site_locator",
+  "source_file": "local_data/country-research-de-south-west-p2/nrw-alkis-hilden-jaegerhof.gml",
+  "source_sha256": "735c40edc807fdc5f32058f6140662178cd17282d39743f4d99934ecad2b7f07",
+  "source_url": "https://www.wfs.nrw.de/geobasis/wfs_nw_alkis_vereinfacht?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=ave:Flurstueck&FILTER=%3Cfes%3AFilter%20xmlns%3Afes%3D%22http%3A//www.opengis.net/fes/2.0%22%20xmlns%3Aave%3D%22http%3A//repository.gdi-de.org/schemas/adv/produkt/alkis-vereinfacht/2.0%22%3E%3Cfes%3AAnd%3E%3Cfes%3APropertyIsEqualTo%3E%3Cfes%3AValueReference%3Eave%3Agemeinde%3C/fes%3AValueReference%3E%3Cfes%3ALiteral%3EHilden%3C/fes%3ALiteral%3E%3C/fes%3APropertyIsEqualTo%3E%3Cfes%3APropertyIsLike%20wildCard%3D%22%2A%22%20singleChar%3D%22.%22%20escapeChar%3D%22%21%22%3E%3Cfes%3AValueReference%3Eave%3Alagebeztxt%3C/fes%3AValueReference%3E%3Cfes%3ALiteral%3E%2AJ%C3%A4gerhof%2A%3C/fes%3ALiteral%3E%3C/fes%3APropertyIsLike%3E%3C/fes%3AAnd%3E%3C/fes%3AFilter%3E",
+  "retrieved_at": "2026-10-23T03:16:53.464Z",
+  "selected_properties": {
+    "gemeinde": "Hilden (05158016), Kreis Mettmann",
+    "gemarkung": "Hilden (053431)",
+    "flur": "25",
+    "parcel": {
+      "flurstueck": "271",
+      "oid": "DENW31AL2j4000AuFL",
+      "flstkennz": "05343102500271______",
+      "lagebeztxt": "Zum Jägerhof 10",
+      "flaeche_m2": "14225.0",
+      "actual_use": "Industrie- und Gewerbefläche; 14225",
+      "aktualit": "2024-11-25Z"
+    },
+    "query": "ave:Flurstueck with gemeinde = Hilden and lagebeztxt like *Jägerhof*; 21 parcels returned, exactly one (Flurstück 271) carries 'Zum Jägerhof 10'; the others carry 'Zum Jägerhof' or 'Zum Jägerhof 2'"
+  },
+  "computed": {
+    "crs": "EPSG:25832 as served; transformed to WGS84 with pyproj (always_xy)",
+    "polygon_area_m2": 14220.4,
+    "register_area_m2": 14225.0,
+    "extent_m": {
+      "east_west": 197.7,
+      "north_south": 156.4
+    },
+    "centroid_25832": [
+      355995.26,
+      5673087.47
+    ],
+    "centroid_inside": true,
+    "max_vertex_distance_from_centroid_m": 105.0,
+    "round_trip_error_m": 0.0039
+  },
+  "identity_bridge": [
+    "AtlasEdge Düsseldorf page (version modified 14 August 2026, and the 2 August 2026 Internet Archive copy of the preceding version): 'DUS001 (In operation)', Zum Jägerhof 10, 40724 Hilden, Germany.",
+    "NRW ALKIS: Flurstück 271 is the only Hilden parcel whose location text is 'Zum Jägerhof 10'; its actual use is recorded as industrial and commercial land.",
+    "Official NRW digital orthophoto (flight date 20 June 2025, 0.10 m ground resolution, tile 32355_5673): a large flat-roofed building with rows of rooftop and side-mounted plant units occupies the north-western part of Flurstück 271, with a paved yard and an earth-works area to its east. The parcel centroid lies in the yard just east of the building (visual estimate within about 20 m of its wall)."
+  ],
+  "consistency_checks": {
+    "alkis_buildings": "The ALKIS building layer (35 objects in a 600 x 500 m box) records no building intersecting Flurstück 271; the nearest recorded buildings are small residential and agricultural structures 43-50 m away outside the parcel. The data-centre building visible in the June 2025 orthophoto has therefore not (yet) been carried into the cadastral building layer, so no footprint centroid is available and the parcel centroid is used.",
+    "neighbouring_addresses": "Zum Jägerhof 2 (Flurstücke 121, 225, 231, 237, 243) and the unnumbered 'Zum Jägerhof' street and woodland parcels are excluded."
+  },
+  "transform_check": "pyproj EPSG:25832 -> EPSG:4326, always_xy; inverse round trip of the rounded point 0.004 m.",
+  "versions": {
+    "pyproj": "3.7.1",
+    "proj": "9.5.1",
+    "shapely": "2.1.1"
+  },
+  "excluded_coordinates": []
+}

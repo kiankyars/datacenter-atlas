@@ -1,0 +1,88 @@
+{
+  "candidate_id": "noris-network-muenchen-ost-aschheim-data-center",
+  "decision": "Selected the footprint centroid of the Bavarian LoD2 building whose official address is 'Klausnerstraße 30', Aschheim (the address noris network gives for its München Ost data centre) as the reviewed site locator. It is the street-side entrance/office building of the complex; the two large adjoining buildings that appear to hold the data halls are recorded but not used for the point.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      11.7369532,
+      48.1621097
+    ]
+  },
+  "authority_class": "compiled_reference",
+  "scope_class": "official_lod2_address_building_footprint_centroid",
+  "use_scope": "reviewed_site_locator",
+  "source_file": "local_data/country-research-de-south-west-p2/by-lod2-702_5336.gml",
+  "source_sha256": "9e02981b8776f03b4fc1479aa510cf3912c7878bd64ecc3fec1c70368e308975",
+  "source_url": "https://download1.bayernwolke.de/a/lod2/citygml/702_5336.gml",
+  "retrieved_at": "2026-10-23T03:32:03.797Z",
+  "source_integrity": "Tile size 58,016,033 bytes and SHA-256 equal the values listed for 702_5336.gml in the official LDBV metalink (geodaten.bayern.de/odd/a/lod2/citygml/meta/metalink/09.meta4, captured 23 October 2026).",
+  "selected_properties": {
+    "building_gml_id": "DEBY_LOD2_105260186",
+    "alkis_object": "DEBYvAAAAAB4i9Ca",
+    "address": "Klausnerstraße 30, Aschheim (xAL ThoroughfareName and LocalityName)",
+    "gemeindeschluessel": "09184112 (Aschheim, Landkreis München)",
+    "function": "31001_2000 (Gebäude für Wirtschaft oder Gewerbe)",
+    "measured_height_m": 16.2,
+    "lod2_creation_date": "2023-01-19",
+    "crs": "urn:adv:crs:ETRS89_UTM32*DE_DHHN2016_NH (horizontal EPSG:25832)",
+    "query": "Exactly one building in tiles 702_5336 and 702_5338 carries the address 'Klausnerstraße 30' (tile 702_5338 has only Klausnerstraße 40; tile 702_5336 has Klausnerstraße 30 and 34 and Klausnerring 16 and 18)."
+  },
+  "computed": {
+    "footprint_area_m2": 481.8,
+    "footprint_extent_m": {
+      "east_west": 36.2,
+      "north_south": 30.7
+    },
+    "centroid_25832": [
+      703515.51,
+      5337941.12
+    ],
+    "centroid_inside": true,
+    "max_vertex_distance_from_centroid_m": 18.5,
+    "round_trip_error_m": "< 0.01"
+  },
+  "identity_bridge": [
+    "noris network locations page (version of 7 September 2026; also in the Internet Archive copies of 7 May and 5 October 2026): 'München Ost — noris network AG, Klausnerstraße 30, 85609 Aschheim'; 'Mitte 2017 wurde das hochmoderne Rechenzentrum in München Aschheim eröffnet'.",
+    "noris network Rechenzentrum München page (version of 19 August 2026): Rechenzentrum München Ost in Aschheim (MUC5), 11,000 m2 total and 8,700 m2 IT area after the 2019 expansion, 1 km from the A99 Kirchheim/Aschheim junction.",
+    "Bavarian LoD2: the only building addressed 'Klausnerstraße 30' in Aschheim is DEBY_LOD2_105260186.",
+    "Official Bavarian parcel map (ALKIS Parzellarkarte WMS, CC BY 4.0) shows house number 30 on this building and, within the same parcel strip south-east of it, two large connected buildings joined to No. 30 by a short link structure.",
+    "Official Bavarian orthophoto DOP40 (flight 24 August 2024): the two large buildings carry rooftop plant housings and photovoltaic arrays."
+  ],
+  "consistency_checks": {
+    "adjoining_buildings": {
+      "DEBY_LOD2_105260185": {
+        "footprint_m2": 5124.3,
+        "height_m": 15.971,
+        "address": null,
+        "distance_from_no30_m": 11.8
+      },
+      "DEBY_LOD2_108180529": {
+        "footprint_m2": 6676.4,
+        "height_m": 15.984,
+        "address": null,
+        "attached_to": "DEBY_LOD2_105260185"
+      },
+      "union_footprint_m2": 11800.7,
+      "union_centroid_wgs84": [
+        11.737725,
+        48.1611574
+      ],
+      "distance_point_to_union_centroid_m": 120.5,
+      "note": "The two connected buildings (about 16 m high, 11,800 m2 combined footprint) are consistent with the operator's 11,000 m2 total area, but no official record ties them to the address, so they are not used for the point."
+    },
+    "excluded": "Klausnerstraße 34 (DEBY_LOD2_108180546, 16,769 m2, 71 m east) is a separate parcel with a logistics building and truck docks in the orthophoto; Klausnerstraße 40 lies in tile 702_5338.",
+    "street_embed": "The locations page's embedded map is centred on the street 'Klausnerstraße, 85609 Aschheim' (48.1629192, 11.7358319), not on the building; it is not used."
+  },
+  "transform_check": "pyproj EPSG:25832 -> EPSG:4326, always_xy; inverse round trip of the rounded point below 0.01 m.",
+  "versions": {
+    "pyproj": "3.7.1",
+    "proj": "9.5.1",
+    "shapely": "2.1.1"
+  },
+  "excluded_coordinates": [
+    [
+      11.7358319,
+      48.1629192
+    ]
+  ]
+}

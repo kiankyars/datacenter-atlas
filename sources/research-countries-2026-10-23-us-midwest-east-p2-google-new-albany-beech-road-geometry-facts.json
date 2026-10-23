@@ -1,0 +1,149 @@
+{
+ "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+ "candidate_id": "us-midwest-east-p2-google-new-albany-beech-road-campus",
+ "prepared_at": "2026-10-23",
+ "decision": "Selected the planar centroid of the union of Licking County parcel 094-106896-00.000 (1101 Beech Rd SW) and Franklin County parcel 222-004984 (5266 Babbitt Rd), both owned by Montauk Innovations LLC and adjoining along the Franklin-Licking county line, as the campus locator for Google's New Albany data-centre campus.",
+ "geometry": {
+  "type": "Point",
+  "coordinates": [
+   -82.7672501,
+   40.0583337
+  ]
+ },
+ "authority_class": "official_source",
+ "scope_class": "official_tax_parcel_union_centroid",
+ "use_scope": "campus_locator",
+ "sources": [
+  {
+   "role": "locator and owner record (Licking part)",
+   "source_file": "local_data/country-research-us-midwest-east-p2/licking-parcel-094-106896-wgs84.json",
+   "source_sha256": "eb5513c04abbc6529d68314450995c660350f2c74a584cda218c9d8c5454260e",
+   "source_url": "https://gis.lickingcounty.gov/server/rest/services/Auditor/Parcels/FeatureServer/0/query?where=Parcel%3D%27094-106896-00.000%27&outFields=PID,Parcel,OwnerName,OwnerAddress,OwnerCity,OwnerState,SiteAddress,Municipality,Township,TaxAcres,GISAcres,Landuse,Class,MarketImpValue,AbatedImpValue,T1Date,T1TransferType&returnGeometry=true&f=json&outSR=4326&returnCentroid=true",
+   "retrieved_at": "2026-10-23T03:07:33.729Z",
+   "native_file": "local_data/country-research-us-midwest-east-p2/licking-parcel-094-106896-native.json",
+   "native_sha256": "97f982c293e9aed222408c911086e689526f198d036c19bed4bfcd9bc427fe80"
+  },
+  {
+   "role": "second campus parcel (Franklin part)",
+   "source_file": "local_data/country-research-us-midwest-east-p2/franklin-parcel-222-004984-wgs84.json",
+   "source_sha256": "a95bc7c3c2ad1b019334f386138acdcaf48f50774b548e7cc2b32742bdd2ae9c",
+   "source_url": "https://gis.franklincountyohio.gov/hosting/rest/services/ParcelFeatures/Parcel_Features/FeatureServer/0/query?where=PARCELID%3D%27222-004984%27&outFields=PARCELID,OWNERNME1,SITEADDRESS,ACRES,CLASSDSCRP,CVTTXDSCRP,SCHLDSCRP,BLDVALUEBASE,TOTVALUEBASE,SALEDATE,PSTLCITYSTZIP,LASTUPDATE&returnGeometry=true&outSR=4326&returnCentroid=true&f=json",
+   "retrieved_at": "2026-10-23T03:09:38.070Z",
+   "native_file": "local_data/country-research-us-midwest-east-p2/franklin-parcel-222-004984-native.json",
+   "native_sha256": "72372679d20a9bfb5186bc17c676b42515b7fd9cdfdc244ad779db181391707f"
+  }
+ ],
+ "selected_properties": {
+  "licking 094-106896-00.000": {
+   "Parcel": "094-106896-00.000",
+   "OwnerName": "MONTAUK INNOVATIONS LLC",
+   "OwnerAddress": "1600 AMPHITHEATRE PKWY ",
+   "OwnerCity": "MOUNTAIN VIEW",
+   "OwnerState": "CA",
+   "SiteAddress": "1101 BEECH RD SW",
+   "Municipality": "New Albany",
+   "Township": "Jersey",
+   "TaxAcres": 219.25,
+   "GISAcres": 219.06136057,
+   "Landuse": "305: Research/Chemical Labs",
+   "Class": "Industrial",
+   "MarketImpValue": 290266700,
+   "AbatedImpValue": 243979400,
+   "T1TransferType": "Merge"
+  },
+  "franklin 222-004984": {
+   "PARCELID": "222-004984",
+   "OWNERNME1": "MONTAUK INNOVATIONS LLC",
+   "SITEADDRESS": "5266 BABBITT RD",
+   "ACRES": 221.89582397,
+   "CLASSDSCRP": "data center",
+   "CVTTXDSCRP": "PLAIN TWP-NEW ALBANY CORP",
+   "SCHLDSCRP": "NEW ALBANY-PLAIN LSD",
+   "BLDVALUEBASE": 207607500.0,
+   "TOTVALUEBASE": 235368300.0
+  }
+ },
+ "layers": [
+  "Licking County Auditor 'Parcels' feature service (gis.lickingcounty.gov, Auditor/Parcels FeatureServer layer 0; native CRS NAD83 Ohio South ftUS, EPSG:3735)",
+  "Franklin County 'Tax Parcel' layer (gis.franklincountyohio.gov, ParcelFeatures/Parcel_Features FeatureServer layer 0; native CRS EPSG:3735)"
+ ],
+ "facts": {
+  "parcels": {
+   "licking 094-106896-00.000": {
+    "geodesic_acres": 219.06,
+    "rings": 1,
+    "vertices": 24,
+    "valid": true,
+    "parcel_centroid_lon_lat": [
+     -82.7633862,
+     40.058351
+    ],
+    "service_centroid": {
+     "x": -82.76338611472151,
+     "y": 40.0583512314287
+    }
+   },
+   "franklin 222-004984": {
+    "geodesic_acres": 221.894,
+    "rings": 1,
+    "vertices": 28,
+    "valid": true,
+    "parcel_centroid_lon_lat": [
+     -82.7710646,
+     40.0583164
+    ],
+    "service_centroid": {
+     "x": -82.77106459108865,
+     "y": 40.05831644817227
+    }
+   }
+  },
+  "union_geometry_type": "MultiPolygon",
+  "union_valid": true,
+  "union_parts": 2,
+  "union_geodesic_acres": 440.954,
+  "centroid_lon_lat": [
+   -82.7672501,
+   40.0583337
+  ],
+  "centroid_inside": true,
+  "approx_extent_m": [
+   1834,
+   1654
+  ],
+  "bounds_lon_lat": [
+   -82.776567,
+   40.050866,
+   -82.755074,
+   40.065759
+  ],
+  "max_vertex_distance_from_centroid_m": 1083.3,
+  "centroid_to_union_boundary_m": 26.5,
+  "gap_between_parts_m": 0.692,
+  "near_coincident_edge_length_m_within_2m": 1016.4,
+  "native_crs_cross_check": {
+   "centroid_lon_lat": [
+    -82.7672459,
+    40.0583259
+   ],
+   "distance_m": 0.932
+  },
+  "centroid_method": "planar centroid in EPSG:32617 (WGS84 / UTM) of the polygon(s) returned with outSR=4326, transformed back to WGS84; geodesic areas on the WGS84 ellipsoid; native-CRS rings (EPSG:3735) transformed locally with pyproj as a cross-check",
+  "tools": "pyproj 3.7.1, shapely 2.1.1"
+ },
+ "identity_bridge": [
+  "The City of New Albany's data-center site (home page, version of 26 August 2026) speaks of 'two active data center sites, one operated by Google and one operated by Meta' and of residents near 'Google's New Albany campus'.",
+  "The City's construction project list (Internet Archive copy of 29 September 2026, version of 16 April 2026) lists 'Google 7' at 1101 Beech Road, a new 170,594 sq ft data center, contractor Holder Construction; 1101 Beech Rd SW is the site address of Licking parcel 094-106896-00.000.",
+  "Licking parcel 094-106896-00.000 (219.25 tax acres, land use 305, market improvement value 290,266,700 USD of which 243,979,400 USD abated) is owned by Montauk Innovations LLC with owner mailing address 1600 Amphitheatre Pkwy, Mountain View, CA, Google's headquarters address.",
+  "Franklin parcel 222-004984 (5266 Babbitt Rd, 221.9 acres, taxing district 'PLAIN TWP-NEW ALBANY CORP', class 'data center', building value 207,607,500 USD) has the same owner, Montauk Innovations LLC; the two parcels run along the county line for about 1,016 m with a 0.69 m gap between the two counties' polygons, so they form one property in two counties.",
+  "Google's Ohio page names data-center communities in New Albany, Lancaster and Columbus and says Google began construction of its New Albany data center facility in 2019; the Franklin sale date (13 December 2018) and the Licking merge transfer (2 January 2019) precede that start."
+ ],
+ "excluded": [
+  "Licking parcel 095-112044-00.000 (2565 Harrison Rd, 81.6 acres, Montauk Innovations LLC, industrial vacant land, created by a 2026 split) lies 4.68 km north-east and is not contiguous with the Beech Road campus; it is the separate HJS site in this fragment."
+ ],
+ "consistency_checks": {
+  "datum": "WGS84 output from both services (outSR=4326); native EPSG:3735 rings transformed locally as a cross-check (0.93 m)",
+  "geocoder_used": false,
+  "personal_data": "Only organisation owner names and the owner's corporate mailing address are quoted; no private individual's data was requested from these two parcel queries."
+ }
+}

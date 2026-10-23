@@ -1,0 +1,101 @@
+{
+ "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+ "candidate_id": "us-midwest-east-p2-databank-orangeburg-campus",
+ "prepared_at": "2026-10-23",
+ "decision": "Selected the planar centroid (UTM 18N) of Rockland County tax parcel 73.15-1-19 (2000 Corporate Dr, Town of Orangetown), the only parcel at the operator-stated address, as the campus locator for DataBank's Orangeburg campus (LGA3, and the planned LGA4 at the same address).",
+ "geometry": {
+  "type": "Point",
+  "coordinates": [
+   -73.9892114,
+   41.0389044
+  ]
+ },
+ "authority_class": "official_source",
+ "scope_class": "official_tax_parcel_centroid",
+ "use_scope": "campus_locator",
+ "source_file": "local_data/country-research-us-midwest-east-p2/nys-parcel-rockland-73.15-1-19-wgs84.json",
+ "source_sha256": "c63cb5dfa86da4013cd598df1c074595068c188819ce0273f31db2815bb04f89",
+ "source_url": "https://gisservices.its.ny.gov/arcgis/rest/services/NYS_Tax_Parcels_Public/MapServer/1/query?where=COUNTY_NAME%3D%27Rockland%27%20AND%20PRINT_KEY%3D%2773.15-1-19%27%20AND%20SWIS%3D%27392489%27&outFields=COUNTY_NAME,MUNI_NAME,SWIS,PARCEL_ADDR,PRINT_KEY,SBL,LOC_ZIP,PROP_CLASS,ACRES,CALC_ACRES,YR_BLT,GFA,FULL_MARKET_VAL,USED_AS_DESC,OWNER_TYPE,PRIMARY_OWNER,ROLL_YR,SPATIAL_YR&returnGeometry=true&outSR=4326&f=json",
+ "retrieved_at": "2026-10-23T03:30:36.113Z",
+ "native_file": "local_data/country-research-us-midwest-east-p2/nys-parcel-rockland-73.15-1-19-native.json",
+ "native_sha256": "901e552a0f7b7ec544ef006553fa7a03e66aeec7e6368686c761a5ebb01a48dc",
+ "attribute_source_file": "local_data/country-research-us-midwest-east-p2/nys-parcels-rockland-2000-corporate-attrs.json",
+ "attribute_source_sha256": "c5d61d3f3492d6472840d62183b8e3b664b6d6b18f3e8b2b46e3348cdca000d3",
+ "attribute_source_url": "https://gisservices.its.ny.gov/arcgis/rest/services/NYS_Tax_Parcels_Public/MapServer/1/query?where=COUNTY_NAME%3D%27Rockland%27%20AND%20LOC_ST_NBR%3D%272000%27%20AND%20UPPER(LOC_STREET)%20LIKE%20%27CORPORATE%25%27&outFields=COUNTY_NAME,MUNI_NAME,SWIS,PARCEL_ADDR,PRINT_KEY,SBL,LOC_ST_NBR,LOC_STREET,LOC_ZIP,PROP_CLASS,ACRES,CALC_ACRES,YR_BLT,GFA,FULL_MARKET_VAL,USED_AS_DESC,OWNER_TYPE,PRIMARY_OWNER,ROLL_YR,SPATIAL_YR&returnGeometry=false&f=json",
+ "selected_properties": {
+  "COUNTY_NAME": "Rockland",
+  "MUNI_NAME": "Orangetown",
+  "SWIS": "392489",
+  "PARCEL_ADDR": "2000 Corporate Dr",
+  "PRINT_KEY": "73.15-1-19",
+  "SBL": "07301500010190000000",
+  "LOC_ZIP": "10965",
+  "PROP_CLASS": "712",
+  "ACRES": 33.93,
+  "CALC_ACRES": 33.40596274,
+  "YR_BLT": 2025,
+  "GFA": 288780,
+  "FULL_MARKET_VAL": 45822515.0,
+  "USED_AS_DESC": "Profssnl off",
+  "OWNER_TYPE": "8",
+  "PRIMARY_OWNER": "2000 Corporate Drive LLC",
+  "ROLL_YR": 2025,
+  "SPATIAL_YR": 2025
+ },
+ "layer": "NYS ITS Geospatial Services 'NYS_Tax_Parcels_Public' map service layer 1 (2025 county parcel geometry joined to 2025 ORPTS assessment-roll attributes; Rockland County is among the counties that permit public redistribution); service output requested in WGS84 (outSR=4326) and in its native Web Mercator (EPSG:3857)",
+ "facts": {
+  "parcels": {
+   "rockland 73.15-1-19": {
+    "geodesic_acres": 33.406,
+    "rings": 1,
+    "vertices": 221,
+    "valid": true,
+    "parcel_centroid_lon_lat": [
+     -73.9892114,
+     41.0389044
+    ],
+    "service_centroid": null
+   }
+  },
+  "union_geometry_type": "Polygon",
+  "union_valid": true,
+  "union_parts": 1,
+  "union_geodesic_acres": 33.406,
+  "centroid_lon_lat": [
+   -73.9892114,
+   41.0389044
+  ],
+  "centroid_inside": true,
+  "approx_extent_m": [
+   449,
+   641
+  ],
+  "bounds_lon_lat": [
+   -73.99179,
+   41.036105,
+   -73.986452,
+   41.041875
+  ],
+  "max_vertex_distance_from_centroid_m": 359.6,
+  "centroid_to_union_boundary_m": 91.0,
+  "native_crs_cross_check": {
+   "centroid_lon_lat": [
+    -73.9892114,
+    41.0389044
+   ],
+   "distance_m": 0.0
+  },
+  "centroid_method": "planar centroid in EPSG:32618 (WGS84 / UTM) of the polygon(s) returned with outSR=4326, transformed back to WGS84; geodesic areas on the WGS84 ellipsoid; native-CRS rings (EPSG:3857) transformed locally with pyproj as a cross-check",
+  "tools": "pyproj 3.7.1, shapely 2.1.1"
+ },
+ "identity_bridge": [
+  "DataBank's LGA3 page and Orangeburg campus page give LGA3 and LGA4 at 2000 Corporate Dr., Orangeburg, NY 10962, on a 34-acre campus; DataBank's 10 May 2024 dedication release says the data-center site is located at 2000 Corporate Drive and that the campus's first data center is LGA3.",
+  "An address query of the NYS public tax-parcel layer for Rockland County returns exactly one parcel at 2000 Corporate Dr: print key 73.15-1-19 in the Town of Orangetown (SWIS 392489), 33.93 acres on the roll (33.41 calculated), property class 712, year built 2025, gross floor area 288,780 sq ft, owner 2000 Corporate Drive LLC. Its acreage matches the operator's 34-acre campus and its 2025 building matches the LGA3 construction described in 2024.",
+  "The roll gives ZIP 10965 for the parcel location while DataBank writes Orangeburg 10962; both are postal names for the same Orangetown address and the street number and street match exactly."
+ ],
+ "consistency_checks": {
+  "datum": "WGS84 output requested from the service (outSR=4326); the native Web Mercator ring transforms to the same centroid (0.0 m), so the cross-check only confirms the projection arithmetic, not the source accuracy",
+  "geocoder_used": false,
+  "personal_data": "Only the organisation owner name is quoted; mailing-address fields were not requested."
+ }
+}

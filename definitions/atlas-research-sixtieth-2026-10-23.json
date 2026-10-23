@@ -1,0 +1,433 @@
+{
+  "format": "datacenter-atlas-update-input-v1",
+  "updated_at": "2026-10-23",
+  "output": "verified_construction_core/2026-10-23-research-sixtieth",
+  "base_dataset": "verified_construction_core/2026-10-23-research-fiftyninth",
+  "base_manifest_sha256": "ce656d4aabe1bb8d16b76e0d59d25c3b95ab1026fcb97d495a1311c7644dd317",
+  "source_files": [
+    {
+      "path": "sources/research-countries-2026-10-23-sixtieth-primary-sources.json",
+      "sha256": "27c6634e89093ecb5c19872fb6679d5ef12d153110d3aa3294ec73947dd9da34"
+    }
+  ],
+  "additions": [
+    {
+      "project_stable_key": "curated:atlasedge-dus001-hilden-data-centre:dus001-operating-facility",
+      "physical_site_stable_key": "curated:atlasedge-dus001-hilden-data-centre",
+      "site_name": "AtlasEdge DUS001 Düsseldorf Data Centre (Zum Jägerhof 10, Hilden)",
+      "name": "AtlasEdge DUS001 Düsseldorf — operating data centre",
+      "country": "Germany",
+      "country_iso_a2": "DE",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-08-14",
+        "source_id": "de-south-west-p2-atlasedge-dusseldorf-page",
+        "summary": "AtlasEdge's Düsseldorf page, in its version modified on 14 August 2026, lists DUS001 at Zum Jägerhof 10, 40724 Hilden as 'In operation' and names the carriers 'currently operational at this site'. The Internet Archive copies of 28 June and 2 August 2026 (the preceding version, dated 13 November 2025) carry the same label, so the label was re-published in a version made after 2 August. Operation of the DUS001 facility is established as of 14 August 2026, the version's modification day. The current version's capacity figures (6,160 m2 white space, 11.2 MW IT) repeat the operator's Stuttgart page word for word, and the preceding version gave 10,000 m2 and 20 MW, so no capacity in service is asserted."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            6.9391931,
+            51.1910348
+          ]
+        },
+        "source_id": "de-south-west-p2-nrw-alkis-flurstueck-hilden-jaegerhof",
+        "scope": "reviewed_site_locator",
+        "scope_class": "official_cadastral_address_parcel_centroid",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "nrw_alkis_vereinfacht_wfs_flurstueck_hilden_flur25_271_centroid_epsg25832_pyproj_to_wgs84",
+        "precision": "Centroid of cadastral parcel Gemarkung Hilden, Flur 25, Flurstück 271, the only parcel with location text 'Zum Jägerhof 10' (14,225 m2 of industrial and commercial land, about 198 by 156 m). The point marks the DUS001 property. The official June 2025 orthophoto shows the data-centre building in the parcel's north-western part and the point in the yard just east of it, so the point is not a building footprint centroid, an entrance or a works extent.",
+        "identity_review": "AtlasEdge gives DUS001's address as Zum Jägerhof 10, 40724 Hilden, in the current page and in the archived versions of 28 June and 2 August 2026. NRW ALKIS returns 21 Hilden parcels with 'Jägerhof' in their location text; only Flurstück 271 is 'Zum Jägerhof 10', and its actual use is industrial and commercial land. The ALKIS building layer records no building on the parcel, but the official orthophoto of 20 June 2025 shows a large flat-roofed building with rows of rooftop and side-mounted plant units on it, consistent with an operating data centre whose footprint is not yet in the cadastral building layer. Zum Jägerhof 2 and the unnumbered street and woodland parcels are excluded.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The ALKIS service publishes no positional accuracy. The centroid represents a 14,225 m2 parcel (105 m to its farthest vertex); the building's own footprint is not in the cadastral building layer, and its offset from the point (visually within about 20 m of its eastern wall) is not surveyed."
+      },
+      "context_source_ids": [
+        "de-south-west-p2-atlasedge-dusseldorf-archive-20260802",
+        "de-south-west-p2-atlasedge-dusseldorf-archive-20260628",
+        "de-south-west-p2-atlasedge-datacentre-sitemap",
+        "de-south-west-p2-nrw-alkis-gebaeude-hilden-jaegerhof",
+        "de-south-west-p2-nrw-dop-hilden-jaegerhof",
+        "de-south-west-p2-nrw-dop-info-hilden",
+        "de-south-west-p2-atlasedge-post-sitemap"
+      ],
+      "roles": [
+        {
+          "party": "AtlasEdge Data Centres",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "de-south-west-p2-atlasedge-dusseldorf-page"
+        }
+      ],
+      "distinctness_review": "Screened on 23 October 2026 against all sites, projects and evidence rows of 2026-10-23-research-fiftyninth (645 sites, 686 projects and 3,507 evidence rows, plus its 231 source records and 231 identity mappings), the changes and holds of every other queue fragment, claims.tsv and every sources/*-holds.json, by name, alias, operator, address and coordinate. AtlasEdge appears in the Atlas only at the Leverkusen campus (Dornierstraße 10) and STR001 Böblingen, both different facilities, and in other fragments only for Brussels or Vienna items. DUS001 appears only in the 22 October de-south-west-p1 hold (fortieth holds), which this addition resolves; no record names Hilden, Zum Jägerhof or a Düsseldorf-market AtlasEdge site. No Atlas record, queue item or hold lies within 2 km. The nearest Atlas sites are AtlasEdge Leverkusen (15.8 km) and Microsoft Bedburg (35.5 km).",
+      "successor_review": "The live page captured on 23 October 2026 is still the 14 August version with DUS001 'In operation'; the operator's data-centre sitemap shows no later data-centre page change, the sitemap index gives 14 August as the latest data-centre change, and the Wayback CDX lists no copy after 2 August. The operator's post sitemap (captured 23 October; latest post change 12 October) contains no Düsseldorf or Hilden item. No closure, sale, pause or new DUS phase was found, so the status stays operational as of 14 August 2026: 70 days before 23 October and inside the 85-day window until 7 November 2026.",
+      "scoped_project_details": {
+        "aliases": [
+          "DUS001",
+          "AtlasEdge Düsseldorf",
+          "AtlasEdge Hilden"
+        ],
+        "address": "Zum Jägerhof 10, 40724 Hilden",
+        "market_label": "Düsseldorf (operator page); the facility is in Hilden, Kreis Mettmann",
+        "capacity": null,
+        "capacity_note": "The 14 August version gives 6,160 m2 white space and 11.2 MW IT, identical to the Stuttgart STR001 page; the preceding version gave over 10,000 m2 of data centre space and 20 MW of power available. Neither is recorded as capacity in service.",
+        "certifications_listed": [
+          "Tier 3 built standard",
+          "ISO 27001",
+          "ISO 9001",
+          "ISO 50001",
+          "EN 50600 level 3",
+          "ISAE 3402 Type 2"
+        ],
+        "cadastral_parcel": "Gemarkung Hilden, Flur 25, Flurstück 271 (14,225 m2)",
+        "building_in_alkis": false
+      }
+    },
+    {
+      "project_stable_key": "curated:noris-network-muenchen-ost-aschheim-data-center:existing-operations",
+      "physical_site_stable_key": "curated:noris-network-muenchen-ost-aschheim-data-center",
+      "site_name": "noris network Rechenzentrum München Ost (Klausnerstraße 30, Aschheim)",
+      "name": "noris network München Ost (MUC5) — existing data-centre operations",
+      "country": "Germany",
+      "country_iso_a2": "DE",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-08-19",
+        "source_id": "de-south-west-p2-noris-muenchen-page",
+        "summary": "noris network's Rechenzentrum München page, in its version modified on 19 August 2026, presents the Rechenzentrum München Ost in Aschheim (MUC5), opened in mid-2017 and expanded in 2019, in the present tense as its operating colocation data centre: it offers high-density racks, on-site 24/7 support, DE-CIX services and KyotoCooling, with 11,000 m2 total and 8,700 m2 IT area. The Internet Archive holds the same version on 12 October 2026, and the operator's locations page (version of 7 September 2026, bounded by archive copies of 7 May and 5 October) lists the München Ost data centre at Klausnerstraße 30, 85609 Aschheim. Operation is established as of 19 August 2026; the 2017 opening and 2019 expansion are history, not the observation. The areas are operator facility figures, not a measured load."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            11.7369532,
+            48.1621097
+          ]
+        },
+        "source_id": "de-south-west-p2-by-lod2-702-5336",
+        "scope": "reviewed_site_locator",
+        "scope_class": "official_lod2_address_building_footprint_centroid",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "bavaria_lod2_citygml_tile_702_5336_building_DEBY_LOD2_105260186_address_klausnerstrasse_30_groundsurface_centroid_epsg25832_pyproj_to_wgs84",
+        "precision": "Footprint centroid of the official LoD2 building addressed 'Klausnerstraße 30', Aschheim (DEBY_LOD2_105260186; 481.8 m2, about 36 by 31 m, 16.2 m high), the street-side entrance and office block of the data-centre complex. Two connected buildings without address (11,800 m2 combined footprint) adjoin it within the same parcel to the south-east and appear to hold the data halls; their combined centroid is 120.5 m from the point. The point therefore marks the site at its address, not the data-hall footprint.",
+        "identity_review": "noris network gives the München Ost data centre's address as Klausnerstraße 30, 85609 Aschheim on its locations page (versions of 7 May, 7 September and 5 October 2026). Exactly one building in the Bavarian LoD2 tiles 702_5336 and 702_5338 carries that address, in municipality 09184112 (Aschheim). The official parcel map shows house number 30 on this building, with two large connected buildings linked to it inside the same parcel strip; the August 2024 orthophoto shows rooftop plant housings on those buildings, and their 11,800 m2 combined footprint is consistent with the operator's 11,000 m2 total area. Klausnerstraße 34, a logistics building on a separate parcel 71 m east, and the locations page's street-centred map embed are excluded.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The LoD2 model publishes no numeric positional accuracy. The point is the centroid of a 482 m2 address building (18.5 m to its farthest vertex); the data-centre complex extends about 200 m south-east of it, and the halls' combined centroid lies 120.5 m away."
+      },
+      "context_source_ids": [
+        "de-south-west-p2-noris-muenchen-archive-20261012",
+        "de-south-west-p2-noris-standorte-page",
+        "de-south-west-p2-noris-standorte-archive-20260507",
+        "de-south-west-p2-noris-standorte-archive-20261005",
+        "de-south-west-p2-noris-page-sitemap",
+        "de-south-west-p2-by-lod2-metalink",
+        "de-south-west-p2-by-alkis-parzellarkarte-aschheim",
+        "de-south-west-p2-by-dop40-aschheim",
+        "de-south-west-p2-by-dop40-info-aschheim"
+      ],
+      "roles": [
+        {
+          "party": "noris network AG",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "de-south-west-p2-noris-muenchen-page"
+        }
+      ],
+      "distinctness_review": "Screened on 23 October 2026 against all sites, projects and evidence rows of 2026-10-23-research-fiftyninth (645 sites, 686 projects and 3,507 evidence rows, plus its 231 source records and 231 identity mappings), the changes and holds of every other queue fragment, claims.tsv and every sources/*-holds.json, by name, alias, operator, address and coordinate. noris network appears in the Atlas only at NBG6 Nürnberg Süd (with its BA3 project) and FRA1 Schwalbach, both different facilities; no record names München Ost, MUC5, Aschheim or Klausnerstraße. No Atlas record, queue item or hold lies within 2 km. The nearest Atlas sites are Portus Munich Data Center Campus in Kirchheim (2.4 km) and Equinix MU4 in Aschheim-Dornach (4.3 km), both different operators and addresses.",
+      "successor_review": "The live München page captured on 23 October 2026 is still the 19 August version; the operator's page sitemap lists no later change to the Munich data-centre or locations pages, and the locations page (7 September version, archived again on 5 October) still lists München Ost. No closure, sale, pause or new Aschheim phase was found, so the status stays operational as of 19 August 2026: 65 days before 23 October and inside the 85-day window until 12 November 2026.",
+      "scoped_project_details": {
+        "aliases": [
+          "Rechenzentrum München Ost",
+          "MUC5",
+          "noris network Munich East",
+          "Rechenzentrum Aschheim"
+        ],
+        "address": "Klausnerstraße 30, 85609 Aschheim",
+        "opened": "mid-2017 (operator; history, not the observation)",
+        "expanded": "2019 (operator)",
+        "total_area_m2": 11000,
+        "it_area_m2": 8700,
+        "area_basis": "Operator page figures after the 2019 expansion; facility areas, not a measured load.",
+        "certifications_listed": [
+          "ISO/IEC 27001",
+          "ISO 27001 on the basis of IT-Grundschutz",
+          "EN 50600",
+          "VdS 3406",
+          "PCI DSS"
+        ],
+        "lod2_address_building": "DEBY_LOD2_105260186 (481.8 m2)",
+        "lod2_adjoining_buildings": [
+          "DEBY_LOD2_105260185 (5,124.3 m2)",
+          "DEBY_LOD2_108180529 (6,676.4 m2)"
+        ]
+      }
+    },
+    {
+      "project_stable_key": "curated:atlasedge-leverkusen-dornierstrasse-campus:lev001-operating-facility",
+      "physical_site_stable_key": "curated:atlasedge-leverkusen-dornierstrasse-campus",
+      "existing_site_id": "vcc-site-0a01a6bfe38831ba49d1",
+      "site_name": "AtlasEdge Leverkusen Campus (Dornierstraße 10)",
+      "name": "AtlasEdge LEV001 — operating data centre",
+      "country": "Germany",
+      "country_iso_a2": "DE",
+      "site_identity_review": "LEV001 is the operating AtlasEdge data centre at Dornierstraße 10, 51381 Leverkusen, the address whose three cadastral parcels define the existing AtlasEdge Leverkusen Campus site, added on 22 October 2026 with one project (LEV002, under construction, which the operator places adjacent to LEV001). The same operator page lists both facilities. LEV001 is therefore a new project on that site, not a new site; it was held on 22 October only because a second project could not be added to a site created in the same update.",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-08-14",
+        "source_id": "de-south-west-p2-atlasedge-leverkusen-page",
+        "summary": "AtlasEdge's Leverkusen page, in its version modified on 14 August 2026 (still live on 23 October), lists LEV001 at Dornierstraße 10, 51381 Leverkusen as 'In operation': a data centre with 24/7 security providing 1,732 m2 of white space and 1.6 MW of IT capacity completely powered by renewable energy. The Internet Archive copy of 2 August 2026 (the preceding version, dated 24 April) carries the same label with different figures (over 6,000 m2 of data centre space, 10 MW of power available). Operation of LEV001 is established as of 14 August 2026, the version's modification day. The 1.6 MW and 1,732 m2 are the operator's facility figures, not a measured load."
+      },
+      "locator": {
+        "reuse_from_project_id": "06d98c16-17d0-57a4-bc2d-7c71633fb227",
+        "geometry_evidence_id": "55837610-64d1-58ea-b791-40e70135a099",
+        "geometry_identity_evidence_ids": [],
+        "scope": "campus_locator",
+        "identity_review": "This reuses the existing campus point exactly: the centroid of the three NRW ALKIS parcels with location text 'Dornierstraße 10' (Gemarkung Lützenkirchen, Flur 20, Flurstücke 640, 961 and 962), with its pinned geometry evidence. The baseline project has no geometry-identity evidence, so none is pinned. Its precision note already describes the point as the campus at LEV001's address; the only building addressed 'Dornierstraße 10' (1,757 m2, on parcel 962, 22.7 m from the point) is consistent with LEV001's 1,732 m2 of white space. The point is not a surveyed LEV001 footprint."
+      },
+      "context_source_ids": [
+        "de-south-west-p2-atlasedge-leverkusen-archive-20260802",
+        "de-south-west-p2-atlasedge-datacentre-sitemap",
+        "de-south-west-p2-atlasedge-post-sitemap"
+      ],
+      "roles": [
+        {
+          "party": "AtlasEdge Data Centres",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "de-south-west-p2-atlasedge-leverkusen-page"
+        }
+      ],
+      "distinctness_review": "Screened on 23 October 2026 against all sites, projects and evidence rows of 2026-10-23-research-fiftyninth (645 sites, 686 projects and 3,507 evidence rows, plus its 231 source records and 231 identity mappings), the changes and holds of every other queue fragment, claims.tsv and every sources/*-holds.json, by name, alias, operator, address and coordinate. The only matches are the existing AtlasEdge Leverkusen Campus site and its LEV002 project, and the 22 October de-south-west-p1 hold for LEV001 (fortieth holds), whose reopen condition (the campus is now published) this addition meets. No project names LEV001 as a project. The only point within 2 km is the site's own campus point; the nearest other Atlas site is Microsoft Bedburg (34.5 km), and the DUS001 Hilden addition in this fragment is 15.8 km away.",
+      "successor_review": "The live Leverkusen page captured on 23 October 2026 is still the 14 August version with LEV001 'In operation'; the operator's data-centre sitemap and sitemap index show no later data-centre page change, and the Wayback CDX lists no copy after 2 August. The operator's post sitemap (latest change 12 October) has no newer Leverkusen item than the 16 April LEV002 release. No closure, sale or pause was found, so the status stays operational as of 14 August 2026: 70 days before 23 October and inside the 85-day window until 7 November 2026.",
+      "scoped_project_details": {
+        "aliases": [
+          "LEV001",
+          "AtlasEdge Leverkusen 1"
+        ],
+        "address": "Dornierstraße 10, 51381 Leverkusen",
+        "white_space_m2": 1732,
+        "it_capacity_mw": 1.6,
+        "capacity_basis": "Operator page figures (version of 14 August 2026) for the facility; not a measured or contracted load. The preceding version gave over 6,000 m2 of data centre space and 10 MW of power available.",
+        "renewable_power": "completely powered by renewable energy (operator statement)"
+      }
+    },
+    {
+      "project_stable_key": "curated:google-new-albany-ohio-beech-road-campus:existing-operations",
+      "physical_site_stable_key": "curated:google-new-albany-ohio-beech-road-campus",
+      "site_name": "Google New Albany Data Center Campus (1101 Beech Rd SW and 5266 Babbitt Rd)",
+      "name": "Google New Albany — existing data-centre campus operations",
+      "country": "United States",
+      "country_iso_a2": "US",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-08-26",
+        "source_id": "us-midwest-east-p2-newalbany-dc-home-20260826",
+        "summary": "The City of New Albany's data-center site, in its version modified on 26 August 2026, says the City 'is working to address noise complaints from neighbors near two active data center sites, one operated by Google and one operated by Meta', and that residents near 'Google's New Albany campus' reported noise from cooling fans, which Google is mitigating through sound monitoring, operational adjustments and sound-dampening materials, with a permanent solution scheduled for December 2026. This government statement records Google's New Albany campus as an active, Google-operated data-centre site on 26 August 2026, the modification day of the captured version (bounded by the Internet Archive copy of 6 September 2026 and the version's own reference to July 2026). It is not an opening, inspection or commissioning date; capacity, the number of buildings in service and occupancy are not established."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -82.7672501,
+            40.0583337
+          ]
+        },
+        "source_id": "us-midwest-east-p2-licking-parcel-094-106896",
+        "scope": "campus_locator",
+        "scope_class": "official_tax_parcel_union_centroid",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "official_county_parcel_union_centroid_of_operator_owned_campus_parcels",
+        "precision": "Planar centroid (computed in UTM 17N) of the union of Licking County Auditor parcel 094-106896-00.000 (1101 Beech Rd SW, 219.06 geodesic acres) and Franklin County tax parcel 222-004984 (5266 Babbitt Rd, 221.89 geodesic acres), both owned by Montauk Innovations LLC. The two parcels run along the Franklin-Licking county line for about 1,016 m with a 0.69 m gap between the two counties' polygons; their union covers 440.95 geodesic acres, about 1,834 by 1,654 m. The point lies inside the Licking parcel about 27 m from the county line. It locates the two-county campus property, not a building footprint, an entrance or a surveyed boundary.",
+        "identity_review": "The City of New Albany names 'Google's New Albany campus' and an active data-center site operated by Google, and its construction project list (16 April 2026 version, archived 29 September 2026) lists 'Google 7', a new 170,594 sq ft data center at 1101 Beech Road. Licking parcel 094-106896-00.000 is the parcel with site address 1101 Beech Rd SW; it is owned by Montauk Innovations LLC with owner mailing address 1600 Amphitheatre Pkwy, Mountain View, CA (Google's headquarters), carries land use 305 and 290.3 million USD of improvements, 244.0 million USD of them abated. The adjoining Franklin parcel 222-004984 has the same owner, the class description 'data center' and 207.6 million USD of buildings, and lies in the Plain Township-New Albany taxing district. Google's Ohio page says construction of its New Albany data center facility began in 2019, after the 2018-2019 transfers of both parcels. Montauk Innovations LLC's third parcel, 2565 Harrison Rd, is 4.68 km away, not contiguous, and is excluded (it is this fragment's separate HJS site). No geocoder, map viewport, city centre or business-park centroid is used.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "Neither county publishes positional accuracy for its parcel polygons, and the two counties' polygons leave a 0.69 m gap along the shared county line; the centroid represents a 441-acre two-parcel campus about 1,834 by 1,654 m, and the positions of the individual data-centre buildings within it are not published."
+      },
+      "context_source_ids": [
+        "us-midwest-east-p2-newalbany-dc-home-ia-20260906",
+        "us-midwest-east-p2-newalbany-dc-page-sitemap",
+        "us-midwest-east-p2-franklin-parcel-222-004984",
+        "us-midwest-east-p2-licking-parcels-montauk",
+        "us-midwest-east-p2-google-datacenters-ohio",
+        "us-midwest-east-p2-newalbany-project-updates-ia-20260929"
+      ],
+      "roles": [
+        {
+          "party": "Google",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "us-midwest-east-p2-newalbany-dc-home-20260826"
+        },
+        {
+          "party": "Montauk Innovations LLC",
+          "role": "owner",
+          "relationship_scope": "current",
+          "source_id": "us-midwest-east-p2-licking-parcel-094-106896"
+        }
+      ],
+      "distinctness_review": "Screened on 23 October 2026 against every row of sites.csv, projects.csv and evidence.csv, the 231 source records and the identity mapping of verified_construction_core/2026-10-23-research-fiftyeighth and again of fiftyninth, current at the time of writing (645 sites, 686 projects), all pending queue fragments and claims, and all sources/*-holds.json, for Google New Albany, Montauk, 1101 Beech, Beech Rd/Beech Road, Babbitt, 094-106896 and 222-004984: no record names this campus or its parcels. The only Beech Road match is the Census address point for Microsoft's 3287 Beech Road site, and earlier holds mention Beech Rd SW only for QTS New Albany parcels. The Atlas has no Google record in Ohio; its nearest Google records are Fort Wayne, Indiana (operational), Project Cannoli, Michigan (announced) and the cancelled Franklin Township proposal in Indiana. No Atlas site, project, source record or pending addition lies within 2 km. The nearest are the Meta New Albany (Prometheus) record, whose imported locality point lies 4.36 km north-west, and Microsoft New Albany (5.19 km north-north-east). Meta's actual campus parcels (Licking 094-106914-00.000 and 094-107100-00.001, owner Sidecat LLC, 1500 Beech Rd SW; local licking-parcels-sidecat-1500-beech.json) have centroids 1.54 and 2.08 km east of this point across Beech Road; they are a different owner's property, the City lists Meta's campus as a separate active site, and the Atlas Meta record does not use them. This fragment's HJS point at 2565 Harrison Road is 4.68 km north-east and is a separate site.",
+      "successor_review": "The live home page captured on 23 October 2026 is still the 26 August 2026 version, and the data-center site's sitemap of the same day lists no later home-page modification. The site's Resident Questions page (version modified 7 October 2026, captured 23 October 2026) still describes the September 2025 noise reports from residents near Google's New Albany campus in its discussion of operational data centers. The City's construction project list of 2 October 2026 shows further work at the campus address ('NBY Hub 2', a new 251,265 sq ft data center at 1101 Beech Rd. SW) and no longer lists 'Google 7'; that work is not part of this operating-campus record. No closure, pause or sale was found.",
+      "scoped_project_details": {
+        "aliases": [
+          "Google New Albany data center",
+          "Google's New Albany campus",
+          "Google New Albany, Ohio data center facility",
+          "1101 Beech Rd SW, New Albany"
+        ],
+        "site_address": "1101 Beech Rd SW (Licking County) and 5266 Babbitt Rd (Franklin County), New Albany, Ohio",
+        "parcels": {
+          "Licking County 094-106896-00.000": "1101 Beech Rd SW, 219.25 tax acres, land use 305, improvements 290,266,700 USD",
+          "Franklin County 222-004984": "5266 Babbitt Rd, 221.90 acres, class 'data center', buildings 207,607,500 USD"
+        },
+        "owner_entity": "Montauk Innovations LLC (owner mailing address on the Licking record: 1600 Amphitheatre Pkwy, Mountain View, CA)",
+        "construction_start_stated": "2019 (Google Ohio page)",
+        "related_construction_listed_by_city": "NBY Hub 2, new 251,265 sq ft data center at 1101 Beech Rd. SW (version of 2 October 2026); Google 7, new 170,594 sq ft data center at 1101 Beech Road (version of 16 April 2026); not part of this record",
+        "operating_statement_date": "26 August 2026 (City page version)",
+        "capacity": null,
+        "per_building_status": "not separately established"
+      }
+    },
+    {
+      "project_stable_key": "curated:hjs-new-albany-harrison-road-data-building:new-data-building",
+      "physical_site_stable_key": "curated:hjs-new-albany-harrison-road-data-building",
+      "site_name": "HJS Data Building Site (2565 Harrison Road, New Albany)",
+      "name": "HJS — new 189,378 sq ft data building (2565 Harrison Road)",
+      "country": "United States",
+      "country_iso_a2": "US",
+      "status": {
+        "value": "announced",
+        "as_of": "2026-10-02",
+        "source_id": "us-midwest-east-p2-newalbany-project-updates-20261002",
+        "summary": "The City of New Albany's construction project list, in its version modified on 2 October 2026, adds 'HJS' to its Commercial Projects: location 2565 Harrison Road, 189,378 square feet, contractor Holder Construction, project description 'New data building'. The item is absent from the previous version (16 April 2026, archived 29 September 2026). This government record identifies a planned new data building and supports announced status as of 2 October 2026. It gives no permit number, construction start, completion or operator, so no consent, physical work or operation is asserted."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -82.73817233294137,
+            40.09404769430338
+          ]
+        },
+        "source_id": "us-midwest-east-p2-licking-parcel-095-112044",
+        "scope": "project_locator",
+        "scope_class": "official_tax_parcel_centroid",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "official_county_auditor_gis_parcel_centroid_of_city_listed_project_address",
+        "precision": "Centroid returned by the Licking County Auditor parcel service for parcel 095-112044-00.000, the only parcel with site address 2565 Harrison Rd (81.48 geodesic acres, about 636 by 606 m). It locates the property named as the project location, not the building footprint or an approved site-plan boundary.",
+        "identity_review": "The City lists HJS at 2565 Harrison Road. A site-address query of the Licking County parcel layer returns exactly one parcel at that address, 095-112044-00.000 in the City of New Albany, Jersey Township, owned by Montauk Innovations LLC, classed industrial vacant land with no assessed improvements and created by a split on 4 June 2026. The same LLC owns the Google New Albany campus parcel at 1101 Beech Rd SW, whose owner mailing address is Google's headquarters, and the City's April 2026 list gave the same contractor (Holder Construction) for 'Google 7' there; the HJS listing itself does not name Google, so Google is not recorded as operator. The parcel is 4.68 km from the Beech Road campus and not contiguous with it, so it is a separate site. No geocoder, map viewport or business-park centroid is used.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The county publishes no positional accuracy for parcel polygons; the centroid represents an 81-acre parcel about 636 by 606 m, and the building position within it is not published."
+      },
+      "context_source_ids": [
+        "us-midwest-east-p2-newalbany-project-updates-ia-20260929",
+        "us-midwest-east-p2-licking-parcels-montauk"
+      ],
+      "roles": [
+        {
+          "party": "Montauk Innovations LLC",
+          "role": "owner",
+          "relationship_scope": "current",
+          "source_id": "us-midwest-east-p2-licking-parcel-095-112044"
+        }
+      ],
+      "distinctness_review": "Screened on 23 October 2026 against every row of sites.csv, projects.csv and evidence.csv, the 231 source records and the identity mapping of verified_construction_core/2026-10-23-research-fiftyeighth and again of fiftyninth, current at the time of writing (645 sites, 686 projects), all pending queue fragments and claims, and all sources/*-holds.json, for HJS, 2565 Harrison, Harrison Rd, Holder Construction, Montauk and 095-112044: no record names this project, address or parcel (the only 'Harrison' matches name Harrison Street, an investment firm in PowerHouse's Spotsylvania County, Virginia record). One Atlas record lies within 2 km: Microsoft New Albany Datacenter, whose Census address point for 3287 Beech Road lies 1.70 km north-west; that site is a Microsoft-owned property with a different owner and address and is not this parcel. No pending addition lies within 2 km. The nearest other Atlas record is the Meta New Albany (Prometheus) locality point, 6.18 km away. This fragment's Google New Albany campus point is 4.68 km south-west.",
+      "successor_review": "The live Project Updates page captured on 23 October 2026 is the 2 October 2026 version (city sitemap lastmod 2026-10-02T13:04:47Z) and still lists HJS. No later city record, permit, operator statement, withdrawal or cancellation for HJS or 2565 Harrison Road was found; the parcel record shows no assessed improvements. HJS stays announced as of 2 October 2026, 21 days before a 23 October 2026 update.",
+      "scoped_project_details": {
+        "aliases": [
+          "HJS",
+          "HJS new data building",
+          "2565 Harrison Road data building"
+        ],
+        "site_address": "2565 Harrison Road, New Albany, Licking County, Ohio",
+        "parcel": "Licking County 095-112044-00.000 (81.6 tax acres, industrial vacant land, split recorded 4 June 2026)",
+        "owner_entity": "Montauk Innovations LLC",
+        "building_floor_area_sqft_listed": 189378,
+        "contractor_listed": "Holder Construction",
+        "listing_scope": "City of New Albany construction project list (Commercial Projects)",
+        "consent_status": "not established",
+        "physical_construction_verified": false,
+        "capacity": null
+      }
+    },
+    {
+      "project_stable_key": "curated:databank-orangeburg-campus-2000-corporate-drive:lga3-existing-operations",
+      "physical_site_stable_key": "curated:databank-orangeburg-campus-2000-corporate-drive",
+      "site_name": "DataBank Orangeburg Campus (LGA3 and LGA4, 2000 Corporate Drive, Orangetown)",
+      "name": "DataBank Orangeburg LGA3 — existing data-centre operations",
+      "country": "United States",
+      "country_iso_a2": "US",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-08-10",
+        "source_id": "us-midwest-east-p2-databank-news-orangeburg-20260810",
+        "summary": "DataBank's news item of 10 August 2026 says, in DataBank's own words, that 'The Orangeburg facility supports healthcare, banking, and other digital services, and is one of several data centers located in the town', that DataBank 'is seeking to expand the existing site', and that the expansion is undergoing a full environmental impact study before it can go to the Orangetown Planning Board. The Orangeburg facility is LGA3, the campus's only built data center (DataBank says LGA4 'will be our second facility'). This records LGA3 as operating on 10 August 2026, the item's publication day; it is not an opening date, and the 20 MW is DataBank's stated critical IT load, not load in service. The expansion is not part of this record."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -73.9892114,
+            41.0389044
+          ]
+        },
+        "source_id": "us-midwest-east-p2-nys-parcel-rockland-73-15-1-19",
+        "scope": "campus_locator",
+        "scope_class": "official_tax_parcel_centroid",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "official_state_tax_parcel_centroid_of_parcel_at_operator_stated_address",
+        "precision": "Planar centroid (computed in UTM 18N) of Rockland County tax parcel 73.15-1-19 in the Town of Orangetown, as published in the NYS public tax-parcel layer (33.41 calculated acres, about 449 by 641 m), the only parcel at 2000 Corporate Dr. It locates DataBank's 34-acre Orangeburg campus property, which holds LGA3 and the planned LGA4, not the LGA3 building footprint or a surveyed boundary.",
+        "identity_review": "DataBank gives 2000 Corporate Dr., Orangeburg, NY for both LGA3 and LGA4 on a 34-acre campus, and its May 2024 dedication release places the data-center site at 2000 Corporate Drive with LGA3 as the first building. An address query of the NYS public tax-parcel layer returns exactly one Rockland County parcel at 2000 Corporate Dr: 73.15-1-19 in Orangetown, 33.93 roll acres, property class 712, built 2025, 288,780 sq ft gross floor area, owner 2000 Corporate Drive LLC. The acreage matches the stated campus and the 2025 building matches the LGA3 construction. The roll's ZIP 10965 differs from DataBank's 10962, but street number and street match exactly. The owner LLC's relation to DataBank is not stated, so it is recorded only as owner. No geocoder, map viewport or town centre is used.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The state layer incorporates county parcel geometry as received and publishes no positional accuracy; the centroid represents a 33-acre parcel about 449 by 641 m, and the position of LGA3 within it is not published."
+      },
+      "context_source_ids": [
+        "us-midwest-east-p2-databank-lga3-page-20260917",
+        "us-midwest-east-p2-databank-lga3-page-ia-20260613",
+        "us-midwest-east-p2-databank-orangeburg-campus-page-20260926",
+        "us-midwest-east-p2-databank-lga4-page-20260813",
+        "us-midwest-east-p2-databank-pr-orangeburg-dedication-20240510",
+        "us-midwest-east-p2-nys-parcels-rockland-2000-corporate-dr"
+      ],
+      "roles": [
+        {
+          "party": "DataBank",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "us-midwest-east-p2-databank-news-orangeburg-20260810"
+        },
+        {
+          "party": "2000 Corporate Drive LLC",
+          "role": "owner",
+          "relationship_scope": "current",
+          "source_id": "us-midwest-east-p2-nys-parcel-rockland-73-15-1-19"
+        }
+      ],
+      "distinctness_review": "Screened on 23 October 2026 against every row of sites.csv, projects.csv and evidence.csv, the 231 source records and the identity mapping of verified_construction_core/2026-10-23-research-fiftyninth, current at the time of writing (645 sites, 686 projects), all pending queue fragments and claims, and all sources/*-holds.json, for DataBank, Orangeburg, Orangetown, Rockland, LGA3, LGA4, Corporate Dr, 2000 Corporate and 73.15-1-19: the only DataBank records are the Ashburn Campus (Virginia) and Red Oak Campus (Texas) sites and holds for Culpeper, IAD4, Red Oak DFW14/DFW15 and Project Indo; nothing names an Orangeburg or New York facility. The Atlas has no New York record outside the TeraWulf campuses. No Atlas site, project, source record or pending addition lies within 2 km; the nearest Atlas site is CoreWeave Kenilworth NEST 11 (47.3 km).",
+      "successor_review": "DataBank's LGA3 page (version of 17 September 2026) still calls LGA3 the data center that 'anchors our new campus' with 20 MW, and the Orangeburg Campus page (version of 26 September 2026) still says the campus is home to LGA3 and LGA4; neither reports a pause or closure. The NYS DEC Environmental Notice Bulletin of 2 September 2026 lists a SEQR item 'Town of Orangetown - DataBank Orangeburg Phase Two' (DEC sitemap entry, local dec-sitemap-p8.xml), but the notice page returned HTTP 403 and has no archived copy, so it is not used; that expansion is a separate future project. No later status for LGA3 was found. 10 August 2026 is 74 days before a 23 October 2026 update and stays within 90 days until 8 November 2026.",
+      "scoped_project_details": {
+        "aliases": [
+          "LGA3",
+          "DataBank LGA3",
+          "DataBank Orangeburg Data Center",
+          "DataBank Orangeburg Campus",
+          "2000 Corporate Drive data center"
+        ],
+        "site_address": "2000 Corporate Drive, Orangeburg (Town of Orangetown), Rockland County, NY",
+        "parcel": "Rockland County / Town of Orangetown 73.15-1-19 (SBL 07301500010190000000; 2025 roll: class 712, built 2025, 288,780 sq ft GFA)",
+        "facility_scope": "LGA3, the first and only built data center on the Orangeburg campus (5 data halls)",
+        "it_floor_area_sqft_stated": 110000,
+        "critical_it_load_mw_stated": 20,
+        "capacity_qualification": "DataBank's stated design figures; not load in service",
+        "campus_stated": "34 acres; 2 data centers (LGA3 built, LGA4 planned, 55,000 IT sq ft and 10 MW)",
+        "expansion": "DataBank is seeking to expand the site; environmental impact review before the Orangetown Planning Board (not part of this record)",
+        "operating_statement_date": "10 August 2026 (DataBank news item)"
+      }
+    }
+  ],
+  "status_updates": [],
+  "context_updates": []
+}

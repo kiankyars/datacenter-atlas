@@ -1,0 +1,71 @@
+{
+  "reviewer": "root",
+  "reviewed_at": "2026-10-23",
+  "decision": "accepted_for_integration",
+  "update": "verified_construction_core/2026-10-23-research-sixtieth",
+  "base_dataset": "verified_construction_core/2026-10-23-research-fiftyninth",
+  "process": "continuous: one researcher per beat, one adversarial verifier per fragment",
+  "fragments": [
+    {
+      "fragment": "de-south-west-p2",
+      "verdict": "accept",
+      "checks": [
+        "All 22 relied-on captures rehashed: SHA-256 and byte counts equal the .metadata.json and the source content_hash (LEV 2 Aug archive in country-research-de-south-west-p1); HTTP 200, no credentials",
+        "DUS001: the live capture reads 'DUS001(In operation)', Zum Jägerhof 10, 40724 Hilden; JSON-LD dateModified 2026-08-14T08:33:20Z equals the datacentre-sitemap lastmod; the IA id_ copies of 28 Jun and 2 Aug carry the prior version (dateModified 2025-11-13) with the same label, 10,000 m2/20 MW text and no ISO 50001 line; CDX shows no copy after 2 Aug; 70 days old",
+        "DUS001: the 6,160 m2/11.2 MW figures in the 14 Aug version are not asserted (capacity null), which is correct",
+        "LEV001: the live capture (dateModified 2026-08-14T08:04:53Z) reads 'LEV001(In operation)', Dornierstraße 10, 1,732 m2, 1.6 MW; the 2 Aug IA copy (dateModified 2026-04-24) has the same label with 6,000 m2/10 MW; same bounded page-version method accepted for LEV002; 70 days old",
+        "MUC5: the live capture (dateModified 2026-08-19T07:11:01Z, equal to the page-sitemap lastmod, not a bulk date) is present tense: 'Im Osten von München liegt unser hochmodernes Rechenzentrum', MUC5, 11,000/8,700 m2 after the 2019 expansion; the 12 Oct IA copy has the same dateModified and an identical body; 65 days old",
+        "MUC5 second dated source: the locations page 7 Sep version (IA 7 May prior version 2026-03-25; IA 5 Oct same version) lists München Ost, Klausnerstraße 30, 85609 Aschheim",
+        "DUS001 locator recomputed with pyproj/shapely from the ALKIS GML: of 21 Jägerhof parcels only Flur 25 Flst 271 is 'Zum Jägerhof 10'; the centroid 355995.26,5673087.47 gives 6.9391931,51.1910348 exactly; the far vertex is 105.0 m away; the orthophoto building (flight 20 Jun 2025) lies inside the parcel, about 12 m from the point",
+        "DUS001: the ALKIS building bbox600 layer has 35 objects and none is 'Zum Jägerhof 10'; the building's absence from the cadastre is disclosed",
+        "MUC5 locator recomputed from the 58 MB LoD2 tile (size and SHA-256 equal to the official 09.meta4): only DEBY_LOD2_105260186 is 'Klausnerstraße 30' (481.8 m2, 16.2 m high); its ground-surface centroid gives 11.7369532,48.1621097 exactly; the union of the adjoining halls is 11,800.7 m2 with its centroid 120.5 m away; Klausnerstraße 34 is 70.7 m away and is excluded; tile 702_5338 has only No. 40",
+        "The parcel map shows '30' on the address block, linked to the large halls; the DOP40 (24 Aug 2024) shows corner plant housings and PV",
+        "LEV001 inherits LEV002's campus locator (geometry evidence 55837610..., no identity evidence) on the existing site vcc-site-0a01a6bfe38831ba49d1, created in the fortieth update; this meets the fortieth hold's reopen condition",
+        "Distinctness re-screened against fiftyninth (645 sites, 686 projects, 3,507 evidence rows, source-records.json, identity-mapping.json), every other queue fragment and sources/*-holds.json: the only matches are the AtlasEdge Leverkusen campus/LEV002, STR001, noris NBG6/FRA1 and the fortieth DUS001/LEV001 holds; the nearest other sites are 15.8 km (DUS001) and 2.4 km, Portus Kirchheim (MUC5)",
+        "Roles: operator/current for AtlasEdge and noris network AG, both from the status pages; the status sources are company_disclosure; commercial colocation scope",
+        "robots.txt: atlasedge.com (/o365/ only) and noris.de (/wp-admin/ only); web.archive.org, wfs/wms.nrw.de and the Bavarian geodata hosts return 404; ClaudeBot-blocked hosts were not accessed",
+        "Holds (5): no personal data; reopen conditions are present; no phone numbers or e-mails appear in changes, sources, holds or notes",
+        "dryrun_fragment.py ok: 647 sites, 689 projects, 3,528 evidence rows"
+      ],
+      "residual_risks": [
+        "The DUS001 and LEV001 observation dates rest on WordPress dateModified values bounded only below (prior version in the 2 Aug archive) and above (23 Oct capture); no archived copy of the 14 Aug versions exists",
+        "The MUC5 19 Aug version has only an upper archive bound (12 Oct); its text is evergreen marketing copy (2017 opening), corroborated by the separately bounded 7 Sep locations page",
+        "The DUS001 14 Aug version repeats the Stuttgart capacity text, a sign of careless editing; the 'In operation' label has been consistent since at least Feb 2026",
+        "The DUS001 point is a parcel centroid, because the building is missing from ALKIS; the MUC5 point is the 482 m2 address block, 120.5 m from the halls' centroid; no numeric uncertainty is published",
+        "The observations leave the 85-day window on 7 Nov (DUS001, LEV001) and 12 Nov 2026 (MUC5)"
+      ]
+    },
+    {
+      "fragment": "us-midwest-east-p2",
+      "verdict": "accept",
+      "checks": [
+        "Rehashed all 18 relied-on captures plus the 4 native-CRS parcel files: SHA-256 equals sources content_hash and .metadata.json sha256, byte counts match, HTTP 200, URLs match; the 3 geometry-facts files match their recorded sha256",
+        "Re-fetched the Internet Archive id_ copies of the New Albany home page (6 Sep 2026) and Project Updates page (29 Sep 2026): SHA-256 identical to the local captures (dd1ae814..., 7260ba74...); the CDX digest mismatch is only gzip storage; the DataBank LGA3 IA copy (13 Jun 2026) matches its CDX SHA-1 digest",
+        "Google New Albany: read in the live capture and the IA copy (identical extracted text): 'two active data center sites, one operated by Google and one operated by Meta', cooling-fan noise at 'Google's New Albany campus', Google 'operational adjustments'; government_record; JSON-LD dateModified 2026-08-26T20:00:25Z = article:modified_time = page-sitemap lastmod; bounded above by the 6 Sep 2026 archive copy of the same version (CDX shows no earlier copy); 58 days old",
+        "Google identity: Licking 094-106896-00.000 at 1101 Beech Rd SW, owner Montauk Innovations LLC with mailing address 1600 Amphitheatre Pkwy; City list (16 Apr 2026 version) names 'Google 7' at 1101 Beech Road; Franklin 222-004984 same owner, class 'data center', 207.6M USD buildings, contiguous; Google Ohio page confirms a New Albany facility begun 2019",
+        "HJS: read the item in the 2 Oct 2026 Project Updates capture ('HJS', 2565 Harrison Road, 189,378 sq ft, Holder Construction, 'New data building'); absent from the 29 Sep 2026 archive copy (16 Apr version); dateModified 2026-10-02T13:04:47Z = city sitemap lastmod; CDX has no copy between 29 Sep and the 23 Oct capture; status kept at announced; 21 days old",
+        "DataBank Orangeburg: read the DataBank news item: 'The Orangeburg facility supports healthcare, banking, and other digital services' and 'DataBank is seeking to expand the existing site'; datePublished 2026-08-10T19:37:15Z, visible 'Updated on August 10, 2026', image upload path 2026/08; dateModified 2026-09-28 matches the site-wide re-save (220+ news lastmods on 26-30 Sep) and is not relied on; 74 days old",
+        "DataBank scope: LGA3 page 'anchors our new campus' (2000 Corporate Dr.); LGA4 page 'will be our second facility'; campus page '34-acre campus is home to LGA3 and LGA4'; 2024 release opening forecast used only as identity context; LGA4/Phase Two held",
+        "Locators recomputed independently (pyproj 3.7.1, shapely 2.1.1): Google UTM17N union centroid -82.7672501, 40.0583337 (inside, 26.5 m from boundary, 0.692 m inter-county gap, native EPSG:3735 cross-check 0.932 m); HJS -82.7381723, 40.0940477 (inside, 237 m from boundary); DataBank UTM18N -73.9892114, 41.0389044 (inside, 91 m; Web Mercator cross-check 0.0 m); all equal the fragment values",
+        "Parcel identity: Licking address query returns only 095-112044-00.000 at 2565 Harrison Rd (Montauk Innovations LLC, industrial vacant, split 4 Jun 2026); NYS address query returns only 73.15-1-19 at 2000 Corporate Dr (2000 Corporate Drive LLC, class 712, built 2025, 288,780 sq ft, 33.93 ac)",
+        "Distinctness: no match for Montauk, 1101 Beech, Babbitt, both parcel IDs, 2565 Harrison, 095-112044, HJS, Orangeburg, Orangetown, LGA3/LGA4, 2000 Corporate, 73.15-1-19 or Google New Albany in fiftyninth sites/projects/evidence/source-records/identity-mapping; no Google Ohio record; nearest records Meta Prometheus locality point 4.36 km and Microsoft New Albany 5.19 km (Google), Microsoft New Albany 1.70 km (HJS, different owner), CoreWeave Kenilworth 47.3 km (DataBank); no coordinate within 5 km in any other queue fragment or sources/*-holds.json; claims.tsv matches are this fragment's own",
+        "Roles checked: Google operator current (City record), Montauk Innovations LLC owner current (parcels), DataBank operator current (news item), 2000 Corporate Drive LLC owner current (NYS roll); one project per new site; NBY Hub 2 and LGA4 held as second projects",
+        "Privacy: no private individuals' names, phones or emails in changes, sources, holds, notes or source URLs; DataBank staff name not copied; broad parcel captures with private owners are not referenced",
+        "dryrun_fragment.py ok against verified_construction_core/2026-10-23-research-fiftyninth: 648 sites, 689 projects"
+      ],
+      "residual_risks": [
+        "Google observation date rests on the City page's dateModified, bounded above by one archive copy (6 Sep) and below only by the page's reference to July 2026; the operating statement itself is in-window either way",
+        "HJS observation date is a WordPress dateModified bounded below by the 29 Sep archived prior version and above by the 23 Oct capture; HJS is not tied to Google by any source, and the building position within the 81-acre parcel is unknown",
+        "DataBank's news item summarises a third-party News 12 segment in DataBank's own words; its datePublished has no archived copy and rests on the visible date, JSON-LD and upload path",
+        "The owner LLC 2000 Corporate Drive LLC's relation to DataBank is not stated; parcel centroids locate properties (441, 81 and 33 acres), not buildings; horizontal uncertainty is unquantified"
+      ]
+    }
+  ],
+  "packet_pins": {
+    "definitions/atlas-research-sixtieth-2026-10-23.json": "fc4eeb74193bd88595786bd7229c36bbda088c076e58e6288b422b8e0e672a56",
+    "sources/research-countries-2026-10-23-sixtieth-primary-sources.json": "27c6634e89093ecb5c19872fb6679d5ef12d153110d3aa3294ec73947dd9da34",
+    "sources/research-countries-2026-10-23-sixtieth-actions.json": "7a6340114d4461fc2cfc744bdd7ce06e546086a827618fd0052d60cf3659894d",
+    "sources/research-countries-2026-10-23-sixtieth-holds.json": "6b4afa23eaebd821743f6fa5b22e148f63489f10adec4d2feb7ac6dfd3959832"
+  },
+  "raw_captures_redistributed": false
+}

@@ -1,0 +1,100 @@
+{
+ "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+ "candidate_id": "us-midwest-east-p2-hjs-harrison-road",
+ "prepared_at": "2026-10-23",
+ "decision": "Selected the service centroid of Licking County parcel 095-112044-00.000, the only parcel with site address 2565 Harrison Rd, as the project locator for the HJS new data building listed by the City of New Albany at 2565 Harrison Road.",
+ "geometry": {
+  "type": "Point",
+  "coordinates": [
+   -82.73817233294137,
+   40.09404769430338
+  ]
+ },
+ "authority_class": "official_source",
+ "scope_class": "official_tax_parcel_centroid",
+ "use_scope": "project_locator",
+ "source_file": "local_data/country-research-us-midwest-east-p2/licking-parcels-2565-harrison-wgs84.json",
+ "source_sha256": "b2c32ac0774b215bbf1a7c8453b5d36c95c2c354f6e502677acdf85f247142fa",
+ "source_url": "https://gis.lickingcounty.gov/server/rest/services/Auditor/Parcels/FeatureServer/0/query?where=SiteAddress%20LIKE%20%272565%20HARRISON%25%27&outFields=Parcel,OwnerName,OwnerCity,OwnerState,SiteAddress,Municipality,Township,TaxAcres,GISAcres,Landuse,Class,MarketLandValue,MarketImpValue,TIF,T1Date,T1TransferType,T1Parcels&returnGeometry=true&f=json&outSR=4326&returnCentroid=true",
+ "retrieved_at": "2026-10-23T03:16:13.428Z",
+ "native_file": "local_data/country-research-us-midwest-east-p2/licking-parcel-095-112044-native.json",
+ "native_sha256": "6847655239f6bb93df46746a57e0d01f166b87d86cd0e7a376ba7a9c488f527e",
+ "selected_properties": {
+  "Parcel": "095-112044-00.000",
+  "OwnerName": "MONTAUK INNOVATIONS LLC",
+  "OwnerCity": "SCOTTSDALE",
+  "OwnerState": "AZ",
+  "SiteAddress": "2565 HARRISON RD ",
+  "Municipality": "New Albany",
+  "Township": "Jersey",
+  "TaxAcres": 81.6,
+  "GISAcres": 81.47774287,
+  "Landuse": "300: Industrial Vacant Land",
+  "Class": "Industrial",
+  "MarketLandValue": 18360000,
+  "MarketImpValue": 0,
+  "TIF": "New Albany 26-56",
+  "T1TransferType": "Split",
+  "T1Parcels": 1
+ },
+ "selected_properties_note": "T1Date 1780545600000 ms = 4 June 2026 (local midnight), recorded as a split.",
+ "layer": "Licking County Auditor 'Parcels' feature service (gis.lickingcounty.gov, Auditor/Parcels FeatureServer layer 0; native CRS EPSG:3735)",
+ "facts": {
+  "parcels": {
+   "licking 095-112044-00.000": {
+    "geodesic_acres": 81.476,
+    "rings": 1,
+    "vertices": 13,
+    "valid": true,
+    "parcel_centroid_lon_lat": [
+     -82.7381723,
+     40.0940477
+    ],
+    "service_centroid": {
+     "x": -82.73817233294137,
+     "y": 40.09404769430338
+    }
+   }
+  },
+  "union_geometry_type": "Polygon",
+  "union_valid": true,
+  "union_parts": 1,
+  "union_geodesic_acres": 81.476,
+  "centroid_lon_lat": [
+   -82.7381723,
+   40.0940477
+  ],
+  "centroid_inside": true,
+  "approx_extent_m": [
+   636,
+   606
+  ],
+  "bounds_lon_lat": [
+   -82.741999,
+   40.091204,
+   -82.734538,
+   40.096664
+  ],
+  "max_vertex_distance_from_centroid_m": 421.3,
+  "centroid_to_union_boundary_m": 237.3,
+  "native_crs_cross_check": {
+   "centroid_lon_lat": [
+    -82.7381682,
+    40.0940399
+   ],
+   "distance_m": 0.933
+  },
+  "centroid_method": "planar centroid in EPSG:32617 (WGS84 / UTM) of the polygon(s) returned with outSR=4326, transformed back to WGS84; geodesic areas on the WGS84 ellipsoid; native-CRS rings (EPSG:3735) transformed locally with pyproj as a cross-check",
+  "tools": "pyproj 3.7.1, shapely 2.1.1"
+ },
+ "identity_bridge": [
+  "The City of New Albany's construction project list (version of 2 October 2026) lists 'HJS' at 2565 Harrison Road, 189,378 sq ft, contractor Holder Construction, 'New data building'.",
+  "A query of the Licking County parcel layer for site addresses beginning '2565 HARRISON' returns exactly one parcel, 095-112044-00.000 (81.6 tax acres, industrial vacant land, owner Montauk Innovations LLC), created by a split recorded on 4 June 2026.",
+  "The parcel has no recorded improvement value, consistent with a building not yet assessed; the centroid locates the property, not the building footprint."
+ ],
+ "consistency_checks": {
+  "datum": "WGS84 output from the service (outSR=4326); native EPSG:3735 ring transformed locally as a cross-check (0.93 m)",
+  "geocoder_used": false,
+  "personal_data": "Only the organisation owner name is quoted."
+ }
+}
