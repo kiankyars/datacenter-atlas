@@ -356,3 +356,25 @@ From 22 October 2026 sites are added continuously: researchers each work a narro
 `verified_construction_core/2026-10-23-research-sixtieth`: **650 sites and 692 projects in 63 countries**. Adds AtlasEdge DUS001 Düsseldorf — operating data centre; noris network München Ost (MUC5) — existing data-centre operations; AtlasEdge LEV001 — operating data centre; Google New Albany — existing data-centre campus operations; HJS — new 189,378 sq ft data building (2565 Harrison Road); DataBank Orangeburg LGA3 — existing data-centre operations.
 
 `verified_construction_core/2026-10-23-research-sixtyfirst`: **653 sites and 695 projects in 63 countries**. Adds TierPoint Little Rock (LIT) — existing data-centre and colocation operations; TierPoint Tulsa - Archer (TUL) — existing data-centre and colocation operations; TierPoint Tulsa - State Farm (TL2) — existing data-centre and colocation operations.
+
+
+## 25 October 2026
+
+`verified_construction_core/2026-10-25-research-sixtysecond` adds three commercial sites and
+refreshes Sandy Ridge: **656 sites and 698 projects in 63 countries**.
+
+- Grand Ming's iTech Tower 3.1 in Fanling records remaining development and fit-out, reported
+  18 September. Its first two phases were delivered to Amazon in December 2025.
+- iTech Tower 3.2 records construction at a separate Fanling property on the same report date.
+  The proposed Amazon purchase remains conditional for both properties. Their official lots
+  are separated by about 90 metres; labelled lot-centroid markers do not assert building outlines.
+- Ariake TK2 in Tokyo is announced on 7 September, with 32,972.49 square metres of planned
+  gross floor area and a March 2027 construction-start target. A photographed developer notice
+  matches all five official lots to Ariake 3-5-1. The GSI point marks the shared parent property,
+  including a separate hotel that is excluded from the Atlas project. The newer government
+  specifications supersede the earlier notice's dimensions; no operator is inferred from TK2.
+- Sandy Ridge retains its existing site, project and lot polygon. A 21 October government
+  report confirms construction has commenced; it does not establish the actual start day.
+
+All earlier evidence and the 231 original source records remain intact. The 22 inherited
+untracked source files are unchanged. New additions remain focused on commercial data centres.
