@@ -1,0 +1,277 @@
+{
+  "format": "datacenter-atlas-update-input-v1",
+  "updated_at": "2026-10-25",
+  "output": "verified_construction_core/2026-10-25-research-sixtyfourth",
+  "base_dataset": "verified_construction_core/2026-10-25-research-sixtythird",
+  "base_manifest_sha256": "6ab2ed9623ac5ba29dda1434ff79d698021e3124c5385fef97015d81b9966e17",
+  "source_files": [
+    {
+      "path": "sources/research-countries-2026-10-25-sixtyfourth-primary-sources.json",
+      "sha256": "2ca1eb5006fb164ec92451d52ccdfbfb0bd57022c03da5a426c44d1f039b2469"
+    }
+  ],
+  "additions": [
+    {
+      "project_stable_key": "curated:equinix-hk6-tsuen-wan:existing-operations",
+      "physical_site_stable_key": "curated:equinix-hk6-tsuen-wan",
+      "site_name": "Equinix HK6, Tsuen Wan",
+      "name": "Equinix HK6 — existing commercial data-centre operations",
+      "country": "Hong Kong",
+      "country_iso_a2": "HK",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-09-07",
+        "source_id": "hk-sixtyfourth-hk6-firsthand-20260907",
+        "summary": "Equinix HK6 is a commercial colocation data centre at 18 Sha Tsui Road in Tsuen Wan. In a report published on 7 September 2026, Equinix Hong Kong director Ka Wing Tang described its automatic cooling controls, separation of hot and cold air, and support for direct-to-chip liquid cooling. The facility’s official opening was on 16 June 2026; full build-out remains separate."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            114.1079,
+            22.37406
+          ]
+        },
+        "source_id": "hk-sixtyfourth-als-18-sha-tsui",
+        "scope": "project_locator",
+        "scope_class": "official_numbered_address_point",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "retain_exact_18_SHA_TSUI_ROAD_TSUEN_WAN_government_address_feature_GeoAddress_2916426098T20230322",
+        "precision": "Government address point for 18 Sha Tsui Road, Tsuen Wan, the operator’s stated HK6 address. This marks the building address, not a surveyed outline, entrance or individual data hall.",
+        "identity_review": "Equinix’s HK6 facility page gives 18 Sha Tsui Road in Tsuen Wan. The government address service returns an exact numbered street and district match. The second, lower-scoring result is an unrelated school on Wan Tsui Road and is excluded.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The address service supplies no measured positional accuracy. Decimal precision is not survey accuracy."
+      },
+      "context_source_ids": [
+        "hk-sixtyfourth-hk6-operator",
+        "hk-sixtyfourth-hk6-opening"
+      ],
+      "roles": [
+        {
+          "party": "Equinix",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "hk-sixtyfourth-hk6-operator"
+        }
+      ],
+      "successor_review": "Reviewed bounded English/Chinese HK6 searches through 25 October 2026 and the current operator facility page. No later dated primary closure or contrary physical-status report was located. The June opening and July employee interview are historical context; neither is redated to the September account.",
+      "distinctness_review": "No HK6, 18 Sha Tsui Road or Equinix Hong Kong identity occurs in the current63 sites/projects. HK6’s exact government address differs from nearby Atlas sites. Equinix’s Tsuen Wan campus is an interconnection network across separate buildings: HK1, HK2 and HK3 have different numbered addresses. The onsite AI Discovery Hub is a hosted testing service, not an additional physical site.",
+      "scoped_project_details": {
+        "address": "18 Sha Tsui Road, Tsuen Wan, Hong Kong",
+        "operator": "Equinix",
+        "colocation_floor_area_m2": 3865,
+        "colocation_floor_area_sqft": 41600,
+        "official_opening_date": "2026-06-16",
+        "cooling": "Direct-to-chip liquid cooling; automatic demand/temperature controls; hot/cold air separation",
+        "redundancy": "N+1 UPS, generators and cooling, per undated operator specifications",
+        "initial_investment_usd": 124000000,
+        "full_buildout_cabinets_forecast": 3550,
+        "current_phase1_cabinet_count": "Not reconciled: June announcement says 1,000; July operator interview says 900",
+        "IT_capacity_inferred": false
+      }
+    },
+    {
+      "project_stable_key": "curated:equinix-osaka-os3-keihanshin-obp:existing-operations",
+      "physical_site_stable_key": "curated:keihanshin-obp-data-center-building",
+      "site_name": "Equinix Osaka OS3 — Keihanshin OBP Building",
+      "name": "Equinix Osaka OS3 — existing commercial data-centre operations",
+      "country": "Japan",
+      "country_iso_a2": "JP",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-10-21",
+        "source_id": "jp-japan64-os3-epic-global",
+        "summary": "Equinix OS3 is a commercial colocation data centre in Osaka’s Keihanshin OBP Building. On 21 October 2026, Equinix identified OS3 as a live data centre hosting its newly launched liquid-cooling programme."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            135.53299773523162,
+            34.69267820944037
+          ]
+        },
+        "source_id": "jp-japan64-os3-facility",
+        "scope": "campus_locator",
+        "scope_class": "operator_mapped_named_parent_building_locator",
+        "authority": "compiled_reference",
+        "derivation": "direct_geometry",
+        "method": "retain_operator_embedded_os3_map_center_coordinates",
+        "precision": "Operator-provided Keihanshin OBP parent-building point, at its south edge. No surveyed accuracy, exclusive tenancy footprint, entrance or legal boundary claimed.",
+        "identity_review": "The exact OS3 webpage provides full address, named parent building and an OS3-specific embedded map point. GSI independently returns the exact address approximately 29 metres southeast at the same property’s street edge. Standard map and imagery verify the named building west of the separate KDDI complex.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The operator supplies a web-map point but no horizontal-accuracy estimate or datum realization; decimal places do not establish survey precision."
+      },
+      "context_source_ids": [
+        "jp-japan64-os3-epic-japan",
+        "jp-japan64-os3-gsi-address",
+        "jp-japan64-os3-opening",
+        "jp-japan64-os3-facility"
+      ],
+      "roles": [
+        {
+          "party": "Equinix",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "jp-japan64-os3-facility"
+        }
+      ],
+      "distinctness_review": "All 660 sites, 702 projects, 3,590 evidence rows, source-records and identity mapping checked for OS3, Keihanshin OBP, Shiromi/城見 and exact address; no admitted match. Nearby KDDI/Telehouse buildings and OS1 are separate. Digital Edge OSA1 appears at the same building in discovery sources and is retained as a future shared-property dedup warning, not a separately admitted site.",
+      "successor_review": "Current operator pages and October21 global/October22 Japanese announcements reviewed October25. They explicitly describe the Osaka OS3 host as live/operating; no later closure or replacement evidence found. Selected date is October21, four days before review. Current specification page is undated and does not determine the status date.",
+      "scoped_project_details": {
+        "aliases": [
+          "OS3",
+          "Equinix Osaka OS3",
+          "Keihanshin OBP Building",
+          "京阪神OBPビル"
+        ],
+        "address": "2-2-82 Shiromi, Chuo-ku, Osaka 540-0001, Japan",
+        "colocation_space_square_metres": 7467,
+        "colocation_space_scope": "Official live facility page; publication/update date unspecified. This is OS3 colocation space, not whole-building floor area.",
+        "ups_redundancy": "N+1",
+        "generator_redundancy": "N+1",
+        "generator_autonomy": "48 hours or more at full load",
+        "cooling_redundancy": "N+20%",
+        "cooling": "Direct-to-chip liquid cooling",
+        "seismic_design": "Seismic isolation",
+        "commercial_services": [
+          "Colocation",
+          "Equinix Fabric",
+          "Internet Exchange",
+          "Cross Connects"
+        ],
+        "historical_opening_announcement": "2021-10-20",
+        "capacity_mw": null,
+        "exclusive_tenancy_boundary_verified": false,
+        "floor_count_published_in_atlas": false
+      }
+    },
+    {
+      "project_stable_key": "curated:huawei-cloud-ulanqab-phase3-campus:dc5-mep-fitout",
+      "physical_site_stable_key": "curated:huawei-cloud-ulanqab-phase3-campus",
+      "site_name": "Huawei Cloud Ulanqab Phase 3 Campus",
+      "name": "Huawei Cloud Ulanqab Phase 3 DC5 Mechanical and Electrical Fit-out",
+      "country": "China",
+      "country_iso_a2": "CN",
+      "status": {
+        "value": "under_construction",
+        "as_of": "2026-10-24",
+        "source_id": "cn-sixtyfourth-cscec-ulanqab-current-works-20261024",
+        "summary": "DC5 is undergoing mechanical and electrical fit-out at Huawei Cloud’s Phase 3 campus in Ulanqab. On 24 October 2026, CSCEC reported active electrical, water, drainage and HVAC works under the contract covering Phase 3 DC5 and Phase 4 DC4. This entry covers the DC5 component at the Phase 3 campus."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            113.3119,
+            40.9844
+          ]
+        },
+        "source_id": "cn-sixtyfourth-vnet-eia-named-neighbor-map-20250317",
+        "scope": "campus_locator",
+        "scope_class": "government_named_phase_campus_map",
+        "authority": "compiled_reference",
+        "derivation": "georeferenced_source_map",
+        "method": "government_EIA_printed_grid_registered_to_Esri_WGS84_named_Huawei_Phase3_property",
+        "precision": "Approximate analyst-selected interior marker for the government-map-labelled Huawei Phase 3 campus, rounded to four decimals. The source does not identify DC5 within that campus. This is not an exact DC5 building location, parcel boundary, surveyed centre or entrance.",
+        "identity_review": "The EIA neighbour map explicitly labels Huawei Ulanqab Phase 3 and separates it by a road from the VNET substation/cloud-AI property to the south. Printed grid coordinates independently reproduce the three parallel west-side roofs and surrounding roads in Esri EPSG4326 imagery. Source text substation coordinates are excluded because they conflict with the map grid.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The EIA map does not declare its datum. Direct interpretation of its graticule in WGS84 aligns the named property and three existing roofs with the independent Esri export. Manual grid/corner readings, source map scale, image geolocation, unknown acquisition dates and roof parallax prevent a defensible total accuracy value. The small visual offsets do not measure ground accuracy. No GCJ or other datum shift is inferred or applied."
+      },
+      "context_source_ids": [
+        "cn-sixtyfourth-vnet-eia-government-index-20250317",
+        "cn-sixtyfourth-huawei-phase3-esri-extent",
+        "cn-sixtyfourth-huawei-phase3-esri-image",
+        "cn-sixtyfourth-huawei-dc5-cqn-20261019"
+      ],
+      "distinctness_review": "No Huawei Ulanqab identity match. CIDC Ulanqab is a separate CIDC (中金数据) campus northeast of the mapped Huawei Phase 3 property; other near sites are also distinct. The VNET properties south of Huawei and other Ulanqab candidates are not merged with Huawei. Only Phase 3 campus/DC5 fit-out is proposed. Checked all 660 sites, 702 projects and 231 preserved source records; nearest existing site is CIDC Ulanqab Zero-Carbon Computing Base at about 0.82 km.",
+      "successor_review": "The October 19 media account reports only third-floor commissioning and continuing tests, without named participant attribution. It corroborates the DC5 identity but does not establish whole-building completion or operations. The later October 24 contractor report supports ongoing fit-out. Phase 4 DC4, other Huawei phases and the neighbouring VNET campuses are outside this admission.",
+      "roles": [],
+      "scoped_project_details": {
+        "aliases": [
+          "乌兰察布华为云数据中心三期DC5",
+          "华为乌兰察布三期数据中心",
+          "Huawei Cloud Ulanqab Phase 3 DC5"
+        ],
+        "facility_scope": "Phase 3 DC5 mechanical and electrical fit-out; approximate Phase 3 campus marker.",
+        "location": "Chahar High-tech Development Zone, Ulanqab, Inner Mongolia, China",
+        "contractor_reported": "China Construction Fourth Engineering Division (CSCEC 4th Bureau)",
+        "work_reported": "High- and low-voltage electrical, water and drainage, HVAC, detailed design and BIM coordination, described for the combined DC5/DC4 contract.",
+        "status_date_scope": "Publication confirmation of current work, not the exact construction visit or milestone date.",
+        "commercial_use": "Contractor describes future Huawei Cloud computing services for customers, including cloud rendering and big-data applications. These are intended uses, not proof of operation.",
+        "selected_building": "Phase 3 DC5",
+        "excluded_building": "Phase 4 DC4; no geometry is selected for this component.",
+        "combined_contract_limitation": "No project area, rack count, IT power, floor count, completion percentage or whole-campus operating status is inferred for DC5 from the combined contract.",
+        "IT_power_MW": null,
+        "opening_date": null,
+        "individual_building_location_known": false,
+        "geometry_total_accuracy_unknown": true
+      }
+    },
+    {
+      "project_stable_key": "curated:vnet-ulanqab-zero-carbon-computing-center:phase1-a2",
+      "physical_site_stable_key": "curated:vnet-ulanqab-zero-carbon-computing-center",
+      "site_name": "VNET Ulanqab Zero-Carbon Computing Center",
+      "name": "VNET Ulanqab Zero-Carbon Computing Center — Phase 1 A2",
+      "country": "China",
+      "country_iso_a2": "CN",
+      "status": {
+        "value": "under_construction",
+        "as_of": "2026-10-24",
+        "source_id": "cn-sixtyfourth-cscec-ulanqab-current-works-20261024",
+        "summary": "VNET’s commercial zero-carbon computing campus is in Yiwutang Industrial Park, Ulanqab. On 24 October 2026, CSCEC reported that Phase 1 building A2’s mechanical and electrical works had entered final acceptance. China Construction Eighth Engineering Bureau is delivering the project, intended to provide computing capacity and backup services to the Beijing–Tianjin–Hebei region. The report does not confirm completed acceptance or operation."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            113.25969666666667,
+            40.95105527777778
+          ]
+        },
+        "source_id": "cn-vnet64-zhilian220-eia-20251125",
+        "scope": "campus_locator",
+        "scope_class": "official_campus_substation_incoming_line_endpoint",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "Government_EIA_user_substation_eastern_incoming_line_endpoint_DMS_to_decimal_without_datum_shift_with_primary_plan_and_independent_satellite_pattern_crosscheck",
+        "precision": "Campus marker at the published eastern feeder endpoint of the dedicated Zhilian No.1 substation on the north edge of the VNET zero-carbon base property, immediately south of Pingzan Street. It locates the named campus, not the A2 building, campus centroid, boundary, entrance or active-work footprint.",
+        "identity_review": "The EIA explicitly names the dedicated substation as part of 世纪互联乌兰察布零碳智算中心基地项目 (PDF28/printed21), publishes its incoming-line endpoints (PDF8/printed1), and shows the campus/substation south of Pingzan Street (PDF164/166). Its attached approval places the station in Yiwutang Industrial Park (PDF119/printed112). BUCG independently gives the four boundary roads. Google satellite inspection at the literal converted eastern endpoint matches the north-edge road intersection, field/tree pattern and east-side earthworks of the primary map. This is several kilometres southwest of the separate Bayin Cloud and AI phase1/2 location, whose conflicting coordinate is excluded.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The EIA publishes milliarcsecond coordinate digits but no explicit datum or positional accuracy. Values are converted from DMS without a datum shift; their interpretation on a WGS84 map is corroborated by the same physical pattern in satellite imagery, not by a datum declaration. This is a campus-level power-intake anchor; A2’s distance from it is unknown."
+      },
+      "context_source_ids": [
+        "cn-vnet64-bucg-campus-roads-20260518",
+        "cn-vnet64-esri-wgs84"
+      ],
+      "roles": [
+        {
+          "role": "operator",
+          "party": "VNET Group (世纪互联)",
+          "relationship_scope": "intended",
+          "source_id": "cn-sixtyfourth-cscec-ulanqab-current-works-20261024"
+        }
+      ],
+      "distinctness_review": "Screened all 660 current63 sites and 702 projects for VNET, 世纪互联, 智联云, Ulanqab and 乌兰察布; full matches and nearest-site distances are recorded in review.json. The specifically named zero-carbon base is separate from the older Bayin Cloud and AI phases1/2 and Cloud Computing Center. The accepted anchor is at E113°15′34.908″ N40°57′3.799″, not the rejected Bayin coordinate. Existing nearby campuses have different names/operators; no zero-carbon VNET site or A2 project appears in the baseline.",
+      "successor_review": "Reviewed the direct 24 October CSCEC report and government identity/geometry materials on 25 October. No later physical milestone was found in bounded exact-name searches. Retain final acceptance as under construction. Certification does not establish operation.",
+      "scoped_project_details": {
+        "aliases": [
+          "世纪互联乌兰察布零碳智算中心基地一期项目A2",
+          "世纪互联乌兰察布零碳智算中心基地",
+          "VNET Ulanqab Zero-Carbon Computing Center Phase 1 A2"
+        ],
+        "location": "Yiwutang Industrial Park, Chahar High-Tech Development Zone, Ulanqab, Inner Mongolia",
+        "project_scope": "Phase 1 A2 mechanical and electrical general-contracting works",
+        "contractor": "China Construction Eighth Engineering Bureau (CSCEC)",
+        "reported_milestone": "Final acceptance stage, reported 24 October 2026",
+        "intended_service_region": "Beijing–Tianjin–Hebei",
+        "campus_power_infrastructure": "Dedicated Zhilian 220kV No.1 user substation; electrical voltage is not IT capacity",
+        "map_anchor": "Published incoming-line endpoint at the campus substation; not an A2 footprint",
+        "operation_confirmed": false
+      }
+    }
+  ],
+  "status_updates": [],
+  "context_updates": []
+}

@@ -135,9 +135,12 @@ def _associated(evidence: Mapping[str, Any], project: Mapping[str, Any]) -> bool
     return project["project_id"] in evidence.get("project_ids", [])
 
 
-def _suitable_report(evidence: Mapping[str, Any], project: Mapping[str, Any]) -> bool:
+def _suitable_report(
+    evidence: Mapping[str, Any], project: Mapping[str, Any], source: Mapping[str, Any] | None = None,
+) -> bool:
     if (evidence.get("kind") in _MAP_KINDS
-            or evidence.get("evidence_id") == project.get("geometry_evidence_id")):
+            or (evidence.get("evidence_id") == project.get("geometry_evidence_id")
+                and (source or {}).get("summary_scope") != "facility")):
         return False
     roles = set(evidence.get("roles", []))
     if roles and roles <= {"geometry", "imported:geometry", "context:geometry_identity",
@@ -172,9 +175,10 @@ def load_project_narratives(
     def item(project: Mapping[str, Any]) -> dict[str, Any]:
         return result.setdefault(project["project_id"], {"status": None, "context": []})
 
-    def report(project: Mapping[str, Any], evidence: Mapping[str, Any], text: Any) -> None:
+    def report(project: Mapping[str, Any], evidence: Mapping[str, Any], text: Any,
+               source: Mapping[str, Any] | None = None) -> None:
         text = scoped_context.get((project["project_id"], evidence["evidence_id"]), _text(text))
-        if not text or not _associated(evidence, project) or not _suitable_report(evidence, project):
+        if not text or not _associated(evidence, project) or not _suitable_report(evidence, project, source):
             return
         narrative = item(project)
         entry = {"text": text, "evidence_id": evidence["evidence_id"]}
@@ -207,8 +211,9 @@ def load_project_narratives(
             summary = _text(change.get("summary"))
             if not project or not summary or len(source_ids) != 1:
                 continue
-            evidence = modern_evidence(sources.get(source_ids[0]), project)
-            if evidence and _suitable_report(evidence, project):
+            source = sources.get(source_ids[0])
+            evidence = modern_evidence(source, project)
+            if evidence and _suitable_report(evidence, project, source):
                 # Lineage is newest first. A shared document may have different
                 # reviewed excerpts for each project, so neither source ID nor
                 # document hash alone is a sufficient prose key.
@@ -238,7 +243,7 @@ def load_project_narratives(
                 source = sources.get(source_id)
                 evidence = modern_evidence(source, project)
                 if evidence:
-                    report(project, evidence, source.get("summary"))
+                    report(project, evidence, source.get("summary"), source)
         for change in update.get("context_updates", []) or []:
             project = projects.get(change.get("project_stable_key"))
             if not project:
@@ -247,7 +252,7 @@ def load_project_narratives(
                 source = sources.get(source_id)
                 evidence = modern_evidence(source, project)
                 if evidence:
-                    report(project, evidence, source.get("summary"))
+                    report(project, evidence, source.get("summary"), source)
         pinned_specs.extend(provenance.get("source_inputs", []))
         pinned_specs.extend(spec for spec in version.manifest.get("portable_source_inputs", [])
                             if isinstance(spec.get("path"), str)

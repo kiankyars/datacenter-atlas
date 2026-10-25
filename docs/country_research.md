@@ -400,3 +400,33 @@ untracked source files are unchanged. New additions remain focused on commercial
 All 656 earlier sites, 698 projects and 3,572 evidence records remain. The original source
 snapshot and identity mapping are unchanged. Nansha Dawen remains held for an exact property
 match; its new filing does not bridge No.18-1 to the older No.22 or No.28 sites.
+
+
+`verified_construction_core/2026-10-25-research-sixtyfourth` adds four commercial sites:
+**664 sites and 706 projects in 63 countries**.
+
+- Equinix HK6 in Tsuen Wan records continuing operations from a named operator director’s
+  7 September account. Its exact government address point matches 18 Sha Tsui Road. The page
+  includes 3,865 m² of colocation space and liquid-cooling specifications. Conflicting first-phase
+  cabinet counts remain unresolved; the 3,550-cabinet full-buildout target is explicitly a forecast.
+- Equinix Osaka OS3 records operations from the 21 October announcement of a service inside the
+  live commercial facility. The record covers the existing host, not a separate testing installation.
+  Its operator map point is corroborated by the exact GSI address at the Keihanshin OBP Building.
+- Huawei Ulanqab Phase 3 DC5 records electrical and mechanical fit-out on 24 October. The
+  contractor reports across a combined DC5/DC4 contract; only DC5 is admitted. A government
+  map identifies the Phase 3 parent property, independently matched to georeferenced imagery.
+  The marker does not identify DC5 itself. Phase 4 and whole-building commissioning are excluded.
+- VNET Ulanqab Zero-Carbon Computing Center Phase 1 A2 remains under construction at the
+  reported 24 October final-acceptance stage. A separate government environmental filing links
+  its dedicated Zhilian No.1 substation to the named campus. The feeder-endpoint marker locates
+  that campus, not A2. Joint A2/A3 certification capacity is not allocated to one building.
+
+All 660 prior sites, 702 projects and 3,590 evidence records remain, with the original source
+snapshot and identity mapping unchanged. Kodaira’s three newly captured municipal documents
+still do not establish the DayOne-to-property identity bridge, so the candidate remains held.
+
+For a source used as the locator, set `summary_scope: "facility"` in its reviewed source
+projection only when the summary has been written for the public facility page. The renderer
+then displays that explicitly selected context with its citation. Map-only sources, geometry-only
+roles and superseded status prose remain excluded. OS3 uses this to display its 7,467 m²
+colocation area and cooling and power specifications from the operator page.

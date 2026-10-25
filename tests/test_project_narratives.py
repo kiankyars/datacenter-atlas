@@ -92,6 +92,26 @@ class ProjectNarrativeTests(unittest.TestCase):
         self.atlas.evidence_by_id[identifier]["project_ids"] = ["another-project"]
         self.assertEqual(self.load(), {})
 
+    def test_facility_report_can_supply_location_and_visible_specifications(self):
+        source, identifier = self.add_source("status", roles=["physical_status"])
+        self.modern(source, identifier, context=["facility"])
+        facility, fid = self.add_source(
+            "facility", roles=["geometry", "context:identity", "role:operator"],
+            text="The facility offers 7,467 square metres of colocation space and N+1 power.",
+        )
+        self.project["geometry_evidence_id"] = fid
+        self.provenance["source_projections"]["facility"] = facility
+        self.assertEqual(self.load()["p"]["context"], [])
+        facility["summary_scope"] = "facility"
+        self.assertEqual(self.load()["p"]["context"], [
+            {"text": facility["summary"], "evidence_id": fid},
+        ])
+        self.atlas.evidence_by_id[fid]["roles"] = ["geometry"]
+        self.assertEqual(self.load()["p"]["context"], [])
+        self.atlas.evidence_by_id[fid]["roles"] = ["geometry", "context:identity"]
+        self.atlas.evidence_by_id[fid]["kind"] = "map"
+        self.assertEqual(self.load()["p"]["context"], [])
+
     def test_structured_record_can_receive_new_current_status_but_not_duplicate_context(self):
         source, identifier = self.add_source("status", roles=["physical_status"])
         self.modern(source, identifier, context=["context"])
