@@ -1,0 +1,687 @@
+{
+  "schema_version": "1.0",
+  "kind": "bounded_expansion_research_not_core_acceptance",
+  "reviewed_on": "2026-09-08",
+  "region": "Europe",
+  "round": 2,
+  "supersedes_acceptance": false,
+  "prior_research": "sources/research-expansion-200-europe-2026-09-08.json",
+  "baseline": "verified_construction_core/2026-08-20-preview-v0.17",
+  "lifecycle_cutoff": "2026-08-20",
+  "qualifying_observation_window": {
+    "start": "2026-05-22",
+    "end": "2026-08-20",
+    "inclusive": true
+  },
+  "accepted_additional_sites": 0,
+  "summary": {
+    "candidate_sites_reviewed": 7,
+    "precise_source_scoped_locator_resolved": 5,
+    "precise_geometry_unresolved": 2,
+    "promotion_ready_for_independent_review": 5
+  },
+  "capture_policy": {
+    "retrieved_on": "2026-09-08",
+    "raw_directory": "/tmp/atlas-europe-round2.w80Pf1",
+    "hash_scope": "SHA-256 of exact content-decoded HTTP response-body bytes fetched with curl --fail --location --compressed. Raw bodies remain temporary. Exact retrieval time was not retained unless the response itself supplies a server timestamp.",
+    "rights_scope": "Compact factual paraphrases and provenance only; no publisher media or full source bodies are redistributed. The Espoo open-data landing page links CC BY 4.0; other source-specific reuse permissions are not inferred.",
+    "review_scope": "No core or generated dataset acceptance is made here. An address/permit/parcel source is a locator and identity source, not a recent physical-status observation. Geographic match scores are not horizontal accuracy.",
+    "projection_method": "pyproj 3.7.2 with PROJ 9.5.1, Transformer.from_crs(source_epsg, 4326, always_xy=True). No coordinate is inferred from a city centroid or frozen rough point.",
+    "pdf_review": "Read PDF skill and visually inspected rendered Goodman pages 13, 14, 15 and 44 and Kirkkonummi page 1; facts below follow visible tables and labels, not noisy third-party OCR."
+  },
+  "sources": [
+    {
+      "id": "goodman-fy26",
+      "url": "https://www.goodman.com/-/media/project/goodman/global/files/investor-centre/gmg-goodman-group/announcements/asx-announcements/2026/4-full-year-results-presentation-5.pdf?rev=ac56d4e1f3444d309bbefa27304c7da1",
+      "publisher": "Goodman Group",
+      "published_at": "2026-08-20",
+      "status_as_of": "2026-06-30",
+      "section": "FY26 Results Presentation Updated, pages 13-15; AMS01 page 44",
+      "sha256": "892c9d069276912a13d2ff100ff3260b1c2d26874693d644e0d34dce3a7d809d",
+      "bytes": 14997170,
+      "raw_file": "goodman-fy26.pdf",
+      "capture_note": "Independent agent retrieved the same company-authored PDF through public announcement distributor at the mirror URL; root separately retrieved the first-party URL above and reported the exact same byte size and SHA-256. Independent visual review used the locally hashed matching PDF.",
+      "mirror_url": "https://newswire.iguana2.com/2fee0049d633f441/announcements/gmg.asx/2A1690646/GMG_Full_Year_Results_Presentation_Updated.pdf",
+      "announcement_id": "2A1690646"
+    },
+    {
+      "id": "goodman-pipeline",
+      "url": "https://www.goodman.com/our-properties/data-centres/global-data-centre-pipeline",
+      "publisher": "Goodman Group",
+      "published_at": null,
+      "sha256": null,
+      "use": "Current site-code to street-address identity only. Listing mixes current and future development and is not used as dated construction status.",
+      "capture_note": "Official page read through web tool, including address rows. HTTP body requests were denied with 403; failed responses are not evidence."
+    },
+    {
+      "id": "kirkkonummi-environmental-decision",
+      "url": "https://kirkkonummi.oncloudos.com/kokous/20241842-11-115303.PDF",
+      "publisher": "Municipality of Kirkkonummi",
+      "published_at": "2024-10-29",
+      "section": "Page 1, activity location, Dno 458/11.01.00/2024",
+      "sha256": "94e79d1f2f51b87872d01b59803a62f071806656563c5f4576b491461556097c",
+      "bytes": 340708,
+      "raw_file": "kirkkonummi-environmental-decision.pdf",
+      "use": "Microsoft applicant, data-center activity site, parcel and source-reported TM-35 point only; old permit is not recent construction status."
+    },
+    {
+      "id": "kirkkonummi-work",
+      "url": "https://winthrop.ie/kirkkonummi-finland-project-updates/",
+      "publisher": "Winthrop Technologies",
+      "published_at": "2026-06-26",
+      "status_as_of": "2026-06-26",
+      "sha256": "8ff04011053ab2f628ec9d1397e2d70cb6322d184c17b4383f9f1239d1cbb351",
+      "bytes": 104799,
+      "raw_path": "/tmp/atlas-europe-research.QNvVk0/kirkkonummi.html",
+      "use": "Dated first-party contractor physical-construction update; same contractor lineage as the first handoff, not a second independent observation."
+    },
+    {
+      "id": "espoo-current-status",
+      "url": "https://espoo.oncloudos.com/cgi/DREQUEST.PHP?id=20261687-10&page=meetingitem",
+      "publisher": "City of Espoo",
+      "published_at": "2026-06-11",
+      "section": "Environment and Building Committee section 86, contextual discussion of permits 2024-616 and 2024-1349",
+      "sha256": "51423a8dd1cc271a8121bc0caa0b6ee1f03393ff7fc61145fbea98db5a55becf",
+      "bytes": 91871,
+      "raw_file": "espoo-june2026-status.html",
+      "use": "The city explicitly describes the two data centers under permits 2024-616 and 2024-1349 as under construction. The agenda decision concerns a third proposed building and does not establish construction of that third building."
+    },
+    {
+      "id": "espoo-phase2-identity",
+      "url": "https://espoo.oncloudos.com/cgi/DREQUEST.PHP?id=20251396-8&page=meetingitem",
+      "publisher": "City of Espoo",
+      "published_at": "2025-03-20",
+      "section": "Environment and Building Committee section 41, permit 2024-1349",
+      "sha256": "57a766de185f2dc7cdd4ef70bf6bb5c185280266579354171390082d94e94b12",
+      "bytes": 91511,
+      "raw_file": "espoo-phase2-identity.html",
+      "use": "Microsoft 3465 Finland Oy, permit 2024-1349, Hepokorvenkaari 1, parcel 49-65-3-1 and reported area 167791 square metres. Identity/locator only."
+    },
+    {
+      "id": "espoo-open-data",
+      "url": "https://kartat.espoo.fi/opendata/",
+      "publisher": "City of Espoo",
+      "published_at": null,
+      "sha256": "919e42b8767b198406d088dea6b6fd2c4bda34a748e1745ada026c5d560b42c0",
+      "bytes": 25452,
+      "raw_file": "espoo-open-data.html",
+      "use": "Official service discovery, weekly real-property-unit updates and CC BY 4.0 attribution link."
+    },
+    {
+      "id": "espoo-parcel-native",
+      "url": "https://kartat.espoo.fi/teklaogcweb/wfs.ashx",
+      "publisher": "City of Espoo",
+      "published_at": null,
+      "response_timestamp": "2026-09-08T21:38:42+03:00",
+      "sha256": "9f7728890e3de91daa3e52e79c1e19fab22bf42f191407fa98dcf27bb4efba7f",
+      "bytes": 1971,
+      "raw_file": "espoo-parcel-49-65-3-1-native.gml",
+      "method": "GET",
+      "request_parameters": {
+        "SERVICE": "WFS",
+        "REQUEST": "GetFeature",
+        "VERSION": "1.1.0",
+        "TYPENAME": "GIS:Kiinteistot_karsittu",
+        "OUTPUTFORMAT": "GML2",
+        "SRSNAME": "EPSG:3879",
+        "MAXFEATURES": "10",
+        "FILTER": "<ogc:Filter xmlns:ogc=\"http://www.opengis.net/ogc\"><ogc:PropertyIsEqualTo><ogc:PropertyName>Kiinteistotunnus</ogc:PropertyName><ogc:Literal>49-65-3-1</ogc:Literal></ogc:PropertyIsEqualTo></ogc:Filter>"
+      },
+      "use": "Exact parcel-property filter returned one polygon feature, identifier 49-65-3-1, class Tontti, area 167791 square metres."
+    },
+    {
+      "id": "espoo-parcel-wgs84-check",
+      "url": "https://kartat.espoo.fi/teklaogcweb/wfs.ashx",
+      "publisher": "City of Espoo",
+      "published_at": null,
+      "response_timestamp": "2026-09-08T21:37:00+03:00",
+      "sha256": "f8220deefc41ba97068fefd8a215ff68df28b4506aaebad0cf4eb713f2c7aece",
+      "bytes": 1955,
+      "raw_file": "espoo-parcel-49-65-3-1.gml",
+      "request_note": "Same parameters and exact parcel filter as espoo-parcel-native, but SRSNAME=EPSG:4326. Retains duplicate consecutive coordinate vertices in server response.",
+      "use": "Independent server transformation consistency check, not independent geometry origin."
+    },
+    {
+      "id": "ams01-permit",
+      "url": "https://zoek.officielebekendmakingen.nl/prb-2026-2233.html",
+      "publisher": "Province of Noord-Holland via Officiele bekendmakingen",
+      "published_at": "2026-02-10",
+      "decision_date": "2026-02-06",
+      "section": "Case OD2025-0036452, amendment to datacenter permit Olo 6759419",
+      "sha256": "9bd088ccb634dd8625d9e6baefe8075a79677eefc3406b8d48c575fa75d17863",
+      "bytes": 24446,
+      "raw_file": "ams01-official-permit.html",
+      "use": "Government identity binding for Goodman Mona Logistics (Netherlands) B.V. datacenter, Hybrideweg 105, Vijfhuizen. Permit is not physical-construction evidence."
+    },
+    {
+      "id": "ams01-permit-metadata",
+      "url": "https://zoek.officielebekendmakingen.nl/prb-2026-2233/metadata.xml",
+      "publisher": "Province of Noord-Holland via Officiele bekendmakingen",
+      "published_at": "2026-02-10",
+      "sha256": "b67d2ef88fa1b03908add04e3b4c3e3c131abd840bec26eda0a09191c4657c62",
+      "bytes": 3095,
+      "raw_file": "ams01-permit-metadata.xml",
+      "use": "Official notice geometry: one area polygon and two point markers. These are notice-localization features, not cadastral certification or measured construction extents."
+    },
+    {
+      "id": "dutch-map-crs",
+      "url": "https://zoek.officielebekendmakingen.nl/static/kaartmodule/js/index.js",
+      "publisher": "Officiele bekendmakingen",
+      "published_at": null,
+      "sha256": "c9a4b32921b71171eecd74c90d4341965147717da3f60c6c66399760c5b7fe54",
+      "bytes": 2067113,
+      "raw_file": "dutch-publications-map-index.js",
+      "use": "Official map implementation reads geometrie_rd with dataProjection EPSG:28992 and featureProjection EPSG:3857, resolving metadata WKT CRS; application code is not site-status evidence."
+    },
+    {
+      "id": "par01-ign-address",
+      "url": "https://data.geopf.fr/geocodage/search?q=13%20Rue%20Charles%20Cros%2093290%20Tremblay-en-France&index=address&limit=5",
+      "publisher": "IGN, Geoplateforme / Base Adresse Nationale",
+      "published_at": null,
+      "sha256": "5376cb7cc9bd84e13a67d92e8c2c604699ea5be093b4c5180de900059584ca51",
+      "bytes": 642,
+      "raw_file": "par01-ign-address.json",
+      "use": "Exact house-number address point, not data-center footprint. Returned one result with exact number, street, municipality and postcode."
+    },
+    {
+      "id": "par02-ign-address",
+      "url": "https://data.geopf.fr/geocodage/search?q=34%20Rue%20Louis%20Armand%2094190%20Villeneuve-Saint-Georges&index=address&limit=5",
+      "publisher": "IGN, Geoplateforme / Base Adresse Nationale",
+      "published_at": null,
+      "sha256": "24a1fba2a5f5adf64cc85e9af539726a8a7b98833cb0645484a16c37543b7068",
+      "bytes": 1187,
+      "raw_file": "par02-ign-address.json",
+      "use": "One exact house-number result plus an unrelated lower-ranked street result. Only the exact number, street, municipality and postcode match is selected."
+    },
+    {
+      "id": "ign-geocoding-documentation",
+      "url": "https://cartes.gouv.fr/aide/fr/guides-utilisateur/utiliser-les-services-de-la-geoplateforme/geocodage/",
+      "publisher": "IGN",
+      "published_at": "2026-07-28",
+      "sha256": null,
+      "use": "Official service documentation states address index updates weekly from BAN. No survey accuracy or current construction state is asserted."
+    }
+  ],
+  "goodman_independent_review": {
+    "source_id": "goodman-fy26",
+    "status_as_of": "2026-06-30",
+    "scope": "Pages 13-15 identify named current WIP projects, distinctly from secured future campus expansion. Page 13 labels the group as data-center projects under construction. Generic under_construction is supportable for the listed component, but no precise MEP/shell stage follows from the table.",
+    "wip_rows": [
+      {
+        "code": "AMS01",
+        "wip_mw": 38,
+        "future_pipeline_mw": 38
+      },
+      {
+        "code": "PAR01",
+        "wip_mw": 35,
+        "future_pipeline_mw": 70
+      },
+      {
+        "code": "FRA02",
+        "wip_mw": 45,
+        "future_pipeline_mw": 45
+      },
+      {
+        "code": "MAD01",
+        "wip_mw": 9,
+        "future_pipeline_mw": 9
+      },
+      {
+        "code": "PAR02",
+        "wip_mw": 80,
+        "future_pipeline_mw": 120
+      }
+    ],
+    "capacity_scope": "Presentation MW columns retained as reported; not normalized into IT-load or total-building capacity without another scope source. The separate future pipeline is not accepted as construction.",
+    "footnote_review": "The predevelopment-works footnote on page 13 qualifies the proforma AUM chart. It does not say that every named WIP construction row is only predevelopment.",
+    "forecast_exclusion": "Page 15 RFS timing bars are delivery forecasts, not observed construction starts or completions.",
+    "ams01_extra": "Page 44 states Building A is currently WIP and site cabling and on-site substation works are underway. Building B and adjacent potential-development site are not separate current-construction sites.",
+    "normalization_owner": "Root is independently packaging FY26 status records; this research does not duplicate or overwrite those curated records."
+  },
+  "promotion_ready_candidates": [
+    {
+      "candidate_id": "microsoft-kirkkonummi",
+      "name": "Microsoft Kirkkonummi campus",
+      "country_iso_a2": "FI",
+      "physical_site_stable_key": "curated:microsoft-finland-kirkkonummi-campus",
+      "existing_project_keys": [
+        "curated:microsoft-finland-kirkkonummi-campus:building-1",
+        "curated:microsoft-finland-kirkkonummi-campus:building-2"
+      ],
+      "possible_additional_physical_sites": 1,
+      "status": "under_construction",
+      "status_as_of": "2026-06-26",
+      "status_source_id": "kirkkonummi-work",
+      "status_fact": "The contractor reports building 1 facade/interior work and building 2 backfilling and steel-frame erection. Count one campus despite two work components.",
+      "locator": {
+        "source_id": "kirkkonummi-environmental-decision",
+        "address": "Sundsbergin yritystie, Kirkkonummi, Finland",
+        "parcel_id": "257-483-2-126",
+        "source_crs_label": "tm-35",
+        "normalized_source_crs": "EPSG:3067",
+        "native_coordinates_easting_northing": [
+          363900,
+          6670100
+        ],
+        "coordinates_lon_lat": [
+          24.5488365702344,
+          60.145133329678934
+        ],
+        "scope": "Official source-reported reference point for the Microsoft data-center activity/rock-crushing permit site. Not a building centroid, parcel polygon, or surveyed construction footprint.",
+        "reported_coordinate_rounding_metres": 100,
+        "horizontal_uncertainty_metres": null,
+        "crs_interpretation": "The municipality labels the coordinate system tm-35; normalized to Finnish ETRS-TM35FIN EPSG:3067 for transparent transformation."
+      },
+      "remaining_checks": [
+        "Independent review of exact source-scoped locator package and owner/contractor/parcel identity chain",
+        "Run core acceptance and same-campus duplicate checks; do not count buildings 1 and 2 as two sites"
+      ]
+    },
+    {
+      "candidate_id": "microsoft-espoo",
+      "name": "Microsoft Espoo Hepokorpi campus",
+      "country_iso_a2": "FI",
+      "physical_site_stable_key": "curated:microsoft-finland-espoo-hepokorpi-campus",
+      "existing_project_key": "curated:microsoft-finland-espoo-hepokorpi-campus:second-building",
+      "possible_additional_physical_sites": 1,
+      "status": "under_construction",
+      "status_as_of": "2026-06-11",
+      "status_source_id": "espoo-current-status",
+      "status_fact": "The city explicitly identifies two data centers under permits 2024-616 and 2024-1349 as under construction. Permit 2024-1349 binds the existing second-building component to this parcel; no third-building construction is inferred.",
+      "identity_source_id": "espoo-phase2-identity",
+      "locator": {
+        "source_id": "espoo-parcel-native",
+        "address": "Hepokorvenkaari 1, 02940 Espoo, Finland",
+        "parcel_id": "49-65-3-1",
+        "source_crs": "EPSG:3879",
+        "feature_count": 1,
+        "reported_parcel_area_m2": 167791,
+        "computed_projected_polygon_area_m2": 167790.2305029335,
+        "native_polygon_coordinates": [
+          [
+            [
+              25482497.434,
+              6680430.982
+            ],
+            [
+              25482401.147,
+              6680705.073
+            ],
+            [
+              25482441.172,
+              6680715.649
+            ],
+            [
+              25482617.047,
+              6680762.119
+            ],
+            [
+              25482856.136,
+              6680825.291
+            ],
+            [
+              25482862.674,
+              6680814.047
+            ],
+            [
+              25482898.157,
+              6680774.923
+            ],
+            [
+              25482913.499,
+              6680754.45
+            ],
+            [
+              25482918.524,
+              6680747.412
+            ],
+            [
+              25482922.031,
+              6680742.057
+            ],
+            [
+              25482945.185,
+              6680705.341
+            ],
+            [
+              25482948.779,
+              6680682.702
+            ],
+            [
+              25482911.659,
+              6680518.829
+            ],
+            [
+              25482906.172,
+              6680510.739
+            ],
+            [
+              25482730.955,
+              6680390.195
+            ],
+            [
+              25482723.164,
+              6680381.159
+            ],
+            [
+              25482714.26,
+              6680364.178
+            ],
+            [
+              25482497.434,
+              6680430.982
+            ]
+          ]
+        ],
+        "geometry_wgs84": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                24.684078425233256,
+                60.23620196571282
+              ],
+              [
+                24.6823166620841,
+                60.23865784167016
+              ],
+              [
+                24.683038238251676,
+                60.23875449060354
+              ],
+              [
+                24.686208987479556,
+                60.23917911130229
+              ],
+              [
+                24.690519517538203,
+                60.23975622558656
+              ],
+              [
+                24.690638490686208,
+                60.23965558340234
+              ],
+              [
+                24.691282319324454,
+                60.23930592836561
+              ],
+              [
+                24.691560991211716,
+                60.239122822608365
+              ],
+              [
+                24.691652292604825,
+                60.23905986578834
+              ],
+              [
+                24.691716049954383,
+                60.23901195055446
+              ],
+              [
+                24.692137100194042,
+                60.238683386586956
+              ],
+              [
+                24.692203881537466,
+                60.238480347137354
+              ],
+              [
+                24.691547654210805,
+                60.23700799620675
+              ],
+              [
+                24.69144929569149,
+                60.23693515651522
+              ],
+              [
+                24.688296886050352,
+                60.235845858762666
+              ],
+              [
+                24.688157032934107,
+                60.2357644284085
+              ],
+              [
+                24.68799776939331,
+                60.23561164259833
+              ],
+              [
+                24.684078425233256,
+                60.23620196571282
+              ]
+            ]
+          ]
+        },
+        "native_polygon_centroid": [
+          25482689.56670681,
+          6680602.624373605
+        ],
+        "derived_centroid_lon_lat": [
+          24.687531695669563,
+          60.23775070138893
+        ],
+        "centroid_method": "Area-weighted planar polygon centroid in EPSG:3879, then transformed to EPSG:4326; not an arithmetic average of vertices.",
+        "scope": "Official registered parcel geometry matching the permit's exact parcel identifier and area. Contains the first and second buildings' parcel, not an asserted whole-campus boundary. Adjacent third-building parcel 49-65-2-1 is excluded.",
+        "horizontal_uncertainty_metres": null,
+        "attribution": "City of Espoo, open data, CC BY 4.0"
+      },
+      "remaining_checks": [
+        "Independent review of municipal Finnish wording and permit linkage",
+        "Core acceptance of parcel-derived point/polygon without inflating it to a building footprint or whole-campus extent",
+        "Do not promote third-building permit 49-2026-318 solely because the same June agenda mentions it"
+      ]
+    },
+    {
+      "candidate_id": "goodman-ams01",
+      "name": "Goodman AMS01 current Building A construction",
+      "country_iso_a2": "NL",
+      "physical_site_stable_key": "curated:goodman-ams01-amsterdam-data-centre-campus",
+      "possible_additional_physical_sites": 1,
+      "status": "under_construction",
+      "status_as_of": "2026-06-30",
+      "status_source_id": "goodman-fy26",
+      "status_fact": "The named WIP row is distinct from future campus pipeline; page 44 also describes site cabling and substation work underway.",
+      "identity_source_ids": [
+        "goodman-pipeline",
+        "ams01-permit"
+      ],
+      "locator": {
+        "source_id": "ams01-permit-metadata",
+        "address": "Hybrideweg 105, Vijfhuizen, Netherlands",
+        "source_crs": "EPSG:28992",
+        "source_native_point_markers": [
+          [
+            108545,
+            488162
+          ],
+          [
+            108563,
+            488156
+          ]
+        ],
+        "source_point_markers_lon_lat": [
+          [
+            4.704939898256592,
+            52.37935680103495
+          ],
+          [
+            4.705205067821379,
+            52.37930440168947
+          ]
+        ],
+        "native_notice_polygon": [
+          [
+            [
+              108703.83807549797,
+              488113.6954605974
+            ],
+            [
+              108486.55807530042,
+              488055.45546055835
+            ],
+            [
+              108334.23807516451,
+              488185.37546063313
+            ],
+            [
+              108668.74507546861,
+              488274.97546068864
+            ],
+            [
+              108703.83807549797,
+              488113.6954605974
+            ]
+          ]
+        ],
+        "geometry_wgs84": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                4.707279182851098,
+                52.378936104165156
+              ],
+              [
+                4.7040963961124636,
+                52.37839433342567
+              ],
+              [
+                4.701841494153186,
+                52.379549001963674
+              ],
+              [
+                4.706741585010626,
+                52.38038257263338
+              ],
+              [
+                4.707279182851098,
+                52.378936104165156
+              ]
+            ]
+          ]
+        },
+        "scope": "Government permit-notice localization area and two markers. Neither marker is silently chosen as a measured building centroid. The polygon is not represented as a cadastral boundary or observed construction footprint.",
+        "horizontal_uncertainty_metres": null,
+        "crs_source_id": "dutch-map-crs"
+      },
+      "remaining_checks": [
+        "Root source normalization and independent owner-site-code/Goodman Mona De Nieuwe Liede identity audit",
+        "Use one physical campus despite two notice markers and two future buildings",
+        "Preserve permit-notice geometry scope and derive a clearly labelled site-reference point if the core requires one"
+      ]
+    },
+    {
+      "candidate_id": "goodman-par01",
+      "name": "Goodman PAR01 current construction component",
+      "country_iso_a2": "FR",
+      "physical_site_stable_key": "curated:goodman-par01-paris-data-centre-campus",
+      "existing_project_key": "curated:goodman-par01-paris-data-centre-campus:phase-1-current-development",
+      "possible_additional_physical_sites": 1,
+      "status": "under_construction",
+      "status_as_of": "2026-06-30",
+      "status_source_id": "goodman-fy26",
+      "identity_source_id": "goodman-pipeline",
+      "locator": {
+        "source_id": "par01-ign-address",
+        "address": "13 Rue Charles Cros, 93290 Tremblay-en-France, France",
+        "coordinates_lon_lat": [
+          2.569445,
+          48.967618
+        ],
+        "source_feature_id": "93073_0419_00013",
+        "ban_id": "22c7b219-0e0c-477e-855c-2730c4ddb492",
+        "match_type": "housenumber",
+        "match_score": 0.9609172727272727,
+        "returned_result_count": 1,
+        "scope": "Exact house-number point from official BAN geocoding of the owner-published address. Not a building footprint, campus boundary or construction extent.",
+        "horizontal_uncertainty_metres": null
+      },
+      "remaining_checks": [
+        "Package reproducible current owner address binding, or review root's existing identity source",
+        "Core acceptance with address-point scope and one physical campus",
+        "Retain only generic construction stage and exclude separately listed future campus pipeline"
+      ]
+    },
+    {
+      "candidate_id": "goodman-par02",
+      "name": "Goodman PAR02 current construction component",
+      "country_iso_a2": "FR",
+      "physical_site_stable_key": "curated:goodman-par02-paris-data-centre-campus",
+      "existing_project_key": "curated:goodman-par02-paris-data-centre-campus:phase-1-current-development",
+      "possible_additional_physical_sites": 1,
+      "status": "under_construction",
+      "status_as_of": "2026-06-30",
+      "status_source_id": "goodman-fy26",
+      "identity_source_id": "goodman-pipeline",
+      "locator": {
+        "source_id": "par02-ign-address",
+        "address": "34 Rue Louis Armand, 94190 Villeneuve-Saint-Georges, France",
+        "coordinates_lon_lat": [
+          2.447152,
+          48.760391
+        ],
+        "source_feature_id": "94078_1123_00034",
+        "ban_id": "54c5e652-1cbf-4e04-a294-b1c5fc5ce676",
+        "match_type": "housenumber",
+        "match_score": 0.9622790909090909,
+        "returned_result_count": 2,
+        "selection_note": "Selected the exact 34 Rue Louis Armand house-number record. Rejected the unrelated lower-ranked Allee Armand Jusselin street result.",
+        "scope": "Exact house-number point from official BAN geocoding of the owner-published address. Not a building footprint, campus boundary or construction extent.",
+        "horizontal_uncertainty_metres": null
+      },
+      "remaining_checks": [
+        "Package reproducible current owner address binding, or review root's existing identity source",
+        "Core acceptance with address-point scope and one physical campus",
+        "Retain only generic construction stage and exclude separately listed future campus pipeline"
+      ]
+    }
+  ],
+  "unresolved_candidates": [
+    {
+      "candidate_id": "goodman-fra02",
+      "name": "Goodman FRA02",
+      "country_iso_a2": "DE",
+      "physical_site_stable_key": "curated:goodman-fra02-frankfurt-data-centre-campus",
+      "status": "under_construction",
+      "status_as_of": "2026-06-30",
+      "status_source_id": "goodman-fy26",
+      "address": "Rathenaustrasse 29-31, 63263 Neu-Isenburg, Germany",
+      "identity_source_id": "goodman-pipeline",
+      "coordinates_lon_lat": null,
+      "possible_additional_physical_sites": 1,
+      "remaining_checks": [
+        "Resolve exact source-scoped coordinate or official parcel geometry for the owner address",
+        "Do not reuse city centroid or old rough coordinate",
+        "Root independently normalizes fresh generic WIP status"
+      ],
+      "additional_identity_lead": "https://www.neu-isenburg.de/pressemodul/pressemitteilungen/september/erstes-rechenzentrum-in-neu-isenburg-staedtebaulicher-vertrag-unterzeichnet"
+    },
+    {
+      "candidate_id": "goodman-mad01",
+      "name": "Goodman MAD01",
+      "country_iso_a2": "ES",
+      "physical_site_stable_key": null,
+      "status": "under_construction",
+      "status_as_of": "2026-06-30",
+      "status_source_id": "goodman-fy26",
+      "address": "C/ Provisional Iveco-Pegaso Cinco, 2, Madrid 28022, Spain",
+      "identity_source_id": "goodman-pipeline",
+      "coordinates_lon_lat": null,
+      "possible_additional_physical_sites": 1,
+      "remaining_checks": [
+        "Resolve exact source-scoped geometry for the owner address",
+        "Check existing inventory identity before assigning a new stable key",
+        "Compare official site capacity scope: pipeline lists 6 MW IT, FY26 WIP table lists 9 MW without assuming they are contradictory",
+        "Do not count the separate 9 MW future pipeline as an additional physical construction site"
+      ]
+    }
+  ],
+  "rejected_inferences": [
+    "Kirkkonummi's 2024 environmental permit is not recent construction evidence",
+    "Espoo's June 2026 third-building permit is not an observed third-building start",
+    "Official parcel and address geometry do not establish measured physical-construction extents",
+    "Goodman future secured campus pipeline and RFS forecasts are not current physical-construction observations",
+    "No additional independent publisher lineage is claimed for the Goodman PDF mirror"
+  ]
+}

@@ -1,0 +1,183 @@
+{
+  "schema_version": "v018-paju-community-former-factory-locator-facts-1",
+  "reviewed_on": "2026-09-08",
+  "lifecycle_reference_date": "2026-08-20",
+  "review_scope": "Proposed source-specific campus locator for independent admission review only. No core or acceptance mutation. The point locates the named former factory parcel, not the current data-center footprint, entrance or whole campus boundary.",
+  "proposed_source_bindings": [
+    {
+      "source_id": "lguplus-paju-current-status",
+      "path": "sources/curated-official-2026-09-08-lg-uplus-paju-current-build-and-parcel-bridge.json",
+      "evidence_pointer": "/evidence/0"
+    },
+    {
+      "source_id": "lguplus-paju-current-parcel",
+      "path": "sources/curated-official-2026-09-08-lg-uplus-paju-current-build-and-parcel-bridge.json",
+      "evidence_pointer": "/evidence/1"
+    },
+    {
+      "source_id": "paju-city-former-factory-parcel",
+      "path": "sources/curated-official-2026-09-08-lg-uplus-paju-current-build-and-parcel-bridge.json",
+      "evidence_pointer": "/evidence/2"
+    },
+    {
+      "source_id": "paju-community-former-factory-point",
+      "path": "sources/verified-construction-core-v0.18-lg-uplus-paju-geometry-facts.json",
+      "evidence_pointer": "/evidence/0"
+    },
+    {
+      "source_id": "paju-community-former-factory-object",
+      "path": "sources/verified-construction-core-v0.18-lg-uplus-paju-geometry-facts.json",
+      "evidence_pointer": "/evidence/1"
+    }
+  ],
+  "evidence": [
+    {
+      "key": "paju-heesung-community-nominatim-point-captured-2026-09-08",
+      "kind": "openstreetmap",
+      "title": "Named Heesung former-factory feature - Nominatim representative point",
+      "source_url": "https://nominatim.openstreetmap.org/search?q=%ED%9D%AC%EC%84%B1%EC%A0%84%EC%9E%90&format=jsonv2&polygon_geojson=1",
+      "publisher": "OpenStreetMap contributors / Nominatim",
+      "source_family": "openstreetmap_nominatim",
+      "published_at": null,
+      "retrieved_at": "2026-09-08T19:37:00Z",
+      "license": "ODbL-1.0",
+      "attribution": "© OpenStreetMap contributors",
+      "excerpt": "Nominatim returns the named Heesung industrial-building feature, OSM way469691383, with this source-supplied representative point. The second result is a bus stop and is excluded.",
+      "content_hash": "daf9ee2b05579615d67577b8d347b7fa8f66273be196ecd80d0aa14aa7fad7ef",
+      "metadata": {
+        "content_hash_scope": "SHA-256 of exact1575-byte saved JSON response body",
+        "content_hash_verification": "fetched_bytes_sha256",
+        "capture_method": "credential_free_curl_fail_location",
+        "capture_started_at": "2026-09-08T19:36:59Z",
+        "capture_finished_at": "2026-09-08T19:37:00Z",
+        "raw_capture_bytes": 1575,
+        "request_credentials_supplied": false,
+        "literal_pointer": "$[0]: osm_type=way, osm_id=469691383, name=희성전자; source lat and lon fields",
+        "source_crs": "EPSG:4326",
+        "coordinate_order": "longitude,latitude",
+        "selected_source_label": "희성전자",
+        "selected_feature_type": "building:industrial",
+        "selected_object_url": "https://www.openstreetmap.org/way/469691383",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            126.7561012,
+            37.8141287
+          ]
+        },
+        "geometry_use_scope": "campus_locator",
+        "official_boundary": false,
+        "horizontal_uncertainty_metres": null,
+        "horizontal_uncertainty_unknown_reason": "Community geometry and representative point have no source-provided quantitative positional-accuracy estimate. Decimal digits are not a survey-accuracy claim.",
+        "derivation": "Point copied exactly from the selected Nominatim feature; no locality geocoder, neighboring feature, imagery inference or newly computed centroid used.",
+        "rights_url": "https://www.openstreetmap.org/copyright",
+        "license_url": "https://opendatacommons.org/licenses/odbl/1-0/",
+        "rights_scope": "The narrow source-specific OSM-derived factual point remains attributed and ODbL-licensed. Do not relicense it as public domain, omit attribution or imply OSM endorsement.",
+        "scope_guardrail": "A historical industrial building on the exact subsequent redevelopment parcel. No assertion that this building survives, or that its old footprint is the current data-center footprint."
+      }
+    },
+    {
+      "key": "paju-heesung-community-osm-way469691383-captured-2026-09-08",
+      "kind": "openstreetmap",
+      "title": "OpenStreetMap way469691383 - Heesung industrial building",
+      "source_url": "https://api.openstreetmap.org/api/0.6/way/469691383/full.json",
+      "publisher": "OpenStreetMap contributors",
+      "source_family": "openstreetmap_api",
+      "published_at": null,
+      "retrieved_at": "2026-09-08T19:43:13Z",
+      "license": "ODbL-1.0",
+      "attribution": "© OpenStreetMap contributors",
+      "excerpt": "The public OSM object independently exposes the same Heesung feature as a named industrial building. It has no address tag; its exact parcel binding comes from the municipal factory register, not a synthesized map address.",
+      "content_hash": "7ab33bbc0699911ea919942e43f6dbbd26c99215d68637d60dc03b67b4169885",
+      "metadata": {
+        "content_hash_scope": "SHA-256 of exact3299-byte saved JSON response body",
+        "content_hash_verification": "fetched_bytes_sha256",
+        "capture_method": "credential_free_curl_fail_location",
+        "capture_started_at": "2026-09-08T19:43:13Z",
+        "capture_finished_at": "2026-09-08T19:43:13Z",
+        "raw_capture_bytes": 3299,
+        "request_credentials_supplied": false,
+        "literal_pointer": "$.elements[type=way,id=469691383]; version4",
+        "osm_way_version": 4,
+        "osm_way_updated_at": "2026-01-15T10:56:20Z",
+        "selected_tags": {
+          "building": "industrial",
+          "name": "희성전자",
+          "name:ko": "희성전자"
+        },
+        "rights_url": "https://www.openstreetmap.org/copyright",
+        "license_url": "https://opendatacommons.org/licenses/odbl/1-0/",
+        "temporal_guardrail": "An OSM edit date is not a construction-status observation. No lifecycle inference is made from this object."
+      }
+    }
+  ],
+  "results": [
+    {
+      "project_stable_keys": [
+        "curated:lg-uplus-paju-aidc-campus:building-1"
+      ],
+      "parent_campus_stable_key": "curated:lg-uplus-paju-aidc-campus",
+      "name": "LG Uplus Paju AIDC",
+      "country_code": "KR",
+      "proposed_review_status": "ready_for_independent_physical_site_locator_review",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          126.7561012,
+          37.8141287
+        ]
+      },
+      "display_anchor": {
+        "type": "Point",
+        "coordinates": [
+          126.7561012,
+          37.8141287
+        ]
+      },
+      "geometry_kind": "community_former_factory_representative_point",
+      "geometry_precision": "source_specific_building_locator",
+      "boundary_status": "not_campus_boundary",
+      "source_geometry_as_of_date": null,
+      "geometry_reviewed_on": "2026-09-08",
+      "horizontal_uncertainty_metres": null,
+      "identity_chain": [
+        {
+          "evidence_key": "paju-city-lg-uplus-datacenter-parcel-1239-1-captured-2026-09-08",
+          "fact": "Paju city LG Uplus AIDC application identifies Deokeun-ri1239-1 and73712.2sqm."
+        },
+        {
+          "evidence_key": "paju-city-heesung-factory-parcel-1239-1-2018q1-captured-2026-09-08",
+          "fact": "Paju city2018Q1 factory register row3841 identifies Heesung Electronics at Deokeun-ri1239-1,272Elssidi-ro and73712.2sqm."
+        },
+        {
+          "evidence_key": "paju-heesung-community-osm-way469691383-captured-2026-09-08",
+          "fact": "OSM way469691383 names the former Heesung industrial building in Paju."
+        },
+        {
+          "evidence_key": "paju-heesung-community-nominatim-point-captured-2026-09-08",
+          "fact": "Nominatim supplies the representative point for that same specific OSM object."
+        }
+      ],
+      "lifecycle_reference": {
+        "evidence_key": "lguplus-paju-building1-june5-physical-construction-captured-2026-09-08",
+        "observed_on": "2026-06-05",
+        "value": "under_construction"
+      },
+      "distinct_site_review": "Not present in the100-site frozen v0.17 baseline; no other112-site checkpoint addition is Paju. The neighboring larger LG Display1239 complex is not substituted for parcel1239-1. Building2 or further phases would share this single campus.",
+      "excluded_claims": [
+        "official/surveyed campus boundary",
+        "current building footprint",
+        "continued existence of former factory",
+        "current point-position uncertainty",
+        "operating status",
+        "capacity, roles, tenants or workload"
+      ],
+      "rights": {
+        "license": "ODbL-1.0",
+        "license_url": "https://opendatacommons.org/licenses/odbl/1-0/",
+        "attribution": "© OpenStreetMap contributors",
+        "government_identity_projection": "Compact factual company/parcel/address/site-area projection only; no raw government workbook or PDF redistributed."
+      }
+    }
+  ]
+}

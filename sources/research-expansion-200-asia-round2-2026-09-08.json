@@ -1,0 +1,402 @@
+{
+  "schema_version": "asia-round2-reviewed-geometry-facts-1",
+  "reviewed_on": "2026-09-08",
+  "lifecycle_reference_date": "2026-08-20",
+  "acceptance_status": "source_facts_only_not_core_acceptance",
+  "accepted_additional_sites": 0,
+  "raw_response_directory": "/tmp/atlas-asia-round2.UovCdA",
+  "capture_scope": "SHA-256 over exact saved HTTP response-body bytes. Retrieval timestamps are actual UTC request start and completion times, not document publication or construction observation dates. Raw third-party content remains temporary.",
+  "evidence": [
+    {
+      "id": "goodman-current-pipeline-identity",
+      "url": "https://www.goodman.com/our-properties/data-centres/global-data-centre-pipeline",
+      "corroborating_first_party_url": "https://uk.goodman.com/data-centres",
+      "publisher": "Goodman Group",
+      "retrieved_on": "2026-09-08",
+      "sha256": null,
+      "capture_note": "Read through web search/open. Direct HTTP body capture on regional pages returned 403; failed responses are not retained as evidence and no byte hash is claimed.",
+      "literal_pointer": "Global Data Centre Power Bank listing, HKG10 card and separately HKG09 card",
+      "selected_facts": {
+        "HKG10": "128 Texaco Road, Tsuen Wan, Hong Kong, China",
+        "HKG09": "57-61 Ta Chuen Ping St, Kwai Chung, Hong Kong"
+      },
+      "use": "Current code-to-address identity only; the undated completion forecast is not construction or operating-status evidence."
+    },
+    {
+      "id": "hkg10-government-address-search",
+      "url": "https://www.map.gov.hk/gs/api/v1.0.0/locationSearch?q=128%20Texaco%20Road%2C%20Tsuen%20Wan",
+      "publisher": "Lands Department, Government of the Hong Kong SAR",
+      "retrieval_started_at": "2026-09-08T19:25:32Z",
+      "retrieval_completed_at": "2026-09-08T19:25:34Z",
+      "raw_file": "hkg10-hk-location.json",
+      "sha256": "d0a9ee583bd76f76306f5bb7b1cff2fe9c1969092684d31aeecab17bcc7c2188",
+      "bytes": 12876,
+      "literal_pointer": "$[0]",
+      "selected_facts": {
+        "nameEN": "Goodman Texaco Centre",
+        "addressEN": "126-140 TEXACO ROAD  ",
+        "districtEN": "Tsuen Wan District",
+        "nameZH": "嘉民德高中心",
+        "x": 830403.0,
+        "y": 825021.0
+      },
+      "use": "Named building/address locator for the exact street-number range containing the operator's 128 Texaco Road address, not a road or district center."
+    },
+    {
+      "id": "hkg10-government-coordinate-transform",
+      "url": "https://www.geodetic.gov.hk/transform/v2/?inSys=hkgrid&outSys=wgsgeog&e=830403&n=825021",
+      "publisher": "Lands Department, Government of the Hong Kong SAR",
+      "retrieval_started_at": "2026-09-08T19:26:02Z",
+      "retrieval_completed_at": "2026-09-08T19:26:02Z",
+      "raw_file": "hkg10-hk-transform.json",
+      "sha256": "547f9fdb8a2181bbb94bea24a88c5755659c71c681ab6b689ca5ff1646b33dac",
+      "bytes": 49,
+      "literal_pointer": "$",
+      "selected_facts": {
+        "wgsLat": 22.364335241,
+        "wgsLong": 114.119930627
+      },
+      "use": "Official HK1980 grid-to-WGS84 transformation of the selected source point. No independent geometry origin or improved positional accuracy is implied."
+    },
+    {
+      "id": "hk-csdi-terms",
+      "url": "https://portal.csdi.gov.hk/csdi-webpage/doc/TNC",
+      "publisher": "Government of the Hong Kong SAR",
+      "retrieval_started_at": "2026-09-08T19:30:54Z",
+      "retrieval_completed_at": "2026-09-08T19:30:55Z",
+      "raw_file": "hkg-csdi-terms.html",
+      "sha256": "53594dd98d9fc2177b0f53db04d80eda999b3c0cfca318ba5ef92e123c6dae0a",
+      "bytes": 21273,
+      "use": "Attribution and reuse terms for government open spatial data; no accuracy guarantee."
+    },
+    {
+      "id": "hkg10-texaco-project-galaxy-construction-contract",
+      "url": "https://www.safetyweek.hk/web/files.php?id=7670&scode=3c5d51c4aebb67a615e742d56d29e47d",
+      "publisher": "Construction Safety Week, Considerate Contractors Site Award Scheme",
+      "document_context": "31st scheme, non-public works repair, maintenance, alteration and addition award list; historical identity only, not fresh lifecycle evidence",
+      "retrieval_started_at": "2026-09-08T19:33:42Z",
+      "retrieval_completed_at": "2026-09-08T19:33:45Z",
+      "raw_file": "hkg10-construction-awards.pdf",
+      "sha256": "e5aa01249d848fa43d84153302d05ad8f3fdf9f1c95e52a90adb744dadd1914e",
+      "bytes": 382525,
+      "literal_pointer": "Only page, row 5; visually reviewed",
+      "selected_facts": {
+        "contractor": "Chinney Builders Company Limited",
+        "project_name": "Main Contract for Project Galaxy at Goodman Texaco Centre",
+        "address": "126-140 Texaco Road, Tsuen Wan, N.T.",
+        "legal_lot": "Section A of Lot No. 472 in D.D. 443",
+        "supervisory_company": "Goodman Group"
+      },
+      "use": "Independent construction-contract-to-building/address/lot identity. The document does not print HKG10; it cannot alone close the literal current code identity requirement."
+    },
+    {
+      "id": "lguplus-paju-june5-current-construction",
+      "url": "https://news.lguplus.com/?p=21965",
+      "canonical_url": "https://news.lguplus.com/21965",
+      "publisher": "LG Uplus",
+      "published_at": "2026-06-08T14:38:27+09:00",
+      "observed_on": "2026-06-05",
+      "retrieval_started_at": "2026-09-08T19:35:09Z",
+      "retrieval_completed_at": "2026-09-08T19:35:10Z",
+      "raw_file": "lguplus-paju-june5.html",
+      "sha256": "305dea75d60c428610c798fb27df891c1a3e7042059c84af4426a462b8b1063d",
+      "bytes": 108225,
+      "literal_pointer": "article body opening paragraph, prefabricated-structure assembly paragraph, and final building-1 leasing paragraph; source HTML lines 556, 580 and 640 onwards",
+      "selected_facts": {
+        "project_name": "LG Uplus Paju AI data center",
+        "event": "June 5 strategy briefing at the Paju AI data-center construction site",
+        "physical_work": "Major structural components were prefabricated and assembled on site to accelerate construction",
+        "selected_phase": "Building 1",
+        "future_completion_forecast": "June 2027"
+      },
+      "use": "Fresh primary physical-work evidence. June 5 is the reported site-event date, not the June 8 publication date or September retrieval date. Building 1 is not operational merely because its leasing is complete."
+    },
+    {
+      "id": "paju-city-lguplus-building-application-notice",
+      "url": "https://www.paju.go.kr/user/board/BD_board.view.do?bbsCd=1022&q_ctgCd=4063&seq=20241230134843671",
+      "publisher": "Paju City",
+      "published_on": "2024-12-30",
+      "retrieval_started_at": "2026-09-08T19:36:02Z",
+      "retrieval_completed_at": "2026-09-08T19:36:06Z",
+      "raw_file": "paju-city-notice.html",
+      "sha256": "d82767fc6e80b74f89fe81b20c2a8e0e63996561d647cf5abca9c3911efdceeb",
+      "bytes": 291970,
+      "use": "Municipal notice names LG Uplus data center and the exact Deokeun-ri 1239-1 site; links the following PDF attachment. Not physical-work evidence."
+    },
+    {
+      "id": "paju-city-lguplus-parcel-notice-pdf",
+      "url": "https://www.paju.go.kr/component/file/ND_fileDownload.do?id=f85cdfff-69e1-4e2c-85d9-3b625cc99ed0",
+      "publisher": "Paju City",
+      "published_on": "2024-12-30",
+      "retrieval_started_at": "2026-09-08T19:36:17Z",
+      "retrieval_completed_at": "2026-09-08T19:36:19Z",
+      "raw_file": "paju-site-notice.pdf",
+      "sha256": "2816e8221a45fd0b08d81e4810a51b8778246136199bb92fed498d4f937ce796",
+      "bytes": 186398,
+      "literal_pointer": "Only page, notice 2024-632, development overview table; image-only PDF rendered and visually reviewed",
+      "selected_facts": {
+        "parcel_address": "경기도 파주시 월롱면 덕은리 1239-1",
+        "site_area_square_metres": 73712.2,
+        "building_footprint_square_metres": 8837.68,
+        "floor_area_square_metres": 46013.12,
+        "floors": "one basement, five above ground",
+        "height_metres": 42.3,
+        "use": "data center"
+      },
+      "use": "Exact current-project parcel identity. No map or coordinates appear on this page."
+    },
+    {
+      "id": "heesung-former-factory-community-geometry-not-yet-bound",
+      "url": "https://api.openstreetmap.org/api/0.6/way/469691383/full.json",
+      "publisher": "OpenStreetMap contributors",
+      "retrieval_started_at": "2026-09-08T19:43:13Z",
+      "retrieval_completed_at": "2026-09-08T19:43:13Z",
+      "raw_file": "heesung-osm-way.json",
+      "sha256": "7ab33bbc0699911ea919942e43f6dbbd26c99215d68637d60dc03b67b4169885",
+      "literal_pointer": "way 469691383 and its member nodes",
+      "selected_facts": {
+        "name": "희성전자",
+        "building": "industrial"
+      },
+      "license": "ODbL-1.0",
+      "rights_url": "https://www.openstreetmap.org/copyright",
+      "use": "Unaccepted community former-factory locator. It has no address tag. An exact authoritative identity link to the Paju AIDC parcel is still needed; this older polygon must not be presented as the current data-center footprint."
+    },
+    {
+      "id": "tsukuba-city-development-site-plan",
+      "url": "https://www.city.tsukuba.lg.jp/material/files/group/24/kaihatu_zentaizu.pdf",
+      "publisher": "City of Tsukuba, plan supplied by Goodman Japan",
+      "publication_context_date": "2025-09-29",
+      "retrieval_started_at": "2026-09-08T19:26:27Z",
+      "retrieval_completed_at": "2026-09-08T19:26:29Z",
+      "raw_file": "tsukuba-site-plan.pdf",
+      "sha256": "907026abb1a179ff3dfe2ab13bf5aaf02cc4b8d94e12b4a853ef062c160d9b8f",
+      "bytes": 2020465,
+      "literal_pointer": "Only page, full campus development plan; southwest first data-center block",
+      "use": "Visually reviewed historical layout and exact site identity only. No coordinate grid is printed and no georeferenced point has been derived from the picture. Planning is not recent physical work."
+    },
+    {
+      "id": "tsukuba-city-property-open-data",
+      "url": "https://www.city.tsukuba.lg.jp/material/files/group/120/kouenekennbukkenntyousyo.xlsx",
+      "publisher": "City of Tsukuba",
+      "retrieval_started_at": "2026-09-08T19:30:19Z",
+      "retrieval_completed_at": "2026-09-08T19:30:20Z",
+      "raw_file": "tsukuba-open-data.xlsx",
+      "sha256": "0b87b78ff253e878dcd243430863027ec1a473cc35195bc051a3383a8074d521",
+      "bytes": 14513,
+      "literal_pointer": "Worksheet '物件調書 ', B3 and B4",
+      "selected_facts": {
+        "parcel_address": "つくば市大穂２番地１ほか",
+        "area_square_metres": 455754.03
+      },
+      "rights_url": "https://www.city.tsukuba.lg.jp/soshikikarasagasu/zaimubukokyoshisanrikatsuyosuishinka/gyomuannai/2/1/1006605.html",
+      "license": "CC-BY-4.0",
+      "use": "Historical property identity; the city applies CC BY 4.0 to this open-data attachment. It contains no coordinate fields. It does not date current construction."
+    },
+    {
+      "id": "tsukuba-city-historical-boundary-map",
+      "url": "https://www.city.tsukuba.lg.jp/material/files/group/120/kouenekennitizusyousai.pdf",
+      "publisher": "City of Tsukuba",
+      "retrieval_started_at": "2026-09-08T19:48:06Z",
+      "retrieval_completed_at": "2026-09-08T19:48:09Z",
+      "raw_file": "tsukuba-boundary.pdf",
+      "sha256": "6572c461b2e85a94c9941e67a64c8d666ccf2a3a94c72c9864bc2673a3a3aa75",
+      "bytes": 3607855,
+      "literal_pointer": "Only page, red site boundary south of KEK; visually reviewed",
+      "selected_facts": {"area_square_metres": 455754.03},
+      "use": "Exact historical campus outline and adjoining streets, but no georeferenced coordinate grid. The nearby OSM construction way 183398332 covers only a northern portion, not the southwest first data-center block. No TYO05 point is derived from that unrelated partial construction polygon."
+    },
+    {
+      "id": "ucloud-ulanqab-d-july29-issuer-status",
+      "url": "https://static.cninfo.com.cn/finalpage/2026-07-29/1225445187.PDF",
+      "publisher": "UCloud Technology Co., Ltd., issuer-authored exchange disclosure",
+      "published_on": "2026-07-29",
+      "retrieval_started_at": "2026-09-08T19:46:20Z",
+      "retrieval_completed_at": "2026-09-08T19:46:21Z",
+      "raw_file": "ucloud-july29-inquiry.pdf",
+      "sha256": "08b0f63dfa2e6aa075b0caa39462595b8f38a4747586aea96506bdf7f0d39a13",
+      "bytes": 1707891,
+      "literal_pointer": "PDF page 16, printed 7-1-15, second paragraph; visually reviewed",
+      "selected_facts": {
+        "building_D": "Structure topped out as of the response issuance date; mechanical and electrical construction will follow.",
+        "building_E": "Not yet in substantive physical construction as of the same response."
+      },
+      "date_scope": "As-of-response physical statement in the July 29 disclosed document. The undated signature fields are not a separate precise observation date; confirm with exchange filing metadata before normalized intake.",
+      "use": "Building D is the sole physically eligible selected phase. Existing operational buildings and future E are not additional campuses. Compact paraphrase only, all rights reserved."
+    },
+    {
+      "id": "ucloud-ulanqab-official-campus-description",
+      "url": "https://www.ucloud.cn/site/active/UHybrid.html",
+      "publisher": "UCloud",
+      "retrieval_started_at": "2026-09-08T19:47:00Z",
+      "retrieval_completed_at": "2026-09-08T19:47:01Z",
+      "raw_file": "ucloud-ulanqab-campus.html",
+      "sha256": "eeaff6e2adfdf3f73b5602fd1949848fb3fd3c01bd08d24dae8f209cd8fa6411",
+      "bytes": 112167,
+      "literal_pointer": "HTML line 1479, UCloud Ulanqab cloud computing center product description",
+      "selected_facts": {"campus_locality": "Chahar Industrial Park, Jining District, Ulanqab", "site_area_square_metres": 140000},
+      "use": "Campus identity only, no coordinates or new status date. All rights reserved; minimal factual paraphrase only."
+    },
+    {
+      "id": "linewell-qixingyuan-municipal-topout",
+      "url": "https://www.bjft.gov.cn/xwdt/jcdt/bmdt/202608/t20260826_223161.shtml",
+      "publisher": "Fengtai District, Beijing municipal government",
+      "published_at_in_body": "2026-08-03T19:10:00+08:00",
+      "retrieval_started_at": "2026-09-08T19:45:33Z",
+      "retrieval_completed_at": "2026-09-08T19:45:34Z",
+      "raw_file": "beijing-qixingyuan-topout.html",
+      "sha256": "d6d9b72a163f57ef0f93631187970d807ce63caa2fa19ba8a1ebe08ac8492f47",
+      "bytes": 68241,
+      "selected_facts": {"project": "Linewell global headquarters in Qixingyuan", "parcel": "Fengtai Science Park East Area 1516-59", "status": "Main structure topped out"},
+      "date_scope": "August 3 is the publication time printed in the article, despite the later August 26 URL migration path. Do not use the URL path as a fresh physical date.",
+      "use": "Mixed-use campus top-out and exact parcel identity only. Need a captured primary bridge identifying the data-center building and a reusable exact locator before admission. No municipal text or media is redistributed beyond compact factual paraphrase."
+    },
+    {
+      "id": "gulf-aug6-current-data-centre-construction",
+      "url": "https://www.gulf.co.th/en/newsroom/news-and-activities/611/gulf-s-core-profit-surged-74-yoy-to-a-record-high-of-thb-12332-million-in-q2-2026-driven-by-the-energy-business-and-share-of-profit-from-ais",
+      "publisher": "Gulf Development Public Company Limited",
+      "published_on": "2026-08-06",
+      "retrieval_started_at": "2026-09-08T19:54:09Z",
+      "retrieval_completed_at": "2026-09-08T19:54:10Z",
+      "raw_file": "gulf-2026q2-current-construction.html",
+      "sha256": "0bab1e37316377cfea5992fb76bb1d378c66149cb5c7d39779cb1ba6e0368f1f",
+      "bytes": 64662,
+      "literal_pointer": "HTML line 448, final CFO statement paragraph",
+      "selected_facts": {"GSA02": "Currently under construction", "GEDC01": "Currently under construction", "GSA01": "Already operating"},
+      "use": "Direct owner construction successor through August 6. Forecast 2027 operation is not actual operation. Minimal factual paraphrase only, all rights reserved."
+    },
+    {
+      "id": "gsa02-community-peeringdb-facility-point-rights-pending",
+      "url": "https://www.peeringdb.com/api/fac/16883",
+      "publisher": "PeeringDB community facility database",
+      "retrieval_started_at": "2026-09-08T19:53:56Z",
+      "retrieval_completed_at": "2026-09-08T19:53:56Z",
+      "raw_file": "gsa02-peeringdb.json",
+      "sha256": "81a775eedc60d2da0eda121129c9cf95e3f7986fce27e1d5e9d434470a6a61a0",
+      "bytes": 1705,
+      "literal_pointer": "$.data[0], facility id 16883, not its nested organization registered-office object",
+      "use": "Source-specific named GSA Data Center 02 facility record in Chonburi. A facility-level point exists, but its coordinates are not republished in this tracked handoff pending AUP rights review. PeeringDB availability or status=ok is never treated as operational lifecycle evidence."
+    },
+    {
+      "id": "peeringdb-acceptable-use-policy",
+      "url": "https://www.peeringdb.com/aup",
+      "publisher": "PeeringDB",
+      "retrieval_started_at": "2026-09-08T19:54:49Z",
+      "retrieval_completed_at": "2026-09-08T19:54:51Z",
+      "raw_file": "peeringdb-aup.html",
+      "sha256": "f47912986e0109dc2225aa1f69f9dbe2748e0e63c70118b1529d9d04b31aa691",
+      "bytes": 14889,
+      "use": "Not an open-data licence. Reproduction is restricted except approved Internet operational purposes; the policy includes Internet research/analysis in that category but prohibits bulk transfer without approval. No general right to publish the facility point in Atlas is assumed."
+    }
+  ],
+  "results": [
+    {
+      "project_stable_keys": ["curated:goodman-hkg10-tsuen-wan-data-centre:current-redevelopment"],
+      "parent_campus_stable_key": "curated:goodman-hkg10-tsuen-wan-data-centre",
+      "identity_source_ids": ["goodman-current-pipeline-identity", "hkg10-government-address-search"],
+      "geometry_source_ids": ["hkg10-government-address-search", "hkg10-government-coordinate-transform"],
+      "geometry": {"type": "Point", "coordinates": [114.119930627, 22.364335241]},
+      "display_anchor": {"type": "Point", "coordinates": [114.119930627, 22.364335241]},
+      "native_crs": "EPSG:2326",
+      "native_coordinate_order": "easting,northing",
+      "native_coordinates": [830403.0, 825021.0],
+      "precision_class": "government_named_building_address_locator",
+      "horizontal_uncertainty_m": null,
+      "boundary_status": "not_campus_boundary",
+      "campus_binding": "Goodman HKG10 operator listing supplies 128 Texaco Road. The government's exact query identifies Goodman Texaco Centre at 126-140 Texaco Road in Tsuen Wan. The current redevelopment inherits that physical parcel location. HKG09 at Ta Chuen Ping Street is a different named site and is already in the frozen baseline.",
+      "lifecycle_reference_only": {
+        "source_file": "sources/curated-official-2026-09-08-goodman-hkg10-tsuen-wan-fy26-current-build.json",
+        "observed_date": "2026-06-30",
+        "normalized_status": "under_construction",
+        "note": "Root-owned reviewed FY26 status source; geometry retrieval does not refresh this date."
+      },
+      "rights": {
+        "license": "Hong-Kong-CSDI-Terms-of-Use",
+        "license_url": "https://portal.csdi.gov.hk/csdi-webpage/doc/TNC",
+        "attribution": "Lands Department, Government of the Hong Kong SAR, via CSDI/GeoInfo Map and the official coordinate transformation service",
+        "publication_scope": "Minimal factual address and transformed point with attribution; no third-party map tiles, images or full documents.",
+        "accuracy_note": "Source precision is retained without claiming surveyed accuracy; official disclaimer applies."
+      },
+      "review_status": "government_point_ready_but_literal_code_to_address_raw_identity_still_missing",
+      "identity_warning": "Historical 1H FY26 and 1Q FY26 material swaps HKG09/HKG10 localities relative to current FY26 material. Do not merge older code aliases without a date-specific review. The contractor legal-lot bridge above contains no HKG10 code."
+    },
+    {
+      "project_stable_keys": ["curated:goodman-ty005-tokyo-data-centre-campus:phase-1-current-development"],
+      "parent_campus_stable_key": "curated:goodman-ty005-tokyo-data-centre-campus",
+      "official_product_code": "TYO05",
+      "review_status": "exact_geometry_unresolved",
+      "identity_source_ids": ["tsukuba-city-development-site-plan", "tsukuba-city-property-open-data"],
+      "geometry": null,
+      "known_site_identity": "Former unused land south of KEK, Tsukuba City Oho 2-1 and other parcels. City confirms Goodman development ownership and supplies campus site plan.",
+      "next_needed": "Source-specific operator/government point or reusable cadastral polygon tied to these exact parcels. The city open-data spreadsheet does not contain coordinates.",
+      "excluded_locator": "A third-party datacenter directory explicitly approximates its point from the neighboring KEK facility. Do not use that neighboring-facility point for TYO05."
+    },
+    {
+      "project_stable_keys": ["curated:lg-uplus-paju-aidc-campus:building-1"],
+      "parent_campus_stable_key": "curated:lg-uplus-paju-aidc-campus",
+      "country_code": "KR",
+      "review_status": "fresh_primary_construction_and_exact_parcel_ready_geometry_binding_unresolved",
+      "identity_source_ids": ["paju-city-lguplus-building-application-notice", "paju-city-lguplus-parcel-notice-pdf"],
+      "lifecycle_source_ids": ["lguplus-paju-june5-current-construction"],
+      "observed_on": "2026-06-05",
+      "normalized_status": "under_construction",
+      "geometry": null,
+      "known_site_identity": "Paju City Wollong-myeon Deokeun-ri 1239-1, 73,712.2 square metres; separately distinct from the wider LG Display 1239 industrial complex.",
+      "unaccepted_community_locator": {
+        "object_url": "https://www.openstreetmap.org/way/469691383",
+        "nominatim_url": "https://nominatim.openstreetmap.org/search?q=%ED%9D%AC%EC%84%B1%EC%A0%84%EC%9E%90&format=jsonv2&polygon_geojson=1",
+        "raw_file": "heesung-nominatim.json",
+        "sha256": "daf9ee2b05579615d67577b8d347b7fa8f66273be196ecd80d0aa14aa7fad7ef",
+        "bytes": 1575,
+        "retrieval_started_at": "2026-09-08T19:36:59Z",
+        "retrieval_completed_at": "2026-09-08T19:37:00Z",
+        "point": {"type": "Point", "coordinates": [126.7561012, 37.8141287]},
+        "precision_class": "community_former_industrial_building_not_verified_current_site",
+        "reason_not_admitted": "News and copied factory registries identify former Heesung site, but no captured primary source yet joins that exact named former building to the municipal AIDC parcel."
+      },
+      "next_needed": "Authoritative site-specific point, or authoritative Heesung factory address/parcel identity to validate the recovered community building as a physical-site locator. Perform independent completion/cancellation review before admission."
+    },
+    {
+      "parent_campus_stable_key": "curated:ucloud-ulanqab-data-centre-campus",
+      "project_stable_keys": ["curated:ucloud-ulanqab-data-centre-campus:building-d"],
+      "country_code": "CN",
+      "review_status": "fresh_issuer_physical_status_ready_exact_geometry_unresolved",
+      "lifecycle_source_ids": ["ucloud-ulanqab-d-july29-issuer-status"],
+      "identity_source_ids": ["ucloud-ulanqab-official-campus-description"],
+      "geometry": null,
+      "excluded_phases": ["Building E has not started substantive construction", "Already operational campus buildings do not count as new sites"],
+      "next_needed": "Exact official or reusable community locator, exchange filing date verification, and authoritative cancellation/completion successor review. Amap named POI coordinates are not normalized as WGS84 because mainland Chinese map coordinates have an unresolved datum/rights boundary."
+    },
+    {
+      "parent_campus_stable_key": "curated:linewell-beijing-qixingyuan-campus",
+      "project_stable_keys": ["curated:linewell-beijing-qixingyuan-campus:data-centre-building-4"],
+      "country_code": "CN",
+      "review_status": "mixed_use_campus_topout_ready_data_centre_specific_identity_and_geometry_unresolved",
+      "lifecycle_source_ids": ["linewell-qixingyuan-municipal-topout"],
+      "geometry": null,
+      "next_needed": "Capture the municipal scenario list that names parcel1516-59 building4 as the computing center; verify its own physical construction and exact geometry. Reject the similarly named Shijingshan residential Qixingyuan map pin."
+    },
+    {
+      "parent_campus_stable_key": "curated:gsa02-chonburi-data-centre-campus",
+      "project_stable_keys": ["curated:gsa02-chonburi-data-centre-campus:current-construction"],
+      "country_code": "TH",
+      "review_status": "fresh_physical_status_ready_named_community_point_rights_pending",
+      "lifecycle_source_file": "sources/curated-official-2026-09-08-gsa02-chonburi-q2-current-build.json",
+      "lifecycle_successor_source_ids": ["gulf-aug6-current-data-centre-construction"],
+      "geometry": null,
+      "community_locator_source_ids": ["gsa02-community-peeringdb-facility-point-rights-pending", "peeringdb-acceptable-use-policy"],
+      "known_site_identity": "GSA Data Center 02 Co., Ltd., Chonburi, distinct from operating GSA01 in Samut Prakan and Bangkok corporate office.",
+      "next_needed": "Resolve reuse authority for the exact community facility point, or capture an independently reusable operator/government/OSM locator. The bounded nearby OSM name query returned no GSA object. Do not use PeeringDB's nested organization office point."
+    },
+    {
+      "project_name": "Gulf Edge Data Center 01 (GEDC01), Rayong",
+      "country_code": "TH",
+      "review_status": "owner_construction_status_available_but_contractor_operating_phase_conflict_and_geometry_unresolved",
+      "lifecycle_source_ids": ["gulf-aug6-current-data-centre-construction"],
+      "geometry": null,
+      "conflict_url": "https://www.joyrun.sg/2026/07/12/gedc01-data-center-operations-and-maintenance-in-thailand/",
+      "conflict_scope": "Contractor's July12 project page describes an operating84MW first phase while Gulf's June-quarter table reports GEDC01 at18percent construction and August6 owner release still says under construction. The contractor body is not yet byte-captured and cannot resolve whether this is a separate building/phase or an erroneous identity. No phase or capacity is silently merged.",
+      "next_needed": "Capture and resolve contractor-owner phase identity; obtain exact campus locator before any inclusion."
+    }
+  ]
+}
