@@ -378,3 +378,25 @@ refreshes Sandy Ridge: **656 sites and 698 projects in 63 countries**.
 
 All earlier evidence and the 231 original source records remain intact. The 22 inherited
 untracked source files are unchanged. New additions remain focused on commercial data centres.
+
+`verified_construction_core/2026-10-25-research-sixtythird` adds four commercial sites:
+**660 sites and 702 projects in 63 countries**.
+
+- SUNeVision MEGA Fanling is operating, reported 1 September. The government waste-programme
+  register bridges its name to 11 On Chuen Street; the issuer lease and cadastral records locate
+  FSSTL 2. Its page includes the reported 129,000 sq ft floor area and single-cloud-customer model.
+- MEGA Plus is operating on the same report date, at 299 Wan Po Road / TKOTL 122. It has a
+  reported 474,000 sq ft floor area and 2017 service year. The separately named MEGA IDC on
+  TKOTL 131 remains unchanged; the properties abut but do not overlap.
+- HND12 Toyosu is announced from the developer’s 6 August neighbourhood briefing: approximately
+  24,000 m² over six floors, with MC Digital Realty as intended operator. The primary briefing
+  gives the exact Toyosu 5-4-9 address and both lots. Construction in 2027–2029 and phased
+  operations from August 2029 onward remain forecasts. The GSI marker identifies the property.
+- CIDC Ulanqab records existing campus operations from its operations head’s 17 October account
+  of model-training workloads. The original 2026 environmental filing locates its northwest
+  substation inside the named campus. The marker retains the filing’s unspecified datum and
+  unknown survey accuracy; renewable-generation MW and substation MVA are not IT capacity.
+
+All 656 earlier sites, 698 projects and 3,572 evidence records remain. The original source
+snapshot and identity mapping are unchanged. Nansha Dawen remains held for an exact property
+match; its new filing does not bridge No.18-1 to the older No.22 or No.28 sites.
