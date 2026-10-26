@@ -1,0 +1,71 @@
+{
+  "reviewer": "root",
+  "reviewed_at": "2026-10-26",
+  "decision": "accepted_for_integration",
+  "update": "verified_construction_core/2026-10-26-research-seventyfourth",
+  "base_dataset": "verified_construction_core/2026-10-26-research-seventythird",
+  "process": "continuous: one researcher per beat, one adversarial verifier per fragment",
+  "fragments": [
+    {
+      "fragment": "cn-jjj-sx-sd-p3",
+      "verdict": "accept",
+      "checks": [
+        "current_dataset read from site/config.json: verified_construction_core/2026-10-26-research-seventythird; existing Phase 1 record operational 2026-07-21 (evidence 123998ff, xwzx/903); Phase 2 commissioning 2026-10-09",
+        "rehash op/boda-922.html = 44162ff5e753...348a, matches .metadata.json sha256 and sources.json content_hash; 32528 bytes, HTTP 200, credential-free",
+        "decisive statement read in capture: dated 日期：2026-09-14; paragraph opens 目前，公司已在当地形成多个项目布局 and says 廊坊二号智算基地面向头部互联网企业提供定制化服务; summary and excerpt match",
+        "source kind company_disclosure on the operator's own domain (bodadata.com, same family as the existing 903 and jjjdq evidence); robots.txt recorded, Disallow empty",
+        "window: 42 days before 2026-10-26 (limit 2026-08-02); strictly newer than 2026-07-21; content concerns the 11-13 Sep conference, so the item cannot predate 13 Sep",
+        "scope: statement is base-level; assignment to Phase 1 checked against the Hebei Daily capture (ca/caheb-030398156.html, sha256 beaa4654... = existing evidence ff452a71): Phase 2 in final pre-production validation on 9 Oct, project manager says Phase 1 put into use in Oct 2025, so the operating service on 14 Sep can only be Phase 1; status value unchanged, no capacity, building or opening day asserted",
+        "locator untouched; re-capture op/boda-jjjdq-20261026.html rehashes to 79951adf..., identical to campus_locator evidence 22a17523",
+        "successor review: newsroom items 923-928 and mtbd-913 scanned; 925 (24 Sep) mentions Langfang only generically, nothing names No. 2 later or reports pause or closure",
+        "distinctness: project key appears only in this fragment's changes.json and its own claims.tsv line; not in other queue fragments or sources/*-holds.json",
+        "privacy: no private individuals' names or phone numbers in changes, sources, holds or notes (CEO and project-manager names in captures not reproduced)",
+        "dryrun_fragment.py ok against -seventythird (716 sites, 762 projects)"
+      ],
+      "residual_risks": [
+        "the 14 Sep sentence is a present-tense portfolio/service description rather than an explicit in-operation sentence, accepted on the same basis as other operator present-tense refreshes",
+        "phase assignment is by elimination using a news report about Phase 2, not a phase-named operator statement",
+        "the newsroom 日期 is a CMS display date with non-chronological item IDs elsewhere; ID 922 sits between 921 (11 Sep) and 923 (17 Sep) and its content postdates 13 Sep, so any error keeps the observation inside the window and newer than 21 Jul"
+      ]
+    },
+    {
+      "fragment": "kr-tw-hk-p3",
+      "verdict": "accept",
+      "checks": [
+        "current_dataset re-read: verified_construction_core/2026-10-26-research-seventythird (716 sites, 762 projects)",
+        "all 10 relied-on captures rehashed: sha256 matches both .metadata.json and sources.json content_hash",
+        "status source dlr-blog-hong-kong-data-centers.html: company_disclosure on digitalrealty.com; field_publish_date 2026-10-13, page date 13 October 2026, sitemap lastmod 2026-10-13T13:43Z; a 14 Oct capture (local_data/country-research-2026-10-14-jp-fifth/kix10-dlr.html) already carries the same FAQ text with the same publish date",
+        "decisive statement read in the capture: 'Digital Realty operates two data centers in Hong Kong. HKG10 is located in the Tseung Kwan O cluster ... HKG11 is at 11 Kin Chuen Street, Kwai Chung'; body: 'HKG10 in Tseung Kwan O and HKG11 in Kwai Chung together provide geographic redundancy'",
+        "85-day window: as_of 2026-10-13 is 13 days before 2026-10-26 (window start 2026-08-02); published_at == as_of; retrieval 2026-10-26",
+        "identity: facility pages give '11 Kin Chuen, Kwai Chung' (HKG11) and '33 Chun Choi Street, Tseung Kwan O Sai Kung' (HKG10); the 1 July 2020 release (PRNewswire dateline July 1, 2020) names Digital Realty Kin Chuen (HKG11) and Digital TKO (HKG10) in the TKO industrial estate",
+        "ALS: 11 Kin Chuen Street (GeoAddress 3134225687T20200518) at E831342 N825687; 33 Chun Choi Street (score 88.75) at E846265 N815914",
+        "locators recomputed independently from raw CSDI rings (uv pyproj 3.7.1 / PROJ 9.5.1, HK1980 to WGS 84 (1), 1.0 m, round 7 dp, shapely 2.1.1 planar centroid): [114.1290093, 22.370335] and [114.2739061, 22.2820438], exact match; each centroid inside its ring",
+        "ALS points inside their lots (4.2 m and 4.4 m from native centroids); HKG10 operator marker inside TKOTL 39 S.J ss.1 (4.0 m); HKG11 operator marker 11.2 m outside KCTL 495 (point query returns no lot), correctly not used",
+        "TKOTL 39 &Exts S.J ss.1 is a 10,070 m2 subsection, not the industrial-estate centroid; neighbouring Chun Choi Street addresses 28/70/80 fall outside it (54-240 m); Kin Chuen Street 3 and 10-14 fall 70-76 m outside KCTL 495",
+        "geometry facts file sha256 750bde20...a9bf matches sources.json",
+        "distinctness: no hit for Kin Chuen, Chun Choi, Digital TKO, KCTL 495, TKOTL 39, HKG11 or the DLR HK URLs in sites/projects/evidence/source-records/identity-mapping of seventythird, any other queue fragment, claims.tsv or sources/*holds*.json; Goodman HKG10 is Texaco Centre, Tsuen Wan (1.15 km from HKG11, 18.3 km from DLR HKG10)",
+        "nearest Atlas sites: HKG11 - Goodman HKG09 799 m, Goodman HKG10 1.15 km, MEGA Gateway 1.18 km, BDx HKG8 1.53 km; HKG10 - MEGA Plus 1.26 km, MEGA IDC 1.35 km; all different operators and lots",
+        "two new sites, one project each; Point project_locator, compiled_reference, coordinate_transform; precision, identity review and uncertainty reason recorded",
+        "roles: Digital Realty Trust, Inc. operator, relationship_scope current, sourced to the dated blog",
+        "precedent: same-week Digital Realty blog-based existing-operations admissions (ATL13 in q3-us-reits-p3, Paris Digital Park in fr-p2) were accepted",
+        "robots: digitalrealty.com allows the paths used; portal.csdi.gov.hk disallows only /geoportal/, /portal/ and /notice/ (used /server/); als.gov.hk robots path returns an HTML page with no rules",
+        "no personal data in changes, sources, holds or notes (scan for emails and phone numbers; no private names)",
+        "dryrun_fragment.py ok against seventythird: 718 sites, 764 projects, 3,952 evidence rows"
+      ],
+      "residual_risks": [
+        "Status rests on an SEO-style marketing blog (present-tense 'operates'), not a release or filing; capacity, occupancy and opening date are unknown",
+        "KCTL 495 as Digital Realty's land is inferred from the official address point; no land-registry ownership record was captured, and the operator's own HKG11 marker falls 11 m outside the lot",
+        "Lot centroids have no stated boundary tolerance (uncertainty null with reason)",
+        "Digital Realty Q3 2026 results (29 Oct) were not yet out and could report a change",
+        "The 2020 release page shows 'July 02, 2020', but its PRNewswire dateline says July 1, 2020 (published_at 2020-07-01). It is context only"
+      ]
+    }
+  ],
+  "packet_pins": {
+    "definitions/atlas-research-seventyfourth-2026-10-26.json": "50ff846f88d1c83e6674794da6fd891044188032891bbf8f1bfc1b7a0186e3c9",
+    "sources/research-countries-2026-10-26-seventyfourth-primary-sources.json": "0b6abacb24ab6c079a5914747fec4726a71458ad2b4f9996076c3a37696a65cd",
+    "sources/research-countries-2026-10-26-seventyfourth-actions.json": "fbbf96bc58f3879043ef13c85c1c45783e379c602377ccb818e4d9e3b5dfb9d2",
+    "sources/research-countries-2026-10-26-seventyfourth-holds.json": "0b375e1831cb3690b8e9370296868baacfd29ff6773415da468be1fcc8f01a87"
+  },
+  "raw_captures_redistributed": false
+}

@@ -375,6 +375,8 @@ From 22 October 2026 sites are added continuously: researchers each work a narro
 
 `verified_construction_core/2026-10-26-research-seventythird`: **716 sites and 762 projects in 63 countries**. Adds Envision Ulanqab Zero-Carbon AI Computing Industrial Park — Phase 1; CIDC Jing-Meng Green Computing Industrial Park — D-Zone Development; China Telecom Cloud Computing Inner Mongolia Information Park — existing data-centre operations.
 
+`verified_construction_core/2026-10-26-research-seventyfourth`: **718 sites and 764 projects in 63 countries**. Adds Digital Realty HKG11 (Kin Chuen) — existing data-centre operations; Digital Realty HKG10 (Digital TKO) — existing data-centre operations. Refreshes Boda Langfang No. 2 Phase 1 (operational).
+
 ## 25 October 2026
 
 `verified_construction_core/2026-10-25-research-sixtysecond` adds three commercial sites and
