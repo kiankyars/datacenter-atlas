@@ -1,0 +1,98 @@
+{
+  "candidate_id": "databank-granite-point-campus-bluffdale",
+  "decision": "Selected the centroid of the union of six Salt Lake County parcels: five owned by DB DATA CENTER BLUFFDALE, LLC at the five building addresses DataBank publishes for SLC2-SLC5 (14944, 14926, 14860 and 14850 S Pony Express Rd, the 14926 address on two parcels) and the adjacent 6.23-acre parcel at 14844 S Pony Express Rd owned by C7 PROPERTIES, LLC. The union is one contiguous 23.16-acre polygon, matching the 23-acre Granite Point Campus DataBank describes. Building footprints are not published.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -111.9053312,
+      40.4803793
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_tax_parcel_union_centroid",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-us-az-nv-ut-p3/slco-parcels-granite-point-campus-six.json",
+  "source_sha256": "3abfcba34e441f4e158244c7530f0c84ba2d482ee5e98536cd9e7fcccf81c545",
+  "source_url": "https://apps.saltlakecounty.gov/slcogis/rest/services/Land/MapServer/1/query?where=parcel_id+IN+%28%2733123000410000%27%2C%2733123000450000%27%2C%2733123510010000%27%2C%2733123510020000%27%2C%2733123760010000%27%2C%2733123003080000%27%29&outFields=parcel_id%2Cparent_parcel%2Cdate_created%2Cparcel_acres%2Cown_name%2Cprop_location%2Cproperty_type%2Clot_use%2Cyear_built%2Ctotal_sq_ft%2Ctax_year&returnGeometry=true&outSR=4326&f=json",
+  "retrieved_at": "2026-10-26T15:17:45.581Z",
+  "selected_properties": {
+    "33-12-300-041-0000": {
+      "situs": "14860 S PONY EXPRESS RD",
+      "owner": "DB DATA CENTER BLUFFDALE, LLC",
+      "parcel_acres": 2.38,
+      "property_type": "598",
+      "year_built": 2001,
+      "total_sq_ft": 27600,
+      "databank_building": "SLC4"
+    },
+    "33-12-300-045-0000": {
+      "situs": "14944 S PONY EXPRESS RD",
+      "owner": "DB DATA CENTER BLUFFDALE, LLC",
+      "parcel_acres": 5.36,
+      "property_type": "598",
+      "year_built": 2001,
+      "total_sq_ft": 65918,
+      "databank_building": "SLC2"
+    },
+    "33-12-351-001-0000": {
+      "situs": "14926 S PONY EXPRESS RD",
+      "owner": "DB DATA CENTER BLUFFDALE, LLC",
+      "parcel_acres": 4.379,
+      "property_type": "598",
+      "year_built": 2000,
+      "total_sq_ft": 64000,
+      "databank_building": "SLC3"
+    },
+    "33-12-351-002-0000": {
+      "situs": "14926 S PONY EXPRESS RD",
+      "owner": "DB DATA CENTER BLUFFDALE, LLC",
+      "parcel_acres": 0.041,
+      "property_type": "902"
+    },
+    "33-12-376-001-0000": {
+      "situs": "14850 S PONY EXPRESS RD",
+      "owner": "DB DATA CENTER BLUFFDALE, LLC",
+      "parcel_acres": 4.753,
+      "property_type": "598",
+      "databank_building": "SLC5"
+    },
+    "33-12-300-308-0000": {
+      "situs": "14844 S PONY EXPRESS RD",
+      "owner": "C7 PROPERTIES, LLC",
+      "parcel_acres": 6.2291,
+      "property_type": "598",
+      "databank_building": "not matched by address; SLC6 (14870 S Pony Express Rd) is consistent with this lot, which lies between the SLC4 and SLC3 lots in the address sequence"
+    },
+    "tax_year": "2025"
+  },
+  "computed": {
+    "union_parts": 1,
+    "union_geodesic_acres": 23.16,
+    "parcel_geodesic_acres": {
+      "33123000410000": 2.39,
+      "33123000450000": 5.36,
+      "33123003080000": 6.23,
+      "33123510010000": 4.4,
+      "33123510020000": 0.04,
+      "33123760010000": 4.74
+    },
+    "five_db_parcel_union_geodesic_acres": 16.92,
+    "centroid_lon_lat": [
+      -111.9053312,
+      40.4803793
+    ],
+    "centroid_inside_union": true,
+    "extent_m": [
+      411,
+      339
+    ],
+    "bounds_lon_lat": [
+      -111.907888,
+      40.478916,
+      -111.903083,
+      40.481965
+    ],
+    "method": "Esri rings converted to shapely polygons; union and planar centroid in WGS84 longitude/latitude; areas geodesic on WGS84 (pyproj 3.7.1 Geod); extent in UTM zone 12N (EPSG:32612); shapely 2.1.1.",
+    "coordinate_reference_system": "WGS84 longitude/latitude as returned by the county server with outSR=4326 from its NAD83 Utah Central (EPSG:3566) layer; no further transformation"
+  }
+}

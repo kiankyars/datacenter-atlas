@@ -1,0 +1,122 @@
+{
+  "reviewer": "root",
+  "reviewed_at": "2026-10-26",
+  "decision": "accepted_for_integration",
+  "update": "verified_construction_core/2026-10-26-research-sixtyninth",
+  "base_dataset": "verified_construction_core/2026-10-26-research-sixtyeighth",
+  "process": "continuous: one researcher per beat, one adversarial verifier per fragment",
+  "fragments": [
+    {
+      "fragment": "q3-china-operators-p3",
+      "verdict": "accept",
+      "checks": [
+        "cscec-ulanqab-1024.html rehashed: sha256 cd0b51c2...d0f8 matches .metadata.json, sources.json content_hash and baseline evidence dc72c654",
+        "decisive statement read in capture: 发布日期 2026-10-24; section 世纪互联乌兰察布零碳智算中心A1楼-机电总包工程 says 中建二局 carried out 弱电/暖通/给排水/电气/精装修/屋顶钢结构 installation, 项目建成后 (not yet completed); manager quote in present tense",
+        "source kind company_disclosure (CSCEC group newsroom, A1 M&E contractor's parent); as_of 2026-10-24 = published_at; 2 days old, inside 85-day window",
+        "mep_electrical is an active construction stage; no completion, commissioning or operation asserted; no capacity",
+        "site vcc-site-f76a80176723cddb724a exists in -sixtyeighth (created in 64th update), so not a site new in this update; only A2 project there",
+        "locator reuses baseline project 7bcd00b3 campus_locator exactly; EIA PDF rehashed ae01c311...098e; PDF p8 east incoming-line endpoint 113°15'34.908\" E, 40°57'3.799\" N recomputed to 113.25969666666667, 40.95105527777778 (exact match); p28 names 世纪互联乌兰察布零碳智算中心基地项目",
+        "identity: A1 and A2 share the specific campus name 世纪互联乌兰察布零碳智算中心 in the same item; separately named 云智算中心基地 not used",
+        "role operator/intended for VNET, consistent with baseline A2 role from the same source",
+        "distinctness: no A1/VNET-Ulanqab-building record in sites/projects/evidence/source-records/identity-mapping, sources/*-holds.json (only unnamed Phase 3 holds), other queue fragments or claims (only this fragment's own claim); nearest other site Huawei Phase 3 at 5.7 km, CIDC at 6.4 km",
+        "robots: www.cscec.com robots read (404) before fetch per compliance.log",
+        "no third-party personal names or phones in changes/sources/holds/notes",
+        "dryrun_fragment.py ok against -sixtyeighth: 684 sites, 729 projects, evidence 3728 unchanged"
+      ],
+      "residual_risks": [
+        "'进行了...安装' could mean the M&E installation is already finished; stage kept at mep_electrical because the item says the building is not yet completed",
+        "campus point is the substation incoming-line endpoint, not building A1; A1 position within the campus is unknown",
+        "A1 may later turn out to be part of the held unnamed 'VNET Ulanqab zero-carbon campus Phase 3'; reconcile if a phase identity is published",
+        "source is a contractor-group compilation; observation date is the publication date, not a site-visit date"
+      ]
+    },
+    {
+      "fragment": "us-az-nv-ut-p3",
+      "verdict": "accept",
+      "checks": [
+        "Base re-read from site/config.json: verified_construction_core/2026-10-26-research-sixtyeighth (684 sites, 728 projects, 3,728 evidence)",
+        "All 22 relied-on captures rehashed: file SHA-256 == .metadata.json sha256 == sources.json content_hash; metadata URL == source_url; HTTP 200",
+        "Window: today 2026-10-26, cutoff 2026-08-02; as_of 2026-09-30 (LAS1), 2026-09-26 (Granite Point), 2026-09-23 (NAP 17) all inside; as_of <= published_at for each status source",
+        "LAS1: read live Las Vegas page (dateModified 2026-09-30) - LAS1 at 7185 Pollock Dr, 'serves cloud service providers, software companies, and carriers', 11 carriers; IA copy 2026-07-12 has dateModified 2024-09-06 and 12 carriers, CDX has no later copy, so the modification is bounded; company_disclosure, same method as published DataBank Ashburn/Atlanta records",
+        "Granite Point: read live SLC page (dateModified 2026-09-26) - six data centres incl. Bluffdale campus SLC2-SLC6, 23 acres, 5 total data centres, addresses; IA copy 2026-09-21 (dateModified 2026-09-19) has identical extracted facility text; SLC6 page 'opened in 2023'; SLC1 excluded and held",
+        "NAP 17: InspectionSites row BD25-00549 read - scope 'CONSTRUCT ... DATA CENTER (NAP 17) WITH 1 OFFICE', USD 60M, structural progress approved 2025-09-17, last inspection 'Life Safety Inspection' 20260923, no final; currency capture max last inspection 20261023; matches the fiftysixth hold's reopen condition and the BD24-61043 inspection-date precedent",
+        "Locators recomputed with pyproj 3.7.1/shapely 2.1.1: LAS1 parcel 177-03-413-014 centroid (-115.1472861, 36.0597824) exact, 4.274 geodesic ac, AQM 7185 Pollock point inside (15.7 m); Granite Point six-parcel union centroid (-111.9053312, 40.4803793) exact, 23.156 ac, single polygon, centroid inside DB-owned SLC3 parcel; NAP 17&18 union centroid equals the existing site point exactly (0.00 m), permit point 15.4 m outside the union",
+        "NAP 17 reuses project b49b32ee locator and geometry evidence 5a0af425 exactly; existing site vcc-site-e3da5da9c1c1d3c08f33 in base; existing project scope is the separate BD24-61043 permit (6240 W Maule, USD 188.1M, ~125 m from the BD25-00549 point)",
+        "Only one project per new site (LAS1, Granite Point); NAP 17 is at an existing site",
+        "Roles: DataBank operator/current (pages), DataBank Properties LLC owner/current (Accela active owner + 2024 buy-back release), DB Data Center Bluffdale, LLC owner/current (parcels at the building addresses with recorded buildings); C7 Properties role dropped; NAP 17 has no roles",
+        "Distinctness: no hits for DataBank LV/SLC, Pollock, Pony Express, Bluffdale, Granite Point, C7, LAS1, SLC2-6, BD25-00549 or 6322 W Maule in sites/projects/evidence, source-records.json, identity-mapping.json, other queue fragments, claims.tsv (only this fragment's own claims) or sources/*-holds.json beyond the fiftysixth holds this fragment resolves; no Atlas or pending point within 5 km of LAS1 or Granite Point",
+        "Successor review: DataBank press-release sitemap entries for LV/SLC with 2026 lastmods are re-saves of releases first published 2018-2024 (captures read)",
+        "Privacy: no personal names, phones or e-mails in changes, sources, holds or notes; captures with neighbour owner names are local-only and uncited",
+        "dryrun_fragment.py: ok against sixtyeighth (686 sites, 731 projects, 3,750 evidence)"
+      ],
+      "residual_risks": [
+        "LAS1 and Granite Point status rests on operator marketing-page present-tense text with bounded dateModified, not on an independent operating record",
+        "LAS1 address-to-parcel link rests on the AQM register point and DataBank owner entities; the parcel situs is 7125, not 7185, Pollock Dr",
+        "Granite Point locator includes the C7 Properties lot (37 m shift versus the DB-only union); SLC6's own lot is unconfirmed",
+        "NAP 17: 'Life Safety Inspection' has no published definition and could be a late-stage inspection; under_construction is the conservative reading with no final recorded",
+        "NAP 17 vs BD24-61043 treated as two buildings on the strength of separate new-build permits, addresses and valuations; no Switch statement names either building"
+      ]
+    },
+    {
+      "fragment": "us-ok-la-ar-ms-al-tn-p3",
+      "verdict": "accept",
+      "checks": [
+        "all 14 relied-on captures rehashed: file sha256 == .metadata.json sha256 == sources.json content_hash; HTTP 200, no credentials; URLs match",
+        "geometry facts files match geometry_facts_sha256 in sources.json; BLM PLSS captures match their metadata",
+        "Google Oklahoma page read in live, IA 20260807 and IA 20260915 captures: live == 0915 text; 0807 lacks the Pryor 'operating site' sentence and the Muskogee/Stillwater/Tulsa milestones; IA CDX shows 0807 and 0915 are adjacent captures; sitemap lastmod 2026-09-14T00:12:26-04:00 lies between them",
+        "status as_of 2026-09-14 is 42 days before 2026-10-26 (window opens 2026-08-02); company_disclosure primary source; Pryor operational (present-tense 'operating site'), Muskogee announced ('in development' + 2025 announcement milestone); no forecast used",
+        "Pryor locator: rendered page 7 of the DEQ Form 100-884 (150 dpi) shows 36.24250 / -95.33020 with 'Center of Facility' marked; DEQ letter of 2026-02-24 confirms PRY Data Storage Facility SIC 7374, 4581 Webb Street, S6 T20N R19E",
+        "Acacia locator: DEQ letter of 2026-02-26 prints 35.58091N 95.64531W; application form page 9 marks 'Facility Entrance Point or First Gate of Lease Property', SIC 7374/NAICS 518210, S19 T13N R16E",
+        "independent pyproj 3.7.1/shapely 2.1.1 recompute: Pryor point inside BLM Section 6 T20N R19E (247.6 m from boundary), MAIP Google marker inside same section (7.3 m), points 390.6 m apart; Acacia point inside Section 19 T13N R16E (14.7 m from south line); MAIP DMS popup converts to the marker coordinates",
+        "identity: MAIP map lists one 'Data Center' tenant, Google, at 4581 Webb St; DEQ list shows Google as applicant for Acacia House ERS000051260380/ERW000051260381 (Muskogee); NOD to Google Inc. names Google funding source and Phase 2 Cloud Creek discharge; Springboard WWT notice (OCR) puts Acacia House Group LLC facility in S19 T13 R16E discharging to a Cloud Creek tributary with the same engineer contact",
+        "distinctness: no name/alias/address/operator hit for Pryor, Mayes, MidAmerica, Myall, Webb, Acacia, Springboard, Council Hill, Cloud Creek in sixtyeighth sites/projects/evidence/source-records/identity-mapping; nearest records 45.2 km (Pryor) and 31.7 km (Acacia); no queued addition or claim within 45 km; prior holds (fortysecond us-south-central, fortythird us-hyperscalers) are the same candidates and their reopen conditions are met by the bounded in-window page version",
+        "roles: Google operator current (Pryor) and intended (Muskogee); one project per new site; Point locators with derivation direct_geometry, uncertainty null with reasons",
+        "no private individuals' names, phones or e-mails in changes, sources, holds, notes or geometry facts (grep of names seen in captures)",
+        "corrected wording: Google page milestones say the campus 'expands' in 2012/2015/2019, not that expansions were 'announced' (Pryor status summary and history detail)",
+        "dryrun_fragment.py: ok (686 sites, 730 projects)"
+      ],
+      "residual_risks": [
+        "Pryor status date rests on the sitemap lastmod; the change is only bounded to 2026-08-07..2026-09-15 by archive copies (all dates in window either way)",
+        "Myall, LLC is tied to Google only by shared address/section and the park map; no corporate-link statement",
+        "Google's Muskogee County campus is equated with the Acacia Facility through DEQ permit names, Cloud Creek discharge and a shared engineer; Google's own page names no site",
+        "Acacia point is an entrance/first-gate coordinate on W 123rd St, not the campus centre; Pryor point is applicant-reported with no datum",
+        "the held Pioneer Facility (Pioneer Trail LLC, Muskogee County) remains unlocated and unidentified"
+      ]
+    },
+    {
+      "fragment": "us-va-permits-p3",
+      "verdict": "accept",
+      "checks": [
+        "config current_dataset re-read: verified_construction_core/2026-10-26-research-sixtyeighth (base of changes and dry run)",
+        "all 21 sources rehashed: capture sha256 == .metadata.json sha256 == sources.json content_hash; URLs, capture times, HTTP 200, no credentials; 3 geometry-facts files match their sha256",
+        "Potomac Church: read minutes PDF p.52 (stafford-file-6359.pdf): Director of Planning and Zoning says the first building 'was now complete and occupied'; O26-25 vote 4-2 on p.61; government_record, observed 2026-08-18 <= published 2026-10-13, inside 85-day window (>= 2026-08-02); completion scoped to Building 1 only, Building 2 forecasts not used",
+        "Accokeek: read PC minutes pp.3-5 and 29 (stafford-file-6324.pdf): RC24155981 on the eight parcels 'to allow for development of a data center campus', 2 buildings / 590,000 sq ft, 122 MW requested, Falmouth Tech LLC, recommended 4-3; announced 2026-08-26 <= published 2026-09-24; agendas 6253/6337 confirm parcels and 7 Oct hearing",
+        "Northeast Creek: read 19 Oct packet p.64 (louisa-file-2362.pdf): 'Northeast Creek Technology Campus 2 - Major Site Plan - SP20-2026, Location 58-30, A-1 TOD, First Agency Review 9/11/2026'; announced 2026-09-11 <= published 2026-10-14",
+        "identity: county data-centre doc pp.12-13,19 (rendered p.13 map) names AWS North Creek Technology Campus as a by-right AWS data-centre campus in the TOD; 8 Sep packet pp.171-173 maps show applicant Amazon Data Services, Inc. and 'Northeast Creek Technology Campus study area boundary (NAO-2024-01939)'; owner count query returns 1 Amazon match for PIN 58 30",
+        "locators recomputed with pyproj 3.7.1 / shapely 2.1.1 from raw WGS84 captures: 39-71A centroid (-77.404247, 38.4113223), 49.64 ac, inside, address point 28.2 m, county DC outline identical; Accokeek 8-parcel/9-feature union centroid (-77.427741, 38.4022586), 2 parts, 119.87 ac, DC outline 80.55 ac fully inside, 121 m offset; 58 30 centroid (-77.9558255, 37.9718646), 306.27 ac, 99.94% in TOD, adjoins 58 30C (971 m), all 17 2998 Jefferson Hwy points on 58 30C",
+        "locator scopes campus_locator with official parcel/union centroids (not city, HQ or zone centroids); precision, identity review and uncertainty reason recorded; one project per new site",
+        "roles: only Amazon Web Services operator/intended (Northeast Creek) from county government document; Potomac Church and Accokeek carry no roles",
+        "distinctness: no name/alias/parcel/case match in sites.csv, projects.csv, evidence.csv, source-records.json, identity-mapping.json of the sixty-eighth (North Creek only in Lake Anna notes as a separate campus); nearest Atlas points 17.8 km (Stafford items) and 2.05 km EdgeCore admin2 county-centre point (Northeast Creek); no other queue fragment, claim or sources/*-holds.json overlap (16 Oct thirtyfirst hold reopened by dated records); no other fragment locator within 20 km",
+        "no third-party personal data in changes, sources, holds, notes, geometry facts or URLs (residents, officials, DEQ staff and residential parcel addresses not copied; owner field used only as count/filter)",
+        "robots: CivicClerk API hosts 404, louisacounty.gov DocumentCenter allowed for *, ArcGIS service hosts 403 (RFC 9309 unavailable)",
+        "dryrun_fragment.py: ok (687 sites, 731 projects, 3749 evidence; base sixty-eighth)"
+      ],
+      "residual_risks": [
+        "Accokeek: Board of Supervisors outcome of 7 Oct 2026 (O26-16, R26-128) unpublished; undated county layer shows 'Approved', so a denial is unlikely but not excluded",
+        "Northeast Creek: SP20-2026 entry names neither data centre nor applicant; identity rests on the TOD/Amazon-owner/county-document/wetland-permit chain and on treating 'North Creek' and 'Northeast Creek' as one campus",
+        "Northeast Creek site locator is the Campus 2 parcel (58 30), 971 m from the 2998 Jefferson Hwy buildings parcel; any later project at this site must reuse this point",
+        "Northeast Creek point lies 2.05 km from the imported EdgeCore Louisa county-centre (admin2) point; identities differ but map proximity may confuse",
+        "Potomac Church completion is a staff statement on the meeting day, not a certificate-of-occupancy date; operator (Amazon per applicant counsel) not asserted",
+        "Minutes give the compliance-review case as both COM25156541 and COM24156541; recorded detail uses COM25156541 (context only)",
+        "ArcGIS Online service hosts answer 403 to robots.txt and were treated as unrestricted under RFC 9309"
+      ]
+    }
+  ],
+  "packet_pins": {
+    "definitions/atlas-research-sixtyninth-2026-10-26.json": "d4df83f10ee3bf430b473dc6cd88512b4bc0f7974b0f3936a8e8a89b2e494ce9",
+    "sources/research-countries-2026-10-26-sixtyninth-primary-sources.json": "854db5b7b52382b77291821466a6415d9a232773ef2851e1a6ef8c6d2d409293",
+    "sources/research-countries-2026-10-26-sixtyninth-actions.json": "9d19d61bde60ab7d8734123a03acb1b4cad68d4b7929d3edbf44091e24cdb4d7",
+    "sources/research-countries-2026-10-26-sixtyninth-holds.json": "39187f16f9f0ef7515bece3bc3622825ca2f3f2fb042b080dfc269e1a9812636"
+  },
+  "raw_captures_redistributed": false
+}

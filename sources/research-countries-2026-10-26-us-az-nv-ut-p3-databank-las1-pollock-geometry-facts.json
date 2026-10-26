@@ -1,0 +1,68 @@
+{
+  "candidate_id": "databank-las1-las-vegas-pollock-drive",
+  "decision": "Selected the centroid of Clark County Assessor parcel 177-03-413-014 (4.27 acres; active owner of record DataBank Properties LLC; earlier owner D B Data Center Nevada LLC) as the site locator. The county air-quality register point for the DB DATA CENTER NEVADA LLC data center at 7185 Pollock Dr lies inside this parcel. The building footprint is not published.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -115.1472861,
+      36.0597824
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_tax_parcel_centroid",
+  "use_scope": "project_locator",
+  "source_file": "local_data/country-research-us-az-nv-ut-p3/clark-assessor-parcel-177-03-413-014.json",
+  "source_sha256": "af77f3be49bf46e87100a252d13f5e8ec69d6064dc8c31d138486e6c95be8fcc",
+  "source_url": "https://maps.clarkcountynv.gov/arcgis/rest/services/Assessor/Layers/MapServer/1/query?where=APN+%3D+%2717703413014%27&outFields=APN%2CCALC_ACRES%2CASSR_ACRES%2CPARCELTYPE%2CTAX_DIST&returnGeometry=true&outSR=4326&f=json",
+  "retrieved_at": "2026-10-26T15:12:33.926Z",
+  "owner_source_file": "local_data/country-research-us-az-nv-ut-p3/clark-accela-owner-points-177-03-413-014.json",
+  "owner_source_sha256": "12acd4e4e60eb3b4d61739bd4feace91b71e4a2bc0ae70ce16ac46a0b67259a6",
+  "identity_source_file": "local_data/country-research-us-az-nv-ut-p3/clark-aqm-stationary-sources-7185-pollock.json",
+  "identity_source_sha256": "eb391c25e5fdbd650b18e2548005c650c0fe0ec9f85aea9a719ce83e8c25e357",
+  "selected_properties": {
+    "177-03-413-014": {
+      "ASSR_ACRES": 4.27,
+      "CALC_ACRES": 4.273582,
+      "TAX_DIST": "470",
+      "situs_in_owner_record": "7125 POLLOCK DR",
+      "active_primary_owner": "DATABANK PROPERTIES LLC",
+      "inactive_owner_records": [
+        "D B DATA CENTER NEVADA LLC",
+        "one earlier holding company (not named)"
+      ]
+    },
+    "air_quality_source_17648": {
+      "Source_Name": "DB DATA CENTER NEVADA LLC",
+      "Source_Type": "DATA CENTER",
+      "Source_Classification": "MINOR SOURCE",
+      "Source_Address": "7185 POLLOCK DR, LAS VEGAS NV 89119",
+      "point_lon_lat": [
+        -115.14713894922865,
+        36.0597065784993
+      ]
+    }
+  },
+  "computed": {
+    "parcel_geodesic_acres": 4.27,
+    "centroid_lon_lat": [
+      -115.1472861,
+      36.0597824
+    ],
+    "centroid_inside_parcel": true,
+    "extent_m": [
+      148,
+      176
+    ],
+    "bounds_lon_lat": [
+      -115.147917,
+      36.059065,
+      -115.146299,
+      36.06065
+    ],
+    "air_quality_point_inside_parcel": true,
+    "air_quality_point_distance_to_centroid_m": 15.7,
+    "owner_point_distance_to_centroid_m": 0.0,
+    "method": "Esri rings converted to shapely polygons (outer clockwise, holes counter-clockwise); planar centroid in WGS84 longitude/latitude; areas geodesic on WGS84 (pyproj 3.7.1 Geod); distances in UTM zone 11N (EPSG:32611); shapely 2.1.1.",
+    "coordinate_reference_system": "WGS84 longitude/latitude as returned by the server with outSR=4326; no further transformation"
+  }
+}

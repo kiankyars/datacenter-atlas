@@ -1,0 +1,68 @@
+{
+ "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+ "candidate": "Google Muskogee County data center campus ('Acacia House'), Acacia House Group LLC 'Acacia Facility' (SIC 7374), Section 19, T13N, R16E, near Council Hill, Muskogee County, Oklahoma (Oklahoma DEQ facility 25240, permit application 2026-0090-C)",
+ "prepared_at": "2026-10-26",
+ "selected_point_crs84": [
+  -95.64531,
+  35.58091
+ ],
+ "selected_point_role": "facility coordinate printed by Oklahoma DEQ in its administrative-completeness letter of 26 February 2026 for permit 2026-0090-C (latitude 35.58091 N, longitude 95.64531 W) and reported by the applicant on DEQ Form 100-884 with reference point 'Facility Entrance Point or First Gate of Lease Property'; locates the entrance of the proposed data-centre site on W 123rd St, not the campus centre, a building or a boundary",
+ "authority_class": "official_source",
+ "scope_class": "official_permit_facility_entrance_coordinate",
+ "use_scope": "project_locator",
+ "source": {
+  "file": "local_data/country-research-us-ok-la-ar-ms-al-tn-p3/okdeq-acacia-osg-admin-complete-20260226.pdf",
+  "sha256": "1b8d3360846b5753b7c44e038f38e0677cc886cc9fa8b83107e405084dc42535",
+  "url": "https://applications.deq.ok.gov/PermitsPublicReview/download.ashx?docid=6243870&cs=1321d4e4514ce1123953",
+  "retrieved_at": "2026-10-26T15:19:06.121Z",
+  "document": "Oklahoma DEQ Air Quality Division letter of 26 February 2026 to Acacia House Group, LLC (permit 2026-0090-C, facility ID 25240), subject block",
+  "reading": "pdftotext text layer: 'Facility: Acacia Facility (SIC 7374) / Latitude 35.58091°N, Longitude 95.64531°W / Location: Section 19, Township 13N, Range 16E; Muskogee County, Oklahoma'"
+ },
+ "form_fields_used": {
+  "source": {
+   "file": "local_data/country-research-us-ok-la-ar-ms-al-tn-p3/okdeq-acacia-osg-permit-application-20260414.pdf",
+   "sha256": "ea4736f9e6aaa164a7c4d73efe4c2b37e21505c56f42d99b3613c03dfff1602f",
+   "url": "https://applications.deq.ok.gov/PermitsPublicReview/download.ashx?docid=6280672&cs=5e2debcde953410001c1",
+   "retrieved_at": "2026-10-26T15:19:01.369Z",
+   "document": "Permit application (public version, posted 14 April 2026), DEQ Form 100-884 General Facility Information"
+  },
+  "company": "Acacia House Group LLC (mailing address 2801 Centerville Road, Wilmington, DE)",
+  "sic_naics": "SIC 7374 / NAICS 518210",
+  "legal_description": "Section 19, Township 13N, Range 16E",
+  "directions": "From the intersection of OK-72 and W 143rd St near Council Hill, north on OK-72 for 2.1 miles, then east on W 123rd St for 0.8 miles to the facility entrance on the left (north side)",
+  "nearest_town": "Council Hill 74450, Muskogee County",
+  "geographic_coordinates": "35.58091, -95.64531 (to 5 decimals); no datum stated",
+  "reference_point": "Facility Entrance Point or First Gate of Lease Property (marked X)"
+ },
+ "geometry_checks": {
+  "plss_section": {
+   "PLSSID": "OK170130N0160E0",
+   "section": "19",
+   "meaning": "Section 19, T13N, R16E, Indian Meridian"
+  },
+  "plss_source": {
+   "file": "local_data/country-research-us-ok-la-ar-ms-al-tn-p3/blm-plss-section-acacia-point.json",
+   "sha256": "4c891d6747fa448a4987f4bbb4f42fd6c1e5524d212879381364477b8453e37c",
+   "url": "https://gis.blm.gov/arcgis/rest/services/Cadastral/BLM_Natl_PLSS_CadNSDI/MapServer/2/query?geometry=-95.64531%2C35.58091&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=PLSSID,FRSTDIVNO,FRSTDIVLAB&returnGeometry=true&outSR=4326&f=json",
+   "retrieved_at": "2026-10-26T15:22:55.027Z",
+   "service": "BLM National PLSS CadNSDI MapServer layer 2, point-intersect query with returnGeometry, outSR 4326"
+  },
+  "section_geodesic_acres": 637.0,
+  "section_bounds_lon_lat": [
+   -95.6598721,
+   35.5807752,
+   -95.6421866,
+   35.5952928
+  ],
+  "point_inside_section_19": true,
+  "point_distance_to_section_boundary_m": 14.6,
+  "verification": "pyproj 3.7.1 Geod(WGS84) and shapely 2.1.1 Polygon.contains on the BLM section ring returned in EPSG:4326"
+ },
+ "interpretation": "The point lies inside Section 19, T13N, R16E, about 15 m north of the section's south line, which is consistent with an entrance on W 123rd St entered on the north side as the application's directions describe. The facility itself extends north of the entrance within the section; its extent and building positions are not published.",
+ "datum_note": "No datum is stated by DEQ or the applicant; NAD83/WGS 84 differ by about 1 m here.",
+ "geocoder_used": false,
+ "alternatives_rejected": [
+  "The Springboard WWT discharge notice gives only the section (S19, T13N, R16E) and is used for identity.",
+  "No Muskogee County parcel service was used; no geocoder, town point or county centroid was used."
+ ]
+}

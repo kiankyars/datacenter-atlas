@@ -1,0 +1,90 @@
+{
+ "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+ "candidate": "Google Mayes County data center campus, 4581 Webb Street, Pryor (MidAmerica Industrial Park), Mayes County, Oklahoma; Oklahoma DEQ facility 6417 'PRY Data Storage Facility' (permittee Myall, LLC)",
+ "prepared_at": "2026-10-26",
+ "selected_point_crs84": [
+  -95.3302,
+  36.2425
+ ],
+ "selected_point_role": "facility coordinate reported to Oklahoma DEQ in the April 2025 Title V operating-permit application form (DEQ Form 100-884, item 8, 'Geographic coordinates', latitude 36.24250, longitude -95.33020, five decimals, reference point 'Center of Facility'); locates the data-centre campus as reported to the regulator, not a building footprint or a surveyed boundary",
+ "authority_class": "official_source",
+ "scope_class": "official_permit_facility_coordinate",
+ "use_scope": "campus_locator",
+ "source": {
+  "file": "local_data/country-research-us-ok-la-ar-ms-al-tn-p3/okdeq-pry-permit-application-20250411.pdf",
+  "sha256": "0cf1346990a58a976eb805f207f05d56462a4312feac40b5da20d4242d37fa36",
+  "url": "https://applications.deq.ok.gov/PermitsPublicReview/download.ashx?docid=5999970&cs=ba81b82c3949cf1c9a72",
+  "retrieved_at": "2026-10-26T15:11:56.284Z",
+  "document": "Oklahoma DEQ Permits for Public Review, permit 2021-0235-TVR M-1, document 'Permit Application' (received 11 April 2025), public version prepared by the applicant's consultant; page 7 is the General Facility Information form",
+  "reading": "Read from the 150 dpi page render (pdftoppm) and confirmed visually; tesseract OCR gave the same digits ('36.24250', '-95.33020')."
+ },
+ "form_fields_used": {
+  "company": "Myall, LLC (mailing address 251 Little Falls Drive, Wilmington, DE 19808)",
+  "facility_name": "PRY Data Storage Facility",
+  "sic_naics": "SIC 7374 / NAICS 518210",
+  "legal_description": "Section 6, Township 20N, Range 19E (Indian Meridian)",
+  "physical_address": "4581 Webb Street, Pryor, OK 74361, Mayes County",
+  "geographic_coordinates": "latitude 36.24250, longitude -95.33020 (to 5 decimals); no datum stated",
+  "reference_point": "Center of Facility (box marked X); the 'Facility Entrance Point' option is not marked",
+  "operational_start_up_field": "11/2024 (start-up of the newest permitted equipment, not of the campus)"
+ },
+ "identity_points": {
+  "maip_google_marker": {
+   "lon_lat": [
+    -95.332869,
+    36.239722
+   ],
+   "source": {
+    "file": "local_data/country-research-us-ok-la-ar-ms-al-tn-p3/maip-interactive-map-park.html",
+    "sha256": "5318c746a31503f2065c4f565b0d859f25e700933b3851b558398db045a87eab",
+    "url": "https://maip.com/site-selection/interactive-map-park",
+    "retrieved_at": "2026-10-26T15:16:14.518Z",
+    "document": "MidAmerica Industrial Park 'Interactive Map - Park' page; Leaflet marker item98 in category 'Data Center'",
+    "popup": "Google / 4581 Webb St / Pryor Creek OK 74361 / 36 14 23.00 95 19 58.33 / Data Center"
+   },
+   "use": "identity only (ties Google to 4581 Webb Street); not the selected locator"
+  }
+ },
+ "geometry_checks": {
+  "plss_section": {
+   "PLSSID": "OK170200N0190E0",
+   "section": "06",
+   "meaning": "Section 6, T20N, R19E, Indian Meridian"
+  },
+  "plss_source": {
+   "file": "local_data/country-research-us-ok-la-ar-ms-al-tn-p3/blm-plss-section-pry-point.json",
+   "sha256": "0a2bad3739bfdf4e03ed1e6754fe6fe697bfb9dae4c3ef580a67e24118554e5b",
+   "url": "https://gis.blm.gov/arcgis/rest/services/Cadastral/BLM_Natl_PLSS_CadNSDI/MapServer/2/query?geometry=-95.33020%2C36.24250&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=PLSSID,FRSTDIVNO,FRSTDIVLAB&returnGeometry=true&outSR=4326&f=json",
+   "retrieved_at": "2026-10-26T15:22:52.267Z",
+   "service": "BLM National PLSS CadNSDI MapServer layer 2 (First Division / sections), point-intersect query with returnGeometry, outSR 4326"
+  },
+  "maip_marker_plss_source": {
+   "file": "local_data/country-research-us-ok-la-ar-ms-al-tn-p3/blm-plss-section-maip-google-marker.json",
+   "sha256": "3fb30264d5663d6875c470f339146249fd49f1ae532ffaad3cef33d075c97179",
+   "url": "https://gis.blm.gov/arcgis/rest/services/Cadastral/BLM_Natl_PLSS_CadNSDI/MapServer/2/query?geometry=-95.332869%2C36.239722&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=PLSSID,FRSTDIVNO,FRSTDIVLAB&returnGeometry=false&f=json",
+   "retrieved_at": "2026-10-26T15:22:57.994Z"
+  },
+  "section_geodesic_acres": 627.7,
+  "section_bounds_lon_lat": [
+   -95.3329581,
+   36.2350306,
+   -95.3149773,
+   36.2492641
+  ],
+  "deq_point_inside_section_6": true,
+  "deq_point_distance_to_section_boundary_m": 247.5,
+  "maip_marker_inside_section_6": true,
+  "maip_marker_distance_to_section_boundary_m": 7.3,
+  "deq_point_to_maip_marker_m": 390.6,
+  "deq_point_to_maip_marker_azimuth_deg": -142.1,
+  "verification": "pyproj 3.7.1 Geod(WGS84).inv / geometry_area_perimeter and shapely 2.1.1 Polygon.contains on the BLM section ring returned in EPSG:4326"
+ },
+ "interpretation": "The DEQ point and Google's MAIP map marker both fall in Section 6, T20N, R19E, the section DEQ names for the facility; the MAIP marker sits at the section's west edge (about 7 m in, consistent with an address-frontage pin on Webb Street) and the DEQ 'center of facility' point lies about 391 m to its north-east, 248 m inside the section. The DEQ point is selected because it is a regulator-filed facility coordinate explicitly described as the centre of the facility.",
+ "datum_note": "The application states no datum; at five decimals the coordinate is a nominal ~1 m grid value and NAD83/WGS 84 differ by about 1 m here.",
+ "geocoder_used": false,
+ "alternatives_rejected": [
+  "The MAIP marker (36.239722, -95.332869) is an address pin on the park's promotional map; used only for identity.",
+  "No Mayes County parcel service was found reachable without a form; no geocoder, park centroid or city point was used.",
+  "EPA ECHO (echodata.epa.gov) was not used: its robots.txt disallows all agents."
+ ]
+}
