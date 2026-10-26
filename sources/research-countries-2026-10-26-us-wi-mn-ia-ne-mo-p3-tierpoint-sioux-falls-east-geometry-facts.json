@@ -1,0 +1,61 @@
+{
+  "candidate_id": "tierpoint-sioux-falls-east-54th-street-data-center",
+  "decision": "Selected the centroid of City of Sioux Falls parcel TAG 011633251002000 (700 E 54TH ST N, 8.47 acres), the only city parcel at the address TierPoint gives for its Sioux Falls - East (SFE) data center, as the facility locator.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -96.7168804,
+      43.5961534
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_tax_parcel_centroid",
+  "use_scope": "project_locator",
+  "source_file": "local_data/country-research-us-wi-mn-ia-ne-mo-p3/sf-parcel2026-011633251002000.geojson",
+  "source_sha256": "76062be0ba3b51b48b5666a14d6bd675d7d75d5da937311b04f815c393e5e2f7",
+  "source_url": "https://services.arcgis.com/YpECgwASS4iMvgsA/arcgis/rest/services/Parcels_With_Property_Tax2026/FeatureServer/0/query?where=TAG+%3D+%27011633251002000%27&outFields=TAG,COUNTYID,ADDRESS,ACREAGE,LANDUSE&returnGeometry=true&outSR=4326&f=geojson",
+  "retrieved_at": "2026-10-26T16:06:02.679Z",
+  "selected_properties": {
+    "TAG": "011633251002000",
+    "COUNTYID": "54806",
+    "ADDRESS": "700 E 54TH ST N",
+    "ACREAGE": 8.47,
+    "LANDUSE": 250,
+    "layer": "City of Sioux Falls ArcGIS Online organisation (owner cityofsiouxfallsgis) 'Parcels With Property Tax2026' FeatureServer layer 0, data last edited 2026-10-08; the 2025 'Parcels with Property Taxes' layer (edited 2026-01-02) returns the same TAG, address, acreage and polygon"
+  },
+  "computed": {
+    "parts": 1,
+    "geodesic_acres": 8.2868,
+    "geodesic_area_m2": 33535.4,
+    "centroid_lon_lat": [
+      -96.7168804,
+      43.5961534
+    ],
+    "centroid_inside_polygon": true,
+    "extent_m": [
+      119.1,
+      307.1
+    ],
+    "bounds_lon_lat": [
+      -96.717562,
+      43.594779,
+      -96.716191,
+      43.59754
+    ],
+    "method": "Polygon returned with outSR=4326 (f=geojson); centroid computed in EPSG:26914 and returned to WGS84 (EPSG:32614 cross-check gives the same point to 1e-7 degrees); geodesic area on the WGS84 ellipsoid",
+    "tools": "pyproj 3.7.1, shapely 2.1.1"
+  },
+  "identity_bridge": [
+    "TierPoint's Sioux Falls - East page gives '700 East 54th Street North, Sioux Falls, SD 57104' with 16,000+ total square feet and 4,200+ square feet of raised floor.",
+    "Both city parcel layers return exactly one parcel for 700 E 54TH ST N (TAG 011633251002000, 8.47 acres). The Minnehaha County parcel service holds no parcel at this address (city parcels are maintained by the city).",
+    "TierPoint's own structured-data point (43.595214, -96.716819) lies inside the parcel, 104.5 m from the selected centroid and 48.0 m inside the boundary; it is a cross-check only."
+  ],
+  "unresolved": [
+    "The building footprint within the 8.5-acre lot is not mapped; the layer has no building attributes."
+  ],
+  "nearby_records": "No Atlas site, project, source record, identity-mapping entry, pending fragment, claim or hold coordinate lies within 2 km; the Atlas has no South Dakota record. TierPoint's Sioux Falls - West facility (5300 N La Mesa Dr) is a separate building and is not part of this record.",
+  "consistency_checks": {
+    "datum": "WGS84 output from the city service (outSR=4326)",
+    "geocoder_used": false
+  }
+}

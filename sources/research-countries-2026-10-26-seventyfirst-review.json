@@ -1,0 +1,154 @@
+{
+  "reviewer": "root",
+  "reviewed_at": "2026-10-26",
+  "decision": "accepted_for_integration",
+  "update": "verified_construction_core/2026-10-26-research-seventyfirst",
+  "base_dataset": "verified_construction_core/2026-10-26-research-seventieth",
+  "process": "continuous: one researcher per beat, one adversarial verifier per fragment",
+  "fragments": [
+    {
+      "fragment": "de-bauleitplanung-p3",
+      "verdict": "accept",
+      "checks": [
+        "All 9 relied-on captures rehashed: sha256 matches .metadata.json and sources.json content_hash; URLs, HTTP 200 and retrieval times match",
+        "Status source (government_record) read in capture: Luckau notice listing row 'Veröffentlicht am 23.09.2026', Amtliche Bekanntmachung of the Aufstellungsbeschluss B-Plan 04.1.02 and Einleitungsbeschluss of the 14th FNP amendment; 33 days old, inside the 85-day window (from 2026-08-01)",
+        "Data-centre identity read in Vorlage V Stvv/26/029 (pdftotext): hyperscale data centre within B-Plans 01/01a, positive Vorbescheid 07.03.2025 (context only), plan area = Flur 1 Flurstück 44/1 plus part of Flurstück 192; corroborated by the DiPlanung procedure page and Informationsblatt, and by the SessionNet agenda of 27.08.2026",
+        "Announced only: no building permit, BImSchG permit or physical work; the Vorbescheid and Aufstellungsbeschluss are not consent",
+        "Anlage 2 plan sheet rendered with pdftoppm: dashed Geltungsbereich covers 44/1 and the east strip of 192",
+        "Locator recomputed independently from the raw ALKIS GML (shapely 2.1.1, pyproj 3.7.1): union of Flur 1 44/1 and 192 = 61,210 m2, centroid 13.7974480, 51.8695943, 0.01 m from the claimed point, inside the union; max vertex distance 217 m",
+        "ALKIS building capture: none of the 10 buildings in the bbox intersects the parcel union (nearest 23 m)",
+        "DiPlanung change-area polygon recomputed: 17,110 m2, 98% overlap with 44/1, centroid 116 m from the locator, matching the geometry facts",
+        "Distinctness screened against the current dataset 2026-10-26-research-seventieth (696 sites, 742 projects, 3,810 evidence rows, source-records.json, identity-mapping.json), all other queue fragments, claims.tsv and sources/*-holds.json: no name, alias, address or coordinate match; nearest Atlas site Schwarz Digits Lübbenau, 11.5 km; the only hits are the thirtyninth lead_only hold 'Netzanschluss Rechenzentrum Alteno', whose reopen condition this record meets",
+        "Roles empty (developer unnamed); commercial hyperscale scope; no third-party personal data in changes, sources, holds or notes",
+        "Corrected unsupported wording: removed the uncaptured '29.09.2026 agency phase' claim, described the DiPlanung participation period as listed (portal step 'Auswertung Öffentlichkeit'), fixed the Informationsblatt date semantics, and updated the distinctness review to the seventieth dataset",
+        "dryrun_fragment.py ok against base 2026-10-26-research-seventieth (697 sites, 743 projects)"
+      ],
+      "residual_risks": [
+        "The 23.09.2026 notice PDF sits under the robots-disallowed /visioncontent/ path and has no archived copy, so the notice text itself was not read; the decision content rests on the council Vorlage, the session agenda and DiPlanung",
+        "The point locates the two plan-named parcels (about 6.1 ha), not buildings; the developer may also use other undeveloped B-Plan 01/01a plots",
+        "Developer, capacity and schedule are unpublished"
+      ]
+    },
+    {
+      "fragment": "fr-it-es-pt-p3",
+      "verdict": "accept",
+      "checks": [
+        "base re-read from site/config.json: 2026-10-26-research-seventieth (unchanged at verdict time)",
+        "all 19 captures rehashed: sha256 = metadata sha256 = content_hash; effective URL and captured_at match source records",
+        "MIL05 status: ARPA Lombardia letter pdftotext-read; MASE incoming stamp 0210616 of 09-10-2026 names 'nuovo Data Center denominato MIL05 ... Vignate'; portal lists it 'in data 9/10/2026', uploaded 12/10/2026; government_record; 17 days old",
+        "MIL05 ante-operam: compliance reports say conditions are due before works start; ID_VIP 11245 / 'DM 212.10-04-2026' header confirmed as STACK Liscate (Infrastructure Italia Land 6) carry-over via it-p1 capture va-info-10758",
+        "MIL05 identity: STACK page MIL05A 48 MW + MIL05B 12 MW, 23 acres; it-p1 SNT capture gives 48+12 MW IT and 81,073+23,470=94,322 m2",
+        "MIL05 locator recomputed from Tabella 2.1a text (16 vertices): union centroid 528894.88/5038707.88 -> 9.3698545, 45.5013038, inside A 10.7 m from edge; stacks E1-E50 17.0-42.7 m from outlines; Figura 2.1c rendered and matches imagery overlay",
+        "Bornasco status: DM_2026-0000633 registered R.0000633 15-10-2026, notified/listed 16/10/2026; names datacenter MIL06, second phase of the area with MIL05, 93 MWt added, 163 MWt total; CTVA 185 places MIL06 works after MIL05's main construction",
+        "Bornasco locator recomputed from Tabelle 7-1/7-2 (23 stacks): mean 516433.4/5011368.5 -> 9.209439, 45.2556197; MIL05 stacks south, MIL06 north",
+        "Aruba status: MASE determination USCITA 0194474 21-09-2026 (listed 28/09/2026) on the expansion at Via San Clemente 53; CTVA 1014 refers to DC D 'future intervention' and requires characterisation before excavation starts",
+        "Aruba locator recomputed from Tabella 11 (97 rows incl. two with page-number suffix): mean 545877.1/5061466.9 -> 9.5893587, 45.7052355; 30 DC D stacks at 12.7 m, mean 172 m SSE",
+        "imagery overlays drawn for all three: outlines/stacks fall on the cleared plot, graded ATP1 ground and Aruba generator yards, with no systematic offset",
+        "distinctness: no name/alias/operator/address hit in sites, projects, evidence, source-records or identity-mapping for Vignate/MIL05/MIL06/Bornasco/Aruba/Ponte San Pietro/San Clemente/Legler; nearest sites 6.3 km (MIL05), 7.6 km (Bornasco), >10 km (Aruba); no other queue fragment or claims.tsv entry for these places; prior holds resolved as their reopen conditions describe",
+        "roles: STACK operator intended (operator page), Microsoft 4825 Italy owner intended (decree; matches existing MIL03 convention), Aruba operator intended (determination)",
+        "no third-party personal names, phones or emails in changes, sources, holds, notes or geometry",
+        "robots.txt copies checked: va.mite.gov.it Allow /, stackinfra crawl-delay 10 respected, arcgisonline no disallow",
+        "fixed text: MIL05 precision/geometry facts said C+D were 116 m from A+B (D is 50.5 m, C 116.4 m); Bornasco precision said the point is 128 m from the MIL06 stack mean (it is 56.4 m; 128-130 m separates the two stack means); MIL05 name 'proposed' changed to 'planned'; geometry_facts_sha256 refreshed",
+        "dryrun_fragment.py ok: 699 sites, 745 projects, 3,829 evidence"
+      ],
+      "residual_risks": [
+        "Aruba campus already operates (buildings A-C held), so the new site shows only announced Data Center D until A-C are added",
+        "Microsoft Bornasco site-wide works since Sep 2025 (Microsoft page per the thirty-fourth hold) are not represented; MIL05 held",
+        "STACK MIL05 imagery (undated) shows a cleared plot with activity; construction may be under way but no dated record establishes it",
+        "MIL05 48+12 MW and area figures in scoped_project_details rest on the it-p1 SNT capture, not a source cited in this fragment",
+        "Aruba stack table has no CRS label of its own and the CALMET origin text is about 60 km off; UTM 32N reading relies on imagery agreement",
+        "Microsoft owner role is inferred from proponent status in the decree"
+      ]
+    },
+    {
+      "fragment": "ie-pleanala-p3",
+      "verdict": "accept",
+      "checks": [
+        "Base read from site/config.json: verified_construction_core/2026-10-26-research-seventieth; window floor 2026-08-02 (85 days before 2026-10-26)",
+        "All 21 relied-on captures rehashed: SHA-256 equals both .metadata.json sha256 and the source content_hash; metadata url/effective_url and captured_at match source_url and retrieved_at; HTTP 200, no credentials",
+        "Geometry facts file SHA-256 f5f25874... matches geometry_facts_sha256 on both register sources",
+        "Crag status: read crag-P1240-01-reg14-reply-20260825.pdf (pdftotext): dated 25 August 2026, Project Name 'DUB20 IE Licence Application', Client Crag Digital Avoca Ltd, reference P1240-01, consents to the EPA's extension request; regulatory_filing, 62 days old; published_at equals as_of",
+        "Crag identity: EPA 17 Aug 2026 notice (installation at Avoca River Park, application received 30 June 2026); register NGR N174918 E322814; application form LA020319 Site Centre Point 322814/174918 and parent Echelon DC Dublin Limited; NTS: 3 ICT buildings, 60 emergency diesel generators up to 7.6 MWth, planning 23/72 amended by 25/60806; LEAP record Applied/Under Assessment, NACE 6311; docs list 67 items ending 25 Aug 2026",
+        "Crag planning register (Wicklow ETL 20 Oct 2026): 23/72 grant 25 Jul 2023 exp 24 Jul 2028; 25/60806 grant 13 Jan 2026; 20/1285 expired 21 Mar 2026; 26/60038 services grant 15 Sep 2026 is ancillary; permitted correctly not asserted",
+        "SDC-EN status: read sdcen-P1239-01-acp-observations-20260918.pdf: An Coimisiun Pleanala letter dated 17 September 2026, case ABP-307546-20 / RA191593 / P1239-01, 'Construction of 4, 2 storey data storage buildings...' at Bracetown & Gunnocks; government_record, 39 days old; LEAP document date 18 Sep",
+        "SDC-EN context: Board Order OCR of pdftoppm renders confirms grant to EngineNode on appeal from Meath 17 June 2020 decision, four two-storey data storage buildings c. 92,172 sq m, condition 2 ten-year period; case page date signed 05/07/2021; NTS phasing (36 TPG units, 18 back-up generators per DC, 543.64/577.84 MWth, c. 22.8 ha, legal challenges dismissed, Phase 1 Q3/Q4 2028 forecast not used); operational report says greenfield agricultural land; 5 Oct 2026 EPA RFI and LEAP record show application pending",
+        "Locators recomputed independently with pyproj 3.7.1 (EPSG:29903 to EPSG:4326, default 'TM75 to WGS 84 (2)', 1 m): Crag -6.179335, 52.8116088 (0.005 m from claimed), SDC-EN -6.4526999, 53.4285488 (0.002 m); alternative operation offsets 1.96 m and 2.19 m; ITM readings fall in the Atlantic",
+        "Cross-checks reproduced: Crag 28.4/34.5 m to 20/1285 points, 60.6 m to 23/72, 93.2 m to 25/60806, 399.4 m to 25/60594; SDC-EN 0.63 m to EIA Portal printed ITM E 702827.6389 N 743165.0983; locators are installation site-centre points, not town, HQ or estate centroids",
+        "Locator fields: Point, campus_locator, compiled_reference, coordinate_transform, precision, identity_review and uncertainty_reason present; uncertainty null with reasons",
+        "Roles: licence applicants Crag Digital Avoca Limited and SDC-EN Meath I Limited as operator, relationship_scope intended, sourced to their application forms",
+        "Distinctness: no name/alias/reference match (Crag Digital, Avoca River, Arklow, DUB20, Shelton Abbey, SDC-EN, EngineNode, Bracetown, Gunnocks, Clonee, 307546, 191593, P1239, P1240) in sites.csv, projects.csv, evidence.csv, source-records.json or identity-mapping.json beyond unrelated Echelon DUB10 Clondalkin (59.3 km) and NSW lot DP1239553; nearest Atlas sites 55.5 km (Arklow) and 8.9 km (Bracetown); other queue fragments, claims.tsv and sources/*-holds.json hold only leads for these same candidates; Meta Clonee (1.56 km) is not an Atlas record",
+        "One project per new site; both commercial developments; no third-party personal names, emails or phones in changes, sources, holds or notes",
+        "dryrun_fragment.py: ok (698 sites, 744 projects, 3,831 evidence against the seventieth base)"
+      ],
+      "residual_risks": [
+        "Crag status source is a procedural consent-to-extension letter that names the 'DUB20 IE Licence Application' and P1240-01 but not the words data centre; the data-centre character comes from the same application's NTS and register posted 9 July 2026, outside the window",
+        "Alias 'Echelon DUB20' combines the parent company named on the application form (Echelon DC Dublin Limited) with the project name DUB20; no source prints it verbatim",
+        "Both points are applicant-provided site-centre grid references with unknown survey accuracy; the Bracetown ITM cross-check comes from the same planning-application lineage",
+        "Planning consents appear to be in effect for both sites (23/72 to July 2028; ABP-307546-20 to July 2031), so announced may understate status",
+        "Wicklow 25/60594 ICT development 0.40 km east of DUB20 may later prove to be part of the same campus; it is held as a lead"
+      ]
+    },
+    {
+      "fragment": "us-west-coast-mountain-p3",
+      "verdict": "accept",
+      "checks": [
+        "current_dataset verified_construction_core/2026-10-26-research-seventieth read from site/config.json at start and before verdict",
+        "all 20 cited captures rehashed: sha256 matches both .metadata.json and sources.json content_hash; metadata URL equals source_url; HTTP 200",
+        "status captures read directly: Centennial Campus page dateModified 2026-09-27T17:08:31Z ('features our DEN2 and DEN5 data centers'), DEN1 page 2026-09-28T23:19:27Z ('colocation facility ... carrier neutral connectivity hub'), DEN3 page 2026-09-28T19:26:10Z ('premiere carrier hotel in the region')",
+        "dateModified bounds confirmed: IA copies 2026-06-08 (dateModified 2025-01-20), 2026-04-19 (2026-03-04; 12 vs 10 carriers), 2026-05-04 (2026-03-04; 15 vs 16 carriers) and 2026-10-13 (same 2026-09-28 version); CDX listings show no copy between; sitemap lastmods match",
+        "all three observations (2026-09-27/28) fall inside the 85-day window (on or after 2026-08-02); source kind company_disclosure for each status",
+        "DEN5 opening context confirmed in 2024 grand-opening release; DEN5 page 'slated to open in early 2024' sentence not used",
+        "locators recomputed with pyproj 3.7.1/shapely 2.1.1 from raw EPSG:4326 parcel JSON: centroids match to <=3 mm; areas 11.957, 5.615, 0.863 ac; centroids inside; Centennial union is one polygon",
+        "address points recomputed: 6900 S Peoria and 6961 S Quentin points carry and lie in their parcels; 393 Inverness (Douglas) carries ParcelID 223102204001 and lies inside (33.8 m); 1500 Champa building and 13 suite points lie inside parcel 0234531031000",
+        "owner of record DATABANK PROPERTIES LLC on DEN1 parcel confirmed; Centennial and DEN3 assert operator only",
+        "distinctness: no seventieth site/project/evidence/source-record/identity-mapping row, other queue fragment, sources/*-holds.json entry or other claim names DataBank Denver, DEN1/2/3/5, Champa, Inverness, Quentin or Peoria; nearest Atlas sites 4.48 km (Flexential Parker), 4.70 km, 5.24 km (CoreSite DE3)",
+        "one project per new site; no status or context updates; roles operator/owner with relationship_scope current",
+        "no private-individual names, phones or emails in changes, sources, holds or notes (CEO quote attributed to role only)",
+        "robots.txt recorded for every relied-on host (databank.com 200, web.archive.org 404, gis.colorado.gov 404); services1.arcgis.com incident response not cited",
+        "dryrun_fragment.py ok against seventieth (699 sites, 745 projects, 3830 evidence)"
+      ],
+      "residual_risks": [
+        "status rests on operator marketing pages' present-tense descriptions with IA-bounded dateModified values (Centennial's 27 Sep change is only the corporate-overview sentence, a site-wide re-save), not an independent operating record",
+        "DEN5 operation rests on the campus page, Denver page and 2024 grand-opening release; DEN5 page keeps a stale 'slated to open in early 2024' sentence; DEN5 build-out extent vs 16 MW rating not verified",
+        "6900 S Peoria parcel owner of record (6900 S Peoria LLC) is not tied to DataBank in a capture",
+        "DEN1 address-to-parcel link rests on the state address point's ParcelID and DataBank owner entity; parcel situs is 391, not 393, Inverness Pkwy",
+        "DEN3 locator is the host building parcel (owner M R Champa LLC); DataBank's suite is not located",
+        "parcel data are the State of Colorado OIT annual composite (county data received April 2026), not direct county assessor services",
+        "researcher sent one query to services1.arcgis.com after its robots.txt returned 403 (logged incident; response unused)"
+      ]
+    },
+    {
+      "fragment": "us-wi-mn-ia-ne-mo-p3",
+      "verdict": "accept",
+      "checks": [
+        "base read from site/config.json: verified_construction_core/2026-10-26-research-sixtyninth (691 sites, 737 projects); unchanged at verdict time",
+        "All 20 cited captures rehashed: SHA-256 equals .metadata.json sha256 and sources.json content_hash, byte counts match, HTTP 200, credential-free, URLs match; the three geometry-facts hashes match sources.json",
+        "934 Central: Legistar event 19483 item 108121 read: Ordinance 260870 'approving a development plan on about 0.23 acres ... NW corner of 10th Street and Central Avenue ... 384 foot structure ... ground floor retail and a data center (CD-CPC-2026-00074)', action 'referred' 24 Sep 2026; minutes Final published 2026-09-25; government_record, 32 days old; announced only (history shows only referral and two committee holds, due back 10 Nov); not permitted",
+        "934 Central identity: attachment names title it '934 Central Data Center'; permits data put 934 Central St and 304 W 10th St on parcel 122517; box query confirms 122517 is the NW-corner lot (10th St to the south, Central to the east, 122518 to the north); 0.2236 ac matches 'about 0.23 acres' (122516 or 122518 added would be 0.41/0.38 ac)",
+        "Locators recomputed from raw captures with pyproj 3.7.1/shapely 2.1.1: KC 122517 centroid (EPSG:26915 and 6512) -94.5872246, 39.1026087; MKE union centroid (EPSG:32616) -87.9610752, 43.0094774, 3.311 ac; SFE TAG 011633251002000 centroid (EPSG:26914) -96.7168804, 43.5961534, 8.287 ac; all within 0.005 m of the stated points and inside their polygons; 2025 and 2026 Sioux Falls layers give the same polygon",
+        "TierPoint pages read: MKE 'state-of-the-art Tier III Milwaukee facility', 3701 W. Burnham Street Ste C, 28,000+ sq ft; SFE 'enterprise-class TierPoint Sioux Falls (East) data center and colocation facility', 700 East 54th Street North; dateModified 2026-09-03T07:45:19Z and 07:24:19Z equal page-sitemap lastmod",
+        "dateModified bounds: MKE IA 2026-04-14 copy (dateModified 2026-04-08, generator line differs) and IA 2026-10-08 copy (dateModified 2026-09-03, facility text identical); SFE IA 2026-03-05 copy (dateModified 2024-07-31, generator line '800 kW' vs 'Two 800 kW redundant generators'); CDX shows no other 2026 copies; matches the published Tulsa/Little Rock/St. Louis/Chicago TierPoint precedent and the sixtyfifth-holds reopen condition (lower archive bound plus official parcel locator, before 27 Nov 2026)",
+        "Sioux Falls parcel layers are owned by cityofsiouxfallsgis (AGOL search capture, 'authoritative parcel polygons'); TierPoint structured-data points lie inside both locator polygons (MKE 30.9 m, SFE 104.5 m from centroids)",
+        "Roles: TierPoint operator, relationship_scope current, sourced to the status pages; 934 Central has no roles (applicant unknown)",
+        "Distinctness screened against sixtyninth sites/projects/evidence/source-records/identity-mapping, all other queue fragments, claims.tsv and all sources/*-holds.json by name, alias, address, case and parcel terms and by 2 km radius: only the city-level Lambda KC and Meta KC points (835 m) near 934 Central; TierPoint MKE/SFE appear only in the us-midwest-plains-p2 hold this resolves; no stable-key collision",
+        "Edit: MKE uncertainty_reason now discloses the West Milwaukee parcel's 'VACANT LOT' legal-description note and that the centroid and TierPoint's point both fall on that parcel (original in pre-verify/changes.json)",
+        "No third-party personal data in changes, sources, holds or notes (staff e-mail in Legistar, testimonial name on TierPoint pages and permit project names not reproduced); compliance log shows robots read before each host, Crawl-delay 10 respected, disallowed hosts not used",
+        "dryrun_fragment.py ok against sixtyninth (694 sites, 740 projects, 3805 evidence)"
+      ],
+      "residual_risks": [
+        "934 Central plan boundary and applicant not read (attachments on robots-disallowed kansascity.legistar1.com); the plan could include adjoining right of way; parcel layer is a December 2023 snapshot",
+        "934 Central ordinance may later fail or be withdrawn; status stays announced as of 24 Sep 2026 until a newer record",
+        "MKE building position inside the two-parcel property is unmapped; the West Milwaukee parcel is described as a vacant lot, so the true building may sit up to about 40-60 m from the point",
+        "SFE dateModified bounded above only by the live capture (no post-September archive copy); TierPoint operating observations rest on the 3 Sep 2026 portfolio-wide page edit",
+        "Sioux Falls parcel retrieved via ArcGIS Online (services.arcgis.com robots.txt returns 403, treated as no rules per earlier lanes) because the city GIS host was unreachable"
+      ]
+    }
+  ],
+  "packet_pins": {
+    "definitions/atlas-research-seventyfirst-2026-10-26.json": "faea9a81ef402a8f594eb140ea0ac9a39a555fe8772a82bf4909bf6c34ea3a2b",
+    "sources/research-countries-2026-10-26-seventyfirst-primary-sources.json": "6f519787e8b8fe4b6bd78b568123cde3bee4291dc048144f93de269f4f8aad2e",
+    "sources/research-countries-2026-10-26-seventyfirst-actions.json": "8c804be9b2e2ad61b15dbb5899ca83cb9f1a052b2a8caed99554ad8978e91eaa",
+    "sources/research-countries-2026-10-26-seventyfirst-holds.json": "c167dc88661978ae2db2833d56e7837eecbd4f84d203f95c9ba6d18410adeff7"
+  },
+  "raw_captures_redistributed": false
+}

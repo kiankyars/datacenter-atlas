@@ -1,0 +1,92 @@
+{
+  "candidate_id": "tierpoint-milwaukee-burnham-street-data-center",
+  "decision": "Selected the centroid of the union of the two adjoining tax parcels that Milwaukee County's parcel layer addresses as 3701 W BURNHAM ST (City of Milwaukee 4720372000 and Village of West Milwaukee 4571008006, both owned by WSP Burnham LLC) as the locator of TierPoint's Milwaukee (MKE) data center.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -87.9610752,
+      43.0094774
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_tax_parcel_union_centroid",
+  "use_scope": "project_locator",
+  "source_file": "local_data/country-research-us-wi-mn-ia-ne-mo-p3/mclio-parcels-3701-w-burnham.geojson",
+  "source_sha256": "d3219195b72560b617e64c8b9f5c3ba593d515c4ac6f57442bd5b2eaa5aa8492",
+  "source_url": "https://lio.milwaukeecountywi.gov/arcgis/rest/services/PropertyInfo/Parcels_w_Officials/FeatureServer/0/query?where=Parcel_Addr+%3D+%273701+W+BURNHAM+ST%27&outFields=MuniName,Taxkey,Parcel_Addr,Parcel_Zip,Acres,Assessment_Descrip,Zoning_Desc,Tax_Yr,LegalDescr,Shape__Area&returnGeometry=true&outSR=4326&f=geojson",
+  "retrieved_at": "2026-10-26T16:01:32.763Z",
+  "selected_properties": {
+    "parcels": [
+      {
+        "Taxkey": "4720372000",
+        "MuniName": "Milwaukee",
+        "Parcel_Addr": "3701 W BURNHAM ST",
+        "Acres": 1.887,
+        "Assessment_Descrip": "COMMERCIAL",
+        "Zoning_Desc": "Industrial",
+        "Tax_Yr": 2025,
+        "LegalDescr": "C.S.MAP NO. 6605 IN NE 1/4 & NW 1/4 OF SW 1/4 OF SEC 1-6-21 PARCEL 2"
+      },
+      {
+        "Taxkey": "4571008006",
+        "MuniName": "West Milwaukee",
+        "Parcel_Addr": "3701 W BURNHAM ST",
+        "Acres": 1.45,
+        "Assessment_Descrip": "COMMERCIAL",
+        "Zoning_Desc": "Manufacturing",
+        "Tax_Yr": 2024,
+        "LegalDescr": "CERTIFIED SURVEY MAP NO. 6595 LOT 2 1.45 AC. SW ONE-QUARTER SEC 1-6-21 APPROX 1911 S 37 ST SW CORNER OF 37 AND BURNHAM VACANT LOT"
+      }
+    ],
+    "owner_of_record_both_parcels": "WSP Burnham LLC (company; from a separate attribute query, mclio-parcels-3701-owner.json)",
+    "layer": "Milwaukee County LIO PropertyInfo/Parcels_w_Officials FeatureServer layer 0 (no edit date published)"
+  },
+  "computed": {
+    "parts": 1,
+    "geodesic_acres": 3.3108,
+    "geodesic_area_m2": 13398.5,
+    "centroid_lon_lat": [
+      -87.9610752,
+      43.0094774
+    ],
+    "centroid_inside_polygon": true,
+    "extent_m": [
+      93.0,
+      152.0
+    ],
+    "gap_between_parcels_m": 0.0,
+    "bounds_lon_lat": [
+      -87.961637,
+      43.00879,
+      -87.960517,
+      43.010163
+    ],
+    "parcel_centroids_lon_lat": {
+      "4720372000": [
+        -87.9608943,
+        43.0096061
+      ],
+      "4571008006": [
+        -87.9613073,
+        43.0093124
+      ]
+    },
+    "method": "Polygons returned with outSR=4326 (f=geojson); union and centroid computed in EPSG:32616 and returned to WGS84 (EPSG:6609 cross-check gives the same point to 1e-7 degrees); geodesic area on the WGS84 ellipsoid",
+    "tools": "pyproj 3.7.1, shapely 2.1.1"
+  },
+  "identity_bridge": [
+    "TierPoint's Milwaukee page gives 'Milwaukee (MKE) 3701 W. Burnham Street, Ste C Milwaukee, WI 53215' with 28,000+ total square feet and 3,600+ square feet of raised floor.",
+    "A county query for 37xx W Burnham St returns exactly two parcels addressed 3701 W BURNHAM ST, one on each side of the City of Milwaukee / Village of West Milwaukee line; they adjoin (0.0 m gap, one-part union) and share one company owner of record, so they are treated as one property. The other 37xx parcels (3700-3722 W Burnham St) are small even-numbered lots of 0.08-0.16 acres.",
+    "TierPoint's own structured-data point (43.009671, -87.961347) lies inside the union (inside parcel 4571008006), 30.9 m from the selected centroid; it is a cross-check only."
+  ],
+  "unresolved": [
+    "The building footprint and the suite (Ste C) are not mapped; the West Milwaukee parcel's legal description still carries a 'VACANT LOT' note, so the building may occupy only part of the two-parcel property.",
+    "The county layer publishes no edit date (tax years 2025 and 2024)."
+  ],
+  "nearby_records": "No Atlas site, project, source record, identity-mapping entry, pending fragment, claim or hold coordinate lies within 2 km; the nearest Atlas records are the Microsoft Mount Pleasant campuses, about 30 km south.",
+  "consistency_checks": {
+    "datum": "WGS84 output from the county service (outSR=4326)",
+    "geocoder_used": false,
+    "county_address_point_locator": "returned no candidate for 3701 W BURNHAM ST; not used"
+  }
+}

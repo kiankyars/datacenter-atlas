@@ -1,0 +1,87 @@
+{
+  "candidate_id": "databank-centennial-campus-denver",
+  "decision": "Selected the centroid of the union of the two Arapahoe County parcels in the State of Colorado public parcel composite at the two building addresses DataBank publishes for the Centennial Campus: 2075-25-2-14-002 (6900 S Peoria St, DEN2; owner of record 6900 S PEORIA LLC) and 2075-25-2-23-001 (6961 S Quentin St, DEN5; owner of record DB DATA CENTER DENVER LLC). The parcels abut and form one 11.96-acre polygon, matching the 11-acre campus DataBank describes. Building footprints are not published.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -104.8469456,
+      39.5908126
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_tax_parcel_union_centroid",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-us-west-coast-mountain-p3/cogis-parcels-centennial-campus-two.json",
+  "source_sha256": "10da17cf30e7f777b2231f5fdf87df35f0866fcdc89a584388a16e5028327554",
+  "source_url": "https://gis.colorado.gov/public/rest/services/Address_and_Parcel/Colorado_Public_Parcels/MapServer/0/query?where=countyName%3D%27Arapahoe%27+AND+parcel_id+IN+%28%272075-25-2-14-002%27%2C%272075-25-2-23-001%27%29&outFields=countyName%2Cparcel_id%2CsitusAdd%2CsitAddCty%2CsitAddZip%2Cowner%2ClegalDesc%2ClandAcres%2CsubName%2ClandUseDsc%2CdateReceived&returnGeometry=true&outSR=4326&f=json",
+  "retrieved_at": "2026-10-26T16:24:30.124Z",
+  "identity_source_file": "local_data/country-research-us-west-coast-mountain-p3/cogis-addr-centennial-campus-two.json",
+  "identity_source_sha256": "18489028e01d6783fd19c543e66c3ffce11e251f6482baf4220c455a35ada243",
+  "selected_properties": {
+    "2075-25-2-14-002": {
+      "county": "Arapahoe",
+      "situs": "6900 S PEORIA ST, CENTENNIAL",
+      "owner": "6900 S PEORIA LLC",
+      "land_use": "Warehouse/Storage",
+      "subdivision": "ARAPAHOE SOUTH JORDAN EAST",
+      "date_received": "4/23/2026",
+      "databank_building": "DEN2 (6900 South Peoria Street)"
+    },
+    "2075-25-2-23-001": {
+      "county": "Arapahoe",
+      "situs": "6961 S QUENTIN ST, CENTENNIAL",
+      "owner": "DB DATA CENTER DENVER LLC",
+      "land_use": "Warehouse/Storage",
+      "subdivision": "ARAPAHOE SOUTH JORDAN EAST",
+      "date_received": "4/23/2026",
+      "databank_building": "DEN5 (6961 S. Quentin Street)"
+    },
+    "address_points": {
+      "6900 S PEORIA ST": {
+        "lon_lat": [
+          -104.84694303499998,
+          39.59140497100003
+        ],
+        "ParcelID": "2075-25-2-14-002",
+        "inside_parcel": true
+      },
+      "6961 S QUENTIN ST": {
+        "lon_lat": [
+          -104.84694991999999,
+          39.59009571200005
+        ],
+        "ParcelID": "2075-25-2-23-001",
+        "inside_parcel": true
+      }
+    }
+  },
+  "computed": {
+    "union_parts": 1,
+    "union_geodesic_acres": 11.96,
+    "parcel_geodesic_acres": {
+      "2075-25-2-23-001": 5.411,
+      "2075-25-2-14-002": 6.546
+    },
+    "centroid_lon_lat": [
+      -104.8469456,
+      39.5908126
+    ],
+    "centroid_inside_union": true,
+    "extent_m": [
+      167,
+      291
+    ],
+    "bounds_lon_lat": [
+      -104.8479198,
+      39.5895003,
+      -104.8459682,
+      39.592125
+    ],
+    "address_point_distances_to_centroid_m": {
+      "6900 S PEORIA ST": 65.8,
+      "6961 S QUENTIN ST": 79.6
+    },
+    "method": "Esri rings converted to shapely 2.1.1 polygons; union and planar centroid in WGS84 longitude/latitude (an Albers equal-area centroid agrees to 1e-7 degrees); areas geodesic on WGS84 (pyproj 3.7.1 Geod); extent in UTM zone 13N (EPSG:32613).",
+    "coordinate_reference_system": "WGS84 longitude/latitude: the statewide composite layer is stored in EPSG:4326 and was queried with outSR=4326; no transformation."
+  }
+}

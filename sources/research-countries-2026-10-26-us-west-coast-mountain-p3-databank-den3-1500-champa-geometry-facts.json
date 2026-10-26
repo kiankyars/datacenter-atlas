@@ -1,0 +1,62 @@
+{
+  "candidate_id": "databank-den3-denver-1500-champa-street",
+  "decision": "Selected the centroid of City and County of Denver parcel 0234531031000 in the State of Colorado public parcel composite (situs 1500 CHAMPA ST; owner of record M R CHAMPA LLC; legal description EAST DENVER B130 L5 TO 16; land use COMMERCIAL-OFFICE). DEN3 occupies space in this multi-tenant building, so the point locates the host building's parcel, not DataBank's suite.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -104.9944018,
+      39.7457609
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_tax_parcel_centroid",
+  "use_scope": "project_locator",
+  "source_file": "local_data/country-research-us-west-coast-mountain-p3/cogis-parcels-1500-champa.json",
+  "source_sha256": "6dab0f8732261650d7e531ad475af8d207d82d98b021deaf23b211cf26c014cb",
+  "source_url": "https://gis.colorado.gov/public/rest/services/Address_and_Parcel/Colorado_Public_Parcels/MapServer/0/query?where=situsAdd+LIKE+%271500+CHAMPA%25%27&outFields=countyName%2Cparcel_id%2Caccount%2CsitusAdd%2CsitAddCty%2CsitAddZip%2Cowner%2ClegalDesc%2ClandAcres%2CsubName%2ClandUseDsc%2CdateReceived&returnGeometry=true&outSR=4326&f=json",
+  "retrieved_at": "2026-10-26T16:20:30.415Z",
+  "identity_source_file": "local_data/country-research-us-west-coast-mountain-p3/cogis-addr-1500-champa.json",
+  "identity_source_sha256": "d7694155d10eb7bd08b1486dff88b5260a1c038fd2f1035af64a4af3d1ed1c4d",
+  "selected_properties": {
+    "0234531031000": {
+      "county": "Denver",
+      "situs": "1500 CHAMPA ST, DENVER 80202-2911",
+      "owner": "M R CHAMPA LLC",
+      "land_use": "COMMERCIAL-OFFICE",
+      "legal_description": "EAST DENVER B130 L5 TO 16",
+      "date_received": "4/21/2026"
+    },
+    "address_points": {
+      "1500 Champa St": {
+        "lon_lat": [
+          -104.99451905699999,
+          39.74589116800007
+        ],
+        "inside_parcel": true
+      },
+      "suite_points": "the statewide address layer returns 13 further 1500 Champa St points for suites (B100, 100, 200-205 and 306-310), all within 44 m of the building point; the Denver records carry no parcel number, so the link is point-in-parcel"
+    }
+  },
+  "computed": {
+    "union_parts": 1,
+    "parcel_geodesic_acres": 0.86,
+    "centroid_lon_lat": [
+      -104.9944018,
+      39.7457609
+    ],
+    "centroid_inside_parcel": true,
+    "extent_m": [
+      92,
+      92
+    ],
+    "bounds_lon_lat": [
+      -104.994936,
+      39.7453479,
+      -104.9938676,
+      39.746174
+    ],
+    "address_point_distance_to_centroid_m": 17.6,
+    "method": "Esri rings converted to shapely 2.1.1 polygons; union and planar centroid in WGS84 longitude/latitude (an Albers equal-area centroid agrees to 1e-7 degrees); areas geodesic on WGS84 (pyproj 3.7.1 Geod); extent in UTM zone 13N (EPSG:32613).",
+    "coordinate_reference_system": "WGS84 longitude/latitude: the statewide composite layer is stored in EPSG:4326 and was queried with outSR=4326; no transformation."
+  }
+}

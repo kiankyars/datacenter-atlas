@@ -1,0 +1,88 @@
+{
+  "format": "datacenter-atlas-geometry-facts-v1",
+  "prepared_at": "2026-10-26",
+  "fragment": "ie-pleanala-p3",
+  "method": "EPA register 'National Grid Reference' and application-form 'Site Centre Point (Irish Grid Reference - 6 digits)' read as EPSG:29903 (TM75 / Irish Grid) and transformed to WGS84 with pyproj 3.7.1, default operation 'Inverse of Irish Grid + TM75 to WGS 84 (2)' (stated accuracy 1 m); the alternative operation (3) moves each point by about 2 m. Read as ITM (EPSG:2157) both values would lie in the Atlantic several hundred kilometres south-west of Ireland (about 48.3-48.9 N, 11.7-12.1 W), so Irish Grid is the only plausible reading, as in the ie-p1 and ie-p2 EPA site-centre points. Cross-check distances are WGS84 geodesic distances (pyproj Geod, WGS84 ellipsoid) to points of the merged national planning register (IrishPlanningApplications feature service, outSR 4326) and the Department of Housing EIA Portal feature service, whose point derivations are undocumented, except where an ITM coordinate is printed in the record text.",
+  "points": {
+    "crag_digital_avoca_dub20_arklow": {
+      "licence": "P1240-01",
+      "register_capture": "crag-P1240-01-register.pdf",
+      "register_capture_sha256": "c8dd5392ef1109775ab27b2edf584e20374c4fbc655a36337f62db0f4371bc4c",
+      "application_form_capture": "crag-P1240-01-application-form.pdf",
+      "application_form_capture_sha256": "656588998230b353b3baca723b9e27a7bb6bdaf505b5905b2a53e326327c752d",
+      "irish_grid": {
+        "easting": 322814,
+        "northing": 174918,
+        "stated_as": "National Grid Reference N174918 E322814 (register posted 9 July 2026); Site Centre Point easting 322814 / northing 174918 (application form LA020319 section 3.2)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -6.179335,
+          52.8116088
+        ]
+      },
+      "alternative_transformation_offset_m": 1.97,
+      "itm_literal_reading_lat_lon": [
+        48.2689,
+        -11.7348
+      ],
+      "cross_checks_m": {
+        "Wicklow 23/72 register point (3 ICT facility buildings superseding part of 20/1285; granted 25 July 2023)": 60.6,
+        "Wicklow 25/60806 register point (amendments to the 23/72 ICT facility buildings; granted 13 January 2026)": 93.1,
+        "Wicklow 20/1285 register points (3 data centre buildings; granted 22 March 2021, expired 21 March 2026)": 28.4,
+        "Wicklow 26/60038 register point (foul pump station, watermain and fibre to connect Avoca River Park to public services; granted 15 September 2026)": 166.7,
+        "EIA Portal 2020208 point (Wicklow 20/1285 data centre complex)": 87.0,
+        "Wicklow 25/60594 register point (separate ICT facility development at and to the east of Avoca River Park; granted 2 June 2026)": 399.4,
+        "Wicklow 21/1080 register point (two energy centres east of the permitted data storage facility; granted 15 June 2022)": 376.2,
+        "Wicklow 23/843 register point (amendment to 21/1080, relocated energy centre; granted 30 April 2024)": 344.4
+      },
+      "context": "The NTS places the site in the Avoca River Park industrial estate north of Arklow with the Avoca River about 30 m to the south, bounding the installation for about 340 m; the point lies among the 20/1285, 23/72 and 25/60806 register points (28-93 m), which describe the same Avoca River Park data-centre site."
+    },
+    "sdc_en_meath_i_bracetown": {
+      "licence": "P1239-01",
+      "register_capture": "sdcen-P1239-01-register.pdf",
+      "register_capture_sha256": "a23fedcf2f36c3c5b9795bf0879de3a445d40e0f7a1a1a7a9ffc655e910b2973",
+      "application_form_capture": "sdcen-P1239-01-application-form.pdf",
+      "application_form_capture_sha256": "a5372cf37f66b485e889003386ec89b1eced57dea94f8b50a351b240cc7b9f3a",
+      "irish_grid": {
+        "easting": 302899,
+        "northing": 243140,
+        "stated_as": "National Grid Reference N243140 E302899 (register posted 7 July 2026); Site Centre Point easting 302899 / northing 243140 (application form LA020360 section 3.2); 'Irish Grid Reference: E 302899, N 243140' (applicant's letter of 11 August 2026 and its site notices)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -6.4526999,
+          53.4285488
+        ]
+      },
+      "alternative_transformation_offset_m": 2.19,
+      "itm_literal_reading_lat_lon": [
+        48.872,
+        -12.0511
+      ],
+      "independent_itm_cross_check": {
+        "source": "EIA Portal record 2019205 (Meath RA191593), location text 'Grid Ref E = 702827.6389 N= 743165.09'",
+        "capture": "eia-datacentre-all.json",
+        "capture_sha256": "1a5b68e387cd74b31d67bc7de7f256e227b7a5a2c82b05ebae91e4a0bbb19720",
+        "wgs84": [
+          -6.452702,
+          53.4285543
+        ],
+        "distance_m": 0.6
+      },
+      "cross_checks_m": {
+        "EIA Portal 2019205 point (Meath RA191593, 4 two-storey data storage buildings)": 126.2,
+        "Meath RA191560 register point (earlier incomplete application for the same four data storage buildings, 2019)": 95.9,
+        "Meath 2587 register point (logistics park east and south of the Hub Logistics Park, Gunnocks; granted 16 April 2026)": 489.0
+      },
+      "nearby_non_atlas_facilities_m": {
+        "Meta (Runways Information Services Limited) Clonee campus, EPA P1192-01 register site centre N241918 E303876 -> 53.4173821, -6.4384101 (held lead, not an Atlas record)": 1564.3,
+        "Meath RA180671 register point (expansion of the existing approved data centre campus RA/150605 at Portan, Gunnocks, Loughsallagh and Clonee)": 1851.2,
+        "Meath 2460041 register point (Runways Information Services, demolition works at Portan and Gunnocks)": 1274.0
+      },
+      "context": "The NTS gives a c. 22.8 ha licence area and the operational report (May 2026) describes the site as greenfield agricultural land at Bracetown and Gunnocks north of Clonee, and names the existing Meta ICT facility as a neighbour; the point lies 1.6 km from Meta's EPA site-centre point and 126 m from the EIA Portal point for RA191593 (0.6 m from the ITM coordinate printed in that record)."
+    }
+  }
+}
