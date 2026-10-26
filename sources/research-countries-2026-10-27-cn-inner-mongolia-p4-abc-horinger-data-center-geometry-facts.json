@@ -1,0 +1,46 @@
+{
+  "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+  "researched_at": "2026-10-27T00:00:00+00:00",
+  "candidate": "Agricultural Bank of China Data Centre Third Branch, Horinger New Area construction project (中国农业银行数据中心第三分部和林格尔新区建设项目; 中国农业银行和林数据中心), plot E01-04-01 at the south-west end of the Yungu area, Horinger New Area, Hohhot, Inner Mongolia",
+  "method": "The selected point is the centre coordinate of the campus's 110 kV 'Data 1#' substation, printed in geographic degrees-minutes-seconds without a stated datum in the environmental impact report form that the Inner Mongolia Department of Ecology and Environment published with its radiation-EIA approval-result publicity of 15 March 2023. The printed values were found to be in the GCJ-02 offset frame used by Chinese web maps (not WGS84/CGCS2000) by comparing the report's own campus site plan with independent Esri World Imagery, and were converted to WGS84 with the published open-source GCJ-02 inverse (eviltransform formulae, iterated to a round-trip residual below 1e-9 degrees) in Python. Geodesic distances and bearings were computed with pyproj 3.7.1 (WGS84 ellipsoid). The locator is therefore a compiled coordinate transform, not a direct transcription.",
+  "selected_points": {
+    "abc_horinger_data_centre_campus": {
+      "source_url": "https://sthjt.nmg.gov.cn/xxgk/sthjzdlyxxgk/wrfzhssxg/hyfshjjg/202303/P020230320573985367377.pdf",
+      "local_capture": "local_data/country-research-cn-inner-mongolia-p4/nmg-abc-horinger-2x110kv-eia-20230320-long.pdf",
+      "source_sha256": "6e3ed5a57984e82840a28dcb6420091e23373894180759646a739dd06fc6990a",
+      "printed": "Table 1, basic information (PDF page 3): 地理坐标 110kV数据1#变电站：（111度48分16.892秒，40度32分15.910秒）；110kV数据2#变电站：（111度48分37.714秒，40度32分22.320秒）",
+      "printed_decimal_lon_lat": {
+        "data_1": [
+          111.804692222,
+          40.537752778
+        ],
+        "data_2": [
+          111.810476111,
+          40.539533333
+        ]
+      },
+      "selected_printed_point": "data_1",
+      "transformed_wgs84_lon_lat": [
+        111.797867534,
+        40.536553091
+      ],
+      "transform_shift": "about 593 m towards bearing 257 deg (west-south-west) from the printed values",
+      "on_campus_statement": "Table 1 and section 2 (PDF pages 3, 4, 10 and 13): both substations are built inside the land of the Agricultural Bank of China Data Centre Third Branch Horinger New Area construction project (项目代码 2106-150123-89-01-134187) on plot E01-04-01 at the south-west end of the Yungu area; they are placed on the south side of the planned data-centre campus on either side of its south main gate (分别位于农行数据中心园区南大门的东西两旁), each about 20 m north of Yungu Heng 44 Road (云谷横44路, an urban trunk road). The report states the two stations are inside the campus (均位于农行数据中心项目园区内部) and handled together with the campus land and planning procedures."
+    }
+  },
+  "internal_consistency_check": {
+    "printed_separation_m": 528.4,
+    "printed_bearing_deg": 68.0,
+    "site_plan": "Figure 4 site plan, 变电站所在项目地块位置关系示意图 (PDF page 17; embedded raster extracted with pdfimages, 2325 x 1346 px) shows one rectangular campus of 1,159.2 m (east-west, label partly legible) by about 391 m (north-south) between Yungu Zong 1 Road (west), Yungu Zong 7 Road (east), planned Yungu Heng 43 Road (north) and Yungu Heng 44 Road (south), with the Phase 1 core (machine-room buildings A1-A3 and B1-B3, power buildings, M1 office and a central green with a south gate) in the middle and Phase 2 reserve land at both ends. Scaled from the plan's overall dimension (about 0.65 m per 2000-px-display pixel), the Data 1# and Data 2# substation centres are about 309 m and 319 m inside the west and east boundaries and about 530 m apart.",
+    "reading": "The printed separation (528 m) matches the plan (about 530 m), so the two printed points are mutually consistent; this does not establish their frame."
+  },
+  "frame_check": {
+    "imagery": "Esri World Imagery EPSG:4326 export, bbox 111.785,40.531,111.813,40.545 at 2000 x 1000 px (local esri-abc-strip.jpg, sha256 6deb33c8...; companion f=json local esri-abc-strip.extent.json, sha256 fe6e09a8..., returned extent equal to the request). A second export (local esri-yungu-west.jpg) covers the area to the south and east. Acquisition dates not stated.",
+    "wgs84_reading_rejected": "Read directly as WGS84, Data 1# falls beside the south trunk road about 230 m west of the wide north-south road (Shengguo Road) and Data 2# falls about 270 m east of that road, at the southern edge of the separate BONC campus, whose own EIA substation lies 276 m north of it. The campus would straddle a pre-existing trunk road and overlap another operator's data-centre campus, contradicting the report's single-rectangle site plan.",
+    "gcj02_reading_accepted": "Read as GCJ-02 and converted to WGS84, both substations fall at the south edge of one road-bounded campus north of the same trunk road and west of Shengguo Road, about 530 m apart along the road. Extending the plan's distances along the 68-degree axis, the predicted west boundary falls within about 30 m of the north-south road that bounds the block on the west and the predicted east boundary falls at Shengguo Road; the midpoint of the two substations (the plan's south gate) falls at the south entrance plaza in front of the campus's central office building, and the imagery shows the plan's symmetric arrangement of machine-room building groups on either side of a central green. A diagonal of about 391 m between the two east-west roads matches the plan depth.",
+    "other_independent_cue": "The Huawei Cloud Horinger West Zone 220 kV substation report (WGS84-consistent, see the Huawei geometry facts) names the Agricultural Bank of China data centre (under construction) as lying north of the Huawei West Zone; under the GCJ-02 reading the ABC campus lies across the trunk road north of the Huawei and Bank of China compounds. The report's distance (386 m) is not reproduced exactly under either reading and is not relied on.",
+    "manual_pick_accuracy": "manual visual comparison on imagery of about 1.2-1.6 m per pixel and unstated accuracy; plan-to-imagery agreement within about 30 m"
+  },
+  "scope_and_uncertainty": "The point locates the ABC Horinger data-centre campus through its Data 1# 110 kV substation on the campus's south side, west of the south gate. It is not a machine-room building, entrance or parcel centroid; the Phase 1 machine-room buildings lie roughly 100-300 m north-east of the point. The source states no datum or accuracy; the frame is inferred and the transform is a compiled reference. Horizontal uncertainty is left unquantified (the plan-to-imagery fit suggests tens of metres).",
+  "privacy": "The report's named contact person and mobile telephone number are not reproduced."
+}

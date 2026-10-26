@@ -399,6 +399,8 @@ From 22 October 2026 sites are added continuously: researchers each work a narro
 
 `verified_construction_core/2026-10-27-research-eightyfifth`: **765 sites and 817 projects in 63 countries**. Adds Novva Utah flagship campus — existing data-centre operations; DataBank SLC1 — existing downtown data-centre and carrier-hotel operations.
 
+`verified_construction_core/2026-10-27-research-eightysixth`: **767 sites and 820 projects in 63 countries**. Adds Huawei Cloud Horinger Yungu West Zone Phase 1 — second-batch works (2# data-centre machine-room building and 2# generator platform); Agricultural Bank of China Horinger Data Center — newly commissioned data-centre operations; China Mobile Hohhot Data Center — B02 machine building operations.
+
 ## 25 October 2026
 
 `verified_construction_core/2026-10-25-research-sixtysecond` adds three commercial sites and

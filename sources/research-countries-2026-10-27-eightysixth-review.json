@@ -1,0 +1,50 @@
+{
+  "reviewer": "root",
+  "reviewed_at": "2026-10-27",
+  "decision": "accepted_for_integration",
+  "update": "verified_construction_core/2026-10-27-research-eightysixth",
+  "base_dataset": "verified_construction_core/2026-10-27-research-eightyfifth",
+  "process": "continuous: one researcher per beat, one adversarial verifier per fragment",
+  "fragments": [
+    {
+      "fragment": "cn-inner-mongolia-p4",
+      "verdict": "accept",
+      "checks": [
+        "current dataset verified_construction_core/2026-10-27-research-eightyfifth (unchanged at verdict time); window 2026-08-03..2026-10-27",
+        "all 10 relied-on captures rehashed: file SHA-256 equals sources.json content_hash and .metadata.json sha256",
+        "Huawei: 23 Sep 2026 planning-bureau item read (PubDate meta 2026-09-23 10:20): West Zone Phase 1 batch 2 (2# machine-room building, 2# generator platform, 45,717.7 m2) completed 竣工验收备案; operation only a next step; government_record, 34 days old",
+        "Huawei EIA PDF read with pdftotext/pdftoppm: centre E111°48'10.292\" N40°32'0.593\" -> 111.802858889, 40.533498056 reproduced; side points 152.3 m @67.5 deg / 48.9 m @339.1 deg, centre within 2.9/5.8 m of midpoints; substation 'one of the West Zone Phase 1 buildings, inside its land' read; filing notice page 68 (2306-150123-89-04-325368, Huawei Cloud Computing Technology Co., Ltd., four-road location, 174,096 m2) rendered and read",
+        "Huawei frame: own marked Esri crop puts the centre on a ~150 m ENE building at the south edge of a compound with empty fields south/east; BOC noise point lands in the compound west (W side point to BOC 143 m vs printed 144 m); report appendix figure 3 is Google Earth (WGS84 imagery) showing the same layout; GCJ-02 reading (594 m WSW) puts the BOC point in open fields - rejected",
+        "ABC: 31 Aug 2026 emergency-bureau item read (PubDate 2026-08-31 15:36): safety inspection of 农业银行数据中心 as 新投产运营单位 in 投产初期, machine rooms and power checked; government_record, 57 days old",
+        "ABC EIA read: Data 1#/2# printed values, project code 2106-150123-89-01-134187, ABC Inner Mongolia Branch as investor-builder, stations inside campus on south side either side of the south gate ~20 m north of Yungu Heng 44 Road; figure 3 rendered (Data 2# west of the east road)",
+        "ABC frame recomputed with an independent GCJ-02 inverse: 111.797867534, 40.536553090 (1e-9 deg from fragment); on Esri the two converted points fall on twin low station buildings at the south edge of one block north of the trunk road and their midpoint falls on the south-gate plaza; WGS84 reading puts Data 1# on the trunk road and Data 2# east of the major road - rejected; derivation coordinate_transform with compiled_reference authority",
+        "B02: 12 Oct 2026 investment-bureau item read: '中国移动呼和浩特数据中心B02机楼已投运，PUE由1.315下降至1.209'; government_record, 15 days old; satisfies the 15 Oct bounded-discovery next step (original government source, machine-room operation implied by measured PUE)",
+        "B02 locator reuses B25/B27 project d4f5ee02 campus point and evidence 7ca96b06 exactly; dry run validates inheritance",
+        "roles checked: Huawei owner (EIA/filing), ABC owner (EIA) and operator (Aug item), China Mobile operator (Oct item); all relationship_scope current",
+        "distinctness: keyword and 5 km coordinate screen of sites/projects/evidence/source-records/identity-mapping (eightyfifth), sources/*-holds.json, all other queue changes.json and claims.tsv - no Huawei Horinger, ABC or B02 record; only BONC 1.15 km, China Mobile 1.20 km and China Telecom 2.4 km nearby, all separate",
+        "existing China Mobile intelligent computing project (cn-north-p2) names no buildings; B02 distinguished by PUE 1.315->1.209 vs liquid-cooled centre PUE as low as 1.15",
+        "Huawei holds (thirty-fourth published, cn-north-p1) reopen condition met: EIA coordinate for a named Huawei Horinger zone",
+        "privacy: no personal names or phone numbers in changes, sources, holds, notes or geometry facts (EIA contact name and phone not reproduced)",
+        "robots: hlgena (404), sthjt.nmg (soft-404), server.arcgisonline.com (allow all) recorded before use",
+        "dryrun_fragment.py ok: 767 sites, 820 projects against eightyfifth"
+      ],
+      "residual_risks": [
+        "ABC GCJ-02 frame is inferred, not stated, and the inverse is the open-source approximation; the strong imagery fit bounds the error at tens of metres, uncertainty left unquantified",
+        "ABC is a bank-owned enterprise data centre (commercial scope is prioritised, not exclusive); operating scope (which buildings) and commissioning date not stated",
+        "ABC identity bridge: the August item names only 农业银行数据中心 in the New Area; tied to the EIA campus by name and jurisdiction",
+        "Huawei datum not stated; WGS84 reading rests on internal consistency, Esri imagery and the report's Google Earth figure; 'recently' filed completion dated by publication",
+        "Huawei 'Phase 1 South Zone 3#' (topped out 9/13 Oct) zone relationship to West Zone is not established; a future South Zone addition must recheck whether it shares this campus",
+        "B02 could host part of the intelligent computing centre already recorded on the site; the PUE difference is the only published distinction",
+        "Esri imagery acquisition dates unknown; west part of the ABC strip is older mosaic",
+        "three fgw.huhhot.gov.cn list GETs were attempted after a failed robots fetch (all failed to connect, nothing retrieved or relied on)"
+      ]
+    }
+  ],
+  "packet_pins": {
+    "definitions/atlas-research-eightysixth-2026-10-27.json": "67aadd8f265a16838e61923e69b8486aa5ecc488dd0f26869cb224c3587c9971",
+    "sources/research-countries-2026-10-27-eightysixth-primary-sources.json": "fcf5710090c18ce06de4e08cc3e6e8136058e3ad60099e2e37d70cb31ba1f143",
+    "sources/research-countries-2026-10-27-eightysixth-actions.json": "e9ca68812489ad800cd3dafe1eb0fce5d9d99ae3b7999c23fe5575978015d0c6",
+    "sources/research-countries-2026-10-27-eightysixth-holds.json": "d65e38f9c5fd9508c4f2f0d5b90847802a15db555d9abf5379232c7f4f370165"
+  },
+  "raw_captures_redistributed": false
+}

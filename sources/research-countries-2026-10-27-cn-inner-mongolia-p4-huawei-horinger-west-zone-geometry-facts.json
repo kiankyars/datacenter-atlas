@@ -1,0 +1,39 @@
+{
+  "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+  "researched_at": "2026-10-27T00:00:00+00:00",
+  "candidate": "Huawei Cloud Horinger Data Center, Yungu West Zone Phase 1 (华为云和林格尔数据中心项目-云谷西区（一期）), Yungu area, Horinger New Area, Hohhot, Inner Mongolia",
+  "method": "The selected point is the centre coordinate of the West Zone Phase 1 project's own 220 kV substation, printed in geographic degrees-minutes-seconds in the environmental impact report form that the Inner Mongolia Department of Ecology and Environment published with its radiation-EIA approval-result publicity of 10 February 2025. It was transcribed arithmetically to decimal degrees (deg + min/60 + sec/3600) with no datum transformation. The report also prints four monitoring points on the east, south, west and north sides of the station building; their geodesic separations and bearings were computed with pyproj 3.7.1 (WGS84 ellipsoid) and compared with the printed building dimensions. Two independent Esri World Imagery EPSG:4326 exports were used to check the coordinate frame against the visible station building and the neighbouring Bank of China data centre.",
+  "selected_points": {
+    "huawei_horinger_yungu_west_zone_campus": {
+      "source_url": "https://sthjt.nmg.gov.cn/xxgk/sthjzdlyxxgk/wrfzhssxg/hyfshjjg/202502/P020250210586911302396.pdf",
+      "local_capture": "local_data/country-research-cn-inner-mongolia-p4/nmg-huawei-horinger-west-220kv-eia-20250210-long.pdf",
+      "source_sha256": "9b06c22e80a414e9849561c4f5edb18bd9e8c3b09ad2939bb25185e608ee5940",
+      "printed": "Section 2, geographic location (PDF page 14 / printed page 10): 项目位于内蒙古自治区呼和浩特市和林格尔新区云谷片区：金谷路以东，云展大街以南，盛国路以西，云翅大街以北，中心坐标 E：111°48'10.292\"，N：40°32'0.593\"；项目西侧144m为中国银行数据中心，北侧386m为农业银行数据中心（在建），东、南均为空地. Repeated in the electromagnetic special assessment (中心坐标 E：111°48'10.292\"，N：40°32'0.593\").",
+      "lon_lat": [
+        111.802858889,
+        40.533498056
+      ],
+      "on_campus_statement": "Section 2 (PDF page 16): 本项目220kV变电站属于华为云和林格尔数据中心项目-云谷西区（一期）其中一栋建筑，永久占地面积6310.59m2，建设过程均在华为云和林格尔数据中心项目-云谷西区（一期）用地范围内 (the substation is one of the buildings of the West Zone Phase 1 project, with all construction inside that project's land). The ecological section repeats that the works area lies inside the West Zone Phase 1 plant area (项目厂区内). The appended filing notice (附件2, PDF page 68; Horinger New Area Management Committee, 13 June 2024, project code 2306-150123-89-04-325368, Huawei Cloud Computing Technology Co., Ltd.) lists one 220 kV substation among the West Zone Phase 1 buildings (three data-centre machine-room buildings, a power control workshop, a chemical store, a 220 kV substation and a gatehouse; about 174,096 m2 of land) at the same four-road location."
+    }
+  },
+  "internal_consistency_check": {
+    "printed_monitoring_points": "Table 3-8 note (PDF page 27) and table 3-10 note (PDF page 28): 变电站东 111°48'13.27\" 40°32'1.63\"; 变电站南 111°48'10.69\" 40°32'0.04\"; 变电站西 111°48'7.29\" 40°31'59.74\"; 变电站北 111°48'9.95\" 40°32'1.52\" (monitoring points about 5 m outside each side of the station building).",
+    "printed_building_dimensions": "station building 147.1 m long, 42.2 m wide (section 2, PDF page 14)",
+    "west_to_east_point_separation_m": 152.3,
+    "west_to_east_bearing_deg": 67.5,
+    "south_to_north_point_separation_m": 48.9,
+    "south_to_north_bearing_deg": 339.1,
+    "expected_separations_m": "about 157 (147.1 + 2 x 5) along the long axis and about 52 (42.2 + 2 x 5) across it",
+    "centre_to_east_west_midpoint_m": 2.9,
+    "centre_to_north_south_midpoint_m": 5.8,
+    "reading": "The four side points bracket the printed centre within 3-6 m, their axes are perpendicular (67.5 deg and 339.1 deg), and their separations are 3-5 m shorter than the building dimensions plus the nominal 5 m offsets, so the printed coordinates describe one consistent 147 m x 42 m building oriented east-north-east. This does not by itself establish the datum."
+  },
+  "frame_check": {
+    "imagery": "Esri World Imagery EPSG:4326 export, request bbox 111.794,40.528,111.814,40.548 at 1522 x 2000 px (local esri-yungu-west.jpg, sha256 0e31c5f0...; companion f=json local esri-yungu-west.extent.json, sha256 30fa2651..., returned extent 111.794-111.814 E, 40.524859-40.551141 N, the latitude range widened by the server to keep square degree pixels). Acquisition date not stated.",
+    "observation": "Read as WGS84/CGCS2000, the printed centre falls on the roof of a long east-north-east oriented building at the south edge of a road-bounded data-centre compound (a large blue-roofed building and a long white-roofed building lie immediately north of it, open fields to the south), about 10 m from the building's visual centre; the west and east side points fall just beyond the building's west and east ends. The report's Bank of China data-centre noise point (111°48'1.19\", 40°31'59.31\") falls inside the separate data-centre compound across the north-south road to the west, matching the report's statement that the Bank of China data centre lies 144 m west.",
+    "gcj02_alternative": "If the printed values were GCJ-02, the WGS84 position would be about 594 m west-south-west (111.796031, 40.532298), on or beside the north-south road west of the Bank of China compound, where there is no 147 m building; that reading is rejected.",
+    "manual_pick_accuracy": "manual visual comparison on imagery of about 1.1-1.5 m per pixel and unstated accuracy; agreement of about 10-15 m"
+  },
+  "scope_and_uncertainty": "The point locates the West Zone Phase 1 campus through its on-campus 220 kV substation building at the campus's south side. It is not the 2# data-centre machine-room building whose completion is recorded, nor an entrance or parcel centroid; the campus buildings extend north of the point. No datum or positional accuracy is stated in the report; horizontal uncertainty is left unquantified.",
+  "privacy": "No personal names or contact details from the report are reproduced."
+}
