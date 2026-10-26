@@ -1,0 +1,116 @@
+{
+ "candidate_id": "us-nc-sc-tn-p4-compass-clt-i-statesville",
+ "decision": "Selected the planar centroid of the union of the eight Iredell County tax parcels that the NC OneMap statewide parcel layer lists as owned by Compass Datacenters CLT I LLC (the applicant named in the NC DAQ greenfield air-permit application 4900350.26A for 255 Stamey Farm Road) as the campus locator for the proposed Compass Datacenters CLT I data center campus.",
+ "geometry": {
+  "type": "Point",
+  "coordinates": [
+   -80.9765028,
+   35.7727081
+  ]
+ },
+ "authority_class": "official_source",
+ "scope_class": "official_tax_parcel_union_centroid",
+ "use_scope": "campus_locator",
+ "source_file": "local_data/country-research-us-nc-sc-tn-p4/nconemap-compass-clt1-parcels-wgs84.json",
+ "source_sha256": "87d8d3def960d2994eafa270f946e376c2421b7e645e41a738f94cd9c8425dd1",
+ "source_url": "https://services.nconemap.gov/secure/rest/services/NC1Map_Parcels/FeatureServer/1/query?where=cntyname%3D%27Iredell%27%20AND%20parno%20IN%20(%274713295198.000%27,%274713390218.000%27,%274714233792.000%27,%274714317977.000%27,%274714348407.000%27,%274714445207.000%27,%274714445418.000%27,%274714532608.000%27)&outFields=parno,altparno,gisacres,siteadd,parusedesc,cntyname,legdecfull&returnGeometry=true&outSR=4326&f=json",
+ "retrieved_at": "2026-10-26T21:24:37.355Z",
+ "native_source_file": "local_data/country-research-us-nc-sc-tn-p4/nconemap-compass-clt1-parcels-native.json",
+ "native_source_sha256": "70009e8594f9268cd7c0e42b8ab5d2a2c9e515887d6b32c2b428854951e257bd",
+ "layer": "NC OneMap NC1Map_Parcels FeatureServer layer 1 (Parcels (polys)), the NC Integrated Cadastral Data Exchange aggregation of county parcel data; Iredell County source rows; native CRS NAD83 North Carolina State Plane ftUS (EPSG:2264)",
+ "selected_properties": {
+  "4714317977": {
+   "altparno": "1408M00000B040",
+   "site_address": "255 STAMEY FARM RD",
+   "gis_acres_attribute": 313.165,
+   "geodesic_acres": 312.908
+  },
+  "4714233792": {
+   "altparno": "1408M00000B039",
+   "site_address": "189 PUREBRED DR",
+   "gis_acres_attribute": 5.839,
+   "geodesic_acres": 5.836
+  },
+  "4713295198": {
+   "altparno": "1408M00000B041",
+   "site_address": "3008 HICKORY HWY",
+   "gis_acres_attribute": 4.775,
+   "geodesic_acres": 4.236
+  },
+  "4714445207": {
+   "altparno": "1408L00000B025",
+   "site_address": "STAMEY FARM RD (no number)",
+   "gis_acres_attribute": 2.348,
+   "geodesic_acres": 2.216
+  },
+  "4714445418": {
+   "altparno": "1408L00000B024",
+   "site_address": "STAMEY FARM RD (no number)",
+   "gis_acres_attribute": 1.12,
+   "geodesic_acres": 1.011
+  },
+  "4714532608": {
+   "altparno": "",
+   "site_address": "259 STAMEY FARM RD",
+   "gis_acres_attribute": 0.818,
+   "geodesic_acres": 0.699
+  },
+  "4713390218": {
+   "altparno": "1408M00000B092",
+   "site_address": "HICKORY HWY (no number)",
+   "gis_acres_attribute": 0.858,
+   "geodesic_acres": 0.645
+  },
+  "4714348407": {
+   "altparno": "1408M00000B068",
+   "site_address": "PUREBRED DR (no number)",
+   "gis_acres_attribute": 0.041,
+   "geodesic_acres": 0.041
+  }
+ },
+ "computed": {
+  "selected_point": [
+   -80.9765028,
+   35.7727081
+  ],
+  "union_parts": 1,
+  "union_valid": true,
+  "union_geodesic_acres": 327.594,
+  "centroid_inside_union": true,
+  "native_epsg2264_centroid_transformed_lon_lat": [
+   -80.9764995,
+   35.772701
+  ],
+  "native_crosscheck_distance_m": 0.84,
+  "union_bounds_lon_lat": [
+   -80.982518,
+   35.764075,
+   -80.970126,
+   35.779795
+  ],
+  "union_extent_m_ew_ns": [
+   1120,
+   1744
+  ],
+  "daq_facility_point_check": {
+   "point_lon_lat": [
+    -80.975101,
+    35.777207
+   ],
+   "inside_union": true,
+   "inside_parcel": "4714317977 (255 STAMEY FARM RD)",
+   "distance_to_selected_point_m": 515.0
+  },
+  "method": "Planar centroid of the shapely union of the eight WGS84 (outSR=4326) parcel polygons; cross-checked against the centroid of the native EPSG:2264 union transformed with pyproj; geodesic areas on the WGS84 ellipsoid.",
+  "tools": "pyproj 3.7.1, shapely 2.1.1"
+ },
+ "identity_bridge": [
+  "NC DAQ's Active Air Permit Applications report of 26 October 2026 (PDF and XLSX) lists COMPASS DATACENTERS CLT I, LLC, 255 STAMEY FARM ROAD, Statesville (spelled STATEVILLE), Iredell County, application 4900350.26A, application type Greenfield Facility, and the XLSX gives the facility coordinate 35.777207, -80.975101.",
+  "An NC OneMap owner query for 'COMPASS DATA%' returns exactly eight Iredell County parcels owned by COMPASS DATACENTERS CLT I LLC (legal descriptions STAMEY LAND CO PB87-34 P1, P2 and PARCEL3 to PARCEL8, ANNEX PB87-118; all coded INDUSTRIAL; five with a sale date of 9 January 2026), including 255 STAMEY FARM RD (313.165 acres), and two Durham County parcels owned by COMPASS DATACENTERS RDU I LLC, which belong to a different, existing facility.",
+  "The DAQ facility coordinate falls inside parcel 4714317977 (255 STAMEY FARM RD), 515 m from the selected union centroid; the eight parcels form one contiguous part of 327.6 geodesic acres."
+ ],
+ "unresolved": [
+  "No site plan or building layout is published, so the point locates the applicant's landholding as a whole, not a building, a development area or the extent of works.",
+  "Neighbouring parcels on Stamey Farm Road owned by private individuals were not used; their owner names are not reproduced."
+ ]
+}

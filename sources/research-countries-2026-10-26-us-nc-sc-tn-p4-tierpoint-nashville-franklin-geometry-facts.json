@@ -1,0 +1,85 @@
+{
+ "candidate_id": "us-nc-sc-tn-p4-tierpoint-nashville-franklin",
+ "decision": "Selected the centroid of City of Franklin parcel 078 07200 (owner Compass Datacenters BNA I LLC in the city's published parcel layer), which contains the city's site-address point for 311 EDDY LN, as the reviewed site locator for TierPoint's Nashville (NSH) data center at 311 Eddy Lane, Franklin.",
+ "geometry": {
+  "type": "Point",
+  "coordinates": [
+   -86.8553352,
+   35.9241061
+  ]
+ },
+ "authority_class": "official_source",
+ "scope_class": "official_tax_parcel_centroid",
+ "use_scope": "reviewed_site_locator",
+ "source_file": "local_data/country-research-us-nc-sc-tn-p4/franklin-tn-parcel-078-07200-wgs84.json",
+ "source_sha256": "9c21d59e436253cad8e459a83501caa58556968b9aca373b0bac61e7c77de445",
+ "source_url": "https://services1.arcgis.com/du2kAhlOU8gWyWb5/arcgis/rest/services/Parcels/FeatureServer/0/query?where=GISLINK%3D%27078%20%20%20%2007200%27&outFields=PARCEL_ID,GISLINK,PROP_STREE,OWNER1,CALC_ACRE,LEGAL_ACRE,PROPCLASS,DEED_BOO_1,DEED_PAG_1,last_edited_date&returnGeometry=true&outSR=4326&f=json",
+ "retrieved_at": "2026-10-26T21:25:09.181Z",
+ "native_source_file": "local_data/country-research-us-nc-sc-tn-p4/franklin-tn-parcel-078-07200-native.json",
+ "native_source_sha256": "af1852ee56e1366bd783beace73c6d4748adf2ab9f2d0cf378b36b10ce2ea683",
+ "layer": "City of Franklin, Tennessee hosted feature service 'Parcels' (ArcGIS Online organisation of the City of Franklin GIS); layer editing info gives a data edit date of 29 July 2019; native storage CRS EPSG:3857, so the native cross-check is not independent of the WGS84 output",
+ "selected_properties": {
+  "078 07200": {
+   "parcel_id": "078    07200C00209078",
+   "property_street": "309 EDDY LN 2",
+   "owner1": "COMPASS DATACENTERS BNA I LLC",
+   "calc_acres_attribute": 14.754,
+   "geodesic_acres": 14.755
+  }
+ },
+ "computed": {
+  "selected_point": [
+   -86.8553352,
+   35.9241061
+  ],
+  "valid": true,
+  "geodesic_acres": 14.755,
+  "centroid_inside_parcel": true,
+  "native_epsg3857_centroid_transformed_lon_lat": [
+   -86.8553352,
+   35.9241061
+  ],
+  "native_crosscheck_distance_m": 0.0,
+  "bounds_lon_lat": [
+   -86.857115,
+   35.922865,
+   -86.85367,
+   35.925258
+  ],
+  "extent_m_ew_ns": [
+   311,
+   265
+  ],
+  "address_point_check": {
+   "layer": "City of Franklin 'Site Address Points' (service Parcels_With_Addresses, data edit date 6 August 2019)",
+   "address": "311 EDDY LN (with suite points STE 100, 106 and 112 at the same position)",
+   "gislink": "078---07200",
+   "point_lon_lat": [
+    -86.8558574,
+    35.9245692
+   ],
+   "inside_parcel": true,
+   "distance_to_selected_point_m": 69.7
+  },
+  "operator_structured_data_point_check": {
+   "point_lon_lat": [
+    -86.855789,
+    35.924625
+   ],
+   "inside_parcel": true,
+   "distance_to_selected_point_m": 71,
+   "use": "cross-check only"
+  },
+  "method": "Planar centroid of the WGS84 (outSR=4326) parcel polygon; geodesic area on the WGS84 ellipsoid; point-in-polygon tests with shapely.",
+  "tools": "pyproj 3.7.1, shapely 2.1.1"
+ },
+ "identity_bridge": [
+  "TierPoint's Nashville page (version of 3 September 2026) gives 'Nashville (NSH) 311 Eddy Lane Franklin, TN 37064' and describes the data center as 'near Nashville in Franklin, TN'.",
+  "The City of Franklin's site-address layer places 311 EDDY LN (and suites 100, 106 and 112) on parcel GISLINK 078---07200, whose parcel record lists owner COMPASS DATACENTERS BNA I LLC and 14.75 calculated acres.",
+  "Compass Datacenters' markets page (version of 21 August 2026) refers to 'Compass' 14-acre data center campus in nearby Franklin'; TierPoint's release of 27 January 2017 describes its Franklin campus built with Compass and the original facility opened in 2013; Compass's news item of 8 April 2013 reports completing its first facility in Franklin, Tennessee."
+ ],
+ "unresolved": [
+  "The city layers were last edited in 2019; ownership after 2019 is not established by this source, so no owner role is asserted from it.",
+  "Williamson County is not covered by the Tennessee statewide property-boundary layer; the county's own GIS was not reached."
+ ]
+}

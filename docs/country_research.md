@@ -393,6 +393,8 @@ From 22 October 2026 sites are added continuously: researchers each work a narro
 
 `verified_construction_core/2026-10-26-research-eightysecond`: **752 sites and 804 projects in 63 countries**. Adds DC BLOX Huntsville — existing Tier III colocation data-centre operations. Refreshes Nebius Birmingham AI factory (Lakeshore Parkway) (announced). Attaches context to 1 existing project(s).
 
+`verified_construction_core/2026-10-26-research-eightythird`: **759 sites and 811 projects in 63 countries**. Adds Novva Colorado Springs — existing data-centre operations; Lunavi Cheyenne Data Center — existing data-centre operations; Compass Datacenters CLT I — proposed greenfield data-center facility (NC DAQ air-permit application 4900350.26A); TierPoint Raleigh - RTP — existing data-centre and colocation operations; TierPoint Nashville (NSH) — existing data-centre and colocation operations; Shenandoah Computing LLC — proposed five-building data-processing facility (MoDNR air construction permit application 2025-08-034); TierPoint St. Louis - Millpark (SLM) — existing data-centre and colocation operations.
+
 ## 25 October 2026
 
 `verified_construction_core/2026-10-25-research-sixtysecond` adds three commercial sites and

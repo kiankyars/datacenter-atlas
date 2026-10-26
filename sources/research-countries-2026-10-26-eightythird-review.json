@@ -1,0 +1,115 @@
+{
+  "reviewer": "root",
+  "reviewed_at": "2026-10-26",
+  "decision": "accepted_for_integration",
+  "update": "verified_construction_core/2026-10-26-research-eightythird",
+  "base_dataset": "verified_construction_core/2026-10-26-research-eightysecond",
+  "process": "continuous: one researcher per beat, one adversarial verifier per fragment",
+  "fragments": [
+    {
+      "fragment": "us-co-wy-mt-nm-p4",
+      "verdict": "accept",
+      "checks": [
+        "All 11 cited captures rehashed: file SHA-256 equals .metadata.json sha256 and sources.json content_hash; metadata URL/effective_url equal source_url, HTTP 200, captured_at equals retrieved_at",
+        "Novva page read in capture: dateModified and article:modified_time 2026-08-31T20:21:12Z, equal to page-sitemap lastmod; IA id_ copy 20260714065055 has dateModified 2026-07-02 and the visible 650 Sybilla Lane address block; CDX lists no later copy; live edit removed the address block and tour section, so the 31 Aug version is a real, bounded modification",
+        "Novva decisive text verified: 'Introducing Colorado Springs' first large-scale, multi-tenant colocation data center', '3 generators currently (6 total future)', 'On-site 24x7 staffing', 24x7 security, compliance attestations, Immediate Availability; JSON-LD PostalAddress 650 Sybilla Ln 80921, GeoCoordinates 39.014168,-104.8142723 and FAQPage address answer present; 40 MW / 68 ac recorded as design figures only",
+        "Novva 2021 acquisition release read: 37-acre campus, Tier 3+ data center with 6 MW designed capacity, anchor tenant, inventory immediately available; context only",
+        "Novva locator recomputed from raw state parcel JSON (EPSG:4326) with pyproj 3.7.1/shapely 2.1.1: valid single-ring polygon, planar centroid -104.8148032,39.0138515 inside, 22.32 geodesic ac, extent 408 x 372 m, furthest vertex 247 m; UTM 13N centroid agrees to 0.0004 m; state address point (85.1 m) and Novva's own point (57.9 m) inside the parcel",
+        "Lunavi page read in capture: 340 Progress Circle, '24/7/365 Onsite Staff and Monitoring', '800 available cabinets', 'This concurrently maintainable 5 MW facility'; locations page calls Cheyenne its 'headquarters and largest data center' ready to deliver colocation",
+        "Lunavi date: sitemap lastmod 2026-08-07T15:15:17.527Z for /data-centers/cheyenne (Bellingham same instant; Atlanta/Denver April 2025, so per-item); IA copy 20260607080621 (Last Published 2 Jun 2026) has 'SOX, PCI, and GLB' and three carriers vs live 'PCI SAQ D' and four carriers incl. Viaerofiber, so the edit is bounded below; CDX has no copy between",
+        "Lunavi locator: '!3d41.1296651!4d-104.7408848' place coordinates in the operator's GET DIRECTIONS link, identical in the June IA copy; Census geocoder interpolated point 26.2 m away (recomputed with pyproj Geod); method/scope class have Atlas precedent (operator_selected Google feature, operator_linked_named_facility_marker, compiled_reference)",
+        "Window: 2026-08-31 (56 d) and 2026-08-07 (80 d) are within 85 days of 2026-10-26; both status sources are company_disclosure; no opening dates or forecasts used",
+        "Roles: Novva Data Centers operator (current) and Lunavi operator (current), each from the operator's own page; no owner roles asserted",
+        "Distinctness re-screened against eightysecond (sites, projects, evidence, source-records.json, identity-mapping.json) by Novva/Sybilla/Lunavi/Green House Data/Progress Circle/1547/80921/82007 terms: no hits; Meta Cheyenne record's generic alias 'Cheyenne Data Center' is a different operator/development 6.74 km away; nearest sites Flexential Parker 60.8 km, Related Digital Cheyenne 3.6 km",
+        "Coordinate walk over all other queue fragments (JSON and geometry), claims.tsv and sources/*-holds.json: nothing within 3 km of either point except this fragment's own claims; Novva mentions elsewhere concern Utah, Las Vegas, Tahoe Reno and Mesa only",
+        "Queue capture from us-hyperscalers-p1 (City of Cheyenne DATA_CENTER_POINT layer, not cited here) lists 'Lunavi/1547 - CBP' ACTIVE 55 m from the Lunavi point, consistent with identity; Microsoft CBP (1.2 and 2.5 km), Project Mint (215 m, under construction) and Echostar/Dish (435 m) are other facilities, not in the Atlas",
+        "Geometry facts files hash to geometry_facts_sha256 values; robots.txt for www.novva.com and www.lunavi.com allow the requested paths; gis.colorado.gov, geocoding.geo.census.gov and web.archive.org robots 404",
+        "No private individuals' names, phones or e-mails in changes, holds, sources, geometry facts or notes (release byline not copied)",
+        "Dry run ok against eightysecond: 754 sites, 806 projects, 4198 evidence"
+      ],
+      "residual_risks": [
+        "Both admissions rest on operator marketing pages' present-tense statements with archive-bounded modification dates, not an independent operating record",
+        "Novva's 31 Aug 2026 edit was site-wide (all location pages modified the same afternoon); the operating facts are carried over from earlier versions",
+        "Novva parcel matched by address point and operator coordinate only (no El Paso owner/situs attributes); the 68-acre campus may extend beyond the 22-acre parcel",
+        "Lunavi date is a Webflow CMS sitemap lastmod (no on-page date); site Last Published is 26 Oct 2026, so the exact go-live of the 7 Aug edit is unknown within 7 Aug-26 Oct",
+        "Lunavi locator is a compiled Google place point selected by the operator's link; no Laramie County parcel was readable",
+        "Web search budget was exhausted in this session, so no independent search for a later sale or closure of either facility was possible beyond operator sitemaps"
+      ]
+    },
+    {
+      "fragment": "us-nc-sc-tn-p4",
+      "verdict": "accept",
+      "checks": [
+        "date +%F 2026-10-26; 85-day floor 2026-08-02; current_dataset re-read from site/config.json before and after: verified_construction_core/2026-10-26-research-eightysecond (752 sites, 804 projects, 4187 evidence)",
+        "all 24 sources rehashed: sha256 of each raw capture equals .metadata.json sha256 and sources.json content_hash; metadata URL equals source_url; the three geometry facts files match geometry_facts_sha256",
+        "DAQ Quick Look PDF read with pdftotext: header 10/26/2026, 'Statewide ( 10/26/2026 ) data reflected in report'; row 'COMPASS DATACENTERS CLT I, LLC 4900350.26A Greenfield Facility State', STATEVILLE NC 28677, IREDELL COUNTY",
+        "DAQ comprehensive XLSX parsed: Compass row 255 STAMEY FARM ROAD, 35.777207/-80.975101, SIC blank, classification Unknown, facility 10915, received serial 46132 = 2026-04-20, Waiting for information, 10 info requests, last serial 46253 = 2026-08-19; workbook undated (Crystal Reports metadata)",
+        "DEQ application tracker record matches (4900350.26A, Greenfield Facility, SIC null, point 35.777207,-80.975101)",
+        "Compass announced treated as identified data-centre project by applicant name (Compass Datacenters CLT I, LLC) plus applicant-owned 328-acre landholding, consistent with the Artemis ('named a data center') and Madison 10 MW Data Center hold reasoning; unlike DaSTOR/OKX1 whose names did not identify a data centre",
+        "edited Compass status summary and identity_review: the XLSX is undated (was described as 'of the same day'), and the summary now says use is identified only by the applicant name (no SIC, classification Unknown)",
+        "NC OneMap owner capture: eight Iredell parcels owned by COMPASS DATACENTERS CLT I LLC, legal STAMEY LAND CO PB87-34 P1-PARCEL8 ANNEX PB87-118; five sale dates 1767934800000 ms = 2026-01-09",
+        "Compass CLT I locator recomputed with pyproj 3.7.1/shapely 2.1.1: union of 8 WGS84 polygons valid, 1 part, 327.59 geodesic acres, centroid -80.9765028, 35.7727081 (0.004 m from claimed), inside; extent 1120 x 1744 m; native EPSG:2264 union centroid 0.84 m away; DAQ point inside the union",
+        "TierPoint RTP live page and IA 2026-10-12 copy: dateModified 2026-09-03T07:08:48Z, page-sitemap lastmod identical; 'state-of-the-art Tier III Research Triangle Park (RTP) data center and colocation facility', 'home to a TierPoint multitenant cloud pod', 99 TW Alexander Drive Durham NC 27709, six 2 MW generators; IA 2026-07-15 copy dateModified 2024-07-31 with four 2 MW generators; CDX has no copy between",
+        "TierPoint NSH live page and IA 2026-10-11 copy: dateModified 2026-09-03T07:25:31Z, sitemap identical; 'choose the state-of-the-art TierPoint Nashville data center and colocation facility', 'hosts a TierPoint multitenant cloud pod', 311 Eddy Lane Franklin TN 37064; IA 2025-09-01 copy dateModified 2025-03-28 with two 2,250 kW generators; CDX has no copy between",
+        "RTP locator recomputed: parcel 0738519437 (three stacked records, one geometry) 11.94 acres, centroid -78.8786753, 35.8971325 (0.002 m), inside; native EPSG:2264 0.82 m; owner COMPASS DATACENTERS RDU I LLC on land and two leasehold-improvement records (4.21M and 13.35M); excluded vacant parcel 0738613267; TierPoint JSON-LD point 620 m north not inside the parcel and correctly not used",
+        "NSH locator recomputed: Franklin parcel 078 07200 14.755 acres, centroid -86.8553352, 35.9241061 (0.004 m), inside; 311 EDDY LN address points and TierPoint JSON-LD point both inside; no owner role asserted from 2019 city layer",
+        "identity: Compass 2013 RDU completion (Durham, within RTP, leased by Windstream Hosted Solutions), TierPoint 2019 RTP expansion with Compass, Compass 2013 Franklin completion, TierPoint 2017 Franklin campus release with Compass, Compass markets page 2026-08-21 (14-acre Franklin campus; fully leased Research Triangle campus) all read in captures",
+        "roles: TierPoint operator current (operator pages); Compass Datacenters RDU I LLC owner current and Compass Datacenters CLT I LLC owner current (NC OneMap parcel owner records); all organisations; relationship_scope values valid",
+        "distinctness: screened names, aliases, addresses, parcel numbers and points against sites.csv, projects.csv, evidence.csv, source-records.json, identity-mapping.json, every queue fragment changes/holds, claims.tsv and sources/*-holds.json: only this fragment's claims match; nearest Atlas sites 21.2 km (Lyle Creek), 24.6 km (New Hill), 69.2 km (Meta Gallatin); existing TierPoint/Compass records are other states",
+        "personal data: no private individual names, phones or emails in changes, sources, holds or URLs; DAQ reviewer and executive names not copied; the two captures with private parcel owners are not cited",
+        "robots: tierpoint.com and compassdatacenters.com robots captured (crawl-delay 10, relied-on paths allowed)",
+        "dryrun_fragment.py ok against eightysecond: 755 sites, 807 projects, 4211 evidence"
+      ],
+      "residual_risks": [
+        "Compass CLT I data-centre use rests on the applicant's name and landholding: no DAQ field (SIC blank, classification Unknown), company statement or city record describes the facility; Compass has not announced a Statesville campus in its sitemaps",
+        "Compass CLT I application has been 'Waiting for information' since 19 Aug 2026 after ten requests; it could be withdrawn",
+        "TierPoint operational statements come from operator marketing pages; the 3 Sep 2026 edits appear to be a same-day bulk edit across TierPoint location pages (generator lines changed)",
+        "NSH lower archive bound is 1 Sep 2025, so the 3 Sep 2026 dateModified is bounded only by the sitemap and the 11 Oct 2026 archive copy above",
+        "Compass Datacenters RDU I LLC owner role rests on a Durham parcel whose land record has land value 1 and leasehold-improvement records; RTP land may be ground-leased, so owner means owner of record and improvements",
+        "parcel layers publish no positional accuracy; Franklin layer last edited 2019"
+      ]
+    },
+    {
+      "fragment": "us-ok-ks-mo-p4",
+      "verdict": "accept",
+      "checks": [
+        "The base is read from site/config.json: verified_construction_core/2026-10-26-research-eightysecond. It was unchanged when this verdict was written. The admission window starts on 2026-08-02, 85 days before 2026-10-26.",
+        "All 12 cited captures were rehashed. Each SHA-256 matches its .metadata.json sha256 and byte count, and the content_hash in sources.json. Each metadata url equals source_url, each response was HTTP 200 and no credentials were supplied. Both geometry-facts files match their geometry_facts_sha256.",
+        "Shenandoah status: I read the application PDF with pdftotext (pp. 1-13 and the MoDNR form on p. 45).",
+        "Shenandoah status, continued: the PDF states SIC 7374 / NAICS 518210, five buildings with 240 Type 1 and 10 Type 2 emergency RICE, 60 cooling towers, 260 belly tanks and a 249 tpy NOx limit. It places the facility at the SW corner of Hwy 92 and North 'Wian' Avenue.",
+        "Shenandoah status, continued: the form names Shenandoah Computing LLC as owner. The October 2026 and February 2028 dates are only projections. The status is announced only, because an air permit application is not consent.",
+        "Shenandoah dating: the document page reads 'Last revised 09/02/2026' and the PDF ModDate is 2026-09-02. The live register of 26 Oct and the Internet Archive register copy of 17 Oct (id_ 20261017022449) both list 2025-08-034 / 165-0050 under 'Application Administratively Complete' with 09/01/2026. The date is therefore bounded, the source is a regulatory_filing, and it is 54 days old.",
+        "Shenandoah successor check: no issued permit for 165-0050 or Shenandoah appears in the issued-by-date captures (issue dates 2026-06-24 to 2026-10-23), the issued page or the public notices.",
+        "Shenandoah locator recomputed independently. I parsed page 13's /VP /Measure (PROJCS NAD83 StatePlane Missouri West ftUS WKT, GPTS/LPTS/BBox) and the Fm0 form-XObject content stream with pypdf 5.1.0, and did the transforms with pyproj 3.7.1 and shapely 2.1.1.",
+        "Shenandoah locator, continued: the affine residuals are 0.093 m and the scale is 9.259 ft/pt. The yellow 24-vertex fence gives a centroid of -94.7028894, 39.3475766, 0.002 m from the stated point and inside the fence. The fence is 426.10 geodesic acres and 1203 x 1599 m. The 6 orange building outlines have a centroid 228.0 m away. The rendered p.13 shows the fence at the SW corner of 92 Hwy and N Winan Ave.",
+        "Shenandoah identity: the TIGER node where N Winan Ave meets 92 Hwy is 20.1 m from the fence's NE vertex. The BLM section is MO050520N0340W0 sec 03, holding 98.9% of the fence. KCMO KIVA 171635/171636/171637/231347 lie 99-99.9% inside the fence and 171639 lies 64.9% inside. The owners named are companies; private owners are not copied.",
+        "Shenandoah context: the Project Kestrel grading permit CPBC-2026-00410 was issued 2026-05-05 at 14000 N Winan Ave and is used as context and a location-only alias, not as a stage.",
+        "TierPoint Millpark status: the live page has dateModified 2026-09-03T06:46:07Z. It says 'This state-of-the-art TierPoint St. Louis Data Center (Millpark)' and gives 2315 Millpark Drive STE 104, 23,000+ sq ft, 14,400+ sq ft of raised floor, cabinets and cages available, and two 2 MW generators.",
+        "TierPoint Millpark dating: the Internet Archive id_ copy 20260212163732 (confirmed by effective_url and CDX) has dateModified 2024-08-01 and different reliability lines, and lacks the 2025 Sustainability Report banner. The modification is therefore real and bounded below. This matches the TierPoint precedent already published in eightysecond (Olive, Polk, Milwaukee, Sioux Falls E, Bellevue and others). The source is a company_disclosure, 53 days old.",
+        "TierPoint Millpark locator recomputed from the raw St. Louis County Pardata_Juris JSON. Locator 15M410135 is the only parcel with situs 2315 (three identical duplicate features). Its centroid in EPSG:26915 is -90.411022, 38.700045, 0.002 m from the stated point; the parcel is 8.86 geodesic acres and 175 x 234 m.",
+        "TierPoint Millpark identity: the county address point (Current, LOCATOR 15M410135) is inside the parcel, 88.2 m from the centroid. TierPoint's structured-data point is inside, 22.3 m away. The AGOL org w657bnjzrjguNyOy is run by St. Louis County GIS Service Center accounts.",
+        "Distinctness: I screened eightysecond's sites.csv, projects.csv, evidence.csv, source-records.json and identity-mapping.json, every queue fragment JSON, claims.tsv (other lanes) and sources/*-holds.json.",
+        "Distinctness terms: Shenandoah, Kestrel, Winan, Mc Winan, Platte City, 165-0050, 2025-08-034, Olsson, Millpark, 2315 Millpark, 15M410135 and Maryland Heights.",
+        "Distinctness results: the only hits are the published sixtyfifth and seventyfirst Millpark holds, which this addition resolves under their reopen condition (an archive lower bound plus an official parcel), and incidental mentions of Millpark in other TierPoint records. Hunt Midwest hits are Google KC, 27.8 km away. The coordinate scan found nothing within 3 km. The nearest records are Google KC at 27.8 km and TierPoint Olive at 20.2 km.",
+        "Roles: Shenandoah Computing LLC is owner/intended (from the MoDNR form) and TierPoint is operator/current. Both sites are new with one project each, and both are commercial scope.",
+        "No third-party personal data appear in changes, sources, holds, notes or geometry facts. The consultant, signatory and DNR staff names, phones and e-mails in the PDF are not copied.",
+        "Robots: dnr.mo.gov, data.kcmo.org (/resource/ allowed) and www.tierpoint.com robots files were read and allow the cited paths. gis.blm.gov and web.archive.org returned 404. The services2.arcgis.com 11-byte gateway 403 is treated as no robots file, as in published lanes. The two logged compliance incidents involve no cited source.",
+        "dryrun_fragment.py reports ok on eightysecond: 754 sites, 806 projects, 4199 evidence rows."
+      ],
+      "residual_risks": [
+        "The 3 September 2026 TierPoint dateModified is a CMS value with only a loose archive lower bound (12 Feb 2026). No Internet Archive copy between 2 Aug and 3 Sep exists in CDX, so the operating observation rests on the published portfolio-wide 3 September precedent.",
+        "Shenandoah was first filed in 2025 (the 2025-08-034 application was posted September 2025). The in-window observation is the department's 2 September 2026 posting of the complete application. The scoped first_application_posted detail is drawn from a local capture that is not cited as a source.",
+        "The Shenandoah centroid locates a preliminary 426-acre applicant fence. The GeoPDF georeference states no accuracy, and the narrative's legal description (S34 T53N R33W) conflicts with the maps. The KCMO parcel layer dates from December 2023.",
+        "The Millpark parcel holds a multi-tenant building recorded as built in 2021, and TierPoint occupies Suite 104. The point represents the lot, not the suite.",
+        "The services2.arcgis.com parcel and road services sit behind an ArcGIS gateway that answers robots.txt with HTTP 403. Published lanes treat this as no robots file."
+      ]
+    }
+  ],
+  "packet_pins": {
+    "definitions/atlas-research-eightythird-2026-10-26.json": "be8dbe2d10a6be334f7a09537059aa636ef81d11ad23527fc95df6d90604feb1",
+    "sources/research-countries-2026-10-26-eightythird-primary-sources.json": "a2dbf5cf2dea3ed53b835a4002f052e7889f6957834685a98b3d1b362429380b",
+    "sources/research-countries-2026-10-26-eightythird-actions.json": "f2b68d8d9672fa34c71d2973b38fb25b69e792ff75877393d4a0f3f1e0231399",
+    "sources/research-countries-2026-10-26-eightythird-holds.json": "060449e4be62122b960cc01e689d3909ac2ddb5e995930e93a02afcaf1dc4e7a"
+  },
+  "raw_captures_redistributed": false
+}

@@ -1,0 +1,84 @@
+{
+ "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+ "candidate": "TierPoint St. Louis - Millpark (SLM) data center, 2315 Millpark Drive, Ste 104, Maryland Heights, St. Louis County, Missouri",
+ "prepared_at": "2026-10-26",
+ "selected_point_crs84": [
+  -90.411022,
+  38.700045
+ ],
+ "selected_point_role": "planar centroid (CRS84) of St. Louis County parcel 15M410135, the only county parcel with situs 2315 Millpark Dr; it locates the lot of the multi-tenant building in which TierPoint operates Suite 104, not the suite or a building footprint",
+ "authority_class": "official_source",
+ "derivation": "direct_geometry",
+ "scope_class": "official_tax_parcel_centroid",
+ "use_scope": "project_locator",
+ "source": {
+  "file": "local_data/country-research-us-ok-ks-mo-p4/stlcogis-pardata-millpark-dr.json",
+  "sha256": "48815339e9b91a95dd929b5da85960224298017405def209a861855460b49d34",
+  "url": "https://services2.arcgis.com/w657bnjzrjguNyOy/arcgis/rest/services/Pardata_Juris/FeatureServer/1/query?where=UPPER(PROP_ADD)%20LIKE%20%27%25MILLPARK%25%27&outFields=LOCATOR,PARENT_LOC,TAXYR,OWNER_NAME,PROP_ADRNUM,PROP_ADD,PROP_ZIP,ACRES,LUC,LANDUSE2,YEARBLT,COMSTRUC,BLDGNAME,MUNICIPALITY,LEGAL,SUBDIVISION&returnGeometry=true&outSR=4326&f=json",
+  "retrieved_at": "2026-10-26T21:24:22.537Z",
+  "service": "St. Louis County GIS Service Center / Assessor: Pardata_Juris feature layer 1 (ArcGIS Online, data last edited 2026-09-25), attribute query on PROP_ADD containing MILLPARK, outSR 4326",
+  "layer_metadata_file": "local_data/country-research-us-ok-ks-mo-p4/stlcogis-pardata-juris-layer.json"
+ },
+ "parcel": {
+  "LOCATOR": "15M410135",
+  "PARENT_LOC": "15M410135",
+  "TAXYR": 2026,
+  "situs": "2315 2315 MILLPARK DR",
+  "zip": "63043",
+  "acres_stated": 8.861,
+  "geodesic_acres": 8.862,
+  "extent_m": {
+   "east_west": 175.0,
+   "north_south": 234.0
+  },
+  "perimeter_m": 744.0,
+  "year_built": 2021,
+  "building_name_field": "MULTITEN WAREHOUSE",
+  "land_use_code": "605",
+  "municipality": "MARYLAND HEIGHTS",
+  "subdivision": "POINTE AT WESTPORT (THE)",
+  "legal": "CHAPTER 100 ABATEMENT",
+  "owner_name": "CHAPTER 100 CITY OF MARYLAND HEIGHTS",
+  "owner_note": "a public Chapter 100 (tax-abatement) title holder, the City of Maryland Heights; not a private individual",
+  "parcels_with_situs_number_2315_in_query": [
+   "15M410135"
+  ]
+ },
+ "centroid_inside_parcel": true,
+ "geometry_checks": {
+  "county_address_point": {
+   "file": "local_data/country-research-us-ok-ks-mo-p4/stlcogis-address-points-2315-millpark.json",
+   "sha256": "afb78b56da37ff73d02689ec98834d5356ef24db4f60a11daaa1826470d4e2ef",
+   "url": "https://services2.arcgis.com/w657bnjzrjguNyOy/arcgis/rest/services/Address_Points/FeatureServer/2/query?where=ADRNO%3D2315%20AND%20UPPER(ADRSTR)%20LIKE%20%27%25MILLPARK%25%27&outFields=LOCATOR,PARENT_LOC,ADRNO,ADRSTR,ADRSUF,UNITDESC,UNITNO,MUNI,STATUS,ADDRTYPE,BUSINESSNAME,BUILDINGNAME,COMPLEXNAME,FULL_ADDRESS,last_edited_date,DATE_PUBLIC&returnGeometry=true&outSR=4326&f=json",
+   "retrieved_at": "2026-10-26T21:24:42.590Z",
+   "full_address": "2315 MILLPARK DR",
+   "locator": "15M410135",
+   "status": "Current",
+   "addrtype": "Parcel",
+   "point_crs84": [
+    -90.4105118,
+    38.6993584
+   ],
+   "inside_parcel": true,
+   "distance_to_selected_point_m": 88.2
+  },
+  "operator_structured_data_point": {
+   "file": "local_data/country-research-us-ok-ks-mo-p4/tierpoint-st-louis-millpark-20261026.html",
+   "sha256": "e090f5474a1904ff298c95e79724c35f1d79e72cf6948a81e1c640c180576955",
+   "point_crs84": [
+    -90.411011,
+    38.700246
+   ],
+   "inside_parcel": true,
+   "distance_to_selected_point_m": 22.3,
+   "note": "TierPoint GeoCoordinates in the page structured data; cross-check only"
+  },
+  "verification": "pyproj 3.7.1 Geod(GRS80); shapely 2.1.1 Polygon.contains"
+ },
+ "interpretation": "TierPoint gives 2315 Millpark Drive, Ste 104; the county holds one parcel and one current address point for 2315 Millpark Dr, with the address point and TierPoint's own coordinate inside the parcel. The parcel is the lot of a multi-tenant building, so the centroid is a lot-level marker.",
+ "geocoder_used": false,
+ "alternatives_rejected": [
+  "maps.stlouisco.com (HTTP 403 to robots.txt for an earlier pass) was not used; the St. Louis County GIS Service Center ArcGIS Online services were used instead.",
+  "No geocoder or city centre was used."
+ ]
+}

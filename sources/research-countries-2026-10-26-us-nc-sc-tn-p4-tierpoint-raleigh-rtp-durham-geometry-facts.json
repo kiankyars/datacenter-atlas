@@ -1,0 +1,76 @@
+{
+ "candidate_id": "us-nc-sc-tn-p4-tierpoint-raleigh-rtp-durham",
+ "decision": "Selected the centroid of Durham County tax parcel 0738519437 (99 T W ALEXANDER DR, owned by Compass Datacenters RDU I LLC), as published in the NC OneMap statewide parcel layer, as the reviewed site locator for TierPoint's Raleigh - RTP data center at 99 TW Alexander Drive, Durham.",
+ "geometry": {
+  "type": "Point",
+  "coordinates": [
+   -78.8786753,
+   35.8971325
+  ]
+ },
+ "authority_class": "official_source",
+ "scope_class": "official_tax_parcel_centroid",
+ "use_scope": "reviewed_site_locator",
+ "source_file": "local_data/country-research-us-nc-sc-tn-p4/nconemap-durham-rtp-parcels-wgs84.json",
+ "source_sha256": "1a3dc5956090e7f3f757006dcc559e7b0de06d214fe4a1e46fcc3bd880e13b97",
+ "source_url": "https://services.nconemap.gov/secure/rest/services/NC1Map_Parcels/FeatureServer/1/query?where=cntyname%3D%27Durham%27%20AND%20(parno%3D%270738519437%27%20OR%20parno%3D%270738613267%27)&outFields=parno,altparno,ownname,gisacres,siteadd,scity,parusedesc,cntyname,structyear,improvval,landval&returnGeometry=true&outSR=4326&f=json",
+ "retrieved_at": "2026-10-26T21:24:53.559Z",
+ "native_source_file": "local_data/country-research-us-nc-sc-tn-p4/nconemap-durham-rtp-parcels-native.json",
+ "native_source_sha256": "fd0401a7ceb0821729b9acfe20bc6fbdc9a0e8bc806d2c39122d81193dd0ea6e",
+ "layer": "NC OneMap NC1Map_Parcels FeatureServer layer 1; Durham County source rows; native CRS EPSG:2264",
+ "selected_properties": {
+  "0738519437": {
+   "records": "three stacked records with identical geometry: altparno 154120 (land, 11.94 acres, COM/ PARKING LOTS-SU, 99 T W ALEXANDER DR), 215427 (IND/ LSHLD IMPROV, improvements 4,210,509, 99 01 T W ALEXANDER DR) and 227753 (improvements 13,354,980, 99 2 T W ALEXANDER DR)",
+   "owner": "COMPASS DATACENTERS RDU I LLC",
+   "gis_acres_attribute": 11.94,
+   "geodesic_acres": 11.941
+  }
+ },
+ "excluded": {
+  "0738613267": "2864 E NC 54 HWY, 4.08 acres, VACANT INDUSTRIAL, same owner; not at the operator's address and carries no improvements, so it is not part of the locator."
+ },
+ "computed": {
+  "selected_point": [
+   -78.8786753,
+   35.8971325
+  ],
+  "union_parts": 1,
+  "union_valid": true,
+  "geodesic_acres": 11.941,
+  "centroid_inside_parcel": true,
+  "native_epsg2264_centroid_transformed_lon_lat": [
+   -78.8786726,
+   35.8971254
+  ],
+  "native_crosscheck_distance_m": 0.82,
+  "bounds_lon_lat": [
+   -78.879829,
+   35.895821,
+   -78.877369,
+   35.898497
+  ],
+  "extent_m_ew_ns": [
+   222,
+   297
+  ],
+  "operator_structured_data_point_check": {
+   "point_lon_lat": [
+    -78.877317,
+    35.9026
+   ],
+   "distance_to_selected_point_m": 620,
+   "falls_in": "parcel 0738647347 (79 T W ALEXANDER DR, IND/ BIOTECH - BIOPH, 58.71 acres)",
+   "use": "not used; latitude given to four decimals, consistent with an approximate street geocode"
+  },
+  "method": "Planar centroid of the WGS84 (outSR=4326) parcel polygon (the three stacked records share one geometry); cross-checked against the native EPSG:2264 centroid transformed with pyproj; geodesic area on the WGS84 ellipsoid.",
+  "tools": "pyproj 3.7.1, shapely 2.1.1"
+ },
+ "identity_bridge": [
+  "TierPoint's Raleigh - RTP page (version of 3 September 2026) gives 'Raleigh (RTP) 99 TW Alexander Drive Durham, NC 27709'.",
+  "NC OneMap returns parcel 0738519437 with site address 99 T W ALEXANDER DR, owner COMPASS DATACENTERS RDU I LLC, and two leasehold-improvement records on the same parcel.",
+  "Compass Datacenters' news item of 1 May 2013 reports completing its first data center facility in Durham, within Research Triangle Park, leased by Windstream Hosted Solutions; TierPoint's release of 16 July 2019 announces the expansion of its RTP data center in partnership with Compass Datacenters."
+ ],
+ "unresolved": [
+  "The parcel boundary locates the property, not the building footprint; the statewide layer gives no positional accuracy."
+ ]
+}

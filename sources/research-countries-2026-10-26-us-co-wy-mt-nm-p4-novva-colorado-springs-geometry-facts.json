@@ -1,0 +1,74 @@
+{
+ "candidate_id": "novva-colorado-springs-sybilla-lane-campus",
+ "decision": "Selected the centroid of El Paso County parcel 6207401002 in the State of Colorado public parcel composite. The statewide address point for 650 SYBILLA LN, Colorado Springs 80921 (the address Novva publishes for its Colorado Springs data center) lies inside this parcel, as does the GeoCoordinates point in Novva's own structured data. The El Paso County records in the composite carry no owner, situs or land-use attributes, so the parcel is identified by the address point only. The building footprint is not published.",
+ "geometry": {
+  "type": "Point",
+  "coordinates": [
+   -104.8148032,
+   39.0138515
+  ]
+ },
+ "authority_class": "official_source",
+ "scope_class": "official_tax_parcel_centroid",
+ "use_scope": "project_locator",
+ "source_file": "local_data/country-research-us-co-wy-mt-nm-p4/cogis-parcels-elpaso-6207401002.json",
+ "source_sha256": "102ac05e8e1bb8f64c39598b78375a9fb2af8af908aff1cc7fcd04c7576101c6",
+ "source_url": "https://gis.colorado.gov/public/rest/services/Address_and_Parcel/Colorado_Public_Parcels/MapServer/0/query?where=countyName%3D%27El+Paso%27+AND+parcel_id%3D%276207401002%27&outFields=countyName%2Cparcel_id%2Caccount%2CsitusAdd%2CsitAddCty%2CsitAddZip%2Cowner%2ClegalDesc%2ClandAcres%2CsubName%2ClandUseDsc%2CdateReceived&returnGeometry=true&outSR=4326&f=json",
+ "retrieved_at": "2026-10-26T21:34:29.696Z",
+ "identity_source_file": "local_data/country-research-us-co-wy-mt-nm-p4/cogis-addr-650-sybilla.json",
+ "identity_source_sha256": "1285013d807eaea7ff7627ffdc6724c677a1678ad759d01b93a10e4cb64fac31",
+ "identity_source_url": "https://gis.colorado.gov/public/rest/services/Address_and_Parcel/Colorado_Public_Addresses/MapServer/0/query?where=AddrNum%3D%27650%27+AND+StreetName%3D%27SYBILLA%27&outFields=County%2CAddrNum%2CStreetName%2CPostType%2CPreDir%2CUnit%2CAddrFull%2CPlaceName%2CZipcode%2CLatitude%2CLongitude%2CParcelID%2CMOD_DATE%2CACT_STAT%2CPlace_Type&returnGeometry=true&outSR=4326&f=json",
+ "selected_properties": {
+  "6207401002": {
+   "county": "El Paso",
+   "owner": null,
+   "situs": null,
+   "land_use": null,
+   "date_received": "4/24/2026",
+   "note": "The composite publishes no owner, situs, legal description or acreage for El Paso County parcels."
+  },
+  "address_points": {
+   "650 SYBILLA LN, COLORADO SPRINGS 80921 (El Paso)": {
+    "lon_lat": [
+     -104.81558110699996,
+     39.013382584000055
+    ],
+    "ParcelID": null,
+    "MOD_DATE_epoch_ms": 1777273200000,
+    "inside_parcel": true
+   }
+  },
+  "operator_structured_data_point": {
+   "lon_lat": [
+    -104.8142723,
+    39.014168
+   ],
+   "inside_parcel": true,
+   "use": "identity check only; not the locator"
+  }
+ },
+ "computed": {
+  "union_parts": 1,
+  "parcel_geodesic_acres": 22.32,
+  "centroid_lon_lat": [
+   -104.8148032,
+   39.0138515
+  ],
+  "centroid_inside_parcel": true,
+  "extent_m": [
+   408,
+   372
+  ],
+  "max_centroid_to_vertex_m": 247,
+  "bounds_lon_lat": [
+   -104.8171276,
+   39.0125066,
+   -104.8124141,
+   39.0158557
+  ],
+  "address_point_distance_to_centroid_m": 85.1,
+  "operator_point_distance_to_centroid_m": 57.9,
+  "method": "Esri rings converted to a shapely 2.1.1 polygon; planar centroid in WGS84 longitude/latitude; area geodesic on WGS84 (pyproj 3.7.1 Geod); extent in UTM zone 13N (EPSG:32613).",
+  "coordinate_reference_system": "WGS84 longitude/latitude: the statewide composite layers are stored in EPSG:4326 and were queried with outSR=4326; no transformation."
+ }
+}
