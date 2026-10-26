@@ -1,0 +1,98 @@
+{
+ "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+ "candidate_id": "us-columbus-oh-p4-google-columbus-rathmell-road",
+ "prepared_at": "2026-10-26",
+ "decision": "Selected the centroid (computed in UTM 17N) of Franklin County tax parcel 510-180711 (225 Rathmell Rd / S High St, owner Magellan Enterprises LLC, tax mailing name Google LLC, class 375 data center) as the campus locator of the Google Columbus data-centre campus; the CLB4 building is not separately located.",
+ "geometry": {
+  "type": "Point",
+  "coordinates": [
+   -82.9968088,
+   39.8525275
+  ]
+ },
+ "authority_class": "official_source",
+ "scope_class": "official_tax_parcel_centroid",
+ "use_scope": "campus_locator",
+ "source_file": "local_data/country-research-us-columbus-oh-p4/franklin-parcel-510-180711-wgs84.json",
+ "source_sha256": "c510f79077b4519058452030e0eefbf68b4590f04129bf2ee6530ac3958f0230",
+ "source_url": "https://gis.franklincountyohio.gov/hosting/rest/services/ParcelFeatures/Parcel_Features/FeatureServer/0/query?where=PARCELID%3D%27510-180711%27&outFields=PARCELID&returnGeometry=true&outSR=4326&f=json",
+ "retrieved_at": "2026-10-26T20:16:14.330Z",
+ "native_file": "local_data/country-research-us-columbus-oh-p4/franklin-parcel-510-180711-native.json",
+ "native_sha256": "67b71510af6d10524d052ca9feb0d732ce1ffb3baf73d82a6ba9fc840a8a0a1b",
+ "native_url": "https://gis.franklincountyohio.gov/hosting/rest/services/ParcelFeatures/Parcel_Features/FeatureServer/0/query?where=PARCELID%3D%27510-180711%27&outFields=PARCELID&returnGeometry=true&f=json",
+ "selected_properties": {
+  "PARCELID": "510-180711",
+  "OWNERNME1": "MAGELLAN ENTERPRISES LLC",
+  "PSTLNME1": "GOOGLE LLC",
+  "SITEADDRESS": "225 RATHMELL RD",
+  "ZIPCD": "43137",
+  "PRPRTYDSCRP": "S HIGH ST",
+  "PRPRTYDSCRP3": "480.431 ACRES",
+  "STATEDAREA": 480.431,
+  "ACRES": 480.38862839,
+  "CLASSCD": "375",
+  "CLASSDSCRP": "data center",
+  "CVTTXDSCRP": "COLUMBUS-HAMILTON LSD",
+  "BLDGAREA": 1172656,
+  "BLDVALUEBASE": 208436400.0
+ },
+ "layer": "Franklin County, Ohio Auditor tax parcel service (gis.franklincountyohio.gov hosting ParcelFeatures/Parcel_Features FeatureServer layer 0, \"Tax Parcel\"; native CRS EPSG:3735)",
+ "method": "Polygon(s) returned with outSR=4326; centroid of the (union) polygon computed in UTM zone 17N (EPSG:32617) with pyproj 3.7.1 and shapely 2.1.1 and transformed back to WGS84; geodesic areas on the WGS84 ellipsoid.",
+ "facts": {
+  "parcels": {
+   "franklin 510-180711": {
+    "geodesic_acres": 480.418,
+    "rings": 1,
+    "valid": true
+   }
+  },
+  "union_geometry_type": "Polygon",
+  "union_valid": true,
+  "union_geodesic_acres": 480.418,
+  "centroid_lon_lat": [
+   -82.9968088,
+   39.8525275
+  ],
+  "centroid_inside": true,
+  "approx_extent_m": [
+   1192,
+   2191
+  ],
+  "bounds_lon_lat": [
+   -83.003877,
+   39.842967,
+   -82.989834,
+   39.862504
+  ],
+  "max_vertex_distance_from_centroid_m": 1256.9,
+  "centroid_to_union_boundary_m": 472.7,
+  "native_crs_cross_check": {
+   "native_epsg": 3735,
+   "native_centroid_lon_lat": [
+    -82.9968046,
+    39.8525198
+   ],
+   "distance_m": 0.93,
+   "note": "Native EPSG:3735 (US survey feet) ring centroid transformed locally with pyproj 3.7.1; the 0.93 m offset is the same NAD83-to-WGS84 offset seen for other Franklin County parcels."
+  },
+  "permit_layer_points_inside_parcel": {
+   "ALTC2502418 (225 RATHMELL RD UNIT CLB4)": [
+    -82.99988117190385,
+    39.84999555261966
+   ],
+   "ALTC2423633 / NEWC2430776 (UNIT CLB3 / CLB4 A)": [
+    -82.99937703605391,
+    39.84658484499549
+   ],
+   "NEWC2230899 (UNIT CLB1)": [
+    -82.99481,
+    39.85306
+   ],
+   "225 RATHMELL RD (no unit)": [
+    -82.99798516455316,
+    39.86223092847997
+   ]
+  },
+  "permit_layer_points_note": "All four distinct City of Columbus permit-layer points for the parcel fall inside it; the CLB4 alteration and the CLB4 A new-structure permits carry different points (the latter shared with CLB3), so the permit points are not treated as building locations."
+ }
+}

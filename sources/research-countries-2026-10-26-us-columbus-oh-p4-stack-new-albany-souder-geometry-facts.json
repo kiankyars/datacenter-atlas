@@ -1,0 +1,91 @@
+{
+ "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+ "candidate_id": "us-columbus-oh-p4-stack-new-albany-souder-road",
+ "prepared_at": "2026-10-26",
+ "decision": "Selected the centroid (computed in UTM 17N) of the union of the two contiguous Franklin County parcels of the STACK New Albany campus, 222-004355 (7300 Souder Rd, SI NAL01A ABS LLC, class 375 data center) and 222-005106 (7340 Souder Rd, SI NAL01B LLC, industrial vacant land), both with tax mailing name STACK INFRASTRUCTURE, as the campus locator; the centroid falls inside parcel 222-005106, the site of the listed new data building.",
+ "geometry": {
+  "type": "Point",
+  "coordinates": [
+   -82.8021275,
+   40.1064483
+  ]
+ },
+ "authority_class": "official_source",
+ "scope_class": "official_tax_parcel_union_centroid",
+ "use_scope": "campus_locator",
+ "source_file": "local_data/country-research-us-columbus-oh-p4/franklin-parcels-stack-souder-wgs84.json",
+ "source_sha256": "c8cbf40a41fe65ac6df76bcfbb0f5934f126691147305104c9b2040fe5a7e027",
+ "source_url": "https://gis.franklincountyohio.gov/hosting/rest/services/ParcelFeatures/Parcel_Features/FeatureServer/0/query?where=PARCELID%20IN%20(%27222-005106%27,%27222-004355%27)&outFields=PARCELID&returnGeometry=true&outSR=4326&f=json",
+ "retrieved_at": "2026-10-26T20:21:16.782Z",
+ "native_file": "local_data/country-research-us-columbus-oh-p4/franklin-parcels-stack-souder-native.json",
+ "native_sha256": "e8b3a59297f766633d318b3b2b23f04505ade6f368bd7701a7a98a5b9081ca31",
+ "native_url": "https://gis.franklincountyohio.gov/hosting/rest/services/ParcelFeatures/Parcel_Features/FeatureServer/0/query?where=PARCELID%20IN%20(%27222-005106%27,%27222-004355%27)&outFields=PARCELID&returnGeometry=true&f=json",
+ "selected_properties": {
+  "222-004355": {
+   "OWNERNME1": "SI NAL01A ABS LLC",
+   "PSTLNME1": "STACK INFRASTRUCTURE",
+   "SITEADDRESS": "7300 SOUDER RD",
+   "ACRES": 28.49315641,
+   "CLASSCD": "375",
+   "CLASSDSCRP": "data center",
+   "CVTTXDSCRP": "PLAIN TWP-NEW ALBANY CORP",
+   "BLDGAREA": 115500
+  },
+  "222-005106": {
+   "OWNERNME1": "SI NAL01B LLC",
+   "PSTLNME1": "STACK INFRASTRUCTURE",
+   "SITEADDRESS": "7340 SOUDER RD",
+   "ACRES": 16.81170618,
+   "STATEDAREA": 16.79,
+   "CLASSCD": "300",
+   "CLASSDSCRP": "INDUSTRIAL, VACANT LAND",
+   "CVTTXDSCRP": "PLAIN TWP-NEW ALBANY CORP",
+   "BLDGAREA": null
+  }
+ },
+ "layer": "Franklin County, Ohio Auditor tax parcel service (gis.franklincountyohio.gov hosting ParcelFeatures/Parcel_Features FeatureServer layer 0, \"Tax Parcel\"; native CRS EPSG:3735)",
+ "method": "Polygon(s) returned with outSR=4326; centroid of the (union) polygon computed in UTM zone 17N (EPSG:32617) with pyproj 3.7.1 and shapely 2.1.1 and transformed back to WGS84; geodesic areas on the WGS84 ellipsoid.",
+ "facts": {
+  "parcels": {
+   "franklin 222-004355": {
+    "geodesic_acres": 28.493,
+    "rings": 1,
+    "valid": true
+   },
+   "franklin 222-005106": {
+    "geodesic_acres": 16.811,
+    "rings": 1,
+    "valid": true
+   }
+  },
+  "union_geometry_type": "Polygon",
+  "union_valid": true,
+  "union_geodesic_acres": 45.305,
+  "centroid_lon_lat": [
+   -82.8021275,
+   40.1064483
+  ],
+  "centroid_inside": true,
+  "centroid_parcel": "222-005106 (about 10 m from the shared boundary with 222-004355)",
+  "approx_extent_m": [
+   590,
+   377
+  ],
+  "bounds_lon_lat": [
+   -82.805625,
+   40.104791,
+   -82.798777,
+   40.108086
+  ],
+  "max_vertex_distance_from_centroid_m": 339.6,
+  "centroid_to_union_boundary_m": 164.6,
+  "native_crs_cross_check": {
+   "native_epsg": 3735,
+   "native_centroid_lon_lat": [
+    -82.8021233,
+    40.1064405
+   ],
+   "distance_m": 0.94
+  }
+ }
+}

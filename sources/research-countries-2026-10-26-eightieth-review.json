@@ -1,0 +1,67 @@
+{
+  "reviewer": "root",
+  "reviewed_at": "2026-10-26",
+  "decision": "accepted_for_integration",
+  "update": "verified_construction_core/2026-10-26-research-eightieth",
+  "base_dataset": "verified_construction_core/2026-10-26-research-seventyninth",
+  "process": "continuous: one researcher per beat, one adversarial verifier per fragment",
+  "fragments": [
+    {
+      "fragment": "us-columbus-oh-p4",
+      "verdict": "accept",
+      "checks": [
+        "all 18 relied-on captures rehashed: sha256 matches .metadata.json and source content_hash; metadata URLs equal source_url; HTTP 200",
+        "geometry facts files match their recorded sha256",
+        "Google CLB4: Columbus permit layer capture (140 permits, parcel 510180711, fields exclude applicant names) shows ALTC2502418 '225 RATHMELL RD UNIT CLB4' Commercial Structural Alteration 288,000 sq ft, 110M USD, issued 2025-05-01, Final Inspection Approved / Closed, LAST_STATUS_DT 2026-10-06 (date-only, 00:00Z); 20 days old; government_record; layer dataLastEditDate 2026-10-26T09:03:45Z",
+        "Google CLB4 scope: NEWC2430776 'UNIT CLB4 A' still Permit Issued/Issued; completion stays scoped to the alteration permit; CLB4 MEP and fire-suppression permits finaled May-Jul 2026; after 6 Oct only FSUPC2612083 (7 Oct, no unit) and FALRC2636572 (issued 14 Oct)",
+        "Google identity: Franklin parcel 510-180711 owner Magellan Enterprises LLC, tax mailing name Google LLC, class 375 data center, 225 Rathmell Rd; only Google LLC parcel among 18 class-375 parcels; Ordinance 0520-2021 ties Magellan data centers to the parcel; Google Ohio page names Columbus as a data-center community",
+        "Stack: New Albany Project Updates live capture lists 'Stack', 7340 Souder Road, 332,089 sq ft, Brasfield & Gorrie, 'New data building'; dateModified 2026-10-02T13:04:47Z; Internet Archive id_ copy of 2026-09-29 (version 2026-04-16) has no Stack/7340/Souder, bounding the version; 24 days old; announced only",
+        "Stack resolves the us-midwest-east-p2 / sixtieth-holds locator hold: parcel 222-005106 at 7340 SOUDER RD (SI NAL01B LLC, tax mailing STACK INFRASTRUCTURE) adjoins 222-004355 at 7300 SOUDER RD (SI NAL01A ABS LLC, class 375)",
+        "locators recomputed independently with pyproj 3.7.1/shapely 2.1.1 from the WGS84 captures (UTM 17N centroid): Google (-82.9968088, 39.8525275) 480.42 geodesic ac, inside, 472.7 m to boundary, native EPSG:3735 0.93 m; Stack union (-82.8021275, 40.1064483) 45.30 ac, inside 222-005106, 164.6 m to union boundary, native 0.94 m",
+        "roles checked: Magellan owner current and SI NAL01B owner current from parcel records; Google operator current from Google Ohio page plus tax name; STACK Infrastructure operator intended from city list plus parcel tax name",
+        "distinctness rescreened against verified_construction_core/2026-10-26-research-seventyninth (sites, projects, evidence, source-records.json, identity-mapping.json), all queue changes/holds, claims.tsv and sources/*-holds.json: no name, alias, parcel or address matches besides the resolved Stack hold; nearest Atlas sites 27.75 km (Google) and 2.86 km Meta Prometheus locality point (Stack); no queued addition within 5 km",
+        "AWS Hilliard removed: in-window source is a release about an ancillary fuel-cell permit appeal; campus already has constructed buildings (2025 release, 695,120 sq ft on parcel), so 'announced' would misstate it; hold added with reopen condition; 5 orphaned sources pruned and its geometry facts file moved to verifier-removed/",
+        "no personal data in changes, sources or holds (byline and council names not copied)",
+        "dry run ok against seventyninth: 743 sites, 795 projects, 4,118 evidence rows"
+      ],
+      "residual_risks": [
+        "CLB4's data-centre use is inferred from the campus parcel class, Google tax name and the 2021 ordinance; its new-structure permit is coded 324 office and no permit describes the building's use",
+        "completed is scoped to the CLB4 alteration permit; the new-structure permit is still open and no certificate of occupancy or operation is established",
+        "LAST_STATUS_DT is read as the final-inspection approval date; the city does not document the field",
+        "Stack intended-operator role rests on the city listing name 'Stack' plus the parcel tax mailing name STACK INFRASTRUCTURE",
+        "the New Albany list's dateModified of 2 Oct is bounded only by the 29 Sep archive and later live captures; the item could date from anywhere in 29 Sep - 23 Oct"
+      ]
+    },
+    {
+      "fragment": "us-midwest-iowa-ne-p4",
+      "verdict": "accept",
+      "checks": [
+        "Base read from site/config.json: verified_construction_core/2026-10-26-research-seventyninth, unchanged when the verdict was written. Admission window starts 2026-08-02 (85 days before 2026-10-26).",
+        "Rehashed all 14 cited captures: each SHA-256 matches its .metadata.json sha256 and the content_hash in sources.json; all HTTP 200 and fetched without credentials. Both geometry-facts files match their geometry_facts_sha256.",
+        "Farmington: read the live City of Farmington page myself. It has the update headed 'Update - Wednesday, Sept. 16, 2026' (plaintiffs in both legal matters filed dismissals) on the 'Data Center (Farmington Technology Park)' hub, which names the Farmington Technology Park Project (Developer – Tract). The IA copy of 2026-09-09 opens with the Nov 13, 2025 update and the copy of 2026-09-18 has the Sept 16 update, so the date is bounded. The source is a government_record, 40 days old.",
+        "Farmington stage: only 'announced' is claimed. I rendered page 1 of Ordinance 2024-12: PUD-1 permits 'Data Center Technology Park', but site, grading and building plans still need City approval. The page records no site plan, building permit or data-centre construction. The golf-course demolition permit was finaled 2026-06-30, which is before the window, and it is not treated as a stage.",
+        "Farmington identity: PC packet p.7-8 lists Lot 1 Blk 1 1st Add. (150.74 ac) as the 'northern portion of the data center campus' and Lot 1 Blk 1 2nd Add. (185.54 ac, parcels 07-00500-76-011/-012) as the 'southern portion'. Counsel's letter of 30 Mar 2026 calls MNLCO Farmington, LLC and MNLCO Farmington Two, LLC 'Tract'. Tract's letter places the school parcels at 2806 225th St W, and the county layer agrees for 037-140050076012.",
+        "Farmington locator recomputed from the raw Dakota County JSON with pyproj 3.7.1 and shapely 2.1.1. The union of PINs 037-142593001010, 037-140050076011 and 037-140050076012 is 339.30 geodesic acres in 2 parts with a 10.05 m gap. Its centroid in EPSG:26915 is -93.1222619, 44.6228366, inside the union and 0.003 m from the stated point. It is campus_locator scope with no geocoder, city centre or zone centroid. The owners of record (MNLCO Farmington LLC and MNLCO Farmington Two LLC) support the current owner roles. The 2.07 ac city utility lot is correctly excluded.",
+        "TierPoint Bellevue: read the live page myself. It says 'state-of-the-art TierPoint Omaha (Bellevue) data center and colocation facility', gives 1001 North Fort Crook Road and 100,000+ sq ft, and has dateModified 2026-09-03T06:52:13+00:00, which equals the page-sitemap lastmod. The source is a company_disclosure, 53 days old. The news sitemap's latest item is 2026-08-12 and has no Omaha, Bellevue or Nebraska item. The operator role is current.",
+        "CORRECTED: the archive copy labelled '29 July 2026' is really the 14 February 2026 capture. The metadata effective_url is web/20260214041028 and the footer reads 'FILE ARCHIVED ON 04:10:28 Feb 14, 2026'. I renamed the source to ...-ia-20260214 and fixed its source_url, title, summary and date_semantics, the status summary, the scoped generators note and notes.md. The 14 Feb copy still bounds the modification from below: it has dateModified 2024-07-31 and a different generator line, which shows the dateModified is a stored value. This matches the accepted Sioux Falls East (5 Mar copy) and Tulsa State Farm (12 Jan copy) precedent and the reopen condition in the sixtyfifth and seventyfirst holds.",
+        "TierPoint locator recomputed from the raw Sarpy County layer. The union of condominium units 011604927, 011604928 and 011604930 is 5.95 geodesic acres in 2 parts. Its centroid in EPSG:32615 and 26915 is -95.9249764, 41.1780544, inside the union and 0.006 m from the stated point. TierPoint's structured-data point is inside the union, 83.7 m away. The improvements-only bank parcel 010765549 is excluded. The county GIS hub lists Sarpy_Parcels_WFL1 as a Sarpy County CC0 dataset in the same ArcGIS org as geodata.sarpy.gov.",
+        "Distinctness: screened the seventyninth sites, projects, evidence, source-records and identity-mapping files, every other queue fragment's JSON, claims.tsv and all sources/*-holds.json. Name terms used: Farmington, Fountain Valley, MNLCO, 220th/225th, Castle Rock, the PINs, Bellevue, Fort Crook, Southroads, the Sarpy parcel IDs, Omaha and Sarpy. The only hits are this fragment's claims and the two published TierPoint Bellevue holds, which this addition resolves. A numeric coordinate scan found nothing within 3 km of either point. Both sites are new with one project each.",
+        "No third-party personal data in changes, sources, holds or geometry facts. The staff, counsel, judge and seller names in the city records are not copied, and the condo owners are organisations. Robots.txt was read for every cited host before content requests.",
+        "dryrun_fragment.py reports ok on seventyninth after the corrections: 743 sites, 795 projects, 4120 evidence rows."
+      ],
+      "residual_risks": [
+        "The TierPoint 3 September 2026 dateModified has only a loose lower archive bound (14 Feb 2026), and the sitemap lastmod comes from the same CMS. The IA 14 Apr and 29 Jul 2026 captures exist in CDX but could not be read (503).",
+        "The 2nd Addition parcels are matched by PIN pattern, owner and acreage, not by a recorded plat. The Dakota layer publishes no edit date.",
+        "The Sarpy parcel layer is a December 2023 snapshot from services.arcgis.com, whose robots.txt answers 403. RFC 9309 treats that as unavailable, and 80 published evidence rows already use services*.arcgis.com, but this fragment refused other hosts that answered 403.",
+        "Farmington litigation dismissals still await final court directions. Tract is a land developer, and no end user or building plan is known."
+      ]
+    }
+  ],
+  "packet_pins": {
+    "definitions/atlas-research-eightieth-2026-10-26.json": "8e3c3c91c971d0969c6de3c6ee4d8d35f90580102b0cb712f29f002ce789f91d",
+    "sources/research-countries-2026-10-26-eightieth-primary-sources.json": "6f3340f91fba3825b16b15b0e932230953eeb7adf43109ebe61fe0e7ce3ee04c",
+    "sources/research-countries-2026-10-26-eightieth-actions.json": "5a5c9dd6446222e61e919acb0646cd031ceb4080864eca7f8fb20a473f11e945",
+    "sources/research-countries-2026-10-26-eightieth-holds.json": "3a428ede32615607c11679f52af7e552317445c88b76c33065719ed886444217"
+  },
+  "raw_captures_redistributed": false
+}

@@ -387,6 +387,8 @@ From 22 October 2026 sites are added continuously: researchers each work a narro
 
 `verified_construction_core/2026-10-26-research-seventyninth`: **741 sites and 793 projects in 63 countries**. Adds TADG ATL02 / Ellenwood — proposed data center (EPD proposed air permit, application 30104); DataBank Lithia Springs Campus — ATL5 and ATL6 campus under construction; Vantage - Stacks Rd — one-building data center with power substation (land cleared); Texas Critical Data Centers (TCDC) Phase 1 — planned AI data-centre phase of about 200 MW (20-year Vistra PPA). Refreshes Google Armstrong County data center campus (Crusoe Goodnight) (under construction).
 
+`verified_construction_core/2026-10-26-research-eightieth`: **745 sites and 797 projects in 63 countries**. Adds Building CLB4 — 288,000 sq ft alteration works (Columbus permit ALTC2502418, final inspection approved); Stack — new 332,089 sq ft data building (7340 Souder Road); Farmington Technology Park — proposed Tract data-center campus (PUD-1, Ordinance 2024-12; 1st Addition Lot 1 and future 2nd Addition); TierPoint Omaha - Bellevue (BEL) — existing data-centre and colocation operations.
+
 ## 25 October 2026
 
 `verified_construction_core/2026-10-25-research-sixtysecond` adds three commercial sites and

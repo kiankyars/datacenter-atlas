@@ -1,0 +1,118 @@
+{
+ "candidate_id": "tierpoint-omaha-bellevue-fort-crook-road-data-center",
+ "decision": "Selected the centroid of the union of the three Sarpy County tax parcels that form the Southroads Technology Park Condominium Regime at 1001 Fort Crook Rd N, Bellevue (units 1, 3, 5 and 6, parcel 011604927; unit 2, parcel 011604928; unit 4, parcel 011604930) as the locator of TierPoint's Omaha - Bellevue (BEL) data center at 1001 North Fort Crook Road.",
+ "geometry": {
+  "type": "Point",
+  "coordinates": [
+   -95.9249764,
+   41.1780544
+  ]
+ },
+ "authority_class": "official_source",
+ "scope_class": "official_tax_parcel_union_centroid",
+ "use_scope": "reviewed_site_locator",
+ "source_file": "local_data/country-research-us-midwest-iowa-ne-p4/sarpy-parcels-1001-fort-crook-n.json",
+ "source_sha256": "6b3338b97eb41e26b8a335982bf6f9f16c1c4741d5e04b2b2765ddc26ec88d9a",
+ "source_url": "https://services.arcgis.com/OiG7dbwhQEWoy77N/arcgis/rest/services/Sarpy_Parcels_WFL1/FeatureServer/0/query?where=SITEADDRESS%20LIKE%20%271001%20FORT%20CROOK%20RD%20N%25%27&outFields=PARCELID%2CSITEADDRESS%2CPRPRTYDSCRP%2CCNVYNAME%2CUSEDSCRP%2CACREAGE%2COWNERNME1%2CLASTUPDATE&returnGeometry=true&outSR=4326&f=json",
+ "retrieved_at": "2026-10-26T20:22:55.556Z",
+ "selected_properties": {
+  "011604927": {
+   "site_address": "1001 FORT CROOK RD N, UNIT 1 BELLEVUE NE 68005",
+   "legal": "UNITS 1,3,5 AND 6 SOUTHROADS TECHNOLOGY PARK CONDOMINIUM REGIME (22.32%)",
+   "use": "COMMERCIAL AND SUBURBAN COMMERCIAL",
+   "acreage": 1.853,
+   "owner_of_record": "SOUTH BELL REALTY LLC"
+  },
+  "011604928": {
+   "site_address": "1001 FORT CROOK RD N, STE 144 BELLEVUE NE 68005",
+   "legal": "UNIT 2 SOUTHROADS TECHNOLOGY PARK CONDOMINIUM REGIME (31.76%)",
+   "use": "CHARITABLE ORGANIZATIONS EXEMPT",
+   "acreage": 4.1,
+   "owner_of_record": "DEEP WELL (organisation)"
+  },
+  "011604930": {
+   "site_address": "1001 FORT CROOK RD N, STE 144 BELLEVUE NE 68005",
+   "legal": "UNIT 4 SOUTHROADS TECHNOLOGY PARK CONDOMINIUM REGIME (45.92%)",
+   "use": "CHARITABLE ORGANIZATIONS EXEMPT",
+   "acreage": 5.525,
+   "owner_of_record": "DEEP WELL (organisation)"
+  },
+  "excluded": "Parcel 010765549 (also addressed 1001 FORT CROOK RD N; improvements only on Lot 3 Southroads Technology Park, 0.13 acres, a separate bank building about 175 m to the west)",
+  "layer": "Sarpy County's 'Sarpy_Parcels_WFL1' TaxParcel layer on ArcGIS Online (source 'Sarpy County, Nebraska', CC0-1.0, listed on the county GIS hub gis.sarpy.gov; data last edited 9 December 2023)"
+ },
+ "computed": {
+  "parts": 2,
+  "geodesic_acres": 5.953,
+  "geodesic_area_m2": 24089.5,
+  "centroid_lon_lat": [
+   -95.9249764,
+   41.1780544
+  ],
+  "centroid_inside_polygon": true,
+  "crs_cross_check_shift_m": 0.0,
+  "extent_m": [
+   226.6,
+   257.0
+  ],
+  "gap_between_parts_m": 67.6,
+  "bounds_lon_lat": [
+   -95.925935,
+   41.176904,
+   -95.923278,
+   41.179213
+  ],
+  "parcel_geodesic_acres": {
+   "011604928": 4.1,
+   "011604930": 5.525,
+   "011604927": 1.853
+  },
+  "parcel_centroids_lon_lat": {
+   "011604928": [
+    -95.9251224,
+    41.1783419
+   ],
+   "011604930": [
+    -95.925003,
+    41.1780761
+   ],
+   "011604927": [
+    -95.9246531,
+    41.1774184
+   ]
+  },
+  "containing_parcel_of_centroid": [
+   "011604928",
+   "011604930"
+  ],
+  "cross_check_point": {
+   "lon_lat": [
+    -95.924737,
+    41.177323
+   ],
+   "inside_union": true,
+   "distance_to_centroid_m": 83.7,
+   "inside_parcels": [
+    "011604930",
+    "011604927"
+   ]
+  },
+  "method": "Polygons returned with outSR=4326; union and centroid computed in EPSG:26914 (NAD83 / UTM 14N) and returned to WGS84 (EPSG:32614 cross-check gives the same point); geodesic area on the WGS84 ellipsoid. The condominium unit polygons overlap, so the union (5.95 acres) is smaller than the sum of the unit acreages",
+  "tools": "pyproj 3.7.1, shapely 2.1.1"
+ },
+ "identity_bridge": [
+  "TierPoint's page gives 'Omaha - Bellevue (BEL) 1001 North Fort Crook Road Bellevue, NE 68005' for a 100,000+ square-foot data center and colocation facility.",
+  "A Sarpy County parcel query for site addresses beginning '1001 FORT CROOK RD N' returns the three units of the Southroads Technology Park Condominium Regime and one improvements-only bank parcel on Lot 3; the condominium units together form the multi-tenant building property at that address.",
+  "TierPoint's own structured-data point (41.177323, -95.924737) lies inside the union (inside units 4 and 1/3/5/6), 83.7 m from the selected centroid; it is a cross-check only."
+ ],
+ "unresolved": [
+  "Which condominium unit holds TierPoint's data-centre space is not published; the other units are recorded as charitable-organisation property, so the point locates the host building property, not the data-centre suite.",
+  "The county layer is a December 2023 snapshot; the building and its condominium regime predate it."
+ ],
+ "nearby_records": "No Atlas site, project, source record, identity-mapping entry, pending fragment, claim or hold coordinate lies within 2 km; the nearest Atlas record is the Edged Council Bluffs campus, about 15.5 km north-east.",
+ "consistency_checks": {
+  "datum": "WGS84 output from the hosted service (outSR=4326)",
+  "geocoder_used": false,
+  "county_host_geodata_sarpy_gov": "returned HTTP 403 to robots.txt and was not used",
+  "maps_sarpy_gov": "not accessed (Cloudflare block recorded by us-midwest-plains-p2)"
+ }
+}

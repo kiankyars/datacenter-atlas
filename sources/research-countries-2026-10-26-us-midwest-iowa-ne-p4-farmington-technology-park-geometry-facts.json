@@ -1,0 +1,103 @@
+{
+ "candidate_id": "farmington-technology-park-tract-data-center-campus",
+ "decision": "Selected the centroid of the union of the three Dakota County tax parcels that make up the platted Farmington Technology Park data-center campus (Lot 1, Block 1, Farmington Technology Park 1st Addition, PIN 037-142593001010, and the two parcels of the future 2nd Addition, PINs 037-140050076011 and 037-140050076012) as the campus locator of the proposed Tract data-center campus.",
+ "geometry": {
+  "type": "Point",
+  "coordinates": [
+   -93.1222619,
+   44.6228366
+  ]
+ },
+ "authority_class": "official_source",
+ "scope_class": "official_tax_parcel_union_centroid",
+ "use_scope": "campus_locator",
+ "source_file": "local_data/country-research-us-midwest-iowa-ne-p4/dakota-parcels-farmington-tech-park-campus.json",
+ "source_sha256": "cc32d492785a8c897eae3a6c9ed97d73efa60cc4bedbe7e38c1888110bbf29b1",
+ "source_url": "https://gis2.co.dakota.mn.us/ArcGIS/rest/services/CommunityMaps/DC_OL_CommunityMapsLayers/MapServer/4/query?where=PIN%20IN%20%28%27037-142593001010%27%2C%27037-140050076011%27%2C%27037-140050076012%27%29&outFields=PIN%2CBLDG_NUM%2CSTREETNAME%2CSTREETTYPE%2CCITY%2CPLAT_NAME%2CACRES_POLY%2CUSE1_DESC%2COWNER_NAME&returnGeometry=true&outSR=4326&f=json",
+ "retrieved_at": "2026-10-26T20:24:27.713Z",
+ "selected_properties": {
+  "037-142593001010": {
+   "address": "2830 220TH ST, FARMINGTON",
+   "plat_name": "FARMINGTON TECHNOLOGY PARK 1ST ADDITION",
+   "acres_poly": 150.75,
+   "use": "INDUSTRIAL-PREFERRED",
+   "owner_of_record": "MNLCO FARMINGTON LLC"
+  },
+  "037-140050076011": {
+   "address": null,
+   "plat_name": null,
+   "acres_poly": 178.58,
+   "use": "AG",
+   "owner_of_record": "MNLCO FARMINGTON TWO LLC"
+  },
+  "037-140050076012": {
+   "address": "company-owned parcel on 225th St W (address not needed)",
+   "plat_name": null,
+   "acres_poly": 10.0,
+   "use": "RESIDENTIAL",
+   "owner_of_record": "MNLCO FARMINGTON TWO LLC"
+  },
+  "layer": "Dakota County CommunityMaps parcel layer (DC_OL_CommunityMapsLayers MapServer layer 4), queried live on 26 October 2026; WGS84 output (outSR=4326)",
+  "excluded": "Lot 2, Block 1, Farmington Technology Park 1st Addition (PIN 037-142593001020, 2.07 acres, owner of record City of Farmington), the lot to be deeded to the city for utility purposes"
+ },
+ "computed": {
+  "parts": 2,
+  "geodesic_acres": 339.3,
+  "geodesic_area_m2": 1373099.5,
+  "centroid_lon_lat": [
+   -93.1222619,
+   44.6228366
+  ],
+  "centroid_inside_polygon": true,
+  "crs_cross_check_shift_m": 0.0,
+  "extent_m": [
+   1010.2,
+   1612.5
+  ],
+  "gap_between_parts_m": 10.1,
+  "bounds_lon_lat": [
+   -93.129192,
+   44.616029,
+   -93.116448,
+   44.630537
+  ],
+  "parcel_geodesic_acres": {
+   "037-142593001010": 150.734,
+   "037-140050076012": 10.0,
+   "037-140050076011": 178.567
+  },
+  "parcel_centroids_lon_lat": {
+   "037-142593001010": [
+    -93.1216426,
+    44.6269033
+   ],
+   "037-140050076012": [
+    -93.1236951,
+    44.6227703
+   ],
+   "037-140050076011": [
+    -93.1227044,
+    44.6194074
+   ]
+  },
+  "containing_parcel_of_centroid": [
+   "037-140050076012"
+  ],
+  "method": "Polygons returned with outSR=4326; union and centroid computed in EPSG:26915 (NAD83 / UTM 15N) and returned to WGS84 (EPSG:32615 cross-check gives the same point); geodesic area on the WGS84 ellipsoid",
+  "tools": "pyproj 3.7.1, shapely 2.1.1"
+ },
+ "identity_bridge": [
+  "The City of Farmington's Planning Commission packet of 14 April 2026 describes Lot 1, Block 1, Farmington Technology Park 1st Addition (150.74 acres) as the 'northern portion of the data center campus', Lot 2 (2.07 acres) as a city utility lot, and Lot 1, Block 1, Farmington Technology Park 2nd Addition (185.54 acres, on parcels 07-00500-76-011 and 07-00500-76-012) as the 'southern portion of data center campus'; the applicants MNLCO Farmington, LLC and MNLCO Farmington Two, LLC are identified by their counsel as 'Tract'.",
+  "The county layer's plat-name query returns exactly two lots in FARMINGTON TECHNOLOGY PARK 1ST ADDITION: PIN 037-142593001010 (2830 220th St, 150.75 acres, owner of record MNLCO Farmington LLC) and PIN 037-142593001020 (2.07 acres). The city's project page records the 1st Addition plat as recorded with Dakota County on 19 May 2026.",
+  "The 2nd Addition plat is not yet recorded. The former Castle Rock Township parcel numbers 07-00500-76-011 and -012 (annexed in April 2024) appear in the county layer with the same section and parcel numbering under Farmington's municipal code 14 (PINs 037-140050076011, 178.58 acres, and 037-140050076012, 10.0 acres), both with owner of record MNLCO Farmington Two LLC; together 188.58 acres against 185.54 platted acres, the difference being consistent with the right-of-way dedications in the 2024 plat. They adjoin Lot 1 of the 1st Addition to the south (gap about 10 m)."
+ ],
+ "unresolved": [
+  "No site, building or grading plan has been approved; building positions inside the campus are unknown.",
+  "The match of the two southern parcels to the 2nd Addition rests on the parcel-number pattern, owner and acreage, not on a recorded plat."
+ ],
+ "nearby_records": "No Atlas site, project, source record, identity-mapping entry, pending fragment, claim or hold coordinate lies within 2 km; the nearest Atlas record is DataBank MSP2 in Eagan, about 24 km north.",
+ "consistency_checks": {
+  "datum": "WGS84 output from the county service (outSR=4326)",
+  "geocoder_used": false
+ }
+}
