@@ -1,0 +1,128 @@
+{
+ "format": "datacenter-atlas-geometry-facts-v1",
+ "fragment": "global-developers-p3",
+ "prepared_on": "2026-10-26",
+ "candidate_id": "compass-phx2-el-mirage-campus",
+ "facility": "Compass Datacenters PHX2 campus (El Mirage campus), 12500 W Joe R Ramirez Rd, El Mirage, Maricopa County, Arizona",
+ "decision": "Selected the area centroid of the union of the five Maricopa County Assessor parcels recorded under the plat 'COMPASS DATACENTERS PHX2 REPLAT' (MCR 1938-20): Lots 1-3 (addresses 12500 W Joe R Ramirez Rd Bldg 1, 2 and 3), Lot 4 (12520 W Joe R Ramirez Rd) and Tract A (12500 W Joe R Ramirez Rd, which surrounds the four lots). The union is one polygon without holes. The point is a campus locator for the replat, not a building footprint.",
+ "geometry": {
+  "type": "Point",
+  "coordinates": [
+   -112.3296651,
+   33.5767859
+  ]
+ },
+ "authority_class": "official_source",
+ "scope_class": "official_assessor_replat_parcels_union_centroid",
+ "use_scope": "campus_locator",
+ "derivation": "direct_geometry",
+ "source_file": "local_data/country-research-global-developers-p3/mc-mcr-1938-20.json",
+ "source_sha256": "207f74f9086b0fbf44f504e466e88ed21c41f1007e863292bd09208716b555b6",
+ "source_url": "https://gis.mcassessor.maricopa.gov/arcgis/rest/services/Parcels/MapServer/0/query?where=MCRNUM+%3D+%271938-20%27&outFields=APN,APN_DASH,OWNER_NAME,PHYSICAL_ADDRESS,SUBNAME,LAND_SIZE,LOT_NUM,TRACT,MCRNUM,MCR_BOOK,MCR_PAGE,CITY_ZONING,JURISDICTION,STR,PUC,DEED_DATE,SALE_DATE&returnGeometry=true&outSR=4326&f=json",
+ "retrieved_at": "2026-10-26T19:15:37.898Z",
+ "selected_properties": {
+  "layer": "Maricopa County Assessor Parcels MapServer layer 0 (gis.mcassessor.maricopa.gov), geometry requested in WGS84 (outSR=4326)",
+  "subdivision_name": "COMPASS DATACENTERS PHX2 REPLAT",
+  "mcr": "1938-20",
+  "jurisdiction": "EL MIRAGE",
+  "section_township_range": "26 3N 1W",
+  "owner_name_on_all_five_parcels": "PENDING (newly created parcels)",
+  "parcels": [
+   {
+    "apn": "501-46-904",
+    "lot": "1",
+    "tract": null,
+    "address": "12500 W JOE R RAMIREZ RD BLDG 1 EL MIRAGE 85335",
+    "assessor_land_size_sqft": 714224,
+    "geodesic_acres": 16.4,
+    "rings": 1
+   },
+   {
+    "apn": "501-46-906",
+    "lot": "3",
+    "tract": null,
+    "address": "12500 W JOE R RAMIREZ RD BLDG 3 EL MIRAGE 85335",
+    "assessor_land_size_sqft": 714224,
+    "geodesic_acres": 16.4,
+    "rings": 1
+   },
+   {
+    "apn": "501-46-907",
+    "lot": "4",
+    "tract": null,
+    "address": "12520 W JOE R RAMIREZ RD EL MIRAGE 85335",
+    "assessor_land_size_sqft": 259650,
+    "geodesic_acres": 5.96,
+    "rings": 1
+   },
+   {
+    "apn": "501-46-908",
+    "lot": null,
+    "tract": "A",
+    "address": "12500 W JOE R RAMIREZ RD EL MIRAGE 85335",
+    "assessor_land_size_sqft": 2633777,
+    "geodesic_acres": 60.46,
+    "rings": 5
+   },
+   {
+    "apn": "501-46-905",
+    "lot": "2",
+    "tract": null,
+    "address": "12500 W JOE R RAMIREZ RD BLDG 2 EL MIRAGE 85335",
+    "assessor_land_size_sqft": 714224,
+    "geodesic_acres": 16.4,
+    "rings": 1
+   }
+  ]
+ },
+ "computed": {
+  "union": {
+   "type": "Polygon",
+   "interiors": 0,
+   "geodesic_acres": 115.62,
+   "geodesic_ha": 46.79,
+   "extent_m": [
+    788.3,
+    793.9
+   ],
+   "bounds_lon_lat": [
+    -112.333162,
+    33.5727257,
+    -112.3247191,
+    33.5798358
+   ],
+   "centroid_utm12n": [
+    376598.379,
+    3716024.446
+   ],
+   "centroid_lon_lat": [
+    -112.3296651,
+    33.5767859
+   ],
+   "centroid_inside": true,
+   "centroid_distance_to_boundary_m": 113.5,
+   "max_vertex_distance_m": 555.6,
+   "centroid_in_parcel": "501-46-904"
+  },
+  "method": "Parcel rings projected to WGS 84 / UTM zone 12N (EPSG:32612) with pyproj; union and area centroid with shapely, transformed back to WGS84; geodesic areas on the WGS84 ellipsoid with pyproj Geod",
+  "tools": "pyproj 3.7.1, shapely 2.1.1"
+ },
+ "identity_bridge": [
+  "Compass Datacenters' release of 23 September 2026 says Compass is developing a campus in El Mirage and that 'Compass' El Mirage campus shares a property line with the Northwest Valley Family YMCA', whose address it gives as 12450 W. Cinnabar Ave.",
+  "The assessor parcel at 12450 W Cinnabar Ave (APN 501-45-946, owner City of El Mirage, Gateway Center) shares a 302.6 m boundary with the union of the five COMPASS DATACENTERS PHX2 REPLAT parcels (distance 0 m).",
+  "Compass's Data Center Markets page (version of 21 August 2026) names a 108 MW campus in El Mirage as one of its Phoenix sites; the assessor layer has no other parcel whose subdivision name refers to Compass in El Mirage (the other Compass Datacenters subdivisions are the PHX I parcels in Goodyear, about 17 km south-west)."
+ ],
+ "ymca_parcel_check": {
+  "apn": "501-45-946",
+  "address": "12450 W CINNABAR AVE   EL MIRAGE  85335",
+  "owner": "EL MIRAGE CITY OF",
+  "subdivision": "GATEWAY CENTER",
+  "distance_to_campus_m": 0.0,
+  "shared_boundary_m": 302.6
+ },
+ "ymca_parcel_source_file": "local_data/country-research-global-developers-p3/mc-elmirage-ymca-env.json",
+ "ymca_parcel_source_sha256": "d02ee1bf5efea2a1ecdeb98bcda2cf784fb4a119f4aaf83abb77f1fdb54d8d60",
+ "nearby_records": "No Atlas site, project, source record, identity-mapping entry, pending queue addition, claim or hold lies within 2 km (checked against verified_construction_core/2026-10-26-research-seventysixth on 26 October 2026); the nearest Atlas site is the Aligned Phoenix campus at 2500 W Union Hills Dr, 22.2 km east.",
+ "uncertainty": "The assessor publishes no positional accuracy for parcel polygons; the point is the centroid of a 115.6-acre (46.8 ha) parcel group extending up to 556 m from it, and the buildings are not separately located.",
+ "personal_data_note": "The envelope query used for the YMCA adjacency check returns neighbouring parcels owned by private individuals; none of their names is copied."
+}

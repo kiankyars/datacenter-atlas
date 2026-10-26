@@ -1,0 +1,80 @@
+{
+  "candidate_id": "ntt-phoenix-mesa-elliot-road-campus",
+  "decision": "Selected the centroid of Maricopa County Assessor parcel 304-01-006N (owner of record NTT GLOBAL DATA CENTERS PH LLC, situs 10256 E Elliot Rd, Mesa), the parcel cited by every City of Mesa permit for the NTT Phoenix (Mesa) campus and the parcel that contains the city's permit geocode for 10256 E Elliot Rd, as the campus locator.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -111.6111701,
+      33.3548738
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_tax_parcel_centroid",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-us-phoenix-p4/maricopa-parcel-at-ntt-permit-point-20261026.json",
+  "source_sha256": "c0ffc86813ec84b1f5d7d3170d7346d9e4ab39d5afac9e146a44f7bc2fb53af9",
+  "source_url": "https://gis.mcassessor.maricopa.gov/arcgis/rest/services/Parcels/MapServer/0/query?geometry=-111.612275%2C33.35516&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=APN,APN_DASH,OWNER_NAME,MAIL_CITY,MAIL_STATE,PHYSICAL_ADDRESS,SUBNAME,LAND_SIZE,DEED_NUMBER,DEED_DATE,PUC,JURISDICTION,STR&returnGeometry=true&outSR=4326&f=json",
+  "retrieved_at": "2026-10-26T19:41:28.596Z",
+  "selected_properties": {
+    "APN": "30401006N",
+    "APN_DASH": "304-01-006N",
+    "OWNER_NAME": "NTT GLOBAL DATA CENTERS PH LLC",
+    "MAIL_CITY_STATE": "SACRAMENTO, CA",
+    "PHYSICAL_ADDRESS": "10256 E ELLIOT RD MESA 85212",
+    "SUBNAME": "MINOR LAND DIVISION",
+    "LAND_SIZE_sq_ft": 4429340,
+    "LAND_SIZE_acres_computed": 101.684,
+    "DEED_NUMBER": "20190499142",
+    "DEED_DATE": "2019-07-01",
+    "PUC": "2815",
+    "JURISDICTION": "MESA",
+    "STR": "11 1S 7E",
+    "spatial_reference": "outSR=4326 (WGS84) as returned by the assessor's ArcGIS MapServer"
+  },
+  "computed": {
+    "parts": 1,
+    "ring_count": 1,
+    "geodesic_acres": 101.694,
+    "geodesic_area_m2": 411540,
+    "centroid_lon_lat": [
+      -111.6111701,
+      33.3548738
+    ],
+    "centroid_inside_polygon": true,
+    "min_distance_centroid_to_boundary_m": 124.7,
+    "extent_m": [
+      1262.3,
+      865.9
+    ],
+    "bounds_lon_lat": [
+      -111.614847,
+      33.350138,
+      -111.601282,
+      33.357922
+    ],
+    "permit_geocode_lon_lat": [
+      -111.612275,
+      33.35516
+    ],
+    "permit_geocode_inside_polygon": true,
+    "permit_geocode_to_centroid_m": 107.6,
+    "method": "Single-ring polygon returned by the assessor service in WGS84; centroid computed in EPSG:32612 (WGS 84 / UTM zone 12N) and returned to WGS84; geodesic area on the WGS84 ellipsoid",
+    "tools": "pyproj 3.7.1, shapely 2.1.1"
+  },
+  "identity_bridge": [
+    "City of Mesa Building Permits (dzpk-hxfb): all 54 permits at 10256 E ELLIOT RD cite parcel 30401006N and carry the city geocode (-111.612275, 33.35516); their titles name NTT throughout, for example 'NTT PH1 - shell building 5, office and vault 2.1' (PMT21-01151), 'NTT GLOBAL DATA CENTERS AMERICAS - PH2 - SHELL' (PMT22-17409), 'BUILDING 7 NTT PH3 - Shell Building' (PMT22-19910), 'NTT PH4' (PMT24-07027, Building #4), 'NTT DATA CENTER PH5' (PMT24-17530, Building #3) and 'EXPEDITE - NTT PH6' (PMT26-13890), whose description says 'NTT Global Data Centers Americas is adding an additional Data Center building in Mesa, Arizona as part of a 244MW master planned site'.",
+    "A point-in-polygon query of the assessor parcel layer at that geocode returns only parcel 304-01-006N, whose situs address is 10256 E ELLIOT RD, MESA 85212, matching the permit address exactly.",
+    "The assessor names NTT GLOBAL DATA CENTERS PH LLC (Sacramento, California mailing address) as owner of record (deed 20190499142, 1 July 2019; 101.68 acres). The same parcel was reviewed by us-southwest-p2 (hold of 23 October 2026), which recorded 101.69 acres."
+  ],
+  "unresolved": [
+    "The position of PH5 (Building #3) within the 101.7-acre parcel is not published; the centroid locates the NTT campus property, not the PH5 building or the works extent.",
+    "The assessor publishes no positional accuracy for parcel polygons.",
+    "NTT Global Data Centers PH10 LLC's separate 170-acre parcel at E Pecos Rd and S Crismon Rd (313-25-962; repository hold 'NTT Mesa PH10') is a different property about 5 km south and is not part of this campus record."
+  ],
+  "nearby_records": "Within 2 km of the centroid: the held AWS PHX066 parcel at 10437 E Elliot Rd (0.92 km), the CyrusOne Mesa PHX20 campus proposed in the same fragment (parcel 304-04-984A centroid, 1.09 km; a separate parcel, owner and operator) and the imported EdgeCore Mesa campus point (1.42 km). The us-southwest-p2 claim and the repository fifty-sixth hold for this NTT campus lie at the same parcel (0-0.08 km); neither was admitted.",
+  "consistency_checks": {
+    "datum": "WGS84 output from the assessor's ArcGIS service (outSR=4326)",
+    "geocoder_used": false,
+    "map_viewport_or_city_centre_used": false
+  }
+}

@@ -1,0 +1,213 @@
+{
+  "reviewer": "root",
+  "reviewed_at": "2026-10-26",
+  "decision": "accepted_for_integration",
+  "update": "verified_construction_core/2026-10-26-research-seventyeighth",
+  "base_dataset": "verified_construction_core/2026-10-26-research-seventyseventh",
+  "process": "continuous: one researcher per beat, one adversarial verifier per fragment",
+  "fragments": [
+    {
+      "fragment": "existing-refresh-intl-p3",
+      "verdict": "accept",
+      "checks": [
+        "base re-read from site/config.json: verified_construction_core/2026-10-26-research-seventyseventh (unchanged at verdict time)",
+        "rehashed infratil-investor-day-2026-cdc-update.pdf: sha256 971c5cac...92af, 4,559,822 bytes, matches .metadata.json and source content_hash",
+        "source row metadata identical to existing evidence e86d3030-80cb-5a88-a573-405820d7819c (same url#digest uuid5, retrieved_at, title, publisher, scope); builder conflict check passes",
+        "PDF read with pdftotext/pdfinfo and slides 6, 8, 9 rendered with pdftoppm: cover 'Infratil Investor Update 16 September 2026'; PDF created 2026-09-15",
+        "slide 8 text verified: 'CDC has delivered seven large-scale data centres since FY25, all of which are now contributing meaningfully to CDC's earnings generation', tile 'Canberra Beard 1'",
+        "slide 6 render: BE1 yellow (operational), BE2 grey (future); LA1-LA3 light blue (under construction); MA1 light blue, MA2 grey; legend as at 30 June 2026 used only as corroboration",
+        "slide 9 text verified: 'Construction is progressing to meet FY27-29 deliveries', 'Significant progress to date on delivering CDC's Laverton campus', 'Structure of CDC's inaugural Perth data centre nearing completion'; FY27/FY28 targets not used",
+        "Infratil release page capture (sha256 c555f057...65ea) dated 16 Sept 2026 and links the CDC Update PDF; kind company_disclosure is primary",
+        "observation 2026-09-16 = published_at; 40 days before 2026-10-26, inside 85-day window",
+        "strictly newer: Beard 2026-07-20, Laverton 2026-07-21, Maddington 2026-06-25 -> 2026-09-16",
+        "scope kept: Beard BE1 only (BE2 future excluded); Laverton campus-wide current build; Maddington first building MA1 only (MA2 future excluded); no locator, role or capacity change",
+        "vocabulary: shell = reported work on building shell/structure as of date; 'structure nearing completion' fits, not beyond",
+        "CDC sitemap capture verified lastmods: canberra 2025-10-07, melbourne 2025-10-01, maddington 2026-10-13; stale/undated location pages not relied on",
+        "Maddington page timeline (Oct 2026 fit-out commences, Jan 2027 operations) is scheduled, not observed; consistent with shell on 16 Sep",
+        "ACT framework release (26 Aug 2026) says Hume, Fyshwick and Beard campuses supported jobs 'during their construction'; consistent with Beard operational",
+        "fetched the one later CDC news item not captured by researcher ('Being a good neighbour starts with listening', lastmod 2026-10-26; robots allows): it concerns Marsden Park only, no Beard/Laverton/Maddington pause or change",
+        "distinctness: no other queue fragment's changes.json touches these three keys; au-nz-p3 deferred_beat_limit holds (also in seventyseventh holds) are what this fragment takes up; claims.tsv rows 379/380/384 belong to this fragment",
+        "no third-party personal data in sources, summaries or holds (deck presenter and release contact names not reproduced)",
+        "holds.json reviewed: reasons and reopen conditions present; geometry dir empty",
+        "dryrun_fragment.py: ok (731 sites, 778 projects, 4,032 evidence)"
+      ],
+      "residual_risks": [
+        "Beard BE1 was likely already operational at 30 June 2026 (slide 6 legend), so the existing 2026-07-20 under_construction observation from a stale Canberra page may merit a separate status correction",
+        "operational for BE1 does not establish capacity in service or full fit-out",
+        "Laverton refresh is campus-wide; per-building (LA1-LA3) stages are not established",
+        "Maddington fit-out was scheduled to start October 2026; a later dated CDC statement could soon support a newer stage"
+      ]
+    },
+    {
+      "fragment": "existing-refresh-us-p3",
+      "verdict": "accept",
+      "checks": [
+        "base verified_construction_core/2026-10-26-research-seventyseventh re-read from site/config.json before and after review",
+        "all 14 sources rehashed: file sha256 == metadata sha256 == sources.json content_hash; metadata url == source_url; captured_at == retrieved_at",
+        "Louisa minutes 3 Aug 2026 rendered with pdftotext: page 10-11 'construction traffic associated with the Lake Anna Technology Campus' and 'ongoing data center construction', AWS and Clark named; approved 7-0 in 8 Sep minutes (file 2344); CivicClerk event 1093 publishOn 2026-09-14",
+        "Lake Anna later-status check extended by verifier: 21 Sep 2026 minutes (file 2357, not previously captured) and 5 Oct minutes contain no campus completion, pause or cancellation",
+        "Lake Anna observation 2026-08-03 is 84 days before 2026-10-26 and strictly newer than 2026-03-16",
+        "Lancium Hall County page captions read in raw HTML: three captions and alt texts dated 'Aug 28, 2026' (pad graded, pad stabilization/surfacing, campus-wide earthwork and site utility work); image Aug_28_3 viewed locally and shows extensive graded earthwork with equipment",
+        "Lancium observation uses caption date (dated construction photograph, allowed by _status without published_at), not dateModified; 2026-08-28 > 2026-07-13; QTS 9 Oct release corroborates construction; QTS FAQ 'early planning stages' is unbounded boilerplate",
+        "Loudoun LandMARC parcel 045465016000 table parsed: PLUMC-2025-003391 (Core & Shell, New Construction) Issued, no finalize date, last inspection 2026-10-22T18:06Z; ELECC-2025-003379 2026-09-25; FIREC-2025-042518 shell sprinklers 2026-09-21; AS02 named in GEN/TX/elevator/BMS permits",
+        "precedent: municipal inspection records already used as under_construction observations (Mesa, Clark County in sixtyeighth/sixtyninth)",
+        "source kinds government_record/company_disclosure; source_observation_date day precision present for undated sources",
+        "no other queued fragment or sources/*-holds.json proposes these records; us-va-permits-p3 hold (published in sixtyninth holds) released Lake Anna for a later pass",
+        "no locator, scope, role or capacity changes; status refreshes keep record scope",
+        "robots: civicclerk API and logis.loudoun.gov 404, lancium.com and q.com allow paths used",
+        "personal data scan of sources/changes/holds/notes: no individual names, emails or phones; Loudoun NAME/ASSIGNEDTO fields not requested",
+        "dryrun_fragment.py ok: 731 sites, 778 projects, 4035 evidence"
+      ],
+      "residual_risks": [
+        "Lake Anna observation is 84 days old; it falls outside an 85-day window if publication slips past 2026-10-27",
+        "Lake Anna imported locator is the North Anna power-station point about 2.26 km from the Amazon parcel; unchanged by a status update",
+        "Hall County locator remains the Turkey town centroid (locality_context); unchanged",
+        "Lancium photos were uploaded under uploads/2026/10; the 28 Aug date rests on Lancium's own caption",
+        "LandMARC issued table drops finalized permits, so a finalized core-and-shell building permit or partial occupancy would be invisible; inspection result and type are not published",
+        "Minutes statements are a supervisor's description of construction traffic, not a site inspection"
+      ]
+    },
+    {
+      "fragment": "global-developers-p3",
+      "verdict": "accept",
+      "checks": [
+        "Base: site/config.json current_dataset verified_construction_core/2026-10-26-research-seventyseventh (731 sites, 778 projects); fragment was screened and dry-run against it",
+        "All 14 original captures rehashed: sha256 equals both .metadata.json sha256 and sources.json content_hash; geometry-facts files match their geometry_facts_sha256",
+        "Compass status: read in the raw release capture (dateline El Mirage, Ariz., Sept. 23, 2026, PRNewswire, on compassdatacenters.com): 'Compass is developing a campus in El Mirage' and 'Compass' El Mirage campus shares a property line with the Northwest Valley Family YMCA, and upon breaking ground...'; company_disclosure; 33 days old",
+        "Compass corroboration: IA copy 2026-09-06 of Topeka FAQ (dateModified 2026-09-01) has the partner labour census 'as of August, 2026' with Phoenix (El Mirage, Arizona) 518 trades workers. It is context only and supports active physical work. The mayor's 'new business preparing to join our community' rules out operation",
+        "Compass locator recomputed from mc-mcr-1938-20.json with pyproj 3.7.1 + shapely 2.1.1: union of 5 MCR 1938-20 'COMPASS DATACENTERS PHX2 REPLAT' parcels (ESRI rings, Tract A holes filled by Lots 1-4) gives one polygon with no holes. Area centroid in EPSG:32612 and EPSG:2223 is (-112.3296651, 33.5767859), identical to the fragment. It lies inside APN 501-46-904, 113.5 m from the boundary. Geodesic total is 115.62 ac and each parcel matches the assessor LAND_SIZE",
+        "Compass identity: YMCA address 12450 W Cinnabar Ave is APN 501-45-946 (Gateway Center, city-owned), at distance 0 with a 302.6 m shared boundary to the replat union, recomputed. The subdivision query shows the only other Compass Datacenters subdivisions are PHX I in Goodyear. The Markets page (dateModified 2026-08-21) names a 108 MW El Mirage campus. No geocoder, city or industrial-zone centroid is used",
+        "Pure DC status: the raw release capture (datePublished 2026-09-03, on puredc.com) reads 'The project is being delivered within a live operational data centre campus'. The same sentence appears in Glencar's 2 Sep release (Atlas capture 13 Oct) and in the Atlas's 16 Oct capture of this release, so it is not a later edit. company_disclosure; 53 days old",
+        "Pure DC scope: the IA copy of 3 Oct 2026 and the live 26 Oct capture of the Brent Cross page both read 'Building 1 (20MW) is fully operational with four data halls' and 'Status: Building 1: Live, Building 2: Fully permitted and under construction'. The baseline LON01 site has only the B2 composite-build project (0cdff49d) with B2-only evidence, so B1 is not a duplicate",
+        "Pure DC locator reuse: the baseline project 0cdff49d-f05c-5993-acd1-d1259fd80165 has campus_locator scope, geometry evidence ee256a2f (OSM way 38246899) and no geometry-identity evidence. This matches the fragment's empty list, and the builder's inheritance checks pass",
+        "Roles: Compass operator/intended (the release boilerplate says it develops and operates its campuses) and Pure DC operator/current (its own release about its live campus); relationship_scope values are valid",
+        "Distinctness screened by name/alias/address terms and by distance (5 km) against seventyseventh sites/projects/evidence/source-records/identity-mapping, all other queue fragments' changes and holds, claims.tsv and sources/*-holds.json. Compass: no El Mirage/PHX2-replat/Joe R Ramirez/Cinnabar record; El Mirage hold hits are Microsoft and the PHX2 hits are QTS/CyrusOne PHX20; nothing within 5 km. Pure DC B1: only the LON01 site and its B2 project at 0 m; LON02 at 4.2 km and Kao Park Royal at 4.8 km",
+        "One project on the one new site (Compass); the B1 project goes onto an existing site",
+        "No private individuals' names, phones or emails in changes, sources, holds, notes or geometry facts (YMCA executive, Forssa official contact and private parcel owners omitted); robots for compassdatacenters.com (allow, crawl-delay 10), puredc.com (allow), gis.mcassessor.maricopa.gov and web.archive.org (404) permit the relied-on requests",
+        "dryrun_fragment.py ok after removal against 2026-10-26-research-seventyseventh: 732 sites, 780 projects, 4040 evidence"
+      ],
+      "residual_risks": [
+        "Compass under_construction rests on 'is developing' plus a past, undated groundbreaking in the 23 Sep release, corroborated by a month-dated (August 2026) workforce census. No works stage, groundbreaking day or building is established, and the fallback would be announced on the same date",
+        "Compass locator is a 115.6-acre replat union centroid with unknown positional accuracy (parcels extend up to 556 m from the point). The replat owner field is 'PENDING', so identity rests on the plat name and the YMCA property line",
+        "Compass role 'operator' (intended) comes from company boilerplate; an unnamed hyperscale customer may be the end user",
+        "Pure DC B1 operational status: the dated release says the campus is live, and the attribution to Building 1 (20 MW, four halls) comes from an undated operator page (IA 3 Oct copy). 20 MW is the operator-stated building capacity, not verified load",
+        "Pure DC release page was re-modified on 14 Oct 2026 (dateModified); the decisive sentence is corroborated by Glencar's 2 Sep release and an earlier Atlas capture",
+        "The worker's compliance log records one GET to public.destinyhosted.com despite a robots 'Disallow: /' and five pre-robots cross-host redirects. None of those captures is relied on"
+      ]
+    },
+    {
+      "fragment": "mx-br-p3",
+      "verdict": "accept",
+      "checks": [
+        "Claimed mx-br-p3; base re-read from site/config.json: verified_construction_core/2026-10-26-research-seventyseventh (731 sites, 778 projects, 4,032 evidence)",
+        "All 8 sources' captures rehashed (10 files incl. the br-p1 status capture, latam-south-p1 sitemap capture and both recaptures): file SHA-256 = .metadata.json sha256 = content_hash/recapture_sha256; metadata URL = source_url, HTTP 200, no credentials; Esri SP03 export matches its metadata",
+        "Status read in the Brazil locations page (22 Oct capture; 26 Oct recapture text identical except a newsletter field label): SP03 and SP04 cards each 'Projetado conforme padrao Tier III' and 'Disponibilidade 24x7x365 / Acesso e operacao continua'; page adds on-site staff 24x7x365 and continuous monitoring; company_disclosure in operator voice",
+        "Status source metadata equal to published evidence 0695437d (same URL, hash, retrieved_at, published_at 2026-09-25); sitemap source equal to 50a3c791; dry run adds no conflicting evidence",
+        "Date: JSON-LD dateModified 2026-09-25T12:21:12Z in both captures; bounded by IA raw copy (13 Oct 2026) of page-sitemap.xml listing /localidades-brasil/ with the same lastmod (byte-identical to the live 26 Oct sitemap); IA CDX for the page itself empty; 31 days before 2026-10-26, inside 85 days",
+        "SP03 identity read: archived former SP03 page (IA 13 Jul 2026, modified 20 Jan 2022) 'Data Center dedicado ... mantida e operada pela ODATA, para um grande fornecedor de servicos de TI', 8,030/6,220/1,800 m2, 3.2 MW, Barueri, 10 km from SP01",
+        "SP03 locator recomputed from raw store-locator data-locations JSON: id 8617 'ODATA DC SP03' '-23.501657,-46.8248305' identical in PT, ES and redirected odatacolocation captures; operator-linked Google address place !3d/!4d -23.5019755,-46.8251239 echoed in payload; pyproj 46.3 m; SP04 entry 8616 equals the Atlas SP04 point (0.0 m)",
+        "Imagery viewed with points plotted: SP03 store point on the light-roofed east annex, map place inside the same grey building with rooftop plant (about 55-65 m x 100 m); SP04 point on a large building with finished west roof, open roof frame and generator row",
+        "FIXES: viewport offset corrected from 'about 224 m' to 256 m (pyproj) in the gmap source summary and geometry-facts file; SP03 precision and facts observation now say the point is on the east annex; geometry_facts_sha256 updated to 36e77acf...",
+        "SP04 addition: existing_site_id, site_name and country match the base site; locator inherits c160d8d5 exactly (geometry evidence ec98aabb, no geometry-identity evidence exists); archived SP04 page (version 26 Nov 2025) read: 'Construido e operado pela ODATA ... funcionar com 100% de energia renovavel', 27,422 m2 built, 48 MW campus; Phase 2 record (24 MW, June 2026 mobilisation) keeps its own scope",
+        "SP04 Phase 2 hold kept; DeltaFlow release (17 Sep 2026) read: phase-one DeltaFlow installation and testing at SP04 and QR03 is context only, no building or phase named",
+        "Distinctness re-screened in sites, projects, evidence, source-records, identity-mapping, all sources/*-holds.json, every other queue fragment and claims.tsv for SP03, SP04, Araguacema, Tambore, Barueri, 06460, Herman, Anhanguera, Osasco: only br-p1's SP03 cap hold and the existing SP04 records; 06460 hit is a site-id hash; nothing within 2 km of SP03 (Scala Tambore locality 4.36 km, SP04 5.39 km)",
+        "Roles: ODATA (an Aligned Data Centers company) operator, current, from the status page; no private-individual names, emails or phones in changes, sources, holds, notes or geometry facts (executives in the release not reproduced)",
+        "Successor review checked: ODATA WP REST posts end 22 Sep 2026 (DeltaFlow); Aligned post sitemap latest 22 Oct 2026 with no Brazil item; robots: odatadc.com, aligneddc.com and arcgisonline allow; google /maps/place/ allowed; web.archive.org robots 404",
+        "dryrun_fragment.py ok against seventyseventh: 732 sites, 780 projects, 4,038 evidence"
+      ],
+      "residual_risks": [
+        "Both operating statements rest on generic present-tense Tier III / 24x7x365 cards applied identically to all five Brazilian facilities, as accepted for SP01, SP02, RJ01, QR01-QR03, ST01, ST02; capacity in service is not established",
+        "The 25 Sep 2026 dateModified is bounded above only by the archived sitemap lastmod (13 Oct), not an archived copy of the page; the version could date from mid-September to 13 October",
+        "SP04: the Esri image (acquisition date unknown) shows the SP04 building partly under construction; which part operates and how it divides from the Phase 2 works is not established, and the 25 Sep card covers the campus, not a named phase",
+        "SP03 is a single-customer dedicated facility whose specifications come from a 2022 page version; the customer and current capacity are unknown",
+        "Store-locator and Google place points have no stated datum or accuracy; the SP03 point sits on the building's east annex edge; imagery checks are qualitative"
+      ]
+    },
+    {
+      "fragment": "us-central-tx-p4",
+      "verdict": "accept",
+      "checks": [
+        "Base screened: verified_construction_core/2026-10-26-research-seventyseventh (current_dataset re-read before and after edits)",
+        "All 21 relied-on captures (20 sources plus the EDCAUS14 recapture) rehashed: sha256 equals content_hash and .metadata.json sha256, HTTP 200, URL matches",
+        "ALE061: permits_issued.csv rows read directly: COM-BLG-PMT26-40200489 'Building No: 2', Comm New Building Permit, work type New, 12807 Donop Rd, submitted 2026-05-26, issued 2026-10-14, $113.5m and 177,731 sq ft; same-day COM-SIT/COM-FEN 'EXPRESS - Complex Plans - Nabors Bitter Blue'; no later row at the address",
+        "ALE061 version binding: resource page says 'Data last updated October 25, 2026' and its Hash edbd4b92... equals md5 of the captured CSV; issue date 12 days before review, inside 85 days",
+        "ALE061 identity: the 2020-2024 file has 'Nabors Bitterblue Shell Building No: 1', 'DPR AWS Data Center' and 'Amazon ALE 061 Nabors Bitterblue - Room 2'; TDLR TABS2026014987 (Building B, new two-storey single-tenant computer data center, owner Amazon Data Services Inc) and TABS2026015944 (Building A, existing data center) read in the captures",
+        "ALE061 permit: building permit for the data-centre building itself, issued and in effect; no appeal or expiry recorded; the start and completion forecasts are not used",
+        "ALE061 locator recomputed with pyproj 3.7.1/shapely 2.1.1: parcel 1350409 centroid (-98.3918489, 29.2931197) is inside; 48.901 acres; address point 140.2 m and permit geocode 192.5 m away, both inside; max vertex 440 m; the only Amazon-owned parcel in the 213-parcel envelope",
+        "EDCAUS14: TDLR page prints Registration Date 8/20/2026 (67 days, inside 85 days); new construction of a 729,537 sq ft data center at 6682 FM 535; byte-identical to the us-tx-p2 capture, so it maps to existing evidence 0569ad58",
+        "EDCAUS14 locator: reuse_from_project_id 739874bb (EDCAUS13) on site vcc-site-f6d844f91afe8998bb3a, geometry evidence 0ea87e73, no identity evidence to pin; it meets the reopen condition of the us-tx-p2 / fiftysecond hold",
+        "Roles: Amazon Data Services Inc owner current (TDLR, parcel); Burr Computer Environment Inc owner current (TDLR); EdgeConneX MCN Austin Property 5 LLC owner current (parcel 22339); EdgeConneX operator intended (7 Aug 2026 release); these match the baseline EDCAUS13",
+        "Distinctness: no base site, project, source-record or identity-mapping coordinate within 20 km of ALE061; no ALE061/Donop/Bitter Blue/Nabors name hits; no other queue fragment, claim or sources/*-holds.json entry for ALE061 or EDCAUS14 apart from the us-tx-p2 hold that reopens it; Microsoft SAT14 holds concern different facilities",
+        "Commercial hyperscale and colocation scope; no demonstrator or institutional HPC",
+        "Personal data: after the removal, no private individuals' names, phones or emails in changes, sources, holds, notes or geometry facts (scanned for the permit-contact, TDLR contact and RAS names)",
+        "dryrun_fragment.py ok after edits: 732 sites, 780 projects, 4,045 evidence records; originals kept in pre-verify/"
+      ],
+      "residual_risks": [
+        "City Building No. 2 and TDLR Building B are matched by address, project name and timing; their area and cost figures differ (177,731 vs 119,407 sq ft; $113.5m vs $65m) and no figure is adopted",
+        "The ALE061 campus point is the centroid of a 49-acre parcel, not Building 2's footprint; Building 1 is not added as a project",
+        "The EDCAUS14 registration owner (Burr Computer Environment Inc) is tied to EdgeConneX only by the EDC naming and the EdgeConneX-held situs parcel, as for the baseline EDCAUS13; the campus-point identify also returns an overlapping Travis CAD record (Uppingham Adams Holdings LLC)",
+        "The permits_issued.csv capture was made by q3-hyperscalers-p3 through a presigned S3 redirect; this fragment made no S3 request"
+      ]
+    },
+    {
+      "fragment": "us-dfw-p4",
+      "verdict": "accept",
+      "checks": [
+        "All 20 relied-on captures rehashed: sha256 matches both the .metadata.json and the source content_hash.",
+        "PB26-06984 capture: Issued row, status date 22 Oct 2026, work '488,770 sf Data Center - Building 1 Cold Dark Shell'. New commercial building permit from City of Fort Worth; earlier rows pre-issue; 16/22 Oct holds saw Approved 12 Oct with no Issued row. 4 days old.",
+        "PB26-06984 Issued-row legal description equals Tarrant parcel A 623-1L (EDC Fort Worth LLC). Recomputed A 623-1L centroid (-97.4919734, 32.6902831) equals the base Edged campus locator exactly; inherited from Building 2 535a2b1a, geometry evidence f5c31331.",
+        "TABS2027003693 capture: registered 10/15/2026, scope '251,815 sq. ft of Interior / Tenant Fit-Out for construction of a new Data Center on a Data Center Campus', owner Compass Datacenters DFW IIIH LLC. 11 days old. Status kept at announced.",
+        "Compass: 18 Compass-owned parcels recomputed, union centroid (-96.7960695, 32.542656), 391.32 ac, equals the base locator. The 550 N Austin 9-1-1 point is in lot 1R (Compass DFW III-I LLC), 553 m from the centroid. Locator inherited from Building 8 62a1819d.",
+        "Reused TABS evidence rows (B9 e99591ae, B10 a547ce09, Edged B1 14402503) are byte-identical to the Atlas evidence, so metadata matches the base rows.",
+        "RED2A TABS capture: scope 'NEW GROUND UP CONSTRUCTION BUILDING', no use, tenant or operator. The ZC26-15 agendas (pdftotext) name no RED2A, Google or Alamo Mission. Prior holds' reopen condition (a source naming RED2A as a data centre and its operator) is unmet, so RED2A was removed and held.",
+        "Distinctness: screened the 76th and 77th bases (sites, projects, evidence, source-records, identity-mapping), the queue fragments, claims.tsv and sources/*-holds.json. Only hits are the published us-tx-p1 Building 8 entry and the holds these items resolve; nearest other sites are 25.3 km (Edged) and 5.75 km (Compass).",
+        "Roles: owners only, scope current. EDC Fort Worth LLC from the 2026 parcel roll; Compass DFW IIIH LLC from the TABS owner field.",
+        "No third-party personal names, phones or emails in changes, sources, holds or notes.",
+        "dryrun_fragment.py: ok against base 2026-10-26-research-seventyseventh (731 sites, 780 projects, 4041 evidence)."
+      ],
+      "residual_risks": [
+        "PB26-06984: the open-data table keeps one row per address, so an earlier issue under another address cannot be fully excluded. Prior Atlas reviews on 16/22 Oct found no Issued row.",
+        "Edged permit owner of record (PMB Rolling V South Land LP) differs from the parcel owner (EDC Fort Worth LLC); identity rests on the legal description, floor area and address match.",
+        "Compass B9 is a fit-out registration (Renovation/Alteration); the filer's start and completion dates are forecasts and no physical work is asserted.",
+        "The RED2A site locator was moved to held-geometry/ and is unpublished. A reopen must re-check whether a Google Red Oak site has meanwhile been added elsewhere.",
+        "Pre-edit copies of changes.json, sources.json and holds.json are in verifier-backup/; publication tooling reads only the top-level files."
+      ]
+    },
+    {
+      "fragment": "us-phoenix-p4",
+      "verdict": "accept",
+      "checks": [
+        "Base read from site/config.json at start and end: verified_construction_core/2026-10-26-research-seventyseventh (731 sites, 778 projects, 4,032 evidence rows); 85-day window starts 2026-08-02",
+        "All 17 relied-on captures in local_data/country-research-us-phoenix-p4 rehashed with SHA-256: each equals its .metadata.json sha256 and the source content_hash; the two dataset-metadata sources match published evidence rows f60b5510/aff39664 field for field (URL, hash, retrieval, published_at)",
+        "Dataset currency read in the captures: cu25-6qwx rowsUpdatedAt 1792804433 = 2026-10-24T01:13:53Z; dzpk-hxfb dataUpdatedAt 2026-10-25T19:57:29Z; published_at values are valid lower bounds and every as_of is on or before them",
+        "CyrusOne: PMT25-13240 'CyrusOne Mesa -Shell Building 1' (shell data hall building, 243,332 SF, two storeys, issued 2025-12-30) read in the permit capture; inspection capture has 59 Approved/Partial Approval rows completed 2026-08-04..2026-10-21, including Footing 20130606 and Plumbing Rough-In 20131164 Partial Approvals completed 2026-10-16 (10 days old); no CO or final; PHX20 from PMT26-13840 title; counts per type (framing 14, plumbing rough-in 11, footing 10) match the summary",
+        "NTT: PMT24-17530 'NTT DATA CENTER PH5' (Building #3, new 225,606 sf two-storey data center, issued 2025-02-10, status Issued, no CoO) read; Electrical Rough-In 20120528 Partial Approval completed 2026-10-07 (19 days old), plus water-to-building 3 Aug, plumbing rough-in 11 Aug, above-ceiling 24 Aug, electric final 29 Sep, misc 14 Oct; zoning final cancelled 20 Oct, FA/zoning prelim rolled over 22 Oct; PH1-PH3 CoO and PH4 TCO excluded from scope",
+        "EdgeConneX: PMT25-22027 'Civil and Shell' (296,800 SF precast core and shell, issued 2026-03-05) tied to PHX12 by PMT26-08118 'EDCPHX12 - Tenant Buildout' (same 296,800 SF, same parcel 30403011X and geocode, foundations under PMT25-22027A) and PMT26-00745; 14 approvals/partial approvals in window (plumbing underground 4 Aug, 7 footings 13 Aug-10 Sep, water-to-building 20 Aug, 5 electric underground 23 Sep-20 Oct); latest 20134731 Partial Approval 2026-10-20 (6 days old)",
+        "Sources are government_record (City of Mesa open data, Maricopa County Assessor); inspection-record method matches the published AWS PHX065 / Google PH03 precedent and the reopen conditions of the thirty-first and sixty-eighth holds",
+        "Locators recomputed from raw assessor captures with pyproj 3.7.1 / shapely 2.1.1 (UTM 12N centroid): 304-04-984A (-111.6228473, 33.3557214) 66.50 ac; 304-01-006N (-111.6111701, 33.3548738) 101.69 ac; 304-03-011X (-111.6487547, 33.3560344) 93.13 ac; all match to 0.0 m, centroids inside, permit geocodes inside (374, 108, 153 m; PHX11 geocode 414 m inside 011X); geometry-facts hashes match sources.json",
+        "Locator scope campus_locator / official_tax_parcel_centroid / official_source / direct_geometry; precision, identity review and null-uncertainty reason recorded; no geocoder, city centre or zone centroid",
+        "Roles checked: owners from assessor owner of record (C1-MESA LLC, NTT Global Data Centers PH LLC, LOOP 202 & ELLIOT ROAD LLC; current); operators CyrusOne, NTT Global Data Centers Americas, EdgeConneX from permit titles/descriptions (intended)",
+        "Distinctness: keyword screen (CyrusOne Mesa, PHX20, C1-MESA, 30404984, NTT Phoenix/Mesa, 10256 E Elliot, 30401006, PMT24-17530, EdgeConneX PHX11/PHX12, EDCPHX, Hawes, 30403011, PMT25-22027) of sites/projects/evidence/source-records/identity-mapping finds no record; only hits are earlier holds (thirty-first, thirty-fourth, fifty-sixth, us-southwest-p2) that used permit issue dates and whose reopen conditions this evidence class addresses, plus this fragment's own claims",
+        "Proximity (3 km) over dataset, all queue changes/holds, claims.tsv and sources/*-holds.json: EdgeCore Mesa imported point 1.32/1.42 km (different operator/parcel), NTT campus hold point 0 m (same parcel, prior hold not admitted), AWS PHX066 hold 0.92/1.64 km, Meta permit geocode 1.64/1.71 km; no Atlas site within 2 km of EdgeConneX (Google Red Hawk 2.54 km)",
+        "Each of the three new sites carries exactly one project; other campus phases are in holds.json with reopen conditions",
+        "No third-party personal data in changes, sources, holds, notes or geometry (no e-mails, phones or private names); Mesa field selections exclude contact fields; robots.txt for citydata.mesaaz.gov allows /resource/ and /api/views/ (crawl-delay 1); assessor robots 404",
+        "dryrun_fragment.py: ok against seventyseventh (734 sites, 781 projects, 4,047 evidence rows)"
+      ],
+      "residual_risks": [
+        "Partial approvals cover inspected portions only; 'Electric Underground' and 'Miscellaneous Inspection' types have no published definitions, and some EdgeConneX rows show completion times before the scheduled time (in-window footings to 10 Sep still support the stage)",
+        "EdgeConneX operator role for PHX12 rests on the 'EDC' prefix and the EdgeConneX-titled PHX11 permits on the same parcel; the PHX12 permits do not spell out EdgeConneX and the owner LLC does not name it",
+        "NTT PH5 is near completion (electric final approved 29 Sep 2026); a certificate of occupancy may follow shortly and should be applied as a completed refresh",
+        "Parcel centroids locate 66-102 acre properties, not the individual building footprints",
+        "EdgeConneX page source carries published_at from JSON-LD dateModified (unbounded); it is context only and supports no status",
+        "An unused local capture (maricopa-cyrusone-owner-parcels-20261026.json) contains private owners' parcel data; it is not cited or redistributed but remains in local_data"
+      ]
+    }
+  ],
+  "packet_pins": {
+    "definitions/atlas-research-seventyeighth-2026-10-26.json": "b9954d9f9a08a37dcc6e5b8eb6680d37f42702815df171deac53cfa2fea92b71",
+    "sources/research-countries-2026-10-26-seventyeighth-primary-sources.json": "964796b32485ce462792cb8e3bc9b652befbe9b213ee57a538b4d7feb2ec3f10",
+    "sources/research-countries-2026-10-26-seventyeighth-actions.json": "e30b4b9a325bd0705bfddd17a17e734ac5fcc4539764aba146b86818e0cc31f2",
+    "sources/research-countries-2026-10-26-seventyeighth-holds.json": "02367f94adda5c4d9788b303875b38c96b8576f4732ea83b6178bbf150776b3e"
+  },
+  "raw_captures_redistributed": false
+}

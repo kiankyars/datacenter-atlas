@@ -1,0 +1,78 @@
+{
+  "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+  "candidate": "ODATA DC SP03 (Alameda Araguacema, 187, Tamboré, Barueri, SP, Brazil): operator-published facility coordinate on ODATA's locations map",
+  "prepared_at": "2026-10-26",
+  "decision": "Use ODATA's own store-locator coordinate for 'ODATA DC SP03' as the campus locator of the SP03 data centre. The Google Maps address place for Alameda Araguacema, 187 that ODATA's former SP03 facility page linked lies 46.3 m south-west on the same building and corroborates the point; it is not used as the locator.",
+  "source": {
+    "url": "https://odatadc.com/localidades/",
+    "file": "local_data/country-research-mx-br-p3/odata-localidades.html",
+    "sha256": "6853d64f6a3fa49901de1c3fd594f98c009b2a11dfc5efe4f9bcd8f394c02de0",
+    "retrieved_at": "2026-10-26T19:19:51.909Z",
+    "robots": "odatadc.com/robots.txt (captured 2026-10-26, local robots/robots-odatadc.com.txt) disallows only /wp-admin/, /healthcheck and /cdn-cgi/.",
+    "page_dates": "JSON-LD dateModified 2026-09-25T12:13:23+00:00 (page-sitemap lastmod for /localidades/ reads the same instant); locator only, not a status date.",
+    "extraction": "The page's store-locator element carries an HTML-escaped data-locations JSON array of 12 ODATA facilities. Entry id 8617 (title 'ODATA DC SP03', category Brazil, address 'Alameda Araguacema, 187 - Tamboré, Barueri - SP, 06460-070, Brasil') carries the coordinates string '-23.501657,-46.8248305', parsed with Python json after html.unescape and split on the comma (latitude first). The same entry with the same literal is present in the Spanish locations page captured on 22 October 2026 (local_data/country-research-mx-p1/odata-es-localidades.html, published evidence c00f9a5e-864d-5311-b6fa-a7a8d92f1bed) and again on 26 October 2026 (local odata-es-localidades.html). No geocoder or map search was used."
+  },
+  "facilities": [
+    {
+      "facility": "ODATA DC SP03",
+      "location_id": 8617,
+      "address_as_published": "Alameda Araguacema, 187 - Tamboré, Barueri - SP, 06460-070, Brasil",
+      "coordinates_literal": "-23.501657,-46.8248305",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -46.8248305,
+          -23.501657
+        ]
+      },
+      "authority_class": "official_source",
+      "scope_class": "operator_published_facility_coordinate_as_campus_locator",
+      "use_scope": "campus_locator",
+      "corroboration": {
+        "operator_linked_map_place": {
+          "file": "local_data/country-research-mx-br-p3/gmap-odata-sp03.html",
+          "sha256": "1422c94ecdb2d4817021bf526b29f5f5e5577de9efda6fe5f062ba03e54703ca",
+          "url": "https://www.google.com.br/maps/place/Alameda+Araguacema,+187+-+Tambor%C3%A9,+Barueri+-+SP,+06460-070/@-23.5019706,-46.8273126,17z/data=!3m1!4b1!4m5!3m4!1s0x94cefe01d4b8f643:0x25ea06315439d108!8m2!3d-23.5019755!4d-46.8251239",
+          "linked_from": "local_data/country-research-mx-br-p3/wayback-20260713-odata-dc-sp03.html ('Acesse o mapa' link on ODATA's former SP03 facility page, Internet Archive copy of 13 July 2026)",
+          "place_coordinates": "!3d-23.5019755 !4d-46.8251239, echoed in the place payload as [null,null,-23.5019755,-46.8251239]",
+          "feature_id": "0x94cefe01d4b8f643:0x25ea06315439d108 (address place, not a named facility)",
+          "viewport_not_used": "@-23.5019706,-46.8273126 (17z) viewport centre about 256 m west (pyproj Geod WGS84, recomputed by the verifier)",
+          "distance_to_locator_m": 46.3,
+          "azimuth_from_locator_deg": -139.6
+        }
+      },
+      "imagery_check": {
+        "file": "local_data/country-research-mx-br-p3/esri-odata-sp03-550m.png",
+        "sha256": "ee10fabae323876cc8412c211aba599ac9dadd0eec817e417a5311007a08afd5",
+        "service": "Esri World Imagery MapServer export (server.arcgisonline.com; robots.txt allows all), acquisition date not stated",
+        "bbox_wgs84": [
+          -46.827556637041965,
+          -23.504157000000003,
+          -46.82210436295803,
+          -23.499157
+        ],
+        "size_px": [
+          800,
+          800
+        ],
+        "point_px": [
+          400,
+          400
+        ],
+        "map_place_px": [
+          357,
+          451
+        ],
+        "observation": "The locator falls on the light-roofed annex along the east side of a grey-roofed industrial building of roughly 55-65 m by 100 m (annex included) (about 6,000-6,600 m2 by eye, close to the 6,220 m2 built area on ODATA's former SP03 page) carrying several rows of rooftop plant units, with a light-roofed annex along its east side and a plant enclosure at its south end; the operator-linked address place falls on the south-western part of the same building. Consistent with a mid-sized data-centre building in the Tamboré industrial district; the building is not labelled in the imagery and this is visual plausibility only, not a measured accuracy."
+      }
+    }
+  ],
+  "consistency_checks": {
+    "coordinate_order": "store-locator string is 'latitude,longitude'; stored as GeoJSON [lon, lat]",
+    "datum": "not stated by ODATA (web map; WGS 84 assumed by the map service, not asserted by the operator)",
+    "distance_script": "scratchpad mx-br-p3/geod.py (pyproj 3.7.1 Geod WGS84, run with uv --no-project)",
+    "store_locator_cross_check": "ODATA's SP04 store-locator entry (id 8616, '-23.4832219,-46.77600349999999') equals the Atlas's existing operator-pin locator for the SP04 site (0.0 m), which supports reading these store-locator coordinates as operator-selected facility points.",
+    "geocoder_used": false,
+    "official_address_point_check": "not performed: no Brazilian official address-point or parcel service was used"
+  }
+}

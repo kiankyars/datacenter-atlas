@@ -1,0 +1,91 @@
+{
+  "candidate_id": "aws-ale061-san-antonio-donop-campus",
+  "decision": "Selected the centroid of Bexar County parcel 1350409 (geo ID 16623-007-0010; NCB 16623 (SA South) Block 7 Lot 1; owner Amazon Data Services Inc, mailed to PO Box 80416, Seattle WA 98108; situs 12807 Donop Rd, San Antonio 78223; 48.901 geodesic acres) as the campus locator for the AWS ALE061 / Bitter Blue data-centre property. The TxGIO 9-1-1 address point for 12807 Donop Rd and both City of San Antonio permit geocodes used for this address fall inside it. It locates the Amazon property that holds existing Building 1/A and the permitted Building 2/B, not the footprint of Building 2.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -98.3918489,
+      29.2931197
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_tax_parcel_centroid",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-us-central-tx-p4/txgio-parcel-aws-ale061.json",
+  "source_sha256": "849dfd34fdaf2f7a734051987f511d2ac8a133e6fad605c10611239882c17f3d",
+  "source_url": "https://feature.geographic.texas.gov/arcgis/rest/services/Parcels/stratmap_land_parcels_48_most_recent/MapServer/identify?geometry=%7B%22points%22%3A%5B%5B-98.390247%2C29.292098%5D%2C%5B-98.38956%2C29.291805%5D%5D%2C%22spatialReference%22%3A%7B%22wkid%22%3A4326%7D%7D&geometryType=esriGeometryMultipoint&sr=4326&layers=all%3A0&tolerance=0&mapExtent=-98.42%2C29.27%2C-98.36%2C29.31&imageDisplay=1000%2C1000%2C96&returnGeometry=true&f=json",
+  "retrieved_at": "2026-10-26T19:22:53.800Z",
+  "selected_parcels": [
+    {
+      "PROP_ID": "1350409",
+      "GEO_ID": "16623-007-0010",
+      "OWNER_NAME": "AMAZON DATA SERVICES INC",
+      "MAIL_ADDR": "PO BOX 80416, SEATTLE, WA 98108",
+      "SITUS_ADDR": "12807 DONOP RD SAN ANTONIO, TX 78223",
+      "LEGAL_DESC": "NCB 16623 (SA SOUTH), BLOCK 7 LOT 1",
+      "LEGAL_AREA": "0 (not stated)",
+      "YEAR_BUILT": "Null",
+      "SOURCE": "BEXAR APPRAISAL DISTRICT",
+      "TAX_YEAR": "2026",
+      "DATE_ACQ": "46204 (Excel serial, 2026-07-01)",
+      "rings": 1,
+      "vertices": 6,
+      "geodesic_acres": 48.901,
+      "centroid": [
+        -98.3918489,
+        29.2931197
+      ],
+      "centroid_inside": true
+    }
+  ],
+  "computed": {
+    "crs": "EPSG:4326 as served (wkid 4326); areas and distances on the WGS84 ellipsoid (pyproj Geod)",
+    "parcel": {
+      "geodesic_acres": 48.901,
+      "centroid": [
+        -98.3918489,
+        29.2931197
+      ],
+      "centroid_inside": true,
+      "bounds_lon_lat": [
+        -98.394523,
+        29.290222,
+        -98.388347,
+        29.296419
+      ],
+      "extent_m": {
+        "east_west": 600,
+        "north_south": 687
+      },
+      "max_vertex_distance_from_centroid_m": 440
+    },
+    "points": {
+      "12807 DONOP RD (TxGIO address point, Bexar Metro 911)": {
+        "lon_lat": [
+          -98.39064666617948,
+          29.292419927008723
+        ],
+        "inside_parcel": true,
+        "distance_to_centroid_m": 140.2
+      },
+      "City of San Antonio permit geocode for 12807 DONOP RD in 2025-2026 rows (incl. COM-BLG-PMT26-40200489)": {
+        "lon_lat": [
+          -98.390247,
+          29.292098
+        ],
+        "inside_parcel": true,
+        "distance_to_centroid_m": 192.5
+      },
+      "City of San Antonio permit geocode in the 2021 'Nabors Bitterblue Building No: 1; Unit No: 1' finish-out row": {
+        "lon_lat": [
+          -98.38956,
+          29.291805
+        ],
+        "inside_parcel": true,
+        "distance_to_centroid_m": 265.9
+      }
+    },
+    "neighbours": "Envelope identify (lon -98.400 to -98.380, lat 29.284 to 29.300; 213 parcels): 1350409 is the only parcel owned by an Amazon-named entity. It adjoins parcel 157629 (2020 FI Nabors LLC, CB 4007-6 P-310; 24.228 acres; a 0.007-acre sliver overlaps in the snapshot) and 1197894 (a Donop Rd lot of another owner); 2020 FI Nabors LLC also holds the 128.8-acre parcel 157568 to the north. The Nabors parcels are not part of the locator."
+  },
+  "verification_script": "scratchpad ctx4 geom_ale061.py and parcel_overlap.py (pyproj 3.7.1, shapely 2.1.1), run with uv run --no-project"
+}

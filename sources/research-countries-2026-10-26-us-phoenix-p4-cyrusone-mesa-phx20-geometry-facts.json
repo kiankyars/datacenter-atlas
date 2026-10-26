@@ -1,0 +1,79 @@
+{
+  "candidate_id": "cyrusone-mesa-phx20-campus",
+  "decision": "Selected the centroid of Maricopa County Assessor parcel 304-04-984A (owner of record C1-MESA LLC, situs 3255 S 96th St, Mesa), the parcel cited by every City of Mesa permit for the CyrusOne Mesa / PHX20 development and the parcel that contains the city's permit geocode for 3255 S 96th St, as the campus locator.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -111.6228473,
+      33.3557214
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_tax_parcel_centroid",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-us-phoenix-p4/maricopa-parcel-at-cyrusone-permit-point-20261026.json",
+  "source_sha256": "ed9e0f6e898fc7fadb002b3ac57f77e72e0cbd3ab7683482897e67adf0980bd2",
+  "source_url": "https://gis.mcassessor.maricopa.gov/arcgis/rest/services/Parcels/MapServer/0/query?geometry=-111.626844%2C33.356079&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=APN,APN_DASH,OWNER_NAME,MAIL_CITY,MAIL_STATE,PHYSICAL_ADDRESS,SUBNAME,LAND_SIZE,DEED_NUMBER,DEED_DATE,PUC,JURISDICTION,STR&returnGeometry=true&outSR=4326&f=json",
+  "retrieved_at": "2026-10-26T19:38:42.698Z",
+  "selected_properties": {
+    "APN": "30404984A",
+    "APN_DASH": "304-04-984A",
+    "OWNER_NAME": "C1-MESA LLC",
+    "MAIL_CITY_STATE": "DALLAS, TX",
+    "PHYSICAL_ADDRESS": "3255 S 96TH ST MESA 85212",
+    "SUBNAME": "SUNBELT LAND HOLDINGS LP MLD",
+    "LAND_SIZE_sq_ft": 2896785,
+    "LAND_SIZE_acres_computed": 66.501,
+    "DEED_NUMBER": "20180370759",
+    "DEED_DATE": "2018-05-15",
+    "PUC": "0022",
+    "JURISDICTION": "MESA",
+    "STR": "10 1S 7E",
+    "spatial_reference": "outSR=4326 (WGS84) as returned by the assessor's ArcGIS MapServer"
+  },
+  "computed": {
+    "parts": 1,
+    "ring_count": 1,
+    "geodesic_acres": 66.496,
+    "geodesic_area_m2": 269102,
+    "centroid_lon_lat": [
+      -111.6228473,
+      33.3557214
+    ],
+    "centroid_inside_polygon": true,
+    "min_distance_centroid_to_boundary_m": 175.7,
+    "extent_m": [
+      770.5,
+      361.3
+    ],
+    "bounds_lon_lat": [
+      -111.627017,
+      33.354119,
+      -111.618722,
+      33.357337
+    ],
+    "permit_geocode_lon_lat": [
+      -111.626844,
+      33.356079
+    ],
+    "permit_geocode_inside_polygon": true,
+    "permit_geocode_to_centroid_m": 374.1,
+    "method": "Single-ring polygon returned by the assessor service in WGS84; centroid computed in EPSG:32612 (WGS 84 / UTM zone 12N) and returned to WGS84; geodesic area on the WGS84 ellipsoid",
+    "tools": "pyproj 3.7.1, shapely 2.1.1"
+  },
+  "identity_bridge": [
+    "City of Mesa Building Permits (dzpk-hxfb): every permit at 3255 S 96TH ST cites parcel 30404984A (one trailer permit cites 30404984) and carries the city geocode (-111.626844, 33.356079); the titles are 'CyrusOne Mesa -Shell Building 1' (PMT25-13240), 'CyrusOne Mesa - Shell Build Out' (PMT25-22845), 'PHASE 1 IMPROVEMENT PLANS FOR CYRUSONE - MESA ERTC - Civil Improvements' (PMT25-11012), 'TEMP CONSTRUCTION TRAILER - CYRUSONE MESA - SHELL BUILDING 1' (PMT26-01442), 'TEMP CONSTRUCTION TRAILERS - CYRUSONE MESA' (PMT26-03863), 'CyrusOne Mesa Bldg 1 - PHX20' (PMT26-13840) and 'EXPEDITE- CyrusOne Mesa Building 1 Phase 2' (PMT26-17452).",
+    "A point-in-polygon query of the assessor parcel layer at that geocode returns only parcel 304-04-984A, whose situs address is 3255 S 96TH ST, MESA 85212, matching the permit address exactly.",
+    "The assessor names C1-MESA LLC (Dallas, Texas mailing address) as owner of record (deed 20180370759, 15 May 2018). An owner query for 'C1-%', 'CYRUSONE%' and 'CYRUS ONE%' returns only this parcel and a CyrusOne TRS Inc parcel in Chandler (303-36-270, also with a Dallas mailing address); the C1 = CyrusOne link is inferred from the name, the shared Dallas mailing city and the CyrusOne-titled permits on the parcel."
+  ],
+  "unresolved": [
+    "The position of Shell Building 1 within the 66.5-acre parcel is not published; the centroid locates the CyrusOne property, not the building footprint or the extent of the works.",
+    "The assessor publishes no positional accuracy for parcel polygons."
+  ],
+  "nearby_records": "Within 2 km of the centroid: the imported EdgeCore Mesa campus point (imported:semiconductor-atlas:edgecore-mesa, approximate site locator at 3856 S Everton Terr; 1.32 km), the NTT Global Data Centers Phoenix (Mesa) campus proposed in the same fragment (parcel 304-01-006N centroid, 1.09 km; a separate parcel, owner and operator), the held AWS PHX066 parcel at 10437 E Elliot Rd (1.64 km) and the us-southwest-p2 NTT claim point (1.01 km). Meta's 3841 S Ellsworth Rd permit geocode is about 1.5 km south-west. None names CyrusOne, 3255 S 96th St or parcel 304-04-984A.",
+  "consistency_checks": {
+    "datum": "WGS84 output from the assessor's ArcGIS service (outSR=4326)",
+    "geocoder_used": false,
+    "map_viewport_or_city_centre_used": false
+  }
+}
