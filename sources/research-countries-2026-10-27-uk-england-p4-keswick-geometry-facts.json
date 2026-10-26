@@ -1,0 +1,47 @@
+{
+  "candidate_id": "keswick-ipswich-road-data-centre-south-norfolk",
+  "decision": "Selected the grid reference that South Norfolk Council publishes for planning application 2026/2957 (Land West Of Ipswich Road, Keswick, Norfolk; construction of a data centre) in its weekly list of applications validated during the week ending 9 October 2026 (Grid Ref 621669 304466) as the project locator. It was converted from British National Grid to WGS84 with pyproj 3.7.1. It is the council's map point for the application site, not a red-line boundary, building footprint or surveyed position.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      1.2712798,
+      52.5927586
+    ]
+  },
+  "authority_class": "compiled_reference",
+  "derivation": "coordinate_transform",
+  "scope_class": "council_published_planning_application_site_grid_reference",
+  "use_scope": "project_locator",
+  "source_file": "local_data/country-research-uk-england-p4/snb-weekly-list-of-applications-received-during-week-ending-9-october-2026.pdf",
+  "source_sha256": "2ffb31b594009db45f69414a7b19240a18cd514023a78c337205c9ce1159bff0",
+  "source_url": "https://www.southnorfolkandbroadland.gov.uk/asset-library/weekly-list-of-applications-received-during-week-ending-9-october-2026.pdf",
+  "retrieved_at": "2026-10-26T23:12:25.335Z",
+  "selected_properties": {
+    "document": "South Norfolk Council, 'Weekly List - Applications Validated During the Week Ending 9 October 2026' (14-page PDF; document properties: created and modified 12 October 2026)",
+    "application_number": "2026/2957",
+    "application_type": "Full",
+    "parish": "Keswick And Intwood",
+    "grid_ref": "621669 304466",
+    "easting": 621669,
+    "northing": 304466,
+    "location": "Land West Of Ipswich Road Keswick Norfolk",
+    "proposal": "Construction of a data centre (Use Class B8) including ancillary office accommodation, associated infrastructure, substations, backup generators, access, parking, landscaping, sustainable drainage systems and associated works."
+  },
+  "transform": {
+    "source_crs": "EPSG:27700 (six-figure easting and northing in metres, as the council's Idox weekly lists give for every application)",
+    "target_crs": "EPSG:4326",
+    "tool": "pyproj 3.7.1 Transformer.from_crs('EPSG:27700', 'EPSG:4326', always_xy=True)",
+    "result_lat_lon": [
+      52.5927586,
+      1.2712798
+    ]
+  },
+  "consistency_checks": {
+    "statutory_notice": "South Norfolk Council's Article 15 notice dated 15 October 2026 (Eastern Daily Press, Public Notice Portal) lists the same application, 2026/2957, at 'KESWICK AND INTWOOD, Land West of, Ipswich Road, Keswick' with the same proposal, as a major development.",
+    "imagery": "Esri World Imagery z16 tiles (x 32998-33000, y 21470-21472; combined sha256 of the nine tile digests 08bcd3b574a3ca8f7bbd436d10bb7b35d5cab415e2b642839bb9b553a766b737) viewed locally and not redistributed: the point falls inside an open arable field about 230 m west of the north-south main road (Ipswich Road, A140) and about 530 m north-west of its grade-separated junction with the dual carriageway (A47) beside a park-and-ride car park, i.e. on undeveloped land west of Ipswich Road in Keswick parish, as the application describes. The imagery date is unknown and is not used as status evidence.",
+    "other_records": "The council's weekly lists give a distinct grid reference for every application (e.g. 2026/2900 at Hingham, 602364 302221), so the value is application-specific, not a parish or district default.",
+    "geocoder_used": false,
+    "postcode_centroid_used": false
+  },
+  "uncertainty": "The weekly list does not say how the council placed the point or which part of the site it marks, and the application's red-line boundary could not be read (the council's online planning register host did not respond). The proposed data centre with substations and parking is likely to extend a few hundred metres around the point within the fields west of Ipswich Road."
+}

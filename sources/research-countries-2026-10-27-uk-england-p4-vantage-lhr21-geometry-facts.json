@@ -1,0 +1,43 @@
+{
+  "candidate_id": "vantage-lhr21-north-acton-road-park-royal",
+  "decision": "Selected the site location that the Environment Agency's installations register publishes for permit EPR/VP3225SC (holder VDC LHR21 Limited, 'Vantage LHR21', 37-39 North Acton Road, London NW10 6PF): latitude 51.533022, longitude -0.259746 (grid reference TQ2080483004), copied without transformation, as the project locator. It is the regulator's site point for the permitted installation, not a building outline or surveyed position.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -0.259746,
+      51.533022
+    ]
+  },
+  "authority_class": "official_source",
+  "derivation": "direct_geometry",
+  "scope_class": "environmental_permit_register_site_location",
+  "use_scope": "project_locator",
+  "source_file": "local_data/country-research-uk-england-p4/ea-ii/reg-EPR-VP3225SC.json",
+  "source_sha256": "cd24a0537b3f5d6a352f56adec3a5a7206c93212d31545ce2cb5d1da5fd2a266",
+  "source_url": "https://environment.data.gov.uk/public-register/industrial-installations/registration/EPR-VP3225SC.json",
+  "retrieved_at": "2026-10-26T23:33:04.132Z",
+  "selected_properties": {
+    "registration": "EPR/VP3225SC, status Effective, registration date 2025-07-09",
+    "holder": "VDC LHR21 LIMITED",
+    "activities": "Combustion; Any Fuel =>50MW - 1.1 A(1) a); Medium Combustion Plant collectively =>50MW; Directly Associated Activity",
+    "premises": "37-39",
+    "address": "37-39, Vantage LHR21, NORTH ACTON ROAD, LONDON, EALING, NW10 6PF",
+    "local_authority": "Ealing",
+    "easting": 520804,
+    "northing": 183004,
+    "grid_reference": "TQ2080483004",
+    "lat": 51.533022,
+    "long": -0.259746
+  },
+  "transform": {
+    "note": "No transform is applied to the published latitude and longitude. Check only: pyproj 3.7.1 EPSG:27700 -> EPSG:4326 of the register's easting and northing gives 51.5330272, -0.2597529, 0.7 m from the published point."
+  },
+  "consistency_checks": {
+    "postcode_centroid": "The ONS centroid of NW10 6PF (postcodes.io: E 520804, N 182994; 51.532939, -0.259733) lies 10 m south of the register point; the London Planning Datahub gives the same E 520804, N 182994 as its UPRN 12117226 site point for the OPDC records at 37-39 North Acton Road. The register point therefore sits close to the postcode point rather than being an independent survey; this is disclosed, and the centroid itself is not used.",
+    "planning_polygon": "The Datahub polygon for outline permission 20/0122/OUTOPDC (7 vertices, 0.08 ha, centroid E 520797.85 N 182988.41) is much smaller than the one-acre site Vantage describes and is treated as partial; the register point lies 2.9 m outside it and 16.8 m from its centroid (shapely 2.1.1).",
+    "imagery": "Esri World Imagery z17 tiles (x 65440-65444, y 43568-43574; sha256 of the sorted per-tile shasum lines a008e47f0f3f70e6480152b85e664221b08b7e5678110ae74f20b58d8021cf84) viewed locally and not redistributed: the point falls on the roof of a dark multi-storey building with extensive roof plant on the east side of North Acton Road, immediately north of a wooded open space, consistent with the six-storey LHR2 data centre Vantage describes. The imagery date is unknown and is not used as status evidence.",
+    "other_sites": "The point is 735 m north-west of the register point for Vantage's LHR11/12 permit at Chandos Road (a separate campus), 255 m from Colt's Powergate permit point and 301 m from Equinix's Powergate permit point (both on Volt Avenue), 404 m from the Atlas Kao Data Park Royal locator and 879 m from the Atlas Pure DC / SEGRO LON02 locator.",
+    "geocoder_used": false
+  },
+  "uncertainty": "The register publishes no positional accuracy, and its point is 10 m from the postcode centroid; the six-storey data centre occupies about half a hectare around the point."
+}

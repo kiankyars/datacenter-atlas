@@ -1,0 +1,45 @@
+{
+  "reviewer": "root",
+  "reviewed_at": "2026-10-27",
+  "decision": "accepted_for_integration",
+  "update": "verified_construction_core/2026-10-27-research-eightyseventh",
+  "base_dataset": "verified_construction_core/2026-10-27-research-eightysixth",
+  "process": "continuous: one researcher per beat, one adversarial verifier per fragment",
+  "fragments": [
+    {
+      "fragment": "uk-england-p4",
+      "verdict": "accept",
+      "checks": [
+        "base re-read from site/config.json: verified_construction_core/2026-10-27-research-eightysixth; date +%F 2026-10-27, window starts 2026-08-03",
+        "all 13 relied-on captures rehashed: file sha256 = .metadata.json sha256 = source content_hash; metadata URLs match source_url; 3 geometry facts files match geometry_facts_sha256",
+        "Keswick: PNP notice text read; 2026/2957 'Construction of a data centre (Use Class B8)... Major development', Published 15/10/26 EDP, notice Dated 15th October 2026; government_record (PNP precedent in evidence.csv as announcement)",
+        "Keswick locator: weekly list w/e 9 Oct 2026 (pdftotext) gives Grid Ref 621669 304466 for 2026/2957; pyproj 3.7.1 EPSG:27700->4326 reproduces [1.2712798, 52.5927586] (0.003 m); grid ref unique to the application; imagery mosaic shows arable field west of A140 north of the A47/Harford P&R junction",
+        "Keswick successor: decisions list w/e 23 Oct 2026 has no 2026/2957 or data-centre entry",
+        "LHR21: CAR VP3225SC/0605191 read (pdftotext): Date 11/08/2026, issued 17/08/2026, 'for the commissioning of the site which was still under construction', engine ready for craning, empty bays, fuel pipework under construction; Q1 2027 commissioning not used as a stage",
+        "LHR11/12: CAR YP3329SB/0605385 read: 'Site inspection - still under construction', 11/08/2026, issued 17/08/2026, under CDM control, one building near complete, second not started",
+        "EA register JSON read: VP3225SC lat 51.533022 long -0.259746 (E520804 N183004), YP3329SB lat 51.527115 long -0.254983 (E521150 N182355); pyproj transforms land 0.75 m and 0.78 m from published points",
+        "shapely 2.1.1: YP3329SB point inside 23/0176/NMAOPDC polygon (2.024 ha), 47.8 m inside, 29.2 m from centroid; LHR21-LHR11 735.6 m apart",
+        "imagery mosaics: LHR21 point on dark multi-storey building east of North Acton Road; LHR11/12 point in construction area beside a near-complete tall building",
+        "roles: VDC LHR21/LHR11 Limited operator/current (CAR permit holder), Vantage Data Centers operator/intended (London I/II pages 'under development'/'once fully built'); scopes current/intended valid",
+        "distinctness: no GB Vantage, North Acton Road, Chandos Road, Keswick, Ipswich Road, permit or postcode match in eightysixth sites/projects/evidence/source-records/identity-mapping; nearest sites Kao Park Royal 404/782 m and Pure DC LON02 879/1585 m (different operators/addresses); Keswick nearest 120 km",
+        "distinctness: no other queue fragment adds these keys or any point within 2 km; matching holds (thirty-first, thirty-fourth, fifty-third, fifty-eighth, uk-south-p2, uk-regions-p2) are holds/leads lacking in-window status or locator, resolved here",
+        "privacy: no personal names, initials, emails or phones in changes, sources, holds, notes or geometry",
+        "dryrun_fragment.py ok: 770 sites, 823 projects on base eightysixth"
+      ],
+      "residual_risks": [
+        "LHR21: EA permit boundary excludes the data hall and Vantage said in Sept 2025 LHR2 would open that month; part of the data hall may already be in service, so under_construction reflects the regulator's site statement, not a finding of non-operation",
+        "LHR11/12: project scopes two buildings while only one was under construction (near complete) and the second not started; the CAR's 'LHR 10'/'LHR11' building labels are inconsistent with the permit name",
+        "EA register points carry no stated accuracy; LHR21 point lies 10 m from the NW10 6PF postcode centroid (imagery places it on the building)",
+        "Keswick: no applicant/operator named and red-line boundary not read; council grid reference placement method unknown",
+        "Imagery dates unknown; used only for locator plausibility, not status"
+      ]
+    }
+  ],
+  "packet_pins": {
+    "definitions/atlas-research-eightyseventh-2026-10-27.json": "96ad7a19d7c51cca497f5684ca9c89e96e5518f94d442933136b47f97ee3672d",
+    "sources/research-countries-2026-10-27-eightyseventh-primary-sources.json": "266c49d7a4b53449632c7ef74f213cb266db235585eeb63c64541086e6dd772f",
+    "sources/research-countries-2026-10-27-eightyseventh-actions.json": "9051142f8dc0e8423b82fa9ebc9a41b7083579be059d461159b9f304719e1b61",
+    "sources/research-countries-2026-10-27-eightyseventh-holds.json": "447eff4eda73ad2cf505f68ac53a00c1f5b0fe076bb508d9dddb53b5ad65b0d4"
+  },
+  "raw_captures_redistributed": false
+}

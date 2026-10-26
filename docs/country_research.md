@@ -401,6 +401,8 @@ From 22 October 2026 sites are added continuously: researchers each work a narro
 
 `verified_construction_core/2026-10-27-research-eightysixth`: **767 sites and 820 projects in 63 countries**. Adds Huawei Cloud Horinger Yungu West Zone Phase 1 — second-batch works (2# data-centre machine-room building and 2# generator platform); Agricultural Bank of China Horinger Data Center — newly commissioned data-centre operations; China Mobile Hohhot Data Center — B02 machine building operations.
 
+`verified_construction_core/2026-10-27-research-eightyseventh`: **770 sites and 823 projects in 63 countries**. Adds Keswick data centre, Ipswich Road - proposed data centre with substations and backup generators (South Norfolk 2026/2957); Vantage LHR21 (London II) - six-storey data centre under construction and commissioning (EA permit EPR/VP3225SC); Vantage LHR11/12 (London I) - two-building data centre campus under construction (EA permit EPR/YP3329SB).
+
 ## 25 October 2026
 
 `verified_construction_core/2026-10-25-research-sixtysecond` adds three commercial sites and
