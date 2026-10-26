@@ -1,0 +1,49 @@
+{
+  "reviewer": "root",
+  "reviewed_at": "2026-10-26",
+  "decision": "accepted_for_integration",
+  "update": "verified_construction_core/2026-10-26-research-seventythird",
+  "base_dataset": "verified_construction_core/2026-10-26-research-seventysecond",
+  "process": "continuous: one researcher per beat, one adversarial verifier per fragment",
+  "fragments": [
+    {
+      "fragment": "cn-nm-nx-gs-p3",
+      "verdict": "accept",
+      "checks": [
+        "All 13 sources rehashed: raw captures match content_hash and .metadata.json sha256; HTTP 200, effective_url = source_url, no credentials",
+        "CSCEC capture byte-identical to baseline evidence dc72c654 (same hash, retrieved_at, title, kind, attribution)",
+        "CSCEC 2026-10-24 (发布日期) read: Envision Ulanqab Phase 1 by CSCEC Third Bureau 目前处于施工收尾阶段, remaining finishing and commissioning work; company_disclosure, 2 days old",
+        "BUCG 2026-10-13 read: 京蒙绿色算力产业园D区项目正全力冲刺竣工交付目标, started March 2025, 530 mu; company_disclosure (builder's own site), 13 days old",
+        "Horinger approvals bureau 2026-09-15 (PubDate meta and 发布日期) read: China Telecom Inner Mongolia Information Park recovers data-centre waste heat via water-source heat pumps; government_record, 41 days old; matches published fiftysixth-hold reopen condition",
+        "Envision EIA PDF read with pdftotext/pdftoppm: centre E113°14'54.505\" N40°56'55.632\", inside Phase 1 plant north side; filing notice (p.92) code 2501-150982-89-04-953605 is the Phase 1 project filing; corner centroid 0.07 m from centre, area 7,859 m2 vs 7,843",
+        "Envision fig.4 graticule read independently: substation box at ~113°14'54.2\" 40°56'55.4\"; road junction agrees with Esri WGS84 export within ~6 m; GCJ-02 alternative 621 m WSW",
+        "Jing-Meng EIA PDF read: centre N40°59'21.135\" E113°19'40.937\" inside Phase 2 area (north D9 power centre, west D9 compute centre, east open land), builder 中金(乌兰察布)数据科技有限公司; Phase 2 under construction; figs 3, 4, 13 rendered",
+        "Jing-Meng point in Esri falls on a compound at NE corner of the new block east of the road bounding the CIDC A-C base; GCJ-02 alternative 634 m WSW lands inside the A-C base, contradicting the report",
+        "Existing CIDC base outline (china63 expansion EIA map) stops at the road west of the D-zone block; different project company (中金数据（乌兰察布）有限公司); separate-site decision accepted (marker 1,243 m away)",
+        "China Telecom EIA docx read from word/document.xml: centre N40°32'15.394\" E111°49'51.772\", B-zone plot SE corner, inside park plant area and land red line; builder 中国电信股份有限公司云计算内蒙古分公司",
+        "China Telecom fig.3 (media/image61.jpeg) graticule ticks re-detected by pixel scan; red symbol centroid (762.8, 637.8) reads 0.9 m E / 2.4 m S of printed centre; graticule agrees with Esri at plaza; GCJ-02 alternative 587 m WSW outside park",
+        "DMS-to-decimal conversions recomputed with uv pyproj 3.7.1/shapely 2.1.1; all three match changes.json",
+        "Approval decisions 内环表〔2026〕15号, 〔2025〕281号, 〔2026〕94号 read; dates and addressees match",
+        "Distinctness rescreened against current -seventysecond (713 sites): no Envision/Jing-Meng/Telecom Inner Mongolia records; nearest records within 2 km are distinct operators/blocks; 5 new seventysecond sites are in Europe",
+        "Queue fragments, claims.tsv and sources/*holds*.json (incl. seventysecond-holds) screened: no competing claim or record within 3 km; related holds are the ones this fragment resolves",
+        "One project per new site; roles owner/current from EIA builders; no personal names, phones or emails in changes, sources, holds, notes or geometry facts",
+        "dryrun_fragment.py ok against -seventysecond: 716 sites, 762 projects"
+      ],
+      "residual_risks": [
+        "Envision's 6 Aug 2026 'Galaxy' base 正式投产 release (single 120,000 m2 AI building) resembles Phase 1's filed scope (one compute centre, 130,000 m2); if it is the same park, Phase 1 may be partly in service despite CSCEC's later finishing-stage report",
+        "Envision Phase 1 went from 'not started' (EIA, Dec 2025) to finishing (Oct 2026); Esri imagery predates construction so no imagery confirmation of works at the point",
+        "Jing-Meng D-zone separate-site decision is a judgement (BUCG calls it the base's extension area); Jing-Meng point has only qualitative datum checks",
+        "China Telecom operational status rests on a present-tense waste-heat statement, not an explicit in-operation phrase; owner role inferred from the in-park substation builder (2013 land permit names a China Telecom Group department)",
+        "No EIA states a datum or positional accuracy; Esri imagery dates unknown",
+        "Base dataset advanced to -seventysecond during verification; notes.md counts (711/757) refer to -seventyfirst"
+      ]
+    }
+  ],
+  "packet_pins": {
+    "definitions/atlas-research-seventythird-2026-10-26.json": "f3c3755dda774cfb10f81f9d198280cf534d6ce7ad03a0899be7945227ed7c1c",
+    "sources/research-countries-2026-10-26-seventythird-primary-sources.json": "e6fbfeb2348e23876b2fe35c43edf64e1e38d80bd99ee87e7ce7578bd04dbdc8",
+    "sources/research-countries-2026-10-26-seventythird-actions.json": "6adf00631bf481aed7c19f166669a417fda18305a1bea345a42bd90f06fd5787",
+    "sources/research-countries-2026-10-26-seventythird-holds.json": "2e1ec26c4871ebea80251992991b630ebb810c70b6a70dc842f54a2dce3f17d5"
+  },
+  "raw_captures_redistributed": false
+}

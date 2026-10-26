@@ -1,0 +1,51 @@
+{
+  "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+  "researched_at": "2026-10-26T00:00:00+00:00",
+  "candidate": "CIDC Jing-Meng Green Computing Industrial Park, D-zone (中金数据京蒙绿色算力产业园D区; Jing-Meng Phase 2 project area 京蒙绿色算力产业园二期项目), Bayin Industrial Park, Chahar High-Tech Zone, Chahar Right Front Banner, Ulanqab, Inner Mongolia",
+  "method": "The selected point is the station-centre coordinate of the Jing-Meng Phase 2 220 kV substation, printed in geographic degrees-minutes-seconds in the environmental impact report form that the Inner Mongolia Department of Ecology and Environment published with its approval result of 16 October 2025 (approval 内环表〔2025〕281号, dated 9 October 2025). It was transcribed arithmetically to decimal degrees with no datum transformation. The report prints no corner table and its figures carry no graticule, so the frame check is qualitative: the report's own Google Earth surroundings figure (附图13), its neighbour statements and its aerial photograph were compared with an independent Esri World Imagery EPSG:4326 export.",
+  "selected_points": {
+    "cidc_jingmeng_d_zone_campus": {
+      "source_url": "https://sthjt.nmg.gov.cn/bsfw/ywgs_8218/fslywblqk/202510/P020251016661122636591.pdf",
+      "local_capture": "local_data/country-research-cn-nm-nx-gs-p3/nmg-cidc-jingmeng-p2-220kv-eia-1016-long.pdf",
+      "source_sha256": "c65788f52cf28143d785637fd6d69772fc86a38b6c7ef01fffd0c7ddc712ef0a",
+      "printed": "地理坐标（N 40 度 59 分 21.135 秒，E 113 度 19 分 40.937 秒） (project table, first page of section 1); repeated in section 2: 站址中心坐标为 N40°59′21.135″、E113°19′40.937″",
+      "lon_lat": [
+        113.328038056,
+        40.989204167
+      ],
+      "on_campus_statement": "Section 2 places the substation inside the Jing-Meng Green Computing Industrial Park Phase 2 project area (京蒙绿色算力产业园二期项目区内) in Bayin Industrial Park, Chahar High-Tech Zone, with the Phase 2 D9 power centre to its north, a scrap store to its south, the D9 compute centre to its west and open land to its east; the station's construction area and temporary land lie inside the Phase 2 plant. Appended figure 4 (本项目与京蒙二期位置关系图) draws the substation in the north-east of the Phase 2 outline, east of the Phase 1 area (京蒙绿色算力产业园一期项目)."
+    }
+  },
+  "frame_check": {
+    "esri_export": {
+      "request_url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=113.306,40.980,113.338,40.998&bboxSR=4326&imageSR=4326&size=1600,900&format=jpg&f=image",
+      "extent_check_url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=113.306,40.980,113.338,40.998&bboxSR=4326&imageSR=4326&size=1600,900&format=jpg&f=json",
+      "returned_extent": {"xmin": 113.306, "ymin": 40.98, "xmax": 113.338, "ymax": 40.998, "wkid": 4326},
+      "image_size": [1600, 900],
+      "image_sha256": "7ab3a98e5304c89fae37cf637b4447ce8d9b84cf2c0ad79f622683a5ed2360b0",
+      "extent_json_sha256": "036a03529875497bcf4e93633ec0364a21922ded8003d3e8c3eaaf9ee913e517",
+      "formula": "x = (lon - xmin) / (xmax - xmin) * 1600; y = (ymax - lat) / (ymax - ymin) * 900",
+      "selected_point_pixel": [1101.9, 439.8],
+      "existing_cidc_base_marker_pixel": [381.4, 316.7],
+      "existing_huawei_phase3_marker_pixel": [295.0, 680.0],
+      "overlay": "local derived/cidc-jingmeng-esri-overlay.png (yellow: selected point; cyan: existing CIDC zero-carbon base marker; magenta: existing Huawei Phase 3 marker)"
+    },
+    "observations": [
+      "Read as WGS84, the point falls on a small walled compound at the north-east corner of a block of new data-centre buildings and earthworks east of the north-south road that bounds CIDC's existing zero-carbon computing base (zones A-C) on its east side, with open fields east of it. This matches the report: open land to the east, the D9 compute centre to the west and a power centre to the north.",
+      "Duanjia Village (段家村), which the report puts 278 m from the station (figure 13, arrow to the east), begins about 320 m east of the point in the Esri image (manual pick of the nearest roofs at 113.3318E, 40.9887N), consistent with the station's own half-width of about 50 m.",
+      "The report's figure 13 (Google Earth base) shows the same arrangement: the station at the east edge of the new building block, the existing CIDC base buildings to the west and Duanjia Village to the east.",
+      "Imagery acquisition dates are not stated; the image is used only for the frame check and the block arrangement, not as a status observation."
+    ],
+    "gcj02_alternative": "Treating the printed values as GCJ-02 and converting them to WGS84 would move the point about 634 m west-south-west, to 113.320846, 40.987518, into the north-south road corridor between the existing zone A-C base and the new block, contradicting the report's open land to the east and its 278 m distance to Duanjia Village. The unshifted reading is kept.",
+    "conclusion": "Qualitative agreement of the unshifted point with the report's own neighbour statements and figures and with independent WGS84 imagery. No measured accuracy; no corner coordinates are printed."
+  },
+  "campus_extent_note": "The land-use planning permit attached to the report (附件8; 地字第1509262025YG0008529; Ulanqab NRB Chahar High-Tech Zone branch) gives 206,198.5 m2 of industrial land for the Jing-Meng Phase 2 project east of Bayin Jing-6 Road and south of Bayin Wei-10 Road; the report gives 250,296 m2 for the Phase 2 project. BUCG's 13 October 2026 item gives 530 mu (about 35 ha) for the D-zone. On figure 4 the Phase 1 area lies in the south-west of the outline and the substation in its north-east. The point lies at the east edge of the D-zone; its buildings extend up to roughly 500-600 m west and south-west of it. The point is not a building footprint, entrance or parcel centroid.",
+  "relation_to_existing_cidc_site": "The existing Atlas site CIDC Ulanqab Zero-Carbon Computing Base (vcc-site-e5eab403e494a3dd5ba0) is located by the centre of its 220 kV user substation in the north-west of the zones A-C base; its 2026 expansion EIA figure outlines that base (blue) west of the north-south road. BUCG's 13 October 2026 item describes a CIDC Ulanqab zero-carbon computing cluster of three parts: the zero-carbon computing base zones A-C (574 mu, operating since July 2025), a green-power source-grid-load-storage project about 30 km east, and the Jing-Meng Green Computing Industrial Park D-zone (530 mu, an extension area, under construction). The D-zone is a separately named park on a separate block east of that road, held by a different project company (中金(乌兰察布)数据科技有限公司, against 中金数据（乌兰察布）有限公司 for the base), with its own land-use planning permit, its own project EIA (乌环察审〔2025〕6号) and its own 220 kV substation. It is therefore recorded as a separate site with its own locator rather than as a project reusing the base marker 1,243 m away (the same approach as the held Huawei Phase 4 DC4, whose separate property may not reuse the Phase 3 marker).",
+  "pairwise_metres": {
+    "jingmeng_p2_substation|cidc_ulanqab_zero_carbon_base_marker_vcc-site-e5eab403e494a3dd5ba0": 1243,
+    "jingmeng_p2_substation|huawei_cloud_ulanqab_phase3_marker_vcc-site-f20ca519143831162a81": 1459,
+    "jingmeng_p2_substation|vnet_ulanqab_zero_carbon_marker_vcc-site-f76a80176723cddb724a": 7144,
+    "jingmeng_p2_substation|envision_ulanqab_phase1_substation_this_fragment": 8062
+  },
+  "reproduction": "Scripts and derived images are in local_data/country-research-cn-nm-nx-gs-p3/derived/ (overlay_jm.py, gcj.py) and the scratch jmgeo.py distance script (pyproj 3.7.1 Geod WGS84). Coordinate work ran with uv run --no-project --with pyproj==3.7.1 python -I; image work with uv run --no-project --with pillow==11.0.0 python -I. Captures were never executed; the PDF was read with pdftotext and pdftoppm."
+}

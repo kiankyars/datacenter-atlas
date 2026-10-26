@@ -373,6 +373,8 @@ From 22 October 2026 sites are added continuously: researchers each work a narro
 
 `verified_construction_core/2026-10-26-research-seventysecond`: **713 sites and 759 projects in 63 countries**. Adds Data4 ATH01 - HERMES DC01 — completed first-phase data-centre spaces (part of building K1, with gatehouse and HEDNO substation); Green Birr — planned data-centre campus on the 25 ha Areal Grossacher und Grändel; NorthC Genf — planned 4.5 MW high-performance data centre in The Hive technology park; NorthC Biel (Bern) — existing data-centre operations; Data centre "Veronikas" — office building with data centre (building permit BIS-BV-4.1-2026-3712). Refreshes CRA Prague Gateway DC Current Campus Build (under construction); Telia New Vilnius Data Center (under construction); Greenergy Hüüru Data-Hall Expansion (under construction).
 
+`verified_construction_core/2026-10-26-research-seventythird`: **716 sites and 762 projects in 63 countries**. Adds Envision Ulanqab Zero-Carbon AI Computing Industrial Park — Phase 1; CIDC Jing-Meng Green Computing Industrial Park — D-Zone Development; China Telecom Cloud Computing Inner Mongolia Information Park — existing data-centre operations.
+
 ## 25 October 2026
 
 `verified_construction_core/2026-10-25-research-sixtysecond` adds three commercial sites and

@@ -1,0 +1,87 @@
+{
+  "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+  "researched_at": "2026-10-26T00:00:00+00:00",
+  "candidate": "Envision Ulanqab Zero-Carbon AI Computing Industrial Park, Phase 1 (远景乌兰察布零碳人工智能算力产业园项目一期), Yiwutang Industrial Park, Chahar High-Tech Zone, Ulanqab, Inner Mongolia",
+  "method": "The selected point is the station-centre coordinate of the Phase 1 park's own 220 kV substation, printed in geographic degrees-minutes-seconds in the environmental impact report form that the Inner Mongolia Department of Ecology and Environment published with its approval result of 10 February 2026 (approval 内环表〔2026〕15号, dated 2 February 2026). It was transcribed arithmetically to decimal degrees (deg + min/60 + sec/3600) with no datum transformation. The report also prints the four corner coordinates of the substation enclosure in the same geographic form; they were converted to CGCS2000 / 3-degree Gauss-Kruger CM 114E (EPSG:4547) with pyproj 3.7.1 and shapely 2.1.1 to check internal consistency. The report's appended figure 4 (a graticuled imagery map of the substation and the park boundary) was compared with an independent Esri World Imagery EPSG:4326 export at two ground features to check the coordinate frame.",
+  "selected_points": {
+    "envision_ulanqab_phase1_campus": {
+      "source_url": "https://sthjt.nmg.gov.cn/bsfw/ywgs_8218/fslywblqk/202602/P020260210632140493950.pdf",
+      "local_capture": "local_data/country-research-cn-nm-nx-gs-p3/nmg-envision-p1-220kv-0210-long.pdf",
+      "source_sha256": "5100d30779477cf25e5dfe475dace015c20630492bc3866b2a0673e906a3bb56",
+      "printed": "地理坐标 站址中心坐标：E113°14′54.505″,N40°56′55.632″ (project table, PDF page 7 / printed page 1); repeated in section 2 (PDF page 21 / printed page 15) and in the electromagnetic special assessment table (变电站站址中心 E113°14′54.505″ N40°56′55.632″)",
+      "lon_lat": [
+        113.248473611,
+        40.948786667
+      ],
+      "on_campus_statement": "Section 2 (PDF page 21) places the substation inside the plant area of the Envision Ulanqab Zero-Carbon AI Computing Industrial Park project in Yiwutang Industrial Park (益武堂产业园内远景乌兰察布零碳人工智能算力产业园项目厂区内), specifically on the north side of the plant area (厂区北侧), with Xiaobei Village 123 m to the east, open land to the south and west and the Envision wind-turbine equipment factory to the north. The station uses the Phase 1 plant's internal roads, construction camp and hazardous-waste store. Appended figure 4 (变电站与厂区位置关系图) draws the substation enclosure at the north edge of the magenta park boundary (远景乌兰察布零碳人工智能算力产业园项目厂界)."
+    }
+  },
+  "corner_consistency_check": {
+    "printed_table": "表2-1 变电站拐点坐标 (PDF page 21): NW 113°14′51.579″ 40°56′56.043″; NE 113°14′56.643″ 40°56′57.178″; SE 113°14′57.483″ 40°56′55.237″; SW 113°14′52.322″ 40°56′54.078″",
+    "crs_used_for_area": "EPSG:4547 (CGCS2000 / 3-degree Gauss-Kruger CM 114E)",
+    "corner_polygon_area_m2": 7859.8,
+    "report_area_m2": 7843,
+    "corner_centroid_lon_lat": [
+      113.248474322,
+      40.948786331
+    ],
+    "printed_centre_to_corner_centroid_metres": 0.07,
+    "printed_centre_inside_corner_polygon": true,
+    "reading": "The printed centre is the centroid of the printed enclosure corners and the enclosure area matches the report's 0.7843 ha permanent footprint to 0.2 percent, so the transcription and the coordinates are internally consistent. This does not by itself establish the datum."
+  },
+  "frame_check": {
+    "figure": "附图4 本项目变电站与厂区位置关系图 (PDF page 82 / printed page 76); embedded raster extracted with pdfimages as local derived/envision-eia-fig4-embedded.jpg (1879 x 1328 px)",
+    "graticule_ticks_px": {
+      "top_row_y27": {"113°14′0″": 157, "113°14′30″": 601, "113°15′0″": 1045, "113°15′30″": 1488.5},
+      "bottom_row_y1302": {"113°14′0″": 146, "113°14′30″": 590, "113°15′0″": 1034, "113°15′30″": 1478},
+      "left_column_x24": {"40°57′0″": 567, "40°56′30″": 1152},
+      "right_column_x1856": {"40°57′0″": 583, "40°56′30″": 1167.5}
+    },
+    "interpolation": "Linear interpolation along the slightly rotated meridians and parallels drawn on the figure (ticks detected automatically by dark-pixel scan).",
+    "substation_box_centre_on_figure": {
+      "pixel": [956, 660],
+      "graticule_reading": "113°14′54.36″, 40°56′55.64″",
+      "difference_from_printed_centre_metres": "about 4"
+    },
+    "ground_feature_comparison_with_esri": [
+      {
+        "feature": "junction of the north-south main road with the east-west road (Pingzan Street) west of the park",
+        "figure_pixel": [765, 655],
+        "figure_graticule_lon_lat": [113.244847, 40.948839],
+        "esri_pixel": [455, 472.5],
+        "esri_lon_lat": [113.244825, 40.948900],
+        "difference_metres": "about 7 (1.9 east-west, 6.8 north-south)"
+      },
+      {
+        "feature": "T-junction of the north-south tree line with the east-west tree row south of the substation",
+        "figure_pixel": [945, 705],
+        "figure_graticule_lon_lat": [113.248233, 40.948147],
+        "esri_pixel": [677.5, 517.5],
+        "esri_lon_lat": [113.248163, 40.948238],
+        "difference_metres": "about 12 (6 east-west, 10 north-south)"
+      }
+    ],
+    "esri_export": {
+      "request_url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=113.238,40.938,113.262,40.956&bboxSR=4326&imageSR=4326&size=1600,1200&format=jpg&f=image",
+      "extent_check_url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=113.238,40.938,113.262,40.956&bboxSR=4326&imageSR=4326&size=1600,1200&format=jpg&f=json",
+      "returned_extent": {"xmin": 113.238, "ymin": 40.938, "xmax": 113.262, "ymax": 40.956, "wkid": 4326},
+      "image_size": [1600, 1200],
+      "image_sha256": "54fefffbc0c3226d81471b5cc1da323295f4a56e19f878755a766bebc7a82031",
+      "extent_json_sha256": "1cf6b75db788e7272408f3073abf1670016db3828dd6746476b87bab2eeff1ba",
+      "formula": "x = (lon - xmin) / (xmax - xmin) * 1600; y = (ymax - lat) / (ymax - ymin) * 1200",
+      "selected_point_pixel": [698.2, 480.9],
+      "overlay": "local derived/envision-esri-overlay.png (red: printed enclosure corners; yellow: printed centre; cyan: existing VNET campus marker)",
+      "observation": "Read as WGS84, the printed enclosure falls on the strip of land immediately south of the east-west road and east of the north-south main road, with the Xiaobei village cluster about 120-150 m to its east, exactly as in the report's figure 4 and its text (Xiaobei Village 123 m east). The Esri imagery predates construction (fields); imagery acquisition dates are not stated and no status is inferred from it."
+    },
+    "gcj02_alternative": "Treating the printed values as GCJ-02 and converting them to WGS84 would move the point about 620 m west-south-west, to 113.241399, 40.947216, west of the north-south main road in open fields near Dujia Village, contradicting figure 4 and the text. The unshifted reading is kept.",
+    "conclusion": "The printed coordinates are consistent with the figure's own graticule, and the figure's graticule agrees with independent WGS84 imagery within roughly 10 m at two ground features (manual pixel picks). The coordinates are treated as CGCS2000-compatible geographic values, which agree with WGS84 at the metre level. This is a consistency check, not a measured accuracy."
+  },
+  "campus_extent_note": "On figure 4 the park boundary is an irregular L-shaped area of roughly 600 m (north-south) by 330-650 m (east-west) south of the east-west road, notched around Xiaobei Village. The selected point lies at its north edge; the Phase 1 data-centre buildings may lie up to about 600 m south or 400 m east of it. The point is not a building footprint, entrance or parcel centroid.",
+  "pairwise_metres": {
+    "envision_phase1_substation|vnet_ulanqab_zero_carbon_campus_marker_vcc-site-f76a80176723cddb724a": 978,
+    "envision_phase1_substation|cidc_ulanqab_zero_carbon_base_marker_vcc-site-e5eab403e494a3dd5ba0": 7263,
+    "envision_phase1_substation|huawei_cloud_ulanqab_phase3_marker_vcc-site-f20ca519143831162a81": 6644
+  },
+  "distinctness_geometry": "The VNET Ulanqab Zero-Carbon Computing Center marker (978 m east-north-east) is the eastern feeder endpoint of VNET's own Zhilian No.1 substation south of Pingzan Street, east of the north-south road that bounds the area beyond Xiaobei Village. The Envision park boundary on figure 4 ends west of Xiaobei Village (about 113°15′10″E), so the two campuses are separate parcels with separate operators and separate dedicated substations.",
+  "reproduction": "Scripts and derived images are in local_data/country-research-cn-nm-nx-gs-p3/derived/ (envgeo.py, gcj.py, overlay_env.py, ticks.py, ticks2.py). Coordinate work ran with uv run --no-project --with pyproj==3.7.1 --with shapely==2.1.1 python -I; image work with uv run --no-project --with pillow==11.0.0 python -I. Captures were never executed; the PDF was read with pdftotext, pdfimages and pdftoppm."
+}
