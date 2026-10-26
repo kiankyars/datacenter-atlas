@@ -430,3 +430,5 @@ projection only when the summary has been written for the public facility page. 
 then displays that explicitly selected context with its citation. Map-only sources, geometry-only
 roles and superseded status prose remain excluded. OS3 uses this to display its 7,467 m²
 colocation area and cooling and power specifications from the operator page.
+
+`verified_construction_core/2026-10-26-research-sixtyfifth`: **667 sites and 709 projects in 63 countries**. Adds Edged Kansas City — data-center building (final certificate of occupancy CICO-2026-00896, 3500 N Arlington Ave); TierPoint St. Louis - Olive (SLO) — existing data-centre and colocation operations; TierPoint Chicago (Polk St.) — existing data-centre and colocation operations.

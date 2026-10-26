@@ -1,0 +1,230 @@
+{
+  "format": "datacenter-atlas-update-input-v1",
+  "updated_at": "2026-10-26",
+  "output": "verified_construction_core/2026-10-26-research-sixtyfifth",
+  "base_dataset": "verified_construction_core/2026-10-25-research-sixtyfourth",
+  "base_manifest_sha256": "6df8a04c8b19e9ddaec2e9d3aeda1a02f9f8ce536214b0ade88effbdae1f3267",
+  "source_files": [
+    {
+      "path": "sources/research-countries-2026-10-26-sixtyfifth-primary-sources.json",
+      "sha256": "dc92db72fb736f1c117577e2bf6a7d9fd71a3faddc36b416f76eba948ae8bb02"
+    }
+  ],
+  "additions": [
+    {
+      "project_stable_key": "curated:edged-energy-kansas-city-arlington-avenue:data-center-building",
+      "physical_site_stable_key": "curated:edged-energy-kansas-city-arlington-avenue",
+      "site_name": "Edged Kansas City Data Center (3420 N Arlington Ave, Kansas City, Missouri)",
+      "name": "Edged Kansas City — data-center building (final certificate of occupancy CICO-2026-00896, 3500 N Arlington Ave)",
+      "country": "United States",
+      "country_iso_a2": "US",
+      "status": {
+        "value": "completed",
+        "as_of": "2026-09-04",
+        "source_id": "us-midwest-plains-p2-kcmo-permits-parcel-97291",
+        "summary": "The City of Kansas City, Missouri issued Certificate of Occupancy (Commercial) CICO-2026-00896 for the 'Edged Energy KC Data Center' at 3500 N Arlington Ave (parcel 97291) on 4 September 2026, after the data center's two new-building permits (CPBC-2023-00845 and CPBC-2023-01041) and its standby-generator and critical mechanical systems permit (CPBC-2024-00874) were finaled on 27-28 August 2026 and the temporary certificate of occupancy issued on 10 December 2024 was closed on 27 August 2026. This records completion of the certified building works on 4 September 2026. It does not establish the opening date (the building was occupied under the temporary certificate from December 2024), current operation, IT load or customers; the separate 'Edged Energy KC Building Addition' is not permitted (its building permit is ready for issuance) and is excluded."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -94.4640853,
+            39.1567908
+          ]
+        },
+        "source_id": "us-midwest-plains-p2-kcmo-parcel-97291",
+        "scope": "campus_locator",
+        "scope_class": "official_tax_parcel_centroid",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "official_city_open_data_parcel_centroid",
+        "precision": "Centroid of Kansas City, Missouri open-data parcel KIVA PIN 97291 (Clay County APN CL1830300180050001, 3420 N Arlington Ave; 38.38 geodesic acres, about 400 by 416 m), the main parcel of every Edged Energy KC Data Center permit. It locates the Edged site, not the building footprint or the works extent; the parcel layer was last updated in December 2023.",
+        "identity_review": "All 57 city permits on main parcel 97291 are at 3420 or 3500 N Arlington Ave, and every one that names a project by title names Edged Energy KC (Data Center, standby generator and critical systems, standalone electrical work, or Building Addition); the five water-service rows carry only service number 202105, including certificate of occupancy CICO-2026-00896. The city parcel layer returns one parcel for KIVA PIN 97291, situs 3420 N Arlington Ave, owner of record Edged Kansas City LLC, 38.65 acres by legal description; Edged's own Kansas City page gives 3420 N Arlington Avenue. The layer's December 2023 vintage predates construction, but permits issued through October 2026 still cite the same PIN. Edged's '50+ acres' exceeds the parcel's 38.4 acres; any other Edged land is not located. No geocoder, map viewport or city centre is used.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The city publishes no positional accuracy for parcel polygons; the centroid represents a 38-acre parcel whose building is not separately located."
+      },
+      "context_source_ids": [
+        "us-midwest-plains-p2-kcmo-issued-permits-metadata",
+        "us-midwest-plains-p2-edged-kansas-city-page"
+      ],
+      "roles": [
+        {
+          "party": "Edged US",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "us-midwest-plains-p2-edged-kansas-city-page"
+        },
+        {
+          "party": "Edged Kansas City LLC",
+          "role": "owner",
+          "relationship_scope": "unknown",
+          "source_id": "us-midwest-plains-p2-kcmo-parcel-97291"
+        }
+      ],
+      "distinctness_review": "Screened on 26 October 2026 against every row of sites.csv, projects.csv and evidence.csv of verified_construction_core/2026-10-25-research-sixtyfourth (664 sites, 706 projects, 3,608 evidence rows), its source records and identity mapping, all pending queue fragments, claims.tsv and all sources/*-holds.json, for Edged Kansas City, Edged Energy KC, Edged KC, Arlington Ave, 3420 and 3500 N Arlington and parcel 97291. No record names this facility (the only '97291' string is part of an unrelated Finnish cadastral parcel number). The Atlas's other Edged records are Edged Council Bluffs, Edged Chicago ORD01-2 and Edged Fort Worth, all in other cities. One Atlas site lies within 2 km: the imported Google Kansas City data center campus (imported:semiconductor-atlas:google-kansas-city-north-missouri), whose approximate point on NE Parvin Road is 1.78 km north-west, together with its source record and identity-mapping entry at the same point. That campus belongs to Shalerock LLC and its city permits ('Shalerock' data centers) are on parcels 97126 and 293039 at 9600 NE 48th St, not parcel 97291, so it is a different campus. The imported Nebius Independence (8.4 km), Meta Kansas City (11.7 km) and Lambda Kansas City (11.7 km) records are farther away; the latter two are city-centre points. The earlier claim by this fragment (pass 2, interrupted run) is the only queue entry for this facility.",
+      "successor_review": "The permit rows captured on 26 October 2026 (current to 22 October 2026) are byte-identical to those captured on 23 October. After the certificate of occupancy, a 2025 renovation permit and electrical, fire-alarm, fire-protection and mechanical permits for the data center were finaled between 9 and 16 September 2026; an 'Edged Energy KC Building Addition' building permit (CPBC-2026-01070, applied 16 October 2026) is 'Ready For Issuance' and an infrastructure permit (CLDPMT-2026-00203) is pending. These are later or separate work items and do not alter the completed status of the certified building. Edged's news sitemap (captured 23 October 2026) has no Kansas City item. No pause, closure or sale was found.",
+      "scoped_project_details": {
+        "aliases": [
+          "Edged Energy KC Data Center",
+          "Edged Kansas City",
+          "Edged KC"
+        ],
+        "address": "3420 N Arlington Ave (parcel situs and operator address) / 3500 N Arlington Ave (permit address), Kansas City, MO 64161",
+        "parcel": "KIVA PIN 97291; Clay County APN CL1830300180050001; 38.65 acres (legal description)",
+        "certificate_of_occupancy": "CICO-2026-00896, Certificate of Occupancy (Commercial), applied 2026-08-27, issued 2026-09-04",
+        "temporary_certificate_of_occupancy": "CITO-2024-00455, issued 2024-12-10, closed 2026-08-27",
+        "new_building_permits": {
+          "CPBC-2023-00845": "New, issued 2023-09-21, finaled 2026-08-27",
+          "CPBC-2023-01041": "New, issued 2023-11-22, finaled 2026-08-28"
+        },
+        "critical_systems_permit": "CPBC-2024-00874 'Edged Energy KC ELEC STANDBY GENERATOR & MECH CRITICAL SYSTEMS' (Renovation), issued 2024-10-24, finaled 2026-08-27",
+        "pending_addition": "CPBC-2026-01070 'Edged Energy KC Building Addition' (Addition), applied 2026-10-16, Ready For Issuance (not issued)",
+        "operator_stated_specifications": {
+          "building_sq_ft": "124,000+",
+          "storeys": 2,
+          "critical_load_capacity_mw": 26,
+          "site_acres": "50+",
+          "design_pue_portfolio": 1.15,
+          "space_available": "Q3 2024",
+          "cooling": "waterless ThermalWorks closed-loop system",
+          "basis": "undated operator page; facility rating, not observed IT load"
+        },
+        "operation_established": false,
+        "capacity": null
+      }
+    },
+    {
+      "project_stable_key": "curated:tierpoint-st-louis-olive-street-data-center:existing-operations",
+      "physical_site_stable_key": "curated:tierpoint-st-louis-olive-street-data-center",
+      "site_name": "TierPoint St. Louis - Olive (SLO) Data Center, 1111 Olive Street",
+      "name": "TierPoint St. Louis - Olive (SLO) — existing data-centre and colocation operations",
+      "country": "United States",
+      "country_iso_a2": "US",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-09-03",
+        "source_id": "us-midwest-plains-p2-tierpoint-slo-page-20260903",
+        "summary": "TierPoint's St. Louis - Olive page, in its version modified on 3 September 2026, says 'This data center is the most energy-efficient and innovative data center and colocation facility in St. Louis' and that it is interconnected with 10G wave to TierPoint's other regional data centers. It gives 1111 Olive Street, St. Louis, MO 63101, 124,000+ total square feet, 11,000+ square feet of raised floor, two 2 MW redundant generators, 24x7x365 on-site security and 24x7 remote hands. This records the facility as operating on 3 September 2026, the modification day of the captured version (bounded by the Internet Archive copies of 11 August and 7 October 2026); it is not an opening date, and generator ratings are not IT load."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -90.1964072,
+            38.6297565
+          ]
+        },
+        "source_id": "us-midwest-plains-p2-stl-parcel-10516000080",
+        "scope": "project_locator",
+        "scope_class": "official_tax_parcel_centroid",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "official_city_assessor_parcel_centroid_of_operator_address",
+        "precision": "Centroid of City of St. Louis Assessor parcel HANDLE 10516000080 (situs 1111 Olive St; 0.574 geodesic acres, about 76 by 47 m; one building, built 1942). It locates the data-centre building's lot, not a surveyed footprint.",
+        "identity_review": "TierPoint gives 'St. Louis - Olive (SLO) 1111 Olive Street St. Louis, MO 63101'. Of the eleven city parcels with situs 1100-1139 Olive St, only HANDLE 10516000080 has situs 1111 OLIVE ST; it holds one building and is not a vacant lot. The layer is published by the City of St. Louis ArcGIS Online organisation with the Assessor's Office as copyright holder. The parcel layer has no owner field, so ownership is not asserted. No geocoder or city centre is used.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The city publishes no positional accuracy for parcel polygons; the centroid represents the whole lot, and the position of the data-centre space within the building is not published."
+      },
+      "context_source_ids": [
+        "us-midwest-plains-p2-tierpoint-slo-page-ia-20260811",
+        "us-midwest-plains-p2-tierpoint-slo-page-ia-20261007",
+        "us-midwest-plains-p2-stl-parcels-olive-1100-block",
+        "us-midwest-plains-p2-tierpoint-data-centers-overview"
+      ],
+      "roles": [
+        {
+          "party": "TierPoint",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "us-midwest-plains-p2-tierpoint-slo-page-20260903"
+        }
+      ],
+      "distinctness_review": "Screened on 26 October 2026 against every row of sites.csv, projects.csv and evidence.csv of verified_construction_core/2026-10-25-research-sixtyfourth (664 sites, 706 projects, 3,608 evidence rows), its source records and identity mapping, all pending queue fragments, claims.tsv and all sources/*-holds.json, for TierPoint, St. Louis - Olive, SLO, 1111 Olive, Olive St, Cosentry and parcel 10516000080. The only TierPoint records are the Little Rock and two Tulsa facilities (another fragment's admissions); no record names this St. Louis building, and the Atlas has no St. Louis record. No Atlas site, project, source record, identity-mapping entry, pending fragment, claim or hold coordinate lies within 2 km. TierPoint's St. Louis - Millpark (Maryland Heights) and St. Louis - Locust facilities are separate buildings and are not part of this record.",
+      "successor_review": "TierPoint's data-centers overview page captured on 26 October 2026 (us-midwest-plains-p2-tierpoint-data-centers-overview; structured-data modification 1 October 2026) still lists the St. Louis - Olive Data Center, and TierPoint's news sitemap (captured 26 October 2026) has nothing after 12 August 2026 and no closure, sale, pause or expansion item for it. The project stays operational as of 3 September 2026.",
+      "scoped_project_details": {
+        "aliases": [
+          "TierPoint SLO",
+          "TierPoint St. Louis (Olive)",
+          "TierPoint St. Louis data center on Olive"
+        ],
+        "address": "1111 Olive Street, St. Louis, MO 63101 (City of St. Louis parcel 10516000080)",
+        "parcel_id": "10516000080",
+        "total_area_sq_ft": "124,000+ (operator)",
+        "raised_floor_sq_ft": "11,000+ (operator)",
+        "business_continuity_seating_sq_ft": "1,100+ (operator)",
+        "generators": "two 2 MW redundant generators (ratings, not IT load)",
+        "building_year_built": "1942 (city parcel layer)",
+        "opening_date": null,
+        "capacity": null,
+        "physical_construction_verified": false
+      }
+    },
+    {
+      "project_stable_key": "curated:tierpoint-chicago-polk-street-data-center:existing-operations",
+      "physical_site_stable_key": "curated:tierpoint-chicago-polk-street-data-center",
+      "site_name": "TierPoint Chicago - Polk St. Data Center, 601 W Polk St",
+      "name": "TierPoint Chicago (Polk St.) — existing data-centre and colocation operations",
+      "country": "United States",
+      "country_iso_a2": "US",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-09-03",
+        "source_id": "us-midwest-plains-p2-tierpoint-chi-page-20260903",
+        "summary": "TierPoint's Chicago page, in its version modified on 3 September 2026, says 'Just west of the Loop in the heart of Chicago, the state-of-the-art TierPoint Chicago (Polk St.) data center and colocation facility enables companies in many industries to increase business agility' and that the Chicago area hosts one of TierPoint's multitenant cloud pods. It gives 601 W Polk St, Chicago, IL 60607, 107,000+ total square feet, 16,000+ square feet of raised floor, two 2.25 MW redundant generators, DWDM connectivity to 350 E Cermak, 24x7x365 on-site security and 24x7 remote hands. This records the facility as operating on 3 September 2026, the modification day of the captured version (bounded below by the Internet Archive copy of 15 July 2026 and above by the 26 October 2026 capture); it is not an opening date, and generator ratings are not IT load."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -87.643067,
+            41.8715974
+          ]
+        },
+        "source_id": "us-midwest-plains-p2-cook-parcel-universe-17163100010000",
+        "scope": "project_locator",
+        "scope_class": "official_tax_parcel_centroid",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "official_county_assessor_published_parcel_centroid_of_operator_address",
+        "precision": "Cook County Assessor's published parcel centroid for PIN 17163100010000 (601 W Polk St; tax years 2024-2026), which coincides with the centroid of the parcel's 2021 GIS polygon (1.465 geodesic acres, about 98 by 62 m). It locates the data-centre building's parcel, not a surveyed footprint.",
+        "identity_review": "TierPoint gives 'Chicago Data Center - Polk St. 601 W Polk St, Chicago, IL 60607'. In the Assessor's 2026 parcel addresses the only PIN at 601 W POLK ST, Chicago 60607 is 17163100010000, and it is the only 2026 PIN in assessor block 17-16-310. The Assessor's parcel-universe centroid for that PIN is unchanged for 2024-2026 and lies inside, and at the centroid of, the 2021 county GIS polygon for the same parcel. Ownership is not asserted. No geocoder or city centre is used.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The Assessor publishes no positional accuracy for parcel centroids; the point represents the whole 1.46-acre parcel, and the position of the data-centre space within the building is not published."
+      },
+      "context_source_ids": [
+        "us-midwest-plains-p2-tierpoint-chi-page-ia-20260715",
+        "us-midwest-plains-p2-cook-addresses-6xx-w-polk-2026",
+        "us-midwest-plains-p2-cook-parcel2021-1716310001",
+        "us-midwest-plains-p2-tierpoint-data-centers-overview"
+      ],
+      "roles": [
+        {
+          "party": "TierPoint",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "us-midwest-plains-p2-tierpoint-chi-page-20260903"
+        }
+      ],
+      "distinctness_review": "Screened on 26 October 2026 against every row of sites.csv, projects.csv and evidence.csv of verified_construction_core/2026-10-25-research-sixtyfourth (664 sites, 706 projects, 3,608 evidence rows), its source records and identity mapping, all pending queue fragments, claims.tsv and all sources/*-holds.json, for TierPoint, Chicago (Polk St.), 601 W Polk, Polk St, Cosentry and PIN 17163100010000 / 1716310001. No record names this facility; the only TierPoint records are the Little Rock and Tulsa facilities. One Atlas site lies within 2 km: the 400 South LaSalle office-to-data-center conversion (curated:400-s-lasalle-chicago), 1.05 km east in the Loop, a different building. The 717 S Wells St data center seen in city permits is not in the Atlas. TierPoint's Chicago - West facility (9333 W Grand Ave, Franklin Park) is a separate building and is not part of this record.",
+      "successor_review": "TierPoint's data-centers overview page captured on 26 October 2026 (us-midwest-plains-p2-tierpoint-data-centers-overview; structured-data modification 1 October 2026) still lists the Chicago - Polk Data Center, and TierPoint's news sitemap (captured 26 October 2026) has nothing after 12 August 2026 and no closure, sale, pause or expansion item for it. The project stays operational as of 3 September 2026.",
+      "scoped_project_details": {
+        "aliases": [
+          "TierPoint Chicago (Polk St.)",
+          "TierPoint Chicago - Polk",
+          "TierPoint CHI"
+        ],
+        "address": "601 W Polk St, Chicago, IL 60607 (Cook County PIN 17163100010000)",
+        "parcel_id": "17163100010000",
+        "total_area_sq_ft": "107,000+ (operator)",
+        "raised_floor_sq_ft": "16,000+ (operator)",
+        "generators": "two 2.25 MW redundant generators (ratings, not IT load)",
+        "connectivity": "DWDM connectivity to 350 E Cermak (operator)",
+        "opening_date": null,
+        "capacity": null,
+        "physical_construction_verified": false
+      }
+    }
+  ],
+  "status_updates": [],
+  "context_updates": []
+}

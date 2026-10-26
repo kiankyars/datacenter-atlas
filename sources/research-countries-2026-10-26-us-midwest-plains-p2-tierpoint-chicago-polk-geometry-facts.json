@@ -1,0 +1,74 @@
+{
+  "candidate_id": "tierpoint-chicago-polk-street-data-center",
+  "decision": "Selected the Cook County Assessor's published parcel centroid for PIN 17163100010000 (601 W POLK ST, Chicago), the address TierPoint gives for its Chicago (Polk St.) data center, as the facility locator.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -87.643067,
+      41.8715974
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_tax_parcel_centroid",
+  "use_scope": "project_locator",
+  "source_file": "local_data/country-research-us-midwest-plains-p2/cook-parcel-universe-17163100010000.json",
+  "source_sha256": "ea87febf3915e77123bde46c7dca4f92ac73dabd21daa210b3e04182ec1127ab",
+  "source_url": "https://datacatalog.cookcountyil.gov/resource/nj4t-kc8j.json?$select=pin,pin10,year,class,lon,lat,x_3435,y_3435,township_name,chicago_community_area_name,cook_municipality_name&$where=pin=%2717163100010000%27&$order=year%20DESC&$limit=3",
+  "retrieved_at": "2026-10-26T13:47:16.440Z",
+  "selected_properties": {
+    "pin": "17163100010000",
+    "year": "2026",
+    "class": "592",
+    "lon": "-87.6430669547",
+    "lat": "41.8715973816",
+    "x_3435": "1172250.4214669012",
+    "y_3435": "1896555.9925022288",
+    "township_name": "West Chicago",
+    "chicago_community_area_name": "NEAR WEST SIDE",
+    "cook_municipality_name": "CITY OF CHICAGO",
+    "dataset": "Assessor - Parcel Universe (Historical), nj4t-kc8j; lon/lat documented as 'Parcel centroid longitude/latitude'; rows last updated 2026-10-15"
+  },
+  "computed": {
+    "selected_point": [
+      -87.643067,
+      41.8715974
+    ],
+    "polygon_check_source_file": "local_data/country-research-us-midwest-plains-p2/cook-parcel2021-1716310001.json",
+    "polygon_check_source_sha256": "a7da91e81483d75e0f89f0e7bf46f51a87f63772f44e4d8bc12cf7fdd9248cfd",
+    "polygon_check_source_url": "https://datacatalog.cookcountyil.gov/resource/77tz-riq7.json?$where=pin10=%271716310001%27",
+    "polygon_2021_parts": 1,
+    "polygon_2021_geodesic_acres": 1.465,
+    "polygon_2021_geodesic_area_m2": 5927.0,
+    "polygon_2021_projected_centroid_lon_lat": [
+      -87.643067,
+      41.8715974
+    ],
+    "assessor_point_inside_2021_polygon": true,
+    "assessor_point_to_2021_projected_centroid_m": 0.0,
+    "polygon_2021_extent_m": [
+      98.4,
+      61.8
+    ],
+    "polygon_2021_bounds_lon_lat": [
+      -87.643662,
+      41.871315,
+      -87.642471,
+      41.871879
+    ],
+    "method": "Assessor centroid taken as published (2026 tax-year row, identical in 2024 and 2025). Cross-check: the ccgisdata Parcel 2021 polygon for pin10 1716310001 (one part) has its EPSG:32616 centroid at the same point to below 1 mm; geodesic area on the WGS84 ellipsoid",
+    "tools": "pyproj 3.7.1, shapely 2.1.1"
+  },
+  "identity_bridge": [
+    "TierPoint's Chicago page (version modified 2026-09-03) gives 'Chicago Data Center - Polk St. 601 W Polk St, Chicago, IL 60607'.",
+    "Cook County Assessor parcel addresses (3723-97qp), tax year 2026: the only PIN with property address 601 W POLK ST, Chicago (ZIP 60607) is 17163100010000; the only other 6xx W Polk St address is 640 W POLK ST (PIN 17163030030000), in a different assessor block (17-16-303).",
+    "The 2026 parcel universe has a single PIN in block 17-16-310 (17163100010000), so the block holds one tax parcel."
+  ],
+  "unresolved": [
+    "The parcel extent (about 1.46 acres) comes from the 2021 GIS polygon; no newer polygon was retrieved, but the 2024-2026 assessor centroid is unchanged and coincides with it."
+  ],
+  "nearby_records": "One Atlas site lies within 2 km: the 400 South LaSalle office-to-data-center conversion (curated:400-s-lasalle-chicago), 1.05 km east, a different building in the Loop. No pending fragment, claim, hold, source record or identity-mapping coordinate lies within 2 km.",
+  "consistency_checks": {
+    "datum": "WGS84 longitude/latitude published by the Cook County Assessor; 2021 polygon in WGS84 from the Socrata geometry column",
+    "geocoder_used": false
+  }
+}

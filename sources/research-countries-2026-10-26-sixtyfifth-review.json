@@ -1,0 +1,43 @@
+{
+  "reviewer": "root",
+  "reviewed_at": "2026-10-26",
+  "decision": "accepted_for_integration",
+  "update": "verified_construction_core/2026-10-26-research-sixtyfifth",
+  "base_dataset": "verified_construction_core/2026-10-25-research-sixtyfourth",
+  "process": "continuous: one researcher per beat, one adversarial verifier per fragment",
+  "fragments": [
+    {
+      "fragment": "us-midwest-plains-p2",
+      "verdict": "accept",
+      "checks": [
+        "current_dataset verified_construction_core/2026-10-25-research-sixtyfourth read at start and before verdict; window cutoff 2026-08-02 (85 days before 2026-10-26)",
+        "all 16 cited captures rehashed: SHA-256 matches sources.json content_hash and .metadata.json sha256; 3 geometry-facts files matched their pinned hashes before edit",
+        "Edged KC: KCMO permit rows read directly; CICO-2026-00896 'Certificate of Occupancy (Commercial)', project 'Edged Energy KC Data Center', parcel 97291, issued 2026-09-04T14:53:20 (52 days, in window); CPBC-2023-00845/01041 (New) finaled 2026-08-27/28; CITO-2024-00455 closed 2026-08-27; 26 Oct capture byte-identical to 23 Oct; dataset rowsUpdatedAt 2026-10-22",
+        "Edged KC: completed is scoped to the certified building; operation, IT load and opening not asserted; Building Addition CPBC-2026-01070 'Ready For Issuance' (not issued) correctly held",
+        "TierPoint SLO: present-tense colocation-facility statement, 1111 Olive Street, read in the live capture; dateModified 2026-09-03T06:48:15Z bounded by IA copies of 2026-08-11 (dateModified 2024-07-31) and 2026-10-07 (dateModified 2026-09-03), both inside the window",
+        "TierPoint Chicago: present-tense statement, 601 W Polk St, read; dateModified 2026-09-03T06:21:12Z bounded below by IA copy 2026-07-15 (dateModified 2026-04-07) and above by the 26 Oct capture; page-sitemap lastmod matches and shows a sequential portfolio-wide edit 05:58-07:45Z on 3 Sep (same method as the published TierPoint Little Rock record)",
+        "locators recomputed from raw captures with pyproj 3.7.1/shapely 2.1.1: KCMO PIN 97291 centroid (-94.4640853, 39.1567908), 38.378 ac, inside; STL HANDLE 10516000080 centroid (-90.1964072, 38.6297565), 0.574 ac, inside; Cook PIN 17163100010000 Assessor centroid equals 2021 polygon centroid (<0.01 m), 1.465 ac, inside; State Plane 3435 x/y reprojects to the same point",
+        "address-to-parcel identity: only STL parcel at 1111 OLIVE ST among 11 parcels; only 2026 Cook PIN at 601 W POLK ST and only PIN in block 17-16-310; KCMO PIN 97291 situs 3420 N Arlington, owner of record Edged Kansas City LLC",
+        "source kinds: status sources are government_record (KCMO permits) and company_disclosure (TierPoint pages); roles operator current (Edged US, TierPoint), owner unknown (Edged Kansas City LLC from 2023 parcel row); party naming matches existing Atlas 'Edged US'",
+        "distinctness: names, aliases, addresses, parcel IDs and coordinates screened against sites/projects/evidence/source-records/identity-mapping, all sources/*-holds.json, every other queue fragment and claims.tsv; nearest records Google KC imported point 1.78 km (Shalerock parcels 97126/293039, different campus) and 400 S LaSalle 1.05 km (different building); no St. Louis record",
+        "corrected Edged distinctness/geometry-facts bearing to Google KC from north-east to north-west (azimuth -45.6 deg), clarified that five water-service permit rows carry only service number 202105, and re-pinned the edited geometry-facts SHA-256 in sources.json",
+        "no third-party personal data in changes, sources, holds or URLs (a named customer testimonial on the TierPoint pages and parcel owner mailing addresses are not copied)",
+        "dryrun_fragment.py ok: 667 sites, 709 projects, 3623 evidence rows"
+      ],
+      "residual_risks": [
+        "TierPoint 3 Sep 2026 edits changed only a sustainability banner; the facility text predates them, so the operating observation rests on the bounded republication date",
+        "TierPoint Chicago dateModified has only a lower archived bound (15 Jul 2026, before the window) and the live capture as upper bound; corroborated by the sitemap sequence and the bounded SLO edit the same morning",
+        "Edged KC was occupied under a temporary certificate from Dec 2024; the completed observation is the final CO date, not the physical completion date",
+        "KCMO parcel layer is from Dec 2023; a later re-plat of PIN 97291 cannot be excluded",
+        "one logged TierPoint Crawl-delay shortfall (~5.4 s) on a non-cited page request by the research worker"
+      ]
+    }
+  ],
+  "packet_pins": {
+    "definitions/atlas-research-sixtyfifth-2026-10-26.json": "8b4959c3f8287b89abf750abd54a6aab618ae751225128bf7b07d5ff1a80f6f1",
+    "sources/research-countries-2026-10-26-sixtyfifth-primary-sources.json": "dc92db72fb736f1c117577e2bf6a7d9fd71a3faddc36b416f76eba948ae8bb02",
+    "sources/research-countries-2026-10-26-sixtyfifth-actions.json": "688edb1e0b6ef79af4417024592ffe5ee72c0d0ff0f7200488a0e4cf715f3d50",
+    "sources/research-countries-2026-10-26-sixtyfifth-holds.json": "eccc0c93cffd16a8aed9464c18a62ea62a1b9af2d79322d1842d923f1cad45bf"
+  },
+  "raw_captures_redistributed": false
+}

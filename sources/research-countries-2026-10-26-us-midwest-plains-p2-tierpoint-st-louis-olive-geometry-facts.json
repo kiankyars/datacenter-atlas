@@ -1,0 +1,65 @@
+{
+  "candidate_id": "tierpoint-st-louis-olive-street-data-center",
+  "decision": "Selected the centroid of City of St. Louis Assessor parcel HANDLE 10516000080 (situs 1111 OLIVE ST), the only city parcel at the address TierPoint gives for its St. Louis - Olive (SLO) data center, as the facility locator.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -90.1964072,
+      38.6297565
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_tax_parcel_centroid",
+  "use_scope": "project_locator",
+  "source_file": "local_data/country-research-us-midwest-plains-p2/stl-parcel-10516000080.geojson",
+  "source_sha256": "5b7826736111f55a12773d65fd45bfb9cfe4a7e7298d027efe7dde0f00261ee4",
+  "source_url": "https://services6.arcgis.com/HZXbCkpCSqbGd0vK/ArcGIS/rest/services/Parcels/FeatureServer/0/query?where=HANDLE+%3D+%2710516000080%27&outFields=HANDLE,SITEADDR,AsrLandUse,Zoning,NbrOfBld_1,FirstYearB,LastYearBu,VacantLot,Shape__Area&returnGeometry=true&outSR=4326&f=geojson",
+  "retrieved_at": "2026-10-26T13:46:14.060Z",
+  "selected_properties": {
+    "HANDLE": "10516000080",
+    "SITEADDR": "1111  OLIVE ST",
+    "AsrLandUse": 5000,
+    "Zoning": "I",
+    "NbrOfBld_1": 1,
+    "FirstYearB": 1942,
+    "LastYearBu": 1942,
+    "VacantLot": 0,
+    "Shape__Area_sqft": 25010.17,
+    "layer": "City of St. Louis ArcGIS Online organisation (urlKey stlcity) Parcels FeatureServer layer 0 'STL-Parcels', copyright Assessor's Office, data last edited 2026-03-06"
+  },
+  "computed": {
+    "parts": 1,
+    "geodesic_acres": 0.574,
+    "geodesic_area_m2": 2323.8,
+    "centroid_lon_lat": [
+      -90.1964072,
+      38.6297565
+    ],
+    "centroid_inside_polygon": true,
+    "extent_m": [
+      76.2,
+      47.4
+    ],
+    "bounds_lon_lat": [
+      -90.196852,
+      38.629532,
+      -90.195971,
+      38.629976
+    ],
+    "method": "Polygon returned with outSR=4326 (f=geojson); centroid computed in EPSG:32615 and returned to WGS84; geodesic area on the WGS84 ellipsoid",
+    "tools": "pyproj 3.7.1, shapely 2.1.1"
+  },
+  "identity_bridge": [
+    "TierPoint's St. Louis - Olive page (version modified 2026-09-03) gives 'St. Louis - Olive (SLO) 1111 Olive Street St. Louis, MO 63101' with 124,000+ total square feet.",
+    "A query of the city parcel layer for 11xx Olive St returns eleven parcels; only HANDLE 10516000080 has situs 1111 OLIVE ST (one building, first and last year built 1942). The adjoining parcels on the same block face are 1105 OLIVE ST (1881) and 1139 OLIVE ST (1916).",
+    "The ArcGIS Online organisation HZXbCkpCSqbGd0vK that hosts the layer is named 'City of St. Louis' (urlKey stlcity)."
+  ],
+  "unresolved": [
+    "The parcel layer has no owner field, so TierPoint's ownership is not confirmed from it; the 25,010 sq ft parcel implies a multi-storey building for 124,000+ sq ft, which the layer does not describe."
+  ],
+  "nearby_records": "No Atlas site, project, source record, identity-mapping entry, pending fragment, claim or hold coordinate lies within 2 km; the Atlas has no St. Louis record.",
+  "consistency_checks": {
+    "datum": "WGS84 output from the city parcel service (outSR=4326)",
+    "geocoder_used": false
+  }
+}
