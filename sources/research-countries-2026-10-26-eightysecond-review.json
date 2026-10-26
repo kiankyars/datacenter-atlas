@@ -1,0 +1,52 @@
+{
+  "reviewer": "root",
+  "reviewed_at": "2026-10-26",
+  "decision": "accepted_for_integration",
+  "update": "verified_construction_core/2026-10-26-research-eightysecond",
+  "base_dataset": "verified_construction_core/2026-10-26-research-eightyfirst",
+  "process": "continuous: one researcher per beat, one adversarial verifier per fragment",
+  "fragments": [
+    {
+      "fragment": "us-la-ms-al-ar-p4",
+      "verdict": "accept",
+      "checks": [
+        "Claimed the fragment at 23:12 after polling; screened against current_dataset verified_construction_core/2026-10-26-research-eightyfirst (751 sites, 803 projects)",
+        "All 15 sources: raw captures rehashed, matching both .metadata.json sha256/url and sources.json content_hash",
+        "DC BLOX live page (dateModified 2026-10-20T15:02:13Z) read: present-tense 'serves ... with a secure Tier III colocation facility', 'offers colocation and network and connectivity', 333 Diamond Drive NW",
+        "dateModified bounded: wpseo_locations sitemap lastmod 2026-10-20T15:02:13Z; IA id_ copy 20260916 (dateModified 2026-09-14) has different body text (diffed); CDX shows no later capture",
+        "Kind company_disclosure; 6 days old, inside the 85-day window (opens 2026-08-02); not an opening date (2018 release used only for history and address)",
+        "Locator recomputed from the JSON-LD GeoCoordinates in both live and archived copies: [-86.6921541, 34.7118221]; not the Huntsville city internal point (4.7 km), block internal point (340 m) or county centroid",
+        "Census captures re-read: address match 333 DIAMOND DR NW on TLID 58199777 (range 283-399); both the address match and the operator point are in block 010890014031026 (316,629 m2), Huntsville city, Madison County",
+        "pyproj 3.7.1 Geod WGS84 (uv run): operator point to Census address point 262.4 m, azimuth 179.7, as stated",
+        "Verifier Census geocodes of 283 and 399 Diamond Dr NW (robots 404, two requests, kept in scratch): the operator point is 81 m north of the interpolated 399 end of the range; identity_review reworded so it no longer calls the 262 m offset the expected effect of interpolation",
+        "Operator schema.org facility coordinates as official_source project/campus points have precedent (Bulk N01/DK01, firstcolo FRA7, eStruxture CAL3); the us-southeast-p2 and sixty-ninth hold reopen condition allowed a reviewed decision on the operator coordinate",
+        "Distinctness: no site, project, evidence, source-record or identity-mapping entry names DC BLOX Huntsville or Diamond Drive; only DC BLOX match is Palm Coast FL; nearest Atlas site 132.9 km (distances corrected from 133.2/154.2/170.2 km to WGS84 geodesic)",
+        "Queue and holds screened: only hold entries for this facility are the us-southeast-p2 (fifty-seventh) and sixty-ninth holds it reopens; claims.tsv lists it only for this lane; no other fragment changes touch DC BLOX Huntsville, Nebius Birmingham or Google West Memphis",
+        "Single project added to the new site; role DC BLOX operator, current, from the location page",
+        "Nebius PDF read with pdftotext: header 'A PUBLIC ANSWER FROM NEBIUS 10.26', 'our project', former Regions facility, Lakeshore Parkway, four backup generators, job fair on October 21; CreationDate 2026-10-23; linked from the live nebius.com/birminghamal page with cache-buster 2026-10-26T12:04:43Z",
+        "Nebius refresh is announced only (no stage from forecasts); strictly newer than 2026-02-10; identity matches the imported Lakeshore Parkway record; date_semantics now covers the 'October 2026' reading (23-26 Oct either way)",
+        "Nebius summary corrected: 'at least 78 permanent jobs' -> 'at least 78 jobs at the facility' as the document states",
+        "Entergy release read: Posted Oct 19, 2026; second phase, Galet substation expansion, two 230 kV lines, 1,000 + 400 MWh BESS, 440 MW solar PPA, APSC approval pending, 2028 in-service; Google blog dated 2026-10-19 ties it to West Memphis",
+        "Context update preserve_status_as_of 2026-02-26 matches the current record; utility_record kind has precedent; status not changed",
+        "Robots: dcblox.com, nebius.com, entergy.com, blog.google allow the paths used; assets.nebius.com, web.archive.org and geocoding.geo.census.gov robots 404; logged crawl-delay incidents affect only hosts not relied on",
+        "No private individuals' names, phones or e-mails in changes, sources, holds, notes or geometry facts (Nebius Q&A resident initials and 2018 release names not reproduced)",
+        "Geometry facts file sha256 87b3f8df... matches the source's geometry_facts_sha256",
+        "dryrun_fragment.py: ok (752 sites, 804 projects, 4187 evidence)"
+      ],
+      "residual_risks": [
+        "DC BLOX point is an operator pin with no datum or method; it lies on the Diamond Drive NW centreline, 262 m north of the Census address interpolation and 81 m beyond the range's interpolated 399 end, so its position along the street may be off by a few hundred metres (same 31.7 ha block)",
+        "Operating status rests on a marketing location page whose 20 October version follows a site-wide content refresh; it observes the facility in present tense but states no current IT load",
+        "Nebius document date '10.26' is read as 26 October 2026 from the asset cache-buster; any reading gives 23-26 October",
+        "Nebius record keeps its imported Birmingham city-centroid locator (held for a separate geometry correction)",
+        "Huntsville market header covers a second facility in development whose site is unstated; it may later need its own project at this or another site"
+      ]
+    }
+  ],
+  "packet_pins": {
+    "definitions/atlas-research-eightysecond-2026-10-26.json": "9841a3d83d346df513438d483db3cc8849451c30d64503614b49e783f7a7b473",
+    "sources/research-countries-2026-10-26-eightysecond-primary-sources.json": "ffa6a4110b559b3d05310cae7db15c052707c7127b46ec81a1da5f7fcddafcd6",
+    "sources/research-countries-2026-10-26-eightysecond-actions.json": "95eed3a9f92dc31e2460aeb026dd0048497cd3c83d68ee9e422e7e23fbb100cc",
+    "sources/research-countries-2026-10-26-eightysecond-holds.json": "3bfd88d8a4a0bee7ed409124d4fd1c46a2823a225657b73d8bacb9bb06dc2216"
+  },
+  "raw_captures_redistributed": false
+}

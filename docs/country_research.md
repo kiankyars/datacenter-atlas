@@ -391,6 +391,8 @@ From 22 October 2026 sites are added continuously: researchers each work a narro
 
 `verified_construction_core/2026-10-26-research-eightyfirst`: **751 sites and 803 projects in 63 countries**. Adds Microsoft EKI Campus - proposed data center (IDEM new-source construction and FESOP application F 141-50527-00655); Equinix CH5 - Electrical Room L build-out (Elk Grove Village permit B26-0931); TierPoint Lehigh Valley (LVQ) — existing data-centre and colocation operations; TierPoint Philadelphia (PHI) — existing data-centre and colocation operations; TierPoint Bethlehem (BET) — existing data-centre and colocation operations (Suite 130); Project Flex — proposed data center campus (final site plan under review). Refreshes Meta DeKalb Data Center (partially operational); Vantage Lighthouse Port Washington Current Campus Build (under construction).
 
+`verified_construction_core/2026-10-26-research-eightysecond`: **752 sites and 804 projects in 63 countries**. Adds DC BLOX Huntsville — existing Tier III colocation data-centre operations. Refreshes Nebius Birmingham AI factory (Lakeshore Parkway) (announced). Attaches context to 1 existing project(s).
+
 ## 25 October 2026
 
 `verified_construction_core/2026-10-25-research-sixtysecond` adds three commercial sites and

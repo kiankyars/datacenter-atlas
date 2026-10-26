@@ -1,0 +1,107 @@
+{
+  "format": "datacenter-atlas-update-input-v1",
+  "updated_at": "2026-10-26",
+  "output": "verified_construction_core/2026-10-26-research-eightysecond",
+  "base_dataset": "verified_construction_core/2026-10-26-research-eightyfirst",
+  "base_manifest_sha256": "2223502c5420c8ef67dbd8a0235e976b3218bfb873ad7d05a444df801c67ee9c",
+  "source_files": [
+    {
+      "path": "sources/research-countries-2026-10-26-eightysecond-primary-sources.json",
+      "sha256": "ffa6a4110b559b3d05310cae7db15c052707c7127b46ec81a1da5f7fcddafcd6"
+    }
+  ],
+  "additions": [
+    {
+      "project_stable_key": "curated:dc-blox-huntsville-diamond-drive-data-center:existing-operations",
+      "physical_site_stable_key": "curated:dc-blox-huntsville-diamond-drive-data-center",
+      "site_name": "DC BLOX Huntsville Data Center (333 Diamond Drive NW)",
+      "name": "DC BLOX Huntsville — existing Tier III colocation data-centre operations",
+      "country": "United States",
+      "country_iso_a2": "US",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-10-20",
+        "source_id": "us-la-ms-al-ar-p4-dcblox-huntsville-page-20261020",
+        "summary": "DC BLOX's Huntsville location page, in its version of 20 October 2026, says in the present tense that 'DC BLOX serves the needs of the Huntsville business community and all of Alabama with a secure Tier III colocation facility' at 333 Diamond Drive NW, Huntsville, offering colocation and network connectivity, with a 24x7x365 manned security desk, 9,000 sq ft expandable to 52,400 sq ft and power expandable to 13.5 MW critical load. This records the facility as operating on 20 October 2026, the date of the page version (dateModified and sitemap lastmod 2026-10-20, bounded below by the Internet Archive copy of 16 September 2026, which carries the earlier 14 September version with the same operating description). It is not an opening date: DC BLOX announced the opening on 28 September 2018. The page's market header ('2 Data Centers, Operational & in Development', 38,000 sq ft, 9 critical MW committed and planned) covers a further facility in development that is not part of this project, and no current IT load is stated."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -86.6921541,
+            34.7118221
+          ]
+        },
+        "source_id": "us-la-ms-al-ar-p4-dcblox-huntsville-page-20261020",
+        "scope": "project_locator",
+        "scope_class": "first_party_facility_reference_point",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "operator_page_structured_data_facility_coordinate_cross_checked_with_census_address_geocode",
+        "precision": "Facility coordinate published by DC BLOX for its Huntsville data center in the schema.org GeoCoordinates of the location page (latitude 34.7118221, longitude -86.6921541, seven decimals, no datum stated; identical in the archived 16 September 2026 version). It is the operator's own location pin for 333 Diamond Drive NW, not a building footprint, a parcel boundary or a surveyed position; its position along Diamond Drive NW is not independently surveyed.",
+        "identity_review": "The page that carries the coordinate names the facility address as 333 Diamond Drive NW, Huntsville, Alabama 35806, and DC BLOX's 28 September 2018 opening release places the opened Huntsville data center at the same address. The U.S. Census Bureau Geocoder matches 333 DIAMOND DR NW, HUNTSVILLE, AL 35806 on the Diamond Drive NW segment (TIGER line 58199777, address range 399 to 283) and assigns it to 2020 census block 010890014031026 (31.7 ha of land) in Huntsville city, Madison County; the Census coordinates endpoint places the operator's point in the same block. The Census interpolated point lies 262 m due south of the operator's point on the same street alignment. It is an interpolation along the 283 to 399 address range and does not mark a building, so it confirms the street, block, place and county but not the operator point's position along Diamond Drive NW; it is a cross-check, not the locator. No official Huntsville or Madison County parcel or address service was reachable within robots rules (the City map server disallows query URLs; the county host returned HTTP 403 to robots.txt). No OpenStreetMap feature, city centroid or county centroid is used.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "DC BLOX publishes no datum, method or accuracy for its coordinate and the building footprint is not published; the Census Bureau's address-range geocode for the same address lies 262 m away along the street, within the same 31.7 ha census block."
+      },
+      "context_source_ids": [
+        "us-la-ms-al-ar-p4-dcblox-huntsville-page-ia-20260916",
+        "us-la-ms-al-ar-p4-dcblox-locations-sitemap-20261026",
+        "us-la-ms-al-ar-p4-ia-cdx-dcblox-huntsville",
+        "us-la-ms-al-ar-p4-dcblox-huntsville-opening-release-20180928",
+        "us-la-ms-al-ar-p4-census-geocode-333-diamond-dr-nw",
+        "us-la-ms-al-ar-p4-census-block-333-diamond-dr-nw",
+        "us-la-ms-al-ar-p4-census-block-dcblox-operator-point"
+      ],
+      "roles": [
+        {
+          "party": "DC BLOX",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "us-la-ms-al-ar-p4-dcblox-huntsville-page-20261020"
+        }
+      ],
+      "distinctness_review": "Screened on 26 October 2026 against every row of sites.csv, projects.csv and evidence.csv, the source records and the identity mapping of verified_construction_core/2026-10-26-research-eightyfirst (751 sites, 803 projects; rerun after the eightieth and eightyfirst updates, whose additions are in Ohio, Indiana, Nebraska, Illinois, Pennsylvania and Michigan), all pending queue fragments and claims, and all sources/*-holds.json, for DC BLOX, dcblox, Diamond Drive, 333 Diamond and Huntsville. No Atlas site, project, source record or identity-mapping entry names this facility, and no Atlas or queued record lies within 2 km of the point: the nearest are the Nebius Birmingham AI factory record (132.9 km), QTS Bessemer (153.9 km) and Digi Power X Columbiana (169.7 km) (WGS 84 geodesic distances). The only DC BLOX matches in the Atlas are the DC BLOX Palm Coast cable landing station and colocation campus in Florida, a different site. The holds 'DC BLOX Huntsville data center (333 Diamond Drive NW)' of us-southeast-p2 (fifty-seventh update) and its restatement by us-ok-la-ar-ms-al-tn-p3 (sixty-ninth update) are this facility; their reopen condition allowed a reviewed decision to admit the operator coordinate, which is made here with the Census Bureau cross-check. DC BLOX Birmingham (433 6th Street South, claimed by us-southeast-p2) and the held Meta Huntsville campus are different facilities.",
+      "successor_review": "The live page captured on 26 October 2026 is the 20 October 2026 version (dateModified and sitemap lastmod unchanged), and the Internet Archive has no later copy. DC BLOX's post sitemap (captured 26 October 2026) has no Huntsville closure, sale or relocation item; its Huntsville entries are the 2018 opening release and network posts re-saved on 20 October 2026. No pause, closure or change of operator was found. The project stays operational as of 20 October 2026.",
+      "scoped_project_details": {
+        "aliases": [
+          "DC BLOX Huntsville",
+          "DC BLOX Huntsville Data Center"
+        ],
+        "address": "333 Diamond Drive NW, Huntsville, AL 35806 (Madison County)",
+        "facility_type": "Tier III colocation data center designed for Controlled Unclassified Information workloads",
+        "building": "9,000 sq ft data center, expandable up to 52,400 sq ft; up to 7,400 sq ft of tenant office space; precast concrete shell; 150 mph wind-rated structure",
+        "power": "expandable up to 13.5 MW critical load; N+1 generator and UPS backup; 24-hour on-site fuel storage (design specifications, not current IT load)",
+        "market_header_excluded": "2 Huntsville data centers 'Operational & in Development', 38,000 sq ft and 9 critical MW 'Committed & Planned' (covers a further facility in development that is not this project)",
+        "opening_history": "opening announced 28 September 2018 (DC BLOX release)",
+        "capacity": null,
+        "physical_construction_verified": false
+      }
+    }
+  ],
+  "status_updates": [
+    {
+      "project_stable_key": "imported:semiconductor-atlas:nebius-birmingham-alabama",
+      "status": {
+        "value": "announced",
+        "as_of": "2026-10-26",
+        "source_id": "us-la-ms-al-ar-p4-nebius-bham-ask-us-anything-20261026",
+        "summary": "Nebius's public answer document dated 26 October 2026 ('A PUBLIC ANSWER FROM NEBIUS 10.26'), linked from its Birmingham project page, describes 'our project' in Birmingham: an AI facility on the site of the former Regions facility off Lakeshore Parkway, using closed-loop cooling and less than 1 million gallons of water a year, with four backup generators, at least 78 jobs at the facility and an average of $85.7 million a year in taxes, for which Nebius held a construction job fair on 21 October. Nebius's project page identifies the site as the former Regions Bank back-office site in Birmingham's Oxmoor neighborhood, 75 acres at 201 Milan Parkway acquired in September 2025, and says Nebius is 'in the planning stages for this AI factory'. This dated primary source identifies the project, so the imported 'proposed' record moves to announced as of 26 October 2026. No permit, site work, construction, completion or operation is established; the page's construction and commissioning dates are forecasts."
+      },
+      "identity_review": "Same project as the existing imported record 'Nebius Birmingham AI factory (Lakeshore Parkway)', whose source record describes Nebius's proposed two-building AI factory on about 80 acres it owns off Lakeshore Parkway in Birmingham, reusing a former bank back-office building. Nebius's own page and its June 2026 fact sheet describe a 'Two-building campus along Lakeshore Parkway, former bank back-office center' on about 75 acres at 201 Milan Parkway (the former Regions Bank back-office site, Oxmoor), to be designed, owned and operated by Nebius, and the 26 October document refers to the Regions facility previously on the site and to Lakeshore Parkway. No other Atlas record is a Nebius Birmingham project. The record's locator remains the imported Birmingham city centroid (locality context); a replacement at 201 Milan Parkway is not expressible in a status update and is recorded as a hold.",
+      "successor_review": "Strictly newer than the existing 10 February 2026 observation (a WBRC news report). Checked on 26 October 2026: the live Nebius Birmingham page still says Nebius is in the planning stages and gives permits, hearings, construction start (Q2 2026) and initial commissioning (Q4 2026) only as anticipated dates subject to change; the Internet Archive copies of 6 and 19 August 2026 carry the same project description; the 26 October document speaks of the facility in the future tense and reports only a construction job fair. No permit issue, site work, construction start, pause or cancellation was found, so the record is refreshed as announced and no later stage is inferred from the forecast timeline."
+    }
+  ],
+  "context_updates": [
+    {
+      "project_stable_key": "imported:semiconductor-atlas:google-west-memphis-arkansas",
+      "context_kind": "power_readiness",
+      "preserve_status_as_of": "2026-02-26",
+      "source_ids": [
+        "us-la-ms-al-ar-p4-entergy-arkansas-google-west-memphis-20261019",
+        "us-la-ms-al-ar-p4-google-blog-arkansas-partnerships-20261019"
+      ],
+      "identity_review": "Same Google campus as the existing record 'Google West Memphis data center campus' (alias Groot LLC West Memphis data center), Google's first Arkansas data center campus in West Memphis, Crittenden County, served under a power contract between Google and Entergy Arkansas. Entergy Arkansas's 19 October 2026 release concerns 'Google's presence in West Memphis' and 'the expanded data center campus' served from the Galet substation near West Memphis, and Google's post of the same day refers to its plans 'to build in West Memphis, Arkansas' and its partnership with Entergy Arkansas on new grid infrastructure. The record's approximate-site locator, status and capacity are unchanged.",
+      "summary": "Entergy Arkansas announced on 19 October 2026 a second phase of service to support Google's West Memphis campus, which it says will fulfil Google's plan for data center buildings on the site and accelerate the ramp-up of the original project. Google is to fund about $600 million of Entergy Arkansas investment plus a power purchase agreement, including the expansion of the Galet substation near West Memphis and two new 230 kV transmission lines to serve the expanded data center campus, 1,400 MWh of battery storage at Driver Solar and near Hot Springs, and a 440 MW (ac) solar purchase from the Big Island facility. The contract is to be submitted to the Arkansas Public Service Commission and, pending approval, has an expected in-service date in 2028. Power-readiness context only: the grid works are planned and unapproved, and the campus's status, observation date, location and capacity are unchanged."
+    }
+  ]
+}

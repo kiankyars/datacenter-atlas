@@ -1,0 +1,69 @@
+{
+ "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+ "candidate": "DC BLOX Huntsville data center, 333 Diamond Drive NW, Huntsville, Madison County, Alabama (existing Tier III colocation facility opened in 2018)",
+ "prepared_at": "2026-10-26",
+ "selected_point_crs84": [
+  -86.6921541,
+  34.7118221
+ ],
+ "selected_point_role": "facility coordinate published by the operator for its Huntsville data center in the schema.org GeoCoordinates of the DC BLOX Huntsville location page (latitude 34.7118221, longitude -86.6921541); the same pair appears in the page's location-map settings and in the Internet Archive copy of 16 September 2026. It is the operator's own location pin for 333 Diamond Drive NW, not a building footprint, a parcel or a surveyed position.",
+ "authority_class": "official_source",
+ "scope_class": "first_party_facility_reference_point",
+ "use_scope": "project_locator",
+ "source": {
+  "file": "local_data/country-research-us-la-ms-al-ar-p4/dcblox-huntsville-20261026.html",
+  "sha256": "e25d5e47e9f7b073ef0f841e4ef010a53966587e7fcec1d0bffe5bdfe8c5f935",
+  "url": "https://www.dcblox.com/data-centers/huntsville/",
+  "retrieved_at": "2026-10-26T20:59:09.496Z",
+  "document": "DC BLOX Huntsville location page (version dateModified 2026-10-20T15:02:13Z)",
+  "reading": "JSON-LD LocalBusiness node: \"geo\":{\"@type\":\"GeoCoordinates\",\"latitude\":\"34.7118221\",\"longitude\":\"-86.6921541\"}; page text 'Location 333 Diamond Drive NW Huntsville, Alabama 35806'"
+ },
+ "archived_copy_check": {
+  "file": "local_data/country-research-us-la-ms-al-ar-p4/ia-dcblox-huntsville-20260916.html",
+  "sha256": "8aa19c23836b611fa36572ac0a126b7feff3039d0d18f13312fc21591239dffe",
+  "url": "https://web.archive.org/web/20260916183559id_/https://www.dcblox.com/data-centers/huntsville/",
+  "reading": "same GeoCoordinates pair (34.7118221, -86.6921541) in the version with dateModified 2026-09-14T16:40:52Z"
+ },
+ "geometry_checks": {
+  "census_address_geocode": {
+   "file": "local_data/country-research-us-la-ms-al-ar-p4/census-geocode-333-diamond-dr-nw-huntsville.json",
+   "sha256": "1d386fe9bd20ff7e3dd35a09a34ae86e4db707c468f47c9973f7ad1e7411e7ea",
+   "url": "https://geocoding.geo.census.gov/geocoder/locations/address?street=333+Diamond+Dr+NW&city=Huntsville&state=AL&zip=35806&benchmark=Public_AR_Current&format=json",
+   "service": "U.S. Census Bureau Geocoder, benchmark Public_AR_Current (address-range interpolation on TIGER line 58199777, right side, range 399 to 283)",
+   "matched_address": "333 DIAMOND DR NW, HUNTSVILLE, AL, 35806",
+   "coordinates_crs84": [
+    -86.692138050295,
+    34.709457169036
+   ],
+   "geodesic_distance_from_selected_point_m": 262.4,
+   "azimuth_from_selected_point_deg": 179.7
+  },
+  "census_block_of_address_geocode": {
+   "file": "local_data/country-research-us-la-ms-al-ar-p4/census-geographies-333-diamond-dr-nw.json",
+   "sha256": "b79725d3c921c8873e9996c22f34b868d8ce44c7d6f298c7d93e7bccccd875db",
+   "url": "https://geocoding.geo.census.gov/geocoder/geographies/address?street=333+Diamond+Dr+NW&city=Huntsville&state=AL&zip=35806&benchmark=Public_AR_Current&vintage=Current_Current&layers=Census+Blocks&format=json",
+   "block_geoid": "010890014031026",
+   "block_arealand_m2": 316629,
+   "county": "Madison County (01089)",
+   "place": "Huntsville city (0137000)"
+  },
+  "census_block_of_selected_point": {
+   "file": "local_data/country-research-us-la-ms-al-ar-p4/census-geographies-dcblox-operator-point.json",
+   "sha256": "7041df484262a009690f7f8e7dac0742954ed744224f36071aaa355e0c4f5e42",
+   "url": "https://geocoding.geo.census.gov/geocoder/geographies/coordinates?x=-86.6921541&y=34.7118221&benchmark=Public_AR_Current&vintage=Current_Current&layers=Census+Blocks&format=json",
+   "block_geoid": "010890014031026",
+   "same_block_as_address_geocode": true
+  },
+  "verification": "pyproj 3.7.1 Geod(WGS84).inv between the selected point and the Census address geocode; block membership from the Census Geocoder geographies endpoints for both the address and the selected coordinate"
+ },
+ "interpretation": "The operator's pin and the Census Bureau's interpolated position for the same street address both lie on the Diamond Drive NW alignment (longitudes differ by about 0.00002 degrees) and fall in the same 2020 census block (010890014031026, 31.7 ha of land). They are 262 m apart along the street: the Census point is an address-range interpolation along a TIGER segment and does not mark a building, while the operator pin is DC BLOX's own published location for the facility. The selected point is therefore the operator's facility reference point, cross-checked to the correct street, block, place and county; its position along Diamond Drive NW is not independently surveyed.",
+ "datum_note": "The operator publishes no datum; the Census Geocoder returns NAD83 coordinates, which differ from WGS 84 by about 1 m here.",
+ "geocoder_used": true,
+ "geocoder_role": "U.S. Census Bureau Geocoder used only as an official cross-check of the published street address; its interpolated point is not the selected locator.",
+ "alternatives_rejected": [
+  "City of Huntsville map server (maps.huntsvilleal.gov): robots.txt disallows every query-string URL, so no parcel or address query was made.",
+  "Madison County, Alabama (www.madisoncountyal.gov) returned HTTP 403 to robots.txt and gis.madisoncountyal.gov and gis.huntsvilleal.gov did not respond; no request beyond robots.txt was made.",
+  "ArcGIS Online item searches for Huntsville or Madison County, Alabama parcel and address layers returned no county or city service (only third-party layers), so none was used.",
+  "No OpenStreetMap, Nominatim, city centroid or county centroid was used."
+ ]
+}
