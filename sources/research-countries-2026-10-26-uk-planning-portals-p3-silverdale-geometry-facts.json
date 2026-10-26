@@ -1,0 +1,44 @@
+{
+ "candidate_id": "hayes-silverdale-industrial-estate-unit-4-data-centre",
+ "decision": "Selected the area centroid of the application-site polygon that the Greater London Authority's London Planning Datahub holds for Hillingdon planning permission 49261/APP/2024/2904 (Unit 4, Silverdale Industrial Estate, Silverdale Road, Hayes) as the project locator for the permitted data-centre building. The centroid was computed in British National Grid and converted to WGS84 with pyproj 3.7.1. It is a site marker inside the consented boundary, not a building footprint or surveyed position.",
+ "geometry": {
+  "type": "Point",
+  "coordinates": [
+   -0.4124808,
+   51.5034892
+  ]
+ },
+ "authority_class": "compiled_reference",
+ "derivation": "coordinate_transform",
+ "scope_class": "official_planning_application_boundary_area_centroid",
+ "use_scope": "project_locator",
+ "source_file": "local_data/country-research-uk-planning-portals-p3/gla-hillingdon-49261.json",
+ "source_sha256": "0f5ca95fa837e535b9993984578f374764331883a3b6604ff2129d810efbb2e3",
+ "source_url": "https://planningdata.london.gov.uk/api-guest/applications/_search?q=lpa_name:Hillingdon%20AND%20lpa_app_no:49261*&size=100",
+ "retrieved_at": "2026-10-26T15:45:33.291Z",
+ "selected_properties": {
+  "service": "London Planning Datahub (Greater London Authority) public applications search API, record Hillingdon-49261_APP_2024_2904 (bo_system 'CSV Data Import', fed by the London Borough of Hillingdon)",
+  "feature": "lpa_app_no 49261/APP/2024/2904, site 'UNIT 4, SILVERDALE INDUSTRIAL ESTATE', ward HAYES TOWN 2022, decision 'Approved', site_area 0.44 ha",
+  "spatial_reference": "EPSG:27700 ('polygon' field; British National Grid coordinates)",
+  "polygon": "one ring, 77 vertices, valid, area 4,674.9 m2 (0.47 ha; the record's site_area is 0.44 ha), perimeter 379.2 m, bounds E 510252.1-510341.2, N 179426.4-179547.5",
+  "centroid_epsg27700": [
+   510282.35,
+   179478.28
+  ],
+  "datahub_centroid_fields": "centroid_easting 510281, centroid_northing 179478 (WGS84 field 51.503487, -0.4125), 1.37 m from the computed centroid and inside the polygon"
+ },
+ "transform": {
+  "method": "shapely 2.1.1 Polygon.centroid of the 'polygon' ring in EPSG:27700, then pyproj 3.7.1 Transformer.from_crs('EPSG:27700', 'EPSG:4326', always_xy=True)",
+  "result_lat_lon": [
+   51.5034892,
+   -0.4124808
+  ]
+ },
+ "consistency_checks": {
+  "inside_polygon": "The centroid lies inside the polygon, 25.8 m from its nearest edge.",
+  "condition_records": "The six later condition-approval records for the same permission (49261/APP/2026/763, 985, 1013, 964, 1445 and 2094) carry the same Datahub site point (E 510281-510282, N 179478-179479) and site name.",
+  "imagery": "Esri World Imagery z18 tiles (x 130770-130772, y 87173-87175) viewed locally with the polygon overlaid and not redistributed: the polygon encloses a single industrial unit and its yard on the south side of the Silverdale Road estate, immediately north of the Great Western main line railway, with an access strip running north to the estate road; the centroid falls on the existing unit's roof. The imagery date is unknown and is not used as status evidence (the permission provides for demolition of the existing building).",
+  "geocoder_used": false
+ },
+ "uncertainty": "The point is a computed centroid of the 0.47 ha application boundary; the new data-centre building, generator compound and substation lie within a few tens of metres of it. The Datahub publishes no positional accuracy for the boundary."
+}

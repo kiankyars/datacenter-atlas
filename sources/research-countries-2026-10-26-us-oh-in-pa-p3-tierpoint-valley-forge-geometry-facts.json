@@ -1,0 +1,90 @@
+{
+  "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+  "candidate_id": "us-oh-in-pa-p3-tierpoint-valley-forge",
+  "prepared_at": "2026-10-26",
+  "decision": "Selected the planar centroid (UTM 18N) of Montgomery County parcel 430012262007, the only parcel with location 1000 ADAMS AVE (Lower Providence Township), as the project locator for TierPoint's Valley Forge data center at 1000 Adams Avenue.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -75.4211112,
+      40.1217531
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_tax_parcel_centroid",
+  "use_scope": "project_locator",
+  "source_file": "local_data/country-research-us-oh-in-pa-p3/pasda-montgomery-parcel-1000-adams-ave.json",
+  "source_sha256": "c9bb45e52116722e688c4e20c7d7561375328737affb573b19631029f629abe5",
+  "source_url": "https://mapservices.pasda.psu.edu/server/rest/services/pasda/MontgomeryCounty/MapServer/14/query?where=LOCATION1+LIKE+%271000+ADAMS%25%27&outFields=PARCEL%2CTAXPIN%2CCLASS%2CLAND_ACRES%2CLOCATION1%2CLOCATION2%2COWN1%2COWN2%2CADDR1%2CADDR2%2CADDR3%2CMuni_Name%2CLAND_USE%2CUSE_TYPE%2CCOMM_AREA%2CCOMM_YR_BL%2CSTRUCTURE%2CSALE_DATE%2CYEAR_BUILT%2CTOTAL_APPR%2CPROP_INFO_&returnGeometry=true&outSR=4326&f=json",
+  "retrieved_at": "2026-10-26T15:58:24.464Z",
+  "native_file": "local_data/country-research-us-oh-in-pa-p3/pasda-montgomery-parcel-430012262007-native.json",
+  "native_sha256": "93828ef3c4d259a2e2e8fd13b971e8d1e224c5d736cca9c2d0514f430f72b212",
+  "attribute_source_file": "local_data/country-research-us-oh-in-pa-p3/pasda-montgomery-parcels-layer.json",
+  "attribute_source_sha256": "d87b576d773c7e18de6f629f13042572217454ee5af4e41f677705d3c940c26c",
+  "attribute_source_url": "https://mapservices.pasda.psu.edu/server/rest/services/pasda/MontgomeryCounty/MapServer/14?f=json",
+  "selected_properties": {
+    "PARCEL": "430012262007",
+    "CLASS": "C",
+    "LAND_ACRES": 13.43,
+    "LOCATION1": "1000 ADAMS AVE",
+    "OWN1": "VFGROUP LLC",
+    "Muni_Name": "Lower Providence Township",
+    "LAND_USE": "4335",
+    "USE_TYPE": "053",
+    "COMM_AREA": 127778,
+    "COMM_YR_BL": 1968,
+    "PROP_INFO_": "09/29/2025"
+  },
+  "layer": "PASDA map service 'pasda/MontgomeryCounty' layer 14 'Montgomery County - Parcels 202512' (Montgomery County parcel and assessment data, December 2025 edition; native NAD83 geographic, EPSG:4269), queried by location with outSR=4326 and by parcel number in its native CRS",
+  "facts": {
+    "parcels": {
+      "montgomery 430012262007": {
+        "geodesic_acres": 13.56,
+        "rings": 1,
+        "vertices": 11,
+        "valid": true,
+        "parcel_centroid_lon_lat": [
+          -75.4211112,
+          40.1217531
+        ]
+      }
+    },
+    "centroid_lon_lat": [
+      -75.4211112,
+      40.1217531
+    ],
+    "centroid_inside": true,
+    "approx_extent_m": [
+      329,
+      341
+    ],
+    "bounds_lon_lat": [
+      -75.423043,
+      40.120211,
+      -75.419184,
+      40.123288
+    ],
+    "max_vertex_distance_from_centroid_m": 172.1,
+    "centroid_to_boundary_m": 96.6,
+    "native_crs_cross_check": {
+      "native_epsg": 4269,
+      "centroid_lon_lat": [
+        -75.4211093,
+        40.121745
+      ],
+      "distance_m": 0.91
+    },
+    "centroid_method": "planar centroid in EPSG:32618 (WGS84 / UTM 18N) of the ring returned with outSR=4326, transformed back to WGS84; geodesic area on the WGS84 ellipsoid; the native EPSG:4269 ring transformed locally with pyproj as a cross-check",
+    "tools": "pyproj 3.7.1, shapely 2.1.1"
+  },
+  "identity_bridge": [
+    "TierPoint's Valley Forge page gives the data center at 1000 Adams Avenue, Norristown, PA 19403, with 137,000+ total square feet and 61,000+ square feet of raised floor.",
+    "A location query of the Montgomery County parcel layer returns exactly one parcel at 1000 ADAMS AVE: 430012262007 in Lower Providence Township, class C (commercial), 13.43 acres, commercial area 127,778 sq ft built 1968, owner of record VFGROUP LLC.",
+    "Norristown 19403 is the postal name; the parcel lies in Lower Providence Township. The 127,778 sq ft assessed commercial area is consistent in scale with the operator's 137,000+ sq ft."
+  ],
+  "consistency_checks": {
+    "datum": "WGS84 output requested from the service; the native NAD83 ring gives a centroid 0.91 m away",
+    "geocoder_used": false,
+    "personal_data": "Only the organisation owner of record is quoted; its corporate mailing-address fields are not copied."
+  }
+}

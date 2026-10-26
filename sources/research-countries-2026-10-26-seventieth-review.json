@@ -1,0 +1,67 @@
+{
+  "reviewer": "root",
+  "reviewed_at": "2026-10-26",
+  "decision": "accepted_for_integration",
+  "update": "verified_construction_core/2026-10-26-research-seventieth",
+  "base_dataset": "verified_construction_core/2026-10-26-research-sixtyninth",
+  "process": "continuous: one researcher per beat, one adversarial verifier per fragment",
+  "fragments": [
+    {
+      "fragment": "uk-planning-portals-p3",
+      "verdict": "accept",
+      "checks": [
+        "base re-read from site/config.json: verified_construction_core/2026-10-26-research-sixtyninth; window start 2026-08-02 (85 days before 2026-10-26)",
+        "all 9 relied-on captures rehashed: sha256 equals .metadata.json and sources.json content_hash (hil-49261-2026-2094, hil-49261-2024-2904, hil-49261-2026-1445, gla-hillingdon-49261, gla-greenwich-26-2370-eia, gla-greenwich-stone-foundries, gla-Tower_Hamlets-PA_26_00730_S, gla-Tower_Hamlets-PA_22_02552_A2, gla-th-telehouse)",
+        "Silverdale: register page read: 49261/APP/2026/2094 status Approval, Decided 22-10-26, Condition 25 of 49261/APP/2024/2904 dated 12-03-2026 for a Class B8 data-centre building; Datahub decision_date 22/10/2026 (last_updated 2026-10-25) bounds the date",
+        "Silverdale: permission conditions read (use only as a data centre; operator declaration; generator AQ before installation); 6 condition approvals counted; government_record; permitted fields complete",
+        "Silverdale locator recomputed: shapely centroid of 77-vertex BNG polygon (0.467 ha) = E 510282.35 N 179478.28 -> -0.4124808, 51.5034892 (pyproj 3.7.1); inside, 25.8 m from edge, 1.37 m from Datahub point",
+        "Silverdale distinctness: no name/reference match in sites/projects/evidence/source-records/identity-mapping, holds or queue; nearest Atlas site Colt Hayes 1.44 km; Ark Union Park (held, ref 75111) polygons 46-50 m south across the GWML, not touching; review text amended to record this",
+        "Charlton: Datahub record read: 26/2370/EIA scoping opinion, decision Approved 14/10/2026 (delegated), valid 07/08/2026, 100,000 sq m GEA data centre; last_updated 2026-10-25; supports announced only",
+        "Charlton locator recomputed: E 541116 N 178909 -> 0.0312653, 51.4915237; UPRN 10010198846 = Plot A VIP Trading Estate (25/0717/F); Stone Foundries polygons recomputed 85.3 m and 92.0 m away (text corrected from 87-94 m; geometry-facts sha updated)",
+        "Charlton distinctness: no Atlas record, hold or queued addition within 2 km (Telehouse Docklands 3.2 km); Anchorage Point former data centre (change of use away, 2024) is a different property",
+        "TW2: PA/26/00730/S read: Condition 12 of PA/22/01140 (dated 01/12/2022) approved 30/09/2026; RM PA/22/02552/A2 scheme 'TW2', lead developer Telehouse International Corporation of Europe Limited, lapsed_date 24/04/2027; 10 condition approvals since Dec 2025 confirmed; strictly newer than 2026-09-22; same plot and scope",
+        "no other queue fragment updates TW2 or names either new site; claims.tsv entries are this fragment's own",
+        "no third-party personal names, e-mails or phones in changes, sources, holds, notes or geometry facts",
+        "dryrun_fragment.py ok against sixtyninth: 693 sites, 739 projects"
+      ],
+      "residual_risks": [
+        "Silverdale: no developer or operator named; works may already have started (above-ground conditions approved July 2026), so permitted may understate",
+        "Silverdale: register 'Decided 29-10-25' vs permission dated 12-03-2026 not reconciled (likely resolution vs decision notice); neither is the observation date",
+        "Charlton: locator is one council-linked property point inside the described site, not the red-line centroid; Greenwich portal (robots-disallowed) not read; uncertainty unknown",
+        "Charlton: a scoping opinion is not an application; the scheme may not proceed",
+        "TW2: Telehouse pages (Oct 2025 groundbreaking, July 2026 steelwork) show the project is under construction, so permitted still understates it; the thirty-fifth-holds status correction remains open"
+      ]
+    },
+    {
+      "fragment": "us-oh-in-pa-p3",
+      "verdict": "accept",
+      "checks": [
+        "All 18 relied-on captures rehashed: SHA-256 and byte counts equal .metadata.json and source content_hash; HTTP 200, no credentials; native-CRS and layer captures (sr2272, Lehigh/Montgomery native, PASDA layer descriptors) also match the geometry-facts hashes",
+        "PIT2: Summit Park Campus capture read: JSON-LD dateModified 2026-09-28T18:34:13Z = article:modified_time; text 'provides Data Center Interconnect (DCI) to connect to our PIT1 data center', 1 Total Data Centers, 47,100 IT sq ft, 5MW, 17 Acres, '(PIT2) Summit Park Data Center, 35 Summit Park Dr'; IA id_ copy 2026-10-08 has same dateModified and differs only by two tour-request lines; company_disclosure; 28 days old",
+        "PIT2 facility page correctly kept as context: live dateModified 2026-09-29 but IA copy of 2026-10-11 still carries 2026-05-14 version (31 vs 29 carriers), confirmed by diff",
+        "TEK: live dateModified 2026-10-01T21:40:16Z; IA 2026-10-08 same version (diff only link labels); IA 2026-08-11 older version 2025-12-05 with same operating text, so bounded both sides; 'state-of-the-art TierPoint Allentown data center and colocation facility', 122,000+ sq ft, 9999 Hamilton Boulevard, Building #4 read; 25 days old",
+        "VFO: live dateModified 2026-09-11T18:45:27Z; IA 2026-10-08 same version (diff only link labels); 'state-of-the-art TierPoint Valley Forge data center and colocation facility', multitenant cloud pod, 1000 Adams Avenue read; 45 days old; upper archive bound only (CDX shows Mar 2026 as previous copy)",
+        "Locators recomputed with pyproj 3.7.1/shapely 2.1.1 from raw captures: PIT2 -80.1909809,40.4518833 (17.217 ac, inside, 86.0 m to edge, address point SSAP262722 inside parcel 108.7 m away, native 2272 diff 0.92 m); TEK -75.65578,40.5446936 (137.415 ac, 212.9 m, native diff 0.92 m, DEP point 43.8 m); VFO -75.4211112,40.1217531 (13.56 ac, 96.6 m, native diff 0.91 m); all within 0.01 m of claimed",
+        "Scopes: PIT2 and TEK campus_locator (parcel acreage matches operator 17 and 137 acres); VFO project_locator (single parcel, 127,778 sq ft commercial area); official_tax_parcel_centroid, direct_geometry, uncertainty null with reasons",
+        "Roles: DataBank operator current; TierPoint operator current and owner current ('TierPoint-owned, 137-acre' in Oct 12 live and Oct 8 IA campus pages); VFGROUP LLC owner of record (Dec 2025 parcel edition, sale 2007) current",
+        "Distinctness: sixtyninth sites/projects/evidence/source-records/identity-mapping, all other queue fragments' changes and holds, sources/*-holds.json and claims.tsv screened for names, aliases, addresses, PINs and coordinates; no match; nearest records Aligned Shippingport 27.5 km, Carbon Node East 39.0 km, Amazon Falls Township 57.2 km",
+        "One project per new site; TekPark 100 MW expansion correctly held as separate scope; no personal names, phones, emails or mailing addresses in changes, sources or holds",
+        "robots.txt captures: databank.com allows all incl. ClaudeBot; tierpoint.com disallows only admin/search (one 0.5 s crawl-delay lapse self-reported); PASDA, Allegheny GIS and web.archive.org return 404",
+        "dryrun_fragment.py ok against 2026-10-26-research-sixtyninth: 694 sites, 740 projects, 3,803 evidence rows"
+      ],
+      "residual_risks": [
+        "Observation days rest on WordPress dateModified values; PIT2 campus and Valley Forge versions are bounded only above (IA 2026-10-08), and DataBank facility-page dates are shown to precede public availability, so the PIT2 as_of could be up to 10 days early (still in window)",
+        "TEK and VFO operating text is evergreen marketing copy unchanged since at least Dec 2025; the in-window version change is cosmetic",
+        "Lehigh parcel layer is the August 2021 edition; a later subdivision of the 137-acre TekPark parcel cannot be excluded",
+        "VFGROUP LLC ownership comes from the December 2025 assessment edition and may be stale; its relation to TierPoint is not stated"
+      ]
+    }
+  ],
+  "packet_pins": {
+    "definitions/atlas-research-seventieth-2026-10-26.json": "85684a776c0c2c2cd13d7249dc611a1e9c591899d498c56b84763b4dba4d792b",
+    "sources/research-countries-2026-10-26-seventieth-primary-sources.json": "c3d230493981e8f8f37faa4839aa890ac46c6f97816e04f7f0e5c891bb8a4eed",
+    "sources/research-countries-2026-10-26-seventieth-actions.json": "f282d9c948caa06d50f08d359d6a50961c983f5da9914aa3959f96ee3b56f56b",
+    "sources/research-countries-2026-10-26-seventieth-holds.json": "2afc93e9194347b9e497e0e831d779889bb406642883abf3fd2992f84141e19d"
+  },
+  "raw_captures_redistributed": false
+}

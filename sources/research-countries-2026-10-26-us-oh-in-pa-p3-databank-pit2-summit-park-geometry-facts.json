@@ -1,0 +1,99 @@
+{
+  "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+  "candidate_id": "us-oh-in-pa-p3-databank-pit2-summit-park-campus",
+  "prepared_at": "2026-10-26",
+  "decision": "Selected the planar centroid (UTM 17N) of Allegheny County parcel 0497-B-00001-0000-00 (PIN 0497B00001000000), the parcel that the county address-point layer assigns to 35 Summit Park Dr, North Fayette Township, as the campus locator for DataBank's Summit Park Campus (PIT2).",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -80.1909809,
+      40.4518833
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_tax_parcel_centroid",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-us-oh-in-pa-p3/allegheny-parcel-0497B00001000000-sr4326.json",
+  "source_sha256": "60cdd327b06b62e1da35e310395cbe26c369f9305a52ebdd3fef7e388e8394e8",
+  "source_url": "https://gisdata.alleghenycounty.us/arcgis/rest/services/OPENDATA/Parcels/MapServer/0/query?where=PIN%3D%270497B00001000000%27&outFields=%2A&returnGeometry=true&outSR=4326&f=json",
+  "retrieved_at": "2026-10-26T15:44:40.907Z",
+  "native_file": "local_data/country-research-us-oh-in-pa-p3/allegheny-parcel-0497B00001000000-sr2272.json",
+  "native_sha256": "784bf4f6066cef25553106d85e93a8d75bde9ac82947283ade6052497df2ccb4",
+  "attribute_source_file": "local_data/country-research-us-oh-in-pa-p3/allegheny-addresspoints-summit-park-dr.json",
+  "attribute_source_sha256": "8abbcff5477489c02266de70df92245da5f5490e162cd923290da0f5c949ff8c",
+  "attribute_source_url": "https://gisdata.alleghenycounty.us/arcgis/rest/services/Addressing/Addressing_AddressPoints/MapServer/0/query?where=ST_NAME+LIKE+%27SUMMIT+PARK%25%27&outFields=ADDRESS_ID%2CADDRESS_TYPE%2CSTATUS%2CADDR_NUM%2CST_NAME%2CST_TYPE%2CUNIT%2CMUNICIPALITY%2CZIP_CODE%2CFULL_ADDRESS%2CPARCELID%2CEDIT_DATE&returnGeometry=true&outSR=4326&f=json",
+  "selected_properties": {
+    "PIN": "0497B00001000000",
+    "MAPBLOCKLOT": "497-B-1",
+    "MUNICODE": 929,
+    "CALCACREAGE": 28.86,
+    "address_point": {
+      "FULL_ADDRESS": "35 SUMMIT PARK DR",
+      "MUNICIPALITY": "NORTH FAYETTE TOWNSHIP",
+      "ZIP_CODE": "15275",
+      "PARCELID": "0497B00001000000",
+      "ADDRESS_ID": "SSAP262722",
+      "STATUS": "ACTIVE",
+      "lon_lat": [
+        -80.19000730101615,
+        40.45124643126895
+      ]
+    }
+  },
+  "layer": "Allegheny County GIS 'OPENDATA/Parcels' map service layer 0 (Parcel; native NAD83 / Pennsylvania South ftUS, EPSG:2272), queried by PIN with outSR=4326 and again in its native CRS; Allegheny County 'Addressing/Addressing_AddressPoints' layer 0 for the address-to-parcel link",
+  "facts": {
+    "parcels": {
+      "allegheny 0497B00001000000": {
+        "geodesic_acres": 17.217,
+        "rings": 1,
+        "vertices": 38,
+        "valid": true,
+        "parcel_centroid_lon_lat": [
+          -80.1909809,
+          40.4518833
+        ],
+        "county_calcacreage_field": 28.86,
+        "native_planar_acres": 17.22
+      }
+    },
+    "centroid_lon_lat": [
+      -80.1909809,
+      40.4518833
+    ],
+    "centroid_inside": true,
+    "approx_extent_m": [
+      380,
+      358
+    ],
+    "bounds_lon_lat": [
+      -80.193397,
+      40.450581,
+      -80.188934,
+      40.453805
+    ],
+    "max_vertex_distance_from_centroid_m": 219.4,
+    "centroid_to_boundary_m": 86.0,
+    "address_point_inside_parcel": true,
+    "address_point_to_centroid_m": 108.7,
+    "native_crs_cross_check": {
+      "native_epsg": 2272,
+      "centroid_lon_lat": [
+        -80.1909776,
+        40.4518754
+      ],
+      "distance_m": 0.92
+    },
+    "centroid_method": "planar centroid in EPSG:32617 (WGS84 / UTM 17N) of the ring returned with outSR=4326, transformed back to WGS84; geodesic area on the WGS84 ellipsoid; the native EPSG:2272 ring transformed locally with pyproj as a cross-check",
+    "tools": "pyproj 3.7.1, shapely 2.1.1"
+  },
+  "identity_bridge": [
+    "DataBank's Summit Park Campus and PIT2 pages give PIT2 at 35 Summit Park Dr, Pittsburgh, PA 15275, on a 17-acre campus with one data center (47,100 IT sq ft, 5 MW critical IT load) and room for two more.",
+    "Allegheny County's address-point layer has one active point for 35 Summit Park Dr (North Fayette Township, ZIP 15275) and assigns it PARCELID 0497B00001000000; the point lies inside that parcel, 108.7 m from its centroid.",
+    "The parcel polygon measures 17.22 geodesic acres (749,924 sq ft planar in EPSG:2272), matching the operator's 17-acre campus; the layer's CALCACREAGE attribute (28.86) disagrees with the polygon's own area and is not relied on."
+  ],
+  "consistency_checks": {
+    "datum": "WGS84 output requested from the service; the native EPSG:2272 ring transforms to a centroid 0.92 m away, so the residual reflects the service transformation, not source accuracy",
+    "geocoder_used": false,
+    "personal_data": "The parcel layer carries no owner fields; no owner or personal data were requested or copied."
+  }
+}

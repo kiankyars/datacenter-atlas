@@ -1,0 +1,92 @@
+{
+  "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+  "candidate_id": "us-oh-in-pa-p3-tierpoint-tekpark-campus",
+  "prepared_at": "2026-10-26",
+  "decision": "Selected the planar centroid (UTM 18N) of Lehigh County parcel PIN 545408213261, the parcel with situs address 9999 Hamilton Blvd, as the campus locator for TierPoint's 137-acre TekPark campus in Upper Macungie Township, home of the Allentown - TekPark (TEK) data center in Building 4.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -75.65578,
+      40.5446936
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_tax_parcel_centroid",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-us-oh-in-pa-p3/pasda-lehigh-parcels-9999-hamilton.json",
+  "source_sha256": "ef7464bf85498be25c52d5dbce3926b4b50d9b173ca01d67b80730f9a6c8ee2f",
+  "source_url": "https://mapservices.pasda.psu.edu/server/rest/services/pasda/LehighCounty/MapServer/5/query?where=SITUS_ADDR+LIKE+%279999%25%27+AND+SITUS_FNAM+LIKE+%27HAMILTON%25%27&outFields=%2A&returnGeometry=true&outSR=4326&f=json",
+  "retrieved_at": "2026-10-26T15:57:44.483Z",
+  "native_file": "local_data/country-research-us-oh-in-pa-p3/pasda-lehigh-parcel-545408213261-native.json",
+  "native_sha256": "d86c67b7be9ba8cb8a470875ca2264de0c45fa944902f4458000c303ff7f63ee",
+  "attribute_source_file": "local_data/country-research-us-oh-in-pa-p3/pasda-lehigh-parcels-layer.json",
+  "attribute_source_sha256": "cf6a4d66c62f1d3206ded41e5d90b80040d44d2aebe9343688f467879a87095c",
+  "attribute_source_url": "https://mapservices.pasda.psu.edu/server/rest/services/pasda/LehighCounty/MapServer/5?f=json",
+  "selected_properties": {
+    "PIN": "545408213261",
+    "SITUS_ADDR": "9999",
+    "SITUS_FNAM": "HAMILTON",
+    "SITUS_FTYP": "BLVD"
+  },
+  "layer": "PASDA (Pennsylvania Spatial Data Access, the Commonwealth's geospatial data clearinghouse) map service 'pasda/LehighCounty' layer 5 'Lehigh County Parcels 202108' (Lehigh County parcel data, August 2021 edition; native NAD83 geographic, EPSG:4269), queried by situs address with outSR=4326 and by PIN in its native CRS",
+  "facts": {
+    "parcels": {
+      "lehigh 545408213261": {
+        "geodesic_acres": 137.415,
+        "rings": 1,
+        "vertices": 92,
+        "valid": true,
+        "parcel_centroid_lon_lat": [
+          -75.65578,
+          40.5446936
+        ]
+      }
+    },
+    "centroid_lon_lat": [
+      -75.65578,
+      40.5446936
+    ],
+    "centroid_inside": true,
+    "approx_extent_m": [
+      1459,
+      612
+    ],
+    "bounds_lon_lat": [
+      -75.664698,
+      40.541882,
+      -75.647444,
+      40.547344
+    ],
+    "max_vertex_distance_from_centroid_m": 780.3,
+    "centroid_to_boundary_m": 212.9,
+    "native_crs_cross_check": {
+      "native_epsg": 4269,
+      "centroid_lon_lat": [
+        -75.655778,
+        40.5446855
+      ],
+      "distance_m": 0.92
+    },
+    "pa_dep_tracker_point_for_tekpark_expansion": {
+      "lon_lat": [
+        -75.655952,
+        40.545066
+      ],
+      "distance_to_centroid_m": 44,
+      "role": "corroboration only; undated DEP tracker row for the proposed TekPark expansion"
+    },
+    "centroid_method": "planar centroid in EPSG:32618 (WGS84 / UTM 18N) of the ring returned with outSR=4326, transformed back to WGS84; geodesic area on the WGS84 ellipsoid; the native EPSG:4269 ring transformed locally with pyproj as a cross-check",
+    "tools": "pyproj 3.7.1, shapely 2.1.1"
+  },
+  "identity_bridge": [
+    "TierPoint's Allentown - TekPark page gives the TEK data center at 9999 Hamilton Boulevard, Building #4, Breinigsville, PA 18031; its TekPark Campus page calls TekPark a TierPoint-owned, 137-acre data center campus at 9999 Hamilton Blvd, and TierPoint's 23 October 2025 release reports the acquisition of the 137-acre TekPark campus with its largest, formerly leased data center.",
+    "A situs-address query of the Lehigh County parcel layer returns exactly one parcel at 9999 Hamilton Blvd, PIN 545408213261; its polygon measures 137.42 geodesic acres, matching the operator's 137 acres.",
+    "PA DEP's data-center permit tracker places its 'TekPark Data Center Expansion (TierPoint)' row in Upper Macungie Township at 40.545066, -75.655952, 44 m from this centroid."
+  ],
+  "consistency_checks": {
+    "datum": "WGS84 output requested from the service; the native NAD83 ring gives a centroid 0.92 m away",
+    "edition": "The parcel layer is the August 2021 edition; the operator's 2025-2026 statements give the same 137-acre extent, so no later subdivision is indicated, but one cannot be excluded.",
+    "geocoder_used": false,
+    "personal_data": "The layer carries no owner fields; none were requested or copied."
+  }
+}

@@ -1,0 +1,45 @@
+{
+ "candidate_id": "charlton-stone-foundries-vip-estate-data-centre",
+ "decision": "Selected the site point that the Greater London Authority's London Planning Datahub publishes for Royal Greenwich record 26/2370/EIA, which the council links to UPRN 10010198846 (Plot A, VIP Trading Estate, Anchor and Hope Lane, SE7 7TE), as a reviewed site locator for the proposed Charlton data centre. The British National Grid point was converted to WGS84 with pyproj 3.7.1. It is a property address point inside the described site, not the centroid or boundary of the proposal, which was not available.",
+ "geometry": {
+  "type": "Point",
+  "coordinates": [
+   0.0312653,
+   51.4915237
+  ]
+ },
+ "authority_class": "compiled_reference",
+ "derivation": "coordinate_transform",
+ "scope_class": "council_linked_property_address_point_uprn_within_described_site",
+ "use_scope": "reviewed_site_locator",
+ "source_file": "local_data/country-research-uk-planning-portals-p3/gla-greenwich-26-2370-eia.json",
+ "source_sha256": "3b04434342b0012444017e2e33de4670d2a008458ad7a2740e15a5e072b33516",
+ "source_url": "https://planningdata.london.gov.uk/api-guest/applications/_search?q=id:%22Greenwich-26_2370_EIA%22&size=5",
+ "retrieved_at": "2026-10-26T15:54:11.507Z",
+ "selected_properties": {
+  "service": "London Planning Datahub (Greater London Authority) public applications search API, record Greenwich-26_2370_EIA (bo_system 'CSV Data Import', fed by the Royal Borough of Greenwich)",
+  "feature": "lpa_app_no 26/2370/EIA, site 'Land adjacent to and including the former Stone Foundries, 669A Woolwich Road and the VIP Industrial Estate, Charlton, London, SE7 8SL', uprn 10010198846, no polygon",
+  "site_point_epsg27700": [
+   541116.0,
+   178909.0
+  ],
+  "datahub_wgs84_field": [
+   51.491524,
+   0.031265
+  ],
+  "same_uprn_elsewhere": "Datahub record 25/0717/F (Greenwich; valid 5 March 2025, undecided) carries the same UPRN and point and names it 'PLOT A, VIP TRADING ESTATE, ANCHOR AND HOPE LANE, LONDON, SE7 7TE'"
+ },
+ "transform": {
+  "method": "pyproj 3.7.1 Transformer.from_crs('EPSG:27700', 'EPSG:4326', always_xy=True) applied to E 541116, N 178909",
+  "result_lat_lon": [
+   51.4915237,
+   0.0312653
+  ]
+ },
+ "consistency_checks": {
+  "stone_foundries": "Datahub polygons for earlier applications at the former Stone Foundries, 669A Woolwich Road (20/0751/EIA, 4.53 ha mixed-use site, and 24/4016/CP, the 0.92 ha foundry building) lie 85 m and 92 m east of the point (nearest edges); the 2026 scoping site 'adjacent to and including' the Stone Foundries and the VIP Industrial Estate therefore spans this area.",
+  "imagery": "Esri World Imagery z17 tiles (x 65546-65548, y 43593-43595) viewed locally with the Stone Foundries polygons overlaid and not redistributed: the point falls on a building in the block of industrial units immediately west of the Stone Foundries works, within the Charlton riverside industrial area south of the Thames. Street names were not read from the imagery. The imagery date is unknown and is not used as status evidence.",
+  "geocoder_used": false
+ },
+ "uncertainty": "The red-line boundary of the scoping site was not obtained (the Royal Greenwich planning portal disallows all automated agents), so the point's position within the site is unknown; the site includes the Stone Foundries about 85-180 m to the east, and a 100,000 sq m GEA data centre would extend a few hundred metres around it."
+}
