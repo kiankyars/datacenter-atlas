@@ -1,0 +1,53 @@
+{
+  "candidate_id": "applied-digital-ellendale-eln-01-hosting-facility",
+  "decision": "No new locator. The project reuses the existing Polaris Forge 1 campus point (NDDEQ ELN Building 1 generator-plant coordinate, -98.574269, 46.014383). This file records the check that the APLD ELN-01 hosting facility's Outlot 4-1 and the PF1 buildings share one APLD-owned quarter section that contains that point.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -98.574269,
+      46.014383
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_constituent_permit_reference_point",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-q3-us-neocloud-miners-p3/ndgishub-parcels-ellendale-area.json",
+  "source_sha256": "be7209bc2235e5630642cc7b08a2bc8fbb903d6de42fcfdce482ce072732ebb6",
+  "source_url": "https://services1.arcgis.com/GOcSXpzwBHyk2nog/arcgis/rest/services/NDGISHUB_Parcels/FeatureServer/0/query?geometry=%7B%22xmin%22%3A-98.59%2C%22ymin%22%3A46.005%2C%22xmax%22%3A-98.56%2C%22ymax%22%3A46.025%2C%22spatialReference%22%3A%7B%22wkid%22%3A4326%7D%7D&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=UniqueGISID,GISID,CountyName,Section,Township,Range,CalculatedAcres,Lot,Block,SubdivisionPlat,DateImported&returnGeometry=true&outSR=4326&f=json",
+  "retrieved_at": "2026-10-26T14:34:51.180Z",
+  "selected_properties": {
+    "tax_roll_se_quarter_section_4_t129n_r63w_ellendale_township": {
+      "755550": "APLD ELN-01, LLC; Outlot 4-1 in SE1/4; 9685 87th Ave SE, Ellendale; 40 deeded acres; commercial structure value 13,658,300 (2024 roll)",
+      "755000": "APLD ELN-02 A LLC; Outlot 4-4 in SE1/4; 9663 87th Ave SE, Ellendale; 24.78 deeded acres; commercial structure value 9,926,100 (2024 roll)",
+      "755125": "APLD ELN-02, LLC; Outlot 4-2 in SE1/4 Ex Outlot 4-4; 55.51 deeded acres",
+      "755500": "APLD ELN-02 Holdings, LLC; Outlot 4-3 in SE1/4; 41.11 deeded acres"
+    },
+    "geometry_parcels_in_se_quarter": [
+      "38021-8691010",
+      "38021-8691020",
+      "38021-8692010",
+      "38021-8692050"
+    ],
+    "note": "Dickey County geometry identifiers in the statewide layer do not join to the 2024 tax-roll identifiers, so the four geometry parcels are matched to the four outlots only as a set: both total about 160 acres of the SE1/4 of Section 4."
+  },
+  "computed": {
+    "se_quarter_union_geodesic_acres": 160.248,
+    "se_quarter_union_extent_m": [
+      803.7,
+      816.1
+    ],
+    "se_quarter_union_centroid_lon_lat": [
+      -98.5737704,
+      46.014031
+    ],
+    "existing_campus_point_inside_se_quarter": true,
+    "existing_campus_point_to_se_quarter_centroid_m": 55.0,
+    "existing_campus_point_to_farthest_se_quarter_vertex_m": 628.2,
+    "method": "Statewide ND GIS Hub parcel polygons (WGS84) unioned with shapely; centroid in EPSG:32614; geodesic distances and areas on the WGS84 ellipsoid.",
+    "tools": "pyproj 3.7.1, shapely 2.1.1"
+  },
+  "unresolved": [
+    "Which of the two 40-acre geometry parcels is Outlot 4-1 is not resolved; either lies within about 0.63 km of the campus point.",
+    "The reused point locates the campus through the ELN Building 1 generator plant on Outlot 4-4; it does not locate the hosting buildings on Outlot 4-1."
+  ]
+}

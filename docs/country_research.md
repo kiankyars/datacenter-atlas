@@ -361,6 +361,8 @@ From 22 October 2026 sites are added continuously: researchers each work a narro
 
 `verified_construction_core/2026-10-26-research-sixtysixth`: **675 sites and 717 projects in 63 countries**. Adds Global Switch Paris — existing data-centre operations; Paris Digital Park — PAR8, PAR9, PAR10 and PAR11 data-centre operations; Rovaltain Sesterce Campus — proposed 40 MW AI supercomputer campus (permit PC 026 004 25 00020, implementation suspended); Data Tank Nordic Utajärvi — four-building data-centre campus (permit 26-0014-RL, Prosessitie); Lahti Kujala data centre (ecogrid.energy / Peab) — planned data centre at Vartiokallionkatu 2; Keppel DC Singapore 1 — existing colocation data-centre operations; Keppel DC Singapore 5 — existing colocation data-centre operations; DC1 — existing single-tenant data-centre operations. Refreshes Bulk DK01 Current New Building Construction (under construction).
 
+`verified_construction_core/2026-10-26-research-sixtyseventh`: **676 sites and 719 projects in 63 countries**. Adds Applied Digital Jamestown — 106 MW data-center hosting facility, existing operations (APLD Hosting LLC); Applied Digital Ellendale 180 MW data-center hosting facility — existing operations.
+
 ## 25 October 2026
 
 `verified_construction_core/2026-10-25-research-sixtysecond` adds three commercial sites and

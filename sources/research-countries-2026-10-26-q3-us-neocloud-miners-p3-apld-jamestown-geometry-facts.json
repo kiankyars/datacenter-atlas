@@ -1,0 +1,88 @@
+{
+  "candidate_id": "applied-digital-jamestown-hosting-facility",
+  "decision": "Selected the centroid of the union of the three Stutsman County tax parcels that make up Auditor's Lot 17-2 in the SE1/4 of Section 17, T141N R63W (Fried Township), owned by Applied Digital subsidiaries APLD Hosting LLC (parcels 181741040 and 181744040, 2671 and 2683 Hwy 20 SE) and APLD GPU-01 LLC (parcel 181741044), as the campus locator of Applied Digital's Jamestown data-center hosting facility.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -98.6809839,
+      47.0257128
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_tax_parcel_union_centroid",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-q3-us-neocloud-miners-p3/ndgishub-parcels-jamestown-apld.json",
+  "source_sha256": "b8e1103b9ac4bf0400244c7a3c62fb6fd585ef098e32afa5ce5070dc04ff10d3",
+  "source_url": "https://services1.arcgis.com/GOcSXpzwBHyk2nog/arcgis/rest/services/NDGISHUB_Parcels/FeatureServer/0/query?where=UniqueGISID+IN+(%2738093-181741044%27,%2738093-181744040%27,%2738093-181741040%27)&outFields=*&returnGeometry=true&outSR=4326&f=json",
+  "retrieved_at": "2026-10-26T14:34:41.409Z",
+  "selected_properties": {
+    "parcels": {
+      "38093-181741040": {
+        "owner_tax_roll": "APLD HOSTING LLC",
+        "property_address": "2671 HWY 20 SE, Jamestown",
+        "legal_description": "S17, T141, R63, ACRES 15.56, AUDITOR'S LOT 17-2A WITHIN THE SE1/4 LESS AUDITOR'S LOT 17-2C (2.72 ACRES)",
+        "primary_use": "Commercial",
+        "number_structures": 1,
+        "calculated_acres_layer": 15.5774
+      },
+      "38093-181744040": {
+        "owner_tax_roll": "APLD HOSTING LLC",
+        "property_address": "2683 HWY 20 SE, Jamestown",
+        "legal_description": "S17, T141, R63, Acres 21.72, AUDITOR'S LOT 17-2B WITHIN THE SE1/4",
+        "number_structures": 1,
+        "calculated_acres_layer": 21.718
+      },
+      "38093-181741044": {
+        "owner_tax_roll": "APLD GPU-01 LLC",
+        "legal_description": "S17, T141, R63, ACRES 2.72, AUDITOR'S LOT 17-2C WITHIN THE SE1/4",
+        "primary_use": "Commercial",
+        "number_structures": 1,
+        "calculated_acres_layer": 2.7216
+      }
+    },
+    "county": "Stutsman (FIPS 38093)",
+    "plss": "Section 17, Township 141 North, Range 63 West (Fried Township)",
+    "tax_roll_year": 2025,
+    "tax_roll_date_imported": "2026-10-01",
+    "geometry_date_imported": "2026-01-06",
+    "service_data_last_edit": "2026-10-26T03:43:13Z (layer 0) / 2026-10-26T03:45:56Z (tax-roll table, layer 1)"
+  },
+  "computed": {
+    "parts": 1,
+    "geodesic_acres": 40.009,
+    "geodesic_area_m2": 161909,
+    "per_parcel_geodesic_acres": {
+      "38093-181741040": 15.574,
+      "38093-181744040": 21.713,
+      "38093-181741044": 2.721
+    },
+    "centroid_lon_lat": [
+      -98.6809839,
+      47.0257128
+    ],
+    "centroid_inside_polygon": true,
+    "centroid_in_plss_section_17_t141n_r63w_se_quarter": true,
+    "extent_m": [
+      280.1,
+      809.2
+    ],
+    "bounds_lon_lat": [
+      -98.682655,
+      47.022959,
+      -98.679012,
+      47.030239
+    ],
+    "cross_check": "The Stutsman County public parcel layer (County_Parcels_(Public), captured stutsman-parcels-sec17-t141-r63.json) returns the same three PIDs with the same legal descriptions; the union of its polygons has the same area (40.009 geodesic acres) and a centroid 0.0 m from the selected point.",
+    "method": "Polygons returned by the ND GIS Hub statewide Parcels feature layer in WGS84 (outSR 4326); each ring repaired with a zero buffer, unioned, centroid computed in EPSG:32614 (UTM 14N) and returned to WGS84; geodesic area on the WGS84 ellipsoid. Section 17 polygon from the Stutsman County PLSS sections layer.",
+    "tools": "pyproj 3.7.1, shapely 2.1.1"
+  },
+  "identity_bridge": [
+    "ND GIS Hub tax roll (2025 roll, imported 2026-10-01): parcels 181741040 (2671 Hwy 20 SE) and 181744040 (2683 Hwy 20 SE) are owned by APLD HOSTING LLC and parcel 181741044 by APLD GPU-01 LLC, together forming Auditor's Lot 17-2 within the SE1/4 of Section 17, T141N R63W; each carries one commercial structure.",
+    "Applied Digital's Form 10-K for the fiscal year ended 31 May 2026 states that APLD Hosting, LLC is a wholly owned subsidiary whose Starion Term Loan is secured by its interests in the master hosting agreements and electric services agreements related to the Jamestown hosting facility, and that APLD GPU-01, LLC's AI cloud services are serviced at the Jamestown hosting facility.",
+    "The same 10-K and the 10-Q for the quarter ended 31 August 2026 describe the company's 106 MW data-center hosting facility in Jamestown, North Dakota; no other parcel in North Dakota is owned by APLD Hosting LLC or APLD GPU-01 LLC in the statewide tax roll."
+  ],
+  "unresolved": [
+    "The tax roll and parcel layer give no building footprints; the centroid locates the 40-acre APLD property, not a particular hosting building or the APLD GPU-01 building on Lot 17-2C.",
+    "ND GIS Hub and Stutsman County publish no positional accuracy for the parcel polygons."
+  ]
+}

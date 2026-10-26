@@ -1,0 +1,42 @@
+{
+  "reviewer": "root",
+  "reviewed_at": "2026-10-26",
+  "decision": "accepted_for_integration",
+  "update": "verified_construction_core/2026-10-26-research-sixtyseventh",
+  "base_dataset": "verified_construction_core/2026-10-26-research-sixtysixth",
+  "process": "continuous: one researcher per beat, one adversarial verifier per fragment",
+  "fragments": [
+    {
+      "fragment": "q3-us-neocloud-miners-p3",
+      "verdict": "accept",
+      "checks": [
+        "Rehashed all 8 relied-on captures (10-Q htm, 10-K pdf, 2 tax-roll queries, 2 parcel-polygon queries, Stutsman county layer, tax-roll layer metadata): sha256 match .metadata.json and sources.json content_hash",
+        "10-Q (quarterly period ended 2026-08-31, signed 2026-10-07; IR index lists 10-Q at 10/07/26) states the 106 MW Jamestown and 180 MW Ellendale facilities continue to operate at full capacity as of 2026-08-31; operational as_of 2026-08-31 is 56 days before 2026-10-26, inside the 85-day window",
+        "Source kinds: 10-Q/10-K regulatory_filing (issuer-hosted renditions), ND GIS Hub and Stutsman County government_record; ir.applieddigital.com robots allows all but /form-submit; arcgis services hosts return 403 for robots.txt (RFC 9309 unavailable) and only public REST GETs were made",
+        "Jamestown identity: 10-K ties APLD Hosting LLC to the Jamestown hosting facility agreements and APLD GPU-01 to services at that facility; tax roll (2025 roll, imported 2026-10-01) puts both entities on Auditor's Lot 17-2, SE1/4 Sec 17 T141N R63W; statewide search finds no other APLD Hosting/GPU-01 parcel",
+        "Jamestown locator recomputed from raw ND GIS Hub polygons (pyproj 3.7.1/shapely 2.1.1, UTM 14N): union centroid -98.6809839, 47.0257128 (0.005 m from claimed), 40.009 geodesic acres, 280.1 x 809.2 m, inside polygon; Stutsman county polygons give the same centroid (0.01 m)",
+        "Ellendale: existing site vcc-site-0ac82fd201fa1878b892 key, name and country match; locator reuses project 20ee1eea campus point with its geometry and all three geometry-identity evidence IDs; recomputed SE1/4 Sec 4 union (160.248 ac) contains the point 55.0 m from centroid, farthest vertex 628.2 m",
+        "Same-campus check: prior PF1 reviews already exclude the operating crypto hosting from the HPC scopes; 8-K lease capture places PF1-1 on Outlot 4-4 and the substation on Outlot 4-2; imported PF1 source record is HPC-only (CoreWeave), so the hosting facility is a distinct scope",
+        "Distinctness: no site/project/evidence/source-record/identity-mapping hit for Jamestown, Stutsman, APLD Hosting, GPU-01, Hwy 20 or the parcel numbers; nothing within 50 km of the Jamestown point; near Ellendale only this site's two HPC projects; no other queue fragment, claim or sources/*-holds.json entry covers either facility",
+        "Roles: APLD Hosting LLC owner/current (tax roll) and Applied Digital Corporation operator/current (10-Q) for Jamestown; APLD ELN-01 owner/unknown (2024 roll) and Applied Digital operator/current for Ellendale",
+        "Fixed: removed the unsourced '5 MW' GPU-01 building size from the Jamestown status summary, parcel details and the Jamestown geometry-facts file (geometry_facts_sha256 updated to 4b38367c...)",
+        "Fixed: Ellendale project key aligned with its claims.tsv key (ellendale-hosting-facility-existing-operations), and the inferred ELN-01/9685 address dropped from the project name",
+        "No third-party personal data in changes, sources or holds; holds checked (6 entries, reopen conditions present)",
+        "dryrun_fragment.py ok against 2026-10-26-research-sixtysixth: 676 sites, 719 projects, 3,675 evidence rows"
+      ],
+      "residual_risks": [
+        "Ellendale hosting facility = APLD ELN-01 property on Outlot 4-1 (9685 87th Ave SE) is an inference from the 10-K, the 8-K lease definitions and the 2024 tax roll; no single document states it. It is disclosed in the identity review, and the owner role is scoped unknown",
+        "Dickey County tax roll is the 2024 roll (imported 2025-02-26), so current ELN-01 ownership is not confirmed",
+        "106 MW and 180 MW are stated facility sizes, not measured IT load; no power observation is typed",
+        "The Jamestown parcel centroid locates the 40-acre APLD property including the GPU-01 lot, not a specific hosting building; no positional accuracy is published"
+      ]
+    }
+  ],
+  "packet_pins": {
+    "definitions/atlas-research-sixtyseventh-2026-10-26.json": "7bd6912b3d69a94e0cc19a88e67b7e8d331b7ad7138a86a2953938d8c6c4506a",
+    "sources/research-countries-2026-10-26-sixtyseventh-primary-sources.json": "c278c6d631f3996e06c388fb9783095461c04d713b12a50f35743bddcc8c390c",
+    "sources/research-countries-2026-10-26-sixtyseventh-actions.json": "3174d799f9c17baac73470f1d50fb734765d136cdd0e051c1d13ce47a62980d1",
+    "sources/research-countries-2026-10-26-sixtyseventh-holds.json": "50f142b8179620fc41b1a73ff0f5abb1cb84270de295ebf2937c424e8e4e9199"
+  },
+  "raw_captures_redistributed": false
+}
