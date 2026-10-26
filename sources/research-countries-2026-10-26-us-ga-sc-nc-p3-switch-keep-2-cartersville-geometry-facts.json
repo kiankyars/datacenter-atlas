@@ -1,0 +1,85 @@
+{
+ "candidate_id": "us-ga-sc-nc-p3-switch-keep-2-cartersville",
+ "decision": "Selected the planar centroid of the union of the three contiguous Bartow County tax parcels owned by Switch Ltd on Bates Road (C106-0001-014 at 82 Bates Rd, 0075-1032-002 at 90 Bates Rd and 0075-1032-003 at 96 Bates Rd), the property of the Georgia EPD-listed \"The Keep 2 Campus\" at 78 Bates Rd SE, Cartersville, as the campus locator.",
+ "geometry": {
+  "type": "Point",
+  "coordinates": [
+   -84.7950835,
+   34.1068851
+  ]
+ },
+ "authority_class": "official_source",
+ "scope_class": "official_tax_parcel_union_centroid",
+ "use_scope": "campus_locator",
+ "source_file": "local_data/country-research-us-ga-sc-nc-p3/bartow-parcels-switch-ltd-wgs84.json",
+ "source_sha256": "518be63259f0fbe0d884ae6eb2489fdbeeddf59120057ded3407714796e5483a",
+ "source_url": "https://www.bartowgis.org/arcgis/rest/services/AGOServices/BartowLand/FeatureServer/2/query?where=Owner1%20LIKE%20%27SWITCH%20LTD%25%27&outFields=OBJECTID,PARCELID,Owner1,HOUSE_NO,STREET_NAM,TOTALACRES,Tax_District_Desc,LandStrata&returnGeometry=true&outSR=4326&f=json",
+ "retrieved_at": "2026-10-26T14:47:05.994Z",
+ "native_source_file": "local_data/country-research-us-ga-sc-nc-p3/bartow-parcels-switch-ltd-native.json",
+ "native_source_sha256": "852bd4c62c561fd29ee0fe3a88003113268bc8b1aba633672511347d78118c02",
+ "layer": "Bartow County GIS (www.bartowgis.org) AGOServices/BartowLand FeatureServer layer 2 \"Tax Parcels\"; native CRS Web Mercator (EPSG:3857)",
+ "selected_properties": {
+  "C106-0001-014": {
+   "owner": "SWITCH LTD",
+   "site_address": "82 BATES RD",
+   "tax_district": "Cartersville",
+   "land_strata": "I5",
+   "total_acres_attribute": 84.44,
+   "geodesic_acres": 85.21
+  },
+  "0075-1032-002": {
+   "owner": "SWITCH LTD",
+   "site_address": "90 BATES RD",
+   "tax_district": "Bartow County",
+   "land_strata": "I4",
+   "total_acres_attribute": 6.64,
+   "geodesic_acres": 6.38
+  },
+  "0075-1032-003": {
+   "owner": "SWITCH LTD",
+   "site_address": "96 BATES RD",
+   "tax_district": "Bartow County",
+   "land_strata": "I5",
+   "total_acres_attribute": 48.54,
+   "geodesic_acres": 48.21
+  }
+ },
+ "excluded": "Five other Switch Ltd parcels (Old Goodie Mountain Rd, Lead Mountain Rd and Crystal Mountain Rd, about 1.2 to 3.4 km south-east) do not touch the Bates Road group and are not attributed to the EPD-listed campus.",
+ "computed": {
+  "selected_point": [
+   -84.7950835,
+   34.1068851
+  ],
+  "union_parts": 1,
+  "union_valid": true,
+  "union_geodesic_acres": 139.8,
+  "centroid_inside_union": true,
+  "native_epsg3857_centroid_transformed_lon_lat": [
+   -84.7950834,
+   34.1068852
+  ],
+  "native_crosscheck_distance_m": 0.02,
+  "union_bounds_lon_lat": [
+   -84.800707,
+   34.100319,
+   -84.787599,
+   34.112004
+  ],
+  "union_extent_m_ew_ns": [
+   1209,
+   1296
+  ],
+  "method": "Planar centroid of the shapely union of the three WGS84 (outSR=4326) parcel polygons (duplicate attribute rows of 0075-1032-003 share one geometry); cross-checked against the centroid of the native EPSG:3857 union transformed with pyproj (planar centroids in different projections differ slightly); geodesic areas on the WGS84 ellipsoid.",
+  "tools": "pyproj 3.7.1, shapely 2.1.1"
+ },
+ "identity_bridge": [
+  "Georgia EPD Air Protection Branch public advisory PA0826-4 (comments due 25 September 2026) lists Facility Name \"The Keep 2 Campus\", Application No. 30289, Facility Address 78 Bates Rd SE, Cartersville, 30120, Data Processing, Hosting, and Related Services, to construct and operate additional main generators.",
+  "The Bartow County tax parcel layer returns Switch Ltd as owner of three contiguous parcels on Bates Road (82, 90 and 96 Bates Rd, 139.8 geodesic acres); the county address-point layer has no point for 78 Bates Rd; its points for 90, 92 and 96 Bates Rd lie inside these parcels, and the nearest lower numbers (52 and 57 Bates Rd) lie about 60 to 120 m outside them at the west end of the road.",
+  "Bartow County's data-center policy statement (3 August 2026) refers to \"Switch, in Cartersville but still a part of the County tax digest\" and says Switch, while in the City, is served by the Bartow County Water System; parcel C106-0001-014 lies in the Cartersville tax district.",
+  "Switch's Atlanta page (version of 12 October 2026) features an \"ATLANTA KEEP 2.0 Construction Flyover Video\"."
+ ],
+ "unresolved": [
+  "The exact parcel carrying the EPD address 78 Bates Rd SE is not published; the point locates the contiguous Switch-owned Bates Road holding as a whole, not a building.",
+  "Press figures of a 126-acre Cartersville site are not used; the three parcels total 139.8 geodesic acres."
+ ]
+}

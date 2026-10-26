@@ -1,0 +1,79 @@
+{
+  "candidate_id": "aws-phx065-mesa-pecos-road-campus",
+  "decision": "Selected the centroid of Maricopa County Assessor parcel 304-34-015G (owner of record Amazon Data Services Inc), the parcel that contains the City of Mesa permit geocode for 10464 E Pecos Rd, the address of the AWS PHX065 permits and of both inspected data-center building permits, as the campus locator.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -111.6071195,
+      33.2954401
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_tax_parcel_centroid",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-q3-hyperscalers-p3/maricopa-parcel-at-phx065-permit-point-20261026.json",
+  "source_sha256": "dc138589343c9aeee4c878d87ba91436397e63832ffd3e8b612b411cc984c9fe",
+  "source_url": "https://gis.mcassessor.maricopa.gov/arcgis/rest/services/Parcels/MapServer/0/query?geometry=-111.608238%2C33.292278&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=APN,APN_DASH,OWNER_NAME,MAIL_CITY,MAIL_STATE,PHYSICAL_ADDRESS,SUBNAME,LAND_SIZE,DEED_NUMBER,DEED_DATE,PUC,JURISDICTION,STR&returnGeometry=true&outSR=4326&f=json",
+  "retrieved_at": "2026-10-26T14:47:40.963Z",
+  "selected_properties": {
+    "APN": "30434015G",
+    "APN_DASH": "304-34-015G",
+    "OWNER_NAME": "AMAZON DATA SERVICES INC",
+    "MAIL_CITY_STATE": "SEATTLE, WA",
+    "PHYSICAL_ADDRESS": "",
+    "LAND_SIZE_sq_ft": 3063356,
+    "LAND_SIZE_acres_computed": 70.325,
+    "DEED_NUMBER": "20250417207",
+    "DEED_DATE": "2025-07-21",
+    "JURISDICTION": "MESA",
+    "STR": "35 1S 7E",
+    "spatial_reference": "outSR=4326 (WGS84) as returned by the assessor's ArcGIS MapServer"
+  },
+  "computed": {
+    "parts": 1,
+    "ring_count": 1,
+    "geodesic_acres": 70.356,
+    "geodesic_area_m2": 284721,
+    "centroid_lon_lat": [
+      -111.6071195,
+      33.2954401
+    ],
+    "centroid_inside_polygon": true,
+    "min_distance_centroid_to_boundary_m": 193.7,
+    "extent_m": [
+      395.6,
+      758.6
+    ],
+    "bounds_lon_lat": [
+      -111.60923,
+      33.292155,
+      -111.604946,
+      33.298976
+    ],
+    "permit_geocode_lon_lat": [
+      -111.608238,
+      33.292278
+    ],
+    "permit_geocode_inside_polygon": true,
+    "permit_geocode_to_centroid_m": 365.7,
+    "method": "Single-ring polygon returned by the assessor service in WGS84; centroid computed in EPSG:32612 (WGS 84 / UTM zone 12N) and returned to WGS84; geodesic area on the WGS84 ellipsoid",
+    "tools": "pyproj 3.7.1, shapely 2.1.1"
+  },
+  "identity_bridge": [
+    "City of Mesa Building Permits (dzpk-hxfb): the permits at 10464 E PECOS RD are titled 'AWS PHX065 - FINAL PLAT', 'AWS PHX065 - At-Risk Grading', 'AWS PHX065 Bldg 2' (site improvements for the new data center building PMT24-15709), 'TEMP CONSTRUCTION TRAILER - AWS PHX065 BLDG 2', 'AWS PHX065 - Offsite Fire Hydrant', 'AWS PHX065 - Parking Canopies' and 'PHX065' (data center temporary power plan); the two 229,416 sq ft single-storey data-center building permits PMT24-15709 ('Data Center Bldg 2') and PMT25-13554 ('Data Center Bldg B') are at the same address and cross-reference each other.",
+    "Every permit row at 10464 E PECOS RD carries the same city geocode (-111.608238, 33.292278); a point-in-polygon query of the assessor parcel layer at that geocode returns only parcel 304-34-015G.",
+    "The assessor layer names AMAZON DATA SERVICES INC (Seattle, WA mailing address) as owner of 304-34-015G (deed 20250417207, 21 July 2025). An owner query for 'AMAZON DATA%' within Mesa returns only 304-34-015G and 314-10-777 (10437 E Elliot Rd, the separate PHX066 site about 5.7 km north).",
+    "Permits issued before the July 2025 deed cite parcel 30434015E, which the current assessor layer no longer returns; permits from mid-2026 (PMT26-07770, PMT26-13074) cite 30434015G, consistent with a re-plat under 'AWS PHX065 - FINAL PLAT'."
+  ],
+  "unresolved": [
+    "The parcel has no situs address in the assessor layer; the link to 10464 E Pecos Rd rests on the city's permit geocode falling inside the parcel and on the permit parcel references, not on an address match.",
+    "The positions of Building 2 and Building B within the 70-acre parcel are not published; the centroid locates the campus property, not either building.",
+    "Two permit titles are cross-filed: 'AWS PHX066 - Parking Canopies' (PMT26-07174) is filed at 10464 E Pecos Rd and 'PHX 065' (PMT26-13246, an ERRC permit) at 10437 E Elliot Rd, so the PHX066 designation of the Elliot Road parcel is inferred."
+  ],
+  "nearby_records": "No Atlas site, project, source record, identity-mapping coordinate, pending fragment, claim coordinate or hold coordinate lies within 5 km. The nearest Atlas record is the imported EdgeCore Mesa campus (5.54 km). Google Mesa Red Hawk is 9.14 km north-west; Meta's Mesa campus address (3841 S Ellsworth Rd, city permit geocode) is 6.15 km north-west, while the imported Meta Mesa record uses a Mesa city-centre point 24.5 km away.",
+  "consistency_checks": {
+    "datum": "WGS84 output from the assessor's ArcGIS service (outSR=4326)",
+    "geocoder_used": false,
+    "map_viewport_or_city_centre_used": false
+  }
+}

@@ -1,0 +1,118 @@
+{
+  "format": "datacenter-atlas-geometry-facts-v1",
+  "fragment": "q3-us-reits-p3",
+  "prepared_on": "2026-10-26",
+  "candidate_id": "digital-realty-de-soto-astra-north-phase-one",
+  "facility": "Digital Realty Astra North Phase One (Project Jayhawk), Astra Enterprise Park, De Soto, Johnson County, Kansas",
+  "decision": "Selected the area centroid of the yellow 'PropertyBoundary' outline drawn on Exhibit 2.5 (Post-Project Land Use Workmap, Project Jayhawk, dated 26 June 2026) of the Project Jayhawk drainage study, which the City of De Soto published inside the 22 September 2026 Planning Commission agenda item for the Digital Realty site plan. The outline was read as vector geometry from the PDF and converted to coordinates with the exhibit's own embedded GeoPDF registration. The point is a parent-property marker for the Astra North / Project Jayhawk tract, not the building footprint.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -94.987291,
+      38.9441882
+    ]
+  },
+  "authority_class": "compiled_reference",
+  "scope_class": "georeferenced_site_plan_property_boundary_centroid",
+  "use_scope": "campus_locator",
+  "derivation": "georeferenced_source_map",
+  "source_file": "local_data/country-research-q3-us-reits-p3/desoto-doc-3925-c.pdf",
+  "source_sha256": "29222cc45ab2c2a73e32c030b3047b4265da82027c45d6949357e67f8f0af7bf",
+  "source_url": "https://www.desotoks.us/DocumentCenter/View/3925",
+  "source_page": 67,
+  "registration": {
+    "viewport_name": "Exhibit 2.5 Post-Project Land Use Workmap",
+    "viewport_bbox_pdf_points": [
+      36.00013,
+      36.00013,
+      972.0001,
+      756.0
+    ],
+    "lpts": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        0
+      ]
+    ],
+    "gpts_lat_lon": [
+      [
+        38.92921,
+        -95.01012
+      ],
+      [
+        38.95665,
+        -95.00889
+      ],
+      [
+        38.95539,
+        -94.9632
+      ],
+      [
+        38.92795,
+        -94.96445
+      ]
+    ],
+    "gcs": "NAD_1983_Kansas_LCC_ftUS (Lambert Conformal Conic, CM -98.25, SP 37.5/39.5, origin 36.0, false easting 1312333.3333 ftUS), NAD83 geographic GPTS",
+    "method": "GPTS corners projected to the viewport's Kansas LCC ftUS CRS with pyproj; least-squares affine from PDF user-space points to that CRS (4 corners, residuals 0.18 ft / 0.05 m); page coordinates of the outline converted with the affine and back to NAD83 geographic coordinates",
+    "gpts_decimal_note": "GPTS are written to five decimal places (about 1 m)"
+  },
+  "outline": {
+    "pdf_drawing_style": "stroke RGB (1,1,0), width 2.0 pt; legend label 'PropertyBoundary'",
+    "path_points": 380,
+    "closed": true,
+    "page_bbox_pymupdf_top_left_origin": [
+      338.9,
+      136.5,
+      584.7,
+      676.6
+    ]
+  },
+  "computed": {
+    "centroid_nad83_lon_lat": [
+      -94.987291,
+      38.9441882
+    ],
+    "centroid_inside_outline": true,
+    "outline_geodesic_area_acres": 252.8,
+    "outline_extent_m": {
+      "east_west": 1074,
+      "north_south": 2280
+    },
+    "outline_bounds_lon_lat": [
+      -94.994686,
+      38.931635,
+      -94.982292,
+      38.952176
+    ],
+    "datum_note": "NAD83 geographic coordinates are used directly as WGS84 (difference of about 1-2 m in Kansas, below the stated uncertainty)",
+    "tools": "PyMuPDF 1.25.5 (vector path extraction), pyproj 3.7.1, shapely 2.1.1"
+  },
+  "consistency_checks": {
+    "survey_monuments": "Sheet 17 of the same PDF (Evergy Polaris substation preliminary sheets) prints two set monuments, PT 43 N=234274.836 E=2168561.957 and PT 42 N=234166.944 E=2169825.995, with no CRS label; read as NAD83 Kansas North ftUS (EPSG:3419) they fall 29.6 m and 27.7 m outside the traced outline, near String Town Road, 763 m and 816 m from the marker. This supports the registration at the tens-of-metres level only; the monuments are not on a stated common boundary.",
+    "area": "The traced outline measures 252.8 geodesic acres; the drainage study text gives about 288 acres for the Project Jayhawk tract and the development plan cover sheet gives North Site 281.136 acres, so the June 2026 exhibit outline is not the final surveyed boundary.",
+    "geocoder_used": false
+  },
+  "identity_bridge": [
+    "The PDF opens with the City of De Soto staff memo 'Agenda Item 7b - Consider Site Plan for Project JayHawk - Digital Realty', meeting date 22 September 2026, describing a phase-one data center along Lexington Avenue between 99th and 103rd Streets.",
+    "Its site plan application names the project 'Digital Astra North (Project Jayhawk)', location 'NE of 103rd and Lexington Avenue', legal description 'Portions of Astra Enterprise Park - 2nd Plat', zoning M-1.",
+    "The drainage study in the same PDF titles Exhibit 2.5 'Post-Project Land Use Workmap, Project Jayhawk, De Soto, Kansas' and its text places the project east of Lexington Ave and south of W 95th St in De Soto.",
+    "The city's Digital Realty Data Center page links this document as 'Site Plan for Digital Realty North - Agenda Item' under the 22 September 2026 Planning Commission meeting."
+  ],
+  "nearby_records": "No Atlas site, project, source record, identity-mapping entry, pending queue addition, claim or hold lies within 15 km (checked against verified_construction_core/2026-10-26-research-sixtysixth). The separate Beale Infrastructure (Mount Sunflower) data center campus at Flint Commerce Center in De Soto is not an Atlas record.",
+  "unresolved": [
+    "The building footprint inside the tract is not located; the point is a tract marker.",
+    "The exhibit outline predates the September 2026 boundary survey and differs from the 281.136-acre North Site description."
+  ]
+}

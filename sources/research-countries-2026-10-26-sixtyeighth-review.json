@@ -1,0 +1,126 @@
+{
+  "reviewer": "root",
+  "reviewed_at": "2026-10-26",
+  "decision": "accepted_for_integration",
+  "update": "verified_construction_core/2026-10-26-research-sixtyeighth",
+  "base_dataset": "verified_construction_core/2026-10-26-research-sixtyseventh",
+  "process": "continuous: one researcher per beat, one adversarial verifier per fragment",
+  "fragments": [
+    {
+      "fragment": "q3-hyperscalers-p3",
+      "verdict": "accept",
+      "checks": [
+        "all 13 relied-on captures rehashed: sha256 and byte length match .metadata.json and sources.json content_hash; metadata URLs match source_url; HTTP 200",
+        "geometry facts file hash matched before edit; re-pinned after text correction",
+        "AWS PHX065: inspection 20138177 Footing Partial Approval 2026-10-22 on PMT25-13554 and 32/59 in-window approvals on PMT24-15709/PMT25-13554 confirmed in raw rows at 10464 E PECOS RD; no CofO",
+        "Red Hawk PH03: inspections 20137886/7/8 (Framing, Drywall Fire Assembly, Mechanical Rough-In) Partial Approval 2026-10-22 on PMT26-01256 confirmed; 114 in-window approvals on PMT25-22348",
+        "Meta MAZ7: inspection 20135129 Electrical Rough-In Partial Approval 2026-10-20 on PMT26-03021 (Building 17, 144,640 sq ft) confirmed; 34 in-window approvals; 'Meta MAZ7 MDF' permit at same address and parcel",
+        "dataset version bounds: inspections rowsUpdatedAt 2026-10-24T01:13:53Z, permits dataUpdatedAt 2026-10-25T19:57:29Z from same-day metadata captures",
+        "all status dates within 85 days of 2026-10-26 (floor 2026-08-02); all status sources government_record",
+        "PHX065 locator recomputed with pyproj 3.7.1/shapely 2.1.1 from raw assessor polygon: centroid (-111.6071195, 33.2954401), inside, 70.36 ac, permit geocode inside, 366 m",
+        "Red Hawk locator reuse validated by dry run against baseline project b42b34a0 and evidence b28d52f3; site name/country match",
+        "Meta imported record location note gives 3841 S Ellsworth Rd; status refresh strictly newer; locator and scope unchanged",
+        "distinctness: no Atlas site/project/source-record/identity-mapping/pending fragment/hold coordinate within 5 km of PHX065 (nearest EdgeCore Mesa 5.54 km); no other AWS Mesa record; no Red Hawk Phase 3 or competing Meta Mesa action in queue, claims.tsv or sources/*-holds.json",
+        "robots.txt for citydata.mesaaz.gov, gis.mcassessor.maricopa.gov (404), datacenters.google and datacenters.atmeta.com permit the captured paths",
+        "no private individuals' names, phones or e-mails in sources, changes, holds or URLs",
+        "fixed: PHX065 identity_review no longer claims every Pecos permit names PHX065 (PMT26-07174 'AWS PHX066 - Parking Canopies' is filed there; 'PHX 065' ERRC PMT26-13246 at 10437 E Elliot); corrected one-way permit cross-reference and parcel-number statements; PHX066 designation of Elliot parcel marked as inferred in addition, hold and geometry facts",
+        "fixed: Google locations source kind operator_website -> company_disclosure, consistent with existing Atlas evidence for the same URL",
+        "dryrun_fragment.py ok against 2026-10-26-research-sixtyseventh (677 sites, 721 projects, 3,685 evidence)"
+      ],
+      "residual_risks": [
+        "Inspection partial approvals cover inspected portions only; building positions within the parcels are unpublished",
+        "PHX065/PHX066 code-to-parcel mapping rests on predominant permit titles; two permits are cross-filed",
+        "Building 2 inspection rows captured only from 1 July 2026; an earlier phased TCO cannot be fully excluded (none recorded on the permit)",
+        "Red Hawk PH03 permits cite superseded parcels 019K/019M; position of PH03 inside the 019P/019Q union not independently shown",
+        "Meta record keeps its imported locality_context city-centre point 19.4 km from the campus; Redale LLC-Meta link rests on the 'Meta MAZ7 MDF' permit title and the record's address note",
+        "three Meta identity sources are cited by id in the identity review text but are not associated as evidence"
+      ]
+    },
+    {
+      "fragment": "q3-us-reits-p3",
+      "verdict": "accept",
+      "checks": [
+        "all 14 relied-on captures rehashed: sha256 equals .metadata.json and sources.json content_hash; HTTP 200; URLs match",
+        "geometry facts files hash to the geometry_facts_sha256 values in sources.json",
+        "De Soto: pdftotext of item 7b memo read (meeting date 22 Sep 2026, phase-one 2-storey 450,000 sq ft data center, private and Evergy Polaris substations, staff recommends approval; Planning Commission makes final decision); PDF CreationDate/ModDate 21 Sep 2026; announced only, no consent or work asserted; 34 days inside 85-day window",
+        "De Soto locator recomputed independently: page 67 rendered with pdftoppm; yellow PropertyBoundary path extracted with pdftocairo -svg (181 vertices, no curves, no parent transform); viewport obj 1099 'Exhibit 2.5 Post-Project Land Use Workmap' BBox/LPTS/GPTS read from raw PDF; affine to Kansas LCC ftUS residual 0.18 ft; centroid (-94.987291, 38.9441882) matches to 0.002 m, inside outline, 252.8 geodesic acres; monuments 27.7/29.5 m outside, as stated",
+        "De Soto outline is the Project Jayhawk tract (~253 ac), not the Astra Enterprise Park or Sunflower plant extent; campus_locator / georeferenced_source_map / compiled_reference allowed by dataset_update.py",
+        "De Soto owner of record Atlantic Ventures LLC confirmed on plan-set existing-conditions sheet (Tract 3 and 4 North Site, Book 202603 Page 005325); North Site 281.136 ac confirmed",
+        "city Digital Realty page links DocumentCenter/View/3925 under 22 Sep 2026 Planning Commission; 2 Oct newsletter confirms 19 Nov hearing on Project Plan 3",
+        "MSP2: DataBank release datePublished 2026-10-01 read in capture; present-tense carrier hotel serving clients; company_disclosure; 25 days in window",
+        "MSP2 locator recomputed with pyproj/shapely from UTM 15N parcel ring: centroid (-93.145692, 44.838571), 0.006 m from claim, inside 7.88 ac parcel owned by DataBank Properties LLC",
+        "ATL13: blog field_publish_date 2026-10-14 belongs to the Atlanta post; 'Our flagship facility, ATL13 at 56 Marietta Street' read in capture; company_disclosure; 12 days in window",
+        "ATL13 locator recomputed: EPSG:6447 to WGS84 gives (-84.391581821, 33.755427517) equal to layer LAT/LON; inside parcel 14 007800110260; 1.2 m from parcel centroid",
+        "roles checked: vocabulary owner/operator only; scopes current/intended/unknown; each role sourced",
+        "distinctness re-screened against verified_construction_core/2026-10-26-research-sixtyseventh (config moved during verification) sites/projects/evidence/source-records/identity-mapping, all other queue fragments, claims.tsv and sources/*-holds.json: no record within 2 km or by name/alias/address; nearest Atlas sites 39.3 km, 8.9 km and 19.2 km; DataBank ATL2/ATL3 West End (us-ga-sc-nc-p3) is a different facility 3.96 km away",
+        "16 Oct thirty-first hold on Digital Realty De Soto reopen condition (dated in-window municipal record with geometry) is met",
+        "robots.txt: every relied host's captured robots allows the URL or returned 404; drive.usercontent.google.com not requested",
+        "no private individuals' names, phones or e-mails in changes, sources, holds or URLs",
+        "dryrun_fragment.py ok against sixtyseventh (679 sites, 722 projects)"
+      ],
+      "residual_risks": [
+        "De Soto point is a tract centroid on a June 2026 exhibit outline (~253 ac) that differs from the 281.136 ac surveyed North Site; building footprint not located",
+        "De Soto publication date is the memo's meeting date (no archived copy); bounded by PDF ModDate 21 Sep and KSHB 29 Sep report",
+        "Atlantic Ventures LLC owner role is land owner of record; its relation to Digital Realty (application owner) is unestablished",
+        "ATL13 operational rests on a marketing blog's present-tense description; Digital Realty describes itself as the building's interconnection area operator",
+        "compliance incident: one GET to gismaps.fultoncountyga.gov after a failed robots read (no response, no data used)"
+      ]
+    },
+    {
+      "fragment": "us-ga-sc-nc-p3",
+      "verdict": "accept",
+      "checks": [
+        "All 22 source captures rehashed: file sha256 equals the .metadata.json sha256 and the source content_hash; the 3 geometry-facts files match their recorded sha256",
+        "Stokes legal notice (pdftotext + pdftoppm render): 'Posted: August 20, 2026', Project Delta, petitioner, owners DFC Stokes LLC / DFC Stokes 2 LLC, R-A to M-2-CZ for a data center, 4 PINs; government_record; 67 days old; announced only (no decision or permit claimed)",
+        "Bartow policy statement: 'These facilities remain in construction and pre-operational phases' covers Switch in Cartersville; PDF created 3 Aug 2026, Revize link t=20260803120350, IA copy of 27 Sep 2026 has the same SHA-1 digest as the capture; Aug 5 minutes say Switch's first building should hit the digest next year; 84 days old, inside the 85-day window",
+        "GA EPD PA0826-4 lists 'The Keep 2 Campus', 78 Bates Rd SE, Cartersville, application 30289 for additional main generators; the broader '%SWITCH%' Bartow owner query returns only the 8 Switch Ltd parcels",
+        "DataBank ATL3 live capture dateModified 2026-09-28 (19 carriers) against IA copy of 18 Jun 2026 (dateModified 2026-05-14, 18 carriers) and sitemap lastmod; ATL2 Sep 26 vs IA 19 Apr (16 carriers); market page names the ATL2/ATL3 West End complex; company_disclosure, 28 days old",
+        "Locators recomputed independently with pyproj 3.7.1 / shapely 2.1.1 from the WGS84 captures: Stokes 4-PIN union (3 parts, 1,827.59 ac, gaps 18-30 m) centroid within 0.002 m and inside; Switch 3-parcel union (1 part, 139.80 ac) within 0.002 m and inside; DataBank 2-parcel union (1 part, 6.41 ac) within 0.004 m and inside; native EPSG:2264/3857/2240 cross-checks reproduce 0.97/0.02/0.81 m",
+        "Bates Rd address points 90/92/96 fall inside the Switch parcels; Fulton White St query has exactly one parcel each at 1100 and 1150 White St SW, both DATABANK PROPERTIES LLC",
+        "Distinctness screened against verified_construction_core/2026-10-26-research-sixtyseventh (sites, projects, evidence, 231 source records, identity mapping), every queue fragment's changes and holds, claims.tsv coordinates and all sources/*-holds.json: no match other than this fragment's own claims; nearest records 13.8 km (WhiteFiber NC-1), 45.1 km (Flexential Douglasville), 3.96 km (pending Digital Realty ATL13, different property)",
+        "Roles checked: owners from county notice and parcel layers (current), Switch operator intended, DataBank operator current; no private individuals' names found in changes, sources, holds, notes or geometry files (owner-name scan of all parcel captures)",
+        "Edits: corrected ATL3 datePublished in date_semantics (2020-12-08, not 2018); removed the uncaptured 'January 2026 approval voided' and '3-2' details from the Stokes summary and successor review (possibly derived from the robots-disallowed wunc.org fetch)",
+        "dryrun_fragment.py ok against the sixtyseventh base: 679 sites, 722 projects"
+      ],
+      "residual_risks": [
+        "Switch status observation of 3 Aug 2026 leaves the 85-day window on 28 Oct 2026 and the builder's 90-day limit after 1 Nov 2026; publish promptly or drop",
+        "Switch under_construction rests on a general county policy statement (not an inspection) and its date on PDF metadata plus the CMS upload stamp, bounded above by the 27 Sep IA copy",
+        "Switch Keep 2 locator covers the 139.8-acre Switch Ltd Bates Rd holding tied to the EPD address; Switch's reported 2,000+ acre expansion campus may extend onto land in other names",
+        "DataBank operating date relies on a page dateModified within a late-September site-wide re-save, bounded only from below by IA copies with different content",
+        "Stokes 14 Sep 2026 rezoning decision exists per news but no county record was captured; announced status may soon be superseded"
+      ]
+    },
+    {
+      "fragment": "us-tx-tabs-new-p3",
+      "verdict": "accept",
+      "checks": [
+        "all 8 relied-on captures rehashed: sha256 matches .metadata.json and source content_hash",
+        "TABS2027004299 page read: Registration Date 10/23/2026, scope 'Renovation of interior storage room to additional data hall space ... exterior mechanical yard', 5,000 sq ft, $1,000,000, owner Equinix LLC, status Project Registered",
+        "listing JSON confirms ProjectCreatedOn 2026-10-23T11:38:51.45; as_of 2026-10-23 is 3 days before 2026-10-26 (within 85)",
+        "status announced from regulatory_filing; start/completion are forecasts and not used for a stage; matches TABS fit-out precedent in base (QTS DFW1-DC1, CyrusOne DFW8)",
+        "locator recomputed with pyproj 3.7.1/shapely 2.1.1: centroid (-95.3642684, 29.9359097) inside parcel 1159570000006, 6.011 ac, address point 13.5 m and Equinix map point 71.4 m both inside; max vertex 117.6 m",
+        "adjoining same-owner parcel 1159570000002 exclusion reproduced: union centroid 65.2 m east lies in 002",
+        "Equinix archived HO1 page confirms 1515 Aldine Meadows Road, HO1 IBX, map-center -95.3639191,29.9364774",
+        "roles owner/owner/operator with relationship_scope current; parcel-owner roles precedented in base",
+        "distinctness: no Aldine/HO1/Terremark/Verizon Data/77032/1515 Aldine hits in base sites/projects/evidence/source-records/identity-mapping, other queue fragments or sources/*-holds.json; only own claims.tsv row; nearest base site 16.9 km",
+        "no private-individual names or phones in changes, sources, holds, notes or geometry facts",
+        "robots: TDLR /TABS allowed; equinix.com 403 and not fetched; archive and TxGIO no restrictions",
+        "fixed source date_semantics (page does print Registration Date) and matching notes line",
+        "dryrun_fragment.py ok: 677 sites, 720 projects"
+      ],
+      "residual_risks": [
+        "TABS registration is an accessibility-review filing, not a building permit; City of Houston permits were not reviewed",
+        "owner of record Verizon Data Centers I LLC differs from TABS owner Equinix LLC; linked only by shared 1 Lagoon Dr mailing address",
+        "locator is the HO1 parcel centroid, not the converted storage room; parcel positional accuracy unpublished",
+        "small scope (5,000 sq ft, $1M) and tenant-funded with no tenant named"
+      ]
+    }
+  ],
+  "packet_pins": {
+    "definitions/atlas-research-sixtyeighth-2026-10-26.json": "cf922a597732d95dcab1af90a96cc8da5d27722f3482ab9557f7647e66bdad8f",
+    "sources/research-countries-2026-10-26-sixtyeighth-primary-sources.json": "42753421388378cef4d12a08e3b422c07c0305152175ec2b200cdb2b454176dd",
+    "sources/research-countries-2026-10-26-sixtyeighth-actions.json": "c24cbcfb7101d13a1addd785c8b9c1630870adf28b151962f4518fd2aa879d30",
+    "sources/research-countries-2026-10-26-sixtyeighth-holds.json": "33e4a15f26bb88d9433101562c0155cddf47129a2c602550cc880240a864dcea"
+  },
+  "raw_captures_redistributed": false
+}

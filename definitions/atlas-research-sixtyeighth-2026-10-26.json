@@ -1,0 +1,702 @@
+{
+  "format": "datacenter-atlas-update-input-v1",
+  "updated_at": "2026-10-26",
+  "output": "verified_construction_core/2026-10-26-research-sixtyeighth",
+  "base_dataset": "verified_construction_core/2026-10-26-research-sixtyseventh",
+  "base_manifest_sha256": "e13bb9b6b275fd98a356b6c22fbceba0c53490e98805d4ed20519a6aad0107ed",
+  "source_files": [
+    {
+      "path": "sources/research-countries-2026-10-26-sixtyeighth-primary-sources.json",
+      "sha256": "42753421388378cef4d12a08e3b422c07c0305152175ec2b200cdb2b454176dd"
+    }
+  ],
+  "additions": [
+    {
+      "project_stable_key": "curated:aws-phx065-mesa-pecos-road-campus:data-center-buildings-2-and-b",
+      "physical_site_stable_key": "curated:aws-phx065-mesa-pecos-road-campus",
+      "site_name": "AWS PHX065 Data Center Campus (10464 E Pecos Rd, Mesa, Arizona)",
+      "name": "AWS PHX065 — two single-storey data-centre buildings under construction (Mesa permits PMT24-15709 and PMT25-13554)",
+      "country": "United States",
+      "country_iso_a2": "US",
+      "status": {
+        "value": "under_construction",
+        "as_of": "2026-10-22",
+        "source_id": "q3-hyperscalers-p3-mesa-inspections-aws-phx065",
+        "summary": "The City of Mesa's public building-inspection records for 10464 E Pecos Rd show city inspectors approving or partially approving construction work on both AWS PHX065 data-centre building permits in the 85 days to 22 October 2026. On PMT24-15709 ('Data Center Bldg 2', a 229,416 sq ft single-storey data center) they recorded framing, mechanical rough-in, above-ceiling, drywall fire-assembly and electrical rough-in inspections between 3 August and 12 October 2026. On PMT25-13554 ('Data Center Bldg B', a second 229,416 sq ft single-storey data center) they recorded pre-slab, electric underground, drywall shear-assembly, framing, electrical rough-in and footing inspections between 3 August and 22 October 2026, the latest a footing partial approval on 22 October 2026. This records the two buildings as under construction on 22 October 2026. Partial approvals cover the inspected portions only; no certificate of occupancy has been recorded, and completion, operation, IT capacity and customers are not established."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -111.6071195,
+            33.2954401
+          ]
+        },
+        "source_id": "q3-hyperscalers-p3-maricopa-parcel-30434015g",
+        "scope": "campus_locator",
+        "scope_class": "official_tax_parcel_centroid",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "official_county_assessor_parcel_centroid",
+        "precision": "Centroid of Maricopa County Assessor parcel 304-34-015G (owner of record Amazon Data Services Inc; 70.36 geodesic acres, about 396 by 759 m), the parcel that contains the City of Mesa permit geocode for 10464 E Pecos Rd. It locates the AWS PHX065 property, not either building footprint, a surveyed boundary or the works extent.",
+        "identity_review": "The City of Mesa permits at 10464 E Pecos Rd that name a project name AWS PHX065 ('AWS PHX065 - FINAL PLAT', 'AWS PHX065 - At-Risk Grading', 'AWS PHX065 Bldg 2', 'TEMP CONSTRUCTION TRAILER - AWS PHX065 BLDG 2', 'AWS PHX065 - Offsite Fire Hydrant', 'PHX065' temporary power, 'AWS PHX065 - Parking Canopies'), with one exception: a parking-canopy application at this address (PMT26-07174, Revisions Required) is titled 'AWS PHX066 - Parking Canopies', while an emergency-responder radio permit at Amazon's other Mesa parcel (10437 E Elliot Rd, PMT26-13246) is titled 'PHX 065'; these two cross-filed records do not change the address of the inspected buildings. The two data-center building permits PMT24-15709 ('Data Center Bldg 2') and PMT25-13554 ('Data Center Bldg B') share the 10464 E Pecos Rd address, and PMT25-13554 references PMT24-15709 as 'Bldg 2'. All permit rows at the address carry one city geocode (-111.608238, 33.292278); the assessor layer returns only parcel 304-34-015G at that point, owned by Amazon Data Services Inc (deed of 21 July 2025). Most permits, including the two building permits, cite the predecessor parcel 30434015E, which the current layer no longer returns; the two most recent site permits (PMT26-07770, PMT26-13074) cite 30434015G. The parcel has no situs address, so identity rests on the permit geocode, the permit parcel references and the ownership, not on an address match. No geocoder, map viewport or city centre is used.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The assessor publishes no positional accuracy for parcel polygons; the centroid represents a 70-acre parcel, and the positions of Building 2 and Building B within it are not published."
+      },
+      "context_source_ids": [
+        "q3-hyperscalers-p3-mesa-permits-aws-phx065",
+        "q3-hyperscalers-p3-mesa-inspections-metadata",
+        "q3-hyperscalers-p3-mesa-permits-metadata",
+        "q3-hyperscalers-p3-maricopa-amazon-mesa-parcels"
+      ],
+      "roles": [
+        {
+          "party": "Amazon Data Services Inc",
+          "role": "owner",
+          "relationship_scope": "current",
+          "source_id": "q3-hyperscalers-p3-maricopa-parcel-30434015g"
+        },
+        {
+          "party": "Amazon Web Services",
+          "role": "operator",
+          "relationship_scope": "intended",
+          "source_id": "q3-hyperscalers-p3-mesa-permits-aws-phx065"
+        }
+      ],
+      "distinctness_review": "Screened on 26 October 2026 against every row of sites.csv, projects.csv and evidence.csv of verified_construction_core/2026-10-26-research-sixtyseventh (676 sites, 719 projects, 3,675 evidence rows), its source records and identity mapping, all pending queue fragments, claims.tsv and all sources/*-holds.json, for PHX065, PHX066, 'PHX 065', 10464, Pecos Rd, 304-34-015 / 30434015, AWS Mesa and Amazon Data Services in Mesa. No Atlas record names this campus; the only matches are the us-southwest holds 'AWS PHX065/PHX066, 10464 E Pecos Rd and 10437 E Elliot Rd' (16, 22 and 23 October 2026), which held it for want of an in-window building permit or certificate of occupancy and did not use the city's inspection records. No Atlas site, project, source record, identity-mapping coordinate, pending fragment, claim or hold coordinate lies within 5 km; the nearest is the imported EdgeCore Mesa campus (5.54 km). Amazon's other Mesa parcel, 314-10-777 at 10437 E Elliot Rd (taken to be PHX066 by inference from cross-filed permit titles; Building A permit still In Review), is 5.7 km north and is a separate site that is not admitted.",
+      "successor_review": "The inspection view is current to 24 October 2026 and the permit dataset to 25 October 2026. Neither building permit (PMT24-15709, PMT25-13554) has a temporary or final certificate of occupancy; both say 'Forthcoming TCO for phases. CoO will be provided at project completion.' Later items are ancillary or pending: parking canopies for PHX065 and PHX066 are in review or awaiting revisions and a temporary-generator request awaits revisions. No pause, cancellation, completion or opening was found; Amazon has published no PHX065 item in its data-center news feed (captured 26 October 2026).",
+      "scoped_project_details": {
+        "aliases": [
+          "AWS PHX065",
+          "PHX065",
+          "AWS PHX065 Bldg 2",
+          "Data Center Bldg B"
+        ],
+        "address": "10464 E Pecos Rd, Mesa, AZ (City of Mesa permit address; the assessor parcel has no situs address)",
+        "parcel": "Maricopa County APN 304-34-015G (most permits, including PMT24-15709 and PMT25-13554, cite the predecessor 304-34-015E; PMT26-07770 and PMT26-13074 cite 304-34-015G); 70.3 acres; owner Amazon Data Services Inc",
+        "buildings": {
+          "PMT24-15709": "'Data Center Bldg 2': 229,416 sq ft Type II-B single-storey tilt-wall data center with 94,951 sq ft data hall and 9,512 sq ft office; issued 2025-03-25",
+          "PMT25-13554": "'Data Center Bldg B': 229,416 sq ft Type II-B single-storey data center; issued 2026-01-15; references 'Civil improvements for Bldg 1'"
+        },
+        "ancillary_permits": [
+          "PMT24-15751 site improvements",
+          "PMT24-15684 security building (1,650 sq ft)",
+          "PMT25-23644 equipment-yard building (4,122 sq ft)",
+          "PMT25-16382/16383 fiber vaults"
+        ],
+        "latest_inspections": {
+          "PMT24-15709": "electrical rough-in partial approval 2026-10-12",
+          "PMT25-13554": "footing partial approval 2026-10-22"
+        },
+        "certificate_of_occupancy": null,
+        "related_separate_site_not_admitted": "Amazon Data Services Inc parcel at 10437 E Elliot Rd, APN 314-10-777 (Building A permit PMT26-15404 In Review), taken to be PHX066 by inference: no permit at that address is titled PHX066, one ERRC permit there is titled 'PHX 065', and an 'AWS PHX066 - Parking Canopies' application is filed at 10464 E Pecos Rd",
+        "capacity": null,
+        "operation_established": false
+      }
+    },
+    {
+      "project_stable_key": "curated:google-mesa-red-hawk:phase-3-ph03-data-hall-building",
+      "physical_site_stable_key": "curated:google-mesa-red-hawk-campus",
+      "existing_site_id": "vcc-site-5dae31735952497e716b",
+      "site_name": "Google Mesa Red Hawk Data Center Campus",
+      "name": "Google Mesa Red Hawk — Phase 3 (PH03) data hall building",
+      "country": "United States",
+      "country_iso_a2": "US",
+      "site_identity_review": "Phase 3 is part of Google's Red Hawk campus at 7232 E Elliot Rd, whose Phase 2 Building 2 is the existing project curated:google-mesa-red-hawk:phase-2-building-2 on site vcc-site-5dae31735952497e716b. The PH03 permits carry the same campus permit address (7232 E Elliot Rd) and city geocode as every Red Hawk permit, including the Phase 2 Building 2 permit behind the existing project, and cite parcels 30405019K and 30405019M, the older Red Hawk parcel numbers that the existing record notes are absent from the current assessor layer (whose campus lots are 304-05-019P and 304-05-019Q). Contractor-tent permits for the current works carry the building code MSA3A, after the MSA1A and MSA2A codes seen on earlier-phase permits. It is a new project on the existing campus, not a new site.",
+      "status": {
+        "value": "under_construction",
+        "as_of": "2026-10-22",
+        "source_id": "q3-hyperscalers-p3-mesa-inspections-redhawk-ph3",
+        "summary": "The City of Mesa's public building-inspection records show city inspectors partially approving construction of the Red Hawk Phase 3 data hall building in October 2026: on its building permit PMT26-01256 ('Red Hawk, PH03 - New Build', a new 285,282 sq ft data hall building with mechanical and electrical yards) they recorded framing on 9 and 22 October, a miscellaneous inspection on 12 October, and drywall fire assembly and mechanical rough-in on 22 October 2026. Foundation inspections on its foundation permit PMT25-22348 (footing, stem wall, underground and pre-slab, foundations for a 284,497 sq ft data center building) continued through 22 October 2026. This records the Phase 3 building as under construction on 22 October 2026. Partial approvals cover the inspected portions only; completion, operation and capacity are not established, and Phase 2 Building 2 remains a separate project."
+      },
+      "locator": {
+        "reuse_from_project_id": "b42b34a0-8ef9-542e-b470-38524064ccfb",
+        "geometry_evidence_id": "b28d52f3-5c3e-58d9-8670-22f34614062f",
+        "geometry_identity_evidence_ids": [],
+        "scope": "campus_locator",
+        "identity_review": "This reuses the existing Red Hawk campus point of project b42b34a0-8ef9-542e-b470-38524064ccfb (Phase 2 Building 2): the centroid of the union of Maricopa County Assessor lots 304-05-019P and 304-05-019Q, with its pinned geometry evidence b28d52f3-5c3e-58d9-8670-22f34614062f; the baseline project has no geometry-identity evidence, so none is pinned. The PH03 permits share the campus permit address (7232 E Elliot Rd) and the city geocode (-111.678122, 33.350771) that the existing record found inside the two-lot union. The point does not locate the Phase 3 building, whose position on the campus is not published."
+      },
+      "context_source_ids": [
+        "q3-hyperscalers-p3-mesa-permits-redhawk",
+        "q3-hyperscalers-p3-mesa-inspections-metadata",
+        "q3-hyperscalers-p3-mesa-permits-metadata"
+      ],
+      "roles": [
+        {
+          "party": "Google",
+          "role": "operator",
+          "relationship_scope": "intended",
+          "source_id": "q3-hyperscalers-p3-google-locations"
+        }
+      ],
+      "distinctness_review": "Screened on 26 October 2026 against verified_construction_core/2026-10-26-research-sixtyseventh (676 sites, 719 projects, 3,675 evidence rows), its source records and identity mapping, all pending queue fragments, claims.tsv and all sources/*-holds.json, for Red Hawk, PH03, MSA3A, PMT26-01256, PMT25-22348 and 7232 E Elliot. The only Atlas matches are the existing campus site and its Phase 2 Building 2 project (completed 29 September 2026), whose scope is that building only; no Phase 3 project exists. The 16 October 2026 thirty-first hold 'Google Mesa Red Hawk — Phase 3 (PH03) data hall building' set exactly this reopen condition ('A dated in-window inspection ... for the PH03 building ... reusing that site's campus point'), and the 22 October thirty-fourth hold re-checked only permits. The only Atlas site within 2 km is this campus (0 m); the nearest other is EdgeCore Mesa (5.35 km).",
+      "successor_review": "The inspection view is current to 24 October 2026 and the permit dataset to 25 October 2026. PMT26-01256 has no certificate of occupancy; later Phase 3 items are a pending contractor lunch-tent application (PMT26-16249) and its dining-tent fire alarm (PMT26-18608, issued 14 October 2026). No completion, opening, pause or cancellation of Phase 3 was found; Google's locations index (captured 26 October 2026) still lists Mesa, Arizona without a construction note.",
+      "scoped_project_details": {
+        "aliases": [
+          "Red Hawk Phase 3",
+          "Red Hawk PH03",
+          "MSA3A"
+        ],
+        "building_permit": "PMT26-01256 'Red Hawk, PH03 - New Build': new ground-up 285,282 sq ft unlimited-area data hall building, Type II-B, with mechanical and electrical yards; issued 2026-06-18",
+        "foundation_permit": "PMT25-22348 'CONFIDENTIAL - RED HAWK - PH03 Foundation': foundations for a 284,497 sq ft data center building and yard foundations; issued 2026-02-09",
+        "ancillary_permits": [
+          "PMT26-08686 'PH3' private utility substation (issued 2026-08-03)",
+          "PMT26-18608 'MSA3A, Break Tent - Fire Alarm' (issued 2026-10-14)"
+        ],
+        "latest_inspections": "framing, drywall fire assembly and mechanical rough-in partial approvals on 2026-10-22 (PMT26-01256)",
+        "area_basis": "Permit-recorded square footage; not a measured gross floor area",
+        "internal_code_mapping_confirmed": false,
+        "capacity": null,
+        "operation_established": false
+      }
+    },
+    {
+      "project_stable_key": "curated:digital-realty-de-soto-astra-north-campus:phase-one",
+      "physical_site_stable_key": "curated:digital-realty-de-soto-astra-north-campus",
+      "site_name": "Digital Realty Astra North Campus (Astra Enterprise Park, De Soto, Kansas)",
+      "name": "Digital Realty Astra North Phase One (Project Jayhawk) — proposed two-storey 450,000 sq ft data center with private and Evergy substations",
+      "country": "United States",
+      "country_iso_a2": "US",
+      "status": {
+        "value": "announced",
+        "as_of": "2026-09-22",
+        "source_id": "q3-us-reits-p3-desoto-pc-item7b-digital-realty-site-plan",
+        "summary": "The City of De Soto's staff memo for Planning Commission agenda item 7b, meeting date 22 September 2026, presents Digital Realty's phase-one site plan for 'Digital Astra North (Project Jayhawk)' at Astra Enterprise Park, north-east of 103rd Street and Lexington Avenue: one two-storey data center 61.5 ft high with about 225,000 sq ft per level (450,000 sq ft in total), 189 parking spaces, four loading docks, a private electric substation and an Evergy-operated (Polaris) substation, on land already zoned M-1. Staff recommended approval with conditions; the Planning Commission makes the final decision on site plans. This records the project as announced on 22 September 2026. The commission's decision record was not reachable, so no consent, site preparation or construction is asserted."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -94.987291,
+            38.9441882
+          ]
+        },
+        "source_id": "q3-us-reits-p3-desoto-pc-item7b-digital-realty-site-plan",
+        "scope": "campus_locator",
+        "scope_class": "georeferenced_site_plan_property_boundary_centroid",
+        "authority": "compiled_reference",
+        "derivation": "georeferenced_source_map",
+        "method": "pdf_vector_property_boundary_from_drainage_study_exhibit_2_5_converted_with_embedded_geopdf_registration_area_centroid",
+        "precision": "Area centroid of the yellow 'PropertyBoundary' outline on Exhibit 2.5 (Post-Project Land Use Workmap, Project Jayhawk, dated 26 June 2026) in the city's 22 September 2026 site-plan agenda document, read as PDF vector geometry and converted with the exhibit's own embedded GeoPDF corner coordinates (NAD83; affine fit residuals 0.05 m). The outline measures about 253 acres, 1.07 km east-west by 2.28 km north-south. The point marks the Astra North / Project Jayhawk tract east of Lexington Avenue; it is not the building footprint, a surveyed boundary or the extent of works.",
+        "identity_review": "The agenda document's memo concerns the 'Site Plan for Project JayHawk - Digital Realty'; its application names 'Digital Astra North (Project Jayhawk)' north-east of 103rd Street and Lexington Avenue in Astra Enterprise Park 2nd Plat, and the drainage study in the same document titles the georeferenced exhibit 'Project Jayhawk, De Soto, Kansas'. The city's Digital Realty Data Center page links this document as the 'Site Plan for Digital Realty North' agenda item. As a check, two state-plane monuments printed on the plan set's Polaris substation sheet, read as NAD83 Kansas North ftUS, fall 28-30 m outside the traced outline near String Town Road. No geocoder, city centre or industrial-park centroid is used.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The exhibit states no positional accuracy and its outline (about 253 acres) predates the September 2026 boundary survey of the 281.136-acre North Site; the registration is internally exact to about 1 m but the outline's absolute accuracy is unstated, and the point is the centroid of a tract extending about 1.1 km from it."
+      },
+      "context_source_ids": [
+        "q3-us-reits-p3-desoto-pc-2026-09-22-agenda",
+        "q3-us-reits-p3-desoto-pc-2026-09-22-materials-folder",
+        "q3-us-reits-p3-desoto-digital-realty-data-center-page",
+        "q3-us-reits-p3-desoto-enews-2026-10-02",
+        "q3-us-reits-p3-kshb-de-soto-digital-realty-2026-09-29"
+      ],
+      "roles": [
+        {
+          "party": "Digital Realty",
+          "role": "operator",
+          "relationship_scope": "intended",
+          "source_id": "q3-us-reits-p3-dlr-de-soto-project-page"
+        },
+        {
+          "party": "Atlantic Ventures LLC",
+          "role": "owner",
+          "relationship_scope": "current",
+          "source_id": "q3-us-reits-p3-desoto-pc-item7b-digital-realty-site-plan"
+        }
+      ],
+      "distinctness_review": "Screened on 26 October 2026 against every row of sites.csv, projects.csv and evidence.csv, source-records.json and identity-mapping.json of verified_construction_core/2026-10-26-research-sixtysixth, all pending queue fragments (changes and holds), claims.tsv and all sources/*-holds.json, for Digital Realty, De Soto, Astra, Astra North, Astra Enterprise Park, Sunflower, Jayhawk, Lexington Ave, Panasonic, Beale and Mount Sunflower, and by distance. No Atlas record names this project, and no Atlas site, project, source record, identity-mapping entry, pending queue addition, claim or hold lies within 15 km of the point; the nearest Atlas sites are the Meta Kansas City and Lambda Kansas City city-centre points about 39.4 km north-east. The only earlier Atlas mention is the 16 October thirty-first hold that listed Digital Realty's De Soto project page as a lead without a dated government record. The separate Beale Infrastructure (Mount Sunflower) campus at Flint Commerce Center in De Soto is not an Atlas record and is a different developer and property.",
+      "successor_review": "Checked on 26 October 2026: the city's 2 October newsletter reports that the City Council scheduled a 19 November 2026 public hearing on Digital Realty Project Plan 3; the 16 October newsletter and the city's project page add no later decision. KSHB (29 September) reports that the commission approved the Phase One site plan on 22 September, quotes a Digital Realty spokesperson thanking the commission for its approval, and states without attribution that site preparations have begun and construction is expected to start in 2027; the city's minutes are posted only in a Google Drive folder whose download host disallows robots, so neither the approval nor any physical stage is asserted here. The next Planning Commission meeting is on 27 October 2026. No withdrawal or pause was found.",
+      "scoped_project_details": {
+        "aliases": [
+          "Project Jayhawk",
+          "Digital Astra North",
+          "Digital Realty North",
+          "Astra North"
+        ],
+        "location": "Astra Enterprise Park, north-east of W 103rd Street and Lexington Avenue, De Soto, Johnson County, Kansas (former Sunflower Army Ammunition Plant)",
+        "legal_description": "Portions of Astra Enterprise Park 2nd Plat; North Site 281.136 acres in Sections 5, 6 and 8, T13S R22E (development plan cover sheet)",
+        "zoning": "M-1 (Industrial - Light), unchanged",
+        "phase_one_building": "one two-storey data center, 61.5 ft high with 30 ft louver screen, about 225,000 sq ft per level, 450,000 sq ft total",
+        "substations": "one private electric substation and one Evergy-operated substation (Polaris)",
+        "parking_and_docks": "189 parking spaces; four loading docks on the east side",
+        "planning_procedure": "Planning Commission site-plan review, 22 September 2026, agenda item 7b; staff recommended approval with conditions before occupancy permits",
+        "owner_of_record": "Atlantic Ventures LLC (North Site tracts, Kansas limited warranty deed Book 202603 Page 005325, per the plan set's existing-conditions sheet); the application form lists Digital Realty as owner/developer, and the relationship between the two is not established by the sources",
+        "later_phases": "City and Digital Realty describe a multi-phase campus of up to nine buildings and about 3 million sq ft in Phase 1 (Astra North, about 280 acres) and about 1,400 acres overall; these are not part of this project record",
+        "tif": "City Council public hearing on Digital Realty Project Plan 3 scheduled for 19 November 2026 (future procedure)",
+        "permit_established": false,
+        "physical_work_established": false,
+        "capacity": null
+      }
+    },
+    {
+      "project_stable_key": "curated:databank-msp2-eagan-neil-armstrong-blvd:existing-operations",
+      "physical_site_stable_key": "curated:databank-msp2-eagan-neil-armstrong-blvd",
+      "site_name": "DataBank MSP2 East Twin Cities Data Center (3255 Neil Armstrong Blvd, Eagan, Minnesota)",
+      "name": "DataBank MSP2 — existing data-centre and carrier-hotel operations",
+      "country": "United States",
+      "country_iso_a2": "US",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-10-01",
+        "source_id": "q3-us-reits-p3-databank-msp2-building-acquisition-release",
+        "summary": "DataBank's release of 1 October 2026 announces that it has acquired the previously leased building at 3255 Neil Armstrong Blvd, Eagan, that houses its MSP2 data center, and describes MSP2 as a critical digital infrastructure node serving as the Minneapolis market's second major carrier hotel, relied on by enterprise and institutional clients. This records existing operation on 1 October 2026; it is not an opening date."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -93.145692,
+            44.8385707
+          ]
+        },
+        "source_id": "q3-us-reits-p3-dakota-parcel-037-102251501030",
+        "scope": "project_locator",
+        "scope_class": "official_tax_parcel_centroid",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "dakota_county_parcel_layer_pin_037_102251501030_polygon_centroid",
+        "precision": "Centroid of Dakota County tax parcel PIN 037-102251501030 (3255 Neil Armstrong Blvd, Eagan; 7.88 acres, about 176 by 235 m), the parcel at the address DataBank gives for MSP2. It locates the parcel, not the building footprint or data halls.",
+        "identity_review": "DataBank's release and its MSP2 page both give 3255 Neil Armstrong Blvd, Eagan, MN 55121. The county parcel layer returns exactly one parcel for that address, owner of record DataBank Properties LLC, consistent with the announced building purchase. The centroid lies inside the parcel. No geocoder, map viewport or city centre is used.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The county publishes no positional accuracy for parcel polygons; the point is the centroid of a 7.9-acre parcel whose building is not separately located."
+      },
+      "context_source_ids": [
+        "q3-us-reits-p3-databank-msp2-facility-page"
+      ],
+      "roles": [
+        {
+          "party": "DataBank",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "q3-us-reits-p3-databank-msp2-building-acquisition-release"
+        },
+        {
+          "party": "DataBank",
+          "role": "owner",
+          "relationship_scope": "current",
+          "source_id": "q3-us-reits-p3-databank-msp2-building-acquisition-release"
+        }
+      ],
+      "distinctness_review": "Screened on 26 October 2026 against every row of sites.csv, projects.csv and evidence.csv, source-records.json and identity-mapping.json of verified_construction_core/2026-10-26-research-sixtysixth, all pending queue fragments (changes and holds), claims.tsv and all sources/*-holds.json, for DataBank, MSP1-MSP4, Eagan, Eagandale, Neil Armstrong, Minneapolis, DataBank Properties and PIN 037-102251501030, and by distance. The Atlas's DataBank records are Ashburn (IAD1/IAD3), Red Oak and Orangeburg (LGA3), all in other states. No Atlas site, project, source record, identity-mapping entry, pending queue addition, claim or hold lies within 2 km; the nearest is Project Bedrock in Inver Grove Heights, 8.90 km east.",
+      "successor_review": "Checked DataBank's press-release sitemap and MSP2 page on 26 October 2026: no later release concerns MSP2 (the 12-13 October releases are rankings and awards), and the facility page (modified 28 September 2026) still offers MSP2 colocation. No closure, sale or redevelopment was found.",
+      "scoped_project_details": {
+        "aliases": [
+          "MSP2",
+          "East Twin Cities Data Center",
+          "DataBank Eagan"
+        ],
+        "address": "3255 Neil Armstrong Blvd, Eagan, MN 55121",
+        "parcel": "Dakota County PIN 037-102251501030, Eagandale Corporate Center, 7.88 acres, use Industrial-Preferred, year built 1998, owner of record DataBank Properties LLC",
+        "building_tenure": "Building previously leased; purchase announced 1 October 2026",
+        "operator_stated_specifications": {
+          "it_square_feet": 48860,
+          "critical_it_load_mw": 5,
+          "onsite_carriers": 21,
+          "power_design": "2N",
+          "cooling_design": "N+1",
+          "basis": "operator facility page; rating, not observed load"
+        },
+        "capacity": null
+      }
+    },
+    {
+      "project_stable_key": "curated:digital-realty-atl13-56-marietta-street:existing-operations",
+      "physical_site_stable_key": "curated:digital-realty-atl13-56-marietta-street",
+      "site_name": "Digital Realty ATL13 (56 Marietta Street, Atlanta)",
+      "name": "Digital Realty ATL13 — existing data-centre and interconnection-hub operations",
+      "country": "United States",
+      "country_iso_a2": "US",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-10-14",
+        "source_id": "q3-us-reits-p3-dlr-atlanta-blog-2026-10-14",
+        "summary": "Digital Realty's blog of 14 October 2026 describes its flagship facility, ATL13 at 56 Marietta Street, as one of the Southeast's largest concentrations of telecom companies and the region's premier interconnection hub, connected by fiber to ATL14 at 250 Williams Street to form an Atlanta campus with more than 11,000 cross connects between 300+ customers. This records existing operation of ATL13 on 14 October 2026; it is not an opening date, and ATL14 is not part of this record."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -84.391581821,
+            33.755427517
+          ]
+        },
+        "source_id": "q3-us-reits-p3-atlanta-address-point-56-marietta",
+        "scope": "project_locator",
+        "scope_class": "official_numbered_address_point",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "city_of_atlanta_address_point_56_marietta_street_nw_address_class_0_native_epsg6447_to_wgs84_pyproj",
+        "precision": "City of Atlanta address point for 56 Marietta Street NW, the address Digital Realty gives for ATL13, on a 0.45-acre parcel (about 60 by 61 m). It marks the building address, not a surveyed outline, entrance or data hall.",
+        "identity_review": "Digital Realty's blog and its ATL13 page both give 56 Marietta Street. The city's address layer returns one current primary point for 56 Marietta Street NW (and a floor-4 sub-address) on parcel 14 007800110260, whose site address is 56 MARIETTA ST NW; both points lie inside the parcel and the parcel centroid is 1.2 m from the selected point. The coordinates are the pyproj transform of the native Georgia West ftUS point and equal the layer's own LAT/LON attributes. No geocoder, map viewport or city centre is used.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The city publishes no positional accuracy for address points; decimal places are arithmetic precision and the point does not mark the building outline."
+      },
+      "context_source_ids": [
+        "q3-us-reits-p3-atlanta-parcel-14-007800110260",
+        "q3-us-reits-p3-dlr-atl13-facility-page"
+      ],
+      "roles": [
+        {
+          "party": "Digital Realty",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "q3-us-reits-p3-dlr-atlanta-blog-2026-10-14"
+        },
+        {
+          "party": "Colo Prop Atlanta LLC",
+          "role": "owner",
+          "relationship_scope": "unknown",
+          "source_id": "q3-us-reits-p3-atlanta-parcel-14-007800110260"
+        }
+      ],
+      "distinctness_review": "Screened on 26 October 2026 against every row of sites.csv, projects.csv and evidence.csv, source-records.json and identity-mapping.json of verified_construction_core/2026-10-26-research-sixtysixth, all pending queue fragments (changes and holds), claims.tsv and all sources/*-holds.json, for Digital Realty, ATL13, ATL14, 56 Marietta, Marietta Street, 250 Williams, Colo Prop and parcel 14 007800110260, and by distance. No Atlas record names this facility. No Atlas site, project, source record, identity-mapping entry, pending queue addition, claim or hold lies within 10 km; the nearest Atlas sites are Microsoft Union City (19.2 km), Flexential Douglasville North River (20.5 km) and QTS Fayetteville (34.8 km). A held Edged Atlanta lead on Marietta Road (former Tilford Yard) is a different street and operator. Digital Realty ATL14 at 250 Williams Street, about 0.8 km north-west, is a separate building held for a later pass.",
+      "successor_review": "Checked Digital Realty's newsroom and English sitemap on 26 October 2026: nothing after 14 October concerns ATL13 (Digital Realty's third-quarter results are scheduled for 29 October 2026). No closure, sale or redevelopment was found.",
+      "scoped_project_details": {
+        "aliases": [
+          "ATL13",
+          "56 Marietta",
+          "Digital Realty Atlanta 56 Marietta Street"
+        ],
+        "address": "56 Marietta Street NW, Atlanta, GA 30303",
+        "parcel": "City of Atlanta / Fulton County parcel 14 007800110260, 0.449 acres, owner of record COLO PROP ATLANTA LLC (tax year 2025)",
+        "operator_stated_specifications": {
+          "building_storeys": 10,
+          "total_building_sq_ft": 84000,
+          "ups_redundancy": "N+1",
+          "cooling_redundancy": "N+1",
+          "renewable_energy_percent": 100,
+          "role": "Digital Realty operates the interconnection area; more than 300 partners",
+          "basis": "operator facility page and 14 October 2026 blog"
+        },
+        "campus_context": "Digital Realty describes ATL13 and ATL14 (250 Williams Street) as its Atlanta connected campus; they are separate buildings about 0.8 km apart",
+        "capacity": null
+      }
+    },
+    {
+      "project_stable_key": "curated:stokes-county-project-delta-walnut-cove:proposed-data-center-campus",
+      "physical_site_stable_key": "curated:stokes-county-project-delta-walnut-cove",
+      "site_name": "Project Delta Data Center Site (Walnut Cove, Stokes County)",
+      "name": "Project Delta — proposed data center campus (conditional rezoning R-A to M-2-CZ, about 1,848.74 acres)",
+      "country": "United States",
+      "country_iso_a2": "US",
+      "status": {
+        "value": "announced",
+        "as_of": "2026-08-20",
+        "source_id": "us-ga-sc-nc-p3-stokes-delta-legal-notice-20260820",
+        "summary": "Stokes County's legal notice posted on 20 August 2026, by order of the Board of Commissioners, announces a public hearing on 8 September 2026 on the \"Project Delta\" data-center conditional rezoning application: petitioner Engineered Land Solutions, LLC; owners DFC Stokes, LLC and DFC Stokes 2, LLC; rezoning of +/- 1,848.74 acres along US Highway 311, Tuttle Road, Oldtown Road and Coon Joyce Road near Walnut Cove (PINs 6964-91-8321, 6973-49-0574, 6973-76-7124 and 6973-73-4188) from Residential-Agricultural to Heavy Manufacturing Conditional Zoning (M-2-CZ), with a data center and associated accessory uses as the proposed permitted uses. This dated county record names the project, its petitioner, owners and parcels, which supports announced status on 20 August 2026. It is not a zoning decision: news reports that the Board approved the rezoning on 14 September 2026 are not relied on, because no county record of that decision was accessible. Even an approved conditional rezoning would not be a building or construction permit, so no permitted status, physical work, operator or end user is asserted."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -80.1051933,
+            36.3220665
+          ]
+        },
+        "source_id": "us-ga-sc-nc-p3-nconemap-stokes-delta-parcels",
+        "scope": "campus_locator",
+        "scope_class": "official_tax_parcel_union_centroid",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "official_statewide_parcel_service_union_centroid_of_parcels_named_in_county_rezoning_notice",
+        "precision": "Planar centroid of the union of the four Stokes County tax parcels named in the Project Delta rezoning notice, as published by the NC OneMap statewide parcel service (1,827.6 geodesic acres in three parts, about 5.0 by 4.2 km). The point lies inside the union. It locates the rezoned holding as a whole, not a building, a development area, a surveyed boundary or the extent of any works.",
+        "identity_review": "The county legal notice, the county news post and the staff report all name the same four PINs for Project Delta, and the petitioner's application and site plan give the same PINs, the site addresses 0 US Highway 311 & Tuttle Road, 0 Off US 311 Highway, 1290 Coon Joyce Road and 1203 Tuttle Road, and +/- 1,848.74 acres. NC OneMap returns exactly one Stokes County polygon per PIN, with matching site addresses and a combined geodesic area 1.1% below the stated acreage. The parcels form three blocks separated only by strips about 18 to 31 m wide, consistent with the road rights-of-way between the northern and southern tracts of the site plan. The statewide owner field is not used; owners are taken from the county notice. No geocoder, map viewport, town centre or industrial-area centroid is used.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The statewide parcel compilation publishes no positional accuracy for county parcel polygons; the point represents a 1,828-acre holding about 5.0 by 4.2 km, and the positions of the planned buildings within its development areas are not published."
+      },
+      "context_source_ids": [
+        "us-ga-sc-nc-p3-stokes-delta-county-page-ia-20260904",
+        "us-ga-sc-nc-p3-stokes-delta-hearing-notice-news-ia-20261001",
+        "us-ga-sc-nc-p3-stokes-delta-application-202607",
+        "us-ga-sc-nc-p3-stokes-delta-zoning-conditions-202607",
+        "us-ga-sc-nc-p3-stokes-delta-site-plan-202607",
+        "us-ga-sc-nc-p3-stokes-delta-staff-report-20260804"
+      ],
+      "roles": [
+        {
+          "party": "DFC Stokes, LLC",
+          "role": "owner",
+          "relationship_scope": "current",
+          "source_id": "us-ga-sc-nc-p3-stokes-delta-legal-notice-20260820"
+        },
+        {
+          "party": "DFC Stokes 2, LLC",
+          "role": "owner",
+          "relationship_scope": "current",
+          "source_id": "us-ga-sc-nc-p3-stokes-delta-legal-notice-20260820"
+        }
+      ],
+      "distinctness_review": "Screened on 26 October 2026 against every row of sites.csv (676), projects.csv (719) and evidence.csv (3675), the 231 source records and the identity mapping of verified_construction_core/2026-10-26-research-sixtyseventh, all pending queue fragments and claims, and all sources/*-holds.json, for Project Delta, Stokes, Walnut Cove, Danbury, Engineered Land Solutions, DFC Stokes, Tuttle Road, Coon Joyce Road, Oldtown Road and the four PINs: the only match is this fragment's own claim. No Atlas site, project, source record, pending addition or claimed coordinate lies within 2 km; the nearest Atlas site is WhiteFiber NC-1 in Madison, Rockingham County (13.8 km east-north-east), a separate retrofit campus, and the next is STACK Berry Hill in Pittsylvania County, Virginia (83.9 km).",
+      "successor_review": "The county website (www.co.stokes.nc.us) returned HTTP 403 to this agent and was not requested; its Internet Archive copies (Project Delta page of 4 September, public notices page of 30 September, home page of 2 October and news post of 1 October 2026) contain no record of the Board decision, adopted consistency statement or ordinance. Public-radio and advocacy reports (15-16 September 2026) state that the Board approved the rezoning on 14 September 2026 after the 8 September hearing; these reports are not primary records and are not relied on. No site-plan approval, building permit, construction start, end user or new legal challenge was found. A county record of the 14 September decision would support a refreshed announced observation; a building permit or a dated record of site work would support a later status.",
+      "scoped_project_details": {
+        "aliases": [
+          "Project Delta",
+          "Project Delta Data Center",
+          "Stokes County data center (Walnut Cove)"
+        ],
+        "site_location": "Along US Highway 311, Tuttle Road, Oldtown Road and Coon Joyce Road, near Walnut Cove, Stokes County, NC 27052",
+        "parcels": [
+          "6964-91-8321",
+          "6973-49-0574",
+          "6973-76-7124",
+          "6973-73-4188"
+        ],
+        "rezoning_request": "R-A (Residential-Agricultural) to M-2-CZ (Heavy Manufacturing Conditional Zoning District); permitted uses limited to a data center and associated accessory uses and facilities",
+        "site_area_acres_stated": 1848.74,
+        "petitioner": "Engineered Land Solutions, LLC",
+        "application_submitted": "2026-07-20",
+        "public_hearing": "2026-09-08 (Stokes County Board of Commissioners special meeting)",
+        "capacity_qualification": "No IT load, facility power or building count is stated in the county records reviewed"
+      }
+    },
+    {
+      "project_stable_key": "curated:switch-keep-2-cartersville-bates-road-campus:keep-2-campus-construction",
+      "physical_site_stable_key": "curated:switch-keep-2-cartersville-bates-road-campus",
+      "site_name": "Switch The Keep 2 Campus (Bates Road, Cartersville)",
+      "name": "Switch The Keep 2 Campus (Keep 2.0) — data-center campus under construction",
+      "country": "United States",
+      "country_iso_a2": "US",
+      "status": {
+        "value": "under_construction",
+        "as_of": "2026-08-03",
+        "source_id": "us-ga-sc-nc-p3-bartow-data-center-policy-statement-20260803",
+        "summary": "Bartow County's Office of the County Administrator, in its data-center policy statement of 3 August 2026, names Switch's campus in Cartersville (with Digital Realty's Stilesboro investment) as development under way and states that \"These facilities remain in construction and pre-operational phases and have not yet been added to the County tax digest, other than the land value\". At the Commissioner's 5 August 2026 meeting the County Administrator added that Switch's first building should reach the digest next year. The campus is the Georgia EPD-listed \"The Keep 2 Campus\" at 78 Bates Rd SE, Cartersville (air application 30289, August 2026, for additional main generators), on the contiguous Switch Ltd parcels at 82, 90 and 96 Bates Rd. This records the campus as under construction on 3 August 2026, without a specific work stage; no building is asserted complete or operating, and the 150 MW and multi-gigawatt figures on Switch's page are full build-out ambitions, not capacity in service."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -84.7950835,
+            34.1068851
+          ]
+        },
+        "source_id": "us-ga-sc-nc-p3-bartow-parcels-switch-ltd",
+        "scope": "campus_locator",
+        "scope_class": "official_tax_parcel_union_centroid",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "official_county_parcel_service_union_centroid_of_contiguous_operator_owned_parcels_at_permit_address",
+        "precision": "Planar centroid of the union of the three contiguous Bartow County tax parcels owned by Switch Ltd on Bates Road (C106-0001-014, 0075-1032-002 and 0075-1032-003; one part of 139.8 geodesic acres, about 1.2 by 1.3 km). The point lies inside the union. It locates the Switch-owned Bates Road holding that carries the EPD-listed campus address, not a building, the construction area or a surveyed boundary.",
+        "identity_review": "Georgia EPD advisory PA0826-4 names \"The Keep 2 Campus\" at 78 Bates Rd SE, Cartersville, a data-processing facility applying for additional main generators. Bartow County's parcel layer shows Switch Ltd as owner of three adjoining parcels at 82, 90 and 96 Bates Rd at the west end of that road (C106-0001-014 in the Cartersville tax district, the other two in the county district); the county address points for 90, 92 and 96 Bates Rd fall inside them and no point numbered 78 exists. The county policy statement locates Switch \"in Cartersville\" and served by the county water system, and Switch's Atlanta page names Keep 2.0 as under construction. Five other Switch Ltd parcels 1.2 to 3.4 km south-east are not contiguous and are excluded. No geocoder, map viewport, city centre or industrial-area centroid is used.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The county publishes no positional accuracy for its parcels; the point represents a 139.8-acre holding about 1.2 by 1.3 km, and the positions of the campus buildings within it are not published."
+      },
+      "context_source_ids": [
+        "us-ga-sc-nc-p3-bartow-commissioner-minutes-20260805",
+        "us-ga-sc-nc-p3-ga-epd-public-advisory-pa0826-4",
+        "us-ga-sc-nc-p3-bartow-address-points-bates-rd",
+        "us-ga-sc-nc-p3-switch-atlanta-page-20261026"
+      ],
+      "roles": [
+        {
+          "party": "Switch Ltd",
+          "role": "owner",
+          "relationship_scope": "current",
+          "source_id": "us-ga-sc-nc-p3-bartow-parcels-switch-ltd"
+        },
+        {
+          "party": "Switch",
+          "role": "operator",
+          "relationship_scope": "intended",
+          "source_id": "us-ga-sc-nc-p3-switch-atlanta-page-20261026"
+        }
+      ],
+      "distinctness_review": "Screened on 26 October 2026 against every row of sites.csv (676), projects.csv (719) and evidence.csv (3675), the 231 source records and the identity mapping of verified_construction_core/2026-10-26-research-sixtyseventh, all pending queue fragments and claims, and all sources/*-holds.json, for Switch, The Keep, Keep 2, Bates Road, Cartersville and Bartow: the Atlas has no Switch, Ltd. record in Georgia (its only Switch-named records are NV LAS NAP 17 & 18 in Las Vegas and the unrelated Global Switch Paris), the only Cartersville or Bartow strings are holds for DataBank Project Indo at 218 Industrial Park Road, Cartersville (DRI only, no locator), and the only Switch claims are for Las Vegas and Paris. No Atlas site, project, source record, pending addition or claimed coordinate other than this fragment's own claim lies within 2 km; the nearest Atlas site is Flexential Douglasville North River (45.1 km south-south-east) and the nearest imported source record is the unlocated AWS Douglas County record (45.3 km, a county-level point).",
+      "successor_review": "No record of completion, commissioning or opening of any Keep 2 building was found: the 5 August 2026 minutes expect Switch's first building to reach the tax digest only next year; EPD air application 30289 for additional main generators was open for comment until 25 September 2026 and no issued permit was reviewed (the GEOS permit host returned HTTP 503); Switch's Atlanta page (12 October 2026 version) still presents a Keep 2.0 construction flyover; and the Bartow County Commissioner agendas and minutes captured (5 August and 2 September 2026) contain no Switch zoning, permit or opening item. Switch's post sitemap (captured 26 October 2026) lists its Georgia posts with lastmod dates no later than April 2024. A dated record of a completed or operating building would support a later status.",
+      "scoped_project_details": {
+        "aliases": [
+          "The Keep 2 Campus",
+          "Keep 2.0",
+          "Switch Atlanta Keep 2.0",
+          "Switch Cartersville campus"
+        ],
+        "site_address": "78 Bates Rd SE, Cartersville, Bartow County, GA 30120 (EPD facility address); parcels 82, 90 and 96 Bates Rd",
+        "parcels": [
+          "C106-0001-014",
+          "0075-1032-002",
+          "0075-1032-003"
+        ],
+        "epd_air_application": "30289 (construct and operate additional main generators; advisory PA0826-4, comments due 2026-09-25)",
+        "capacity_qualification": "Switch states up to 150 MW for The Keep Campus and a 2,000+ acre multi-gigawatt expansion campus upon completion; these are build-out figures, not IT load in service, and are not recorded as power observations"
+      }
+    },
+    {
+      "project_stable_key": "curated:databank-atlanta-west-end-white-street-campus:atl2-atl3-existing-operations",
+      "physical_site_stable_key": "curated:databank-atlanta-west-end-white-street-campus",
+      "site_name": "DataBank Atlanta West End Complex (ATL2 and ATL3, White Street SW)",
+      "name": "DataBank ATL2 and ATL3 — existing West End data-centre operations",
+      "country": "United States",
+      "country_iso_a2": "US",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-09-28",
+        "source_id": "us-ga-sc-nc-p3-databank-atl3-page-20260928",
+        "summary": "DataBank's ATL3 page, in its version modified on 28 September 2026, gives 1150 White Street Southwest, Atlanta, and states that \"ATL3 is also found in Atlanta's West End, along with our ATL2 facility\", served by two separate power switching stations with dedicated security guards; it lists 47,490 IT square feet, 6MW critical IT load, 19 onsite carriers, 2N power, N+2 cooling, a 100% uptime SLA and 7x24x365 operations. The ATL2 page (version of 26 September 2026) describes ATL2 at 1100 White Street Southwest as providing single-cabinet to multi-megawatt deployments (52,610 IT square feet, 4MW critical IT load), and the Atlanta market page (30 September 2026) calls them \"two facilities (ATL2 and ATL3) in our West End complex\". This records the two-building complex as operating on 28 September 2026, the modification day of the ATL3 version (bounded by the Internet Archive copy of 18 June 2026 and the live capture of 26 October 2026); it is not an opening date. The 4MW and 6MW figures are critical IT load capacities, not load in use."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -84.425927,
+            33.7341341
+          ]
+        },
+        "source_id": "us-ga-sc-nc-p3-fulton-parcels-databank",
+        "scope": "campus_locator",
+        "scope_class": "official_tax_parcel_union_centroid",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "official_county_parcel_service_union_centroid_of_operator_owned_parcels_at_operator_stated_addresses",
+        "precision": "Planar centroid of the union of Fulton County tax parcels 14 0118  LL0258 (1100 White St SW, ATL2) and 14 0139  LL0402 (1150 White St SW, ATL3), both owned by DataBank Properties LLC (one adjoining 6.41-acre polygon, about 241 by 222 m). The point lies inside the union. It locates the two-parcel West End complex, not either building, its data halls or a surveyed position.",
+        "identity_review": "DataBank's ATL2 and ATL3 pages give 1100 and 1150 White Street Southwest, Atlanta, GA 30310, and the market page calls them its West End complex. Fulton County's tax-parcel layer has exactly one parcel at each address, both owned by DATABANK PROPERTIES LLC, and they are the only parcels in the layer whose owner name begins with DATABANK; they adjoin, so the complex is one property. ATL1 (760 W Peachtree St NW), ATL4 (200 Selig Dr SW) and the ATL5/ATL6 Lithia Springs campus (4764 Bakers Ferry Rd SW) are separate sites and are not part of this locator. No geocoder, map viewport, city centre or neighbourhood centroid is used.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The county publishes no positional accuracy for its parcel polygons; the point represents a 6.4-acre two-parcel property about 241 by 222 m, and the positions of the two buildings within it are not published."
+      },
+      "context_source_ids": [
+        "us-ga-sc-nc-p3-databank-atl3-page-ia-20260618",
+        "us-ga-sc-nc-p3-databank-atl2-page-20260926",
+        "us-ga-sc-nc-p3-databank-atl2-page-ia-20260419",
+        "us-ga-sc-nc-p3-databank-atlanta-market-page-20260930",
+        "us-ga-sc-nc-p3-fulton-parcels-white-st-addresses"
+      ],
+      "roles": [
+        {
+          "party": "DataBank",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "us-ga-sc-nc-p3-databank-atl3-page-20260928"
+        },
+        {
+          "party": "DataBank Properties LLC",
+          "role": "owner",
+          "relationship_scope": "current",
+          "source_id": "us-ga-sc-nc-p3-fulton-parcels-databank"
+        }
+      ],
+      "distinctness_review": "Screened on 26 October 2026 against every row of sites.csv (676), projects.csv (719) and evidence.csv (3675), the 231 source records and the identity mapping of verified_construction_core/2026-10-26-research-sixtyseventh, all pending queue fragments and claims, and all sources/*-holds.json, for DataBank, ATL2, ATL3, West End, White Street and the two parcel numbers: the Atlas DataBank records are the Ashburn, Red Oak and Orangeburg campuses, the pending DataBank items are MSP2 (Eagan, Minnesota) and Ashburn, and the only Georgia DataBank hold is Project Indo in Cartersville; the West End strings in holds refer to Digital Realty's proposed project at 713 Ralph David Abernathy Boulevard, which is not in the Atlas and is a different property. No Atlas site, project, source record or pending addition lies within 2 km; the nearest record is the pending Digital Realty ATL13 at 56 Marietta Street (3.96 km north-north-east), and the nearest Atlas site is Microsoft Union City (15.7 km).",
+      "successor_review": "The live ATL2, ATL3 and Atlanta market pages captured on 26 October 2026 are the 26, 28 and 30 September 2026 versions. DataBank's press-release sitemap (captured 26 October 2026; most entries re-saved in late September 2026) lists no closure, sale or redevelopment of the West End complex; its Atlanta items concern ATL1, an expansion of a third Atlanta data center, the Lithia Springs land purchase and campus groundbreaking and a carrier joining an Atlanta facility, and none announces a closure, sale or redevelopment. No closure, pause or sale of ATL2 or ATL3 was found.",
+      "scoped_project_details": {
+        "aliases": [
+          "ATL2",
+          "ATL3",
+          "DataBank Atlanta West End Data Center",
+          "DataBank ATL2/ATL3 data center complex"
+        ],
+        "site_address": "1100 and 1150 White Street SW, Atlanta, Fulton County, GA 30310",
+        "facility_scope": "Two colocation data-centre buildings of DataBank's West End complex (ATL2 and ATL3)",
+        "it_floor_area_sqft_stated": {
+          "ATL2": 52610,
+          "ATL3": 47490
+        },
+        "critical_it_load_mw_stated": {
+          "ATL2": 4,
+          "ATL3": 6
+        },
+        "capacity_qualification": "Critical IT load capacities stated by the operator in the September 2026 versions; not load in use and not added together as a measured value",
+        "parcels": [
+          "14 0118  LL0258",
+          "14 0139  LL0402"
+        ],
+        "operating_statement_date": "28 September 2026 (ATL3 page version)"
+      }
+    },
+    {
+      "project_stable_key": "curated:equinix-ho1-houston-aldine-meadows:storage-room-to-data-hall-renovation",
+      "physical_site_stable_key": "curated:equinix-ho1-houston-aldine-meadows",
+      "site_name": "Equinix HO1 Houston (1515 Aldine Meadows Road)",
+      "name": "Equinix HO1 — conversion of an interior storage room to additional data hall space (TABS2027004299)",
+      "country": "United States",
+      "country_iso_a2": "US",
+      "status": {
+        "value": "announced",
+        "as_of": "2026-10-23",
+        "source_id": "us-tx-tabs-new-p3-tabs-equinix-houston-renovation",
+        "summary": "TDLR registered 'Equinix' (facility 'Equinix Houston Renovation', TABS2027004299) on 23 October 2026: renovation of an interior storage room to additional data hall space, including an exterior mechanical yard, about 5,000 sq ft, at 1515 Aldine Meadows Drive, Houston (Harris County), owner Equinix LLC, at an estimated cost of $1 million. The estimated start (1 January 2027) and completion (1 June 2027) are forecasts. Only this renovation is given a status; the existing HO1 operations are context, and no permit, site work, construction, completion or new capacity is established."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -95.3642684,
+            29.9359097
+          ]
+        },
+        "source_id": "us-tx-tabs-new-p3-txgio-parcel-equinix-ho1",
+        "scope": "campus_locator",
+        "scope_class": "official_tax_parcel_centroid",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "official_statewide_parcel_service_parcel_centroid",
+        "precision": "Centroid of Harris County parcel 1159570000006 (situs 1515 Aldine Meadows Rd; 6.011 geodesic acres, about 123 by 202 m) from the TxGIO parcel service; both the TxGIO address point for 1515 Aldine Meadows Rd (13.5 m away) and the map point on Equinix's HO1 page (71.4 m away) fall inside it. It locates the HO1 property, not the storage room being converted, the new data hall or the mechanical yard.",
+        "identity_review": "TABS2027004299 registers 'Equinix Houston Renovation' at 1515 Aldine Meadows Drive, Houston 77032 for owner Equinix LLC, 1 Lagoon Drive, Redwood City; the TABS address search at 1515 Aldine Meadows also lists the closed 2017 project 'EQUINIX HO1-2 FOH' with facility name 'EQUINIX HO1'. Equinix's own HO1 page (Internet Archive copy of 3 October 2026) gives HO1's address as 1515 Aldine Meadows Road, Houston, TX 77032, and its embedded map point falls inside parcel 1159570000006. That parcel's situs is 1515 Aldine Meadows Rd and its owner of record is Verizon Data Centers I LLC, mailed to 1 Lagoon Dr, Redwood City CA 94065, the street address the registration gives for Equinix LLC; no transfer or corporate relationship beyond the shared mailing address is asserted. The adjoining parcel 1159570000002 (same owner and situs, 6.48 acres, no year built in the snapshot) is excluded because the union centroid would fall in it, 65 m east, outside the parcel that holds both reference points.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "Appraisal-district parcels carry no published positional accuracy; the centroid represents a 6-acre property whose vertices lie up to 118 m away, and the position of the converted storage room within the HO1 building is not published."
+      },
+      "context_source_ids": [
+        "us-tx-tabs-new-p3-tabs-search-addr-1515-aldine-meadows",
+        "us-tx-tabs-new-p3-tabs-search-owner-equinix",
+        "us-tx-tabs-new-p3-tabs-search-window-p100",
+        "us-tx-tabs-new-p3-txgio-parcels-aldine-meadows-envelope",
+        "us-tx-tabs-new-p3-txgio-addr-1515-aldine-meadows",
+        "us-tx-tabs-new-p3-equinix-ho1-page-archive-2026-10-03"
+      ],
+      "roles": [
+        {
+          "party": "Equinix LLC",
+          "role": "owner",
+          "relationship_scope": "current",
+          "source_id": "us-tx-tabs-new-p3-tabs-equinix-houston-renovation"
+        },
+        {
+          "party": "Verizon Data Centers I LLC",
+          "role": "owner",
+          "relationship_scope": "current",
+          "source_id": "us-tx-tabs-new-p3-txgio-parcel-equinix-ho1"
+        },
+        {
+          "party": "Equinix",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "us-tx-tabs-new-p3-equinix-ho1-page-archive-2026-10-03"
+        }
+      ],
+      "distinctness_review": "Searched sites.csv, projects.csv, evidence.csv, source-records.json and identity-mapping.json of verified_construction_core/2026-10-26-research-sixtyseventh (676 sites, 719 projects, 3,675 evidence records), every pending queue fragment's changes and holds, claims.tsv and all sources/*-holds.json for Aldine, HO1, 1515 Aldine, Equinix Houston, Verizon Data Center, Terremark and Greenspoint: there are no hits. The Atlas's Equinix projects are Bogota BG2, Hong Kong HK6, Osaka OS3, Munich MU4 Phase 3 and Settimo Milanese ML10x, none in the United States; the other Equinix claims in claims.tsv are Frankfurt FR15, Hampton (Georgia), Settimo Milanese and South Mimms. No existing Atlas record, pending queue addition, claimed coordinate or held coordinate lies within 2 km of the locator; the nearest Atlas site is TRG Spring Cypress Campus (HOU2), 16.9 km away, then Old Ocean (102 km). The us-tx-p2 'HOU1 ODC1' lead_only hold (27816 Jones Road / 11445 Compaq Center Drive) is a different, unattributed facility at another address.",
+      "successor_review": "The TDLR record for TABS2027004299 shows Project Registered (captured 26 October 2026). The TABS address search lists no later registration at 1515 Aldine Meadows, and the Equinix owner search (registrations since 1 January 2024) lists no later Equinix registration and none other in Harris County. Equinix's HO1 page of 3 October 2026 describes the existing facility and does not mention this renovation. No City of Houston permit was reviewed. The status is kept at announced.",
+      "scoped_project_details": {
+        "aliases": [
+          "HO1",
+          "Equinix Houston Renovation",
+          "EQUINIX HO1"
+        ],
+        "address": "1515 Aldine Meadows Road, Houston, Harris County, Texas 77032",
+        "tdlr_registration": "TABS2027004299",
+        "registration_created_on": "2026-10-23T11:38:51",
+        "building_area_sqft": 5000,
+        "estimated_cost_usd": 1000000,
+        "type_of_work": "Renovation/Alteration (interior storage room to additional data hall space; exterior mechanical yard)",
+        "construction_start_forecast": "2027-01-01",
+        "completion_forecast": "2027-06-01",
+        "registration_owner": "Equinix LLC, 1 Lagoon Drive, Redwood City, California",
+        "private_funds_provided_by_tenant": true,
+        "landowner_of_record": "Verizon Data Centers I LLC (Harris CAD 1159570000006, 6 acres; adjoining 1159570000002, 6.4768 acres, same owner and situs)",
+        "operator_facility_statement": "Equinix HO1: 7,117 m2 (76,607 sq ft) colocation space, one-storey building, N+1 UPS, 6 generators (2 redundant), N+20% cooling (Internet Archive copy of 3 October 2026)",
+        "earlier_registration_not_used": "EABPRJB8806660 'EQUINIX HO1-2 FOH' (2017-12-13, Project Closed)",
+        "physical_construction_verified": false,
+        "capacity": null
+      }
+    }
+  ],
+  "status_updates": [
+    {
+      "project_stable_key": "imported:semiconductor-atlas:meta-mesa-arizona",
+      "status": {
+        "value": "expansion",
+        "as_of": "2026-10-20",
+        "source_id": "q3-hyperscalers-p3-mesa-inspections-meta-maz7",
+        "summary": "The City of Mesa's public building-inspection records show physical expansion work on Meta's Mesa campus at 3841 S Ellsworth Road: on permit PMT26-03021 ('Building 17', a new 144,640 sq ft data storage building whose foundation was built under the 'MAZ7 - At Risk - Foundation' permit) city inspectors recorded 34 approvals or partial approvals between 4 August and 20 October 2026, including framing, plumbing, mechanical and electrical rough-in and above-ceiling inspections, the latest an electrical rough-in partial approval on 20 October 2026. This records expansion work at the existing Meta Mesa data center as of 20 October 2026. It does not establish the completion of Building 17 or any change to the operating buildings, and the record's imported locator is unchanged."
+      },
+      "identity_review": "Same campus as the existing imported record 'Meta Mesa Data Center', whose location note gives the street address 3841 S. Ellsworth Road at the southeast corner of Elliot and Ellsworth Roads. The inspected permits are at 3841 S ELLSWORTH RD (city geocode -111.635394, 33.3454), and the city's permit records at that address name the work 'MAZ7 - At Risk - Foundation', 'Building 17', 'MAZ-7 - Building 17 - ERRC' and 'Meta MAZ7 MDF - Foundation and Canopy' (q3-hyperscalers-p3-mesa-permits-meta-3841-ellsworth). The assessor names Redale LLC, with a Menlo Park, California mailing address, as owner of the 199.5-acre parcel 304-31-002V at that address (q3-hyperscalers-p3-maricopa-parcel-30431002v). Meta's September 2026 Mesa fact sheet (q3-hyperscalers-p3-meta-mesa-fact-sheet) says the Mesa Data Center went online in 2025 and refers to its operational data center buildings. Building 17 is a new building on the same campus; because the record's locator is a Mesa city-centre point with locality_context scope, it cannot be added as a separate project with a reused campus locator, so the campus status is refreshed instead; the 16 October 2026 thirty-first hold 'Meta Mesa MAZ7 / Building 17' and the 22 October thirty-fourth hold on builder-blocked additions record that limitation, and a separate Building 17 project remains possible after a geometry review. The only Atlas record within 2 km of 3841 S Ellsworth Rd is the imported EdgeCore Mesa campus point (1.47 km; a different operator at 3856 S Everton Terrace); the imported Meta Mesa point itself is 19.4 km away. The imported locator, scope and capacity are unchanged.",
+      "successor_review": "Strictly newer than the existing 31 January 2025 observation (news report that the first two buildings were serving traffic). The inspection view is current to 24 October 2026; Building 17 (PMT26-03021) has no certificate of occupancy, and the MAZ7 MDF foundation and canopy permit (PMT26-13328) is not yet issued. Meta's data-center post sitemap (captured 26 October 2026) has no Mesa post after 'Mesa, we are online' (January 2025), and Meta's September 2026 fact sheet describes the data center as online since 2025. No pause, closure or completion of the expansion was found."
+    }
+  ],
+  "context_updates": []
+}

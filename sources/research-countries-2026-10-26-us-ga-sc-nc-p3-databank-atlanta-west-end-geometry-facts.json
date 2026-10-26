@@ -1,0 +1,90 @@
+{
+ "candidate_id": "us-ga-sc-nc-p3-databank-atlanta-west-end",
+ "decision": "Selected the planar centroid of the union of the two Fulton County tax parcels owned by DataBank Properties LLC, 14 0118 LL0258 (1100 White St SW, ATL2) and 14 0139 LL0402 (1150 White St SW, ATL3), as the campus locator for DataBank's West End complex.",
+ "geometry": {
+  "type": "Point",
+  "coordinates": [
+   -84.425927,
+   33.7341341
+  ]
+ },
+ "authority_class": "official_source",
+ "scope_class": "official_tax_parcel_union_centroid",
+ "use_scope": "campus_locator",
+ "source_file": "local_data/country-research-us-ga-sc-nc-p3/fulton-parcels-databank-wgs84.json",
+ "source_sha256": "f4ca2bb0b840432cc4c548460118437c01cbc46cb54d70767fb7ec170fd721e8",
+ "source_url": "https://services1.arcgis.com/AQDHTHDrZzfsFsB5/arcgis/rest/services/Tax_Parcels/FeatureServer/0/query?where=Owner%20LIKE%20%27DATABANK%25%27&outFields=ParcelID,TaxYear,Address,Owner,TaxDist,LUCode,ClassCode,LandAcres&returnGeometry=true&outSR=4326&f=json",
+ "retrieved_at": "2026-10-26T14:57:07.181Z",
+ "native_source_file": "local_data/country-research-us-ga-sc-nc-p3/fulton-parcels-databank-native.json",
+ "native_source_sha256": "c7e7a95a82458113435dd35c191ce13a28a6316729289e47599a4be7cd3ea82a",
+ "layer": "Fulton County GIS \"Tax Parcels\" FeatureServer layer 0 (item e581a072dca9442e884d3682bff03484, owner Fulton_County_GIS; compiled by the Fulton County Department of Information Technology, GIS Division, from Board of Assessors data); native CRS NAD83 Georgia West ftUS (EPSG:2240)",
+ "selected_properties": {
+  "14 0118  LL0258": {
+   "site_address": "1100 WHITE ST SW",
+   "owner": "DATABANK PROPERTIES LLC",
+   "tax_year": 2027,
+   "land_use_code": "49C",
+   "class_code": "I4",
+   "land_acres_attribute": 3.64,
+   "geodesic_acres": 3.79,
+   "parts": 1,
+   "centroid": [
+    -84.4255441,
+    33.7338818
+   ],
+   "centroid_inside": true
+  },
+  "14 0139  LL0402": {
+   "site_address": "1150 WHITE ST SW",
+   "owner": "DATABANK PROPERTIES LLC",
+   "tax_year": 2027,
+   "land_use_code": "300",
+   "class_code": "C4",
+   "land_acres_attribute": 2.6649,
+   "geodesic_acres": 2.619,
+   "parts": 1,
+   "centroid": [
+    -84.426481,
+    33.7344991
+   ],
+   "centroid_inside": true
+  }
+ },
+ "identity_bridge": [
+  "DataBank's ATL2 page (version modified 26 September 2026) gives 'Atlanta West End Data Center (ATL2) 1100 White Street Southwest - Atlanta, GA 30310', and its ATL3 page (version modified 28 September 2026) gives 'Atlanta West End Data Center (ATL3) 1150 White Street Southwest - Atlanta, GA 30310' and says ATL3 is in the West End 'along with our ATL2 facility'; the Atlanta market page (version of 30 September 2026) describes 'two facilities (ATL2 and ATL3) in our West End complex'.",
+  "Fulton County's tax-parcel layer has exactly one parcel at 1100 WHITE ST SW (14 0118  LL0258, 3.64 acres, class I4) and one at 1150 WHITE ST SW (14 0139  LL0402, 2.66 acres, class C4), both owned by DATABANK PROPERTIES LLC, and they are the only parcels in the county layer whose owner name begins with DATABANK; the two parcels adjoin, forming one 6.41-acre polygon."
+ ],
+ "unresolved": [
+  "The two buildings' footprints within the parcels are not published; the point locates the two-parcel West End complex, not either building.",
+  "DataBank's other Atlanta facilities (ATL1 at 760 W Peachtree St NW, ATL4 at 200 Selig Dr SW and the ATL5/ATL6 Lithia Springs campus at 4764 Bakers Ferry Rd SW) are separate sites and are not part of this locator."
+ ],
+ "computed": {
+  "selected_point": [
+   -84.425927,
+   33.7341341
+  ],
+  "parcels_touch": true,
+  "nearest_gap_between_parcels_m": 0.0,
+  "union_parts": 1,
+  "union_valid": true,
+  "union_geodesic_acres": 6.409,
+  "centroid_inside_union": true,
+  "native_epsg2240_centroid_transformed_lon_lat": [
+   -84.4259228,
+   33.7341277
+  ],
+  "native_crosscheck_distance_m": 0.81,
+  "union_bounds_lon_lat": [
+   -84.42723,
+   33.733162,
+   -84.424632,
+   33.735162
+  ],
+  "union_extent_m_ew_ns": [
+   241,
+   222
+  ],
+  "method": "Planar centroid of the shapely union of the two WGS84 (outSR=4326) parcel polygons; cross-checked against the centroid of the native EPSG:2240 union transformed with pyproj; geodesic areas on the WGS84 ellipsoid.",
+  "tools": "pyproj 3.7.1, shapely 2.1.1"
+ }
+}

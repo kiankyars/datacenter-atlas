@@ -363,6 +363,8 @@ From 22 October 2026 sites are added continuously: researchers each work a narro
 
 `verified_construction_core/2026-10-26-research-sixtyseventh`: **676 sites and 719 projects in 63 countries**. Adds Applied Digital Jamestown — 106 MW data-center hosting facility, existing operations (APLD Hosting LLC); Applied Digital Ellendale 180 MW data-center hosting facility — existing operations.
 
+`verified_construction_core/2026-10-26-research-sixtyeighth`: **684 sites and 728 projects in 63 countries**. Adds AWS PHX065 — two single-storey data-centre buildings under construction (Mesa permits PMT24-15709 and PMT25-13554); Google Mesa Red Hawk — Phase 3 (PH03) data hall building; Digital Realty Astra North Phase One (Project Jayhawk) — proposed two-storey 450,000 sq ft data center with private and Evergy substations; DataBank MSP2 — existing data-centre and carrier-hotel operations; Digital Realty ATL13 — existing data-centre and interconnection-hub operations; Project Delta — proposed data center campus (conditional rezoning R-A to M-2-CZ, about 1,848.74 acres); Switch The Keep 2 Campus (Keep 2.0) — data-center campus under construction; DataBank ATL2 and ATL3 — existing West End data-centre operations; Equinix HO1 — conversion of an interior storage room to additional data hall space (TABS2027004299). Refreshes Meta Mesa Data Center (expansion).
+
 ## 25 October 2026
 
 `verified_construction_core/2026-10-25-research-sixtysecond` adds three commercial sites and
