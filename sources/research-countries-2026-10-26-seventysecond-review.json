@@ -1,0 +1,105 @@
+{
+  "reviewer": "root",
+  "reviewed_at": "2026-10-26",
+  "decision": "accepted_for_integration",
+  "update": "verified_construction_core/2026-10-26-research-seventysecond",
+  "base_dataset": "verified_construction_core/2026-10-26-research-seventyfirst",
+  "process": "continuous: one researcher per beat, one adversarial verifier per fragment",
+  "fragments": [
+    {
+      "fragment": "cee-se-europe-p3",
+      "verdict": "accept",
+      "checks": [
+        "All 8 relied-on captures rehashed: file sha256 == .metadata.json sha256 == sources.json content_hash; metadata URLs match source_url; HTTP 200, no credentials",
+        "OPS-ADE 944.pdf read with pdftotext and pages 1, 2 and 5 rendered with pdftoppm: action 609617, 20/10/2026 15:10, finally submitted, DATA 4 GREECE (802353939), installation DC01 Paiania, Agiou Louka 33, lat 37.944187 / lon 23.872813, 6,000 kW, 8,908.42 m2; field 18 says the spaces 'έχουν αποπερατωθεί' under PEK 2688/08-07-2026 (part of K1 8,550.85 m2, K3, K5, car park)",
+        "Diff of July 559932 vs October 609617 printouts: same coordinate, scope and completion note; October adds installer declaration dated 09/10/26 and a declaration of proper execution of the entrance/exit, so it is a fresh filing, not just a copy",
+        "Region of Attica post links 944.pdf, datePublished 2026-10-23T07:36:18Z; PDF CreationDate 21 Oct 2026; observation 2026-10-20 <= publication <= retrieval; 6 days old, inside the 85-day window (floor 2026-08-02)",
+        "Source kinds: status sources regulatory_filing (Data4) and company_disclosure (CRA); operator web page and Diavgeia metadata used only as context",
+        "Completed keeps its scope: the project is scoped to the PEK-covered spaces only, with no operation, customer or load in service asserted (a notification is filed before the activity starts)",
+        "Locator recomputed: the coordinate is transcribed exactly from both printouts; the Data4 page's map marker (37.9429028, 23.8735719) is 157.4 m away at 154.9 deg (pyproj 3.7.1 WGS84 geodesic), consistent with a 7.5 ha campus; Point, campus_locator, official_source, direct_geometry; not a town centre (Paiania is about 2 km WNW); uncertainty null with a reason",
+        "Distinctness re-screened against the newest current dataset (2026-10-26-research-seventyfirst; 708 sites, 754 projects) as well as seventieth: no Data4 Greece, Paiania, Peania, Agiou Louka or ATH01 record in sites, projects, evidence, source-records or identity-mapping; nearest site Ten Brinke Spata at 3,994 m; no other queue fragment addition within 5 km; claims.tsv only has this fragment's claims",
+        "Holds screen: the 2026-10-16 thirty-first hold (Data4 ATH01-HERMES) reopen condition is met by a dated Data4 regulatory filing that states completion and gives a located installation; the 2026-10-23 forty-seventh mena-tr-il-p1 hold reopen condition (a newer dated modification with an installation locator) is met",
+        "Role: DATA 4 GREECE is the economic operator in the filing; operator, relationship_scope intended (allowed value)",
+        "CRA release HTML (dateline 26. 10. 2026; JSON-LD datePublished 2026-10-26T00:00+01:00) and PDF ('Praha, 26. 10. 2026') both say 'kde CRA staví jedno z největších datových center v regionu' about Prague Gateway in Jíloviště; first-party, present tense; consistent with the 24 Aug Skanska contract release ('Stavba bude bezprostředně po podpisu smlouvy zahájena')",
+        "CRA refresh is strictly newer (2026-10-26 > 2026-09-09) with the same project key, scope and locator; the press index lists the 26 Oct release as newest; seventyfirst still has 2026-09-09",
+        "robots.txt checked for patt.gov.gr, diavgeia.gov.gr (only /opendata/ used), cra.cz and data4group.com: all relied requests allowed",
+        "No third-party personal data in changes, sources, holds or notes (the names of the people quoted in the CRA release are not reproduced)",
+        "dryrun_fragment.py: ok against base 2026-10-26-research-seventyfirst (709 sites, 755 projects, 3,906 evidence)"
+      ],
+      "residual_risks": [
+        "OPS-ADE coordinate datum and accuracy are unstated and the coordinate was probably entered by the filer; no parcel (KAEK) boundary was available to confirm it lies inside the property",
+        "The completion wording repeats the 10 July 2026 filing; completion itself dates from PEK 8 July 2026, and the 20 October date is the date the completion was observed",
+        "DC01 may already be operating (an 8 October industry release paraphrased phase 1 as operational), so completed may understate its status",
+        "A possible Microsoft Greece region role at Data4's campus is not asserted",
+        "The CRA refresh relies on one present-tense sentence in a release mainly about Lužice; no structural stage is inferred",
+        "distinctness_review text cites the seventieth dataset counts; this verifier re-screened against seventyfirst and found no conflict"
+      ]
+    },
+    {
+      "fragment": "nl-be-ch-at-p3",
+      "verdict": "accept",
+      "checks": [
+        "17/17 relied-on captures rehashed: sha256 equals .metadata.json and sources.json content_hash, byte counts match, HTTP 200, URLs match",
+        "3 geometry facts files hash-match geometry_facts_sha256",
+        "Green release read in capture: dated 26.10.2026 (time datetime, dateline, sitemap lastmod); Green acquired Areal Grossacher und Grändel (~250,000 m2) from ABB and plans a staged data-centre campus: announced only, no permit/start/capacity",
+        "NorthC blog read in capture: datePublished 2026-09-30; present-tense operation in Münchenstein, Biel, Winterthur; Geneva DC to open 2028 (forecast, announced only)",
+        "NorthC Genf and Biel pages give Rte du Nant-d'Avril 152, 1217 Meyrin and Tennisweg 6, 2504 Biel; context only, not status observations",
+        "All status sources company_disclosure with published_at; observations 2026-09-30 and 2026-10-26 within 85 days of 2026-10-26 (window from 2026-08-02)",
+        "Birr locator recomputed from raw AV envelope: union of parcels 1069/381/1311/376/383 = 250,668 m2 single polygon, LV95 centroid 2658490.16/1253846.65, pyproj -> 8.2139272, 47.4328217 (0.007 m), inside, 76.7 m from edge, max 560 m; REFRAME capture agrees",
+        "OEREB extracts confirm Ergänzungsplan/Spezialzone Grossacher & Grändel inForce 100% on the five parcels; 241 0.5% and 1042 0.0% slivers; other checked neighbours outside; RRB 2025-000062 PDF read (area ~24 ha, ex-ABB/BBC reserve)",
+        "Genf: official address EGAID 102543513 served WGS84 equals pyproj of LV95 to 0.03 m; inside parcel 11875, 24 m from edge, max 236 m; GWR projected DC building 77.5 m away",
+        "Biel: official address EGAID 102359099 equals pyproj to 0.04 m; inside parcels 11089/11102, 12.7 m from edge, max 63 m; GWR building existing 2018, 23 m from point",
+        "Roles checked: Green owner current (erworben) and operator intended; NorthC operator intended (Genf) and current (Biel); relationship_scope values valid",
+        "Distinctness re-screened against seventieth and seventyfirst datasets (sites, projects, evidence, source-records, identity-mapping), all queue fragments, claims.tsv and sources/*-holds.json: no name/address match; nearest Atlas point 1,527 m (Green ZRH1 Lupfig, distinct named new site), 74 km, 46.6 km",
+        "Successor check: NorthC ch-de post sitemap (16 Oct post only) and verifier fetch of ch-fr post sitemap (no post after 24 Jul 2026): no newer status",
+        "robots.txt allows all relied-on hosts (green.ch, api3.geo.admin.ch, api.geo.ag.ch 404, oereblex.ag.ch, northcdatacenters.com); birr.ch and amtsblattportal not used",
+        "No private-individual personal data in changes, sources or holds; one new project per new site",
+        "dryrun_fragment.py ok against seventyfirst base (711 sites, 757 projects)"
+      ],
+      "residual_risks": [
+        "NorthC 30 Sep 2026 post cites 'Quelle: Swiss IT Magazine'; treated as NorthC's own dated statement (noted in date_semantics), magazine date unchecked",
+        "Birr purchase extent rests on plan name and area match; land-register ownership not public; touching parcels 385, 844, 845, 846, 851, 887, 888, 1055 and 1056 not OEREB-checked though area match makes inclusion unlikely",
+        "Birr point is a 25 ha area centroid; data-centre buildings may lie up to ~560 m away and parts of the Areal are earmarked for other industry",
+        "Genf address 152 is an existing 2022 building; a GWR projected 'EXPLOITATION DU DATACENTER' building with no named operator lies 77.5 m away",
+        "Biel operational status rests on a general present-tense marketing statement, not a facility-specific operating report"
+      ]
+    },
+    {
+      "fragment": "nordics-baltics-p3",
+      "verdict": "accept",
+      "checks": [
+        "current_dataset read from site/config.json: verified_construction_core/2026-10-26-research-seventyfirst",
+        "rehashed all 8 relied-on captures (BIS case page, AR-1 PDF, BIS new-build geodata CSV, BIS case list CSV, VZD Ventspils shapefile zip, Telia Q3 PDF, Greenergy EN and gdc.ee ET releases): sha256 matches .metadata.json and source content_hash",
+        "BIS case page read: BIS-BL-975692-8018 'Datu centrs Veronikas', new construction, 98660140022001 on land unit 98660140022, use 1220; application accepted 20.10.2026; Buvatlauja BIS-BV-4.1-2026-3712 decided 20.10.2026, in force from 22.10.2026; stage design conditions; no appeal or suspension shown",
+        "AR-1 PDF read with pdftotext: 'Biroju eka ar datu centru Veronikas', client SIA AT57N, 660.0 m2 total, two 132.6 m2 technical rooms, UPS rooms, 7 x 500-650 kW generators, 11 x 350 kW chillers, 3 x 10/0.4 kV transformers",
+        "permit is a granted building permit for the data-centre building itself (authority, decision date, in-force date, reference, approved work present); dataset_update permit fields valid",
+        "locator recomputed: CSV rows give 21.66167440695165, 57.39203840176343 (two rows, one with 98660140022001); own shp/dbf parse + pyproj 3.7.1 EPSG:4326->10306 + shapely 2.1.1: inside land unit 98660140022 (valid, 90,102 m2), 8.2 m from centroid, 46.6 m from boundary, only parcel containing the point, no registered buildings",
+        "land unit is a SW-NE strip ~946 m x 99 m (min rotated rectangle), farthest vertex 481 m from point; corrected precision/uncertainty texts in changes.json and VZD summary in sources.json, which said '850 by 580 m' (bounding box)",
+        "Telia Q3 2026 interim report read (pp. 4 and 12): main building erection completed September 2026, EUR 26m project scheduled for completion Q2 2027; signed Vilnius 21 October 2026; strictly newer than existing 2026-06-30, scope kept",
+        "Greenergy 28.9.2026 release read (EN and ET, datePublished 2026-09-28): first AI part 'currently being built out' / 'ehitatakse praegu valja' with Nebius tenant; strictly newer and later stage than existing site_preparation 2026-07-30, same campus expansion scope",
+        "all observations (2026-10-22, 2026-09-30, 2026-09-28) within 85 days of 2026-10-26 (floor 2026-08-02); source kinds government_record, regulatory_filing, company_disclosure",
+        "distinctness: no Veronikas/AT57N/Targale/98660140022/975692/permit-reference match in sites.csv, projects.csv, evidence.csv, source-records.json, identity-mapping.json, other queue fragments, claims.tsv or sources/*-holds.json; nothing within 2 km (nearest Atlas site LVRTC Pozitrons 55.0 km)",
+        "no conflicting queued updates for the Telia or Greenergy projects",
+        "role SIA AT57N owner/unknown from AR-1 client field (allowed role and scope)",
+        "no personal data (architect name/phone/e-mail, executive names) in changes, sources, holds, notes or geometry facts",
+        "robots.txt captures precede each relied-on capture; bis.gov.lv 30 s crawl delay respected between case page and AR-1",
+        "dryrun_fragment.py: ok (709 sites, 755 projects, 3906 evidence rows)"
+      ],
+      "residual_risks": [
+        "Veronikas locator is the BIS point coinciding with the land-unit centroid; building may be up to ~481 m away along the 946 m strip (uncertainty left null with reason)",
+        "Veronikas operating model (commercial vs own-use) and capacity not stated; small 660 m2 facility",
+        "Veronikas permit is in force but still within the administrative appeal period; BIS page has no publication stamp (in-force date used)",
+        "SIA AT57N 'owner' role inferred from the design client field (scope unknown)",
+        "Telia published_at 21 Oct from signature; Nasdaq release may be dated 22 Oct (does not affect the 30 Sep observation)",
+        "Greenergy 'being built out' could describe fit-out rather than new-building works; under_construction used generically"
+      ]
+    }
+  ],
+  "packet_pins": {
+    "definitions/atlas-research-seventysecond-2026-10-26.json": "00cf8f19911a66da1197aa44cad62779ad79c3c9bb16d9c7c1939f4a3791bc95",
+    "sources/research-countries-2026-10-26-seventysecond-primary-sources.json": "09cd43a4675548f8774cd27c2bbaac23f0d55e08b97ff8a543139d23a1c20c97",
+    "sources/research-countries-2026-10-26-seventysecond-actions.json": "4c01dbef0696f8b67d518bc0302edef8a34942a8d9249bdd4ce4d0d782a58788",
+    "sources/research-countries-2026-10-26-seventysecond-holds.json": "7066c9807cbdb39af94e6ded499f32a41c64adb62104c1e99dabb2fc039af55c"
+  },
+  "raw_captures_redistributed": false
+}
