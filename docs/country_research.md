@@ -377,6 +377,8 @@ From 22 October 2026 sites are added continuously: researchers each work a narro
 
 `verified_construction_core/2026-10-26-research-seventyfourth`: **718 sites and 764 projects in 63 countries**. Adds Digital Realty HKG11 (Kin Chuen) — existing data-centre operations; Digital Realty HKG10 (Digital TKO) — existing data-centre operations. Refreshes Boda Langfang No. 2 Phase 1 (operational).
 
+`verified_construction_core/2026-10-26-research-seventyfifth`: **720 sites and 766 projects in 63 countries**. Adds ESR－CHQ南港データセンターOS2 — planned second-phase data-centre building, Cosmosquare campus; Colt Inzai Data Centre 4 (Keppel Tokyo Data Centre 3) — existing hyperscale data-centre operations. Refreshes IIJ Shiroi Existing Operations (Phases 1 and 2) (operational).
+
 ## 25 October 2026
 
 `verified_construction_core/2026-10-25-research-sixtysecond` adds three commercial sites and

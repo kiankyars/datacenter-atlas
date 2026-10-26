@@ -1,0 +1,76 @@
+{
+  "reviewer": "root",
+  "reviewed_at": "2026-10-26",
+  "decision": "accepted_for_integration",
+  "update": "verified_construction_core/2026-10-26-research-seventyfifth",
+  "base_dataset": "verified_construction_core/2026-10-26-research-seventyfourth",
+  "process": "continuous: one researcher per beat, one adversarial verifier per fragment",
+  "fragments": [
+    {
+      "fragment": "jp-location-agreements-p3",
+      "verdict": "accept",
+      "checks": [
+        "All 8 relied-on captures rehashed: file sha256 == .metadata.json sha256 == sources.json content_hash; URLs match",
+        "MLIT register PDF page 6 rendered (pdftoppm) and read (pdftotext): row 'ESR－CHQ南港データセンターOS2', applicant エイグ特定目的会社, (一財)日本建築センター, MNNNNNN-13010, 令和8年08月19日",
+        "Full 657-page register searched: 13010 has no -1/-2 revision and no other OS2 row; OS1 rows are （仮称）ESR南港データセンター MNNNNNN-12122 series (2022-2024)",
+        "Coverage line 認定日 to 令和8年09月30日; live HEAD confirms Last-Modified Tue, 13 Oct 2026 07:28:10 GMT and same length; byte-identical copies captured 14 Oct (jp-fifth) and 23 Oct (jp-kanto-p2) bound published_at 2026-10-13",
+        "government_record, observation 2026-08-19 is 68 days before 2026-10-26 (inside 85-day window, cutoff 2026-08-02); observed <= published_at",
+        "Status kept at announced: structural certification is not a permit or construction observation; it precedes building confirmation for an M-class building",
+        "ESR JV release (16 Jan 2025) literal: ESR and CloudHQ will jointly build, fit out and operate the entire Cosmosquare campus over OS1, OS2, OS3; both roles operator/intended supported",
+        "CloudHQ KIX Campus page byte offset 139947 literal '34.63940, 135.42107' under the KIX Campus heading; Cosmosquare in Nanko Kita, three phases KIX1-KIX3",
+        "Locator recomputed with pyproj 3.7.1/shapely 2.1.1 (EPSG:6674): point inside MOJ lot 南港北1丁目5-2 (8,064.3 m2, matches OS1 CASBEE site 8,068.12 m2), 3.8 m to 5-3, 5.9 m to 5-1, 8.7 m to block centroid; SC Zeus lot 14-1 259 m edge / 338 m centroid",
+        "GSI reverse geocoder capture: muniCd 27125, 南港北一丁目; Osaka City CASBEE R04-035h read: 住之江区南港北1丁目, コンピューター室 use",
+        "Esri overlay inspected: new building with rooftop plant on lot 5-2, lot 5-3 cleared; undated, identity only",
+        "Distinctness vs seventyfourth (719 sites, 765 projects) sites/projects/evidence/source-records/identity-mapping: no Cosmosquare/南港/ESR-CHQ/エイグ match; nearest site SoftBank Osaka Sakai 4,954 m; no source-record coordinate within 3 km",
+        "Queue and sources/*-holds.json: only holds (jp-kansai-p1 OS1/campus hold, SC Zeus OSA1 holds); no other fragment adds this site or a point within 5 km",
+        "ESR news sitemap capture: no OS2 or Cosmosquare item after 2025 releases (2026 lastmods are site-wide re-saves)",
+        "No private individuals' names, phones or emails in changes, sources, holds or geometry facts",
+        "Verifier edit: noted in MOJ source date_semantics that the GeoJSON's internal name reads 筆R_2025",
+        "dryrun_fragment.py ok on base 2026-10-26-research-seventyfourth (719 sites, 765 projects)"
+      ],
+      "residual_risks": [
+        "Status rests on a structural-method certification row, not an operator announcement or permit; it identifies the planned building only",
+        "Applicant エイグ特定目的会社 is not tied to ESR/CloudHQ by any captured source; identity rests on the building name 'ESR－CHQ南港データセンターOS2'",
+        "OS2's lot and footprint are unpublished; locator is a campus point on the OS1 lot",
+        "OS2 works may have begun after 19 Aug 2026 without a dated source; announced may later understate",
+        "CloudHQ campus page is undated and states no datum; MOJ file vintage may be 2025 per its internal name"
+      ]
+    },
+    {
+      "fragment": "jp-operators-p3",
+      "verdict": "accept",
+      "checks": [
+        "Rehashed all 9 source captures plus the fragment re-captures of the Keppel 3Q 2026 PDF, Keppel AR2025 PDF and MOJ Inzai GeoJSON; every sha256 matches its .metadata.json and content_hash, and every metadata URL matches source_url",
+        "Keppel 3Q 2026 PDF p.20 (pdftotext), headed 'Portfolio Overview (as at 30 Sep 2026)': Tokyo Data Centre 3 has a 98.47% interest, 73,325 sq ft, 1 client, 100.0% occupancy, a fully-fitted single-tenant lease, a 14.0-year WALE and 2025 completion; p.22 says the owner bears all expenses and facilities management. The cover is dated 23 Oct 2026",
+        "Status window: as_of 2026-09-30 <= published 2026-10-23; 26 days before 2026-10-26, inside 85 days; company_disclosure. The same evidence is already the status source for the Keppel SGP1, SGP5 and DC1 records",
+        "Keppel AR2025 p.42 gives the address '8 Otsuka 2-Chome, Inzai City', 94,157 sq ft of land and the facility manager Colt Data Centre Services Japan Operating GK; p.11 confirms the facility manager; p.36 names the seller Sunrise Inzai 4 TMK",
+        "Colt's 2023 release, data sheet and timeline all give an 8,747 m2 site; the 2025-02-26 release reports the first phase complete with 4.8 MW operating and 20 MW at completion. Status does not rely on the opening date",
+        "Locator recomputed independently from the raw MOJ GeoJSON with pyproj 3.7.1 and shapely 2.1.1 in EPSG:6677: there is exactly one lot 大塚2丁目8 (H000005139, 測量成果, 甲二) of 8,735.6 m2. Its centroid 140.1222606, 35.8086017 lies inside the lot, 45.2 m from the boundary, and 0.004 m from the claimed point",
+        "GSI address search returns only the chome-level point, so '8' is a lot number. In my own GSI photo mosaic the lot 8 outline follows a separate vacant plot, which predates construction; the plot is not used for status",
+        "Not a city centre, HQ or zone centroid; reviewed_site_locator with direct_geometry, as in the precedent MOJ and parcel-centroid locators; precision, identity review and a null uncertainty with a reason are recorded",
+        "Distinctness screen of seventyfourth sites, projects, evidence, source-records and identity-mapping: no Colt or Keppel record in Japan. Within 5 km are only SCSK netXDC Inzai (368 m, Google SI3 marker in lot 5; SI3 was completed in April 2022 and so predates Colt's 2023 construction start on lot 8), STT Inzai (1.5 km), IIJ Shiroi (2.3 km), AirTrunk TOK1 (3.4 km) and CloudHQ Asahi (3.7 km)",
+        "Queue and holds screen: there are no other changes for Colt Inzai 4, TDC3 or IIJ Shiroi; the TDC3 lead in the sixty-sixth holds and the Colt Inzai hold in the thirty-sixth holds are the leads this addition resolves; Keppel TDC4/5 remain held without an address",
+        "Roles: owner Keppel DC REIT (current, from the 3Q 2026 table); operator Colt DCS Japan Operating GK (current, facility manager under AR2025); both scopes are valid",
+        "Successor checks: the Keppel newsroom capture shows only a 26 Oct unitholding notice after the 3Q update; the Colt sitemap has no 2026 Inzai release",
+        "IIJ 26 Oct 2026 release: the byte pointers at 4787, 6694, 11625 and 11661 match. Its role list says IIJ procures, builds and operates the project server environment at 'IIJの自社データセンター「白井データセンターキャンパス」'; the project began on 29 Sep 2026",
+        "IIJ refresh: 2026-10-26 is strictly newer than 2026-08-07; scope stays Phases 1 and 2 because Phase 3 remains under construction; the campus locator is unchanged; the IIJ 2026 press list shows no intervening Shiroi change",
+        "No third-party personal names, phones or e-mails in changes, sources, holds, notes or geometry facts",
+        "dryrun_fragment.py: ok against verified_construction_core/2026-10-26-research-seventyfourth (+1 site, +1 project, +6 evidence)"
+      ],
+      "residual_risks": [
+        "The TDC3 status is a REIT occupancy table measured by lettable area, not a published IT load; operational status follows the Keppel SGP precedent, and only the 4.8 MW first phase is confirmed built",
+        "The reused MOJ evidence row keeps its first-use title, which names the BIG HOP lot 原一丁目2-1, because the builder requires identical metadata for the same capture; the lot 8 selection is documented only in the geometry facts and source summary",
+        "The lot-to-building link rests on Keppel's lot-number address and a 0.13% area match; the GSI photo and standard map predate the building, so the building footprint is not independently imaged",
+        "The operator role comes from the AR2025 facility-manager appointment (as at 31 Dec 2025); the 3Q 2026 update does not name the facility manager",
+        "The IIJ refresh relies on a project role clause naming the campus as IIJ's own data centre hosting a project begun on 29 Sep 2026; it is weaker than an explicit 'operated by' statement and gives no capacity or phase detail"
+      ]
+    }
+  ],
+  "packet_pins": {
+    "definitions/atlas-research-seventyfifth-2026-10-26.json": "432d52aab70bfa1fb09f0d374fcb8c7ab8557395ef95f10d1ffc27f97396dd77",
+    "sources/research-countries-2026-10-26-seventyfifth-primary-sources.json": "e02e39e7eb4570b0abb88010a8c0296a4cf1696577d0b9e41198ea132d22163c",
+    "sources/research-countries-2026-10-26-seventyfifth-actions.json": "52ad17fb90760f5a87ed5b22c6755666d3cbb754c6f4874d7de97f7efb80fad6",
+    "sources/research-countries-2026-10-26-seventyfifth-holds.json": "5e4f02dcf0e49093adf2c3f2a345b72a517baf40c9945492c93aa7f69ba1f100"
+  },
+  "raw_captures_redistributed": false
+}

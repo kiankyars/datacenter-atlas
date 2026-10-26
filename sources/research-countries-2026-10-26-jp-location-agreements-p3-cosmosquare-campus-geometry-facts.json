@@ -1,0 +1,283 @@
+{
+ "candidate_id": "esr-cloudhq-cosmosquare-nanko-kita",
+ "decision": "Use the coordinate pair that CloudHQ publishes on its KIX Campus page for the Cosmosquare campus (34.63940, 135.42107) unchanged as the campus locator of the ESR/CloudHQ Cosmosquare data-centre campus, for the new OS2 project. The point is an operator-published campus point, not an OS2 building footprint, plot centroid, entrance or surveyed boundary.",
+ "geometry": {
+  "type": "Point",
+  "coordinates": [
+   135.42107,
+   34.6394
+  ]
+ },
+ "authority_class": "compiled_reference",
+ "scope_class": "operator_published_campus_coordinate",
+ "use_scope": "campus_locator",
+ "derivation": "direct_geometry",
+ "operator_source": {
+  "url": "https://cloudhq.com/campus/kix-campus/",
+  "raw_capture_file": "local_data/country-research-jp-location-agreements-p3/cloudhq-kix-campus.html",
+  "sha256": "5e9957945eb555b010e0a0fe53b6a362c9448862fbc709636c6c8acf4383041c",
+  "retrieved_at": "2026-10-26T18:06:46.603Z",
+  "literal": "34.63940, 135.42107",
+  "datum_stated": false,
+  "page_dated": false
+ },
+ "checks": {
+  "gsi_reverse_geocoder": {
+   "url": "https://mreversegeocoder.gsi.go.jp/reverse-geocoder/LonLatToAddress?lat=34.63940&lon=135.42107",
+   "sha256": "e6771a8c477a45fd93ed70121336d5912063d0f214beec4a225acb1b0671e1af",
+   "result": {
+    "muniCd": "27125",
+    "lv01Nm": "南港北一丁目"
+   },
+   "meaning": "The point falls in Nanko-kita 1-chome, Suminoe-ku, Osaka City, the town block that Osaka City's CASBEE plan summary R04-035h gives for OS1 (住之江区南港北1丁目)."
+  },
+  "moj_registry_parcels": {
+   "url": "https://gsic-opendata.s3.ap-northeast-1.amazonaws.com/aigid/aigid-moj/2026/27/aigid-moj-27125/27125_%E5%A4%A7%E9%98%AA%E5%B8%82%E4%BD%8F%E4%B9%8B%E6%B1%9F%E5%8C%BA_%E5%85%AC%E5%85%B1%E5%BA%A7%E6%A8%996%E7%B3%BB_%E7%AD%86R_2026.geojson",
+   "raw_capture_file": "local_data/country-research-jp-location-agreements-p3/moj-27125-2026.geojson",
+   "sha256": "53c70a231e772e6ede3ae8e373dda51837004c04d2fa5bbd31f82ad6c16dea0d",
+   "retrieved_at": "2026-10-26T18:12:43.551Z",
+   "dataset": "MOJ registry-map data (2026 release, Suminoe-ku 27125, public coordinate system VI, 座標値種別 測量成果) converted to GeoJSON (OGC:CRS84) by AIGID",
+   "lots": {
+    "南港北1丁目5-2": {
+     "id": "H000001703",
+     "planar_area_m2_epsg6674": 8064.3,
+     "geodesic_area_m2": 8065.3,
+     "centroid_lon_lat": [
+      135.4215846,
+      34.6397588
+     ],
+     "contains_operator_point": true,
+     "distance_m": 0.0
+    },
+    "南港北1丁目5-3": {
+     "id": "H000001705",
+     "planar_area_m2_epsg6674": 8032.3,
+     "geodesic_area_m2": 8033.4,
+     "centroid_lon_lat": [
+      135.4217227,
+      34.6391636
+     ],
+     "contains_operator_point": false,
+     "distance_m": 3.8
+    },
+    "南港北1丁目5-1": {
+     "id": "H000001704",
+     "planar_area_m2_epsg6674": 16657.7,
+     "geodesic_area_m2": 16659.9,
+     "centroid_lon_lat": [
+      135.4203559,
+      34.6392482
+     ],
+     "contains_operator_point": false,
+     "distance_m": 5.9
+    },
+    "南港北1丁目14-1 (SC Zeus OSA1 hold parcel)": {
+     "id": "H000001755",
+     "planar_area_m2_epsg6674": 13955.3,
+     "centroid_lon_lat": [
+      135.4247409,
+      34.6390938
+     ],
+     "distance_m": 259.0
+    }
+   },
+   "block_5_union_of_5-1_5-2_5-3": {
+    "parts": 1,
+    "planar_area_m2": 32754.3,
+    "centroid_lon_lat": [
+     135.4209936,
+     34.6393532
+    ],
+    "operator_point_to_centroid_m": 8.7
+   },
+   "reading": "The operator point lies inside lot 5-2 at its south-west corner, within 6 m of lots 5-1 and 5-3, and 8.7 m from the centroid of the street block formed by lots 5-1, 5-2 and 5-3. Lot 5-2's planar area (8,064.3 m2) matches the 8,068.12 m2 site area in Osaka City's CASBEE plan summary R04-035h for '（仮称）ESR南港データセンター新築工事' (OS1) to within 0.05 %, which identifies lot 5-2 as the OS1 site. Lot 5-3 (8,032.3 m2) adjoins it to the south. No source assigns OS2 to a lot."
+  },
+  "imagery": {
+   "gsi_seamlessphoto_and_std_z18": {
+    "tiles": [
+     {
+      "url": "https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/18/229681/104153.jpg",
+      "sha256": "8f66c40bfa7c23bd03a0c3f093f0868a390cf64189fca06c18c833ee1514d6d1",
+      "bytes": 9850
+     },
+     {
+      "url": "https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/18/229681/104154.jpg",
+      "sha256": "5b1448fac5da8fd983bd9940464fd9609a6adf701a53a79836bb1d08dc9aca8a",
+      "bytes": 11602
+     },
+     {
+      "url": "https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/18/229681/104155.jpg",
+      "sha256": "bf20950564d923a079fdd4e3840f60842a7a9a09fad7023c454ba1ca41bbbd37",
+      "bytes": 13432
+     },
+     {
+      "url": "https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/18/229682/104153.jpg",
+      "sha256": "d359a1e728b63dd6490d7cf20e09f506905f6c1dddc1ac62eaa5f1617afe16fe",
+      "bytes": 15994
+     },
+     {
+      "url": "https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/18/229682/104154.jpg",
+      "sha256": "ec9852d00a97661201617c58dac12429e5c9c60c6f92e47eb10c3744a3e3b66b",
+      "bytes": 13711
+     },
+     {
+      "url": "https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/18/229682/104155.jpg",
+      "sha256": "71138b49f98408c6f9f99d6f341d02a493840c6330a16f8a999eb64a5aa75ab3",
+      "bytes": 14713
+     },
+     {
+      "url": "https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/18/229683/104153.jpg",
+      "sha256": "b8cba81af04250ab18e64f537d80cf2aa05d1fdecbf8742999f26829cd23aa15",
+      "bytes": 13227
+     },
+     {
+      "url": "https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/18/229683/104154.jpg",
+      "sha256": "baa1a5a025bc875819965c87da91a1035542aab5a652975f08fcc4fd97159198",
+      "bytes": 13690
+     },
+     {
+      "url": "https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/18/229683/104155.jpg",
+      "sha256": "5a57edb0111d736e2c15aa5c8912d046ed966bfc32ebaa87bc22408d90843a75",
+      "bytes": 17830
+     },
+     {
+      "url": "https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/18/229684/104153.jpg",
+      "sha256": "cb29056a8699a8e722f6036a490bac34aaf88eca1eb52f81a873efd41079bfde",
+      "bytes": 12722
+     },
+     {
+      "url": "https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/18/229684/104154.jpg",
+      "sha256": "9e6a99e542fa4ee1372d80787b15f61fea0db88add6df16b02cd2ad2da99ab3e",
+      "bytes": 16614
+     },
+     {
+      "url": "https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/18/229684/104155.jpg",
+      "sha256": "b22182c986b4878c2e51384bbaa8d6eb4497f2c29fde5263a33514a58db86217",
+      "bytes": 15011
+     },
+     {
+      "url": "https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/18/229685/104153.jpg",
+      "sha256": "fb49f05553e599adf9c2ded416e400a318b35f4ef13b048320ba3aa932b63251",
+      "bytes": 13309
+     },
+     {
+      "url": "https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/18/229685/104154.jpg",
+      "sha256": "9a122f6dec338f1b9d3152d3e13b8da8fc14fadf86af1ca253c4c7df74c7df25",
+      "bytes": 15756
+     },
+     {
+      "url": "https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/18/229685/104155.jpg",
+      "sha256": "6c9387781bb9803238f9a092b2b62c6fb7f30dfd093fbe5abea6b2db40840288",
+      "bytes": 15655
+     },
+     {
+      "url": "https://cyberjapandata.gsi.go.jp/xyz/std/18/229681/104153.png",
+      "sha256": "180bf120abddca07b5ac24d60e5a241d4e99c7ce7f3ab2f18536071b4c84012c",
+      "bytes": 3324
+     },
+     {
+      "url": "https://cyberjapandata.gsi.go.jp/xyz/std/18/229681/104154.png",
+      "sha256": "e1443b94e74f04843deb45d63f7fcb335b6ac37849352b191920a603893c27dd",
+      "bytes": 4110
+     },
+     {
+      "url": "https://cyberjapandata.gsi.go.jp/xyz/std/18/229681/104155.png",
+      "sha256": "6f854857401746102201a7d1ce7c34c1fe0fcc5017bf5009b99c82bd71620ae4",
+      "bytes": 2654
+     },
+     {
+      "url": "https://cyberjapandata.gsi.go.jp/xyz/std/18/229682/104153.png",
+      "sha256": "9d60ae632631fdcc19f15b7be773f253a371df7b7c7cb179b30be50e92c4ee94",
+      "bytes": 4243
+     },
+     {
+      "url": "https://cyberjapandata.gsi.go.jp/xyz/std/18/229682/104154.png",
+      "sha256": "00ef46a7b9378a33f2a80ecca94d58819925d14ac55ac89ea4274086fc55db40",
+      "bytes": 4407
+     },
+     {
+      "url": "https://cyberjapandata.gsi.go.jp/xyz/std/18/229682/104155.png",
+      "sha256": "b37b2c7d2cb8076af0d852a3209d93603e44d127f0455606ab07ca8c3512d422",
+      "bytes": 3236
+     },
+     {
+      "url": "https://cyberjapandata.gsi.go.jp/xyz/std/18/229683/104153.png",
+      "sha256": "816f034af4b75176bb5fee0c6f36586cc247bc78b8e7b43690c076c0f9f2642b",
+      "bytes": 5156
+     },
+     {
+      "url": "https://cyberjapandata.gsi.go.jp/xyz/std/18/229683/104154.png",
+      "sha256": "163cd94c8afa4d395548e6823e8a6387a861ebe0025ff3c670606daf98e03cf9",
+      "bytes": 3302
+     },
+     {
+      "url": "https://cyberjapandata.gsi.go.jp/xyz/std/18/229683/104155.png",
+      "sha256": "b5d2b0b34cd234677dbfd1efbda0730914383c47f0c08b8553e409469b8feda4",
+      "bytes": 3942
+     },
+     {
+      "url": "https://cyberjapandata.gsi.go.jp/xyz/std/18/229684/104153.png",
+      "sha256": "088c92ff27f4c19cd9dc1afeffe12e313c91f5676f9c914c4389cd67371bf8fc",
+      "bytes": 3341
+     },
+     {
+      "url": "https://cyberjapandata.gsi.go.jp/xyz/std/18/229684/104154.png",
+      "sha256": "3079f3a58ec145e4d911654070b10fd668408adc83b8b768b61295bd50c9642f",
+      "bytes": 4577
+     },
+     {
+      "url": "https://cyberjapandata.gsi.go.jp/xyz/std/18/229684/104155.png",
+      "sha256": "a0826152d6b0970c4d8b1a0be4f9a93227d1db0ff8b46ab9f4c9fd9323450e04",
+      "bytes": 5028
+     },
+     {
+      "url": "https://cyberjapandata.gsi.go.jp/xyz/std/18/229685/104153.png",
+      "sha256": "aa920159c123fe261b4ac08ee830315b96e85359e545b15bede845cef54d881c",
+      "bytes": 4987
+     },
+     {
+      "url": "https://cyberjapandata.gsi.go.jp/xyz/std/18/229685/104154.png",
+      "sha256": "bba38943f189777c5fbca7dc6f15b86d1d5c5e799da51aa306d8d798217fd865",
+      "bytes": 6714
+     },
+     {
+      "url": "https://cyberjapandata.gsi.go.jp/xyz/std/18/229685/104155.png",
+      "sha256": "5438c802668cd97d72dc18357de8ad1b11a75a39ecde1a7fe8ecf93f113cd969",
+      "bytes": 6888
+     }
+    ],
+    "acquisition_date": "not stated",
+    "reading": "GSI's seamless photo (older acquisition) shows lots 5-2 and 5-3 as cleared land and a building with dense rooftop plant on lot 5-1; the standard map shows the same block and street layout."
+   },
+   "esri_world_imagery_export": {
+    "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=135.4180,34.6372,135.4268,34.6418&bboxSR=4326&imageSR=4326&size=1280,670&format=png&f=image",
+    "raw_capture_file": "local_data/country-research-jp-location-agreements-p3/esri-world-imagery-cosmosquare.png",
+    "sha256": "f668545341451a39f72954d2d4298f08cb2660d22ea3f663b37e629ed39f3898",
+    "acquisition_date": "not stated",
+    "reading": "Esri World Imagery (newer acquisition, undated) shows a long new building with dense rooftop plant filling lot 5-2 (consistent with OS1, completed as core and shell in August 2024), lot 5-3 cleared with prefabricated temporary buildings, and the SC Zeus lot 14-1 under excavation. The imagery is undated and is used only as a qualitative identity check; it is not evidence of any OS2 work or stage."
+   },
+   "overlays": [
+    "work/render/cosmosquare-parcels.png",
+    "work/render/cosmosquare-esri-parcels.png",
+    "work/render/cosmosquare-esri-zoom.png"
+   ],
+   "scripts": [
+    "work/cosmo_geom.py",
+    "work/overlay.py",
+    "work/overlay_esri.py",
+    "work/stitch.py"
+   ]
+  }
+ },
+ "precision": "Operator-published campus point at the south-west corner of the OS1 lot (MOJ 南港北1丁目5-2), effectively the centroid of the three-lot street block (5-1, 5-2, 5-3; 32,754 m2). It locates the Cosmosquare campus, not OS2: OS2's plot is not published.",
+ "horizontal_uncertainty": {
+  "metres": null,
+  "reason": "CloudHQ publishes the point to five decimals with no datum or accuracy statement; the decimals are not survey precision. The campus block extends about 150 m from the point and OS2's position within the campus (or on an adjoining lot) is unknown."
+ },
+ "unresolved": [
+  "OS2's lot and footprint are not published; MLIT's register gives only the building name, applicant and certification.",
+  "Whether lot 5-1 (with an older building) belongs to the campus is not stated by any source.",
+  "Imagery acquisition dates are not stated."
+ ],
+ "tools": "pyproj 3.7.1, shapely 2.1.1 (uv run --no-project ... python -I), Pillow 11.0.0 for overlays"
+}

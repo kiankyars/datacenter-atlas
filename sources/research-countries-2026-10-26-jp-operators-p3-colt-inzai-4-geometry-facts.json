@@ -1,0 +1,82 @@
+{
+ "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+ "candidate": "Colt Inzai Data Centre 4 (Keppel DC REIT Tokyo Data Centre 3), 8 Otsuka 2-chome, Inzai, Chiba",
+ "decision": "Selected the planar centroid of Ministry of Justice registry-map lot 大塚二丁目8 (Inzai City) as a reviewed_site_locator. The lot is the whole 8,736 m2 data-centre property at the address Keppel DC REIT gives for Tokyo Data Centre 3; the point locates that property, not the building outline, an entrance or a data hall.",
+ "geometry": {
+  "type": "Point",
+  "coordinates": [
+   140.1222606,
+   35.8086017
+  ]
+ },
+ "coordinate_reference_system": "CRS84 longitude/latitude as published by AIGID in the GeoJSON conversion of the MOJ registry-map data (source coordinate system 公共座標9系, JGD2011 Japan Plane Rectangular CS IX). The centroid was computed in EPSG:6677 with pyproj 3.7.1 and shapely 2.1.1 and transformed back; computing it in the published lon/lat plane gives the same seven-decimal point (0.000 m offset).",
+ "authority_class": "compiled_reference",
+ "scope_class": "official_registry_map_facility_parcel_centroid",
+ "use_scope": "reviewed_site_locator",
+ "source_url": "https://gsic-opendata.s3.ap-northeast-1.amazonaws.com/aigid/aigid-moj/2026/12/aigid-moj-12231/12231_%E5%8D%B0%E8%A5%BF%E5%B8%82_%E5%85%AC%E5%85%B1%E5%BA%A7%E6%A8%999%E7%B3%BB_%E7%AD%86R_2026.geojson",
+ "raw_capture_file": "local_data/country-research-jp-operators-p3/moj-12231-2026.geojson",
+ "raw_capture_sha256": "c2bfc49a5ab84b0cc23f5664a70da73a4c4a384cc6f3218f50270fa3121e7f67",
+ "raw_capture_bytes": 18767138,
+ "retrieved_at": "2026-10-26T18:10:32.947Z",
+ "capture_custody_note": "Captured once on 26 October 2026 with the fragment capture script; byte-identical (same sha256 and size) to the 22 October capture local_data/country-research-jp-kanto-p1/moj-12231-2026-long.geojson that is already Atlas evidence b0729e45-5cfb-514d-b4ff-25caab60306e (locator source of CloudHQ Project Asahi). The source record therefore carries that evidence record's metadata unchanged. The file's internal collection name ends _2025 although it is the 2026 catalog resource.",
+ "selected_feature": {
+  "ID": "H000005139",
+  "市区町村C": "12231",
+  "大字名": "大塚",
+  "丁目名": "２丁目",
+  "地番": "8",
+  "精度区分": "甲二",
+  "座標値種別": "測量成果",
+  "地図名": "平成30年度公図再編5駅",
+  "座標系": "公共座標9系",
+  "測地系判別": "測量",
+  "vertices": 13,
+  "geodesic_area_m2_grs80": 8737.2,
+  "planar_area_m2_epsg6677": 8735.6,
+  "bounds_lon_lat": [
+   140.121615,
+   35.808057,
+   140.122862,
+   35.80915
+  ],
+  "centroid_inside": true,
+  "centroid_distance_to_parcel_boundary_m": 45.2
+ },
+ "identity_chain": [
+  "Keppel DC REIT's Annual Report 2025 (kdcr-ar2025.pdf, sha256 445a8e65...e7e3, PDF page 42, printed page 45) gives Tokyo Data Centre 3's location as '8 Otsuka 2-Chome, Inzai City, Chiba Prefecture, Japan', land area 94,157 sq ft (8,747.4 m2), gross floor area 195,216 sq ft, one client, fully-fitted single-tenant lease and facility manager 'Colt Data Centre Services Japan Operating GK'. PDF page 36 records that it was bought from Sunrise Inzai 4 TMK and describes it as a newly built, freehold, Tier III-equivalent facility in Inzai City.",
+  "Colt's own records for Colt Inzai Data Centre 4 give the same site area: the 25 April 2023 construction-start release (敷地面積は 8,747 平方メートル; about 600 m from Colt's existing Inzai campus and close to Chiba New Town station), the Inzai 4 data sheet (敷地面積：8,747㎡; base-isolated, five storeys above ground) and the Inzai 4 timeline page (8,747 ㎡). Colt announced the opening of Inzai 4 on 26 February 2025, matching Keppel's 2025 completion year and its five-storey, base-isolated description of Tokyo Data Centre 3.",
+  "GSI's address search for 千葉県印西市大塚二丁目8 (and for 印西市大塚2丁目8番) returns only the 町丁目-level point 千葉県印西市大塚二丁目 at 140.117874, 35.808285 (gsi-inzai-otsuka-2-8.json), so Otsuka 2-chome has no residential-address (住居表示) block numbering: the '8' in Keppel's address is a registry lot number.",
+  "The 2026 MOJ/AIGID Inzai data holds exactly one feature for lot 大塚二丁目8 (H000005139), a single 8,735.6 m2 parcel, within 11.8 m2 (0.13%) of the 8,747 m2 site area stated by both Keppel and Colt. Its coordinates derive from survey results (座標値種別 測量成果), accuracy class 甲二.",
+  "Qualitative imagery check only: overlaying lot 8 and neighbouring lots on six GSI seamless aerial photo tiles and the matching standard-map tiles (z18, x233105-233106, y103111-103113) shows lot 8 as a separate vacant, grassed plot with a tree-lined street along its south-west edge, the multi-lane road corridor along its east edge, a car park and building complex to the north and lot 7-1 (with an existing building) to the west; the outline follows the visible plot edges. GSI does not state the capture date of these tiles; because the lot appears vacant, the image predates the building (Colt announced the start of construction on 25 April 2023), so it is used only for parcel registration, not for status or building position."
+ ],
+ "excluded_coordinates": [
+  {
+   "point": [
+    140.117874,
+    35.808285
+   ],
+   "kind": "GSI address-search point for 千葉県印西市大塚二丁目",
+   "reason": "町丁目 representative point, not the property; 338 m from lot 8. Kept as an identity check only."
+  },
+  {
+   "kind": "Colt map page and Colt location pages",
+   "reason": "No coordinates, address or map point are published for Inzai 4 (colt-ja-map-asia.html, colt-ja-inzai-4.html)."
+  }
+ ],
+ "consistency_checks": {
+  "nearest_atlas_sites_m": {
+   "SCSK netXDC Inzai Campus (Google SI3 marker, inside lot 大塚二丁目5)": 368,
+   "STT Tokyo Inzai Campus": 1501,
+   "IIJ Shiroi Data Center Campus": 2304,
+   "AirTrunk TOK1 Tokyo East (imported Inzai locality point)": 3355,
+   "CloudHQ Project Asahi Technology Campus": 3716
+  },
+  "scsk_point_relation": "The SCSK netXDC Inzai campus point lies in lot 大塚二丁目5, 318 m outside lot 8, with lots 6-1, 6-2 and 7-1 between them; it is a different property.",
+  "area_match": "Lot 8 planar area 8,735.6 m2 versus 8,747 m2 (Colt) and 94,157 sq ft = 8,747.4 m2 (Keppel)."
+ },
+ "horizontal_uncertainty": {
+  "metres": null,
+  "reason": "Registry-map accuracy class 甲二 from survey results; no parcel-specific numeric accuracy is published. The point is a parcel centroid; the property extends roughly 45-75 m from it, and the building position within the lot is not measured. Seven decimals describe calculation, not survey accuracy."
+ },
+ "tools": "uv run --no-project --with pyproj==3.7.1 --with shapely==2.1.1 python -I (scripts in the fragment work/geo directory); pillow 11.0.0 only for the qualitative tile overlay."
+}
