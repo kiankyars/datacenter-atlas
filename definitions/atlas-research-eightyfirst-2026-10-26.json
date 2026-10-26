@@ -1,0 +1,443 @@
+{
+  "format": "datacenter-atlas-update-input-v1",
+  "updated_at": "2026-10-26",
+  "output": "verified_construction_core/2026-10-26-research-eightyfirst",
+  "base_dataset": "verified_construction_core/2026-10-26-research-eightieth",
+  "base_manifest_sha256": "dc0a9d15c514bbb7eada08709d1327a8186262a3b2c33406364e009f4f75e160",
+  "source_files": [
+    {
+      "path": "sources/research-countries-2026-10-26-eightyfirst-primary-sources.json",
+      "sha256": "bbc412fd5c2512c55b0f8b87df7c8295a1c684752a42fd6624a83dfff043dd74"
+    }
+  ],
+  "additions": [
+    {
+      "project_stable_key": "curated:microsoft-eki-campus-granger-st-joseph-county:proposed-data-center-campus",
+      "physical_site_stable_key": "curated:microsoft-eki-campus-granger-st-joseph-county",
+      "site_name": "Microsoft EKI Campus, 12501 Cleveland Road, Granger (St. Joseph County, Indiana)",
+      "name": "Microsoft EKI Campus - proposed data center (IDEM new-source construction and FESOP application F 141-50527-00655)",
+      "country": "United States",
+      "country_iso_a2": "US",
+      "status": {
+        "value": "announced",
+        "as_of": "2026-10-26",
+        "source_id": "us-chicago-in-p4-idem-fesop-50527-microsoft-eki-notice",
+        "summary": "On 26 October 2026 the Indiana Department of Environmental Management posted a 30-day public-comment notice on its preliminary findings for a new source construction and Federally Enforceable State Operating Permit (FESOP No. F 141-50527-00655) applied for by Microsoft EKI Campus, located at 12501 Cleveland Road, Granger, IN 46530, which 'would allow Microsoft EKI Campus to construct and operate a new stationary data center'. This dated state record names the data-centre project, its applicant and its address, so it is recorded as announced on 26 October 2026. The draft air permit covers the source's new emission units (potential emissions limited below the Title V and PSD major thresholds); it is not yet issued and is not a building or zoning consent for the data centre, so permitted status is not claimed. No construction, building count, IT load or opening date is stated."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -86.1163127,
+            41.728267
+          ]
+        },
+        "source_id": "us-chicago-in-p4-sjc-parcel25-microsoft-parcels",
+        "scope": "campus_locator",
+        "scope_class": "official_tax_parcel_centroid",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "official_county_parcel_layer_polygon_centroid_of_source_address_parcel_owned_by_operator",
+        "precision": "Centroid of St. Joseph County tax parcel 71-05-19-300-088.000-011 (county parcel 006-1019-025244), the 123.46-acre parcel (about 766 by 985 m) that carries 12501 CLEVELAND RD, GRANGER and whose owner of record is Microsoft Corporation. It locates the property at the IDEM source address, not a building, site plan or construction boundary; Microsoft owns six adjoining parcels (931 acres in all) whose part in the campus is not stated.",
+        "identity_review": "IDEM gives the applicant as 'Microsoft EKI Campus, located at 12501 Cleveland Road, Granger, IN 46530'. St. Joseph County's address-point layer has a single point for 12501 CLEVELAND RD, GRANGER 46530, and it falls inside parcel 71-05-19-300-088.000-011, 358.5 m from the parcel centroid. The county's tax-parcel layer (updated 16 October 2026) gives that parcel the same property address and the owner of record MICROSOFT CORPORATION. The layers are published by the St. Joseph County GIS department's ArcGIS organisation (hub 'St Joseph County IN GIS'). The centroid was computed in NAD83 / UTM 16N from the county polygon and agrees with a native EPSG:3857 computation to 0.02 m. No geocoder, city centre or headquarters address is used.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The county publishes no positional accuracy for its parcel polygons, and the point represents a 123-acre parcel (about 0.8 by 1.0 km) within a 931-acre Microsoft landholding; where the data-centre buildings will stand is not published."
+      },
+      "context_source_ids": [
+        "us-chicago-in-p4-idem-public-notices-northern-indiana-20261026",
+        "us-chicago-in-p4-sjc-address-point-12501-cleveland",
+        "us-chicago-in-p4-sjc-parcel25-layer-metadata",
+        "us-chicago-in-p4-sjc-gis-hub-item",
+        "us-chicago-in-p4-sjc-active-permits-microsoft-parcels",
+        "us-chicago-in-p4-microsoft-st-joseph-county-meeting-recap"
+      ],
+      "roles": [
+        {
+          "party": "Microsoft",
+          "role": "owner",
+          "relationship_scope": "current",
+          "source_id": "us-chicago-in-p4-sjc-parcel25-microsoft-parcels"
+        },
+        {
+          "party": "Microsoft",
+          "role": "operator",
+          "relationship_scope": "intended",
+          "source_id": "us-chicago-in-p4-idem-fesop-50527-microsoft-eki-notice"
+        }
+      ],
+      "distinctness_review": "Screened on 26 October 2026 against every row of sites.csv, projects.csv and evidence.csv, the source records and the identity mapping of verified_construction_core/2026-10-26-research-eightieth (745 sites, 797 projects, 4,132 evidence rows; re-read from site/config.json), all pending queue fragments' changes and holds, claims.tsv and every sources/*-holds.json file, for Microsoft EKI, EKI Campus, Granger, Cleveland Road, 12501/12500 Cleveland, Harris Township, St. Joseph County, F 141-50527 and the seven Microsoft parcel numbers. No record, hold, claim or queued change names this campus or its address. No Atlas site lies within 2 km; the nearest are AWS New Carlisle (imported locality point, 31.7 km west, a different operator and source at 31100 State Road 2) and Microsoft La Porte (curated:microsoft-la-porte-indiana-campus, 50.5 km west, a different Microsoft campus in La Porte County). No queued addition or claim coordinate lies within 5 km.",
+      "successor_review": "The notice opened the comment period on 26 October 2026 and runs to 25 November 2026; IDEM's regional notice page captured the same day shows no Notice of Decision, hearing or extension for this permit. Microsoft's local site (Indiana community page modified 17 September 2026 and its post sitemap captured 26 October 2026) has only the May 2026 'St. Joseph County public meeting recap', which says Microsoft 'is considering building a datacenter in St. Joseph County'; no groundbreaking or construction post exists. The county's active-permit layer (edited 2 October 2026) lists the 12501 Cleveland Rd parcel, but without permit type, scope or date, so no construction stage is established and announced is kept.",
+      "scoped_project_details": {
+        "aliases": [
+          "Microsoft EKI Campus"
+        ],
+        "address": "12501 Cleveland Road, Granger, IN 46530 (Harris Township, St. Joseph County)",
+        "parcel_id": "71-05-19-300-088.000-011 (county 006-1019-025244)",
+        "air_permit": "IDEM new source construction and FESOP F 141-50527-00655 (draft; public comment 26 October - 25 November 2026)",
+        "microsoft_landholding_acres": "931.18 (seven parcels, owner of record Microsoft Corporation)",
+        "capacity": null,
+        "opening_date": null,
+        "physical_construction_verified": false
+      }
+    },
+    {
+      "project_stable_key": "curated:equinix-ch5-elk-grove-village:electrical-room-l-build-out",
+      "physical_site_stable_key": "curated:equinix-ch5-elk-grove-village",
+      "site_name": "Equinix CH5 Data Center, 2001 Lunt Ave, Elk Grove Village",
+      "name": "Equinix CH5 - Electrical Room L build-out (Elk Grove Village permit B26-0931)",
+      "country": "United States",
+      "country_iso_a2": "US",
+      "status": {
+        "value": "permitted",
+        "as_of": "2026-08-31",
+        "source_id": "us-chicago-in-p4-cook-assessor-permits-pin-08351040840000",
+        "summary": "The Village of Elk Grove Village issued building permit B26-0931 on 31 August 2026 for 'INDUSTRIAL BUILD-OUT-ELECTRICAL ROOM L' (estimated USD 6.2 million; improvement code 'other - major new construction') on PIN 08351040840000, 2001 Lunt Ave, the parcel of Equinix's CH5 data center, as reported to the Cook County Assessor's permit dataset (rows current to 15 October 2026). Earlier permits on the same PIN cover the 'new industrial data building - CH5 - shell and phase 1 build-out' (2024), the 'data hall phase 2 build-out' (2025) and a monument sign for Equinix (2025). The project recorded here is only this further build-out of an electrical room inside the CH5 data-centre building, permitted on 31 August 2026; no start or completion of the works, added data-hall capacity or IT load is established, and the record makes no claim about the operating state of the rest of CH5.",
+        "permit_scope": "data_center_development",
+        "permit_type": "building_permit",
+        "permit_decision": "granted",
+        "permit_reference": "Village of Elk Grove Village building permit B26-0931, issued 2026-08-31 (Cook County Assessor permit number 20261623999630073; PIN 08351040840000)",
+        "permit_identity_review": "The Assessor's dataset documents date_issued as the date the municipality issued the permit to the applicant and local_permit_number as the municipality's permit number, so B26-0931 is an issued Village building permit; its 'PENDING' status is the Assessor's own assessment workflow, not the permit's validity. The permit is for build-out construction ('major new construction') of an electrical room within the CH5 data-centre building, not a utility, air or trade-only permit outside the development: it extends the building's own power infrastructure, following the data-building and data-hall build-out permits on the same PIN. PIN 08351040840000 is the only parcel with the address 2001 Lunt Ave in 2024-2026 (PIN 08351040740000 before 2024), the address Equinix gives for CH5. No revocation, expiry or later superseding permit appears in the feed."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -87.9536421,
+            42.0011268
+          ]
+        },
+        "source_id": "us-chicago-in-p4-cook-parcel-universe-08351040840000",
+        "scope": "campus_locator",
+        "scope_class": "official_tax_parcel_centroid",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "official_county_assessor_published_parcel_centroid_of_operator_address",
+        "precision": "Cook County Assessor's published parcel centroid for PIN 08351040840000 (2001 Lunt Ave, Elk Grove Village; tax years 2024-2026). It lies inside the 2021 polygon of the predecessor PIN 0835104074 (6.43 acres, about 185 by 210 m), 13.6 m from that polygon's centroid. It locates the CH5 property, not Electrical Room L or a surveyed footprint.",
+        "identity_review": "Equinix's CH5 page (Internet Archive copy of 18 May 2026) gives 2001 Lunt Ave, Elk Grove Village, IL 60007. In the Assessor's address table 2001 LUNT AVE is PIN 08351040740000 for 1999-2023 and PIN 08351040840000 for 2024-2026, and no other PIN carries it. The permit feed for PIN 08351040840000 names the 'CH5' data building and a monument sign 'for Equinix', which ties the PIN to Equinix CH5. The centroid is taken as published (identical in 2024-2026; reprojection reproduces the published state-plane x/y). No geocoder, city centre or headquarters address is used.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The Assessor publishes no positional accuracy for parcel centroids; the point represents a parcel of about 6.4 acres (2021 polygon of the predecessor PIN), and the position of Electrical Room L in the building is not published."
+      },
+      "context_source_ids": [
+        "us-chicago-in-p4-cook-assessor-permits-metadata",
+        "us-chicago-in-p4-cook-addresses-2001-lunt-all-years",
+        "us-chicago-in-p4-cook-parcel2021-0835104074",
+        "us-chicago-in-p4-equinix-ch5-page-ia-20260518"
+      ],
+      "roles": [
+        {
+          "party": "Equinix",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "us-chicago-in-p4-equinix-ch5-page-ia-20260518"
+        }
+      ],
+      "distinctness_review": "Screened on 26 October 2026 against every row of sites.csv, projects.csv and evidence.csv, the source records and the identity mapping of verified_construction_core/2026-10-26-research-eightieth (745 sites, 797 projects, 4,132 evidence rows; re-read from site/config.json), all pending queue fragments' changes and holds, claims.tsv and every sources/*-holds.json file, for Equinix, CH5, CH3, Lunt Ave, 2001 Lunt, Elk Grove Village, B26-0931 and PINs 08351040840000 / 08351040740000. The only Elk Grove Village items are thirty-first-wave holds for other properties (900 E Higgins Rd, 3.3 km; Aligned's 100/101 Northwest Point Blvd parcels, 4.3 km; EdgeConneX 901 Busse Rd and Stream 2000 Landmeier Rd, different addresses) and this fragment's own hold for the 800 Devon Ave data-center building (AMB Partners II / Prologis; Assessor centroid 1.84 km south-west, a different parcel and owner); no Atlas record, hold, claim or queued change names Equinix CH5 or 2001 Lunt Ave. No Atlas site lies within 2 km: the nearest are Compass Hoffman Estates (imported locality point, 17.4 km) and TierPoint Chicago (Polk St.) (29.5 km). Equinix's CH3 at 1905 Lunt Ave (PIN 08351040830000, the adjoining parcel to the west) is a separate Equinix building not in the Atlas and not part of this record.",
+      "successor_review": "The Assessor's permit rows were current to 15 October 2026 and show no later permit, certificate of occupancy or revocation for PIN 08351040840000 after B26-0931; the Village's own website returns HTTP 403 to automated clients and was not read, and www.equinix.com also returns HTTP 403, so no later Equinix statement on the build-out was found. The 31 August 2026 permitted observation is kept.",
+      "scoped_project_details": {
+        "aliases": [
+          "Equinix CH5",
+          "Chicago CH5"
+        ],
+        "address": "2001 Lunt Ave, Elk Grove Village, IL 60007 (Cook County PIN 08351040840000)",
+        "parcel_id": "08351040840000 (08351040740000 before 2024)",
+        "permit": "Village of Elk Grove Village B26-0931, issued 2026-08-31, 'Industrial build-out - Electrical Room L', estimated USD 6,200,000",
+        "facility_area_sq_ft": "193,110 (operator, CH5 building)",
+        "capacity": null,
+        "opening_date": null,
+        "physical_construction_verified": false
+      }
+    },
+    {
+      "project_stable_key": "curated:tierpoint-lehigh-valley-schelden-circle-data-center:existing-operations",
+      "physical_site_stable_key": "curated:tierpoint-lehigh-valley-schelden-circle-data-center",
+      "site_name": "TierPoint Lehigh Valley (LVQ) Data Center (3949 Schelden Circle, Hanover Township, Northampton County, Pennsylvania)",
+      "name": "TierPoint Lehigh Valley (LVQ) — existing data-centre and colocation operations",
+      "country": "United States",
+      "country_iso_a2": "US",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-09-03",
+        "source_id": "us-pa-nj-ny-md-p4-tierpoint-lehigh-valley-page-20260903",
+        "summary": "TierPoint's Lehigh Valley page, in its version modified on 3 September 2026, says 'off the Lehigh Valley Thruway in Bethlehem, Pennsylvania, the state-of-the-art TierPoint Lehigh Valley data center and colocation facility enables companies in many industries to increase business agility and improve disaster recovery', and gives 27,000+ total square feet, 8,700+ square feet of raised floor, three 1.5 MW redundant generators and the address Lehigh Valley (LVQ), 3949 Schelden Circle, Bethlehem, PA 18017. This operator statement records the data center as operating on 3 September 2026, the modification day of the captured version, which the Internet Archive copy of 8 October 2026 carries unchanged. It is not an opening or inspection date; generator ratings are not IT load."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -75.3782292,
+            40.6749465
+          ]
+        },
+        "source_id": "us-pa-nj-ny-md-p4-northampton-parcel-3949-schelden-cir",
+        "scope": "project_locator",
+        "scope_class": "official_tax_parcel_centroid",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "official_county_parcel_centroid_of_operator_stated_address",
+        "precision": "Planar centroid (computed in UTM 18N) of Northampton County parcel M6 15 63, the only parcel with location 3949 SCHELDEN CIR in the county parcel and assessment layer (edited July 2024), in Hanover Township. The polygon measures 3.99 geodesic acres (4.21 assessed), about 151 by 143 m; the centroid lies inside it, 58.5 m from the boundary. It locates the data-center property, not the building footprint or a surveyed boundary.",
+        "identity_review": "TierPoint gives the Lehigh Valley (LVQ) data center at 3949 Schelden Circle, Bethlehem, PA 18017, off the Lehigh Valley Thruway (US 22). An exact-location query of the Northampton County parcel layer returns exactly one parcel at 3949 SCHELDEN CIR: M6 15 63 (4.21 acres, land-use code 700); Lehigh County's parcel layer has no Schelden street, and PennDOT's municipal boundaries place the centroid in Hanover Township, Northampton County (Bethlehem 18017 is the postal name). The parcel's improvement-name field ('PILLER, INC.') is a legacy assessment label that does not name TierPoint, and the owner of record (OMEGA ASSETS L P) has no stated relation to TierPoint; identity rests on the exact operator-stated address. The native EPSG:2272 ring gives the same centroid within 0.92 m. No geocoder, map viewport or town centre is used.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The parcel publisher states no positional accuracy for its polygons; the centroid represents a 4-acre property about 151 by 143 m, and the building's position within it is not published."
+      },
+      "context_source_ids": [
+        "us-pa-nj-ny-md-p4-tierpoint-lehigh-valley-page-ia-20261008",
+        "us-pa-nj-ny-md-p4-tierpoint-lehigh-valley-ia-cdx",
+        "us-pa-nj-ny-md-p4-tierpoint-pennsylvania-page",
+        "us-pa-nj-ny-md-p4-penndot-municipalities-at-centroids"
+      ],
+      "roles": [
+        {
+          "party": "TierPoint",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "us-pa-nj-ny-md-p4-tierpoint-lehigh-valley-page-20260903"
+        }
+      ],
+      "distinctness_review": "Screened on 26 October 2026 against every row of sites.csv, projects.csv and evidence.csv, source-records.json and identity-mapping.json of verified_construction_core/2026-10-26-research-seventyninth (741 sites, 793 projects) and again of verified_construction_core/2026-10-26-research-eightieth, current at the finish (745 sites, 797 projects, 4,132 evidence rows; its four new sites are in Ohio, Nebraska and elsewhere, none within 50 km), all pending queue fragments (changes and holds), claims.tsv and all sources/*-holds.json, for TierPoint, Lehigh Valley, LVQ, Schelden, 3949, Hanover Township, Omega Assets and parcel M6 15 63. No Atlas record names this facility, address, owner or parcel; the Atlas's Pennsylvania TierPoint records are TekPark (Breinigsville, 27.5 km) and Valley Forge (Audubon). The only matches are the us-oh-in-pa-p3 lead_only hold that asked a later pass to resolve this parcel (published in the seventieth holds) and this fragment's own claim. No Atlas site, project, source record, identity-mapping coordinate, pending queue addition, claim or hold coordinate lies within 2 km; the nearest are TierPoint TekPark (27.5 km) and Carbon Node East (45.8 km). TierPoint's Bethlehem (BET) data center at 3864 Courtney Street, added by this fragment as its own site, lies 613 m to the south-south-east on a different parcel (M6 15 10W); TierPoint lists it as a separate facility and its Bethlehem page calls Lehigh Valley its 'second data center in Bethlehem', so the two are not one campus and neither record includes the other.",
+      "successor_review": "Checked on 26 October 2026: the live Lehigh Valley page is still the 3 September 2026 version, the page sitemap gives the same lastmod, and TierPoint's Pennsylvania page (version of 6 October 2026) still lists the Lehigh Valley data center. TierPoint's news sitemap has no release since July 2026 about Lehigh Valley, a closure, sale or change of use.",
+      "scoped_project_details": {
+        "aliases": [
+          "TierPoint Lehigh Valley",
+          "LVQ",
+          "Lehigh Valley Data Center",
+          "3949 Schelden Circle data center"
+        ],
+        "site_address": "3949 Schelden Circle, Bethlehem, PA 18017 (Hanover Township, Northampton County)",
+        "parcel": "Northampton County M6 15 63, 4.21 assessed acres (3.99 geodesic), land-use code 700, owner of record OMEGA ASSETS L P (parcel join edited July 2024)",
+        "operator_stated_specifications": {
+          "total_square_feet": "27,000+",
+          "raised_floor_square_feet": "8,700+",
+          "generators": "three 1.5 MW redundant generators, minimum 48 hours runtime",
+          "basis": "operator facility page; ratings, not observed load"
+        },
+        "capacity": null
+      }
+    },
+    {
+      "project_stable_key": "curated:tierpoint-philadelphia-navy-yard-data-center:existing-operations",
+      "physical_site_stable_key": "curated:tierpoint-philadelphia-navy-yard-data-center",
+      "site_name": "TierPoint Philadelphia (PHI) Data Center (4775 League Island Boulevard, Philadelphia Navy Yard, Pennsylvania)",
+      "name": "TierPoint Philadelphia (PHI) — existing data-centre and colocation operations",
+      "country": "United States",
+      "country_iso_a2": "US",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-09-03",
+        "source_id": "us-pa-nj-ny-md-p4-tierpoint-philadelphia-page-20260903",
+        "summary": "TierPoint's Philadelphia page, in its version modified on 3 September 2026, says 'in the historic Philadelphia Navy Yard between the Philadelphia International Airport and Center City, the state-of-the-art TierPoint Philadelphia data center and colocation facility enables companies in many industries to increase business agility and improve IT performance', and gives 25,000+ total square feet, 11,000+ square feet of raised floor, three 1.5 MW redundant generators and the address Philadelphia (PHI), 4775 League Island Boulevard, Philadelphia, PA 19112. This operator statement records the data center as operating on 3 September 2026, the modification day of the captured version, which is absent from the Internet Archive copy of 11 August 2026 and present in the copy of 8 October 2026. It is not an opening or inspection date; generator ratings are not IT load."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -75.1649717,
+            39.892589
+          ]
+        },
+        "source_id": "us-pa-nj-ny-md-p4-pasda-philadelphia-dor-parcel-545196",
+        "scope": "project_locator",
+        "scope_class": "official_tax_parcel_centroid",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "official_city_registry_parcel_centroid_of_operator_stated_address",
+        "precision": "Planar centroid (computed in UTM 18N) of City of Philadelphia Department of Records parcel 545196 (registry 4975004775), the only parcel with address 4775 LEAGUE ISLAND BLVD in the registry parcel layer (February 2024 edition, published through PASDA). The polygon measures 3.79 geodesic acres, about 243 by 108 m; the centroid lies inside it, 30.5 m from the boundary. It locates the data-center property, not the building footprint or a surveyed boundary.",
+        "identity_review": "TierPoint gives the Philadelphia (PHI) data center at 4775 League Island Boulevard, Philadelphia, PA 19112, in the historic Philadelphia Navy Yard. An exact-address query of the Department of Records parcel layer returns exactly one parcel: 545196, 4775 LEAGUE ISLAND BLVD, a privately owned office building with parking whose 27,985 sq ft impervious roof area is consistent with the operator's 25,000+ total square feet; the neighbouring League Island Boulevard parcels carry different numbers (4701, 4750, 4751, 5000, 5001). The owner field is a truncated organisation name ('L/S 4775 LEAGUE ISLAND BL') whose relation to TierPoint is not stated. The native NAD83 ring gives identical coordinates. No geocoder, map viewport or neighbourhood centre is used.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The parcel publisher states no positional accuracy for its polygons; the centroid represents a 3.8-acre property about 243 by 108 m, and the building's position within it is not published."
+      },
+      "context_source_ids": [
+        "us-pa-nj-ny-md-p4-tierpoint-philadelphia-page-ia-20261008",
+        "us-pa-nj-ny-md-p4-tierpoint-philadelphia-page-ia-20260811",
+        "us-pa-nj-ny-md-p4-tierpoint-philadelphia-ia-cdx",
+        "us-pa-nj-ny-md-p4-tierpoint-pennsylvania-page",
+        "us-pa-nj-ny-md-p4-penndot-municipalities-at-centroids"
+      ],
+      "roles": [
+        {
+          "party": "TierPoint",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "us-pa-nj-ny-md-p4-tierpoint-philadelphia-page-20260903"
+        }
+      ],
+      "distinctness_review": "Screened on 26 October 2026 against every row of sites.csv, projects.csv and evidence.csv, source-records.json and identity-mapping.json of verified_construction_core/2026-10-26-research-seventyninth (741 sites, 793 projects) and again of verified_construction_core/2026-10-26-research-eightieth, current at the finish (745 sites, 797 projects, 4,132 evidence rows; its four new sites are in Ohio, Nebraska and elsewhere, none within 50 km), all pending queue fragments (changes and holds), claims.tsv and all sources/*-holds.json, for TierPoint, Philadelphia, PHI, Navy Yard, League Island, 4775 and parcel 545196 / 4975004775. No Atlas record names this facility, address or parcel; the only matches are the us-oh-in-pa-p3 lead_only hold that asked a later pass to resolve this parcel (published in the seventieth holds) and this fragment's own claim. DataBank PHL1 (401 North Broad Street, held, not in the Atlas) is a different facility about 8 km north. No Atlas site, project, source record, identity-mapping coordinate, pending queue addition, claim or hold coordinate lies within 2 km; the nearest are TierPoint Valley Forge (33.5 km) and Amazon Falls Township (45.9 km).",
+      "successor_review": "Checked on 26 October 2026: the live Philadelphia page is still the 3 September 2026 version, the page sitemap gives the same lastmod, and TierPoint's Pennsylvania page (version of 6 October 2026) still lists the Philadelphia data center. TierPoint's news sitemap has no release since July 2026 about Philadelphia, a closure, sale or change of use.",
+      "scoped_project_details": {
+        "aliases": [
+          "TierPoint Philadelphia",
+          "PHI",
+          "Philadelphia Data Center",
+          "Navy Yard data center",
+          "4775 League Island Boulevard data center"
+        ],
+        "site_address": "4775 League Island Boulevard, Philadelphia, PA 19112 (Philadelphia Navy Yard)",
+        "parcel": "City of Philadelphia Department of Records parcel 545196 (registry 4975004775), 3.79 geodesic acres, office building with parking, impervious roof area 27,985 sq ft (February 2024 edition)",
+        "operator_stated_specifications": {
+          "total_square_feet": "25,000+",
+          "raised_floor_square_feet": "11,000+",
+          "generators": "three 1.5 MW redundant generators, minimum 48 hours runtime",
+          "basis": "operator facility page; ratings, not observed load"
+        },
+        "capacity": null
+      }
+    },
+    {
+      "project_stable_key": "curated:tierpoint-bethlehem-courtney-street-data-center:existing-operations",
+      "physical_site_stable_key": "curated:tierpoint-bethlehem-courtney-street-data-center",
+      "site_name": "TierPoint Bethlehem (BET) Data Center (3864 Courtney Street, Suite 130, Hanover Township, Northampton County, Pennsylvania)",
+      "name": "TierPoint Bethlehem (BET) — existing data-centre and colocation operations (Suite 130)",
+      "country": "United States",
+      "country_iso_a2": "US",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-09-03",
+        "source_id": "us-pa-nj-ny-md-p4-tierpoint-bethlehem-page-20260903",
+        "summary": "TierPoint's Bethlehem page, in its version modified on 3 September 2026, says 'convenient to Philadelphia, New York City, and New Jersey, the state-of-the-art TierPoint Bethlehem data center and colocation facility enables companies in many industries to increase business agility and improve IT performance', and gives 25,000+ total square feet, 12,000+ square feet of raised floor, two 600 kW and one 1 MW generators and the address Bethlehem (BET), 3864 Courtney Street, Ste 130, Bethlehem, PA 18017. This operator statement records the data center as operating on 3 September 2026, the modification day of the captured version, which the Internet Archive copy of 8 October 2026 carries unchanged. It is not an opening or inspection date; generator ratings are not IT load."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -75.3745128,
+            40.6702124
+          ]
+        },
+        "source_id": "us-pa-nj-ny-md-p4-northampton-parcel-3864-courtney-st",
+        "scope": "project_locator",
+        "scope_class": "official_tax_parcel_centroid",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "official_county_parcel_centroid_of_operator_stated_address",
+        "precision": "Planar centroid (computed in UTM 18N) of Northampton County parcel M6 15 10W, the only parcel with location 3864 COURTNEY ST in the county parcel and assessment layer (edited July 2024), in Hanover Township. The polygon measures 8.32 geodesic acres (8.23 assessed), about 216 by 213 m; the centroid lies inside it, 83.1 m from the boundary. It locates the host property; the data center occupies Suite 130 of the building on it, and neither the suite nor the building footprint is located.",
+        "identity_review": "TierPoint gives the Bethlehem (BET) data center at 3864 Courtney Street, Ste 130, Bethlehem, PA 18017. An exact-location query of the Northampton County parcel layer returns exactly one parcel at 3864 COURTNEY ST: M6 15 10W (8.23 acres, land-use code 410); Lehigh County's parcel layer has no 3864 Courtney St, and PennDOT's municipal boundaries place the centroid in Hanover Township, Northampton County (Bethlehem 18017 is the postal name). The suite number shows that the facility occupies part of the building; the owner of record (RB PROPERTY ASSOCIATES LLC) has no stated relation to TierPoint. The native EPSG:2272 ring gives the same centroid within 0.93 m. No geocoder, map viewport or town centre is used.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The parcel publisher states no positional accuracy for its polygons; the centroid represents an 8.3-acre host property about 216 by 213 m, and the position of Suite 130 within it is not published."
+      },
+      "context_source_ids": [
+        "us-pa-nj-ny-md-p4-tierpoint-bethlehem-page-ia-20261008",
+        "us-pa-nj-ny-md-p4-tierpoint-bethlehem-ia-cdx",
+        "us-pa-nj-ny-md-p4-tierpoint-pennsylvania-page",
+        "us-pa-nj-ny-md-p4-penndot-municipalities-at-centroids"
+      ],
+      "roles": [
+        {
+          "party": "TierPoint",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "us-pa-nj-ny-md-p4-tierpoint-bethlehem-page-20260903"
+        }
+      ],
+      "distinctness_review": "Screened on 26 October 2026 against every row of sites.csv, projects.csv and evidence.csv, source-records.json and identity-mapping.json of verified_construction_core/2026-10-26-research-seventyninth (741 sites, 793 projects) and again of verified_construction_core/2026-10-26-research-eightieth, current at the finish (745 sites, 797 projects, 4,132 evidence rows; its four new sites are in Ohio, Nebraska and elsewhere, none within 50 km), all pending queue fragments (changes and holds), claims.tsv and all sources/*-holds.json, for TierPoint, Bethlehem, BET, Courtney Street, 3864, Hanover Township, RB Property Associates and parcel M6 15 10W. No Atlas record names this facility, address, owner or parcel; the only matches are the us-oh-in-pa-p3 lead_only hold that asked a later pass to resolve this parcel and screen the two Bethlehem facilities against each other (published in the seventieth holds), and this fragment's own claim. The only record within 2 km is this fragment's TierPoint Lehigh Valley (LVQ) addition, 613 m to the north-north-west on a different parcel (M6 15 63) at 3949 Schelden Circle; TierPoint's Bethlehem page names Lehigh Valley as its 'second data center in Bethlehem' with its own address and specifications, so the two are separate facilities and separate Atlas sites, not one campus. Otherwise the nearest are TierPoint TekPark (27.5 km) and Carbon Node East (46.3 km); no Atlas site, project, source record, identity-mapping coordinate, other pending queue addition, claim or hold coordinate lies within 2 km.",
+      "successor_review": "Checked on 26 October 2026: the live Bethlehem page is still the 3 September 2026 version, the page sitemap gives the same lastmod, and TierPoint's Pennsylvania page (version of 6 October 2026) still lists the Bethlehem data center. TierPoint's news sitemap has no release since July 2026 about Bethlehem, a closure, sale or change of use.",
+      "scoped_project_details": {
+        "aliases": [
+          "TierPoint Bethlehem",
+          "BET",
+          "Bethlehem Data Center",
+          "3864 Courtney Street data center"
+        ],
+        "site_address": "3864 Courtney Street, Suite 130, Bethlehem, PA 18017 (Hanover Township, Northampton County)",
+        "parcel": "Northampton County M6 15 10W, 8.23 assessed acres (8.32 geodesic), land-use code 410, owner of record RB PROPERTY ASSOCIATES LLC (parcel join edited July 2024); host property of a multi-suite building",
+        "operator_stated_specifications": {
+          "total_square_feet": "25,000+",
+          "raised_floor_square_feet": "12,000+",
+          "generators": "two 600 kW redundant generators and one 1 MW generator, minimum 48 hours runtime",
+          "basis": "operator facility page; ratings, not observed load"
+        },
+        "capacity": null
+      }
+    },
+    {
+      "project_stable_key": "curated:verrus-project-flex-lyon-township-data-center:data-center-campus",
+      "physical_site_stable_key": "curated:verrus-project-flex-lyon-township-data-center",
+      "site_name": "Project Flex Data Center Campus (Lyon Township, Ambassador Parkway West and Milford Road)",
+      "name": "Project Flex — proposed data center campus (final site plan under review)",
+      "country": "United States",
+      "country_iso_a2": "US",
+      "status": {
+        "value": "announced",
+        "as_of": "2026-10-05",
+        "source_id": "us-wi-mi-p4-lyon-project-flex-faq-20261006",
+        "summary": "Lyon Township's official Project Flex Data Center page records on 5 October 2026 an update of the 'Project Flex Data Center Application and Review Documents' ('Updated 10/05/2026') and states that 'additional site plan reviews and submittals are underway'; its document centre lists the Project Flex Development Map, Oakland County's Project Flex tax analysis and dated reviews of the first, second and third final site plan submittals. This dated government record identifies Project Flex as an active data-centre development application in Lyon Township on 5 October 2026, so the project is announced. The Planning Commission's conditional site-plan approval of 8 September 2025 is not treated as consent in effect: the Township says a building permit cannot be issued until its conditions are met, final site-plan review was still continuing, and a township moratorium on approvals and permits for data processing centres was in force. No permit, site work or construction is asserted."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -83.6091107,
+            42.5016616
+          ]
+        },
+        "source_id": "us-wi-mi-p4-oakgov-parcels-project-flex",
+        "scope": "campus_locator",
+        "scope_class": "official_tax_parcel_union_centroid",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "official_county_parcel_union_centroid_of_tax_analysis_parcels",
+        "precision": "Area centroid of the union of the four Oakland County tax parcels that Oakland County Equalization's Project Flex tax analysis lists for the project (PINs 21-10-101-002, -005, -006 and -007: 55040 Ambassador Pkwy W and 29300, 29022 and 28730 Milford Rd, Lyon Township); one contiguous polygon of 172.8 geodesic acres, about 990 by 840 m, matching the 172 acres on the Township-posted development map. It locates the project property, not any building, substation or final site-plan footprint.",
+        "identity_review": "The county tax analysis requested by Lyon Township gives 'Property Address: 55040 Ambassador Pkwy W & 29300/29022/28730 Milford Rd' and 'Parcel Numbers: K-21-10-101-002/005/006/007'. A county parcel query for PIN block 2110101 returns exactly these four PINs at those four addresses (the other six parcels of the block, at other Ambassador Pkwy W and Milford Rd addresses, are excluded). Their union is a single polygon of 172.8 acres east of Milford Road and north of Coyote Golf Course, reached from South Hill Road by Ambassador Parkway, as drawn on the Township's 'Project Flex Development Map' ('172 Acres'). No geocoder, city centre or business-park centroid is used.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The county layer publishes no positional accuracy for parcel polygons; the centroid represents a 172.8-acre four-parcel project property (about 990 by 840 m), and the positions of the planned buildings within it are only shown on an unscaled development map."
+      },
+      "context_source_ids": [
+        "us-wi-mi-p4-lyon-project-flex-faq-20260404",
+        "us-wi-mi-p4-ia-cdx-lyon-project-flex-pages",
+        "us-wi-mi-p4-lyon-project-flex-statement-20260108",
+        "us-wi-mi-p4-lyon-project-flex-tax-analysis",
+        "us-wi-mi-p4-lyon-project-flex-development-map",
+        "us-wi-mi-p4-lyon-project-flex-planning-zoning-qa",
+        "us-wi-mi-p4-lyon-project-flex-verrus-qa",
+        "us-wi-mi-p4-projectflexmi-home-20260910",
+        "us-wi-mi-p4-lyon-res-2026-17",
+        "us-wi-mi-p4-lyon-home-20261016",
+        "us-wi-mi-p4-oakgov-parcels-2110101-block"
+      ],
+      "roles": [],
+      "distinctness_review": "Screened on 26 October 2026 against verified_construction_core/2026-10-26-research-eightieth (745 sites, 797 projects; the run began on seventyseventh and was re-screened on seventyninth and eightieth as they appeared) (sites, projects, evidence, source-records.json and identity-mapping.json), every pending queue fragment's changes and holds, claims.tsv and all sources/*-holds.json, for Project Flex, Verrus, Walbridge, Lyon Township, New Hudson, Ambassador Parkway, Milford Road and PINs 2110101002/-005/-006/-007. Nothing matches: the Atlas has no Lyon Township, Oakland County or Verrus record, and no published or pending hold names the project. No Atlas site, project, source record, identity-mapping entry, pending fragment or claim coordinate lies within 2 km; the nearest are Project Cannoli in Van Buren Township (33.8 km) and The Barn in Saline Township (46.7 km).",
+      "successor_review": "The Township's page as archived on 6 October 2026 still describes site plan reviews and submittals as under way, and its home page as archived on 16 October 2026 still links the Project Flex pages with no approval, withdrawal or construction notice; no later archived copy of the Project Flex pages exists and the live Township and Verrus sites refuse automated clients. The draft Board resolution for 5 August 2026 proposes extending the Township's moratorium on approvals and permits for data processing centres through 8 March 2027. No final site-plan approval, building permit, site work, construction, pause or cancellation was found, so the project stays announced as of 5 October 2026.",
+      "scoped_project_details": {
+        "aliases": [
+          "Project Flex",
+          "Project:Flex Data Center",
+          "Project Flex Data Center"
+        ],
+        "address": "55040 Ambassador Pkwy W and 29300, 29022 and 28730 Milford Rd, New Hudson (Charter Township of Lyon), Oakland County, MI 48165 (PINs 21-10-101-002, -005, -006, -007)",
+        "site_area_acres": "172 (Township development map); 172.8 geodesic acres for the four parcels",
+        "developer": "Verrus (the Project Flex website says 'Project Flex was created by Verrus'); not recorded as a typed role",
+        "general_contractor": "Walbridge (Project Flex website)",
+        "zoning": "I-1 Light Industrial and I-2 General Industrial; data centres a principal permitted use since 1992 (Township Q&A)",
+        "planning_history": "Planning Commission site plan approval with conditions on 8 September 2025 (energy audit and sound study); final site plan reviews of the first, second (6 May 2026) and third (25 June 2026) submittals posted by the Township; building permit not issued (Township statement of 8 January 2026)",
+        "moratorium": "Township moratorium on approvals and permits for data processing centres from 3 March 2026 (Resolution 2026-07); extension through 8 March 2027 proposed in Resolution 2026-17 for the 5 August 2026 Board meeting",
+        "estimated_taxable_value_first_year_usd": "225,000,000 (Oakland County Equalization estimate; not a project cost or capacity)",
+        "capacity": null,
+        "opening_date": null,
+        "physical_construction_verified": false
+      }
+    }
+  ],
+  "status_updates": [
+    {
+      "project_stable_key": "imported:semiconductor-atlas:meta-dekalb-illinois",
+      "status": {
+        "value": "partially_operational",
+        "as_of": "2026-10-26",
+        "source_id": "us-chicago-in-p4-dekalb-cc-agenda-20261026",
+        "summary": "The City of DeKalb's agenda for its 26 October 2026 council meeting explains the 2026 tax levy with the growth of the city's equalized assessed value and states that 'the growth in Meta's EAV has largely stabilized as the facility has reached full build-out, occupancy, and assessment', adding that the tax base generated by the Meta data center will continue to support local taxing bodies. This dated City record shows the Meta DeKalb Data Center occupied and in use, so the record's partially_operational status of 1 December 2023 is refreshed with this newer observation of the same status, dated 26 October 2026 (the agenda's printed date, captured the same day). The sentence explains a tax-assessment chart and gives no building count, and the City's 24 August 2026 agenda refers to 'future phases of the Meta data center', so it does not establish that all five buildings planned for the campus are built and operating; operational is not claimed. No capacity or building count is inferred."
+      },
+      "identity_review": "Same facility as the existing record 'Meta DeKalb Data Center' (aliases 'DeKalb Data Center'), Meta's only data center in DeKalb, on the city's south side off I-88. The City names 'Meta' and 'the Meta data center' and treats it as a single facility in its levy table; Meta's September 2026 fact sheet describes the same DeKalb Data Center (ground broken 2020, 200+ operational jobs, 'our operational data center buildings'). No new site, phase or building is added, and the record's locator, roles, metrics and earlier evidence are unchanged.",
+      "successor_review": "Strictly newer than the existing 1 December 2023 observation, with the same status. The City's 24 August 2026 agenda (source us-chicago-in-p4-dekalb-cc-agenda-20260824) says ComEd's KARE transmission project will support 'future phases of the Meta data center'; whether those phases are the remaining buildings of the five-building plan in this record or a later expansion is not stated, which is why the refresh keeps partially_operational. Meta's DeKalb fact sheet (PDF of 2 September 2026; source us-chicago-in-p4-meta-dekalb-fact-sheet-2026-09) refers to 'our operational data center buildings' and reports no closure or pause. The City's Agenda Center listing captured on 26 October 2026 (source us-chicago-in-p4-dekalb-agendacenter-20261026) has no later council item about the facility. The partially_operational observation of 26 October 2026 stands."
+    },
+    {
+      "project_stable_key": "curated:vantage-lighthouse-port-washington-campus:current-campus-build",
+      "status": {
+        "value": "under_construction",
+        "as_of": "2026-10-19",
+        "source_id": "us-wi-mi-p4-lighthouse-construction-updates-20261019",
+        "summary": "Vantage's Lighthouse campus construction-updates page, in its version modified on 19 October 2026 and headed 'October Summary', says: 'The campus includes four single-story data center buildings. Two data center buildings are fully enclosed and have transitioned to the interior construction phase. The remaining two buildings continue through the structural construction phase, with crews actively installing building frameworks.' It also gives the data-centre campus construction hours and construction-traffic advisories on County Road LL. This records the four-building Port Washington campus as under construction on 19 October 2026. It does not establish the completion, commissioning or operation of any building, and the enclosed buildings' interior work is not treated as completion of the campus."
+      },
+      "identity_review": "Same project as the existing record 'Vantage Lighthouse Port Washington Current Campus Build' (aliases Lighthouse, Project Lighthouse, Stargate Wisconsin; the four-building Vantage campus on Port Washington's north side, west of I-43, for Oracle and OpenAI). The source is the 'Construction Updates' page of the 'Vantage Lighthouse Campus' website (lighthousewisconsin.com, '© 2026 Vantage'), which describes a campus of four single-story data center buildings with construction traffic on County Road LL near Highland Lane and Lake Drive and at the I-43 Exit 100 interchange; Vantage's release of 7 October 2026 ties 'the Lighthouse campus in Port Washington and Ozaukee County' to Vantage, Oracle and OpenAI. The record's locator, scope and capacity facts are unchanged; no other Atlas record lies within 2 km of its point.",
+      "successor_review": "Strictly newer than the existing 28 August 2026 under-construction observation (Oracle data-centers page). The same campus-progress sentences already stood in the page's 10 September 2026 version (Internet Archive copy of 9 October 2026), so the enclosure of two buildings is not dated to 19 October. Checked on 26 October 2026: the page-sitemap shows no later change, Vantage's news sitemap has no Lighthouse item after the 7 October 2026 community-grant release other than its French translation, and Oracle's news sitemap has only a power-cost commitment (2 October 2026) and a community sponsorship (19 October 2026) for Wisconsin. No completion, commissioning, operation, pause or cancellation was found, so the project stays under construction as of 19 October 2026."
+    }
+  ],
+  "context_updates": []
+}

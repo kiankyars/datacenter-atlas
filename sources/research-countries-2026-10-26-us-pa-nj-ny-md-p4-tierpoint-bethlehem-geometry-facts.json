@@ -1,0 +1,96 @@
+{
+  "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+  "candidate_id": "us-pa-nj-ny-md-p4-tierpoint-bethlehem",
+  "prepared_at": "2026-10-26",
+  "decision": "Selected the planar centroid (UTM 18N) of Northampton County parcel M6 15 10W, the only parcel with location 3864 COURTNEY ST (Hanover Township, Northampton County), as the project locator for TierPoint's Bethlehem (BET) data center at 3864 Courtney Street, Suite 130, Bethlehem, PA 18017. The point locates the host property; the data center occupies Suite 130 of the building on it, whose position within the parcel is not published.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -75.3745128,
+      40.6702124
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_tax_parcel_centroid",
+  "use_scope": "project_locator",
+  "source_file": "local_data/country-research-us-pa-nj-ny-md-p4/northampton-parcel-3864-courtney-st.json",
+  "source_sha256": "4dd58dfe075391ef332aa0c9bd70309e7842701ccf789c6e2d4d5445784f870f",
+  "source_url": "https://services2.arcgis.com/NlbUAihbvA50xxJw/arcgis/rest/services/Northampton_Parcels/FeatureServer/0/query?where=LOCATION+%3D+%273864+COURTNEY+ST%27&outFields=PARCEL_ID%2CCAMA_ID%2CMAP%2CBLOCK%2CLOT%2CMUNI%2CASSMNT_AC%2CLOCATION%2CLUC%2CCOMM_TYPE%2CIMPRV_NAME%2CGLA_SQFT%2CYEAR_BUILT%2CSTORIES%2COWNER_LN1%2CSALE_DATE%2CINSIDE_X%2CINSIDE_Y&returnGeometry=true&outSR=4326&f=json",
+  "retrieved_at": "2026-10-26T20:37:22.394Z",
+  "native_file": "local_data/country-research-us-pa-nj-ny-md-p4/northampton-parcel-m6-15-10w-native.json",
+  "native_sha256": "737fcf37cfa7fa0e41feeadd8f8a54e2bc87fcdbbb7a59f75fe788773fea395e",
+  "attribute_source_file": "local_data/country-research-us-pa-nj-ny-md-p4/northampton-parcels-service-metadata.json",
+  "attribute_source_sha256": "547692a093f63e114911ac9f708c66b11b31e3d1335bc01a717735b68ddfb392",
+  "attribute_source_url": "https://services2.arcgis.com/NlbUAihbvA50xxJw/arcgis/rest/services/Northampton_Parcels/FeatureServer?f=json",
+  "municipality_source_file": "local_data/country-research-us-pa-nj-ny-md-p4/penndot-municipalities-at-centroids.json",
+  "municipality_source_sha256": "4e5d250b019cc32436d8c7507746ba0460c2d15fda1bec20d13ea9349a9d2e5a",
+  "selected_properties": {
+    "PARCEL_ID": "M6     15 10W",
+    "CAMA_ID": "M6     15 10W     0214",
+    "MUNI": "14",
+    "ASSMNT_AC": 8.23,
+    "LOCATION": "3864 COURTNEY ST",
+    "LUC": "410",
+    "COMM_TYPE": "398",
+    "IMPRV_NAME": " ",
+    "OWNER_LN1": "RB PROPERTY ASSOCIATES LLC",
+    "SALE_DATE": "2020-12-31"
+  },
+  "layer": "ArcGIS Online feature service 'Northampton_Parcels' layer 0 'Northampton Parcels' (copyright Northampton County GIS Division; a join of the county parcel polygons with Northampton County Assessment Office data, published by the City of Bethlehem GIS account; data last edited 8 July 2024; native NAD83 StatePlane Pennsylvania South, US feet, EPSG:2272), queried by exact location with outSR=4326 and by parcel ID in its native CRS",
+  "facts": {
+    "parcels": {
+      "northampton M6 15 10W": {
+        "geodesic_acres": 8.32,
+        "assessed_acres": 8.23,
+        "rings": 1,
+        "vertices": 24,
+        "valid": true,
+        "parcel_centroid_lon_lat": [
+          -75.3745128,
+          40.6702124
+        ]
+      }
+    },
+    "centroid_lon_lat": [
+      -75.3745128,
+      40.6702124
+    ],
+    "centroid_inside": true,
+    "approx_extent_m": [
+      216,
+      213
+    ],
+    "bounds_lon_lat": [
+      -75.375746,
+      40.669169,
+      -75.373184,
+      40.671091
+    ],
+    "max_vertex_distance_from_centroid_m": 137.4,
+    "centroid_to_boundary_m": 83.1,
+    "native_crs_cross_check": {
+      "native_epsg": 2272,
+      "centroid_lon_lat": [
+        -75.374511,
+        40.6702042
+      ],
+      "distance_m": 0.93,
+      "layer_inside_point_distance_m": 0.9
+    },
+    "municipality": "PennDOT municipal boundaries (2026_07, via PASDA): the centroid lies in Hanover Township, Northampton County (FIPS 4209532432)",
+    "distance_to_tierpoint_lehigh_valley_parcel_centroid_m": 612.7,
+    "centroid_method": "planar centroid in EPSG:32618 (WGS84 / UTM 18N) of the ring returned with outSR=4326, transformed back to WGS84; geodesic area on the WGS84 ellipsoid; the native EPSG:2272 ring and the layer's own INSIDE_X/INSIDE_Y point transformed locally with pyproj as cross-checks",
+    "tools": "pyproj 3.7.1, shapely 2.1.1"
+  },
+  "identity_bridge": [
+    "TierPoint's Bethlehem page (version modified 3 September 2026) gives the Bethlehem (BET) data center at 3864 Courtney Street, Ste 130, Bethlehem, PA 18017, with 25,000+ total square feet and 12,000+ square feet of raised floor, and says TierPoint has a second data center in Bethlehem (Lehigh Valley).",
+    "An exact-location query of the Northampton County parcel layer returns one parcel at 3864 COURTNEY ST: M6 15 10W, 8.23 assessed acres, land-use code 410, no improvement name. Lehigh County's parcel layer (PASDA, August 2021) has no 3864 Courtney St; the Courtney Street numbers there (3321-4155) lie elsewhere. Bethlehem 18017 is the postal name; the centroid falls in Hanover Township, Northampton County.",
+    "The suite number indicates that the data center occupies part of the building on this parcel; the point therefore locates the host property, not the suite. The owner of record (RB PROPERTY ASSOCIATES LLC, deed of 31 December 2020) is an organisation whose relation to TierPoint is not stated."
+  ],
+  "consistency_checks": {
+    "datum": "WGS84 output requested from the service; the native EPSG:2272 ring gives a centroid 0.93 m away and the layer's own inside point lies 0.9 m away",
+    "geocoder_used": false,
+    "edition": "The parcel join was last edited on 8 July 2024; ownership may have changed since, so no owner role is asserted.",
+    "personal_data": "Owner fields seen are organisations; mailing-address fields were not requested and nothing personal is copied."
+  }
+}

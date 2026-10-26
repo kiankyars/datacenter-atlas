@@ -1,0 +1,94 @@
+{
+  "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+  "candidate_id": "us-pa-nj-ny-md-p4-tierpoint-philadelphia",
+  "prepared_at": "2026-10-26",
+  "decision": "Selected the planar centroid (UTM 18N) of Philadelphia Department of Records parcel 545196 (registry 4975004775), the only parcel with address 4775 LEAGUE ISLAND BLVD, as the project locator for TierPoint's Philadelphia (PHI) data center at 4775 League Island Boulevard in the Philadelphia Navy Yard.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -75.1649717,
+      39.892589
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_tax_parcel_centroid",
+  "use_scope": "project_locator",
+  "source_file": "local_data/country-research-us-pa-nj-ny-md-p4/pasda-philadelphia-dor-parcel-4775-league-island.json",
+  "source_sha256": "8199b3fc065710dc32cb3ec1b4eef80838cee28829a38c15ad9be17742fd8693",
+  "source_url": "https://mapservices.pasda.psu.edu/server/rest/services/pasda/CityPhilly/MapServer/14/query?where=ADDRESS+%3D+%274775+LEAGUE+ISLAND+BLVD%27&outFields=PARCELID%2CTENCODE%2CADDRESS%2COWNER1%2COWNER2%2CBLDG_DESC%2CBC_LANDUSE%2CBC_TYPE%2CIMP_ROOF%2CIMP_TOTAL%2CTOTAL_GROU%2COWNER_CATE%2CPUBLIC_PRI%2CShape_Area&returnGeometry=true&outSR=4326&f=json",
+  "retrieved_at": "2026-10-26T20:36:20.237Z",
+  "native_file": "local_data/country-research-us-pa-nj-ny-md-p4/pasda-philadelphia-dor-parcel-545196-native.json",
+  "native_sha256": "a7cb1ed73df269dd5b9edcca26d5d362497058bf8a9384c3bf6f03ece10b5bfe",
+  "attribute_source_file": "local_data/country-research-us-pa-nj-ny-md-p4/pasda-philadelphia-dor-parcels-layer.json",
+  "attribute_source_sha256": "eef2824a4ddb489404db9f57a526577f563174ca73a0aa0ce54a3aba3431d2cd",
+  "attribute_source_url": "https://mapservices.pasda.psu.edu/server/rest/services/pasda/CityPhilly/MapServer/14?f=json",
+  "municipality_source_file": "local_data/country-research-us-pa-nj-ny-md-p4/penndot-municipalities-at-centroids.json",
+  "municipality_source_sha256": "4e5d250b019cc32436d8c7507746ba0460c2d15fda1bec20d13ea9349a9d2e5a",
+  "selected_properties": {
+    "PARCELID": 545196,
+    "TENCODE": "4975004775",
+    "ADDRESS": "4775 LEAGUE ISLAND BLVD",
+    "OWNER1": "L/S 4775 LEAGUE ISLAND BL",
+    "BLDG_DESC": "OFF/BLD N/COMM W-PKG MASO",
+    "BC_LANDUSE": "Building",
+    "BC_TYPE": "Office",
+    "IMP_ROOF": 27985.36,
+    "OWNER_CATE": "COMMERCIAL_PROPERTY",
+    "PUBLIC_PRI": "PRIVATE"
+  },
+  "layer": "PASDA map service 'pasda/CityPhilly' layer 14 'Philadelphia DOR Parcels 202402' (City of Philadelphia Department of Records registry parcels, February 2024 edition, with Water Department impervious-area attributes; native NAD83 geographic), queried by exact address with outSR=4326 and by parcel ID in its native CRS",
+  "facts": {
+    "parcels": {
+      "philadelphia DOR 545196": {
+        "geodesic_acres": 3.79,
+        "rings": 1,
+        "vertices": 7,
+        "valid": true,
+        "parcel_centroid_lon_lat": [
+          -75.1649717,
+          39.892589
+        ]
+      }
+    },
+    "centroid_lon_lat": [
+      -75.1649717,
+      39.892589
+    ],
+    "centroid_inside": true,
+    "approx_extent_m": [
+      243,
+      108
+    ],
+    "bounds_lon_lat": [
+      -75.166516,
+      39.892178,
+      -75.163678,
+      39.893156
+    ],
+    "max_vertex_distance_from_centroid_m": 134.8,
+    "centroid_to_boundary_m": 30.5,
+    "native_crs_cross_check": {
+      "native_epsg": 4269,
+      "centroid_lon_lat": [
+        -75.1649717,
+        39.892589
+      ],
+      "distance_m": 0.0,
+      "note": "The service returns identical coordinates for outSR=4326 and its native NAD83 geographic system; the NAD83-WGS84 datum difference (about 1 m here) is not modelled."
+    },
+    "municipality": "PennDOT municipal boundaries (2026_07, via PASDA): the centroid lies in the City of Philadelphia (FIPS 4210160000)",
+    "centroid_method": "planar centroid in EPSG:32618 (WGS84 / UTM 18N) of the ring returned with outSR=4326, transformed back to WGS84; geodesic area on the WGS84 ellipsoid; the native ring transformed locally with pyproj as a cross-check",
+    "tools": "pyproj 3.7.1, shapely 2.1.1"
+  },
+  "identity_bridge": [
+    "TierPoint's Philadelphia page (version modified 3 September 2026) places the Philadelphia (PHI) data center 'in the historic Philadelphia Navy Yard' at 4775 League Island Boulevard, Philadelphia, PA 19112, with 25,000+ total square feet and 11,000+ square feet of raised floor.",
+    "An exact-address query of the Department of Records parcel layer returns one parcel: 545196 (registry 4975004775), 4775 LEAGUE ISLAND BLVD, a privately owned office building with parking (BLDG_DESC 'OFF/BLD N/COMM W-PKG MASO'); its 27,985 sq ft impervious roof area is consistent with a single building of the operator's stated 25,000+ sq ft.",
+    "The neighbouring League Island Boulevard parcels (4701, 4750, 4751, 5000, 5001) carry different addresses; none is used."
+  ],
+  "consistency_checks": {
+    "datum": "WGS84 output requested from the service; identical to the native NAD83 ring",
+    "geocoder_used": false,
+    "edition": "February 2024 parcel edition; the owner field is truncated ('L/S 4775 LEAGUE ISLAND BL'), so no owner role is asserted.",
+    "personal_data": "The owner of record is an organisation; nothing personal is copied."
+  }
+}

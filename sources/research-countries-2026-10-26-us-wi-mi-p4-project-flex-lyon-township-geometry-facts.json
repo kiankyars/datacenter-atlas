@@ -1,0 +1,109 @@
+{
+  "candidate_id": "verrus-project-flex-lyon-township-data-center",
+  "decision": "Selected the centroid of the union of the four Oakland County tax parcels that Oakland County Equalization's Project Flex tax analysis (prepared for Lyon Township) lists for the project, K-21-10-101-002, -005, -006 and -007, as the campus locator of the Project Flex data center campus.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -83.6091107,
+      42.5016616
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_tax_parcel_union_centroid",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-us-wi-mi-p4/oakgov-parcels-project-flex.geojson",
+  "source_sha256": "71e92530ded362c411621b72c076b85bdbed13b2e032c90e666bc3829a593813",
+  "source_url": "https://gisservices.oakgov.com/arcgis/rest/services/Enterprise/EnterpriseOpenParcelDataMapService/MapServer/1/query?where=PIN+IN+(%272110101002%27,%272110101005%27,%272110101006%27,%272110101007%27)&outFields=KEYPIN,PIN,SITEADDRESS,SITECITY,SITEZIP5,CLASSCODE,REVISIONDATE,CVTTAXDESCRIPTION&returnGeometry=true&outSR=4326&f=geojson",
+  "retrieved_at": "2026-10-26T20:39:13.806Z",
+  "selected_properties": {
+    "parcels": [
+      {
+        "PIN": "2110101007",
+        "SITEADDRESS": "28730 MILFORD RD",
+        "SITECITY": "NEW HUDSON",
+        "SITEZIP5": "48165",
+        "CLASSCODE": "302",
+        "CVTTAXDESCRIPTION": "CHARTER TOWNSHIP OF LYON"
+      },
+      {
+        "PIN": "2110101006",
+        "SITEADDRESS": "29022 MILFORD RD",
+        "SITECITY": "NEW HUDSON",
+        "SITEZIP5": "48165",
+        "CLASSCODE": "302",
+        "CVTTAXDESCRIPTION": "CHARTER TOWNSHIP OF LYON"
+      },
+      {
+        "PIN": "2110101005",
+        "SITEADDRESS": "29300 MILFORD RD",
+        "SITECITY": "NEW HUDSON",
+        "SITEZIP5": "48165",
+        "CLASSCODE": "302",
+        "CVTTAXDESCRIPTION": "CHARTER TOWNSHIP OF LYON"
+      },
+      {
+        "PIN": "2110101002",
+        "SITEADDRESS": "55040 AMBASSADOR PKWY W",
+        "SITECITY": "NEW HUDSON",
+        "SITEZIP5": "48165",
+        "CLASSCODE": "302",
+        "CVTTAXDESCRIPTION": "CHARTER TOWNSHIP OF LYON"
+      }
+    ],
+    "revision_date_all_parcels": "2024-05-16 (REVISIONDATE 1715885305000 ms)",
+    "owner_fields": "NAME1/NAME2 are not published by this open layer (null in a separate attribute check); no owner is recorded",
+    "layer": "Oakland County Enterprise/EnterpriseOpenParcelDataMapService MapServer layer 1 'Tax Parcel Plus' (Web Mercator native; queried with outSR=4326)"
+  },
+  "computed": {
+    "parts": 1,
+    "geodesic_acres": 172.803,
+    "geodesic_area_m2": 699307.6,
+    "centroid_lon_lat": [
+      -83.6091107,
+      42.5016616
+    ],
+    "centroid_inside_polygon": true,
+    "extent_m": [
+      991.6,
+      835.8
+    ],
+    "bounds_lon_lat": [
+      -83.615081,
+      42.498199,
+      -83.602751,
+      42.505817
+    ],
+    "parcel_acres": {
+      "2110101002": 73.963,
+      "2110101005": 31.333,
+      "2110101006": 33.837,
+      "2110101007": 33.67
+    },
+    "parcel_centroids_lon_lat": {
+      "2110101002": [
+        -83.6057374,
+        42.501499
+      ],
+      "2110101005": [
+        -83.6116752,
+        42.5041619
+      ],
+      "2110101006": [
+        -83.6117018,
+        42.5018572
+      ],
+      "2110101007": [
+        -83.6115302,
+        42.4994952
+      ]
+    },
+    "method": "Polygons returned with outSR=4326 (f=geojson); union and area centroid computed in EPSG:32617 (UTM 17N) and returned to WGS84; the same point to 1e-7 degrees in EPSG:6497 (Michigan South, ft); geodesic area on the WGS84 ellipsoid",
+    "tools": "pyproj 3.7.1, shapely 2.1.1"
+  },
+  "identity_bridge": [
+    "Oakland County Equalization's 20-year tax analysis of Project Flex, posted by Lyon Township, gives 'Property Address: 55040 Ambassador Pkwy W & 29300/29022/28730 Milford Rd' and 'Parcel Numbers: K-21-10-101-002/005/006/007'.",
+    "The county's open parcel layer returns PINs 2110101002 (55040 AMBASSADOR PKWY W), 2110101005 (29300 MILFORD RD), 2110101006 (29022 MILFORD RD) and 2110101007 (28730 MILFORD RD), all in the Charter Township of Lyon; the addresses match the tax analysis one to one. The other six parcels of block 2110101 (55002, 55005, 55018, 55023 and 55046 Ambassador Pkwy W and 29444 Milford Rd) are not part of the project.",
+    "The union of the four parcels is one contiguous polygon of 172.8 geodesic acres, matching the '172 Acres' printed on the Township-posted Project Flex Development Map, which shows the campus east of Milford Road, south of the Ambassador Parkway business park, north of Coyote Golf Course and reached only from South Hill Road via Ambassador Parkway; the parcel union occupies that position."
+  ],
+  "limitations": "The point locates the four-parcel project property, not any building footprint, substation or the final site-plan layout. The county layer publishes no positional accuracy. No geocoder, city centre or business-park centroid is used."
+}

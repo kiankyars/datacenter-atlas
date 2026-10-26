@@ -1,0 +1,95 @@
+{
+  "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+  "candidate_id": "us-pa-nj-ny-md-p4-tierpoint-lehigh-valley",
+  "prepared_at": "2026-10-26",
+  "decision": "Selected the planar centroid (UTM 18N) of Northampton County parcel M6 15 63, the only parcel with location 3949 SCHELDEN CIR (Hanover Township, Northampton County), as the project locator for TierPoint's Lehigh Valley (LVQ) data center at 3949 Schelden Circle, Bethlehem, PA 18017.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -75.3782292,
+      40.6749465
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_tax_parcel_centroid",
+  "use_scope": "project_locator",
+  "source_file": "local_data/country-research-us-pa-nj-ny-md-p4/northampton-parcel-3949-schelden-cir.json",
+  "source_sha256": "3c320a2a21000ad9b70175451d455b20e753982702ad83a59aa4635b9eb4f861",
+  "source_url": "https://services2.arcgis.com/NlbUAihbvA50xxJw/arcgis/rest/services/Northampton_Parcels/FeatureServer/0/query?where=LOCATION+%3D+%273949+SCHELDEN+CIR%27&outFields=PARCEL_ID%2CCAMA_ID%2CMAP%2CBLOCK%2CLOT%2CMUNI%2CASSMNT_AC%2CLOCATION%2CLUC%2CCOMM_TYPE%2CIMPRV_NAME%2CGLA_SQFT%2CYEAR_BUILT%2CSTORIES%2COWNER_LN1%2CSALE_DATE%2CINSIDE_X%2CINSIDE_Y&returnGeometry=true&outSR=4326&f=json",
+  "retrieved_at": "2026-10-26T20:37:21.975Z",
+  "native_file": "local_data/country-research-us-pa-nj-ny-md-p4/northampton-parcel-m6-15-63-native.json",
+  "native_sha256": "51bade555ab33dd199ced360a537b8204e25338b98711062e20e7257f33ef099",
+  "attribute_source_file": "local_data/country-research-us-pa-nj-ny-md-p4/northampton-parcels-service-metadata.json",
+  "attribute_source_sha256": "547692a093f63e114911ac9f708c66b11b31e3d1335bc01a717735b68ddfb392",
+  "attribute_source_url": "https://services2.arcgis.com/NlbUAihbvA50xxJw/arcgis/rest/services/Northampton_Parcels/FeatureServer?f=json",
+  "municipality_source_file": "local_data/country-research-us-pa-nj-ny-md-p4/penndot-municipalities-at-centroids.json",
+  "municipality_source_sha256": "4e5d250b019cc32436d8c7507746ba0460c2d15fda1bec20d13ea9349a9d2e5a",
+  "selected_properties": {
+    "PARCEL_ID": "M6     15 63",
+    "CAMA_ID": "M6     15 63      0214",
+    "MUNI": "14",
+    "ASSMNT_AC": 4.21,
+    "LOCATION": "3949 SCHELDEN CIR",
+    "LUC": "700",
+    "COMM_TYPE": "401",
+    "IMPRV_NAME": "PILLER, INC.",
+    "OWNER_LN1": "OMEGA ASSETS L P",
+    "SALE_DATE": "1999-12-22"
+  },
+  "layer": "ArcGIS Online feature service 'Northampton_Parcels' layer 0 'Northampton Parcels' (copyright Northampton County GIS Division; a join of the county parcel polygons with Northampton County Assessment Office data, published by the City of Bethlehem GIS account; data last edited 8 July 2024; native NAD83 StatePlane Pennsylvania South, US feet, EPSG:2272), queried by exact location with outSR=4326 and by parcel ID in its native CRS",
+  "facts": {
+    "parcels": {
+      "northampton M6 15 63": {
+        "geodesic_acres": 3.99,
+        "assessed_acres": 4.21,
+        "rings": 1,
+        "vertices": 13,
+        "valid": true,
+        "parcel_centroid_lon_lat": [
+          -75.3782292,
+          40.6749465
+        ]
+      }
+    },
+    "centroid_lon_lat": [
+      -75.3782292,
+      40.6749465
+    ],
+    "centroid_inside": true,
+    "approx_extent_m": [
+      151,
+      143
+    ],
+    "bounds_lon_lat": [
+      -75.37914,
+      40.674332,
+      -75.377346,
+      40.675624
+    ],
+    "max_vertex_distance_from_centroid_m": 92.0,
+    "centroid_to_boundary_m": 58.5,
+    "native_crs_cross_check": {
+      "native_epsg": 2272,
+      "centroid_lon_lat": [
+        -75.3782273,
+        40.6749383
+      ],
+      "distance_m": 0.92,
+      "layer_inside_point_distance_m": 0.9
+    },
+    "municipality": "PennDOT municipal boundaries (2026_07, via PASDA): the centroid lies in Hanover Township, Northampton County (FIPS 4209532432)",
+    "centroid_method": "planar centroid in EPSG:32618 (WGS84 / UTM 18N) of the ring returned with outSR=4326, transformed back to WGS84; geodesic area on the WGS84 ellipsoid; the native EPSG:2272 ring and the layer's own INSIDE_X/INSIDE_Y point transformed locally with pyproj as cross-checks",
+    "tools": "pyproj 3.7.1, shapely 2.1.1"
+  },
+  "identity_bridge": [
+    "TierPoint's Lehigh Valley page (version modified 3 September 2026) gives the Lehigh Valley (LVQ) data center at 3949 Schelden Circle, Bethlehem, PA 18017, off the Lehigh Valley Thruway, with 27,000+ total square feet and 8,700+ square feet of raised floor.",
+    "An exact-location query of the Northampton County parcel layer returns one parcel at 3949 SCHELDEN CIR: M6 15 63, 4.21 assessed acres, land-use code 700. Lehigh County's parcel layer (PASDA, August 2021) has no Schelden street; Bethlehem 18017 is the postal name and the centroid falls in Hanover Township, Northampton County.",
+    "The parcel record's improvement-name field reads 'PILLER, INC.', a legacy assessment label that does not name TierPoint; identity rests on the exact operator-stated address, which matches only this parcel. The owner of record (OMEGA ASSETS L P, deed of 22 December 1999) is an organisation whose relation to TierPoint is not stated."
+  ],
+  "consistency_checks": {
+    "datum": "WGS84 output requested from the service; the native EPSG:2272 ring gives a centroid 0.92 m away and the layer's own inside point lies 0.9 m away",
+    "geocoder_used": false,
+    "edition": "The parcel join was last edited on 8 July 2024; ownership may have changed since, so no owner role is asserted.",
+    "personal_data": "Owner fields seen are organisations; mailing-address fields were not requested and nothing personal is copied."
+  }
+}

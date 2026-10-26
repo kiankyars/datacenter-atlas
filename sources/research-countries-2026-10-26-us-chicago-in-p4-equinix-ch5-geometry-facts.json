@@ -1,0 +1,65 @@
+{
+  "candidate_id": "equinix-ch5-elk-grove-village",
+  "decision": "Selected the Cook County Assessor's published parcel centroid for PIN 08351040840000 (2001 LUNT AVE, Elk Grove Village), the PIN on which the Village reported the CH5 data-building, data-hall and Electrical Room L permits and the address Equinix gives for CH5, as the campus locator.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -87.9536421,
+      42.0011268
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_tax_parcel_centroid",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-us-chicago-in-p4/cook-parcel-universe-08351040840000.json",
+  "source_sha256": "51781fb291f6b98f4cbc98b84dc44209c20a545394b8b350430663914dc1470a",
+  "source_url": "https://datacatalog.cookcountyil.gov/resource/nj4t-kc8j.json?$select=pin,pin10,year,class,lon,lat,x_3435,y_3435,township_name,cook_municipality_name&$where=pin=%2708351040840000%27&$order=year%20DESC&$limit=5",
+  "retrieved_at": "2026-10-26T20:44:01.074Z",
+  "selected_properties": {
+    "pin": "08351040840000",
+    "pin10": "0835104084",
+    "year": "2026",
+    "class": "597",
+    "lon": "-87.9536421106",
+    "lat": "42.0011267909",
+    "x_3435": "1087453.173167946",
+    "y_3435": "1943229.4043375109",
+    "township_name": "Elk Grove",
+    "cook_municipality_name": "VILLAGE OF ELK GROVE VILLAGE",
+    "dataset": "Assessor - Parcel Universe (Historical), nj4t-kc8j; lon/lat documented as 'Parcel centroid longitude/latitude'; rows last updated 2026-10-15"
+  },
+  "computed": {
+    "selected_point": [
+      -87.9536421,
+      42.0011268
+    ],
+    "published_state_plane_vs_reprojected_lon_lat_ft": 0.0,
+    "polygon_check_source_file": "local_data/country-research-us-chicago-in-p4/cook-parcel2021-at-ch5-centroid.json",
+    "polygon_check_source_sha256": "708ec1dce124080d14f11a8919782735bde3798ad768d98197a3c976bfc00e1a",
+    "polygon_check_source_url": "https://datacatalog.cookcountyil.gov/resource/77tz-riq7.json?$select=pin10,assessorbldgclass,municipality,the_geom&$where=intersects(the_geom,%20%27POINT%20(-87.9536421106%2042.0011267909)%27)",
+    "polygon_2021_pin10": "0835104074",
+    "polygon_2021_geodesic_acres": 6.434,
+    "polygon_2021_projected_centroid_lon_lat": [
+      -87.9535182,
+      42.0010465
+    ],
+    "assessor_point_inside_2021_polygon": true,
+    "assessor_point_to_2021_projected_centroid_m": 13.6,
+    "polygon_2021_extent_m": [
+      185.1,
+      210.2
+    ],
+    "method": "Assessor centroid taken as published (2026 tax-year row, identical in 2024 and 2025; reprojecting it to EPSG:3435 reproduces the published state-plane x/y). Cross-check against the 2021 polygon of the predecessor PIN in EPSG:3435; geodesic area on the WGS84 ellipsoid.",
+    "tools": "pyproj 3.7.1, shapely 2.1.1"
+  },
+  "identity_bridge": [
+    "Equinix's CH5 page (Internet Archive copy of 18 May 2026) gives 2001 Lunt Ave, Elk Grove Village, IL 60007.",
+    "Cook County parcel addresses: 2001 LUNT AVE was PIN 08351040740000 in 1999-2023 and is PIN 08351040840000 in 2024-2026; no other PIN carries it.",
+    "The Assessor's permit feed for PIN 08351040840000 has 'NEW INDUSTRIAL DATA BUILDING - CH5 - SHELL AND PHASE 1 BUILD-OUT' (2024), 'INDUSTRIAL DATA HALL PHASE 2-BUILD-OUT' (2025), 'INSTALL 1 NEW MONUMENT SIGN FOR EQUINIX' (2025) and 'INDUSTRIAL BUILD-OUT-ELECTRICAL ROOM L' (31 August 2026)."
+  ],
+  "unresolved": [
+    "No current (2024-) parcel polygon was retrieved; the 2021 polygon of the predecessor PIN (6.43 acres) contains the 2026 centroid, 13.6 m from its own centroid, but the 2024 renumbering may have changed the parcel slightly.",
+    "The position of Electrical Room L inside the building is not published."
+  ],
+  "nearby_records": "No Atlas site, queued addition or claim lies within 2 km. Nearest Atlas sites: Compass Hoffman Estates (imported locality point) 17.4 km and TierPoint Chicago (Polk St.) 29.5 km. Equinix's CH3 at 1905 Lunt Ave (PIN 08351040830000, adjacent to the west) is not in the Atlas."
+}

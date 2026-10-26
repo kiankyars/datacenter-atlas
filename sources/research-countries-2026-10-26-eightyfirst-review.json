@@ -1,0 +1,97 @@
+{
+  "reviewer": "root",
+  "reviewed_at": "2026-10-26",
+  "decision": "accepted_for_integration",
+  "update": "verified_construction_core/2026-10-26-research-eightyfirst",
+  "base_dataset": "verified_construction_core/2026-10-26-research-eightieth",
+  "process": "continuous: one researcher per beat, one adversarial verifier per fragment",
+  "fragments": [
+    {
+      "fragment": "us-chicago-in-p4",
+      "verdict": "accept",
+      "checks": [
+        "date +%F 2026-10-26; 85-day floor 2026-08-02; current_dataset re-read from site/config.json before and after edits: 2026-10-26-research-eightieth (745 sites, 797 projects)",
+        "all 18 sources rehashed: sha256 of each raw capture equals .metadata.json sha256 and sources.json content_hash; metadata URL equals source_url; HTTP 200; no redirects on relied-on captures",
+        "geometry facts files rehashed: match geometry_facts_sha256 in sources.json",
+        "IDEM notice PDF read with pdftotext: 'application from Microsoft EKI Campus, located at 12501 Cleveland Road, Granger, IN 46530 ... would allow Microsoft EKI Campus to construct and operate a new stationary data center'; FESOP F 141-50527-00655; draft, not issued",
+        "IDEM Northern Indiana listing capture: St. Joseph / Microsoft EKI Campus, period 10/26/2026 - 11/25/2026, link href matches captured PDF URL; notice says the posting date starts the period, so announced 2026-10-26 (PDF created 2026-10-23)",
+        "EKI locator recomputed from raw Parcel25 JSON (outSR 4326) in EPSG:26916: centroid -86.1163127, 41.7282670 (0.003 m from claimed), inside the 123.469-acre parcel 006-1019-025244 / 71-05-19-300-088.000-011, owner MICROSOFT CORPORATION, PROP_ADDR 12501 CLEVELAND RD GRANGER; extent 766 x 984 m; seven Microsoft parcels total 931.18 acres",
+        "county address point 12501 CLEVELAND RD GRANGER 46530 lies inside that parcel, 358.6 m from the centroid; Parcel25 lastEditDate 2026-10-16; hub item owner SJCGIS 'St Joseph County IN GIS' in the same org",
+        "CH5 permit rows read in raw capture: B26-0931 date_issued 2026-08-31, 'INDUSTRIAL BUILD-OUT-ELECTRICAL ROOM L', USD 6.2M, COMMERCIAL PERMIT, 'OTHER - MAJOR NEW CONSTRUCTION'; earlier B23-1185 CH5 shell/phase 1 and B25-0552 data hall phase 2 on the same PIN; dataset metadata defines date_issued as municipal issue date and status as CCAO workflow",
+        "CH5 build-out permit treated as a building permit for works inside the data-centre building (B-prefixed 'BUILD-OUT'), unlike the trade-only 'INDUSTRIAL ELECTRICAL-PDC' permit held for Aligned; consistent with existing single-project fit-out sites (e.g. Equinix HO1 storage-room conversion)",
+        "CH5 locator: Assessor parcel-universe centroid -87.9536421, 42.0011268 identical 2024-2026; reprojection to EPSG:3435 reproduces published x/y within 0.00002 ft; inside 2021 polygon of predecessor PIN 0835104074 (6.43 acres), 13.6 m from its centroid; 2001 LUNT AVE is PIN ...074 1999-2023 and ...084 2024-2026 only",
+        "Equinix CH5 IA capture (18 May 2026) read: 'Chicago CH5', address 2001 Lunt Ave, Elk Grove Village, IL 60007, 193,110 sq ft; supports operator role (current)",
+        "DeKalb 26 Oct 2026 agenda read with pdftotext (12 pages; CreationDate 2026-10-22): levy explanation sentence on Meta EAV quoted exactly; 24 Aug 2026 agenda: KARE line supports 'future phases of the Meta data center'; Meta fact sheet (2 Sep 2026): 'Our operational data center buildings'",
+        "existing Meta record read: planned five-building campus >2.3M sq ft, two buildings serving traffic Nov 2023, partially_operational 2023-12-01; same-status refresh allowed and strictly newer",
+        "Meta refresh as_of moved to 2026-10-26 (printed agenda date bounded by same-day capture) rather than the unbounded PDF metadata date; source date_semantics updated",
+        "distinctness: sites/projects/evidence/source-records/identity-mapping searched for EKI, Granger, Cleveland Rd, 50527, CH5, 2001 Lunt, B26-0931 and the PINs: only AWS New Carlisle St. Joseph County hits; nearest sites EKI 31.7 km (AWS New Carlisle), 50.5 km (Microsoft La Porte); CH5 17.4 km (Compass Hoffman Estates); no queued addition within 10 km; no other fragment, sources/*-holds.json or claims row names either site or the Meta record",
+        "roles: Microsoft owner current (parcel owner of record), operator intended (IDEM applicant); Equinix operator current; scopes are current/intended",
+        "robots.txt: www.in.gov, datacatalog.cookcountyil.gov (/resource and /api/views allowed), www.cityofdekalb.com (AgendaCenter allowed), local.microsoft.com, datacenters.atmeta.com, www.arcgis.com permit the paths; services.arcgis.com robots 403 and web.archive.org 404 (no rules)",
+        "no third-party personal data: IDEM staff and project-manager names, phones and e-mails not copied into changes, sources, holds or notes",
+        "dryrun_fragment.py ok before and after edits against research-eightieth: 747 sites, 799 projects, 4,147 evidence rows"
+      ],
+      "residual_risks": [
+        "CH5's only Atlas project is a permitted electrical-room build-out, so the map shows the site as permitted although Equinix describes CH5 as an existing data center; whether 'Electrical Room L' adds data-hall capacity is not stated.",
+        "The Cook County Assessor feed relays municipal data; the Village's own permit record (HTTP 403) was not read, and the feed notes open or pending permits are subject to change.",
+        "The EKI locator is a 123-acre parcel centroid within a 931-acre Microsoft landholding; the building positions are unknown and the IDEM air permit is still a draft.",
+        "The Meta refresh relies on a tax-levy explanation rather than an operator statement; it renews only the fact that part of the campus operates."
+      ]
+    },
+    {
+      "fragment": "us-pa-nj-ny-md-p4",
+      "verdict": "accept",
+      "checks": [
+        "Rehashed all 14 relied-on captures: SHA-256 equals both the .metadata.json sha256 and the source content_hash; metadata URL = effective URL, HTTP 200; geometry-facts SHA-256 values match the geometry/ files",
+        "Decisive statements read in the captures: LVQ 'Off the Lehigh Valley Thruway in Bethlehem ... state-of-the-art TierPoint Lehigh Valley data center and colocation facility enables companies', 3949 Schelden Circle, 27,000+ sq ft; BET same wording, 3864 Courtney Street Ste 130, 25,000+ sq ft, and 'TierPoint has a second data center in Bethlehem ( Lehigh Valley )'; PHI 'In the historic Philadelphia Navy Yard ...', 4775 League Island Boulevard, 25,000+ sq ft",
+        "Dates: JSON-LD dateModified and article:modified_time 2026-09-03 (07:22, 07:18, 07:19 UTC) equal the local page-sitemap lastmods; IA id_ copies of 8 Oct 2026 carry the same dateModified and identical facility text (live vs IA text diff is only menu items and '(opens in new tab)' labels); CDX listings confirm the capture times",
+        "PHI bounded both ways: IA 11 Aug 2026 copy is the 2024-07-31 version (diff to the 3 Sep version: Pennsylvania menu labels and a sustainability-report panel), which shows the CMS stores real modification dates and that the 3 Sep portfolio pass happened after 11 Aug; LVQ and BET bounded above by the 8 Oct copies, consistent with the accepted TierPoint precedent (Tulsa, Little Rock, MKE, SFE, Bellevue)",
+        "Window: 2026-09-03 is 53 days before 2026-10-26, inside 85 days; status sources are company_disclosure; operational is an admission status; opening dates not used",
+        "Locators recomputed from raw outSR=4326 rings in EPSG:32618 with pyproj 3.7.1/shapely 2.1.1: LVQ -75.3782292, 40.6749465 (0.001 m), BET -75.3745128, 40.6702124 (0.005 m), PHI -75.1649717, 39.8925890 (0.004 m); all inside their parcels (58.5, 83.1, 30.5 m from the boundary); geodesic acres 3.99/8.32/3.79 and envelope sizes match the precision text; native EPSG:2272 rings within 0.92 m; PHI native NAD83 ring identical",
+        "Parcel identity: each exact-address query returns exactly one parcel (M6 15 63, M6 15 10W, Philadelphia DOR 545196); the layer copyright is Northampton County GIS Division, last edited 8 Jul 2024; PennDOT 2026_07 point query gives Hanover Township, Northampton County (FIPS county 095) and the City of Philadelphia; PHI roof area 27,985 sq ft is consistent with 25,000+ sq ft; no geocoder, city centre or zone centroid used",
+        "Scope: commercial colocation facilities, one project per new site; BET precision says the point locates the host parcel, not Suite 130; uncertainty null with a stated reason",
+        "Roles: TierPoint operator, relationship_scope current, sourced to each status page; organisation owners of record correctly not used as roles",
+        "Distinctness: screened against eightieth (current; 745 sites) sites/projects/evidence/source-records/identity-mapping, every other queue fragment's changes and holds, claims.tsv and all sources/*-holds.json by TierPoint, Schelden, Courtney, League Island, Navy Yard, Lehigh Valley, LVQ, owner names and parcel IDs: hits are only the us-oh-in-pa-p3 lead_only hold this resolves and this fragment's own claims; nothing within 2 km of any point (nearest TekPark 27.5 km; Valley Forge 33.5 km from PHI) except LVQ-BET 613 m, separate facilities on separate parcels per TierPoint's own pages; no stable-key collision",
+        "Successor: Pennsylvania page (dateModified 2026-10-06) still lists Bethlehem, Lehigh Valley and Philadelphia; page sitemap lastmods unchanged",
+        "Holds checked: Homer City existing record is under_construction as of 2026-09-04, so the 20 Oct lead is strictly newer; DaSTOR, Lancaster and Governor Lea entries are accurate and contain no personal data",
+        "Privacy: no e-mails, phone numbers or private individuals' names in changes, sources, holds, notes or geometry facts (the PASDA layer's staff e-mail stays in the raw capture only)",
+        "Dry run: ok against verified_construction_core/2026-10-26-research-eightieth (748 sites, 800 projects, 4,147 evidence rows)"
+      ],
+      "residual_risks": [
+        "LVQ and BET dateModified values are bounded above (8 Oct 2026 archive copies) but have no in-window lower bound of their own; the lower bound rests on the Philadelphia sibling page edited in the same 3 Sep pass",
+        "The operating statements are unchanged marketing text from earlier versions; the 3 Sep edit added a portfolio banner and menu labels, so the observation is the operator's re-publication, not a fresh physical inspection",
+        "Northampton parcel and assessment join was last edited July 2024 and is served from the City of Bethlehem's ArcGIS account; LVQ's improvement-name field reads 'PILLER, INC.', so identity rests on the exact operator address",
+        "Compliance incident: four discovery requests to services2.arcgis.com preceded its robots.txt read by about 20 s; robots then returned 403 (no rules), and all relied-on parcel captures were made after the robots read"
+      ]
+    },
+    {
+      "fragment": "us-wi-mi-p4",
+      "verdict": "accept",
+      "checks": [
+        "all 20 cited captures rehashed: file sha256 == .metadata.json sha256 == sources.json content_hash; metadata URLs match source_url",
+        "Project Flex status: read IA 20261006 copy of Lyon Township FAQ page; 'Project Flex Data Center Application and Review Documents' marked 'Updated 10/05/2026' (link stamp 202610051123090); absent from IA 20260404 copy; government_record; 21 days old (window from 2026-08-02)",
+        "Project Flex not claimed permitted: Township statement 2026-01-08 (pdftotext) says building permit cannot issue until conditions met; moratorium Res 2026-17 read (pdftotext); announced is the correct conservative stage",
+        "Project Flex locator recomputed with pyproj 3.7.1/shapely 2.1.1 from raw Oakland County geojson: union of PINs 2110101002/-005/-006/-007 is one valid polygon, 172.80 geodesic acres, ~992 x 836 m; UTM17N centroid (-83.6091107, 42.5016616) matches claim to <1 cm and lies inside; geometry facts file sha256 matches",
+        "Project Flex parcel identity: tax analysis PDF (pdftotext) lists 55040 Ambassador Pkwy W & 29300/29022/28730 Milford Rd, K-21-10-101-002/005/006/007; development map says 172 Acres",
+        "Project Flex distinctness: no Project Flex/Verrus/Lyon Township/New Hudson/Ambassador Pkwy/Milford Rd/PIN match in eightieth sites, projects, evidence, source-records, identity-mapping, sources/*-holds.json or other queue fragments (Walbridge hits are The Barn, Saline); nearest Atlas/queue/source-record point 33.8 km (Project Cannoli)",
+        "Lighthouse refresh: live capture shows 'October Summary' with four buildings, two enclosed in interior construction, two in structural phase; JSON-LD and article:modified_time 2026-10-19T13:38:19Z; IA 20261009 copy shows prior version (dateModified 2026-09-10, 'August-September Summary'), so the October version is archive-bounded (after 2026-10-09) and corroborated by sitemap lastmod 2026-10-19",
+        "Lighthouse identity and scope: page titled 'Construction Updates - Vantage Lighthouse Campus', (c) 2026 Vantage; same four-building campus as the existing project record; strictly newer than existing 2026-08-28; company_disclosure; no other pending fragment touches this key",
+        "roles: none proposed; no third-party personal data found in changes, sources, holds or notes (regex scan for emails/phones; parcel owner fields unused)",
+        "robots: cms2.revize.com robots.txt re-read (User-agent * Allow /*.pdf); lyontwp.org, documents-on-demand and projectflexmi.com read only via Internet Archive copies",
+        "dryrun_fragment.py ok on verified_construction_core/2026-10-26-research-eightieth (746 sites, 798 projects, 4146 evidence)"
+      ],
+      "residual_risks": [
+        "Lighthouse 'Campus Progress' sentences are unchanged from the 10 September 2026 version and the October Summary still says a turnout lane 'will open the week of September 28', so the 19 October date reflects the operator's republication, not a fresh progress report",
+        "Project Flex status rests on Internet Archive copies of a bot-blocked Township site; the 'Updated 10/05/2026' document entry is a document-list update rather than a new decision, and a 4th final-site-plan submittal was withdrawn on 14 July 2026 (per researcher notes), so later withdrawal remains possible",
+        "Moratorium Resolution 2026-17 adoption is unrecorded in the packet copy; it is context only",
+        "Fragment log records two robots ordering slips (guessed CivicClerk tenant hosts, salinetownship.org PDFs); neither host has a rule against the requests and neither capture is a fragment source"
+      ]
+    }
+  ],
+  "packet_pins": {
+    "definitions/atlas-research-eightyfirst-2026-10-26.json": "085c69c69c07fa2a9cb068604a93bf25edbbf8faa730f4c02c57aa37106422d9",
+    "sources/research-countries-2026-10-26-eightyfirst-primary-sources.json": "bbc412fd5c2512c55b0f8b87df7c8295a1c684752a42fd6624a83dfff043dd74",
+    "sources/research-countries-2026-10-26-eightyfirst-actions.json": "3df9379bce4e3e74d5220e75b65d399d8211872d8875dff70401989306b83416",
+    "sources/research-countries-2026-10-26-eightyfirst-holds.json": "21fdef0b696b4e463851ef80bd965a675f05d3d6ffd5478354ad5fc86711eb75"
+  },
+  "raw_captures_redistributed": false
+}
