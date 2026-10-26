@@ -1,0 +1,141 @@
+{
+  "format": "datacenter-atlas-update-input-v1",
+  "updated_at": "2026-10-26",
+  "output": "verified_construction_core/2026-10-26-research-seventysixth",
+  "base_dataset": "verified_construction_core/2026-10-26-research-seventyfifth",
+  "base_manifest_sha256": "06ef79d956d70722def95780dabf154d7bbbe2cb47eb6a4b932613d6e817550b",
+  "source_files": [
+    {
+      "path": "sources/research-countries-2026-10-26-seventysixth-primary-sources.json",
+      "sha256": "876d27460170b9ce794d6df61d825675dd199342cf3d0e954587c829978d8fbc"
+    }
+  ],
+  "additions": [
+    {
+      "project_stable_key": "curated:ctrls-chennai-datacenter-park-ambattur:existing-operations",
+      "physical_site_stable_key": "curated:ctrls-chennai-datacenter-park-ambattur",
+      "site_name": "CtrlS Chennai Datacenter Park (Ambattur Industrial Estate)",
+      "name": "CtrlS Chennai Datacenter Park — existing operations (two-building park)",
+      "country": "India",
+      "country_iso_a2": "IN",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-10-23",
+        "source_id": "india-p3-ctrls-ai-location-cio-blog",
+        "summary": "CtrlS's company blog post of 23 October 2026 states that 'CtrlS states that its Chennai Datacenter Park supports high-density GPU deployments, alongside rear-door heat exchangers, direct-to-chip and immersion cooling', linking the park's name to CtrlS's Chennai Data Center Park page. The park in Ambattur Industrial Estate was launched on 25 February 2025, when the Chief Minister of Tamil Nadu inaugurated it (CtrlS release), and the Chennai page invites customers to tour 'our Chennai DC2'. The 23 October present-tense statement about the launched park is therefore recorded as continuing operation on that date, not as an opening, commissioning or inspection date. It does not say how much of the planned 72 MW IT load or which of the two buildings is in service, and no capacity in service or occupancy is recorded."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            80.1629378,
+            13.107083
+          ]
+        },
+        "source_id": "india-p3-ctrls-chennai-gmap",
+        "scope": "campus_locator",
+        "scope_class": "operator_linked_named_facility_marker_as_campus_locator",
+        "authority": "compiled_reference",
+        "derivation": "direct_geometry",
+        "method": "operator_selected_google_maps_feature_coordinates",
+        "precision": "This is the operator-linked named Google Maps place 'CtrlS Datacentre' (feature 0x3a52630056ecbb09:0xa8c87ad240184f31) that CtrlS's Chennai Data Center Park page links as its map location, used as the locator of the two-building Chennai Datacenter Park in Ambattur Industrial Estate. On imagery it falls about 20 m outside the south-east edge of the walled two-building compound, on its entrance side; it does not give a building footprint, plot boundary or entrance survey, or distinguish Chennai DC1 from DC2.",
+        "identity_review": "CtrlS's Chennai page (version of 28 July 2026, live capture of 26 October 2026) describes 'The CtrlS Chennai Datacenter Park' at 'Ambattur, Chennai' (72 MW IT load, 1 million sq ft built-up, 230 kV GIS) and links its 'Map Location' control to https://maps.app.goo.gl/3GDCnQAeHDUf8qYs6, which resolves to the named place 'CtrlS Datacentre' with place coordinates 13.107083, 80.1629378 (!3d/!4d, echoed in the place payload; the in-south-east-p1 capture of 22 October 2026 gave the same tuple). CtrlS's 23 October 2026 blog links 'Chennai Datacenter Park' to that same page, and CtrlS's 25 February 2025 release places the two-building park in Ambattur Industrial Estate. The map provider categorises the place as an 'association or organization', not a data center, so the identity rests on the operator's own link. Esri World Imagery (captured 26 October 2026) shows a walled compound with two adjoining tall multi-storey buildings with rows of rooftop plant immediately north-west of the point, beside the elevated highway, consistent with the two datacenter buildings the operator describes. The country-scale viewport centre @20.3798686,65.9296499 and the page's distance figures are not used.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The operator-linked map place publishes no surveyed horizontal accuracy, and no official address point, survey number or plot boundary for the park was found; the place lies at the compound's entrance side rather than on a building, and the park's extent is not published."
+      },
+      "context_source_ids": [
+        "india-p3-ctrls-chennai-page",
+        "india-p3-ctrls-chennai-park-launch-2025",
+        "india-p3-ctrls-flexibility-blog"
+      ],
+      "roles": [
+        {
+          "party": "CtrlS Datacenters Ltd",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "india-p3-ctrls-ai-location-cio-blog"
+        }
+      ],
+      "distinctness_review": "Screened all serialized fields of the sites, projects, evidence, source records and identity mapping of verified_construction_core/2026-10-26-research-seventyfifth (720 sites, 766 projects, 3,967 evidence rows; re-screened after the base advanced from the seventy-fourth release, whose additions are two Japanese sites and an IIJ Shiroi refresh), every sources/*-holds.json file and the pending queue fragments for CtrlS / Ctrl S, Ambattur, Chennai Datacenter Park, Chennai DC2, MTH Road and the place coordinates. CtrlS matches only the CtrlS Hyderabad Financial District, Chandanvelly, Kolkata New Town and Bengaluru records and their evidence (none in Tamil Nadu) and the AirTrunk HYD1 record (which shares the Chandanvelly locality point). Ambattur matches only CapitaLand DC Chennai Ambattur Campus and its 'Ambattur Ward B Block 37' site-plan evidence. One Atlas record lies within 2 km: CapitaLand DC Chennai Ambattur Campus (curated:capitaland-dc-chennai-ambattur; project 'CapitaLand DC Chennai Current Facility Build'), 0.566 km north-north-west (pyproj WGS84 geodesic), a different operator's campus on different survey parcels. The nearest other Atlas sites are Sify Chennai 02 (imported locality point, 30.4 km) and Techno Digital Chennai (31.9 km). Digital Realty MAA10 ('MTH Road, Ambattur Industrial Estate'; operator page point 0.949 km south-south-east) and the held STT Ambattur campus (Red Hills Road, Kallikuppam) are other operators' facilities not in the Atlas. This addition resolves the 2026-10-23 fortyfifth hold 'CtrlS Chennai Datacenter Park, Ambattur Industrial Estate', whose reopen condition (a dated CtrlS statement on or after 30 July 2026 that the park is operating) the 23 October blog meets. No pending fragment proposes a CtrlS Chennai or Ambattur record.",
+      "successor_review": "23 October 2026 is 3 days before 26 October 2026 and stays inside the 90-day window until 21 January 2027. CtrlS's post sitemap captured on 26 October 2026 lists after 23 October only the 26 October blog on infrastructure flexibility, which says CtrlS operates 19 datacenters across 9 Indian markets and reports no pause, closure or change at the Chennai park; the Chennai page re-captured on 26 October still carries the 28 July version and the same map link. No later status statement was found.",
+      "scoped_project_details": {
+        "aliases": [
+          "CtrlS Chennai DC Park / Chennai Data Center Park",
+          "CtrlS Chennai DC1 and DC2 (Ambattur)",
+          "CtrlS Datacentre (Google Maps place, Ambattur, Chennai)"
+        ],
+        "facility_scope": "CtrlS's two-building Chennai Datacenter Park in Ambattur Industrial Estate, Chennai (about 1 million sq ft built-up across Chennai DC1 and DC2, 230 kV on-campus GIS substation), as launched on 25 February 2025.",
+        "capacity": null,
+        "capacity_note": "CtrlS gives 72 MW IT load for the park (27 MW for Chennai DC2 in its February 2024 announcement) and a 230 kV GIS with 40 MW sanctioned load expandable to 265 MW; these are design or sanctioned figures, not measured load, and are not recorded as typed observations.",
+        "launch": "25 February 2025 (CtrlS release; inaugurated by the Chief Minister of Tamil Nadu); not used as the status observation",
+        "physical_construction_verified": false
+      }
+    },
+    {
+      "project_stable_key": "curated:equinix-bg2-bogota-zona-franca:phase-1-existing-operations",
+      "physical_site_stable_key": "curated:equinix-bg2-bogota-zona-franca",
+      "existing_site_id": "vcc-site-f5c6fe2a009a33154c02",
+      "site_name": "Equinix BG2 Bogotá Data Center",
+      "name": "Equinix BG2 Bogotá — Phase 1 (first 550 cabinets), existing data-centre operations",
+      "country": "Colombia",
+      "country_iso_a2": "CO",
+      "site_identity_review": "Equinix's 20 August 2026 release concerns 'su centro de datos International Business Exchange (IBX) BG2, en Bogotá' and distinguishes the facility's first phase ('La primera fase de la instalación incorporó 550 gabinetes') from the second phase it announces. The existing Atlas site curated:equinix-bg2-bogota-zona-franca (Equinix BG2 Bogotá Data Center, site vcc-site-f5c6fe2a009a33154c02) was admitted from the same release for that second phase (curated:equinix-bg2-bogota-zona-franca:phase-2-expansion) and is located by the BG2 facility marker of Equinix's own BG2 page (Carrera 106 No 15 A25, Manzana 18, Zona Franca de Bogotá). The first phase is the existing BG2 building on that same site, so it is added as a project on the existing site, not as a new site.",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-08-20",
+        "source_id": "latam-other-p3-equinix-bg2-release-20260820",
+        "summary": "Equinix's press release of 20 August 2026 describes BG2 as its existing IBX data centre in Bogotá: BG2 was announced in 2022 with US$45 million, 'La primera fase de la instalación incorporó 550 gabinetes', and the new US$28 million second phase of 550 cabinets will double 'la capacidad disponible en el sitio'; customers reach international routes through Equinix's Bogotá facilities. This records the first phase as operating on 20 August 2026, the release date, as a publication-normalised observation; it is not an opening, inspection or commissioning date, which the release does not give. The 550 cabinets are the operator's first-phase capacity; occupancy, IT load in MW and the second phase's progress are not established."
+      },
+      "locator": {
+        "reuse_from_project_id": "bbc71d65-de56-52f2-95eb-0c6458c9a9fc",
+        "geometry_evidence_id": "3bd7718f-7ac3-52a3-9e0e-f5a4a7704405",
+        "geometry_identity_evidence_ids": [],
+        "scope": "campus_locator",
+        "identity_review": "Reuses the existing BG2 site point exactly (4.674924542377553, -74.15643708982253), inherited from the Phase 2 project with its pinned geometry evidence: the latitude/longitude literal of the BG2 marker in the map script of Equinix's BG2 facility page (Internet Archive copy of 3 October 2026), which marks the existing IBX BG2 building at Carrera 106 No 15 A25, Manzana 18, Zona Franca de Bogotá. The first phase is that existing building, so the marker locates this project's facility; it is not a cadastral lot, footprint, entrance or surveyed position, and the inherited uncertainty reason (no published datum, survey method or accuracy) is unchanged. BG1 is a separate IBX in the same business complex (Manzana 6 Lote 27) and is not covered by this point or project."
+      },
+      "context_source_ids": [
+        "latam-other-p3-equinix-newsroom-latam-20261026",
+        "latam-other-p3-equinix-innovation-centres-20261021"
+      ],
+      "roles": [
+        {
+          "party": "Equinix, Inc.",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "latam-other-p3-equinix-bg2-release-20260820"
+        }
+      ],
+      "distinctness_review": "Screened on 26 October 2026 against every serialized field of sites.csv, projects.csv, evidence.csv, source-records.json and identity-mapping.json of verified_construction_core/2026-10-26-research-seventyfifth (re-read from site/config.json; the base moved from seventyfourth during this pass), all sources/*-holds.json, every other queue fragment's changes.json and holds.json, and claims.tsv, for BG2, BG1, 'Equinix Bog', 'Zona Franca de Bogotá', 'Zona Franca Bogotá', 'Carrera 106' and Fontibón. The only Atlas match is the existing BG2 site curated:equinix-bg2-bogota-zona-franca with its single project curated:equinix-bg2-bogota-zona-franca:phase-2-expansion (announced 20 August 2026, the second phase of 550 cabinets) and its two evidence rows (the 20 August release and the archived BG2 facility page). No Atlas record, hold, queued change or claim covers BG2's existing first phase or BG1; the other matches are distinctness texts that mention BG2 (latam-south-p1 ODATA fragment, us-tx-tabs-new-p3 Equinix screening, and the 2026-10-22 Ascenty Bogotá hold, which asks for screening against BG2). Atlas records within 2 km of the inherited point: only the BG2 site and its Phase 2 project (0 m, the host site). No other Atlas site, queued addition or claimed coordinate lies within 5 km; the nearest other Colombian site, ODATA DC BG01 in Cota, is about 9.1 km away. This project is the first phase of the same BG2 building, added to the existing site rather than as a new site.",
+      "successor_review": "Equinix's Latin America press-release list captured on 26 October 2026 has no release about BG2, Bogotá or Colombia after 20 August 2026 (later entries: two product releases of 2 September and the 21 October innovation-centre release, which names no Colombian facility). The archived BG2 facility page of 3 October 2026 (the inherited geometry evidence) still presents BG2 as an IBX colocation site with 4,003 m2 of colocation space. No closure, pause or sale was found, so operation is kept as of 20 August 2026: 67 days before 26 October 2026, inside the 90-day window until 18 November 2026. The second phase keeps its own announced record.",
+      "scoped_project_details": {
+        "aliases": [
+          "Equinix BG2",
+          "IBX BG2",
+          "Bogota BG2",
+          "BG2 first phase"
+        ],
+        "facility_scope": "First phase of Equinix's IBX BG2 data centre (the existing BG2 building) in the Zona Franca de Bogotá; excludes the announced second phase of 550 further cabinets and the separate BG1 IBX",
+        "address": "Carrera 106 No 15 A25, Manzana 18, Zona Franca de Bogotá, Bogotá (Equinix BG2 page)",
+        "cabinets_first_phase_operator": 550,
+        "colocation_space_m2_operator_page": 4003,
+        "original_investment_usd_million_2022": 45,
+        "capacity_note": "550 cabinets is the operator-stated first-phase capacity; no MW, occupancy or opening date is published in the selected sources.",
+        "physical_construction_verified": false
+      }
+    }
+  ],
+  "status_updates": [
+    {
+      "project_stable_key": "imported:semiconductor-atlas:sify-noida-02",
+      "status": {
+        "value": "partially_operational",
+        "as_of": "2026-09-29",
+        "source_id": "india-p3-sify-noida-page",
+        "summary": "Sify's Noida data-centre page, in its version of 29 September 2026, invites customers to 'Accelerate AI innovation and digital transformation with Sify's Noida 02 Data Center Campus, offering scalable, resilient, and sustainable infrastructure ... carrier-neutral connectivity, cloud adjacency, and colocation services', says 'Sify has its second Hyperscale data center campus in Delhi, NCR-Noida 02' with 25.92 MW IT power and a dedicated on-premise 220 kV substation, and that Noida 02 'is interconnected with Noida 01 through metro Cross Connects'. This is a newer operator observation that the campus is in service. Other sentences on the page remain in the future tense ('will be interconnected', 'Proposed ISPs'), and the page does not say how much of the campus is built, so the existing partially operational code is kept rather than upgraded to full operation; 25.92 MW and 130+ MW are stated figures, not measured load."
+      },
+      "identity_review": "Same campus as the existing record: the page describes Sify's 'Noida 02 Data Center Campus', added 'within 1KM' of Noida 01 (Plot B7, Sector 132, Noida), which is the campus of the imported record 'Sify Noida 02 data center campus' whose partially operational status comes from the 16 October 2025 Sify Infinit Spaces DRHP and whose source record notes that Noida 02 is within 1 km of Noida 01. The refresh keeps that campus-level scope and does not change the record's locality locator. Sify's separate Noida 01 facility, described on the same page, is not touched.",
+      "successor_review": "Strictly newer than the existing 16 October 2025 observation. The page's modification of 29 September 2026 is bounded by the Internet Archive copies of 12 July 2026 (preceding version, modified 2026-07-09, without the new opening sentence) and 1 October 2026 (this version), and the live capture of 26 October 2026 still carries it. Sify's dedicated Noida 02 page (modified 21 August 2026) gives the same 25.92 MW campus description. Sify's post sitemap captured on 26 October 2026 lists as its newest news item the 22 October appointment of a chief executive for Sify Infinit Spaces; no item reports a pause, closure or completion of the full Noida 02 campus, so the status is neither downgraded nor upgraded. 29 September 2026 stays inside the 90-day window until 28 December 2026."
+    }
+  ],
+  "context_updates": []
+}

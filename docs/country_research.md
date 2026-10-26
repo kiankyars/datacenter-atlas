@@ -379,6 +379,8 @@ From 22 October 2026 sites are added continuously: researchers each work a narro
 
 `verified_construction_core/2026-10-26-research-seventyfifth`: **720 sites and 766 projects in 63 countries**. Adds ESR－CHQ南港データセンターOS2 — planned second-phase data-centre building, Cosmosquare campus; Colt Inzai Data Centre 4 (Keppel Tokyo Data Centre 3) — existing hyperscale data-centre operations. Refreshes IIJ Shiroi Existing Operations (Phases 1 and 2) (operational).
 
+`verified_construction_core/2026-10-26-research-seventysixth`: **721 sites and 768 projects in 63 countries**. Adds CtrlS Chennai Datacenter Park — existing operations (two-building park); Equinix BG2 Bogotá — Phase 1 (first 550 cabinets), existing data-centre operations. Refreshes Sify Noida 02 data center campus (partially operational).
+
 ## 25 October 2026
 
 `verified_construction_core/2026-10-25-research-sixtysecond` adds three commercial sites and
