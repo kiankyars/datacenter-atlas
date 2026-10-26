@@ -1,0 +1,105 @@
+{
+  "reviewer": "root",
+  "reviewed_at": "2026-10-26",
+  "decision": "accepted_for_integration",
+  "update": "verified_construction_core/2026-10-26-research-sixtysixth",
+  "base_dataset": "verified_construction_core/2026-10-26-research-sixtyfifth",
+  "process": "continuous: one researcher per beat, one adversarial verifier per fragment",
+  "fragments": [
+    {
+      "fragment": "fr-p2",
+      "verdict": "accept",
+      "checks": [
+        "base read from site/config.json: verified_construction_core/2026-10-26-research-sixtyfifth (667 sites, 709 projects)",
+        "all 26 relied-on captures rehashed: sha256 equals both .metadata.json and sources.json content_hash; HTTP 200; byte counts match",
+        "window floor 2026-08-02 (85 days before 2026-10-26); status dates 2026-09-29, 2026-10-13, 2026-10-06 all inside",
+        "Global Switch EN release read in capture: dated 29.09.26, JSON-LD datePublished 2026-09-29T08:55:51Z; present-tense 'Global Switch's Paris data centre provides a highly connected, NVIDIA DGX-Ready platform' and 'The Paris site is powered by 100% renewable energy'; FR version 'fournit'; Blackwell deployment forthcoming and excluded",
+        "Global Switch dateModified 2026-10-06 is not used (Wayback availability empty; post-sitemap lastmods 08:59/09:01 follow the 08:31 25-years post, consistent with cross-link edits)",
+        "Global Switch identity: Georisques GLOBAL SWITCH (PARIS) 7 rue Petit, AIOT 0007404411, SIRET 42422489700027, 'En exploitation avec titre'; Sitadel PC 0920241300557 same SIRET, parcel O 65, 16,168 m2 land, 44,375 m2 existing floor",
+        "Clichy locator recomputed (pyproj 3.7.1/shapely 2.1.1, EPSG:2154): O 75 centroid 2.2951336, 48.9001797, 0.0 m from claimed; Georisques Lambert-93 point inside, 39.6 m from centroid; BAN 7 and 9 rue Petit on the parcel edge; O 65 absent from current cadastre",
+        "Digital Realty blog read in raw page data: field_publish_date 2026-10-13, displayed '13 October 2026'; 'we've operated in Paris for more than 25 years', hub 'comprises 14 ... data centers', Paris Digital Park 'featuring four interconnected data centers (PAR8, PAR9, PAR10, and PAR11) ... 80 MW of IT capacity'; first-party post by a company executive (named by role only)",
+        "Paris Digital Park identity: facility pages give PAR8/PAR10/PAR11 at 2 and PAR9 at 3 avenue Marcel Cachin; Georisques INTERXION France AIOT 0006523747 at 2 avenue Marcel Cachin, order 2021-2646 'INTERXION PAR8'; Sitadel PC 09302713A0049 (R 197, 63,834 m2) and PC 09302718A0020 (R 197 + U 126, 68,020 m2, DAACT 2021-10-29)",
+        "La Courneuve locator recomputed: R 236-R 239 contenance 63,406+314+30+84 = 63,834 = R 197 exactly, + U 126 4,186 = 68,020 exactly; single contiguous polygon; centroid 2.3985474, 48.9276307, 0.0 m from claimed; BAN 2 avenue Marcel Cachin, PAR8 and PAR11 points inside; PAR9 12 m and PAR10 5 m outside",
+        "Sesterce release read in capture: time element 2026-10-06T08:00Z, dateline Valence 6 October 2026; 'Sesterce's Rovaltain project in Alixan', strict 40 MW limit, 'Implementation of the building permit already obtained is suspended' -> announced only, no permitted status",
+        "Sesterce identity: Sitadel PC 0260042500020 authorised 2025-12-18 to SESTERCE GROUP (SIREN 902372481), 115 rue René Truhaut, parcels YC 1039/1040/1041, 52,773 m2 declared land, no DOC/DAACT",
+        "Alixan locator recomputed: YC 1039-1041 union (6,097 m2 contenance) centroid 4.9831222, 44.9930462, 0.0 m from claimed; BAN 115 rue René Truhaut in adjacent YC 1048, 118 m away; exhaustive search found no contiguous parcel set matching the remaining 46,676 m2",
+        "geometry facts files' hashes match sources.json geometry_facts_sha256 and their capture_sha256 values match the captures",
+        "distinctness: no dataset site/project/evidence/source-record/identity-mapping hit for Global Switch, Clichy, rue Petit, Levallois, La Courneuve, Marcel Cachin, Paris Digital Park, PAR8-PAR11, Rovaltain, Alixan or Truhaut; Interxion only Brick Lane; Sesterce only Bosquel (570 km); nearest Atlas sites 14.4 km, 13.3 km and 97.8 km",
+        "queue screen: no other fragment's changes.json has these terms or a point within 5 km; claims.tsv names these only for fr-p2; fr-p1 and sources/*-holds.json entries (Rovaltain thirty-first/fortysecond, Georisques lead_only sweep) have reopen conditions met by these dated records",
+        "each addition is the only project on its new site; roles operator current/current/intended, each sourced to the status source",
+        "no private individuals' names, phones or emails in changes, sources, holds or notes (media contact and named executives in captures not copied)",
+        "robots.txt copies checked for globalswitch, digitalrealty, sesterce, georisques (allowed); apicarto, geopf and SDES robots 404",
+        "corrected Global Switch distinctness_review wording: the dataset has no Global Switch evidence or source-record hits (they are only in holds files)",
+        "dryrun_fragment.py ok against 2026-10-26-research-sixtyfifth (670 sites, 712 projects, 3,649 evidence)"
+      ],
+      "residual_risks": [
+        "Global Switch release was modified on 2026-10-06 with no archived copy, so the decisive sentence may date from that version rather than 29 September (both inside the window)",
+        "Global Switch and Paris Digital Park operation rest on present-tense operator descriptions, not an explicit 'is operating' sentence or inspection; capacity in service is not established",
+        "La Courneuve lineage of R 236-R 239 from R 197 is inferred from exact area totals and contiguity, not a published filiation; PAR9 (3 avenue Marcel Cachin) lies just outside the union",
+        "Alixan point covers only the 0.61 ha listed in the permit of a 5.28 ha declared land; the project buildings may be on unlisted parcels such as YC 1048, and the project is to be revised",
+        "Clichy point uses current parcel O 75 only; whether O 65 became O 75 alone or O 75 + O 76 is not published"
+      ]
+    },
+    {
+      "fragment": "nordics-p2",
+      "verdict": "accept",
+      "checks": [
+        "current_dataset re-read: moved from 2026-10-25-research-sixtyfourth to 2026-10-26-research-sixtyfifth during the run; screened against sixtyfifth; window floor 2026-08-02 (85 days before 2026-10-26)",
+        "all 15 sources rehashed: capture SHA-256 = sources.json content_hash = .metadata.json sha256, URLs match; both geometry-facts files match their pinned hashes; Bulk Q3 recheck PDF byte-identical to the nordics-p1 capture",
+        "Utajarvi: municipal news 15.10.2026 read in Finnish: 'Rakennustyot ovat alkaneet', NYAB Finland main contractor of phase 1 (Julkaistu 15.10.2026; news index lead same date); 9.10.2026 NYAB release defines phase 1 as site preparation and infrastructure works -> site_preparation, government_record, 11 days old",
+        "Utajarvi identity: permit board 14.04.2026 s.16, permit 26-0014-RL, applicant Data Tank Nordic Oy, site 889-407-0004-0131 Tietomaa, RAK1 22,476 m2 + 3 x 21,300 m2 + 368 m2; Ryhti 302403882X has matching areas/volumes on 88940700040131",
+        "Lahti: City news datePublished 2026-08-25 read: ecogrid.energy Oy and Peab plan a data centre in Kujala, building and deviation permit applications filed; FAQ (page-dated 26.8) gives Peab's lot at Vartiokallionkatu 2 -> announced, government_record, 62 days old; permitted correctly not asserted",
+        "Lahti identity: Ryhti 302412792B (decided 2026-09-15) is the only permit on 39801709900006, four new buildings all at Vartiokallionkatu 2, main building 37,297 m2 / 3 storeys; address-level match recorded",
+        "locators recomputed with pyproj 3.7.1 from the native EPSG:3067 captures: both selected points agree with Ryhti WGS84 within 3e-8 deg; other permit buildings 97-356 m (Utajarvi) and 142-242 m (Lahti) away",
+        "Bulk DK01: Q3 2026 PDF page 2 rendered and read: 'At the DK01 site in Esbjerg ... additional power connection and a new building is progressing according to schedule'; signed Oslo 22 Oct 2026; 2026-09-30 strictly newer than existing 2026-06-30; same scope as the Q2 record; same evidence id as the published N01 refresh (metadata identical)",
+        "distinctness: names, aliases, addresses, permit IDs and coordinates screened against sixtyfifth sites/projects/evidence/source-records/identity-mapping, all sources/*-holds.json, every other queue fragment and claims.tsv; nearest records XTX Kajaani 79.4 km and DayOne Kiverio (Ilmarisentie 3) 2.96 km; only hold match is the nordics-p1 Vartiokallionkatu 2 hold, now resolved; DK01 refresh claimed only by nordics-p1 (held, published)",
+        "corrected: Peab owner relationship_scope current -> unknown (the City says Peab owns the lot and co-develops; facility ownership is not stated); distinctness reviews updated for the sixtyfifth re-screen",
+        "robots.txt captured before first request for utajarvi.fi, utajarvi.oncloudos.com (404), paikkatiedot.ymparisto.fi (HTML redirect, no rules), lahti.fi, bulkinfrastructure.com; no personal names, phones or e-mails in changes, sources, holds, notes or geometry facts",
+        "dryrun_fragment.py ok: 669 sites, 711 projects, 3636 evidence rows"
+      ],
+      "residual_risks": [
+        "Lahti locator rests on an address/timing/scale match: Ryhti names neither applicant nor use for permit 302412792B, and 'east of Karistonkatu' was not checked against street geometry",
+        "Utajarvi site_preparation rests on municipal statements (no dated site photograph); Ryhti still shows the buildings as planned with no start date, and one 21,300 m2 building has no Ryhti record",
+        "Bulk DK01 'progressing according to schedule' sits under a combined 'construction and preparations' heading; accepted with the same reading as the existing Q2 record and the published N01 refresh",
+        "Utajarvi 15 Oct page was last updated 16 Oct 09:50; the 9 Oct release and the 15 Oct index lead corroborate the start of works",
+        "compliance.log records one ing.dk WebFetch issued before its robots.txt was read (AI agents disallowed); nothing from it is relied on and the host was not reused",
+        "unreferenced source nordics-p2-bulk-investor-relations-1026 is kept for the successor review only; the builder creates no evidence row for it"
+      ]
+    },
+    {
+      "fragment": "q3-apac-operators-p3",
+      "verdict": "accept",
+      "checks": [
+        "config re-read: current_dataset verified_construction_core/2026-10-26-research-sixtyfifth (screened against it)",
+        "rehashed kdcr-3q-2026-operational-updates.pdf (7904bd8a...05d5), kdcr-ar2025.pdf (445a8e65...7e3) and 6 OneMap JSON captures: all match .metadata.json sha256 and sources.json content_hash",
+        "rendered 3Q PDF p.20 (pdftoppm): 'Portfolio Overview (as at 30 Sep 2026)'; KDC SGP1 100%/15 clients/46.3%/2013, SGP5 99%/4/100.0/2015, DC1 100%/1/100.0/WALE 9.5/2016; cover dated 23 Oct 2026",
+        "newsroom capture lists the 3Q update on 23 Oct 2026 and 'Annual Reports and Related Documents' on 07 Apr 2026; latest item 26 Oct is a unitholding notice",
+        "status operational as_of 2026-09-30 (table as-at date, not an opening date) from company_disclosure published 2026-10-23; 26 days old, inside 85-day window (from 2026-08-02)",
+        "AR2025 pdf pp.40-41 (printed 43-44): addresses 25 Serangoon North Ave 5 554914, 13 Sunview Way 627541, 18 Riverside Road 739088; facility managers Keppel DC Singapore 1 Ltd. and Keppel DCS3 Services Pte. Ltd. (Keppel Data Centres); DC1 has none",
+        "OneMap captures: one result each, postcode searches return the same feature; coordinates in changes.json equal served WGS84 exactly; pyproj 3.7.1 EPSG:3414->4326 from served X/Y agrees within 4e-9 m",
+        "locators are official building address points (project_locator, direct_geometry, official_source), not city/HQ/zone centroids; uncertainty null with reason",
+        "distinctness: no SG Atlas record other than Keppel Genting Lane (5.55 km from SGP1); no name/alias/address/postcode hit in sites, projects, evidence, source-records, identity-mapping, queue fragments or sources/*-holds.json; nothing within 2 km",
+        "corrected DC1 distinctness_review (nearest Atlas site is AirTrunk JHB1, Johor, ~12.3 km, not Genting Lane) and added Johor nearest records to the geometry facts file",
+        "roles: owner Keppel DC REIT current (3Q interest column); operators from AR2025 facility managers; DC1 tenant unnamed so owner only",
+        "earlier hold on KDC SGP1 'potential redevelopment' is not an announced project; 30 Sep table still shows 15 clients, so existing operations only",
+        "commercial colocation/single-tenant REIT assets; no personal data in changes, sources, holds or URLs",
+        "robots: keppeldcreit.com 404, onemap.gov.sg allow-all, read before first requests",
+        "dryrun_fragment.py ok against sixtyfifth: 670 sites, 712 projects"
+      ],
+      "residual_risks": [
+        "operator roles marked current rest on AR2025 (as at 31 Dec 2025, filed 7 Apr 2026); the 3Q 2026 update confirms Keppel leases for SGP 1-5 but does not name the facility managers",
+        "OneMap address points carry no stated positional accuracy; they mark the address, not the data-hall building outline",
+        "KDC SGP1 occupancy is falling (53.3% to 46.3%) and redevelopment was mentioned in July; a future redevelopment would need a new project and status",
+        "one OneMap postcode response carried an 'authentication token missing' notice while still returning public results; no token was used",
+        "the lane's first three robots reads were misrouted into the fr-p2 lane's local_data and compliance log by a shared-scratchpad helper (process incident, evidence unaffected)"
+      ]
+    }
+  ],
+  "packet_pins": {
+    "definitions/atlas-research-sixtysixth-2026-10-26.json": "3b2527cc04eef1e996200cc01b798ba04a8cb172845654b93796e0aa6ac8f8af",
+    "sources/research-countries-2026-10-26-sixtysixth-primary-sources.json": "7954eeb3f933324926c2ccba39840ff425081ac059745f0358c51c32761f259e",
+    "sources/research-countries-2026-10-26-sixtysixth-actions.json": "dcec8e0048187146111f919cf74cd4959b6112825d95acdc8ab89cfa5085efe1",
+    "sources/research-countries-2026-10-26-sixtysixth-holds.json": "ab46051395444a6c5b97fe2792ad2eec2c86adf9f1d62007792e984279cfc5b4"
+  },
+  "raw_captures_redistributed": false
+}

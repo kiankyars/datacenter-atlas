@@ -357,6 +357,9 @@ From 22 October 2026 sites are added continuously: researchers each work a narro
 
 `verified_construction_core/2026-10-23-research-sixtyfirst`: **653 sites and 695 projects in 63 countries**. Adds TierPoint Little Rock (LIT) — existing data-centre and colocation operations; TierPoint Tulsa - Archer (TUL) — existing data-centre and colocation operations; TierPoint Tulsa - State Farm (TL2) — existing data-centre and colocation operations.
 
+`verified_construction_core/2026-10-26-research-sixtyfifth`: **667 sites and 709 projects in 63 countries**. Adds Edged Kansas City — data-center building (final certificate of occupancy CICO-2026-00896, 3500 N Arlington Ave); TierPoint St. Louis - Olive (SLO) — existing data-centre and colocation operations; TierPoint Chicago (Polk St.) — existing data-centre and colocation operations.
+
+`verified_construction_core/2026-10-26-research-sixtysixth`: **675 sites and 717 projects in 63 countries**. Adds Global Switch Paris — existing data-centre operations; Paris Digital Park — PAR8, PAR9, PAR10 and PAR11 data-centre operations; Rovaltain Sesterce Campus — proposed 40 MW AI supercomputer campus (permit PC 026 004 25 00020, implementation suspended); Data Tank Nordic Utajärvi — four-building data-centre campus (permit 26-0014-RL, Prosessitie); Lahti Kujala data centre (ecogrid.energy / Peab) — planned data centre at Vartiokallionkatu 2; Keppel DC Singapore 1 — existing colocation data-centre operations; Keppel DC Singapore 5 — existing colocation data-centre operations; DC1 — existing single-tenant data-centre operations. Refreshes Bulk DK01 Current New Building Construction (under construction).
 
 ## 25 October 2026
 
@@ -430,5 +433,3 @@ projection only when the summary has been written for the public facility page. 
 then displays that explicitly selected context with its citation. Map-only sources, geometry-only
 roles and superseded status prose remain excluded. OS3 uses this to display its 7,467 m²
 colocation area and cooling and power specifications from the operator page.
-
-`verified_construction_core/2026-10-26-research-sixtyfifth`: **667 sites and 709 projects in 63 countries**. Adds Edged Kansas City — data-center building (final certificate of occupancy CICO-2026-00896, 3500 N Arlington Ave); TierPoint St. Louis - Olive (SLO) — existing data-centre and colocation operations; TierPoint Chicago (Polk St.) — existing data-centre and colocation operations.
