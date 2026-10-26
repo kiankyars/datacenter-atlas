@@ -1,0 +1,42 @@
+{
+  "reviewer": "root",
+  "reviewed_at": "2026-10-27",
+  "decision": "accepted_for_integration",
+  "update": "verified_construction_core/2026-10-27-research-eightyfifth",
+  "base_dataset": "verified_construction_core/2026-10-27-research-eightyfourth",
+  "process": "continuous: one researcher per beat, one adversarial verifier per fragment",
+  "fragments": [
+    {
+      "fragment": "us-nv-ut-id-p4",
+      "verdict": "accept",
+      "checks": [
+        "All 11 cited captures rehashed: file SHA-256 equals .metadata.json sha256 and sources.json content_hash; URLs match metadata; DataBank db_data_center sitemap capture is byte-identical to evidence 9fea3786 (oh-in-pa-p3) and the source record reuses its exact metadata",
+        "Novva Utah page read in capture: dateModified/article:modified_time 2026-09-10T19:19:24Z, page-sitemap lastmod identical; IA id_ copy 20260714065051 has dateModified 2026-07-13 (CDX has no later copy), so the 10 Sep version is bounded by the IA copy and the 26 Oct live capture",
+        "Novva decisive text verified: present-tense flagship West Jordan data center, 'Novva uses ~394,667 gallons/month' with links to 2025 West Jordan water bills, on-site 24x7 staffing, 'built into daily operations', annualized PUE 1.18; 1.5M sq ft is 'planned across a four-phase development' and is not asserted as completed",
+        "Novva address 6477 West Wells Park Road confirmed in IA copy (removed in the Sep version; no closure/sale item in post sitemap to 23 Oct 2026)",
+        "DataBank SLC1 page read: dateModified 2026-09-29T22:05:14Z (sitemap lastmod identical); IA copy 20260712113726 dateModified 2026-05-14 bounds it; substantive edit (onsite carriers 40->38); present-tense carrier-hotel statement, 7x24x365 operation, colocation",
+        "Window: 2026-09-10 (46 d) and 2026-09-29 (27 d) are within 85 days of 2026-10-26; both status sources are company_disclosure",
+        "Locators recomputed independently from raw county parcel JSON with pyproj 3.7.1/shapely 2.1.1: Novva 5-parcel union is one valid polygon, 94.55 geodesic ac, centroid -112.0459823,40.5726418 (UTM 12N, CONUS Albers and Utah Central agree; shift 0.004 m), inside parcel 26-10-276-012 (situs 6477 W Wells Park Rd); SLC1 parcel 16-06-102-017 centroid -111.8858384,40.7685183 (shift 0.002 m), 0.402 ac",
+        "Geometry facts files hash to the geometry_facts_sha256 values in sources.json",
+        "Roles: Novva Data Centers operator (current, own page); Novva SLC North, LLC and Novva SLC Common LLC owners of record (current, county parcels); DataBank operator (current); all scopes valid",
+        "Distinctness re-screened against current dataset 2026-10-26-research-eightysecond (sites, projects, evidence, source-records, identity-mapping), all queue fragments' JSON and geometry, claims.tsv and sources/*-holds.json by name/address/parcel terms and structured coordinate walk: no record within 3 km; only hits are the earlier holds this fragment resolves and QTS Eagle Mountain 'SLC1' (different operator, ~57 km)",
+        "Prior hold reopen conditions (fiftysixth us-southwest-p2, sixtyninth us-az-nv-ut-p3) met: bounded page versions plus Salt Lake County parcel locators",
+        "robots.txt captures checked for novva.com, databank.com, apps.saltlakecounty.gov (no rule covers /slcogis/rest), westjordan.utah.gov; no personal data in sources, changes or holds (owners are companies; article officials not named)",
+        "Dry run ok against eightysecond: 754 sites, 806 projects, 4197 evidence"
+      ],
+      "residual_risks": [
+        "Both admissions rest on operator marketing pages' present-tense descriptions with IA-bounded modification dates, not an independent operating record",
+        "Novva: no single sentence says 'operational'; operation inferred from published 2025 water bills, measured use, 24x7 staffing and daily-operations wording; PUE/capacity may be design values",
+        "Novva: the four adjoining parcels are tied to Novva by owner-entity name only; parcels carry no year built so buildings are not individually located; the Sep version dropped the street address",
+        "SLC1: locator is the host building's parcel (owner City Creek Reserve, Inc.), not DataBank's suite"
+      ]
+    }
+  ],
+  "packet_pins": {
+    "definitions/atlas-research-eightyfifth-2026-10-27.json": "e486178f54956b61a71d84a41d02124d18e17b842ba03860a25ed518eb219de4",
+    "sources/research-countries-2026-10-27-eightyfifth-primary-sources.json": "e72ca38a1ac605f8dc77f83f46f364e575be32f3cd56e961439d72b0fd77dc3c",
+    "sources/research-countries-2026-10-27-eightyfifth-actions.json": "41f8038a62a59a4054a5717217cdbe8c534f7188c51e2f99ab3cbe48d2560e48",
+    "sources/research-countries-2026-10-27-eightyfifth-holds.json": "35a2972ce97313102587caf3379aae345b39130ea2ecd785d5fec789bb41407d"
+  },
+  "raw_captures_redistributed": false
+}

@@ -1,0 +1,166 @@
+{
+  "format": "datacenter-atlas-update-input-v1",
+  "updated_at": "2026-10-27",
+  "output": "verified_construction_core/2026-10-27-research-eightyfifth",
+  "base_dataset": "verified_construction_core/2026-10-27-research-eightyfourth",
+  "base_manifest_sha256": "d854ce340faf08c9986a2586fe9dc50f1725fe13dd19f79d97116a10a9879077",
+  "source_files": [
+    {
+      "path": "sources/research-countries-2026-10-27-eightyfifth-primary-sources.json",
+      "sha256": "e72ca38a1ac605f8dc77f83f46f364e575be32f3cd56e961439d72b0fd77dc3c"
+    }
+  ],
+  "additions": [
+    {
+      "project_stable_key": "curated:novva-utah-west-jordan-data-center-campus:existing-operations",
+      "physical_site_stable_key": "curated:novva-utah-west-jordan-data-center-campus",
+      "site_name": "Novva Utah Data Center Campus (West Jordan, Utah)",
+      "name": "Novva Utah flagship campus — existing data-centre operations",
+      "country": "United States",
+      "country_iso_a2": "US",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-09-10",
+        "source_id": "us-nv-ut-id-p4-novva-utah-page-20260910",
+        "summary": "Novva's Utah page, in its version modified on 10 September 2026, says 'Our accessible, sustainable, safe, and secure Utah data center is located near Salt Lake City in West Jordan, UT', calls it Novva's flagship 100-acre campus and states that 'Novva uses ~394,667 gallons/month (4.7 million gallons/year)', with monthly 2025 water-usage reports, an annualized PUE of 1.18, on-site 24x7 staffing and a 100% uptime SLA for colocation deployments of 250 kW to 30 MW. This records the campus as operating on 10 September 2026, the modification day of the captured version (bounded below by the Internet Archive copy of 14 July 2026, modified 13 July 2026, with the same description and the address 6477 West Wells Park Road, and above by the live capture of 26 October 2026); it is not an opening date. The 1.5 million sq ft, four-building, four-phase programme is a planned build-out and is not recorded as completed; capacities are design figures, not observed load."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -112.0459823,
+            40.5726418
+          ]
+        },
+        "source_id": "us-nv-ut-id-p4-slco-parcels-novva-west-jordan",
+        "scope": "campus_locator",
+        "scope_class": "official_tax_parcel_union_centroid",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "official_county_parcel_union_centroid",
+        "precision": "Centroid of the union of the five Salt Lake County parcels owned by Novva entities in West Jordan: 26-10-276-012 (6477 W Wells Park Rd, Novva SLC North, LLC), 26-10-276-010 (6593 W Wells Park Rd), 26-10-276-011 (6524 W Old Bingham Hwy), 26-10-276-013 (6381 W Wells Park Rd) and 26-10-276-014 (6377 W Wells Park Rd), the last four owned by Novva SLC Common LLC. The union is one contiguous polygon of 94.55 geodesic acres, about 478 by 1,206 m, and the centroid lies inside the 6477 W Wells Park Rd parcel. It locates the campus, not any building footprint or the substation.",
+        "identity_review": "Novva's Utah page gave the data center's address as 6477 West Wells Park Road, West Jordan, UT 84081 in its version of 13 July 2026 (Internet Archive copy of 14 July 2026); the current version describes the same flagship 100-acre West Jordan campus. The county parcel at situs 6477 W WELLS PARK RD is owned by NOVVA SLC NORTH, LLC, and a county query for parcels whose owner name begins NOVVA returns it and four adjoining parcels owned by NOVVA SLC COMMON LLC; together they form one 94.55-acre polygon, matching the 100-acre campus. The City of West Jordan's 2025 article places the NOVVA Data Center just west of the Mountain View Corridor, consistent with these parcels. No geocoder, company map point or city centroid is used.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The county publishes no positional accuracy for parcel polygons; the centroid represents a campus of about 478 by 1,206 m whose individual data-centre buildings are not located."
+      },
+      "context_source_ids": [
+        "us-nv-ut-id-p4-novva-utah-page-ia-20260714",
+        "us-nv-ut-id-p4-novva-page-sitemap",
+        "us-nv-ut-id-p4-novva-post-sitemap",
+        "us-nv-ut-id-p4-westjordan-novva-expansion-article-2025"
+      ],
+      "roles": [
+        {
+          "party": "Novva Data Centers",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "us-nv-ut-id-p4-novva-utah-page-20260910"
+        },
+        {
+          "party": "Novva SLC North, LLC",
+          "role": "owner",
+          "relationship_scope": "current",
+          "source_id": "us-nv-ut-id-p4-slco-parcels-novva-west-jordan"
+        },
+        {
+          "party": "Novva SLC Common LLC",
+          "role": "owner",
+          "relationship_scope": "current",
+          "source_id": "us-nv-ut-id-p4-slco-parcels-novva-west-jordan"
+        }
+      ],
+      "distinctness_review": "Screened on 26 October 2026 against verified_construction_core/2026-10-26-research-eightyfirst (the current dataset at the time of the dry run: 751 sites, 803 projects and 4176 evidence rows), its sites, projects, evidence rows, source-records.json and identity-mapping.json, every pending queue fragment's changes and holds, claims.tsv and all sources/*-holds.json, for Novva, NOVVA SLC, Wells Park, Old Bingham, West Jordan and 6477, and by distance. Apart from numeric coincidences of '6477' inside unrelated coordinate strings, the only hits are the us-southwest-p2, us-az-nv-ut-p3, fiftysixth and sixtyninth holds (and the global-developers-p3 / seventyeighth newsroom-sweep note) that held this campus for want of a bounded page version and a parcel locator, which this addition supplies, and this fragment's claim. The Atlas has no Novva or West Jordan record, and no Atlas site, project, source record, identity-mapping entry, pending fragment, claim or hold coordinate lies within 2 km; the nearest Atlas site is the DataBank Granite Point Campus in Bluffdale (about 15.7 km), a different operator and campus. Novva's other campuses (Las Vegas, Tahoe Reno, Colorado Springs, Mesa) are separate and not added. Re-screened by the verifier on 26 October 2026 against verified_construction_core/2026-10-26-research-eightysecond (752 sites, 804 projects, 4,187 evidence rows; its only new site is DC BLOX Huntsville, Alabama): no Novva, West Jordan, Wells Park or Old Bingham record and no Atlas, queue or hold coordinate within 3 km; the nearest Atlas site remains the DataBank Granite Point Campus, about 15.7 km away.",
+      "successor_review": "The live page captured on 26 October 2026 still carries the 10 September 2026 version (page-sitemap lastmod identical), and Novva's post sitemap, whose latest items are dated 23 October 2026, has no closure, sale, pause or new-building item for the Utah campus. The project stays operational as of 10 September 2026.",
+      "scoped_project_details": {
+        "aliases": [
+          "Novva Utah",
+          "Novva Salt Lake City",
+          "Novva SLC",
+          "NOVVA Data Center (West Jordan)",
+          "Novva flagship campus"
+        ],
+        "address": "6477 West Wells Park Road, West Jordan, UT 84081 (operator address in the 13 July 2026 page version); Salt Lake County parcels 26-10-276-010 to -014",
+        "campus_operator_figures": {
+          "acres": 100,
+          "planned_building_area_sq_ft": "1.5 million over a four-phase, four-building development",
+          "white_floor_space_sq_ft": 200000,
+          "substation": "on-site 200 MW",
+          "pue": "1.18 annualized",
+          "water_use": "~394,667 gallons/month (operator)",
+          "basis": "operator page; design and programme figures, not observed load or completed area"
+        },
+        "operation_scope": "Existing operations of the built part of the campus; the remaining phases of the four-phase programme are not asserted.",
+        "opening_date": null,
+        "capacity": null,
+        "physical_construction_verified": false
+      }
+    },
+    {
+      "project_stable_key": "curated:databank-slc1-salt-lake-city-social-hall-avenue:existing-operations",
+      "physical_site_stable_key": "curated:databank-slc1-salt-lake-city-social-hall-avenue",
+      "site_name": "DataBank SLC1 Downtown Salt Lake City Data Center (179 E Social Hall Ave)",
+      "name": "DataBank SLC1 — existing downtown data-centre and carrier-hotel operations",
+      "country": "United States",
+      "country_iso_a2": "US",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-09-29",
+        "source_id": "us-nv-ut-id-p4-databank-slc1-page-20260929",
+        "summary": "DataBank's SLC1 page, in its version modified on 29 September 2026, gives 'Downtown Salt Lake City Data Center (SLC1) 179 E Social Hall Ave Suite #200 - Salt Lake City, UT 84111' and says 'The site is also the primary carrier hotel for the Salt Lake City area, populated with multiple Tier-1 and Tier-2 network providers entering the building through multiple access points', with 10,610 IT square feet, 0.5 MW critical IT load, 38 onsite carriers, colocation and 7x24x365 hours of operation. This records the facility as operating on 29 September 2026, the modification day of the captured version (bounded below by the Internet Archive copy of 12 July 2026, modified 14 May 2026, which lists 40 onsite carriers, and above by the live capture of 26 October 2026); it is not an opening date, and 0.5 MW is a design rating, not observed load."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -111.8858384,
+            40.7685183
+          ]
+        },
+        "source_id": "us-nv-ut-id-p4-slco-parcel-179-e-social-hall",
+        "scope": "reviewed_site_locator",
+        "scope_class": "official_tax_parcel_centroid",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "official_county_parcel_centroid_of_operator_address",
+        "precision": "Centroid of Salt Lake County parcel 16-06-102-017 (situs 179 E Social Hall Ave, Salt Lake City; 0.40 geodesic acres, about 39 by 42 m; commercial, built 1967; owner of record City Creek Reserve, Inc.). It locates the host building's parcel at the operator's address, not DataBank's suite.",
+        "identity_review": "DataBank gives '179 E Social Hall Ave Suite #200 - Salt Lake City, UT 84111' for SLC1. A Salt Lake County parcel query for situs addresses beginning 179 E SOCIAL HALL returns exactly one parcel, 16-06-102-017, whose owner of record is the building owner, not DataBank; SLC1 is a suite in that building. No geocoder, company map point or city centroid is used.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The county publishes no positional accuracy for parcel polygons; the centroid represents the 0.4-acre host building parcel, and the suite's position within the building is not published."
+      },
+      "context_source_ids": [
+        "us-nv-ut-id-p4-databank-slc1-page-ia-20260712",
+        "us-nv-ut-id-p4-databank-data-center-sitemap",
+        "us-nv-ut-id-p4-databank-press-release-sitemap"
+      ],
+      "roles": [
+        {
+          "party": "DataBank",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "us-nv-ut-id-p4-databank-slc1-page-20260929"
+        }
+      ],
+      "distinctness_review": "Screened on 26 October 2026 against verified_construction_core/2026-10-26-research-eightyfirst (the current dataset at the time of the dry run: 751 sites, 803 projects and 4176 evidence rows), its sites, projects, evidence rows, source-records.json and identity-mapping.json, every pending queue fragment's changes and holds, claims.tsv and all sources/*-holds.json, for DataBank SLC1, 179 E Social Hall, Social Hall Ave, City Creek Reserve and parcel 16-06-102-017, and by distance. The only hits are the us-az-nv-ut-p3 hold (published in sources/research-countries-2026-10-26-sixtyninth-holds.json) that held SLC1 for want of an Internet Archive bound and a parcel locator, which this addition supplies, the Granite Point Campus record's note excluding SLC1 (and the pending us-az-nv-ut-p3 text of the same addition), the existing evidence row for DataBank's Salt Lake City market page, and this fragment's claim. The QTS Eagle Mountain campus also uses the label SLC1 (it also appears in a us-southeast-p2 list of QTS sites) but is a different operator's campus about 57 km away. No Atlas site, project, source record, identity-mapping entry, pending fragment, claim or hold coordinate lies within 2 km; the nearest Atlas site is DataBank's own Granite Point Campus in Bluffdale, about 32.1 km south, which DataBank lists separately. Re-screened by the verifier on 26 October 2026 against verified_construction_core/2026-10-26-research-eightysecond (752 sites, 804 projects, 4,187 evidence rows; its only new site is DC BLOX Huntsville, Alabama): no Social Hall, City Creek Reserve or downtown SLC1 record and no Atlas, queue or hold coordinate within 3 km; the nearest Atlas site remains the DataBank Granite Point Campus, about 32.1 km south.",
+      "successor_review": "The live page captured on 26 October 2026 carries the 29 September 2026 version (db_data_center sitemap lastmod identical), and DataBank's press-release sitemap, whose latest items are dated 13 October 2026, has no SLC1 closure, sale, relocation or expansion item. The project stays operational as of 29 September 2026.",
+      "scoped_project_details": {
+        "aliases": [
+          "DataBank SLC1",
+          "DataBank Downtown Salt Lake City Data Center",
+          "SLC1 Carrier Hotel",
+          "179 E Social Hall Ave"
+        ],
+        "address": "179 E Social Hall Ave Suite #200, Salt Lake City, UT 84111 (Salt Lake County parcel 16-06-102-017, host building)",
+        "it_square_feet": "10,610 (operator)",
+        "critical_it_load_mw": "0.5 (operator design rating, not observed load)",
+        "onsite_carriers": 38,
+        "carrier_hotel": "primary carrier hotel for the Salt Lake City area (operator)",
+        "excluded": "The DataBank Granite Point Campus (SLC2-SLC6, Bluffdale) is a separate Atlas site.",
+        "opening_date": null,
+        "capacity": null,
+        "physical_construction_verified": false
+      }
+    }
+  ],
+  "status_updates": [],
+  "context_updates": []
+}

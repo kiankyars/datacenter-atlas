@@ -397,6 +397,8 @@ From 22 October 2026 sites are added continuously: researchers each work a narro
 
 `verified_construction_core/2026-10-27-research-eightyfourth`: **763 sites and 815 projects in 63 countries**. Adds Equinix SV12x — data-hall fit-outs (San Jose building permits 2024-108710-CI, 2026-141003-CI and 2026-140996-CI); DataBank SFO1 — existing data-centre operations; Colovore SJC01 and SJC02 — existing data-centre operations; STACK POR03 — existing data-centre operations (72 MW operational critical capacity).
 
+`verified_construction_core/2026-10-27-research-eightyfifth`: **765 sites and 817 projects in 63 countries**. Adds Novva Utah flagship campus — existing data-centre operations; DataBank SLC1 — existing downtown data-centre and carrier-hotel operations.
+
 ## 25 October 2026
 
 `verified_construction_core/2026-10-25-research-sixtysecond` adds three commercial sites and

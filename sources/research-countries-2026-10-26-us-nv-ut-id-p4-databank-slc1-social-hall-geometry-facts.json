@@ -1,0 +1,66 @@
+{
+  "candidate_id": "databank-slc1-salt-lake-city-social-hall-avenue",
+  "decision": "Selected the centroid of Salt Lake County parcel 16-06-102-017 (situs 179 E SOCIAL HALL AVE, Salt Lake City; the host building's parcel) as the locator of DataBank's SLC1 downtown data center at 179 E Social Hall Ave Suite #200.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -111.8858384,
+      40.7685183
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_tax_parcel_centroid",
+  "use_scope": "reviewed_site_locator",
+  "source_file": "local_data/country-research-us-nv-ut-id-p4/slco-parcels-179-e-social-hall.json",
+  "source_sha256": "c75476f6c2ab1abb48258ca4694ca0e42c134d5030e792b463bf642c08194783",
+  "source_url": "https://apps.saltlakecounty.gov/slcogis/rest/services/Land/MapServer/1/query?where=UPPER%28prop_location%29+LIKE+%27179+E+SOCIAL+HALL%25%27&outFields=parcel_id%2Cparent_parcel%2Cdate_created%2Cparcel_acres%2Cown_name%2Cprop_location%2Cproperty_type%2Clot_use%2Cyear_built%2Ctotal_sq_ft%2Cabv_grnd_sf%2Ctax_year%2CHouseNum%2CStreetName&returnGeometry=true&outSR=4326&f=json",
+  "retrieved_at": "2026-10-26T21:13:44.108Z",
+  "selected_properties": {
+    "16061020170000": {
+      "situs": "179 E SOCIAL HALL AVE",
+      "owner_of_record": "CITY CREEK RESERVE, INC (organisation; the building owner, not DataBank)",
+      "parcel_acres": 0.4,
+      "lot_use": "C",
+      "property_type": "566",
+      "year_built": 1967,
+      "total_sq_ft": 10836,
+      "tax_year": "2025"
+    },
+    "layer": "Salt Lake County slcogis Land/MapServer layer 1 (Parcels), queried with outSR=4326 for situs beginning 179 E SOCIAL HALL; exactly one parcel is returned"
+  },
+  "computed": {
+    "parts": 1,
+    "geodesic_acres": 0.402,
+    "geodesic_area_m2": 1627.0,
+    "centroid_lon_lat": [
+      -111.8858384,
+      40.7685183
+    ],
+    "centroid_inside_polygon": true,
+    "crs_cross_check_shift_m": 0.0,
+    "extent_m": [
+      38.5,
+      42.4
+    ],
+    "bounds_lon_lat": [
+      -111.886066,
+      40.768327,
+      -111.88561,
+      40.768709
+    ],
+    "method": "Polygon returned with outSR=4326; centroid computed in EPSG:32612 (WGS 84 / UTM 12N) and returned to WGS84; an EPSG:5070 cross-check gives the same point; geodesic area on the WGS84 ellipsoid.",
+    "tools": "pyproj 3.7.1, shapely 2.1.1"
+  },
+  "identity_bridge": [
+    "DataBank's SLC1 page gives '179 E Social Hall Ave Suite #200 - Salt Lake City, UT 84111' for its downtown Salt Lake City data center and carrier hotel.",
+    "A Salt Lake County parcel query for situs addresses beginning 179 E SOCIAL HALL returns one parcel, 16-06-102-017 (0.4 acres, commercial, built 1967), owned by City Creek Reserve, Inc.; it is the host building's parcel and DataBank occupies a suite in it."
+  ],
+  "unresolved": [
+    "The suite's position within the building is not published; the point locates the host building parcel, not the data-centre suite."
+  ],
+  "nearby_records": "No Atlas site, project, source record, identity-mapping entry, pending fragment, claim or hold coordinate lies within 2 km; the nearest Atlas site is the DataBank Granite Point Campus in Bluffdale, about 32.1 km south.",
+  "consistency_checks": {
+    "datum": "WGS84 output from the county service (outSR=4326)",
+    "geocoder_used": false
+  }
+}
