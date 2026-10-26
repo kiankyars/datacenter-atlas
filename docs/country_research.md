@@ -395,6 +395,8 @@ From 22 October 2026 sites are added continuously: researchers each work a narro
 
 `verified_construction_core/2026-10-26-research-eightythird`: **759 sites and 811 projects in 63 countries**. Adds Novva Colorado Springs — existing data-centre operations; Lunavi Cheyenne Data Center — existing data-centre operations; Compass Datacenters CLT I — proposed greenfield data-center facility (NC DAQ air-permit application 4900350.26A); TierPoint Raleigh - RTP — existing data-centre and colocation operations; TierPoint Nashville (NSH) — existing data-centre and colocation operations; Shenandoah Computing LLC — proposed five-building data-processing facility (MoDNR air construction permit application 2025-08-034); TierPoint St. Louis - Millpark (SLM) — existing data-centre and colocation operations.
 
+`verified_construction_core/2026-10-27-research-eightyfourth`: **763 sites and 815 projects in 63 countries**. Adds Equinix SV12x — data-hall fit-outs (San Jose building permits 2024-108710-CI, 2026-141003-CI and 2026-140996-CI); DataBank SFO1 — existing data-centre operations; Colovore SJC01 and SJC02 — existing data-centre operations; STACK POR03 — existing data-centre operations (72 MW operational critical capacity).
+
 ## 25 October 2026
 
 `verified_construction_core/2026-10-25-research-sixtysecond` adds three commercial sites and

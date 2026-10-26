@@ -1,0 +1,72 @@
+{
+  "candidate_id": "colovore-santa-clara-space-park-raymond-campus",
+  "decision": "Selected the centroid of the union of Santa Clara County parcels 224-08-139 (situs 1101 SPACE PARK DR) and 224-08-154 (situs 3060 RAYMOND ST) as the campus locator of Colovore's adjacent SJC01 and SJC02 data centers in Santa Clara.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -121.9531841,
+      37.3769953
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_tax_parcel_union_centroid",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-us-ca-pnw-ak-hi-p4/sccgov-parcels-colovore-1101-space-park-3060-raymond.geojson",
+  "source_sha256": "74e76c16299d097a2dc9cc60998c12996706b9d6ab6194261c893d1c22e320d7",
+  "source_url": "https://data.sccgov.org/resource/ubcd-cewv.geojson?$where=(situs_house_number='1101'%20AND%20situs_street_name='SPACE%20PARK')%20OR%20(situs_house_number='3060'%20AND%20situs_street_name='RAYMOND')",
+  "retrieved_at": "2026-10-26T21:52:59.779Z",
+  "selected_properties": {
+    "22408139": {
+      "situs": "1101 SPACE PARK DR, SANTA CLARA",
+      "jurisdiction": "SANTA CLARA",
+      "number_of_situs_address": 8
+    },
+    "22408154": {
+      "situs": "3060 RAYMOND ST, SANTA CLARA",
+      "jurisdiction": "SANTA CLARA",
+      "number_of_situs_address": 1
+    },
+    "layer": "County of Santa Clara Parcels (Socrata ubcd-cewv, FY2026), queried by situs house number and street; exactly these two parcels are returned"
+  },
+  "computed": {
+    "apns": [
+      "22408139",
+      "22408154"
+    ],
+    "parts": 1,
+    "geodesic_area_m2": 13933.1,
+    "geodesic_acres": 3.443,
+    "centroid_lon_lat": [
+      -121.9531841,
+      37.3769953
+    ],
+    "centroid_inside": true,
+    "crs_cross_check_shift_m": 0.0,
+    "extent_m": [
+      98.2,
+      155.1
+    ],
+    "bounds_lon_lat": [
+      -121.953726,
+      37.376343,
+      -121.952626,
+      37.377741
+    ],
+    "centroid_parcel": "inside 224-08-139, about 1 m from the 224-08-154 boundary",
+    "method": "Union of the two parcel polygons; centroid computed in EPSG:32610 (WGS 84 / UTM 10N) and returned to WGS84; an EPSG:5070 cross-check gives the same point; geodesic area on the WGS84 ellipsoid.",
+    "tools": "pyproj 3.7.1, shapely 2.1.1"
+  },
+  "identity_bridge": [
+    "Colovore's 19 November 2024 release places SJC02 at 3060 Raymond Street, 'Immediately adjacent to its first data center at 1101 Space Park Drive'.",
+    "The county parcel query returns 224-08-139 at situs 1101 SPACE PARK DR (eight situs addresses) and 224-08-154 at situs 3060 RAYMOND ST, both in the City of Santa Clara; the polygons adjoin and form one 3.44-acre polygon.",
+    "Colovore's Silicon Valley market page lists SJC01 and SJC02, both in Santa Clara, as its two active Silicon Valley sites."
+  ],
+  "unresolved": [
+    "Parcel 224-08-139 has eight situs addresses, so the parcel may hold other occupants; the building footprints of SJC01 and SJC02 are not located individually."
+  ],
+  "nearby_records": "No Atlas site, project, source record, identity-mapping entry, pending fragment change, claim or hold coordinate lies within 2 km; the nearest Atlas site is the Microsoft Alviso San Jose Datacenter Campus, about 5.8 km north-east. This fragment's DataBank SFO1 point is about 3.56 km north-north-west.",
+  "consistency_checks": {
+    "datum": "WGS84 GeoJSON from the county Socrata service",
+    "geocoder_used": false
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "candidate_id": "equinix-great-oaks-south-data-center-campus-san-jose",
+  "decision": "Selected the centroid of the union of Santa Clara County FY2026 parcels 706-02-057 (situs 123 GREAT OAKS BL, the SV12 building) and 706-02-060 (situs 127 GREAT OAKS BL; SV18 at 127 and SV19 at 131) as the campus locator of Equinix's three-building Great Oaks South Data Center in San Jose.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -121.7829754,
+      37.2337651
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_tax_parcel_union_centroid",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-us-ca-pnw-ak-hi-p4/sccgov-parcels-great-oaks-south-123-127-131.geojson",
+  "source_sha256": "913e0939d23aad030280c07a78e13a2b98fa3a710696410f24207c8992332b64",
+  "source_url": "https://data.sccgov.org/resource/ubcd-cewv.geojson?$where=apn%20in('70602057','70602060','70602054')",
+  "retrieved_at": "2026-10-26T21:56:10.557Z",
+  "selected_properties": {
+    "70602057": {
+      "situs": "123 GREAT OAKS BL, SAN JOSE",
+      "jurisdiction": "SAN JOSE",
+      "number_of_situs_address": 1
+    },
+    "70602060": {
+      "situs": "127 GREAT OAKS BL, SAN JOSE",
+      "jurisdiction": "SAN JOSE",
+      "number_of_situs_address": 1
+    },
+    "70602054": "not present in the FY2026 layer (the query asked for it); the City permit records still carry this APN for 123 Great Oaks Bl",
+    "layer": "County of Santa Clara Parcels (Socrata ubcd-cewv, 'land and condo information ... as of FY 2026', rows updated 26 August 2026), GeoJSON in WGS84"
+  },
+  "computed": {
+    "apns": [
+      "70602057",
+      "70602060"
+    ],
+    "parts": 1,
+    "geodesic_area_m2": 72837.0,
+    "geodesic_acres": 17.998,
+    "centroid_lon_lat": [
+      -121.7829754,
+      37.2337651
+    ],
+    "centroid_inside": true,
+    "crs_cross_check_shift_m": 0.0,
+    "extent_m": [
+      481.3,
+      345.4
+    ],
+    "bounds_lon_lat": [
+      -121.785507,
+      37.232295,
+      -121.780099,
+      37.23543
+    ],
+    "centroid_parcel": "inside 706-02-060, about 20 m from the 706-02-057 boundary",
+    "method": "Union of the two parcel polygons; centroid computed in EPSG:32610 (WGS 84 / UTM 10N) and returned to WGS84; an EPSG:5070 cross-check gives the same point; geodesic area on the WGS84 ellipsoid.",
+    "tools": "pyproj 3.7.1, shapely 2.1.1"
+  },
+  "identity_bridge": [
+    "The Energy Commission notice of determination received 7 May 2026 (SCH 2020100431) states that the Great Oaks South Data Center consists of three two-story data-center buildings, SV12, SV18 and SV19, at 123, 127 and 131 Great Oaks Boulevard in San Jose; the project applicant is Equinix LLC.",
+    "The City of San Jose permit lists place the SV12x data-hall fit-out permits at 123 GREAT OAKS BL (owner EQUINIX HYPERSCALE (2SV12) LLC) and the EQUINIX SV19 data center building permit at 131 GREAT OAKS BL on APN 70602060.",
+    "In the county FY2026 parcel layer situs 123 GREAT OAKS BL is parcel 706-02-057 and situs 127 GREAT OAKS BL is parcel 706-02-060; the two adjoin and form one 18.0-acre polygon."
+  ],
+  "unresolved": [
+    "The permit records carry APN 706-02-054 for 123 Great Oaks Bl, which is absent from the FY2026 layer; the renumbering to 706-02-057 is inferred from the identical situs address and is not documented in a captured source.",
+    "The positions of the SV12 building and its data halls within the campus are not published; the point is a campus locator.",
+    "Parcel 706-02-058 (no situs) adjoins to the south-east; its use is unknown and it is excluded."
+  ],
+  "nearby_records": "No Atlas site, project, source record, identity-mapping entry, pending fragment change, claim or hold coordinate lies within 2 km; the nearest Atlas site is the Microsoft Alviso San Jose Datacenter Campus, about 24.9 km north-west.",
+  "consistency_checks": {
+    "datum": "WGS84 GeoJSON from the county Socrata service",
+    "geocoder_used": false
+  }
+}

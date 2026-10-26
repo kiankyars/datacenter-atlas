@@ -1,0 +1,72 @@
+{
+  "reviewer": "root",
+  "reviewed_at": "2026-10-27",
+  "decision": "accepted_for_integration",
+  "update": "verified_construction_core/2026-10-27-research-eightyfourth",
+  "base_dataset": "verified_construction_core/2026-10-26-research-eightythird",
+  "process": "continuous: one researcher per beat, one adversarial verifier per fragment",
+  "fragments": [
+    {
+      "fragment": "us-ca-pnw-ak-hi-p4",
+      "verdict": "accept",
+      "checks": [
+        "Current dataset re-read from site/config.json: verified_construction_core/2026-10-26-research-eightythird (759 sites, 811 projects, 4234 evidence rows)",
+        "All 17 cited captures rehashed: sha256 equals both .metadata.json sha256 and sources.json content_hash; metadata URL equals source_url; captured_at equals retrieved_at except the DataBank db_data_center sitemap, which reuses published evidence 9fea3786 metadata exactly (same hash, retrieved 2026-10-26T15:40:17.817Z)",
+        "Equinix: San Jose Active, Last 30 Days and Under Inspection CSVs read directly: 2024-108710-CI (issued 10/8/2026), 2026-141003-CI 'SV12x-F2.3 FIT OUT DATA HALL (I & J)' (10/16/2026), 2026-140996-CI 'SV12x-F2.4 FIT OUT (K & L)' (10/19/2026), subtype Data Center, B/E/P/M plan approvals complete, no FINALDATE, owner EQUINIX HYPERSCALE (2SV12) LLC, 123 Great Oaks Bl; government_record; observation 2026-10-19 within 85 days (window from 2026-08-03); permit_scope/type/decision/reference/identity_review present; building permits, not appealed",
+        "Equinix identity: CEQAnet NOD SCH 2020100431 read in capture: SV12, SV18, SV19 at 123, 127, 131 Great Oaks Boulevard, applicant Equinix LLC; SV19 permit 2026-118560-CI on APN 70602060 at 131",
+        "Equinix fit-out-only admission on a new site matches the published Equinix CH5 Electrical Room L precedent (4c84c865)",
+        "DataBank SFO1: live page article:modified_time 2026-09-29T22:06:11Z equals sitemap lastmod; IA id_ copy 20260516 (modified 2026-05-14) has identical SFO1 text from '(SFO1) 5101 Lafayette Street' through 7x24x365 remote hands; CDX has no copy between; same method as published DataBank DEN1/LAS1/PIT2 records",
+        "Colovore: live, IA 20260710 and IA 20260923 texts identical (2244 chars after tag strip) incl. 'Two active sites in the heart of Silicon Valley' and SJC01/SJC02 6 MW halls SOLD OUT; Webflow stamps 14 Sep 2026 (live, IA 23 Sep) and 9 Jul 2026 (IA 10 Jul); sitemap page lastmod 2026-08-19; both dates in window",
+        "Colovore identity: 19 Nov 2024 release places SJC02 at 3060 Raymond Street adjacent to its first data center at 1101 Space Park Drive",
+        "Locators recomputed independently from raw county GeoJSON (pyproj 3.7.1/shapely 2.1.1; EPSG 32610, 5070 and 3310 agree to 0.0 m): Equinix union 706-02-057+706-02-060 centroid (-121.7829754, 37.2337651), 17.998 ac, inside 706-02-060, 17.3 m from 706-02-057; DataBank 097-46-015 centroid (-121.9660911, 37.4073288), 1.393 ac, inside; Colovore 224-08-139+224-08-154 centroid (-121.9531841, 37.3769953), 3.443 ac, inside 224-08-139, 0.8 m from 224-08-154; geometry facts files hash-match sources.json",
+        "Locator scopes: campus_locator (Equinix, Colovore) and reviewed_site_locator (DataBank), Point only, official parcels, no geocoder/city centre; precision, identity review and uncertainty reason recorded",
+        "Roles: Equinix Hyperscale (2SV12) LLC owner current (permit OWNERNAME); DataBank operator current; Colovore operator current",
+        "Distinctness: no site, project, source record, identity mapping, pending queue change/hold, claims.tsv or sources/*-holds.json coordinate within 10 km except this fragment's own claims and Microsoft Alviso (3.85 km from SFO1, 5.78 km from Colovore, different operator/property); keyword screens for Great Oaks, SV12/18/19, SFO1, 5101 Lafayette, SJC01/SJC02, Space Park, 3060 Raymond, San Jose, Santa Clara hit only the sixty-eighth/q3-us-reits-p3 SV18 hold (held here, not added) and out-of-state Colovore/DataBank records",
+        "One project per new site; no status or context updates; all sources referenced; no third-party personal names, e-mails or phones in changes, sources, holds or notes",
+        "dryrun_fragment.py ok against eightythird: 762 sites, 814 projects, 4250 evidence"
+      ],
+      "residual_risks": [
+        "Equinix: permit lists do not document ISSUEDATE semantics (corroborated by the Last 30 Days list); the permit APN 706-02-054 is absent from the FY2026 parcel layer and is linked to 706-02-057 only by identical situs 123 Great Oaks Bl",
+        "Equinix: the new site carries only a permitted fit-out project although SV12/SV18 may already operate; the campus point lies on the SV18/SV19 parcel about 17 m from the SV12 parcel; adjoining no-situs parcel 706-02-058 excluded",
+        "DataBank and Colovore rest on operator pages' present-tense statements with archive-bounded version dates; the operating text is unchanged since at least May (DataBank) and July (Colovore) 2026",
+        "Colovore's 14 Sep 2026 date is a site-wide Webflow publish stamp, not a page-specific edit (page sitemap lastmod 19 Aug 2026); 6 MW per site on the market page vs 9 MW for SJC02 in the 2024 release, neither recorded",
+        "DataBank SFO1 facility page says N+1 power while the market page says 2N; unresolved",
+        "Colovore parcel 224-08-139 carries eight situs addresses, so the campus parcel union may include non-Colovore space"
+      ]
+    },
+    {
+      "fragment": "us-or-wa-p4",
+      "verdict": "accept",
+      "checks": [
+        "config current_dataset verified_construction_core/2026-10-26-research-eightythird at start and end; dry run ok against it (760 sites, 812 projects, 4244 evidence)",
+        "all 10 relied-on captures rehashed: file sha256 == .metadata.json sha256 == sources.json content_hash",
+        "decisive statement read in live capture stack-por03.html: '72MW of operational critical capacity' (present tense), article:modified_time 2026-08-27T18:33:58+00:00",
+        "dateModified bounded: IA copy 2026-05-13 (modified_time 2026-03-19, POR03D 220,000 vs 198,000 sq ft) below; campuses-sitemap lastmod 2026-08-27 for POR03 only (POR01 2026-09-24, POR02 2025-04-21) as second dated source; CDX has no copy after 2026-05-13",
+        "source kind company_disclosure (operator's own page); observation 2026-08-27 is 61 days before 2026-10-27, inside 85 days; observation <= published_at <= retrieval",
+        "scope: 72 MW operating capacity only (POR03A-C ratings 3 x 24 MW); POR03D near-term and POR03E/F expansion excluded; no opening date or future work used",
+        "identity read in captures: 2020-10-07 release 'broke ground ... POR03 campus' 'located at 4735 NE Starr Blvd'; POR03A completion release (datePublished 2022-02-07, dateline 18 Jan 2022, added to date_semantics); 2022-07-20 200 MW / 50-acre release; POR03D brochure via pdftotext (200 MW, 55 acres)",
+        "locator recomputed with shapely 2.1.1/pyproj 3.7.1 from raw outSR=4326 taxlot ring: centroid (-122.9395716, 45.5539075) exact, inside, valid, 17.535 geodesic acres, 407 x 207 m; native EPSG:2913 transform differs 1.28 m; assessor label point 1.2 m",
+        "MAF point 4735 NE STARR BLVD (source HILL) carries TLID 1N2210001900, inside taxlot, 66.5 m from centroid; taxlot PROP_CODE 023 matches Flexential data-centre taxlots on Starr Blvd",
+        "geometry facts file sha256 matches geometry_facts_sha256; Point, campus_locator, official_tax_parcel_centroid, direct_geometry; precision, identity review and uncertainty reason present",
+        "role STACK Infrastructure operator current from STACK's own POR03 page",
+        "distinctness: no STACK Oregon/POR0x/Starr 4735/taxlot hit in sites, projects, evidence, source-records, identity-mapping, 129 other queue fragments, claims.tsv (only this lane's claim) or sources/*-holds.json; only record within 5 km is Flexential Hillsboro Starr Campus 284 m N on different taxlot 1N2210002202 and operator",
+        "robots: stackinfra.com crawl-delay 10 respected (all gaps >= 11.1 s); web.archive.org robots 404; services2.arcgis.com robots 403 (unavailable under RFC 9309); gis.oregonmetro.gov (disallows ClaudeBot) not requested beyond robots.txt",
+        "no third-party personal data in changes, sources, holds or notes (no emails/phones; permit applicant and public commenter unnamed)",
+        "11 holds reviewed: reasons and reopen conditions present"
+      ],
+      "residual_risks": [
+        "status rests on an operator marketing page's present-tense capacity sentence whose wording predates the 27 Aug 2026 modification (unchanged since the March 2026 version); 72 MW is a rating, not observed load",
+        "72 MW-to-POR03A-C mapping is arithmetic, not stated by STACK",
+        "locator is the published-address taxlot only; the public layer has no ownership, so the other campus taxlots and building positions are unconfirmed",
+        "RLIS data read from Metro's ArcGIS Online services while Metro's own gis.oregonmetro.gov robots.txt disallows ClaudeBot; per-host robots compliance holds but the publisher's crawler preference on its own host is restrictive"
+      ]
+    }
+  ],
+  "packet_pins": {
+    "definitions/atlas-research-eightyfourth-2026-10-27.json": "6662f62c4e3666e640781d503ee94378b3d03bacc33541cd7873c70f70077baa",
+    "sources/research-countries-2026-10-27-eightyfourth-primary-sources.json": "f2fbe9b1e57ac32a24f632941da59f7dd61d4f3029a091bb71bb8015a4ac295c",
+    "sources/research-countries-2026-10-27-eightyfourth-actions.json": "73da92312b6b9313de5f6802be71379f212fab680969bfbde3193ef46be40ff4",
+    "sources/research-countries-2026-10-27-eightyfourth-holds.json": "cf08cf294ac6f9395fbac684a54eca8db2aeab8e7105b035770b05dad4bbe0e6"
+  },
+  "raw_captures_redistributed": false
+}

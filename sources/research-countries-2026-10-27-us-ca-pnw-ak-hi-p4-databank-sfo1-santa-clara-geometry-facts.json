@@ -1,0 +1,64 @@
+{
+  "candidate_id": "databank-sfo1-santa-clara-lafayette-street",
+  "decision": "Selected the centroid of Santa Clara County parcel 097-46-015 (situs 5101 LAFAYETTE ST, Santa Clara) as the locator of DataBank's SFO1 Silicon Valley data center at 5101 Lafayette Street.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -121.9660911,
+      37.4073288
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_tax_parcel_centroid",
+  "use_scope": "reviewed_site_locator",
+  "source_file": "local_data/country-research-us-ca-pnw-ak-hi-p4/sccgov-parcels-5101-lafayette.geojson",
+  "source_sha256": "70e19185e1a0216422c7dd0117dd9ce56a9ff8c0d436bd6ef5c126e482633b11",
+  "source_url": "https://data.sccgov.org/resource/ubcd-cewv.geojson?$where=situs_house_number='5101'%20AND%20situs_street_name='LAFAYETTE'",
+  "retrieved_at": "2026-10-26T21:50:45.414Z",
+  "selected_properties": {
+    "09746015": {
+      "situs": "5101 LAFAYETTE ST, SANTA CLARA 95054-1010",
+      "jurisdiction": "SANTA CLARA",
+      "number_of_situs_address": 1
+    },
+    "layer": "County of Santa Clara Parcels (Socrata ubcd-cewv, FY2026), queried by situs house number 5101 and street LAFAYETTE; exactly one parcel is returned"
+  },
+  "computed": {
+    "apns": [
+      "09746015"
+    ],
+    "parts": 1,
+    "geodesic_area_m2": 5639.3,
+    "geodesic_acres": 1.393,
+    "centroid_lon_lat": [
+      -121.9660911,
+      37.4073288
+    ],
+    "centroid_inside": true,
+    "crs_cross_check_shift_m": 0.0,
+    "extent_m": [
+      131.9,
+      85.4
+    ],
+    "bounds_lon_lat": [
+      -121.966853,
+      37.406961,
+      -121.965364,
+      37.407722
+    ],
+    "method": "Centroid computed in EPSG:32610 (WGS 84 / UTM 10N) and returned to WGS84; an EPSG:5070 cross-check gives the same point; geodesic area on the WGS84 ellipsoid.",
+    "tools": "pyproj 3.7.1, shapely 2.1.1"
+  },
+  "identity_bridge": [
+    "DataBank's SFO1 page gives '(SFO1) 5101 Lafayette Street - Santa Clara, CA 95054' (same address in the Internet Archive copy of 16 May 2026 and on the Silicon Valley market page).",
+    "The county parcel query for situs 5101 LAFAYETTE returns exactly one parcel, 097-46-015, in the City of Santa Clara (1.39 geodesic acres)."
+  ],
+  "unresolved": [
+    "The parcel layer has no owner or building fields; whether DataBank occupies the whole building is not published, so the point locates the parcel at the operator's address."
+  ],
+  "nearby_records": "No Atlas site, project, source record, identity-mapping entry, pending fragment change, claim or hold coordinate lies within 2 km; the nearest Atlas site is the Microsoft Alviso San Jose Datacenter Campus, about 3.85 km east-north-east. This fragment's Colovore Santa Clara point is about 3.56 km south-south-east.",
+  "consistency_checks": {
+    "datum": "WGS84 GeoJSON from the county Socrata service",
+    "geocoder_used": false
+  }
+}
