@@ -381,6 +381,8 @@ From 22 October 2026 sites are added continuously: researchers each work a narro
 
 `verified_construction_core/2026-10-26-research-seventysixth`: **721 sites and 768 projects in 63 countries**. Adds CtrlS Chennai Datacenter Park — existing operations (two-building park); Equinix BG2 Bogotá — Phase 1 (first 550 cabinets), existing data-centre operations. Refreshes Sify Noida 02 data center campus (partially operational).
 
+`verified_construction_core/2026-10-26-research-seventyseventh`: **731 sites and 778 projects in 63 countries**. Adds Mars Road Data Centre — proposed 140 MW data centre (SSD-108835458); Telehouse 151 Front Street West — existing carrier-hotel data-centre operations; Telehouse 250 Front Street West — existing data-centre operations; Telehouse 905 King Street West — existing data-centre operations; Crossroads Technology Campus — proposed seven-building data center campus (special use permit SUP26-0003); Project Skye / Upper Magnolia Green — approved future Google data center site (rezoning 25SN1038, Tract A); Project Loch / Watkins Centre — approved future Google data center site (rezoning 25SN1040); Cross Mill Center — two proposed data center buildings (site plan EPLAN-2026-0140); Madera Farm — proposed data center campus with electric substations (SUP2027-00002 / REZ2025-00007); Gardner Property — proposed data center buildings and electric substation (SUP2027-00008 / REZ2023-00018). Refreshes CDC Eastern Creek EC5 Current Build (operational); CDC Eastern Creek EC6 Current Build (operational).
+
 ## 25 October 2026
 
 `verified_construction_core/2026-10-25-research-sixtysecond` adds three commercial sites and

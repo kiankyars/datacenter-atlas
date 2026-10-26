@@ -1,0 +1,99 @@
+{
+  "candidate_id": "us-central-va-p4-crossroads-technology-campus",
+  "decision": "Selected the planar centroid of the union of the three Spotsylvania County tax parcels named in the SUP26-0003 staff report, the applicant's narrative and the proposed SUP conditions (37-A-20, 37-A-21 and 37-A-17D) as the campus locator for the proposed Crossroads Technology Campus data center campus.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -77.4507297,
+      38.2333408
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_tax_parcel_union_centroid",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-us-central-va-p4/spotsy-parcels-crossroads.json",
+  "source_sha256": "d88a9bd99af0a1ad16252a53291f8dd82b24b4acd84450d3887322f153bbea87",
+  "source_url": "https://services1.arcgis.com/Fs0uoy8dWAYsVfXh/arcgis/rest/services/SpotsyParcels/FeatureServer/0/query?where=MAP_Pin%20IN%20%28%2737-A-20%27%2C%2737-A-21%27%2C%2737-A-17D%27%2C%2737-A-64%27%29&outFields=CAMA_Pin%2CMAP_Pin%2CParcel%2CGPIN%2CDATE_MODIFY%2CShape__Area&returnGeometry=true&outSR=4326&f=json",
+  "retrieved_at": "2026-10-26T19:18:28.444Z",
+  "selected_properties": {
+    "parcels": [
+      "37-A-20",
+      "37-A-21",
+      "37-A-17D"
+    ]
+  },
+  "facts": {
+    "parcels": {
+      "37-A-20": {
+        "geodesic_acres": 144.11,
+        "features": 1,
+        "parts": 1,
+        "vertices": 123,
+        "valid": true
+      },
+      "37-A-21": {
+        "geodesic_acres": 26.5,
+        "features": 1,
+        "parts": 1,
+        "vertices": 54,
+        "valid": true
+      },
+      "37-A-17D": {
+        "geodesic_acres": 376.03,
+        "features": 1,
+        "parts": 1,
+        "vertices": 84,
+        "valid": true
+      }
+    },
+    "union_geometry_type": "Polygon",
+    "union_valid": true,
+    "union_geodesic_acres": 546.64,
+    "stated_application_acres": 555.05,
+    "centroid_inside": true,
+    "bounds_lon_lat": [
+      -77.463472,
+      38.223582,
+      -77.438991,
+      38.241509
+    ],
+    "approx_extent_m": [
+      2143,
+      1990
+    ],
+    "centroid_method": "shapely planar centroid in WGS84 longitude/latitude; the WGS 84 / UTM 18N (EPSG:32618) planar centroid transformed back differs by 0.02 m",
+    "excluded_parcel_37_A_64": {
+      "reason": "listed only in the county's public-hearing cases status report (with 633 acres and 2,278,500 sq ft); the 16 September 2026 staff report, the applicant's 26 August 2026 narrative and the proposed SUP conditions name only 37-A-20, 37-A-21 and 37-A-17D (about 555 acres)",
+      "geodesic_acres": 78.1,
+      "centroid_distance_to_selected_centroid_m": 1480.5,
+      "four_parcel_union_geodesic_acres": 624.74,
+      "four_parcel_union_parts": 6
+    },
+    "parcel_layer": {
+      "service": "SpotsyParcels/FeatureServer/0 (DBO.TaxParcels)",
+      "organisation": "Spotsylvania County GIS (ArcGIS Online organisation Fs0uoy8dWAYsVfXh, urlKey SpotsyGIS)",
+      "layer_metadata_file": "local_data/country-research-us-central-va-p4/spotsy-parcels-layer0.json",
+      "layer_metadata_sha256": "c2248e7a0622dad223e9d6c83c4bccf823a6ce2e7467688fe00bbb304d534fe4",
+      "organisation_file": "local_data/country-research-us-central-va-p4/agol-portal-Fs0uoy8dWAYsVfXh.json",
+      "organisation_sha256": "e3f6780a7d98a5551cbebf7fcd8fb359d5b27e98d7d2580f0f8420e0ccc83c87",
+      "disclaimer": "parcel boundaries are for graphic representation only and are not a survey"
+    },
+    "nearby_county_cases_not_in_atlas": {
+      "Massaponax Tech Campus (R25-0004, under review)": {
+        "parcel_union_centroid_distance_m": 2579.5,
+        "approx_boundary_gap_m": 52
+      },
+      "Summit Technology Park (R25-0003, under review)": {
+        "parcel_centroid_distance_m": 4343.9
+      },
+      "Pairmont Data Center Campus (R25-0014, under review)": {
+        "parcel_union_centroid_distance_m": 6034.9
+      },
+      "source_file": "local_data/country-research-us-central-va-p4/spotsy-parcels-nearby-dc-cases.json",
+      "source_sha256": "2f9e0b215652d4dc7e67e520653e50611754fc63209019f3951ce4b427d42802"
+    },
+    "distance_to_powerhouse_95_atlas_point_m": 18430.1,
+    "coordinate_reference_system": "WGS84 longitude/latitude as returned by the service with outSR=4326; no further transformation",
+    "verification_script": "make_geom.py (pyproj 3.7.1, shapely 2.1.1)"
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "topic": "Telehouse Canada Toronto data centres (905 King St W, 151 Front St W, 250 Front St W): City of Toronto One Address Repository address points",
+  "dataset": "City of Toronto Open Data, Address Points (Municipal) - Toronto One Address Repository, CKAN datastore resource 0b3756af-9caf-4f0f-ac28-9c6617adede4 (Address Points GeoJSON, WGS84 geometry), queried with the allowed /api/3/action/datastore_search path on 26 October 2026",
+  "dataset_point_semantics": "Package notes (local toronto-pkg-address-points.json): all address points are on the correct side of the street, correctly positioned relative to neighbouring addresses, and positioned within the parcel or the building footprint. No positional accuracy is published.",
+  "licence": "Open Government Licence - Toronto (local toronto-open-data-licence.html)",
+  "permit_bridge": "City of Toronto Building Permits - Active Permits (resource 6d0229af-bc54-46de-9c2b-26759b01dd05) records carry GEO_ID, defined in the dataset fields as the city-defined unique identifier for the property address; for each address every permit record carries one GEO_ID equal to the ADDRESS_POINT_ID of the single matching address point.",
+  "points": {
+    "905 King St W": {
+      "address_capture": "toronto-address-905-king-st-w.json",
+      "address_capture_sha256": "64508f1a7083ff2cb21def76afd07b5c58402ef2a83b9ba3f4137fb4a350e76b",
+      "matching_address_points": 1,
+      "ADDRESS_POINT_ID": 828395,
+      "ADDRESS_ID": 159368,
+      "ADDRESS_FULL": "905 King St W",
+      "ADDRESS_CLASS_DESC": "Land",
+      "MAINT_STAGE": "REGULAR",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.4122314417539,
+          43.6416749107656
+        ]
+      },
+      "permit_capture": "toronto-bp-active-addr-905-king-st-w.json",
+      "permit_capture_sha256": "78711bcd026204c936c910fb21778ddbaf758ef1f3b1a0e3cb66eb12d31c9dca",
+      "permit_records": 20,
+      "permit_geo_ids": [
+        "828395"
+      ],
+      "permit_geo_id_equals_address_point_id": true,
+      "nad83csrs_mtm10_epsg2952_xy_m": [
+        311881.36,
+        4833528.71
+      ],
+      "geo_id_capture": "toronto-address-geoid-828395.json",
+      "geo_id_capture_sha256": "01feabed01d83706323e5b0b5846593321897236f248a2cc963fde223ea4a0c8",
+      "geo_id_query_returns_same_point": true
+    },
+    "151 Front St W": {
+      "address_capture": "toronto-address-151-front-st-w-r2.json",
+      "address_capture_sha256": "89f792d88d37903c955b4723a060631e8ad4d1843b31529f673b167e3bbf1fda",
+      "matching_address_points": 1,
+      "ADDRESS_POINT_ID": 7929376,
+      "ADDRESS_ID": 1519274,
+      "ADDRESS_FULL": "151 Front St W",
+      "ADDRESS_CLASS_DESC": "Land",
+      "MAINT_STAGE": "REGULAR",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.383946611135,
+          43.6446834278069
+        ]
+      },
+      "permit_capture": "toronto-bp-active-addr-151-front-st-w.json",
+      "permit_capture_sha256": "60a19c88668013a5c29cc8a7686976a2314b6acaf7cd27267419c64b2126253c",
+      "permit_records": 17,
+      "permit_geo_ids": [
+        "7929376"
+      ],
+      "permit_geo_id_equals_address_point_id": true,
+      "nad83csrs_mtm10_epsg2952_xy_m": [
+        314162.9,
+        4833865.74
+      ],
+      "geo_id_capture": "toronto-address-geoid-7929376-r2.json",
+      "geo_id_capture_sha256": "5b271754fa98b5eadb4d54721e25897c3e390be742991a16b4ec764a5d96a435",
+      "geo_id_query_returns_same_point": true
+    },
+    "250 Front St W": {
+      "address_capture": "toronto-address-250-front-st-w-r3.json",
+      "address_capture_sha256": "6516296639bbc8dce8db2d0c91c7dd6a05861da46ff743332691d9618ae3de4a",
+      "matching_address_points": 1,
+      "ADDRESS_POINT_ID": 10598280,
+      "ADDRESS_ID": 160395,
+      "ADDRESS_FULL": "250 Front St W",
+      "ADDRESS_CLASS_DESC": "Land",
+      "MAINT_STAGE": "REGULAR",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.3877032025565,
+          43.6444179127846
+        ]
+      },
+      "permit_capture": "toronto-bp-active-addr-250-front-st-w.json",
+      "permit_capture_sha256": "43cbeb2fa072184ed76e2d173ac561e54c9fe39000221239d339500d2a1ee88e",
+      "permit_records": 118,
+      "permit_geo_ids": [
+        "10598280"
+      ],
+      "permit_geo_id_equals_address_point_id": true,
+      "nad83csrs_mtm10_epsg2952_xy_m": [
+        313859.87,
+        4833835.82
+      ]
+    }
+  },
+  "pairwise_geodesic_m": {
+    "905 King St W <-> 151 Front St W": 2306.5,
+    "905 King St W <-> 250 Front St W": 2002.4,
+    "151 Front St W <-> 250 Front St W": 304.5
+  },
+  "method": "Each address was queried by ADDRESS_FULL (exactly one record each); the 905 King and 151 Front points were also queried by ADDRESS_POINT_ID = permit GEO_ID and returned the identical record. The published WGS84 point is used unchanged (direct geometry). Geodesic distances on WGS84 and the informational NAD83(CSRS) / MTM zone 10 (EPSG:2952) coordinates were computed with pyproj 3.7.1; no locator is derived from them."
+}

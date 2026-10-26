@@ -1,0 +1,59 @@
+{
+  "candidate_id": "us-central-va-p4-project-loch-watkins-centre",
+  "decision": "Selected the planar centroid of Chesterfield County parcel 717705170100000 (750 Watkins Centre Parkway), the address the county gives for Project Loch / Watkins Centre, as the campus locator.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -77.6925279,
+      37.4956252
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_tax_parcel_centroid",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-us-central-va-p4/chesterfield-parcel-loch.json",
+  "source_sha256": "40df76d3d10875732942da202d58c971d5b3009f16dddf264082ee0fc8722f0e",
+  "source_url": "https://services3.arcgis.com/TsynfzBSE6sXfoLq/ArcGIS/rest/services/Cadastral_ProdA/FeatureServer/3/query?where=HouseNum%3D%27750%27%20AND%20UPPER%28StreetName%29%20LIKE%20%27%25WATKINS%20CENTRE%25%27&outFields=OBJECTID%2CName%2CMPN%2CTaxID%2CGPIN%2CDeededAcres%2CHouseNum%2CStreetName%2CStreetType%2CAddress%2CUseCode%2CEditDate&returnGeometry=true&outSR=4326&f=json",
+  "retrieved_at": "2026-10-26T19:21:40.031Z",
+  "selected_properties": {
+    "tax_id": "717705170100000",
+    "gpin": "7177051701",
+    "address": "750 WATKINS CENTRE PKWY",
+    "deeded_acres": 341.5
+  },
+  "facts": {
+    "parcel": {
+      "geodesic_acres": 341.49,
+      "features": 1,
+      "parts": 2,
+      "vertices": 334,
+      "valid": true
+    },
+    "union_geometry_type": "MultiPolygon",
+    "union_geodesic_acres": 341.49,
+    "parts_detail": "main part 304.52 acres contains the centroid; a second part of 36.98 acres lies about 30 m to the north-east",
+    "centroid_inside": true,
+    "bounds_lon_lat": [
+      -77.702951,
+      37.485286,
+      -77.685184,
+      37.5027
+    ],
+    "approx_extent_m": [
+      1571,
+      1933
+    ],
+    "centroid_method": "shapely planar centroid in WGS84 longitude/latitude; the WGS 84 / UTM 18N (EPSG:32618) planar centroid transformed back differs by 0.01 m",
+    "zoning_case_acres": "349.97 acres in 25SN1040 (about 261 acres for data center and accessory uses, about 89 acres buffer)",
+    "parcel_layer": {
+      "service": "Cadastral_ProdA/FeatureServer/3 (ParcelsEnriched)",
+      "organisation": "Chesterfield County (ArcGIS Online organisation TsynfzBSE6sXfoLq)",
+      "layer_metadata_file": "local_data/country-research-us-central-va-p4/chesterfield-cadastral-layer3.json",
+      "layer_metadata_sha256": "3a9664e3aa783f6c8a1ca8f3ad4c9d81c6e31f93dfab47b8d5c1631f6330de13",
+      "query_fields_note": "owner fields were not requested"
+    },
+    "distance_to_project_skye_locator_m": 8538.1,
+    "coordinate_reference_system": "WGS84 longitude/latitude as returned by the service with outSR=4326; no further transformation",
+    "verification_script": "make_geom.py (pyproj 3.7.1, shapely 2.1.1)"
+  }
+}

@@ -1,0 +1,131 @@
+{
+  "reviewer": "root",
+  "reviewed_at": "2026-10-26",
+  "decision": "accepted_for_integration",
+  "update": "verified_construction_core/2026-10-26-research-seventyseventh",
+  "base_dataset": "verified_construction_core/2026-10-26-research-seventysixth",
+  "process": "continuous: one researcher per beat, one adversarial verifier per fragment",
+  "fragments": [
+    {
+      "fragment": "au-nz-p3",
+      "verdict": "accept",
+      "checks": [
+        "config re-read: current_dataset verified_construction_core/2026-10-26-research-seventysixth (721 sites, 768 projects)",
+        "all 9 relied-on captures rehashed: sha256, byte count, URL and capture time match .metadata.json and sources.json content_hash/retrieved_at",
+        "geometry facts file sha256 708d20ef... matches sources.json; its 7 capture hashes match",
+        "amended SEARs PDF read (pdftotext): dated 31 August 2026, Our ref SSD-108835458, A/Director Industry Assessments as delegate of the Planning Secretary, modifies SEARs for 'proposed Mars Road Data Centre'; government_record; 56 days before 2026-10-26, inside the 85-day window (floor 2026-08-02)",
+        "announced only: project page and folder listings show Prepare EIS with no EIS, exhibition or determination; no permit or physical-work claim",
+        "SEARs request PDF read: four lots and areas match table; Total IT Load 140MW; 37.4 m; ~120 generators; statement that the site will operate independently of the Lane Cove West and Apollo Place data centres",
+        "issued SEARs (9 Apr 2026) Location field names only Lots 8-9 DP241877, Lot 100 DP622160 and Lot 1 DP732557, which matches the locator lot set",
+        "locator recomputed with pyproj 3.7.1 and shapely 2.1.1 in EPSG:7856 from the raw cadastre GeoJSON: 4 polygons, union one polygon of 15,032.7 m2, centroid (151.1446024, -33.8093435) within 0.002 m of the claimed point, inside the union, 33.2 m from its boundary, farthest vertex 107.0 m",
+        "property register re-checked: 3/4 Apollo Place and 87/91 Mars Road coincide with their lots (IoU 1.0); the portal point is in no lot and 34.0 m outside the union, so it is correctly excluded",
+        "SYD2 lot (Lot 1 DP1271404): 0 m2 overlap with the union and 126 m of shared boundary; point is 172.9 m from the SYD2 marker and not inside the SYD2 lot",
+        "distinctness: no Mars Road, SSD-108835458 or lot-ID match in sites, projects, evidence, source-records or identity-mapping of seventysixth; within 2 km only SYD2 (173 m) and Julius Avenue (1,215 m); queue matches are only au-nz-p1 holds and the already published global-operators-p1 SYD2; claims.tsv lists only this lane",
+        "16 Oct thirty-first hold (campus relationship) is addressed by the applicant's filed statement of independent operation; SYD2's own distinctness review treats Mars Road as a separate proposal; roles left empty because no developer is named",
+        "CDC deck PDF read (32 pages, cover 16 September 2026): slide 8 lists 'Sydney Eastern Creek 5 & 6' among delivered data centres 'now contributing meaningfully' to earnings; slide 6 rendered with pdftoppm shows EC1-EC6 in the operational-data-centre colour",
+        "Infratil release page captured, dated 16 Sept 2026 and links the deck; company_disclosure; as_of equals published_at; inside the window",
+        "EC5/EC6 refresh is strictly newer than the existing 2026-07-21 under_construction observation; scope (EC5 and EC6 projects on the shared campus point) is unchanged; no other queue fragment touches these keys",
+        "conflict reviewed: the MOD 3 assessment report (8 Sept) says only that the SSD-10330 expansion is 'currently under construction' and names no building; CDC's EC4 notice names EC5/EC6 as the remaining construction areas, which ties them to SSD-10330",
+        "no third-party personal names, phones or emails in changes, sources, holds, notes or geometry facts (officer, consultant and presenter names omitted)",
+        "dryrun_fragment.py: ok against seventysixth (722 sites, 769 projects)"
+      ],
+      "residual_risks": [
+        "Mars Road developer is unnamed. The site adjoins AirTrunk SYD2, and the SEARs request includes part of Lot 1 DP1271404 pending a boundary adjustment. If a later EIS or release ties it to AirTrunk or Apollo Place, the sites would need a merge review. The 16 Oct hold's literal reopen condition (an EIS or operator release naming the developer) is not met; acceptance rests on the applicant's filed statement of independent operation and the four-lot SEARs location",
+        "the Mars Road marker is the centroid of the four-lot union; any 1 Sirius Road strip later absorbed into the consolidated lot is excluded, and the building position is not georeferenced (uncertainty null, with a reason)",
+        "EC5/EC6 operational rests on CDC's deck statement that they are delivered and contributing to earnings. It does not show that every hall is fitted out, and the Department's 8 Sept MOD 3 report generically calls the expansion under construction",
+        "the dataset's EC5/EC6 identity relies on CDC's enumeration on a shared campus point, not on building footprints"
+      ]
+    },
+    {
+      "fragment": "ca-p3",
+      "verdict": "accept",
+      "checks": [
+        "Base read from site/config.json: verified_construction_core/2026-10-26-research-seventysixth (re-read before writing; unchanged)",
+        "All 15 relied-on captures rehashed: file SHA-256 == .metadata.json sha256 == sources.json content_hash; HTTP 200, no credentials, effective URL = URL",
+        "Decisive statement read in the raw blog capture: 'Telehouse Canada operates three carrier-neutral data centres in downtown Toronto' and the three named at 151 Front St W, 250 Front St W and 905 King St W; byline 2026/10/01, JSON-LD and article:published_time 2026-10-01T18:39:36Z, post-sitemap lastmod 2026-10-01 (newest post)",
+        "Source kind company_disclosure (operator's own site); observation 2026-10-01 = published_at, 25 days before 2026-10-26, inside 85 days; precedent: dated operator blogs (CtrlS, Digital Realty HKG11) already carry operational status in the base",
+        "Facility pages read: 151 Front 'Canada's largest carrier hotel' 205,000 sq ft/20 MW; 250 Front former CBC building 'now operates as a carrier-neutral colocation data centre' 82,000 sq ft/10 MW; 905 King 69,000 sq ft/8 MW; their dateModified values are not used as observations (no IA copy; CDX empty for all three)",
+        "KDDI subsidiary statement verified in the 12 May 2026 release capture (context only)",
+        "Locators recomputed from raw OAR captures: exactly one Land point per ADDRESS_FULL (7929376, 10598280, 828395), coordinates identical to changes.json; GEO_ID queries for 7929376 and 828395 return the same point; every permit record at each address carries the matching GEO_ID (17, 118, 20 records)",
+        "pyproj 3.7.1 geodesics reproduce 304.5 m, 2,002.4 m, 2,306.5 m and EPSG:2952 coordinates; nearest Atlas sites Microsoft Etobicoke 13.3-15.0 km and Vaughan 24.2-25.7 km",
+        "OAR catalogue notes confirm points lie within parcel or building footprint, no published accuracy: horizontal_uncertainty null with reason recorded; campus_locator scope for multi-tenant buildings, not a city centre, HQ or zone centroid",
+        "Distinctness: no Telehouse Canada, 151/250 Front, 905 King, Equinix TR or Cologix TOR record in sites/projects/evidence/source-records/identity-mapping; no other queue fragment or sources/*-holds.json entry adds these; ca-p1/48th Cologix hold names 151 Front only as a tenant suite building",
+        "One project per new site; roles operator Telehouse Canada, relationship_scope current, sourced to the dated article",
+        "Permit identity context verified (Cologix unit 407 2023, Switch and Data 2010, Allied 2016/2017, 905 King in-window data-hall permits held separately)",
+        "No personal data in changes, sources, holds or URLs (no emails/phones; permit builder names not copied)",
+        "robots.txt for www.telehouse.ca and ckan0 Toronto allow the fetched paths; compliance log shows no login, CAPTCHA or paywall",
+        "All sources referenced, none missing; dryrun_fragment.py ok (724 sites, 771 projects, 3,991 evidence)"
+      ],
+      "residual_risks": [
+        "A single marketing blog post supplies the operating observation for all three facilities; first-party and present-tense but not a release",
+        "151 Front and 250 Front are multi-tenant buildings; the address points locate buildings, not Telehouse floors; a later Cologix or Equinix suite at 151 Front must reuse this campus locator",
+        "OAR points have no published positional accuracy; footprints and parcels not retrieved",
+        "Capacities are operator-stated facility specifications, not IT load in service",
+        "905 King conversion hold window for the 24 August 2026 permit lapses around 22 November 2026"
+      ]
+    },
+    {
+      "fragment": "us-central-va-p4",
+      "verdict": "accept",
+      "checks": [
+        "config current_dataset re-read before and after review: verified_construction_core/2026-10-26-research-seventysixth",
+        "all 17 relied-on captures rehashed: SHA-256 equals sources.json content_hash and .metadata.json sha256; byte counts and URLs match; HTTP 200, no credentials",
+        "Crossroads: status report dated 10/14/2026 (file 2823, PDF p32, publishOn 2026-10-14T14:55Z) reads 'PC recommended approval 4-2 on 9/16/2026. BOS scheduled 11/17/2026' for SUP26-0003; 16 Sep packet (file 2802, publishOn 2026-09-16T15:23Z) staff report gives 2,087,000 sq ft, seven buildings, three substations, ~555 ac, 192 ac disturbed, vacant/forested; conditions tie the Facility to 37-A-20, 37-A-21, 37-A-17D; REC HEUF form 894 MW applicant estimate dated 7 Aug 2026",
+        "Skye/Loch: Chesterfield 26 Aug 2026 work-session slides (file 5225, publishOn 2026-08-26T13:43Z) p142 and p144 read '5/28/25: Rezoning approved', 'Google owner, operator', 'Construction start TBD'; p132 map shows both as approved / construction TBD; minutes (file 5292, published 2026-10-08) corroborate addresses",
+        "all three status sources are government_record; announced as_of 2026-09-16 (40 days) and 2026-08-26 (61 days) within the 85-day window; observation <= publication <= retrieval",
+        "no permitted claim: PC recommendation and 2025 rezonings correctly treated as non-consents; BOS 11/17 hearing and 'construction start TBD' not used for stage",
+        "locators recomputed independently from raw ArcGIS captures with pyproj 3.7.1 / shapely 2.1.1 (Esri ring orientation honoured): Crossroads union 546.64 ac single polygon, centroid -77.4507297 38.2333408 inside; Skye 885.87 ac, centroid -77.7590209 37.4398655 inside, DEQ form point inside at 428.6 m; Loch 341.49 ac two parts, centroid -77.6925279 37.4956252 inside 304.52-ac part; all match changes.json exactly",
+        "locator method/scope/derivation/authority match existing Atlas precedent for official parcel and parcel-union centroids (campus_locator, direct_geometry, official_source); uncertainty null with reason",
+        "identity: county gives 4201 Moseley Rd and 750 Watkins Centre Pkwy for Skye and Loch; parcel layer returns one parcel per address; 25SN1038/25SN1040 staff reports and Data Centers page consistent; 37-A-64 exclusion verified (78.10 ac, 1.48 km from centroid)",
+        "roles: Google owner current / operator intended from the county slide; allowed roles and scopes",
+        "distinctness: no hits for names, aliases, cases, parcels or addresses in seventysixth sites/projects/evidence/source-records/identity-mapping, other queue fragments or sources/*-holds.json beyond the us-va-p1 holds whose reopen conditions are now met; nearest Atlas sites 10.8 km (Crossroads), 38.7 km (Skye), 35.2 km (Loch); thirty-fourth batch definitions exclude Upper Magnolia and Watkins from Google Bermuda Hundred",
+        "successor checks read: Spotsylvania BOS 27 Oct agenda lacks SUP26-0003; Chesterfield BOS 23 Sep and PC 20 Oct agendas have no Loch/Skye item (26SN2174 battery at 730 Watkins Centre Pkwy is not a data center)",
+        "three new sites with one project each; all sources referenced; no third-party personal data in changes, sources, holds or notes",
+        "robots.txt saved per host; chesterfield.gov paths allowed and Crawl-delay 10 observed (>= 11 s between requests)",
+        "dryrun_fragment.py ok: 724 sites, 771 projects, 3993 evidence, base seventysixth"
+      ],
+      "residual_risks": [
+        "Crossroads as_of 2026-09-16 is the PC vote date carried by the 14 Oct status report (also supported by the 16 Sep packet); the 14 Oct report lists a larger 633-ac / 2,278,500 sq ft scope including 37-A-64",
+        "Google 'owner' scope current rests on the county's present-tense slide; title may sit with an affiliate (Skyward Holdings LLC named on the DEQ form)",
+        "the 4201 Moseley Rd and 750 Watkins Centre Pkwy parcels are post-rezoning consolidations not listed in the 2025 case parcel tables; identity rests on the county-given addresses",
+        "county parcel polygons carry no published positional accuracy; centroids represent 341-886 ac properties, not building positions",
+        "Spotsylvania 16 Sep PC minutes not yet published; BOS decision due 17 Nov 2026 could change status"
+      ]
+    },
+    {
+      "fragment": "us-loudoun-pw-p4",
+      "verdict": "accept",
+      "checks": [
+        "Base screened: verified_construction_core/2026-10-26-research-seventysixth (re-read from site/config.json at start and end).",
+        "All 15 relied-on captures rehashed: SHA-256 equals .metadata.json sha256 and sources.json content_hash; metadata url, captured_at and HTTP 200 match; no credentials; geometry-facts files match their recorded sha256.",
+        "Cross Mill: capture shows EPLAN-2026-0140 Engineering Plan, In Review, PlanApplicationDate 2026-09-17, description proposes two data center buildings; government_record; announced only; 54 days before 2026-10-26.",
+        "Madera Farm: capture shows SUP2027-00002 TransmittalDate 2026-08-19, Pending, SUP for data centers up to 75 ft and substations outside the DCOZ; layer definition confirms accepted cases stay listed until decision or withdrawal; 68 days old.",
+        "Gardner Property: capture shows SUP2027-00008 TransmittalDate 2026-09-24, Under Review, SUP for data centers and substation; REZ2023-00018 (2023) is context; 32 days old.",
+        "No item asserts consent or physical work; Cross Mill LandMARC issued table has only a 2012 sewage permit and submitted table is empty; status semantics are application/transmittal dates.",
+        "published_at equals capture date for layers without version timestamps, matching the Chicago data-portal and Loudoun LandMARC precedents in the base dataset; builder date checks pass.",
+        "Locators recomputed with pyproj 3.7.1 / shapely 2.1.1 from raw Esri rings: centroids match to under 1 cm, inside their polygons, UTM 18N centroid agrees; acreage 22.39 / 229.18 / 82.56 and extents reproduced.",
+        "Cross Mill polygon equals union of seven whole parcels (symmetric difference 0 acres), no overlap with Project Celtics polygons (8.55 m min separation; Celtics centroid equals Atlas locator 991 m away).",
+        "Madera six named GPINs wholly inside (229.18 ac); Gardner 13 parcels wholly inside plus 6.34 ac unparcelled; Gardner case polygon identical to county campus polygon; Amazon Village Place 18.1 m and NTT Grove 333.7 m are separate cases.",
+        "Distinctness: no name, alias, case number, PIN/GPIN or road match in base sites/projects/evidence/source-records/identity-mapping, sources/*.json including holds, or other queue fragments; nearest Atlas points 992 m (Celtics), 9.4 km (Yondr Hornbaker), 379 m (PW Digital Gateway locality_context Wikipedia Gainesville point, different Pageland Lane cases).",
+        "Scope: three new sites, one project each; Point campus_locator, direct_geometry, official_source, precision/identity review/uncertainty reason recorded; no roles asserted; commercial data-centre development, not demonstrators or institutional HPC.",
+        "No third-party personal data in changes, sources, holds or notes; robots.txt 404 on both data hosts fetched before first query.",
+        "Fixed quote fidelity: Cross Mill status summary no longer silently corrects the county typo inside quotation marks; source summary marks it [sic].",
+        "dryrun_fragment.py ok: 724 sites, 771 projects, base seventy-sixth."
+      ],
+      "residual_risks": [
+        "Application/transmittal dates are internal county record dates; neither GIS layer carries a version or publication timestamp.",
+        "Gardner Property was already a data-centre rezoning case since March 2023; the in-window SUP transmittal refreshes the announced observation rather than marking first announcement.",
+        "Applicants, developers and operators are undisclosed; staff reports and hearing records on eservice.pwcgov.org and Loudoun portals were not reviewed (robots 403 or disallow).",
+        "Gardner case GPIN list is truncated in the layer; 6.34 acres fall in the unparcelled placeholder.",
+        "Esri date-field time reference (Eastern with DST) leaves sub-day ambiguity only; day values are unaffected."
+      ]
+    }
+  ],
+  "packet_pins": {
+    "definitions/atlas-research-seventyseventh-2026-10-26.json": "fb64c1dfe159e83700955dbf37cea7e5464d09733ce39aebf853ad6098f3b88d",
+    "sources/research-countries-2026-10-26-seventyseventh-primary-sources.json": "7cf0ae67a20073784c4248f5d976fbcf83cb8484853d36829ad5f360d59719d0",
+    "sources/research-countries-2026-10-26-seventyseventh-actions.json": "8f69682ae0b2ae0d013410164849cb4b8bbaac6af727b41829b1734bd0f7b896",
+    "sources/research-countries-2026-10-26-seventyseventh-holds.json": "2100b00fd47219dd7c830ef3676cfe05c89e8dac3ee0bb58ad081d0610898cd2"
+  },
+  "raw_captures_redistributed": false
+}
