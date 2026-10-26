@@ -1,0 +1,82 @@
+{
+ "candidate_id": "us-atlanta-p4-vantage-stacks-road",
+ "decision": "Selected the planar centroid of Fulton County tax parcel 09F260101070774 (4380 Stacks Rd # Rear, 20.979 acres, owner Vantage Data Centers GA11 LLC) as the project locator for the City of South Fulton's \"Vantage - Stacks Rd\" data-center project.",
+ "geometry": {
+  "type": "Point",
+  "coordinates": [
+   -84.5309347,
+   33.6049238
+  ]
+ },
+ "authority_class": "official_source",
+ "scope_class": "official_tax_parcel_centroid",
+ "use_scope": "project_locator",
+ "source_file": "local_data/country-research-us-atlanta-p4/fulton-parcels-vantage-data-centers-wgs84.json",
+ "source_sha256": "74b9161b8a7003366ab67e50002da7ab9876834fa550fd8d12f12da256b1c799",
+ "source_url": "https://services1.arcgis.com/AQDHTHDrZzfsFsB5/arcgis/rest/services/Tax_Parcels/FeatureServer/0/query?where=Owner%20LIKE%20%27VANTAGE%20DATA%25%27&outFields=ParcelID,TaxYear,Address,Owner,TaxDist,LUCode,ClassCode,LandAcres&returnGeometry=true&outSR=4326&f=json",
+ "retrieved_at": "2026-10-26T19:55:47.010Z",
+ "native_source_file": "local_data/country-research-us-atlanta-p4/fulton-parcels-vantage-data-centers-native.json",
+ "native_source_sha256": "c9710dd7aecadfc491acf03f5c8b3935fd6d5bdcce9f73937ace25c9dac53b16",
+ "layer": "Fulton County GIS \"Tax Parcels\" FeatureServer layer 0 (services1.arcgis.com/AQDHTHDrZzfsFsB5; tax year 2027 rows; layer data last edited 21 October 2026); native CRS NAD83 Georgia West ftUS (EPSG:2240).",
+ "selected_properties": {
+  "09F260101070774": {
+   "site_address": "4380 STACKS RD # REAR",
+   "owner": "VANTAGE DATA CENTERS GA11 LLC",
+   "tax_year": 2027,
+   "land_use_code": "400",
+   "class_code": "I5",
+   "land_acres_attribute": 20.979,
+   "geodesic_acres": 21.898,
+   "parts": 1
+  }
+ },
+ "identity_bridge": [
+  "The City of South Fulton's COSF Data Centers layer (published 3 August 2026) lists project \"Vantage - Stacks Rd\" at 4380 Stacks Rd, owner \"Vantage Data Centers Management Company, LLC\", 23.65 acres, M2 zoning, a 696,981 sq ft data-center building and power substation; its mapped point lies inside parcel 09F260101070774, 155 m from the selected point.",
+  "The Fulton County parcel layer has exactly one parcel whose owner name begins with VANTAGE DATA: 09F260101070774 at 4380 Stacks Rd # Rear, owned by Vantage Data Centers GA11 LLC."
+ ],
+ "unresolved": [
+  "The city gives 23.65 acres; the Vantage-owned parcel is 20.979 attribute acres. An adjoining 2.683-acre parcel at 0 Stacks Rd held by the South Fulton Development Authority (52 m from the city point) would make up the difference, but no record ties it to the project, so it is excluded from the locator.",
+  "The building, substation and cleared area within the parcel are not located; the point locates the Vantage-owned parcel."
+ ],
+ "computed": {
+  "selected_point": [
+   -84.5309347,
+   33.6049238
+  ],
+  "parcel_ids": [
+   "09F260101070774"
+  ],
+  "per_parcel_geodesic_acres": {
+   "09F260101070774": 21.898
+  },
+  "union_parts": 1,
+  "union_valid": true,
+  "union_geodesic_acres": 21.898,
+  "centroid_inside_union": true,
+  "union_bounds_lon_lat": [
+   -84.532914,
+   33.603003,
+   -84.528835,
+   33.60705
+  ],
+  "union_extent_m_ew_ns": [
+   379,
+   449
+  ],
+  "native_epsg2240_centroid_transformed_lon_lat": [
+   -84.5309304,
+   33.6049174
+  ],
+  "native_crosscheck_distance_m": 0.81,
+  "reference_point_cosf_vantage_stacks_rd_project_point": {
+   "lon_lat": [
+    -84.531165,
+    33.606311
+   ],
+   "inside_union": true,
+   "distance_to_selected_point_m": 155.3
+  },
+  "method": "Planar centroid of the WGS84 (outSR=4326) Fulton County parcel polygon owned by Vantage Data Centers GA11 LLC (ESRI rings oriented: clockwise outer ring, counter-clockwise hole); cross-checked against the centroid of the native EPSG:2240 polygon transformed with pyproj; geodesic area on the WGS84 ellipsoid.",
+  "tools": "pyproj 3.7.1, shapely 2.1.1"
+ }
+}

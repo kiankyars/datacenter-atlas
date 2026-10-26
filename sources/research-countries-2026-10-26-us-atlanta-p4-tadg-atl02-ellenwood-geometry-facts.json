@@ -1,0 +1,76 @@
+{
+ "candidate_id": "us-atlanta-p4-tadg-atl02-ellenwood",
+ "decision": "Selected the planar centroid of Clayton County tax parcel 12236B A001 (4350 E Tanners Church Rd, Ellenwood; 34.683 acres) as the project locator for the EPD-listed facility \"TADG - ATL02 / Ellenwood\".",
+ "geometry": {
+  "type": "Point",
+  "coordinates": [
+   -84.3042936,
+   33.6374056
+  ]
+ },
+ "authority_class": "official_source",
+ "scope_class": "official_tax_parcel_centroid",
+ "use_scope": "project_locator",
+ "source_file": "local_data/country-research-us-atlanta-p4/clayton-parcel-12236B-A001-wgs84.json",
+ "source_sha256": "49d427e00faaae864c9d8152e1ef7d1d816554502feee0b08039a0ba2a94140b",
+ "source_url": "https://services5.arcgis.com/m528W8U8YDYeMPrQ/arcgis/rest/services/Clayton_GIS_SD_TAXPARCELS/FeatureServer/0/query?where=PARCELID%3D%2712236B%20A001%27&outFields=PARCELID,STREETNO,STREETNAME,SITEADDRES,SITECITY,ACERAGE,ZONE,LANDUSED,OWNERNME,SALEDATE&returnGeometry=true&outSR=4326&f=json",
+ "retrieved_at": "2026-10-26T19:50:22.028Z",
+ "layer": "Clayton County GIS \"Clayton_GIS_SD_TAXPARCELS\" FeatureServer layer 0 on the Clayton County ArcGIS Online organisation (services5.arcgis.com/m528W8U8YDYeMPrQ); native spatial reference WGS84 (EPSG:4326); layer data last edited 7 March 2024.",
+ "selected_properties": {
+  "12236B A001": {
+   "site_address": "4350 E TANNERS CHURCH RD, ELLENWOOD",
+   "acreage_attribute": 34.683,
+   "geodesic_acres": 35.104,
+   "zoning": "PUD",
+   "land_use_attribute": "Residential vacant",
+   "owner_attribute": "ANVIL BLOCK LAND PARTNERS III LLC (sale date 29 December 2021 in a layer last edited March 2024; not asserted as the current owner)",
+   "parts": 1
+  }
+ },
+ "identity_bridge": [
+  "Georgia EPD public advisory PA0926-4 lists, for Clayton County, Facility Name \"TADG - ATL02 / Ellenwood\", Application No. 30104, Facility Address 4350 E Tanners Church Road, Ellenwood, 30294, Proposed Permit to \"Construct and operate an advanced technology ecosystem data center\".",
+  "Clayton County's Zoning Projects layer record BOC-2408-0439, \"TA Realty - Ellenwood Data Center\" (status Approved, application date 2 August 2024), describes a request by TA Realty for approval of a site plan, height increase and modifications for a proposed data center at 4350 E Tanners Church Rd in the Ellenwood PUD-MU/Data Center district, \"±34.68 acres, is further known as Parcel 12236B A001\"; its mapped point lies inside the parcel, 57 m from the selected point.",
+  "TA Digital Group's Georgia portfolio page lists ATL02 as a 35-acre, one-building, 725,000 sq ft project in Clayton County, Ellenwood, GA, tying the TADG/ATL02 permit name to TA Realty's digital-infrastructure arm.",
+  "The Clayton tax-parcel layer has exactly one parcel at 4350 E Tanners Church Rd (12236B A001)."
+ ],
+ "unresolved": [
+  "The building footprint, substation position and any construction area within the parcel are not published; the point locates the 34.7-acre property, not the planned building.",
+  "The tax-parcel layer was last edited in March 2024, so its owner field may predate any later conveyance; ownership is not used for identity."
+ ],
+ "computed": {
+  "selected_point": [
+   -84.3042936,
+   33.6374056
+  ],
+  "parcel_ids": [
+   "12236B A001"
+  ],
+  "per_parcel_geodesic_acres": {
+   "12236B A001": 35.104
+  },
+  "union_parts": 1,
+  "union_valid": true,
+  "union_geodesic_acres": 35.104,
+  "centroid_inside_union": true,
+  "union_bounds_lon_lat": [
+   -84.306197,
+   33.634812,
+   -84.302221,
+   33.639526
+  ],
+  "union_extent_m_ew_ns": [
+   369,
+   523
+  ],
+  "reference_point_clayton_zoning_project_point_BOC-2408-0439": {
+   "lon_lat": [
+    -84.30442897722014,
+    33.637908055858134
+   ],
+   "inside_union": true,
+   "distance_to_selected_point_m": 57.1
+  },
+  "method": "Planar centroid of the Clayton County tax-parcel polygon (layer native spatial reference WGS84, EPSG:4326, so no coordinate transformation is involved); geodesic area on the WGS84 ellipsoid.",
+  "tools": "pyproj 3.7.1, shapely 2.1.1"
+ }
+}

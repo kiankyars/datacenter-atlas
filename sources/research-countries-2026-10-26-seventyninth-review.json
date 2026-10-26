@@ -1,0 +1,70 @@
+{
+  "reviewer": "root",
+  "reviewed_at": "2026-10-26",
+  "decision": "accepted_for_integration",
+  "update": "verified_construction_core/2026-10-26-research-seventyninth",
+  "base_dataset": "verified_construction_core/2026-10-26-research-seventyeighth",
+  "process": "continuous: one researcher per beat, one adversarial verifier per fragment",
+  "fragments": [
+    {
+      "fragment": "us-atlanta-p4",
+      "verdict": "accept",
+      "checks": [
+        "all 13 relied-on captures rehashed: sha256 matches .metadata.json and content_hash; URLs, HTTP 200 and retrieved_at match",
+        "geometry facts files match their recorded sha256",
+        "TADG: EPD PA0926-4 PDF read with pdftotext; TADG - ATL02 / Ellenwood, app 30104, 4350 E Tanners Church Rd, construct and operate data center; EPD index dates PA0926-4 23 Sep 2026 (104.06 KB = 106559 bytes); 33 days old; government_record; announced only",
+        "TADG: Clayton zoning BOC-2408-0439 (TA Realty, parcel 12236B A001, 34.68 ac) and TA Digital portfolio (ATL02 Ellenwood 35 ac) bridge identity; only parcel at 4350 E Tanners Church Rd; no permitted claimed; no roles",
+        "DataBank: ATL5 page article:modified_time 2026-08-13 matches sitemap lastmod; Currently under construction sentence present; IA copy 2026-03-09 (modified 2026-03-04) has different content so the version postdates 9 Mar; City of South Fulton layer (3 Aug 2026) independently says ATL5 construction started July 2024 - ongoing; ATL6 and market pages future tense; 74 days old",
+        "DataBank roles: operator intended (ATL5 page), owner current AIO DB Boulder LLC (Fulton parcels); City layer names AIO DB Boulder as ATL5 owner",
+        "Vantage: City of South Fulton item created 2026-08-03T13:43:38Z, modified 13:44:21Z, layer dataLastEditDate 2026-08-03T13:43:44Z; status Land has been cleared (LDP forecast not used); clearing as of 3 Aug; 84 days old (within 85)",
+        "Vantage: only VANTAGE DATA owner parcel 09F260101070774 (4380 Stacks Rd # Rear, Vantage Data Centers GA11 LLC); City point inside, 155 m",
+        "locators recomputed independently with pyproj 3.7.1/shapely 2.1.1: TADG (-84.3042936, 33.6374056) 35.104 geodesic ac; DataBank union (-84.5383195, 33.7426011) inside Lot 2, 89.215 ac, native EPSG:2240 0.82 m; Vantage (-84.5309347, 33.6049238) 21.898 ac, native 0.81 m; all centroids inside parcels; reference points inside",
+        "distinctness rescreened against verified_construction_core/2026-10-26-research-seventyeighth (base changed during verification), all queue changes/holds, claims.tsv and sources/*-holds.json: no name/parcel/address matches; nearest Atlas sites 15.4 km, 6.9 km, 3.5 km (Microsoft Union City at 4810 Stonewall Tell Rd, locality point, different address and developer)",
+        "no private individuals names in changes, sources, holds or notes; parcel-owner captures with private names kept local only",
+        "distinctness_review text appended with the seventy-eighth rescreen; dryrun ok against seventy-eighth (740 sites, 792 projects)"
+      ],
+      "residual_risks": [
+        "Vantage clearing observation (3 Aug 2026) leaves the 85-day window after 27 Oct 2026 and the builder 90-day limit after 1 Nov 2026; publish promptly",
+        "City of South Fulton layer attributes may have been compiled before their 3 Aug 2026 publication; dated by ArcGIS item and edit timestamps, not inspection",
+        "DataBank under construction sentence was unchanged since the March 2026 version; the 13 Aug date relies on the page modification time, corroborated by the City 3 Aug record",
+        "DataBank campus locator includes Tract D on same-owner and 95-acre grounds; the selected point lies inside Lot 2 (the stated address parcel)",
+        "Clayton parcel layer data last edited March 2024; parcel may since have been replatted",
+        "Older July 2026 open-seed lineage had DataBank ATL5/ATL6 records; not in the current dataset or identity mapping"
+      ]
+    },
+    {
+      "fragment": "us-west-tx-p4",
+      "verdict": "accept",
+      "checks": [
+        "All 8 relied-on captures rehashed: SHA-256 matches .metadata.json and source content_hash; byte counts match",
+        "21 Sep 2026 New Era IR feed item (PressReleaseId 1794, PressReleaseDate 09/21/2026) read: 20-year 200-207 MW Luminant/Vistra PPA for Phase 1 of TCDC, Odessa plant immediately adjacent; company_disclosure; 35 days before 2026-10-26",
+        "14 Aug release read: county permits and TCEQ grading NOI with no reference/date/scope, grading only intended -> permitted/site_preparation correctly not asserted and held",
+        "Locator recomputed from raw TxGIO identify response: 4 TEXAS CRITICAL DATA CENTERS LLC records (3 parcels), EPSG:3083 union is one polygon, centroid -102.3049819, 31.8350404 inside, 403.922 geodesic acres, max vertex 1181.2 m - exact match",
+        "Neighbouring parcel 21664.00020.00000 (La Frontera Holdings, legal description includes 'VISTRA ENERGY') 45.6 m from TCDC union, corroborating the adjacency statement",
+        "Ector owner sweep (406 tile files, 16 limit tiles subdivided) re-scanned: only the three TCDC parcels; 'New Era Land Services LLC' lot unrelated",
+        "Locator labels (direct_geometry, official_tax_parcel_union_centroid, official_source, campus_locator) match 32 published precedents; uncertainty reason recorded",
+        "Distinctness: no TCDC/New Era/Odessa/Ector/Project Llano hits in seventyeighth sites/projects/evidence/source-records/identity-mapping, other queue fragments, claims (other lanes) or sources/*-holds.json; no Atlas, queued or held coordinate within 50 km (nearest Cipher Black Pearl 73.8 km)",
+        "Roles: Texas Critical Data Centers LLC owner/current (parcel owner of record), New Era owner/current (release calls TCDC New Era's project); both allowed values",
+        "Crusoe 9 Oct 2026 post read (datePublished/dateModified Oct 09 2026; sitemap lastmod 2026-10-09): developer states construction broke ground June 2025 and 5,500+ laborers on site daily building Google's Armstrong County campus; company_disclosure; strictly newer than existing 2026-10-01; same campus scope (Goodnight wind link, Claude, Google)",
+        "TDLR TABS Ector listing (19 projects, 1 Aug-26 Oct 2026) has no data-centre registration",
+        "Privacy fix: historical preemption-survey grantee names in parcel legal descriptions redacted from sources.json summary and geometry facts file; geometry_facts_sha256 updated to bf07e1ff...a769",
+        "No private individuals' names, phones or emails remain in sources, changes, holds or geometry facts",
+        "dryrun_fragment.py ok against verified_construction_core/2026-10-26-research-seventyeighth (738 sites, 790 projects, 4094 evidence)"
+      ],
+      "residual_risks": [
+        "TCDC mapped parcels total 403.9 geodesic acres vs the stated 493 acres (a duplicate 46960.00010.00000 account record gives 205.13 legal acres on a 103.9-acre polygon); unmapped land could shift the true campus centroid by a few hundred metres",
+        "TCDC announced status rests on a PPA release; county permits are unidentified and grading may have begun without a dated primary statement",
+        "Crusoe 5,500-worker statement is present tense in a post describing an open house held a few weeks earlier; observation dated at publication",
+        "Crusoe pages updated after 9 Oct (data-centers page, 21-22 Oct newsroom items) were not all captured; a later operational statement for Armstrong County cannot be fully excluded",
+        "New Era detail pages and q4cdn PDFs were not accessible; release text relies on the company's IR feed JSON"
+      ]
+    }
+  ],
+  "packet_pins": {
+    "definitions/atlas-research-seventyninth-2026-10-26.json": "5fb2d9cbd21e495ccae195321ca8b722f9b0ae9cf354935fd88b89fdbabd0eb7",
+    "sources/research-countries-2026-10-26-seventyninth-primary-sources.json": "6cc762ab478242b4a94d1bca97c516f6f536331130a7a5f180581a1a65438267",
+    "sources/research-countries-2026-10-26-seventyninth-actions.json": "bda08f51b3619970c60ca8dac6c6ec8203a76476ed1dbdec66bd34c3da041c1c",
+    "sources/research-countries-2026-10-26-seventyninth-holds.json": "cbbdeedbf8fb7c375e2e50e41f8bd2baf5639e903c65bf591623bc82ee361f1a"
+  },
+  "raw_captures_redistributed": false
+}

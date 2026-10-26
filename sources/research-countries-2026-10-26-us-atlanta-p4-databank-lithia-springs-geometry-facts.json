@@ -1,0 +1,98 @@
+{
+ "candidate_id": "us-atlanta-p4-databank-lithia-springs",
+ "decision": "Selected the planar centroid of the union of the two Fulton County tax parcels owned by AIO DB Boulder LLC, 14F0059 LL0204 (4764 Bakers Ferry Rd SW Lot 2, 85.758 acres) and 14F0059 LL0188 (0 Bakers Ferry Rd SW Tr D, 9.368 acres), as the campus locator for DataBank's Lithia Springs Campus (ATL5 and ATL6).",
+ "geometry": {
+  "type": "Point",
+  "coordinates": [
+   -84.5383195,
+   33.7426011
+  ]
+ },
+ "authority_class": "official_source",
+ "scope_class": "official_tax_parcel_union_centroid",
+ "use_scope": "campus_locator",
+ "source_file": "local_data/country-research-us-atlanta-p4/fulton-parcels-aio-db-boulder-wgs84.json",
+ "source_sha256": "2dbc90f63cca2077a3a75add8a7a45c6e793be9ceaee014b8fe56db3b73c1653",
+ "source_url": "https://services1.arcgis.com/AQDHTHDrZzfsFsB5/arcgis/rest/services/Tax_Parcels/FeatureServer/0/query?where=Owner%20LIKE%20%27AIO%20DB%25%27&outFields=ParcelID,TaxYear,Address,Owner,TaxDist,LUCode,ClassCode,LandAcres&returnGeometry=true&outSR=4326&f=json",
+ "retrieved_at": "2026-10-26T19:56:02.752Z",
+ "native_source_file": "local_data/country-research-us-atlanta-p4/fulton-parcels-aio-db-boulder-native.json",
+ "native_source_sha256": "b4b9e2238bb84bb002a671acb5145f8533c834a8773d93f27ad74bc33f3186b3",
+ "layer": "Fulton County GIS \"Tax Parcels\" FeatureServer layer 0 (services1.arcgis.com/AQDHTHDrZzfsFsB5; tax year 2027 rows; layer data last edited 21 October 2026); native CRS NAD83 Georgia West ftUS (EPSG:2240).",
+ "selected_properties": {
+  "14F0059  LL0204": {
+   "site_address": "4764 BAKERS FERRY RD SW LOT 2",
+   "owner": "AIO DB BOULDER LLC",
+   "tax_year": 2027,
+   "land_use_code": "49C",
+   "class_code": "I5",
+   "land_acres_attribute": 85.758,
+   "geodesic_acres": 78.204,
+   "rings": "one outer ring with one interior hole of about 3.9 acres"
+  },
+  "14F0059  LL0188": {
+   "site_address": "0 BAKERS FERRY RD SW TR D",
+   "owner": "AIO DB BOULDER LLC",
+   "tax_year": 2027,
+   "land_use_code": "400",
+   "class_code": "I4",
+   "land_acres_attribute": 9.368,
+   "geodesic_acres": 11.011,
+   "rings": "one outer ring"
+  }
+ },
+ "identity_bridge": [
+  "DataBank's ATL5 and ATL6 pages give the campus address \"4764 Bakers Ferry Rd. SW - South Fulton, GA 30336\"; DataBank's Atlanta market page describes the Lithia Springs Campus as 95 acres with a 180MW onsite Georgia Power substation that will host ATL5 and ATL6.",
+  "The Fulton County parcel layer has one parcel at 4764 Bakers Ferry Rd SW (14F0059 LL0204, Lot 2, 85.758 acres, land-use code 49C, the same code as DataBank's ATL2 parcel and the ATL4 parcel at 200 Selig Dr SW), owned by AIO DB Boulder LLC; the only other parcel of that owner is the adjacent Tract D (9.368 acres). Together they total 95.126 attribute acres, matching DataBank's 95 acres.",
+  "The City of South Fulton's COSF Data Centers layer (published 3 August 2026) lists project \"ATL5\" at 4762 Bakers Ferry Rd with owner \"AIO DB Boulder, LLC\", 85.69 acres and status \"Construction started July 2024 - ongoing\"; its point lies inside the union, 62 m from the selected point."
+ ],
+ "unresolved": [
+  "The two buildings, the substation and the construction area are not located within the parcels; the point locates the two-parcel campus property, not ATL5 or ATL6.",
+  "The 3.9-acre interior hole in Lot 2 belongs to another parcel that is not identified; Tract D is separated from Lot 2 by a gap of about 46 m.",
+  "DataBank ATL4 (200 Selig Dr SW, 17.92-acre parcel owned by Data Center Fulton LLC) lies about 1.2 km to the north-west and is a separate site, not part of this locator."
+ ],
+ "computed": {
+  "selected_point": [
+   -84.5383195,
+   33.7426011
+  ],
+  "parcel_ids": [
+   "14F0059  LL0204",
+   "14F0059  LL0188"
+  ],
+  "per_parcel_geodesic_acres": {
+   "14F0059  LL0204": 78.204,
+   "14F0059  LL0188": 11.011
+  },
+  "union_parts": 2,
+  "union_valid": true,
+  "union_geodesic_acres": 89.215,
+  "centroid_inside_union": true,
+  "union_bounds_lon_lat": [
+   -84.541665,
+   33.738495,
+   -84.535332,
+   33.747503
+  ],
+  "union_extent_m_ew_ns": [
+   587,
+   999
+  ],
+  "parcels_touch": false,
+  "nearest_gap_between_parcels_m": 45.7,
+  "native_epsg2240_centroid_transformed_lon_lat": [
+   -84.5383153,
+   33.7425946
+  ],
+  "native_crosscheck_distance_m": 0.82,
+  "reference_point_cosf_atl5_project_point": {
+   "lon_lat": [
+    -84.538401,
+    33.743156
+   ],
+   "inside_union": true,
+   "distance_to_selected_point_m": 62.0
+  },
+  "method": "Planar centroid of the shapely union of the two WGS84 (outSR=4326) Fulton County parcel polygons owned by AIO DB Boulder LLC (ESRI rings oriented: clockwise outer ring, counter-clockwise hole); cross-checked against the centroid of the native EPSG:2240 union transformed with pyproj; geodesic areas on the WGS84 ellipsoid.",
+  "tools": "pyproj 3.7.1, shapely 2.1.1"
+ }
+}
