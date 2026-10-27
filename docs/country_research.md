@@ -431,6 +431,8 @@ From 22 October 2026 sites are added continuously: researchers each work a narro
 
 `verified_construction_core/2026-10-27-research-hundredfirst`: **834 sites and 900 projects in 63 countries**. Adds NTT DATA Keihanna OSK11 Data Center — existing operations; MC Digital Realty KIX10 (Digital Osaka 1) — existing operations; MC Digital Realty KIX13 (Digital Osaka 4) — existing operations; Keppel DC Dublin 1 — existing colocation data-centre operations; Keppel DC Dublin 2 — existing colocation data-centre operations.
 
+`verified_construction_core/2026-10-27-research-hundredsecond`: **838 sites and 906 projects in 63 countries**. Adds SNC PARAY DC — planned 55 MW IT data centre (12 data halls, Hines) on the former Air France training site; Edged Marseille Saint-Louis — planned nine-hall data centre (R+3) with 12 emergency generators (ESL PROPERTIES, Edged Energy); Telehouse TH3 Paris Magny — new P34 data-centre building (extension under environmental-authorisation and building-permit review, PC 078 356 26 E0004); Global Switch Madrid — existing data-centre operations (Madrid 1, Calle Yécora 4); Nabiax Julián Camarillo 8 Campus — existing data-centre operations (modules 1-3); Nabiax Alcalá Data Center ADC1 and ADC2 — existing data-centre operations.
+
 ## 25 October 2026
 
 `verified_construction_core/2026-10-25-research-sixtysecond` adds three commercial sites and

@@ -1,0 +1,67 @@
+{
+  "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+  "candidate": "Global Switch Madrid data centre, Calle Yécora 4, 28022 Madrid, Spain",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -3.5747489,
+      40.4479798
+    ]
+  },
+  "coordinate_reference_system": "Source parcel in EPSG:25830 (ETRS89 / UTM 30N) as served by the Catastro INSPIRE cadastral-parcel WFS (GetParcel, srsname EPSG::25830; the response declares http://www.opengis.net/def/crs/EPSG/0/25830); its planar area centroid is transformed to EPSG:4326 longitude/latitude with pyproj 3.7.1 always_xy=True.",
+  "source_url": "https://ovc.catastro.meh.es/ovcservweb/OVCSWLocalizacionRC/OVCCoordenadas.asmx/Consulta_RCCOOR?SRS=EPSG:4326&Coordenada_X=-3.5747489&Coordenada_Y=40.4479798",
+  "raw_capture_file": "local_data/country-research-iberia-italy-p5/catastro-rccoor-gs-madrid-centroid.xml",
+  "raw_capture_sha256": "b212437cb61ac867f257820b89c5afa078f90e4ffe96f5b63e1c892c1074e062",
+  "retrieved_at": "2026-10-27T05:57:49.460Z",
+  "source_selection": "Global Switch's own Madrid page (Internet Archive copy of 10 June 2026) gives Calle Yécora 4, 28022 Madrid for both Madrid 1 and Madrid 2, and PeeringDB facility 4882 'Global Switch Madrid' gives the same address. Catastro's address register returns exactly one property at that address, cadastral reference 1378103VK5717G0001UP (Industrial, 22,287 m2 built, 2002), whose parcel geometry was retrieved from the Catastro INSPIRE WFS.",
+  "parcel_captures": [
+    {
+      "cadastral_reference_14": "1378103VK5717G",
+      "address": "CL YECORA 4, 28022 MADRID",
+      "catastro_use": "Industrial (22,287 m2 built, 2002)",
+      "area_value_m2": 8145,
+      "raw_capture_file": "local_data/country-research-iberia-italy-p5/catastro-cp-1378103VK5717G.gml",
+      "raw_capture_sha256": "e9a8176af03d46b64ff12fdfaa798d892d5da397512c98ad70c11fa87dda0797",
+      "source_url": "https://ovc.catastro.meh.es/INSPIRE/wfsCP.aspx?service=wfs&version=2&request=getfeature&STOREDQUERIE_ID=GetParcel&refcat=1378103VK5717G&srsname=EPSG::25830",
+      "retrieved_at": "2026-10-27T05:44:12.862Z",
+      "address_capture_file": "local_data/country-research-iberia-italy-p5/catastro-dnploc-yecora-4.xml",
+      "address_capture_sha256": "bbf468106e8a81d0c401349630feb98d5c53e14011c55353418652578b506c55"
+    }
+  ],
+  "computation": {
+    "tool": "uv run --no-project --with pyproj==3.7.1 --with shapely==2.1.1 python -I (shapely Polygon from the posList, area centroid, pyproj Transformer EPSG:25830 -> EPSG:4326, always_xy=True)",
+    "planar_area_m2": 8145.3,
+    "centroid_epsg25830": [
+      451261.58,
+      4477639.12
+    ],
+    "centroid_inside_parcel": true,
+    "centroid_distance_to_boundary_m": 27.3,
+    "bounding_box_m": [
+      150.8,
+      59.7
+    ],
+    "farthest_vertex_from_centroid_m": 79.5
+  },
+  "reverse_lookup": "Catastro Consulta_RCCOOR at -3.5747489, 40.4479798 returns parcel 1378103VK5717G, CL YECORA 4 Q0905080000000 MADRID (MADRID).",
+  "cross_checks": {
+    "catastro_reference_point": [
+      -3.57396612363127,
+      40.4478519107661
+    ],
+    "catastro_reference_point_distance_m": 68,
+    "peeringdb_facility_4882_point": [
+      -3.574684,
+      40.447968
+    ],
+    "peeringdb_point_distance_m": 6,
+    "imagery": "Esri World Imagery export (local esri-gs-madrid-yecora.png, about 380 by 355 m around the point) shows one long flat-roofed building of roughly 140 by 40 m with roof plant at both ends filling the parcel; a cleared plot with trenches lies immediately south, outside the parcel. The imagery is undated and is not used as a status observation."
+  },
+  "scope_class": "operator_address_cadastral_parcel_area_centroid",
+  "precision": "Area centroid of cadastral parcel 1378103VK5717G (8,145 m2, about 151 by 60 m), the only property at Calle Yécora 4, the address Global Switch gives for its Madrid campus. The point lies inside the parcel 27 m from its boundary and locates the existing Madrid data-centre building; it is not a surveyed footprint and does not locate the Madrid 2 expansion or any land outside the parcel.",
+  "uncertainty_reason": "Catastro publishes no positional accuracy for parcel boundaries; the point is a derived interior anchor of a parcel whose farthest vertex is about 80 m away. Decimal places are computation precision, not accuracy.",
+  "not_located": [
+    "Madrid 2 (56 MW) and the campus expansion plans",
+    "the cleared plot south of the parcel"
+  ]
+}

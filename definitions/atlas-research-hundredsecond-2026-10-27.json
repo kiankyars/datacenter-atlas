@@ -1,0 +1,410 @@
+{
+  "format": "datacenter-atlas-update-input-v1",
+  "updated_at": "2026-10-27",
+  "output": "verified_construction_core/2026-10-27-research-hundredsecond",
+  "base_dataset": "verified_construction_core/2026-10-27-research-hundredfirst",
+  "base_manifest_sha256": "6beca4ce847a5d1900d6774cc5ce341ff76f202a786c7a2563535687adfe6ed1",
+  "source_files": [
+    {
+      "path": "sources/research-countries-2026-10-27-hundredsecond-primary-sources.json",
+      "sha256": "4472e1e192896cde6279401f2e9ad9ee48480bb0a8474dd3b7a63f8d12f44497"
+    }
+  ],
+  "additions": [
+    {
+      "project_stable_key": "curated:paray-vieille-poste-snc-paray-dc-data-center:data-centre-project",
+      "physical_site_stable_key": "curated:paray-vieille-poste-snc-paray-dc-data-center",
+      "site_name": "SNC PARAY DC Data Centre, Paray-Vieille-Poste (1 avenue du Maréchal Devaux)",
+      "name": "SNC PARAY DC — planned 55 MW IT data centre (12 data halls, Hines) on the former Air France training site",
+      "country": "France",
+      "country_iso_a2": "FR",
+      "status": {
+        "value": "announced",
+        "as_of": "2026-08-14",
+        "source_id": "fr-benelux-p5-mrae-idf-paray-avis-20260814",
+        "summary": "The MRAe Île-de-France delegated opinion no. 019554/GUNENV of 14 August 2026 names the data-centre project of SNC PARAY DC (with RTE for the grid connection) at Paray-Vieille-Poste (Essonne), within a building-permit procedure: a main building with IT halls (15,260 m2 footprint, 25,735 m2 of floor), 43 emergency generators of 292 MW thermal, 48 chillers and an RTE substation on the northern parcel of the former Air France training site, whose buildings are to be demolished. The project is therefore announced as of 14 August 2026. No building permit, environmental authorisation or physical work is established; the late-2028/early-2029 grid connection is a forecast."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            2.3676222,
+            48.7449901
+          ]
+        },
+        "source_id": "fr-benelux-p5-apicarto-paray-ab-0053",
+        "scope": "campus_locator",
+        "scope_class": "official_cadastral_parcel_centroid_named_in_applicant_note",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "ign_api_carto_cadastre_parcel_91479000AB0053_area_centroid_computed_in_epsg2154_returned_to_wgs84",
+        "precision": "Centroid of cadastral parcel AB 53 in Paray-Vieille-Poste (3.4 ha, about 233 by 207 m), the single parcel named by the applicant, of which the project uses 29,655 m2 at 1 avenue du Maréchal Devaux. It locates the data-centre plot, not the building.",
+        "identity_review": "The MRAe opinion of 14 August 2026 names the SNC PARAY DC data centre on the northern parcel of the former Air France training site at Paray-Vieille-Poste. The applicant's note in the same portal dossier (24840) gives the address 1 avenue du Maréchal Devaux and states that the project covers 29,655 m2 on part of a single cadastral parcel, AB 53, owned by Air France under a promise of sale to SNC PARAY DC, bounded by rue des Avernaises, avenue du Maréchal Devaux, rue Jean Mermoz and rue Marcel Albert. API Carto returns parcel 91479000AB0053 with a contenance of 33,721 m2; its centroid lies inside it, 71 m from its boundary. The BAN point of 1 avenue du Maréchal Devaux lies 27.5 m east of the parcel on the avenue, and the Géorisques point of the Air France real-estate record at the same address lies 78 m south of it. The commune centre is not used.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The cadastral service publishes no positional accuracy; the point is the centroid of a 3.4 ha parcel whose vertices lie up to 146 m away, and the building position on it is not published in a georeferenced form."
+      },
+      "context_source_ids": [
+        "fr-benelux-p5-evalenv-paray-rnt",
+        "fr-benelux-p5-evalenv-sitemap-idf",
+        "fr-benelux-p5-geopf-1-avenue-marechal-devaux-paray",
+        "fr-benelux-p5-georisques-91479",
+        "fr-benelux-p5-sitadel-91479"
+      ],
+      "roles": [
+        {
+          "party": "SNC PARAY DC (Hines)",
+          "role": "owner",
+          "relationship_scope": "intended",
+          "source_id": "fr-benelux-p5-evalenv-paray-rnt"
+        },
+        {
+          "party": "SNC PARAY DC (Hines)",
+          "role": "operator",
+          "relationship_scope": "intended",
+          "source_id": "fr-benelux-p5-evalenv-paray-rnt"
+        }
+      ],
+      "distinctness_review": "Screened on 27 October 2026 against the names, aliases, operators, addresses and coordinates in all five tables (sites.csv, projects.csv, evidence.csv, source-records.json with its 231 records, identity-mapping.json) of the current dataset verified_construction_core/2026-10-27-research-hundredfirst (834 sites, 900 projects, 4,714 evidence rows), every sources/*-holds.json file, all other queue fragments' changes and holds, and claims.tsv. Searched Paray, Vieille-Poste, PARAY DC, Hines, Maréchal Devaux, Air France, Avernaises and Cœur d'Orly: the only matches are the fr-benelux-p4 hold of this candidate (queue holds and sources/research-countries-2026-10-27-ninetyfirst-holds.json), which this addition resolves, and its p4 and p5 claims. No Atlas site, project, source record or identity-mapping coordinate lies within 5 km; the nearest Atlas sites are Goodman PAR02, Villeneuve-Saint-Georges (6.1 km) and Goodman PAR03, Ballainvilliers (9.7 km). No other queue fragment's changes, holds or claim coordinates lie within 5 km.",
+      "successor_review": "The Île-de-France portal sitemap re-read on 27 October 2026 lists no document in dossier 24840 after the impact study, the applicant's note and the opinion of 14 August 2026. The SDES register (coverage to 31 August 2026) lists no permit to SNC PARAY DC or a Hines company and none on parcel AB 53; Géorisques lists no SNC PARAY DC installation. No consent, works, withdrawal or cancellation is found; the status remains announced.",
+      "scoped_project_details": {
+        "aliases": [
+          "SNC PARAY DC",
+          "Paray-Vieille-Poste data centre",
+          "Centre de données Paray-Vieille-Poste"
+        ],
+        "facility_scope": "One main building with 12 IT halls of up to 1,400 m2 on three levels plus offices, a generator building (43 generators), fuel storage, 48 chillers and an RTE substation on 29,655 m2",
+        "it_capacity_mw_planned": 55,
+        "it_capacity_qualification": "IT power available as stated by the applicant (4.6 MW IT per hall); planned, not measured load",
+        "emergency_generation": "43 generators, 292 MW thermal",
+        "cadastral_parcel": "91479000AB0053",
+        "site_area_m2": 29655,
+        "developer_group": "Hines (per the applicant note)",
+        "land_owner": "Air France (promise of sale to SNC PARAY DC)",
+        "development_consent_verified": false,
+        "physical_construction_verified": false
+      }
+    },
+    {
+      "project_stable_key": "curated:edged-marseille-saint-louis-sucre-data-center:data-centre-project",
+      "physical_site_stable_key": "curated:edged-marseille-saint-louis-sucre-data-center",
+      "site_name": "Edged Data Center Marseille, former Saint-Louis Sucre refinery (336 rue de Lyon, Marseille 15e)",
+      "name": "Edged Marseille Saint-Louis — planned nine-hall data centre (R+3) with 12 emergency generators (ESL PROPERTIES, Edged Energy)",
+      "country": "France",
+      "country_iso_a2": "FR",
+      "status": {
+        "value": "announced",
+        "as_of": "2026-09-01",
+        "source_id": "fr-benelux-p5-mrae-paca-marseille-saint-louis-avis-20260901",
+        "summary": "The MRAe Provence-Alpes-Côte d'Azur opinion nos. 020291/GUNENV and 020695/A P, adopted on 1 September 2026, concerns the creation of a data centre by ESL PROPERTIES, a subsidiary of Edged Energy, on the former Saint-Louis Sucre factory site in Marseille 15e: an R+3 building with nine IT halls, twelve emergency generators of 8.16 MW thermal each, rooftop chillers, an HTB/HTA substation and a waste-heat building on a 17,156 m2 plot, under a building-permit and environmental-authorisation application filed on 25 November 2025 and completed on 18 June 2026. The project is therefore announced as of 1 September 2026. No environmental authorisation, permit in effect or physical work is established; the planned fourth-quarter 2026 start and 24-month works are forecasts."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            5.3638587,
+            43.337546
+          ]
+        },
+        "source_id": "fr-benelux-p5-apicarto-marseille-saint-louis-bbox",
+        "scope": "campus_locator",
+        "scope_class": "official_cadastral_parcel_union_centroid_of_site_lot_matched_to_applicant_plan",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "ign_api_carto_cadastre_parcels_132158990E0081_and_E0082_union_area_centroid_computed_in_epsg2154_returned_to_wgs84",
+        "precision": "Centroid of the union of cadastral parcels 899 E 81 and 899 E 82 of Marseille 15e (4.4 ha, about 219 by 403 m), the northern lot of the former Saint-Louis Sucre refinery between rue de Lyon and the Aygalades stream that holds the data centre and the Studios de la Méditerranée. The 17,156 m2 data-centre plot is the north-eastern part of the lot along the stream; on figure 3 of the MRAe opinion it approximately coincides with parcel E 82, which lies 38 to 204 m from the point (its centroid 77 m), so the data-centre building may lie about 40 to 200 m from the point.",
+        "identity_review": "The MRAe opinion of 1 September 2026 and the applicant's summary place the ESL PROPERTIES (Edged Energy) data centre at 336 rue de Lyon on the former Saint-Louis Sucre site, within a 46,807 m2 landholding shared with the Studios de la Méditerranée; no parcel list is published. The applicant's 'Projet global' plan shows the northern lot bounded by rue de Lyon, by labelled parcels 899 E 6, 7, 10-16, 20, 21 and 23, by the Aygalades stream with parcels 899 E 37, 50, 63-65 and 69 beyond it, by parcels 57 and 59 and by the July 2025 limit of the northern lot. In the current cadastre the parcels lying between rue de Lyon, the stream strip, those northern neighbours and the southern lot are E 81 (31,193 m2) and E 82 (13,104 m2), totalling 44,297 m2 (95% of the declared landholding; the small parcels E 79 and E 88-90 to their east are not included); the southern lot E 74 holds the BAN point of 336 rue de Lyon and the Géorisques point of SAINT LOUIS SUCRE, both 13 m south of the union. The SDES register's April 2026 permit to FONCIERE SAINT LOUIS at 336 rue de Lyon (48,857 m2, parcels H 115, E 58, E 56) matches the studio developer's landholding under its earlier parcel numbers. Figure 3 of the MRAe opinion (taken from the applicant's presentation note) colours the data-centre operation as a strip along the stream at the northern end of the site and the studios between it and rue de Lyon, with the logistics centre and the part of the refinery that stays active to the south; registered on the cadastre by rotation and two corner points (north tip, southern corner on rue de Lyon), those areas fall on E 82, on E 81, and on E 74 with its small neighbours E 79 and E 88-90 respectively. The parcel selection is therefore an inference from the applicant's plans, not a declared list; the commune centre, the company address and the whole-refinery address point are not used.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The cadastral service publishes no positional accuracy; the point is the centroid of a 4.4 ha two-parcel lot whose vertices lie up to 204 m away, the parcels are identified by matching the applicant's plan rather than from a declared list, and the data-centre building position is not published in a georeferenced form."
+      },
+      "context_source_ids": [
+        "fr-benelux-p5-evalenv-marseille-saint-louis-rnt",
+        "fr-benelux-p5-evalenv-marseille-saint-louis-eie",
+        "fr-benelux-p5-evalenv-sitemap-paca",
+        "fr-benelux-p5-geopf-336-rue-de-lyon-marseille",
+        "fr-benelux-p5-georisques-13055-p1",
+        "fr-benelux-p5-sitadel-13055"
+      ],
+      "roles": [
+        {
+          "party": "ESL PROPERTIES (subsidiary of Edged Energy)",
+          "role": "operator",
+          "relationship_scope": "intended",
+          "source_id": "fr-benelux-p5-evalenv-marseille-saint-louis-rnt"
+        }
+      ],
+      "distinctness_review": "Screened on 27 October 2026 against the names, aliases, operators, addresses and coordinates in all five tables (sites.csv, projects.csv, evidence.csv, source-records.json with its 231 records, identity-mapping.json) of the current dataset verified_construction_core/2026-10-27-research-hundredfirst (834 sites, 900 projects, 4,714 evidence rows), every sources/*-holds.json file, all other queue fragments' changes and holds, and claims.tsv. Searched Marseille, Saint-Louis Sucre, sucrerie, rue de Lyon, ESL PROPERTIES, Edged Energy and Studios de la Méditerranée: no Atlas record is in Marseille (the nearest Atlas site is Sesterce Rovaltain, Alixan, 186 km away), the Edged and MERLIN Edged records are in the United States, Spain and Portugal, and the only Marseille mentions are Digital Realty MRS6 and Dugny holds (sources/research-countries-2026-10-16-thirtyfirst-holds.json, -sixtysixth-holds.json, fr-p2 holds), which concern other sites. No source record, identity-mapping coordinate, queue fragment or claim lies within 5 km.",
+      "successor_review": "The Provence-Alpes-Côte d'Azur portal sitemap re-read on 27 October 2026 lists no document in dossiers 25584 or 26000 after 1 September 2026. Géorisques lists SAINT LOUIS SUCRE at 336 rue de Lyon as 'en fin d'exploitation' and no ESL PROPERTIES installation or order; the SDES register (to 31 August 2026) lists the 28 April 2026 FONCIERE SAINT LOUIS permit as authorised and not started, with no permit naming ESL PROPERTIES or Edged. No environmental authorisation, works or withdrawal is found; the status remains announced.",
+      "scoped_project_details": {
+        "aliases": [
+          "Edged Data Center",
+          "ESL PROPERTIES data centre",
+          "Saint-Louis Sucre data centre",
+          "data-center de l’ancienne sucrerie Saint-Louis"
+        ],
+        "facility_scope": "One R+3 data-centre building with nine IT halls, offices and plant, twelve emergency generators, sixteen rooftop chillers, an HTB/HTA substation and a waste-heat recovery building on a 17,156 m2 plot",
+        "floor_area_m2_declared": 22084,
+        "floor_area_qualification": "Declared in the impact study; the MRAe notes 28,896 m2 summed from the installation description and 21,900 m2 in the permit presentation",
+        "emergency_generation": "12 generators of 8.16 MW thermal each (about 98 MW thermal)",
+        "grid_connection": "existing 4.5 MW high-voltage connection to rise to 9.5 MW plus a second 20 MW 20 kV line (not IT load)",
+        "site_area_m2": 17156,
+        "landholding_m2": 46807,
+        "cadastral_parcels_inferred": [
+          "132158990E0081",
+          "132158990E0082"
+        ],
+        "developer_group": "Edged Energy (per the MRAe opinion and the applicant summary)",
+        "development_consent_verified": false,
+        "physical_construction_verified": false
+      }
+    },
+    {
+      "project_stable_key": "curated:telehouse-th3-paris-magny-campus:p34-data-centre-building",
+      "physical_site_stable_key": "curated:telehouse-th3-paris-magny-campus",
+      "existing_site_id": "vcc-site-0d9ae5c2942c7b4ce1ae",
+      "site_name": "Telehouse TH3 Paris Magny Campus, Magny-les-Hameaux (1 rue Pablo Picasso)",
+      "name": "Telehouse TH3 Paris Magny — new P34 data-centre building (extension under environmental-authorisation and building-permit review, PC 078 356 26 E0004)",
+      "country": "France",
+      "country_iso_a2": "FR",
+      "site_identity_review": "The applicant's non-technical summary for the extension (portal dossier 26737) places the new P34 data-centre building on the existing TH3 data centre at 1 rue Pablo Picasso, Magny-les-Hameaux, on the single cadastral parcel AX 86 (65,969 m2) owned by Telehouse, without changing the property limits; its site-access point (Lambert-93 X 632,324, Y 6,847,784) equals the Géorisques AIOT coordinates of TELEHOUSE EUROPE and lies inside AX 86. The existing Atlas site curated:telehouse-th3-paris-magny-campus is located by the centroid of that same parcel 78356000AX0086 and covers the campus operations project. P34 is a further building of the same campus, distinct from the existing operations record (which includes the 3 MW AI module commissioned by October 2026), so it is added as a second project on that site.",
+      "status": {
+        "value": "announced",
+        "as_of": "2026-08-18",
+        "source_id": "fr-benelux-p5-mrae-idf-th3-p34-note-20260818",
+        "summary": "The MRAe Île-de-France note no. 021434/A P of 18 August 2026 records that the authority was referred on 18 June 2026, within an ICPE environmental-authorisation procedure, on Telehouse's project to extend the TH3 data centre at Magny-les-Hameaux and its impact study, and that no opinion was issued within two months. The applicant's impact-study summary in the same portal dossier describes the project as a new data-centre building, P34, with its fuel storage and generator containers; the later note no. 021903/A P records a referral of 6 August 2026 within a building-permit procedure and is filed on the portal in dossier 27221 'PC 78356 26 E0004 extension du nouveau datacenter - création du module P34'. The P34 building is therefore announced as of 18 August 2026. No environmental authorisation, building permit or physical work is established."
+      },
+      "locator": {
+        "reuse_from_project_id": "75647386-a565-5e5c-aca2-077a496cb7bf",
+        "geometry_evidence_id": "928ea66a-1cb3-5fe2-a3dd-79a8b65a0129",
+        "geometry_identity_evidence_ids": [],
+        "scope": "campus_locator",
+        "identity_review": "Reuses the existing TH3 campus point exactly: the API Carto centroid of parcel 78356000AX0086, with its pinned geometry evidence and no geometry-identity evidence rows. The applicant states that P34 is built on that single parcel without changing the property limits; the existing precision already says that the point locates the campus parcel, not any individual building. The position of P34 on the parcel is shown only in the applicant's non-georeferenced plans and is not published."
+      },
+      "context_source_ids": [
+        "fr-benelux-p5-mrae-idf-th3-p34-pc-note",
+        "fr-benelux-p5-evalenv-th3-p34-rnt",
+        "fr-benelux-p5-evalenv-sitemap-idf",
+        "fr-benelux-p5-registre-7391-telehouse-magny"
+      ],
+      "roles": [
+        {
+          "party": "Telehouse International Corporation of Europe Ltd (Telehouse)",
+          "role": "owner",
+          "relationship_scope": "current",
+          "source_id": "fr-benelux-p5-evalenv-th3-p34-rnt"
+        },
+        {
+          "party": "Telehouse International Corporation of Europe Ltd (Telehouse)",
+          "role": "operator",
+          "relationship_scope": "intended",
+          "source_id": "fr-benelux-p5-evalenv-th3-p34-rnt"
+        }
+      ],
+      "distinctness_review": "Screened on 27 October 2026 against the names, aliases, operators, addresses and coordinates in all five tables (sites.csv, projects.csv, evidence.csv, source-records.json with its 231 records, identity-mapping.json) of the current dataset verified_construction_core/2026-10-27-research-hundredfirst (834 sites, 900 projects, 4,714 evidence rows), every sources/*-holds.json file, all other queue fragments' changes and holds, and claims.tsv. Searched P34, P3/P4, module P3, Magny, Telehouse, Pablo Picasso, Gomberville, PC 078 356 26 E0004 and TH3: the only Atlas match is the existing TH3 site and its single project (campus data-centre operations, including the 3 MW AI module); the P34 building is held in sources/research-countries-2026-10-22-fortysecond-holds.json (fr-p1, reopen once the TH3 site is in the base) and sources/research-countries-2026-10-27-ninetyfirst-holds.json (fr-benelux-p4, held only for its three-change cap), which this addition resolves. 'P34' also occurs in unrelated UK records (Saunderton, Brick Lane permit numbers). No other Atlas site lies within 11 km (Colt Villebon-sur-Yvette 11.1 km, NDC Paris 1 11.7 km); no other queue fragment's changes or claims concern P34.",
+      "successor_review": "The Île-de-France portal sitemap re-read on 27 October 2026 lists no document in dossiers 26737 or 27221 after 22 September 2026. The public-consultation register (re-captured identically on 27 October) shows the consultation closed on 18 September 2026 with no decision; Géorisques (re-captured identically) lists only the 2009, 2022 and 2023 orders for TELEHOUSE EUROPE and a 4 September 2026 inspection without report; the SDES register (to 31 August 2026, re-captured identically) lists PC 078 356 24 E0017 of 2025 but not PC 078 356 26 E0004. Telehouse's 20 October 2026 release concerns the 3 MW module of the existing operations record. No authorisation, permit, works or withdrawal is found for P34; the status remains announced.",
+      "scoped_project_details": {
+        "aliases": [
+          "P34",
+          "Bâtiment P34",
+          "module P34",
+          "TH3 extension",
+          "extension du datacenter TH3"
+        ],
+        "facility_scope": "New data-centre building P34 with fuel unloading area, buried fuel tanks and outdoor generator containers; the same application also covers batteries in P5, IT room E08 in building E, rooftop PV on building A and regularisations, which are not part of this project",
+        "built_footprint_change_m2": "site built footprint from about 16,100 to 19,450 m2 (all works in the application)",
+        "building_permit_application": "PC 078 356 26 E0004 (referred to the MRAe on 6 August 2026)",
+        "cadastral_parcel": "78356000AX0086",
+        "development_consent_verified": false,
+        "physical_construction_verified": false
+      }
+    },
+    {
+      "project_stable_key": "curated:global-switch-madrid-calle-yecora-campus:existing-operations",
+      "physical_site_stable_key": "curated:global-switch-madrid-calle-yecora-campus",
+      "site_name": "Global Switch Madrid Data Centre Campus, Calle Yécora 4",
+      "name": "Global Switch Madrid — existing data-centre operations (Madrid 1, Calle Yécora 4)",
+      "country": "Spain",
+      "country_iso_a2": "ES",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-09-23",
+        "source_id": "iberia-italy-p5-gs-madrid-page-20260923",
+        "summary": "Global Switch's Madrid page, in the version modified on 23 September 2026, describes the facility in the present tense (Global Switch Madrid offers location, low power pricing, enterprise ecosystems and client solutions, supports a wide range of power requirements and 'offers an exceptional choice and range of connectivity partners'); the site navigation lists Madrid among the operator's data centres while Johor and Bangkok are marked 'Coming Soon'. The modification date is bounded by the Internet Archive copy of 10 June 2026 (earlier version, same statements) and by the sitemap lastmod and this capture of 27 October 2026. This records the existing Madrid data centre as operating on 23 September 2026, the version's publication day; it is not an opening, inspection or commissioning date. Global Switch's 6 October 2026 announcement on 25 years of continuous operation, which recalls its expansion into Madrid, is context. The status covers the existing facility only (labelled 'Madrid 1 14MW' in the June page version); Madrid 2 (56 MW) and the campus expansion plans are not asserted as built or under construction."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -3.5747489,
+            40.4479798
+          ]
+        },
+        "source_id": "iberia-italy-p5-catastro-rccoor-gs-madrid-centroid",
+        "scope": "campus_locator",
+        "scope_class": "operator_address_cadastral_parcel_area_centroid",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "catastro_inspire_epsg25830_operator_address_parcel_area_centroid_pyproj_to_wgs84",
+        "precision": "Area centroid of cadastral parcel 1378103VK5717G (8,145 m2, about 151 by 60 m), the only property at Calle Yécora 4, 28022 Madrid, the address Global Switch gives for its Madrid campus. The point lies inside the parcel 27 m from its boundary and locates the existing data-centre building; it is not a surveyed footprint and does not locate the Madrid 2 expansion or land outside the parcel.",
+        "identity_review": "Global Switch's own Madrid page (Internet Archive copy of 10 June 2026) lists 'Madrid 1 14MW Calle Yécora 4 28022 Madrid' and 'Madrid 2 56MW' at the same address, and PeeringDB facility 4882 'Global Switch Madrid' gives Calle Yecora, 4, 28022 Madrid with a point 6 m from this locator. Catastro's address register returns exactly one property at Calle Yécora 4 (1378103VK5717G0001UP, Industrial, 22,287 m2 built, 2002); its INSPIRE parcel geometry was retrieved in EPSG:25830, its planar area centroid computed with shapely and transformed with pyproj, and Catastro's coordinate lookup at the result returns the same parcel and address. The cadastre's own reference point is 68 m away. Undated Esri imagery shows one long flat-roofed building with roof plant at both ends filling the parcel. No city centre, head-office address or industrial-estate centroid is used.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "Catastro publishes no positional accuracy for parcel boundaries; the point is a derived interior anchor of a parcel whose farthest vertex is about 80 m away. Decimal places are computation precision, not accuracy."
+      },
+      "context_source_ids": [
+        "iberia-italy-p5-gs-madrid-page-ia-20260610",
+        "iberia-italy-p5-gs-page-sitemap-20261027",
+        "iberia-italy-p5-gs-25-years-20261006",
+        "iberia-italy-p5-gs-post-sitemap-20261027",
+        "iberia-italy-p5-peeringdb-fac-global-switch",
+        "iberia-italy-p5-catastro-dnploc-yecora-4",
+        "iberia-italy-p5-catastro-cp-1378103VK5717G",
+        "iberia-italy-p5-catastro-cpmrc-1378103VK5717G",
+        "iberia-italy-p5-esri-gs-madrid-yecora-imagery"
+      ],
+      "roles": [
+        {
+          "party": "Global Switch",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "iberia-italy-p5-gs-madrid-page-20260923"
+        }
+      ],
+      "distinctness_review": "Screened on 27 October 2026 against the names, aliases, operators, addresses and coordinates in all five tables of verified_construction_core/2026-10-27-research-hundredth (831 sites, 895 projects, 4,688 evidence rows, 231 source records and 231 identity mappings; first screened against 2026-10-27-research-ninetyninth, which the base replaced during the pass), the pending changes.json and holds.json of every other queue fragment, claims.tsv and every sources/*-holds.json file for Global Switch, Madrid 1, Madrid 2, Yécora/Yecora, 28022, San Blas-Canillejas and Rejas. No Atlas site, project, evidence row, source record or identity mapping names Global Switch Madrid or Calle Yécora; the only Global Switch records are the Paris (Clichy) site and its evidence. No Atlas record lies within 2 km: the nearest are Goodman MAD01 (2.44 km east) and Iron Mountain Madrid (6.55 km). No queue fragment's changes, holds or claims name Global Switch Madrid or lie within 2 km; the 22 October 2026 thirty-fourth hold concerns only the planned second Madrid data centre (56 MW), which stays held here. Digital Realty's MAD1-MAD4 (Calle Albasanz, Emilio Muñoz and Alfonso Gómez, not in the Atlas and held in this fragment) are 4.0-4.7 km west, and Nabiax's Julián Camarillo 8 campus, added in this fragment, is 4.9 km west.",
+      "successor_review": "Global Switch's page sitemap and post sitemap captured on 27 October 2026 show no later Madrid page version and no announcement after 6 October 2026; the 6 October 2026 announcement describes more than 25 years of continuous operation and no Madrid change. No sale, closure, pause or works at the existing building is reported. Operational is kept as of 23 September 2026 (34 days before a 27 October update, inside the 85-day floor of 3 August 2026 and within the 90-day window until 22 December 2026).",
+      "scoped_project_details": {
+        "aliases": [
+          "Global Switch Madrid",
+          "Madrid 1",
+          "Global Switch Madrid campus"
+        ],
+        "facility_scope": "Existing Global Switch data centre in the Industrial building on cadastral parcel 1378103VK5717G at Calle Yécora 4, 28022 Madrid (22,287 m2 built, 2002); excludes Madrid 2 and the expansion plans.",
+        "it_capacity_mw_label": 14,
+        "it_capacity_qualification": "'Madrid 1 14MW' is the operator's facility label in its June 2026 page version; not measured load and not shown in the current version.",
+        "address": "Calle Yécora 4, 28022 Madrid",
+        "cadastral_parcel": "1378103VK5717G",
+        "permit_status_not_asserted": true,
+        "opening_date_not_asserted": true
+      }
+    },
+    {
+      "project_stable_key": "curated:nabiax-julian-camarillo-8-campus:existing-operations",
+      "physical_site_stable_key": "curated:nabiax-julian-camarillo-8-campus",
+      "site_name": "Nabiax Julián Camarillo 8 Campus",
+      "name": "Nabiax Julián Camarillo 8 Campus — existing data-centre operations (modules 1-3)",
+      "country": "Spain",
+      "country_iso_a2": "ES",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-09-18",
+        "source_id": "iberia-italy-p5-alcala-city-nabiax-20260918",
+        "summary": "The city of Alcalá de Henares' dated report of 18 September 2026 (on the first stone of Nabiax's ADC3 building) states that Nabiax has three centres, two in the Comunidad de Madrid and one in Catalonia, which operate with a combined 35 MW of IT power. Nabiax's own site lists exactly three data centres: the Alcalá Data Center campus (Alcalá de Henares, Comunidad de Madrid), the 'Julián Camarillo 8 Campus' (Madrid) and Terrassa (Barcelona province), so the second Madrid-region centre in the city's statement is Julián Camarillo; the operator's stated current capacities (22.3 + 10 + 1.3 MW IT) sum to 33.6 MW, close to the city's 35 MW total. This dated government record supports the Julián Camarillo data centre as operating on 18 September 2026, the publication day; it is not an opening date (the operator gives 1995-2011 for its three modules). No capacity change, works or permit is asserted."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -3.6295448,
+            40.4335832
+          ]
+        },
+        "source_id": "iberia-italy-p5-catastro-rccoor-nabiax-jc8-centroid",
+        "scope": "campus_locator",
+        "scope_class": "operator_address_cadastral_parcel_area_centroid",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "catastro_inspire_epsg25830_operator_address_parcel_area_centroid_pyproj_to_wgs84",
+        "precision": "Area centroid of cadastral parcel 6662902VK4766D (about 12,959 m2, 133 by 162 m), the only parcel at Calle Julián Camarillo 8, 28037 Madrid, the address Nabiax gives for its 'Julián Camarillo 8 Campus'. The point lies inside the parcel 47 m from its boundary and locates the campus property; it is not a surveyed building footprint and does not separate the three data-centre modules from any other premises on the parcel.",
+        "identity_review": "Nabiax's contact page lists 'Julián Camarillo 8 Campus, Calle Julián Camarillo, 8, 28037 Madrid' as one of its three Spanish data centres, separately from its head office at Julián Camarillo 29. Catastro's address register returns four properties at Julián Camarillo 8, all on parcel 6662902VK4766D (area value 12,959 m2) (stair 1, 0002UZ, is recorded as 'Oficinas', 22,881 m2 built, 1994, 33.968% participation; data centres are commonly recorded under office use). The parcel's INSPIRE geometry was retrieved in EPSG:25830, its planar area centroid computed with shapely and transformed with pyproj, and Catastro's coordinate lookup at the result returns the same parcel and address; the cadastre's reference point is 66 m away. Undated Esri imagery shows a block of long buildings with dense rooftop plant on the parcel. No city centre, head-office address or estate centroid is used.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "Catastro publishes no positional accuracy for parcel boundaries; the point is a derived interior anchor of a parcel whose farthest vertex is about 92 m away. Decimal places are computation precision, not accuracy."
+      },
+      "context_source_ids": [
+        "iberia-italy-p5-nabiax-julian-camarillo-page",
+        "iberia-italy-p5-nabiax-contacto",
+        "iberia-italy-p5-nabiax-terrassa-page",
+        "iberia-italy-p5-nabiax-alcala-page",
+        "iberia-italy-p5-nabiax-page-sitemap-20261027",
+        "iberia-italy-p5-catastro-dnploc-julian-camarillo-8",
+        "iberia-italy-p5-catastro-dnprc-6662902VK4766D0002UZ",
+        "iberia-italy-p5-catastro-cp-6662902VK4766D",
+        "iberia-italy-p5-catastro-cpmrc-6662902VK4766D",
+        "iberia-italy-p5-esri-nabiax-jc8-imagery"
+      ],
+      "roles": [
+        {
+          "party": "Nabiax",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "iberia-italy-p5-nabiax-julian-camarillo-page"
+        }
+      ],
+      "distinctness_review": "Screened on 27 October 2026 against the names, aliases, operators, addresses and coordinates in all five tables of verified_construction_core/2026-10-27-research-hundredth (831 sites, 895 projects, 4,688 evidence rows, 231 source records and 231 identity mappings; first screened against 2026-10-27-research-ninetyninth, which the base replaced during the pass), the pending changes.json and holds.json of every other queue fragment, claims.tsv and every sources/*-holds.json file for Nabiax, Julián Camarillo/Julian Camarillo, 28037, Telefónica and San Blas. The only Nabiax record in the Atlas is the Alcalá Data Center Campus (ADC3 project; 26.2 km east), to which this fragment adds the ADC1/ADC2 operations; no Atlas site, project, evidence row, source record or identity mapping names Julián Camarillo. No Atlas record lies within 2 km: the nearest are Goodman MAD01 (7.13 km) and Iron Mountain Madrid (11.4 km). No queue fragment's changes, holds or claims name the site or lie within 2 km. Digital Realty's MAD3 (Calle Emilio Muñoz 49, 0.46 km), MAD4 (Calle de Alfonso Gómez 4, 0.61 km) and MAD1/MAD2 (Calle Albasanz 71/73, 0.96 km) are separate operators' facilities at other addresses, not in the Atlas and held in this fragment; Global Switch Madrid, added in this fragment, is 4.9 km east.",
+      "successor_review": "Nabiax's page sitemap and sitemap index captured on 27 October 2026 show no page change to its data-centre pages since February 2024 and no news post since 2 July 2025; nothing reports a sale, closure or pause at Julián Camarillo. Operational is kept as of 18 September 2026 (39 days before a 27 October update, inside the 85-day floor and within the 90-day window until 17 December 2026).",
+      "scoped_project_details": {
+        "aliases": [
+          "Julián Camarillo 8 Campus",
+          "Data Center de Julián Camarillo",
+          "Julián Camarillo (módulos 1, 2 y 3)"
+        ],
+        "facility_scope": "Existing Nabiax data centre of three modules (opened 1995-2011; 29 IT rooms; 10,000 m2) at Calle Julián Camarillo 8, 28037 Madrid, cadastral parcel 6662902VK4766D.",
+        "it_capacity_mw_current": 10,
+        "it_capacity_qualification": "Operator's stated current IT capacity (expandable to 15 MW); not measured load.",
+        "address": "Calle Julián Camarillo 8, 28037 Madrid",
+        "cadastral_parcel": "6662902VK4766D",
+        "excluded": "Nabiax head office at Calle Julián Camarillo 29",
+        "opening_date_not_asserted": true
+      }
+    },
+    {
+      "project_stable_key": "curated:nabiax-alcala-data-center-campus:adc1-adc2-existing-operations",
+      "physical_site_stable_key": "curated:nabiax-alcala-data-center-campus",
+      "existing_site_id": "vcc-site-2337f8b2e15af053c8ab",
+      "site_name": "Nabiax Alcalá Data Center Campus",
+      "name": "Nabiax Alcalá Data Center ADC1 and ADC2 — existing data-centre operations",
+      "country": "Spain",
+      "country_iso_a2": "ES",
+      "site_identity_review": "The Atlas site 'Nabiax Alcalá Data Center Campus' (vcc-site-2337f8b2e15af053c8ab) holds one project, ADC3 (curated:nabiax-alcala-data-center-campus:adc3, announced 18 September 2026), located at the official CartoCiudad point for Avenida Punto Com 23, Alcalá de Henares, inside cadastral parcel 1156716VK7815S. Nabiax's contact page gives the same address for the Alcalá Data Center Campus, and its campus page describes ADC1 (2013) and ADC2 (2021) as the campus's first two built phases; the city's 18 September 2026 report places ADC3 as a third building inside the same campus. The existing buildings are therefore the same physical site; ADC3 stays its own project with its own announced status.",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-09-18",
+        "source_id": "iberia-italy-p5-alcala-city-nabiax-20260918",
+        "summary": "The city of Alcalá de Henares' dated report of 18 September 2026 states that Nabiax's three centres, two in the Comunidad de Madrid and one in Catalonia, operate with a combined 35 MW of IT power, and that ADC3 will be the third building inside the Alcalá campus. Nabiax's campus page says the campus has its first two phases built, ADC1 (opened 2013, Tier IV certified) and ADC2 (opened 2021), with 22.3 MW of current IT capacity. This dated government record supports the existing ADC1 and ADC2 buildings as operating on 18 September 2026, the publication day; it is not an opening date. ADC3 (first stone the same day) is excluded and remains announced."
+      },
+      "locator": {
+        "reuse_from_project_id": "1c809265-e426-51c2-add8-42f5070d031f",
+        "geometry_evidence_id": "189a48e9-2231-554e-b50b-5993f2bf8e8e",
+        "geometry_identity_evidence_ids": [],
+        "scope": "campus_locator",
+        "identity_review": "Reuses the existing Nabiax Alcalá campus point exactly (-3.3409773439880954, 40.5195016897773; official CartoCiudad point for Avenida Punto Com 23, evidence 189a48e9-2231-554e-b50b-5993f2bf8e8e), with no geometry-identity evidence rows. Avenida Punto Com 23 is the address Nabiax still gives for the Alcalá Data Center Campus (contact page captured 27 October 2026), so the point locates the campus property that holds ADC1 and ADC2; it is not a building outline and does not separate the existing buildings from ADC3."
+      },
+      "context_source_ids": [
+        "iberia-italy-p5-nabiax-alcala-page",
+        "iberia-italy-p5-nabiax-contacto",
+        "iberia-italy-p5-nabiax-terrassa-page",
+        "iberia-italy-p5-nabiax-page-sitemap-20261027"
+      ],
+      "roles": [
+        {
+          "party": "Nabiax",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "iberia-italy-p5-nabiax-alcala-page"
+        }
+      ],
+      "distinctness_review": "Screened on 27 October 2026 against the names, aliases, operators, addresses and coordinates in all five tables of verified_construction_core/2026-10-27-research-hundredth (831 sites, 895 projects, 4,688 evidence rows, 231 source records and 231 identity mappings; first screened against 2026-10-27-research-ninetyninth, which the base replaced during the pass), the pending changes.json and holds.json of every other queue fragment, claims.tsv and every sources/*-holds.json file for Nabiax, ADC1, ADC2, Alcalá Data Center, Avenida Punto Com, Campus Externo and Alcalá de Henares. The only matches are the host site and its ADC3 project (0 m); no Atlas project covers the existing ADC1 and ADC2 operations, and no queue fragment, claim or holds file proposes them. No other Atlas record lies within 2 km: the nearest are Iron Mountain Madrid (15.0 km) and Goodman MAD01 (19.3 km).",
+      "successor_review": "Nabiax's page sitemap and sitemap index captured on 27 October 2026 show no change to the Alcalá page since 27 February 2024 and no news post since 2 July 2025; nothing later reports a closure or pause of ADC1 or ADC2. Operational is kept as of 18 September 2026 (39 days before a 27 October update; within the 90-day window until 17 December 2026).",
+      "scoped_project_details": {
+        "aliases": [
+          "ADC 1",
+          "ADC 2",
+          "Alcalá Data Center (ADC)"
+        ],
+        "facility_scope": "Existing ADC1 (opened 2013; seven IT rooms; 4,800 m2; Tier IV certified) and ADC2 (opened 2021; six IT rooms; 6,000 m2) on the Alcalá Data Center Campus, Avenida Punto Com 23, Alcalá de Henares; excludes ADC3.",
+        "it_capacity_mw_current": 22.3,
+        "it_capacity_qualification": "Operator's stated current IT capacity of the two built phases; not measured load.",
+        "opening_date_not_asserted": true
+      }
+    }
+  ],
+  "status_updates": [],
+  "context_updates": []
+}

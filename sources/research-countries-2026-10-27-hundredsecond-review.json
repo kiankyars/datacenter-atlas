@@ -1,0 +1,77 @@
+{
+  "reviewer": "root",
+  "reviewed_at": "2026-10-27",
+  "decision": "accepted_for_integration",
+  "update": "verified_construction_core/2026-10-27-research-hundredsecond",
+  "base_dataset": "verified_construction_core/2026-10-27-research-hundredfirst",
+  "process": "continuous: one researcher per beat, one adversarial verifier per fragment",
+  "fragments": [
+    {
+      "fragment": "fr-benelux-p5",
+      "verdict": "accept",
+      "checks": [
+        "current_dataset re-read at start and end: verified_construction_core/2026-10-27-research-hundredfirst; window start 2026-08-03 (85 days before 2026-10-27)",
+        "all 19 relied-on captures rehashed: sha256 equals sources.json content_hash and .metadata.json sha256; URL and captured_at equal source_url and retrieved_at; HTTP 200; reused IdF sitemap and registre 7391 p5 re-captures byte-identical to the p4/fr-p1 captures",
+        "Paray: MRAe IdF avis delegue 019554/GUNENV du 14/08/2026 read (pdftotext): SNC PARAY DC and RTE, building-permit procedure, 15,260 m2 footprint / 25,735 m2 floor, 43 generators 292 MWth, 48 chillers, RTE substation, former Air France training site; PDF created 14 Aug, sitemap lastmod 14 Aug; announced, 74 days old",
+        "Paray applicant note read: 1 avenue du Marechal Devaux, 29,655 m2 on part of single parcel AB 53 owned by Air France with promise of sale to SNC PARAY DC (wholly owned by Hines), 12 halls, 55 MW IT planned",
+        "Marseille: MRAe PACA avis 020291/GUNENV and 020695/A P adopted 1 Sep 2026 read: ESL PROPERTIES subsidiary of EDGED ENERGY, R+3 nine IT halls, 12 x 8.16 MWth generators, 17,156 m2 DC plot in 46,807 m2 landholding with the studios, PC+AE filed 25 Nov 2025 completed 18 Jun 2026; PDF created 1 Sep, sitemap lastmod 1 Sep; announced, 56 days old",
+        "TH3 P34: MRAe IdF note 021434/A P du 18/08/2026 read (ICPE AE procedure, referred 18 Jun 2026); applicant RNT (dossier 26737, same lastmod) names new data-centre building P34 on parcel AX 86 (65,969 m2, Telehouse-owned); 70 days old; the 6 Oct-dated note 021903/A P (created and listed 22 Sep) kept as context only",
+        "status sources are government_record MRAe opinions/notes (not consents); no permitted or construction stage claimed; forecast start dates and the April 2026 FONCIERE SAINT LOUIS permit not used for status",
+        "locators recomputed from raw API Carto captures with pyproj 3.7.1 / shapely 2.1.1 in EPSG:2154: Paray AB 53 2.3676222,48.7449901 (inside, 71.4 m to edge, max vertex 145.8 m); Marseille E 81+E 82 union 5.3638587,43.337546 (44,288 m2, inside, 80.0 m to edge, max vertex 204.3 m); BAN and Georisques check points reproduced",
+        "Marseille parcel inference tested: labelled plan neighbours E 7, 10-12, 14-16, 20, 21 abut the union, E 63-65/E 50/E 37 lie across the stream and E 57/E 59 to the south-east as drawn; MRAe figure 3 registered by rotation and two corners puts the DC on E 82, studios on E 81, logistics and remaining refinery on E 74",
+        "TH3 locator reuse matches base project 75647386 (AX 86 centroid 2.0781628,48.7262938, geometry evidence 928ea66a); applicant Lambert-93 access point and Georisques AIOT point inside AX 86; existing site name and ID match",
+        "roles checked: SNC PARAY DC intended owner (promise of sale) and intended operator (ICPE applicant); ESL PROPERTIES intended operator; Telehouse current land owner and intended P34 operator; scopes in {current,intended}",
+        "distinctness: no Paray, PARAY DC, Devaux, Avernaises, Saint-Louis Sucre, ESL PROPERTIES, rue de Lyon or Studios match in sites/projects/evidence/source-records/identity-mapping; Edged sites only in US/ES; nearest Atlas sites 6.1 km (Goodman PAR02) and 186.6 km (Sesterce Rovaltain); no source-record or identity-mapping coordinate within 34 km; P34 matches only unrelated UK records; only the fr-p1/fr-benelux-p4 holds of these candidates (resolved here) in sources/*-holds.json and queue; Georisques Digital Realty MRS points 1.5-4.4 km away",
+        "fixed: Marseille precision (DC parcel E 82 lies 38-204 m from the point, not 100-200 m) and identity_review (figure 3 corroboration); TH3 status summary (PC number comes from the dossier 27221 title, not the note); Paray Sitadel summary (2020 hotel permit at 3 rue du Marechal Devaux on adjoining AB 54)",
+        "no third-party personal names, emails or phones in changes, sources, holds, notes or geometry facts (MRAe members, delegate, report authors and commissioners not copied)",
+        "robots.txt records present for all hosts (evalenv and Georisques allow the paths used; registre-dematerialise allows /7391; 404 for apicarto, geopf, SDES); no tracked repository file changed (git status clean)",
+        "dryrun_fragment.py ok after edits: 836 sites, 903 projects, 4,731 evidence rows"
+      ],
+      "residual_risks": [
+        "Marseille parcels are inferred from non-georeferenced applicant plans, not a declared list; the union also holds the film studios, so the point sits on the studio parcel about 40-200 m from the data-centre building",
+        "Marseille cadastral total 44,297 m2 against 46,807 m2 declared; the April 2026 FONCIERE SAINT LOUIS permit (H 115, E 58, E 56) may cover part of the DC under earlier parcel numbers",
+        "Paray (14 Aug) leaves the 85-day window after about 7 Nov 2026 and TH3 P34 (18 Aug) after about 11 Nov 2026",
+        "MRAe opinions and notes are not consents; all three remain announced only and later permits, authorisations or withdrawals may follow",
+        "Paray operator role rests on the ICPE application; the applicant note mentions a future tenant (preneur) who is not identified",
+        "Campus locators are parcel centroids with unknown positional accuracy; building positions are not georeferenced",
+        "Applicant documents are all-rights-reserved; only facts are summarised and raw captures are not redistributed"
+      ]
+    },
+    {
+      "fragment": "iberia-italy-p5",
+      "verdict": "accept",
+      "checks": [
+        "Rehashed all 23 relied-on captures: sha256 = metadata sha256 = source content_hash, byte counts, retrieved_at and URLs match; Alcala city capture identical to existing Atlas evidence f6352758 (same URL, hash, scope, so the evidence row is shared)",
+        "GS Madrid live capture read: 'Global Switch Madrid offers ... connectivity partners', 'We support a wide range of power requirements'; nav lists Madrid among data centres while Johor and Bangkok are 'Coming Soon'; JSON-LD dateModified 2026-09-23T14:03:43Z = article:modified_time = page-sitemap lastmod",
+        "GS Madrid dateModified bounded: IA 10 Jun 2026 copy is the preceding version (dateModified 2026-02-20, different intro text, Madrid 1 14MW / Madrid 2 56MW at Calle Yecora 4); verifier fetched the 13 Oct 2026 IA copy (robots 404; one request; local verifier-ia-gs-madrid-20261013.html) which carries dateModified 2026-09-23 and identical Madrid text; source date_semantics updated",
+        "GS 6 Oct 2026 25-years release read: expanded into Madrid, 25 years of continuous operation, 'We operate mission-critical data centres'; context only; media contact and CEO names not reproduced",
+        "Alcala city item read (published 2026-09-18T12:55Z): Nabiax 'cuenta con tres centros, dos en la Comunidad de Madrid y otro en Cataluna, que operan con una capacidad conjunta de 35 megavatios'; ADC3 is 'un tercer edificio dentro del Campus externo'",
+        "Nabiax contacto lists exactly three data centres (Alcala Campus, Avenida Punto Com 23; Julian Camarillo 8 Campus, Calle Julian Camarillo 8; Terrassa) plus head office at no. 29, so the two Madrid-region centres are Alcala and Julian Camarillo; JC page: 3 modules 1995-2011, 10 MW current; Alcala page: ADC1 2013, ADC2 2021, 22.3 MW current",
+        "Dates: 2026-09-23 (34 d) and 2026-09-18 (39 d) are within 85 days of 2026-10-27; sources company_disclosure / government_record",
+        "Locators recomputed from raw INSPIRE GML (EPSG:25830) with pyproj 3.7.1 + shapely 2.1.1: Yecora parcel centroid -3.5747489, 40.4479798 (0.00 m diff, inside, 27.3 m to boundary, farthest vertex 79.5 m, PeeringDB 4882 point 5.7 m, cadastre ref point 67.9 m); JC8 centroid -3.6295448, 40.4335832 (0.00 m diff, inside, 46.7 m, 91.8 m, ref point 65.5 m); RCCOOR reverse lookups return the same parcels and addresses",
+        "Catastro DNPLOC: one property at Yecora 4 (Industrial, 22,287 m2, 2002); four properties at JC8 all on parcel 6662902VK4766D; no owner data in captures",
+        "ADC1/ADC2 locator reuses ADC3 project 1c809265 point exactly (-3.3409773439880954, 40.5195016897773; geometry evidence 189a48e9) in both hundredth and hundredfirst",
+        "Imagery viewed: Yecora parcel holds one long flat-roofed building, cleared plot with trenches to the south (Madrid 2 held); JC8 block of long buildings with rooftop plant",
+        "Distinctness screened against hundredth and the newer current hundredfirst (sites, projects, evidence, source-records, identity-mapping), every other queue fragment's changes/holds (names and coordinates within 5 km), claims.tsv and sources/*-holds.json: only Global Switch Paris, the Nabiax Alcala host site and Madrid 2 holds; nearest other Atlas record Goodman MAD01 2.44 km",
+        "Roles: Global Switch operator current; Nabiax operator current; scopes exclude Madrid 2, ADC3 and the Nabiax head office",
+        "No private individuals' names, phones or emails in changes, sources, holds or notes (mayor's name appears only in the existing official city URL)",
+        "dryrun_fragment.py ok against verified_construction_core/2026-10-27-research-hundredfirst"
+      ],
+      "residual_risks": [
+        "GS Madrid operating status rests on present-tense marketing text in a page version from a site-wide template edit; no explicit 'in operation' label",
+        "The archive lower bound (10 Jun) is outside the 85-day window, so the in-window date relies on Global Switch's own dateModified, corroborated by the 13 Oct archived copy of the same version",
+        "Julian Camarillo is not named in the city item; identity is by elimination from Nabiax's list of exactly three centres, and the city restates company information about a facility outside its municipality",
+        "City total 35 MW versus operator figures summing to 33.6 MW",
+        "JC8 parcel holds four cadastral properties (stair 1 recorded as offices); the parcel centroid does not isolate the data-centre modules",
+        "Base dataset moved to hundredfirst during verification; re-screened, but further moves before publication are not covered"
+      ]
+    }
+  ],
+  "packet_pins": {
+    "definitions/atlas-research-hundredsecond-2026-10-27.json": "28ff74b166867fd52dff0675a77ef6426d1354a381f4e7bbbe2f6e2f3090b7de",
+    "sources/research-countries-2026-10-27-hundredsecond-primary-sources.json": "4472e1e192896cde6279401f2e9ad9ee48480bb0a8474dd3b7a63f8d12f44497",
+    "sources/research-countries-2026-10-27-hundredsecond-actions.json": "314ebaa492d10bf50b818866880d255b443ea41aa377e1ff40ae81cc9d777d84",
+    "sources/research-countries-2026-10-27-hundredsecond-holds.json": "2c65be6c217df4ebc677254d6fd69d4422ff58fd1fd076fdfaa7038e70ab3e0c"
+  },
+  "raw_captures_redistributed": false
+}
