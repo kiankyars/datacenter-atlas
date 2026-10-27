@@ -1,0 +1,42 @@
+{
+  "reviewer": "root",
+  "reviewed_at": "2026-10-27",
+  "decision": "accepted_for_integration",
+  "update": "verified_construction_core/2026-10-27-research-ninetieth",
+  "base_dataset": "verified_construction_core/2026-10-27-research-eightyninth",
+  "process": "continuous: one researcher per beat, one adversarial verifier per fragment",
+  "fragments": [
+    {
+      "fragment": "nordics-cee-p4",
+      "verdict": "accept",
+      "checks": [
+        "current_dataset re-read: eightyeighth at start, eightyninth at end; Kirkkonummi and Hyperco records unchanged between them",
+        "sha256 of winthrop-kirkkonummi-updates.html, loviisa-...-jatkuvat-2.html and ryhti-property json equal metadata and sources.json content_hash",
+        "Winthrop bulletin read: 'Updated on 24/9/2026'; second building earthworks, steel, facade, roofing, concrete floors; first building equipment, internal works, paving; generator tests only upcoming",
+        "24 Sep text bounded: Atlas capture of 2026-09-08 still carried the 26 June bulletin; sitemap lastmod 2026-09-25; 33 days old, inside 85-day window",
+        "Loviisa notice read: dated 07.10.2026 (datePublished 2026-10-07); Kreate earthworks at Hyperco's future data-centre area continue; forecasts unused; 20 days old",
+        "both status refreshes strictly newer (2026-06-26 and 2026-07-02 baselines), same URL or publisher, scope kept",
+        "source kinds: company_disclosure (main contractor) and government_record (municipality); no news",
+        "campus point recomputed with pyproj 3.7.1: EPSG:3067 E363900 N6670100 -> 60.145133329678934, 24.5488365702344, exact match to site and building-1",
+        "Ryhti distances recomputed (490.3 m, 500.6 m, 174.5 m apart), but the permit's 18 Mar 2026 start conflicts with the Feb 2026 building-1 shell works, so the context was removed",
+        "distinctness: no other Atlas site, project, source record, identity mapping, queue fragment, claim or sources/*-holds entry for a Kirkkonummi second building or a newer Loviisa refresh; nothing else within 10 km",
+        "roles: none claimed; no personal names, phones or e-mails in changes, sources or holds",
+        "winthrop.ie robots (WordPress ?robots=1) allows the page; loviisa.fi robots 200",
+        "dryrun_fragment.py ok against eightyninth (776 sites, 834 projects, 4329 evidence)"
+      ],
+      "residual_risks": [
+        "the Winthrop bulletin never names Microsoft; its tie to the campus rests on Microsoft's baseline page naming Winthrop and linking this URL",
+        "the inherited campus point is the 2024 rock-crushing permit reference point, about 0.5 km from the large permit buildings; the second building's own position is not published",
+        "Hyperco Loviisa's locator rests on a Ryhti permit recorded as lapsed (thirtyfourth hold); the refresh does not touch geometry",
+        "under_construction is a generic stage for both Loviisa's earthworks and Kirkkonummi's shell works; civil_works or shell would be more specific"
+      ]
+    }
+  ],
+  "packet_pins": {
+    "definitions/atlas-research-ninetieth-2026-10-27.json": "1361f62768b1265438002ca488d0578d8d4272ddaa280f48aa2551974dc98ddf",
+    "sources/research-countries-2026-10-27-ninetieth-primary-sources.json": "b1a261416de0b828c934849d68a53eb07b716b9202d8da277d7a944582d5f953",
+    "sources/research-countries-2026-10-27-ninetieth-actions.json": "dc6d7149ba7b287c8b79bf1060af202dd48a96aa50bd329a28ec65ef34ab88d1",
+    "sources/research-countries-2026-10-27-ninetieth-holds.json": "239b51e356e186dd7dd5903046ebce6912dd10d260455aa21c8d2d465decadc8"
+  },
+  "raw_captures_redistributed": false
+}

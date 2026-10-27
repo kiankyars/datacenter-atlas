@@ -407,6 +407,8 @@ From 22 October 2026 sites are added continuously: researchers each work a narro
 
 `verified_construction_core/2026-10-27-research-eightyninth`: **776 sites and 833 projects in 63 countries**. Adds Keppel DC Singapore 2 — existing colocation data-centre operations; Keppel DC Singapore 3 — existing colocation data-centre operations; Keppel DC Singapore 4 — existing colocation data-centre operations; Digital Realty Zurich Glattbrugg Campus — existing ZUR1, ZUR2 and ZUR3 data-centre operations; Teraco JB2 Bredell — existing data-centre operations; Teraco JB4 Bredell — existing data-centre operations (2022 build and 2025 expansion); Teraco DB1 Durban — existing data-centre operations. Refreshes Digital Realty VIE13 Phase 1 Current Data Center Build (under construction); FlexBase New Technology Centre Current Build (under construction); Microsoft Zaragoza (Puerto Venecia) datacenter campus (announced); Microsoft La Muela datacenter campus (Aragón) (announced); Microsoft Villamayor de Gállego datacenter campus (Aragón) (announced).
 
+`verified_construction_core/2026-10-27-research-ninetieth`: **776 sites and 834 projects in 63 countries**. Adds Microsoft Kirkkonummi Second Datacenter Building. Refreshes Microsoft Kirkkonummi First Datacenter Building (under construction); Hyperco Loviisa Current Data Center Development (under construction).
+
 ## 25 October 2026
 
 `verified_construction_core/2026-10-25-research-sixtysecond` adds three commercial sites and

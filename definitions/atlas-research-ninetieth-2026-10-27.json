@@ -1,0 +1,78 @@
+{
+  "format": "datacenter-atlas-update-input-v1",
+  "updated_at": "2026-10-27",
+  "output": "verified_construction_core/2026-10-27-research-ninetieth",
+  "base_dataset": "verified_construction_core/2026-10-27-research-eightyninth",
+  "base_manifest_sha256": "500c4a838231c10b83dad03a163340e8bd3a45be9041e6e8ae66ee1b22a2d28c",
+  "source_files": [
+    {
+      "path": "sources/research-countries-2026-10-27-ninetieth-primary-sources.json",
+      "sha256": "b1a261416de0b828c934849d68a53eb07b716b9202d8da277d7a944582d5f953"
+    }
+  ],
+  "additions": [
+    {
+      "project_stable_key": "curated:microsoft-finland-kirkkonummi-campus:building-2",
+      "physical_site_stable_key": "curated:microsoft-finland-kirkkonummi-campus",
+      "existing_site_id": "vcc-site-004b39e14dadd642b1e8",
+      "site_name": "Microsoft Kirkkonummi Datacenter Campus",
+      "name": "Microsoft Kirkkonummi Second Datacenter Building",
+      "country": "Finland",
+      "country_iso_a2": "FI",
+      "site_identity_review": "The main contractor's Kirkkonummi bulletin updated on 24/9/2026 (winthrop.ie/kirkkonummi-finland-project-updates/, newsletter address HEL04community@...) reports works on 'both data centre buildings' of the Kirkkonummi data-centre project and lists the works of the first and the second data centre building separately. The existing Atlas site curated:microsoft-finland-kirkkonummi-campus (Microsoft Kirkkonummi Datacenter Campus, site vcc-site-004b39e14dadd642b1e8) already rests on this same bulletin URL for its only project, curated:microsoft-finland-kirkkonummi-campus:building-1 (Microsoft Kirkkonummi First Datacenter Building, bulletin of 26 June 2026), and on Microsoft's own Kirkkonummi page (baseline evidence 1aac3d2d-a83f-5684-8b27-b556173ac168), which names Winthrop as main contractor, links this bulletin and describes first and second buildings on the campus. The baseline's 26 June projection had noted the second building's works as part of the same campus, adding no second physical site. The second data centre building is therefore a further project on the existing campus site, not a new site.",
+      "status": {
+        "value": "under_construction",
+        "as_of": "2026-09-24",
+        "source_id": "nordics-cee-p4-winthrop-kirkkonummi-20260924",
+        "summary": "The main contractor's Kirkkonummi project bulletin updated on 24 September 2026 reports that construction activities on both data centre buildings are progressing as planned and lists, as currently underway in the second data centre building, earthworks, structural steel installation, facade works, roofing works and concrete floor works. Under construction as of 24 September 2026, the bulletin date. Completion, commissioning and operation of the second building are not asserted; the bulletin gives no capacity, and the upcoming backup-generator test runs it mentions are scheduled work, not an achieved stage."
+      },
+      "locator": {
+        "reuse_from_project_id": "64289119-458d-5fc9-bf51-5af6097220eb",
+        "geometry_evidence_id": "6096de66-dad6-5326-8155-173cfe6969a4",
+        "geometry_identity_evidence_ids": [
+          "1aac3d2d-a83f-5684-8b27-b556173ac168"
+        ],
+        "scope": "campus_locator",
+        "identity_review": "Reuses the existing Microsoft Kirkkonummi campus point exactly (60.145133329678934, 24.5488365702344), inherited from the first-building project with its pinned geometry evidence (the Kirkkonummi environmental decision of 29 October 2024 whose TM-35 reference point E 363900, N 6670100 marks Microsoft's named data-centre activity site on Sundsbergin yritystie, parcel 257-483-2-126) and its geometry identity evidence (Microsoft's Kirkkonummi project page). The second building is part of the same campus served by the same contractor bulletin. The point is a permit activity-site reference point, not this building's footprint or centre; the second building's own position on the campus is not published. The inherited uncertainty reason (no stated positional accuracy) is unchanged."
+      },
+      "roles": [],
+      "distinctness_review": "Screened on 27 October 2026 against sites.csv, projects.csv, evidence.csv, source-records.json and identity-mapping.json of the current dataset verified_construction_core/2026-10-27-research-eightyeighth (770 sites, 826 projects; first read as -eightyseventh, re-read from site/config.json), every other queue fragment's changes.json and holds.json, claims.tsv and all sources/*-holds.json, for Kirkkonummi, Masala, Sundsbergin yritystie, HEL04, Winthrop, parcel 257-483-2-126 and permit 302406693L. The only Atlas match is the existing site curated:microsoft-finland-kirkkonummi-campus with its single project curated:microsoft-finland-kirkkonummi-campus:building-1 and its three evidence rows (Microsoft's project page, the 2024 environmental decision, the 26 June 2026 contractor bulletin); no Atlas project, queued change, claim or hold covers a second Kirkkonummi data centre building (the 2026-10-22 thirtyfourth hold on Microsoft European refresh checks concerns building 1 and found no newer Microsoft Local page). Records within 2 km of the inherited point: only that site and its project (0 m). No other Atlas site, queued addition or claimed coordinate lies within 5 km; the nearest other Microsoft Finland site is the Espoo Hepokorpi campus. This project is the second building of the same campus, added to the existing site rather than as a new site.",
+      "successor_review": "Checked on 27 October 2026: the contractor's bulletin page (captured that day) still carries the 24 September 2026 update, which reports the second building's shell-stage works as underway and no completion; the contractor's page sitemap lists no later Kirkkonummi update (lastmod 25 September 2026), and Microsoft Local's post sitemap (captured 27 October 2026) has no Kirkkonummi construction-update item after the 2026-10-22 hold's check. No completion, commissioning, pause or cancellation of the second building was found, so under construction is kept as of 24 September 2026 (33 days before 27 October 2026).",
+      "scoped_project_details": {
+        "aliases": [
+          "Toinen datakeskusrakennus (Kirkkonummi)",
+          "Second data centre building, Kirkkonummi data center project"
+        ],
+        "facility_scope": "The second data centre building of Microsoft's Kirkkonummi datacenter campus (Sundsbergin yritystie, Masala), as distinguished from the first data centre building in the main contractor's bulletin; excludes the first building (its own project), the auxiliary support buildings and the backup generators",
+        "works_reported_2026_09_24": "earthworks, structural steel installation, facade works, roofing works, concrete floor works",
+        "capacity_basis": "No capacity published.",
+        "contractor": "Winthrop Technologies (main contractor, per Microsoft's Kirkkonummi project page already in the Atlas)"
+      }
+    }
+  ],
+  "status_updates": [
+    {
+      "project_stable_key": "curated:microsoft-finland-kirkkonummi-campus:building-1",
+      "status": {
+        "value": "under_construction",
+        "as_of": "2026-09-24",
+        "source_id": "nordics-cee-p4-winthrop-kirkkonummi-20260924",
+        "summary": "The main contractor's Kirkkonummi project bulletin updated on 24 September 2026 reports that construction activities on both data centre buildings are progressing as planned and lists, as currently underway in the first data centre building, equipment deliveries and installations, internal building works, asphalt paving, stone paving and landscaping of the external areas, and civil and structural works for the auxiliary buildings supporting the data centre; backup-generator test runs are announced as upcoming. Under construction as of 24 September 2026, the bulletin date. Completion, commissioning, energisation and operation of the first building are not asserted, and the scheduled generator test runs are not treated as done."
+      },
+      "identity_review": "Same source, project and scope as the existing observation: the existing record (under construction, 26 June 2026) was taken from the same main-contractor bulletin URL (winthrop.ie/kirkkonummi-finland-project-updates/), whose 26 June text reported concurrent interior and facade work on the first building. The 24 September bulletin again reports the first data centre building's works separately from the second building's, so the refresh keeps the first-building scope; the second building is added as its own project in this fragment. The campus locator is unchanged.",
+      "successor_review": "Strictly newer than the existing 26 June 2026 observation. The bulletin page captured on 27 October 2026 still carries the 24 September update; the contractor's page sitemap lists no later update (lastmod 25 September 2026); Microsoft Local's post sitemap captured on 27 October 2026 has no newer Kirkkonummi item. No completion, commissioning or opening of the first building was found."
+    },
+    {
+      "project_stable_key": "curated:hyperco-loviisa-data-center-campus:current-development",
+      "status": {
+        "value": "under_construction",
+        "as_of": "2026-10-07",
+        "source_id": "nordics-cee-p4-loviisa-20261007-hyperco-noisy-works",
+        "summary": "The City of Loviisa's notice of 7 October 2026 reports that Kreate Oy's earthworks at the data-centre construction site, Hyperco's future data-centre operating area south of the bypass / national road 7 along Itäinen Liittymä, are continuing and will run until the end of November, the amount of work having been larger than expected, with the noisiest phases expected to be completed at the end of October; crushing, quarrying, blasting, rock breaking, loading and transport remain permitted under the environmental authority's noise decision. Under construction as of 7 October 2026, the notice date, on the same basis as the existing record. Building construction, completion and operation of the data centre are not asserted; the end-of-October and end-of-November dates are forecasts."
+      },
+      "identity_review": "Same publisher, place, contractor and scope as the existing observation: the existing record (under construction, 2 July 2026) is the City of Loviisa's notice of the same headline about Kreate Oy's noisy works in Hyperco's future data-centre operating area south of the bypass / national road 7 along Itäinen Liittymä. The 7 October notice is a new, separately dated post at a new URL (suffix -2) describing the continuation of the same earthworks on the same site. Scope is kept (Hyperco's current data-centre development in Loviisa); the existing project locator is unchanged (the 2026-10-22 thirtyfourth hold on that locator's lapsed Ryhti permit is not affected, as a status refresh does not touch geometry).",
+      "successor_review": "Strictly newer than the existing 2 July 2026 observation. The City of Loviisa's post sitemap (captured 27 October 2026) lists no later data-centre item than this 7 October notice, and the city's meeting-items feed (200 most recent items, captured 27 October 2026) has no Hyperco decision. No completion, commissioning, pause or cancellation was found."
+    }
+  ],
+  "context_updates": []
+}
