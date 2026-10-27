@@ -1,0 +1,348 @@
+{
+ "format": "datacenter-atlas-geometry-facts-v1",
+ "candidate": "Mitsui Fudosan (仮称)日野市日野台3丁目計画 data-centre development, Hino, Tokyo",
+ "prepared_at": "2026-10-27",
+ "provenance": "Registration first prepared on 2026-10-17 by the unpublished japan_east research lane (lane copy tmp/research-2026-10-17-east/japan_east/geometry-facts-hino.json; that addition was retired because its status source fell outside the window). Re-derived on 2026-10-27 for jp-kanto-pref-p5 from the recorded control points and traced outline (script work/geo/hino_verify.py): the similarity fit, polygon, area, selected point and clearance reproduce exactly; the developer PDF re-captured on 2026-10-27 is byte-identical (sha256 96176bfc...); all 98 GSI z18 tiles in the two manifests rehash to their recorded sha256; and the GSI standard tile containing the marker (18/232563/103233), re-fetched on 2026-10-27, is byte-identical to the manifest copy.",
+ "selected_point_crs84": [
+  139.377031,
+  35.673367
+ ],
+ "selected_point_role": "parent-property marker inside the 114,037 m² development site (former Hino Motors west plant) outlined on the developer's site plan; not a building, a data hall, a surveyed boundary or a construction extent",
+ "registration": {
+  "source_map": {
+   "file": "local_data/country-research-jp-kanto-pref-p5/hino-r801siryou.pdf",
+   "sha256": "96176bfcbe0ad3e065705562c2bad689e537ca740ebd3deaa014d94930ffbce8",
+   "page": 8,
+   "embedded_image": "1533x1079 px raster (pdfimages page 8 object 177) carrying a planimetric base map with the red site outline, three planned buildings and labelled neighbours (日野台公園, はくちょう学園, 多摩小ばと保育園, 甲州街道(16m))",
+   "page_title": "開発計画概要",
+   "north_arrow": "overlay arrow rotated about 20 degrees clockwise from page-up",
+   "first_capture": "local_data/country-research-2026-10-17-japan_east/hino-r801-siryou1.pdf (byte-identical)",
+   "source_url": "https://www.city.hino.lg.jp/_res/projects/default_project/_page_/001/031/436/r801siryou.pdf"
+  },
+  "gsi": {
+   "layer_control": "std (GSI standard map, z18)",
+   "layer_check": "seamlessphoto (z18)",
+   "z": 18,
+   "x0": 232559,
+   "y0": 103230,
+   "mosaic_tiles": "7x7",
+   "ground_m_per_px_at_35.674N": 0.4851,
+   "manifests": [
+    {
+     "path": "local_data/country-research-2026-10-17-japan_east/gsi-hino/hino-std-z18-manifest.json",
+     "sha256": "fe21a05aa974e9f013134d10134b19d85e425e063a83a904064dfbab0c4996e8"
+    },
+    {
+     "path": "local_data/country-research-2026-10-17-japan_east/gsi-hino/hino-photo-z18-manifest.json",
+     "sha256": "0527f81b46b24706f4193b7a7044b13530a62e911ae3a05ca2a0a1a526e456ca"
+    }
+   ]
+  },
+  "transform": "least-squares 2D similarity (rotation, uniform scale, translation) from six control points; no area forcing",
+  "fit": {
+   "scale_gsi_px_per_source_px": 1.3641,
+   "rotation_deg": -20.945,
+   "source_m_per_px": 0.6617,
+   "rms_residual_m": 1.61
+  },
+  "control_points": {
+   "tank_north_centre": {
+    "plan_px": [
+     985.5,
+     76.25
+    ],
+    "gsi_px": [
+     1140.7,
+     57.5
+    ],
+    "fit_px": [
+     1140.38,
+     58.19
+    ],
+    "residual_m": 0.37,
+    "used_in_fit": true
+   },
+   "tank_south_centre": {
+    "plan_px": [
+     985.5,
+     112.0
+    ],
+    "gsi_px": [
+     1158.0,
+     103.2
+    ],
+    "fit_px": [
+     1157.82,
+     103.74
+    ],
+    "residual_m": 0.28,
+    "used_in_fit": true
+   },
+   "park_block_nw": {
+    "plan_px": [
+     412.0,
+     659.0
+    ],
+    "gsi_px": [
+     697.5,
+     1082.5
+    ],
+    "fit_px": [
+     693.92,
+     1080.25
+    ],
+    "residual_m": 2.05,
+    "used_in_fit": true
+   },
+   "park_block_ne": {
+    "plan_px": [
+     528.0,
+     659.0
+    ],
+    "gsi_px": [
+     840.0,
+     1027.5
+    ],
+    "fit_px": [
+     841.7,
+     1023.68
+    ],
+    "residual_m": 2.03,
+    "used_in_fit": true
+   },
+   "park_block_se": {
+    "plan_px": [
+     528.0,
+     730.0
+    ],
+    "gsi_px": [
+     872.5,
+     1112.5
+    ],
+    "fit_px": [
+     876.33,
+     1114.14
+    ],
+    "residual_m": 2.02,
+    "used_in_fit": true
+   },
+   "park_block_sw": {
+    "plan_px": [
+     412.0,
+     730.0
+    ],
+    "gsi_px": [
+     730.0,
+     1167.5
+    ],
+    "fit_px": [
+     728.55,
+     1170.7
+    ],
+    "residual_m": 1.71,
+    "used_in_fit": true
+   },
+   "site_sw_corner_at_koshu_kaido": {
+    "plan_px": [
+     532.0,
+     985.0
+    ],
+    "gsi_px": [
+     1008.0,
+     1448.0
+    ],
+    "fit_px": [
+     1005.76,
+     1437.05
+    ],
+    "residual_m": 5.42,
+    "used_in_fit": false
+   }
+  },
+  "notes": "Control points: centres of the two circular tanks drawn on both the source base map and the GSI standard map north-east of the site; the four corners of the 日野台公園 block west of the site. The site's south-west corner on 甲州街道 was held out as an independent check (5.4 m)."
+ },
+ "site_polygon_source_px": [
+  [
+   935,
+   78
+  ],
+  [
+   939,
+   135
+  ],
+  [
+   942,
+   160
+  ],
+  [
+   942,
+   428
+  ],
+  [
+   912,
+   430
+  ],
+  [
+   912,
+   840
+  ],
+  [
+   720,
+   842
+  ],
+  [
+   720,
+   980
+  ],
+  [
+   532,
+   985
+  ],
+  [
+   542,
+   395
+  ],
+  [
+   575,
+   395
+  ],
+  [
+   575,
+   365
+  ],
+  [
+   562,
+   365
+  ],
+  [
+   570,
+   328
+  ],
+  [
+   700,
+   250
+  ],
+  [
+   815,
+   198
+  ]
+ ],
+ "site_polygon_crs84": [
+  [
+   139.3769623,
+   35.677008
+  ],
+  [
+   139.3771387,
+   35.6767
+  ],
+  [
+   139.3772246,
+   35.6765676
+  ],
+  [
+   139.3779256,
+   35.6750798
+  ],
+  [
+   139.3777258,
+   35.6750049
+  ],
+  [
+   139.3787983,
+   35.6727288
+  ],
+  [
+   139.3774914,
+   35.6723097
+  ],
+  [
+   139.3778524,
+   35.6715435
+  ],
+  [
+   139.3765806,
+   35.6711162
+  ],
+  [
+   139.3751057,
+   35.674413
+  ],
+  [
+   139.3753312,
+   35.6744831
+  ],
+  [
+   139.3752527,
+   35.6746497
+  ],
+  [
+   139.3751639,
+   35.6746221
+  ],
+  [
+   139.3751218,
+   35.6748445
+  ],
+  [
+   139.3758062,
+   35.6755537
+  ],
+  [
+   139.3764561,
+   35.6760868
+  ]
+ ],
+ "area_check": {
+  "registered_polygon_geodesic_m2": 113750.8,
+  "official_site_area_m2": 114037.24,
+  "difference_pct": -0.25,
+  "basis": "The red outline was traced manually from the source raster; the independent similarity fit reproduces the official area within 0.3%, confirming scale and outline identity."
+ },
+ "selected_point": {
+  "basis": "pole of inaccessibility of the registered site polygon in JGD2011 plane IX (EPSG:6677)",
+  "crs84": [
+   139.3770307,
+   35.6733671
+  ],
+  "clearance_m": 123.9
+ },
+ "centroid_point": {
+  "crs84": [
+   139.3768622,
+   35.6738779
+  ],
+  "clearance_m": 117.8,
+  "shift_vs_selected_m": 58.8
+ },
+ "consistency": "Overlaid on the GSI seamless aerial (derived-hino-overlay-photo-z18.png, local only), the registered outline follows the residential lot line on the west, 甲州街道 on the south and the stream-side road on the north-west, and encloses the former west-plant buildings and the cleared demolition area of the Hino Motors plant; the main plant east of the outline is excluded.",
+ "independent_checks": [
+  "The source document states the site is 日野台3丁目1番32,33,34の一部 and 日野台4丁目31番1,2,5 (日野自動車旧西側工場跡地), 114,037.24 m²; the GSI standard map labels the surrounding works 日野自動車工場 and the blocks 日野台三丁目/四丁目.",
+  "Hino City's AIGID/MOJ 2026 public-coordinate parcel file (13212, 9,585 features) contains no 日野台3丁目 or 4丁目 parcels, so no registry-map parcel locator is available; GSI chome-level address points are excluded as district-level."
+ ],
+ "excluded": [
+  "GSI address-search chome representative points for 日野台三丁目/四丁目",
+  "Hino Motors head-office address point (日野台3-1-1)",
+  "Hino city centre"
+ ],
+ "uncertainty": "Control-point RMS 1.6 m and check residual 5.4 m measure registration consistency against the GSI standard map only, not ground accuracy; the manual outline trace and the source raster's 0.66 m pixel add a few metres. The point is chosen for its ~124 m clearance inside the site.",
+ "reverification_2026_10_27": {
+  "script": "work/geo/hino_verify.py (uv run --no-project --with pyproj==3.7.1 --with shapely==2.1.1 --with numpy python -I)",
+  "n_controls": 6,
+  "scale_gsi_px_per_source_px": 1.3641,
+  "rotation_deg": -20.945,
+  "rms_residual_m": 1.61,
+  "max_polygon_vertex_difference_m": 0.01,
+  "geodesic_area_m2": 113750.8,
+  "official_area_m2": 114037.24,
+  "selected_point_inside_outline": true,
+  "selected_point_clearance_m": 123.9,
+  "gsi_marker_tile_refetch": {
+   "url": "https://cyberjapandata.gsi.go.jp/xyz/std/18/232563/103233.png",
+   "sha256": "9f8d86febf806705e0eb1a43ce35162d17ba2c2c7bf3ec6a28077f758954defa",
+   "raw_capture_file": "local_data/country-research-jp-kanto-pref-p5/gsi-std-18-232563-103233.png",
+   "matches_manifest": true
+  },
+  "visual_check": "Reduced copy of the japan_east overlay on GSI seamless aerial z18 viewed on 2026-10-27: the red outline follows the residential lot line on the west and 甲州街道 on the south, encloses the former west-plant buildings and the cleared demolition ground, and excludes the Hino Motors main plant to the east; the selected point lies on cleared ground inside it."
+ }
+}

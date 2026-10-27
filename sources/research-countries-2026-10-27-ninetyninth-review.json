@@ -1,0 +1,43 @@
+{
+  "reviewer": "root",
+  "reviewed_at": "2026-10-27",
+  "decision": "accepted_for_integration",
+  "update": "verified_construction_core/2026-10-27-research-ninetyninth",
+  "base_dataset": "verified_construction_core/2026-10-27-research-ninetyeighth",
+  "process": "continuous: one researcher per beat, one adversarial verifier per fragment",
+  "fragments": [
+    {
+      "fragment": "jp-kanto-pref-p5",
+      "verdict": "accept",
+      "checks": [
+        "All 9 original source captures rehashed: file sha256 == .metadata.json sha256 == sources.json content_hash; URLs match metadata",
+        "Koto 参考1 (pdftotext, 3 pages) read: dated 令和８年１０月１６日; 7月24日 confirmation application to 指定確認検査機関; 8月27日 確認済証 交付; plan 千石3丁目2番, 9,478.42 m2, 22,640 m2, 51.4 m, 5 storeys; works period Sept 2026-Mar 2029 is a schedule",
+        "Koto refresh removed: issuing body unnamed and no certificate number, so authority and reference are missing; all 34 accepted Atlas permitted records carry a reference (JP precedent TECRA building B: Japan ERI ERI-26012911); cn-north-p1 GDS hold refused permitted on the same grounds",
+        "Hino notice list (government_record): all 7 byte pointers match; 5 Oct question names 三井不動産日野台データセンター建設, 7 Oct question names 日野台データセンター造成工事10月着工; page 更新日 令和8年8月27日",
+        "Notice-list date bounded by the verifier's IA copies of the council top page: 20260809 copy has no entry; 20261010 copy (decoded, byte-identical to the 27 Oct live capture d55588a5) lists it under 8月27日; the CDX listing for the notice list itself is empty; both copies stored with metadata",
+        "Announced as of 2026-08-27: 61 days before 2026-10-27 (window opens 2026-08-03), as_of equals published_at; earlier Hino holds named an in-window council-session record as the reopen condition",
+        "Results page: 請願第8－7号 (postpone a data centre's construction start) 不採択, 9月29日; pointers match; used as context only",
+        "Developer material r801siryou p1/p4/p7/p8 read: 事業者 三井不動産; lots 日野台3丁目1番32,33,34の一部 and 4丁目31番1,2,5; 114,037.24 m2; data centre on former Hino Motors west plant; 250 MW and 1,708,200 MWh are planned figures; height 72 m to 63.5 m; GFA 139,800 m2",
+        "FY2025 material p2: 土地所有者 三井不動産株式会社 supports the owner role (scope current); Mitsui 23 July release p6 names the plan (context only, outside the window)",
+        "Locator recomputed independently (complex least squares, pyproj 3.7.1/shapely 2.1.1, EPSG:6677): scale 1.3641, rotation -20.945 deg, RMS 1.61 m, check point 5.42 m; geodesic area 113,750.8 m2 (-0.25%); max vertex difference 0.007 m; shapely polylabel lands 0.52 m from the selected point, clearance 123.9 m",
+        "98 GSI z18 tiles rehashed against both manifests (0 bad); overlays drawn on the page-8 raster and the GSI std/photo mosaics: tanks and park-block controls coincide, the outline follows the west lot line and 甲州街道, the marker is on cleared ground inside the site",
+        "Distinctness vs ninety-eighth (829 sites/893 projects), evidence, source-records and identity-mapping: no 日野/Hino/日野台 match; nearest site OME DC04 at 13.3 km; no other queue fragment or sources/*-holds.json item beyond this candidate's own earlier holds",
+        "No private individuals' names, phones or emails in changes, sources, holds, geometry facts or notes (councillors' names not copied)",
+        "dryrun_fragment.py ok on 2026-10-27-research-ninetyeighth (830 sites, 894 projects, 4679 evidence)"
+      ],
+      "residual_risks": [
+        "Hino status rests on councillors' question titles and a CMS page date. The archive bounds the listing date (27 Aug, public by 10 Oct) but not the notice-list body, which has no archive copy",
+        "Owner role comes from an undated FY2025 city material (landowner); no in-window ownership statement",
+        "Hino notices 公告第252/253号 of 23 Oct 2026 were not opened (robots-disallowed path); if they concern this plan they could carry a later stage",
+        "Locator registration is to the GSI standard map without ground control; it is a parent-property marker, not a building position"
+      ]
+    }
+  ],
+  "packet_pins": {
+    "definitions/atlas-research-ninetyninth-2026-10-27.json": "e47eb76dd59afd0195c99484afb719c8b1f7b1896858d8a8897e1170fe7a2fc6",
+    "sources/research-countries-2026-10-27-ninetyninth-primary-sources.json": "1fcc25fc360b436330682d1167384373696fb6e9fb7dac1aebe655d80160289c",
+    "sources/research-countries-2026-10-27-ninetyninth-actions.json": "efaf8a7673e207c49874cdf2c6b92800db053648f75cedce8983d6f3b9de8f5b",
+    "sources/research-countries-2026-10-27-ninetyninth-holds.json": "83c3361a95f64f83bc07e95e66e7b8279736fbab3bd439c432d857ab14655f01"
+  },
+  "raw_captures_redistributed": false
+}

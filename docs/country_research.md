@@ -425,6 +425,8 @@ From 22 October 2026 sites are added continuously: researchers each work a narro
 
 `verified_construction_core/2026-10-27-research-ninetyeighth`: **829 sites and 893 projects in 63 countries**. Adds Galaxy Backbone NSSC Abuja — existing Tier III data-centre operations (NSSC DC1); Galaxy Backbone Kano — existing Tier IV data-centre operations; Teraco CT1 Rondebosch — existing data-centre operations.
 
+`verified_construction_core/2026-10-27-research-ninetyninth`: **830 sites and 894 projects in 63 countries**. Adds Mitsui Fudosan (仮称)日野市日野台3丁目計画 — planned three-building data-centre development, Hino.
+
 ## 25 October 2026
 
 `verified_construction_core/2026-10-25-research-sixtysecond` adds three commercial sites and
