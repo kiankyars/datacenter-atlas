@@ -1,0 +1,83 @@
+{
+ "candidate_id": "us-nc-sc-tn-p5-tierpoint-charlotte-north-myers",
+ "decision": "Selected the centroid of Mecklenburg County tax parcel 08008408 (125 N MYERS ST), as published in the NC OneMap statewide parcel layer, as the reviewed site locator for TierPoint's Charlotte - North Myers (CL2) data center at 125 North Myers Street, Charlotte. The parcel is the host building's lot; TierPoint's facility may occupy only part of the building.",
+ "geometry": {
+  "type": "Point",
+  "coordinates": [
+   -80.8352553,
+   35.222086
+  ]
+ },
+ "authority_class": "official_source",
+ "scope_class": "official_tax_parcel_centroid",
+ "use_scope": "reviewed_site_locator",
+ "source_id": "us-nc-sc-tn-p5-nconemap-meck-08008408",
+ "source_file": "local_data/country-research-us-nc-sc-tn-p5/nconemap-meck-08008408-wgs84.json",
+ "source_sha256": "b6149c551fa42d1ec969c15275efd4d7f8d8515d76bc17e415a29ef531e64a00",
+ "source_url": "https://services.nconemap.gov/secure/rest/services/NC1Map_Parcels/FeatureServer/1/query?where=cntyname%3D%27Mecklenburg%27%20AND%20parno%3D%2708008408%27&outFields=parno,altparno,ownname,gisacres,siteadd,scity,parusedesc,cntyname,structyear,improvval,landval,saledatetx,sourcedatx,revdatetx,owntype&returnGeometry=true&outSR=4326&f=json",
+ "retrieved_at": "2026-10-27T02:47:35.243Z",
+ "native_source_file": "local_data/country-research-us-nc-sc-tn-p5/nconemap-meck-08008408-native.json",
+ "native_source_sha256": "e8b202c06a1b2f17668ff46040c5bc6050712d3f26e910d1a5a808f1d4a86f37",
+ "layer": "NC OneMap NC1Map_Parcels FeatureServer layer 1 (Mecklenburg County source rows); native CRS EPSG:2264 (NAD83 / North Carolina, US feet)",
+ "selected_properties": {
+  "08008408": {
+   "altparno": "08008408",
+   "site_address": "125 N MYERS ST CHARLOTTE NC",
+   "owner_of_record": "DIGITAL 125 N MYERS LLC (organisation)",
+   "use_code": "OFFICE",
+   "structure_year": 2000,
+   "improvement_value": 4449800,
+   "land_value": 1164300,
+   "gis_acres_attribute": 0.2,
+   "geodesic_acres": 0.199
+  }
+ },
+ "excluded": {
+  "08008405": "113 N MYERS ST, 0.37 acres, OFFICE, structure 1999, owner of record DIGITAL 113 N MYERS LLC (local nconemap-meck-digital-myers-owner.json): the adjoining building of a related owner entity at a different street number; TierPoint gives 125 North Myers Street only, so it is not part of the locator."
+ },
+ "computed": {
+  "selected_point": [
+   -80.8352553,
+   35.222086
+  ],
+  "union_parts": 1,
+  "union_valid": true,
+  "geodesic_acres": 0.199,
+  "centroid_inside_parcel": true,
+  "native_epsg2264_centroid_transformed_lon_lat": [
+   -80.835252,
+   35.2220791
+  ],
+  "native_crosscheck_distance_m": 0.82,
+  "bounds_lon_lat": [
+   -80.835466,
+   35.221902,
+   -80.835057,
+   35.222279
+  ],
+  "extent_m_ew_ns": [
+   37,
+   42
+  ],
+  "operator_structured_data_point_check": {
+   "point_lon_lat": [
+    -80.835202,
+    35.223687
+   ],
+   "inside_selected_parcel": false,
+   "distance_to_selected_point_m": 177.7,
+   "falls_in": "parcel 08008215 (241 N ALEXANDER ST, OTHER MUNICIPAL, 2.49 acres; local nconemap-meck-tierpoint-cl2-jsonld-point-parcel.json)",
+   "use": "not used; an approximate geocode on a neighbouring municipal parcel"
+  },
+  "method": "Planar centroid of the WGS84 (outSR=4326) parcel polygon (one record, one ring); cross-checked against the native EPSG:2264 centroid transformed with pyproj; geodesic area on the WGS84 ellipsoid.",
+  "tools": "pyproj 3.7.1, shapely 2.1.1"
+ },
+ "identity_bridge": [
+  "TierPoint's Charlotte - North Myers page (version of 3 September 2026) gives 'Charlotte - North Myers (CL2) 125 North Myers Street Charlotte, NC 28202'.",
+  "NC OneMap returns one Mecklenburg parcel with site address 125 N MYERS ST (08008408; 0.20 acres; OFFICE; structure built in 2000) among the 42 N Myers St records (local nconemap-meck-n-myers-st-addresses.json)."
+ ],
+ "unresolved": [
+  "The point marks the host building's 0.2-acre lot, not TierPoint's suite; the statewide layer publishes no positional accuracy.",
+  "The owner of record is DIGITAL 125 N MYERS LLC; whether other operators occupy the building is not established here, and no owner role is asserted."
+ ]
+}

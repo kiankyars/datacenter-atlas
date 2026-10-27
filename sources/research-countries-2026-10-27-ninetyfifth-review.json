@@ -1,0 +1,130 @@
+{
+  "reviewer": "root",
+  "reviewed_at": "2026-10-27",
+  "decision": "accepted_for_integration",
+  "update": "verified_construction_core/2026-10-27-research-ninetyfifth",
+  "base_dataset": "verified_construction_core/2026-10-27-research-ninetyfourth",
+  "process": "continuous: one researcher per beat, one adversarial verifier per fragment",
+  "fragments": [
+    {
+      "fragment": "us-ca-pnw-ak-hi-p5",
+      "verdict": "accept",
+      "checks": [
+        "base re-read: config current_dataset = 2026-10-27-research-ninetyfourth; dry run against it",
+        "21 captures rehashed: sha256 equals sources content_hash and .metadata.json; URL, capture time, bytes, HTTP 200 and no credentials all match",
+        "85-day window from 2026-08-03 checked: SV18 2026-08-05 (83 days), Servpac 2026-09-25 (32 days)",
+        "SV18: Equinix community post (schema.org Article, datePublished 2026-08-05, Product Manager, News) says 'SV18, a new Equinix IBX facility in Silicon Valley, California is now open'",
+        "SV18 identity: CEQAnet NOD lists SV12, SV18 and SV19 at 123, 127 and 131 Great Oaks Blvd; San Jose permits put the SV19 new building at 131 and SV12x at 123, and fit-out 2026-134965-CI at 127 (APN 70602060, owner EQUINIX LLC)",
+        "SV18 locator: reuses the published site and project 55a6a29a campus point exactly, with geometry evidence 327e6717 and no identity evidence; builder inheritance checks pass",
+        "Servpac: 25 Sep 2026 page version (article:modified_time = sitemap lastmod) says the 30,000 sq ft MTP Data Center is Hawaii's only Tier IV certified facility and offers cabinets, cages and suites; the 15 Oct 2025 IA copy (modified 2023) has different text (lower bound); TierPoint precedent",
+        "Servpac identity: MTP Tier IV page schema serviceLocation is 'MTP Data Center', 200 Kahelu Ave, Mililani; all 20 Honolulu permit rows at 200 KAHELU AVE are on TMK 95046002; head-office address not used",
+        "Servpac locator recomputed: TMK 9-5-046:002 centroid (-158.0192455, 21.4809642), inside the parcel, 5.071 geodesic acres; EPSG 32604, 3750 and 26963 agree to 0.00 m",
+        "CoreSite refuted: the 1 Sep 2026 release says CoreSite 'will offer' an on-ramp at its 'Silicon Valley data center campus', which CoreSite defines as nine facilities in Milpitas, San Jose and Santa Clara (including the excluded SV1 and SV2); no Santa Clara building named",
+        "roles: Equinix operator (current), Equinix LLC owner (current, owner of record on the permit list), Servpac Inc. operator (current); all allowed values",
+        "distinctness screened by keyword and by 2 km against ninetyfourth sites, projects, evidence, source-records and identity-mapping, every queue fragment's changes and holds, sources/*-holds.json and claims.tsv: SV18 matches only its own site and the SV12x project plus holds whose reopen condition this meets; nothing matches Servpac and no other Hawaii site exists",
+        "no names, phone numbers or e-mails of private individuals in changes, sources, holds or URLs; robots.txt for the relied-on hosts allows the captured paths",
+        "dryrun_fragment.py ok: 810 sites, 872 projects, 4,553 evidence rows"
+      ],
+      "residual_risks": [
+        "SV18's 5 Aug 2026 observation leaves the 85-day window on 29 Oct 2026, so it must publish by then (the builder allows 90 days)",
+        "SV18 rests on an employee product-update post on Equinix's community site; www.equinix.com refuses robots.txt, so it could not be cross-checked",
+        "The SV18-to-127 mapping follows from the NOD's ordered list plus the permits; no single source states 'SV18 at 127' outright",
+        "The Servpac version date rests on the publisher's own modified time; the archived lower bound is 11 months earlier",
+        "The Servpac parcel point locates the 5-acre property, not Building 1; Building 2 may be on an adjoining parcel",
+        "The p5 CoreSite claim line remains in claims.tsv; the hold records the removal"
+      ]
+    },
+    {
+      "fragment": "us-la-ms-al-ar-p5",
+      "verdict": "accept",
+      "checks": [
+        "all 17 relied-on captures rehashed: file sha256 == source content_hash == .metadata.json sha256; HTTP 200, effective_url == source_url, captured_at == retrieved_at, no credentials",
+        "geometry facts file sha256 7175a8b4... matches source record",
+        "Leo live page JSON-LD dateModified 2026-08-25T20:07:33Z; IA 20260819 copy is prior version (dateModified 2026-07-29, 760 acres, April 2027); IA 20260904 copy carries the 2026-08-25 version and its text is identical to the live capture; CDX shows no capture between",
+        "Leo observation 2026-08-25 is 63 days before 2026-10-27, inside the 85-day window (bounds 19 Aug-4 Sep also inside)",
+        "Leo decisive text read: 145th Street, Pulaski County, 296 acres, 1,070 MW planned, ESA energized Q4 2027; undated 'broken ground' and 'fully approved Site Plan' not used for status; announced only",
+        "Leo locator recomputed with pyproj 3.7.1/shapely 2.1.1: union of three ADP LITTLE ROCK DATA HUB LLC parcels = one polygon, 290.44 geodesic acres, centroid -92.2476545 34.6208420 (0.00 m from claimed), inside, 409.7 m from boundary; native EPSG:26915 cross-check 0.91 m; AVAIO point inside parcel 35R-024.00-023.00, 147.5 m inside union, 291 m from centroid",
+        "municipal layer returns no polygon at the AVAIO point; county layer returns Pulaski",
+        "locator class official_tax_parcel_union_centroid/direct_geometry/official_source/campus_locator matches 47 existing Atlas records",
+        "identity: Jan 2026 release names 'Leo Data Hub' of AVAIO Digital Partners, matching owner ADP LITTLE ROCK DATA HUB LLC",
+        "role owner/current from parcel record (CAMA 2026-09-11)",
+        "distinctness screened against ninetythird and ninetyfourth (now current) sites/projects/evidence/source-records/identity-mapping: no Leo, Little Rock AVAIO URL or 145th match; nearest site TierPoint Little Rock 23.48 km; no queued coordinate within 2 km; only other mention is the fortysecond-holds us-south-central-p1 Leo hold whose reopen condition (bounded dated page modification) is met",
+        "Taurus: existing record under_construction 2026-07-20 from capture with sha256 3759697..., identical to IA 20260618 copy; live and IA 20260904 copies carry dateModified 2026-08-25T18:58:51Z with unchanged broken-ground/on-track and sewer-extension sentences; only power wording changed; strictly newer, same scope, locator unchanged",
+        "no other fragment or claim touches either project key",
+        "robots.txt captured and honoured for avaiodigital.com, web.archive.org (404), gis.arkansas.gov, pulaskicounty.net (crawl-delay 30 s observed); speakcdn disallowed and not fetched",
+        "no private individuals' names, phones or e-mails in changes, sources, holds, notes or geometry facts (captures contain some but they were not copied)",
+        "dryrun_fragment.py ok against 2026-10-27-research-ninetyfourth: 810 sites, 871 projects"
+      ],
+      "residual_risks": [
+        "Leo announced status rests on a company page revision date; the page's construction and site-plan claims remain unverified pending Pulaski County records (held)",
+        "ADP LITTLE ROCK GREEN COMPUTE LLC parcels adjoin the union and are excluded only because AVAIO's 296-acre figure matches the Data Hub parcels",
+        "Taurus refresh restates a broken-ground sentence present since the February 2026 version; the 25 August edit changed only power wording",
+        "Taurus IA bounding copies and CDX listing are kept in sources.json but have no project association (a status update cannot carry context sources)"
+      ]
+    },
+    {
+      "fragment": "us-nc-sc-tn-p5",
+      "verdict": "accept",
+      "checks": [
+        "all 13 cited captures rehashed: sha256 equals .metadata.json and source content_hash; byte counts, URLs and retrieval times match; no credentials supplied",
+        "geometry-facts files rehashed against geometry_facts_sha256",
+        "decisive statements read in the live captures: present-tense facility and colocation descriptions, addresses 5301 Departure Dr / 1805 Center Park Dr / 125 North Myers St, and cross-page 'TierPoint operates' statements for the Charlotte and Raleigh sites",
+        "JSON-LD dateModified and article:modified_time 2026-09-03 (07:07:19, 07:06:20, 07:04:36) equal the page-sitemap lastmod values",
+        "Internet Archive id_ copies (12 Nov 2025, 16 May 2026, 4 Sep 2025) carry dateModified 2024-07-31 and different generator/2N lines, so each 3 Sep 2026 version is a real later edit (lower bound); live capture of 27 Oct 2026 bounds it above; CDX listings show no later copy",
+        "observation 2026-09-03 is 54 days before 2026-10-27, inside the 85-day window; source kind company_disclosure (operator)",
+        "locators recomputed with pyproj 3.7.1 and shapely 2.1.1 from raw NC OneMap WGS84 rings: centroids within 0.01 m of the claimed points, inside valid single-ring parcels (5.371, 6.718, 0.199 geodesic acres); native EPSG:2264 rings transformed to within 0.82 m",
+        "parcel identity: the only 1805 Center Park Dr record among 38, and 125 N Myers St among 42 N Myers St records; the Raleigh JSON-LD point lies inside parcel 1716964146 (28.9 m away); the Charlotte JSON-LD points fall on the neighbouring parcels 3735 Beam Rd and 241 N Alexander St and are correctly not used",
+        "locator scope reviewed_site_locator / official_tax_parcel_centroid matches the published TierPoint Raleigh-RTP precedent; no city centre, HQ or zone centroid; uncertainty null with a reason",
+        "roles: TierPoint operator, current, from the status source; no owner role asserted for the organisation owners of record",
+        "distinctness re-screened against the newer current dataset 2026-10-27-research-ninetyfourth (809 sites, 870 projects, 4541 evidence rows, source-records, identity-mapping), all queue changes and holds, claims.tsv and sources/*-holds.json: nothing within 5 km; nearest are TierPoint Raleigh-RTP at 25.8 km and QTS York at 22.1 / 32.0 km; only name matches are the us-nc-sc-tn-p4 / eightythird holds, whose reopen conditions this fragment meets",
+        "one project per new site; new sites only",
+        "robots.txt captured before first request per host; TierPoint requests spaced at least 11 s (Crawl-delay 10)",
+        "no private individuals' data in changes, sources, holds or URLs (parcel owners are organisations; testimonial names on the page not copied)",
+        "dryrun_fragment.py ok against verified_construction_core/2026-10-27-research-ninetyfourth (812 sites, 873 projects)"
+      ],
+      "residual_risks": [
+        "status rests on an operator marketing page's dateModified; upper bound is the live capture only (no post-3-September archive copy), as in the published Tulsa, OKC, Omaha-Bellevue and Millpark precedents",
+        "parcel centroids locate the property, not the building; North Myers is a 0.2-acre lot in a Digital Realty-owned building, and TierPoint's space could extend into adjoining 113 N Myers St",
+        "TierPoint's tenure at the Level 3, Gannett DC Assets and Digital 125 N Myers properties is unpublished"
+      ]
+    },
+    {
+      "fragment": "us-nv-ut-id-p5",
+      "verdict": "accept",
+      "checks": [
+        "config current_dataset re-read at start and before verdict: verified_construction_core/2026-10-27-research-ninetyfourth",
+        "rehashed all 8 cited captures plus the IA CDX listing: sha256 equals .metadata.json and sources.json content_hash; retrieved_at equals metadata captured_at for the 6 fragment-retrieved sources",
+        "page-sitemap and post-sitemap captures byte-identical to published evidence f7d8afe2 and 3a7e67f8; kind/title/publisher/family/licence/attribution/published_at/retrieved_at mirrored exactly",
+        "read live LV page text: 'Our Las Vegas facility runs on ambient air cooling and waterless cooling technology', 2025 monthly water bills Jan-Dec (2 per month), on-site 24x7 staffing, 100% uptime SLA, 1.3 PUE, 16-acre/20-acre, 246,328 sq ft, 100 MW owner substation, six-block full build",
+        "dateModified/article:modified_time 2026-08-31T19:33:58Z in live capture; page-sitemap lastmod identical; IA copy 2026-07-14 has dateModified 2026-07-02 with same operating/water/spec text plus visible 6115 Nicco Way block; CDX has no copy after 2026-07-14; live capture 2026-10-27 bounds above",
+        "text diff IA vs live: only the visible address block removed and dynamic related-articles list changed (live list includes a post with sitemap lastmod 2026-10-23); live structured data still gives streetAddress 6115 Nicco Way, 89115",
+        "CIM release datePublished 2025-03-05 says Novva 'also operates data centers in Colorado Springs, Colorado and Las Vegas, Nevada' (context only)",
+        "status: operational, as_of 2026-08-31 <= published_at 2026-08-31; company_disclosure primary; 57 days before 2026-10-27, inside the 85-day window (from 2026-08-03); not an opening date; full-build completion not asserted",
+        "locator recomputed from raw Assessor polygon (1 ring, 71 vertices, valid): EPSG:32611 centroid (-115.04894803, 36.27152649), EPSG:5070 identical, planar 0.003 m off; proposed point within 0.003 m and inside parcel",
+        "parcel 123-28-601-034: ASSR_ACRES 18.0, CALC_ACRES 17.989, geodesic 17.989 ac, extent 201.4 x 436.7 m, furthest vertex 255.5 m; APNs -016/-030 return no polygon",
+        "AQM register source 18179 NOVVA DATA CENTERS / NOVVA LAS VEGAS LLC, type DATA CENTER, 6115 NICCO WAY: point inside parcel, 39.9 m from centroid",
+        "Accela owner layer: NOVVA LAS VEGAS L L C active primary owner of 12328601034 (city NORTH LAS VEGAS) and of -016/-030; no other NOVVA owner",
+        "Novva structured-data GeoCoordinates 7.1 m outside parcel east edge, 106.0 m from centroid; correctly not used; no geocoder or city centroid",
+        "geometry facts file sha256 d08be4e6... matches sources.json geometry_facts_sha256",
+        "roles: Novva Data Centers operator current (LV page); Novva Las Vegas LLC owner current (Accela owner record); both companies",
+        "distinctness: independent keyword (novva, nicco, 6115, 123-28-601, 12328601, 89115) and 5 km coordinate screen over ninetyfourth sites/projects/evidence/source-records/identity-mapping, all other queue fragments' changes/sources/holds, claims.tsv and sources/*-holds.json: only hits are the us-southwest-p2 and us-az-nv-ut-p3 holds of this facility and this fragment's own claims; nearest Atlas site DataBank LAS1 25.1 km; no Novva Las Vegas record anywhere",
+        "single addition at a new site; stable keys unused in the dataset",
+        "holds.json (8 entries) and all summaries/URLs scanned: no private individuals' names, phones or e-mails",
+        "dryrun_fragment.py: ok against ninetyfourth (810 sites, 871 projects, 4547 evidence)"
+      ],
+      "residual_risks": [
+        "Operating status rests on the operator page's present-tense description and published 2025 water bills; no certificate of occupancy or independent customer-service record (North Las Vegas host blocked)",
+        "The 31 August dateModified is bounded only from below by the 14 July IA copy and above by the 27 October live capture; no archived copy between them",
+        "Parcel centroid locates the 18-acre parcel, not the building; county publishes no positional accuracy",
+        "Robots/compliance claims in compliance.log were not re-fetched by the verifier (no network requests made)"
+      ]
+    }
+  ],
+  "packet_pins": {
+    "definitions/atlas-research-ninetyfifth-2026-10-27.json": "b330d39b87eec812fe54a4bdd8331c559053a92abd70841ccb6cb9f4f8143c6f",
+    "sources/research-countries-2026-10-27-ninetyfifth-primary-sources.json": "e6c1d0c60b7385090f34813f4bbdb1f1dece89a523361b53bbbbc5d387734cf2",
+    "sources/research-countries-2026-10-27-ninetyfifth-actions.json": "92957eb774c08258b41ca1ba07aa36228364711e4abcfdd718e519666da81696",
+    "sources/research-countries-2026-10-27-ninetyfifth-holds.json": "1f1569d60eabf82219a83a489bb4a09a4558089fa6d7481013ce045ccf16d655"
+  },
+  "raw_captures_redistributed": false
+}

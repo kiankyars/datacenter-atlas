@@ -1,0 +1,69 @@
+{
+  "candidate_id": "servpac-mtp-data-center-mililani",
+  "decision": "Selected the centroid of Oahu tax parcel TMK 9-5-046:002 (200 Kahelu Ave, Mililani Technology Park), the address Servpac publishes for its MTP Data Center, as the campus locator of the MTP Data Center property.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -158.0192455,
+      21.4809642
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_tax_parcel_centroid",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-us-ca-pnw-ak-hi-p5/hi-oahu-parcel-tmk-95046002.geojson",
+  "source_sha256": "eded01d0080204e2bf1a2410995100d94bc18f79d19c6d80f097e32dba2cbb8f",
+  "source_url": "https://geodata.hawaii.gov/arcgis/rest/services/ParcelsZoning/MapServer/11/query?where=tmk8num%3D95046002&outFields=tmk,tmk9txt,tmk8num,type,gisacres,rec_area_ac,zone,section,plat,in_date,street_parcel,qpub_link&outSR=4326&f=geojson",
+  "retrieved_at": "2026-10-27T02:59:12.052Z",
+  "selected_properties": {
+    "95046002": {
+      "tmk9txt": "195046002",
+      "type": 1,
+      "gisacres": 5.06806157,
+      "rec_area_ac": 5.001
+    },
+    "layer": "Hawaii Statewide GIS Program, ParcelsZoning MapServer layer 11 'Oahu Parcels' (City and County of Honolulu tax parcels as of 23 April 2026, from the Honolulu Land Information System), queried by tmk8num with outSR=4326; exactly one parcel is returned."
+  },
+  "computed": {
+    "tmk": "9-5-046:002",
+    "parts": 1,
+    "geodesic_area_m2": 20521.0,
+    "geodesic_acres": 5.071,
+    "centroid_lon_lat": [
+      -158.0192455,
+      21.4809642
+    ],
+    "centroid_inside": true,
+    "crs_cross_check_shift_m": {
+      "3750": 0.0,
+      "26963": 0.0
+    },
+    "extent_m": [
+      221.5,
+      169.4
+    ],
+    "bounds_lon_lat": [
+      -158.020312,
+      21.480199,
+      -158.018176,
+      21.481721
+    ],
+    "method": "Parcel polygon (six vertices) returned by the service in WGS84 (native NAD83(HARN) / UTM 4N, EPSG:3750); centroid computed in EPSG:32604 (WGS 84 / UTM 4N) and returned to WGS84; EPSG:3750 and EPSG:26963 cross-checks give the same point; geodesic area on the WGS84 ellipsoid.",
+    "tools": "pyproj 3.7.1, shapely 2.1.1"
+  },
+  "identity_bridge": [
+    "Servpac's MTP Tier IV Data Center page gives the service location 'MTP Data Center', 200 Kahelu Ave, Mililani, HI 96789.",
+    "Servpac's releases place the MTP Data Center in Mililani Technology Park (2020 opening; 2026 Building 2 groundbreaking).",
+    "The City and County of Honolulu building-permit records place every 200 KAHELU AVE record on TMK 95046002.",
+    "The state Oahu parcel layer returns TMK 9-5-046:002 as one 5.07-acre parcel (recorded area 5.001 acres)."
+  ],
+  "unresolved": [
+    "The groundbreaking release says Building 2 is built on 'an additional 5 acres of company-owned land'; whether that is part of parcel 9-5-046:002 or an adjoining parcel is not established, so the marker locates the published MTP address parcel, not either building.",
+    "The service returns WGS84 coordinates transformed from NAD83(HARN) without stating the transformation; the difference is sub-metre to metre scale."
+  ],
+  "nearby_records": "No Atlas site, project, source record, identity-mapping entry, pending fragment change, claim or hold coordinate lies within 2 km; the Atlas has no other site in Hawaii.",
+  "consistency_checks": {
+    "datum": "WGS84 GeoJSON from the state ArcGIS service (outSR=4326)",
+    "geocoder_used": false
+  }
+}

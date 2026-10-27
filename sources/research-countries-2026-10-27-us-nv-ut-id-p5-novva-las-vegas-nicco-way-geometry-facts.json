@@ -1,0 +1,71 @@
+{
+  "candidate_id": "novva-las-vegas-nicco-way-data-center",
+  "decision": "Selected the centroid of Clark County Assessor parcel 123-28-601-034 (18.0 assessor acres; owner of record Novva Las Vegas LLC; tax district 254, North Las Vegas) as the campus locator of Novva's Las Vegas data center at 6115 Nicco Way.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -115.048948,
+      36.2715265
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_tax_parcel_centroid",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-us-nv-ut-id-p5/clark-assessor-parcels-novva-las-vegas.json",
+  "source_sha256": "86bb33f3e1ec747f2f7cbeddef039463b50c5889f1c1e4d50cb5df26a75d321a",
+  "source_url": "https://maps.clarkcountynv.gov/arcgis/rest/services/Assessor/Layers/MapServer/1/query?where=APN+IN+%28%2712328601030%27%2C%2712328601016%27%2C%2712328601034%27%29&outFields=APN%2CCALC_ACRES%2CASSR_ACRES%2CPARCELTYPE%2CTAX_DIST&returnGeometry=true&outSR=4326&f=json",
+  "retrieved_at": "2026-10-27T02:50:08.308Z",
+  "selected_properties": {
+    "12328601034": {
+      "calc_acres": 17.989073,
+      "assessor_acres": 18.0,
+      "parcel_type": 0,
+      "tax_district": "254",
+      "owner_of_record": "NOVVA LAS VEGAS L L C (organisation; Accela owner layer, owner status A, primary owner), from local clark-accela-owner-points-novva.json",
+      "owner_layer_city": "NORTH LAS VEGAS"
+    },
+    "other_owner_records": "The Accela owner layer lists two further APNs for the same owner, 123-28-601-016 and 123-28-601-030, with no point, address or city; the current Assessor parcel layer returns no polygon for either (queried in the same request), so only 123-28-601-034 is used.",
+    "layer": "Clark County Assessor/Layers MapServer layer 1 (parcels), queried by APN with outSR=4326"
+  },
+  "computed": {
+    "parts": 1,
+    "rings": 1,
+    "vertices": 71,
+    "geodesic_acres": 17.989,
+    "geodesic_area_m2": 72799.8,
+    "centroid_lon_lat": [
+      -115.048948,
+      36.2715265
+    ],
+    "centroid_inside_polygon": true,
+    "crs_cross_check_shift_m": 0.0,
+    "extent_m": [
+      201.4,
+      436.7
+    ],
+    "bounds_lon_lat": [
+      -115.050134,
+      36.269766,
+      -115.047903,
+      36.273668
+    ],
+    "furthest_vertex_m": 255.5,
+    "method": "Polygon returned with outSR=4326; centroid computed in EPSG:32611 (WGS 84 / UTM 11N) and returned to WGS84; an EPSG:5070 cross-check gives the same point; geodesic area on the WGS84 ellipsoid.",
+    "tools": "pyproj 3.7.1, shapely 2.1.1"
+  },
+  "identity_bridge": [
+    "Novva's Las Vegas page in its version modified 2 July 2026 (Internet Archive copy of 14 July 2026) shows 'Novva Data Centers – Las Vegas 6115 Nicco Way, Las Vegas, NV 89115'; the 31 August 2026 version describes the same 275,000 sq ft, 100 MW North Las Vegas facility.",
+    "The Clark County air-quality stationary-source register (AQM/StationarySource map layer) lists source 18179, 'NOVVA DATA CENTERS' (company NOVVA LAS VEGAS LLC), source type DATA CENTER, at 6115 NICCO WAY; its point (-115.0487710, 36.2718559) lies inside parcel 123-28-601-034, 39.9 m from the centroid.",
+    "The Clark County Accela owner layer gives NOVVA LAS VEGAS L L C as the active primary owner of parcel 123-28-601-034 (city NORTH LAS VEGAS); its point coincides with the parcel centroid.",
+    "Novva's own structured-data GeoCoordinates for the page (-115.0478565, 36.2711640) lie 7.1 m outside the parcel's eastern boundary (106.0 m from the centroid), consistent with a point placed on the Nicco Way frontage; it is not used as the locator."
+  ],
+  "unresolved": [
+    "Individual buildings are not located; the point represents the 18-acre parcel that holds the campus (Novva describes a 16-acre campus and 20 acres of land area).",
+    "The county publishes no positional accuracy for parcel polygons."
+  ],
+  "nearby_records": "No Atlas site, project, source record, identity-mapping entry, pending fragment, claim or hold coordinate lies within 2 km; the nearest Atlas site is DataBank LAS1 at 7185 Pollock Drive, about 25.1 km south-west.",
+  "consistency_checks": {
+    "datum": "WGS84 output from the county service (outSR=4326)",
+    "geocoder_used": false
+  }
+}

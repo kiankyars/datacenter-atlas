@@ -1,0 +1,105 @@
+{
+ "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+ "candidate_id": "us-la-ms-al-ar-p5-avaio-project-leo-little-rock",
+ "candidate": "AVAIO Digital Leo (Project Leo) AI-ready data center and power campus, 145th Street, unincorporated Pulaski County near Little Rock, Arkansas",
+ "prepared_at": "2026-10-27",
+ "decision": "Selected the centroid (computed in UTM 15N on WGS 84) of the union of the three contiguous Pulaski County tax parcels owned by ADP LITTLE ROCK DATA HUB LLC (35R-024.00-023.00 and 35R-019.00-068.00 at E 145th St, and 35R-024.13-001.00 at McDonald Rd, which the first parcel encloses), as published in the Arkansas GIS Office statewide parcel layer, as the campus locator. AVAIO's own published campus coordinate (34.623375, -92.246825) falls inside parcel 35R-024.00-023.00 and inside the union, 291 m north-north-east of the selected point.",
+ "geometry": {
+  "type": "Point",
+  "coordinates": [
+   -92.2476545,
+   34.620842
+  ]
+ },
+ "authority_class": "official_source",
+ "scope_class": "official_tax_parcel_union_centroid",
+ "use_scope": "campus_locator",
+ "source_file": "local_data/country-research-us-la-ms-al-ar-p5/argis-parcels-owner-adp-little-rock.json",
+ "source_sha256": "2709f2277364d15e082f69f5613684ec15349ff99ffb49af68edae6ae2a5c130",
+ "source_url": "https://gis.arkansas.gov/arcgis/rest/services/FEATURESERVICES/Planning_Cadastre/FeatureServer/6/query?where=ownername%20LIKE%20%27%25ADP%20LITTLE%20ROCK%25%27%20OR%20ownername%20LIKE%20%27%25AVAIO%25%27&outFields=parcelid,parcellgl,ownername,adrnum,pstrnam,pstrtype,adrcity,adrlabel,parceltype,subdivision,str,county,camadate,pubdate,sourcedate&returnGeometry=true&outSR=4326&f=json",
+ "retrieved_at": "2026-10-27T02:42:16.724Z",
+ "native_file": "local_data/country-research-us-la-ms-al-ar-p5/argis-parcels-leo-native.json",
+ "native_sha256": "1d8c6dbb13b49e7122bfd8d50a68517b158e8984bab2b97cb1d0d1ac4fba15fa",
+ "native_url": "https://gis.arkansas.gov/arcgis/rest/services/FEATURESERVICES/Planning_Cadastre/FeatureServer/6/query?where=parcelid%20IN%20(%2735R-024.00-023.00%27,%2735R-024.13-001.00%27,%2735R-019.00-068.00%27)%20AND%20county%3D%27Pulaski%27&outFields=parcelid,ownername,adrlabel&returnGeometry=true&f=json",
+ "layer": "Arkansas GIS Office, FEATURESERVICES/Planning_Cadastre FeatureServer layer 6 PARCEL_POLYGON_CAMP (statewide publication of county assessor tax parcels; Pulaski County CAMA record date 2026-09-11, publication date 2026-10-01; native CRS NAD83 / UTM zone 15N, EPSG:26915)",
+ "selected_properties": {
+  "35R-024.00-023.00": {
+   "ownername": "ADP LITTLE ROCK DATA HUB LLC",
+   "adrlabel": "E 145TH ST",
+   "adrcity": "LITTLE ROCK",
+   "county": "Pulaski",
+   "parceltype": "AV",
+   "legal_description_start": "PT OF THE NE 1/4 & PT OF THE E1/2 NW 1/4 OF SEC 24 TWP 1S RNG 12W",
+   "rings": 2,
+   "note": "outer ring with one interior ring that is parcel 35R-024.13-001.00"
+  },
+  "35R-024.13-001.00": {
+   "ownername": "ADP LITTLE ROCK DATA HUB LLC",
+   "adrlabel": "MCDONALD RD",
+   "county": "Pulaski",
+   "parceltype": "AV",
+   "legal_description_start": "LT'S 1 THRU 8 VESTA",
+   "rings": 1
+  },
+  "35R-019.00-068.00": {
+   "ownername": "ADP LITTLE ROCK DATA HUB LLC",
+   "adrlabel": "E 145TH ST",
+   "county": "Pulaski",
+   "parceltype": "AV",
+   "legal_description_start": "PT OF THE NW1/4 OF SEC 19 TWP 1S RNG 11W",
+   "rings": 1,
+   "note": "the layer's str field reads S19-T1S-R12W, but the legal description places the parcel in range 11W, adjoining section 24 of range 12W on the east"
+  }
+ },
+ "excluded_properties": {
+  "35R-013.00-015.00 and 35R-013.00-016.00": "Owned by ADP LITTLE ROCK GREEN COMPUTE LLC (German Rd and Mona Ln, section 13, 19.64 and 19.85 geodesic acres, 626 to 800 m north-west of the operator point). A separately named entity; neither AVAIO source ties these parcels to the 296-acre Leo campus, so they are not part of the locator."
+ },
+ "method": "Polygons returned with outSR=4326. Esri ring orientation was honoured (clockwise outer rings, counter-clockwise holes). The union centroid was computed in UTM zone 15N (EPSG:32615) with pyproj 3.7.1 and shapely 2.1.1 and transformed back to WGS 84; geodesic areas on the WGS 84 ellipsoid. Cross-check: the same three parcels requested in the native EPSG:26915 coordinates give a union centroid 0.91 m from the selected point.",
+ "facts": {
+  "parcels": {
+   "35R-024.00-023.00": {"geodesic_acres": 209.97, "native_planar_acres": 209.82, "contains_operator_point": true},
+   "35R-024.13-001.00": {"geodesic_acres": 38.5, "native_planar_acres": 38.47, "contains_operator_point": false, "contains_selected_point": true},
+   "35R-019.00-068.00": {"geodesic_acres": 41.97, "native_planar_acres": 41.94, "contains_operator_point": false}
+  },
+  "union_parts": 1,
+  "union_geodesic_acres": 290.44,
+  "union_native_planar_acres": 290.24,
+  "centroid_lon_lat": [-92.2476545, 34.620842],
+  "centroid_inside": true,
+  "centroid_parcel": "35R-024.13-001.00 (the enclosed McDonald Rd parcel)",
+  "centroid_distance_to_union_boundary_m": 409.7,
+  "approx_extent_m": [1463.0, 1055.4],
+  "native_cross_check_centroid_lon_lat": [-92.247648, 34.6208357],
+  "native_cross_check_offset_m": 0.91
+ },
+ "operator_point_check": {
+  "file": "local_data/country-research-us-la-ms-al-ar-p5/avaio-little-rock-20261027.html",
+  "sha256": "d8da976f003a3fc4be6b4bd6224aed6dd49e9d09ae3a614056885ca19becba64",
+  "reading": "Page text 'Latitude & Longitude 34.623375 -92.246825' and JSON-LD GeoCoordinates latitude 34.623375, longitude -92.246825 (identical in the Internet Archive copies of 18 June, 19 August and 4 September 2026)",
+  "point_query_file": "local_data/country-research-us-la-ms-al-ar-p5/argis-parcel-at-avaio-point.json",
+  "point_query_sha256": "9f100b3d57ff55750f8e3e7904851156306dff7b5146490b3f2bff9d3d8dcfda",
+  "point_query_result": "a point-intersect query of the parcel layer at the operator coordinate returns only 35R-024.00-023.00, ADP LITTLE ROCK DATA HUB LLC, E 145TH ST",
+  "inside_union": true,
+  "distance_to_union_boundary_m": 146.8,
+  "geodesic_distance_to_selected_point_m": 291.1,
+  "azimuth_operator_point_to_selected_point_deg": -164.9
+ },
+ "jurisdiction_check": {
+  "municipal_file": "local_data/country-research-us-la-ms-al-ar-p5/argis-municipal-at-avaio-point.json",
+  "municipal_sha256": "6d4d949c093a1039a25117b4095f8c9a75e2a5803d820f8fb72fa90fe6fdb885",
+  "municipal_result": "no MUNICIPAL_BOUNDARY polygon (Arkansas GIS Office Boundaries layer 41) contains the operator point: unincorporated area",
+  "county_file": "local_data/country-research-us-la-ms-al-ar-p5/argis-county-at-avaio-point.json",
+  "county_sha256": "59d9afabfcc7df07536a64e111e0fcbc73ceb3fff94d0b30a7436fb2c85d914c",
+  "county_result": "COUNTY_BOUNDARY (layer 48): Pulaski County, FIPS 05119"
+ },
+ "interpretation": "The three parcels form one contiguous 290-acre property owned by ADP LITTLE ROCK DATA HUB LLC on East 145th Street; AVAIO (AVAIO Digital Partners) describes Leo as a 296-acre project on 145th Street in Pulaski County and publishes a campus coordinate that falls inside this property. The selected point is the centroid of the whole parcel union and locates the campus property, not a building, a works extent or a surveyed boundary.",
+ "datum_note": "The parcel layer is natively NAD83 / UTM 15N; the WGS 84 output and the native cross-check differ by 0.91 m. AVAIO publishes no datum for its coordinate.",
+ "geocoder_used": false,
+ "alternatives_rejected": [
+  "AVAIO's published coordinate is used only as an identity cross-check: it is a first-party pin without datum or method, while the official parcels locate the whole campus property.",
+  "Pulaski Area GIS (www.pagis.org) did not answer its robots.txt request (connection timeout), so it was not used; the Arkansas GIS Office statewide parcel publication of the Pulaski County records was used instead.",
+  "The U.S. Census Bureau Geocoder was in an outage (requests redirected to outage.census.gov) and was not used.",
+  "The ADP LITTLE ROCK GREEN COMPUTE LLC parcels in section 13 are excluded (see excluded_properties).",
+  "No OpenStreetMap, Nominatim, city centroid or county centroid was used."
+ ]
+}

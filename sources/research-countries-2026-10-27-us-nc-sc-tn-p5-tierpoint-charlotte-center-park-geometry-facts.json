@@ -1,0 +1,83 @@
+{
+ "candidate_id": "us-nc-sc-tn-p5-tierpoint-charlotte-center-park",
+ "decision": "Selected the centroid of Mecklenburg County tax parcel 14106108 (1805 CENTER PARK DR), as published in the NC OneMap statewide parcel layer, as the reviewed site locator for TierPoint's Charlotte - Center Park (CL4) data center at 1805 Center Park Drive, Charlotte.",
+ "geometry": {
+  "type": "Point",
+  "coordinates": [
+   -80.9281546,
+   35.1733241
+  ]
+ },
+ "authority_class": "official_source",
+ "scope_class": "official_tax_parcel_centroid",
+ "use_scope": "reviewed_site_locator",
+ "source_id": "us-nc-sc-tn-p5-nconemap-meck-14106108",
+ "source_file": "local_data/country-research-us-nc-sc-tn-p5/nconemap-meck-14106108-wgs84.json",
+ "source_sha256": "09dd5e26e40d8c06338af5a6f11bd670c4094006ba63dbffe0fc36f87a13a230",
+ "source_url": "https://services.nconemap.gov/secure/rest/services/NC1Map_Parcels/FeatureServer/1/query?where=cntyname%3D%27Mecklenburg%27%20AND%20parno%3D%2714106108%27&outFields=parno,altparno,ownname,gisacres,siteadd,scity,parusedesc,cntyname,structyear,improvval,landval,saledatetx,sourcedatx,revdatetx,owntype&returnGeometry=true&outSR=4326&f=json",
+ "retrieved_at": "2026-10-27T02:47:25.632Z",
+ "native_source_file": "local_data/country-research-us-nc-sc-tn-p5/nconemap-meck-14106108-native.json",
+ "native_source_sha256": "225dbf348527b14b073d2b39bd32d890e5b6c86b2126b706fc73efe55b1f94ed",
+ "layer": "NC OneMap NC1Map_Parcels FeatureServer layer 1 (Mecklenburg County source rows); native CRS EPSG:2264 (NAD83 / North Carolina, US feet)",
+ "selected_properties": {
+  "14106108": {
+   "altparno": "14106108",
+   "site_address": "1805 CENTER PARK DR CHARLOTTE NC",
+   "owner_of_record": "GANNETT DC ASSETS LP (organisation)",
+   "use_code": "INDUSTRIAL",
+   "structure_year": 1999,
+   "improvement_value": 10877400,
+   "land_value": 996400,
+   "gis_acres_attribute": 6.72,
+   "geodesic_acres": 6.718
+  }
+ },
+ "excluded": {
+  "other_parcels": "Of the 38 Mecklenburg parcel records on Center Park Dr (local nconemap-meck-center-park-dr-addresses.json; attributes parno, acres, address, use and structure year only), only 14106108 carries 1805 CENTER PARK DR."
+ },
+ "computed": {
+  "selected_point": [
+   -80.9281546,
+   35.1733241
+  ],
+  "union_parts": 1,
+  "union_valid": true,
+  "geodesic_acres": 6.718,
+  "centroid_inside_parcel": true,
+  "native_epsg2264_centroid_transformed_lon_lat": [
+   -80.9281513,
+   35.1733172
+  ],
+  "native_crosscheck_distance_m": 0.82,
+  "bounds_lon_lat": [
+   -80.929453,
+   35.172343,
+   -80.927104,
+   35.174234
+  ],
+  "extent_m_ew_ns": [
+   214,
+   210
+  ],
+  "operator_structured_data_point_check": {
+   "point_lon_lat": [
+    -80.927959,
+    35.175235
+   ],
+   "inside_selected_parcel": false,
+   "distance_to_selected_point_m": 212.8,
+   "falls_in": "parcel 14106306 (3735 BEAM RD, INDUSTRIAL, 1.91 acres; local nconemap-meck-tierpoint-cl4-jsonld-point-parcel.json)",
+   "use": "not used; an approximate street geocode north of the address parcel"
+  },
+  "method": "Planar centroid of the WGS84 (outSR=4326) parcel polygon (one record, one ring); cross-checked against the native EPSG:2264 centroid transformed with pyproj; geodesic area on the WGS84 ellipsoid.",
+  "tools": "pyproj 3.7.1, shapely 2.1.1"
+ },
+ "identity_bridge": [
+  "TierPoint's Charlotte - Center Park page (version of 3 September 2026) gives 'Charlotte - Center Park (CL4) 1805 Center Park Drive Charlotte, NC 28217'.",
+  "NC OneMap returns one Mecklenburg parcel with site address 1805 CENTER PARK DR (14106108; 6.72 acres; INDUSTRIAL; structure built in 1999; improvements of about 10.9 million dollars); no other Center Park Dr record has that number."
+ ],
+ "unresolved": [
+  "The parcel boundary locates the property, not the building footprint; the statewide layer publishes no positional accuracy.",
+  "The owner of record is GANNETT DC ASSETS LP; its relationship to TierPoint is not published, so no owner role is asserted."
+ ]
+}
