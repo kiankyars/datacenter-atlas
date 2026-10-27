@@ -1,0 +1,161 @@
+{
+  "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+  "researched_at": "2026-10-27T00:00:00+00:00",
+  "candidate": "Volcano Engine Inner Mongolia Horinger Compute Centre Phase 1 A (火山引擎内蒙古和林格尔算力中心一期A项目), Yungu area, Horinger New Area, Hohhot, Inner Mongolia: campus locator for the 10-1 machine-room building project",
+  "method": "The selected point is the coordinate printed in the Hohhot Ecology and Environment Bureau's published EIA report form for the Phase 1 project's gas boiler house (in the Phase 1 A integrated building), transcribed arithmetically (deg + min/60 + sec/3600) with no datum transformation. The earlier version of the same report reproduces the Phase 1 A parcel plan (宗地图) with ten boundary points on the 2000 national geodetic coordinate system (X north, Y east with zone prefix 37, i.e. CGCS2000 3-degree Gauss-Kruger zone 37, EPSG:4525). The boundary points were transcribed from the plan's coordinate table, checked against the printed side lengths, converted to CGCS2000 geographic coordinates with pyproj 3.7.1 and tested with shapely 2.1.1 for containment of the EIA point. An independent Esri World Imagery EPSG:4326 export was used to compare the computed parcel and the point with the visible compound.",
+  "selected_point": {
+    "label": "Phase 1 A gas boiler house / integrated building (stack DA001), inside the Phase 1 A parcel, immediately east of machine-room building 10-1",
+    "source_url": "http://sthjj.huhhot.gov.cn/ywgz/hjyxpj/xmslqk/202506/P020250619383769020711.pdf",
+    "local_capture": "local_data/country-research-cn-inner-mongolia-p5/hh-volc-p1-eia-report-20250619.pdf",
+    "source_sha256": "68137319695787cf288b09c756bd599374b09a89e0c6766b781905b3eb62dd22",
+    "printed": "Cover table 地理坐标（111 度 50 分 48.120 秒，40 度 35 分 9.456 秒）; section 4 项目中心坐标为：111.84670°，40.58596°; emission-source and risk tables 锅炉房 / DA001 111.84670°，40.58596°",
+    "lon_lat": [
+      111.8467,
+      40.58596
+    ],
+    "recomputed_from_dms": [
+      111.8467,
+      40.58596
+    ]
+  },
+  "parcel_plan_check": {
+    "source_url": "http://sthjj.huhhot.gov.cn/ywgz/hjyxpj/xmslqk/202503/P020250507388440918408.pdf",
+    "local_capture": "local_data/country-research-cn-inner-mongolia-p5/hh-volc-p1-eia-report-202503.pdf",
+    "source_sha256": "34883c10c49b952dae04cf32b9aba01509000f05e15a09ccb12c0d3e83615337",
+    "location_in_source": "Attachment 3 用地文件, PDF page 59 (embedded scan 850 x 722 px): 出让宗地平面界址图 / 宗地图, '2000国家大地坐标系', scale 1:1500, with a 界址点坐标表",
+    "boundary_points_x_north_y_east": [
+      [
+        "J1",
+        4494905.32,
+        37571396.572
+      ],
+      [
+        "J2",
+        4495031.318,
+        37571700.348
+      ],
+      [
+        "J3",
+        4494883.8,
+        37571763.256
+      ],
+      [
+        "J4",
+        4494839.725,
+        37571782.052
+      ],
+      [
+        "J5",
+        4494728.821,
+        37571829.347
+      ],
+      [
+        "J6",
+        4494715.547,
+        37571821.388
+      ],
+      [
+        "J7",
+        4494715.368,
+        37571820.947
+      ],
+      [
+        "J8",
+        4494578.035,
+        37571489.84
+      ],
+      [
+        "J9",
+        4494581.364,
+        37571488.459
+      ],
+      [
+        "J10",
+        4494815.143,
+        37571414.044
+      ]
+    ],
+    "printed_side_lengths_m": [
+      328.87,
+      160.371,
+      47.916,
+      120.567,
+      15.477,
+      0.476,
+      358.458,
+      3.604,
+      245.337,
+      91.854
+    ],
+    "computed_side_length_differences_m": "all ten within 0.001 m of the printed lengths (validates the transcription, including the partly stamped J9 value)",
+    "computed_planar_area_m2": 119698.24,
+    "comparison_area": "Filing notice Phase 1 A land 119,698.23 m2. The plan's own printed total, partly under a stamp, reads S=119,683.69 m2 (179.5254 mu), 14.6 m2 (0.01%) less than the area computed from the ten boundary points; the difference is immaterial to the locator check (verifier note, 27 October 2026)",
+    "crs": "EPSG:4525 (CGCS2000 / 3-degree Gauss-Kruger zone 37, central meridian 111E) to EPSG:4490 geographic",
+    "parcel_vertices_lon_lat": [
+      [
+        111.8433301,
+        40.5856833
+      ],
+      [
+        111.8469322,
+        40.5867916
+      ],
+      [
+        111.8476584,
+        40.5854579
+      ],
+      [
+        111.8478754,
+        40.5850594
+      ],
+      [
+        111.8484213,
+        40.5840567
+      ],
+      [
+        111.8483258,
+        40.5839378
+      ],
+      [
+        111.8483206,
+        40.5839362
+      ],
+      [
+        111.8443946,
+        40.5827283
+      ],
+      [
+        111.8443786,
+        40.5827584
+      ],
+      [
+        111.8435262,
+        40.5848698
+      ]
+    ],
+    "parcel_centroid_lon_lat": [
+      111.8457683,
+      40.5847628
+    ],
+    "eia_point_inside_parcel": true,
+    "eia_point_distance_to_parcel_boundary_m": 53.6,
+    "eia_point_distance_to_parcel_centroid_m": 154.6,
+    "north_side_grid_bearing_deg": 67.47
+  },
+  "second_eia_cross_check": {
+    "source_url": "https://sthjt.nmg.gov.cn/xxgk/sthjzdlyxxgk/wrfzhssxg/hyfshjjg/202502/P020250226337204474596.pdf",
+    "local_capture": "local_data/country-research-cn-inner-mongolia-p5/nmg-volc-p1a-110kv-eia-20250226-long.pdf",
+    "source_sha256": "f9797dc28eff21b9ace520ccd242427ef03c94599f49e7d7173fcca043f3290c",
+    "printed": "Section 2: 位于火山引擎内蒙古和林格尔算力中心一期A项目厂区内西南角，变电站中心坐标为：40°35'0.462\"N，111°50'43.120\"E; table 2-4 corner points 1 (111°50′39.832″, 40°34′57.842″), 2 (111°50′41.505″, 40°34′58.517″), 3 (111°50′39.858″, 40°35′1.694″), 4 (111°50′38.520″, 40°35′1.282″)",
+    "result": "All four corner points and the printed centre fall inside the Phase 1 A parcel computed from the CGCS2000 parcel plan; the corners lie at the parcel's south-west corner (0.5, 5.1, 36.3 and 2.5 m from the boundary), matching the report's 'south-west corner of the Phase 1 A plant area'. The printed centre is 46.5 m inside the boundary but 77.5 m from the centroid of the four corners (internal inconsistency; not used). Two independent official documents (the boiler-house EIA and this substation EIA) thus agree with the CGCS2000 parcel when their printed geographic values are read as WGS84/CGCS2000."
+  },
+  "frame_check": {
+    "imagery": "Esri World Imagery EPSG:4326 export, request bbox 111.8395,40.5800,111.8545,40.5900 at 1600 x 1067 px (local esri-volc-p1.jpg, sha256 c6a3574a...; companion f=json local esri-volc-p1.extent.json, sha256 607e3fda..., returned extent 111.8395-111.8545E, 40.5799984-40.5900016N). Acquisition date not stated; the image shows the compound under construction.",
+    "observation": "The parcel computed from the CGCS2000 plan follows the walled construction compound (within roughly 10 m by eye along its north and west walls). Inside it, three large machine-room buildings form the western column, a ring-shaped building occupies the north-east block and a fourth building footprint the south-east; this matches the EIA's figure 4 general layout of the western half of Phase 1 (10-1, 10-2, 10-3 west; integrated building north-east; 10-4 south of it) once the drawing's horizontal axis is aligned with the parcel's 67.5-degree north side. The EIA point falls on the north-east integrated-building block. Building 10-1, the north-west building, has its visual centre about 165 m west-south-west of the point (manual pick near 111.8448E, 40.5856N).",
+    "gcj02_alternative": "If the printed values were GCJ-02, the WGS84 position would be about 584 m west (111.83997, 40.58481), 297 m outside the parcel in open fields; that reading is rejected.",
+    "manual_pick_accuracy": "manual visual comparison on imagery of about 0.9 m per pixel and unstated accuracy"
+  },
+  "scope_and_uncertainty": "The point locates the Phase 1 A campus of the compute centre through its integrated-building boiler house. It is not the footprint or centre of building 10-1 (about 165 m away), not Phase 1 B (east of the parcel) and not the separate Phase 2 park (whose 220 kV substation the cn-north-p1 verifier placed 586 m east-north-east). No datum or positional accuracy is stated; horizontal uncertainty is left unquantified.",
+  "nearest_atlas_records": "In verified_construction_core/2026-10-27-research-ninetysixth no site or project lies within 5 km; nearest is China Telecom Cloud Computing Inner Mongolia Information Park at 5.54 km.",
+  "privacy": "Surveyor and checker names printed on the parcel plan and contact details in the report are not reproduced."
+}

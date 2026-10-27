@@ -1,0 +1,123 @@
+{
+  "reviewer": "root",
+  "reviewed_at": "2026-10-27",
+  "decision": "accepted_for_integration",
+  "update": "verified_construction_core/2026-10-27-research-ninetyseventh",
+  "base_dataset": "verified_construction_core/2026-10-27-research-ninetysixth",
+  "process": "continuous: one researcher per beat, one adversarial verifier per fragment",
+  "fragments": [
+    {
+      "fragment": "cn-hebei-tianjin-beijing-p5",
+      "verdict": "accept",
+      "checks": [
+        "current_dataset re-read: verified_construction_core/2026-10-27-research-ninetysixth (start and finish)",
+        "all 15 relied-on captures rehashed: file sha256 == .metadata.json sha256 == sources.json content_hash; 3 Esri returned-extent JSONs match; both geometry-facts sha256 match sources.json",
+        "Smart Space: read hl-79-71452-v4.html myself: 2026-08-05 planning verification 核字第2026Z006号 of 1#-6#数据中心 and 1号/2号110KV变电站, builder 华夏雅库, permits 建字第130730202400031号/…39号; government_record; 83 days old (inside 85, publish by 2026-10-29); planning verification as completion has precedent (Guangzhou Pazhou, Keli)",
+        "Smart Space locator: own trace of the campus perimeter on esri-yk-z.jpg (no plan registration) gives centroid 3.0 m from (115.76183, 40.31017), area 70,780 m2 vs 69,941.54 stated; layout of plan (6 halls in 3 rows plus 2 substations) matches imagery; land-use map labels (G6, Y127, 葡萄大道, 东环兴业/科力恒久 parks) match esri-yk-ctx.jpg",
+        "Tencent: read sheet hl-71496-img1.jpg myself: '用地面积为230947.53㎡，用地内包括已批已建的现状建（构）筑物' and '瑞北云数据中心北侧为存瑞中学和河北秦淮数据存瑞基地'; site plan sheet shows halls 1#-8# and 9# 综合楼, generator sets/oil tanks/water tanks marked 已批已建, new items K-1..K-9 only in the blue expansion scope; publication 2026-08-10 (78 days); attachments linked from the 71496 page",
+        "Tencent locator: own trace of the walled campus on esri-ruibei.jpg gives centroid 3.8 m from (115.56318, 40.48588), area 226,128 m2 vs 230,947.53 stated; all eight halls and the courtyard building roofed in imagery",
+        "Chindata: read cninfo-1225577148.pdf pages 1, 13, 257-259, 286 and the 1-1-503 CIP note myself: 存瑞1-4期 已建 (title certificates) with 环保验收 已验收; 用于存瑞1-4期项目的运维楼及配电设施 in 正常可持续使用 as of signing (Sept 2026); 存瑞3/4期 transferred from CIP to fixed assets in 2025; regulatory_filing published 2026-09-23 (34 days); valuer reply corroborates (context only)",
+        "Chindata locator: own trace of the labelled block north of S241 gives centroid 14.5 m from (115.56514, 40.48965), area 148,275 m2; official 2026 sheet labels the block 河北秦淮数据存瑞基地 and its text places it north of Ruibei; 2023 Chindata substation map (河北秦淮数据有限公司, 4,500.09 m2, same villages) puts the red box at the SW edge of the same campus east of the school",
+        "locators: Point, campus_locator, derivation georeferenced_source_map with authority compiled_reference (allowed by dataset_update.py); precision, identity_review and uncertainty_reason present; no city centre, HQ or zone centroid",
+        "roles: builder 华夏雅库 as current owner and 怀来腾讯数码 as current owner (builder-as-owner precedent: Keli, Pazhou); Chindata project companies as current operator per the filing; scopes exactly 'current'",
+        "distinctness: names, aliases, builders, villages, parcel and project codes screened against sites.csv, projects.csv, evidence.csv, source-records.json, identity-mapping.json, all sources/*-holds.json, every other queue fragment's changes.json/holds.json and claims.tsv: only this fragment's claims and the sixty-ninth/q3-china-operators-p3 Chindata Huailai hold (which this reopens for Cunrui 1-4 only) match; nearest Atlas site 43.7-68.1 km; no queue coordinate within 20 km",
+        "one project per new site; Tencent and Chindata 451 m apart are separately labelled campuses with different owners",
+        "commercial scope, no demonstrators or institutional supercomputers; no private-individual personal data in changes, sources, holds or notes (numeric hits are permit/parcel codes)",
+        "dryrun_fragment.py: ok (821 sites, 884 projects against ninetysixth)"
+      ],
+      "residual_risks": [
+        "Smart Space status is 83 days old today; it falls outside the 85-day research window after 2026-10-29",
+        "Smart Space completion rests on a planning verification (规划核实), which precedes completion acceptance; operation is not asserted",
+        "Tencent completion comes from a current-condition statement in an expansion-substation design publicity prepared by the applicant and published by the county; the halls were built at an earlier, unknown date",
+        "Chindata 'operational' is inferred from built/title/environmental-acceptance status plus 'normal sustainable use' of the Cunrui 1-4 ops building and power facilities; the filing gives no per-campus capacity or utilisation",
+        "Chindata point is an analyst-traced block centroid identified by a map label, not a drawn official boundary; Esri imagery dates and absolute accuracy are unknown, so horizontal uncertainty is left null",
+        "怀来腾讯数码有限公司 is taken as a Tencent entity from its name and the facility name; ownership of the existing halls is inferred from its role as builder on the same 230,947.53 m2 site"
+      ]
+    },
+    {
+      "fragment": "cn-inner-mongolia-p5",
+      "verdict": "accept",
+      "checks": [
+        "Rehashed all 19 relied-on captures (including the re-captures of baseline evidence b5152228 and 2c82a8e7 in this fragment's folder and the cn-north-p2/cn-inner-mongolia-p4 originals): SHA-256 equals .metadata.json sha256 and sources.json content_hash; metadata URLs match source_url",
+        "Volcano status read in capture: Horinger New Area planning and construction bureau item, PubDate 2026-10-27 09:52, says Phase 1 A 10-1 machine-room building works (32,138.14 m2, IT 26 MW) recently completed completion-acceptance filing; '项目投用后' keeps operation future; government_record, 0 days old; completed scope limited to 10-1",
+        "Volcano locator: EIA cover DMS 111°50'48.120\"/40°35'9.456\" recomputed to 111.84670, 40.58596 (also printed as project centre and boiler-house/DA001 point); filing notice (p57) confirms Phase 1 A 119,698.23 m2, four machine-room buildings, integrated building with boiler room, builder Saibei Hongcheng",
+        "Volcano parcel plan (p59) re-read at 450 dpi: ten CGCS2000 zone-37 points reproduce all printed side lengths within 0.5 mm; area 119,698.24 m2; with pyproj 3.7.1/shapely 2.1.1 the EIA point is inside the parcel 53.6 m from the boundary; the four Phase 1 A 110 kV corner points fall inside at the south-west corner (0.5-36 m), matching that EIA's 西南角 statement; GCJ-02 reading 582 m west and outside",
+        "Volcano imagery: computed parcel overlaid on the Esri export follows the walled compound; point sits on the ring-shaped integrated building, 10-1 is the north-west building per EIA figure 4 (p65)",
+        "Huawei South status read: 13 Oct 2026 09:46 investment bureau item states 一期南区3号数据中心机房楼正式封顶 (9 Oct item corroborates); topping out mapped to shell, consistent with other shell records; 14 days old",
+        "Huawei South locator: EIA prints centre E111°51'12.252\" N40°32'32.862\" (111.853403, 40.542462), states the 220 kV station is one of the South Zone Phase 1 buildings inside its land; filing p65 confirms code 2308-150123-89-04-545858, Huawei Cloud Computing Technology, 3 machine-room buildings; four monitoring points centroid 5.4 m from centre, 157 m x 52 m along 42 degrees; Esri overlay puts centre on the long building at the compound's south-east edge, ranch noise point at the ranch's north-east corner, GCJ-02 reading inside the ranch",
+        "Paratera status read: 10 Aug 2026 15:45 Party-Mass Service Center item (baseline evidence b5152228, already BONC's operational source) says in the present tense the Paratera Inner Mongolia compute base is equipped with a 60,000 P 10,000-card cluster and allocates compute on demand; 78 days old (window opens 2026-08-03); prior cn-north-p2 hold accepted the statement and lacked only a locator",
+        "Paratera locator: 2024 EIA cover prints station-site centre (111°50'31.077\", 40°32'30.457\") = 111.841966, 40.541794; text places it inside Phase 2 land on the east side of the base, Phase 1 works west (35 staff), Bank of Communications DC north; 2025 docx revision (word/document.xml only) repeats coordinate and neighbours; Esri overlay puts it at the north-east of a walled compound with three data-centre buildings, vacant land north; GCJ-02 reading in open land west of the boulevard",
+        "Reused evidence rows 2c82a8e7 and b5152228: kind, title, publisher, family, licence, attribution, published_at, retrieved_at, content_hash and scope identical to the baseline",
+        "Distinctness re-screened against 2026-10-27-research-ninetysixth sites/projects/evidence/source-records/identity-mapping, sources/*holds*.json, claims.tsv and all other queue changes.json: no name, filing-code or builder match; nothing within 2 km of the Volcano point (nearest China Telecom 5.54 km); Huawei South nearest China Telecom 1.97 km and West Zone 4.39 km (separate filing and substation); Paratera nearest China Telecom 1.03 km across the boulevard (its campus extends WNW/N of its point); cn-north-p1 Volcano Phase 2 claim was rejected and Phase 2 A lies 585 m ENE on a separate park; cn-inner-mongolia-p4 explicitly excluded the South Zone",
+        "Holds' reopen conditions met: cn-north-p1 Volcano Phase 1 (in-window completion record plus Phase 1 EIA point), cn-north-p2/fiftysixth Volcano 12 ha reconciliation (Phase 1 A per filing), cn-north-p1 Huawei zone locator (South Zone), cn-north-p2/fiftysixth Paratera locator",
+        "Roles: owner (builder per filing/EIA, current) for Saibei Hongcheng and Huawei Cloud Computing Technology; Volcano Engine user intended (27 Oct item: expands Volcano Engine's compute reserve, operation future); Paratera operator current",
+        "Commercial scope (hyperscaler cloud and listed compute provider), no demonstrator or institutional supercomputer; one project per new site; Point campus_locator, official_source, direct_geometry, uncertainty null with reason",
+        "No third-party personal data: EIA contact names/phones and parcel-plan surveyor names absent from changes, sources, holds, geometry facts and notes; robots.txt recorded for every host used (hlgena/sthjj.huhhot 404, sthjt.nmg soft-404, arcgisonline allow-all)",
+        "Corrected the Volcano geometry-facts comparison_area note: the parcel plan's printed S is legible as 119,683.69 m2 (179.5254 mu), 14.6 m2 below the computed area; immaterial to the locator",
+        "dryrun_fragment.py ok against 2026-10-27-research-ninetysixth after the edit (821 sites, 884 projects, 4,618 evidence)"
+      ],
+      "residual_risks": [
+        "Paratera: the operating statement names the base, not a phase, and is descriptive present tense rather than an explicit 'in operation'; the 60,000 P cluster could partly sit in a later phase (Phase 3/4) whose location is unknown; the observation leaves the 85-day window on about 3 November 2026",
+        "Volcano: the 27 Oct item says the filing was completed 'recently', so the publication day is used; the point marks the integrated building about 165 m from 10-1; a reviewer could read the rejected cn-north-p1 claim as site-level, though its Phase 2 A park is separate",
+        "Huawei South: topping out is mapped to shell; the point is the substation building at the compound's south-east edge, up to a few hundred metres from 3#",
+        "All three EIAs state no datum or accuracy; the WGS84/CGCS2000 reading rests on parcel/monitoring-point consistency and Esri imagery of unknown acquisition date"
+      ]
+    },
+    {
+      "fragment": "cn-ningxia-gansu-qinghai-p5",
+      "verdict": "accept",
+      "checks": [
+        "Base: site/config.json current_dataset is verified_construction_core/2026-10-27-research-ninetysixth; both records present with status_as_of 2026-09-02 (under_construction) and 2026-09-14 (permitted), equal to preserve_status_as_of",
+        "All 4 captures rehashed: hdgyy-6306.html 4eb51c36...09dd, zw-eeb-spjd-t20260819_5317222.html 74895dff...a9bb1e, zw-eeb-cu-sub3-approval-0819.pdf 0ae15580...37db, zw-nrb-cu-sub3-gcxk-0921.html 4f3a9b20...7171; each matches .metadata.json sha256 and the source content_hash; HTTP 200; retrieved_at equals captured_at",
+        "hdgyy-6306: page 发布时间 2026-08-27, 来源 综合办公室 (park committee general office, not media column); text lists 移动数据中心110kV变电站 among 辖区内部分在建工地 inspected for flood safety and progress; no capacity, location, phase or energisation given, as the summary says",
+        "Approval notice: 索引号 640501012/2026-03235, 卫环函〔2026〕89号, 生成日期 2026-08-19, 有效; decision on China Unicom Ningxia Branch's No.3 substation EIA",
+        "Approval letter (pdftotext, all 5 pages): 110 kV substation, 3x80 MVA, 2 x 110 kV incoming, 48 x 10 kV outgoing, 3.1 km line (0.05 overhead, 3.05 cable), CNY 101.30 m; agrees construction; no operation before environmental acceptance; signed 2026-08-19",
+        "Planning permit page: 电子监管号 6405022026GG0067629, 生成日期 2026-09-21, 发证日期 2026-09-14, builder China Unicom Ningxia Branch, GFA 3,353.1 m2, units 640502102227GB00384W/00371W, boundaries Unicom cloud-data land E, Fengyun Rd S, Tejiasen W, CGN Yuntian PV N",
+        "Identity DC9: DC9 permit capture (china_west_north zw-cu-dc9-gcxk-0921.html, sha256 67786a80... = evidence b2c226d6 content_hash) has the same builder, issue date 2026-09-14, same two real-estate units and identical boundaries; DC9 campus locator evidence 66a7c62c is this substation's EIA (sha256 248716cb... re-verified), whose text says the substation secures the cloud data centre's growing power demand",
+        "Identity Haidong: 移动数据中心 parallels 电信数据中心二期 in the same sentence (China Mobile vs China Telecom); the only China Mobile record in Qinghai is this site; tracked geometry facts confirm the Phase 2 EIA places existing Phase 1 north of the site; context attached campus-wide without asserting Phase 2 alone",
+        "Sources are government_record (park committee, municipal EEB, municipal NRB); dates 2026-08-19 to 2026-09-21 all on or after the 85-day floor 2026-08-03",
+        "Context only: no status, locator or capacity change; MVA not recorded as data-centre capacity; consents not presented as built works; matches docs/public_site.md power_readiness rule",
+        "Distinctness: none of the 4 source URLs or permit/approval numbers appear in ninetysixth evidence.csv, source-records.json or identity-mapping.json or in sources/*-holds.json; no other queue fragment's changes.json touches either project; within 5 km only China Mobile Ningxia B07 at 766 m from DC9 (different operator) and nothing near Haidong",
+        "Privacy: official names in the park item, the PDF author metadata and the bureau phone are not copied into changes, sources or holds; officials described by role",
+        "dryrun_fragment.py ok against ninetysixth: 818 sites, 881 projects, 4,607 evidence"
+      ],
+      "residual_risks": [
+        "Haidong context rests on reading 移动数据中心 as China Mobile's data centre by parallel with 电信数据中心; the item does not name the operator in full or the phase the substation serves",
+        "DC9 context rests on consents only; whether the No.3 substation has started, been built or energised is unknown, and its capacity is not allocated to DC9",
+        "The Phase 1-north statement in the Haidong identity review relies on tracked geometry facts; the Phase 2 EIA PDF now returns 404 and was not re-read"
+      ]
+    },
+    {
+      "fragment": "sea-p3",
+      "verdict": "accept",
+      "checks": [
+        "Rehashed all 20 raw captures plus 2 Keppel rehash captures and 7 related/postcode captures: sha256 and byte counts equal their .metadata.json, content_hash equals the raw file, metadata URL equals source_url, all HTTP 200",
+        "Nxera DC Tuas: rendered Singtel Q1 FY27 slides p1 (cover dated 13 August 2026), p3 'Customer rollout in DC Tuas progressing well', p6 'Nxera grew on DC Tuas turn-on, with continued customer ramp-up' and DC Tuas depreciation; business update p6 dates operational commencement to January 2026; company_disclosure, 75 days old (window starts 2026-08-03)",
+        "Basis Bay: rendered Keppel DC REIT 3Q 2026 p1 (23 Oct 2026) and p20 table 'as at 30 Sep 2026' (99%, 48,193 sq ft, 1 client, 59.1% occupancy, fully-fitted colocation, 2009); p22 client handles FM; AR2025 p42 gives 'No. 4710, Jalan Cyber Point 5, Zone Flagship Cyberjaya' and facility manager Basis Bay Services MSC; Keppel rows equal existing ninetyfifth evidence rows field for field",
+        "SIN10: DLR release dateline 'AUSTIN, Texas, Aug. 24, 2026' says Singapore is home to 'three operational data centers with approximately 84 MW'; metro page lists exactly SIN10 (29A International Business Park Jurong East, 609934), SIN11 and SIN12; company_disclosure, 64 days old",
+        "Locators recomputed from raw captures: OneMap 7A Tuas Avenue 3 and 29A International Business Park each return one result, byte-identical to the postcode searches; SVY21 (EPSG:3414) X/Y -> WGS84 with pyproj 3.7.1 differ by <1e-8 m; changes points equal the served lat/lon exactly",
+        "Google tbm=map responses parsed: 'Nxera DC Tuas' Data center, '7A Tuas Ave 3, Singapore 639407', '(Owner)' profile, no website, 29.5 m from the OneMap point; 'Basis Bay Data Centre : Cyberjaya' at '4710, Jalan Cyber Point 5', links basisbay.com, owner profile, coordinates equal the locator; DC2 at 632 is a separate feature",
+        "PeeringDB SIN10 point 3.7 m from the OneMap point; Esri exports centred on Tuas and Cyberjaya points show a tall plant-roofed building and a plant-roofed two-block building",
+        "Distinctness re-screened against the current dataset, which changed to 2026-10-27-research-ninetysixth during verification (its new records are 4 US projects), plus all queue changes/holds, claims.tsv and sources/*-holds.json: no name, address or alias match; nearest Atlas records are Vantage KUL2 locality point 1.87 km and Keppel DC Singapore 5 at 4.89/5.18 km; this resolves the eightyninth Basis Bay hold_locator now that the owner-stated street address is known",
+        "Roles: Nxera operator current, Nxera DCT Pte Ltd owner unknown (borrower funding DC Tuas development and capex), Keppel DC REIT owner current, Basis Bay Services MSC operator current, Digital Realty operator current; allowed roles and scopes",
+        "Robots: captured robots.txt allow cdn1/cdn2.singteldigital.com, singtel.com, nxera-dc.com, onemap.gov.sg, google.com /search?*tbm=map, basisbay.com, digitalrealty.com, peeringdb.com and arcgisonline; keppeldcreit.com robots 404",
+        "No private-individual names, phones or e-mails in changes, sources, holds or notes; 15 holds all carry reason and reopen condition; every source is referenced",
+        "dryrun_fragment.py ok against 2026-10-27-research-ninetysixth (821 sites, 884 projects, 4,620 evidence rows)"
+      ],
+      "residual_risks": [
+        "Nxera DC Tuas name-to-address bridge rests on an owner-claimed Google listing without a website link and on imagery; Singtel and Nxera publish no street address",
+        "Basis Bay locator is a compiled Google feature with no stated accuracy; the DC1 alias is inferred from the shared 2009 date; divestment to Basis Bay Services MSC may complete soon",
+        "SIN10 status rests on Digital Realty's count of three operational Singapore data centres matched to the three-facility metro listing, not on a statement naming SIN10",
+        "Nxera DCT Pte Ltd owner role is inferred from the development loan release (scope unknown); OneMap and Google points carry no published positional accuracy; Esri imagery dates unknown",
+        "distinctness_review text in changes.json names the ninetyfifth dataset; the verifier's ninetysixth re-screen found no conflict"
+      ]
+    }
+  ],
+  "packet_pins": {
+    "definitions/atlas-research-ninetyseventh-2026-10-27.json": "2887eccffb9bf9f1dc02f3918093c7fee64a38de46a381535de822ee4aa88ea6",
+    "sources/research-countries-2026-10-27-ninetyseventh-primary-sources.json": "d957d312560fcff656ebb7983ddaa5d1f69ef34650b79b78e5a7cf66f6686498",
+    "sources/research-countries-2026-10-27-ninetyseventh-actions.json": "ae967730c09e3bf6691a4329f6026a5c17087f6a8a86b5f7beb50d7deae88793",
+    "sources/research-countries-2026-10-27-ninetyseventh-holds.json": "8b351380f37a8d11c9e53630341ab131c13b8768d37ea1bde97061158aa8b184"
+  },
+  "raw_captures_redistributed": false
+}

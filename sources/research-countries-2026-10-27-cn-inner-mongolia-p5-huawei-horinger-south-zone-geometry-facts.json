@@ -1,0 +1,40 @@
+{
+  "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+  "researched_at": "2026-10-27T00:00:00+00:00",
+  "candidate": "Huawei Cloud Horinger Data Center, Yungu South Zone Phase 1 (华为云和林格尔数据中心项目-云谷南区（一期）), Yungu area, Horinger New Area, Hohhot, Inner Mongolia",
+  "method": "The selected point is the centre coordinate of the South Zone Phase 1 project's own 220 kV substation, printed in geographic degrees-minutes-seconds in the environmental impact report form that the Inner Mongolia Department of Ecology and Environment published with its radiation-EIA approval-result publicity of 10 February 2025. It was transcribed arithmetically (deg + min/60 + sec/3600) with no datum transformation. The report also prints four station monitoring points and a dairy-ranch noise point; their geodesic separations and bearings were computed with pyproj 3.7.1 (WGS84 ellipsoid). An independent Esri World Imagery EPSG:4326 export was used to check the coordinate frame.",
+  "selected_points": {
+    "huawei_horinger_yungu_south_zone_campus": {
+      "source_url": "https://sthjt.nmg.gov.cn/xxgk/sthjzdlyxxgk/wrfzhssxg/hyfshjjg/202502/P020250210586317957570.pdf",
+      "local_capture": "local_data/country-research-cn-inner-mongolia-p5/nmg-huawei-south-220kv-eia-20250210-long.pdf",
+      "source_sha256": "43373abd1e7cbebce5385004c643585775c906ed24b1994365b81c07a7a39645",
+      "printed": "Section 2, geographic location: 项目位于内蒙古自治区呼和浩特市和林格尔县华为云和林格尔数据中心云谷南区：北至云翅大街，东，西，南至该宗地地界，中心坐标 E：111°51'12.252\" ，N：40°32'32.862\"，项目西侧 214m 为圣牧呼市牧业内大牧场，北、东、南均为空地。 Repeated in the electromagnetic special assessment.",
+      "lon_lat": [
+        111.853403333,
+        40.542461667
+      ],
+      "on_campus_statement": "本项目 220kV 变电站属于华为云和林格尔数据中心项目-云谷南区（一期）其中一栋建筑，永久占地面积 6310.59m2，建设过程均在华为云和林格尔数据中心项目-云谷南区（一期）用地范围内 (the substation is one of the South Zone Phase 1 buildings, built entirely inside that project's land). The appended filing (attachment 2, PDF page 65; project code 2308-150123-89-04-545858) lists one 220 kV substation among the South Zone Phase 1 buildings (three machine-room buildings, a power control workshop, a chemical store, a 220 kV substation and a gatehouse)."
+    }
+  },
+  "internal_consistency_check": {
+    "printed_monitoring_points": "Table note (PDF text lines 773-777 and 1905-1908): 变电站东北 111°51'14.68\" 40°32'34.87\"; 变电站东南 111°51'13.28\" 40°32'32.44\"; 变电站西南 111°51'10.18\" 40°32'31.11\"; 变电站西北 111°51'11.54\" 40°32'33.50\"; 圣牧呼市牧业内大牧场 111°51'0.74\" 40°32'29.21\" (the table lists the station points as east, south, west and north points 1 m outside the station boundary).",
+    "printed_building_dimensions": "station building 147.1 m long, 42.2 m wide",
+    "long_axis_point_separation_m": 157.1,
+    "long_axis_bearing_deg": 42.4,
+    "short_axis_point_separation_m": 52.4,
+    "short_axis_bearing_deg": 128.6,
+    "centre_to_mean_of_four_points_m": 5.4,
+    "centre_to_ranch_point_m": 293.4,
+    "reading": "The four points bracket the printed centre within about 5 m along perpendicular axes, and their separations are 8-10 m longer than the building dimensions plus the nominal 1 m offsets, so the printed values describe one consistent 147 m x 42 m building oriented north-east. This does not by itself establish the datum.",
+    "north_zone_report_note": "The companion report for the Yungu North Zone (Phase 1) 220 kV substation (same publicity date, local nmg-huawei-north-220kv-eia-20250210-long.pdf, sha256 f0cfe764...) prints almost the same centre (E 111°51'12.254\", N 40°32'32.861\") in its own location section and repeats the South Zone monitoring points in one table note, while its own monitoring tables place the North Zone station about 5.5 km north (around 111.8559E, 40.5920N, west of Shengshi Road and south of Yunkun Avenue by its stated boundaries). The repeated value is treated as a copying error in the North Zone report; the South Zone report's centre agrees with its own monitoring points, its ranch distance and its figure 3."
+  },
+  "frame_check": {
+    "imagery": "Esri World Imagery EPSG:4326 export, request bbox 111.844,40.537,111.863,40.548 at 1700 x 985 px (local esri-huawei-south.jpg, sha256 f1f87a2e...; companion f=json local esri-huawei-south.extent.json, sha256 ba999a3a..., returned extent 111.844-111.863 E, 40.5369956-40.5480044 N). Acquisition date not stated.",
+    "observation": "Read as WGS84/CGCS2000, the printed centre falls on a long north-east oriented building at the south-east edge of a large walled construction compound containing several multi-storey data-centre buildings under construction; the report's north-east and south-west points fall at the building's ends and its north-west and south-east points at its long sides. A large dairy ranch with rows of long sheds lies south-west of the compound and the report's ranch noise point falls at the ranch's north-east corner. The report's figure 3 (Google Earth) shows the station outline north-east of the same ranch at 144 m. The compound's north-west side follows a diagonal road, consistent with the filing's 'north to Yunchi Avenue' (the Paratera parcel plan names that road Yunchi Avenue / airport expressway).",
+    "gcj02_alternative": "If the printed values were GCJ-02, the WGS84 position would be about 580 m west-south-west (111.846696, 40.541347), inside the dairy ranch; that reading is rejected.",
+    "manual_pick_accuracy": "manual visual comparison on imagery of about 0.9-1.2 m per pixel and unstated accuracy; agreement of about 10-15 m"
+  },
+  "scope_and_uncertainty": "The point locates the South Zone Phase 1 campus through its on-campus 220 kV substation building at the campus's south-east side. It is not the 3# machine-room building whose topping out is recorded, nor an entrance or parcel centroid. No datum or positional accuracy is stated in the report; horizontal uncertainty is left unquantified.",
+  "nearest_atlas_records": "In verified_construction_core/2026-10-27-research-ninetysixth the nearest Atlas site is China Telecom Cloud Computing Inner Mongolia Information Park, 1.97 km west-south-west; Huawei Cloud Horinger Data Center - Yungu West Zone is 4.40 km west-south-west (a separate zone with its own filing 2306-150123-89-04-325368 and substation).",
+  "privacy": "No personal names or contact details from the report are reproduced."
+}
