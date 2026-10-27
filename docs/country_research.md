@@ -427,6 +427,8 @@ From 22 October 2026 sites are added continuously: researchers each work a narro
 
 `verified_construction_core/2026-10-27-research-ninetyninth`: **830 sites and 894 projects in 63 countries**. Adds Mitsui Fudosan (仮称)日野市日野台3丁目計画 — planned three-building data-centre development, Hino.
 
+`verified_construction_core/2026-10-27-research-hundredth`: **831 sites and 895 projects in 63 countries**. Adds Green Mountain LON-East (Romford) - 14 MW AI-ready data-hall expansion inside the existing building (delivered). Refreshes AWS Ridgeway Data Centre, Iver (announced).
+
 ## 25 October 2026
 
 `verified_construction_core/2026-10-25-research-sixtysecond` adds three commercial sites and

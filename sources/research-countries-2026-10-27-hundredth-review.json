@@ -1,0 +1,42 @@
+{
+  "reviewer": "root",
+  "reviewed_at": "2026-10-27",
+  "decision": "accepted_for_integration",
+  "update": "verified_construction_core/2026-10-27-research-hundredth",
+  "base_dataset": "verified_construction_core/2026-10-27-research-ninetyninth",
+  "process": "continuous: one researcher per beat, one adversarial verifier per fragment",
+  "fragments": [
+    {
+      "fragment": "uk-england-p5",
+      "verdict": "accept",
+      "checks": [
+        "All 9 relied-on captures rehashed: file sha256 == .metadata.json sha256 == sources.json content_hash; URLs and effective URLs match, HTTP 200, no credentials",
+        "Geometry facts file sha256 cd711d01... matches sources.json geometry_facts_sha256",
+        "GM 1 Sep 2026 release read in capture: datePublished 2026-09-01T06:28:58Z; 'the customer occupy the recently delivered 14 MW of AI-ready capacity' -> completed, company_disclosure, 55 days old (window starts 2026-08-03)",
+        "Scope cross-checked: Dec 2023 release (14 MW in two 7 MW phases inside the existing building) and 8 Jun 2026 release ('additional 14 MW has been delivered recently'); EA CAR 29 Apr 2026 (pdftotext) shows Phase VI generators in final commissioning, operator Green Mountain DC UK Limited; context only, outside window",
+        "Locator recomputed from raw EA register JSON: lat 51.587017, long 0.167675, TQ5027089800, status Effective, holder GREEN MOUNTAIN DC UK LIMITED; pyproj 3.7.1 E/N transform 0.77 m from published point",
+        "Shapely 2.1.1 in EPSG:27700: point inside Havering P1238.23 3.47 ha existing-facility polygon (57 m inside, 21 m from centroid); outside P0614.20 adjacent-plot polygon by 114 m; 88 m from RM7 7PN postcode centroid (not a postcode default)",
+        "Esri z17 mosaic viewed locally: point on the large pale-roofed building with rooftop plant",
+        "Distinctness on 2026-10-27-research-ninetyninth (current config): no Green Mountain UK/LON-East/Romford/King George Close/RM7/Infinity/ISDC/FP3630EU match in sites, projects, evidence, source-records or identity-mapping; no record within 5 km; nearest site 14.2 km",
+        "No other queue fragment, claims.tsv row or sources/*-holds.json entry names this campus or lies within 5 km; Green Mountain holds elsewhere are Norwegian sites",
+        "Roles: owner/current (1 Sep release, freehold acquired 2026) and operator/current (EA permit holder); allowed role and scope values",
+        "Ridgeway: EA consultation capture says 'Opened 24 Sep 2026', 'Closed 22 Oct 2026', same applicant, permit EPR/TP3621MM/A001, facility and SL0 9JQ address; finder captures list it separately from the 13 Aug consultation; strictly newer than existing 2026-08-13, status kept announced; no other fragment touches this project",
+        "No private individuals' names, e-mails or phones in changes, sources, holds, notes or geometry",
+        "dryrun_fragment.py ok on ninetyninth base: 831 sites, 895 projects"
+      ],
+      "residual_risks": [
+        "Green Mountain LON-East page (dateModified 2026-09-01, unbounded) still shows '5546 m2 Space currently in construction', which conflicts with the two dated 'delivered' releases; treated as stale static content",
+        "'Delivered' read as construction complete; operation of the 14 MW is not asserted and the customer occupation is future",
+        "EA register point publishes no positional accuracy; uncertainty left null with reason",
+        "Ridgeway refresh rests on a second consultation for the same undecided permit application, so it only re-dates an announced status"
+      ]
+    }
+  ],
+  "packet_pins": {
+    "definitions/atlas-research-hundredth-2026-10-27.json": "a81416d2eba7c86fdb9dc8e00b8b714b01c27a1ff32c8d7641154b655b8443c2",
+    "sources/research-countries-2026-10-27-hundredth-primary-sources.json": "5b17e49a156e7c3147e93f0b8819ebee6cd24f7e192d5c4bdd758abd56b16ca3",
+    "sources/research-countries-2026-10-27-hundredth-actions.json": "57dd2c317680fd00847faa50eb6af73ec29ddb5c0b32ce17812c39dc342229fd",
+    "sources/research-countries-2026-10-27-hundredth-holds.json": "8bf0cd02f03e389886a833375ea037e501e8ab0cbcf0d39862cad77cef6f4ad4"
+  },
+  "raw_captures_redistributed": false
+}

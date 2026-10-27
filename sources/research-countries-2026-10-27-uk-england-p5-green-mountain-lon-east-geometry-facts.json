@@ -1,0 +1,44 @@
+{
+  "candidate_id": "green-mountain-lon-east-romford-campus",
+  "decision": "Selected the site location that the Environment Agency's installations register publishes for permit EPR/FP3630EU (holder Green Mountain DC UK Limited, 'Romford North Data Centre, Unit 3 King George Close, Romford, Essex, RM7 7PN'): latitude 51.587017, longitude 0.167675 (grid reference TQ5027089800), copied without transformation, as the campus locator of Green Mountain's LON-East campus. It is the regulator's site point for the permitted combustion installation serving the existing data-centre building, not a building outline or surveyed position.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      0.167675,
+      51.587017
+    ]
+  },
+  "authority_class": "official_source",
+  "derivation": "direct_geometry",
+  "scope_class": "environmental_permit_register_site_location",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-uk-england-p5/ea/ea-registration-EPR-FP3630EU.json",
+  "source_sha256": "ae3656b317dacea52004c97086f663c9b31b5e201efdc9c7a73a932048ec5151",
+  "source_url": "https://environment.data.gov.uk/public-register/industrial-installations/registration/EPR-FP3630EU.json",
+  "retrieved_at": "2026-10-27T05:18:10.550Z",
+  "selected_properties": {
+    "registration": "EPR/FP3630EU, registration date 2015-04-21",
+    "holder": "GREEN MOUNTAIN DC UK LIMITED",
+    "activities": "Combustion; Any Fuel =>50MW - 1.1 A(1) a)",
+    "premises": "ISDC Development (No2 Limited",
+    "address": "ISDC Development (No2 Limited, Romford North Data Centre, Unit 3 King George close, Romford, Essex, RM7 7PN",
+    "local_authority": "Havering",
+    "easting": 550270,
+    "northing": 189800,
+    "grid_reference": "TQ5027089800",
+    "lat": 51.587017,
+    "long": 0.167675
+  },
+  "transform": {
+    "note": "No transform is applied to the published latitude and longitude. Check only: pyproj 3.7.1 EPSG:27700 -> EPSG:4326 of the register's easting and northing gives 51.5870225, 0.1676681, 0.77 m from the published point."
+  },
+  "consistency_checks": {
+    "planning_polygon": "The London Planning Datahub record of Havering permission P1238.23 (approved 6 October 2023, 'Erection of external fin wall to the front of the existing data storage facility', 3 King George Close, RM7 7PN; local gla/gla-Havering-P1238.23.json, sha256 a0e05989...) carries a 3.47 ha site polygon (7 vertices) and centroid 51.5871651, 0.1678894. With shapely 2.1.1 the register point lies inside that polygon, about 62 m inside its boundary and 22 m from its centroid, so the register point falls on the existing data storage facility's planning site.",
+    "postcode_centroid": "The ONS centroid of RM7 7PN (postcodes.io: E 550220, N 189726; 51.586373, 0.166942) lies 88 m south-west of the register point, so the register point is not a copy of the postcode point; the centroid itself is not used.",
+    "adjacent_plot": "Havering's data-storage permissions for the neighbouring plot at 5 King George Close (former Hubbinet Industrial Estate: P1137.11 of 23 January 2012, varied by P0614.20 of 14 January 2021, with a further section 73 variation P1029.26 validated 28 August 2026) have a 1.55-1.60 ha polygon whose centroid (51.585996, 0.1693495) is 162 m south-east of the register point; the point is 122-123 m outside that polygon, i.e. it marks the existing building, not the planned new building.",
+    "imagery": "Esri World Imagery z17 tiles (x 65596-65598, y 43537-43539; sha256 of the sorted per-tile shasum lines cea7f2ee6d59a957c018a476e72e04dda6ddbcbb746599c4f80bb6e59fcb12bb) viewed locally and not redistributed: the point falls on the roof of a large pale-roofed industrial building with rooftop plant and a plant yard along its southern side, with housing to the north and east and an open playing field to the south-west, consistent with the 11,000 m2 existing data-centre building Green Mountain describes. The imagery date is unknown and is not used as status evidence.",
+    "other_sites": "The nearest Atlas sites are the Charlton data centre proposal (14.2 km) and the Telehouse London Docklands campus (14.4 km); no Atlas record, queued addition or claim other than this one lies within 2 km.",
+    "geocoder_used": false
+  },
+  "uncertainty": "The register publishes no positional accuracy; the point lies inside the 3.47 ha existing-facility planning polygon, and the campus extends over about 8 acres (3.2 ha) around and south-east of it."
+}
