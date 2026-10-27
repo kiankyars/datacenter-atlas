@@ -1,0 +1,98 @@
+{
+ "candidate_id": "google-project-skyway-pine-island-data-center-campus",
+ "decision": "Selected the centroid of the 'Project Skyway Approximate Location' polygon published by the State of Minnesota (Department of Commerce / Public Utilities Commission energy-infrastructure GIS, layer 13 of the Skyway_WFL1 service behind the PUC project map for docket 26-135) as the campus locator of Google's Project Skyway data-center site on the Pine Island Industrial PUD.",
+ "geometry": {
+  "type": "Point",
+  "coordinates": [
+   -92.6454052,
+   44.2265242
+  ]
+ },
+ "authority_class": "official_source",
+ "scope_class": "official_approximate_project_site_polygon_centroid",
+ "use_scope": "campus_locator",
+ "source_file": "local_data/country-research-us-midwest-iowa-ne-p5/skyway-wfl1-layer13-project-skyway-approx-location.json",
+ "source_sha256": "fee87bbe51a33c8f4d920ad270fa3cb464e09eb32adf1efed684e23a9bc68227",
+ "source_url": "https://services1.arcgis.com/yfalcTIlueMdl9fz/arcgis/rest/services/Skyway_WFL1/FeatureServer/13/query?where=1%3D1&outFields=*&returnGeometry=true&outSR=4326&f=json",
+ "retrieved_at": "2026-10-27T02:07:23.676Z",
+ "selected_properties": {
+  "layer": "Skyway_WFL1 FeatureServer layer 13 'Project Skyway Approximate Location' (hosted feature service item 7ff73b26c0754ae3a0d168cbea46c821 in the Minnesota Department of Commerce ArcGIS organisation yfalcTIlueMdl9fz; data last edited 12 May 2026)",
+  "features": 1,
+  "linked_from": "PUC project page https://puc.eip.mn.gov/web/project/26135 'Interactive Map' (ArcGIS Experience ced662e1eaf746e689ab67aef6e7f36b, web map 131cbd63ff624c16aabc650a326b7804, whose operational layers are layers 4, 7, 8, 9, 10, 11 and 13 of Skyway_WFL1)"
+ },
+ "computed": {
+  "parts": 1,
+  "geodesic_area_m2": 2012520,
+  "geodesic_acres": 497.3,
+  "centroid_lon_lat": [
+   -92.6454052,
+   44.2265242
+  ],
+  "centroid_inside_polygon": true,
+  "crs_cross_check": {
+   "32615": [
+    -92.6454052,
+    44.2265242
+   ],
+   "26914": [
+    -92.6454052,
+    44.2265241
+   ]
+  },
+  "crs_cross_check_shift_m": 0.0,
+  "extent_m": [
+   766.3,
+   3069.1
+  ],
+  "bounds_lon_lat": [
+   -92.650448,
+   44.210982,
+   -92.640787,
+   44.238637
+  ],
+  "proposed_substations_inside": {
+   "Proposed Substation 1": true,
+   "Proposed Substation 2": true,
+   "Proposed Substation 3": true,
+   "Proposed Substation 4": true
+  },
+  "substation_union_centroid_lon_lat": [
+   -92.645646,
+   44.220306
+  ],
+  "substation_union_centroid_to_site_centroid_m": 691.2,
+  "eqb_auar_record_point": {
+   "lon_lat": [
+    -92.645959,
+    44.224016
+   ],
+   "inside": true,
+   "distance_to_centroid_m": 282.2
+  },
+  "eqb_hvtl_record_point": {
+   "lon_lat": [
+    -92.64768,
+    44.22397
+   ],
+   "inside": true
+  },
+  "method": "Polygon returned with outSR=4326; centroid computed in EPSG:26915 (NAD83 / UTM 15N) and returned to WGS84, cross-checked in EPSG:32615 and 26914; geodesic area on the WGS84 ellipsoid.",
+  "tools": "pyproj 3.7.1, shapely 2.1.1"
+ },
+ "identity_bridge": [
+  "The PUC's notice of 31 August 2026 (docket E002/TL-26-135) says the line would connect Xcel Energy's North Rochester Substation to four new substation facilities at the proposed Pine Island Industrial Planned Unit Development site, and that the four Project Skyway substations will be owned and operated by Google; the applicant Echo Zone LLC is a subsidiary of Google LLC.",
+  "All four 'Proposed Substations' polygons of the same state service lie inside the 'Project Skyway Approximate Location' polygon, and the EQB record points of the Project Skyway AUAR and of the transmission-line notice also lie inside it.",
+  "The polygon (about 497 geodesic acres, a strip about 0.8 by 3.1 km east of US 52) matches the Project Skyway AUAR area of about 482 acres bounded by 490th Street, Trunk Highway 52 and 195th Avenue in the City of Pine Island and Pine Island Township (City of Pine Island Resolution 25-42).",
+  "Google's 24 February 2026 announcement states that Pine Island will be the future home of a Google data center supplied by Xcel Energy."
+ ],
+ "unresolved": [
+  "The state labels the polygon an approximate location; the PUD plat, parcels and building layout were not reviewed (City of Pine Island hosts disallow all agents and Goodhue County is not in the MnGeo open parcel compilation).",
+  "The point locates the campus land, not any building; the substations lie in its southern half."
+ ],
+ "nearby_records": "No Atlas site, project, source record, identity-mapping entry, pending fragment, claim or hold coordinate lies within 2 km; the nearest Atlas record is the Farmington Technology Park campus, about 58 km north-west.",
+ "consistency_checks": {
+  "datum": "WGS84 output from the hosted service (outSR=4326)",
+  "geocoder_used": false,
+  "personal_data": "layer 12 'Resident Locations' of the same service was not queried"
+ }
+}

@@ -1,0 +1,75 @@
+{
+ "candidate_id": "1623-farnam-omaha-carrier-hotel-data-center",
+ "decision": "Selected the centroid of Douglas County tax parcel 0313580003 (1623 Farnam St, City Lots Block 140 Lot 4, Omaha) as the locator of the 1623 Farnam carrier-hotel data center.",
+ "geometry": {
+  "type": "Point",
+  "coordinates": [
+   -95.9382065,
+   41.2572932
+  ]
+ },
+ "authority_class": "official_source",
+ "scope_class": "official_tax_parcel_centroid",
+ "use_scope": "reviewed_site_locator",
+ "source_file": "local_data/country-research-us-midwest-iowa-ne-p5/dogis-parcels-1623-farnam.json",
+ "source_sha256": "c02c3b2fd98c4e193bf19d5cecb7fbae20d313c7e9d31e1b753ea2aa1cd9a088",
+ "source_url": "https://gis.dogis.org/arcgis/rest/services/Accela_Dynamic/MapServer/7/query?where=HOUSE%3D%271623%27%20AND%20STREET_NAM%20LIKE%20%27FARNAM%25%27&outFields=PIN%2COWNER_NAME%2CPROPERTY_A%2CHOUSE%2CSTREET_DIR%2CSTREET_NAM%2CSTREET_TYP%2CADDITION_N%2CBLOCK%2CLOT%2CLEGAL1%2CLEGAL2%2CCLASS%2CBLDG_SF%2CBLDG_STORY%2CBLDG_YRBLT%2CBLDG_DESC%2CCONDO%2CACRES%2CSQ_FEET%2CCHG_DATE&returnGeometry=true&outSR=4326&f=json",
+ "retrieved_at": "2026-10-27T02:12:58.422Z",
+ "selected_properties": {
+  "pin": "0313580003",
+  "property_address": "1623 FARNAM ST",
+  "legal": "CITY LOTS Block 140 Lot 4 (66 X 132)",
+  "class": "C",
+  "building": "Office Building, 10 storeys, 66279 sq ft, built 1973",
+  "owner_of_record": "1623 FARNAM REAL ESTATE LLC",
+  "acres": 0.2,
+  "sq_feet": 8712,
+  "layer": "Douglas County - Omaha GIS (DOGIS) Accela_Dynamic MapServer layer 7 'Parcels' at gis.dogis.org (layer description 'Douglas County Parcels - June, 2012'; no edit date published)"
+ },
+ "computed": {
+  "parts": 1,
+  "geodesic_area_m2": 794.8,
+  "geodesic_acres": 0.1964,
+  "centroid_lon_lat": [
+   -95.9382065,
+   41.2572932
+  ],
+  "centroid_inside_polygon": true,
+  "crs_cross_check": {
+   "32614": [
+    -95.9382065,
+    41.2572932
+   ],
+   "32615": [
+    -95.9382065,
+    41.2572932
+   ]
+  },
+  "crs_cross_check_shift_m": 0.0,
+  "extent_m": [
+   21.1,
+   40.6
+  ],
+  "bounds_lon_lat": [
+   -95.9383263,
+   41.2571129,
+   -95.9380871,
+   41.2574734
+  ],
+  "method": "Polygon returned with outSR=4326; centroid computed in EPSG:26914 (NAD83 / UTM 14N) and returned to WGS84, cross-checked in EPSG:32614 and 32615; geodesic area on the WGS84 ellipsoid.",
+  "tools": "pyproj 3.7.1, shapely 2.1.1"
+ },
+ "identity_bridge": [
+  "The operator's pages give the facility as '1623 Farnam Street, Suite 860 Omaha, NE 68102' and describe '1623 Farnam' as a carrier neutral data center, the company's flagship carrier hotel.",
+  "The county parcel query for house number 1623 on Farnam returns one parcel, 0313580003 at 1623 FARNAM ST (66 x 132 ft lot, a ten-storey office-class building of 66,279 sq ft built 1973), owned of record by 1623 FARNAM REAL ESTATE LLC, a name that matches the facility."
+ ],
+ "unresolved": [
+  "The layer description dates the parcel compilation to June 2012 and the service publishes no edit date; the lot and building are long-standing, so the parcel geometry is used, but the owner of record may be dated.",
+  "The point locates the whole carrier-hotel building lot; the data-centre floors within it are not distinguished."
+ ],
+ "nearby_records": "No Atlas site, project, source record, identity-mapping entry, pending fragment, claim or hold coordinate lies within 2 km; the nearest Atlas record is TierPoint Omaha - Bellevue, about 8.9 km south.",
+ "consistency_checks": {
+  "datum": "WGS84 output from the county service (outSR=4326)",
+  "geocoder_used": false
+ }
+}

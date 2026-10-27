@@ -1,0 +1,115 @@
+{
+  "reviewer": "root",
+  "reviewed_at": "2026-10-27",
+  "decision": "accepted_for_integration",
+  "update": "verified_construction_core/2026-10-27-research-ninetythird",
+  "base_dataset": "verified_construction_core/2026-10-27-research-ninetysecond",
+  "process": "continuous: one researcher per beat, one adversarial verifier per fragment",
+  "fragments": [
+    {
+      "fragment": "refresh-operations-p4",
+      "verdict": "accept",
+      "checks": [
+        "config current_dataset verified_construction_core/2026-10-27-research-ninetysecond; dry run ok against it (801 sites, 861 projects, 4479 evidence)",
+        "rehashed lanceley-mod3-assessment-report.pdf = 1b5ac238...1703 and infratil-investor-day-2026-cdc-update.pdf = 971c5cac...92af, matching metadata and source content_hash",
+        "rehashed corroborating captures (CDC Marsden Park page, Oct 2026 project update, good-neighbour page, four NSW post-approval folders, project page) against metadata",
+        "MOD3 report p5 rendered: 'At the time of writing this report, the Applicant has commence construction of the approved development', 2-8 Lanceley Place and 14 Campbell Street, applicant Goodman Property Services; p18 determination adopted 11 August 2026; p17 recommendation",
+        "Goodman: government_record; as_of 2026-08-11 <= published_at 2026-08-12; 77 days old (inside 85-day window); strictly newer than existing 2026-07-20",
+        "Goodman identity: same consent SSD-66777221 as the existing record's geometry evidence and same address as its status evidence; Frederick Street (82 m, SSD-139545990) and NEXTDC S3 (506 m) are distinct",
+        "Goodman successor: post-approval folders newest item 2026-05-14 CEMP v7 approval; no occupation, operation, pause or withdrawal record",
+        "CDC deck slides 6 and 9 rendered: slide 9 title 'Construction is progressing to meet FY27-29 deliveries', Marsden Park bullet and construction photo; slide 6 MP1 operational, MP2-MP5 under construction, MP6 future",
+        "CDC: company_disclosure; as_of 2026-09-16 = published_at; 41 days old; strictly newer than existing 2026-07-21",
+        "CDC source row metadata identical to existing evidence e86d3030-80cb-5a88-a573-405820d7819c (no duplicate evidence)",
+        "CDC scope kept: six-building SSD-70889211 development per CDC Oct 2026 project update; MP1 operation not transferred; no other record within 3 km",
+        "no locator, role, capacity or scope changes; no other queue fragment or sources/*-holds.json entry pending a conflicting change on either key",
+        "robots.txt read before requests to infratil.com (crawl-delay 5), cdc.com, www.planningportal.nsw.gov.au; majorprojects robots 404",
+        "no private-individual names, emails or phones in changes, sources, holds or notes"
+      ],
+      "residual_risks": [
+        "Goodman observation date uses the 11 August 2026 determination; the report says it was written in August 2026, so the writing day could be slightly earlier (still newer than 20 July)",
+        "CDC deck's campus-level construction statement is mapped to the SSD-70889211 six-building record; whether MP2-MP5 all fall under that consent (and MP1's approval) remains unresolved per au-nz-p3 hold_identity",
+        "One data.nsw.gov.au CKAN request was made after a robots read that disallows ClaudeBot/anthropic-ai (User-agent * allows /); host then dropped; not relied on"
+      ]
+    },
+    {
+      "fragment": "us-columbus-oh-p5",
+      "verdict": "accept",
+      "checks": [
+        "base re-read from site/config.json: verified_construction_core/2026-10-27-research-ninetysecond (801 sites, 861 projects); admission window starts 2026-08-03",
+        "all 8 relied-on capture files rehashed (6 sources, incl. 2 recaptures): sha256 equals .metadata.json and source content_hash; metadata URL equals source_url; HTTP 200; retrieved_at equals captured_at; reused sources match base evidence rows 05d9c5cc, 402e00a6, 96bf6ef1 and 0eb58113 field for field",
+        "NEWC2526040 read in the raw 27 Oct permit capture: 225 RATHMELL RD, new structure, 52,500 sq ft, 100M USD, code 328, issued 2025-09-11, Final Inspection Approved/Closed, LAST_STATUS_DT 2026-09-11; no unit name, generic parcel permit point shared by 99 permits; foundations FNDTC2522914/2522917 coded 329; twin NEWC2526056 has a CO and NEWC2526040 none",
+        "permit layer metadata re-read: no use or work-description field exists, so the structure's use cannot be established from it; removed for scope (could be ancillary power, cooling, office or support space) and held with a reopen condition; its 4 orphaned sources pruned and the related remaining-works hold reworded",
+        "New Albany home page read in both captures: 23 Oct capture (b3ae443e..., base evidence 536f925d) has dateModified 2026-08-26T20:00:25Z; 27 Oct capture (ad731598...) has dateModified and article:modified_time 2026-10-26T19:59:39Z, equal to page-sitemap lastmod; text diff is only the replaced Resident Questions card and menu item, so the version is bounded between the two captures",
+        "decisive statements read in the 27 Oct capture: 'two active data center sites, one operated by Google and one operated by Meta'; Google's New Albany campus cooling-fan noise mitigation; Meta's campus south of SR-161, 'changes to current operations', temporary sound wall 'while construction continues'",
+        "Google New Albany refresh: government_record, operational 2026-10-26 > existing 2026-08-26, same source page, campus and scope; only one Google New Albany record in the Atlas; locator and roles unchanged",
+        "Meta refresh: partially_operational 2026-10-26 > existing 2026-10-19; record already partially_operational; operating plus continuing construction supports it; only Meta New Albany record in the Atlas; locator unchanged",
+        "distinctness/overlap: no other unpublished queue fragment changes or holds these project keys; claims.tsv hits are this fragment and published p4/midwest-east-p2 lanes",
+        "no third-party personal data in changes, sources, holds or URLs",
+        "dry run ok against ninetysecond: 801 sites, 861 projects, 4,479 evidence rows"
+      ],
+      "residual_risks": [
+        "both refreshes rest on the City's republication of noise-update text that is unchanged since the 26 August version; the 26 October edit only replaced an unrelated card (same method as the accepted TierPoint refreshes)",
+        "'active data center site' establishes operation of Google's and Meta's campuses but not which buildings operate; Meta's partially_operational scope rests on 'while construction continues'",
+        "the Meta record keeps its locality (city) locator; the City's 'campus south of SR-161' is matched to it by name only"
+      ]
+    },
+    {
+      "fragment": "us-midwest-iowa-ne-p5",
+      "verdict": "accept",
+      "checks": [
+        "Current dataset re-read from site/config.json before and after review: verified_construction_core/2026-10-27-research-ninetysecond",
+        "All 27 cited captures rehashed: sha256 and byte length match .metadata.json and each source content_hash; URL and retrieved_at match metadata; HTTP 200; no credentials; all sources referenced and none missing; three geometry-facts files match geometry_facts_sha256",
+        "TierPoint MID: read in the live capture 'TierPoint Omaha (Midlands) data center and colocation facility', 63,000+ sq ft, cabinets and cages available, '11425 South 84th Street Papillion, NE 68046'; JSON-LD dateModified 2026-09-03T06:54:38Z; IA id_ copy 20260702 has dateModified 2024-07-31 with the same facility text, IA copy 20261009 has 2026-09-03; CDX shows no capture in between; page-sitemap lastmod 2026-09-03T06:54:38; so the modification is bounded by archived copies; news sitemap has nothing after 12 Aug 2026 and no Omaha/Papillion item",
+        "Skyway: pdftotext and a page render of the PUC notice (issued 31 August 2026, docket E002/TL-26-135): Xcel and Echo Zone LLC, a Google subsidiary; four Project Skyway substations 'owned and operated by Google' at the proposed Pine Island Industrial PUD site; draft route permit 14 Aug 2026 does not authorise construction; May 2027 and Dec 2029 are forecasts; page-6 map shows the substations in the AUAR Development Area; only announced is claimed, with no permit or stage",
+        "Skyway identity: Google blog (datePublished 2026-02-24) 'Pine Island, Minnesota will be the future home of a Google data center', supplied by Xcel; the in-window notice and the ESA petition (E002/M-26-170) tie Google, Xcel and the PUD site together; the EQB record, the EQB Monitor of 8 Sep 2026 and Resolution 25-42 (rendered scan: 482 acres bounded by 490th St, TH 52 and 195th Ave) agree",
+        "1623 Farnam: the post's JSON-LD datePublished 2026-08-20T14:44:50Z, canonical /2026/08/20/ permalink and post-sitemap lastmod agree; read 'At 1623 Farnam, more than 60 carriers, the Omaha Internet Exchange (IX)...' and 'As a carrier neutral data center... The facility offers'; the edge page (75,000 sq ft, 6 MW) is context only; the second facility (Jan 2026, 2028 forecast, no address) is excluded and held",
+        "All observations are primary (company_disclosure or government_record) and dated 2026-08-20, 2026-08-31 and 2026-09-03, all on or after the 85-day floor of 2026-08-03; status as_of equals the source published_at",
+        "Locators recomputed from the raw captures with pyproj 3.7.1 and shapely 2.1.1 (all responses are wkid 4326): Sarpy four-unit union 935.5 m2, LAEA centroid (-96.0393313, 41.1345994), inside, 27.2 m from TierPoint's JSON-LD point, which falls in the 3.9-acre unparcelled lot enclosing the units; Skyway layer-13 polygon 497.3 acres, centroid (-92.6454052, 44.2265242), inside, all four proposed substations and both EQB record points inside; DOGIS parcel 0313580003 794.8 m2, centroid (-95.9382065, 41.2572932), inside; all agree with the claims within 1 cm",
+        "Locators are Point only, from official sources with direct_geometry; scopes are reviewed_site_locator (TierPoint, Farnam) and campus_locator (Skyway); precision, identity review and the null-uncertainty reason are recorded; no geocoder, city centre, HQ or zone centroid is used; each site is new with one project",
+        "Roles: TierPoint operator current; Google LLC operator intended (Google blog); 1623 Farnam operator current; relationship_scope values are valid",
+        "Distinctness: names, aliases, addresses, parcel IDs and coordinates checked against the ninetysecond sites, projects, evidence, source-records and identity-mapping, every other queue fragment and all sources/*-holds.json; the only hits are the earlier holds whose reopen conditions these records meet (plains-p1, plains-p2, iowa-ne-p4) and unrelated Skyway (STACK Phoenix), Ryan Companies (TX) and '11425' coordinate digits; no record within 2 km; nearest are TierPoint Bellevue at 10.7 km and 8.9 km",
+        "No third-party personal data in changes, sources, holds or geometry facts (officials named in the PDFs and post authors are not copied; parcel owners are organisations)",
+        "Compliance log: robots.txt logged per host; bot challenges (MPCA, mn.gov/puc) not engaged; hosts answering robots with 403 for eDockets and DNR were not accessed",
+        "dryrun_fragment.py: ok on ninetysecond (804 sites, 864 projects, 4504 evidence)"
+      ],
+      "residual_risks": [
+        "Skyway: no in-window record says 'data center'. The data-centre identity and the intended-operator role rest on Google's out-of-window post of 24 Feb 2026, bridged by the Google-owned substations and the Xcel-Google ESA in the in-window PUC notice",
+        "Skyway locator: the state labels the polygon an approximate location (about 497 acres); the AUAR scenarios include light industrial, so Google may not occupy the whole area",
+        "TierPoint MID: the Sarpy condominium units are schematic rectangles in an unparcelled 3.9-acre lot, and units 1-2 are owned of record by Alegent Health, so the point locates the condominium property, not the building footprint or TierPoint's space; the parcel layer is a December 2023 snapshot",
+        "TierPoint MID: the 3 September 2026 modification is a portfolio-wide banner edit; the facility text is unchanged since at least July 2024",
+        "1623 Farnam: the operating observation is a generic marketing post with present-tense facility statements; the DOGIS parcel layer is described as a June 2012 compilation"
+      ]
+    },
+    {
+      "fragment": "us-wi-mi-p5",
+      "verdict": "accept",
+      "checks": [
+        "current_dataset re-read: verified_construction_core/2026-10-27-research-ninetysecond (801 sites, 861 projects, 4478 evidence)",
+        "all 7 cited captures plus the ATC post sitemap rehashed: sha256 equals .metadata.json sha256 and sources.json content_hash; HTTP 200, credential-free",
+        "ATC release read: 'Posted on September 15, 2026'; revised PSCW application; load in the Port Washington area; 'The customer at the Lighthouse campus' committed to fund transmission through its rates; first filed Sept 2025, completeness revoked",
+        "ATC project page read: need includes 'the Port Washington data center project'; docket 137-CE-229; Decker Substation, two dual-circuit 345-kV lines, up to five substations; approval TBD, construction/in-service dates are forecasts; sitemap lastmods 2026-09-17 (project) and 2026-09-14 (post)",
+        "Oracle blog read: dated 16 Sep 2026; partnering with ATC on the revised CPCN application; >50% carbon-free capacity; no stage or energisation claim; robots.txt allows /news/",
+        "Alliant data-centers page read under 'Data centers within Alliant Energy's service area': Meta | Beaver Dam, Commerce Park, ~USD 200m network upgrades/substations/lines, 100% clean matching; sitemap lastmod 2026-10-26; Alliant release dated NOV. 12, 2025 repeats the commitment",
+        "preserve_status_as_of matches existing records (2026-10-19 Lighthouse; 2026-10-09 Meta); status, locator and capacity untouched; no observation date taken from any context source",
+        "distinctness: no other Atlas project within 40 km of either point; no other name/alias/identity-mapping/source-record match; none of the 7 source URLs in evidence.csv or source-records.json; no pending queue fragment or sources/*-holds.json entry touches these projects or URLs (us-wi-mi-p4 is published)",
+        "source kinds utility_record/company_disclosure have published power_readiness precedent (50Hertz, Entergy, Google blog)",
+        "no private-individual names, phones or emails in summaries, sources or holds (ATC contact, Oracle author and executives' names not copied)",
+        "precision edits: Meta summary now says the Commerce Park campus 'will be built' (source wording) and dates the page by capture with sitemap lastmod noted; Lighthouse funding sentence matches ATC wording; Alliant page title dated by capture",
+        "dryrun_fragment.py: ok (801 sites, 861 projects, 4485 evidence)"
+      ],
+      "residual_risks": [
+        "Ozaukee County interconnection is proposed and unapproved at PSCW; the context may need revisiting if the application is withdrawn or rerouted",
+        "Alliant data-centers page has no printed date; its 26 Oct 2026 lastmod is sitemap-only and is not used as an observation",
+        "Meta Beaver Dam locator remains locality-level; the Commerce Park is recorded as source text only",
+        "ATC post sitemap lastmod (14 Sep) precedes the printed posting date (15 Sep); published_at uses the printed date"
+      ]
+    }
+  ],
+  "packet_pins": {
+    "definitions/atlas-research-ninetythird-2026-10-27.json": "ee9d2e73dc6a681f0c9a2543d313f9a7ebc7fcd3954698bca64bb882f64476ef",
+    "sources/research-countries-2026-10-27-ninetythird-primary-sources.json": "b4e14161a11d014e73850d01777c403a2224674d601d12f2e7246d43b505b913",
+    "sources/research-countries-2026-10-27-ninetythird-actions.json": "f2277f2c0f3343d896cf0e8b5a132e96c0dcffe64f2943b3977f55aa7da8e64d",
+    "sources/research-countries-2026-10-27-ninetythird-holds.json": "833dad101d80d70ca117cd44111d4163523a72cb1cb26bd5a6acaf9889d69b2c"
+  },
+  "raw_captures_redistributed": false
+}
