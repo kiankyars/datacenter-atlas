@@ -419,6 +419,8 @@ From 22 October 2026 sites are added continuously: researchers each work a narro
 
 `verified_construction_core/2026-10-27-research-ninetyfifth`: **815 sites and 877 projects in 63 countries**. Adds Equinix SV18 — new IBX colocation data centre, now open (127 Great Oaks Blvd); Servpac MTP Data Center Building 1 — existing Tier IV colocation operations; AVAIO Digital Leo (Project Leo) — planned AI-ready data center and power campus on 296 acres; TierPoint Raleigh (RAL) — existing data-centre and colocation operations; TierPoint Charlotte - Center Park (CL4) — existing data-centre and colocation operations; TierPoint Charlotte - North Myers (CL2) — existing data-centre and colocation operations; Novva Las Vegas — existing data-centre operations. Refreshes AVAIO Digital Taurus Phase One Current Campus Build (under construction).
 
+`verified_construction_core/2026-10-27-research-ninetysixth`: **818 sites and 881 projects in 63 countries**. Adds DataBank DEN4 — existing edge colocation data-centre operations; Meta Los Lunas Data Center — existing data-centre operations; Site Layer 1 Data Center Project — proposed data centre of about 800 MW with 300 MW on-site gas-engine generation; Apple Prineville Data Center Campus — eastern campus expansion (PRZ 06 development area).
+
 ## 25 October 2026
 
 `verified_construction_core/2026-10-25-research-sixtysecond` adds three commercial sites and

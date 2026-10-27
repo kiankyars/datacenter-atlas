@@ -1,0 +1,66 @@
+{
+  "reviewer": "root",
+  "reviewed_at": "2026-10-27",
+  "decision": "accepted_for_integration",
+  "update": "verified_construction_core/2026-10-27-research-ninetysixth",
+  "base_dataset": "verified_construction_core/2026-10-27-research-ninetyfifth",
+  "process": "continuous: one researcher per beat, one adversarial verifier per fragment",
+  "fragments": [
+    {
+      "fragment": "us-co-wy-mt-nm-p5",
+      "verdict": "accept",
+      "checks": [
+        "base verified_construction_core/2026-10-27-research-ninetyfifth (config current_dataset); window start 2026-08-03",
+        "all 17 cited captures rehashed: sha256 == .metadata.json sha256 == sources content_hash; url == effective_url; captured_at == retrieved_at; HTTP 200",
+        "DEN4: live page dateModified 2026-09-28T19:37:14Z; IA 2026-07-12 copy dateModified 2026-05-14 with byte-identical DEN4 facility section (title/form only changed); CDX has no copy between; present-tense edge colo facility, 0.5 MW, remote hands",
+        "DEN4 locator recomputed (shapely/pyproj): parcel 29-141-01-015 centroid -105.0803133,39.884557 (0.004 m), inside, 2.26 geodesic ac, furthest vertex 82.6 m; state address point 7579 W 103RD AVE inside, 6.9 m; owner ZCOLO LLC, land use Data Centers",
+        "Meta Los Lunas: Sept 2026 fact sheet PDF created 2026-09-02 18:31Z in 2026/09 uploads; asset sitemap lastmod 2026-09-03; IA 2026-08-10 asset link resolved to Jan 2025 PDF ('once completed'); new text 'Operational jobs supported' and 'operational data center buildings'; whole revision window inside 85 days",
+        "Meta locator recomputed: Tract A4A UPC 1006040520058000000 centroid -106.7809835,34.828031 (0.001 m), inside, 285.04 ac; Village quorum notice (rendered) gives 4250 Messenger Loop NW; county address point with same UPC inside parcel 570 m from centroid; 2024 ortho overlay shows data-hall rows inside A4A",
+        "Meta geometry-facts use_scope corrected from project_locator to campus_locator to match changes.json; geometry_facts_sha256 updated in sources.json",
+        "Site Layer 1: rendered p4 (Not Constructed checked, 20.2.72 NSR), p6 (Section 1-D 31.980569/-108.511384, NAD 83, UTM 12 735,145/3,540,987, Grant, Private), cover letter 2026-10-07, p36 Application Summary (data center ~800 MW, 300 MW gas), p167 Figure 2 (4 data-centre buildings beside engine hall; title block carry-over 'Hurt Cattle Solar' 18.6 km away)",
+        "Site Layer 1 UTM 12N NAD83 -> lon/lat agrees with stated decimal degrees to 0.73 m; notice-letter point 45.2 m away; NMED public-notices page links service.web.env.nm.gov/urls/GyvVdjHy which resolves to the captured PDF",
+        "roles: DataBank operator current; Meta Platforms operator current (matches Atlas naming); Site Layer 1, LLC owner intended (Section 1 plant owner)",
+        "distinctness: no name/alias/address/source match in sites, projects, evidence, source-records, identity-mapping; nearest Atlas sites 14.9 km (DE3), 317.5 km (Meta El Paso), 175.2 km (Project Jupiter); no pending fragment point within 20 km except DEN3 at 17.1 km; holds (thirtyseventh, fiftysixth, seventyfirst, eightythird) reopen conditions met",
+        "no private individuals' names, phones or e-mails in changes, sources, holds, geometry or notes",
+        "dryrun_fragment.py ok: 818 sites, 880 projects, 4,603 evidence against ninetyfifth"
+      ],
+      "residual_risks": [
+        "DEN4 status rests on an operator page whose 28 Sep 2026 modification changed only title and form text; facility text unchanged since at least May 2026",
+        "Meta Los Lunas observation date comes from PDF metadata bounded by IA (10 Aug) and sitemap lastmod (3 Sep); parcel owner of record is the Village, identity rests on Village notice address and county address point; parcel attributes are tax year 2019",
+        "Site Layer 1 point is the applicant's gas-engine plant coordinate, not the data-centre buildings; the layout sheet title block names another project; 800 MW is an applicant target and the project spans Grant and Hidalgo Counties",
+        "Site Layer 1, LLC is a new special-purpose applicant; announced status only"
+      ]
+    },
+    {
+      "fragment": "us-or-wa-p5",
+      "verdict": "accept",
+      "checks": [
+        "current_dataset re-read from site/config.json: verified_construction_core/2026-10-27-research-ninetyfifth; date +%F 2026-10-27, window cutoff 2026-08-03",
+        "rehashed prineville-cc-agenda-20261013.pdf (98697ad8...), its 27 Oct recheck (byte-identical), prineville-cc-agenda-20261027.pdf (7d9e529b...), prineville-pc-minutes-20261020.pdf, agendacenter capture and crook-taxlots-apple-geom.json (52acd61b...): all match .metadata.json and content_hash",
+        "read packet pp.22-37 with pdftotext and rendered Exhibits A/B with pdftoppm: staff report 'utility improvements necessary to serve Apple's eastern campus expansion'; 'Apple's initial development plan included the expansion of the easter portion of its campus'; recital B 'eastern portion the User's campus PRZ 06 development area'; recital A Apple owns and operates a data center campus",
+        "27 Oct packet draft brief: Resolution 1654 adopted 13 Oct (all present in favour); staff said the project includes improvements 'in anticipation of future development' - consistent with announced, no stage asserted",
+        "source kind government_record; PDF CreationDate 2026-10-08T17:29:07Z bounded by the 13 Oct meeting record; status announced as_of 2026-10-08 (19 days old)",
+        "2028 Final Completion target and 350 gpm reservation kept as forecasts; offsite utility works not treated as a construction stage; no permit asserted",
+        "locator: independently recomputed UTM 10N centroid of union of the three APPLE INC lots = -120.8659538, 44.2845822 (0.005 m from published), inside union, 364.33 acres; inherited exactly from project e18e9133 with geometry evidence 013df53e and no geometry-identity rows; eastern lots 1516070000101/102 match the hatched APPLE CAMPUS extension in Exhibit B",
+        "roles: Apple Inc. owner current (recital A + county owner field), operator intended (User's campus development area)",
+        "distinctness: only Atlas records within 200 km are the host site and its existing-operations project (0 m); no PRZ/eastern-expansion record in sites/projects/evidence/source-records/identity-mapping, pending queue fragments, claims.tsv or sources/*-holds.json beyond the fortythird/eightyfourth holds this item reopens",
+        "removed context source us-or-wa-p5-prineville-pc-minutes-20261020 from context_source_ids and sources.json: the 20 Oct Planning Commission brief names neither Apple nor PRZ 06 (only generic 'data centers'), so it cannot be context:identity evidence for this project",
+        "no third-party personal data in changes, sources or holds; robots.txt for www.cityofprineville.com allows /AgendaCenter",
+        "dryrun_fragment.py ok against ninetyfifth (815 sites, 878 projects, 4586 evidence)"
+      ],
+      "residual_risks": [
+        "announced rests on a City utility development agreement for the expansion area, not an Apple announcement or a land-use/building approval; buildings, floor area and capacity are unknown",
+        "observation date is the packet PDF creation time (8 Oct); the City index shows no posting time, though the 13 Oct meeting bounds it",
+        "reused locator is the whole 364-acre holding; PRZ 06 is not separately delineated in any captured record",
+        "operator role (intended) is inferred from the 'User's campus' development-area wording"
+      ]
+    }
+  ],
+  "packet_pins": {
+    "definitions/atlas-research-ninetysixth-2026-10-27.json": "6f6eca2459aba7924e61553f4f3130c89489c4e8b0446aace38dbbbe6f9fd6d3",
+    "sources/research-countries-2026-10-27-ninetysixth-primary-sources.json": "967bd9a5e9ca6614ef5618a0ec55aeb182bc4ce77ec841676872675f874f5111",
+    "sources/research-countries-2026-10-27-ninetysixth-actions.json": "892cb7a27c675ac369b63516c3699cb04183e31ec5194cf2368b6e496976050b",
+    "sources/research-countries-2026-10-27-ninetysixth-holds.json": "a43bccbddf9a3e6e18a76ca82c44a912aa2df4b8e5d68ec150fdf1db3444e6d4"
+  },
+  "raw_captures_redistributed": false
+}
