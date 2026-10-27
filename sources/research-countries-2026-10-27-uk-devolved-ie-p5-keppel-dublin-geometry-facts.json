@@ -1,0 +1,159 @@
+{
+ "format": "datacenter-atlas-geometry-facts-v1",
+ "prepared_at": "2026-10-27",
+ "fragment": "uk-devolved-ie-p5",
+ "purpose": "Locators for two new sites: Keppel DC Dublin 1 (Citywest Business Campus) and Keppel DC Dublin 2 (Ballycoolin). Each locator is the merged national planning register point of a planning application at the facility address that names the Keppel data centre or its Keppel owning company, converted from Web Mercator to WGS84. Council red-line polygons are used only to show that the point is the centroid of the application site and lies inside it.",
+ "method": "National planning register (IrishPlanningApplications feature service, native spatial reference 102100 / EPSG:3857, applicant-name fields not requested) points converted with pyproj 3.7.1 (EPSG:3857 to EPSG:4326, always_xy). Council red lines: South Dublin County Council Planning_Register polygons in ITM (EPSG:2157) and Fingal County Council PlanningApplicationsFingal polygons served in WGS84 and converted to ITM; containment, areas and point-to-boundary distances computed in ITM with shapely 2.1.1. Distances between WGS84 points are geodesic (pyproj Geod, WGS84).",
+ "captures": {
+  "ieplan/ie-planning-SD23A-0339.json": "7ff12a6fdca460e59ebe649e933832074634e06b4de564aa2ff83d6729c2c753",
+  "ieplan/ie-planning-FW23A-0081.json": "6cad825a886e11be6f7fedd013b6906faa633a402dc21d93746699d5836f3b0f",
+  "ieplan/keppel-apps-native.json": "35adf189305613a906a6d6fb4374b25a6a0f608934bb62d5aa6872c013b5ed94",
+  "sdcc/sdcc-keppel-citywest-polygons.json": "7c47a9b5c535328c1f4ad154ef320a1e72ec87e110c34dbea655402eba9e814d",
+  "ieplan/fcc-keppel-b10.json": "1665c46fd47d8b63aabbcc8821569a833ac2ac6a94b5d1938474d4b83a677557",
+  "ieplan/near-d1-2km-data.json": "4a8448c1aaff82c8af21585348ad6181a147edc2d23440f2a6dfd8cb6217f7f6",
+  "ieplan/near-d2-2km-data.json": "f47d793e2711de7eb17753496d86a50e93b6a8ac02ae8f301ba1db541cc019c4"
+ },
+ "points": {
+  "keppel_dc_dublin_1": {
+   "application": "SD23A/0339",
+   "register_address": "Keppel Data Centre, Citywest Avenue, Citywest Business Campus, Dublin 24",
+   "register_point_epsg3857": [
+    -714278.0988213159,
+    7037108.789196633
+   ],
+   "transformed_wgs84": [
+    -6.4164693,
+    53.2915439
+   ],
+   "itm_epsg2157": [
+    705573.5,
+    727974.05
+   ],
+   "register_area_of_site_sqm": 16790,
+   "used_as_locator": true,
+   "council_red_lines_sdcc": {
+    "SD23A/0339": {
+     "area_ha": 1.703,
+     "contains_locator": true,
+     "locator_to_red_line_boundary_m": 48.5,
+     "red_line_centroid_to_locator_m": 0.0
+    },
+    "SD22A/0013": {
+     "area_ha": 1.691,
+     "contains_locator": true,
+     "locator_to_red_line_boundary_m": 48.2,
+     "red_line_centroid_to_locator_m": 0.5
+    },
+    "SD17A/0441": {
+     "area_ha": 1.888,
+     "contains_locator": true,
+     "locator_to_red_line_boundary_m": 51.3,
+     "red_line_centroid_to_locator_m": 7.8
+    },
+    "SD18A/0253": {
+     "area_ha": 1.883,
+     "contains_locator": true,
+     "locator_to_red_line_boundary_m": 51.3,
+     "red_line_centroid_to_locator_m": 7.7
+    }
+   },
+   "cross_checks_m": {
+    "SD22A/0013 (energy storage at the existing data centre facility, Keppel Data Centre, 4033 Citywest Avenue)": 0.5,
+    "SD17A/0441 (perimeter fencing and car-park works, 4033 Citywest Avenue, site 1.89 ha)": 7.8,
+    "SD18A/0253 (external plant zone beside the existing building, 4033 Citywest Avenue, site 1.892 ha)": 7.7,
+    "SD18A/0301 (separate two-storey data centre at Kingswood Drive/Kingswood Road (not Keppel))": 297.9,
+    "SD22A/0311 (amendments to SD18A/0301 (not Keppel))": 297.3
+   },
+   "operator_land_area": "Keppel DC REIT Annual Report 2025: 218,236 sq ft (about 2.03 ha) for Unit 4033-4035 Citywest Business Campus"
+  },
+  "keppel_dc_dublin_2": {
+   "application": "FW23A/0081",
+   "register_address": "KDCR (Ireland) 2 Limited, Unit B10, IDA Business Park, Ballycoolin, Du",
+   "register_point_epsg3857": [
+    -708140.6914995558,
+    7058452.433734495
+   ],
+   "transformed_wgs84": [
+    -6.3613361,
+    53.4059975
+   ],
+   "itm_epsg2157": [
+    708956.66,
+    740791.0
+   ],
+   "used_as_locator": true,
+   "council_red_lines_fingal": {
+    "FW17A/0094": {
+     "area_ha": 1.453,
+     "contains_locator": true,
+     "locator_to_red_line_boundary_m": 45.4,
+     "red_line_centroid_to_locator_m": 2.8
+    },
+    "FW20A/0109": {
+     "area_ha": 1.421,
+     "contains_locator": true,
+     "locator_to_red_line_boundary_m": 49.0,
+     "red_line_centroid_to_locator_m": 0.2
+    },
+    "FW23A/0081": {
+     "area_ha": 1.437,
+     "contains_locator": true,
+     "locator_to_red_line_boundary_m": 49.8,
+     "red_line_centroid_to_locator_m": 0.0
+    },
+    "FW24A/0214E": {
+     "area_ha": 0.018,
+     "contains_locator": false,
+     "locator_to_red_line_boundary_m": 63.2,
+     "red_line_centroid_to_locator_m": 68.9
+    },
+    "FW19A/0147": {
+     "area_ha": 1.428,
+     "contains_locator": true,
+     "locator_to_red_line_boundary_m": 49.5,
+     "red_line_centroid_to_locator_m": 0.2
+    },
+    "FW20A/0119": {
+     "area_ha": 1.428,
+     "contains_locator": true,
+     "locator_to_red_line_boundary_m": 49.5,
+     "red_line_centroid_to_locator_m": 0.2
+    },
+    "FW12A/0116": {
+     "area_ha": 1.425,
+     "contains_locator": true,
+     "locator_to_red_line_boundary_m": 51.9,
+     "red_line_centroid_to_locator_m": 8.1
+    },
+    "FW20A/0154": {
+     "area_ha": 1.431,
+     "contains_locator": true,
+     "locator_to_red_line_boundary_m": 49.4,
+     "red_line_centroid_to_locator_m": 0.0
+    }
+   },
+   "cross_checks_m": {
+    "FW12A/0116 (change of use of factory unit B10 to electronic data storage centre, 2012)": 8.1,
+    "FW19A/0147 (generator and air-handling compound, Keppel Unit B10)": 0.2,
+    "FW20A/0154 (new ESB substation, Keppel Unit B10)": 0.0,
+    "FW17A/0094 (retention of generator compounds, Unit B10)": 2.8,
+    "FW24A/0214E (third-party development at 'Keppel Data Centre, 4 Ballycoolin Rd', D15 AKK1; 0.018 ha red line outside the B10 red line)": 68.9
+   },
+   "operator_land_area": "Keppel DC REIT Annual Report 2025: 149,620 sq ft (about 1.39 ha) for Unit B10, Ballycoolin Business and Technology Park"
+  },
+  "separation_dublin_1_to_dublin_2_km": 13.26
+ },
+ "nearest_records": {
+  "keppel_dc_dublin_1": {
+   "Google Ireland Grange Castle campus (Atlas site)": 3223.6,
+   "Microsoft Dublin Data Center Campus (Atlas site)": 3920.6,
+   "Echelon DUB10 Clondalkin (Atlas site)": 4842.8,
+   "EdgeConneX Dublin campus (Atlas site)": 4975.0
+  },
+  "keppel_dc_dublin_2": {
+   "Microsoft Huntstown Data Centre Campus (Atlas site)": 2750.6,
+   "Pure DC Dublin Ballycoolin hold point (thirty-fourth holds)": 890.0,
+   "Equinix Unit 02 Northwest Business Park hold point (thirty-fourth holds)": 1196.2
+  }
+ }
+}

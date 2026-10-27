@@ -429,6 +429,8 @@ From 22 October 2026 sites are added continuously: researchers each work a narro
 
 `verified_construction_core/2026-10-27-research-hundredth`: **831 sites and 895 projects in 63 countries**. Adds Green Mountain LON-East (Romford) - 14 MW AI-ready data-hall expansion inside the existing building (delivered). Refreshes AWS Ridgeway Data Centre, Iver (announced).
 
+`verified_construction_core/2026-10-27-research-hundredfirst`: **834 sites and 900 projects in 63 countries**. Adds NTT DATA Keihanna OSK11 Data Center — existing operations; MC Digital Realty KIX10 (Digital Osaka 1) — existing operations; MC Digital Realty KIX13 (Digital Osaka 4) — existing operations; Keppel DC Dublin 1 — existing colocation data-centre operations; Keppel DC Dublin 2 — existing colocation data-centre operations.
+
 ## 25 October 2026
 
 `verified_construction_core/2026-10-25-research-sixtysecond` adds three commercial sites and

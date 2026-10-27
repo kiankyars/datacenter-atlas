@@ -1,0 +1,75 @@
+{
+  "reviewer": "root",
+  "reviewed_at": "2026-10-27",
+  "decision": "accepted_for_integration",
+  "update": "verified_construction_core/2026-10-27-research-hundredfirst",
+  "base_dataset": "verified_construction_core/2026-10-27-research-hundredth",
+  "process": "continuous: one researcher per beat, one adversarial verifier per fragment",
+  "fragments": [
+    {
+      "fragment": "jp-chubu-kansai-p5",
+      "verdict": "accept",
+      "checks": [
+        "Base: site/config.json current_dataset is 2026-10-27-research-hundredth (831 sites, 895 projects); dry run against it: ok, 832 sites / 898 projects / 4,707 evidence rows",
+        "Rehash: all 19 relied-on captures match their .metadata.json sha256 and the sources' content_hash (HTTP 200, URL equal); OSK11 geometry-facts file hash matches",
+        "Robots: every relied-on capture started after its host's robots capture; nttdata.com, digitalrealty.com and mc-digitalrealty.com robots allow the URLs; pref.kyoto.jp, GSI and web.archive.org robots 404",
+        "OSK11 status read in capture: '2026年2月にオープンした、京阪奈OSK11データセンターは…合計30MWのIT負荷を安定的に供給します', plus present-tense 24h/365 guarded security; company_disclosure on nttdata.com",
+        "OSK11 date: NTT DATA Japan sitemap (4,343 URLs) gives keihanna lastmod 2026-10-20T03:37:50+09:00; only 19 URLs carry that day; IA id_ copy of 9 Apr 2026 differs (sup/sub markup, menu items), bounding the version below; live capture 27 Oct bounds above; 7 days old, inside 85-day floor 2026-08-03",
+        "OSK11 conflict reviewed: DC top page (lastmod same day) still says 開設予定; contradicted by the facility page and the dated 9 Apr 2026 NTT DATA Group topic ('正式に開設しました' via NTT GDC); disclosed in summary",
+        "OSK11 locator recomputed: GSI AddressSearch raw returns one feature 京都府精華町光台二丁目４番 at [135.765381, 34.741379] = changes.json point; reverse geocoder muniCd 26366 / 光台二丁目",
+        "Kyoto plan 623 page 1 rendered with pdftoppm and read: NTT GDC, form dated 2024-07-05, 光台二丁目4番, steel, 4 storeys, site 72,525.28 m2, building 9,132.25 m2, total 28,915.20 m2 (operator ~28,894 m2)",
+        "Esri tiles stitched and marked: point sits on the NTT R&D complex; a new rectangular building with rooftop plant lies east at the claimed centre (pyproj 92.8 m); block point is a parent-property marker, not a city/HQ/zone centroid; uncertainty null with reason",
+        "KIX10 status read in raw page field_intro_location: 'Our Osaka data center provides you with move-in ready solutions…'; sitemap lastmod 2026-08-19T17:35Z (16 of 1,837 URLs); IA 18 Jun 2026 copy differs in a body field (8,547 vs 8,550 m2) and template; jp-fifth 14 Oct capture text matches live; 69 days old",
+        "KIX13 status read in raw page: 'MCDR Digital Osaka 4 (KIX13) … provides move-in ready solutions … KIX10, KIX11, KIX12, KIX13 are part of our connected KIX campus'; sitemap lastmod 2026-09-08T17:45Z (7 URLs); IA 12 May copy differs in body (building size, compliance block); 49 days old",
+        "KIX locators: both reuse baseline project 0ee1555f (KIX15) campus point exactly via reuse_from_project_id with geometry evidence bc97b241 (DLR KIX10 coordinate 34.8614235, 135.5158993, confirmed in both KIX10 captures); KIX13 own coordinate 382.9 m away (pyproj) recorded as identity context",
+        "Campus identity: MCDR campus page says MCDR 運営 multiple Osaka DCs and lists KIX10-KIX13 (KIX13 opened Feb 2023); DLR 7 Oct KIX15 release says KIX15 will be the fifth data center at the KIX Campus",
+        "Roles: OSK11 owner NTT GDC Corporation and operator NTT GDC from the 9 Apr topic; KIX10/KIX13 operator MC Digital Realty current; verifier switched the KIX13 operator role source from the DLR page to the MCDR campus page, which states 運営",
+        "Distinctness: no OSK11/京阪奈/光台/Seika/KIX13/Digital Osaka match in sites, projects, evidence, source-records or identity-mapping of hundredth; KIX10 appears only as the KIX15 campus geometry source; nearest other sites KAGOYA Keihanna Lab 1,943.7 m and the KIX campus itself; no other queue fragment changes.json or holds.json and no other claims.tsv row proposes them; sources/*-holds.json only carry the thirty-fourth holds these reopen",
+        "New-site rule: OSK11 is the only project on its new site; KIX10/KIX13 join an existing base site",
+        "Privacy: no personal names, phones or e-mails in changes, sources, holds, notes or geometry (plan representative and press contacts omitted)",
+        "Scope: commercial colocation/wholesale data centres; no demonstrator or institutional supercomputer"
+      ],
+      "residual_risks": [
+        "All three observation dates rest on sitemap lastmod values with a lower archive bound (accepted pattern), not on dated page text; the decisive service sentences are unchanged from the archived versions",
+        "Same-day NTT DATA top page still calls OSK11 scheduled to open (stale blurb)",
+        "OSK11 point is a GSI block point on the adjacent NTT R&D building, ~93 m from the data-centre building identified only in undated imagery; no published accuracy",
+        "OSK11 operator could arguably be NTT DATA Japan (service-page publisher) rather than NTT GDC; role rests on the opening topic",
+        "KIX10/KIX13 inherit the KIX15 campus locator and its KIX15-worded precision text; KIX13 building is 383 m from the point",
+        "Digital Realty facility pages carry internally inconsistent building-size fields (e.g. KIX13 11,050 m2 vs MCDR 23,432 m2); not used"
+      ]
+    },
+    {
+      "fragment": "uk-devolved-ie-p5",
+      "verdict": "accept",
+      "checks": [
+        "All 11 relied-on captures (9 sources, 2 fragment recaptures of the 3Q 2026 and AR2025 PDFs) rehash to their .metadata.json sha256 and source content_hash; HTTP 200, credential-free",
+        "Keppel DC REIT 3Q 2026 update (company_disclosure, published 23 Oct 2026) PDF p.21 rendered: 'Portfolio Overview (as at 30 Sep 2026)' lists Keppel DC Dublin 1 (23 clients, 96.5%) and Dublin 2 (3 clients, 98.1%), fully-fitted colocation; p.23 owner bears all expenses and is responsible for facilities management, REIT has colocation arrangements with the clients",
+        "Observation 2026-09-30 is 27 days before 2026-10-27, inside the 85-day window (floor 2026-08-03); observation <= publication <= retrieval",
+        "AR2025 p.43 confirms Unit 4033-4035 Citywest Business Campus and Unit B10 Ballycoolin Business and Technology Park, land areas 218,236 and 149,620 sq ft, no outsourced facility manager for Dublin; p.53 maps KDCR (Ireland) Limited and KDCR (Ireland) 2 Limited to KDC DUB 1 and 2",
+        "Locators recomputed with pyproj 3.7.1 from the raw EPSG:3857 register points: SD23A/0339 -> 53.2915439, -6.4164693 and FW23A/0081 -> 53.4059975, -6.3613361 (offsets under 1 cm)",
+        "Shapely 2.1.1: each point is the centroid (0.0 m) of its council red line (1.703 ha SDCC, 1.437 ha Fingal) and inside the other Keppel red lines at the same address; geometry-facts file hash 9d6a8064... and its values match",
+        "Register records name 'Keppel Data Centre' / 'existing datacentre facility' at Citywest Avenue and KDCR (Ireland) 2 Limited at Unit B10; FW12A/0116 change of use to data storage centre at B10",
+        "Scope reviewed_site_locator, derivation coordinate_transform, authority compiled_reference, uncertainty null with reason; no city centre, HQ or business-park centroid used",
+        "Distinctness re-screened against verified_construction_core/2026-10-27-research-hundredth (current at verification; replaced ninetyninth): no Keppel Dublin, Citywest, Ballycoolin or Unit B10 record in sites, projects, evidence, source-records or identity-mapping; nearest Atlas sites 3.2 km (D1) and 2.7 km (D2)",
+        "Queue fragments, claims.tsv and sources/*-holds.json: only the q3-apac-operators-p3 lead names Keppel Dublin; no other fragment adds either site",
+        "K2 Ballycoolin hold checked: K2's AAQMP Figure 1 boundary monitors (Irish Grid 308939,240810 and 309014,240967) lie 26 m and 141 m outside the B10 red line, so K2 DUB 4/5 is the adjoining property; noted in distinctness_review",
+        "Two new sites, one project each; roles owner/operator current; commercial colocation, not a demonstrator or institutional supercomputer",
+        "Privacy: removed a private dwelling's house name from the Fingal red-line source summary; no personal names, phones or emails in changes, sources or holds",
+        "Dry run ok against hundredth: 833 sites, 897 projects, 4,695 evidence (+7 rows for 9 sources, so the 2 existing Keppel evidence rows are reused)"
+      ],
+      "residual_risks": [
+        "Operator party strings add the Irish holding entity (from AR2025) to 'Keppel DC REIT', while the role evidence is the 3Q table, which names only the REIT as owner responsible for facilities management",
+        "The national register does not document how it derives its points; the locator marks the property (red-line centroid), not the building",
+        "Operational status rests on a quarterly REIT reporting table (as at 30 Sep 2026), not on a site-level record; the same basis was accepted for the other Keppel records",
+        "K2 DUB 4/5 and the separate Hexagon and Kingswood data centres nearby are not in the Atlas; a later admission there must keep clear of these Keppel points"
+      ]
+    }
+  ],
+  "packet_pins": {
+    "definitions/atlas-research-hundredfirst-2026-10-27.json": "aa68d347b1934dc68f930de0af762fd83d772eb4a69cdd0c9e3f995559b4219d",
+    "sources/research-countries-2026-10-27-hundredfirst-primary-sources.json": "22dbd802383e55a7dcdde533fa6b80272dc4a8841bb96e30f985e840178c18db",
+    "sources/research-countries-2026-10-27-hundredfirst-actions.json": "b1c106661ce86fb23bc3c23539d63fe7c55dbd90566fbd834415d7840231ca4c",
+    "sources/research-countries-2026-10-27-hundredfirst-holds.json": "417a3c523613a15f93e8afccf42f0882bb868a507cc8f22571d8ea908b8b9947"
+  },
+  "raw_captures_redistributed": false
+}

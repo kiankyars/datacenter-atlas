@@ -1,0 +1,263 @@
+{
+ "format": "datacenter-atlas-geometry-facts-v1",
+ "fragment": "jp-chubu-kansai-p5",
+ "prepared_at": "2026-10-27",
+ "candidate_id": "nttdata-keihanna-osk11-seika-hikaridai",
+ "candidate": "NTT DATA Keihanna OSK11 Data Center (京阪奈OSK11データセンター; NTT Global Data Centers planning name （仮称）京阪奈ビル), 京都府相楽郡精華町光台二丁目4番, Seika, Kyoto, Japan",
+ "decision": "Selected the literal point that GSI (Geospatial Information Authority of Japan) address search returns for the official block address 京都府相楽郡精華町光台二丁目4 (one feature, titled 京都府精華町光台二丁目４番). Kyoto Prefecture's published 特定建築物排出量削減計画書 no. 623 (NTT Global Data Centers Corporation, （仮称）京阪奈ビル, four storeys, 28,915.20 m2) gives that block, 光台二丁目4番, as the location of the building and 72,525.28 m2 as its site, so the point is used as a parent-property marker for the OSK11 site. No geocoding beyond the official address search, no transformation, no offset.",
+ "geometry": {
+  "type": "Point",
+  "coordinates": [
+   135.765381,
+   34.741379
+  ]
+ },
+ "authority_class": "official_source",
+ "scope_class": "official_block_address_point_for_identified_parent_property",
+ "use_scope": "campus_locator",
+ "precision_scope": "GSI block-level address feature for 光台二丁目4番, the 72,525 m2 lot that Kyoto Prefecture's published plan gives for the OSK11 building. The point falls on the existing NTT Keihanna R&D building (NTT Communication Science Laboratories) in the west of the lot; it is a parent-property marker, not the data-centre building, a data hall, an entrance, a surveyed boundary or the lot outline.",
+ "horizontal_uncertainty_metres": null,
+ "horizontal_uncertainty_unknown_reason": "GSI publishes no positional accuracy for block-level address features, and no registry-map (MOJ) geometry exists for 光台 in the 2026 AIGID public-coordinate file for Seika (1,035 lots, only 祝園西, 狛田 and 大字菱田). In undated Esri World Imagery the new building identified as OSK11 lies about 70 to 140 m east of the point (estimated centre about 93 m east).",
+ "source_url": "https://msearch.gsi.go.jp/address-search/AddressSearch?q=%E4%BA%AC%E9%83%BD%E5%BA%9C%E7%9B%B8%E6%A5%BD%E9%83%A1%E7%B2%BE%E8%8F%AF%E7%94%BA%E5%85%89%E5%8F%B0%E4%BA%8C%E4%B8%81%E7%9B%AE4",
+ "source_file": "gsi-address-seika-hikaridai-2-4.json",
+ "source_sha256": "122b39b40eb6a9fa78ea8f9b1e7941292db28d96069776b3582a9074c3947e37",
+ "retrieved_at": "2026-10-27T05:31:02.692Z",
+ "source_literal": "[{\"geometry\": {\"coordinates\": [135.765381, 34.741379], \"type\": \"Point\"}, \"type\": \"Feature\", \"properties\": {\"addressCode\": \"\", \"title\": \"京都府精華町光台二丁目４番\"}}]",
+ "axis_note": "GSI returns GeoJSON [longitude, latitude]; used unchanged.",
+ "reverse_geocoder_check": {
+  "url": "https://mreversegeocoder.gsi.go.jp/reverse-geocoder/LonLatToAddress?lat=34.741379&lon=135.765381",
+  "sha256": "3e7f603a9d9146f678066fd94ff2fa9cad55b843b87f577e4cd29c772470c19b",
+  "result": {
+   "muniCd": "26366",
+   "lv01Nm": "光台二丁目"
+  },
+  "note": "muniCd 26366 is Seika Town (相楽郡精華町); lv01Nm 光台二丁目 matches the plan's town block."
+ },
+ "identity_chain": [
+  "NTT DATA facility page (version of 20 October 2026, nttdata-dc-keihanna.html): 京阪奈OSK11データセンター, opened February 2026, four-storey base-isolated building, 10,900 m2 server rooms, 30 MW IT load, total floor area about 28,894 m2, 所在地 京都府精華町, built next to an NTT group R&D facility.",
+  "Kyoto Prefecture plan no. 623 (kyotopref-tokutei-623-keikaku.pdf, dated 5 July 2024, form page 1): builder NTTグローバルデータセンター株式会社 (Otemachi 2-3-1, Tokyo); name （仮称）京阪奈ビル; location 京都府相楽郡精華町光台二丁目4番; steel frame, four storeys above ground; site 72,525.28 m2; building area 9,132.25 m2; total floor area 28,915.20 m2 (office use); planned works 25 March 2024 to 30 December 2025.",
+  "Kyoto Prefecture list of specified buildings since April 2021 (kyotopref-tokutei-r3-r8.pdf, PDF created 17 August 2026) row 623 and the FY2024 page (kyotopref-tokutei-r6.html): （仮称）京阪奈ビル, 精華町, 28,915.2 m2.",
+  "NTT DATA Group / NTT Global Data Centers topic of 9 April 2026 (nttdata-topics-20260409-osk11.html): OSK11 formally opened in the Kyoto Keihanna area, adjacent to NTT group R&D facilities, 10,900 m2 server rooms and 30 MW IT capacity.",
+  "Floor areas agree to 0.07 % (28,915.20 m2 in the plan; about 28,894 m2 on the operator page); storeys (4), structure (base-isolated steel), municipality, builder group and the adjacency to the NTT R&D site all agree."
+ ],
+ "consistency_checks": [
+  {
+   "check": "qualitative imagery placement (Esri World Imagery z17, 3x3 tiles, acquisition date unknown)",
+   "result": "The GSI point falls on the existing NTT Keihanna R&D complex in the west of the lot bounded by the surrounding roads. Immediately east of that complex, on what is a car park in the older GSI seamless photo, Esri shows a new rectangular building with dense rooftop plant, about 72 m by 141 m in pixel extent (about 10,100 m2 bounding box, against the plan's 9,132.25 m2 building area); its estimated centre (34.741507, 135.766382) is 92.8 m from the point at azimuth 81 degrees (pyproj WGS84 geodesic). The building is identified as OSK11 only by its position next to the R&D complex and its size; the imagery is undated and is not used for status.",
+   "tiles": [
+    {
+     "file": "local_data/country-research-jp-chubu-kansai-p5/esri-17-114965-52031.jpg",
+     "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/17/52031/114965",
+     "sha256": "53ac832bf860741092b5bfe2b93cd4c2597af0b338b1d11a7ff38dbad5d18fe7",
+     "retrieved_at": "2026-10-27T05:33:12.649Z"
+    },
+    {
+     "file": "local_data/country-research-jp-chubu-kansai-p5/esri-17-114965-52032.jpg",
+     "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/17/52032/114965",
+     "sha256": "c425fbaf677ae04b65b215a7b8554f58117e4da843c12f0400c9857d4504d2e6",
+     "retrieved_at": "2026-10-27T05:33:12.991Z"
+    },
+    {
+     "file": "local_data/country-research-jp-chubu-kansai-p5/esri-17-114965-52033.jpg",
+     "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/17/52033/114965",
+     "sha256": "1483941057cb30382a1a323d9fddcb75a74d1ba70c7d02e72030eda12a9bb5cb",
+     "retrieved_at": "2026-10-27T05:33:13.358Z"
+    },
+    {
+     "file": "local_data/country-research-jp-chubu-kansai-p5/esri-17-114966-52031.jpg",
+     "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/17/52031/114966",
+     "sha256": "e604adbd843bccb9d5b3be6a1d91c015ed9e8425bef0238c1b35c6156330ed66",
+     "retrieved_at": "2026-10-27T05:33:13.721Z"
+    },
+    {
+     "file": "local_data/country-research-jp-chubu-kansai-p5/esri-17-114966-52032.jpg",
+     "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/17/52032/114966",
+     "sha256": "baa747912d7c50d4ddddaa8244b8b4604b6a81609d6f4c336496a6849b5f4b9a",
+     "retrieved_at": "2026-10-27T05:33:14.064Z"
+    },
+    {
+     "file": "local_data/country-research-jp-chubu-kansai-p5/esri-17-114966-52033.jpg",
+     "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/17/52033/114966",
+     "sha256": "bc4285a278f39ef55150c89bdd9f00646e7c0b6f9e2c6ab81829aff0b2207345",
+     "retrieved_at": "2026-10-27T05:33:14.407Z"
+    },
+    {
+     "file": "local_data/country-research-jp-chubu-kansai-p5/esri-17-114967-52031.jpg",
+     "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/17/52031/114967",
+     "sha256": "983dbc121c382f8255ccc54f30eb67982f6b2e2af1e77066b5a639d6ddb90faa",
+     "retrieved_at": "2026-10-27T05:33:14.721Z"
+    },
+    {
+     "file": "local_data/country-research-jp-chubu-kansai-p5/esri-17-114967-52032.jpg",
+     "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/17/52032/114967",
+     "sha256": "ce0fb7529bb8dceb09f21b377f1f74e62cb2d43e02f0e39e22b221f3ffd91aba",
+     "retrieved_at": "2026-10-27T05:33:15.057Z"
+    },
+    {
+     "file": "local_data/country-research-jp-chubu-kansai-p5/esri-17-114967-52033.jpg",
+     "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/17/52033/114967",
+     "sha256": "98016066d7051afa5921a94203ae646c460db77233344b5dc24a0a6a28619461",
+     "retrieved_at": "2026-10-27T05:33:15.383Z"
+    }
+   ]
+  },
+  {
+   "check": "GSI seamless photo and standard map (z17, 3x3 tiles each, dates unknown)",
+   "result": "The GSI standard map labels the area 光台（二） and draws the R&D complex where the point falls; the GSI photo predates OSK11 and shows car parks east of the complex. Neither is used for status.",
+   "tiles": [
+    {
+     "file": "local_data/country-research-jp-chubu-kansai-p5/gsi-photo-17-114965-52031.jpg",
+     "url": "https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/17/114965/52031.jpg",
+     "sha256": "4c9ab6d46108081be9ec16d6f296e3d714e358100d4fdaf39b56a0f51b1258f0",
+     "retrieved_at": "2026-10-27T05:32:21.460Z"
+    },
+    {
+     "file": "local_data/country-research-jp-chubu-kansai-p5/gsi-photo-17-114965-52032.jpg",
+     "url": "https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/17/114965/52032.jpg",
+     "sha256": "55ea67283dfe285aa002827964935e65b78fe05c82c7b456f4280c9b73c86277",
+     "retrieved_at": "2026-10-27T05:32:23.451Z"
+    },
+    {
+     "file": "local_data/country-research-jp-chubu-kansai-p5/gsi-photo-17-114965-52033.jpg",
+     "url": "https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/17/114965/52033.jpg",
+     "sha256": "e0002e98c2368993f4c1c2a0a1189b0f5252f2bed2a7f6bc22dc304b37104b28",
+     "retrieved_at": "2026-10-27T05:32:25.540Z"
+    },
+    {
+     "file": "local_data/country-research-jp-chubu-kansai-p5/gsi-photo-17-114966-52031.jpg",
+     "url": "https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/17/114966/52031.jpg",
+     "sha256": "809782c919fc6ffe127f46631322d7c32105ecdbcc5e9f6544c72fc6f1426e8f",
+     "retrieved_at": "2026-10-27T05:32:27.593Z"
+    },
+    {
+     "file": "local_data/country-research-jp-chubu-kansai-p5/gsi-photo-17-114966-52032.jpg",
+     "url": "https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/17/114966/52032.jpg",
+     "sha256": "8f429a86253a4fd3d2ec4191e4d7df4dcfff7f4ca964fd419d809516b257f4ae",
+     "retrieved_at": "2026-10-27T05:32:29.595Z"
+    },
+    {
+     "file": "local_data/country-research-jp-chubu-kansai-p5/gsi-photo-17-114966-52033.jpg",
+     "url": "https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/17/114966/52033.jpg",
+     "sha256": "d03a29426bfd0a35d4c977e35a8f73d50bf7a2bc5e31bb8dfdcbc1225670cb24",
+     "retrieved_at": "2026-10-27T05:32:31.577Z"
+    },
+    {
+     "file": "local_data/country-research-jp-chubu-kansai-p5/gsi-photo-17-114967-52031.jpg",
+     "url": "https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/17/114967/52031.jpg",
+     "sha256": "7d70da3d4a2cbbdfa3ede3ff5db3e699bcf0d4a623eb1a17bd94cbeb432a4bbd",
+     "retrieved_at": "2026-10-27T05:32:33.543Z"
+    },
+    {
+     "file": "local_data/country-research-jp-chubu-kansai-p5/gsi-photo-17-114967-52032.jpg",
+     "url": "https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/17/114967/52032.jpg",
+     "sha256": "4cc309ff01d49a2860594479ef2719410c6a43118a0a1e2c3aabe5f8999a323f",
+     "retrieved_at": "2026-10-27T05:32:35.628Z"
+    },
+    {
+     "file": "local_data/country-research-jp-chubu-kansai-p5/gsi-photo-17-114967-52033.jpg",
+     "url": "https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/17/114967/52033.jpg",
+     "sha256": "4d7d27dc4087de77dfef20f641593de24b7c931eeb35de294b9c3622c5656277",
+     "retrieved_at": "2026-10-27T05:32:37.176Z"
+    },
+    {
+     "file": "local_data/country-research-jp-chubu-kansai-p5/gsi-std-17-114965-52031.png",
+     "url": "https://cyberjapandata.gsi.go.jp/xyz/std/17/114965/52031.png",
+     "sha256": "ad21542a0e0a630f5230712294e1d479589513438e0e73893044a933e9a94dc1",
+     "retrieved_at": "2026-10-27T05:32:22.429Z"
+    },
+    {
+     "file": "local_data/country-research-jp-chubu-kansai-p5/gsi-std-17-114965-52032.png",
+     "url": "https://cyberjapandata.gsi.go.jp/xyz/std/17/114965/52032.png",
+     "sha256": "d4adf5d65f741dd6ee73c818466f262b761682ee1e3ad01b9221fa4c85ed1fdb",
+     "retrieved_at": "2026-10-27T05:32:24.491Z"
+    },
+    {
+     "file": "local_data/country-research-jp-chubu-kansai-p5/gsi-std-17-114965-52033.png",
+     "url": "https://cyberjapandata.gsi.go.jp/xyz/std/17/114965/52033.png",
+     "sha256": "43445171285e6321177c9962de2ce561c41ec052639b887c67b5c00657e28a51",
+     "retrieved_at": "2026-10-27T05:32:26.550Z"
+    },
+    {
+     "file": "local_data/country-research-jp-chubu-kansai-p5/gsi-std-17-114966-52031.png",
+     "url": "https://cyberjapandata.gsi.go.jp/xyz/std/17/114966/52031.png",
+     "sha256": "31126c65464ab31a385666de13acc2cc124d7d62d9288ab9e8ae2e793bed59db",
+     "retrieved_at": "2026-10-27T05:32:28.571Z"
+    },
+    {
+     "file": "local_data/country-research-jp-chubu-kansai-p5/gsi-std-17-114966-52032.png",
+     "url": "https://cyberjapandata.gsi.go.jp/xyz/std/17/114966/52032.png",
+     "sha256": "8f11004cb8ab8cf2051bcbf0fd7c5f973acccfc4881232c9362a205ec6c2e9fe",
+     "retrieved_at": "2026-10-27T05:32:30.567Z"
+    },
+    {
+     "file": "local_data/country-research-jp-chubu-kansai-p5/gsi-std-17-114966-52033.png",
+     "url": "https://cyberjapandata.gsi.go.jp/xyz/std/17/114966/52033.png",
+     "sha256": "863e7f0c96e07b8745887bfe8001bcb07577da6d7205a7f182a2bc3cc115e4e5",
+     "retrieved_at": "2026-10-27T05:32:32.534Z"
+    },
+    {
+     "file": "local_data/country-research-jp-chubu-kansai-p5/gsi-std-17-114967-52031.png",
+     "url": "https://cyberjapandata.gsi.go.jp/xyz/std/17/114967/52031.png",
+     "sha256": "b9598a0e7edd9d4296aed89c1e7cbae71f4db31537c5102348ec092f551da17c",
+     "retrieved_at": "2026-10-27T05:32:34.527Z"
+    },
+    {
+     "file": "local_data/country-research-jp-chubu-kansai-p5/gsi-std-17-114967-52032.png",
+     "url": "https://cyberjapandata.gsi.go.jp/xyz/std/17/114967/52032.png",
+     "sha256": "bf567c98c4a6e5a237dd1bb4a68198193061434508d3963b4a0d36c6bed67c35",
+     "retrieved_at": "2026-10-27T05:32:36.606Z"
+    },
+    {
+     "file": "local_data/country-research-jp-chubu-kansai-p5/gsi-std-17-114967-52033.png",
+     "url": "https://cyberjapandata.gsi.go.jp/xyz/std/17/114967/52033.png",
+     "sha256": "1d979d14b66ea99e399c40840109d3334161097f55acd24d211638919408af9f",
+     "retrieved_at": "2026-10-27T05:32:38.150Z"
+    }
+   ]
+  },
+  {
+   "check": "registry-map (MOJ) availability",
+   "result": "The AIGID 2026 public-coordinate registry-map file for Seika (moj-26366-seika-2026.geojson, internal name 26366_相楽郡精華町_公共座標6系_筆R_2025) contains no 光台 lots, so no parcel outline is used.",
+   "file": "local_data/country-research-jp-chubu-kansai-p5/moj-26366-seika-2026.geojson",
+   "sha256": "d49e2ae95b5f2655532c958c9add60e2fbcb243df1f8a6c5810c34dcbc1b1b60"
+  }
+ ],
+ "nearby_points": [
+  {
+   "label": "GSI block point 京都府精華町光台二丁目２番 (block of CyrusOne KEP OSK1 plan lot 光台2丁目2番7; held, not in the Atlas)",
+   "coordinates": [
+    135.765884,
+    34.743511
+   ],
+   "distance_m": 241.0,
+   "file": "local_data/country-research-jp-chubu-kansai-p5/gsi-address-seika-hikaridai-2-x.json"
+  },
+  {
+   "label": "GSI block point 京都府精華町光台一丁目６番 (block of the Osaka Keihanna data-centre plan lots 光台1丁目6番1, 6番2; held, not in the Atlas)",
+   "coordinates": [
+    135.764603,
+    34.746655
+   ],
+   "distance_m": 589.6,
+   "file": "local_data/country-research-jp-chubu-kansai-p5/gsi-address-seika-hikaridai-1-x.json"
+  },
+  {
+   "label": "GSI block point 京都府精華町光台三丁目４番 (block of the KIX01A plan lot 光台三丁目4番地; held, not in the Atlas)",
+   "coordinates": [
+    135.762054,
+    34.746845
+   ],
+   "distance_m": 678.6,
+   "file": "local_data/country-research-jp-chubu-kansai-p5/gsi-address-seika-hikaridai-3-x.json"
+  },
+  {
+   "label": "Atlas site curated:kagoya-japan-keihanna-lab (KAGOYA Japan Keihanna Lab)",
+   "coordinates": [
+    135.78472,
+    34.74859
+   ],
+   "distance_m": 1943.2
+  }
+ ],
+ "distance_method": "pyproj 3.7.1 Geod(ellps=WGS84).inv on CRS84 coordinates (work script p5geo/px.py logic, re-run for this file)."
+}
