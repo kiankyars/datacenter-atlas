@@ -1,0 +1,47 @@
+{
+  "reviewer": "root",
+  "reviewed_at": "2026-10-27",
+  "decision": "accepted_for_integration",
+  "update": "verified_construction_core/2026-10-27-research-ninetyeighth",
+  "base_dataset": "verified_construction_core/2026-10-27-research-ninetyseventh",
+  "process": "continuous: one researcher per beat, one adversarial verifier per fragment",
+  "fragments": [
+    {
+      "fragment": "africa-p3",
+      "verdict": "accept",
+      "checks": [
+        "All 21 relied-on captures rehashed: sha256 matches both .metadata.json and sources.json content_hash",
+        "GBB post 2026-10-20 (JSON-LD datePublished 2026-10-20T08:49:41Z; WP posts listing agrees) read in capture: names 'the Tier III National Shared Services Centre (NSSC) in Abuja and the Tier IV Data Centre in Kano' and says GBB is operating both Uptime-certified Tier III and Tier IV data-centre infrastructure for hosting, cloud and co-location; company_disclosure; 7 days old, inside the 85-day floor 2026-08-03",
+        "Teraco Cape Town page: live capture dateModified 2026-09-28T10:37:16Z = sitemap lastmod; IA raw copy 14 Aug 2026 shows dateModified 2026-08-13 and identical CT1 text (only Tech Sheet buttons added), so the 28 Sep version is bounded; page says Teraco operates colocation data centres in Cape Town and lists CT1 Rondebosch (Great Westerford Building, GPS -33.9712, 18.4649); 29 days old",
+        "NSSC locator recomputed from raw Google capture: feature 0x104e0bb247a88c71:0x2dc5ae606be5343c 'Galaxy Backbone Limited, National Shared Services Center' place point [null,null,9.0648154,7.4941134] (not the @ viewport); reached from the operator contact-page Head Office link goo.gl/maps/uRf2zaRS569wq1Tv9 (confirmed in capture)",
+        "NSSC identity: operator 14 Apr 2025 release calls NSSC the corporate headquarters and records the tour of the Uptime-certified Tier III Data Centre there; data-centre page says GBB operates the NSSC Tier III DC; FAQ gives HQ 1243 Kur Mohammed Ave; so the HQ pin is the named DC campus, not an HQ proxy",
+        "Kano locator recomputed from raw Google capture: feature 0x11ae81d811e354ab:0x3528cba49751beb2 'Galaxy Backbone LTD' place point [null,null,11.9974862,8.5590111], reached from the operator's only Kano address link (contact page dateModified 2024-07-01, after the 2023 commissioning)",
+        "Kano identity chain read in captures: 20 Feb 2023 commissioning of 'the National Tier IV data centre and North West Regional Office in Kano' together; 18 Sep 2024 visit to the Kano Tier IV DC toured the NOC, conference room, training room and the DC (office and DC on one site); Huawei 26 Aug 2024 post: 17-container prefabricated modular DC",
+        "Verifier imagery mosaics (Esri z18/z19 tiles, hashes as recorded): Kano point on a ~40 x 11 m structure with rows of rooftop units beside a larger white-roofed building in a small walled compound on Ahmadu Bello Way; NSSC point on open, worked ground inside the block, ~35 m from the large multi-wing complex to the NE",
+        "pyproj WGS84 geodesics recomputed: NSSC-Kano 344.7 km; NSSC-PeeringDB NSSC point 190.4 m; nearest Atlas records Kasi Cloud Lekki 504.06 km (NSSC), Niger PK5 720.83 km (Kano); CT1 only the host site/expansion at 0 m, CT2 21.05 km",
+        "Distinctness re-screened against the newer current dataset 2026-10-27-research-ninetyseventh (827 sites, 890 projects, 4,654 evidence, 231 source records, 231 identity mappings), all queue fragments, claims.tsv and 67 sources/*-holds.json: no Galaxy Backbone, NSSC, Abuja or Kano record; CT1 site still holds only the expansion project; africa-p1/mea-p4 mention CT1 only as context and their holds' reopen condition is met here",
+        "CT1 locator reuses baseline project 59a74e45 / evidence 3f9c9345 exactly via reuse_from_project_id with no identity rows; expansion stays its own project",
+        "Roles: Galaxy Backbone Limited operator/current (x2), Teraco operator/current; each new site gets exactly one project",
+        "Scope: GBB DCs provide hosting, cloud and co-location to public and private customers (commercial service, not a demonstrator or institutional supercomputer)",
+        "robots.txt: galaxybackbone.com.ng disallows only ia_archiver; google.ng allows /maps/place/; teraco.co.za allows all; arcgisonline and peeringdb allow; web.archive.org 404",
+        "No private-individual names, phones or emails in changes, sources, holds, notes or geometry facts (only public office-holders in operator URLs/titles); all 21 sources referenced",
+        "Only edit: appended a verifier re-screen sentence to each distinctness_review (original kept in pre-verify/changes.json); dryrun_fragment.py ok against 2026-10-27-research-ninetyseventh (829 sites, 893 projects, 4,672 evidence)"
+      ],
+      "residual_risks": [
+        "Kano DC-at-regional-office identity is inferred (joint commissioning, office+DC tour, single Kano address, imagery consistent but not confirming); no operator statement gives the DC address",
+        "NSSC marker sits on open ground ~35 m from buildings; Esri imagery date unknown (crane visible); PeeringDB self-reported point 190 m SW with a different street number",
+        "GBB status rests on a thought-leadership post's present-tense sentence rather than a facility-specific operating notice",
+        "CT1 status date is a page dateModified whose 28 Sep change added Tech Sheet buttons; CT1 text itself unchanged since at least 13 Aug",
+        "Both Google features publish no accuracy; uncertainty left null with reasons",
+        "Web search was unavailable to the verifier (shared budget exhausted) and the Wayback CDX for the GBB contact page returned 403, so the Kano office's history could not be checked further"
+      ]
+    }
+  ],
+  "packet_pins": {
+    "definitions/atlas-research-ninetyeighth-2026-10-27.json": "ed3240bac88906a5fd8e1b5dad0be00bd2f5f311dd38e6f1e699b653b1aeeb39",
+    "sources/research-countries-2026-10-27-ninetyeighth-primary-sources.json": "85ddbba77d400471df6eac80c645cdf7bdf9a16a270934a291425dcf4152b53f",
+    "sources/research-countries-2026-10-27-ninetyeighth-actions.json": "3531df146529c611152e74bd3c1538f6b8f8f7daf76d188c23365f6991ccd30e",
+    "sources/research-countries-2026-10-27-ninetyeighth-holds.json": "7950caba6622a6feeeba92b284f0e87b6035fc189459974f07ed8353b0c34a42"
+  },
+  "raw_captures_redistributed": false
+}

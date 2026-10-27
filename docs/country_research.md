@@ -423,6 +423,8 @@ From 22 October 2026 sites are added continuously: researchers each work a narro
 
 `verified_construction_core/2026-10-27-research-ninetyseventh`: **827 sites and 890 projects in 63 countries**. Adds Huailai Smart Space AI Industrial Park (怀来县智慧空间人工智能产业园) — data-centre buildings 1#-6# with two 110 kV substations; Tencent Huailai Ruibei Cloud Data Center (腾讯怀来瑞北云数据中心) — existing data-centre buildings 1#-8# and 9# complex building; Chindata Hebei Cunrui Base (河北秦淮数据存瑞基地) — Cunrui phases 1-4 existing data-centre operations; Volcano Engine Inner Mongolia Horinger Compute Centre Phase 1 A — 10-1 data-centre machine-room building; Huawei Cloud Horinger Yungu South Zone Phase 1 — 3# data-centre machine-room building (3D data centre); Paratera Inner Mongolia New Computing Base — existing compute-base operations; Nxera DC Tuas — operating 58 MW multi-tenanted data centre; Basis Bay Data Centre — existing colocation data-centre operations; Digital Realty SIN10 — existing data-centre operations. Attaches context to 2 existing project(s).
 
+`verified_construction_core/2026-10-27-research-ninetyeighth`: **829 sites and 893 projects in 63 countries**. Adds Galaxy Backbone NSSC Abuja — existing Tier III data-centre operations (NSSC DC1); Galaxy Backbone Kano — existing Tier IV data-centre operations; Teraco CT1 Rondebosch — existing data-centre operations.
+
 ## 25 October 2026
 
 `verified_construction_core/2026-10-25-research-sixtysecond` adds three commercial sites and
