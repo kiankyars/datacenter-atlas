@@ -1,0 +1,103 @@
+{
+  "format": "datacenter-atlas-geometry-facts-v1",
+  "prepared_at": "2026-10-27",
+  "fragment": "uk-devolved-ie-p4",
+  "purpose": "Identity cross-checks only. Every addition in this fragment inherits an existing Atlas campus locator exactly (Microsoft Dublin Data Center Campus: EPA P1191-01 site-centre point; EdgeConneX Dublin campus: EPA P1204-01 site-centre point). No new coordinates are published.",
+  "method": "EPA register National Grid References read as EPSG:29903 (TM75 / Irish Grid) and transformed to WGS84 with pyproj 3.7.1, default operation \"Inverse of Irish Grid + TM75 to WGS 84 (2) + axis order change (2D)\"; the alternative operation \"Inverse of Irish Grid + TM75 to WGS 84 (3) + axis order change (2D)\" is reported as an offset. Planning-register points come from the merged national planning register (IrishPlanningApplications feature service, outSR 4326; point derivation undocumented; applicant-name fields not requested). Distances are WGS84 geodesic (pyproj Geod).",
+  "inherited_locators": {
+    "microsoft_dublin_data_center_campus": {
+      "coordinates": [
+        -6.4455824,
+        53.3221532
+      ],
+      "reuse_from_project_id": "08482ecd-5783-562f-b4bc-5162d4af8567",
+      "geometry_evidence_id": "2f2280bb-5190-5151-972e-9a2050347302"
+    },
+    "edgeconnex_dublin_campus": {
+      "coordinates": [
+        -6.4601775,
+        53.327779
+      ],
+      "reuse_from_project_id": "3ce61092-1632-5d03-ae17-a8831661e077",
+      "geometry_evidence_id": "55f4ed07-ac69-5464-b1e9-29359f889edc"
+    }
+  },
+  "points": {
+    "msft_p1187_01_dub14_dub15": {
+      "licence": "P1187-01",
+      "register_capture": "msft/P1187-01-register.pdf",
+      "register_capture_sha256": "10f4c01c405ba74363655fc6f139ab519a555e0289f1d0df8031da1e1fbca9e8",
+      "irish_grid": {
+        "easting": 303206,
+        "northing": 231237,
+        "stated_as": "National Grid Reference N231237 E303206"
+      },
+      "transformed_wgs84": [
+        -6.4519665,
+        53.3215802
+      ],
+      "alternative_transformation_offset_m": 2.11,
+      "distance_to_inherited_campus_locator_m": 430.2,
+      "used_as_locator": false,
+      "cross_checks_m": {
+        "SD21A/0203 (modifications to SD20A/0283: approved data centres DUB14 and DUB15, Central Administration Building, gas generator compound)": 11.3,
+        "ED24/0060 (13 temporary replacement generators at the Dub15 data centre building, declared not exempt 26 November 2024)": 23.9,
+        "SD20A/0283 and SD20A/0283/EP (DUB14, DUB15 and CAB parent permission; extension of duration 21 July 2026)": 318.7,
+        "ED26/0001 (flue platforms at DUB07, DUB09, DUB13 and DUB14)": 291.3,
+        "SD07A/0632 (two-storey data centre in two phases, 2007)": 408.2,
+        "ED25/0053 (flue platforms at the DB03 and DB04 data centres, Unit 74)": 392.0,
+        "SD13A/0015 (single-storey data centre linked to the existing buildings, 2013)": 368.6,
+        "SD13A/0166 (entrance extension to the existing DB3 data centre)": 298.0
+      }
+    },
+    "msft_p1190_01_db3_db5": {
+      "licence": "P1190-01",
+      "register_capture": "msft/P1190-01-register.pdf",
+      "register_capture_sha256": "05aca48590209043eadd2a22746bfa5675ff15cfdbd6d2868f3e7faeca531ac3",
+      "irish_grid": {
+        "easting": 303001,
+        "northing": 231598,
+        "stated_as": "National Grid Reference N231598 E303001"
+      },
+      "transformed_wgs84": [
+        -6.4549244,
+        53.3248625
+      ],
+      "alternative_transformation_offset_m": 2.11,
+      "distance_to_inherited_campus_locator_m": 691.7,
+      "used_as_locator": false,
+      "cross_checks_m": {
+        "SD21A/0203 (modifications to SD20A/0283: approved data centres DUB14 and DUB15, Central Administration Building, gas generator compound)": 419.9,
+        "ED24/0060 (13 temporary replacement generators at the Dub15 data centre building, declared not exempt 26 November 2024)": 434.8,
+        "SD20A/0283 and SD20A/0283/EP (DUB14, DUB15 and CAB parent permission; extension of duration 21 July 2026)": 504.7,
+        "ED26/0001 (flue platforms at DUB07, DUB09, DUB13 and DUB14)": 639.6,
+        "SD07A/0632 (two-storey data centre in two phases, 2007)": 49.5,
+        "ED25/0053 (flue platforms at the DB03 and DB04 data centres, Unit 74)": 80.5,
+        "SD13A/0015 (single-storey data centre linked to the existing buildings, 2013)": 88.7,
+        "SD13A/0166 (entrance extension to the existing DB3 data centre)": 196.0
+      }
+    }
+  },
+  "edgeconnex_east_of_r120": {
+    "inherited_campus_locator": [
+      -6.4601775,
+      53.327779
+    ],
+    "distances_from_inherited_campus_locator_m": {
+      "SD16A/0214 (single-storey data centre with six standby generators, The Grange, Newcastle Road, 2016)": 425.1,
+      "SD16A/0345 (data hall extension to the south of the SD16A/0214 data hall, 2016)": 423.7,
+      "SD17A/0141 (stand-alone data hall north of the existing data hall, 2017)": 420.8,
+      "SD18A/0298 (amendments and two new single-storey data halls, 2018)": 420.8,
+      "SD21A/0127 (retention of a standby generator east of the SD16A/0345 data centre, 2021)": 457.0,
+      "SD20A/0031 (temporary gas generation plant relocated within the Edgeconnex campus, east of the data centre granted and built under SD17A/0141 and SD17A/0392, 2020)": 462.1,
+      "SD21A/0042 and SD19A/0042 (EDCDUB05 and EDCDUB04, west of the R120; the licensed P1204-01 installation)": 30.0
+    },
+    "distance_east_parcel_to_msft_p1190_point_m": 412.2,
+    "distance_east_parcel_to_msft_campus_locator_m": 903.3
+  },
+  "planning_register_captures": {
+    "ieplan/near-P1187-01-200m.json": "181a225b743f077f8434d74b771bc534cc83e2fd3130e1ab4a748a3fe3d50cc2",
+    "ieplan/near-P1190-01-200m.json": "de0e4ae63eaab5c97f0351fb3d4ee808580065b6ac9487fb58ab60da2568f23e",
+    "ieplan/near-edgeconnex-1200m.json": "6a1486df9f00a7a7fada285593049678620128ebfef19408e23569b72cbf284d"
+  }
+}

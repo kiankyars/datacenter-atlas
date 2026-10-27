@@ -1,0 +1,183 @@
+{
+  "format": "datacenter-atlas-update-input-v1",
+  "updated_at": "2026-10-27",
+  "output": "verified_construction_core/2026-10-27-research-eightyeighth",
+  "base_dataset": "verified_construction_core/2026-10-27-research-eightyseventh",
+  "base_manifest_sha256": "221b4173c2aa63d92677eec114d0a5ba7fd7890c904c878e91b573610623c447",
+  "source_files": [
+    {
+      "path": "sources/research-countries-2026-10-27-eightyeighth-primary-sources.json",
+      "sha256": "56a184b7463a8e729c218b38cafd8a36fd8c74ba9f4a34c0439859f2743bb791"
+    }
+  ],
+  "additions": [
+    {
+      "project_stable_key": "curated:microsoft-dublin-grange-castle-data-center-campus:dub14-dub15-existing-operations",
+      "physical_site_stable_key": "curated:microsoft-dublin-grange-castle-data-center-campus",
+      "existing_site_id": "vcc-site-b5af2a524798e325dcd5",
+      "site_name": "Microsoft Dublin Data Center Campus, Grange Castle Business Park, Nangor Road, Clondalkin, Dublin 22",
+      "name": "Microsoft Dublin Data Center Campus — operating DUB14 and DUB15 installation with the Central Administration Building (EPA IE licence P1187-01; DUB15 build-out not asserted complete)",
+      "country": "Ireland",
+      "country_iso_a2": "IE",
+      "site_identity_review": "EPA IE licence P1187-01 is held by Microsoft Ireland Operations Limited for the 'Microsoft Dublin Data Center Campus, Unit 74-76 Grange Castle Business Park, Nangor Road, Clondalkin', the same campus name and address as the existing Atlas site and its P1191-01 project. Microsoft's 22 September 2026 letter to the EPA (already evidence on this site) shows one COMAH boundary containing the P1191-01 site to the east and the smaller P1187-01 site to the west. The 2025 AER states that P1187-01 covers DUB14, DUB15 and the CAB administration building, and the licence introduction ties its gas engines to DUB 15. The register grid reference N231237 E303206 transforms to a point 430 m west of the inherited campus locator, 11 m from the national planning register point of SD21A/0203 (the amended DUB14/DUB15/CAB permission on lands west of the existing Microsoft campus) and 24 m from ED24/0060 (temporary generators at the Dub15 building 'within the Microsoft Campus'). This is therefore a further installation of the existing campus, distinct from the P1191-01 project (DUB6-DUB13) and from P1190-01 (DB3-DB5).",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-08-31",
+        "source_id": "uk-devolved-ie-p4-msft-p1187-01-noise-survey-2026",
+        "summary": "Microsoft Ireland Operations Limited's 2026 annual noise survey under IE licence P1187-01 (AWN Consulting report 267501.0593NR01, issued 31 August 2026 and posted to the EPA's LEAP site on 1 October 2026) states that Microsoft operates a facility at Unit 74, Grange Castle Business Park under licence P1187-01 and that 'The facility operates 24 hours a day, 7 days a week'. The licensee's 2025 AER identifies the P1187-01 installation as DUB14, DUB15 and the CAB administration building. This supports current operation of the licensed installation on 31 August 2026. The same AER reports DUB14 fully loaded in 2025 and DUB15 in phased deployment and commissioning with the remainder of its site under construction, so completion of DUB15 or of all its halls is not asserted, and the survey's July measurement days are not used as the observation. No IT capacity is stated; the 22 gas engines and 21 diesel generators are standby plant."
+      },
+      "locator": {
+        "reuse_from_project_id": "08482ecd-5783-562f-b4bc-5162d4af8567",
+        "geometry_evidence_id": "2f2280bb-5190-5151-972e-9a2050347302",
+        "geometry_identity_evidence_ids": [],
+        "scope": "campus_locator",
+        "identity_review": "Reuses the existing Microsoft Dublin Data Center Campus point exactly: the EPA register site-centre grid reference of the P1191-01 installation (N231310 E303630, transformed once with pyproj 3.7.1), with its pinned geometry evidence and no geometry-identity evidence rows. The existing precision already states that the campus extends about 700 m west and north-west and that the P1187-01 installation point lies 430 m away. The point does not locate DUB14, DUB15 or the CAB building; the P1187-01 register point is used only as an identity cross-check (geometry facts) and is not published."
+      },
+      "context_source_ids": [
+        "uk-devolved-ie-p4-msft-p1187-01-aer-2025",
+        "uk-devolved-ie-p4-msft-p1187-01-licence",
+        "uk-devolved-ie-p4-msft-p1187-01-register",
+        "uk-devolved-ie-p4-epa-p1187-01-leap-record",
+        "uk-devolved-ie-p4-epa-p1187-01-leap-docs",
+        "uk-devolved-ie-p4-msft-p1191-01-cramp-elra-response",
+        "uk-devolved-ie-p4-ie-planning-near-p1187-01"
+      ],
+      "roles": [
+        {
+          "party": "Microsoft Ireland Operations Limited",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "uk-devolved-ie-p4-msft-p1187-01-noise-survey-2026"
+        }
+      ],
+      "distinctness_review": "Screened on 27 October 2026 against the names, aliases, operators, addresses and coordinates in all five tables (sites.csv, projects.csv, evidence.csv, source-records.json, identity-mapping.json) of the current dataset verified_construction_core/2026-10-27-research-eightyseventh (770 sites, 823 projects, 4,291 evidence rows, 231 source records; first screened against eightysixth, which the base replaced during this pass by adding three English sites), every sources/*-holds.json file, all other queue fragments' changes and holds, and claims.tsv. Searched Microsoft Dublin, Grange Castle, Unit 74, Unit 75, DUB14, DUB15, CAB, Central Administration Building, P1187, SD20A/0283, SD21A/0203, ED24/0060, D22 A259 and Microsoft Ireland Operations. The only Atlas matches are the existing Microsoft Dublin Data Center Campus site and its P1191-01 project (DUB6-DUB13), whose evidence already cites the P1187-01 noise survey and the CRAMP letter as campus context, and Microsoft Huntstown (a separate campus 12.9 km away). No Atlas project names DUB14, DUB15 or P1187-01 as its scope. The thirty-fourth hold 'Microsoft Dublin Grange Castle campus: DUB14 and DUB15 data centres and Central Administration Building (SD20A/0283/EP)' and the ie-p2 / fifty-sixth lead for P1187-01 and P1190-01 are the same buildings; this addition follows their reopen conditions (a dated in-window record of operation, added as a project reusing the campus locator exactly). Atlas records within 2 km of the inherited campus point: the host Microsoft site and its P1191-01 project (0 km), EdgeConneX Dublin campus, Newcastle Road, Lucan (1.16 km; 0.88 km from the P1187-01 point and 0.48 km from the P1190-01 point; a different operator west and north of the Microsoft land) and Google Ireland Grange Castle campus with its Grange Castle South expansion project (1.03 km; a different operator and business park south of the Nangor Road). Held candidates within 2 km: the thirty-fourth hold for Microsoft DUB14/DUB15 (SD20A/0283/EP, 190 m), the fifty-sixth Google PPK1/PPK2 hold (Google campus), the Vantage DUB11 Profile Park hold (P1227-01 register point 0.59 km south, a different operator) and this fragment's own EdgeConneX DUB01/DUB02 addition (0.90 km). No other queued addition or claim lies within 2 km.",
+      "successor_review": "The LEAP document list for P1187-01 (captured 26 October 2026 UTC) ends with an Annex I spreadsheet posted on 21 October 2026, after the 2026 noise survey; the LEAP licence record shows P1187-01 Licensed with no surrender, transfer or expiry. Nothing reports closure, pause or decommissioning of DUB14 or DUB15. Operation is kept as of 31 August 2026, 57 days before a 27 October update; DUB15's remaining build-out is a possible later refresh, not asserted here.",
+      "scoped_project_details": {
+        "aliases": [
+          "Microsoft DUB14 and DUB15, Grange Castle",
+          "EPA IE licence P1187-01",
+          "South Dublin County Council SD20A/0283 (as amended by SD21A/0203; extension of duration SD20A/0283/EP)"
+        ],
+        "facility_scope": "The data storage installation licensed as P1187-01, which the licensee identifies as DUB14, DUB15 and the Central Administration Building, with 22 standby natural gas engines and 21 diesel (HVO) back-up generators in four generator yards on the western part of the campus. The P1191-01 installation (DUB6-DUB13) and the P1190-01 installation (DB3-DB5) are separate projects.",
+        "licence": "EPA IE licence P1187-01, final determination 4 July 2023 (technical amendment in March 2026)",
+        "planning_context": "SD20A/0283 (granted 10 May 2021) as amended by SD21A/0203 and SD24A/0019; extension of duration SD20A/0283/EP granted 21 July 2026 (context only, not a status)",
+        "capacity": null,
+        "capacity_note": "No IT or grid capacity is stated; gas-engine and generator ratings are standby plant, not IT load.",
+        "physical_construction_verified": true,
+        "completion_or_operation_verified": true,
+        "completion_of_dub15_asserted": false
+      }
+    },
+    {
+      "project_stable_key": "curated:microsoft-dublin-grange-castle-data-center-campus:db3-db5-existing-operations",
+      "physical_site_stable_key": "curated:microsoft-dublin-grange-castle-data-center-campus",
+      "existing_site_id": "vcc-site-b5af2a524798e325dcd5",
+      "site_name": "Microsoft Dublin Data Center Campus, Grange Castle Business Park, Nangor Road, Clondalkin, Dublin 22",
+      "name": "Microsoft Dublin Data Center Campus — existing operations of DB3, DB4 and DB5 (EPA IE licence P1190-01)",
+      "country": "Ireland",
+      "country_iso_a2": "IE",
+      "site_identity_review": "EPA IE licence P1190-01 is held by Microsoft Ireland Operations Limited for the 'Microsoft Dublin Data Center Campus, Unit 74-76 Grange Castle Business Park, Nangor Road, Clondalkin', the campus of the existing Atlas site. The 2025 AER states that P1190-01 covers DB3-DB5, and the licence's application site plans and earlier reports are titled for DB3, DB4 and DB5. The register grid reference N231598 E303001 transforms to a point 692 m north-west of the inherited campus locator and 50-89 m from the national planning register points of Microsoft's original Grange Castle data-centre permissions (SD07A/0632, SD13A/0015) and of ED25/0053 (flue platforms at the DB03 and DB04 data centres, Unit 74, D22 A259). It is the older north-western part of the same campus, distinct from the P1191-01 project (DUB6-DUB13) and from P1187-01 (DUB14, DUB15).",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-08-31",
+        "source_id": "uk-devolved-ie-p4-msft-p1190-01-noise-survey-2026",
+        "summary": "Microsoft Ireland Operations Limited's 2026 annual noise survey under IE licence P1190-01 (AWN Consulting report 267501.0593NR02, issued 31 August 2026 and posted to LEAP on 1 October 2026) states that Microsoft operates a facility at Unit 74, Grange Castle Business Park under licence P1190-01 and that 'The facility operates 24 hours a day, 7 days a week'. The licensee's 2025 AER identifies the P1190-01 installation as DB3-DB5. This supports current operation of that licensed installation on 31 August 2026. The AER also mentions construction and decommissioning activity across the campus and recommissioning work in legacy rooms in 2025; it does not say that any of DB3, DB4 or DB5 has stopped operating, and no building-level status beyond the installation's operation is asserted. No IT capacity is stated; the 41 diesel generators are back-up plant."
+      },
+      "locator": {
+        "reuse_from_project_id": "08482ecd-5783-562f-b4bc-5162d4af8567",
+        "geometry_evidence_id": "2f2280bb-5190-5151-972e-9a2050347302",
+        "geometry_identity_evidence_ids": [],
+        "scope": "campus_locator",
+        "identity_review": "Reuses the existing Microsoft Dublin Data Center Campus point exactly (EPA register site-centre point of P1191-01, N231310 E303630, transformed once), with its pinned geometry evidence and no geometry-identity evidence rows. The existing precision states that the campus extends about 700 m west and north-west and that the P1190-01 installation point lies 692 m away. The point does not locate DB3, DB4 or DB5; the P1190-01 register point is used only as an identity cross-check (geometry facts)."
+      },
+      "context_source_ids": [
+        "uk-devolved-ie-p4-msft-p1190-01-aer-2025",
+        "uk-devolved-ie-p4-msft-p1190-01-licence",
+        "uk-devolved-ie-p4-msft-p1190-01-register",
+        "uk-devolved-ie-p4-epa-p1190-01-leap-record",
+        "uk-devolved-ie-p4-epa-p1190-01-leap-docs",
+        "uk-devolved-ie-p4-ie-planning-near-p1190-01"
+      ],
+      "roles": [
+        {
+          "party": "Microsoft Ireland Operations Limited",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "uk-devolved-ie-p4-msft-p1190-01-noise-survey-2026"
+        }
+      ],
+      "distinctness_review": "Screened on 27 October 2026 against the names, aliases, operators, addresses and coordinates in all five tables (sites.csv, projects.csv, evidence.csv, source-records.json, identity-mapping.json) of the current dataset verified_construction_core/2026-10-27-research-eightyseventh (770 sites, 823 projects, 4,291 evidence rows, 231 source records; first screened against eightysixth, which the base replaced during this pass by adding three English sites), every sources/*-holds.json file, all other queue fragments' changes and holds, and claims.tsv. Searched Microsoft Dublin, Grange Castle, Unit 74, DB3, DB03, DB4, DB04, DB5, DUB3-DUB5, P1190, SD07A/0632, SD13A/0015, ED25/0053 and D22 A259. The DB3/DB03 and DB5 strings in the dataset belong to unrelated records (Australian, Spanish and other projects); the only Microsoft Grange Castle matches are the existing site and its P1191-01 project, whose evidence cites the P1190-01 noise survey only as campus context, and the ie-p2 / fifty-sixth lead for P1187-01 and P1190-01, whose reopen condition this addition follows. Atlas records within 2 km of the inherited campus point: the host Microsoft site and its P1191-01 project (0 km), EdgeConneX Dublin campus, Newcastle Road, Lucan (1.16 km; 0.88 km from the P1187-01 point and 0.48 km from the P1190-01 point; a different operator west and north of the Microsoft land) and Google Ireland Grange Castle campus with its Grange Castle South expansion project (1.03 km; a different operator and business park south of the Nangor Road). Held candidates within 2 km: the thirty-fourth hold for Microsoft DUB14/DUB15 (SD20A/0283/EP, 190 m), the fifty-sixth Google PPK1/PPK2 hold (Google campus), the Vantage DUB11 Profile Park hold (P1227-01 register point 0.59 km south, a different operator) and this fragment's own EdgeConneX DUB01/DUB02 addition (0.90 km). No other queued addition or claim lies within 2 km. The EdgeConneX buildings east of the R120 (this fragment's DUB01/DUB02 addition) are about 410 m north of the P1190-01 point on separately permitted land.",
+      "successor_review": "The LEAP document list for P1190-01 (captured 26 October 2026 UTC) ends with an Annex I spreadsheet posted on 21 October 2026, after the 2026 noise survey; the LEAP licence record shows P1190-01 Licensed with no surrender, transfer or expiry. Nothing reports closure, pause or decommissioning of DB3, DB4 or DB5 as buildings. Operation is kept as of 31 August 2026, 57 days before a 27 October update.",
+      "scoped_project_details": {
+        "aliases": [
+          "Microsoft DB3, DB4 and DB5 (DB03-DB05), Grange Castle",
+          "EPA IE licence P1190-01",
+          "Microsoft Dublin Data Center Campus, Unit 74"
+        ],
+        "facility_scope": "The data storage installation licensed as P1190-01, which the licensee identifies as DB3-DB5, with 41 diesel (HVO) back-up generators, on the north-western part of the campus. The P1191-01 (DUB6-DUB13) and P1187-01 (DUB14, DUB15, CAB) installations are separate projects.",
+        "licence": "EPA IE licence P1190-01, final determination 14 June 2023",
+        "planning_context": "Original Grange Castle data-centre permissions SD07A/0632 (2007) with SD08A/0496, SD09A/0376, SD11A/0211 and SD13A/0015 lie at the installation point (context only; their building-by-building mapping to DB3-DB5 is not asserted)",
+        "capacity": null,
+        "capacity_note": "No IT or grid capacity is stated; generator ratings are back-up plant, not IT load.",
+        "physical_construction_verified": true,
+        "completion_or_operation_verified": true
+      }
+    },
+    {
+      "project_stable_key": "curated:edgeconnex-newcastle-road-lucan-data-centre-campus:dub01-dub02-existing-operations",
+      "physical_site_stable_key": "curated:edgeconnex-newcastle-road-lucan-data-centre-campus",
+      "existing_site_id": "vcc-site-7edfcf8daddee73f2c4a",
+      "site_name": "EdgeConneX Dublin campus, Newcastle Road (R120), Lucan, Co. Dublin",
+      "name": "EdgeConneX Dublin campus — existing DUB01 and DUB02 data centres east of the R120 (operating)",
+      "country": "Ireland",
+      "country_iso_a2": "IE",
+      "site_identity_review": "The existing Atlas site is EdgeConneX's Dublin campus on Newcastle Road (R120), whose only project is the EPA-licensed EDCDUB04/EDCDUB05 installation west of the R120; its locator precision already records that 'the existing EdgeConneX buildings DUB01 to DUB03 lie east of the R120'. The EPA inspector's December 2025 report (already evidence on this site) states that the R120 divides the lands under the applicant's control, with the licensed installation to the west and the existing data centre campus, including DUB01, DUB02 and DUB03, to the east. EdgeConneX's Dublin page describes a single land-banked parcel that houses two existing data centres and up to five new ones. National planning register records east of the R120 in Ballymakaily and The Grange (SD16A/0214, SD16A/0345, SD17A/0141, SD18A/0298 and SD20A/0031, the last describing works 'within the Edgeconnex campus' beside the data centre 'granted and built' under SD17A/0141) lie 421-462 m east of the campus point. DUB01 and DUB02 are therefore a further project of the existing campus, distinct from EDCDUB04/EDCDUB05.",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-08-27",
+        "source_id": "uk-devolved-ie-p4-edgeconnex-dublin-page-20260827",
+        "summary": "EdgeConneX's Dublin location page, headed 'DUB01 & DUB02 Dublin Data Centers', in its version modified on 27 August 2026 (bounded by Internet Archive copies of 2 August and 3 September 2026), says EdgeConneX holds a land-banked parcel in Dublin that currently houses two purpose-built data centers, that it is operational and power banked for over 170 MW, and that it supports two existing and up to five new data centers in the Grange Castle Business Park; it lists DUB01 at 18 MW N+1 and DUB02 at 7 MW N+1. This supports current operation of the two existing data centres east of the R120 as of 27 August 2026. The page marks a 7 MW DUB03 as planned, while the EPA's December 2025 report counts DUB03 in the existing campus; DUB03's state is not asserted. The licensed EDCDUB04/EDCDUB05 project west of the R120 is unchanged and no new building or capacity is added; the MW figures are N+1 facility ratings, not measured IT load."
+      },
+      "locator": {
+        "reuse_from_project_id": "3ce61092-1632-5d03-ae17-a8831661e077",
+        "geometry_evidence_id": "55f4ed07-ac69-5464-b1e9-29359f889edc",
+        "geometry_identity_evidence_ids": [],
+        "scope": "campus_locator",
+        "identity_review": "Reuses the existing EdgeConneX Dublin campus point exactly: the EPA register site-centre point of the P1204-01 installation west of the R120 (values 302644/231915 read with axes corrected, transformed once), with its pinned geometry evidence and no geometry-identity evidence rows. Its precision already says that it locates the licensed part of the campus and that DUB01 to DUB03 lie east of the R120. The point is about 420-460 m west of the DUB01/DUB02 planning-register points and does not locate either building; no new coordinates are published."
+      },
+      "context_source_ids": [
+        "uk-devolved-ie-p4-edgeconnex-dublin-page-ia-20260903",
+        "uk-devolved-ie-p4-edgeconnex-dublin-page-ia-20260802",
+        "uk-devolved-ie-p4-edgeconnex-data-center-sitemap",
+        "uk-devolved-ie-p4-edgeconnex-dublin-datasheet-q3-26",
+        "uk-devolved-ie-p4-edgeconnex-p1204-01-inspector-report",
+        "uk-devolved-ie-p4-ie-planning-near-edgeconnex"
+      ],
+      "roles": [
+        {
+          "party": "EdgeConneX",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "uk-devolved-ie-p4-edgeconnex-dublin-page-20260827"
+        }
+      ],
+      "distinctness_review": "Screened on 27 October 2026 against the names, aliases, operators, addresses and coordinates in all five tables (sites.csv, projects.csv, evidence.csv, source-records.json, identity-mapping.json) of the current dataset verified_construction_core/2026-10-27-research-eightyseventh (770 sites, 823 projects, 4,291 evidence rows, 231 source records; first screened against eightysixth, which the base replaced during this pass by adding three English sites), every sources/*-holds.json file, all other queue fragments' changes and holds, and claims.tsv. Searched EdgeConneX, Edgeconnex Ireland, DUB01, DUB02, DUB03, EDCDUB, Newcastle Road, R120, Ballymakaily, The Grange, Lucan, SD16A/0214, SD17A/0141, SD18A/0298 and SD20A/0031. The only Atlas matches are the existing EdgeConneX Dublin campus site and its EDCDUB04/EDCDUB05 project; no Atlas project names DUB01 or DUB02. The ie-p2 / fifty-sixth lead 'EdgeConneX existing Dublin data centres DUB01, DUB02 and DUB03, east of Newcastle Road (R120), Lucan' is the same buildings; this addition follows its reopen condition (a dated in-window EdgeConneX statement of operation, added as a project reusing the campus locator exactly) for the two buildings the operator names as existing. Atlas records within 2 km of the inherited campus point: the host site and its EDCDUB04/EDCDUB05 project (0 km), Microsoft Dublin Data Center Campus (1.16 km from the campus point and about 0.90 km from the DUB01/DUB02 planning points; the Microsoft DB3-DB5 installation of this fragment is about 410 m south of them on separately permitted land) and Google Ireland Grange Castle (1.80 km). Held candidates within 2 km: the Microsoft DUB14/DUB15 and P1187/P1190 leads (resolved by this fragment's other two additions) and the Vantage DUB11 Profile Park hold (1.60 km, different operator). No other queued addition or claim lies within 2 km.",
+      "successor_review": "The live page captured on 26 October 2026 (UTC) and the Internet Archive copy of 4 October 2026 carry the same 27 August 2026 version. EdgeConneX's news and newsroom sitemaps (captured 26 October 2026) list no Dublin item after 27 August 2026 (in-window items concern Texas, Chile, Singapore, Australia, Ohio and corporate matters). The EPA's LEAP list for P1204-01 shows only licensing items for the western installation. Nothing reports closure, pause or decommissioning of DUB01 or DUB02. Operation is kept as of 27 August 2026, 61 days before a 27 October update.",
+      "scoped_project_details": {
+        "aliases": [
+          "EdgeConneX DUB01 & DUB02 Dublin Data Centers",
+          "EdgeConneX Dublin data center campus east of the R120 (Ballymakaily and The Grange)",
+          "Edgeconnex Ireland Limited existing data centre campus"
+        ],
+        "facility_scope": "The two existing purpose-built EdgeConneX data centres DUB01 and DUB02 east of Newcastle Road (R120), on land the EPA describes as the applicant's existing data centre campus. DUB03 (marked planned on the operator page, counted as existing by the EPA in December 2025) and the licensed EDCDUB04/EDCDUB05 installation west of the R120 are outside this project.",
+        "operator_stated_specifications": "DUB01 18 MW N+1, DUB02 7 MW N+1 (32 MW N+1 across the campus figure, including a planned 7 MW DUB03); power bank for an additional 100 MW; over 170 MW banked in total",
+        "capacity": null,
+        "capacity_note": "The page's MW figures are N+1 facility ratings and power-banking statements, not typed IT-load observations, so no power observation is recorded.",
+        "physical_construction_verified": true,
+        "completion_or_operation_verified": true
+      }
+    }
+  ],
+  "status_updates": [],
+  "context_updates": []
+}

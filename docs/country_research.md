@@ -403,6 +403,8 @@ From 22 October 2026 sites are added continuously: researchers each work a narro
 
 `verified_construction_core/2026-10-27-research-eightyseventh`: **770 sites and 823 projects in 63 countries**. Adds Keswick data centre, Ipswich Road - proposed data centre with substations and backup generators (South Norfolk 2026/2957); Vantage LHR21 (London II) - six-storey data centre under construction and commissioning (EA permit EPR/VP3225SC); Vantage LHR11/12 (London I) - two-building data centre campus under construction (EA permit EPR/YP3329SB).
 
+`verified_construction_core/2026-10-27-research-eightyeighth`: **770 sites and 826 projects in 63 countries**. Adds Microsoft Dublin Data Center Campus — operating DUB14 and DUB15 installation with the Central Administration Building (EPA IE licence P1187-01; DUB15 build-out not asserted complete); Microsoft Dublin Data Center Campus — existing operations of DB3, DB4 and DB5 (EPA IE licence P1190-01); EdgeConneX Dublin campus — existing DUB01 and DUB02 data centres east of the R120 (operating).
+
 ## 25 October 2026
 
 `verified_construction_core/2026-10-25-research-sixtysecond` adds three commercial sites and
