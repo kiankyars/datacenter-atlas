@@ -1,0 +1,86 @@
+{
+  "format": "datacenter-atlas-geometry-facts-v1",
+  "fragment": "us-west-tx-p5",
+  "prepared_at": "2026-10-27",
+  "candidate_id": "iren-sweetwater-2-fisher-county-campus",
+  "candidate": "IREN Sweetwater 2 data-centre campus, FM 540, Fisher County, Texas",
+  "decision": "Selected the centroid of the union of the three contiguous Fisher County parcels whose owner of record is IE US DEVELOPMENT HOLDINGS 7 INC (TxGIO StratMap Land Parcels, Fisher Appraisal District, tax year 2026): 3891 (SEC 204 1 BBB&C, 213.23 acres), 3896 (OUT OF SEC 204, 254.53 acres, situs FM 540) and 33181 (SEC 204 1 BBB&C, 76.77 acres). The union is one polygon of 548.38 geodesic acres (544.53 legal acres) and its centroid lies inside it. It locates the IREN Sweetwater 2 landholding (campus), not a building, substation, footprint or construction extent.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -100.2213007,
+      32.9320234
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_tax_parcel_union_centroid",
+  "use_scope": "campus_locator",
+  "precision_scope": "Centroid of a 548-acre three-parcel landholding, about 1.62 km east-west by 1.61 km north-south; vertices lie up to 1.15 km from the point.",
+  "horizontal_uncertainty_metres": null,
+  "horizontal_uncertainty_unknown_reason": "Appraisal-district parcels carry no published positional accuracy; the centroid represents a 548-acre landholding and the positions of the planned buildings and substation are not published.",
+  "source_url": "https://feature.geographic.texas.gov/arcgis/rest/services/Parcels/stratmap_land_parcels_48_most_recent/MapServer/identify?geometry=%7B%22xmin%22%3A-100.2500%2C%22ymin%22%3A32.8800%2C%22xmax%22%3A-100.2000%2C%22ymax%22%3A32.9300%2C%22spatialReference%22%3A%7B%22wkid%22%3A4326%7D%7D&geometryType=esriGeometryEnvelope&sr=4326&layers=all%3A0&tolerance=0&mapExtent=-100.2500%2C32.8800%2C-100.2000%2C32.9300&imageDisplay=1000%2C1000%2C96&returnGeometry=true&f=json",
+  "source_file": "local_data/country-research-us-west-tx-p5/txgio-parcels-fisher-sweetwater2-geom.json",
+  "source_sha256": "e1da41701289384bdf028cf9204c189490299b958c266975fa204202c49113f3",
+  "retrieved_at": "2026-10-27T01:38:59.783Z",
+  "selected_parcels": [
+    {
+      "PROP_ID": "3891",
+      "objectid": "4200066",
+      "LEGAL_AREA": "213.23",
+      "geodesic_acres": 215.852,
+      "OWNER_NAME": "IE US DEVELOPMENT HOLDINGS 7 INC",
+      "SOURCE": "FISHER APPRAISAL DISTRICT",
+      "TAX_YEAR": "2026",
+      "DATE_ACQ": "46174 (Excel serial, 2026-06-01)"
+    },
+    {
+      "PROP_ID": "3896",
+      "objectid": "4200069",
+      "LEGAL_AREA": "254.53",
+      "geodesic_acres": 256.796,
+      "OWNER_NAME": "IE US DEVELOPMENT HOLDINGS 7 INC",
+      "SOURCE": "FISHER APPRAISAL DISTRICT",
+      "TAX_YEAR": "2026",
+      "DATE_ACQ": "46174 (Excel serial, 2026-06-01)"
+    },
+    {
+      "PROP_ID": "33181",
+      "objectid": "4200791",
+      "LEGAL_AREA": "76.77",
+      "geodesic_acres": 75.73,
+      "OWNER_NAME": "IE US DEVELOPMENT HOLDINGS 7 INC",
+      "SOURCE": "FISHER APPRAISAL DISTRICT",
+      "TAX_YEAR": "2026",
+      "DATE_ACQ": "46174 (Excel serial, 2026-06-01)"
+    }
+  ],
+  "computed": {
+    "crs": "Served EPSG:4326 (wkid 4326); union and centroid computed in EPSG:3083 (NAD83 / Texas Centric Albers Equal Area) with pyproj 3.7.1 and shapely 2.1.1 and transformed back; areas and distances on the WGS84 ellipsoid (pyproj Geod)",
+    "union": {
+      "parts": 1,
+      "geodesic_acres": 548.377,
+      "centroid": [
+        -100.2213007,
+        32.9320234
+      ],
+      "centroid_inside": true,
+      "centroid_to_boundary_m": 429.8,
+      "bounds_lon_lat": [
+        -100.22935,
+        32.924113,
+        -100.212059,
+        32.938613
+      ],
+      "extent_m": {
+        "east_west": 1617,
+        "north_south": 1608
+      },
+      "max_vertex_distance_from_centroid_m": 1153.4,
+      "planar_epsg4326_centroid_difference_m": 0.01
+    },
+    "neighbour_check": "Parcels with situs FM 540 (3896 and the Electric Transmission of Texas parcel 22200 at 1784 FM 540 north of the line, 2422 to the north-east, 4471 and 4382 south of it) share an east-west boundary at about 32.924 N, so FM 540 appears to run along the union's southern edge (inferred from parcel adjacency, not road data), consistent with the 1730 FM 540 address of the IREN substation-grading entity. The TCEQ batch-plant directions (0.9 mile north of TX-92, west side of FM 540) are not shown to fall on these parcels: TX-92 situs parcels in the same capture lie near 32.88 N, about 4.5 km south. The batch plant identifies the project and is not used for the locator (verifier correction, 2026-10-27)."
+  },
+  "completeness": "A 20-tile owner sweep (identify without geometry) from -100.35 to -100.10 and 32.78 to 32.98 found no other IE US Development Holdings 7 parcel.",
+  "personal_data": "Only company owners are named. Names of private individuals returned by the parcel request are not copied.",
+  "verification_script": "scratchpad us-west-tx-p5/geo.py (pyproj 3.7.1, shapely 2.1.1; uv run --no-project ... python -I)"
+}

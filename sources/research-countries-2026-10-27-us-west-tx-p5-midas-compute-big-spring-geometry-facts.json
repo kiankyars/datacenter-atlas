@@ -1,0 +1,50 @@
+{
+  "format": "datacenter-atlas-geometry-facts-v1",
+  "fragment": "us-west-tx-p5",
+  "prepared_at": "2026-10-27",
+  "candidate_id": "midas-compute-big-spring-howard-county",
+  "candidate": "Midas Compute - Big Spring Facility (TCEQ RN112531009), 1202 N FM 700, Big Spring, Howard County, Texas",
+  "decision": "Selected, unchanged, the single TxGIO StratMap 9-1-1 address point for 1202 NORTH FM 700 in Howard County, the exact street address TCEQ records for regulated entity RN112531009 Midas Compute - Big Spring Facility (1202 N FM 700, Big Spring 79720). No geocoder, interpolation, map viewport or city centre is used. The point marks the address; it is not a building outline or boundary.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -101.4418866,
+      32.2724243
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_numbered_address_point",
+  "use_scope": "project_locator",
+  "precision_scope": "Official 9-1-1 address point (source CSEC) for 1202 North FM 700, Big Spring; it marks the facility address, not the planned compute modules or generation units.",
+  "horizontal_uncertainty_metres": null,
+  "horizontal_uncertainty_unknown_reason": "TxGIO publishes no positional accuracy for address points; the positions of the planned modules and generators on the property are not published.",
+  "source_url": "https://feature.geographic.texas.gov/arcgis/rest/services/Address_Points/stratmap_address_points_48_most_recent/MapServer/0/query?where=county%3D%27Howard%27%20AND%20full_addr%20LIKE%20%271202%25700%25%27&outFields=full_addr,add_number,st_name,post_comm,county,source&returnGeometry=true&outSR=4326&f=json",
+  "source_file": "local_data/country-research-us-west-tx-p5/txgio-addr-howard-1202-fm700.json",
+  "source_sha256": "ac7502f47b57f874a5be857d2d4eb8bf51e9617170689f06355c56ff48b39435",
+  "retrieved_at": "2026-10-27T01:37:39.692Z",
+  "source_literal_coordinate_tokens": [
+    "\"x\":-101.44188657735346,\"y\":32.27242431220534 (full_addr 1202 NORTH FM 700, county Howard, source CSEC; outSR 4326)"
+  ],
+  "rounding": "Served WGS84 longitude/latitude rounded to 7 decimal places (about 1 cm).",
+  "axis_note": "GeoJSON coordinates are [longitude, latitude].",
+  "uniqueness": "The capture queried Howard County address points whose full address matches '1202%700%'; exactly one feature was returned.",
+  "corroboration": {
+    "parcel": {
+      "source_file": "local_data/country-research-us-west-tx-p5/txgio-parcels-howard-midas-geom.json",
+      "source_sha256": "0f42e3940b43fc99025e98ef1d1425205d3345d9e4c1440f2bec00c2df3541d3",
+      "finding": "The address point lies inside Howard County property 294025 (PART S/2 OF SC 40 BK 32 1N, legal area 10 acres; mapped polygon 52.63 geodesic acres), situs 1202 N FM 700, owner of record Crownover Commercial Properties Ltd (tax year 2026; DATE_ACQ serial 46082 = 1 March 2026; improvement value 417,491, year built 2015), 130.7 m from the parcel boundary.",
+      "parcel_bounds_lon_lat": [
+        -101.445185,
+        32.268476,
+        -101.43927,
+        32.275861
+      ],
+      "point_inside": true
+    }
+  },
+  "computed": {
+    "crs": "Served EPSG:4326; containment with shapely 2.1.1; areas on the WGS84 ellipsoid (pyproj 3.7.1 Geod); boundary distance in EPSG:3083"
+  },
+  "personal_data": "Only company owners are named. Names of private individuals returned by the parcel request are not copied.",
+  "verification_script": "scratchpad us-west-tx-p5/geo.py (pyproj 3.7.1, shapely 2.1.1; uv run --no-project ... python -I)"
+}

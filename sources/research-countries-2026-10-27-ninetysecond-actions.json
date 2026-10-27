@@ -1,0 +1,676 @@
+{
+  "additions": [
+    {
+      "project_stable_key": "curated:ctrls-mumbai-mahape-datacenter-campus:existing-operations-dc1-dc5",
+      "physical_site_stable_key": "curated:ctrls-mumbai-mahape-datacenter-campus",
+      "site_name": "CtrlS Mumbai Datacenter Campus (Mahape, Navi Mumbai)",
+      "name": "CtrlS Mumbai Datacenter Campus — existing operations of Mumbai DC1 to DC5",
+      "country": "India",
+      "country_iso_a2": "IN",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-10-26",
+        "source_id": "india-south-asia-p4-ctrls-colocation-page",
+        "summary": "CtrlS's colocation page, in its version of 26 October 2026, invites customers to 'Secure your data and applications across our ever-expanding footprint of Rated 4 facilities' and, under 'OUR DATA CENTER FOOTPRINT', lists Mumbai DC1 & DC2 (5,555 racks, 42 MW), Mumbai DC 3 (1,045 racks, 8 MW), Mumbai DC 4 (2,936 racks, 36 MW) and Mumbai DC 5 (2,750 racks, 30 MW) among the facilities customers colocate in, while separately labelling 'UPCOMING Mumbai DC6, DC7, DC8 & DC9'. This records the five listed Mumbai buildings as operating on 26 October 2026, the modification day of the captured version (an edit that also changed the footprint table), not an inspection, opening or commissioning date; CtrlS's own timeline dates the launch of Mumbai DC1 to 2011, DC2 to 2019 and DC3 to 2020. The upcoming DC6 to DC9 are excluded. Capacity in service and occupancy are not established; the MW figures are stated power capacities."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            73.023588,
+            19.1082134
+          ]
+        },
+        "source_id": "india-south-asia-p4-ctrls-mumbai-gmap",
+        "scope": "campus_locator",
+        "scope_class": "operator_linked_named_facility_marker_as_campus_locator",
+        "authority": "compiled_reference",
+        "derivation": "direct_geometry",
+        "method": "operator_selected_google_maps_feature_coordinates",
+        "precision": "This is the operator-linked named Google Maps place 'CtrlS Datacenters Limited' (feature 0x3be7c0e5dcc504f7:0x7ea3d9e3bd21bb9d) that CtrlS's Mumbai Data Center page links as its map location, used as the locator of the multi-building CtrlS Mumbai datacenter campus in the TTC Industrial Area at Mahape, Navi Mumbai. On imagery it falls on the roof of one tall campus building; it does not give a building footprint, plot boundary or entrance, and does not distinguish DC1 to DC5 from one another or from the upcoming buildings.",
+        "identity_review": "CtrlS's Mumbai Data Center page (version of 28 July 2026; live capture of 27 October 2026 and Internet Archive copy of 29 August 2026 identical in version and link) describes one 'hyperscale data center campus, that houses 5 data center buildings, with additional 6 upcoming data centers', lists Mumbai DC1 & DC2, DC3, DC4 and DC5 under 'Explore our Navi Mumbai Datacenters', and links its 'Map Location' control to https://maps.app.goo.gl/UWmoSiHkWSPrGuL99, which resolves to the named place 'CtrlS Datacenters Limited' with place coordinates 19.1082134, 73.023588 (!3d/!4d, echoed in the place payload; the viewport centre equals the tuple). On the status page (colocation, version 26 October 2026) the Mumbai entries' 'Know More' button (/mumbai-dc/) and the 'Mumbai DC' menu link both lead to that same page. The point lies in the TTC Industrial Area at Mahape, where CtrlS's own environmental-clearance proposals for the campus are located (plots EL-201, EL-202 and EL-229, SIA/MH/INFRA2/403088/2022, and ES2 to ES4, SIA/MH/INFRA2/556795/2025, recorded in sources/research-expansion-200-round43-holds-2026-10-09.json without coordinates); it is not CtrlS's registered office in Kurla (West), Mumbai. Esri World Imagery (captured 27 October 2026) shows the point on the roof of a tall multi-storey building with rows of plant along its south side, beside a second large building and tall towers and a foundation site under construction to the north-east and east, consistent with the five existing and several upcoming buildings the operator describes. The page's proximity figures and the provider's viewport are not otherwise used.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The operator-linked map place publishes no surveyed horizontal accuracy, and no official address point, plot boundary or coordinate-bearing clearance for the campus was found; the campus extent is not published and the point marks one building of several."
+      },
+      "context_source_ids": [
+        "india-south-asia-p4-ctrls-colocation-page-ia-20260803",
+        "india-south-asia-p4-ctrls-mumbai-page",
+        "india-south-asia-p4-ctrls-about-us",
+        "india-south-asia-p4-ctrls-flexibility-blog"
+      ],
+      "roles": [
+        {
+          "party": "CtrlS Datacenters Ltd",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "india-south-asia-p4-ctrls-colocation-page"
+        }
+      ],
+      "distinctness_review": "Screened all serialized fields of the sites, projects, evidence, source records and identity mapping of verified_construction_core/2026-10-27-research-ninetyfirst (the current dataset read from site/config.json), every sources/*-holds.json file and the pending queue fragments for CtrlS, Ctrl S, Ctrls, Mahape, TTC Industrial Area, EL-201/EL-202/EL-229, ES2 to ES4, Mumbai DC1 to DC9 and the place coordinates. CtrlS matches only the Hyderabad Financial District, Chandanvelly, Kolkata New Town, Bengaluru and Chennai records (and AirTrunk HYD1, which shares the Chandanvelly locality point); no Atlas record, source record or identity mapping names a CtrlS Mumbai or Mahape facility, and 'TTC Industrial' matches only the Sify Rabale record (4.28 km north-north-west). One Atlas record lies within 2 km: STT Navi Mumbai Campus (TTC MIDC, Khairane) (curated:stt-gdc-navi-mumbai-ttc-midc-khairane-campus), 0.578 km west-south-west (pyproj WGS84 geodesic), a different operator's campus on plots Gen-51, Gen-51/1 Part and Gen-50/1 with its own EC coordinate; the in-west-north-p1 fragment that added it is the only queue record within 2 km. Nxtra's held Plot IT 07 campus (EC point 0.961 km south-south-west; not in the Atlas) is another operator's property. The nearest other Atlas sites are Sify Rabale (4.28 km), Raiden Infotech Turbhe (5.84 km) and CapitaLand DC Navi Mumbai (7.87 km). This addition meets the reopen condition of the 2026-10-26 seventysixth hold 'CtrlS Mumbai (Mahape) and Noida datacenter pages' (a dated CtrlS statement on or after 2 August 2026 about the Mumbai facilities plus their operator-linked map place). CtrlS's environmental-clearance proposals for further Mahape buildings (round-43 holds) remain separate, unlocated proposals and are not covered by this project.",
+      "successor_review": "26 October 2026 is 1 day before 27 October 2026 and stays inside the 90-day window until 24 January 2027. CtrlS's post sitemap captured on 27 October 2026 lists nothing after 26 October except the 26 October blog, which says CtrlS operates 19 datacenters across 9 Indian markets and reports no pause, closure or change at the Mumbai campus; the page sitemap's newest entry is this colocation page itself. No later status statement was found.",
+      "scoped_project_details": {
+        "aliases": [
+          "CtrlS Mumbai DC1, DC2, DC3, DC4 and DC5 (MUM DC1 to DC5)",
+          "CtrlS Mumbai Data Center Campus / Navi Mumbai Datacenters",
+          "CtrlS Datacenters Limited (Google Maps place, TTC Industrial Area, Mahape)"
+        ],
+        "facility_scope": "The five existing datacenter buildings of CtrlS's Mumbai campus in the TTC Industrial Area at Mahape, Navi Mumbai (Mumbai DC1 & DC2, DC3, DC4 and DC5, with the campus GIS power substation), excluding the upcoming DC6 to DC9 and the campus's planned totals.",
+        "capacity": null,
+        "capacity_note": "The colocation page gives 42, 8, 36 and 30 MW for DC1 & DC2, DC3, DC4 and DC5 (the Mumbai page gives 40, 10, 36.8 and 32 MW) and 140 MW for the upcoming DC6 to DC9; the campus totals of 13 buildings and 700 MW IT load include planned buildings. These are stated power capacities, not measured load, and are not recorded as typed observations.",
+        "launch_years_per_operator": "MUM DC1 2011, Mumbai DC 2 2019, Mumbai DC3 2020 (about-us timeline; not used as status observations)",
+        "physical_construction_verified": false
+      }
+    },
+    {
+      "project_stable_key": "curated:ctrls-noida-sector-127-datacenter:existing-operations",
+      "physical_site_stable_key": "curated:ctrls-noida-sector-127-datacenter",
+      "site_name": "CtrlS Noida Datacenter (Sector 127)",
+      "name": "CtrlS Noida DC1 — existing operations",
+      "country": "India",
+      "country_iso_a2": "IN",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-10-26",
+        "source_id": "india-south-asia-p4-ctrls-colocation-page",
+        "summary": "CtrlS's colocation page, in its version of 26 October 2026, invites customers to 'Secure your data and applications across our ever-expanding footprint of Rated 4 facilities' and, under 'OUR DATA CENTER FOOTPRINT', lists 'Noida DC 1' (1,501 racks, B1+G+7+Terrace structure, 8 MW power capacity, eight-zone security) among the facilities customers colocate in, without the 'upcoming' label the page gives to facilities under development. This records the Noida datacenter as operating on 26 October 2026, the modification day of the captured version, not an inspection, opening or commissioning date; CtrlS's own timeline dates the launch of its Noida data center to 2016. Capacity in service and occupancy are not established."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            77.3509363,
+            28.5313027
+          ]
+        },
+        "source_id": "india-south-asia-p4-ctrls-noida-gmap",
+        "scope": "campus_locator",
+        "scope_class": "operator_linked_named_facility_marker_as_campus_locator",
+        "authority": "compiled_reference",
+        "derivation": "direct_geometry",
+        "method": "operator_selected_google_maps_feature_coordinates",
+        "precision": "This is the operator-linked named Google Maps place 'CtrlS Datacenters Ltd.' (feature 0x390ce66dbcb9a54d:0x24d02216a2e66e49) that CtrlS's Noida Data Center page links as its map location, used as the locator of the single-building Noida datacenter property in Sector 127. On imagery it falls inside a walled corner compound, on the yard between two of its buildings; it does not give the building footprint, plot boundary or entrance.",
+        "identity_review": "CtrlS's Noida Data Center page (version of 28 July 2026; live capture of 27 October 2026 and Internet Archive copy of 1 October 2026 identical in version and link) describes one 'NOIDA DATA CENTER' at 'Location: Sector 127, Noida' (Rated-4, B1 + G + 7 + T floors, 8 MW IT load, 1.02 lakh sq. ft.) and links its 'Map Location' control to https://maps.app.goo.gl/bQVPWbYqeEwS1ghY8, which resolves to the named place 'CtrlS Datacenters Ltd.' with place coordinates 28.5313027, 77.3509363 (!3d/!4d, echoed in the place payload; the viewport centre equals the tuple). The status page (colocation, version 26 October 2026) lists 'Noida DC 1' with the same B1+G+7+Terrace structure and 8 MW, and its 'Know More' button (/noida-dc/) and the 'Noida DC' menu link lead to that same page; CtrlS names no other Noida facility, and its about-us timeline records '2016 Launch Noida data center'. Esri World Imagery (captured 27 October 2026) shows the point inside a walled corner compound with a low white-roofed building carrying rooftop plant to its north and a tall building to its south, consistent with a multi-storey datacenter property. The stated Sector 127 was not checked against an official sector map, and the page's proximity figures are not geocoded.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The operator-linked map place publishes no surveyed horizontal accuracy, and no official address point, plot number or plot boundary for the facility was found; the point lies between two buildings of the compound rather than on an identified datacenter building."
+      },
+      "context_source_ids": [
+        "india-south-asia-p4-ctrls-colocation-page-ia-20260803",
+        "india-south-asia-p4-ctrls-noida-page",
+        "india-south-asia-p4-ctrls-about-us",
+        "india-south-asia-p4-ctrls-flexibility-blog"
+      ],
+      "roles": [
+        {
+          "party": "CtrlS Datacenters Ltd",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "india-south-asia-p4-ctrls-colocation-page"
+        }
+      ],
+      "distinctness_review": "Screened all serialized fields of the sites, projects, evidence, source records and identity mapping of verified_construction_core/2026-10-27-research-ninetyfirst (the current dataset read from site/config.json), every sources/*-holds.json file and the pending queue fragments for CtrlS, Ctrl S, Ctrls, Noida DC 1, Sector 127 / Sector-127 and the place coordinates. No Atlas record, source record, identity mapping, hold or queue fragment names a CtrlS Noida facility other than the 2026-10-26 seventysixth hold 'CtrlS Mumbai (Mahape) and Noida datacenter pages', whose reopen condition (a dated CtrlS statement on or after 2 August 2026 about the Noida facility plus its operator-linked map place) this addition meets; 'Sector 127' matches nothing. No Atlas coordinate lies within 2 km of the point: the nearest are the imported AdaniConneX Noida and Sify Noida 02 records, which share a Noida locality point 5.25 km north-north-west (pyproj WGS84 geodesic) and are other operators' campuses. Held Noida-area leads (Techno Digital / RailTel plot B-209, Block B Phase-2; STT Noida 1 to 3; Nxtra's Noida facilities; Yotta D1 in Greater Noida) are other operators' facilities and none is located at this point.",
+      "successor_review": "26 October 2026 is 1 day before 27 October 2026 and stays inside the 90-day window until 24 January 2027. CtrlS's post sitemap captured on 27 October 2026 lists nothing after 26 October except the 26 October blog, which says CtrlS operates 19 datacenters across 9 Indian markets and reports no pause, closure or change at the Noida facility; the page sitemap's newest entry is this colocation page itself. No later status statement was found.",
+      "scoped_project_details": {
+        "aliases": [
+          "CtrlS Noida DC 1 / Noida Data Center",
+          "CtrlS Datacenters Ltd. (Google Maps place, Noida)"
+        ],
+        "facility_scope": "CtrlS's single Noida datacenter building in Sector 127, Noida (Rated-4, B1 + G + 7 + Terrace, about 1.02 lakh sq. ft., 1,501 racks).",
+        "capacity": null,
+        "capacity_note": "Both operator pages give 8 MW (IT load on the Noida page, power capacity on the colocation page); this is the facility's stated design figure, not measured load, and is not recorded as a typed observation.",
+        "launch_year_per_operator": "2016 (about-us timeline; not used as a status observation)",
+        "physical_construction_verified": false
+      }
+    },
+    {
+      "project_stable_key": "curated:digital-realty-atl14-250-williams-street:existing-operations",
+      "physical_site_stable_key": "curated:digital-realty-atl14-250-williams-street",
+      "site_name": "Digital Realty ATL14 (250 Williams Street, Atlanta)",
+      "name": "Digital Realty ATL14 — existing data-centre and colocation operations",
+      "country": "United States",
+      "country_iso_a2": "US",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-10-14",
+        "source_id": "us-atlanta-p5-dlr-atlanta-blog-2026-10-14",
+        "summary": "Digital Realty's blog of 14 October 2026 describes \"our ATL14 facility at 250 Williams Street, with newly constructed capacity brought online in 2025 capable of accommodating high density and liquid cooled AI workloads\", linked by fiber to ATL13 at 56 Marietta Street, and says that together the two form its Atlanta connected campus with more than 11,000 cross connects between 300+ customers. This records existing operation of ATL14 on 14 October 2026, the post's date; it is not an opening date (the facility opened in 2017 and the newer capacity came online in 2025), and ATL13 is a separate Atlas record."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -84.39132182,
+            33.761624516
+          ]
+        },
+        "source_id": "us-atlanta-p5-atlanta-address-point-250-williams",
+        "scope": "project_locator",
+        "scope_class": "official_numbered_address_point",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "city_of_atlanta_address_point_250_williams_street_nw_address_class_0_native_epsg6447_to_wgs84_pyproj",
+        "precision": "City of Atlanta address point for 250 Williams Street NW, the address Digital Realty gives for ATL14, on a 3.53-acre parcel (about 122 by 126 m) that holds the multi-tenant 250 Williams building. It marks the building address, not a surveyed outline, entrance or the 70,000 sq ft data-centre space within the building.",
+        "identity_review": "Digital Realty's 14 October 2026 blog and its ATL14 page both give 250 Williams Street (\"ATL14, 250 Williams Street NW Atlanta, GA 30303\"), and its 2017 release announced the opening of the facility at 250 Williams Street. The city's address layer returns one primary point for 250 WILLIAMS STREET NW (address class 0) and a mezzanine sub-address at the same position, both on parcel 14 007800030849, whose site address is 250 WILLIAMS ST NW; the point lies inside the parcel, 0.33 m from its centroid. The coordinates are the pyproj transform of the native Georgia West ftUS point and equal the layer's own LAT/LON attributes. No geocoder, map viewport or city centre is used.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The city publishes no positional accuracy for address points; decimal places are arithmetic precision, and the point marks the building address on a 3.5-acre parcel, not the data-centre floors within the building."
+      },
+      "context_source_ids": [
+        "us-atlanta-p5-dlr-atl14-facility-page",
+        "us-atlanta-p5-dlr-pr-atlanta-connected-campus-2017",
+        "us-atlanta-p5-atlanta-parcel-14-007800030849"
+      ],
+      "roles": [
+        {
+          "party": "Digital Realty",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "us-atlanta-p5-dlr-atlanta-blog-2026-10-14"
+        }
+      ],
+      "distinctness_review": "Screened on 27 October 2026 against every row of sites.csv, projects.csv and evidence.csv, source-records.json and identity-mapping.json of verified_construction_core/2026-10-27-research-ninetyfirst, every pending queue fragment (changes and holds), claims.tsv and all sources/*-holds.json, for Digital Realty, ATL14, 250 Williams, Williams Street, Acadia DC2, parcel 14 007800030849 and Fowler Network, and by distance. No Atlas site, project, source record or identity-mapping entry names ATL14 or 250 Williams Street; the only matches are the q3-us-reits-p3 ATL13 addition, whose status summary mentions ATL14 as the fiber-linked partner building and states that ATL14 is not part of that record, and the q3-us-reits-p3 hold (published in the sixty-eighth holds) that deferred ATL14 for the three-change limit; this addition takes up that hold. One Atlas record lies within 2 km: the site Digital Realty ATL13 (curated:digital-realty-atl13-56-marietta-street, 56 Marietta Street NW), 0.69 km south-south-east, a separate 10-storey building on a separate parcel (14 007800110260) that Digital Realty markets with ATL14 as one 'connected campus'; because the two buildings are separate properties linked by fiber, ATL14 is a new site rather than a project at the ATL13 site, whose locator is that building's own address point. This fragment's DataBank ATL1 candidate (760 West Peachtree Street NW) is 1.57 km north-north-east. The next nearest Atlas site is DataBank ATL2 and ATL3 (White Street SW), 4.43 km.",
+      "successor_review": "Checked Digital Realty's English sitemap on 27 October 2026: no newsroom, blog or facility item after 14 October 2026 concerns ATL14 (the ATL14 page was last modified on 8 July 2026; the only later Atlanta change is the 15 October edit of the same blog post), and Digital Realty's third-quarter 2026 results are not yet published. No closure, sale or redevelopment was found.",
+      "scoped_project_details": {
+        "aliases": [
+          "ATL14",
+          "250 Williams",
+          "Digital Realty Atlanta 250 Williams Street"
+        ],
+        "address": "250 Williams Street NW, Atlanta, GA 30303",
+        "parcel": "City of Atlanta / Fulton County parcel 14 007800030849, 3.53 acres, owner of record ACADIA DC2 ASSETS LLC (tax year 2025); the owner of record is not asserted as the data centre's owner",
+        "operator_stated_specifications": {
+          "total_building_size_sq_ft": 70000,
+          "ups_redundancy": "N+1",
+          "cooling_redundancy": "N+1",
+          "renewable_energy_percent": 100,
+          "compliance": [
+            "SOC 2",
+            "SOC 3",
+            "PCI-DSS",
+            "ISO 27001"
+          ],
+          "basis": "operator facility page (undated; sitemap lastmod 8 July 2026)"
+        },
+        "history": "Digital Realty announced the opening of an approximately 18,000 sq ft facility at 250 Williams Street on 15 March 2017; its 14 October 2026 blog says newly constructed capacity was brought online in 2025",
+        "campus_context": "Digital Realty describes ATL13 (56 Marietta Street) and ATL14 (250 Williams Street) as its Atlanta connected campus; they are separate buildings about 0.69 km apart",
+        "capacity": null
+      }
+    },
+    {
+      "project_stable_key": "curated:databank-atl1-coda-760-west-peachtree:existing-operations",
+      "physical_site_stable_key": "curated:databank-atl1-coda-760-west-peachtree",
+      "site_name": "DataBank ATL1 Midtown Atlanta (Coda, 760 West Peachtree Street)",
+      "name": "DataBank ATL1 — existing Midtown Atlanta data-centre operations",
+      "country": "United States",
+      "country_iso_a2": "US",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-09-26",
+        "source_id": "us-atlanta-p5-databank-atl1-page-20260926",
+        "summary": "DataBank's ATL1 page, in its version modified on 26 September 2026, gives \"Midtown Atlanta Data Center (ATL1) 760 W Peachtree St NW - Atlanta, GA 30308\", says ATL1 is part of the CODA development in Georgia Tech's Technology Square and that \"this data center host's the university's High-Performance Computing Center as well as the Southern Crossroads\", and lists 38,260 IT square feet, 7.1MW critical IT load, 8 onsite carriers, colocation and cloud platforms, a 100% uptime SLA and 7x24x365 operations. DataBank's Atlanta market page (30 September 2026) lists ATL1 among its six Atlanta data centers. This records existing operation of DataBank's commercial colocation facility on 26 September 2026, the modification day of the operator's page version (bounded by the Internet Archive copy of 13 June 2026 and the live capture of 27 October 2026); it is not an opening date. The 26 September edit changed only the page title and form text, so the date is a publication-normalised operating observation. 7.1MW is critical IT load capacity, not load in use. The hosted Georgia Tech computing is a tenant use, not a separate institutional facility."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -84.38775882,
+            33.775481513
+          ]
+        },
+        "source_id": "us-atlanta-p5-atlanta-address-point-760-west-peachtree",
+        "scope": "project_locator",
+        "scope_class": "official_numbered_address_point",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "city_of_atlanta_address_point_760_west_peachtree_street_nw_native_epsg6447_to_wgs84_pyproj",
+        "precision": "City of Atlanta address point for 760 West Peachtree Street NW, the address DataBank gives for ATL1, on the 2.05-acre Coda parcel (about 118 by 75 m), which holds a mixed-use office building. It marks that address on the parcel, not a surveyed outline, entrance or the 38,260 sq ft of IT space within the building.",
+        "identity_review": "DataBank's ATL1 page and Atlanta market page both give 760 W Peachtree St NW, Atlanta 30308, and describe ATL1 as part of the CODA development in Georgia Tech's Technology Square. The city's address layer returns exactly one current point for 760 WEST PEACHTREE STREET NW, on parcel 14 008000070031 (site address 756 WEST PEACHTREE ST, Midtown), which carries six current address points (756, 756 floor 4, 760, 762, 766 and 774 West Peachtree Street NW), all inside it; the selected point is 29.9 m from the parcel centroid. The coordinates are the pyproj transform of the native Georgia West ftUS point and equal the layer's own LAT/LON attributes. No geocoder, map viewport or city centre is used.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The city publishes no positional accuracy for address points; decimal places are arithmetic precision, and the point marks one address of a mixed-use building on a 2-acre parcel, not the data-centre floors within it."
+      },
+      "context_source_ids": [
+        "us-atlanta-p5-databank-atl1-page-ia-20260613",
+        "us-atlanta-p5-databank-atlanta-market-page-20260930",
+        "us-atlanta-p5-atlanta-parcel-14-008000070031",
+        "us-atlanta-p5-atlanta-address-points-parcel-14-008000070031"
+      ],
+      "roles": [
+        {
+          "party": "DataBank",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "us-atlanta-p5-databank-atl1-page-20260926"
+        }
+      ],
+      "distinctness_review": "Screened on 27 October 2026 against every row of sites.csv, projects.csv and evidence.csv, source-records.json and identity-mapping.json of verified_construction_core/2026-10-27-research-ninetyfirst, every pending queue fragment (changes and holds), claims.tsv and all sources/*-holds.json, for DataBank, ATL1, 760 West Peachtree, West Peachtree, Coda, Technology Square, Georgia Tech, Southern Crossroads, Atlanta Development Authority and parcel 14 008000070031, and by distance. No Atlas site, project, source record or identity-mapping entry names this facility ('coda' matches only EcoDataCenter records). The us-ga-sc-nc-p3 hold (published in the sixty-eighth holds) deferred DataBank ATL1 for the three-change limit, and the us-atlanta-p4 addition text mentions it only as a deferred lead; this addition takes up that hold. The existing DataBank ATL2 and ATL3 site (White Street SW, 5.80 km) and the DataBank Lithia Springs campus (14.4 km) are separate properties. No Atlas site, project, source record or other fragment's pending addition or claim lies within 2 km; this fragment's Digital Realty ATL14 candidate (250 Williams Street NW) is 1.57 km south-south-west, and the nearest Atlas site is Digital Realty ATL13 (56 Marietta Street NW), 2.25 km south-south-west.",
+      "successor_review": "Checked DataBank's data-center and press-release sitemaps on 27 October 2026: the ATL1 page was last modified on 26 September 2026 and the Atlanta market page on 30 September 2026, and no press release after 13 October 2026 concerns Atlanta; no closure, sale or relocation was found.",
+      "scoped_project_details": {
+        "aliases": [
+          "ATL1",
+          "DataBank Midtown Atlanta Data Center",
+          "DataBank Atlanta Coda"
+        ],
+        "address": "760 W Peachtree St NW, Atlanta, GA 30308",
+        "parcel": "City of Atlanta / Fulton County parcel 14 008000070031 (site address 756 West Peachtree St, the Coda building), 2.05 acres, owner of record ATLANTA DEVELOPMENT AUTHORITY THE (tax year 2025); the development authority's title to the mixed-use parcel is not asserted as ownership of the data centre",
+        "operator_stated_specifications": {
+          "it_square_feet": 38260,
+          "critical_it_load_mw": 7.1,
+          "onsite_carriers": 8,
+          "power_design": "N+1",
+          "cooling_design": "N+1",
+          "cabinet_density": "10kW+ air, 25kW+ liquid",
+          "renewable_energy_percent": 100,
+          "basis": "operator facility page, version modified 26 September 2026"
+        },
+        "hosted_uses": "DataBank states that ATL1 hosts Georgia Tech's High-Performance Computing Center and the Southern Crossroads research network; the record is DataBank's commercial colocation facility",
+        "capacity_qualification": "7.1MW is the operator's critical IT load capacity, not measured load; no power observation is recorded"
+      }
+    },
+    {
+      "project_stable_key": "curated:edgeconnex-mesa-hawes-road-campus:phx11-data-center-building",
+      "physical_site_stable_key": "curated:edgeconnex-mesa-hawes-road-campus",
+      "existing_site_id": "vcc-site-c4391892c0d4ac0e1fd0",
+      "site_name": "EdgeConneX Mesa Campus (PHX11 and PHX12, 3261 S Hawes Rd, Mesa, Arizona)",
+      "name": "EdgeConneX PHX11 — 412,065 sq ft core-and-shell data center building with Data Hall 1-4 build-outs, under construction (Mesa permits PMT24-11896, PMT25-09255 and PMT25-17623)",
+      "country": "United States",
+      "country_iso_a2": "US",
+      "site_identity_review": "PHX11 is the first building of the EdgeConneX Mesa campus at 3261 S Hawes Rd, whose PHX12 building is the existing project curated:edgeconnex-mesa-hawes-road-campus:phx12-shell-building on site vcc-site-c4391892c0d4ac0e1fd0. The PHX11 permits carry the campus situs address (3261 S HAWES RD), are titled 'EDGECONNEX PHX11', 'Data Hall 1-2 Buildout' and 'Data Hall 3-4 Buildout' (the descriptions tie both build-outs to the PMT24-11896 shell) and share the city geocode (-111.652901, 33.354696) that the existing record found inside the campus parcel 304-03-011X, 414 m from its centroid. The existing record's site name already names PHX11, and its later-status review held PHX11 for a separate project on this site once the site was published. PHX11 is a different building from PHX12 (296,800 sq ft, PMT25-22027), so it is a new project on the existing campus, not a new site.",
+      "status": {
+        "value": "under_construction",
+        "as_of": "2026-09-23",
+        "source_id": "us-phoenix-p5-mesa-inspections-edgeconnex-phx11",
+        "summary": "The City of Mesa's public building-inspection records show the EdgeConneX PHX11 building still under construction in September 2026. Its core-and-shell permit PMT24-11896 ('EDGECONNEX PHX11', a 412,065 sq ft building with two shell data hall wings, offices, storage and back-up power infrastructure, issued 16 September 2024) and its Data Hall 1-2 build-out (PMT25-09255) both had certificate-of-occupancy inspections that returned corrections on 8 September 2026, and on the Data Hall 3-4 build-out (PMT25-17623, the south pair of data halls: interior walls, MEP systems, generators, switchgear, chillers and CRACs) inspectors recorded mechanical rough-in partial approvals on 17 and 26 August and 9 September and above-ceiling partial approvals on 7 August and 23 September 2026. Data Hall 1-2 had above-ceiling and electrical rough-in partial approvals and a fire-overhead approval in August 2026. This records the PHX11 building and its data-hall build-outs as under construction on 23 September 2026, the latest named construction inspection. Partial approvals cover the inspected portions only; no certificate of occupancy has been approved for the shell or any data hall, and completion, operation, IT capacity and customers are not established. The PHX12 building is a separate project on the campus."
+      },
+      "locator": {
+        "reuse_from_project_id": "13f6f555-583d-52ba-bf68-d9f2eb55a8ba",
+        "geometry_evidence_id": "36ad5920-4bc9-5a9c-82cc-138a5b9e714b",
+        "geometry_identity_evidence_ids": [],
+        "scope": "campus_locator",
+        "identity_review": "This reuses the existing EdgeConneX Mesa campus point of project 13f6f555-583d-52ba-bf68-d9f2eb55a8ba (PHX12): the centroid of Maricopa County Assessor parcel 304-03-011X (3261 S Hawes Rd; 93.13 geodesic acres), with its pinned geometry evidence 36ad5920-4bc9-5a9c-82cc-138a5b9e714b; the baseline project has no geometry-identity evidence, so none is pinned. The PHX11 permits carry the parcel's situs address and the city geocode (-111.652901, 33.354696) that the existing record's point-in-polygon review placed inside 304-03-011X (they cite the retired parcel number 304-03-011V, which the existing record documents is no longer in the assessor layer). The point locates the campus parcel, not the PHX11 building footprint."
+      },
+      "context_source_ids": [
+        "us-phoenix-p5-mesa-permits-edgeconnex-phx11-descriptions",
+        "us-phoenix-p5-mesa-permits-edgeconnex-hawes",
+        "us-phoenix-p5-mesa-inspections-metadata",
+        "us-phoenix-p5-mesa-permits-metadata"
+      ],
+      "roles": [
+        {
+          "party": "LOOP 202 & ELLIOT ROAD LLC",
+          "role": "owner",
+          "relationship_scope": "current",
+          "source_id": "us-phoenix-p5-maricopa-parcel-30403011x-owner"
+        },
+        {
+          "party": "EdgeConneX",
+          "role": "operator",
+          "relationship_scope": "intended",
+          "source_id": "us-phoenix-p5-mesa-permits-edgeconnex-phx11-descriptions"
+        }
+      ],
+      "distinctness_review": "Screened on 27 October 2026 against every row of sites.csv, projects.csv and evidence.csv of verified_construction_core/2026-10-27-research-ninetyfirst (792 sites, 851 projects, 4,431 evidence rows), its source-records.json and identity-mapping.json, all pending queue fragments (changes.json and holds.json), claims.tsv and all sources/*-holds.json, for PHX11, EdgeConneX PHX, Hawes, 30403011, LOOP 202 and the permit numbers PMT24-11896, PMT25-09255 and PMT25-17623. The only Atlas matches are the existing campus site and its PHX12 project (whose name, identity review and later-status review mention PHX11 only as the adjacent building held for a later project) and that project's evidence rows; no Atlas project covers the PHX11 building. The other matches are holds that did not admit it: the sixteenth-October thirty-first hold 'EdgeConneX PHX11/PHX12' (no in-window consent) and its reject of fit-out work packages inside existing buildings on campuses not yet in the Atlas, the twenty-second-October thirty-fourth Mesa permit-set hold, the us-southwest-p2 / fifty-sixth hold and the us-phoenix-p4 / seventy-eighth hold 'EdgeConneX PHX11 data center building and Data Halls 1-4 build-out', whose reopen condition (a PHX11 project reusing the published campus locator, under construction from a data-hall inspection within 85 days) this record meets. This record is the whole PHX11 building, whose shell has no certificate of occupancy, not a fit-out inside an operating building, and the campus is now in the Atlas with a campus locator. No other Atlas site, project, source record, identity-mapping coordinate, pending fragment, claim or hold coordinate lies within 2 km of the campus point; the nearest other record is the Meta Mesa permit geocode at 3841 S Ellsworth Rd (1.71 km, a different property and operator, cited in the existing Meta refresh), and the nearest Atlas sites are Google Mesa Red Hawk (2.54 km) and the imported EdgeCore Mesa point (3.01 km).",
+      "successor_review": "The inspection view is current to 24 October 2026 and the permit dataset to 26 October 2026 (both re-read on 27 October 2026). After the 8 September corrections no further certificate-of-occupancy inspection is recorded on PMT24-11896 or PMT25-09255, none of the three permits has a certificate-of-occupancy date, and no PHX11 inspection was recorded after 23 September 2026. The only later PHX11-related records are the emergency-responder radio permit 'EdgeConnex PHX-II' (issued 18 August 2026, ancillary) and a tent permit (Fees Paid). No completion, opening, pause or cancellation of PHX11 was found; EdgeConneX's Phoenix page (captured by the earlier pass on 26 October 2026) still describes Mesa as land available for a build-to-suit data center and gives no PHX11 status.",
+      "scoped_project_details": {
+        "aliases": [
+          "EdgeConneX PHX11",
+          "PHX11",
+          "EdgeConnex PHX-II (radio permit title)"
+        ],
+        "address": "3261 S Hawes Rd, Mesa, AZ 85212 (permit address and campus parcel situs)",
+        "parcel": "Maricopa County APN 304-03-011X (permits cite the retired 304-03-011V); owner LOOP 202 & ELLIOT ROAD LLC (Herndon, VA)",
+        "building_permit": "PMT24-11896 'EDGECONNEX PHX11': core and shell, 412,065 sq ft (B 37,384 sq ft, S-2 374,547 sq ft), Type II-B unlimited area, two shell data hall wings, offices, storage, loading dock, infrastructure for phase 3-4 back-up power plants; issued 2024-09-16",
+        "fit_out_permits": [
+          "PMT25-09255 'Data Hall 1-2 Buildout' (Phase 3, north two data halls, 180,108 sq ft; issued 2025-08-06; CoO inspection corrections 2026-09-08)",
+          "PMT25-17623 'Data Hall 3-4 Buildout' (Phase 4, south two data halls, 178,702 sq ft; issued 2026-01-13; above-ceiling partial approval 2026-09-23)"
+        ],
+        "latest_inspections": "Data Hall 3-4 above-ceiling partial approval 2026-09-23 (PMT25-17623); core-and-shell and Data Hall 1-2 CoO inspections returned corrections 2026-09-08",
+        "area_basis": "Permit-recorded square footage; the fit-out areas lie inside the shell area and are not additive",
+        "certificate_of_occupancy": null,
+        "capacity": null,
+        "operation_established": false
+      }
+    },
+    {
+      "project_stable_key": "curated:novva-mesa-ellsworth-warner-campus:campus-development",
+      "physical_site_stable_key": "curated:novva-mesa-ellsworth-warner-campus",
+      "site_name": "Novva Mesa Data Center Campus (Ellsworth Rd and Warner Rd, Mesa, Arizona)",
+      "name": "Novva Mesa — planned 300 MW, five-data-hall data-centre campus in two phases",
+      "country": "United States",
+      "country_iso_a2": "US",
+      "status": {
+        "value": "announced",
+        "as_of": "2026-08-31",
+        "source_id": "us-phoenix-p5-novva-mesa-page-20260831",
+        "summary": "Novva's Arizona page, in its version modified on 31 August 2026 (bounded below by the Internet Archive copy of 14 July 2026, modified 2 July 2026, and matching the page-sitemap lastmod), presents 'Novva’s first Arizona Data Center campus' in Mesa: 160 acres with five data halls, 1.3 million sq ft of data-hall space and 200,000 sq ft of offices built over two phases, a 300 MW campus with water-free cooling. The July version placed the campus along Ellsworth Road, and Novva's 2024 announcement put the 160 acres at the northwest corner of Ellsworth and Warner roads. This records the Novva Mesa campus as announced on 31 August 2026. Construction and operation are not established: Maricopa County's air-quality register lists the 'Novva Phoenix' data-centre facility on parcel 304-31-141 as 'Not Yet Installed', and the City of Mesa permit dataset (current to 26 October 2026) has no permit on the parcel. The page's present-tense wording is read as the operator's description of the planned campus; the 300 MW, floor areas and the late-2026 first-phase target in the 2024 announcement are design figures and forecasts."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -111.639471,
+            33.3397412
+          ]
+        },
+        "source_id": "us-phoenix-p5-maricopa-parcel-30431141",
+        "scope": "campus_locator",
+        "scope_class": "official_tax_parcel_centroid",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "official_county_assessor_parcel_centroid",
+        "precision": "Centroid of Maricopa County Assessor parcel 304-31-141 (owner of record NOVVA PHOENIX LLC; 157.94 geodesic acres, about 786 by 1,089 m; jurisdiction Mesa), the campus parcel. It locates the planned Novva campus property, not a building, data hall, phase or surveyed boundary; no construction has been recorded on the parcel.",
+        "identity_review": "The county air-quality facility register lists F055022 'Novva Phoenix' at the NW Corner Ellsworth Rd & Warner Rd, Mesa, on parcel 304-31-141, in its 'Data Centers (>100 MW)' category (permit P0013466, 'Not Yet Installed'); its register point is 0.1 m from the computed parcel centroid. The assessor names NOVVA PHOENIX LLC (West Jordan, Utah, the city of Novva's flagship campus) as owner of the 158.1-acre parcel by deed of 26 April 2024, matching the 160 acres that Novva's 21 August 2024 announcement places at the northwest alignment of Ellsworth and Warner roads, bought at a state land auction in August 2023. Novva's page names the campus only as Mesa, AZ (the July 2026 version adds 'along Ellsworth Road'). No geocoder, map viewport or city centre is used.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The assessor publishes no positional accuracy for parcel polygons; the centroid represents a 158-acre campus parcel whose building layout is not published."
+      },
+      "context_source_ids": [
+        "us-phoenix-p5-novva-mesa-page-ia-20260714",
+        "us-phoenix-p5-novva-page-sitemap",
+        "us-phoenix-p5-novva-mesa-announcement-2024",
+        "us-phoenix-p5-mcaqd-facilities-novva-thistle",
+        "us-phoenix-p5-mesa-permits-novva-parcel",
+        "us-phoenix-p5-mesa-permits-metadata"
+      ],
+      "roles": [
+        {
+          "party": "NOVVA PHOENIX LLC",
+          "role": "owner",
+          "relationship_scope": "current",
+          "source_id": "us-phoenix-p5-maricopa-parcel-30431141"
+        },
+        {
+          "party": "Novva Data Centers",
+          "role": "operator",
+          "relationship_scope": "intended",
+          "source_id": "us-phoenix-p5-novva-mesa-page-20260831"
+        }
+      ],
+      "distinctness_review": "Screened on 27 October 2026 against every row of sites.csv, projects.csv and evidence.csv of verified_construction_core/2026-10-27-research-ninetyfirst (792 sites, 851 projects, 4,431 evidence rows), its source-records.json and identity-mapping.json, all pending queue fragments (changes.json and holds.json), claims.tsv and all sources/*-holds.json, for Novva, Novva Phoenix, Ellsworth Rd & Warner Rd and parcel 304-31-141 / 30431141. The Atlas Novva records are the West Jordan (Utah) flagship campus and Colorado Springs; no record covers the Mesa campus. The only matches are the us-az-nv-ut-p3 / sixty-ninth lead 'Novva Mesa AZ, Novva Tahoe Reno and Novva Utah facility pages', whose reopen condition (a captured page version bounded by an Internet Archive copy with an in-window statement, plus the Maricopa assessor parcel) this record meets, and other Novva holds for Las Vegas and Tahoe Reno. Records within 2 km of the centroid: the Meta Mesa permit geocode at 3841 S Ellsworth Rd cited by the existing Meta refresh (0.74 km, across Ellsworth Road; Redale LLC parcel 304-31-002V, a different owner and operator; the imported Meta record's own point is a Mesa locality point about 18 km away) and the imported EdgeCore Mesa point (1.91 km; 3856 S Everton Terr, a different operator). Non-Atlas facilities nearby in the county register are Edged Phoenix at 8811 E Warner Rd (0.68 km; held lead) and the Comarch data center at 3223 S Ellsworth Rd (1.93 km; lead). The us-phoenix-p4 claim line for CyrusOne Mesa PHX20 carries a rounded coordinate (33.336, -111.628) 1.15 km away, but the published CyrusOne campus point is 2.35 km away; the EdgeConneX Mesa campus point is 2.01 km away, with the PHX12 permit geocode cited in that record at 1.96 km (a different parcel and operator).",
+      "successor_review": "The live page captured on 27 October 2026 is the 31 August version (page-sitemap lastmod unchanged), and Novva's post sitemap has no Mesa post after the 2024 announcement (re-saved 13 January 2026). The county register still lists the Novva Phoenix generator source as 'Not Yet Installed' and the city permit dataset (current to 26 October 2026) has no permit on the parcel. No construction start, permit, cancellation or opening was found.",
+      "scoped_project_details": {
+        "aliases": [
+          "Novva Phoenix",
+          "Novva Mesa",
+          "Novva Arizona Data Center"
+        ],
+        "location": "Northwest corner of Ellsworth Rd and Warner Rd, Mesa, AZ (operator announcement and county register); no street address published",
+        "parcel": "Maricopa County APN 304-31-141, 158.1 acres, owner NOVVA PHOENIX LLC (West Jordan, UT), deed 2024-04-26",
+        "planned_scale": "300 MW campus; five data halls; 1.3 million sq ft of data-hall space and 200,000 sq ft of offices; two phases (operator design figures)",
+        "air_permit": "MCAQD facility F055022, permit P0013466, Not Yet Installed",
+        "capacity_basis": "Operator-stated campus design capacity, not IT load in service",
+        "construction_established": false,
+        "operation_established": false
+      }
+    },
+    {
+      "project_stable_key": "curated:thistle-landing-data-center-phoenix:data-center-campus",
+      "physical_site_stable_key": "curated:thistle-landing-data-center-phoenix",
+      "site_name": "Thistle Landing Data Center (4801 E Thistle Landing Dr, Phoenix, Arizona)",
+      "name": "Thistle Landing Data Center — data-centre campus with Buildings 1, 2 and 5 (City of Phoenix project 23-1632)",
+      "country": "United States",
+      "country_iso_a2": "US",
+      "status": {
+        "value": "announced",
+        "as_of": "2026-10-01",
+        "source_id": "us-phoenix-p5-phoenix-permits-4801-e-thistle-landing",
+        "summary": "City of Phoenix permit records for 4801 E Thistle Landing Dr (project 23-1632) identify the Thistle Landing Data Center: on 1 October 2026 the city entered application T971866 'FL/COMBO THISTLE LANDING DATA CENTER' for the project's private fireline connection. This records the Thistle Landing Data Center as announced on 1 October 2026. The same project already holds building permits issued before the 85-day window — 'T. LANDING BLDG. 1 & 2 FOUNDATION PERMIT' (21 May 2026), 'ME-PHX DC THISTLE L.-BUILDING 5 PERMIT' (2 July 2026) and 'THISTLE TECH DC CORE/SHELL BLD 1&2' (17 July 2026) — and a grading permit 'E THISTLE LANDING DATA CENTER G&D' (7 January 2026); they are context and do not set the status. The city layer, which publishes no inspection results, gives no completion date or certificate for these permits; the county air-quality register lists the site's 'MD-PHX1' data-centre generator source as 'Not Yet Installed' and its undated 'ME-PHX DC Buildings 1-5' dust-control registration as 'Operating'. Construction and operation are therefore not established by a dated in-window record. The developer, operator, capacity and customers are not established."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -111.9781237,
+            33.3107821
+          ]
+        },
+        "source_id": "us-phoenix-p5-maricopa-parcel-30184899",
+        "scope": "campus_locator",
+        "scope_class": "official_tax_parcel_centroid",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "official_county_assessor_parcel_centroid",
+        "precision": "Centroid of Maricopa County Assessor parcel 301-84-899 (situs 4801 E Thistle Landing Dr, Phoenix; subdivision 'THISTLE LANDING DATA CENTER'; 38.29 geodesic acres, about 379 by 471 m). It locates the data-centre parcel, not the footprint of Building 1, 2 or 5 or a surveyed boundary.",
+        "identity_review": "Every City of Phoenix permit for the project (23-1632) carries the address 4801 E Thistle Landing Dr and one city point (-111.978172, 33.311976), which lies inside parcel 301-84-899, 133 m from its centroid. The assessor gives the parcel the situs 4801 E THISTLE LANDING DR PHOENIX 85044 and the subdivision name 'THISTLE LANDING DATA CENTER' (owner field 'PENDING'). The county air-quality register lists the data-centre facility F057422 'MD-PHX1' at 4801 E Thistle Landing Dr on parcel 301-84-899 (point 12.8 m from the centroid). No geocoder, map viewport or city centre is used.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The assessor publishes no positional accuracy for parcel polygons; the centroid represents a 38-acre parcel whose building layout is not published."
+      },
+      "context_source_ids": [
+        "us-phoenix-p5-phoenix-permits-layer-currency",
+        "us-phoenix-p5-mcaqd-facilities-novva-thistle"
+      ],
+      "roles": [],
+      "distinctness_review": "Screened on 27 October 2026 against every row of sites.csv, projects.csv and evidence.csv of verified_construction_core/2026-10-27-research-ninetyfirst (792 sites, 851 projects, 4,431 evidence rows), its source-records.json and identity-mapping.json, all pending queue fragments (changes.json and holds.json), claims.tsv and all sources/*-holds.json, for Thistle, Thistle Landing, Thistle Technology Center, ME-PHX, MD-PHX, project 23-1632 and parcel 301-84-899 / 30184899. No Atlas site, project, evidence row, source record, pending fragment, claim or hold names this project, and none lies within 2 km of the centroid (the nearest Atlas site is 1G Servers LaSalle, 9.76 km). The other Phoenix holds (Iron Mountain AZP-3, STACK PHX02A, QTS PHX2 DC5, 2802 W Palm Ln, Aligned) concern different addresses 10-25 km away. In the county air-quality register the only nearby data-centre entries are this site's own 'MD-PHX1' and 'ME-PHX DC Buildings 1-5' records.",
+      "successor_review": "The city layer is current to 23 October 2026 (re-read 27 October 2026): the building permits remain open with no completion date, application T971866 and the substation application T969689 are not issued, and no later record names the project. The county register lists the generator source as 'Not Yet Installed'. No completion, opening, pause or cancellation was found.",
+      "scoped_project_details": {
+        "aliases": [
+          "Thistle Landing Data Center",
+          "Thistle Technology Center",
+          "ME-PHX DC",
+          "MD-PHX1 (county air-quality facility name)"
+        ],
+        "address": "4801 E Thistle Landing Dr, Phoenix, AZ 85044",
+        "parcel": "Maricopa County APN 301-84-899, 38.3 acres, subdivision 'THISTLE LANDING DATA CENTER'; owner of record not yet entered ('PENDING')",
+        "building_permits_before_window": [
+          "26007595 'T. LANDING BLDG. 1 & 2 FOUNDATION PERMIT' (commercial new; issued 2026-05-21)",
+          "26008627 'ME-PHX DC THISTLE L.-BUILDING 5 PERMIT' (commercial new; issued 2026-07-02)",
+          "26008875 'THISTLE TECH DC CORE/SHELL BLD 1&2' (commercial shell; issued 2026-07-17)"
+        ],
+        "in_window_records": [
+          "T971866 'FL/COMBO THISTLE LANDING DATA CENTER' (private fireline with backflow in right of way; entered 2026-10-01; not issued)",
+          "26009402 'THISTLE TECHNOLOGY CENTER WATER MAIN' and pavement-restoration permits (issued 2026-08-06); sewer main in right of way (issued 2026-08-14)"
+        ],
+        "pending": "T969689 'THISTLE DC SUBSTATION-VIRTICAL PERMIT' (entered 2026-05-29; not issued)",
+        "capacity": null,
+        "construction_established": false,
+        "operation_established": false
+      }
+    },
+    {
+      "project_stable_key": "curated:borden-county-data-center-gail:data-center-campus",
+      "physical_site_stable_key": "curated:borden-county-data-center-gail",
+      "site_name": "Borden Data Center, 11484 US Highway 180, Gail (Borden County)",
+      "name": "Borden Data Center — proposed commercial data centre with on-site power generation (TCEQ air permit 185712 pending)",
+      "country": "United States",
+      "country_iso_a2": "US",
+      "status": {
+        "value": "announced",
+        "as_of": "2026-10-13",
+        "source_id": "us-west-tx-p5-tceq-cr-borden-data-center",
+        "summary": "TCEQ's Central Registry (Border and Permian Basin file, rows refreshed 26 October 2026) lists regulated entity RN112547013 'Borden Data Center' at 11484 US 180, Gail, Borden County, described as 'power generation for data center' under industry code 518210 (data processing, hosting and related services), with air New Source Review permit 185712 pending for SE DC DevCo LLC; the permit affiliation and entity status are dated 13 October 2026. The same register lists RN112496260 'Project Borden County Data Center' ('construction of a commercial data center', project entrance at GPS 32.769444, -101.543778 near Gail; construction stormwater authorization TXR1549YY active since 25 July 2026 for a contractor) and RN112441258 'Borden County Data Center' at 11481 US Hwy 180 (Kiewit Infrastructure South Co.; stormwater and petroleum-storage-tank registrations of 1 May 2026). This records the named Borden Data Center as announced on 13 October 2026. A pending air permit and stormwater coverage are not consent for the data-centre development and do not establish site work, construction, completion or operation; the developer, end user, building count and capacity are not published."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -101.5469022,
+            32.7695189
+          ]
+        },
+        "source_id": "us-west-tx-p5-txgio-address-11484-us180-borden",
+        "scope": "project_locator",
+        "scope_class": "official_numbered_address_point",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "retain_exact_TxGIO_StratMap_9-1-1_address_point_11484_UNITED_STATES_HIGHWAY_180_Borden_County",
+        "precision": "Official 9-1-1 address point (TxGIO StratMap, source CSEC) for 11484 United States Highway 180, Borden County, the exact address TCEQ records for RN112547013 Borden Data Center. It marks the address at the US 180 frontage of a landholding of about 618 acres; it is not a building, footprint, parcel centroid or construction boundary.",
+        "identity_review": "TCEQ gives RN112547013 Borden Data Center the physical address 11484 US 180, Gail 79738. The statewide address-point layer has exactly one Borden County feature for that number on US 180 (11484 UNITED STATES HIGHWAY 180). The point lies inside Borden Appraisal District property 2680 (AB 1211 BK 32 SEC 24 T5N T&P, 580.77 acres, owner of record JUNO DC LLC, tax year 2026), 6.3 m inside its highway frontage; property 2680 also has a 47-acre polygon south of US 180, on the side where the odd-numbered 11481 US Hwy 180 address of TCEQ entity RN112441258 'Borden County Data Center' would lie. TCEQ entity RN112496260 'Project Borden County Data Center' gives its project entrance at GPS 32.769444, -101.543778, 293 m east of the selected point and 51 m east of the Juno DC parcel. No geocoder, interpolation, map viewport or town centre is used. Ownership of the land is recorded as found; no corporate relationship between Juno DC LLC and SE DC DevCo LLC is asserted.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "TxGIO publishes no positional accuracy for address points; the point represents an address on a landholding of about 618 acres whose building positions are not published."
+      },
+      "context_source_ids": [
+        "us-west-tx-p5-txgio-parcels-borden-gail",
+        "us-west-tx-p5-tabs-borden-registrations-2025-2026",
+        "us-west-tx-p5-tceq-cr-dataset-metadata-permian"
+      ],
+      "roles": [
+        {
+          "party": "Juno DC LLC",
+          "role": "owner",
+          "relationship_scope": "current",
+          "source_id": "us-west-tx-p5-txgio-parcels-borden-gail"
+        }
+      ],
+      "distinctness_review": "Searched sites.csv, projects.csv, evidence.csv, source-records.json and identity-mapping.json of verified_construction_core/2026-10-27-research-ninetyfirst, every pending queue fragment's changes.json and holds.json, claims.tsv and all sources/*-holds.json for Borden, Gail, Juno DC, SE DC DevCo, Kiewit, Roze, RN112547013, RN112496260, RN112441258 and 11484/11481 US 180: no Atlas site, project, evidence row, source record, identity mapping, pending addition, claim or hold names this project (the only '11484' hits are digits inside unrelated coordinates). No existing Atlas record, queued locator or claimed coordinate lies within 2 km (or 50 km); the nearest Atlas records are Cipher Barber Lake (imported locality point, 76.4 km) and Galaxy Helios (118.5 km). It is 56.1 km from this fragment's Midas Compute Big Spring addition. Borden County is distinct from the held SB Energy Scurry County Data Center lead, whose county and site are different.",
+      "successor_review": "The captured Central Registry rows (refreshed 26 October 2026) show air permit 185712 still pending and the two construction-related entities active; no issued permit, cancellation or withdrawal is recorded. TDLR TABS has no Borden County registration from 1 January 2025 to 27 October 2026, so no building registration, inspection or completion is recorded. No operator release naming the project was found (web search was unavailable to this lane). The status is kept at announced as of 13 October 2026.",
+      "scoped_project_details": {
+        "aliases": [
+          "Borden Data Center",
+          "Borden County Data Center",
+          "Project Borden County Data Center"
+        ],
+        "tceq_regulated_entities": {
+          "RN112547013": "Borden Data Center, 11484 US 180, Gail; power generation for data center; air NSR permit 185712 pending (SE DC DevCo LLC), 13 October 2026",
+          "RN112496260": "Project Borden County Data Center; construction of a commercial data center; project entrance GPS 32.769444, -101.543778; stormwater TXR1549YY active since 25 July 2026 (contractor)",
+          "RN112441258": "Borden County Data Center, 11481 US Hwy 180; stormwater TXR1575YC and PST registration 95567, 1 May 2026 (Kiewit Infrastructure South Co.)"
+        },
+        "land": "Borden CAD property 2680 (AB 1211 BK 32 SEC 24 T5N T&P, 580.77 acres; mapped 617.88 geodesic acres in two polygons either side of US 180), owner of record Juno DC LLC, tax year 2026",
+        "power": "On-site power generation for the data centre is the subject of the pending air permit; no MW figure is published",
+        "physical_construction_verified": false,
+        "capacity": null
+      }
+    },
+    {
+      "project_stable_key": "curated:midas-compute-big-spring-howard-county:big-spring-facility",
+      "physical_site_stable_key": "curated:midas-compute-big-spring-howard-county",
+      "site_name": "Midas Compute Big Spring Facility, 1202 N FM 700, Big Spring (Howard County)",
+      "name": "Midas Compute Big Spring Facility — proposed AI computing facility with on-site natural-gas generation (TCEQ air permit 185376 pending)",
+      "country": "United States",
+      "country_iso_a2": "US",
+      "status": {
+        "value": "announced",
+        "as_of": "2026-09-16",
+        "source_id": "us-west-tx-p5-tceq-cr-midas-compute-big-spring",
+        "summary": "TCEQ's Central Registry (Border and Permian Basin file, rows refreshed 26 October 2026) lists regulated entity RN112531009 'Midas Compute - Big Spring Facility' at 1202 N FM 700, Big Spring, Howard County, described as 'computing and data processing with on-site NG gen' under industry code 518210 (data processing, hosting and related services), with air New Source Review permit 185376 pending for NDS Ventures Inc; the permit affiliation and entity status are dated 16 September 2026. Midas Compute's undated website describes a Midas-controlled development site in Howard County with an air-permitting pathway for phased on-site generation and a 20 MW, 120 MW and 1.32 GW campus power development sequence built from liquid-cooled GB300 NVL72 modules (targets). This records the named facility as announced on 16 September 2026. The pending air permit is not development consent; no construction, completion, tenant or operation is established, and the MW figures are planned power stages, not IT load."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -101.4418866,
+            32.2724243
+          ]
+        },
+        "source_id": "us-west-tx-p5-txgio-address-1202-n-fm700-howard",
+        "scope": "project_locator",
+        "scope_class": "official_numbered_address_point",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "retain_exact_TxGIO_StratMap_9-1-1_address_point_1202_NORTH_FM_700_Howard_County",
+        "precision": "Official 9-1-1 address point (TxGIO StratMap, source CSEC) for 1202 North FM 700, Big Spring, the exact address TCEQ records for RN112531009 Midas Compute - Big Spring Facility. It marks the facility address, not the planned compute modules, generation units or a boundary.",
+        "identity_review": "TCEQ gives RN112531009 Midas Compute - Big Spring Facility the physical address 1202 N FM 700, Big Spring 79720. The statewide address-point layer has exactly one Howard County feature matching that address (1202 NORTH FM 700). The point lies inside Howard County property 294025 (PART S/2 OF SC 40 BK 32 1N, 10 legal acres; mapped polygon 52.6 geodesic acres), whose situs is 1202 N FM 700 and whose owner of record is Crownover Commercial Properties Ltd (an improved commercial property built 2015), 131 m from its boundary. Midas Compute's website places its development site in Howard County next to transmission infrastructure. No geocoder, interpolation, map viewport or city centre is used; no relationship between the land owner and Midas Compute or NDS Ventures Inc is asserted.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "TxGIO publishes no positional accuracy for address points; the positions of the planned compute modules and generators on the property are not published."
+      },
+      "context_source_ids": [
+        "us-west-tx-p5-txgio-parcels-howard-1202-n-fm700",
+        "us-west-tx-p5-midascompute-home",
+        "us-west-tx-p5-tabs-howard-registrations-2025-2026",
+        "us-west-tx-p5-tceq-cr-dataset-metadata-permian"
+      ],
+      "roles": [
+        {
+          "party": "Midas Compute",
+          "role": "operator",
+          "relationship_scope": "intended",
+          "source_id": "us-west-tx-p5-midascompute-home"
+        }
+      ],
+      "distinctness_review": "Searched sites.csv, projects.csv, evidence.csv, source-records.json and identity-mapping.json of verified_construction_core/2026-10-27-research-ninetyfirst, every pending queue fragment's changes.json and holds.json, claims.tsv and all sources/*-holds.json for Midas, NDS Ventures, Crownover, Big Spring, RN112531009 and 1202 N FM 700: no Atlas site, project, evidence row, source record, identity mapping, pending addition, claim or hold names this facility. No existing Atlas record, queued locator or claimed coordinate lies within 2 km (or 50 km); the nearest Atlas records are Cipher Barber Lake (imported locality point, 56.2 km) and Texas Critical Data Centers in Ector County (94.8 km). It is 56.1 km from this fragment's Borden Data Center addition.",
+      "successor_review": "The captured Central Registry rows (refreshed 26 October 2026) show air permit 185376 still pending; no issued permit, cancellation or withdrawal is recorded. TDLR TABS lists no Howard County data-centre or computing registration from 1 January 2025 to 27 October 2026. The undated Midas Compute website reports no construction start, tenant or operation. The status is kept at announced as of 16 September 2026.",
+      "scoped_project_details": {
+        "aliases": [
+          "Midas Compute - Big Spring Facility",
+          "Midas Compute Howard County"
+        ],
+        "tceq_regulated_entity": "RN112531009; computing and data processing with on-site NG generation; air NSR permit 185376 pending (NDS Ventures Inc), 16 September 2026",
+        "planned_power_sequence": "20 MW, 120 MW and 1.32 GW campus power development stages (company website; targets)",
+        "module_design": "4 Scalable Units of 32 GB300 NVL72 racks per module; 4.8 MW reference IT demand per module (design reference, not built capacity)",
+        "physical_construction_verified": false,
+        "capacity": null
+      }
+    },
+    {
+      "project_stable_key": "curated:iren-sweetwater-2-fisher-county-campus:sweetwater-2-data-center",
+      "physical_site_stable_key": "curated:iren-sweetwater-2-fisher-county-campus",
+      "site_name": "IREN Sweetwater 2 campus, FM 540, Fisher County (near Hamlin)",
+      "name": "IREN Sweetwater 2 — planned 600 MW data-centre campus on about 500 acres",
+      "country": "United States",
+      "country_iso_a2": "US",
+      "status": {
+        "value": "announced",
+        "as_of": "2026-09-18",
+        "source_id": "us-west-tx-p5-tceq-cr-iren-sweetwater",
+        "summary": "TCEQ's Central Registry (North Texas file, rows refreshed 26 October 2026) lists regulated entity RN112532585 'CEMCO-348 CBP Sweetwater 2 Data Center', a concrete batch plant reached from Rotan 14.1 miles east on TX-92 and 0.9 mile north on FM 540 on the west side of the road, with air permit registration 185401L001 pending for Van Eaton Ready Mix Inc, dated 18 September 2026; it also lists RN112486196 'IREN Sweetwater 2 Data Center Project Substation Rough Grad[ing]' at 1730 FM 540, Hamlin, for IE US Development Holdings 7 Inc (construction stormwater authorization active since 9 July 2026). IREN's undated Sweetwater page describes Sweetwater 2 as the 600 MW, 500-acre second site of its 2 GW Sweetwater hub, with substation energization targeted for 2027. This records IREN's Sweetwater 2 data-centre project as announced on 18 September 2026, the date of the government record naming 'Sweetwater 2 Data Center'. A batch-plant registration and substation-grading stormwater coverage are not consent for the data-centre development and do not establish building construction; IREN's undated 'under construction' label is not used, and the 600 MW is planned power capacity, not IT load. Sweetwater 1 is a separate site and is not included."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -100.2213007,
+            32.9320234
+          ]
+        },
+        "source_id": "us-west-tx-p5-txgio-parcels-iren-sweetwater-2",
+        "scope": "campus_locator",
+        "scope_class": "official_tax_parcel_union_centroid",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "official_statewide_parcel_service_parcel_union_centroid_epsg3083",
+        "precision": "Centroid of the union of the three contiguous Fisher County parcels owned by IE US Development Holdings 7 Inc in the TxGIO StratMap parcel service (Fisher Appraisal District, tax year 2026): 3891 (213.23 acres), 3896 (254.53 acres, situs FM 540) and 33181 (76.77 acres). The union is one polygon of 548.38 geodesic acres, about 1.62 km east-west by 1.61 km north-south; the centroid lies inside it, 430 m from the boundary. It locates the Sweetwater 2 landholding (campus), not a building, the substation, a footprint or a construction extent.",
+        "identity_review": "TCEQ names IE US Development Holdings 7 Inc as the principal of RN112486196 'IREN Sweetwater 2 Data Center Project Substation Rough Grad[ing]' at 1730 FM 540, Hamlin; the Sweetwater 2 Data Center batch plant is registered on the west side of FM 540, 0.9 mile north of TX-92, which identifies the project but is not shown to lie on these parcels (TX-92 situs parcels in the same capture lie near 32.88 N, about 4.5 km south of the landholding), so it is not used to locate the campus. The only parcels owned by IE US Development Holdings 7 Inc in a 20-tile sweep from -100.35 to -100.10 and 32.78 to 32.98 are the three contiguous Section 204 parcels selected here; parcel 3896 has situs FM 540, and the FM 540 situs parcels around it (3896 and the 1784 FM 540 Electric Transmission of Texas parcel 22200, which adjoins the union at its south-east corner without overlapping it, parcel 2422 to the east, and parcels 4471 and 4382 to the south) share an east-west boundary at about 32.924 N, so FM 540 appears to run along the landholding's southern edge (verifier inference from parcel adjacency, not from road data). Their 544.53 legal acres match the 500 acres IREN gives for Sweetwater 2 (Sweetwater 1 is 1,700 acres; the TCEQ entities of IREN's Sweetwater 1 site, held by IE US Development Holdings 5 Inc, are on FM 611 in southern Fisher County, the nearest (860 FM 611 S) about 45 km to the south-west). No geocoder, map viewport or town centre is used.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "Appraisal-district parcels carry no published positional accuracy; the centroid represents a 548-acre landholding whose vertices lie up to 1.15 km away, and the positions of the planned buildings and substation are not published."
+      },
+      "context_source_ids": [
+        "us-west-tx-p5-iren-sweetwater-page",
+        "us-west-tx-p5-iren-investors-news",
+        "us-west-tx-p5-tabs-fisher-registrations-2025-2026",
+        "us-west-tx-p5-tceq-cr-dataset-metadata-north"
+      ],
+      "roles": [
+        {
+          "party": "IE US Development Holdings 7 Inc",
+          "role": "owner",
+          "relationship_scope": "current",
+          "source_id": "us-west-tx-p5-txgio-parcels-iren-sweetwater-2"
+        },
+        {
+          "party": "IREN",
+          "role": "owner",
+          "relationship_scope": "current",
+          "source_id": "us-west-tx-p5-iren-sweetwater-page"
+        }
+      ],
+      "distinctness_review": "Searched sites.csv, projects.csv, evidence.csv, source-records.json and identity-mapping.json of verified_construction_core/2026-10-27-research-ninetyfirst, every pending queue fragment's changes.json and holds.json, claims.tsv and all sources/*-holds.json for Sweetwater, Sweetwater 2, IREN, IE US Development Holdings, Hamlin, Rotan, FM 540, Van Eaton and the RN numbers. The base holds no Sweetwater site or project; its only Sweetwater material is the snapshot-only source record 'iren-sweetwater' (IREN Sweetwater hub, located only at the town of Sweetwater) and an identity-mapping note that the two-site hub must not be represented by one town point, plus evidence rows that mention the hub in IREN filings for other sites. Earlier holds (sources/research-countries-2026-10-16-thirtyfirst, -2026-10-22-fortysecond and -2026-10-26-sixtyseventh holds; us-south-central-p1 and q3-us-neocloud-miners-p3 queue holds) concern Sweetwater 1 or the hub and asked for a Sweetwater 1 construction record; this addition covers only Sweetwater 2 with its own parcel locator and in-window government record. No existing Atlas record, queued locator or claimed coordinate lies within 2 km (or 50 km); the nearest Atlas records are Lancium Clean Campus Abilene (62.9 km) and Google Journey in Haskell County (65.8 km).",
+      "successor_review": "The captured Central Registry rows (refreshed 26 October 2026) show the batch-plant registration still pending and the substation-grading stormwater coverage active. IREN's investor news index (to 22 October 2026) has no Sweetwater item after the 8 September ERCOT Batch Zero headline; its Q1 FY27 results are due on 5 November 2026. TDLR TABS lists no Fisher County IREN or data-centre registration from 1 January 2025 to 27 October 2026. No completion, energization or operation of Sweetwater 2 was found. The status is kept at announced as of 18 September 2026.",
+      "scoped_project_details": {
+        "aliases": [
+          "Sweetwater 2",
+          "IREN Sweetwater 2",
+          "Sweetwater 2 Data Center"
+        ],
+        "hub": "Second site of IREN's 2 GW Sweetwater hub (Sweetwater 1: 1,400 MW, 1,700 acres; Sweetwater 2: 600 MW, 500 acres; IREN page)",
+        "planned_power_capacity_mw": 600,
+        "planned_substation_energization": "2027 (IREN page; target)",
+        "tceq_regulated_entities": {
+          "RN112532585": "CEMCO-348 CBP Sweetwater 2 Data Center; air registration 185401L001 pending (Van Eaton Ready Mix Inc), 18 September 2026",
+          "RN112486196": "IREN Sweetwater 2 Data Center Project Substation Rough Grading, 1730 FM 540 Hamlin; stormwater TXR1547YU active since 9 July 2026 (IE US Development Holdings 7 Inc)"
+        },
+        "land": "Fisher CAD parcels 3891, 3896 and 33181 (544.53 legal acres; 548.38 geodesic acres), owner of record IE US Development Holdings 7 Inc, tax year 2026",
+        "physical_construction_verified": false,
+        "capacity": null
+      }
+    }
+  ],
+  "status_updates": [
+    {
+      "project_stable_key": "curated:ctrls-bengaluru-electronic-city-datacenter:existing-operations",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-10-26",
+        "source_id": "india-south-asia-p4-ctrls-colocation-page",
+        "summary": "CtrlS's colocation page, in its version of 26 October 2026, invites customers to 'Secure your data and applications across our ever-expanding footprint of Rated 4 facilities' and, under 'OUR DATA CENTER FOOTPRINT', lists 'Bangalore DC 1' (1,848 racks, B1+G+7+Terrace structure, 12 MW power capacity, nine-zone security) among the facilities customers colocate in, without the 'upcoming' label the page gives to facilities under development; its 'Know More' button for that entry leads to the operator's Bengaluru Data Center page. This is a newer operator observation that the Electronic City datacenter is operating, recorded on 26 October 2026, the modification day of the captured version, not an inspection or opening date. The operating status is unchanged; capacity in service and occupancy are not established, and the rack and MW figures (2,000 racks and 13 MW on the Bengaluru page) are stated design figures."
+      },
+      "identity_review": "Same facility as the existing record: the colocation page's single Bengaluru entry, 'Bangalore DC 1' (B1+G+7+Terrace), links through its 'Know More' button (/bengaluru-dc/, which redirects) to https://www.ctrls.com/datacenter-bangalore/, the page whose 12 August 2026 version established the existing record and which, re-captured on 27 October 2026, still carries that version and the same map link (https://maps.app.goo.gl/BHKXeedvjm2T2va66) to the record's locator place 'Ctrls Datacenters Bangalore DC'. CtrlS names no other Bengaluru facility (its about-us timeline records '2018 Launched data center in Bangalore'). The refresh keeps the record's single-building scope and does not change its locator; the slightly different rack and MW figures on the two operator pages are not used.",
+      "successor_review": "Strictly newer than the existing 12 August 2026 observation. The colocation page's 26 October 2026 modification is bounded below by the Internet Archive copy of 3 August 2026 (preceding version, dateModified 2026-03-13, with the same Bangalore DC 1 entry) and above by the live capture of 27 October 2026; the Bangalore DC 1 entry was already present in the March version. CtrlS's post sitemap captured on 27 October 2026 lists nothing after 26 October except the 26 October blog, which says CtrlS operates 19 datacenters across 9 Indian markets and reports no pause, closure or redevelopment in Bengaluru. 26 October 2026 stays inside the 90-day window until 24 January 2027."
+    }
+  ],
+  "context_updates": []
+}

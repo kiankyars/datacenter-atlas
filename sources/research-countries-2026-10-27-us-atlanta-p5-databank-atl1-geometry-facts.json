@@ -1,0 +1,134 @@
+{
+  "format": "datacenter-atlas-geometry-facts-v1",
+  "fragment": "us-atlanta-p5",
+  "prepared_on": "2026-10-27",
+  "candidate_id": "databank-atl1-760-west-peachtree",
+  "facility": "DataBank ATL1 Midtown Atlanta data center, 760 West Peachtree Street NW (Coda building), Atlanta, Fulton County, Georgia",
+  "decision": "Selected the City of Atlanta address point '760 WEST PEACHTREE STREET NW' (status Current, parcel 14 008000070031), the address DataBank gives for ATL1, as the project locator.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -84.38775882,
+      33.775481513
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_numbered_address_point",
+  "use_scope": "project_locator",
+  "derivation": "direct_geometry",
+  "source_file": "local_data/country-research-us-atlanta-p5/atl-addresspoint-760-w-peachtree-native.json",
+  "source_sha256": "d5b2909a465862664fb7904761b19d0d5707dee10c63ad6d25a28b0a672d4102",
+  "source_url": "https://gis.atlantaga.gov/dpcd/rest/services/AdministrativeArea/AddressPoint/MapServer/0/query?where=ADDRNUM%3D%27760%27+AND+ADDR_SN+LIKE+%27%25PEACHTREE%25%27&outFields=FULLADDR,STATUS,PARCELID,ADDRCLASS,LAT,LON&returnGeometry=true&f=json",
+  "retrieved_at": "2026-10-27T01:15:16.167Z",
+  "native_coordinates": {
+    "crs": "EPSG:6447 (NAD83(2011) / Georgia West, ftUS; service wkid 103028)",
+    "x": 2229401.3675641753,
+    "y": 1373437.1238326058
+  },
+  "selected_address": {
+    "FULLADDR": "760 WEST PEACHTREE STREET NW",
+    "STATUS": "Current",
+    "PARCELID": "14 008000070031",
+    "ADDRCLASS": 1,
+    "LAT": 33.77548151,
+    "LON": -84.38775882
+  },
+  "computed": {
+    "pyproj_lon_lat": [
+      -84.38775882,
+      33.775481513
+    ],
+    "served_lat_lon_attributes": [
+      33.77548151,
+      -84.38775882
+    ],
+    "note": "The pyproj transform of the native point (EPSG:6447 to EPSG:4326, always_xy) equals the layer's own LAT/LON attributes to the published 8 decimal places.",
+    "parcel_check": {
+      "parcel_file": "local_data/country-research-us-atlanta-p5/atl-parcel-14-008000070031.json",
+      "parcel_sha256": "9cfbc8f95ba995d58667b13413e57a0702c64bc0a48bb36146aa009b799d70a2",
+      "parcel_url": "https://gis.atlantaga.gov/dpcd/rest/services/AdministrativeArea/TaxParcel/MapServer/0/query?where=PARCELID%3D%2714+008000070031%27&outFields=PARCELID,LOWPARCELID,SITEADDRESS,SITECITY,SITEZIP,CLASSDSCRP,OWNERNME1,TAXYEAR,ZONING1,NEIGHBORHOOD,LASTUPDATE,SHAPE.AREA&returnGeometry=true&outSR=6447&f=json",
+      "parcel_attributes": {
+        "PARCELID": "14 008000070031",
+        "SITEADDRESS": "756 WEST PEACHTREE ST",
+        "SITEZIP": "30308",
+        "NEIGHBORHOOD": "Midtown",
+        "TAXYEAR": 2025,
+        "OWNERNME1": "ATLANTA DEVELOPMENT AUTHORITY THE",
+        "SHAPE.AREA": 89266.7521348593
+      },
+      "outer_rings": 1,
+      "interior_rings_subtracted": 2,
+      "planar_area_acres": 2.0493,
+      "geodesic_area_acres": 2.0497,
+      "bbox_metres": [
+        118.0,
+        75.2
+      ],
+      "selected_point_inside_parcel": true,
+      "parcel_centroid_lon_lat": [
+        -84.3880803,
+        33.7755054
+      ],
+      "selected_point_to_parcel_centroid_metres": 29.89
+    },
+    "tools": "pyproj 3.7.1, shapely 2.1.1",
+    "other_address_points_on_parcel": {
+      "file": "local_data/country-research-us-atlanta-p5/atl-addresspoints-parcel-14-008000070031.json",
+      "sha256": "31f95c0d292ba106e274ea651b02f3caeb607b985f4d8bb5a83c3961227d9a35",
+      "points": [
+        {
+          "address": "766 WEST PEACHTREE STREET NW",
+          "status": "Current",
+          "inside_parcel": true,
+          "distance_to_selected_metres": 11.4
+        },
+        {
+          "address": "756 WEST PEACHTREE STREET NW",
+          "status": "Current",
+          "inside_parcel": true,
+          "distance_to_selected_metres": 27.5
+        },
+        {
+          "address": "774 WEST PEACHTREE STREET NW",
+          "status": "Current",
+          "inside_parcel": true,
+          "distance_to_selected_metres": 29.3
+        },
+        {
+          "address": "762 WEST PEACHTREE STREET NW",
+          "status": "Current",
+          "inside_parcel": true,
+          "distance_to_selected_metres": 34.6
+        },
+        {
+          "address": "756 WEST PEACHTREE STREET NW FL 4",
+          "status": "Current",
+          "inside_parcel": true,
+          "distance_to_selected_metres": 27.5
+        },
+        {
+          "address": "760 WEST PEACHTREE STREET NW",
+          "status": "Current",
+          "inside_parcel": true,
+          "distance_to_selected_metres": 0.0
+        }
+      ]
+    },
+    "distances_km": {
+      "Digital Realty ATL13 (Atlas, 56 Marietta St NW)": 2.252,
+      "DataBank ATL2/ATL3 (Atlas, White St SW)": 5.791,
+      "Digital Realty ATL14 candidate (this fragment, 250 Williams St NW)": 1.572
+    }
+  },
+  "identity_bridge": [
+    "DataBank's ATL1 page gives 'Midtown Atlanta Data Center (ATL1) 760 W Peachtree St NW - Atlanta, GA 30308' and says ATL1 is part of the CODA development in Georgia Tech's Technology Square.",
+    "DataBank's Atlanta market page lists '(ATL1) Midtown Atlanta Data Center, 760 W Peachtree St NW - Atlanta, GA 30308'.",
+    "The City of Atlanta address layer returns exactly one point for 760 West Peachtree Street NW (Current), on parcel 14 008000070031 (site address 756 WEST PEACHTREE ST, Midtown); the parcel carries six current address points (756, 756 floor 4, 760, 762, 766 and 774 West Peachtree Street NW), all inside it."
+  ],
+  "nearby_records": "Within 2 km: no Atlas site, project or pending queue record; this fragment's Digital Realty ATL14 candidate (250 Williams Street NW) is 1.57 km south-south-west. The Atlas site Digital Realty ATL13 is 2.25 km south-south-west. Checked against verified_construction_core/2026-10-27-research-ninetieth and again against -ninetyfirst, all queue fragments, claims and sources/*-holds.json.",
+  "consistency_checks": {
+    "geocoder_used": false,
+    "map_viewport_used": false,
+    "city_centre_used": false
+  }
+}

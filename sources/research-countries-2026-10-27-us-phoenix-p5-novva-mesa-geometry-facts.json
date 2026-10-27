@@ -1,0 +1,73 @@
+{
+  "candidate_id": "novva-mesa-ellsworth-warner-campus",
+  "decision": "Selected the centroid of Maricopa County Assessor parcel 304-31-141 (owner of record NOVVA PHOENIX LLC, West Jordan, UT; 158.1 acres; jurisdiction Mesa), the parcel that the county air-quality register names for the Novva Phoenix data-centre facility and that matches Novva’s announced 160-acre site at the northwest corner of Ellsworth and Warner roads, as the campus locator.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -111.639471,
+      33.3397412
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_tax_parcel_centroid",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-us-phoenix-p5/maricopa-parcel-30431141-20261027.json",
+  "source_sha256": "a189ea3e2f0d856c0069544c1ecec02769d2b6878ef89a0aee795d77860dcead",
+  "source_url": "https://gis.mcassessor.maricopa.gov/arcgis/rest/services/Parcels/MapServer/0/query?where=APN+%3D+%2730431141%27&outFields=APN,APN_DASH,OWNER_NAME,MAIL_CITY,MAIL_STATE,PHYSICAL_ADDRESS,SUBNAME,LAND_SIZE,DEED_NUMBER,DEED_DATE,PUC,JURISDICTION,STR&returnGeometry=true&outSR=4326&f=json",
+  "retrieved_at": "2026-10-27T01:40:13.700Z",
+  "selected_properties": {
+    "APN": "30431141",
+    "APN_DASH": "304-31-141",
+    "OWNER_NAME": "NOVVA PHOENIX LLC",
+    "MAIL_CITY_STATE": "WEST JORDAN, UT",
+    "PHYSICAL_ADDRESS": "(none recorded)",
+    "LAND_SIZE_sq_ft": 6888141,
+    "LAND_SIZE_acres_computed": 158.13,
+    "DEED_NUMBER": "20240219320",
+    "DEED_DATE": "2024-04-26",
+    "PUC": "0032",
+    "JURISDICTION": "MESA",
+    "STR": "16 1S 7E",
+    "spatial_reference": "outSR=4326 (WGS84) as returned by the assessor’s ArcGIS MapServer"
+  },
+  "computed": {
+    "parts": 1,
+    "ring_count": 1,
+    "geodesic_acres": 157.944,
+    "geodesic_area_m2": 639178,
+    "centroid_lon_lat": [
+      -111.639471,
+      33.3397412
+    ],
+    "centroid_inside_polygon": true,
+    "min_distance_centroid_to_boundary_m": 338.1,
+    "extent_m": [
+      786,
+      1089
+    ],
+    "bounds_lon_lat": [
+      -111.644252,
+      33.335792,
+      -111.635793,
+      33.345611
+    ],
+    "register_points": {
+      "MCAQD_F055022_Novva_Phoenix": {
+        "lon_lat": [
+          -111.63947,
+          33.339741
+        ],
+        "inside_polygon": true,
+        "to_centroid_m": 0.1
+      }
+    },
+    "method": "Single-ring polygon returned by the assessor service in WGS84; centroid computed in EPSG:32612 (WGS 84 / UTM zone 12N) and returned to WGS84; geodesic area on the WGS84 ellipsoid",
+    "tools": "pyproj 3.7.1, shapely 2.1.1"
+  },
+  "identity_bridge": [
+    "Maricopa County Air Quality Department facility register: F055022 'Novva Phoenix', NW Corner Ellsworth Rd & Warner Rd, Mesa, parcel 304-31-141, 'Data Centers (>100 MW)', permit P0013466, operating status 'Not Yet Installed'; its point lies 0.1 m from the computed parcel centroid.",
+    "Novva's 21 August 2024 announcement: a 300 MW campus on 160 acres 'at the northwest alignment of Ellsworth and Warner roads in southeast Mesa', acquired at a state land auction in August 2023. The parcel is 158.1 acres, owned by NOVVA PHOENIX LLC with a West Jordan, Utah mailing address (the city of Novva's flagship Utah campus), and the county register places the Novva Phoenix facility on it at the NW corner of Ellsworth Rd and Warner Rd.",
+    "Novva's Mesa page (version of 2 July 2026, archived 14 July 2026) placed the campus 'along Ellsworth Road'; the version of 31 August 2026 repeats the 160-acre, 300 MW, two-phase description."
+  ],
+  "precision_note": "The point is the centroid of the 158-acre campus parcel; no building, data hall or phase position is published, and no construction has been recorded on the parcel."
+}

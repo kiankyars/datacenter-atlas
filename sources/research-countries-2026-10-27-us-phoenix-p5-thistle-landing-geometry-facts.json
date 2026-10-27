@@ -1,0 +1,87 @@
+{
+  "candidate_id": "thistle-landing-data-center-phoenix",
+  "decision": "Selected the centroid of Maricopa County Assessor parcel 301-84-899 (situs 4801 E Thistle Landing Dr, Phoenix; subdivision 'THISTLE LANDING DATA CENTER'; 38.3 acres), the parcel that contains the City of Phoenix permit point for the Thistle Landing Data Center permits and the county air-quality register point for the 'MD-PHX1' data-centre facility, as the campus locator.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -111.9781237,
+      33.3107821
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_tax_parcel_centroid",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-us-phoenix-p5/maricopa-parcel-30184899-20261027.json",
+  "source_sha256": "a2e4ab5e8b88d53fdd9c33bc9f1c6b80f4c0cea5e83da0327a07a16bc675425e",
+  "source_url": "https://gis.mcassessor.maricopa.gov/arcgis/rest/services/Parcels/MapServer/0/query?where=APN+%3D+%2730184899%27&outFields=APN,APN_DASH,OWNER_NAME,MAIL_CITY,MAIL_STATE,PHYSICAL_ADDRESS,SUBNAME,LAND_SIZE,DEED_NUMBER,DEED_DATE,PUC,JURISDICTION,STR&returnGeometry=true&outSR=4326&f=json",
+  "retrieved_at": "2026-10-27T01:40:11.521Z",
+  "selected_properties": {
+    "APN": "30184899",
+    "APN_DASH": "301-84-899",
+    "OWNER_NAME": "PENDING",
+    "MAIL_CITY_STATE": "PENDING",
+    "PHYSICAL_ADDRESS": "4801 E THISTLE LANDING DR PHOENIX 85044",
+    "SUBNAME": "THISTLE LANDING DATA CENTER",
+    "LAND_SIZE_sq_ft": 1667670,
+    "LAND_SIZE_acres_computed": 38.284,
+    "JURISDICTION": "PHOENIX",
+    "STR": "29 1S 4E",
+    "spatial_reference": "outSR=4326 (WGS84) as returned by the assessor’s ArcGIS MapServer"
+  },
+  "computed": {
+    "parts": 1,
+    "ring_count": 1,
+    "geodesic_acres": 38.288,
+    "geodesic_area_m2": 154946,
+    "centroid_lon_lat": [
+      -111.9781237,
+      33.3107821
+    ],
+    "centroid_inside_polygon": true,
+    "min_distance_centroid_to_boundary_m": 183.4,
+    "extent_m": [
+      379,
+      471
+    ],
+    "bounds_lon_lat": [
+      -111.980218,
+      33.308911,
+      -111.976142,
+      33.313179
+    ],
+    "register_points": {
+      "Phoenix_permit_point_4801_E_Thistle_Landing_Dr": {
+        "lon_lat": [
+          -111.978172,
+          33.311976
+        ],
+        "inside_polygon": true,
+        "to_centroid_m": 132.5
+      },
+      "MCAQD_F057422_MD-PHX1": {
+        "lon_lat": [
+          -111.97824,
+          33.31072
+        ],
+        "inside_polygon": true,
+        "to_centroid_m": 12.8
+      },
+      "MCAQD_F054873_ME-PHX_DC_Buildings_1-5_dust_registration": {
+        "lon_lat": [
+          -111.97872,
+          33.31249
+        ],
+        "inside_polygon": false,
+        "to_centroid_m": 197.3
+      }
+    },
+    "method": "Single-ring polygon returned by the assessor service in WGS84; centroid computed in EPSG:32612 (WGS 84 / UTM zone 12N) and returned to WGS84; geodesic area on the WGS84 ellipsoid",
+    "tools": "pyproj 3.7.1, shapely 2.1.1"
+  },
+  "identity_bridge": [
+    "City of Phoenix permits at 4801 E Thistle Landing Dr (project 23-1632) are titled 'E THISTLE LANDING DATA CENTER G&D', 'THISTLE DC APS FOUNDATION-UTILITY ONLY', 'T. LANDING BLDG. 1 & 2 FOUNDATION PERMIT', 'THISTLE DC SUBSTATION-VIRTICAL PERMIT', 'ME-PHX DC THISTLE L.-BUILDING 5 PERMIT', 'THISTLE TECH DC CORE/SHELL BLD 1&2', 'THISTLE TECHNOLOGY CENTER WATER MAIN' and 'FL/COMBO THISTLE LANDING DATA CENTER'; every row carries the city point (-111.978172, 33.311976), which lies inside parcel 301-84-899.",
+    "The assessor names the parcel's subdivision 'THISTLE LANDING DATA CENTER' and gives the situs 4801 E THISTLE LANDING DR PHOENIX 85044, the permit address; the owner field reads 'PENDING'.",
+    "The county air-quality register lists F057422 'MD-PHX1' at 4801 E Thistle Landing Dr, parcel 301-84-899, in its 'Data Centers (>100 MW)' category ('Not Yet Installed'), and a dust-control registration 'ME-PHX DC Buildings 1-5' in the same section (29 T1S R4E)."
+  ],
+  "precision_note": "The point is the centroid of the 38-acre data-centre parcel; the positions of Buildings 1, 2 and 5 within it are not published."
+}

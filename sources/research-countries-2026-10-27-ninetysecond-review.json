@@ -1,0 +1,134 @@
+{
+  "reviewer": "root",
+  "reviewed_at": "2026-10-27",
+  "decision": "accepted_for_integration",
+  "update": "verified_construction_core/2026-10-27-research-ninetysecond",
+  "base_dataset": "verified_construction_core/2026-10-27-research-ninetyfirst",
+  "process": "continuous: one researcher per beat, one adversarial verifier per fragment",
+  "fragments": [
+    {
+      "fragment": "india-south-asia-p4",
+      "verdict": "accept",
+      "checks": [
+        "current_dataset re-read at claim and at verdict: verified_construction_core/2026-10-27-research-ninetyfirst (792 sites, 851 projects)",
+        "all 8 relied-on captures rehashed: sha256 equals sources.json content_hash and .metadata.json sha256; URL, effective URL, HTTP 200, bytes and retrieved_at = captured_at match; both geometry-facts files match geometry_facts_sha256; the 27 Oct blog re-capture is byte-identical to the india-p3 capture cited",
+        "supporting captures rehashed against metadata: page/post sitemaps, CDX listing, IA Mumbai 29 Aug and Noida 1 Oct copies, Know More redirects (/mumbai-dc/, /noida-dc/ -> identical bytes to location pages; /bengaluru-dc/ -> datacenter-bangalore, version 2026-08-12, map link BHKXeedvjm2T2va66)",
+        "status statement read in the raw colocation capture: 'Colocate with Confidence', '15 data centers with 275 MW capacity' vs 'Expanding to 33'; OUR DATA CENTER FOOTPRINT lists Mumbai DC1 & DC2, DC 3, DC 4, DC 5, Noida DC 1 (B1+G+7+Terrace, 8 MW) and Bangalore DC 1 without label, separately 'UPCOMING Mumbai DC6, DC7, DC8 & DC9' and 'Upcoming Hyderabad Chandan Valley Campus'; non-upcoming entries count to 15",
+        "dateModified bounded: live JSON-LD dateModified 2026-10-26T12:11:54+05:30 = page-sitemap lastmod 2026-10-26T06:41:54Z; IA id_ copy of 3 Aug 2026 (newest in CDX) carries dateModified 2026-03-13; text diff shows a real body edit (Hyderabad DC 1 4 MW -> 6 MW) plus menu changes",
+        "source kind company_disclosure (operator's own page); as_of 2026-10-26 = published_at, 1 day old, inside the 85-day window; launch years and opening history not used as observations",
+        "locators recomputed from raw Google captures: Mumbai place 'CtrlS Datacenters Limited' 0x3be7c0e5dcc504f7:0x7ea3d9e3bd21bb9d payload [null,null,19.1082134,73.023588] = !3d/!4d; Noida place 'CtrlS Datacenters Ltd.' 0x390ce66dbcb9a54d:0x24d02216a2e66e49 payload [null,null,28.5313027,77.3509363]; each reached from the 'Map Location' link of the operator location page (live and IA copies identical link)",
+        "Esri zoom imagery viewed: Mumbai point (image centre) on a tall building with dense rooftop plant, construction site to NE; Noida point in walled compound yard between a plant-roofed low building and a tall building; not a city centre, HQ (Kurla/Madhapur offices excluded) or zone centroid",
+        "round-43 PARIVESH captures for CtrlS Mahape EL-201/202/229 and ES2-ES4 re-read: no coordinates, so no official point to cross-check against",
+        "distinctness (pyproj 3.7.1 WGS84 geodesic, uv isolated): Mumbai nearest STT Navi Mumbai 578 m (other operator, Gen-51), Sify Rabale 4.28 km; Noida nearest AdaniConneX/Sify Noida locality point 5.25 km; no CtrlS Mumbai/Mahape/Noida/Sector 127 match in sites, projects, evidence, source-records or identity-mapping; no pending queue fragment or other-lane claims.tsv row names them; seventysixth hold reopen condition met",
+        "one project per new site; DC6-DC9 held for a later update reusing the campus locator",
+        "Bengaluru refresh 2026-08-12 -> 2026-10-26 strictly newer; same single building via Know More redirect and same map link; locator and scope unchanged",
+        "roles: CtrlS Datacenters Ltd operator, current, from its own colocation offer",
+        "robots: ctrls.com allows; www.google.com allows /maps/place/ (maps.app.goo.gl robots 400); arcgisonline allows; web.archive.org 404; no login, CAPTCHA or search requests",
+        "no third-party personal data in changes, sources, holds or notes (page testimonials not copied)",
+        "dryrun_fragment.py ok on -ninetyfirst: 794 sites, 853 projects, 4,438 evidence rows; no edits needed"
+      ],
+      "residual_risks": [
+        "Status rests on a footprint listing rather than an explicit 'operates' sentence; the Mumbai, Noida and Bengaluru rows are unchanged since at least March 2026 and only the page's 26 Oct edit dates the observation",
+        "The page summary (15 DCs, 275 MW) is stale against the same-day blog (19 DCs, 370 MW), so the table may lag reality",
+        "Locators are operator-linked Google places without category, address or accuracy; the Mumbai point marks one building of a multi-building campus and the Noida point lies on a yard between two buildings; Sector 127 not checked on an official map",
+        "Imagery dates unknown; buildings not individually identified as DC1-DC5",
+        "Lane disclosed one AIA certificate fetch before robots and an edit to another fragment's compliance.log (removing lines its own mistaken helper run appended); neither touches the relied-on evidence"
+      ]
+    },
+    {
+      "fragment": "us-atlanta-p5",
+      "verdict": "accept",
+      "checks": [
+        "All 11 sources rehashed: capture bytes, .metadata.json sha256 and source content_hash agree; URLs match metadata",
+        "Market page capture reused from us-ga-sc-nc-p3 is byte-identical to this fragment's own capture",
+        "ATL14: read DLR blog capture; field_publish_date and visible date 14 October 2026; present-tense ATL14 at 250 Williams Street statement found; company_disclosure; 14 days old, inside 85-day window",
+        "ATL1: read live and IA captures; dateModified 2026-09-26 live vs 2026-05-14 in IA copy of 13 June 2026, so dateModified is real and bounded; CDX lists no copy between; visible-text diff shows only title and form text changed; operating statements present in both",
+        "ATL1 observation 26 Sep 2026 is 31 days old; same publication-normalised pattern as published DataBank ATL3 (2026-09-28)",
+        "Locators recomputed with pyproj 3.7.1 EPSG:6447->4326 from raw native x/y: both match claimed coordinates (0.0 m) and served LAT/LON (<0.001 m)",
+        "Shapely 2.1.1: 250 Williams point inside parcel 14 007800030849 (3.53 ac, 0.33 m from centroid); 760 W Peachtree point inside parcel 14 008000070031 (2.05 ac, two holes, 29.9 m from centroid)",
+        "Geometry facts files sha256 match sources.json geometry_facts_sha256",
+        "Distinctness: no ATL14/250 Williams/760 West Peachtree/Coda/Technology Square matches in sites, projects, evidence, source-records or identity-mapping of ninetyfirst; nearest site ATL13 0.69 km (separate building and parcel) and 2.26 km",
+        "Queue and sources/*-holds.json screened: only matches are q3-us-reits-p3 (ATL13, hold for ATL14) and us-ga-sc-nc-p3 hold for ATL1; both reopen conditions met (address point and parcel captured; IA bound and parcel)",
+        "Roles: operator, current, from status sources; scope commercial colocation; Georgia Tech HPC is a hosted tenant use, not a standalone institutional record",
+        "No third-party personal data in sources, summaries, URLs or holds; owner names are organisations",
+        "Dry run ok against verified_construction_core/2026-10-27-research-ninetyfirst: 794 sites, 853 projects"
+      ],
+      "residual_risks": [
+        "DLR blog sitemap lastmod 15 October 2026 and no archived copy: if the ATL14 sentence was added on the 15 October edit, the true observation is one day later than as_of (still in window); same basis as the published ATL13 record",
+        "ATL1 26 September observation rests on a CMS edit that changed only title and form text (possibly a sitewide template change); facility statements are unchanged since at least May 2026",
+        "Digital Realty markets ATL13 and ATL14 as one connected campus; kept as separate sites because they are separate buildings and parcels 0.69 km apart",
+        "Both locators are building address points on multi-tenant or mixed-use parcels; no published positional accuracy"
+      ]
+    },
+    {
+      "fragment": "us-phoenix-p5",
+      "verdict": "accept",
+      "checks": [
+        "Base re-read from site/config.json: verified_construction_core/2026-10-27-research-ninetyfirst; window start 2026-08-03 (85 days before 2026-10-27)",
+        "All 17 sources rehashed: raw capture SHA-256 equals both .metadata.json sha256 and content_hash; metadata URLs equal source_url; 2 reused captures (c74e6010 Mesa campus permits, f7d8afe2 Novva page sitemap) byte-identical to existing evidence and builder metadata check passes",
+        "PHX11 status: read 27 inspection rows myself; PMT25-17623 Above Ceiling Partial Approval inspection 20101565 completed 2026-09-23 (34 days old), mechanical rough-in partials 17/26 Aug and 9 Sep, PMT24-11896 and PMT25-09255 C of O Corrections 2026-09-08; no cofo_date on any of the three permits; rowsUpdatedAt 1792804433 = 2026-10-24T01:13:53Z bounds published_at",
+        "PHX11 scope: permit descriptions read (412,065 sq ft shell, Data Hall 1-2 180,108 sq ft, Data Hall 3-4 178,702 sq ft in the PMT24-11896 shell); separate building from PHX12 (PMT25-22027 at 3319 S Hawes); meets the us-phoenix-p4 / seventy-eighth hold reopen condition",
+        "PHX11 locator: reuse of project 13f6f555 campus point exactly (geometry evidence 36ad5920, no identity evidence); recomputed parcel 304-03-011X with pyproj 3.7.1/shapely 2.1.1: centroid -111.6487547, 33.3560344, 93.13 ac; PHX11 permit geocode inside, 413 m from centroid; site name matches the existing site",
+        "Novva status: live page dateModified/article:modified_time 2026-08-31T20:25:01Z read in capture; IA copy 20260714065039 has dateModified 2026-07-02 and differs (location block); sitemap lastmod identical; CDX has no copy between; company_disclosure, 57 days old; same bounding as the published Novva Colorado Springs record",
+        "Novva identity and locator: page text '160 acres ... Mesa, AZ ... five data halls ... 300MW'; 2024 post places 160 acres at NW alignment of Ellsworth and Warner; assessor 304-31-141 NOVVA PHOENIX LLC 158.1 ac; MCAQD F055022 'Novva Phoenix' on that parcel, Not Yet Installed; centroid recomputed -111.639471, 33.3397412 (157.94 ac, inside, 338 m to boundary); Mesa permit query empty",
+        "Novva vs Meta: Meta 3841 S Ellsworth geocode lies in REDALE LLC parcel 304-31-002V (Menlo Park), 39 m east of the Novva parcel with zero overlap; EdgeCore 3856 S Everton Terr geocode 1.98 km away",
+        "Thistle status: T971866 'FL/COMBO THISTLE LANDING DATA CENTER', project 23-1632, PER_ENT_DATE 2026-10-01T22:44Z (15:44 MST), not issued; government_record, 26 days old; announced only. Building permits 26007595/26008627/26008875 issued 21 May-17 Jul 2026 are outside the window and kept as context; layer max entry 2026-10-23 bounds published_at",
+        "Thistle locator: parcel 301-84-899 (situs 4801 E Thistle Landing Dr, subdivision THISTLE LANDING DATA CENTER, owner PENDING) recomputed: centroid -111.9781237, 33.3107821, 38.29 ac; city permit point inside (132 m), MCAQD MD-PHX1 'Data Centers (>100 MW)' point 12.8 m",
+        "Distinctness re-screened myself (names, aliases, parcels, permit and project numbers, 2-2.5 km radius) against ninetyfirst sites/projects/evidence/source-records/identity-mapping, all other queue fragments including three that arrived during review, claims.tsv and 61 sources/*-holds.json: only own claims, the existing campus/PHX12, and holds whose reopen conditions these meet; nothing within 2 km of the Thistle point",
+        "Roles: owners LOOP 202 & ELLIOT ROAD LLC and NOVVA PHOENIX LLC (current, assessor); operators EdgeConneX and Novva Data Centers (intended); Thistle has no roles because the owner is PENDING and the operator unknown; no private individuals in sources, summaries, URLs or holds",
+        "Wording fix: Thistle status and source summaries no longer say the city layer 'records no inspection' (the layer carries no inspection fields); the undated 'ME-PHX DC Buildings 1-5' dust registration ('Operating') is now disclosed in the status summary",
+        "Robots: Mesa (crawl-delay 1, /resource and /api/views allowed), novva.com (Yoast allow-all), assessor/Phoenix/MCAQD/IA robots 404; capture start times about 2 s apart on Mesa",
+        "dryrun_fragment.py ok against ninetyfirst after the edits (794 sites, 854 projects, 4,445 evidence rows)"
+      ],
+      "residual_risks": [
+        "PHX11: the latest in-window records are fit-out inspections (partial approvals) inside a shell whose certificate of occupancy is still outstanding; no PHX11 inspection was recorded after 23 September, and EdgeConneX's own status for PHX11 is not established",
+        "PHX11 alias 'EdgeConnex PHX-II' is inferred from the radio permit's PHX11 address and geocode; 'II' could be read as the second building",
+        "Novva: the 31 August version comes from a site-wide edit of every facility page made within an hour (19:33-20:25Z) that added image captions. The page's present-tense marketing ('Tour the Mesa campus') is read only as identification of a planned campus. Mesa permits filed under a parent parcel number or another name would not be caught by the empty parcel/name query",
+        "Thistle: announced rests on an ancillary fireline application that names the data centre; the project already holds issued building permits (May-July 2026) and an 'Operating' dust registration, so its real stage is probably past announced. The developer, operator and owner are unknown ('ME-PHX', 'MD-PHX1' unresolved)",
+        "Consistency: the same fragment holds the Amazon 10437 E Elliot Rd site, whose in-window 'Data Center, Building A' application (20 Aug 2026) would support announced on the same reading. It is left held under earlier reopen conditions and needs a reviewer decision",
+        "Compliance log records a crawl-delay breach on www.stackinfra.com (seven sitemap requests in about 12 s against Crawl-delay 10); no admitted item relies on that host",
+        "Assessor parcel polygons carry no published positional accuracy; all three locators are parcel or campus centroids, not building footprints"
+      ]
+    },
+    {
+      "fragment": "us-west-tx-p5",
+      "verdict": "accept",
+      "checks": [
+        "current_dataset re-read at start and before verdict: verified_construction_core/2026-10-27-research-ninetyfirst",
+        "all 16 relied-on captures rehashed: sha256 equals both .metadata.json sha256 and sources.json content_hash; HTTP 200, credential-free",
+        "window: 2026-10-27 minus 85 days = 2026-08-03; observations 2026-10-13, 2026-09-16 and 2026-09-18 are inside; published_at 2026-10-26 = Socrata rowsUpdatedAt (9iad-hrn8 13:14:44Z, 5eqq-7nad 13:31:26Z) checked in captured view metadata",
+        "decisive rows read in the raw TCEQ captures: RN112547013 BORDEN DATA CENTER, 11484 US 180 Gail, 'POWER GENERATION FOR DATA CENTER', 518210, AIRNSR 185712 PENDING, SE DC DEVCO LLC, affil/status 2026-10-13",
+        "RN112531009 MIDAS COMPUTE - BIG SPRING FACILITY, 1202 N FM 700, 'COMPUTING AND DATA PROCESSING WITH ON-SITE NG GEN', 518210, AIRNSR 185376 PENDING, NDS VENTURES INC, 2026-09-16",
+        "RN112532585 CEMCO-348 CBP SWEETWATER 2 DATA CENTER (Van Eaton Ready Mix, 185401L001 PENDING, 2026-09-18) and RN112486196 IREN SWEETWATER 2 DATA CENTER PROJECT SUBSTATION ROUGH GRAD, 1730 FM 540 Hamlin, IE US DEVELOPMENT HOLDINGS 7 INC, 2026-07-09 (context only)",
+        "kinds: all three status sources government_record; announced follows the accepted pattern that an air-permit or registry record naming a data centre identifies the project (Compass CLT I, Shenandoah, OKC2); pending permits are not treated as consent; no stage claimed",
+        "locators recomputed independently (uv pyproj 3.7.1 + shapely 2.1.1, python -I): Borden and Howard address points equal the served x/y to 7 dp, unique for their queries; Borden point inside Juno DC LLC property 2680, 6.3 m from boundary; Howard point inside property 294025, 130.7 m from boundary",
+        "Sweetwater 2 union of parcels 3891/3896/33181 rebuilt in EPSG:3083: one polygon, 548.377 geodesic acres, centroid (-100.2213007, 32.9320234) within 0.003 m of the claim, inside, 429.8 m from boundary; 20-tile Fisher sweep shows no other IE US Development Holdings 7 parcel",
+        "Sweetwater 2 identity text corrected: FM 540 situs parcels share an east-west line at about 32.924 N (road on the south edge, not a west frontage) and the batch plant 0.9 mile north of TX-92 (TX-92 situs parcels near 32.88 N) is not shown on the IREN parcels, so the batch plant identifies the project only; geometry facts edited and geometry_facts_sha256 updated (04371e3b...)",
+        "1730 FM 540 is consistent with the IREN frontage: even numbers lie north of FM 540 (1784 = ETT parcel 22200 adjoining the union) and numbers rise eastward (1865 at parcel 4382)",
+        "IREN page capture read: Sweetwater 2 600 MW, 500 acres, 2027 substation energization, undated 'UNDER CONSTRUCTION' label not used; investor index has no Sweetwater item after 2026-09-08",
+        "base identity-mapping marks iren-sweetwater a multi-site program with Sweetwater 2 unmapped until individually scoped; this addition supplies a Sweetwater-2-only parcel locator, not the hub town point",
+        "roles: owner/current for land owners of record (Juno DC LLC, IE US Development Holdings 7 Inc) matches base precedent (66 parcel-sourced owner roles); IREN owner/current; Midas Compute operator/intended from its own site",
+        "distinctness: names, aliases, RNs, principals, addresses screened against base sites/projects/evidence/source-records/identity-mapping, all other queue fragments, claims.tsv and 61 sources/*-holds.json; only own claims and Sweetwater 1/hub holds hit; nearest Atlas or queued points 76.4 km (Borden), 56.2 km (Midas), 62.9 km (Sweetwater 2)",
+        "TDLR TABS county codes 2017/2114/2076 = Borden/Howard/Fisher; Borden 0, Howard 19 non-data-centre, Fisher 1 school project",
+        "robots: data.texas.gov /resource and /api/views not disallowed; feature.geographic.texas.gov robots 404; TDLR /TABS allowed; iren.com and midascompute.com allow /; www15.tceq.texas.gov not accessed",
+        "privacy: no private individuals' names in changes, sources, holds, notes or geometry facts (scanned against parcel/TABS owner and contact fields and the Midas team list)",
+        "one project per new site; no status or context updates",
+        "dryrun_fragment.py: ok (795 sites, 854 projects, 4447 evidence) against ninetyfirst"
+      ],
+      "residual_risks": [
+        "All three are pending permit or registration records; developer, end user, building positions and capacity are unpublished, and the projects could be withdrawn",
+        "Borden: no corporate link between Juno DC LLC (land owner) and SE DC DevCo LLC (permit principal) is established; the address point marks the US 180 frontage of a ~618-acre holding",
+        "Midas: 1202 N FM 700 is an existing 2015 commercial property on a 10-legal-acre parcel, maybe only part of the planned site; the website is an undated marketing page with a diligence disclaimer",
+        "Sweetwater 2: status rests on a third-party batch-plant registration naming the project; the FM 540 route is inferred from parcel adjacency, not road data; IREN's undated 'under construction' label suggests the status may be understated",
+        "Sweetwater 2: the IE US Development Holdings 7 parcel union (544.53 legal acres) may not match IREN's 500-acre site boundary exactly"
+      ]
+    }
+  ],
+  "packet_pins": {
+    "definitions/atlas-research-ninetysecond-2026-10-27.json": "b71e298ce484fdc69c718241d79a692adb164dfe6ff81aa0959874051cc48c12",
+    "sources/research-countries-2026-10-27-ninetysecond-primary-sources.json": "b8f1a509fc0f8016ea0899e195a9a0309f5d3196db54343938317c1c52795824",
+    "sources/research-countries-2026-10-27-ninetysecond-actions.json": "0fc680674e65d73841aec62670fbad14c1d6b22354cecc6b3624163c14c88b67",
+    "sources/research-countries-2026-10-27-ninetysecond-holds.json": "8b4a27f49550f53e36f875bdbbf890cb47864852468da07af555e82a6a643961"
+  },
+  "raw_captures_redistributed": false
+}

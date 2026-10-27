@@ -1,0 +1,57 @@
+{
+  "format": "datacenter-atlas-geometry-facts-v1",
+  "fragment": "us-west-tx-p5",
+  "prepared_at": "2026-10-27",
+  "candidate_id": "borden-county-data-center-gail",
+  "candidate": "Borden Data Center (TCEQ RN112547013), 11484 US Highway 180, Gail, Borden County, Texas",
+  "decision": "Selected, unchanged, the single TxGIO StratMap 9-1-1 address point whose full address is 11484 UNITED STATES HIGHWAY 180 in Borden County, the exact street address TCEQ records for regulated entity RN112547013 Borden Data Center (11484 US 180, Gail 79738). No geocoder, interpolation, map viewport or town centre is used. The point marks the address at the US 180 frontage; it is not a building, footprint or campus boundary.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -101.5469022,
+      32.7695189
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_numbered_address_point",
+  "use_scope": "project_locator",
+  "precision_scope": "Official 9-1-1 address point (source CSEC) for 11484 United States Highway 180, Borden County; it marks the site address on US 180, not the data-centre buildings, a parcel centroid or a boundary.",
+  "horizontal_uncertainty_metres": null,
+  "horizontal_uncertainty_unknown_reason": "TxGIO publishes no positional accuracy for address points; the point represents an address on a landholding of about 618 acres whose building positions are not published.",
+  "source_url": "https://feature.geographic.texas.gov/arcgis/rest/services/Address_Points/stratmap_address_points_48_most_recent/MapServer/0/query?where=county%3D%27Borden%27%20AND%20%28full_addr%20LIKE%20%27114%25180%25%27%20OR%20full_addr%20LIKE%20%27%25US%20HIGHWAY%20180%25%27%20OR%20full_addr%20LIKE%20%27%25US%20180%25%27%20OR%20full_addr%20LIKE%20%27%25HWY%20180%25%27%29&outFields=full_addr,add_number,st_name,post_comm,county,source&returnGeometry=true&outSR=4326&f=json",
+  "source_file": "local_data/country-research-us-west-tx-p5/txgio-addr-borden-us180.json",
+  "source_sha256": "5d945da0d5e27bc367bb6cfdc76407ca73ebb588e3c1c29f8309d0be5d8e6a77",
+  "retrieved_at": "2026-10-27T01:34:31.640Z",
+  "source_literal_coordinate_tokens": [
+    "\"x\":-101.54690223289315,\"y\":32.76951885379918 (full_addr 11484 UNITED STATES HIGHWAY 180, county Borden, source CSEC; outSR 4326)"
+  ],
+  "rounding": "Served WGS84 longitude/latitude rounded to 7 decimal places (about 1 cm).",
+  "axis_note": "GeoJSON coordinates are [longitude, latitude].",
+  "uniqueness": "The capture queried Borden County address points whose full address matches 114%180%, %US HIGHWAY 180%, %US 180% or %HWY 180%; exactly one feature was returned.",
+  "corroboration": {
+    "parcel": {
+      "source_file": "local_data/country-research-us-west-tx-p5/txgio-parcels-borden-gail-geom.json",
+      "source_sha256": "f4e50ecc535992a9c3b45e3abf6f0fdb4797917738addd4754915d510eca87f2",
+      "finding": "The address point lies inside the 570.68-acre northern polygon of Borden Appraisal District property 2680 (geo ID 01211-00032-00024-000000, AB 1211 BK 32 SEC 24 T5N T&P, 580.77 acres), owner of record JUNO DC LLC (tax year 2026, DATE_ACQ serial 46082 = 1 March 2026), 6.3 m inside its US 180 frontage. Property 2680 has a second, 47.05-acre polygon south of the highway; the two polygons total 617.88 geodesic acres. Two other account records (properties 2681 and 2682, 14.26 and 34.34 legal acres, a livestock company) share the same section polygons and are not separately mapped.",
+      "juno_union_bounds_lon_lat": [
+        -101.564986,
+        32.766038,
+        -101.543891,
+        32.783737
+      ],
+      "juno_union_geodesic_acres": 617.88,
+      "point_inside": true
+    },
+    "tceq_gps_entrance": {
+      "source": "TCEQ Central Registry RN112496260 Project Borden County Data Center location description: PROJECT ENTRANCE AT GPS 32.769444, -101.543778 NEAR GAIL",
+      "distance_from_selected_point_m": 292.8,
+      "distance_to_juno_parcel_m": 51.4,
+      "used": "corroboration only; not selected because it marks a construction entrance stated by a contractor filing, while the selected point is the exact address of the data-centre regulated entity"
+    }
+  },
+  "computed": {
+    "crs": "Served EPSG:4326; containment with shapely 2.1.1; distances on the WGS84 ellipsoid (pyproj 3.7.1 Geod) or in EPSG:3083 (NAD83 Texas Centric Albers) for boundary distances"
+  },
+  "personal_data": "Only company owners are named. Names of private individuals returned by the parcel request are not copied.",
+  "verification_script": "scratchpad us-west-tx-p5/geo.py (pyproj 3.7.1, shapely 2.1.1; uv run --no-project ... python -I)"
+}

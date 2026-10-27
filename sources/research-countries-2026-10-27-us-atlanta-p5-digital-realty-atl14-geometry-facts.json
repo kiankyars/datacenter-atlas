@@ -1,0 +1,92 @@
+{
+  "format": "datacenter-atlas-geometry-facts-v1",
+  "fragment": "us-atlanta-p5",
+  "prepared_on": "2026-10-27",
+  "candidate_id": "digital-realty-atl14-250-williams",
+  "facility": "Digital Realty ATL14, 250 Williams Street NW, Atlanta, Fulton County, Georgia",
+  "decision": "Selected the City of Atlanta address point '250 WILLIAMS STREET NW' (status Current, address class 0, parcel 14 007800030849), the address Digital Realty gives for ATL14, as the project locator.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -84.39132182,
+      33.761624516
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_numbered_address_point",
+  "use_scope": "project_locator",
+  "derivation": "direct_geometry",
+  "source_file": "local_data/country-research-us-atlanta-p5/atl-addresspoint-250-williams-native.json",
+  "source_sha256": "9a86eb42d43b9e5a362e70a23af640d077d22d075bcd5e4a3d4979499c5d77d7",
+  "source_url": "https://gis.atlantaga.gov/dpcd/rest/services/AdministrativeArea/AddressPoint/MapServer/0/query?where=ADDRNUM%3D%27250%27+AND+ADDR_SN+LIKE+%27WILLIAMS%25%27&outFields=FULLADDR,STATUS,PARCELID,ADDRCLASS,LAT,LON&returnGeometry=true&f=json",
+  "retrieved_at": "2026-10-27T01:12:33.574Z",
+  "native_coordinates": {
+    "crs": "EPSG:6447 (NAD83(2011) / Georgia West, ftUS; service wkid 103028)",
+    "x": 2228307.7086622603,
+    "y": 1368397.3356838524
+  },
+  "selected_address": {
+    "FULLADDR": "250 WILLIAMS STREET NW",
+    "STATUS": "Current",
+    "PARCELID": "14 007800030849",
+    "ADDRCLASS": 0,
+    "LAT": 33.76162452,
+    "LON": -84.39132182
+  },
+  "computed": {
+    "pyproj_lon_lat": [
+      -84.39132182,
+      33.761624516
+    ],
+    "served_lat_lon_attributes": [
+      33.76162452,
+      -84.39132182
+    ],
+    "note": "The pyproj transform of the native point (EPSG:6447 to EPSG:4326, always_xy) equals the layer's own LAT/LON attributes to the published 8 decimal places.",
+    "parcel_check": {
+      "parcel_file": "local_data/country-research-us-atlanta-p5/atl-parcel-14-007800030849.json",
+      "parcel_sha256": "c61f8332d2914e30425650f7c1b73185b4cd4de0f20809a9553adde101e3283c",
+      "parcel_url": "https://gis.atlantaga.gov/dpcd/rest/services/AdministrativeArea/TaxParcel/MapServer/0/query?where=PARCELID%3D%2714+007800030849%27&outFields=PARCELID,LOWPARCELID,SITEADDRESS,SITECITY,SITEZIP,CLASSDSCRP,OWNERNME1,TAXYEAR,ZONING1,NEIGHBORHOOD,LASTUPDATE,SHAPE.AREA&returnGeometry=true&outSR=6447&f=json",
+      "parcel_attributes": {
+        "PARCELID": "14 007800030849",
+        "SITEADDRESS": "250 WILLIAMS ST NW",
+        "SITEZIP": "30303",
+        "NEIGHBORHOOD": "Downtown",
+        "TAXYEAR": 2025,
+        "OWNERNME1": "ACADIA DC2 ASSETS LLC",
+        "SHAPE.AREA": 153722.765930636
+      },
+      "outer_rings": 1,
+      "interior_rings_subtracted": 0,
+      "planar_area_acres": 3.529,
+      "geodesic_area_acres": 3.5297,
+      "bbox_metres": [
+        121.7,
+        125.8
+      ],
+      "selected_point_inside_parcel": true,
+      "parcel_centroid_lon_lat": [
+        -84.3913253,
+        33.7616239
+      ],
+      "selected_point_to_parcel_centroid_metres": 0.33
+    },
+    "tools": "pyproj 3.7.1, shapely 2.1.1",
+    "distances_km": {
+      "Digital Realty ATL13 (Atlas, 56 Marietta St NW)": 0.688,
+      "DataBank ATL2/ATL3 (Atlas, White St SW)": 4.425,
+      "DataBank ATL1 candidate (this fragment, 760 W Peachtree St NW)": 1.572
+    }
+  },
+  "identity_bridge": [
+    "Digital Realty's blog of 14 October 2026 names 'our ATL14 facility at 250 Williams Street'.",
+    "Digital Realty's ATL14 page gives 'ATL14, 250 Williams Street NW Atlanta, GA 30303'.",
+    "The City of Atlanta address layer returns '250 WILLIAMS STREET NW' (Current, class 0) and a mezzanine sub-address at the same position, both on parcel 14 007800030849 (site address 250 WILLIAMS ST NW)."
+  ],
+  "nearby_records": "Within 2 km: the Atlas site Digital Realty ATL13 (56 Marietta Street NW, 0.69 km south-south-east), a separate building on a separate parcel; this fragment's DataBank ATL1 candidate (760 West Peachtree Street NW, 1.57 km north-north-east). Checked against verified_construction_core/2026-10-27-research-ninetieth and again against -ninetyfirst, all queue fragments, claims and sources/*-holds.json.",
+  "consistency_checks": {
+    "geocoder_used": false,
+    "map_viewport_used": false,
+    "city_centre_used": false
+  }
+}
