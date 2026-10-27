@@ -1,0 +1,94 @@
+{
+  "candidate_id": "us-loudoun-pw-p5-sterling-technology-park",
+  "decision": "Selected the planar centroid of the Loudoun County land-development application polygon for EPLAN-2025-0027 (Sterling Technology Park site plan for a data center building), which performance bond PBOND-2026-0163 and plat PLAT-2026-0100 share exactly and which equals the whole county parcel 033453879000, as the campus locator.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -77.4292182,
+      38.9959385
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_land_development_application_polygon_centroid",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-us-loudoun-pw-p5/lola-sterling-technology-park-named.json",
+  "source_sha256": "832d842370640afa32a8bf6a80cbe6e9096a67e3c1289b0ceaf45d754fb3c0ab",
+  "source_url": "https://logis.loudoun.gov/gis/rest/services/Projects/LOLA_DATA/MapServer/0/query?where=PlanName%20%3D%20%27Sterling%20Technology%20Park%27&outFields=PlanNumber%2CPlanApplicationDate%2CPlanType%2CPlanStatus%2CPlanDescription%2CPlanName&returnGeometry=true&outSR=4326&f=json",
+  "retrieved_at": "2026-10-27T00:48:28.019Z",
+  "selected_properties": {
+    "PlanNumber": "EPLAN-2025-0027",
+    "PlanType": "Engineering Plan",
+    "PlanStatus": "In Review",
+    "PlanName": "Sterling Technology Park"
+  },
+  "facts": {
+    "geometry_type": "Polygon",
+    "valid": true,
+    "rings": 1,
+    "vertices": 29,
+    "parts": 1,
+    "geodesic_acres": 12.27,
+    "centroid_inside": true,
+    "bounds_lon_lat": [
+      -77.431247,
+      38.99483,
+      -77.426625,
+      38.99692
+    ],
+    "approx_extent_m": [
+      400,
+      232
+    ],
+    "centroid_method": "shapely planar centroid in WGS84 longitude/latitude; the WGS 84 / UTM 18N (EPSG:32618) planar centroid transformed back differs by 0.00 m",
+    "same_polygon_plan_numbers": [
+      "EPLAN-2025-0027",
+      "PBOND-2026-0163",
+      "PLAT-2026-0100"
+    ],
+    "parcels_wholly_inside_application_polygon": [
+      {
+        "pin": "033453879000",
+        "legal_acres": 12.211,
+        "geodesic_acres": 12.27,
+        "subdivision": "STERLING BUSINESS PARK",
+        "share_of_parcel_inside_application": 1.0
+      }
+    ],
+    "parcel_union_legal_acres": 12.211,
+    "parcel_union_vs_application_polygon": {
+      "symmetric_difference_acres": 0.0,
+      "centroid_offset_m": 0.0
+    },
+    "parcel_source_file": "local_data/country-research-us-loudoun-pw-p5/parcels-sterling-technology-park-envelope.json",
+    "parcel_source_sha256": "6de954931e0de9dc3a23afdde3185fa69cf39d9a317abc3e4a5e939b0875ed8f",
+    "parcels_intersecting_envelope": 9,
+    "address_points_inside": [
+      {
+        "address": "22400 SHAW RD, STERLING",
+        "pin": "033453879000",
+        "distance_to_centroid_m": 22.6
+      }
+    ],
+    "adjoining_dulles_electric_commercial_building_polygon": {
+      "plan_numbers": [
+        "EPLAN-2024-0136",
+        "EPLAN-2026-0034",
+        "EPLAN-2026-0145",
+        "PLAT-2024-0364"
+      ],
+      "pin": "033354189000",
+      "overlap_acres": 0.0,
+      "minimum_separation_m": 1.3,
+      "centroid_distance_m": 261.2
+    },
+    "dulles_electric_data_centers_polygon_EPLAN_2024_0154": {
+      "overlap_acres": 0.0,
+      "minimum_separation_m": 248.0,
+      "centroid_distance_m": 482.7
+    },
+    "distance_to_edgecore_as02_locator_m": 1468.1,
+    "distance_to_qts_ashburn_1_locator_m": 1820.0,
+    "coordinate_reference_system": "WGS84 longitude/latitude as returned by the service with outSR=4326; no further transformation",
+    "verification_script": "build.py (pyproj 3.7.1, shapely 2.1.1)"
+  }
+}

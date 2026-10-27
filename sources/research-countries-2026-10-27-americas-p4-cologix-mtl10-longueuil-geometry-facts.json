@@ -1,0 +1,74 @@
+{
+  "capture_files": [
+    "aq-adresse-530-beriault-r2-20261027.json",
+    "aq-adresses-layer0-20261027.json",
+    "esri-imagery-mtl10-400m-20261027.png"
+  ],
+  "capture_sha256": {
+    "aq-adresse-530-beriault-r2-20261027.json": "9d5270a87807b341836c646d8632e40a6d6c44669fe078496dddee3f46d3f746",
+    "aq-adresses-layer0-20261027.json": "77311187730dc422eb853035a1844da8900511c1f8107395bea375213bce5355",
+    "esri-imagery-mtl10-400m-20261027.png": "e14bf86a0aca151487c82fa17a8b833bd1913c842bc3bb348a41d37ad4d60e9f"
+  },
+  "service": "MRNF ArcGIS MapServer Territoire/AQ_ADRESSES_WMS, layer 0 'Adresses' (Adresses Québec address points for all of Québec; native spatial reference WKID 102100), queried by civic number and street with outSR=4326",
+  "query": "NoCivq = 530 AND AdresseFormatee LIKE '%riault%Longueuil%'",
+  "matching_records": [
+    {
+      "AdresseFormatee": "2420-530 rue Bériault, Longueuil J4G1S8",
+      "IdAdr": "ec7c8e53c5f04b1eb787ac877f314b7d",
+      "OBJECTID": 1727867,
+      "NbUnite": 1,
+      "Version": "AQ20261001",
+      "Position": "-73.475365072398162, 45.565570702371936",
+      "service_wgs84": [
+        -73.47536649043357,
+        45.565580776655146
+      ],
+      "position_vs_service_m": 1.13
+    },
+    {
+      "AdresseFormatee": "530 rue Bériault, Longueuil J4G1S8",
+      "IdAdr": "53b77ad08c174c84af1b27b101753908",
+      "OBJECTID": 2310797,
+      "NbUnite": 2,
+      "Version": "AQ20261001",
+      "Position": "-73.475365072398162, 45.565570702371936",
+      "service_wgs84": [
+        -73.47536649043357,
+        45.565580776655146
+      ],
+      "position_vs_service_m": 1.13
+    },
+    {
+      "AdresseFormatee": "283-530 rue Bériault, Longueuil J4G1S8",
+      "IdAdr": "08c8dc8200d94a6f99c947c56dcfe057",
+      "OBJECTID": 2311880,
+      "NbUnite": 1,
+      "Version": "AQ20261001",
+      "Position": "-73.475365072398162, 45.565570702371936",
+      "service_wgs84": [
+        -73.47536649043357,
+        45.565580776655146
+      ],
+      "position_vs_service_m": 1.13
+    }
+  ],
+  "distinct_positions": 1,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -73.47536649043357,
+      45.565580776655146
+    ]
+  },
+  "position_attribute_note": "All three records (the civic address and two unit-numbered records, 2420-530 and 283-530) share one Position value; the service's outSR=4326 geometry lies 1.13 m from that attribute pair, consistent with a NAD83-to-WGS84 datum shift. The service geometry is used unchanged.",
+  "imagery_check": {
+    "file": "esri-imagery-mtl10-400m-20261027.png",
+    "sha256": "e14bf86a0aca151487c82fa17a8b833bd1913c842bc3bb348a41d37ad4d60e9f",
+    "request": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-73.47793275497581,45.56378415430516,-73.47280022589133,45.56737739900513&bboxSR=4326&imageSR=4326&size=800,800&format=png&f=image",
+    "note": "Esri World Imagery export, 400 m square centred on the point (imagery date not stated): the point falls on a large flat-roofed industrial building carrying rows of rooftop mechanical units, consistent with a purpose-built data centre; qualitative check only."
+  },
+  "nearest_atlas_record_km": {
+    "Cologix MTL8 (Technoparc Montréal)": 24.62
+  },
+  "method": "Published WGS84 output geometry of the single Adresses Québec position for 530 rue Bériault, Longueuil (direct geometry); distances by pyproj 3.7.1 Geod (WGS84)."
+}

@@ -1,0 +1,125 @@
+{
+  "candidate_id": "us-loudoun-pw-p5-manekin-plaza",
+  "decision": "Selected the planar centroid of the Loudoun County land-development application polygon for STPL-2022-0053 (Manekin Plaza site plan for one data center), which performance bonds PBOND-2026-0123 and PBOND-2026-0124 and plat PLAT-2024-0045 share exactly and which equals the whole county parcel 030309421000, as the campus locator.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -77.4077891,
+      39.0238301
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_land_development_application_polygon_centroid",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-us-loudoun-pw-p5/lola-manekin-plaza-named.json",
+  "source_sha256": "b630f623fe3915e2168e1798d1433ce8bcdaf1fdd258ab5e22e46a880150d954",
+  "source_url": "https://logis.loudoun.gov/gis/rest/services/Projects/LOLA_DATA/MapServer/0/query?where=UPPER%28PlanName%29%20LIKE%20%27%25MANEKIN%25%27&outFields=PlanNumber%2CPlanApplicationDate%2CPlanType%2CPlanStatus%2CPlanDescription%2CPlanName&returnGeometry=true&outSR=4326&f=json",
+  "retrieved_at": "2026-10-27T00:48:25.529Z",
+  "selected_properties": {
+    "PlanNumber": "STPL-2022-0053",
+    "PlanType": "Engineering Plan",
+    "PlanStatus": "In Review",
+    "PlanName": "MANEKIN PLAZA"
+  },
+  "facts": {
+    "geometry_type": "Polygon",
+    "valid": true,
+    "rings": 1,
+    "vertices": 48,
+    "parts": 1,
+    "geodesic_acres": 12.03,
+    "centroid_inside": true,
+    "bounds_lon_lat": [
+      -77.40935,
+      39.022754,
+      -77.405791,
+      39.024988
+    ],
+    "approx_extent_m": [
+      308,
+      248
+    ],
+    "centroid_method": "shapely planar centroid in WGS84 longitude/latitude; the WGS 84 / UTM 18N (EPSG:32618) planar centroid transformed back differs by 0.00 m",
+    "same_polygon_plan_numbers": [
+      "PBOND-2026-0123",
+      "PBOND-2026-0124",
+      "PLAT-2024-0045",
+      "STPL-2022-0053"
+    ],
+    "parcels_wholly_inside_application_polygon": [
+      {
+        "pin": "030309421000",
+        "legal_acres": 11.977,
+        "geodesic_acres": 12.03,
+        "subdivision": "LOUDOUN TECH CENTER",
+        "share_of_parcel_inside_application": 1.0
+      }
+    ],
+    "parcel_union_legal_acres": 11.977,
+    "parcel_union_vs_application_polygon": {
+      "symmetric_difference_acres": 0.0,
+      "centroid_offset_m": 0.0
+    },
+    "parcel_source_file": "local_data/country-research-us-loudoun-pw-p5/parcels-manekin-plaza-envelope.json",
+    "parcel_source_sha256": "23b0542f1fe67e44fefc70c9a4ef604ee13204b1429aafd0361fe34c252c3c63",
+    "parcels_intersecting_envelope": 8,
+    "address_points_inside": [
+      {
+        "address": "46010 MANEKIN PLZ, STERLING",
+        "pin": "030309421000",
+        "distance_to_centroid_m": 56.7
+      },
+      {
+        "address": "46050 MANEKIN PLZ, STERLING",
+        "pin": "030309421000",
+        "distance_to_centroid_m": 107.9
+      },
+      {
+        "address": "46020 MANEKIN PLZ, STERLING",
+        "pin": "030309421000",
+        "distance_to_centroid_m": 54.1
+      },
+      {
+        "address": "46000 MANEKIN PLZ, STERLING",
+        "pin": "030309421000",
+        "distance_to_centroid_m": 63.9
+      },
+      {
+        "address": "46030 MANEKIN PLZ, STERLING",
+        "pin": "030309421000",
+        "distance_to_centroid_m": 42.8
+      }
+    ],
+    "zoning_conversion_ZRTD_2020_0002_polygon": {
+      "geodesic_acres": 12.02,
+      "symmetric_difference_acres": 0.032,
+      "overlap_acres": 12.012,
+      "minimum_separation_m": 0.0,
+      "centroid_distance_m": 0.0
+    },
+    "boundary_line_adjustment_BLAD_2023_0015_polygon": {
+      "geodesic_acres": 2.56,
+      "within_application_polygon": true
+    },
+    "adjacent_ridgetop_center_STPL_2022_0051_polygon": {
+      "plan_numbers": [
+        "DEDI-2023-0043",
+        "PBOND-2026-0121",
+        "PBOND-2026-0122",
+        "PLAT-2024-0303",
+        "STPL-2022-0051"
+      ],
+      "geodesic_acres": 11.96,
+      "pin": "030306633000",
+      "overlap_acres": 0.0,
+      "minimum_separation_m": 21.1,
+      "centroid_distance_m": 218.8,
+      "source_file": "local_data/country-research-us-loudoun-pw-p5/lola-ridgetop-center-named.json",
+      "source_sha256": "29056c20e7ebadefb9132c611e1fe4688faafaeed7395fc8e3d84199d1ec5e8e"
+    },
+    "distance_to_cologix_ashburn_locator_m": 4465.3,
+    "distance_to_qts_ashburn_1_locator_m": 4560.2,
+    "coordinate_reference_system": "WGS84 longitude/latitude as returned by the service with outSR=4326; no further transformation",
+    "verification_script": "build.py (pyproj 3.7.1, shapely 2.1.1)"
+  }
+}

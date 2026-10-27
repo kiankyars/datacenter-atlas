@@ -1,0 +1,72 @@
+{
+  "candidate_id": "databank-plano-campus-dominion-parkway",
+  "decision": "Selected the centroid of Collin County parcel 2699528 (Lot 2 Block A, WPLC Parkwood-Dominion Addition, 16.014 legal acres, situs 8375 Dominion Pkwy, Plano; owner DB Data Center Plano LLC) as the campus locator of DataBank's Plano campus, whose DFW3 data center has the operator-stated address 8375 Dominion Pkwy, Plano, TX 75024. The point locates the 16-acre campus lot shared by DFW3 and the DFW8 expansion, not the DFW3 building footprint.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -96.8156038,
+      33.0871471
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_tax_parcel_centroid",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-us-dfw-p5/txgio-parcel-databank-plano-point.json",
+  "source_sha256": "14abaa75851a63f314e049b64bd626cbeccce6e8acd582b6166c0edbedc66618",
+  "source_url": "https://feature.geographic.texas.gov/arcgis/rest/services/Parcels/stratmap_land_parcels_48_most_recent/MapServer/identify?geometry=-96.8156038%2C33.0871471&geometryType=esriGeometryPoint&sr=4326&layers=all%3A0&tolerance=0&mapExtent=-96.8656038%2C33.0371471%2C-96.7656038%2C33.1371471&imageDisplay=1000%2C1000%2C96&returnGeometry=true&f=json",
+  "retrieved_at": "2026-10-27T00:57:25.772Z",
+  "selected_properties": {
+    "2699528": {
+      "owner": "DB DATA CENTER PLANO LLC",
+      "legal_desc": "WPLC PARKWOOD-DOMINION ADDITION (CPL), BLK A, LOT 2",
+      "legal_area_ac": 16.014,
+      "situs": "8375 DOMINION PKWY, PLANO, TX 75024",
+      "imp_value": 41025412,
+      "tax_year": "2026",
+      "source": "COLLIN APPRAISAL DISTRICT",
+      "geodesic_acres": 16.19,
+      "centroid": [
+        -96.8156038,
+        33.0871471
+      ]
+    }
+  },
+  "computed": {
+    "parts": 1,
+    "geodesic_acres": 16.19,
+    "geodesic_area_m2": 65517.0,
+    "centroid_lon_lat": [
+      -96.8156038,
+      33.0871471
+    ],
+    "centroid_inside_polygon": true,
+    "crs_cross_check_shift_m": 0.0,
+    "extent_m": [
+      404.6,
+      364.6
+    ],
+    "bounds_lon_lat": [
+      -96.817953,
+      33.085726,
+      -96.81362,
+      33.089014
+    ],
+    "method": "Parcel polygon returned in EPSG:4326 by a TxGIO StratMap point identify at the computed centroid (tolerance 0; exactly one parcel returned); centroid computed in EPSG:32614 (WGS 84 / UTM 14N) and returned to WGS84; EPSG:5070 and EPSG:2276 cross-checks give the same point; geodesic area on the WGS84 ellipsoid. The parcel was first found in a TxGIO envelope identify over Plano's Legacy area (local_data/country-research-us-dfw-p5/txgio-parcels-plano-legacy-envelope.json).",
+    "tools": "pyproj 3.7.1, shapely 2.1.1"
+  },
+  "identity_bridge": [
+    "DataBank's DFW3 page (version modified 28 September 2026) and Plano campus page (modified 30 September 2026) give 8375 Dominion Pkwy, Plano, TX 75024 for DFW3 and DFW8 and describe a 16-acre campus; DataBank's 2 October 2023 release places DFW3 'on a 16-acre campus at 8375 Dominion Parkway in Plano'.",
+    "The TxGIO parcel 2699528 at situs 8375 Dominion Pkwy is owned by DB Data Center Plano LLC, mailed to 400 S Akard St Ste 400, Dallas (DataBank's db_data_center sitemap lists a Dallas facility page for 400 South Akard), with 16.014 legal acres.",
+    "Collin CAD's 2026 appraisal roll (data.texas.gov dataset 5tkr-3759) records the same land as DFW 3 Expansion Condominium Units I and II at 8375 Dominion Pkwy, both owned by DB Data Center Plano LLC, on 16.0142 acres: Unit I with a 145,000 sq ft main area built 2017 (matching the 145,000 sq ft DFW3 facility of DataBank's opening release) and Unit II with 265,011 sq ft built 2024 (the DFW8 expansion)."
+  ],
+  "unresolved": [
+    "The DFW3 building footprint within the lot is not separately located; the point represents the 16-acre campus lot.",
+    "TxGIO's parcel snapshot still carries the pre-condominium plat (Lot 2 Block A); the 2026 roll records the condominium units on the same 16.01-acre land."
+  ],
+  "nearby_records": "No Atlas site, project, pending fragment addition, claim or hold coordinate lies within 2 km (none within 10 km); the nearest Atlas sites are the NTT Dallas Data Center Campus (19.0 km), the Digital Realty Garland Campus (19.6 km) and the Digital Realty Lewisville Campus (19.8 km), all different operators and campuses.",
+  "consistency_checks": {
+    "datum": "WGS84 output from the TxGIO service (sr=4326)",
+    "geocoder_used": false,
+    "centroid_inside_polygon": true
+  }
+}

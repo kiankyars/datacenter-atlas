@@ -1,0 +1,121 @@
+{
+  "candidate_id": "us-loudoun-pw-p5-dulles-electric-data-centers",
+  "decision": "Selected the planar centroid of the Loudoun County land-development application polygon for EPLAN-2024-0154 (Dulles Electric Data Centers site plan for two 2-storey data center buildings), which the consolidation plat PLAT-2026-0121 and performance bonds PBOND-2026-0150 and PBOND-2026-0151 share exactly and which equals the union of four whole county parcels, as the campus locator.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -77.4273271,
+      38.9918485
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_land_development_application_polygon_centroid",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-us-loudoun-pw-p5/lola-dulles-electric.json",
+  "source_sha256": "6084164eb6a29be821be3630c2e654c96c2d1a46b611331734fbcf12a3c2e8c7",
+  "source_url": "https://logis.loudoun.gov/gis/rest/services/Projects/LOLA_DATA/MapServer/0/query?where=UPPER%28PlanName%29%20LIKE%20%27%25DULLES%20ELECTRIC%25%27%20OR%20PlanDescription%20LIKE%20%27%252024-0154%25%27&outFields=PlanNumber%2CPlanApplicationDate%2CPlanType%2CPlanStatus%2CPlanDescription%2CPlanName&returnGeometry=true&outSR=4326&f=json",
+  "retrieved_at": "2026-10-27T00:48:02.129Z",
+  "selected_properties": {
+    "PlanNumber": "EPLAN-2024-0154",
+    "PlanType": "Engineering Plan",
+    "PlanStatus": "In Review",
+    "PlanName": "Dulles Electric Data Centers"
+  },
+  "facts": {
+    "geometry_type": "Polygon",
+    "valid": true,
+    "rings": 1,
+    "vertices": 33,
+    "parts": 1,
+    "geodesic_acres": 18.04,
+    "centroid_inside": true,
+    "bounds_lon_lat": [
+      -77.429311,
+      38.990087,
+      -77.425225,
+      38.993306
+    ],
+    "approx_extent_m": [
+      354,
+      357
+    ],
+    "centroid_method": "shapely planar centroid in WGS84 longitude/latitude; the WGS 84 / UTM 18N (EPSG:32618) planar centroid transformed back differs by 0.00 m",
+    "same_polygon_plan_numbers": [
+      "EPLAN-2024-0154",
+      "PBOND-2026-0150",
+      "PBOND-2026-0151",
+      "PLAT-2026-0121"
+    ],
+    "parcels_wholly_inside_application_polygon": [
+      {
+        "pin": "033258399000",
+        "legal_acres": 5.024,
+        "geodesic_acres": 5.03,
+        "subdivision": "MID DULLES CENTER",
+        "share_of_parcel_inside_application": 1.0
+      },
+      {
+        "pin": "033362355000",
+        "legal_acres": 1.72,
+        "geodesic_acres": 1.74,
+        "subdivision": "STERLING PARK IP",
+        "share_of_parcel_inside_application": 1.0
+      },
+      {
+        "pin": "033356754000",
+        "legal_acres": 5.105,
+        "geodesic_acres": 5.08,
+        "subdivision": null,
+        "share_of_parcel_inside_application": 1.0
+      },
+      {
+        "pin": "033357335000",
+        "legal_acres": 6.184,
+        "geodesic_acres": 6.19,
+        "subdivision": "MID DULLES CENTER",
+        "share_of_parcel_inside_application": 1.0
+      }
+    ],
+    "parcel_union_legal_acres": 18.033,
+    "parcel_union_vs_application_polygon": {
+      "symmetric_difference_acres": 0.0,
+      "centroid_offset_m": 0.0
+    },
+    "parcel_source_file": "local_data/country-research-us-loudoun-pw-p5/parcels-dulles-electric-envelope.json",
+    "parcel_source_sha256": "14fd65b66ed6e8ee1170782dbeb00db414dbf224022a23c529829be339595351",
+    "parcels_intersecting_envelope": 12,
+    "address_points_inside": [
+      {
+        "address": "1600 S STERLING BLVD, STERLING",
+        "pin": "033258399000",
+        "distance_to_centroid_m": 121.0
+      },
+      {
+        "address": "22570 SHAW RD, STERLING",
+        "pin": "033357335000",
+        "distance_to_centroid_m": 15.1
+      }
+    ],
+    "adjoining_dulles_electric_commercial_building_polygon": {
+      "plan_numbers": [
+        "EPLAN-2024-0136",
+        "EPLAN-2026-0034",
+        "EPLAN-2026-0145",
+        "PLAT-2024-0364"
+      ],
+      "pin": "033354189000",
+      "overlap_acres": 0.0,
+      "minimum_separation_m": 0.0,
+      "centroid_distance_m": 244.3
+    },
+    "sterling_technology_park_polygon_EPLAN_2025_0027": {
+      "overlap_acres": 0.0,
+      "minimum_separation_m": 248.0,
+      "centroid_distance_m": 482.7
+    },
+    "distance_to_edgecore_as02_locator_m": 1665.7,
+    "distance_to_qts_ashburn_1_locator_m": 2109.5,
+    "coordinate_reference_system": "WGS84 longitude/latitude as returned by the service with outSR=4326; no further transformation",
+    "verification_script": "build.py (pyproj 3.7.1, shapely 2.1.1)"
+  }
+}

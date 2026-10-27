@@ -1,0 +1,181 @@
+{
+  "reviewer": "root",
+  "reviewed_at": "2026-10-27",
+  "decision": "accepted_for_integration",
+  "update": "verified_construction_core/2026-10-27-research-ninetyfirst",
+  "base_dataset": "verified_construction_core/2026-10-27-research-ninetieth",
+  "process": "continuous: one researcher per beat, one adversarial verifier per fragment",
+  "fragments": [
+    {
+      "fragment": "americas-p4",
+      "verdict": "accept",
+      "checks": [
+        "all 15 relied-on captures rehashed: sha256 = .metadata.json = source content_hash, byte counts, URLs and retrieved_at match; geometry-facts capture hashes and geometry/*.json hashes match",
+        "decisive statements read in the live captures: present-tense operating statements (24/7 onsite monitoring, in-house engineers, cabinets/halls offered) at 530 Rue Beriault, 2525 Rue Canadien and 105 Clegg Road Building B",
+        "JSON-LD dateModified 2026-09-24 (MTL10, MTL9) and 2026-09-23 (TOR4) equal the data-centers sitemap lastmod; bounded below by IA copies (30 Jun / 30 Jun / 17 May, prior versions 14 Apr / 14 Apr / 6 May) and above by the 27 Oct live capture; 33-34 days old, within 85 days",
+        "CORRECTED: fragment claimed archived and live facility text identical; re-diff shows the September versions edit the spec blocks (MTL10 adds 'Site capacity: 27 MW'; MTL9 '25 MW' -> 'Site capacity: 6.1 MW', QIX -> CANIX; TOR4 '11 MW of power' -> 'Site capacity: 12 MW'); fixed in status summaries, page date_semantics, IA summaries and the VAN3 hold",
+        "source kinds company_disclosure (status, roles) and government_record (locators); same page-version method as published MTL8 and VAN4",
+        "locators recomputed from raw captures: AQ service geometry equals MTL10/MTL9 coordinates exactly (one position each); York parcel 62380 centroid in EPSG:2958 recomputed with pyproj 3.7.1/shapely 2.1.1 (0.003 m from stated point, inside parcel, 3.497 acres, 2.45 m from address point)",
+        "imagery inspected: each point falls on a building with rooftop plant",
+        "roles: Cologix operator current x3; owner current for MTL10 ('Cologix owned') and MTL9 ('Owned and operated') per page text",
+        "distinctness re-screened against current dataset 2026-10-27-research-ninetieth (sites, projects, evidence, source-records, identity-mapping), all queue fragments' changes/holds, claims.tsv and sources/*-holds.json: no name/alias/address match except ca-p1 hold being taken up and the MTL8 address list; no record within 2 km (nearest 22.85 km and 24.6 km)",
+        "one project per new site; no existing-campus reuse needed",
+        "no third-party personal data in changes, sources, holds or notes",
+        "dryrun_fragment.py ok against ninetieth: 779 sites, 837 projects, 4343 evidence"
+      ],
+      "residual_risks": [
+        "operating status rests on a facility marketing page's version date (template-wide September edit of many Cologix pages), not on a dated statement about MTL10, MTL9 or TOR4 itself; the IA lower bound (30 Jun / 17 May) is outside the 85-day window, so the in-window date depends on Cologix's own dateModified/sitemap",
+        "AQ and York Region publish no positional accuracy; uncertainty left null with reasons",
+        "TOR4 locator is a campus parcel centroid, not Building B",
+        "news sitemap source record is unreferenced by any action (successor-check provenance only)"
+      ]
+    },
+    {
+      "fragment": "fr-benelux-p4",
+      "verdict": "accept",
+      "checks": [
+        "current_dataset re-read: verified_construction_core/2026-10-27-research-ninetieth (776 sites, 834 projects)",
+        "all 20 relied-on captures rehashed: sha256 equals sources.json content_hash and .metadata.json sha256; URL, effective URL, retrieved_at and byte counts match; HTTP 200",
+        "LLE01: MRAe HdF avis 020006/A P, 020208/A P, 021581/GUNENV read in pdftotext - adopted at session of 11 Aug 2026, LLE01 SNC, four DC buildings A-D, 264 MW IT, 212 generators; referred for two building permits and environmental authorisation; announced, 77 days old (window start 2026-08-03)",
+        "PAR03: MRAe IdF avis 012018/A P and 020449/GUNENV du 03/09/2026 read - centre de donnees PAR03 by SNC DATA SERRES, 61,069 m2 former MDS site, six 12 MW IT halls (72 MW IT), 44 generators; announced, 54 days old",
+        "PN2 DC5: MRAe IdF avis 022510/GUNENV and 023317/A P du 16/10/2026 read - SCI PROLOGIS FRANCE CLIV, 35,050 m2 plot in Paris Nord 2, eight halls, 30 MW IT, 20 generators; PDF created 16 Oct, sitemap lastmod 16 Oct; announced, 11 days old",
+        "status sources are government_record MRAe opinions (not consents); no permitted or construction stage claimed; forecast dates not used",
+        "applicant notes read: LLE01 RNT p.6 lists AI 57, 59-63 and L154, 229,846 m2, owned by LLE01 SNC (cadastral illustration rendered with pdftoppm and matches); PAR03 PJ07 gives 25 chemin des Bellebats, AD n61, 61,069 m2, operation by SNC DATA SERRES (Goodman France subsidiary); PN2 RNT p.6 gives 25 av. du Bois de la Pie, ZA 211/214/216, 35,050 m2, owned by SCI PROLOGIS FRANCE CLIV (A)",
+        "locators recomputed independently from raw API Carto captures with pyproj 3.7.1 / shapely 2.1.1 in EPSG:2154: LLE01 3.0357216,50.3363235 (union of 7 parcels, contenance 229,846 exact, inside, 170.6 m to edge); PAR03 2.2967199,48.6718138 (AD 61, contenance 61,069 exact, inside, 67.9 m); PN2 DC5 2.5044348,48.9781845 (ZA 211/214/216 union 35,048 m2, inside, 73.3 m); applicant Lambert-93 access point and Geo risques PROLOGIS point inside union, BAN no.25 0.6 m outside",
+        "no commune centre, HQ or zone centroid used; cross-commune parcel identity unique (empty captures for AI in 62240 and 0L 154 in 62173)",
+        "roles checked against applicant notes: LLE01 SNC owner current; SNC DATA SERRES operator intended (exploitation sera assuree par); SCI Prologis France CLIV (A) owner current",
+        "distinctness: no name, alias, operator, address or key match in sites/projects/evidence/source-records/identity-mapping; nearest Atlas sites 16.35 km (Data4 Cambrai), 6.02 km (Colt Villebon), 4.89 km (Goodman PAR01); no source-record or identity-mapping coordinate within 16 km; no other queue fragment, claims.tsv row (other lanes) or sources/*-holds.json entry names them or lies within 5 km",
+        "Sitadel 2026-09 captures re-scanned: no permit on any project parcel or to the applicants; Georisques captures confirm MDS and PROLOGIS points and no LLE01/DATA SERRES installation",
+        "corrected LLE01 distinctness_review and Sitadel-62173 source summary: the 2022 Goodman France warehouse permits were on former parcels AI 50/43/28 (absent from current cadastre, possibly parents of the LLE01 parcels), not clearly different land",
+        "no third-party personal names, emails or phones in changes, sources, holds or notes (applicant contact and MRAe members/delegate not copied)",
+        "robots.txt records present for all relied-on hosts (evalenv and Georisques allow /documents and /api; 404 for apicarto, geopf, SDES)",
+        "dryrun_fragment.py ok after edits: 779 sites, 837 projects, 4,349 evidence rows"
+      ],
+      "residual_risks": [
+        "LLE01 is 77 days old on 27 Oct 2026 and leaves the 85-day window after about 4 Nov 2026",
+        "LLE01 SNC's group is undisclosed; prior Goodman France warehouse permits on likely parent parcels suggest a possible Goodman link that is not recorded",
+        "MRAe opinions are not consents; all three remain announced only and later permits or withdrawals may follow",
+        "PN2 DC5 cadastral contenance totals 34,800 m2 against 35,050 m2 declared (computed union 35,048 m2)",
+        "Campus locators are parcel-union centroids with unknown positional accuracy; building positions are not georeferenced",
+        "Applicant notes are all-rights-reserved; only facts are summarised and raw captures are not redistributed"
+      ]
+    },
+    {
+      "fragment": "us-central-tx-p5",
+      "verdict": "accept",
+      "checks": [
+        "base re-read at start and end: verified_construction_core/2026-10-27-research-ninetieth; window start 2026-08-03 (85 days before 2026-10-27)",
+        "all 13 sources rehashed: sha256 equals content_hash and .metadata.json sha256, bytes and captured_at equal retrieved_at; geometry facts sha256 match",
+        "Milam IA capture: metadata request URL 050809 redirected to effective 050806, which equals source_url and the CDX row for /our-commitment",
+        "Cinco: archived id_ copy of rowanmedina.com/projects (CDX 20261007171822) read: 'It has been under construction since 2025'; same-day FAQ: '500 construction jobs are already here', development under way; copy differs from live (340 vs 280 acres Pirate), so it is a genuine earlier version",
+        "Cinco identity: Rowan water-offset release (Lytle dateline, 440 acres, rowanmedina.com), $550M first-phase construction financing release, 7 Aug 2026 letter (Medina County campus under construction), Lytle 26 Oct 2026 agenda (Rowan Cinco LLC sewer agreement for Project Cinco) all read in captures",
+        "Pirate: factsheet PDF read with pdftotext and pdftoppm: proposed on about 280 acres, Sept 2026 announced, Oct 2026 hearings, 2027-28 construction; CreationDate 2026-10-26T15:22:07Z and Squarespace stamp 1793028153782 = 2026-10-26T15:22:33Z",
+        "Pirate locator: factsheet's own project-map outline (west edge on CR 683, stepped east edge at Coal Mine, diagonal south edge along SH 132) matches the plotted Rowan Lytle LLC parcel union shape",
+        "locators recomputed from raw TxGIO identify JSON with pyproj 3.7.1 / shapely 2.1.1: Cinco 425.832 ac, 3 parts, centroid (-98.8356334, 29.2210266) inside; Pirate 288.671 ac, 1 part, centroid (-98.8211638, 29.2272183) inside; edge gap 15.87 m, centroid separation 1565.3 m; max vertex distances 1113 m and 894 m",
+        "20-tile TxGIO sweep rehashed (11,201 results, none capped): only Rowan Land Resources LLC (4 lots) and Rowan Lytle LLC (5 parcels) Rowan-named owners; no Microsoft/AWS/Google/Meta/data-centre-named owner",
+        "Milam: archived SB Energy FAQ read: 'Phase 1 of the project is in construction', over 1,000 craft workers, SB Energy owner/operator, OpenAI customer; milamdc.com tied to SB Energy by sbenergy.com/digital-infrastructure capture (rehashed); strictly newer than 2026-04-17; campus scope and admin2 locator unchanged; meets us-central-tx-p4 hold reopen condition (archived copy bounding FAQ date)",
+        "distinctness: no Rowan Cinco/Pirate/Lytle/Natalia/Coal Mine/CR 683/Medina hits in ninetieth sites, projects, evidence, source-records or identity-mapping (only Rowan Project Temple, 238 km; 'Cinco' hit is Goodman MAD01 street name); nearest Atlas site 42.3 km; no other queue fragment, claim or sources/*-holds.json entry covers these sites; no other fragment refreshes the Milam record",
+        "roles: Rowan Land Resources LLC and Rowan Lytle LLC owner/current from 2026 tax-year parcel records",
+        "privacy: no private names, phones or e-mails in changes, sources, holds, notes or geometry facts; only company and utility owners and the Governor (page title)",
+        "robots: rowanmedina.com, rowan.com, milamdc.com, lytletx.org rules read; fetched paths allowed; destinyhosted (Disallow /) not requested",
+        "dryrun_fragment.py: ok (778 sites, 836 projects)"
+      ],
+      "residual_risks": [
+        "Cinco under-construction status rests on Rowan's own undated page via an archive capture; no TDLR TABS registration, inspection or imagery confirms site works",
+        "Cinco parcel owner Rowan Land Resources LLC mails to Scottsdale AZ, not Rowan's Denver HQ; identity relies on the 'Rowan Cinco Subdivision' plat name, acreage, position and the Lytle agenda's Rowan Cinco LLC",
+        "Cinco and Pirate tracts are 15.9 m apart across CR 683; kept as separate sites because Rowan presents two named campuses held by different entities",
+        "Pirate acreage revised by Rowan from about 340 to about 280 acres; parcel union is 288.7 acres and the final site plan may differ",
+        "IA CDX SHA-1 digests do not match the decoded Cinco and Milam copies (likely transfer or content encoding); content consistency checked instead",
+        "Rowan's sites give two groundbreaking dates for Cinco (7 Aug 2025 release listing vs 15 Sep 2025 ceremony); not relied on for the status"
+      ]
+    },
+    {
+      "fragment": "us-central-va-p5",
+      "verdict": "accept",
+      "checks": [
+        "All 17 relied-on captures rehashed: SHA-256 equals sources.json content_hash and .metadata.json sha256; metadata URLs equal source_url; geometry-facts and layer-metadata hashes match",
+        "Pemberton: read 18 Aug 2026 minutes PDF pp.45-50 (pdftotext) - item 24 R26-200, Principal Planner cites 'approved site plan for the Pemberton Data Center campus' on 44.6-acre parcel 37-25, site undeveloped, counsel says data center by-right; meeting date 18 Aug 2026 on p.1; minutes publishOn 2026-10-13 confirmed in event listing; government_record; 70 days old (cutoff 2026-08-03); announced only, no site-plan number/date so not permitted",
+        "Stafford Technology Campus: read 7 Oct 2026 packet plain-text rendition (packet pp.372-377) - agenda item report R26-367 funds third-party plan review for 'the Stafford Technology Campus data center development', $215,325 spent, more plan submissions anticipated; RC23154931 (2024) and RC25156486 (16 Jun 2026); proffer statement applicant SI NVA07CAMPUS, LLC, 14 parcels, 'STACK - Public Affairs' contact; packet publishOn 2026-10-07; announced fits vocabulary (dated primary source identifies the proposed project); undated county 'Under Construction' label correctly not used",
+        "Massaponax Tech Campus: read Spotsylvania PC packet PDF p.30 - R25-0004 Lavue Lane Owner LLC, ~588 acres RU to I-2 'to allow for the development of a data center campus', ~6 million sq ft, 'Under Review'; report footer dated 10/14/2026; packet publishOn 2026-10-14",
+        "Reused evidence rows (minutes file 6359, Spotsylvania packet file 2823) match the ninetieth dataset's evidence metadata exactly; builder conflict check passed",
+        "Locators recomputed with pyproj 3.7.1/shapely 2.1.1 from raw WGS84 captures (Esri ring orientation honoured): Pemberton outline IDNO 3 centroid exact (0.005 m), 43.39 ac, inside, IoU 1.0 with parcels-layer IDNO 3 and 0.971 with 42.70-ac part of parcel 37-25; STC outline IDNO 1 centroid exact (0.006 m), 538.00 ac in two parts, centroid inside 377-ac part, IoU 1.0 with the 14 parcels-layer records; Massaponax 12-parcel union (all 12 pins returned, none extra) one polygon 592.50 ac, centroid exact (0.001 m), inside; UTM 18N cross-check within 0.02 m",
+        "Locator scope campus_locator, direct_geometry, official_source; precision, identity review and null uncertainty with reason recorded; not a city, HQ or zone centroid",
+        "Distinctness re-screened against current dataset 2026-10-27-research-ninetieth (adds only Finland records) and eightyninth: no name/alias/case/parcel matches in sites, projects, evidence, source-records or identity-mapping; nearest Atlas points Accokeek Center 4.80 km (Pemberton) and 1.83 km (STC, different case and parcels, point outside STC outline), Crossroads 2.58 km (Massaponax, point outside union); PowerHouse 95 (145-227 ac, PowerHouse/AREP, Cosner Drive) distinct from 588-ac pending RU rezoning by Lavue Lane Owner LLC; only STACK VA record is Berry Hill",
+        "Other queue fragments, claims.tsv and sources/*-holds.json screened: only prior holds (thirtyfirst, thirtysixth, fiftythird, sixtyninth, seventyseventh) mention these candidates; no other fragment adds them or a point within 2 km",
+        "Successor records (Stafford agendas 20 and 27 Oct, PC 28 Oct; Spotsylvania BOS 27 Oct) contain no later item for these projects",
+        "Role STACK Infrastructure operator/intended from its 16 Jan 2025 release (STACK 'developer and operator', STC its flagship development); role-only use outside the window",
+        "No third-party personal data in changes, sources, holds, geometry facts or URLs (names, emails and phones of planner, counsel, representative and residents not copied)",
+        "Dry run ok: 779 sites, 837 projects, base 2026-10-27-research-ninetieth"
+      ],
+      "residual_risks": [
+        "Reused minutes evidence row title names item 19 (Potomac Church) while Pemberton relies on item 24; explained in the source summary only",
+        "STC announced rests on a plan-review funding report rather than a Board decision; the sixtyninth hold had judged the agenda line alone insufficient - the full report is a dated government record identifying the project, which meets the announced definition",
+        "STC and Pemberton may be further advanced (county layer 'Under Construction' / 'Approved', undated); announced may understate",
+        "STC packet relied on via the portal plain-text rendition (PDF timed out); content not cross-checked against the PDF bytes",
+        "STACK operator role is intended and inferred from its development announcement; county records name SI NVA07 LLCs and Stafford Technology, LC, not STACK directly, except the 'STACK - Public Affairs' contact"
+      ]
+    },
+    {
+      "fragment": "us-dfw-p5",
+      "verdict": "accept",
+      "checks": [
+        "Base re-read from site/config.json at start and at verdict time: verified_construction_core/2026-10-27-research-ninetieth (776 sites, 834 projects, 4,329 evidence); all screens and the dry run use it.",
+        "All 21 relied-on captures rehashed: SHA-256 equals .metadata.json sha256 and sources.json content_hash; metadata URL equals source_url; HTTP 200; no credentials. Five reused captures (TABS2027003697, TABS Austin Blvd search, TxGIO N Austin Blvd address points, DataBank dc and press-release sitemaps) match base evidence a547ce09, c9feec41, fe1e9b3a, 9fea3786 and 245dcbca by hash, with those rows' retrieved_at and titles kept. Both geometry-facts files match their recorded sha256.",
+        "Alamo Mission: read the 13 Oct 2026 Red Oak council agenda (pdftotext). Item 9 is Ordinance No. 26-032, PD-66R7 to PD-66R8 'for construction of a Data Center Complex (and auxiliary structures)', NW corner E Ovilla Rd / SH 342, Ellis CAD 309733, 309734, 309735, 309737 and 191222 (ZC26-15). Certification says posted 6 Oct 2026 and CivicClerk publishOn is 2026-10-06T15:32Z. The 28 Sep P&Z agenda (posted 22 Sep) has the same case. government_record, 21 days old, announced only.",
+        "Alamo Mission successor review: the CivicClerk event list shows only the agenda for 13 Oct (no minutes or ordinance) and the 26 Oct P&Z packet lists ZC26-16 only. No permit or physical work is asserted, and RED1A/RED2A are context only. This differs from the p4 RED2A removal, which concerned a building whose use was not stated.",
+        "Alamo Mission locator recomputed from the raw TxGIO envelope (432 parcels, sr 4326). The five named PROP_IDs dissolve into one Polygon whose centroid in UTM 14N, EPSG:5070 and EPSG:2276 is (-96.7939496, 32.5362805), within 0.002 m of the claim. It lies inside the union and inside 309734, with 186.598 geodesic acres. Overlap with the union of the 17 Compass parcels is 0 m2. The 330 N Austin 9-1-1 point is in 309733.",
+        "Alamo Mission owners verified in the capture: Alamo Mission LLC holds Lots 1-3 and Red Oak IDC holds Lot 4 and the J Spoon tract (tax year 2026). The owner role is Alamo Mission LLC (current). No operator is asserted.",
+        "DataBank DFW3 page: dateModified and article:modified_time are 2026-09-28T21:23:22Z, matching the sitemap lastmod. The page describes an Uptime Tier III data center anchoring the Plano campus, with 72,230 IT sq ft, 12 MW, 48 carriers and 7x24x365 operation. The IA id_ copy 20260513214107 carries dateModified 2026-03-04 with 40 carriers and 'Raised Square Feet'. The CDX shows no capture after 13 May, so the version is bounded. company_disclosure, 29 days old, the same route as the accepted DataBank DEN1/DEN3 precedents. DFW8 'Coming Soon' is excluded.",
+        "DataBank locator recomputed: TxGIO parcel 2699528, one ring, owner DB Data Center Plano LLC, situs 8375 Dominion Pkwy. The UTM/5070/2276 centroid (-96.8156038, 33.0871471) is within 0.003 m of the claim, inside the polygon, at 16.19 geodesic acres. Collin CAD 2026 lists DFW 3 Expansion Condominium Units I (145,000 sq ft, 2017) and II (265,011 sq ft, 2024), both owned by DB Data Center Plano LLC. Roles are operator DataBank and owner DB Data Center Plano LLC, both current.",
+        "Compass Building 10: the TABS page reads 'Registration Date: 10/15/2026', with a scope of 251,815 sq ft interior/tenant fit-out 'for construction of a new Data Center on a Data Center Campus' at 590 Austin Blvd. Owner is Compass Datacenters DFW III-I LLC, status Project Registered, ProjectCreatedOn 2026-10-15T14:37:16. regulatory_filing, 12 days old, announced. The 590 N Austin point is in Compass parcel 303046 (DFW IIIJ LLC, Lot 5). The locator is inherited exactly from Building 8 project 62a1819d (geometry evidence 0db352f1, no identity evidence), as the seventy-eighth hold's reopen condition requires.",
+        "Distinctness: no name, alias, parcel, address or registration match in the ninetieth sites/projects/evidence/source-records/identity-mapping beyond the reused rows. The Alamo point's nearest Atlas site is Compass DFW III at 0.74 km (different owner, adjoining non-overlapping parcels). The Plano point has no Atlas site within 10 km (nearest NTT Dallas at 19.0 km). No pending queue fragment adds anything within 10 km or on the Compass site. claims.tsv and sources/*-holds.json show only the p4/us-tx-p1 RED1A/RED2A and Building 10 holds, which this fragment resolves or keeps held.",
+        "One project per new site (Alamo Mission, DataBank Plano); Building 10 goes to an existing site. All sources are referenced; no unreferenced or missing source IDs.",
+        "Personal data: there are no private-individual names, phones or emails in changes, sources, holds, notes or geometry facts. TABS contact/RAS names and the agenda requester appear only in the unpublished raw captures.",
+        "dryrun_fragment.py ok on base ninetieth: 778 sites, 837 projects, 4,345 evidence."
+      ],
+      "residual_risks": [
+        "The ZC26-15 development plan covers land where RED1A (Inspection Complete, undated) and Lot 1 improvements of $192.9M already exist. The 'announced' status describes the proposed PD-66R8 plan only and understates physical progress at the complex. Later RED1A/RED2A building records must join this site, reuse its locator and avoid double counting with the campus-level plan.",
+        "The council decision on Ordinance No. 26-032 was unpublished at 27 Oct 2026. A denial or withdrawal would leave an announced record for a plan that did not proceed.",
+        "The operator of the Alamo Mission complex is undisclosed. The Google link rests only on the owner's 1600 Amphitheatre Parkway mailing address and is not asserted.",
+        "The DFW3 operating observation rests on the CMS dateModified, bounded only from below by the 13 May IA copy and corroborated by the same publisher's sitemap. The operator design figures (12 MW, 72,230 sq ft) are not observed load.",
+        "Building 10 is a TDLR registration of a planned fit-out (filer forecasts Dec 2024 start, Aug 2028 completion). No permit or work is established.",
+        "All three locators are parcel or campus centroids, not building footprints, and their horizontal uncertainty is unknown."
+      ]
+    },
+    {
+      "fragment": "us-loudoun-pw-p5",
+      "verdict": "accept",
+      "checks": [
+        "Base re-read from site/config.json: now verified_construction_core/2026-10-27-research-ninetieth (adds only Finnish Microsoft/Hyperco records); all screens and the final dry run use it.",
+        "All 24 relied-on captures rehashed: SHA-256 equals .metadata.json sha256 and sources.json content_hash; metadata URL and captured_at match source_url and retrieved_at; HTTP 200; no credentials. The three geometry-facts files match their recorded sha256. The layer-definition source cites the p4 capture, byte-identical to this pass's re-capture and already in base evidence.",
+        "Dulles Electric: capture shows EPLAN-2024-0154 'Dulles Electric Data Centers', In Review, '(Conditionally Approved) ... Construction of two 2-story data center buildings'; PBOND-2026-0150/0151 named Dulles Electric Data Centers, 'LSDOPA/ZOPA for EPLAN-2024-0154', 2026-10-05T16:25Z/16:29Z; PLAT-2026-0121 consolidation of 4 properties, 2026-08-12. government_record; 22 days old; announced only.",
+        "Manekin Plaza: PBOND-2026-0123/0124 2026-08-07T14:24Z/14:38Z describe a site plan 'TO CONSTRUCT ONE DATA CENTER'; STPL-2022-0053 In Review with conditional approval; 81 days old (window starts 2026-08-03).",
+        "Sterling Technology Park: PBOND-2026-0163 2026-10-21T11:58Z (07:58 EDT) repeats EPLAN-2025-0027 '(Conditional Approval) ... Proposed Construction of Data Center Building ...'; 6 days old.",
+        "Layer definition confirms dateFieldsTimeReference Eastern with DST; 04:00Z midnight values confirm UTC conversion; day values unaffected either way. Bond sequence capture: 0150/0151 between 0149 (30 Sep) and 0152 (9 Oct), 0123/0124 between 0120 (4 Aug) and 0125 (10 Aug), 0163 between 0162 (19 Oct) and 0164 (21 Oct).",
+        "No consent or physical work asserted: conditional site-plan approval and bonds are not consent in effect; LandMARC issued table shows only a 2004 shed permit (Dulles), none (Manekin), a 2009 elevator permit (Sterling TP); submitted tables empty.",
+        "Locators recomputed with pyproj 3.7.1 / shapely 2.1.1 from raw Esri rings: centroids match claimed points to under 1 cm, inside their polygons, UTM 18N centroid agrees; 18.04 / 12.03 / 12.27 geodesic acres and extents reproduced; bonds, plats and plans share identical polygons; parcel unions equal the polygons (symmetric difference 0.0 ac); claimed address points verified inside.",
+        "Dulles Electric commercial-building polygon EPLAN-2024-0136 touches but does not overlap EPLAN-2024-0154; its 11 permits (forklift chargers, rooftop units, 73,729 sq ft new building) describe no data center; correctly held as reject.",
+        "Ridgetop Center STPL-2022-0051 polygon does not overlap Manekin (21.1 m gap) and stays held; only one project added per new site.",
+        "Distinctness: no name, alias, plan number, PIN, address or road match in ninetieth sites/projects/evidence/source-records/identity-mapping/review-provenance, sources/*-holds.json (only the p4 holds whose reopen conditions are met) or other queue fragments; nearest Atlas points EdgeCore AS02 1,662 m / 1,465 m, Cologix Ashburn 4,455 m from Manekin; no other queue fragment adds anything within 3 km.",
+        "Scope: commercial data-centre developments, Point campus_locator, direct_geometry, official_source, precision, identity review and uncertainty reason recorded; no roles asserted.",
+        "Personal data: queries omit staff and owner fields; staff initials not copied; replaced an LLC case name containing a surname in the Prince William hold with a neutral description; tightened the Manekin empty-permit date semantics (empty response has no DataSnapshot).",
+        "dryrun_fragment.py ok: 779 sites, 837 projects, base ninetieth."
+      ],
+      "residual_risks": [
+        "Bond application dates are internal county record dates on a GIS layer without version timestamps; published_at is the capture date, per the p4 and Chicago precedents; bond numbering has seven inversions.",
+        "Developers, operators and users are undisclosed; no roles asserted.",
+        "Manekin Plaza adjoins Ridgetop Center (bonds filed the same morning, consecutive numbers, existing data-centre permits on the Ridgetop parcel); if a later record links them, Ridgetop should join the Manekin site reusing its locator.",
+        "Manekin parcel was consolidated from five parcels (BLAD-2023-0015), so LandMARC permits filed under old PINs would not appear in the new-PIN query.",
+        "Sterling Technology Park parcel has an existing building at 22400 Shaw Rd whose use is not established; the plan may replace or accompany it.",
+        "Locators are application-property centroids, not building footprints; horizontal uncertainty unknown."
+      ]
+    }
+  ],
+  "packet_pins": {
+    "definitions/atlas-research-ninetyfirst-2026-10-27.json": "8544687227a3a55da0c7184cca25f41d513ef6a1f679c489ea27be09729e85ed",
+    "sources/research-countries-2026-10-27-ninetyfirst-primary-sources.json": "371b22413ef12a9399ee05f55cf978cab45d86432b801ab50d3032fd6ec4c46d",
+    "sources/research-countries-2026-10-27-ninetyfirst-actions.json": "bdada8db0db1454ad28429eebfd552ea37162cd501b1b53c899c52b23e621483",
+    "sources/research-countries-2026-10-27-ninetyfirst-holds.json": "23a86e835c5efa1c91915d7a493446467f85fdfca739bf3f0544ce616cd61e39"
+  },
+  "raw_captures_redistributed": false
+}

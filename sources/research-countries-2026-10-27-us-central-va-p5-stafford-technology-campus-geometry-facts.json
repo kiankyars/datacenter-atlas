@@ -1,0 +1,114 @@
+{
+  "candidate_id": "us-central-va-p5-stafford-technology-campus",
+  "decision": "Selected the planar centroid of Stafford County's 'Data Center Project Outlines' polygon IDNO 1, which the county's Data Center Parcels layer names 'Stafford Technology Campus' on the fourteen tax map parcels of rezoning RC23154931 and proffer amendment RC25156486, as the campus locator.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -77.4290772,
+      38.3858401
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_county_data_center_project_outline_centroid",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-us-central-va-p5/stafford-dc-outlines-v2.json",
+  "source_sha256": "4e3f7505502fd8af488a94d41e18e32cc8f08704ddc560a1cf1df32e91c598dd",
+  "source_url": "https://services1.arcgis.com/qKiA6JuCrE2l72iL/arcgis/rest/services/Data_Center_Project_Outlines_view_V2/FeatureServer/0/query?where=1%3D1&outFields=FID%2CIDNO%2CShape__Area&returnGeometry=true&outSR=4326&f=json",
+  "retrieved_at": "2026-10-27T00:46:54.248Z",
+  "selected_properties": {
+    "IDNO": 1,
+    "name_in_parcels_layer": "Stafford Technology Campus",
+    "status_in_parcels_layer": "Under Construction",
+    "description_in_parcels_layer": "5,800,000 SF",
+    "tax_map_parcels_in_parcels_layer": [
+      "38 1 124E",
+      "38 1 124F",
+      "38 1 124G",
+      "38 1 124H",
+      "38 1 124J",
+      "38 1 124K",
+      "38 122",
+      "38 122A",
+      "38 123A",
+      "38 124",
+      "38 124A",
+      "38 124B",
+      "38 29A",
+      "38 29B"
+    ]
+  },
+  "facts": {
+    "outline": {
+      "geometry_type": "MultiPolygon",
+      "geodesic_acres": 538.0,
+      "valid": true,
+      "parts": [
+        {
+          "geodesic_acres": 377.01,
+          "contains_centroid": true
+        },
+        {
+          "geodesic_acres": 160.98,
+          "contains_centroid": false
+        }
+      ],
+      "centroid_inside": true,
+      "bounds_lon_lat": [
+        -77.44138,
+        38.378938,
+        -77.416054,
+        38.392634
+      ],
+      "approx_extent_m": [
+        2213,
+        1520
+      ]
+    },
+    "centroid_method": "shapely planar centroid in WGS84 longitude/latitude; the WGS 84 / UTM 18N (EPSG:32618) planar centroid transformed back differs by 0.01 m",
+    "proffer_statement_acres": "about 503.84 acres (existing STC property) plus about 34.939 acres (new STC property) = about 538.78 acres; tax map parcels 38-124 (portion), 38-124A, 38-124B, 38-1-124E, 38-1-124F, 38-1-124G, 38-1-124H, 38-1-124J, 38-1-124K, 38-29A (portion), 38-29B, 38-122, 38-122A and 38-123A (proffer statement dated 14 May 2026 in the 7 October 2026 Board packet)",
+    "parcels_layer_union_iou_with_outline": 1.0,
+    "other_county_data_center_projects_within_2_5_km": [
+      {
+        "name": "Potomac Creek Campus",
+        "status_in_layer": "In Review",
+        "centroid_distance_m": 1115,
+        "boundary_gap_m": 0.0
+      },
+      {
+        "name": "Accokeek Center",
+        "status_in_layer": "Approved",
+        "centroid_distance_m": 1827,
+        "boundary_gap_m": 437.9
+      },
+      {
+        "name": "Eskimo Hill Tech Center",
+        "status_in_layer": "In Review",
+        "centroid_distance_m": 1214,
+        "boundary_gap_m": 0.0
+      }
+    ],
+    "nearest_atlas_sites": [
+      {
+        "physical_site_stable_key": "curated:accokeek-center-stafford-data-center-campus",
+        "distance_m": 1826.2
+      },
+      {
+        "physical_site_stable_key": "curated:potomac-church-tech-center-stafford",
+        "distance_m": 3564.5
+      },
+      {
+        "physical_site_stable_key": "imported:semiconductor-atlas:aws-king-george-county-virginia",
+        "distance_m": 16217.7
+      }
+    ],
+    "coordinate_reference_system": "WGS84 longitude/latitude as returned by the service with outSR=4326; no further transformation",
+    "outline_layer_metadata_file": "local_data/country-research-us-central-va-p5/stafford-dc-outlines-v2-layer.json",
+    "outline_layer_metadata_sha256": "34e467b31b262352e4163f6d6c98cb2d4b59ca0ff37aed1cf5b537b23765b76a",
+    "parcels_layer_metadata_file": "local_data/country-research-us-central-va-p5/stafford-dc-parcels-v2-layer.json",
+    "parcels_layer_metadata_sha256": "fd55f4b06d8e2293348df36ff4f1e6d6cbc7c47167e2675b622455ad48400305",
+    "parcels_with_names_file": "local_data/country-research-us-central-va-p5/stafford-dc-parcels-v2-geom.json",
+    "parcels_with_names_sha256": "e7aa06ecdd31e69436c1253e488cbe0845c5eb073ee998c0b598cb6643d5fc7b",
+    "query_fields_note": "owner fields were not requested; the parcels layer carries none",
+    "verification_script": "make_geom.py (pyproj 3.7.1, shapely 2.1.1)"
+  }
+}

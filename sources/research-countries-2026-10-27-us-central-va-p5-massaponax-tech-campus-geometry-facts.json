@@ -1,0 +1,92 @@
+{
+  "candidate_id": "us-central-va-p5-massaponax-tech-campus",
+  "decision": "Selected the planar centroid of the union of the twelve Spotsylvania County tax parcels listed for rezoning R25-0004 (Massaponax Tech Campus) in the county's status report dated 14 October 2026 as the campus locator.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -77.446502,
+      38.2103426
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_tax_parcel_union_centroid",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-us-central-va-p5/spotsy-parcels-massaponax.json",
+  "source_sha256": "ccc19f81ec571e067a2992916593b0df45faf2f0051ecbc2e79c549903362d61",
+  "source_url": "https://services1.arcgis.com/Fs0uoy8dWAYsVfXh/arcgis/rest/services/SpotsyParcels/FeatureServer/0/query?where=MAP_Pin%20IN%20%28%2737-A-41%27%2C%2737-A-41G%27%2C%2737-A-41H%27%2C%2737-A-42%27%2C%2737-A-44%27%2C%2737-A-45%27%2C%2737-A-46%27%2C%2736-5-A1%27%2C%2736-5-B1%27%2C%2736-5-A%27%2C%2751-A-1A%27%2C%2751-A-3%27%29&outFields=CAMA_Pin%2CMAP_Pin%2CParcel%2CGPIN%2CDATE_MODIFY%2CShape__Area&returnGeometry=true&outSR=4326&f=json",
+  "retrieved_at": "2026-10-27T00:50:38.061Z",
+  "selected_properties": {
+    "map_pins": [
+      "36-5-A",
+      "36-5-A1",
+      "36-5-B1",
+      "37-A-41",
+      "37-A-41G",
+      "37-A-41H",
+      "37-A-42",
+      "37-A-44",
+      "37-A-45",
+      "37-A-46",
+      "51-A-1A",
+      "51-A-3"
+    ],
+    "features_returned": 12
+  },
+  "facts": {
+    "parcels": {
+      "36-5-A": 9.1,
+      "36-5-A1": 1.4,
+      "36-5-B1": 1.4,
+      "37-A-41": 474.64,
+      "37-A-41G": 5.86,
+      "37-A-41H": 25.0,
+      "37-A-42": 8.27,
+      "37-A-44": 13.67,
+      "37-A-45": 17.05,
+      "37-A-46": 8.07,
+      "51-A-1A": 14.62,
+      "51-A-3": 13.41
+    },
+    "union_geometry_type": "Polygon",
+    "union_geodesic_acres": 592.5,
+    "union_valid": true,
+    "centroid_inside": true,
+    "application_acres": "approx. 588 acres (status report)",
+    "bounds_lon_lat": [
+      -77.460086,
+      38.200592,
+      -77.436681,
+      38.223084
+    ],
+    "approx_extent_m": [
+      2050,
+      2497
+    ],
+    "centroid_method": "shapely planar centroid in WGS84 longitude/latitude; the WGS 84 / UTM 18N (EPSG:32618) planar centroid transformed back differs by 0.01 m",
+    "crossroads_technology_campus": {
+      "atlas_site": "curated:crossroads-technology-campus-spotsylvania",
+      "centroid_distance_m": 2579.5,
+      "minimum_boundary_gap_m_to_crossroads_parcel_union": 65.1,
+      "overlap": false,
+      "crossroads_parcel_file": "local_data/country-research-us-central-va-p4/spotsy-parcels-crossroads.json",
+      "crossroads_parcel_file_sha256": "d88a9bd99af0a1ad16252a53291f8dd82b24b4acd84450d3887322f153bbea87"
+    },
+    "nearest_atlas_sites": [
+      {
+        "physical_site_stable_key": "curated:crossroads-technology-campus-spotsylvania",
+        "distance_m": 2579.5
+      },
+      {
+        "physical_site_stable_key": "imported:semiconductor-atlas:aws-king-george-county-virginia",
+        "distance_m": 11523.4
+      },
+      {
+        "physical_site_stable_key": "imported:semiconductor-atlas:powerhouse-95-spotsylvania",
+        "distance_m": 18141.6
+      }
+    ],
+    "coordinate_reference_system": "WGS84 longitude/latitude as returned by the service with outSR=4326; no further transformation",
+    "query_fields_note": "owner fields were not requested",
+    "verification_script": "make_geom.py (pyproj 3.7.1, shapely 2.1.1)"
+  }
+}

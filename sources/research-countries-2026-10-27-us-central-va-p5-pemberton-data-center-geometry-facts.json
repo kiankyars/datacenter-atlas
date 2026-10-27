@@ -1,0 +1,108 @@
+{
+  "candidate_id": "us-central-va-p5-pemberton-data-center-stafford",
+  "decision": "Selected the planar centroid of Stafford County's 'Data Center Project Outlines' polygon IDNO 3, which the county's Data Center Parcels layer names 'Centreport Gateway Pemberton Tech Center' on tax map parcel 37-25 (status 'Approved', '577000 Sq Ft Data Center'), as the campus locator.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -77.4726441,
+      38.3773957
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_county_data_center_project_outline_centroid",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-us-central-va-p5/stafford-dc-outlines-v2.json",
+  "source_sha256": "4e3f7505502fd8af488a94d41e18e32cc8f08704ddc560a1cf1df32e91c598dd",
+  "source_url": "https://services1.arcgis.com/qKiA6JuCrE2l72iL/arcgis/rest/services/Data_Center_Project_Outlines_view_V2/FeatureServer/0/query?where=1%3D1&outFields=FID%2CIDNO%2CShape__Area&returnGeometry=true&outSR=4326&f=json",
+  "retrieved_at": "2026-10-27T00:46:54.248Z",
+  "selected_properties": {
+    "IDNO": 3,
+    "name_in_parcels_layer": "Centreport Gateway Pemberton Tech Center",
+    "status_in_parcels_layer": "Approved",
+    "description_in_parcels_layer": "577000 Sq Ft Data Center",
+    "tax_map_parcel": "37-25"
+  },
+  "facts": {
+    "outline": {
+      "geometry_type": "Polygon",
+      "geodesic_acres": 43.39,
+      "valid": true,
+      "vertices": 20,
+      "centroid_inside": true,
+      "bounds_lon_lat": [
+        -77.476941,
+        38.376184,
+        -77.468166,
+        38.379475
+      ],
+      "approx_extent_m": [
+        767,
+        365
+      ]
+    },
+    "centroid_method": "shapely planar centroid in WGS84 longitude/latitude; the WGS 84 / UTM 18N (EPSG:32618) planar centroid transformed back differs by 0.0 m",
+    "tax_parcel_37_25": {
+      "source_file": "local_data/country-research-us-central-va-p5/stafford-parcel-37-25.json",
+      "source_sha256": "ac6adbecc1c35bcf37c6aa534d668f39574188a74a1f88a96366657cbbf274f2",
+      "source_url": "https://services1.arcgis.com/qKiA6JuCrE2l72iL/arcgis/rest/services/Parcels/FeatureServer/0/query?where=PRCLID%3D%27%2037%20%20%20%20%20%20%20%2025%27&outFields=PRCLID%2CPAGENUM%2CINSNUM%2CLOTNUM%2CSLOTNUM%2CEDIST%2CPARTS%2CSHAPE_AR_2%2CLUGROUP%2CFULLADD&returnGeometry=true&outSR=4326&f=json",
+      "features": 3,
+      "part_geodesic_acres": [
+        42.695,
+        7.123,
+        0.477
+      ],
+      "union_geodesic_acres": 50.3,
+      "main_part_centroid": [
+        -77.4725916,
+        38.3773837
+      ],
+      "main_part_centroid_to_outline_centroid_m": 4.78,
+      "main_part_intersection_over_union_with_outline": 0.9713,
+      "note": "The parcel layer returns three polygons for 37-25 (the county record of 18 August 2026 gives the property as 44.6 acres); the county's data-center outline coincides with the largest part. The two small parts (about 7.1 and 0.5 acres) lie outside the outline and are not used."
+    },
+    "parcels_layer_union_iou_with_outline": 1.0,
+    "other_county_data_center_projects_within_2_5_km": [
+      {
+        "name": "Vantage VA4 (aka Melrod)",
+        "status_in_layer": "Under Construction",
+        "centroid_distance_m": 1372,
+        "boundary_gap_m": 718.9
+      },
+      {
+        "name": "Cranes Corner Tech Center",
+        "status_in_layer": "Approved",
+        "centroid_distance_m": 2019,
+        "boundary_gap_m": 1377.8
+      },
+      {
+        "name": "Enon Tech Park",
+        "status_in_layer": "In Review",
+        "centroid_distance_m": 1324,
+        "boundary_gap_m": 554.7
+      }
+    ],
+    "nearest_atlas_sites": [
+      {
+        "physical_site_stable_key": "curated:accokeek-center-stafford-data-center-campus",
+        "distance_m": 4796.5
+      },
+      {
+        "physical_site_stable_key": "curated:potomac-church-tech-center-stafford",
+        "distance_m": 7063.0
+      },
+      {
+        "physical_site_stable_key": "curated:crossroads-technology-campus-spotsylvania",
+        "distance_m": 16104.9
+      }
+    ],
+    "coordinate_reference_system": "WGS84 longitude/latitude as returned by the service with outSR=4326; no further transformation",
+    "outline_layer_metadata_file": "local_data/country-research-us-central-va-p5/stafford-dc-outlines-v2-layer.json",
+    "outline_layer_metadata_sha256": "34e467b31b262352e4163f6d6c98cb2d4b59ca0ff37aed1cf5b537b23765b76a",
+    "parcels_layer_metadata_file": "local_data/country-research-us-central-va-p5/stafford-dc-parcels-v2-layer.json",
+    "parcels_layer_metadata_sha256": "fd55f4b06d8e2293348df36ff4f1e6d6cbc7c47167e2675b622455ad48400305",
+    "parcels_with_names_file": "local_data/country-research-us-central-va-p5/stafford-dc-parcels-v2-geom.json",
+    "parcels_with_names_sha256": "e7aa06ecdd31e69436c1253e488cbe0845c5eb073ee998c0b598cb6643d5fc7b",
+    "query_fields_note": "owner fields were not requested; the parcels layer carries none",
+    "verification_script": "make_geom.py (pyproj 3.7.1, shapely 2.1.1)"
+  }
+}
