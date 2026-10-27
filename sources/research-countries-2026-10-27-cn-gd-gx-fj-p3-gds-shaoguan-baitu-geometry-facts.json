@@ -1,0 +1,55 @@
+{
+  "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+  "prepared_at": "2026-10-27",
+  "fragment": "cn-gd-gx-fj-p3",
+  "topic": "GDS Shaoguan Computing Cluster (韶关万国数据算力集群), Baitu, Qujiang: GDS I 220 kV user-substation centre from the October 2026 GDS transmission EIA, with datum and identity cross-checks",
+  "candidate": "GDS Shaoguan Computing Cluster (韶关万国数据算力集群), Baitu industrial park, Qujiang District, Shaoguan",
+  "project_stable_key": "curated:gds-shaoguan-computing-cluster-baitu:campus-development",
+  "selected_point": {
+    "role": "Centre of the proposed 220 kV GDS I substation (220kV万国I站), the dedicated user substation that 韶关市万国云耀数据科技有限公司 is building to supply the GDS Shaoguan computing cluster. It marks the cluster's own grid intake in the Baitu industrial park. It is not a data-hall centre, parcel centroid, entrance or campus boundary.",
+    "source": "EIA report form 万国数据韶关220千伏输变电工程生态环境影响报告表 (cover: builder 韶关市万国云耀数据科技有限公司, compiled September 2026), attachment of the Shaoguan Ecology and Environment Bureau acceptance notice published 2026-10-26",
+    "capture": "local_data/country-research-cn-gd-gx-fj-p3/sg-gds220-eia-1026.pdf",
+    "sha256": "967da14da541afd53af6fa6ad228aea59057c4faf66edb7af454fe20b1b91b7a",
+    "reading_method": "The PDF is a scanned image document (pdftotext returns no text). Its page images were extracted with pdfimages and read visually; no OCR language pack was available. Page numbers below are the printed page numbers and the zero-based PDF image index.",
+    "transcribed_literals": [
+      {"printed_page": 6, "pdf_image_index": 3, "literal": "拟建变电站：113度30分33.452秒，24度41分11.126秒"},
+      {"printed_page": 29, "pdf_image_index": 26, "literal": "拟建变电站中心地理坐标为113°30′33.452″，24°41′11.126″"}
+    ],
+    "decimal_crs84": [113.5092922, 24.6864239],
+    "conversion": "Degrees-minutes-seconds to decimal degrees only (113 + 30/60 + 33.452/3600; 24 + 41/60 + 11.126/3600); no datum shift applied.",
+    "datum_statement_in_source": "none"
+  },
+  "other_points_in_the_same_eia": [
+    {"name": "220 kV Tanjie station end of the Tanjie-GDS I line (终点)", "printed_pages": [6, 29], "literal": "113°28′42.354″，24°40′36.339″", "decimal_crs84": [113.4784317, 24.6767608]},
+    {"name": "220 kV Baitu data-centre station end of the Baitu-GDS I cable (终点)", "printed_pages": [6, 29], "literal": "113°30′17.074″，24°41′40.274″ (the seconds digit on page 6 is partly obscured by the watermark; page 29 reads 40.274)", "decimal_crs84": [113.5047428, 24.6945206]}
+  ],
+  "datum_check": {
+    "method": "Esri World Imagery z17 tiles (Web Mercator, unshifted) were mosaicked offline and the EIA points plotted. The position each point would have if it were a GCJ-02 web-map coordinate was computed offline with the standard published GCJ-02 forward formula inverted by fixed-point iteration (no network service). Qualitative check; imagery dates are not stated.",
+    "tanjie_check": "Read directly as WGS84, the October EIA's Tanjie line end (113.4784317, 24.6767608) falls inside the walled outdoor yard of the existing 220 kV Tanjie substation (about 200 m by 180 m, west of the Beijing-Guangzhou railway) on Esri tile z17/56260/106852. The June 2026 GDS grid-connection EIA (local sg-gds-grid-eia-june.pdf, PDF pages 3 and 10) prints the Tanjie station centre as 113°29′3.042″, 24°40′26.388″ (113.4841783, 24.6739967); read as WGS84 that point lies about 657 m south-east in fields, while its GCJ-02-to-WGS84 inverse (113.4786897, 24.6768186) falls in the substation yard, 27 m from the October line end. So the October EIA's coordinates behave as unshifted WGS84/CGCS2000 values and the June EIA's as GCJ-02 values.",
+    "gds_user_station_cross_check": "The July 2026 Baitu 220 kV data-centre transmission EIA (local sg-baitu-eia-july.pdf, PDF page 2) gives the end of its C line, the cable to the 220 kV GDS user station (万国用户站), as g113°30'52.440\", 24°41'02.928\" (113.5145667, 24.6841467). Its GCJ-02-to-WGS84 inverse (113.5091841, 24.6870589) lies 71.5 m from the October GDS I centre, while the raw values lie 590 m away. The October Baitu-station cable end (113.5047428, 24.6945206) likewise lies 76 m from the July C-line start after the same inverse. Both grid filings therefore describe the same GDS user station, once in GCJ-02 and once in WGS84-equivalent values.",
+    "conclusion": "The October centre is used as published, read as WGS84-equivalent. No positional accuracy is stated; the decimal places are transcription precision."
+  },
+  "campus_relationship": {
+    "evidence": [
+      "October EIA printed page 29: the GDS Shaoguan computing cluster needs large amounts of power, so 韶关市万国云耀数据科技有限公司 is investing in the 万国数据韶关220千伏输变电工程; supply range 韶关万国数据算力集群 (供电范围为韶关万国数据算力集群).",
+      "October EIA printed page 43, figure 2: route map on imagery placing 220kV万国I站 (B1) at a road junction south-east of a blue-roofed factory block in the Baitu industrial park, with the cable running north through the park (园区内) to the 220 kV Baitu data-centre station (B2).",
+      "July EIA PDF pages 19 and 33: the Baitu-GDS cable enters the 220 kV GDS user station via 规划二路 and uses a cable channel inside the GDS station (利用万国站内电缆通道敷设电缆0.09km)."
+    ],
+    "limitation": "None of the filings outlines the data-centre property, so whether the substation lies inside it, and its offset from any data hall, is not documented. The point is labelled as the cluster's dedicated grid intake, following the reopen condition of the thirty-fourth update's hold (use the EIA-printed user-substation point labelled as on-campus support infrastructure)."
+  },
+  "imagery_observation": "On undated Esri imagery the selected point lies in a large cleared earthworks tract with ponds immediately east of the Baitu industrial park's factory blocks; no data-centre buildings are visible there. The imagery appears older than the EIA's own route-map image, which shows roads across the tract. No physical status is inferred from either image.",
+  "imagery_tiles": [
+    {"file": "local_data/country-research-cn-gd-gx-fj-p3/esri-t17-56256-106863.jpg", "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/17/56256/106863", "sha256": "0fa6e1c401ca3ef38dc15abddeb3baf7ce0e64d24061db0d8da679939081def4", "retrieved_at": "2026-10-26T17:05:07.938Z", "contains": "selected GDS I centre"},
+    {"file": "local_data/country-research-cn-gd-gx-fj-p3/esri-t17-56260-106852.jpg", "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/17/56260/106852", "sha256": "9613fa5625acff6487cc30b62648cf21119d86e4aeb8d9a8a184ac6868aae1b8", "retrieved_at": "2026-10-26T17:15:21.788Z", "contains": "October EIA Tanjie line end inside the Tanjie substation yard"},
+    {"file": "local_data/country-research-cn-gd-gx-fj-p3/esri-t16-28128-53431.jpg", "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/16/28128/53431", "sha256": "10a8bb373b2b8bc3ca6589261be965d0ba62d5db4bb9e56fd7e4bf6b86cd3bc8", "retrieved_at": "2026-10-26T17:08:55.888Z", "contains": "context around the selected point (with the other z16/z17 tiles named esri-t16-*/esri-t17-* in the same capture folder)"}
+  ],
+  "distances_m": {
+    "October GDS I centre to July C-line end (GCJ-02 inverse)": 71.5,
+    "October GDS I centre to July C-line end (raw)": 590.0,
+    "October Tanjie line end to June Tanjie centre (GCJ-02 inverse)": 26.9,
+    "October Tanjie line end to June Tanjie centre (raw)": 657.0,
+    "October GDS I centre to October Baitu-station cable end": 1011,
+    "nearest Atlas site (China Telecom Shaotang Campus, Shaoguan)": 19078
+  },
+  "privacy": "The contact-person and telephone cells of the EIA's basic-information table (printed page 6) are blanked in the published copy; no personal data from the EIA is transcribed in any fragment file."
+}

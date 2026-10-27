@@ -1,0 +1,98 @@
+{
+ "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+ "candidate": "TierPoint St. Louis - Locust (SLL) data center, 2300 Locust Street, St. Louis, Missouri 63103 (under development)",
+ "prepared_at": "2026-10-27",
+ "selected_point_crs84": [
+  -90.2128665,
+  38.6336159
+ ],
+ "selected_point_role": "area centroid of City of St. Louis Assessor parcel HANDLE 10920000020, the only city parcel with situs 2300 LOCUST ST, the address TierPoint gives for the facility; it locates the lot of the existing 1916 building that TierPoint is converting, not a surveyed footprint or a data hall",
+ "authority_class": "official_source",
+ "derivation": "direct_geometry",
+ "scope_class": "official_tax_parcel_centroid",
+ "use_scope": "project_locator",
+ "source": {
+  "file": "local_data/country-research-us-ok-ks-mo-p5/stl-parcel-10920000020.geojson",
+  "sha256": "75037a2e31e673217c0f1576afda24a91ca6ecc558ccbf0b3db9d974509c14d9",
+  "url": "https://services6.arcgis.com/HZXbCkpCSqbGd0vK/ArcGIS/rest/services/Parcels/FeatureServer/0/query?where=HANDLE+%3D+%2710920000020%27&outFields=HANDLE,SITEADDR,AsrLandUse,Zoning,NbrOfBld_1,FirstYearB,LastYearBu,VacantLot,Shape__Area&returnGeometry=true&outSR=4326&f=geojson",
+  "retrieved_at": "2026-10-27T02:31:46.923Z",
+  "service": "City of St. Louis ArcGIS Online organisation HZXbCkpCSqbGd0vK, Parcels FeatureServer layer 0 'STL-Parcels' (copyright Assessor's Office; data last edited 2026-03-06), attribute query on HANDLE, outSR 4326",
+  "layer_metadata_file": "local_data/country-research-us-ok-ks-mo-p5/stl-parcels-layer0.json",
+  "layer_metadata_sha256": "596ade88ec54d36ed53784d1deee62389830fae67e4f1f2b4e7d2ef23edd61c3"
+ },
+ "parcel": {
+  "HANDLE": "10920000020",
+  "situs": "2300  LOCUST ST",
+  "AsrLandUse": 5000,
+  "Zoning": "I",
+  "buildings": 1,
+  "first_year_built": 1916,
+  "last_year_built": 1916,
+  "vacant_lot": 0,
+  "Shape__Area_sqft": 46512.96,
+  "geodesic_area_m2": 4321.7,
+  "geodesic_acres": 1.068,
+  "perimeter_m": 277.4,
+  "minimum_rotated_rectangle_m": [
+   91.5,
+   47.3
+  ],
+  "bounds_lon_lat": [
+   -90.213444,
+   38.633304,
+   -90.212289,
+   38.633927
+  ],
+  "owner_field": "none in the layer; ownership is not asserted from it"
+ },
+ "computed": {
+  "centroid_lon_lat": [
+   -90.2128665,
+   38.6336159
+  ],
+  "centroid_inside_polygon": true,
+  "method": "Polygon returned with outSR=4326 (f=geojson); centroid computed in EPSG:32615 and returned to WGS84; geodesic area and perimeter on the WGS84 ellipsoid",
+  "tools": "pyproj 3.7.1, shapely 2.1.1"
+ },
+ "identity_bridge": [
+  "TierPoint's St. Louis - Locust page (version modified 2026-09-03) gives 'St. Louis - Locust (SLL) 2300 Locust Street St. Louis MO 63103' and 135,840+ total square feet; its structured data give the same street address.",
+  "TierPoint's release of 13 August 2024 says the acquired building is 'located at 2300 Locust Street in St. Louis' with 135,800 total square feet.",
+  "A query of the city parcel layer for situs addresses 22xx and 23xx Locust St (stl-parcels-22xx-23xx-locust.json) returns one parcel with situs 2300 LOCUST ST, HANDLE 10920000020 (one building, built 1916). The neighbouring parcels are 2206, 2210 and 2200 Locust St to the east and 2301, 2309, 2315 and 2323 Locust St across Locust Street to the north.",
+  "The 1.07-acre lot (46,513 sq ft) with one building is consistent with a multi-storey building of about 135,800 sq ft."
+ ],
+ "geometry_checks": {
+  "operator_structured_data_point": {
+   "point_crs84": [
+    -90.212641,
+    38.634243
+   ],
+   "source_file": "local_data/country-research-us-ok-ks-mo-p5/tierpoint-st-louis-locust-20261027.html",
+   "distance_to_selected_centroid_m": 72.3,
+   "inside_parcel_10920000020": false,
+   "distance_to_parcel_10920000020_m": 48.7,
+   "parcel_containing_point": {
+    "file": "local_data/country-research-us-ok-ks-mo-p5/stl-parcels-at-tierpoint-locust-point.json",
+    "sha256": "da633419764cec3df772a995252e676c1f7d79dfb61786a797c23b4949729a6c",
+    "HANDLE": "10919000020",
+    "situs": "2315  LOCUST ST",
+    "first_year_built": 1924
+   },
+   "interpretation": "TierPoint's own schema.org point lies across Locust Street in the 2315 Locust St parcel, not on 2300 Locust St. The operator's stated street address and its 2024 release both name 2300 Locust Street, so the parcel at that address is selected and the operator point is not used as the locator."
+  },
+  "imagery_visual_check": {
+   "file": "local_data/country-research-us-ok-ks-mo-p5/esri-world-imagery-stl-2300-locust.png",
+   "sha256": "0312f56927f18d6cb2dcafa1ee9882cb80ef22338d8babfdaa771e6d5b74a2f8",
+   "url": "https://server.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/export?bbox=-90.2148,38.6322,-90.2108,38.6352&bboxSR=4326&imageSR=4326&size=1000,750&format=png&f=image",
+   "observation": "Esri World Imagery (undated composite; compiled reference, not an official source) shows one large flat-roofed building filling most of the parcel south of Locust Street, with a block of rooftop mechanical equipment on its eastern part. Used only as a visual check that the parcel holds one large building; no construction stage, date or footprint is derived from it."
+  }
+ },
+ "unresolved": [
+  "The parcel layer has no owner field, so TierPoint's ownership is not confirmed from it.",
+  "The position of the phase 1 data hall within the building is not published."
+ ],
+ "nearby_records": "Within 2 km: TierPoint St. Louis - Olive (curated:tierpoint-st-louis-olive-street-data-center, 1111 Olive St), 1,496 m east-south-east; a different building and a separate operating facility. No other Atlas site, project, source record, identity-mapping entry, pending fragment, claim or hold coordinate lies within 2 km.",
+ "consistency_checks": {
+  "datum": "WGS84 output from the city parcel service (outSR=4326)",
+  "geocoder_used": false
+ }
+}

@@ -1,0 +1,69 @@
+{
+  "candidate_id": "ntt-chicago-itasca-hamilton-lakes-campus",
+  "decision": "Selected the centroid of DuPage County parcel 03-05-200-047 (27.6 acres, legal 'NTT CORP RESUB 2', billing name NTT Global Data Centers, property address range 235-75 Pierce Rd, Itasca) as the campus locator for NTT's Itasca data-center campus. The Village of Itasca places the NTT campus at Pierce Road and Hamilton Lakes Drive in the Hamilton Lakes Regional Office Center; the parcel carries the 235, 255 and 275 Pierce Rd address points, and the Village's own finance report ties 275 Pierce to an NTT building. The point locates the campus core, not the CH3 building.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -88.0077012,
+      41.9879041
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_tax_parcel_centroid",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-us-chicago-in-p5/dupage-parcels-ntt-itasca-4326.json",
+  "source_sha256": "e39f6c5b6c3d6205f340ab2aedef99f1ed541764e983378fc4d1feafae19e929",
+  "source_url": "https://gis.dupageco.org/arcgis/rest/services/ParcelSearch/DuPageAssessmentParcelViewer/MapServer/4/query?where=PIN+IN+%28%270305200047%27%2C%270305200045%27%2C%270305200046%27%2C%270305200019%27%2C%270305200020%27%2C%270305200029%27%29&outFields=PIN%2CACREAGE%2CPROPADDRL1%2CPROPSTNAME%2CPROPCITY%2CMUNICIPALITY%2CPARCEL_STATUS%2CPROPCLASS%2CLEGALDES1%2CBILLNAME&returnGeometry=true&outSR=4326&f=json",
+  "computation_source_file": "local_data/country-research-us-chicago-in-p5/dupage-parcels-ntt-itasca-native.json",
+  "computation_source_sha256": "4fc2a9688fef4938f9c50416f0c0924e728e3c4648161bd787f8d89a672d7c3d",
+  "computation_source_url": "https://gis.dupageco.org/arcgis/rest/services/ParcelSearch/DuPageAssessmentParcelViewer/MapServer/4/query?where=PIN+IN+%28%270305200047%27%2C%270305200045%27%2C%270305200046%27%2C%270305200019%27%2C%270305200020%27%2C%270305200029%27%29&outFields=PIN&returnGeometry=true&f=json",
+  "retrieved_at": "2026-10-27T02:21:11.706Z",
+  "selected_properties": {
+    "pin": "0305200047",
+    "acreage_field": 27.6,
+    "property_address": "235-75 PIERCE RD, ITASCA",
+    "legal_description_1": "NTT CORP RESUB 2",
+    "billing_name_as_published": "NTT GLOBAL DATA CENTERS C (truncated in the layer)",
+    "property_class": "C",
+    "layer": "DuPage County GIS, ParcelSearch/DuPageAssessmentParcelViewer MapServer layer 4 'Cadastral Realestate' (county working parcel layer; native NAD83 / Illinois East ftUS, wkid 102671 / 3435)"
+  },
+  "computed": {
+    "selected_point": [
+      -88.0077012,
+      41.9879041
+    ],
+    "method": "Planar centroid of the native EPSG:3435 polygon (93 vertices, from the computation source file) transformed to EPSG:4326 with pyproj; geodesic area and vertex distances from the server WGS84 output (source file).",
+    "native_centroid_ftUS": [
+      1072777.776,
+      1938350.466
+    ],
+    "point_inside_parcel": true,
+    "geodesic_acres": 27.594,
+    "extent_m": [
+      348,
+      429
+    ],
+    "max_vertex_distance_m": 256.3,
+    "nearest_boundary_m": 103.7,
+    "server_wgs84_centroid_offset_m": 1.0,
+    "server_wgs84_centroid_offset_note": "The server's WGS84 output differs from the local NAD83-to-WGS84 transform by about 1 m (datum transformation), within the parcel's own scale.",
+    "address_points_in_parcel": {
+      "235 PIERCE RD": 131.4,
+      "255 PIERCE RD": 44.8,
+      "275 PIERCE RD": 128.0
+    },
+    "address_point_295_pierce_rd": "In NTT parcel 03-05-200-045 (6.66 acres, legal 'NTT CORP RESUB', billing name NTT Global Data Centers), 308 m from the selected point.",
+    "ch4_lot_check": "PINs 03-05-200-019, -020 and -029 (1250 and 1200 Arlington Heights Rd and a 0.006-acre strip; billing name NTT Global Data Centers) total 12.255 geodesic acres, matching the development agreement's 'approximately 12.2 acres'; their union centroid is 279 m east-north-east of the selected point.",
+    "tools": "pyproj 3.7.1, shapely 2.1.1"
+  },
+  "identity_bridge": [
+    "Village of Itasca staff memo (submitted 13 August 2026, Village Board packet of 15 September 2026): NTT Global Data Centers' campus is 'at the Hamilton Lakes Regional Office Center'; CH1 (opened 2020) and CH2 (started 2022) are complete on Lot 2; CH3 is on NTT's 'property at the intersection of Pierce Road and Hamilton Lakes Drive'; Lot 4 (PINs 03-05-200-019, -020, -029) at the north-west corner of Pierce Rd and North Arlington Heights Rd is for CH4; when complete there will be four data-center buildings and one substation on the 35-acre campus.",
+    "Same packet, finance report as of 31 July 2026: building permit fees 'were paid for NTT CH2 (275 Pierce) and a mass grading permit was paid for NTT CH4 (1200 N. Arlington Heights)'.",
+    "DuPage County working parcel layer: 03-05-200-047 (235-75 Pierce Rd, 'NTT CORP RESUB 2') and 03-05-200-045 (295 Pierce Rd, 'NTT CORP RESUB') are billed to NTT Global Data Centers; the county address points for 235, 255 and 275 Pierce Rd fall inside 03-05-200-047."
+  ],
+  "unresolved": [
+    "Which lot and building footprint CH3 occupies is not published in the records read: the memo places CH3 at Pierce Road and Hamilton Lakes Drive, while the Village finance report labels 275 Pierce as CH2. The point therefore locates the NTT campus parcel that carries 235-275 Pierce Rd, not CH3 itself.",
+    "The DuPage layer is the county working parcel layer, not the end-of-year tax parcel layer, and publishes no positional accuracy. The substation lot named in the memo (03-05-200-042) is not present in it under that number."
+  ],
+  "nearby_records": "No Atlas site, queued addition or claim lies within 2 km. Nearest Atlas site: Equinix CH5, 2001 Lunt Ave, Elk Grove Village, 4.70 km. Nearest held candidates: the 800 Devon Ave, Elk Grove Village data-center building (us-chicago-in-p4 hold) 2.90 km and 801 Tonne Rd (lead) 3.87 km, both different parcels and occupants."
+}

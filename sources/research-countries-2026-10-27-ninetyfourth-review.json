@@ -1,0 +1,123 @@
+{
+  "reviewer": "root",
+  "reviewed_at": "2026-10-27",
+  "decision": "accepted_for_integration",
+  "update": "verified_construction_core/2026-10-27-research-ninetyfourth",
+  "base_dataset": "verified_construction_core/2026-10-27-research-ninetythird",
+  "process": "continuous: one researcher per beat, one adversarial verifier per fragment",
+  "fragments": [
+    {
+      "fragment": "cn-gd-gx-fj-p3",
+      "verdict": "accept",
+      "checks": [
+        "current_dataset re-read: verified_construction_core/2026-10-27-research-ninetythird (start and finish)",
+        "all six relied-on captures rehashed: sha256 equals .metadata.json and sources.json content_hash (967da14d, 63ef99e7, dbe5d65d, fb9ea43e, 0fa6e1c4, 9613fa56)",
+        "acceptance notice HTML: all six literal_byte_pointers match at stated offsets; PubDate 2026-10-26 09:06:05, acceptance 2026年10月23日, attachment link /attachment/0/319/319066/2890730.pdf",
+        "EIA PDF (scanned, 113 pp) rendered with pdftoppm: cover (builder 韶关市万国云耀数据科技有限公司, Sept 2026), printed p6 DMS 113°30′33.452″ 24°41′11.126″, DRC 韶发改电力[2026]6号, 是否开工建设=否; p29 cluster/T-BLOCK/supply-range/phase dates; p30 Dec 2027 inconsistency; p43 route map B1=万国I站",
+        "status announced 2026-10-26 from regulatory_filing (project company EIA published by Shaoguan EEB), 1 day old, inside 85-day window; no permit or physical stage asserted; substation loads not presented as IT capacity",
+        "locator recomputed: DMS->decimal 113.5092922, 24.6864239 exact",
+        "datum check reproduced independently: Oct Tanjie line end read as WGS84 plots inside walled Tanjie 220 kV yard on Esri z17 mosaic; June Tanjie centre GCJ-02 inverse 26.9 m from it (raw 657 m); July C-line end GCJ-02 inverse 71.2 m geodesic / 71.4 m haversine from GDS I (raw 590 m); Oct Baitu cable end vs July C-line start inverse 75.6 m",
+        "scope campus_locator with explicit dedicated-user-substation scope class, precision, identity review and null uncertainty with reason; consistent with Atlas precedent of EIA substation campus locators and the thirty-fourth/cn-south reopen conditions",
+        "role GDS (万国数据) operator/intended supported by p29 (万国数据中心, its own T-BLOCK and self-developed liquid cooling)",
+        "distinctness: no Atlas site within 19 km (nearest China Telecom Shaotang 19.08 km); only GDS records are Zhongwei A-zone and Johor YTL context; no other queue fragment changes/holds point within 20 km; claims.tsv claim held by this fragment; thirty-fourth, fiftyeighth and cn-south holds are this candidate and their reopen condition is met for announced",
+        "robots: www.sg.gov.cn 404 (no rules); server.arcgisonline.com allows all",
+        "no third-party personal data in changes, sources, holds or geometry facts; EIA contact cells are blanked in the public copy",
+        "fixed: geometry-facts privacy sentence wrongly said the EIA prints a named contact and mobile number; corrected and geometry_facts_sha256 in sources.json updated to 85c0f42c",
+        "dryrun_fragment.py ok against ninetythird: 805 sites / 865 projects / 4519 evidence"
+      ],
+      "residual_risks": [
+        "substation point marks the cluster's dedicated grid intake; whether it lies inside the data-centre parcel and its offset from data halls are undocumented",
+        "datum is unstated in the filing; WGS84 reading rests on a qualitative imagery check plus consistency with GCJ-02-inverted grid EIAs",
+        "announced may understate: a September GDS remark and an uncaptured CLS report suggest Shaoguan GDS projects may be under construction or in service, but no in-window primary record names this project's physical stage",
+        "builder name differs between EIA cover (韶关市万国云耀数据科技有限公司) and acceptance notice (韶关市云耀数据科技有限公司); GDS parentage is inferred from the 万国 name and T-BLOCK technology, not from a corporate filing",
+        "Esri imagery is undated and shows earthworks/ponds at the point"
+      ]
+    },
+    {
+      "fragment": "us-chicago-in-p5",
+      "verdict": "accept",
+      "checks": [
+        "rehashed all 16 original captures: sha256 equals .metadata.json sha256 and sources.json content_hash; URLs match metadata; 8 sources remain after pruning",
+        "NTT CH3: read Itasca VB packet 15 Sep 2026 pp.12-13 (rendered): memo 'SUBMITTED: August 13, 2026' says 'CH3, a new 270,000-square-foot Data Center, is currently under construction'; government_record; 75 days old (window starts 2026-08-03); as_of <= published_at 2026-09-15",
+        "NTT context: 6 Oct 2026 agenda lists Res. 1734-26 (CH4 agreement); scanned minutes OCR'd (tesseract) show Res. 1734-26 on the consent agenda; CH4 itself held (one project per new site)",
+        "NTT locator recomputed with pyproj 3.7.1/shapely 2.1.1 from native EPSG:3435 polygon of PIN 03-05-200-047: -88.0077012, 41.9879041 exactly, inside parcel, 103.7 m from nearest edge; geodesic 27.594 ac; 235/255/275 Pierce Rd address points inside; campus_locator, uncertainty null with reason",
+        "NTT identity: parcel billed to NTT Global Data Centers; NTT's own July 2026 CH3 page (unpublished curated package in sources/) gives 275 Pierce Rd, which lies in the locator parcel; roles owner/current and operator/intended from the Village memo",
+        "Compass refresh: Oct 2026 Building & Code Enforcement report p.42 (rendered text) reads 'Building 3, 4 & 5 permits have been issued and shell and core is up'; CivicClerk event listing gives packet publishOn 9 Oct 2026 (second dated source bounding the PDF date); 2026-10-09 > existing 2026-10-06; same campus scope, locator and roles unchanged; 'early 2027' schedule not used",
+        "CHI06: Sept 2026 report p.69 read; same report shows TCO issued with punch-list work outstanding (Fire Station 21); Assessor permit feed TCO BLDG2604-0298 (1 May 2026) is for 'Admin and Colo 1'; Atlas completed precedents use final CO/occupancy/'complete' statements",
+        "distinctness: no Itasca, Hamilton Lakes, Pierce Rd, NTT Chicago, CH3, CHI06/07, Lakewood or PIN hit in ninetythird sites/projects/evidence/source-records/identity-mapping; no other queue fragment, claims.tsv row or sources/*-holds.json entry names the campus; nearest Atlas site Equinix CH5 4.70 km",
+        "robots.txt captured before relied-on requests (itasca.com allows /AgendaCenter, Crawl-delay 10 respected at ~12 s; DuPage GIS and CivicClerk 404); no personal names, phones or e-mails in changes, sources, holds or geometry",
+        "dryrun_fragment.py ok against 2026-10-27-research-ninetythird (805 sites, 865 projects, 4521 evidence)"
+      ],
+      "residual_risks": [
+        "NTT CH3 rests on a Village staff memo (not an inspection or NTT report); CH3's own lot/footprint is unpublished and the Village finance report labels 275 Pierce as CH2, so the point locates the campus parcel, not the building",
+        "The memo's 13 August date is its submission date; the packet may have been finalised later (agreement effective 27 August), so the statement is true at some point 13 Aug-15 Sep 2026",
+        "DuPage layer is the county working parcel layer, not the year-end tax layer; no positional accuracy published",
+        "Compass refresh is only three days newer than the existing observation and repeats the September report's sentence verbatim; the report's compile date lies between 29 Sep and 8 Oct 2026, the publication date is 9 Oct",
+        "Microsoft CHI06 and CHI07 remain unmapped; CHI06 could be admitted later with a final CO or completion record"
+      ]
+    },
+    {
+      "fragment": "us-ok-ks-mo-p5",
+      "verdict": "accept",
+      "checks": [
+        "current dataset verified_construction_core/2026-10-27-research-ninetythird (rechecked at finish)",
+        "all 8 relied-on captures rehashed: file sha256 = .metadata.json sha256 = sources content_hash; both geometry facts files match geometry_facts_sha256",
+        "OKC page capture read: 'TierPoint operates two state-of-the-art data centers'; 4121 (22,000+/14,000+ sq ft, three 1 MW generators) and 4114 (69,000+/34,000+ sq ft, two 2 MW generators); JSON-LD dateModified 2026-09-03T07:11:42Z; page sitemap lastmod identical",
+        "OKC IA id_ copy 20260215 read: dateModified 2024-07-31, older generator wording, no GeoCoordinates, no sustainability banner; CDX shows it is the latest copy before September 2026, so the 2026-09-03 modification is bounded",
+        "Locust page capture read: 'currently under development', 'will be part of', 135,840+ sq ft, 22,640 phase 1, four 2.0 MW generators; dateModified 2026-09-03T06:49:59Z; IA copy 20260516 dateModified 2026-01-29 with N+1 UPS / Four (4) 2MW wording bounds it; status kept at announced",
+        "observation 2026-09-03 is 54 days before 2026-10-27, inside the 85-day window; all status sources company_disclosure",
+        "DEQ AirWeb layers 8/1/6 each return one TierPoint LLC facility 22750 at 4121 PERIMETER PL, SIC 7374, Operating, point -97.59661 35.51421; recomputed 20.1 m from TierPoint's OKC JSON-LD point",
+        "OK2 operator JSON-LD point -97.595073 35.514094 recomputed 143.0 m from the OKC operator point and 140.0 m from DEQ; own overlay on the Esri capture puts it on the Perimeter Center Place frontage beside the large (about 78 by 80 m) building, and the DEQ/OKC points on the east side of the small (about 44 by 52 m) building, consistent with the stated floor areas",
+        "St. Louis parcel 10920000020 is the only 2300 LOCUST ST situs in the 22xx/23xx query; centroid recomputed in EPSG:32615 with pyproj 3.7.1/shapely 2.1.1 = -90.2128665 38.6336159 (0.0 m difference), inside the parcel, 1.068 geodesic acres, about 92 by 47 m; the operator point is 48.7 m outside the parcel and is correctly not used; overlay shows a large building filling the parcel",
+        "2024 release read: acquired building 'located at 2300 Locust Street', 135,800 sq ft; used only as identity context",
+        "separate-site treatment of OKC and OK2 (different addresses on opposite sides of the street) matches precedent (Keppel DC SG2/SG3/SG4, SUNeVision MEGA IDC/MEGA Plus); one project per new site",
+        "distinctness rescreened: no dataset site, project, evidence row, source record or identity-mapping entry names Perimeter Center Place, 4121/4114, 2300 Locust, SLL, DEQ 22750 or parcel 10920000020, or lies within 2.5 km of OKC/OK2; within 2.5 km of SLL only TierPoint St. Louis - Olive at 1,493 m; no other queue fragment adds these; prior holds (sixtyfirst, sixtyninth, eightythird, seventyfirst, sixtyfifth) are locator-only or cap holds that this fragment takes up",
+        "roles: TierPoint operator, current for OKC/OK2 and intended for Locust, each sourced to the dated page",
+        "no personal data in changes, sources, holds or geometry facts; the executives quoted in the release and the parcel-layer phone number are not copied",
+        "compliance log: robots.txt read before each host; TierPoint requests spaced 10 s or more (crawl-delay 10); no proxies, challenges or logins; no network requests made by the verifier",
+        "dryrun_fragment.py ok: 807 sites, 867 projects on base ninetythird"
+      ],
+      "residual_risks": [
+        "OK2 locator is TierPoint's own schema.org point, which falls on the street frontage, not the building; TierPoint's Locust point is 49 m off in the wrong parcel, so its points may be address-interpolated; horizontal uncertainty is not published",
+        "DEQ facility 22750 may cover the emissions of both Perimeter Center Place buildings; its coordinate is still the 4121 building",
+        "the 2026-09-03 dateModified is bounded only to the intervals 2026-02-15 to 2026-10-27 (OKC) and 2026-05-16 to 2026-10-27 (Locust) by archive copies; the portfolio-wide sitemap lastmod corroborates the day",
+        "Locust phase 1 works may already be under way (2024 release planned them 'over the next year'), but no dated construction stage is asserted; announced is the conservative status",
+        "TierPoint's operator role at Locust is intended; the building owner is not recorded"
+      ]
+    },
+    {
+      "fragment": "us-pa-nj-ny-md-p5",
+      "verdict": "accept",
+      "checks": [
+        "current dataset re-read from site/config.json: verified_construction_core/2026-10-27-research-ninetythird (804 sites, 864 projects, 4513 evidence)",
+        "all 9 captures rehashed: file sha256 == .metadata.json sha256 == source content_hash",
+        "DataBank 1 Sep 2026 news item (datePublished 2026-09-01T17:48:53Z, 'Updated on September 1, 2026', image path 2026/09, sitemap lastmod 2026-09-03): read 'DataBank's existing facility and proposed expansion in Orangeburg' and 'exempted the DataBank project because it is already in the approval process' in DataBank's own voice; company_disclosure; 56 days before 2026-10-27, inside 85-day window",
+        "LGA4 identity: LGA4 page 'will be our second facility on our Orangeburg, NY Campus' at 2000 Corporate Dr; campus page 'home to LGA3 and LGA4'; DEC sitemap lists 2026-09-02 SEQR item town-of-orangetown-databank-orangeburg-phase-two (also a 2026-07-22 databank-phase-ii item); prior 10 Aug DataBank item (afdc3146, rehashed) says expansion is in full EIS before the Planning Board",
+        "no permit or construction claimed for LGA4; announced only; 45 MW and 10 MW not used as capacity",
+        "LGA4 locator: parcel 73.15-1-19 capture (c63cb5df, rehashed) recomputed in EPSG:32618 with pyproj 3.7.1/shapely 2.1.1: centroid 41.0389044,-73.9892114, inside parcel, 33.39 ac, about 445 x 639 m; equals LGA3/site point exactly; geometry evidence 2b353c59 matches the LGA3 project",
+        "LGA4 site is existing (not new in this update); one project added; site_name equals the existing site name",
+        "role DataBank operator/intended is supported by the LGA4 page; role and scope values are allowed",
+        "Homer City 20 Oct 2026 release (datePublished 2026-10-20T16:25:59Z): read 'Over the past year, Kiewit has led demolition and construction on the 3,200-acre site', HRSGs installed, first gas turbine set; company_disclosure by campus developer; strictly newer than 2026-09-04; campus scope kept, no data-centre building claimed; PA DEP tracker rows 10000013/10000052 still 'Proposed (No Applications Received)'; blog sitemap newest post is 2026-10-20",
+        "LGA3 23 Oct 2026 blog (article:published_time 2026-10-23T15:02:20Z): read 'employees from our nearby LGA3 data center', 'data center operations' teams, 'people who live and work around LGA3', an LGA3 critical-infrastructure engineer role; strictly newer than 2026-08-10; same status and scope",
+        "distinctness: only the existing Orangeburg site and LGA3 project are at 0 m, and the existing Homer City site/project and its source-record/identity-mapping entries are at 0 m; no other dataset, queue or sources/*-holds record within 3 km; no pending READY fragment touches these keys; the us-midwest-east-p2 LGA4 hold's reopen condition is met; the us-pa-nj-ny-md-p4 Homer City lead_only asked for this refresh",
+        "robots: databank.com allows ClaudeBot, homercityredevelopment.com Allow /, dec.ny.gov sitemap allowed, gis.dep.pa.gov robots 404; disallowed hosts (orangetown.com, tecfusions.com) and challenge pages were not used",
+        "privacy: no private individuals' names, emails or phones in changes, sources, holds or notes (employee, SVP, Kiewit director and union official are omitted)",
+        "dryrun_fragment.py: ok against ninetythird (804 sites, 865 projects, 4519 evidence)"
+      ],
+      "residual_risks": [
+        "LGA4 = 'proposed expansion' = 'Phase Two' is bridged through DataBank campus and LGA4 pages and the DEC sitemap title; the DEC notice and Orangetown records were unreadable (403 challenge, robots), so Phase Two's scope could be larger than the 55,000 sq ft / 10 MW LGA4 design",
+        "the 1 Sep item is DataBank's own summary of NY1 coverage; the decisive statements are in DataBank's voice, but the item has no Internet Archive copy",
+        "the LGA3 operational refresh rests on soft present-tense community-blog statements (staffed LGA3, operations team) rather than an explicit 'in service' statement",
+        "the Homer City under_construction status reflects power-generation and site construction on the energy campus, not data-centre buildings (record scope inherited)",
+        "LGA3 page, Homer City sitemap and PA DEP tracker sources are cited only in review text (status updates take no context ids), so they do not become evidence rows"
+      ]
+    }
+  ],
+  "packet_pins": {
+    "definitions/atlas-research-ninetyfourth-2026-10-27.json": "099ee25a33f9b80552a3438f45786a8eefaaf0cb2a4f3a723bcd0dc52cbb6b29",
+    "sources/research-countries-2026-10-27-ninetyfourth-primary-sources.json": "8d7132d3cccdb9ad9cfeb0f020550469a5f40d6d9c42a12427aac3a319d07b71",
+    "sources/research-countries-2026-10-27-ninetyfourth-actions.json": "710da5e13eb81a063b625907165a6a9d6b7b86378a0b712eccc3fa940a8aeea7",
+    "sources/research-countries-2026-10-27-ninetyfourth-holds.json": "f7d0080f105f00ad533b790d463aacc4c7e8c68485512398859aa4758082fe45"
+  },
+  "raw_captures_redistributed": false
+}

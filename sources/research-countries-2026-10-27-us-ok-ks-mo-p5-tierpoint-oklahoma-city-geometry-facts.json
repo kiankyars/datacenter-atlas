@@ -1,0 +1,98 @@
+{
+ "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+ "candidate": "TierPoint Oklahoma City data centers OKC (4121 Perimeter Center Place) and OK2 (4114 Perimeter Center Place), Oklahoma City, Oklahoma 73112",
+ "prepared_at": "2026-10-27",
+ "selected_points": {
+  "OKC_4121": {
+   "point_crs84": [
+    -97.59661,
+    35.51421
+   ],
+   "role": "Oklahoma DEQ facility coordinate (Latitude/Longitude attributes and point geometry) of air-quality facility 22750 'TIERPOINT LLC OKLAHOMA CITY', 4121 PERIMETER PL, Oklahoma City, status Operating, SIC 7374; it locates the permitted facility, not a surveyed building footprint",
+   "authority_class": "official_source",
+   "derivation": "direct_geometry",
+   "scope_class": "official_state_air_quality_facility_coordinate",
+   "use_scope": "project_locator",
+   "source": {
+    "file": "local_data/country-research-us-ok-ks-mo-p5/okdeq-airweb-layer8-tierpoint.json",
+    "sha256": "57b474eab725b13ada6d325811164a8276f40be4e83f46ab24cd276abf764862",
+    "url": "https://gis.deq.ok.gov/server/rest/services/AirWeb/MapServer/8/query?where=Facility_ID+%3D+22750+OR+upper(Company)+LIKE+%27%25TIERPOINT%25%27&outFields=*&returnGeometry=true&outSR=4326&f=json",
+    "retrieved_at": "2026-10-27T02:32:23.724Z",
+    "service": "Oklahoma Department of Environmental Quality AirWeb MapServer layer 8 '2024 Point Source Emissions' (gis.deq.ok.gov; layer spatial reference WGS84), attribute query on Facility_ID and Company",
+    "layer_metadata_file": "local_data/country-research-us-ok-ks-mo-p5/okdeq-airweb-layer8.json",
+    "layer_metadata_sha256": "8a8a9da0f7c3ddb5551699312b478034c7cf59e169d5d1f1298b9793b55a60a9"
+   },
+   "attributes": {
+    "Company": "TIERPOINT LLC",
+    "Company_ID": 4670,
+    "Facility_ID": 22750,
+    "Facility": "TIERPOINT LLC OKLAHOMA CITY",
+    "County": "OKLAHOMA",
+    "Facility_Address": "4121 PERIMETER PL",
+    "City": "OKLAHOMA CITY",
+    "Zip_Code": 73112,
+    "Status": "Operating",
+    "SIC": "7374",
+    "Facility_Classification": "Min",
+    "Year_Emissions_Reported": 2022,
+    "NOx_Tons": 2.742
+   },
+   "same_record_in_layers": "The same facility record and point appear in the 2023 (layer 1) and 2022 (layer 6) point-source layers (okdeq-airweb-layer1-tierpoint.json, okdeq-airweb-layer6-tierpoint.json); TierPoint is the only TierPoint LLC facility in the layer."
+  },
+  "OK2_4114": {
+   "point_crs84": [
+    -97.595073,
+    35.514094
+   ],
+   "role": "TierPoint's own schema.org GeoCoordinates for the LocalBusiness 'TierPoint Oklahoma City Data Center (OK2)', streetAddress 4114 Perimeter Center Place, on its Oklahoma City page (version modified 2026-09-03); it is the operator's facility reference point, not a parcel, footprint or surveyed position",
+   "authority_class": "official_source",
+   "derivation": "direct_geometry",
+   "scope_class": "operator_published_facility_reference_point",
+   "use_scope": "project_locator",
+   "source": {
+    "file": "local_data/country-research-us-ok-ks-mo-p5/tierpoint-oklahoma-city-20261027.html",
+    "sha256": "bb696e49672ee425c81a810280790e75cdfb7c35b5917aaadb483b82440ba216",
+    "url": "https://www.tierpoint.com/data-centers/oklahoma/oklahoma-city/",
+    "retrieved_at": "2026-10-27T02:30:56.132Z",
+    "structured_data": {
+     "@id": "https://www.tierpoint.com/data-centers/oklahoma/oklahoma-city/#ok2",
+     "name": "TierPoint Oklahoma City Data Center (OK2)",
+     "streetAddress": "4114 Perimeter Center Place",
+     "postalCode": "73112",
+     "latitude": 35.514094,
+     "longitude": -97.595073
+    }
+   }
+  }
+ },
+ "geometry_checks": {
+  "operator_point_okc_4121": {
+   "point_crs84": [
+    -97.596607,
+    35.514391
+   ],
+   "structured_data_id": "https://www.tierpoint.com/data-centers/oklahoma/oklahoma-city/#okc",
+   "streetAddress": "4121 Perimeter Center Place",
+   "distance_to_deq_facility_point_m": 20.1
+  },
+  "ok2_to_deq_facility_point_m": 140.0,
+  "ok2_to_operator_okc_point_m": 143.0,
+  "azimuth_okc_to_ok2_deg": 103.3,
+  "interpretation": "On the same page TierPoint's OKC point agrees with the independent DEQ facility coordinate for 4121 Perimeter Pl to 20 m, which supports the operator's coordinates on this page; its OK2 point lies 143 m east-south-east, consistent with a separate building at 4114 on the opposite side of Perimeter Center Place.",
+  "imagery_visual_check": {
+   "file": "local_data/country-research-us-ok-ks-mo-p5/esri-world-imagery-okc-perimeter-center.png",
+   "sha256": "67c86dc862c4855dfe91506cffba730999a7d4fa76afbef2dfe8f23270fe5ef9",
+   "url": "https://server.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/export?bbox=-97.5990,35.5122,-97.5926,35.5162&bboxSR=4326&imageSR=4326&size=1000,750&format=png&f=image",
+   "observation": "Esri World Imagery (undated composite; compiled reference, not an official source) shows the DEQ point and TierPoint's OKC point at the east side of a building of roughly 45 by 60 m with rooftop equipment north of the Perimeter Center Place cul-de-sac, and TierPoint's OK2 point on the street frontage about 20 m north of a larger building of roughly 75 by 90 m. The building sizes are consistent with the operator's 22,000+ and 69,000+ total square feet. Used only as a visual check; no date, stage or footprint is derived from it."
+  }
+ },
+ "unresolved": [
+  "No official parcel or address point was reachable: the City of Oklahoma City GIS (gis.okc.gov) answered an earlier pass with a bot challenge and was not used, utility.arcgis.com proxies to it were not used, and the Oklahoma County Assessor's robots.txt returns HTTP 403.",
+  "DEQ publishes no positional accuracy for facility coordinates; TierPoint publishes none for its structured-data points."
+ ],
+ "nearby_records": "No Atlas site, project, source record, identity-mapping entry, pending fragment or hold coordinate lies within 2.5 km of either point. The two TierPoint buildings are 143 m apart and are added as separate sites, each with one project.",
+ "consistency_checks": {
+  "datum": "WGS84 (DEQ layer spatial reference 4326, outSR=4326; schema.org coordinates are WGS84 decimal degrees)",
+  "geocoder_used": false
+ }
+}
