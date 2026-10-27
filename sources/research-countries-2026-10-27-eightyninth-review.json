@@ -1,0 +1,122 @@
+{
+  "reviewer": "root",
+  "reviewed_at": "2026-10-27",
+  "decision": "accepted_for_integration",
+  "update": "verified_construction_core/2026-10-27-research-eightyninth",
+  "base_dataset": "verified_construction_core/2026-10-27-research-eightyeighth",
+  "process": "continuous: one researcher per beat, one adversarial verifier per fragment",
+  "fragments": [
+    {
+      "fragment": "asia-pacific-p4",
+      "verdict": "accept",
+      "checks": [
+        "current_dataset re-read: verified_construction_core/2026-10-27-research-eightyeighth (unchanged)",
+        "rehashed all 9 relied-on captures (3Q PDF, AR2025 PDF, 3 OneMap address searches, 3 postcode searches, newsroom): sha256 equals .metadata.json and sources.json content_hash; q3-apac-operators-p3 first captures (retrieved_at 2026-10-26T14:02:00.050Z / 14:03:21.928Z) also byte-identical, matching the base evidence rows the fragment reuses",
+        "rendered 3Q PDF page 20 (pdftoppm): 'Portfolio Overview (as at 30 Sep 2026)' lists KDC SGP 2 (100%, 38,480 sq ft, 7 clients, 88.4%), SGP 3 (100%, 54,925, 2, 100.0%), SGP 4 (100%, 84,544, 4, 94.5%), all Keppel Lease / Fully-fitted (Colocation), leasehold titles and completion years as stated",
+        "publication date 23 Oct 2026 confirmed in captured Keppel DC REIT newsroom; AR filing 7 Apr 2026 confirmed there too",
+        "source kind company_disclosure (REIT manager); observation 2026-09-30 is 27 days before 2026-10-27, inside the 85-day window; observed <= published <= retrieved",
+        "AR2025 printed p.43 confirms 25/27/20 Tampines Street 92 with postcodes 528877/528878/528875, separate leasehold titles, separate land areas and GFAs, facility managers Keppel DC Singapore 2 Pte. Ltd. (SGP 2, SGP 4) and Keppel DCS3 Services Pte. Ltd. (SGP 3)",
+        "locators recomputed independently: served SVY21 X/Y -> WGS84 with pyproj 3.7.1 EPSG:3414->4326 matches served lat/lon within 1e-8 m; changes.json coordinates equal served values exactly; each search found=1; postcode searches byte-identical",
+        "geodesic separations 44.7 m (25-27), 181.7 m (25-20), 210.8 m (27-20); separate-site treatment consistent with REIT separate titles and Atlas precedent (iTech Tower 3.1/3.2 kept as separate sites ~150 m apart)",
+        "distinctness: no name/alias/address/postcode hit in base sites/projects/evidence/source-records/identity-mapping; no base site/project, queue changes.json coordinate or claims.tsv coordinate (other lanes) within 3 km; nearest Keppel Genting Lane 7.69-7.72 km; only prior mentions are the q3-apac-operators-p3 and sixtysixth deferred holds for these same facilities, whose reopen condition (OneMap points, site-vs-campus decision, in-window admission) is met",
+        "successor check: 3Q text names AEI only at KDC SGP 8 and a divestment only at Kelsterbach/Basis Bay; newsroom shows nothing after 23 Oct except 26 Oct substantial-unitholder notice",
+        "roles: owner Keppel DC REIT current (3Q 100% interest), operator facility managers current (AR2025; 3Q footnote confirms underlying client contracts for SGP 1-5); scopes exactly 'current'",
+        "commercial colocation scope; one project per new site; no personal data found in changes, sources, holds or notes",
+        "dryrun_fragment.py ok: 773 sites, 829 projects, 4312 evidence (+3 each vs base)"
+      ],
+      "residual_risks": [
+        "OneMap address points publish no positional accuracy; uncertainty left null with reason",
+        "Operator roles rest on AR2025 (as at 31 Dec 2025) facility-manager listing; 3Q 2026 does not restate facility-manager names",
+        "Site-versus-campus split is a judgement: SGP 2 and SGP 3 points are only ~45 m apart on adjoining plots",
+        "sources.json retrieved_at for the two Keppel PDFs is the q3 lane's first capture time, while raw_capture_file points to this lane's byte-identical recapture"
+      ]
+    },
+    {
+      "fragment": "de-at-ch-p4",
+      "verdict": "accept",
+      "checks": [
+        "current dataset re-read: verified_construction_core/2026-10-27-research-eightyeighth (config moved from eightyseventh during claim)",
+        "all 6 relied-on captures rehashed: SHA-256 and byte counts match .metadata.json and sources.json content_hash; retrieved_at equals captured_at",
+        "ZUR4 release body read in raw capture: dateline ZURICH Aug. 27 2026, press_release_date 1787810520 = 2026-08-27T06:02Z, sitemap lastmod 2026-08-27T06:06Z",
+        "decisive text present: already best-connected campus comprising ZUR1, ZUR2, and ZUR3; data centers in Switzerland powered by 100% renewable energy; ongoing construction of FRA20 and VIE13",
+        "operational standard matches the Global Switch Paris precedent (dated operator present-tense statement); 61 days old, inside the 85-day window (from 2026-08-03)",
+        "locator: reuses ZUR4 campus locator via reuse_from_project_id; baseline GWR capture gwr-egid-210221229.json rehashed (6d531e86...) and point 8.556645/47.433812 matches GWR entrance coords dkode/dkodn within 0.05 m in LV95",
+        "facility points ZUR1/ZUR2/ZUR3 parsed from raw pages; geodesic distances recomputed with pyproj 3.7.1: 106.2/47.1/35.8 m",
+        "VIE13: existing record scope is generic VIE13 Phase 1 under_construction from VIE13 is currently under construction, Phase 1 go-live forecast late 2026; refresh keeps scope and is strictly newer than 2026-06-18",
+        "FlexBase release read: Laufenburg 1 September 2026, excavation complete, over 98 percent of base slab concreted, Hochbau started; strictly newer than 2026-06-18; same project as ERNE-sourced record",
+        "no later Digital Realty Swiss/Austrian release after 2026-08-27 in en sitemap except a 6 Oct bond financing release",
+        "distinctness: sites/projects/evidence/source-records/identity-mapping of eightyeighth, all queue changes/holds, claims.tsv and sources/*-holds.json screened; nothing within 2 km except the campus itself (next Vantage ZRH1 17.1 km)",
+        "roles: Digital Realty operator, relationship_scope current, supported by its campus wording",
+        "no third-party personal data in fragment (executives referred to by role)",
+        "fix: removed unsourced alias Interxion Zurich (no capture mentions it) and qualified the 200-customer note",
+        "dryrun_fragment.py ok: 770 sites, 827 projects, 4315 evidence rows"
+      ],
+      "residual_risks": [
+        "ZUR1-ZUR3 operation rests on campus description and renewable-power wording rather than an explicit in operation sentence",
+        "the 200 customers on-site phrase sits in a sentence about ZUR4 and campus expansion; it is context only",
+        "VIE13 statement covers VIE13 as a whole, not Phase 1 specifically; Phase 1 forecast to go live late 2026",
+        "the campus locator is the ZUR2 entrance point; ZUR1 and ZUR3 are 106 m and 36 m away"
+      ]
+    },
+    {
+      "fragment": "iberia-italy-p4",
+      "verdict": "accept",
+      "checks": [
+        "base read from site/config.json: verified_construction_core/2026-10-27-research-eightyeighth (unchanged at verdict time)",
+        "all 5 relied-on captures rehashed: sha256 matches .metadata.json and sources.json content_hash (276, 266, VFL/1410, PIGA notice, Catastro CPMRC 55)",
+        "decisive statements read in pdftotext output and rendered page images: 276 'Peticionario: Microsoft 7724 Spain, SL', 'SET Campus Microsoft 132/33 kV', 'Finalidad: suministro a nuevo centro de datos a ubicar en Zaragoza'; VFL/1410 operative parts on La Muela EIA initial approval; PIGA notice names La Muela, Villamayor de Gallego and Zaragoza emplacements",
+        "all three sources are government_record (BOA); observation = BOA publication date (27 Oct, 2 Oct 2026), within 85 days of 2026-10-27 (floor 2026-08-03), not after published_at or retrieval",
+        "strictly newer than existing 2026-09-04 imported news observations; value announced kept; no permit, licence or works claimed (276/266 are pending AAP applications; PIGA still at initial approval, earthworks still inside the urbanisation projects under EIA)",
+        "BOA Microsoft full-text search capture (newest first) re-parsed: 27 Oct and 21 Oct notices and 2 Oct order/notice are the latest Microsoft records; centro-de-datos/data-center searches show nothing newer or more advanced for the three campuses",
+        "identity: VFL/1410 recites exactly three Microsoft declarations (La Muela Centrovia fase 5; Villamayor de Gallego; Zaragoza municipality 28 Feb 2025); line bays ZAZ85 are not AWS site codes (AWS EEI/579/2024 lists ZAZ60-62, 80-82, 100, 102, 111, 160-162)",
+        "locator recomputed: Catastro parcel 88/55 point 41.6124559,-0.8961246 is 0.846 km from the record point 41.6088,-0.8872 (parcel 75: 0.855 km); locators unchanged by the refreshes",
+        "nearest-site distances recomputed from sites.csv: Zaragoza 7.92 km AWS La Cartuja; La Muela 12.88 km Merlin Botorrita; Villamayor 0.02 km Tillion (distinct promoter per identity-mapping source_relations)",
+        "distinctness: no other queue fragment changes/holds/sources, no claims.tsv line and no sources/*-holds.json entry touches the three keys; thirtyfourth hold reopen condition (newer dated BOA record) is met",
+        "robots: BOA robots.txt (User-agent *) disallows only specific removed MLKOB documents, none of the four used nor VERLST; Catastro robots 404",
+        "no private-person data in sources, changes or holds (signatories and a La Muela licence applicant in the BOA search capture not reproduced)",
+        "fixed wording: Villamayor summary and identity review said the EIA public information 'is under way'; the notice only records that it had been opened (Orden VFL/1111/2026, BOA 30 July 2026)",
+        "dryrun_fragment.py ok against eightyeighth (770 sites, 826 projects, 4312 evidence rows)"
+      ],
+      "residual_risks": [
+        "Zaragoza refresh rests on a grid-supply application naming only 'nuevo centro de datos a ubicar en Zaragoza' and 'SET Campus Microsoft'; the campus link is inferred from the petitioner and the single Zaragoza-municipality Microsoft declaration",
+        "Villamayor refresh rests on a joint-PIGA procedural notice whose operative part concerns La Muela; Villamayor is named only as one of three emplacements in the plan",
+        "existing imported locators stay approximate (Puerto Venecia Nominatim point; Villamayor municipality centroid) and the refresh sets posture authoritative_project_record_plus_scoped_location, as for the QTS Calatorao locality precedent",
+        "Zaragoza observation date equals the update date (2026-10-27); a later run date keeps it valid, an earlier one would not",
+        "sources 266 and Catastro CPMRC 55 are identity context only and are not linked to any project (they appear in attribution only)"
+      ]
+    },
+    {
+      "fragment": "mea-p4",
+      "verdict": "accept",
+      "checks": [
+        "base re-read from site/config.json: 2026-10-27-research-eightyeighth (start and finish)",
+        "rehashed all 10 relied-on captures plus 71 tiles/robots: sha256 = .metadata.json = sources content_hash",
+        "JHB page 28 Sep version: JB2/JB4 text, GPS and map markers read in raw HTML; text identical to 6 Sep IA copy except Tech Sheet buttons and to 22 Oct africa-p1 capture",
+        "DBN page 28 Sep version: DB1 text, printed GPS and labelled marker read; identical to 6 Sep IA copy except Tech Sheet button",
+        "dateModified 2026-09-28 = article:modified_time = sitemap lastmod; bounded by IA copies (dateModified 2026-08-13 / 2026-07-17) and live 27 Oct capture; CDX shows no later archived 200",
+        "kind company_disclosure; as_of 2026-09-28 is 29 days before 2026-10-27 (floor 2026-08-03)",
+        "locators recomputed from raw HTML: literal operator points, axis reorder only; JB2-JB4 5625 m, JB2-PeeringDB Bredell 117 m, DB1 marker-printed GPS 112.5 m, marker-PeeringDB 560 m (pyproj WGS84)",
+        "imagery re-rendered from captured Esri tiles: JB2 and JB4 points on data-centre-like complexes with rooftop plant; DB1 marker on a building NW of Riverhorse Close, printed GPS on Riverhorse Rd junction",
+        "roles: Teraco operator, current, from the status page",
+        "distinctness: no JB2/JB4/Bredell/Riverhorse/Durban/DB1 in sites, projects, evidence, source-records, identity-mapping; no dataset, queue or holds coordinate within 2 km; africa-p1 holds' reopen conditions met",
+        "one project per new site; archive-copy source metadata equals existing evidence row f3263843",
+        "no personal data in changes, sources, holds or geometry facts",
+        "fixed DB1 identity review and geometry facts: PeeringDB address includes 'Riverhorse Cl, Newlands East' (not address-less); facts sha256 updated in sources.json",
+        "dryrun_fragment.py ok: 773 sites, 829 projects, 4315 evidence"
+      ],
+      "residual_risks": [
+        "DB1: imagery does not confirm which building is DB1; operator marker and printed GPS differ by 112 m and PeeringDB by 560 m",
+        "Operational status rests on a facility page version date (dateModified), not a dated operating announcement",
+        "JB2 and JB4 are both labelled 'Bredell Campus' by Teraco but admitted as separate sites 5.6 km apart",
+        "Horizontal uncertainty unknown for all three points; imagery date and accuracy unknown"
+      ]
+    }
+  ],
+  "packet_pins": {
+    "definitions/atlas-research-eightyninth-2026-10-27.json": "0d1e1fdf535d5d077d97d4a35e79854b40366697f4515fdb0407cdc8c9fd37b5",
+    "sources/research-countries-2026-10-27-eightyninth-primary-sources.json": "94d9bb3d1568d256da4e956cfb32ba311ce711d4da9fbfc3758dcf3cf3e5e967",
+    "sources/research-countries-2026-10-27-eightyninth-actions.json": "3556f49f629c5201afb343b05664c05157c4c089b965dc35ae3ca1b89deca8b6",
+    "sources/research-countries-2026-10-27-eightyninth-holds.json": "11e44f87395f603bb03947d403ce790155921d28ad197da6ef6c58e423ef25c9"
+  },
+  "raw_captures_redistributed": false
+}

@@ -1,0 +1,208 @@
+{
+  "format": "datacenter-atlas-country-research-holds-v1",
+  "reviewed_at": "2026-10-27",
+  "base_dataset": "verified_construction_core/2026-10-27-research-eightyeighth",
+  "update": "verified_construction_core/2026-10-27-research-eightyninth",
+  "raw_captures_redistributed": false,
+  "note": "Candidates reviewed for this update but not admitted, with the reason and the evidence that would reopen each.",
+  "entries": [
+    {
+      "lane": "asia-pacific-p4",
+      "candidate": "Keppel DC REIT Gore Hill Data Centre, 5 Broadcast Way (South Gate), Artarmon NSW 2064",
+      "country_iso_a2": "AU",
+      "disposition": "deferred_beat_limit",
+      "existing_project_stable_key": null,
+      "status_candidate": "operational",
+      "status_as_of": "2026-09-30",
+      "reason": "Admissible on the same Keppel DC REIT 3Q 2026 table used for this fragment (local kdcr-3q-2026-operational-updates.pdf, sha256 7904bd8a...05d5, PDF p.20, as at 30 September 2026): Gore Hill Data Centre, Sydney, 100% interest, 90,955 sq ft, 8 clients, 84.8% occupancy, fully-fitted colocation and shell-and-core triple-net lease, freehold, completed 2013. The q3-apac-operators-p3 locator and distinctness hold is now resolved: the NSW Land Parcel and Property theme (FeatureServer layer 12, envelope query captured as local nsw-lpp-properties-gore-hill-envelope.geojson, sha256 36369651...adff) has property 3611417 '5 BROADCAST WAY ARTARMON' (also '5A BROADCAST WAY'), planar area 6,729.8 m2 in EPSG:7856, matching the annual report's 72,032 sq ft (6,692 m2) land area to 0.6%. Its planar centroid is (151.1864056, -33.8199801) and lies inside the property. The existing NEXTDC S3 locator lies inside a different property, 3611419 '2 BROADCAST WAY ARTARMON' (12,427.8 m2), 140 m from the 5 Broadcast Way boundary and 197 m from its centroid. The Goodman SYD01 point is 335 m outside it and the Frederick Street Data Centre point 266 m outside it. Deferred only by the three-change cap; this fragment's three Keppel Singapore sites took precedence because their OneMap points are direct official address points.",
+      "reopen_condition": "Next pass: add as a new site, operational as of 2026-09-30, from the 3Q table, while the observation is within the 85-day window (until about 24 December 2026). Locate it at the property 3611417 centroid as a parent-property marker (compiled reference). NEXTDC describes S6 only as 'adjacent to the S3 Sydney campus' in Artarmon, with no address (local nextdc-s6-sydney.html, sha256 a5082a42...ab3f). Before admitting, state that S6 is not an Atlas record and that its property is unpublished. The 4,158.6 m2 property 3611418 at 4 Broadcast Way is the likelier S6 site, but this is not established. Do not name the shell-and-core tenant, because the REIT does not."
+    },
+    {
+      "lane": "asia-pacific-p4",
+      "candidate": "Keppel DC Singapore 7 and 8, 82 Genting Lane: existing operations as a new project at the existing Keppel Genting Lane Data Centre Campus site",
+      "country_iso_a2": "SG",
+      "disposition": "not_expressible",
+      "existing_project_stable_key": "curated:keppel-genting-lane-data-centre-campus:keppel-dc-sgp-9-current-build",
+      "status_candidate": "operational",
+      "status_as_of": "2026-09-30",
+      "reason": "The 3Q 2026 table as at 30 September 2026 lists KDC SGP 7 (4 clients, 100%) and KDC SGP 8 (4 clients, 100%) as fully-fitted colocation data centres. The annual report gives both at 82 Genting Lane with a shared campus land area of 267,936 sq ft. This fragment drafted the addition on the existing site vcc-site-bb743c7caad1e739c23e. It set reuse_from_project_id 04b22725-af3a-5d12-b2b6-0caf17b0c39e (SGP 9 build), geometry evidence 55851feb-fc9d-51f3-ab77-030da1cbf8a2 and identity evidence 7c83230f-029a-5624-871a-69dd0eac40eb and f5b6d780-e4e6-5028-bb4b-719b8953891d. The builder refused it: 'baseline project and site locator provenance and precision must agree exactly'. The site row lists two geometry evidence IDs (491b3b57-f2fb-53b4-ad33-07902a6d2e19 and 55851feb-...), while the SGP 9 project lists one. A Point addition cannot match the site's Polygon locator either.",
+      "reopen_condition": "The integration lets a project be added to this site, either through a geometry review that aligns the site's geometry_evidence_ids with its only project or through a builder rule that accepts the extra site-level evidence. Then add SGP 7 and 8 operations as of 2026-09-30, while that date is within 90 days of the update. Keep the SGP 8 asset enhancement (2H 2027 target) separate."
+    },
+    {
+      "lane": "asia-pacific-p4",
+      "candidate": "Keppel DC REIT Basis Bay Data Centre, Zone Flagship Cyberjaya, 63000 Cyberjaya, Selangor, Malaysia",
+      "country_iso_a2": "MY",
+      "disposition": "hold_locator",
+      "existing_project_stable_key": null,
+      "status_candidate": "operational",
+      "status_as_of": "2026-09-30",
+      "reason": "The 3Q 2026 table as at 30 September 2026 lists Basis Bay Data Centre, Cyberjaya, at 99% interest with 48,193 sq ft, 1 client and 59.1% occupancy, fully-fitted colocation, freehold, 2009. The annual report gives only 'Zone Flagship Cyberjaya, 63000 Cyberjaya' (land area 64,809 sq ft; facility manager Basis Bay Services MSC). No official Malaysian address point, lot or operator-published coordinate was found, and the Atlas's imported Vantage KUL2 Cyberjaya record is only a locality context. WebSearch was unavailable to this pass.",
+      "reopen_condition": "An official Malaysian lot or address record, or a Keppel or Basis Bay page with a map point, that identifies the facility's plot; then admit as operational while the 30 September observation is in the window (until about 24 December 2026)."
+    },
+    {
+      "lane": "asia-pacific-p4",
+      "candidate": "NEXTDC newsroom and sitemap sweep (Australia, Malaysia, Japan, New Zealand facilities)",
+      "country_iso_a2": "AU",
+      "disposition": "summary",
+      "existing_project_stable_key": null,
+      "status_candidate": null,
+      "status_as_of": null,
+      "reason": "The NEXTDC sitemap (743 URLs, no lastmod values) and news index were captured on 27 October 2026. The newest dated news item is 14 May 2026 (KL1 goes live), and nothing is dated inside the 85-day window. The Darwin opening item was published 14 August 2024; its 5 October 2026 page modification is not an observation. The S6 Sydney page gives 4,000 m2 of technical space and a 13.5 MW target with no address. FY26 results figures are as at 30 June 2026, outside the window for new admissions.",
+      "reopen_condition": "A dated NEXTDC release or ASX announcement within the window that names a facility not yet in the Atlas (for example B2, P2, C1, A1, D1 or AK1) with a present-tense status, plus an official address point or lot."
+    },
+    {
+      "lane": "de-at-ch-p4",
+      "candidate": "Digital Realty FRA20 data centre, Digital Park Fechenheim, Hugo-Junkers-Strasse 5a, Frankfurt am Main: under construction per the Digital Realty release of 27 August 2026 (new project at the existing Digital Park Fechenheim site)",
+      "country_iso_a2": "DE",
+      "disposition": "hold",
+      "existing_project_stable_key": null,
+      "status_candidate": "under_construction",
+      "status_as_of": "2026-08-27",
+      "reason": "Digital Realty's ZUR4 release of 27 August 2026 (local capture dlr-zur4-groundbreaking.html; SHA-256 2ccac5f879296f006e8f97c34190939e7df8051994306e55083f2ede90009aa7) quotes its Managing Director for Austria and Switzerland on 'the ongoing construction of FRA20 in Frankfurt'. Digital Realty's 26 November 2025 release (dlr-19811-frankfurt-construction.html) identifies FRA20 (about 16 MW installed IT, more than 8,100 m2, two phases, first phase expected in spring 2027) as the next data centre at Digital Park Fechenheim, and the FRA20 page (dlr-fra20-page.html) gives Hugo-Junkers-Strasse 5a with the coordinate 50.125936, 8.752816, which is exactly the existing site point (vcc-site-f98926ffb5ad45066954; its only project is the UW04 substation). FRA20 must therefore be a new project on that site, reusing its locator, but this is not expressible: the site's geometry_evidence_ids list holds seven geometry-role evidence IDs while the UW04 reference project has one, so the builder's campus-locator inheritance check ('baseline project and site locator provenance and precision must agree exactly') fails; and an explicit point cannot match the UW04 locator provenance because its derivation code (literal_operator_facility_latitude_longitude_reordered_without_numeric_transform) is not an accepted derivation for new points. A separate site would duplicate the campus. Within 2 km: only the existing campus site and the held NTT Frankfurt 2 claim (1,115 m).",
+      "reopen_condition": "Builder support for inheriting a campus locator from a site whose provenance lists several geometry-role evidence records (or a geometry review that consolidates the Digital Park Fechenheim site provenance); then add FRA20 as a project on curated:digital-realty-fra20-frankfurt, under_construction as of 2026-08-27 while within 90 days of the update (until 25 November 2026), or from a newer dated Digital Realty statement."
+    },
+    {
+      "lane": "de-at-ch-p4",
+      "candidate": "Green campus Lupfig: GWR buildings 'Rechenzentrum' (EGID 192086383, Grenzstrasse 6, 5212 Hausen AG postal / Lupfig, parcel 2650, status 1002 approved) and 'Datacenter' (EGID 192064212, Industriestrasse 29, Lupfig, parcel 1019, status 1002 approved)",
+      "country_iso_a2": "CH",
+      "disposition": "lead_only",
+      "existing_project_stable_key": null,
+      "status_candidate": null,
+      "status_as_of": null,
+      "reason": "A geo.admin.ch find on the federal building register (GWR) designation field (export date 25 October 2026; local captures gwr-find-gbez-rechenzentrum.json, gwr-find-gbez-Datacenter.json, gwr-192086383-wgs84.json, gwr-192064212-wgs84.json) returns two approved but not yet built data-centre buildings in Lupfig: a four-storey 'Rechenzentrum' with a 6,680 m2 footprint at Grenzstrasse 6 (47.453294, 8.213803; about 0.8 km north of the existing Green Campus ZRH1 Data Center 4 point) and a seven-storey 'Datacenter' with a 2,952 m2 footprint at Industriestrasse 29 (47.446069, 8.211917; about 90 m from that point, probably DC4 itself). The register names no operator or owner and carries no permit date or reference, so neither status nor identity can be dated or attributed; GWR status 1002 is not a sourced permit decision.",
+      "reopen_condition": "A dated Green (or other operator) statement or a Gemeinde Lupfig / Kanton Aargau building-permit record naming the Grenzstrasse 6 data centre, its developer and the permit (authority, date, reference) within 90 days of an update; the GWR address point would then serve as the locator (or, if it is Green's, a project on the ZRH1 campus only if the site's locator scope allows)."
+    },
+    {
+      "lane": "de-at-ch-p4",
+      "candidate": "Projected GWR building 'Rechenzentrum', Industriestrasse 20, 3052 Zollikofen postal / Münchenbuchsee BE (EGID 192120805, parcel 2734, status 1001 projected, four storeys, 2,260 m2 footprint)",
+      "country_iso_a2": "CH",
+      "disposition": "lead_only",
+      "existing_project_stable_key": null,
+      "status_candidate": null,
+      "status_as_of": null,
+      "reason": "The federal building register (export 25 October 2026; local capture gwr-192120805-wgs84.json) records a projected four-storey data-centre building at Industriestrasse 20, Münchenbuchsee (47.0049, 7.466117). The register names no developer and has no publication or permit date. The municipality's official-publication list (captured 27 October 2026; legally binding publications are in the Fraubrunner Anzeiger and the Bern Amtsblatt, the latter on the robots-disallowed amtsblattportal.ch) shows nine building publications, none for Industriestrasse 20, and the news archive has no data-centre item. No dated primary record names the project.",
+      "reopen_condition": "A dated Baupublikation, building permit or developer statement naming the Industriestrasse 20 data centre and its developer within 90 days of an update; the GWR building point (EGID 192120805) would then be an official project locator."
+    },
+    {
+      "lane": "de-at-ch-p4",
+      "candidate": "Deutsche Telekom Industrial AI Cloud, Munich Tucherpark: status refresh from the 20 October 2026 releases",
+      "country_iso_a2": "DE",
+      "disposition": "hold",
+      "existing_project_stable_key": "imported:semiconductor-atlas:deutsche-telekom-nvidia-munich",
+      "status_candidate": "partially_operational",
+      "status_as_of": "2026-10-20",
+      "reason": "Two Deutsche Telekom media releases of 20 October 2026 (local captures telekom-2026-10-aus-der-cloud-ins-labor.html and telekom-2026-10-apheris.html) describe customers' workloads running on T-Systems' Industrial AI Cloud (IAIC) on NVIDIA GPUs 'in Deutschland betrieben', presented at GTC Berlin 20-22 October 2026. Neither release names Munich, Tucherpark or any facility, and Telekom's March 2026 release title ('KI-Fabrik: Telekom baut Deutschland-Stack weiter aus') indicates an expanding platform, so the statements cannot be tied to the Munich building of the existing imported record (whose locator is an approximate street geocode).",
+      "reopen_condition": "A dated Telekom or T-Systems statement within 90 days of an update that names the Munich (Tucherpark) AI factory and its operating or expansion status."
+    },
+    {
+      "lane": "de-at-ch-p4",
+      "candidate": "STACKIT Ostermiething (DC10), Weilhartstraße 92, 5121 Ostermiething (Upper Austria), Schwarz Digits",
+      "country_iso_a2": "AT",
+      "disposition": "lead_only",
+      "existing_project_stable_key": null,
+      "status_candidate": null,
+      "status_as_of": null,
+      "reason": "Found only in the PeeringDB facility list for Austria (local capture peeringdb-fac-at.json, a community database; facility 7643, record last updated 26 September 2025). No dated Schwarz Digits or STACKIT statement about the Austrian data centre was found in this pass, and the Schwarz Gruppe release of 27 August 2026 (Dummerstorf) does not mention it. Not in the Atlas.",
+      "reopen_condition": "A dated STACKIT, Schwarz Digits or authority record within 90 days of an update stating the facility's operation, construction or expansion, with an Austrian official address or parcel locator."
+    },
+    {
+      "lane": "de-at-ch-p4",
+      "candidate": "nexspace data centers Graz extension and GREENCORE Kottingbrunn (AT): 27 October re-check of the thirty-fourth holds",
+      "country_iso_a2": "AT",
+      "disposition": "hold",
+      "existing_project_stable_key": null,
+      "status_candidate": "under_construction",
+      "status_as_of": "2026-08-26",
+      "reason": "Re-checked on 27 October 2026: GREENCORE's sitemap is unchanged since 30 September 2026 and its location page still gives only 2542 Kottingbrunn (Hans-Schrammhauser-Strasse, no house number); no nexspace operator website is known, and PeeringDB's Austrian facility list (captured 27 October 2026) has no nexspace entry (the Citycom, XINON and EXA Edge facilities at Neufeldweg 162, Graz are not identified with nexspace in any source). Both groundbreakings (26 August and 28 September 2026, Data Center Group news) remain in window, but neither site has an address or parcel.",
+      "reopen_condition": "As in the thirty-fourth holds: an official address or parcel for each site (operator-published house number, Bauverhandlung notice naming the Grundstück, or BEV/NÖ Atlas/GIS-Steiermark parcel tied to it)."
+    },
+    {
+      "lane": "iberia-italy-p4",
+      "candidate": "STACK MIL06 data centre, Via Guido Rossa 2 (former FDM area), Liscate (MI) (Infrastructure Italia Land 6 S.r.l.; MASE retroactive VIA ID_VIP 11245, decree DM_2026-0000212 of 10 April 2026; compliance verifications 15047 and 15098)",
+      "country_iso_a2": "IT",
+      "disposition": "hold",
+      "existing_project_stable_key": null,
+      "status_candidate": "under_construction",
+      "status_as_of": null,
+      "reason": "Not in the Atlas (nearest: STACK MIL05 Vignate about 4.7 km). An in-window government record names the project: ARPA Lombardia's letter registered by MASE on 5 October 2026 (MASE-2026-0206148, local liscate-arpa-parere-20261005.pdf) in compliance verification 15098 for \"Progettazione nuovo data center Liscate (MI)\". But the VIA decree of 10 April 2026 and the CTVA opinion 141 (local liscate-dm-2026-0000212.pdf, liscate-parere-ctva-141.pdf) record that at the commission's site visit of 27 February 2025 the buildings (MIL L6.A with six data halls, MIL L6.B with two) were already fully built and generators partly installed, which is why the procedure was converted to a retroactive VIA under art. 29(3). The in-window compliance reports (dated 5 June and 30 July 2026, filed 10 July and 5 August 2026) say the conditions are to be met before entry into operation but report no dated physical state. An announced admission would understate a project whose buildings were complete in February 2025, and the only physical observation is 20 months old.",
+      "reopen_condition": "A dated (within 85 days) record of MIL06's physical state: the MASE determination on compliance verification 15047 (status \"in predisposizione provvedimento\" on 27 October 2026) or 15098 if it describes the works, a STACK statement, or a municipal certificate of completion or operation; then admit with a locator from the VIA dispersion study (BON22220RELStudioDiffusionaleLiscatesigned.pdf / All.02-3603Studiodiffusionale, not yet read) or the general plan, and STACK MIL06 identity from the compliance-report headers."
+    },
+    {
+      "lane": "iberia-italy-p4",
+      "candidate": "Equinix MD5 IBX, Equinix Alcobendas campus (Madrid, ES)",
+      "country_iso_a2": "ES",
+      "disposition": "hold",
+      "existing_project_stable_key": null,
+      "status_candidate": "operational",
+      "status_as_of": "2026-08-05",
+      "reason": "Resolves the q3-us-reits-p3 cross-beat lead only partly. Equinix's community post of 5 August 2026 (product manager, News; local eqx-community-md5-sv18.html, JSON-LD datePublished 2026-08-05) says MD5, a new Equinix IBX in Madrid, is now open, and links the Equinix newsroom release of 22 May 2026 on its inauguration in Equinix's Alcobendas campus (over 4,400 m2 of colocation space; outside the window). Neither gives MD5's address. PeeringDB lists Equinix MD1 (Madrid), MD2 (Calle Valgrande 6) and MD6 (Calle Pedriza 12, Alcobendas) but no MD5; the Internet Archive copy of the Equinix Madrid metro page of 3 October 2026 (local ia-eqx-madrid-2026.html) lists MD1, MD2, MD3x and MD6 only, and the MD5 page itself returns 403 and has no archived copy. Alcobendas municipal hosts return 403 to robots.txt; BOCM is robots-disallowed. Without an official address or parcel, no locator can be reviewed.",
+      "reopen_condition": "An Equinix (or Comunidad de Madrid / Alcobendas) record giving MD5's address or parcel, then a Catastro parcel or address point; admit as operational only while a dated operating statement is within 85 days (the 5 August 2026 post ages out after 29 October 2026; Equinix's third-quarter results of 28 October 2026 may give a newer one)."
+    },
+    {
+      "lane": "iberia-italy-p4",
+      "candidate": "Microsoft Zaragoza (Puerto Venecia) datacenter campus: locator replacement from the Catastro parcel of the SET Campus Microsoft (polygon 88 parcel 55, Plana de Torrero)",
+      "country_iso_a2": "ES",
+      "disposition": "hold",
+      "existing_project_stable_key": "imported:semiconductor-atlas:microsoft-aragon-zaragoza-puerto-venecia",
+      "status_candidate": null,
+      "status_as_of": null,
+      "reason": "The status is refreshed in this fragment. The BOA notices of 21 and 27 October 2026 place the Puerto Venecia switching station on parcels 55 and 75 of polygon 88 and the SET Campus Microsoft line in parcel 55; Catastro returns parcel 55's reference point at 41.6124559, -0.8961246, 0.85 km from the imported Nominatim point. The substation parcel locates grid works, not the campus boundary, and replacing an existing project's locator is not expressible in the update format.",
+      "reopen_condition": "A separate geometry review using the PIGA delimitation annex for the Zaragoza campus (the parcels declared in the 28 February 2025 declaration or the PIGA plan) rather than the substation parcel."
+    },
+    {
+      "lane": "iberia-italy-p4",
+      "candidate": "New-facility leads from PeeringDB records created since November 2025: Equinix LS2 Lisbon (Avenida Severiano Falcão 12), AtlasEdge LIS001 Lisbon (Estrada Outurela 117a), Digital Realty ROM1 Rome (Via delle Testuggini 98/100), Digital Realty BCN1 Barcelona (Avenida del Maresme 43, Sant Adrià de Besòs), Quadrivium Digital QGEN01 Genoa (Via Isonzo 21), Netoip DC01 Ancona",
+      "country_iso_a2": "PT",
+      "disposition": "lead_only",
+      "existing_project_stable_key": null,
+      "status_candidate": null,
+      "status_as_of": null,
+      "reason": "PeeringDB facility records (local pdb-fac-*-created-2025-11.json) are operator-entered directory data, not dated status sources. No in-window dated operator statement was found: Equinix's Portugal and Spain newsroom lists stop at 2024 and 22 May 2026, and its community sitemap has no LS2 opening post; Digital Realty's 3 September 2026 Iberia release speaks only of developing the Madrid and Barcelona campuses and entering Lisbon, and its press-release sitemap has no ROM1 opening after the August 2025 groundbreaking; AtlasEdge's Lisbon page was last modified 29 July 2026 and its in-window posts are commentary; Quadrivium's robots.txt disallows Anthropic agents, so its site was not requested.",
+      "reopen_condition": "A dated (within 85 days) operator or authority statement that a named facility is operating or under construction, plus an official address point or parcel (Catastro for Spain; a municipal or cadastral source for Italy or Portugal)."
+    },
+    {
+      "lane": "iberia-italy-p4",
+      "candidate": "Sweeps with nothing new admissible: MASE \"Provvedimenti 2026\" pages 1-24 (26 October back to 10 June 2026) and 23 MASE data-centre object pages; BOE full text of 244 energy notices (29 July - 26 October 2026); BOA full-text searches \"centro de datos\", \"data center\", \"Microsoft\"; Start Campus media index; MERLIN, Data4, Vantage, STACK and Aruba sitemaps",
+      "country_iso_a2": "IT",
+      "disposition": "lead_only",
+      "existing_project_stable_key": null,
+      "status_candidate": null,
+      "status_as_of": null,
+      "reason": "MASE decrees in the window naming data centres are only those already used or held (Bornasco DM 633, Data4 Vittuone negative DM 622); the Aruba Rome generator screening outcome is of 9 July 2026, outside the window. Of the 23 object pages, only STACK Liscate (held above), Data4 Vittuone (refused) and Equinix ML5/ML6 (an observation deadline) carry in-window dates. The BOE full-text scan finds only the Nostrum Evergreen and Solaria Méntrida notices already handled. BOA yields the Microsoft records used here and records older than the existing ACS La Puebla, QTS Calatorao and AWS observations. Start Campus's newest release is still 21 October 2026; MERLIN's in-window posts are re-dated older posts; Data4, Vantage and STACK have no in-window Iberian or Italian release; Aruba's datacenter.it pages are undated.",
+      "reopen_condition": "New dated records in these sources, or reachable regional bulletins not yet scanned (DOGV, BOPV, BOC Cantabria, BORM, BOPA; BOCYL and DOGC remain robots-disallowed) and Portuguese EIA records (participa.gov.pt is a script application; APA hosts were unreachable)."
+    },
+    {
+      "lane": "mea-p4",
+      "candidate": "Teraco CT1 Rondebosch existing operations (second project on the existing CT1 site)",
+      "country_iso_a2": "ZA",
+      "disposition": "hold",
+      "existing_project_stable_key": "curated:teraco-ct1-rondebosch-data-centre:current-expansion",
+      "status_candidate": "operational",
+      "status_as_of": "2026-09-28",
+      "reason": "Still deferred only by the three-change limit: this fragment used its three changes on the new JB2, JB4 and DB1 sites, which take priority over a new project at an existing site. Teraco's page sitemap captured 27 October 2026 still gives the Cape Town page lastmod 2026-09-28T10:37:16Z, so the 28 September version that describes the operating CT1 facility (bounded by the 14 August 2026 archive copy already in the Atlas evidence) is unchanged. The page does not mention the CT1 expansion, so it does not refresh the existing expansion project.",
+      "reopen_condition": "Next pass: add an 'existing operations' project to the CT1 site that reuses its campus locator exactly, from the 28 September 2026 Cape Town page version (inside the 90-day window until 27 December 2026) or a later dated Teraco statement."
+    },
+    {
+      "lane": "mea-p4",
+      "candidate": "Teraco JB7 hyperscale data centre at the Isando Campus (new project on the existing Isando site)",
+      "country_iso_a2": "ZA",
+      "disposition": "hold",
+      "existing_project_stable_key": "curated:teraco-isando-campus-jb1-jb3-jb5:existing-operations",
+      "status_candidate": "under_construction",
+      "status_as_of": "2024-11-13",
+      "reason": "Teraco's release of 13 November 2024 (captured 27 October 2026, local teraco-jb7-news.html; dateModified 2025-09-05 is a site refresh) says construction commenced on JB7, a 40 MW critical-power facility in the Isando Campus alongside JB1, JB3 and JB5, scheduled for completion in 2026. That observation is far outside the 85-day window, and the 28 September 2026 Johannesburg page version and the news archive (newest item 28 May 2026) carry no in-window statement on JB7. A completion target is a forecast and does not establish a stage.",
+      "reopen_condition": "A dated in-window Teraco or Digital Realty statement of JB7's construction stage, completion or opening; JB7 would then be added as a project on the existing Isando site reusing its campus locator."
+    },
+    {
+      "lane": "mea-p4",
+      "candidate": "Teraco JB2/JB4 'Bredell Campus' as one combined site",
+      "country_iso_a2": "ZA",
+      "disposition": "rejected",
+      "existing_project_stable_key": null,
+      "status_candidate": null,
+      "status_as_of": null,
+      "reason": "Teraco markets JB2 and JB4 together as the Bredell Campus (JB2/JB4: 64 MW in its 12 August 2025 release), but its published points are 5.63 km apart and each falls on its own data-centre building complex, so this fragment admits them as two sites rather than one campus.",
+      "reopen_condition": "Only if Teraco publishes corrected coordinates or a plot showing JB2 and JB4 on one contiguous property."
+    }
+  ]
+}

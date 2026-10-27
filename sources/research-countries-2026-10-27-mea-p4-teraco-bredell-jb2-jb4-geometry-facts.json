@@ -1,0 +1,249 @@
+{
+  "format": "datacenter-atlas-geometry-facts-v1",
+  "fragment": "mea-p4",
+  "prepared_at": "2026-10-27",
+  "candidate": "Teraco JB2 and JB4 data centres, both labelled \"Bredell Campus\" by Teraco, Glen Marais, Kempton Park, Ekurhuleni",
+  "source_url": "https://www.teraco.co.za/data-centre-locations/johannesburg/",
+  "source_file": "teraco-jhb-locations-20261027.html",
+  "source_sha256": "153569bbe7b5892efa2c342a9820921cd0777b3138ffe23714b51c48533da6f6",
+  "retrieved_at": "2026-10-27T00:24:11.738Z",
+  "axis_note": "The page prints latitude then longitude; GeoJSON coordinates are [longitude, latitude]. No transformation or geocoding.",
+  "selected_points": {
+    "JB2": {
+      "candidate_id": "teraco-jb2-bredell-glen-marais",
+      "decision": "Selected Teraco's own published GPS coordinate for the JB2 data centre at 0A, 1st Road, Glen Marais, Kempton Park. Literal operator coordinate, identical to the page's JB2 map marker.",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          28.2783355,
+          -26.0751953
+        ]
+      },
+      "authority_class": "official_source",
+      "scope_class": "official_source_reported_facility_reference_point",
+      "use_scope": "campus_locator",
+      "precision_scope": "Teraco's published GPS point for the JB2 data centre at 0A, 1st Road, Glen Marais; it locates the JB2 facility and is not a centroid, parcel, building outline or boundary.",
+      "horizontal_uncertainty_metres": null,
+      "horizontal_uncertainty_unknown_reason": "The page states no datum, reference feature, collection method or horizontal accuracy; PeeringDB's independent point for the same facility is 117 m away.",
+      "source_literal_coordinate_tokens": [
+        "JB2 Data Centre / Address: 0A, 1st Road, Glen Marais, Kempton Park / GPS Co-ordinates: -26.0751953, 28.2783355",
+        "map marker data-lat=\"-26.0751953\" data-lng=\"28.2783355\" (JB2 map on the same page)"
+      ]
+    },
+    "JB4": {
+      "candidate_id": "teraco-jb4-bredell-birkenhead-street",
+      "decision": "Selected Teraco's own published GPS coordinate for the JB4 data centre at Birkenhead Street, Glen Marais, Kempton Park. Literal operator coordinate, identical to the page's JB4 map marker.",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          28.2697322,
+          -26.0250175
+        ]
+      },
+      "authority_class": "official_source",
+      "scope_class": "official_source_reported_facility_reference_point",
+      "use_scope": "campus_locator",
+      "precision_scope": "Teraco's published GPS point for the JB4 data centre at Birkenhead Street, Glen Marais; it locates the JB4 facility and is not a centroid, parcel, building outline or boundary, and it does not separate the 2022 halls from the 2025 expansion.",
+      "horizontal_uncertainty_metres": null,
+      "horizontal_uncertainty_unknown_reason": "The page states no datum, reference feature, collection method or horizontal accuracy; no independent self-reported point exists for JB4 and the imagery check is qualitative, with unknown imagery date and accuracy.",
+      "source_literal_coordinate_tokens": [
+        "JB4 Data Centre / Address: Birkenhead Street, Glen Marais, Kempton Park / GPS Co-ordinates: -26.0250175, 28.2697322",
+        "map marker data-lat=\"-26.0250175\" data-lng=\"28.2697322\" (JB4 map on the same page)"
+      ]
+    }
+  },
+  "separate_site_review": {
+    "jb2_to_jb4_geodesic_m": 5625.4,
+    "result": "Teraco labels both JB2 and JB4 \"Bredell Campus\", but its published points are 5.63 km apart (pyproj WGS84 geodesic) and each falls on its own data-centre building complex, so they are two physical sites, not one campus. The Internet Archive copy of 6 September 2026 prints the same two coordinates."
+  },
+  "consistency_checks": [
+    {
+      "check": "archive copy",
+      "result": "The Internet Archive raw copy of 6 September 2026 (wayback-20260906-teraco-jhb.html, version dateModified 2026-08-13) prints the same JB2 and JB4 GPS literals and map markers."
+    },
+    {
+      "check": "independent self-reported point (JB2)",
+      "result": "PeeringDB facility 6837 'Teraco Johannesburg Bredell Campus', 1 Riverfields Boulevard (peeringdb-fac-za.json, retrieved 27 October 2026), lies 117.3 m from the JB2 point and 5,512 m from the JB4 point. PeeringDB lists no separate JB4 facility.",
+      "file": "peeringdb-fac-za.json",
+      "sha256": "9d887c67518a04eae0385d7bc211b6b8ebe92cf2d8393f8814fcd2bee5f8b628"
+    },
+    {
+      "check": "qualitative imagery placement (JB2)",
+      "result": "In Esri World Imagery (z17) the JB2 point falls at the east edge of a building with rooftop plant and solar arrays in an industrial estate; the PeeringDB point falls beside a second large building with a yard of plant units about 120 m to the north. Imagery date and accuracy unknown; not used for status.",
+      "tiles": [
+        {
+          "file": "tiles/z17-75831-75374.jpg",
+          "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/17/75374/75831",
+          "sha256": "bda2b2961789d5412f481806939d2aee8e3422475c75de2db8257c9ca9859736",
+          "retrieved_at": "2026-10-27T00:25:55.313Z"
+        },
+        {
+          "file": "tiles/z17-75832-75374.jpg",
+          "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/17/75374/75832",
+          "sha256": "d9080af0fd25b4c62a345774144fadfde93baf76be68884cd90467b545c7e163",
+          "retrieved_at": "2026-10-27T00:25:55.591Z"
+        },
+        {
+          "file": "tiles/z17-75831-75375.jpg",
+          "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/17/75375/75831",
+          "sha256": "f917e64c7d98b057f3572c7853163c13dd00670c261ccbb27e418d62707c7f4d",
+          "retrieved_at": "2026-10-27T00:25:54.969Z"
+        },
+        {
+          "file": "tiles/z17-75832-75375.jpg",
+          "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/17/75375/75832",
+          "sha256": "c607a785867a6c5963c588eddc4dd4955d9544a9c933a7360099a627121abfca",
+          "retrieved_at": "2026-10-27T00:25:55.151Z"
+        }
+      ]
+    },
+    {
+      "check": "qualitative imagery placement (JB4)",
+      "result": "In Esri World Imagery (z17) the JB4 point falls on the southern part of a very large building complex with extensive rooftop plant, consistent with the 80,000 m2 building structure described in Teraco's 12 August 2025 release. Imagery date and accuracy unknown; not used for status.",
+      "tiles": [
+        {
+          "file": "tiles/z17-75828-75354.jpg",
+          "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/17/75354/75828",
+          "sha256": "7d98224bab21af6342e3e1f5cd8985e938094301b04e50989a1e24cde0b0b545",
+          "retrieved_at": "2026-10-27T00:25:56.282Z"
+        },
+        {
+          "file": "tiles/z17-75829-75354.jpg",
+          "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/17/75354/75829",
+          "sha256": "aac983ff67a90a4f0a11a1a4397a9a9be47d632013a8d2f20ffac7d172a29248",
+          "retrieved_at": "2026-10-27T00:25:56.471Z"
+        },
+        {
+          "file": "tiles/z17-75828-75355.jpg",
+          "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/17/75355/75828",
+          "sha256": "cc0783ee56c2f42bbb7ff86b3b5c5b94965a2b08c89a1f9abe0df18ad2452604",
+          "retrieved_at": "2026-10-27T00:25:55.854Z"
+        },
+        {
+          "file": "tiles/z17-75829-75355.jpg",
+          "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/17/75355/75829",
+          "sha256": "1e41b3399f51bd20cfa53bc588d14a56f10ef400e38632c3954f50b3bbcd4682",
+          "retrieved_at": "2026-10-27T00:25:56.070Z"
+        }
+      ]
+    },
+    {
+      "check": "street context",
+      "result": "Esri World Street Map (z15) labels First Rd beside the JB2 point, consistent with JB2's address (0A, 1st Road), and shows the R21 (Albertina Sisulu Freeway) about 0.75 km west of the JB4 point, consistent with the release's 'alongside the R21 business corridor'. The street map shows no mapped road at the JB4 point itself.",
+      "tiles": [
+        {
+          "file": "tiles-street/z15-18956-18838.jpg",
+          "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/15/18838/18956",
+          "sha256": "cd0f832bba2af1e92ea6866f0ae6a5defd6ded0892150c115b8a6d4ce9102fdb",
+          "retrieved_at": "2026-10-27T00:30:55.301Z"
+        },
+        {
+          "file": "tiles-street/z15-18957-18838.jpg",
+          "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/15/18838/18957",
+          "sha256": "eca5b8937ea948488197fb676a3086a94105a4f82b5fbd10888401029d50f472",
+          "retrieved_at": "2026-10-27T00:30:55.520Z"
+        },
+        {
+          "file": "tiles-street/z15-18958-18838.jpg",
+          "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/15/18838/18958",
+          "sha256": "f2ee9d328bef16b9c991ec88627a3adb032b20ca1f37c737a6487d71224ef36f",
+          "retrieved_at": "2026-10-27T00:30:55.692Z"
+        },
+        {
+          "file": "tiles-street/z15-18956-18839.jpg",
+          "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/15/18839/18956",
+          "sha256": "8dc95b40deee297e333fd1c678f7f5d1053599c46355f64d5aeca17471e683e3",
+          "retrieved_at": "2026-10-27T00:30:55.855Z"
+        },
+        {
+          "file": "tiles-street/z15-18957-18839.jpg",
+          "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/15/18839/18957",
+          "sha256": "1a8fbe6a6550bfa0d61761380ea2f4fee330df877b66968ded0e0bdbd53e27ef",
+          "retrieved_at": "2026-10-27T00:30:56.020Z"
+        },
+        {
+          "file": "tiles-street/z15-18958-18839.jpg",
+          "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/15/18839/18958",
+          "sha256": "9da2a715f54f51ccb2c423f5e0b33a3bc523d3541a7fdafcf3d2f1e2f70c3e18",
+          "retrieved_at": "2026-10-27T00:30:56.184Z"
+        },
+        {
+          "file": "tiles-street/z15-18956-18840.jpg",
+          "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/15/18840/18956",
+          "sha256": "f86f10e2b654c11593c7375e81ab601d236014cf60a41a3431c33c7a7bee64c0",
+          "retrieved_at": "2026-10-27T00:30:56.349Z"
+        },
+        {
+          "file": "tiles-street/z15-18957-18840.jpg",
+          "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/15/18840/18957",
+          "sha256": "9b18504af440710c3b2dc80fb21b1f29026b0035286ccfc88385eab77e914228",
+          "retrieved_at": "2026-10-27T00:30:56.516Z"
+        },
+        {
+          "file": "tiles-street/z15-18958-18840.jpg",
+          "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/15/18840/18958",
+          "sha256": "5adb8ab6894c869de1f8de93ea6ba2fcea02389fb6eedf6528fe1c59f855f17e",
+          "retrieved_at": "2026-10-27T00:30:56.738Z"
+        },
+        {
+          "file": "tiles-street/z15-18956-18841.jpg",
+          "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/15/18841/18956",
+          "sha256": "f4a9eba0dd562772b830be6ba913bb4aeb51b4c76aeb456a64875a400f8fac78",
+          "retrieved_at": "2026-10-27T00:30:56.917Z"
+        },
+        {
+          "file": "tiles-street/z15-18957-18841.jpg",
+          "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/15/18841/18957",
+          "sha256": "a08f74909f8bfb1d6ed6fa7d9e47a7d555e1cd7d74f9c4beaf71e2b3dd3a0d0f",
+          "retrieved_at": "2026-10-27T00:30:57.085Z"
+        },
+        {
+          "file": "tiles-street/z15-18958-18841.jpg",
+          "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/15/18841/18958",
+          "sha256": "4c9be7ac31eb5821e6f4319a4e73b3104ff16ed5fab73668bf194d77add43931",
+          "retrieved_at": "2026-10-27T00:30:57.248Z"
+        },
+        {
+          "file": "tiles-street/z15-18956-18842.jpg",
+          "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/15/18842/18956",
+          "sha256": "2dc6d57fe9b4edf78a767d9411ed04795381667e2c82421d1881be83ff9006f9",
+          "retrieved_at": "2026-10-27T00:30:57.413Z"
+        },
+        {
+          "file": "tiles-street/z15-18957-18842.jpg",
+          "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/15/18842/18957",
+          "sha256": "899713962a249dc58b14d7b87590a054f3b0e40a5ec7eceafb760b519f61107b",
+          "retrieved_at": "2026-10-27T00:30:57.574Z"
+        },
+        {
+          "file": "tiles-street/z15-18958-18842.jpg",
+          "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/15/18842/18958",
+          "sha256": "af41db64a9c72b832d56ed5c5c763b8d0a3d24df878d9b2f64251fac118e984e",
+          "retrieved_at": "2026-10-27T00:30:57.746Z"
+        },
+        {
+          "file": "tiles-street/z15-18956-18843.jpg",
+          "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/15/18843/18956",
+          "sha256": "46fb2723cad935d6d67ceb36273c7789f0fa2841fdae677443243697e6c8e6a4",
+          "retrieved_at": "2026-10-27T00:30:57.907Z"
+        },
+        {
+          "file": "tiles-street/z15-18957-18843.jpg",
+          "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/15/18843/18957",
+          "sha256": "5ecb0591203596ccefcb801ca7c213ab912f4206820f1a1bb34ae1eaade72531",
+          "retrieved_at": "2026-10-27T00:30:58.076Z"
+        },
+        {
+          "file": "tiles-street/z15-18958-18843.jpg",
+          "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/15/18843/18958",
+          "sha256": "80cbfbd901e26605cc62b72323b8eae854af43424675090cd53660048473bd23",
+          "retrieved_at": "2026-10-27T00:30:58.238Z"
+        }
+      ]
+    }
+  ],
+  "atlas_distances": {
+    "JB2": "Nearest Atlas sites: Teraco Isando Campus (JB1, JB3, JB5) 10.63 km; Africa Data Centres JHB1 Midrand 17.42 km. None within 2 km.",
+    "JB4": "Nearest Atlas sites: Teraco Isando Campus (JB1, JB3, JB5) 14.43 km; Africa Data Centres JHB1 Midrand 15.06 km. None within 2 km."
+  }
+}
