@@ -35,6 +35,46 @@ from the 90 days before the data update. Review later reports and keep the date 
 actually supports; a new research pass does not make an old observation current. Publish supported
 additions and updates as they are ready.
 
+`verified_construction_core/2026-10-29-research-hundredeleventh` adds nine sites and nine projects:
+**900 sites and 968 projects in 85 countries**. Belgium enters through Penta Infra BRU01 Zellik
+and LCL Brussels-North Diegem, Botswana through Digital Delta Gaborone, Costa Rica through
+Navégalo Centro Colón, and Ethiopia through Wingu ETH1 Addis Ababa. The other additions are
+PDG PE1 Pekanbaru and the single JC1/JC2 Cibitung campus in Indonesia, DartPoints CAE01 Columbia,
+and DC BLOX MYR1 Myrtle Beach in the United States.
+
+Eight projects record existing commercial operations. DartPoints' August 26 report identifies
+physical expansion work underway; its September completion target does not establish completion.
+No announced capacity is recorded as achieved. The Myrtle Beach operator's October 13 post
+reports the current cable-landing campus function, while its facility page identifies commercial
+colocation and supplies the exact facility coordinate. The fibre route and hosted customers do not
+add separate sites.
+
+The PDG enterprise operation report applies to PE1 and JC1. JC1 and JC2 remain one physical
+campus; no independently refreshed JC2 status or completed enterprise-sale ownership transfer
+is inferred. Three exact sources already used by the Bandung, Bintaro and Surabaya projects are
+reused. Their existing evidence rows gain only associations with the two new PDG projects.
+
+Digital Delta uses BoFiNet's explicit named facility visit coordinate in its historical tender,
+with fresh October operating evidence. The tender's headquarters point and conflicting PeeringDB
+point are excluded. Wingu ETH1 uses its exact named facility feature; the broader ICT Park point
+is excluded. Navégalo's July 31 original operating statement is exactly 90 days old on October 29;
+its later country-level service post and certificate validity dates do not renew that observation.
+Penta's institutional tenant is hosted by a commercial campus. LCL's operator explicitly identifies
+its colocated head office as the Brussels-North customer-server host, and its October 9 report
+supports current physical hosting. The October opening recap does not establish a new phase.
+
+All prior 891 site rows and 959 project rows remain unchanged. Of 4,975 existing evidence rows,
+4,972 are unchanged and three gain only the two PDG project associations; every other field is
+preserved. Thirty-seven evidence records are added. Both imported JSON snapshots remain
+byte-identical. All 40 source objects and nine addition objects retain their independently
+reviewed regional content. Historical data, holds and release inventories remain frozen.
+
+The scoped PDG, Wingu ETH1 and LCL Brussels-North holds are resolved. Other PDG and Wingu campuses,
+Navégalo Ultimapark, Stellarix Senegal, Lomé Data Centre and the other held candidates remain
+excluded until their own status, identity and locator evidence is complete. Unknown positional
+accuracy remains explicit; no surveyed boundary, measured load, occupancy, current certification
+validity or new commissioning date is asserted.
+
 `verified_construction_core/2026-10-29-research-hundredtenth` adds eight sites and eight projects:
 **891 sites and 959 projects in 81 countries**. Ghana enters through Onix Accra and Djibouti
 through Wingu's original Haramous DDC. The other additions are FPT Fornix HCM02 in Vietnam,
