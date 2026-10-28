@@ -183,34 +183,90 @@ class DatasetUpdateTests(unittest.TestCase):
             if field.startswith("geometry_") or field.startswith("horizontal_uncertainty") or field in {"latitude", "longitude"}:
                 self.assertEqual(added[field], original[field], field)
 
-    def test_news_requires_attributed_firsthand_physical_status_and_preserves_kind(self):
-        source = self.sources["sources"][0]
-        source["kind"] = "news"
-        statement = {
-            "basis": "attributed_project_participant_statement", "speaker": "Named project manager",
-            "speaker_role": "Manager responsible for the named project", "project_identity": "Example campus construction",
-            "statement": "The manager says earthworks are currently in progress.", "date_semantics": "Dated on-site interview.",
-            "observed_on": "2026-09-21", "supported_status": "site_preparation",
-            "review": "Reviewed the original report and explicit attribution; no forecast treated as achieved work.",
-        }
-        source["firsthand_status_statement"] = statement
-        payloads, _ = self.payloads()
-        row = next(row for row in csv.DictReader(io.StringIO(payloads["projects.csv"].decode())) if row["project_stable_key"] == self.spec["additions"][0]["project_stable_key"])
-        self.assertEqual(row["status_method"], "attributed_firsthand_physical_status_report")
-        evidence = next(row for row in csv.DictReader(io.StringIO(payloads["evidence.csv"].decode())) if row["source_url"] == source["source_url"])
-        self.assertEqual(evidence["kind"], "news")
-        for changes, expected in (
-            ({"basis": "reporter_narrative"}, "primary source"),
-            ({"speaker": ""}, "firsthand status speaker"),
-            ({"observed_on": "2026-09-20"}, "selected status and observation date"),
-            ({"supported_status": "operational"}, "selected status and observation date"),
-        ):
-            with self.subTest(changes=changes):
-                source["firsthand_status_statement"] = {**statement, **changes}
-                with self.assertRaisesRegex(UpdateError, expected):
+    def test_reports_require_attributed_firsthand_physical_status_and_preserve_kind(self):
+        for kind in ("news", "analyst_report"):
+            with self.subTest(kind=kind):
+                source = self.sources["sources"][0]
+                source["kind"] = kind
+                self.spec["additions"][0]["status"]["value"] = "site_preparation"
+                source.pop("firsthand_status_statement", None)
+                with self.assertRaisesRegex(UpdateError, "primary source"):
                     self.payloads()
+                statement = {
+                    "basis": "attributed_project_participant_statement", "speaker": "Named project manager",
+                    "speaker_role": "Manager responsible for the named project", "project_identity": "Example campus construction",
+                    "statement": "The manager says earthworks are currently in progress.", "date_semantics": "Dated on-site interview.",
+                    "observed_on": "2026-09-21", "supported_status": "site_preparation",
+                    "review": "Reviewed the original report and explicit attribution; no forecast treated as achieved work.",
+                }
+                source["firsthand_status_statement"] = statement
+                payloads, _ = self.payloads()
+                row = next(row for row in csv.DictReader(io.StringIO(payloads["projects.csv"].decode())) if row["project_stable_key"] == self.spec["additions"][0]["project_stable_key"])
+                self.assertEqual(row["status_method"], "attributed_firsthand_physical_status_report")
+                evidence = next(row for row in csv.DictReader(io.StringIO(payloads["evidence.csv"].decode())) if row["source_url"] == source["source_url"])
+                self.assertEqual(evidence["kind"], kind)
+                for changes, expected in (
+                    ({"basis": "reporter_narrative"}, "primary source"),
+                    ({"speaker": ""}, "firsthand status speaker"),
+                    ({"speaker_role": ""}, "firsthand status speaker_role"),
+                    ({"project_identity": ""}, "firsthand status project_identity"),
+                    ({"statement": ""}, "firsthand status statement"),
+                    ({"date_semantics": ""}, "firsthand status date_semantics"),
+                    ({"review": ""}, "firsthand status review"),
+                    ({"observed_on": "2026-09-20"}, "selected status and observation date"),
+                    ({"supported_status": "operational"}, "selected status and observation date"),
+                ):
+                    with self.subTest(changes=changes):
+                        source["firsthand_status_statement"] = {**statement, **changes}
+                        with self.assertRaisesRegex(UpdateError, expected):
+                            self.payloads()
+                source["firsthand_status_statement"] = statement
+                for value in ("announced", "permitted"):
+                    self.spec["additions"][0]["status"]["value"] = value
+                    with self.assertRaisesRegex(UpdateError, "primary source"):
+                        self.payloads()
+
+    def test_analyst_firsthand_update_preserves_source_and_rejects_ordinary_analysis(self):
+        source = self.sources["sources"][0]
+        source.update(kind="analyst_report", publisher="Research House", attribution="Research House")
+        source["firsthand_status_statement"] = {
+            "basis": "attributed_project_participant_statement", "speaker": "Named research analyst",
+            "speaker_role": "Participant in the dated campus visit", "project_identity": "Example campus",
+            "statement": "The visit report states that the named campus is operating.",
+            "date_semantics": "Explicit date of the participant's visit, not publication or retrieval.",
+            "observed_on": "2026-09-21", "supported_status": "operational",
+            "review": "Original dated visit report reviewed; forecast capacity is excluded.",
+        }
+        statement = copy.deepcopy(source["firsthand_status_statement"])
+        baseline = next(csv.DictReader((BASE / "projects.csv").open()))
+        self.spec["additions"] = []
+        self.spec["status_updates"] = [{
+            "project_stable_key": baseline["project_stable_key"],
+            "status": {"value": "operational", "as_of": "2026-09-21", "source_id": "work",
+                       "summary": "The visit report identifies existing operation."},
+            "identity_review": "The named campus is unchanged.", "successor_review": "No later report.",
+        }]
+        payloads, _ = self.payloads()
+        row = next(row for row in csv.DictReader(io.StringIO(payloads["projects.csv"].decode()))
+                   if row["project_stable_key"] == baseline["project_stable_key"])
+        self.assertEqual(row["status_method"], "attributed_firsthand_physical_status_report")
+        self.assertEqual(row["status_as_of"], "2026-09-21")
+        evidence = next(row for row in csv.DictReader(io.StringIO(payloads["evidence.csv"].decode()))
+                        if row["source_url"] == source["source_url"])
+        self.assertEqual((evidence["kind"], evidence["publisher"], evidence["attribution"]),
+                         ("analyst_report", "Research House", "Research House"))
+        provenance = json.loads(payloads["review-provenance.json"])
+        self.assertEqual(provenance["source_projections"]["work"]["firsthand_status_statement"], statement)
+        for invalid in ({}, {**statement, "basis": "analyst_estimate"}):
+            source["firsthand_status_statement"] = invalid
+            with self.assertRaisesRegex(UpdateError, "primary source"):
+                self.payloads()
         source["firsthand_status_statement"] = statement
-        self.spec["additions"][0]["status"]["value"] = "announced"
+        source["kind"] = "trade_press"
+        with self.assertRaisesRegex(UpdateError, "primary source"):
+            self.payloads()
+        source.update(kind="analyst_report", published_at=None, source_observation_date="2026-09-21",
+                      source_observation_date_precision="day", date_semantics="Explicit visit date.")
         with self.assertRaisesRegex(UpdateError, "primary source"):
             self.payloads()
 

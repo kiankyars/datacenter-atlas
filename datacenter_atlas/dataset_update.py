@@ -53,6 +53,7 @@ STATUS_VALUES = LEGACY_STATUS_VALUES | PLANNED_STATUSES | {LifecycleStatus.COMPL
 ADMISSION_STATUSES = ACTIVE_STATUSES | PLANNED_STATUSES | {LifecycleStatus.COMPLETED.value, LifecycleStatus.OPERATIONAL.value}
 # Statuses a dated operating-status entry or a firsthand participant statement can establish.
 OBSERVED_STATUSES = ACTIVE_STATUSES | {LifecycleStatus.OPERATIONAL.value, PARTIALLY_OPERATIONAL}
+FIRSTHAND_REPORT_KINDS = {"news", "analyst_report"}
 PROJECT_RECORD_POSTURE = "authoritative_project_record_plus_scoped_location"
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -151,10 +152,10 @@ def _status(spec, sources, updated, *, admission=False, source_details=None):
                  "status must match the explicit source observation date")
         retrieved_day = datetime.fromisoformat(source["retrieved_at"].replace("Z", "+00:00")).date()
         _require(observed <= retrieved_day, "source capture predates observation")
-    if source["kind"] == "news":
+    if source["kind"] in FIRSTHAND_REPORT_KINDS:
         # A named project participant's firsthand statement can be primary
         # evidence inside a report. Ordinary reporting and syndicated summaries
-        # do not qualify, and the source remains labelled as news.
+        # do not qualify, and the original source kind is preserved.
         details = (source_details or {}).get(spec["source_id"], {})
         firsthand = details.get("firsthand_status_statement", {})
         _require(firsthand.get("basis") == "attributed_project_participant_statement"
@@ -351,7 +352,7 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
         status, locator = item["status"], item["locator"]
         _status(status, sources, updated, admission=True, source_details=source_details)
         status_method, status_role = _status_metadata(status["value"])
-        if sources[status["source_id"]]["kind"] == "news":
+        if sources[status["source_id"]]["kind"] in FIRSTHAND_REPORT_KINDS:
             status_method = "attributed_firsthand_physical_status_report"
         inherited_evidence_ids = []
         if "reuse_from_project_id" in locator:
@@ -463,7 +464,7 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
                      "can be refreshed with it")
         _status(status, sources, updated, source_details=source_details)
         status_method, status_role = _status_metadata(status["value"])
-        if sources[status["source_id"]]["kind"] == "news":
+        if sources[status["source_id"]]["kind"] in FIRSTHAND_REPORT_KINDS:
             status_method = "attributed_firsthand_physical_status_report"
         if correction:
             _require(item.get("replaces_status_evidence_id") == row["status_evidence_id"], "correction must name the replaced status evidence")

@@ -63,7 +63,7 @@ them directly from their providers, under the providers' terms; the website's
 ## OpenStreetMap-derived geometries: ODbL 1.0
 
 Some locators are derived from OpenStreetMap; their geometry evidence row has `license` set to
-`ODbL-1.0` (<!-- atlas:osm-geometry-count -->78 of the 939 project geometries, on 73 sites, in the 2026-10-28 data snapshot<!-- /atlas:osm-geometry-count -->). These
+`ODbL-1.0` (<!-- atlas:osm-geometry-count -->78 of the 946 project geometries, on 73 sites, in the 2026-10-28 data snapshot<!-- /atlas:osm-geometry-count -->). These
 geometries are © OpenStreetMap contributors and are available under the ODbL 1.0, not CC BY 4.0.
 Credit "© OpenStreetMap contributors" and link to <https://www.openstreetmap.org/copyright>. If you
 publicly use a derivative database of these geometries, the ODbL's share-alike terms apply to that

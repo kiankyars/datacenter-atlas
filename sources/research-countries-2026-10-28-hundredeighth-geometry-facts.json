@@ -1,0 +1,230 @@
+{
+  "reviewed_at": "2026-10-28",
+  "regional_packets": {
+    "americas7": {
+      "path": "local_data/country-research-global-2026-10-28-americas7/geometry-facts.json",
+      "sha256": "cc26497f0f1d9dca66b6c5f504c402f7414f439ca9d2e6bf56788bd5174de8f5",
+      "content": {
+        "format": "reviewed-native-geometry-facts-v1",
+        "facts": [
+          {
+            "physical_site_stable_key": "curated:datatrust-el-salvador",
+            "scope": "campus_locator",
+            "horizontal_uncertainty_metres": null,
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -89.4287398,
+                13.8118106
+              ]
+            },
+            "source_id": "americas7-20261028-datatrust-map",
+            "identity_source_ids": [
+              "americas7-20261028-datatrust-primary",
+              "americas7-20261028-datatrust-aristos"
+            ],
+            "scope_class": "native_named_data_centre_feature",
+            "authority": "compiled_reference",
+            "derivation": "direct_geometry",
+            "method": "native_Google_Maps_operator_linked_named_feature_coordinate",
+            "precision": "Exact published named facility point; campus locator, not a surveyed boundary.",
+            "identity_review": "Official datatrust.sv directly links the native named Google feature. The response pairs feature ID 0x8f6327ed6d0e9aa9:0x5ae2771170208ecc and entity /g/11v9b_xy3l with [13.8118106,-89.4287398]. Viewport [13.8118158,-89.4313147] is excluded. Owner confirms one DC within the wider office park. LinkedIn company address Km 36½ is not used; exact operator facility page and owner page agree Km 37½.",
+            "uncertainty_reason": "Source states no survey accuracy or quantitative horizontal uncertainty. Retain exact published point with unknown uncertainty."
+          },
+          {
+            "physical_site_stable_key": "curated:blue-nap-americas-curacao",
+            "scope": "campus_locator",
+            "horizontal_uncertainty_metres": null,
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -68.954972,
+                12.177306
+              ]
+            },
+            "source_id": "americas7-20261028-bluenap-contact",
+            "identity_source_ids": [
+              "americas7-20261028-bluenap-primary",
+              "americas7-20261028-bluenap-facility"
+            ],
+            "scope_class": "operator_published_named_facility_point",
+            "authority": "official_source",
+            "derivation": "direct_geometry",
+            "method": "operator_published_named_facility_map_coordinate",
+            "precision": "Exact published named facility point; campus locator, not a surveyed boundary.",
+            "identity_review": "Official contact iframe explicitly names Blue NAP Americas and its Kaya Seru Mahuma facility address, with q=12.177306,-68.954972. Native PeeringDB facility 8303 independently ties this named data centre, exact official website and same street to Willemstad; facility coordinates are null and excluded. Operator home page describes the commercial facility. No headquarters or municipality centroid used.",
+            "uncertainty_reason": "Source states no survey accuracy or quantitative horizontal uncertainty. Retain exact published point with unknown uncertainty."
+          }
+        ],
+        "rejected_points": [
+          {
+            "candidate": "DataTrust",
+            "point": [
+              -89.4313147,
+              13.8118158
+            ],
+            "reason": "Google viewport centre, not named feature."
+          },
+          {
+            "candidate": "Blue NAP",
+            "point": null,
+            "reason": "PeeringDB facility8303 latitude and longitude null; never infer them from retrieval or organization record."
+          }
+        ]
+      }
+    },
+    "apac7": {
+      "path": "local_data/country-research-global-2026-10-28-apac7/geometry-facts.json",
+      "sha256": "8c53b71a03dd4a84bc4fccc7ebd15b490948fec67d494d48aae5b8960cc82ae8",
+      "content": {
+        "point": [
+          107.089244,
+          -6.299731
+        ],
+        "source_file": "local_data/country-research-global-2026-10-28-apac7/raw/dci-peeringdb-jk6.json",
+        "sha256": "297322748668da64397074f59b6c51af1b7cc597f4c9f4d3be683c5b228aa4a0",
+        "reproduction": "Parse JSON data[0].longitude and latitude, not data[0].org coordinates. data[0].campus.id=4; name DCI Indonesia H1 Campus (Cibitung).",
+        "excluded_office_point": [
+          106.811086,
+          -6.224591
+        ],
+        "licensing": "PeeringDB record attribution preserved; all-rights-reserved conservative AUP classification, not CC0."
+      }
+    },
+    "americas8": {
+      "path": "local_data/country-research-global-2026-10-28-americas8/geometry-facts.json",
+      "sha256": "2ca00091ec39716de9e0a41d07376dd7fa55da71220ffc45e46da6ca25880e3c",
+      "content": {
+        "selected_point": [
+          -79.584996,
+          9.0025779
+        ],
+        "source_id": "americas8-20261028-clayton-map",
+        "native_feature": "0x8faca7cab5c4ca03:0xb9dbd7bd87ec9afa",
+        "operator_link_source_id": "americas8-20261028-clayton-address",
+        "excluded_viewport": [
+          -79.5862974,
+          9.002581
+        ],
+        "waze_native_point": [
+          -79.58499599999999,
+          9.0025779
+        ],
+        "identity_review": "Official operator explicitly names Data Center Clayton, Calle Pullen Edificio217 and links this exact Google feature. Native Google matches IDC Clayton; Waze independently returns same native named facility, street and official website at the identical coordinate. Generic Ciudad del Saber park, viewport centre [9.002581,-79.5862974], other Tigo data centres and corporate offices are excluded.",
+        "licence": "proprietary",
+        "attribution": "Google Maps"
+      }
+    },
+    "africa7": {
+      "path": "local_data/country-research-global-2026-10-28-africa7/geometry-facts.json",
+      "sha256": "dcd7c81bd86fc59d514a9662408c27aee1ac3ef34aa66fb1cc999bd858d6bf8d",
+      "content": {
+        "reviewed_at": "2026-10-28",
+        "candidate": "ST DIGITAL DLA01 Data Centre, Douala",
+        "selected": {
+          "facility_id": 9187,
+          "longitude": 9.696225,
+          "latitude": 4.056759,
+          "raw_coordinate_path": "data[0].longitude / data[0].latitude",
+          "authority": "compiled_reference",
+          "derivation": "direct_geometry",
+          "source_id": "africa7-20261028-douala-facility-map",
+          "license": "all-rights-reserved",
+          "attribution": "PeeringDB",
+          "horizontal_uncertainty_metres": null
+        },
+        "identity_bridge": {
+          "source_id": "africa7-20261028-douala-historical-certifier-identity",
+          "exact_entry": "ST Digital-DLA01",
+          "address": "Immeuble SCI Chimede, Bonanjo, Douala, Cameroon",
+          "exact_link": "https://www.peeringdb.com/fac/9187",
+          "scope": "Historical identity only; public testing-subdomain directory does not establish current certification."
+        },
+        "rejected": [
+          {
+            "candidate": "Nested ST Digital headquarters",
+            "address": "Immeuble Entrelec Bali, 75 Rue de l’Alliance Française",
+            "reason": "Corporate office, distinct from facility-level DLA01 premise."
+          },
+          {
+            "candidate": "Original and independent Google query captures",
+            "reason": "Generic search shells with no selected facility feature, address or candidate coordinates. Original includes Helsinki viewport. Neither corroboration nor contradiction of the PDB facility point."
+          }
+        ],
+        "point_semantics": "Published facility point retained exactly. No surveyed-boundary, parcel or measured positional accuracy claim."
+      }
+    },
+    "africa8": {
+      "path": "local_data/country-research-global-2026-10-28-africa8/geometry-facts.json",
+      "sha256": "ef67d5aebce1af1409544511206dd3196f18b94531e8ca67d42dcc2fe3061962",
+      "content": {
+        "point": [
+          -3.757056,
+          5.2268177
+        ],
+        "native_feature_id": "0xfc1f7006265369d:0x9cf2d7e54ec3ab97",
+        "place_id": "ChIJnTZlYgD3wQ8Rl6vDTuXX8pw",
+        "json_path": "data[0][1][0][14]: name[11], coordinates[9][2:4] as latitude/longitude, address[18], feature_id[10], place_id[78]",
+        "source_file": "local_data/country-research-global-2026-10-28-africa8/raw/google-bassam-results.json",
+        "source_sha256": "8f8fa86c6479f198c43efe68c26be259f1206e351bd8ca7043bb8250fd880a1a",
+        "rejected_points": [
+          {
+            "point": [
+              -3.757779,
+              5.230347
+            ],
+            "reason": "PDB VITIB park coordinate repeated for ST, Equinix and Raxio; not accepted as independent ST position."
+          },
+          {
+            "point": [
+              9.504178,
+              0.287141
+            ],
+            "reason": "Gabon PDB16677 point approximately16km from Nkok; likely geocode error. Not an admitted location."
+          },
+          {
+            "point": [
+              9.4449191,
+              0.4033927
+            ],
+            "reason": "ST DIGITAL GABON office on Avenue Jean PaulII; not Nkok data centre."
+          },
+          {
+            "point": [
+              9.6211056,
+              0.3772101
+            ],
+            "reason": "Whole Nkok economic zone marker; no exact data-centre identity."
+          }
+        ],
+        "license": "proprietary",
+        "attribution": "Google Maps"
+      }
+    },
+    "africa9": {
+      "path": "local_data/country-research-global-2026-10-28-africa9/geometry-facts.json",
+      "sha256": "c1e632abb62eace4f6e0e9348d456daf3e66848e709bafa9b9cb7b49a80c3869",
+      "content": {
+        "point": [
+          28.2934913,
+          -15.4076911
+        ],
+        "google_feature_id": "0x1940f5249df74133:0x4754f59c39a9da4f",
+        "google_feature_name": "Paratus Zambia Data Center",
+        "peeringdb_facility_id": 12252,
+        "peeringdb_point": [
+          28.293612,
+          -15.407677
+        ],
+        "address": "34 Bwinjimfumu Road, Lusaka, Zambia",
+        "excluded_headquarters": "Brentwood Office Park, Brentwood Lane, Longacres, Lusaka",
+        "excluded_viewport": [
+          28.2909164,
+          -15.4076911
+        ],
+        "horizontal_accuracy": null,
+        "browser_readback": "Read-only named Google detail page on 2026-10-28 confirmed title, 34 Bwinjimfumu Road address, Paratus service phone and feature URL. Temporary research tab closed; no reviews, edits or external messages."
+      }
+    }
+  }
+}

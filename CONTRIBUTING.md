@@ -50,6 +50,12 @@ application, utility approval, microgrid consent or air permit alone is insuffic
 requires evidence of physical work. Completion and operation require their own evidence;
 a completed shell or commissioning milestone does not establish operation.
 
+A reviewed news or analyst report can support a physical status only through an explicitly
+attributed firsthand statement by a named project participant. Record the speaker and role,
+project identity, observation date, supported status and review. Preserve the publisher and
+source kind. General analysis, forecasts and summaries do not qualify. This exception does not
+establish an announcement or development consent.
+
 Link public sources only. Please do not upload confidential documents, copies of paywalled
 material or personal data.
 

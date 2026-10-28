@@ -35,6 +35,26 @@ from the 90 days before the data update. Review later reports and keep the date 
 actually supports; a new research pass does not make an old observation current. Publish supported
 additions and updates as they are ready.
 
+`verified_construction_core/2026-10-28-research-hundredeighth` adds seven sites and seven projects:
+**878 sites and 946 projects in 75 countries**. El Salvador enters through DataTrust,
+Curaçao through Blue NAP Americas, Panama through Tigo IDC Clayton, Cameroon through
+ST DIGITAL DLA01 Douala, Côte d’Ivoire through ST DIGITAL Grand-Bassam, and Zambia through
+Paratus Lusaka. DCI Indonesia H1 Cibitung is the seventh addition.
+
+All seven admissions cover existing operations. H1 is one campus encompassing its five operating
+buildings. Its evidence retains the original analyst-report classification and the explicitly dated
+September 23 visit by the named author. The validator applies the existing strict firsthand-statement
+requirements to analyst reports as well as news reports; forecasts and ordinary analysis remain
+ineligible. The other admissions use dated operator statements. Native named facility records and
+operator-published maps locate the campuses, with unknown ground accuracy retained.
+
+All 871 prior sites, 939 projects and 4,894 evidence records are unchanged. Thirty-two evidence
+records are added; the imported source snapshot and identity mapping remain byte-identical.
+Independent reviews pin the regional packets and combined preview. Existing release inventories
+and downloadable historical assets remain unchanged. ST DIGITAL Nkok remains held for an unresolved
+facility location; prospective services, future H1 buildings and historical certification context do
+not establish achieved capacity or current certification.
+
 `verified_construction_core/2026-10-28-research-hundredseventh` adds six sites and six projects:
 **871 sites and 939 projects in 69 countries**. Peru enters through Gtd Lurín, and Namibia
 through Paratus Armada. The other additions are Tet DC7 in Salaspils, Gtd Panamericana in
