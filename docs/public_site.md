@@ -662,6 +662,13 @@ when a built site is available.
     `publish_release.py` names the exact commit as the release target. The workflow's
     `GITHUB_TOKEN` can do that; a local `gh` login with classic scopes `repo`, `gist` and `read:org`
     got HTTP 404 for every commit SHA, so the tag was pushed over SSH and the release created on it.
+    A later push can also leave an earlier release run unable to create its tag: GitHub requires
+    workflow-write authorization when the target commit's workflow files differ from the default
+    branch. On 28 October, the hundredthird release hit this restriction after hundredfourth was
+    pushed. Its 23 frozen CI assets were published and verified at successor commit `ef0bc4e`,
+    which contains the hundredthird dataset unchanged. No existing release assets were replaced.
+    The hundredfourth deployment then verified both inventories. Wait for publication before
+    advancing `main` again; workflow concurrency alone does not prevent this condition.
   - `monitor` (`contents: read`, `issues: write`): weekly (Mondays 05:23 UTC) and on manual
     dispatch with `job` set to `monitor`, re-runs the live checks and checks every evidence
     `source_url` politely: eight hosts at a time, one request at a time per host and at least a

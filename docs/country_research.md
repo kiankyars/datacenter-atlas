@@ -35,6 +35,23 @@ from the 90 days before the data update. Review later reports and keep the date 
 actually supports; a new research pass does not make an old observation current. Publish supported
 additions and updates as they are ready.
 
+`verified_construction_core/2026-10-28-research-hundredfifth` adds eight sites and eight projects:
+**862 sites and 930 projects in 66 countries**. It adds SK Broadband's Janghang Ilsan, Siksa
+Ilsan, Yangju and Pangyo facilities; Elea POA1 in Porto Alegre; Tecto TFOR3 in Fortaleza;
+Konza National Data Centre in Kenya; and the announced CGE Data Center Konin campus in Poland.
+
+Independent reviews checked every status, location and identity before integration. The two
+Ilsan facilities are six kilometres apart. Pangyo's former operator address is linked through
+its completed transfer to SK Broadband. RNP's Ceará environment is hosted within TFOR3 and
+does not create another site. Konza's October expansion funding supports preparation only;
+the record covers existing operations confirmed in August. Konin's historical permit identifies
+the exact parcel, while its September campus announcement forecasts construction in 2027.
+
+All 854 prior sites and 922 projects are unchanged. Three reused evidence records gain links
+or roles; the other evidence fields, imported source snapshot and identity mapping are preserved.
+Centum, Reguły, Risti, TGRU1 and the Paraguay Iguazú AI proposal remain held for unresolved
+precise locations. Weak map registrations and substation-adjacency guesses are not admissions.
+
 `verified_construction_core/2026-10-28-research-hundredfourth` adds seven sites and seven projects:
 **854 sites and 922 projects in 66 countries**. Ecuador and Serbia enter through Telconet Cloud
 Center III at Guayaquil's Telcocity campus and NINET's commercial facility in Niš. The other

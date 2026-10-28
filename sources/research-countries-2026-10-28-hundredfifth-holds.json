@@ -1,0 +1,146 @@
+{
+  "reviewed_at": "2026-10-28",
+  "prior_holds": "sources/research-countries-2026-10-28-hundredfourth-holds.json",
+  "new_reviews": {
+    "apac3": {
+      "review_date": "2026-10-28",
+      "holds": [
+        {
+          "candidate": "SK Broadband Centum IDC",
+          "country": "Korea, Republic of",
+          "country_iso_a2": "KR",
+          "status_source_id": "apac2-20261028-sk-operating-portfolio",
+          "status_as_of": "2026-08-27",
+          "supported_status": "operational",
+          "reason": "The fresh portfolio disclosure names Centum as already operating, but no primary exact facility address or parcel bridge and matching precise locator were established. The regional map reference from an aggregator explicitly describes a district-level position. Centum 7-ro 32 belongs to a separately described SHINBINET/SUIDC facility and is not assigned to SK Broadband without a bridge.",
+          "missing_fact": "Primary exact Centum facility address or parcel and an authoritative or named map locator matching that physical facility.",
+          "no_geometry_admitted": true
+        }
+      ],
+      "excluded_alias_claims": [
+        "No numeric Ilsan 2 alias is asserted for Siksa without a direct primary numeric bridge.",
+        "No claim that the two Ilsan facilities are co-located.",
+        "No SK Horizon completed operator change before its target establishment."
+      ]
+    },
+    "americas3": {
+      "format": "datacenter-atlas-country-research-holds-v1",
+      "reviewed_at": "2026-10-28",
+      "base_dataset": "verified_construction_core/2026-10-28-research-hundredfourth",
+      "raw_captures_redistributed": false,
+      "entries": [
+        {
+          "candidate": "Tecto TGRU1 Santana de Parnaíba",
+          "country_iso_a2": "BR",
+          "disposition": "hold",
+          "status_candidate": "under_construction",
+          "status_as_of": "2026-09-03",
+          "source_url": "https://www.linkedin.com/posts/tecto-datacenters_tectodatacenters-datacloudusa-datacenters-activity-7501362372863959040-kYHq",
+          "reason": "Original operator post dated 3 September explicitly says the 200 MW campus is under construction. Municipal environmental meeting PDF identifies Tecto Digital III / Aurea Finvest, process 250.528.049.625.300, merged glebas 11–16, Estrada da Bela Vista, Tanquinho and a property plan (pages 10–14). No source-published coordinate or defensible georeference has yet been resolved. Google exact query returns the city; broader search returns unrelated ODATASP01 and Equinix properties; Nominatim is empty. These are excluded. DataCenterMap raw capture returned HTTP 429 and was not retried.",
+          "reopen_condition": "Georeference the municipal project plan using documented control points, or find a precise primary parcel vector or named project feature."
+        },
+        {
+          "candidate": "Crusoe / Araico Iguazú AI, Paraguay",
+          "country_iso_a2": "PY",
+          "disposition": "hold",
+          "status_candidate": "announced",
+          "status_as_of": "2026-10-22",
+          "source_url": "https://www.crusoe.ai/resources/newsroom/crusoe-araico-hydroelectric-ai-infrastructure-partnership",
+          "reason": "Fresh captured developer announcement resolves primary status, but describes adjacency to an Itaipú substation without an exact project plot. No substation centroid used. Existing HIVE Yguazú identity must be reviewed once an exact location is available.",
+          "reopen_condition": "Specific project parcel or named campus point, with HIVE Yguazú distinctness check."
+        },
+        {
+          "candidate": "Tecto TPOA1 Porto Alegre",
+          "country_iso_a2": "BR",
+          "disposition": "hold",
+          "reason": "Undated operator construction page and secondary address leads do not provide a verified new dated primary status. Reprinted earlier opening/development items and generic page creation dates are excluded. Google returned city-level geometry only. Distinguish newer Sarandi/Rubem Berta proposal from the former Quarto Distrito site and Elea POA1.",
+          "reopen_condition": "Original dated operator status since 30 July and exact current property locator."
+        },
+        {
+          "candidate": "Tecto TGIG1 Rio de Janeiro",
+          "country_iso_a2": "BR",
+          "disposition": "hold",
+          "reason": "Fresh-looking August search lead resolves to a body dateline of 25 May 2026, outside the window. No date renewed from later indexing or page display.",
+          "reopen_condition": "Fresh dated primary named-facility observation."
+        },
+        {
+          "candidate": "IFX Orión Guatemala / Cuasar Durango / Surfix Recife",
+          "disposition": "hold",
+          "reason": "Bounded searches found recent secondary promotion or network partnerships, but no sufficiently recent primary physical-status source plus exact facility locator. Existing holds remain; no new status or coordinate inferred.",
+          "reopen_condition": "Fresh primary project-specific status and sourced exact physical location."
+        }
+      ]
+    },
+    "europe3": {
+      "format": "datacenter-atlas-research-holds-v1",
+      "reviewed_at": "2026-10-28",
+      "holds": [
+        {
+          "candidate": "Hillwood Reguły commercial data-centre campus",
+          "reason": "Fresh developer September15 revised four-building proposal supports announced status. Primary aerial images outline the site, but an exact cadastral bridge or defensible georeference is unresolved. Automated SIFT fits had too few independent controls and/or degenerate transforms and are explicitly rejected. No proposed fit or visually guessed coordinate is admitted. Parcel562/4 from a manually selected search point is not independently linked by a primary project document.",
+          "reopen_condition": "Exact project parcel statement or independently reviewable robust map registration.",
+          "raw_capture_files": [
+            "hillwood-reguly-20260915.html",
+            "hillwood-project-details.html",
+            "reguly-noise.jpg",
+            "reguly-context.jpg",
+            "hillwood-reguly-site-plan.jpg",
+            "reguly-esri-final.json",
+            "reguly-esri-final.png",
+            "reguly-georeference.json",
+            "reguly-parcel-at-site-wgs84.txt"
+          ],
+          "rejected_geometry_files": [
+            "reguly-georeference.json",
+            "reguly-georeference-matches.png",
+            "reguly-source-selected.png",
+            "reguly-reference-selected.png"
+          ]
+        },
+        {
+          "candidate": "Sunly/Magnora Risti Kampus, Estonia",
+          "reason": "September18 JV announcement and municipality October9 publication describing October7 planning meeting support announced status. Primary campus website identifies36ha/sixmodules. Older Sunly presentation shows a35ha land polygon west of Risti, but does not expressly identify that parcel as this current data-centre proposal; location SVG is regional. Do not transfer energy-park, substation or generic land points to the campus.",
+          "reopen_condition": "Primary exact DC parcel or clearly georeferenced DC site plan.",
+          "raw_capture_files": [
+            "sunly-risti-20260918.html",
+            "risti-council-20261009.html",
+            "ristikampus-project.html",
+            "risti-location-map.svg",
+            "risti-masterplan.png",
+            "sunly-energy-model-presentation.pdf"
+          ],
+          "latest_observation_date_if_locator_resolved": "2026-10-07"
+        },
+        {
+          "candidate": "Interlan Radomir container data centre, Bulgaria",
+          "reason": "Official EU-funds procurement call is explicitly July15 with July23 deadline, both outside the current90daywindow. Undated homepage/project descriptions do not refresh the status.",
+          "raw_capture_files": [
+            "interlan-container-call.html"
+          ],
+          "reopen_condition": "Dated primary award/start/operation observation sinceJuly30 plus exact facility locator."
+        },
+        {
+          "candidate": "Tet DC7, Salaspils, Latvia",
+          "reason": "Primary June1 article reports first-stage completion and plans a November opening, outside status window. No newer qualifying primary observation verified; secondary October opening claims are not accepted as primary status.",
+          "source_url": "https://www.tet.lv/par-mums/jaunumi/tet-datu-centra-dc7-pirma-karta-nodota-ekspluatacija-novembri-planota-sviniga-atklasana",
+          "reopen_condition": "Primary dated certification/opening or operating observation sinceJuly30."
+        },
+        {
+          "candidate": "Evecon Lihula data centre, Estonia",
+          "reason": "Municipality identifies precise parcels but planning initiation occurred July8; the page’s October12 generic update is not a project status observation.",
+          "source_url": "https://www.laanerannavald.ee/detailplaneeringud",
+          "reopen_condition": "Dated project-specific planning progress or other lifecycle observation sinceJuly30."
+        }
+      ]
+    },
+    "africa3": {
+      "reviewed_at": "2026-10-28",
+      "holds": [
+        {
+          "candidate": "Konza cloud expansion and offsite disaster recovery",
+          "reason": "October preparatory funding does not identify a new physical footprint or establish physical works. Existing site is admitted once; these are not additional sites."
+        }
+      ]
+    }
+  }
+}
