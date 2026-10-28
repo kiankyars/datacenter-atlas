@@ -35,6 +35,36 @@ from the 90 days before the data update. Review later reports and keep the date 
 actually supports; a new research pass does not make an old observation current. Publish supported
 additions and updates as they are ready.
 
+`verified_construction_core/2026-10-29-research-hundredtenth` adds eight sites and eight projects:
+**891 sites and 959 projects in 81 countries**. Ghana enters through Onix Accra and Djibouti
+through Wingu's original Haramous DDC. The other additions are FPT Fornix HCM02 in Vietnam,
+Tigo Villa Elisa in Paraguay, NxN NX03 Évora in Portugal, and PDG's Bandung BD1, Bintaro JB1
+and Surabaya SB1 campuses in Indonesia.
+
+Each admission has dated evidence of existing commercial operations and a precise named
+facility locator. PDG's October 12 report explicitly identifies five operating enterprise
+facilities; its current portfolio and historical ESG report identify the three admitted regional
+campuses. Shared evidence is associated with each correct project. The announced sale remains
+subject to closing and does not establish a completed ownership transfer. FPT's earlier opening
+and cloud-service start dates remain historical context.
+
+Wingu's original Haramous DDC is distinguished from the newer T07 campus. The October 28 visit
+report mentions TO7 collaboration without identifying the physical campus, so it does not refresh
+either facility's status. The operator-selected Haramous map and the October 20 current-operation
+report support this admission. Onix's conflicting postal-address point and other headquarters or
+city-centre points are excluded. Native map categories and unknown positional accuracy remain
+explicit; no building boundary, measured load, occupancy or certification validity is inferred.
+
+All prior 883 sites, 951 projects and 4,947 evidence records remain unchanged, including their
+observation dates and calculated ages. Twenty-eight evidence records are added. The imported
+source snapshot and identity mapping remain byte-identical. Independent reviews preserve all
+regional source and action objects and verify 69 original response/metadata pairs plus 18
+failure or derived artifacts. Historical datasets, holds and release inventories remain frozen.
+
+The scoped Onix Accra, three PDG regional and Haramous holds are resolved. Onix Senegal,
+Wingu T07 and other country facilities, PDG JC1/JC2 and Pekanbaru remain excluded pending their
+own complete status, identity and locator reviews.
+
 `verified_construction_core/2026-10-29-research-hundredninth` adds five sites and five projects:
 **883 sites and 951 projects in 79 countries**. Pakistan enters through SKY47 Karakoram-01,
 Armenia through Firebird DC-1 Hrazdan, Jordan through Aqaba Digital Hub South Beach, and Uruguay
