@@ -35,6 +35,29 @@ from the 90 days before the data update. Review later reports and keep the date 
 actually supports; a new research pass does not make an old observation current. Publish supported
 additions and updates as they are ready.
 
+`verified_construction_core/2026-10-29-research-hundredninth` adds five sites and five projects:
+**883 sites and 951 projects in 79 countries**. Pakistan enters through SKY47 Karakoram-01,
+Armenia through Firebird DC-1 Hrazdan, Jordan through Aqaba Digital Hub South Beach, and Uruguay
+through Google Canelones. Puntonet Epicentro Quito is the fifth addition.
+
+SKY47, Firebird and Aqaba have dated evidence of existing operations. Epicentro and Google
+Canelones have dated reports of physical construction. Each admission covers one campus;
+future phases, service plans and commissioning forecasts are excluded. Aqaba's South Beach
+campus is distinguished from its older downtown City Data Center. All five use exact named
+map features with scoped campus identity and unknown ground accuracy.
+
+All prior 878 sites and 4,926 evidence records are unchanged. The 946 prior projects retain
+every underlying fact and observation date; their calculated evidence ages advance by one day
+with the October 29 review date. Twenty-one evidence records are added, and the imported source
+snapshot and identity mapping remain byte-identical. Independent reviews preserve all regional
+source and action objects and verify 59 original captures plus one explicitly labelled partial
+search-text capture of Canelones' September 11 municipal construction report. The latter is not
+represented as original HTML. Historical datasets and release inventories remain unchanged.
+
+Emtel Arsenal remains held for an eligible dated status report, and Kumul Cloud Infinity for
+an exact physical-host identity. Their certificates, service launches and map leads do not
+establish the missing admission facts.
+
 `verified_construction_core/2026-10-28-research-hundredeighth` adds seven sites and seven projects:
 **878 sites and 946 projects in 75 countries**. El Salvador enters through DataTrust,
 Curaçao through Blue NAP Americas, Panama through Tigo IDC Clayton, Cameroon through
