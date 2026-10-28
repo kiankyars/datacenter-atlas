@@ -1,0 +1,379 @@
+{
+  "format": "datacenter-atlas-update-input-v1",
+  "updated_at": "2026-10-28",
+  "output": "verified_construction_core/2026-10-28-research-hundredseventh",
+  "base_dataset": "verified_construction_core/2026-10-28-research-hundredsixth",
+  "base_manifest_sha256": "67d56035a6ff3c10e1f30edc9fe0f171fe433f8a884aa479365e6a2c9607c6d0",
+  "source_files": [
+    {
+      "path": "sources/research-countries-2026-10-28-hundredseventh-primary-sources.json",
+      "sha256": "d34d7c25bb9cc3cde11c7916cd598eed895ffc0fef761598eac3d913a1cbaa2d"
+    }
+  ],
+  "additions": [
+    {
+      "physical_site_stable_key": "curated:tet-dc7-salaspils-data-center",
+      "project_stable_key": "curated:tet-dc7-salaspils-data-center:phase-1-current-build",
+      "site_name": "Tet DC7 Salaspils Data Center",
+      "name": "Tet DC7 Salaspils — first-stage commercial operations",
+      "country": "Latvia",
+      "country_iso_a2": "LV",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-09-09",
+        "source_id": "global-europe5-20261028-opening",
+        "summary": "Municipality reports the achieved opening of Tet DC7 on 9 September 2026, equipped with 112 racks and connected to Latvian and European internet infrastructure for business and government data hosting. Tier III Design and Facility certificates are reported. This supports opened first-stage commercial operations; no occupancy or measured IT load is asserted."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            24.3800485,
+            56.8657976
+          ]
+        },
+        "source_id": "global-europe5-20261028-parcel",
+        "identity_source_ids": [
+          "global-europe5-20261028-identity",
+          "global-europe5-20261028-award"
+        ],
+        "scope": "campus_locator",
+        "scope_class": "derived_interior_point_of_exact_project_parcel",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "shapely_representative_point_official_vzd_parcel_80110030151_epsg10306_to4326",
+        "precision": "Computed representative interior point of full parcel 80110030151. It locates the named Tet DC7 property, not a building, first-stage footprint, entrance or surveyed reference position.",
+        "identity_review": "The September 2025 council decision explicitly names Tet DC7, Krasta iela 2/1 and cadastral property 80110030151. The November 2023 award identifies its full land unit with the same code, 2.5016 ha, assigned to Tet. The VZD vector code matches exactly. External utility-route parcels are excluded.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The official vector provides no verified total horizontal error bound. Coordinate transformation and decimal precision do not establish surveyed accuracy."
+      },
+      "context_source_ids": [
+        "global-europe5-20261028-identity",
+        "global-europe5-20261028-award"
+      ],
+      "roles": [],
+      "distinctness_review": "Five selected-base tables (862 sites/930 projects), 96 published holds, 15 local holds and 9 queue/coverage files screened. No base identity match. Earlier DC7 holds are the same candidate. Nearest selected-base site is Delska LV DC4 Data Center, Latgales iela 463, Riga, 9.174 km away. One campus and one first-stage operating project only.",
+      "successor_review": "Reviewed municipality opening report, current municipal news index and targeted Tet/municipal later-date searches on 28 October. The September 25 municipal newspaper index repeats the September opening, not a new status event. No later closure, relocation or reversal found in inspected sources. The old June statement forecasting a November ceremony is superseded by the explicit achieved September 9 opening. Second-stage 2028 forecasts are not completed or operational capacity.",
+      "scoped_project_details": {
+        "aliases": [
+          "Tet DC7",
+          "Tet Salaspils DC7",
+          "Krasta iela 2/1 data centre"
+        ],
+        "address": "Krasta iela 2/1, Salaspils, Latvia",
+        "parcel": "80110030151",
+        "facility_scope": "Existing first stage of commercial data-centre campus; no separate second-stage admission",
+        "racks_reported": 112,
+        "operator_as_reported": "Tet",
+        "capacity_limitation": "112 racks are reported installed specification, not occupied racks, actual IT load or MW. PUE 1.2 is a reported facility specification, not audited operational energy performance."
+      }
+    },
+    {
+      "project_stable_key": "curated:gtd-panamericana-conchali:existing-operations",
+      "physical_site_stable_key": "curated:gtd-panamericana-conchali",
+      "site_name": "Gtd Panamericana Data Center, Conchalí",
+      "name": "Gtd Panamericana — existing data-centre operations",
+      "country": "Chile",
+      "country_iso_a2": "CL",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-08-11",
+        "source_id": "americas5-20261028-panamericana-operation",
+        "summary": "The operator describes people, processes and technology working 24 hours a day to provide uninterrupted service, and a tour of the named Data Center Panamericana with its commercial manager. This supports existing operations, without asserting the tour filming date, capacity or completion of an expansion."
+      },
+      "locator": {
+        "scope": "campus_locator",
+        "horizontal_uncertainty_metres": null,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -70.68486,
+            -33.397671
+          ]
+        },
+        "source_id": "americas5-20261028-panamericana-snifa",
+        "identity_source_ids": [
+          "americas5-20261028-panamericana-operation",
+          "americas5-20261028-gtd-network"
+        ],
+        "scope_class": "named_government_regulated_facility_point",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "native_SNIFA_facility_latitude_longitude",
+        "precision": "Native government facility-map point for regulated unit 24822. It locates the named Panamericana facility; it does not delineate a building or campus boundary.",
+        "identity_review": "SNIFA unit 24822 explicitly names DATACENTER GTD PANAMERICANA - CONCHALÍ. The operator names the same Panamericana centre in its tour and network. The native regulator coordinate is retained rather than the inconsistent PeeringDB geocode approximately 1.2 km north. OSM independently maps Data Center GTD near this native point; no municipal or office centroid is used.",
+        "uncertainty_reason": "The regulator publishes no survey accuracy or explicit coordinate datum. Point has facility-map scope and unknown ground accuracy."
+      },
+      "context_source_ids": [
+        "americas5-20261028-panamericana-awards",
+        "americas5-20261028-gtd-network"
+      ],
+      "roles": [
+        {
+          "party": "Gtd / Gtdata",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "americas5-20261028-panamericana-operation"
+        }
+      ],
+      "distinctness_review": "All five hundredfifth baseline tables, tracked holds and local queues were screened. The historical SNIFA Panamericana hold is this same facility; it is not an admitted site. Other Gtd Santiago names and ODATA Panamericana Norte addresses refer to distinct properties. One site and one existing-operation project; no separate count for an expansion or hosted customer.",
+      "successor_review": "The 24 September operator award report describes Panamericana expansion without interrupting operations but establishes no separate achieved expansion milestone. The current network page continues to list Panamericana. No later closure, suspension or contradictory lifecycle report was found in the bounded operator searches. August 11 remains the exact operational observation.",
+      "scoped_project_details": {
+        "aliases": [
+          "Gtdata Panamericana",
+          "DATACENTER GTD PANAMERICANA - CONCHALÍ"
+        ],
+        "snifa_unit_id": 24822,
+        "capacity_asserted": false
+      }
+    },
+    {
+      "project_stable_key": "curated:gtd-lurin:existing-operations",
+      "physical_site_stable_key": "curated:gtd-lurin",
+      "site_name": "Gtd Data Center Lurín",
+      "name": "Gtd Lurín — existing data-centre operations",
+      "country": "Peru",
+      "country_iso_a2": "PE",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-09-07",
+        "source_id": "americas5-20261028-lurin-operation",
+        "summary": "Gtd reports receiving customers and Fortinet at Data Center Lurín to inspect capabilities supporting their operations, including cooling and security protecting critical systems and data. The report supports the existing commercial facility in service; no new phase, visit date or capacity is inferred."
+      },
+      "locator": {
+        "scope": "campus_locator",
+        "horizontal_uncertainty_metres": null,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -76.8243682,
+            -12.2578135
+          ]
+        },
+        "source_id": "americas5-20261028-lurin-map",
+        "identity_source_ids": [
+          "americas5-20261028-lurin-operation",
+          "americas5-20261028-lurin-current"
+        ],
+        "scope_class": "interior_point_of_named_mapped_data_centre_building",
+        "authority": "compiled_reference",
+        "derivation": "direct_geometry",
+        "method": "area_centroid_of_native_OSM_way_1413526738_coordinate_ring",
+        "precision": "Interior area-centroid of the native OSM building feature explicitly named GTD Centro de Datos Lurín. It locates the existing building on the Lurín campus, not an official parcel, surveyed outline or all future four phases.",
+        "identity_review": "Native OSM way 1413526738 gives both Spanish and English GTD Lurín facility names and telecom=data_center. The operator identifies the same named Lurín facility as separate from Surco, and its September post documents customers visiting it. The administrative-office footer at La Encalada is explicitly excluded.",
+        "uncertainty_reason": "Community-mapped building outline has no measured positional accuracy. No surveyed-boundary claim is made."
+      },
+      "context_source_ids": [
+        "americas5-20261028-lurin-current"
+      ],
+      "roles": [
+        {
+          "party": "Gtd Perú",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "americas5-20261028-lurin-operation"
+        }
+      ],
+      "distinctness_review": "All five hundredfifth baseline tables, tracked holds and local queues were screened for GTD, Gtdata, Lurín/Lurin, map identity and geographic proximity. No baseline Peru site is present. One campus is added with the existing operating project; four planned phases and customer installations are not separate sites. Surco is a separate facility not admitted by this packet.",
+      "successor_review": "Current Gtd Perú facility page continues to offer Lurín and separately lists Surco. September client visit provides the exact recent operating observation. The undated page and earlier expansion forecasts do not establish a newer physical phase milestone. No later closure, suspension or contradictory primary report was found in the bounded operator searches.",
+      "scoped_project_details": {
+        "aliases": [
+          "GTD Centro de Datos Lurín",
+          "GTD Data Center Lurín"
+        ],
+        "full_buildout_white_space_m2": 2100,
+        "full_buildout_racks": 960,
+        "full_buildout_phases": 4,
+        "full_buildout_power_mw": 20,
+        "achieved_capacity_asserted": false
+      }
+    },
+    {
+      "physical_site_stable_key": "curated:lt-vyoma-chennai-maa01",
+      "project_stable_key": "curated:lt-vyoma-chennai-maa01:existing-operations",
+      "site_name": "L&T Vyoma Chennai MAA 01 Data Center Campus",
+      "name": "L&T Vyoma Chennai MAA 01 — existing commercial operations",
+      "country": "India",
+      "country_iso_a2": "IN",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-10-28",
+        "source_id": "apac6-20261028-operation",
+        "summary": "The 28 October operator release explicitly states that the Chennai campus already hosts advanced AI compute clusters in an operational 30 MW facility. The separate upcoming 52 MW data centre has a groundbreaking ceremony; that ceremony does not prove physical building work. 150 MVA power readiness and gigawatt aspirations are separate from achieved IT load."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            79.809789,
+            12.900553
+          ]
+        },
+        "source_id": "apac6-20261028-map",
+        "identity_source_ids": [
+          "apac6-20261028-identity",
+          "apac6-20261028-offices"
+        ],
+        "scope": "campus_locator",
+        "scope_class": "named_facility_point_matched_to_exact_operator_facility_identity",
+        "authority": "compiled_reference",
+        "derivation": "direct_geometry",
+        "method": "native_peeringdb_facility_17201_coordinates",
+        "precision": "Native MAA 01 facility point at 147 Data Center Campus, Neervallur. Locates the existing facility on the Chennai campus; not a surveyed footprint or boundary of the planned gigawatt campus.",
+        "identity_review": "PeeringDB 17201 explicitly names MAA 01 and links the operator exact Chennai facility page, which identifies MAA 01 with 30 MW IT. Nested operator organization 44176 is aka L&T Vyoma. Its named facility address is separate from the operator-published Manapakkam regional office and Powai head office. Native Google L&T Datacenter feature matches to less than 0.1 m but is not treated as independent positional corroboration; its corporate-office category alone was insufficient in the prior hold.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "Community-maintained facility coordinate has no measured error bound or explicit datum. Google agreement may reflect shared geocoding; it is not independent survey validation."
+      },
+      "context_source_ids": [
+        "apac6-20261028-identity",
+        "apac6-20261028-offices"
+      ],
+      "roles": [
+        {
+          "party": "Larsen & Toubro-Vyoma",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "apac6-20261028-operation"
+        }
+      ],
+      "distinctness_review": "All five hundredsixth baseline files screened with zero matches; 96 holds/queues screened. Earlier hold is same unadmitted campus. Nearest base site is Sify Chennai 02 data center campus, Siruseri at 42.92km. One campus; Together AI and other hosted compute are not additional sites.",
+      "successor_review": "Original operator 28 October 2026 release is the latest inspected source. The prior 13 August Together AI planned deployment is superseded for existing facility status by explicit 28 October operational statement. 52 MW ceremony does not establish physical construction; no new expansion project status asserted. No later closure or reversal found in the same-day release/index review.",
+      "scoped_project_details": {
+        "aliases": [
+          "L&T Network Services - MAA 01"
+        ],
+        "address": "147 Data Center Campus, Chennai Bangalore Highway, Neervallur Village, Kancheepuram, Tamil Nadu 631561",
+        "facility_scope": "Existing commercial data-centre facility at Chennai campus; separate 52 MW expansion ceremony context only",
+        "reported_operating_facility_mw": 30,
+        "capacity_limitation": "30 MW is reported facility capacity, not measured IT draw or occupied load.150 MVA readiness,52 MW expansion and gigawatt potential remain separate claims."
+      }
+    },
+    {
+      "project_stable_key": "curated:gtd-el-poblado:existing-operations",
+      "physical_site_stable_key": "curated:gtd-el-poblado",
+      "site_name": "Gtd Data Center El Poblado, Medellín",
+      "name": "Gtd El Poblado — existing data-centre operations",
+      "country": "Colombia",
+      "country_iso_a2": "CO",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-09-10",
+        "source_id": "americas6-20261028-poblado-visit",
+        "summary": "Gtd employee Elsye Estrada reports her actual visit on Thursday 10 September to Data Center El Poblado, describing the existing infrastructure supporting critical customer operations, and the data-centre head Alejandro Giraldo showing the heart of the operation. The Gtd Perú company page lists her as an employee and Gtd Perú acknowledges the visit in its 14 September comment. Existing operations only; no new capacity or expansion is asserted."
+      },
+      "locator": {
+        "scope": "campus_locator",
+        "horizontal_uncertainty_metres": null,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -75.573499,
+            6.2163129
+          ]
+        },
+        "source_id": "americas6-20261028-poblado-map",
+        "identity_source_ids": [
+          "americas6-20261028-gtd-addresses",
+          "americas6-20261028-poblado-current"
+        ],
+        "scope_class": "native_named_data_centre_feature",
+        "authority": "compiled_reference",
+        "derivation": "direct_geometry",
+        "method": "native_Google_Maps_selected_feature_coordinate",
+        "precision": "Google native named Data Center TIER III GTD Colombia feature coordinate, not the viewport centre, city point or an office geocode. No surveyed campus boundary claim.",
+        "identity_review": "Selected Google feature names Data Center TIER III GTD Colombia, gives Carrera 45 #14-111 and official gtdcolombia.com website. The operator policy independently lists that premise, separately from the Calle 53 office. PeeringDB fac13901 names the same centre, street address and official El Poblado facility URL, about31m from the Google marker. The published Google feature point is retained exactly.",
+        "uncertainty_reason": "Compiled map feature has no stated positional accuracy or official surveyed boundary. Campus-scale named facility locator only."
+      },
+      "context_source_ids": [
+        "americas6-20261028-poblado-power",
+        "americas6-20261028-poblado-current",
+        "americas6-20261028-gtd-peru-employees",
+        "americas6-20261028-gtd-addresses"
+      ],
+      "roles": [
+        {
+          "party": "Gtd Colombia / GTData",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "americas6-20261028-poblado-current"
+        }
+      ],
+      "distinctness_review": "All five hundredsixth baseline tables plus tracked holds and local queues screened. No admitted Gtd El Poblado campus. This resolves the earlier Americas5 hold. One physical campus and one existing-operation project; Gtd offices, commercial customers and award-design initiatives are not separate data-centre sites. Pending Tet DC7, Panamericana and Lurín are distinct named campuses in Latvia, Chile and Peru.",
+      "successor_review": "Later 24 September Gtd awards article identifies El Poblado sustainable infrastructure evolution, but is not used as a new physical milestone. Current operator page continues the named commercial facility; bounded later operator posts contain no closure or contradictory physical status. The actual 10 September visit remains the observation date.",
+      "scoped_project_details": {
+        "aliases": [
+          "Gtdata El Poblado",
+          "Gtd Colombia - Medellin",
+          "Data Center TIER III GTD Colombia"
+        ],
+        "address": "Carrera 45 #14-111, El Poblado, Medellín",
+        "capacity_asserted": false
+      }
+    },
+    {
+      "physical_site_stable_key": "curated:paratus-armada-windhoek-campus",
+      "project_stable_key": "curated:paratus-armada-windhoek-campus:existing-operations",
+      "site_name": "Paratus Armada Data Center Campus",
+      "name": "Paratus Armada — existing commercial colocation operations",
+      "country": "Namibia",
+      "country_iso_a2": "NA",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-09-17",
+        "source_id": "africa6-20261028-armada-operation",
+        "summary": "The operator states that the named Armada campus currently provides a purpose-built secure colocation environment, with multi-tenant colocation and caged environments available. The campus contains two independent data centres. This supports existing commercial availability, not occupancy, customer count, measured IT load or a new phase."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            17.068081,
+            -22.414477
+          ]
+        },
+        "source_id": "africa6-20261028-armada-facility-map",
+        "identity_source_ids": [
+          "africa6-20261028-armada-operator-campus",
+          "africa6-20261028-armada-historical-launch"
+        ],
+        "scope": "campus_locator",
+        "scope_class": "named_operator_linked_peeringdb_facility_point",
+        "authority": "compiled_reference",
+        "derivation": "direct_geometry",
+        "method": "native_PeeringDB_facility_12664_longitude_latitude",
+        "precision": "Native facility-level directory point for the named Armada campus. It does not delineate either building, an entrance or the site boundary.",
+        "identity_review": "PeeringDB facility 12664 names Paratus Armada and links the exact dedicated operator website armada.paratus.africa. Operator describes the same two-building campus north of Windhoek on B1. Facility point and plus-code address are retained; nested organization headquarters on Nickel Street in Prosperita are explicitly excluded.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "No measured ground accuracy or surveyed boundary is supplied. Coordinate decimal precision is not an accuracy bound."
+      },
+      "context_source_ids": [
+        "africa6-20261028-armada-power-context",
+        "africa6-20261028-armada-operator-campus",
+        "africa6-20261028-armada-historical-launch"
+      ],
+      "roles": [
+        {
+          "party": "Paratus Namibia",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "africa6-20261028-armada-operation"
+        }
+      ],
+      "distinctness_review": "Five selected-baseline tables and published holds screened for Armada, Paratus Namibia and native facility identity. No Namibia baseline site or matching admitted campus. The operator explicitly describes two independent data centres on one campus; only one physical site and one existing-operations project are added. Neither the organization headquarters nor the proposed government national data centre is counted.",
+      "successor_review": "Reviewed September 25 operator facility post, current public operator site and original company post history through October 28. No later closure, relocation or operational reversal found in inspected sources. September 17 remains the current commercial-service observation; September 25 equipment description alone is not treated as a renewed operating milestone. Undated pre-launch promotion is retained as a stale-page limitation.",
+      "scoped_project_details": {
+        "aliases": [
+          "Paratus Armada",
+          "Armada Data Center"
+        ],
+        "address_as_reported": "H3P9+56G, Windhoek, Namibia",
+        "peeringdb_facility_id": 12664,
+        "facility_scope": "One campus containing two independent data-centre buildings",
+        "achieved_capacity_asserted": false,
+        "limitations": "No claim about occupancy, current MW, number of customers, achieved uptime, audited resilience or a newly completed phase."
+      }
+    }
+  ],
+  "status_updates": [],
+  "context_updates": []
+}

@@ -35,6 +35,24 @@ from the 90 days before the data update. Review later reports and keep the date 
 actually supports; a new research pass does not make an old observation current. Publish supported
 additions and updates as they are ready.
 
+`verified_construction_core/2026-10-28-research-hundredseventh` adds six sites and six projects:
+**871 sites and 939 projects in 69 countries**. Peru enters through Gtd Lurín, and Namibia
+through Paratus Armada. The other additions are Tet DC7 in Salaspils, Gtd Panamericana in
+Conchalí, L&T Vyoma Chennai MAA 01 and Gtd El Poblado in Medellín.
+
+All six admissions cover existing operations supported by dated primary evidence. MAA 01's
+operational 30 MW facility is distinct from its separate 52 MW groundbreaking announcement.
+Armada's two buildings form one campus. The Panamericana point comes from the named regulator
+facility record; Tet DC7 uses the exact official cadastral parcel. The other points retain their
+mapped facility scope and unknown ground accuracy. No headquarters or city point is substituted.
+
+All 865 prior sites, 933 projects and 4,868 evidence records are unchanged. Twenty-six evidence
+records are added; the imported source snapshot and identity mapping remain byte-identical.
+Independent reviews pin regional and combined source hashes. El Poblado's operator address bridge
+is explicitly linked in project evidence, and Panamericana uses the existing official-source
+classification. VAN2, Surco, CTN Lilongwe and TNM Kanengo remain held for insufficient fresh status
+or unresolved exact facility locations.
+
 `verified_construction_core/2026-10-28-research-hundredsixth` adds three sites and three projects:
 **865 sites and 933 projects in 67 countries**. Algeria enters through OneCloud's inaugurated
 Akbou facility. Its completed status is supported by the 2 October participant report and
