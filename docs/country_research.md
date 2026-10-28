@@ -35,6 +35,20 @@ from the 90 days before the data update. Review later reports and keep the date 
 actually supports; a new research pass does not make an old observation current. Publish supported
 additions and updates as they are ready.
 
+`verified_construction_core/2026-10-28-research-hundredfourth` adds seven sites and seven projects:
+**854 sites and 922 projects in 66 countries**. Ecuador and Serbia enter through Telconet Cloud
+Center III at Guayaquil's Telcocity campus and NINET's commercial facility in Niš. The other
+additions are SK Broadband's Gasan, Seocho and Bundang centres, ZONER DC Brno, and the proposed
+Boreal Phase 1 near Keephills, Canada. Boreal remains announced; zoning and grid arrangements
+do not establish a data-centre development permit or construction.
+
+All seven additions received independent source, locator and identity review. NINET's 30 July
+operating statement is exactly 90 days before this update. Its marker locates the explicitly
+named host building, not its internal room or the whole mall as a data centre. MasterDC's
+generic healthy-state calendar remains insufficient dated evidence. All prior sites, projects
+and evidence rows are unchanged, and the imported source snapshot and identity mapping remain
+byte-identical.
+
 `verified_construction_core/2026-10-28-research-hundredthird` adds nine sites and nine projects:
 **847 sites and 915 projects in 64 countries**. Uzbekistan enters the Atlas through DataVolt
 TAS-1 at Tashkent IT Park, with power and cooling installation reported on 16 October. Its

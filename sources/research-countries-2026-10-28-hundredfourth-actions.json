@@ -1,0 +1,448 @@
+{
+  "format": "datacenter-atlas-reviewed-actions-v1",
+  "reviewed_at": "2026-10-28",
+  "additions": [
+    {
+      "project_stable_key": "curated:sk-broadband-gasan-idc:existing-operations",
+      "physical_site_stable_key": "curated:sk-broadband-gasan-idc",
+      "site_name": "SK Broadband Gasan IDC",
+      "name": "Gasan IDC — existing facility operations",
+      "country": "Korea, Republic of",
+      "country_iso_a2": "KR",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-08-27",
+        "source_id": "apac2-20261028-sk-operating-portfolio",
+        "summary": "SK Telecom explicitly includes Gasan among the named data centres already operating in its 27 August release. This records existing operations, without allocating the announced portfolio capacity or claiming a completed future corporate transition."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            126.8878345,
+            37.4757944
+          ]
+        },
+        "source_id": "apac2-20261028-osm-gasan-point",
+        "identity_source_ids": [
+          "apac2-20261028-skb-facility-addresses",
+          "apac2-20261028-osm-gasan-way"
+        ],
+        "scope": "reviewed_site_locator",
+        "scope_class": "named_map_facility_point_matched_to_operator_street_address",
+        "authority": "community_source",
+        "derivation": "direct_geometry",
+        "method": "osm_nominatim_named_way_source_returned_point",
+        "precision": "Named facility point matched to the exact operator-published street address. It locates the existing centre; it is not a surveyed boundary, data-hall position or measured accuracy claim.",
+        "identity_review": "The SK Broadband IDC guide identifies Gasan / 가산 at 서울특별시 금천구 가산로9길 80 (가산동 60-29). OSM way 1413213983 names SK Broadband IDC, operator SK브로드밴드 and telecom=data_center with the same house number and road. Nominatim lookup of that exact way supplies the admitted point, which lies inside the source building polygon.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The map source supplies no measured positional accuracy; decimal precision is not measured uncertainty."
+      },
+      "context_source_ids": [
+        "apac2-20261028-skb-facility-addresses",
+        "apac2-20261028-osm-gasan-way"
+      ],
+      "roles": [
+        {
+          "party": "SK Broadband",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "apac2-20261028-skb-facility-addresses"
+        }
+      ],
+      "distinctness_review": "Screened all five baseline identity/evidence tables in verified_construction_core/2026-10-28-research-hundredthird, tracked hold files and available local changes/holds using English, Korean, street and parcel aliases. No specific candidate identity occurs in baseline tables. The nearest existing record is Digital Edge Seoul Bupyeong Campus, 16299.5 m away. Search hits for Gasan in older holds concern separate STT Seoul 1, not SK Broadband. Each of Gasan, Seocho and Bundang is separately named and addressed by the operator; their pairwise separation is recorded in dedup-review.json. No separate building or phase is inferred from the corporate restructuring.",
+      "successor_review": "Re-read the operator facility guide, SK Telecom release and current primary news index on 28 October. Bounded searches in English and Korean for the named centres, 2026 updates and closure found no later primary physical-status successor. The release describes the spin-off/company establishment as targeting Q1 2027; this future event is not a current operator change. Undated pages and later third-party recruitment/listing dates do not refresh the 27 August observation. Search scope and captured index are in successor-review.json.",
+      "scoped_project_details": {
+        "aliases": [
+          "Gasan IDC",
+          "Gasan AI Data Center",
+          "SEOUL#3",
+          "SK브로드밴드 가산 IDC"
+        ],
+        "address": "80 Gasan-ro 9-gil, Geumcheon-gu, Seoul, South Korea",
+        "address_local": "서울특별시 금천구 가산로9길 80 (가산동 60-29)",
+        "facility_scope": "One existing commercial IDC at the exact operator-published address; one physical site and one existing-operations project.",
+        "capacity_qualification": "No site-level MW allocation is inferred from the 318 MW portfolio statement.",
+        "tenant_or_customer_names_asserted": false
+      }
+    },
+    {
+      "project_stable_key": "curated:sk-broadband-seocho-idc:existing-operations",
+      "physical_site_stable_key": "curated:sk-broadband-seocho-idc",
+      "site_name": "SK Broadband Seocho IDC",
+      "name": "Seocho IDC — existing facility operations",
+      "country": "Korea, Republic of",
+      "country_iso_a2": "KR",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-08-27",
+        "source_id": "apac2-20261028-sk-operating-portfolio",
+        "summary": "SK Telecom explicitly includes Seocho among the named data centres already operating in its 27 August release. This records existing operations, without allocating the announced portfolio capacity or claiming a completed future corporate transition."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            127.00986139999999,
+            37.493433499999995
+          ]
+        },
+        "source_id": "apac2-20261028-google-seocho-point",
+        "identity_source_ids": [
+          "apac2-20261028-skb-facility-addresses"
+        ],
+        "scope": "reviewed_site_locator",
+        "scope_class": "named_map_facility_point_matched_to_operator_street_address",
+        "authority": "community_source",
+        "derivation": "direct_geometry",
+        "method": "google_maps_named_place_geometry_exact_native_coordinates",
+        "precision": "Named facility point matched to the exact operator-published street address. It locates the existing centre; it is not a surveyed boundary, data-hall position or measured accuracy claim.",
+        "identity_review": "The SK Broadband IDC guide identifies Seocho / 서초 at 서울특별시 서초구 법원로1길 6 (서초동 1710-1). The Google Maps feature names SK Broadband IDC Seocho Centre and returns the matching exact road and house number. Coordinates are feature geometry at JSON path [0,1,0,14,9], not the search viewport. The operator page also links to a separately named Naver facility feature at this exact address; its short-link raw retrieval was rate-limited, so it is not the geometry source.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The map source supplies no measured positional accuracy; decimal precision is not measured uncertainty."
+      },
+      "context_source_ids": [
+        "apac2-20261028-skb-facility-addresses"
+      ],
+      "roles": [
+        {
+          "party": "SK Broadband",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "apac2-20261028-skb-facility-addresses"
+        }
+      ],
+      "distinctness_review": "Screened all five baseline identity/evidence tables in verified_construction_core/2026-10-28-research-hundredthird, tracked hold files and available local changes/holds using English, Korean, street and parcel aliases. No specific candidate identity occurs in baseline tables. The nearest existing record is Daou Jukjeon CDC Campus, 20955.9 m away. Search hits for Gasan in older holds concern separate STT Seoul 1, not SK Broadband. Each of Gasan, Seocho and Bundang is separately named and addressed by the operator; their pairwise separation is recorded in dedup-review.json. Only the one current operator-named Seocho facility at this address is admitted. Historical third-party Seocho1/Seocho2 labels do not justify a second site or a claim that every historical centre was consolidated here.",
+      "successor_review": "Re-read the operator facility guide, SK Telecom release and current primary news index on 28 October. Bounded searches in English and Korean for the named centres, 2026 updates and closure found no later primary physical-status successor. The release describes the spin-off/company establishment as targeting Q1 2027; this future event is not a current operator change. Undated pages and later third-party recruitment/listing dates do not refresh the 27 August observation. Search scope and captured index are in successor-review.json.",
+      "scoped_project_details": {
+        "aliases": [
+          "Seocho IDC",
+          "SK브로드밴드 IDC 서초 센터"
+        ],
+        "address": "6 Beobwon-ro 1-gil, Seocho-gu, Seoul, South Korea",
+        "address_local": "서울특별시 서초구 법원로1길 6 (서초동 1710-1)",
+        "facility_scope": "One existing commercial IDC at the exact operator-published address; one physical site and one existing-operations project.",
+        "capacity_qualification": "No site-level MW allocation is inferred from the 318 MW portfolio statement.",
+        "tenant_or_customer_names_asserted": false
+      }
+    },
+    {
+      "project_stable_key": "curated:sk-broadband-bundang-idc:existing-operations",
+      "physical_site_stable_key": "curated:sk-broadband-bundang-idc",
+      "site_name": "SK Broadband Bundang IDC",
+      "name": "Bundang IDC — existing facility operations",
+      "country": "Korea, Republic of",
+      "country_iso_a2": "KR",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-08-27",
+        "source_id": "apac2-20261028-sk-operating-portfolio",
+        "summary": "SK Telecom explicitly includes Bundang among the named data centres already operating in its 27 August release. This records existing operations, without allocating the announced portfolio capacity or claiming a completed future corporate transition."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            127.11037689999999,
+            37.3347726
+          ]
+        },
+        "source_id": "apac2-20261028-google-bundang-point",
+        "identity_source_ids": [
+          "apac2-20261028-skb-facility-addresses"
+        ],
+        "scope": "reviewed_site_locator",
+        "scope_class": "named_map_facility_point_matched_to_operator_street_address",
+        "authority": "community_source",
+        "derivation": "direct_geometry",
+        "method": "google_maps_named_place_geometry_exact_native_coordinates",
+        "precision": "Named facility point matched to the exact operator-published street address. It locates the existing centre; it is not a surveyed boundary, data-hall position or measured accuracy claim.",
+        "identity_review": "The SK Broadband IDC guide identifies Bundang / 분당 at 경기도 성남시 분당구 성남대로2번길 12 (구미동 192-2). The Google Maps feature names SK Broadband IDC Bundang Centre and returns the matching exact road and house number. Coordinates are feature geometry at JSON path [0,1,0,14,9], not the search viewport. Its published website points back to the official SK Broadband guide.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The map source supplies no measured positional accuracy; decimal precision is not measured uncertainty."
+      },
+      "context_source_ids": [
+        "apac2-20261028-skb-facility-addresses"
+      ],
+      "roles": [
+        {
+          "party": "SK Broadband",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "apac2-20261028-skb-facility-addresses"
+        }
+      ],
+      "distinctness_review": "Screened all five baseline identity/evidence tables in verified_construction_core/2026-10-28-research-hundredthird, tracked hold files and available local changes/holds using English, Korean, street and parcel aliases. No specific candidate identity occurs in baseline tables. The nearest existing record is Daou Jukjeon CDC Campus, 1972.6 m away. Search hits for Gasan in older holds concern separate STT Seoul 1, not SK Broadband. Each of Gasan, Seocho and Bundang is separately named and addressed by the operator; their pairwise separation is recorded in dedup-review.json. No separate building or phase is inferred from the corporate restructuring.",
+      "successor_review": "Re-read the operator facility guide, SK Telecom release and current primary news index on 28 October. Bounded searches in English and Korean for the named centres, 2026 updates and closure found no later primary physical-status successor. The release describes the spin-off/company establishment as targeting Q1 2027; this future event is not a current operator change. Undated pages and later third-party recruitment/listing dates do not refresh the 27 August observation. Search scope and captured index are in successor-review.json.",
+      "scoped_project_details": {
+        "aliases": [
+          "Bundang IDC",
+          "Bundang Smart IDC",
+          "SK브로드밴드IDC 분당센터"
+        ],
+        "address": "12 Seongnam-daero 2beon-gil, Bundang-gu, Seongnam-si, Gyeonggi-do, South Korea",
+        "address_local": "경기도 성남시 분당구 성남대로2번길 12 (구미동 192-2)",
+        "facility_scope": "One existing commercial IDC at the exact operator-published address; one physical site and one existing-operations project.",
+        "capacity_qualification": "No site-level MW allocation is inferred from the 318 MW portfolio statement.",
+        "tenant_or_customer_names_asserted": false
+      }
+    },
+    {
+      "physical_site_stable_key": "curated:ninet-nis-zona3-data-centre",
+      "project_stable_key": "curated:ninet-nis-zona3-data-centre:operating-facility",
+      "site_name": "NINET Niš data centre (TC Zona 3)",
+      "name": "NINET Niš data centre (TC Zona 3) — operating commercial data centre",
+      "country": "Serbia",
+      "country_iso_a2": "RS",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-07-30",
+        "source_id": "global-europe2-20261028-ninet-tender",
+        "summary": "The contract notice published 30 July 2026 explicitly identifies Ninet as operating a Niš data centre offering hosting, cloud/VPS and IT services, and names the data-centre place of performance at Zona 3. This directly supports operation as of the notice date."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            21.9152273,
+            43.3217041
+          ]
+        },
+        "source_id": "global-europe2-20261028-ninet-point",
+        "identity_source_ids": [
+          "global-europe2-20261028-ninet-tender",
+          "global-europe2-20261028-ninet-contact"
+        ],
+        "scope": "campus_locator",
+        "scope_class": "source_returned_named_address_matched_host_building_point",
+        "authority": "community_source",
+        "derivation": "direct_geometry",
+        "method": "source_returned_nominatim_point_for_osm_way_340266480",
+        "precision": "Source-returned Nominatim point for Zona 3, the mixed-use host building at Bulevar Nemanjića 25. This does not locate premises K6 internally or classify the entire mall as a data centre.",
+        "identity_review": "The tender explicitly labels its place of performance NINET data centre, Bulevar Nemanjića 25, TC Zona 3 lok. K6. OSM way 340266480 carries the same house number, street and named Zona 3 building. The match therefore rests on an explicit data-centre address, not merely a corporate headquarters.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The source provides no verified horizontal error bound. The marker identifies the host property/address, not the internal data-centre room or its exact boundary."
+      },
+      "context_source_ids": [
+        "global-europe2-20261028-ninet-tender",
+        "global-europe2-20261028-ninet-contact",
+        "global-europe2-20261028-ninet-map",
+        "global-europe2-20261028-ninet-project",
+        "global-europe2-20261028-webglobe-history",
+        "global-europe2-20261028-webglobe-contact"
+      ],
+      "roles": [
+        {
+          "party": "Ninet Company d.o.o.",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "global-europe2-20261028-ninet-tender"
+        }
+      ],
+      "distinctness_review": "Screened against all five selected verified_construction_core/2026-10-28-research-hundredthird tables (847 sites, 915 projects), 73 published hold files and 6 local hold files. No candidate name/address/alias match in the selected base tables. Nearest existing sites: NXDATA-3 Bucharest Ring Road Campus (363.518 km); Ten Brinke Spata Data Center (618.74 km); Data4 Athens Campus ATH01 - HERMES (Paiania) (620.299 km). No separate physical addition is made for hosting brands, upgrades, racks or tenant rooms at this property.",
+      "successor_review": "The operator project page was captured on 28 October. Its 23 September update awards rack/UPS Lot 1 and cancels virtualization Lot 2; it does not report closure or relocation and does not establish equipment installation. Historical Webglobe 2022 NiNet web-hosting acquisition and its current different Serbia contact address were reviewed. They do not override the 2026 tender identifying Ninet Company d.o.o., registration 17499114, as the operating entity at Zona 3. Ownership is left unassigned; no second Webglobe campus is inferred.",
+      "scoped_project_details": {
+        "aliases": [
+          "NINET data centre Niš",
+          "NiNet Niš",
+          "TC Zona 3 K6"
+        ],
+        "address": "Bulevar Nemanjića 25, TC Zona 3 lok. K6, 18000 Niš, Serbia",
+        "facility_scope": "Existing commercial hosting/cloud data-centre premises within a mixed-use building; no new upgrade project or whole-mall footprint",
+        "registration_number": "17499114"
+      }
+    },
+    {
+      "physical_site_stable_key": "curated:zoner-brno-nove-sady-data-centre",
+      "project_stable_key": "curated:zoner-brno-nove-sady-data-centre:operating-facility",
+      "site_name": "ZONER DC Brno (Nové sady)",
+      "name": "ZONER DC Brno (Nové sady) — operating commercial data centre",
+      "country": "Czechia",
+      "country_iso_a2": "CZ",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-10-08",
+        "source_id": "global-europe2-20261028-zoner-operation",
+        "summary": "The operator article dated 8 October 2026 states that it operates its services in its own ZONER DC in Brno and describes ongoing power, cooling and monitoring arrangements. The technical facility page identifies the named own facility as Nové sady."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            16.605263460225057,
+            49.18760190214641
+          ]
+        },
+        "source_id": "global-europe2-20261028-zoner-ruian",
+        "identity_source_ids": [
+          "global-europe2-20261028-zoner-identity",
+          "global-europe2-20261028-zoner-address"
+        ],
+        "scope": "campus_locator",
+        "scope_class": "official_address_point_for_operator_identified_host_building",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "official_ruian_address_point_19108877_returned_wgs84",
+        "precision": "Official address point for Nové sady 583/18. The source identifies this administrative building as the host of the primary ZONER data centre; the marker is not a server-room point or data-hall outline.",
+        "identity_review": "The operator technical page explicitly places its primary data centre in ZONER’s administrative building and names its own ZONER DC as Brno, Nové sady. ZONER contacts give that building address as Nové sady 583/18; the RÚIAN feature exactly matches this street and both house numbers, with building code 18955126. Other hosted sites listed on the technical page are not included.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The source provides no verified horizontal error bound. The marker identifies the host property/address, not the internal data-centre room or its exact boundary."
+      },
+      "context_source_ids": [
+        "global-europe2-20261028-zoner-identity",
+        "global-europe2-20261028-zoner-address",
+        "global-europe2-20261028-zoner-news"
+      ],
+      "roles": [
+        {
+          "party": "ZONER a.s.",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "global-europe2-20261028-zoner-operation"
+        }
+      ],
+      "distinctness_review": "Screened against all five selected verified_construction_core/2026-10-28-research-hundredthird tables (847 sites, 915 projects), 73 published hold files and 6 local hold files. No candidate name/address/alias match in the selected base tables. Nearest existing sites: Digital Realty VIE13-VIE16 Digital Park Vienna Expansion (102.785 km); CRA Prague Gateway Data Center Campus (182.162 km); Hetzner Falkenstein Data Center Park (Am Datacenter-Park 1) (338.139 km). No separate physical addition is made for hosting brands, upgrades, racks or tenant rooms at this property.",
+      "successor_review": "The operator news index and current facility/contacts pages were captured and inspected on 28 October 2026. No later closure, relocation or replacement report was found. Other data centres used for backup or hosted workloads are explicitly distinguished and are not alternate identities of the admitted Nové sady facility. October product/security news does not refresh the selected 8 October status date.",
+      "scoped_project_details": {
+        "aliases": [
+          "ZONER DC",
+          "ZonerCloud primary data centre",
+          "CZECHIA.COM Brno Nové sady"
+        ],
+        "address": "Nové sady 583/18, Staré Brno, 60200 Brno, Czechia",
+        "facility_scope": "Primary ZONER data centre inside the company administrative building; excludes Kovoterm Cejl, Casablanca Prague and other hosting locations"
+      }
+    },
+    {
+      "project_stable_key": "curated:telconet-telcocity-guayaquil:cloud-center-iii",
+      "physical_site_stable_key": "curated:telconet-telcocity-guayaquil",
+      "site_name": "Telconet Telcocity Technology Campus, Guayaquil",
+      "name": "Telconet Cloud Center III",
+      "country": "Ecuador",
+      "country_iso_a2": "EC",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-08-26",
+        "source_id": "americas2-20261028-telconet-inauguration",
+        "summary": "Original operator post dated 26 August 2026 reports the achieved inauguration of Telconet Cloud Center III in Guayaquil, with customers and partners present. Date is the primary report date; exact ceremony day is not asserted. This supports the opened facility, without claiming a capacity, occupancy or later operating milestone."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -79.9508041,
+            -2.1544505
+          ]
+        },
+        "source_id": "americas2-20261028-telcocity-map",
+        "scope": "campus_locator",
+        "scope_class": "named_commercial_map_campus_point_matched_to_operator_facility_identity",
+        "authority": "community_source",
+        "derivation": "direct_geometry",
+        "method": "google_maps_named_place_geometry_exact_native_coordinates",
+        "precision": "Named Telco City campus map point. This locates the host technology campus containing Cloud Center III; it is not an exact data-hall position, surveyed boundary, or a corporate-office-only address.",
+        "identity_review": "The original Telconet SIEMON-visit post describes a tour of TelcoCity during which guests saw progress on the new Data Centre III. The later operator post reports Cloud Center III inaugurated in Guayaquil. Google names the selected feature Telco City, separate from the Kennedy corporate office; nearby operator-linked Telconet Latam and Datacenter Telconet features corroborate the campus cluster. The campus is admitted once, with only TCC III as a project. The specific building is not assigned the nearby generic datacenter pin.",
+        "identity_source_ids": [
+          "americas2-20261028-telconet-campus-identity",
+          "americas2-20261028-telconet-inauguration"
+        ],
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The map publisher supplies no measured positional accuracy, and the displacement from this campus marker to the exact TCC III building is unknown."
+      },
+      "context_source_ids": [
+        "americas2-20261028-telconet-campus-identity",
+        "americas2-20261028-telconet-company"
+      ],
+      "roles": [
+        {
+          "party": "Telconet",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "americas2-20261028-telconet-inauguration"
+        }
+      ],
+      "distinctness_review": "Checked all five hundredthird base files (847 sites, 915 projects), every tracked holds file, and available local changes/holds fragments (90 files). No matching baseline site or source identity. See dedupe-review.json for paths, aliases, historical hold matches and nearest-site distances. Historical Telconet holds used secondary 27 August news and lacked a capturable primary release. Original operator post capture now supplies 26 August status, and operator campus-tour text plus a specifically named Telco City point resolves the campus locator. No standalone TCC I, TCC II, Quito, corporate office or edge site is added.",
+      "successor_review": "Bounded searches for Telconet Cloud Center III and September/October 2026, operator news indexes and the currently captured official company feed found later visits and cloud-service promotion, with no closure, withdrawal or contradictory physical status. The earlier 25 August company release remains visible in web search but its origin timed out; it is not the selected raw status source. No date is renewed from later promotional material.",
+      "scoped_project_details": {
+        "aliases": [
+          "TCC III",
+          "Telconet Cloud Center 3",
+          "Campus Tecnológico Telcocity"
+        ],
+        "facility_scope": "Newly opened TCC III within the Telcocity technology campus",
+        "total_it_mw": null,
+        "exact_opening_day": null
+      }
+    },
+    {
+      "project_stable_key": "curated:boreal-keephills-campus:phase-1",
+      "physical_site_stable_key": "curated:boreal-keephills-campus",
+      "site_name": "Boreal Technology Hub, Keephills",
+      "name": "Boreal Technology Hub — Phase 1 proposal",
+      "country": "Canada",
+      "country_iso_a2": "CA",
+      "status": {
+        "value": "announced",
+        "as_of": "2026-10-07",
+        "source_id": "americas2-20261028-boreal-oct7",
+        "summary": "The dated 7 October 2026 developer open-house presentation identifies the proposed Boreal Phase 1 data-processing facility on part of Section 25-51-4-W5M. Its grading and development-permit steps are prospective. The 2025 zoning changes and initial grid allocation do not establish a data-centre development permit, physical works or operational capacity."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -114.4623143,
+            53.435986
+          ]
+        },
+        "source_id": "americas2-20261028-boreal-ats-quarter",
+        "scope": "campus_locator",
+        "scope_class": "derived_interior_point_of_official_land_quarter_within_proposed_phase",
+        "authority": "compiled_reference",
+        "derivation": "direct_geometry",
+        "method": "bounding_box_midpoint_of_official_WGS84_land_quarter_vector_matched_to_developer_phase_map",
+        "precision": "Interior point of NW quarter Section 25-51-4-W5M, which the developer highlights within the proposed Phase 1 area. Locates the proposed land, not an exact data-centre building or campus boundary. Neither the full section nor a power-station or community-hall address is used.",
+        "identity_review": "Presentation page 3 gives Section 25-51-4-W5M for Phase 1. Page 10 visually labels its four quarters and shades the NW quarter green inside the proposed Phase 1 grading area. Official Alberta ATS query returns land OBJECTID 664290 and a separate road allowance 541403; only the land feature is used. Its longitude/latitude bounding-box midpoint is inside the land polygon and the central green NW area. The point is a vector-derived interior reference with compiled authority, not a source-published point or surveyed project boundary.",
+        "identity_source_ids": [
+          "americas2-20261028-boreal-oct7",
+          "americas2-20261028-boreal-phase-map",
+          "americas2-20261028-alberta-ats-layer"
+        ],
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The official ATS geometry has no supplied positional-accuracy estimate; the developer map is conceptual and does not identify individual data-centre buildings. Numeric precision is not a measured campus-position accuracy."
+      },
+      "context_source_ids": [
+        "americas2-20261028-boreal-project",
+        "americas2-20261028-boreal-county",
+        "americas2-20261028-boreal-phase-map",
+        "americas2-20261028-alberta-ats-layer"
+      ],
+      "roles": [],
+      "distinctness_review": "Checked all five hundredthird base files (847 sites, 915 projects), every tracked holds file, and available local changes/holds fragments (90 files). No matching baseline site or source identity. See dedupe-review.json for paths, aliases, historical hold matches and nearest-site distances. Boreal, Keephills, TransAlta and Sundance are absent from the base. The proposed land south of Keephills Generating Station is distinct from the existing generating plant, Sundance plant and the public meeting hall. Potential future phases on Sections 24 and 13 do not create extra sites or projects.",
+      "successor_review": "Current developer and county pages, checked on 28 October 2026, continue to describe future development-permit stages and further information sessions. The project page confirms the 7 October open house occurred. Bounded searches found no issued data-centre development permit or physical construction report superseding the 7 October proposal. Proposed grading schedules and a separate power-plant repowering approval are not data-centre construction.",
+      "scoped_project_details": {
+        "aliases": [
+          "Keephills data centre",
+          "TransAlta Data Centre Application",
+          "Boreal Phase I"
+        ],
+        "legal_land_description": "Part of Section 25-51-4-W5M, Parkland County, Alberta",
+        "initial_power_allocation_mw": 230,
+        "power_allocation_scope": "Grid electricity allocation, not IT load or achieved supply",
+        "total_it_mw": null,
+        "future_phase_sections": [
+          "24-51-4-W5M",
+          "13-51-4-W5M"
+        ],
+        "developer": "BGRE",
+        "private_capital_partners": [
+          "Brookfield",
+          "CPP Investments"
+        ],
+        "site_and_power_provider": "TransAlta"
+      }
+    }
+  ],
+  "status_updates": [],
+  "context_updates": []
+}
