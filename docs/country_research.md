@@ -35,6 +35,25 @@ from the 90 days before the data update. Review later reports and keep the date 
 actually supports; a new research pass does not make an old observation current. Publish supported
 additions and updates as they are ready.
 
+`verified_construction_core/2026-10-28-research-hundredsixth` adds three sites and three projects:
+**865 sites and 933 projects in 67 countries**. Algeria enters through OneCloud's inaugurated
+Akbou facility. Its completed status is supported by the 2 October participant report and
+the sponsor's 1 October inauguration account. The operator's October pilot and planned January
+2027 national rollout do not establish full commercial operations. The named map feature matches
+the operator-labelled data-centre address, separately from its Algiers office and hotel event venue.
+
+The other additions resolve earlier location holds: Hillwood Reguły service complex 3 uses an
+interior point of the exact municipal project parcel, and Tecto TGRU1 uses a reviewed registration
+of its municipal project plan to five surrounding road controls. Reguły remains announced while
+its environmental decision procedure awaits an impact report; that is not a physical construction
+pause. TGRU1 retains the operator's 3 September construction observation and planned capacity.
+Neither point is a surveyed building position, and registration residuals are not absolute accuracy.
+
+All 862 prior sites, 930 projects and 4,852 evidence records are unchanged. Sixteen evidence
+records are added; the imported source snapshot and identity mapping remain byte-identical.
+Independent reviews pin the final source and action hashes. Centum, Risti and the Paraguay
+Iguazú proposal remain held; no city point or unproven neighbouring campus is substituted.
+
 `verified_construction_core/2026-10-28-research-hundredfifth` adds eight sites and eight projects:
 **862 sites and 930 projects in 66 countries**. It adds SK Broadband's Janghang Ilsan, Siksa
 Ilsan, Yangju and Pangyo facilities; Elea POA1 in Porto Alegre; Tecto TFOR3 in Fortaleza;
