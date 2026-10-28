@@ -1,0 +1,989 @@
+{
+  "decision": "accepted_for_integration",
+  "reviewer": "root",
+  "reviewed_at": "2026-10-28",
+  "base_dataset": "verified_construction_core/2026-10-27-research-hundredsecond",
+  "new_sites": 9,
+  "new_projects": 9,
+  "cross_packet_dedup": [
+    {
+      "a": "Claro Triara Bogotá Data Center, Funza (Celta Trade Park Bodega 32)",
+      "b": "Claro Triara Megacenter Medellín (Carrera 43B No. 23–66)",
+      "distance_km": 223.564
+    },
+    {
+      "a": "Hetzner Falkenstein Data Center Park (Am Datacenter-Park 1)",
+      "b": "Hetzner Nuremberg Data Center Park (Sigmundstraße 135)",
+      "distance_km": 148.244
+    }
+  ],
+  "europe_independent_review": "Root inspected exact raw incident text and dates for HEL1, FSN1 and NBG1; operator code-to-campus and ownership mapping; exact colocation addresses; Ryhti feature 331a7dd1-c922-43a1-81c6-bf07e3a26e81 and its coordinates; OSM full ways 606528332 and 723038882 with exact address and campus refs; the 4 August Tydal four-hall lease; the official WFS parcel and latitude/longitude axis order; and rendered municipal plan page 9. The Tydal wider zoning programme is not consent, and a generic last-changed traffic notice is not selected as fresh status. OSM geometry authority was corrected to community_source before integration.",
+  "independent_reviews": {
+    "apac": {
+      "reviewer": "global_americas",
+      "reviewed_packet": "local_data/country-research-global-2026-10-28-apac",
+      "reviewed_at": "2026-10-28",
+      "result": "pass",
+      "blocking_findings": [],
+      "checks": [
+        {
+          "site": "Digital Realty Digital Loyang Campus (SIN11 and SIN12)",
+          "nearest": [
+            {
+              "name": "Keppel DC Singapore 4, 20 Tampines Street 92",
+              "distance_m": 4057.7
+            },
+            {
+              "name": "Keppel DC Singapore 2, 25 Tampines Street 92",
+              "distance_m": 4163.8
+            },
+            {
+              "name": "Keppel DC Singapore 3, 27 Tampines Street 92",
+              "distance_m": 4208.6
+            }
+          ]
+        },
+        {
+          "site": "Keppel DC REIT Gore Hill Data Centre, Artarmon",
+          "nearest": [
+            {
+              "name": "NEXTDC S3 Sydney Data Center Campus",
+              "distance_m": 196.4
+            },
+            {
+              "name": "Frederick Street Data Centre, St Leonards",
+              "distance_m": 309.4
+            },
+            {
+              "name": "Goodman SYD01 Artarmon Data Centre",
+              "distance_m": 373.6
+            }
+          ]
+        },
+        {
+          "property": {
+            "propid": 3611417,
+            "address": "5 BROADCAST WAY ARTARMON",
+            "housenumber": "5",
+            "propertytype": 1,
+            "lastupdate": 1323119104729,
+            "dissolveparcelcount": 1,
+            "principaladdresssiteoid": 3345786
+          },
+          "gore_inside": true,
+          "s3_inside": false
+        },
+        {
+          "property": {
+            "propid": 3611417,
+            "address": "5A BROADCAST WAY ARTARMON",
+            "housenumber": "5A",
+            "propertytype": 1,
+            "lastupdate": 1323119104729,
+            "dissolveparcelcount": 1,
+            "principaladdresssiteoid": 3345786
+          },
+          "gore_inside": true,
+          "s3_inside": false
+        },
+        {
+          "property": {
+            "propid": 3611419,
+            "address": "2 BROADCAST WAY ARTARMON",
+            "housenumber": "2",
+            "propertytype": 1,
+            "lastupdate": 1323119104759,
+            "dissolveparcelcount": 1,
+            "principaladdresssiteoid": 3346053
+          },
+          "gore_inside": false,
+          "s3_inside": true
+        }
+      ],
+      "base_name_address_screen": [
+        {
+          "file": "sites.csv",
+          "matches": []
+        },
+        {
+          "file": "projects.csv",
+          "matches": []
+        },
+        {
+          "file": "evidence.csv",
+          "matches": [
+            {
+              "line": 1289,
+              "text": "46d5f995-e993-59a6-ab51-9e1a31410007,\"[\"\"context:identity\"\"]\",\"[\"\"942a1568-1fa1-57cc-91c1-2a34ee385adf\"\"]\",operator_website,\"Digital Realty: Singapore data centers (metro page listing SIN10, SIN11 and SIN12)\",https://www.digitalrealty.com/data-centers/asia-pacific/singapore,\"Digital Realty Trust, Inc.\",digitalrealty.com,all-rights-reserved,Digital Realty,,2026-10-27T03:40:16.131Z,e2b26c74de19f9ac97dce85423e5e1720b271e5644c1f22044d64dc6105d1817,unknown,sha256_exact_content_decoded_http_response_b"
+            }
+          ]
+        },
+        {
+          "file": "source-records.json",
+          "matches": []
+        },
+        {
+          "file": "identity-mapping.json",
+          "matches": []
+        }
+      ],
+      "capture_hashes_checked": 12,
+      "status_review": {
+        "Loyang": "Raw 24 August 2026 dateline and present-tense three operational data centres verified. Live operator metro names SIN10/SIN11/SIN12, and historical release explicitly calls SIN11/SIN12 adjacent and one Digital Loyang campus. A single campus admission is appropriate. Future Jurong Island fourth facility excluded.",
+        "Gore Hill": "Independently rendered Q3 PDF page 20. The header explicitly says as at 30 September 2026; the Gore Hill row reports 8 clients, 84.8% occupancy and mixed fully-fitted/shell-and-core leases. September 30 is the correct observation date; October 23 is publication. No whole-area energized load or tenant is inferred."
+      },
+      "locator_review": "Read exact raw OneMap postcodes and NSW address JSON. Independently rendered Keppel annual-report PDF page 41 (printed page 44) to confirm 5 Broadcast Way (South Gate). Computed point-in-polygon independently: Gore Hill lies inside property 3611417 and outside 3611419, and NEXTDC S3 vice versa. The SIN12 component point is explicitly campus-scoped, and the SIN11 offset is disclosed.",
+      "notes": [
+        "All 12 raw-capture SHA-256 hashes match the source registry.",
+        "No overlapping or matching baseline site identity found. Existing SIN10 and portfolio source evidence reuse is acknowledged and not a site duplicate.",
+        "Review does not convert occupancy to physical IT load or historical opening into recent opening.",
+        "No change to APAC packet required."
+      ]
+    },
+    "americas": {
+      "format": "datacenter-atlas-independent-peer-review-v1",
+      "reviewer": "global_asia_pacific",
+      "reviewed_at": "2026-10-28T19:39:52.361304+00:00",
+      "packet": "local_data/country-research-global-2026-10-28-americas",
+      "decision": "pass",
+      "blocking_findings": [],
+      "scope_review": {
+        "Triara Funza": "The actual 28 August 2026 article states future incorporation of new 10–20 kW high-density positions at named Triara. Announced status and host-campus locator correctly constrain the addition; no operating/building-work claim or total IT MW is inferred.",
+        "Megacenter Medellin": "The article states future new space for 100 positions up to 10 kVA each. Announced scope is distinct from the 2025 completed-modernisation context. No power-factor conversion or total IT MW is inferred."
+      },
+      "source_integrity": [
+        {
+          "id": "americas-20261028-claro-investment",
+          "sha256_verified": true
+        },
+        {
+          "id": "americas-20261028-capital-salud-triara-address",
+          "sha256_verified": true
+        },
+        {
+          "id": "americas-20261028-claro-megacenter-address",
+          "sha256_verified": true
+        },
+        {
+          "id": "americas-20261028-claro-megacenter-modernisation",
+          "sha256_verified": true
+        },
+        {
+          "id": "americas-20261028-google-triara-point",
+          "sha256_verified": true
+        },
+        {
+          "id": "americas-20261028-google-megacenter-point",
+          "sha256_verified": true
+        },
+        {
+          "id": "americas-20261028-waze-megacenter-point",
+          "sha256_verified": true
+        }
+      ],
+      "primary_date_review": "Visible article header says Institucional - 28 Agosto 2026. Raw future-tense language inspected directly; 61-day age at 28 October. Identity-only historical PDF dates and 5 November 2025 modernisation are not promoted to current status.",
+      "locator_review": {
+        "Triara": "Capital Salud tender rendered PDF page 11 names Triara at Autopista Medellin KM 7.5, Celta Trade Park Bodega 32, Cota/Funza with former Telmex provider. Raw Google feature [64][0][1] is named Data Center Triara Claro and its [9] array gives [null,null,4.766884999999999,-74.17859949999999], equivalent to the admitted coordinates. Separate Claro-Triara feature is within 1 m. Map-derived host-facility point, not official boundary.",
+        "Megacenter": "Operator sustainability rendered page 80 names Medellin-Megacenter at Carrera 43 B N 23-66. Raw Google [0][1][0][14] names Claro Megacenter - Medellin, includes exact 43B 23-66 address, links claro.com.co and its [9] gives [null,null,6.224212199999999,-75.5701536], equivalent to admitted point. Waze corroboration is retained but is not called independent evidence.",
+        "qualification": "Both map categories are appropriately treated as locator-only; data-centre use is established by operator primary records. community_mapped authority and null uncertainty preserve weaker geometry provenance."
+      },
+      "dedup_review": "Independently searched 77 current five-table/hold files for Triara, Megacenter, Telmex, Comcel, Celta Trade and address aliases: no matches. No overlap with APAC, Europe or Central Asia lane scopes. The parent should repeat final cross-packet dedup.",
+      "build_review": {
+        "result": "pass",
+        "input": "local_data/country-research-global-2026-10-28-apac/americas-review-input.json",
+        "output": "local_data/country-research-global-2026-10-28-apac/americas-review-final-preview",
+        "physical_sites": 840,
+        "projects": 908,
+        "evidence": 4760,
+        "note": "Initial changed-input rebuild correctly refused to overwrite the existing preview; the final review uses a fresh local output directory."
+      },
+      "nonblocking_findings": [
+        {
+          "severity": "editorial",
+          "finding": "Many prose strings conjoin words and numbers (dated28August2026, for100 positions, 838sites). Agent asked to correct before integration.",
+          "resolution": "Agent corrected prose spacing; status dates, geometry and project identities unchanged."
+        },
+        {
+          "severity": "provenance",
+          "finding": "Recommend explicit locator.identity_source_ids for the tender and operator report, already cited in context_source_ids and identity_review. Agent notified.",
+          "resolution": "Explicit locator.identity_source_ids added for both primary identity chains."
+        }
+      ],
+      "files_at_review": {
+        "sources.json": "d36ed266b00fde515c91ee1f56ad32e13c223f2a1587a365d225edcfcfaf9670",
+        "changes.json": "40f96fdafc988e6f1c98cf0028de3249ec45d71e05d58e211b1a137b23e76558",
+        "geometry-facts.json": "c69b94adf75ad8ab562b057cbb3e024088cbbaaa6d793723ee84a4b08b167d4f",
+        "dedupe-review.json": "9cc442954706b33ac1e8a87f76c211a3423dbb1438d0b0038111eb94185798ef"
+      }
+    },
+    "central_asia": {
+      "reviewed_at": "2026-10-28",
+      "reviewer": "global_europe independent child agent",
+      "candidate": "DataVolt Tashkent IT Park TAS01",
+      "result": "accept_with_stated_geometry_limitations",
+      "status_review": {
+        "accepted_status": "mep_electrical",
+        "as_of": "2026-10-16",
+        "primary_url": "https://gov.uz/en/digital/news/view/233875",
+        "findings": "The visible article heading carries 2026-10-16 16:15:00, separately from latest update 2026-10-19. The body describes a visit to the construction site and engineering systems installed/currently being installed, specifically power supply, air conditioning/circulation and water-based server cooling. This directly supports MEP/electrical works; completion by year end remains prospective."
+      },
+      "geometry_review": {
+        "accepted_point": [
+          69.33636139131318,
+          41.34353067557343
+        ],
+        "independently_recomputed": true,
+        "visual_files_reviewed": [
+          "nts-selected-point.png",
+          "esri-selected-point.png",
+          "georeference-matches.png"
+        ],
+        "findings": "Selected point lies inside the green Data Centre parcel in Figure 2-1, north of the mosque. Its transformed position lies within the corresponding excavation north of the mosque in ESRI imagery. Pink Phase II, purple existing IT Park and red BESS are separate. The affine and export extent formulas independently reproduce the supplied coordinate.",
+        "controls_inlier_records": 22,
+        "controls_unique_pairs": 21,
+        "duplicate_pair_source_pixel": [
+          834.4656982421875,
+          180.99253845214844
+        ],
+        "fit_residual_rms_target_pixels": 1.2835880764945695,
+        "limitations": "All controls lie east of the selected plot, so the plot location is an extrapolation. One match pair is duplicated. Fit residual is not a ground positional error. Retain unknown horizontal uncertainty and derived/compiled-reference campus or project locator semantics; no surveyed legal boundary, exact building footprint or dated imagery construction claim is justified."
+      },
+      "hashes_rechecked": {
+        "ebrd-nts.pdf": "714e983aed855776ab9d5ccc69a78f3cb7913824b788de634932971674ec2407",
+        "ministry-visit-20261016.html": "2195ca125e278139631f0bd38f536930c3b1f57267b1e27431e4e989c40bd910",
+        "itpark-esri.png": "5058b60a7047d2d139fb07741546a1751a1a3de1610f281b19cbab36ee267af9",
+        "itpark-esri-extent.json": "07d3d8cbeb5e0dc5fc0f79727bb02a429085a92ff8eb243833d251f7b59e5cc7",
+        "georeference.json": "86a60ddb51c22a19a90d885544c6f3acef677888fc3d0405d455b435707deb54"
+      },
+      "packet_review_limit": "The completed root changes.json was subsequently read: status is mep_electrical on 16 October 2026, locator is project_locator with compiled_reference authority and georeferenced_source_map derivation, unknown horizontal uncertainty, and an explicit eastern-control limitation. These conform to the reviewed evidence. Final combined schema and global dedup remain root checks."
+    }
+  },
+  "scope": "Each candidate has a second reviewer. Nine commercial sites in seven countries; Uzbekistan is new. Digital Loyang combines adjacent SIN11 and SIN12 into one campus. Colombia and Tydal additions represent announced scoped developments at existing sites, not an assertion that the whole host is new or inactive. Every prior dataset row and source snapshot is retained. No raw publisher content or imagery is redistributed.",
+  "packet_hashes": {
+    "apac": {
+      "sources.json": "2253b8f8b834780f25b5b72a40ea5d5e4f28c4696432611f0b712adc69d28f16",
+      "changes.json": "00fb3cbc64ae38a2c54dab8ee87edfd9a6a6583682d80eafa1dabf8f33d9cddd",
+      "holds.json": "e55ed9d3af26e5ddd1e42eb6384959d89fe2bea9481bebab1be9fa41c24b61e9",
+      "geometry-review.json": "350ebe9bb82e41e4282ba95878d6c21ed71b9dd5a2e31c286f76ae75df109c9d"
+    },
+    "americas": {
+      "sources.json": "41a6b30196dc7ebc475cc018588e98b9510cc3880d5a36648938cae5316aabba",
+      "changes.json": "80ff6b9d13eb5380b8ef3459cf46d759ee9ab3d9e50dd9565b7eb6ff085bf114",
+      "holds.json": "316851be959c30aef47909b1e49253abd8a0d782ca8f24a39da5aeab1fd680f2",
+      "geometry-facts.json": "c69b94adf75ad8ab562b057cbb3e024088cbbaaa6d793723ee84a4b08b167d4f"
+    },
+    "europe": {
+      "sources.json": "21804296d0617429a6ec8a7b1729cc2ba601b7edac7f5ffc4d6cfb757cf939d5",
+      "changes.json": "4358617ad6cc46f25abf6528fe3aab8a1abeb306f25ddfebf9f35e27d07fd7b9",
+      "holds.json": "485dfef64ea93e07b3abe086e7a2fbea9665819faa6a738fcdf5493cfe08cec5",
+      "geometry-facts.json": "9c3d604238ed8f6180e96eae8ad51f5b650dc31363ac908a48a03cf656ef799e"
+    },
+    "central-asia": {
+      "sources.json": "81cf91ef79527996ae5d3365b6e872dada3d781f47d7db7b1c3e80ccb66c512f",
+      "changes.json": "cdb5f7ceab30d489c7d4baa7b750e4c8685c6479ad63d7fed72f441debf38056",
+      "holds.json": "8189849a470b16526403a5a74c890f7b0a98c763388505ee83eebd2c044c8bcb",
+      "geometry-facts.json": "398e467e40c57e1928c5fdf738dd7dbc8c71ff30d7b9a0795b6b4ea5860ffed8"
+    }
+  },
+  "regional_reviews": {
+    "apac": {
+      "notes": "# APAC review packet — 28 October 2026\n\nReady for independent review: **2 new physical sites / 2 existing-operations projects** against `verified_construction_core/2026-10-27-research-hundredsecond` (838 sites / 906 projects). No tracked file was edited. `changes.json` uses the repository builder's actual `additions` key. No schema change or separate derived-geometry source proposal is required: both admission points are direct official address geometries.\n\n## Digital Loyang campus, Singapore\n\nOne campus/site contains SIN11 (Digital Loyang I, 3 Loyang Way, 508719) and SIN12 (Digital Loyang II, 11 Loyang Close, 506756). Digital Realty's historical release explicitly says the buildings are adjacent and names the Digital Loyang campus. The operator still identifies both separately at those addresses. A single combined existing-operations project avoids double counting a named adjacent campus.\n\nStatus is **operational as of 24 August 2026**, 65 days before this review, from Digital Realty's dated release that Singapore has three operational data centres. The operator's metro page identifies the exact set as SIN10, SIN11 and SIN12, while the historical release identifies SIN12 as the third centre. This is a cross-source identity mapping; the 24 August release does not list individual codes in its operating sentence. It is the same status evidence used for the already-admitted SIN10. Do not derive an opening date from the historical release or assign the release's aggregate ~84 MW to either Loyang building. Jurong Island is a separate future facility.\n\nLocation is the direct SLA OneMap point of SIN12 at **103.9662820345768, 1.370840569410011**, explicitly scoped as a campus locator on that component, not a campus centroid. SIN11 has its own exact official address point at **103.9682391257187, 1.371009970310877**, about 218 m east. Both postal-code queries returned one exact address. Campus grouping rests on the operator's explicit campus/adjacency statement, not distance alone.\n\nThe canonical 24 August release capture from the prior SEA packet was copied unchanged into this packet (`raw/dlr-pr-singapore-50mw-20260824-canonical.html`, SHA-256 `c5e4db4b354ce9fcee0bf365982496cf9ba9198618d723f44ec4ff985e812557`). Full press text is in the Next.js `__NEXT_DATA__` object under `/props/pageProps/data/field_template_blocks/2/template_text_block_type/field_template_text/0/value`. The visible banner is 25 August but the article dateline is 24 August; the latter is used. The equivalent investor PDF was readable through the web tool, but direct raw requests to that PDF and investor newsroom returned HTTP 403. Both failures are retained; no retry/bypass occurred. The canonical prior capture time remains unchanged, rather than pretending it was freshly retrieved.\n\nBounded 28 October operator-domain searches for SIN11/SIN12 found no later physical-state successor. The November 2026 DRIL laboratory in SIN11 is a demonstrator inside the existing site, excluded from additions. The Digital Core REIT fractional-property transaction is not a physical phase.\n\n## Gore Hill Data Centre, Artarmon, Australia\n\nStatus is **operational as of 30 September 2026**, 28 days before review. The Keppel DC REIT 3Q 2026 presentation (published 23 October) page 20 explicitly dates its portfolio table to 30 September. The Gore Hill row has 8 clients, 84.8% occupancy, 90,955 sq ft attributable lettable area, 100% property interest, and fully-fitted colocation plus shell-and-core triple-net lease space. This supports ongoing operations but not an assertion that all space is fitted or energized. End-2026 contract-start forecasts are excluded from the physical-status observation. The PDF table was rendered and visually read.\n\nIdentity comes from Annual Report 2025, printed page 44 / physical PDF page 41: **5 Broadcast Way (South Gate), Artarmon NSW 2064**. That PDF page was also rendered and visually read. The official NSW AddressPoint `rid=2979390`, `gurasid=75125312`, `principaladdresssiteoid=3345786` returns this exact address and direct WGS84 point **151.18640556534911, -33.819980050903055**. Its uncertainty field is null. The point happens to coincide with a previously computed property centroid, but this packet obtains it directly from the government address layer and performs no coordinate derivation.\n\nFresh official property records show property **3611417**, identically listed as 5 and 5A Broadcast Way, contains the Gore Hill point. Existing NEXTDC S3 is **196 m** away and lies inside separate property **3611419**, 2 Broadcast Way. Existing Frederick Street (309 m) and Goodman SYD01 (374 m) points are outside Gore Hill's polygon. Point-in-polygon checks are saved in `geometry-review.json`. S6 is not an existing Atlas record and its exact property is unpublished; no S6 equivalence or tenant is asserted. The annual report names a colocation facility manager, but this is not promoted to a whole-site operator role; only the directly supported REIT owner role is included.\n\nFresh copies of the Q3 presentation and annual report match prior admitted hashes exactly, so the original canonical source metadata is retained for evidence-ID reuse. Local metadata separately records fresh capture times. NSW data is marked `no-open-license-asserted`, SLA geometry retains OneMap terms, and operator documents remain all-rights-reserved. Raw captures are ignored local review material and are not redistributed.\n\n## Deduplication and validation\n\n`dedup-review.json` records matches across all five current base tables, all tracked holds, and available local `changes.json` / `holds.json` packets. No current site/project or imported identity matches either candidate. Existing evidence mentions SIN11/SIN12 only in the metro-page context associated with SIN10. Loyang's nearest existing Atlas site is Keppel DC Singapore 4, 4.06 km away; SIN10 is 24.95 km away. Earlier held/deferred Loyang and Gore Hill leads are explicitly resolved in the additions. The old omnibus holds reference many unrelated leads; those remain unchanged.\n\n`dryrun-input.json` pins the base manifest and source-file hashes. Build and validate-only both passed, producing local preview counts **840 sites / 908 projects / 4,762 evidence / 63 countries**. All 12 source projections were verified against their raw capture SHA-256 values. No old source, definition, dataset, or configuration bytes changed. Parent should rerun cross-lane dedup after the other packets finish.\n",
+      "dedup": {
+        "reviewed_at": "2026-10-28",
+        "base_dataset": "verified_construction_core/2026-10-27-research-hundredsecond",
+        "terms": [
+          "sin11",
+          "sin12",
+          "digital loyang",
+          "gore hill",
+          "5 broadcast",
+          "5a broadcast",
+          "3 loyang way",
+          "11 loyang close"
+        ],
+        "base_hits": {
+          "sites.csv": [],
+          "projects.csv": [],
+          "evidence.csv": [
+            {
+              "terms": [
+                "sin11",
+                "sin12"
+              ],
+              "identity": "Digital Realty: Singapore data centers (metro page listing SIN10, SIN11 and SIN12)",
+              "project_ids": "[\"942a1568-1fa1-57cc-91c1-2a34ee385adf\"]",
+              "url": "https://www.digitalrealty.com/data-centers/asia-pacific/singapore"
+            }
+          ],
+          "source-records.json": [],
+          "identity-mapping.json": []
+        },
+        "hold_hits": {
+          "sources/research-countries-2026-10-16-thirtyfirst-holds.json": [
+            {
+              "wave": "wide",
+              "lane": "southeast_asia",
+              "candidate": "Digital Loyang 2, 11 Loyang Close, Singapore (Digital Realty; 2.5% stake to Digital Core REIT)",
+              "disposition": "hold",
+              "reason": "An explicit dated operational statement for the facility, plus an operator-linked locator.",
+              "reopen_condition": "The SGX circular or a Digital Realty facility page with the status and address."
+            },
+            {
+              "wave": "wide",
+              "lane": "investor_filings",
+              "candidate": "Other investor-related leads screened without admissible evidence",
+              "country_iso_a2": "XX",
+              "disposition": "hold",
+              "reason": "DayOne Kodaira groundbreaking (secondary report only; the F-1 classifies Tokyo as Secured Powered Land as of September 20, 2026, and a ceremony does not establish physical work; no locator). Keppel DC REIT KDC SGP 1 (July 23 earnings call: 'preparations for a potential redevelopment' - not an announced project). Digital Core REIT stake purchases in Digital Loyang 2 and Digital Osaka 3 (August 12; ownership changes in operating buildings; circular behind a residency gateway). Foresight Autonomous Polish projects (October 14; non-binding term sheet for a company with Ożarów and Wrocław projects, no parcels; for the eastern_europe lane). Aligned Project Phoenix groundbreaking (already reviewed by the Atlas, which keeps the September 10 announcement). CoreWeave India/Indonesia expansions (hosted capacity in third-party facilities).",
+              "reopen_condition": "Dated primary records with site locators for any of these."
+            }
+          ],
+          "sources/research-countries-2026-10-22-thirtyfourth-holds.json": [
+            {
+              "lane": "holds_east",
+              "candidate": "Remaining 2026-10-16 holds for Asia, Oceania, the Middle East, Russia/Central Asia and Africa not individually re-opened",
+              "country_iso_a2": null,
+              "disposition": "hold",
+              "existing_project_stable_key": null,
+              "status_candidate": null,
+              "status_as_of": null,
+              "reason": "Not individually re-examined beyond a screen of their reopen conditions. Each needs a locator (official parcel, address point or operator-linked feature), a later dated primary statement that is not yet due (Q3 results in late October or November: Mega Or, LG Uplus, Airtel Africa, CLINT, Goodman, Keppel, Telecom Egypt) or a source behind blocked or gated access (PARIVESH, SGX/ASX gateways, HUMAIN Cloudflare, Komdigi). The web-search budget for this run was exhausted before this lane began, and indirect search through Google Maps or archive services was not used, so only known operator and government pages and sitemaps were checked. The original reasons and reopen conditions in sources/research-countries-2026-10-16-thirtyfirst-holds.json stand for: [34] china: Tencent Shaoguan Zhenjiang Computing Centre — 1# data centre (held_locator); [37] china: China Unicom Yangtze River Delta Wujiang Phase 1 DC1 (retained_hold_locator); [38] china: Chindata Lingqiu Taihang campus (operational, operator report 2026-09-13) (retained_hold_locator); [39] china: China Telecom Taihu International Information Centre, Suzhou (retained_hold_locator); [40] china: China Telecom Wujiang Compute Centre (retained_hold_locator); [41] china: Guangdong Hengsuan Guangzhou Intelligent Computing Industry Empowerment Center (retained_hold_datum); [42] china: China Mobile and China Unicom Lhasa data centres (retained_hold_locator); [43] china: GDS Langfang Qihan September launch (retained_hold_identity); [44] china: VNET Ulanqab zero-carbon campus Phase 3 (retained_hold_identity); [45] china: China Mobile Yangtze River Delta (Wuhu) Jiujiang Data Center B-zone Phase 1 (held_locator); [46] china: Alibaba Nantong (CSCEC completion report Sept 2026), Longteng Liangshan AI DC Phase 1 (CSCEC completion Sept 2026), Anhui Wuwei data centre (CSCEC topping-out Sept 2026) (retained_hold_locator); [47] japan: Soya Green Data Center I (宗谷グリーンデータセンターI), Wakkanai, Hokkaido (hold); [48] japan: Goodman Sagamihara data-centre campus (麻溝台・新磯野北部地区), Kanagawa (hold); [50] japan: J-Power Kaminokuni Data Center (provisional), Hokkaido (hold); [51] japan: Ryobi-IDC (おかやまクラウドセンター第1棟・第2棟), Okayama (hold); [52] japan: Getworks Kagoshima Izumi Data Center (鹿児島出水データセンター) (hold); [54] japan: Keppel DC REIT Tokyo Data Centre 4 and 5 (TDC4/TDC5), Inzai (hold); [55] japan: AirTrunk TOK1 status refresh / AirTrunk TOK2 (Tokyo West) (hold); [56] japan: Miyagi AI Data Center (Tohoku Electric / Getworks, Shichigahama), queue re-check (hold); [57] japan: Getworks 40ft x4 container DC (Oct 16, 2026 release) (reject); [58] japan: Data Section first domestic data centre (reject); [59] japan: NTT West Osaka-Minami (Chuo-ku) and Hakata AI DCs (reject); [60] japan: NTT Data / Anthropic Osaka AI DC (reject); [61] japan: JR Kyushu Electric System Kurume modular DC (reject); [62] japan: BroadBand Tower Ishikari Shinko site; GMO GPU Cloud Ishikari; BBTower/Hokuden IT resale (reject); [63] japan: Ishikari Data Center Consortium (July 28) (reject); [64] japan: Satsumasendai four-party AI DC cluster agreement (July 22, Kyuden/Sony/Kagoshima Univ) (reject); [65] japan: Akita City AI DC concept (UAE investment; Tohoku Electric 1 GW) (reject); [66] japan: Itochu plan for ~10 data centres by 2030 (reject); [67] japan: Getworks / Tokyo Gas Engineering Solutions alliance (Sept 14); Getworks / Kagoya partnership (Oct 13) (reject); [68] japan: IIJ / Exeo / Quantum Mesh edge and modular DC releases (2026) (reject); [112] india_mea: HUMAIN Riyadh AI data centre (2025 initial 100 MW site) versus HUMAIN Al-Saad campus identity (Keep humain-riyadh in identity hold. Do not merge it into Al-Saad, do not sum it as a separate project, and do not refresh Al-Saad's status from a tender (a tender is not issued consent or physical work).); [113] india_mea: Colt DCS / RMZ Mumbai 3 Data Centre, Colt Navi Mumbai Campus (Digha) (hold); [115] india_mea: Digital Edge Navi Mumbai (BOM) campus: BOM1 operational, BOM2 topped out, BOM3 construction started (hold); [116] india_mea: Yotta NM1 (Hiranandani Fortune City, Panvel, Navi Mumbai) and Yotta D1 (Plot 7, Tusiana Village, Knowledge Park V, Greater Noida) (hold); [117] india_mea: Anant Raj (Ashok Cloud) Manesar data centre (21 MW IT operational) and Panchkula data centre (7 MW IT operational), Haryana (hold); [118] india_mea: Google Visakhapatnam AI hub (Tarluvada / Adavivaram / Rambilli campuses) (hold); [119] india_mea: Microsoft India South Central cloud region (Hyderabad) (hold); [120] india_mea: STT Chennai 4 (Ambattur) and STT Chennai 7 phase 2 (Siruseri) (hold); [121] india_mea: Status refreshes for imported Sify Chennai 02, Sify Noida 02 and CtrlS Chandanvelly (no_change); [122] india_mea: Reliance Jamnagar AI data centre for Meta (refresh) (no_change); [123] india_mea: AdaniConneX Pune PNQ04 refresh from Q1 FY27 'Pune Phase II handed over (9.6 MW)' (no_change); [124] india_mea: CapitaLand DC Navi Mumbai Tower 2 and CapitaLand DC ITPH Hyderabad refreshes (no_change); [125] india_mea: Equinix India, NTT India, Iron Mountain/Web Werks India, Airtel/Nxtra newsrooms (access_stop); [126] india_mea: Hillhouse TeraNova DC platform, Trentar 500 MW Maharashtra MoU, unnamed chemical-firm 500 MW proposal (reject); [127] india_mea: Khazna QAJ1 Ajman refresh (no_change); [128] apac_other: Road 1 Data Centre, 1-5 Khartoum Road, Macquarie Park (Stockland, NSW SSD-80814238) (hold_locator); [129] apac_other: Other NSW Data Storage SSD determinations (Apollo Place Lane Cove West SSD-67407231, 1-5 Khartoum Road SSD-63235720, Marsden Park SSD-70889211, Project Duke Mascot SSD-71368959, 43-61 Turner Road SSD-68013714, Davis Road SSD-59416728, Lanceley Place SSD-66777221, 51 Huntingwood Drive SSD-41589232, Grand Avenue SSD-53338465, Echidna SSD-47320208, Station Road SSD-33781208, Talavera Road SSD-24299707) (reject_outside_window_or_existing); [130] apac_other: NSW Data Storage pipeline (pre-determination applications), disposition summary (summary); [131] apac_other: CDC Hazelmere, 178-196 Bushmead Road, Hazelmere WA (City of Swan DA-386/2026) (hold_no_day_precision_in_window_source); [132] apac_other: CDC / Contact Energy Stratford, Taranaki (NZ) potential data centre (reject_exploration_only); [134] apac_other: SUNeVision MEGA IDC (Tseung Kwan O, HK) expansion (hold_robots_and_period_end_dates); [136] apac_other: AirTrunk news, July to October 2026 (no_new_action); [137] apac_other: BDx HKG1 (23 Yip Hing Street, Wong Chuk Hang) and HKG2 (16-22 Kung Yip Street, Kwai Chung, 4 MW), Hong Kong (hold_no_independent_dated_observation); [138] apac_other: CDC Auckland campuses: Silverdale Campus One, Hobsonville Campus One and Two (NZ) (hold_undated_no_locator); [139] apac_other: Locator correction leads for existing locality-context records: NEXTDC S7 Sydney and AirTrunk Kurri Kurri (geometry_review_lead_not_actionable_in_status_update); [141] apac_other: Geometry review lead: inherited NEXTDC S4 campus point (geometry_review_lead); [142] apac_other: Project Atlas Data Centre, 10 Roberts Road, Eastern Creek (Goodman, SSD-101067971) (hold_identity_conflict_with_existing_locator); [143] apac_other: Mars Road Data Centre, 3-4 Apollo Place and 87-91 Mars Road, Lane Cove West (SSD-108835458) (hold_developer_and_campus_relationship_unresolved); [144] apac_other: NEXTDC S5 Data Centre and Innovation Hub, 269 Lane Cove Road, Macquarie Park (SSD-63168959) (hold_no_in_window_record); [145] apac_other: 23-25 Waterloo Road Data Centre (SSD-91297457) and 22 O’Riordan Street, Alexandria (SSD-77274467) (reject_outside_window); [146] apac_other: Macquarie Technology Group: proposed Macquarie Engineering & Technology Campus land option (Macquarie Park) (reject_outside_window); [147] apac_other: Victoria (planning.vic.gov.au Development Facilitation Program) and New Zealand fast-track (fasttrack.govt.nz) registers (not_accessed_bot_challenge); [148] apac_other: Unreferenced reviewed sources retained with lane holds (context_for_holds); [177] africa: Digital Parks Africa NDC1 Lagos (hold); [178] africa: OADC Lagos (Lekki) 24 MW expansion and other OADC facilities (hold); [179] africa: iXAfrica NBOX1 Nairobi / Oracle Kenya cloud region (hold); [180] africa: Rack Centre LGS2 Oregun, Ikeja (Lagos) (hold); [181] africa: OADC LOS1 Lekki (Lagos) operating facility (hold); [182] africa: MTN Digital Infrastructure / Africa Data Hub Holding platform (South Africa and Nigeria) (hold); [183] africa: Wingu Africa Ethiopia (Addis Ababa) and Djibouti facilities (hold); [184] africa: Olkaria EcoCloud data centre (Naivasha, Kenya) (hold); [185] africa: Existing African records with no newer primary observation found: Teraco CT1 expansion (2026-07-17), Nxtra Eko Atlantic (2026-07-23), Kasi Cloud LOS (2026-05-19), Niger PK5 (2026-06-18), Iozera Tetouan (2026-07-09), G42/Microsoft Olkaria (2026-08-24) (hold); [186] middle_east: Türksat Gölbaşı Veri Merkezi (hold); [187] middle_east: Turkcell Hyperscale Veri Merkezi (Ankara, Google Cloud region) (hold); [188] middle_east: Mega D.C. MDCIL-3 Haifa, MDCIL-4 Beit Shemesh Phase A, Mevo Carmel (Yokneam) (hold); [189] middle_east: HUMAIN / Al Moammar Information Systems AI data centres (50 MW first work order of 250 MW agreement) (hold); [190] middle_east: HUMAIN / center3 Riyadh data centre (Hassan Allam-Sterling & Wilson JV) (hold); [191] middle_east: center3-PDC power partnership; DataVolt-Zain KSA MoU (reject); [192] middle_east: Moro Hub Warsan Green Data Centre (Dubai) (hold); [193] middle_east: NHC Innovation Khuzam Digital Valley (Riyadh) (hold); [194] middle_east: ENKA Data Solutions EDS IST 02 Gebze (hold); [195] middle_east: Vodafone / DAMAC Digital İzmir Veri Merkezi (Gaziemir), Phase 1 (hold); [196] middle_east: MEEZA M-VAULT 6, M-VAULT 7 and M-VAULT 8 (Qatar) (hold); [197] middle_east: Ashalim server farm and energy facilities plan (Ramat Negev), plan 620-1541507 (hold); [198] middle_east: Jabotinsky Petah Tikva employment, commerce and data-centre plan 410-1112804 (hold); [199] middle_east: Afula 'DATA CENTER ANAN' rights-transfer plan 215-1538925 (reject); [200] middle_east: HUMAIN Riyadh (held source record humain-riyadh) vs HUMAIN Al-Saad 6 GW campus (hold); [201] middle_east: Digital Realty / Rönesans Infrastructure JV data-centre campus, Temelli (Ankara), first phase (hold); [203] middle_east: ENKA Data Solutions Ankara data centre (19 MW IT) (hold); [204] middle_east: Mega D.C. MDCIL-6 (Yoav plot 502), MDCIL-7 (Yoav plot 201), MDCIL-8 (Hadera) (hold); [205] middle_east: Levinstein / D.C. North 'Alpha' data centre, Shechterman 16, Netanya (16 MW+) (hold); [206] middle_east: MultiDC Shoham campus (hold); [207] middle_east: center3 DDC307 Dammam (solutions by stc contract) (hold); [208] middle_east: Khazna QAJ1 Ajman (existing record) — ESG report context (hold); [209] middle_east: Operator and government sweep without admissible in-window evidence (hold); [211] russia_central_asia: Firebird AI Factory DC-1, Hrazdan (hold); [212] russia_central_asia: Data Center Valley (Kazakhtelecom / national AI programme), Ekibastuz first campus (hold); [213] russia_central_asia: Yandex data centre, Sasovo (Ryazan region) (hold); [214] russia_central_asia: Yandex data centre, Kaluga (Grabtsevo industrial park) (hold); [215] russia_central_asia: Yandex data centre, Vladimir (hold); [216] russia_central_asia: Sber data centre, Balakovo (Saratov region) (hold); [219] russia_central_asia: Key Point Saint Petersburg (SPB DC2, Prokofyeva 10 lit. A) (hold); [220] russia_central_asia: Key Point Ekaterinburg (CRAFT industrial park) and Dubna-M (hold); [221] russia_central_asia: IXcellerate Veshki campus MOS11 (Mytishchi) (hold); [222] russia_central_asia: DataVolt TAS-1, Tashkent IT Park (hold); [223] russia_central_asia: QazCloud Astana infrastructure for heavy AI workloads (2026-07-30 news) (hold); [224] russia_central_asia: Azerbaijan new government data centre (Ministry of Digital Development briefing) (hold); [225] russia_central_asia: Uptime Institute registry leads (design-certified lane projects) (lead_only); [226] russia_central_asia: Freedom Data Centers (Almaty, Medeu district) - substation PS-156A INP-Novaya reconstruction (reject); [227] russia_central_asia: Russian data-centre concepts without a named project site (Yakutia Far East AI cluster; Ministry of Energy Siberia proposal; Rostelecom 'doomsday' data-centre proposal) (reject); [253] southeast_asia: DayOne Nongsa Digital Park (NDP) campus, Batam, Indonesia (hold); [254] southeast_asia: DayOne Kabil Industrial Tech Park (KITP) campus, Batam, Indonesia (with Firmus) (hold); [255] southeast_asia: DayOne Kuala Lumpur campuses: Klang Valley Tech Park (KVTP) and Banting Tech Park (BTP) (hold); [256] southeast_asia: DayOne Singapore campus (hold); [258] southeast_asia: Singapore DC-CFA2 awards: STT GDC 50 MW, plus Digital Realty, Equinix and Keppel Data Centres at 50 MW each, Jurong Island Sustainable Data Centre Park (hold); [259] southeast_asia: Empyrion Digital MY1 Johor, Nusajaya SiLC (hold); [260] southeast_asia: GSA02 (Gulf/Singtel/AIS), Chonburi, Thailand (hold); [261] southeast_asia: YTL Power / JLand data-centre campus, STeP West (Sedenak Tech Park West), Ibrahim Technopolis, Johor (hold); [262] southeast_asia: Evolution VN02 Ho Chi Minh City, Saigon Hi-Tech Park (52 MW) (hold); [263] southeast_asia: Evolution TH01 (Bang Na-Trad Road, Bangkok) / TH02 (Samut Prakan); VN01 Hoa Lac EcoDC E4 (hold); [264] southeast_asia: Global Switch Bangkok (and planned Kulai, Johor) (hold); [265] southeast_asia: Brightray 120 MW Sedenak Tech Park campus, Johor (70 MW operating, 50 MW planned) (hold); [266] southeast_asia: Land acquisitions: Amazon Data Services (Sunsuria City land, Sepang; signed about September 28), DayOne Sepang land (August 20), Tera Data Centers (221.7 acres, Negeri Sembilan; September 22), MRCB land sale to a Singapore-backed operator (August 13) (hold); [267] southeast_asia: BDx AI data-centre campus, West Java, Indonesia (hold); [268] southeast_asia: PT Tigabelas Solusi Nusantara data centre, Lamongan, East Java (hold); [269] southeast_asia: YCO Cloud Malvar One / Malvar Two, Light Industry and Science Park IV, Malvar, Batangas, Philippines (hold); [270] southeast_asia: IndoData Center (former IndoKeppel), Bogor, Indonesia (hold); [271] southeast_asia: Digital Loyang 2, 11 Loyang Close, Singapore (Digital Realty; 2.5% stake to Digital Core REIT) (hold); [272] southeast_asia: Equinix Johor expansion (JH1 expansion / JH2) (hold); [273] southeast_asia: Bitdeer AI Malaysia capacity (A901, A103 Cyberjaya, A201 Johor; September-October) (reject); [274] southeast_asia: MOUs and exploratory platforms: SOS Indonesia 500 MW, Zankore 1 GW, Indosat/Ooredoo/Nokia/NVIDIA 1 GW, Key ASIC/CT Vision 300 MW, China Mobile/Quill, SoftBank/Grab/PETROS Sarawak, Stecon (reject); [275] southeast_asia: Tencent Cloud Johor region (August 19) (reject); [276] southeast_asia: Malaysia MIDA approval of 27 data-centre projects (October 15) (reject); [277] southeast_asia: Thailand's September 4 construction suspension of 49 data centres (reject); [278] korea_taiwan: Chief Telecom Central Taiwan Science Park (中科) AIDC, Taichung (hold); [279] korea_taiwan: Chunghwa Telecom Lunping (崙坪) AIDC campus, Taoyuan (hold); [280] korea_taiwan: Chunghwa Telecom Taichung AI data centre (TWSE backup information centre) (hold); [281] korea_taiwan: Empyrion Digital TW1, Neihu, Taipei (hold); [282] korea_taiwan: Keppel / DDSP Westwood data centre, A-Top 新嶺雲端數據園區, Guishan, Taoyuan (previously held as DDSP/Keppel North Taiwan campus phase 1) (hold); [283] korea_taiwan: Vantage Data Centers TPE1, Guishan, Taoyuan (hold); [284] korea_taiwan: Hon Hai / Visionbay 27 MW GB300 AI supercomputing centre (Kaohsiung Asia New Bay lead) (hold); [285] korea_taiwan: STT Seoul 1, Gasan-dong, Geumcheon-gu, Seoul (hold); [286] korea_taiwan: Digital Edge SEL5, Ansan (hold); [287] korea_taiwan: Princeton Digital Group Greater Seoul campus (SE1) (hold); [288] korea_taiwan: LG Uplus Paju AIDC Building 1 (existing project, status refresh) (hold); [290] korea_taiwan: Google Changhua County data centre (彰濱工業區) (hold); [291] korea_taiwan: Chief Telecom LY (麗源大樓) and HD (宏鼎大樓) IDC buildings, Neihu, Taipei (hold); [292] korea_taiwan: SK AI Data Center Ulsan (existing, status refresh after 2026-09-14) (hold); [293] korea_taiwan: National AI Computing Center, Solaseado (Haenam) (existing, status refresh after 2026-08-03) (hold); [294] korea_taiwan: Other Korean operators screened without a qualifying in-window record (Equinix Korea, Kakao, KT Cloud, Samsung SDS Gumi AI DC, ESR KR1) (hold); [325] hyperscaler_sweep: Microsoft SYD01 Huntingwood (6 Honeman Close, NSW, AU) (hold); [326] hyperscaler_sweep: AWS Middle East (Saudi Arabia) Region (SA) (hold); [340] neocloud_sweep: Firmus Melbourne AI factory (AU) and Malaysia AI factory sites (MY) (hold); [341] neocloud_sweep: Yotta NM1 (Panvel, Navi Mumbai), D1 (Greater Noida) and G1 (GIFT City) (IN) (hold); [348] neocloud_sweep: Khazna QAJ1 Ajman (existing record, under_construction 2025-10-14) and other G42/Core42 facilities (AE/IT/FR) (hold); [375] sovereign_programs: Indonesia Pusat Data Nasional (PDN Cikarang, Batam, IKN, Labuan Bajo) (hold); [377] sovereign_programs: Firmus Wesley Vale AI Factory (174 and 226 Mill Road, Wesley Vale, Latrobe Council) (hold); [378] sovereign_programs: Google AI hub Visakhapatnam - Vizag Hyperscale Data Centre Park Ltd (Adani) campus (hold); [380] sovereign_programs: Singapore DC-CFA2 awards (Jurong Island Sustainable Data Centre Park) (hold); [387] sovereign_programs: India AI Mission compute and state data-centre parks (programme level) (hold); [388] sovereign_programs: Japan and Korea national AI computing programmes (programme level) (hold); [389] sovereign_programs: Saudi and UAE national AI programmes (HUMAIN, Stargate UAE, Khazna) (hold); [437] investor_filings: DayOne / Gaw Capital Fuchu Intelligent Park (FIP) and Kodaira, Tokyo (hold); [438] investor_filings: DayOne Hong Kong Kwai Chung cluster (HK1 and adjacent buildings) (hold); [439] investor_filings: Digital Realty / Rönesans Ankara data-centre campus (Türkiye JV) (hold); [440] investor_filings: Digital Realty Jurong Island 50 MW (Singapore DC-CFA2 award) (hold); [443] investor_filings: NTT DC REIT and Digital Core REIT EGM circulars (October 2026) (hold); [450] investor_filings: IREN Redbank (Gregadoo, Wagga Wagga, NSW) 900 MW proposal and IREN Badajoz (Spain) (hold); [451] investor_filings: Other investor-related leads screened without admissible evidence (hold); [456] investor_filings: CapitaLand Investment 1H 2026 results (August 13) and news release (reject); [457] investor_filings: GDS Holdings HKEX filings (Q2 results August 13, interim report September 4) (reject); [459] investor_filings: NEXTDC ASX announcements July-October 2026 (reject)",
+              "reopen_condition": "As stated for each entry in sources/research-countries-2026-10-16-thirtyfirst-holds.json.",
+              "wave": "east"
+            }
+          ],
+          "sources/research-countries-2026-10-23-fiftyfirst-holds.json": [
+            {
+              "lane": "global-operators",
+              "candidate": "Operator location pages without dated versions: Vantage Ashburn I-III, New Albany OH1, Montreal I, Kwai Chung, Fo Tan and Cyberjaya I; Digital Realty SIN11, BCN1 and VIN02",
+              "country_iso_a2": "US",
+              "disposition": "hold_undated_pages",
+              "existing_project_stable_key": null,
+              "status_candidate": null,
+              "status_as_of": null,
+              "reason": "Captured 22-23 October 2026. The pages carry no structured publication or modification date (only sitemap lastmod values, which are bulk refreshes), and several describe planned campuses in the future tense (VA2, VA3, OH1); Vantage's Ashburn II page marker (39.9995041, -78.4392728) is a placeholder one degree from the Ashburn I marker. Internet Archive listings for the Digital Realty pages show no bounded in-window version. None supports a dated status.",
+              "reopen_condition": "A dated in-window operator release or a page modification bounded by an archived copy, with an official or operator-linked locator."
+            }
+          ],
+          "sources/research-countries-2026-10-26-sixtysixth-holds.json": [
+            {
+              "lane": "q3-apac-operators-p3",
+              "candidate": "Keppel DC REIT Gore Hill Data Centre, 5 Broadcast Way (South Gate), Artarmon NSW 2064",
+              "country_iso_a2": "AU",
+              "disposition": "hold",
+              "existing_project_stable_key": null,
+              "status_candidate": "operational",
+              "status_as_of": "2026-09-30",
+              "reason": "The Keppel DC REIT 3Q 2026 Operational Updates (23 October 2026; local kdcr-3q-2026-operational-updates.pdf, sha256 7904bd8a...05d5), portfolio overview as at 30 September 2026 lists Gore Hill as fully-fitted colocation and shell-and-core, with 8 clients and 84.8% occupancy, and says revenue will more than double when new contracts start from the end of 2026. Not admitted in this pass. Distinctness is not yet settled: NEXTDC S3 (existing Atlas site) is at 2 Broadcast Way, on the same street, and Goodman SYD01 (existing Atlas site, 2-8 Lanceley Place, Artarmon) is nearby. No property-level locator was captured.",
+              "reopen_condition": "Capture an NSW address point or the lot for 5 Broadcast Way and show it is a separate property from NEXTDC S3 (2 Broadcast Way) and Goodman SYD01 (2-8 Lanceley Place). Then admit as operational while 30 September 2026 is within the window."
+            }
+          ],
+          "sources/research-countries-2026-10-27-eightyninth-holds.json": [
+            {
+              "lane": "asia-pacific-p4",
+              "candidate": "Keppel DC REIT Gore Hill Data Centre, 5 Broadcast Way (South Gate), Artarmon NSW 2064",
+              "country_iso_a2": "AU",
+              "disposition": "deferred_beat_limit",
+              "existing_project_stable_key": null,
+              "status_candidate": "operational",
+              "status_as_of": "2026-09-30",
+              "reason": "Admissible on the same Keppel DC REIT 3Q 2026 table used for this fragment (local kdcr-3q-2026-operational-updates.pdf, sha256 7904bd8a...05d5, PDF p.20, as at 30 September 2026): Gore Hill Data Centre, Sydney, 100% interest, 90,955 sq ft, 8 clients, 84.8% occupancy, fully-fitted colocation and shell-and-core triple-net lease, freehold, completed 2013. The q3-apac-operators-p3 locator and distinctness hold is now resolved: the NSW Land Parcel and Property theme (FeatureServer layer 12, envelope query captured as local nsw-lpp-properties-gore-hill-envelope.geojson, sha256 36369651...adff) has property 3611417 '5 BROADCAST WAY ARTARMON' (also '5A BROADCAST WAY'), planar area 6,729.8 m2 in EPSG:7856, matching the annual report's 72,032 sq ft (6,692 m2) land area to 0.6%. Its planar centroid is (151.1864056, -33.8199801) and lies inside the property. The existing NEXTDC S3 locator lies inside a different property, 3611419 '2 BROADCAST WAY ARTARMON' (12,427.8 m2), 140 m from the 5 Broadcast Way boundary and 197 m from its centroid. The Goodman SYD01 point is 335 m outside it and the Frederick Street Data Centre point 266 m outside it. Deferred only by the three-change cap; this fragment's three Keppel Singapore sites took precedence because their OneMap points are direct official address points.",
+              "reopen_condition": "Next pass: add as a new site, operational as of 2026-09-30, from the 3Q table, while the observation is within the 85-day window (until about 24 December 2026). Locate it at the property 3611417 centroid as a parent-property marker (compiled reference). NEXTDC describes S6 only as 'adjacent to the S3 Sydney campus' in Artarmon, with no address (local nextdc-s6-sydney.html, sha256 a5082a42...ab3f). Before admitting, state that S6 is not an Atlas record and that its property is unpublished. The 4,158.6 m2 property 3611418 at 4 Broadcast Way is the likelier S6 site, but this is not established. Do not name the shell-and-core tenant, because the REIT does not."
+            }
+          ],
+          "sources/research-countries-2026-10-27-ninetyseventh-holds.json": [
+            {
+              "lane": "sea-p3",
+              "candidate": "Digital Realty SIN11 (Digital Loyang 1, 3 Loyang Way, 508719) and SIN12 (Digital Loyang 2, 11 Loyang Close, 506756), Singapore: existing operations",
+              "country_iso_a2": "SG",
+              "disposition": "deferred_beat_limit",
+              "existing_project_stable_key": null,
+              "status_candidate": "operational",
+              "status_as_of": "2026-08-24",
+              "reason": "Admissible on the same evidence as the SIN10 addition in this fragment: Digital Realty's release of 24 August 2026 (local dlr-pr-singapore-50mw-20260824.html, sha256 c5e4db4b...2557) says Singapore is home to its three operational data centers (about 84 MW), and its Singapore metro page lists SIN10, SIN11 at 3 Loyang Way and SIN12 at 11 Loyang Close; the 2020 release identifies SIN12 as the third. Not drafted because of the three-change cap. The two Loyang buildings are 325 m apart (PeeringDB points), so they would be either two sites or one Loyang campus site with one project; OneMap points for both addresses still need to be captured. AirTrunk SGP1 (22 Loyang Drive, about 0.7 km) and STT GDC SIN6 (1 Loyang Close, about 0.65 km) are separate operators' buildings.",
+              "reopen_condition": "Capture OneMap address points for 3 Loyang Way and 11 Loyang Close and admit SIN11 and SIN12 as operational as of 2026-08-24 while that date is within 90 days of the update (until about 22 November 2026), or use Digital Realty's 29 October third-quarter materials if they name the Singapore facilities."
+            }
+          ]
+        },
+        "working_packet_hits": {}
+      }
+    },
+    "americas": {
+      "notes": "# Americas review — 28 October 2026\n\nTwo new physical-site admissions are prepared, each with one announced 2026 capacity-expansion project: Claro Triara Bogotá at Celta Trade Park Bodega 32, Funza; and Claro Triara Megacenter Medellín at Carrera 43B No. 23–66. Their status date is the operator announcement of 28 August 2026, 61 days before this update. No construction or operating status is assigned to the expansions. Older operations are identity context only.\n\nThe operator release announces Triara positions rated 10–20 kW and a new Megacenter space for 100 positions of up to 10 kVA. No total IT MW is inferred and the shared investment is not allocated by site. The exact successful raw capture and SHA-256 are in sources.json and its metadata. Claro’s robots.txt explicitly allows GPTBot.\n\nCapital Salud public tender PDF page 11 visually confirms the Triara Bodega 32 address and former Telmex provider. Claro’s 2025 sustainability PDF page 80 was rendered, OCR-extracted and visually inspected; its named Megacenter address exactly matches Google Maps. Selected Google coordinates are from named result features, not viewport centres: Triara at [-74.1785995, 4.766885] and Megacenter at [-75.5701536, 6.2242122]. Waze corroborates Megacenter within 10 m. Geometry is scoped to the existing facility, with expansion-room and parcel boundaries unknown. Primary identity sources are explicitly linked in locator.identity_source_ids.\n\nOSM direct bounding-box responses had no matching named object and are not selected geometry sources. The unsuccessful HTTP 406 Overpass capture is not used.\n\nDedupe-review.json records five base-file hashes and nearest-site distances. Before this fragment, 77 base/hold/queue files were screened with no Claro or Triara match. The only matches concerned Telconet. The baseline contains two Colombian sites, ODATA BG01 and Equinix BG2. ODATA BG01 lies 4.59 km from Triara in a different free zone. Megacenter lies 227.5 km from the nearest baseline site.\n\nBounded primary-domain searches for Triara/Megacenter with September and October 2026, plus the exact 100-position phrase, returned the 28 August release and older identity/certification pages. No later commencement, completion or withdrawal was found. The 5 November 2025 modernisation does not establish completion of the later announced space.\n\nTelconet remains held: the primary status release was discovered in search, but direct operator capture timed out and the precise locator remains unresolved. VAN3 generic page modification and stale ODATA republishing do not renew status.\n\nOnly this ignored local directory was written. No tracked source, definition, dataset, config, staging, commit or push was modified. Parent should independently verify and pin the consolidated registry and output before building.\n\nLocal dry build and validate-only both passed against the pinned current base: 840 physical sites, 908 projects, 4,760 evidence rows. The generated preview remains entirely in this ignored directory.\n",
+      "dedup": {
+        "base_dataset": "verified_construction_core/2026-10-27-research-hundredsecond",
+        "base_manifest_sha256": "88dd6efa7b7f69a4ddebacf2517167f73d0d5fbe9b47d17927f49c86ffee075c",
+        "site_count": 838,
+        "project_count": 906,
+        "nearest_sites": {
+          "Claro Triara Funza": [
+            {
+              "site_id": "vcc-site-be656b2340b6a4fb77b0",
+              "name": "ODATA DC BG01 Cota Campus (Zona Franca Metropolitana)",
+              "distance_m": 4586.3
+            },
+            {
+              "site_id": "vcc-site-f5c6fe2a009a33154c02",
+              "name": "Equinix BG2 Bogotá Data Center",
+              "distance_m": 10516.3
+            },
+            {
+              "site_id": "vcc-site-f20ebb79d86fe03fc732",
+              "name": "Iron Mountain MIA-1 Miami Data Center",
+              "distance_m": 2435446.0
+            },
+            {
+              "site_id": "vcc-site-98db1c10877fca784aba",
+              "name": "DC BLOX Palm Coast Cable Landing Station and Colocation Campus",
+              "distance_m": 2847070.9
+            }
+          ],
+          "Claro Megacenter Medellin": [
+            {
+              "site_id": "vcc-site-be656b2340b6a4fb77b0",
+              "name": "ODATA DC BG01 Cota Campus (Zona Franca Metropolitana)",
+              "distance_m": 227542.8
+            },
+            {
+              "site_id": "vcc-site-f5c6fe2a009a33154c02",
+              "name": "Equinix BG2 Bogotá Data Center",
+              "distance_m": 232733.3
+            },
+            {
+              "site_id": "vcc-site-f20ebb79d86fe03fc732",
+              "name": "Iron Mountain MIA-1 Miami Data Center",
+              "distance_m": 2241809.9
+            },
+            {
+              "site_id": "vcc-site-98db1c10877fca784aba",
+              "name": "DC BLOX Palm Coast Cable Landing Station and Colocation Campus",
+              "distance_m": 2654076.8
+            }
+          ]
+        },
+        "files_screened_count": 77,
+        "text_matches": [
+          {
+            "path": "sources/research-countries-2026-10-22-thirtyfourth-holds.json",
+            "matches": [
+              {
+                "line": 4127,
+                "text": "      \"candidate\": \"Telconet Cloud Center III (TCC III), Campus Tecnológico Telcocity, Guayaquil (Ecuador)\","
+              },
+              {
+                "line": 4133,
+                "text": "      \"reason\": \"DCD (August 27, 2026, news) reports that Telconet inaugurated TCC III, its third Ecuadorian data centre, on its Telcocity campus. The Telconet primary release could not be retrieved: www.telconet.net timed out on the robots.txt request (no further request was made). Telcocity is also Telconet's corporate campus, so a campus address alone would risk an HQ locator; no facility coordinate was found. Re-checked 2026-10-22: www.telconet.net and telconet.net still fail at the robots.txt request (network error); no page request was sent. The Internet Archive holds no Telconet news pa"
+              },
+              {
+                "line": 4134,
+                "text": "      \"reopen_condition\": \"A Telconet release or Ecuadorian government record dated within 90 days of an update stating TCC III operation, plus an operator map feature or official parcel for the TCC III building within Telcocity.\""
+              }
+            ]
+          }
+        ],
+        "base_hashes": {
+          "sites.csv": "90cb622215c78080cc7bdd308876f533eece2bc3927ef985fa151c6a3ad6300a",
+          "projects.csv": "aebf1754c40f23d04738ea700ab86e618e3841aa1d73f23ed71e8a3be6cca3ce",
+          "evidence.csv": "8185b5534e724f7f34781d9d14c1c3585c18b331f499f1b9855e1535b74ad29c",
+          "source-records.json": "0b593c002903193ca62489eac1ba25674f262fa03bbd2078a2a422f58015fd1a",
+          "identity-mapping.json": "3c0ba3dcad7941c5317e8a36b0b4c3e87e29bb945b59751319ddcc657069a8de"
+        }
+      }
+    },
+    "europe": {
+      "notes": "# Europe research packet — 28 October 2026\n\nFour proposed new physical sites/projects against the selected 838-site / 906-project base `verified_construction_core/2026-10-27-research-hundredsecond`:\n\n| Site | Status | Observation | Point scope |\n| --- | --- | --- | --- |\n| Hetzner Helsinki, Tuusula | operational | 22 October 2026 | Official address point at Huurrekuja 10 linked to existing campus building/property |\n| Hetzner Falkenstein | operational | 27 October 2026 | Named OSM FSN1 campus polygon area centroid |\n| Hetzner Nuremberg | operational | 27 October 2026 | Named OSM NBG1 campus polygon area centroid |\n| Bitdeer Tydal AI/HPC conversion | announced | 4 August 2026 | Kartverket official representation point for main campus parcel 5033/181/189 |\n\n`changes.json` follows the actual current `dataset_update` input schema, which uses `additions`, not `add_projects`. Its output path is an unused local preview location. The no-write `update_payloads(changes.resolve())` validation passed on 28 October; no preview dataset was generated.\n\nAll 16 records in `sources.json` point to successful raw HTTP 200 captures in this folder. SHA-256 values were re-read and checked by `prepare_packet.py` before source construction. Captures include separate metadata. No source, definition, dataset, config or tracked file was edited by this agent.\n\n## Scope and status decisions\n\n- Hetzner's exact-address operator page and location-code/ownership documentation establish campus identity. Dated customer service recovery at HEL1 and NBG1 and completed routine UPS/emergency-power work at FSN1 provide current operational observations. No generic page-modified date is used. HEL1's dated DC7 UPS maintenance is supporting context. No incident is presented as proof that every campus building is operating.\n- Cloud datacenter IDs can denote virtual groups of physical buildings. None of these additions identifies a particular physical hall; they are whole-campus records. No capacity is guessed.\n- The German polygons carry Hetzner's name, operator, exact address, telecom=data_center and FSN1/NBG1 reference tags. `geometry-facts.json` preserves their vertices, OSM IDs and selected centroid. The point derivation uses the polygon area centroid in a local equirectangular plane. No surveyed boundary or numerical positional accuracy is claimed.\n- HEL1 uses the Ryhti address feature `open_permit_address.331a7dd1-c922-43a1-81c6-bf07e3a26e81`, linked to building `1035983807` and property `85841100030138`. It is not asserted to locate DC7 or the Object Storage cluster. An older hold for a different 9,347 m² building at the same address stays unresolved.\n- Tydal's 4 August operator release is a current, explicit AI/HPC lease announcement (85 days before review), supporting announced status. The October municipal construction-traffic notice is retained as raw context only: its visible date is `Sist endret`, not a dated event. No upgrade to construction is proposed. The 19 October Bitdeer operations release, readable through web retrieval, still treats the AI facility's completion/performance as future; direct raw capture returned HTTP 403 and is retained as a failed retrieval, not admitted as a source.\n- Tydal's selected point is the official WGS84 representation point of the main 181/189 parcel. The municipal plan page 9 map was visually checked against the parcel/address chain. The operator footer street number 190 is on adjacent 181/191; address 196 is on 181/189. This distinction is explicit in the record. The wider proposed 170 daa zoning envelope is not a permit, footprint, or separate site.\n\n## Deduplication and successor checks\n\nAll five selected base tables and all 72 published `sources/*holds.json` files were searched for candidate names, aliases, operator names, address fragments and codes. Nearest physical-site points were calculated against all 838 base sites; results are in `dedup-review.json`.\n\nBroad matches were individually reviewed: HEL1 matches Microsoft's HEL17/HEL18 strings, and `datacenter park` matches CtrlS sites in India. These are unrelated. No actual candidate appears in the base. Nearest existing Atlas sites are 22.193 km from HEL1, 100.001 km from FSN1, 9.545 km from NBG1 and 195.201 km from Tydal. Tydal resolves the specific thirtyfirst-holds lead; the Huurrekuja building hold remains held. This repository contains no `claims.tsv` or other queue fragments named `changes.json`; concurrent parent research remains subject to root crosscheck.\n\nHetzner's status index and pressroom were captured and reviewed for successors. No closure/relocation was found. Tydal operator news and the newer Bitdeer September operations release were checked; neither establishes operating AI capacity. Original raw municipal and operator context is retained without recasting modification or retrieval dates as status dates.\n\nThe parent must independently verify the packet before integrating it. The intended addition count is four sites and four projects, with no refresh of existing records.\n",
+      "dedup": {
+        "base": "verified_construction_core/2026-10-27-research-hundredsecond",
+        "base_sites": 838,
+        "base_tables": [
+          "sites.csv",
+          "projects.csv",
+          "evidence.csv",
+          "source-records.json",
+          "identity-mapping.json"
+        ],
+        "hold_files_scanned": 72,
+        "candidates": {
+          "hel1": {
+            "table_matches": {
+              "sites.csv": [],
+              "projects.csv": [],
+              "evidence.csv": [
+                "HEL1"
+              ],
+              "source-records.json": [],
+              "identity-mapping.json": []
+            },
+            "hold_files": [
+              "sources/research-countries-2026-10-22-thirtyfourth-holds.json",
+              "sources/research-countries-2026-10-23-fortyfourth-holds.json"
+            ],
+            "nearest_existing_sites": [
+              {
+                "name": "Microsoft Espoo Hepokorpi Datacenter Campus",
+                "key": "curated:microsoft-finland-espoo-hepokorpi-campus",
+                "distance_km": 22.193
+              },
+              {
+                "name": "Microsoft Kirkkonummi Datacenter Campus",
+                "key": "curated:microsoft-finland-kirkkonummi-campus",
+                "distance_km": 34.47
+              },
+              {
+                "name": "Verne Mäntsälä Data Center Campus",
+                "key": "curated:verne-mantsala-data-center-campus",
+                "distance_km": 35.413
+              },
+              {
+                "name": "Hyperco Loviisa Data Center Campus",
+                "key": "curated:hyperco-loviisa-data-center-campus",
+                "distance_km": 69.547
+              },
+              {
+                "name": "ecogrid.energy / Peab Lahti Kujala Data Centre (Vartiokallionkatu 2)",
+                "key": "curated:ecogrid-peab-lahti-kujala-data-centre",
+                "distance_km": 79.175
+              }
+            ]
+          },
+          "fsn1": {
+            "table_matches": {
+              "sites.csv": [
+                "datacenter-park",
+                "Datacenter Park",
+                "Datacenter Park",
+                "datacenter-park"
+              ],
+              "projects.csv": [
+                "datacenter park",
+                "datacenter-park",
+                "datacenter-park",
+                "Datacenter Park",
+                "Datacenter Park"
+              ],
+              "evidence.csv": [
+                "Datacenter Park",
+                "datacenter-park",
+                "Datacenter Park",
+                "datacenter-park"
+              ],
+              "source-records.json": [
+                "datacenter park"
+              ],
+              "identity-mapping.json": []
+            },
+            "hold_files": [
+              "sources/research-countries-2026-10-23-fortyfifth-holds.json",
+              "sources/research-countries-2026-10-27-ninetysecond-holds.json"
+            ],
+            "nearest_existing_sites": [
+              {
+                "name": "envia TEL Datacenter Campus Leipzig",
+                "key": "curated:envia-tel-datacenter-leipzig-campus",
+                "distance_km": 100.001
+              },
+              {
+                "name": "noris network NBG6 Nürnberg Süd Campus",
+                "key": "curated:noris-network-nbg6-nuremberg-south-campus",
+                "distance_km": 146.648
+              },
+              {
+                "name": "CRA Prague Gateway Data Center Campus",
+                "key": "curated:cra-prague-gateway-data-center-campus",
+                "distance_km": 156.17
+              },
+              {
+                "name": "Rechenzentrum Alteno, Industriegebiet Alteno (Luckau)",
+                "key": "curated:luckau-alteno-industriegebiet-data-center",
+                "distance_km": 185.342
+              },
+              {
+                "name": "Schwarz Digits Lübbenau Campus",
+                "key": "curated:schwarz-digits-luebbenau-campus",
+                "distance_km": 189.854
+              }
+            ]
+          },
+          "nbg1": {
+            "table_matches": {
+              "sites.csv": [],
+              "projects.csv": [],
+              "evidence.csv": [],
+              "source-records.json": [],
+              "identity-mapping.json": []
+            },
+            "hold_files": [],
+            "nearest_existing_sites": [
+              {
+                "name": "noris network NBG6 Nürnberg Süd Campus",
+                "key": "curated:noris-network-nbg6-nuremberg-south-campus",
+                "distance_km": 9.545
+              },
+              {
+                "name": "NTT Munich 2 Data Center (MUC2)",
+                "key": "curated:ntt-munich2-unterschleissheim-campus",
+                "distance_km": 135.017
+              },
+              {
+                "name": "Deutsche Telekom Industrial AI Cloud, Munich Tucherpark",
+                "key": "imported:semiconductor-atlas:deutsche-telekom-nvidia-munich",
+                "distance_km": 150.458
+              },
+              {
+                "name": "noris network Rechenzentrum München Ost (Klausnerstraße 30, Aschheim)",
+                "key": "curated:noris-network-muenchen-ost-aschheim-data-center",
+                "distance_km": 152.652
+              },
+              {
+                "name": "Equinix MU4 Munich Data Center",
+                "key": "curated:equinix-mu4-munich-data-center",
+                "distance_km": 152.907
+              }
+            ]
+          },
+          "tydal": {
+            "table_matches": {
+              "sites.csv": [],
+              "projects.csv": [],
+              "evidence.csv": [],
+              "source-records.json": [],
+              "identity-mapping.json": []
+            },
+            "hold_files": [
+              "sources/research-countries-2026-10-16-thirtyfirst-holds.json"
+            ],
+            "nearest_existing_sites": [
+              {
+                "name": "Bitzero Namsskogan Data Center Campus",
+                "key": "curated:bitzero-namsskogan-data-center-campus",
+                "distance_km": 195.201
+              },
+              {
+                "name": "atNorth SWE04 Sollefteå mega site",
+                "key": "imported:semiconductor-atlas:atnorth-solleftea-swe04",
+                "distance_km": 271.059
+              },
+              {
+                "name": "EcoDataCenter 2 Borlänge campus",
+                "key": "imported:semiconductor-atlas:ecodatacenter-borlange",
+                "distance_km": 345.1
+              },
+              {
+                "name": "Skygard OSL1 Hovinbyen Campus",
+                "key": "curated:skygard-osl1-hovinbyen-campus",
+                "distance_km": 348.166
+              },
+              {
+                "name": "Aker Nscale Korgen AI data center",
+                "key": "imported:semiconductor-atlas:aker-nscale-korgen",
+                "distance_km": 353.422
+              }
+            ]
+          }
+        }
+      }
+    },
+    "central-asia": {
+      "reviewer": "root",
+      "reviewed_at": "2026-10-28",
+      "base_dataset": "verified_construction_core/2026-10-27-research-hundredsecond",
+      "candidate": "DataVolt TAS-1, Tashkent IT Park",
+      "status": {
+        "value": "mep_electrical",
+        "as_of": "2026-10-16",
+        "source_id": "global-20261028-uz-ministry-visit",
+        "summary": "The ministry reports a visit to the DataVolt construction site at IT Park Uzbekistan. Contractors showed engineering systems already installed and being installed, including power supply, air conditioning, air circulation and server water-cooling equipment. Construction, installation and landscaping were targeted for completion by year end. This supports mechanical and electrical installation work, not commissioning or operation."
+      },
+      "nearest_existing_sites": [
+        {
+          "site_id": "vcc-site-cc8bbdad8c252d9ba4e2",
+          "name": "Akashi Astana Data Center Campus",
+          "distance_km": 1108.667
+        },
+        {
+          "site_id": "vcc-site-37108b4d9d3683d6451d",
+          "name": "Sify Noida 02 data center campus",
+          "distance_km": 1594.072
+        },
+        {
+          "site_id": "vcc-site-c4475d593124b26a70cd",
+          "name": "AdaniConneX Noida data centre campus",
+          "distance_km": 1594.072
+        },
+        {
+          "site_id": "vcc-site-c7ddba9644af8bc54913",
+          "name": "CtrlS Noida Datacenter (Sector 127)",
+          "distance_km": 1599.247
+        },
+        {
+          "site_id": "vcc-site-eb73e734b6b086a24061",
+          "name": "STT Jaipur Sitapura Data Centre",
+          "distance_km": 1726.315
+        }
+      ],
+      "distinctness_review": "Reviewed all five selected dataset tables (sites, projects, evidence, source-records and identity-mapping) for TAS-1, Tashkent, Uzbekistan, Cyrillic Tashkent and DataVolt. The only existing DataVolt site is Oxagon in Saudi Arabia. There is no existing Uzbekistan record. Checked all tracked holds: this resolves the Tashkent status and locator hold in the thirty-first review, carried into the thirty-fourth. It is distinct from the announced New Tashkent and Bukhara developments; only the named IT Park site is admitted. Other concurrent regional packets cover different countries.",
+      "successor_review": "Checked the operator and ministry reports through 28 October 2026, including the ministry meeting of 16 October and its government republication of 19 October. Both discuss preparations for commissioning and opening without reporting either achieved. No supported later opening, completion, pause or cancellation was found. The physical observation stays 16 October; forecast dates and republication are not status updates.",
+      "raw_source_policy": "All full publisher content stays ignored locally. Only compact facts, attribution, source URLs, hashes and review findings are published."
+    }
+  },
+  "capture_integrity": [
+    {
+      "id": "sea-p3-dlr-singapore-50mw-20260824",
+      "path": "local_data/country-research-global-2026-10-28-apac/raw/dlr-pr-singapore-50mw-20260824-canonical.html",
+      "sha256": "c5e4db4b354ce9fcee0bf365982496cf9ba9198618d723f44ec4ff985e812557",
+      "bytes": 280335
+    },
+    {
+      "id": "apac-20261028-dlr-singapore",
+      "path": "local_data/country-research-global-2026-10-28-apac/raw/dlr-singapore-metro.html",
+      "sha256": "64b7e7ccf39ce43f82f7af186635e1be71350f96c13c8c9154f8b5ec88df365c",
+      "bytes": 412370
+    },
+    {
+      "id": "apac-20261028-dlr-sin11",
+      "path": "local_data/country-research-global-2026-10-28-apac/raw/dlr-sin11.html",
+      "sha256": "500014a7bab0c9fbf250dce780903f3d7b22b8fff770e40a9e922fc4d272eaa2",
+      "bytes": 214559
+    },
+    {
+      "id": "apac-20261028-dlr-sin12",
+      "path": "local_data/country-research-global-2026-10-28-apac/raw/dlr-sin12.html",
+      "sha256": "25169727b6fe5f7dbdf5d607c146281467395aa4be5c0ea028f7b0e3f35588fe",
+      "bytes": 219749
+    },
+    {
+      "id": "apac-20261028-dlr-loyang-campus",
+      "path": "local_data/country-research-global-2026-10-28-apac/raw/dlr-loyang-opening.html",
+      "sha256": "71ef68014561df0da1821f684a7aff24b3e2cc8d84f8dabc65363e8863d31d29",
+      "bytes": 284917
+    },
+    {
+      "id": "apac-20261028-onemap-506756",
+      "path": "local_data/country-research-global-2026-10-28-apac/raw/onemap-506756.json",
+      "sha256": "7347dfd36be4a1a914a2aa49af5df3e28f78f20728af7a5e2278c4c6ffa61a61",
+      "bytes": 444
+    },
+    {
+      "id": "apac-20261028-onemap-508719",
+      "path": "local_data/country-research-global-2026-10-28-apac/raw/onemap-508719.json",
+      "sha256": "257d7fac5e0736c082ab564c72e9fc00197ce4170b83e00714db1c5ddf483534",
+      "bytes": 474
+    },
+    {
+      "id": "asia-pacific-p4-kdcreit-3q2026-portfolio-overview",
+      "path": "local_data/country-research-global-2026-10-28-apac/raw/keppel-q3-2026.pdf",
+      "sha256": "7904bd8a49f00c14b3b79e297df2ae0ef1ff5b20cea03a3ce24bed824df205d5",
+      "bytes": 2060244
+    },
+    {
+      "id": "asia-pacific-p4-kdcreit-ar2025-portfolio-addresses",
+      "path": "local_data/country-research-global-2026-10-28-apac/raw/keppel-ar2025.pdf",
+      "sha256": "445a8e655891d458559a6f4d91e6d3c9828d58c7d83ef9050468608fcd6ec7e3",
+      "bytes": 18033923
+    },
+    {
+      "id": "apac-20261028-keppel-gore",
+      "path": "local_data/country-research-global-2026-10-28-apac/raw/keppel-gore-hill.html",
+      "sha256": "be6719c62b4b9b19568c4618a3d5d44b50ee259a472b85d9993ef2d90d39dd50",
+      "bytes": 9056
+    },
+    {
+      "id": "apac-20261028-nsw-gore-address",
+      "path": "local_data/country-research-global-2026-10-28-apac/raw/nsw-gore-address.json",
+      "sha256": "aea7462e0dbe12bc1fb213ec501c9c55416c5c27e6f980dd2ed915d77712ee06",
+      "bytes": 327
+    },
+    {
+      "id": "apac-20261028-nsw-gore-s3-property",
+      "path": "local_data/country-research-global-2026-10-28-apac/raw/nsw-gore-and-s3-properties.json",
+      "sha256": "38012929f39a2c0ee96efd2e6e84020dad807a70450ec7a8fa0286aecc3dcffb",
+      "bytes": 1995
+    },
+    {
+      "id": "americas-20261028-claro-investment",
+      "path": "local_data/country-research-global-2026-10-28-americas/claro-investment-20260828.html",
+      "sha256": "40c03ed844f8c209581ac1f20ca3ba894d17c04fa0a33f749625942e1f291ceb",
+      "bytes": 511502
+    },
+    {
+      "id": "americas-20261028-capital-salud-triara-address",
+      "path": "local_data/country-research-global-2026-10-28-americas/capital-salud-triara-tender.pdf",
+      "sha256": "bc2874061be71b133bc948bed24f533c50448da0a8d278f669a709ddb44e2d93",
+      "bytes": 1919001
+    },
+    {
+      "id": "americas-20261028-claro-megacenter-address",
+      "path": "local_data/country-research-global-2026-10-28-americas/claro-sustainability2025.pdf",
+      "sha256": "021877a28c301ed6fdc7ddd8db281329b83fe4b1f04280b9c4347d27ec392664",
+      "bytes": 40414123
+    },
+    {
+      "id": "americas-20261028-claro-megacenter-modernisation",
+      "path": "local_data/country-research-global-2026-10-28-americas/claro-megacenter20251105.html",
+      "sha256": "babb0101bd97f2f66798279c3cc6d5d90c84f1f07070901df1ca2661f82d43db",
+      "bytes": 511362
+    },
+    {
+      "id": "americas-20261028-google-triara-point",
+      "path": "local_data/country-research-global-2026-10-28-americas/google-triara-map-results.txt",
+      "sha256": "f2161b5fa0fc08538b1d442494939365fbd95a6fb4a462abadbf1d627a1e3505",
+      "bytes": 14986
+    },
+    {
+      "id": "americas-20261028-google-megacenter-point",
+      "path": "local_data/country-research-global-2026-10-28-americas/google-megacenter-map-results.txt",
+      "sha256": "dcb9e80c1e4ee3159adf7dcd7d02705aafa92fb346f51af11739f0ce3d2b9fdb",
+      "bytes": 34044
+    },
+    {
+      "id": "americas-20261028-waze-megacenter-point",
+      "path": "local_data/country-research-global-2026-10-28-americas/waze-claro-medellin.html",
+      "sha256": "1fdaffabebf4b717729ba1047cc8fef73f1bec06dfaf97e315770ba15a9725d8",
+      "bytes": 95888
+    },
+    {
+      "id": "global-europe-20261028-hetzner-colocation",
+      "path": "local_data/country-research-global-2026-10-28-europe/hetzner-colocation.html",
+      "sha256": "63c5dd59279f04ac87f03497a99d63fbf0bdd5dbe5745bcf7e513ca691d5c30b",
+      "bytes": 151577
+    },
+    {
+      "id": "global-europe-20261028-hetzner-cloud-locations",
+      "path": "local_data/country-research-global-2026-10-28-europe/hetzner-cloud-locations.html",
+      "sha256": "03744b866cc6c1d3dd7841f370f17c19d1d81509e499368a4ba2acae2653eebe",
+      "bytes": 362519
+    },
+    {
+      "id": "global-europe-20261028-hel1-operation",
+      "path": "local_data/country-research-global-2026-10-28-europe/hetzner-status-hel1-objectstorage.html",
+      "sha256": "5264fd38933b8a797c0578d296c47e59cfa25d3d5e8b4a85def59d998c511911",
+      "bytes": 54324
+    },
+    {
+      "id": "global-europe-20261028-hel1-power",
+      "path": "local_data/country-research-global-2026-10-28-europe/hetzner-status-incident-hel1-dc7-ups.html",
+      "sha256": "1c5b83aebd922106c8118eb3ceb9db572f0a5246082389db2a93f0612739b90d",
+      "bytes": 47412
+    },
+    {
+      "id": "global-europe-20261028-fsn1-operation",
+      "path": "local_data/country-research-global-2026-10-28-europe/hetzner-status-fsn1-dc8-power.html",
+      "sha256": "4cf9b1a124a3c1679d73a3049eb312cf664f76d8e1218f8d7080da5b9f290f21",
+      "bytes": 47539
+    },
+    {
+      "id": "global-europe-20261028-nbg1-operation",
+      "path": "local_data/country-research-global-2026-10-28-europe/hetzner-status-nbg1-objectstorage.html",
+      "sha256": "fa7c8406b7f5bccf784bcc4367739e6fe73213c50aa148c09f7ae05c5dd3911a",
+      "bytes": 47590
+    },
+    {
+      "id": "global-europe-20261028-hetzner-status-index",
+      "path": "local_data/country-research-global-2026-10-28-europe/hetzner-status-index.html",
+      "sha256": "651f955c6f1c8c415da8a88bf7cb9e3c189d6cd1e77b9c0074a8b44d3435c2e3",
+      "bytes": 119163
+    },
+    {
+      "id": "global-europe-20261028-hetzner-pressroom",
+      "path": "local_data/country-research-global-2026-10-28-europe/hetzner-pressroom.html",
+      "sha256": "c8e550c22c3f843c6b9a70c67921422d2c056abc451fd242fc2211c558b033ca",
+      "bytes": 143280
+    },
+    {
+      "id": "global-europe-20261028-ryhti-address",
+      "path": "local_data/country-research-global-2026-10-28-europe/ryhti-address-tuusula-huurrekuja.json",
+      "sha256": "ad2abd95e32f9f4f4b9b4119e081dac81d6a5aa5d1dcfbb397639bfe9ac60613",
+      "bytes": 42974
+    },
+    {
+      "id": "global-europe-20261028-ryhti-buildings",
+      "path": "local_data/country-research-global-2026-10-28-europe/ryhti-buildings-tuusula-huurrekuja-10.json",
+      "sha256": "0194fe83198b31122a321308a9b08bbd906cd287dcf675db8e1ea3e4c36fd526",
+      "bytes": 53036
+    },
+    {
+      "id": "global-europe-20261028-osm-fsn1",
+      "path": "local_data/country-research-global-2026-10-28-europe/osm-way-606528332-full.xml",
+      "sha256": "5052e3bdfc9e63ca98d23224ffa02c2e87506f20036267ca1d6ca7b5cb4bc8fb",
+      "bytes": 9717
+    },
+    {
+      "id": "global-europe-20261028-osm-nbg1",
+      "path": "local_data/country-research-global-2026-10-28-europe/osm-way-723038882-full.xml",
+      "sha256": "36c6c375a894641791ee552c1fd50f12998777a617cfbc951c989d0fd7e602bc",
+      "bytes": 3621
+    },
+    {
+      "id": "global-europe-20261028-tydal-lease",
+      "path": "local_data/country-research-global-2026-10-28-europe/tydaldatacenter-2026-08-04-bitdeer-lease.html",
+      "sha256": "b9e77f280adc55a3c30a2955da2c111b8b32bd95b4f2c75e91c3b72a9312a31f",
+      "bytes": 207114
+    },
+    {
+      "id": "global-europe-20261028-tydal-plan",
+      "path": "local_data/country-research-global-2026-10-28-europe/tydal-kirkvollen-planprogram-07092026.pdf",
+      "sha256": "87ee068ab433a1d1993da8f1b53039050ea791a48f8f70e1ab22fc8bc86f7c81",
+      "bytes": 1589820
+    },
+    {
+      "id": "global-europe-20261028-tydal-cadastre",
+      "path": "local_data/country-research-global-2026-10-28-europe/geonorge-teig-tydal-181-189-wgs84.gml",
+      "sha256": "5f0da2fda18feb937b1a4f3de2539912d4197503bae0a821a38aaae9f679244f",
+      "bytes": 4611
+    },
+    {
+      "id": "global-europe-20261028-tydal-address",
+      "path": "local_data/country-research-global-2026-10-28-europe/geonorge-vegadresse-tydal-stugudalsvegen.gml",
+      "sha256": "0f6260239b5a17d3cdfe33a1a88c46809165d756ce4b8f7034b33e8d2ec167a6",
+      "bytes": 522886
+    },
+    {
+      "id": "global-20261028-uz-ministry-visit",
+      "path": "local_data/country-research-global-2026-10-28-central-asia/ministry-visit-20261016.html",
+      "sha256": "2195ca125e278139631f0bd38f536930c3b1f57267b1e27431e4e989c40bd910",
+      "bytes": 216165
+    },
+    {
+      "id": "global-20261028-uz-nts",
+      "path": "local_data/country-research-global-2026-10-28-central-asia/ebrd-nts.pdf",
+      "sha256": "714e983aed855776ab9d5ccc69a78f3cb7913824b788de634932971674ec2407",
+      "bytes": 6328533
+    },
+    {
+      "id": "global-20261028-uz-imagery",
+      "path": "local_data/country-research-global-2026-10-28-central-asia/itpark-esri.png",
+      "sha256": "5058b60a7047d2d139fb07741546a1751a1a3de1610f281b19cbab36ee267af9",
+      "bytes": 1113955
+    },
+    {
+      "id": "global-20261028-uz-imagery-extent",
+      "path": "local_data/country-research-global-2026-10-28-central-asia/itpark-esri-extent.json",
+      "sha256": "07d3d8cbeb5e0dc5fc0f79727bb02a429085a92ff8eb243833d251f7b59e5cc7",
+      "bytes": 419
+    },
+    {
+      "id": "global-20261028-uz-financing",
+      "path": "local_data/country-research-global-2026-10-28-central-asia/datavolt-financing.html",
+      "sha256": "2fdf1b8d4ed5ffcb1826767837eb03f4b40031c983ffe52e3fc3e293c604e0e7",
+      "bytes": 203917
+    },
+    {
+      "id": "global-20261028-uz-ebrd-project",
+      "path": "local_data/country-research-global-2026-10-28-central-asia/ebrd-project.html",
+      "sha256": "806539a6d743131714b0f6afe472d7d09ee39780b834e6d136877d7cb1c70123",
+      "bytes": 167986
+    },
+    {
+      "id": "global-20261028-uz-meeting-original",
+      "path": "local_data/country-research-global-2026-10-28-central-asia/ministry-meeting-20261016.html",
+      "sha256": "42e77a8f3a886fb4e32ec64981fe0d36bee2b474e82fb55c8d661d6f051ab0dc",
+      "bytes": 192216
+    },
+    {
+      "id": "global-20261028-uz-meeting-republication",
+      "path": "local_data/country-research-global-2026-10-28-central-asia/government-meeting-20261019.html",
+      "sha256": "1a960c084e79d8fa96d6fb7dd82ccfe2ff9acf69ad9aa1c2f0595a40c51989b8",
+      "bytes": 102912
+    }
+  ]
+}

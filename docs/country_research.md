@@ -1,8 +1,7 @@
 # Country research
 
-Prioritize **China and Japan** in the current continuation. The wider country sequence remains
-United States → China → United Kingdom → Germany → Japan. Give each contributor a bounded
-country pass using local primary sources. Each pass finds missing sites,
+Continue adding commercial data centres globally. Give each contributor a bounded
+regional pass using local primary sources. Each pass finds missing sites,
 checks later reports for existing sites and resolves known corrections. Share the same record
 format and check names and campus aliases across assignments before adding a site.
 
@@ -12,13 +11,13 @@ also places most large hyperscale locations in these two countries. [CBRE's UK o
 identifies the UK as Europe's largest commercial data-centre market. Operator filings and
 government records support individual records; market reports provide background.
 
-Before this pass, the Atlas held 66 US, one mainland China, five UK, 17 German and two Japanese
+Before the initial country pass, the Atlas held 66 US, one mainland China, five UK, 17 German and two Japanese
 sites. These are Atlas coverage counts, not national totals. China and Japan need considerably
 more local-language research.
 
 ## Coverage and updates
 
-Prioritize new commercial data centres in China and Japan. Future passes set standalone university
+Prioritize new commercial data centres globally. Future passes set standalone university
 and institutional supercomputer leads aside; existing institutional records remain in the Atlas.
 Small experimental installations used only to demonstrate or test equipment are outside the Atlas
 scope. Shinkiba's MIRAIT ONE test container is excluded on that basis; this does not imply a change
@@ -35,6 +34,24 @@ and retain its earlier evidence. New admissions need a sourced site location and
 from the 90 days before the data update. Review later reports and keep the date the evidence
 actually supports; a new research pass does not make an old observation current. Publish supported
 additions and updates as they are ready.
+
+`verified_construction_core/2026-10-28-research-hundredthird` adds nine sites and nine projects:
+**847 sites and 915 projects in 64 countries**. Uzbekistan enters the Atlas through DataVolt
+TAS-1 at Tashkent IT Park, with power and cooling installation reported on 16 October. Its
+environmental plan identifies the data-centre plot; a reviewed point is derived from that plan
+and georeferenced imagery, with unknown positional accuracy and no surveyed-boundary claim.
+
+The other additions are Digital Realty's shared SIN11/SIN12 Loyang campus, Keppel Gore Hill in
+Artarmon, Hetzner's Tuusula, Falkenstein and Nuremberg campuses, Bitdeer's announced Tydal AI/HPC
+conversion, and Claro's announced expansions at Triara Funza and Megacenter Medellín. Loyang's
+two buildings count as one site. Gore Hill is a separate property from NEXTDC S3. The three
+announced projects do not imply new sites physically under construction or completed capacity.
+
+All 838 earlier sites, 906 projects and 4,753 evidence records remain. Status ages advance with
+the review date; observation dates stay fixed. Three reused evidence records gain links to new
+projects, while the imported source snapshot and identity mapping remain byte-identical.
+Every regional packet received an independent review before integration; source hashes,
+geometry scope, unresolved holds and review findings accompany the update.
 
 Retention does not reverse corrections to unsupported claims. The removed Scala records stay
 removed unless new primary evidence supports their identity, location and status. A withdrawal
