@@ -35,6 +35,48 @@ from the 90 days before the data update. Review later reports and keep the date 
 actually supports; a new research pass does not make an old observation current. Publish supported
 additions and updates as they are ready.
 
+`verified_construction_core/2026-10-29-research-hundredtwelfth` adds eleven sites and eleven projects:
+**911 sites and 979 projects in 85 countries**. The additions are Lightedge Altoona DSM1/DSM2,
+DC BLOX Atlanta West, and 365 Data Centers Fort Lauderdale, Detroit/Southfield and Commack in
+the United States; NorthC Munich 1 and DMO Greven in Germany; Netwise London East in the
+United Kingdom; STT Singapore 5 Tai Seng in Singapore; and Arise IDC North Muangthong and
+East Bangna in Thailand.
+
+Ten projects record existing commercial operations. DC BLOX ATL1-B remains under construction
+on the September 9 contractor tour report; historical move-in forecasts do not establish
+completion. The original operator plan joins ATL1-A and ATL1-B at Atlanta West. Lightedge's
+adjacent DSM1 and DSM2 buildings form one campus. Its September 11 inspection report is
+attributed to the economic-development corporation that conducted it, with its prospective
+Boone project role distinguished from the Altoona operator.
+
+The original 365/Megaport joint release explicitly reports completed deployments and current
+customer access at the named physical hosts. Its future aggregate footprint is not recorded
+as achieved. Native facility points match the operator's exact street addresses, with the
+Detroit postal-code discrepancy disclosed. Network equipment and Commack's internal pods
+do not add separate sites. DMO and Netwise have first-party tenant reports of their own
+physical hosting; those tenants and their cloud services are not additional campuses.
+
+NorthC Munich 1 uses the coordinate explicitly selected in the operator's directions PDF.
+The broader airport address is excluded for DMO Greven. STT Singapore 5 is the underlying
+commercial host of its AI tenant. Arise's current physical-host identities scope its September
+26 incident report to two existing campuses. An employer-attributed worksite listing supplies
+only the North campus alias and exact address; recruitment does not establish physical status.
+Broad native Google categories are disclosed, and alternative points, headquarters, developing
+North 2 and EEC sites remain excluded.
+
+All 900 prior site rows, 968 project rows and 5,012 evidence rows remain unchanged. Forty-four
+evidence records are added and shared only with their intended projects. Both imported JSON
+snapshots remain byte-identical. The eleven addition objects and 44 source objects retain the
+final contents of six independently reviewed regional packets. The earlier five-campus preview
+and all its source, action and review files remain unchanged.
+
+Forty-two selected sources preserve exact response bytes. Two status sources retain complete
+original-page tool text with explicit representation provenance and hash scopes; neither is
+labelled publisher HTTP response bytes. Raw publisher material remains excluded from Git.
+Unknown positional accuracy is retained. No capacity, occupancy, measured load, current
+certificate validity, new commissioning date or surveyed boundary is inferred. Historical
+data and unresolved holds remain unchanged.
+
 `verified_construction_core/2026-10-29-research-hundredeleventh` adds nine sites and nine projects:
 **900 sites and 968 projects in 85 countries**. Belgium enters through Penta Infra BRU01 Zellik
 and LCL Brussels-North Diegem, Botswana through Digital Delta Gaborone, Costa Rica through

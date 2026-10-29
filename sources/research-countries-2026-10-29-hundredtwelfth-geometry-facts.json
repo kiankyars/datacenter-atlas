@@ -1,0 +1,471 @@
+{
+  "reviewed_at": "2026-10-29",
+  "regional_packets": {
+    "americas14": {
+      "path": "local_data/country-research-global-2026-10-29-americas14/geometry-facts.json",
+      "sha256": "bb46d4c811485ac1d6e5cf145e492276e41ef0d8cdc4769cbde97235573c1607",
+      "content": {
+        "review_date": "2026-10-29",
+        "facilities": [
+          {
+            "site_name": "Lightedge Altoona DSM1/DSM2 Campus",
+            "locator": {
+              "scope": "campus_locator",
+              "geometry": {
+                "type": "Point",
+                "coordinates": [
+                  -93.455725,
+                  41.666762
+                ]
+              },
+              "source_id": "americas14-20261029-lightedge-point",
+              "identity_source_ids": [
+                "americas14-20261029-lightedge-identity",
+                "americas14-20261029-lightedge-campus-history"
+              ],
+              "scope_class": "native_named_facility_point",
+              "authority": "compiled_reference",
+              "derivation": "direct_geometry",
+              "method": "native_PeeringDB_4547_named_Lightedge_DSM2_facility",
+              "precision": "Named physical facility/campus anchor; no surveyed footprint or phase boundary.",
+              "horizontal_uncertainty_metres": null,
+              "uncertainty_reason": "Source supplies no quantitative ground accuracy. Decimal precision is not surveyed accuracy.",
+              "identity_review": "The exact PDB 4547 facility name, operator URL and 1401 address match official DSM2. The operator’s historical adjacent-building statement unifies DSM1 and DSM2. DSM1’s PDB 4546 point is about 102 metres away on the same campus, not a second site. Nested organization addresses and address-only Google features are excluded."
+            },
+            "geometry_license": "all-rights-reserved",
+            "geometry_attribution": "PeeringDB",
+            "raw_native_path": "data[0].longitude/latitude",
+            "independent_identity": "The exact PDB 4547 facility name, operator URL and 1401 address match official DSM2. The operator’s historical adjacent-building statement unifies DSM1 and DSM2. DSM1’s PDB 4546 point is about 102 metres away on the same campus, not a second site. Nested organization addresses and address-only Google features are excluded."
+          },
+          {
+            "site_name": "DC BLOX Atlanta West Campus",
+            "locator": {
+              "scope": "campus_locator",
+              "geometry": {
+                "type": "Point",
+                "coordinates": [
+                  -84.61522599999999,
+                  33.73398600000001
+                ]
+              },
+              "source_id": "americas14-20261029-dcblox-west-point",
+              "identity_source_ids": [
+                "americas14-20261029-dcblox-west-code-bridge"
+              ],
+              "scope_class": "operator_published_named_facility_point",
+              "authority": "official_source",
+              "derivation": "direct_geometry",
+              "method": "operator_published_Atlanta_West_LocalBusiness_GeoCoordinates",
+              "precision": "Named physical facility/campus anchor; no surveyed footprint or phase boundary.",
+              "horizontal_uncertainty_metres": null,
+              "uncertainty_reason": "Source supplies no quantitative ground accuracy. Decimal precision is not surveyed accuracy.",
+              "identity_review": "The official facility JSON-LD name and address connect the exact point to Atlanta West. Page 3 of the original operator brochure explicitly links ATL1-A and ATL1-B to the same 1701 North River address. Campus geometry does not locate an individual building. The older ATL1 at 6 West Druid Hills is a separate regional facility and is excluded. Flexential at 1700/1750 North River is a nearby campus with a different operator and address."
+            },
+            "geometry_license": "all-rights-reserved",
+            "geometry_attribution": "DC BLOX",
+            "raw_native_path": "JSON-LD @graph named LocalBusiness/Place #local-branch-organization.geo",
+            "independent_identity": "The official facility JSON-LD name and address connect the exact point to Atlanta West. Page 3 of the original operator brochure explicitly links ATL1-A and ATL1-B to the same 1701 North River address. Campus geometry does not locate an individual building. The older ATL1 at 6 West Druid Hills is a separate regional facility and is excluded. Flexential at 1700/1750 North River is a nearby campus with a different operator and address."
+          }
+        ],
+        "visual_review": {
+          "source": "raw/dcblox-west-plan.pdf",
+          "page": 3,
+          "render": "raw/dcblox-west-plan-page3.png",
+          "finding": "Atlanta West (ATL1), ATL1-A/B and the 1701 North River address are printed on the same page. This is historical identity context only; no geometric inference is made from the plan image."
+        },
+        "excluded_points": [
+          "Lightedge nested organization postal address; Google street-address-only features",
+          "Older DC BLOX ATL1 at 6 West Druid Hills",
+          "Flexential 1700/1750 North River separate campus",
+          "Undated photo filenames are not lifecycle evidence"
+        ]
+      }
+    },
+    "europe9": {
+      "path": "local_data/country-research-global-2026-10-29-europe9/geometry-facts.json",
+      "sha256": "cb589252fcee5a77c103fa5349e43afd688f3749a50340e1f3a683bfefd537d5",
+      "content": {
+        "reviewed_at": "2026-10-29",
+        "facilities": [
+          {
+            "candidate": "NorthC Munich 1 Balan Campus",
+            "point": [
+              11.6021667,
+              48.119
+            ],
+            "source_file": "local_data/country-research-global-2026-10-29-europe9/raw/northc-directions.pdf",
+            "source_sha256": "771d89b812eb94ce14b9fe373f4b4307afa35d8f49b6ca7728eaa9d30b823503",
+            "native_path": "PDF object62 /URI action attached to Plan Your Trip link",
+            "literal_uri": "https://www.google.nl/maps/place/48°07'08.4%22N+11°36'07.8%22E/@48.119,11.6021667,769m/data=!3m2!1e3!4b1!4m4!3m3!8m2!3d48.119!4d11.6021667?entry=ttu",
+            "coordinate_fields": "!3d48.119!4d11.6021667; DMS48°07'08.4N11°36'07.8E also agrees",
+            "authority": "official_source",
+            "derivation": "direct_geometry",
+            "scope": "campus_locator",
+            "accuracy": null,
+            "identity": "Official named facility, Balanstrasse73 Haus23 and Munich1 page. PDF diagram separately labels facility, access and parking; no coordinate obtained by fitting that diagram.",
+            "excluded": [
+              {
+                "source": "PeeringDB1373",
+                "point": [
+                  11.601931,
+                  48.117498
+                ],
+                "reason": "Conflicts with direct operator-selected point; identity only."
+              },
+              {
+                "source": "Google native NorthC Datacenters München feature",
+                "point": [
+                  11.6019142,
+                  48.119048799999995
+                ],
+                "feature_id": "0x479ddf9b8659de2d:0xfbed77c71f081ab7",
+                "reason": "Nearby official-domain native feature is corroborative only; computer-support category retained, not described as a data-centre category. No Google geometry used."
+              },
+              {
+                "source": "Nürnberg organisation headquarters",
+                "reason": "Different city and organisation subrecord; excluded."
+              }
+            ]
+          },
+          {
+            "candidate": "Netwise London East (NLE)",
+            "point": [
+              -0.00121,
+              51.520561
+            ],
+            "source_file": "local_data/country-research-global-2026-10-29-europe9/raw/netwise-pdb8983.json",
+            "source_sha256": "2040855408d9571512f8cb2deec877f944269c9dbb6592691c02771015c246d5",
+            "native_path": "data[0].longitude and data[0].latitude; facility id8983",
+            "name": "Netwise London East (NLE)",
+            "website": "https://www.netwise.co.uk/data-centres/london-east",
+            "address": [
+              "Unit 6 Datapoint Business Centre",
+              "South Crescent",
+              "Canning Town",
+              "London",
+              "E16 4TL"
+            ],
+            "authority": "compiled_reference",
+            "derivation": "direct_geometry",
+            "scope": "campus_locator",
+            "accuracy": null,
+            "identity": "Official Netwise London East facility page directly matches name, Unit6Datapoint and E164TL. Tenant original directly links the same facility page.",
+            "excluded": [
+              {
+                "source": "Google native Netwise feature",
+                "point": [
+                  -0.0009279,
+                  51.5205552
+                ],
+                "reason": "Corroborative nearby exact facility-address/official-domain feature, ISP category retained. No Google geometry used."
+              },
+              {
+                "source": "PeeringDB organisation Netwise House /24OldJamaicaRoad /Bermondsey and LondonCentral4231",
+                "reason": "Separate organisation office/older campus. Not selected facility geometry or fresh status."
+              },
+              {
+                "source": "LumaDock London cloud service/company office",
+                "reason": "Hosted tenant service and administrative location, not separate physical campus."
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "apac16": {
+      "path": "local_data/country-research-global-2026-10-29-apac16/geometry-facts.json",
+      "sha256": "72371f7f792dec57dc101d35c1054cbc86441f4499963daf91db61db0d4c0e5d",
+      "content": {
+        "facility": "STT Singapore5 Tai Seng",
+        "native_path": [
+          64,
+          0,
+          1
+        ],
+        "native_name": "STT Singapore 5",
+        "feature_id": "0x31da178d5ec973b1:0x41d959cb64143e39",
+        "place_id": "ChIJsXPJXo0X2jEROT4UZMtZ2UE",
+        "point": [
+          103.8902246,
+          1.3353439999999999
+        ],
+        "native_category": [
+          "Yrityksen toimisto"
+        ],
+        "category_translation": "Corporate office",
+        "native_address": "35 Tai Seng St, STT Singapore 5, Singapore 534103",
+        "native_website": [
+          "/url?q=http://www.sttelemediagdc.com/&opi=79508299&sa=U&ved=2ahUKEwj16eOv9d2XAxWQUFUIHWXrDWIQ61goDXoECAMQGw&usg=AOvVaw0WUXXXvcE9UdjwRLyCcPK2",
+          "sttelemediagdc.com",
+          null,
+          "2ahUKEwj16eOv9d2XAxWQUFUIHWXrDWIQ61goDXoECAMQGw"
+        ],
+        "primary_identity": "Operator-linked factsheet page 2: purpose-built six-storey data centre at 35 Tai Seng Street, Singapore 534103; page 1 STT Singapore 5. Both pages visually inspected.",
+        "pdb4257_point": [
+          103.890225,
+          1.335367
+        ],
+        "pdb_to_selected_metres": 2.557873371630125,
+        "selected_geometry": "Google named facility only",
+        "horizontal_uncertainty_metres": null,
+        "excluded": [
+          "Google corporate headquarters 3 Temasek Ave[103.8602054, 1.2934578]",
+          "Nested PeeringDB organization headquarters",
+          "Google viewport",
+          "AI Innovation Centre as separate physical site"
+        ],
+        "license": "proprietary",
+        "attribution": "Google Maps"
+      }
+    },
+    "europe10": {
+      "path": "local_data/country-research-global-2026-10-29-europe10/geometry-facts.json",
+      "sha256": "e31f0961a27a65abcc5d936d313c25f3773c07da8dee425411d092affb8db0dd",
+      "content": {
+        "reviewed_at": "2026-10-29",
+        "selected": {
+          "point": [
+            7.700174,
+            52.13129
+          ],
+          "native_path": "PeeringDB API data[0].longitude and latitude, facility id 15988",
+          "name": "DMO - Datacenter Münster Osnabrück (DMO1)",
+          "address": "Hüttruper Heide 91",
+          "website": "https://www.dmo.de/",
+          "raw_sha256": "736714d37806865fed30a5bda13f36d257eabc6be75e0dba50d34eb86f166ca0",
+          "authority": "compiled_reference",
+          "derivation": "direct_geometry",
+          "license": "all-rights-reserved",
+          "attribution": "PeeringDB",
+          "scope": "campus_locator",
+          "horizontal_accuracy": null
+        },
+        "primary_identity": [
+          "Original DMO facility page footer: Hüttruper Heide 91, 48268 Greven",
+          "Original DMO contact: identical exact company/facility address"
+        ],
+        "corroborative_google": {
+          "native_path": "data[0][1][0][14]",
+          "name": "DMO GmbH",
+          "feature_id": "0x47b9c70038e45d17:0xb821b988ac62bc40",
+          "point": [
+            7.7001176,
+            52.131271299999995
+          ],
+          "categories": [
+            "Datakeskus"
+          ],
+          "category_translation": "Data centre",
+          "address": "DMO GmbH, Hüttruper Heide 91, 48268 Greven, Saksa",
+          "website": [
+            "/url?q=https://www.dmo.de/&opi=79508299&sa=U&ved=2ahUKEwjCrYKp-d2XAxXnGhAIHWwVLdQQ61goEHoECAMQFg&usg=AOvVaw3xHKA9VhBGVCpKAxL4y8UL",
+            "dmo.de",
+            null,
+            "2ahUKEwjCrYKp-d2XAxXnGhAIHWwVLdQQ61goEHoECAMQFg"
+          ],
+          "geometry_selected": false
+        },
+        "excluded": [
+          "Airportallee 1 airport-wide postal/event address",
+          "Nested TKRZ organisation headquarters",
+          "Google point from selected geometry",
+          "SIEVERS tenant office and cloud-service hostname",
+          "Individual module and future solar plant"
+        ]
+      }
+    },
+    "americas15": {
+      "path": "local_data/country-research-global-2026-10-29-americas15/geometry-facts.json",
+      "sha256": "0a0fcf50a0043e779a0bdb591b090e41c27ecff1ada5c5d4a48f1ffc388e8f6a",
+      "content": {
+        "review_date": "2026-10-29",
+        "facilities": [
+          {
+            "site_name": "365 Data Centers Fort Lauderdale FLL",
+            "locator": {
+              "scope": "campus_locator",
+              "geometry": {
+                "type": "Point",
+                "coordinates": [
+                  -80.190819,
+                  26.184971
+                ]
+              },
+              "source_id": "americas15-20261029-ftl-point",
+              "identity_source_ids": [
+                "americas15-20261029-ftl-identity"
+              ],
+              "scope_class": "native_named_facility_point",
+              "authority": "compiled_reference",
+              "derivation": "direct_geometry",
+              "method": "native_PeeringDB_605_named_facility",
+              "precision": "Exact named physical facility anchor; not a surveyed boundary, parcel centroid or individual tenant location.",
+              "horizontal_uncertainty_metres": null,
+              "uncertainty_reason": "Native source supplies no quantitative ground accuracy. Decimal precision is not surveyed accuracy.",
+              "identity_review": "Facility-level name, street address and operator URL match the original operator page. The selected point is data[0].longitude/latitude; the nested Norwalk organization point is excluded. The native facility notes identify the former Cybergate/eSpire/Affinity, Hostway and Host.net facility. These are historical aliases of this physical host, not additional campuses."
+            },
+            "native_json_path": "data[0].longitude and data[0].latitude",
+            "geometry_license": "all-rights-reserved",
+            "geometry_attribution": "PeeringDB"
+          },
+          {
+            "site_name": "365 Data Centers Detroit DT1 Southfield",
+            "locator": {
+              "scope": "campus_locator",
+              "geometry": {
+                "type": "Point",
+                "coordinates": [
+                  -83.259651,
+                  42.469879
+                ]
+              },
+              "source_id": "americas15-20261029-detroit-point",
+              "identity_source_ids": [
+                "americas15-20261029-detroit-identity"
+              ],
+              "scope_class": "native_named_facility_point",
+              "authority": "compiled_reference",
+              "derivation": "direct_geometry",
+              "method": "native_PeeringDB_2021_named_facility",
+              "precision": "Exact named physical facility anchor; not a surveyed boundary, parcel centroid or individual tenant location.",
+              "horizontal_uncertainty_metres": null,
+              "uncertainty_reason": "Native source supplies no quantitative ground accuracy. Decimal precision is not surveyed accuracy.",
+              "identity_review": "Facility-level name, street address and operator URL match the original operator page. The selected point is data[0].longitude/latitude; the nested Norwalk organization point is excluded. The operator explicitly calls this a standalone facility in Southfield serving Detroit. Native notes identify the former Switch & Data/Equinix facility. The native postal code is 48034 while the operator prints 48033; the identical street number, road, city, facility name and operator URL establish identity. The operator address governs the display."
+            },
+            "native_json_path": "data[0].longitude and data[0].latitude",
+            "geometry_license": "all-rights-reserved",
+            "geometry_attribution": "PeeringDB"
+          },
+          {
+            "site_name": "365 Data Centers Commack CNY",
+            "locator": {
+              "scope": "campus_locator",
+              "geometry": {
+                "type": "Point",
+                "coordinates": [
+                  -73.291647,
+                  40.822677
+                ]
+              },
+              "source_id": "americas15-20261029-commack-point",
+              "identity_source_ids": [
+                "americas15-20261029-commack-identity"
+              ],
+              "scope_class": "native_named_facility_point",
+              "authority": "compiled_reference",
+              "derivation": "direct_geometry",
+              "method": "native_PeeringDB_8517_named_facility",
+              "precision": "Exact named physical facility anchor; not a surveyed boundary, parcel centroid or individual tenant location.",
+              "horizontal_uncertainty_metres": null,
+              "uncertainty_reason": "Native source supplies no quantitative ground accuracy. Decimal precision is not surveyed accuracy.",
+              "identity_review": "Facility-level name, street address and operator URL match the original operator page. The selected point is data[0].longitude/latitude; the nested Norwalk organization point is excluded. The native facility notes identify the former mindSHIFT facility. The operator describes two pods within this one facility; neither pod nor the hosted Megaport deployment creates another site."
+            },
+            "native_json_path": "data[0].longitude and data[0].latitude",
+            "geometry_license": "all-rights-reserved",
+            "geometry_attribution": "PeeringDB"
+          }
+        ],
+        "excluded_geometry": "All nested organization points at Norwalk are excluded. No municipality, headquarters, office, viewport or generic postal coordinate is used.",
+        "address_limitations": "Detroit native postal code 48034 differs from operator 48033, but exact 24660 Lahser Road and Southfield identity match. No quantitative positional accuracy is supplied."
+      }
+    },
+    "apac17": {
+      "path": "local_data/country-research-global-2026-10-29-apac17/geometry-facts.json",
+      "sha256": "948cc7622650dbcad6e4127369139534ac3b888b30c25fb7e3e637939abda76d",
+      "content": {
+        "facilities": [
+          {
+            "campus": "north",
+            "native_path": [
+              0,
+              1,
+              1,
+              14
+            ],
+            "feature_id": "0x30e2a29b405aa8f3:0xe855ed4315ba4f5c",
+            "name": "Arise IDC - BKK North 1",
+            "point": [
+              100.54966789999999,
+              13.911273699999999
+            ],
+            "category": [
+              "Yritys"
+            ],
+            "category_translation": "Company",
+            "address": "3 Popular Rd, Tambon Ban Mai, Pak Kret District, Nonthaburi 11120, Thaimaa",
+            "website": [
+              "/url?q=https://www.ariseidc.com/&opi=79508299&sa=U&ved=2ahUKEwii0Ize-t2XAxX8KRAIHalUAvQQ61goE3oECAMQHA&usg=AOvVaw0POLYbMH7D0u8O3fzkHV9-",
+              "ariseidc.com",
+              null,
+              "2ahUKEwii0Ize-t2XAxX8KRAIHalUAvQQ61goE3oECAMQHA"
+            ],
+            "place_id": "ChIJ86haQJui4jARXE-6FUPtVeg",
+            "geometry_source": "Google Maps native named facility feature",
+            "license": "proprietary",
+            "attribution": "Google Maps",
+            "accuracy_metres": null,
+            "excluded_peeringdb": {
+              "id": 6323,
+              "point": [
+                100.550092,
+                13.911017
+              ],
+              "distance_metres": 53.94505255588739,
+              "reason": "Alternate address/point is not used. No equivalence inferred solely from proximity."
+            },
+            "identity_review": "Current operator physical DR host North Muangthong is explicitly equated with Arise IDC - BKK North 1 in the employer-attributed on-site data-centre vacancy. Its 3 Popular Road worksite exactly matches the native map name, address and official operator domain. Recruiter Empire Tower office is excluded. PeeringDB 6323 alternate 47/553 New Geneva/Bangkok Land address is not needed and is excluded from selected identity/geometry; no address equivalence is inferred from proximity."
+          },
+          {
+            "campus": "east",
+            "native_path": [
+              64,
+              0,
+              1
+            ],
+            "feature_id": "0x311d449e362dccdd:0x5c26c9bb2d72eb7c",
+            "name": "True idc east bangna",
+            "point": [
+              100.82364439999999,
+              13.583414
+            ],
+            "category": [
+              "Yrityksen toimisto"
+            ],
+            "category_translation": "Corporate office",
+            "address": "Bang Sao Thong, Bang Sao Thong District, Samut Prakan 10540, Thaimaa",
+            "website": [
+              "/url?q=https://www.trueidc.com/th/news-detail/56/TrueIDC-%25E0%25B9%2580%25E0%25B8%259B%25E0%25B8%25B4%25E0%25B8%2594%25E0%25B8%2595%25E0%25B8%25B1%25E0%25B8%25A7-Data-Center-%25E0%25B9%2581%25E0%25B8%25AB%25E0%25B9%2588%25E0%25B8%2587%25E0%25B9%2583%25E0%25B8%25AB%25E0%25B8%25A1%25E0%25B9%2588-True-IDC--East-Bangna-%25E0%25B8%25A5%25E0%25B9%2589%25E0%25B8%25B3%25E0%25B8%25AB%25E0%25B8%2599%25E0%25B9%2589%25E0%25B8%25B2%25E0%25B8%2594%25E0%25B9%2589%25E0%25B8%25A7%25E0%25B8%25A2%25E0%25B8%25A1%25E0%25B8%25B2%25E0%25B8%2595%25E0%25B8%25A3%25E0%25B8%2590%25E0%25B8%25B2%25E0%25B8%2599%25E0%25B8%25A3%25E0%25B8%25B0%25E0%25B8%2594%25E0%25B8%25B1%25E0%25B8%259A%25E0%25B9%2582%25E0%25B8%25A5%25E0%25B8%2581&opi=79508299&sa=U&ved=2ahUKEwizrNrh-d2XAxUqAhAIHeHQG9kQ61goEHoECAMQGA&usg=AOvVaw21CVtCVAWtCf8zo9JulmWf",
+              "trueidc.com",
+              null,
+              "2ahUKEwizrNrh-d2XAxUqAhAIHeHQG9kQ61goEHoECAMQGA"
+            ],
+            "place_id": "ChIJ3cwtNp5EHTERfOtyLbvJJlw",
+            "geometry_source": "Google Maps native named facility feature",
+            "license": "proprietary",
+            "attribution": "Google Maps",
+            "accuracy_metres": null,
+            "excluded_peeringdb": {
+              "id": 6320,
+              "point": [
+                100.818738,
+                13.591247
+              ],
+              "distance_metres": 1019.7265186769655,
+              "reason": "Alternate address/point is not used. No equivalence inferred solely from proximity."
+            },
+            "identity_review": "Current operator page explicitly names East Bangna as its physical data-centre DR host; the dated operator post identifies Arise as formerly True IDC. Native exact True idc east bangna feature links to the official East Bangna data-centre opening page, distinguishing the named campus from corporate headquarters. Broad corporate-office category is disclosed. PeeringDB 6320 conflicting point and address are excluded from selected geometry/identity; no location is inferred from the district or a road midpoint."
+          }
+        ],
+        "separate_campuses_distance_metres": 46954.85524610846,
+        "excluded": [
+          "True Digital Park corporate headquarters",
+          "Empire Tower recruiter office",
+          "North 2 / BKN2 future campus",
+          "ECC1 and ECS1 future campuses",
+          "PeeringDB alternate coordinates",
+          "Google viewports and unrelated nearby facilities"
+        ]
+      }
+    }
+  }
+}
