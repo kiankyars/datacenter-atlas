@@ -35,6 +35,41 @@ from the 90 days before the data update. Review later reports and keep the date 
 actually supports; a new research pass does not make an old observation current. Publish supported
 additions and updates as they are ready.
 
+`verified_construction_core/2026-10-29-research-hundredsixteenth` adds four sites and four projects:
+**928 sites and 996 projects in 85 countries**. The additions are MK Netzdienste FRA2 in Frankfurt,
+Germany; Patmos KC1 Tracy Avenue in Kansas City, United States; Datacentre220 in Auckland,
+New Zealand; and Rack Centre's Jagal Close campus in Lagos, Nigeria. Each records an existing
+commercial operation.
+
+MK uses xTom's original September 29 report of an opened node at Wilhelm-Fay-Straße 23. The
+original tenant facility list directly links the exact native PeeringDB host, and MK identifies
+its Frankfurt facility as FRA2. Buildings 1 and 2 form one campus, separate from nearby Colt.
+The operator's August account and October republication retain their explicit 2025 work chronology.
+
+Patmos's October 11 incident reports restored power and all affected servers powered back on at
+KC1 Tracy Avenue. Its acquisition history and KCIX's own internal cross-connect listing identify
+the former Joe's Datacenter at 1325 Tracy Avenue. The root-cause report supersedes the initial
+backup-system statement; corrective maintenance remains ongoing and testing prospective. KC2 at
+McGee Street is a separate campus despite the native database's organizational grouping.
+
+DC220 uses the original September 10 supplier account of hardware and customer operations inside
+the named host. The operator's contact page explicitly combines First Floor, 220 Queen Street with
+customer-equipment access, matching the native facility record. The report date does not invent
+an installation or interview day. No video or audio was used to establish the observation.
+
+Rack Centre's October 15 original post reports commenced internships in a live data-centre
+environment. Its original specification sheet gives the exact Plot 18 Jagal Close campus address
+and DMS coordinate, visually verified and converted arithmetically. The internship start day and
+individual LGS1/LGS2 building are unstated. Historical brochure construction labels and later
+marketing do not establish new commissioning or operating expansion capacity.
+
+All 924 prior sites, 992 projects and 5,109 evidence records remain unchanged. Twenty-two evidence
+records and exact source/project associations are added; both imported JSON snapshots remain
+byte-identical. Three native facility points and one operator-published coordinate retain licensing,
+attribution and unknown positional accuracy. Raw publisher material stays outside Git. No new
+opening, capacity, current certification guarantee, whole-building ownership or surveyed boundary
+is inferred. Historical data and unresolved holds remain unchanged.
+
 `verified_construction_core/2026-10-29-research-hundredfifteenth` adds two sites and two projects:
 **924 sites and 992 projects in 85 countries**. The additions are nexspace Graz GRZ1 in Austria
 and Liquid Web Lansing DC3 in the United States.
