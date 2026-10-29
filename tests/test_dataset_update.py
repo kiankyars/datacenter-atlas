@@ -15,12 +15,8 @@ import unittest
 from unittest.mock import patch
 from uuid import NAMESPACE_URL, uuid5
 
-try:
-    from datacenter_atlas.dataset_update import ROOT, UpdateError, build_update, update_payloads, validate_update
-    from datacenter_atlas import models, public_site
-except ImportError:
-    from datacenter_atlas.datacenter_atlas.dataset_update import ROOT, UpdateError, build_update, update_payloads, validate_update
-    from datacenter_atlas.datacenter_atlas import models, public_site
+from datacenter_atlas.dataset_update import ROOT, UpdateError, build_update, update_payloads, validate_update
+from datacenter_atlas import models, public_site
 
 
 BASE = ROOT / "verified_construction_core/2026-08-20-v0.18-draft-thirty-seventh-reviewed"

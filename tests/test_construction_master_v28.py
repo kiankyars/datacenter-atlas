@@ -9,13 +9,13 @@ import tempfile
 import unittest
 
 try:
-    from datacenter_atlas.datacenter_atlas import construction_master_v12 as master
+    from datacenter_atlas import construction_master_v12 as master
     from datacenter_atlas import construction_master_v12 as shim
 except ModuleNotFoundError:
     from datacenter_atlas import construction_master_v12 as master
     import construction_master_v12 as shim
 
-from datacenter_atlas.datacenter_atlas.open_seed_v56 import tree_digest
+from datacenter_atlas.open_seed_v56 import tree_digest
 
 
 ROOT = Path(__file__).resolve().parents[1]

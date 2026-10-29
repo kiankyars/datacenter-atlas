@@ -22,7 +22,7 @@ from datacenter_atlas.osm_construction import (
     osmium_filter_expressions,
 )
 from datacenter_atlas.osm_planet import PlanetMaterializationError, parse_osm_xml
-from datacenter_atlas.scripts import extract_osm_planet_construction
+from scripts import extract_osm_planet_construction
 
 
 FIXTURE_XML = b"""<?xml version='1.0' encoding='UTF-8'?>

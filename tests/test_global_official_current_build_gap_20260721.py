@@ -7,14 +7,10 @@ import stat
 import tempfile
 import unittest
 
-try:
-    from datacenter_atlas.datacenter_atlas import (
-        global_official_current_build_gap_20260721 as gap,
-    )
-    from datacenter_atlas.datacenter_atlas.open_seed_v56 import tree_digest
-except ModuleNotFoundError:  # pragma: no cover
-    from datacenter_atlas import global_official_current_build_gap_20260721 as gap
-    from datacenter_atlas.open_seed_v56 import tree_digest
+from datacenter_atlas import (
+    global_official_current_build_gap_20260721 as gap,
+)
+from datacenter_atlas.open_seed_v56 import tree_digest
 
 
 class OfficialCurrentBuildGapTests(unittest.TestCase):

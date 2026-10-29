@@ -8,14 +8,9 @@ import stat
 
 import pytest
 
-try:
-    from datacenter_atlas.datacenter_atlas import (
-        hut8_river_bend_official_current_build_gap_20260722 as tranche,
-    )
-except ModuleNotFoundError:  # pragma: no cover
-    from datacenter_atlas import (  # type: ignore[no-redef]
-        hut8_river_bend_official_current_build_gap_20260722 as tranche,
-    )
+from datacenter_atlas import (
+    hut8_river_bend_official_current_build_gap_20260722 as tranche,
+)
 
 
 def _live_source_document() -> dict[str, object]:

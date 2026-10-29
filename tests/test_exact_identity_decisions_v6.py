@@ -15,14 +15,10 @@ import tempfile
 import unittest
 from unittest.mock import patch
 
-try:
-    from datacenter_atlas.datacenter_atlas import exact_identity_decisions as legacy
-    from datacenter_atlas.datacenter_atlas import (
-        exact_identity_decisions_v3 as identity,
-    )
-except ModuleNotFoundError:
-    from datacenter_atlas import exact_identity_decisions as legacy
-    from datacenter_atlas import exact_identity_decisions_v3 as identity
+from datacenter_atlas import exact_identity_decisions as legacy
+from datacenter_atlas import (
+    exact_identity_decisions_v3 as identity,
+)
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -385,7 +381,7 @@ class ExactIdentityDecisionV6Tests(unittest.TestCase):
             result = subprocess.run(
                 [sys.executable, "-c", code],
                 cwd=working_directory,
-                env=environment,
+                env={**environment, 'PYTHONPATH': str(ROOT)},
                 check=False,
                 capture_output=True,
                 text=True,

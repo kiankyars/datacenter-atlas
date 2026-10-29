@@ -9,9 +9,9 @@ import stat
 import unittest
 
 try:
-    from datacenter_atlas.datacenter_atlas import construction_map_v31 as map_v31
+    from datacenter_atlas import construction_map_v31 as map_v31
     from datacenter_atlas import construction_map_v31 as shim
-    from datacenter_atlas.datacenter_atlas.open_seed_v56 import tree_digest
+    from datacenter_atlas.open_seed_v56 import tree_digest
 except ModuleNotFoundError:
     from datacenter_atlas import construction_map_v31 as map_v31
     import construction_map_v31 as shim

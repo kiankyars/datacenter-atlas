@@ -261,7 +261,7 @@ class GovernmentGapArtifactTests(unittest.TestCase):
     def test_offline_replay_shim_and_no_stage_residue(self) -> None:
         try:
             core = importlib.import_module(
-                "datacenter_atlas.datacenter_atlas."
+                "datacenter_atlas."
                 "global_official_builds_government_gap_20260721"
             )
             shim = importlib.import_module(

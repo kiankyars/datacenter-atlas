@@ -13,10 +13,7 @@ from pathlib import Path
 
 import pytest
 
-try:
-    from datacenter_atlas.datacenter_atlas import federation_v38 as core
-except ModuleNotFoundError:  # pragma: no cover
-    from datacenter_atlas import federation_v38 as core
+from datacenter_atlas import federation_v38 as core
 
 
 def _canonical(value: object) -> bytes:

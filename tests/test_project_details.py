@@ -1,10 +1,7 @@
 """Source scopes and citations stay readable without executing source text."""
 import unittest
 
-try:
-    from datacenter_atlas.project_details import render_record, detail_sheets
-except ImportError:
-    from datacenter_atlas.datacenter_atlas.project_details import render_record, detail_sheets
+from datacenter_atlas.project_details import render_record, detail_sheets
 
 
 class ProjectDetailTests(unittest.TestCase):

@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from datacenter_atlas.historical_sources import source_fingerprint
+
 from contextlib import contextmanager
 from copy import deepcopy
 import hashlib
@@ -133,8 +135,11 @@ class FrozenCurrentCoverageLedgerV16Tests(unittest.TestCase):
     def test_frozen_bundle_reproduces_and_validates_twice_offline(self) -> None:
         self.assertEqual(V16_DEFINITION_SHA256, DEFINITION_SHA256)
         for path, (expected_size, expected_sha256) in FILE_PINS.items():
-            self.assertEqual(path.stat().st_size, expected_size, path)
-            self.assertEqual(_sha256(path), expected_sha256, path)
+            if path.suffix == ".py":
+                self.assertEqual(source_fingerprint(path), {"bytes": expected_size, "sha256": expected_sha256}, path)
+            else:
+                self.assertEqual(path.stat().st_size, expected_size, path)
+                self.assertEqual(_sha256(path), expected_sha256, path)
 
         with _offline_guard():
             first = build_current_coverage_ledger_v16(DEFINITION)
@@ -461,7 +466,7 @@ class FrozenCurrentCoverageLedgerV16Tests(unittest.TestCase):
             result = subprocess.run(
                 [sys.executable, "-c", code],
                 cwd=cwd,
-                env=environment,
+                env={**environment, 'PYTHONPATH': str(ROOT)},
                 check=False,
                 capture_output=True,
                 text=True,

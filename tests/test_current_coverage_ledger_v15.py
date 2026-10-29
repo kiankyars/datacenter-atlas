@@ -494,6 +494,7 @@ class FrozenCurrentCoverageLedgerV15Tests(unittest.TestCase):
         for cwd in (ROOT.parent, ROOT):
             completed = subprocess.run(
                 [sys.executable, "-c", code],
+                env={**os.environ, 'PYTHONPATH': str(ROOT)},
                 cwd=cwd,
                 check=True,
                 capture_output=True,
@@ -511,7 +512,7 @@ class FrozenCurrentCoverageLedgerV15Tests(unittest.TestCase):
                 check=True,
                 capture_output=True,
                 text=True,
-                env=dict(os.environ),
+                env={**dict(os.environ), 'PYTHONPATH': str(ROOT)},
             )
             result = json.loads(cli.stdout)
             self.assertEqual(result["ledger_id"], V15_LEDGER_ID)

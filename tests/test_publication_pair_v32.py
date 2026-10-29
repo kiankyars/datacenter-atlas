@@ -7,10 +7,7 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 from unittest.mock import patch
 
-try:
-    from datacenter_atlas.datacenter_atlas import publication_pair_v32 as pair
-except ModuleNotFoundError:
-    from datacenter_atlas import publication_pair_v32 as pair
+from datacenter_atlas import publication_pair_v32 as pair
 
 
 class BoundaryError(RuntimeError):

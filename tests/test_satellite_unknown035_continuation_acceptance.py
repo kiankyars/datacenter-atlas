@@ -9,14 +9,9 @@ import stat
 
 import pytest
 
-try:
-    from datacenter_atlas.datacenter_atlas import (
-        satellite_unknown035_continuation_acceptance as acceptance,
-    )
-except ModuleNotFoundError:  # pragma: no cover
-    from datacenter_atlas import (  # type: ignore[no-redef]
-        satellite_unknown035_continuation_acceptance as acceptance,
-    )
+from datacenter_atlas import (
+    satellite_unknown035_continuation_acceptance as acceptance,
+)
 
 
 MANIFEST_SHA256 = "1fd9851e7ab43bc7865c62c47abddb009c4fc69058ef8dd86db5b9da88b1e9b9"

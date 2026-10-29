@@ -631,7 +631,7 @@ class FrozenConstructionMapV26Tests(unittest.TestCase):
 
         for cwd, package in (
             (ROOT, "datacenter_atlas.construction_map_v10"),
-            (WORKSPACE, "datacenter_atlas.datacenter_atlas.construction_map_v10"),
+            (WORKSPACE, "datacenter_atlas.construction_map_v10"),
         ):
             code = (
                 "from pathlib import Path; "
@@ -646,7 +646,7 @@ class FrozenConstructionMapV26Tests(unittest.TestCase):
             result = subprocess.run(
                 [sys.executable, "-c", code],
                 cwd=cwd,
-                env=environment,
+                env={**environment, 'PYTHONPATH': str(ROOT)},
                 check=False,
                 capture_output=True,
                 text=True,

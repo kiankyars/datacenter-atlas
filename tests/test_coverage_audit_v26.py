@@ -886,7 +886,7 @@ class CoverageAuditV26Tests(unittest.TestCase):
         for cwd, module in (
             (ROOT, "datacenter_atlas.coverage_audit_v3"),
             (WORKSPACE, "datacenter_atlas.coverage_audit_v3"),
-            (WORKSPACE, "datacenter_atlas.datacenter_atlas.coverage_audit_v3"),
+            (WORKSPACE, "datacenter_atlas.coverage_audit_v3"),
         ):
             import_environment = os.environ.copy()
             import_environment["PYTHONDONTWRITEBYTECODE"] = "1"
@@ -903,7 +903,7 @@ class CoverageAuditV26Tests(unittest.TestCase):
                     ),
                 ],
                 cwd=cwd,
-                env=import_environment,
+                env={**import_environment, 'PYTHONPATH': str(ROOT)},
                 check=False,
                 capture_output=True,
                 text=True,

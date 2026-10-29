@@ -8,14 +8,9 @@ import stat
 
 import pytest
 
-try:
-    from datacenter_atlas.datacenter_atlas import (
-        centra_rno2_official_current_build_gap_20260722 as tranche,
-    )
-except ModuleNotFoundError:  # pragma: no cover
-    from datacenter_atlas import (  # type: ignore[no-redef]
-        centra_rno2_official_current_build_gap_20260722 as tranche,
-    )
+from datacenter_atlas import (
+    centra_rno2_official_current_build_gap_20260722 as tranche,
+)
 
 
 def test_exact_source_contract_maps_topout_to_shell_only() -> None:

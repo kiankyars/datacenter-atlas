@@ -9,14 +9,9 @@ from pathlib import Path
 
 import pytest
 
-try:
-    from datacenter_atlas.datacenter_atlas import (
-        apac_official_status_prepublication_20260724 as tranche,
-    )
-except ModuleNotFoundError:  # pragma: no cover
-    from datacenter_atlas import (  # type: ignore[no-redef]
-        apac_official_status_prepublication_20260724 as tranche,
-    )
+from datacenter_atlas import (
+    apac_official_status_prepublication_20260724 as tranche,
+)
 
 
 RECORDED_AT = "2026-07-24T22:20:00Z"

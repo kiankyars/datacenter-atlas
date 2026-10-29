@@ -8,14 +8,9 @@ import stat
 
 import pytest
 
-try:
-    from datacenter_atlas.datacenter_atlas import (
-        global_official_batam_jakarta_hanoi_bue1_current_build_gap_20260722 as tranche,
-    )
-except ModuleNotFoundError:  # pragma: no cover
-    from datacenter_atlas import (  # type: ignore[no-redef]
-        global_official_batam_jakarta_hanoi_bue1_current_build_gap_20260722 as tranche,
-    )
+from datacenter_atlas import (
+    global_official_batam_jakarta_hanoi_bue1_current_build_gap_20260722 as tranche,
+)
 
 
 def _write_sources(directory: Path, *, mode: int = 0o600) -> dict[str, Path]:

@@ -24,6 +24,8 @@ from . import satellite_change_batch_explicit_v83 as execution
 from . import satellite_change_batch_explicit_v83_audit as audit
 from . import satellite_change_blind_preparation_explicit_v1 as publication
 
+from .historical_sources import is_archived_source, source_fingerprint
+
 
 class SatelliteChangeReviewV83Error(ValueError):
     """Raised when accepted inputs, blind decisions, or publication drift."""
@@ -278,6 +280,8 @@ def _exact_file(
 
 
 def _file_record(path: Path) -> dict[str, Any]:
+    if is_archived_source(path):
+        return {"path": path.relative_to(PACKAGE_ROOT).as_posix(), **source_fingerprint(path)}
     if path.is_symlink() or not path.is_file():
         raise SatelliteChangeReviewV83Error(f"builder file missing: {path}")
     raw = path.read_bytes()

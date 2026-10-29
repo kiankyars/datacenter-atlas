@@ -11,7 +11,7 @@ import tempfile
 import unittest
 from unittest import mock
 
-import datacenter_atlas.datacenter_atlas.satellite_change_review_explicit_v83 as implementation
+import datacenter_atlas.satellite_change_review_explicit_v83 as implementation
 from datacenter_atlas.satellite_change_review_explicit_v83 import (
     BLIND_DECISIONS_FILENAME,
     EXPECTED_APPROXIMATE_LINK,

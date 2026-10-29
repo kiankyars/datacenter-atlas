@@ -279,7 +279,7 @@ class ExactIdentityDecisionV2Tests(unittest.TestCase):
     def test_both_import_layouts_validate_the_same_frozen_bundle(self) -> None:
         for cwd, package in (
             (ROOT, "datacenter_atlas.exact_identity_decisions"),
-            (WORKSPACE, "datacenter_atlas.datacenter_atlas.exact_identity_decisions"),
+            (WORKSPACE, "datacenter_atlas.exact_identity_decisions"),
         ):
             code = (
                 "from pathlib import Path; "
@@ -292,7 +292,7 @@ class ExactIdentityDecisionV2Tests(unittest.TestCase):
             result = subprocess.run(
                 [sys.executable, "-c", code],
                 cwd=cwd,
-                env={**os.environ, "PYTHONDONTWRITEBYTECODE": "1"},
+                env={**os.environ, 'PYTHONDONTWRITEBYTECODE': '1', 'PYTHONPATH': str(ROOT)},
                 check=False,
                 capture_output=True,
                 text=True,

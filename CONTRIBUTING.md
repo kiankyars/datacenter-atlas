@@ -118,9 +118,12 @@ citation and attribution metadata. Keep dataset counts and update dates out of t
 ### Code layout
 
 Implementations live in `datacenter_atlas/`; command-line entry points live in `scripts/`.
-The root `__init__.py` provides imports from the repository parent without per-module wrappers.
-The remaining root wrappers preserve files whose paths and bytes are checked by historical
-builders and manifests, plus an executable enrichment entry point. Do not add new ones.
+Run commands from the repository root, or install the package with `python3 -m pip install -e .`
+to use `datacenter-atlas` elsewhere. Do not add Python files at the repository root.
+
+Historical source fingerprints use the frozen `datacenter_atlas/historical-sources.zip` archive.
+It preserves the source bytes recorded by old manifests without making them executable import
+wrappers. Dataset validation still reads the original dataset files.
 
 ### Ground rules
 

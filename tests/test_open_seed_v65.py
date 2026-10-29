@@ -15,12 +15,8 @@ import tempfile
 import unittest
 from unittest.mock import patch
 
-try:
-    from datacenter_atlas.datacenter_atlas import open_seed_release_v10 as release_v10
-    from datacenter_atlas.datacenter_atlas import open_seed_v65 as v65
-except ModuleNotFoundError:
-    from datacenter_atlas import open_seed_release_v10 as release_v10
-    from datacenter_atlas import open_seed_v65 as v65
+from datacenter_atlas import open_seed_release_v10 as release_v10
+from datacenter_atlas import open_seed_v65 as v65
 
 
 ROOT = Path(__file__).resolve().parents[1]

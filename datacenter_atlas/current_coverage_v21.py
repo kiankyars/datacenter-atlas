@@ -33,6 +33,8 @@ from . import current_coverage_v20 as _v20
 from . import exact_identity_decisions_v3 as _identity_v3
 from . import federated_release_v3 as _federation_v3
 
+from .historical_sources import read_source_bytes
+
 
 V21_LEDGER_ID = "current-coverage-2026-07-21-v21"
 V21_GENERATED_AT = "2026-07-21T08:40:00Z"
@@ -1200,7 +1202,9 @@ def _validate_accepted_inputs(package_root: Path) -> None:
     for label, (relative, expected_bytes, expected_sha256) in sorted(
         _PINNED_FILES.items()
     ):
-        raw = _read_regular(package_root / relative, f"v21 {label}")
+        raw = (read_source_bytes(package_root / relative, root=package_root)
+               if relative.endswith(".py")
+               else _read_regular(package_root / relative, f"v21 {label}"))
         if len(raw) != expected_bytes or _sha256(raw) != expected_sha256:
             raise CurrentCoverageV21Error(f"v21 {label} changed")
     _validate_tree(package_root, _BASE_BUNDLE_TREE, "v21 base bundle")

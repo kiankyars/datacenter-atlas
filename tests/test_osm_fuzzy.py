@@ -25,7 +25,7 @@ from datacenter_atlas.osm_fuzzy import (
     osmium_filter_expressions,
 )
 from datacenter_atlas.osm_planet import parse_osm_xml
-from datacenter_atlas.scripts import extract_osm_planet_fuzzy, fetch_osm_planet
+from scripts import extract_osm_planet_fuzzy
 
 
 FUZZY_XML = b"""<?xml version='1.0' encoding='UTF-8'?>

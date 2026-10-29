@@ -30,6 +30,8 @@ from .satellite_change_mosaic import (
 )
 from . import satellite_change_preparation_v1 as predecessor
 
+from .historical_sources import is_archived_source, source_fingerprint
+
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFINITION_PATH = Path(
@@ -125,6 +127,8 @@ def _regular(path: Path, label: str) -> bytes:
 
 
 def _pin(path: Path) -> dict[str, Any]:
+    if is_archived_source(path):
+        return source_fingerprint(path, include_mode=True)
     raw = _regular(path, "pinned file")
     return {
         "bytes": len(raw),

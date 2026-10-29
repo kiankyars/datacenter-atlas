@@ -30,6 +30,8 @@ from . import federation_v36
 from . import open_seed_v87
 from .open_seed_v56 import promote_noreplace, tree_digest
 
+from .historical_sources import read_source_bytes
+
 
 ROOT = Path(__file__).resolve().parents[1]
 CODEC = previous.previous.v5.v3
@@ -245,7 +247,7 @@ def _parse_utc(value: Any, *, label: str) -> datetime:
 
 
 def _file_pin(path: Path) -> tuple[int, str]:
-    raw = CODEC._regular_bytes(path, str(path))
+    raw = read_source_bytes(path) if path.suffix == ".py" else CODEC._regular_bytes(path, str(path))
     return len(raw), CODEC._sha256_bytes(raw)
 
 

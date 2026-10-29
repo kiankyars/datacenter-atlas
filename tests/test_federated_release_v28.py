@@ -15,12 +15,8 @@ import tempfile
 import unittest
 from unittest.mock import patch
 
-try:
-    from datacenter_atlas.datacenter_atlas import federated_release as legacy
-    from datacenter_atlas.datacenter_atlas import federated_release_v3 as federation
-except ModuleNotFoundError:
-    from datacenter_atlas import federated_release as legacy
-    from datacenter_atlas import federated_release_v3 as federation
+from datacenter_atlas import federated_release as legacy
+from datacenter_atlas import federated_release_v3 as federation
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -419,7 +415,7 @@ class FederatedReleaseV28Tests(unittest.TestCase):
             result = subprocess.run(
                 [sys.executable, "-c", code],
                 cwd=working_directory,
-                env={**os.environ, "PYTHONDONTWRITEBYTECODE": "1"},
+                env={**os.environ, 'PYTHONDONTWRITEBYTECODE': '1', 'PYTHONPATH': str(ROOT)},
                 check=False,
                 capture_output=True,
                 text=True,

@@ -22,6 +22,8 @@ import stat
 import sys
 from typing import Any, Mapping, Sequence
 
+from .historical_sources import source_fingerprint
+
 
 DEFINITION_FORMAT = "datacenter-atlas-satellite-calibration-v2-blind-rereview-definition-v5"
 RELEASE_FORMAT = "datacenter-atlas-satellite-calibration-v2-blind-rereview-v5"
@@ -547,9 +549,7 @@ def _builder_pins(root: Path) -> dict[str, Any]:
     result = {}
     for relative in BUILDER_FILES:
         path = _inside(root, relative, f"builder {relative}")
-        if not path.is_file() or path.is_symlink():
-            raise SatelliteCalibrationBlindRereviewError("builder file missing")
-        result[relative] = _pin(path)
+        result[relative] = source_fingerprint(path, root=root, include_mode=True)
     return result
 
 
@@ -586,8 +586,10 @@ def _payloads(definition_path: Path, output_dir: Path | None = None) -> tuple[di
 
 def _fsync_directory(path: Path) -> None:
     descriptor = os.open(path, os.O_RDONLY)
-    try: os.fsync(descriptor)
-    finally: os.close(descriptor)
+    try:
+        os.fsync(descriptor)
+    finally:
+        os.close(descriptor)
 
 
 def _fsync_file(path: Path) -> None:
@@ -621,7 +623,8 @@ def _freeze(path: Path) -> None:
 def _cleanup(path: Path) -> None:
     if path.exists():
         for child in path.rglob("*"):
-            if not child.is_symlink(): os.chmod(child, 0o755 if child.is_dir() else 0o644)
+            if not child.is_symlink():
+                os.chmod(child, 0o755 if child.is_dir() else 0o644)
         os.chmod(path, 0o755)
         shutil.rmtree(path)
 

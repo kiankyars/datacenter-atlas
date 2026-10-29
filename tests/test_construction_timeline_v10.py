@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from datacenter_atlas.historical_sources import source_fingerprint
+
 from collections import Counter
 from contextlib import ExitStack
 from datetime import timedelta
@@ -16,7 +18,7 @@ import tempfile
 import unittest
 from unittest.mock import patch
 
-from datacenter_atlas.datacenter_atlas import construction_timeline_v10 as timeline
+from datacenter_atlas import construction_timeline_v10 as timeline
 from datacenter_atlas.open_seed_v56 import tree_digest
 
 
@@ -105,7 +107,8 @@ class ConstructionTimelineV10Tests(unittest.TestCase):
             self.assertEqual(stat.S_IMODE(path.stat().st_mode), 0o444)
             self.assertEqual((path.stat().st_size, sha256(path)), ARTIFACTS[path.name])
         for path, expected in CODE_PINS.items():
-            self.assertEqual((path.stat().st_size, sha256(path)), expected)
+            fingerprint = source_fingerprint(path)
+            self.assertEqual((fingerprint["bytes"], fingerprint["sha256"]), expected)
         self.assertEqual(tree_digest(V9_BUNDLE), timeline.PREDECESSOR_TREE_SHA256)
         for spec in timeline.RELEASE_SPECS:
             self.assertEqual(tree_digest(spec.release), spec.tree_sha256)
@@ -320,7 +323,7 @@ class ConstructionTimelineV10Tests(unittest.TestCase):
                 "--validate-only",
             ],
             cwd=WORKSPACE,
-            env=env,
+            env={**env, 'PYTHONPATH': str(ROOT)},
             check=False,
             capture_output=True,
             text=True,

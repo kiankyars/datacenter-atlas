@@ -29,6 +29,8 @@ from . import coverage_audit_v5 as legacy
 from . import coverage_audit_v31 as predecessor
 from .open_seed_v56 import tree_digest
 
+from .historical_sources import read_source_bytes
+
 ROOT = Path(__file__).resolve().parents[1]
 GENERATED_AT = "2026-07-24T22:33:00Z"
 AUDIT_ID = "public-open-coverage-v32"
@@ -606,7 +608,7 @@ def _implementation_pins() -> dict[str, Any]:
     }
     result = {}
     for label, path in sorted(paths.items()):
-        raw = _regular_bytes(path, f"implementation {label}")
+        raw = read_source_bytes(path)
         result[label] = {
             "bytes": len(raw),
             "path": path.relative_to(ROOT).as_posix(),

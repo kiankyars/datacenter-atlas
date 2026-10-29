@@ -13,8 +13,8 @@ from unittest.mock import patch
 
 try:
     from datacenter_atlas import construction_master_v32 as shim
-    from datacenter_atlas.datacenter_atlas import construction_master_v32 as master
-    from datacenter_atlas.datacenter_atlas.open_seed_v56 import tree_digest
+    from datacenter_atlas import construction_master_v32 as master
+    from datacenter_atlas.open_seed_v56 import tree_digest
 except ModuleNotFoundError:
     import construction_master_v32 as shim
     from datacenter_atlas import construction_master_v32 as master

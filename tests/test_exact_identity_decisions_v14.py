@@ -16,7 +16,7 @@ from pathlib import Path
 from unittest.mock import patch
 
 identity = importlib.import_module(
-    "datacenter_atlas.datacenter_atlas.exact_identity_decisions_v14"
+    "datacenter_atlas.exact_identity_decisions_v14"
 )
 shim = importlib.import_module("datacenter_atlas.exact_identity_decisions_v14")
 
@@ -235,7 +235,7 @@ class ExactIdentityDecisionV14Tests(unittest.TestCase):
             completed = subprocess.run(
                 command,
                 cwd=WORKSPACE,
-                env=environment,
+                env={**environment, 'PYTHONPATH': str(ROOT)},
                 check=False,
                 capture_output=True,
                 text=True,

@@ -32,6 +32,8 @@ from .satellite_catalog_reselection_v2 import (
 )
 from .satellite_queue import validate_queue_bundle
 
+from .historical_sources import source_fingerprint
+
 
 RESELECTED_CHANGE_BATCH_SCHEMA_VERSION = 2
 RESELECTED_CHANGE_BATCH_PIPELINE = "satellite_review_reselected_change_batch_v2"
@@ -442,8 +444,8 @@ def _validated_inputs(
 def _processor_lineage(package_root: Path) -> dict[str, Any]:
     processor = json.loads(json.dumps(legacy._processor_lineage(package_root)))
     for relative in RESELECTION_ADAPTER_FILES:
-        path = legacy._regular_file(package_root, relative, f"processor {relative}")
-        processor["files"][relative] = legacy._file_record(path)
+        path = legacy._safe_child(package_root, relative, f"processor {relative}")
+        processor["files"][relative] = source_fingerprint(path, root=package_root)
     processor["reselection_adapter"] = {
         "schema_version": RESELECTED_CHANGE_BATCH_SCHEMA_VERSION,
         "pipeline": RESELECTED_CHANGE_BATCH_PIPELINE,

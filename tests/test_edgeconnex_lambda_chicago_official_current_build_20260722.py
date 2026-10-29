@@ -8,14 +8,9 @@ import stat
 
 import pytest
 
-try:
-    from datacenter_atlas.datacenter_atlas import (
-        edgeconnex_lambda_chicago_official_current_build_20260722 as publication,
-    )
-except ModuleNotFoundError:  # pragma: no cover
-    from datacenter_atlas import (  # type: ignore[no-redef]
-        edgeconnex_lambda_chicago_official_current_build_20260722 as publication,
-    )
+from datacenter_atlas import (
+    edgeconnex_lambda_chicago_official_current_build_20260722 as publication,
+)
 
 
 def _future(seconds: int = 30) -> str:

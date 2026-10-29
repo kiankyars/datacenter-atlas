@@ -9,7 +9,6 @@ import subprocess
 import tempfile
 import unittest
 
-from datacenter_atlas.ohsome import DATA_CENTER_FILTER
 from datacenter_atlas.database import initialize
 from datacenter_atlas.osm import OpenStreetMapAdapter, extract_geometry
 from datacenter_atlas.osm_planet import (
@@ -27,7 +26,7 @@ from datacenter_atlas.osm_planet import (
     parse_osm_xml,
     validate_extraction_input,
 )
-from datacenter_atlas.scripts import extract_osm_planet
+from scripts import extract_osm_planet
 
 
 OSM_XML_FIXTURE = b"""<?xml version='1.0' encoding='UTF-8'?>

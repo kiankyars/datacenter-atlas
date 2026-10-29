@@ -8,14 +8,9 @@ import stat
 
 import pytest
 
-try:
-    from datacenter_atlas.datacenter_atlas import (
-        goodman_databank_lax01_official_enrichment_20260722 as tranche,
-    )
-except ModuleNotFoundError:  # pragma: no cover
-    from datacenter_atlas import (  # type: ignore[no-redef]
-        goodman_databank_lax01_official_enrichment_20260722 as tranche,
-    )
+from datacenter_atlas import (
+    goodman_databank_lax01_official_enrichment_20260722 as tranche,
+)
 
 
 def _live_source_document() -> dict[str, object]:

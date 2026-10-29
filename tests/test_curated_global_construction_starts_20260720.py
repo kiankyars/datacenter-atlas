@@ -955,7 +955,7 @@ class GlobalConstructionStartsCuratedTests(unittest.TestCase):
         ]
         for cwd, package in (
             (ROOT, "datacenter_atlas"),
-            (WORKSPACE, "datacenter_atlas.datacenter_atlas"),
+            (WORKSPACE, "datacenter_atlas"),
         ):
             with self.subTest(cwd=cwd):
                 code = f"""
@@ -1008,7 +1008,7 @@ with tempfile.TemporaryDirectory() as temporary:
                 result = subprocess.run(
                     [sys.executable, "-c", code],
                     cwd=cwd,
-                    env=environment,
+                    env={**environment, 'PYTHONPATH': str(ROOT)},
                     check=False,
                     capture_output=True,
                     text=True,

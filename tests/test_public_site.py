@@ -22,10 +22,7 @@ from urllib.parse import unquote, urljoin, urlsplit
 import xml.etree.ElementTree as ET
 import zipfile
 
-try:
-    from datacenter_atlas import public_site
-except ImportError:  # the repository used as a package without the editable install
-    from datacenter_atlas.datacenter_atlas import public_site
+from datacenter_atlas import public_site
 from datacenter_atlas import models
 import importlib.util
 

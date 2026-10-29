@@ -21,7 +21,7 @@ from datacenter_atlas.curated_v11 import CuratedOfficialSourceAdapterV11
 from datacenter_atlas.database import initialize
 from datacenter_atlas.external_captures import resolve_external_capture
 from datacenter_atlas.service import validate_database
-from datacenter_atlas.tests.test_coordinate_assessment_2026_07_21_v2 import (
+from tests.test_coordinate_assessment_2026_07_21_v2 import (
     COHORT,
     SPECS as PREVIOUS_SPECS,
     TABLES,
@@ -480,7 +480,7 @@ class CoordinateAssessmentV3Tests(unittest.TestCase):
         result = subprocess.run(
             [sys.executable, str(BUILDER)],
             cwd=WORKSPACE,
-            env={**os.environ, "PYTHONDONTWRITEBYTECODE": "1"},
+            env={**os.environ, 'PYTHONDONTWRITEBYTECODE': '1', 'PYTHONPATH': str(ROOT)},
             check=False,
             capture_output=True,
             text=True,

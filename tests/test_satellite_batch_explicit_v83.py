@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import os
+
 import importlib
 import json
 from pathlib import Path
@@ -183,7 +185,7 @@ class ExplicitSatelliteBatchV83Tests(unittest.TestCase):
 
     def test_workspace_shim_and_cli_are_importable_from_parent_workspace(self) -> None:
         implementation = importlib.import_module(
-            "datacenter_atlas.datacenter_atlas.satellite_batch_explicit_v83"
+            "datacenter_atlas.satellite_batch_explicit_v83"
         )
         shim = importlib.import_module("datacenter_atlas.satellite_batch_explicit_v83")
         self.assertIs(
@@ -206,6 +208,7 @@ class ExplicitSatelliteBatchV83Tests(unittest.TestCase):
                     "assert len(SELECTED_QUEUE_IDS) == 4"
                 ),
             ],
+            env={**os.environ, 'PYTHONPATH': str(PROJECT_ROOT)},
             cwd=WORKSPACE_ROOT,
             check=False,
             capture_output=True,
@@ -219,6 +222,7 @@ class ExplicitSatelliteBatchV83Tests(unittest.TestCase):
                 str(PROJECT_ROOT / "scripts/run_satellite_explicit_v83.py"),
                 "--help",
             ],
+            env={**os.environ, 'PYTHONPATH': str(PROJECT_ROOT)},
             cwd=WORKSPACE_ROOT,
             check=False,
             capture_output=True,

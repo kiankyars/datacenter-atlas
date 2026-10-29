@@ -30,6 +30,8 @@ from .satellite_batch_explicit_v1 import (
     validate_explicit_satellite_batch_v1,
 )
 
+from .historical_sources import is_archived_source, read_source_bytes
+
 
 class ExplicitSatelliteChangeBatchV1Error(ValueError):
     """Raised when the pinned inputs, execution, or output contract drifts."""
@@ -118,11 +120,11 @@ def _sha256(raw: bytes) -> str:
 
 
 def _exact_file(path: Path, expected_sha256: str, label: str) -> bytes:
-    if path.is_symlink() or not path.is_file():
+    if not is_archived_source(path) and (path.is_symlink() or not path.is_file()):
         raise ExplicitSatelliteChangeBatchV1Error(
             f"{label} must be a regular non-symlink file"
         )
-    raw = path.read_bytes()
+    raw = read_source_bytes(path) if is_archived_source(path) else path.read_bytes()
     if _sha256(raw) != expected_sha256:
         raise ExplicitSatelliteChangeBatchV1Error(f"{label} changed")
     return raw
@@ -389,12 +391,14 @@ def _atomic_promote_noreplace(stage: Path, destination: Path) -> None:
 
 @lru_cache(maxsize=1)
 def _derived_carrier() -> types.ModuleType:
-    """Load the pinned generic carrier in an isolated, fail-closed namespace."""
+    """Load the maintained carrier after verifying its historical provenance."""
 
-    raw = _exact_file(
+    _exact_file(
         GENERIC_CARRIER_PATH, GENERIC_CARRIER_SHA256, "generic change carrier"
     )
-    source = raw.decode("utf-8")
+    if GENERIC_CARRIER_PATH.is_symlink() or not GENERIC_CARRIER_PATH.is_file():
+        raise ExplicitSatelliteChangeBatchV1Error("generic change carrier must be a regular file")
+    source = GENERIC_CARRIER_PATH.read_text(encoding="utf-8")
     original = "                os.replace(stage, final)\n"
     replacement = "                _adapter_promote_noreplace(stage, final)\n"
     if source.count(original) != 1:

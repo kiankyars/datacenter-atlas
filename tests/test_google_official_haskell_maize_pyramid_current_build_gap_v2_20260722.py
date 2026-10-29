@@ -12,7 +12,7 @@ import tempfile
 import pytest
 from unittest.mock import patch
 
-from datacenter_atlas.datacenter_atlas import (
+from datacenter_atlas import (
     google_official_haskell_maize_pyramid_current_build_gap_v2_20260722 as core,
 )
 

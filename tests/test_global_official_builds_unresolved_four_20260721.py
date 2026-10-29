@@ -261,7 +261,7 @@ class UnresolvedFourArtifactTests(unittest.TestCase):
     def test_offline_replay_shim_no_residue_collision_and_future_clock(self) -> None:
         try:
             core = importlib.import_module(
-                "datacenter_atlas.datacenter_atlas."
+                "datacenter_atlas."
                 "global_official_builds_unresolved_four_20260721"
             )
             shim = importlib.import_module(

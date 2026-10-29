@@ -9,14 +9,9 @@ from pathlib import Path
 
 import pytest
 
-try:
-    from datacenter_atlas.datacenter_atlas import (
-        microsoft_mount_pleasant_phase3_prepublication_20260724 as tranche,
-    )
-except ModuleNotFoundError:  # pragma: no cover
-    from datacenter_atlas import (  # type: ignore[no-redef]
-        microsoft_mount_pleasant_phase3_prepublication_20260724 as tranche,
-    )
+from datacenter_atlas import (
+    microsoft_mount_pleasant_phase3_prepublication_20260724 as tranche,
+)
 
 
 RECORDED_AT = "2026-07-24T21:42:00Z"

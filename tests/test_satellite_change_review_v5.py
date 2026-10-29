@@ -364,7 +364,7 @@ class FrozenSatelliteChangeReviewV5Tests(unittest.TestCase):
                 result = subprocess.run(
                     [sys.executable, "-c", code],
                     cwd=cwd,
-                    env={**os.environ, "PYTHONDONTWRITEBYTECODE": "1"},
+                    env={**os.environ, 'PYTHONDONTWRITEBYTECODE': '1', 'PYTHONPATH': str(ROOT)},
                     check=False,
                     capture_output=True,
                     text=True,

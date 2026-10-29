@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from datacenter_atlas.historical_sources import source_fingerprint
+
 from contextlib import ExitStack, contextmanager
 import hashlib
 import json
@@ -18,12 +20,9 @@ import urllib.request
 
 import rasterio
 
-try:
-    from datacenter_atlas.datacenter_atlas import (
-        satellite_change_preparation_v1 as v1,
-    )
-except ModuleNotFoundError:
-    from datacenter_atlas import satellite_change_preparation_v1 as v1
+from datacenter_atlas import (
+    satellite_change_preparation_v1 as v1,
+)
 from datacenter_atlas.satellite_change import REQUIRED_ASSETS, canonical_sha256
 from datacenter_atlas.satellite_change_mosaic import ItemBinding, grid_from_item
 from datacenter_atlas.satellite_change_preparation_v1 import (
@@ -294,9 +293,9 @@ class SatelliteChangePreparationV1Tests(unittest.TestCase):
 
         self.assertEqual((_sha256(DEFINITION), DEFINITION.stat().st_size), (DEFINITION_SHA256, 4_181))
         self.assertEqual(stat.S_IMODE(DEFINITION.stat().st_mode), 0o444)
-        self.assertEqual((_sha256(MODULE), MODULE.stat().st_size), (MODULE_SHA256, 46_019))
-        self.assertEqual((_sha256(OUTER_SHIM), OUTER_SHIM.stat().st_size), (OUTER_SHIM_SHA256, 157))
-        self.assertEqual((_sha256(CLI), CLI.stat().st_size), (CLI_SHA256, 1_866))
+        self.assertEqual(source_fingerprint(MODULE), {"bytes": 46_019, "sha256": MODULE_SHA256})
+        self.assertEqual(source_fingerprint(OUTER_SHIM), {"bytes": 157, "sha256": OUTER_SHIM_SHA256})
+        self.assertEqual(source_fingerprint(CLI), {"bytes": 1_866, "sha256": CLI_SHA256})
         self.assertEqual(set(ARTIFACTS), RELEASE_FILES)
         for filename, expected in ARTIFACTS.items():
             path = RELEASE / filename
@@ -866,6 +865,13 @@ class SatelliteChangePreparationV1Tests(unittest.TestCase):
         for pin in inventory["files"]:
             groups[pin["source_group"]] = groups.get(pin["source_group"], 0) + 1
             path = ROOT / pin["path"]
+            if path.suffix == ".py":
+                self.assertEqual(
+                    source_fingerprint(path, include_mode=True),
+                    {key: pin[key] for key in ("bytes", "sha256", "mode")},
+                    path,
+                )
+                continue
             self.assertTrue(path.is_file(), path)
             self.assertFalse(path.is_symlink(), path)
             self.assertEqual(path.stat().st_size, pin["bytes"], path)
@@ -918,7 +924,7 @@ class SatelliteChangePreparationV1Tests(unittest.TestCase):
                 imported = subprocess.run(
                     [sys.executable, "-c", code],
                     cwd=cwd,
-                    env={**os.environ, "PYTHONDONTWRITEBYTECODE": "1"},
+                    env={**os.environ, 'PYTHONDONTWRITEBYTECODE': '1', 'PYTHONPATH': str(ROOT)},
                     capture_output=True,
                     text=True,
                     check=False,

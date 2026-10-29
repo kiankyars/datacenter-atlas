@@ -11,7 +11,7 @@ from unittest.mock import patch
 
 import pytest
 
-from datacenter_atlas.datacenter_atlas import construction_timeline_v11 as timeline
+from datacenter_atlas import construction_timeline_v11 as timeline
 from datacenter_atlas.open_seed_v56 import tree_digest
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -288,7 +288,7 @@ def test_authorization_replay_count_collision_and_runner_fail_closed(
             "--help",
         ],
         cwd=WORKSPACE,
-        env=environment,
+        env={**environment, 'PYTHONPATH': str(ROOT)},
         check=False,
         capture_output=True,
         text=True,
@@ -303,7 +303,7 @@ def test_authorization_replay_count_collision_and_runner_fail_closed(
             "--help",
         ],
         cwd=WORKSPACE,
-        env=environment,
+        env={**environment, 'PYTHONPATH': str(ROOT)},
         check=False,
         capture_output=True,
         text=True,
@@ -317,7 +317,7 @@ def test_authorization_replay_count_collision_and_runner_fail_closed(
             "--publish-authorized",
         ],
         cwd=WORKSPACE,
-        env=environment,
+        env={**environment, 'PYTHONPATH': str(ROOT)},
         check=False,
         capture_output=True,
         text=True,

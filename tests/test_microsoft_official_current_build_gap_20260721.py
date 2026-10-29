@@ -6,12 +6,9 @@ import shutil
 
 import pytest
 
-try:
-    from datacenter_atlas.datacenter_atlas import (
-        microsoft_official_current_build_gap_20260721 as tranche,
-    )
-except ModuleNotFoundError:  # pragma: no cover
-    from datacenter_atlas import microsoft_official_current_build_gap_20260721 as tranche
+from datacenter_atlas import (
+    microsoft_official_current_build_gap_20260721 as tranche,
+)
 
 
 def test_exact_source_contract_has_nine_separate_projects_and_no_inference() -> None:

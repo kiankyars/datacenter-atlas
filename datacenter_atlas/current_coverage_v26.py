@@ -24,6 +24,8 @@ from typing import Any, Iterator, Mapping, Sequence
 
 from . import current_coverage_v25 as _v25
 
+from .historical_sources import read_source_bytes
+
 
 ROOT = _v25.ROOT
 V26_LEDGER_ID = "current-coverage-2026-07-21-v26"
@@ -316,7 +318,7 @@ def _implementation_pins() -> dict[str, Any]:
     }
     result = {}
     for label, path in sorted(paths.items()):
-        raw = path.read_bytes()
+        raw = read_source_bytes(path)
         result[label] = {
             "bytes": len(raw),
             "path": path.relative_to(ROOT).as_posix(),

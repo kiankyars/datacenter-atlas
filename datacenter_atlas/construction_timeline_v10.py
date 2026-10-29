@@ -26,6 +26,8 @@ from . import construction_timeline_v9 as previous
 from . import open_seed_v88, open_seed_v89, open_seed_v90, open_seed_v91, open_seed_v92
 from .open_seed_v56 import promote_noreplace, tree_digest
 
+from .historical_sources import read_source_bytes
+
 
 ROOT = Path(__file__).resolve().parents[1]
 CODEC = previous.CODEC
@@ -228,7 +230,7 @@ def _parse_utc(value: Any, *, label: str) -> datetime:
 
 
 def _file_pin(path: Path) -> tuple[int, str]:
-    raw = CODEC._regular_bytes(path, str(path))
+    raw = read_source_bytes(path) if path.suffix == ".py" else CODEC._regular_bytes(path, str(path))
     return len(raw), CODEC._sha256_bytes(raw)
 
 

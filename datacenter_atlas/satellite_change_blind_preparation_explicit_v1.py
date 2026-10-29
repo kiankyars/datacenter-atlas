@@ -27,6 +27,8 @@ from typing import Any, Mapping
 
 from . import satellite_change_explicit_v1_disposition as disposition
 
+from .historical_sources import is_archived_source, source_fingerprint
+
 
 class ExplicitV1BlindPreparationError(ValueError):
     """Raised when source, blinding, or frozen publication drifts."""
@@ -161,6 +163,8 @@ def _exact_file(path: Path, expected_sha256: str, label: str) -> bytes:
 
 
 def _file_record(path: Path) -> dict[str, Any]:
+    if is_archived_source(path):
+        return {"path": path.relative_to(PACKAGE_ROOT).as_posix(), **source_fingerprint(path)}
     if path.is_symlink() or not path.is_file():
         raise ExplicitV1BlindPreparationError(f"builder file missing: {path}")
     raw = path.read_bytes()

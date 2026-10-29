@@ -383,6 +383,7 @@ class FrozenCurrentCoverageLedgerV14Tests(unittest.TestCase):
         for cwd in (ROOT.parent, ROOT):
             completed = subprocess.run(
                 [sys.executable, "-c", code],
+                env={**os.environ, 'PYTHONPATH': str(ROOT)},
                 cwd=cwd,
                 check=True,
                 capture_output=True,

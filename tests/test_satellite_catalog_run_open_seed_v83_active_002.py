@@ -12,7 +12,7 @@ from unittest.mock import patch
 
 try:
     satellite_batch = importlib.import_module(
-        "datacenter_atlas.datacenter_atlas.satellite_batch"
+        "datacenter_atlas.satellite_batch"
     )
 except ModuleNotFoundError:
     satellite_batch = importlib.import_module("datacenter_atlas.satellite_batch")

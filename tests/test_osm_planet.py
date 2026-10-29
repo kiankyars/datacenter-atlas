@@ -9,7 +9,7 @@ import tempfile
 import unittest
 
 from datacenter_atlas.ohsome import DATA_CENTER_FILTER
-from datacenter_atlas.scripts import extract_osm_planet, fetch_osm_planet
+from scripts import extract_osm_planet, fetch_osm_planet
 from datacenter_atlas.taginfo_targets import explicit_tag_pairs
 
 

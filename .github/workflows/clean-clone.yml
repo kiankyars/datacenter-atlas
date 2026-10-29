@@ -36,72 +36,74 @@ jobs:
         working-directory: datacenter_atlas
         run: uv sync --locked --no-default-groups --python 3.12
       - name: Run corpus-free tests
+        working-directory: datacenter_atlas
         run: |
           PYTHONDONTWRITEBYTECODE=1 \
-            datacenter_atlas/.venv/bin/python -m unittest -v \
-            datacenter_atlas.tests.test_models \
-            datacenter_atlas.tests.test_database \
-            datacenter_atlas.tests.test_timestamp_boundaries \
-            datacenter_atlas.tests.test_release \
-            datacenter_atlas.tests.test_recovered_legacy_evidence \
-            datacenter_atlas.tests.test_verified_construction_core \
-            datacenter_atlas.tests.test_verified_construction_core_v012 \
-            datacenter_atlas.tests.test_verified_construction_core_v013 \
-            datacenter_atlas.tests.test_verified_construction_core_v014 \
-            datacenter_atlas.tests.test_verified_construction_core_v015 \
-            datacenter_atlas.tests.test_verified_construction_core_v016 \
-            datacenter_atlas.tests.test_verified_construction_core_v017 \
-            datacenter_atlas.tests.test_expansion_200_inventory \
-            datacenter_atlas.tests.test_expansion_200_sources \
-            datacenter_atlas.tests.test_verified_construction_core_v018 \
-            datacenter_atlas.tests.test_verified_construction_core_v018_baseline_corrections \
-            datacenter_atlas.tests.test_expansion_200_draft \
-            datacenter_atlas.tests.test_expansion_200_finland \
-            datacenter_atlas.tests.test_expansion_200_second_reviewed \
-            datacenter_atlas.tests.test_expansion_200_third_reviewed \
-            datacenter_atlas.tests.test_expansion_200_fourth_reviewed \
-            datacenter_atlas.tests.test_expansion_200_fifth_reviewed \
-            datacenter_atlas.tests.test_expansion_200_sixth_reviewed \
-            datacenter_atlas.tests.test_expansion_200_seventh_reviewed \
-            datacenter_atlas.tests.test_expansion_200_eighth_reviewed \
-            datacenter_atlas.tests.test_expansion_200_ninth_reviewed \
-            datacenter_atlas.tests.test_expansion_200_tenth_reviewed \
-            datacenter_atlas.tests.test_expansion_200_eleventh_reviewed \
-            datacenter_atlas.tests.test_expansion_200_twelfth_reviewed \
-            datacenter_atlas.tests.test_expansion_200_thirteenth_reviewed \
-            datacenter_atlas.tests.test_expansion_200_fourteenth_reviewed \
-            datacenter_atlas.tests.test_expansion_200_fifteenth_reviewed \
-            datacenter_atlas.tests.test_expansion_200_sixteenth_reviewed \
-            datacenter_atlas.tests.test_expansion_200_seventeenth_reviewed \
-            datacenter_atlas.tests.test_expansion_200_eighteenth_reviewed \
-            datacenter_atlas.tests.test_expansion_200_nineteenth_reviewed \
-            datacenter_atlas.tests.test_expansion_200_twentieth_reviewed \
-            datacenter_atlas.tests.test_expansion_200_twenty_first_reviewed \
-            datacenter_atlas.tests.test_expansion_200_twenty_second_reviewed \
-            datacenter_atlas.tests.test_expansion_200_twenty_third_reviewed \
-            datacenter_atlas.tests.test_expansion_200_twenty_fourth_reviewed \
-            datacenter_atlas.tests.test_expansion_200_twenty_fifth_reviewed \
-            datacenter_atlas.tests.test_expansion_200_twenty_sixth_reviewed \
-            datacenter_atlas.tests.test_expansion_200_twenty_seventh_reviewed \
-            datacenter_atlas.tests.test_expansion_200_twenty_eighth_reviewed \
-            datacenter_atlas.tests.test_expansion_200_twenty_ninth_reviewed \
-            datacenter_atlas.tests.test_expansion_200_thirtieth_reviewed \
-            datacenter_atlas.tests.test_expansion_200_thirty_first_reviewed \
-            datacenter_atlas.tests.test_expansion_200_thirty_second_reviewed \
-            datacenter_atlas.tests.test_expansion_200_thirty_third_reviewed \
-            datacenter_atlas.tests.test_expansion_200_thirty_fourth_reviewed \
-            datacenter_atlas.tests.test_expansion_200_thirty_fifth_reviewed \
-            datacenter_atlas.tests.test_expansion_200_thirty_sixth_reviewed \
-            datacenter_atlas.tests.test_publication_pair_v32 \
-            datacenter_atlas.tests.test_dataset_update \
-            datacenter_atlas.tests.test_consolidation \
-            datacenter_atlas.tests.test_project_details \
-            datacenter_atlas.tests.test_verified_construction_core_v018_blind_review \
-            datacenter_atlas.tests.test_verified_construction_core_v018_baseline_withdrawals \
-            datacenter_atlas.tests.test_verified_construction_core_v018_round44_corrections \
-            datacenter_atlas.tests.test_public_site \
-            datacenter_atlas.tests.test_tracked_dataset_files \
-            datacenter_atlas.tests.test_workspace_shim
+            .venv/bin/python -m unittest -v \
+            tests.test_models \
+            tests.test_database \
+            tests.test_timestamp_boundaries \
+            tests.test_release \
+            tests.test_recovered_legacy_evidence \
+            tests.test_verified_construction_core \
+            tests.test_verified_construction_core_v012 \
+            tests.test_verified_construction_core_v013 \
+            tests.test_verified_construction_core_v014 \
+            tests.test_verified_construction_core_v015 \
+            tests.test_verified_construction_core_v016 \
+            tests.test_verified_construction_core_v017 \
+            tests.test_expansion_200_inventory \
+            tests.test_expansion_200_sources \
+            tests.test_verified_construction_core_v018 \
+            tests.test_verified_construction_core_v018_baseline_corrections \
+            tests.test_expansion_200_draft \
+            tests.test_expansion_200_finland \
+            tests.test_expansion_200_second_reviewed \
+            tests.test_expansion_200_third_reviewed \
+            tests.test_expansion_200_fourth_reviewed \
+            tests.test_expansion_200_fifth_reviewed \
+            tests.test_expansion_200_sixth_reviewed \
+            tests.test_expansion_200_seventh_reviewed \
+            tests.test_expansion_200_eighth_reviewed \
+            tests.test_expansion_200_ninth_reviewed \
+            tests.test_expansion_200_tenth_reviewed \
+            tests.test_expansion_200_eleventh_reviewed \
+            tests.test_expansion_200_twelfth_reviewed \
+            tests.test_expansion_200_thirteenth_reviewed \
+            tests.test_expansion_200_fourteenth_reviewed \
+            tests.test_expansion_200_fifteenth_reviewed \
+            tests.test_expansion_200_sixteenth_reviewed \
+            tests.test_expansion_200_seventeenth_reviewed \
+            tests.test_expansion_200_eighteenth_reviewed \
+            tests.test_expansion_200_nineteenth_reviewed \
+            tests.test_expansion_200_twentieth_reviewed \
+            tests.test_expansion_200_twenty_first_reviewed \
+            tests.test_expansion_200_twenty_second_reviewed \
+            tests.test_expansion_200_twenty_third_reviewed \
+            tests.test_expansion_200_twenty_fourth_reviewed \
+            tests.test_expansion_200_twenty_fifth_reviewed \
+            tests.test_expansion_200_twenty_sixth_reviewed \
+            tests.test_expansion_200_twenty_seventh_reviewed \
+            tests.test_expansion_200_twenty_eighth_reviewed \
+            tests.test_expansion_200_twenty_ninth_reviewed \
+            tests.test_expansion_200_thirtieth_reviewed \
+            tests.test_expansion_200_thirty_first_reviewed \
+            tests.test_expansion_200_thirty_second_reviewed \
+            tests.test_expansion_200_thirty_third_reviewed \
+            tests.test_expansion_200_thirty_fourth_reviewed \
+            tests.test_expansion_200_thirty_fifth_reviewed \
+            tests.test_expansion_200_thirty_sixth_reviewed \
+            tests.test_publication_pair_v32 \
+            tests.test_dataset_update \
+            tests.test_consolidation \
+            tests.test_project_details \
+            tests.test_verified_construction_core_v018_blind_review \
+            tests.test_verified_construction_core_v018_baseline_withdrawals \
+            tests.test_verified_construction_core_v018_round44_corrections \
+            tests.test_public_site \
+            tests.test_tracked_dataset_files \
+            tests.test_package_layout \
+            tests.test_historical_sources
       - name: Validate the frozen expansion research inventory
         working-directory: datacenter_atlas
         run: .venv/bin/python scripts/build_expansion_200_inventory.py --validate-snapshot
@@ -411,7 +413,8 @@ jobs:
             tests/test_dataset_update.py \
             datacenter_atlas/expansion_200_thirty_seventh_reviewed.py \
             datacenter_atlas/public_site.py \
-            __init__.py \
+            datacenter_atlas/__init__.py \
+            datacenter_atlas/historical_sources.py \
             scripts/build_verified_construction_core.py \
             scripts/generate_verified_construction_core_v017_inputs.py \
             scripts/build_expansion_200_inventory.py \
@@ -484,4 +487,5 @@ jobs:
             tests/test_publication_pair_v32.py \
             tests/test_public_site.py \
             tests/test_tracked_dataset_files.py \
-            tests/test_workspace_shim.py
+            tests/test_package_layout.py \
+            tests/test_historical_sources.py

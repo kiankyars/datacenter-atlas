@@ -8,12 +8,8 @@ from pathlib import Path
 import stat
 import unittest
 
-try:
-    from datacenter_atlas.datacenter_atlas import construction_map_v30 as map_v30
-    from datacenter_atlas.datacenter_atlas.open_seed_v56 import tree_digest
-except ModuleNotFoundError:
-    from datacenter_atlas import construction_map_v30 as map_v30
-    from datacenter_atlas.open_seed_v56 import tree_digest
+from datacenter_atlas import construction_map_v30 as map_v30
+from datacenter_atlas.open_seed_v56 import tree_digest
 
 
 GENERATED_AT = "2026-07-21T18:11:00Z"

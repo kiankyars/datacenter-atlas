@@ -20,7 +20,7 @@ from datacenter_atlas.service import validate_database
 
 try:
     tranche = importlib.import_module(
-        "datacenter_atlas.datacenter_atlas."
+        "datacenter_atlas."
         "global_official_builds_us_operator_gap_20260721"
     )
 except ModuleNotFoundError:

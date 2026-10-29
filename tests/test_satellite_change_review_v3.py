@@ -591,7 +591,7 @@ class FrozenSatelliteChangeReviewV3Tests(unittest.TestCase):
                     check=False,
                     capture_output=True,
                     text=True,
-                    env={**os.environ, "PYTHONDONTWRITEBYTECODE": "1"},
+                    env={**os.environ, 'PYTHONDONTWRITEBYTECODE': '1', 'PYTHONPATH': str(ROOT)},
                 )
                 self.assertEqual(result.returncode, 0, result.stderr)
         result = subprocess.run(
@@ -600,7 +600,7 @@ class FrozenSatelliteChangeReviewV3Tests(unittest.TestCase):
             check=False,
             capture_output=True,
             text=True,
-            env={**os.environ, "PYTHONDONTWRITEBYTECODE": "1"},
+            env={**os.environ, 'PYTHONDONTWRITEBYTECODE': '1', 'PYTHONPATH': str(ROOT)},
         )
         self.assertEqual(result.returncode, 0, result.stderr)
         payload = json.loads(result.stdout)

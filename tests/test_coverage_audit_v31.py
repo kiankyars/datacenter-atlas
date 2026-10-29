@@ -14,10 +14,7 @@ import tempfile
 import unittest
 from unittest.mock import patch
 
-try:
-    from datacenter_atlas.datacenter_atlas import coverage_audit_v31 as coverage
-except ModuleNotFoundError:
-    from datacenter_atlas import coverage_audit_v31 as coverage
+from datacenter_atlas import coverage_audit_v31 as coverage
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -523,6 +520,7 @@ class CoverageAuditV31Tests(unittest.TestCase):
                 str(ROOT / "scripts/build_coverage_audit_v31.py"),
                 "--validate-only",
             ],
+            env={**os.environ, 'PYTHONPATH': str(ROOT)},
             cwd=WORKSPACE,
             check=True,
             capture_output=True,

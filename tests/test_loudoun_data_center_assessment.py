@@ -7,7 +7,7 @@ import shutil
 import tempfile
 import unittest
 
-from datacenter_atlas.datacenter_atlas.loudoun_data_center_assessment import (
+from datacenter_atlas.loudoun_data_center_assessment import (
     CALIBRATION_FILENAME,
     LoudounDataCenterAssessmentError,
     validate_assessment_bundle,

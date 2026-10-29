@@ -980,7 +980,7 @@ class OpenSeedV54Tests(unittest.TestCase):
             imported = subprocess.run(
                 import_command,
                 cwd=cwd,
-                env=environment,
+                env={**environment, 'PYTHONPATH': str(ROOT)},
                 check=False,
                 capture_output=True,
                 text=True,
@@ -993,7 +993,7 @@ class OpenSeedV54Tests(unittest.TestCase):
             result = subprocess.run(
                 command,
                 cwd=cwd,
-                env=environment,
+                env={**environment, 'PYTHONPATH': str(ROOT)},
                 check=False,
                 capture_output=True,
                 text=True,

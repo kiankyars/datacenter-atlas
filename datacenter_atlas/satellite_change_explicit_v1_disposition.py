@@ -31,6 +31,8 @@ from .satellite_batch_explicit_v1 import (
 )
 from . import satellite_change_batch_explicit_v1 as execution_adapter
 
+from .historical_sources import is_archived_source, read_source_bytes, source_fingerprint
+
 
 class ExplicitV1DispositionError(ValueError):
     """Raised when finalization, validation, or publication fails closed."""
@@ -166,15 +168,17 @@ def suggested_publication_times() -> tuple[str, str]:
 
 
 def _exact_file(path: Path, expected: str, label: str) -> bytes:
-    if path.is_symlink() or not path.is_file():
+    if not is_archived_source(path) and (path.is_symlink() or not path.is_file()):
         raise ExplicitV1DispositionError(f"{label} is not a regular file")
-    raw = path.read_bytes()
+    raw = read_source_bytes(path) if is_archived_source(path) else path.read_bytes()
     if _sha256(raw) != expected:
         raise ExplicitV1DispositionError(f"{label} changed")
     return raw
 
 
 def _file_record(path: Path) -> dict[str, Any]:
+    if is_archived_source(path):
+        return source_fingerprint(path)
     raw = path.read_bytes()
     return {"bytes": len(raw), "sha256": _sha256(raw)}
 
@@ -354,9 +358,12 @@ def _catalog_lineage(
 
 
 def _validation_carrier() -> types.ModuleType:
-    raw = _exact_file(
+    _exact_file(
         GENERIC_CARRIER_PATH, GENERIC_CARRIER_SHA256, "generic change carrier"
     )
+    if GENERIC_CARRIER_PATH.is_symlink() or not GENERIC_CARRIER_PATH.is_file():
+        raise ExplicitV1DispositionError("generic change carrier must be a regular file")
+    raw = GENERIC_CARRIER_PATH.read_bytes()
     _exact_file(
         EXECUTION_ADAPTER_PATH,
         EXECUTION_ADAPTER_SHA256,

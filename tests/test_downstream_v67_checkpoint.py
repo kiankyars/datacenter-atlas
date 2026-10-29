@@ -18,14 +18,9 @@ import tempfile
 import unittest
 from unittest.mock import patch
 
-try:
-    from datacenter_atlas.datacenter_atlas import construction_map_v11 as map_v11
-    from datacenter_atlas.datacenter_atlas import construction_master_v11 as master_v11
-    from datacenter_atlas.datacenter_atlas import coverage_audit_v3 as coverage_v3
-except ModuleNotFoundError:
-    from datacenter_atlas import construction_map_v11 as map_v11
-    from datacenter_atlas import construction_master_v11 as master_v11
-    from datacenter_atlas import coverage_audit_v3 as coverage_v3
+from datacenter_atlas import construction_map_v11 as map_v11
+from datacenter_atlas import construction_master_v11 as master_v11
+from datacenter_atlas import coverage_audit_v3 as coverage_v3
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -976,7 +971,7 @@ class DownstreamV67CheckpointTests(unittest.TestCase):
             completed = subprocess.run(
                 [sys.executable, "-c", code],
                 cwd=working_directory,
-                env=environment,
+                env={**environment, 'PYTHONPATH': str(ROOT)},
                 check=False,
                 capture_output=True,
                 text=True,

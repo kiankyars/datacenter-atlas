@@ -38,6 +38,8 @@ from . import construction_timeline_v10 as previous
 from . import open_seed_v93, open_seed_v94, open_seed_v95, open_seed_v96, open_seed_v97
 from .open_seed_v56 import tree_digest
 
+from .historical_sources import read_source_bytes
+
 ROOT = Path(__file__).resolve().parents[1]
 CODEC = previous.CODEC
 TIMELINE_CARRIER = previous.TIMELINE_CARRIER
@@ -310,7 +312,7 @@ def _sha256(raw: bytes) -> str:
 
 
 def _file_pin(path: Path) -> tuple[int, str]:
-    raw = CODEC._regular_bytes(path, str(path))
+    raw = read_source_bytes(path) if path.suffix == ".py" else CODEC._regular_bytes(path, str(path))
     return len(raw), _sha256(raw)
 
 

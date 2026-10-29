@@ -622,7 +622,7 @@ class OpenSeedV49Tests(unittest.TestCase):
             result = subprocess.run(
                 command,
                 cwd=cwd,
-                env={**os.environ, "PYTHONPATH": str(cwd)},
+                env={**os.environ, 'PYTHONPATH': str(ROOT)},
                 check=False,
                 capture_output=True,
                 text=True,

@@ -16,7 +16,7 @@ from datacenter_atlas.open_seed_v56 import tree_digest
 
 
 try:
-    v87 = importlib.import_module("datacenter_atlas.datacenter_atlas.open_seed_v87")
+    v87 = importlib.import_module("datacenter_atlas.open_seed_v87")
 except ModuleNotFoundError:
     v87 = importlib.import_module("datacenter_atlas.open_seed_v87")
 

@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import os
+
 import importlib
 import hashlib
 import json
@@ -13,7 +15,7 @@ import unittest
 from unittest.mock import patch
 
 import datacenter_atlas.satellite_change_batch as generic_carrier
-from datacenter_atlas.datacenter_atlas.satellite_change_batch_explicit_v83 import (
+from datacenter_atlas.satellite_change_batch_explicit_v83 import (
     _atomic_promote_noreplace,
     _derived_carrier,
 )
@@ -164,7 +166,7 @@ class ExplicitSatelliteChangeBatchV83Tests(unittest.TestCase):
 
     def test_workspace_shim_and_cli_are_importable_from_parent(self) -> None:
         implementation = importlib.import_module(
-            "datacenter_atlas.datacenter_atlas.satellite_change_batch_explicit_v83"
+            "datacenter_atlas.satellite_change_batch_explicit_v83"
         )
         shim = importlib.import_module(
             "datacenter_atlas.satellite_change_batch_explicit_v83"
@@ -182,6 +184,7 @@ class ExplicitSatelliteChangeBatchV83Tests(unittest.TestCase):
                 ),
                 "--help",
             ],
+            env={**os.environ, 'PYTHONPATH': str(PROJECT_ROOT)},
             cwd=WORKSPACE_ROOT,
             check=False,
             capture_output=True,

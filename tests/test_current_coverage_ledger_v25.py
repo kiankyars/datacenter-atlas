@@ -12,7 +12,7 @@ import tempfile
 import unittest
 from unittest.mock import patch
 
-from datacenter_atlas.datacenter_atlas import current_coverage_v25 as core
+from datacenter_atlas import current_coverage_v25 as core
 
 
 ROOT = Path(__file__).resolve().parents[1]

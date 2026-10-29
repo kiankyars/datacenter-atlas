@@ -7,9 +7,9 @@ import sys
 from pathlib import Path
 
 if __package__ in {None, ""}:
-    sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from datacenter_atlas.datacenter_atlas.construction_timeline_v11 import (
+from datacenter_atlas.construction_timeline_v11 import (
     publisher_main,
 )
 

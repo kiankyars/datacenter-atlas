@@ -15,16 +15,11 @@ from typing import Any
 import unittest
 from unittest.mock import patch
 
-try:
-    from datacenter_atlas.datacenter_atlas.curated_v11 import (
-        CuratedOfficialSourceAdapterV11,
-    )
-    from datacenter_atlas.datacenter_atlas.database import initialize
-    from datacenter_atlas.datacenter_atlas.service import validate_database
-except ModuleNotFoundError:
-    from datacenter_atlas.curated_v11 import CuratedOfficialSourceAdapterV11
-    from datacenter_atlas.database import initialize
-    from datacenter_atlas.service import validate_database
+from datacenter_atlas.curated_v11 import (
+    CuratedOfficialSourceAdapterV11,
+)
+from datacenter_atlas.database import initialize
+from datacenter_atlas.service import validate_database
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -827,7 +822,7 @@ print("ok")
                 result = subprocess.run(
                     [sys.executable, "-c", script],
                     cwd=cwd,
-                    env=environment,
+                    env={**environment, 'PYTHONPATH': str(ROOT)},
                     check=False,
                     capture_output=True,
                     text=True,

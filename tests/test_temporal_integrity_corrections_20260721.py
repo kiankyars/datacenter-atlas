@@ -13,7 +13,7 @@ import unittest
 
 
 core = importlib.import_module(
-    "datacenter_atlas.datacenter_atlas.corrected_discovery_wrappers_v2"
+    "datacenter_atlas.corrected_discovery_wrappers_v2"
 )
 shim = importlib.import_module("datacenter_atlas.corrected_discovery_wrappers_v2")
 

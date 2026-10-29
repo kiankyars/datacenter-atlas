@@ -8,10 +8,7 @@ import tempfile
 
 import pytest
 
-try:
-    from datacenter_atlas.datacenter_atlas import open_seed_v95 as core
-except ModuleNotFoundError:  # pragma: no cover
-    from datacenter_atlas import open_seed_v95 as core
+from datacenter_atlas import open_seed_v95 as core
 
 
 def _future(minutes: int = 10) -> tuple[datetime, str]:

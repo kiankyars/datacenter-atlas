@@ -48,9 +48,11 @@ from .satellite_change import (
 from .satellite_queue import (
     MANIFEST_FILENAME as QUEUE_MANIFEST_FILENAME,
     QUEUE_FILENAME,
-    REVIEW_CONSTRAINTS,
+    REVIEW_CONSTRAINTS as REVIEW_CONSTRAINTS,
     validate_queue_bundle,
 )
+
+from .historical_sources import source_fingerprint
 
 
 CHANGE_BATCH_MANIFEST_FILENAME = "batch-manifest.json"
@@ -373,8 +375,12 @@ def _queue_lineage(queue: Path, manifest: Mapping[str, Any]) -> dict[str, Any]:
 def _processor_lineage(package_root: Path) -> dict[str, Any]:
     files: dict[str, Any] = {}
     for relative in PROCESSOR_FILES:
-        path = _regular_file(package_root, relative, f"processor {relative}")
-        files[relative] = _file_record(path)
+        if relative.endswith(".py"):
+            path = _safe_child(package_root, relative, f"processor {relative}")
+            files[relative] = source_fingerprint(path, root=package_root)
+        else:
+            path = _regular_file(package_root, relative, f"processor {relative}")
+            files[relative] = _file_record(path)
     return {
         "algorithm_version": ALGORITHM_VERSION,
         "files": files,

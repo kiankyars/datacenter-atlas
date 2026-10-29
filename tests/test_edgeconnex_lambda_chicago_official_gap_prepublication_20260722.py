@@ -8,14 +8,9 @@ import stat
 
 import pytest
 
-try:
-    from datacenter_atlas.datacenter_atlas import (
-        edgeconnex_lambda_chicago_official_gap_prepublication_20260722 as tranche,
-    )
-except ModuleNotFoundError:  # pragma: no cover
-    from datacenter_atlas import (  # type: ignore[no-redef]
-        edgeconnex_lambda_chicago_official_gap_prepublication_20260722 as tranche,
-    )
+from datacenter_atlas import (
+    edgeconnex_lambda_chicago_official_gap_prepublication_20260722 as tranche,
+)
 
 
 def _document() -> dict[str, object]:

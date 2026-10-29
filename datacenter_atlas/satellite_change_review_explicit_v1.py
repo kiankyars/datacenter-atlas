@@ -22,6 +22,8 @@ from typing import Any, Mapping
 from . import satellite_change_blind_preparation_explicit_v1 as preparation
 from . import satellite_change_explicit_v1_disposition as disposition
 
+from .historical_sources import is_archived_source, source_fingerprint
+
 
 class ExplicitV1AnalystReviewError(ValueError):
     """Raised when blind decisions, lineage, or publication drift."""
@@ -157,6 +159,8 @@ def _exact_file(path: Path, size: int, digest: str, label: str) -> bytes:
 
 
 def _file_record(path: Path) -> dict[str, Any]:
+    if is_archived_source(path):
+        return {"path": path.relative_to(PACKAGE_ROOT).as_posix(), **source_fingerprint(path)}
     if path.is_symlink() or not path.is_file():
         raise ExplicitV1AnalystReviewError(f"builder file missing: {path}")
     raw = path.read_bytes()

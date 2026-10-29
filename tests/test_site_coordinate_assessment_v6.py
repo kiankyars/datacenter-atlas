@@ -24,7 +24,7 @@ from datacenter_atlas.service import validate_database
 
 try:
     builder = importlib.import_module(
-        "datacenter_atlas.datacenter_atlas.site_coordinate_assessment_v6"
+        "datacenter_atlas.site_coordinate_assessment_v6"
     )
 except ModuleNotFoundError:
     builder = importlib.import_module("datacenter_atlas.site_coordinate_assessment_v6")
@@ -491,7 +491,7 @@ class SiteCoordinateAssessmentV6Tests(unittest.TestCase):
         result = subprocess.run(
             [sys.executable, str(PUBLISHER)],
             cwd=WORKSPACE,
-            env={**os.environ, "PYTHONDONTWRITEBYTECODE": "1"},
+            env={**os.environ, 'PYTHONDONTWRITEBYTECODE': '1', 'PYTHONPATH': str(ROOT)},
             check=False,
             capture_output=True,
             text=True,

@@ -27,6 +27,8 @@ from . import current_coverage_v17 as _v17
 from . import exact_identity_decisions as _identity
 from . import satellite_change_review_v2 as _review_v2
 
+from .historical_sources import read_source_bytes
+
 
 V18_LEDGER_ID = "current-coverage-2026-07-20-v18"
 V18_GENERATED_AT = "2026-07-20T22:35:00Z"
@@ -1093,7 +1095,9 @@ def _validate_accepted_inputs(package_root: Path) -> None:
     for label, (relative, expected_bytes, expected_sha256) in sorted(
         _PINNED_FILES.items()
     ):
-        raw = _read_regular(package_root / relative, f"v18 {label}")
+        raw = (read_source_bytes(package_root / relative, root=package_root)
+               if relative.endswith(".py")
+               else _read_regular(package_root / relative, f"v18 {label}"))
         if len(raw) != expected_bytes or _sha256(raw) != expected_sha256:
             raise CurrentCoverageV18Error(f"v18 {label} changed")
     _validate_tree(package_root, _BASE_BUNDLE_TREE, "v18 base bundle")

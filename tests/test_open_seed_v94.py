@@ -9,10 +9,7 @@ import tempfile
 
 import pytest
 
-try:
-    from datacenter_atlas.datacenter_atlas import open_seed_v94 as core
-except ModuleNotFoundError:  # pragma: no cover
-    from datacenter_atlas import open_seed_v94 as core
+from datacenter_atlas import open_seed_v94 as core
 
 
 def _pin(path: Path) -> tuple[int, str]:

@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from datacenter_atlas.historical_sources import source_fingerprint
+
 from contextlib import contextmanager
 import hashlib
 import importlib
@@ -118,6 +120,9 @@ def _sha256(path: Path) -> str:
 
 
 def _checkpoint(path: Path) -> tuple[int, str]:
+    if path.suffix == ".py":
+        fingerprint = source_fingerprint(path)
+        return fingerprint["bytes"], fingerprint["sha256"]
     return path.stat().st_size, _sha256(path)
 
 
@@ -490,7 +495,7 @@ class FrozenCurrentCoverageLedgerV21Tests(unittest.TestCase):
                     ),
                 ],
                 cwd=cwd,
-                env=env,
+                env={**env, 'PYTHONPATH': str(ROOT)},
                 capture_output=True,
                 check=False,
                 text=True,

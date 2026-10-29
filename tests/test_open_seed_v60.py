@@ -15,12 +15,8 @@ import tempfile
 import unittest
 from unittest.mock import patch
 
-try:
-    from datacenter_atlas.datacenter_atlas import open_seed_release_v5 as release_v5
-    from datacenter_atlas.datacenter_atlas import open_seed_v60 as v60
-except ModuleNotFoundError:
-    from datacenter_atlas import open_seed_release_v5 as release_v5
-    from datacenter_atlas import open_seed_v60 as v60
+from datacenter_atlas import open_seed_release_v5 as release_v5
+from datacenter_atlas import open_seed_v60 as v60
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -269,7 +265,7 @@ class OpenSeedV60Tests(unittest.TestCase):
         result = subprocess.run(
             [sys.executable, str(ROOT / "scripts/build_open_seed_v60.py")],
             cwd=WORKSPACE,
-            env=environment,
+            env={**environment, 'PYTHONPATH': str(ROOT)},
             capture_output=True,
             text=True,
             check=False,

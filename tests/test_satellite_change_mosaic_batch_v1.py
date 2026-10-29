@@ -13,7 +13,7 @@ from unittest.mock import patch
 import zlib
 
 try:
-    from datacenter_atlas.datacenter_atlas import (
+    from datacenter_atlas import (
         satellite_change_mosaic_batch_v1 as batch,
     )
 except ModuleNotFoundError:

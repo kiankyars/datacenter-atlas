@@ -11,13 +11,13 @@ import unittest
 from unittest.mock import patch
 
 try:
-    from datacenter_atlas.datacenter_atlas import construction_master_v31 as master
+    from datacenter_atlas import construction_master_v31 as master
     from datacenter_atlas import construction_master_v31 as shim
 except ModuleNotFoundError:
     from datacenter_atlas import construction_master_v31 as master
     import construction_master_v31 as shim
 
-from datacenter_atlas.datacenter_atlas.open_seed_v56 import tree_digest
+from datacenter_atlas.open_seed_v56 import tree_digest
 
 
 ROOT = Path(__file__).resolve().parents[1]

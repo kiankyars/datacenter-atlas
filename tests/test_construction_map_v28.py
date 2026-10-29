@@ -8,12 +8,8 @@ from pathlib import Path
 import stat
 import unittest
 
-try:
-    from datacenter_atlas.datacenter_atlas import construction_map_v12 as map_v12
-    from datacenter_atlas.datacenter_atlas.open_seed_v56 import tree_digest
-except ModuleNotFoundError:
-    from datacenter_atlas import construction_map_v12 as map_v12
-    from datacenter_atlas.open_seed_v56 import tree_digest
+from datacenter_atlas import construction_map_v12 as map_v12
+from datacenter_atlas.open_seed_v56 import tree_digest
 
 
 ROOT = Path(__file__).resolve().parents[1]

@@ -7,14 +7,9 @@ import stat
 
 import pytest
 
-try:
-    from datacenter_atlas.datacenter_atlas import (
-        gulf_data_hub_dubai_dso456_official_current_build_gap_20260722 as gap,
-    )
-except ModuleNotFoundError:  # pragma: no cover
-    from datacenter_atlas import (  # type: ignore[no-redef]
-        gulf_data_hub_dubai_dso456_official_current_build_gap_20260722 as gap,
-    )
+from datacenter_atlas import (
+    gulf_data_hub_dubai_dso456_official_current_build_gap_20260722 as gap,
+)
 
 
 def _future_timestamp(minutes: int = 10) -> str:

@@ -10,12 +10,8 @@ import tempfile
 import unittest
 from unittest.mock import patch
 
-try:
-    from datacenter_atlas.datacenter_atlas import construction_map_v12 as map_v12
-    from datacenter_atlas.datacenter_atlas import construction_master_v12 as master_v12
-except ModuleNotFoundError:
-    from datacenter_atlas import construction_map_v12 as map_v12
-    from datacenter_atlas import construction_master_v12 as master_v12
+from datacenter_atlas import construction_map_v12 as map_v12
+from datacenter_atlas import construction_master_v12 as master_v12
 
 
 ROOT = Path(__file__).resolve().parents[1]

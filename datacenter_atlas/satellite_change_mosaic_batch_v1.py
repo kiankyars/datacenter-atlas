@@ -53,6 +53,8 @@ from scripts.sentinel_change_mosaic import (
     REPORT_CLASSIFICATION,
 )
 
+from .historical_sources import is_archived_source, source_fingerprint
+
 
 PACKAGE_ROOT = Path(__file__).resolve().parents[1]
 PREPARATION_DEFINITION_PATH = Path(
@@ -182,6 +184,8 @@ def _decode_json(raw: bytes, label: str) -> Any:
 
 
 def _file_record(path: Path) -> dict[str, Any]:
+    if is_archived_source(path):
+        return source_fingerprint(path)
     raw = path.read_bytes()
     return {"bytes": len(raw), "sha256": _sha256(raw)}
 

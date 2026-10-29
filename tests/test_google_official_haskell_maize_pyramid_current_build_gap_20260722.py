@@ -7,14 +7,9 @@ import shutil
 
 import pytest
 
-try:
-    from datacenter_atlas.datacenter_atlas import (
-        google_official_haskell_maize_pyramid_current_build_gap_20260722 as tranche,
-    )
-except ModuleNotFoundError:  # pragma: no cover
-    from datacenter_atlas import (  # type: ignore[no-redef]
-        google_official_haskell_maize_pyramid_current_build_gap_20260722 as tranche,
-    )
+from datacenter_atlas import (
+    google_official_haskell_maize_pyramid_current_build_gap_20260722 as tranche,
+)
 
 
 def test_exact_three_source_contract_and_lifecycle_rows() -> None:

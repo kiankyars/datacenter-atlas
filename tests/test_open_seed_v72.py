@@ -16,7 +16,7 @@ import unittest
 from unittest.mock import patch
 
 
-core = importlib.import_module("datacenter_atlas.datacenter_atlas.open_seed_v72")
+core = importlib.import_module("datacenter_atlas.open_seed_v72")
 shim = importlib.import_module("datacenter_atlas.open_seed_v72")
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -351,7 +351,7 @@ class OpenSeedV72Tests(unittest.TestCase):
         result = subprocess.run(
             [sys.executable, str(BUILDER)],
             cwd=WORKSPACE,
-            env={**os.environ, "PYTHONDONTWRITEBYTECODE": "1"},
+            env={**os.environ, 'PYTHONDONTWRITEBYTECODE': '1', 'PYTHONPATH': str(ROOT)},
             check=False,
             capture_output=True,
             text=True,

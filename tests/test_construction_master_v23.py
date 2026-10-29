@@ -655,7 +655,7 @@ class FrozenConstructionMasterV23Tests(unittest.TestCase):
 
         for cwd, package in (
             (ROOT, "datacenter_atlas"),
-            (WORKSPACE, "datacenter_atlas.datacenter_atlas"),
+            (WORKSPACE, "datacenter_atlas"),
         ):
             with self.subTest(cwd=cwd):
                 code = (
@@ -680,7 +680,7 @@ class FrozenConstructionMasterV23Tests(unittest.TestCase):
                     check=False,
                     capture_output=True,
                     text=True,
-                    env={**os.environ, "PYTHONDONTWRITEBYTECODE": "1"},
+                    env={**os.environ, 'PYTHONDONTWRITEBYTECODE': '1', 'PYTHONPATH': str(ROOT)},
                     timeout=120,
                 )
                 self.assertEqual(result.returncode, 0, result.stderr)

@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from datacenter_atlas.historical_sources import source_fingerprint
+
 from contextlib import contextmanager
 from copy import deepcopy
 from datetime import UTC, datetime
@@ -110,6 +112,9 @@ def _sha256(path: Path) -> str:
 
 
 def _checkpoint(path: Path) -> tuple[int, str]:
+    if path.suffix == ".py":
+        fingerprint = source_fingerprint(path)
+        return fingerprint["bytes"], fingerprint["sha256"]
     return path.stat().st_size, _sha256(path)
 
 
@@ -657,7 +662,7 @@ class FrozenCurrentCoverageLedgerV18Tests(unittest.TestCase):
             result = subprocess.run(
                 [sys.executable, "-c", code],
                 cwd=cwd,
-                env=environment,
+                env={**environment, 'PYTHONPATH': str(ROOT)},
                 check=False,
                 capture_output=True,
                 text=True,

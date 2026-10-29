@@ -17,7 +17,7 @@ import unittest
 from unittest.mock import patch
 
 
-core_v67 = importlib.import_module("datacenter_atlas.datacenter_atlas.open_seed_v67")
+core_v67 = importlib.import_module("datacenter_atlas.open_seed_v67")
 shim_v67 = importlib.import_module("datacenter_atlas.open_seed_v67")
 
 ROOT = Path(__file__).resolve().parents[1]

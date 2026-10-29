@@ -17,10 +17,7 @@ import tempfile
 import unittest
 from unittest.mock import patch
 
-try:
-    from datacenter_atlas.datacenter_atlas import construction_timeline_v5 as timeline
-except ModuleNotFoundError:
-    from datacenter_atlas import construction_timeline_v5 as timeline
+from datacenter_atlas import construction_timeline_v5 as timeline
 
 from datacenter_atlas.open_seed_v56 import tree_digest
 
@@ -360,7 +357,7 @@ class ConstructionTimelineV5Tests(unittest.TestCase):
             result = subprocess.run(
                 [sys.executable, "-c", code],
                 cwd=working_directory,
-                env=environment,
+                env={**environment, 'PYTHONPATH': str(ROOT)},
                 check=False,
                 capture_output=True,
                 text=True,

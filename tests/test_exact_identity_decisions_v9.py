@@ -17,7 +17,7 @@ import unittest
 from unittest.mock import patch
 
 try:
-    from datacenter_atlas.datacenter_atlas import (
+    from datacenter_atlas import (
         exact_identity_decisions_v9 as identity,
     )
     from datacenter_atlas import exact_identity_decisions_v9 as shim
@@ -25,7 +25,7 @@ except ModuleNotFoundError:
     from datacenter_atlas import exact_identity_decisions_v9 as identity
     import exact_identity_decisions_v9 as shim
 
-from datacenter_atlas.datacenter_atlas.open_seed_v56 import tree_digest
+from datacenter_atlas.open_seed_v56 import tree_digest
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -373,7 +373,7 @@ class ExactIdentityDecisionV9Tests(unittest.TestCase):
             result = subprocess.run(
                 [sys.executable, "-c", code],
                 cwd=working_directory,
-                env=environment,
+                env={**environment, 'PYTHONPATH': str(ROOT)},
                 check=False,
                 capture_output=True,
                 text=True,

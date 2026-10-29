@@ -28,7 +28,6 @@ from datacenter_atlas.denmark_plandata_local_plans import (
     SEARCH_LITERALS,
     DenmarkPlandataError,
     canonical_json,
-    derive_observations,
     derive_release_files,
     feature_page_url,
     hits_url,
@@ -372,7 +371,7 @@ class DenmarkPlandataLocalPlanTests(unittest.TestCase):
             check=True,
             capture_output=True,
             text=True,
-            env={**dict(os.environ), "PYTHONDONTWRITEBYTECODE": "1"},
+            env={**dict(os.environ), 'PYTHONDONTWRITEBYTECODE': '1', 'PYTHONPATH': str(PROJECT_ROOT)},
         )
         self.assertEqual(completed.stdout.strip(), RELEASE_ID)
 

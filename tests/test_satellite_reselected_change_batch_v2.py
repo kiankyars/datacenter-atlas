@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import os
+
 import ast
 import copy
 from contextlib import ExitStack
@@ -654,6 +656,7 @@ class SatelliteReselectedChangeBatchV2Tests(unittest.TestCase):
             with self.subTest(cwd=cwd):
                 completed = subprocess.run(
                     command,
+                    env={**os.environ, 'PYTHONPATH': str(ROOT)},
                     cwd=cwd,
                     check=True,
                     capture_output=True,

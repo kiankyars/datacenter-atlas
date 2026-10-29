@@ -26,6 +26,8 @@ from . import coverage_audit_v4 as legacy
 from . import coverage_audit_v30 as predecessor
 from .open_seed_v56 import promote_noreplace, tree_digest
 
+from .historical_sources import read_source_bytes
+
 
 ROOT = Path(__file__).resolve().parents[1]
 BASE_DEFINITION = ROOT / "sources/coverage-audit-2026-07-21-public-open-v30.json"
@@ -800,7 +802,7 @@ def _implementation_pins() -> dict[str, Any]:
         ("module", BUILDER_PATH),
         ("root_shim", ROOT_SHIM_PATH),
     ):
-        raw = path.read_bytes()
+        raw = read_source_bytes(path)
         result[label] = {
             "bytes": len(raw),
             "path": path.relative_to(ROOT).as_posix(),

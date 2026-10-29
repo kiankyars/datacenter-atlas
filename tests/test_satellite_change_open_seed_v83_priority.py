@@ -281,7 +281,7 @@ class OpenSeedV83PriorityChangeRunTests(unittest.TestCase):
             self.skipTest("exact Python 3.12 imagery runtime is unavailable")
         try:
             module = importlib.import_module(
-                "datacenter_atlas.datacenter_atlas.satellite_change_batch"
+                "datacenter_atlas.satellite_change_batch"
             )
         except ModuleNotFoundError:
             module = importlib.import_module("datacenter_atlas.satellite_change_batch")

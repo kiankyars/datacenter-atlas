@@ -39,6 +39,8 @@ from .satellite_change_mosaic import (
 )
 from .satellite_queue import validate_queue_bundle
 
+from .historical_sources import is_archived_source, source_fingerprint
+
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFINITION_PATH = Path(
@@ -175,6 +177,8 @@ def _read_regular(path: Path, label: str) -> bytes:
 
 
 def _pin(path: Path) -> dict[str, Any]:
+    if is_archived_source(path):
+        return source_fingerprint(path, include_mode=True)
     raw = _read_regular(path, "pinned file")
     return {
         "bytes": len(raw),

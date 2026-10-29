@@ -18,6 +18,8 @@ import shutil
 import stat
 from typing import Any, Mapping
 
+from .historical_sources import is_archived_source, source_fingerprint
+
 
 REVIEW_ID = "2026-07-21-global-open-v3-unknown-034-delta-review-v1"
 DEFINITION_PATH = Path(
@@ -230,6 +232,8 @@ def _file_record(path: Path) -> dict[str, Any]:
 
 
 def _path_record(root: Path, relative: str) -> dict[str, Any]:
+    if is_archived_source(root / relative, root=root):
+        return {"path": relative, **source_fingerprint(root / relative, root=root)}
     return {"path": relative, **_file_record(_regular_file(root, relative, relative))}
 
 

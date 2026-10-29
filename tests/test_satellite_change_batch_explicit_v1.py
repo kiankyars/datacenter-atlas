@@ -6,7 +6,7 @@ from pathlib import Path
 import unittest
 
 import datacenter_atlas.satellite_change_batch as generic_carrier
-from datacenter_atlas.datacenter_atlas.satellite_change_batch_explicit_v1 import (
+from datacenter_atlas.satellite_change_batch_explicit_v1 import (
     _atomic_promote_noreplace,
     _derived_carrier,
 )

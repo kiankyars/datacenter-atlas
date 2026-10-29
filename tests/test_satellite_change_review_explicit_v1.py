@@ -12,7 +12,7 @@ import tempfile
 import unittest
 from unittest import mock
 
-import datacenter_atlas.datacenter_atlas.satellite_change_review_explicit_v1 as implementation
+import datacenter_atlas.satellite_change_review_explicit_v1 as implementation
 from datacenter_atlas.satellite_change_review_explicit_v1 import (
     BLIND_DECISIONS_FILENAME,
     BLIND_REVIEW_DRAFT_BIRTHTIME,

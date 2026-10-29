@@ -5,7 +5,7 @@ import tempfile
 from pathlib import Path
 import unittest
 
-import datacenter_atlas.datacenter_atlas.satellite_change_explicit_v1_disposition as implementation
+import datacenter_atlas.satellite_change_explicit_v1_disposition as implementation
 from datacenter_atlas.satellite_batch_explicit_v1 import (
     ExplicitBatchConfig,
     validate_explicit_satellite_batch_v1,

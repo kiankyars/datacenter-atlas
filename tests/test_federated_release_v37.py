@@ -18,17 +18,17 @@ import unittest
 from unittest.mock import patch
 
 
-legacy = importlib.import_module("datacenter_atlas.datacenter_atlas.federated_release")
+legacy = importlib.import_module("datacenter_atlas.federated_release")
 carrier_v4 = importlib.import_module(
-    "datacenter_atlas.datacenter_atlas.federated_release_v4"
+    "datacenter_atlas.federated_release_v4"
 )
 federation = importlib.import_module(
-    "datacenter_atlas.datacenter_atlas.federated_release_v5"
+    "datacenter_atlas.federated_release_v5"
 )
 carrier_shim = importlib.import_module("datacenter_atlas.federated_release_v5")
-core = importlib.import_module("datacenter_atlas.datacenter_atlas.federation_v37")
+core = importlib.import_module("datacenter_atlas.federation_v37")
 shim = importlib.import_module("datacenter_atlas.federation_v37")
-open_seed = importlib.import_module("datacenter_atlas.datacenter_atlas.open_seed_v92")
+open_seed = importlib.import_module("datacenter_atlas.open_seed_v92")
 
 ROOT = Path(__file__).resolve().parents[1]
 WORKSPACE = ROOT.parent
@@ -377,7 +377,7 @@ class FederatedReleaseV37Tests(unittest.TestCase):
         result = subprocess.run(
             [sys.executable, str(BUILDER), "--verify"],
             cwd=WORKSPACE,
-            env={**os.environ, "PYTHONDONTWRITEBYTECODE": "1"},
+            env={**os.environ, 'PYTHONDONTWRITEBYTECODE': '1', 'PYTHONPATH': str(ROOT)},
             check=False,
             capture_output=True,
             text=True,
@@ -400,7 +400,7 @@ class FederatedReleaseV37Tests(unittest.TestCase):
             result = subprocess.run(
                 [sys.executable, "-c", code],
                 cwd=working_directory,
-                env={**os.environ, "PYTHONDONTWRITEBYTECODE": "1"},
+                env={**os.environ, 'PYTHONDONTWRITEBYTECODE': '1', 'PYTHONPATH': str(ROOT)},
                 check=False,
                 capture_output=True,
                 text=True,

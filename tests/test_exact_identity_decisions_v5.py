@@ -16,14 +16,10 @@ import tempfile
 import unittest
 from unittest.mock import patch
 
-try:
-    from datacenter_atlas.datacenter_atlas import exact_identity_decisions as legacy
-    from datacenter_atlas.datacenter_atlas import (
-        exact_identity_decisions_v3 as identity_v3,
-    )
-except ModuleNotFoundError:
-    from datacenter_atlas import exact_identity_decisions as legacy
-    from datacenter_atlas import exact_identity_decisions_v3 as identity_v3
+from datacenter_atlas import exact_identity_decisions as legacy
+from datacenter_atlas import (
+    exact_identity_decisions_v3 as identity_v3,
+)
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -561,7 +557,7 @@ class ExactIdentityDecisionV5Tests(unittest.TestCase):
         environments = []
         for cwd, module in (
             (ROOT, "datacenter_atlas.exact_identity_decisions_v3"),
-            (WORKSPACE, "datacenter_atlas.datacenter_atlas.exact_identity_decisions_v3"),
+            (WORKSPACE, "datacenter_atlas.exact_identity_decisions_v3"),
         ):
             environment = os.environ.copy()
             environment["PYTHONDONTWRITEBYTECODE"] = "1"
@@ -578,7 +574,7 @@ class ExactIdentityDecisionV5Tests(unittest.TestCase):
                     ),
                 ],
                 cwd=cwd,
-                env=environment,
+                env={**environment, 'PYTHONPATH': str(ROOT)},
                 check=False,
                 capture_output=True,
                 text=True,

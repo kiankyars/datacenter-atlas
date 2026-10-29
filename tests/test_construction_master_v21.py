@@ -487,7 +487,7 @@ class FrozenConstructionMasterV21Tests(unittest.TestCase):
                     check=False,
                     capture_output=True,
                     text=True,
-                    env={**os.environ, "PYTHONDONTWRITEBYTECODE": "1"},
+                    env={**os.environ, 'PYTHONDONTWRITEBYTECODE': '1', 'PYTHONPATH': str(ROOT)},
                 )
                 self.assertEqual(result.returncode, 0, result.stderr)
 

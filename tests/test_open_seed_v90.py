@@ -3,10 +3,7 @@ from __future__ import annotations
 import hashlib
 import json
 
-try:
-    from datacenter_atlas.datacenter_atlas import open_seed_v90 as core
-except ModuleNotFoundError:  # pragma: no cover
-    from datacenter_atlas import open_seed_v90 as core
+from datacenter_atlas import open_seed_v90 as core
 
 
 def _pin(path) -> tuple[int, str]:

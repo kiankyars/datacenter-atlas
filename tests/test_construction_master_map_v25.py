@@ -231,7 +231,7 @@ class ConstructionMasterMapV25Tests(unittest.TestCase):
             result = subprocess.run(
                 [sys.executable, "-c", program],
                 cwd=cwd,
-                env=environment,
+                env={**environment, 'PYTHONPATH': str(ROOT)},
                 capture_output=True,
                 text=True,
                 check=False,

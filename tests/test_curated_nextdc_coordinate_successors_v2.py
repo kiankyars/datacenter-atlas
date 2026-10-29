@@ -884,7 +884,7 @@ with tempfile.TemporaryDirectory() as temporary:
                 result = subprocess.run(
                     [sys.executable, "-c", code],
                     cwd=cwd,
-                    env=environment,
+                    env={**environment, 'PYTHONPATH': str(ROOT)},
                     check=False,
                     capture_output=True,
                     text=True,

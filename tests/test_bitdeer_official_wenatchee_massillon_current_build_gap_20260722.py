@@ -9,14 +9,9 @@ from pathlib import Path
 
 import pytest
 
-try:
-    from datacenter_atlas.datacenter_atlas import (
-        bitdeer_official_wenatchee_massillon_current_build_gap_20260722 as tranche,
-    )
-except ModuleNotFoundError:  # pragma: no cover
-    from datacenter_atlas import (  # type: ignore[no-redef]
-        bitdeer_official_wenatchee_massillon_current_build_gap_20260722 as tranche,
-    )
+from datacenter_atlas import (
+    bitdeer_official_wenatchee_massillon_current_build_gap_20260722 as tranche,
+)
 
 
 def test_exact_two_source_contract_and_strict_import_shape() -> None:

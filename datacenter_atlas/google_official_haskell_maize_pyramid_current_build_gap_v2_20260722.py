@@ -23,6 +23,8 @@ from typing import Any, Iterator, Mapping, Sequence
 
 from . import google_official_haskell_maize_pyramid_current_build_gap_20260722 as v1
 
+from .historical_sources import source_fingerprint
+
 
 ROOT = v1.ROOT
 SOURCES_ROOT = v1.SOURCES_ROOT
@@ -273,9 +275,8 @@ def _implementation_pins() -> dict[str, Any]:
     }
     return {
         label: {
-            "bytes": path.stat().st_size,
             "path": path.relative_to(ROOT).as_posix(),
-            "sha256": _sha256(path),
+            **source_fingerprint(path),
         }
         for label, path in sorted(paths.items())
     }

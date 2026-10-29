@@ -406,7 +406,7 @@ class ItalyMASEVIAVASTests(unittest.TestCase):
             check=True,
             capture_output=True,
             text=True,
-            env={**dict(os.environ), "PYTHONDONTWRITEBYTECODE": "1"},
+            env={**dict(os.environ), 'PYTHONDONTWRITEBYTECODE': '1', 'PYTHONPATH': str(PROJECT_ROOT)},
         )
         self.assertEqual(completed.stdout.strip(), RELEASE_ID)
 

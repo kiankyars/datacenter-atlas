@@ -16,7 +16,7 @@ import tempfile
 import unittest
 from unittest.mock import patch
 
-from datacenter_atlas.datacenter_atlas import construction_timeline_v8 as timeline
+from datacenter_atlas import construction_timeline_v8 as timeline
 from datacenter_atlas.open_seed_v56 import tree_digest
 
 
@@ -394,7 +394,7 @@ class ConstructionTimelineV8Tests(unittest.TestCase):
                 "--validate-only",
             ],
             cwd=WORKSPACE,
-            env=env,
+            env={**env, 'PYTHONPATH': str(ROOT)},
             check=False,
             capture_output=True,
             text=True,

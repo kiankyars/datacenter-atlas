@@ -18,12 +18,8 @@ import tempfile
 import unittest
 from unittest.mock import patch
 
-try:
-    from datacenter_atlas.datacenter_atlas import open_seed_release_v3 as release_v3
-    from datacenter_atlas.datacenter_atlas import open_seed_v58 as v58
-except ModuleNotFoundError:
-    from datacenter_atlas import open_seed_release_v3 as release_v3
-    from datacenter_atlas import open_seed_v58 as v58
+from datacenter_atlas import open_seed_release_v3 as release_v3
+from datacenter_atlas import open_seed_v58 as v58
 from datacenter_atlas.curated import CuratedOfficialSourceAdapter
 from datacenter_atlas.service import validate_database
 
@@ -373,7 +369,7 @@ class OpenSeedV58Tests(unittest.TestCase):
             completed = subprocess.run(
                 command,
                 cwd=cwd,
-                env={**os.environ, "PYTHONDONTWRITEBYTECODE": "1"},
+                env={**os.environ, 'PYTHONDONTWRITEBYTECODE': '1', 'PYTHONPATH': str(ROOT)},
                 text=True,
                 capture_output=True,
                 timeout=30,

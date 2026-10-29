@@ -9,10 +9,7 @@ import tempfile
 import unittest
 from unittest.mock import patch
 
-try:
-    from datacenter_atlas.datacenter_atlas import open_seed_v88 as core
-except ModuleNotFoundError:  # pragma: no cover
-    from datacenter_atlas import open_seed_v88 as core
+from datacenter_atlas import open_seed_v88 as core
 
 
 class OpenSeedV88PrepTests(unittest.TestCase):

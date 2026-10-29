@@ -19,7 +19,7 @@ from unittest.mock import patch
 
 
 identity = importlib.import_module(
-    "datacenter_atlas.datacenter_atlas.exact_identity_decisions_v13"
+    "datacenter_atlas.exact_identity_decisions_v13"
 )
 shim = importlib.import_module("datacenter_atlas.exact_identity_decisions_v13")
 
@@ -377,7 +377,7 @@ class ExactIdentityDecisionV13Tests(unittest.TestCase):
         completed = subprocess.run(
             [sys.executable, str(BUILDER), "--validate-only"],
             cwd=WORKSPACE,
-            env=environment,
+            env={**environment, 'PYTHONPATH': str(ROOT)},
             check=False,
             capture_output=True,
             text=True,
@@ -396,7 +396,7 @@ class ExactIdentityDecisionV13Tests(unittest.TestCase):
             result = subprocess.run(
                 [sys.executable, "-c", code],
                 cwd=working_directory,
-                env=environment,
+                env={**environment, 'PYTHONPATH': str(ROOT)},
                 check=False,
                 capture_output=True,
                 text=True,

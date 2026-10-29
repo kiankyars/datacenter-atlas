@@ -39,6 +39,8 @@ from .satellite_queue import (
 )
 from . import satellite_catalog_reselection as v1
 
+from .historical_sources import source_fingerprint
+
 
 RESELECTION_SCHEMA_VERSION = 2
 RESELECTION_PIPELINE = "satellite_catalog_coverage_reselection_v2"
@@ -188,7 +190,7 @@ def _runtime_lineage() -> dict[str, Any]:
 def _builder_lineage() -> dict[str, Any]:
     package_root = Path(__file__).resolve().parents[1]
     files = {
-        relative: _file_record(_regular_file(package_root, relative, relative))
+        relative: source_fingerprint(package_root / relative, root=package_root)
         for relative in BUILDER_FILES
     }
     return {"files": files, "runtime": _runtime_lineage()}

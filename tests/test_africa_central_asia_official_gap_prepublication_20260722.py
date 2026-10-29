@@ -8,14 +8,9 @@ import stat
 
 import pytest
 
-try:
-    from datacenter_atlas.datacenter_atlas import (
-        africa_central_asia_official_gap_prepublication_20260722 as tranche,
-    )
-except ModuleNotFoundError:  # pragma: no cover
-    from datacenter_atlas import (  # type: ignore[no-redef]
-        africa_central_asia_official_gap_prepublication_20260722 as tranche,
-    )
+from datacenter_atlas import (
+    africa_central_asia_official_gap_prepublication_20260722 as tranche,
+)
 
 
 RECORDED_AT = "2026-07-22T05:46:30Z"

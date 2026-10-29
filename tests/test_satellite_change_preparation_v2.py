@@ -17,12 +17,9 @@ import urllib.request
 
 import rasterio
 
-try:
-    from datacenter_atlas.datacenter_atlas import (
-        satellite_change_preparation_v2 as v2,
-    )
-except ModuleNotFoundError:
-    from datacenter_atlas import satellite_change_preparation_v2 as v2
+from datacenter_atlas import (
+    satellite_change_preparation_v2 as v2,
+)
 
 
 ROOT = Path(__file__).resolve().parents[1]

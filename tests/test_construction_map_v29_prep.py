@@ -8,10 +8,7 @@ import tempfile
 import unittest
 from unittest.mock import patch
 
-try:
-    from datacenter_atlas.datacenter_atlas import construction_map_v29 as map_v29
-except ModuleNotFoundError:
-    from datacenter_atlas import construction_map_v29 as map_v29
+from datacenter_atlas import construction_map_v29 as map_v29
 
 
 GENERATED_AT = "2026-07-21T13:47:30Z"

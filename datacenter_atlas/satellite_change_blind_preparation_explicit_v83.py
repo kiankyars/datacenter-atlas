@@ -25,6 +25,8 @@ import time
 from typing import Any, Mapping
 import zlib
 
+from .historical_sources import is_archived_source, source_fingerprint
+
 
 class ExplicitV83BlindPreparationError(ValueError):
     """Raised when accepted inputs, blinding, or publication drift."""
@@ -239,6 +241,8 @@ def _exact_file(
 
 
 def _file_record(path: Path) -> dict[str, Any]:
+    if is_archived_source(path):
+        return {"path": path.relative_to(PACKAGE_ROOT).as_posix(), **source_fingerprint(path)}
     if path.is_symlink() or not path.is_file():
         raise ExplicitV83BlindPreparationError(f"builder file missing: {path}")
     raw = path.read_bytes()

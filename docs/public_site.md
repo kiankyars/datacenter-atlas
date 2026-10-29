@@ -567,8 +567,7 @@ python3 -m pytest site/e2e/test_ci_scripts.py   # CI helpers: pages server, meta
 The unit tests check, among other things, manifest validation, counts, typed conversion, that
 every site has a page and a JSON document, SQLite keys, checksums, the zip, the Data Package, KML,
 internal links, escaping, deterministic rebuilds, unknown tokens, dictionary coverage and the
-Content-Security-Policy. CI runs the same module from the directory above the checkout, as
-`python -m unittest -v datacenter_atlas.tests.test_public_site`.
+Content-Security-Policy. CI runs the same command from the repository root.
 
 The browser end-to-end tests in `site/e2e/test_site_e2e.py` use Playwright. They run in CI against
 the build served by `pages_server.py`, block every non-local request (basemap tiles get a blank

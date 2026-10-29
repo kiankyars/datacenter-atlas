@@ -29,6 +29,8 @@ from . import current_coverage_v22 as _v22
 from . import current_coverage_v24 as _v24
 from .open_seed_v56 import promote_noreplace, tree_digest
 
+from .historical_sources import read_source_bytes
+
 
 ROOT = Path(__file__).resolve().parents[1]
 V25_LEDGER_ID = "current-coverage-2026-07-21-v25"
@@ -1080,7 +1082,7 @@ def _implementation_pins() -> dict[str, Any]:
     }
     result = {}
     for label, path in sorted(paths.items()):
-        raw = path.read_bytes()
+        raw = read_source_bytes(path)
         result[label] = {
             "bytes": len(raw),
             "path": path.relative_to(ROOT).as_posix(),

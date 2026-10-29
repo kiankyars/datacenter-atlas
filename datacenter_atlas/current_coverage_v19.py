@@ -34,6 +34,8 @@ from . import federated_release as _federation
 from . import open_seed_v56 as _seed_v56
 from . import satellite_change_review_v3 as _review_v3
 
+from .historical_sources import read_source_bytes
+
 
 V19_LEDGER_ID = "current-coverage-2026-07-20-v19"
 V19_GENERATED_AT = "2026-07-20T23:25:00Z"
@@ -752,7 +754,9 @@ def _validate_accepted_inputs(package_root: Path) -> None:
     for label, (relative, expected_bytes, expected_sha256) in sorted(
         _PINNED_FILES.items()
     ):
-        raw = _read_regular(package_root / relative, f"v19 {label}")
+        raw = (read_source_bytes(package_root / relative, root=package_root)
+               if relative.endswith(".py")
+               else _read_regular(package_root / relative, f"v19 {label}"))
         if len(raw) != expected_bytes or _sha256(raw) != expected_sha256:
             raise CurrentCoverageV19Error(f"v19 {label} changed")
     _validate_tree(package_root, _BASE_BUNDLE_TREE, "v19 base bundle")

@@ -23,7 +23,7 @@ from datacenter_atlas.service import validate_database
 
 
 builder = importlib.import_module(
-    "datacenter_atlas.datacenter_atlas.site_coordinate_assessment_v5"
+    "datacenter_atlas.site_coordinate_assessment_v5"
 )
 
 
@@ -392,7 +392,7 @@ class SiteCoordinateAssessmentV5Tests(unittest.TestCase):
         result = subprocess.run(
             [sys.executable, str(PUBLISHER)],
             cwd=WORKSPACE,
-            env={**os.environ, "PYTHONDONTWRITEBYTECODE": "1"},
+            env={**os.environ, 'PYTHONDONTWRITEBYTECODE': '1', 'PYTHONPATH': str(ROOT)},
             check=False,
             capture_output=True,
             text=True,

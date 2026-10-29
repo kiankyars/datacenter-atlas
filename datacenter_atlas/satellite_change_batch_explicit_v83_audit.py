@@ -17,6 +17,8 @@ from typing import Any, Mapping
 
 from . import satellite_change_batch_explicit_v83 as execution
 
+from .historical_sources import source_fingerprint
+
 
 class ExplicitSatelliteChangeBatchV83AuditError(ValueError):
     """Raised when the frozen execution or publication contract drifts."""
@@ -63,9 +65,9 @@ def _processor_checkpoint() -> None:
         ),
     }
     for path, digest in expected.items():
-        if _sha256(path) != digest:
+        if source_fingerprint(path)["sha256"] != digest:
             raise ExplicitSatelliteChangeBatchV83AuditError(
-                f"executed processor bytes changed: {path}"
+                f"historical processor bytes changed: {path}"
             )
 
 

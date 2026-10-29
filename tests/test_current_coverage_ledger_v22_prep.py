@@ -12,7 +12,7 @@ import tempfile
 import unittest
 from unittest.mock import patch
 
-from datacenter_atlas.datacenter_atlas import current_coverage_v22 as core
+from datacenter_atlas import current_coverage_v22 as core
 from datacenter_atlas import current_coverage_v22 as shim
 
 
@@ -426,7 +426,7 @@ class CurrentCoverageLedgerV22PrepTests(unittest.TestCase):
             result = subprocess.run(
                 [sys.executable, str(SCRIPT), "--validate-only"],
                 cwd=working_directory,
-                env={**os.environ, "PYTHONDONTWRITEBYTECODE": "1"},
+                env={**os.environ, 'PYTHONDONTWRITEBYTECODE': '1', 'PYTHONPATH': str(ROOT)},
                 check=False,
                 capture_output=True,
                 text=True,

@@ -10,41 +10,22 @@ import stat
 import tempfile
 import unittest
 
-try:
-    # Repository-root discovery loads the workspace shim around the inner package.
-    from datacenter_atlas.datacenter_atlas.construction_master import (
-        ConstructionMasterError,
-        _canonical_line,
-        _capacity_split,
-        _definition,
-        _netherlands_coordinates,
-        _review_decisions,
-        _structural_row,
-        _tier_a_arithmetic_projection,
-        _validate_output_row,
-        _validate_v10_open_seed_source_allowlist,
-        _validate_v11_open_seed_source_allowlist,
-        _validate_v9_open_seed_source_allowlist,
-        validate_construction_master,
-        write_construction_master,
-    )
-except ModuleNotFoundError:
-    from datacenter_atlas.construction_master import (
-        ConstructionMasterError,
-        _canonical_line,
-        _capacity_split,
-        _definition,
-        _netherlands_coordinates,
-        _review_decisions,
-        _structural_row,
-        _tier_a_arithmetic_projection,
-        _validate_output_row,
-        _validate_v10_open_seed_source_allowlist,
-        _validate_v11_open_seed_source_allowlist,
-        _validate_v9_open_seed_source_allowlist,
-        validate_construction_master,
-        write_construction_master,
-    )
+from datacenter_atlas.construction_master import (
+    ConstructionMasterError,
+    _canonical_line,
+    _capacity_split,
+    _definition,
+    _netherlands_coordinates,
+    _review_decisions,
+    _structural_row,
+    _tier_a_arithmetic_projection,
+    _validate_output_row,
+    _validate_v10_open_seed_source_allowlist,
+    _validate_v11_open_seed_source_allowlist,
+    _validate_v9_open_seed_source_allowlist,
+    validate_construction_master,
+    write_construction_master,
+)
 
 
 PACKAGE_ROOT = Path(__file__).resolve().parents[1]
