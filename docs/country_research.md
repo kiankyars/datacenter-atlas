@@ -35,6 +35,32 @@ from the 90 days before the data update. Review later reports and keep the date 
 actually supports; a new research pass does not make an old observation current. Publish supported
 additions and updates as they are ready.
 
+`verified_construction_core/2026-10-29-research-hundredseventeenth` adds two sites and two projects:
+**930 sites and 998 projects in 87 countries**. Ilkari DC North in Varaždin brings Croatia into
+the Atlas; TSTT Mausica brings Trinidad and Tobago. Both record existing commercial operation.
+
+DC North uses Ilkari's original September 9 account of current operation at the Varaždin host.
+The original facility location page matches the native PeeringDB facility's name, domain and
+Ivane Brlić-Mažuranić 30 address. The separate CRATIS organization address and null organization
+coordinates are excluded. June corporate integration, the September interview and October recap
+retain their original chronology. Internal rooms, CIX equipment and future cloud integration do
+not add sites; reported power figures do not become measured load or new capacity.
+
+Mausica uses TSTT's original October 20 account of the named campus supporting customers and
+services, with managed operations and trained staff. The certification award and generic standards
+descriptions alone are not its status basis. EPI's registry identifies #1 Pineapple Drive; its
+certificate dates do not establish a publication date or a current-compliance guarantee. The
+exact named Google facility point retains its broader telecommunications-provider category and
+official domain. Waze's nearby named data-centre-and-exchange feature supplies identity context
+only. The reported road variants do not prove identical entrances. The October 21 VideoObject
+contributes its written description only; no audio, video or transcript was used.
+
+All 928 prior sites, 996 projects and 5,131 evidence records remain unchanged. Eleven evidence
+records and exact source/project associations are added; both imported JSON snapshots remain
+byte-identical. The two native named facility points retain their separate licences, attributions
+and unknown positional accuracy. No new opening, capacity, surveyed boundary or whole-building
+ownership is inferred. Raw publisher material stays outside Git, and unresolved holds remain held.
+
 `verified_construction_core/2026-10-29-research-hundredsixteenth` adds four sites and four projects:
 **928 sites and 996 projects in 85 countries**. The additions are MK Netzdienste FRA2 in Frankfurt,
 Germany; Patmos KC1 Tracy Avenue in Kansas City, United States; Datacentre220 in Auckland,
