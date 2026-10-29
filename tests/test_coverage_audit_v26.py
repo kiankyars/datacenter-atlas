@@ -115,10 +115,6 @@ LEGACY_CODE_PINS = {
         54_772,
         "f4af61258d90054fe6f3c28c2470164c096e2186cf97d4445a09aa4675bb2b52",
     ),
-    ROOT / "coverage_audit_v2.py": (
-        137,
-        "4923b322edd996ec977ab85c8c928b7d39b4eecb2dab080a25e6df03a2f06764",
-    ),
     ROOT / "scripts/build_coverage_audit_v2.py": (
         1_456,
         "0d4f910280d1400c27fc1a91eb71b6727cfd678a8b89bd43f676c8e294d9fe30",
@@ -129,10 +125,6 @@ V3_CODE_PINS = {
     ROOT / "datacenter_atlas/coverage_audit_v3.py": (
         1_516,
         "953742175b8dbb15cc42ff577e2eff1f2d86d82782692a369c7c3a318bc24205",
-    ),
-    ROOT / "coverage_audit_v3.py": (
-        137,
-        "789a66ce0a7f0b1106c470305ff8503f17d425fd0c6e72c13d25d71ecd2cd414",
     ),
     ROOT / "scripts/build_coverage_audit_v3.py": (
         1_456,
@@ -145,17 +137,9 @@ UPSTREAM_CARRIER_PINS = {
         26_557,
         "ff16627d62a5bda3d760e9d211de9923c5691d13760c6abe7540d2b1aff216f3",
     ),
-    ROOT / "federated_release_v2.py": (
-        144,
-        "f3b44cd056a181b73536bab186c921c6182a0c32d03054e4a6a34cb292d35906",
-    ),
     ROOT / "datacenter_atlas/federated_release_v3.py": (
         26_524,
         "e8504ca3bba1f201085579df20ec0cde4ebd700284e402f5104b656dd7c24528",
-    ),
-    ROOT / "federated_release_v3.py": (
-        136,
-        "eb95516c9d05b368f389b4100f08139c0d939639d833d6943a56199f1856d221",
     ),
 }
 

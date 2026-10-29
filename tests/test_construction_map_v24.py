@@ -100,10 +100,6 @@ FILE_PINS = {
         3_039,
         "7b91d74faf58eac1e1ab5c9717ab4fea79a099283389fe0650aae15aebe4642a",
     ),
-    ROOT / "construction_map_v8.py": (
-        233,
-        "78f9a67954cb548c201cb4903bb18b0f5309eb987c78fe8e98b7c43626451326",
-    ),
     ROOT / "scripts/build_construction_map_v8.py": (
         2_012,
         "a4f21d0e0a9bb79780ea5715df0a1f1e2722c2662614cbec62d9a2eb1c404d1b",

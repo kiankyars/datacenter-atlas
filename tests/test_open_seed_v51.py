@@ -150,10 +150,6 @@ CODE_PINS = {
         18_105,
         "c40289be2a7a74e7989caa2de23c4698e4fc9de39c180070ef6db892686f6946",
     ),
-    ROOT / "open_seed_v51.py": (
-        138,
-        "1850950c5867adcea1032d4b580739d8e4e92ad799fb7767f7b6b774fbc632c1",
-    ),
     BUILDER: (
         422,
         "fa71541e48abcac39adbab0fb31faad14d5edcb13f75e6d4bb1848681fe5afa1",

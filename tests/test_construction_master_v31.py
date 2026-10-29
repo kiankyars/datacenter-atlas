@@ -70,10 +70,6 @@ CODE_PINS = {
         16_820,
         "70e160500940712b8406f40907c6bf3d4b0ae8ad5a947d79bc4f63835be5a523",
     ),
-    ROOT / "construction_master_v31.py": (
-        249,
-        "613ad80ad3476ece996da3d9f4f20200c98d7a66cdd3770fb0c1f2f6faafc17d",
-    ),
     ROOT / "scripts/build_construction_master_v31.py": (
         3_756,
         "3e412c4b659c545c876a472ca68cb600e4d4bac0fe9538637389190f681dfe2f",

@@ -60,10 +60,6 @@ FILE_PINS = {
         2_611,
         "cdb2cf235fc053b00d093874d1ca024dffdb4ba09fe5c89ad3c97168c483249b",
     ),
-    ROOT / "construction_map_v9.py": (
-        233,
-        "df62d6f9e0eb46e8647fd630050fd0a5002627ebb3b67de1f438f4c7c3db66ab",
-    ),
     ROOT / "scripts/build_construction_map_v9.py": (
         2_012,
         "93676524510a966bdc64d418273d4e462d1018cac3042aa03eadb834f9974b45",
@@ -71,10 +67,6 @@ FILE_PINS = {
     ROOT / "datacenter_atlas/construction_map_v10.py": (
         2_764,
         "b91ee693bac8c3d627ed5ec126eca66efe2c6e421481c888c47f12e074bb7311",
-    ),
-    ROOT / "construction_map_v10.py": (
-        235,
-        "7f47122e303748af373812b5c71b9c65246dbcc6e1c4a9df2cd0c40ad263e82a",
     ),
     ROOT / "scripts/build_construction_map_v10.py": (
         2_020,

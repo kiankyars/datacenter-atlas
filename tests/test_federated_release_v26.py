@@ -68,10 +68,6 @@ CODE_PINS = {
         26_557,
         "ff16627d62a5bda3d760e9d211de9923c5691d13760c6abe7540d2b1aff216f3",
     ),
-    ROOT / "federated_release_v2.py": (
-        144,
-        "f3b44cd056a181b73536bab186c921c6182a0c32d03054e4a6a34cb292d35906",
-    ),
     ROOT / "scripts/build_federated_release_index_v2.py": (
         1_717,
         "20c6fe3765c8a25c8ac103794c1d7a4a248952c55f7e5dfd7b3e9845c0dc350d",

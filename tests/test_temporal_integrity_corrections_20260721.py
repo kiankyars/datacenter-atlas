@@ -48,10 +48,6 @@ CODE_PINS = {
         18_394,
         "8935f8f048d77f961c4964798f796a59ce1e333310dcabd554dfed7a91f38bf5",
     ),
-    ROOT / "corrected_discovery_wrappers_v2.py": (
-        165,
-        "da73e10a88a6c3e0297b2f1f1cf7cda9e4867266286b7cdf8618d97927c0339d",
-    ),
     ROOT / "scripts/build_corrected_discovery_wrappers_v2.py": (
         384,
         "73c7075251146d5f754cfc508e84d546bd416b0e97d57d262629b6fc3c8a427e",
@@ -199,7 +195,7 @@ class TemporalIntegrityCorrectionTests(unittest.TestCase):
     def test_parent_and_nested_imports_collision_tamper_and_symlink_fail_closed(
         self,
     ) -> None:
-        self.assertNotEqual(core.__file__, shim.__file__)
+        self.assertIs(core, shim)
         self.assertIs(core.validate_corrected_wrapper, shim.validate_corrected_wrapper)
         with self.assertRaisesRegex(SystemExit, "already exists"):
             core.build_corrected_discovery_wrappers_v2()

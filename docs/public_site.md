@@ -547,8 +547,9 @@ publication does not depend on reaching a site-count target or product-version m
    python3 site/e2e/check_public_metadata.py --site _site
    ```
 
-   The metadata script updates `CITATION.cff` and marked blocks in `README.md` and `DATA_LICENSE.md`
-   from the built API. Fix any stale hand-written figures or validation commands it reports. Public
+   The metadata script updates `CITATION.cff` and marked blocks in `DATA_LICENSE.md`
+   from the built API. Keep the README free of dataset counts, update dates and pinned release links;
+   link to the site for those details. Fix any stale hand-written figures or validation commands it reports. Public
    pages use tokens for counts and dates; describe the data by its update and observation dates.
 6. Run the relevant tests and inspect the map, changed site pages and downloads. Commit and push
    to `main`; CI builds, deploys and checks the live site. `downloads/latest/` follows the new data,

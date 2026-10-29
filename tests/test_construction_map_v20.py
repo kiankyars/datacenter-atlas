@@ -34,7 +34,6 @@ V46_DATA = ROOT / "releases/2026-07-20-open-seed-v46/construction_pipeline.csv"
 
 DEFINITION_SHA256 = "cbdd185f38aebd67b82899b20ddc5d23425eef33ffb1d24e97da4bdaa615e3ed"
 MODULE_SHA256 = "32b92ec345172b538f28fca9a491605fec961e962d39f68b3afe943d6fa8b23e"
-WRAPPER_SHA256 = "cbf26d380e306f97abef1a28d7fa0dd065c1756bf95322d504fe0a65e845eead"
 SCRIPT_SHA256 = "2e48663d6304086e5bf44ee26a4a47da7732f460ddd5c71182d7352a34b4ec43"
 MANIFEST_SHA256 = "6dcc9c02a37200f9fec5894aaa97f0ce30e330225567168b5455fb3d4310070c"
 BUNDLE_INVENTORY_SHA256 = "72141c5c9f491e36d0e67e429db2c667c7e5d341fa363587d7ee6d360d819c9c"
@@ -145,7 +144,6 @@ class FrozenConstructionMapV20Tests(unittest.TestCase):
         pins = {
             MAP_DEFINITION: DEFINITION_SHA256,
             ROOT / "datacenter_atlas/construction_map_v4.py": MODULE_SHA256,
-            ROOT / "construction_map_v4.py": WRAPPER_SHA256,
             ROOT / "scripts/build_construction_map_v4.py": SCRIPT_SHA256,
             MAP / "manifest.json": MANIFEST_SHA256,
             **MASTER_PINS,

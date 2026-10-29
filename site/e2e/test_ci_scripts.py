@@ -183,9 +183,7 @@ def _facts(**changes):
 
 def _write_repo(root: Path, *, readme_extra: str = "", contributing: str = "") -> Path:
     (root / "README.md").write_text(
-        "# Atlas\n\n## Current dataset\n\n<!-- atlas:current-dataset -->\n<!-- /atlas:current-dataset -->\n\n"
-        "<!-- atlas:version-files -->\n<!-- /atlas:version-files -->\n\n"
-        "## Cite\n\n<!-- atlas:citation -->\n<!-- /atlas:citation -->\n\n" + readme_extra,
+        "# Atlas\n\nAn open dataset.\n\n" + readme_extra,
         encoding="utf-8",
     )
     (root / "DATA_LICENSE.md").write_text(
@@ -201,18 +199,13 @@ def _write_repo(root: Path, *, readme_extra: str = "", contributing: str = "") -
 def test_metadata_write_then_check_is_clean(tmp_path):
     repo = _write_repo(tmp_path)
     facts = _facts()
+    readme_before = (repo / "README.md").read_bytes()
     assert check_public_metadata.check(repo, facts), "a fresh repository must be reported as stale"
     changed = check_public_metadata.write(repo, facts)
-    assert sorted(changed) == ["CITATION.cff", "DATA_LICENSE.md", "README.md"]
+    assert sorted(changed) == ["CITATION.cff", "DATA_LICENSE.md"]
     assert check_public_metadata.check(repo, facts) == []
     assert check_public_metadata.write(repo, facts) == [], "write is idempotent"
-    readme = (repo / "README.md").read_text(encoding="utf-8")
-    assert "**4 physical sites**" in readme
-    assert "**Data updated:** 2026-10-02" in readme
-    assert "**Status observations:** 2026-05-22 to 2026-08-20" in readme
-    current = check_public_metadata.block_content(readme, "current-dataset")
-    assert DATASET_ID not in current
-    assert "gate" not in current and "draft" not in current and "release" not in current
+    assert (repo / "README.md").read_bytes() == readme_before
     license_text = (repo / "DATA_LICENSE.md").read_text(encoding="utf-8")
     assert "(<!-- atlas:osm-geometry-count -->2 of the 5 project geometries, on 2 sites, in the 2026-10-02" in license_text
     citation = (repo / "CITATION.cff").read_text(encoding="utf-8")
@@ -246,13 +239,17 @@ def test_metadata_names_locator_exceptions(tmp_path):
 
 def test_metadata_reports_a_new_checkpoint_until_rewritten(tmp_path):
     repo = _write_repo(tmp_path)
+    readme_before = (repo / "README.md").read_bytes()
     check_public_metadata.write(repo, _facts())
     newer = copy.deepcopy(_facts().index)
     newer["dataset"]["id"] = "2026-08-20-v0.18-draft-thirty-seventh-reviewed"
     newer["dataset"]["checkpoint_date"] = "2026-10-03"
     problems = check_public_metadata.check(repo, _facts(index=newer))
     assert any(problem.startswith("CITATION.cff") for problem in problems)
-    assert any("current-dataset block is stale" in problem for problem in problems)
+    assert not any(problem.startswith("README.md") for problem in problems)
+    check_public_metadata.write(repo, _facts(index=newer))
+    assert check_public_metadata.check(repo, _facts(index=newer)) == []
+    assert (repo / "README.md").read_bytes() == readme_before
 
 
 def test_metadata_flags_stale_prose(tmp_path):
@@ -279,9 +276,9 @@ def test_metadata_flags_stale_prose(tmp_path):
 
 def test_metadata_blocks_must_exist_exactly_once(tmp_path):
     repo = _write_repo(tmp_path)
-    (repo / "README.md").write_text("no markers\n", encoding="utf-8")
+    (repo / "DATA_LICENSE.md").write_text("no markers\n", encoding="utf-8")
     problems = check_public_metadata.check(repo, _facts())
-    assert any("needs exactly one <!-- atlas:current-dataset -->" in problem for problem in problems)
+    assert any("needs exactly one <!-- atlas:attribution-example -->" in problem for problem in problems)
     with pytest.raises(check_public_metadata.MetadataError):
         check_public_metadata.write(repo, _facts())
 

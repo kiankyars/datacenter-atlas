@@ -36,7 +36,6 @@ GENERATED_AT = "2026-07-20T10:00:03Z"
 V46_RECORDED_AT = "2026-07-20T09:41:21Z"
 DEFINITION_SHA256 = "a51d03cd1f1db1aac3f25de5615eb587a6424ee440454175a4e0c8fd95e918b7"
 MODULE_SHA256 = "dd95e3edf3f88464fe13c8db1c4b930d775c435918025f3fd16ae9e1f203ab20"
-WRAPPER_SHA256 = "30f51d19c3e73b82aca391100dcac8f4b108dd19df7943c58d6285d999acdabc"
 SCRIPT_SHA256 = "f560005a3c17c2c4eaff264d5e06bbbc0bf9c4aa255b347acfaa22e522e1cd12"
 MANIFEST_SHA256 = "b558cf776693602ae51141ec0ac6445decf84d671447fa3743513d3d0551efe7"
 BUNDLE_INVENTORY_SHA256 = "4daa3c277cb9f9fb84e412d428600598edf32dd20f2c136ace052ad9175cc3a4"
@@ -59,7 +58,6 @@ OUTPUT_CHECKPOINTS = {
 
 V17_PINS = {
     "datacenter_atlas/construction_master_v3.py": "f28516080627a597a56363b1570a318a085aa1cee085c5b30cc2b42b56bd211b",
-    "construction_master_v3.py": "a1b45de22aa4d8173f38cc2751b0ecee05f5e93df1c32c6099cd34b557e6f06b",
     "scripts/build_construction_master_v3.py": "f5768050847c013d39b7816752ba20dc475afa7b3c80b1632ecbec46d21295b0",
     "sources/construction-master-2026-07-20-public-open-v17.json": "856da5d183e176bd7b2573c9cd8676976effb63b10be8dcff84fd993d385ce19",
     "tests/test_construction_master_v17.py": "08e925f29bd3e10d1ad556a018c14bce89085a5cb9b450099842a92244fec546",
@@ -136,7 +134,6 @@ class FrozenConstructionMasterV20Tests(unittest.TestCase):
         pins = {
             DEFINITION: DEFINITION_SHA256,
             ROOT / "datacenter_atlas/construction_master_v4.py": MODULE_SHA256,
-            ROOT / "construction_master_v4.py": WRAPPER_SHA256,
             ROOT / "scripts/build_construction_master_v4.py": SCRIPT_SHA256,
             BUNDLE / "manifest.json": MANIFEST_SHA256,
         }

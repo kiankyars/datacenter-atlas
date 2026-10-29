@@ -81,10 +81,6 @@ FILE_PINS = {
         2_921,
         "1ac853a00cd0279c56d14b767cadbe8a6e4e6df256d3ec6b73b4bcf3ff5b88af",
     ),
-    ROOT / "construction_master_v11.py": (
-        241,
-        "437d0d3da0c839250f37064dc08213d51660e44881d369cc98c7d39e3af78fc5",
-    ),
     ROOT / "scripts/build_construction_master_v11.py": (
         1_872,
         "e9e06ff8f3c36299e56eca0b5b9cb70910a226e93745a7a7e9845e06717fd465",
@@ -101,10 +97,6 @@ FILE_PINS = {
         2_860,
         "20ba327d39af80ba7eb14f5b2d52197285e7372a0821ecb3a19817a49c336041",
     ),
-    ROOT / "construction_map_v11.py": (
-        235,
-        "ce1367606c33e5dd4ae2397f841f63d5c5fca1fa5380bf45c7639f30a2f60deb",
-    ),
     ROOT / "scripts/build_construction_map_v11.py": (
         2_020,
         "5f0481d6f7d0a57d8369be63897cb27161b9cae08b15dd0497971ed5d12ea033",
@@ -116,10 +108,6 @@ FILE_PINS = {
     ROOT / "datacenter_atlas/coverage_audit_v3.py": (
         1_516,
         "953742175b8dbb15cc42ff577e2eff1f2d86d82782692a369c7c3a318bc24205",
-    ),
-    ROOT / "coverage_audit_v3.py": (
-        137,
-        "789a66ce0a7f0b1106c470305ff8503f17d425fd0c6e72c13d25d71ecd2cd414",
     ),
     ROOT / "scripts/build_coverage_audit_v3.py": (
         1_456,

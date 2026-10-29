@@ -87,10 +87,6 @@ CODE_PINS = {
         54_772,
         "f4af61258d90054fe6f3c28c2470164c096e2186cf97d4445a09aa4675bb2b52",
     ),
-    ROOT / "coverage_audit_v2.py": (
-        137,
-        "4923b322edd996ec977ab85c8c928b7d39b4eecb2dab080a25e6df03a2f06764",
-    ),
     ROOT / "scripts/build_coverage_audit_v2.py": (
         1_456,
         "0d4f910280d1400c27fc1a91eb71b6727cfd678a8b89bd43f676c8e294d9fe30",

@@ -79,10 +79,6 @@ CODE_PINS = {
         75_240,
         "0429ff1317c247351608c2c6e421d0fbd30df73f47e41a1b0d1aef0ff2fa9d9f",
     ),
-    ROOT / "current_coverage_v21.py": (
-        150,
-        "2b807118bcad2ba30c2684d566390e71d192cc2957b2a523daf7dfddb789758a",
-    ),
     SCRIPT: (
         2_781,
         "6475941f55053a61e63c5db355c6f302186f9593eb5bff40e3b630dfaeb3425d",

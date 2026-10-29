@@ -141,10 +141,6 @@ CODE_PINS = {
         17_355,
         "63dc5d12acf733c4d6729542f869f18c452db1c5739462c57bf6b141f2e62bb2",
     ),
-    ROOT / "open_seed_v50.py": (
-        138,
-        "c7cf9c7564e4466346e7ad18be87a67516fa37d955e4103744b08abc9ded6fda",
-    ),
     BUILDER: (
         422,
         "31f64b542967765bad24c9846a75b1fd00578149e831fa78c41a6ebf40df6182",

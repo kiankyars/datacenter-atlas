@@ -94,10 +94,6 @@ CODE_PINS = {
         53_678,
         "3bdba3404182bed32f5491826d027344d2b9d4cea01ef9670cb8ffa44bc67259",
     ),
-    ROOT / "open_seed_v67.py": (
-        138,
-        "94e5ae0f391351d47bd63a2a6246c1e4d8af92689b98ac505764515ed8269ff2",
-    ),
     ROOT / "scripts/build_open_seed_v67.py": (
         363,
         "9278c79ac3a2e8ddd63a4ba0bb2a72f8a897bc58ecd83fc305c65b7a35655fdb",

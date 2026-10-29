@@ -54,12 +54,6 @@ SOURCE_PINS = {
     ROOT / "datacenter_atlas/construction_map_v7.py": (
         "053995421f2e581ba49ea5bf89fd539afce527b718c643ea8e1074204a7586be"
     ),
-    ROOT / "construction_master_v7.py": (
-        "cf0657e1970a262a653418404c56abd6d3b2c3b6b79101ce97b9f796aeabe007"
-    ),
-    ROOT / "construction_map_v7.py": (
-        "b657eba7fe56c4dd19f35f6a3388b4b1eba91f3ee810c4532c6aabef439d0bb7"
-    ),
     ROOT / "scripts/build_construction_master_v7.py": (
         "a184073ce4c3d4ef591b74812c58a8250bcf0835424707e4130e2b426c19fc14"
     ),

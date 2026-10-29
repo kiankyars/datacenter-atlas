@@ -88,10 +88,6 @@ FILE_PINS = {
         2_664,
         "c5e6d1573ca8af855a35f57e57e1579f6588370458a3cac5cddf1fde92157946",
     ),
-    ROOT / "construction_master_v8.py": (
-        239,
-        "bf54d7eaf790d4b7f92cb2b8c3f7bc382df91d95f76d873761996647f2e801c8",
-    ),
     ROOT / "scripts/build_construction_master_v8.py": (
         1_864,
         "81b01c4b3b56e5cc821380030273033cbfe941877250931c1b1adc50f7332a35",

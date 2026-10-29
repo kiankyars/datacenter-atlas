@@ -14,18 +14,27 @@ WORKSPACE_SHIM = Path(datacenter_atlas.__file__).resolve() == ROOT / "__init__.p
 
 
 class WorkspaceShimTests(unittest.TestCase):
+    @unittest.skipUnless(WORKSPACE_SHIM, "workspace entry points apply when importing from the repository parent")
+    def test_enrichment_entry_point_can_run_as_a_module(self) -> None:
+        name = "datacenter_atlas.goodman_databank_lax01_official_enrichment_20260722"
+        spec = importlib.util.find_spec(name)
+        self.assertIsNotNone(spec.loader.get_code(name))
+
     @unittest.skipUnless(WORKSPACE_SHIM, "workspace aliases apply when importing from the repository parent")
     def test_reviewed_release_and_consolidation_modules_share_one_identity(self) -> None:
         for name in (
             "consolidation", "dataset_update", "project_details", "public_site", "publication_pair_v32",
             "verified_construction_core_v017", "verified_construction_core_v018",
             "expansion_200_initial_three", "expansion_200_thirty_fifth_reviewed", "expansion_200_thirty_seventh_reviewed",
+            "construction_map_v12", "construction_master_v29", "construction_timeline_v3",
+            "open_seed_v50", "open_seed_v84", "satellite_queue_v71",
         ):
             with self.subTest(module=name):
                 public = importlib.import_module(f"datacenter_atlas.{name}")
                 nested = importlib.import_module(f"datacenter_atlas.datacenter_atlas.{name}")
                 self.assertIs(public, nested)
                 self.assertIs(getattr(sys.modules["datacenter_atlas"], name), nested)
+                self.assertEqual(Path(public.__file__).resolve(), ROOT / "datacenter_atlas" / f"{name}.py")
 
     @unittest.skipUnless(WORKSPACE_SHIM, "workspace aliases apply when importing from the repository parent")
     def test_public_and_nested_timestamp_modules_share_one_identity(self) -> None:

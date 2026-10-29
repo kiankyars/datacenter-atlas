@@ -199,10 +199,6 @@ CODE_PINS = {
         22_999,
         "01a706fb8c8137b703a901082d0a90046ee3db08f867a83d9a6c423c2aaeed46",
     ),
-    ROOT / "open_seed_v52.py": (
-        138,
-        "59e24fb4b7b0c9186bd28e83d1e8c572dedd45583ef27a45821fdd44149212c0",
-    ),
     ROOT / "scripts/build_open_seed_v52.py": (
         422,
         "ec5a1cbbad092203b1420193ee41cadedef9c6189e176b9e7fc7949b1a7765e4",
@@ -210,10 +206,6 @@ CODE_PINS = {
     ROOT / "datacenter_atlas/open_seed_v53.py": (
         29_549,
         "acd18508e027c35fda76664236272121929913f539dda95d989296394a230485",
-    ),
-    ROOT / "open_seed_v53.py": (
-        138,
-        "a03fa06f165baca54fdde7dd480ddf62f1d8ea2dcbed4bb6ca6bece36febd0dd",
     ),
     BUILDER: (
         361,

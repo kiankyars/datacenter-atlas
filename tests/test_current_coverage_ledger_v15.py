@@ -53,10 +53,6 @@ FILE_PINS = {
         32_342,
         "216335c9a61b7775fad1df45c2d12039339fdb5e7c40b6078be33c0ace8cb298",
     ),
-    ROOT / "current_coverage_v15.py": (
-        150,
-        "6203c3285dab960248a1a9c6ba30d0fe7618519fe9ade25e1f8964c5cff9291a",
-    ),
     ROOT / "scripts/build_current_coverage_ledger_v15.py": (
         2_795,
         "e489c504c46e867e74bac830ad9679c1e010f1b3c0d4fffbdd16ce3e941d7efb",

@@ -113,7 +113,14 @@ date, site identity and later-status check. Pin the source files and base manife
 `scripts/build_dataset_update.py --input definitions/atlas-update-YYYY-MM-DD.json` builds a new
 dated directory. Use `--validate-only` to reproduce and compare it, then select that directory
 in `site/config.json`. Build the website and run the metadata check with `--write` to refresh
-README and citation counts. New updates need no numbered release or site-count milestone.
+citation and attribution metadata. Keep dataset counts and update dates out of the README.
+
+### Code layout
+
+Implementations live in `datacenter_atlas/`; command-line entry points live in `scripts/`.
+The root `__init__.py` provides imports from the repository parent without per-module wrappers.
+The remaining root wrappers preserve files whose paths and bytes are checked by historical
+builders and manifests, plus an executable enrichment entry point. Do not add new ones.
 
 ### Ground rules
 

@@ -97,10 +97,6 @@ LEGACY_CODE_PINS = {
         17_022,
         "be46adacf4f1d67001be30f55db20320f8e7e823daa18309f8a5102078040f0f",
     ),
-    ROOT / "exact_identity_decisions_v2.py": (
-        146,
-        "ea1a51e4ef7ce4c0b41f98627dde91a2e0c5753eb0e5718bda2fe7259b7db6f7",
-    ),
     ROOT / "scripts/build_exact_identity_decisions_v2.py": (
         2_327,
         "5a789d69aeb5c9414639fb3f3b6942ada77f56f83155a43d76eeaaf84eb47b55",
@@ -111,10 +107,6 @@ V3_CODE_PINS = {
     ROOT / "datacenter_atlas/exact_identity_decisions_v3.py": (
         16_965,
         "a8ecbfb51237b9925d6a659973407e4353e83b4e25c2fee216b00806904a6ab5",
-    ),
-    ROOT / "exact_identity_decisions_v3.py": (
-        147,
-        "99c86b224e2e99677b9ff7fa97313b09af985baf2d597597c1d3ace41b0f4c84",
     ),
     ROOT / "scripts/build_exact_identity_decisions_v3.py": (
         2_328,

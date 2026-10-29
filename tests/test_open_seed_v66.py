@@ -95,10 +95,6 @@ CODE_PINS = {
         43_215,
         "7b1fbacb5e451529db9e6e1eac47065bbdec0626edc056f458c070e0f1aec98f",
     ),
-    ROOT / "open_seed_v66.py": (
-        138,
-        "8d83403900bb92fdfddf1cad8b313d687b9713f1584cd76240254867b5fb69f8",
-    ),
     ROOT / "scripts/build_open_seed_v66.py": (
         363,
         "598ffeeede3f702b919e70cfbb491e1b3addc96610684ba6c772a27f26394a86",
@@ -408,7 +404,7 @@ class OpenSeedV66Tests(unittest.TestCase):
         )
 
     def test_both_import_layouts_resolve_the_same_v66_contract(self) -> None:
-        self.assertNotEqual(core_v66.__file__, shim_v66.__file__)
+        self.assertIs(core_v66, shim_v66)
         self.assertIs(core_v66.selected_inputs, shim_v66.selected_inputs)
         self.assertIs(core_v66.validate_open_seed_v66, shim_v66.validate_open_seed_v66)
         self.assertEqual(core_v66.RELEASE_ID, shim_v66.RELEASE_ID)

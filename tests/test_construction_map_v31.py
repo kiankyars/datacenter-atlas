@@ -66,10 +66,6 @@ CODE_PINS = {
         9_900,
         "846746ae0a290600f1779ab706a90611a3adb05f470e1f656759afed0634bd3d",
     ),
-    ROOT / "construction_map_v31.py": (
-        143,
-        "c02ad337f0258b05a720f2575a562b3e29c83a0ba6ac78bde54ca751be43bdbe",
-    ),
     ROOT / "scripts/build_construction_map_v31.py": (
         1_607,
         "915fff767852b099fbff30f102cf1036c453e506120dcb4035e975e562b6341b",

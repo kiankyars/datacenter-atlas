@@ -67,10 +67,6 @@ CODE_PINS = {
         68_784,
         "1c87b42c5798f95658b80b18e14b0b1459cdbd191febfd6bd85477723ce60692",
     ),
-    ROOT / "construction_timeline_v7.py": (
-        331,
-        "e0a853fe40fb375622e2f4a20bd9d22007ac2a05746d6c1b9b31ecadfe126e60",
-    ),
     ROOT / "scripts/build_construction_timeline_v7.py": (
         1_484,
         "aa85ecbead8ce12a8173e77323db4c2ab69f54afdc86a7df3497a4a34071d365",

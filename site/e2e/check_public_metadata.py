@@ -1,12 +1,12 @@
 """Check (or rewrite) the dataset facts written outside the site build.
 
-README.md, CITATION.cff and DATA_LICENSE.md state dataset dates, counts and citation metadata. They are not produced by ``scripts/build_public_site.py``, so
-they need to be refreshed when the data changes. This script reads
+CITATION.cff and DATA_LICENSE.md contain generated dataset metadata. They are not
+produced by ``scripts/build_public_site.py``, so they need to be refreshed when the data changes. This script reads
 the built site's API (``api/v1/*.json``) and the repository's ``site/config.json`` and:
 
-- regenerates ``CITATION.cff`` and the marked blocks in README.md and DATA_LICENSE.md
+- regenerates ``CITATION.cff`` and the marked blocks in DATA_LICENSE.md
   (``<!-- atlas:NAME -->`` ... ``<!-- /atlas:NAME -->``) from those facts;
-- checks figures in the hand-written prose (for example "98 of the 197 sites") against the build;
+- checks figures in hand-written prose against the build, without rewriting the README;
 - flags commands and links that still name an earlier v0.18 checkpoint.
 
 Usage (standard library only)::
@@ -69,7 +69,6 @@ class Facts:
     projects: Sequence[Mapping[str, Any]]
     evidence: Sequence[Mapping[str, Any]]
     config: Mapping[str, Any]
-    # api/v1/citation.json when the build publishes one: the README then quotes the same citation.
     citation: Mapping[str, Any] | None = None
 
     @property
@@ -280,64 +279,6 @@ def citation_cff(facts: Facts) -> str:
     return "\n".join(lines) + "\n"
 
 
-def readme_current_dataset(facts: Facts) -> str:
-    dataset, counts = facts.dataset, facts.counts
-    bullets = [
-        f"**Coverage:** **{counts['physical_sites']} physical sites**, **{counts['projects']} "
-        f"projects** and **{counts['countries']} countries**.",
-        f"**Data updated:** {dataset['checkpoint_date']}.",
-        f"**Status observations:** {dataset.get('window_start', '?')} to "
-        f"{dataset.get('observation_window_end', dataset['lifecycle_reference_date'])}. "
-        "Each record includes its source and observation date.",
-    ]
-    return "\n".join(wrap(text, first="- ", rest="  ") for text in bullets)
-
-
-def citation_parts(facts: Facts) -> tuple[str, str]:
-    """(APA-style reference, BibTeX entry) for the current version: the build's own citation.json
-    when it publishes one, so the README and the site cite identically."""
-    published = facts.citation or {}
-    if isinstance(published.get("apa"), str) and isinstance(published.get("bibtex"), str):
-        title = dataset_title(facts)
-        return published["apa"].replace(title, f"*{title}*", 1), published["bibtex"].strip()
-    family, given = author_parts(facts.config)
-    year = str(facts.dataset["checkpoint_date"])[:4]
-    title = dataset_title(facts)
-    reference = (
-        f"{family}, {given[:1]}. ({year}). *{title}* [Data set; updated {facts.dataset['checkpoint_date']}]. {facts.base_url}"
-    )
-    key = re.sub(r"[^a-z0-9]", "", f"{family}{year}datacenteratlas".lower())
-    bibtex = "\n".join([
-        f"@misc{{{key},",
-        f'  author = "{family}, {given}",',
-        f'  title  = "{title}",',
-        f'  year   = "{year}",',
-        f'  note   = "Data updated {facts.dataset["checkpoint_date"]}; archive ID {facts.dataset["id"]}",',
-        f'  url    = "{facts.base_url}"',
-        "}",
-    ])
-    return reference, bibtex
-
-
-def readme_citation(facts: Facts) -> str:
-    reference, bibtex = citation_parts(facts)
-    quoted = wrap(reference, first="> ", rest="> ")
-    return f"{quoted}\n\n```bibtex\n{bibtex}\n```"
-
-
-def readme_version_files(facts: Facts) -> str:
-    base, identifier = facts.base_url, facts.dataset["id"]
-    sums = next((item["pinned_url"] for item in facts.index.get("downloads", [])
-                 if item.get("name") == "SHA256SUMS" and item.get("pinned_url")),
-                f"{base}downloads/{identifier}/SHA256SUMS")
-    text = (
-        "`downloads/latest/` contains the current data. For reproducible work, use the "
-        f"[archived files]({base}downloads/{identifier}/) and verify them against their "
-        f"[`SHA256SUMS`]({sums})."
-    )
-    return wrap(text)
-
-
 def license_example(facts: Facts) -> str:
     text = (
         f"Data: {facts.config.get('site_name', 'Data Center Atlas')} ({facts.config['author']['name']}), "
@@ -357,9 +298,6 @@ def license_osm_count(facts: Facts) -> str:
 
 # Generated blocks: (file, block name, generator, inline). Inline blocks sit inside a sentence.
 BLOCKS: tuple[tuple[str, str, Callable[[Facts], str], bool], ...] = (
-    (README_PATH, "current-dataset", readme_current_dataset, False),
-    (README_PATH, "version-files", readme_version_files, False),
-    (README_PATH, "citation", readme_citation, False),
     (DATA_LICENSE_PATH, "attribution-example", license_example, False),
     (DATA_LICENSE_PATH, "osm-geometry-count", license_osm_count, True),
 )
