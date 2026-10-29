@@ -35,6 +35,44 @@ from the 90 days before the data update. Review later reports and keep the date 
 actually supports; a new research pass does not make an old observation current. Publish supported
 additions and updates as they are ready.
 
+`verified_construction_core/2026-10-29-research-hundredthirteenth` adds six sites and six projects:
+**917 sites and 985 projects in 85 countries**. The additions are BroadBand Tower New Otemachi
+in Japan; maincubes FRA03 in Germany; Stellanor London North, Goswell Road, in the United Kingdom;
+365 Data Centers Richardson TX1 and Smyrna GA2 in the United States; and Cirion SAN2 Quilicura
+in Chile. All six projects record existing commercial operations.
+
+New Otemachi uses the original August 6 CEO statement of continuing stable operation. The
+October 27 equipment tests remain later context. Its exact native facility record distinguishes
+the Otemachi Place West Tower host from the corporate office and separately connected NTT DATA
+facility. FRA03 records first-module operation on August 3. The operator's original factsheet
+and native feature identify Am Kronberger Hang 6; the nearby FRA02 campus and corporate office
+remain separate. Goswell remained operational through the completed September chiller lift;
+subsequent connection and commissioning are not recorded as completed.
+
+The original September 22 joint 365/Megaport release explicitly reports completed deployments
+and current customer access at Richardson and Smyrna. Exact operator street addresses match
+native facility points. The equipment does not add separate sites, and Smyrna's hosting and
+business-continuity functions remain one campus.
+
+Cirion's September 2 original report describes SAN2 cooling hosted equipment and an on-site
+media visit. The actual visit day is unstated; the October 19 recap does not renew it. The
+native SAN2 feature matches the facility code, operator domain and Quilicura locality. Its
+broad data-recovery-service category is disclosed. Address 2259 appears in the current operator
+page's map iframe, while a historical official PDF reports 2290; these are not asserted to be
+identical entrances. Historical availability forecasts, schematic maps and research-only OSM
+features establish neither current operation nor selected geometry.
+
+All 911 prior sites and 979 projects remain unchanged. The 5,056 prior evidence records retain
+every substantive field; exactly two shared 365 sources gain only the Richardson and Smyrna
+project links. Twenty-three evidence records are added, with 27 exact source/project associations
+across the 25 selected source objects. Both imported JSON snapshots remain byte-identical.
+All six actions and 25 source objects retain their independently approved regional contents;
+the frozen five-campus preview and its reviews remain unchanged. All selected sources preserve
+exact original response bytes, with raw publisher material excluded from Git. Source licensing,
+attribution and unknown positional accuracy are retained. No new capacity, occupancy, measured
+load, current certification, opening date or surveyed boundary is inferred. Unresolved holds
+and historical data remain unchanged.
+
 `verified_construction_core/2026-10-29-research-hundredtwelfth` adds eleven sites and eleven projects:
 **911 sites and 979 projects in 85 countries**. The additions are Lightedge Altoona DSM1/DSM2,
 DC BLOX Atlanta West, and 365 Data Centers Fort Lauderdale, Detroit/Southfield and Commack in
