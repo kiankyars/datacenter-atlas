@@ -35,6 +35,42 @@ from the 90 days before the data update. Review later reports and keep the date 
 actually supports; a new research pass does not make an old observation current. Publish supported
 additions and updates as they are ready.
 
+`verified_construction_core/2026-10-29-research-hundredfourteenth` adds five sites and five projects:
+**922 sites and 990 projects in 85 countries**. The additions are CMC Tân Thuận in Vietnam;
+365 Data Centers Chicago CH6, Philadelphia University City PH2 and Herndon VA1 in the United
+States; and PAIX ACC-1 Accra in Ghana. All five projects record existing commercial operations.
+
+CMC uses the original October 9 account of practical operating review, shift monitoring,
+maintenance and current customer infrastructure. The certification label alone is not its
+status evidence. A historical original tender explicitly places the data centre within CMC
+Creative Space; the current Street 19 address corroborates the named native facility record.
+The selected point locates the mixed-use campus, not a particular data hall or building.
+Conflicting historical construction-start dates and forecast opening dates are not adopted.
+
+The original September 22 joint 365/Megaport release reports completed deployments and current
+customer access at Chicago, Philadelphia (Market Street) and Herndon. Current physical-host
+pages match the exact native facility addresses. Chicago's 427 South LaSalle host remains
+distinct from the nearby 400 South LaSalle conversion. Philadelphia is scoped to 3701 Market
+Street, separate from Downtown at Spring Garden Street. Herndon's current name and exact
+address establish identity; its native record's dead Atlantic Metro URL is disclosed, with
+the original acquisition account retained as historical context. Network equipment creates
+no additional site, and no new opening date or whole-building exclusive occupancy is inferred.
+
+PAIX's September 15 original report describes Ashesi visitors observing operating power and
+cooling systems. Its same-day original X post identifies that event at ACC1. The current official
+ACC-1 Accra page gives 42 Ring Road Central, matching the named native facility point. The actual
+visit day is unstated. The separate October 15 tour remains later context and does not renew
+the selected operating-systems observation.
+
+All 917 prior sites and 985 projects remain unchanged. All 5,079 prior evidence records retain
+every substantive field; exactly two shared 365 evidence rows gain only the three new host
+project links each. Nineteen evidence records are added, with 27 exact source/project
+associations across 21 selected source objects. Both imported JSON snapshots remain
+byte-identical. All five native facility points retain licensing, attribution and unknown
+positional accuracy; nested organization headquarters coordinates are excluded. Raw publisher
+material stays outside Git. No capacity, measured load, current compliance guarantee or
+surveyed boundary is inferred. Historical data and unresolved holds remain unchanged.
+
 `verified_construction_core/2026-10-29-research-hundredthirteenth` adds six sites and six projects:
 **917 sites and 985 projects in 85 countries**. The additions are BroadBand Tower New Otemachi
 in Japan; maincubes FRA03 in Germany; Stellanor London North, Goswell Road, in the United Kingdom;
