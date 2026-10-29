@@ -293,11 +293,3 @@ python3 -m unittest -v tests.test_public_site tests.test_expansion_200_thirty_si
 
 [docs/public_site.md](docs/public_site.md) covers the build options, the output layout, the API
 compatibility policy, how to update the data and how CI deploys the site.
-
-## Project history
-
-The atlas grew out of a wider research workspace: source releases, OpenStreetMap and satellite
-review lanes, and permit and registry assessments. Its September 2026 status snapshot, previously
-this README, is in [docs/workspace_status_2026-09.md](docs/workspace_status_2026-09.md). The
-earlier expansion work is documented in
-[docs/expansion_200.md](docs/expansion_200.md).
