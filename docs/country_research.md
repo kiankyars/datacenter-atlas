@@ -35,6 +35,32 @@ from the 90 days before the data update. Review later reports and keep the date 
 actually supports; a new research pass does not make an old observation current. Publish supported
 additions and updates as they are ready.
 
+`verified_construction_core/2026-10-29-research-hundredfifteenth` adds two sites and two projects:
+**924 sites and 992 projects in 85 countries**. The additions are nexspace Graz GRZ1 in Austria
+and Liquid Web Lansing DC3 in the United States.
+
+Graz uses the original builder's August 26 account that the extension moved from planning into
+construction. The extension remains one project within one physical campus; its forecast opening
+and capacity are not treated as achieved. The operator's GRZ1 facility table gives Alte Poststraße
+390, matching the named native Google data-centre feature. The operator's selected directions
+corroborate that address. Footer number 376 is disclosed separately. The point locates the parent
+campus, not the extension footprint or a surveyed boundary.
+
+Liquid Web's September 23 original incident reports a physical PSU replacement and restored
+operating servers at DC3-LAN. A firsthand property-assessment account identifies 2703 Ena Drive
+within its Liquid Web data-centre portfolio, matching the exact native PeeringDB DC3 facility.
+The record's CMN-RUS/Metronet organization field is retained literally without inferring ownership
+or a maintenance role. Its postal-code discrepancy is disclosed. September 25 completed maintenance
+is later context; October 31 scheduled work remains future work. The operator's Lansing A/B labels
+are not assigned to DC2 or DC3 without evidence.
+
+All 922 prior sites, 990 projects and 5,098 evidence records remain unchanged. Eleven evidence
+records and eleven exact source/project associations are added. Both imported JSON snapshots
+remain byte-identical. Both facility points retain licensing, attribution and unknown positional
+accuracy. Raw publisher material stays outside Git. No capacity, new opening date, current
+certification guarantee or property-ownership claim is inferred. Historical data and unresolved
+holds remain unchanged.
+
 `verified_construction_core/2026-10-29-research-hundredfourteenth` adds five sites and five projects:
 **922 sites and 990 projects in 85 countries**. The additions are CMC Tân Thuận in Vietnam;
 365 Data Centers Chicago CH6, Philadelphia University City PH2 and Herndon VA1 in the United
