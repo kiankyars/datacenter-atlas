@@ -35,6 +35,33 @@ from the 90 days before the data update. Review later reports and keep the date 
 actually supports; a new research pass does not make an old observation current. Publish supported
 additions and updates as they are ready.
 
+`verified_construction_core/2026-10-29-research-hundredeighteenth` adds two sites and two projects:
+**932 sites and 1,000 projects in 87 countries**. CRA DC Tower Žižkov in Prague and STTGDC SIN6
+(STT Singapore 6) in Loyang record existing commercial data-centre operation.
+
+The original September 23 issuer report states that the Žižkov extension houses servers for
+CRA's cloud business. Current physical hosting supports operation; contracted sales and forecast
+utilisation do not establish a new opening, commissioning or capacity. The June 30 financial
+tables are distinct from the later business narrative. Native PeeringDB facility 215 and original
+CRA material identify DC TOWER within the Žižkov transmitter compound at Mahlerovy sady. The
+historical TIA registry retains the expanded street-number form. December 2017 identity, October
+2025 expansion and August 2026 reporting keep their dates; no separate new phase is inferred.
+The expired certificate supports identity only.
+
+The original October 1 STTGDC post explicitly describes STT Singapore 6 as operational, separately
+reporting a visit the previous day. The current SIN6 Loyang card directly links the operator
+factsheet titled STT Singapore 6. Native PeeringDB facility 14099 supplies 1 Loyang Close and the
+point; the card and factsheet do not supply that street address. Both PDF pages were inspected,
+without deriving a publication day from the asset path or copyright. Digital Realty's nearby
+Loyang campus is a distinct property. No new opening, capacity, comparative size, certification,
+cooling performance or measured AI workload is inferred.
+
+All 930 prior sites, 998 projects and 5,142 evidence records remain unchanged. Eleven evidence
+records and eleven source/project associations are added; both imported JSON snapshots remain
+byte-identical. Both named facility points retain PeeringDB attribution, terms and unknown
+positional accuracy. Nested organization headquarters are excluded. Raw publisher material
+stays outside Git, and unresolved holds remain held.
+
 `verified_construction_core/2026-10-29-research-hundredseventeenth` adds two sites and two projects:
 **930 sites and 998 projects in 87 countries**. Ilkari DC North in Varaždin brings Croatia into
 the Atlas; TSTT Mausica brings Trinidad and Tobago. Both record existing commercial operation.
