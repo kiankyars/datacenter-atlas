@@ -1,0 +1,82 @@
+{
+ "candidate_id": "up-6-p7-meta-mesa",
+ "decision": "Selected the planar centroid of the union of the three Maricopa County Assessor parcels owned by Redale LLC, on which the City of Mesa has issued the Facebook/Meta MAZ campus permits (including the Meta MAZ7 Building 17 data storage building at 3841 S Ellsworth Rd), as the campus locator replacing the imported Mesa city reference point.",
+ "geometry": {
+  "type": "Point",
+  "coordinates": [
+   -111.6300858,
+   33.3434195
+  ]
+ },
+ "authority_class": "official_source",
+ "scope_class": "official_tax_parcel_union_centroid",
+ "use_scope": "campus_locator",
+ "source_file": "local_data/country-research-up-6-p7/maricopa-parcels-redale-llc.json",
+ "source_sha256": "1777099c8877c3193ce98673b2f3e0e8e597ab79ef3b06e7f00685774075669c",
+ "source_url": "https://gis.mcassessor.maricopa.gov/arcgis/rest/services/Parcels/MapServer/0/query?where=OWNER_NAME%3D%27REDALE+LLC%27&outFields=APN,APN_DASH,OWNER_NAME,MAIL_CITY,MAIL_STATE,PHYSICAL_ADDRESS,LAND_SIZE,DEED_NUMBER,DEED_DATE,PUC,JURISDICTION,STR&returnGeometry=true&outSR=4326&f=json",
+ "retrieved_at": "2026-11-06T22:56:22.459Z",
+ "layer": "Maricopa County Assessor Parcels MapServer layer 0, requested in WGS84 (outSR 4326)",
+ "selected_properties": {
+  "30431002P": {
+   "owner": "REDALE LLC",
+   "site_address": "9442 E WARNER RD MESA 85212",
+   "land_size_sq_ft": 4529289,
+   "deed_number": "20210792524",
+   "geodesic_acres": 103.85
+  },
+  "30431002U": {
+   "owner": "REDALE LLC",
+   "site_address": "3841 S ELLSWORTH RD MESA 85212",
+   "land_size_sq_ft": 3080584,
+   "deed_number": "20210792524",
+   "geodesic_acres": 70.74
+  },
+  "30431002V": {
+   "owner": "REDALE LLC",
+   "site_address": "3841 S ELLSWORTH RD MESA 85212",
+   "land_size_sq_ft": 8689226,
+   "deed_number": "20220875425",
+   "geodesic_acres": 199.34
+  }
+ },
+ "facts": {
+  "parcels": 3,
+  "all_valid": true,
+  "union_type": "Polygon",
+  "union_parts": 1,
+  "union_geodesic_acres": 373.93,
+  "bounds_lon_lat": [
+   -111.635499,
+   33.335784,
+   -111.622883,
+   33.349976
+  ],
+  "centroid_inside": true,
+  "centroid_method": "shapely 2.1.1 planar centroid of the union in WGS84 longitude/latitude, rounded to 7 decimals; the WGS 84 / UTM zone 12N (EPSG:32612) planar centroid transformed back with pyproj 3.7.1 differs by 0.02 m",
+  "max_distance_centroid_to_union_vertex_m": 978,
+  "previous_point_lon_lat": [
+   -111.8228,
+   33.4222
+  ],
+  "displacement_m": 19922.6,
+  "city_permit_geocode_3841_s_ellsworth": {
+   "lon_lat": [
+    -111.635394,
+    33.3454
+   ],
+   "inside_union": true,
+   "inside_parcel": [
+    "30431002V"
+   ],
+   "distance_to_centroid_m": 540.0
+  },
+  "city_permit_geocode_9635_e_elliot_rd_fuel_island": {
+   "lon_lat": [
+    -111.6259,
+    33.349756
+   ],
+   "inside_union": true
+  }
+ },
+ "exclusions": "Neighbouring parcels owned by others (including Novva's parcel 304-31-141 west of Ellsworth Rd and the CyrusOne, EdgeCore and NTT holdings) are not part of the union. An earlier owner query with a LIKE pattern also matched an unrelated residential parcel held by a private trust; it is not used and its owner is not reproduced. No geocoder, map viewport, city centre or industrial-area centroid is used."
+}

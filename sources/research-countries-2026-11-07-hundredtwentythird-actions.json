@@ -1,0 +1,521 @@
+{
+  "additions": [
+    {
+      "project_stable_key": "curated:data4-paris-saclay-marcoussis-campus:existing-operations",
+      "physical_site_stable_key": "curated:data4-paris-saclay-marcoussis-campus",
+      "site_name": "Data4 Paris-Saclay Campus PAR01 (Route de Nozay, Marcoussis)",
+      "name": "Data4 Paris-Saclay Campus PAR01 — existing data-centre operations (D3, DC01-DC12, DC14-DC20)",
+      "country": "France",
+      "country_iso_a2": "FR",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-09-17",
+        "source_id": "ops-paris-fr-p6-data4-performances-dc-operationnels-france-2026-09-17",
+        "summary": "Data4's page published 17 September 2026 provides the ADEME-requested data 'pour ses data centers en exploitation en France', and its linked table lists 21 colocation data centres operated by Data4 Services, all in LAU 91363 (Marcoussis): DUAL, D3, DC01 to DC12 and DC14 to DC20. The Essonne prefectoral authorisation of 31 May 2024 for DATA 4 SERVICES at route de Nozay, Marcoussis lists existing buildings D3 and DC 01 to DC 20 on parcels B 66 and B 83, so the dated operator statement covers the existing Route de Nozay campus (Data4 PAR01, Campus Paris-Saclay). It is a present-tense statement of operation as of 17 September 2026, not an opening date; the table's figures relate to operating year 2025. The authorised DC 21 to DC 23 and Data4's separate PAR02 and PAR03 sites are outside this project's scope."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            2.2223847,
+            48.6509723
+          ]
+        },
+        "source_id": "ops-paris-fr-p6-apicarto-data4-marcoussis-parcels-b66-b83-box",
+        "scope": "campus_locator",
+        "scope_class": "official_cadastral_parcel_union_centroid_of_parcels_named_in_operating_authorisation",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "ign_api_carto_cadastre_parcels_913630000B0066_913630000B0083_union_area_centroid_computed_in_epsg2154_returned_to_wgs84",
+        "precision": "Centroid of cadastral parcels B 66 and B 83 in Marcoussis (104.1 ha, about 1,780 by 1,309 m), the two parcels on which the 31 May 2024 authorisation places DATA 4 SERVICES' installations at route de Nozay. It locates the campus land, not any of the data-centre buildings; the point falls inside a 3,928 m2 industrial BD TOPO building.",
+        "identity_review": "Data4's 17 September 2026 ADEME table lists 21 colocation data centres operated by Data4 Services in Marcoussis (LAU 91363), referenced to the head-office SIRET of DATA 4 SERVICES (SIREN 493 254 643). The prefectoral authorisation of 31 May 2024 for the same company at route de Nozay, Marcoussis lists existing buildings D3 and DC 01 to DC 20 and, in article 1.2.2, places the authorised installations on parcels B 66 and B 83 only. API Carto returns 913630000B0066 and 913630000B0083 as one contiguous 104 ha polygon, close to the 110 ha Data4 gives for PAR01; its area centroid lies inside the union 329 m from the boundary. Data4's published PAR01 address point (3 Route de Marcoussis, Nozay) lies 67.5 m outside the union; the Géorisques point of DATA 4 SERVICE (AIOT 0006522360) is on parcel B 62, 174 m outside the union, and is not used; Data4's PAR02 address (15 rue Marin Angiboust) is 1.9 km away and PAR03 (7 route de Villejust, Nozay) is a different site. The union also contains the separately registered III-V Lab building and areas registered to DATA 4 SAS (SIREN 487 631 210, a Data4 group company); the commune centre is not used.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The cadastral service publishes no positional accuracy; the point is the centroid of a 104 ha campus whose vertices lie up to 1,049 m away, and the industrial buildings inside the union extend up to 675 m from it; Data4 publishes no georeferenced plan of the individual data centres."
+      },
+      "context_source_ids": [
+        "ops-paris-fr-p6-data4-maddp-2026-tableau-xlsx",
+        "ops-paris-fr-p6-georisques-data4-services-ap-autorisation-2024-05-31",
+        "ops-paris-fr-p6-georisques-drieat-inspection-data4-services-2025-12-17",
+        "ops-paris-fr-p6-georisques-icpe-marcoussis-91363",
+        "ops-paris-fr-p6-data4-data-center-paris-france-page",
+        "ops-paris-fr-p6-bdtopo-batiment-data4-marcoussis",
+        "ops-paris-fr-p6-geopf-geocode-3-route-de-marcoussis-nozay",
+        "ops-paris-fr-p6-geopf-geocode-15-rue-marin-angiboust-marcoussis",
+        "ops-paris-fr-p6-recherche-entreprises-data4-services-493254643",
+        "ops-paris-fr-p6-recherche-entreprises-data4-siret-48763121000035"
+      ],
+      "roles": [
+        {
+          "party": "Data4 Services (DATA 4 SERVICES SAS, Data4 group)",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "ops-paris-fr-p6-data4-performances-dc-operationnels-france-2026-09-17"
+        }
+      ],
+      "distinctness_review": "All fields of sites.csv (957 sites), projects.csv (1,031 projects), evidence.csv (5,426 rows), source-records.json and identity-mapping.json in verified_construction_core/2026-11-07-research-hundredtwentysecond (rechecked after the base moved from hundredtwentyfirst), the changes.json and holds.json of the 212 other queue fragments, claims.tsv (829 lines) and all 92 sources/*-holds.json were searched for Data4, DATA 4, Marcoussis, Nozay, Paris-Saclay, Angiboust, Alcatel and route de Nozay. The Atlas has four Data4 sites (Cambrai E-Valley, Escaudain, Hanau and Athens ATH01), none in Île-de-France, and no record names Marcoussis, Nozay or route de Nozay; no queued change or other claim is for this campus. No Atlas site, queued addition or other claim lies within 2 km of the point; the nearest Atlas sites are Colt Villebon-sur-Yvette Campus (4.45 km) and Goodman PAR03 Ballainvilliers (5.93 km). Earlier holds mention the campus: fr-p2's sixty-sixth hold kept Data4 Marcoussis for lack of an in-window dated statement, with a reopen condition of a dated Data4 or official record within 90 days for Marcoussis (DATA 4 SERVICE, route de Nozay), which the 17 September 2026 Data4 publication meets; fr-p1's Géorisques sweep (forty-second holds) listed Data4 Marcoussis and Nozay as lead only pending a dated in-window operator statement of operation. Data4's PAR03 Nozay campus (DATA 4 NOZAY SAS, 7 route de Villejust) and PAR02 (15 rue Marin Angiboust) are separate sites not added here.",
+      "successor_review": "Data4's sitemaps captured on 6 November 2026 UTC list no later Paris-campus release, and the 17 September 2026 publication is the latest dated Data4 statement found for the Marcoussis data centres; the Géorisques record (updated 10 September 2026) keeps DATA 4 SERVICE 'En exploitation avec titre'. No closure, sale or change of operator was found, so the 17 September 2026 operating observation is kept. Buildings DC 21 to DC 23, listed as the project in the 31 May 2024 authorisation of the zone 2 Nord extension, are future work outside this project; they are not added because only one project can be added to a site that is new in the same update and no in-window construction statement was found.",
+      "scoped_project_details": {
+        "aliases": [
+          "Data4 PAR01",
+          "Data4 Campus Paris-Saclay",
+          "DATA4 Paris-Marcoussis campus",
+          "DATA 4 SERVICE (Géorisques AIOT 0006522360)"
+        ],
+        "address": "Route de Nozay, 91460 Marcoussis (Data4 also gives PAR01 as 3 Route de Marcoussis, 91620 Nozay)",
+        "facility_scope": "Existing colocation data centres D3, DC01 to DC12 and DC14 to DC20 operated by Data4 Services on parcels B 66 and B 83 (Data4 PAR01); the table entry DUAL is listed in the same commune but is not named in the authorisation and is not asserted to be on this campus",
+        "registered_installation": "Géorisques AIOT 0006522360, authorisation regime, IED; authorisation order n° 2024-PREF/DCPPAT/BUPPE/173 of 31 May 2024",
+        "capacity_qualification": "Data4 gives PAR01 as 250 MW and 110 ha (campus specification, not measured load); IT power and floor areas are withheld in the ADEME table as business secrets",
+        "cadastral_parcels": [
+          "913630000B0066",
+          "913630000B0083"
+        ],
+        "planned_availability": null,
+        "operator": "Data4 Services (DATA 4 SERVICES SAS, Data4 group)",
+        "capacity": null
+      }
+    },
+    {
+      "project_stable_key": "curated:equinix-osaka-os1-shinmachi:existing-operations",
+      "physical_site_stable_key": "curated:equinix-osaka-os1-shinmachi",
+      "site_name": "Equinix Osaka OS1 — Nishi Shinsaibashi Building (Shinmachi, Nishi-ku)",
+      "name": "Equinix Osaka OS1 — existing operations",
+      "country": "Japan",
+      "country_iso_a2": "JP",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-09-11",
+        "source_id": "ops-tokyo-osaka-p6-attokyo-atbex-osaka-release-20260911",
+        "summary": "AT TOKYO's release dated 11 September 2026, about its ATBeX network-platform service in the Osaka zone, says that its new hosted AWS Direct Connect service can be combined with 'the Equinix OS1 location, which can already be connected from ATBeX' (すでにATBeXから接続可能なEquinix OS1拠点) to build redundant connections over different routes to two AWS locations. AT TOKYO, which provides the ATBeX connections into its own and partner data centres, is stating first-hand that Equinix OS1 is a live connection location of its platform on the release date, and the release says its information is current as of that date. This records OS1 as operating on 11 September 2026; it is not an opening date. Equinix's own OS1 page (Internet Archive copy of 3 October 2026) describes the Osaka OS1 data centre in the present tense, with 6,015 m2 of colocation space in an 11-storey building at the Nishi Shinsaibashi Building, 1-26-1 Shinmachi, Nishi-ku; that floor area is a specification, not space in use. The November 2026 ATBeX items in the release are plans and are not used."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            135.495911,
+            34.675838
+          ]
+        },
+        "source_id": "ops-tokyo-osaka-p6-gsi-address-osaka-nishi-shinmachi-1-26-1",
+        "scope": "project_locator",
+        "scope_class": "official_numbered_address_point",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "retain_exact_gsi_house_number_address_feature_osaka_nishi_shinmachi_1_26_1",
+        "precision": "GSI house-number address point for 大阪府大阪市西区新町一丁目２６番１号, the address Equinix publishes for OS1 (1-26-1, Shinmachi, Nishi-ku, Nishi Shinsaibashi Building, Osaka 550-0013). The point lies on the eastern street line of the block, about 3 m east of the outline of the building GSI's standard map draws there (about 50 m by 35 m). It marks the OS1 building's address, not a building outline, entrance or surveyed boundary.",
+        "identity_review": "Equinix's OS1 page (Internet Archive raw copy of 3 October 2026; equinix.com itself answers robots.txt with HTTP 403 and was not accessed) gives the address '1-26-1, Shinmachi, Nishi-ku / Nishi Shinsaibashi Building / Osaka, 550 0013'. GSI's address search returns exactly one feature for 大阪府大阪市西区新町1-26-1, the house number 新町一丁目２６番１号, at 135.495911, 34.675838, and GSI's reverse geocoder returns Osaka City Nishi-ku (27106), 新町一丁目, for the point. On GSI's z17 and z18 standard-map tiles the point sits on the eastern block line beside a large building drawn with diagonal hatching, north of the wide road shown across the tile. Equinix's page markup also carries its own map-centre value for the page's location widget, 30.8 m south of the GSI point in the same block (pyproj WGS84 geodesic); it is noted only as a cross-check and is not the locator. No commercial web map, PeeringDB or OpenStreetMap data was used. Details are in the geometry-facts file.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "GSI publishes no positional accuracy for house-number address points. The point is on the street frontage at the eastern edge of the address building, which extends about 50 m west and 35 m north-south, so the data-centre space may lie up to about 60 m from the point."
+      },
+      "context_source_ids": [
+        "ops-tokyo-osaka-p6-eqx-os1-page-ia-20261003",
+        "ops-tokyo-osaka-p6-ia-cdx-eqx-os1",
+        "ops-tokyo-osaka-p6-ia-cdx-attokyo-news-2026",
+        "ops-tokyo-osaka-p6-gsi-revgeo-os1-point",
+        "ops-tokyo-osaka-p6-gsi-std-tile-z17-os1",
+        "ops-tokyo-osaka-p6-gsi-std-tile-z18-os1",
+        "ops-tokyo-osaka-p6-impress-atbex-osaka-20260914"
+      ],
+      "roles": [
+        {
+          "party": "Equinix",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "ops-tokyo-osaka-p6-eqx-os1-page-ia-20261003"
+        }
+      ],
+      "distinctness_review": "Screened on 7 November 2026 (local date) against the names, aliases, operators, addresses and coordinates in all five tables of verified_construction_core/2026-11-07-research-hundredtwentysecond (957 sites, 1,031 projects; re-screened after the hundredtwentyfirst screen at the start of the pass: sites.csv, projects.csv, evidence.csv, source-records.json and identity-mapping.json), the changes.json and holds.json of every other queue fragment, claims.tsv and every sources/*-holds.json file, for Equinix OS1, Osaka OS1, Nishi Shinsaibashi/西心斎橋, Shinmachi/新町, 1-26-1 and Nishi-ku. No Atlas record, pending fragment or claim names Equinix OS1 or this address. The only 'OS1' matches are a different facility, the ESR/CloudHQ Cosmosquare 'OS1' building in Nanko Kita, Suminoe-ku (Atlas site curated:esr-cloudhq-cosmosquare-nanko-kita, 7.96 km away), and Nxtra's Lagos LOS1; the only 'Shinmachi' matches are TECRA's OME Data Center sites in Shinmachi, Ome, Tokyo (about 400 km away). The earlier thirty-fourth holds noted that Equinix OS1-OS4x had no in-window operating statement; the 11 September 2026 AT TOKYO release now supplies one. No Atlas, queue or hold record lies within 2 km; the nearest is Equinix Osaka OS3 (curated:keihanshin-obp-data-center-building, Keihanshin OBP Building, 2-2-7 Shiromi, Chuo-ku), 3.88 km east-north-east, which Equinix's page lists as a separate IBX. One new site with one project.",
+      "successor_review": "Checked on 7 November 2026 (local date): the Internet Archive's listing of AT TOKYO news pages has only one later release (21 October 2026, an ATBeX-MEEQ network interconnection that does not mention OS1); Equinix's Japan newsroom listing (captured 6 November 2026 UTC) has no OS1 item, closure or relocation after 11 September 2026 (the in-window items are global or other-market releases); and Equinix's OS1 page was still published in the Internet Archive copy of 3 October 2026. No delay, closure or replacement of OS1 has been reported.",
+      "scoped_project_details": {
+        "aliases": [
+          "Equinix OS1",
+          "Osaka OS1",
+          "OS1 IBX",
+          "Nishi Shinsaibashi Building data centre"
+        ],
+        "facility_address": "1-26-1, Shinmachi, Nishi-ku, Nishi Shinsaibashi Building, Osaka 550-0013 (Equinix)",
+        "colocation_space_m2": 6015,
+        "colocation_space_ft2": 64745,
+        "building": "11-storey, steel frame (Equinix)",
+        "certifications": [
+          "FISC",
+          "ISO 9001",
+          "ISO 14001",
+          "ISO 22301",
+          "ISO 27001",
+          "ISO 27017",
+          "ISO 50001",
+          "PCI DSS",
+          "SOC 1 Type II",
+          "SOC 2 Type II"
+        ],
+        "interconnection": "Direct connection to the Dojima internet-exchange hub (Equinix); ATBeX connection location (AT TOKYO, 11 September 2026)",
+        "capacity_scope": "Equinix page specifications; not load or space in service.",
+        "related_equinix_osaka_sites": "OS3 (2-2-7 Shiromi, Chuo-ku; existing Atlas site) and OS2x xScale (Minoo, about 20 km away; not in the Atlas)"
+      }
+    }
+  ],
+  "status_updates": [
+    {
+      "project_stable_key": "curated:mc-digital-realty-kix-campus-saito:kix10-existing-operations",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-10-30",
+        "source_id": "ops-tokyo-osaka-p6-mcdr-optage-release-20261030",
+        "summary": "MC Digital Realty's release of 30 October 2026, issued with OPTAGE, describes in the present tense the KIX campus that MCDR operates in the Saito area of Osaka (MCDRが大阪府彩都エリアで運営するKIXキャンパス). It says the campus has 74 MW of total IT power capacity and that its four data-centre buildings all support high-power, high-density IT environments, and it names the campus members as KIX10, KIX11, KIX12, KIX13 and KIX15, with KIX15 still to open in Q4 2028. KIX10 (Digital Osaka 1) is therefore one of the four existing, operated buildings of the campus on 30 October 2026. This refreshes the record's 19 August 2026 observation, which rested on a Digital Realty facility-page version, with MCDR's own newer statement. Scope is unchanged (KIX10 existing operations); 30 October 2026 is the release date, not an opening date, and the 74 MW is design capacity, not load in service."
+      },
+      "identity_review": "The existing record 'MC Digital Realty KIX10 (Digital Osaka 1) — existing operations' is MCDR's KIX10 building at 5-8-1 Saito Yamabuki, Ibaraki, one of the projects of the Atlas site 'MC Digital Realty KIX Campus (Saito, Osaka)' with KIX11, KIX12, KIX13 and KIX15. The release names KIX10 among the KIX campus buildings that MCDR operates and counts four existing data-centre buildings (KIX10-KIX13), KIX15 being under construction. The same release already supports the Atlas's KIX11 and KIX12 records (published from jp-operators-p6). Project, scope and campus locator are unchanged.",
+      "successor_review": "Strictly newer than the existing 19 August 2026 observation. Checked on 7 November 2026 (local date): Digital Realty's English sitemap (captured 6 November 2026 UTC, local capture dlr-en-sitemap-20261107.xml, sha256 316c4819...6cdff2cd) still gives lastmod 2026-08-19T17:35Z for the KIX10 page and lists no Osaka release after the 7 October 2026 KIX15 construction release; the MCDR releases found are those of 2 June (KT Japan, NRT campus), 7 July (NTT Smart Connect, same KIX campus description) and 30 October 2026 (this one). No later statement, closure or change of KIX10 was found. jp-operators-p6 left this refresh as a lead with the reopen condition that the record would otherwise leave its 90-day window, which it does on 17 November 2026; no other queue fragment or claim updates the project."
+    },
+    {
+      "project_stable_key": "curated:mc-digital-realty-kix-campus-saito:kix13-existing-operations",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-10-30",
+        "source_id": "ops-tokyo-osaka-p6-mcdr-optage-release-20261030",
+        "summary": "MC Digital Realty's release of 30 October 2026, issued with OPTAGE, describes in the present tense the KIX campus that MCDR operates in the Saito area of Osaka, with 74 MW of total IT power capacity in four data-centre buildings, and says specifically that the KIX13 data centre holds DGX-Ready data-centre certification and provides an infrastructure environment that can support AI workloads (KIX13データセンターはDGX-Ready データセンター認証を取得しており…提供しています). It lists the campus as KIX10, KIX11, KIX12, KIX13 and KIX15, with KIX15 to open in Q4 2028. This records KIX13 (Digital Osaka 4) as operating on 30 October 2026 and refreshes the record's 8 September 2026 observation, which rested on a Digital Realty facility-page version, with MCDR's own newer statement. Scope is unchanged (KIX13 existing operations); the date is the release date, not an opening date, and capacities are design figures."
+      },
+      "identity_review": "The existing record 'MC Digital Realty KIX13 (Digital Osaka 4) — existing operations' is MCDR's KIX13 building at 5-2-1 Saito Aokita, Minoh, on the Atlas site 'MC Digital Realty KIX Campus (Saito, Osaka)'. The release names KIX13 both in the campus list and in its own present-tense sentence about DGX-Ready certification, which matches MCDR's earlier descriptions of KIX13 as its AI-ready building. Project, scope and campus locator are unchanged.",
+      "successor_review": "Strictly newer than the existing 8 September 2026 observation. Checked on 7 November 2026 (local date): Digital Realty's English sitemap (captured 6 November 2026 UTC, local capture dlr-en-sitemap-20261107.xml, sha256 316c4819...6cdff2cd) still gives lastmod 2026-09-08T17:45Z for the KIX13 page and lists no later Osaka release than the 7 October 2026 KIX15 construction release; the MCDR releases found are those of 2 June, 7 July (which made the same DGX-Ready statement) and 30 October 2026. No later statement, closure or change of KIX13 was found. jp-operators-p6 left this refresh as a lead with the reopen condition that the record would otherwise leave its 90-day window (on 7 December 2026); no other queue fragment or claim updates the project."
+    }
+  ],
+  "context_updates": [],
+  "locator_corrections": [
+    {
+      "physical_site_stable_key": "curated:nishitetsu-fukuoka-data-center",
+      "site_id": "vcc-site-24d3b71c367b55fdb41c",
+      "replaces_geometry_evidence_id": "8c0a1489-fa03-5fcd-8d11-bbbbd36d1184",
+      "reason": "The current point was copied from a Google Maps named place for the Nishitetsu Chiyo-Kenchoguchi Building; Google Maps terms do not allow its coordinates to be reused in the Atlas, and from 7 November 2026 the builder rejects such locators. It is replaced with the government geocoder point for the street address the certifier and building owner publish for the data centre.",
+      "displacement_review": "10.5 m (haversine, R 6,371,008.8 m) from the current point [130.4143405, 33.602851] to [130.414337, 33.602757]. Both points mark the Nishitetsu Chiyo-Kenchoguchi Building at 4-1-33 Chiyo, Hakata-ku, Fukuoka, the host building of Nishitetsu Data Center. The site keeps its single project, status, dates and roles.",
+      "locator": {
+        "scope": "campus_locator",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            130.414337,
+            33.602757
+          ]
+        },
+        "source_id": "loc-5-p6-gsi-addr-fukuoka-chiyo-4-1-33",
+        "identity_source_ids": [
+          "loc-5-p6-gyoseiq-bsi-is87613",
+          "loc-5-p6-nishitetsu-chiyo-building",
+          "loc-5-p6-nishitetsu-datacenter-lp"
+        ],
+        "scope_class": "official_numbered_address_point",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "retain_exact_GSI_address_search_residential_address_point_Fukuoka_Hakata_Chiyo_4_1_33",
+        "precision": "GSI address-search point for the full residential address 福岡市博多区千代四丁目1番33号 (号-level match), the address of the Nishitetsu Chiyo-Kenchoguchi Building that hosts Nishitetsu Data Center. It marks the address of the mixed-use host building, not a building outline, entrance, floor or data hall.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The GSI address search returns no positional accuracy; the point is a residential-address location, not a surveyed building outline.",
+        "identity_review": "BSI certificate IS 87613 (page 10) lists にしてつデータセンター（コロケーション）/ NISHITETSU DATA CENTER (Colocation) at 福岡市博多区千代四丁目1番33号 西鉄千代県庁口ビル. The owner's building page gives the same address for 西鉄千代県庁口ビル (completed February 2008), and the operator's data-centre page gives Hakata-ku and a February 2008 completion. The GSI address search returns exactly one feature, the 号-level match 千代四丁目１番３３号. The operator's head-office line is not used on its own. No map-service coordinate is used."
+      }
+    },
+    {
+      "physical_site_stable_key": "curated:stt-tokyo-inzai-campus",
+      "site_id": "vcc-site-5cc37fe61c7ab26237b3",
+      "replaces_geometry_evidence_id": "4b5bdf8e-0575-5a26-a0e9-6a38fd2a6457",
+      "reason": "The current point was copied from a Google Maps named place for STT GDC STT Tokyo 1; Google Maps terms do not allow its coordinates to be reused in the Atlas, and from 7 November 2026 the builder rejects such locators. It is replaced with the centroid of the government registry-map lots that the building certificate gives as the data centre's construction site and that include the operator's address.",
+      "displacement_review": "51.9 m (haversine, R 6,371,008.8 m) from the current point [140.134879, 35.8173944] to [140.1343391, 35.8175553]. The current point lies inside the dissolved lots 鹿黒南二丁目 2-5, 2-8 and 2-9, and the new point is their centroid; both locate STT Tokyo 1 at 2-2-5 Kaguro-Minami within Goodman Business Park. The site keeps its single project, status, dates and roles.",
+      "locator": {
+        "scope": "campus_locator",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            140.1343391,
+            35.8175553
+          ]
+        },
+        "source_id": "loc-5-p6-moj-inzai-2026-shp",
+        "identity_source_ids": [
+          "loc-5-p6-stt-tokyo1-factsheet",
+          "loc-5-p6-casbee-gbp-stage7",
+          "loc-5-p6-stt-locations-tokyo"
+        ],
+        "scope_class": "exact_certified_construction_site_lot_numbers_cadastral_parcels",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "moj_aigid_2026_lots_kagurominami2_2-5_2-8_2-9_dissolved_planar_centroid_epsg6677_to_wgs84",
+        "precision": "Centroid of registry-map lots 鹿黒南二丁目 2-5, 2-8 and 2-9 (15,143.7 m² dissolved), the Goodman Business Park Stage 7 data-centre site that STT names as Tokyo 1. It locates the STT Tokyo 1 plot, not a building footprint, entrance, data hall or the separate Tokyo 2 building.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "Registry-map accuracy class 甲二 (surveyed) without a parcel-specific numeric horizontal accuracy; decimals describe calculation, not survey accuracy.",
+        "identity_review": "STT's Tokyo 1 factsheet gives 2-2-5 Kaguro-Minami, Inzai-shi, Chiba, and STT's Tokyo page places TYO1 within Goodman Business Park. The CASBEE certificate for Goodman Business Park Stage 7 (data centre and offices) gives the construction site 千葉県印西市鹿黒南二丁目2番5,8,9 with a 14,820.08 m² site area. The 2026 MOJ/AIGID Inzai registry map has exactly one feature for each lot; they dissolve into one 15,143.7 m² polygon (lot 2-5 alone is 14,845.6 m²). The current point lies inside it. No map-service coordinate or industrial-park centroid is used."
+      }
+    },
+    {
+      "physical_site_stable_key": "curated:tecra-ome-shinmachi-9a",
+      "site_id": "vcc-site-c1a8be222fca1d1646d2",
+      "replaces_geometry_evidence_id": "75fa711b-93d1-5930-ba55-8a741000f1c7",
+      "reason": "The current point was copied from the Google Maps feature that the developer's page selects; Google Maps terms do not allow its coordinates to be reused in the Atlas, and from 7 November 2026 the builder rejects such locators. It is replaced with the centroid of the developer-published outline of parcel 2053-1, georeferenced against GSI aerial photographs.",
+      "displacement_review": "9.1 m (haversine, R 6,371,008.8 m) from the current point [139.3177428, 35.782779] to [139.3177537, 35.7828606]. The current point lies inside the georeferenced 2053-1 outline (about 735 m²), whose centroid is the new point; both locate OME Data Center04 on parcel 2053-1, Shinmachi 9-chome, Ome. The site keeps its single project, status, dates and roles.",
+      "locator": {
+        "scope": "campus_locator",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            139.3177537,
+            35.7828606
+          ]
+        },
+        "source_id": "loc-5-p6-tecra-fund93-parcel-diagram",
+        "identity_source_ids": [
+          "loc-5-p6-tecrowd-fund93",
+          "loc-5-p6-gsi-seamlessphoto-ome-z18"
+        ],
+        "scope_class": "developer_published_parent_parcel_outline_georeferenced_to_government_orthophoto",
+        "authority": "compiled_reference",
+        "derivation": "georeferenced_source_map",
+        "method": "georeference_TECRA_fund93_parcel_2053-1_outline_to_GSI_seamlessphoto_z18_affine_14_control_points_planar_centroid",
+        "precision": "Centroid of parcel 2053-1 as outlined by TECRA on a GSI aerial photograph, registered to GSI seamless orthophoto tiles. It locates the parent parcel (about 735 m² as traced), not the 340.07 m² subdivided data-centre lot, the planned building footprint or an entrance.",
+        "horizontal_uncertainty_metres": 10,
+        "identity_review": "TECROWD fund 93 (OME Data Center#04, 青梅市新町9-A) gives the location as 東京都青梅市新町九丁目2053番1の一部, to be subdivided, with building confirmation ERI-25040429. TECRA's diagram for the same fund outlines 地番2053-1全体 on a GSI aerial photograph, with a schematic hatching the fund lot within the parcel. The outline was registered to 25 GSI z18 seamless-photo tiles by an affine fit on 14 building-corner control points (RMS 2.93 px = 1.4 m, max 5.15 px = 2.5 m); an alpha-blend overlay shows the buildings and the road aligned. The current point lies inside the outline. The GSI address-search point for 新町九丁目2053番地 lies 43.5 m outside the outline and is not used. The developer page's Google embed is not used."
+      }
+    },
+    {
+      "physical_site_stable_key": "curated:kaishin-satsumasendai-circular-park",
+      "site_id": "vcc-site-136d9a5fb04578ff5d82",
+      "replaces_geometry_evidence_id": "0467214e-3b51-5318-94fd-aaed54d7072b",
+      "reason": "The current point was copied from a Google embed feature for Circular Park Kyushu on the host company's page; Google Maps terms do not allow its coordinates to be reused in the Atlas, and from 7 November 2026 the builder rejects such locators. It is replaced with the centroid of the registry-map lot that the prefecture gives as the data centre's location.",
+      "displacement_review": "178.5 m (haversine, R 6,371,008.8 m) from the current point [130.2007176, 31.8571546] to [130.2006246, 31.8587575]. The current point lies inside lot サーキュラーパーク１丁目1 (25.1 ha), whose centroid is the new point; both locate the Circular Park Kyushu property, the former Sendai thermal power station site, in which the AI data centre is planned. The site keeps its single project, status, dates and roles.",
+      "locator": {
+        "scope": "campus_locator",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            130.2006246,
+            31.8587575
+          ]
+        },
+        "source_id": "loc-5-p6-moj-satsumasendai-2026-shp",
+        "identity_source_ids": [
+          "loc-5-p6-kagoshima-guide-kaishin",
+          "loc-5-p6-cpq-home",
+          "loc-5-p6-satsumasendai-gx-concept"
+        ],
+        "scope_class": "exact_government_published_lot_number_cadastral_parent_parcel",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "moj_aigid_2026_lot_circularpark1_1_planar_centroid_epsg6670_to_wgs84",
+        "precision": "Centroid of registry-map lot サーキュラーパーク１丁目1, the roughly 25 ha Circular Park Kyushu property. The city plan allots about 15 ha of it to the AI data centre and about 10 ha to resource circulation; the point does not locate the data-centre plot, a building, an entrance or the construction extent.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "Registry map accuracy class 乙一, map-measured on a 1979 1:500 sheet and datum-converted, with no parcel-specific numeric horizontal accuracy; decimals describe calculation, not survey accuracy.",
+        "identity_review": "Kagoshima Prefecture's record of the 18 July 2026 location agreement gives 凱信数基薩摩川内市AIデータセンター at 薩摩川内市サーキュラーパーク１丁目１番地 （サーキュラーパーク九州内）, and Circular Park Kyushu gives its own address as サーキュラーパーク１ー１. The 2026 MOJ/AIGID registry map has exactly one feature for サーキュラーパーク１丁目 lot 1, a single 251,042 m² polygon, matching the city's roughly 25 ha Circular Park Kyushu property. The current point lies inside it. The GSI address search resolves this address only to the サーキュラーパーク一丁目 town area and is not used. No map-service coordinate is used."
+      }
+    },
+    {
+      "physical_site_stable_key": "curated:science-tokyo-yokohama-tsubame",
+      "site_id": "vcc-site-71bd6b3acbcab9b7bb6e",
+      "replaces_geometry_evidence_id": "d3465bcf-0d22-5539-9aec-64b166a9bd14",
+      "reason": "The current point was copied from a Google Maps named place for the university's Yokohama (former Suzukakedai) campus; Google Maps terms do not allow its coordinates to be reused in the Atlas, and from 7 November 2026 the builder rejects such locators. It is replaced with the government geocoder point for the campus address the university publishes.",
+      "displacement_review": "60.8 m (haversine, R 6,371,008.8 m) from the current point [139.4839008, 35.5142302] to [139.483978, 35.513687]. Both points lie among the buildings of Science Tokyo's Yokohama campus at 長津田町4259, which hosts TSUBAME4 in building G4-A. The site keeps its single project, status, dates and roles.",
+      "locator": {
+        "scope": "campus_locator",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            139.483978,
+            35.513687
+          ]
+        },
+        "source_id": "loc-5-p6-gsi-addr-yokohama-nagatsuta-4259",
+        "identity_source_ids": [
+          "loc-5-p6-isct-access",
+          "loc-5-p6-t4-visit-request"
+        ],
+        "scope_class": "official_geocoder_lot_number_point_host_campus_address",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "retain_exact_GSI_address_search_lot_number_point_Yokohama_Midori_Nagatsuta_4259",
+        "precision": "GSI address-search lot-number (番地) point for 横浜市緑区長津田町4259, the address of Science Tokyo's Yokohama campus. It marks the host campus, not building G4-A, its machine room, cooling plant or an entrance.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The GSI address search returns no positional accuracy; the point is a lot-number representative location for the campus address, not a building outline.",
+        "identity_review": "Science Tokyo's access page gives 横浜キャンパス 〒226-8501 神奈川県横浜市緑区長津田町4259, and the TSUBAME4 visit page says TSUBAME4.0 is at the Yokohama (former Suzukakedai) campus. The GSI address search returns exactly one feature, 長津田町４２５９番地. On 3x3 GSI z16 seamless-photo tiles the point lies among the campus buildings. The university's campus SVG map is an oblique illustration and was not georeferenced, so G4-A itself is not located. No map-service coordinate or city centre is used."
+      }
+    },
+    {
+      "physical_site_stable_key": "imported:semiconductor-atlas:meta-cheyenne",
+      "site_id": "vcc-site-a51d60551e72a6720e31",
+      "replaces_geometry_evidence_id": "a544ab6b-cf2e-55b9-9593-f91850151e15",
+      "reason": "The imported point (41.14, -104.8202) is a Cheyenne city point from OpenStreetMap Nominatim (scope class locality); it does not locate the campus. Cheyenne LEADS places Meta's Cheyenne data center on a 960-acre parcel in the High Plains Business Park, and Laramie County's parcel layer publishes that business park's 943.88-acre Lot 1, whose 1800 High Plains Rd address the county register remarks as 'COSMO' with a temporary construction-trailer address beside it.",
+      "displacement_review": "6,734.5 m (haversine) south of the city point, within the 50 km limit for an imported locality point. Both describe Meta's single Cheyenne data center: the old point names only the city, and the new point is the centroid of the only High Plains Business Park lot of about 960 acres (Lot 2 is 147 acres), the location the local economic development corporation gives for the Meta campus in Laramie County.",
+      "locator": {
+        "scope": "campus_locator",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -104.8259725,
+            41.0795912
+          ]
+        },
+        "source_id": "up-5-p7-laramie-parcel-13661910000400",
+        "identity_source_ids": [
+          "up-5-p7-cheyenneleads-meta-announcement",
+          "up-5-p7-laramie-high-plains-business-park-lots",
+          "up-5-p7-laramie-address-points-13661910000400",
+          "up-5-p7-meta-cheyenne-factsheet"
+        ],
+        "scope_class": "official_tax_parcel_centroid",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "official_county_parcel_layer_centroid_of_the_business_park_lot_named_for_the_campus",
+        "precision": "Planar centroid of Laramie County tax parcel 13661910000400 (High Plains Business Park Lot 1, Block 1; 938.40 geodesic acres in one polygon, about 3.2 km east-west by 1.6 km north-south) from the county parcel layer. The point lies inside the parcel. It locates the landholding as a whole, not a building, a development area, a surveyed boundary or the extent of works.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The county parcel layer publishes no positional accuracy; the point represents a holding of about 940 acres whose boundary lies up to 1.97 km from it, and no site plan or building position has been published.",
+        "identity_review": "Cheyenne LEADS's 2 July 2024 release on Meta's new Cheyenne data center says the project is located on a 960-acre parcel of land in the High Plains Business Park. Laramie County's overlay lists only two High Plains Business Park parcels: Lot 1, Block 1 (13661910000400, 943.88 net acres, owner of record Goat Systems LLC) and Lot 2 (147.06 acres, a different owner), so only Lot 1 matches. The county address register gives Lot 1 the addresses 1800 High Plains Rd (remark 'COSMO', assigned 29 February 2024) and 1802 High Plains Rd (remark 'TEMP CONSTRUCTION TRAILERS', assigned 2 October 2025). Meta's fact sheet places the campus in Laramie County. No captured record states that Goat Systems LLC is a Meta affiliate; the tie rests on the business park and acreage named in the announcement. No geocoder, map viewport, city centre or business-park label point is used."
+      }
+    },
+    {
+      "physical_site_stable_key": "imported:semiconductor-atlas:meta-kansas-city",
+      "site_id": "vcc-site-60b38ee835b4579aa5f2",
+      "replaces_geometry_evidence_id": "09fd54b2-c42d-5a6e-bfe0-9b30a1c87a00",
+      "reason": "The imported point (39.1001, -94.5781) is a Kansas City city point from OpenStreetMap (scope class locality); it does not locate the campus. City records place Meta's Kansas City data center at the Golden Plains Technology Park on NW 128th St in Clay and Platte counties, whose land is held by Velvet Tech Services LLC, and the city's open-data parcels give that landholding.",
+      "displacement_review": "24,237.1 m (haversine) north of the city point, within the 50 km limit for an imported locality point. Both describe Meta's single Kansas City data center: the old point names only the city, and the new point is the centroid of the Velvet Tech Services LLC parcels of the Golden Plains Technology Park, where the city's permits for the Facebook data center and its certificate of occupancy for Building 1-2 were issued.",
+      "locator": {
+        "scope": "campus_locator",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -94.5996425,
+            39.3174291
+          ]
+        },
+        "source_id": "up-5-p7-kcmo-parcels-velvet-tech",
+        "identity_source_ids": [
+          "up-5-p7-kcmo-permits-project-velvet",
+          "up-5-p7-kc-ordinance-210313-golden-plains-idp",
+          "up-5-p7-kc-ordinance-230497-gptp-zone3-plat",
+          "up-5-p7-meta-kansas-city-factsheet"
+        ],
+        "scope_class": "official_tax_parcel_union_centroid",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "official_city_open_data_parcel_union_centroid_of_parcels_owned_by_the_development_entity",
+        "precision": "Planar centroid of the union of the ten Kansas City, Missouri parcels owned by Velvet Tech Services LLC in the city's open-data parcel layer (825.53 geodesic acres in two parts, about 2.7 km east-west by 1.8 km north-south; snapshot of December 2023). The point lies inside the union. It locates the Golden Plains Technology Park landholding as a whole, not a building, a development area, a surveyed boundary or the extent of works.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The city parcel layer publishes no positional accuracy; the point represents a holding of about 825 acres whose boundary lies up to 1.61 km from it, and later re-platting is not reflected in the snapshot.",
+        "identity_review": "Kansas City ordinance 210313 (passed 29 April 2021) approved a data center campus to be known as the Golden Plains Technology Park on about 766.82 acres at NW 128th Street and US 169 in Clay and Platte counties, with agreements with Velvet Tech Services, LLC; ordinance 230497 (2023) platted Zone 3 for a data center and substation. The city's permit records for 'Project Velvet at Golden Plains Technology Park' on NW 128th St include fire-protection permits described 'FACEBOOK' (CPFC-2023-00378) and 'FACEBOOK DATA CENTER...PHASE II' (CPFC-2024-00119, 1801 NW 128th St) and a certificate of occupancy for new Building 1-2 of 980,671 sq ft (23 January 2025). The selected parcels are all owned by Velvet Tech Services LLC on NW 128th St and NW Cookingham Dr in Clay and Platte counties, and Meta's fact sheet reports funding to Clay County, Platte County and the City of Kansas City. The Atlas has one Meta Kansas City record. No geocoder, map viewport or city centre is used."
+      }
+    },
+    {
+      "physical_site_stable_key": "imported:semiconductor-atlas:iren-childress",
+      "site_id": "vcc-site-b80c969b486b2844a8d9",
+      "replaces_geometry_evidence_id": "a6ebeceb-ddd9-5507-b6d7-40f1189162b4",
+      "reason": "The imported point (34.4281, -100.215) is the Childress town point taken from Wikipedia (scope class locality), the same point the separate Crusoe and Lancium Childress record carried before its own correction; it does not locate the campus. TCEQ's registry places IE US Development Holdings 3 Inc's data center north of US 287 between FM 1033 and County Road 23 in Block H, Section 421, and the statewide parcel service gives that company's Section 421 parcels.",
+      "displacement_review": "16,100.4 m (haversine) east-south-east of the town point, within the 50 km limit for an imported locality point. Both describe IREN's single Childress campus: the old point names only the town, and the new point is the centroid of the IE US Development Holdings 3 Inc parcels (554.71 legal acres, plus a 20.288-acre transmission strip between them, matching IREN's 576-acre freehold site) that hold TCEQ's 'DATA CENTER' entity and its 620 FM 1033 address.",
+      "locator": {
+        "scope": "campus_locator",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -100.0473378,
+            34.3853185
+          ]
+        },
+        "source_id": "up-5-p7-txgio-parcels-childress-section-421",
+        "identity_source_ids": [
+          "up-5-p7-tceq-cr-ie-us-dev-holdings-3",
+          "up-5-p7-txgio-addr-620-fm-1033",
+          "up-5-p7-iren-childress-page"
+        ],
+        "scope_class": "official_tax_parcel_union_centroid",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "official_statewide_parcel_service_union_centroid_of_parcels_owned_by_the_registered_data_center_entity",
+        "precision": "Planar centroid of the union of the three Childress County parcels owned by IE US Development Holdings 3 Inc in the TxGIO StratMap parcel service (554.62 geodesic acres in two parts separated by a transmission-line strip, about 1.6 by 1.6 km; tax year 2026). The point lies inside the union. It locates the landholding as a whole, not a building, a development area, a surveyed boundary or the extent of works.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The statewide parcel compilation publishes no positional accuracy for appraisal-district polygons; the point represents a holding of about 555 acres whose boundary lies up to 1.11 km from it, and no site plan or building position has been published.",
+        "identity_review": "TCEQ's Central Registry lists RN111563557 'DATA CENTER' for IE US Development Holdings 3 Inc (customer CN606055440), on the north side of US 287 between FM 1033 and County Road 23, Block H, Section 421 (from 31 August 2022), with an air authorization at 620 FM 1033 under NAICS 518210, and RN112177357 'OSSF 620 FM 1033' for the same company (2025). The TxGIO parcel service returns exactly three parcels of that company in the envelope, all in Abstract 208, Section 421, Block H, and the state address point for 620 FM 1033 lies inside them. IREN's Childress page describes a 576-acre freehold site with IREN-owned substations; the three parcels total 554.71 legal acres and enclose a 20.288-acre Electric Transmission Texas strip (575.0 acres together). The IE US Development Holdings company family also holds IREN's Sweetwater land; no captured record states the subsidiary relationship. The Lancium Childress, LLC parcels of the separate Crusoe and Lancium record lie to the south (that record's corrected point is 2,062 m away) and are excluded. No geocoder, map viewport or town centre is used."
+      }
+    },
+    {
+      "physical_site_stable_key": "imported:semiconductor-atlas:meta-mesa-arizona",
+      "site_id": "vcc-site-cb8ab0ad35bb603ea3ba",
+      "replaces_geometry_evidence_id": "f2e0aa56-e925-51e3-94a6-43ac3a38be1c",
+      "reason": "The imported point (33.4222, -111.8228) is the Mesa city coordinate from the city's Wikipedia article (locality precision); the imported record itself notes that it marks the city, not the campus at 3841 S Ellsworth Road. It is replaced with a location taken from Maricopa County Assessor parcel records: the parcels owned by Redale LLC on which the City of Mesa has permitted Meta's MAZ data-centre buildings.",
+      "displacement_review": "19,923 m (haversine, R 6,371,008.8 m) from the current point [-111.8228, 33.4222] to [-111.6300858, 33.3434195], within the 50 km limit for an imported locality point. The old point only names the city of Mesa; the new point lies in the Redale LLC holding at the southeast corner of Elliot and Ellsworth Roads, where the City of Mesa's permits place the Facebook/Meta MAZ campus (3841 S Ellsworth Rd), the address the imported record gives for this campus. The site keeps its single project, status, dates and roles.",
+      "locator": {
+        "scope": "campus_locator",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -111.6300858,
+            33.3434195
+          ]
+        },
+        "source_id": "up-6-p7-maricopa-redale-llc-parcels",
+        "identity_source_ids": [
+          "up-6-p7-mesa-permits-meta-redale-parcels",
+          "up-6-p7-meta-mesa-fact-sheet"
+        ],
+        "scope_class": "official_tax_parcel_union_centroid",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "official_county_assessor_parcel_service_union_centroid_of_the_parcels_owned_by_Redale_LLC_that_carry_the_Meta_MAZ_city_permits",
+        "precision": "Planar centroid of the union of the three Maricopa County Assessor parcels owned by Redale LLC (304-31-002P, 304-31-002U and 304-31-002V; about 374 geodesic acres in one contiguous polygon of about 1.2 by 1.6 km east of S Ellsworth Rd, Mesa). The point lies inside the union. It locates the campus landholding as a whole, not a building, a data hall, a surveyed boundary or the extent of works.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The assessor's parcel service publishes no positional accuracy; the point represents a holding of about 374 acres whose boundary lies up to 978 m from it, and no building position is used.",
+        "identity_review": "The City of Mesa's permit records tie the Redale LLC parcels to Meta's campus: 'FACEBOOK MAZ IBOS WAREHOUSE' on 304-31-002P (2022), the 'Huckleberry Phase 2' data center buildings 9 and 10 on the predecessor parcel 304-31-002S at 3841 S Ellsworth Rd (2022), and 'MAZ7 - At Risk - Foundation', 'Building 17' (a new 144,640 sq ft data storage building) and 'Meta MAZ7 MDF - Foundation and Canopy' on 304-31-002V at 3841 S Ellsworth Rd (2026). The assessor returns exactly three parcels owned by REDALE LLC (Menlo Park, CA), contiguous, two of them addressed 3841 S Ellsworth Rd; the city's permit geocode for that address falls inside 304-31-002V, 540 m from the selected centroid. Meta's fact sheet names the Meta Mesa Data Center, and the imported record gives 3841 S Ellsworth Road at the southeast corner of Elliot and Ellsworth Roads as its address. Nearby Atlas records are distinct campuses on other parcels: Novva Mesa (963 m, parcel 304-31-141 west of Ellsworth Rd), EdgeCore Mesa (978 m, outside the Redale union) and CyrusOne PHX20 (1,524 m, parcel 304-04-984A). No geocoder, map viewport, city centre or industrial-area centroid is used."
+      }
+    },
+    {
+      "physical_site_stable_key": "imported:semiconductor-atlas:meta-prometheus-new-albany",
+      "site_id": "vcc-site-66e95eb80a122bb2ee32",
+      "replaces_geometry_evidence_id": "f777e6f8-5a41-53c1-85a1-8a093d44e70b",
+      "reason": "The imported point (40.0812, -82.8088) is the New Albany city point from OpenStreetMap Nominatim (locality precision); the imported record notes that its sources name New Albany but give no site address. It is replaced with a location taken from Licking County Auditor parcel records for Meta's original New Albany campus, held by Sidecat LLC, which the City of New Albany identifies as Meta.",
+      "displacement_review": "5,692 m (haversine, R 6,371,008.8 m) from the current point [-82.8088, 40.0812] to [-82.7462978, 40.0629537], within the 50 km limit for an imported locality point. The old point only names the city; the new point lies in the contiguous Sidecat LLC (Meta) holding at 1500 Beech Rd SW, 9075 Ganton Pkwy and 13864 Morse Rd SW, the campus where Meta broke ground in 2017. The site keeps its single project, status, dates and roles.",
+      "locator": {
+        "scope": "campus_locator",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -82.7462978,
+            40.0629537
+          ]
+        },
+        "source_id": "up-6-p7-licking-sidecat-llc-parcels",
+        "identity_source_ids": [
+          "up-6-p7-new-albany-r-39-2026",
+          "up-6-p7-meta-new-albany-post-20261019"
+        ],
+        "scope_class": "official_tax_parcel_union_centroid",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "official_county_auditor_parcel_service_union_centroid_of_the_contiguous_Sidecat_LLC_parcels_at_Beech_Rd_SW_Ganton_Pkwy_and_Morse_Rd_SW",
+        "precision": "Planar centroid of the union of four contiguous Licking County parcels owned by Sidecat LLC in the City of New Albany (094-107100-00.001 and 094-106914-00.000 at 1500 Beech Rd SW, 094-106782-00.000 at 9075 Ganton Pkwy and 094-106686-00.000 at 13864 Morse Rd SW; about 734 geodesic acres in one polygon of about 1.7 by 2.8 km). The point lies inside the union. It locates Meta's original New Albany campus as a whole, not a building, the Prometheus cluster's own extent, a surveyed boundary or the extent of works; Meta's separate Green Chapel Road (NAB) holding about 6 km north is not located by it.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The auditor's parcel service publishes no positional accuracy; the point represents a holding of about 734 acres whose boundary lies up to 1,592 m from it, and no building position is used.",
+        "identity_review": "The City of New Albany's Resolution R-39-2026 (TIRC recommendations for Licking County, 2026) lists the Oak Grove II agreement of 'SIDECAT LLC (META)', identifying Sidecat LLC as Meta. The Licking County Auditor returns 35 Sidecat LLC parcels; four of them form one contiguous polygon in the City of New Albany, three classed '305: Research/Chemical Labs' at 1500 Beech Rd SW and 9075 Ganton Pkwy and one at 13864 Morse Rd SW. The earliest, 094-107100-00.001, was transferred on 10 August 2017, matching Meta's statement that it broke ground in New Albany in 2017; Meta's 19 October 2026 post describes its New Albany data center, home of the Prometheus cluster, where it broke ground in 2017. The record's existing status evidence (the City's data-center site, version of 26 October 2026) describes Meta's New Albany campus south of SR-161 with a temporary sound wall along Morse Road; the selected holding includes the parcel addressed 13864 Morse Rd SW. Sidecat's other clusters are excluded: the Green Chapel Road NAB holding (6,160 m north, the subject of a separate held NAB6 candidate), the Jersey Township Mink Street and Jug Street Road lots and the small unincorporated Morse Road lots. Google's New Albany campus (1,855 m, Montauk Innovations parcels at 1101 Beech Rd SW) is a separate Atlas site. No geocoder, map viewport, city centre or industrial-area centroid is used."
+      }
+    },
+    {
+      "physical_site_stable_key": "imported:semiconductor-atlas:meta-montgomery",
+      "site_id": "vcc-site-4905a5572ec5f3fc6e2d",
+      "replaces_geometry_evidence_id": "26e820ae-0d05-593e-9d5f-794caa26f215",
+      "reason": "The imported point (32.3777, -86.3091) is the Montgomery city point from OpenStreetMap Nominatim (locality precision); the imported record notes that Meta gives no site address. It is replaced with a location taken from City of Montgomery parcel records: the Dotier LLC landholding on Hyundai Blvd on which the City has permitted the 'META DATA CENTER' buildings.",
+      "displacement_review": "12,210 m (haversine, R 6,371,008.8 m) from the current point [-86.3091, 32.3777] to [-86.3283685, 32.2691058], within the 50 km limit for an imported locality point. The old point only names the city; the new point lies in the contiguous Dotier LLC holding on Hyundai Blvd and Hwy 331 in south Montgomery, where the City's permits place Meta's data-centre buildings. The site keeps its single project, status, dates and roles.",
+      "locator": {
+        "scope": "campus_locator",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -86.3283685,
+            32.2691058
+          ]
+        },
+        "source_id": "up-6-p7-montgomery-dotier-llc-parcels",
+        "identity_source_ids": [
+          "up-6-p7-montgomery-permits-dotier-llc",
+          "up-6-p7-meta-hello-montgomery"
+        ],
+        "scope_class": "official_tax_parcel_union_centroid",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "official_city_parcel_service_union_centroid_of_the_contiguous_Dotier_LLC_parcels_that_carry_the_META_DATA_CENTER_city_permits",
+        "precision": "Planar centroid of the union of the six contiguous City of Montgomery parcels owned by Dotier LLC on Hyundai Blvd and Hwy 331 (about 1,456 geodesic acres in one polygon of about 3.5 by 2.4 km). The point lies inside the union. It locates the campus landholding as a whole, not a building, a data hall, a surveyed boundary or the extent of works; the permitted data-centre buildings are on parcel 14 06 24 0 000 002.000 (1055 Hyundai Blvd), whose permit point lies 1,078 m east of the centroid.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The city parcel service publishes no positional accuracy; the point represents a holding of about 1,456 acres whose boundary lies up to 2,035 m from it, and no building position is used.",
+        "identity_review": "The City of Montgomery's construction permits issued to Dotier LLC name the project as the Meta data center: 'META DATA CENTER - DCB2 - TEMP POWER' (July 2024), 'IBOS WAREHOUSE PLUMBING TO TIE INTO LARGER META DATA CENTER PROJECT' and 'IBOS - MAL META STORAGE BUILDING' (September 2024), 'META DATA CENTER DCB1 REGION 2' (May 2025) and 'META DATA CENTER' cooling equipment (April 2026), at 1055 and 2055 Hyundai Blvd. The June 2024 building permits for data center buildings DCB1 and DCB2, the IBOS building and the administrative building total about 721,800 sq ft, matching the 715,000-square-foot campus Meta announced in Montgomery on 2 May 2024. The City's parcel layer returns six contiguous Dotier LLC parcels (Menlo Park, CA mailing address), and both permit points fall inside the union. Dotier LLC's later 'MRY' region 2 and 'MAL3'/'MAL5' buildings on the same parcel are part of this campus and add no site. No other Atlas record lies within 2.5 km. No geocoder, map viewport, city centre or industrial-area centroid is used."
+      }
+    }
+  ]
+}

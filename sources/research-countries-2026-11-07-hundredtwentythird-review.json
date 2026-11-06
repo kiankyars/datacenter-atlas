@@ -1,0 +1,144 @@
+{
+  "reviewer": "root",
+  "reviewed_at": "2026-11-07",
+  "decision": "accepted_for_integration",
+  "update": "verified_construction_core/2026-11-07-research-hundredtwentythird",
+  "base_dataset": "verified_construction_core/2026-11-07-research-hundredtwentysecond",
+  "process": "continuous: one researcher per beat, one adversarial verifier per fragment",
+  "fragments": [
+    {
+      "fragment": "loc-5-p6",
+      "verdict": "accept",
+      "checks": [
+        "All 18 relied-on captures rehashed: file sha256 == .metadata.json sha256 == source content_hash; 8 reused captures match existing Atlas evidence (same URL, hash, retrieved_at)",
+        "replaces_geometry_evidence_id is the sole project's current geometry evidence at each of the 5 sites, in both 121st and 122nd (current) datasets",
+        "Displacements recomputed by haversine (R 6,371,008.8 m): 10.5, 51.9, 9.1, 178.5, 60.8 m, all under 25 km",
+        "GSI address-search raw JSON gives exactly the Fukuoka and Yokohama points (one feature each, 号 / 番地 match)",
+        "STT: recomputed union of MOJ 2026 Inzai lots 2-5/2-8/2-9 in EPSG:6677 (pyshp/shapely/pyproj): area 15,143.74 m², centroid 140.1343391, 35.8175553, inside; old point inside",
+        "Kaishin: recomputed MOJ 2026 Satsumasendai lot サーキュラーパーク1丁目1 in EPSG:6670: 251,042 m², centroid 130.2006246, 31.8587575, inside; old point inside",
+        "TECRA: affine re-fit from the 14 control points reproduces the stated matrix (RMS 2.93 px, max 5.15 px); outline centroid 139.3177537, 35.7828606, 734.7 m²; my own warped overlay on the 25 GSI z18 tiles aligns buildings and road",
+        "Identity read in captures: BSI IS 87613 p.10 (rendered) lists Nishitetsu Data Center at 4-1-33 Chiyo; STT factsheet 2-2-5 Kaguro-Minami and CASBEE 鹿黒南二丁目2番5,8,9 data centre; TECROWD 2053番1の一部 + ERI-25040429; Kagoshima prefecture page サーキュラーパーク1丁目1番地; ISCT access 長津田町4259 and T4 page Yokohama campus",
+        "Locator sources are government geocoder, MOJ registry-map open data (catalog licence CC BY) and a developer plan on GSI aerial basemap; no Google/Apple/Bing/other map-service, PeeringDB or OSM requests in compliance.log; robots recorded per host",
+        "Distinctness: no other current-dataset site or queued addition/correction within 1.4 km of any new point; nearest are Colt Inzai 4, SCSK Inzai, AirTrunk TOK1 (1.5 to 1.9 km, other operators)",
+        "No third-party personal data: the Kagoshima page representative name is not reproduced in any fragment file",
+        "Fixed GSI seamlessphoto source licence text (said address-search endpoint; now tile endpoint)",
+        "dryrun_fragment.py ok against 2026-11-07-research-hundredtwentysecond"
+      ],
+      "residual_risks": [
+        "Kaishin point is the centroid of the whole 25.1 ha host lot (up to 379 m to its vertices); the city plan puts the ~15 ha DC area in its northern part, so the point may fall near the DC/resource-circulation split; precision text states this and uncertainty is null with reason",
+        "Science Tokyo point is a campus lot-number point, not building G4-A",
+        "TECRA control points were hand-picked on a compressed diagram; uncertainty 10 m covers the residuals and locates the parent parcel, not the 340 m² subdivided lot",
+        "STT Tokyo 1 to GBP Stage 7 identity rests on matching lot 2-5 to the 2-2-5 Kaguro-Minami address; TYO2 (same park) is not separately located",
+        "Nishitetsu host-building address is also the operator's head office; the BSI certificate, not the head-office line, ties the data centre to it"
+      ]
+    },
+    {
+      "fragment": "ops-paris-fr-p6",
+      "verdict": "accept",
+      "checks": [
+        "base dataset re-read from site/config.json: verified_construction_core/2026-11-07-research-hundredtwentysecond",
+        "all 12 relied-on captures rehashed: sha256 matches .metadata.json and sources.json content_hash; geometry facts file sha256 1ac38cce... matches",
+        "decisive statement read in capture: Data4 page says it publishes ADEME data 'pour ses data centers en exploitation en France'; JSON-LD datePublished 2026-09-17T09:14:16Z, dateModified same day; ressources sitemap lastmod 2026-09-17; xlsx under uploads/2026/09",
+        "status observation 2026-09-17 is 51 days before 2026-11-07, inside the 85-day window; source kind company_disclosure (operator's own page)",
+        "xlsx parsed (zip/XML, not executed): 21 rows DUAL, D3, DC01-DC12, DC14-DC20, operator Data4 Services, LAU 91363, colocation, reference SIRET 49325464300031 (DATA 4 SERVICES head office per company register)",
+        "authorisation PDF rendered with pdftoppm and OCR'd: order 2024-PREF/DCPPAT/BUPPE/173 of 31 May 2024 for DATA 4 SERVICES at route de Nozay; tables list D3, DC 01-DC 20 as Existant and DC 21-DC 23 as Projet; article 1.2.2 places installations on parcels B 66 and B 83, Marcoussis; site plan on p.18 shows DATA 4 SERVICES and DATA 4 SAS perimeters",
+        "DRIEAT inspection report page 1 OCR confirms DATA 4 SERVICE, Route de Nozay, visit 17/12/2025, ref D2026-024S (context only)",
+        "locator recomputed independently (pyproj 3.7.1 / shapely 2.1.1): union of API Carto parcels 913630000B0066 and 913630000B0083 is one polygon of 1,041,245 m2; area centroid EPSG:2154 642719.23, 6839259.62 = WGS84 2.2223847, 48.6509723 (0.006 m from claimed), inside, 329 m from boundary, max vertex 1,049 m",
+        "locator source is IGN API Carto cadastre (government cadastral record), not a map service; license field recorded consistent with existing API Carto evidence; point lies in BD TOPO industrial building BATIMENT0000002493770679 (3,928 m2) at the north-west of the data-centre building cluster, inside the DATA 4 SERVICES perimeter of the authorisation plan",
+        "Géoplateforme geocoder captures confirm Data4 PAR01 address point 2.236743,48.647772 and PAR02 15 Rue Marin Angiboust 2.208589,48.665147 (separate site, held)",
+        "distinctness: no site, project, evidence, source-record or identity-mapping entry in the base names Marcoussis, Nozay, route de Nozay or DATA 4 SERVICES; only Data4 sites are Cambrai, Escaudain, Hanau and Athens; nearest Atlas projects Colt Villebon 4,454 m and Goodman PAR03 5,931 m; no other queued addition within 5.9 km; claims.tsv has only this lane's claim for the campus; fr-p2/sixtysixth and fr-p1/fortysecond holds are the prior Marcoussis holds and their reopen conditions are met",
+        "role: operator Data4 Services, relationship_scope current; company register gives DATA 4 SERVICES SAS (nature juridique 5710), NAF 63.11Z, active",
+        "scope: existing D3, DC01-DC12, DC14-DC20; DUAL, DC 21-23, PAR02 and PAR03 excluded and held; commercial colocation",
+        "robots.txt for data4group.com, georisques.gouv.fr, apicarto.ign.fr (404), data.geopf.fr (404) recorded before requests; no disallowed paths fetched",
+        "no third-party personal data in changes.json, holds.json or sources.json",
+        "dryrun_fragment.py: ok (958 sites, 1,032 projects on base hundredtwentysecond)"
+      ],
+      "residual_risks": [
+        "the operational status rests on the present-tense introduction of the 17 September 2026 publication; the table's figures relate to operating year 2025 with a last update of 1 January 2026",
+        "the locator is the centroid of a 104 ha parcel union that also contains woodland, the III-V Lab building and DATA 4 SAS areas; the building it falls in appears, by comparison with the authorisation plan, to be at the Zone 2 Nord corner of the campus, possibly part of the DC 21-23 extension rather than one of the scoped existing buildings, so it is a campus-level point only",
+        "the cadastral capture was a box query that returned exactly the two parcels named in the authorisation; the cadastre publishes no positional accuracy"
+      ]
+    },
+    {
+      "fragment": "ops-tokyo-osaka-p6",
+      "verdict": "accept",
+      "checks": [
+        "Claimed after the poll; base re-read from site/config.json: 2026-11-07-research-hundredtwentysecond (957 sites, 1,031 projects)",
+        "All 10 relied-on captures rehashed: sha256 matches both .metadata.json and sources.json content_hash; geometry-facts file sha256 b4242de2... matches the source's geometry_facts_sha256",
+        "OS1 status: read the AT TOKYO release (IA raw copy 20260915043805, printed date 2026.09.11; company_disclosure). It says すでにATBeXから接続可能なEquinix OS1拠点, in the context of two AWS Direct Connect locations, and states that its information is current as of the announcement date. AT TOKYO runs ATBeX, which connects its own and partner data centres, so it is a first-hand service participant. The November 2026 items are plans and are not used. 2026-09-11 is 57 days old, inside the 85-day floor of 2026-08-14",
+        "Later-statement check: the IA CDX for attokyo.co.jp/news from July 2026 lists only the 21 Oct 2026 ATBeX-MEEQ release after 11 Sep, and it does not mention OS1 or Equinix",
+        "OS1 identity and role: the Equinix OS1 page (IA copy of 3 Oct 2026) gives 1-26-1 Shinmachi, Nishi-ku, Nishi Shinsaibashi Building, 550-0013, 6,015 m2, 11-storey steel frame and the listed certifications. Equinix operator/current is supported. Commercial colocation IBX",
+        "OS1 locator: the GSI address-search raw response has exactly one feature 大阪府大阪市西区新町一丁目２６番１号 at [135.495911, 34.675838], identical to changes.json. The GSI reverse geocoder gives 27106 新町一丁目. GSI is a national government geocoder with Atlas precedent (5 projects), and the locator is not a city centre, HQ or zone centroid",
+        "Recomputed tile pixels: z17/114868/52061 at (142.3, 33.7) and z18/229737/104122 at (28.5, 67.3). Viewed the marked tiles: the point is on the eastern block line beside the hatched building of about 50 x 36 m, about 3 m from its outline. The precision and the null-uncertainty reason are accurate",
+        "No Google/Apple/Bing/HERE/Waze/PeeringDB/OSM data was used. The Equinix page's map-centre attribute is only a cross-check and not the locator. The locator URL and method pass the builder's map-service check",
+        "Distinctness: no record within 2 km in the base dataset (nearest Equinix OS3 3,874 m, then ESR/CloudHQ Cosmosquare 7,955 m). No name, alias or address match in sites/projects/evidence/source-records/identity-mapping, other queue changes or holds. The only Equinix OS1 hold mention is the thirtyfourth note that OS1 lacked an in-window statement. claims.tsv shows only this fragment",
+        "KIX10/KIX13: read the MCDR/OPTAGE release dated 2026年10月30日 (company_disclosure). It names MCDRが…運営するKIXキャンパス, キャンパス内の4棟, 74 MW and the members KIX10-KIX13 plus KIX15 (opening Q4 2028), and has a KIX13-specific present-tense DGX-Ready sentence. Both refreshes are strictly newer than the base (2026-08-19 and 2026-09-08), keep the existing-operations scope and leave the campus locator unchanged. This is consistent with the accepted KIX11/KIX12 refreshes from the same release",
+        "The new MCDR capture fd250b67... has the same length as the jp-operators-p6 capture ef4e7709..., differs in 18 bytes (cache-buster params) and gives identical extracted text. Duplicate source URLs with different captures have precedent (219 in base)",
+        "No competing KIX10/KIX13 action in unpublished queue fragments; jp-chubu-kansai-p5's KIX10/KIX13 additions are already published (base dates)",
+        "Corrected the ia-cdx-eqx-os1 source summary: captures start 11 May 2021, not June 2021, and include one HTTP 403 (Jan 2025). Originals kept in pre-verify/",
+        "No third-party personal data in changes, sources, holds, notes or geometry facts (AT TOKYO, MEEQ and OPTAGE officer and contact names not reproduced)",
+        "dryrun_fragment.py ok against 2026-11-07-research-hundredtwentysecond (958 sites, 1,032 projects, 5,436 evidence)"
+      ],
+      "residual_risks": [
+        "OS1's operating status rests on a third party's (AT TOKYO's) company disclosure that OS1 is a live ATBeX/AWS Direct Connect connection location. Equinix itself has no in-window dated statement about OS1",
+        "The AT TOKYO and Equinix pages were read only through Internet Archive raw copies because both hosts return HTTP 403 for robots.txt",
+        "The OS1 point is a GSI house-number address point on the street frontage with no published accuracy, so the data-centre floor space may lie up to about 60 m away (uncertainty null with reason)",
+        "KIX10's operation is inferred from the campus-level statement (four existing buildings among KIX10-KIX13 and KIX15). The release has no KIX10-specific sentence"
+      ]
+    },
+    {
+      "fragment": "up-5-p7",
+      "verdict": "accept",
+      "checks": [
+        "all 14 relied-on captures rehashed: sha256 matches .metadata.json and source content_hash; HTTP 200; metadata URL equals source_url; geometry facts sha256 match sources.json",
+        "replaces_geometry_evidence_id equals the only project's geometry_evidence_id at each of the three single-project sites in hundredtwentysecond (a544ab6b..., 09fd54b2..., a6ebeceb...)",
+        "locators recomputed with pyproj 3.7.1/shapely 2.1.1 from raw captures: Cheyenne parcel centroid exact (938.40 ac, inside, 3.2x1.6 km); KC 10-parcel Velvet union centroid exact (825.53 ac, 2 parts, inside); Childress 3-parcel IE US Dev Holdings 3 union centroid within 0.004 m (554.62 ac, 2 parts, inside)",
+        "displacements recomputed (haversine): 6,734.5 m, 24,237.1 m, 16,100.4 m; all under 25 km and the 50 km locality limit in dataset_update.py",
+        "locator sources are government parcel layers (Laramie County ArcGIS REST, City of KC Socrata parcels, TxGIO StratMap); no map service, geocoder viewport, PeeringDB or OSM; robots recorded as 404/allowed; licences recorded",
+        "identity read in captures: Cheyenne LEADS 2 Jul 2024 'Located on a 960-acre parcel of land in the High Plains Business Park'; county overlay returns only HPBP Lot 1 (943.88 ac) and Lot 2 (147.06 ac); address register 1800 High Plains Rd remark COSMO (2024-02-29) and 1802 TEMP CONSTRUCTION TRAILERS (2025-10-02); Meta fact sheet names Laramie County",
+        "KC identity: ordinance 210313 title (Golden Plains Technology Park data center campus, 766.82 ac, NW 128th/US 169, Velvet Tech Services LLC); permits CPFC-2023-00378 'FACEBOOK', CPFC-2024-00119 'FACEBOOK DATA CENTER...PHASE II', CICO-2025-00044 Building 1-2 980,671 sq ft; permits on pins 171292/171294 are in the Velvet union; Meta fact sheet funds Clay, Platte, KC",
+        "Childress identity: TCEQ RN111563557 'DATA CENTER' for IE US Development Holdings 3 Inc, north of US 287 between FM 1033 and CR 23, Block H Sec 421, AI address 620 FM 1033, NAICS 518210; TxGIO 620 FM 1033 address point inside union (842 m); IREN page '576-acre freehold site'; 554.712 legal ac + 20.288 ac ETT strip touching union = 575.0 ac",
+        "distinctness: no dataset site within 2 km of any new point; nearest Crusoe/Lancium Childress 2,062 m (Lancium Childress LLC parcels to the south, different owner), Crusoe/Tallgrass Project Jade 5.37 km; no pending queue fragment touches these sites; related holds (Rocky Branch Creek 12701 N US 169, Project Hyper, Meta Cheyenne fact sheet, IREN Childress refresh) remain separate",
+        "existing dataset already ties the IE US Development Holdings family to IREN (Sweetwater 1/2 parcel locators) and prior hold ninetysecond names Section 421 parcels as IREN Childress",
+        "7 holds checked for shape and premises (Abilene site has two projects with different geometry evidence, confirmed); no private-individual names, phones or emails in sources, changes, holds or facts files",
+        "all sources referenced by a correction; dryrun_fragment.py ok against hundredtwentysecond"
+      ],
+      "residual_risks": [
+        "No captured record names Goat Systems LLC as a Meta entity; the Cheyenne tie rests on a Cheyenne LEADS release (kind other) naming the business park and acreage, plus the county address remarks",
+        "No captured record states IE US Development Holdings 3 Inc is an IREN subsidiary; tie rests on TCEQ data-centre entity, acreage match and dataset precedent",
+        "KC parcel snapshot dates from December 2023 and omits later re-plat parcels; union includes small Velvet-owned parcels outside the ordinance acreage",
+        "All three points are landholding centroids with null horizontal uncertainty; boundaries lie up to 1.1-2.0 km from the points"
+      ]
+    },
+    {
+      "fragment": "up-6-p7",
+      "verdict": "accept",
+      "checks": [
+        "config current_dataset = 2026-11-07-research-hundredtwentysecond; screened against it",
+        "all 9 relied-on captures rehashed: sha256 matches source content_hash and .metadata.json; geometry facts files match geometry_facts_sha256",
+        "replaces_geometry_evidence_id equals the geometry_evidence_id of the single project at each site (f2e0aa56, f777e6f8, 26e820ae)",
+        "centroids recomputed independently from raw parcel captures (shapely 2.1.1 / pyproj 3.7.1): exact match to 7 decimals; UTM centroid differs <=0.05 m; single-part unions, centroid inside; acreages 373.93/733.66/1456.22 match",
+        "displacements recomputed (haversine R 6371008.8): 19922.6 m, 5692.2 m, 12210.1 m; all under 25 km",
+        "locator sources are county assessor/auditor and city GIS parcel services (government records, licence recorded); no map service, geocoder, OSM or PeeringDB",
+        "Mesa identity: city permits on Redale parcels read in capture (FACEBOOK MAZ IBOS WAREHOUSE on 002P; Meta MAZ7 MDF, Building 17 on 002V at 3841 S Ellsworth Rd); city geocode inside 002V; union at SE corner of Elliot/Ellsworth matches record address",
+        "New Albany identity: R-39-2026 OCR (pdftoppm+tesseract) p.2 item p 'SIDECAT LLC (META)'; earliest parcel T1Date 2017-08-10 vs Meta post (19 Oct 2026) 'broke ground in 2017'; record status evidence names Meta campus south of SR-161 with Morse Road sound wall",
+        "Montgomery identity: 62 Dotier LLC permits read; 'META DATA CENTER - DCB2 - TEMP POWER', 'IBOS - MAL META STORAGE BUILDING', etc.; June 2024 buildings ~721.8k sq ft vs Meta 715,000 sq ft; both permit points inside the union",
+        "distinctness: nearby Atlas sites (Novva Mesa 963 m, EdgeCore 978 m, CyrusOne 1524 m, Google New Albany 1856 m) fall outside the new parcel unions; no other queue fragment or claim touches these sites; holds consistent (NAB6 reopen condition requested this scope decision)",
+        "no third-party personal data in sources, changes, holds or geometry facts",
+        "dryrun_fragment.py ok against hundredtwentysecond (957 sites, 1031 projects)"
+      ],
+      "residual_risks": [
+        "New Albany record is named Prometheus and carries Prometheus North/South phase metrics; if Prometheus North is on Sidecat's Green Chapel Rd (NAB) holding 6 km north, the campus locator (explicitly scoped to the original Beech Rd SW/Ganton Pkwy/Morse Rd SW campus) covers only part of the record",
+        "Montgomery centroid of the 1,456-acre Dotier LLC holding lies on the Hwy 331 parcel, about 1.08 km west of the permitted buildings on parcel 14 06 24 0 000 002.000",
+        "parcel layers publish no positional accuracy; points are landholding centroids, not buildings"
+      ]
+    }
+  ],
+  "packet_pins": {
+    "definitions/atlas-research-hundredtwentythird-2026-11-07.json": "7789892d972f7490a28967ff5a49ccc056cf0ba5c7a2bc55f309b39e4170abc4",
+    "sources/research-countries-2026-11-07-hundredtwentythird-primary-sources.json": "4014a0e4e0f2129528e6ca08038ec0cfe2093d281a091d4863d3ef749915ff72",
+    "sources/research-countries-2026-11-07-hundredtwentythird-actions.json": "f199d26504a9ec85cd3e6da8ba2eb650f4a525db12cb81ba955cb76779e7c2ee",
+    "sources/research-countries-2026-11-07-hundredtwentythird-holds.json": "154ace1c7902a7f291e52dbd2326fc7f36acf82c5d8c63fec9b56186034b5d27"
+  },
+  "raw_captures_redistributed": false
+}

@@ -1,0 +1,78 @@
+{
+ "candidate_id": "up-6-p7-meta-new-albany",
+ "decision": "Selected the planar centroid of the union of the four contiguous Sidecat LLC parcels in the City of New Albany at 1500 Beech Rd SW, 9075 Ganton Pkwy and 13864 Morse Rd SW (Meta's original New Albany campus; Sidecat LLC is identified as Meta by the City's TIRC resolution R-39-2026) as the campus locator replacing the imported New Albany city point.",
+ "geometry": {
+  "type": "Point",
+  "coordinates": [
+   -82.7462978,
+   40.0629537
+  ]
+ },
+ "authority_class": "official_source",
+ "scope_class": "official_tax_parcel_union_centroid",
+ "use_scope": "campus_locator",
+ "source_file": "local_data/country-research-up-6-p7/licking-parcels-sidecat-llc.json",
+ "source_sha256": "8302eb99be33e950b456521fd0d347f8256f460699acc39d2ecce7470245cdad",
+ "source_url": "https://gis.lickingcounty.gov/server/rest/services/Auditor/Parcels/FeatureServer/0/query?where=OwnerName%3D%27SIDECAT%20LLC%27&outFields=Parcel,OwnerName,SiteAddress,Municipality,Township,TaxAcres,GISAcres,Landuse,Class,T1Date,T1TransferType&returnGeometry=true&outSR=4326&f=json",
+ "retrieved_at": "2026-11-06T22:57:49.047Z",
+ "layer": "Licking County GIS Auditor/Parcels FeatureServer layer 0, requested in WGS84 (outSR 4326)",
+ "selected_properties": {
+  "094-106686-00.000": {
+   "owner": "SIDECAT LLC",
+   "site_address": "13864 MORSE RD SW",
+   "municipality": "New Albany",
+   "tax_acres": 134.92,
+   "landuse": "399: Other Industrial Structures",
+   "geodesic_acres": 134.88
+  },
+  "094-106782-00.000": {
+   "owner": "SIDECAT LLC",
+   "site_address": "9075 GANTON PKWY",
+   "municipality": "New Albany",
+   "tax_acres": 279.62,
+   "landuse": "305: Research/Chemical Labs",
+   "geodesic_acres": 279.1
+  },
+  "094-106914-00.000": {
+   "owner": "SIDECAT LLC",
+   "site_address": "1500 BEECH RD SW",
+   "municipality": "New Albany",
+   "tax_acres": 214.46,
+   "landuse": "305: Research/Chemical Labs",
+   "geodesic_acres": 215.44
+  },
+  "094-107100-00.001": {
+   "owner": "SIDECAT LLC",
+   "site_address": "1500 BEECH RD SW",
+   "municipality": "New Albany",
+   "tax_acres": 104.45,
+   "landuse": "305: Research/Chemical Labs",
+   "geodesic_acres": 104.23
+  }
+ },
+ "facts": {
+  "parcels": 4,
+  "all_valid": true,
+  "union_type": "Polygon",
+  "union_parts": 1,
+  "union_geodesic_acres": 733.66,
+  "bounds_lon_lat": [
+   -82.755535,
+   40.050456,
+   -82.735379,
+   40.075719
+  ],
+  "centroid_inside": true,
+  "centroid_method": "shapely 2.1.1 planar centroid of the union in WGS84 longitude/latitude, rounded to 7 decimals; the WGS 84 / UTM zone 17N (EPSG:32617) planar centroid transformed back with pyproj 3.7.1 differs by 0.05 m",
+  "max_distance_centroid_to_union_vertex_m": 1592,
+  "previous_point_lon_lat": [
+   -82.8088,
+   40.0812
+  ],
+  "displacement_m": 5692.2,
+  "excluded_sidecat_parcels": 31,
+  "nab_green_chapel_cluster_centroid_distance_m": 6160,
+  "nearest_excluded_sidecat_parcel_distance_m": 991
+ },
+ "exclusions": "The 31 other Sidecat LLC parcels (the Green Chapel Road NAB cluster about 6 km north, the Jersey Township Mink Street and Jug Street Road cluster, the unincorporated Morse Road lots and two isolated lots) are not part of the union and their site addresses are not reproduced. Google's Montauk Innovations parcels at 1101 Beech Rd SW are a separate campus. No geocoder, map viewport, city centre or industrial-area centroid is used."
+}

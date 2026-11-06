@@ -1,0 +1,1253 @@
+{
+  "format": "datacenter-atlas-geometry-facts-v1",
+  "fragment": "loc-5-p6",
+  "prepared_on": "2026-11-07",
+  "base_dataset": "verified_construction_core/2026-11-07-research-hundredtwentyfirst",
+  "method_note": "Points come only from government or operator-published locations: the GSI address search (msearch.gsi.go.jp) for published addresses, the Ministry of Justice registry-map (登記所備付地図) parcels as converted by AIGID (G-Spatial Information Center) for published lot numbers, and one developer parcel outline georeferenced to GSI seamless aerial tiles. Parcel unions and centroids were computed in the native JGD2011 plane-rectangular zone with shapely 2.1.1 and inverse-transformed with pyproj 3.7.1 (always_xy). Shapefiles were read from the ZIP in memory with pyshp 2.3.1 under python -I; nothing captured was executed. No Google, Apple, Bing, HERE, Waze, Yandex, Baidu, Naver, Kakao or Tencent map coordinate, link or embed parameter, no PeeringDB record and no OpenStreetMap service was used.",
+  "displacement_formula": "haversine, mean Earth radius 6,371,008.8 m (as in datacenter_atlas.dataset_update._distance_metres)",
+  "records_within_2km_of_new_points": {
+    "curated:nishitetsu-fukuoka-data-center": [],
+    "curated:stt-tokyo-inzai-campus": [
+      {
+        "record": "current dataset site",
+        "physical_site_stable_key": "curated:colt-dcs-inzai-4-otsuka",
+        "name": "Colt Inzai Data Centre 4 / Keppel DC REIT Tokyo Data Centre 3 (Otsuka 2-chome, Inzai)",
+        "distance_metres": 1476
+      },
+      {
+        "record": "pending queue jp-operators-p3 additions",
+        "physical_site_stable_key": "curated:colt-dcs-inzai-4-otsuka",
+        "distance_metres": 1476
+      },
+      {
+        "record": "current dataset site",
+        "physical_site_stable_key": "curated:scsk-netxdc-inzai-campus",
+        "name": "SCSK netXDC Inzai Campus",
+        "distance_metres": 1727
+      },
+      {
+        "record": "current dataset site",
+        "physical_site_stable_key": "imported:semiconductor-atlas:airtrunk-tok1-inzai",
+        "name": "AirTrunk TOK1 Tokyo East",
+        "distance_metres": 1914
+      }
+    ],
+    "curated:tecra-ome-shinmachi-9a": [],
+    "curated:kaishin-satsumasendai-circular-park": [],
+    "curated:science-tokyo-yokohama-tsubame": []
+  },
+  "corrections": [
+    {
+      "physical_site_stable_key": "curated:nishitetsu-fukuoka-data-center",
+      "site_id": "vcc-site-24d3b71c367b55fdb41c",
+      "site_name": "Nishitetsu Fukuoka Data Center",
+      "replaced_geometry_evidence_id": "8c0a1489-fa03-5fcd-8d11-bbbbd36d1184",
+      "replaced_point": {
+        "type": "Point",
+        "coordinates": [
+          130.4143405,
+          33.602851
+        ]
+      },
+      "selected_point": {
+        "type": "Point",
+        "coordinates": [
+          130.414337,
+          33.602757
+        ]
+      },
+      "selected_source_id": "loc-5-p6-gsi-addr-fukuoka-chiyo-4-1-33",
+      "identity_source_ids": [
+        "loc-5-p6-gyoseiq-bsi-is87613",
+        "loc-5-p6-nishitetsu-chiyo-building",
+        "loc-5-p6-nishitetsu-datacenter-lp"
+      ],
+      "displacement_metres": 10.5
+    },
+    {
+      "physical_site_stable_key": "curated:stt-tokyo-inzai-campus",
+      "site_id": "vcc-site-5cc37fe61c7ab26237b3",
+      "site_name": "STT Tokyo Inzai Campus",
+      "replaced_geometry_evidence_id": "4b5bdf8e-0575-5a26-a0e9-6a38fd2a6457",
+      "replaced_point": {
+        "type": "Point",
+        "coordinates": [
+          140.134879,
+          35.8173944
+        ]
+      },
+      "selected_point": {
+        "type": "Point",
+        "coordinates": [
+          140.1343391,
+          35.8175553
+        ]
+      },
+      "selected_source_id": "loc-5-p6-moj-inzai-2026-shp",
+      "identity_source_ids": [
+        "loc-5-p6-stt-tokyo1-factsheet",
+        "loc-5-p6-casbee-gbp-stage7",
+        "loc-5-p6-stt-locations-tokyo"
+      ],
+      "displacement_metres": 51.9
+    },
+    {
+      "physical_site_stable_key": "curated:tecra-ome-shinmachi-9a",
+      "site_id": "vcc-site-c1a8be222fca1d1646d2",
+      "site_name": "OME Data Center04 (Shinmachi9-A)",
+      "replaced_geometry_evidence_id": "75fa711b-93d1-5930-ba55-8a741000f1c7",
+      "replaced_point": {
+        "type": "Point",
+        "coordinates": [
+          139.3177428,
+          35.782779
+        ]
+      },
+      "selected_point": {
+        "type": "Point",
+        "coordinates": [
+          139.3177537,
+          35.7828606
+        ]
+      },
+      "selected_source_id": "loc-5-p6-tecra-fund93-parcel-diagram",
+      "identity_source_ids": [
+        "loc-5-p6-tecrowd-fund93",
+        "loc-5-p6-gsi-seamlessphoto-ome-z18"
+      ],
+      "displacement_metres": 9.1
+    },
+    {
+      "physical_site_stable_key": "curated:kaishin-satsumasendai-circular-park",
+      "site_id": "vcc-site-136d9a5fb04578ff5d82",
+      "site_name": "Kai Shin Satsumasendai AI Data Center",
+      "replaced_geometry_evidence_id": "0467214e-3b51-5318-94fd-aaed54d7072b",
+      "replaced_point": {
+        "type": "Point",
+        "coordinates": [
+          130.2007176,
+          31.8571546
+        ]
+      },
+      "selected_point": {
+        "type": "Point",
+        "coordinates": [
+          130.2006246,
+          31.8587575
+        ]
+      },
+      "selected_source_id": "loc-5-p6-moj-satsumasendai-2026-shp",
+      "identity_source_ids": [
+        "loc-5-p6-kagoshima-guide-kaishin",
+        "loc-5-p6-cpq-home",
+        "loc-5-p6-satsumasendai-gx-concept"
+      ],
+      "displacement_metres": 178.5
+    },
+    {
+      "physical_site_stable_key": "curated:science-tokyo-yokohama-tsubame",
+      "site_id": "vcc-site-71bd6b3acbcab9b7bb6e",
+      "site_name": "Science Tokyo Yokohama TSUBAME Data Center",
+      "replaced_geometry_evidence_id": "d3465bcf-0d22-5539-9aec-64b166a9bd14",
+      "replaced_point": {
+        "type": "Point",
+        "coordinates": [
+          139.4839008,
+          35.5142302
+        ]
+      },
+      "selected_point": {
+        "type": "Point",
+        "coordinates": [
+          139.483978,
+          35.513687
+        ]
+      },
+      "selected_source_id": "loc-5-p6-gsi-addr-yokohama-nagatsuta-4259",
+      "identity_source_ids": [
+        "loc-5-p6-isct-access",
+        "loc-5-p6-t4-visit-request"
+      ],
+      "displacement_metres": 60.8
+    }
+  ],
+  "gsi_address_points": {
+    "nishitetsu": {
+      "query": "福岡県福岡市博多区千代四丁目1番33号",
+      "url": "https://msearch.gsi.go.jp/address-search/AddressSearch?q=%E7%A6%8F%E5%B2%A1%E7%9C%8C%E7%A6%8F%E5%B2%A1%E5%B8%82%E5%8D%9A%E5%A4%9A%E5%8C%BA%E5%8D%83%E4%BB%A3%E5%9B%9B%E4%B8%81%E7%9B%AE1%E7%95%AA33%E5%8F%B7",
+      "sha256": "8eece1f52ad864640d347d3b110873a86f5afc627bc9222805d199e3a48b2e27",
+      "response": [
+        {
+          "geometry": {
+            "coordinates": [
+              130.414337,
+              33.602757
+            ],
+            "type": "Point"
+          },
+          "type": "Feature",
+          "properties": {
+            "addressCode": "",
+            "title": "福岡県福岡市博多区千代四丁目１番３３号"
+          }
+        }
+      ]
+    },
+    "science_tokyo_yokohama": {
+      "query": "神奈川県横浜市緑区長津田町4259",
+      "url": "https://msearch.gsi.go.jp/address-search/AddressSearch?q=%E7%A5%9E%E5%A5%88%E5%B7%9D%E7%9C%8C%E6%A8%AA%E6%B5%9C%E5%B8%82%E7%B7%91%E5%8C%BA%E9%95%B7%E6%B4%A5%E7%94%B0%E7%94%BA4259",
+      "sha256": "3d518ac87b55a8193796dadef9fdc7750322b19cf5c991834f7c2e19b3a9bcac",
+      "response": [
+        {
+          "geometry": {
+            "coordinates": [
+              139.483978,
+              35.513687
+            ],
+            "type": "Point"
+          },
+          "type": "Feature",
+          "properties": {
+            "addressCode": "",
+            "title": "神奈川県横浜市緑区長津田町４２５９番地"
+          }
+        }
+      ],
+      "imagery_check": "GSI seamlessphoto z16 tiles x 58159-58161, y 25843-25845 (captured; hashes in local metadata): the point lies among the campus buildings."
+    },
+    "not_used": {
+      "ogaki_kagano_4_1_12": {
+        "response": [
+          {
+            "geometry": {
+              "coordinates": [
+                136.638962,
+                35.368057
+              ],
+              "type": "Point"
+            },
+            "type": "Feature",
+            "properties": {
+              "addressCode": "",
+              "title": "岐阜県大垣市加賀野四丁目１番地"
+            }
+          }
+        ],
+        "why": "Matches only 加賀野四丁目１番地, a lot-group point 108 m from the current point on another building in the Softopia Japan area (z17 tiles checked)."
+      },
+      "ome_shinmachi_9_2053_1": {
+        "response": [
+          {
+            "geometry": {
+              "coordinates": [
+                139.318039,
+                35.782341
+              ],
+              "type": "Point"
+            },
+            "type": "Feature",
+            "properties": {
+              "addressCode": "",
+              "title": "東京都青梅市新町九丁目２０５３番地"
+            }
+          }
+        ],
+        "why": "Matches only 新町九丁目２０５３番地; the point lies 43.5 m outside the georeferenced 2053-1 outline."
+      },
+      "satsumasendai_circularpark_1_1": {
+        "response": [
+          {
+            "geometry": {
+              "coordinates": [
+                130.201019,
+                31.858519
+              ],
+              "type": "Point"
+            },
+            "type": "Feature",
+            "properties": {
+              "addressCode": "",
+              "title": "鹿児島県薩摩川内市サーキュラーパーク一丁目"
+            }
+          }
+        ],
+        "why": "Matches only the サーキュラーパーク一丁目 town area; the registry parcel is used instead."
+      }
+    }
+  },
+  "registry_parcels": {
+    "stt_tokyo_inzai": {
+      "catalog_url": "https://www.geospatial.jp/ckan/dataset/aigid-moj-12231",
+      "catalog_sha256": "c553bbffc3a9af0cae89285d7dca7e5f34e32559a40d70cf4141d41329e668e3",
+      "catalog_last_updated": "2026-08-10 (catalog display)",
+      "data_url": "https://gsic-opendata.s3.ap-northeast-1.amazonaws.com/aigid/aigid-moj/2026/12/aigid-moj-12231/12231_%E5%8D%B0%E8%A5%BF%E5%B8%82_%E5%85%AC%E5%85%B1%E5%BA%A7%E6%A8%999%E7%B3%BB_%E7%AD%86R_2026.shp.zip",
+      "data_sha256": "413183bfe3b62484610b3fba4e6dd122080136abd9bd326ad5433165c04edcbf",
+      "data_bytes": 2396064,
+      "raw_capture_file": "local_data/country-research-loc-5-p6/moj-12231-inzai-2026.shp.zip",
+      "source_crs": "JGD2011 / Japan Plane Rectangular CS IX (EPSG:6677), from the shapefile .prj",
+      "cross_check": "The 2026 GeoJSON resource of the same dataset (CRS84; sha256 c2bfc49a...) gives the same three features and the same centroid to 1e-9 degrees.",
+      "selector": {
+        "市区町村C": "12231",
+        "大字名": "鹿黒南",
+        "丁目名": "２丁目",
+        "地番": [
+          "2-5",
+          "2-8",
+          "2-9"
+        ]
+      },
+      "selected_features": [
+        {
+          "type": "Feature",
+          "properties": {
+            "ID": "H000007107",
+            "市区町村C": "12231",
+            "大字コード": "614",
+            "丁目コード": "002",
+            "小字コード": "0000",
+            "予備コード": "00",
+            "市区町村名": "印西市",
+            "大字名": "鹿黒南",
+            "丁目名": "２丁目",
+            "小字名": "",
+            "予備名": "",
+            "地番": "2-5",
+            "精度区分": "甲二",
+            "座標値種別": "測量成果",
+            "地図名": "平成30年度公図再編5駅",
+            "座標系": "公共座標9系",
+            "測地系判別": "測量"
+          },
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [
+              [
+                [
+                  140.134080843,
+                  35.818306521
+                ],
+                [
+                  140.135246085,
+                  35.817847392
+                ],
+                [
+                  140.134688478,
+                  35.816903233
+                ],
+                [
+                  140.134608723,
+                  35.816883017
+                ],
+                [
+                  140.134474834,
+                  35.816849075
+                ],
+                [
+                  140.134454204,
+                  35.816857157
+                ],
+                [
+                  140.134308368,
+                  35.816959294
+                ],
+                [
+                  140.134162422,
+                  35.817061502
+                ],
+                [
+                  140.134112795,
+                  35.817080951
+                ],
+                [
+                  140.134102839,
+                  35.817084852
+                ],
+                [
+                  140.134081923,
+                  35.817090646
+                ],
+                [
+                  140.134060302,
+                  35.817094341
+                ],
+                [
+                  140.134038297,
+                  35.817095884
+                ],
+                [
+                  140.134016217,
+                  35.817095254
+                ],
+                [
+                  140.133994394,
+                  35.817092469
+                ],
+                [
+                  140.133973139,
+                  35.817087556
+                ],
+                [
+                  140.133952761,
+                  35.817080586
+                ],
+                [
+                  140.133933572,
+                  35.817071674
+                ],
+                [
+                  140.133922014,
+                  35.817064682
+                ],
+                [
+                  140.133704724,
+                  35.817150159
+                ],
+                [
+                  140.133453963,
+                  35.817248797
+                ],
+                [
+                  140.134080843,
+                  35.818306521
+                ]
+              ]
+            ]
+          }
+        },
+        {
+          "type": "Feature",
+          "properties": {
+            "ID": "H000006494",
+            "市区町村C": "12231",
+            "大字コード": "614",
+            "丁目コード": "002",
+            "小字コード": "0000",
+            "予備コード": "00",
+            "市区町村名": "印西市",
+            "大字名": "鹿黒南",
+            "丁目名": "２丁目",
+            "小字名": "",
+            "予備名": "",
+            "地番": "2-9",
+            "精度区分": "甲二",
+            "座標値種別": "測量成果",
+            "地図名": "平成30年度公図再編5駅",
+            "座標系": "公共座標9系",
+            "測地系判別": "測量"
+          },
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [
+              [
+                [
+                  140.133453963,
+                  35.817248797
+                ],
+                [
+                  140.133704724,
+                  35.817150159
+                ],
+                [
+                  140.13367344,
+                  35.8170974
+                ],
+                [
+                  140.13342269,
+                  35.81719603
+                ],
+                [
+                  140.133453963,
+                  35.817248797
+                ]
+              ]
+            ]
+          }
+        },
+        {
+          "type": "Feature",
+          "properties": {
+            "ID": "H000006493",
+            "市区町村C": "12231",
+            "大字コード": "614",
+            "丁目コード": "002",
+            "小字コード": "0000",
+            "予備コード": "00",
+            "市区町村名": "印西市",
+            "大字名": "鹿黒南",
+            "丁目名": "２丁目",
+            "小字名": "",
+            "予備名": "",
+            "地番": "2-8",
+            "精度区分": "甲二",
+            "座標値種別": "測量成果",
+            "地図名": "平成30年度公図再編5駅",
+            "座標系": "公共座標9系",
+            "測地系判別": "測量"
+          },
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [
+              [
+                [
+                  140.133704724,
+                  35.817150159
+                ],
+                [
+                  140.133922014,
+                  35.817064682
+                ],
+                [
+                  140.133915847,
+                  35.817060947
+                ],
+                [
+                  140.133899831,
+                  35.817048549
+                ],
+                [
+                  140.133885769,
+                  35.817034676
+                ],
+                [
+                  140.133873859,
+                  35.817019518
+                ],
+                [
+                  140.133873403,
+                  35.817018744
+                ],
+                [
+                  140.13367344,
+                  35.8170974
+                ],
+                [
+                  140.133704724,
+                  35.817150159
+                ]
+              ]
+            ]
+          }
+        }
+      ],
+      "union_planar_area_m2": 15143.74,
+      "certificate_site_area_m2": 14820.08,
+      "area_check": "Lot 2-5 alone is 14,845.6 m², within 0.2% of the certified 14,820.08 m² site; with the two small lots 2-8 and 2-9 the union is 2.2% larger.",
+      "derived_point_full_precision": [
+        140.13433909697613,
+        35.81755529677879
+      ],
+      "derived_point": [
+        140.1343391,
+        35.8175553
+      ],
+      "centroid_inside_union": true,
+      "centroid_min_distance_to_boundary_m": 56.4,
+      "replaced_point_inside_union": true
+    },
+    "kaishin_circular_park": {
+      "catalog_url": "https://www.geospatial.jp/ckan/dataset/aigid-moj-46215",
+      "catalog_sha256": "aa9bcf46f2c6c4088d46782f22b51885964a9dc0a4ceec6927edaf271680c52b",
+      "data_url": "https://gsic-opendata.s3.ap-northeast-1.amazonaws.com/aigid/aigid-moj/2026/46/aigid-moj-46215/46215_%E8%96%A9%E6%91%A9%E5%B7%9D%E5%86%85%E5%B8%82_%E5%85%AC%E5%85%B1%E5%BA%A7%E6%A8%992%E7%B3%BB_%E7%AD%86R_2026.shp.zip",
+      "data_sha256": "a0fc4b1c44f65e9139df3498f71f29f7d2e3225efd41812853ce83b5d12e4022",
+      "data_bytes": 65431425,
+      "raw_capture_file": "local_data/country-research-loc-5-p6/moj-46215-satsumasendai-zone2-2026.shp.zip",
+      "capture_note": "The 425 MB GeoJSON resource timed out (45 s single-shot capture, no retry); the 65 MB shapefile ZIP of the same 2026 resource set was captured instead.",
+      "source_crs": "JGD2011 / Japan Plane Rectangular CS II (EPSG:6670), from the shapefile .prj",
+      "selector": {
+        "市区町村C": "46215",
+        "大字名": "サーキュラーパーク",
+        "丁目名": "１丁目",
+        "地番": "1"
+      },
+      "other_lots_in_town_area": "サーキュラーパーク１丁目 lots 2-10 (45.6 m² to 40,688 m²) and ２丁目 lots 1-2 are separate parcels and are not included.",
+      "selected_feature": {
+        "type": "Feature",
+        "properties": {
+          "ID": "H000003119",
+          "市区町村C": "46215",
+          "大字コード": "606",
+          "丁目コード": "001",
+          "小字コード": "0000",
+          "予備コード": "00",
+          "市区町村名": "薩摩川内市",
+          "大字名": "サーキュラーパーク",
+          "丁目名": "１丁目",
+          "小字名": "",
+          "予備名": "",
+          "地番": "1",
+          "精度区分": "乙一",
+          "座標値種別": "図上測量",
+          "地図名": "川内市昭和５４年度（１／５００）",
+          "座標系": "公共座標2系",
+          "測地系判別": "変換"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                130.200912757,
+                31.855605878
+              ],
+              [
+                130.200768368,
+                31.855649163
+              ],
+              [
+                130.200764986,
+                31.855651721
+              ],
+              [
+                130.200169237,
+                31.855831673
+              ],
+              [
+                130.20012783,
+                31.855843408
+              ],
+              [
+                130.199953056,
+                31.855899444
+              ],
+              [
+                130.199375534,
+                31.856076702
+              ],
+              [
+                130.198793796,
+                31.856252479
+              ],
+              [
+                130.198598823,
+                31.856311398
+              ],
+              [
+                130.198447276,
+                31.856357404
+              ],
+              [
+                130.198440889,
+                31.856357923
+              ],
+              [
+                130.198382912,
+                31.856375767
+              ],
+              [
+                130.197565737,
+                31.856627292
+              ],
+              [
+                130.198027436,
+                31.857726345
+              ],
+              [
+                130.198398227,
+                31.858609019
+              ],
+              [
+                130.198596861,
+                31.859082754
+              ],
+              [
+                130.198765828,
+                31.859487505
+              ],
+              [
+                130.199165488,
+                31.860439164
+              ],
+              [
+                130.199735357,
+                31.86179557
+              ],
+              [
+                130.199864805,
+                31.862104416
+              ],
+              [
+                130.200346908,
+                31.861956409
+              ],
+              [
+                130.200787243,
+                31.861821025
+              ],
+              [
+                130.20081543,
+                31.861802371
+              ],
+              [
+                130.20085956,
+                31.861774212
+              ],
+              [
+                130.200882172,
+                31.861759815
+              ],
+              [
+                130.201078865,
+                31.86177825
+              ],
+              [
+                130.201376748,
+                31.861805897
+              ],
+              [
+                130.201547694,
+                31.861822402
+              ],
+              [
+                130.201583332,
+                31.861807194
+              ],
+              [
+                130.20191047,
+                31.861667606
+              ],
+              [
+                130.202181316,
+                31.861554819
+              ],
+              [
+                130.202504027,
+                31.861427196
+              ],
+              [
+                130.202768272,
+                31.861326011
+              ],
+              [
+                130.202977588,
+                31.861247938
+              ],
+              [
+                130.203256398,
+                31.861143929
+              ],
+              [
+                130.203225504,
+                31.860973774
+              ],
+              [
+                130.203192102,
+                31.86076218
+              ],
+              [
+                130.20315729,
+                31.860562337
+              ],
+              [
+                130.203140931,
+                31.860464154
+              ],
+              [
+                130.20303919,
+                31.859853468
+              ],
+              [
+                130.203005456,
+                31.859670822
+              ],
+              [
+                130.202991854,
+                31.859589972
+              ],
+              [
+                130.202948632,
+                31.859322317
+              ],
+              [
+                130.202923134,
+                31.859173634
+              ],
+              [
+                130.202911847,
+                31.859109899
+              ],
+              [
+                130.202860774,
+                31.858821577
+              ],
+              [
+                130.202842983,
+                31.858704373
+              ],
+              [
+                130.202812519,
+                31.858538451
+              ],
+              [
+                130.202810898,
+                31.858531568
+              ],
+              [
+                130.202728456,
+                31.858320027
+              ],
+              [
+                130.202624677,
+                31.858058405
+              ],
+              [
+                130.202548454,
+                31.857870838
+              ],
+              [
+                130.202502917,
+                31.857754515
+              ],
+              [
+                130.202470327,
+                31.857671256
+              ],
+              [
+                130.202389221,
+                31.857472755
+              ],
+              [
+                130.202290465,
+                31.857222023
+              ],
+              [
+                130.201953667,
+                31.856398241
+              ],
+              [
+                130.201719721,
+                31.855826019
+              ],
+              [
+                130.201677442,
+                31.855719493
+              ],
+              [
+                130.201604985,
+                31.855726767
+              ],
+              [
+                130.201358173,
+                31.855751535
+              ],
+              [
+                130.20137635,
+                31.855466904
+              ],
+              [
+                130.200912757,
+                31.855605878
+              ]
+            ]
+          ]
+        }
+      },
+      "planar_area_m2": 251042.12,
+      "area_check": "About 25.1 ha, matching the city concept's roughly 25 ha Circular Park Kyushu property (about 15 ha AI data centre plus about 10 ha resource circulation).",
+      "derived_point_full_precision": [
+        130.20062459231477,
+        31.858757484693577
+      ],
+      "derived_point": [
+        130.2006246,
+        31.8587575
+      ],
+      "centroid_inside": true,
+      "centroid_min_distance_to_boundary_m": 192.9,
+      "replaced_point_inside_parcel": true
+    }
+  },
+  "georeferenced_outline": {
+    "tecra_ome_shinmachi_9a": {
+      "source_image": "https://tca-tec-prod-app-bucket.s3.ap-northeast-1.amazonaws.com/funds/93/content/image/samples/93map.webp",
+      "source_image_sha256": "c040a2a3a727c0e9c7e3740ed4eff855ebc8bde449bd4401a96d242e435eb722",
+      "source_image_credit": "「空中写真」（国土地理院）を加工してTECRA株式会社作成 (TECRA's outline drawn on a GSI aerial photograph)",
+      "decoded_png_size_px": [
+        1238,
+        842
+      ],
+      "basemap": "GSI seamlessphoto tiles, zoom 18, x 232518-232522, y 103133-103137 (Web Mercator, 256 px tiles, about 0.4844 m/px here)",
+      "basemap_tiles": [
+        {
+          "url": "https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/18/232518/103133.jpg",
+          "sha256": "147f0fdd7bca6af4964f13178d22d691352e85d5e09e039bb4b7bba48767acd5",
+          "retrieved_at": "2026-11-06T22:42:58.208Z",
+          "bytes": 19970
+        },
+        {
+          "url": "https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/18/232518/103134.jpg",
+          "sha256": "c0ab5baaae6c7fb73e296b0e2aef6fb4eac9565d39b6e1b317ffdac186ddddc2",
+          "retrieved_at": "2026-11-06T22:42:59.116Z",
+          "bytes": 19501
+        },
+        {
+          "url": "https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/18/232518/103135.jpg",
+          "sha256": "fe31a72c8314c6e05aebf802243a3f90f1965ae72f64530f9786509acac9e206",
+          "retrieved_at": "2026-11-06T22:43:00.072Z",
+          "bytes": 19927
+        },
+        {
+          "url": "https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/18/232518/103136.jpg",
+          "sha256": "dbd9a0d5db9bd7fc1b9fff22d68cd4bafc77ea66c2ea6babdd706ab1e7a2b41b",
+          "retrieved_at": "2026-11-06T22:43:00.961Z",
+          "bytes": 18882
+        },
+        {
+          "url": "https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/18/232518/103137.jpg",
+          "sha256": "357152064d9f71564e40eb4f48fa257bf662a33d227b2416b58a2af199839ba3",
+          "retrieved_at": "2026-11-06T22:43:01.866Z",
+          "bytes": 17893
+        },
+        {
+          "url": "https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/18/232519/103133.jpg",
+          "sha256": "cb8e928b459046a481f01ebcc14d949233ed7d0d3228f744732ccb4354011cca",
+          "retrieved_at": "2026-11-06T22:43:02.738Z",
+          "bytes": 18513
+        },
+        {
+          "url": "https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/18/232519/103134.jpg",
+          "sha256": "b922aaffbaccd82192e5147eaff256f07bfd4e6a490ee09e2698b409028fbd4a",
+          "retrieved_at": "2026-11-06T22:43:03.642Z",
+          "bytes": 19369
+        },
+        {
+          "url": "https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/18/232519/103135.jpg",
+          "sha256": "740ad161e362cdd4f2a58217be39ec7a2db6e2e276e7206ed47f63946f997ae5",
+          "retrieved_at": "2026-11-06T22:43:04.532Z",
+          "bytes": 19561
+        },
+        {
+          "url": "https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/18/232519/103136.jpg",
+          "sha256": "def5525fbe0361cb1399cb57b46339c7838928ed5c666849085b6d9ed85f7464",
+          "retrieved_at": "2026-11-06T22:43:05.460Z",
+          "bytes": 17500
+        },
+        {
+          "url": "https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/18/232519/103137.jpg",
+          "sha256": "81ce588e6b858eaad73048d00da4c6c233a8f61ddc4c8e0a7ba01086f04d8d7f",
+          "retrieved_at": "2026-11-06T22:43:06.347Z",
+          "bytes": 18685
+        },
+        {
+          "url": "https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/18/232520/103133.jpg",
+          "sha256": "a11782f2e65ed1634ed296c9b843f39d288f1c275c50a37ae157f340933952c9",
+          "retrieved_at": "2026-11-06T22:43:07.233Z",
+          "bytes": 14019
+        },
+        {
+          "url": "https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/18/232520/103134.jpg",
+          "sha256": "621a88bbaaa501102268ee405f550407a6304e08425d053ebd2a178ba69c0575",
+          "retrieved_at": "2026-11-06T22:43:08.166Z",
+          "bytes": 17640
+        },
+        {
+          "url": "https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/18/232520/103135.jpg",
+          "sha256": "142f94042625b31259bb39eda244f1b4172a1ef2517dbee66b86e39a169a48a8",
+          "retrieved_at": "2026-11-06T22:43:09.090Z",
+          "bytes": 16370
+        },
+        {
+          "url": "https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/18/232520/103136.jpg",
+          "sha256": "c62fd1749316591fcc7b2327f99b8b166a6cb874b9f16ad7150ef58b9c7d8b33",
+          "retrieved_at": "2026-11-06T22:43:09.981Z",
+          "bytes": 14898
+        },
+        {
+          "url": "https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/18/232520/103137.jpg",
+          "sha256": "116e3a87a845ed579eade6b1441a059ac1993a3cf32d9bb118f5fc59b22d5fff",
+          "retrieved_at": "2026-11-06T22:43:10.868Z",
+          "bytes": 17644
+        },
+        {
+          "url": "https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/18/232521/103133.jpg",
+          "sha256": "a9d5a5d89bc3f75531a6725f87b98951c0b77965c9852e8bb3b210ccdf219b87",
+          "retrieved_at": "2026-11-06T22:43:11.782Z",
+          "bytes": 10760
+        },
+        {
+          "url": "https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/18/232521/103134.jpg",
+          "sha256": "d5d2fc8533ee467eb6dedd9c4ee3cba29a07c256bcb37df4f279065317d80abc",
+          "retrieved_at": "2026-11-06T22:43:12.702Z",
+          "bytes": 14003
+        },
+        {
+          "url": "https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/18/232521/103135.jpg",
+          "sha256": "145a2ee0c74730d6f0ab06d53f3bebbdd31fca02bbeea7da3f3f9646f69371da",
+          "retrieved_at": "2026-11-06T22:43:13.631Z",
+          "bytes": 16578
+        },
+        {
+          "url": "https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/18/232521/103136.jpg",
+          "sha256": "fa33a631e766cc7297ab224acc8bc6496c194999f0954846fa5d94c26ffaef9b",
+          "retrieved_at": "2026-11-06T22:43:14.572Z",
+          "bytes": 14382
+        },
+        {
+          "url": "https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/18/232521/103137.jpg",
+          "sha256": "0887efc354a421c704e2c66db30466c07cb17e4dedec57c705027b4d77ba68bf",
+          "retrieved_at": "2026-11-06T22:43:15.682Z",
+          "bytes": 16886
+        },
+        {
+          "url": "https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/18/232522/103133.jpg",
+          "sha256": "febd276945713fc9174cd3c3882ff986a569b958e490a1c418b1190e084379cb",
+          "retrieved_at": "2026-11-06T22:43:16.613Z",
+          "bytes": 11818
+        },
+        {
+          "url": "https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/18/232522/103134.jpg",
+          "sha256": "83ecc13b24b75c972a49d32c1bc50b9926003ec39034fa862f91c147f681ffdf",
+          "retrieved_at": "2026-11-06T22:43:17.487Z",
+          "bytes": 12307
+        },
+        {
+          "url": "https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/18/232522/103135.jpg",
+          "sha256": "0786c4ba68d54f7fd66b5cc23dae497ff5053ecb9b00b4828ef246df9cb22370",
+          "retrieved_at": "2026-11-06T22:43:18.373Z",
+          "bytes": 16391
+        },
+        {
+          "url": "https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/18/232522/103136.jpg",
+          "sha256": "c6dcf67ceda8fa27ace5d1d7b829cf6ffc794fdcffe5b95809a37958af310eda",
+          "retrieved_at": "2026-11-06T22:43:19.286Z",
+          "bytes": 16202
+        },
+        {
+          "url": "https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/18/232522/103137.jpg",
+          "sha256": "929ac067d56b3b1eb268882c37e91571613cb90b3ecb0b5559cc7f801cf23e0c",
+          "retrieved_at": "2026-11-06T22:43:20.391Z",
+          "bytes": 17450
+        }
+      ],
+      "mosaic_origin_tile": [
+        232518,
+        103133
+      ],
+      "control_points_source_px_to_mosaic_px": [
+        {
+          "name": "bigNW",
+          "src": [
+            1093.75,
+            510
+          ],
+          "dst": [
+            610,
+            615.6
+          ]
+        },
+        {
+          "name": "bigNE",
+          "src": [
+            1175,
+            520
+          ],
+          "dst": [
+            645.6,
+            620.6
+          ]
+        },
+        {
+          "name": "bigSW",
+          "src": [
+            1080,
+            640
+          ],
+          "dst": [
+            600.6,
+            676.7
+          ]
+        },
+        {
+          "name": "bigSE",
+          "src": [
+            1160,
+            652.5
+          ],
+          "dst": [
+            634.4,
+            680
+          ]
+        },
+        {
+          "name": "stripedNW",
+          "src": [
+            983,
+            493
+          ],
+          "dst": [
+            560.7,
+            608.0
+          ]
+        },
+        {
+          "name": "stripedSW",
+          "src": [
+            982,
+            530
+          ],
+          "dst": [
+            559.8,
+            622.5
+          ]
+        },
+        {
+          "name": "stripedNE",
+          "src": [
+            1063,
+            494
+          ],
+          "dst": [
+            597.5,
+            610.7
+          ]
+        },
+        {
+          "name": "stripedSE",
+          "src": [
+            1061,
+            539
+          ],
+          "dst": [
+            596.2,
+            628.5
+          ]
+        },
+        {
+          "name": "orangeNW",
+          "src": [
+            982,
+            534
+          ],
+          "dst": [
+            559.8,
+            623.9
+          ]
+        },
+        {
+          "name": "orangeNE",
+          "src": [
+            1029,
+            539
+          ],
+          "dst": [
+            579.4,
+            628
+          ]
+        },
+        {
+          "name": "greenTL",
+          "src": [
+            767.1,
+            470
+          ],
+          "dst": [
+            461.7,
+            590
+          ]
+        },
+        {
+          "name": "greenTR",
+          "src": [
+            800,
+            472.9
+          ],
+          "dst": [
+            485,
+            594.2
+          ]
+        },
+        {
+          "name": "greenBL",
+          "src": [
+            760,
+            528.6
+          ],
+          "dst": [
+            455.8,
+            620
+          ]
+        },
+        {
+          "name": "greenBR",
+          "src": [
+            798.6,
+            534.3
+          ],
+          "dst": [
+            482.5,
+            624.2
+          ]
+        }
+      ],
+      "affine_source_to_mosaic_px": [
+        [
+          0.4468947443871534,
+          -0.03295096311709726,
+          138.34797822892654
+        ],
+        [
+          0.01491652633028013,
+          0.45655834924291466,
+          366.66693836670305
+        ]
+      ],
+      "affine_scale": [
+        0.4471,
+        0.4577
+      ],
+      "residuals": "All 14 points: RMS 2.93 px (1.42 m), max 5.15 px (2.5 m). Ten eastern points alone: RMS 1.50 px; that fit predicted the four western points within 4.3-6.2 px.",
+      "automatic_matching": "SIFT/RANSAC matching (OpenCV 4.10) found too few consistent matches between the compressed diagram and the newer orthophoto, so control points were picked by hand on building corners.",
+      "outline_vertices_source_px": [
+        [
+          884.8,
+          415.2
+        ],
+        [
+          988,
+          447.2
+        ],
+        [
+          972,
+          580
+        ],
+        [
+          863.2,
+          563.2
+        ]
+      ],
+      "outline_vertices_lonlat": [
+        [
+          139.317670293,
+          35.783034856
+        ],
+        [
+          139.317912041,
+          35.782964577
+        ],
+        [
+          139.31785021,
+          35.782701761
+        ],
+        [
+          139.31759235,
+          35.782742203
+        ]
+      ],
+      "outline_area_m2": 734.7,
+      "derived_point_full_precision": [
+        139.31775366202197,
+        35.78286061973811
+      ],
+      "derived_point": [
+        139.3177537,
+        35.7828606
+      ],
+      "centroid_min_distance_to_outline_m": 11.5,
+      "replaced_point_inside_outline": true,
+      "gsi_2053_banchi_point_distance_outside_outline_m": 43.5,
+      "visual_check": "A 50% alpha blend of the warped diagram over the orthophoto shows the blue-roofed building, the orange-roofed and ribbed-roof buildings, the large building to the east, the green-roofed building to the west and the road lane markings aligned; the outline's north edge sits on the road's south edge.",
+      "horizontal_uncertainty_metres": 10,
+      "uncertainty_basis": "Registration residuals up to 2.5 m, the outline line width (about 8 source px, 1.7 m) and orthophoto positional error, rounded up to a conservative 10 m for the parcel centroid."
+    }
+  },
+  "redistribution_note": "Only the selected parcel features, the traced outline and derived facts are reproduced; the full registry datasets, tiles and images stay local."
+}

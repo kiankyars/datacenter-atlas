@@ -1,0 +1,51 @@
+{
+ "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+ "candidate": "Equinix Osaka OS1, Nishi Shinsaibashi Building, 1-26-1 Shinmachi, Nishi-ku, Osaka 550-0013",
+ "decision": "Selected the coordinates of the single GSI address-search feature for the address Equinix publishes for OS1 (1-26-1, Shinmachi, Nishi-ku, Osaka; 大阪府大阪市西区新町1-26-1), which GSI resolves to the house number 大阪府大阪市西区新町一丁目２６番１号, as the project locator. The point is the official residence-indication point of the OS1 building's address on the eastern street frontage of its block; it is not a building outline, entrance or surveyed boundary.",
+ "geometry": {
+  "type": "Point",
+  "coordinates": [
+   135.495911,
+   34.675838
+  ]
+ },
+ "coordinate_reference_system": "Longitude/latitude as returned by the GSI address-search service (JGD2011 geographic, treated as WGS84-equivalent at this precision); used unchanged, no transformation or rounding.",
+ "authority_class": "official_source",
+ "scope_class": "official_numbered_address_point",
+ "use_scope": "project_locator",
+ "source_url": "https://msearch.gsi.go.jp/address-search/AddressSearch?q=%E5%A4%A7%E9%98%AA%E5%BA%9C%E5%A4%A7%E9%98%AA%E5%B8%82%E8%A5%BF%E5%8C%BA%E6%96%B0%E7%94%BA1-26-1",
+ "raw_capture_file": "local_data/country-research-ops-tokyo-osaka-p6/gsi-osaka-nishi-shinmachi-1-26-1.json",
+ "raw_capture_sha256": "7bf5b8a9ca2830916940811a13775bf064ebf4fb5ab93d1e788b260af6f99f59",
+ "raw_capture_bytes": 182,
+ "retrieved_at": "2026-11-06T22:55:57.567Z",
+ "selected_feature": {
+  "title": "大阪府大阪市西区新町一丁目２６番１号",
+  "addressCode": "",
+  "coordinates": [
+   135.495911,
+   34.675838
+  ],
+  "feature_count_in_response": 1,
+  "resolution_level": "house number (号): the full address 1-chome 26-ban 1-go is resolved"
+ },
+ "identity_chain": [
+  "Equinix's OS1 facility page, read through the Internet Archive's raw copy of 3 October 2026 (ia-eqx-os1-20261003.html, sha256 74b29529...b2798b3b), names 'Osaka OS1' and gives its address as '1-26-1, Shinmachi, Nishi-ku / Nishi Shinsaibashi Building / Osaka, 550 0013 / Japan', with 6,015 m2 (64,745 ft2) of colocation space in an 11-storey steel-frame building.",
+  "GSI's address search for 大阪府大阪市西区新町1-26-1 returns exactly one feature, titled 大阪府大阪市西区新町一丁目２６番１号, at 135.495911, 34.675838 (house-number level).",
+  "GSI's reverse geocoder returns municipality code 27106 (Osaka City, Nishi-ku) and 新町一丁目 for that point (gsi-revgeo-osaka-os1.json).",
+  "On GSI's standard-map tile z17/114868/52061 the point falls at pixel (142.3, 33.7), on the eastern street line of a block whose main building is drawn with diagonal hatching and spans about 50 m east-west (pixels 88-139 at 0.98 m per pixel); the point is about 3-4 m east of that building's outline. On tile z18/229737/104122 the point (pixel 28.5, 67.3) lies on the block line about 2.5 m east of the building outline (0.49 m per pixel).",
+  "Equinix's own page markup carries a map-centre attribute for the page's location widget (135.49586917748803, 34.67556233755475); it is 30.8 m south of the GSI point (pyproj WGS84 geodesic), inside the same block. It is noted only as a cross-check and is not the locator."
+ ],
+ "extent_review": "Equinix publishes no building outline. The building drawn at the point spans about 50 m east-west and about 35 m north-south on GSI's z17 standard map, so the data-centre floor space lies within roughly 60 m of the point.",
+ "distances": {
+  "equinix_osaka_os3_atlas_site_m": 3878.2,
+  "nearest_other_atlas_or_queue_record": "Equinix Osaka OS3 (curated:keihanshin-obp-data-center-building), 3.88 km east-north-east",
+  "method": "pyproj 3.7.1 WGS84 geodesic"
+ },
+ "not_used": [
+  "No Google, Apple, Bing, HERE, Waze or other commercial web map, PeeringDB or OpenStreetMap data was opened or used.",
+  "The Equinix page's map-centre attribute (display widget) was not used as the locator; it is reported only as a 30.8 m cross-check."
+ ],
+ "horizontal_uncertainty_metres": null,
+ "uncertainty_reason": "GSI publishes no positional accuracy for house-number address points; the point sits on the street frontage at the eastern edge of the address building, which extends about 50 m west and 35 m north-south, so the data-centre space may lie up to about 60 m from the point.",
+ "tools": "Tile pixel positions and distances computed with Python (pyproj 3.7.1 for geodesics); tiles viewed for identity review only, not for status."
+}

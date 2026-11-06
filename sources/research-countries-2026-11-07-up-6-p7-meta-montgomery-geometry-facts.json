@@ -1,0 +1,101 @@
+{
+ "candidate_id": "up-6-p7-meta-montgomery",
+ "decision": "Selected the planar centroid of the union of the six contiguous Dotier LLC parcels on Hyundai Blvd and Hwy 331, on which the City of Montgomery has issued the 'META DATA CENTER' building, electrical, plumbing and mechanical permits, as the campus locator replacing the imported Montgomery city point.",
+ "geometry": {
+  "type": "Point",
+  "coordinates": [
+   -86.3283685,
+   32.2691058
+  ]
+ },
+ "authority_class": "official_source",
+ "scope_class": "official_tax_parcel_union_centroid",
+ "use_scope": "campus_locator",
+ "source_file": "local_data/country-research-up-6-p7/mgm-parcels-dotier-llc.json",
+ "source_sha256": "846c8cf8ff81647287db2d3f28e94519f855ebc055d64665c5e9b9aad1e7abe8",
+ "source_url": "https://gis.montgomeryal.gov/server/rest/services/Parcels/FeatureServer/0/query?where=UPPER(OwnerName)%20LIKE%20%27DOTIER%20LLC%25%27&outFields=ParcelNo,Calc_Acre,RecordYear,OwnerName,MailCity,MailState,AssessmentClass,MunicipalityCode,PropertyAddr1,PropertyCity,TotalLandValue,TotalImpValue,TotalValue,InstDate&returnGeometry=true&outSR=4326&f=json",
+ "retrieved_at": "2026-11-06T23:10:30.635Z",
+ "layer": "City of Montgomery GIS Parcels FeatureServer layer 0 (DBO.Parcels), requested in WGS84 (outSR 4326)",
+ "selected_properties": {
+  "14 05 15 0 000 018.000": {
+   "owner": "DOTIER LLC",
+   "site_address": "2055 HYUNDAI BLVD",
+   "calc_acres": 77.56,
+   "geodesic_acres": 77.56
+  },
+  "14 05 22 0 001 001.000": {
+   "owner": "DOTIER LLC",
+   "site_address": "HYUNDAI BLVD",
+   "calc_acres": 79.25,
+   "geodesic_acres": 79.25
+  },
+  "14 06 23 0 000 001.000": {
+   "owner": "DOTIER LLC",
+   "site_address": "HWY 331",
+   "calc_acres": 484.36,
+   "geodesic_acres": 484.37
+  },
+  "14 06 14 0 000 003.000": {
+   "owner": "DOTIER LLC",
+   "site_address": "1125 HYUNDAI BLVD",
+   "calc_acres": 313.19,
+   "geodesic_acres": 313.2
+  },
+  "14 06 24 0 000 002.000": {
+   "owner": "DOTIER LLC C/O MAYNARD NEXSEN PC",
+   "site_address": "SAME AS DESC",
+   "calc_acres": 231.13,
+   "geodesic_acres": 231.13
+  },
+  "14 06 13 0 000 006.000": {
+   "owner": "DOTIER LLC C/O MAYNARD NEXSEN PC",
+   "site_address": "235 HYUNDAI BLVD",
+   "calc_acres": 271.07,
+   "geodesic_acres": 270.7
+  }
+ },
+ "facts": {
+  "parcels": 6,
+  "all_valid": true,
+  "union_type": "Polygon",
+  "union_parts": 1,
+  "union_geodesic_acres": 1456.22,
+  "bounds_lon_lat": [
+   -86.345049,
+   32.255679,
+   -86.308036,
+   32.277703
+  ],
+  "centroid_inside": true,
+  "centroid_method": "shapely 2.1.1 planar centroid of the union in WGS84 longitude/latitude, rounded to 7 decimals; the WGS 84 / UTM zone 16N (EPSG:32616) planar centroid transformed back with pyproj 3.7.1 differs by 0.03 m",
+  "max_distance_centroid_to_union_vertex_m": 2035,
+  "previous_point_lon_lat": [
+   -86.3091,
+   32.3777
+  ],
+  "displacement_m": 12210.1,
+  "city_permit_point_1055_hyundai_blvd": {
+   "lon_lat": [
+    -86.31723827440165,
+    32.266795889663136
+   ],
+   "inside_union": true,
+   "inside_parcel": [
+    "14 06 24 0 000 002.000"
+   ],
+   "distance_to_centroid_m": 1078
+  },
+  "city_permit_point_2055_hyundai_blvd": {
+   "lon_lat": [
+    -86.34284364493027,
+    32.273662982436626
+   ],
+   "inside_union": true,
+   "inside_parcel": [
+    "14 05 15 0 000 018.000"
+   ],
+   "distance_to_centroid_m": 1452
+  }
+ },
+ "exclusions": "Neighbouring parcels owned by others, and the unrelated 6220 Perimeter Pkwy data-center permits returned by a broader permit query, are excluded and their owners are not reproduced. No geocoder, map viewport, city centre or industrial-area centroid is used."
+}
