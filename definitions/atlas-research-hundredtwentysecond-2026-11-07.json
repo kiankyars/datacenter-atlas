@@ -1,0 +1,894 @@
+{
+  "format": "datacenter-atlas-update-input-v1",
+  "updated_at": "2026-11-07",
+  "output": "verified_construction_core/2026-11-07-research-hundredtwentysecond",
+  "base_dataset": "verified_construction_core/2026-11-07-research-hundredtwentyfirst",
+  "base_manifest_sha256": "761ff38b9c92c9ca5a8a5d63eef0815c5da764722cf3256936bdf327118f2318",
+  "source_files": [
+    {
+      "path": "sources/research-countries-2026-11-07-hundredtwentysecond-primary-sources.json",
+      "sha256": "b59cf50f7662ddfc2b1a0a8630d136ee8e185dfb990039d2ff2153815b19fad1"
+    }
+  ],
+  "additions": [
+    {
+      "project_stable_key": "curated:equinix-sg1-20-ayer-rajah-crescent:existing-operations",
+      "physical_site_stable_key": "curated:equinix-sg1-20-ayer-rajah-crescent",
+      "site_name": "Equinix SG1 Singapore IBX, 20 Ayer Rajah Crescent",
+      "name": "Equinix SG1 — existing IBX colocation data-centre operations (20 Ayer Rajah Crescent, Singapore 139964)",
+      "country": "Singapore",
+      "country_iso_a2": "SG",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-11-06",
+        "source_id": "ops-singapore-jakarta-p6-eqx-sg6-opening-20261106",
+        "summary": "Equinix's release of 6 November 2026, announcing the opening of SG6 as 'its sixth International Business Exchange (IBX) data center in Singapore', states that 'Equinix has operated in Singapore since 2002, has grown from one facility to six data centers in the country', that Equinix 'has the most network-dense data centers in Singapore that house many of the international and regional networks', and that 'Equinix's Singapore colocation facilities enable customers' to join its ecosystem. The release does not name the other five, so the identification rests on Equinix's own pages: its Singapore listing page in the Internet Archive copy of 3 October 2026 names exactly five Singapore IBXs (SG1, SG2, SG3, SG4 and SG5) and no SG6, and its 2024 SG6 plan release called SG6 the sixth Singapore IBX. Six operating data centres on 6 November 2026 are therefore SG6 plus SG1-SG5, and SG1 is one of them. This records SG1 as an existing, operating Equinix IBX on 6 November 2026, the release date. It is an aggregate operator statement mapped to the named facility through the operator's current portfolio, as with earlier admissions of portfolio statements; it is not an opening, inspection or commissioning date, and no capacity, load or customer is asserted."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            103.7897628720616,
+            1.295099681535343
+          ]
+        },
+        "source_id": "ops-singapore-jakarta-p6-onemap-20-ayer-rajah-crescent",
+        "identity_source_ids": [
+          "ops-singapore-jakarta-p6-eqx-sg1-ia-20261003",
+          "ops-singapore-jakarta-p6-eqx-sg-listing-ia-20261003"
+        ],
+        "scope": "project_locator",
+        "scope_class": "official_numbered_address_point",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "retain_exact_OneMap_address_search_feature_20_AYER_RAJAH_CRESCENT_SINGAPORE_139964",
+        "precision": "Singapore Land Authority address point for 20 Ayer Rajah Crescent, Singapore 139964, the address Equinix gives for SG1. It marks the building address, not a surveyed outline, land lot, entrance or data hall. OneMap also returns a point-of-interest feature ('DARTS LEGEND') under the same block number about 50 m west, which suggests the block may have other occupiers; the address feature is used.",
+        "identity_review": "Equinix's SG1 page (Internet Archive raw copy of 3 October 2026; www.equinix.com answers robots.txt with HTTP 403, so the live page was not requested) describes SG1 as 'colocation and data centre at Ayer Rajah' that is 'home to the Asia-Pacific Network Operation centre (NOC)' and gives the address '20 Ayer Rajah Crescent Singapore, 139964'; the related-IBX blocks on Equinix's other Singapore IBX pages of the same day give the same street for SG1. OneMap returns the same address feature for the street-address search and for the postcode search (byte-identical responses). The served WGS84 point equals the served SVY21 X/Y transformed with pyproj 3.7.1 (difference about 3.2e-9 m). The coordinate in the map widget on Equinix's page was not used, nor any commercial map, geocoder, PeeringDB record, OpenStreetMap service, city centre, head-office address or industrial-estate centroid.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "OneMap supplies no positional accuracy for address points. Decimal places are not survey accuracy, and the point does not mark the building outline or land lot."
+      },
+      "context_source_ids": [
+        "ops-singapore-jakarta-p6-eqx-sg1-ia-20261003",
+        "ops-singapore-jakarta-p6-eqx-sg-listing-ia-20261003",
+        "ops-singapore-jakarta-p6-eqx-sg6-plan-20241119"
+      ],
+      "roles": [
+        {
+          "party": "Equinix",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "ops-singapore-jakarta-p6-eqx-sg6-opening-20261106"
+        }
+      ],
+      "distinctness_review": "Screened on 7 November 2026 against verified_construction_core/2026-11-07-research-hundredtwentyfirst (954 sites, 1,028 projects, 5,339 evidence rows): the names, aliases, operators, addresses, postcodes and coordinates in sites.csv, projects.csv, evidence.csv, source-records.json and identity-mapping.json; the additions and locator corrections in every pending queue fragment's changes.json; claims.tsv; and every sources/*-holds.json file and queue holds.json. Keywords: Equinix, SG1, Ayer Rajah, 20 Ayer Rajah Crescent, 139964. No Atlas record, pending change or claim by another fragment names Equinix SG1, its street address or its postcode; the Atlas has no Equinix site in Singapore. Bare 'SG1' also matches other operators' records and holds (for example DayOne SG1 and PDG SG1, and UK postcode districts in evidence rows), none of them Equinix. The only Equinix Singapore mentions are holds: the hundred-and-twentieth update's sea-p6 entry 'Equinix SG6 ... and Equinix SG1-SG5' (deferred_to_other_lane) and the q3-us-reits-p6 hold on SG6 (no address), which named the Singapore lane as the place to resolve it. No Atlas site, project, pending queue addition or locator correction lies within 2 km of the SG1 point. The nearest Atlas records are Digital Realty SIN10, 29A International Business Park (6.06 km), the Keppel Genting Lane Data Centre Campus (10.23 km) and Keppel DC Singapore 5, Sunview Way (10.33 km). Equinix SG3, a separate Equinix IBX at 26A Ayer Rajah Crescent (Private Lot FX1-4a, 139963) on the same street, is not in the Atlas and is not part of this record; it is held in this fragment.",
+      "successor_review": "The 6 November 2026 release is the latest Equinix Singapore statement found (one day before this update); it reports growth to six Singapore data centres and names no closure, sale or transfer of any Singapore IBX. The Internet Archive CDX listing queried on 6 November 2026 shows no Equinix Singapore page after 3 October 2026 that drops SG1. Operational is kept as of 6 November 2026, inside the 85-day floor and the 90-day window.",
+      "scoped_project_details": {
+        "aliases": [
+          "Equinix SG1",
+          "SG1 IBX",
+          "Equinix Singapore SG1"
+        ],
+        "address": "20 Ayer Rajah Crescent, Singapore 139964",
+        "operator_stated_space_sq_ft_label": "109,211",
+        "space_qualification": "'109,211 Square feet (ft²)' is the space figure on Equinix's SG1 page (Internet Archive copy of 3 October 2026); it is the operator's facility label, not measured occupancy, and no MW or cabinet figure is asserted.",
+        "permit_status_not_asserted": true,
+        "opening_date_not_asserted": true,
+        "owner_not_asserted": true,
+        "facility_scope": "Existing Equinix SG1 IBX at 20 Ayer Rajah Crescent, Singapore 139964; no expansion, new building or later phase is asserted."
+      }
+    },
+    {
+      "project_stable_key": "curated:equinix-sg4-7-tai-seng-drive:existing-operations",
+      "physical_site_stable_key": "curated:equinix-sg4-7-tai-seng-drive",
+      "site_name": "Equinix SG4 Singapore IBX, 7 Tai Seng Drive",
+      "name": "Equinix SG4 — existing IBX colocation data-centre operations (7 Tai Seng Drive, Singapore 535218)",
+      "country": "Singapore",
+      "country_iso_a2": "SG",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-11-06",
+        "source_id": "ops-singapore-jakarta-p6-eqx-sg6-opening-20261106",
+        "summary": "Equinix's release of 6 November 2026, announcing the opening of SG6 as 'its sixth International Business Exchange (IBX) data center in Singapore', states that 'Equinix has operated in Singapore since 2002, has grown from one facility to six data centers in the country', that Equinix 'has the most network-dense data centers in Singapore that house many of the international and regional networks', and that 'Equinix's Singapore colocation facilities enable customers' to join its ecosystem. The release does not name the other five, so the identification rests on Equinix's own pages: its Singapore listing page in the Internet Archive copy of 3 October 2026 names exactly five Singapore IBXs (SG1, SG2, SG3, SG4 and SG5) and no SG6, and its 2024 SG6 plan release called SG6 the sixth Singapore IBX. Six operating data centres on 6 November 2026 are therefore SG6 plus SG1-SG5, and SG4 is one of them. This records SG4 as an existing, operating Equinix IBX on 6 November 2026, the release date. It is an aggregate operator statement mapped to the named facility through the operator's current portfolio, as with earlier admissions of portfolio statements; it is not an opening, inspection or commissioning date, and no capacity, load or customer is asserted."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            103.8929003181552,
+            1.338856883662676
+          ]
+        },
+        "source_id": "ops-singapore-jakarta-p6-onemap-7-tai-seng-drive",
+        "identity_source_ids": [
+          "ops-singapore-jakarta-p6-eqx-sg4-ia-20261003",
+          "ops-singapore-jakarta-p6-eqx-sg-listing-ia-20261003"
+        ],
+        "scope": "project_locator",
+        "scope_class": "official_numbered_address_point",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "retain_exact_OneMap_address_search_feature_7_TAI_SENG_DRIVE_SINGAPORE_535218",
+        "precision": "Singapore Land Authority address point for 7 Tai Seng Drive, Singapore 535218, the address Equinix gives for SG4. It marks the building address, not a surveyed outline, land lot, entrance or data hall.",
+        "identity_review": "Equinix's SG4 page (Internet Archive raw copy of 3 October 2026; www.equinix.com answers robots.txt with HTTP 403, so the live page was not requested) describes SG4 as the operator's colocation data centre 'on the east side of Singapore' and gives the address '7 Tai Seng Drive Singapore, 535218'; the related-IBX blocks on Equinix's other Singapore IBX pages of the same day give the same street for SG4. OneMap returns the same address feature for the street-address search and for the postcode search (byte-identical responses). The served WGS84 point equals the served SVY21 X/Y transformed with pyproj 3.7.1 (difference about 3.2e-9 m). The coordinate in the map widget on Equinix's page was not used, nor any commercial map, geocoder, PeeringDB record, OpenStreetMap service, city centre, head-office address or industrial-estate centroid.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "OneMap supplies no positional accuracy for address points. Decimal places are not survey accuracy, and the point does not mark the building outline or land lot."
+      },
+      "context_source_ids": [
+        "ops-singapore-jakarta-p6-eqx-sg4-ia-20261003",
+        "ops-singapore-jakarta-p6-eqx-sg-listing-ia-20261003",
+        "ops-singapore-jakarta-p6-eqx-sg6-plan-20241119"
+      ],
+      "roles": [
+        {
+          "party": "Equinix",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "ops-singapore-jakarta-p6-eqx-sg6-opening-20261106"
+        }
+      ],
+      "distinctness_review": "Screened on 7 November 2026 against verified_construction_core/2026-11-07-research-hundredtwentyfirst (954 sites, 1,028 projects, 5,339 evidence rows): the names, aliases, operators, addresses, postcodes and coordinates in sites.csv, projects.csv, evidence.csv, source-records.json and identity-mapping.json; the additions and locator corrections in every pending queue fragment's changes.json; claims.tsv; and every sources/*-holds.json file and queue holds.json. Keywords: Equinix, SG4, 7 Tai Seng Drive, Tai Seng, 535218. No Atlas record, pending change or claim by another fragment names Equinix SG4, its street address or its postcode; the Atlas has no Equinix site in Singapore. Bare 'SG4' also matches other operators' records and holds (for example DayOne SG1 and PDG SG1, and UK postcode districts in evidence rows), none of them Equinix. The only Equinix Singapore mentions are holds: the hundred-and-twentieth update's sea-p6 entry 'Equinix SG6 ... and Equinix SG1-SG5' (deferred_to_other_lane) and the q3-us-reits-p6 hold on SG6 (no address), which named the Singapore lane as the place to resolve it. Two Atlas sites lie within 2 km of the SG4 point: Global Switch Singapore Tai Seng Data Centre, 2 Tai Seng Avenue (site curated:global-switch-singapore-tai-seng and project curated:global-switch-singapore-tai-seng:existing-operations, operator Global Switch; also the published sea-p6 queue addition), 0.264 km, and STT Singapore 5 Tai Seng (site curated:stt-singapore5-tai-seng and project curated:stt-singapore5-tai-seng:existing-operations, operator STT GDC), 0.489 km. Both are other operators at other addresses (2 Tai Seng Avenue 534408; STT's Tai Seng property). The next nearest is the Keppel Genting Lane Data Centre Campus (2.35 km).",
+      "successor_review": "The 6 November 2026 release is the latest Equinix Singapore statement found (one day before this update); it reports growth to six Singapore data centres and names no closure, sale or transfer of any Singapore IBX. The Internet Archive CDX listing queried on 6 November 2026 shows no Equinix Singapore page after 3 October 2026 that drops SG4. Operational is kept as of 6 November 2026, inside the 85-day floor and the 90-day window.",
+      "scoped_project_details": {
+        "aliases": [
+          "Equinix SG4",
+          "SG4 IBX",
+          "Equinix Singapore SG4",
+          "Equinix Tai Seng"
+        ],
+        "address": "7 Tai Seng Drive, Singapore 535218",
+        "operator_stated_space_sq_ft_label": "90,847",
+        "space_qualification": "'90,847 Square feet (ft²)' is the space figure on Equinix's SG4 page (Internet Archive copy of 3 October 2026); it is the operator's facility label, not measured occupancy, and no MW or cabinet figure is asserted.",
+        "permit_status_not_asserted": true,
+        "opening_date_not_asserted": true,
+        "owner_not_asserted": true,
+        "facility_scope": "Existing Equinix SG4 IBX at 7 Tai Seng Drive, Singapore 535218; no expansion, new building or later phase is asserted."
+      }
+    },
+    {
+      "project_stable_key": "curated:equinix-sg5-6-sunview-drive:existing-operations",
+      "physical_site_stable_key": "curated:equinix-sg5-6-sunview-drive",
+      "site_name": "Equinix SG5 Singapore IBX, 6 Sunview Drive",
+      "name": "Equinix SG5 — existing IBX colocation data-centre operations (6 Sunview Drive, Singapore 627488)",
+      "country": "Singapore",
+      "country_iso_a2": "SG",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-11-06",
+        "source_id": "ops-singapore-jakarta-p6-eqx-sg6-opening-20261106",
+        "summary": "Equinix's release of 6 November 2026, announcing the opening of SG6 as 'its sixth International Business Exchange (IBX) data center in Singapore', states that 'Equinix has operated in Singapore since 2002, has grown from one facility to six data centers in the country', that Equinix 'has the most network-dense data centers in Singapore that house many of the international and regional networks', and that 'Equinix's Singapore colocation facilities enable customers' to join its ecosystem. The release does not name the other five, so the identification rests on Equinix's own pages: its Singapore listing page in the Internet Archive copy of 3 October 2026 names exactly five Singapore IBXs (SG1, SG2, SG3, SG4 and SG5) and no SG6, and its 2024 SG6 plan release called SG6 the sixth Singapore IBX. Six operating data centres on 6 November 2026 are therefore SG6 plus SG1-SG5, and SG5 is one of them. This records SG5 as an existing, operating Equinix IBX on 6 November 2026, the release date. It is an aggregate operator statement mapped to the named facility through the operator's current portfolio, as with earlier admissions of portfolio statements; it is not an opening, inspection or commissioning date, and no capacity, load or customer is asserted."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            103.7015235019811,
+            1.317258748616785
+          ]
+        },
+        "source_id": "ops-singapore-jakarta-p6-onemap-6-sunview-drive",
+        "identity_source_ids": [
+          "ops-singapore-jakarta-p6-eqx-sg5-ia-20261003",
+          "ops-singapore-jakarta-p6-eqx-sg-listing-ia-20261003"
+        ],
+        "scope": "project_locator",
+        "scope_class": "official_numbered_address_point",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "retain_exact_OneMap_address_search_feature_6_SUNVIEW_DRIVE_SINGAPORE_627488",
+        "precision": "Singapore Land Authority address point for 6 Sunview Drive, Singapore 627488, the address Equinix gives for SG5. It marks the building address, not a surveyed outline, land lot, entrance or data hall.",
+        "identity_review": "Equinix's SG5 page (Internet Archive raw copy of 3 October 2026; www.equinix.com answers robots.txt with HTTP 403, so the live page was not requested) describes SG5 as a data centre that 'opened in 2021 on the western side of Singapore' and gives the address '6 Sunview Drive Singapore, 627488'; the related-IBX blocks on Equinix's other Singapore IBX pages of the same day give the same street for SG5. OneMap returns the same address feature for the street-address search and for the postcode search (byte-identical responses). The served WGS84 point equals the served SVY21 X/Y transformed with pyproj 3.7.1 (difference about 3.2e-9 m). The coordinate in the map widget on Equinix's page was not used, nor any commercial map, geocoder, PeeringDB record, OpenStreetMap service, city centre, head-office address or industrial-estate centroid.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "OneMap supplies no positional accuracy for address points. Decimal places are not survey accuracy, and the point does not mark the building outline or land lot."
+      },
+      "context_source_ids": [
+        "ops-singapore-jakarta-p6-eqx-sg5-ia-20261003",
+        "ops-singapore-jakarta-p6-eqx-sg-listing-ia-20261003",
+        "ops-singapore-jakarta-p6-eqx-sg6-plan-20241119"
+      ],
+      "roles": [
+        {
+          "party": "Equinix",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "ops-singapore-jakarta-p6-eqx-sg6-opening-20261106"
+        }
+      ],
+      "distinctness_review": "Screened on 7 November 2026 against verified_construction_core/2026-11-07-research-hundredtwentyfirst (954 sites, 1,028 projects, 5,339 evidence rows): the names, aliases, operators, addresses, postcodes and coordinates in sites.csv, projects.csv, evidence.csv, source-records.json and identity-mapping.json; the additions and locator corrections in every pending queue fragment's changes.json; claims.tsv; and every sources/*-holds.json file and queue holds.json. Keywords: Equinix, SG5, Sunview, 6 Sunview Drive, 627488. No Atlas record, pending change or claim by another fragment names Equinix SG5, its street address or its postcode; the Atlas has no Equinix site in Singapore. Bare 'SG5' also matches other operators' records and holds (for example DayOne SG1 and PDG SG1, and UK postcode districts in evidence rows), none of them Equinix. The only Equinix Singapore mentions are holds: the hundred-and-twentieth update's sea-p6 entry 'Equinix SG6 ... and Equinix SG1-SG5' (deferred_to_other_lane) and the q3-us-reits-p6 hold on SG6 (no address), which named the Singapore lane as the place to resolve it. One Atlas site lies within 2 km of the SG5 point: Keppel DC Singapore 5, Sunview Way (site curated:keppel-dc-singapore-5-sunview-way and project curated:keppel-dc-singapore-5-sunview-way:existing-operations, Keppel Data Centres; also the published q3-apac-operators-p3 queue addition), 0.297 km, a different operator at a different address (13 Sunview Way, 627541). The next nearest are Nxera DC Tuas, 7A Tuas Avenue 3 (5.06 km) and Digital Realty SIN10 (5.09 km). NeutraDC's SNG-3 at 8 Sunview Drive, mentioned in the sea-p3 fragment's distinctness text, is not an Atlas record and is a different operator's facility.",
+      "successor_review": "The 6 November 2026 release is the latest Equinix Singapore statement found (one day before this update); it reports growth to six Singapore data centres and names no closure, sale or transfer of any Singapore IBX. The Internet Archive CDX listing queried on 6 November 2026 shows no Equinix Singapore page after 3 October 2026 that drops SG5. Operational is kept as of 6 November 2026, inside the 85-day floor and the 90-day window.",
+      "scoped_project_details": {
+        "aliases": [
+          "Equinix SG5",
+          "SG5 IBX",
+          "Equinix Singapore SG5",
+          "Equinix Sunview"
+        ],
+        "address": "6 Sunview Drive, Singapore 627488",
+        "operator_stated_space_sq_ft_label": "22,873",
+        "space_qualification": "'22,873 Square feet (ft²)' is the space figure on Equinix's SG5 page (Internet Archive copy of 3 October 2026); it is the operator's facility label, not measured occupancy, and no MW or cabinet figure is asserted.",
+        "permit_status_not_asserted": true,
+        "opening_date_not_asserted": true,
+        "owner_not_asserted": true,
+        "facility_scope": "Existing Equinix SG5 IBX at 6 Sunview Drive, Singapore 627488; no expansion, new building or later phase is asserted."
+      }
+    }
+  ],
+  "status_updates": [],
+  "context_updates": [],
+  "locator_corrections": [
+    {
+      "physical_site_stable_key": "curated:ctrls-mumbai-mahape-datacenter-campus",
+      "site_id": "vcc-site-94af7d57293a1b3a103b",
+      "replaces_geometry_evidence_id": "4d184a7d-9cf7-55b1-8b09-db7b9e958553",
+      "reason": "The current point was copied from the Google Maps place behind the maps.app.goo.gl short link on CtrlS's Mumbai page (operator_selected_google_maps_feature_coordinates); Google's terms do not allow its coordinates to be reused in the Atlas. It is replaced with the plot centroid that MIDC, the state industrial development corporation, publishes for the plot CtrlS names as the campus address.",
+      "displacement_review": "The new point is 17.2 m (haversine) from the current one. Both locate the same campus: the current point lies inside MIDC plot A-GEN-72/1A, and CtrlS's 2023-24 sustainability report gives Plot Gen/72/1/A, MIDC TTC Industrial Area, Mahape as the address of Mumbai DC1 to DC5, the buildings of this site's only project. A-GEN-72/1A is the only TTC plot whose number matches. Other records within 2 km are separate operators on other plots: the Atlas sites STT Navi Mumbai (plot Gen-51, Khairane) at 595 m and AdaniConneX Ghansoli (Plot A-GEN-4, Rabale) at 1,955 m, and a claimed Nxtra Mahape candidate (Plot IT 07) at 975 m.",
+      "locator": {
+        "scope": "campus_locator",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            73.02374542,
+            19.10825487
+          ]
+        },
+        "source_id": "loc-4-p6-midc-plot-a-gen-72-1a",
+        "identity_source_ids": [
+          "loc-4-p6-ctrls-sustainability-report-2023-24",
+          "loc-4-p6-ctrls-datacenter-mumbai-page",
+          "loc-4-p6-midc-plot-gen72-search"
+        ],
+        "scope_class": "official_industrial_estate_plot_centroid_for_operator_named_campus_plot",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "MIDC_GIS_citizen_portal_plot_boundary_query_TTC_IA201_plot_A-GEN-72_1A_published_centroid_retained_checked_inside_native_ring",
+        "precision": "Centroid that MIDC publishes for TTC Industrial Area plot A-GEN-72/1A (10,000 m2, an elongated plot about 157 m by 65 m), the plot CtrlS gives as Plot Gen/72/1/A for Mumbai DC1 to DC5. It marks that plot, not a building, an entrance, the upcoming buildings or neighbouring plots that may also belong to the campus.",
+        "identity_review": "CtrlS's Sustainability Report 2023-24 lists 'Mumbai DC 1, 2, 3, 4 & 5 (Plot Gen/72/1/A MIDC TTC Industrial area Mahape, Navi Mumbai)' among its datacenter locations and repeats Plot No. GEN 72/1/A, TTC Industrial Area, Electronic Zone, Mahape in its contact block; its current Mumbai page describes the same Navi Mumbai campus of 5 data-centre buildings with more upcoming. MIDC's public plot layer returns exactly one Trans Thane Creek Industrial Area plot numbered A-GEN-72/1A (allotted, 10,000 m2), and a search of plot numbers containing 72 finds no other match. The Atlas's earlier operator-linked point lies inside this plot. The neighbouring plots A-GEN-72/1, GEN-72/1B and GEN-72/3 are not attributed to CtrlS by any source used. No map service, map link, embedded map, PeeringDB or OpenStreetMap data is used.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "MIDC states no positional accuracy for its plot layer. The point stands for a 1 ha plot on which the individual buildings are not located, and the full campus extent across neighbouring plots is not published."
+      }
+    },
+    {
+      "physical_site_stable_key": "curated:jera-chiba-thermal-power-station",
+      "site_id": "vcc-site-08c96f4448334dc081a5",
+      "replaces_geometry_evidence_id": "a25bcee2-8a5a-5951-81ba-924dd0c09607",
+      "reason": "The current point was copied from a Google Maps feature (maps.google.com/?cid=...) selected for the plant address (operator_selected_map_feature_coordinates); Google's terms do not allow its coordinates to be reused in the Atlas. It is replaced with the Geospatial Information Authority of Japan's address-search point for the address JERA publishes for the plant.",
+      "displacement_review": "The new point is 335.1 m (haversine) from the current one. Both locate the same host campus: JERA gives the Chiba Thermal Power Station's address as 蘇我町2-1377 and its site as about 76 ha, and on GSI's map tiles both points lie inside the plant grounds between Tokyo Bay and the canal (the new one on the main generating block, the old one in the western yard). GSI's reverse geocoder puts the old point in the same town block, 蘇我町二丁目, and GSI's named feature for the plant lies 299.5 m from the new point. No other Atlas, queue, claim or hold record lies within 2 km.",
+      "locator": {
+        "scope": "campus_locator",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            140.10556,
+            35.564575
+          ]
+        },
+        "source_id": "loc-4-p6-gsi-address-sogacho-2-1377",
+        "identity_source_ids": [
+          "loc-4-p6-jera-chiba-plant-page",
+          "loc-4-p6-jera-chiba-ai-announcement",
+          "loc-4-p6-gsi-name-jera-chiba"
+        ],
+        "scope_class": "official_lot_number_address_point_for_identified_host_power_station_property",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "retain_gsi_address_search_exact_lot_number_feature_coordinates_for_operator_published_plant_address",
+        "precision": "GSI address-search point for 千葉県千葉市中央区蘇我町二丁目1377番地, the address JERA publishes for Chiba Thermal Power Station (about 76 ha). It locates the host power-station property; it falls on the existing generating block, not on an AI data-centre plot, building or phase boundary, none of which has been published.",
+        "identity_review": "JERA's facility page gives 千葉県千葉市中央区蘇我町2-1377 as the address of Chiba Thermal Power Station (site about 760,000 m2), and JERA's 1 October 2026 release names that power station as the site of the first AI infrastructure project, to be built inside the power-station premises. GSI's address search returns one exact lot-number feature for that address, and GSI's own named feature 'ＪＥＲＡ千葉火力発電所' lies 299.5 m away in the same grounds; GSI tiles were used only to check that both points fall inside the plant. The MOJ registry map has no lot outline for the plant. No map service, map link, embedded map, PeeringDB or OpenStreetMap data is used.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "GSI's address-search response states no positional accuracy. The point stands for a plant of about 76 ha, and the location of the AI data centre within the premises is not published."
+      }
+    },
+    {
+      "physical_site_stable_key": "curated:lunavi-cheyenne-data-center-progress-circle",
+      "site_id": "vcc-site-8bf35cfa26156a523f47",
+      "replaces_geometry_evidence_id": "ce03d09e-05d5-5286-bec7-6d6a8bac7447",
+      "reason": "The current point (operator_page_directions_link_google_maps_place_coordinates) was copied from the Google Maps place that Lunavi's page links for directions, and Google's terms do not allow reuse in another dataset; it is replaced with the address point that Laramie County's address register publishes for 340 Progress Circle, the operator's published address.",
+      "displacement_review": "The new point is 38.1 m (haversine) west of the replaced Google place point, at the same latitude to within 1 m. Both mark the data centre at 340 Progress Circle: the county address point carries the remarks 'GREEN HOUSE DATA' (Lunavi's former name, under which the Google place was listed), and it falls inside the county's assessor parcel for 340 Progress Cir (Lot 1, Block 1, 4.29 acres) and inside a county building footprint. The nearest other Progress Circle address point (304, on Lot 2) is 92 m away, so the move stays on the same lot.",
+      "locator": {
+        "scope": "campus_locator",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -104.7413396,
+            41.1296703
+          ]
+        },
+        "source_id": "loc-9-p6-laramie-address-340-progress-cir",
+        "identity_source_ids": [
+          "loc-9-p6-lunavi-cheyenne-page-20261107",
+          "loc-9-p6-laramie-assessor-parcel-at-340-progress-cir",
+          "loc-9-p6-laramie-building-footprint-at-340-progress-cir"
+        ],
+        "scope_class": "official_address_register_point",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "laramie_county_address_register_record_264311_printed_dms_position_written_as_decimal_degrees",
+        "precision": "Address point printed by Laramie County for 340 PROGRESS CIR (address ID 264311; 41 07 46.81316934 N, 104 44 28.82254144 W), written as decimal degrees to 7 places without any datum or projection change. It falls on a county building footprint inside assessor parcel 13660210101300 (Lot 1, Block 1, Cheyenne Business Parkway 1st Filing Refinement B; 4.29 acres) and marks the data-centre building at that address, not its outline, an entrance or the parcel boundary.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The county states no positional accuracy for its address points, and its map service returns no parcel or footprint outlines, so the point's offset from the building centre is unknown; according to the county's own spatial queries it lies inside both the 4.29-acre parcel and a building footprint.",
+        "identity_review": "Lunavi's Cheyenne page gives the data-centre address as 340 Progress Circle, Cheyenne, WY 82007. Laramie County's address register holds one record for 340 PROGRESS CIR (ZIP 82007, commercial single-use, assigned 13 June 2013, source CITY) with the remarks 'GREEN HOUSE DATA', Lunavi's former name, and assigns it to parcel 13660210101300; the county's parcel layer returns that same parcel, with situs 340 PROGRESS CIR, at the point, and the building-footprint layer returns a footprint there. The record is the Lunavi (formerly Green House Data) Cheyenne data centre that this site describes. No commercial map, map link, embedded map or directory coordinate was used; the page's Google Maps directions link was ignored."
+      }
+    },
+    {
+      "physical_site_stable_key": "curated:stellanor-london-north-goswell",
+      "site_id": "vcc-site-519e39b10c09cdf8875c",
+      "replaces_geometry_evidence_id": "d7a4d770-2844-515d-9937-5521e78b2238",
+      "reason": "The current point (native_google_stellanor_goswell_exact_named_facility_point) was copied from a Google Maps search result, whose terms do not allow reuse in another dataset; it is replaced with the planning-application site centroid that the Greater London Authority's Planning London Datahub publishes for the data centre's generator-flue permission at 260-270 Goswell Road.",
+      "displacement_review": "The new point is 11.0 m (haversine) north of the replaced Google point. Both lie inside the 461 m2 site polygon that the datahub records for Islington application P102023 at 260-270 Goswell Road (the replaced point 3.6 m and the new point 3.2 m from its boundary), the premises of the former Gordon's gin distillery that Islington's records show converted to an IP gateway in 1999 and fitted with five diesel generators, and that Stellanor gives as its London North data centre at 260-266 Goswell Road.",
+      "locator": {
+        "scope": "campus_locator",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -0.100967,
+            51.52882
+          ]
+        },
+        "source_id": "loc-9-p6-pld-islington-p102023",
+        "identity_source_ids": [
+          "loc-9-p6-stellanor-london-north-page-20261107",
+          "loc-9-p6-pld-islington-p2026-0587-ful",
+          "loc-9-p6-pld-islington-ec1v-7eb-applications"
+        ],
+        "scope_class": "official_planning_application_site_centroid",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "gla_planning_london_datahub_islington_application_p102023_published_wgs84_site_centroid_copied_as_published",
+        "precision": "Site centroid published by the Planning London Datahub for Islington application P102023 (51.52882, -0.100967; 531829 E, 182810 N), copied as published. It lies inside the application's 461 m2 site polygon on the Goswell Road frontage of 260-270 Goswell Road (about 23 m by 42 m; vertices within 22 m) and locates the data-centre premises, not a building outline, entrance or the full property boundary.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The datahub states no positional accuracy. The 2011 site polygon covers only 0.046 ha, while Islington's 2026 plant-replacement permission for 260-266 Goswell Road declares a 0.632 ha site and places its newer address (UPRN 10094612777) 65 m to the north-east, so the premises extend beyond the polygon and the point may lie several tens of metres from the centre of the whole building; its full outline is not published in the datahub.",
+        "identity_review": "Stellanor's London North page gives the data centre's address as 260-266 Goswell Road, Angel, London EC1V 7EB, describes the building as the former Gordon's Gin Distillery and says Goswell Road opened in 2000. In the Planning London Datahub, the same address and UPRN 5300036858 carry Islington's 1999 response to the proposed use of the former distillery and bottling plant as an IP gateway (991151), the 2011 permission for the flues of its five diesel generators (P102023, the locator source) and the 2018 variation of its emergency-generator conditions (P2017/2113/S73); the 2026 permission P2026/0587/FUL for roof-plant replacement at 260-266 Goswell Road (approved 28 April 2026) is consistent with the Goswell Road cooling-plant replacement for Stellanor already cited in the Atlas. The site is Stellanor London North, formerly Redcentric's Goswell Road data centre. Neighbouring 250 Goswell Road (UPRN 5300036838) is a different property and was not used. No commercial map, map link, embedded map or directory coordinate was used."
+      }
+    },
+    {
+      "physical_site_stable_key": "imported:semiconductor-atlas:aws-richmond-county-north-carolina",
+      "site_id": "vcc-site-9b47e002ec40fe02a2d7",
+      "replaces_geometry_evidence_id": "8e2eac72-0b39-5b36-a8bd-abebd98c3c4c",
+      "reason": "The imported point (35.0, -79.76) is the Richmond County reference point from the county's Wikipedia article (admin2 precision); it does not locate the campus. Amazon's Richmond County campus is now located by government records: the tax parcels Amazon Data Services Inc owns east of Airport Road, Hamlet, which contain NC DAQ's facility point for the Energy Way Tech Campus.",
+      "displacement_review": "19,225 m (haversine) from the county reference point to the parcel-union centroid, within the 200 km limit for an imported admin2 point. Both describe Amazon's single announced Richmond County campus: the old point only names the county, and NC DEQ identifies Amazon Data Services' Energy Way Tech Campus data center on Airport Road in Hamlet, Richmond County, whose DAQ facility point lies inside the Amazon-owned parcels.",
+      "locator": {
+        "scope": "campus_locator",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -79.7217832,
+            34.8299701
+          ]
+        },
+        "source_id": "up-1-p7-nconemap-richmond-amazon-parcels",
+        "identity_source_ids": [
+          "up-1-p7-ncdeq-apptracker-energy-way",
+          "up-1-p7-ncdeq-pr-20260828-amazon-final-permits"
+        ],
+        "scope_class": "official_tax_parcel_union_centroid",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "official_statewide_parcel_service_union_centroid_of_parcels_owned_by_the_air_permit_applicant",
+        "precision": "Planar centroid of the union of the three Richmond County tax parcels owned by Amazon Data Services Inc in the NC OneMap statewide parcel service (about 702 geodesic acres in one contiguous polygon, about 2.2 by 2.7 km). The point lies inside the union. It locates the applicant's landholding east of Airport Road, Hamlet as a whole, not a building, a development area, a surveyed boundary or the extent of works.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The statewide parcel compilation publishes no positional accuracy for county parcel polygons; the point represents a holding of about 702 acres whose boundary lies up to 1.55 km from it, and no site plan or building position has been published.",
+        "identity_review": "NC DEQ's 28 August 2026 press release says Amazon Data Services' air permit covers 588 emergency engines at its Energy Way Tech Campus data center on Airport Road in Hamlet, Richmond County, and DAQ's application tracker names Amazon Data Services, Inc. - Energy Way Tech Campus, 1761 Airport Road, Hamlet (application 7700104.25A, SIC 7374) with facility point 34.826269, -79.725394. NC OneMap returns exactly three Richmond County parcels owned by AMAZON DATA SERVICES INC C/O AMAZON.COM INC, contiguous, and the DAQ point falls inside the largest (738900312008), 527 m from the centroid. The Atlas record is Amazon's only Richmond County campus (announced June 2025, groundbreaking October 2025, with Amazon reporting an NC DAQ generator-permit application). Duke Energy's adjacent Richmond County plant at 198 Energy Way is a separate parcel and is excluded. No geocoder, map viewport, town centre or industrial-area centroid is used."
+      }
+    },
+    {
+      "physical_site_stable_key": "imported:semiconductor-atlas:aws-project-rainier-new-carlisle",
+      "site_id": "vcc-site-6835cf832163c1403b4e",
+      "replaces_geometry_evidence_id": "b24d6eb3-c5c8-574f-ae34-b54e0c7dd6b0",
+      "reason": "The imported point (41.7006, -86.4964) is the New Carlisle town point from its Wikipedia article (locality precision); the source record notes that its sources gave no parcel or address. IDEM now publishes the address of Amazon Data Services' permitted New Carlisle source, 31100 State Road 2, and the county parcel layer locates the parcels carrying that address.",
+      "displacement_review": "4,517 m (haversine) from the town point to the parcel-union centroid, within the 50 km limit for an imported locality point. Both describe Amazon's New Carlisle campus in the Indiana Enterprise Center: the old point only names the town, and the new one is the landholding at the address IDEM gives for Amazon Data Services, Inc.'s existing Part 70 source in St. Joseph County.",
+      "locator": {
+        "scope": "campus_locator",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -86.4727123,
+            41.664032
+          ]
+        },
+        "source_id": "up-1-p7-sjc-parcel25-31100-sr2",
+        "identity_source_ids": [
+          "up-1-p7-idem-notice-50362-50375-amazon",
+          "up-1-p7-sjc-address-pt-31100"
+        ],
+        "scope_class": "official_tax_parcel_union_centroid",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "official_county_parcel_layer_union_centroid_of_parcels_at_the_air_permit_source_address",
+        "precision": "Planar centroid of the union of the two St. Joseph County tax parcels addressed 31100 SR 2 HWY, New Carlisle (about 567 geodesic acres in one polygon, about 1.6 by 1.5 km). The point lies inside the union. It locates the landholding at Amazon Data Services' permitted source address as a whole, not a building, a phase or the full extent of the multi-parcel campus.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The county parcel layer is published for taxing purposes only and states no positional accuracy; the point represents a holding of about 567 acres whose boundary lies up to 1.09 km from it, and Amazon holds further parcels nearby that may belong to the same campus.",
+        "identity_review": "IDEM's notice for SSM 141-50362-00650 / SPM 141-50375-00650 places Amazon Data Services, Inc.'s existing Part 70 source (permit issued 1 May 2025) at 31100 State Road Highway 2, New Carlisle, St. Joseph County. The county parcel layer returns exactly two parcels with that property address, contiguous and held by RAZOR5 LLC, and the county address point for 31100 SR 2 HWY lies on their shared line. The Atlas record is Amazon's New Carlisle campus in the Indiana Enterprise Center (alias AWS Indiana Enterprise Center campus, Project Rainier), and no other Amazon source address in St. Joseph County appears in the IDEM record. Further parcels held by RAZOR5 LLC and Amazon Data Services Inc nearby are context only. No geocoder, map viewport, town centre or industrial-park centroid is used."
+      }
+    },
+    {
+      "physical_site_stable_key": "imported:semiconductor-atlas:aws-king-george-county-virginia",
+      "site_id": "vcc-site-9c23979ae731456903ea",
+      "replaces_geometry_evidence_id": "77cb3c3a-e777-5b92-80e3-e42a09b8002f",
+      "reason": "The imported point (38.2614, -77.3319) is the Sealston community point from its Wikipedia article (locality precision); the source record notes that its sources gave no parcel coordinates. The county's own parcel and project-register layers now locate the former Birchwood power plant parcel, owned by Amazon Data Services Inc.",
+      "displacement_review": "1,711 m (haversine) from the community point to the centroid of parcel 21-50, within the 50 km limit for an imported locality point. Both describe the Amazon campus at the former Birchwood power plant on State Route 3 in the Sealston area: the old point only names the community, and the new one is the power-plant parcel (10900 Birchwood) in Amazon Data Services' 887-acre King George holding.",
+      "locator": {
+        "scope": "campus_locator",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -77.3134152,
+            38.2665087
+          ]
+        },
+        "source_id": "up-1-p7-kg-parcels-amazon",
+        "identity_source_ids": [
+          "up-1-p7-kg-project-register-birchwood"
+        ],
+        "scope_class": "official_tax_parcel_centroid",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "official_county_parcel_layer_centroid_of_the_former_power_plant_parcel_owned_by_the_developer",
+        "precision": "Planar centroid of King George County tax parcel 21-50 (10900 Birchwood, about 317 geodesic acres in two parts), the former Birchwood power plant parcel, which lies inside it. It locates the core parcel of Amazon Data Services' 887-acre holding, not a building, phase or surveyed boundary; the whole holding's centroid falls between road-separated parts and is not used.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The county states that its maps are not engineering accurate and gives no positional accuracy; the campus holding extends up to 2.84 km from the point, and no site plan or building position has been published.",
+        "identity_review": "The county parcel layer lists AMAZON DATA SERVICES INC as owner of nine tax-map-21 parcels (about 887 acres, sold 2023), matching the record's roughly 869-acre Birchwood campus, including parcel 21-50 at 10900 Birchwood. The county project register records parcel 21-50 as the SEI Birchwood power plant (1991 rezoning and special exception) and a 2022 Birchwood Power Partners amendment to terminate its use as a power production facility; its power-plant entry point lies inside parcel 21-50, 481 m from the selected centroid. The Atlas record (aliases Birchwood data center campus, Amazon Birchwood) describes Amazon's campus at the former Birchwood coal plant on State Route 3 near Sealston. Other data-centre applications in the register (Green Energy Ventures, Dahlgren Innovation Hub) are different applicants on other parcels and are not Atlas records. No geocoder, map viewport, community point or industrial-area centroid is used."
+      }
+    },
+    {
+      "physical_site_stable_key": "imported:semiconductor-atlas:aws-hobart-indiana",
+      "site_id": "vcc-site-c51acbb151880f9815b8",
+      "replaces_geometry_evidence_id": "0eda5c21-7b89-54f5-92a8-531e280f0d17",
+      "reason": "The imported point (41.5286, -87.2675) is the Hobart city point from its Wikipedia page (locality precision); the source record notes that its sources gave no parcel or street location. The City of Hobart's council packet now lists the parcels of the economic revitalization area that holds Amazon Data Services' data-center project, and the statewide parcel layer locates them.",
+      "displacement_review": "3,506 m (haversine) from the city point to the centroid of the revitalization-area parcels, within the 50 km limit for an imported locality point. Both describe Amazon's Hobart campus: the old point only names the city, and the new one is the 725-acre area south-east of 61st Avenue and Colorado Street that the council designated for the Amazon Data Services project (Hobart Tech Park and Hobart Devco Campus).",
+      "locator": {
+        "scope": "campus_locator",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -87.2855625,
+            41.500119
+          ]
+        },
+        "source_id": "up-1-p7-indianamap-parcels-hobart-era",
+        "identity_source_ids": [
+          "up-1-p7-hobart-council-packet-20260107"
+        ],
+        "scope_class": "official_economic_revitalization_area_parcel_union_centroid",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "official_statewide_parcel_layer_union_centroid_of_the_parcels_listed_in_the_city_revitalization_area_resolution",
+        "precision": "Planar centroid of the union of the 16 Lake County parcels in Schedule I of Hobart Resolution 2026-01 (one contiguous polygon of about 725 geodesic acres, about 2.1 by 1.8 km), which lies inside the union. It locates the revitalization area designated for the project as a whole, not a building, phase or surveyed site boundary.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The statewide parcel compilation publishes no positional accuracy for county parcel polygons; the point represents an area of about 725 acres whose boundary lies up to 1.39 km from it, and no site plan or building position has been published.",
+        "identity_review": "The City of Hobart's 7 January 2026 council packet pairs a public hearing on the economic revitalization area at the south-east corner of 61st Avenue and Colorado Street with Resolution 2026-02, which approves real property tax abatement for Amazon Data Services, Inc.'s proposed data center and places it in the area designated by the council's resolutions of 3 December 2025 and 7 January 2026; Resolution 2026-01 confirms that area and lists its 16 parcels. Amazon's SB-1 attachment names the sites Hobart Tech Park and Hobart Devco Campus in Ross Township with more than USD 11 billion of potential investment, matching the Atlas record's reported USD 11 billion Hobart campus approved in January 2026. All 16 parcel numbers resolve in the statewide layer to Hobart civil-city parcels on Colorado Street, 61st Avenue, Clay Street, Elkhart Street and 69th/70th Avenues. No geocoder, map viewport, city centre or industrial-area centroid is used."
+      }
+    },
+    {
+      "physical_site_stable_key": "imported:semiconductor-atlas:compass-hoffman-estates",
+      "site_id": "vcc-site-b2e02b9541ac2f2a5b20",
+      "replaces_geometry_evidence_id": "2099b779-9d76-5a88-a84f-0c239664a1e0",
+      "reason": "The current point (42.0639, -88.1469) is an imported reference point for the village of Hoffman Estates (scope class locality), about 6 km from the campus. Cook County's parcel and Assessor records locate the former Sears headquarters parcels, billed to and now owned by Compass Datacenters and carrying the permits for Compass's data-center buildings, where Compass is building this campus.",
+      "displacement_review": "5978 m (about 6.0 km) west-north-west of the village point, within the 50 km limit for an imported locality point. The old point names only the village; the new point is the centroid of the 191-acre former Sears headquarters block (PINs 01-31-201-003, 01-31-202-002 and 01-32-100-005) on which Compass builds the five-building Hoffman Estates campus that this record describes.",
+      "locator": {
+        "scope": "campus_locator",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -88.2171116,
+            42.0770936
+          ]
+        },
+        "source_id": "up-2-p7-cook-parcel-2021-former-sears-campus",
+        "identity_source_ids": [
+          "up-2-p7-cook-assessor-addresses-former-sears-compass",
+          "up-2-p7-cook-assessor-permits-compass",
+          "up-2-p7-compass-hoffman-kickoff-release"
+        ],
+        "scope_class": "official_tax_parcel_union_centroid",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "cook_county_clerk_parcel_polygons_union_centroid_utm16n",
+        "precision": "Centroid of the union of the Cook County Clerk's 2021 parcel polygons for PINs 01-31-201-003, 01-31-202-002 and 01-32-100-005 (191.4 geodesic acres, about 1.1 km east-west by 0.85 km north-south), computed in UTM 16N; it lies inside PIN 01-32-100-005, 364 m from the block's edge, and every vertex of the block lies within 660 m. It locates the Compass campus land (the former Sears headquarters site), not a particular data-center building, the ComEd substation or an entrance; the separate 3.1-acre PIN 01-32-100-006 is not included.",
+        "horizontal_uncertainty_metres": 660,
+        "identity_review": "The Cook County Assessor records the three selected PINs (685 and 551 Higgins Road, Hoffman Estates), whose owner names are Sears property-tax accounts, with the tax-bill mailing name Compass Datacenters for tax years 2023 to 2025, and their 2026 successor PINs 01-31-202-003 (5700 Trillium Blvd) and 01-32-100-007 (5650 Trillium Blvd) with the owner name 'COMPASS DATACENTERS OR'. The Assessor's permits on PIN 01-31-201-003 are 'COMPASS DATA CENTER ORD I BUILDING 1' (March 2025), a ComEd substation for Compass Data Centers (July 2025) and 'BUILDING 2' and 'BUILDING 3' buildouts (January 2026). Compass's June 2024 release places its five-building Hoffman Estates campus on the nearly 200-acre former Sears headquarters site, which matches the 191-acre block. The village point, the imported Wikipedia coordinate and map services are not used; no commercial map, map link or directory coordinate was used."
+      }
+    },
+    {
+      "physical_site_stable_key": "imported:semiconductor-atlas:cipher-barber-lake",
+      "site_id": "vcc-site-ad9a83cc2040a19f7750",
+      "replaces_geometry_evidence_id": "51b65782-8eb9-5ff6-8178-9322da57ed43",
+      "reason": "The current point (32.3961, -100.8622) is an imported reference point for Colorado City (scope class locality), not the campus. Mitchell County's Commissioners' Court records the legal descriptions of Cipher Barber Lake, LLC's three data-center abatement parcels, and the appraisal-district parcels with exactly those descriptions locate the campus.",
+      "displacement_review": "5767 m (about 5.8 km) west of the Colorado City point, within the 50 km limit for an imported locality point. The old point names only the city; the new point lies inside the 888-acre block of the Barber Lake East, West and North parcels in Sections 35 to 37, Block 27, T&P RR Co Survey, that Mitchell County placed in the Cipher Reinvestment Zone for Cipher's Barber Lake data center, the campus this record describes.",
+      "locator": {
+        "scope": "campus_locator",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -100.9235106,
+            32.3993065
+          ]
+        },
+        "source_id": "up-2-p7-txgio-parcels-barber-lake-area",
+        "identity_source_ids": [
+          "up-2-p7-mitchell-commissioners-court-minutes-2025-12",
+          "up-2-p7-mitchell-commissioners-court-minutes-2025-11",
+          "up-2-p7-mitchell-commissioners-court-minutes-2026-08",
+          "up-2-p7-cipher-infrastructure-page"
+        ],
+        "scope_class": "official_tax_parcel_union_interior_point",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "txgio_statewide_parcel_service_parcel_union_pole_of_inaccessibility_utm14n",
+        "precision": "Interior point (pole of inaccessibility, 1 m tolerance, UTM 14N) of the union of Mitchell Appraisal District parcels 14050, 94489, 14056 and 14060 (872.86 legal acres, 887.8 geodesic; about 3.5 km east-west by 1.75 km north-south) from the TxGIO statewide parcel service. It lies in parcel 94489 (Barber Lake West Parcel), 521 m inside the block's boundary, and every vertex of the four parcels lies within 2.83 km. The block's area centroid falls in Oncor Electric Delivery's parcel 14053, outside the campus land, so it was not used. The point locates the abated campus land, not a particular data-center building, the Oncor substation or the separate Phase III power development.",
+        "horizontal_uncertainty_metres": 2831,
+        "identity_review": "Mitchell County's Commissioners' Court designated the Cipher Barber Lake LLC reinvestment zone on 21 November 2025 and on 15 December 2025 approved a tax abatement agreement with Cipher Barber Lake, LLC for the construction and operation of a data center facility on the Barber Lake East Parcel (337.479 acres, part of Sections 36 and 37, Block 27), the Barber Lake West Parcel (250 acres) and the Barber Lake North Parcel (285.38 acres), both parts of a called 535.381-acre tract in T&P Section 35, Block 27. The appraisal district's parcels 14056 (Sec 36, 302.561 acres) and 14060 (Sec 37 N/PT, 34.918 acres), together 337.479 acres and owned by Barber Lake East LLC, and 14050 (Sec 35 N 285.381 acres) and 94489 (Sec 35 S 250 acres), together 535.381 acres, match those descriptions exactly. The August 2026 minutes record the Barber Lake Phase I, II and III abatement agreements with Cipher entities, and Cipher's own infrastructure page lists the energized 300 MW Barber Lake site. The 951 CR 204 address that appears in directories and the town point are not used; no commercial map, map link or directory coordinate was used."
+      }
+    },
+    {
+      "physical_site_stable_key": "imported:semiconductor-atlas:applied-digital-polaris-forge-3",
+      "site_id": "vcc-site-5af95dd1d26b0546ea7f",
+      "replaces_geometry_evidence_id": "bf899518-100f-5bdf-a35a-f09014cb679f",
+      "reason": "The current point (47.115, -101.2978) is an imported reference point for the city of Center, North Dakota (scope class locality), not the campus. Oliver County's road use and operation agreement with Applied Digital's APLD BIS-01, LLC places the data-center project site in Section 24, T142N, R85W, and the state parcel service gives that section's extent.",
+      "displacement_review": "7420 m (about 7.4 km) west, slightly south, of the Center city point, within the 50 km limit for an imported locality point. The old point names only the city; the new point is the centroid of Section 24, T142N, R85W, Oliver County, the project site named in the county's agreement for Applied Digital's data center, which Applied Digital calls Polaris Forge 3 in Oliver County and Center, the campus this record describes.",
+      "locator": {
+        "scope": "campus_locator",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -101.3945082,
+            47.1040461
+          ]
+        },
+        "source_id": "up-2-p7-ndgishub-parcels-oliver-t142n-r85w",
+        "identity_source_ids": [
+          "up-2-p7-oliver-road-use-agreement-apld-bis-01",
+          "up-2-p7-oliver-county-news-road-use-agreement",
+          "up-2-p7-applied-digital-fq1-2027-release"
+        ],
+        "scope_class": "official_plss_section_parcel_union_centroid",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "north_dakota_gis_hub_parcel_features_plss_section_union_centroid_utm14n",
+        "precision": "Centroid of the union of the North Dakota GIS Hub parcel features in Section 24, T142N, R85W, Oliver County (four quarter-section parcels and the State Highway 25 right-of-way; 637.9 geodesic acres, about 1.65 by 1.66 km), computed in UTM 14N; it lies 802 m inside the section boundary and the section's corners lie within 1.14 km. It locates the section that the county agreement names as the project site, not a building or the site's own boundary, which has not been published.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The county agreement places the project site in Section 24 but publishes no site plan, parcel list or coordinates, so the campus's position within the 640-acre section (and whether it extends into the neighbouring sections reached by the Highway 31 access along the Section 23 quarter line) is unknown; the parcel service carries no owner names and no positional accuracy.",
+        "identity_review": "Oliver County's Road Use and Operation Agreement of 10 July 2026 is between the county and APLD BIS-01, LLC, which intends to conduct construction at a 'Project Site' in Section 24, Township 142 North, Range 85 West, with access from State Highway 31 along the Section 23 quarter line and from a State Highway 25 approach, for as long as the site is used for a data center; the county publishes it as 'Road Use & Operation Agreement - Applied Digital and Oliver County'. Applied Digital's 7 October 2026 results release calls Oliver County and Center, North Dakota home to Polaris Forge 3, which is under construction; its other North Dakota campuses are at Ellendale (Polaris Forge 1) and Harwood (Polaris Forge 2), so the Oliver County data-center site is Polaris Forge 3. The city point and map services are not used; no commercial map, map link or directory coordinate was used."
+      }
+    },
+    {
+      "physical_site_stable_key": "imported:semiconductor-atlas:core-scientific-muskogee",
+      "site_id": "vcc-site-bf829ea21a9d7386fb5f",
+      "replaces_geometry_evidence_id": "cfd03805-4a4b-5df9-9505-c6caaf3d7ca5",
+      "reason": "The current point (35.7433, -95.3567) is an imported reference point for the city of Muskogee (scope class locality), not the campus. The Oklahoma DEQ air-permit record for Core Scientific's MSK1-A and MSK1-B data center publishes the facility's own latitude and longitude.",
+      "displacement_review": "5777 m (about 5.8 km) south-south-west of the Muskogee city point, within the 50 km limit for an imported locality point. The old point names only the city; the new point is the DEQ facility coordinate for Core Scientific's Muskogee data center (MSK1-A and MSK1-B), the only Core Scientific facility in Muskogee and the campus this record describes.",
+      "locator": {
+        "scope": "campus_locator",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -95.38558,
+            35.69694
+          ]
+        },
+        "source_id": "up-3-p7-okdeq-msk1-draft-permit-memo",
+        "identity_source_ids": [
+          "up-3-p7-corescientific-muskogee-page",
+          "up-3-p7-census-geocode-1525-w-smith-ferry"
+        ],
+        "scope_class": "official_air_permit_facility_coordinate",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "oklahoma_deq_air_permit_memorandum_printed_facility_latitude_longitude_copied_as_published",
+        "precision": "Facility coordinate printed by the Oklahoma DEQ in the MIC001302 v1.1 permit memorandum and tribal notice (35.69694 N, 95.38558 W, five decimals), copied as published. It represents the permitted data-center facility (buildings MSK1-A and MSK1-B and their generator yards) in Section 15, T14N, R18E, not a particular building, entrance or the full landholding.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The DEQ does not state how or where on the facility its coordinate was taken or its accuracy; the facility spans two data-center buildings with 105 generators, so the point may be a few hundred metres from any one building. The Census address-range point for the same address lies 98 m away.",
+        "identity_review": "The DEQ memorandum names the applicant Core Scientific, Inc. and the facility 'Core Scientific MSK1-A & MSK1-B' (formerly 'MSK1 & MSK2'), a data center (NAICS 518210) at 1525 West Smith Ferry Road, Muskogee, with the printed coordinate. Core Scientific's own Muskogee 1 page gives the same house number, 1525, as '1525 West 43rd Street South, Muskogee, OK 74401' and describes the ongoing 100 MW development; the operator lists one Muskogee facility. The Census geocoder places 1525 W Smith Ferry Rd 98 m from the DEQ coordinate. No commercial map, map link, embedded map or directory coordinate was used; the operator page's Google Maps link and Delaware corporate coordinate were ignored."
+      }
+    },
+    {
+      "physical_site_stable_key": "imported:semiconductor-atlas:coreweave-kenilworth-new-jersey",
+      "site_id": "vcc-site-7ceb4cfa4ba358ea4547",
+      "replaces_geometry_evidence_id": "e5ef1215-681f-5d68-9a47-e7992ada26ad",
+      "reason": "The current point (40.6781, -74.2881) is an imported reference point for Kenilworth borough (scope class locality), not the campus. CoreWeave publishes the NEST 11 coordinate in its own project page's structured data.",
+      "displacement_review": "1159 m east-south-east of the imported borough point, within the 50 km limit for an imported locality point. The old point names only Kenilworth; the new point is CoreWeave's own coordinate for Kenilworth NEST 11 at 2000 Galloping Hill Road, the project this record describes, and lies inside the 107.8-acre Block 181 Lot 1 parcel that fronts that address.",
+      "locator": {
+        "scope": "campus_locator",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -74.27466,
+            40.67594
+          ]
+        },
+        "source_id": "up-3-p7-coreweave-kenilworth-nest11-page",
+        "identity_source_ids": [
+          "up-3-p7-njogis-parcel-kenilworth-block-181-lot-1",
+          "up-3-p7-census-geocode-2000-galloping-hill-rd"
+        ],
+        "scope_class": "operator_published_facility_coordinate",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "operator_project_page_schema_org_place_geocoordinates_copied_as_published",
+        "precision": "Operator-published GeoCoordinates (40.67594, -74.27466; five decimals) of the schema.org Place 'Kenilworth NEST 11' on CoreWeave's project page, copied as published. It lies inside Kenilworth Block 181 Lot 1 (107.8 acres) 240 m from the parcel boundary and locates the NEST 11 data-center building within the former research campus, not a surveyed footprint; other buildings on the same parcel are not part of this record.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "CoreWeave states no method or accuracy for its coordinate; it is consistent with the official parcel (inside it) but the building footprint is not separately published, so its offset from the building centre is unknown.",
+        "identity_review": "CoreWeave's page names the place 'Kenilworth NEST 11' (also 'Northeast Science & Technology Center 11' and 'CoreWeave Kenilworth AI Data Center'), describes a CoreWeave AI data center under construction at 2000 Galloping Hill Road, Kenilworth, NJ 07033, developed and operated by CoreWeave, and publishes the coordinate in that Place. The record is the CoreWeave Kenilworth NEST 11 AI data center whose current status source is the same CoreWeave page. NJOGIS returns Block 181 Lot 1 at the coordinate, and the Census address-range point for 2000 Galloping Hill Road falls on the same parcel's frontage. No commercial map, map link, embedded map widget or directory coordinate was used; the page's Google Maps link was ignored."
+      }
+    },
+    {
+      "physical_site_stable_key": "imported:semiconductor-atlas:crusoe-tallgrass-cheyenne",
+      "site_id": "vcc-site-f6a2889114e99d84b372",
+      "replaces_geometry_evidence_id": "96e1e9b5-df0a-50d4-ab97-2b6ffff786ce",
+      "reason": "The current point (41.2737, -104.7268) is an imported reference point for Laramie County (scope class admin2), about 27 km north of the campus. Laramie County's own parcel and address records locate the Project Jade data-centre tract in Section 5, T12N, R66W.",
+      "displacement_review": "27130 m (about 27.1 km) south-south-west of the imported county point, within the 200 km limit for an imported admin2 point. The old point stands for the county only; the new point is the county's published point for Tract 2 of the Switchgrass Industrial Park, the parcel carrying the 'PROJECT JADE' address, which is the campus this record (Crusoe and Tallgrass, Project Jade, now Project Tembo) describes.",
+      "locator": {
+        "scope": "campus_locator",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -104.79884103,
+            41.03581903
+          ]
+        },
+        "source_id": "up-3-p7-laramie-parcel-switchgrass-tract-2",
+        "identity_source_ids": [
+          "up-3-p7-laramie-address-210-us-85-project-jade",
+          "up-3-p7-laramie-switchgrass-pud-resolution-251007-20"
+        ],
+        "scope_class": "official_parcel_record_published_point",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "laramie_county_smartgov_parcel_record_published_latitude_longitude_verified_inside_polygon",
+        "precision": "Point published by Laramie County for parcel 12660510000400 (Tract 2, Switchgrass Industrial Park record of survey; 525.26 acres, about 1.63 by 1.63 km), copied as published; it coincides with the parcel's planar centroid (1.1 m) and lies 599 m inside the boundary. It locates the Project Jade data-centre tract, not a building, the entrance or the separate Tallgrass power hub tract in Section 7; parcel vertices lie up to 1.17 km away.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The county publishes no positional accuracy for its parcel point or polygon; the point represents a 525-acre tract on which the positions of the planned data-centre buildings are not published (the site plan attachments are on a host whose robots.txt disallows access).",
+        "identity_review": "The county address register assigns 210 US 85, with the remarks 'PROJECT JADE', to parcel 12660510000400 (Tract 2), and the same register labels the Section 7 tract address 198 US 85 'TALLGRASS CHEYENNE POWER HUB' under the same owner, Cheyenne Power Hub LLC; this matches the record's Crusoe and Tallgrass campus and the county's Legistar file 26-023, cited in the record's permit reference, which approved the Project Jade site plan and the Cheyenne Power Hub site plan in Sections 5 and 7, T12N, R66W. The Switchgrass Industrial Park PUD (Resolution 251007-20) was zoned for data-centre and energy development, and its Exhibit A gives Lot 2 as 525.26 acres, the parcel's stated area. The county's 8 July 2026 memo (in the dataset) says Google (Jupiter Star Holdings, LLC) re-submitted the same Project Jade data-centre development as Project Tembo, so the campus is unchanged. The PUD as a whole, the Section 7 power-hub tract, the Cheyenne city centre and the county centroid are not used; no commercial map, map link or directory coordinate was used."
+      }
+    },
+    {
+      "physical_site_stable_key": "imported:semiconductor-atlas:crusoe-lancium-childress-texas",
+      "site_id": "vcc-site-5cc5c2b2cb554d5a3255",
+      "replaces_geometry_evidence_id": "c00fd435-d289-5c04-9091-11d567b1ae79",
+      "reason": "The current point (34.4281, -100.215) is an imported reference point for the town of Childress (scope class locality), shared with an unrelated IREN record. TCEQ's registry describes the Lancium Childress construction site by its bounding roads, and the appraisal-district parcels of Lancium Childress, LLC at those roads give the campus location.",
+      "displacement_review": "16558 m (about 16.6 km) east-south-east of the town point, within the 50 km limit for an imported locality point and consistent with TCEQ's 'approximately 10 miles southeast of the city of Childress'. The old point names only the town; the new point is the centroid of the 273-acre Lancium Childress, LLC block bounded by County Roads 22 and BB, which matches the 270-acre Lancium-owned campus that Crusoe and Lancium announced and this record describes.",
+      "locator": {
+        "scope": "campus_locator",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -100.0504473,
+            34.366956
+          ]
+        },
+        "source_id": "up-3-p7-txgio-parcels-childress-lancium-section-420",
+        "identity_source_ids": [
+          "up-3-p7-tceq-cr-lancium-childress",
+          "up-3-p7-txgio-addr-17125-co-rd-bb-childress",
+          "up-3-p7-crusoe-lancium-childress-release"
+        ],
+        "scope_class": "official_tax_parcel_union_centroid",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "official_statewide_parcel_service_parcel_union_centroid_epsg3083",
+        "precision": "Centroid of the union of Childress Appraisal District parcels 5466 and 4703 (Lancium Childress, LLC; Sec 420, Blk H; 273.44 legal acres, 266.6 geodesic, about 1.22 km east-west by 0.93 km north-south) from the TxGIO statewide parcel service. The centroid lies inside parcel 5466, 449 m from the block's boundary; vertices lie up to 750 m away. It locates the Lancium-owned campus land, not a data-center building, the substation or the borrow pit, and other Lancium parcels to the north and east are not included.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "Appraisal-district parcels carry no published positional accuracy, and the selection of the two parcels rests on TCEQ's road-bounded site description and the 270-acre figure rather than a published site plan; the building positions are not published. The point is about 570 m from the 17125 County Road BB address point that TCEQ names as the nearest address.",
+        "identity_review": "TCEQ's Central Registry records the 'Lancium Childress' construction site (RN112437124; stormwater authorization for M A Mortenson Company, the contractor of the Lancium/Crusoe Abilene campus in the same file) about 10 miles south-east of Childress, bordered west by County Road 22 and south by County Road BB, nearest address 17125 County Road BB, and lists 'Lancium Childress Clean Campus' (RN112510391, 564 CR 22, 'DATA CENTER') for Lancium Childress LLC. The TxGIO 9-1-1 point for 17125 CO RD BB falls inside parcel 5466, and parcels 5466 and 4703, both owned by Lancium Childress, LLC, form a block whose west and south edges follow County Road 22 and County Road BB and whose 273.44 legal acres match the 270 acres owned by Lancium in the 15 July 2026 Crusoe release, under which Crusoe builds and operates the data center. IREN's Childress parcels (IE US Development Holdings 3 Inc, Section 421) lie about 1.1 km to the north and belong to the separate IREN record; the held 'Project Hyper' Childress registrations are not used. The town point, county centre and map services are not used."
+      }
+    },
+    {
+      "physical_site_stable_key": "imported:semiconductor-atlas:cyrusone-bosque-county",
+      "site_id": "vcc-site-119a6992bb6bb25cc011",
+      "replaces_geometry_evidence_id": "5d8d2d25-a113-5f7c-bc17-ebe03191d0ff",
+      "reason": "The current point (31.9, -97.63) is an imported reference point for Bosque County (scope class admin2), about 25 km west of the campus. TCEQ's registry places CyrusOne's Phase 1 and Phase 2 construction sites at the north-east and south-east corners of FM 56 and County Road 3610 beside Calpine's Thad Hill Energy Center, and the appraisal-district parcels at those corners give the campus location.",
+      "displacement_review": "25298 m (about 25.3 km) east-south-east of the imported county point, within the 200 km limit for an imported admin2 point. The old point stands for the county only; the new point is the centroid of the parcels at the FM 56 / County Road 3610 corners that TCEQ records for CyrusOne's 'Cyrus One Bosque' (Phase 1, DFW10 and DFW11) and 'DFW 17 & 18' (Phase 2) construction sites at Thad Hill, which is the campus this record (CyrusOne Bosque County data center campus at Thad Hill) describes.",
+      "locator": {
+        "scope": "campus_locator",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -97.3685173,
+            31.850465
+          ]
+        },
+        "source_id": "up-3-p7-txgio-parcels-bosque-cyrusone-fm56-cr3610",
+        "identity_source_ids": [
+          "up-3-p7-tceq-cr-cyrusone-bosque-dfw10-dfw17",
+          "up-3-p7-txdot-roadways-fm56-cr3610",
+          "up-3-p7-cyrusone-bosque-county-page"
+        ],
+        "scope_class": "official_tax_parcel_union_centroid",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "official_statewide_parcel_service_parcel_union_centroid_epsg3083",
+        "precision": "Centroid of the union of Bosque Appraisal District parcels 41400 (north-east corner of FM 56 and County Road 3610; 132.53 legal acres) and 41758, 41759 and 41760 (C1 Bosque II LLC tracts A to C, south-east corner; 79.11 legal acres) from the TxGIO statewide parcel service: 226.5 geodesic acres in two parts about 1.25 km east-west by 1.57 km north-south. The point lies inside parcel 41400, 39 m from the union boundary and 457 m north-east of the road intersection; vertices lie up to 885 m away. It locates the campus land of both phases, not a building.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "Appraisal-district parcels carry no published positional accuracy, and the Phase 1 parcel is identified from TCEQ's corner description (north-east corner of FM 56 and County Road 3610) rather than a published site plan; the building positions within the 226-acre union are not published.",
+        "identity_review": "TCEQ registers CyrusOne LLC's data centre 'DFW10 DFW11 DFW17A DFW17B DFW17C' (RN112240379) as adjacent to the north-east side of FM 56 about 0.5 mile south-west of State Highway 22, its Phase 1 construction site 'Cyrus One Bosque' at the north-east corner of FM 56 and CR 3610A, 'DFW 17 & 18' at the south-east corner, and the 'DFW 10 & 11' water system for C1 Bosque I LLC at 557 County Road 3610, the Thad Hill Energy Center address. TxDOT's centrelines put the only FM 56 / County Road 3610 junction at (-97.372326, 31.847924); parcel 41400 (Bosque Parcel 2, LLC, mailed to Calpine's Houston address, situs 557 CR 3610) is the parcel at its north-east corner and the C1 Bosque II LLC tracts, mailed to CyrusOne's Dallas headquarters as printed on CyrusOne's own page, are at its south-east corner. CyrusOne's page describes the same two-phase campus (two buildings, then three) powered through Calpine at Thad Hill, which matches the record's Calpine and CyrusOne powered-land sources. The power plant parcel, the other Calpine parcels around the plant, the county centre and map services are not used."
+      }
+    },
+    {
+      "physical_site_stable_key": "imported:semiconductor-atlas:cyrusone-freestone-county",
+      "site_id": "vcc-site-4776103546341c240223",
+      "replaces_geometry_evidence_id": "1d917775-0af3-5219-98e1-39146778e43a",
+      "reason": "The imported point (31.7183, -96.1697) is a locality reference for the town of Fairfield (its Wikipedia coordinates), not the campus. The state 9-1-1 address point of 1356 FM 488, the address the Texas accessibility registry gives for CyrusOne building DFW20A, now locates the campus.",
+      "displacement_review": "18,920.7 m (haversine, as the builder computes it) from the Fairfield locality point to the 1356 FM 488 address point, within the 50 km allowed for an imported locality point. Both stand for the same CyrusOne Freestone County campus: the old point only names the county seat, while CyrusOne places the campus near the Freestone Energy Center at 1366 FM 488 (whose 9-1-1 point is 1.21 km from the new point), and the registry gives 1356 FM 488 as the address of data-centre building DFW20A owned by C1 Freestone 1, LLC, the owner the Comptroller lists for Freestone Data Center. No other Atlas site or project, and no point in a pending queue fragment, lies within 2 km of the new point.",
+      "locator": {
+        "scope": "campus_locator",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -96.1207371,
+            31.8832907
+          ]
+        },
+        "source_id": "up-4-p7-txgio-addr-fm488-1356-1366",
+        "identity_source_ids": [
+          "up-4-p7-tabs-dfw20a-shell",
+          "up-4-p7-tabs-dfw20a-fit-out",
+          "up-4-p7-tabs-search-1356-fm-488",
+          "up-4-p7-cyrusone-freestone-county-page",
+          "up-4-p7-texas-comptroller-qualified-data-centers"
+        ],
+        "scope_class": "official_9_1_1_address_point_of_registered_data_centre_building_address",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "txgio_stratmap_address_point_csec_9_1_1_1356_fm_488_freestone_county_outsr_4326",
+        "precision": "The Texas 9-1-1 address point (source CSEC, updated 18 March 2026) for 1356 FM 488, Fairfield, as published by the statewide TxGIO StratMap address service in WGS84. It marks the registered street address of building DFW20A (306,216 sq ft), not a building footprint or the campus boundary; in the current appraisal-district snapshot it falls in a privately owned parcel (16.075 legal acres) not attributed to CyrusOne, and no C1 Freestone or CyrusOne parcel appears among the 115 parcels around both FM 488 points, so the point may mark the site access on FM 488 rather than the buildings.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "Neither CSEC nor TxGIO publishes positional accuracy for address points; the data-centre land and building positions are not published, and the parcel snapshot does not show a CyrusOne parcel, so the point is an address location for the campus (the nearest Freestone Power Generation parcel is 273 m away and the Freestone Energy Center address point 1.21 km away).",
+        "identity_review": "TDLR TABS2026026013 (shell, registered 23 July 2026) and TABS2026026904 (fit-out, 4 August 2026) both register 'DFW20A', a one-story data-centre building, at 1356 FM 488, Fairfield, Freestone County, owned by C1 (spelled CL in the shell filing) Freestone 1, LLC at 2850 N Harwood St Suite 2200, Dallas; the registry's address search returns no other project at that address. The Texas Comptroller lists 'Freestone Data Center' with owner C1 Freestone 1, LLC, alongside other C1-prefixed CyrusOne entities (C1 Bosque I and II, C1 Fort Worth, C1 Richardson). CyrusOne's own Freestone County page says the multiphase campus will be near the Freestone Energy Center, 1366 FM488 Fairfield, and the 9-1-1 points for 1356 and 1366 FM 488 are 1.21 km apart on the same road. The Atlas hold of 23 October 2026 (research-fiftysecond, DFW20A to DFW20C fit-outs) had already given this CSEC point for 1356 FM 488 but could not express a locator replacement."
+      }
+    },
+    {
+      "physical_site_stable_key": "imported:semiconductor-atlas:edgecore-louisa-county",
+      "site_id": "vcc-site-ebc20ddd515fd9367ea7",
+      "replaces_geometry_evidence_id": "6857f912-65fa-51fd-8bf5-88f9bde79ed1",
+      "reason": "The imported point (37.99, -77.96) is the county-level (admin2) reference for Louisa County (Wikipedia coordinates), not the campus. The county parcel layer now locates EdgeCore's Shannon Hill campus: the nine EDI Louisa 1 LLC parcels of the Edgecore Phase 1 site plan.",
+      "displacement_review": "11,385.3 m (haversine) from the Louisa County reference point to the centroid of the EDI Louisa 1 LLC parcels, within the 200 km allowed for an imported admin2 point. Both stand for the same EdgeCore Louisa County campus: the old point only names the county, and the new one is the area centroid of the 697-acre parcel set that the county's September 2026 report assigns to Edgecore Phase 1 (SP08-2026) and EdgeCore describes as its 697-acre campus in the Shannon Hill Regional Business Park. No other Atlas site or project, and no point in a pending queue fragment, lies within 2 km of the new point.",
+      "locator": {
+        "scope": "campus_locator",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -78.0231304,
+            37.9005277
+          ]
+        },
+        "source_id": "up-4-p7-louisa-parcels-edi-louisa-1",
+        "identity_source_ids": [
+          "up-4-p7-louisa-bos-packet-20261019",
+          "up-4-p7-edgecore-louisa-county-page"
+        ],
+        "scope_class": "official_county_parcel_union_centroid_of_campus_site_plan_parcels",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "louisa_county_gis_parcel_query_owner_edi_louisa_1_llc_union_of_nine_parcels_utm17_area_centroid",
+        "precision": "Area centroid (computed in UTM zone 17N with pyproj 3.7.1) of the union of the nine Louisa County parcels owned by EDI Louisa 1 LLC (tax map 79-10, 79-11, 79-12, 79-33, 79-34, 79-35, 79-36, 79-2-A and 79-2-B; one 696.93-acre polygon about 1.8 by 2.5 km). The point lies inside the union, 666 m from its nearest edge; it locates the campus land as a whole, not a building or the site-plan limits of disturbance.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The county publishes no positional accuracy for its parcel layer; the point represents a 697-acre campus whose building positions are not published.",
+        "identity_review": "The county parcel layer assigns exactly nine parcels to EDI Louisa 1 LLC, all zoned I-2, including 79 36 at 5821 Shannon Hill Rd and 79 10 at 6006 Parrish Rd. The Louisa County Community Development report for September 2026 (Board packet of 19 October 2026, page 64) lists 'Edgecore Phase 1 - Major Site Plan - SP08-2026' on precisely these nine parcels (I-2 GAOD). EdgeCore's Louisa County page places its 1.1+ GW campus in the Shannon Hill Regional Business Park on 697 acres; the parcel union measures 696.93 geodesic acres. The Atlas hold of 26 October 2026 (research-sixtyninth) named these tax map 79 parcels for a separate geometry correction. The Atlas's AWS Northeast Creek and Lake Anna sites are separate sites 9.9 km and 27.1 km from the new point."
+      }
+    },
+    {
+      "physical_site_stable_key": "imported:semiconductor-atlas:google-armstrong-county-texas",
+      "site_id": "vcc-site-9da1382c1df4f319ef97",
+      "replaces_geometry_evidence_id": "ed446beb-064d-5891-bbfb-502f3438c893",
+      "reason": "The imported point (35.1081, -101.3627) is a locality reference for Claude, Texas, taken from a news report, not the campus. The appraisal-district parcels of GN DC1, LLC, the registered owner of the Project Llano data-centre buildings at 10001 Lima Road, now locate it.",
+      "displacement_review": "10,531.9 m (haversine) from the Claude locality point to the centroid of the GN DC1, LLC parcels, within the 50 km allowed for an imported locality point. Both stand for the same Google/Crusoe Armstrong County campus: the record's owner is GN DC1 LLC, the owner of all ten Project Llano registrations at 10001 Lima Road, whose 9-1-1 point lies in one of the two GN DC1 parcels. No other Atlas site or project, and no point in a pending queue fragment, lies within 2 km of the new point.",
+      "locator": {
+        "scope": "campus_locator",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -101.3107136,
+            35.0234799
+          ]
+        },
+        "source_id": "up-4-p7-txgio-parcels-gn-dc1-lima-road",
+        "identity_source_ids": [
+          "up-4-p7-tabs-llano-building-1",
+          "up-4-p7-tabs-llano-building-4",
+          "up-4-p7-tabs-search-10001-lima",
+          "up-4-p7-txgio-addr-armstrong-lima-road"
+        ],
+        "scope_class": "official_appraisal_district_parcel_union_centroid_of_registered_owner_parcels",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "txgio_stratmap_parcel_identify_union_of_gn_dc1_llc_parcels_4230_and_3490_utm14_area_centroid",
+        "precision": "Area centroid (UTM zone 14N, pyproj 3.7.1) of the union of Armstrong Appraisal District parcels PROP_ID 4230 (384.77 legal acres, Survey 283) and 3490 (640 legal acres, Survey 284), both owned by GN DC1, LLC: one 1,072.44-acre polygon about 3.2 by 1.6 km. The point lies inside it, 135 m from its nearest edge and 706 m from the 10001 Lima Road 9-1-1 point; it locates the campus land, not a building.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "TxGIO and the appraisal district publish no positional accuracy for parcel polygons; the point represents a 1,072-acre landholding whose building positions are not published.",
+        "identity_review": "The Atlas record names owner GN DC1 LLC. TDLR registers ten Project Llano projects at 10001 Lima Rd, Claude, Armstrong County, from August 2025 to July 2026, including Llano Building 1 (TABS2025026455, a 484,954 sq ft data center) and Llano Building 4 (TABS2026026118, an 805,380 sq ft data center), both owned by GN DC1 LLC of 10001 Lima Road. The 9-1-1 point for 10001 LIMA ROAD lies in parcel 4230, and the only parcels in the identify envelope owned by GN DC1, LLC are 4230 and 3490, which adjoin. The 9 October 2026 round-43 review had already tied the campus to the TDLR Project Llano registrations at 10001 Lima Road and to GN DC1, LLC; the Atlas site name (Crusoe Goodnight) is consistent with the GN prefix."
+      }
+    },
+    {
+      "physical_site_stable_key": "imported:semiconductor-atlas:google-franklin-township-indianapolis",
+      "site_id": "vcc-site-65784844ad2a20822ec7",
+      "replaces_geometry_evidence_id": "40118eda-3e71-5638-a2a0-cdcd65a28e83",
+      "reason": "The imported point (39.6803, -86.0275) is a locality reference for Franklin Township, Marion County (Wikipedia coordinates), not the site. The City of Indianapolis rezoning-case polygon for the withdrawn 467.66-acre petition now locates it.",
+      "displacement_review": "5,034.5 m (haversine) from the Franklin Township locality point to the centroid of the 2025-CZN-814 case polygon, within the 50 km allowed for an imported locality point. Both stand for the same withdrawn Google (Project Flo) data-centre site: the old point only names the township, and the case is the 467.66-acre Franklin Township rezoning at 3043 S Post Rd that the City records as withdrawn, matching the 468-acre petition near Post Road and Troy Avenue that Google withdrew on 22 September 2025. No other Atlas site or project, and no point in a pending queue fragment, lies within 2 km of the new point.",
+      "locator": {
+        "scope": "campus_locator",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -85.9991721,
+            39.7199855
+          ]
+        },
+        "source_id": "up-4-p7-indy-rezoning-2025-czn-814",
+        "identity_source_ids": [
+          "up-4-p7-indy-address-3043-s-post-rd",
+          "up-4-p7-mirrorindy-deep-meadow-petition",
+          "up-4-p7-mirrorindy-google-withdraws"
+        ],
+        "scope_class": "official_rezoning_case_polygon_centroid",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "indygis_rezoning_layer_case_2025czn814_polygon_utm16_area_centroid",
+        "precision": "Area centroid (UTM zone 16N, pyproj 3.7.1) of the IndyGIS rezoning polygon for case 2025-CZN-814 (467.64 geodesic acres against 467.66 recorded; about 1.6 by 1.6 km). The point lies inside the polygon, 480 m from its nearest edge; it locates the proposed (now withdrawn) site land, not any building.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "IndyGIS publishes no positional accuracy for rezoning polygons; the point represents a 468-acre petition area on which no buildings were approved.",
+        "identity_review": "The IndyGIS rezoning layer records case 2025CZN814: 467.66 acres, multiple parcels, 3043 S Post Rd, Franklin Township, requested C-S, status Withdrawn (decision date 20 August 2025, DEC_DATE 10/6/2025). The county address point for 3043 S Post Rd lies inside the polygon. Mirror Indy reported on 27 May 2025 that Deep Meadow Ventures had petitioned in March to rezone 468 acres near Post Road and Troy Avenue for a data-centre campus, and on 22 September 2025 that a lawyer representing Google (the counsel who had presented that petition) withdrew the petition to rezone 468 acres of Franklin Township farmland. Petitioner and staff names in the case layer were not retrieved."
+      }
+    },
+    {
+      "physical_site_stable_key": "imported:semiconductor-atlas:google-meitner-energy-center-texas",
+      "site_id": "vcc-site-7b3778f58b65d557b1f9",
+      "replaces_geometry_evidence_id": "0fa34a95-4233-5fb6-af85-c271b4c81be0",
+      "reason": "The imported point (35.5363, -100.9602) is a locality reference for Pampa, the Gray County seat, not the data centre. The appraisal-district parcel of IP Meitner DTC, LLC, the owner of the Comptroller-listed Meitner Data Center, which contains the 9-1-1 point of the registered Data Center Building 1A address, now locates it.",
+      "displacement_review": "22,557.0 m (haversine) from the Pampa locality point to the centroid of parcel 303744, within the 50 km allowed for an imported locality point. Both stand for the same Google Meitner data centre in Gray County: the old point only names the county seat, while the parcel is the only one in the identify envelope owned by IP Meitner DTC, LLC (owner of Meitner Data Center, occupant Google LLC) and contains 8810 County Road 21, the registered address of Project Pumpkin Data Center Building 1A. No other Atlas site or project, and no point in a pending queue fragment, lies within 2 km of the new point.",
+      "locator": {
+        "scope": "campus_locator",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -100.7179077,
+            35.5842723
+          ]
+        },
+        "source_id": "up-4-p7-txgio-parcels-meitner-county-road-21",
+        "identity_source_ids": [
+          "up-4-p7-texas-comptroller-qualified-data-centers",
+          "up-4-p7-tabs-project-pumpkin-1a",
+          "up-4-p7-txgio-addr-gray-county-road-21"
+        ],
+        "scope_class": "official_appraisal_district_parcel_centroid_of_data_centre_owner_parcel",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "txgio_stratmap_parcel_identify_ip_meitner_dtc_llc_parcel_303744_utm14_area_centroid",
+        "precision": "Area centroid (UTM zone 14N, pyproj 3.7.1) of Gray County Appraisal District parcel PROP_ID 303744 (Section 142, Block M-2, BS&F; 300.38 legal and 300.43 geodesic acres; about 0.9 by 1.5 km) owned by IP Meitner DTC, LLC. The point lies inside the parcel, 414 m from its nearest edge, and 474 m and 233 m from the 9-1-1 points of 8810 and 8830 County Road 21; it locates the data-centre land, not a building, and excludes the neighbouring IP Meitner Land LLC parcels.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "TxGIO and the appraisal district publish no positional accuracy for parcel polygons; the point represents a 300-acre parcel whose building positions are not published.",
+        "identity_review": "The Texas Comptroller lists 'Meitner Data Center' (qualified 27 April 2026) with owner IP Meitner DTC, LLC, occupant Google LLC and operators IP Meitner, LLC, Design, LLC and Google LLC, matching Google's Meitner Energy Center data centre in Gray County. In the parcel snapshot the only parcel owned by IP Meitner DTC, LLC in the envelope is PROP_ID 303744 in Section 142; IP Meitner Land LLC owns the adjoining Section 117-119 and 142 parcels. TDLR TABS2026014814 registers 'Project Pumpkin 1A', 'Data Center Building 1A' (a 761,000 sq ft one-story data center with central utility buildings), at 8810 Co. Rd. 21, Miami, Gray County, owned by IP Meitner Land LLC of 140 New Montgomery St, San Francisco, and the 9-1-1 points of 8810 and 8830 CO RD 21 both lie in parcel 303744. The 9 October 2026 round-43 review had accepted the 8810 CO RD 21 9-1-1 point as a locator and an identity bridge that also used TCEQ records for IP Meitner DTC in Section 142; TCEQ was not re-fetched here because its host disallows automated access in robots.txt."
+      }
+    },
+    {
+      "physical_site_stable_key": "imported:semiconductor-atlas:google-stillwater-oklahoma",
+      "site_id": "vcc-site-d92255df1f2246ac16d5",
+      "replaces_geometry_evidence_id": "acd64cf6-e494-594b-ab09-08d50e7f3392",
+      "reason": "The imported point (36.116, -97.059) is a locality reference for the city of Stillwater (Wikipedia coordinates), about 6 km south-west of the campus. The City's published Project Area legal description for the Stillwater Data Center Economic Development Project Plan, georeferenced on the federal PLSS section, now locates the campus.",
+      "displacement_review": "6,033.2 m (haversine) from the Stillwater locality point to the centroid of the reconstructed Project Area, within the 50 km allowed for an imported locality point. Both stand for the same Google Stillwater campus: the City says Google acquired land at the intersection of Perkins and Richmond Roads for a data-centre campus, the City street centrelines put that intersection at the north-west corner of Section 36 (23.5 m from the BLM corner), and the Project Plan's Project Area occupies Section 36 south-east of that corner. No other Atlas site or project, and no point in a pending queue fragment, lies within 2 km of the new point.",
+      "locator": {
+        "scope": "campus_locator",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -97.0425477,
+            36.1686058
+          ]
+        },
+        "source_id": "up-4-p7-stillwater-project-plan-hearing-notice",
+        "identity_source_ids": [
+          "up-4-p7-blm-plss-t20n-r2e-section-36",
+          "up-4-p7-stillwater-streets-perkins-richmond",
+          "up-4-p7-stillwater-civicalert-google-land",
+          "up-4-p7-stillwater-data-center-project-page"
+        ],
+        "scope_class": "official_project_area_legal_description_georeferenced_to_blm_plss_centroid",
+        "authority": "compiled_reference",
+        "derivation": "georeferenced_source_map",
+        "method": "metes_and_bounds_traverse_of_published_project_area_from_blm_plss_section_36_nw_corner_epsg2267_area_centroid",
+        "precision": "Area centroid of the Project Area polygon reconstructed from the City's published metes-and-bounds description (NAD83 / Oklahoma North, US survey feet, pyproj 3.7.1), anchored at the BLM PLSS north-west corner of Section 36, T20N, R2E (Indian Meridian), less the published exception. The traverse misses closure by 46.8 m and gives 378.2 net acres against 386.698 stated; closing the error on the last leg moves the centroid 2.7 m, and the traverse corners fall within 5.4 m and 11.7 m of the BLM quarter and section corners. The point lies inside the reconstructed area, 228 m from its nearest edge; it locates the project area, not a building. The misclosure lies in the railway tangent, whose published lengths (1,676.22 + 614.77 ft) are 153.66 ft shorter than the same tangent in the notice's Incentive District 2 and 3 descriptions (1,221.25 + 1,223.40 ft); with the district lengths the traverse closes to 0.4 m and gives 386.69 net acres, matching the stated 386.698, and that centroid lies 13.4 m from this point, well inside the area.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The City publishes no coordinates for the Project Area and BLM publishes no positional accuracy for the section corner; the reconstruction's misclosure (46.8 m) and the 387-acre extent of the area (about 1.6 by 1.5 km), on which building positions are not published, set the uncertainty, which is not quantified as a single figure.",
+        "identity_review": "The City's Data Center Project page describes a campus of up to six data centres by a Fortune 100 company and links the Stillwater Data Center Economic Development Project Plan and its hearing notice, whose Project Area (386.698 acres) lies in Section 36, T20N, R2E, bounded by the section's west and north lines and the Eastern Oklahoma Railway. The City's news flash of 12 March 2025 names Google as the company that acquired land at the intersection of Perkins and Richmond Roads for a data-centre campus; the City street centrelines place the N Perkins Rd / E Richmond Rd node 23.5 m from the BLM north-west corner of Section 36, with Perkins Road along the section's west line and Richmond Road along its north line. One published bearing (N 54 28 57 E, 20 ft) is read as the radial step N 54 28 57 W implied by the adjacent radii; this changes the centroid by under 1 m."
+      }
+    }
+  ]
+}

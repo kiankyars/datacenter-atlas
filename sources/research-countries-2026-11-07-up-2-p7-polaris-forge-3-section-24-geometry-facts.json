@@ -1,0 +1,76 @@
+{
+  "candidate_id": "applied-digital-polaris-forge-3-locator-correction",
+  "decision": "Selected the centroid of Section 24, Township 142 North, Range 85 West (Fifth Principal Meridian), Oliver County, North Dakota, built as the union of the North Dakota GIS Hub parcel features in that section (four quarter-section parcels and the State Highway 25 right-of-way), as the campus locator for Applied Digital Polaris Forge 3. Oliver County's Road Use and Operation Agreement of 10 July 2026 with APLD BIS-01, LLC defines the 'Project Site' as a site in this section, with construction access from State Highway 31 along the quarter line of Section 23 and from a State Highway 25 DOT approach into Section 24, and runs for as long as the site is used for a data center; the county publishes it as 'Road Use & Operation Agreement - Applied Digital and Oliver County', and Applied Digital's 7 October 2026 release calls Oliver County and Center, North Dakota home to Polaris Forge 3. The agreement does not say where in the section the site lies, so the section centroid is used.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -101.3945082,
+      47.1040461
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_plss_section_parcel_union_centroid",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-up-2-p7/ndgishub-parcels-oliver-t142n-r85w-s13-14-23-24-25.json",
+  "source_sha256": "d05d050c25aae2263da33c4fc42dca682c735ef5f7963b91812995bb1878da0c",
+  "source_url": "https://services1.arcgis.com/GOcSXpzwBHyk2nog/arcgis/rest/services/NDGISHUB_Parcels/FeatureServer/0/query?where=CountyName%3D%27Oliver%27+AND+Township%3D%27142%27+AND+Range%3D%27085%27+AND+Section+IN+(%2724%27,%2713%27,%2723%27,%2725%27,%2714%27)&outFields=UniqueGISID,GISID,CountyName,Section,Township,Range,CalculatedAcres,Lot,Block,SubdivisionPlat,DateImported&returnGeometry=true&outSR=4326&f=json",
+  "retrieved_at": "2026-11-06T22:38:55.314Z",
+  "identity_files": {
+    "local_data/country-research-up-2-p7/oliver-road-use-agreement-applied-digital.pdf": "8b234994af3018d50058f4e98daf6734d16a7adacc274ed607e1c350775f9dfd",
+    "local_data/country-research-up-2-p7/oliver-news-road-use-agreement-applied-digital.html": "f6dd5a634d73ae235e6d7699c136bd9f5b1a751c8e58d90bf35b15d1467c3ab7",
+    "local_data/country-research-up-2-p7/apld-ir-163.html": "6ea9c370146a6ca1ba2eb80f8b001645c2921b7f3803e212380b623e81220813"
+  },
+  "selected_features": [
+    {
+      "UniqueGISID": "38065-10093000",
+      "CalculatedAcres_sum": 153.915
+    },
+    {
+      "UniqueGISID": "38065-10094000",
+      "CalculatedAcres_sum": 153.919
+    },
+    {
+      "UniqueGISID": "38065-10095000",
+      "CalculatedAcres_sum": 159.595
+    },
+    {
+      "UniqueGISID": "38065-10096000",
+      "CalculatedAcres_sum": 159.591
+    },
+    {
+      "UniqueGISID": "38065-Highway 25",
+      "CalculatedAcres_sum": 10.954
+    }
+  ],
+  "computed": {
+    "crs": "Feature service geometry served in EPSG:4326 (outSR=4326); centroid and distances computed in EPSG:32614 (UTM 14N) with pyproj 3.7.1 and shapely 2.1.1; areas on the WGS84 ellipsoid",
+    "section_feature_count": 10,
+    "union": {
+      "parts": 1,
+      "geodesic_acres": 637.872,
+      "centroid": [
+        -101.3945082,
+        47.1040461
+      ],
+      "point_inside_union": true,
+      "point_distance_to_union_boundary_m": 802.3,
+      "max_vertex_distance_from_point_m": 1137.0,
+      "bounds_lon_lat": [
+        -101.405091,
+        47.096803,
+        -101.383903,
+        47.111294
+      ],
+      "extent_m": {
+        "east_west": 1650,
+        "north_south": 1655
+      }
+    },
+    "points": {
+      "current imported Center, North Dakota point (47.115, -101.2978)": {
+        "haversine_to_selected_point_m": 7419.5
+      }
+    }
+  },
+  "verification_script": "scratchpad up2p7/geom.py (uv run --no-project --with pyproj==3.7.1 --with shapely==2.1.1 python -I)"
+}

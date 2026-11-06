@@ -1,0 +1,95 @@
+{
+ "format": "datacenter-atlas-geometry-facts-v1",
+ "fragment": "ops-singapore-jakarta-p6",
+ "prepared_on": "2026-11-07",
+ "method_note": "Each point is the OneMap (Singapore Land Authority) address-search feature for the street address and postcode that Equinix gives for the IBX on its own facility page (Internet Archive raw copies of 3 October 2026; www.equinix.com answers robots.txt with HTTP 403, so the live pages were not requested). For each IBX two searches were captured: the postcode alone and the house number plus street name; for each IBX the two responses are byte-identical (same sha256). The served WGS84 latitude/longitude was re-derived from the served SVY21 (EPSG:3414) X/Y with pyproj 3.7.1 / PROJ 9.5.1 (always_xy, EPSG:3414 -> EPSG:4326); the geodesic difference is about 3.2e-9 m for each point. No geocoding beyond the official address search, no offsets and no rounding were applied. No commercial map, map embed or map widget parameter, short link, PeeringDB record or OpenStreetMap service was used. No API token was used; the OneMap responses carry an 'Authentication token missing' notice in the 139964 / 20 Ayer Rajah Crescent response but still return the address features.",
+ "site_versus_campus_review": "Equinix SG1, SG4 and SG5 are separate physical sites: Equinix lists them as separate IBX data centres with separate street addresses and postcodes (20 Ayer Rajah Crescent 139964; 7 Tai Seng Drive 535218; 6 Sunview Drive 627488) and separate colocation-space figures, and the address points are 12.46 km (SG1-SG4), 10.12 km (SG1-SG5) and 21.43 km (SG4-SG5) apart (WGS84 geodesic). Equinix SG3 (26A Ayer Rajah Crescent, Private Lot FX1-4a, Singapore 139963) is a separate Equinix IBX with its own address on the same street as SG1; it is not part of the SG1 record and is not added in this fragment.",
+ "candidates": [
+  {
+   "candidate_id": "equinix-sg1-20-ayer-rajah-crescent",
+   "facility": "Equinix SG1 (Singapore IBX)",
+   "operator_stated_address": "20 Ayer Rajah Crescent Singapore, 139964",
+   "geometry": {"type": "Point", "coordinates": [103.7897628720616, 1.295099681535343]},
+   "authority_class": "official_source",
+   "scope_class": "official_numbered_address_point",
+   "use_scope": "project_locator",
+   "precision_scope": "Singapore Land Authority address point for the operator-stated address 20 Ayer Rajah Crescent, Singapore 139964. It marks the building address, not a surveyed outline, entrance, land-lot boundary or data hall. OneMap also returns a point-of-interest feature ('DARTS LEGEND') under the same block number and postcode 50.2 m west of the address point; the address feature (BUILDING NIL) is used, not the point of interest.",
+   "horizontal_uncertainty_metres": null,
+   "horizontal_uncertainty_unknown_reason": "OneMap supplies no positional accuracy for address points; decimal places are not survey accuracy.",
+   "source_url": "https://www.onemap.gov.sg/api/common/elastic/search?returnGeom=Y&getAddrDetails=Y&pageNum=1&searchVal=20%20AYER%20RAJAH%20CRESCENT",
+   "source_file": "onemap-20-ayer-rajah-crescent.json",
+   "source_sha256": "79f4a1408126a7b7f24a522d49b5774b664f8ca9b7948501f07d2e2d03968db9",
+   "postcode_check_file": "onemap-139964.json",
+   "postcode_check_sha256": "79f4a1408126a7b7f24a522d49b5774b664f8ca9b7948501f07d2e2d03968db9",
+   "native_coordinates": {"crs": "EPSG:3414 (SVY21)", "x": 23152.63068976998, "y": 30831.10323990695},
+   "served_wgs84": {"latitude": 1.295099681535343, "longitude": 103.7897628720616},
+   "pyproj_recomputed_wgs84": {"latitude": 1.2950996815353428, "longitude": 103.78976287206157, "difference_metres": 3.2e-09},
+   "axis_note": "GeoJSON coordinates are [longitude, latitude].",
+   "nearest_records_checked": [
+    {"kind": "Digital Realty SIN10, 29A International Business Park (existing Atlas site curated:digital-realty-sin10-29a-international-business-park)", "distance_km": 6.059},
+    {"kind": "Keppel Genting Lane Data Centre Campus (existing Atlas site curated:keppel-genting-lane-data-centre-campus)", "distance_km": 10.225},
+    {"kind": "Keppel DC Singapore 5, Sunview Way (existing Atlas site curated:keppel-dc-singapore-5-sunview-way)", "distance_km": 10.33}
+   ],
+   "atlas_records_within_2km": []
+  },
+  {
+   "candidate_id": "equinix-sg4-7-tai-seng-drive",
+   "facility": "Equinix SG4 (Singapore IBX)",
+   "operator_stated_address": "7 Tai Seng Drive Singapore, 535218",
+   "geometry": {"type": "Point", "coordinates": [103.8929003181552, 1.338856883662676]},
+   "authority_class": "official_source",
+   "scope_class": "official_numbered_address_point",
+   "use_scope": "project_locator",
+   "precision_scope": "Singapore Land Authority address point for the operator-stated address 7 Tai Seng Drive, Singapore 535218. It marks the building address, not a surveyed outline, entrance, land-lot boundary or data hall.",
+   "horizontal_uncertainty_metres": null,
+   "horizontal_uncertainty_unknown_reason": "OneMap supplies no positional accuracy for address points; decimal places are not survey accuracy.",
+   "source_url": "https://www.onemap.gov.sg/api/common/elastic/search?returnGeom=Y&getAddrDetails=Y&pageNum=1&searchVal=7%20TAI%20SENG%20DRIVE",
+   "source_file": "onemap-7-tai-seng-drive.json",
+   "source_sha256": "2e42a152c1a562069d9fc25c02149cb6b427ca787b3a9b4982969be5fc6195e0",
+   "postcode_check_file": "onemap-535218.json",
+   "postcode_check_sha256": "2e42a152c1a562069d9fc25c02149cb6b427ca787b3a9b4982969be5fc6195e0",
+   "native_coordinates": {"crs": "EPSG:3414 (SVY21)", "x": 34630.81143512297, "y": 35669.58868969977},
+   "served_wgs84": {"latitude": 1.338856883662676, "longitude": 103.8929003181552},
+   "pyproj_recomputed_wgs84": {"latitude": 1.3388568836626753, "longitude": 103.89290031815517, "difference_metres": 3.2e-09},
+   "axis_note": "GeoJSON coordinates are [longitude, latitude].",
+   "nearest_records_checked": [
+    {"kind": "Global Switch Singapore Tai Seng Data Centre, 2 Tai Seng Avenue (existing Atlas site curated:global-switch-singapore-tai-seng and project curated:global-switch-singapore-tai-seng:existing-operations; operator Global Switch; also the published sea-p6 queue addition)", "distance_km": 0.264},
+    {"kind": "STT Singapore 5 Tai Seng (existing Atlas site curated:stt-singapore5-tai-seng and project curated:stt-singapore5-tai-seng:existing-operations; operator STT GDC)", "distance_km": 0.489},
+    {"kind": "Keppel Genting Lane Data Centre Campus (existing Atlas site curated:keppel-genting-lane-data-centre-campus)", "distance_km": 2.351}
+   ],
+   "atlas_records_within_2km": [
+    "curated:global-switch-singapore-tai-seng (site) and curated:global-switch-singapore-tai-seng:existing-operations (project), 0.264 km: a different operator (Global Switch) at a different address (2 Tai Seng Avenue, 534408)",
+    "curated:stt-singapore5-tai-seng (site) and curated:stt-singapore5-tai-seng:existing-operations (project), 0.489 km: a different operator (STT GDC) and a different property"
+   ]
+  },
+  {
+   "candidate_id": "equinix-sg5-6-sunview-drive",
+   "facility": "Equinix SG5 (Singapore IBX)",
+   "operator_stated_address": "6 Sunview Drive Singapore, 627488",
+   "geometry": {"type": "Point", "coordinates": [103.7015235019811, 1.317258748616785]},
+   "authority_class": "official_source",
+   "scope_class": "official_numbered_address_point",
+   "use_scope": "project_locator",
+   "precision_scope": "Singapore Land Authority address point for the operator-stated address 6 Sunview Drive, Singapore 627488. It marks the building address, not a surveyed outline, entrance, land-lot boundary or data hall.",
+   "horizontal_uncertainty_metres": null,
+   "horizontal_uncertainty_unknown_reason": "OneMap supplies no positional accuracy for address points; decimal places are not survey accuracy.",
+   "source_url": "https://www.onemap.gov.sg/api/common/elastic/search?returnGeom=Y&getAddrDetails=Y&pageNum=1&searchVal=6%20SUNVIEW%20DRIVE",
+   "source_file": "onemap-6-sunview-drive.json",
+   "source_sha256": "b4618fed47b7f470cdeff591c2009dc6c8b6a3b6d22c4fb9539199bb6dc142af",
+   "postcode_check_file": "onemap-627488.json",
+   "postcode_check_sha256": "b4618fed47b7f470cdeff591c2009dc6c8b6a3b6d22c4fb9539199bb6dc142af",
+   "native_coordinates": {"crs": "EPSG:3414 (SVY21)", "x": 13332.4773656223, "y": 33281.68504166044},
+   "served_wgs84": {"latitude": 1.317258748616785, "longitude": 103.7015235019811},
+   "pyproj_recomputed_wgs84": {"latitude": 1.3172587486167848, "longitude": 103.70152350198113, "difference_metres": 3.2e-09},
+   "axis_note": "GeoJSON coordinates are [longitude, latitude].",
+   "nearest_records_checked": [
+    {"kind": "Keppel DC Singapore 5, Sunview Way (existing Atlas site curated:keppel-dc-singapore-5-sunview-way and project curated:keppel-dc-singapore-5-sunview-way:existing-operations; Keppel Data Centres; also the published q3-apac-operators-p3 queue addition)", "distance_km": 0.297},
+    {"kind": "Nxera DC Tuas, 7A Tuas Avenue 3 (existing Atlas site curated:nxera-dc-tuas-7a-tuas-avenue-3)", "distance_km": 5.057},
+    {"kind": "Digital Realty SIN10, 29A International Business Park (existing Atlas site curated:digital-realty-sin10-29a-international-business-park)", "distance_km": 5.086}
+   ],
+   "atlas_records_within_2km": [
+    "curated:keppel-dc-singapore-5-sunview-way (site) and curated:keppel-dc-singapore-5-sunview-way:existing-operations (project), 0.297 km: a different operator (Keppel Data Centres) at a different address (13 Sunview Way, 627541)"
+   ]
+  }
+ ]
+}

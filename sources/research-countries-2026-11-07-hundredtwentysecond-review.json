@@ -1,0 +1,202 @@
+{
+  "reviewer": "root",
+  "reviewed_at": "2026-11-07",
+  "decision": "accepted_for_integration",
+  "update": "verified_construction_core/2026-11-07-research-hundredtwentysecond",
+  "base_dataset": "verified_construction_core/2026-11-07-research-hundredtwentyfirst",
+  "process": "continuous: one researcher per beat, one adversarial verifier per fragment",
+  "fragments": [
+    {
+      "fragment": "loc-4-p6",
+      "verdict": "accept",
+      "checks": [
+        "base re-read: current_dataset 2026-11-07-research-hundredtwentyfirst; both sites have exactly one project whose geometry_evidence_id equals replaces_geometry_evidence_id (4d184a7d..., a25bcee2...), and both replaced sources are Google Maps",
+        "rehashed 8 relied-on captures against .metadata.json and sources.json content_hash: all match; geometry-facts sha256 match sources.json",
+        "independent re-fetch (robots.txt 404 on both hosts) of the MIDC layer-11 query and the GSI AddressSearch query returned byte-identical responses (sha256 94ace20a..., 63dd4f6b...)",
+        "MIDC: one feature IA_CODE 201 PLOT_NUMBER A-GEN-72/1A, published centroid 73.02374542,19.10825487; pyproj/shapely (EPSG:32643) recomputed centroid 73.02374541,19.10825487, published point inside ring, ring area 10,016.7 m2; old point inside the same plot 30.9 m from its edge",
+        "CtrlS identity: sustainability report PDF (pdftotext) reads 'Mumbai DC 1, 2, 3, 4 & 5 (Plot Gen/72/1/A MIDC TTC Industrial area Mahape, Navi Mumbai)' and contact block 'Plot No. GEN 72/1/A ... TTC Industrial Area, Electronic Zone ... Mahape'; uniqueness query: no other GEN-72/1A plot (GEN-72/1, /1B, /3 are separate)",
+        "JERA: GSI returns one exact lot-number feature 千葉県千葉市中央区蘇我町二丁目１３７７番地 at 140.10556,35.564575; JERA plant page gives 住所 千葉県千葉市中央区蘇我町2-1377, 約76万m2; 1 Oct 2026 release places the AI infrastructure inside the power-station premises (火力発電所構内)",
+        "GSI std and seamless-photo tiles composited with points: new point on the generating block, old point and GSI named feature in the western yard, all on the plant strip between Tokyo Bay and the canal (inspection only)",
+        "displacement recomputed (haversine, builder radius): CtrlS 17.2 m, JERA 335.1 m; GSI named feature 299.5 m from new point; both under 25 km",
+        "locator sources acceptable: MIDC (state government undertaking) parcel record and GSI official address geocoder; no Google/other map service, embed, short link, PeeringDB or OSM used; builder _map_service check passes for URLs and methods; publisher terms recorded in license fields",
+        "distinctness: Atlas sites within 3 km of CtrlS point are only STT Navi Mumbai (595 m, plot Gen-51) and AdaniConneX Ghansoli (1,955 m); Nxtra Mahape claim 975 m (Plot IT 07); nothing within 3 km of JERA point besides this site; no other queue fragment corrects either site",
+        "no third-party personal data in changes, sources, holds or geometry facts (report contact names/emails not copied)",
+        "corrected precision/summary wording: plot is an elongated ~157 m by 65 m parcel (168 x 111 m was its bounding extent)",
+        "dryrun_fragment.py: ok (954 sites, 1028 projects, 5345 evidence; base hundredtwentyfirst, updated_at 2026-11-07)"
+      ],
+      "residual_risks": [
+        "MIDC copyright policy asks for prior e-mail permission to reproduce site content; only one centroid coordinate and plot identifiers are used and the terms are recorded (precedent: Stadt Karben permission-required locator), but no permission was obtained",
+        "CtrlS campus (5 buildings plus 6 upcoming, operator claims 13 buildings) likely spans neighbouring plots; the point marks the operator-named address plot centroid, not the full campus or a building",
+        "MIDC block prefix reading: 'Gen/72/1/A' is matched to A-GEN-72/1A (subdivision 1A, distinct from GEN-72/1B); reading it as A-GEN-72/1 would move the point about 65 m north, still on the same campus cluster",
+        "JERA point locates the 76 ha host power-station property (main generating block), not the unpublished AI data-centre plot within it; GSI states no positional accuracy",
+        "compliance log records one cross-host redirect followed before midc.maharashtra.gov.in robots.txt was read (that host allows the pages; not a locator source)"
+      ]
+    },
+    {
+      "fragment": "loc-9-p6",
+      "verdict": "accept",
+      "checks": [
+        "All 8 relied-on captures rehashed: sha256 matches .metadata.json and sources.json content_hash; geometry-facts sha256 match sources.json",
+        "replaces_geometry_evidence_id ce03d09e-... and d7a4d770-... are the current geometry evidence of the single project at each site in 2026-11-07-research-hundredtwentyfirst; replaced points match exactly",
+        "Lunavi: Laramie County address record 264311 prints 340 PROGRESS CIR, remarks GREEN HOUSE DATA, statepidn 13660210101300, 41 07 46.81316934N 104 44 28.82254144W; recomputed DMS->DD = 41.1296703, -104.7413396",
+        "Lunavi: parcel layer intersect returns statepidn 13660210101300 situs 340 PROGRESS CIR Lot 1 Block 1 4.29 ac; footprint layer returns one footprint; nearest other address (304, Lot 2) ~92 m",
+        "Lunavi: operator page text gives 340 Progress Circle, Cheyenne, WY 82007; Google directions link present but not used",
+        "Lunavi displacement recomputed 38.1 m (haversine), under 25 km",
+        "Stellanor: PLD record Islington-P102023 (5 diesel generator flues, 260-270 Goswell Road, UPRN 5300036858) publishes centroid 51.52882,-0.100967; pyproj BNG 531829/182810 -> within 0.1 m; shapely: centroid inside 461.3 m2 polygon (3.2 m from edge), old point inside (3.6 m)",
+        "Stellanor displacement recomputed 11.0 m, under 25 km; same UPRN carries 1999 IP-gateway use, 2013 Level 3 communications building dishes, 2018 S73 emergency generators",
+        "Stellanor page text gives 260-266 Goswell Road EC1V 7EB, former Gordon's Gin Distillery, opened 2000; no coordinates or map widget used",
+        "Locator sources are government address-register / planning-register records (Laramie County ArcGIS REST, GLA Planning London Datahub); no map service, embed or PeeringDB; builder map-service check passes",
+        "robots.txt: maps.laramiecounty.com and planningdata.london.gov.uk 404 (no rules); lunavi/stellanor allow; data.london.gov.uk dataset page path allowed for Claude agents",
+        "Distinctness: no other Atlas site within 2 km of either new point (nearest London site 2.06 km); no other queue fragment corrects these sites; claims.tsv entries held by loc-9-p6",
+        "No personal data in sources, summaries, URLs or holds (owner fields not requested)",
+        "8 holds carry locator_replacement_pending with reasons and reopen conditions",
+        "dryrun_fragment.py: ok against 2026-11-07-research-hundredtwentyfirst"
+      ],
+      "residual_risks": [
+        "Laramie County lat/long attributes are likely NAD83 (service CRS EPSG:3736) and written without datum shift; ~1 m difference from WGS84",
+        "Laramie parcel and footprint containment rests on the county server's spatial intersect; outlines were not returned",
+        "Stellanor point is the centroid of a 461 m2 UPRN-level frontage polygon reused for all applications at 260-270 Goswell Road; 2026 records use a newer UPRN 65 m NE with a 0.632 ha site, so the point may sit tens of metres from the centre of the whole data-centre building (uncertainty left null with reason)",
+        "2019 permission at the same UPRN added 372 sqm of B1 office space on the Goswell Road elevation; the frontage point is on the same premises as the data-centre generators but could fall over office floors of that building",
+        "PLD record P102023 carries an anomalous ward value (Leyton); position is corroborated by its BNG centroid and polygon"
+      ]
+    },
+    {
+      "fragment": "ops-singapore-jakarta-p6",
+      "verdict": "accept",
+      "checks": [
+        "rehashed all 9 relied-on captures: sha256 equals .metadata.json and sources.json content_hash; HTTP 200; metadata URL equals source_url",
+        "release capture (newsroom.equinix.com, dateline Singapore 6 Nov 2026, company_disclosure, 1 day old): 'opening of SG6, its sixth ... IBX data center in Singapore' and 'Equinix has operated in Singapore since 2002, has grown from one facility to six data centers in the country'",
+        "IA raw listing 2026-10-03T18:01:10Z names exactly SG1-SG5 under 'Data center locations' with no SG6; 'Guaranteed 99.9999%+ uptime in all our Singapore data centers'; CDX shows 3 Oct copies are the latest of every SG page; 2024 plan release calls SG6 the sixth IBX, so six = SG1-SG6",
+        "IA SG1/SG4/SG5 pages (3 Oct 2026) give '20 Ayer Rajah Crescent Singapore, 139964', '7 Tai Seng Drive Singapore, 535218', '6 Sunview Drive Singapore, 627488'; space labels 109,211 / 90,847 / 22,873 ft2 match",
+        "locators: OneMap (SLA) official address search, government geocoder already used for accepted Singapore locators; street and postcode responses byte-identical (cmp); locator coordinates equal served LATITUDE/LONGITUDE exactly; SVY21 EPSG:3414 X/Y -> WGS84 with pyproj 3.7.1 differs by 3.2e-9 m for each",
+        "SG1 locator is the address feature (BUILDING NIL), not the DARTS LEGEND POI 50 m west; precision records it; no Equinix map widget, commercial map, PeeringDB or OSM used; builder _map_service passes",
+        "distinctness: no Equinix site in SG in the current dataset; Ayer Rajah, Tai Seng Drive, Sunview Drive, 139964, 535218, 627488 absent from all five tables; queue matches only sea-p3 distinctness text and sea-p6/q3-us-reits-p6 SG6 holds; claims.tsv entries are this fragment's",
+        "nearest records: Global Switch Tai Seng (2 Tai Seng Ave) 0.265 km and STT Singapore 5 (35 Tai Seng Street) 0.491 km from SG4; Keppel DC SG5 (13 Sunview Way) 0.298 km from SG5; SG1 nearest 6.07 km - all other operators and addresses",
+        "roles: Equinix operator, relationship_scope current, sourced to the release; one project per new site; existing-operations scope only, no opening/permit/owner asserted",
+        "removed the 'Equinix Ayer Rajah' alias from SG1: Equinix SG3 (26A Ayer Rajah Crescent, held here) is on the same street, so the alias was ambiguous",
+        "holds contain no third-party personal data; compliance log: robots read before each host, equinix.com 403 so archive copies used, no tokens/logins",
+        "dryrun_fragment.py ok against 2026-11-07-research-hundredtwentyfirst: 957 sites, 1031 projects"
+      ],
+      "residual_risks": [
+        "operational status rests on an aggregate count ('six data centers') mapped to SG1/SG4/SG5 via the 3 Oct 2026 archived listing; no 6 Nov statement names those IBXs individually",
+        "OneMap responses carry an 'Authentication token missing' notice; data was served to an unauthenticated request with robots allowing it, as in earlier accepted Singapore locators",
+        "OneMap returns a second (DARTS LEGEND) POI at 20 Ayer Rajah Crescent, so the SG1 building may have other occupiers; address point not a building outline; uncertainty unquantified"
+      ]
+    },
+    {
+      "fragment": "up-1-p7",
+      "verdict": "accept",
+      "checks": [
+        "All 10 relied-on captures rehashed: sha256 matches .metadata.json and source content_hash; 4 geometry-facts files match geometry_facts_sha256",
+        "replaces_geometry_evidence_id is the sole project's current geometry evidence for all 4 sites in both hundredtwentieth (config at start) and hundredtwentyfirst (current at dry run); each site has 1 project",
+        "Richmond: union of the 3 NC OneMap parcels owned by AMAZON DATA SERVICES INC recomputed -> (-79.7217832, 34.8299701), inside, 701.9 geodesic ac, max boundary 1551 m; DAQ tracker point (Energy Way Tech Campus, 1761 Airport Rd, SIC 7374) inside parcel 738900312008, 527 m away; DEQ 28 Aug 2026 release read: 588 engines at Energy Way Tech Campus data center on Airport Road, Hamlet",
+        "New Carlisle: union of the 2 SJC Parcel25 parcels addressed 31100 SR 2 HWY recomputed -> (-86.4727123, 41.664032), inside, 567.1 ac, max 1091 m; county address point inside union 766 m away; IDEM notice (pdftotext) places Amazon Data Services' existing Part 70 source (permit 1 May 2025) at 31100 State Road Highway 2, New Carlisle",
+        "King George: centroid of both parts of parcel 21-50 (10900 Birchwood, AMAZON DATA SERVICES INC) recomputed -> (-77.3134152, 38.2665087), inside; Amazon owns 9 PINs, 886.8 ac (record ~869 ac, nine parcels); register 91-03-E02 POWER PLANT point inside 21-50 (482 m) and 22-07-E01 terminates power use",
+        "Hobart: Schedule I of Resolution 2026-01 OCR'd and checked visually (page 66): 16 parcel numbers match the IndianaMap query exactly; union recomputed -> (-87.2855625, 41.500119), one polygon, 724.8 ac, inside, max 1385 m; Res. 2026-02 places Amazon Data Services' data-center project in that ERA; SB-1 names Hobart Tech Park and Hobart Devco Campus, > USD 11 billion",
+        "Displacements recomputed with the builder's haversine: 19,225 / 4,517 / 1,711 / 3,506 m, all under 25 km and within the coarse-reference limits",
+        "Locator sources are government parcel/address/permit records (NC OneMap, St. Joseph County GIS, King George County GIS, IndianaMap); no Google/Bing/Apple/HERE/OSM/PeeringDB or map-widget coordinates; methods carry no map-service terms; licence fields record publisher terms",
+        "Same-campus check: each new point stays within the same operator/name/area as the existing record; 5 km screen of both datasets finds only the site's own record; no queued fragment, claim or hold conflicts (earlier holds for Energy Way and the New Carlisle generator building awaited exactly this correction)",
+        "No third-party personal names, phones or emails in sources, summaries, URLs or holds (solar-applicant surnames, DESC1, packet public comments and staff names omitted)",
+        "dryrun_fragment.py: ok (base hundredtwentyfirst, 954 sites, 1028 projects)"
+      ],
+      "residual_risks": [
+        "New Carlisle parcels at 31100 SR 2 are held by RAZOR5 LLC, not Amazon; tie rests on IDEM's source address equalling the county property address; Amazon-owned parcels 1.1-2.9 km away may also be campus",
+        "Hobart point is the centroid of the whole ERA designated for the project; Resolution 2026-01/02 copies in the packet are pre-adoption drafts (used only for parcel list and identity)",
+        "King George point is the power-plant parcel, not the 887-acre holding centroid; the record's project remains contested in court (status untouched)",
+        "Supporting geometry-facts files carry minor inconsistencies (Richmond displacement 19,183.5 m geodesic vs 19,225 m haversine in changes; King George facts scope_class says union centroid while changes uses official_tax_parcel_centroid); changes.json values are correct",
+        "services.arcgis.com/services2.arcgis.com robots.txt return 403 gateway bodies; the lane treated them as no rules, consistent with earlier lanes"
+      ]
+    },
+    {
+      "fragment": "up-2-p7",
+      "verdict": "accept",
+      "checks": [
+        "current_dataset re-read: 2026-11-07-research-hundredtwentyfirst (dryrun base matches)",
+        "all 13 captures rehashed: sha256 == metadata sha256 == source content_hash; metadata url == source_url; 3 geometry-facts sha256 match",
+        "replaces_geometry_evidence_id is the sole geometry evidence of the single project at each site (2099b779..., 51b65782..., bf899518...), site point == project point",
+        "Compass: recomputed union of 3 Cook 2021 parcels in UTM16N: 191.42 ac, centroid -88.2171116,42.0770936 inside PIN 01-32-100-005, 363.8 m from edge, max vertex 659.9 m",
+        "Compass identity read in captures: Assessor mail name COMPASS DATACENTERS OR on the 3 PINs 2023-2025, 2026 successor PINs owned by Compass; permits 'COMPASS DATA CENTER ORD I BUILDING 1/2/3' and ComEd substation for Compass on PIN 01-31-201-003; Compass 13 Jun 2024 release: five data centers on nearly 200-acre former Sears HQ site",
+        "Cipher: recomputed polylabel (1 m, UTM14N) of parcels 14050+94489+14056+14060 = -100.9235106,32.3993065 in 94489, 521.2 m inside, max vertex 2831.3 m; area centroid falls in Oncor parcel 14053 (correctly not used)",
+        "Cipher identity: rendered and OCRed Mitchell County minutes; 15 Dec 2025 abatement with Cipher Barber Lake, LLC for a data center on East 337.479 ac (Sec 36-37), West 250 ac and North 285.38 ac (Sec 35, 535.381-ac tract) match CAD legal descriptions exactly; 21 Nov 2025 reinvestment zone; Aug 2026 Phase I-III; Cipher page lists Barber Lake 300 MW energized",
+        "PF3: recomputed union of 10 Section 24 features (UTM14N): 637.87 ac, centroid -101.3945082,47.1040461, 802.3 m inside, corners within 1137 m; Section 23 lies west and 13 north (PLSS layout consistent with Highway 31 access)",
+        "PF3 identity: Oliver County agreement text (pdftotext) with APLD BIS-01, LLC places the Project Site in Section 24 T142N R85W, term while used as a Data Center; county news item titles it Applied Digital and links the PDF; Applied Digital 7 Oct 2026 release: Oliver County / Center home to Polaris Forge 3",
+        "displacements recomputed with builder haversine: 5978.2 m, 5767.3 m, 7419.5 m (all < 25 km)",
+        "locator sources are government parcel services (Cook County Open Data, TxGIO StratMap, ND GIS Hub); no map service, map link, embed, PeeringDB or directory coordinate; licenses recorded",
+        "robots.txt recorded per host in compliance.log; 4xx robots treated per RFC 9309; unreachable robots treated as disallow",
+        "distinctness: no site/project in current sites.csv/projects.csv within 15 km except the record itself; no coordinate within 3 km in evidence.csv, source-records.json, identity-mapping.json, other queue changes/holds or sources/*-holds.json; no other queued fragment corrects these sites (us-chicago-in-p5 Compass status update already published, no locator)",
+        "no third-party personal data in changes, sources, holds, geometry facts or notes",
+        "all 13 sources referenced by the 3 corrections; 7 holds carry reasons and reopen conditions",
+        "dryrun_fragment.py ok (954 sites, 1028 projects)"
+      ],
+      "residual_risks": [
+        "Polaris Forge 3 point is a PLSS section centroid; the county agreement does not place the campus within Section 24, so horizontal uncertainty is left unknown (published Oliver County agreement copy is unsigned v4_clean)",
+        "Compass point uses the 2021 parcel layer; 2026 PIN restructuring (successor PINs 01-31-202-003, 01-32-100-007) has no captured polygon, and 01-32-100-005 (centroid parcel) identity rests on Compass mailing name 2023-2025 and successor ownership",
+        "Barber Lake parcels are owned by Project Orbit CCM LLC, Frontier Holdco LLC and Barber Lake East LLC; tie to Cipher rests on the county abatement legal descriptions (scanned minutes read by OCR)",
+        "services1.arcgis.com robots.txt answered 403 and was treated as unrestricted per RFC 9309 4xx rule and pipeline precedent"
+      ]
+    },
+    {
+      "fragment": "up-3-p7",
+      "verdict": "accept",
+      "checks": [
+        "Claimed oldest unverified READY fragment (up-3-p7); base = current_dataset verified_construction_core/2026-11-07-research-hundredtwentyfirst",
+        "All 17 relied-on captures rehashed: file sha256 = metadata sha256 = source content_hash; metadata URLs equal source_url; geometry facts files rehash to the recorded geometry_facts_sha256",
+        "replaces_geometry_evidence_id equals the only project's geometry_evidence_id at each of the 5 sites (one project per site); all five current locators are imported_reference_point (locality x3, admin2 x2)",
+        "Muskogee: DEQ memo page 1 rendered: 'Latitude: 35.69694N, Longitude: 95.38558W', Core Scientific MSK1-A & MSK1-B, NAICS 518210, 1525 West Smith Ferry Road; tribal notice repeats 35.69694, -95.38558; Census geocode of that address 98.4 m away; operator page gives house number 1525 Muskogee; record summary (70 MW CoreWeave building + 82 MW AMD building) matches the two buildings; operator schema.org Delaware HQ point and Google map link not used",
+        "Kenilworth: CoreWeave page JSON-LD Place 'Kenilworth NEST 11' at 2000 Galloping Hill Road carries geo 40.67594/-74.27466 (operator structured data, acceptable); hasMap is a Google place link without coordinates and was not used; NJOGIS parcel 2008_181_1 contains the point (107.8 ac, 239.4 m inside); Census address point on the parcel frontage 1.2 m inside it, 427 m from the point; old borough point outside the parcel",
+        "Cheyenne: SmartGov parcel attributes publish latitude 41.03581903 / longitude -104.79884103 for Tract 2 Switchgrass Industrial Park (525.26 net ac); recomputed: inside polygon 598.9 m from boundary, 1.1 m from planar centroid, 519.0 geodesic ac; county address 210 US 85 remarks 'PROJECT JADE' on the same parcel (inside, 119.6 m from boundary); PUD Exhibit A (rendered) shows Lot 2 = 525.26 acres and Exhibit B permits data centers; dataset status source (county 8 July 2026 memo) ties Project Jade to Project Tembo; satisfies the fortythird us-west-mountain-p1 locator hold",
+        "Childress: recomputed EPSG:3083 union centroid of parcels 5466 and 4703 (both Lancium Childress, LLC, Sec 420 Blk H) = -100.0504473, 34.366956 exactly; 266.65 geodesic ac, inside 5466, 449 m from boundary, max vertex 750 m; TCEQ RN112437124 'Lancium Childress' bounded by CR 22 (W) and CR BB (S), nearest address 17125 CR BB, whose TxGIO address point lies inside the union 566 m away; RN112510391 'Lancium Childress Clean Campus' DATA CENTER; Crusoe release: 270 acres owned by Lancium",
+        "Bosque: recomputed EPSG:3083 union centroid of 41400, 41758, 41759, 41760 = -97.3685173, 31.850465 exactly (226.52 geodesic ac, 2 parts, inside 41400, 38.9 m from boundary); TxDOT FM 56 / CR 3610 junction (-97.372326, 31.847924) touches 41400 (NE corner) and 41758 (SE corner); 41400 lies 0.47 mi from SH 22 and on the NE side of FM 56, matching TCEQ RN112240379 (CyrusOne LLC DATA CENTER, 0.5 mi SW of Hwy 22, NE side of FM 56) and 'Cyrus One Bosque' NEC / 'DFW 17 & 18' SEC of FM 56 and CR 3610A; C1 Bosque II LLC mailed to CyrusOne's HQ address; plant parcel 3085 excluded",
+        "Displacements recomputed with the builder haversine: 5,776.8 / 1,158.6 / 27,130.1 / 16,558.1 / 25,297.9 m; directions in the reviews correct; Cheyenne and Bosque exceed the generic 25 km but are imported admin2 points, for which dataset_update.py allows 200 km (locality points 50 km), and the new points are inside the same county and campus",
+        "Locator sources: government records (DEQ, Laramie County, TxGIO/CAD) or operator structured data; no Google/Apple/Bing/HERE/Waze/PeeringDB/OSM coordinate used; methods contain no map-service terms; licenses recorded",
+        "Distinctness: no Atlas site within 20 km of Muskogee or Bosque; Kenilworth nearest other site 16.8 km; Cheyenne nearest other sites 11.5 km (Lunavi, Meta) and queue points 11.5 km (us-co-wy-mt-nm-p4, loc-9-p6) are different campuses; Childress: only the own site and the IREN town point 16.6 km away, IREN parcels 1.96 km+ north; no other unpublished queue fragment corrects these sites (us-west-mountain-p1 Cheyenne status update already published, no geometry; up-4-p7 mentions C1 Bosque only as context)",
+        "Holds screened: corrections satisfy reopen conditions of the Muskogee MSK1 (us-south-central-p1) and Cheyenne locator (us-west-mountain-p1) holds and the 'builder-supported reviewed campus locator' branch of the Project Hyper Childress hold; no hold conflicts",
+        "No third-party personal data in changes, sources or holds (DEQ officials' names and private owners in raw envelope captures not copied); compliance log records robots for every host; 5 fragment holds are well formed with reasons and reopen conditions",
+        "dryrun_fragment.py: ok (954 sites, 1028 projects, 5356 evidence)"
+      ],
+      "residual_risks": [
+        "Cheyenne (27.1 km) and Bosque (25.3 km) moves exceed the generic 25 km correction limit and pass only under the builder's admin2 coarse-reference limit",
+        "Childress parcel selection (5466+4703) rests on TCEQ's road-bounded description and the 270-acre figure; Lancium Childress, LLC owns further parcels in Sections 420, 411 and 450 and the held Project Hyper address 525 A County Road 23 lies about 1.5 km east, so the campus centre could differ by several hundred metres",
+        "Bosque Phase 1 parcel 41400 is owned by a Calpine entity (Bosque Parcel 2, LLC) and identified only from TCEQ's NEC corner description; the union centroid sits 39 m from the union boundary near CR 3610",
+        "Muskogee identity ties DEQ's 1525 W Smith Ferry Road to the operator's 1525 W 43rd St S by house number and operator; DEQ states no coordinate accuracy",
+        "CoreWeave's coordinate has no stated method; the Laramie parcel was created in county GIS on 6 Nov 2026 and is owned by Cheyenne Power Hub LLC, with the Project Jade tie resting on the county address remark"
+      ]
+    },
+    {
+      "fragment": "up-4-p7",
+      "verdict": "accept",
+      "checks": [
+        "Base re-read: site/config.json names verified_construction_core/2026-11-07-research-hundredtwentyfirst; all six sites exist there with one project each, and each project's geometry_evidence_id equals replaces_geometry_evidence_id (imported_reference_point; locality, or admin2 for Louisa)",
+        "All 25 cited captures rehash to their .metadata.json sha256 and to the source content_hash; the six geometry-facts files match geometry_facts_sha256",
+        "Freestone: the TxGIO/CSEC point for 1356 FM 488 in the raw capture is (-96.1207370816, 31.8832906806); TDLR TABS2026026013/026904 (read) register DFW20A at 1356 FM 488, owner C1 (CL) Freestone 1 LLC at CyrusOne's Harwood St address; the CyrusOne FAQ gives 1366 FM488 as the vicinity; the Comptroller lists Freestone Data Center with owner C1 Freestone 1, LLC",
+        "Louisa: union of the 10 EDI Louisa 1 LLC parcel features recomputed in UTM 17N = (-78.0231304, 37.9005277), 696.93 acres, inside the union and 666 m from its edge; packet p.64 (pdftotext) lists Edgecore Phase 1 SP08-2026 on exactly those nine tax-map parcels; the EdgeCore page says 697 acres, Shannon Hill Regional Business Park",
+        "Armstrong: union of GN DC1, LLC parcels 4230+3490 recomputed in UTM 14N = (-101.3107136, 35.0234799), 1,072.44 acres; the 10001 LIMA ROAD 9-1-1 point is inside parcel 4230; TDLR Llano Buildings 1 and 4 (read) are owned by GN DC1 LLC at 10001 Lima Rd; the Atlas owner field is GN DC1 LLC",
+        "Franklin Twp: the 2025CZN814 polygon recomputed in UTM 16N = (-85.9991721, 39.7199855), 467.64 acres, status Withdrawn; the 3043 S Post Rd address point is inside it; Mirror Indy: 468 acres near Post Rd/Troy Ave, withdrawn by Google's counsel on 22 Sep 2025",
+        "Meitner: parcel 303744 (IP MEITNER DTC LLC, the only DTC parcel in the envelope) recomputed in UTM 14N = (-100.7179077, 35.5842723); the 8810 and 8830 CO RD 21 points are inside it; TABS2026014814 Data Center Building 1A is at 8810 Co. Rd. 21; the Comptroller lists Meitner Data Center with owner IP Meitner DTC and occupant Google",
+        "Stillwater: the metes-and-bounds traverse was rebuilt independently from the PDF text in EPSG:2267, anchored at the BLM NW corner of Sec 36, less the exception. It reproduces (-97.0425477, 36.1686058) to 0.006 m, with misclosure 46.8 m and net 378.18 acres. The N 54 28 57 E call is read as W, as Incentive District 2 call (2) prints it. The City news flash says Google acquired land at Perkins and Richmond Roads, and that node is 23.6 m from the BLM corner",
+        "Stillwater: the misclosure comes from the rail tangent being 153.66 ft shorter than in the District 2 and 3 calls. With the district lengths the traverse closes to 0.4 m with 386.69 acres, and that centroid is 13.4 m away. This was added to the locator precision text; the point is unchanged",
+        "Displacements recomputed with the builder's haversine: 18,920.7, 11,385.3, 10,531.9, 5,034.5, 22,557.0 and 6,033.2 m, all under 25 km and the coarse-reference limits",
+        "Locator sources are all government sources (TxGIO StratMap, the Louisa County parcel layer, IndyGIS, BLM CadNSDI, City of Stillwater document and streets). No map service, PeeringDB or OSM was used; the builder's map-service check passes; license fields are recorded",
+        "Distinctness: no Atlas site or project and no point in any queue fragment lies within 5 km of a new point. The nearest are AWS Northeast Creek at 9.9 km from Louisa and Riot Corsicana at 37.8 km from Freestone. No other fragment corrects these sites. Earlier holds (fiftysecond, sixtyninth, sixtyfirst) are consistent",
+        "No private individuals' names, phones or emails appear in changes, sources, holds, notes or geometry facts. Surveyor, RAS and contact names in the captures are not restated",
+        "robots.txt: the copies for the TDLR, Comptroller (Allow /taxes/), CivicClerk, CyrusOne, EdgeCore, Mirror Indy and Stillwater hosts permit the fetched paths for the research UA; TCEQ was correctly not used",
+        "dryrun_fragment.py reports ok on base hundredtwentyfirst, before and after the precision-text edit"
+      ],
+      "residual_risks": [
+        "Freestone: the 1356 FM 488 9-1-1 point lies in a privately owned 16-acre parcel with improvements in the June 2026 appraisal snapshot, and no CyrusOne or C1 parcel is identifiable. The point is the registered building address, perhaps the site access, not proven to be on the data-centre land. It is within about 1.2 km of the Freestone Energy Center",
+        "The parcel-based locators (Louisa, Armstrong, Meitner) represent landholdings of 300 to 1,072 acres with no building positions, and uncertainty is unquantified. The identify envelopes could miss further owner parcels outside them",
+        "Stillwater is a compiled georeferenced reconstruction (46.8 m misclosure in the published Project Area calls). Google's land is tied to the Project Area through the City's 'Perkins and Richmond Roads' wording and the Project Plan page, not a deed",
+        "Franklin Township locates a withdrawn (cancelled) proposal; the Google tie rests on Mirror Indy reporting a statement by Google's counsel at council",
+        "Compliance-log timestamps show gaps of about 5 to 7 s between some CivicPlus requests (stillwaterok.gov sitemap to /852; www.louisacounty.gov sitemap to /881), despite the stated 10 s crawl-delay (an advisory directive). No disallowed path was fetched",
+        "The Meitner identity no longer uses the TCEQ records from round 43 (that host disallows automated access)"
+      ]
+    }
+  ],
+  "packet_pins": {
+    "definitions/atlas-research-hundredtwentysecond-2026-11-07.json": "8857761dd489b77444dda87f13a499b0bc9dc3d5085e9d7bce65e29798a231e3",
+    "sources/research-countries-2026-11-07-hundredtwentysecond-primary-sources.json": "b59cf50f7662ddfc2b1a0a8630d136ee8e185dfb990039d2ff2153815b19fad1",
+    "sources/research-countries-2026-11-07-hundredtwentysecond-actions.json": "b63f9b01c000f3c6cc69e81db52fc8234a635a48dac86d50ac243f78d6380d38",
+    "sources/research-countries-2026-11-07-hundredtwentysecond-holds.json": "d09f5b2b575c5c8c0927729a0fa4b8b1ad3011100a918f97d2ee1f36ce67c475"
+  },
+  "raw_captures_redistributed": false
+}

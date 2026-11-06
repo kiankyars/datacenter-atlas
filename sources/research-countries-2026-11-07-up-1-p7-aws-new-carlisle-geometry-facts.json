@@ -1,0 +1,84 @@
+{
+ "candidate_id": "up-1-p7-aws-new-carlisle",
+ "decision": "Selected the planar centroid of the union of the two St. Joseph County tax parcels whose property address is 31100 SR 2 HWY, New Carlisle (the address IDEM gives for Amazon Data Services, Inc.'s Part 70 source, permit 141-50375-00650) as the campus locator replacing the imported New Carlisle town point.",
+ "geometry": {
+  "type": "Point",
+  "coordinates": [
+   -86.4727123,
+   41.664032
+  ]
+ },
+ "authority_class": "official_source",
+ "scope_class": "official_tax_parcel_union_centroid",
+ "use_scope": "campus_locator",
+ "source_files": [
+  {
+   "file": "local_data/country-research-up-1-p7/sjc-parcel25-31100-sr2.geojson",
+   "sha256": "b6d2c31f745d4ff4218807b84d7c730e54d3dbd5574389df7ec7143670b2552c",
+   "url": "https://services.arcgis.com/OjftlhRHkAABcyiF/arcgis/rest/services/Parcel25/FeatureServer/0/query?where=PROP_ADDR+LIKE+%2731100%25%27&outFields=PARCELID%2CPARCELSTAT%2CNAME_1%2CPROP_ADDR%2CPROP_CITY%2CACREAGE%2CCLASSCODE%2CTOWNSHIP%2CDATEUPDATE%2CPAYYEAR&returnGeometry=true&outSR=4326&f=geojson",
+   "retrieved_at": "2026-11-06T22:28:48.857Z"
+  }
+ ],
+ "layer": "St. Joseph County, Indiana GIS (ArcGIS Online organisation OjftlhRHkAABcyiF, item owner SJCGIS) Parcel25 FeatureServer layer 0 ('St Joseph County Parcel layer - for taxing purposes only'), requested in WGS84 (outSR 4326); queried by property address beginning 31100",
+ "selected_properties": {
+  "012-1012-0154": {
+   "state_parcel_number": "71-06-12-400-001.000-017",
+   "owner": "RAZOR5 LLC",
+   "property_address": "31100 SR 2 HWY",
+   "acreage_attribute": 388.252983461,
+   "class_code": "346",
+   "township": "Olive",
+   "date_update": "10/30/2026",
+   "geodesic_acres": 388.24,
+   "valid": true
+  },
+  "012-1022-0272": {
+   "state_parcel_number": "71-07-07-300-001.000-017",
+   "owner": "RAZOR5 LLC",
+   "property_address": "31100 SR 2 HWY",
+   "acreage_attribute": 178.858835297,
+   "class_code": "399",
+   "township": "Olive",
+   "date_update": "10/30/2026",
+   "geodesic_acres": 178.85,
+   "valid": true
+  }
+ },
+ "facts": {
+  "parcels": 2,
+  "all_valid": true,
+  "union_type": "Polygon",
+  "union_parts": 1,
+  "union_geodesic_acres": 567.09,
+  "bounds_lon_lat": [
+   -86.482139,
+   41.65752,
+   -86.462441,
+   41.671247
+  ],
+  "approx_extent_m": [
+   1637,
+   1530
+  ],
+  "centroid_inside": true,
+  "selected_subset": null,
+  "centroid_method": "shapely planar centroid of the selected geometry (the union, or the selected subset when one is named) in WGS84 longitude/latitude; the EPSG:32616 planar centroid transformed back differs by 0.01 m",
+  "max_distance_centroid_to_union_vertex_m": 1092,
+  "check_points": {
+   "sjc_address_point_31100_SR_2_HWY": {
+    "lon_lat": [
+     -86.4691102,
+     41.6703757
+    ],
+    "inside_union": true,
+    "distance_to_centroid_m": 765.8
+   }
+  },
+  "previous_point_lon_lat": [
+   -86.4964,
+   41.7006
+  ],
+  "displacement_haversine_m": 4517.0
+ },
+ "exclusions": "Other parcels held by RAZOR5 LLC (30750 Edison Rd) and by Amazon Data Services Inc (Strawberry Rd and State Road 2, Olive Township) are not part of the union because no government record ties them to the permitted source address; they lie up to about 3 km away and are recorded only as context. No geocoder, map viewport, town centre or industrial-park centroid is used."
+}

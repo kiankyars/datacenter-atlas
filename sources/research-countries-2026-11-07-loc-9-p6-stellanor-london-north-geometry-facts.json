@@ -1,0 +1,51 @@
+{
+  "candidate_id": "loc-9-p6-stellanor-london-north",
+  "physical_site_stable_key": "curated:stellanor-london-north-goswell",
+  "decision": "Replace the Google Maps native point with the application-site centroid that the Greater London Authority's Planning London Datahub publishes for Islington planning application P102023 (extension of the five existing flues serving five diesel generators at 260-270 Goswell Road, approved 29 September 2011).",
+  "source_file": "local_data/country-research-loc-9-p6/pld-islington-p102023.json",
+  "source_sha256": "8a738e3228345847f5f2c0e612f051ef369d4cc59c8af20daed9d78ab47fab9d",
+  "source_url": "https://planningdata.london.gov.uk/api-guest/applications/_search?q=id:%22Islington-P102023%22",
+  "published_fields": {
+    "id": "Islington-P102023",
+    "lpa_app_no": "P102023",
+    "site_number": "260 - 270",
+    "street_name": "Goswell Road",
+    "postcode": "EC1V 7EB",
+    "uprn": "5300036858",
+    "decision": "Approved",
+    "decision_date": "29/09/2011",
+    "application_details.site_area_ha": 0.046,
+    "centroid": {
+      "lat": 51.52882,
+      "lon": -0.100967
+    },
+    "centroid_easting": 531829,
+    "centroid_northing": 182810
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -0.100967,
+      51.52882
+    ]
+  },
+  "geometry_note": "The WGS84 centroid is copied as published. As a check, pyproj 3.7.1 (EPSG:27700 to EPSG:4326, always_xy) turns the published British National Grid centroid 531829 E, 182810 N into -0.1009672, 51.5288196, within 0.1 m of the published WGS84 value.",
+  "site_polygon_check": {
+    "polygon": "The record's British National Grid site polygon has 14 vertices and 461.3 m2 (bounds 531817.8-531841.1 E, 182789.2-182831.0 N; about 23 m by 42 m along the Goswell Road frontage), matching the recorded site area of 0.046 ha.",
+    "published_centroid_inside": true,
+    "published_centroid_distance_to_boundary_m": 3.2,
+    "max_vertex_distance_from_centroid_m": 21.6,
+    "replaced_point_inside": true,
+    "replaced_point_distance_to_boundary_m": 3.6
+  },
+  "same_premises_records": "The same UPRN 5300036858, polygon and centroid carry Islington's 1999 'Proposed use as an IP Gateway (Telecommunications)' decision (991151, which notes the premises' lawful use as a distillery and bottling plant) and the 2018 S73 variation of the generator air-quality and emergency-generator management conditions (P2017/2113/S73).",
+  "newer_records": "Islington's 2026 records for '260 - 266 Goswell Road' (P2026/0587/FUL, replacement of plant and associated works to roof, approved 28 April 2026; P2026/2242/MIN, pre-application advice on two additional generators and three additional chillers, 14 October 2026) use a newer UPRN 10094612777 whose published centroid (51.529057, -0.100107; 531888 E, 182838 N) lies 65 m north-east of the new point and 57 m outside the 2011 polygon, and declare a site area of 0.632 ha. The full premises therefore extend beyond the 461 m2 frontage polygon; its outline is not published in the datahub.",
+  "replaced_point": [
+    -0.100964,
+    51.528720899999996
+  ],
+  "displacement_m": 11.0,
+  "transform": "pyproj 3.7.1, shapely 2.1.1 (check only; the locator is the published WGS84 centroid)",
+  "identity_bridge": "Stellanor's London North page gives 260-266 Goswell Road, Angel, London EC1V 7EB, describes the building as the former Gordon's Gin Distillery and says the data centre opened in 2000; Islington's records at the same postcode and street numbers cover the 1999 change of use of the former distillery and bottling plant to an IP gateway, the data centre's diesel-generator flues (2011), and 2026 roof-plant replacement and generator and chiller additions.",
+  "nearby_records_within_2km": "Only this site (curated:stellanor-london-north-goswell, 11 m from the new point) in verified_construction_core/2026-11-07-research-hundredtwentieth; no pending queue addition or locator correction within 2 km."
+}

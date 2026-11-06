@@ -1,0 +1,61 @@
+{
+  "candidate_id": "crusoe-tallgrass-cheyenne-project-jade-locator-correction",
+  "decision": "Selected the latitude and longitude that Laramie County's SmartGov parcel layer publishes for parcel 12660510000400 (account R0069429; Tract 2, Record of Survey for Switchgrass Industrial Park, portion of Sec 5 T12N R66W; 525.26 net acres; owner Cheyenne Power Hub LLC; zone PUD) as the campus locator for the Project Jade data-centre campus. The county's address register assigns 210 US 85 (remarks 'PROJECT JADE', use COMMERCIAL-MULTI, assigned 2026-01-30) to the same parcel. The published parcel point coincides with the polygon's planar centroid (1.1 m) and lies inside it.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -104.79884103,
+      41.03581903
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_parcel_record_published_point",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-up-3-p7/laramie-smartgov-parcel-12660510000400.json",
+  "source_sha256": "8820bb79764b517d945ed65d544e7218820a3b98a2df63043126ff7d20ae4d65",
+  "source_url": "https://maps.laramiecounty.com/arcgis/rest/services/Planning/SmartGovParcels/MapServer/1/query?where=statepidn%3D%2712660510000400%27&outFields=*&returnGeometry=true&outSR=4326&f=json",
+  "retrieved_at": "2026-11-06T22:35:45.297Z",
+  "identity_file": "local_data/country-research-up-3-p7/laramie-address-210-us-85-project-jade.json",
+  "identity_sha256": "f622942d8ec3319a37720c918a3d9083f4cec110d97b879e086139fc05eee36b",
+  "computed": {
+    "crs": "Parcel served in EPSG:4326 (outSR=4326); centroid and distances computed in EPSG:32613 (UTM 13N) with pyproj 3.7.1 and shapely 2.1.1; area on the WGS84 ellipsoid (pyproj Geod)",
+    "parcel": {
+      "parts": 1,
+      "geodesic_acres": 519.049,
+      "stated_net_acres": 525.26,
+      "planar_centroid": [
+        -104.7988513,
+        41.0358256
+      ],
+      "centroid_inside": true,
+      "bounds_lon_lat": [
+        -104.809665,
+        41.029643,
+        -104.790329,
+        41.044289
+      ],
+      "extent_m": {
+        "east_west": 1626,
+        "north_south": 1626
+      },
+      "max_vertex_distance_from_centroid_m": 1172
+    },
+    "points": {
+      "published parcel point (latitude 41.03581903, longitude -104.79884103)": {
+        "inside": true,
+        "distance_to_boundary_m": 598.9,
+        "distance_to_centroid_m": 1.1
+      },
+      "210 US 85 PROJECT JADE address point (41 01 50.66899263N, 104 47 31.83703484W = 41.0307414, -104.7921770)": {
+        "inside": true,
+        "distance_to_boundary_m": 119.6,
+        "distance_to_centroid_m": 796.1
+      },
+      "current imported Laramie County point (41.2737, -104.7268)": {
+        "inside": false,
+        "distance_to_selected_point_m": 27130.1
+      }
+    }
+  },
+  "verification_script": "scratchpad up-3-p7/geo/parcel.py (uv run --no-project --with pyproj==3.7.1 --with shapely==2.1.1 python -I)"
+}

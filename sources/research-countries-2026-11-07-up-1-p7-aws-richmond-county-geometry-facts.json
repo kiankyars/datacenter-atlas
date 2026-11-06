@@ -1,0 +1,74 @@
+{
+ "candidate_id": "up-1-p7-aws-richmond-county",
+ "decision": "Selected the planar centroid of the union of the three Richmond County tax parcels that the NC OneMap statewide parcel layer lists as owned by Amazon Data Services Inc (the applicant for NC DAQ greenfield air permit application 7700104.25A, Energy Way Tech Campus, 1761 Airport Road, Hamlet) as the campus locator replacing the imported Richmond County reference point.",
+ "geometry": {
+  "type": "Point",
+  "coordinates": [
+   -79.7217832,
+   34.8299701
+  ]
+ },
+ "authority_class": "official_source",
+ "scope_class": "official_tax_parcel_union_centroid",
+ "use_scope": "campus_locator",
+ "source_file": "local_data/country-research-up-1-p7/nconemap-richmond-amazon-parcels.geojson",
+ "source_sha256": "47cbd13366a1c576bcbd874b8c8956b3b480b02e146d45253cb33b0f641cfc42",
+ "source_url": "https://services.nconemap.gov/secure/rest/services/NC1Map_Parcels/FeatureServer/1/query?where=cntyname%3D%27Richmond%27%20AND%20(UPPER(ownname)%20LIKE%20%27%25AMAZON%25%27%20OR%20UPPER(siteadd)%20LIKE%20%27%251761%20AIRPORT%25%27)&outFields=parno,ownname,siteadd,scity,gisacres,parusedesc,saledatetx,sourcedatx,cntyname&returnGeometry=true&outSR=4326&f=geojson",
+ "retrieved_at": "2026-11-06T22:25:25.077Z",
+ "layer": "NC OneMap NC1Map_Parcels FeatureServer layer 1 (Parcels (polys)), the NC Integrated Cadastral Data Exchange aggregation of county parcel data; Richmond County source rows, requested in WGS84 (outSR 4326)",
+ "selected_properties": {
+  "738900526178": {
+   "owner": "AMAZON DATA SERVICES INC C/O AMAZON.COM INC",
+   "site_address": "(blank)",
+   "gis_acres_attribute": 25.16,
+   "geodesic_acres": 25.44,
+   "sale_date_attribute": "11/14/2025"
+  },
+  "738900618902": {
+   "owner": "AMAZON DATA SERVICES INC C/O AMAZON.COM INC",
+   "site_address": "(blank)",
+   "gis_acres_attribute": 25.12,
+   "geodesic_acres": 24.81,
+   "sale_date_attribute": "11/14/2025"
+  },
+  "738900312008": {
+   "owner": "AMAZON DATA SERVICES INC C/O AMAZON.COM INC",
+   "site_address": "(blank)",
+   "gis_acres_attribute": 651.472,
+   "geodesic_acres": 651.6,
+   "sale_date_attribute": "6/27/2025"
+  }
+ },
+ "facts": {
+  "parcels": 3,
+  "all_valid": true,
+  "union_type": "Polygon",
+  "union_geodesic_acres": 701.86,
+  "bounds_lon_lat": [
+   -79.729602,
+   34.817772,
+   -79.706063,
+   34.841857
+  ],
+  "centroid_inside": true,
+  "centroid_method": "shapely planar centroid of the union in WGS84 longitude/latitude; the WGS 84 / UTM 17N (EPSG:32617) planar centroid transformed back differs by 0.05 m",
+  "max_distance_centroid_to_union_vertex_m": 1553,
+  "daq_tracker_point": {
+   "lon_lat": [
+    -79.725394,
+    34.826269
+   ],
+   "inside_union": true,
+   "inside_parcel": [
+    "738900312008"
+   ],
+   "distance_to_centroid_m": 527.0
+  },
+  "previous_point_lon_lat": [
+   -79.76,
+   35.0
+  ],
+  "displacement_m": 19183.5
+ },
+ "exclusions": "Neighbouring parcels owned by others (including the Duke Energy Progress Richmond County plant at 198 Energy Way) are not part of the union and their owner names are not reproduced. No geocoder, map viewport, town centre or industrial-area centroid is used."
+}

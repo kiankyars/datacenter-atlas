@@ -1,0 +1,167 @@
+{
+  "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+  "candidate": "CtrlS Mumbai Datacenter Campus (Mumbai DC1 to DC5), Plot Gen/72/1/A, TTC Industrial Area, Mahape, Navi Mumbai: MIDC plot-centroid locator (locator correction)",
+  "prepared_at": "2026-11-07",
+  "site": {
+    "physical_site_stable_key": "curated:ctrls-mumbai-mahape-datacenter-campus",
+    "site_id": "vcc-site-94af7d57293a1b3a103b",
+    "replaced_geometry_evidence_id": "4d184a7d-9cf7-55b1-8b09-db7b9e958553",
+    "replaced_point": [
+      73.023588,
+      19.1082134
+    ],
+    "replaced_reason": "Coordinates of the Google Maps place behind the maps.app.goo.gl short link on CtrlS's Mumbai page; Google's terms do not allow their reuse in the Atlas."
+  },
+  "source": {
+    "file": "local_data/country-research-loc-4-p6/midc-ttc-plot-a-gen-72-1a.json",
+    "sha256": "94ace20aa566cac9c9b67961cef7c2a7cd16a09a451e202170f7863d4d3aa39d",
+    "service": "MIDC CitizenPortal/MIDC_Main_Map_Service MapServer layer 11 'Plot Boundary' (gis.midcindia.org), query IA_CODE=201 AND PLOT_NUMBER='A-GEN-72/1A', fields limited to plot identifiers, area, published centroid, allotment status and land use (no user or editor fields requested)",
+    "statement": "One feature: OBJECTID 270784, IA_NAME 'Trans Thane Creek Industrial Area', IA_CODE 201, PLOT_NUMBER 'A-GEN-72/1A', MIDC_PLOT_AREA 10000.0, LONGITUDE 73.02374542 and LATITUDE 19.10825487 (field aliases 'Longitude (X Coordinate of Plot Centroid)' and 'Latitude (Y Coordinate of Plot Centroid)'), ALLOTED_STATUS_TYPE 2 (ALLOTED), one ring of 13 vertices in EPSG:32643."
+  },
+  "native_ring": {
+    "crs": "EPSG:32643 WGS 84 / UTM zone 43N (response spatialReference wkid 32643)",
+    "vertices": [
+      [
+        292180.2555,
+        2113972.6846
+      ],
+      [
+        292038.6987,
+        2113924.0323
+      ],
+      [
+        292031.0057,
+        2113947.1178
+      ],
+      [
+        292027.3444,
+        2113956.9528
+      ],
+      [
+        292022.3316,
+        2113970.4181
+      ],
+      [
+        292017.2939,
+        2113985.0443
+      ],
+      [
+        292042.7516,
+        2113993.6612
+      ],
+      [
+        292103.0806,
+        2114014.0814
+      ],
+      [
+        292165.5655,
+        2114035.2145
+      ],
+      [
+        292165.6323,
+        2114035.0164
+      ],
+      [
+        292172.9348,
+        2114012.5267
+      ],
+      [
+        292185.6878,
+        2113974.9823
+      ],
+      [
+        292180.2555,
+        2113972.6846
+      ]
+    ],
+    "area_m2": 10016.7
+  },
+  "transformation": {
+    "software": "pyproj 3.7.1, shapely 2.1.1",
+    "operation": "Inverse of UTM zone 43N on WGS 84 (no datum change), used only to check the published centroid",
+    "ring_wgs84": [
+      [
+        73.0244927,
+        19.1081994
+      ],
+      [
+        73.0231529,
+        19.1077455
+      ],
+      [
+        73.0230773,
+        19.1079532
+      ],
+      [
+        73.0230415,
+        19.1080417
+      ],
+      [
+        73.0229924,
+        19.1081628
+      ],
+      [
+        73.022943,
+        19.1082944
+      ],
+      [
+        73.0231839,
+        19.1083748
+      ],
+      [
+        73.023755,
+        19.1085654
+      ],
+      [
+        73.0243464,
+        19.1087626
+      ],
+      [
+        73.0243471,
+        19.1087609
+      ],
+      [
+        73.0244189,
+        19.1085585
+      ],
+      [
+        73.0245441,
+        19.1082207
+      ],
+      [
+        73.0244927,
+        19.1081994
+      ]
+    ]
+  },
+  "selected_point": [
+    73.02374542,
+    19.10825487
+  ],
+  "selected_point_basis": "The plot centroid MIDC publishes in the record's LONGITUDE and LATITUDE fields, retained unchanged (direct geometry).",
+  "checks": {
+    "published_centroid_inside_ring": true,
+    "computed_planar_centroid_wgs84": [
+      73.02374541,
+      19.10825487
+    ],
+    "published_vs_computed_centroid_m": 0.0,
+    "ring_area_vs_midc_plot_area_m2": [
+      10016.7,
+      10000.0
+    ],
+    "plot_extent_m": [
+      168.4,
+      111.2
+    ],
+    "replaced_point_inside_ring": true,
+    "displacement_haversine_m": 17.2,
+    "displacement_geodesic_m": 17.2,
+    "uniqueness": "Query IA_CODE IN (201, 4680) AND PLOT_NUMBER LIKE '%72%' (midc-ttc-plot72-uniqueness.json, sha256 fe5d1e875f7c2d4d58554749d12cde633d47d6ef4f6eefe772330d498169c24d) returns A-GEN-72/1A as the only TTC plot whose number contains GEN-72/1A; the neighbouring plots A-GEN-72/1 (8,300 m2), GEN-72/1B (1,709 m2) and GEN-72/3 (5,518 m2) are separate records (midc-ttc-gen72-plots.json, sha256 dfa7e704b2810e42a7f6272b62637f8f38d4e6c3e827112fe652f6c89b097914) and are not attributed to CtrlS by any source used here.",
+    "replaced_point_context_query": "A 300 m buffer query around the replaced point (midc-plots-near-ctrls-mumbai-point.json, sha256 f0d0988ae43803bbe3ecb06f71a287876d36d6d0c090c9fe9b85da2babc70d4f) lists A-GEN-72/1A and its neighbours in the Trans Thane Creek Industrial Area.",
+    "operator_address": "CtrlS Sustainability Report 2023-24 (ctrls-sustainability-report-2023-24.pdf, sha256 0fcb9af623b6a00c5a4d41cb43e4135586e03fe1926031bc8ff9939050ceb002), 'Datacenter Locations' page: '05 | MUMBAI Mumbai DC 1, 2, 3, 4 & 5 (Plot Gen/72/1/A MIDC TTC Industrial area Mahape, Navi Mumbai)'; the report's contact block repeats 'Plot No. GEN 72/1/A, S Central Rd, TTC Industrial Area, Electronic Zone, MIDC Industrial Area, Mahape, Navi Mumbai, Maharashtra 400710'.",
+    "atlas_records_within_2km": "Checked against verified_construction_core/2026-11-07-research-hundredtwentyfirst: this site (17 m); STT Navi Mumbai Campus (TTC MIDC, Khairane) 595 m, a separate operator on plot Gen-51; AdaniConneX Navi Mumbai Ghansoli Campus (Plot A-GEN-4, TTC MIDC Rabale) 1,955 m; claims.tsv: india-p3 Nxtra Mahape (Plot IT 07) 975 m. None shares the plot or the operator."
+  },
+  "license": "MIDC website copyright policy (captured midc-disclaimer-and-policies.html, sha256 6e3fe0774df2cad123659bb82e7467f0a1f84efb3de21f604afff3a7dd54a519): content may be reproduced free of charge with MIDC's prior permission by e-mail, accurately and with the source acknowledged; no open licence. Only the published centroid coordinate and plot identifiers are used; the raw response is not redistributed.",
+  "attribution": "Maharashtra Industrial Development Corporation (MIDC) GIS Citizen Portal"
+}

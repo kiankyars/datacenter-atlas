@@ -1,0 +1,38 @@
+{
+  "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+  "candidate": "JERA / RHAELM Chiba AI Data Center Infrastructure at JERA Chiba Thermal Power Station, 2-1377 Sogacho, Chuo-ku, Chiba: GSI address-search locator (locator correction)",
+  "prepared_at": "2026-11-07",
+  "site": {
+    "physical_site_stable_key": "curated:jera-chiba-thermal-power-station",
+    "site_id": "vcc-site-08c96f4448334dc081a5",
+    "replaced_geometry_evidence_id": "a25bcee2-8a5a-5951-81ba-924dd0c09607",
+    "replaced_point": [
+      140.1019756,
+      35.5638142
+    ],
+    "replaced_reason": "Coordinates of a Google Maps feature (maps.google.com/?cid=...) selected for the plant address; Google's terms do not allow their reuse in the Atlas."
+  },
+  "source": {
+    "file": "local_data/country-research-loc-4-p6/gsi-addr-sogacho-2-1377.json",
+    "sha256": "63dd4f6b08a40e07bd8aae7f316337a572ee342f9aaef172ad56cd879a0dfd08",
+    "query": "千葉県千葉市中央区蘇我町2丁目1377 (the address JERA publishes for Chiba Thermal Power Station, 千葉県千葉市中央区蘇我町2-1377)",
+    "statement": "One feature, title '千葉県千葉市中央区蘇我町二丁目１３７７番地', Point [140.10556, 35.564575]."
+  },
+  "selected_point": [
+    140.10556,
+    35.564575
+  ],
+  "selected_point_basis": "GSI address-search coordinates retained unchanged (direct geometry).",
+  "checks": {
+    "gsi_named_feature": "The GSI search for 千葉火力発電所 (gsi-name-chiba-karyoku.json, sha256 1a74aadb13f6a04f3028ef3cb25152a10d0c283a6bce662db93f0d2784e68720) returns a feature titled 'ＪＥＲＡ千葉火力発電所' (addressCode 12101) at [140.102330416667, 35.565168], 299.5 m (haversine) from the selected point.",
+    "gsi_reverse_geocoder": "GSI's reverse geocoder places both the named-feature point (gsi-revgeo-chiba-karyoku-name.json) and the replaced point (gsi-revgeo-old-point.json; both responses sha256 39e25f064c1b8a7fb00eb7fd1976e7229daf7c2ee7236dc34e9d89385f4ce855) in muniCd 12101 (Chiba City, Chuo-ku), 蘇我町二丁目, the town block of the selected address point.",
+    "visual_check": "On GSI standard-map and seamless-photo tiles z16 x58272-58273 y25832-25833 (captured 7 November 2026) all three points fall inside the power-station grounds on the strip between Tokyo Bay and the canal: the selected address point on the main generating block, the named-feature point at the label anchor 'ＪＥＲＡ千葉火力発電所' in the tank yard, and the replaced point in the western yard. Inspection only; no coordinate is taken from the tiles.",
+    "operator_address": "JERA's Chiba Thermal Power Station page (jera-chiba-plant.html, sha256 e2d8fca1c3d78ce9726822ebfb03519181a72d630ef5594f796a3e2d67398f04) gives 住所 千葉県千葉市中央区蘇我町2-1377, 敷地面積 約76万m2 and 最大出力 438万kW.",
+    "project_scope": "JERA's 1 October 2026 release (jera-chiba-announcement.html, sha256 41eed8f7d6ce6bff5e182505ce74f37b81803c29f1885d18d0c0942b3ba44149) names JERA Chiba Thermal Power Station as the first AI infrastructure project (up to 400 MW of AI data-centre infrastructure) and says the AI infrastructure is to be built inside thermal power station premises (火力発電所構内); no AI data-centre plot within the plant is published.",
+    "moj_registry_map": "The MOJ/AIGID 2026 registry-map GeoJSON for Chiba Chuo-ku (moj-12101-chuo-2026.geojson, sha256 e29d4eab1c030b912424a533b13ec6f39d912f1895d85f26431cf8862e430fd5, public coordinate zone 9) has no lot in 蘇我町 and no lot within 1 km of either GSI point, so no parcel outline is available for the plant.",
+    "displacement_haversine_m": 335.1,
+    "atlas_records_within_2km": "only this site; no queue, claims or holds record within 2 km."
+  },
+  "license": "GSI content terms (attribution required)",
+  "attribution": "Geospatial Information Authority of Japan (国土地理院)"
+}

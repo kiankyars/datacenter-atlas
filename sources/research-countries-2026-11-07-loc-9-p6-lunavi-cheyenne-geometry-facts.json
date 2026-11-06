@@ -1,0 +1,44 @@
+{
+  "candidate_id": "loc-9-p6-lunavi-cheyenne",
+  "physical_site_stable_key": "curated:lunavi-cheyenne-data-center-progress-circle",
+  "decision": "Replace the Google Maps place point (taken from the directions link on Lunavi's page) with the address point that Laramie County's address register publishes for 340 Progress Cir, Cheyenne (address ID 264311, remarks 'GREEN HOUSE DATA', Lunavi's former name).",
+  "source_file": "local_data/country-research-loc-9-p6/laramie-address-addrid-264311.json",
+  "source_sha256": "a039839082b6093600770317d2ecfb9fadc8ce2394109deae81a77fe68e7fff2",
+  "source_url": "https://maps.laramiecounty.com/arcgis/rest/services/Planning/Laramie_County_GIS_Overlay/MapServer/0/query?where=addrid%3D264311&outFields=addrid,address,bldg_no,st_name,st_type,use,remarks,zip,lot_no,blk_tr,sub_name,town,assigned,statepidn,legal_desc,qrtr_qrtr,quarter,section,township,range,zone_code,source,latitude,longitude&returnGeometry=true&outSR=4326&f=json",
+  "published_fields": {
+    "address": "340 PROGRESS CIR",
+    "zip": "82007",
+    "town": "CHEYENNE",
+    "use": "COMMERCIAL-SINGLE",
+    "remarks": "GREEN HOUSE DATA",
+    "assigned": "2013-06-13 (epoch ms 1371081600000)",
+    "statepidn": "13660210101300",
+    "legal_desc": "CHEYENNE BUSINESS PARKWAY, 1ST FILING, REFINEMENT B: LOT 1, BLOCK 1",
+    "plss": "NW 1/4 NE 1/4 Section 2, T13N, R66W",
+    "zone_code": "BP",
+    "source": "CITY",
+    "latitude": "41 07 46.81316934N",
+    "longitude": "104 44 28.82254144W"
+  },
+  "conversion": "Degrees, minutes and decimal seconds converted arithmetically to decimal degrees (d + m/60 + s/3600; west negative): latitude 41.129670325, longitude -104.741339595, rounded to 7 decimals. No datum or projection change; the service returns no feature geometry for this layer, so the printed values are the published position.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -104.7413396,
+      41.1296703
+    ]
+  },
+  "containment_checks": {
+    "assessor_parcel": "A point-intersect query of the county's Assessor's Parcels layer (19) at the converted point returns one parcel: statepidn 13660210101300, account R0059410, Commercial, situs 340 PROGRESS CIR, 4.29 net acres (186,872 sq ft), legal 'CHEYENNE BUSINESS PARKWAY, 1ST FILING, REFINEMENT B: LOT 1, BLOCK 1', tax year 2024 (owner fields not requested). It is the same state parcel number the address record names.",
+    "building_footprint": "A point-intersect query of the county's Building Footprints layer (1) at the converted point returns one footprint (objectid 1258944; no name or agency attribute), so the point falls on a building, not the street or the lot frontage.",
+    "polygon_geometry": "The county MapServer returns attributes only (no geometry) for these layers, so parcel and footprint outlines and distances to their boundaries are not available; containment rests on the server's spatial intersect."
+  },
+  "replaced_point": [
+    -104.7408848,
+    41.1296651
+  ],
+  "displacement_m": 38.1,
+  "neighbouring_addresses_same_register": "Other Progress Cir address points in the same register (304, 311, 400, 460, 521) lie on other lots; 304 PROGRESS CIR (Lot 2, Block 1, 10th filing) is the nearest, about 90 m south.",
+  "identity_bridge": "Lunavi's Cheyenne page gives the data-centre address as 340 Progress Circle, Cheyenne, WY 82007; the county register's record for that address carries the remarks 'GREEN HOUSE DATA', the operator's former name (the Atlas record already states that the Google place was listed under the former name 'Green House Data').",
+  "nearby_records_within_2km": "Only this site (curated:lunavi-cheyenne-data-center-progress-circle, 38 m from the new point) in verified_construction_core/2026-11-07-research-hundredtwentieth; no pending queue addition or locator correction within 2 km. The eightythird holds file keeps a lead_only note that Laramie County parcel data for 340 Progress Circle had not been obtained (Beacon viewer HTTP 403); this correction uses the county's ArcGIS REST overlay service instead."
+}

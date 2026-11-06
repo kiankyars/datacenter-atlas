@@ -1,0 +1,97 @@
+{
+  "candidate_id": "compass-hoffman-estates-locator-correction",
+  "decision": "Selected the centroid of the union of the three Cook County 2021 parcel polygons 01-31-201-003, 01-31-202-002 and 01-32-100-005 (the former Sears headquarters campus at 685 and 551 Higgins Road / Beverly Road, Hoffman Estates) as the campus locator for the Compass Datacenters Hoffman Estates campus. The Cook County Assessor's records name Compass Datacenters as the tax-bill mailing name of these PINs for tax years 2023 to 2025 and as owner of their 2026 successor PINs, and the Assessor's building-permit records for PIN 01-31-201-003 are 'COMPASS DATA CENTER ORD I BUILDING 1', 'BUILDING 2 BUILDOUT', 'BUILDING 3 BUILDOUT' and a ComEd substation for Compass. Compass's own release places the campus on the nearly 200-acre former Sears headquarters site; the union measures 191.4 geodesic acres. PIN 01-32-100-006 (3.1 acres, held by another owner and only mailed to Compass in 2026) is not included.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -88.2171116,
+      42.0770936
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_tax_parcel_union_centroid",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-up-2-p7/cook-parcel2021-former-sears-campus.json",
+  "source_sha256": "a5bff9c7ac03f665b5b9faaa5a4587674f8b8ce3c2c1270935a9f509f7239ffe",
+  "source_url": "https://datacatalog.cookcountyil.gov/resource/77tz-riq7.json?$select=pin10,assessorbldgclass,municipality,the_geom&$where=pin10%20in(%270131201003%27,%270131202002%27,%270132100005%27,%270132100006%27)",
+  "retrieved_at": "2026-11-06T22:28:07.286Z",
+  "identity_files": {
+    "local_data/country-research-up-2-p7/cook-addresses-sears-compass-2023-2026.json": "08dbc0f14ee446bfd684c45606f0ab8b64000550b1a49f4a8816ed158a292e0c",
+    "local_data/country-research-up-2-p7/cook-permits-compass.json": "2699bacfd41f0095f4f40c85c41e29305ea1c57552d47c07a2f33e9cbcef05a6",
+    "local_data/country-research-up-2-p7/cook-parcel-universe-compass-former-sears-pins.json": "f59853d52c24c8a921797952a798882223d968fe77ef8f3664a81a896a1f0398",
+    "local_data/country-research-up-2-p7/cook-parcel-universe-current-compass-pins.json": "2620228a22664cd8fc6c9478552d81293e891e53ae9b1d4c3d6b9d395026e9bf",
+    "local_data/country-research-up-2-p7/compass-hoffman-kickoff.html": "dbe3d15c485e2ea64e741db9bbef54bacdae4bf43ef67c62aa5f48541d35b5a8"
+  },
+  "selected_parcels": [
+    {
+      "pin10": "0131201003",
+      "geodesic_acres": 32.558,
+      "bounds_lon_lat": [
+        -88.223315,
+        42.076849,
+        -88.218471,
+        42.080893
+      ],
+      "assessor_2025_parcel_universe_centroid_inside": true
+    },
+    {
+      "pin10": "0131202002",
+      "geodesic_acres": 34.796,
+      "bounds_lon_lat": [
+        -88.223318,
+        42.073583,
+        -88.21743,
+        42.077534
+      ],
+      "assessor_2025_parcel_universe_centroid_inside": true
+    },
+    {
+      "pin10": "0132100005",
+      "geodesic_acres": 124.065,
+      "bounds_lon_lat": [
+        -88.223301,
+        42.073339,
+        -88.210025,
+        42.080663
+      ],
+      "assessor_2025_parcel_universe_centroid_inside": true
+    }
+  ],
+  "computed": {
+    "crs": "Socrata the_geom served in EPSG:4326; centroid and distances computed in EPSG:32616 (UTM 16N) with pyproj 3.7.1 and shapely 2.1.1; areas on the WGS84 ellipsoid",
+    "union": {
+      "parts": 1,
+      "geodesic_acres": 191.419,
+      "centroid": [
+        -88.2171116,
+        42.0770936
+      ],
+      "point_inside_union": true,
+      "point_distance_to_union_boundary_m": 363.8,
+      "max_vertex_distance_from_point_m": 659.9,
+      "bounds_lon_lat": [
+        -88.223318,
+        42.073339,
+        -88.210025,
+        42.080893
+      ],
+      "extent_m": {
+        "east_west": 1105,
+        "north_south": 849
+      }
+    },
+    "centroid_in_parcels": [
+      "0132100005"
+    ],
+    "excluded_parcel_0132100006": {
+      "geodesic_acres": 3.11,
+      "distance_to_union_m": 0.0
+    },
+    "points": {
+      "current imported Hoffman Estates point (42.0639, -88.1469)": {
+        "haversine_to_selected_point_m": 5978.2
+      }
+    }
+  },
+  "verification_script": "scratchpad up2p7/geom.py (uv run --no-project --with pyproj==3.7.1 --with shapely==2.1.1 python -I)"
+}
