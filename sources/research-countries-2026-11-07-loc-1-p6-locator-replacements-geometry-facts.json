@@ -1,0 +1,123 @@
+{
+ "format": "datacenter-atlas-geometry-facts-v1",
+ "fragment": "loc-1-p6",
+ "prepared_on": "2026-11-07",
+ "method_note": "Each selected point is copied unchanged from a government address source for the street address the operator publishes: the Digitaal Vlaanderen Geolocation API (Flemish base registers) for the two Belgian sites, the BEV Adressregister search for Graz, and the IBGE CNEFE 2022 municipal address files for the two ODATA Brazil sites (read from the ZIP in memory with Python -I; no file executed). For the Flemish points the served WGS84 values were checked against the served Lambert-72 (EPSG:31370) and Lambert-2008 (EPSG:3812) coordinates with pyproj 3.7.1 / PROJ 9.5.1 (always_xy): differences 0.001 m and 0.005 m. No offset, rounding or averaging was applied. No Google, Apple, Bing, HERE, Waze, Yandex or other commercial map coordinate, map link, embed, PeeringDB record or OpenStreetMap service was used.",
+ "displacement_formula": "haversine, mean Earth radius 6,371,008.8 m (as in datacenter_atlas.dataset_update._distance_metres)",
+ "nearest_other_atlas_sites_within_2km": {
+  "curated:odata-dc-sp01-santana-de-parnaiba-campus": [
+   {
+    "physical_site_stable_key": "curated:tecto-tgru1-santana-parnaiba",
+    "distance_metres": 1261
+   }
+  ],
+  "others": "No other Atlas site lies within 2 km of the new LCL, Penta or nexspace points (base verified_construction_core/2026-11-07-research-hundredtwentieth)."
+ },
+ "corrections": [
+  {
+   "physical_site_stable_key": "curated:lcl-brussels-north-diegem",
+   "site_id": "vcc-site-8f6044c27fe24cae34dc",
+   "site_name": "LCL Brussels-North Diegem",
+   "replaced_geometry_evidence_id": "6a1a3449-e02f-5fe9-b141-042cd4dfc3b5",
+   "replaced_point": {
+    "type": "Point",
+    "coordinates": [
+     4.455616,
+     50.887353999999995
+    ]
+   },
+   "selected_point": {
+    "type": "Point",
+    "coordinates": [
+     4.4554675928003284,
+     50.88740939359318
+    ]
+   },
+   "selected_source_id": "loc-1-p6-geolocation-kouterveldstraat-13",
+   "identity_source_ids": [
+    "loc-1-p6-lcl-contact",
+    "loc-1-p6-lcl-data-center",
+    "loc-1-p6-geolocation-service-description"
+   ],
+   "displacement_metres": 12.1
+  },
+  {
+   "physical_site_stable_key": "curated:penta-bru01-zellik",
+   "site_id": "vcc-site-db30f3395b23f7c1a2e7",
+   "site_name": "Penta Infra BRU01 Zellik",
+   "replaced_geometry_evidence_id": "60be1887-195e-5a31-8b36-f5814155d551",
+   "replaced_point": {
+    "type": "Point",
+    "coordinates": [
+     4.2885867,
+     50.8821382
+    ]
+   },
+   "selected_point": {
+    "type": "Point",
+    "coordinates": [
+     4.288926286748416,
+     50.881931982453715
+    ]
+   },
+   "selected_source_id": "loc-1-p6-geolocation-z1-researchpark-340",
+   "identity_source_ids": [
+    "loc-1-p6-penta-bru01-page",
+    "loc-1-p6-geolocation-service-description"
+   ],
+   "displacement_metres": 33.1
+  },
+  {
+   "physical_site_stable_key": "curated:nexspace-graz-alte-poststrasse-390",
+   "site_id": "vcc-site-7ddf9cde77323cf2f6c5",
+   "site_name": "nexspace Graz GRZ1, Alte Poststraße 390",
+   "replaced_geometry_evidence_id": "2748689d-5053-5c88-adba-e5356ed876ce",
+   "replaced_point": {
+    "type": "Point",
+    "coordinates": [
+     15.4249645,
+     47.040543299999996
+    ]
+   },
+   "selected_point": {
+    "type": "Point",
+    "coordinates": [
+     15.425034936,
+     47.040382971
+    ]
+   },
+   "selected_source_id": "loc-1-p6-bev-adr-alte-poststrasse-390",
+   "identity_source_ids": [
+    "loc-1-p6-nexspace-graz-page"
+   ],
+   "displacement_metres": 18.6
+  },
+  {
+   "physical_site_stable_key": "curated:odata-dc-sp01-santana-de-parnaiba-campus",
+   "site_id": "vcc-site-98743408bd3d8ca8997d",
+   "site_name": "ODATA DC SP01 Santana de Parnaíba Campus",
+   "replaced_geometry_evidence_id": "722a93f0-f384-567a-98bd-506cf3f71097",
+   "replaced_point": {
+    "type": "Point",
+    "coordinates": [
+     -46.9151172,
+     -23.4550259
+    ]
+   },
+   "selected_point": {
+    "type": "Point",
+    "coordinates": [
+     -46.915678,
+     -23.455411
+    ]
+   },
+   "selected_source_id": "loc-1-p6-ibge-cnefe-3547304",
+   "identity_source_ids": [
+    "loc-1-p6-odata-localidades-brasil",
+    "loc-1-p6-ibge-cnefe-dictionary"
+   ],
+   "displacement_metres": 71.5
+  }
+ ],
+ "verifier_note": "Verifier worker 1 (2026-11-07) removed the ODATA DC RJ01 correction: the IBGE CNEFE 2022 coordinate for Rodovia Presidente Dutra 4648 belongs to a record labelled as a car-seat factory with several establishments, in locality Venda Velha rather than the operator's Jardim José Bonifácio, so it could not be confirmed to locate the data-centre campus rather than a neighbouring establishment. RJ01 is held."
+}

@@ -1,0 +1,975 @@
+{
+  "format": "datacenter-atlas-update-input-v1",
+  "updated_at": "2026-11-07",
+  "output": "verified_construction_core/2026-11-07-research-hundredtwentyfirst",
+  "base_dataset": "verified_construction_core/2026-11-07-research-hundredtwentieth",
+  "base_manifest_sha256": "380f5493312ec5978723656f3c6323990565de99d3b37baae863406fa4e201fb",
+  "source_files": [
+    {
+      "path": "sources/research-countries-2026-11-07-hundredtwentyfirst-primary-sources.json",
+      "sha256": "b014fa7839c84fa487cc34581f3f7104c2f703c0733584e846fe8c7c6d320d47"
+    }
+  ],
+  "additions": [
+    {
+      "project_stable_key": "curated:adaniconnex-navi-mumbai-ghansoli-acxnmi01-campus:ghansoli-220mw-data-centre-campus",
+      "physical_site_stable_key": "curated:adaniconnex-navi-mumbai-ghansoli-acxnmi01-campus",
+      "site_name": "AdaniConneX Navi Mumbai Ghansoli Campus (ACXNMI-01, TTC MIDC Rabale)",
+      "name": "AdaniConneX Navi Mumbai Ghansoli (ACXNMI-01) — 220 MW data-centre campus under construction",
+      "country": "India",
+      "country_iso_a2": "IN",
+      "status": {
+        "value": "under_construction",
+        "as_of": "2026-10-28",
+        "source_id": "india-p6-ael-q2fy27-results-presentation",
+        "summary": "Adani Enterprises' results presentation for the quarter ended 30 September 2026, submitted to BSE and NSE on 28 October 2026, gives in the 'Data Centers Status' table of its AdaniConneX slide, under Navi Mumbai (460 MW total growth, no operational capacity), 'Ghansoli - 220 MW| Execution started' and, separately, 'Taloja – 240 MW| New Order Received'. This records that execution of AdaniConneX's Ghansoli campus had started as of the 28 October 2026 filing, which is read as construction under way: the same table sets it apart from Taloja's order stage, from Noida's completed core and shell, and from completed or operational phases elsewhere. The presentation does not say when works began, which buildings are being built or how far they have progressed; 220 MW is the planned capacity of the site, not capacity built or in service."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            73.0088333,
+            19.1187667
+          ]
+        },
+        "source_id": "india-p6-acxnmi01-ec-2023",
+        "scope": "campus_locator",
+        "scope_class": "official_environmental_clearance_reported_project_coordinate",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "SEIAA_Maharashtra_EC23B039MH131196_printed_project_latitude_longitude_DMS_to_decimal_no_datum_transform",
+        "precision": "Project coordinate printed in the SEIAA Maharashtra environmental clearance for data-centre project ACXNMI-01 on Plot No. A-GEN-4, TTC MIDC Rabale, Ghansoli (25.19 ha). It locates the campus plot as a whole, not a particular data-centre building, a surveyed boundary, an entrance or the part of the plot where works have started.",
+        "identity_review": "SEIAA Maharashtra environmental clearance EC23B039MH131196 of 11 December 2023 (SIA/MH/INFRA2/438248/2023), which AdaniConneX publishes on its own About Us page as 'EC Certificate of ACXNMI-1 by M/s Support Properties Pvt. Ltd.', prints 'Latitude -19°7'7.56\"N, Longitude: 73°0 '31.80\"E' (19.1187667 N, 73.0088333 E) for the 'Proposed Data Center Project \"ACXNMI-01\"' at Plot No. A-GEN-4, T.T.C. Industrial Area, MIDC Rabale, Village Savli, Ghansoli, Navi Mumbai, on a plot of 2,51,934.30 m2 with seven G+6 data-centre buildings. Adani Enterprises' Q2 FY27 presentation names Ghansoli as one of AdaniConneX's two Navi Mumbai sites (Ghansoli 220 MW, Taloja 240 MW); the EC's village is Ghansoli and no other AdaniConneX project in Ghansoli was found, so the EC plot is taken to be the Ghansoli campus. The EC states no MW figure, so the link between the presentation's 220 MW site and this plot rests on the shared place name and on AdaniConneX presenting the EC as its own. Visual check only, not used to derive the point or the status: on an Esri World Imagery export of about 1 km around the point (captured 6 November 2026, imagery date not stated) the point falls on a building site with a grid of foundations and concrete column stubs, site cabins and plant inside a large walled tract of cleared land. The coordinate's datum is not stated and is taken as WGS84 without transformation; the proponent's registered office in Andheri East, Mumbai, is not used, and no map service, map link or embedded map parameter was used.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The EC states no datum, survey method or positional accuracy for its coordinate, and the point stands for a 25.19 ha plot (roughly 500 m across) whose boundary is not published."
+      },
+      "context_source_ids": [
+        "india-p6-acx-about-us",
+        "india-p6-ael-q2fy27-release",
+        "india-p6-ael-q2fy27-call-transcript",
+        "india-p6-acx-data-centers"
+      ],
+      "roles": [
+        {
+          "party": "AdaniConneX Private Limited",
+          "role": "operator",
+          "relationship_scope": "intended",
+          "source_id": "india-p6-ael-q2fy27-results-presentation"
+        }
+      ],
+      "distinctness_review": "Screened all serialized fields of the sites, projects, evidence, source records and identity mapping of verified_construction_core/2026-11-06-research-hundrednineteenth (the current dataset read from site/config.json: 933 sites, 1,001 projects), every sources/*-holds.json file, the pending queue fragments' changes and holds, and queue/claims.tsv for Ghansoli, Savli, A-GEN-4, MIDC Rabale, ACXNMI / ACXNMI-01 / ACXNMI-1, Support Properties, AdaniConneX / Adani ConneX and the point. No Atlas record, source record or identity mapping names Ghansoli, Savli, plot A-GEN-4, ACXNMI or Support Properties. Two Atlas sites lie within 2 km (pyproj WGS84 geodesic), both other operators' campuses with their own locators: STT Navi Mumbai Campus (TTC MIDC, Khairane) (curated:stt-gdc-navi-mumbai-ttc-midc-khairane-campus, with its further-expansion project 593234), 1.810 km south-east, located by its own SEIAA EC coordinate for plots Gen-51, Gen-51/1 Part and Gen-50/1; and CtrlS Mumbai Datacenter Campus (Mahape, Navi Mumbai) (curated:ctrls-mumbai-mahape-datacenter-campus, existing operations of DC1 to DC5; the upcoming DC6 to DC9 are claimed by the india-south-asia-p5 lane), 1.943 km south-east. No other queue addition or claim lies within 2 km. Beyond 2 km are Nxtra's held Plot IT 07 campus in Mahape (2.39 km, an india-p3 claim, not in the Atlas), Sify Rabale (imported locality point, 2.81 km), CapitaLand DC Navi Mumbai (6.38 km), Raiden Infotech Turbhe (7.18 km), Digital Edge Navi Mumbai (7.47 km) and the imported AdaniConneX Navi Mumbai data centre campus (imported:semiconductor-atlas:adaniconnex-navi-mumbai, 9.81 km). That imported record is a city-level record of AdaniConneX's 1,000 MW Navi Mumbai potential (announced, 9 October 2026) placed at a Nominatim centroid of Navi Mumbai; its identity mapping says its locality locator does not itself establish a surveyed physical site, and the 2026-10-22 thirtyfourth hold proposed tying it to the Taloja campus through a reviewed locator correction once a Taloja location is published. Adani Enterprises now names two separate AdaniConneX sites in Navi Mumbai, Ghansoli (220 MW, execution started) and Taloja (240 MW, new order), so that single unlocated record cannot be identified with Ghansoli, and Ghansoli is added as its own site with the imported record left unchanged. The remaining overlap, that the imported record's 1,000 MW city-wide potential may include Ghansoli's 220 MW, is disclosed rather than resolved. Holds: the round-43 and thirtyfourth holds list a PARIVESH-dependent 'ACXNMI-01 expansion' proposal without coordinates or status, which this record does not cover; the fortyfourth hold's 'ACXNMI Site-02' (Innovant Buildwell, SEAC-2 statement 568270) has no plot or location and is not equated with ACXNMI-01.",
+      "successor_review": "28 October 2026 is 10 days before 7 November 2026 and stays inside the 85-day window until 21 January 2027. No later AdaniConneX or Adani Enterprises statement was found: the Adani newsroom listing captured with the results release on 6 November 2026 shows group releases up to 5 November 2026 and none about AdaniConneX; AdaniConneX's resources sitemap captured on 6 November lists nothing modified after 23 October except two FAQ pages edited on 2 and 4 November; and AdaniConneX's undated Data Centers page captured on 6 November reports no pause, closure or change. That page still lists Navi Mumbai as 'Our soon to be launched facility' with 'RFS Dec 2026 onwards', a target that is not status evidence and names no site.",
+      "scoped_project_details": {
+        "aliases": [
+          "ACXNMI-01",
+          "ACXNMI-1",
+          "Data Center Project \"ACXNMI-01\" (SEIAA Maharashtra EC EC23B039MH131196)",
+          "Adani ConneX Ghansoli (Navi Mumbai)"
+        ],
+        "facility_scope": "AdaniConneX's data-centre campus on Plot No. A-GEN-4, T.T.C. Industrial Area, MIDC Rabale, Village Savli, Ghansoli, Navi Mumbai (Thane district), Maharashtra: the 220 MW Ghansoli site of Adani Enterprises' Q2 FY27 presentation and project ACXNMI-01 of the 2023 environmental clearance. It excludes AdaniConneX's Taloja site and any other Navi Mumbai site.",
+        "capacity": null,
+        "capacity_note": "220 MW is the planned capacity the presentation states for Ghansoli (Navi Mumbai 460 MW with Taloja's 240 MW); no Navi Mumbai capacity is operational. It is a stated plan, not built, installed or measured capacity, and is not recorded as a typed observation.",
+        "environmental_clearance": "EC23B039MH131196 dated 11 December 2023 (SEIAA Maharashtra, SIA/MH/INFRA2/438248/2023, category B, schedule 8(b)): plot 2,51,934.30 m2, proposed built-up area 5,37,233.95 m2, seven G+6 data-centre buildings, ten utility buildings and two substation blocks. Used for identity and location only; not a permitted-status claim.",
+        "environmental_clearance_proponent": "Support Properties Pvt. Ltd.",
+        "business_note": "The presentation's footnote describes the data-centre business as a joint venture with EdgeConneX.",
+        "physical_construction_verified": false
+      }
+    },
+    {
+      "project_stable_key": "curated:getworks-nippon-paper-kushiro-mill:container-data-centre",
+      "physical_site_stable_key": "curated:getworks-nippon-paper-kushiro-mill",
+      "site_name": "Nippon Paper Kushiro Works container data-centre site (Tottori-minami, Kushiro)",
+      "name": "Getworks Kushiro container data centre at Nippon Paper Kushiro Works — planned container data centre",
+      "country": "Japan",
+      "country_iso_a2": "JP",
+      "status": {
+        "value": "announced",
+        "as_of": "2026-11-05",
+        "source_id": "jp-operators-p6-npg-kushiro-dc-release-20261105",
+        "summary": "Getworks, Tokyo Gas Engineering Solutions (TGES) and Nippon Paper announced on 5 November 2026 that they have signed land-use and power-supply contracts to carry out a container data-centre business at Nippon Paper's Kushiro works (日本製紙釧路事業所) in Kushiro, Hokkaido. Getworks will plan, design, build and operate the container data centre; TGES coordinates the business and builds the foundations, water supply and electrical works; and Nippon Paper provides the works land and power from its existing receiving and generating plant. The companies plan 6 MW in operation within FY2026 and about 40 MW in September 2027, with potential for up to 150 MW. These are targets: no permit, physical work or operation is reported, so the project is recorded as announced on the release date."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.357697,
+            43.009014
+          ]
+        },
+        "source_id": "jp-operators-p6-gsi-address-kushiro-tottori-minami-2-1-47",
+        "scope": "campus_locator",
+        "scope_class": "official_block_address_point_for_identified_host_property",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "retain_gsi_block_level_address_feature_coordinates",
+        "precision": "GSI block-level address feature for 鳥取南二丁目１番, the block of Nippon Paper's own published address for its Kushiro works (北海道釧路市鳥取南2-1-47). The point falls in the northern part of the roughly 0.9 km works property that GSI's standard map annotates 日本製紙工場. It marks the host property named in the release; it is not the container data centre, a plot, a building, an entrance or a surveyed boundary.",
+        "identity_review": "The 5 November 2026 joint release names the site as 日本製紙釧路事業所 and says Nippon Paper provides the works land (釧路事業所用地) and power from the works' plant. Nippon Paper's own office list and Kushiro access page give 技術本部・エネルギー事業本部 釧路事業所 at 〒084-0905 北海道釧路市鳥取南2-1-47. GSI's address search returns exactly one feature for that address, 北海道釧路市鳥取南二丁目１番, at 144.357697, 43.009014; GSI's reverse geocoder returns Kushiro (01206), 鳥取南二丁目, for the point. On GSI's standard map tiles the point lies inside the industrial property annotated 日本製紙工場, next to a factory symbol. The 2026 MOJ/AIGID public-coordinate registry map for Kushiro has no 鳥取 lots, so no parcel outline is used. The Google map embed and short link on Nippon Paper's access page were not opened or used. Details are in the geometry-facts file.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "GSI publishes no positional accuracy for block-level address features, and the container data centre's position within the roughly 0.9 km Kushiro works is not published, so it may lie up to about 0.8 km from the point; the point marks the host property only."
+      },
+      "context_source_ids": [
+        "jp-operators-p6-npg-news-data-ja",
+        "jp-operators-p6-npg-office-list",
+        "jp-operators-p6-npg-kushiro-access-page",
+        "jp-operators-p6-gsi-revgeo-kushiro-point",
+        "jp-operators-p6-gsi-std-tile-kushiro-point",
+        "jp-operators-p6-gsi-std-tile-kushiro-annotation",
+        "jp-operators-p6-impress-kushiro-20261106"
+      ],
+      "roles": [
+        {
+          "party": "Getworks Co., Ltd.",
+          "role": "operator",
+          "relationship_scope": "intended",
+          "source_id": "jp-operators-p6-npg-kushiro-dc-release-20261105"
+        }
+      ],
+      "distinctness_review": "Screened on 7 November 2026 (local date) against the names, aliases, operators, addresses and coordinates in all five tables of verified_construction_core/2026-11-06-research-hundrednineteenth (933 sites, 1,001 projects, 5,159 evidence rows, source-records.json and identity-mapping.json), the changes.json and holds.json of every other queue fragment, claims.tsv and every sources/*-holds.json file, for 釧路/Kushiro, 日本製紙/Nippon Paper, 鳥取南, Getworks/ゲットワークス and Tokyo Gas Engineering/東京ガスエンジニアリング/TGES. No Atlas record, pending fragment, claim or hold names a Kushiro or Nippon Paper data centre. Getworks appears in the Atlas only as a partner of the Kobe former conveyor-tunnel data centre (1,219 km away), and Getworks and TGES appear in earlier holds only for other sites (Miyagi, Yuzawa, Izumi and others) or for their 14 September 2026 alliance without a site. There is no Atlas, queue or hold record within 2 km; the nearest Atlas sites are AI Tech Tomakomai Kashiwabara (214 km), SoftBank Hokkaido Tomakomai (228 km) and Sakura Ishikari (249 km). One new site with one project.",
+      "successor_review": "Nippon Paper's newsroom data file captured on 6 November 2026 (npg-news-data-ja.json) lists the 5 November release as the newest Kushiro item, last modified on 5 November 2026, and クラウド Watch's report of 6 November adds nothing later. No permit, construction start, delay or cancellation has been reported. The FY2026 (6 MW) and September 2027 (about 40 MW) operation targets and the 150 MW potential are plans and are not used as status.",
+      "scoped_project_details": {
+        "aliases": [
+          "日本製紙釧路事業所 コンテナ型データセンター",
+          "Getworks Kushiro container data centre",
+          "釧路市コンテナ型データセンター"
+        ],
+        "host_property": "日本製紙釧路事業所 (Nippon Paper Kushiro works; paper production ended 2021, power generation continues)",
+        "host_address": "〒084-0905 北海道釧路市鳥取南2-1-47 (Nippon Paper)",
+        "contracts": "land-use and power-supply contracts (signing day not stated; announced 2026-11-05)",
+        "planned_capacity_mw_fy2026_target": 6,
+        "planned_capacity_mw_september_2027_target": 40,
+        "site_potential_mw": 150,
+        "capacity_scope": "Announced targets and potential; not built, energized or in service.",
+        "data_centre_type": "container (modular) data centre",
+        "partners": {
+          "Getworks": "data-centre operator: planning, design, construction and operation",
+          "Tokyo Gas Engineering Solutions": "business coordination; EPC for foundations, water supply and electrical works",
+          "Nippon Paper": "land provision and power supply from existing plant"
+        },
+        "alliance_context": "First project under the Getworks-TGES alliance of 14 September 2026",
+        "business_study_start": "2026-05",
+        "data_centre_position_within_works_published": false
+      }
+    },
+    {
+      "project_stable_key": "curated:mc-digital-realty-kix-campus-saito:kix11-existing-operations",
+      "physical_site_stable_key": "curated:mc-digital-realty-kix-campus-saito",
+      "existing_site_id": "vcc-site-f977fefeeef22bdcee98",
+      "site_name": "MC Digital Realty KIX Campus (Saito, Osaka)",
+      "country": "Japan",
+      "country_iso_a2": "JP",
+      "name": "MC Digital Realty KIX11 (Digital Osaka 2) — existing operations",
+      "site_identity_review": "The Atlas site 'MC Digital Realty KIX Campus (Saito, Osaka)' (vcc-site-f977fefeeef22bdcee98) is MC Digital Realty's KIX campus in Ibaraki and Minoh, located by Digital Realty's published KIX10 coordinate, and already holds KIX10, KIX13 and KIX15. MCDR's 30 October 2026 release lists the campus as KIX10, KIX11, KIX12, KIX13 and KIX15 and says its four data-centre buildings (KIX10-KIX13) total 74 MW, with KIX15 still to open. MCDR's campus page describes KIX11 as its second Osaka data centre, network-connected to the adjacent data centres (23,155 m2, 25.0 MW, in Minoh), and Digital Realty's KIX11 page gives the address 6-1 Saito Aokita, Mino-shi, Osaka. KIX11 is therefore an existing building of the same campus and is added as its own project on this site. GSI's address search returns the block 大阪府箕面市彩都粟生北六丁目１番 for KIX11's address at 135.514801, 34.862087, 124.5 m west-north-west of the campus point (pyproj WGS84 geodesic). Digital Realty's KIX11 page carries a coordinate 350 m west of the campus point that an earlier pass found on undeveloped ground; it is not used.",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-10-30",
+        "source_id": "jp-operators-p6-mcdr-optage-release-20261030",
+        "summary": "MC Digital Realty's release of 30 October 2026, issued with OPTAGE, describes in the present tense the KIX campus that MCDR operates in the Saito area of Osaka (運営するKIXキャンパス). It says the campus has a total IT power capacity of 74 MW and that its four data-centre buildings all support high-power, high-density IT environments, and it names the campus members as KIX10, KIX11, KIX12, KIX13 and KIX15, with KIX15 (24 MW) scheduled to open in Q4 2028. KIX11 (Digital Osaka 2) is therefore one of the four existing buildings of the operated campus on 30 October 2026. MCDR's campus page describes KIX11 as its second Osaka data centre in Minoh, network-connected to the adjacent data centres, with 23,155 m2 of floor area and 25.0 MW of IT power capacity; the four buildings' stated capacities (7.6, 25.0, 20 and 21 MW) total 73.6 MW, matching the 74 MW in the release. 30 October 2026 is the release date, not an opening date; the capacities are design figures, not load in service."
+      },
+      "locator": {
+        "reuse_from_project_id": "0ee1555f-978b-581f-bf7f-13ad372304b2",
+        "geometry_evidence_id": "bc97b241-31f5-53c1-856b-8542478de23f",
+        "geometry_identity_evidence_ids": [],
+        "scope": "campus_locator",
+        "identity_review": "Reuses the existing KIX campus point exactly (34.8614235, 135.5158993; Digital Realty's published KIX10 coordinate, evidence bc97b241-31f5-53c1-856b-8542478de23f, with no geometry-identity evidence rows), as the site's KIX15, KIX10 and KIX13 projects do. It marks the parent KIX campus, not the KIX11 building. GSI's address search returns the block 大阪府箕面市彩都粟生北六丁目１番 for KIX11's address at 135.514801, 34.862087, 124.5 m west-north-west of the campus point (pyproj WGS84 geodesic). Digital Realty's KIX11 page carries a coordinate 350 m west of the campus point that an earlier pass found on undeveloped ground; it is not used. The point is not a building outline, boundary or entrance."
+      },
+      "context_source_ids": [
+        "jp-operators-p6-mcdr-kix-campus-page",
+        "jp-operators-p6-dlr-kix11-page",
+        "jp-operators-p6-gsi-address-saito-aokita-6-1",
+        "jp-operators-p6-impress-mcdr-optage-20261102"
+      ],
+      "roles": [
+        {
+          "party": "MC Digital Realty",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "jp-operators-p6-mcdr-optage-release-20261030"
+        }
+      ],
+      "distinctness_review": "Screened on 7 November 2026 (local date) against the names, aliases, operators, addresses and coordinates in all five tables of verified_construction_core/2026-11-06-research-hundrednineteenth (933 sites, 1,001 projects, 5,159 evidence rows, source-records.json and identity-mapping.json), the changes.json and holds.json of every other queue fragment, claims.tsv and every sources/*-holds.json file, for KIX10-KIX15, Digital Osaka 1-4, MC Digital Realty/MCDR, 彩都粟生北/Saito Aokita, 彩都やまぶき/Saito Yamabuki, 箕面/Mino-shi and 茨木. The only Atlas records within 2 km are the existing KIX campus site (curated:mc-digital-realty-kix-campus-saito, 0 m) and its three projects, KIX10 existing operations, KIX13 existing operations and KIX15 under construction, all at the shared campus point. No Atlas project, evidence row, source record or identity mapping names KIX11 or Digital Osaka 2 as its own project, and no other pending fragment or claim proposes it. The candidate reopens the jp-chubu-kansai-p5 hold 'MC Digital Realty KIX11 (Digital Osaka 2) and KIX12 (Digital Osaka 3) existing operations' (published in the hundred-first holds; earlier the thirty-fourth review's KIX10-KIX13 hold), whose reopen condition allows a newer explicit operator statement. Held, unpublished projects nearby are different campuses: the ESR/Colt DCS Minoh campus (jp-kansai-p1 claim point 34.8533, 135.5170; 907 m from the campus point), KEP/CyrusOne OSK2 in 粟生間谷東二丁目, Minoh (about 2.1 km), and NTT GDC OSK12 and Vantage KIX1 in Ibaraki (no published point). The next Atlas sites are Equinix OS3 (18.8 km) and EdgeConneX Kyotanabe (23.6 km).",
+      "successor_review": "MC Digital Realty's sitemap captured on 6 November 2026 (mcdr-sitemap.xml.gz, site-wide lastmod 2026-11-01) lists press_release_optage among the newest pages; the only later item, a 1 November 2026 notice of a change of chief operating officer (mcdr-5475930.html), reports no facility change, and クラウド Watch's data-centre news index captured on 6 November 2026 shows no later KIX item; neither reports a closure, sale, pause or change of status at the KIX campus. 30 October 2026 is kept: 8 days before a 7 November 2026 update, inside the 85-day admission floor (2026-08-14). The site's KIX10 and KIX13 records keep their own earlier observations and are not touched in this update.",
+      "scoped_project_details": {
+        "aliases": [
+          "KIX11",
+          "Digital Osaka 2",
+          "KIX11データセンター"
+        ],
+        "address": "6-1, Saito Aokita, Mino-shi, Osaka (Digital Realty); 所在地 大阪府箕面市 (MCDR)",
+        "gsi_block_point": [
+          135.514801,
+          34.862087
+        ],
+        "gsi_block_point_distance_from_campus_point_m": 124.5,
+        "total_floor_area_square_metres": 23155,
+        "it_power_capacity_mw_mcdr": 25.0,
+        "it_power_capacity_scope": "MCDR campus page; design capacity, not load in service (Digital Realty's page has given 28 MW)",
+        "tier": "Tier III equivalent (MCDR)",
+        "average_rack_power_kw": 9,
+        "campus_order": "second Osaka data centre (MCDR)",
+        "opening_date_published": false,
+        "campus_total_it_mw_four_existing_buildings": 74,
+        "exclusive_building_footprint_verified": false
+      }
+    },
+    {
+      "project_stable_key": "curated:mc-digital-realty-kix-campus-saito:kix12-existing-operations",
+      "physical_site_stable_key": "curated:mc-digital-realty-kix-campus-saito",
+      "existing_site_id": "vcc-site-f977fefeeef22bdcee98",
+      "site_name": "MC Digital Realty KIX Campus (Saito, Osaka)",
+      "country": "Japan",
+      "country_iso_a2": "JP",
+      "name": "MC Digital Realty KIX12 (Digital Osaka 3) — existing operations",
+      "site_identity_review": "The Atlas site 'MC Digital Realty KIX Campus (Saito, Osaka)' (vcc-site-f977fefeeef22bdcee98) is MC Digital Realty's KIX campus in Ibaraki and Minoh, located by Digital Realty's published KIX10 coordinate, and already holds KIX10, KIX13 and KIX15. MCDR's 30 October 2026 release lists the campus as KIX10, KIX11, KIX12, KIX13 and KIX15 and says its four data-centre buildings (KIX10-KIX13) total 74 MW, with KIX15 still to open. MCDR's campus page describes KIX12 as its third Osaka data centre, opened in August 2021 (18,334 m2, 20 MW, about 2,300 racks, in Minoh), and Digital Realty's KIX12 page gives the address 6-2-1 Saito Aokita, Mino-shi, Osaka. KIX12 is therefore an existing building of the same campus and is added as its own project on this site. GSI's address search returns the block 大阪府箕面市彩都粟生北六丁目２番 for KIX12's address at 135.513733, 34.861614, 199.2 m west of the campus point, and Digital Realty's KIX12 page carries a coordinate 248 m west-north-west of it (pyproj WGS84 geodesic).",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-10-30",
+        "source_id": "jp-operators-p6-mcdr-optage-release-20261030",
+        "summary": "MC Digital Realty's release of 30 October 2026, issued with OPTAGE, describes in the present tense the KIX campus that MCDR operates in the Saito area of Osaka (運営するKIXキャンパス). It says the campus has a total IT power capacity of 74 MW and that its four data-centre buildings all support high-power, high-density IT environments, and it names the campus members as KIX10, KIX11, KIX12, KIX13 and KIX15, with KIX15 (24 MW) scheduled to open in Q4 2028. KIX12 (Digital Osaka 3) is therefore one of the four existing buildings of the operated campus on 30 October 2026. MCDR's campus page describes KIX12 as its third Osaka data centre in Minoh, opened in August 2021, with 18,334 m2 of floor area, 20 MW of server power capacity and about 2,300 racks. 30 October 2026 is the release date, not an opening date; the capacities are design figures, not load in service."
+      },
+      "locator": {
+        "reuse_from_project_id": "0ee1555f-978b-581f-bf7f-13ad372304b2",
+        "geometry_evidence_id": "bc97b241-31f5-53c1-856b-8542478de23f",
+        "geometry_identity_evidence_ids": [],
+        "scope": "campus_locator",
+        "identity_review": "Reuses the existing KIX campus point exactly (34.8614235, 135.5158993; Digital Realty's published KIX10 coordinate, evidence bc97b241-31f5-53c1-856b-8542478de23f, with no geometry-identity evidence rows), as the site's KIX15, KIX10 and KIX13 projects do. It marks the parent KIX campus, not the KIX12 building. GSI's address search returns the block 大阪府箕面市彩都粟生北六丁目２番 for KIX12's address at 135.513733, 34.861614, 199.2 m west of the campus point, and Digital Realty's KIX12 page carries a coordinate 248 m west-north-west of it (pyproj WGS84 geodesic). The point is not a building outline, boundary or entrance."
+      },
+      "context_source_ids": [
+        "jp-operators-p6-mcdr-kix-campus-page",
+        "jp-operators-p6-dlr-kix12-page",
+        "jp-operators-p6-gsi-address-saito-aokita-6-2-1",
+        "jp-operators-p6-impress-mcdr-optage-20261102"
+      ],
+      "roles": [
+        {
+          "party": "MC Digital Realty",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "jp-operators-p6-mcdr-optage-release-20261030"
+        }
+      ],
+      "distinctness_review": "Screened on 7 November 2026 (local date) against the names, aliases, operators, addresses and coordinates in all five tables of verified_construction_core/2026-11-06-research-hundrednineteenth (933 sites, 1,001 projects, 5,159 evidence rows, source-records.json and identity-mapping.json), the changes.json and holds.json of every other queue fragment, claims.tsv and every sources/*-holds.json file, for KIX10-KIX15, Digital Osaka 1-4, MC Digital Realty/MCDR, 彩都粟生北/Saito Aokita, 彩都やまぶき/Saito Yamabuki, 箕面/Mino-shi and 茨木. The only Atlas records within 2 km are the existing KIX campus site (curated:mc-digital-realty-kix-campus-saito, 0 m) and its three projects, KIX10 existing operations, KIX13 existing operations and KIX15 under construction, all at the shared campus point. No Atlas project, evidence row, source record or identity mapping names KIX12 or Digital Osaka 3 as its own project, and no other pending fragment or claim proposes it. The candidate reopens the jp-chubu-kansai-p5 hold 'MC Digital Realty KIX11 (Digital Osaka 2) and KIX12 (Digital Osaka 3) existing operations' (published in the hundred-first holds; earlier the thirty-fourth review's KIX10-KIX13 hold), whose reopen condition allows a newer explicit operator statement. Held, unpublished projects nearby are different campuses: the ESR/Colt DCS Minoh campus (jp-kansai-p1 claim point 34.8533, 135.5170; 907 m from the campus point), KEP/CyrusOne OSK2 in 粟生間谷東二丁目, Minoh (about 2.1 km), and NTT GDC OSK12 and Vantage KIX1 in Ibaraki (no published point). The next Atlas sites are Equinix OS3 (18.8 km) and EdgeConneX Kyotanabe (23.6 km).",
+      "successor_review": "MC Digital Realty's sitemap captured on 6 November 2026 (mcdr-sitemap.xml.gz, site-wide lastmod 2026-11-01) lists press_release_optage among the newest pages; the only later item, a 1 November 2026 notice of a change of chief operating officer (mcdr-5475930.html), reports no facility change, and クラウド Watch's data-centre news index captured on 6 November 2026 shows no later KIX item; neither reports a closure, sale, pause or change of status at the KIX campus. 30 October 2026 is kept: 8 days before a 7 November 2026 update, inside the 85-day admission floor (2026-08-14). The site's KIX10 and KIX13 records keep their own earlier observations and are not touched in this update.",
+      "scoped_project_details": {
+        "aliases": [
+          "KIX12",
+          "Digital Osaka 3",
+          "KIX12データセンター"
+        ],
+        "address": "6-2-1, Saito Aokita, Mino-shi, Osaka (Digital Realty); 所在地 大阪府箕面市 (MCDR)",
+        "gsi_block_point": [
+          135.513733,
+          34.861614
+        ],
+        "gsi_block_point_distance_from_campus_point_m": 199.2,
+        "operator_page_coordinate_dlr": [
+          135.513493,
+          34.862457
+        ],
+        "operator_page_coordinate_distance_from_campus_point_m": 248.1,
+        "total_floor_area_square_metres": 18334,
+        "server_power_capacity_mw_mcdr": 20,
+        "racks_approx": 2300,
+        "average_rack_power_kw": 9,
+        "operator_stated_opening": "2021-08",
+        "campus_order": "third Osaka data centre (MCDR)",
+        "campus_total_it_mw_four_existing_buildings": 74,
+        "exclusive_building_footprint_verified": false
+      }
+    },
+    {
+      "project_stable_key": "curated:equinix-frankfurt-laerchenstrasse-campus:fr6-existing-operations",
+      "physical_site_stable_key": "curated:equinix-frankfurt-laerchenstrasse-campus",
+      "site_name": "Equinix Frankfurt Lärchenstrasse Campus (FR4, FR6, FR8), Lärchenstraße 110, Frankfurt-Griesheim",
+      "name": "Equinix FR6 — existing IBX colocation data-centre operations (Lärchenstrasse campus, Frankfurt-Griesheim)",
+      "country": "Germany",
+      "country_iso_a2": "DE",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-10-20",
+        "source_id": "ops-frankfurt-de-p6-eqx-community-epic-20261020",
+        "summary": "Equinix's news post of 20 October 2026 on its own community site introduces EPIC as liquid-cooling environments 'operating inside active Equinix IBX® data centers' and lists 'Frankfurt (FR6)' among the locations where EPIC environments are 'currently available'. Equinix's German release of 22 October, datelined Frankfurt, adds that EPIC 'ist ab sofort in Frankfurt ... verfügbar' and that every EPIC location is inside a running Equinix data centre. This records FR6 as an active, operating Equinix IBX colocation data centre on 20 October 2026, the post's date. It is not an opening date (Equinix opened FR6 in June 2017). EPIC is a customer test environment inside FR6 and is not the project; no capacity or IT load is recorded."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            8.5872105,
+            50.0976805
+          ]
+        },
+        "source_id": "ops-frankfurt-de-p6-frankfurt-geoportal-laerchenstrasse-110",
+        "identity_source_ids": [
+          "ops-frankfurt-de-p6-ia-eqx-fr6-page-20261003",
+          "ops-frankfurt-de-p6-ia-eqx-fr4-page-20261015",
+          "ops-frankfurt-de-p6-ia-eqx-fr8-page-20261003"
+        ],
+        "scope": "campus_locator",
+        "scope_class": "official_building_address_point",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "official_municipal_address_point_crs_transform",
+        "precision": "Official City of Frankfurt building-address point for Lärchenstraße 110 (address object DEHEFALK30007b3M), the address Equinix publishes for FR6 and also for FR4 on its Lärchenstrasse campus. It locates the campus at that registered address, not FR6's building footprint, a parcel or the campus boundary; the campus also includes FR8 at Lärchenstraße 141, whose address point is 117 m to the north-west.",
+        "identity_review": "Equinix's 20 October 2026 post names 'Frankfurt (FR6)' as an active IBX. Equinix's FR6 page (Internet Archive raw copy of 3 October 2026; www.equinix.com refuses robots.txt) says 'Frankfurt FR6 is one of three IBX facilities in our Lärchenstrasse campus' and gives the address Laerchenstrasse 110, 65933 Frankfurt, with 6,600 m2 of colocation space in a 4-storey purpose-built building. The FR4 page (copy of 15 October 2026) gives the same address, Larchenstrasse 110, and the FR8 page (copy of 3 October 2026) places FR8 'in the Lärchenstrasse Campus' at Larchenstrasse 141, 65933 Frankfurt. The city geoportal returns exactly one building-address feature for 'Lärchenstraße 110'; 139, 141 and 141a are separate address objects. The geoportal configuration declares EPSG:25832 for this address index, and the point was transformed with pyproj 3.7.1 (round trip under 1 mm). The coordinate in the map widget on Equinix's page was not used, nor any commercial map, geocoder, city centre or head-office address. Equinix's 2013 and 2017 releases called its Frankfurt campus 'Campus Kleyer' after the Kleyer 90 carrier hotel (Kleyerstraße 90, about 3 km east); its current pages place FR4 and FR6 at Lärchenstraße 110 in Griesheim.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The address register publishes no positional accuracy. The point is a single address point shared by FR4 and FR6; Equinix does not publish where the FR6 building stands on the campus, which reaches at least to Lärchenstraße 141 (FR8), 117 m away."
+      },
+      "context_source_ids": [
+        "ops-frankfurt-de-p6-eqx-epic-release-de-20261022",
+        "ops-frankfurt-de-p6-ia-eqx-fr6-page-20261003",
+        "ops-frankfurt-de-p6-ia-eqx-fr4-page-20261015",
+        "ops-frankfurt-de-p6-ia-eqx-fr8-page-20261003",
+        "ops-frankfurt-de-p6-eqx-fr6-opening-20170629",
+        "ops-frankfurt-de-p6-eqx-kleyer90-acquisition-20131009",
+        "ops-frankfurt-de-p6-eqx-community-shred-emea-20260819",
+        "ops-frankfurt-de-p6-eqx-community-sitemap-topics-20261106",
+        "ops-frankfurt-de-p6-eqx-q3-2026-results-20261028",
+        "ops-frankfurt-de-p6-frankfurt-geoportal-laerchenstrasse-street",
+        "ops-frankfurt-de-p6-frankfurt-geoportal-config"
+      ],
+      "roles": [
+        {
+          "party": "Equinix",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "ops-frankfurt-de-p6-eqx-community-epic-20261020"
+        }
+      ],
+      "distinctness_review": "Screened on 7 November 2026 against verified_construction_core/2026-11-07-research-hundredtwentieth (the current dataset: 948 sites, 1,017 projects, 5,269 evidence rows): sites.csv, projects.csv, evidence.csv, source-records.json and identity-mapping.json, every pending queue fragment's changes and holds, claims.tsv and all sources/*-holds.json, by keyword and by distance (2 km). Keywords: Equinix, FR6, FR4, FR8, FR15, Lärchenstraße, Laerchenstrasse, Larchenstrasse, Griesheim, Kleyer, EPIC and DEHEFALK30007b3M. Two Atlas sites lie within 2 km: NorthC Frankfurt1 (FRA01), 0.49 km, and CyrusOne FRA7 Frankfurt Westside Campus, 0.67 km; both are other operators at other addresses. The next nearest are Colt Frankfurt 3 Sossenheim (2.99 km) and the Telehouse Frankfurt campus at Kleyerstraße 75-87 (2.99 km). No Equinix site in Frankfurt is in the Atlas; the only Equinix site in Germany is MU4 in Aschheim. No pending fragment adds an Equinix Frankfurt record. FR6 appears only in holds. (1) The hundred-and-twentieth update's q3-us-reits-p6 hold, which deferred FR6 by the three-change limit; its reopen condition, an Equinix page tying FR6 to an address plus an official locator, is met here. (2) The fifty-third update's de-hesse-p2 lead on 'Equinix Campus Kleyer (FR2/FR4/FR6 around Kleyerstraße 90)'. It placed FR6 near Kleyerstraße 90 because of the 2013 campus name, but Equinix's current FR6 page puts FR6 at Lärchenstraße 110 in Griesheim, about 3 km west of Kleyerstraße 90 and of the Telehouse campus. The thirty-ninth update's de-hesse-p1 hold on FR15 concerns a new building on the FR8 property of this campus at Lärchenstraße 139a, and the RP Darmstadt FR8 permit coordinate it quotes lies 121 m from the selected point. If that hold reopens, FR15 should become a project on this site reusing this locator, not a new site; de-hesse-p1's claim lines for FR15 used other provisional keys and are not in the dataset.",
+      "successor_review": "The Equinix community sitemap captured on 6 November 2026 lists no topic after 20 October on FR6, the Lärchenstrasse campus or a Frankfurt IBX change. Equinix's third-quarter results release of 28 October 2026 names no change at FR6, and the German EPIC release of 22 October repeats that EPIC is live in Frankfurt. www.equinix.com and blog.equinix.com refuse robots.txt (HTTP 403) and were not read live. No closure, pause or later status was found. The 20 October 2026 observation stays within the 85-day window until about 13 January 2027.",
+      "scoped_project_details": {
+        "aliases": [
+          "Equinix FR6",
+          "FR6 IBX",
+          "Frankfurt FR6",
+          "Equinix Lärchenstrasse campus",
+          "Campus Kleyer (2013-2017 Equinix name)"
+        ],
+        "address": "Laerchenstrasse 110, 65933 Frankfurt am Main (Griesheim), Germany (Equinix FR6 page); city address object DEHEFALK30007b3M",
+        "building": "FR6: 6,600 m2 (71,042 ft2) colocation space; 4-storey, purpose-built as a data center, steel frame (Equinix FR6 page, archived 3 October 2026). First phase of 1,325 cabinets and more than 72,000 gross ft2 announced at opening on 29 June 2017.",
+        "campus_context": "Equinix's Lärchenstrasse campus holds three IBXs: FR4 and FR6 at Lärchenstraße 110 and FR8 at Lärchenstraße 141; FR15 on the FR8 property is held separately (de-hesse-p1).",
+        "hosted_programme_context": "Equinix EPIC liquid-cooling environment live inside FR6 (20-22 October 2026); not the project",
+        "opening_date": null,
+        "capacity": null,
+        "physical_construction_verified": false,
+        "reopens_holds": [
+          "sources/research-countries-2026-11-07-hundredtwentieth-holds.json (queue q3-us-reits-p6): 'Equinix FR6, Frankfurt (EPIC live inside an active IBX, Equinix post of 20 October 2026)'",
+          "sources/research-countries-2026-10-23-fiftythird-holds.json (queue de-hesse-p2): 'Equinix Campus Kleyer (FR2/FR4/FR6 around Kleyerstraße 90, Frankfurt-Gallus) and other Equinix Frankfurt IBX sites' (FR6 part only)"
+        ]
+      }
+    },
+    {
+      "project_stable_key": "curated:akquinet-hamburg-victoria-park:existing-operations",
+      "physical_site_stable_key": "curated:akquinet-hamburg-victoria-park",
+      "site_name": "akquinet Rechenzentrum Victoria Park, Victoriaring 14, Hamburg-Rahlstedt",
+      "name": "akquinet Rechenzentrum Victoria Park — existing colocation data-centre operations (Hamburg-Rahlstedt)",
+      "country": "Germany",
+      "country_iso_a2": "DE",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-11-02",
+        "source_id": "ops-frankfurt-de-p6-wfw-westend-hamburg-data-centres-20261102",
+        "summary": "Watson Farley & Williams, the buyer's legal adviser, announced on 2 November 2026 that Westend Real Assets acquired from DBAG 'the Leuchtturm and Rahlstedt data centres located in Hamburg-Alsterdorf and Hamburg-Rahlstedt respectively', that 'Both assets are operated by ... data centre operator aquinet' [akquinet], and that they are 'two fully operational data centres'. DBAG's release of 5 November confirms that the sale of Green Datahub's data-centre portfolio has closed and that 'akquinet remains as the holistic operator of the data centres after the exit'. This records akquinet's Rahlstedt data centre, Victoria Park, as fully operational on 2 November 2026, the release date. It is not an opening date; akquinet gives August 2024 for the start of operation and May 2025 for the official opening. No IT load is recorded."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            10.1910142,
+            53.6018571
+          ]
+        },
+        "source_id": "ops-frankfurt-de-p6-hh-alkis-neu-rahlstedt-permit-parcels",
+        "identity_source_ids": [
+          "ops-frankfurt-de-p6-hh-wandsbek-permit-rechenzentrum-20211229",
+          "ops-frankfurt-de-p6-hh-transparenz-errichtung-rechenzentrum",
+          "ops-frankfurt-de-p6-akquinet-victoria-park-page"
+        ],
+        "scope": "project_locator",
+        "scope_class": "official_permit_named_cadastral_parcel_union_centroid",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "hamburg_alkis_vereinfacht_wfs_union_centroid_of_six_permit_named_neu_rahlstedt_parcels_epsg25832_pyproj_to_wgs84",
+        "precision": "Area centroid of the union of the six Gemarkung Neu-Rahlstedt parcels named in the Bezirksamt Wandsbek data-centre permit W/WBZ/04845/2021 (2474 and 2475 at Victoriaring 14 and four slivers, 7,115 m2, about 112 by 72 m). It lies inside the ALKIS building at Victoriaring 14 (2,243 m2 footprint, 4.9 m from its centroid) and its 3,088 m2 basement. It locates the data-centre plot and building, not a surveyed position; akquinet's 10,750 m2 plot probably also includes parcel 2476 to the south.",
+        "identity_review": "The Bezirksamt Wandsbek building permit of 29 December 2021 (application received 25 March 2021; published on the Transparenzportal on 12 January 2022, applicant and address redacted) grants the 'Errichtung eines Rechenzentrums' on Flurstücke 2475, 2403, 2421, 2474, 2477 and 2479, Gemarkung Neu-Rahlstedt (Bebauungsplan Rahlstedt 131). akquinet's Victoria Park page describes its fourth data centre in Hamburg-Rahlstedt, on a 10,750 m2 plot 'im Victoria Park in Hamburg-Rahlstedt' bought in October 2020, for which the building permit application was filed in March 2021 ('03/2021 Baugenehmigung eingereicht'). This matches the permit's receipt date, and akquinet names no other Rahlstedt data centre. Hamburg ALKIS returns exactly the six permit parcels (location text Victoriaring 14 or west or east of it). Together with the adjoining parcel 2476 (3,612 m2, south of Victoriaring 14) and parcel 2478 (23 m2) they total 10,748 m2, matching akquinet's plot area. ALKIS places a 2,243 m2 building at Victoriaring 14, with a 3,088 m2 underground part, wholly inside the permit parcels; this is consistent with akquinet's 12 underground system rooms. The 2 November 2026 release names the 'Rahlstedt' data centre operated by akquinet. No commercial map, geocoder, district centre or head-office address (Werner-Otto-Straße 6) is used.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "ALKIS publishes no positional accuracy for the parcel boundaries. The point is a derived interior point of a 7,115 m2 parcel group whose vertices lie up to 64 m away, and the operator's plot may extend about 17 m further south in centroid terms."
+      },
+      "context_source_ids": [
+        "ops-frankfurt-de-p6-dbag-q3-2026-release-20261105",
+        "ops-frankfurt-de-p6-akquinet-victoria-park-page",
+        "ops-frankfurt-de-p6-akquinet-victoria-park-flyer",
+        "ops-frankfurt-de-p6-akquinet-rechenzentren-page",
+        "ops-frankfurt-de-p6-hh-wandsbek-permit-rechenzentrum-20211229",
+        "ops-frankfurt-de-p6-hh-transparenz-errichtung-rechenzentrum",
+        "ops-frankfurt-de-p6-hh-alkis-victoriaring-bbox-parcels",
+        "ops-frankfurt-de-p6-hh-alkis-gebaeude-victoriaring-14"
+      ],
+      "roles": [
+        {
+          "party": "akquinet",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "ops-frankfurt-de-p6-dbag-q3-2026-release-20261105"
+        },
+        {
+          "party": "HAL Digitale Infrastruktur Deutschland 1 (special AIF advised by Westend Real Assets)",
+          "role": "owner",
+          "relationship_scope": "current",
+          "source_id": "ops-frankfurt-de-p6-wfw-westend-hamburg-data-centres-20261102"
+        }
+      ],
+      "distinctness_review": "Screened on 7 November 2026 against verified_construction_core/2026-11-07-research-hundredtwentieth (the current dataset: 948 sites, 1,017 projects, 5,269 evidence rows): sites.csv, projects.csv, evidence.csv, source-records.json and identity-mapping.json, every pending queue fragment's changes and holds, claims.tsv and all sources/*-holds.json, by keyword and by distance (2 km). Keywords: akquinet, aquinet, Victoria Park, Victoriaring, Rahlstedt, Neu-Rahlstedt, Green Datahub, Westend Real Assets, Leuchtturm and Alsterdorf. None occurs in any dataset file, pending fragment, claim of another lane or hold. No Atlas site, project, pending addition, claim or hold coordinate lies within 2 km; the nearest Atlas sites are Portus IPHH4 Hamburg at Wendenstraße 285 (11.45 km) and the dataR Rellingen campus (21.31 km), both other operators. The second data centre in the same sale, akquinet's Leuchtturm data centre in Hamburg-Alsterdorf, is a different facility and is held in this fragment for want of an official locator.",
+      "successor_review": "The DBAG release of 5 November 2026, three days after the status source, confirms closing and akquinet's continued operation. akquinet's data-centre pages captured 6 November 2026 still offer Victoria Park space ('Sofort bezugsfertig'). No closure, pause or later status was found. The 2 November 2026 observation stays within the 85-day window until about 26 January 2027.",
+      "scoped_project_details": {
+        "aliases": [
+          "AKQUINET Rechenzentrum Victoria Park",
+          "akquinet Rahlstedt data centre",
+          "Rahlstedt data centre (Green Datahub portfolio)",
+          "RZ Victoria Park Hamburg"
+        ],
+        "address": "Victoriaring 14, Hamburg-Rahlstedt (ALKIS location text of parcels 2474 and 2475, Gemarkung Neu-Rahlstedt); the operator publishes no street address",
+        "building": "2,350 m2 of IT space in 12 underground system rooms for up to 724 racks; TÜV NORD TSI.STANDARD V4.6 Level 4 and EN 50600 VK 3; target annual PUE below 1.25 (akquinet page and flyer)",
+        "regulatory_context": "Bezirksamt Wandsbek building permit GZ W/WBZ/04845/2021 of 29 December 2021 (§ 62 HBauO), Bebauungsplan Rahlstedt 131",
+        "transaction_context": "Sold by DBAG (Green Datahub portfolio) to a fund advised by Westend Real Assets (HAL Digitale Infrastruktur Deutschland 1), announced 2 November 2026 and closed by 5 November 2026; akquinet remains the operator",
+        "operation_start": "08/2024 (akquinet); official opening 05/2025",
+        "opening_date": null,
+        "capacity": null,
+        "physical_construction_verified": false
+      }
+    },
+    {
+      "project_stable_key": "curated:equinix-mu4-munich-data-center:mu4-existing-operations",
+      "physical_site_stable_key": "curated:equinix-mu4-munich-data-center",
+      "existing_site_id": "vcc-site-3867ebd8648d7b1a2b65",
+      "site_name": "Equinix MU4 Munich Data Center",
+      "name": "Equinix MU4 — existing IBX colocation data-centre operations (Aschheim, Munich)",
+      "country": "Germany",
+      "country_iso_a2": "DE",
+      "site_identity_review": "The published site vcc-site-3867ebd8648d7b1a2b65 'Equinix MU4 Munich Data Center' is Equinix's MU4 campus. Its only project is MU4 Phase 3 (MU4.3, 'shell' as of 16 July 2026, from the contractor Mercury's release), and its locator is the community-mapped polygon named 'MU4' (OSM way 899514480), used only as a parent-campus locator. Equinix's MU4 page (Internet Archive raw copy of 3 October 2026) gives MU4's address as Dywidagstrasse 10, 85609 Aschheim, and an earlier Atlas screen (de-south-west-p2, 23 October 2026) placed the Atlas MU4 site in Aschheim-Dornach. Equinix's 19 August 2026 post names the MU4 IBX. Equinix uses the code MU4 for one Munich-area IBX, so the operating IBX is the existing building of this campus and is added as a project on it, not as a new site. Phase 3 is a separate building and is unaffected.",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-08-19",
+        "source_id": "ops-frankfurt-de-p6-eqx-community-shred-emea-20260819",
+        "summary": "Equinix's news post of 19 August 2026 on its own community site says Equinix is 'now launching SHRED (Smart Hands for Responsible Electronic Disposal) in the following IBXs', listing MU1, MU3 and MU4 in Munich among sixteen EMEA IBXs; SHRED is an on-site Smart Hands service for disposing of customers' retired IT equipment. This records MU4 as an operating Equinix IBX colocation data centre serving customers on 19 August 2026, the post's date. It is not an opening date, and it concerns the operating MU4 IBX, not the MU4 Phase 3 building, which was a shell in July 2026. No capacity or IT load is recorded."
+      },
+      "locator": {
+        "reuse_from_project_id": "b284fbeb-8cd9-5448-860d-b4f69bb8bd7a",
+        "geometry_evidence_id": "efe5b5c9-7394-5f0c-951b-051197168c49",
+        "geometry_identity_evidence_ids": [],
+        "scope": "campus_locator",
+        "identity_review": "This reuses the campus locator of the MU4 Phase 3 project b284fbeb-8cd9-5448-860d-b4f69bb8bd7a, pinned to its geometry evidence efe5b5c9-7394-5f0c-951b-051197168c49 (the community-mapped polygon named 'MU4', OSM way 899514480; representative point 48.14701805 N, 11.6824555 E). By its precision text that polygon locates the parent MU4 campus only. The baseline project has no geometry-identity evidence, so none is pinned. No new coordinate was taken from any map service, and OpenStreetMap was not queried in this pass. The point locates the MU4 campus, not the operating MU4 building footprint, and Equinix's published address (Dywidagstrasse 10, Aschheim) was not independently geolocated in this pass."
+      },
+      "context_source_ids": [
+        "ops-frankfurt-de-p6-ia-eqx-mu4-page-20261003",
+        "ops-frankfurt-de-p6-eqx-community-sitemap-topics-20261106",
+        "ops-frankfurt-de-p6-eqx-q3-2026-results-20261028"
+      ],
+      "roles": [
+        {
+          "party": "Equinix",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "ops-frankfurt-de-p6-eqx-community-shred-emea-20260819"
+        }
+      ],
+      "distinctness_review": "Screened on 7 November 2026 against verified_construction_core/2026-11-07-research-hundredtwentieth (the current dataset: 948 sites, 1,017 projects, 5,269 evidence rows): sites.csv, projects.csv, evidence.csv, source-records.json and identity-mapping.json, every pending queue fragment's changes and holds, claims.tsv and all sources/*-holds.json, by keyword and by distance (2 km). Keywords: Equinix, MU4, MU1, MU3, Dywidagstraße, Aschheim and SHRED. Within 2 km the only records are the MU4 site itself (0 m from the reused point) and its one project, MU4 Phase 3, which this addition does not change. The next nearest Atlas site is noris network München Ost at Klausnerstraße 30 in Aschheim (4.38 km), then Deutsche Telekom Munich Tucherpark (6.22 km) and Portus Munich (6.54 km). MU4 appears elsewhere only in the fortieth update's de-south-west-p1 lead (the MU4 generator plant's UVP screening decisions of 2025, which are not an operating statement) and in an unrelated Houston queue item. No pending fragment or claim proposes MU4 operations. MU1 and MU3, also named in the 19 August post, are other Munich IBXs that are not in the Atlas and are held in this fragment.",
+      "successor_review": "The Equinix community sitemap captured on 6 November 2026 lists no MU4, Munich or SHRED-EMEA item after 19 August other than a SHRED expansion post for the Americas (5 October). Equinix's third-quarter results release of 28 October 2026 names no change at MU4. www.equinix.com and blog.equinix.com refuse robots.txt (HTTP 403) and were not read live. No closure, pause or later status was found. The 19 August 2026 observation is 80 days old on 7 November 2026 and stays within the 85-day window only until about 12 November 2026 (90 days, the builder limit, about 17 November 2026).",
+      "scoped_project_details": {
+        "aliases": [
+          "Equinix MU4",
+          "MU4 IBX",
+          "Munich MU4"
+        ],
+        "address": "Dywidagstrasse 10, 85609 Aschheim, Germany (Equinix MU4 page, archived 3 October 2026)",
+        "building": "4-storey building; N+1 power and cooling redundancy (Equinix MU4 page); colocation space not displayed",
+        "opening_date": null,
+        "capacity": null,
+        "physical_construction_verified": false,
+        "relation_to_existing_project": "Distinct from MU4 Phase 3 (curated:equinix-mu4-munich-data-center:phase-3), a new building that was a shell in July 2026"
+      }
+    },
+    {
+      "project_stable_key": "curated:telehouse-london-docklands-campus:inventory-estate-ai-data-centre",
+      "physical_site_stable_key": "curated:telehouse-london-docklands-campus",
+      "existing_site_id": "vcc-site-a6106441f8e729be2cfb",
+      "site_name": "Telehouse London Docklands Campus (Docklands Technical Centres)",
+      "site_identity_review": "Telehouse's 29 October 2026 release says the purchased Inventory Estate in East India Dock will support a new data centre 'as part of the expansion of Telehouse's existing London Docklands campus', that the site's proximity to the campus lets it use the connectivity ecosystem operating there, and that the new data centre 'will be one of the largest facilities in the Telehouse London Docklands campus'. The operator therefore places the building on its existing Docklands campus (the Atlas site whose existing-operations and West 2 projects are already recorded, both operated by Telehouse International Corporation of Europe Ltd), so it is added as a further project on that site, as Telehouse West 2 was, not as a new site.",
+      "name": "Telehouse London Docklands Inventory Estate AI-Ready Data Centre (East India Dock)",
+      "country": "United Kingdom",
+      "country_iso_a2": "GB",
+      "status": {
+        "value": "announced",
+        "as_of": "2026-10-29",
+        "source_id": "ops-london-uk-p6-telehouse-inventory-estate-20261029",
+        "summary": "On 29 October 2026 Telehouse announced that KDDI Corporation and Telehouse International Corporation of Europe Limited had completed the purchase of the Inventory Estate in East India Dock, London, for more than £220 million, and that the land will support a new high-density, AI-ready data centre as part of the expansion of its London Docklands campus, with 65 MVA of power secured for phased, long-term expansion. This dated operator statement of a specific planned data centre on land it now owns supports announced status as of 29 October 2026. No planning application, consent, demolition or construction is stated or was found, and no capacity, building size or opening date is given; 65 MVA is a secured grid supply, not IT load."
+      },
+      "locator": {
+        "reuse_from_project_id": "008b38ef-1e00-52ff-a1de-93052f497631",
+        "geometry_evidence_id": "15786f2f-247a-5c28-ac45-041e1c26333f",
+        "geometry_identity_evidence_ids": [],
+        "scope": "campus_locator",
+        "identity_review": "This reuses the existing Docklands campus point exactly: the operator-declared permit site centre TQ 38770 81090 (E 538770, N 181090; 51.511702, -0.001647 with pyproj 3.7.1) from Telehouse's Environment Agency permit-variation form, with its pinned geometry evidence, as Telehouse West 2 does. It is a campus point and does not locate the new building. Telehouse publishes no address, boundary or plan for the Inventory Estate, and the London Planning Datahub has no record under that name (queries of 6 November 2026, local gla-th-inventory-estate.json sha256 49552bbb5745... and gla-th-clove-coriander.json sha256 9236f28c0ceb...). LaSalle and Trilogy's regenerated East India Dock office estate ('Republic', Import and Export Buildings, Clove Crescent, E14 2BE) has Datahub centroids about 240-310 m south-west of the campus point, but the release does not say whether the Inventory Estate is part of or next to it, so no offset is asserted; the new building's offset from the campus point is unknown."
+      },
+      "context_source_ids": [],
+      "roles": [
+        {
+          "party": "Telehouse International Corporation of Europe Ltd",
+          "role": "operator",
+          "relationship_scope": "intended",
+          "source_id": "ops-london-uk-p6-telehouse-inventory-estate-20261029"
+        },
+        {
+          "party": "Telehouse International Corporation of Europe Ltd",
+          "role": "owner",
+          "relationship_scope": "current",
+          "source_id": "ops-london-uk-p6-telehouse-inventory-estate-20261029"
+        },
+        {
+          "party": "KDDI Corporation",
+          "role": "owner",
+          "relationship_scope": "current",
+          "source_id": "ops-london-uk-p6-telehouse-inventory-estate-20261029"
+        }
+      ],
+      "distinctness_review": "Searched all 948 sites, 1,017 projects, 5,269 evidence records, 231 source records and the identity mapping in 2026-11-07-research-hundredtwentieth, every pending queue changes.json, the queue claims and all sources/*-holds.json and queue holds for Inventory Estate, East India Dock, Clove Crescent, Republic, Trilogy, LaSalle, KDDI and Telehouse: none names the Inventory Estate or a Telehouse data centre on it. The only Docklands Telehouse records are the campus's existing-operations project (North, North Two, East, West and South) and Telehouse West 2 on the former Travelodge plot, which the same release describes separately as currently in development; this project is a further, separately announced building. Existing Atlas records within 2 km of the campus point: those two Telehouse projects (0 m, same point) and Netwise London East (about 986 m north; a different operator and building). Held candidates nearby, not in the Atlas: Global Switch London North and East at East India Dock House (about 214 m west-south-west; different operator, and the land here was bought from LaSalle and Trilogy, not Global Switch) and Ada Infrastructure's Docklands campus in West Silvertown, east of the River Lea. No pending queue item lies within 2 km.",
+      "successor_review": "Checked on 6-7 November 2026: Telehouse's post sitemap lists no news item after 29 October 2026 and its page sitemap has no Inventory Estate or new-campus page; the London Planning Datahub has no Tower Hamlets application naming the Inventory Estate and no data-centre application at East India Dock or Clove Crescent decided or validated after 29 October 2026. No Environment Agency permit application for the new building was found. Announced status is kept at 29 October 2026.",
+      "scoped_project_details": {
+        "aliases": [
+          "Inventory Estate data centre",
+          "Telehouse Inventory Estate AI-ready data centre",
+          "KDDI Telehouse East India Dock data centre"
+        ],
+        "site_address": "Inventory Estate, East India Dock, London (London Borough of Tower Hamlets); street address and boundary not published",
+        "land_purchase": "Completed by KDDI Corporation and Telehouse International Corporation of Europe Limited from LaSalle Investment Management and Trilogy Real Estate, announced 29 October 2026, for more than £220 million (US$294 million)",
+        "secured_power": "65 MVA secured for the site (grid supply for phased expansion; not IT capacity)",
+        "planned_services": "High-density colocation, low-latency connectivity and AI workloads",
+        "planning_status": "No planning application or consent found (London Planning Datahub queried 6 November 2026)",
+        "relationship_to_other_projects": "Separate from Telehouse West 2 (TW2, former Travelodge plot), which the release describes as in development and due for completion in 2028"
+      }
+    },
+    {
+      "project_stable_key": "curated:eurofiber-datacenter-groningen-1-de-bunders:existing-operations",
+      "physical_site_stable_key": "curated:eurofiber-datacenter-groningen-1-de-bunders",
+      "site_name": "Eurofiber Datacenter Groningen 1 (De Bunders 1, Zernike Campus, Groningen)",
+      "name": "Eurofiber Datacenter Groningen 1 — existing data-centre operations",
+      "country": "Netherlands",
+      "country_iso_a2": "NL",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-09-21",
+        "source_id": "ops-netherlands-p6-eurofiber-surf-ai-fabriek-groningen-2026-09-21",
+        "summary": "Eurofiber's release of 21 September 2026 says SURF has awarded Eurofiber Cloud Infra the HPC data-centre services contract for the Dutch AI factory and that the AI factory will be housed in Eurofiber's existing data centre in Groningen, from which Eurofiber Cloud Infra provides colocation and data-centre services. Eurofiber's only Groningen data centre is Datacenter Groningen 1 at De Bunders 1, 9747 AX Groningen on the Zernike Campus (5,000 m2 gross, 2,500 m2 net data-centre space, building operational since 2018). SURF's news of the same date places the supercomputer at Eurofiber on the Zernike Campus and says the data centre is already integrated into the electricity grid. The dated operator statement supports operation of the existing data centre as of 21 September 2026; it is not an opening date, and the AI-factory fit-out (delivery during 2027, full power early 2028) is future work outside this project's scope."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            6.527340522759025,
+            53.244567053013625
+          ]
+        },
+        "source_id": "ops-netherlands-p6-pdok-bag-verblijfsobject-0014010022206731",
+        "scope": "project_locator",
+        "scope_class": "official_register_address_object_point_of_operator_published_facility_address",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "pdok_bag_ogc_api_verblijfsobject_0014010022206731_point_crs84",
+        "precision": "Official BAG verblijfsobject point (0014010022206731, in use, industrial and office use, 4,766 m2) of De Bunders 1, 9747 AX Groningen, the address Eurofiber publishes for Datacenter Groningen 1; it coincides with the BAG address point and lies inside the linked pand 0014100022192265 (in use, built 2019, about 1,648 m2 footprint), 6.0 m inside the footprint boundary and 11.1 m from its centroid. It is a register object point, not a surveyed site boundary.",
+        "identity_review": "Eurofiber's Datacenter Groningen 1 page and its Netherlands overview give De Bunders 1, 9747 AX Groningen on the Zernike Campus; the overview lists eight Eurofiber Dutch data centres, only this one in Groningen, so the release's 'existing data centre of Eurofiber in Groningen' and SURF's 'Eurofiber at the Zernike Campus' refer to it. The BAG address query for De Bunders, 9747AX returns exactly one address (house number 1, nummeraanduiding 0014200022207594) whose object is verblijfsobject 0014010022206731, linked to a single pand with one verblijfsobject. The RD New capture (231109.902, 584823.903) converts with pyproj to the served CRS84 point to 0.0 m. Eurofiber says the building has been operational since 2018 while BAG records construction year 2019 (document of 25 March 2019); the difference does not affect the location.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The BAG register publishes no positional accuracy for verblijfsobject points; the data centre occupies the linked building, whose footprint extends up to about 39 m from the point, and Eurofiber publishes no site plan."
+      },
+      "context_source_ids": [
+        "ops-netherlands-p6-surf-news-ai-supercomputer-eurofiber-groningen-2026-09-21-en",
+        "ops-netherlands-p6-surf-nieuws-ai-supercomputer-eurofiber-groningen-2026-09-21-nl",
+        "ops-netherlands-p6-eurofiber-datacenter-groningen-1-page",
+        "ops-netherlands-p6-eurofiber-onze-datacenters-overview",
+        "ops-netherlands-p6-pdok-bag-adres-de-bunders-9747ax",
+        "ops-netherlands-p6-pdok-bag-pand-0014100022192265"
+      ],
+      "roles": [
+        {
+          "party": "Eurofiber Cloud Infra (Eurofiber Group)",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "ops-netherlands-p6-eurofiber-surf-ai-fabriek-groningen-2026-09-21"
+        },
+        {
+          "party": "SURF",
+          "role": "customer",
+          "relationship_scope": "intended",
+          "source_id": "ops-netherlands-p6-surf-news-ai-supercomputer-eurofiber-groningen-2026-09-21-en"
+        }
+      ],
+      "distinctness_review": "All fields of sites.csv (948 sites), projects.csv (1,017 projects), evidence.csv (5,269 rows), source-records.json and identity-mapping.json in verified_construction_core/2026-11-07-research-hundredtwentieth, the changes.json and holds.json of every other queue fragment (201 each), claims.tsv (469 coordinate claims) and all 90 sources/*-holds.json were searched for Eurofiber, Bytesnet, De Bunders, Zernike and Groningen: no record or pending change names Eurofiber, Bytesnet, De Bunders or Zernike. The only Groningen-province Atlas record is QTS Eemshaven (Huibertgatweg 2), 30.7 km away; its source records mention QTS's separate Groningen city facility and a WarmteStad heat partnership but do not locate or record it. No Atlas site, queued addition or other claim lies within 2 km (nearest Atlas sites: QTS Eemshaven 30.7 km, Microsoft Middenmeer Campus West expansion 112.8 km, DMO Greven 146.9 km). Existing holds mention Google Winschoten (about 35 km east, held), QTS's undated Groningen campus page (lead only) and EU AI Factory hosting sites (set aside as supercomputer contracts); this addition is the existing commercial colocation data centre, not the AI-factory system. The former Bytesnet domain's robots.txt redirects to eurofiber.com; no Atlas record names Bytesnet.",
+      "successor_review": "Eurofiber's CMS sitemap captured on 6 November 2026 UTC lists the Groningen 1 pages (lastmod 19 and 20 October 2026) and the AI-ready colocation page (lastmod 28 October 2026) still describing Groningen 1 as an operating HPC colocation site; Eurofiber's incident pages captured in this pass concern network outages only. No closure, sale or other change for Groningen 1 was found. The 21 September 2026 operating observation is kept. The AI-factory fit-out in this building (delivery during 2027) is a separate future project, held in this fragment because only one project can be added to a site that is new in the same update.",
+      "scoped_project_details": {
+        "aliases": [
+          "Eurofiber Datacenter Groningen 1",
+          "Datacenter Groningen 1",
+          "Eurofiber Groningen data centre"
+        ],
+        "address": "De Bunders 1, 9747 AX Groningen (Zernike Campus)",
+        "facility_scope": "Existing carrier-neutral colocation and HPC data centre operated by Eurofiber Cloud Infra",
+        "capacity_qualification": "5,000 m2 gross floor area and 2,500 m2 net data-centre space stated by the operator as facility specifications; no power capacity published",
+        "planned_availability": null,
+        "operator": "Eurofiber Cloud Infra (Eurofiber Group)",
+        "capacity": null
+      }
+    },
+    {
+      "project_stable_key": "curated:virtus-sipson-garden-centre-data-centre:data-centre-facility",
+      "physical_site_stable_key": "curated:virtus-sipson-garden-centre-data-centre",
+      "site_name": "Former Sipson Garden Centre and land to the south, Sipson Road, Sipson (London Borough of Hillingdon)",
+      "name": "Sipson data centre facility, former Sipson Garden Centre - outline application by VIRTUS Data Centres (Hillingdon 67666/APP/2026/2416)",
+      "country": "United Kingdom",
+      "country_iso_a2": "GB",
+      "status": {
+        "value": "announced",
+        "as_of": "2026-10-26",
+        "source_id": "uk-planning-portals-p6-hillingdon-67666-2026-2416-register",
+        "summary": "On 26 October 2026 the London Borough of Hillingdon validated outline planning application 67666/APP/2026/2416 (received 20 October 2026) for the redevelopment of the former Sipson Garden Centre site, Sipson Road, Sipson, to provide a data centre facility with associated energy infrastructure, security measures, landscaping and access (all matters reserved except access); the council treats it as EIA development, with an environmental statement under Regulation 19, and opened neighbour consultation on 4 November 2026. The London Planning Datahub record of the same application names VIRTUS Data Centres Ltd as lead developer and describes about 49,410 sq m of B8 floorspace in two-storey data halls (up to 20 m) with administration, external plant and ancillary buildings on a 6.97 ha site. This dated council record of a live application for a named data-centre project supports announced status as of 26 October 2026. The application is undecided (decision by 15 February 2027); no consent, site preparation or construction is established, and the applicant's intended 2028-2030 programme is not an observation."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -0.4555136,
+            51.4918589
+          ]
+        },
+        "source_id": "uk-planning-portals-p6-gla-datahub-hillingdon-67666-2026-2416",
+        "scope": "project_locator",
+        "scope_class": "official_planning_application_site_point",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "london_planning_datahub_record_hillingdon_67666_APP_2026_2416_site_point_easting_507323_northing_178121_epsg27700_pyproj_3_7_1_to_wgs84",
+        "precision": "The site point that the Greater London Authority's London Planning Datahub publishes for Hillingdon outline application 67666/APP/2026/2416 (British National Grid E 507323, N 178121, whole metres), converted to WGS84 with pyproj 3.7.1. Hillingdon's Datahub site points equal the area centroids of its published application polygons for this land, so the point stands for the centroid of the 6.97 ha application site; it lies 2.7 m from the centroid of the 7.50 ha boundary of the same land in the council's 2016 record. It is not a building footprint, red-line boundary or surveyed position.",
+        "identity_review": "The point belongs to record Hillingdon-67666_APP_2026_2416, the same reference, site (Former Sipson Garden Centre, Sipson Road, UB7 0HP) and proposal as the council register entry used for the status; the Datahub's WGS84 centroid field (51.491859, -0.455514) agrees to 0.1 m. The record carries no application polygon (its wgs84_polygon is a 3 m square of unstated derivation lying 68.6 m north-west of the site point, inside the former garden-centre parcel; not used). Consistency checks (geometry facts): for the three earlier records of site 67666 that publish BNG polygons, the Datahub site-point fields equal the computed polygon centroids within 0.5 m; the 2026 point lies inside the 7.50 ha polygon of 67666/APP/2016/3835 ('Land at Sipson Village Garden Centre'), 2.7 m from its centroid and 79 m from its edge, and 37 m south of the 2.83 ha garden-centre parcel of 67666/APP/2019/1245, matching the 2026 scoping request's description of the former garden centre 'and land to the south'; the closed 2026 scoping request has its site point 1.4 m away. In Esri World Imagery viewed locally (not redistributed) the point falls in an open grass field south of the former garden-centre yard, between the houses on Sipson Road and a motorway to the east. No geocoder, postcode centroid, village centre or map-service coordinate is used.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The Datahub publishes no positional accuracy and no 2026 application boundary; the point stands for a 6.97 ha outline site in which building positions are reserved matters, and the 2016 boundary of the same land has vertices up to 235 m from the point. The record's own 3 m wgs84_polygon square lies 68.6 m north-west of the point, also within the site."
+      },
+      "context_source_ids": [
+        "uk-planning-portals-p6-gla-datahub-hillingdon-67666-site-records"
+      ],
+      "roles": [],
+      "distinctness_review": "Screened on 7 November 2026 against all 933 sites, 1001 projects and 5159 evidence records, the source records and the identity mapping of 2026-11-06-research-hundrednineteenth (read from site/config.json), every sources/*-holds.json file, every queue fragment's changes.json and holds.json, and claims.tsv, for Sipson, 67666, UB7 0H, garden centre, Harmondsworth and 'VIRTUS Data Centres LTD'. The only matches are the uk-planning-portals-p3 lead (seventieth holds: the closed 2026 scoping request 67666/APP/2026/2056 for a data centre campus on the same land, held for want of an application), which this record resolves, and incidental digits in unrelated coordinates. No Atlas site, project or queued addition lies within 2 km; the nearest Atlas sites are the Silverdale Road data centre in Hayes (3.25 km), AWS Ridgeway in Iver (4.48 km), the Colt London Hayes Campus (4.69 km) and Tritax Manor Farm (4.74 km). Within 2 km lie two records outside the Atlas, both different properties on Prologis Park, Stockley Road, north of the M4: the held VIRTUS LONDON14 converted warehouse (seventieth and eighty-seventh holds; Datahub polygon centroid 1.64 km north-north-east) and the Environment Agency permit EPR/TP3839QU of Zenium UK2 Limited for 'Unit F, Prologis Distribution Park, London Two' (register point 1.29 km north-north-east). VIRTUS's Stockley Park campus (LONDON5-8, Horton Road; eighty-seventh holds) is also a separate campus north of the M4. The Sipson land, a former garden centre and field south of the M4, is a new VIRTUS site, not an extension of any of these. Verifier re-screen on 7 November 2026 against the then-current 2026-11-07-research-hundredtwentieth (948 sites, 1,017 projects, 5,269 evidence records), all queue fragments and every sources/*-holds.json file found no further match.",
+      "successor_review": "Checked on 6-7 November 2026: the council register shows 67666/APP/2026/2416 as 'Undecided' with consultation running to 4 December 2026 and a decision due by 15 February 2027; the Datahub record (last updated 5 November 2026) shows 'Application Under Consideration' with no decision, appeal, commencement or completion date, and no later 67666 record exists. VIRTUS's sitemap (pages modified to 5 November 2026) has no Sipson page or release. No permission, withdrawal or physical work was found, so announced as of 26 October 2026 is kept.",
+      "scoped_project_details": {
+        "aliases": [
+          "VIRTUS Sipson data centre",
+          "Former Sipson Garden Centre data centre",
+          "Hillingdon 67666/APP/2026/2416"
+        ],
+        "facility_scope": "Data centre facility with data halls, administration block, external plant, ancillary buildings and associated energy infrastructure on the former Sipson Garden Centre and land to its south (outline; all matters reserved except access)",
+        "floorspace": "49,410 sq m GIA gained (Use Class B8), replacing 1,265 sq m of vacant B2 floorspace (Datahub application details)",
+        "site_area": "6.97 ha (Datahub application details)",
+        "planning": "Outline application 67666/APP/2026/2416, received 20 October 2026, validated 26 October 2026, EIA development (Regulation 19 notice); undecided, decision target 15 February 2027. Earlier EIA scoping request 67666/APP/2026/2056 (validated 25 August 2026) closed on 13 October 2026 as 'Declined to Determine'",
+        "parties": "Lead developer named in the Datahub application details: VIRTUS Data Centres LTD. No owner, operator or customer role is asserted from an application record",
+        "capacity_basis": "No IT or electrical capacity is published; floor area from the Datahub application details"
+      }
+    },
+    {
+      "project_stable_key": "curated:green-mountain-lon-east-romford-campus:5-king-george-close-data-storage-building",
+      "physical_site_stable_key": "curated:green-mountain-lon-east-romford-campus",
+      "existing_site_id": "vcc-site-bcb0361cec82a4bf1063",
+      "site_name": "Green Mountain LON-East data centre campus (Romford North Data Centre), King George Close, Romford (Havering)",
+      "name": "Green Mountain LON-East planned new data storage building and emergency energy centre, 5 King George Close, Romford (Havering P0614.20; variation application P1029.26)",
+      "country": "United Kingdom",
+      "country_iso_a2": "GB",
+      "site_identity_review": "The existing Atlas site curated:green-mountain-lon-east-romford-campus is Green Mountain's LON-East campus at King George Close, Romford, whose campus locator is the Environment Agency register point for permit EPR/FP3630EU at 3 King George Close. Havering's records place the new data storage development at 5 King George Close on the same estate road: the 1.60 ha application polygon of permission P0614.20 abuts the 3.62 ha polygon of the existing data storage facility (P1726.23, plant gantry at 3 King George Close, which contains the campus locator), with a gap of 0 m, and lies 114 m from the locator; the P1029.26 site point lies inside the P0614.20 polygon, 169 m from the locator. Havering's 2024 permission P1508.23 used 5 King George Close as the site compound for works to the data centre at 3 King George Close. The existing record's evidence (already in the Atlas) ties the plot to the campus: the Environment Agency's 29 April 2026 inspection report calls it the campus's future 'LON2' expansion, and Green Mountain's 1 September 2026 release says power and planning are secured for a further phase at LON-East. The new building is therefore a further project on the LON-East site, not a separate campus.",
+      "status": {
+        "value": "announced",
+        "as_of": "2026-08-28",
+        "source_id": "uk-planning-portals-p6-gla-datahub-havering-p1029-26",
+        "summary": "On 28 August 2026 the London Borough of Havering validated application P1029.26 to vary conditions of planning permission P0614.20 (14 January 2021) so as to amend the approved scheme for a new data storage development at 5 King George Close, Romford, consisting of a new data storage warehouse and a new emergency energy centre building (originally permitted under P1137.11 in 2012), including the approved drawings, landscaping, acoustic, drainage and flood-risk details. This dated council record of a live application for the amended data-centre building supports announced status as of 28 August 2026. The application is undecided (target 27 November 2026); whether the earlier consent remains in effect is not established, so no permitted status is asserted, and no site work or construction is established for the new building."
+      },
+      "locator": {
+        "reuse_from_project_id": "3dfc53ca-e0ad-5697-8870-c1637056840f",
+        "geometry_evidence_id": "bedfc130-f355-501e-9f12-b4285ba7824f",
+        "geometry_identity_evidence_ids": [],
+        "scope": "campus_locator",
+        "identity_review": "Reuses exactly the LON-East campus locator of the baseline project 'Green Mountain LON-East (Romford) - 14 MW AI-ready data-hall expansion' (Environment Agency register point for EPR/FP3630EU, 51.587017, 0.167675; campus_locator scope; no geometry-identity evidence rows). The new building's plot at 5 King George Close adjoins the existing facility's planning boundary, and its P1029.26 site point lies 169 m south-east of the campus point; no new coordinate is published for it."
+      },
+      "context_source_ids": [
+        "uk-planning-portals-p6-gla-datahub-havering-king-george-close"
+      ],
+      "roles": [],
+      "distinctness_review": "Screened on 7 November 2026 against 2026-11-06-research-hundrednineteenth (933 sites, 1001 projects; read from site/config.json), every sources/*-holds.json file, all queue fragments and claims.tsv, for King George Close, P1029.26, P0614.20, P1137.11, LON2, LON-East and Romford. The LON-East site holds one project, the 14 MW AI-ready data-hall expansion inside the existing building at 3 King George Close; the P1029.26 Datahub record is attached to it only as identity context. The only other match is the uk-england-p5 hold (hundredth holds) for this same planned building, held because a second project could not be added to a site that was new in the same update; the site is now published, which meets that hold's reopen condition, so this record resolves it. No other queued addition or claim concerns the LON-East site; the nearest other Atlas sites are about 14 km away. Verifier re-screen on 7 November 2026 against the then-current 2026-11-07-research-hundredtwentieth (948 sites, 1,017 projects, 5,269 evidence records), all queue fragments and every sources/*-holds.json file found no further match.",
+      "successor_review": "Checked on 6-7 November 2026: the Datahub record for P1029.26 (last updated 5 November 2026) still shows 'Application Under Consideration' with no decision; the King George Close records show no later application for 5 King George Close. Havering's own register host returned HTTP 403 for robots.txt and was not read. No permission under P1029.26, construction start, withdrawal or Green Mountain statement dated after 1 September 2026 about the new building was found, so announced as of 28 August 2026 is kept.",
+      "scoped_project_details": {
+        "aliases": [
+          "LON2 (LON-East expansion)",
+          "5 King George Close data storage development"
+        ],
+        "facility_scope": "New data storage warehouse (data-centre building) and new emergency energy centre building at 5 King George Close, as amended by application P1029.26",
+        "planning": "Permission P1137.11 (2012), varied under section 73 by P0614.20 (14 January 2021; 1.60 ha site); condition 8 contamination validation report discharged under Q0067.26 (21 May 2026); variation application P1029.26 validated 28 August 2026, undecided, target 27 November 2026",
+        "parties": "No applicant is named in the Datahub records; Green Mountain's ownership of the plot is not asserted, so no role is recorded",
+        "capacity_basis": "No capacity is published in the planning records; the Environment Agency's April 2026 description of four data halls and twelve engines for 'LON2' (existing Atlas evidence) is context only"
+      }
+    }
+  ],
+  "status_updates": [
+    {
+      "project_stable_key": "imported:semiconductor-atlas:adaniconnex-pune",
+      "status": {
+        "value": "partially_operational",
+        "as_of": "2026-10-28",
+        "source_id": "india-p6-ael-q2fy27-results-presentation",
+        "summary": "Adani Enterprises' results presentation for the quarter ended 30 September 2026, submitted to BSE and NSE on 28 October 2026, lists AdaniConneX's Pune data centres as 'Pune (48 MW x 2)' with 96 MW total growth, 'Pune I | Phase I, II & III – 9.6 MW each complete; Pune II | Phase I – 9.6 MW' and 38.4 MW of operational capacity, and its business update says 19.2 MW of Pune capacity was handed over to the customer during the quarter. This is a newer company observation that AdaniConneX's Pune capacity is partly in service: 38.4 MW of the 96 MW shown is operational and the rest is not yet in service. The status is unchanged; the observation date is the filing date, and the figures relate to the quarter ended 30 September 2026. The capacity figures are company statements and are not recorded as typed observations."
+      },
+      "identity_review": "Same record as the existing imported 'AdaniConneX Pune data centre campus', whose status came from AdaniConneX's Data Centers page and Adani Enterprises' Q1 FY27 results release of 29 July 2026 (9.6 MW of Phase II handed over to a customer). The presentation's Pune row is the only Pune entry in AdaniConneX's portfolio table, and Adani Enterprises' results release of the same day repeats the 19.2 MW Pune handover. The refresh therefore applies to the record's company-wide Pune scope (its sources 'name Pune only'), keeps its locality locator unchanged and does not decide whether Pune I and Pune II are one property or two. The record shares physical site curated:adaniconnex-pune-data-center-campus with 'AdaniConneX Pune PNQ04 Current Build' under a same_site_distinct_scope identity decision; this refresh does not touch PNQ04, and no source reviewed equates PNQ04 with Pune I or Pune II (as a 16 October 2026 hold also found).",
+      "successor_review": "Strictly newer than the existing 29 July 2026 observation. No later AdaniConneX or Adani Enterprises statement was found: the Adani newsroom listing captured with the results release on 6 November 2026 shows group releases up to 5 November 2026 and none about AdaniConneX; AdaniConneX's resources sitemap captured on 6 November lists nothing modified after 23 October except two FAQ pages edited on 2 and 4 November; and AdaniConneX's undated Data Centers page captured on 6 November reports no pause, closure or change. The Data Centers page still gives Pune 'RFS Phase 1 Live: Oct 2025'. 28 October 2026 stays inside the 85-day window until 21 January 2027."
+    },
+    {
+      "project_stable_key": "imported:semiconductor-atlas:adaniconnex-noida",
+      "status": {
+        "value": "partially_operational",
+        "as_of": "2026-10-28",
+        "source_id": "india-p6-ael-q2fy27-results-presentation",
+        "summary": "Adani Enterprises' results presentation for the quarter ended 30 September 2026, submitted to BSE and NSE on 28 October 2026, shows AdaniConneX Noida with 50 MW total growth, '40 MW - All C&S completed, MEP under progress' (the footnote defines C&S as core and shell and MEP as mechanical, electrical and plumbing) and 20 MW of operational capacity, and its business update says 10 MW of Noida capacity was handed over to the customer during the quarter. This is a newer company observation that the Noida campus is partly operating (20 MW) while fit-out of further built capacity continues. The status is unchanged; the observation date is the filing date, and the figures relate to the quarter ended 30 September 2026. The capacity figures are company statements and are not recorded as typed observations."
+      },
+      "identity_review": "Same record as the existing imported 'AdaniConneX Noida data centre campus' (150 MW potential on AdaniConneX's Data Centers page, a 50 MW Noida campus build financed in June 2023, and Phase 1 live from January 2025). The presentation's Noida row is AdaniConneX's only Noida entry, its 50 MW total matches the 50 MW campus of the 2023 financing, and Adani Enterprises' results release of the same day repeats the 10 MW Noida handover. The refresh keeps the record's campus scope and its locality locator, which is unchanged; Sify Noida 02, which shares that locality point, is a different operator's record and is not affected.",
+      "successor_review": "Strictly newer than the existing 9 October 2026 observation (the access date of the undated Data Centers page). No later AdaniConneX or Adani Enterprises statement was found: the Adani newsroom listing captured with the results release on 6 November 2026 shows group releases up to 5 November 2026 and none about AdaniConneX; AdaniConneX's resources sitemap captured on 6 November lists nothing modified after 23 October except two FAQ pages edited on 2 and 4 November; and AdaniConneX's undated Data Centers page captured on 6 November reports no pause, closure or change. The Data Centers page still gives Noida 'RFS Phase 1 Live : Jan 2025'. 28 October 2026 stays inside the 85-day window until 21 January 2027."
+    },
+    {
+      "project_stable_key": "curated:telehouse-london-docklands-campus:existing-operations",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-10-29",
+        "source_id": "ops-london-uk-p6-telehouse-inventory-estate-20261029",
+        "summary": "Telehouse's 29 October 2026 release describes its existing London Docklands campus in the present tense as the most connected data centre campus in Europe and refers to the well-established connectivity ecosystem operating at the campus, which the new Inventory Estate data centre is to use; its Europe managing director speaks of 'our London Docklands campus' as one of Europe's leading connectivity hubs. This dated operator statement confirms that the existing campus is in operation on 29 October 2026, refreshing the 28 July 2026 observation. The scope is unchanged: the existing buildings only. Telehouse West 2 (described as in development) and the planned Inventory Estate data centre are separate projects and are not covered; no opening date is asserted."
+      },
+      "identity_review": "Same project as the existing record 'Telehouse Docklands Existing Operations (North, North Two, East, West and South)' on the Telehouse London Docklands Campus, whose 28 July 2026 operational status rests on Telehouse's permit-variation statement for the same campus. The 29 October release is Telehouse's own statement about its 'existing London Docklands campus', the same operator (Telehouse International Corporation of Europe Limited) and the same campus, and it separates the existing campus from West Two and from the Inventory Estate expansion. No new building, phase, capacity or locator is implied.",
+      "successor_review": "Strictly newer than the existing 28 July 2026 observation and meets the reopen condition of the uk-england-p5 hold (a Telehouse statement of current campus operation after 28 July 2026). Re-checked on 6-7 November 2026: Telehouse's sitemaps list no later news item; the London Planning Datahub shows only a 26 October 2026 condition approval for the Telehouse admin building (PA/26/01218/S under PA/22/01526, a six-storey administration building, not a data hall) and no record of closure or change of use at the campus. Operational status as of 29 October 2026."
+    },
+    {
+      "project_stable_key": "curated:wilton-international-invista-data-centre-campus:phase-1-data-centre-campus",
+      "status": {
+        "value": "permitted",
+        "as_of": "2026-10-29",
+        "source_id": "uk-planning-portals-p6-redcar-r-2026-0337-ffm-decision-notice",
+        "summary": "On 29 October 2026 Redcar and Cleveland Borough Council issued a Notice of Planning Permission granting full planning permission R/2026/0337/FFM (delegated decision) to Digital Reef GB001 Limited and Sembcorp Utilities UK for a data centre campus (Use Class B8) comprising data centre buildings, communications and power buildings, security and support office buildings, backup generators, storage tanks and pump buildings, with associated plant, infrastructure, access, parking, landscaping and ancillary works, on the former Invista site at Wilton International, Redcar. The permission requires commencement within three years and development in accordance with the Phase 1 boundary, site and location plans and the typical data-centre plans received on 8 May and 7 September 2026. This refreshes the record's announced observation of 14 October 2026 with an issued consent for the data-centre development itself. Most conditions must be discharged before development; no remediation, construction or operation is established.",
+        "permit_scope": "data_center_development",
+        "permit_type": "planning_permission",
+        "permit_decision": "granted",
+        "permit_reference": "Redcar and Cleveland Borough Council full planning permission R/2026/0337/FFM, Notice of Planning Permission dated 29 October 2026 (application valid 8 May 2026)",
+        "permit_identity_review": "The notice grants permission for exactly the development described in the existing record (application R/2026/0337/FFM, 'Data centre campus (Use Class B8) comprising data centre buildings, communications and power buildings, ...' at the 'Former Invista Site Land at Wilton International'), to the same joint applicants named in the record's scoped details (Digital Reef GB001 Limited and Sembcorp Utilities UK). The council register (local redcar/redcar-R-2026-0337-FFM.html, sha256 deb3ecf5...) shows status 'Approved', decision 'GRANT PLANNING PERMISSION', decision date 29/10/2026, decision level delegated, with the same conditions; the delegated officer report (local redcar/officer-report-R20260337FFM.pdf, sha256 de0087f6..., signed 27 and 29 October 2026) assesses the amended September 2026 scheme and records the council's April 2026 screening opinion that it is not EIA development. The consent covers the data-centre buildings themselves, not only enabling or utility works. No call-in, appeal, judicial review or legal-agreement dependency was found."
+      },
+      "identity_review": "Same project as the existing record 'Sembcorp Wilton International Data Centre - data centre campus (Redcar and Cleveland R/2026/0337/FFM)' (curated:wilton-international-invista-data-centre-campus:phase-1-data-centre-campus), whose 14 October 2026 announced status and locator (the applicant-declared site point of the same application form) both come from R/2026/0337/FFM. The permission approves the Phase 1 boundary plan of that application on the same 15.5 ha former Invista site; no new building, phase or site is implied, and the record's locator, scope and capacity remain unchanged.",
+      "successor_review": "Strictly newer than the existing 14 October 2026 observation. Checked on 6 November 2026: the council register lists the 29 October 2026 decision notice and officer report as the latest documents for R/2026/0337/FFM, with no later application, condition discharge, non-material amendment, appeal or commencement notice listed. No construction or remediation start was found in the register. Permitted as of 29 October 2026 is recorded; no physical stage is inferred."
+    }
+  ],
+  "context_updates": [],
+  "locator_corrections": [
+    {
+      "physical_site_stable_key": "curated:lcl-brussels-north-diegem",
+      "site_id": "vcc-site-8f6044c27fe24cae34dc",
+      "replaces_geometry_evidence_id": "6a1a3449-e02f-5fe9-b141-042cd4dfc3b5",
+      "reason": "The current point was copied from a Google Maps named LCL Data Centers feature at Kouterveldstraat 13; Google Maps terms do not allow its coordinates to be reused in the Atlas, and from 7 November 2026 the builder rejects such locators. It is replaced with the government-published coordinate of the address the operator gives for this campus.",
+      "displacement_review": "12.1 m (haversine, R 6,371,008.8 m) from the current point [4.455616, 50.887353999999995] to [4.4554675928003284, 50.88740939359318]. Both points mark the same street address, Kouterveldstraat 13 in Diegem, where LCL places its Brussels-North head-office data centre. The site keeps its single project, status, dates and roles.",
+      "locator": {
+        "scope": "campus_locator",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            4.4554675928003284,
+            50.88740939359318
+          ]
+        },
+        "source_id": "loc-1-p6-geolocation-kouterveldstraat-13",
+        "identity_source_ids": [
+          "loc-1-p6-lcl-contact",
+          "loc-1-p6-lcl-data-center",
+          "loc-1-p6-geolocation-service-description"
+        ],
+        "scope_class": "official_numbered_address_point",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "retain_exact_Digitaal_Vlaanderen_Geolocation_API_address_point_Kouterveldstraat_13_1831_Machelen",
+        "precision": "Flemish base-register house-number position for Kouterveldstraat 13, 1831 Machelen (Diegem), the street address LCL gives for its head office, which its data-center page identifies as LCL Brussels-North. LocationType basisregisters_huisnummer_aangeduidDoorBeheerder: a position set by the register administrator. It marks the address, not a surveyed outline, parcel, entrance or data hall.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The Flemish geolocation service gives no positional accuracy; the point is the register's administrator-set address position, not a building outline or parcel boundary.",
+        "identity_review": "LCL's contact page gives 'Diegem (head office) Kouterveldstraat 13 1831 Diegem', and its data-center page lists 'LCL Brussels-North (head office)' first among its five customer data-centre locations, so Brussels-North is the head-office site at Kouterveldstraat 13. Diegem lies in Machelen (postcode 1831); the government geocoder returns exactly one feature for 'Kouterveldstraat 13, 1831 Machelen'. The served WGS84 point agrees with the served Lambert-72 and Lambert-2008 coordinates transformed with pyproj 3.7.1 (differences 0.001 m and 0.005 m). The head office is used only because the operator states that the Brussels-North data centre is there; LCL Brussels-West, Brussels-South, Antwerp and Wallonia One are not located here. No map-service coordinate, city centre or industrial-zone centroid is used."
+      }
+    },
+    {
+      "physical_site_stable_key": "curated:penta-bru01-zellik",
+      "site_id": "vcc-site-db30f3395b23f7c1a2e7",
+      "replaces_geometry_evidence_id": "60be1887-195e-5a31-8b36-f5814155d551",
+      "reason": "The current point was copied from a Google Maps named 'Datacenter Penta Infra Brussels - BRU01' feature; Google Maps terms do not allow its coordinates to be reused in the Atlas, and from 7 November 2026 the builder rejects such locators. It is replaced with the government-published coordinate of the address the operator gives for this campus.",
+      "displacement_review": "33.1 m (haversine, R 6,371,008.8 m) from the current point [4.2885867, 50.8821382] to [4.288926286748416, 50.881931982453715]. Both points mark Penta Infra BRU01 at Zone 1 Research Park 340 in Zellik (Asse). The site keeps its single project, status, dates and roles.",
+      "locator": {
+        "scope": "campus_locator",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            4.288926286748416,
+            50.881931982453715
+          ]
+        },
+        "source_id": "loc-1-p6-geolocation-z1-researchpark-340",
+        "identity_source_ids": [
+          "loc-1-p6-penta-bru01-page",
+          "loc-1-p6-geolocation-service-description"
+        ],
+        "scope_class": "official_numbered_address_point",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "retain_exact_Digitaal_Vlaanderen_Geolocation_API_address_point_Z1_Researchpark_340_1731_Asse",
+        "precision": "Flemish base-register house-number position for Z. 1 Researchpark 340, 1731 Asse (Zellik), the address Penta Infra gives for BRU01 ('Zone1 Research Park 340, 1731 Asse'). LocationType basisregisters_huisnummer_afgeleidVanObject: a position derived from the addressed building or parcel. It marks the address, not a surveyed outline, entrance or data hall.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The Flemish geolocation service gives no positional accuracy; the point is a register address position derived from the addressed object, not a building outline or parcel boundary.",
+        "identity_review": "Penta Infra's BRU01 page gives 'Adres Zone1 Research Park 340 1731 Asse' for Penta Infra BRU01. The Flemish register spells the street 'Z. 1 Researchpark' in Asse (the Suggestion service returns that single street for 'Research Park 340 1731'), and the Location service returns exactly one feature for 'Z. 1 Researchpark 340, 1731 Asse'. The served WGS84 point agrees with the served Lambert-72 and Lambert-2008 coordinates transformed with pyproj 3.7.1 (0.001 m and 0.005 m). The page's own Google Maps link and any map-service coordinate are not used; no industrial-zone (research-park) centroid is used."
+      }
+    },
+    {
+      "physical_site_stable_key": "curated:nexspace-graz-alte-poststrasse-390",
+      "site_id": "vcc-site-7ddf9cde77323cf2f6c5",
+      "replaces_geometry_evidence_id": "2748689d-5053-5c88-adba-e5356ed876ce",
+      "reason": "The current point was copied from a Google Maps named nexspace data centers GmbH feature; Google Maps terms do not allow its coordinates to be reused in the Atlas, and from 7 November 2026 the builder rejects such locators. It is replaced with the government-published coordinate of the address the operator gives for this campus.",
+      "displacement_review": "18.6 m (haversine, R 6,371,008.8 m) from the current point [15.4249645, 47.040543299999996] to [15.425034936, 47.040382971]. Both points mark nexspace GRZ1 at Alte Poststraße 390 in Graz-Puntigam. The site keeps its single project, status, dates and roles.",
+      "locator": {
+        "scope": "campus_locator",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            15.425034936,
+            47.040382971
+          ]
+        },
+        "source_id": "loc-1-p6-bev-adr-alte-poststrasse-390",
+        "identity_source_ids": [
+          "loc-1-p6-nexspace-graz-page"
+        ],
+        "scope_class": "official_numbered_address_point",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "retain_exact_BEV_Adressregister_address_point_8055_Graz_Alte_Poststrasse_390",
+        "precision": "Austrian federal address-register (BEV Adressregister) point for 8055 Graz, Alte Poststraße 390 (17th district, Puntigam), the address nexspace gives for its Graz data centre GRZ1. It marks the registered address, not a surveyed outline, parcel, the extension's footprint or an individual server hall.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The BEV address search returns no positional accuracy for the address point; decimal places are not survey accuracy.",
+        "identity_review": "nexspace's Graz page gives 'Alte Poststraße 390, 8055 Graz, Austria' and, in its data-centre register block, 'GRZ1' at 'Alte Poststraße 390', postcode 8055, Graz. The BEV address search returns exactly one address feature, '8055 Graz Alte Poststraße 390'. The extension under construction is on the same campus and keeps this site. No map-service coordinate, city centre or industrial-zone centroid is used."
+      }
+    },
+    {
+      "physical_site_stable_key": "curated:odata-dc-sp01-santana-de-parnaiba-campus",
+      "site_id": "vcc-site-98743408bd3d8ca8997d",
+      "replaces_geometry_evidence_id": "722a93f0-f384-567a-98bd-506cf3f71097",
+      "reason": "The current point was copied from an operator-linked Google Maps place 'ODATA DATA CENTER SP01'; Google Maps terms do not allow its coordinates to be reused in the Atlas, and from 7 November 2026 the builder rejects such locators. It is replaced with the government-published coordinate of the address the operator gives for this campus.",
+      "displacement_review": "71.5 m (haversine, R 6,371,008.8 m) from the current point [-46.9151172, -23.4550259] to [-46.915678, -23.455411]. Both points locate ODATA's SP01 campus at number 943 in Votuparim, Santana de Parnaíba. The site keeps its single project, status, dates and roles.",
+      "locator": {
+        "scope": "campus_locator",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -46.915678,
+            -23.455411
+          ]
+        },
+        "source_id": "loc-1-p6-ibge-cnefe-3547304",
+        "identity_source_ids": [
+          "loc-1-p6-odata-localidades-brasil",
+          "loc-1-p6-ibge-cnefe-dictionary"
+        ],
+        "scope_class": "official_census_address_locator_point",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "retain_exact_IBGE_CNEFE_2022_address_coordinate_226070496_EMPRESA_ODATA_number_943_Votuparim",
+        "precision": "IBGE 2022 census address-register coordinate (NV_GEO_COORD 1, original census coordinate) for the establishment recorded as 'EMPRESA ODATA' at number 943, Votuparim, Santana de Parnaíba, the number ODATA gives for DC SP01 (Estrada dos Romeiros, 943). It marks the address point collected for the establishment, not a building footprint, plot boundary or entrance.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "CNEFE gives no positional accuracy; NV_GEO_COORD 1 means the original census address coordinate, collected at the address in 2022, not a surveyed outline. The file states no datum; IBGE's SIRGAS 2000 reference coincides with WGS84 well below a metre.",
+        "identity_review": "ODATA's Brazil locations page gives 'Data Center SP01, Estrada dos Romeiros, 943 – Votuparim, Santana de Parnaíba – SP'. CNEFE 2022 record 226070496 in Santana de Parnaíba names the establishment 'EMPRESA ODATA' at number 943, locality Votuparim, CEP 06513-001; the census records the street as unnamed ('RUA SEM DENOMINACAO') rather than Estrada dos Romeiros, so the tie rests on the operator name, number, locality and postcode area. A second CNEFE record 14 m away, 'EMPRESA ODATA PARTE DESATIVADA' at number 1111, is a disused part of the same ODATA property and is not selected. Tecto TGRU1, the nearest other Atlas site, is 1.26 km away and distinct. No map-service coordinate is used."
+      }
+    },
+    {
+      "physical_site_stable_key": "curated:cirion-san2-quilicura-data-center",
+      "site_id": "vcc-site-3202699f71756311f2ee",
+      "replaces_geometry_evidence_id": "3aee10db-fe41-5953-801d-c4bc68313fe6",
+      "reason": "The current point was copied from a Google Maps place feature (native_Google_Maps_Cirion_SAN2_feature), whose terms do not allow reuse in another dataset; it is replaced with the project-site coordinates that the Chilean Servicio de Evaluación Ambiental publishes for the same data centre.",
+      "displacement_review": "The new point is 75.5 m (haversine) south-east of the replaced Google point. The replaced point lies inside the SEA project-site polygon (vertices A-D, about 113 m by 249 m), so both locate the same plot at Víctor Uribe Sur 2290 in Quilicura; the move only re-centres the point on the published site outline.",
+      "locator": {
+        "scope": "campus_locator",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -70.7001219,
+            -33.3575944
+          ]
+        },
+        "source_id": "loc-2-p6-cirion-sea-ice-data-center-cirion-2024",
+        "identity_source_ids": [
+          "loc-2-p6-cirion-san2-spec-sheet",
+          "loc-2-p6-cirion-santiago-2-page-20261106"
+        ],
+        "scope_class": "official_environmental_assessment_project_site_polygon_centroid",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "sea_ice_data_center_cirion_2024_table_4_1_1_four_vertex_utm_wgs84_zone19s_polygon_centroid_pyproj_epsg32719_to_wgs84",
+        "precision": "Centroid of the four-vertex project-site polygon (about 2.25 ha, about 113 m by 249 m) that the SEA's ICE for 'Data Center Cirion' prints for lote 4AB-1 at Víctor Uribe Sur 2290, Loteo Industrial Aconcagua, Quilicura. It locates the SAN2 plot, not a building, data hall, entrance or surveyed parcel boundary.",
+        "identity_review": "The SEA's ICE of 12 January 2024 assesses the project 'Data Center Cirion' of Cirion Technologies Chile S.A., a data centre with six data rooms at calle Víctor Uribe Sur #2290, Loteo Industrial Aconcagua, lote 4AB-1, Quilicura, and prints its site polygon (Table 4.1.1, UTM WGS84 zone 19S). Cirion's SAN2 specification sheet gives SAN2's address as Víctor Uribe Sur 2290, Quilicura, and Cirion's current SAN2 page places the new SAN2 data centre in Quilicura with an area of 23,000 m2, consistent with the ICE's 24,247 m2 net site; Cirion built SAN2 in 2025, after this assessment. The replaced Google point lies inside the polygon. Cirion's Santiago facility page shows 'Víctor Uribe 2259' only in an embedded third-party map widget, which was not used; the 2259/2290 house-number difference does not move the point because the polygon comes from the SEA record. Ascenty's separate 'Data Hall Quilicura' assessment (different proponent and plot) is excluded.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The SEA prints the vertices to whole metres without a stated survey accuracy, and the four-vertex outline is a simplification (22,508 m2 against the stated 24,247 m2 net site); the point is the centroid of a plot whose vertices lie up to 140 m away, and the building positions within it are not published."
+      }
+    },
+    {
+      "physical_site_stable_key": "curated:sunevision-mega-idc-tseung-kwan-o",
+      "site_id": "vcc-site-a3cba6e8a69870f1cfeb",
+      "replaces_geometry_evidence_id": "2a292844-6e87-5a90-a8e4-c9fa39d626fb",
+      "reason": "The current point was copied from a Google Maps named-feature response (direct_google_maps_named_facility_response_coordinates); Google's terms do not allow its coordinates to be reused in the Atlas. It is replaced with the centroid of the government lot that the operator names for the campus.",
+      "displacement_review": "The new point is 88.4 m (haversine) east-north-east of the current one. Both locate the same campus: the current Google point lies inside the Tseung Kwan O Town Lot No. 131 ring, 4 m from its edge, and SUNeVision's annual report places MEGA IDC on that lot. The neighbouring Atlas site MEGA Plus (Lot No. 122, 299 Wan Po Road) lies 39 m outside the ring and 123 m from the new point; no other Atlas, queue or hold record lies within 1.3 km.",
+      "locator": {
+        "scope": "campus_locator",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            114.2745318,
+            22.2944108
+          ]
+        },
+        "source_id": "loc-3-p6-csdi-lot-tkotl131",
+        "identity_source_ids": [
+          "loc-3-p6-csdi-search-tkotl131",
+          "loc-3-p6-snv-fy26-annual-report"
+        ],
+        "scope_class": "official_landsd_lot_centroid",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "CSDI_LandsD_lot_layer_query_LotCSUID_759000131_native_ring_PROJ_HK1980_to_WGS84_1_round7_planar_centroid_verified_inside",
+        "precision": "Centroid of the 27,444 m2 Tseung Kwan O Town Lot No. 131, the lot SUNeVision gives for MEGA IDC at Wan Po Road, Area 85. It marks the whole two-tower data-centre lot, not Tower A, a building outline, an entrance or a data hall.",
+        "identity_review": "SUNeVision's 2025/26 annual report lists MEGA IDC at Wan Po Road, Area 85, Tseung Kwan O, on Tseung Kwan O Town Lot No. 131, and its Directors' Report describes the two-tower data centre and the campus boundary of MEGA IDC at TKOTL131. The CSDI LandInformation table maps TKOTL 131 to exactly one LotCSUID, 759000131, and the lot layer returns one single-ring polygon for it. MEGA Plus, listed separately on Lot No. 122, is a separate Atlas site whose government address point lies outside this ring. No map service, geocoder, estate centroid or district centre is used.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The lot layer states no positional tolerance; the 1 m datum-operation accuracy is not a boundary accuracy. The point lies inside a lot about 188 m by 201 m, and the towers' positions within it are not used."
+      }
+    },
+    {
+      "physical_site_stable_key": "curated:goodman-fra02-frankfurt-data-centre-campus",
+      "site_id": "vcc-site-f95670603a10a1f6f24b",
+      "replaces_geometry_evidence_id": "aaab4a40-99dd-50ee-a496-a7d7c2e44fe7",
+      "reason": "The current point was resolved from the Google Maps short link (goo.gl/maps) in Goodman's brochure; Google's terms do not allow its coordinates to be reused in the Atlas. It is replaced with the site coordinate printed in the state authority's permit for the same data centre.",
+      "displacement_review": "The new point is 30.9 m (haversine) from the current one. Both locate the same campus: the RP Darmstadt decision names the Goodman Data-Center FRA II, buildings A and B, at Rathenaustraße 29-31, Neu-Isenburg, and Goodman's brochure gives FRA II at Rathenaustraße 31 with two buildings. The permit coordinate is printed to whole hundreds of metres, which explains a shift of this size. No other Atlas, queue, claim or hold record lies within 2 km.",
+      "locator": {
+        "scope": "campus_locator",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            8.6857711,
+            50.0424698
+          ]
+        },
+        "source_id": "loc-3-p6-rpda-goodman-fra2-permit",
+        "identity_source_ids": [
+          "loc-3-p6-goodman-fra-ii-brochure"
+        ],
+        "scope_class": "official_permit_site_coordinate",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "RP_Darmstadt_BImSchG_decision_2025-11-13_site_Rechts_Hochwert_32477500_5543400_ETRS89_UTM32N_PROJ_to_WGS84_round7",
+        "precision": "Site coordinate that the RP Darmstadt permit gives for the Goodman Data-Center FRA II (buildings A and B) at Rathenaustraße 29-31, printed to whole hundreds of metres. It locates the campus, not a building, the generator installation, a parcel boundary or the extent of works.",
+        "identity_review": "The RP Darmstadt decision of 13 November 2025 names the installation site as Rathenaustraße 29-31, 63263 Neu-Isenburg, Gemarkung Neu-Isenburg, Flur 12 (Flurstücke 4/264, divided into 4/322 and 4/323, 4/304, 4/305, 4/306 and 4/309), building 'Goodman Data-Center FRA II, Gebäude A und B', and gives Rechts-/Hochwert 32 477 500 / 5 543 400. Goodman's own brochure gives the FRA II Data Centre at Rathenaustraße 31, Neu-Isenburg, with two buildings, and the City of Neu-Isenburg's economic development report already in the Atlas places Goodman FRA02 on Rathenaustraße. The coordinate is read as ETRS89/UTM zone 32N (zone prefix 32) and transformed with pyproj 3.7.1 (round trip 2 mm). No map service, geocoder or town centre is used.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The permit states no positional accuracy and prints the coordinate to whole hundreds of metres, so rounding alone allows about 71 m; the point does not mark a building or the parcel outline."
+      }
+    }
+  ]
+}

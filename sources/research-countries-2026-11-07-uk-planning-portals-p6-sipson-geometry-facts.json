@@ -1,0 +1,44 @@
+{
+ "candidate_id": "virtus-sipson-garden-centre-data-centre",
+ "decision": "Selected the site point that the Greater London Authority's London Planning Datahub publishes for Hillingdon outline application 67666/APP/2026/2416 (former Sipson Garden Centre, Sipson Road, Sipson; data centre facility; validated 26 October 2026), British National Grid E 507323, N 178121, converted to WGS84 with pyproj 3.7.1, as the project locator. Hillingdon's Datahub site points equal the area centroids of the council's own application polygons wherever a polygon is published for this site, so the point is read as the centroid of the 2026 application boundary, which the Datahub does not publish as a polygon. It is a site marker, not a building footprint or surveyed position.",
+ "geometry": {
+  "type": "Point",
+  "coordinates": [
+   -0.4555136,
+   51.4918589
+  ]
+ },
+ "authority_class": "compiled_reference",
+ "derivation": "coordinate_transform",
+ "scope_class": "official_planning_application_site_point",
+ "use_scope": "project_locator",
+ "source_file": "local_data/country-research-uk-planning-portals-p6/gla-hillingdon-67666-2026-2416.json",
+ "source_sha256": "e7d8c782210a32aa36e420bf0d402eb7daf1233e01a761cea8de8fbf5ff74824",
+ "source_url": "https://planningdata.london.gov.uk/api-guest/applications/_source/Hillingdon-67666_APP_2026_2416",
+ "retrieved_at": "2026-11-06T21:56:32.385Z",
+ "selected_properties": {
+  "service": "London Planning Datahub (Greater London Authority) public applications API, record Hillingdon-67666_APP_2026_2416 (fed by the London Borough of Hillingdon; last_updated 2026-11-05T23:00:08.983Z)",
+  "feature": "lpa_app_no 67666/APP/2026/2416, site 'FORMER SIPSON GARDEN CENTRE', SIPSON ROAD, UB7 0HP, ward H/ROW VILLAGES 2022, application type 'Outline planning permission: Some matters reserved', status 'Application Under Consideration', valid_date 26/10/2026, site_area 6.97 ha",
+  "spatial_reference": "centroid_easting / centroid_northing in EPSG:27700 (British National Grid, whole metres); the record's WGS84 'centroid' field (51.491859, -0.455514) agrees to 0.1 m",
+  "site_point_epsg27700": [
+   507323.0,
+   178121.0
+  ],
+  "not_used": "The record's 'wgs84_polygon' is a 3 m by 3 m square (BNG about E 507274, N 178169) that lies 68.6 m north-west of the site point, inside the 2019 garden-centre parcel and the 2016 boundary; its derivation is not stated, it is not an application boundary, and it is not used; the record has no 'polygon' field. (Verifier correction, 7 November 2026: an earlier draft described the square as lying around the site point.)"
+ },
+ "transform": {
+  "method": "pyproj 3.7.1 Transformer.from_crs('EPSG:27700', 'EPSG:4326', always_xy=True) applied to (507323.0, 178121.0)",
+  "result_lat_lon": [
+   51.4918589,
+   -0.4555136
+  ]
+ },
+ "consistency_checks": {
+  "site_point_rule": "For the three Hillingdon records of site 67666 that carry a BNG 'polygon' (local gla-hillingdon-67666-all.json, sha256 79b2d533...), the Datahub centroid fields equal the shapely 2.1.1 area centroids of the polygons to within 0.5 m: 67666/APP/2016/3835 fields (507323, 178118) vs computed (507322.66, 178118.29); 67666/APP/2019/1245 fields (507316, 178224) vs (507316.21, 178224.38); 67666/APP/2021/2977 fields (507296, 178243) vs (507296.39, 178242.69).",
+  "earlier_boundary": "The 2026 site point lies 2.7 m from the area centroid of the 7.50 ha, 39-vertex polygon of 67666/APP/2016/3835 ('Land at Sipson Village Garden Centre', an earlier EIA scoping request), inside it and 79.2 m from its nearest edge (bounds E 507145-507432, N 177896-178298). The 2026 application's site area is 6.97 ha, so the 2026 boundary is of the same extent as the 2016 one. The 2026 scoping request 67666/APP/2026/2056 ('the Site of the Former Sipson Garden Centre and land to the south') has site point (507322, 178122), 1.4 m away.",
+  "garden_centre_parcel": "The 2.83 ha polygon of the 2019 garden-centre permission 67666/APP/2019/1245 lies north of the point (point outside it, 36.8 m from its edge, 103.6 m from its centroid), consistent with the 2026 site comprising the former garden-centre parcel plus the land to its south.",
+  "imagery": "Esri World Imagery z17 tiles (x 65369-65371, y 43593-43594) viewed locally with the point marked and not redistributed: the point falls in an open grass field south of a yard with parked vehicles and small buildings (the former garden-centre site), between the houses on the east side of Sipson Road to the west and a motorway to the east. The imagery date is unknown and is not used as status evidence.",
+  "geocoder_used": false
+ },
+ "uncertainty": "The point is the council's site point for a 6.97 ha outline-application site whose boundary is not published as a polygon; the data halls, plant and energy infrastructure (all matters reserved except access) may lie anywhere within it; the 2016 boundary of the same extent has vertices up to 235 m from the point. The Datahub publishes no positional accuracy. The record's own 3 m wgs84_polygon square, of unstated derivation, lies 68.6 m north-west of the point, also within the site."
+}

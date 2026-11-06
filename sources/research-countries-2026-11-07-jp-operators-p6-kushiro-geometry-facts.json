@@ -1,0 +1,37 @@
+{
+ "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+ "candidate": "Getworks container data centre at Nippon Paper's Kushiro works (日本製紙釧路事業所), 鳥取南2-1-47, Kushiro, Hokkaido",
+ "decision": "Selected the coordinates of the single GSI address-search feature for Nippon Paper's published Kushiro works address (北海道釧路市鳥取南2-1-47), which GSI resolves to the block 鳥取南二丁目１番, as a campus_locator for the host property. The point marks the Nippon Paper Kushiro works property that the 5 November 2026 joint release names as the data-centre site; it is not the container data centre, a plot, a building, an entrance or a surveyed boundary.",
+ "geometry": {"type": "Point", "coordinates": [144.357697, 43.009014]},
+ "coordinate_reference_system": "Longitude/latitude as returned by the GSI address-search service (JGD2011 geographic, treated as WGS84-equivalent at this precision); used unchanged, no transformation or rounding.",
+ "authority_class": "official_source",
+ "scope_class": "official_block_address_point_for_identified_host_property",
+ "use_scope": "campus_locator",
+ "source_url": "https://msearch.gsi.go.jp/address-search/AddressSearch?q=%E5%8C%97%E6%B5%B7%E9%81%93%E9%87%A7%E8%B7%AF%E5%B8%82%E9%B3%A5%E5%8F%96%E5%8D%972-1-47",
+ "raw_capture_file": "local_data/country-research-jp-operators-p6/gsi-kushiro-tottorminami-2-1-47.json",
+ "raw_capture_sha256": "bdd4c492c30b643f20f0e40a8da9320c8988a4f2d3b56c1851b729207fcb821d",
+ "raw_capture_bytes": 170,
+ "retrieved_at": "2026-11-06T22:01:31.753Z",
+ "selected_feature": {
+  "title": "北海道釧路市鳥取南二丁目１番",
+  "addressCode": "",
+  "coordinates": [144.357697, 43.009014],
+  "feature_count_in_response": 1,
+  "resolution_level": "block (街区); the house number 47 is not resolved by the service"
+ },
+ "identity_chain": [
+  "The joint release of Getworks, Tokyo Gas Engineering Solutions and Nippon Paper, published on Nippon Paper's newsroom on 5 November 2026 (npg-news261105-kushiro-dc.html, sha256 1a7f4e71...14c0), says the three companies signed land-use and power-supply contracts for a container data-centre business at 日本製紙釧路事業所 (Nippon Paper's Kushiro works), with Nippon Paper providing the land (釧路事業所用地) and power from its existing generating and receiving plant there.",
+  "Nippon Paper's own office list (npg-about-sales.html, sha256 38269f89...d97861) and its Kushiro access page (npg-about-sales-kushiro.html, sha256 7396b0f5...1f) give 技術本部・エネルギー事業本部 釧路事業所 at 〒084-0905 北海道釧路市鳥取南2-1-47. These are the landlord's own published address records.",
+  "GSI's address search for 北海道釧路市鳥取南2-1-47 returns exactly one feature, 北海道釧路市鳥取南二丁目１番, at 144.357697, 43.009014 (block level). GSI's reverse geocoder returns Kushiro (municipality code 01206) and 鳥取南二丁目 for that point (gsi-revgeo-kushiro-point.json, sha256 38e13429...0a0a).",
+  "On GSI's standard map tiles (gsi-std-16-59047-24078.png, sha256 3bbb70ae...0145, which contains the point, and gsi-std-16-59047-24079.png, sha256 7e94daa5...c219, which carries the annotation) the point lies inside a large industrial property annotated 日本製紙工場, next to a factory symbol, which extends roughly between the trunk roads to the west and south-west and the riverside road along the Shin-Kushiro River to the east; it is roughly 0.9 km across (estimated from the tiles at about 1.75 m per pixel, not surveyed). GSI seamless aerial tiles (for example gsi-photo-16-59047-24078.jpg, sha256 f029d4bb...a8; undated) show the mill complex with chip yards and storage areas; the point falls in the northern yard and storage area of the premises.",
+  "The 2026 MOJ/AIGID public-coordinate registry-map file for Kushiro (moj-01206-2026.geojson, sha256 f0f174b0...fb12, 86,645 features) has no lots in any 鳥取 district, so no parcel outline is available and none is used."
+ ],
+ "extent_review": "No data-centre plot, container row or building position inside the works is published. Container data-centre modules could be placed anywhere on the works land, so the data-centre position may be up to roughly 0.8 km from the point.",
+ "not_used": [
+  "The Google Maps short link and embedded Google map on Nippon Paper's Kushiro access page were not opened, resolved or read for coordinates.",
+  "No commercial web map, PeeringDB or OpenStreetMap data was used."
+ ],
+ "horizontal_uncertainty_metres": null,
+ "uncertainty_reason": "GSI publishes no positional accuracy for block-level address features, and the container data centre's position within the roughly 0.9 km Kushiro works is not published; the point marks the host property only.",
+ "tools": "Distances and tile positions computed with Python (pyproj 3.7.1 for geodesics); tiles viewed as mosaics only for identity review, not for status."
+}

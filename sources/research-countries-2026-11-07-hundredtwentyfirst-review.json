@@ -1,0 +1,262 @@
+{
+  "reviewer": "root",
+  "reviewed_at": "2026-11-07",
+  "decision": "accepted_for_integration",
+  "update": "verified_construction_core/2026-11-07-research-hundredtwentyfirst",
+  "base_dataset": "verified_construction_core/2026-11-07-research-hundredtwentieth",
+  "process": "continuous: one researcher per beat, one adversarial verifier per fragment",
+  "fragments": [
+    {
+      "fragment": "india-p6",
+      "verdict": "accept",
+      "checks": [
+        "current dataset re-read from site/config.json at start and end: verified_construction_core/2026-11-06-research-hundrednineteenth",
+        "all six relied-on captures rehashed: sha256 equals .metadata.json sha256 and sources.json content_hash (presentation 3462996e..., EC 5fe23943..., About Us 505a1712..., release 2562d697..., transcript a3928ef9..., Data Centers b4a57af2...); geometry facts file sha256 9c80ec2c... matches geometry_facts_sha256",
+        "presentation page 1 is AEL's exchange letter dated 28 Oct 2026 to BSE/NSE (PDF CreationDate 28 Oct 2026); page 16 (slide 15) read in pdftotext and on a 90 dpi render: 'Ghansoli - 220 MW| Execution started', 'Taloja - 240 MW| New Order Received', Navi Mumbai operational '-'; Pune 96 MW, Pune I Phases I-III and Pune II Phase I, 38.4 MW operational; Noida 50 MW, '40 MW - All C&S completed, MEP under progress', 20 MW operational",
+        "page 14 business update read: 19.2 MW Pune and 10 MW Noida handed over, total operational 94.6 MW; release dateline Ahmedabad 28 Oct 2026 repeats both handovers",
+        "company_disclosure is primary; 28 Oct 2026 is 10 days before 2026-11-07, inside the 85-day window (from 2026-08-14); observation-date convention matches the existing Pune record's 29 Jul 2026 Q1 release date",
+        "'Execution started' is past-tense started work, parallel to Vizag's 'Execution started for 2 buildings (C&S)', not a target or scheduled work; under_construction accepted; 220 MW kept as planned capacity only",
+        "EC page 3 rendered at 300 dpi and read: 'Latitude -19°7'7.56\"N / Longitude: 73°0 '31.80\"E'; recomputed 19.1187667, 73.0088333 equals the locator; page 2 names Plot A-GEN-4, TTC Industrial Area, MIDC Rabale, Village Savli, Ghansoli and project 'ACXNMI-01'",
+        "locator source acceptable: coordinate printed in a SEIAA Maharashtra (government) EC, copy hosted by AdaniConneX and linked from its About Us page as 'EC Certificate of ACXNMI-1' (verified in the capture); no map service, map link, PeeringDB or OSM used; Esri imagery only a visual check, not a coordinate source",
+        "campus_locator scope, official_source authority, direct_geometry derivation, null uncertainty with reason (no datum, 25.19 ha plot) are consistent with the source",
+        "distinctness: pyproj WGS84 geodesic recomputed STT Navi Mumbai 1,810 m, CtrlS Mahape 1,943 m, Sify Rabale 2,812 m, imported AdaniConneX Navi Mumbai 9,807 m; no dataset, holds, queue changes or claims.tsv entry names Ghansoli, Savli, A-GEN-4, ACXNMI-01 or Support Properties except this fragment and holds about ACXNMI Site-02 / ACXNMI-01 expansion / Taloja",
+        "one project on a new site; role AdaniConneX operator with relationship_scope intended, sourced to the presentation",
+        "Pune and Noida refreshes strictly newer (29 Jul and 9 Oct -> 28 Oct), same partially_operational value allowed for refresh, locality locators and scopes unchanged, PNQ04 and Sify Noida 02 untouched",
+        "no third-party personal data: EC proponent contact, signatories and call participants' names absent from changes, sources, holds and notes",
+        "dryrun_fragment.py ok: 934 sites, 1,002 projects, 5,165 evidence rows"
+      ],
+      "residual_risks": [
+        "imported:semiconductor-atlas:adaniconnex-navi-mumbai (1,000 MW city-level record, Navi Mumbai centroid, RFS Dec 2026) may describe Ghansoli in part or whole; Ghansoli is added as its own site and the overlap is disclosed, not resolved",
+        "the tie between 'Ghansoli 220 MW' and the ACXNMI-01 EC plot rests on the shared village name and AdaniConneX publishing the EC as its own; the EC states no MW figure",
+        "'Execution started' gives no start date, building or progress detail; under_construction rests on that phrase alone (imagery not used)",
+        "the presentation's capacity figures relate to the quarter ended 30 Sep 2026; using the 28 Oct filing date matters for the Noida refresh, whose prior observation is 9 Oct 2026",
+        "EC coordinate datum not stated; WGS84 assumed"
+      ]
+    },
+    {
+      "fragment": "jp-operators-p6",
+      "verdict": "accept",
+      "checks": [
+        "All 16 relied-on captures rehashed: sha256 matches both .metadata.json and sources.json content_hash",
+        "Kushiro: read the 5 Nov 2026 Nippon Paper newsroom joint release (company_disclosure); land-use and power-supply contracts signed for a Getworks container DC at 日本製紙釧路事業所; 6 MW FY2026 / 40 MW Sep 2027 / 150 MW are targets only; announced 2026-11-05 is 2 days old",
+        "Kushiro newsroom data file (update 2026-11-06) has item 00005886 pub_on 2026-11-05 and no later Kushiro DC item; the 2025 sawmill notice is unrelated",
+        "Kushiro locator: GSI address search (government geocoder) for Nippon Paper's own published works address 釧路市鳥取南2-1-47 returns one block feature 鳥取南二丁目１番 at 144.357697, 43.009014, identical to changes.json; GSI reverse geocoder returns 01206 鳥取南二丁目",
+        "Rebuilt GSI std and photo z16 mosaics: the point lies in the northern yard of the property annotated 日本製紙工場 beside a factory symbol; not a city centre, HQ or zone centroid; precedent scope class official_block_address_point_for_identified_parent_property exists",
+        "Google embed/short link on the access page present in the raw HTML but not used (embed centre about 0.6 km away); no PeeringDB/OSM; the locator source URL and method pass the map-service check",
+        "Getworks role operator/intended matches the release (企画・設計・構築・運営; データセンター事業者)",
+        "KIX11/KIX12: read the 30 Oct 2026 MCDR/OPTAGE release (company_disclosure): MCDRが…運営するKIXキャンパス, 74 MW, キャンパス内の4棟, members KIX10, KIX11, KIX12, KIX13 and KIX15, with KIX15 to open Q4 2028; 8 days old",
+        "MCDR campus page confirms KIX11 (25.0 MW) and KIX12 (opened Aug 2021, 20 MW); with KIX10 (7.6 MW) and KIX13 (21 MW) the total is 73.6 MW, matching the 74 MW",
+        "DLR pages give addresses 6-1 and 6-2-1 Saito Aokita; pyproj geodesic from the campus point: GSI 6-1 124.5 m, GSI 6-2 199.2 m, DLR KIX12 248.1 m, DLR KIX11 350.0 m (all match)",
+        "The KIX locator reuses the baseline campus point exactly (reuse_from KIX15 0ee1555f…, geometry evidence bc97b241…, no identity rows); the builder inheritance checks pass",
+        "MC Digital Realty role operator/current matches 運営する",
+        "Distinctness rescreened against the newly published 2026-11-07-research-hundredtwentieth (948 sites) and the 2026-11-06 dataset: no 釧路/Nippon Paper/鳥取南/KIX11/KIX12/Digital Osaka 2-3 records; nearest site to Kushiro is 214 km away; KIX10/13/15 are the only same-site projects",
+        "Queue changes, claims.tsv and sources/*-holds.json screened: Kushiro claimed only by this fragment; KIX11/12 reopen the hundred-first (jp-chubu-kansai-p5) hold, whose condition allows a newer explicit operator statement; the Getworks holds concern other sites",
+        "No private individuals' names, phones or emails in changes, sources, holds or notes (officers and PR contacts omitted)",
+        "dryrun_fragment.py ok against base 2026-11-07-research-hundredtwentieth (updated_at 2026-11-07)"
+      ],
+      "residual_risks": [
+        "KIX11/KIX12 operational status rests on a campus-level present-tense statement (MCDR operates the KIX campus of four buildings, 74 MW) plus the list of campus members. The four existing buildings are taken to be KIX10-KIX13 by elimination (KIX15 is future) and by the capacity sum; there is no sentence that names each building as operating.",
+        "The per-building capacities behind the 73.6 MW check come from an undated MCDR campus page, which itself frames 74 MW+ as a development plan.",
+        "Kushiro point is a GSI block-level feature with no published accuracy; the container DC's position within the roughly 0.9 km works is unpublished (uncertainty null with a reason).",
+        "The Kushiro contract signing day is not stated; 2026-11-05 is the announcement date."
+      ]
+    },
+    {
+      "fragment": "loc-1-p6",
+      "verdict": "accept",
+      "checks": [
+        "base re-read from site/config.json: verified_construction_core/2026-11-07-research-hundredtwentieth",
+        "all five sites exist with one project each; project geometry_evidence_id equals replaces_geometry_evidence_id (6a1a3449, 60be1887, 2748689d, 722a93f0, a6756761); site and project scalar points agree with the stated old points",
+        "rehashed all 14 relied-on captures in local_data/country-research-loc-1-p6: each matches its .metadata.json sha256 and the source content_hash; metadata URLs equal source_url",
+        "Flemish Location JSON read: one result each, Kouterveldstraat 13 1831 Machelen (ID 1739374, aangeduidDoorBeheerder) and Z. 1 Researchpark 340 1731 Asse (ID 30279844, afgeleidVanObject); coordinates copied exactly",
+        "pyproj 3.7.1 / PROJ 9.5.1 recompute: served WGS84 agrees with served Lambert-72 (0.001 m) and Lambert-2008 (0.005 m) for both Flemish points",
+        "BEV ADR search JSON read: one feature 8055 Graz Alte Poststraße 390 at [15.425034936, 47.040382971]; viewer help text says text-with-number searches query the Adressregister",
+        "CNEFE ZIP read in memory: 226070496 RUA SEM DENOMINACAO 943 VOTUPARIM CEP 06513001 'EMPRESA ODATA' NV_GEO_COORD 1 at -23.455411,-46.915678; same block holds Estrada dos Romeiros 796/812, CEP 06513001 is used by Dos Romeiros records; 1111 'EMPRESA ODATA PARTE DESATIVADA' 14 m away",
+        "operator identity read in captures: LCL contact page 'Diegem (head office) Kouterveldstraat 13 1831 Diegem' + data-center page 'LCL Brussels-North (head office)'; Penta NL page 'Route naar Penta Infra BRU01 Adres Zone1 Research Park 340 1731 Asse'; nexspace GRZ1 register block 'Alte Poststraße 390, 8055 Graz' (office at 376 not used); ODATA page SP01 'Estrada dos Romeiros, 943 – Votuparim', the only ODATA site in Santana de Parnaíba",
+        "displacements recomputed (haversine R 6,371,008.8 m): 12.1, 33.1, 18.6, 71.5 m (RJ01 135.6 m), all far under 25 km",
+        "locator sources acceptable: Flemish government geocoder, BEV federal address register, IBGE census address register; no Google/Apple/Bing/HERE/Waze/Yandex/PeeringDB/OSM input; method strings contain no map-service terms; page Google Maps links not used",
+        "robots: geo.api.vlaanderen.be and ftp.ibge.gov.br 404 (no file); kataster.bev.gv.at Disallow empty; lcl.be, penta-infra.com, nexspace.de, odatadc.com allow captured paths; disallowed hosts (api.basisregisters.vlaanderen.be, gis.stmk.gv.at) not fetched",
+        "RJ01 CNEFE 96696724 read: 'FABRICA DE BANCOS DE AUTOMOVEIS', COD_INDICADOR_ESTAB_ENDERECO 4, locality VENDA VELHA; nearest Jardim José Bonifácio record 370 m away; no ODATA/data-centre record in municipality -> removed and held",
+        "distinctness: only Tecto TGRU1 (1.26 km from SP01) within 3 km of any new point; no unpublished queue fragment or sources/*-holds.json entry claims these five sites (br-p1 published originals only)",
+        "byte-identical Penta and IA captures reuse existing evidence metadata (b552d8f2, 2ef3fced); builder raised no conflicting-metadata error",
+        "holds.json: 5 worker holds checked (no personal data, cited geometry evidence ids are Google-derived) plus new RJ01 hold; geometry-facts file updated to drop RJ01",
+        "dryrun_fragment.py ok (updated_at 2026-11-07): 948 sites, 1,017 projects, 5,275 evidence rows"
+      ],
+      "residual_risks": [
+        "LCL point is the register address of the operator's head office; it relies on LCL's own statement that Brussels-North is the head-office site",
+        "all four points are address points (frontage or administrator-set), not building centroids; horizontal uncertainty is unknown (null with reason)",
+        "SP01 CNEFE record gives the street as unnamed rather than Estrada dos Romeiros; the tie rests on the ODATA establishment label, number 943, locality and CEP",
+        "BEV licence (CC BY 4.0) is stated in the viewer for BEV cadastral/VTC data generally, not specifically on the search response; Flemish licence is inferred from the base-register open-data model licence",
+        "new LCL contact and data-center captures differ in hash from existing evidence (1ded18e0, 3ed9c4bf) and create new evidence rows with the same URLs",
+        "TELETIME robots.txt disallows ClaudeBot (captured under the generic rule); that source was dropped with RJ01"
+      ]
+    },
+    {
+      "fragment": "loc-2-p6",
+      "verdict": "accept",
+      "checks": [
+        "Rehashed sea-firma-1705094335.pdf, cirion-santiago-2-page.html and cirion-san2-spec-sheet-esp.pdf: all three match their .metadata.json and the source content_hash",
+        "Geometry facts file SHA-256 65e084ca... matches geometry_facts_sha256",
+        "SEA ICE 'Data Center Cirion' (signed 12 Jan 2024; validator id 2161068247) p.17, rendered: Table 4.1 places Cirion Technologies Chile S.A.'s project at Victor Uribe Sur #2290, Loteo Industrial Aconcagua, lote 4AB-1, Quilicura, net site 24,247.25 m2; Table 4.1.1 gives vertices A-D in UTM WGS84 zone 19S, as transcribed",
+        "Recomputed with pyproj 3.7.1/shapely 2.1.1: polygon valid, area 22,508 m2, centroid UTM 341816.2/6307778.28 -> [-70.7001219, -33.3575944], identical to the proposed point; max vertex distance 139.9 m",
+        "Displacement recomputed: 75.5 m haversine (75.4 m geodesic) from the current point, under 25 km; the current point lies inside the SEA polygon",
+        "Locator source is a Chilean government environmental-assessment record (firma.sea.gob.cl), not a map service; license field records the public SEIA file terms; the page's Google Maps embed (Victor Uribe 2259) was not used",
+        "Identity: the operator's SAN2 spec sheet (same bytes as Atlas evidence 08ade32f) prints Victor Uribe Sur 2290, Quilicura; the SAN2 page says SAN2 is in Quilicura with 23,000 m2; same operator (Cirion), name and address as the existing record",
+        "replaces_geometry_evidence_id 3aee10db-fe41-5953-801d-c4bc68313fe6 is the geometry evidence of the site's only project (df8be8be...) in verified_construction_core/2026-11-07-research-hundredtwentieth",
+        "Distinctness: no other dataset site within 2 km (nearest Gtd Panamericana Conchali, 4.7 km); no other queue addition or correction within 3 km; Ascenty Data Hall Quilicura SEA polygon lies about 2.7 km north and is a different proponent and plot",
+        "Nine locator_replacement_pending holds each have a reason and reopen condition; no third-party personal data in changes, sources, holds or geometry facts",
+        "dryrun_fragment.py reports ok against verified_construction_core/2026-11-07-research-hundredtwentieth (updated_at 2026-11-07)"
+      ],
+      "residual_risks": [
+        "The operator's page embed names Victor Uribe 2259 while the spec sheet and SEA record give Victor Uribe Sur 2290; the polygon comes from the SEA record, so the point is unaffected, but the house-number discrepancy is unresolved",
+        "The SEA polygon is a rounded four-vertex outline (7 percent below the stated net area) of the assessed plot, not an as-built survey; uncertainty is left unquantified with a reason",
+        "Compliance log records one pacing error (GeoMedellin hub request 51 s after robots.txt with Crawl-delay 60); it returned 401 and is unrelated to the accepted correction"
+      ]
+    },
+    {
+      "fragment": "loc-3-p6",
+      "verdict": "accept",
+      "checks": [
+        "base re-read from site/config.json: verified_construction_core/2026-11-07-research-hundredtwentieth",
+        "both sites have exactly one project; project geometry_evidence_id equals replaces_geometry_evidence_id (2a292844, aaab4a40) and project/site scalar locators agree",
+        "rehashed csdi-landinfo-tkotl131-search.json, csdi-lot-tkotl131.json, rpda-goodman permit PDF, goodman brochure PDF and snv-fy26 annual report: all match .metadata.json and source content_hash",
+        "geometry-facts files rehash to the geometry_facts_sha256 recorded in sources",
+        "CSDI: one LandInformation row TKOTL 131 -> LotCSUID 759000131 (LotCode 7590, New Grant Lot); lot layer returns 1 feature, 1 ring, 37 vertices, wkid 102140/2326",
+        "independent pyproj 3.7.1/PROJ 9.5.1 recompute (single op HK1980->WGS84 (1)): rounded ring equals facts ring; planar centroid [114.2745318, 22.2944108] inside ring; old Google point inside ring 4.1 m from edge; displacement 88.4 m haversine",
+        "MEGA Plus Atlas point outside TKOTL131 ring by 39.1 m, 123 m from new point; Digital Realty HKG10 at 1.38 km is the only other record within 3 km",
+        "SUNeVision 2025/26 annual report p.134 (printed 132) lists MEGA IDC, Wan Po Road Area 85, Tseung Kwan O Town Lot No. 131, MEGA Plus on Lot No. 122; pp.39-40 two towers on TKOTL131, Tower A and campus boundary of MEGA IDC at TKOTL131; evidence id reuses d4aec943 exactly",
+        "permit PDF p.1 Tenor I.1 read: Rathenaustrasse 29-31, Flur 12, Goodman Data-Center FRA II Gebaeude A und B, Rechts- und Hochwert 32 477 500 / 5 543 400; only coordinate in the 78-page decision; personal names in header not copied",
+        "8-digit Rechtswert with zone prefix 32 read as ETRS89/UTM 32N; recompute gives [8.6857711, 50.0424698], round trip 2 mm; Gauss-Krueger reading would be 1.8 km off and does not fit the printed format",
+        "old operator-link point native (477482.77, 5543425.67) rounds exactly to the permit's 100 m coordinate; displacement 30.9 m; no Atlas site or queue claim within 3 km other than this site",
+        "Goodman brochure p.1-2: FRA II Data Centre, Rathenaustrasse 31, 63263 Neu-Isenburg, two buildings (Block A/B); permit VI.2.2 confirms two data-centre buildings under Baugenehmigung of 12.12.2024",
+        "RP notice list confirms decision date 13.11.2025, Bekanntmachung printed 06.01.2025, file ref 0029-IV-43.3-53.u.38.09-00001#2023-00001; published_at null is conservative",
+        "locator sources acceptable: LandsD cadastral lot (government) and state-authority permit coordinate; no Google/map-service, geocoder, PeeringDB or OSM input; method strings contain no map-service terms",
+        "robots.txt: portal.csdi.gov.hk disallows only /geoportal/, /portal/, /notice/; rp-darmstadt.hessen.de allows /sites/.../files; de.goodman.com allows all generic agents",
+        "license fields follow Atlas precedent (CSDI no-open-license-asserted; RP Darmstadt public-record-source-terms)",
+        "8 holds checked: each existing_project_stable_key exists, cited geometry evidence id equals the project's current geometry evidence (all Google-derived methods), statuses/dates unchanged, no personal data",
+        "no conflicting correction, addition or hold for either site in other queue fragments, claims.tsv or sources/*-holds.json",
+        "dryrun_fragment.py ok (updated_at 2026-11-07); independent full build_update + validate_update in a scratch root passed; output drops 2a292844, strips geometry role from aaab4a40"
+      ],
+      "residual_risks": [
+        "Goodman permit coordinate is printed to whole hundreds of metres (up to about 71 m rounding); no openly permitted parcel basemap was checked to confirm the point falls inside Flur 12 parcels (Hessian cadastral services disallow robots)",
+        "the Goodman brochure source produces a new evidence row 39cf6ac2 with the same URL and bytes as existing f84e5176 (legacy id derivation); duplicates of this kind already exist in the dataset and publish_ready will mirror f84e5176 metadata",
+        "f84e5176 keeps a legacy 'geometry' role after the correction although no project uses it as geometry evidence; the builder and validator accept this",
+        "CSDI lot centroid marks the whole two-tower lot, not Tower A (the only admitted project); scope stays campus_locator as before"
+      ]
+    },
+    {
+      "fragment": "ops-frankfurt-de-p6",
+      "verdict": "accept",
+      "checks": [
+        "current_dataset re-read: verified_construction_core/2026-11-07-research-hundredtwentieth; window start 2026-08-14 (85 days before 2026-11-07)",
+        "all 24 captures rehashed: sha256 matches sources.json content_hash and each .metadata.json",
+        "FR6 status: EPIC post (schema.org datePublished 2026-10-20T21:05:30Z) read in capture: 'operating inside active Equinix IBX data centers' and 'currently available in ... Frankfurt (FR6)'; company_disclosure, same post kind as the published q3-us-reits-p6 PA10/LD5 precedent",
+        "FR6 identity: archived FR6 page (IA id_ 20261003181258) gives 'Laerchenstrasse 110 65933 Frankfurt' and 'one of three IBX facilities in our Lärchenstrasse campus'; FR4 page same address, FR8 page Larchenstrasse 141",
+        "FR6 locator recomputed: geoportal Gebaeudeadresse DEHEFALK30007b3M (470476.612, 5549572.946); config.json declares epsg 25832 for the elastic geosearch; pyproj 3.7.1 gives 8.5872105, 50.0976805 (exact); Lärchenstraße 141 at 117.1 m, 139 at 74.2 m; same endpoint, scope class and derivation as the published NorthC FRA01 and Telehouse locators",
+        "FR6 hold reopen condition (q3-us-reits-p6, hundredtwentieth holds: Equinix page tying FR6 to an address plus an official locator) is met",
+        "Victoria Park status: WFW release (datePublished 2026-11-02) read in capture: Leuchtturm and Rahlstedt data centres, operated by akquinet, 'two fully operational data centres'; DBAG release of 5 Nov 2026 read: exit closed, akquinet 'remains as the holistic operator of the data centres'",
+        "Victoria Park identity: permit PDF (pdftotext) GZ W/WBZ/04845/2021 of 29 Dec 2021, Eingang 25.03.2021, 'Errichtung eines Rechenzentrums', Flurstücke 2475, 2403, 2421, 2474, 2477, 2479 Neu-Rahlstedt; akquinet page: 10,750 m2 plot 'im Victoria Park in Hamburg-Rahlstedt', '03/2021 Baugenehmigung eingereicht', operation started 08/2024; Transparenzportal page confirms parcels, B-Plan Rahlstedt 131, dl-de/by-2-0",
+        "Victoria Park locator recomputed from raw ALKIS GML: six parcels, union a single 7,115 m2 polygon, centroid 578811.81/5939884.94 -> 10.1910142, 53.6018571 (exact); inside the Victoriaring 14 building (2,243 m2) and its 3,087 m2 Keller; plus parcels 2476 and 2478 the plot is about 10,750 m2",
+        "MU4 status: SHRED post (datePublished 2026-08-19T14:17:25Z) read: 'now launching SHRED ... in the following IBXs' including MU4; 80 days old, inside the 85-day window today",
+        "MU4 locator: inherited exactly from baseline project b284fbeb / evidence efe5b5c9 (campus_locator), site name and country match vcc-site-3867ebd8648d7b1a2b65; archived MU4 page gives Dywidagstrasse 10, 85609 Aschheim",
+        "distinctness: no Equinix Frankfurt, Lärchenstraße, akquinet, Rahlstedt, Victoriaring, Green Datahub or Westend record in sites/projects/evidence/source-records/identity-mapping; nearest sites FR6 -> NorthC FRA01 488 m (Mainzer Landstraße 695) and CyrusOne FRA7 671 m; Victoria Park -> Portus IPHH4 11.45 km; MU4 -> its own site 0 m, noris München Ost 4.38 km; no pending fragment, claim or holds point within 2 km; no unpublished fragment proposes these records",
+        "roles checked: Equinix operator (current), akquinet operator (current, DBAG), HAL Digitale Infrastruktur Deutschland 1 owner (current, WFW); relationship_scope values valid",
+        "no private individuals' names, phones or emails in changes, sources, holds, notes or geometry facts",
+        "dryrun_fragment.py ok against the current base: 950 sites, 1,020 projects, 5,292 evidence rows"
+      ],
+      "residual_risks": [
+        "Victoria Park status rests on a law firm's (buyer's adviser) release classed as company_disclosure; no precedent for law-firm status sources; the seller's primary DBAG release corroborates operation but does not name the Rahlstedt data centre",
+        "Victoria Park identity bridge from the redacted permit to akquinet is inferential (March 2021 application date, Rahlstedt/Victoria Park, plot area, underground rooms vs ALKIS Keller)",
+        "MU4 status is a Smart Hands service launch in an employee forum post, implying rather than stating operation; it leaves the 85-day window about 12 Nov 2026 and the builder's 90-day limit about 17 Nov 2026, so the fragment must publish before then",
+        "MU4 inherits a community-mapped OSM construction-landuse polygon as parent-campus locator; Equinix's Dywidagstrasse 10 address was not geolocated against it with an official source",
+        "FR6 point is a shared FR4/FR6 address point; FR6's building position on the campus is unpublished"
+      ]
+    },
+    {
+      "fragment": "ops-london-uk-p6",
+      "verdict": "accept",
+      "checks": [
+        "rehashed telehouse-land-acquisition-20261029.html: sha256 ed85a8d5... matches metadata and source content_hash",
+        "read decisive text: 29 Oct 2026 dateline; KDDI and Telehouse completed purchase of the Inventory Estate; land to support a new high-density AI-ready data centre as part of expansion of the existing Docklands campus; 65 MVA secured; new DC 'one of the largest facilities in the Telehouse London Docklands campus'",
+        "date: JSON-LD datePublished and article:published_time 2026-10-29T08:00:29Z, no dateModified; sitemap lastmod equal; within 85 days of 2026-11-07 (floor 2026-08-14)",
+        "source kind company_disclosure (operator's own release); robots.txt allows the page",
+        "announced only: no planning record for the Inventory Estate in the London Datahub captures (rehashed 49552bbb..., 9236f28c...); no consent or works claimed",
+        "existing site vcc-site-a6106441f8e729be2cfb and reference project 008b38ef match the base; geometry evidence 15786f2f is current for both site projects; scope campus_locator",
+        "recomputed locator from raw EA Part C2 PDF (rehashed 7f6246b1...): NGR TQ 38770 81090 -> 51.511702, -0.001647 with pyproj 3.7.1; operator-declared regulatory filing, acceptable source",
+        "verified the Republic/Import/Export Building Datahub centroids lie 244-310 m from the campus point; no offset asserted",
+        "status refresh strictly newer (2026-10-29 > 2026-07-28), present-tense operator statement about the existing campus, scope unchanged; meets uk-england-p5 hold reopen condition",
+        "roles: Telehouse intended operator, Telehouse and KDDI current owners as completed purchasers; scopes valid",
+        "distinctness: no Inventory Estate/East India Dock/Clove Crescent record in sites, projects, evidence, source-records, identity-mapping, pending queue fragments, claims or holds; only Atlas sites within 3 km are the Telehouse campus (0 m) and Netwise London East (986 m)",
+        "Telehouse sitemaps: no later news item or Inventory Estate page",
+        "no private personal names in sources, summaries or holds",
+        "dryrun_fragment.py ok against 2026-11-07-research-hundredtwentieth (948 sites, 1018 projects, 5270 evidence)"
+      ],
+      "residual_risks": [
+        "The Inventory Estate's boundary is unpublished; the reused campus point may be a few hundred metres from the new building (uncertainty recorded as unknown).",
+        "The operational refresh rests on present-tense release wording ('existing ... campus', 'connectivity ecosystem operating at the campus') rather than a facility-by-facility statement.",
+        "Owner role for KDDI/Telehouse reflects land ownership of a planned project; the eventual ownership structure of the building is not stated."
+      ]
+    },
+    {
+      "fragment": "ops-netherlands-p6",
+      "verdict": "accept",
+      "checks": [
+        "base dataset re-read from site/config.json: verified_construction_core/2026-11-07-research-hundredtwentieth",
+        "9 relied-on captures (8 sources + RD New vbo capture) rehashed: sha256 equals content_hash and .metadata.json sha256/bytes, HTTP 200, URLs match",
+        "geometry facts file sha256 b5310c66... matches sources.json geometry_facts_sha256",
+        "decisive statement read in Eurofiber release: dateline Groningen/Maarssen 21 september 2026; AI-fabriek housed in het bestaande datacenter van Eurofiber in Groningen; company_disclosure; 47 days before 2026-11-07 (window from 2026-08-14)",
+        "SURF EN news <time datetime=2026-09-21>: at Eurofiber at the Zernike Campus; data centre already integrated into the electricity grid",
+        "identity: Eurofiber overview lists eight NL data centres with addresses, only Groningen 1 (De Bunders 1, 9747AX) in Groningen; facility page gives same address, Zernike Campus, building operational since 2018",
+        "2027 delivery / early-2028 full-power targets excluded from status; AI-factory fit-out held as separate announced project",
+        "locator: PDOK BAG OGC API verblijfsobject 0014010022206731 (Kadaster, CC0-1.0), government address register, acceptable source; api.pdok.nl robots allows /kadaster/bag/ogc/ (only locatieserver disallowed)",
+        "locator recomputed: RD New 231109.902,584823.903 -> CRS84 6.527340522759025,53.244567053013625 with pyproj 3.7.1/PROJ 9.5.1, 0.0 m from served point; address query returns one address with same point",
+        "shapely 2.1.1: point inside pand 0014100022192265, 6.0 m from boundary, 11.1 m from centroid, footprint 1647.5 m2",
+        "distinctness: no Eurofiber/Bytesnet/De Bunders/Zernike/9747AX match in sites/projects/evidence/source-records/identity-mapping, other queue fragments or sources/*-holds.json; nearest Atlas site QTS Eemshaven 30.7 km; no queued point within 2 km",
+        "roles: Eurofiber Cloud Infra operator current; SURF customer intended (contract awarded, installation 2027)",
+        "no third-party personal names, phones or emails in changes, sources or holds; compliance log shows no map-service, PeeringDB or OSM use",
+        "corrected pand summary wording (nine distinct vertices, ten positions with closure)",
+        "dryrun_fragment.py ok (949 sites, 1018 projects)"
+      ],
+      "residual_risks": [
+        "operational status rests on a dated operator statement that the Groningen data centre is existing plus same-day SURF grid-connection statement; the present-tense operating details come from an undated facility page",
+        "QTS also operates an unlocated Groningen-city data centre feeding WarmteStad (held as lead); a later QTS addition must be screened against this De Bunders 1 site",
+        "BAG register point has no published positional accuracy; horizontal uncertainty left null with reason",
+        "SURF intended-customer role relates to the future AI-factory fit-out housed in this building"
+      ]
+    },
+    {
+      "fragment": "uk-planning-portals-p6",
+      "verdict": "accept",
+      "checks": [
+        "all 6 relied-on captures rehashed: sha256 and byte length match .metadata.json and sources.json content_hash (plus Redcar register page and officer report, EA LON2 report and GM releases from uk-england-p5)",
+        "Hillingdon register read: 67666/APP/2026/2416 Undecided, outline data centre facility, EIA (Reg. 19), received 20-10-26, validated 26-10-26, decision by 15-02-27",
+        "Datahub record read: lead_developer_company_name 'VIRTUS Data Centres LTD', 6.97 ha, 49,410 sq m B8, centroid E 507323 N 178121; intended 2028-2030 dates not used",
+        "Sipson locator recomputed with pyproj 3.7.1: (507323,178121) -> 51.4918589,-0.4555136 exactly; Datahub WGS84 centroid agrees",
+        "Hillingdon site-point convention reverified with shapely 2.1.1: 2016/2019/2021 polygon centroids equal site points within 0.49 m; 2026 point inside 7.50 ha 2016 boundary, 2.7 m from its centroid, 79.2 m from edge",
+        "corrected geometry-facts misstatement: the record's 3 m wgs84_polygon square lies 68.6 m NW of the site point (not around it); noted in identity_review/uncertainty and geometry facts; sources.json geometry_facts_sha256 updated to 73a40ce1...",
+        "locator source acceptable: GLA/borough planning record; no map service, geocoder or PeeringDB used",
+        "LON-East: site vcc-site-bcb0361cec82a4bf1063 has one project 3dfc53ca whose current geometry evidence is bedfc130 (campus_locator) - reuse exact",
+        "LON-East identity reverified: P0614.20 polygon (1.60 ha) touches P1726.23 polygon (gap 0 m) containing the campus locator; P1029.26 point inside P0614.20, 169.4 m from locator; EA CAR 0598676 names LON2 expansion across King George Close; GM Dec 2023 release cites adjacent plot with planning secured",
+        "P1029.26 valid 28/08/2026 within 85-day window (>= 2026-08-14); undecided; permitted not asserted",
+        "Redcar decision notice rendered: 'HEREBY GRANT PLANNING PERMISSION' R/2026/0337/FFM, signed and dated 29 October 2026, Phase 1 plans; register shows GRANT PLANNING PERMISSION 29/10/2026 delegated; strictly newer than 2026-10-14; same application and site",
+        "distinctness re-screened against current 2026-11-07-research-hundredtwentieth (948 sites/1017 projects): nearest site to Sipson 3.25 km; only 67666 hits are incidental digits; queue overlaps are published fragments (uk-regions-p1 Wilton, uk-england-p5 LON-East); holds: seventieth Sipson scoping lead and hundredth LON-East hold both resolved",
+        "privacy: case officer, agent and signatory names absent from changes, sources, holds and notes",
+        "dryrun_fragment.py ok against hundredtwentieth (949 sites, 1019 projects, 5275 evidence)"
+      ],
+      "residual_risks": [
+        "Sipson point is the council's site point for an unpublished 6.97 ha boundary; buildings may sit up to ~235 m away; horizontal uncertainty left null",
+        "LON-East new building attributed to Green Mountain by context (EA LON2 report, GM releases), not by a named applicant on P1029.26",
+        "P1029.26 announced observation (2026-08-28) leaves the 85-day window on 2026-11-22; publish before then",
+        "Sipson register is a live page; status could change before publication (decision due 15 Feb 2027)",
+        "Wilton permission is open to judicial review for six weeks from 29 October 2026"
+      ]
+    }
+  ],
+  "packet_pins": {
+    "definitions/atlas-research-hundredtwentyfirst-2026-11-07.json": "2a2ca063e5fc2eeefb3859214190522654127f8c5d049de2ab78a5ce0e036564",
+    "sources/research-countries-2026-11-07-hundredtwentyfirst-primary-sources.json": "b014fa7839c84fa487cc34581f3f7104c2f703c0733584e846fe8c7c6d320d47",
+    "sources/research-countries-2026-11-07-hundredtwentyfirst-actions.json": "2720d704c010c18fb9affcd099bf760ee67a2c3d92d69f6e9eff3c991fd72468",
+    "sources/research-countries-2026-11-07-hundredtwentyfirst-holds.json": "09ecb4d7d77bc3c34e7628f78ae24d0c31320c924bd194654b1ae149b90269e0"
+  },
+  "raw_captures_redistributed": false
+}

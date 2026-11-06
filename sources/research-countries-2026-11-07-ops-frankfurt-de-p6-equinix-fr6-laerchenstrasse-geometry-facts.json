@@ -1,0 +1,66 @@
+{
+  "candidate_id": "equinix-frankfurt-laerchenstrasse-campus",
+  "decision": "Selected the City of Frankfurt's official building-address point for Lärchenstraße 110 (address object DEHEFALK30007b3M), the address Equinix publishes for FR6 and for FR4 on its Lärchenstrasse campus in Frankfurt-Griesheim, transformed from EPSG:25832 to WGS84, as the campus locator. The coordinate on Equinix's own page map widget was not used.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      8.5872105,
+      50.0976805
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_building_address_point",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-ops-frankfurt-de-p6/frankfurt-geoportal-laerchenstrasse-110.json",
+  "source_sha256": "4203199dc4e807c373239184d16c0182607446c619c2b01eb9636cd6e28d8247",
+  "source_url": "https://geoportal.frankfurt.de/elastic/basisgis/_search?source_content_type=application%2Fjson&source=%7B%22query%22%3A%7B%22match_phrase%22%3A%7B%22properties.searchField%22%3A%22L%C3%A4rchenstra%C3%9Fe+110%22%7D%7D%2C%22size%22%3A5%7D",
+  "selected_properties": {
+    "source_layer": "Gebaeudeadresse (layerId 12)",
+    "address_object_id": "DEHEFALK30007b3M",
+    "searchField": "Lärchenstraße 110",
+    "native_coordinates_epsg25832": [
+      470476.61199999973,
+      5549572.946
+    ],
+    "operator_published_address": "Laerchenstrasse 110, 65933 Frankfurt (Equinix FR6 page, Internet Archive copy of 3 October 2026); 'Larchenstrasse 110 65933 Frankfurt' for FR4 (copy of 15 October 2026)"
+  },
+  "identity_bridge": [
+    "Equinix community post of 20 October 2026: EPIC environments operate 'inside active Equinix IBX® data centers' and are 'currently available in' London (LD5), Paris (PA10), 'Frankfurt (FR6)', Osaka (OS3) and Sydney (SY5).",
+    "Equinix FR6 page (Internet Archive raw copy 20261003181258): 'Frankfurt FR6 is one of three IBX facilities in our Lärchenstrasse campus'; address Laerchenstrasse 110, 65933 Frankfurt; 6,600 m2 (71,042 ft2) colocation space; 4-storey building purpose-built as a data center.",
+    "Equinix FR4 page (copy 20261015034514): address Larchenstrasse 110, 65933 Frankfurt; the nearby-sites list on the FR6 page describes FR4 as a Frankfurt West facility 'at 65933 Frankfurt- Griesheim'. Equinix FR8 page (copy 20261003181034): 'Located in the Lärchenstrasse Campus', address Larchenstrasse 141, 65933 Frankfurt.",
+    "Equinix German release of 22 October 2026 (datelined Frankfurt am Main): EPIC 'ist ab sofort in Frankfurt ... verfügbar' and 'Jeder EPIC-Standort befindet sich in einem laufenden Equinix-Rechenzentrum'."
+  ],
+  "consistency_checks": {
+    "exact_address_query": "match_phrase 'Lärchenstraße 110' returns exactly one feature: Gebaeudeadresse DEHEFALK30007b3M.",
+    "street_listing": "A match_phrase_prefix query for 'Lärchenstraße' returns 85 features. Lärchenstraße 139 (DEHEFALK30007eAJ) lies 74.2 m south, Lärchenstraße 141 (DEHEFALK30007cwK, Equinix's FR8 address) 117.1 m north-west and 141a (DEHEFALK30007m4r) 186.5 m north-west of the selected point; they are separate address objects and are not used.",
+    "crs": "The geoportal configuration (https://geoportal.frankfurt.de/karte/config.json, captured 6 November 2026, sha256 907501e96178af215a8fbe3d239ebd2d775fde13baf770ff0270d7e734053702) sets the routing geosearch on the same 'elastic' service to epsg 25832, so the coordinates are ETRS89 / UTM zone 32N metres. The same service and transform underlie the accepted Telehouse Frankfurt and NorthC FRA01 locators.",
+    "round_trip_m": 0.0005,
+    "nearest_atlas_sites_km": {
+      "NorthC Frankfurt1 (FRA01)": 0.488,
+      "CyrusOne FRA7 Frankfurt Westside Campus": 0.671,
+      "Colt Frankfurt 3 Sossenheim Campus": 2.985,
+      "Telehouse Frankfurt Campus (Kleyerstraße 75-87)": 2.986,
+      "MK Netzdienste FRA2 Frankfurt-Sossenheim": 3.249
+    },
+    "related_holds_m": {
+      "RP Darmstadt FR8 permit coordinate 470362/5549611 (EPSG:25832) quoted in the de-hesse-p1 FR15 hold": 120.8,
+      "de-hesse-p1 claim point for FR15 at Lärchenstraße 139a (50.098017, 8.585605)": 120.5
+    },
+    "versions": {
+      "pyproj": "3.7.1",
+      "proj": "9.5.1"
+    }
+  },
+  "transform_check": "pyproj 3.7.1 (PROJ 9.5.1) EPSG:25832 -> EPSG:4326, always_xy; rounded to 7 decimal places; the rounded point transforms back to within 0.5 mm.",
+  "excluded_coordinates": [
+    {
+      "kind": "Map widget coordinate on the Equinix FR6 page",
+      "reason": "A map-embed parameter, which the locator policy excludes; not used."
+    },
+    {
+      "kind": "Frankfurt city centre and Equinix's other Frankfurt addresses (Kleyerstraße 90 FR5, Lärchenstraße 141 FR8)",
+      "reason": "Not FR6's published address."
+    }
+  ],
+  "limitations": "The point is the register address point for Lärchenstraße 110, an address Equinix gives for both FR4 and FR6. Equinix does not publish where the FR6 building stands on the Lärchenstrasse campus, which also includes FR8 at Lärchenstraße 141 about 117 m to the north-west. It is not a parcel, building footprint or campus boundary."
+}
