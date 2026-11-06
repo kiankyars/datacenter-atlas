@@ -35,6 +35,14 @@ from the 90 days before the data update. Review later reports and keep the date 
 actually supports; a new research pass does not make an old observation current. Publish supported
 additions and updates as they are ready.
 
+Take each location from what the operator, developer, landlord or a public authority publishes:
+their own coordinates, addresses, site plans or maps, or permit, planning, cadastral, parcel and
+address records. Do not copy coordinates from map apps or facility directories whose terms forbid
+reuse, such as Google Maps or PeeringDB; from updates dated 7 November 2026 the builder rejects them.
+OpenStreetMap's API, Overpass and extract mirrors disallow automated access, so research does not
+fetch them. Points copied from such services before then, and imported points that name only a
+town, county or state, are replaced with `locator_corrections` as published locations are found.
+
 `verified_construction_core/2026-10-29-research-hundredeighteenth` adds two sites and two projects:
 **932 sites and 1,000 projects in 87 countries**. CRA DC Tower Žižkov in Prague and STTGDC SIN6
 (STT Singapore 6) in Loyang record existing commercial data-centre operation.

@@ -35,9 +35,11 @@ the following evidence.
    within 90 days before the data update. Keep month-only dates in the research notes without
    inventing a day; existing records retain their dates until newer evidence supports a change.
 2. **A precise locator.** A source that places the project or its campus: an official parcel or
-   boundary, an official address point, a coordinate published by the developer or a public
-   authority, or a named map feature. Say what it locates (a building, the project or the whole
-   campus). City centres, head-office addresses and industrial-zone centroids are not accepted.
+   boundary, an official address point, or a coordinate, address or site plan published by the
+   developer, operator or a public authority. Say what it locates (a building, the project or the
+   whole campus). City centres, head-office addresses and industrial-zone centroids are not
+   accepted. Do not copy coordinates from Google Maps or other map apps, or from directories such
+   as PeeringDB: their terms do not allow reuse in an open dataset.
 3. **A new physical site.** Search the [site list](https://kiankyars.github.io/datacenter-atlas/sites/)
    first. Another building or phase on a listed campus does not add a site.
 4. **A check for later reports.** Include any later completion, opening, pause, cancellation or

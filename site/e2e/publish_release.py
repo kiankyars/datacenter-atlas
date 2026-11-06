@@ -11,6 +11,7 @@ command arguments.
 from __future__ import annotations
 
 import argparse
+from concurrent.futures import ThreadPoolExecutor
 import hashlib
 import json
 import os
@@ -84,26 +85,31 @@ def find_release(github, tag):
 
 def verify_public_downloads(inventory, *, read_bytes):
     """Read actual anonymous URLs; only transient publication lag is retried."""
-    for item in inventory["files"]:
-        for attempt in range(3):
-            request = urllib.request.Request(item["url"], method="GET" if read_bytes else "HEAD",
-                                             headers={"User-Agent": "DataCenterAtlas-release-verification"})
-            try:
-                with urllib.request.urlopen(request, timeout=45) as response:
-                    if response.status != 200:
-                        raise PublicationError(f"Public release URL returned {response.status}: {item['name']}")
-                    if read_bytes:
-                        body = response.read(item["bytes"] + 1)
-                        if len(body) != item["bytes"] or sha256(body) != item["sha256"]:
-                            raise PublicationError(f"Public release bytes mismatch: {item['name']}")
-                    elif response.headers.get("Content-Length") is not None:
-                        if int(response.headers["Content-Length"]) != item["bytes"]:
-                            raise PublicationError(f"Public release size mismatch: {item['name']}")
-                break
-            except urllib.error.HTTPError as error:
-                if error.code not in (404, 502, 503, 504) or attempt == 2:
-                    raise PublicationError(f"Public release URL failed: {item['name']} HTTP {error.code}") from None
-                time.sleep(attempt + 1)
+    with ThreadPoolExecutor(max_workers=6) as pool:
+        # list() re-raises the first PublicationError from any file.
+        list(pool.map(lambda item: _verify_public_download(item, read_bytes=read_bytes), inventory["files"]))
+
+
+def _verify_public_download(item, *, read_bytes):
+    for attempt in range(3):
+        request = urllib.request.Request(item["url"], method="GET" if read_bytes else "HEAD",
+                                         headers={"User-Agent": "DataCenterAtlas-release-verification"})
+        try:
+            with urllib.request.urlopen(request, timeout=45) as response:
+                if response.status != 200:
+                    raise PublicationError(f"Public release URL returned {response.status}: {item['name']}")
+                if read_bytes:
+                    body = response.read(item["bytes"] + 1)
+                    if len(body) != item["bytes"] or sha256(body) != item["sha256"]:
+                        raise PublicationError(f"Public release bytes mismatch: {item['name']}")
+                elif response.headers.get("Content-Length") is not None:
+                    if int(response.headers["Content-Length"]) != item["bytes"]:
+                        raise PublicationError(f"Public release size mismatch: {item['name']}")
+            break
+        except urllib.error.HTTPError as error:
+            if error.code not in (404, 502, 503, 504) or attempt == 2:
+                raise PublicationError(f"Public release URL failed: {item['name']} HTTP {error.code}") from None
+            time.sleep(attempt + 1)
 
 
 def checked_inventory(inventory, repository_url):
@@ -263,9 +269,12 @@ def publish_inventory(github, inventory, *, staged_root, current, commit, title,
     tag = inventory["release_tag"]
     release = find_release(github, tag)
     if release is not None and not release.get("draft"):
+        # The API digests already pin every asset's bytes. Reading every earlier release in full
+        # on each deployment grew past the job timeout, so public URLs are checked by size here;
+        # a newly published release below is still read byte for byte.
         verify_assets(github, release, inventory)
         verify_manifest_at_tag(github, inventory, versions_root)
-        public_verify(inventory, read_bytes=True)
+        public_verify(inventory, read_bytes=False)
         return "verified_existing"
     if inventory["dataset_id"] != current:
         raise PublicationError(f"Previously frozen release is absent or still a draft: {tag}")

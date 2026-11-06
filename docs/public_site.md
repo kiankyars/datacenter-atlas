@@ -526,6 +526,21 @@ publication does not depend on reaching a site-count target or product-version m
    `proposed`: a dated primary source that identifies the project establishes `announced`, so a
    proposed record is refreshed as `announced` (or a later status). Neither code is an admission
    status, and no other record can be moved to them.
+   Take locations only from what the developer, operator, landlord or a public authority publishes:
+   its coordinates, addresses, site plans or maps, or permit, planning, cadastral, parcel and
+   address-register records (an official geocoder may resolve a published address). From updates
+   dated 7 November 2026 the builder rejects locators copied from map services or directories whose
+   terms forbid reuse: Google Maps and Google map search, Waze, Apple, Bing, HERE, Yandex, Baidu,
+   Amap, Naver, Kakao, Tencent and 2GIS maps, and PeeringDB.
+   To replace an existing site's point, add a `locator_corrections` entry with the site key and ID,
+   `replaces_geometry_evidence_id` (the geometry evidence every project at the site shares), the
+   `reason`, a `displacement_review` and a new point `locator` in the addition shape (a campus
+   locator when the site has several projects). Every project at the site moves to the new point;
+   status, dates and roles stay unchanged. The selection report lists each correction with its
+   displacement. A move of more than 25 km describes a different site and is refused; imported
+   reference points that only name a town, county or state (`locality`, `admin2` or `admin1`) may move
+   up to 50, 200 or 1,000 km to the campus they stand for. The replaced
+   capture keeps its other associations and stays in earlier versions.
 3. Record the reviewed changes in `definitions/atlas-update-YYYY-MM-DD.json`, retaining stable
    site and project identifiers and pinning the previous dataset manifest. Build the dated
    snapshot with `python3 scripts/build_dataset_update.py --input definitions/atlas-update-YYYY-MM-DD.json`,

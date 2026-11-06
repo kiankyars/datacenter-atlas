@@ -56,6 +56,27 @@ OBSERVED_STATUSES = ACTIVE_STATUSES | {LifecycleStatus.OPERATIONAL.value, PARTIA
 FIRSTHAND_REPORT_KINDS = {"news", "analyst_report"}
 PROJECT_RECORD_POSTURE = "authoritative_project_record_plus_scoped_location"
 ROOT = Path(__file__).resolve().parents[1]
+# From this update date, a new or corrected locator may not copy coordinates from a map service or
+# directory whose terms forbid reuse in another dataset. Earlier updates still reproduce unchanged;
+# their locators can be replaced with locator_corrections.
+LOCATOR_SOURCE_POLICY_DATE = date(2026, 11, 7)
+MAP_SERVICE_DOMAINS = (
+    ("waze.com", "Waze"), ("maps.apple.com", "Apple Maps"), ("here.com", "HERE"), ("peeringdb.com", "PeeringDB"),
+    ("map.baidu.com", "Baidu Maps"), ("amap.com", "Amap"), ("map.naver.com", "Naver Map"), ("naver.me", "Naver Map"),
+    ("map.kakao.com", "Kakao Map"), ("kko.to", "Kakao Map"), ("map.qq.com", "Tencent Maps"), ("2gis.ru", "2GIS"),
+    ("2gis.com", "2GIS"),
+)
+MAP_SERVICE_METHOD_TERMS = (
+    ("google_map", "Google Maps"), ("google map", "Google Maps"), ("googlemap", "Google Maps"),
+    ("native_google", "Google Maps"), ("google_embed", "Google Maps"), ("waze", "Waze"), ("peeringdb", "PeeringDB"),
+    ("yandex_map", "Yandex Maps"), ("yandex_placemark", "Yandex Maps"), ("baidu_map", "Baidu Maps"),
+    ("amap_", "Amap"), ("gaode", "Amap"), ("naver_map", "Naver Map"), ("kakao_map", "Kakao Map"),
+    ("bing_map", "Bing Maps"), ("apple_map", "Apple Maps"),
+)
+# A corrected point farther than this from the old one describes a different site. Imported
+# reference points only name a town, county or region, so the campus can be farther from them.
+MAX_LOCATOR_CORRECTION_METRES = 25_000
+COARSE_REFERENCE_CORRECTION_METRES = {"locality": 50_000, "admin2": 200_000, "admin1": 1_000_000}
 
 
 def _require(condition, message):
@@ -260,6 +281,69 @@ def _inherited_campus_locator(locator, site, baseline_projects, baseline_evidenc
 
 
 
+def _map_service(url, method):
+    """Name the map service or directory a locator was copied from, if its terms forbid reuse."""
+    parts = urlsplit(url)
+    host = (parts.hostname or "").lower().removeprefix("www.")
+    path = parts.path.lower()
+    labels = host.split(".")
+    if "google" in labels and (labels[0] == "maps" or path.startswith("/maps")
+                               or (path.startswith("/search") and "tbm=map" in parts.query)):
+        return "Google Maps"
+    if host in {"maps.app.goo.gl", "g.page"} or (host == "goo.gl" and path.startswith("/maps")):
+        return "Google Maps"
+    for domain, name in MAP_SERVICE_DOMAINS:
+        if host == domain or host.endswith("." + domain):
+            return name
+    for label, name in (("bing", "Bing Maps"), ("yandex", "Yandex Maps")):
+        if label in labels and path.startswith("/maps"):
+            return name
+    words = method.lower()
+    return next((name for term, name in MAP_SERVICE_METHOD_TERMS if term in words), None)
+
+
+def _point_locator(locator, sources, updated):
+    """Validate a sourced point locator and return its project geometry fields."""
+    _require("geometry" in locator, "locator needs point geometry or an explicit baseline project reference")
+    geometry = locator["geometry"]
+    _require(geometry["type"] == "Point", "new point admissions only; complex boundary changes require a separate geometry review")
+    coords = geometry["coordinates"]
+    _require(isinstance(coords, list) and len(coords) == 2 and all(isinstance(n, (int, float)) and not isinstance(n, bool) and math.isfinite(n) for n in coords), "invalid point coordinates")
+    lon, lat = coords
+    _require(-180 <= lon <= 180 and -90 <= lat <= 90, "point outside coordinate range")
+    _require(locator["scope"] in {"project_locator", "reviewed_site_locator", "campus_locator"}, "new locator must locate the project or campus")
+    for field in ("method", "precision", "identity_review"):
+        _text(locator.get(field), f"locator {field}")
+    derivation = locator.get("derivation", "direct_geometry")
+    _require(derivation in {"direct_geometry", "georeferenced_source_map", "coordinate_transform"}, "unsupported locator derivation")
+    if derivation != "direct_geometry":
+        _require(locator["authority"] == "compiled_reference", "derived locator must be a compiled reference")
+    uncertainty = locator.get("horizontal_uncertainty_metres")
+    if uncertainty is None:
+        _text(locator.get("uncertainty_reason"), "locator uncertainty reason")
+    else:
+        _require(isinstance(uncertainty, (int, float)) and not isinstance(uncertainty, bool) and math.isfinite(uncertainty) and uncertainty >= 0, "invalid horizontal uncertainty")
+    source_url = sources[locator["source_id"]]["source_url"]
+    if updated >= LOCATOR_SOURCE_POLICY_DATE:
+        service = _map_service(source_url, locator["method"])
+        _require(service is None, f"locator copied from {service}, whose terms do not allow reuse in the Atlas; "
+                                  "use a location the operator or a government publishes")
+    return dict(
+        latitude=str(lat), longitude=str(lon), geometry_json=_json(geometry), geometry_type="Point",
+        geometry_source_entity_kind="campus", geometry_derivation=derivation, geometry_method=locator["method"],
+        geometry_scope_class=locator["scope_class"], geometry_authority_class=locator["authority"], geometry_use_scope=locator["scope"],
+        geometry_precision_scope=locator["precision"], horizontal_uncertainty_metres=str(uncertainty) if uncertainty is not None else "",
+        horizontal_uncertainty_unknown_reason=locator.get("uncertainty_reason", ""),
+        geometry_source_url=source_url,
+    )
+
+
+def _distance_metres(lon1, lat1, lon2, lat2):
+    lon1, lat1, lon2, lat2 = map(math.radians, (lon1, lat1, lon2, lat2))
+    h = math.sin((lat2 - lat1) / 2) ** 2 + math.cos(lat1) * math.cos(lat2) * math.sin((lon2 - lon1) / 2) ** 2
+    return 2 * 6371008.8 * math.asin(math.sqrt(h))
+
+
 def _feature(site):
     properties = {key: site[key] for key in (
         "site_id", "physical_site_stable_key", "name", "country", "geometry_type",
@@ -359,39 +443,15 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
             geometry_fields, inherited_evidence_ids = _inherited_campus_locator(
                 locator, baseline_sites.get(site_key), baseline_projects, baseline_evidence)
         else:
-            _require("geometry" in locator, "locator needs point geometry or an explicit baseline project reference")
+            geometry_fields = _point_locator(locator, sources, updated)
             geometry = locator["geometry"]
-            _require(geometry["type"] == "Point", "new point admissions only; complex boundary changes require a separate geometry review")
-            coords = geometry["coordinates"]
-            _require(isinstance(coords, list) and len(coords) == 2 and all(isinstance(n, (int, float)) and not isinstance(n, bool) and math.isfinite(n) for n in coords), "invalid point coordinates")
-            lon, lat = coords
-            _require(-180 <= lon <= 180 and -90 <= lat <= 90, "point outside coordinate range")
-            _require(locator["scope"] in {"project_locator", "reviewed_site_locator", "campus_locator"}, "new locator must locate the project or campus")
-            for field in ("method", "precision", "identity_review"):
-                _text(locator.get(field), f"locator {field}")
-            derivation = locator.get("derivation", "direct_geometry")
-            _require(derivation in {"direct_geometry", "georeferenced_source_map", "coordinate_transform"}, "unsupported locator derivation")
-            if derivation != "direct_geometry":
-                _require(locator["authority"] == "compiled_reference", "derived locator must be a compiled reference")
             uncertainty = locator.get("horizontal_uncertainty_metres")
-            if uncertainty is None:
-                _text(locator.get("uncertainty_reason"), "locator uncertainty reason")
-            else:
-                _require(isinstance(uncertainty, (int, float)) and not isinstance(uncertainty, bool) and math.isfinite(uncertainty) and uncertainty >= 0, "invalid horizontal uncertainty")
             if existing_site:
                 _require(locator["scope"] == "campus_locator" and geometry == json.loads(existing_site["geometry_json"]),
                          "existing site addition must reuse its reviewed campus point")
                 _require((str(uncertainty) if uncertainty is not None else "") == existing_site["horizontal_uncertainty_metres"]
                          and locator.get("uncertainty_reason", "") == existing_site["horizontal_uncertainty_unknown_reason"],
                          "existing campus locator uncertainty must be preserved")
-            geometry_fields = dict(
-                latitude=str(lat), longitude=str(lon), geometry_json=_json(geometry), geometry_type="Point",
-                geometry_source_entity_kind="campus", geometry_derivation=derivation, geometry_method=locator["method"],
-                geometry_scope_class=locator["scope_class"], geometry_authority_class=locator["authority"], geometry_use_scope=locator["scope"],
-                geometry_precision_scope=locator["precision"], horizontal_uncertainty_metres=str(uncertainty) if uncertainty is not None else "",
-                horizontal_uncertainty_unknown_reason=locator.get("uncertainty_reason", ""),
-                geometry_source_url=sources[locator["source_id"]]["source_url"],
-            )
         iso = item["country_iso_a2"]
         _require(len(iso) == 2 and iso.isascii() and iso.isupper(), "invalid ISO country code")
         pid = str(uuid5(NAMESPACE_URL, key))
@@ -450,6 +510,78 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
             site = _site_from_project(row, item["site_name"])
             sites.append(site)
             sites_by_key[site_key] = site
+
+    corrected = []
+    addition_sites = {item["physical_site_stable_key"] for item in spec.get("additions", [])}
+    site_locator_fields = ("latitude", "longitude", "geometry_json", "geometry_type",
+                           "horizontal_uncertainty_metres", "horizontal_uncertainty_unknown_reason")
+    project_locator_fields = site_locator_fields + (
+        "geometry_source_entity_kind", "geometry_derivation", "geometry_method", "geometry_scope_class",
+        "geometry_authority_class", "geometry_use_scope", "geometry_precision_scope", "geometry_evidence_id",
+        "geometry_source_url",
+    )
+    for item in spec.get("locator_corrections", []):
+        site_key = item["physical_site_stable_key"]
+        _require(site_key in base_site_keys and site_key not in addition_sites
+                 and site_key not in {entry["physical_site_stable_key"] for entry in corrected},
+                 "a locator correction needs an existing site with no addition or other correction in the update")
+        site = sites_by_key[site_key]
+        _require(item.get("site_id") == site["site_id"], "locator correction site ID must match the physical site key")
+        _text(item.get("reason"), "locator correction reason")
+        _text(item.get("displacement_review"), "locator displacement review")
+        members = [row for row in projects if row["site_id"] == site["site_id"]]
+        replaced = item.get("replaces_geometry_evidence_id")
+        _require(all(row["geometry_evidence_id"] == replaced for row in members),
+                 "correction must name the geometry evidence of every project at the site")
+        _require(all(row[field] == members[0][field] for row in members for field in project_locator_fields)
+                 and all(members[0][field] == site[field] for field in site_locator_fields),
+                 "projects at the site must share one locator before it can be corrected")
+        locator = item["locator"]
+        _require(set(locator) <= {"scope", "geometry", "source_id", "identity_source_ids", "scope_class", "authority",
+                                  "derivation", "method", "precision", "horizontal_uncertainty_metres",
+                                  "uncertainty_reason", "identity_review"}, "unsupported locator correction field")
+        geometry_fields = _point_locator(locator, sources, updated)
+        _require(len(members) == 1 or locator["scope"] == "campus_locator", "a multi-project site needs a campus locator")
+        _require(sources[locator["source_id"]]["evidence_id"] != replaced, "a locator correction needs a different geometry source")
+        identity_ids = locator.get("identity_source_ids", [])
+        _require(isinstance(identity_ids, list) and all(value in sources for value in identity_ids)
+                 and len(identity_ids) == len(set(identity_ids)), "locator identity sources must be reviewed sources")
+        lon, lat = locator["geometry"]["coordinates"]
+        displacement = _distance_metres(float(site["longitude"]), float(site["latitude"]), lon, lat)
+        limit = MAX_LOCATOR_CORRECTION_METRES
+        if members[0]["geometry_method"] == "imported_reference_point":
+            limit = COARSE_REFERENCE_CORRECTION_METRES.get(members[0]["geometry_scope_class"], limit)
+        _require(displacement <= limit,
+                 f"a locator correction farther than {limit // 1000} km from a {members[0]['geometry_scope_class']} "
+                 "point describes a different site; withdraw and re-admit it")
+        for row in members:
+            row.update(geometry_fields)
+            row["geometry_evidence_id"] = associate(locator["source_id"], row["project_id"], "geometry")
+            for source_id in identity_ids:
+                associate(source_id, row["project_id"], "context:geometry_identity")
+        site.update({field: members[0][field] for field in site_locator_fields})
+        for key, field in (("geometry_source_entity_kinds", "geometry_source_entity_kind"), ("geometry_derivations", "geometry_derivation"),
+                           ("geometry_methods", "geometry_method"), ("geometry_scope_classes", "geometry_scope_class"),
+                           ("geometry_authority_classes", "geometry_authority_class"), ("geometry_use_scopes", "geometry_use_scope"),
+                           ("geometry_precision_scopes", "geometry_precision_scope"), ("geometry_evidence_ids", "geometry_evidence_id")):
+            site[key + "_json"] = _json(sorted({row[field] for row in members}))
+        # The replaced capture stays in the archive of earlier versions. Here it keeps only the
+        # associations that do not come from its use as this site's locator.
+        old = evidence_by_id[replaced]
+        roles = set(json.loads(old["roles_json"]))
+        if roles == {"geometry"}:
+            member_ids = {row["project_id"] for row in members}
+            old["project_ids_json"] = _json(sorted(set(json.loads(old["project_ids_json"])) - member_ids))
+        if not any(row["geometry_evidence_id"] == replaced for row in projects):
+            roles.discard("geometry")
+        old["roles_json"] = _json(sorted(roles))
+        if not json.loads(old["project_ids_json"]) and not old.get("source_record_id"):
+            evidence.remove(old)
+            del evidence_by_id[replaced]
+        corrected.append({"physical_site_stable_key": site_key, "site_id": site["site_id"],
+                          "previous_geometry_evidence_id": replaced,
+                          "geometry_evidence_id": members[0]["geometry_evidence_id"],
+                          "displacement_metres": round(displacement, 1)})
 
     changes = [(item, False) for item in spec.get("status_updates", [])]
     changes += [(item, True) for item in spec.get("status_corrections", [])]
@@ -574,6 +706,8 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
         report["added_projects"] = [item["project_stable_key"] for item in spec.get("additions", [])]
     if contextualized:
         report["context_enriched_projects"] = sorted(contextualized)
+    if corrected:
+        report["corrected_locators"] = sorted(corrected, key=lambda entry: entry["site_id"])
     if has_consolidation:
         report.update(source_record_resolutions=inherited_resolutions,
                       consolidation_policy=inherited_report.get("consolidation_policy", ""),

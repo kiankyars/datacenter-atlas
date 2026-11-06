@@ -1036,5 +1036,255 @@ class RetainedImportedStatusTests(unittest.TestCase):
             self.payloads()
 
 
+class LocatorCorrectionTests(unittest.TestCase):
+    """An existing site's point is replaced from a better source; nothing else about it changes."""
+
+    def setUp(self):
+        self.case = DatasetUpdateTests("test_reproducible_with_real_baseline_and_unchanged_observation_dates")
+        self.case.setUp()
+        self.addCleanup(self.case.temp.cleanup)
+        self.root = self.case.root
+        map_source = {**self.case.sources["sources"][0], "id": "old-map", "kind": "map",
+                      "title": "Map feature", "source_url": "https://maps.example.net/feature/1",
+                      "content_hash": hashlib.sha256(b"old map feature").hexdigest()}
+        self.case.sources["sources"].append(map_source)
+        first = self.case.spec["additions"][0]
+        first["locator"]["source_id"] = "old-map"
+        second = copy.deepcopy(first)
+        second.update(project_stable_key="curated:test-campus:phase2", name="Example Phase 2")
+        self.case.spec["additions"] = [first]
+        self.case.write()
+        build_update(self.case.input, self.root / "first", root=self.root)
+        self.project = self.rows("first", "projects.csv")["curated:test-campus:construction"]
+        self.base("first")
+        self.case.spec["additions"] = []
+        self.parcel = {**self.case.sources["sources"][0], "id": "parcel", "kind": "government_record",
+                       "title": "Parcel record", "source_url": "https://gis.example.gov/parcels/42",
+                       "publisher": "Example County", "license": "public-domain",
+                       "content_hash": hashlib.sha256(b"parcel 42").hexdigest()}
+        self.case.sources["sources"] = [self.case.sources["sources"][0], self.parcel]
+        self.correction = {
+            "physical_site_stable_key": "curated:test-campus", "site_id": self.project["site_id"],
+            "replaces_geometry_evidence_id": self.project["geometry_evidence_id"],
+            "reason": "The point was copied from a map service whose terms do not allow reuse.",
+            "displacement_review": "About 147 m south-east of the old point; the county parcel is the named campus.",
+            "locator": {"geometry": {"type": "Point", "coordinates": [-100.099, 30.199]}, "source_id": "parcel",
+                        "scope": "campus_locator", "scope_class": "official_parcel_centroid", "authority": "official_source",
+                        "method": "centroid_of_county_parcel_42", "precision": "Parcel centroid, not a building footprint.",
+                        "horizontal_uncertainty_metres": 60,
+                        "identity_review": "The county record names the operator and the campus address."},
+        }
+        self.second = second
+
+    def rows(self, dataset, name, key="project_stable_key"):
+        return {row[key]: row for row in csv.DictReader(io.StringIO((self.root / dataset / name).read_text()))}
+
+    def base(self, dataset):
+        self.case.spec.update(base_dataset=dataset, base_manifest_sha256=hashlib.sha256(
+            (self.root / dataset / "manifest.json").read_bytes()).hexdigest())
+
+    def corrected(self, **spec):
+        self.case.spec.update(spec)
+        self.case.spec["locator_corrections"] = [self.correction]
+        payloads, manifest = self.case.payloads()
+        tables = {name: list(csv.DictReader(io.StringIO(payloads[name].decode())))
+                  for name in ("sites.csv", "projects.csv", "evidence.csv")}
+        return payloads, manifest, tables
+
+    def test_correction_replaces_point_and_provenance_and_drops_the_unused_capture(self):
+        payloads, manifest, tables = self.corrected()
+        project = next(row for row in tables["projects.csv"] if row["project_id"] == self.project["project_id"])
+        site = next(row for row in tables["sites.csv"] if row["site_id"] == self.project["site_id"])
+        new_id = str(uuid5(NAMESPACE_URL, f"{self.parcel['source_url']}#{self.parcel['content_hash']}"))
+        self.assertEqual((project["latitude"], project["longitude"]), ("30.199", "-100.099"))
+        self.assertEqual((site["latitude"], site["longitude"], site["geometry_json"]),
+                         ("30.199", "-100.099", '{"coordinates":[-100.099,30.199],"type":"Point"}'))
+        self.assertEqual(project["geometry_evidence_id"], new_id)
+        self.assertEqual(project["geometry_source_url"], self.parcel["source_url"])
+        self.assertEqual(project["geometry_method"], "centroid_of_county_parcel_42")
+        self.assertEqual((project["horizontal_uncertainty_metres"], project["horizontal_uncertainty_unknown_reason"]), ("60", ""))
+        self.assertEqual(json.loads(site["geometry_evidence_ids_json"]), [new_id])
+        self.assertEqual(json.loads(site["geometry_methods_json"]), ["centroid_of_county_parcel_42"])
+        for field in ("last_observed_physical_status", "status_as_of", "status_evidence_id", "name", "role_claims_json"):
+            self.assertEqual(project[field], self.project[field], field)
+        evidence = {row["evidence_id"]: row for row in tables["evidence.csv"]}
+        self.assertNotIn(self.project["geometry_evidence_id"], evidence)
+        self.assertEqual(json.loads(evidence[new_id]["roles_json"]), ["geometry"])
+        self.assertEqual(manifest["counts"]["evidence"], len(self.rows("first", "evidence.csv", "evidence_id")))
+        report = json.loads(payloads["selection-report.json"])
+        self.assertEqual(report["corrected_locators"], [{
+            "physical_site_stable_key": "curated:test-campus", "site_id": self.project["site_id"],
+            "previous_geometry_evidence_id": self.project["geometry_evidence_id"], "geometry_evidence_id": new_id,
+            "displacement_metres": 147.0}])
+        feature = next(item for item in json.loads(payloads["sites.geojson"])["features"] if item["id"] == self.project["site_id"])
+        self.assertEqual(feature["geometry"], {"type": "Point", "coordinates": [-100.099, 30.199]})
+
+    def test_correction_keeps_a_shared_capture_for_its_other_roles(self):
+        self.case.sources["sources"][0]["id"] = "work"
+        self.case.spec["additions"] = []
+        # Rebuild a base whose locator and status come from the same capture.
+        self.case.spec.update(base_dataset="base", base_manifest_sha256=hashlib.sha256((BASE / "manifest.json").read_bytes()).hexdigest())
+        addition = copy.deepcopy(self.second)
+        addition.update(project_stable_key="curated:shared:construction", physical_site_stable_key="curated:shared",
+                        site_name="Shared capture campus", name="Shared capture construction")
+        addition["locator"]["source_id"] = "work"
+        self.case.spec["additions"] = [addition]
+        self.case.write()
+        build_update(self.case.input, self.root / "shared", root=self.root)
+        project = self.rows("shared", "projects.csv")["curated:shared:construction"]
+        self.assertEqual(project["geometry_evidence_id"], project["status_evidence_id"])
+        self.base("shared")
+        self.case.spec["additions"] = []
+        self.correction.update(physical_site_stable_key="curated:shared", site_id=project["site_id"],
+                               replaces_geometry_evidence_id=project["geometry_evidence_id"])
+        _, _, tables = self.corrected()
+        evidence = {row["evidence_id"]: row for row in tables["evidence.csv"]}
+        kept = evidence[project["status_evidence_id"]]
+        self.assertEqual(json.loads(kept["roles_json"]), ["physical_status"])
+        self.assertIn(project["project_id"], json.loads(kept["project_ids_json"]))
+
+    def test_multi_project_campus_moves_every_project_and_needs_campus_scope(self):
+        self.second.update(existing_site_id=self.project["site_id"],
+                           site_identity_review="The second phase is on the same named campus.")
+        self.second["locator"]["source_id"] = "old-map"
+        self.case.sources["sources"].append({**self.parcel, "id": "old-map", "kind": "map", "title": "Map feature",
+                                             "source_url": "https://maps.example.net/feature/1",
+                                             "publisher": "Example Operator", "license": "all-rights-reserved",
+                                             "content_hash": hashlib.sha256(b"old map feature").hexdigest()})
+        self.case.spec["additions"] = [self.second]
+        self.case.write()
+        build_update(self.case.input, self.root / "second", root=self.root)
+        self.base("second")
+        self.case.spec["additions"] = []
+        self.case.sources["sources"].pop()
+        _, _, tables = self.corrected()
+        members = [row for row in tables["projects.csv"] if row["site_id"] == self.project["site_id"]]
+        self.assertEqual(len(members), 2)
+        self.assertEqual({(row["latitude"], row["longitude"], row["geometry_source_url"]) for row in members},
+                         {("30.199", "-100.099", self.parcel["source_url"])})
+        self.correction["locator"] = {**self.correction["locator"], "scope": "project_locator"}
+        with self.assertRaisesRegex(UpdateError, "multi-project site needs a campus locator"):
+            self.corrected()
+
+    def test_correction_rejects_mismatched_or_unsafe_requests(self):
+        valid = copy.deepcopy(self.correction)
+        far = {**valid["locator"], "geometry": {"type": "Point", "coordinates": [-99.8, 30.2]}}
+        cases = [
+            ({"site_id": "vcc-site-wrong"}, "site ID must match"),
+            ({"physical_site_stable_key": "curated:missing"}, "existing site"),
+            ({"replaces_geometry_evidence_id": self.project["status_evidence_id"]}, "geometry evidence of every project"),
+            ({"reason": ""}, "locator correction reason"),
+            ({"displacement_review": " "}, "displacement review"),
+            ({"locator": far}, "farther than 25 km"),
+            ({"locator": {**valid["locator"], "source_id": "old-map"}}, "different geometry source"),
+            ({"locator": {**valid["locator"], "reuse_from_project_id": self.project["project_id"]}}, "unsupported locator correction field"),
+            ({"locator": {**valid["locator"], "geometry": {"type": "Polygon", "coordinates": []}}}, "new point admissions only"),
+            ({"locator": {**valid["locator"], "identity_source_ids": ["missing"]}}, "identity sources"),
+        ]
+        old_map = {**self.parcel, "id": "old-map", "kind": "map", "title": "Map feature",
+                   "source_url": "https://maps.example.net/feature/1", "publisher": "Example Operator",
+                   "license": "all-rights-reserved", "content_hash": hashlib.sha256(b"old map feature").hexdigest()}
+        for changes, expected in cases:
+            with self.subTest(changes=changes):
+                self.correction = {**valid, **changes}
+                self.case.sources["sources"] = [self.case.sources["sources"][0], self.parcel]
+                if changes.get("locator", {}).get("source_id") == "old-map":
+                    self.case.sources["sources"].append(old_map)
+                with self.assertRaisesRegex(UpdateError, expected):
+                    self.corrected()
+        self.correction = valid
+        self.case.sources["sources"] = [self.case.sources["sources"][0], self.parcel, old_map]
+        self.case.spec["additions"] = [{**self.second, "existing_site_id": self.project["site_id"],
+                                        "site_identity_review": "Same campus."}]
+        with self.assertRaisesRegex(UpdateError, "no addition or other correction"):
+            self.corrected()
+        self.case.spec["additions"] = []
+        self.case.spec["locator_corrections"] = [valid, valid]
+        self.case.write()
+        with self.assertRaisesRegex(UpdateError, "no addition or other correction"):
+            update_payloads(self.case.input, root=self.root)
+
+    def test_new_locators_may_not_copy_map_services_after_the_policy_date(self):
+        urls = {
+            "https://www.google.com/search?tbm=map&q=Example+campus": "Google Maps",
+            "https://www.google.com/maps/place/Example/@30.2,-100.1,17z": "Google Maps",
+            "https://maps.google.com/?cid=123": "Google Maps",
+            "https://maps.app.goo.gl/abc": "Google Maps",
+            "https://www.peeringdb.com/fac/1": "PeeringDB",
+            "https://www.waze.com/live-map/directions?to=ll.30.2,-100.1": "Waze",
+            "https://yandex.ru/maps/-/abc": "Yandex Maps",
+            "https://map.naver.com/p/entry/place/1": "Naver Map",
+        }
+        for url, service in urls.items():
+            with self.subTest(url=url):
+                self.parcel["source_url"] = url
+                self.case.sources["sources"][1] = self.parcel
+                self.corrected(updated_at="2026-11-06")
+                with self.assertRaisesRegex(UpdateError, f"copied from {service}"):
+                    self.corrected(updated_at="2026-11-07")
+        self.parcel["source_url"] = "https://gis.example.gov/parcels/42"
+        self.correction["locator"] = {**self.correction["locator"], "method": "native_Google_Maps_named_feature"}
+        with self.assertRaisesRegex(UpdateError, "copied from Google Maps"):
+            self.corrected(updated_at="2026-11-07")
+        # Google's own campuses and operator pages with ordinary paths remain usable.
+        self.correction["locator"]["method"] = "centroid_of_google_llc_county_parcel"
+        for url in ("https://gis.example.gov/parcels/42", "https://www.google.com/about/datacenters/locations/",
+                    "https://blog.google/around-the-globe/new-campus/"):
+            with self.subTest(url=url):
+                self.parcel["source_url"] = url
+                self.case.sources["sources"][1] = self.parcel
+                self.corrected(updated_at="2026-11-07")
+        addition = copy.deepcopy(self.second)
+        addition.update(project_stable_key="curated:mapped:construction", physical_site_stable_key="curated:mapped",
+                        site_name="Mapped campus", name="Mapped construction")
+        addition["locator"]["source_id"] = "parcel"
+        self.parcel["source_url"] = "https://maps.app.goo.gl/abc"
+        self.case.sources["sources"][1] = self.parcel
+        self.case.spec.update(updated_at="2026-11-07", additions=[addition], locator_corrections=[])
+        with self.assertRaisesRegex(UpdateError, "copied from Google Maps"):
+            self.case.payloads()
+
+
+class ImportedReferenceCorrectionTests(unittest.TestCase):
+    """A town-level imported point can move to the campus it stands for, within a scaled limit."""
+
+    def setUp(self):
+        self.case = RetainedImportedStatusTests("test_retained_statuses_are_not_admission_statuses")
+        self.case.setUp()
+        self.addCleanup(self.case.temp.cleanup)
+        self.project = self.case.base[RetainedImportedStatusTests.BUILDING]
+        self.assertEqual((self.project["geometry_method"], self.project["geometry_scope_class"]),
+                         ("imported_reference_point", "locality"))
+        self.case.sources["sources"].append({
+            **self.case.sources["sources"][0], "id": "plan", "kind": "government_record", "title": "Site plan",
+            "source_url": "https://example.gov/site-plan", "publisher": "Example Authority",
+            "content_hash": hashlib.sha256(b"site plan").hexdigest()})
+
+    def correct(self, north_km):
+        lat = float(self.project["latitude"]) + north_km / 111.2
+        self.case.spec["locator_corrections"] = [{
+            "physical_site_stable_key": self.project["physical_site_stable_key"], "site_id": self.project["site_id"],
+            "replaces_geometry_evidence_id": self.project["geometry_evidence_id"],
+            "reason": "The imported point names only the nearest town.",
+            "displacement_review": f"About {north_km} km north of the town point; the plan names the campus.",
+            "locator": {"geometry": {"type": "Point", "coordinates": [float(self.project["longitude"]), lat]},
+                        "source_id": "plan", "scope": "campus_locator", "scope_class": "georeferenced_site_plan",
+                        "authority": "compiled_reference", "derivation": "georeferenced_source_map",
+                        "method": "centroid_of_published_site_plan", "precision": "Plan centroid.",
+                        "horizontal_uncertainty_metres": 100, "identity_review": "The plan names the project."}}]
+        return self.case.payloads()
+
+    def test_locality_point_moves_up_to_fifty_km_and_keeps_its_imported_source(self):
+        payloads, _ = self.correct(40)
+        rows = {row["project_id"]: row for row in csv.DictReader(io.StringIO(payloads["projects.csv"].decode()))}
+        corrected = rows[self.project["project_id"]]
+        self.assertEqual(corrected["geometry_method"], "centroid_of_published_site_plan")
+        self.assertEqual(corrected["status_evidence_id"], self.project["status_evidence_id"])
+        evidence = {row["evidence_id"]: row for row in csv.DictReader(io.StringIO(payloads["evidence.csv"].decode()))}
+        if self.project["geometry_evidence_id"] in evidence:
+            self.assertNotIn("geometry", json.loads(evidence[self.project["geometry_evidence_id"]]["roles_json"]))
+        with self.assertRaisesRegex(UpdateError, "farther than 50 km from a locality point"):
+            self.correct(60)
+
 if __name__ == "__main__":
     unittest.main()

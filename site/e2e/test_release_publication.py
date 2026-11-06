@@ -96,8 +96,8 @@ class FakeGitHub:
 def publish(github, snapshot):
     root, inventory, _ = snapshot
     def verify_public(value, *, read_bytes):
-        assert read_bytes is True and value == inventory
-        github.events.append(("public_downloads", {}))
+        assert value == inventory
+        github.events.append(("public_downloads", {"read_bytes": read_bytes}))
     return publication.publish_inventory(github, inventory, staged_root=root, current=IDENTIFIER,
                                          commit=COMMIT, title="Snapshot", notes="Test notes", prerelease=False,
                                          versions_root="verified_construction_core", public_verify=verify_public)
@@ -111,7 +111,7 @@ def test_new_release_is_read_back_before_publication(snapshot):
     reads = [path for path, _ in github.events[:publish_index] if path.startswith("releases/assets/")]
     assert len(reads) == len(bodies)
     assert github.release["draft"] is False
-    assert github.events[-1][0] == "public_downloads"
+    assert github.events[-1] == ("public_downloads", {"read_bytes": True})
 
 
 def test_existing_release_uses_frozen_inventory_despite_changed_local_derivation(snapshot):
@@ -120,6 +120,7 @@ def test_existing_release_uses_frozen_inventory_despite_changed_local_derivation
     github = FakeGitHub(bodies, inventory, existing=True)
     assert publish(github, snapshot) == "verified_existing"
     assert not any(path == "command" or options.get("method") for path, options in github.events)
+    assert github.events[-1] == ("public_downloads", {"read_bytes": False})
 
 
 def test_corrupt_uploaded_bytes_do_not_publish_draft(snapshot):
