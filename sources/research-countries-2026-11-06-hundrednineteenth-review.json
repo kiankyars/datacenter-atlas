@@ -1,0 +1,44 @@
+{
+  "reviewer": "root",
+  "reviewed_at": "2026-11-06",
+  "decision": "accepted_for_integration",
+  "update": "verified_construction_core/2026-11-06-research-hundrednineteenth",
+  "base_dataset": "verified_construction_core/2026-10-29-research-hundredeighteenth",
+  "process": "continuous: one researcher per beat, one adversarial verifier per fragment",
+  "fragments": [
+    {
+      "fragment": "de-at-ch-p5",
+      "verdict": "accept",
+      "checks": [
+        "All 9 captures rehashed: sha256 equals .metadata.json and sources.json content_hash, byte counts match, HTTP 200, URLs match; geometry-facts sha256 and basemap.de reference PNG hash match",
+        "Dummerstorf notice PDF (pdftotext) read: aim of the 1. Aenderung B-Plan 25b is a large data centre (Giga-Factory) needing nearly the whole plan area; Vorentwurf approved 22.09.2026; display 29.10-30.11.2026; government_record",
+        "Notice page and notice list captures both date the notice 14.10.2026 and the page links the exact PDF URL; PDF CreationDate 14 Oct 2026; announced as of 2026-10-14 is 13 days old, inside the 85-day window",
+        "Status is announced only; no permit, construction or developer asserted; roles empty; precedent: German B-Plan-based announced records (Giessen Katzenfeld, Alteno, Trebbin)",
+        "Locator recomputed independently: 7-point least-squares affine from the notice map pixels to EPSG:25833 reproduces RMS 6.8 m, max 10.1 m, LOO max 38.2 m; outline area 38.6 ha; centroid 317418.0/5989327.8 to 12.212928 E, 54.0198764 N (pyproj 3.7.1), 0.01 m from the stated point; centroid inside outline",
+        "Control points checked visually as side-by-side crops of the notice map (pdfimages) and basemap.de; all 7 features match; the overlay lies in the open field west of the logistics buildings and south of the Liepgraben; leaving out any one control point moves the centroid at most 10.7 m",
+        "Locator is the plan-amendment area that the notice reserves almost entirely for the data centre, not a town centre or the wider 120 ha industrial park; derivation georeferenced_source_map with authority compiled_reference; uncertainty null with a reason",
+        "Distinctness screened against verified_construction_core/2026-10-27-research-hundredsecond (838 sites, 906 projects), source-records.json, identity-mapping.json, all queue fragments, claims.tsv and sources/*-holds.json: no Atlas record within 5 km (nearest DVZ Schwerin, 68.5 km); only the Lubbenau record is Schwarz-related; earlier Dummerstorf mentions are holds only (thirty-first 'Dummersdorf' and thirty-fourth Schwarz holds)",
+        "FRA-Mainz: Internet Archive id_ copy of 12 Oct 2026 read: 'New sustainable data center under construction near Frankfurt', menu 'Under construction', dateModified 2026-10-06; the 7 Jun 2026 copy has dateModified 2026-04-20 with different text, so the revision is bounded; source_observation_date 2026-10-12 at day precision",
+        "FRA-Mainz refresh is strictly newer than the existing 2026-07-21 observation in hundredsecond; same URL, project, 54 MW three-building scope and locator; Q4 2026 RFS not used; live page and post sitemap (latest 19 Oct 2026) show no completion",
+        "No other unpublished fragment touches FRA-Mainz or Dummerstorf; Internet Archive status precedent exists (Milam, Rowan Medina)",
+        "Privacy: no names, phones or emails of private individuals in sources, changes or holds (PDF author metadata and the mayor's name not copied)",
+        "dryrun_fragment.py ok against hundredsecond: 839 sites, 907 projects, 4759 evidence"
+      ],
+      "residual_risks": [
+        "Dummerstorf locator comes from a 604x500 px notice map (about 5.4 m/px) registered to basemap.de rather than ALKIS parcels (MV geodata hosts returned 503 for robots.txt); the point is the centroid of a 38.6 ha area",
+        "The Schwarz Gruppe release is attached as identity context only. The link to Schwarz is probable but not confirmed by the Gemeinde; if a different developer is named later, that context association should be revisited",
+        "The 'Giga-Factory' wording may refer to an EU AI Gigafactory bid; the record is a commercial data-centre plan, and its scope should be rechecked if it turns out to be a public institutional facility",
+        "FRA-Mainz observation rests on an Internet Archive copy of the operator page, not a dated release",
+        "The distinctness_review text cites hundredfirst counts; the screen was rerun against hundredsecond with no new matches",
+        "Three FRA-Mainz supporting sources (7 Jun archive copy, live page, post sitemap) are kept for provenance but are not associated with any change"
+      ]
+    }
+  ],
+  "packet_pins": {
+    "definitions/atlas-research-hundrednineteenth-2026-11-06.json": "5c7b3f48d0230d978c5463eb9e987641562392cf25a40be4d60e15160b60bf1b",
+    "sources/research-countries-2026-11-06-hundrednineteenth-primary-sources.json": "84dda6f833c303836a1a1d64345c527c316319f87b2c65d65eeff8ffe7ed8ab6",
+    "sources/research-countries-2026-11-06-hundrednineteenth-actions.json": "269c7aaf2ff42820b13fc2d663d0dffb6cad61d34d04c3a1843456382ea40a4b",
+    "sources/research-countries-2026-11-06-hundrednineteenth-holds.json": "f360c537155185a55b7a21f3698b753f47d51eac6b9afc1ec0ef2ddd02d4e05b"
+  },
+  "raw_captures_redistributed": false
+}

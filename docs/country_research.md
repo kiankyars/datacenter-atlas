@@ -861,6 +861,8 @@ From 22 October 2026 sites are added continuously: researchers each work a narro
 
 `verified_construction_core/2026-10-27-research-hundredsecond`: **838 sites and 906 projects in 63 countries**. Adds SNC PARAY DC — planned 55 MW IT data centre (12 data halls, Hines) on the former Air France training site; Edged Marseille Saint-Louis — planned nine-hall data centre (R+3) with 12 emergency generators (ESL PROPERTIES, Edged Energy); Telehouse TH3 Paris Magny — new P34 data-centre building (extension under environmental-authorisation and building-permit review, PC 078 356 26 E0004); Global Switch Madrid — existing data-centre operations (Madrid 1, Calle Yécora 4); Nabiax Julián Camarillo 8 Campus — existing data-centre operations (modules 1-3); Nabiax Alcalá Data Center ADC1 and ADC2 — existing data-centre operations.
 
+`verified_construction_core/2026-11-06-research-hundrednineteenth`: **933 sites and 1001 projects in 87 countries**. Adds Rechenzentrum Dummerstorf (Giga-Factory) — planned large data centre in B-Plan Nr. 25b „Gewerbe- und Logistikzentrum Ostsee 3.0“ (1. Änderung). Refreshes Green Mountain FRA-Mainz Current Three-Building Development (under construction).
+
 ## 25 October 2026
 
 `verified_construction_core/2026-10-25-research-sixtysecond` adds three commercial sites and
