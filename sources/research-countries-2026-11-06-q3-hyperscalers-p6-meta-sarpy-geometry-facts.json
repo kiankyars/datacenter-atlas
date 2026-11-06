@@ -1,0 +1,69 @@
+{
+  "candidate_id": "meta-sarpy-data-center-campus",
+  "decision": "Selected the centroid of Sarpy County tax parcel 011599968 (PT Lot 1 Sarpy County Power Park West, situs 14734 Friend Plaza; owner of record Raven Northbrook LLC), the most highly improved of the owner's 13 parcels and part of the original campus north of Capehart Road, as the campus locator for Meta's Sarpy Data Center.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -96.1438595,
+      41.1219114
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_tax_parcel_centroid",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-q3-hyperscalers-p6/sarpy/sarpy-parcels-raven-northbrook.json",
+  "source_sha256": "0e400732bc8b68b331d0edc0a89837672a26f7dc1588873020e2b0127285ddbd",
+  "source_url": "https://services.arcgis.com/OiG7dbwhQEWoy77N/arcgis/rest/services/Sarpy_Parcels_WFL1/FeatureServer/0/query?where=OWNERNME1%3D%27RAVEN%20NORTHBROOK%20LLC%27&outFields=PARCELID%2CSITEADDRESS%2CPRPRTYDSCRP%2CCNVYNAME%2CUSEDSCRP%2CACREAGE%2COWNERNME1%2COWNERNME2%2CPSTLADDRESS%2CPSTLCITY%2CPSTLSTATE%2CPSTLZIP5%2CIMPVALUE%2CBLDGAREA%2CLASTUPDATE&returnGeometry=true&outSR=4326&f=json",
+  "retrieved_at": "2026-11-06T21:29:46.656Z",
+  "selected_properties": {
+    "PARCELID": "011599968",
+    "SITEADDRESS": "14734 FRIEND PLZ SPRINGFIELD NE 68059",
+    "PRPRTYDSCRP": "PT LOT 1 SARPY COUNTY POWER PARK WEST (131.75 AC)",
+    "CNVYNAME": "SARPY COUNTY POWER PARK WEST",
+    "USEDSCRP": "INDUSTRIAL AND SUBURBAN INDUSTRIAL",
+    "ACREAGE": 131.87284625,
+    "OWNERNME1": "RAVEN NORTHBROOK LLC",
+    "PSTLADDRESS_CITY_STATE": "1601 WILLOW RD, MENLO PARK, CA 94025",
+    "IMPVALUE_USD": 166265215,
+    "LASTUPDATE": "2023-12-08 (epoch ms 1702009597000)",
+    "spatial_reference": "outSR=4326 (WGS84) as returned by the Sarpy County hosted ArcGIS FeatureServer (Sarpy_Parcels_WFL1, layer 0 TaxParcel)"
+  },
+  "computed": {
+    "parts": 1,
+    "ring_count": 1,
+    "geodesic_area_m2": 533618,
+    "geodesic_acres": 131.86,
+    "centroid_lon_lat": [
+      -96.1438595,
+      41.1219114
+    ],
+    "centroid_inside_polygon": true,
+    "min_distance_centroid_to_boundary_m": 224.7,
+    "extent_m": [
+      729.6,
+      819.4
+    ],
+    "bounds_lon_lat": [
+      -96.148011,
+      41.118259,
+      -96.139393,
+      41.12543
+    ],
+    "power_park_east_lot1_011600957_centroid_lon_lat": [
+      -96.1336709,
+      41.1219679
+    ],
+    "power_park_east_lot1_distance_from_selected_centroid_m": 855.9,
+    "all_13_owner_parcels_union": "973 acres in 7 parts",
+    "capehart_rd_relation": "Census TIGERweb Local Roads centreline 'Capehart Rd' (MTFCC S1400): parcels 011599968, 011599969, 011600957, 011600958 and 011040122 (341.2 acres) lie north of the centreline, 16.6 to 19.0 m from it; the Gemini, Gemini Replat One and Gemini Replat Two lots and 010460276 (632.2 acres) lie south of it.",
+    "method": "Single-ring polygon returned by the county service in WGS84; centroid computed in EPSG:32614 (WGS 84 / UTM zone 14N) and returned to WGS84; geodesic area on the WGS84 ellipsoid; north/south side of Capehart Rd from the TIGER centreline at each parcel centroid's easting",
+    "tools": "pyproj 3.7.1, shapely 2.1.1"
+  },
+  "identity_bridge": [
+    "Meta's Sarpy Data Center fact sheet (2 September 2026) names the Sarpy Data Center in Sarpy County, Nebraska, served by Omaha Public Power District and Metropolitan Utilities District.",
+    "Meta's post of 24 March 2021 says the campus began as 'Facebook's Papillion Data Center' and that Meta 'added 500+ acres of land in Springfield to expand our campus across Capehart Road to the south of the existing data center campus'; Meta's post of 28 July 2022 repeats that in 2021 'we crossed over Capehart Road into Springfield'.",
+    "The Sarpy County parcel layer lists 13 parcels owned by RAVEN NORTHBROOK LLC, all with Menlo Park, California tax mailing addresses (1601 WILLOW RD, or '1 HAKER WAY' as recorded), the addresses of Meta's headquarters campus; the layer's 341 acres north of Capehart Rd (Sarpy County Power Park West and East) and 632 acres south of it (Gemini, Gemini Replat One and Two) match Meta's description of the original campus and the 500+ acre Springfield expansion.",
+    "Assessed improvement values on the owner's lots: Power Park West Lot 1 USD 166.3 million, Power Park East Lot 1 USD 96.8 million, Gemini Lot 1 USD 43.2 million.",
+    "No geocoder, commercial map, map viewport, PeeringDB or OpenStreetMap service is used."
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "format": "datacenter-atlas-geometry-facts-v1",
+  "fragment": "q3-apac-operators-p6",
+  "prepared_on": "2026-11-06",
+  "method_note": "The NSW Spatial Services public Lot layer (NSW_Land_Parcel_Property_Theme FeatureServer layer 8) was queried by lotidstring '1//DP857249' with outSR=4326 and returned exactly one polygon. Its planar centroid was computed with shapely 2.1.1 after projecting the polygon to EPSG:7856 (GDA2020 / MGA zone 56) with pyproj 3.7.1 (always_xy), then transformed back to EPSG:4326. No geocoder, web map, map link, embedded map widget or PeeringDB record was used. The NSW Planning Portal project page's own map point was read only as a cross-check, not as the locator.",
+  "candidates": [
+    {
+      "candidate_id": "airtrunk-syd3-51-huntingwood-drive",
+      "facility": "AirTrunk SYD3 (Sydney West), 51 Huntingwood Drive Data Centre, SSD-41589232",
+      "legal_description": "Lot 1 DP 857249, 51 Huntingwood Drive, Huntingwood NSW 2148 (Blacktown LGA)",
+      "source_url": "https://portal.spatial.nsw.gov.au/server/rest/services/NSW_Land_Parcel_Property_Theme/FeatureServer/8/query?where=lotidstring%3D%271%2F%2FDP857249%27&outFields=lotidstring,lotnumber,planlabel,planlotarea,planlotareaunits,cadid,lastupdate&returnGeometry=true&outSR=4326&f=geojson",
+      "source_file": "local_data/country-research-q3-apac-operators-p6/nsw-lpp-lot-1-DP857249.geojson",
+      "source_sha256": "b6792bfb17e815964014d55d865ac82e13eaffd67b2348c213890d9c892ce10a",
+      "service_feature_properties": {
+        "lotidstring": "1//DP857249",
+        "lotnumber": "1",
+        "planlabel": "DP857249",
+        "cadid": 100196956,
+        "planlotarea": null,
+        "lastupdate_epoch_ms": 1180690015894
+      },
+      "features_returned": 1,
+      "planar_area_m2_mga56": 90565.9,
+      "geodesic_area_m2_wgs84": 90552.0,
+      "applicant_stated_site_area_m2": 90172.8,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          150.8755826,
+          -33.7990743
+        ]
+      },
+      "centroid_method": "shapely 2.1.1 planar centroid of the lot polygon projected to EPSG:7856 with pyproj 3.7.1, transformed back to EPSG:4326, rounded to 7 decimals",
+      "centroid_inside_lot": true,
+      "centroid_to_lot_boundary_m": 108.8,
+      "lot_extent_m": [
+        253.3,
+        462.1
+      ],
+      "farthest_vertex_from_centroid_m": 257.6,
+      "lot_bounds_lon_lat": [
+        150.874059,
+        -33.801039,
+        150.876777,
+        -33.796839
+      ],
+      "cross_check": "The NSW Planning Portal project record for SSD-41589232 carries a map point (150.876, -33.798627). It falls inside Lot 1 DP 857249, 62.9 m from the centroid and 69.7 m from the lot boundary. It was not used as the locator.",
+      "lot_boundaries_per_modification_report": "North: Great Western Highway; south: M4 Motorway; west: Brabham Drive; east: Woods Close",
+      "authority_class": "compiled_reference",
+      "scope_class": "official_cadastral_site_lot_centroid_campus_marker",
+      "use_scope": "campus_locator",
+      "horizontal_uncertainty_metres": null,
+      "horizontal_uncertainty_unknown_reason": "The cadastral service publishes no positional accuracy. The point is a derived interior anchor of a lot about 250 m by 460 m (farthest vertex 258 m), and the positions of the shells within the lot are not georeferenced.",
+      "atlas_records_within_2km": [
+        {
+          "record": "Microsoft SYD01 Huntingwood (Honeman Close Data Centre), curated:microsoft-syd01-huntingwood-honeman-close-data-centre",
+          "distance_km": 1.893,
+          "relation": "Separate Microsoft development at 6 Honeman Close on a different lot; not the AirTrunk campus"
+        }
+      ],
+      "nearest_other_records_checked": [
+        {
+          "record": "NEXTDC S7 Sydney (imported:semiconductor-atlas:nextdc-s7-eastern-creek)",
+          "distance_km": 2.483
+        },
+        {
+          "record": "CDC Eastern Creek Campus",
+          "distance_km": 4.091
+        }
+      ],
+      "pending_queue_additions_or_claims_within_2km": [],
+      "axis_note": "GeoJSON coordinates are [longitude, latitude].",
+      "scope_class_note": "Same scope class, authority and method family as the Atlas locator for AirTrunk SYD2 (Lot 1 DP1271404, 1 Sirius Road, Lane Cove West)."
+    }
+  ]
+}

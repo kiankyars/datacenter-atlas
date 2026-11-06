@@ -1,0 +1,59 @@
+{
+ "format": "datacenter-atlas-geometry-facts-v1",
+ "fragment": "q3-us-neocloud-miners-p6",
+ "prepared_at": "2026-11-06",
+ "candidate_id": "iren-mackenzie-coquawaldy-road-campus",
+ "candidate": "IREN Mackenzie data center, 4900 Coquawaldy Road, Mackenzie, British Columbia",
+ "decision": "Selected the BC Address Geocoder parcelPoint for 4900 Coquiwaldie Rd, Mackenzie (matchPrecision CIVIC_NUMBER, score 98, locationPositionalAccuracy high, isOfficial true, site status active; the only fault is the operator's spelling 'Coquawaldy' for the registered street name 'Coquiwaldie'). ParcelMap BC places the point inside active private subdivision parcel PID 029-238-871 (plan EPP35189, District of Mackenzie), 43,702.6 m2 or 10.80 acres, which matches the '11-acre freehold site' IREN describes for its Mackenzie data center. The point locates the IREN Mackenzie property, not a particular building or the new liquid-cooled halls.",
+ "geometry": {
+  "type": "Point",
+  "coordinates": [
+   -123.1403236,
+   55.3027304
+  ]
+ },
+ "authority_class": "official_source",
+ "scope_class": "official_address_register_parcel_point",
+ "use_scope": "campus_locator",
+ "precision_scope": "Official address-register parcel point of the operator-stated civic address; it lies inside the 10.8-acre parcel PID 029-238-871 (about 226 m by 350 m), 27 m from its boundary and 58 m from its centroid; the farthest parcel vertex is 219 m away.",
+ "horizontal_uncertainty_metres": null,
+ "horizontal_uncertainty_unknown_reason": "The BC Address Geocoder reports locationPositionalAccuracy 'high' but publishes no metric accuracy; the point represents a 10.8-acre parcel whose buildings, including the new liquid-cooled data centers, are not separately located.",
+ "source_url": "https://geocoder.api.gov.bc.ca/addresses.json?addressString=4900%20Coquawaldy%20Rd%2C%20Mackenzie%2C%20BC&locationDescriptor=parcelPoint&maxResults=3&outputSRS=4326",
+ "source_file": "local_data/country-research-q3-us-neocloud-miners-p6/bcgeocoder-4900-coquawaldy-parcelpoint.json",
+ "source_sha256": "6cd6b0d235a816956838225e0d5ff495c6e7907fa061c40cff4046087ae02d8f",
+ "retrieved_at": "2026-11-06T21:30:28.858Z",
+ "parcel_check": {
+  "source_url": "https://openmaps.gov.bc.ca/geo/pub/wfs?service=WFS&version=2.0.0&request=GetFeature&typeName=pub:WHSE_CADASTRE.PMBC_PARCEL_FABRIC_POLY_SVW&outputFormat=application/json&srsName=EPSG:4326&CQL_FILTER=INTERSECTS(SHAPE,SRID=4326;POINT(-123.1403236%2055.3027304))",
+  "source_file": "local_data/country-research-q3-us-neocloud-miners-p6/bc-pmbc-parcel-4900-coquiwaldie-lonlat.json",
+  "source_sha256": "ee9da1cccb1ef1ede27c80706b86c7a734171afae056d965611af36487aa2f7f",
+  "parcel": {
+   "PID": "029-238-871",
+   "PLAN_NUMBER": "EPP35189",
+   "PARCEL_CLASS": "Subdivision",
+   "PARCEL_STATUS": "Active",
+   "OWNER_TYPE": "Private",
+   "MUNICIPALITY": "Mackenzie, District of",
+   "REGIONAL_DISTRICT": "Regional District of Fraser-Fort George",
+   "FEATURE_AREA_SQM": 43702.6373,
+   "WHEN_UPDATED": "2022-11-17"
+  },
+  "computed": {
+   "geodesic_acres": 10.799,
+   "parcelPoint_inside": true,
+   "parcelPoint_to_boundary_m": 27.0,
+   "parcelPoint_to_centroid_m": 57.8,
+   "parcel_centroid": [
+    -123.1394186,
+    55.3026619
+   ],
+   "extent_m": {
+    "east_west": 225.7,
+    "north_south": 350.2
+   },
+   "max_vertex_distance_from_point_m": 219.2,
+   "crs": "EPSG:3005 (BC Albers) for planar measures; geodesic area on WGS84"
+  }
+ },
+ "personal_data": "ParcelMap BC exposes no owner names; none are recorded.",
+ "verification_script": "scratchpad q3-us-neocloud-miners-p6 scripts/bc_parcel.py (pyproj 3.7.1, shapely 2.1.1)"
+}

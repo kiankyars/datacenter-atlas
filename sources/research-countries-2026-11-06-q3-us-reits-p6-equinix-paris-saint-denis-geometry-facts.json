@@ -1,0 +1,48 @@
+{
+  "candidate_id": "equinix-paris-saint-denis-ambroise-croizat-campus",
+  "decision": "Selected the WGS84 point that the national classified-installations register (Géorisques installations_classees API) publishes for establishment AIOT 0007407362, EQUINIX France, 114 rue Ambroise Croizat, 93200 Saint-Denis: longitude 2.35198, latitude 48.927976, copied without transformation, as the campus locator of Equinix's Saint-Denis campus (PA2, PA3, PA9 and PA10). It is the register's establishment point, not a building outline or surveyed position.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      2.35198,
+      48.927976
+    ]
+  },
+  "authority_class": "official_source",
+  "derivation": "direct_geometry",
+  "scope_class": "classified_installation_register_establishment_point",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-q3-us-reits-p6/georisques-icpe-saint-denis-93066-p1.json",
+  "source_sha256": "6b7ef4567e55d070c9a590b824f0d792a83a37d0789a9acd52d38e571b247116",
+  "source_url": "https://www.georisques.gouv.fr/api/v1/installations_classees?code_insee=93066&page=1&page_size=100",
+  "retrieved_at": "2026-11-06T21:34:57.402Z",
+  "selected_properties": {
+    "raisonSociale": "EQUINIX France",
+    "adresse1": "114 RUE AMBROISE CROIZAT",
+    "codePostal": "93200",
+    "codeInsee": "93066",
+    "commune": "Saint-Denis",
+    "codeAIOT": "0007407362",
+    "regime": "Autorisation",
+    "ied": true,
+    "statutSeveso": "Non Seveso",
+    "etatActivite": "En exploitation avec titre",
+    "serviceAIOT": "DRIEAT IdF",
+    "longitude": 2.35198,
+    "latitude": 48.927976,
+    "coordonneeXAIOT": 652518,
+    "coordonneeYAIOT": 6869972,
+    "systemeCoordonneesAIOT": "2154",
+    "date_maj": "2026-08-31/17-59-29",
+    "inspections_listed": "2024-06-13 (report 240829_STD_EQUINIX_inspection_arjop2024), 2022-02-25 (report 220321_STD_EQUINIX_PA2_3_9_inspection)"
+  },
+  "transform": {
+    "note": "No transform is applied to the published longitude and latitude. Check only: pyproj 3.7.1 EPSG:2154 -> EPSG:4326 of the register's Lambert-93 coordinates (652518, 6869972) gives 2.3519798, 48.9279757, 0.04 m from the published point."
+  },
+  "consistency_checks": {
+    "cadastral_parcel": "The IGN API Carto cadastre service queried with the register point (local_data/country-research-q3-us-reits-p6/ign-apicarto-parcel-at-icpe-point.json, sha256 399eaa0868df...) returns the single parcel 93066000BK0068 (section BK, no. 0068, contenance 55,834 m2). With shapely 2.1.1 the point lies inside it, about 18 m from its boundary and 140 m from its centroid (2.3503481, 48.9273176); the parcel's geodesic area is 55,839 m2 and its extent about 323 m by 253 m. The DRIEAT inspection report of the 13 June 2024 visit gives the site's footprint as about 56,000 m2, matching the parcel.",
+    "neighbouring_register_points": "Other register establishments on rue Ambroise Croizat in the same response (for example a 70-74 and two 112 rue Ambroise Croizat records, all 'Non ICPE' or other regimes and none a data centre) carry their own distinct points; only the EQUINIX France record is used.",
+    "not_used": "The national address API (api-adresse.data.gouv.fr) disallows the search path in robots.txt and was not requested; no commercial map, geocoder, town centre or zone centroid is used."
+  },
+  "scope_note": "The point locates the campus parcel that holds PA2, PA3, PA9 and PA10 under one ICPE authorisation; it does not locate the PA10 building, which is one of four buildings on the 5.6 ha parcel."
+}

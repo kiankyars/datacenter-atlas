@@ -1,0 +1,74 @@
+{
+ "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+ "candidate": "EdgeConneX Fyresdal data center campus, Molandsmoen, Fyresdal (Vestfold og Telemark), Norway: permit-named property gbnr. 38/133-134 (municipality 4032)",
+ "decision": "Selected the centroid of the union of the two cadastral parcels (teiger) that Fyresdal municipality's framework permit of 14 August 2025 (ref. 2025/183-21, delegated decision 147/25) names as the data-centre property, gbnr. 38/133-134, as the campus locator. The six data halls are not separately located.",
+ "geometry": {
+  "type": "Point",
+  "coordinates": [
+   8.0758167,
+   59.2034126
+  ]
+ },
+ "coordinate_reference_system": "Source parcels from Kartverket's WFS Matrikkelen - Eiendomskart Teig, requested in EPSG:25832 (ETRS89 / UTM zone 32N); union and centroid computed in EPSG:25832 with shapely 2.1.1, then transformed to EPSG:4326 longitude/latitude with pyproj 3.7.1 (always_xy=True). ETRS89 and WGS84 are treated as coincident at this scale (pyproj's default transformation); no further datum shift is applied.",
+ "authority_class": "compiled_reference",
+ "scope_class": "official_permit_named_cadastral_parcel_union_centroid",
+ "use_scope": "campus_locator",
+ "source_url": "https://wfs.geonorge.no/skwms1/wfs.matrikkelen-eiendomskart-teig?service=WFS&version=2.0.0&request=GetFeature&typeNames=app:Teig&srsName=urn:ogc:def:crs:EPSG::25832&count=10&filter=%3Cfes%3AFilter%20xmlns%3Afes%3D%22http%3A//www.opengis.net/fes/2.0%22%20xmlns%3Aapp%3D%22http%3A//skjema.geonorge.no/SOSI/produktspesifikasjon/Matrikkelen-Eiendomskart-Teig/20211101%22%3E%3Cfes%3AAnd%3E%3Cfes%3APropertyIsEqualTo%3E%3Cfes%3AValueReference%3Eapp%3Akommunenummer%3C/fes%3AValueReference%3E%3Cfes%3ALiteral%3E4032%3C/fes%3ALiteral%3E%3C/fes%3APropertyIsEqualTo%3E%3Cfes%3AOr%3E%3Cfes%3APropertyIsEqualTo%3E%3Cfes%3AValueReference%3Eapp%3AmatrikkelnummerTekst%3C/fes%3AValueReference%3E%3Cfes%3ALiteral%3E38/133%3C/fes%3ALiteral%3E%3C/fes%3APropertyIsEqualTo%3E%3Cfes%3APropertyIsEqualTo%3E%3Cfes%3AValueReference%3Eapp%3AmatrikkelnummerTekst%3C/fes%3AValueReference%3E%3Cfes%3ALiteral%3E38/134%3C/fes%3ALiteral%3E%3C/fes%3APropertyIsEqualTo%3E%3C/fes%3AOr%3E%3C/fes%3AAnd%3E%3C/fes%3AFilter%3E",
+ "raw_capture_file": "local_data/country-research-nordics-cee-p5/geonorge-teig-fyresdal-38-133-134.gml",
+ "raw_capture_sha256": "9b19a6dda6272a21d787ded8a9eb96d31f4ab4517a023157b68950b86cd37fb4",
+ "license": "CC-BY-4.0 (Kartverket open data; Geonorge metadata 74340c24-1c8a-4454-b813-bfe498e80f16: 'Åpne data', Creative Commons BY 4.0)",
+ "source_selection": "Fyresdal municipality's framework permit letter of 14 August 2025 (Rammeløyve - Molandsmoen gbnr 38/133-134, Fyresdal; property/address Birtedalsvegen 57) and its news item of 29 September 2025 name gbnr. 38/133-134 as the property for EdgeConnex MCN Norway AS's data-centre development (six data halls, access building, two water towers, internal roads, technical installations) within zone KBA_1 of the zoning plan 'Molandsmoen industri og friluftsområde' (plan id 38230001). Both parcels were requested in one WFS GetFeature call filtered on kommunenummer 4032 and matrikkelnummerTekst 38/133 or 38/134; each was also captured separately (geonorge-teig-fyresdal-38-133.gml, geonorge-teig-fyresdal-38-134.gml) with identical geometry.",
+ "parcel_captures": [
+  {
+   "matrikkelnummer": "4032-38/133",
+   "teig_id": "6482282921",
+   "area_m2_epsg25832": 84190.8,
+   "stored_area_m2": 84190.8,
+   "updated": "2026-06-12T12:33:53.530",
+   "accuracy_class": "Grønt",
+   "valid": true
+  },
+  {
+   "matrikkelnummer": "4032-38/134",
+   "teig_id": "6482349277",
+   "area_m2_epsg25832": 90525.0,
+   "stored_area_m2": 90525.0,
+   "updated": "2026-06-12T12:33:53.530",
+   "accuracy_class": "Grønt",
+   "valid": true
+  }
+ ],
+ "union": {
+  "type": "Polygon",
+  "area_m2": 174715.9,
+  "parcels_touch": true,
+  "centroid_epsg25832": [
+   447218.123,
+   6563068.154
+  ],
+  "centroid_inside_union": true,
+  "centroid_inside_parcel": "4032-38/134",
+  "farthest_vertex_from_centroid_m": 299.1,
+  "minimum_rotated_rectangle_m": [
+   443.0,
+   459.1
+  ]
+ },
+ "checks": [
+  {
+   "check": "official address of the permit property",
+   "source_url": "https://wfs.geonorge.no/skwms1/wfs.matrikkelen-adresse?service=WFS&version=2.0.0&request=GetFeature&typeNames=app:Vegadresse&count=200&filter=%3Cfes%3AFilter%20xmlns%3Afes%3D%22http%3A//www.opengis.net/fes/2.0%22%20xmlns%3Aapp%3D%22http%3A//skjema.geonorge.no/SOSI/produktspesifikasjon/Matrikkelen-Adresse/20200501%22%3E%3Cfes%3AAnd%3E%3Cfes%3APropertyIsEqualTo%3E%3Cfes%3AValueReference%3Eapp%3Akommunenummer%3C/fes%3AValueReference%3E%3Cfes%3ALiteral%3E4032%3C/fes%3ALiteral%3E%3C/fes%3APropertyIsEqualTo%3E%3Cfes%3APropertyIsEqualTo%3E%3Cfes%3AValueReference%3Eapp%3Aadressenavn%3C/fes%3AValueReference%3E%3Cfes%3ALiteral%3EBirtedalsvegen%3C/fes%3ALiteral%3E%3C/fes%3APropertyIsEqualTo%3E%3C/fes%3AAnd%3E%3C/fes%3AFilter%3E",
+   "raw_capture_file": "local_data/country-research-nordics-cee-p5/geonorge-vegadresse-fyresdal-birtedalsvegen.gml",
+   "raw_capture_sha256": "dd4579e5245997004fc47ccfe2027ff1dec4f23ae4546707bbf6a4b6602768c4",
+   "result": "Kartverket's address register places Birtedalsvegen 57 (address id 6493745948, registered on matrikkel unit 38/134, record updated 2025-08-13) at 59.201846 N, 8.074649 E, inside the union and 186.8 m (GRS80 geodesic) from the centroid."
+  },
+  {
+   "check": "no Kartverket building record yet",
+   "result": "A bounding-box query of Kartverket's Matrikkelen - Bygningspunkt WFS (59.198-59.212 N, 8.055-8.095 E; local geonorge-bygningspunkt-molandsmoen-bbox4258.gml) returns no building on 38/133-134, so no building point is available; the existing Molandsmoen industrial estate (street Molandsmoen, gbnr. 38/40-38/125) lies east of the parcels and is not used."
+  },
+  {
+   "check": "industrial-zone centroid not used",
+   "result": "The point is the centroid of the two permit-named data-centre parcels only, not of the Molandsmoen industrial and recreation zoning plan or the industrial estate."
+  }
+ ]
+}

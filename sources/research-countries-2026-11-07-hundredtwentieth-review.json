@@ -1,0 +1,288 @@
+{
+  "reviewer": "root",
+  "reviewed_at": "2026-11-07",
+  "decision": "accepted_for_integration",
+  "update": "verified_construction_core/2026-11-07-research-hundredtwentieth",
+  "base_dataset": "verified_construction_core/2026-11-06-research-hundrednineteenth",
+  "process": "continuous: one researcher per beat, one adversarial verifier per fragment",
+  "fragments": [
+    {
+      "fragment": "de-bauleitplanung-p6",
+      "verdict": "accept",
+      "checks": [
+        "All 5 relied-on captures (RP Darmstadt notice PDF and page, Karben B-Plan 244 page, Begruendung, Planzeichnung) plus the basemap.de raster rehashed: sha256 matches .metadata.json and source content_hash; geometry facts sha256 matches",
+        "Status: read the RP Darmstadt notice PDF myself (pdftotext): Hyper I S.a r.l. BImSchG application for 28 emergency diesel engines (163 MW FWL) for the Rechenzentrum Karben, Schultheissenwiese 3, Gemarkung Rendel Flur 12 Flurstueck 2/1; no objections; hearing of 17.11.2026 cancelled; signed Frankfurt 19.10.2026, Gz. 0029-IV-F 43.1-53.u.40.12-00068#2025-00001",
+        "Source kind government_record (primary); observation 2026-10-19 <= published_at 2026-11-02 (page datePublished 2026-11-02T00:00:12+01:00, period 02.11-17.11.2026); 19 days before 2026-11-07, inside 85-day window",
+        "Announced is the correct conservative stage: the notice's 'bereits baurechtlich genehmigt' gives no authority/date/reference and the generator permit is pending; the in-force B-Plan is not a permit",
+        "Context: Begruendung p.5 and Kap. 3 confirm the plan secures one data centre on Flur 12 Flurstueck 2/1 (+ parts of 18/1, 19/2, 19/5 and ~2,600 m2 of B 521 parcel 60/21), ~2.68 ha; Planzeichnung shows SO 'Rechenzentrum', RP approval stamp 31.03.2026, in force 18.04.2026 (rendered with pdftoppm)",
+        "Locator recomputed independently from the raw Karben page capture (geodraw FeatureCollection in the city's own map config, 1 polygon, 12 positions, closed): EPSG:25832 area 29,614.1 m2, centroid 8.8155975, 50.2024497 (0.006 m from claimed), inside, 52.6 m to boundary, max vertex 194.8 m",
+        "Locator source acceptable: polygon published by the Stadt Karben (government) in its own page; no Google/Bing/Apple/HERE/OSM/PeeringDB data; license recorded; overlay on BKG basemap.de raster (CC BY 4.0) follows the parcel south of the B 521 and north of the nursery buildings",
+        "Scope project_locator, derivation coordinate_transform with compiled_reference authority (allowed by dataset_update.py); precision, identity review and null uncertainty with reason recorded",
+        "Distinctness: no Karben/Rendel/Schultheisenwiese/Hyper I match in the hundrednineteenth sites, projects, evidence, source-records or identity-mapping; nearest Atlas site Digital Realty Fechenheim 9.6 km; nearest queue point 17.8 km; only prior mention is the de-hesse-p1 / thirtyninth hold, whose reopen condition (dated RP record after 29.07.2026 with a Flurstueck 2/1 parcel locator) is met",
+        "Roles empty (operator and owners unnamed; Hyper I is only the generator-permit applicant); commercial scope; no private personal data in changes, sources, holds or geometry facts",
+        "robots.txt for rp-darmstadt.hessen.de, www.karben.de and sgx.geodatenzentrum.de allow the captured paths",
+        "dryrun_fragment.py ok against verified_construction_core/2026-11-06-research-hundrednineteenth (934 sites, 1,002 projects)"
+      ],
+      "residual_risks": [
+        "Locator is the centroid of the whole 2.96 ha plan area, not a building footprint; building positions inside the Sondergebiet are unpublished",
+        "The data-centre operator and the owners of Hyper I S.a r.l. are unknown, so a later operator-named record may need to be matched to this site by parcel",
+        "The notice address Schultheissenwiese 3 appears on the basemap at the former nursery buildings just south of the plan area; identity rests on Flurstueck 2/1",
+        "claims.tsv lists the key with 'schultheissenwiese' while changes.json uses 'schultheisenwiese'; the registry entry is informational only",
+        "The compliance log records pre-robots WebFetch requests to news hosts (one, volksstimme.de, disallowed); none of that content is used in the admitted item"
+      ]
+    },
+    {
+      "fragment": "gulf-mena-p6",
+      "verdict": "accept",
+      "checks": [
+        "sha256 of all 4 relied-on captures (3Q 2026 presentation PDF, 30 Sep 2026 activity report PDF, TR IR page, attachment sitemap) match .metadata.json and sources.json content_hash",
+        "presentation p.34 rendered with pdftoppm and read: 'construction is underway on an 11 MW IT load data center in Tuzla'; commenced May 2025; completion scheduled Dec 2026 (forecast only)",
+        "activity report p.4 (pdftotext) read: Tuzla 11 MW commissioning to begin Dec 2026; Tuzla-2, Gebze 18 MW first phase of 27 MW and Ankara 19 MW in pre-construction work",
+        "Gebze: 'construction permit process reached its final stage' is not an issued permit; announced kept, permitted not claimed",
+        "publication 2026-11-06 bounded by uploads/2026/11 path, attachment-sitemap lastmods 2026-11-06T15:52Z, IR page-sitemap lastmods 2026-11-06T16:00Z and PDF CreationDate 2026-11-06 EET; cover page reads 3Q 2026 despite stale Title metadata",
+        "both sources company_disclosure from ENKA (parent of operator ENKA Data Solutions); as_of 2026-11-06 <= published_at; 1 day before review date, well within 85 days",
+        "strictly newer than existing observations (Tuzla 2026-08-12, Gebze 2026-08-14); same scope (11 MW initial build; 18 MW first phase); Tuzla-2 excluded",
+        "post sitemap re-parsed: no ENKA data-centre post after 2026-08-12; EDS sitemap posts last 2026-04-14",
+        "no locators, roles or additions changed; existing operator pins untouched",
+        "distinctness: no other queue fragment changes or claims these project keys (mena-tr-il-p1 already published); sources/*-holds.json have no conflicting refresh",
+        "no third-party personal data in changes, sources or holds (PDF Author metadata name not reproduced)",
+        "robots.txt for www.enka.com and enkadatasolutions.com logged before requests in compliance.log",
+        "dryrun_fragment.py ok against verified_construction_core/2026-11-06-research-hundrednineteenth"
+      ],
+      "residual_risks": [
+        "presentation and report statements may be period-end (30 Sep) wording; publication date 6 Nov used as observation date, consistent with prior Atlas treatment of the 30 Jun report",
+        "Tuzla 'construction underway' could lag reality if energisation occurred after 12 Aug; the same-day board report placing commissioning in Dec 2026 contradicts completion",
+        "EDS page-sitemap lastmod 2026-09-20 not inspected page by page; facility pages could carry newer wording",
+        "two supporting sources (IR page, attachment sitemap) are unreferenced by changes; kept as date-bounding provenance (appear only in attribution/provenance, not evidence)"
+      ]
+    },
+    {
+      "fragment": "nordics-cee-p5",
+      "verdict": "accept",
+      "checks": [
+        "Stale lock (27 Oct 08:39, over 10 days old) removed and re-taken; fragment written 27 Oct against -hundredsecond; re-screened against current_dataset verified_construction_core/2026-11-06-research-hundrednineteenth (933 sites, 1,001 projects, 5,159 evidence)",
+        "All 29 captures rehashed: sha256 equals .metadata.json sha256 and sources.json content_hash; Fyresdal geometry-facts sha256 matches the source's geometry_facts_sha256",
+        "Fyresdal status: read the raw Internet Archive id_ copy of go.edgeconnex.com (captured 2026-10-08T17:18:59Z) myself: construction started Q1 2026; piling of buildings 1 and 2 completed ('er ferdigstilt'); steel structure for building 1 under way ('pågår'); about 200 people active on the plot; operator's own page, company_disclosure; as_of 2026-10-08 is 29 days before 2026-11-06 (window start 2026-08-13); forecasts (2027/2029) not used",
+        "Fyresdal successor: live page fetched 6 Nov 2026 (robots.txt allows the path) carries the identical work-programme section; only traffic notice (weeks 46-48) and a Menon impact summary changed; no completion, pause or cancellation",
+        "Fyresdal identity: framework permit PDF read with pdftotext: Fyresdal kommune ref. 2025/183-21, delegated decision 147/25, 14.08.2025, rammeløyve for data-centre development (six data halls etc.) on gbnr. 38/133-134, Birtedalsvegen 57, tiltakshavar Edgeconnex MCN Norway AS, zone KBA_1, plan 38230001; municipal project page names EdgeConneX as developer; EdgeConneX FAQ says it develops and operates the data centre",
+        "Fyresdal locator recomputed from the raw Kartverket Teig GML (EPSG:25832) with pyproj 3.7.1/shapely 2.1.1: union of 38/133 (84,190.8 m2) and 38/134 (90,525.0 m2) is one 174,715.9 m2 polygon; centroid 447218.123/6563068.154 inside it -> 59.2034126 N, 8.0758167 E (0.004 m from stated); farthest vertex 299 m; MRR 443x459 m; accuracy class Grønt",
+        "Locator source acceptable: Kartverket open cadastre (government cadastral record, CC BY 4.0), wfs.geonorge.no robots 404; no map-service, PeeringDB or OSM input; Birtedalsvegen 57 address point (on 38/134) lies inside the union 187 m from the centroid; not a town or industrial-zone centroid",
+        "Fyresdal distinctness: no Fyresdal/Molandsmoen/Birtedalsvegen/Fossefall match in current sites, projects, evidence, source-records or identity-mapping, other queue fragments, claims (only this lane) or sources/*-holds.json; Atlas EdgeConneX records are US/IE/JP only; nearest existing or queued site 105.7 km (Bulk N01 Vennesla)",
+        "Fyresdal role: EdgeConneX operator, relationship_scope intended (FAQ 'utvikles og driftes av EdgeConneX'), party name matches existing Atlas EdgeConneX operator claims",
+        "Tydal addition removed: current dataset already has site curated:bitdeer-tydal-kirkvollen-data-center (parcel 5033/181/189, 52 m from the fragment point) with project ai-hpc-conversion announced 2026-08-04; not converted to a status refresh because the 1 Oct 2026 municipal traffic notice says only 'also this autumn' works for 'utbygging av datasenteret', without tying them to the Volta AI/HPC halls (scope not kept)",
+        "Hetzner addition removed: current dataset already has site curated:hetzner-helsinki-tuusula-huurrekuja-data-center-park (53 m away) operational 2026-10-22 citing the same HEL1-DC7 capture hash; same-date observation cannot refresh; unmodified fragment failed the dry run on conflicting capture metadata",
+        "Removed items held with reasons and reopen conditions; existing holds that pointed at the removed site keys now point at the Atlas's existing Tydal and Hetzner project keys; 19 unreferenced sources and 2 orphan geometry-facts files moved to removed/ with before-verify copies",
+        "Privacy: neighbours, case officer and contact persons named in the permit PDF and executives in the EdgeConneX release are not reproduced; no personal e-mails or phone numbers in changes, sources or holds",
+        "dryrun_fragment.py ok against -hundrednineteenth: 934 sites, 1,002 projects, 5,169 evidence"
+      ],
+      "residual_risks": [
+        "Fyresdal status rests on an undated operator page dated by its Internet Archive capture; the work programme could have been written a few days before 8 October 2026",
+        "under_construction is campus-wide; only buildings 1-2 are past piling and building 1 is at steel/envelope stage; buildings 3-6 are at piling or groundworks",
+        "The locator is the centroid of a 17.5 ha two-parcel union (farthest vertex 299 m); the six halls' positions are unpublished and the adjoining land in the September 2026 council contract (parts of 38/33 and 38/18) is not mapped",
+        "365 MW is a planned grid connection, not IT load",
+        "Tydal expansion works may well be the Volta halls; a later fragment with a scope-tying source should refresh the existing project rather than add a site"
+      ]
+    },
+    {
+      "fragment": "q3-apac-operators-p6",
+      "verdict": "accept",
+      "checks": [
+        "current_dataset re-read: verified_construction_core/2026-11-06-research-hundrednineteenth (matches fragment base); dry run ok (934 sites, 1002 projects)",
+        "all 12 captures rehashed: sha256 matches sources.json content_hash and .metadata.json; metadata url/effective_url/captured_at match source_url/retrieved_at; HTTP 200",
+        "geometry facts file sha256 c8db7f58... matches geometry_facts_sha256",
+        "status: AirTrunk release (company_disclosure) read in capture: 'Construction of the expanded SYD3 development, led by A W Edwards, is underway'; Posted on 27 October 2026, schema datePublished 2026-10-26T20:05Z (07:05 AEDT 27 Oct); sitemap lastmod agrees; 10 days before 2026-11-06, inside 85 days; mid-2028 completion forecast not used",
+        "identity: MOD 2 assessment report (pdftotext) gives Lot 1 DP 857249, 51 Huntingwood Drive, 400 MW, applicant AW Edwards, determined 28 Aug 2026; Stage 2 letter (8 Nov 2024) addressed to Airtrunk Pty Ltd for SSD-41589232; drawing ATSYD3-GEN-DWG-VDM-CIV-00112.B title block 'AIRTRUNK SYD3 / 51 HUNTINGWOOD DRIVE / HUNTINGWOOD NSW 2148'; SYD3 page 400+MW 8.3 ha",
+        "locator: NSW Spatial Services Lot layer (government cadastre) returns one polygon 1//DP857249; recomputed planar centroid in EPSG:7856 with pyproj 3.7.1/shapely 2.1.1 = (150.8755826, -33.7990743), exact match; inside lot, 108.8 m to boundary, area 90,566 m2, extent 253x462 m, farthest vertex 257.6 m",
+        "locator source acceptable: official cadastre; no commercial map, map link, PeeringDB or OSM; Planning Portal cross-check point (150.876,-33.798627) is the Department's own geofield data, 62.9 m away inside the lot, not used as locator",
+        "scope campus_locator / compiled_reference / direct_geometry consistent with Atlas AirTrunk SYD2 locator; uncertainty null with reason",
+        "distinctness: no SYD3, Huntingwood Drive, DP 857249 or SSD-41589232 in sites/projects/evidence/source-records/identity-mapping; nearest Atlas records Microsoft SYD01 Huntingwood 1.893 km (different operator, 6 Honeman Close), NEXTDC S7 2.483 km, CDC Eastern Creek 4.091 km; no queued addition or locator correction within 5 km; claims.tsv only this fragment",
+        "holds screened: au-nz-p1/fortyninth hold on 51 Huntingwood Drive (reopen: dated operator statement with operator identified, Lot 1 DP 857249 locator) is met; round6 Bouygues lead and thirtyfirst outside-window rejection superseded",
+        "role AirTrunk owner/current supported by 'its SYD3 campus' in the dated release; one project on a new site",
+        "robots.txt captured for airtrunk.com and planningportal (paths allowed); majorprojects and spatial portal robots 404; no personal names, phones or emails in changes, sources or holds",
+        "all 12 sources referenced by the addition; no edits needed"
+      ],
+      "residual_risks": [
+        "The existing operational Phase 1 (Shell A) on the same lot is only an applicant statement and is held; a later project there must reuse this locator exactly",
+        "The applicant's 'SYD02 building' wording in the MOD 2 report is unexplained, but the ATSYD3 title block, the Airtrunk addressee and the AW Edwards link tie the lot to SYD3",
+        "Owner role is inferred from 'its SYD3 campus'; land tenure is not separately evidenced",
+        "Cadastre licence not stated in service metadata (recorded as such); identity_review mentions the Planning Portal map point, which is rendered through a Google Maps widget but is the Department's own geofield value and is cross-check only"
+      ]
+    },
+    {
+      "fragment": "q3-hyperscalers-p6",
+      "verdict": "accept",
+      "checks": [
+        "All 14 sources rehashed: raw capture sha256 equals .metadata.json sha256 and content_hash; geometry facts file sha256 0f104081... matches",
+        "Sarpy fact sheet PDF read with pdftotext: '300+ Operational jobs supported', 'for our data center', 'Our operational data center buildings achieve LEED Gold'; CreationDate 2026-09-02 21:38 EEST; 2026/09 upload folder",
+        "Sarpy dating bounded: IA asset-link copy 2026-08-14 resolves to 2025/02 PDF (created 2025-01-30); IA copy 2026-09-21 byte-identical to live 2026/09 PDF; asset sitemap lastmod 2026-09-03; as_of 2026-09-02 within 85 days of 2026-11-07 (from 2026-08-14)",
+        "Meta 2021/2022 posts verified: campus began as Facebook's Papillion Data Center, expanded 500+ acres in Springfield across Capehart Road to the south",
+        "Locator recomputed with pyproj 3.7.1/shapely 2.1.1 from raw county parcel JSON: parcel 011599968 centroid (-96.1438595, 41.1219114) exact match, inside polygon, 224.7 m from boundary, 131.86 geodesic acres, 729.6 x 819.4 m",
+        "Parcel source is Sarpy County hosted layer (orgId OiG7dbwhQEWoy77N per gis.sarpy.gov hub item), licence CC0-1.0; no commercial map, PeeringDB or OSM service used",
+        "Identity: all 13 Raven Northbrook LLC parcels mail to Meta HQ (1601 Willow Rd / 1 Hacker Way); north lots (341 ac) and Gemini lots (632 ac) straddle TIGER Capehart Rd as recomputed; independent web search confirms Raven Northbrook LLC was Facebook's Sarpy shell at Hwy 50 and Capehart Road (not used as a source)",
+        "Distinctness: no Atlas site, source-record, identity-mapping, queue change/hold, claim or sources/*-holds coordinate within 8 km (nearest TierPoint Midlands 8.87 km); no name/alias/owner/address match; only lead_only holds naming Meta Sarpy",
+        "Roles: Raven Northbrook LLC owner/current from county parcel record; Meta Platforms operator/current from fact sheet",
+        "New Albany page read: 'Construction update October 2026' says early construction works complete; dateModified 2026-11-05 matches sitemap lastmod; IA copy 2026-10-25 (dateModified 2026-07-09) ends at July 2026; completed keeps the initial-site-preparation scope; strictly newer than 2026-07-01",
+        "Hebron page read: October 2026 section says crews remain focused on site preparation, substation underway; dateModified 2026-10-27 matches sitemap; IA copy 2026-10-26 ends at July 2026; site_preparation strictly newer than 2026-07-01, scope unchanged",
+        "No emails, phone numbers or private individuals' names in changes, sources, holds, notes or geometry facts; over-broad raw captures are git-ignored and unused",
+        "Dry run ok against verified_construction_core/2026-11-06-research-hundrednineteenth (updated_at 2026-11-07)"
+      ],
+      "residual_risks": [
+        "Sarpy identity bridge rests on Meta-HQ tax mailing addresses plus Meta's Capehart Road description; no captured government or Meta record names Meta for Raven Northbrook LLC or Friend Plaza",
+        "Parcel owner and improvement attributes date from the December 2023 assessment roll",
+        "Sarpy operational status rests on fact-sheet present-tense statements repeated from the 2025 sheet; not building-specific",
+        "services.arcgis.com and tigerweb robots.txt returned 403/HTML reject and were treated as no rules per queue precedent",
+        "New Albany 'completed' covers only early works/initial site preparation; a map reader may misread it as datacenter completion despite the project name",
+        "IA copies and Microsoft sitemap used for dating stay unreferenced in sources.json (kept in review provenance, not associated as evidence)"
+      ]
+    },
+    {
+      "fragment": "q3-us-neocloud-miners-p6",
+      "verdict": "accept",
+      "checks": [
+        "All 12 relied-on captures rehashed: sha256 equals .metadata.json sha256 and sources.json content_hash; metadata URLs equal source_url; both geometry-facts files match geometry_facts_sha256",
+        "Read decisive text in IREN Q1 FY27 capture (news 12696, dateline New York Nov. 05, 2026): 'Liquid-cooled data center construction well underway at Sweetwater 1' and 'New liquid-cooled data centers commenced construction at 100MW Mackenzie site'; investor news index maps externalId 12696 to this release dated Nov 5, 2026",
+        "Read Batch Zero capture (Sept. 08, 2026): Sweetwater 1 substation energized earlier in 2026, 300MW gross data-centre construction continues; used as scope context only, Q4 2027 target not used",
+        "Read TeraWulf 10-Q capture (accession 0001628280-26-071671, period ended 30 Sep 2026, published 6 Nov 2026): as of 30 Sep 2026, 145 MW mining energized across three buildings and 102 critical IT MW HPC energized at Lake Mariner",
+        "Observation dates 2026-11-05 and 2026-09-30 are within 85 days of 2026-11-06 (cutoff 2026-08-13); Lake Mariner refresh strictly newer than 2026-08-05 and keeps value and campus scope",
+        "Sources primary: IREN releases company_disclosure (IREN CMS API linked from iren.com), 10-Q regulatory_filing (issuer-hosted rendition); stages rest on present-tense construction statements, not targets",
+        "Sweetwater 1 locator recomputed from raw TxGIO identify capture: union of the six IE US Development Holdings 5 Inc parcels in EPSG:3083 gives centroid -100.5600317, 32.6396263 (0.003 m from claimed), inside, 133.1 m from boundary, two parts; source is government parcel data (acceptable)",
+        "Sweetwater 1 identity: TCEQ capture shows RN112136759 'Data Center Phase 1 - Early Works Package' (IE US Development Holdings 5, east side FM 611 ~1/2 mi north of CR 448) and family entities IE US Dev 3 (Childress data centre) and IE US Dev 7 ('IREN Sweetwater 2 Data Center Project Substation'); recomputed TIGER FM 611/CR 448 junction and half-mile-north point falls on parcel 33160; parcel mailing addresses are IREN Childress and IREN Sydney office; TCEQ also lists an 'IREN Kidd West' concrete batch plant on FM 611 roughly 0.65 km from the union (corroboration only)",
+        "Owner sweep re-run over all six TxGIO tiles: only the six IE US Development Holdings 5 parcels; no other IREN-family owner",
+        "Mackenzie locator recomputed: BC Address Geocoder capture returns 4900 Coquiwaldie Rd parcelPoint -123.1403236, 55.3027304 (CIVIC_NUMBER, score 98, spelling fault only, isOfficial); ParcelMap BC capture PID 029-238-871 contains it (27.0 m to boundary, 57.8 m to centroid, 10.80 acres vs IREN 11-acre freehold); address taken from IREN's schema.org Place, Google Maps sameAs links not used",
+        "Locator sources acceptable under the locator-source rule (government parcel service, official open geocoder, cadastral fabric); no map-service, PeeringDB or OSM requests in compliance.log",
+        "Distinctness: nearest Atlas sites 39.2 km (Cipher Barber Lake) and 45.4 km (IREN Sweetwater 2) from Sweetwater 1, 289 km from Mackenzie; source-records/identity-mapping nearest is the iren-sweetwater town point (22.2 km, multi-site program record); no other queue fragment, claim or hold adds Sweetwater 1, Mackenzie or refreshes Lake Mariner; earlier Sweetwater 1 holds asked for exactly this dated record and the IE US Development Holdings 5 parcel locator",
+        "One project per new site; roles use owner/operator with current/intended scopes, consistent with the accepted Sweetwater 2 record",
+        "No private individuals' names, phones or emails in changes, sources, holds or notes",
+        "Corrected hold 'TeraWulf Justified Data Campus': location is Hawesville, Kentucky (10-Q), linked to existing record imported:semiconductor-atlas:terawulf-justified-data-hawesville",
+        "dryrun_fragment.py: ok (935 sites, 1,003 projects, 5,171 evidence)"
+      ],
+      "residual_risks": [
+        "Sweetwater 1 parcels are tied to IREN through entity naming, mailing addresses and TCEQ records rather than an IREN document naming the parcels; 1,305 legal acres vs 1,700 acres stated",
+        "Sweetwater 1 centroid represents a ~4.6 x 2.9 km landholding; the halls and substation are not separately located",
+        "Q1 FY27 development highlights may describe the quarter rather than the release day; as_of 2026-11-05 vs 2026-09-30 both fall in window",
+        "Mackenzie new liquid-cooled halls may extend beyond the 10.8-acre parcel; no capacity is stated for them",
+        "tigerweb.geo.census.gov robots.txt returned a WAF page with no parseable rules; TIGERweb roads are context only",
+        "IREN releases were captured from clientapi.gcs-web.com (robots.txt 404); iren.gcs-web.com and sec.gov were not reachable for a second rendition"
+      ]
+    },
+    {
+      "fragment": "q3-us-reits-p6",
+      "verdict": "accept",
+      "checks": [
+        "current_dataset re-read at start and end: verified_construction_core/2026-11-06-research-hundrednineteenth (unchanged)",
+        "all 12 sources rehashed: sha256 matches content_hash and .metadata.json (http 200, url, captured_at, bytes); both geometry-facts files match their recorded sha256",
+        "Equinix community post (contentType productUpdate, Equinix staff title, datePublished 2026-10-20T21:05:30Z) read in capture: EPIC 'operating inside active Equinix IBX data centers', 'currently available in: London (LD5) Paris (PA10) ...'; 21 Oct release corroborates 'EPIC is live in ... London ... Paris' and 'Each EPIC location operates inside a live Equinix data center'",
+        "DLR release read in capture: dateline AUSTIN, Nov. 05, 2026; 'today announced the opening of its first DRIL in Latin America. Located at the Vinhedo II campus'; 'in a live data center environment'; DRIL page says the Sao Paulo DRIL opens 'in VIN02'; VIN02 page gives Av. 2, 50, Benedito Storani and links the Ascenty Vinhedo Campus brochure",
+        "window: 2026-10-20 and 2026-11-05 are within 85 days of 2026-11-07 (from 2026-08-14)",
+        "VIN02 locator reuse: reference project 2cac8eb7 and evidence 2184bacc are the baseline Vinhedo 3 campus locator (precision text: factsheet coordinate for VIN02); no geometry-identity evidence exists; builder reuse checks pass",
+        "PA10 locator: Geoerisques ICPE record AIOT 0007407362 EQUINIX France, 114 rue Ambroise Croizat, lon 2.35198 lat 48.927976 read in capture; pyproj 3.7.1 L93 (652518, 6869972) -> 0.04 m; shapely: inside IGN parcel 93066000BK0068 (55,832 m2, 17.6 m to boundary, 140 m to centroid)",
+        "PA10 identity: DRIEAT 13 June 2024 inspection report (pdftotext) says Equinix operates as owner a data centre at this address, footprint ~56,000 m2, PA2/PA3, PA9 and PA10 (construction 'achevee')",
+        "LD5 locator: EA register EPR/LP3303PR holder EQUINIX (UK) LIMITED, Equinix Slough Campus Data Centre, Buckingham Avenue SL1 4AX, lat 51.522148 long -0.629225 read in capture; pyproj BNG (495200, 181250) -> 0.82 m",
+        "LD5 identity: permit PDF (pdftotext; page 21 rendered) lists data centre LD5 (6 x 5.714 + 8 x 5.200 MWth) among LD4/LD5/LD6/LD7/LD10 and Schedule 7 shows five separate plots, so campus scope and uncertainty text are right",
+        "locator sources are government records (Geoerisques etalab-2.0, EA register OGL/conditional licence consistent with prior Atlas evidence); no Google/Bing/Apple/HERE/PeeringDB/OSM use in captures or compliance log; robots.txt captured for every host used",
+        "distinctness: no Atlas site within 2 km of PA10 (nearest DLR La Courneuve 3.41 km); LD5 nearest Iron Mountain LON-3 0.67 km (111 Buckingham Ave, other permit) and LON-1 hold 0.59 km; VIN02 only the existing Vinhedo site (VIN02 page point 286 m); no keyword hit (LD5, PA10, VIN02, Vinhedo, Ambroise Croizat, LP3303PR, 0007407362, Buckingham Av) in sites/projects/evidence/source-records/identity-mapping or any unpublished queue fragment; related published holds (br-p1, mx-br-p3, uk-england-p4, fortysecond, sixtysixth, fiftyfirst) are reopened by these dated operator statements",
+        "one project per new site (PA10, LD5); VIN02 is a new project on an existing site; labs (DRIL, EPIC) are not the projects",
+        "roles: operator/owner with relationship_scope current; no personal names, emails or phones in changes, sources, holds or URLs",
+        "dryrun_fragment.py: ok (935 sites, 1,004 projects, 5,171 evidence)"
+      ],
+      "residual_risks": [
+        "VIN02 operating status rests on a lab-opening release whose 'live data center environment' phrase describes the DRIL generally; identity Vinhedo II = VIN02 relies on the undated DRIL page",
+        "PA10 and LD5 IBX identification comes only from the community post (sitemap lastmod 2026-10-21 suggests a possible edit a day after publication); the 21 Oct release corroborates live status in London and Paris but does not name the IBXs",
+        "LD5 point is the EA single site point for a five-plot installation spread about 0.8 km; it may lie several hundred metres from the LD5 building",
+        "PA10 owner role relies on the 2024 inspection report; the 2026 register still names EQUINIX France as the establishment"
+      ]
+    },
+    {
+      "fragment": "sea-p6",
+      "verdict": "accept",
+      "checks": [
+        "All 8 relied-on captures rehashed: file sha256 == .metadata.json sha256 == sources.json content_hash",
+        "Post-sitemap source reuses existing evidence f0551b78 exactly (URL, hash, title, retrieved_at); 6 Nov recapture byte-identical",
+        "Live Singapore page read: JSON-LD dateModified 2026-09-23T14:04:43Z; present-tense Tai Seng ('home to cloud, enterprise, and network providers') and Woodlands ('Global Switch Woodlands delivers...', 'Our Woodlands campus delivers...') text; Johor/Bangkok 'Coming Soon', Singapore not",
+        "dateModified bounded: IA 2026-06-10 copy holds prior version (dateModified 2026-04-27), IA 2026-10-11 copy holds the 2026-09-23 version; page-sitemap lastmod identical; CDX shows no captures in between",
+        "Status source company_disclosure (operator's own page); as_of 2026-09-23 is 45 days before 2026-11-07, inside 85-day window; follows accepted Global Switch Madrid precedent",
+        "Operator-stated addresses confirmed in IA 2026-06-10 Singapore page and live About page (dateModified 2026-10-19): 2 Tai Seng Avenue 534408 (17MW) and 7 Woodlands Height 737858 (22MW)",
+        "Locators: OneMap (Singapore Land Authority) single-result address searches; postcode searches byte-identical; coordinates equal served values; pyproj 3.7.1 EPSG:3414->4326 recompute differs ~1.6e-9 m",
+        "Locator source acceptable (official government geocoder, license sla-onemap-terms-of-use); no commercial map, PeeringDB or OSM used; onemap robots allow all",
+        "Distinctness: no Global Switch Singapore, Tai Seng Avenue, Woodlands Height, 534408 or 737858 in sites/projects/evidence/source-records/identity-mapping, other queue fragments, claims.tsv (only sea-p6's own claims) or sources/*-holds.json",
+        "Nearest records: STT Singapore 5 Tai Seng 0.44 km (STTGDC, different property); Keppel DC REIT DC1 Riverside Road 2.54 km from Woodlands; the two new sites are 14.75 km apart, one project each",
+        "Roles: Global Switch operator, current, sourced to operator page; owner, permit, opening date and capacity not asserted",
+        "No third-party personal data in changes/sources/holds; compliance log shows robots read before requests, single post-429 request, gswitch-cdn not requested after robots 403",
+        "Corrected two wording errors: June IA copy shares only the Spotlight statements (intro sentences new in 23 Sept version); OneMap retry was ~113 s (not 54 s) after the 429",
+        "dryrun_fragment.py ok: 935 sites / 1003 projects / 5166 evidence (+2/+2/+7) on base 2026-11-06-research-hundrednineteenth"
+      ],
+      "residual_risks": [
+        "Status rests on present-tense marketing copy on the operator page; Woodlands text ('delivers scalable space and flexible power') is capability-style, weaker than Tai Seng's 'home to ... providers', admitted on the Madrid precedent",
+        "The 2026-09-23 modification was a site-wide template update; the in-window date depends on the dateModified/sitemap value within the archive bound of 10 Jun-11 Oct 2026",
+        "OneMap address points carry no positional accuracy and mark the address, not the building outline or land lot",
+        "17 MW and 22 MW are operator labels only; Woodlands is called a 'campus' and phase-level status is not established"
+      ]
+    },
+    {
+      "fragment": "us-tx-new-p6",
+      "verdict": "accept",
+      "checks": [
+        "base screened: verified_construction_core/2026-11-06-research-hundrednineteenth (site/config.json current_dataset, rechecked before verdict)",
+        "all 19 source captures rehashed: sha256 equals content_hash and .metadata.json sha256; metadata url and captured_at match source_url and retrieved_at; HTTP 200",
+        "Edged: TABS2027004847 capture read directly: Registration Date 10/30/2026, 'DFW Data Center Interior Fit-Out 2', facility 'Edged - DFW Data Center', 505 N. Wildwood Dr Irving, Renovation/Alteration 'Interior fit-out.', 32,272 sq ft, $3,000,000, owner Edged Dallas LLC, status Project Registered; listings give ProjectCreatedOn 2026-10-30T16:48:20.87; regulatory_filing, 7 days old, inside 85-day window",
+        "Edged: announced only; start/completion dates treated as forecasts; follows HO1/QTS DFW1 TABS fit-out precedent; no later TABS registration in owner or address search",
+        "Edged locator recomputed from raw TxGIO identify capture (pyproj 3.7.1/shapely 2.1.1): union centroid -96.9189654,32.8170638 (0.004 m from claim), 27.127 geodesic acres, inside 320251000A01R0000; 505 parcel centroid 98.75 m away; 300 N Walton Walker address point inside the same parcel 145.7 m away",
+        "Edged locator source acceptable: TxGIO StratMap parcels (Dallas CAD), government record; discovery chain is TxGIO address point 510 N Wildwood -> TxGIO envelope identify -> targeted identify; no map-provider coordinates",
+        "Edged identity: both parcels owned by Edged Dallas LLC / Edged Dallas 2 LLC at the same Darien CT mailing address; Edged page lists Irving DFW01-1 & DFW01-2 campus at 300 North Loop 12 (page header also shows 26 acres, close to the 27.1-acre union)",
+        "Edged roles: removed 'Edged Dallas 2 LLC owner current' because that entity owns the adjoining campus parcel, not the 505 N Wildwood building where the fit-out is registered; kept Edged Dallas LLC owner (TABS) and Edged operator current (operator page)",
+        "DA12: City of Dallas issued-permits capture read directly: COM-NEW-25-000223 issued 03/06/26, 372,517 sq ft, 'NEW CONSTRUCTION OF DATA CENTER FOR EQUINIX PROJECT. 4 STORIES. PHASED PROJECT.'; in-window COM-ELC-26-005253/-005260 (10/22/26), -005288 (10/26/26), -005373 (10/29/26) for data halls and electrical rooms of 'a new 4 story data center'",
+        "DA12: permitted covers the data-centre building itself (building permit plus same-project data-hall permits), not ancillary works; Level 3/4 permits fall outside DA12-2 (floors 1-2) so the 29 Oct observation is DA12-1 scope; dataset rowsUpdatedAt 2026-11-06T12:16:32Z bounds published_at; observation 8 days old",
+        "DA12 locator recomputed: parcel 00000778060000000 centroid -96.858878,32.8207963 (0.006 m from claim), 17.683 acres; main 1550 W Mockingbird address point inside, 4.24 m away; four-parcel DA12 LLC union centroid 89.6 m away, also inside",
+        "DA12 identity: parcel owner DA12 LLC and TABS owner 'DA12' both at 1 Lagoon Dr Redwood City; TABS DA12-1 is the same 372,517 sq ft four-storey data center at 1550 West Mockingbird Lane; Equinix named in the permit description, operator scope intended",
+        "distinctness: scripted search of sites.csv, projects.csv, evidence.csv, source-records.json, identity-mapping.json, all queue fragment json/md/tsv and sources/*-holds.json for Wildwood, Walton Walker, Loop 12, Mockingbird, Edged Dallas, DA12, Lagoon Dr, TABS numbers, permit and parcel IDs: only this fragment's own claims; DFW01 hits are Colovore Mesquite; no coordinate within 2 km (nearest CoreSite DA1 Irving 2.2 km / 4.5 km)",
+        "only one project added per new site; DFW1-2 and DA12-2 held; us-tx-tabs-new-p3 Equinix Dallas lead concerns Infomart/DA11 and records no coordinate",
+        "privacy: no contact names, phone numbers or private-person data in changes, sources, holds or notes (grep for the TABS contact names and phone patterns)",
+        "dryrun_fragment.py ok (935 sites, 1,003 projects)"
+      ],
+      "residual_risks": [
+        "Edged Fit-Out 2 scope is only 'Interior fit-out.' (32,272 sq ft, $3M); the record does not establish data-hall space or new capacity",
+        "Edged campus locator is a two-parcel union centroid; Loop 12 = Walton Walker Blvd equivalence and the second parcel's inclusion rest on operator address plus common ownership; operator's '15-acre campus' figure is not reconciled",
+        "No Edged statement establishes that DFW01-1 operates; operator role 'current' relies on the undated operator location page",
+        "DA12 permit validity/expiry is not published in the feed; Accela not consulted (login); 'permitted' as of 29 Oct relies on same-project sub-permits rather than the March 2026 building permit date",
+        "Site name 'Equinix DA12' combines TABS facility name DA12 with the permit's 'Equinix project'; no Equinix publication captured"
+      ]
+    },
+    {
+      "fragment": "us-va-permits-p6",
+      "verdict": "accept",
+      "checks": [
+        "current_dataset re-read at start and end: verified_construction_core/2026-11-06-research-hundrednineteenth",
+        "all 20 cited captures rehashed: sha256 matches .metadata.json and source content_hash; metadata URL equals source_url, captured_at equals retrieved_at, HTTP 200; 3 geometry-facts files match their sha256",
+        "all sources are Loudoun County government_record (LandMARC permits, LOLA, parcels, address points, zoning); license public-record-source-terms, same as the 51 loudoun_county_gis evidence rows in the base",
+        "LandMARC layer definition: dateFieldsTimeReference Eastern Standard Time with daylight saving; ISSUEDATE 2026-11-01T04:00Z = 1 Nov EDT, 2026-11-02T05:00Z = 2 Nov EST, APPLYDATE 2026-10-20T13:12Z = 20 Oct EDT",
+        "ACC11: read BLDC-2025-042949 'ACC11 Data Center Core & Shell *FOUNDATION ONLY*' (311,040 sq ft) and ZONC-2026-028678 'ACC11 Data Center Core & Shell', both Issued 2026-11-01, no finalization; foundation-only scope recorded in summary and consent_scope_note",
+        "Project Motion: read BLDC-2025-051284 and ZONC-2025-054861 'ARA4A BUILDING PERMIT' at 24560, Issued 2026-11-02, 392,223 sq ft; VESMP-2026-000024 at 24560 cites Phase 4 data-center site plan EPLAN-2024-0212; GRADE-2026-000014 (address 24555) for 'construction of a Data Center for Project Motion - Phase 4'; ARA3A was 'NEW DATA CENTER ARA3A'; HUB office has its own 21,667 sq ft permit at 24531",
+        "Corscale VA2: read ZONC-2026-051291 'NEW DATA CENTER' New Construction applied 2026-10-20, 'Invoiced and Paid - Same Day', on the STPL-2022-0012 'construction of a datacenter building' parcel; no building consent issued, so announced only (consistent with Atlas precedent for LOLA-dated announced admissions)",
+        "observation dates 2026-11-02, 2026-11-01, 2026-10-20 are within 85 days of 2026-11-06 (floor 2026-08-13) and not after published_at (DataSnapshot 2026-11-06)",
+        "permitted items carry permit_scope data_center_development, permit_type building_permit, permit_decision granted, reference and identity review; no appeal or suspension in the 6 Nov snapshot",
+        "locators recomputed with shapely 2.1.1/pyproj 3.7.1 from raw LOLA captures (outSR 4326): planar centroids match to 7 decimals, inside polygon, UTM 18N centroid differs <=0.007 m; geodesic acres 135.22 / 12.11 / 23.83; each polygon equals its county parcel (symmetric difference 0.0 acres); permit address points inside polygons at 278 m / 70 m / 31 m",
+        "locator source acceptable: county land-development application and parcel polygons published by Loudoun County; no commercial map service or PeeringDB; scope campus_locator, derivation direct_geometry, precision, identity_review and null uncertainty with reason recorded",
+        "Project Motion envelope: 13 Project Motion plans share the parcel polygon; AWS 42949 Fadeley Lane / Amazon Data Services polygon 18 m away and Arcola Grove / Powerhouse Arcola 41 m away, none overlapping",
+        "distinctness: no Atlas site, project, source-record or identity-mapping coordinate within 2 km of any new locator (nearest Yondr Allegro 2.17 km, Cologix Ashburn 513 m from ACC11 on a different parcel 111 m away, Manekin Plaza 2.68 km from Corscale); keyword/PIN/permit-number screen of base tables, all queue fragments, claims.tsv and sources/*-holds.json finds only this lane's claims and the 34th/69th holds whose reopen condition is met; no Loudoun Google, Digital Realty ACC or Corscale record in the Atlas",
+        "each new site carries exactly one project; roles empty; no relationship_scope asserted",
+        "privacy: queries omit NAME/ASSIGNEDTO/owner fields; no private individuals' names, emails or phones in changes, sources, holds, notes or geometry facts (subdivision names are company/plat names)",
+        "dryrun_fragment.py ok (936 sites, 1,004 projects, 5,179 evidence rows on the hundred-nineteenth base)"
+      ],
+      "residual_risks": [
+        "ARA4A's data-centre identity rests on county cross-records (address 24560, Phase 4 data-center site plan, ARA3A naming, permit size); the building and zoning permits themselves say only 'ARA4A BUILDING PERMIT'",
+        "ACC11 building-code consent is limited to foundations; superstructure consent rests on the zoning permit for the core and shell",
+        "ACC11 permits carry a Sunday issue date (1 November 2026) at local midnight; day could be an administrative batch date",
+        "Project Motion campus already has operating earlier phases not in the Atlas; the new site shows only the permitted Phase 4 project",
+        "Corscale VA2 announced status rests on a pending zoning application; site-plan approval is undated",
+        "campus-locator centroids represent 135-, 12- and 24-acre properties, not building footprints; county publishes no positional accuracy"
+      ]
+    }
+  ],
+  "packet_pins": {
+    "definitions/atlas-research-hundredtwentieth-2026-11-07.json": "cfa1c4f0e7dfefb8aef4334724af77f83e304734353031443766f3edee9dab21",
+    "sources/research-countries-2026-11-07-hundredtwentieth-primary-sources.json": "53c33db45b852e6986afc1c21f0ef30db5d2efd9bef1f65e535de046a0694ae3",
+    "sources/research-countries-2026-11-07-hundredtwentieth-actions.json": "6d26b5d24635497ad082d9bf933305963c76cab92e8d452cdf1ae534f8554ae7",
+    "sources/research-countries-2026-11-07-hundredtwentieth-holds.json": "34c1e487cc8e57cd5ad287ba888b9801e708ca1c07295a0d0e25bc9454476aa1"
+  },
+  "raw_captures_redistributed": false
+}

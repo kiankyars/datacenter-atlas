@@ -1,0 +1,113 @@
+{
+  "format": "datacenter-atlas-geometry-facts-v1",
+  "fragment": "sea-p6",
+  "prepared_on": "2026-11-06",
+  "method_note": "Each point is the single OneMap address-search feature for the street address Global Switch gives for the facility (Singapore page, Internet Archive raw copy of 10 June 2026, and the live About page version modified 19 October 2026). The served WGS84 latitude/longitude was re-derived from the served SVY21 (EPSG:3414) X/Y with pyproj 3.7.1 / PROJ 9.5.1 (always_xy, EPSG:3414 -> EPSG:4326); the geodesic difference is about 1.6e-9 m for both points. A search for each postcode returned a byte-identical single result. No geocoding beyond the official address search, no offsets and no rounding were applied. No commercial map, map embed, short link, PeeringDB record or OpenStreetMap service was used.",
+  "site_versus_campus_review": "Global Switch Tai Seng and Global Switch Woodlands are separate physical sites: the operator lists them as two facilities with separate street addresses and postcodes (2 Tai Seng Avenue, Singapore 534408; 7 Woodlands Height, Singapore 737858) and separate capacity labels (17 MW and 22 MW), and the two address points are 14.75 km apart (WGS84 geodesic).",
+  "candidates": [
+    {
+      "candidate_id": "global-switch-singapore-tai-seng",
+      "facility": "Global Switch Singapore Tai Seng",
+      "operator_stated_address": "2 TAI SENG AVENUE SINGAPORE 534408",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.8939351393839,
+          1.336707886037317
+        ]
+      },
+      "authority_class": "official_source",
+      "scope_class": "official_numbered_address_point",
+      "use_scope": "project_locator",
+      "precision_scope": "Singapore Land Authority address point for the operator-stated address. It marks the building address, not a surveyed outline, entrance, land-lot boundary or data hall.",
+      "horizontal_uncertainty_metres": null,
+      "horizontal_uncertainty_unknown_reason": "OneMap supplies no positional accuracy for address points; decimal places are not survey accuracy.",
+      "source_url": "https://www.onemap.gov.sg/api/common/elastic/search?returnGeom=Y&getAddrDetails=Y&pageNum=1&searchVal=2%20TAI%20SENG%20AVENUE",
+      "source_file": "onemap-2-tai-seng-avenue.json",
+      "source_sha256": "1d2578374dcd654103296a6d2d61d50da2b2258c97a20cb0723ec698ad559f75",
+      "postcode_check_file": "onemap-534408.json",
+      "postcode_check_sha256": "1d2578374dcd654103296a6d2d61d50da2b2258c97a20cb0723ec698ad559f75",
+      "native_coordinates": {
+        "crs": "EPSG:3414 (SVY21)",
+        "x": 34745.98190013506,
+        "y": 35431.96622109972
+      },
+      "served_wgs84": {
+        "latitude": 1.336707886037317,
+        "longitude": 103.8939351393839
+      },
+      "pyproj_recomputed_wgs84": {
+        "latitude": 1.336707886037317,
+        "longitude": 103.89393513938391,
+        "difference_metres": 1.6e-09
+      },
+      "axis_note": "GeoJSON coordinates are [longitude, latitude].",
+      "nearest_records_checked": [
+        {
+          "kind": "STT Singapore 5 Tai Seng (existing Atlas site curated:stt-singapore5-tai-seng and project curated:stt-singapore5-tai-seng:existing-operations; operator STT GDC)",
+          "distance_km": 0.439
+        },
+        {
+          "kind": "Keppel Genting Lane Data Centre Campus (existing Atlas site curated:keppel-genting-lane-data-centre-campus)",
+          "distance_km": 2.306
+        },
+        {
+          "kind": "Keppel DC Singapore 1 (Keppel DigiHub), Serangoon North (existing Atlas site curated:keppel-dc-singapore-1-serangoon-north)",
+          "distance_km": 4.808
+        }
+      ],
+      "atlas_records_within_2km": [
+        "curated:stt-singapore5-tai-seng (site) and curated:stt-singapore5-tai-seng:existing-operations (project), 0.439 km: a different operator (STT GDC) and a different property"
+      ]
+    },
+    {
+      "candidate_id": "global-switch-singapore-woodlands",
+      "facility": "Global Switch Singapore Woodlands",
+      "operator_stated_address": "7 WOODLANDS HEIGHT SINGAPORE 737858",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.7984062912082,
+          1.429166250421829
+        ]
+      },
+      "authority_class": "official_source",
+      "scope_class": "official_numbered_address_point",
+      "use_scope": "project_locator",
+      "precision_scope": "Singapore Land Authority address point for the operator-stated address. It marks the building address, not a surveyed outline, entrance, land-lot boundary or data hall.",
+      "horizontal_uncertainty_metres": null,
+      "horizontal_uncertainty_unknown_reason": "OneMap supplies no positional accuracy for address points; decimal places are not survey accuracy.",
+      "source_url": "https://www.onemap.gov.sg/api/common/elastic/search?returnGeom=Y&getAddrDetails=Y&pageNum=1&searchVal=7%20WOODLANDS%20HEIGHT",
+      "source_file": "onemap-7-woodlands-height-r2.json",
+      "source_sha256": "1fa9c717786407047f074f3f9be1bc573aa8f9339ed0c8bfdd708f1694330e22",
+      "postcode_check_file": "onemap-737858.json",
+      "postcode_check_sha256": "1fa9c717786407047f074f3f9be1bc573aa8f9339ed0c8bfdd708f1694330e22",
+      "native_coordinates": {
+        "crs": "EPSG:3414 (SVY21)",
+        "x": 24114.78260641452,
+        "y": 45655.48906893097
+      },
+      "served_wgs84": {
+        "latitude": 1.429166250421829,
+        "longitude": 103.7984062912082
+      },
+      "pyproj_recomputed_wgs84": {
+        "latitude": 1.4291662504218288,
+        "longitude": 103.79840629120818,
+        "difference_metres": 1.6e-09
+      },
+      "axis_note": "GeoJSON coordinates are [longitude, latitude].",
+      "nearest_records_checked": [
+        {
+          "kind": "Keppel DC REIT DC1, Riverside Road (Woodlands) (existing Atlas site curated:keppel-dc-reit-dc1-riverside-road)",
+          "distance_km": 2.537
+        },
+        {
+          "kind": "Keppel DC Singapore 1 (Keppel DigiHub), Serangoon North (existing Atlas site curated:keppel-dc-singapore-1-serangoon-north)",
+          "distance_km": 10.386
+        }
+      ],
+      "atlas_records_within_2km": []
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "candidate_id": "karben-rendel-schultheisenwiese-data-center",
+  "decision": "Selected the area centroid of Geltungsbereich A of the in-force Bebauungsplan Nr. 244 'Schultheisenwiese' (Stadt Karben, Gemarkung Rendel), a plan drawn up solely to secure one data centre (Sondergebiet 'Rechenzentrum'), using the boundary polygon that the City of Karben publishes in WGS84 on its own plan page. The polygon was checked against the official basemap.de raster (BKG) and the plan's stated area before the centroid was taken.",
+  "geometry": {"type": "Point", "coordinates": [8.8155975, 50.2024497]},
+  "authority_class": "compiled_reference",
+  "derivation": "coordinate_transform",
+  "scope_class": "official_data_centre_bebauungsplan_area_polygon_centroid",
+  "use_scope": "project_locator",
+  "source_file": "local_data/country-research-de-bauleitplanung-p6/karben-bplan-244-schultheisenwiese.html",
+  "source_sha256": "49d8726feae997ad1636639c1485cbae248cc4e23f37f9a8a7d516c6b29ecc61",
+  "source_url": "https://www.karben.de/regional/bauleitplanung/schultheisenwiese-900000110-24930.html?plantyp=900000110&titel=Schultheisenwiese",
+  "source_geometry": {
+    "location_in_source": "Inline map configuration 'map_config_inlinemap_ref_bauleitplan' behind the page's 'Geltungsbereich anzeigen' link: geodraw.data FeatureCollection with one Polygon (12 positions, closed ring) in longitude/latitude degrees; the map is the city's own NOLIS Navigator map (map 'hessen', layer 'hessenAlk', service maps-karben.nolis-manager.de). No third-party map provider or embed parameter was read.",
+    "polygon_lonlat": [[8.817151, 50.2022], [8.814511, 50.201411], [8.813873, 50.202475], [8.814994, 50.20276], [8.815268, 50.202877], [8.815134, 50.203017], [8.816164, 50.203481], [8.81692, 50.203982], [8.817075, 50.203903], [8.816324, 50.203375], [8.817258, 50.202231], [8.817151, 50.2022]],
+    "crs_assumed": "EPSG:4326 (WGS84 longitude, latitude), as the values and the map center (x 8.767621920, y 50.235554894) show"
+  },
+  "computation": {
+    "tool": "uv run --no-project --with pyproj==3.7.1 --with shapely==2.1.1 python -I",
+    "steps": "Polygon transformed from EPSG:4326 to EPSG:25832 (ETRS89 / UTM 32N) with pyproj always_xy; area and centroid computed with shapely; centroid transformed back to EPSG:4326 and rounded to 7 decimals.",
+    "polygon_area_m2": 29614.1,
+    "polygon_valid": true,
+    "polygon_extent_utm32": {"easting_min": 486716.9, "easting_max": 486958.4, "northing_min": 5561041.4, "northing_max": 5561326.8},
+    "centroid_utm32": [486839.99, 5561156.65],
+    "centroid_inside_polygon": true,
+    "centroid_distance_to_polygon_boundary_m": 52.6,
+    "max_distance_centroid_to_polygon_vertex_m": 194.8,
+    "max_distance_centroid_to_main_block_vertex_m": 139.1,
+    "round_trip_m": 0.006
+  },
+  "consistency_checks": {
+    "stated_area": "The Begründung (Kap. 3) gives about 2.68 ha for Geltungsbereich A without the included part of the federal road, plus about 2,600 m2 of the B 521 parcel 60/21 (Flur 13) for the new junction, about 2.94 ha in all; the published polygon measures 2.96 ha (+0.7 percent).",
+    "parcels": "Begründung Kap. 3: Geltungsbereich A covers Gemarkung Rendel Flur 12 Flurstück 2/1 in full, parts of 18/1 (former path), 19/2 and 19/5, and part of Flur 13 Flurstück 60/21 (B 521). Flurstück 2/1 is the parcel named in the RP Darmstadt notice for the Rechenzentrum Karben and its emergency generators.",
+    "plan_sheet": "The Planzeichnung (Satzungsfassung 30.01.2026, 1:1000) shows Geltungsbereich A as one Sondergebiet 'Rechenzentrum' (SO, § 11 BauNVO) bounded by the B 521 to the north-west and a field road to the east, with a narrow strip along the B 521 for the junction; the published polygon has the same outline: a main block of about 2.7 ha and a north-eastern strip along the B 521.",
+    "basemap": {
+      "file": "local_data/country-research-de-bauleitplanung-p6/bkg-basemapde-farbe-karben-rendel-600m-1200px.png",
+      "sha256": "29daed1285ba5eb56c92cb1f856ec5b71d2c17ea14ed0b8a7be48aff0393501e",
+      "request": "basemap.de WMS GetMap, layer de_basemapde_web_raster_farbe, CRS EPSG:25832, BBOX 486540,5560857,487140,5561457, 1200 x 1200 px (0.5 m per pixel)",
+      "license": "CC BY 4.0, © GeoBasis-DE / BKG (2026)",
+      "result": "Drawn over the raster, the polygon's south-west, west and south edges follow the light-grey land-use parcel south of the B 521 and the boundary with the former nursery buildings (house number 3) to the south to within a few pixels (about 2 to 4 m); the east edge runs just east of the field road named Schultheisenwiese, which the plan includes for its upgrade; the north-eastern strip follows the B 521 carriageway. The centroid lies in the open interior of the main block. No building is drawn on the plot in the basemap."
+    },
+    "nearest_atlas_records_km": {"firstcolo FRA7 Rosbach Campus": 13.179, "Digital Realty Digital Park Fechenheim Campus": 9.612, "Data4 Hanau campus": 14.882}
+  },
+  "precision_note": "The point is the centroid of the whole legal plan area of a single-purpose data-centre plan, not a building footprint. The building positions inside the Sondergebiet are not published.",
+  "license_note": "The polygon is published by the Stadt Karben on www.karben.de; the site's Impressum reserves the city's copyright on texts and images and requires written permission for commercial copying. Only a derived point and measurements are used; the capture is not redistributed. Basemap.de raster: CC BY 4.0, © GeoBasis-DE / BKG (2026)."
+}
