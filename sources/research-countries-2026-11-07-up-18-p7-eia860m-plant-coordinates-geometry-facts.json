@@ -1,0 +1,68 @@
+{
+ "format": "datacenter-atlas-geometry-facts-v1",
+ "fragment": "up-18-p7",
+ "prepared_on": "2026-11-07",
+ "method_note": "Coordinates are the Latitude and Longitude columns of the U.S. Energy Information Administration's Preliminary Monthly Electric Generator Inventory (EIA-860M, September 2026 data, 'Planned' and 'Retired' sheets, header row 3), used as published. The inventory's map-link columns are not used.",
+ "source_files": [
+  {
+   "file": "local_data/country-research-up-18-p7/eia860m-september-generator2026.xlsx",
+   "sha256": "bcef74e1af991680731aeecfda967f5950db4ce739bb584edd8b8774c7e6da17",
+   "url": "https://www.eia.gov/electricity/data/eia860m/xls/september_generator2026.xlsx",
+   "retrieved_at": "2026-11-07T00:11:59.422Z"
+  }
+ ],
+ "candidates": [
+  {
+   "candidate_id": "up-18-p7-homer-city-redevelopment",
+   "decision": "Selected the EIA plant coordinates of plant 3122, Homer City Generating Station (entity Homer City Generation, L.P., Indiana County PA), as the campus locator for the Homer City Energy Campus, replacing the Wikipedia power-station coordinates.",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.19611,
+     40.512825
+    ]
+   },
+   "authority_class": "official_source",
+   "scope_class": "official_federal_generator_inventory_plant_coordinates",
+   "use_scope": "campus_locator",
+   "facts": {
+    "planned_rows": "14 planned natural-gas combined-cycle generators at plant 3122 totalling 4,396 MW, status (P), planned operation dates July 2028 to November 2029",
+    "retired_rows": "three retired coal units (1, 2, 3; 2,012 MW) at the same plant and coordinates",
+    "latitude": 40.512825,
+    "longitude": -79.19611,
+    "previous_point_lon_lat": [
+     -79.1936,
+     40.5108
+    ],
+    "displacement_haversine_m": 309.4,
+    "nearest_other_atlas_record": "none within 5 km"
+   }
+  },
+  {
+   "candidate_id": "up-18-p7-fermi-america-hypergrid-amarillo",
+   "decision": "Selected the EIA plant coordinates shared by plant 69799, Project Matador Gas Plant (PMG) (entity Fermi America) and plant 69798, Project Matador Nuclear (entity Fermi Nuclear), Carson County TX, as the campus locator for the Fermi America Project Matador campus, replacing the Wikipedia Pantex Plant coordinates.",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -101.569,
+     35.283762
+    ]
+   },
+   "authority_class": "official_source",
+   "scope_class": "official_federal_generator_inventory_plant_coordinates",
+   "use_scope": "campus_locator",
+   "facts": {
+    "planned_rows": "157 planned generators at plant 69799 totalling 11,679.3 MW (statuses P, T and U) and 4 planned nuclear units at plant 69798 totalling 4,468 MW, all at the same coordinates",
+    "latitude": 35.283762,
+    "longitude": -101.569,
+    "longitude_decimals": 3,
+    "previous_point_lon_lat": [
+     -101.5597,
+     35.3116
+    ],
+    "displacement_haversine_m": 3208.4,
+    "nearest_other_atlas_record": "none within 5 km"
+   }
+  }
+ ]
+}

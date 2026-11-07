@@ -1,0 +1,95 @@
+{
+ "candidate_id": "up-18-p7-edgecore-mesa",
+ "decision": "Selected the planar centroid of the union of the three Maricopa County Assessor parcels owned by EdgeCore entities whose mailing address is EdgeCore's published head-office address (999 17th Street, Suite 200, Denver): 304-31-002Q (EDI MESA 2 LLC, 43.87 acres, 9903 E Elliot Rd) and 304-31-956 / 304-31-957 (MECP1 MESA 1 LLC, 3856 S Everton Ter), replacing the imported point taken from one building footprint.",
+ "geometry": {
+  "type": "Point",
+  "coordinates": [
+   -111.6209896,
+   33.3469148
+  ]
+ },
+ "authority_class": "official_source",
+ "scope_class": "official_county_assessor_parcel_union_centroid",
+ "use_scope": "campus_locator",
+ "source_files": [
+  {
+   "file": "local_data/country-research-up-18-p7/maricopa-assessor-parcels-edgecore-mesa.geojson",
+   "sha256": "5846a40e319ce2b4f6b74217035a9c943fcfdfac28ac5a8f13e50aa44997be5c",
+   "url": "https://gis.mcassessor.maricopa.gov/arcgis/rest/services/Parcels/MapServer/0/query?where=OWNER_NAME+IN+%28%27EDI+MESA+2+LLC%27%2C%27MECP1+MESA+1+LLC%27%2C%27MECP1+MESA+2+LLC%27%2C%27MECP1+MESA+SUBSTATION+1+LLC%27%29&outFields=APN_DASH%2COWNER_NAME%2CPHYSICAL_ADDRESS%2CLAND_SIZE%2CSALE_DATE%2CDEED_DATE%2CPUC%2CCONST_YEAR%2CMAIL_ADDRESS%2CSTR%2CJURISDICTION%2CLATITUDE%2CLONGITUDE&returnGeometry=true&outSR=4326&f=geojson",
+   "retrieved_at": "2026-11-07T00:17:45.706Z"
+  }
+ ],
+ "layer": "Maricopa County Assessor Parcels MapServer layer 0 (gis.mcassessor.maricopa.gov), where OWNER_NAME IN ('EDI MESA 2 LLC','MECP1 MESA 1 LLC','MECP1 MESA 2 LLC','MECP1 MESA SUBSTATION 1 LLC'), served in WGS84; union computed in EPSG:26912 (NAD83 / UTM 12N) with pyproj 3.7.1 and shapely 2.1.1",
+ "facts": {
+  "parcels_used": [
+   {
+    "apn": "304-31-002Q",
+    "owner": "EDI MESA 2 LLC",
+    "address": "9903 E ELLIOT RD MESA 85212",
+    "land_acres": 43.87,
+    "sale_date": "05/01/2025",
+    "mailing": "999 17TH ST DENVER CO 80202"
+   },
+   {
+    "apn": "304-31-957",
+    "owner": "MECP1 MESA 1 LLC",
+    "address": "3856 S EVERTON TER MESA 85212",
+    "land_acres": 7.43,
+    "const_year": 2025,
+    "mailing": "999 17TH ST STE 200 DENVER CO 80202"
+   },
+   {
+    "apn": "304-31-956",
+    "owner": "MECP1 MESA 1 LLC",
+    "address": "3856 S EVERTON TER MESA 85212",
+    "land_acres": 6.65,
+    "const_year": 2025,
+    "mailing": "999 17TH ST STE 200 DENVER CO 80202"
+   }
+  ],
+  "parcels_returned_not_used": [
+   {
+    "apn": "304-31-958",
+    "owner": "MECP1 MESA SUBSTATION 1 LLC",
+    "land_acres": 3.72,
+    "reason": "mailing address is not the EdgeCore head office"
+   },
+   {
+    "apn": "304-31-955",
+    "owner": "MECP1 MESA 2 LLC",
+    "land_acres": 3.64,
+    "reason": "mailing address is not the EdgeCore head office"
+   }
+  ],
+  "union": {
+   "type": "MultiPolygon",
+   "parts": 3,
+   "area_ha": 23.44,
+   "area_acres": 57.93,
+   "extent_m": [
+    656,
+    724
+   ]
+  },
+  "centroid_inside_union": true,
+  "centroid_distance_to_boundary_m": 145.0,
+  "max_vertex_distance_m": 578.8,
+  "with_all_five_parcels_centroid_lon_lat": [
+   -111.6209307,
+   33.3465656
+  ],
+  "previous_point_lon_lat": [
+   -111.6196,
+   33.3442
+  ],
+  "displacement_haversine_m": 328.3,
+  "operator_campus_area_acres": 84,
+  "records_within_2km": {
+   "imported:semiconductor-atlas:meta-mesa-arizona": 930,
+   "curated:cyrusone-mesa-phx20-campus": 994,
+   "curated:ntt-phoenix-mesa-elliot-road-campus": 1271,
+   "curated:novva-mesa-ellsworth-warner-campus": 1893
+  }
+ },
+ "exclusions": "Parcels of other owners nearby (REDALE LLC, mailing 1 Meta Way; NTT Global Data Centers PH LLC; C1-MESA LLC) are not part of the union. No geocoder, map viewport or building footprint is used."
+}

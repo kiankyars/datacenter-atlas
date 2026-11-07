@@ -1,0 +1,186 @@
+{
+  "reviewer": "root",
+  "reviewed_at": "2026-11-07",
+  "decision": "accepted_for_integration",
+  "update": "verified_construction_core/2026-11-07-research-hundredtwentysixth",
+  "base_dataset": "verified_construction_core/2026-11-07-research-hundredtwentyfifth",
+  "process": "continuous: one researcher per beat, one adversarial verifier per fragment",
+  "fragments": [
+    {
+      "fragment": "africa-new-p6",
+      "verdict": "accept",
+      "checks": [
+        "Base re-read from site/config.json: verified_construction_core/2026-11-07-research-hundredtwentyfifth (982 sites, 1,056 projects)",
+        "Rehashed all 6 relied-on captures (Wingu TCDD, Tanzania page, TEHAMA, March 2025 launch, sitemap; Paratus PoP) plus paratus posts listing: sha256 equals .metadata.json and sources.json content_hash; robots_checks allowed; wingu robots has no rules, paratus Yoast empty Disallow",
+        "Wingu 3 Nov 2026 capture text: 'Announcement November 3, 2026'; TCDD for 'Phase 2 of its data centre expansion in Dar es Salaam'; 507 kW peak IT across Phase 2 data hall and meet-me rooms; 'with the facility currently under construction' - explicit present-tense stage, company_disclosure, 4 days old (window from 2026-08-14)",
+        "Identity of Phase 2 with Mbezi: March 2025 release calls it 'the second phase of its facility expansion' after Phase 1 (2022), adding white space and two meet-me rooms to 'the facility' and refers to its 'groundbreaking'; 12 Aug 2026 release: Wingu 'operates a carrier-neutral data centre in Dar es Salaam', second phase of 'its Dar es Salaam data centre expansion', IXP 'extended to its Mbezi data centre'; Tanzania page names one facility ('our Mbezi data centre'); existing record already treats the 2025 phase as within the same facility - meets the ops-mea-p6 reopen condition",
+        "Locator: inherited exactly from project 4f99e7c8 (geometry evidence 0fb8883d, campus_locator, Point -6.7160669,39.2018546, no geometry_identity rows); builder _inherited_campus_locator checks pass; no new coordinate introduced",
+        "Paratus 26 Oct 2026 capture: in-page 'October 26, 2026', schema.org datePublished 2026-10-26T14:06:33Z / dateModified 14:08:37Z, WP listing agrees; Paratus Tanzania 'has now established a new Point of Presence (PoP) at Wingu Data Center in Dar es Salaam' providing IP transit/L2/wholesale - tenant first-hand company_disclosure; strictly newer than 2026-08-12; September 2026 month not used",
+        "Roles: Wingu Africa operator, relationship_scope intended for the under-construction Phase 2; status update leaves existing current operator role unchanged",
+        "Distinctness: only Atlas site within 2 km of the point is the host site (0 m); next DLR MBA2 Mombasa 302.39 km; no Wingu/Mbezi/Tanzania match in source-records.json or identity-mapping.json; no other queue fragment proposes a Wingu Tanzania addition, status or locator correction (loc-8-p6 held); Wingu ETH1/Djibouti are other countries",
+        "Scope: commercial carrier-neutral colocation; 507 kW kept as design figure, capacity null, no opening/completion asserted",
+        "No third-party personal names in sources, changes or holds (executives referred to by role)",
+        "Wingu sitemap newest entry is the 3 Nov 2026 TCDD page; Paratus listing newest is 5 Nov 2026 Lesotho post; no later Tanzania item",
+        "dryrun_fragment.py: ok (982 sites, 1,057 projects, 5,759 evidence rows) against hundredtwentyfifth"
+      ],
+      "residual_risks": [
+        "Phase 2 placement on the Mbezi campus is an inference from Wingu's single-facility and 'facility expansion' wording; no Wingu plan or plot record locates the Phase 2 data hall",
+        "The inherited Mbezi point is a Google Maps feature already on the loc-8-p6 locator_replacement_pending hold; the new project duplicates that point until a locator_correction (which must then cover both projects) replaces it",
+        "Wingu's March 2025 ('successfully launched', 'now offers considerably more white space') and August 2026 wording could be read as Phase 2 partly in service; the explicit 3 Nov 2026 'currently under construction' statement is taken as governing",
+        "The existing operating-facility record's successor review called the March 2025 second phase historical context within the same facility; with Phase 2 now a separate under-construction project, the operating-facility record's scope is effectively the in-service facility",
+        "The Paratus refresh identifies 'Wingu Data Center in Dar es Salaam' with Mbezi through Wingu's single-facility statements rather than a named address"
+      ]
+    },
+    {
+      "fragment": "au-nz-new-p6",
+      "verdict": "accept",
+      "checks": [
+        "All 17 relied-on captures rehash to their source content_hash and .metadata.json sha256 (HTTP 200, byte counts and URLs match); geometry-facts files match their recorded sha256",
+        "METC announced 2026-10-27: read scoping report rev 1 Final 27 Oct 2026 (Mecone for Macquarie Data Centres): 200MW IT data centre, ~139 generators, ~$2b, Lot 1 DP1318560, 2 Alma Road; request form dated 28/10/2026; portal stage Prepare SEARs",
+        "Wetherill Park announced 2026-11-04: read request form 'Date Submitted: 04/11/2026' (Stockland, Lot 202 DP709613, 20 data halls, $2.25b) and 16 Oct scoping report (target IT load 170MW); portal stage Prepare SEARs",
+        "Davis Road under_construction 2026-09-23: read MOD 2 report Version 1 FINAL 23/09/2026: trees removed 'During construction works', hoist in 'existing generator yard' of DC01 between 'concrete structural columns', contractor kiosk substation for 'current and future stages of the works to support DC02 construction'; no completion or operation claimed",
+        "All three observations are regulatory filings by the proponent/applicant published on the NSW Planning Portal, within 85 days (window floor 2026-08-14); as_of not after published_at",
+        "Locators recomputed from raw NSW Spatial Services cadastre GeoJSON in EPSG:7856 (pyproj 3.7.1, shapely 2.1.1): all three centroids within 0.01 m of claimed, inside lot (edge 71.4/73.0/128.5 m); property register IoU 1.0 for 2 Alma Road, 2 Davis Road and 3 Davis Road",
+        "Locator source is a government cadastre (robots 404); portal/form markers excluded (two outside the lot by 185 m and 144 m); no map service, Google or PeeringDB",
+        "Distinctness vs hundredtwentyfifth: no name, SSD, lot or address match in sites/projects/evidence/source-records/identity-mapping; METC is a separate titled lot 614 m from MDC IC3 Super West (17-23 Talavera Road), which the report lists separately; Davis Road sites have nothing within 4.3 km; no AWS/Stockland/Cundall AU record",
+        "Queue/holds screen: only earlier holds (au-nz-p1/p3, thirtyfirst, thirtyfourth, fortyninth, seventyseventh) naming SSD-59416728 as lacking an in-window physical record, which the MOD 2 report now supplies; no other fragment adds these sites",
+        "Two adjoining new sites (2 and 3 Davis Road) kept separate: separate lots, consents and applicants; Stockland report calls the Davis Road DC an adjoining approved development; one project per new site",
+        "Roles: MDC operator intended (report: MDC owns and operates data centres, seeks to expand capacity); AWS operator intended (A9 notice: 'AWS would like to notify ... of our intention to commence construction'); Wetherill Park no role",
+        "Dry run ok: 985 sites, 1059 projects on base 2026-11-07-research-hundredtwentyfifth",
+        "No personal names, phones or emails in changes, sources, holds or notes"
+      ],
+      "residual_risks": [
+        "AWS operator role is inferred from AWS being the party commencing construction (Jan 2025 letter), not an explicit operator statement",
+        "Davis Road construction evidence is the applicant's modification report, not a dated site inspection; DC01 may be near completion and the record does not split phases",
+        "MOD 2 report says 160.85 MW maximum power consumption while Stockland's report says 180 MW for the same consent; the fragment uses the applicant's figure",
+        "Lot-centroid markers do not locate buildings; NSW cadastre publishes no positional accuracy and the service licence is recorded as no-open-license-asserted",
+        "2 and 3 Davis Road adjoin; a later disclosure tying them to one operator or campus would require a site merge"
+      ]
+    },
+    {
+      "fragment": "refresh-operations-p6",
+      "verdict": "accept",
+      "checks": [
+        "base re-read from site/config.json: verified_construction_core/2026-11-07-research-hundredtwentyfifth",
+        "rehashed 12 relied-on captures (IRM Q3/Q2 SRP, Q3 earnings release, MERLIN Oct-2026 presentation, IR page sitemap, Edged Getafe 1 and 2 pages, Catastro GML/DNPLOC/CPMRC/RCCOOR/ConsultaNumero): all match .metadata.json and source content_hash",
+        "geometry facts file sha256 f2d05175... matches sources.json",
+        "IRM Q3 SRP p22: Miami MIA-1 16.0 MW stabilized, 100.0% leased in Data Center Operating Portfolio; p23 has no Miami development row; Q2 SRP had MIA-1 16.0 MW under construction, completion Q4 2026; Pre-Stabilized definition read; as of 30 Sep 2026 (38 days)",
+        "MERLIN slide 44 rendered: Madrid - Getafe 'In operation', 20 MW, electricity supplied tick (10/2026), header 'Phase I fully let and 100% operational from Oct-26'; slide 41 MAD-GET 01 20 MW Phase I; slide 45 MAD-GET II 48 MW 'Demolition ongoing - Environmental assessment obtained - Construction permit requested'",
+        "date basis: PDF CreationDate/ModDate 21 Oct 2026, /uploads/2026/10/ path, presentations page links the PDF and its sitemap lastmod is 2026-10-21T14:45:46Z (after PDF creation); IA CDX empty; as_of 2026-10-21 is 17 days before update",
+        "slide 39: MERLIN '100% ownership of the assets' supports owner/current; Edged page supports operator/current",
+        "locator recomputed with pyproj 3.7.1/shapely 2.1.1 from Catastro INSPIRE GML (EPSG:25830, 25 vertices, 17,977.3 m2): centroid -3.6935137, 40.3108651 (0.002 m from claim), inside parcel 37.3 m from boundary; CPMRC reference point 1.5 m away; RCCOOR returns CL FUNDIDORES 40",
+        "locator source is a government cadastral record; no map-service coordinate used; Edged page address 'Calle Fundidores no 40' matches Catastro DNPLOC single property (Oficinas, 2023, floors 00-02)",
+        "distinctness: only Atlas site within 5 km is MAD02 Getafe II at 1,127 m (Fundidores 2, distinct asset); no Getafe/Fundidores/MAD-GET hits in source-records or identity-mapping; queue and sources/*-holds mentions are published holds whose reopen conditions this fragment meets; no other queue item touches MIA-1",
+        "MAD02 and MIA-1 refreshes strictly newer than 2026-06-30 with unchanged scope; MAD02 stays site_preparation (permit only requested)",
+        "no personal data or map-service URLs in changes, sources or holds; robots records present for every relied-on host",
+        "corrected holds.json sweep summary that wrongly said the local.microsoft.com crawl-delay was honoured",
+        "dryrun_fragment.py ok: 983 sites, 1,057 projects, 5,760 evidence"
+      ],
+      "residual_risks": [
+        "MERLIN presentation publication date rests on PDF metadata, upload folder and sitemap lastmod, with no archived copy; content date 21 Oct is used as as_of",
+        "'Operational from Oct-26' heading plus electricity supplied in 10/2026 means Getafe 1 may have reached full operation only in October; 'In operation' label taken as present-tense on 21 Oct",
+        "MIA-1 placed-in-service day within Q3 not stated; quarter-end as_of used",
+        "Getafe 1 locator is a parcel centroid, not a building footprint; Catastro gives no positional accuracy",
+        "local.microsoft.com sitemap request came 2.7 s after robots.txt despite an ungrouped Crawl-delay: 10 line (not relied on by any accepted item)"
+      ]
+    },
+    {
+      "fragment": "up-12-p7",
+      "verdict": "accept",
+      "checks": [
+        "Screened against current_dataset verified_construction_core/2026-11-07-research-hundredtwentyfourth (config re-read at start and at verdict)",
+        "All 13 relied-on captures rehashed: sha256 equals both the .metadata.json sha256 and the source content_hash; URL, HTTP 200, byte count, retrieved_at and robots-allowed checks match; no credentials supplied",
+        "All 4 geometry facts files hash to the geometry_facts_sha256 recorded in sources.json",
+        "replaces_geometry_evidence_id is the current geometry evidence of the single project at each of the 4 sites (da93ca09, 8d2bc043, 80ea5db6, 3ca04bf3); all four current points are imported Wikipedia locality points",
+        "Herbata: read Table 8.9 in herbata-eiar-vol1-part2.pdf (pdftotext, PDF pp 22-23): DC1-DC6 OS-X/OS-Y values match; mean (286461.33, 219629.0) EPSG:29903->4326 with pyproj 3.7.1 reproduces -6.7063227, 53.220304 exactly",
+        "Herbata CRS check: in the same EIAR the Jigginstown fulacht fia KD019-028 listed 'Within' the site (ITM 686460, 719359) is 307 m from the point, KD019-068 '198m E' is 579 m, and the on-site 110 kV tower (ITM with labels swapped) is 285 m from the point and about 115 m from DC1, so the OS grid reading as Irish Grid is consistent",
+        "Herbata identity: ACP case page 323677 (PL09.323677, Kildare 2460787) names Herbata Limited as applicant for a data centre in Halverstown, Jigginstown and Newhall, Naas, and lists the EIAR files used; the record's status evidence is the same case",
+        "Red Admiral: rebuilt the affine fit from pdftotext -bbox of page 36 of redadmiral-eiar-33-vol3.pdf: the six ITM coordinate pairs printed for stations S02, S03, S05-S08 (the only ITM numbers on the sheet) fit with 0.041 m RMS; the D1-D6 label mean gives ITM 644359.9, 739103.8 -> -7.3329579, 53.4002154, 0.04 m from the submitted point",
+        "Red Admiral: rendered page 36 (pdftoppm) and confirmed that D1-D6 label the six large data buildings between the R446 and the M6, west of the Castlelost Flexgen compound and the solar farm; the other D1x labels are the D10-D12 ancillary blocks and were not used",
+        "Red Admiral identity: ACP 501596 and Westmeath ePlanning 2560344 name Red Admiral DC Limited (six data buildings in a 39 ha secure campus, access via the Castlelost Flexgen access to the R446); the EIAR addendum text says the campus lies between the M6 (south) and the R446 (north), midway between Rochfortbridge and Tyrrellspass",
+        "Ennis: rendered PDF page 75 of ennis-eiar-9-noise1.pdf; the visible text (not only the text layer) prints '(ITM 537485/679651; Figure 11.1)' for the proposed data centre at Tooreen and Cahernalough, with the footer 'Art Data Centre Ennis Campus EIAR'; EPSG:2157->4326 reproduces -8.9284193, 52.8641322",
+        "Ennis corroboration: the inspector's report r314474 section 1.0 places the c.60 ha site c.4 km NE of Ennis, E of the M18 and its J13 slip road, N of the R352 Tulla Road; the national planning-register point for Clare 21757 recorded in the uk-devolved-ie-p5 hold (52.8636449, -8.9295865) lies 95 m away",
+        "Sify Rabale: the MIDC layer-11 capture returns the single TTC (IA 201) record 'R-847/1/2,R-847/1/3' with published centroid 73.01388048, 19.14796456; shapely in EPSG:32643 shows the centroid inside the ring, 41.2 m from the planar centroid, ring 12,161 m2",
+        "Sify identity: the operator page's text and schema.org PostalAddress give 'Tech Space, Plot No. R-847: 1/2, T.T.C Industrial area, Rabale'; all MIDC R-847 sub-plots lie within about 250 m of each other, and plot R-978 (which the record's prospectus gives for towers 11-12) is 279 m away, so the two Sify plot identifiers place the campus together; the page's JSON-LD geo point (1.25 km SE) was rightly not used",
+        "Locator sources acceptable: developer EIARs and a planning drawing published by An Coimisiún Pleanála, and a Maharashtra government (MIDC) plot record; no Google, Bing, Apple, OSM, PeeringDB or other map-service source; the Red Admiral drawing is registered only by coordinates printed on it; licences recorded",
+        "Displacements recomputed (haversine, R 6,371,008.8 m): 2,907.7 m, 3,013.6 m, 4,031.6 m and 696.1 m; all under 25 km and matching the displacement reviews",
+        "Within-5 km screen of the dataset's sites.csv and of every queue changes.json: no other site within 3 km of the three Irish points; for Rabale the nearest are AdaniConneX Ghansoli (3.29 km), CapitaLand Navi Mumbai (3.41 km) and the unpublished ops-india-p6 Sify Airoli addition (2.79 km, MIDC plot KALWA-K-10, a different facility); ops-india-p6 holds the Rabale locator and defers it to this lane",
+        "No other queued fragment corrects these 4 site_ids; the name matches in published lanes (ie-p1, ie-pleanala-p3, in-west-north-p1, india-p6, india-south-asia-p4, loc-4-p6) are context, not duplicates",
+        "No private individual's name is in changes, sources, holds, notes or geometry facts (checked the appellants' names from the case pages and the PDF author metadata)",
+        "Each locator: Point, campus_locator scope, allowed derivation (coordinate_transform or georeferenced_source_map as compiled_reference; direct_geometry as official_source), precision and identity_review present, uncertainty null with a reason",
+        "All 13 sources are referenced; the 6 holds are well formed and carry reopen conditions",
+        "dryrun_fragment.py reports ok against hundredtwentyfourth: 967 sites, 1,041 projects, 5,610 evidence"
+      ],
+      "residual_risks": [
+        "Herbata: the locator is the mean of dispersion-model building centres from the June 2024 EIAR; further-information design revisions could shift the buildings slightly (the point stays inside the 38.64 ha site)",
+        "Red Admiral: the master plan is rev P01 of September 2024; label centres only approximate building centres, and a revised layout could move the building group by some tens of metres",
+        "Ennis: the EIAR does not say how its ITM site reference was chosen; the national-register point 95 m away is independent corroboration",
+        "Sify Rabale: the point marks the address plot R-847/1/2, not the whole 12-tower campus, which also takes in R-978 and possibly other R-847 sub-plots; it disagrees with the operator's own JSON-LD point by 1.25 km",
+        "MIDC's terms ask for prior permission to reproduce content; only a published plot centroid is used, with attribution, as earlier published lanes (loc-4-p6) did",
+        "An Coimisiún Pleanála's documents are 'all rights reserved'; only the printed coordinates and identifying facts are used, and the captures are not redistributed"
+      ]
+    },
+    {
+      "fragment": "up-13-p7",
+      "verdict": "accept",
+      "checks": [
+        "rehashed 5 captures (MOJ/AIGID GeoJSON, Kyoto plan 665 PDF, Kyoto FY2026 listing page, EdgeConneX release, AIGID catalog page): all match .metadata.json and sources.json content_hash",
+        "rendered plan 665 pages 1-3 (pdftoppm): カゴヤ多々羅キャンパス（申請建物1） at 京都府京田辺市多々羅西平川原39-16の一部, site 34,447.80 sq m, 22,696.84 sq m, filer カゴヤ・アセットマネジメント, form dated 2026-02-20; page 2 lists an SOC office",
+        "Kyoto FY2026 page (updated 2026-10-20) lists entry 665 with link 665keikaku.pdf",
+        "EdgeConneX release (datePublished 2026-03-18) ties Kagoya Asset Management partnership, 130,000 sq m campus and ITM01 at the Kagoya Tatara Campus",
+        "recomputed independently with pyproj 3.7.1/shapely 2.1.1: exactly one parcel 多々羅 西平川原 39-16 (ID H000000430, 公共座標6系, 乙一), area 115,838.3 sq m, EPSG:6674 centroid 135.7672608, 34.7902638 (4 mm from declared), inside, 120.7 m to boundary",
+        "displacement recomputed 2,688.7 m haversine; under 25 km and builder's 50 km locality limit",
+        "replaces_geometry_evidence_id 604f97e6-9edd-5e9c-b350-035f4b500542 is the geometry evidence of the site's only project ffbda424 in hundredtwentyfifth; site_id matches",
+        "locator source is MOJ registry-map (cadastral) open data via the G-space portal, CC-BY, licence recorded; no map-service, geocoder or city centroid used",
+        "same campus: Atlas record aliases Kagoya Tatara Campus / ITM01; lot named for that campus by the prefecture; filer office address (田辺中央) not used",
+        "visual sanity check against GSI seamlessphoto (government basemap, no robots.txt): parcel outline follows the road and site edges of a single developed compound; centroid falls inside it",
+        "distinctness: nearest other Atlas sites KAGOYA Japan Keihanna Lab 4.9 km and NTT DATA OSK11 5.4 km; no other unpublished queue fragment or sources/*-holds.json item corrects or adds this site; meets reopen condition of the hundred-first hold",
+        "9 holds read: no personal names; plan representative, mayor and executives not reproduced",
+        "dryrun_fragment.py ok against hundredtwentyfifth (982 sites, 1,056 projects)"
+      ],
+      "residual_risks": [
+        "point is a whole-lot centroid; building-1 site is an unlocated part of the 11.6 ha lot and the campus may extend onto adjoining lots",
+        "registry-map parcel is map-measured (乙一) and datum-converted; positional error not stated",
+        "geometry facts touching_parcels omits two small touching 駒ケ谷 lots (12-9, 12-10); not used for the locator",
+        "GSI imagery is undated and predates construction; check confirms parcel alignment only"
+      ]
+    },
+    {
+      "fragment": "up-18-p7",
+      "verdict": "accept",
+      "checks": [
+        "Screened against current dataset 2026-11-07-research-hundredtwentyfifth (config current_dataset; notes base matches)",
+        "All 14 relied-on captures rehashed: sha256 equals sources.json content_hash and .metadata.json sha256; effective_url equals source_url; HTTP 200, no credentials, robots allowed",
+        "All 4 geometry-facts files rehash to geometry_facts_sha256",
+        "replaces_geometry_evidence_id equals the only project's geometry_evidence_id and the site's sole geometry evidence for all 5 sites (each project_count 1)",
+        "Journey: TxGIO StratMap capture has exactly one point for 1362 RED CREEK ROAD (objectid 6782125) at -99.569027,33.139621, used as published; both TDLR TABS records (JNR1A, JNR2A, 25 Jun 2026, owner Homebound Group LLC) give location 1362 Red Creek Rd; consistent with Exhibit A tract (POB 10,318.64 ft south of US 380 on Red Creek Rd west ROW)",
+        "West Memphis: recomputed EPSG:26915 union centroid of 7 AGISO CAMP polygons (owner WEST MEMPHIS CITY OF GROOT, Groot LLC properties exhibit) = -90.2110843,35.1042897, inside union, 134.8 m to edge, 1,108.08 acres",
+        "Homer City: EIA-860M Sept 2026 xlsx parsed; plant 3122 14 planned NGCC gens (7x360+7x268=4,396 MW) and 3 retired coal units at 40.512825,-79.19611",
+        "Fermi: EIA-860M plants 69799 (Fermi America, 157 planned gens) and 69798 (Fermi Nuclear, 4 units) at 35.283762,-101.569, Carson County",
+        "EdgeCore: recomputed EPSG:26912 union centroid of 304-31-002Q, -956, -957 = -111.6209896,33.3469148, inside union, 145 m to edge, 57.93 acres; owners mail to 999 17th St (Ste 200) Denver = EdgeCore HQ in its own schema.org data; 43.87 ac/May 2025 matches EdgeCore release; Mesa permit holds place PH02/PH03 at 3856 S Everton Terr",
+        "Displacements recomputed (haversine): 1,866.9 / 1,336.0 / 309.4 / 3,208.4 / 328.3 m, all under 25 km",
+        "Locator sources are government address register, cadastral parcels and federal plant inventory; no map service, geocoder, PeeringDB or OSM coordinates",
+        "Identity sources read in captures: Fermi home (~8,400 acres next to Pantex), Homer City overview (former station, 3,200-acre campus), Google blog (first Arkansas data centre in West Memphis), EdgeCore campus page (84 acres, five buildings)",
+        "No other current-dataset site within 5 km of the Journey, West Memphis, Homer City or Fermi points; EdgeCore neighbours (Meta 930 m, CyrusOne 994 m, NTT 1,271 m, Novva 1,893 m, EdgeConneX 2,771 m) are different operators",
+        "No unpublished queued fragment touches these sites; source holds for these sites ask for exactly this campus-locator review",
+        "No third-party personal data in changes, sources, holds or geometry facts (TDLR contact details not reproduced)",
+        "dryrun_fragment.py ok (982 sites, 1,056 projects) against hundredtwentyfifth"
+      ],
+      "residual_risks": [
+        "Journey: 911 address point placement rule unknown; tract not reconstructed from metes and bounds",
+        "West Memphis: Groot LLC to Google link rests on the existing Atlas record alias and sources; parcels are city-owned and AGISO calls polygons approximate",
+        "Fermi: EIA plant coordinate is respondent-reported with a 3-decimal longitude; not independently tied to the leased tract boundary",
+        "Homer City and Fermi points mark generating plants within large campuses, not data-centre buildings",
+        "EdgeCore: union covers about 58 of 84 stated acres; centroid weighted toward the 43.87-acre expansion parcel",
+        "Researcher logged two robots-403 incidents (dekalbcounty.org, mvm.usace.army.mil); nothing from them is used"
+      ]
+    }
+  ],
+  "packet_pins": {
+    "definitions/atlas-research-hundredtwentysixth-2026-11-07.json": "0f28583ad8d42b63ec92ef71cb8b8dd4b2ac0a00b174076147dd3b2d864a78d3",
+    "sources/research-countries-2026-11-07-hundredtwentysixth-primary-sources.json": "c8e688a4c18a9d5fcc8dfb4ba657a13e0b65e19aff5f96f4b7f7109616205a6c",
+    "sources/research-countries-2026-11-07-hundredtwentysixth-actions.json": "628e86a5c7e793baf1815932471057ba1aedc6eaedc9fa6001f30e8c274b94b9",
+    "sources/research-countries-2026-11-07-hundredtwentysixth-holds.json": "87f923f601e2b1286b748002e96dae64ee498bb780af421622a08e58c901e4b2"
+  },
+  "raw_captures_redistributed": false
+}

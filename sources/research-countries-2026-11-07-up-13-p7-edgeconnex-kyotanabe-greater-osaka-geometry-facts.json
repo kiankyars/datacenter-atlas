@@ -1,0 +1,69 @@
+{
+ "candidate_id": "up-13-p7-edgeconnex-kyotanabe-greater-osaka",
+ "decision": "Selected the planar centroid of Ministry of Justice registry-map parcel 京田辺市多々羅字西平川原39-16 (AIGID 2026 open-data conversion) as the campus locator for EdgeConneX's Greater Osaka campus (ITM01, Kagoya Tatara Campus), replacing the imported Kyotanabe city point. Kyoto Prefecture's published specified-building plan no. 665 gives the site of カゴヤ多々羅キャンパス（申請建物1） as part of this lot.",
+ "geometry": {
+  "type": "Point",
+  "coordinates": [
+   135.7672608,
+   34.7902638
+  ]
+ },
+ "authority_class": "official_source",
+ "scope_class": "official_registry_map_parcel_centroid_of_lot_named_in_prefectural_building_plan",
+ "use_scope": "campus_locator",
+ "source_files": [
+  {
+   "file": "local_data/country-research-up-13-p7/moj-26211-kyotanabe-2026.geojson",
+   "sha256": "a0bbc022aeaf59af07b0a91d8ff0ed8514a1c3fd57846c4ef8a01a847dbbbf1a",
+   "url": "https://gsic-opendata.s3.ap-northeast-1.amazonaws.com/aigid/aigid-moj/2026/26/aigid-moj-26211/26211_%E4%BA%AC%E7%94%B0%E8%BE%BA%E5%B8%82_%E5%85%AC%E5%85%B1%E5%BA%A7%E6%A8%996%E7%B3%BB_%E7%AD%86R_2026.geojson",
+   "retrieved_at": "2026-11-07T00:06:38.410Z"
+  },
+  {
+   "file": "local_data/country-research-up-13-p7/kyotopref-tokutei-665-keikaku.pdf",
+   "sha256": "a8ad36867839e780dbf50cda1508cf93f70e70943333d238b0678ef1c056b8ac",
+   "url": "https://www.pref.kyoto.jp/tikyu/building/documents/665keikaku.pdf",
+   "retrieved_at": "2026-11-07T00:05:28.113Z"
+  }
+ ],
+ "layer": "AIGID conversion of the Ministry of Justice registry map (登記所備付地図) for Kyotanabe City, 2026 edition, GeoJSON in CRS84 (73,580 parcel features); filtered to 大字名 = 多々羅, 小字名 = 西平川原, 地番 = 39-16 (exactly one feature). Area and centroid computed in JGD2011 / Japan Plane Rectangular CS VI (EPSG:6674) and the centroid transformed back to WGS84 longitude/latitude with pyproj 3.7.1 and shapely 2.1.1.",
+ "selected_properties": {
+  "ID": "H000000430",
+  "市区町村C": "26211",
+  "市区町村名": "京田辺市",
+  "大字名": "多々羅",
+  "小字名": "西平川原",
+  "地番": "39-16",
+  "精度区分": "乙一",
+  "座標値種別": "図上測量",
+  "地図名": "普賢寺・多々羅",
+  "座標系": "公共座標6系",
+  "測地系判別": "変換"
+ },
+ "facts": {
+  "matching_parcel_features": 1,
+  "parcel_area_m2": 115838.3,
+  "parcel_extent_m": [430.1, 493.7],
+  "centroid_inside_parcel": true,
+  "centroid_distance_to_parcel_boundary_m": 120.7,
+  "max_vertex_distance_from_centroid_m": 277.7,
+  "touching_parcels": {"39-19": 351, "39-20": 11913, "42-4": 1365},
+  "kyoto_plan_665": {
+   "building": "カゴヤ多々羅キャンパス（申請建物1）",
+   "filer": "カゴヤ・アセットマネジメント株式会社 (Kyotanabe)",
+   "location": "京都府京田辺市多々羅西平川原39-16の一部",
+   "site_area_m2": 34447.80,
+   "building_area_m2": 7586.76,
+   "total_floor_area_m2": 22696.84,
+   "form_date": "2026-02-20",
+   "planned_works": "2026-04-01 to 2028-03-31 (forecast dates, not a stage)"
+  },
+  "operator_campus_area_m2": 130000,
+  "previous_point_lon_lat": [135.76778, 34.81444],
+  "displacement_haversine_m": 2688.7,
+  "nearest_other_atlas_record": {
+   "key": "curated:kagoya-japan-keihanna-lab",
+   "distance_m": 4900
+  }
+ },
+ "exclusions": "The point is the centroid of the whole lot 39-16; the 3.44 ha building-1 site is an unlocated part of it, and the 130,000 sq m campus may also take in the adjoining lot 39-20, which no source names. Lot 39-20 and the other touching lots are not used. No geocoder, map viewport, map-service coordinate or city centroid is used; the Kyotanabe mayor's quote in the EdgeConneX release is used only for the campus name."
+}

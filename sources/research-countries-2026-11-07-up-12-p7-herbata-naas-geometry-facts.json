@@ -1,0 +1,106 @@
+{
+ "candidate_id": "up-12-p7-herbata-naas",
+ "decision": "Selected the mean of the six data-centre building positions (DC1-DC6) that the Herbata Data Centre EIAR (RPS for Herbata Limited, Chapter 8 Air Quality, Table 8.9, June 2024) gives in Irish Grid for its dispersion model, transformed to WGS84, as the campus locator replacing the imported Naas town point.",
+ "geometry": {
+  "type": "Point",
+  "coordinates": [
+   -6.7063227,
+   53.220304
+  ]
+ },
+ "authority_class": "compiled_reference",
+ "scope_class": "developer_eiar_modelled_data_building_positions_mean",
+ "use_scope": "campus_locator",
+ "source_file": "local_data/country-research-up-12-p7/herbata-eiar-vol1-part2.pdf",
+ "source_sha256": "4098eb71753b3702d35996507a08300b5facec8caee6c6294c3419a3bd5a73a6",
+ "source_url": "https://www.pleanala.ie/publicaccess/EIAR-NIS/323677/323677%20-%20eiar%20-%20vol%201%20main%20text%20(part%202).pdf",
+ "retrieved_at": "2026-11-06T23:39:48.775Z",
+ "source_location": "PDF pages 22-23 (Chapter 8 pages 8/21-8/22): 'Table 8.9: Dimensions of Buildings Included Within the Dispersion Model', columns OS - X, OS - Y, Height, Length, Width, Angle to North; document footer 'NI2615 | Herbata Data Centre, Naas | 01 | June 2024'",
+ "source_crs": "Irish Grid (TM75 / Irish Grid, EPSG:29903), the 'OS' grid the table labels OS - X / OS - Y; confirmed by the EIAR non-technical summary's 110 kV tower coordinate (printed in ITM with easting and northing labels swapped) which converts to Irish Grid 286196.6, 219733.8, 115 m from DC1 on the west side of the building group, matching the summary's statement that the tower is on the west of the site",
+ "building_positions_os_grid": {
+  "DC1": {
+   "x": 286229,
+   "y": 219624,
+   "lon_lat": [
+    -6.7098013,
+    53.2202968
+   ],
+   "distance_to_selected_point_m": 232.4
+  },
+  "DC2": {
+   "x": 286341,
+   "y": 219693,
+   "lon_lat": [
+    -6.7081064,
+    53.2208984
+   ],
+   "distance_to_selected_point_m": 136.3
+  },
+  "DC3": {
+   "x": 286452,
+   "y": 219763,
+   "lon_lat": [
+    -6.7064261,
+    53.2215092
+   ],
+   "distance_to_selected_point_m": 134.3
+  },
+  "DC4": {
+   "x": 286680,
+   "y": 219703,
+   "lon_lat": [
+    -6.7030298,
+    53.2209331
+   ],
+   "distance_to_selected_point_m": 230.8
+  },
+  "DC5": {
+   "x": 286512,
+   "y": 219562,
+   "lon_lat": [
+    -6.7055825,
+    53.2196939
+   ],
+   "distance_to_selected_point_m": 84.0
+  },
+  "DC6": {
+   "x": 286554,
+   "y": 219429,
+   "lon_lat": [
+    -6.7049899,
+    53.2184923
+   ],
+   "distance_to_selected_point_m": 220.4
+  }
+ },
+ "building_dimensions_m": "each DC1-DC6: height 18, length 152, width 92 (Table 8.9)",
+ "facts": {
+  "mean_os_grid": [
+   286461.333,
+   219629.0
+  ],
+  "transformation": "pyproj 3.7.1 EPSG:29903 -> EPSG:4326 (always_xy), rounded to 7 decimals; EPSG:29902 (TM65) gives the same result to 7 decimals",
+  "nts_110kv_tower_itm_e_n": [
+   686128.8208,
+   719763.4211
+  ],
+  "nts_110kv_tower_lon_lat": [
+   -6.7102572,
+   53.2212885
+  ],
+  "nts_110kv_tower_irish_grid": [
+   286196.6,
+   219733.8
+  ],
+  "tower_to_selected_point_m": 283.9,
+  "max_building_distance_to_selected_point_m": 232.4,
+  "site_area_ha_stated": 38.64,
+  "previous_point_lon_lat": [
+   -6.663,
+   53.217
+  ],
+  "displacement_m": 2907.7
+ },
+ "corroboration": "The EIAR non-technical summary (herbata-eiar-nts.pdf, PDF page 67) places a single 110 kV tower on the site at a coordinate printed as 'northing 686128.8208m, easting 719763.4211m' (ITM with the labels swapped); it lies 284 m from the selected point. EIAR Chapter 4 text (herbata-eiar-vol1-part1.pdf) places the site south of the R409, on the western side of the M7 between Junctions 9a and 10, approximately 2.5 km west of Naas, between the M7 Business Park and Osberstown Business Park, in the townlands of Halverstown, Jigginstown, Osberstown and Newhall.",
+ "exclusions": "The building positions are dispersion-model inputs (building centres to whole metres), not a surveyed site boundary; the further-information stage revised parts of the design, and the point is not claimed to mark any individual building, entrance or the 38.64 ha application boundary. No map service, geocoder, town centre or business-park centroid is used."
+}

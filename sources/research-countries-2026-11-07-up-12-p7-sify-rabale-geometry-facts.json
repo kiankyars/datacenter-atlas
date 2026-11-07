@@ -1,0 +1,100 @@
+{
+ "candidate_id": "up-12-p7-sify-rabale",
+ "decision": "Selected the centroid that MIDC publishes for Trans Thane Creek Industrial Area plot record 'R-847/1/2,R-847/1/3', the plot Sify gives as the address of its Rabale data centre campus (Tech Space, Plot No. R-847: 1/2, T.T.C Industrial area, Rabale), as the campus locator replacing the imported Rabale neighbourhood point.",
+ "geometry": {
+  "type": "Point",
+  "coordinates": [
+   73.01388048,
+   19.14796456
+  ]
+ },
+ "authority_class": "official_source",
+ "scope_class": "official_industrial_estate_plot_centroid_for_operator_address_plot",
+ "use_scope": "campus_locator",
+ "source_file": "local_data/country-research-up-12-p7/midc-ttc-plot-r847-1-2-and-r978.json",
+ "source_sha256": "43ea5a1b8536624dcddc3c3d62dd655ab190f65ad2e669a72c8480e17ea26206",
+ "source_url": "https://gis.midcindia.org/server/rest/services/CitizenPortal/MIDC_Main_Map_Service/MapServer/11/query?where=IA_CODE%3D201+AND+PLOT_NUMBER+IN+%28%27R-847%2F1%2F2%2CR-847%2F1%2F3%27%2C%27R-978%27%29&outFields=OBJECTID%2CIA_NAME%2CIA_CODE%2CPLOT_NUMBER%2CMIDC_PLOT_AREA%2CLONGITUDE%2CLATITUDE%2CALLOTED_STATUS_TYPE%2CMIDC_LAND_USE&returnGeometry=true&f=json",
+ "retrieved_at": "2026-11-06T23:49:45.817Z",
+ "layer": "MIDC GIS Citizen Portal, CitizenPortal/MIDC_Main_Map_Service MapServer layer 11 (plot boundaries), native WGS 84 / UTM zone 43N (EPSG:32643); LONGITUDE and LATITUDE attribute fields are MIDC's published plot centroid",
+ "plots": {
+  "R-847/1/2,R-847/1/3": {
+   "objectid": 267542,
+   "ia_name": "Trans Thane Creek Industrial Area",
+   "ia_code": 201,
+   "midc_plot_area_m2": 12216.0,
+   "ring_area_m2_epsg32643": 12161.0,
+   "bbox_m": [
+    147.4,
+    175.8
+   ],
+   "published_centroid_lon_lat": [
+    73.01388048,
+    19.14796456
+   ],
+   "published_centroid_inside_ring": true,
+   "ring_planar_centroid_lon_lat": [
+    73.01391597,
+    19.14759359
+   ],
+   "published_vs_ring_centroid_m": 41.24,
+   "max_vertex_distance_from_published_centroid_m": 128.8,
+   "alloted_status_type": 2,
+   "midc_land_use": 1
+  },
+  "R-978": {
+   "objectid": 267775,
+   "ia_name": "Trans Thane Creek Industrial Area",
+   "ia_code": 201,
+   "midc_plot_area_m2": 13154.0,
+   "ring_area_m2_epsg32643": 13801.1,
+   "bbox_m": [
+    147.7,
+    203.7
+   ],
+   "published_centroid_lon_lat": [
+    73.01260631,
+    19.14574997
+   ],
+   "published_centroid_inside_ring": true,
+   "ring_planar_centroid_lon_lat": [
+    73.01260631,
+    19.14574997
+   ],
+   "published_vs_ring_centroid_m": 0.0,
+   "max_vertex_distance_from_published_centroid_m": 105.5,
+   "alloted_status_type": 2,
+   "midc_land_use": 1
+  }
+ },
+ "search": {
+  "source_file": "local_data/country-research-up-12-p7/midc-ttc-plots-847-978-search.json",
+  "source_sha256": "fcd87740501ae7fa38c1e0205fb22178ad6dead3880113d74566e5efd65677b8",
+  "source_url": "https://gis.midcindia.org/server/rest/services/CitizenPortal/MIDC_Main_Map_Service/MapServer/11/query?where=IA_CODE+IN+%28201%2C4680%29+AND+%28PLOT_NUMBER+LIKE+%27%25847%25%27+OR+PLOT_NUMBER+LIKE+%27%25978%25%27%29&outFields=OBJECTID%2CIA_NAME%2CIA_CODE%2CPLOT_NUMBER%2CMIDC_PLOT_AREA%2CLONGITUDE%2CLATITUDE%2CALLOTED_STATUS_TYPE%2CMIDC_LAND_USE&returnGeometry=false&f=json",
+  "plot_numbers_returned": [
+   "R-847/1/1",
+   "R-847/1/2,R-847/1/3",
+   "R-847/3/2",
+   "R-847/3/3",
+   "R-848,R-847/2,R-847/3,R-847/3/1,R-979",
+   "R-978"
+  ]
+ },
+ "facts": {
+  "selected_point": [
+   73.01388048,
+   19.14796456
+  ],
+  "r978_distance_from_selected_m": 280.3,
+  "previous_point_lon_lat": [
+   73.00861,
+   19.14417
+  ],
+  "displacement_m": 696.1,
+  "operator_jsonld_point_lon_lat": [
+   73.0172925,
+   19.137142
+  ],
+  "operator_jsonld_point_distance_from_selected_m": 1255.7
+ },
+ "exclusions": "Sify's page also carries a schema.org GeoCoordinates point for the same address (19.137142, 73.0172925); it lies 1.26 km south-east of MIDC's R-847 plots and is not used. The point marks the address plot R-847/1/2 (merged MIDC record with R-847/1/3, about 1.2 ha), not the whole 12-tower campus: plot R-978, which the Atlas record's prospectus note gives for towers 11 and 12, lies 280 m to the south-west, and the neighbouring R-847/1/1, R-847/3/x and R-848/R-847/2/R-847/3/R-979 records are not attributed to Sify by any source used. Google Maps embeds on the operator page are not used."
+}

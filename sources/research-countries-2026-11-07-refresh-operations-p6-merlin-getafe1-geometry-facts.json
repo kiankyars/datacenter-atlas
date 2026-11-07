@@ -1,0 +1,62 @@
+{
+ "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+ "candidate": "MERLIN Edged Madrid-Getafe 1 data centre (MAD-GET 01), Calle Fundidores 40, Polígono Industrial Los Ángeles, 28906 Getafe (Madrid), Spain",
+ "geometry": {
+  "type": "Point",
+  "coordinates": [
+   -3.6935137,
+   40.3108651
+  ]
+ },
+ "coordinate_reference_system": "Source parcel in EPSG:25830 (ETRS89 / UTM 30N) as served by the Catastro INSPIRE cadastral-parcel WFS (GetParcel, srsname EPSG::25830; the response declares http://www.opengis.net/def/crs/EPSG/0/25830); its planar area centroid is transformed to EPSG:4326 longitude/latitude with pyproj 3.7.1 always_xy=True.",
+ "source_url": "https://ovc.catastro.meh.es/ovcservweb/OVCSWLocalizacionRC/OVCCoordenadas.asmx/Consulta_RCCOOR?SRS=EPSG:4326&Coordenada_X=-3.6935137&Coordenada_Y=40.3108651",
+ "raw_capture_file": "local_data/country-research-refresh-operations-p6/catastro-rccoor-getafe1-centroid.xml",
+ "raw_capture_sha256": "18c1f22b7c9f1ccaad4afad6bebb974bc969be86a49b7fcce085548468541d41",
+ "retrieved_at": "2026-11-07T00:19:18.973Z",
+ "source_selection": "Edged Spain's Madrid-Getafe 1 page gives 'Calle Fundidores nº 40 Polígono Industrial, Los Ángeles 28906; Getafe' for the Madrid-Getafe 1 Data Center (20 MW critical load, three storeys, new build). Catastro's address register (Consulta_DNPLOC and ConsultaNumero for CL FUNDIDORES 40, Getafe) returns exactly one property, 1123401VK4612N0001QJ, on parcel 1123401VK4612N, whose geometry was retrieved from the Catastro INSPIRE WFS.",
+ "parcel_captures": [
+  {
+   "cadastral_reference_14": "1123401VK4612N",
+   "address": "CL FUNDIDORES 40, 28906 GETAFE (MADRID)",
+   "catastro_use": "Property 1123401VK4612N0001QJ: 'Oficinas' use class, 26,116 m2 built, construction year 2023, 100% participation; units on floors 00, 01 and 02 (office and warehouse) plus two small roof-level units (floor 03)",
+   "parcel_area_value_m2": 17977,
+   "raw_capture_file": "local_data/country-research-refresh-operations-p6/catastro-cp-1123401VK4612N.gml",
+   "raw_capture_sha256": "22bc9bb5734371b3127f0afc8c85d2ae3d77e8f24873d5339a531f9a9506763d",
+   "source_url": "https://ovc.catastro.meh.es/INSPIRE/wfsCP.aspx?service=wfs&version=2&request=getfeature&STOREDQUERIE_ID=GetParcel&refcat=1123401VK4612N&srsname=EPSG::25830",
+   "retrieved_at": "2026-11-07T00:19:01.836Z",
+   "address_capture_file": "local_data/country-research-refresh-operations-p6/catastro-dnploc-getafe-fundidores-40.xml",
+   "address_capture_sha256": "ef0b2c03e8c7394b21923d80dd224e61789e11d3265f01170ab3db8389a3b919",
+   "number_capture_file": "local_data/country-research-refresh-operations-p6/catastro-num-getafe-fundidores-40.xml",
+   "number_capture_sha256": "1de641db013bf3c05ad70e6540388b9f4d3eb8dd2fbbafc336d3ac4186931d1e"
+  }
+ ],
+ "computation": {
+  "tool": "uv run --no-project --with pyproj==3.7.1 --with shapely==2.1.1 python -I (shapely Polygon from the single GML posList of 25 vertices, area centroid, pyproj Transformer EPSG:25830 -> EPSG:4326, always_xy=True)",
+  "planar_area_m2": 17977.3,
+  "centroid_epsg25830": [
+   441070.96,
+   4462491.865
+  ],
+  "centroid_inside_parcel": true,
+  "centroid_distance_to_boundary_m": 37.3,
+  "bounding_box_m": [
+   80.1,
+   247.4
+  ],
+  "farthest_vertex_from_centroid_m": 129.7
+ },
+ "reverse_lookup": "Catastro Consulta_RCCOOR at -3.6935137, 40.3108651 returns parcel 1123401VK4612N, 'CL FUNDIDORES 40 G GETAFE (MADRID)'.",
+ "cross_checks": {
+  "catastro_reference_point": [
+   -3.69351277735804,
+   40.3108519247954
+  ],
+  "catastro_reference_point_source": "Consulta_CPMRC for 1123401VK4612N (local catastro-cpmrc-1123401VK4612N.xml, sha256 9b64432491c1b14f4ef47469b042c4c76e7800384981b3e96e865f99d537cebe)",
+  "catastro_reference_point_distance_m": 1.5,
+  "nearest_atlas_site": "MERLIN Edged Madrid-Getafe II Campus (curated:merlin-edged-madrid-getafe-ii-campus), the operator-published MAD02 point at Calle Fundidores 2, 1,127 m from this centroid and outside parcel 1123401VK4612N.",
+  "excluded_locations": "The Edged Spain page also carries a Google Maps place link and a Mapbox/OpenStreetMap map widget; neither was opened, resolved or used. No coordinate from any map service was used."
+ },
+ "scope_class": "operator_address_cadastral_parcel_area_centroid",
+ "precision": "Area centroid of cadastral parcel 1123401VK4612N (about 17,977 m2, 80 by 247 m), the only parcel at Calle Fundidores 40, 28906 Getafe, the address Edged Spain gives for its Madrid-Getafe 1 Data Center. The point lies inside the parcel 37 m from its boundary and locates the data-centre property; it is not a surveyed building footprint.",
+ "uncertainty_reason": "Catastro publishes no positional accuracy for parcel boundaries (the GML states only the nominal accuracy of the capture scale); the point is a derived interior anchor of a parcel whose farthest vertex is about 130 m away. Decimal places are computation precision, not accuracy."
+}

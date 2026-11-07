@@ -1,0 +1,93 @@
+{
+ "candidate_id": "up-18-p7-google-west-memphis-arkansas",
+ "decision": "Selected the planar centroid of the union of the seven Crittenden County tax-parcel polygons that the Arkansas statewide CAMP parcel layer records with owner WEST MEMPHIS CITY OF GROOT and legal descriptions citing the Groot LLC properties boundary exhibit (Plat Book 5, pages 655-657) as the campus locator, replacing the imported point at the south end of Bollinger Road.",
+ "geometry": {
+  "type": "Point",
+  "coordinates": [
+   -90.2110843,
+   35.1042897
+  ]
+ },
+ "authority_class": "official_source",
+ "scope_class": "official_statewide_cadastral_parcel_union_centroid",
+ "use_scope": "campus_locator",
+ "source_files": [
+  {
+   "file": "local_data/country-research-up-18-p7/arkansas-camp-parcels-crittenden-groot.geojson",
+   "sha256": "066a34d481279b5ad0dd45d75d21bc6ab453937f5ee8ea01e61d07df62778bd0",
+   "url": "https://gis.arkansas.gov/arcgis/rest/services/FEATURESERVICES/Planning_Cadastre/FeatureServer/6/query?where=county%3D%27Crittenden%27+AND+ownername+LIKE+%27%25GROOT%25%27&outFields=objectid%2Ccountyfips%2Cparcelid%2Cparcellgl%2Cownername%2Cadrlabel%2Cparceltype%2Ctaxarea%2Cstr%2Ccounty%2Cdataprov%2Ccamadate%2Cpubdate%2Csourcedate&returnGeometry=true&outSR=4326&f=geojson",
+   "retrieved_at": "2026-11-07T00:10:30.670Z"
+  },
+  {
+   "file": "local_data/country-research-up-18-p7/arkansas-camp-parcel-layer-info.json",
+   "sha256": "0ad6b09e248bf71718afa591f0b2b5b9e5f641dffdd7b914e4468ec617403080",
+   "url": "https://gis.arkansas.gov/arcgis/rest/services/FEATURESERVICES/Planning_Cadastre/FeatureServer/6?f=json",
+   "retrieved_at": "2026-11-07T00:10:31.345Z"
+  }
+ ],
+ "layer": "Arkansas GIS Office FEATURESERVICES/Planning_Cadastre FeatureServer layer 6 PARCEL_POLYGON_CAMP, where county='Crittenden' AND ownername LIKE '%GROOT%', served in WGS84 (native EPSG:26915); CAMADate 2026-09-10, PubDate 2026-10-01, data provider EDGE",
+ "facts": {
+  "parcels": [
+   {
+    "parcelid": "395075000000",
+    "str": "S26-T06-R08",
+    "address": "803-949 Bollinger Rd",
+    "tax_acres": 604.27,
+    "note": "two polygons (597.2 and 17.5 ac computed)"
+   },
+   {
+    "parcelid": "395075100000",
+    "str": "S26-T06-R08",
+    "address": "835 Bollinger Rd",
+    "tax_acres": 1.06
+   },
+   {
+    "parcelid": "395080000000",
+    "str": "S35-T06-R08",
+    "legal": "ALL N1/2",
+    "tax_acres": 320.0
+   },
+   {
+    "parcelid": "395080200000",
+    "str": "S35-T06-R08",
+    "legal": "SE1/4",
+    "tax_acres": 160.0
+   },
+   {
+    "parcelid": "395082000000",
+    "str": "S36-T06-R08",
+    "legal": "FRL SW1/4",
+    "tax_acres": 10.0
+   },
+   {
+    "parcelid": "395077100100",
+    "str": "S27-T06-R08",
+    "legal": "S 90' SE1/4 easement",
+    "tax_acres": 5.45
+   }
+  ],
+  "owner_name_on_all": "WEST MEMPHIS CITY OF GROOT",
+  "union": {
+   "type": "MultiPolygon",
+   "parts": 5,
+   "area_ha": 448.42,
+   "area_acres": 1108.08,
+   "extent_m": [
+    2604,
+    3227
+   ]
+  },
+  "centroid_crs": "EPSG:26915 (NAD83 / UTM 15N), transformed to EPSG:4326 with pyproj 3.7.1",
+  "centroid_inside_union": true,
+  "centroid_distance_to_boundary_m": 134.8,
+  "max_vertex_distance_m": 1897.8,
+  "previous_point_lon_lat": [
+   -90.2115,
+   35.1163
+  ],
+  "displacement_haversine_m": 1336.0,
+  "reported_campus_size": "about 1,000 to 1,200 acres in the Atlas record",
+  "nearest_other_atlas_record": "none within 5 km"
+ },
+ "exclusions": "The 1500 South Loop Drive address in one news source was not used. No geocoder, map viewport or road point is used."
+}
