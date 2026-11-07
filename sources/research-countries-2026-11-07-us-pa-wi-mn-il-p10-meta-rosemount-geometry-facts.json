@@ -1,0 +1,209 @@
+{
+ "candidate_id": "meta-rosemount-data-center-campus",
+ "decision": "Selected the centroid of Dakota County tax parcel 037-346467901010 (14701 Blaine Ave, Rosemount; plat Rosemount Technology Addition; owner of record Jimnist LLC; 241.25 acres) as the campus locator of the Meta Rosemount data center. The parcel is the Meta facility site bounded by County Road 42 (145th St E) to the north, Blaine Ave to the east and Audrey Ave to the west, and carries the City of Rosemount address points 14701 Blaine Ave #1-#5, one of them labelled META PUMP HOUSE.",
+ "geometry": {
+  "type": "Point",
+  "coordinates": [
+   -93.0632698,
+   44.7349966
+  ]
+ },
+ "authority_class": "official_source",
+ "scope_class": "official_tax_parcel_centroid",
+ "use_scope": "campus_locator",
+ "source_file": "local_data/country-research-us-pa-wi-mn-il-p10/dakota-parcels-jimnist-26915.json",
+ "source_sha256": "a92f84488a19c4eec9ec88003a1e82668b42c1cd38f71ec7226611e74e8031b0",
+ "source_url": "https://gis2.co.dakota.mn.us/ArcGIS/rest/services/CommunityMaps/DC_OL_CommunityMapsLayers/MapServer/4/query?where=OWNER_NAME%20LIKE%20%27%25JIMNIST%25%27&outFields=PIN%2CBLDG_NUM%2CSTREETNAME%2CSTREETTYPE%2CCITY%2CPLAT_NAME%2CACRES_POLY%2CUSE1_DESC%2COWNER_NAME%2CYEAR_BUILT&returnGeometry=true&outSR=26915&f=json",
+ "retrieved_at": "2026-11-07T01:03:24.680Z",
+ "cross_check_file": "local_data/country-research-us-pa-wi-mn-il-p10/dakota-parcels-jimnist-4326.json",
+ "cross_check_sha256": "13be673a32190b6cb3aeec5e7790065edf96ac510eec2b02075bdd4b02ca37b7",
+ "cross_check_url": "https://gis2.co.dakota.mn.us/ArcGIS/rest/services/CommunityMaps/DC_OL_CommunityMapsLayers/MapServer/4/query?where=OWNER_NAME%20LIKE%20%27%25JIMNIST%25%27&outFields=PIN%2CBLDG_NUM%2CSTREETNAME%2CSTREETTYPE%2CCITY%2CPLAT_NAME%2CACRES_POLY%2CUSE1_DESC%2COWNER_NAME%2CYEAR_BUILT&returnGeometry=true&outSR=4326&f=json",
+ "selected_properties": {
+  "pin": "037-346467901010",
+  "address": "14701 BLAINE AVE, ROSEMOUNT",
+  "plat_name": "ROSEMOUNT TECHNOLOGY ADDITION",
+  "acres_poly": 241.25,
+  "use": "COMMERCIAL-PREFERRED",
+  "owner_of_record": "JIMNIST LLC",
+  "year_built": 2025,
+  "layer": "Dakota County CommunityMaps parcel layer (DC_OL_CommunityMapsLayers MapServer layer 4), queried live on 7 November 2026 in native NAD83 / UTM zone 15N (EPSG:26915) and in WGS84 (outSR=4326)"
+ },
+ "computed": {
+  "method": "planar centroid of the native EPSG:26915 polygon, transformed to EPSG:4326 with pyproj 3.7.1; area from the WGS84 polygon with a WGS84 geodesic",
+  "rings": 1,
+  "vertices": 68,
+  "centroid_lon_lat": [
+   -93.0632698,
+   44.7349966
+  ],
+  "centroid_inside_polygon": true,
+  "centroid_distance_to_nearest_edge_m": 413.6,
+  "farthest_vertex_from_centroid_m": 735.4,
+  "geodesic_acres": 241.23,
+  "geodesic_area_m2": 976235.5,
+  "extent_m": [
+   1246.0,
+   856.7
+  ],
+  "bounds_lon_lat": [
+   -93.070733,
+   44.731037,
+   -93.055005,
+   44.738743
+  ],
+  "crs_cross_check_shift_m": 0.01,
+  "address_points_14701_blaine_ave": {
+   "14701 BLAINE AVE #1": {
+    "landmark": null,
+    "lon_lat": [
+     -93.0622519,
+     44.7354784
+    ],
+    "inside_parcel": true,
+    "distance_to_centroid_m": 96.7
+   },
+   "14701 BLAINE AVE #4": {
+    "landmark": null,
+    "lon_lat": [
+     -93.0602531,
+     44.7354304
+    ],
+    "inside_parcel": true,
+    "distance_to_centroid_m": 243.7
+   },
+   "14701 BLAINE AVE #5": {
+    "landmark": "META PUMP HOUSE",
+    "lon_lat": [
+     -93.0632286,
+     44.7363339
+    ],
+    "inside_parcel": true,
+    "distance_to_centroid_m": 148.6
+   },
+   "14701 BLAINE AVE #3": {
+    "landmark": null,
+    "lon_lat": [
+     -93.060149,
+     44.7363548
+    ],
+    "inside_parcel": true,
+    "distance_to_centroid_m": 289.5
+   },
+   "14701 BLAINE AVE #2": {
+    "landmark": null,
+    "lon_lat": [
+     -93.0646444,
+     44.7351812
+    ],
+    "inside_parcel": true,
+    "distance_to_centroid_m": 110.8
+   }
+  },
+  "bounding_streets": "Dakota County street centrelines (layer 11, local dakota-streets-rosemount-blaine-envelope.json): 145th St E / Co Rd 42 lies about 18-36 m from the parcel on the north, Blaine Ave (Co Rd 71) about 10 m on the east and Audrey Ave about 9-27 m on the west."
+ },
+ "excluded": {
+  "note": "Ten other parcels with owner of record Jimnist LLC (Blaine Ave and 145th St, 1.0 to 78.0 acres, uses AG/residential/commercial) lie north of County Road 42, outside the Meta facility site described by the City (Blaine Ave from CSAH 42 south along the east side of the Meta property). They are excluded; the City stated on 20 October 2026 that there is no application or approval for a second data center.",
+  "parcels": [
+   {
+    "pin": "037-340260003021",
+    "acres_poly": 3.5,
+    "use": "COMMERCIAL",
+    "centroid_lon_lat": [
+     -93.0562621,
+     44.7431169
+    ],
+    "distance_to_selected_centroid_m": 1059.0
+   },
+   {
+    "pin": "037-340260006011",
+    "acres_poly": 30.14,
+    "use": "AG",
+    "centroid_lon_lat": [
+     -93.0577516,
+     44.7447344
+    ],
+    "distance_to_selected_centroid_m": 1166.6
+   },
+   {
+    "pin": "037-340260017012",
+    "acres_poly": 9.26,
+    "use": "RESIDENTIAL",
+    "centroid_lon_lat": [
+     -93.0583254,
+     44.7411956
+    ],
+    "distance_to_selected_centroid_m": 792.1
+   },
+   {
+    "pin": "037-340260025011",
+    "acres_poly": 75.7,
+    "use": "AG",
+    "centroid_lon_lat": [
+     -93.0676544,
+     44.7428765
+    ],
+    "distance_to_selected_centroid_m": 941.6
+   },
+   {
+    "pin": "037-340260012012",
+    "acres_poly": 78.02,
+    "use": "AG",
+    "centroid_lon_lat": [
+     -93.0624743,
+     44.7427567
+    ],
+    "distance_to_selected_centroid_m": 864.3
+   },
+   {
+    "pin": "037-340260018010",
+    "acres_poly": 1.3,
+    "use": "RESIDENTIAL",
+    "centroid_lon_lat": [
+     -93.0555331,
+     44.741509
+    ],
+    "distance_to_selected_centroid_m": 947.9
+   },
+   {
+    "pin": "037-340260003010",
+    "acres_poly": 1.0,
+    "use": "COMMERCIAL-PREFERRED",
+    "centroid_lon_lat": [
+     -93.0554904,
+     44.7428103
+    ],
+    "distance_to_selected_centroid_m": 1064.3
+   },
+   {
+    "pin": "037-340260003030",
+    "acres_poly": 5.02,
+    "use": "RESIDENTIAL",
+    "centroid_lon_lat": [
+     -93.0560805,
+     44.743907
+    ],
+    "distance_to_selected_centroid_m": 1141.8
+   },
+   {
+    "pin": "037-340260017011",
+    "acres_poly": 9.33,
+    "use": "RESIDENTIAL",
+    "centroid_lon_lat": [
+     -93.0573823,
+     44.7422306
+    ],
+    "distance_to_selected_centroid_m": 929.0
+   },
+   {
+    "pin": "037-340260025012",
+    "acres_poly": 4.03,
+    "use": "RESIDENTIAL",
+    "centroid_lon_lat": [
+     -93.0660331,
+     44.7395873
+    ],
+    "distance_to_selected_centroid_m": 554.9
+   }
+  ]
+ }
+}

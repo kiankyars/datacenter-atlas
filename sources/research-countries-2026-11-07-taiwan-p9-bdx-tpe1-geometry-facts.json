@@ -1,0 +1,86 @@
+{
+ "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+ "candidate": "BDx TPE1 Data Center, No. 18, Wenhua East Road (文化東路18號), Guishan District, Taoyuan City",
+ "prepared_at": "2026-11-07",
+ "geometry": {
+  "type": "Point",
+  "coordinates": [
+   121.3623522,
+   25.0527118
+  ]
+ },
+ "coordinate_reference_system": "Native Taoyuan City door-plate coordinates, declared in the dataset metadata as TWD97 二度分帶座標 (TWD97 / TM2 zone 121, EPSG:3826), transformed to WGS84 (EPSG:4326) with pyproj 3.7.1 / PROJ 9.5.1 (always_xy); output rounded to 7 decimals.",
+ "source_url": "https://opendata.tycg.gov.tw/api/dataset/ec47dbd5-9ed8-4c8d-8ce1-ccb63b1b72e6/resource/ef5d93eb-2b55-4eeb-9f98-1eccaa9c428d/download",
+ "raw_capture_file": "local_data/country-research-taiwan-p9/tycg-doorplate-11509.csv",
+ "raw_capture_sha256": "80e8220f764c893c37414f6dc1c26cf855f6e978e3d517d905535ccdf909d379",
+ "dataset_metadata_file": "local_data/country-research-taiwan-p9/tycg-doorplate-dataset-info.json",
+ "dataset_metadata_sha256": "c61cd90071dcec39cc77623271f3a08338a712b4fdabf6926ebcfb4b1dbc3fd7",
+ "resource_metadata_file": "local_data/country-research-taiwan-p9/tycg-doorplate-resource-info.json",
+ "resource_metadata_sha256": "d2e901cfdf27c8260b42c0dfff85523e67e6b14408a47b0d733688d3b13e7e05",
+ "resource": "桃園市門牌位置坐標資料(115年09月), file TGOS_A68000_11509.CSV, 94,571,099 bytes, resource created and last modified 2026-10-14 13:40:53 (portal time); 1,109,411 data rows",
+ "extraction": {
+  "match_rule": "鄉鎮市區代碼 6800700, 街路段 文化東路, empty 巷/弄, 號 '１８號' (full-width digits, NFKC-normalised to '18號')",
+  "district_code_review": "Code 6800700 is the only Taoyuan district code whose rows include the villages 龜山里, 舊路里, 陸光里, 長庚里, 迴龍里 and 文化里, i.e. 龜山區 (Guishan District). 文化東路 occurs only under 6800700 in the whole Taoyuan file (224 rows).",
+  "matched_row": [
+   "68",
+   "6800700",
+   "大華里",
+   "025",
+   "文化東路",
+   "",
+   "",
+   "",
+   "１８號",
+   "286560.370",
+   "2771664.990"
+  ],
+  "matched_rows": 1,
+  "distinct_native_coordinates": 1,
+  "village_neighbourhood": "大華里 鄰025",
+  "native_xy": [
+   286560.37,
+   2771664.99
+  ],
+  "neighbouring_door_plates_on_same_street": [
+   {
+    "label": "文化東路18之1號",
+    "native_xy": [
+     286568.39,
+     2771668.88
+    ],
+    "distance_from_selected_m": 8.9
+   },
+   {
+    "label": "文化東路20號",
+    "native_xy": [
+     286554.19,
+     2771661.64
+    ],
+    "distance_from_selected_m": 7.0
+   },
+   {
+    "label": "文化東路16號",
+    "native_xy": [
+     286584.46,
+     2771680.28
+    ],
+    "distance_from_selected_m": 28.5
+   }
+  ],
+  "transform_script": "/private/tmp/claude-501/-Users-kian-Developer-datacenter-atlas/b0b9150d-2948-4626-85b3-7ed9efa0fd22/scratchpad/scripts/tpe1_transform.py"
+ },
+ "crs_review": "The dataset metadata (field_description) states that both coordinate fields are TWD97 二度分帶座標. A same-file control, 縣府路1號 in 桃園區 (Taoyuan City Government; native 280383.200, 2765042.360), transforms to 24.9930579 N, 121.3009848 E, consistent with the seat of the city government under the TWD97 reading. This is a consistency check, not a survey.",
+ "authority": "compiled_reference",
+ "derivation": "coordinate_transform",
+ "scope": "project_locator",
+ "scope_class": "official_house_number_door_plate_point",
+ "identity_chain": [
+  "BDx's TPE1 facility page (live 2026-11-07 and Internet Archive copy 2026-09-29, identical visible text, JSON-LD dateModified 2026-09-10T02:17:49Z) gives the address 'No. 18, Wenhua East Road, Guishan District, Taoyuan City 333006, Taiwan (R.O.C.)' and says TPE1 is in Taoyuan.",
+  "The Taoyuan City Civil Affairs Bureau door-plate dataset (September 2026 file) has exactly one 文化東路 (Wenhua East Road) in Taoyuan, in district 6800700 (Guishan), and exactly one door-plate row for its No. 18 (文化東路18號, 大華里 鄰025) with one native coordinate.",
+  "18之1號 (No. 18-1) is a separate door plate 8.9 m away and is not BDx's stated address; it was not used."
+ ],
+ "precision": "Official Taoyuan door-plate point for No. 18, Wenhua East Road (文化東路18號), Guishan District, the address BDx gives for TPE1. It marks the door-plate position, not the building footprint, the 8,205 sqm site BDx states or any campus boundary.",
+ "horizontal_uncertainty_metres": null,
+ "uncertainty_reason": "The dataset publishes no positional accuracy, and its notes say the points were placed manually on maps by the household registration offices, contain errors and are occasionally misplaced; transformation accuracy is not site-location accuracy.",
+ "excluded_geometry": "BDx's 'View on Map' link and the MapTiler/OpenStreetMap imagery on its page were not opened or used. No map service, PeeringDB or OpenStreetMap service was queried."
+}

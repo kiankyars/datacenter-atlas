@@ -1,0 +1,72 @@
+{
+ "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+ "candidate": "DC BLOX Chattanooga data center (CHA1), 807 East 16th Street, Chattanooga, Hamilton County, Tennessee (existing Tier III colocation facility)",
+ "prepared_at": "2026-11-07",
+ "selected_point_crs84": [
+  -85.2972615,
+  35.0315823
+ ],
+ "selected_point_role": "facility coordinate published by DC BLOX for its Chattanooga (CHA1) data center in the schema.org GeoCoordinates of the Chattanooga location page (latitude 35.0315823, longitude -85.2972615); the same pair appears in the Internet Archive copy of 15 July 2026. It is the operator's own location pin for 807 East 16th Street, not a building footprint, a parcel or a surveyed position.",
+ "authority_class": "official_source",
+ "scope_class": "first_party_facility_reference_point",
+ "use_scope": "project_locator",
+ "source": {
+  "file": "local_data/country-research-us-southeast-p10/dcblox-chattanooga-20261107.html",
+  "sha256": "be51ce1a00f0352614470380ded59f8471f759eb46392b681c6cb77a39181188",
+  "url": "https://www.dcblox.com/data-centers/chattanooga/",
+  "retrieved_at": "2026-11-07T00:56:07.394Z",
+  "document": "DC BLOX Chattanooga location page (version dateModified 2026-10-19T19:24:27Z)",
+  "reading": "JSON-LD LocalBusiness node: \"geo\":{\"@type\":\"GeoCoordinates\",\"latitude\":\"35.0315823\",\"longitude\":\"-85.2972615\"}; address streetAddress \"807 East 16th Street\", addressLocality Chattanooga, postalCode 37408; page text \"Location 807 East 16th Street Chattanooga, Tennessee 37408\""
+ },
+ "archived_copy_check": {
+  "file": "local_data/country-research-us-southeast-p10/ia-dcblox-chattanooga-20260715.html",
+  "sha256": "180057c2fb1e798e0d338af25037d3d549721451139c85009338c23107e4defb",
+  "url": "https://web.archive.org/web/20260715044742id_/https://www.dcblox.com/data-centers/chattanooga/",
+  "retrieved_at": "2026-11-07T00:57:00.466Z",
+  "reading": "same GeoCoordinates pair (35.0315823, -85.2972615) and address in the version with dateModified 2026-03-03T14:47:04Z"
+ },
+ "geometry_checks": {
+  "census_address_geocode": {
+   "file": "local_data/country-research-us-southeast-p10/census-geocode-807-e-16th-st-chattanooga.json",
+   "sha256": "264b7c792a0f9ec529bcea475193365ad4eac2bad4451dc577c5903e203056e9",
+   "url": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=807%20East%2016th%20Street%2C%20Chattanooga%2C%20TN%2037408&benchmark=Public_AR_Current&format=json",
+   "retrieved_at": "2026-11-07T00:57:29.088Z",
+   "service": "U.S. Census Bureau Geocoder, benchmark Public_AR_Current (address-range interpolation on TIGER line 59307861, left side, range 801 to 899)",
+   "matched_address": "807 E 16TH ST, CHATTANOOGA, TN, 37408",
+   "coordinates_crs84": [
+    -85.297659836565,
+    35.031459188448
+   ],
+   "geodesic_distance_from_selected_point_m": 38.8,
+   "azimuth_from_selected_point_deg": 249.4
+  },
+  "census_block_of_address_geocode": {
+   "file": "local_data/country-research-us-southeast-p10/census-geo-807-e-16th-st-chattanooga-blocks.json",
+   "sha256": "365217521ae15e80035f29686f9b738a9886cbd1c3a2a29982c90de7b371a834",
+   "url": "https://geocoding.geo.census.gov/geocoder/geographies/onelineaddress?address=807%20East%2016th%20Street%2C%20Chattanooga%2C%20TN%2037408&benchmark=Public_AR_Current&vintage=Current_Current&layers=2020%20Census%20Blocks,Incorporated%20Places,Counties&format=json",
+   "retrieved_at": "2026-11-07T00:57:59.058Z",
+   "block_geoid": "470650020001000",
+   "block_arealand_m2": 10735,
+   "county": "Hamilton County (47065)",
+   "place": "Chattanooga city (4714000)"
+  },
+  "census_block_of_selected_point": {
+   "file": "local_data/country-research-us-southeast-p10/census-block-dcblox-cha-operator-point-2020.json",
+   "sha256": "84c175fe7e932e590357ace24be10c9c4e5d2ccf9dc9be221c1a590e3d993a5f",
+   "url": "https://geocoding.geo.census.gov/geocoder/geographies/coordinates?x=-85.2972615&y=35.0315823&benchmark=Public_AR_Current&vintage=Current_Current&layers=2020%20Census%20Blocks,Incorporated%20Places,Counties&format=json",
+   "retrieved_at": "2026-11-07T00:58:02.033Z",
+   "block_geoid": "470650020001000",
+   "same_block_as_address_geocode": true
+  },
+  "verification": "pyproj 3.7.1 Geod(WGS84).inv between the selected point and the Census address geocode; block membership from the Census Geocoder geographies endpoints (layer 2020 Census Blocks) for both the address and the selected coordinate"
+ },
+ "interpretation": "The operator's pin and the Census Bureau's interpolated position for 807 East 16th Street lie 38.8 m apart and fall in the same small 2020 census block (470650020001000, 1.07 ha of land) in Chattanooga city, Hamilton County; the matched TIGER segment carries the 801 to 899 range of East 16th Street. The selected point is the operator's facility reference point, confirmed to the correct street segment, block, place and county.",
+ "datum_note": "The operator publishes no datum; the Census Geocoder returns NAD83 coordinates, which differ from WGS 84 by about 1 m here.",
+ "geocoder_used": true,
+ "geocoder_role": "U.S. Census Bureau Geocoder used only as an official cross-check of the published street address; its interpolated point is not the selected locator.",
+ "alternatives_rejected": [
+  "Hamilton County is not in the Tennessee statewide parcel layer (us-nc-sc-tn-p5); mapsdev.hamiltontn.gov returned HTTP 404 for its service directory in that pass and gis.chattanooga.gov did not respond.",
+  "The City of Chattanooga GIS organisation's 'Hamilton County Address Parcel Layer' is hosted on services2.arcgis.com, whose robots.txt returns HTTP 403 (treated as a disallow), so it was not requested.",
+  "No OpenStreetMap, Nominatim, map-app, city centroid or county centroid was used."
+ ]
+}

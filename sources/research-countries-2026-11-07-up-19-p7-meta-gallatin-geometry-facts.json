@@ -1,0 +1,104 @@
+{
+ "candidate_id": "up-19-p7-meta-gallatin",
+ "decision": "Selected the mean of the five Sumner County E911 address points 1 GTN1 to 1 GTN5 META LOOP, Gallatin, as returned in WGS84 by the City of Gallatin's public address layer, as the campus locator, replacing the imported OpenStreetMap-derived centroid. All five points lie inside the Industrial Development Board parcels held in care of Woolhawk LLC (Menlo Park, CA) in Gallatin Industrial Center Phase 4.",
+ "geometry": {
+  "type": "Point",
+  "coordinates": [
+   -86.367608,
+   36.4104928
+  ]
+ },
+ "authority_class": "official_source",
+ "scope_class": "official_address_register_building_points_mean",
+ "use_scope": "campus_locator",
+ "source_files": [
+  {
+   "file": "local_data/country-research-up-19-p7/sumner-e911-meta-loop.json",
+   "sha256": "9fbef20bd5888ab70f12f3f2657197289de9f9cb979c07c2b89f2d438da03eb8",
+   "url": "https://arcweb.gallatin-tn.gov/arcgis/rest/services/Features/Sumner_County_E911_Addresses/FeatureServer/0/query?where=NAME%3D%27META%27+AND+TYPE%3D%27LOOP%27&outFields=OBJECTID%2CSTNUM%2CSTNUMSUF%2CBUILDING%2CUNIT_TYPE%2CUNIT_NUM%2CNAME%2CTYPE%2CFULLADDR%2CLABEL%2CVANITY%2CSTRUCTYPE%2CSTRUCDESC%2CLOCATION_NAME%2CZIP%2CCITY%2CCOUNTY%2CSTATE%2CLON%2CLAT%2CX_SP%2CY_SP%2CADDRAUTH%2CGEOSRCE%2CGEODATE%2CATTSRCE%2CATTDATE%2CSTATUS%2CADDR_ID%2Ccreated_date%2Clast_edited_date&returnGeometry=true&outSR=4326&f=json",
+   "retrieved_at": "2026-11-07T00:25:11.525Z"
+  },
+  {
+   "file": "local_data/country-research-up-19-p7/gallatin-city-parcels-woolhawk.json",
+   "sha256": "7b705c37ee0124b73c37295ca4cea3e17ef56988a3f681012c691599ae2c3e8b",
+   "url": "https://arcweb.gallatin-tn.gov/arcgis/rest/services/Features/City_Parcels/FeatureServer/0/query?where=UPPER%28Owner_Name_2%29+LIKE+%27%25WOOLHAWK%25%27&outFields=OBJECTID%2COwner_Name_1%2COwner_Name_2%2CLocation%2CAcres%2CLUC_Description%2CZoning_Code%2CParcel_ID_Number%2CMailing_Address_Line_1%2CMailing_City%2CMailing_State%2CLegal_Description%2CSubdivision%2CLot%2CInCIty%2Clast_edited_date&returnGeometry=true&outSR=2274&f=json",
+   "retrieved_at": "2026-11-07T00:24:15.877Z"
+  },
+  {
+   "file": "local_data/country-research-up-19-p7/meta-us-locations",
+   "sha256": "c205cc8aba7e0f21fbf884d38995b3ecf837c96812f191651428d417ab946345",
+   "url": "https://datacenters.atmeta.com/us-locations/",
+   "retrieved_at": "2026-11-07T00:21:58.244Z"
+  }
+ ],
+ "layer": "City of Gallatin ArcGIS Server, Features/Sumner_County_E911_Addresses/FeatureServer/0, query NAME='META' AND TYPE='LOOP', outSR=4326 (11 address points). The five points whose address carries the building designator GTN1 to GTN5 are averaged in longitude and latitude as returned. Cross-check: their X_SP/Y_SP State Plane attributes (EPSG:2274, US survey feet) averaged and transformed with pyproj 3.7.1 give -86.367603, 36.4104859, under 1 m away.",
+ "selected_properties": {
+  "address_points": [
+   "1 GTN1 META LOOP",
+   "1 GTN2 META LOOP",
+   "1 GTN3 META LOOP",
+   "1 GTN4 META LOOP",
+   "1 GTN5 META LOOP"
+  ],
+  "other_meta_loop_points_not_averaged": [
+   "900 META LOOP",
+   "1 NCB META LOOP",
+   "1 GH1 META LOOP",
+   "1 SUB META LOOP",
+   "1 STRM1 META LOOP (storm shelter)",
+   "1 STRM2 META LOOP (storm shelter)"
+  ],
+  "address_authority": "SUMNER911",
+  "zip_city": "37066 GALLATIN",
+  "geodate": "GTN1-GTN4 2022-04-01; GTN5 2024-09-03",
+  "parcel_layer": "City of Gallatin Features/City_Parcels/FeatureServer/0, Owner_Name_2 'C/O WOOLHAWK LLC ATTN: TAX' (7 features, mailing address 1601 Willow Rd, Menlo Park, CA)",
+  "parcels": "111 001.00 000 (1432 Gateway Drive, lot 1, 513.1 ac, IDB; and lot 3, 10.0 ac), 111 002.00 000 (lot 8, 51.1 ac), 111 024.00 000 (lot 7, 117.2 ac), 112 013.02 000 (lots 4, 5 and 6, 7.8, 9.3 and 53.4 ac), all Gallatin Industrial Center Ph 4"
+ },
+ "facts": {
+  "gtn_points_wgs84_as_returned": {
+   "GTN1": [
+    -86.370352,
+    36.411828
+   ],
+   "GTN2": [
+    -86.3689631,
+    36.4116153
+   ],
+   "GTN3": [
+    -86.3667784,
+    36.4113901
+   ],
+   "GTN4": [
+    -86.3652418,
+    36.4112452
+   ],
+   "GTN5": [
+    -86.3667045,
+    36.4063851
+   ]
+  },
+  "mean_wgs84_as_returned": [
+   -86.367608,
+   36.4104928
+  ],
+  "mean_state_plane_transformed": [
+   -86.367603,
+   36.4104859
+  ],
+  "farthest_gtn_point_from_mean_m": 463.0,
+  "all_gtn_points_inside_woolhawk_parcel_union": true,
+  "woolhawk_parcel_acres_attribute_sum": 761.9,
+  "woolhawk_parcel_union_planar_area_acres": 762.1,
+  "woolhawk_parcel_union_parts": 4,
+  "woolhawk_parcel_union_centroid": [
+   -86.3737058,
+   36.4067976
+  ],
+  "previous_point_lon_lat": [
+   -86.3716,
+   36.4085
+  ],
+  "previous_point_outside_parcel_union_by_ft": 105.2,
+  "displacement_haversine_m": 420.4
+ }
+}

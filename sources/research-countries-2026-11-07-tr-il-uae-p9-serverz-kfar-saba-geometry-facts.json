@@ -1,0 +1,113 @@
+{
+ "format": "datacenter-atlas-geometry-facts-v1",
+ "fragment": "tr-il-uae-p9",
+ "subject": "SERVERZ underground data centre, Zim Urban (Zim Center) complex, Kfar Saba KS/50 employment zone, Israel",
+ "computed_at": "2026-11-07",
+ "capture_files": [
+  "local_data/country-research-tr-il-uae-p9/xplan-405-0657783-plots.json",
+  "local_data/country-research-tr-il-uae-p9/xplan-405-0657783-plan.json"
+ ],
+ "capture_sha256": {
+  "xplan-405-0657783-plots.json": "9ade29871b9c46c4f76911a2d468095d48f9c2eacbcd984053720516f577e7e3",
+  "xplan-405-0657783-plan.json": "e51492457c8f8978066f198165681a90fb94419b3601186c58d162272394388d"
+ },
+ "source_service": "Israel Planning Administration Xplan ArcGIS REST MapServer (PlanningPublic/Xplan): layer 4 land-use plots and layer 1 plan boundaries (blue lines), queried by pl_number 405-0657783",
+ "plan": {
+  "pl_number": "405-0657783",
+  "pl_name": "כס/50/1/ד - צים סנטר - מרכז מסחר תעסוקה ולוגיסטיקה",
+  "pl_name_translation": "KS/50/1/D - Zim Center - commerce, employment and logistics centre",
+  "jurisdiction": "Kfar Saba",
+  "station_desc": "אישור (approved)",
+  "approval_date_pl_date_8_utc": "2022-02-16",
+  "pl_area_dunam": 45.47,
+  "objectives_summary": "Establish a commerce, logistics and employment centre; merge plots 60-62, 71 and 72 of plan KS/1/50/A into a new unified plot 200 split into two cells; add building rights and instructions in cell 200A; add employment and further uses (text truncated in the service attribute).",
+  "computed_area_m2": 45470.5,
+  "vertex_count": 18,
+  "centroid_epsg2039": [
+   195780.01,
+   676958.6
+  ],
+  "centroid_wgs84_lonlat": [
+   34.9533753,
+   32.1858833
+  ],
+  "max_vertex_distance_from_centroid_m": 150.4
+ },
+ "selected_plot": {
+  "num": "200A",
+  "mavat_name": "מסחר ותעסוקה",
+  "mavat_name_translation": "commerce and employment",
+  "mavat_code": 1502,
+  "station_desc": "אישור",
+  "shape_area_attribute_m2": 23663.57,
+  "computed_area_m2_epsg2039": 23663.6,
+  "ring_count": 1,
+  "vertex_count": 12,
+  "first_vertex_epsg2039": [
+   195785.93790000025,
+   676847.3943000007
+  ],
+  "bbox_extent_m": [
+   164.1,
+   221.9
+  ],
+  "centroid_epsg2039": [
+   195723.01,
+   676946.21
+  ],
+  "centroid_inside_plot": true,
+  "centroid_distance_to_boundary_m": 60.8,
+  "max_vertex_distance_from_centroid_m": 117.2,
+  "plot_inside_plan_boundary": true
+ },
+ "other_plot": {
+  "num": "200B",
+  "mavat_name": "שטח פרטי פתוח",
+  "mavat_name_translation": "private open space",
+  "computed_area_m2_epsg2039": 21806.9,
+  "centroid_wgs84_lonlat": [
+   34.9540308,
+   32.1860058
+  ],
+  "note": "Private open space cell of the same plan; not selected because the plan assigns the buildable commerce and employment rights to cell 200A."
+ },
+ "geometry": {
+  "type": "Point",
+  "coordinates": [
+   34.9527712,
+   32.1857704
+  ]
+ },
+ "method": "Planar area centroid of the native plot 200A ring computed with shapely 2.1.1 in EPSG:2039, transformed once to WGS 84 with pyproj 3.7.1 (PROJ 9.5.1) and rounded to 7 decimals; no vertex dropped, reordered or snapped.",
+ "transformation": {
+  "source_crs": "EPSG:2039 Israel 1993 / Israeli TM Grid, as declared by the response spatialReference (wkid and latestWkid 2039)",
+  "target_crs": "EPSG:4326 WGS 84, longitude/latitude order",
+  "operation": "Inverse of Israeli TM + Israel 1993 to WGS 84 (2) + axis order change (2D); first operation of pyproj TransformerGroup(2039, 4326, always_xy=True, allow_ballpark=False), identical to the default Transformer result",
+  "operation_accuracy_metres": 0.5,
+  "accuracy_caveat": "The 0.5 m figure is the datum-transformation accuracy, not the positional accuracy of the planning plot."
+ },
+ "checks": [
+  {
+   "label": "Plan 405-0657783 boundary (blue line) centroid",
+   "coordinates": [
+    34.9533753,
+    32.1858833
+   ],
+   "distance_to_selected_point_m": 58.3
+  },
+  {
+   "label": "Plot 200B (private open space) centroid",
+   "coordinates": [
+    34.9540308,
+    32.1860058
+   ],
+   "distance_to_selected_point_m": 121.4
+  },
+  {
+   "label": "Qualitative imagery check (Esri World Imagery tile z17/53147/78261, captured 7 November 2026; nothing copied)",
+   "result": "The plot 200A ring spans pixel x 144.9-307.3 and y 47.3-267.6 of the tile and the centroid falls at pixel [234.4, 161.4], on a single very large flat-roofed building with extensive rooftop plant and solar arrays that fills the eastern part of the tile, beside a roundabout; imagery date and accuracy unknown."
+  }
+ ],
+ "neighbourhood_plan_screen": "An Xplan layer 1 envelope query of about 600 by 600 m around the plot (EPSG:2039 195480-196080, 676660-677260) returns 22 plans; 405-0657783 is the only site-specific commercial, employment or logistics plan; the others are city-wide or regional outline, conservation, roof, pool, basement and building-renewal plans, national transport, electrification, metro and sewage plans, the Kfar Saba East bus-terminal plan and the eastern-cemetery regularisation plan. A Kfar Saba plan-list query returns 146 plans, and 405-0657783 is the only one whose name contains Zim (צים).",
+ "plot_semantics": "A land-use designation cell of an approved statutory plan, not a registered cadastral parcel, building footprint or the underground data-hall outline. The data centre is reported as underground (in the basement) of the complex on this plot; its exact extent beneath the plot is not published."
+}

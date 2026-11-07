@@ -1,0 +1,158 @@
+{
+ "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+ "candidate": "DC BLOX Greenville data center (GVL), 33 Global Drive, Global Business Park, Greenville, Greenville County, South Carolina (existing Tier III colocation facility; ribbon cutting 12 April 2022)",
+ "prepared_at": "2026-11-07",
+ "decision": "Selected the centroid of City of Greenville tax parcel M011010100337 (situs 33 GLOBAL, owner of record DC BLOX INC), as published in the City of Greenville AddressSearch/Property map service, as the campus locator.",
+ "selected_point_crs84": [
+  -82.3459208,
+  34.8065534
+ ],
+ "selected_point_role": "Area centroid of the single-ring parcel polygon of City of Greenville tax parcel M011010100337 (8.38 geodesic acres), owned of record by DC BLOX INC. It locates the DC BLOX-owned property at 33 Global Drive, not a building footprint or surveyed boundary.",
+ "authority_class": "official_source",
+ "scope_class": "official_tax_parcel_centroid",
+ "use_scope": "campus_locator",
+ "source": {
+  "file": "local_data/country-research-us-southeast-p10/citygis-parcel-M011010100337-wgs84.json",
+  "sha256": "4283971393258897da8a53e3e434c7b146d03fbabd4746f6b5a891e467cc504e",
+  "url": "https://citygis.greenvillesc.gov/arcgis/rest/services/AddressSearch/Property/MapServer/3/query?where=PIN%3D%27M011010100337%27&outFields=PIN,GIS_ACRES,STRNUM,LOCATE,OWNAM1,LANDUSE,DESCR,TACRES,SQFEET,JURIS,DEEDTE&returnGeometry=true&outSR=4326&f=json",
+  "retrieved_at": "2026-11-07T01:00:29.173Z",
+  "layer": "City of Greenville, SC AddressSearch/Property MapServer layer 3 'Parcels with Ownership'",
+  "selected_properties": {
+   "PIN": "M011010100337",
+   "STRNUM": "33",
+   "LOCATE": "GLOBAL",
+   "OWNAM1": "DC BLOX INC (organisation)",
+   "LANDUSE": "960",
+   "DESCR": "A C & PT D",
+   "GIS_ACRES": 8.38,
+   "TACRES": 8.39,
+   "DEEDTE": 20210322,
+   "JURIS": "1"
+  }
+ },
+ "native_crosscheck": {
+  "file": "local_data/country-research-us-southeast-p10/citygis-parcel-M011010100337-native.json",
+  "sha256": "f73c82372d7314dccb79ce0997207410ba08878622d3a93fdb6f3bca62fb6606",
+  "url": "https://citygis.greenvillesc.gov/arcgis/rest/services/AddressSearch/Property/MapServer/3/query?where=PIN%3D%27M011010100337%27&outFields=PIN,GIS_ACRES&returnGeometry=true&f=json",
+  "retrieved_at": "2026-11-07T01:00:30.182Z",
+  "note": "Parcel polygon M011010100337 retrieved twice from the same City of Greenville layer: once reprojected by the server to WGS 84 (outSR=4326) and once in the native CRS (WKID 3361, NAD83(HARN) / South Carolina, US feet; the service notes that its data are WKID 6570 published as the prior WKID 3361).",
+  "native_centroid_transformed_crs84": [
+   -82.3459207,
+   34.8065533
+  ],
+  "distance_m": 0.01,
+  "transform": "pyproj 3.7.1 Transformer EPSG:3361 -> EPSG:4326 (always_xy)"
+ },
+ "computed": {
+  "union_parts": 1,
+  "polygon_valid": true,
+  "geodesic_acres": 8.38,
+  "centroid_inside_parcel": true,
+  "bounds_crs84": [
+   -82.347042,
+   34.805306,
+   -82.344772,
+   34.807689
+  ],
+  "extent_m_ew_ns": [
+   208,
+   264
+  ],
+  "method": "shapely 2.1.1 centroid of the WGS 84 ring; pyproj 3.7.1 Geod(WGS84) area and distances"
+ },
+ "geometry_checks": {
+  "city_address_point_33_global_dr": {
+   "file": "local_data/country-research-us-southeast-p10/citygis-address-points-global-dr-wgs84.json",
+   "sha256": "3c015b20fc10a793735cf3925c919a0331660a1e8cb0557a3f0602428387ac57",
+   "url": "https://citygis.greenvillesc.gov/arcgis/rest/services/AddressSearch/Property/MapServer/0/query?where=STREETNAME%20LIKE%20%27GLOBAL%25%27&outFields=OBJECTID,HOUSENUM,UNIT,PREFIX,STREETNAME,TYPE,STATUS,FEAT_CODE,FULLADDRESS,ZIPCODE,JURISDICTION,LASTUPDATE,BUILDING&returnGeometry=true&outSR=4326&f=json",
+   "retrieved_at": "2026-11-07T01:00:37.618Z",
+   "record": {
+    "OBJECTID": 37463,
+    "FULLADDRESS": "33 GLOBAL DR",
+    "ZIPCODE": "29607",
+    "STATUS": "ACTIVE",
+    "FEAT_CODE": "COMM/INDUSTRIAL",
+    "JURISDICTION": "CITY",
+    "LASTUPDATE": "2022-05-12"
+   },
+   "coordinates_crs84": [
+    -82.34557928088302,
+    34.80690669804671
+   ],
+   "inside_selected_parcel": true,
+   "geodesic_distance_from_selected_point_m": 50.1
+  },
+  "city_building_footprint": {
+   "file": "local_data/country-research-us-southeast-p10/citygis-buildings-near-33-global-dr-wgs84.json",
+   "sha256": "17ec81a861295824285ffe65c7723bbe184d5e7365c77cd41892b96326a0790c",
+   "url": "https://citygis.greenvillesc.gov/arcgis/rest/services/AddressSearch/Property/MapServer/4/query?geometry=-82.34557928088302%2C34.80690669804671&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&distance=150&units=esriSRUnit_Meter&outFields=OBJECTID,FEATCODE,FAC_CODE,FAC_LABEL,HEIGHT,LASTUPDATE,FACILITYID,Shape_Area&returnGeometry=true&outSR=4326&f=json",
+   "retrieved_at": "2026-11-07T01:00:52.558Z",
+   "record": {
+    "OBJECTID": 31126,
+    "FACILITYID": "416566",
+    "LASTUPDATE": "2022-05-12"
+   },
+   "share_inside_selected_parcel": 1.0,
+   "geodesic_area_m2": 2506,
+   "approx_sq_ft": 26980,
+   "note": "The two other footprints returned within 150 m of the address point lie wholly outside the parcel."
+  },
+  "global_drive_parcel_list": {
+   "file": "local_data/country-research-us-southeast-p10/citygis-global-parcels-attrs-2.json",
+   "sha256": "ecf33eb47dca8cdbf9b73cd0cb14ee3bcc145c23887dac3f3617ad1b4bda1664",
+   "url": "https://citygis.greenvillesc.gov/arcgis/rest/services/AddressSearch/Property/MapServer/3/query?where=LOCATE%20LIKE%20%27%25GLOBAL%25%27&outFields=PIN,GIS_ACRES,STRNUM,LOCATE,OWNAM1,LANDUSE,DESCR,TACRES,SQFEET,JURIS,DEEDTE&returnGeometry=false&f=json",
+   "retrieved_at": "2026-11-07T01:00:19.458Z",
+   "reading": "Eight City parcels carry LOCATE GLOBAL; only M011010100337 (33) is owned by DC BLOX INC. 78 GLOBAL (M011010100344) is owned of record by DARTPOINTS OPRATING COMPANY LL (sic) and is a different property."
+  },
+  "operator_coordinate": {
+   "file": "local_data/country-research-us-southeast-p10/dcblox-greenville-20261107.html",
+   "sha256": "bbe9251a768898d97dfb9d50040b800cf929d3f63c5fa8cab3b2efbe6db83da7",
+   "url": "https://www.dcblox.com/data-centers/greenville/",
+   "retrieved_at": "2026-11-07T00:56:06.867Z",
+   "coordinates_crs84": [
+    -82.34480719999999,
+    34.8069902
+   ],
+   "inside_selected_parcel": false,
+   "geodesic_distance_from_selected_point_m": 112.8,
+   "parcel_containing_it": {
+    "file": "local_data/country-research-us-southeast-p10/citygis-parcel-at-dcblox-gvl-operator-point.json",
+    "sha256": "ff4f7608cb2467d9281fef4d9158e372442bb695be29eb49e178a69c27cc7f9c",
+    "url": "https://citygis.greenvillesc.gov/arcgis/rest/services/AddressSearch/Property/MapServer/3/query?geometry=-82.3448072%2C34.8069902&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=PIN,GIS_ACRES,STRNUM,LOCATE,OWNAM1,LANDUSE,DESCR,SUBDIV,TACRES,SQFEET,JURIS,DEEDTE&returnGeometry=false&f=json",
+    "retrieved_at": "2026-11-07T01:00:11.127Z",
+    "reading": "M011010100354 (no situs address, 9.86 acres, organisation owner FAIR FOREST OF GREENVILLE LLC, deed 2003), the neighbouring parcel"
+   },
+   "note": "DC BLOX publishes the pair in schema.org GeoCoordinates (identical in the Internet Archive copy of 14 September 2026). It falls on the neighbouring parcel, so it is not used."
+  },
+  "census_address_geocode": {
+   "file": "local_data/country-research-us-southeast-p10/census-geocode-33-global-dr-greenville.json",
+   "sha256": "126013b9d42baa0818ffe50c5ceb7a9ed0bf3516e5b10bce5e26413a31f7f31d",
+   "url": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=33%20Global%20Drive%2C%20Greenville%2C%20SC%2029607&benchmark=Public_AR_Current&format=json",
+   "retrieved_at": "2026-11-07T00:57:28.095Z",
+   "matched_address": "33 GLOBAL DR, GREENVILLE, SC, 29607",
+   "coordinates_crs84": [
+    -82.342675868224,
+    34.804547565822
+   ],
+   "service": "address-range interpolation on TIGER line 633720662, left side, range 1 to 199",
+   "geodesic_distance_from_selected_point_m": 371.0,
+   "block_file": {
+    "file": "local_data/country-research-us-southeast-p10/census-geo-33-global-dr-greenville-blocks.json",
+    "sha256": "4ff0b2f9180518960f67b945f07edd1bcc80a30743f98bd3455008979fc9e11c",
+    "url": "https://geocoding.geo.census.gov/geocoder/geographies/onelineaddress?address=33%20Global%20Drive%2C%20Greenville%2C%20SC%2029607&benchmark=Public_AR_Current&vintage=Current_Current&layers=2020%20Census%20Blocks,Incorporated%20Places,Counties&format=json",
+    "retrieved_at": "2026-11-07T00:57:58.101Z"
+   },
+   "block_geoid": "450450029011001",
+   "place": "Greenville city (4530850)",
+   "county": "Greenville County (45045)"
+  }
+ },
+ "interpretation": "The City of Greenville parcel layer gives 33 GLOBAL as parcel M011010100337, owned of record by DC BLOX INC since a deed recorded on 22 March 2021. The city's active address point for 33 GLOBAL DR and a city building footprint of about 27,000 sq ft (both last edited on 12 May 2022, a month after the facility's 12 April 2022 ribbon cutting) lie inside it. The parcel centroid therefore locates DC BLOX's Greenville property. DC BLOX's own schema.org pin lies 113 m to the east-north-east on the neighbouring parcel and the Census address-range point 371 m away; neither is used.",
+ "geocoder_used": true,
+ "geocoder_role": "U.S. Census Bureau Geocoder used only as a cross-check of street, place and county; its interpolated point is not the selected locator.",
+ "alternatives_rejected": [
+  "Greenville County GIS (www.gcgis.org, gcgis.org): robots.txt requests failed at the network level, so no request was made.",
+  "Third-party ArcGIS Online copies of Greenville County parcels (captured agol-search-greenville-parcels.json) were not used; the City of Greenville's own service (owner account of the City GIS organisation) was used instead.",
+  "No OpenStreetMap, Nominatim, map-app, city centroid or county centroid was used."
+ ]
+}

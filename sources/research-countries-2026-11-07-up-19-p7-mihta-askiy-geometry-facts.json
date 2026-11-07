@@ -1,0 +1,83 @@
+{
+ "candidate_id": "up-19-p7-mihta-askiy",
+ "decision": "Selected the planar centroid of the 'DataCentreSiteBoundary' polygon (label DML170029) from the proponent geospatial data that the Impact Assessment Agency of Canada publishes for the Mihta Askiy Data Center Project (registry reference 90036) as the campus locator, replacing the imported Alberta Major Projects point, which the inventory itself says is not exact. The centroid is computed in the layer's projected CRS and transformed to WGS84, so it is recorded as a compiled reference with a coordinate_transform derivation.",
+ "geometry": {
+  "type": "Point",
+  "coordinates": [
+   -116.7483511,
+   56.3764352
+  ]
+ },
+ "authority_class": "compiled_reference",
+ "scope_class": "proponent_data_centre_site_boundary_centroid_from_federal_impact_assessment_registry",
+ "use_scope": "campus_locator",
+ "source_files": [
+  {
+   "file": "local_data/country-research-up-19-p7/iaac-90036-ipd-geospatial.zip",
+   "sha256": "70d394cc912dd3015ee4981a45c97b4639a4757488de2f9923343647ad7e62ab",
+   "url": "https://iaac-aeic.gc.ca/050/documents/p90036/164346E.zip",
+   "retrieved_at": "2026-11-07T00:12:46.914Z"
+  },
+  {
+   "file": "local_data/country-research-up-19-p7/iaac-90036-geospatial-doc-page",
+   "sha256": "867928e97b7ba41be591b28c61fc9b7d0d539127a71b20113dc8122542063d76",
+   "url": "https://iaac-aeic.gc.ca/050/evaluations/document/164355",
+   "retrieved_at": "2026-11-07T00:12:20.072Z"
+  },
+  {
+   "file": "local_data/country-research-up-19-p7/iaac-90036-project-page",
+   "sha256": "5d2b09f2bd83fe84713f026ed635a9e7addd4899125350b83b7a3fe92de5da07",
+   "url": "https://iaac-aeic.gc.ca/050/evaluations/proj/90036",
+   "retrieved_at": "2026-11-07T00:11:55.171Z"
+  }
+ ],
+ "layer": "MihtaAskiy_ProjectData_shapefile/DataCentreSiteBoundary.shp inside the registry ZIP 164346E.zip (one polygon). The .prj is NAD_1983_10TM_AEP_Resource (Transverse Mercator, central meridian -115, scale 0.9992, false easting 0, false northing 0; the parameters of EPSG:3401 NAD83 / Alberta 10-TM (Resource)). Read with a stdlib shapefile parser; centroid and area computed in that projected CRS with shapely 2.1.1 and the centroid transformed to EPSG:4326 with pyproj 3.7.1 from the .prj WKT.",
+ "selected_properties": {
+  "registry_reference": "90036",
+  "project": "Mihta Askiy Data Center Project",
+  "proponent": "Cree Ative Datacenter Corp GP",
+  "layer": "DataCentreSiteBoundary",
+  "Label": "DML170029",
+  "Shape_Area_attribute_sqm": 199457.51608,
+  "Shape_Leng_attribute_m": 1850.7069948,
+  "registry_document": "Supporting geospatial data - Initial Project Description (document 164355; the document page gives document date and dcterms.issued 2025-12-12 and says the data were provided on 12 December 2025; the registry listing shows 2025-12-11)",
+  "layer_map_page": "Data Center Site Boundary, page 64 of the Initial Project Description"
+ },
+ "facts": {
+  "polygon_vertices": 27,
+  "planar_area_sqm_10tm": 199457.5,
+  "geodesic_area_sqm_grs80": 199719.9,
+  "centroid_10tm_x_y": [
+   -107928.91,
+   6246848.27
+  ],
+  "centroid_inside_polygon": true,
+  "distance_centroid_to_boundary_m": 170.8,
+  "farthest_vertex_from_centroid_m": 338.7,
+  "bounds_10tm_m": [
+   -108225.6,
+   6246669.2,
+   -107631.7,
+   6247027.3
+  ],
+  "bounds_wgs84_lon_lat": [
+   [
+    -116.753088,
+    56.374891
+   ],
+   [
+    -116.743606,
+    56.377978
+   ]
+  ],
+  "crs_check": "The ProjectLocation point (NAD83 UTM 11N E 515731.149, N 6247998.574; its own attributes give latitude 56.3763666 and longitude -116.7452869) and the centroid of PowerPlantSiteBoundary computed from its 10-TM (Resource) .prj both transform to -116.7452869, 56.3763666, which confirms the 10-TM (Resource) reading of the boundary layers. The submission checklist lists all layers as UTM 11N, but the boundary layers are stored in 10-TM (Resource) as their .prj files state.",
+  "power_plant_site_boundary_area_sqm": 29151.5,
+  "project_footprint_components": "All 19 PowerPlantSiteDetails polygons lie inside the data centre site boundary: the planned 'Mihta Askiy Data Centre' footprint (24,960 sq m, centroid -116.750149, 56.376742, 116 m west of the locator, which lies outside the footprint) and a 3,500 sq m stormwater pond in the west part, and the power plant components (substation, switchgear buildings, three 240 kV transformers, riser structures, two 'Gas Turbine Building (Partially Built)', heat recovery steam generators and pads, air-cooled condenser, steam turbine generator and operations building) in the east part.",
+  "planned_data_centre_footprint_centroid_distance_m": 116.2,
+  "previous_point_lon_lat": [
+   -116.7479,
+   56.3814
+  ],
+  "displacement_haversine_m": 552.8
+ }
+}

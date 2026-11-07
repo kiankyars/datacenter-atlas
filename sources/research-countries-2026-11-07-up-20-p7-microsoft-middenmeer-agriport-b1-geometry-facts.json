@@ -1,0 +1,80 @@
+{
+ "format": "datacenter-atlas-geometry-facts-v1",
+ "fragment": "up-20-p7",
+ "prepared_on": "2026-11-07",
+ "method_note": "Polygons are read from the IMRO 2012 GML of zoning plan NL.IMRO.1911.BPAgriportB1-va02 (Gemeente Hollands Kroon, EPSG:28992). gml:Surface/PolygonPatch rings are assembled from LineStringSegment and Arc segments; each Arc is densified to 32 segments on the circle through its three control points. The 'specifieke vorm van bedrijventerrein - 1' function designation is subtracted from the Bedrijventerrein land-use polygon with shapely 2.1.1, the planar area centroid is taken in EPSG:28992, and it is transformed to EPSG:4326 with pyproj 3.7.1 (default transformation) and rounded to 7 decimals. The BAG verblijfsobject point for Westlanderweg 50 is used as published (WFS, EPSG:4326) only to check which part of the plan holds the existing AMS-E campus.",
+ "source_files": [
+  {
+   "file": "local_data/country-research-up-20-p7/rp-NL.IMRO.1911.BPAgriportB1-va02.gml",
+   "sha256": "2b788f6c99f46bd13145c8fd77e4bbd1bd2e9611c5dabaea0c7b1bd4d2481986",
+   "url": "https://www.ruimtelijkeplannen.nl/documents/NL.IMRO.1911.BPAgriportB1-va02/NL.IMRO.1911.BPAgriportB1-va02.gml",
+   "retrieved_at": "2026-11-07T00:49:29.438Z"
+  },
+  {
+   "file": "local_data/country-research-up-20-p7/pdok-bag-wfs-vbo-agriport-bbox.json",
+   "sha256": "87641a6397c46b50d4f192700ab7e9e9b49a10e1d3e9c7033c9328f682b1b674",
+   "url": "https://service.pdok.nl/lv/bag/wfs/v2_0?service=WFS&version=2.0.0&request=GetFeature&typeNames=bag:verblijfsobject&bbox=52.76,4.99,52.80,5.06,urn:ogc:def:crs:EPSG::4326&outputFormat=application/json&srsName=EPSG:4326&count=1000",
+   "retrieved_at": "2026-11-07T00:44:17.159Z"
+  }
+ ],
+ "candidates": [
+  {
+   "candidate_id": "up-20-p7-microsoft-middenmeer-campus-west",
+   "decision": "Selected the planar area centroid of the part of the Bedrijventerrein (business park) land-use zone of the adopted zoning plan 'Uitbreiding Agriport A7, Deelgebied B1' that lies outside the 'specifieke vorm van bedrijventerrein - 1' designation (the designation that holds Microsoft's existing AMS-E campus at Westlanderweg 50) as the campus locator for Microsoft's Campus West expansion on Deelgebied B1, replacing the OpenStreetMap point.",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     5.0258719,
+     52.7832514
+    ]
+   },
+   "authority_class": "compiled_reference",
+   "scope_class": "official_zoning_plan_business_zone_area_centroid_of_developer_named_plot",
+   "use_scope": "campus_locator",
+   "layer": "IMRO 2012 plan NL.IMRO.1911.BPAgriportB1-va02, 'Uitbreiding Agriport A7, Deelgebied B1' (locatieNaam 'Cultuurweg Middenmeer'), bronbeheerder Gemeente Hollands Kroon, vastgesteld 2022-09-15 (besluitnummer 2017/1383), EPSG:28992",
+   "facts": {
+    "plan_area_ha": 206.05,
+    "enkelbestemming_bedrijventerrein_ha": 74.186,
+    "functieaanduiding_sbt1_ha": 18.317,
+    "sbt1_inside_bedrijventerrein": true,
+    "bedrijventerrein_minus_sbt1": {
+     "area_ha": 55.87,
+     "geometry_type": "Polygon",
+     "parts": 1,
+     "extent_m": [
+      994,
+      1135
+     ]
+    },
+    "centroid_epsg28992": [
+     130621.25,
+     532945.64
+    ],
+    "centroid_wgs84_lon_lat": [
+     5.0258719,
+     52.7832514
+    ],
+    "centroid_inside_polygon": true,
+    "centroid_distance_to_boundary_m": 285.2,
+    "max_vertex_distance_m": 571.5,
+    "ams_e_bag_point_westlanderweg_50_lon_lat": [
+     5.032319942925666,
+     52.7768791152427
+    ],
+    "ams_e_bag_point_inside_sbt1": true,
+    "ams_e_bag_point_to_centroid_m": 830.8,
+    "previous_point_lon_lat": [
+     5.025355,
+     52.78304
+    ],
+    "previous_point_inside_bedrijventerrein": true,
+    "previous_point_inside_sbt1": false,
+    "displacement_haversine_m": 42.0,
+    "developer_plot_size": "Microsoft's notitie reikwijdte en detailniveau (Ramboll, 23 December 2025) gives Deelgebied B1 as about 53 ha west of the A7 on Cultuurweg, directly north of the existing AMS-E campus; the polygon used covers 55.87 ha",
+    "other_plan_layers_not_used": "Maatvoering maximum bouwhoogte (25.95 ha, inside Bedrijventerrein), Gebiedsaanduiding wetgevingzone - wijzigingsgebied 2 (6.30 ha, inside Bedrijventerrein), Leiding - Hoogspanning and Waarde - Archeologie",
+    "nearest_other_atlas_record": "none within 8 km in sites.csv"
+   },
+   "exclusions": "The OpenStreetMap way behind the previous point was not used. The PDOK Locatieserver was not queried (robots.txt disallows it). No map viewer, geocoder or map link was used."
+  }
+ ]
+}

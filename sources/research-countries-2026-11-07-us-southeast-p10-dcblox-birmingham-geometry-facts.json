@@ -1,0 +1,73 @@
+{
+ "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+ "candidate": "DC BLOX Birmingham data center campus (BHM), 433 6th Street South, Birmingham, Jefferson County, Alabama (existing Tier III colocation facility opened in July 2019)",
+ "prepared_at": "2026-11-07",
+ "selected_point_crs84": [
+  -86.821064,
+  33.499805
+ ],
+ "selected_point_role": "facility coordinate published by DC BLOX for its Birmingham data center campus in the schema.org GeoCoordinates of the Birmingham location page (latitude 33.499805, longitude -86.821064); the same pair appears in the Internet Archive copy of 16 September 2026. It is the operator's own location pin for 433 6th Street South, not a building footprint, a parcel or a surveyed position.",
+ "authority_class": "official_source",
+ "scope_class": "first_party_facility_reference_point",
+ "use_scope": "campus_locator",
+ "source": {
+  "file": "local_data/country-research-us-southeast-p10/dcblox-birmingham-20261107.html",
+  "sha256": "a3de59ec743ef1d54b8ac723e00fe9aa6c16385abd263fc47f32748f6b93c5c7",
+  "url": "https://www.dcblox.com/data-centers/birmingham/",
+  "retrieved_at": "2026-11-07T00:56:05.398Z",
+  "document": "DC BLOX Birmingham location page (version dateModified 2026-10-20T17:32:23Z)",
+  "reading": "JSON-LD LocalBusiness node: \"geo\":{\"@type\":\"GeoCoordinates\",\"latitude\":\"33.499805\",\"longitude\":\"-86.821064\"}; address streetAddress \"433 6th Street South\", addressLocality Birmingham, postalCode 35233; page text \"Location 433 6th Street South Birmingham, Alabama 35233\""
+ },
+ "archived_copy_check": {
+  "file": "local_data/country-research-us-southeast-p10/ia-dcblox-birmingham-20260916.html",
+  "sha256": "797f730e996acd95c30d3327ffda5eb741f05d1ad91fd7d59f99d4e9dc7e5d7c",
+  "url": "https://web.archive.org/web/20260916183553id_/https://www.dcblox.com/data-centers/birmingham/",
+  "retrieved_at": "2026-11-07T00:56:50.690Z",
+  "reading": "same GeoCoordinates pair (33.499805, -86.821064) and address in the version with dateModified 2026-09-16T12:44:54Z"
+ },
+ "geometry_checks": {
+  "census_address_geocode": {
+   "file": "local_data/country-research-us-southeast-p10/census-geocode-433-6th-st-s-birmingham.json",
+   "sha256": "01a774d7438b9046df5631fa451dca9f9b675113e75efebba3653775ba21b383",
+   "url": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=433%206th%20Street%20South%2C%20Birmingham%2C%20AL%2035233&benchmark=Public_AR_Current&format=json",
+   "retrieved_at": "2026-11-07T00:55:12.952Z",
+   "service": "U.S. Census Bureau Geocoder, benchmark Public_AR_Current (address-range interpolation on TIGER line 81574943, left side, range 101 to 499)",
+   "matched_address": "433 6TH ST S, BIRMINGHAM, AL, 35233",
+   "coordinates_crs84": [
+    -86.822286462949,
+    33.501453809792
+   ],
+   "geodesic_distance_from_selected_point_m": 215.3,
+   "azimuth_from_selected_point_deg": 328.2
+  },
+  "census_block_of_address_geocode": {
+   "file": "local_data/country-research-us-southeast-p10/census-geo-433-6th-st-s-birmingham-blocks.json",
+   "sha256": "1605f8f0a5ed07a5a1fa14cf44f082244a33d79e8d954d6667f942cd4d854e5d",
+   "url": "https://geocoding.geo.census.gov/geocoder/geographies/onelineaddress?address=433%206th%20Street%20South%2C%20Birmingham%2C%20AL%2035233&benchmark=Public_AR_Current&vintage=Current_Current&layers=2020%20Census%20Blocks,Incorporated%20Places,Counties&format=json",
+   "retrieved_at": "2026-11-07T00:57:57.113Z",
+   "block_geoid": "010730042001001",
+   "block_arealand_m2": 429582,
+   "county": "Jefferson County (01073)",
+   "place": "Birmingham city (0107000)"
+  },
+  "census_block_of_selected_point": {
+   "file": "local_data/country-research-us-southeast-p10/census-block-dcblox-bhm-operator-point-2020.json",
+   "sha256": "e3e4cb53d37b401cb8d5f693fdc3fde59a62835e1bb58a29428a0759c0bb0ad4",
+   "url": "https://geocoding.geo.census.gov/geocoder/geographies/coordinates?x=-86.821064&y=33.499805&benchmark=Public_AR_Current&vintage=Current_Current&layers=2020%20Census%20Blocks,Incorporated%20Places,Counties&format=json",
+   "retrieved_at": "2026-11-07T00:58:00.047Z",
+   "block_geoid": "010730042001001",
+   "same_block_as_address_geocode": true
+  },
+  "verification": "pyproj 3.7.1 Geod(WGS84).inv between the selected point and the Census address geocode; block membership from the Census Geocoder geographies endpoints (layer 2020 Census Blocks) for both the address and the selected coordinate"
+ },
+ "interpretation": "The operator's pin and the Census Bureau's interpolated position for 433 6th Street South fall in the same 2020 census block (010730042001001, 43.0 ha of land) in Birmingham city, Jefferson County, 215 m apart. The Census point is an interpolation along a TIGER segment whose address range runs from 101 to 499 and does not mark a building, while the operator pin is DC BLOX's own published location for the campus. The selected point is therefore the operator's campus reference point, cross-checked to the correct street address, block, place and county; its position within the 30.53-acre campus that DC BLOX describes is not independently surveyed.",
+ "datum_note": "The operator publishes no datum; the Census Geocoder returns NAD83 coordinates, which differ from WGS 84 by about 1 m here.",
+ "geocoder_used": true,
+ "geocoder_role": "U.S. Census Bureau Geocoder used only as an official cross-check of the published street address; its interpolated point is not the selected locator.",
+ "alternatives_rejected": [
+  "Jefferson County, Alabama parcel services (jccgis.jccal.org): robots.txt returns HTTP 403, treated as a disallow; gis.jccal.org did not respond. No request beyond robots.txt was made.",
+  "City of Birmingham (www.birminghamal.gov): robots.txt disallows ClaudeBot and anthropic-ai, so the city site was not used; gis.birminghamal.gov and maps.birminghamal.gov did not respond.",
+  "An ArcGIS Online item search for Birmingham or Jefferson County parcel and address layers returned only the blocked county services and third-party uploads (captured agol-search-birmingham-parcels.json); none was used.",
+  "No OpenStreetMap, Nominatim, map-app, city centroid or county centroid was used."
+ ]
+}

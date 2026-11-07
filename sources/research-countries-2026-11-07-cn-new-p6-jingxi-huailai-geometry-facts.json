@@ -1,0 +1,51 @@
+{
+ "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+ "researched_at": "2026-11-07T00:00:00+00:00",
+ "fragment": "cn-new-p6",
+ "candidate": "Jingxi Zero-Carbon Intelligent Computing Industrial Base (京西零碳智算产业基地), parcel GY25-159, Qijie village, Shacheng town / Ertaizi village, Tumu town, Huailai County, Zhangjiakou, Hebei: campus locator for the data-centre development",
+ "method": "The selected point is the area centroid of the red-line land-use boundary (用地范围线) of parcel GY25-159 computed from the five boundary-corner coordinates printed on the official design-scheme site plan (京西零碳智算产业基地项目建设工程设计方案总平面图, sheet '彩色总平面图', scale 1:1000), which states its coordinate system as the 2000 national geodetic coordinate system (坐标系：2000国家大地坐标系) and its height datum as the 1985 national height datum. The printed values are Gauss-Kruger grid coordinates with the zone number 39 prefixed to Y (3-degree zone 39, central meridian 117 E). They were converted with pyproj 3.7.1 from EPSG:4527 (CGCS2000 / 3-degree Gauss-Kruger zone 39, with the 39 prefix) to EPSG:4490 (CGCS2000 geographic); CGCS2000 and WGS84 agree to well under a metre at this scale, so no further transformation was applied. The polygon area and centroid were computed with shapely 2.1.1 in the projected grid. An independent Esri World Imagery EPSG:4326 export was used only to check the frame and the parcel's surroundings.",
+ "source_sheet": {
+  "label": "Colour site plan (彩色总平面图) of the Jingxi Zero-Carbon Intelligent Computing Industrial Base design scheme, attached to the Huailai County Spatial Planning Committee Office design-scheme pre-approval publicity of 20 September 2026",
+  "publicity_url": "http://www.huailai.gov.cn/single/79/72041.html",
+  "sheet_url": "http://www.huailai.gov.cn/main/upload/2026-09-20/17898918381922c9581a9a0603dca7701a0bdde00f06414.jpg",
+  "local_capture": "local_data/country-research-cn-new-p6/hl79-72041-img2.jpg",
+  "source_sha256": "e32b97a21fd1384ed894f25c68253d3183b908171e154f87bfc736c7d972a97e",
+  "pixels": [4762, 3367],
+  "printed_header": "宗地编号：GY25-159; 用地面积 82765.15 平方米; 用地性质 工业用地; 比例尺 1:1000; 坐标系：2000国家大地坐标系; 高程基准：1985国家高程基准",
+  "printed_buildings": "1#, 2# and 3# 数据中心楼 (data-centre buildings, planned height 29.85 m), 4# 电力用房 (power building), 5# 门卫室 (gatehouse), A-1# to A-4# buried diesel-tank areas, equipment platforms; total floor area 114,571.33 m2"
+ },
+ "printed_red_line_corners": [
+  {"corner": "north-west (north edge, west end, beside the north entrance)", "printed": "X=4473651.23, Y=39376183.23"},
+  {"corner": "north-east (north edge, east end)", "printed": "X=4473577.74, Y=39376362.44"},
+  {"corner": "east edge, north end (after the corner chamfer)", "printed": "X=4473570.36, Y=39376365.97"},
+  {"corner": "south-east", "printed": "X=4473171.54, Y=39376247.61"},
+  {"corner": "south-west", "printed": "X=4473272.73, Y=39376063.06"}
+ ],
+ "polygon_check": {
+  "computed_area_m2": 82763.73,
+  "stated_area_m2": 82765.15,
+  "difference_m2": 1.42,
+  "side_lengths_m": [193.69, 8.18, 416.01, 210.47, 397.12],
+  "note": "The five printed corners enclose 82,763.73 m2, 1.42 m2 (0.002 percent) less than the stated land area, which confirms the transcription and that the printed values are the red-line corners. Other X/Y labels on the sheet (for example X=4473633.384, Y=39376204.258 near the gatehouse) mark building and gate positions inside the parcel and are not used."
+ },
+ "selected_point": {
+  "label": "Area centroid of the parcel GY25-159 red line",
+  "grid_xy_zone39": [4473416.09, 376215.82],
+  "lon_lat": [115.542215, 40.386052],
+  "vertices_lon_lat": [
+   [115.541786, 40.388164],
+   [115.543910, 40.387529],
+   [115.543953, 40.387464],
+   [115.542637, 40.383856],
+   [115.540444, 40.384739]
+  ]
+ },
+ "frame_check": {
+  "imagery": "Esri World Imagery EPSG:4326 export, request bbox 115.5365,40.3810,115.5480,40.3910 at 1300 x 1500 px (local esri-jingxi.jpg, sha256 4423c3835f34bd4200f429a782cca42c775b8e8b8043cd1cf15a1dfb27caffa0); companion f=json request (local esri-jingxi.extent.json, sha256 418be95d78ae98a8233eefc45c09bf07f5cabfe6c4f054a4803c9c117ab70ab5) returned extent 115.5365-115.548 E, 40.3793654-40.3926346 N. Acquisition date not stated.",
+  "observation": "Drawn on the export, the computed parcel covers open land whose north edge follows the south side of the east-west road, whose west edge follows the east wall of an existing walled compound of long data-centre-type buildings, and which lies north-east of the Beijing-Zhangjiakou high-speed railway. This matches the publicity's location sheet (local hl79-72041-img1.jpg), which outlines the project on vacant land east of existing industrial land with buildings under construction, north of 学苑街 and the Beijing-Zhangjiakou high-speed railway and west of 广通路, and the site plan, which labels the western neighbour 怀来大数据科技产业园项目 (Huailai big-data science and technology industrial park project). The centroid falls inside the parcel on open land.",
+  "manual_check_accuracy": "manual visual comparison on imagery of about 0.8 m per pixel and unstated accuracy"
+ },
+ "scope_and_uncertainty": "The point locates the Jingxi Zero-Carbon Intelligent Computing Industrial Base parcel (the campus of the planned 1#-3# data-centre buildings) by its red-line centroid. It is not a building footprint, entrance or construction extent; the planned buildings are spread over the whole 400 m x 200 m parcel. The printed corners are design-plan coordinates of unstated survey accuracy; the 1.4 m2 area agreement indicates internally consistent values, and the projection change introduces no material error. Horizontal uncertainty is left unquantified.",
+ "nearest_records": "In verified_construction_core/2026-11-07-research-hundredtwentyfifth the nearest Atlas sites are Tencent Huailai Ruibei Cloud Data Center (11.24 km north) and Chindata Hebei Cunrui Base (11.68 km north); nothing lies within 2 km. The neighbouring 怀来大数据科技产业园项目 compound is not an Atlas record, hold or queue entry.",
+ "privacy": "The publicity's telephone number and address for objections are not reproduced; the sheet carries no personal names."
+}

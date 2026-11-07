@@ -1,0 +1,81 @@
+{
+ "candidate_id": "be-lu-dk-p9-varde-park-varde-syd",
+ "decision": "Selected the planar centroid of the boundary of Varde Kommune lokalplan 23.03.L08 'Erhvervsomraade til datacentre' (adopted 31 August 2021) in the national Plandata.dk register as the campus locator for the Varde Park data-centre campus applied for by Varde Park ApS. The developer's project description (8 September 2026) states that most of its plan area south of Roustvej is covered by lokalplan 23.03.L08, and its Figure 3 draws the 23.03.L08 area inside the red application boundary.",
+ "geometry": {
+  "type": "Point",
+  "coordinates": [
+   8.5094032,
+   55.6020089
+  ]
+ },
+ "authority_class": "official_source",
+ "scope_class": "official_local_plan_area_centroid_within_application_area",
+ "use_scope": "campus_locator",
+ "source_files": [
+  {
+   "file": "local_data/country-research-be-lu-dk-p9/plandata-lokalplan-23-03-l08-varde-syd-25832.geojson",
+   "sha256": "b285f5bf4475206ce4bcf95ffb64eb4778006a2be767ed8921e206da4678cc6c",
+   "url": "https://geoserver.plandata.dk/geoserver/wfs?service=WFS&version=2.0.0&request=GetFeature&typeNames=pdk:theme_pdk_lokalplan_vedtaget&outputFormat=application/json&srsName=EPSG:25832&cql_filter=planid=10643968",
+   "retrieved_at": "2026-11-07T00:43:10.654Z"
+  },
+  {
+   "file": "local_data/country-research-be-lu-dk-p9/plandata-lokalplan-23-03-l08-varde-syd.geojson",
+   "sha256": "c20e47a24c675bffb05371c70221555f18f51cd07cdb1f677a19e23aab12266f",
+   "url": "https://geoserver.plandata.dk/geoserver/wfs?service=WFS&version=2.0.0&request=GetFeature&typeNames=pdk:theme_pdk_lokalplan_vedtaget&outputFormat=application/json&srsName=EPSG:4326&cql_filter=planid=10643968",
+   "retrieved_at": "2026-11-07T00:43:11.671Z"
+  }
+ ],
+ "layer": "Plandata.dk GeoServer WFS 2.0.0 layer pdk:theme_pdk_lokalplan_vedtaget, filtered by planid=10643968, requested in native EPSG:25832 (ETRS89 / UTM 32N) and separately in EPSG:4326",
+ "selected_properties": {
+  "planid": 10643968,
+  "komnr": 573,
+  "plannr": "23.03.L08",
+  "plannavn": "Erhvervsomraade til datacentre",
+  "datoforsl": 20210127,
+  "datovedt": 20210831,
+  "datoikraft": 20210921,
+  "datopub": 20210921,
+  "anvendelsegenerel": "Erhvervsomraade",
+  "zonestatus": "Byzone",
+  "anvspec1": 3100,
+  "bygpct1": 120,
+  "status": "V"
+ },
+ "facts": {
+  "geometry_type": "MultiPolygon with 1 part(s)",
+  "all_valid": true,
+  "planar_area_epsg25832_ha": 37.42,
+  "geodesic_area_ha": 37.45,
+  "municipal_stated_area_ha": 37,
+  "bounds_lon_lat": [
+   8.502688,
+   55.598519,
+   8.516097,
+   55.606208
+  ],
+  "approx_extent_m": [
+   845,
+   854
+  ],
+  "centroid_epsg25832": [
+   469088.998,
+   6161894.892
+  ],
+  "centroid_inside": true,
+  "centroid_method": "shapely 2.1.1 planar centroid of the EPSG:25832 polygon, transformed to EPSG:4326 with pyproj 3.7.1 (always_xy) and rounded to 7 decimals; the planar centroid of the served EPSG:4326 polygon, transformed to EPSG:25832, differs by 0.01 m",
+  "served_4326_vs_native_symmetric_difference_m2": 6.73,
+  "max_distance_centroid_to_boundary_vertex_m": 494,
+  "min_distance_centroid_to_boundary_m": 156,
+  "application_area_ha": {
+   "total": 112,
+   "north_of_roustvej": 59.57,
+   "south_of_roustvej": 51.96
+  },
+  "nearest_atlas_sites_km": {
+   "Bulk DK01 Esbjerg Campus": 10.35,
+   "Dansk Data Center 1 Esbjerg Campus": 16.29,
+   "atNorth DEN02 Varde mega site": 27.95
+  }
+ },
+ "exclusions": "The lokalplan PDF on dokument.plandata.dk is disallowed by robots.txt and was not read. Cadastral parcel geometry (Datafordeler) was not used because its robots.txt answers HTTP 401, and the DAWA address service is retired (HTTP 410). The application boundary in the developer's figures was not georeferenced; it was only compared visually with the register polygon. The point lies in the southern part of the 112 ha application area and does not locate the northern part north of Roustvej, any data-centre block, the administration building or an entrance. No geocoder, commercial map, map embed, PeeringDB record, OpenStreetMap service, town centre or industrial-zone centroid is used."
+}
