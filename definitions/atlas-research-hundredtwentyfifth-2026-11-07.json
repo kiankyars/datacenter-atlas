@@ -1,0 +1,1790 @@
+{
+  "format": "datacenter-atlas-update-input-v1",
+  "updated_at": "2026-11-07",
+  "output": "verified_construction_core/2026-11-07-research-hundredtwentyfifth",
+  "base_dataset": "verified_construction_core/2026-11-07-research-hundredtwentyfourth",
+  "base_manifest_sha256": "eaee8ddfdf17c88b944465fb8b0f3d4507c14fd7638e5aa16d69a6e139119dd2",
+  "source_files": [
+    {
+      "path": "sources/research-countries-2026-11-07-hundredtwentyfifth-primary-sources.json",
+      "sha256": "8652d837b5a441d39dd93c0cacd7acf23ec27c0ba34b7619f1868bb23c4dcae3"
+    }
+  ],
+  "additions": [
+    {
+      "project_stable_key": "curated:bdx-hkg2-kwai-chung-kung-yip-street:existing-operations",
+      "physical_site_stable_key": "curated:bdx-hkg2-kwai-chung-kung-yip-street",
+      "site_name": "BDx HKG2 Data Center, Watson Centre, 16-22 Kung Yip Street, Kwai Chung",
+      "name": "BDx HKG2 — existing data-centre operations",
+      "country": "Hong Kong",
+      "country_iso_a2": "HK",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-09-10",
+        "source_id": "kr-tw-hk-new-p6-bdx-hkg2-page",
+        "summary": "BDx's own HKG2 facility page lists HKG2 in Kwai Chung with the status 'Operational' and states that HKG2 delivers 4 MW of Tier III-certified, carrier-neutral capacity for financial services, OTT, enterprise, telecommunications and government workloads, at 16-22 Kung Yip Street, Kwai Chung (site area 4,418 sqm, 9,104 sqm GFA). The page was last modified on 10 September 2026, and the Internet Archive copy of 29 September 2026 carries that same modification date and the same 'Operational' listing, so the operating statement was public on that date. This records an existing operating colocation data centre; the 4 MW is an operator-listed capacity, not a measured load, and no opening date is given."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            114.134441,
+            22.3618587
+          ]
+        },
+        "source_id": "kr-tw-hk-new-p6-csdi-lot-kctl258",
+        "scope": "project_locator",
+        "scope_class": "official_landsd_lot_centroid",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "CSDI_LandsD_lot_layer_query_LotCSUID_553000258_native_ring_PROJ_HK1980_to_WGS84_1_round7_planar_centroid_verified_inside",
+        "precision": "Centroid of the 4,418 m2 Kwai Chung Town Lot No. 258, the only lot containing the official address point for Watson Centre, 16-22 Kung Yip Street. It is a lot-level marker, not a surveyed building outline, entrance or data-hall location.",
+        "identity_review": "BDx's HKG2 page (live, and the Internet Archive copy of 29 September 2026) gives the address 16-22 Kung Yip Street, Kwai Chung, New Territories, and a 4,418 sqm site area. The official Address Lookup Service resolves 16-22 Kung Yip Street to WATSON CENTRE (GeoAddress 3191124763T20050430) at HK1980 E 831911 N 824763, and a CSDI point-intersection query there returns exactly one lot, LotCSUID 553000258 = Kwai Chung Town Lot No. 258 (New Grant Lot), whose recorded area of 4,418.32 m2 matches BDx's stated site area. The address point is 21.5 m from the lot centroid. The Geodetic Survey transformation service reproduces the transformed centroid to under 1e-7 degrees. BDx's 'View on Map' link and the MapTiler/OpenStreetMap imagery on its page were not used.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The lot layer states no positional tolerance; the 1 m datum-operation accuracy is not a boundary accuracy. The point lies inside a lot about 51 m by 86 m."
+      },
+      "context_source_ids": [
+        "kr-tw-hk-new-p6-ia-bdx-hkg2-20260929",
+        "kr-tw-hk-new-p6-als-16-22-kung-yip-street",
+        "kr-tw-hk-new-p6-csdi-landinfo-kctl258"
+      ],
+      "roles": [
+        {
+          "party": "BDx Data Centers",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "kr-tw-hk-new-p6-bdx-hkg2-page"
+        }
+      ],
+      "distinctness_review": "Screened on 7 November 2026 against the names, aliases, operators, addresses, lots and coordinates in sites.csv, projects.csv, evidence.csv, source-records.json and identity-mapping.json of verified_construction_core/2026-11-07-research-hundredtwentyfourth (read again from site/config.json after it moved from hundredtwentythird during the pass), every pending queue fragment's changes.json and holds.json, claims.tsv and every sources/*holds*.json file, for BDx, HKG2, Watson Centre, Kung Yip Street, KCTL 258 and LotCSUID 553000258. No Atlas record, source record, identity mapping or pending addition names HKG2, Watson Centre, Kung Yip Street or KCTL 258; the only matches are the earlier holds on this same facility (sources research-countries-2026-10-16-thirtyfirst and 2026-11-07-hundredtwentyfourth holds, queue ops-hk-seoul-taipei-p6), which this addition takes up. Atlas record BDx HKG8 (38 Wing Kei Road, Kwai Chung Town Lot 524) is a different BDx building 1.62 km away; BDx's HKG2 page itself lists HKG8 and HKG1 as separate nearby facilities. Within 2 km of the HKG2 point are Goodman HKG09 Kwai Chung (699 m), Digital Realty HKG11 at 11 Kin Chuen Street on KCTL 495 (1.10 km), Goodman HKG10 Tsuen Wan on D.D. 443 Lot 472 S.A (1.54 km), BDx HKG8 on KCTL 524 (1.62 km) and SUNeVision MEGA Gateway on TWTL 428 (1.62 km); each is a different building on a different lot. The held DayOne Hong Kong facility has no published address and is not tied to Kung Yip Street. BDx HKG1 (23 Yip Hing Street, Wong Chuk Hang) is a separate BDx facility on Hong Kong Island, held in this fragment for its locator.",
+      "successor_review": "BDx's page sitemap captured 6 November 2026 (local bdx-page-sitemap.xml) still gives the HKG2 page lastmod 2026-09-10T01:27:09Z, and the live page captured the same day is unchanged in text from the 29 September archived copy. BDx's post sitemap (local bdx-post-sitemap.xml) has no Hong Kong item after the 30 June 2026 site migration; its newest posts (6-7 September) concern Indonesia and regional AI themes. No closure, sale, suspension or redevelopment of HKG2 was found, so operational is kept as of 10 September 2026: 58 days before a 7 November update and inside the 85-day window until 3 December 2026 (90-day builder window until 9 December 2026).",
+      "scoped_project_details": {
+        "aliases": [
+          "BDx HKG2",
+          "HKG2 Data Center, Kwai Chung",
+          "Watson Centre, 16-22 Kung Yip Street, Kwai Chung",
+          "Kwai Chung Town Lot No. 258"
+        ],
+        "facility_scope": "Existing BDx carrier-neutral colocation data centre at Watson Centre, 16-22 Kung Yip Street, Kwai Chung, New Territories",
+        "address": "16-22 Kung Yip Street, Kwai Chung, New Territories, Hong Kong (official building name Watson Centre)",
+        "lot": "Kwai Chung Town Lot No. 258 (CSDI LotCSUID 553000258)",
+        "operator_listed_it_capacity_mw": 4,
+        "capacity_basis": "Operator-listed IT load; fit-out level and current load not verified",
+        "site_area_m2_operator": 4418,
+        "site_area_m2_lot": 4418.32,
+        "gfa_m2_operator": 9104,
+        "certifications_operator_listed": [
+          "ISO/IEC 27001",
+          "PCI DSS",
+          "ANSI/TIA-942",
+          "DCOS",
+          "ISO 14001",
+          "TVRA-assessed"
+        ],
+        "physical_construction_verified": false
+      }
+    },
+    {
+      "project_stable_key": "curated:masterdc-datacentrum-praha-kodanska:existing-operations",
+      "physical_site_stable_key": "curated:masterdc-datacentrum-praha-kodanska",
+      "site_name": "MasterDC Datacentrum Praha, Kodaňská 1441/46, Praha 10-Vršovice",
+      "name": "MasterDC Datacentrum Praha — existing commercial data-centre operations (Kodaňská 46, Vršovice)",
+      "country": "Czechia",
+      "country_iso_a2": "CZ",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-10-13",
+        "source_id": "ops-cee-p6-ia-masterdc-home-20261015",
+        "summary": "MasterDC's homepage, in its version modified on 13 October 2026 (Internet Archive raw copy of 15 October 2026; the archived page sitemaps of 31 August and 14 October 2026 give the previous lastmod 24 August and then 13 October), says that data of a large part of the Czech internet flows through 'naše datacentra v Praze a Brně' (our data centres in Prague and Brno). MasterDC's data-centre overview page, in its version of 21 August 2026 (bounded by the same archived sitemaps and by the archived older version of 11 July 2026), says 'provozujeme datová centra v Praze i Brně' (we operate data centres in both Prague and Brno) and lists its two own data centres, Datacentrum Praha at Kodaňská 46, Praha 10 and Datacentrum Brno at Cejl 20, Brno, with permanent physical guarding and on-site technical support. This records MasterDC's Prague data centre at Kodaňská 46 as operating on 13 October 2026, the homepage version's modification day. It is not an opening date, and no capacity or IT load is recorded; the separate Kanice AI data centre that the same homepage says MasterDC is starting to build is not part of this project."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            14.46328751716229,
+            50.06951001647573
+          ]
+        },
+        "source_id": "ops-cee-p6-cuzk-ruian-am-kodanska-46-praha-wgs84",
+        "identity_source_ids": [
+          "ops-cee-p6-masterdc-datacentrum-praha-page",
+          "ops-cee-p6-masterdc-datacentra-page",
+          "ops-cee-p6-ia-masterdc-datacentra-20260711",
+          "ops-cee-p6-masterdc-housing-pro-ai-page",
+          "ops-cee-p6-cuzk-ruian-am-kodanska-46-praha-sjtsk",
+          "ops-cee-p6-cuzk-ruian-so-22329056"
+        ],
+        "scope": "campus_locator",
+        "scope_class": "official_numbered_address_point",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "official_ruian_address_point_22672052_returned_wgs84",
+        "precision": "Official RÚIAN address point (adresní místo 22672052) for Kodaňská 1441/46, Vršovice, 101 00 Praha 10, the address MasterDC gives for Datacentrum Praha, as returned in WGS84 by the ČÚZK RUIAN map service. It lies inside RÚIAN building object 22329056 (house number 1441, two floors, 3,712 m2 built-up area), 2.4 m inside its outline and 10.3 m from its centroid. It locates the registered address of the data-centre building, not data halls, a building outline or a parcel boundary.",
+        "identity_review": "MasterDC's Datacentrum Praha page says the data centre is at 'Kodaňská 46, 101 00 Praha 10', with reserved parking directly at the data-centre building. Its overview page (version of 21 August 2026, and the archived version of 11 July 2026) lists 'Datacentrum Praha, Kodaňská 46, Praha 10' as one of its two own data centres, and its AI-housing page calls the Prague facility the MasterDC data centre in Vršovice; Kodaňská 1441/46 lies in Vršovice. The RÚIAN query for house number */46 on Kodaňská in Praha returns exactly one address point, kod 22672052, whose building object 22329056 carries house number 1441. The ČÚZK service's own WGS84 output was used unchanged; a pyproj 3.7.1 transform of the S-JTSK point with EPSG 'S-JTSK to WGS 84 (1)' agrees to 0.002 m. No commercial map, map widget, map link, PeeringDB or third-party geocoder was used, and the point is neither a city centre nor an industrial-zone centroid; these pages give no company-seat address, and the point is the facility address MasterDC publishes for the data centre.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "RÚIAN publishes no positional accuracy for address points. The building that carries the address reaches 80.3 m from the point, and MasterDC does not say which part of the building, or whether any adjoining building, holds the data halls."
+      },
+      "context_source_ids": [
+        "ops-cee-p6-masterdc-datacentra-page",
+        "ops-cee-p6-masterdc-datacentrum-praha-page",
+        "ops-cee-p6-masterdc-home-live",
+        "ops-cee-p6-ia-masterdc-page-sitemap-20261014",
+        "ops-cee-p6-ia-masterdc-page-sitemap-20260831",
+        "ops-cee-p6-ia-masterdc-datacentra-20260711",
+        "ops-cee-p6-masterdc-housing-pro-ai-page",
+        "ops-cee-p6-masterdc-blog-cloud-platform-20261013",
+        "ops-cee-p6-masterdc-reference-komora-20261105",
+        "ops-cee-p6-cuzk-ruian-am-kodanska-46-praha-sjtsk",
+        "ops-cee-p6-cuzk-ruian-so-22329056"
+      ],
+      "roles": [
+        {
+          "party": "MasterDC",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "ops-cee-p6-ia-masterdc-home-20261015"
+        }
+      ],
+      "distinctness_review": "Screened on 7 November 2026 against verified_construction_core/2026-11-07-research-hundredtwentyfourth (the current dataset: 967 sites, 1,041 projects, 5,597 evidence rows): sites.csv, projects.csv, evidence.csv, source-records.json and identity-mapping.json, every queue fragment's changes.json and holds.json, claims.tsv and all sources/*-holds.json, by keyword and by distance (2 km). Keywords: MasterDC, Master Internet, master.cz, Kodaňská/Kodanska, Cejl, Vršovice/Vrsovice and Zábrdovice/Zabrdovice. No Atlas record, pending change or other fragment's claim names MasterDC, Kodaňská or Vršovice. One Atlas site lies within 2 km: CRA DC Tower Žižkov (Mahlerovy sady 2699/1, Praha 3), 1.55 km to the north-west, another operator's site at another address (its loc-10-p8 locator replacement, already published, is the point measured). The next nearest is CRA Prague Gateway Data Center Campus at 15.1 km. MasterDC appears only in holds and route notes: (1) the seventy-second update's cee-se-europe-p3 hold_status for 'MasterDC data centres: Datacentrum Praha (Kodaňská 1441/46, Vršovice, Praha 10) and Datacentrum Brno (Cejl 825/20, Zábrdovice, Brno) - existing operations', held because the only in-window statement then found (the 13 October cloud-platform post) named neither facility; its reopen condition, a dated in-window MasterDC statement naming the Prague or Brno data centre as operating, is met by the 13 October 2026 homepage version and the 21 August 2026 overview-page version, both bounded by Internet Archive copies; (2) the hundred-and-fourth update's europe2 review hold 'MasterDC Prague Kodaňská and Brno Cejl operating campuses', kept for 'a dated named-campus event or explicit operating statement', which the same two page versions now supply; (3) the Kanice AI data-centre holds (cee-p1 in the forty-sixth update, cee-se-europe-p3 in the seventy-second), a different site in Kanice near Brno that stays held; (4) route notes in the forty-sixth (cee-p1) and ninetieth (nordics-cee-p4) updates. No pending fragment or other fragment's claim adds a MasterDC record. The Brno data centre is added as its own site in this update; it is 183 km from the Prague site.",
+      "successor_review": "MasterDC's live homepage (captured 6 November 2026 UTC) still carries the 13 October version and the same sentence. Its customer reference published 5 November 2026 says a central public register has run in live operation 'v datacentru MasterDC' since 1 July 2026, without naming the facility, and its 13 October 2026 cloud-platform post says the infrastructure continues to run in MasterDC data centres in the Czech Republic. No closure, relocation or later status for the Prague data centre was found. The 13 October 2026 observation stays within the 85-day window until 6 January 2027.",
+      "scoped_project_details": {
+        "aliases": [
+          "MasterDC Datacentrum Praha",
+          "Datacentrum MasterDC v Praze",
+          "MasterDC data centre in Vršovice",
+          "MasterDC Prague data centre"
+        ],
+        "address": "Kodaňská 46, 101 00 Praha 10, Czechia (MasterDC Datacentrum Praha page); RÚIAN address Kodaňská 1441/46, Vršovice, 10100 Praha 10 (adresní místo 22672052)",
+        "building": "RÚIAN building object 22329056 (house number 1441, two floors, built-up area 3,712 m2). MasterDC lists two independent supply branches with a 1,250 kVA transformer each, diesel generators (2 x 700 kVA on branch A, 1 x 1,650 kVA on branch B), online UPS (4 x 200 kVA N+1 on branch A, a 750 kVA modular unit on branch B) and Stulz N+1 cooling.",
+        "operator_context": "MasterDC says it operates two own data centres, in Prague (Kodaňská 46) and Brno (Cejl 20), and is building a separate AI data centre in Kanice near Brno (held separately).",
+        "opening_date": null,
+        "capacity": null,
+        "physical_construction_verified": false,
+        "reopens_holds": [
+          "sources/research-countries-2026-10-26-seventysecond-holds.json (queue cee-se-europe-p3): 'MasterDC data centres: Datacentrum Praha (Kodaňská 1441/46, Vršovice, Praha 10) and Datacentrum Brno (Cejl 825/20, Zábrdovice, Brno) - existing operations' (Praha part)",
+          "sources/research-countries-2026-10-28-hundredfourth-holds.json (new_reviews.europe2): 'MasterDC Prague Kodaňská and Brno Cejl operating campuses' (Prague part)"
+        ]
+      }
+    },
+    {
+      "project_stable_key": "curated:masterdc-datacentrum-brno-cejl:existing-operations",
+      "physical_site_stable_key": "curated:masterdc-datacentrum-brno-cejl",
+      "site_name": "MasterDC Datacentrum Brno, Cejl 825/20, Brno-Zábrdovice",
+      "name": "MasterDC Datacentrum Brno — existing commercial data-centre operations (Cejl 20, Zábrdovice)",
+      "country": "Czechia",
+      "country_iso_a2": "CZ",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-10-13",
+        "source_id": "ops-cee-p6-ia-masterdc-home-20261015",
+        "summary": "MasterDC's homepage, in its version modified on 13 October 2026 (Internet Archive raw copy of 15 October 2026; the archived page sitemaps of 31 August and 14 October 2026 give the previous lastmod 24 August and then 13 October), says that data of a large part of the Czech internet flows through 'naše datacentra v Praze a Brně' (our data centres in Prague and Brno). MasterDC's data-centre overview page, in its version of 21 August 2026 (bounded by the same archived sitemaps and by the archived older version of 11 July 2026), says 'provozujeme datová centra v Praze i Brně' (we operate data centres in both Prague and Brno) and lists its two own data centres, Datacentrum Brno at Cejl 20, Brno and Datacentrum Praha at Kodaňská 46, Praha 10, with permanent physical guarding and on-site technical support. This records MasterDC's Brno data centre at Cejl 20 as operating on 13 October 2026, the homepage version's modification day. It is not an opening date, and no capacity or IT load is recorded; the separate Kanice AI data centre near Brno, which the same homepage says MasterDC is starting to build, is not part of this project."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            16.618758370007384,
+            49.19681696854564
+          ]
+        },
+        "source_id": "ops-cee-p6-cuzk-ruian-am-cejl-20-brno-wgs84",
+        "identity_source_ids": [
+          "ops-cee-p6-masterdc-datacentrum-brno-page",
+          "ops-cee-p6-masterdc-datacentra-page",
+          "ops-cee-p6-ia-masterdc-datacentra-20260711",
+          "ops-cee-p6-masterdc-housing-pro-ai-page",
+          "ops-cee-p6-cuzk-ruian-am-cejl-20-brno-sjtsk",
+          "ops-cee-p6-cuzk-ruian-so-19025238"
+        ],
+        "scope": "campus_locator",
+        "scope_class": "official_numbered_address_point",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "official_ruian_address_point_19189273_returned_wgs84",
+        "precision": "Official RÚIAN address point (adresní místo 19189273) for Cejl 825/20, Zábrdovice, 602 00 Brno, the address MasterDC gives for Datacentrum Brno, as returned in WGS84 by the ČÚZK RUIAN map service. It lies inside RÚIAN building object 19025238 (house number 825, 1,796 m2 built-up area, civic-amenities building), 10.0 m inside its outline and 4.6 m from its centroid. It locates the registered address of the data-centre building, not data halls, a building outline or a parcel boundary.",
+        "identity_review": "MasterDC's Datacentrum Brno page says the data centre is at 'Cejl 20, 602 00 Brno' in the city centre, with reserved parking directly at the data-centre building. Its overview page (version of 21 August 2026, and the archived version of 11 July 2026) lists 'Datacentrum Brno, Cejl 20, Brno' as one of its two own data centres, and its AI-housing page describes the MasterDC data centre in Brno. The RÚIAN query for house number */20 on Cejl in Brno returns exactly one address point, kod 19189273, whose building object 19025238 carries house number 825. The ČÚZK service's own WGS84 output was used unchanged; a pyproj 3.7.1 transform of the S-JTSK point with EPSG 'S-JTSK to WGS 84 (1)' agrees to 0.002 m. No commercial map, map widget, map link, PeeringDB or third-party geocoder was used, and the point is neither a city centre nor an industrial-zone centroid; these pages give no company-seat address, and the point is the facility address MasterDC publishes for the data centre.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "RÚIAN publishes no positional accuracy for address points. The building that carries the address reaches 42.9 m from the point, and MasterDC does not say which part of the building holds the data halls."
+      },
+      "context_source_ids": [
+        "ops-cee-p6-masterdc-datacentra-page",
+        "ops-cee-p6-masterdc-datacentrum-brno-page",
+        "ops-cee-p6-masterdc-home-live",
+        "ops-cee-p6-ia-masterdc-page-sitemap-20261014",
+        "ops-cee-p6-ia-masterdc-page-sitemap-20260831",
+        "ops-cee-p6-ia-masterdc-datacentra-20260711",
+        "ops-cee-p6-masterdc-housing-pro-ai-page",
+        "ops-cee-p6-masterdc-blog-cloud-platform-20261013",
+        "ops-cee-p6-masterdc-reference-komora-20261105",
+        "ops-cee-p6-cuzk-ruian-am-cejl-20-brno-sjtsk",
+        "ops-cee-p6-cuzk-ruian-so-19025238"
+      ],
+      "roles": [
+        {
+          "party": "MasterDC",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "ops-cee-p6-ia-masterdc-home-20261015"
+        }
+      ],
+      "distinctness_review": "Screened on 7 November 2026 against verified_construction_core/2026-11-07-research-hundredtwentyfourth (the current dataset: 967 sites, 1,041 projects, 5,597 evidence rows): sites.csv, projects.csv, evidence.csv, source-records.json and identity-mapping.json, every queue fragment's changes.json and holds.json, claims.tsv and all sources/*-holds.json, by keyword and by distance (2 km). Keywords: MasterDC, Master Internet, master.cz, Kodaňská/Kodanska, Cejl, Vršovice/Vrsovice and Zábrdovice/Zabrdovice. No Atlas record, pending change or other fragment's claim names MasterDC, Cejl or Zábrdovice. One Atlas site lies within 2 km: ZONER DC Brno (Nové sady 583/18), 1.42 km to the south-west, another operator's site at another address. The next nearest Atlas site is Digital Realty VIE13-VIE16 in Vienna, 103.9 km away. MasterDC appears only in holds and route notes: (1) the seventy-second update's cee-se-europe-p3 hold_status for 'MasterDC data centres: Datacentrum Praha (Kodaňská 1441/46, Vršovice, Praha 10) and Datacentrum Brno (Cejl 825/20, Zábrdovice, Brno) - existing operations', held because the only in-window statement then found (the 13 October cloud-platform post) named neither facility; its reopen condition, a dated in-window MasterDC statement naming the Prague or Brno data centre as operating, is met by the 13 October 2026 homepage version and the 21 August 2026 overview-page version, both bounded by Internet Archive copies; (2) the hundred-and-fourth update's europe2 review hold 'MasterDC Prague Kodaňská and Brno Cejl operating campuses', kept for 'a dated named-campus event or explicit operating statement', which the same two page versions now supply; (3) the Kanice AI data-centre holds (cee-p1 in the forty-sixth update, cee-se-europe-p3 in the seventy-second), a different site in Kanice near Brno that stays held; (4) route notes in the forty-sixth (cee-p1) and ninetieth (nordics-cee-p4) updates. No pending fragment or other fragment's claim adds a MasterDC record. The Prague data centre is added as its own site in this update; it is 183 km from the Brno site.",
+      "successor_review": "MasterDC's live homepage (captured 6 November 2026 UTC) still carries the 13 October version and the same sentence. Its customer reference published 5 November 2026 says a central public register has run in live operation 'v datacentru MasterDC' since 1 July 2026, without naming the facility, and its 13 October 2026 cloud-platform post says the infrastructure continues to run in MasterDC data centres in the Czech Republic. No closure, relocation or later status for the Brno data centre was found. The 13 October 2026 observation stays within the 85-day window until 6 January 2027.",
+      "scoped_project_details": {
+        "aliases": [
+          "MasterDC Datacentrum Brno",
+          "Datacentrum MasterDC v Brně",
+          "MasterDC Brno data centre"
+        ],
+        "address": "Cejl 20, 602 00 Brno, Czechia (MasterDC Datacentrum Brno page); RÚIAN address Cejl 825/20, Zábrdovice, 60200 Brno (adresní místo 19189273)",
+        "building": "RÚIAN building object 19025238 (house number 825, built-up area 1,796 m2, civic-amenities use). MasterDC lists two supply branches with a 1,000 kVA transformer each, diesel generators (700 + 530 kVA on branch A, 2 x 700 kVA on branch B), modular online UPS on both branches and Vertiv N+1 cooling.",
+        "operator_context": "MasterDC says it operates two own data centres, in Prague (Kodaňská 46) and Brno (Cejl 20), and is building a separate AI data centre in Kanice near Brno (held separately).",
+        "opening_date": null,
+        "capacity": null,
+        "physical_construction_verified": false,
+        "reopens_holds": [
+          "sources/research-countries-2026-10-26-seventysecond-holds.json (queue cee-se-europe-p3): 'MasterDC data centres: Datacentrum Praha (Kodaňská 1441/46, Vršovice, Praha 10) and Datacentrum Brno (Cejl 825/20, Zábrdovice, Brno) - existing operations' (Brno part)",
+          "sources/research-countries-2026-10-28-hundredfourth-holds.json (new_reviews.europe2): 'MasterDC Prague Kodaňská and Brno Cejl operating campuses' (Brno part)"
+        ]
+      }
+    },
+    {
+      "project_stable_key": "curated:digital-realty-vienna-louis-haefliger-gasse-campus:vie1-vie2-existing-operations",
+      "physical_site_stable_key": "curated:digital-realty-vienna-louis-haefliger-gasse-campus",
+      "site_name": "Digital Realty Vienna Louis-Häfliger-Gasse Campus (VIE1, VIE2), Louis-Häfliger-Gasse 10, 1210 Wien-Floridsdorf",
+      "name": "Digital Realty VIE1 and VIE2 — existing colocation data-centre operations (Louis-Häfliger-Gasse 10, Buildings 1 and 2, Vienna)",
+      "country": "Austria",
+      "country_iso_a2": "AT",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-09-17",
+        "source_id": "ops-cee-p6-dlr-vie1-page-20260917",
+        "summary": "Digital Realty's VIE1 facility page, in its version modified on 17 September 2026, says Central and Eastern European countries 'are well served by our Vienna data centers with direct access to VIX Internet Exchange', gives the address Louis-Häfliger-Gasse 10, Building 1, Vienna 1210, and lists a 115,000 ft2 (10,700 m2) building with 2N UPS and N+1 cooling, SOC2, SOC3, PCI-DSS and five ISO certifications, 100% renewable energy and 24x7 onsite security personnel, and invites customers to discuss availability. The VIE2 page, modified the same day, says 'Our Vienna-based data centers offer access to the VIX Internet Exchange' for businesses in Central and Eastern Europe, at Louis-Häfliger-Gasse 10, Building 2 (219,500 ft2, 20,400 m2), with the same redundancy and onsite security. The version dates are bounded: Digital Realty's sitemap gives lastmod 2026-09-17T13:36Z (VIE1) and 13:39Z (VIE2) in the Internet Archive copy of 3 October 2026 and in the live sitemap, and the archived copies of 4 June (VIE1) and 13 July 2026 (VIE2) show the previous versions (118,000 and 220,000 ft2, no SOC3). This records VIE1 and VIE2 as operating colocation data centres on 17 September 2026, the modification day of the captured versions. It is not an opening date; the building sizes are specifications, not IT load or capacity in service."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            16.410200994,
+            48.269616101
+          ]
+        },
+        "source_id": "ops-cee-p6-bev-adr-louis-haefliger-gasse-10-1210",
+        "identity_source_ids": [
+          "ops-cee-p6-dlr-vie1-page-20260917",
+          "ops-cee-p6-dlr-vie2-page-20260917",
+          "ops-cee-p6-dlr-vienna-metro-page"
+        ],
+        "scope": "campus_locator",
+        "scope_class": "official_numbered_address_point",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "official_BEV_Adressregister_address_point_1210_Wien_Louis_Haefliger_Gasse_10",
+        "precision": "Austrian federal address-register (BEV Adressregister) point for 1210 Wien, Louis-Häfliger-Gasse 10, the address Digital Realty gives for both VIE1 (Building 1) and VIE2 (Building 2), as returned in WGS84 by the BEV search. It marks the registered address of the campus, not either building's footprint, a parcel, the campus boundary or a data hall.",
+        "identity_review": "Digital Realty's VIE1 and VIE2 pages give 'Louis-Häfliger-Gasse 10, Building 1, Vienna 1210, Austria' and 'Louis-Häfliger-Gasse 10, Building 2, Vienna, 1210, Austria', and its Vienna metro page lists VIE1 and VIE2 at that address and, separately, VIE13 at Siemensstrasse 91. The BEV address search for Louis-Häfliger-Gasse 10, 1210 Wien returns exactly one address feature. The facility pages' own structured data carry a single point (48.26834, 16.41025) for both buildings, 141.9 m south of the BEV point; it was not used, because the register point is the official location of the published address. No commercial map, map widget, map link, PeeringDB or third-party geocoder was used, and the point is neither a district centre nor a head-office address.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The BEV address register publishes no positional accuracy. One address point serves both buildings; Digital Realty's own structured point lies 141.9 m away, so the two buildings may extend well beyond the address point, and their footprints are not published."
+      },
+      "context_source_ids": [
+        "ops-cee-p6-dlr-vie2-page-20260917",
+        "ops-cee-p6-dlr-vienna-metro-page",
+        "ops-cee-p6-ia-dlr-en-sitemap-20261003",
+        "ops-cee-p6-dlr-en-sitemap-live",
+        "ops-cee-p6-ia-dlr-vie1-20260604",
+        "ops-cee-p6-ia-dlr-vie2-20260713"
+      ],
+      "roles": [
+        {
+          "party": "Digital Realty",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "ops-cee-p6-dlr-vie1-page-20260917"
+        }
+      ],
+      "distinctness_review": "Screened on 7 November 2026 against verified_construction_core/2026-11-07-research-hundredtwentyfourth (the current dataset: 967 sites, 1,041 projects, 5,597 evidence rows): sites.csv, projects.csv, evidence.csv, source-records.json and identity-mapping.json, every queue fragment's changes.json and holds.json, claims.tsv and all sources/*-holds.json, by keyword and by distance (2 km). Keywords: VIE1, VIE2 (whole words), Louis-Häfliger-Gasse/Haefliger/Hafliger, Floridsdorf, Digital Park Vienna, Interxion Vienna/Wien. No Atlas record, pending change or other fragment's claim names VIE1, VIE2 or Louis-Häfliger-Gasse. One Atlas site lies within 2 km: Digital Realty VIE13-VIE16 Digital Park Vienna Expansion, 1.04 km to the east, the same operator's separate Siemensstrasse 91 site, which Digital Realty's Vienna metro page lists separately from VIE1 and VIE2; the published de-at-ch-p4 change and claim at 1.04 km concern VIE13 only. The next nearest Atlas site is ZONER DC Brno at 103.1 km. Holds: the forty-fourth update's nl-be-lu-at-ch-p1 reject of 'Digital Realty AMS11 ... and other Digital Realty Amsterdam, Brussels and Vienna facility pages' treated sitemap lastmod dates as edits rather than observations; here the captured VIE1 and VIE2 versions are bounded by archived copies of both the previous page versions and the sitemap, as in the accepted ops-mea-p6 MBA2 Mombasa addition, and carry the BEV official address point that reject's reopen condition asked for.",
+      "successor_review": "The live Digital Realty sitemap (captured 6 November 2026 UTC) still gives the 17 September lastmod for VIE1 and VIE2, so the captured versions are current. The Vienna metro page (lastmod 8 June 2026) still lists VIE1 and VIE2. No Digital Realty release on a closure, transfer or change at Louis-Häfliger-Gasse was found. The 17 September 2026 observation stays within the 85-day window until 11 December 2026.",
+      "scoped_project_details": {
+        "aliases": [
+          "Digital Realty VIE1",
+          "Digital Realty VIE2",
+          "VIE1 Data Center",
+          "VIE2 Data Center",
+          "Digital Realty Vienna Louis-Häfliger-Gasse campus"
+        ],
+        "address": "Louis-Häfliger-Gasse 10, Buildings 1 and 2, 1210 Vienna, Austria (Digital Realty VIE1 and VIE2 pages); BEV Adressregister address 1210 Wien, Louis-Häfliger-Gasse 10",
+        "building": "VIE1 (Building 1): total building size 115,000 ft2 (10,700 m2); VIE2 (Building 2): 219,500 ft2 (20,400 m2); both 2N UPS and N+1 cooling (Digital Realty pages, versions of 17 September 2026).",
+        "campus_context": "Digital Realty's Vienna metro page lists VIE1 and VIE2 at Louis-Häfliger-Gasse 10 and VIE13 at Siemensstrasse 91; the Siemensstrasse site (VIE13-VIE16) is already in the Atlas as a separate site.",
+        "opening_date": null,
+        "capacity": null,
+        "physical_construction_verified": false,
+        "reopens_holds": [
+          "sources/research-countries-2026-10-23-fortyfourth-holds.json (queue nl-be-lu-at-ch-p1): 'Digital Realty AMS11, Koolhovenlaan 35-45, Schiphol-Rijk (NL), and other Digital Realty Amsterdam, Brussels and Vienna facility pages' (Vienna VIE1 and VIE2 part only: archive-bounded in-window page versions with present-tense operating statements and an official address point)"
+        ]
+      }
+    },
+    {
+      "project_stable_key": "curated:northc-muenchenstein-basel-1-weidenstrasse-41-data-center:existing-operations",
+      "physical_site_stable_key": "curated:northc-muenchenstein-basel-1-weidenstrasse-41-data-center",
+      "site_name": "NorthC Münchenstein (Basel) 1 Data Center (Weidenstrasse 41, Münchenstein)",
+      "name": "NorthC Münchenstein (Basel) 1 — existing data-centre operations",
+      "country": "Switzerland",
+      "country_iso_a2": "CH",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-09-30",
+        "source_id": "ops-ch-ie-p6-northc-ch-blog-mehr-standorte-2026-09-30",
+        "summary": "NorthC Schweiz's post of 30 September 2026 states in the present tense that NorthC operates its supra-regional Swiss data-centre network and that its four carrier- and cloud-neutral data centres in Münchenstein, Biel and Winterthur are equipped for customers' IT requirements. Of the six Swiss facilities in NorthC's site menu, Münchenstein (Basel) 3 and Genf are the planned 2027 and 2028 openings named in the same post, which leaves Münchenstein (Basel) 1 and 2, Biel (Bern) and Winterthur (Zürich) as the four; NorthC's March 2025 release likewise calls Winterthur its fourth Swiss data centre after Münchenstein (Basel) 1 and 2 and Biel (Bern). Münchenstein (Basel) 1 is the data centre at Weidenstrasse 41, 4142 Münchenstein. The dated operator statement supports operation of Münchenstein (Basel) 1 as of 30 September 2026; it is not an opening date, and network totals are not attributed to this facility."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            7.61531,
+            47.512326
+          ]
+        },
+        "source_id": "ops-ch-ie-p6-geoadmin-address-101865685-weidenstrasse-41-muenchenstein",
+        "scope": "campus_locator",
+        "scope_class": "official_building_address_point_of_operator_published_facility_address",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "geo_admin_mapserver_amtliches_gebaeudeadressverzeichnis_egaid_101865685_served_wgs84",
+        "precision": "Official federal building-address point (EGAID 101865685, EGID 245060063) of Weidenstrasse 41, 4142 Münchenstein, the address NorthC publishes for Münchenstein (Basel) 1. The register links it to an existing 2014 non-residential building designated 'Tesla Rechenzentrum' (1,428 m2 footprint, 3 storeys) on parcel 6620 (4,499 m2), which also carries sub-addresses 41a and 41b designated 'Rechenzentrum Tesla' and 41c 'Generatorengebäude 2' (2025). The point is the address (entrance) position on the facility parcel, 25 m from the main building's register coordinate; it is not a building centroid or surveyed boundary.",
+        "identity_review": "NorthC's Münchenstein (Basel) 1 page gives 'Adresse: Weidenstrasse 41, 4142 Münchenstein (Basel)'; NorthC's 30 September 2026 post names Münchenstein among its operating Swiss locations and counts four operating data centres, and its Swiss menu lists Münchenstein (Basel) 1 separately from Münchenstein (Basel) 2 (Weidenstrasse 13) and the planned Münchenstein (Basel) 3 (uptownBasel, Arlesheim). The federal search returns exactly one official address for Weidenstrasse 41 (EGAID 101865685; 41a-41c are separate sub-addresses on the same parcel), linked to GWR EGID 245060063, whose register designation 'Tesla Rechenzentrum' independently identifies a data-centre building. The cadastral survey puts the point 13.9 m inside parcel 6620 (EGRID CH298272714956), which also contains the building coordinate. pyproj LV95 to WGS84 agrees with the served point to 0.017 m. The campus scope covers the data-centre buildings on parcel 6620 only, not Münchenstein (Basel) 2.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The federal address register publishes no positional accuracy; the facility's buildings on parcel 6620 lie within about 82 m of the point (farthest parcel vertex 82.4 m)."
+      },
+      "context_source_ids": [
+        "ops-ch-ie-p6-northc-ch-muenchenstein-1-page",
+        "ops-ch-ie-p6-geoadmin-gwr-245060063",
+        "ops-ch-ie-p6-northc-ch-blog-400-gbps-netzwerk-2026-10-30",
+        "ops-ch-ie-p6-northc-ch-release-winterthur-opening-2025-03-20"
+      ],
+      "roles": [
+        {
+          "party": "NorthC Schweiz AG (NorthC Datacenters)",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "ops-ch-ie-p6-northc-ch-blog-mehr-standorte-2026-09-30"
+        }
+      ],
+      "distinctness_review": "All fields of sites.csv, projects.csv and evidence.csv, source-records.json and identity-mapping.json in verified_construction_core/2026-11-07-research-hundredtwentyfourth (967 sites, 1041 projects, 5597 evidence rows), the changes.json of every other queue fragment (239), claims.tsv, and every sources/*-holds.json and queue holds file were searched for NorthC, Münchenstein/Muenchenstein, Weidenstrasse, Theaterstrasse, Turm Areal, Tesla Rechenzentrum and Winterthur. No Atlas, queued or claimed record names Münchenstein (Basel) 1, Weidenstrasse 41 or the 'Tesla Rechenzentrum' building. The only Atlas site within 2 km is NorthC Münchenstein (Basel) 3 at uptownBasel, Schorenweg 21, Arlesheim (486 m away; announced AI data centre opening in 2027, a separate new building on another campus and municipality, not this existing facility); the next nearest are Microsoft Petit-Landau (26.7 km) and FlexBase Laufenburg (33.0 km). This fragment also adds NorthC Münchenstein (Basel) 2 at Weidenstrasse 13 (307 m away) as a separate site: it is a separately addressed data centre in a 1985 office and storage building on a different cadastral parcel (773, separated from parcel 6620 by about 12.5 m), with its own NorthC page, specifications and role as a backup location for Münchenstein (Basel) 1; NorthC calls the two its data-centre locations (Standorte) in Münchenstein. No pending queue fragment or claim other than this fragment's own lies within 2 km except the published Basel 3 record. The 23 October forty-fourth and 26 October seventy-second holds (nl-be-lu-at-ch-p1, nl-be-ch-at-p3) held this facility only for the three-change cap pending an official address point; that reopen condition is met here.",
+      "successor_review": "NorthC's ch-de post sitemap captured on 6 November 2026 UTC lists one later post, of 30 October 2026, which states that NorthC's sites in Münchenstein, Biel and Winterthur already form a network today; the Münchenstein (Basel) 1 and 2 facility pages were modified on 23 October 2026 and still give their addresses and specifications, and NorthC's Swiss menu still lists both. No closure, sale or other change was found. The 30 September 2026 operating observation is kept; the planned Münchenstein (Basel) 3 AI data centre at uptownBasel is a separate existing Atlas record.",
+      "scoped_project_details": {
+        "aliases": [
+          "NorthC Münchenstein 1",
+          "Datacenter Münchenstein (Basel) 1",
+          "NorthC Basel 1",
+          "Tesla Rechenzentrum (federal building register designation)"
+        ],
+        "address": "Weidenstrasse 41, 4142 Münchenstein (canton Basel-Landschaft)",
+        "facility_scope": "Existing carrier- and cloud-neutral colocation data centre",
+        "capacity_qualification": "3,500 m2 total area and 6 MW total power stated by the operator as facility specifications, not measured IT load",
+        "planned_availability": null,
+        "operator": "NorthC Schweiz AG",
+        "capacity": null
+      }
+    },
+    {
+      "project_stable_key": "curated:northc-muenchenstein-basel-2-weidenstrasse-13-data-center:existing-operations",
+      "physical_site_stable_key": "curated:northc-muenchenstein-basel-2-weidenstrasse-13-data-center",
+      "site_name": "NorthC Münchenstein (Basel) 2 Data Center (Weidenstrasse 13, Münchenstein)",
+      "name": "NorthC Münchenstein (Basel) 2 — existing data-centre operations",
+      "country": "Switzerland",
+      "country_iso_a2": "CH",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-09-30",
+        "source_id": "ops-ch-ie-p6-northc-ch-blog-mehr-standorte-2026-09-30",
+        "summary": "NorthC Schweiz's post of 30 September 2026 states in the present tense that NorthC operates its supra-regional Swiss data-centre network and that its four carrier- and cloud-neutral data centres in Münchenstein, Biel and Winterthur are equipped for customers' IT requirements. Of the six Swiss facilities in NorthC's site menu, Münchenstein (Basel) 3 and Genf are the planned 2027 and 2028 openings named in the same post, which leaves Münchenstein (Basel) 1 and 2, Biel (Bern) and Winterthur (Zürich) as the four; NorthC's March 2025 release likewise calls Winterthur its fourth Swiss data centre after Münchenstein (Basel) 1 and 2 and Biel (Bern). Münchenstein (Basel) 2 is the data centre at Weidenstrasse 13, 4142 Münchenstein, which also serves as backup location for Münchenstein (Basel) 1. The dated operator statement supports operation of Münchenstein (Basel) 2 as of 30 September 2026; it is not an opening date, and network totals are not attributed to this facility."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            7.617403,
+            47.514698
+          ]
+        },
+        "source_id": "ops-ch-ie-p6-geoadmin-address-101168270-weidenstrasse-13-muenchenstein",
+        "scope": "project_locator",
+        "scope_class": "official_building_address_point_of_operator_published_facility_address",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "geo_admin_mapserver_amtliches_gebaeudeadressverzeichnis_egaid_101168270_served_wgs84",
+        "precision": "Official federal building-address point (EGAID 101168270, EGID 2349883) of Weidenstrasse 13, 4142 Münchenstein, the address NorthC publishes for Münchenstein (Basel) 2. The register links it to an existing 1985 non-residential building designated as a four-storey office and storage building (3,530 m2 footprint, 5 storeys) whose register coordinate is 0.3 m from the point. The data centre occupies space in that building; the point is the address position, not the data hall, a building centroid or a surveyed boundary.",
+        "identity_review": "NorthC's Münchenstein (Basel) 2 page gives 'Adresse: Weidenstrasse 13, 4142 Münchenstein (Basel)' and describes it as a separate data centre that also serves as backup location for Münchenstein (Basel) 1; NorthC's 30 September 2026 post counts four operating Swiss data centres in Münchenstein, Biel and Winterthur, and its Swiss menu lists Münchenstein (Basel) 2 separately. The federal search returns exactly one official address for Weidenstrasse 13 4142 Münchenstein (EGAID 101168270; the only other hit is Zollweidenstrasse 13, a different street), linked to GWR EGID 2349883. The cadastral survey puts the point 33.4 m inside parcel 773 (EGRID CH744982775697, 35,759 m2), a large parcel that also carries an administration building, a substation and workshops not described by NorthC as data-centre space, so the locator is scoped to the project (the operator-addressed building), not to the parcel as a campus. pyproj LV95 to WGS84 agrees with the served point to 0.031 m.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The federal address register publishes no positional accuracy and NorthC does not publish which part of the building the data centre occupies; the building's register coordinate is 0.3 m from the point and its 3,530 m2 footprint extends some tens of metres from it."
+      },
+      "context_source_ids": [
+        "ops-ch-ie-p6-northc-ch-muenchenstein-2-page",
+        "ops-ch-ie-p6-geoadmin-gwr-2349883",
+        "ops-ch-ie-p6-northc-ch-blog-400-gbps-netzwerk-2026-10-30",
+        "ops-ch-ie-p6-northc-ch-release-winterthur-opening-2025-03-20"
+      ],
+      "roles": [
+        {
+          "party": "NorthC Schweiz AG (NorthC Datacenters)",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "ops-ch-ie-p6-northc-ch-blog-mehr-standorte-2026-09-30"
+        }
+      ],
+      "distinctness_review": "All fields of sites.csv, projects.csv and evidence.csv, source-records.json and identity-mapping.json in verified_construction_core/2026-11-07-research-hundredtwentyfourth (967 sites, 1041 projects, 5597 evidence rows), the changes.json of every other queue fragment (239), claims.tsv, and every sources/*-holds.json and queue holds file were searched for NorthC, Münchenstein/Muenchenstein, Weidenstrasse, Theaterstrasse, Turm Areal, Tesla Rechenzentrum and Winterthur. No Atlas, queued or claimed record names Münchenstein (Basel) 2 or Weidenstrasse 13. The only Atlas site within 2 km is NorthC Münchenstein (Basel) 3 at uptownBasel, Schorenweg 21, Arlesheim (793 m away; a planned new AI data centre, not this facility); the next nearest are Microsoft Petit-Landau (26.5 km) and FlexBase Laufenburg (32.8 km). This fragment's Münchenstein (Basel) 1 addition at Weidenstrasse 41 lies 307 m away on a different parcel (6620, about 12.5 m from parcel 773 across the public road); the two have separate official addresses and buildings (a purpose-built 2014 data-centre building versus a 1985 office and storage building on a large parcel that also carries an administration building, a substation and workshops), separate NorthC pages and specifications (3,500 m2 / 6 MW versus 1,000 m2 / 0.6 MW), and NorthC describes Münchenstein (Basel) 2 as a backup location for Münchenstein (Basel) 1. NorthC's marketing phrase 'NorthC Campus' for its Münchenstein presence does not describe one property, so the two are recorded as separate physical sites, neither of whose points would locate the other. The forty-fourth and seventy-second holds held this facility only for the cap pending an official address point; that reopen condition is met here.",
+      "successor_review": "NorthC's ch-de post sitemap captured on 6 November 2026 UTC lists one later post, of 30 October 2026, which states that NorthC's sites in Münchenstein, Biel and Winterthur already form a network today; the Münchenstein (Basel) 1 and 2 facility pages were modified on 23 October 2026 and still give their addresses and specifications, and NorthC's Swiss menu still lists both. No closure, sale or other change was found. The 30 September 2026 operating observation is kept; the planned Münchenstein (Basel) 3 AI data centre at uptownBasel is a separate existing Atlas record.",
+      "scoped_project_details": {
+        "aliases": [
+          "NorthC Münchenstein 2",
+          "Datacenter Münchenstein (Basel) 2",
+          "NorthC Basel 2"
+        ],
+        "address": "Weidenstrasse 13, 4142 Münchenstein (canton Basel-Landschaft)",
+        "facility_scope": "Existing carrier- and cloud-neutral colocation data centre, also used as backup location for Münchenstein (Basel) 1",
+        "capacity_qualification": "1,000 m2 total area and 0.6 MW total power stated by the operator as facility specifications, not measured IT load",
+        "planned_availability": null,
+        "operator": "NorthC Schweiz AG",
+        "capacity": null
+      }
+    },
+    {
+      "project_stable_key": "curated:northc-winterthur-theaterstrasse-15c-data-center:existing-operations",
+      "physical_site_stable_key": "curated:northc-winterthur-theaterstrasse-15c-data-center",
+      "site_name": "NorthC Winterthur (Zürich) Data Center (Theaterstrasse 15c, Winterthur)",
+      "name": "NorthC Winterthur (Zürich) — existing data-centre operations",
+      "country": "Switzerland",
+      "country_iso_a2": "CH",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-10-30",
+        "source_id": "ops-ch-ie-p6-northc-ch-blog-400-gbps-netzwerk-2026-10-30",
+        "summary": "NorthC Schweiz's post of 30 October 2026 states that NorthC connects its Swiss data centres with a redundant 400 Gbit/s network, that NorthC has data centres in Münchenstein near Basel, Biel and Winterthur (with Geneva planned), and that the sites Münchenstein, Biel and Winterthur already today form a network. NorthC has one Winterthur facility, Datacenter Winterthur (Zürich) at Theaterstrasse 15c, 8400 Winterthur, beneath the Turm Areal. The dated operator statement supports operation of the Winterthur data centre as of 30 October 2026; it is not an opening date (NorthC opened it on 20 March 2025), and the network bandwidth is not a facility capacity."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            8.726739,
+            47.503103
+          ]
+        },
+        "source_id": "ops-ch-ie-p6-geoadmin-address-101671935-theaterstrasse-15c-winterthur",
+        "scope": "project_locator",
+        "scope_class": "official_building_address_point_of_operator_published_facility_address",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "geo_admin_mapserver_amtliches_gebaeudeadressverzeichnis_egaid_101671935_served_wgs84",
+        "precision": "Official federal building-address point (EGAID 101671935, EGID 201033691) of Theaterstrasse 15c, 8400 Winterthur, the address NorthC publishes for its Winterthur data centre. The register links it to an existing 2004 non-residential building (class 1263, 1,909 m2 footprint) on parcel ST9584, whose register coordinate is 22.7 m from the point. NorthC places the data centre beneath the Turm Areal, so the point is the operator-published access address, not the underground data hall, a building centroid or a surveyed boundary.",
+        "identity_review": "NorthC's Winterthur page gives 'Adresse: Theaterstrasse 15c, 8400 Winterthur (Zürich)' and its 20 March 2025 release records the opening of that data centre beneath the Turm Areal as NorthC's fourth Swiss facility; NorthC's menu lists a single Winterthur (Zürich) facility. The federal search returns one official address for Theaterstrasse 15c 8400 Winterthur (EGAID 101671935; 15c.1 and 15c.2 are separate shelter sub-addresses), linked to GWR EGID 201033691. The register names no occupant and classes the building as 1263, so it supports the address location, not the data-centre use; identity rests on the operator-published address. The cadastral survey puts the point 0.2 m inside parcel ST9584 (EGRID CH840820778451), which also contains the building coordinate. pyproj LV95 to WGS84 agrees with the served point to 0.031 m.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The federal address register publishes no positional accuracy and NorthC does not publish the extent of the underground facility beneath the Turm Areal; parcel ST9584 extends up to about 59 m from the point."
+      },
+      "context_source_ids": [
+        "ops-ch-ie-p6-northc-ch-winterthur-page",
+        "ops-ch-ie-p6-geoadmin-gwr-201033691",
+        "ops-ch-ie-p6-northc-ch-blog-mehr-standorte-2026-09-30",
+        "ops-ch-ie-p6-northc-ch-release-winterthur-opening-2025-03-20"
+      ],
+      "roles": [
+        {
+          "party": "NorthC Schweiz AG (NorthC Datacenters)",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "ops-ch-ie-p6-northc-ch-blog-400-gbps-netzwerk-2026-10-30"
+        }
+      ],
+      "distinctness_review": "All fields of sites.csv, projects.csv and evidence.csv, source-records.json and identity-mapping.json in verified_construction_core/2026-11-07-research-hundredtwentyfourth (967 sites, 1041 projects, 5597 evidence rows), the changes.json of every other queue fragment (239), claims.tsv, and every sources/*-holds.json and queue holds file were searched for NorthC, Münchenstein/Muenchenstein, Weidenstrasse, Theaterstrasse, Turm Areal, Tesla Rechenzentrum and Winterthur. No Atlas, queued or claimed record names NorthC Winterthur, Theaterstrasse or the Turm Areal; the Winterthur hits are the Vantage ZRH1 campus records (Vantage's own address-directory record, ERNE and DPR construction sources). No Atlas site lies within 2 km: the nearest are Vantage Zurich I (ZRH1) campus (2.61 km, a separate hyperscale campus under construction), Digital Realty Zurich Glattbrugg (14.9 km) and Green Campus ZRH1 Lupfig (39.3 km). No pending queue fragment or claim lies within 2 km. The forty-fourth and seventy-second holds held this facility only for the cap pending an official address point; that reopen condition is met here.",
+      "successor_review": "NorthC's ch-de post sitemap captured on 6 November 2026 UTC lists no post after the 30 October 2026 statement; the Winterthur page (modified 21 April 2026) still gives the address and specifications, and NorthC's Swiss menu still lists Winterthur (Zürich). No closure, sale or other change was found. The 30 October 2026 operating observation is kept; the 20 March 2025 opening remains historical context.",
+      "scoped_project_details": {
+        "aliases": [
+          "NorthC Winterthur",
+          "Datacenter Winterthur (Zürich)",
+          "NorthC Zürich (Winterthur)"
+        ],
+        "address": "Theaterstrasse 15c, 8400 Winterthur (canton Zürich); beneath the Turm Areal",
+        "facility_scope": "Existing carrier- and cloud-neutral colocation data centre",
+        "capacity_qualification": "1,100 m2 total area and 1.8 MW total power stated by the operator as facility specifications, not measured IT load",
+        "planned_availability": null,
+        "operator": "NorthC Schweiz AG",
+        "capacity": null
+      }
+    },
+    {
+      "project_stable_key": "curated:nabiax-terrassa-data-center:existing-operations",
+      "physical_site_stable_key": "curated:nabiax-terrassa-data-center",
+      "site_name": "Nabiax Terrassa Data Center",
+      "name": "Nabiax Terrassa Data Center — existing data-centre operations",
+      "country": "Spain",
+      "country_iso_a2": "ES",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-09-18",
+        "source_id": "ops-iberia-italy-p6-alcala-city-nabiax-20260918",
+        "summary": "The city of Alcalá de Henares' dated report of 18 September 2026 (on the first stone of Nabiax's ADC3 building) states that Nabiax has three centres, two in the Comunidad de Madrid and one in Catalonia, which operate with a combined 35 MW of IT power. Nabiax's own site lists exactly three data centres, and the only one in Catalonia is the Terrassa Data Center at Carrer de Bartomeu Amat 69, 08225 Terrassa (Barcelona); the operator's stated current capacities (22.3 + 10 + 1.3 MW IT) sum to 33.6 MW, close to the city's total. This dated government record supports the Terrassa data centre as operating on 18 September 2026, the publication day; it is not an opening date (the operator gives 1990). No capacity change, works or permit is asserted."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            2.01205,
+            41.5720166
+          ]
+        },
+        "source_id": "ops-iberia-italy-p6-catastro-rccoor-nabiax-terrassa-centroid",
+        "scope": "campus_locator",
+        "scope_class": "operator_address_cadastral_parcel_area_centroid",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "catastro_inspire_epsg25831_operator_address_parcel_area_centroid_pyproj_to_wgs84",
+        "precision": "Area centroid of cadastral parcel 7629220DG1072D (about 1,666 m2, 32 by 56 m), the only parcel at Carrer de Bartomeu Amat 69, 08225 Terrassa, the address Nabiax gives for its Terrassa Data Center. The point lies inside the parcel 15 m from its boundary and locates the data-centre property; it is not a surveyed building footprint.",
+        "identity_review": "Nabiax's contact page lists 'Terrassa Data Center, Carrer de Bartomeu Amat, 69, 08225 Terrassa, Barcelona' as one of its three Spanish data centres. Catastro's address register returns one property at CL BARTOMEU AMAT, DE 69, Terrassa: 7629220DG1072D0001JG, 'Industrial', 6,530 m2 built, 1991, on parcel 7629220DG1072D (area value 1,666 m2). The parcel's INSPIRE geometry was retrieved in EPSG:25831, its planar area centroid computed with shapely and transformed with pyproj, and Catastro's coordinate lookup at the result returns the same parcel and address; the cadastre's reference point is 26 m away. Undated Esri imagery shows a deep mid-block building with rooftop equipment on the parcel. No city centre, head-office address or estate centroid is used.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "Catastro publishes no positional accuracy for parcel boundaries; the point is a derived interior anchor of a parcel whose farthest vertex is about 32 m away. Decimal places are computation precision, not accuracy."
+      },
+      "context_source_ids": [
+        "ops-iberia-italy-p6-nabiax-terrassa-page-20261107",
+        "ops-iberia-italy-p6-nabiax-contacto-20261107",
+        "ops-iberia-italy-p6-nabiax-sitemap-index-20261107",
+        "ops-iberia-italy-p6-catastro-dnploc-terrassa-bartomeu-amat-69",
+        "ops-iberia-italy-p6-catastro-cp-7629220DG1072D",
+        "ops-iberia-italy-p6-catastro-cpmrc-7629220DG1072D",
+        "ops-iberia-italy-p6-esri-nabiax-terrassa-imagery"
+      ],
+      "roles": [
+        {
+          "party": "Nabiax",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "ops-iberia-italy-p6-nabiax-terrassa-page-20261107"
+        }
+      ],
+      "distinctness_review": "Screened on 7 November 2026 against the names, aliases, operators, addresses, cadastral references and coordinates in all five tables of verified_construction_core/2026-11-07-research-hundredtwentythird (959 sites, 1,033 projects, 5,477 evidence rows; sites, projects, evidence, source-records and identity-mapping), the changes.json and holds.json of every queue fragment, claims.tsv and every sources/*-holds.json file. Terms: Nabiax, Terrassa, Bartomeu Amat, 08225 and 7629220DG1072D. The Atlas holds Nabiax only at the Alcalá Data Center Campus (ADC3 and ADC1/ADC2 projects) and the Julián Camarillo 8 Campus in Madrid, about 490 km away; the Terrassa page appears in the Atlas only as identity context for those Madrid projects. No Atlas site, project or identity mapping names Terrassa, and no Atlas record lies within 2 km (the nearest site, AWS Walqa, is 213 km away; the Atlas has no data centre in the Barcelona area). The only queue mentions are the iberia-italy-p5 hold for this facility (whose reopen condition this addition follows) and that fragment's notes. Digital Realty BCN1, added in this fragment, is 24 km south-east.",
+      "successor_review": "Nabiax's Terrassa and contact pages captured on 7 November 2026 still list the Terrassa Data Center with 1.3 MW current IT capacity; the operator's post sitemap shows no news since 2023 and nothing reports a sale, closure or pause. Operational is kept as of 18 September 2026 (50 days before this update, inside the 85-day floor).",
+      "scoped_project_details": {
+        "aliases": [
+          "Terrassa Data Center",
+          "Data Center de Terrassa",
+          "Nabiax Terrassa"
+        ],
+        "facility_scope": "Existing Nabiax data centre (opened 1990; seven IT rooms; 1,200 m2) at Carrer de Bartomeu Amat 69, 08225 Terrassa (Barcelona), cadastral parcel 7629220DG1072D.",
+        "it_capacity_mw_current": 1.3,
+        "it_capacity_qualification": "Operator's stated current IT capacity (expandable to 1.8 MW); not measured load.",
+        "address": "Carrer de Bartomeu Amat 69, 08225 Terrassa (Barcelona)",
+        "cadastral_parcel": "7629220DG1072D",
+        "excluded": "The 1.8 MW expansion potential, which the operator does not describe as under way",
+        "opening_date_not_asserted": true
+      }
+    },
+    {
+      "project_stable_key": "curated:digital-realty-bcn1-barcelona-avinguda-del-maresme:existing-operations",
+      "physical_site_stable_key": "curated:digital-realty-bcn1-barcelona-avinguda-del-maresme",
+      "site_name": "Digital Realty BCN1 Barcelona",
+      "name": "Digital Realty BCN1 Barcelona — existing data-centre operations",
+      "country": "Spain",
+      "country_iso_a2": "ES",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-09-30",
+        "source_id": "ops-iberia-italy-p6-dlr-pr-blackfuel-bcn1-20260930",
+        "summary": "Digital Realty's press release dated 30 September 2026 reports a 'Multi-Megawatt deployment at BCN1': Blackfuel has selected Digital Realty's BCN1 data center in Barcelona as the foundation for deploying and scaling its AI inference platform on liquid-cooled Dell AI Factory infrastructure and AMD GPUs, connected through Digital Realty's ServiceFabric platform, with Barcelona described as 'the first proof point'. A customer deployment of this kind at a named facility supports BCN1 as an operating data centre on 30 September 2026, the publication day. Digital Realty's BCN1 page (captured 7 November 2026) likewise says BCN1 'offers' carrier-neutral colocation. No opening date, capacity figure or construction phase is asserted."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            2.2322354,
+            41.4295746
+          ]
+        },
+        "source_id": "ops-iberia-italy-p6-catastro-rccoor-dlr-bcn1-union-centroid",
+        "scope": "campus_locator",
+        "scope_class": "operator_address_cadastral_parcel_pair_area_centroid",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "catastro_inspire_epsg25831_operator_address_two_parcel_union_area_centroid_pyproj_to_wgs84",
+        "precision": "Area centroid of the union of cadastral parcels 5968901DF3856H (Carrer del Maresme 43-45, 4,703 m2) and 5968902DF3856H (Carrer del Maresme 39-41, 2,164 m2) in Sant Adrià de Besòs, together about 6,867 m2 and 118 by 123 m. No. 43 is the number Digital Realty gives for BCN1 and Digital Realty's own coordinate lies in the adjoining no. 39-41 parcel; imagery shows one building spanning both. The point lies inside the union 27 m from its outer boundary (in parcel 5968902DF3856H, 4 m from the shared boundary) and locates the data-centre property; it is not a surveyed building footprint.",
+        "identity_review": "Digital Realty's BCN1 page gives 'Av. del Maresme, 43, 08918 Badalona, Barcelona, Spain' and a facility coordinate (41.42980158922037, 2.2328209064953253). Catastro records no no. 43 on Badalona's side of the street (only even numbers 38-48); the odd-numbered side is in Sant Adrià de Besòs, where CL MARESME 43 N2-45 is parcel 5968901DF3856H (4,703 m2). Catastro's lookup at Digital Realty's coordinate returns the adjoining parcel 5968902DF3856H (CL MARESME 39 N2-41, 2,164 m2), and undated Esri imagery shows one large building with dense rooftop cooling plant spanning both parcels. The two parcels' INSPIRE geometries were retrieved in EPSG:25831, the area centroid of their union computed with shapely and transformed with pyproj; Catastro's lookup at the result returns parcel 5968902DF3856H. The point is 55 m from Digital Realty's coordinate. Both parcels' cadastral building data (industrial, 1978) predate the 15,000 m2 data-centre building and are not used. No city centre, cable landing station or estate centroid is used.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "Catastro publishes no positional accuracy for parcel boundaries; the point is a derived interior anchor of a two-parcel union whose farthest vertex is about 64 m away, and Digital Realty's own coordinate is 55 m away. Decimal places are computation precision, not accuracy."
+      },
+      "context_source_ids": [
+        "ops-iberia-italy-p6-dlr-bcn1-page-20261107",
+        "ops-iberia-italy-p6-catastro-dnploc-badalona-maresme-43",
+        "ops-iberia-italy-p6-catastro-dnploc-sant-adria-maresme-43",
+        "ops-iberia-italy-p6-catastro-rccoor-dlr-bcn1-operator-point",
+        "ops-iberia-italy-p6-catastro-dnprc-5968902DF3856H",
+        "ops-iberia-italy-p6-catastro-cp-5968901DF3856H",
+        "ops-iberia-italy-p6-catastro-cp-5968902DF3856H",
+        "ops-iberia-italy-p6-esri-dlr-bcn1-imagery"
+      ],
+      "roles": [
+        {
+          "party": "Digital Realty",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "ops-iberia-italy-p6-dlr-bcn1-page-20261107"
+        },
+        {
+          "party": "Blackfuel",
+          "role": "customer",
+          "relationship_scope": "current",
+          "source_id": "ops-iberia-italy-p6-dlr-pr-blackfuel-bcn1-20260930"
+        }
+      ],
+      "distinctness_review": "Screened on 7 November 2026 against the names, aliases, operators, addresses, cadastral references and coordinates in all five tables of verified_construction_core/2026-11-07-research-hundredtwentythird (959 sites, 1,033 projects, 5,477 evidence rows; sites, projects, evidence, source-records and identity-mapping), the changes.json and holds.json of every queue fragment, claims.tsv and every sources/*-holds.json file. Terms: BCN1, Digital Realty Barcelona, Maresme, Badalona, Sant Adrià, Blackfuel, 08918, 08930, 5968901DF3856H and 5968902DF3856H. No Atlas site, project, evidence row, source record or identity mapping names BCN1, Blackfuel or Carrer/Avinguda del Maresme, and no Atlas record lies within 2 km (the nearest site, AWS Walqa, is 236 km away; the Atlas has no data centre in the Barcelona area). Queue mentions are holds only: global-operators-p1 (undated pages), iberia-italy-p4 and iberia-italy-p5 (no dated facility statement), whose reopen condition this release meets. Equinix BA1 (Carrer de l'Acer 30-32, Barcelona) and BA2 (Carretera del Mig 219, L'Hospitalet de Llobregat) are another operator's facilities at addresses across the city to the south-west, not in the Atlas and held in this fragment; Nabiax Terrassa, added in this fragment, is 24 km north-west.",
+      "successor_review": "Digital Realty's BCN1 page captured on 7 November 2026 still presents BCN1 as offering colocation, and nothing reports a sale, closure or pause. Operational is kept as of 30 September 2026 (38 days before this update, inside the 85-day floor).",
+      "scoped_project_details": {
+        "aliases": [
+          "BCN1",
+          "BCN1 Data Center",
+          "Digital Realty Barcelona BCN1"
+        ],
+        "facility_scope": "Existing Digital Realty colocation data centre BCN1 (15,000 m2 total building) at Avinguda / Carrer del Maresme 43 on the Badalona - Sant Adrià de Besòs boundary, cadastral parcels 5968901DF3856H and 5968902DF3856H, including the Blackfuel AI inference deployment.",
+        "it_capacity_mw_current": null,
+        "it_capacity_qualification": "Not stated by the operator; the release says only 'Multi-Megawatt deployment' for one customer.",
+        "address": "Av. del Maresme, 43, 08918 Badalona (Digital Realty); CL MARESME 43 N2-45 and 39 N2-41, 08930 Sant Adrià de Besòs (Catastro)",
+        "cadastral_parcel": "5968901DF3856H; 5968902DF3856H",
+        "excluded": "Digital Realty's Madrid (MAD1-MAD4), Rome (ROM1) and Lisbon (LIS1) facilities and any further Barcelona campus development",
+        "opening_date_not_asserted": true
+      }
+    },
+    {
+      "project_stable_key": "curated:sify-airoli-reliable-plaza-k10-data-center:existing-operations",
+      "physical_site_stable_key": "curated:sify-airoli-reliable-plaza-k10-data-center",
+      "site_name": "Sify Airoli Data Center (MUM02), Reliable Plaza, Plot K-10, Kalwa Industrial Estate, Navi Mumbai",
+      "name": "Sify Airoli Data Center (MUM02) — existing colocation data-centre operations (Reliable Plaza, Plot K-10, Kalwa Industrial Estate, Airoli, Navi Mumbai)",
+      "country": "India",
+      "country_iso_a2": "IN",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-09-29",
+        "source_id": "ops-india-p6-sify-mumbai-page-20260929",
+        "summary": "Sify's Mumbai page, in its version of 29 September 2026 (dateModified bounded by Internet Archive copies of 28 July and 1 October 2026), is headed 'Data Centers in Mumbai – Rabale, Airoli & Vashi' and states in the present tense that 'Sify's Airoli Data Center is designed for 4.05 MW IT Power', that it 'interconnects with Sify's Rabale data center and allows access to hyperscale public clouds', that the carrier-neutral facility has dual Meet-Me-Rooms and named ISPs present, and that it 'Offers cloud deployments, colocation & managed services ... to customers from India and worldwide', at '6th floor, Reliable Plaza, Plot No:- K-10, Kalwa Industrial Estate, City: Airoli Navi Mumbai'. This records the Airoli facility as an existing, operating Sify data centre on 29 September 2026, the page version date. It is not an opening, inspection or commissioning date; the 4.05 MW figure is the operator's design label and no load, rack count or customer is asserted."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            73.00013538,
+            19.16940396
+          ]
+        },
+        "source_id": "ops-india-p6-midc-plot-kalwa-k-10",
+        "identity_source_ids": [
+          "ops-india-p6-sify-mumbai-page-20260929",
+          "ops-india-p6-sify-mum02-airoli-factsheet",
+          "ops-india-p6-midc-plot-k10-search",
+          "ops-india-p6-midc-plots-near-kalwa-k-10"
+        ],
+        "scope": "campus_locator",
+        "scope_class": "official_industrial_estate_plot_centroid_for_operator_named_facility_plot",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "MIDC_GIS_citizen_portal_plot_boundary_query_TTC_IA201_plot_KALWA-K-10_published_centroid_retained_checked_inside_native_ring",
+        "precision": "Centroid that MIDC publishes for Trans Thane Creek Industrial Area plot KALWA-K-10 (19,670 m2, about 181 m by 133 m), the plot Sify gives as 'Plot No:- K-10, Kalwa Industrial Estate' for its Airoli data center in Reliable Plaza. It marks the plot, which holds two large buildings on imagery, not the data-centre building, floor or entrance.",
+        "identity_review": "Sify's current Mumbai page and its MUM02 (Airoli) factsheet both give the Airoli data center's address as Reliable Plaza, Plot No:- K-10, Kalwa Industrial Estate, Airoli, Navi Mumbai. Kalwa Industrial Estate lies in MIDC's Trans Thane Creek (TTC) Industrial Area, and MIDC's public plot layer returns exactly one TTC plot numbered KALWA-K-10 (allotted, industrial); a search of plot numbers containing K-10 across all MIDC areas finds no other TTC match except a 90 m2 amenity plot PAP-K-10 about 0.9 km away. Esri imagery (visual check only) shows two large multi-storey buildings inside the plot ring, the western one with dense rooftop plant consistent with data-centre cooling. The coordinate printed in the 2022 MUM02 factsheet lies 262 m west of the centroid and 183 m outside the plot, in an electrical switchyard with no MIDC plot within 150 m, so it is recorded as a discrepancy and not used. No map service, embedded map, map link, PeeringDB or OpenStreetMap data, city centre, head-office address or industrial-area centroid is used.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "MIDC states no positional accuracy for its plot layer. The point stands for a 2 ha plot holding more than one building, and the data-centre building within it is not separately located."
+      },
+      "context_source_ids": [
+        "ops-india-p6-sify-mumbai-ia-20260728",
+        "ops-india-p6-sify-mumbai-ia-20261001",
+        "ops-india-p6-sify-mum02-airoli-factsheet",
+        "ops-india-p6-midc-plot-k10-search",
+        "ops-india-p6-midc-plots-near-kalwa-k-10",
+        "ops-india-p6-midc-plots-near-sify-airoli-factsheet-point"
+      ],
+      "roles": [
+        {
+          "party": "Sify Technologies Limited",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "ops-india-p6-sify-mumbai-page-20260929"
+        }
+      ],
+      "distinctness_review": "Screened on 7 November 2026 against verified_construction_core/2026-11-07-research-hundredtwentyfourth (967 sites, 1,041 projects, 5,597 evidence rows): the names, aliases, operators, addresses and coordinates in sites.csv, projects.csv, evidence.csv, source-records.json and identity-mapping.json; the additions and locator corrections in every pending queue fragment's changes.json; claims.tsv; and every sources/*-holds.json file and queue holds.json. Keywords: Sify, Airoli, MUM02, Reliable Plaza, Kalwa, K-10, 400708, 400710. The Atlas has three Sify sites in India (Rabale/Mumbai 03, Noida 02, Chennai 02), none at Airoli, and no record names Reliable Plaza or plot K-10. The only earlier mentions are holds: the seventy-sixth update's india-p3 entry 'Sify Airoli Data Center (6th floor, Reliable Plaza, Plot K-10 ...)', held for want of a point locator and to be reopened with 'official address point/plot geometry for Reliable Plaza (K-10)'; this record supplies that plot geometry. Within 2 km of the selected point: the Atlas site CapitaLand DC Navi Mumbai Campus (another operator's Airoli campus) at 705 m, and Digital Edge Navi Mumbai Campus at 1,875 m, with in-west-north-p1's pending BOM1/BOM3 claims on that same reused point (Survey No 238/2, Kalwa, Thane-Belapur Road); neither is a Sify facility or on plot K-10. The imported Sify Rabale record (Mumbai 03, a separate Sify campus on TTC plot R-847) is 2,944 m away at its locality point; the Sify page describes Airoli as a separate data center interconnected with Rabale. Sify's Vashi data center (Mumbai 01) is not part of this record.",
+      "successor_review": "Sify's page-sitemap and post-sitemap (captured 6 November 2026) list no later page or news item announcing a closure, sale, migration or transfer of the facility; the live page captured on 6 November 2026 still carries the 29 September 2026 version. Operational is kept as of 29 September 2026, 39 days before this update, inside the 85-day research floor and the 90-day admission window (open until 28 December 2026).",
+      "scoped_project_details": {
+        "aliases": [
+          "Sify Airoli Data Center",
+          "Sify MUM02",
+          "MUM02 (Airoli)",
+          "Sify Mumbai 02"
+        ],
+        "address": "6th floor, Reliable Plaza, Plot No. K-10, Kalwa Industrial Estate (MIDC TTC Industrial Area), Airoli, Navi Mumbai 400708, Maharashtra",
+        "operator_stated_it_power_mw_label": "4.05",
+        "power_qualification": "'designed for 4.05 MW IT Power' is the operator's current page label; the 2022 factsheet gave 1,345 racks and 5.4 MW. Neither is measured load and no power observation is recorded.",
+        "permit_status_not_asserted": true,
+        "opening_date_not_asserted": true,
+        "owner_not_asserted": true,
+        "facility_scope": "Existing Sify Airoli (MUM02) data center at Reliable Plaza, MIDC plot KALWA-K-10; no expansion or new building is asserted."
+      }
+    },
+    {
+      "project_stable_key": "curated:sify-noida-01-sector-132-data-center:existing-operations",
+      "physical_site_stable_key": "curated:sify-noida-01-sector-132-data-center",
+      "site_name": "Sify Noida 01 data center campus (DEL01), Plot B7, Sector 132, Noida",
+      "name": "Sify Noida 01 (DEL01) — existing hyperscale and colocation data-centre campus operations (Plot B7, Sector 132, Noida)",
+      "country": "India",
+      "country_iso_a2": "IN",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-09-29",
+        "source_id": "ops-india-p6-sify-noida-page-20260929",
+        "summary": "Sify's Noida page, in its version of 29 September 2026 (dateModified bounded by Internet Archive copies of 12 July and 1 October 2026), says 'Sify built its hyperscale data center campus- Noida 01 with 10.96 MW IT Power and added Noida 02 campus within 1KM' and states in the present tense that 'The Noida 01 campus has a total IT power capacity of 10.96 MW. The campus offers seamless hyperscale cloud deployments, colocation & managed services', that the carrier-neutral facility has dual Meet-Me-Rooms, and that it 'Powers customers with cloud deployments and hosts colocation customers from India and globally', at 'Plot No – B7, Sector – 132, Opp. Jaypee Hospital, Greater Noida Expressway'. This records Noida 01 as an existing, operating Sify campus on 29 September 2026, the page version date. It is not an opening or commissioning date; 10.96 MW is the operator's capacity label, not measured load."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            77.3724303,
+            28.5138347
+          ]
+        },
+        "source_id": "ops-india-p6-sify-del01-noida-factsheet",
+        "identity_source_ids": [
+          "ops-india-p6-sify-noida-page-20260929"
+        ],
+        "scope": "campus_locator",
+        "scope_class": "operator_published_facility_coordinate",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "operator_factsheet_PDF_printed_decimal_degree_coordinate_DEL01_Noida_copied_as_published",
+        "precision": "Decimal-degree coordinate that Sify prints in its DEL01 (Noida) factsheet directly under the Plot B7, Sector 132 address. It is the operator's facility reference point, not a surveyed plot outline, building or entrance; no datum is stated (WGS 84 assumed).",
+        "identity_review": "The factsheet is the one the current Noida page links as 'Download Fact Sheet' from its Noida 01 section, and its heading (SIFY DEL01 (NOIDA)), address (Plot No – B7, Sector – 132, Opp. Jaypee Hospital, Greater Noida Expressway) and description match the page's Noida 01 section. The page's own schema.org LocalBusiness block, with the same address, gives 28.493081, 77.406532; that point lies 4,054 m south-east of the factsheet point and on Esri imagery (visual check only) falls on open farmland with no building, so it is not used. At the factsheet point Esri imagery shows a mid-size flat-roofed building with rooftop plant in a block of institutional and commercial plots south-west of the Noida-Greater Noida Expressway. Another coordinate in the same 2022 factsheet series (MUM02 Airoli) is 262 m off its MIDC plot, so a few hundred metres of error cannot be ruled out. No map service, embedded map, map link, PeeringDB or OpenStreetMap data, city centre or head-office address is used.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "Sify states no accuracy for the printed coordinate. A coordinate from the same 2022 factsheet series lies about 262 m from the official plot it should mark, so this point may be off by a few hundred metres; it was not checked against an official plot record. Sify's own Noida page gives a second coordinate for the same address 4,054 m to the south-east (schema.org GeoCoordinates; open farmland on imagery, not used); the choice between the two operator points rests on that visual imagery check and on the factsheet printing its point directly under the Noida 01 address, not on an official plot record."
+      },
+      "context_source_ids": [
+        "ops-india-p6-sify-noida-ia-20260712",
+        "ops-india-p6-sify-noida-ia-20261001"
+      ],
+      "roles": [
+        {
+          "party": "Sify Technologies Limited",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "ops-india-p6-sify-noida-page-20260929"
+        }
+      ],
+      "distinctness_review": "Screened on 7 November 2026 against verified_construction_core/2026-11-07-research-hundredtwentyfourth (967 sites, 1,041 projects, 5,597 evidence rows): the names, aliases, operators, addresses and coordinates in sites.csv, projects.csv, evidence.csv, source-records.json and identity-mapping.json; the additions and locator corrections in every pending queue fragment's changes.json; claims.tsv; and every sources/*-holds.json file and queue holds.json. Keywords: Sify, Noida 01, DEL01, Sector 132, Plot B7, Jaypee, 201304. The Atlas's only Sify Noida record is the imported Sify Noida 02 data center campus (imported:semiconductor-atlas:sify-noida-02; alias 'Noida 02'), whose locator is the Noida city reference point 28.57, 77.32, 8,067 m away; its own record notes 'Sify says Noida 02 is within 1 km of Noida 01, whose address is Plot B7, Sector 132', so the two are separate campuses (Noida 02: 25.92 MW with its own 220 kV substation; Noida 01: 10.96 MW). This record is Noida 01 only and does not locate Noida 02; up-12-p7 has claimed a locator correction for Noida 02, and if that point lands within 1-2 km of this one it is the sister campus, not a duplicate. No Atlas site, pending queue addition, locator correction or claim with coordinates lies within 2 km of the selected point (the page JSON-LD point, not used, also has none). The nearest Atlas records are CtrlS Noida Datacenter (Sector 127) at 2,859 m and the shared Noida city point of the imported Sify Noida 02 and AdaniConneX Noida records at 8,067 m. No hold covers Noida 01, and the already-published india-p3 Noida 02 refresh states that 'Sify's separate Noida 01 facility, described on the same page, is not touched'.",
+      "successor_review": "Sify's page-sitemap and post-sitemap (captured 6 November 2026) list no later page or news item announcing a closure, sale, migration or transfer of the facility; the live page captured on 6 November 2026 still carries the 29 September 2026 version. Operational is kept as of 29 September 2026, 39 days before this update, inside the 85-day research floor and the 90-day admission window (open until 28 December 2026).",
+      "scoped_project_details": {
+        "aliases": [
+          "Sify Noida 01",
+          "Sify DEL01",
+          "DEL01 (Noida)",
+          "Noida 01 campus"
+        ],
+        "address": "Plot No. B7, Sector 132, opposite Jaypee Hospital, Noida-Greater Noida Expressway, Gautam Buddh Nagar, Noida 201304, Uttar Pradesh",
+        "operator_stated_it_power_mw_label": "10.96",
+        "power_qualification": "'total IT power capacity of 10.96 MW' is the operator's current page label; the 2022 factsheet gave 2,100 racks and 11 MW. Neither is measured load and no power observation is recorded.",
+        "permit_status_not_asserted": true,
+        "opening_date_not_asserted": true,
+        "owner_not_asserted": true,
+        "facility_scope": "Existing Sify Noida 01 (DEL01) campus at Plot B7, Sector 132; Sify's Noida 02 campus within 1 km is a separate Atlas site and is not part of this record."
+      }
+    },
+    {
+      "project_stable_key": "curated:sify-chennai-01-tidel-park-data-center:existing-operations",
+      "physical_site_stable_key": "curated:sify-chennai-01-tidel-park-data-center",
+      "site_name": "Sify Chennai 01 data center, Tidel Park, Taramani, Chennai",
+      "name": "Sify Chennai 01 — existing colocation data-centre operations (2nd Floor, Tidel Park, No. 4 Canal Bank Road, Taramani, Chennai)",
+      "country": "India",
+      "country_iso_a2": "IN",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-09-29",
+        "source_id": "ops-india-p6-sify-chennai-page-20260929",
+        "summary": "Sify's Chennai page, in its version of 29 September 2026 (dateModified bounded by Internet Archive copies of 28 July and 1 October 2026), states that 'Sify's Data Center Chennai 01 in Tidel Park has 3.58 MW IT Power. It is complemented by a new Hyperscale Data Center campus, Chennai 02 in Siruseri', that the carrier-neutral facility has dual Meet-Me-Rooms and multiple telecom providers and internet exchanges, and that it 'Offers colocation & managed services, disaster-recovery-as-a-service (DRaaS) & CDN services', at '2nd Floor, Tidel Park, No.4, Canal Bank Road, Tharamani, Chennai'. This records Chennai 01 as an existing, operating Sify data centre on 29 September 2026, the page version date (the same version was admitted for the Chennai 02 status refresh). It is not an opening or commissioning date; 3.58 MW is the operator's capacity label, not measured load."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            80.2484908,
+            12.9896416
+          ]
+        },
+        "source_id": "ops-india-p6-sify-chennai01-factsheet",
+        "identity_source_ids": [
+          "ops-india-p6-sify-chennai-page-20260929"
+        ],
+        "scope": "campus_locator",
+        "scope_class": "operator_published_facility_coordinate",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "operator_factsheet_PDF_printed_decimal_degree_coordinate_Chennai_Tidel_Park_copied_as_published",
+        "precision": "Decimal-degree coordinate that Sify prints in its Chennai (Tidel Park) factsheet directly under the 2nd Floor, Tidel Park address. It marks the host building as given by the operator, not the data-centre floor, a surveyed plot or an entrance; no datum is stated (WGS 84 assumed).",
+        "identity_review": "The factsheet is the one the current Chennai page links as 'Download Fact Sheet' from its Chennai 01 section, and its heading, address (2nd Floor, Tidel Park, No.4, Canal Bank Road, Taramani) and description ('Sify data center in Chennai's Tidel park') match that section. The page's own schema.org LocalBusiness block, with the same address, gives 13.0060899, 80.2484437; that point lies 1,820 m north of the factsheet point and on Esri imagery (visual check only) falls in a dense residential block of small houses beside an elevated railway station, with no large office building, so it is not used. At the factsheet point Esri imagery shows a very large multi-storey office building with a rooftop helipad marking in landscaped grounds west of an arterial road and an elevated rail line, consistent with a large IT-park building. Another coordinate in the same 2022 factsheet series (MUM02 Airoli) is 262 m off its MIDC plot. No map service, embedded map, map link, PeeringDB or OpenStreetMap data, city centre or head-office address is used.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "Sify states no accuracy for the printed coordinate. A coordinate from the same 2022 factsheet series lies about 262 m from the official plot it should mark; this point falls on a large office building on imagery but was not checked against an official parcel or address record. Sify's own Chennai page gives a second coordinate for the same address 1,820 m to the north (schema.org GeoCoordinates; a residential block on imagery, not used); the choice between the two operator points rests on that visual imagery check and on the factsheet printing its point directly under the Tidel Park address, not on an official parcel record."
+      },
+      "context_source_ids": [
+        "ops-india-p6-sify-chennai-ia-20260728",
+        "ops-india-p6-sify-chennai-ia-20261001"
+      ],
+      "roles": [
+        {
+          "party": "Sify Technologies Limited",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "ops-india-p6-sify-chennai-page-20260929"
+        }
+      ],
+      "distinctness_review": "Screened on 7 November 2026 against verified_construction_core/2026-11-07-research-hundredtwentyfourth (967 sites, 1,041 projects, 5,597 evidence rows): the names, aliases, operators, addresses and coordinates in sites.csv, projects.csv, evidence.csv, source-records.json and identity-mapping.json; the additions and locator corrections in every pending queue fragment's changes.json; claims.tsv; and every sources/*-holds.json file and queue holds.json. Keywords: Sify, Chennai 01, Tidel, Taramani, Tharamani, Canal Bank Road, 600113. The Atlas's only Sify Chennai record is the imported Sify Chennai 02 data center campus, Siruseri (imported:semiconductor-atlas:sify-chennai-02-siruseri), a separate 25.92 MW campus about 17 km south whose locality point is 17,899 m away. Tidel Park appears in the base only in the evidence title of that Chennai 02 refresh ('Chennai 01 Tidel Park and Chennai 02 Siruseri'), and in the forty-fifth update's in-south-east-p1 hold on 'Sify datacenters in Hyderabad ..., Bengaluru ..., Chennai 01 (Tidel Park, 3.58 MW) and Kolkata', held for want of a point locator; this record supplies the operator-printed coordinate for Chennai 01 only. The already-published in-south-east-p1 Chennai 02 refresh states that 'Sify's separate Chennai 01 facility at Tidel Park, Taramani, described on the same page, is not touched'. No Atlas site, pending queue addition, locator correction or claim with coordinates lies within 2 km of the selected point (nor of the unused JSON-LD point). The nearest Atlas records are CtrlS Chennai Datacenter Park (Ambattur) at 15,966 m and CapitaLand DC Chennai Ambattur Campus at 16,530 m.",
+      "successor_review": "Sify's page-sitemap and post-sitemap (captured 6 November 2026) list no later page or news item announcing a closure, sale, migration or transfer of the facility; the live page captured on 6 November 2026 still carries the 29 September 2026 version. Operational is kept as of 29 September 2026, 39 days before this update, inside the 85-day research floor and the 90-day admission window (open until 28 December 2026).",
+      "scoped_project_details": {
+        "aliases": [
+          "Sify Chennai 01",
+          "Sify Tidel Park data center",
+          "Sify Chennai Data Center (Tidel Park)"
+        ],
+        "address": "2nd Floor, Tidel Park, No. 4 Canal Bank Road, Taramani (Tharamani), Chennai 600113, Tamil Nadu",
+        "operator_stated_it_power_mw_label": "3.58",
+        "power_qualification": "'has 3.58 MW IT Power' is the operator's current page label; the 2022 factsheet gave 433 racks and 1.6 MW. Neither is measured load and no power observation is recorded.",
+        "permit_status_not_asserted": true,
+        "opening_date_not_asserted": true,
+        "owner_not_asserted": true,
+        "facility_scope": "Existing Sify Chennai 01 data center on the 2nd floor of Tidel Park; the multi-tenant Tidel Park building and Sify's Chennai 02 campus at Siruseri are not part of this record."
+      }
+    },
+    {
+      "project_stable_key": "curated:equinix-he3-helsinki-parrukatu-2:existing-operations",
+      "physical_site_stable_key": "curated:equinix-he3-helsinki-parrukatu-2",
+      "site_name": "Equinix HE3 Helsinki IBX, Parrukatu 2",
+      "name": "Equinix HE3 — existing IBX colocation data-centre operations (Parrukatu 2, 00540 Helsinki)",
+      "country": "Finland",
+      "country_iso_a2": "FI",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-09-30",
+        "source_id": "ops-nordics-p6-eqx-q3-2026-earnings-presentation-20261028",
+        "summary": "Equinix's Q3 2026 earnings presentation, released with its results on 28 October 2026 for the quarter ended 30 September 2026, lists HE3 among the five Helsinki IBX data centers on slide 36 ('Data Center Portfolio Composition - EMEA') in the category 'Stabilized' and in its 'Leased' column. Slide 47 defines Stabilized Data Centers as those whose final expansion or redevelopment phase began operating before 1 January 2025, and slide 30 reports Q3 2026 cabinets billed and recurring revenues for the stabilized IBX portfolio; the EMEA change summary names no closure or status change in Helsinki. This records HE3 as an existing, operating Equinix IBX for the quarter ended 30 September 2026, used as the observation date. The identification of HE3 with its street address rests on Equinix's own HE3 page (Internet Archive copy of 3 October 2026). It is not an opening, inspection or commissioning date, and no capacity, load, customer or new phase is asserted."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            24.9674347,
+            60.18476066
+          ]
+        },
+        "source_id": "ops-nordics-p6-hel-pks-osoite-parrukatu-2",
+        "identity_source_ids": [
+          "ops-nordics-p6-eqx-he3-ia-20261003",
+          "ops-nordics-p6-eqx-helsinki-listing-ia-20261003",
+          "ops-nordics-p6-hel-pks-street-parrukatu-epsg3879"
+        ],
+        "scope": "project_locator",
+        "scope_class": "official_numbered_address_point",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "retain_exact_capital_region_address_register_point_PKS_osoiteluettelo_35677_Parrukatu_2_00540_Helsinki",
+        "precision": "Capital-region address register point (Seudullinen osoiteluettelo, feature PKS_osoiteluettelo.35677) for Parrukatu 2, 00540 Helsinki, the register entry for the address Equinix gives for HE3. It marks the property street address at the register's 1:4000 scale, not a surveyed building outline, entrance, property boundary or data hall; the IBX may occupy only part of the buildings at the address.",
+        "identity_review": "Equinix's HE3 page (Internet Archive raw copy of 3 October 2026; www.equinix.com answers robots.txt with HTTP 403, so the live page was not requested) gives the address 'Parrukatu 2 00540 Helsinki Finland'; its meta description and the related-IBX blocks on Equinix's other Helsinki IBX pages give 'Parrukatu 2 00570 Helsinki'. The official regional address list has a single Parrukatu, in Helsinki 00540, so both forms name the same street, and exactly one register row is Parrukatu 2 (no division letter). The served EPSG:4326 point equals the native EPSG:3879 point transformed independently with pyproj 3.7.1 to within a few millimetres (geometry facts). The coordinate constants in the map-widget script of Equinix's page were not used, nor any commercial map, geocoder, PeeringDB record, OpenStreetMap service, city centre, head-office address or industrial-area centroid. Equinix's Helsinki listing (archive copy of 3 October 2026) names exactly HE3-HE7, matching the five Helsinki IBXs of the 28 October 2026 presentation.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The register metadata gives a 1:4000 scale but no positional accuracy for address points; decimal places are not survey accuracy, and the point does not mark the building outline or the IBX's part of the buildings."
+      },
+      "context_source_ids": [
+        "ops-nordics-p6-eqx-he3-ia-20261003",
+        "ops-nordics-p6-eqx-helsinki-listing-ia-20261003",
+        "ops-nordics-p6-hel-pks-street-parrukatu-epsg3879"
+      ],
+      "roles": [
+        {
+          "party": "Equinix",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "ops-nordics-p6-eqx-q3-2026-earnings-presentation-20261028"
+        }
+      ],
+      "distinctness_review": "Screened on 7 November 2026 against verified_construction_core/2026-11-07-research-hundredtwentythird (sites.csv, projects.csv, evidence.csv, source-records.json and identity-mapping.json: names, aliases, operators, addresses, postcodes and coordinates), the additions and locator corrections in every pending queue fragment's changes.json, claims.tsv and every sources/*-holds.json and queue holds.json, for the keywords Equinix, HE3, HE4, HE5, HE6, HE7, Helsinki, Espoo, Vantaa, Parrukatu, Myllynkivenkuja, Sahamyllyntie, Sinimäentie, 00540, 00560, 00570, 01620. No Atlas record, pending change, hold or other fragment's claim names an Equinix facility in Finland or Sweden, Equinix HE3, its street or its postcode; the only bare 'HE4' match is a Polish KRS extract for an unrelated Warsaw company. The Atlas has no Equinix site in Finland. No Atlas site, project, pending queue addition or locator correction lies within 2 km of the point; the nearest Atlas records are Microsoft Espoo Hepokorpi Datacenter Campus (16.60 km), Hetzner Helsinki Data Center Park, Huurrekuja 10, Tuusula (17.96 km) and Microsoft Kirkkonummi Datacenter Campus (23.66 km). The held Helsinki and Espoo addresses of earlier passes (Hiomotie 13, Pitäjänmäki; Mänkimiehentie 4, Espoo) lie 5.6-20.1 km from the Equinix points. Other Equinix Helsinki IBXs are separate sites: Equinix HE5 (Sahamyllyntie 4B, 4.12 km), added in this fragment as a separate site, and HE4 (Myllynkivenkuja 4B, Vantaa, 13.11 km), also added here; HE6 (Sinimäentie 12) and HE7 (Sinimäentie 8) in Espoo are held in this fragment. This is a new site with one project.",
+      "successor_review": "The 28 October 2026 presentation is the latest Equinix statement found naming HE3; Equinix's Finland newsroom listing (captured 6 November 2026) has no item after the atNorth completion release of 3 September 2026, and the Q3 2026 results release names no closure, sale or transfer in Helsinki. The Internet Archive CDX listing queried on 6 November 2026 shows no Equinix Helsinki page after 3 October 2026 that drops HE3. Operational is kept as of 30 September 2026, inside the 85-day floor (14 August 2026) and the 90-day window.",
+      "scoped_project_details": {
+        "aliases": [
+          "Equinix HE3",
+          "HE3 IBX",
+          "Equinix Helsinki HE3"
+        ],
+        "address": "Parrukatu 2 00540 Helsinki Finland",
+        "operator_metro": "Equinix Helsinki metro (HE3, HE4, HE5, HE6, HE7)",
+        "portfolio_category_q3_2026": "Stabilized; Leased (slide 36, Equinix Q3 2026 earnings presentation)",
+        "operator_stated_space_sq_ft_label": "13,132",
+        "space_qualification": "'13,132 Square feet (ft²)' is the space figure on Equinix's HE3 page (Internet Archive copy of 3 October 2026); it is the operator's facility label, not measured occupancy, and no MW or cabinet figure is asserted.",
+        "permit_status_not_asserted": true,
+        "opening_date_not_asserted": true,
+        "owner_not_asserted": true,
+        "ownership_note": "The presentation lists HE3 as leased by Equinix; no landlord or ground owner is named and no owner role is recorded.",
+        "facility_scope": "Existing Equinix HE3 IBX at Parrukatu 2, 00540 Helsinki (operator form: Parrukatu 2 00540 Helsinki Finland); no expansion, new building or later phase is asserted."
+      }
+    },
+    {
+      "project_stable_key": "curated:equinix-he4-vantaa-myllynkivenkuja-4b:existing-operations",
+      "physical_site_stable_key": "curated:equinix-he4-vantaa-myllynkivenkuja-4b",
+      "site_name": "Equinix HE4 Helsinki IBX, Myllynkivenkuja 4B, Vantaa",
+      "name": "Equinix HE4 — existing IBX colocation data-centre operations (Myllynkivenkuja 4B, 01620 Vantaa)",
+      "country": "Finland",
+      "country_iso_a2": "FI",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-09-30",
+        "source_id": "ops-nordics-p6-eqx-q3-2026-earnings-presentation-20261028",
+        "summary": "Equinix's Q3 2026 earnings presentation, released with its results on 28 October 2026 for the quarter ended 30 September 2026, lists HE4 among the five Helsinki IBX data centers on slide 36 ('Data Center Portfolio Composition - EMEA') in the category 'Stabilized' and in its 'Leased' column. Slide 47 defines Stabilized Data Centers as those whose final expansion or redevelopment phase began operating before 1 January 2025, and slide 30 reports Q3 2026 cabinets billed and recurring revenues for the stabilized IBX portfolio; the EMEA change summary names no closure or status change in Helsinki. This records HE4 as an existing, operating Equinix IBX for the quarter ended 30 September 2026, used as the observation date. The identification of HE4 with its street address rests on Equinix's own HE4 page (Internet Archive copy of 3 October 2026). It is not an opening, inspection or commissioning date, and no capacity, load, customer or new phase is asserted."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            24.84094558,
+            60.28419569
+          ]
+        },
+        "source_id": "ops-nordics-p6-hel-pks-osoite-myllynkivenkuja-4",
+        "identity_source_ids": [
+          "ops-nordics-p6-eqx-he4-ia-20261003",
+          "ops-nordics-p6-eqx-helsinki-listing-ia-20261003",
+          "ops-nordics-p6-hel-pks-street-myllynkivenkuja-epsg3879"
+        ],
+        "scope": "project_locator",
+        "scope_class": "official_numbered_address_point",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "retain_exact_capital_region_address_register_point_PKS_osoiteluettelo_80344_Myllynkivenkuja_4_01620_Vantaa",
+        "precision": "Capital-region address register point (Seudullinen osoiteluettelo, feature PKS_osoiteluettelo.80344) for Myllynkivenkuja 4, 01620 Vantaa, the register entry for the address Equinix gives for HE4. It marks the property street address at the register's 1:4000 scale, not a surveyed building outline, entrance, property boundary or data hall; the IBX may occupy only part of the buildings at the address.",
+        "identity_review": "Equinix's HE4 page (Internet Archive raw copy of 3 October 2026; www.equinix.com answers robots.txt with HTTP 403, so the live page was not requested) gives the address 'Myllynkivenkuja 4B 01620 Vantaa Finland', repeated in its meta description; Equinix files HE4 under its Helsinki metro. The official regional address list holds property and plot street addresses only, not entrance or staircase letters; its single Myllynkivenkuja is in Vantaa 01620 and exactly one row is Myllynkivenkuja 4 (no division letter), so the operator's '4B' is matched to that number. The served EPSG:4326 point equals the native EPSG:3879 point transformed independently with pyproj 3.7.1 to within a few millimetres (geometry facts). The coordinate constants in the map-widget script of Equinix's page were not used, nor any commercial map, geocoder, PeeringDB record, OpenStreetMap service, city centre, head-office address or industrial-area centroid. Equinix's Helsinki listing (archive copy of 3 October 2026) names exactly HE3-HE7, matching the five Helsinki IBXs of the 28 October 2026 presentation.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The register metadata gives a 1:4000 scale but no positional accuracy for address points; decimal places are not survey accuracy, and the point does not mark the building outline or the IBX's part of the buildings."
+      },
+      "context_source_ids": [
+        "ops-nordics-p6-eqx-he4-ia-20261003",
+        "ops-nordics-p6-eqx-helsinki-listing-ia-20261003",
+        "ops-nordics-p6-hel-pks-street-myllynkivenkuja-epsg3879"
+      ],
+      "roles": [
+        {
+          "party": "Equinix",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "ops-nordics-p6-eqx-q3-2026-earnings-presentation-20261028"
+        }
+      ],
+      "distinctness_review": "Screened on 7 November 2026 against verified_construction_core/2026-11-07-research-hundredtwentythird (sites.csv, projects.csv, evidence.csv, source-records.json and identity-mapping.json: names, aliases, operators, addresses, postcodes and coordinates), the additions and locator corrections in every pending queue fragment's changes.json, claims.tsv and every sources/*-holds.json and queue holds.json, for the keywords Equinix, HE3, HE4, HE5, HE6, HE7, Helsinki, Espoo, Vantaa, Parrukatu, Myllynkivenkuja, Sahamyllyntie, Sinimäentie, 00540, 00560, 00570, 01620. No Atlas record, pending change, hold or other fragment's claim names an Equinix facility in Finland or Sweden, Equinix HE4, its street or its postcode; the only bare 'HE4' match is a Polish KRS extract for an unrelated Warsaw company. The Atlas has no Equinix site in Finland. No Atlas site, project, pending queue addition or locator correction lies within 2 km of the point; the nearest Atlas records are Microsoft Espoo Hepokorpi Datacenter Campus (9.95 km), Hetzner Helsinki Data Center Park, Huurrekuja 10, Tuusula (12.32 km) and Microsoft Kirkkonummi Datacenter Campus (22.41 km). The held Helsinki and Espoo addresses of earlier passes (Hiomotie 13, Pitäjänmäki; Mänkimiehentie 4, Espoo) lie 5.6-20.1 km from the Equinix points. Other Equinix Helsinki IBXs are separate sites: Equinix HE5 (Sahamyllyntie 4B, Helsinki, 10.66 km) and HE3 (Parrukatu 2, Helsinki, 13.11 km), added in this fragment as separate sites; HE6 (Sinimäentie 12) and HE7 (Sinimäentie 8) in Espoo are held in this fragment. This is a new site with one project.",
+      "successor_review": "The 28 October 2026 presentation is the latest Equinix statement found naming HE4; Equinix's Finland newsroom listing (captured 6 November 2026) has no item after the atNorth completion release of 3 September 2026, and the Q3 2026 results release names no closure, sale or transfer in Helsinki. The Internet Archive CDX listing queried on 6 November 2026 shows no Equinix Helsinki page after 3 October 2026 that drops HE4. Operational is kept as of 30 September 2026, inside the 85-day floor (14 August 2026) and the 90-day window.",
+      "scoped_project_details": {
+        "aliases": [
+          "Equinix HE4",
+          "HE4 IBX",
+          "Equinix Helsinki HE4"
+        ],
+        "address": "Myllynkivenkuja 4B 01620 Vantaa Finland",
+        "operator_metro": "Equinix Helsinki metro (HE3, HE4, HE5, HE6, HE7)",
+        "portfolio_category_q3_2026": "Stabilized; Leased (slide 36, Equinix Q3 2026 earnings presentation)",
+        "operator_stated_space_sq_ft_label": "23,874",
+        "space_qualification": "'23,874 Square feet (ft²)' is the space figure on Equinix's HE4 page (Internet Archive copy of 3 October 2026); it is the operator's facility label, not measured occupancy, and no MW or cabinet figure is asserted.",
+        "permit_status_not_asserted": true,
+        "opening_date_not_asserted": true,
+        "owner_not_asserted": true,
+        "ownership_note": "The presentation lists HE4 as leased by Equinix; no landlord or ground owner is named and no owner role is recorded.",
+        "facility_scope": "Existing Equinix HE4 IBX at Myllynkivenkuja 4, 01620 Vantaa (operator form: Myllynkivenkuja 4B 01620 Vantaa Finland); no expansion, new building or later phase is asserted."
+      }
+    },
+    {
+      "project_stable_key": "curated:equinix-he5-helsinki-sahamyllyntie-4b:existing-operations",
+      "physical_site_stable_key": "curated:equinix-he5-helsinki-sahamyllyntie-4b",
+      "site_name": "Equinix HE5 Helsinki IBX, Sahamyllyntie 4B",
+      "name": "Equinix HE5 — existing IBX colocation data-centre operations (Sahamyllyntie 4B, 00560 Helsinki)",
+      "country": "Finland",
+      "country_iso_a2": "FI",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-09-30",
+        "source_id": "ops-nordics-p6-eqx-q3-2026-earnings-presentation-20261028",
+        "summary": "Equinix's Q3 2026 earnings presentation, released with its results on 28 October 2026 for the quarter ended 30 September 2026, lists HE5 among the five Helsinki IBX data centers on slide 36 ('Data Center Portfolio Composition - EMEA') in the category 'Stabilized' and in its 'Owned' column as 'HE5*', the asterisk marking a long-term ground lease. Slide 47 defines Stabilized Data Centers as those whose final expansion or redevelopment phase began operating before 1 January 2025, and slide 30 reports Q3 2026 cabinets billed and recurring revenues for the stabilized IBX portfolio; the EMEA change summary names no closure or status change in Helsinki. This records HE5 as an existing, operating Equinix IBX for the quarter ended 30 September 2026, used as the observation date. The identification of HE5 with its street address rests on Equinix's own HE5 page (Internet Archive copy of 3 October 2026). It is not an opening, inspection or commissioning date, and no capacity, load, customer or new phase is asserted."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            24.98495345,
+            60.22067292
+          ]
+        },
+        "source_id": "ops-nordics-p6-hel-pks-osoite-sahamyllyntie-4",
+        "identity_source_ids": [
+          "ops-nordics-p6-eqx-he5-ia-20261003",
+          "ops-nordics-p6-eqx-helsinki-listing-ia-20261003",
+          "ops-nordics-p6-hel-pks-street-sahamyllyntie-epsg3879"
+        ],
+        "scope": "project_locator",
+        "scope_class": "official_numbered_address_point",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "retain_exact_capital_region_address_register_point_PKS_osoiteluettelo_44275_Sahamyllyntie_4_00560_Helsinki",
+        "precision": "Capital-region address register point (Seudullinen osoiteluettelo, feature PKS_osoiteluettelo.44275) for Sahamyllyntie 4, 00560 Helsinki, the register entry for the address Equinix gives for HE5. It marks the property street address at the register's 1:4000 scale, not a surveyed building outline, entrance, property boundary or data hall; the IBX may occupy only part of the buildings at the address.",
+        "identity_review": "Equinix's HE5 page (Internet Archive raw copy of 3 October 2026; www.equinix.com answers robots.txt with HTTP 403, so the live page was not requested) gives the address 'Sahamyllyntie 4B 00560 Helsinki Finland', repeated in its meta description and in the related-IBX blocks of Equinix's other Helsinki IBX pages. The official regional address list holds property and plot street addresses only, not entrance or staircase letters; its single Sahamyllyntie is in Helsinki 00560 and exactly one row is Sahamyllyntie 4 (no division letter), so the operator's '4B' is matched to that number. The served EPSG:4326 point equals the native EPSG:3879 point transformed independently with pyproj 3.7.1 to within a few millimetres (geometry facts). The coordinate constants in the map-widget script of Equinix's page were not used, nor any commercial map, geocoder, PeeringDB record, OpenStreetMap service, city centre, head-office address or industrial-area centroid. Equinix's Helsinki listing (archive copy of 3 October 2026) names exactly HE3-HE7, matching the five Helsinki IBXs of the 28 October 2026 presentation.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The register metadata gives a 1:4000 scale but no positional accuracy for address points; decimal places are not survey accuracy, and the point does not mark the building outline or the IBX's part of the buildings."
+      },
+      "context_source_ids": [
+        "ops-nordics-p6-eqx-he5-ia-20261003",
+        "ops-nordics-p6-eqx-helsinki-listing-ia-20261003",
+        "ops-nordics-p6-hel-pks-street-sahamyllyntie-epsg3879"
+      ],
+      "roles": [
+        {
+          "party": "Equinix",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "ops-nordics-p6-eqx-q3-2026-earnings-presentation-20261028"
+        }
+      ],
+      "distinctness_review": "Screened on 7 November 2026 against verified_construction_core/2026-11-07-research-hundredtwentythird (sites.csv, projects.csv, evidence.csv, source-records.json and identity-mapping.json: names, aliases, operators, addresses, postcodes and coordinates), the additions and locator corrections in every pending queue fragment's changes.json, claims.tsv and every sources/*-holds.json and queue holds.json, for the keywords Equinix, HE3, HE4, HE5, HE6, HE7, Helsinki, Espoo, Vantaa, Parrukatu, Myllynkivenkuja, Sahamyllyntie, Sinimäentie, 00540, 00560, 00570, 01620. No Atlas record, pending change, hold or other fragment's claim names an Equinix facility in Finland or Sweden, Equinix HE5, its street or its postcode; the only bare 'HE4' match is a Polish KRS extract for an unrelated Warsaw company. The Atlas has no Equinix site in Finland. No Atlas site, project, pending queue addition or locator correction lies within 2 km of the point; the nearest Atlas records are Hetzner Helsinki Data Center Park, Huurrekuja 10, Tuusula (13.85 km), Microsoft Espoo Hepokorpi Datacenter Campus (16.59 km) and Microsoft Kirkkonummi Datacenter Campus (25.62 km). The held Helsinki and Espoo addresses of earlier passes (Hiomotie 13, Pitäjänmäki; Mänkimiehentie 4, Espoo) lie 5.6-20.1 km from the Equinix points. Other Equinix Helsinki IBXs are separate sites: Equinix HE3 (Parrukatu 2, 4.12 km) and HE4 (Myllynkivenkuja 4B, Vantaa, 10.66 km), added in this fragment as separate sites; HE6 (Sinimäentie 12) and HE7 (Sinimäentie 8) in Espoo are held in this fragment. This is a new site with one project.",
+      "successor_review": "The 28 October 2026 presentation is the latest Equinix statement found naming HE5; Equinix's Finland newsroom listing (captured 6 November 2026) has no item after the atNorth completion release of 3 September 2026, and the Q3 2026 results release names no closure, sale or transfer in Helsinki. The Internet Archive CDX listing queried on 6 November 2026 shows no Equinix Helsinki page after 3 October 2026 that drops HE5. Operational is kept as of 30 September 2026, inside the 85-day floor (14 August 2026) and the 90-day window.",
+      "scoped_project_details": {
+        "aliases": [
+          "Equinix HE5",
+          "HE5 IBX",
+          "Equinix Helsinki HE5"
+        ],
+        "address": "Sahamyllyntie 4B 00560 Helsinki Finland",
+        "operator_metro": "Equinix Helsinki metro (HE3, HE4, HE5, HE6, HE7)",
+        "portfolio_category_q3_2026": "Stabilized; Owned, subject to a long-term ground lease (HE5*) (slide 36, Equinix Q3 2026 earnings presentation)",
+        "operator_stated_space_sq_ft_label": "11,905",
+        "space_qualification": "'11,905 Square feet (ft²)' is the space figure on Equinix's HE5 page (Internet Archive copy of 3 October 2026); it is the operator's facility label, not measured occupancy, and no MW or cabinet figure is asserted.",
+        "permit_status_not_asserted": true,
+        "opening_date_not_asserted": true,
+        "owner_not_asserted": true,
+        "ownership_note": "The presentation lists HE5 as owned subject to a long-term ground lease by Equinix; no landlord or ground owner is named and no owner role is recorded.",
+        "facility_scope": "Existing Equinix HE5 IBX at Sahamyllyntie 4, 00560 Helsinki (operator form: Sahamyllyntie 4B 00560 Helsinki Finland); no expansion, new building or later phase is asserted."
+      }
+    }
+  ],
+  "status_updates": [
+    {
+      "project_stable_key": "curated:lg-uplus-paju-aidc-campus:building-1",
+      "status": {
+        "value": "under_construction",
+        "as_of": "2026-11-04",
+        "source_id": "kr-tw-hk-new-p6-lguplus-q3-2026-results",
+        "summary": "LG Uplus's third-quarter 2026 results release, which the company dates to 4 November and posted on 6 November 2026, states that LG Uplus is building a 200 MW-class AI data centre in Paju, to put four buildings into operation in sequence by 2028, and that Building 1, already contracted to a customer, is being built at 50 MW and will start operating after completion in June 2027. This is a dated company statement of construction in progress at the Paju AIDC, with Building 1 as the first building in the sequence. The June 2027 completion, the start of operation and the 2028 four-building programme are targets and are not recorded as observations."
+      },
+      "identity_review": "The release names LG Uplus's Paju AI data centre and its Building 1 (1동, 50 MW, customer secured, completion June 2027), which is the existing record curated:lg-uplus-paju-aidc-campus:building-1 (site curated:lg-uplus-paju-aidc-campus, 'LG Uplus Paju AIDC'), whose current status rests on LG Uplus's newsroom update of the 5 June 2026 construction site (news.lguplus.com/?p=21965). LG Uplus has one Paju AIDC; the release's 200 MW and four-building programme describe the campus, and the Building 1 statement keeps this record's scope. Buildings 2 to 4 are not added and no capacity is asserted for this record. The locator, name, roles and scope are unchanged. Screened against verified_construction_core/2026-11-07-research-hundredtwentyfourth: no other Atlas project lies within 2 km of the record's point, no pending queue fragment proposes a change to it, and the reopen conditions of the thirtyfirst, thirtyfourth and seventyfourth holds and the ops-hk-seoul-taipei-p6 lead (LG Uplus third-quarter results) are met by this release.",
+      "successor_review": "Strictly newer than the record's 5 June 2026 observation. The release is the latest LG Uplus statement on Paju found: the related-content list on the captured release page shows only unrelated newsroom items of 5 and 6 November, and the 28 October 2026 liquid-cooling release (news.lguplus.com/23184, captured by the ops-hk-seoul-taipei-p6 lane) concerns the separate Pyeongchon 2 Center. Nothing reports a pause, cancellation or completion, so under_construction is kept, as of 4 November 2026."
+    },
+    {
+      "project_stable_key": "imported:semiconductor-atlas:sk-aws-ulsan-ai-data-center",
+      "status": {
+        "value": "under_construction",
+        "as_of": "2026-11-04",
+        "source_id": "kr-tw-hk-new-p6-skt-q3-2026-results-ko",
+        "summary": "SK Telecom's third-quarter 2026 results release of 4 November 2026 states that SK Horizon, the SK infrastructure company now responsible for AI data-centre operation and expansion, is building about 180 MW of new data centres in the Ulsan and Seoul areas. SK Telecom's 27 August 2026 SK Horizon release identifies these new AI data centres under construction as those in Ulsan and Guro, so the Ulsan part of the statement is SK's Ulsan AI data centre in the Mipo National Industrial Complex. This records construction continuing on 4 November 2026. The 180 MW is a combined figure for both builds and is not assigned to this record; SK Hyper's talks with prospective customers about further Ulsan development are future plans and are not recorded."
+      },
+      "identity_review": "The statement's Ulsan build is the existing record imported:semiconductor-atlas:sk-aws-ulsan-ai-data-center ('SK AI Data Center Ulsan', operator SK Horizon, developer SK Telecom with SK Broadband, builder SK ecoplant). SK Telecom's English release of 27 August 2026 (news.sktelecom.com/en/3290, already this record's evidence dfa0da14 and recaptured as local skt-en-3290-sk-horizon.html) says SK Horizon takes over eight operating data centres and 'new AIDCs currently under construction, including those in Ulsan and Guro'; Guro is in Seoul, so the November statement's Seoul build is Guro and its Ulsan build is this record. No other SK data centre in Ulsan is under construction in the Atlas or in SK's statements; the release's separate SK Hyper sentence describes customer negotiations for further development on secured Ulsan sites, which is not current work. The English version of the November release (news.sktelecom.com/en/3336, local skt-en-3336-q3-2026.html) uses 'developing'; the Korean original's '구축 중' (being built) is the relied-on wording. The record's admin1 locator, name, roles and project scope are unchanged; the Guro AI data centre is not in the Atlas and is held in this fragment for a locator. Screened against verified_construction_core/2026-11-07-research-hundredtwentyfourth: no other Atlas project lies within 2 km of the record's point and no pending queue fragment proposes a change to it.",
+      "successor_review": "Strictly newer than the record's 14 September 2026 observation. SK Telecom's Korean and English newsrooms (captured 6 November 2026) carry this 4 November results release as the latest data-centre statement. SK ecoplant's newsroom posts captured the same day add nothing newer: its 13 August post on a new AI DC business unit mentions the Ulsan AI DC project with AWS that it is taking part in, and its 7 September post announces a technology contest. No pause, cancellation or completion is reported, and the November 2027 first-phase target is a forecast, so under_construction is kept, as of 4 November 2026."
+    }
+  ],
+  "context_updates": [],
+  "locator_corrections": [
+    {
+      "physical_site_stable_key": "curated:365-chicago-campus",
+      "site_id": "vcc-site-171c38cf2763e84cc4b4",
+      "replaces_geometry_evidence_id": "e1f98eab-859f-5eb3-b7ed-d58987defd7f",
+      "reason": "The current point (native_PeeringDB_283_named_facility) is replaced because its coordinates were copied from PeeringDB (facility 283), whose terms do not allow reuse in another dataset; the new point is the centroid of the City of Chicago building footprint that holds all three Cook County Assessor parcels addressed 427 S La Salle Street, the operator's published address.",
+      "displacement_review": "The new point is 8.3 m (haversine) from the replaced PeeringDB point. Both lie inside the same City of Chicago building footprint (bldg_id 868403, about 80 m by 24 m on the east side of S LaSalle Street between Van Buren Street and Congress Parkway). The Cook County Assessor's published centroids of all three parcels whose property address is 427 S LA SALLE ST, the address 365 Data Centers gives for its Chicago data center, and the county's 401 S LA SALLE ST address point lie inside that footprint, so both points locate the same building. The nearest other Atlas site, 400 South LaSalle, is a different building on the west side of the street, 68 m away.",
+      "locator": {
+        "scope": "campus_locator",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -87.6315036,
+            41.8761478
+          ]
+        },
+        "source_id": "loc-11-p8-chicago-building-footprint-401-427-s-lasalle",
+        "identity_source_ids": [
+          "loc-11-p8-365-chicago-page-20261107",
+          "loc-11-p8-cook-assessor-parcel-addresses-427-s-lasalle",
+          "loc-11-p8-cook-assessor-parcel-universe-427-s-lasalle",
+          "loc-11-p8-cook-address-point-401-s-lasalle"
+        ],
+        "scope_class": "official_building_footprint_centroid_of_operator_address_parcels",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "city_of_chicago_building_footprint_868403_planar_centroid_epsg3435_to_wgs84_containing_cook_assessor_427_s_la_salle_parcel_centroids",
+        "precision": "Planar centroid of the City of Chicago building footprint bldg_id 868403 (401 S LA SALLE ST; 20,607 sq ft outline, about 80 m north-south by 24 m east-west), computed in EPSG:3435 and returned to WGS84 at 7 decimals. It marks the middle of the building that contains the three Cook County parcels addressed 427 S La Salle Street, not the data-centre floor, an entrance or a parcel boundary.",
+        "horizontal_uncertainty_metres": 42,
+        "identity_review": "365 Data Centers' Chicago page gives the data-centre address as 427 S La Salle Street, Chicago, IL 60605. The Cook County Assessor's parcel-address records give that property address for PINs 17162430030000, 17162430260000 and 17162430330000 in every tax year from 2022 to 2026, and the assessor's published centroids of all three lie inside city footprint 868403; Cook County GIS's only address point on these PINs, 401 S LA SALLE ST, lies in the same footprint, which the city labels 401 S LA SALLE ST. The footprint is therefore the building at the operator's address. No commercial map, map link, embedded map or directory coordinate was used; the US Census interpolation for the address falls on the street outside the footprint and was not used."
+      }
+    },
+    {
+      "physical_site_stable_key": "curated:365-commack-campus",
+      "site_id": "vcc-site-16f4a1dff0dc4124de3b",
+      "replaces_geometry_evidence_id": "477601bf-97c0-59e2-9d5a-e10e14ba79d9",
+      "reason": "The current point (native_PeeringDB_8517_named_facility) is replaced because its coordinates were copied from PeeringDB (facility 8517), whose terms do not allow reuse in another dataset; the new point is the New York State SAM rooftop address point for 500 Commack Road, Commack, the operator's published address.",
+      "displacement_review": "The new point is 77.8 m (haversine) north-west of the replaced PeeringDB point. Both lie inside the same state building footprint (OBJECTID 3446314, about 31,700 m2, from Suffolk County's 2006 footprints), the only footprint at the 500 Commack Road rooftop address point, so both locate the same building; the move stays within that building's outline.",
+      "locator": {
+        "scope": "campus_locator",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -73.29248666571333,
+            40.82296890596069
+          ]
+        },
+        "source_id": "loc-11-p8-nys-sam-500-commack-rd",
+        "identity_source_ids": [
+          "loc-11-p8-365-commack-page-20261107",
+          "loc-11-p8-nys-geocoder-500-commack-rd",
+          "loc-11-p8-nys-building-footprint-at-500-commack-rd"
+        ],
+        "scope_class": "official_numbered_address_point",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "retain_exact_NYS_SAM_address_point_SUFF268706_rooftop_500_Commack_Road_Commack_11725",
+        "precision": "New York State SAM address point SUFF268706 for 500 Commack Road, Commack 11725 (Town of Smithtown, Suffolk County), point type Rooftop, source county address points, as published in WGS84. It marks a rooftop position on the 500 Commack Road building, not the data-centre suite, an entrance or the parcel boundary.",
+        "horizontal_uncertainty_metres": 210,
+        "identity_review": "365 Data Centers' Long Island page gives the Commack data-centre address as 500 Commack Rd, Commack, NY 11725. The state address-point register holds one active primary rooftop point for 500 Commack Road, ZIP 11725 (SUFF268706, from Suffolk County's address points), and the state's own geocoder returns that point (Ref_ID SUFF268706) as a score-100 match for the operator's address; the other score-100 candidate is the '500 A' driveway point, whose suffix the operator does not use and which lies outside the building. The point falls in the single large building footprint the state layer holds there. The uncertainty (210 m) is the farthest footprint vertex from the point, since the data-centre suite's position inside the building is not published. No commercial map, map link, embedded map or directory coordinate was used."
+      }
+    },
+    {
+      "physical_site_stable_key": "curated:365-detroit-campus",
+      "site_id": "vcc-site-e71c09556ac11668542f",
+      "replaces_geometry_evidence_id": "7d32b9c6-7336-5512-a6fb-ba50b4b5d759",
+      "reason": "The current point (native_PeeringDB_2021_named_facility) is replaced because its coordinates were copied from PeeringDB (facility 2021), whose terms do not allow reuse in another dataset; the new point is Oakland County's site-address point for 24660 Lahser Road, Southfield, the operator's published address.",
+      "displacement_review": "The new point is 7.2 m (haversine) from the replaced PeeringDB point. Both lie inside Oakland County tax parcel 2427101045 (24660 LAHSER RD, Southfield; class 201; about 1.33 acres), the parcel the county address point carries, so both locate the same property.",
+      "locator": {
+        "scope": "campus_locator",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -83.25972803051226,
+            42.469910251734184
+          ]
+        },
+        "source_id": "loc-11-p8-oakgov-site-address-24660-lahser-rd",
+        "identity_source_ids": [
+          "loc-11-p8-365-detroit-page-20261107",
+          "loc-11-p8-oakgov-tax-parcel-2427101045"
+        ],
+        "scope_class": "official_tax_parcel_site_address_point",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "retain_exact_Oakland_County_site_address_point_OBJECTID_359990_PIN_2427101045_24660_Lahser_Rd",
+        "precision": "Oakland County site-address point for 24660 Lahser Rd, Southfield 48033 (PIN 2427101045), which the county places at the approximate centre of the tax parcel, as published in WGS84. It marks the 1.33-acre parcel, not the building outline, the data hall or an entrance.",
+        "horizontal_uncertainty_metres": 70,
+        "identity_review": "365 Data Centers' Detroit page gives the data-centre address as 24660 Lahser Road, Southfield, MI 48033. Oakland County's site-address layer holds exactly one point for 24660 Lahser Rd, as the primary property address of PIN 2427101045, and the county parcel layer gives that PIN the site address 24660 LAHSER RD, SOUTHFIELD 48033 with commercial class 201. The uncertainty (70 m) is the farthest parcel vertex from the point. No commercial map, map link, embedded map or directory coordinate was used."
+      }
+    },
+    {
+      "physical_site_stable_key": "curated:365-ftl-campus",
+      "site_id": "vcc-site-c0a6a0ca633b744596b9",
+      "replaces_geometry_evidence_id": "c1e1fd9c-fc63-5cb7-9d72-024166e8452c",
+      "reason": "The current point (native_PeeringDB_605_named_facility) is replaced because its coordinates were copied from PeeringDB (facility 605), whose terms do not allow reuse in another dataset; the new point is the US Census Bureau geocoder's position for 3250 W Commercial Blvd, Fort Lauderdale, the operator's published address.",
+      "displacement_review": "The new point is 145.7 m (haversine) north-north-east of the replaced PeeringDB point. The replaced point lies inside Broward County Property Appraiser parcel 494218200530 (two multi-story office buildings, 183,387 sq ft, on 465,714 sq ft of land, published by the City of Fort Lauderdale), and the Census point for 3250 W Commercial Blvd lies on that parcel's W Commercial Boulevard frontage, 2.6 m north of its boundary and within its longitude range, so both locate the same office property; the interpolated point marks the street frontage rather than a building.",
+      "locator": {
+        "scope": "campus_locator",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -80.190340701298,
+            26.186208709386
+          ]
+        },
+        "source_id": "loc-11-p8-census-geocode-3250-w-commercial-blvd",
+        "identity_source_ids": [
+          "loc-11-p8-365-ftl-page-20261107",
+          "loc-11-p8-365-ftl-cutsheet",
+          "loc-11-p8-ftl-gis-tax-parcel-494218200530"
+        ],
+        "scope_class": "official_geocode_of_operator_published_site_address",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "retain_US_Census_geocoder_interpolated_point_3250_W_Commercial_Blvd_33309_TIGER_edge_647005747_right_side",
+        "precision": "Interpolated street-side point that the US Census Bureau geocoder returns for 3250 W Commercial Blvd, Fort Lauderdale, FL 33309 (TIGER/Line edge 647005747, right side, range 3296-3210), the address 365 Data Centers publishes. It marks the address on the W Commercial Boulevard frontage of the office parcel, not the data-centre building or its entrance.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The Census point is an address-range interpolation along the street edge, and no county or city record found here gives 3250 W Commercial Blvd as the site address of a parcel or building, so the data centre's position behind the frontage (the office parcel extends about 235 m south and 200 m east-west, with two buildings) is not established.",
+        "identity_review": "365 Data Centers' Fort Lauderdale page and its FTL cut sheet give the data-centre address as 3250 W Commercial Blvd., Fort Lauderdale, FL 33309. The US Census Bureau geocoder matches that exact address on the south (right) side of W Commercial Boulevard. The parcel behind that frontage, which also holds the replaced point, is a two-building multi-story office property (folio 494218200530, site address 3230 NW 50 ST, Oakland Park). No commercial map, map link, embedded map or directory coordinate was used."
+      }
+    },
+    {
+      "physical_site_stable_key": "curated:365-herndon-campus",
+      "site_id": "vcc-site-4b662a2dad3054b5807d",
+      "replaces_geometry_evidence_id": "2310979c-8a47-5a51-b324-4d367b04c065",
+      "reason": "The current point (native_PeeringDB_6338_named_facility) is replaced because its coordinates were copied from PeeringDB (facility 6338), whose terms do not allow reuse in another dataset; the new point is the address point that Fairfax County's own address locator returns for 13873 Park Center Rd, Herndon, the operator's published address.",
+      "displacement_review": "The new point is 3.6 m (haversine) from the replaced PeeringDB point. Both lie inside Fairfax County parcel 0242 01 0022E (about 8.09 acres), the parcel the county locator names for 13873 Park Center Rd, so both locate the same property.",
+      "locator": {
+        "scope": "campus_locator",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -77.428683,
+            38.934468
+          ]
+        },
+        "source_id": "loc-11-p8-fairfax-geocoder-13873-park-center-rd",
+        "identity_source_ids": [
+          "loc-11-p8-365-herndon-page-20261107",
+          "loc-11-p8-fairfax-parcel-0242-01-0022e"
+        ],
+        "scope_class": "official_numbered_address_point",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "retain_exact_Fairfax_County_locator_PointAddress_SiteAddressID_100086404_13873_Park_Center_Rd",
+        "precision": "Fairfax County address point (locator FairfaxCountyAddresses, PointAddress, SiteAddressID 100086404) for 13873 Park Center Rd, Herndon 20171, as returned in WGS84 at 6 decimals. It marks the county's address point on parcel 0242 01 0022E, not the building outline, the data hall or an entrance.",
+        "horizontal_uncertainty_metres": 158,
+        "identity_review": "365 Data Centers' Herndon page gives the data-centre address as 13873 Park Center Rd, Herndon, VA 20171. Fairfax County's address locator returns exactly one candidate for that address, a PointAddress with score 100 on parcel PIN 0242 01 0022E, and the county parcel layer returns that same PIN at the point. The uncertainty (158 m) is the farthest parcel vertex from the point. No commercial map, map link, embedded map or directory coordinate was used."
+      }
+    },
+    {
+      "physical_site_stable_key": "curated:datacentre220-auckland",
+      "site_id": "vcc-site-c3711e534e69ee1f39f8",
+      "replaces_geometry_evidence_id": "5df599e3-0d53-52d0-a434-3296bbed6bb2",
+      "reason": "The current point (native_PeeringDB_3630_DataCentre220_facility_point) is replaced because its coordinates were copied from PeeringDB (facility 3630), whose terms do not allow reuse in another dataset; the new point is Auckland Council's street-address point for 214-220 Queen Street, on the council property record named 'The Data Centre'; the operator publishes First Floor, 220 Queen Street.",
+      "displacement_review": "The new point is 8.2 m (haversine) from the replaced PeeringDB point. Both lie inside the same 640 m2 Auckland Council property outline (property 11285381, 214-220 Queen Street, Lot 1 and Lot 3 DP 192157, property name 'The Data Centre'), so both locate the same building.",
+      "locator": {
+        "scope": "campus_locator",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            174.7654346468263,
+            -36.84927418958581
+          ]
+        },
+        "source_id": "loc-11-p8-akl-council-address-214-220-queen-street",
+        "identity_source_ids": [
+          "loc-11-p8-datacentre220-contact-20261107",
+          "loc-11-p8-akl-council-property-11285381"
+        ],
+        "scope_class": "official_numbered_address_point",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "retain_exact_Auckland_Council_street_address_point_OBJECTID_44345_214_220_Queen_Street",
+        "precision": "Auckland Council street-address point for 214-220 Queen Street, Auckland Central 1010, as published in WGS84 (identical to its NZTM2000 position). It lies 3.2 m inside the Queen Street side of the property outline and marks the building at 214-220 Queen Street, not the first-floor data hall or an entrance.",
+        "horizontal_uncertainty_metres": 50,
+        "identity_review": "Datacentre220's contact page gives its location as First Floor, 220 Queen Street, Auckland 1010. Auckland Council's address layer holds the street address 214-220 Queen Street, which includes number 220, and its property layer gives the site at that point, Lot 1 and Lot 3 DP 192157 (639 m2), the property name 'The Data Centre'. The uncertainty (50 m) is the farthest property vertex from the point, rounded up. No commercial map, map link, embedded map or directory coordinate was used."
+      }
+    },
+    {
+      "physical_site_stable_key": "curated:365-philadelphia-university-city-campus",
+      "site_id": "vcc-site-68083beed6605800f5c5",
+      "replaces_geometry_evidence_id": "a2cee51a-6176-5a04-aab8-09c336911257",
+      "reason": "The current point (native_PeeringDB_2015_named_facility) was copied from PeeringDB, whose terms do not allow reuse in another dataset; it is replaced with the point that the City of Philadelphia's Address Information System returns for 3701 Market Street, the address 365 Data Centers publishes for this data centre.",
+      "displacement_review": "The new point is 46.7 m (haversine) north-east of the replaced PeeringDB point. Both locate 365's University City data centre at 3701 Market Street: the new point is the city's parcel geocode for that exact address and lies inside PWD parcel 483940 (2,237 m2, office building), while the replaced point sits 16 m outside that parcel, to the south-west. No other Atlas site, pending addition or claim lies within 2 km.",
+      "locator": {
+        "scope": "campus_locator",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -75.1960517,
+            39.9568393
+          ]
+        },
+        "source_id": "loc-12-p8-phila-ais-3701-market-st",
+        "identity_source_ids": [
+          "loc-12-p8-365-philadelphia-page-20261107",
+          "loc-12-p8-phl-pwd-parcel-483940"
+        ],
+        "scope_class": "official_geocoder_parcel_point",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "city_of_philadelphia_ais_exact_address_match_3701_market_st_pwd_parcel_geocode_rounded_7dp",
+        "precision": "Point returned by the City of Philadelphia's AIS for 3701 MARKET ST (geocode type pwd_parcel), rounded to 7 decimals with no datum change. It is the centroid of PWD parcel 483940 (2,237 m2, about 36 m by 60 m) on which the office building housing the data centre stands; it marks that building's parcel, not the data hall, an entrance or the parcel outline.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The city states no positional accuracy for AIS parcel geocodes and the data hall occupies an unpublished part of the building; the whole parcel lies within 36 m of the point.",
+        "identity_review": "365 Data Centers' Philadelphia (University City) page gives the address 3701 Market Street, Philadelphia, PA 19104 and places the facility in the Penn Medicine Science Center in University City, which matches this site (365 Data Centers Philadelphia University City PH2). AIS matches that address exactly and the city's PWD parcel layer returns the corresponding parcel 483940 at 3701 MARKET ST. No commercial map, map link, embedded map or directory coordinate was used."
+      }
+    },
+    {
+      "physical_site_stable_key": "curated:365-richardson-campus",
+      "site_id": "vcc-site-047ecb71c9e5789ba724",
+      "replaces_geometry_evidence_id": "23fd1d69-1707-587e-b8e5-8f823aa885a1",
+      "reason": "The current point (native_PeeringDB_16131_named_facility) was copied from PeeringDB, whose terms do not allow reuse in another dataset; it is replaced with the centroid of the Dallas Central Appraisal District parcel at 1001 E Campbell Road, the address 365 Data Centers publishes for TX1.",
+      "displacement_review": "The new point is 16.2 m (haversine) from the replaced PeeringDB point, and both lie inside DCAD real-property parcel 421243300A01A0000 at 1001 E Campbell Rd (about 6.0 acres; the replaced point 63 m and the new point 65 m from its boundary). DCAD lists a business-personal-property account for 365 OPERATING COMPANY under that parcel, and 365 publishes this address for its Richardson data centre, so both points locate the same TX1 building. No other Atlas site, pending addition or claim lies within 2 km.",
+      "locator": {
+        "scope": "campus_locator",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -96.7074941,
+            32.976148
+          ]
+        },
+        "source_id": "loc-12-p8-dcad-parcel-1001-e-campbell-rd",
+        "identity_source_ids": [
+          "loc-12-p8-365-richardson-page-20261107"
+        ],
+        "scope_class": "official_tax_parcel_planar_centroid",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "dcad_parcel_421243300A01A0000_1001_e_campbell_rd_outline_epsg2276_planar_centroid_pyproj_to_wgs84_rounded_7dp",
+        "precision": "Planar centroid (computed in EPSG:2276 and transformed to WGS84) of the DCAD real-property parcel at 1001 E Campbell Rd, Richardson (Blk A Lt 1A, 5.9583 acres stated, 2.43 ha geodesic). It locates the parcel that holds the TX1 data-centre building, not the building outline, an entrance or the data hall.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "DCAD states no positional accuracy for its parcel outlines and the building's position within the parcel is not published; the whole parcel lies within 115 m of the point.",
+        "identity_review": "365 Data Centers' Richardson page gives the TX1 address as 1001 E Campbell Road, Richardson, TX 75081. DCAD's parcel publishing layer returns one real-property parcel at 1001 E CAMPBELL RD (421243300A01A0000) and, under that parcel and address, a business-personal-property account whose DBA is 365 OPERATING COMPANY, so the parcel is the property 365 operates in. No commercial map, map link, embedded map or directory coordinate was used."
+      }
+    },
+    {
+      "physical_site_stable_key": "curated:365-smyrna-campus",
+      "site_id": "vcc-site-e420640240ce874ad24c",
+      "replaces_geometry_evidence_id": "ec2073a6-b9d9-5a2a-a854-7f53aaec66bc",
+      "reason": "The current point (native_PeeringDB_16132_named_facility) was copied from PeeringDB, whose terms do not allow reuse in another dataset; it is replaced with Cobb County's address point for 5600 United Dr SE, the address 365 Data Centers publishes for GA2.",
+      "displacement_review": "The new point is 39.2 m (haversine) north-west of the replaced PeeringDB point. Both lie inside Cobb County parcel 17047600400 (situs 5600 United Dr, 11.24 acres, commercial class C5), the replaced point 94 m and the new point 80 m from its boundary, so both locate the 365 Smyrna data centre at that address. No other Atlas site, pending addition or claim lies within 2 km.",
+      "locator": {
+        "scope": "campus_locator",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -84.522722,
+            33.8413951
+          ]
+        },
+        "source_id": "loc-12-p8-cobb-address-5600-united-dr-se",
+        "identity_source_ids": [
+          "loc-12-p8-365-smyrna-page-20261107",
+          "loc-12-p8-cobb-parcel-at-5600-united-dr"
+        ],
+        "scope_class": "official_address_register_point",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "cobb_county_cam_active_address_SID_1219840_5600_united_dr_se_point_rounded_7dp",
+        "precision": "Cobb County's active address point for 5600 United Dr SE, Smyrna 30082 (site address ID SID-1219840), returned in WGS84 and rounded to 7 decimals. It lies inside the 11.24-acre commercial parcel 17047600400 at that address and marks the addressed property, not the building outline, an entrance or the parcel boundary.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The county states no positional accuracy for its address points and the building's outline is not published in the queried layers; the whole parcel lies within 159 m of the point.",
+        "identity_review": "365 Data Centers' Smyrna page gives the GA2 address as 5600 United Dr. SE, Smyrna, GA 30082. Cobb County's address register holds exactly that address (SID-1219840), and the county parcel layer returns commercial parcel 17047600400 with situs 5600 UNITED DR at the point. No commercial map, map link, embedded map or directory coordinate was used; the US Census geocoder found no match for this address."
+      }
+    },
+    {
+      "physical_site_stable_key": "curated:dartpoints-columbia-cae01",
+      "site_id": "vcc-site-d1167333c80489ab0356",
+      "replaces_geometry_evidence_id": "75a01e3c-b5e5-5f64-9ced-e91346fa7c90",
+      "reason": "The current point (native_PeeringDB_3670_named_DartPoints_Columbia_facility) was copied from PeeringDB, whose terms do not allow reuse in another dataset; it is replaced with the US Census Bureau geocoder's point for 1000 Catawba St, the SCRA Innovation Center address that DartPoints and SCRA publish.",
+      "displacement_review": "The new point is 64.2 m (haversine) north of the replaced PeeringDB point. Both locate the SCRA USC/Columbia Innovation Center at 1000 Catawba St, in which DartPoints says CAE01 is located: the new point is the Census geocoder's interpolated position for that address on the Catawba St block (range 902-1098), and the replaced point lies about 64 m south of it on the same block. No other Atlas site, pending addition or claim lies within 2 km.",
+      "locator": {
+        "scope": "campus_locator",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -81.0307616,
+            33.9882374
+          ]
+        },
+        "source_id": "loc-12-p8-census-geocoder-1000-catawba-st",
+        "identity_source_ids": [
+          "loc-12-p8-dartpoints-cae01-page-20261107",
+          "loc-12-p8-scra-usc-columbia-innovation-center"
+        ],
+        "scope_class": "official_geocoder_interpolated_address_point",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "us_census_geocoder_public_ar_current_exact_match_1000_catawba_st_columbia_sc_tiger_71827669_interpolated_point_rounded_7dp",
+        "precision": "US Census Bureau geocoder point for 1000 CATAWBA ST, Columbia, SC 29201, interpolated along TIGER/Line edge 71827669 (right side, address range 902-1098) and rounded to 7 decimals. It marks the address position on the block beside the street, not the Innovation Center's building outline or DartPoints' suite.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The Census geocoder interpolates along the address range of a street segment and states no positional accuracy; the offset from the Innovation Center building is unknown.",
+        "identity_review": "DartPoints' CAE01 page says the Columbia data centre is located in the South Carolina Research Authority (SCRA) Innovation Center, near the Statehouse and the University of South Carolina. SCRA, the public research authority that leases the building, publishes its Columbia centre, the USC/Columbia Innovation Center beside the USC engineering school, at 1000 Catawba St, Columbia, SC 29201. The Census geocoder matches that address exactly. The Google Maps embed on DartPoints' page was not read, resolved or relied on, and no directory coordinate was used."
+      }
+    },
+    {
+      "physical_site_stable_key": "curated:lightedge-altoona-dsm-campus",
+      "site_id": "vcc-site-f81c86e34f62da99b761",
+      "replaces_geometry_evidence_id": "49c2cb18-40fe-5695-a770-40a573811ba9",
+      "reason": "The current point (native_PeeringDB_4547_named_Lightedge_DSM2_facility) was copied from PeeringDB, whose terms do not allow reuse in another dataset; it is replaced with the US Census Bureau geocoder's point for 1401 Northridge Circle, the address Lightedge publishes for Des Moines Data Center #2.",
+      "displacement_review": "The new point is 102.1 m (haversine) south-west of the replaced PeeringDB DSM2 point. Both locate the Lightedge campus on Northridge Circle, Altoona: the new point is the Census geocoder's position for 1401 Northridge Cir (DSM2), at the low end of the 1401-1499 range of the segment that also carries 1435 (DSM1, interpolated 111 m further north), and Iowa DNR records the 2016 new data-centre construction at 1401 Northridge Circle NE. No other Atlas site or pending addition lies within 2 km; the only nearby record is a holds-ready-p3 claim for DSM2 at the same address.",
+      "locator": {
+        "scope": "campus_locator",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -93.4566602,
+            41.6661666
+          ]
+        },
+        "source_id": "loc-12-p8-census-geocoder-1401-northridge-cir",
+        "identity_source_ids": [
+          "loc-12-p8-lightedge-des-moines-page-20261107",
+          "loc-12-p8-iowadnr-sw2-lightedge-1401-northridge"
+        ],
+        "scope_class": "official_geocoder_interpolated_address_point",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "us_census_geocoder_public_ar_current_exact_match_1401_northridge_cir_altoona_ia_tiger_65863027_interpolated_point_rounded_7dp",
+        "precision": "US Census Bureau geocoder point for 1401 NORTHRIDGE CIR, Altoona, IA 50009 (Lightedge Des Moines Data Center #2), interpolated at the low end of address range 1401-1499 on TIGER/Line edge 65863027 and rounded to 7 decimals. It marks the DSM2 address position beside Northridge Circle as the campus anchor, not either building outline, an entrance or the campus boundary.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The Census geocoder interpolates along a street segment's address range and states no positional accuracy; the offset from the DSM2 building is unknown, and Polk County's parcel and address services were not reachable to refine it.",
+        "identity_review": "Lightedge's Des Moines page lists Data Center #2 at 1401 Northridge Circle and Data Center #1 at 1435 Northridge Circle, Altoona, IA 50009; this site is the Lightedge Altoona DSM1/DSM2 campus whose replaced point named DSM2. Iowa DNR's stormwater register records 'Lightedge Data Center Expansion - Construction', a new 5.5-acre data centre, at 1401 Northridge Circle NE, Altoona (permit from 19 April 2016). The Census geocoder matches 1401 Northridge Cir exactly. No commercial map, map link, embedded map or directory coordinate was used."
+      }
+    },
+    {
+      "physical_site_stable_key": "curated:patmos-kc1-tracy-avenue-campus",
+      "site_id": "vcc-site-d1b3bb2abcbe37f7997a",
+      "replaces_geometry_evidence_id": "e2a43ae2-55b8-505f-82dc-1bb078a6475d",
+      "reason": "The current point (native_PeeringDB_3634_named_facility) was copied from PeeringDB, whose terms do not allow reuse in another dataset; it is replaced with the centroid of the City of Kansas City, Missouri parcel at 1325 Tracy Ave, where the city's business-licence register lists Patmos Hosting Inc as a data-processing and web-hosting business.",
+      "displacement_review": "The new point is 2.3 m (haversine) from the replaced PeeringDB point, and both lie inside the city parcel at 1325 Tracy Ave (APN JA29130091400000000, about 1,425 m2; the replaced point 17.6 m and the new point 18.6 m from its boundary). Patmos names KC1 'Kansas City 1 (Tracy Ave)', the city licenses Patmos Hosting Inc at 1325 Tracy Ave and KCIX lists the former Joe's Datacenter there, so both points locate the same KC1 building. The nearest other Atlas records (Lambda Kansas City at 992 m and 934 Central at 1.8 km) are separate properties.",
+      "locator": {
+        "scope": "campus_locator",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -94.5672618,
+            39.0972033
+          ]
+        },
+        "source_id": "loc-12-p8-kcmo-parcel-1325-tracy-ave",
+        "identity_source_ids": [
+          "loc-12-p8-kcmo-business-licence-patmos",
+          "loc-12-p8-patmos-status-kc1-incident",
+          "loc-12-p8-kcix-locations",
+          "loc-12-p8-patmos-about-20261107"
+        ],
+        "scope_class": "official_tax_parcel_planar_centroid",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "kcmo_open_data_parcel_JA29130091400000000_1325_tracy_ave_outline_epsg2817_planar_centroid_pyproj_to_wgs84_rounded_7dp",
+        "precision": "Planar centroid (computed in EPSG:2817 and transformed to WGS84) of the City of Kansas City, Missouri parcel at 1325 Tracy Ave (about 1,425 m2, roughly 38 m square). It locates the parcel holding the KC1 data-centre building, not the building outline, an entrance or the data hall.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The city states no positional accuracy for its parcel outlines and the building footprint is not published in the dataset; the whole parcel lies within 27 m of the point.",
+        "identity_review": "Patmos's status page names the KC1 site 'Kansas City 1 (Tracy Ave)'. Kansas City's business-licence register lists PATMOS HOSTING INC, a computing-infrastructure, data-processing and web-hosting business, at 1325 TRACY AVE, 64106; KCIX lists Joe's Datacenter, LLC at the same address, and Patmos says it acquired Joe's Datacenter in 2023. The city's parcel dataset holds exactly one parcel at 1325 Tracy Ave. No commercial map, map link, embedded map or directory coordinate was used."
+      }
+    },
+    {
+      "physical_site_stable_key": "imported:semiconductor-atlas:virtus-wustermark",
+      "site_id": "vcc-site-dba81c9003e655831d45",
+      "replaces_geometry_evidence_id": "8df23ef2-bd9e-5794-9b1e-e8c46ce5a4c5",
+      "reason": "The imported point (52.5463, 12.9404) is a Wustermark locality point (scope class locality); it does not locate the campus. The Brandenburg environment agency's procedure for the Rechenzentrum Wustermark names the property (Planstrasse 3, Gemarkung Wustermark, Flur 2, eight parcels) on which Virtus Wustermark 1 builds Modules 5 to 8, and the state cadastre publishes those parcels.",
+      "displacement_review": "1,941.3 m (haversine) north-north-east of the locality point, within the 50 km limit for an imported locality point. Both describe VIRTUS's single Wustermark megacampus: the old point names only the municipality, and the new point is the centroid of the 17.7 ha holding at Am Umspannwerk 15 where Virtus Wustermark 1's Modules 5 to 8 (the Gewerbegebiet Nord part, BER2) are permitted and built next to the 50Hertz Wustermark substation whose expansion connects the VIRTUS data centre. The campus's second part, plan W 49 (BER3), lies about 1.18 km to the west-south-west.",
+      "locator": {
+        "scope": "campus_locator",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            12.9501779,
+            52.5627152
+          ]
+        },
+        "source_id": "up-11-p7-bb-alkis-wustermark-virtus-modul5-parcels",
+        "identity_source_ids": [
+          "up-11-p7-uvp-virtus-wustermark-modul5",
+          "up-11-p7-wustermark-w49-begruendung"
+        ],
+        "scope_class": "official_cadastral_parcel_union_centroid",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "lgb_alkis_vereinfacht_wfs_union_centroid_of_eight_lfu_procedure_named_parcels_wustermark_flur2_epsg25833_pyproj_3_7_1_to_wgs84",
+        "precision": "Planar centroid of the union of the eight Gemarkung Wustermark, Flur 2 parcels (138/2, 145, 147, 1339, 1342, 1344, 1346, 1348; 17.71 ha in one piece, about 541 m east-west by 571 m north-south) from the LGB ALKIS vereinfacht WFS. The point lies inside the union. It locates the Module 5 to 8 landholding (BER2) as a whole, not a building, a surveyed boundary or the extent of works; the campus's second part under plan W 49 (BER3, about 20.3 ha) lies about 1.18 km west-south-west and is not represented by the point.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The cadastral WFS publishes no positional accuracy for the point's purpose; the point represents a 17.7 ha holding whose boundary lies up to 357 m from it, and the megacampus also includes the W 49 plan area about 1.18 km away, so no single uncertainty radius describes the campus.",
+        "identity_review": "The LfU Brandenburg procedure 077.01.00/24 on the UVP portal names the applicant Virtus Wustermark 1 and the Rechenzentrum Wustermark (four buildings, Modules 5 to 8) at Planstrasse 3, 14641 Wustermark, Gemarkung Wustermark, Flur 2, Flurstuecke 138/2, 1342, 1344, 1346, 1348, 147, 145 and 1339; the cadastral query returns exactly those eight Flur 002 parcels, all with location text 'Am Umspannwerk 15'. Wustermark's plan W 49 justification names VIRTUS as operator of the Wustermark data centre and describes it as two parts sharing one 50Hertz grid option of about 300 MW: BER2 in the Gewerbegebiet Nord, where the operator builds its own substation, and BER3 in plan W 49 north of the B5. VIRTUS presents Wustermark as one megacampus of up to nine data centres (204 MW IT), the scale of the existing record, and 50Hertz's substation expansion connects the VIRTUS data centre with 300 MW. The Atlas has one VIRTUS Wustermark record. No geocoder, map viewport, map widget or town centre is used."
+      }
+    },
+    {
+      "physical_site_stable_key": "imported:semiconductor-atlas:data4-hanau",
+      "site_id": "vcc-site-4a5d5083c6a8b110c612",
+      "replaces_geometry_evidence_id": "ce89216d-e227-5e79-944a-25d62f4fc66c",
+      "reason": "The imported point (50.1, 8.95) is a Hanau-Grossauheim locality point (scope class locality) taken with a Wikipedia reference; it does not locate the campus. The Regierungspraesidium Darmstadt's permit for the campus's emergency power plant prints the site's ETRS89/UTM coordinate.",
+      "displacement_review": "938.8 m (haversine) east-south-east of the locality point, within the 50 km limit for an imported locality point. Both describe Data4's single Hanau campus: the old point names only the district of Grossauheim, and the new point is the permit's site reference coordinate for the 'Rechenzentrum Campus Hanau' at Depotstrasse in Gemarkung Grossauheim.",
+      "locator": {
+        "scope": "campus_locator",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            8.9615515,
+            50.0959531
+          ]
+        },
+        "source_id": "up-11-p7-rpda-data4-hanau-1tg-bescheid",
+        "identity_source_ids": [],
+        "scope_class": "official_permit_site_reference_coordinate",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "rp_darmstadt_bimschg_permit_rechts_hochwert_32497250_5549300_etrs89_utm32_epsg25832_pyproj_3_7_1_to_wgs84",
+        "precision": "The permit's single 'Rechts- und Hochwert' for the Module M1 to M4 site (printed to 50 m) read as ETRS89 / UTM zone 32N and transformed to WGS84. It is the authority's site reference point, not a building, a parcel outline or the extent of works; the full campus (Modules M1 to M6) occupies the Grossauheim Flur 101 parcels 279/2, 279/29 and 319/2.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The permit prints the coordinate to 50 m and states no positional accuracy or campus extent, so no uncertainty radius can be derived from the source.",
+        "identity_review": "The Regierungspraesidium Darmstadt permit of 17 June 2026 is addressed to Data 4 Germany S.a.r.l. and concerns the emergency power plant of the 'Rechenzentrum-Campus Hanau' at Depotstrasse, 63457 Hanau (Gemarkung Grossauheim, Flur 101, Flurstuecke 279/2, 279/29, 319/2; Modules M1 to M4 of a planned M1 to M6), the same operator, town district and campus as the record, whose current geometry reference is a Grossauheim locality point and whose context evidence already includes this permit. The Atlas has one Data4 Hanau record. No geocoder, map viewport, map widget or town centre is used."
+      }
+    },
+    {
+      "physical_site_stable_key": "imported:semiconductor-atlas:mgx-bpifrance-mistral-nvidia-campus",
+      "site_id": "vcc-site-27b404b316b5fece1ef1",
+      "replaces_geometry_evidence_id": "a82abc73-6eb4-56a6-896f-91d027b975eb",
+      "reason": "The imported point (48.5864, 2.7785) is a Fouju locality point (scope class locality); it does not locate the campus. The Fouju PLU, as made compatible with the Campus IA project on 23 July 2026, publishes the AUx zone extended to about 73 ha for the campus, and the national planning portal serves its outline.",
+      "displacement_review": "2,256.5 m (haversine) west-south-west of the locality point, within the 50 km limit for an imported locality point. Both describe the single Campus IA (Campus AI) at Fouju: the old point names only the commune, and the new point is the centroid of the urbanisable AUx zone that the compatibility procedure extended over the Campus IA project area at the south-western edge of the commune near the A5.",
+      "locator": {
+        "scope": "campus_locator",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            2.7483796,
+            48.5825528
+          ]
+        },
+        "source_id": "up-11-p7-gpu-zone-urba-fouju-plu-20260723",
+        "identity_source_ids": [
+          "up-11-p7-fouju-dpemc-rapport",
+          "up-11-p7-mrae-idf-fouju-campus-ia-avis"
+        ],
+        "scope_class": "official_plu_zone_area_centroid",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "gpu_api_carto_zone_urba_fouju_plu_20260723_aux_polygon_area_centroid_epsg2154_pyproj_3_7_1_to_wgs84",
+        "precision": "Area centroid of the single AUx zone polygon of the Fouju PLU approved on 23 July 2026 (73.68 ha geodesic, about 1.40 km east-west by 0.84 km north-south), computed in Lambert-93 and transformed to WGS84. The point lies inside the zone. It locates the urbanisable zone as a whole, not a building, a parcel, a surveyed boundary or the extent of works; the campus's 400 kV substation and the rest of the 89 ha OAP perimeter extend beyond it.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The planning portal publishes no positional accuracy; the point represents a zone of about 74 ha whose boundary lies up to 752 m from it, inside a campus of about 90 ha.",
+        "identity_review": "The Fouju PLU compatibility report approved on 23 July 2026 says the procedure serves the 'Campus IA', a digital campus with data centres in the south of the commune, and extends the AUx zone by about 30 ha over the eastern part of the Campus IA to about 73 ha; the portal's AUx polygon in that plan version measures 73.68 ha. The MRAe Ile-de-France opinion of 8 April 2026 on the Campus AI project at Fouju describes the same campus (about 90 ha, eleven data-centre buildings, at the south-western edge of the commune near the A5) and the AUx enlargement for it. The record (Campus AI Fouju, MGX / Bpifrance / Mistral / Nvidia) is the only Fouju record in the Atlas. No geocoder, map viewport, map widget or commune centre is used."
+      }
+    },
+    {
+      "physical_site_stable_key": "imported:semiconductor-atlas:data4-escaudain",
+      "site_id": "vcc-site-3b5d1fe13cf00d04d3f2",
+      "replaces_geometry_evidence_id": "ac81d24f-1213-55b4-8895-b11b038fa18b",
+      "reason": "The imported point (50.3333, 3.3438) is an Escaudain locality point (scope class locality); it does not locate the campus. Data4 places the campus on the former Parc des Soufflantes brownfield, the MRAe identifies the site 'Les Soufflantes' at Escaudain as the PLUi's 36.49 ha AU2Ee zone, and the national planning portal serves that zone's outline.",
+      "displacement_review": "1,560.9 m (haversine) south-south-east of the locality point, within the 50 km limit for an imported locality point. Both describe Data4's single Escaudain campus: the old point names only the commune, and the new point is the centroid of the AU2Ee zone 'Les Soufflantes' (former Usinor brownfield) that the intercommunal plan modification no. 3 opens for the data-centre project.",
+      "locator": {
+        "scope": "campus_locator",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            3.3536062,
+            50.3207355
+          ]
+        },
+        "source_id": "up-11-p7-gpu-zone-urba-escaudain-plui-caph",
+        "identity_source_ids": [
+          "up-11-p7-mrae-hdf-caph-m3-soufflantes",
+          "up-11-p7-data4-escaudain-article",
+          "up-11-p7-gpu-commune-escaudain"
+        ],
+        "scope_class": "official_plui_zone_area_centroid",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "gpu_api_carto_zone_urba_plui_caph_au2ee_escaudain_polygon_area_centroid_epsg2154_pyproj_3_7_1_to_wgs84",
+        "precision": "Area centroid of the single AU2Ee zone polygon of the PLUi de la Porte du Hainaut in Escaudain (35.39 ha geodesic against 36.49 ha stated by the MRAe; about 1.21 km east-west by 0.56 km north-south), computed in Lambert-93 and transformed to WGS84. The point lies inside the zone. It locates the zone as a whole, not a building, a parcel, a surveyed boundary or the extent of works; Data4 gives the campus as 33 ha.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The planning portal publishes no positional accuracy; the point represents a zone of about 35 ha whose boundary lies up to 655 m from it, and the data-centre footprint within it is not published.",
+        "identity_review": "Data4's article of 12 June 2026 places the Escaudain campus on the former industrial brownfield of the Parc des Soufflantes (33 ha, four data centres, 700 MW). The MRAe Hauts-de-France opinion of 2 June 2026 on the intercommunal PLU modification no. 3 identifies 'Les Soufflantes' at Escaudain, the former Usinor brownfield, as a 36.49 ha site classified AU2Ee and to be reclassified as a digital-economy zone for a national data-centre project, with the written rules of regulatory sector plan no. 10. The portal returns exactly one AU2Ee zone in the Escaudain area, wholly inside the commune and linked to the PSR 10 regulation, with an area of 35.39 ha. The zone is still shown as AU2Ee because the modification had not been approved in the current plan version. The Atlas has one Data4 Escaudain record. No geocoder, map viewport, map widget or commune centre is used."
+      }
+    },
+    {
+      "physical_site_stable_key": "imported:semiconductor-atlas:aker-nscale-korgen",
+      "site_id": "vcc-site-35381f89404ef4c2a035",
+      "replaces_geometry_evidence_id": "88844eaa-3de7-5991-bf0e-d3ddbfa00b26",
+      "reason": "The imported point (13.8219, 66.0766) is the OpenStreetMap Nominatim centroid of Korgen village (locality precision); the source record says the plot was not published. Hemnes kommune has since adopted the detailed zoning plan for the Korgen data centre (Plan-ID 2021004), proposed by Nscale Norge AS. The plan covers cadastral property 109/3 (including 109/10), and its boundary follows the property boundary, which the national cadastre locates.",
+      "displacement_review": "3,176.5 m (haversine) from the village point to the centroid of property 109/3, within the 50 km limit for an imported locality point. Both describe the Aker Nscale (now Nscale) Korgen data centre plot. The old point only names the village, and the new one is the property that Nscale's adopted zoning plan covers, about 5 km south of the Korgen centre, with Nedre Rossaga transformer station to the north-west.",
+      "locator": {
+        "scope": "campus_locator",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            13.800698,
+            66.049359
+          ]
+        },
+        "source_id": "up-15-p7-kartverket-teig-hemnes-109-3",
+        "identity_source_ids": [
+          "up-15-p7-hemnes-korgen-datasenter-planbeskrivelse",
+          "up-15-p7-hemnes-vedtak-detaljregulering-datasenter-korgen",
+          "up-15-p7-hemnes-korgen-datasenter-plankart",
+          "up-15-p7-kartverket-teig-hemnes-109-10"
+        ],
+        "scope_class": "official_cadastral_property_centroid_of_adopted_data_centre_zoning_plan",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "official_national_cadastre_teig_union_centroid_of_the_property_named_by_the_adopted_municipal_zoning_plan",
+        "precision": "Planar centroid (EUREF89 UTM 33N) of the union of the two Kartverket teiger of property 1832-109/3 (about 19.2 ha in two parts about 7 m apart, about 0.61 by 0.49 km). The centroid lies inside the larger teig. It locates the 197.2 daa zoning-plan area as a whole, not a data hall, a phase or the 95,160.6 sq m business area within it.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The cadastre gives both teiger only the accuracy class 'Rødt' and an area note that some boundary lines are fictitious or drawn along road edges; it states no metric positional accuracy. The point stands for a plan area whose boundary is up to 357 m from it, and no building position or surveyed site layout has been published, so no single uncertainty radius can be stated.",
+        "identity_review": "Hemnes kommune adopted 'Detaljregulering datasenter Korgen' (Plan-ID 2021004) on 10 June 2026 (council case 34/2026) and published the notice on 22 June 2026. The adopted plan description (revision 03, 28 May 2026) names Nscale Norge AS as proposer and Nscale site 3 AS as developer. It says Nordkraft Prosjekt AS holds an option to buy the properties, and that the 197.2 daa plan area covers gnr./bnr. 109/3 including 109/10, with its boundary following the property boundary. The Atlas record (alias Nscale Korgen) is the Aker Nscale data centre at Korgen. Its existing High North News source says Aker Nscale took over Nordkraft's position and option on the plot next to Statkraft's facility, and that the plot is zoned for commercial use in Hemnes's proposed land-use plan; the plan description confirms that the 2026-2038 municipal plan proposal zones the plan area as business area NÆ2. The plan map's UTM-33N grid window matches the extent of the cadastral teiger. No other Atlas record lies within 2 km. No map service, geocoder or village centroid is used."
+      }
+    },
+    {
+      "physical_site_stable_key": "imported:semiconductor-atlas:openai-stargate-milam-county",
+      "site_id": "vcc-site-00432e4e9c8e2d91ff76",
+      "replaces_geometry_evidence_id": "882a168d-1e56-5d20-99d6-d4e41e2c0cb6",
+      "reason": "The imported point (30.7627, -96.9982) is a county-level (admin2) reference for Milam County, not the campus. The Milam Appraisal District parcel owned by Orion DC LLC at 1899 County Road 133, published through the statewide TxGIO parcel service, now locates SB Energy's Milam County Data Center, the Stargate campus with OpenAI as customer.",
+      "displacement_review": "26,418.3 m (haversine, as the builder computes it) from the Milam County reference point to the area centroid of parcel 24787, within the 200 km allowed for an imported admin2 point. Both stand for the same SB Energy campus in Milam County: the old point only names the county, while the new one is the centroid of the 606.656-acre parcel owned by Orion DC LLC, the name the Comptroller gives (as Orion DC I, LLC) for the occupant of 'Milam County Data Center', on the County Road 133 where the state registry places the county's only data-centre registration (OpenAI named as tenant). No other Atlas site or project, and no point in a pending queue fragment, lies within 2 km of the new point; the nearest other Atlas site (Rowan Project Temple, on Rowan Temple LLC land in Bell County) is 26.5 km away.",
+      "locator": {
+        "scope": "campus_locator",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -97.0142789,
+            30.9998837
+          ]
+        },
+        "source_id": "up-9-p7-txgio-parcels-milam-cr133",
+        "identity_source_ids": [
+          "up-9-p7-tabs-freebird-dc01",
+          "up-9-p7-tabs-milam-county-2024-2026",
+          "up-9-p7-texas-comptroller-data-center-lists",
+          "up-9-p7-milamdc-home",
+          "up-9-p7-txgio-addr-milam-cr133",
+          "up-9-p7-sbenergy-orion-solar-belt"
+        ],
+        "scope_class": "official_appraisal_parcel_centroid_of_campus_owner_parcel",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "txgio_stratmap_land_parcels_identify_milam_cad_prop_24787_orion_dc_llc_utm14_area_centroid",
+        "precision": "Area centroid (computed in UTM zone 14N with pyproj 3.7.1 and shapely 2.1.1) of Milam Appraisal District parcel 24787 (GEO_ID A097-006-003-00; legal area 606.656 acres, 600.89 geodesic acres; one polygon about 2.2 by 2.0 km), owner ORION DC LLC, situs 1899 County Road 133, Rosebud, TX 76570, as published by the TxGIO StratMap land-parcel layer (2026 tax year, acquired 1 June 2026). The point lies inside the parcel, 623 m from its nearest edge; it locates the campus land as a whole, not a building.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "Neither TxGIO nor the appraisal district publishes positional accuracy for parcel polygons, and the positions of the data-centre buildings on the 607-acre parcel are not published; the state 9-1-1 point for 1899 County Road 133 lies inside the parcel, 680 m from the centroid. Later campus phases may extend onto other land not yet attributed to the project.",
+        "identity_review": "TDLR TABS2026017746 (registered 15 April 2026) is 'FREEBIRD DATA CENTER PHASE 1', facility DC01: a single-storey 548,950 sq ft data centre with four data halls ($470 million) at County Road 133, Burlington, Milam County, owned by Milam County Data Center LLC, with Open AI named as tenant. The registry's Milam County listing for 2024 to 2026 holds no other data-centre registration. The Texas Comptroller lists 'Milam County Data Center' (qualified 9 December 2025; owner MDC Building 1, LLC; occupant Orion DC I, LLC; operator Milam County DC, LLC) and 'Milam County Data Center Phase 2' (10 June 2026; owner MDC Building 2, LLC; same occupant and operator). SB Energy's milamdc.com names the project the Milam County Data Center in Milam County, with its first phase in construction, and SB Energy names its Milam County solar projects Orion I to III. Among the 806 parcels around County Road 133, the only one held by an Orion, MDC or Milam County Data Center entity is parcel 24787 (ORION DC LLC) at 1899 County Road 133, and the state 9-1-1 point for that address lies inside it. The link from the parcel owner ORION DC LLC to the Comptroller's occupant Orion DC I, LLC and to SB Energy rests on the names; no deed or SB Energy document naming the parcel was found. The Atlas hold of 26 October 2026 (research-seventyeighth, from queue us-central-tx-p4) listed the Freebird registration as a separate candidate with no parcel; it is read here as the first building of this campus."
+      }
+    },
+    {
+      "physical_site_stable_key": "imported:semiconductor-atlas:powerhouse-big-watt-taylor",
+      "site_id": "vcc-site-450769770dfe5ea908d6",
+      "replaces_geometry_evidence_id": "900327af-48bd-5ddf-a20d-83ef31e1ec24",
+      "reason": "The imported point (30.5725, -97.4167) is a locality reference for the city of Taylor, not the campus. The two Williamson appraisal parcels that make up the 664-acre property of the City of Taylor's development agreement for Taylor Technology Campus, published through the TxGIO parcel service, now locate it.",
+      "displacement_review": "5,980.0 m (haversine, as the builder computes it) from the Taylor locality point to the centroid of the union of parcels R006648 and R006650, within the 50 km allowed for an imported locality point. Both stand for the same Big Watt Digital and PowerHouse campus: the old point only names Taylor, while the City says the campus lies on 664 acres between FM 112 and US 79 immediately east of the city limits, and the two parcels total 664.57 legal acres. No other Atlas site or project, and no point in a pending queue fragment, lies within 2 km of the new point; the nearest other Atlas site (Skybox Hutto) is 16.1 km away.",
+      "locator": {
+        "scope": "campus_locator",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -97.3542399,
+            30.5730014
+          ]
+        },
+        "source_id": "up-9-p7-txgio-parcels-taylor-fm112",
+        "identity_source_ids": [
+          "up-9-p7-taylor-technology-campus-page",
+          "up-9-p7-taylor-development-agreement",
+          "up-9-p7-txgio-addr-3301-fm112"
+        ],
+        "scope_class": "official_appraisal_parcel_union_centroid_of_development_agreement_property",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "txgio_stratmap_land_parcels_identify_williamson_cad_r006648_r006650_union_utm14_area_centroid",
+        "precision": "Area centroid (computed in UTM zone 14N with pyproj 3.7.1 and shapely 2.1.1) of the union of Williamson appraisal parcels R006648 (486.392 legal acres; NMCV Taylor Property Investors LLC; situs 3301 FM 112, Taylor) and R006650 (178.18 legal acres; privately owned), as published by the TxGIO StratMap land-parcel layer (2026 tax year, acquired 1 July 2026): one 665.53-acre polygon about 2.4 by 1.8 km. The point lies inside the union, 636 m from its nearest edge; it locates the campus property as a whole, not a building.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "TxGIO publishes no positional accuracy for parcel polygons, and the development agreement fixes setbacks but no building positions; the 3301 FM 112 address point (CAPCOG) lies inside the union, 186 m from the centroid.",
+        "identity_review": "The City of Taylor's Taylor Technology Campus page (PowerHouse + Big Watt; formerly Project Mustang) says the campus is located on 664 acres between FM 112 and US 79, immediately east of the city limits, and that Council approved the development agreement with Big Watt Digital and PowerHouse Data Centers on 8 October 2026. The agreement the page links, between the City, Taylor Technology Campus LLC and the owners, describes the Property as approximately 664.39 acres in the City's ETJ: approximately 178 acres owned by private individuals (Tract 1) and approximately 486.39 acres owned by NMCV Taylor Property Investors, LLC (Tract 2). The parcel layer gives R006648 (486.392 legal acres, situs 3301 FM 112) to NMCV Taylor Property Investors LLC and the adjoining R006650 (178.18 legal acres) to private owners, together 664.57 legal acres; the agreement's Exhibit B metes and bounds were not traced. The Atlas hold of 26 October 2026 (research-seventyeighth) already tied the project to 3301 FM 112."
+      }
+    },
+    {
+      "physical_site_stable_key": "imported:semiconductor-atlas:terawulf-chesapeake-morgantown",
+      "site_id": "vcc-site-6a1efb9a8859fd17aa59",
+      "replaces_geometry_evidence_id": "973d660a-dde9-5e62-a89b-8cfea760353c",
+      "reason": "The imported point (38.3453, -76.9711) is a locality reference for Morgantown, Maryland, not the campus. The EIA-860 plant location of the Morgantown Generating Plant, the station TeraWulf acquired to host the Chesapeake Data Campus, now locates it.",
+      "displacement_review": "1,620.9 m (haversine, as the builder computes it) from the Morgantown locality point to the EIA plant coordinate, within the 50 km allowed for an imported locality point. Both stand for the same TeraWulf campus at the Morgantown Generating Station in Charles County; the old point only names the community. No other Atlas site or project, and no point in a pending queue fragment, lies within 2 km of the new point; the nearest other Atlas site (AWS King George County, Birchwood) is 31.1 km away.",
+      "locator": {
+        "scope": "campus_locator",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -76.9767,
+            38.3592
+          ]
+        },
+        "source_id": "up-9-p7-eia860-2025-plant-1573",
+        "identity_source_ids": [
+          "up-9-p7-terawulf-release-129",
+          "up-9-p7-chesapeakedatacampus-faq",
+          "up-9-p7-chesapeakedatacampus-home"
+        ],
+        "scope_class": "official_federal_energy_register_plant_coordinate_of_campus_host_plant",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "eia_860_2025_schedule_2_plant_1573_latitude_longitude",
+        "precision": "The plant latitude and longitude (38.3592, -76.9767, given to four decimals, about 10 m) of EIA plant code 1573, Morgantown Generating Plant, 12620 Crain Highway, Newburg, MD 20664, Charles County, in the 2025 Form EIA-860 Schedule 2 plant file (final 2025 data, released 10 September 2026). It marks the generating station as reported to EIA, not a data-centre building or the limits of the approximately 250 buildable acres.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "EIA publishes no positional accuracy for plant coordinates, which are reported for the plant as a whole, and the campus land around the station is not delimited in any reachable public record (Maryland's parcel service at geodata.md.gov answered with HTTP 503 during this review).",
+        "identity_review": "TeraWulf's release of 2 February 2026 says it acquired the Morgantown Generating Station in Charles County, Maryland, with about 210 MW of operational generation and about 250 buildable acres, planning about 500 MW of data-centre load in a first phase. The Chesapeake Data Campus site describes the transformation of a retired coal-fired power plant, and its FAQ explains how 'the Morgantown site' fits TeraWulf's strategy and Charles County's priorities. EIA's 2025 plant file has one plant named Morgantown in Maryland: code 1573, Morgantown Generating Plant, Newburg, Charles County, on the Potomac River, whose generators 3 to 6 are operating and owned by Morgantown Power, LLC (utility Lanyard Power Holdings, LLC), that is, the station as reported for 2025, before TeraWulf's acquisition. The other EIA plants named Morgantown are in West Virginia and Pennsylvania."
+      }
+    },
+    {
+      "physical_site_stable_key": "imported:semiconductor-atlas:terawulf-lake-hawkeye",
+      "site_id": "vcc-site-a291a33ca480670cccf1",
+      "replaces_geometry_evidence_id": "17da0c46-2546-5d53-b910-108e95100470",
+      "reason": "The imported point (42.5658, -76.5319) is a locality reference for Lansing, New York, not the campus. The New York State tax-parcel layer now locates the former Cayuga Power Plant property of Cayuga Operating Co, LLC, part of which TeraWulf leases for Lake Hawkeye.",
+      "displacement_review": "9,053.5 m (haversine, as the builder computes it) from the Lansing locality point to the centroid of the two Cayuga Operating Co parcels, within the 50 km allowed for an imported locality point. Both stand for the same TeraWulf Lake Hawkeye campus: the old point only names the town, while TeraWulf places the campus at the former Cayuga Power Plant property in Lansing, leased from Cayuga Operating Company LLC. No other Atlas site or project, and no point in a pending queue fragment, lies within 2 km of the new point; the nearest other Atlas site is 174 km away.",
+      "locator": {
+        "scope": "campus_locator",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -76.6274361,
+            42.6068078
+          ]
+        },
+        "source_id": "up-9-p7-nys-parcels-cayuga-operating",
+        "identity_source_ids": [
+          "up-9-p7-terawulf-release-113",
+          "up-9-p7-cayugadatacampus-project-overview",
+          "up-9-p7-terawulf-our-sites"
+        ],
+        "scope_class": "official_state_tax_parcel_union_centroid_of_host_plant_property",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "nys_its_tax_parcels_public_tompkins_11_1_3_211_and_11_1_3_212_union_utm18_area_centroid",
+        "precision": "Area centroid (computed in UTM zone 18N with pyproj 3.7.1 and shapely 2.1.1) of the union of the two Tompkins County parcels owned by Cayuga Operating Co, LLC in the NYS Tax Parcels Public layer (2025 roll): 11.-1-3.211 at 228 Cayuga Dr, Lansing (54.31 acres) and 11.-1-3.212 on Ridge Rd (379.25 acres), together 432.57 geodesic acres in three polygon parts spanning about 2.0 by 1.9 km. The point lies inside, 388 m from the nearest boundary. It locates the former plant property as a whole, not TeraWulf's leased area or a building.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The parcel layer publishes no positional accuracy, and TeraWulf's 183-acre ground lease covers only part of the 432.6-acre property, with limits that are not published; the leased area and the single planned building may lie several hundred metres from this centroid.",
+        "identity_review": "TeraWulf's release of 14 August 2025 announces an 80-year ground lease of approximately 183 acres at the Cayuga site in Lansing, New York, executed with Cayuga Operating Company LLC, on the site of a former coal-fired power plant. Its Lake Hawkeye Data site places the campus at the former Cayuga Power Plant property in Lansing and says it would redevelop a portion of that property; TeraWulf's Our Sites page describes Lake Hawkeye as a 183-acre former industrial site under long-term lease in Lansing, NY, on the former 300 MW Cayuga coal plant site. The state parcel layer returns exactly two Tompkins County parcels for the plant entities, both owned by Cayuga Operating Co, LLC (one at 228 Cayuga Dr, both with that mailing address); none is held by a TeraWulf entity."
+      }
+    },
+    {
+      "physical_site_stable_key": "imported:semiconductor-atlas:openai-stargate-shackelford-county",
+      "site_id": "vcc-site-f3c14c6227b2ae418664",
+      "replaces_geometry_evidence_id": "c23b8163-4dfb-5179-bdc2-bf2c0f07c255",
+      "reason": "The imported point (32.7089, -99.3308) is the county-level (admin2) reference for Shackelford County, not the campus. The Shackelford appraisal parcels owned by the Vantage Data Centers TX301 to TX310 entities on Private Road 1604, published through the TxGIO parcel service, now locate Vantage's Frontier campus.",
+      "displacement_review": "27,329.2 m (haversine, as the builder computes it) from the Shackelford County reference point to the centroid of the Vantage parcel union, within the 200 km allowed for an imported admin2 point. Both stand for the same Vantage Frontier campus: the old point only names the county, while the parcels carry the TX301 to TX310 building entities that the state registry lists as 'Vantage DC Abilene - TX3 - Project Frontier' in Shackelford County. No other Atlas site or project, and no point in a pending queue fragment, lies within 2 km of the new point; the nearest other Atlas sites (Lancium Clean Campus Abilene and Crusoe Abilene) are 21.7 km away.",
+      "locator": {
+        "scope": "campus_locator",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -99.5469533,
+            32.5437761
+          ]
+        },
+        "source_id": "up-9-p7-txgio-parcels-pr1604",
+        "identity_source_ids": [
+          "up-9-p7-tabs-tx301",
+          "up-9-p7-tabs-search-pr-1604",
+          "up-9-p7-txgio-addr-pr-1604"
+        ],
+        "scope_class": "official_appraisal_parcel_union_centroid_of_campus_owner_parcels",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "txgio_stratmap_land_parcels_identify_shackelford_cad_vantage_tx3_owner_parcels_union_utm14_area_centroid",
+        "precision": "Area centroid (computed in UTM zone 14N with pyproj 3.7.1 and shapely 2.1.1) of the union of the 15 Shackelford Appraisal District parcels owned by Vantage Data Centers TX301 to TX310, LLC (T&P block 13 sections 77 to 80 and the building parcels at 246 PR 1604; legal 1,204.996 acres; one 1,199.8-geodesic-acre polygon about 3.1 by 1.9 km), as published by the TxGIO StratMap land-parcel layer (2026 tax year, acquired 1 March 2026). The point lies inside the union, 822 m from its outer edge and 203 m from the nearest interior gap; it locates the campus land as a whole, not a building.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "TxGIO publishes no positional accuracy for parcel polygons; the ten building parcels (246 PR 1604 BLDG 1 to 10) lie within the union, but no building coordinates are published.",
+        "identity_review": "TDLR TABS2026024068 (registered 29 June 2026) is 'Vantage DC Abilene - TX3 - Project Frontier', facility TX301, a 344,796 sq ft new data-centre building ($950 million) at 246 PR 1604 BLDG 1, Abilene, Shackelford County, owned by Vantage Data Centers TX301, LLC of Santa Clara, California. The registry's address search for PR 1604 lists eleven such Project Frontier registrations (TX301 to TX311) and two VoltaGrid 'Frontier Project - TX-3' power-block buildings. The appraisal layer gives the parcels at 246 PR 1604 BLDG 1 to BLDG 10 to Vantage Data Centers TX301 to TX310, LLC respectively, beside four large TX301 parcels and a 5-acre TX301 parcel at 299 FM 604. The state 9-1-1 points for 175 and 1002 Private Road 1604 lie inside the union; the Atlas hold of 9 October 2026 (round 43) recorded that TCEQ registers 'VANTAGE DATA CENTERS TX3' at 175 Private Road 1604 (TCEQ was not re-fetched here)."
+      }
+    },
+    {
+      "physical_site_stable_key": "imported:semiconductor-atlas:airtrunk-kurri-kurri",
+      "site_id": "vcc-site-63d7eb757cdf71a1ae84",
+      "replaces_geometry_evidence_id": "7745e0a7-3b94-55f1-b9e7-f4c7b4e8eb78",
+      "reason": "The imported point (-32.8167, 151.4833) is a locality reference for the town of Kurri Kurri, not the campus. The NSW cadastre now locates the proposal's site at Hart Road, Loxford: Lot 1 DP1332716, the current lot that holds most of the exhibited site, Lot 4 DP1314331, after plan DP1332716 was registered in October 2026.",
+      "displacement_review": "2,903.8 m (haversine, as the builder computes it) from the Kurri Kurri locality point to the centroid of Lot 1 DP1332716, within the 50 km allowed for an imported locality point. Both stand for the same AirTrunk proposal: the old point only names the town, while the new one lies on the former Hydro Aluminium smelter land at Hart Road, Loxford, that the planning application and AirTrunk name. No other Atlas site or project, and no point in a pending queue fragment, lies within 2 km of the new point; the nearest other Atlas site is in Sydney, 114.7 km away.",
+      "locator": {
+        "scope": "campus_locator",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            151.4777944,
+            -32.7909987
+          ]
+        },
+        "source_id": "up-9-p7-nsw-cadastre-dp1332716",
+        "identity_source_ids": [
+          "up-9-p7-nsw-kurri-eis",
+          "up-9-p7-nsw-kurri-exhibition-notice",
+          "up-9-p7-nsw-pp-kurri-kurri-data-centre",
+          "up-9-p7-airtrunk-kurri-kurri",
+          "up-9-p7-nsw-cadastre-dp1314331"
+        ],
+        "scope_class": "official_cadastral_lot_centroid_of_development_site",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "nsw_spatial_services_cadastre_lot_1_dp1332716_mga56_area_centroid",
+        "precision": "Area centroid (computed in GDA2020 / MGA zone 56 with pyproj 3.7.1 and shapely 2.1.1) of Lot 1 DP1332716 in the NSW Spatial Services cadastre (plan lot area 194,537.7 m2, about 500 by 500 m; lot updated 15 October 2026). The point lies inside the lot, 219 m from its nearest edge. It locates the development site, not a building; the exhibited site (former Lot 4 DP1314331, 20.91 ha) also included about 1.3 ha now in Lot 2 DP1332716.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The cadastre publishes no positional accuracy for this lot; the exhibited 20.91 ha site was re-subdivided after exhibition and no building coordinates are published, so the point is the centroid of the successor lot.",
+        "identity_review": "The NSW Planning Portal lists Kurri Kurri Data Centre (SSD-128819490, Cessnock City, on exhibition from 14 October to 11 November 2026) for a 550.5 MW data centre at the former Hydro Aluminium Kurri Kurri plant. The Department's exhibition notice and the EIS give the location as Hart Road, Loxford (Lot 4 DP1314331), a single broadly rectangular parcel of 20.91 ha with its eastern boundary on Hart Road. AirTrunk's Kurri Kurri page says AirTrunk is proposing a data centre on the former Kurri Kurri smelter site at Hart Road, Loxford. The current cadastre no longer holds Lot 4 DP1314331: plan DP1314331 now returns only Lots 3, 5 and 7, and plan DP1332716, whose two lots and the adjoining Lot 7 DP1314331 were all updated on 15 October 2026, holds Lot 1 (19.45 ha, about 500 by 500 m) and Lot 2 (53.65 ha). As a cross-check only, an Atlas capture of 16 October 2026 of the then-current Lot 4 DP1314331 (20.77 ha) contains all of Lot 1, which covers 93.7% of it, and its centroid lies about 15 m from the new point; that capture is not a source here because its query point was read from the Planning Portal page's map."
+      }
+    }
+  ]
+}

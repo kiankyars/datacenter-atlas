@@ -1,0 +1,75 @@
+{
+  "candidate_id": "loc-12-p8-patmos-kc1-tracy-avenue",
+  "physical_site_stable_key": "curated:patmos-kc1-tracy-avenue-campus",
+  "decision": "Replace the PeeringDB facility 3634 point with the planar centroid of the City of Kansas City, Missouri parcel at 1325 Tracy Ave, where the city's business-licence register lists Patmos Hosting Inc as a data-processing and web-hosting business.",
+  "locator_source": {
+    "file": "local_data/country-research-loc-12-p8/kcmo-parcels-1325-tracy.json",
+    "sha256": "7c7a0c8fc4281cded63e0677410e6419e0d3adaa6242d0b16b22235a63547754",
+    "url": "https://data.kcmo.org/resource/6g4y-sh3m.json?$select=objectid,apn,kivapin,address,addr,street,street_type,platname,block,lot,landusecode,parceltype,shape_area,assessment_effective_date,the_geom&$where=addr%3D%271325%27%20AND%20upper(street)%20like%20%27%25TRACY%25%27",
+    "retrieved_at": "2026-11-06T23:37:56.619Z"
+  },
+  "published_fields": {
+    "objectid": "81829",
+    "apn": "JA29130091400000000",
+    "kivapin": "12226",
+    "address": "1325 Tracy Ave",
+    "landusecode": "3120",
+    "parceltype": "1",
+    "shape_area_sqft": 15340.997,
+    "assessment_effective_date": "2021-07-01",
+    "geometry_type": "MultiPolygon (one ring, 17 vertices)"
+  },
+  "computation": "The parcel ring (EPSG:4326 as published by the Socrata API) was projected to NAD83(HARN) / Missouri West (EPSG:2817) with pyproj 3.7.1, its planar centroid computed with shapely 2.1.1 and transformed back to WGS84: [-94.56726182780503, 39.09720330967427], rounded to 7 decimals.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -94.5672618,
+      39.0972033
+    ]
+  },
+  "containment_checks": {
+    "parcel_geodesic_area_m2": 1425.4,
+    "new_point_inside_parcel": true,
+    "new_point_to_parcel_boundary_m": 18.6,
+    "max_distance_new_point_to_parcel_vertex_m": 26.8,
+    "replaced_point_inside_parcel": true,
+    "replaced_point_to_parcel_boundary_m": 17.6,
+    "business_licence_point": {
+      "source": {
+        "file": "local_data/country-research-loc-12-p8/kcmo-business-license-patmos.json",
+        "sha256": "66d629a82a302391ce44546926ac4472dbf7461b95f8a6f963d1ae3d7cdc85b4",
+        "url": "https://data.kcmo.org/resource/pnm4-68wg.json?$q=PATMOS&$limit=50",
+        "retrieved_at": "2026-11-06T23:37:42.456Z"
+      },
+      "coordinates": [
+        -94.56758,
+        39.09718
+      ],
+      "inside_parcel": false,
+      "distance_to_new_point_m": 27.6,
+      "note": "Geocoded location column of the licence dataset (geocoder not stated); identity only, not used as the locator."
+    },
+    "census_geocoder_point": {
+      "source": {
+        "file": "local_data/country-research-loc-12-p8/census-geocoder-1325-tracy-ave.json",
+        "sha256": "601ce872fa683249ea8d64ad014c6042c333a8115e85dccb025051f636c18ae8",
+        "url": "https://geocoding.geo.census.gov/geocoder/geographies/onelineaddress?address=1325%20Tracy%20Ave%2C%20Kansas%20City%2C%20MO%2064106&benchmark=Public_AR_Current&vintage=Current_Current&layers=Counties&format=json",
+        "retrieved_at": "2026-11-06T23:30:39.048Z"
+      },
+      "coordinates": [
+        -94.567478582379,
+        39.09771706847
+      ],
+      "inside_parcel": false,
+      "distance_to_new_point_m": 60.1,
+      "note": "Interpolated street-side point; not used."
+    }
+  },
+  "replaced_point": [
+    -94.567238,
+    39.097212
+  ],
+  "displacement_m": 2.3,
+  "identity_bridge": "Patmos's status page names the affected KC1 site 'Kansas City 1 (Tracy Ave)'; Kansas City's business-licence register lists PATMOS HOSTING INC (computing infrastructure, data processing and web hosting) at 1325 TRACY AVE, 64106; KCIX lists Joe's Datacenter, LLC at 1325 Tracy Ave, and Patmos says it acquired Joe's Datacenter in 2023.",
+  "nearby_records_within_2km": "This site (curated:patmos-kc1-tracy-avenue-campus, 2 m); Lambda Kansas City AI factory (imported:semiconductor-atlas:lambda-kansas-city, 992 m, under an up-5-p7 locator-correction claim); 934 Central Data Center (curated:934-central-data-center-kansas-city, 1,824 m, also pending in us-wi-mn-ia-ne-mo-p3); and an up-5-p7 claim for Meta Kansas City whose current imported point is 989 m away. None shares the 1325 Tracy Ave address or parcel."
+}

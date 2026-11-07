@@ -1,0 +1,56 @@
+{
+  "candidate_id": "loc-12-p8-365-philadelphia-ph2",
+  "physical_site_stable_key": "curated:365-philadelphia-university-city-campus",
+  "decision": "Replace the PeeringDB facility 2015 point with the point the City of Philadelphia's Address Information System (AIS) returns for 3701 Market St, the address 365 Data Centers publishes for its University City (PH2) data centre.",
+  "locator_source": {
+    "file": "local_data/country-research-loc-12-p8/phila-ais-3701-market-st.json",
+    "sha256": "d8d08d0c208d330a45aa89a97040700802d3491e97819c44c423674ec8634600",
+    "url": "https://api.phila.gov/ais/v1/search/3701%20market%20st",
+    "retrieved_at": "2026-11-06T23:29:47.081Z"
+  },
+  "published_fields": {
+    "street_address": "3701 MARKET ST",
+    "zip_code": "19104",
+    "match_type": "exact",
+    "ais_feature_type": "address",
+    "geocode_type": "pwd_parcel",
+    "pwd_parcel_id": "483940",
+    "dor_parcel_id": "056N070133",
+    "opa_account_num": "883073300",
+    "zoning": "CMX-4",
+    "coordinates": [
+      -75.19605172064948,
+      39.95683928083727
+    ]
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -75.1960517,
+      39.9568393
+    ]
+  },
+  "conversion": "AIS returns WGS84 (EPSG:4326) longitude/latitude; the values are rounded to 7 decimals with no datum or projection change.",
+  "containment_checks": {
+    "parcel_source": {
+      "file": "local_data/country-research-loc-12-p8/phl-carto-pwd-parcel-483940.geojson",
+      "sha256": "543b8d75ad199382e1d0386590101a2f84eb31d0d334fb65b69a2261aa28a226",
+      "url": "https://phl.carto.com/api/v2/sql?q=SELECT%20*%20FROM%20pwd_parcels%20WHERE%20parcelid%3D483940&format=GeoJSON",
+      "retrieved_at": "2026-11-06T23:30:07.538Z"
+    },
+    "parcel": "The Philadelphia Water Department parcel layer (city Carto SQL API, table pwd_parcels) returns parcel 483940 (address 3701 MARKET ST, building description OFF/BLD N/PKG N/COM MASON, gross area 24,066 sq ft) as a four-vertex polygon. Geodesic area 2,237 m2.",
+    "new_point_inside_parcel": true,
+    "new_point_to_parcel_boundary_m": 18.3,
+    "ais_point_to_parcel_planar_centroid_m": 0.25,
+    "max_distance_new_point_to_parcel_vertex_m": 35.8,
+    "replaced_point_inside_parcel": false,
+    "replaced_point_to_parcel_boundary_m": 16.2
+  },
+  "replaced_point": [
+    -75.196511,
+    39.956611
+  ],
+  "displacement_m": 46.7,
+  "identity_bridge": "365 Data Centers' Philadelphia (University City) page gives 3701 Market Street, Philadelphia, PA 19104 and says the data centre is in the Penn Medicine Science Center in University City; AIS matches that address exactly to PWD parcel 483940.",
+  "nearby_records_within_2km": "Only this site (curated:365-philadelphia-university-city-campus, 47 m from the new point) in the current dataset; no pending queue addition, locator correction or claim within 2 km."
+}

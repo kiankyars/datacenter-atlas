@@ -1,0 +1,311 @@
+{
+  "reviewer": "root",
+  "reviewed_at": "2026-11-07",
+  "decision": "accepted_for_integration",
+  "update": "verified_construction_core/2026-11-07-research-hundredtwentyfifth",
+  "base_dataset": "verified_construction_core/2026-11-07-research-hundredtwentyfourth",
+  "process": "continuous: one researcher per beat, one adversarial verifier per fragment",
+  "fragments": [
+    {
+      "fragment": "kr-tw-hk-new-p6",
+      "verdict": "accept",
+      "checks": [
+        "config current_dataset re-read: verified_construction_core/2026-11-07-research-hundredtwentyfourth; 85-day window starts 2026-08-14",
+        "rehashed bdx-hkg2.html, ia-20260929002742-bdx-hkg2.html, als-16-22-kung-yip-street.xml, csdi-landinfo-553000258.json, csdi-lot-kctl258.json, csdi-lot-at-16-22-kung-yip-street.json, geodetic-transform-kctl258-centroid.json, bdx-page-sitemap.xml, lguplus-23259-q3-2026.html, skt-232790-q3-2026.html, skt-en-3290/3336: all match .metadata.json and sources.json content_hash; geometry facts file sha256 c435a5f6 matches",
+        "HKG2: live and 2026-09-29 Internet Archive copies have identical visible text ('Operational', 'HKG2 delivers 4MW of Tier III-certified...', 16-22 Kung Yip Street, 4,418 sqm) and identical JSON-LD dateModified 2026-09-10T01:27:09Z; page-sitemap lastmod agrees; archived copy bounds dateModified per brief; operator page = company_disclosure; 58 days old",
+        "HKG2 locator recomputed with pyproj 3.7.1/shapely 2.1.1 from raw CSDI ring (EPSG:2326 -> 4326, HK1980 to WGS84 (1), 1 m): centroid [114.134441, 22.3618587], inside ring; native area 4418.32 m2 matches BDx 4,418 sqm; ALS Watson Centre point inside lot, 21.5 m from centroid; Geodetic Survey transform agrees <1e-7 deg",
+        "HKG2 locator sources: HKSAR ALS + LandsD CSDI + Geodetic Survey (government); no map service, PeeringDB or OSM used; license 'no-open-license-asserted' matches prior CSDI/ALS precedent; fields consistent with HKG8/HKG11 records",
+        "HKG2 distinctness: no HKG2/Watson Centre/Kung Yip/KCTL 258 match in sites, projects, evidence, source-records, identity-mapping; nearest Atlas sites Goodman HKG09 699 m, DLR HKG11 1096 m, Goodman HKG10 1538 m, BDx HKG8 1619 m, MEGA Gateway 1622 m (different lots); only BDx record is HKG8; no other queue fragment changes it; prior holds (thirtyfirst, thirtyfourth, ops-hk-seoul-taipei-p6) are the same facility and are taken up",
+        "Paju: Korean text read: '파주에 수전용량 200MW급 AI 데이터센터를 구축하고 있으며' and Building 1 50 MW completion June 2027 (target, not recorded); release dated '4일 밝혔다', posted 2026-11-06; strictly newer than 2026-06-05; prior status evidence was also a campus construction-site update so scope chain is unchanged",
+        "Ulsan: Korean text read: 'SK호라이즌은 울산과 서울 지역에 약 180㎿ 규모 신규 데이터센터를 구축 중'; datePublished 2026-11-04; SKT en/3290 names new AIDCs under construction in Ulsan and Guro, so Ulsan build = this record; strictly newer than 2026-09-14; 180 MW not assigned",
+        "roles: BDx Data Centers operator current (operator's own page); status updates add no roles",
+        "no private individuals' names, phones or emails in sources, summaries, URLs or holds; compliance log and robots captures reviewed",
+        "dryrun_fragment.py ok: 968 sites, 1,042 projects, 5,604 evidence rows against hundredtwentyfourth"
+      ],
+      "residual_risks": [
+        "HKG2 dateModified 2026-09-10 coincides with a BDx site-wide page refresh (HKG1/HKG8/TPE1 within an hour); the archive copy proves only that the 'Operational' listing was public by 2026-09-29",
+        "HKG2 4 MW is operator-listed capacity; current load and fit-out unverified",
+        "HKG2 locator is a lot centroid (lot about 51 m x 86 m), not a building outline; CSDI lot layer states no positional tolerance",
+        "Paju present-progressive statement is campus-level; Building 1 under construction is inferred from it being first in sequence with June 2027 completion",
+        "Paju as_of uses the company-stated 4 November statement date although the newsroom post is dated 6 November",
+        "Ulsan record keeps its imported admin1 (Ulsan city centroid) context locator; 180 MW combined with the Seoul (Guro) build"
+      ]
+    },
+    {
+      "fragment": "loc-11-p8",
+      "verdict": "accept",
+      "checks": [
+        "All 22 relied-on captures rehashed: sha256 matches both .metadata.json and the source content_hash; metadata URL equals source_url; HTTP 200 for each",
+        "Datacentre220 contact capture hash c72f4820... equals published evidence 5c8f702d content_hash, so mirroring its title/retrieval time/hash scope is correct",
+        "Operator addresses read in captures: 427 S La Salle Street 60605; 500 Commack Rd 11725; 24660 Lahser Road 48033; 3250 W Commercial Blvd 33309 (page and cut-sheet PDF via pdftotext); 13873 Park Center Rd 20171; First Floor 220 Queen Street Auckland 1010; no map links/embeds in any operator capture",
+        "Current dataset hundredtwentyfourth: all 6 sites have exactly one project and the listed replaces_geometry_evidence_id is their only geometry evidence; the replaced evidence is PeeringDB (fac 283/8517/2021/605/6338/3630)",
+        "Chicago: recomputed EPSG:3435 planar centroid of footprint 868403 = -87.6315036, 41.8761478 (exact); all 3 assessor 427 S LA SALLE parcel centroids, county address point 556246 and the old point lie inside; farthest vertex 41.8 m (unc 42); haversine 8.28 m",
+        "Commack: SAM SUFF268706 Rooftop, County AP, no suffix, matches NYS geocoder score-100 candidate; point and old point inside footprint 3446314 (31,733 m2); farthest vertex 209.6 m (unc 210); haversine 77.75 m; 500 A driveway point 130 m north outside the footprint",
+        "Detroit: Oakland County site-address OBJECTID 359990 (layer described as approximate parcel centre) inside parcel 2427101045 (1.33 ac, class 201, site address 24660 LAHSER RD); old point inside; farthest vertex 69.5 m (unc 70); haversine 7.21 m",
+        "Fort Lauderdale: Census match 3250 W COMMERCIAL BLVD on TIGER 647005747 right side; point 2.56 m north of office parcel 494218200530 (2 multi-story office buildings) that contains the old point; haversine 145.67 m; uncertainty null with reason",
+        "Herndon: Fairfax locator single PointAddress score 100, PIN 0242 01 0022E; state-plane X/Y (EPSG:2283) reprojects to within 1 m; point and old point inside the 8.09-ac parcel; farthest vertex 157.7 m (unc 158); haversine 3.62 m",
+        "Auckland: council address 44345 '214-220 QUEEN STREET'; NZTM2000 1757398, 5920393.4 reprojects to the published WGS84 point; inside property 11285381 'The Data Centre' (Lot 1 & 3 DP 192157, 640.7 m2), 3.19 m inside; old point inside; farthest vertex 49.1 m (unc 50); haversine 8.24 m",
+        "All locator sources are government records or an official open geocoder (Census, NYS ITS, Fairfax, Oakland County, City of Chicago, Auckland Council); none from Google/Apple/Bing/HERE/PeeringDB/OSM; licence field records publisher terms",
+        "Distinctness: no other queue fragment, pending point (33 scanned) or sources/*-holds.json touches these 6 sites or addresses; only curated:400-s-lasalle-chicago within 100 m of any new point (68.4 m, west side of LaSalle, different building)",
+        "No private individuals' data in sources, changes or holds; owner/mailing fields never requested",
+        "4 holds (BBTower New Otemachi, Paratus Armada, STT SIN6, Netwise London East) leave existing records unchanged with reopen conditions",
+        "dryrun_fragment.py: ok on verified_construction_core/2026-11-07-research-hundredtwentyfourth (967 sites, 1041 projects)"
+      ],
+      "residual_risks": [
+        "Fort Lauderdale point is a TIGER address-range interpolation on the W Commercial Blvd frontage, not a building or parcel point; no county/city record ties 3250 W Commercial Blvd to a specific building on the two-building office parcel",
+        "Commack: the data-centre suite's position inside a ~31,700 m2 building is unpublished (210 m uncertainty); the state footprint dates from 2006",
+        "Chicago: the city footprint is labelled 401 S LA SALLE ST; its tie to 427 rests on assessor parcel centroids and the county address point on the same PIN",
+        "Compliance log records an incident: Crawl-delay 60 was not observed on two ArcGIS Hub hosts (one request each after robots.txt); nothing from them is relied on",
+        "bcgishub.broward.org returned an HTML 404 page for robots.txt (treated as no rules) while sister host bcgis.broward.org disallows Claude agents; its address-point queries feed only the negative 'unresolved' note for Fort Lauderdale, not any locator"
+      ]
+    },
+    {
+      "fragment": "loc-12-p8",
+      "verdict": "accept",
+      "checks": [
+        "All 19 relied-on captures rehash to sources.json content_hash and .metadata.json sha256; byte counts match; geometry facts hashes match (Smyrna facts re-hashed after correction)",
+        "Current dataset hundredtwentyfourth (moved from hundredtwentythird during verification): each of the 6 sites has one project whose geometry_evidence_id equals replaces_geometry_evidence_id (all PeeringDB facility points); site_ids match",
+        "Philadelphia: AIS JSON re-parsed, exact match 3701 MARKET ST 19104, geocode_type pwd_parcel [-75.19605172, 39.95683928] -> [-75.1960517, 39.9568393]; 0.25 m from PWD parcel 483940 planar centroid (EPSG:2272); new point inside, old 16 m outside; displacement 46.7 m NE",
+        "Richardson: DCAD layer 4 parcel 421243300A01A0000 ring re-projected to EPSG:2276, shapely centroid back to WGS84 reproduces [-96.7074941, 32.976148]; BPP account DBA 365 OPERATING COMPANY under same parent parcel; both points inside; displacement 16.2 m",
+        "Smyrna: Cobb CAM_ActiveAddress SID-1219840 '5600 United Dr SE' point reproduces [-84.522722, 33.8413951]; inside parcel 17047600400 (C5, 11.24 ac); displacement 39.2 m NW; replaced-point boundary distance corrected from 102 m to 94 m (recomputed 93.7 m in AEQD, EPSG:2240 and UTM 16N)",
+        "DartPoints: Census geocoder single exact match 1000 CATAWBA ST 29201, TIGER 71827669 range 902-1098, reproduces [-81.0307616, 33.9882374]; DartPoints page says CAE01 is in the SCRA Innovation Center; SCRA page gives USC/Columbia Innovation Center at 1000 Catawba St with matching Statehouse/USC/airport wording; SCRA sitemap lists no other Columbia innovation-center lease space; displacement 64.2 m N; Google Maps embed not used",
+        "Lightedge: Census geocoder exact match 1401 NORTHRIDGE CIR, TIGER 65863027 range 1401-1499, reproduces [-93.4566602, 41.6661666]; Lightedge page lists DSM2 at 1401 and DSM1 at 1435 Northridge Circle; Iowa DNR SW2 record names Lightedge Data Center Expansion at 1401 Northridge Circle NE (quarter-section point not used); displacement 102.1 m SW",
+        "Patmos: KCMO parcel JA29130091400000000 ring re-projected to EPSG:2817 reproduces [-94.5672618, 39.0972033]; licence register PATMOS HOSTING INC at 1325 TRACY AVE; status page 'Kansas City 1 (Tracy Ave)'; KCIX Joe's Datacenter at 1325 Tracy; Patmos About says it acquired Joe's Datacenter; displacement 2.3 m; Lambda KC (992 m) and 934 Central (1.8 km) are separate properties",
+        "Locator sources all government (city AIS, appraisal district, county address register, US Census geocoder, city open-data parcels); no Google, PeeringDB, OSM or other map-service coordinates; method strings free of map-service terms; derivations/authority consistent (coordinate_transform -> compiled_reference)",
+        "Licence fields: DCAD now records the ParcelQuery service copyright text 'DCAD, MAPSCO, Esri., Inc.' (layer 4 has none); KCMO business licence set to the catalog's Public Domain; Cobb CAM service has empty copyright text, Cobb tax parcel 'All rights reserved' recorded",
+        "Robots: every relied-on capture's robots check allowed (404 or no matching disallow); content-to-content pacing honoured on crawl-delay hosts (365datacenters 10 s, data.kcmo.org 1 s between resource requests)",
+        "Distinctness: no other site within 2 km of any new point except the KC records noted; no unpublished queue fragment or claim touches the six sites; KCIX source metadata mirrors published evidence a728abb9 (byte-identical capture)",
+        "No locator correction exceeds 25 km (max 102 m); each new point locates the same operator/name/address as the existing record",
+        "Holds: 3 locator_replacement_pending entries (Aligned Shippingport, Liquid Web Lansing DC3, CMC Tan Thuan) reference existing projects whose geometry evidence matches; reopen conditions require operator- or government-published locations",
+        "No private individuals' names, phones or emails in changes, sources, holds or geometry facts (owner fields in AIS/DNR captures not copied)",
+        "dryrun_fragment.py ok against base hundredtwentyfourth, updated_at 2026-11-07"
+      ],
+      "residual_risks": [
+        "data.kcmo.org (Crawl-delay 1): each relied-on KCMO resource request followed its own robots.txt re-check by under 1 s (disclosed incident); resource-to-resource gaps were 8 s and 13 s",
+        "Lightedge and DartPoints points are Census address-range interpolations on the street frontage (Lightedge at the low end of a ~320 m segment), not building or parcel positions; Polk and Richland county parcel services were unreachable",
+        "DartPoints identity rests on 'SCRA Innovation Center' matching SCRA's USC/Columbia Innovation Center by name and description; DartPoints publishes no street address",
+        "Richardson parcel is a multi-tenant property (45 BPP accounts); the parcel centroid locates the property, not the 365 suite",
+        "Patmos KC1 tie to 1325 Tracy Ave rests on a 2024 business licence, KCIX's Joe's Datacenter listing and the 2023 acquisition; Patmos publishes no KC1 street address"
+      ]
+    },
+    {
+      "fragment": "ops-cee-p6",
+      "verdict": "accept",
+      "checks": [
+        "All 25 relied-on captures rehashed: sha256 matches each .metadata.json and the source content_hash; metadata URLs match source_url (IA en-sitemap reuses the ops-mea-p6 capture; this lane's re-capture is byte-identical, af9d4e19...)",
+        "MasterDC homepage IA id_ copy 20261015 read: 'Přes naše datacentra v Praze a Brně protékají data značné části českého internetu', schema.org dateModified 2026-10-13T08:44:34Z; live copy has the same dateModified and sentence",
+        "Homepage version bounded: IA page-sitemap 2026-08-31 lastmod 2026-08-24, IA page-sitemap 2026-10-14 lastmod 2026-10-13T08:44:34; observation 2026-10-13 is 25 days before 2026-11-07 (window from 2026-08-14)",
+        "MasterDC /datacentra/ version dateModified 2026-08-21 (in window) read: 'Dvě vlastní datacentra ... provozujeme datová centra v Praze i Brně', lists Datacentrum Brno Cejl 20 and Datacentrum Praha Kodaňská 46; bounded by both IA sitemaps (lastmod 2026-08-21) and the IA 2026-07-11 copy (dateModified 2025-07-16)",
+        "Facility pages confirm addresses 'Kodaňská 46, 101 00 Praha 10' and 'Cejl 20, 602 00 Brno'; AI-housing page names the Vršovice data centre",
+        "Reopen conditions of the seventysecond cee-se-europe-p3 hold_status and the hundredfourth europe2 hold are met by the named, archive-bounded in-window operating statements",
+        "RÚIAN locators recomputed from raw captures: kod 22672052 [14.46328751716229, 50.06951001647573] and kod 19189273 [16.618758370007384, 49.19681696854564] equal the served WGS84 points; pyproj 3.7.1 'S-JTSK to WGS 84 (1)' from the S-JTSK points agrees to 0.0024 m",
+        "Shapely: Praha point inside building object 22329056 (2.42 m to outline, 10.3 m to centroid, 3,711.9 m2, max vertex 80.3 m); Brno point inside 19025238 (10.05 m to outline, 4.58 m to centroid, 1,795.8 m2, max vertex 42.9 m)",
+        "Each RÚIAN query returns exactly one address point; ags.cuzk.cz robots 404; ČÚZK RUIAN service already used in published Atlas evidence",
+        "DLR VIE1 live page read: 'Central and Eastern European countries are well served by our Vienna data centers', Louis-Häfliger-Gasse 10, Building 1, 115,000 ft2, SOC3; VIE2: 'Our Vienna-based data centers offer access to the VIX', Building 2, 219,500 ft2",
+        "DLR version bounded: IA en-sitemap 2026-10-03 and live sitemap give lastmod VIE1 2026-09-17T13:36Z, VIE2 13:39Z; IA 2026-06-04 VIE1 (118,000 ft2, no SOC3, 'Request a tour') and IA 2026-07-13 VIE2 (220,000 ft2) show previous versions; observation 2026-09-17 is 51 days old; same method as published ops-mea-p6 MBA2",
+        "BEV locator recomputed: single ADR feature '1210 Wien Louis-Häfliger-Gasse 10' at [16.410200994, 48.269616101]; kataster.bev.gv.at robots allows all; BEV API already used in published Atlas evidence (nexspace Graz); operator structured point 141.94 m away not used",
+        "Distinctness: no MasterDC, master.cz, Kodaňská, Cejl, Vršovice, Zábrdovice, Häfliger/Haefliger, VIE1/VIE2 match in sites/projects/evidence/source-records/identity-mapping of hundredtwentyfourth; queue matches only the cee-p1, cee-se-europe-p3, nordics-cee-p4 holds being taken up and this lane's claims",
+        "Nearest sites recomputed: Praha 1.547 km CRA DC Tower Žižkov; Brno 1.418 km ZONER DC Brno; Vienna 1.04 km DLR VIE13-VIE16 Siemensstrasse 91 (listed separately on DLR metro page)",
+        "One project per new site; roles operator/current sourced to the status sources; no third-party personal data in changes, sources or holds",
+        "dryrun_fragment.py ok against verified_construction_core/2026-11-07-research-hundredtwentyfourth (970 sites, 1044 projects, 5621 evidence)"
+      ],
+      "residual_risks": [
+        "MasterDC status rests on present-tense website marketing copy (homepage sentence and the 21 Aug overview page), not a dated event; the text itself predates the window",
+        "DLR VIE1/VIE2 status rests on facility-page versions dated by sitemap lastmod and archive bounding (page edit of building size/SOC3), not a release; the fortyfourth reject's reopen condition literally asked for a dated release, so this relies on the MBA2 precedent",
+        "BEV address point is 141.9 m from the operator's own point and one address covers two large buildings; footprints unpublished",
+        "The 21 Aug MasterDC corroboration leaves the 85-day window on 14 Nov 2026; the 13 Oct status source stays in window until 6 Jan 2027, DLR 17 Sep until 11 Dec 2026"
+      ]
+    },
+    {
+      "fragment": "ops-ch-ie-p6",
+      "verdict": "accept",
+      "checks": [
+        "current_dataset re-read: verified_construction_core/2026-11-07-research-hundredtwentyfourth (unchanged at start and end)",
+        "all 12 raw captures rehashed: sha256 matches sources.json content_hash and .metadata.json; 3 geometry-facts files match geometry_facts_sha256",
+        "30 Sep 2026 NorthC post read in capture (datePublished 2026-09-30T07:52Z, dateModified 07:59Z same day): present-tense 'NorthC betreibt' network and 'die vier ... Rechenzentren in Münchenstein, Biel und Winterthur'; menu lists 6 Swiss facilities, M3 (2027) and Genf (2028) planned, so four = M1, M2, Biel, Winterthur; 2025 release confirms Winterthur was fourth after M1&2 and Biel",
+        "30 Oct 2026 NorthC post read (datePublished 2026-10-30T16:01Z): 'Die Standorte Münchenstein, Biel und Winterthur bilden bereits heute ein Netzwerk'; no external Quelle; newest ch-de post in sitemap",
+        "'Quelle: Swiss IT Magazine' on the 30 Sep post weighed: text is in NorthC's voice on NorthC's own site; same source already accepted for the published NorthC Biel record",
+        "85-day window: cutoff 2026-08-14; status dates 2026-09-30 and 2026-10-30 inside; facility pages and 2025 release used as identity/context only",
+        "facility pages confirm addresses Weidenstrasse 41 / Weidenstrasse 13 / Theaterstrasse 15c and specs 3,500 m2 6 MW, 1,000 m2 0.6 MW backup for M1, 1,100 m2 1.8 MW",
+        "locators recomputed: served WGS84 points equal changes.json; pyproj 3.7.1 EPSG:2056->4326 of GWR entrance coords agree to 0.017/0.031/0.031 m; building coords 25.2/0.3/22.7 m away",
+        "locator source acceptable: swisstopo official building-address directory and BFS GWR via api3.geo.admin.ch (government open data, attribution recorded); no map service, PeeringDB or OSM used; robots.txt captures allow /rest/services and northcdatacenters.com",
+        "shapely parcel checks reproduced: M1 13.9 m inside parcel 6620 (4,499 m2, farthest vertex 82.4 m, holds 41/41a/41b Rechenzentrum Tesla and 41c generator building); M2 33.4 m inside parcel 773 (35,759 m2, utility admin/substation/workshops, so project scope right); W 0.2 m inside ST9584 (farthest vertex 58.7 m); 6620-773 gap 12.5 m",
+        "address searches return a single official address for each (41a-c, 15c.1/.2 are sub-addresses; Zollweidenstrasse 13 different street)",
+        "M1/M2 as separate sites: 307.3 m apart, separate parcels/addresses/buildings/pages/specs, operator counts them as two of four data centres and calls them Standorte; consistent with Atlas precedent (Keppel DC SG 2/3/4, TierPoint OK2/OKC, Telehouse 151/250 Front St)",
+        "distinctness: dataset sites/projects/evidence/source-records/identity-mapping, 253 other queue fragments, claims.tsv and sources/*-holds.json screened for NorthC, Münchenstein, Weidenstrasse, Theaterstrasse, Turm Areal, Tesla Rechenzentrum, Winterthur, Primeo, Aliothstrasse; only hits are prior holds for these exact facilities (cap/locator reopen conditions now met) and the separate NorthC Basel 3 (Arlesheim, 486/793 m) and Vantage ZRH1 (2.61 km)",
+        "one project per new site; roles operator/current sourced to NorthC dated posts; no personal data in changes/sources/holds/notes",
+        "dryrun_fragment.py ok: 970 sites, 1,044 projects, 5,609 evidence rows"
+      ],
+      "residual_risks": [
+        "NorthC pages say both Münchenstein 1 and 2 are 'auf dem NorthC Campus'; a reviewer preferring one campus would merge M2 into M1's site (M2 is independent and could be dropped)",
+        "The four-data-centre mapping to M1/M2 is an inference from the count plus the facility menu, not a statement naming each facility",
+        "30 Sep post carries a 'Quelle: Swiss IT Magazine' link (likely sponsored content); treated as NorthC's own statement as for the published Biel record",
+        "Winterthur GWR building at 15c is class 1263 (education/research) with no occupant; data hall is underground beneath the Turm Areal, so the address point may be tens of metres from the hall",
+        "Address-register points carry no published positional accuracy (horizontal_uncertainty_metres null with reason)"
+      ]
+    },
+    {
+      "fragment": "ops-iberia-italy-p6",
+      "verdict": "accept",
+      "checks": [
+        "All 19 relied-on captures rehashed: sha256 equals .metadata.json sha256 and sources.json content_hash; geometry-facts files match recorded sha256",
+        "Alcala city capture (reused from country-research-2026-10-16-europe) matches Atlas evidence f6352758 field for field in the current dataset (2026-11-07-research-hundredtwentyfourth); article published 2026-09-18 (50 days, inside 85-day floor 2026-08-14)",
+        "Read decisive text: city says Nabiax 'cuenta con tres centros, dos en la Comunidad de Madrid y otro en Cataluna, que operan' with 35 MW combined; Nabiax contact page lists exactly three centres, the only Catalan one 'Terrassa Data Center, Carrer de Bartomeu Amat, 69, 08225 Terrassa'; same inference already accepted for Julian Camarillo (project 7f77bbf2)",
+        "Read decisive text: Digital Realty release dated Sept. 30, 2026 (GLOBE NEWSWIRE): 'Multi-Megawatt deployment at BCN1'; Blackfuel 'has selected Digital Realty's BCN1 data center in Barcelona'; company_disclosure, 38 days old; BCN1 page says it 'offers' colocation at Av. del Maresme 43",
+        "Recomputed Terrassa locator from raw INSPIRE GML (EPSG:25831) with shapely/pyproj: centroid 2.01205, 41.5720166 exact; inside, 15.1 m to boundary, farthest vertex 31.6 m; Catastro RCCOOR and CPMRC return the same parcel and address (refpoint 25.8 m)",
+        "Recomputed BCN1 locator: union of 5968901DF3856H and 5968902DF3856H (6,866.8 m2, no overlap) centroid 2.2322354, 41.4295746 exact; in parcel 02, 4.4 m from shared boundary, 27.1 m to outer boundary; DLR's structured-data coordinate (not a map widget) 55.1 m away in parcel 02",
+        "Overlaid parcel outlines on the Esri captures: Terrassa centroid on a mid-block building with rooftop plant; BCN1 union covers one building with dense rooftop cooling plant spanning both parcels, centroid on it",
+        "Catastro address lookups confirm no no. 43 on Badalona side and CL MARESME 43 N2-45 in Sant Adria de Besos (parcel 01); locator sources are government cadastral records, no Google/Bing/OSM/PeeringDB inputs",
+        "Robots.txt: nabiax.com, digitalrealty.com, server.arcgisonline.com allow the paths; ovc.catastro.meh.es 404; Alcala host checked before the reused 16 Oct capture",
+        "Distinctness re-run against the current dataset 2026-11-07-research-hundredtwentyfourth (all five tables), every queue fragment and sources/*-holds.json: no Terrassa/BCN1/Maresme/Bartomeu/Blackfuel/parcel-reference records; nearest Atlas site 213 km and 236 km; only earlier holds whose reopen conditions these meet",
+        "Roles: Nabiax operator current, Digital Realty operator current, Blackfuel customer current; one project per new site; no private individuals' names in changes, sources or holds",
+        "dryrun_fragment.py ok against base 2026-11-07-research-hundredtwentyfourth (969 sites, 1,043 projects)"
+      ],
+      "residual_risks": [
+        "Terrassa status relies on the city's unnamed 'one in Catalonia' statement bridged by Nabiax's undated (dateModified 2023) site listing; precedent is the accepted Julian Camarillo addition",
+        "The Blackfuel release describes a customer selection and deployment rather than stating BCN1 'operates'; operational is inferred from the multi-megawatt deployment at an existing facility plus the undated page's present-tense 'offers'",
+        "BCN1 locator is a two-parcel union centroid lying in no. 39-41, not the operator's street number 43; one-building identity rests on undated imagery and the operator coordinate falling in the same parcel; cadastral building data (1978) are stale",
+        "Esri World Imagery captures are used only as qualitative context; Equinix holds used Internet Archive copies of a host whose robots.txt returned 403 (holds only, not relied on here)"
+      ]
+    },
+    {
+      "fragment": "ops-india-p6",
+      "verdict": "accept",
+      "checks": [
+        "base re-read from site/config.json: verified_construction_core/2026-11-07-research-hundredtwentyfourth",
+        "all 15 relied-on captures rehashed: sha256 matches .metadata.json and sources.json content_hash; 3 geometry-facts sha256 match",
+        "status: Sify Mumbai/Noida/Chennai live pages carry article:modified_time and JSON-LD dateModified 2026-09-29 (Yoast sitemap lastmod identical); IA raw copies 28 Jul/12 Jul (prior versions 2026-07-10/07-09) and 1 Oct 2026 (29 Sep version) bound the modification; 2026-09-29 is 39 days before 2026-11-07, inside 85 days",
+        "decisive present-tense statements read in captures: Airoli 'designed for 4.05 MW IT Power ... interconnects with Sify's Rabale data center', offers colocation; Noida 01 'total IT power capacity of 10.96 MW ... offers ... colocation'; Chennai 01 'in Tidel Park has 3.58 MW IT Power', offers colocation; addresses match; same text in prior archived versions",
+        "source kinds: company_disclosure (operator) for status; government_record (MIDC GIS) for Airoli locator",
+        "Airoli locator recomputed with pyproj 3.7.1/shapely 2.1.1 from the raw MIDC ring (EPSG:32643): planar centroid = published centroid 73.00013538,19.16940396 (0.0 m), inside ring, 181x133 m, ring area 18,631 m2; K-10 search returns only KALWA-K-10 in TTC (plus 90 m2 PAP-K-10); factsheet point 261.8 m away, 182.6 m outside ring, no MIDC plot within 150 m",
+        "Noida 01 and Chennai 01 locators: pdftotext of operator factsheets linked from the current page sections prints '28.5138347 N, 77.3724303 E' and 'N 12.9896416, E 80.2484908' directly under the matching addresses; copied unchanged",
+        "conflicting operator schema.org points checked: Noida 4,054 m SE, Chennai 1,820 m N (geodesic); Esri imagery (visual only) puts factsheet points on a DC-like building with rooftop plant (Noida) and the Tidel Park helipad building south of Ramanujan IT City (Chennai); Noida 02 brochure aerial layout consistent; uncertainty_reason amended to record the conflicting operator point for both",
+        "locator sources acceptable: operator PDFs and MIDC government GIS; no Google/Apple/Bing/HERE/PeeringDB/OSM in sources or compliance log; builder map-service check passes",
+        "distinctness: no base site, pending/published queue addition or locator correction, or claims.tsv coordinate within 2 km of any new point except CapitaLand DC Navi Mumbai (705 m, other operator, 19.175772,73.000187) and Digital Edge Navi Mumbai (1,875 m); Sify Rabale (imported and up-12-p7 MIDC R-847 correction) 2.8-2.9 km; Noida 01 nearest CtrlS Noida 2,859 m; Chennai 01 nearest 15.1 km",
+        "keyword screen (Reliable Plaza, K-10, Airoli, MUM02, DEL01, Sector 132, Plot B7, Tidel, Taramani, Noida 01, Chennai 01) over sites/projects/evidence/source-records/identity-mapping, sources/*-holds.json and queue holds: only prior holds (fortyfifth in-south-east-p1, seventysixth india-p3) that these additions resolve; up-12-p7 holds Noida 02/Chennai 02 locator replacements separately",
+        "roles: Sify Technologies Limited operator, current; one project per new site; no third-party personal data (only corporate marketing contacts left out of records)",
+        "robots.txt logged before first request per host in compliance.log; no logins/forms",
+        "dryrun_fragment.py ok after amendment: 970 sites, 1,044 projects, 5,613 evidence"
+      ],
+      "residual_risks": [
+        "Status rests on a page re-publication (dateModified 29 Sep 2026) whose facility sections are unchanged since earlier versions; accepted per precedent (Chennai 02 and Noida 02 refreshes)",
+        "Noida 01 and Chennai 01 points are 2022 operator factsheet coordinates chosen over conflicting current schema.org points by imagery only; not checked against an official plot/parcel record; same factsheet series has an Airoli point 262 m off and (per this fragment's hold) a Hyderabad point ~10 km off",
+        "Airoli point is the MIDC plot centroid of a 2 ha plot with two buildings; the Reliable Plaza building itself is not separately located; MIDC reuse terms require prior permission for content reproduction (only coordinate facts used)",
+        "Airoli and Chennai 01 are colocation floors in multi-tenant buildings (6th floor Reliable Plaza; 2nd floor Tidel Park)",
+        "Noida 02 brochure footer gives 'Plot No. B-11, 12, 13, Sector-132' (lead for the up-12-p7 Noida 02 locator hold, not used here)"
+      ]
+    },
+    {
+      "fragment": "ops-nordics-p6",
+      "verdict": "accept",
+      "checks": [
+        "rehashed all 11 relied-on captures (10 in country-research-ops-nordics-p6, presentation PDF in country-research-ops-nova-us-p6): sha256 equals .metadata.json and sources.json content_hash; byte counts match; HTTP 200; metadata url/effective_url equal source_url; captured_at equals retrieved_at; no credentials",
+        "Q3 2026 earnings presentation (company_disclosure, PDF CreationDate 2026-10-28, 49 pages): slide 36 rendered with pdftoppm and read: Helsinki count 5, Stabilized HE3, HE4, HE5, HE6; Expansion HE7; Owned HE5*, HE6, HE7; Leased HE3, HE4; status-change marks only PA12x; footnotes exclude atNorth JV assets",
+        "slide 47 read: Stabilized = final expansion/redevelopment phase began operating before 1 Jan 2025; slide 30 shows cabinets billed and recurring revenue for 193 stabilized IBXs; as_of 2026-09-30 (quarter end) <= published_at 2026-10-28; 38 days old, inside 85-day floor 2026-08-14",
+        "IA id_ copies of 3 Oct 2026 read: HE3 address block 'Parrukatu 2 00540 Helsinki Finland' (meta '00570' variant), 13,132 sq ft; HE4 'Myllynkivenkuja 4B 01620 Vantaa Finland', 23,874 sq ft; HE5 'Sahamyllyntie 4B 00560 Helsinki Finland', 11,905 sq ft; listing page names exactly HE3-HE7; CDX shows no later copies of HE3-HE5",
+        "locators recomputed with pyproj 3.7.1: native EPSG:3879 register points transform to the served EPSG:4326 points within 2.4-3.3 mm; changes.json coordinates equal served points exactly; street-wide queries show a single Parrukatu (00540), Myllynkivenkuja (01620) and Sahamyllyntie (00560) with exactly one row per number and no division letters",
+        "register metadata id=181 read: City of Helsinki register of property/plot/plan-unit street addresses, not apartment addresses; division letter only for divided properties, so operator's '4B' staircase/building letter maps to number 4; licence 'Seudullinen avoimen tietoaineiston lisenssi 1.0'; scale 1:4000; source is a government address register, no map service, widget, PeeringDB, OSM or geocoder",
+        "geometry facts file sha256 7b12c598... matches sources.json; inter-site distances HE3-HE5 4.12 km, HE3-HE4 13.11 km, HE4-HE5 10.66 km: three distinct sites, one project each",
+        "distinctness vs verified_construction_core/2026-11-07-research-hundredtwentyfourth: no Equinix/Telecity/Academica site in Finland, no Parrukatu/Myllynkivenkuja/Sahamyllyntie/Sinimaentie or HE3-HE7 record (only an unrelated Polish KRS 'HE4' row); nearest Atlas sites 9.9-17.9 km (Microsoft Hepokorpi, Hetzner Tuusula); no queue addition or locator correction within 25 km; claims.tsv and all holds name these sites only in this fragment",
+        "roles: Equinix operator, relationship_scope current, party name matches existing Equinix rows; owner not asserted (HE3/HE4 leased, HE5 ground lease)",
+        "shared presentation evidence row already in the current dataset (ops-nova-us-p6); this fragment's entry copies its evidence-level fields exactly and merges (dry run evidence +10 for 11 sources)",
+        "privacy: no emails, phones or private names in changes, sources, holds, notes or geometry facts; IA copies of robots-403 www.equinix.com pages are stated as such",
+        "dryrun_fragment.py ok against verified_construction_core/2026-11-07-research-hundredtwentyfourth (970 sites, 1044 projects, 5607 evidence)"
+      ],
+      "residual_risks": [
+        "operational status rests on a quarter-end portfolio listing (30 Sep 2026), not a site-specific operating statement; the IBX-to-address link rests on Internet Archive copies of Equinix pages",
+        "the relied-on presentation PDF was captured by ops-nova-us-p6 when capture.mjs treated a robots.txt HTTP 403 as no restrictions (RFC 9309); the tool now treats 403 as disallow; no new request was made and the evidence row is already published",
+        "the shared evidence row's title names slide 35 (AMER); the Helsinki listing is on slide 36, explained only in the project status summaries",
+        "register points mark the property street address at 1:4000 scale with no stated positional accuracy; the IBX may occupy only part of the buildings; '4B' is matched to register number 4",
+        "HE3 postcode varies on Equinix's pages (00540 address block vs 00570 meta); the register has a single Parrukatu, in 00540"
+      ]
+    },
+    {
+      "fragment": "up-11-p7",
+      "verdict": "accept",
+      "checks": [
+        "All 17 captures rehashed: sha256 equals the source content_hash and the .metadata.json sha256, metadata URL equals source_url, HTTP 200, robots allowed; the 5 geometry-facts files match their geometry_facts_sha256",
+        "Each project's replaced geometry evidence equals the current geometry evidence of the site's only project in hundredtwentyfourth (8df23ef2, ce89216d, a82abc73, ac81d24f, f59be53e)",
+        "Wustermark: GML parsed in EPSG:25833; union of 8 parcels is one polygon (177,003 m2 planar vs 177,064 official); centroid inside, 0.003 m from the claim; max boundary distance 357.5 m",
+        "Wustermark identity: UVP-Verbund page read. It names Virtus Wustermark 1, Planstrasse 3, Flur 2 parcels 138/2, 1342, 1344, 1346, 1348, 147, 145 and 1339, Modules 5-8, and decision 23.10.2025. The W 49 Begruendung names VIRTUS and the two parts BER2 (Gewerbegebiet Nord) and BER3, about 300 MW. The W 5 plan places Planstrasse 3 and Am Umspannwerk in the Gewerbegebiet Nord",
+        "Hanau: permit page 1 rendered with pdftoppm; it shows 'Rechts- und Hochwert (ETRS89/UTM): 32 497 250 / 5 549 300', Depotstrasse, Grossauheim Flur 101, parcels 279/2, 279/29 and 319/2, Modules M1-M4, dated 17 June 2026. EPSG:25832 to WGS84 matches to 0.005 m. The capture is byte-identical to published evidence fae522a4",
+        "Fouju: the GPU 77195_PLU_20260723 has a single AUx polygon of 73.68 ha geodesic, centroid in L93 inside it, 0.004 m from the claim. The DPEMC report says AUx is extended about 30 ha over Campus IA to about 73 ha (OAP 89 ha). The MRAe opinion of 8 Apr 2026 describes about 90 ha at the south-west edge near the A5",
+        "Escaudain: the only AU2Ee polygon (35.39 ha) lies 100% inside commune 59205; its centroid is inside and 0.004 m from the claim. The MRAe avis of 2 Jun 2026 names 'Les Soufflantes', 36.49 ha AU2Ee to UEn, for a national data-centre project (PSR 10, ex-Usinor). The Data4 article of 12 Jun 2026 gives Parc des Soufflantes, 33 ha",
+        "Bosquel recomputed (0.002 m) and the ZAC plan rendered: the outline matches AUf, but the identity tie is inferential only",
+        "Displacements recomputed (haversine): 1941.3, 938.8 and 2256.5 m, and 1560.9 m for Escaudain; all under 25 km and from locality-class imported points",
+        "Locator sources: LGB ALKIS WFS (dl-de/by-2-0), an RP Darmstadt permit and IGN API Carto GPU (Licence Ouverte 2.0); no map service, PeeringDB, OSM or geocoder",
+        "Distinctness: no other site or project within 5 km in sites.csv/projects.csv; within 2 km, only the records' own old points in evidence, source-records and identity-mapping, and the thirtyfourth Hanau hold (same permit coordinate). No other queue fragment, claims.tsv row or sources/*-holds.json proposes these sites; earlier holds for these records are status-only or are resolved by this fragment",
+        "Privacy: no personal names, emails or phones in changes, sources, holds or geometry facts",
+        "dryrun_fragment.py ok against 2026-11-07-research-hundredtwentyfourth (967 sites, 1041 projects, 5607 evidence)"
+      ],
+      "residual_risks": [
+        "Wustermark: the point locates the BER2 holding (Modules 5-8) only; the W 49 / BER3 part of the same megacampus lies about 1.18 km west-south-west",
+        "Hanau: the permit coordinate is printed to 50 m and is the authority's site reference for Modules M1-M4, not a footprint",
+        "Fouju and Escaudain points are planning-zone centroids (boundary up to 752 m and 655 m away). Both zones were drawn or reclassified for the data-centre project, but the building layout within them is not published",
+        "Escaudain: the MRAe gives 36.49 ha and the GPU polygon is 35.39 ha; modification no. 3 was not yet approved in the served plan version"
+      ]
+    },
+    {
+      "fragment": "up-15-p7",
+      "verdict": "accept",
+      "checks": [
+        "Rehashed all 5 relied-on captures (2 Kartverket teig GML, plan description PDF, adoption notice HTML, plan map PDF): sha256 matches .metadata.json and sources.json content_hash; geometry facts file sha256 matches",
+        "replaces_geometry_evidence_id 88844eaa-... is the geometry evidence of the site's only project (88c15bf1-...) in 2026-11-07-research-hundredtwentyfourth; site and project share one locator",
+        "Recomputed locator from raw GML (pyproj 3.7.1/shapely 2.1.1, EPSG:4326 -> 25833): union of teiger 13816208+13816235 of 1832-109/3, centroid E445675.7 N7325931.3 = (13.800698, 66.049359); inside larger teig, 121.7 m from boundary, union 192,289.8 sq m, gap 6.96 m, farthest vertex 357.3 m; 109/10 adds 1.0 m shift",
+        "Displacement recomputed: 3,176.5 m haversine (3,185.8 m geodesic) from imported locality point; under 25 km and the 50 km builder limit",
+        "Locator source acceptable: Kartverket Matrikkelen teig WFS (government cadastral record, CC BY 4.0); wfs.geonorge.no robots 404; no map service, geocoder, PeeringDB or OSM",
+        "Overlaid cadastral teiger on the adopted plan map (ETRS89 UTM-33N grid labels E445400-445900, N7325700-7326200, plan 1832_2021004): teig outline follows the dashed plan boundary; centroid falls inside business area NAE1",
+        "Read plan description (rev 03, 28 May 2026): proposer Nscale Norge AS, developer Nscale site 3 AS, Nordkraft Prosjekt AS option, gnr/bnr 109/3 incl. 109/10, 197.2 daa, boundary follows property boundary after re-survey, data halls permitted, Nedre Rossaga transformer station NW",
+        "Read adoption notice (22 June 2026): council case 34/2026 on 10 June 2026 adopted detaljregulering for datasenter Korgen under PBL 12-12",
+        "Identity: record's High North News source says Aker Nscale took over Nordkraft's option on the plot next to Statkraft's facility; Aker passed its JV stake to Nscale in March 2026; same campus, operator lineage and location",
+        "Distinctness: no other site/project, source-record location, queued change or hold coordinate within 30 km; no other queue fragment or holds file touches this site; claims.tsv has only this lane's claim",
+        "No private individual names, emails or phones in changes, sources or holds (landowner and consultant names in captures not copied)",
+        "Fixed uncertainty_reason: cadastre does publish accuracy class 'Rodt' and a fictitious/road-edge boundary note for both teiger, not 'no positional accuracy'",
+        "8 holds reviewed: reasons and reopen conditions present, no personal data",
+        "dryrun_fragment.py ok (967 sites, 1041 projects)"
+      ],
+      "residual_risks": [
+        "Locator is a computed centroid of an official polygon recorded as direct_geometry/official_source, following the dataset's majority convention; a stricter reading could class it as a derived point",
+        "Point locates the 197.2 daa plan area as a whole; no data-hall position is published, and horizontal uncertainty is null with reason",
+        "Plan map title block still names Nordkraft Prosjekt AS as proposer (map dated April 2026); the later plan description names Nscale Norge AS"
+      ]
+    },
+    {
+      "fragment": "up-9-p7",
+      "verdict": "accept",
+      "checks": [
+        "Base re-read twice: site/config.json names verified_construction_core/2026-11-07-research-hundredtwentyfourth; all six sites exist with matching site_id, one project each, and each project geometry_evidence_id equals replaces_geometry_evidence_id (imported_reference_point: admin2 for Milam and Shackelford, locality for the other four)",
+        "All 29 relied-on captures rehash to content_hash and their .metadata.json sha256; URLs and retrieved_at match metadata; HTTP 200; robots allowed (comptroller /taxes/ explicitly allowed; NSW, TxGIO, NYS ITS, SIX robots 404; EIA /electricity/ allowed; Taylor DocumentCenter allowed); comptroller list and NSW exhibition notice reuse byte-identical earlier Atlas captures",
+        "Every source is referenced and every referenced source exists; all six geometry facts files match geometry_facts_sha256",
+        "Centroids recomputed independently from raw captures with pyproj 3.7.1/shapely 2.1.1 (UTM 14N, UTM 18N, MGA 56): Milam, Taylor, Lake Hawkeye, Frontier and Kurri match to <=0.01 m; areas (600.89, 665.53, 432.57, 1199.80 geodesic acres; Lot 1 194,538 m2) and inside/edge distances (623, 636, 388, 203, 219 m) confirmed",
+        "EIA-860 2025 2___Plant_Y2025.xlsx parsed from the capture: plant 1573 Morgantown Generating Plant, 12620 Crain Highway, Newburg, Charles County MD, 38.3592/-76.9767; owner file generators 3-6 OP Morgantown Power, LLC; EIA page gives release 10 September 2026, final 2025 data",
+        "Displacements recomputed with the builder haversine: 26,418.3 / 5,980.0 / 1,620.9 / 9,053.5 / 27,329.2 / 2,903.8 m; Milam and Shackelford exceed the generic 25 km but are imported admin2 points (dataset_update.py allows 200 km); the rest are under 25 km and the 50 km locality limit; new points stay in the same county and campus",
+        "Locator sources are government records only (TxGIO StratMap parcels, NYS ITS tax parcels, EIA-860, NSW Spatial Services cadastre); no map-service, Google, PeeringDB or OSM source or method term; licenses recorded",
+        "Milam identity read in captures: TABS2026017746 Freebird Data Center Phase 1 DC01, County Road 133 Burlington, Milam County, owner Milam County Data Center LLC, tenant Open AI, completion forecast 10/15/2026 (consistent with the Epoch AI first-building delivery note in the source record); the TABS Milam 2024-2026 list has no other data centre; Comptroller 'Milam County Data Center' occupant Orion DC I, LLC; milamdc.com is SB Energy's Milam County Data Center; parcel 24787 is the only Orion/MDC owner parcel of 806; 1899 CR 133 9-1-1 point inside it (680 m)",
+        "Taylor identity: City page says 664 acres between FM 112 and US 79 and Council approved the development agreement on 8 Oct 2026; OCR of agreement recitals: 664.39 acres = ~178 ac private owners (Tract 1) + ~486.39 ac NMCV (Tract 2); R006650 owner matches the Tract 1 owners (boolean check, names not recorded); R006648 NMCV at 3301 FM 112; address point inside union",
+        "Frontier identity: TABS2026024068 Vantage DC Abilene - TX3 - Project Frontier TX301 at 246 PR 1604 BLDG 1, Shackelford, owner Vantage Data Centers TX301, LLC; PR 1604 search lists TX301-TX311; the same 15 Vantage parcels appear in the narrow and the 1,017-parcel wide identify; 175 and 1002 PR 1604 points inside union",
+        "Lake Hawkeye identity: TeraWulf release of 14 Aug 2025 (183-acre ground lease with Cayuga Operating Company LLC at the Cayuga site, Lansing); project overview places the campus at the former Cayuga Power Plant property; NYS query returns exactly two Cayuga Operating Co, LLC parcels (11.-1-3.211, 11.-1-3.212)",
+        "Kurri identity: DP1314331 now returns only Lots 3, 5, 7; DP1332716 lots and Lot 7 updated 2026-10-15 14:21:53 UTC; Lot 1 touches Lot 7; cross-check against the 16 Oct 2026 Atlas capture of Lot 4 DP1314331: Lot 1 lies wholly inside it, covers 93.66% of it, centroids 14.9 m apart, 1.32 ha of Lot 4 now in Lot 2",
+        "Distinctness: nearest other Atlas site or queued point 26.5 km (Rowan Temple), 16.1 km (Skybox Hutto), 31.1 km (AWS King George), 173 km, 21.7 km (Lancium/Crusoe Abilene), 114.7 km (Sydney); no other queue fragment corrects these sites; identifiers (Orion DC, NMCV, DP1332716, 1899 County Road 133) absent elsewhere; Freebird appears only in the us-central-tx-p4 / seventyeighth hold",
+        "Personal data: no private owner, contact or filer names, phones or emails in changes.json, sources.json, holds.json, geometry facts, notes or compliance log",
+        "Dry run (dryrun_fragment.py) reports ok against research-hundredtwentyfourth (967 sites, 1041 projects)"
+      ],
+      "residual_risks": [
+        "Milam: the link from parcel owner ORION DC LLC to SB Energy rests on entity names (Comptroller occupant Orion DC I, LLC; SB Energy Orion solar naming) and the CR 133 road match; no deed or SB Energy document names the parcel; the seventyeighth Freebird hold now reads as this campus's first building and its reopen condition may need updating",
+        "Lake Hawkeye: centroid is of the whole 432.6-acre Cayuga Operating property; TeraWulf's 183-acre leased portion and hilltop building are not delimited and may lie several hundred metres away",
+        "Chesapeake: EIA plant coordinate (4 decimals) marks the generating station, not data-campus buildings; EIA 2025 ownership predates TeraWulf's acquisition and the Atlas owner field (GenOn Holdings) is unchanged",
+        "Kurri: Lot 1 DP1332716 as successor of the exhibited Lot 4 is inferred from cadastre succession and a cross-check against an earlier Atlas capture; about 1.3 ha of the exhibited site is now in Lot 2",
+        "Taylor: development-agreement Exhibit B metes and bounds were not traced; the match rests on owners and acreages",
+        "Milam and Shackelford moves exceed the generic 25 km limit and pass only under the builder's admin2 coarse-reference limit",
+        "Lane compliance log records two discovery GETs after failed robots.txt reads (kygisserver.ky.gov, geodata.md.gov); nothing from those hosts is used"
+      ]
+    }
+  ],
+  "packet_pins": {
+    "definitions/atlas-research-hundredtwentyfifth-2026-11-07.json": "4876986b997c1281c5341c473cc126ce64d5727c548b7769fdef22b28038e9f4",
+    "sources/research-countries-2026-11-07-hundredtwentyfifth-primary-sources.json": "8652d837b5a441d39dd93c0cacd7acf23ec27c0ba34b7619f1868bb23c4dcae3",
+    "sources/research-countries-2026-11-07-hundredtwentyfifth-actions.json": "78cc1f05eb8364c0033f20d25a85e701e4f84fbe643435e6e31af30c7e3cafa8",
+    "sources/research-countries-2026-11-07-hundredtwentyfifth-holds.json": "f93e02183cdbfa7fa327c58a8f7d970aebd064c0d99471ef61278b3691eda22b"
+  },
+  "raw_captures_redistributed": false
+}

@@ -1,0 +1,49 @@
+{
+  "candidate_id": "loc-11-p8-datacentre220-auckland",
+  "physical_site_stable_key": "curated:datacentre220-auckland",
+  "decision": "Replace the PeeringDB facility point with Auckland Council's street-address point for 214-220 Queen Street, which lies on the council property record named 'The Data Centre'.",
+  "source_file": "local_data/country-research-loc-11-p8/akl-address-214-220-queen-street.json",
+  "source_sha256": "49e8d91899502fac3321527f363085600830765b65d41296146c528856a4c2f3",
+  "source_url": "https://mapspublic.aucklandcouncil.govt.nz/arcgis/rest/services/Address/MapServer/0/query?where=FullAddress%20LIKE%20%27%25214-220%20QUEEN%20STREET%25%27&outFields=OBJECTID,FullNumber,FullAddress&returnGeometry=true&outSR=4326&f=json",
+  "published_fields": {
+    "OBJECTID": 44345,
+    "FullNumber": "214-220",
+    "FullAddress": "214-220 QUEEN STREET AUCKLAND CENTRAL AUCKLAND 1010",
+    "point_wgs84": [
+      174.7654346468263,
+      -36.84927418958581
+    ],
+    "point_nztm2000": [
+      1757398,
+      5920393.4
+    ]
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      174.7654346468263,
+      -36.84927418958581
+    ]
+  },
+  "geometry_note": "Copied as the service returns it in WGS84 (outSR=4326). As a check, pyproj 3.7.1 turns the native NZTM2000 point (EPSG:2193) into 174.76543464682666, -36.849274190491535, identical to the published value.",
+  "property_check": {
+    "PROPERTYID": "11285381",
+    "type": "Site (Property)",
+    "address": "214-220 Queen Street Auckland Central Auckland 1010",
+    "legal": "Lot 1 DP 192157, Lot 3 DP 192157",
+    "area_m2": 639,
+    "property_name": "The Data Centre",
+    "outline_area_m2": 640.7,
+    "point_inside": true,
+    "point_distance_to_edge_m": 3.2,
+    "max_vertex_distance_from_point_m": 49.1,
+    "replaced_point_inside": true
+  },
+  "replaced_point": [
+    174.765412,
+    -36.849346
+  ],
+  "displacement_m": 8.2,
+  "transform": "pyproj 3.7.1 (EPSG:2193) and shapely 2.1.1 for checks only",
+  "nearby_records_within_2km": "Only this site (8.2 m) in verified_construction_core/2026-11-07-research-hundredtwentyfourth; no pending addition or locator correction within 2 km."
+}

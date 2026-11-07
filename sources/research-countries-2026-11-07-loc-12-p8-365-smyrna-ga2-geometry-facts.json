@@ -1,0 +1,62 @@
+{
+  "candidate_id": "loc-12-p8-365-smyrna-ga2",
+  "physical_site_stable_key": "curated:365-smyrna-campus",
+  "decision": "Replace the PeeringDB facility 16132 point with Cobb County's active address point for 5600 United Dr SE, Smyrna, the address 365 Data Centers publishes for GA2.",
+  "locator_source": {
+    "file": "local_data/country-research-loc-12-p8/cobb-cam-address-5600-united-b.json",
+    "sha256": "8450fe65b284737dc90e8fc17e8e234d66c8be6405662560b66feac75ee1fd54",
+    "url": "https://gis.cobbcounty.gov/gisserver/rest/services/cobbpublic/CAM_ActiveAddress/MapServer/0/query?where=fulladdr%20LIKE%20%275600%20UNITED%25%27&outFields=*&returnGeometry=true&outSR=4326&f=json",
+    "retrieved_at": "2026-11-06T23:33:08.029Z"
+  },
+  "published_fields": {
+    "siteaddid": "SID-1219840",
+    "addrnum": "5600",
+    "fullname": "United Dr SE",
+    "fulladdr": "5600 United Dr SE",
+    "MailingCity": "Smyrna",
+    "zipcode": "30082",
+    "county": "Cobb",
+    "municipality": "SM",
+    "last_edited_date": "2023-09-12",
+    "x": -84.52272202773482,
+    "y": 33.84139506717776
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -84.522722,
+      33.8413951
+    ]
+  },
+  "conversion": "The service returned the point in EPSG:4326 (outSR=4326, server-side projection from its native Georgia West state-plane CRS); rounded to 7 decimals.",
+  "containment_checks": {
+    "parcel_source": {
+      "file": "local_data/country-research-loc-12-p8/cobb-parcel-at-5600-united-dr.json",
+      "sha256": "e1561ef0df50d6eaa6f3af45e7bf7cbf438fdf1b9c2ca5a0d80ad75699f9dd8b",
+      "url": "https://gis.cobbcounty.gov/gisserver/rest/services/tax/taxassessorsdaily/MapServer/0/query?geometry=-84.522722027734815%2C33.841395067177757&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=PIN,PARID,SITUS_ADDR,ACRES,ACRE_DEEDED,LAND_SQFT,CLASS,PARCEL_TYPE&returnGeometry=true&outSR=4326&f=json",
+      "retrieved_at": "2026-11-06T23:33:24.931Z"
+    },
+    "parcel": "A point-intersect query of Cobb County's tax-assessor parcel layer (tax/taxassessorsdaily layer 0) at the address point returns parcel 17047600400 (situs 5600 UNITED DR, 11.24 acres, class C5); 731-vertex outline, geodesic area 4.62 ha.",
+    "new_point_inside_parcel": true,
+    "new_point_to_parcel_boundary_m": 80.3,
+    "max_distance_new_point_to_parcel_vertex_m": 159.0,
+    "replaced_point_inside_parcel": true,
+    "replaced_point_to_parcel_boundary_m": 93.7,
+    "census_geocoder": {
+      "source": {
+        "file": "local_data/country-research-loc-12-p8/census-geocoder-5600-united-dr.json",
+        "sha256": "f4fd5e9273781f4cecd5f715d1e5c95aabd1b8730822c1963b475aee6649d961",
+        "url": "https://geocoding.geo.census.gov/geocoder/geographies/onelineaddress?address=5600%20United%20Dr%20SE%2C%20Smyrna%2C%20GA%2030082&benchmark=Public_AR_Current&vintage=Current_Current&layers=Counties&format=json",
+        "retrieved_at": "2026-11-06T23:30:35.762Z"
+      },
+      "result": "no address match"
+    }
+  },
+  "replaced_point": [
+    -84.522407,
+    33.841159
+  ],
+  "displacement_m": 39.2,
+  "identity_bridge": "365 Data Centers' Smyrna page gives 5600 United Dr. SE, Smyrna, GA 30082; Cobb County's address register holds that exact address on parcel 17047600400.",
+  "nearby_records_within_2km": "Only this site (curated:365-smyrna-campus, 39 m from the new point) in the current dataset; no pending queue addition, locator correction or claim within 2 km."
+}

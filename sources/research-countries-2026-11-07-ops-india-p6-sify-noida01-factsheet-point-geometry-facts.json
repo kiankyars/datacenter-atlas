@@ -1,0 +1,24 @@
+{
+  "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+  "candidate": "Sify Noida 01 data center campus (DEL01), Plot B7, Sector 132, Noida: operator-printed factsheet coordinate (new site)",
+  "prepared_at": "2026-11-07",
+  "source": {
+    "file": "local_data/country-research-ops-india-p6/sify-del01-noida-factsheet.pdf",
+    "sha256": "1272270393fcd3fffc04d4f38e7f03f3091c7ff2c85f4c6be374f18a44cce49c",
+    "document": "Sify Technologies facility factsheet PDF (2 pages, created May 2022) linked as 'Download Fact Sheet' from the facility's section of the current Sify city page",
+    "statement": "Printed coordinate '28.5138347 N, 77.3724303 E', printed on page 1 directly under the address 'Plot No – B7, Sector – 132,Opp. Jaypee Hospital Greater Noida Expressway, Gautam Budh Nagar, Noida- 201304, UP, India' and the heading 'SIFY DEL01 (NOIDA)'."
+  },
+  "selected_point": [
+    77.3724303,
+    28.5138347
+  ],
+  "selected_point_basis": "The operator-printed decimal-degree coordinate, read from the PDF text layer (pdftotext) and kept unchanged (direct geometry; WGS 84 assumed, no datum stated).",
+  "checks": {
+    "conflicting_operator_coordinate": "The current city page (sify-noida-data-center.html, sha256 771cad1a3245f8ab794ae630b981f51916fe967700f58b883e3859c498f88e4c; the same JSON-LD is present in the Internet Archive copies of July and 1 October 2026) carries a page-level schema.org LocalBusiness block with the same street address and GeoCoordinates 28.493081, 77.406532. That point lies 4054 m from the factsheet point. It is not used: on imagery it does not fall on the facility (see imagery_visual_check).",
+    "series_accuracy_note": "In the same 2022 factsheet series, the MUM02 (Airoli) coordinate lies about 262 m from the MIDC plot that carries the Airoli facility's published plot number, so these printed coordinates are not survey-grade and may be off by a few hundred metres.",
+    "imagery_visual_check": "Esri World Imagery exports (visual check only, not a locator source): at the factsheet point a mid-size flat-roofed building with rooftop plant in a block of institutional and commercial plots south-west of the Noida-Greater Noida Expressway, facing a large complex across the road; at the page JSON-LD point open farmland beside a road and a drainage channel, with no building. Imagery dates not stated. Files: esri-imagery-noida-factsheet-point.png (sha256 45c898de33718b537ec19e566391cdb46f7fe07a244d294ca33f3a7b4f985a78), esri-imagery-noida-factsheet-wide.png (sha256 f4c344abdf7c81c938dc037b24d8333b791aaeb810f594257237fc379cff409e), esri-imagery-noida-sector132.png (sha256 f2ca25511621fa4ec514acf23698a90e5e88256e7d9a18855745e821e02f0749)",
+    "atlas_records_within_2km": "Checked against verified_construction_core/2026-11-07-research-hundredtwentyfourth, every pending queue changes.json and claims.tsv: no Atlas site, pending addition or locator correction within 2 km. Nearest Atlas records: CtrlS Noida Datacenter (Sector 127) 2859 m; the imported Sify Noida 02 and AdaniConneX Noida records share a Noida city-centre reference point 8067 m away. Sify says its Noida 02 campus lies within 1 km of Noida 01; that campus has no published coordinate and is not located by this point."
+  },
+  "license": "Sify Technologies website and documents: all rights reserved (no open licence stated). Only the printed coordinate and address are used; the raw PDF is not redistributed.",
+  "attribution": "Sify Technologies Limited"
+}

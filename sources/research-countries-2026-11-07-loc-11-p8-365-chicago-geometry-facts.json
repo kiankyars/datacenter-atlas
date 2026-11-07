@@ -1,0 +1,92 @@
+{
+  "candidate_id": "loc-11-p8-365-chicago",
+  "physical_site_stable_key": "curated:365-chicago-campus",
+  "decision": "Replace the PeeringDB facility point with the planar centroid of the City of Chicago building footprint (bldg_id 868403) that contains the Cook County Assessor's published centroids of all three parcels addressed 427 S LA SALLE ST, the operator's published address.",
+  "source_file": "local_data/country-research-loc-11-p8/chicago-building-footprints-within-80m-427-s-lasalle.json",
+  "source_sha256": "e6ff1abb59fe38c391d05eecb8ff98fba64be0e0f876b6a863f5db35fb3e6262",
+  "source_url": "https://data.cityofchicago.org/resource/syp8-uezg.json?$select=bldg_id,f_add1,t_add1,pre_dir1,st_name1,st_type1,bldg_name1,bldg_name2,stories,no_stories,year_built,bldg_sq_fo,bldg_statu,shape_area,edit_date,the_geom&$where=within_circle(the_geom,41.87605,-87.63146,80)",
+  "published_fields": {
+    "bldg_id": "868403",
+    "f_add1": "401",
+    "t_add1": "401",
+    "pre_dir1": "S",
+    "st_name1": "LA SALLE",
+    "st_type1": "ST",
+    "bldg_statu": "ACTIVE",
+    "shape_area_sqft": 20607.025,
+    "edit_date": "2007-11-16",
+    "outline_wgs84": [
+      [
+        -87.6316595,
+        41.8765059
+      ],
+      [
+        -87.6313698,
+        41.8765074
+      ],
+      [
+        -87.6313482,
+        41.875791
+      ],
+      [
+        -87.6316365,
+        41.8757859
+      ],
+      [
+        -87.6316595,
+        41.8765059
+      ]
+    ]
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -87.6315036,
+      41.8761478
+    ]
+  },
+  "geometry_note": "pyproj 3.7.1 / shapely 2.1.1: the published WGS84 outline was projected to EPSG:3435 (NAD83 / Illinois East, ftUS), its planar centroid taken (1175386.26 E, 1898239.71 N; area 20,607.0 sq ft = 1,914.5 m2, matching shape_area) and projected back to WGS84, rounded to 7 decimals. The centroid lies 12.0 m inside the outline; the farthest vertex is 41.8 m away.",
+  "parcel_containment": {
+    "17162430030000": {
+      "published_centroid": [
+        -87.6314611028,
+        41.8758930173
+      ],
+      "inside_footprint": true,
+      "distance_to_new_point_m": 28.5
+    },
+    "17162430260000": {
+      "published_centroid": [
+        -87.6314589332,
+        41.8758060388
+      ],
+      "inside_footprint": true,
+      "distance_to_new_point_m": 38.2
+    },
+    "17162430330000": {
+      "published_centroid": [
+        -87.6314604022,
+        41.876230959
+      ],
+      "inside_footprint": true,
+      "distance_to_new_point_m": 9.9
+    },
+    "county_address_point_556246_401_S_LA_SALLE_ST": {
+      "point": [
+        -87.63150939,
+        41.87615569
+      ],
+      "inside_footprint": true,
+      "distance_to_new_point_m": 1.0
+    }
+  },
+  "census_geocode_check": "The US Census geocoder interpolates 427 S LA SALLE ST onto the street at -87.63168256, 41.87653279 (TIGER edge 111769601, left side, range 401-499), 45.3 m from the new point and outside the footprint; it was not used because the assessor and city records locate the building itself.",
+  "replaced_point": [
+    -87.631453,
+    41.876212
+  ],
+  "replaced_point_inside_footprint": true,
+  "displacement_m": 8.3,
+  "transform": "pyproj 3.7.1, shapely 2.1.1",
+  "nearby_records_within_2km": "curated:400-s-lasalle-chicago (400 South LaSalle Data Center, on the west side of LaSalle, 68.4 m) and curated:tierpoint-chicago-polk-street-data-center (601 W Polk St, 1.08 km; also a pending us-midwest-plains-p2 addition) in verified_construction_core/2026-11-07-research-hundredtwentyfourth; no pending locator correction within 2 km."
+}

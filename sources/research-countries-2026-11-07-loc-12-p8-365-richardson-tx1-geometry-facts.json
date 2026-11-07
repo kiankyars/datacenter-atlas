@@ -1,0 +1,69 @@
+{
+  "candidate_id": "loc-12-p8-365-richardson-tx1",
+  "physical_site_stable_key": "curated:365-richardson-campus",
+  "decision": "Replace the PeeringDB facility 16131 point with the planar centroid of the Dallas Central Appraisal District real-property parcel at 1001 E Campbell Rd, the address 365 Data Centers publishes for TX1; DCAD lists a business-personal-property account for 365 OPERATING COMPANY at the same address.",
+  "locator_source": {
+    "file": "local_data/country-research-loc-12-p8/dcad-parcel-1001-e-campbell.json",
+    "sha256": "891586dbe579ce4438489d8eda167cff47b89d6d8769f08bfa2e8e293054a383",
+    "url": "https://maps.dcad.org/prdwa/rest/services/Property/ParcelQuery/MapServer/4/query?where=SITEADDRESS%20LIKE%20%271001%20E%20CAMPBELL%25%27&outFields=PARCELID,LOWPARCELID,SITEADDRESS,PRPRTYDSCRP,CNVYNAME,USEDSCRP,CLASSDSCRP,STATEDAREA,BLDGAREA,FLOORCOUNT,DBA1,LASTUPDATE&returnGeometry=true&outSR=4326&f=json",
+    "retrieved_at": "2026-11-06T23:33:53.457Z"
+  },
+  "published_fields": {
+    "PARCELID": "421243300A01A0000",
+    "SITEADDRESS": "1001 E CAMPBELL RD",
+    "CNVYNAME": "PALISADES RICHARDSON IND WEST REP",
+    "PRPRTYDSCRP": "BLK A LT 1A ACS 5.9583",
+    "USEDSCRP": "Commercial",
+    "CLASSDSCRP": "COMMERCIAL IMPROVEMENTS",
+    "LASTUPDATE": "2022-11-01T11:59:34Z",
+    "ring_vertices": 17,
+    "bpp_account_for_operator": {
+      "PARCELID": "99230418200000000",
+      "LOWPARCELID": "421243300A01A0000",
+      "SITEADDRESS": "1001 E CAMPBELL RD",
+      "DBA1": "365 OPERATING COMPANY",
+      "USEDSCRP": "BPP"
+    },
+    "bpp_accounts_at_address": 45
+  },
+  "computation": "The parcel ring (returned in EPSG:4326 by the service with outSR=4326) was projected to NAD83 / Texas North Central (ftUS) (EPSG:2276) with pyproj 3.7.1, its planar centroid computed with shapely 2.1.1 and transformed back to WGS84: [-96.70749405064191, 32.97614795083433], rounded to 7 decimals.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -96.7074941,
+      32.976148
+    ]
+  },
+  "containment_checks": {
+    "parcel_geodesic_area_m2": 24280.7,
+    "parcel_geodesic_area_acres": 6.0,
+    "stated_acreage": 5.9583,
+    "new_point_inside_parcel": true,
+    "new_point_to_parcel_boundary_m": 64.9,
+    "max_distance_new_point_to_parcel_vertex_m": 114.6,
+    "replaced_point_inside_parcel": true,
+    "replaced_point_to_parcel_boundary_m": 63.3,
+    "census_geocoder_point": {
+      "source": {
+        "file": "local_data/country-research-loc-12-p8/census-geocoder-1001-e-campbell-rd.json",
+        "sha256": "085ba04e938cc11597c6c196d1f78c34a449e52c20566556b8818b13fb0bfc8d",
+        "url": "https://geocoding.geo.census.gov/geocoder/geographies/onelineaddress?address=1001%20E%20Campbell%20Road%2C%20Richardson%2C%20TX%2075081&benchmark=Public_AR_Current&vintage=Current_Current&layers=Counties&format=json",
+        "retrieved_at": "2026-11-06T23:30:34.721Z"
+      },
+      "coordinates": [
+        -96.70784724201,
+        32.975449197182
+      ],
+      "inside_parcel": false,
+      "distance_to_new_point_m": 84.4,
+      "note": "Interpolated on the Campbell Rd centreline side (TIGER line 103258723, range 901-1001); not used as the locator because it falls on the street frontage outside the parcel."
+    }
+  },
+  "replaced_point": [
+    -96.707323,
+    32.976121
+  ],
+  "displacement_m": 16.2,
+  "identity_bridge": "365 Data Centers' Richardson page gives 1001 E Campbell Road, Richardson, TX 75081; DCAD's parcel publishing layer returns one real-property parcel at 1001 E CAMPBELL RD and, under the same parent parcel, a business-personal-property account for 365 OPERATING COMPANY.",
+  "nearby_records_within_2km": "Only this site (curated:365-richardson-campus, 16 m from the new point) in the current dataset; no pending queue addition, locator correction or claim within 2 km. The hundredtwentieth holds file keeps a lead_only entry for 2801 Telecom Pkwy, Richardson (no coordinates), which names TX1 as the nearest Atlas record."
+}

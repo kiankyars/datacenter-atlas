@@ -1,0 +1,79 @@
+{
+  "candidate_id": "loc-12-p8-lightedge-altoona",
+  "physical_site_stable_key": "curated:lightedge-altoona-dsm-campus",
+  "decision": "Replace the PeeringDB facility 4547 (DSM2) point with the US Census Bureau geocoder's point for 1401 Northridge Circle, Altoona, IA 50009, the address Lightedge publishes for Des Moines Data Center #2.",
+  "locator_source": {
+    "file": "local_data/country-research-loc-12-p8/census-geocoder-1401-northridge-cir.json",
+    "sha256": "292958384aa7d91e0332b3993584f2b1155e516ec843c5d76a36808550aa3369",
+    "url": "https://geocoding.geo.census.gov/geocoder/geographies/onelineaddress?address=1401%20Northridge%20Circle%2C%20Altoona%2C%20IA%2050009&benchmark=Public_AR_Current&vintage=Current_Current&layers=Counties&format=json",
+    "retrieved_at": "2026-11-06T23:30:36.855Z"
+  },
+  "published_fields": {
+    "matchedAddress": "1401 NORTHRIDGE CIR, ALTOONA, IA, 50009",
+    "coordinates": {
+      "x": -93.456660243987,
+      "y": 41.66616658104
+    },
+    "tigerLineId": "65863027",
+    "side": "R",
+    "address_range": "1401-1499",
+    "county": "Polk County",
+    "benchmark": "Public_AR_Current"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -93.4566602,
+      41.6661666
+    ]
+  },
+  "conversion": "Geocoder output in NAD83 geographic coordinates used as WGS84 without transformation (sub-metre difference); rounded to 7 decimals.",
+  "campus_context": {
+    "dsm1_census_point": {
+      "source": {
+        "file": "local_data/country-research-loc-12-p8/census-geocoder-1435-northridge-cir.json",
+        "sha256": "5513823b404e12541a9f3d117c791d2390848df58642d969550de58b3ee18709",
+        "url": "https://geocoding.geo.census.gov/geocoder/geographies/onelineaddress?address=1435%20Northridge%20Circle%2C%20Altoona%2C%20IA%2050009&benchmark=Public_AR_Current&vintage=Current_Current&layers=Counties&format=json",
+        "retrieved_at": "2026-11-06T23:43:00.762Z"
+      },
+      "matchedAddress": "1435 NORTHRIDGE CIR, ALTOONA, IA, 50009",
+      "coordinates": [
+        -93.456681944242,
+        41.667161843295
+      ],
+      "distance_from_new_point_m": 110.6,
+      "note": "Same TIGER edge and range; context only."
+    },
+    "iowa_dnr_stormwater_record": {
+      "source": {
+        "file": "local_data/country-research-loc-12-p8/iowadnr-sw2-stfacid-312556244.json",
+        "sha256": "5dbfe0ce79f026a14ce46a0c33782d0b51052176e90924eab203f65142ac6b61",
+        "url": "https://programs.iowadnr.gov/geospatial/rest/services/OneStop/IaFmFacilities/MapServer/17/query?where=stfacid%3D312556244&outFields=*&returnGeometry=true&outSR=4326&f=json",
+        "retrieved_at": "2026-11-06T23:36:02.795Z"
+      },
+      "facName": "Lightedge Data Center Expansion - Construction",
+      "permitDesc": "NEW DATA CENTER WITH ASSOCIATED PARKING AND UTILITIES 5.5 ACRES",
+      "LocAddress": "1401 NORTHRIDGE CIRCLE NE",
+      "CityName": "Altoona",
+      "permitType": "GP #2",
+      "permitStart": "2016-04-19",
+      "opStatus": "Discontinued",
+      "point": [
+        -93.45958739403943,
+        41.66945747437493
+      ],
+      "Accuracy_m": 570,
+      "colMthTxt": "PUBLIC LAND SURVEY-QUARTER SECTION",
+      "refPntTxt": "CENTER OF FACILITY",
+      "note": "Identity only; its point is a quarter-section position with a stated 570 m accuracy and was not used. It lies 439 m from the new point."
+    }
+  },
+  "replaced_point": [
+    -93.455725,
+    41.666762
+  ],
+  "displacement_m": 102.1,
+  "identity_bridge": "Lightedge's Des Moines page lists Des Moines Data Center #1 at 1435 Northridge Circle and Data Center #2 at 1401 Northridge Circle, Altoona, IA 50009; Iowa DNR's stormwater register holds a 2016 construction general permit for 'Lightedge Data Center Expansion', a new 5.5-acre data centre at 1401 Northridge Circle NE, Altoona.",
+  "not_used": "Polk County GIS and assessor hosts were unreachable or refused robots.txt (gis.polkcountyiowa.gov fetch failure; maps.polkcountyiowa.gov, www.polkcountyiowa.gov and www.assess.co.polk.ia.us HTTP 403); Iowa DOT cadastral services require a token. No Google, PeeringDB or other map-service coordinate was used.",
+  "nearby_records_within_2km": "Only this site (curated:lightedge-altoona-dsm-campus, 102 m from the new point) in the current dataset. The only other record within 2 km is a holds-ready-p3 claim (95 m) for Lightedge Des Moines Data Center #2 at 1401 Northridge Circle, which is this same campus; no pending queue addition or locator correction within 2 km."
+}

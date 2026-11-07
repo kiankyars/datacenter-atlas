@@ -1,0 +1,50 @@
+{
+  "candidate_id": "loc-11-p8-365-fort-lauderdale",
+  "physical_site_stable_key": "curated:365-ftl-campus",
+  "decision": "Replace the PeeringDB facility point with the US Census Bureau geocoder's interpolated point for 3250 W Commercial Blvd, Fort Lauderdale, FL 33309, the operator's published address.",
+  "source_file": "local_data/country-research-loc-11-p8/census-3250-w-commercial-blvd.json",
+  "source_sha256": "5c347f93ceaa7ebf18045b2f4423ea71b439842d9ddf01f76c547182d73ffaf7",
+  "source_url": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=3250%20W%20Commercial%20Blvd%2C%20Fort%20Lauderdale%2C%20FL%2033309&benchmark=Public_AR_Current&format=json",
+  "published_fields": {
+    "matchedAddress": "3250 W COMMERCIAL BLVD, FORT LAUDERDALE, FL, 33309",
+    "tigerLineId": "647005747",
+    "side": "R",
+    "fromAddress": "3296",
+    "toAddress": "3210",
+    "coordinates": {
+      "x": -80.190340701298,
+      "y": 26.186208709386
+    }
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -80.190340701298,
+      26.186208709386
+    ]
+  },
+  "geometry_note": "Copied as returned. It is an address-range interpolation offset to the right side of the street edge, not a building or parcel point.",
+  "frontage_check": {
+    "parcel_folio": "494218200530",
+    "parcel_site_address": "3230 NW 50 ST, Oakland Park 33309",
+    "use": "Commercial; DOR 18 office buildings, multi-story; 2 buildings, 183,387 sq ft, built 1991",
+    "land_sqft": 465714,
+    "census_point_inside_parcel": false,
+    "census_point_distance_north_of_parcel_m": 2.6,
+    "replaced_point_inside_parcel": true,
+    "parcel_bounds_wgs84": [
+      -80.19145780594226,
+      26.18406859287953,
+      -80.189401211037,
+      26.18618927582821
+    ]
+  },
+  "unresolved": "No county or city record found here gives 3250 W Commercial Blvd as a site address: the City of Fort Lauderdale address layer covers the city only and returned nothing; Broward County's GIS address points near the site are residential only; the county's other address service (services.arcgis.com) answers robots.txt with 403 and bcgis.broward.org disallows Anthropic agents. Which building on the frontage parcel holds the data centre is therefore not established.",
+  "replaced_point": [
+    -80.190819,
+    26.184971
+  ],
+  "displacement_m": 145.7,
+  "transform": "pyproj 3.7.1 (EPSG:2881) and shapely 2.1.1 for the frontage check only",
+  "nearby_records_within_2km": "Only this site (145.7 m) in verified_construction_core/2026-11-07-research-hundredtwentyfourth; no pending addition or locator correction within 2 km."
+}

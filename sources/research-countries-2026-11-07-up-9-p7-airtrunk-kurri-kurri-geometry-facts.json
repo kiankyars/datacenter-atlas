@@ -1,0 +1,89 @@
+{
+  "candidate_id": "up-9-p7-airtrunk-kurri-kurri",
+  "decision": "Selected the area centroid of Lot 1 DP1332716, the current cadastral lot that holds most of the exhibited site Lot 4 DP1314331 at Hart Road, Loxford, as the campus locator for the Kurri Kurri Data Centre proposal.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      151.4777944,
+      -32.7909987
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_cadastral_lot_centroid_of_development_site",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-up-9-p7/nsw-cadastre-plan-dp1332716.geojson",
+  "source_sha256": "2bcb2adc54ab87bd253da65950a30e0c2f67c1ceb35629ec99a14540b0a1f3c4",
+  "source_url": "https://maps.six.nsw.gov.au/arcgis/rest/services/public/NSW_Cadastre/MapServer/9/query?where=planlabel+%3D+%27DP1332716%27&outFields=lotidstring,lotnumber,planlabel,planlotarea,planlotareaunits,cadid,lastupdate&returnGeometry=true&outSR=4326&f=geojson",
+  "retrieved_at": "2026-11-06T23:23:39.849Z",
+  "selected_properties": {
+    "lotidstring": "1//DP1332716",
+    "planlotarea_m2": 194537.703,
+    "cadid": 187899327,
+    "lastupdate_ms": 1792074113634,
+    "lastupdate_utc": "2026-10-15T14:21:53Z"
+  },
+  "facts": {
+    "plan_dp1332716_lots": [
+      {
+        "lot": "1//DP1332716",
+        "planlotarea_m2": 194537.703
+      },
+      {
+        "lot": "2//DP1332716",
+        "planlotarea_m2": 536532.422
+      }
+    ],
+    "lot_geodesic_area_m2": 194595.9,
+    "lot_valid": true,
+    "centroid_method": "shapely area centroid computed in GDA2020 / MGA zone 56 (EPSG:7856; identical result in GDA94 / MGA 56, EPSG:28356), transformed back with pyproj 3.7.1; planar WGS84 centroid differs by 0.00 m",
+    "centroid_inside": true,
+    "centroid_to_nearest_edge_m": 219.4,
+    "bounds_lon_lat": [
+      151.475111,
+      -32.793278,
+      151.480522,
+      -32.788706
+    ],
+    "approx_extent_m": [
+      501,
+      502
+    ],
+    "plan_dp1314331_current_lots": {
+      "lots": [
+        "3//DP1314331 (78,664.5 m2)",
+        "5//DP1314331 (2,922.0 m2)",
+        "7//DP1314331 (14,797.4 m2; updated 2026-10-15)"
+      ],
+      "lot_4_present": false,
+      "source_url": "https://maps.six.nsw.gov.au/arcgis/rest/services/public/NSW_Cadastre/MapServer/9/query?where=planlabel+%3D+%27DP1314331%27&outFields=lotidstring,lotnumber,planlabel,planlotarea,planlotareaunits,cadid,lastupdate&returnGeometry=true&outSR=4326&f=geojson",
+      "source_sha256": "e8148662b4fb58cd637b227dd5f4629d90e6b87c038e2a141cdfbd5e73fe7b90"
+    },
+    "adjacency": "Lot 1 DP1332716 shares 214 m of boundary with Lot 7 DP1314331; Lot 2 DP1332716 adjoins Lots 3, 5 and 7 DP1314331.",
+    "eis_site": "Lot 4 DP1314331, Hart Road, Loxford; 20.91 ha; broadly rectangular; eastern boundary on Hart Road.",
+    "cross_check_former_lot_4": {
+      "note": "Cross-check only, not a source for this locator: an Atlas capture of 16 October 2026 of the then-current Lot 4 DP1314331 (local_data/country-research-2026-10-16-apac_other/nsw-cad-at-kurri.geojson, sha256 6efb45acf90d30b6914af0a311b0ff9161baa346e7100c3065032df74e86ee00), whose query point had been read from the Planning Portal page map.",
+      "former_lot_4_area_m2_mga56": 207701,
+      "lot_1_inside_former_lot_4_fraction": 1.0,
+      "former_lot_4_covered_by_lot_1_fraction": 0.9366,
+      "remainder_m2_in_lot_2_dp1332716": 13164,
+      "former_lot_4_centroid": [
+        151.4778247,
+        -32.7908668
+      ],
+      "centroid_separation_m": 15
+    },
+    "property_layer_check": {
+      "note": "NSW Property layer identify at the selected point returns property 6084664, 145 BISHOPS BRIDGE ROAD LOXFORD, whose polygon coincides with Lot 1 DP1332716 (overlap 100%); the property address differs from the Hart Road address used by the EIS and AirTrunk.",
+      "source_url": "https://maps.six.nsw.gov.au/arcgis/rest/services/public/NSW_Property/MapServer/identify?geometry=151.4777944,-32.7909987&geometryType=esriGeometryPoint&sr=4326&layers=all&tolerance=0&mapExtent=151.47,-32.80,151.49,-32.78&imageDisplay=1000,1000,96&returnGeometry=true&f=json",
+      "source_sha256": "87b72673152b3c4583b65110e360fbb75137286a626681fe948881864318b3c6"
+    },
+    "output_coordinate_system": "Layer queried with outSR=4326; GeoJSON returned in WGS84.",
+    "replaced_point": [
+      151.4833,
+      -32.8167
+    ],
+    "replaced_point_note": "Imported locality reference point for Kurri Kurri, geometry evidence 7745e0a7-3b94-55f1-b9e7-f4c7b4e8eb78.",
+    "displacement_geodesic_wgs84_m": 2896.6,
+    "displacement_haversine_m_as_builder": 2903.8
+  }
+}

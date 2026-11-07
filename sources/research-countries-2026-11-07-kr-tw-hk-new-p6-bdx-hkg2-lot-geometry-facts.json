@@ -1,0 +1,132 @@
+{
+ "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+ "candidate": "BDx HKG2 (16-22 Kung Yip Street, Kwai Chung): Lands Department lot locator",
+ "prepared_at": "2026-11-07",
+ "lot_identity_source": {
+  "files": [
+   "local_data/country-research-kr-tw-hk-new-p6/bdx-hkg2.html",
+   "local_data/country-research-kr-tw-hk-new-p6/ia-20260929002742-bdx-hkg2.html",
+   "local_data/country-research-kr-tw-hk-new-p6/als-16-22-kung-yip-street.xml"
+  ],
+  "sha256": [
+   "cc7cc44c239daa6cb63edb65153567565601e7b5a7c8fd62def83a0156759c2f",
+   "a3ed4747470371dfff5060a73ccbfef04ffee936abcef9280188cdfe98f4a38e",
+   "2de487151b9452e610ab15049ea5a5a38278946208c7c77c6326cac1bdb4044f"
+  ],
+  "statement": "BDx's HKG2 page (live, and the Internet Archive copy of 29 September 2026) gives the address '16-22 Kung Yip Street, Kwai Chung, New Territories, Hong Kong' and a site area of 4,418 sqm (9,104 sqm GFA). The official Address Lookup Service resolves 16-22 Kung Yip Street to WATSON CENTRE (GeoAddress 3191124763T20050430, HK1980 E 831911 N 824763). A CSDI point-intersection query at that address point returns exactly one lot, LotCSUID 553000258 = Kwai Chung Town Lot No. 258, whose recorded Shape__Area is 4,418.32 m2, matching BDx's stated 4,418 sqm site area."
+ },
+ "service": "https://portal.csdi.gov.hk/server/rest/services/common/landsd_rcd_1637217253134_22729/FeatureServer (layer 0 lot polygons, queried by point intersection and by LotCSUID; layer 1000 LandInformation for LotCSUID -> LotDisplayName). robots.txt captured 2026-11-06 (local robots/robots-portal.csdi.gov.hk.txt) disallows only /geoportal/, /portal/ and /notice/.",
+ "transformation": {
+  "software": "pyproj 3.7.1, PROJ 9.5.1, TransformerGroup(EPSG:2326->EPSG:4326, always_xy=True, allow_ballpark=False), first operation",
+  "operation": "axis order change (2D) + Inverse of Hong Kong 1980 Grid + Hong Kong 1980 to WGS 84 (1) + axis order change (2D)",
+  "accuracy_m": 1.0,
+  "rounding": "7 decimal places per vertex; centroid rounded to 7 decimal places"
+ },
+ "lots": [
+  {
+   "facility": "BDx HKG2 (Watson Centre, 16-22 Kung Yip Street, Kwai Chung)",
+   "lot": "Kwai Chung Town Lot No. 258 (KCTL 258)",
+   "lot_csuid": "553000258",
+   "lot_search": {
+    "file": "local_data/country-research-kr-tw-hk-new-p6/csdi-landinfo-553000258.json",
+    "sha256": "4bcedd308c9123cac23bd4f42534d226105973f448e261ca9395156b3071599a",
+    "result": "LandInformation row LotCSUID '553000258' -> LotDisplayName 'KCTL 258', Class New Grant Lot, LBSInfo Yes"
+   },
+   "lot_polygon": {
+    "file": "local_data/country-research-kr-tw-hk-new-p6/csdi-lot-kctl258.json",
+    "sha256": "e9ff4c7770cf22334f5454f9e1040f198ec98fb84a5c9aee75d5e4201fac9be9",
+    "point_intersection_file": "local_data/country-research-kr-tw-hk-new-p6/csdi-lot-at-16-22-kung-yip-street.json",
+    "point_intersection_sha256": "e9ff4c7770cf22334f5454f9e1040f198ec98fb84a5c9aee75d5e4201fac9be9",
+    "point_intersection_note": "The point-intersection query at the ALS point (E 831911, N 824763) and the LotCSUID query return byte-identical responses: one feature, OBJECTID 252257, LotID 1800268811.",
+    "spatial_reference": "wkid 102140 / latestWkid 2326 (Hong Kong 1980 Grid)",
+    "shape_area_m2_reported": 4418.32,
+    "shape_area_m2_from_ring": 4418.32,
+    "vertices": 4,
+    "ring_closed": true,
+    "extent": "about 98 m east-west by 97 m north-south (a rotated quadrilateral, sides about 51 m by 86 m)"
+   },
+   "native_ring_hk1980": [
+    [
+     831909.8100000005,
+     824794.9900000021
+    ],
+    [
+     831946.080000001,
+     824759.2600000016
+    ],
+    [
+     831885.7400000012,
+     824698.0100000016
+    ],
+    [
+     831848.3500000006,
+     824732.620000001
+    ],
+    [
+     831909.8100000005,
+     824794.9900000021
+    ]
+   ],
+   "native_centroid_hk1980": [
+    831897.438,
+    824746.272
+   ],
+   "ring_wgs84_7dp": [
+    [
+     114.134561,
+     22.3622987
+    ],
+    [
+     114.1349132,
+     22.3619762
+    ],
+    [
+     114.1343275,
+     22.3614229
+    ],
+    [
+     114.1339644,
+     22.3617353
+    ],
+    [
+     114.134561,
+     22.3622987
+    ]
+   ],
+   "selected_point_crs84": [
+    114.134441,
+    22.3618587
+   ],
+   "selected_point_role": "planar centroid of the transformed lot ring (Shapely 2.1.1, source vertex order), verified inside the ring; locates the land lot carrying the Watson Centre building, not a building footprint, entrance or data hall",
+   "centroid_inside_ring": true,
+   "native_centroid_route_difference_m": 0.005,
+   "government_crosscheck": {
+    "file": "local_data/country-research-kr-tw-hk-new-p6/geodetic-transform-kctl258-centroid.json",
+    "sha256": "3a3a6954be6592e6819221d8acb712f5a43894788480212bb66a3072eef1738b",
+    "url": "https://www.geodetic.gov.hk/transform/v2/?inSys=hkgrid&outSys=wgsgeog&e=831897.438&n=824746.272",
+    "input_hk1980": [
+     831897.438,
+     824746.272
+    ],
+    "result_lat_lon": [
+     22.361858748,
+     114.13444099
+    ],
+    "difference": "under 1e-7 degrees from the pyproj-transformed native centroid (pyproj 22.361858748, 114.134440991)"
+   },
+   "address_lookup_crosscheck": {
+    "file": "local_data/country-research-kr-tw-hk-new-p6/als-16-22-kung-yip-street.xml",
+    "sha256": "2de487151b9452e610ab15049ea5a5a38278946208c7c77c6326cac1bdb4044f",
+    "query": "16-22 Kung Yip Street Kwai Chung",
+    "result": "WATSON CENTRE, KUNG YIP STREET 16-22, KWAI CHUNG, Kwai Tsing District (GeoAddress 3191124763T20050430); Latitude 22.36201, Longitude 114.13457",
+    "point_hk1980": [
+     831911,
+     824763
+    ],
+    "inside_lot": true,
+    "distance_to_lot_centroid_m": 21.5,
+    "other_result": "The second result, MAI ON INDUSTRIAL BUILDING at 17-21 Kung Yip Street (across the street), is a different address and is not used."
+   }
+  }
+ ]
+}

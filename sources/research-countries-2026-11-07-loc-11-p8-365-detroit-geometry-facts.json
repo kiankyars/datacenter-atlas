@@ -1,0 +1,45 @@
+{
+  "candidate_id": "loc-11-p8-365-detroit",
+  "physical_site_stable_key": "curated:365-detroit-campus",
+  "decision": "Replace the PeeringDB facility point with Oakland County's site-address point for 24660 Lahser Rd, Southfield 48033 (PIN 2427101045), the operator's published address.",
+  "source_file": "local_data/country-research-loc-11-p8/oakgov-site-address-24660-lahser-rd.json",
+  "source_sha256": "944cc02aa079a3ec37cb960e70d9c5820d0e0387e756fa9b39a79567d5b247e0",
+  "source_url": "https://gisservices.oakgov.com/arcgis/rest/services/Enterprise/EnterpriseOpenParcelDataMapService/MapServer/0/query?where=SITESTREETNUMBER%3D24660%20AND%20SITESTREETNAME%3D%27Lahser%27&outFields=OBJECTID,TYPE,PIN,SITEPREFIXONE,SITESTREETNUMBER,SITESTREETNAME,SITESTREETTYPE,SITESTREETADDRESS,SITECITY,SITESTATE,SITEZIPCODE&returnGeometry=true&outSR=4326&f=json",
+  "published_fields": {
+    "OBJECTID": 359990,
+    "TYPE": "Primary Property Address",
+    "PIN": "2427101045",
+    "SITESTREETADDRESS": "24660 Lahser Rd",
+    "SITECITY": "Southfield",
+    "SITESTATE": "MI",
+    "SITEZIPCODE": "48033",
+    "layer_description": "approximate centre (not the true centroid) of each tax parcel polygon"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -83.25972803051226,
+      42.469910251734184
+    ]
+  },
+  "geometry_note": "The point is copied as the service returns it in WGS84 (outSR=4326).",
+  "parcel_check": {
+    "PIN": "2427101045",
+    "class_code": "201",
+    "site_address": "24660 LAHSER RD, SOUTHFIELD 48033",
+    "area_acres": 1.33,
+    "area_crs": "EPSG:2253",
+    "point_inside": true,
+    "point_distance_to_edge_m": 21.0,
+    "max_vertex_distance_from_point_m": 69.5,
+    "replaced_point_inside": true
+  },
+  "census_geocode_check": "The US Census geocoder interpolates the address to -83.26051740, 42.46915914 (TIGER edge 652703397, range 24400-25034), outside the parcel; not used.",
+  "replaced_point": [
+    -83.259651,
+    42.469879
+  ],
+  "displacement_m": 7.2,
+  "transform": "pyproj 3.7.1 and shapely 2.1.1 for the containment check only",
+  "nearby_records_within_2km": "Only this site (7.2 m) in verified_construction_core/2026-11-07-research-hundredtwentyfourth; no pending addition or locator correction within 2 km."
+}

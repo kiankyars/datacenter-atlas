@@ -1,0 +1,60 @@
+{
+ "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+ "candidate": "Nabiax Terrassa Data Center, Carrer de Bartomeu Amat 69, 08225 Terrassa (Barcelona), Spain",
+ "geometry": {
+  "type": "Point",
+  "coordinates": [
+   2.01205,
+   41.5720166
+  ]
+ },
+ "coordinate_reference_system": "Source parcel in EPSG:25831 (ETRS89 / UTM 31N) as served by the Catastro INSPIRE cadastral-parcel WFS (GetParcel, srsname EPSG::25831; the response declares http://www.opengis.net/def/crs/EPSG/0/25831); its planar area centroid is transformed to EPSG:4326 longitude/latitude with pyproj 3.7.1 always_xy=True.",
+ "source_url": "https://ovc.catastro.meh.es/ovcservweb/OVCSWLocalizacionRC/OVCCoordenadas.asmx/Consulta_RCCOOR?SRS=EPSG:4326&Coordenada_X=2.01205&Coordenada_Y=41.5720166",
+ "raw_capture_file": "local_data/country-research-ops-iberia-italy-p6/catastro-rccoor-nabiax-terrassa-centroid.xml",
+ "raw_capture_sha256": "597b64a1e354540c7084aa20d420b09613647a5df8c23fc7f61e8869db4a0355",
+ "retrieved_at": "2026-11-06T23:34:53.825Z",
+ "source_selection": "Nabiax's contact page gives 'Terrassa Data Center, Carrer de Bartomeu Amat, 69, 08225 Terrassa, Barcelona'. Catastro's address register returns one property at CL BARTOMEU AMAT, DE 69, Terrassa, on parcel 7629220DG1072D, whose geometry was retrieved from the Catastro INSPIRE WFS.",
+ "parcel_captures": [
+  {
+   "cadastral_reference_14": "7629220DG1072D",
+   "address": "CL BARTOMEU AMAT, DE 69, 08225 TERRASSA (BARCELONA)",
+   "catastro_use": "Property 7629220DG1072D0001JG: 'Industrial', 6,530 m2 built, 1991, 100% participation (parking, industrial and warehouse units)",
+   "raw_capture_file": "local_data/country-research-ops-iberia-italy-p6/catastro-cp-7629220DG1072D.gml",
+   "raw_capture_sha256": "b1ee5332c4f7057912ddfa709ccce83f61fbdf5105cbc18fd681bec73f00bbf7",
+   "source_url": "https://ovc.catastro.meh.es/INSPIRE/wfsCP.aspx?service=wfs&version=2&request=getfeature&STOREDQUERIE_ID=GetParcel&refcat=7629220DG1072D&srsname=EPSG::25831",
+   "retrieved_at": "2026-11-06T23:34:31.828Z",
+   "address_capture_file": "local_data/country-research-ops-iberia-italy-p6/catastro-dnploc-terrassa-bartomeu-amat-de-69.xml",
+   "address_capture_sha256": "7d65d9ab27f35ccfa0a6b40accd43562a1b26f8adacd5c368c273a4f0d12b96d"
+  }
+ ],
+ "computation": {
+  "tool": "uv run --no-project --with pyproj==3.7.1 --with shapely==2.1.1 python -I (shapely Polygon from the GML posList, area centroid, pyproj Transformer EPSG:25831 -> EPSG:4326, always_xy=True)",
+  "planar_area_m2": 1666.1,
+  "centroid_epsg25831": [
+   417633.878,
+   4602730.727
+  ],
+  "centroid_inside_parcel": true,
+  "centroid_distance_to_boundary_m": 15.1,
+  "bounding_box_m": [
+   32.2,
+   56.4
+  ],
+  "farthest_vertex_from_centroid_m": 31.6
+ },
+ "reverse_lookup": "Catastro Consulta_RCCOOR at 2.01205, 41.5720166 returns parcel 7629220DG1072D, CL BARTOMEU AMAT, DE 69 TERRASSA (BARCELONA).",
+ "cross_checks": {
+  "catastro_reference_point": [
+   2.01195903247236,
+   41.5717960948677
+  ],
+  "catastro_reference_point_distance_m": 25.8,
+  "imagery": "Esri World Imagery export (local esri-nabiax-terrassa.png, about 210 by 155 m around the point) shows a deep mid-block building with flat roof sections and rooftop equipment on the west side of a north-south street in a dense urban block. The imagery is undated and is not used as a status observation."
+ },
+ "scope_class": "operator_address_cadastral_parcel_area_centroid",
+ "precision": "Area centroid of cadastral parcel 7629220DG1072D (about 1,666 m2, 32 by 56 m), the only parcel at Carrer de Bartomeu Amat 69, 08225 Terrassa, the address Nabiax gives for its Terrassa Data Center. The point lies inside the parcel 15 m from its boundary and locates the data-centre property; it is not a surveyed building footprint.",
+ "uncertainty_reason": "Catastro publishes no positional accuracy for parcel boundaries; the point is a derived interior anchor of a parcel whose farthest vertex is about 32 m away. Decimal places are computation precision, not accuracy.",
+ "not_located": [
+  "Nabiax head office, Calle Julián Camarillo 29, Madrid (offices, not a data centre)"
+ ]
+}

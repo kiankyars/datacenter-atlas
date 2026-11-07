@@ -1,0 +1,78 @@
+{
+  "candidate_id": "masterdc-datacentrum-praha-kodanska",
+  "decision": "Selected the RÚIAN address point (adresní místo 22672052, Kodaňská 1441/46, Vršovice, 101 00 Praha 10) as served by the ČÚZK RUIAN map service in WGS84, the address MasterDC gives for its Prague data centre, as the campus locator. The point lies inside the RÚIAN building 22329056 (čp. 1441) that carries the address.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      14.46328751716229,
+      50.06951001647573
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_numbered_address_point",
+  "use_scope": "campus_locator",
+  "derivation": "direct_geometry",
+  "source_file": "local_data/country-research-ops-cee-p6/ruian-am-kodanska-46-praha-4326.json",
+  "selected_properties": {
+    "adresni_misto_kod": 22672052,
+    "address": "Kodaňská 1441/46, Vršovice, 10100 Praha 10",
+    "cislo_domovni": 1441,
+    "cislo_orientacni": 46,
+    "stavebni_objekt_kod": 22329056,
+    "storage_crs": "EPSG:5514 (S-JTSK / Krovak East North)",
+    "point_sjtsk": [
+      -740100.8900000006,
+      -1045400.5700000003
+    ],
+    "served_crs": "EPSG:4326 (ČÚZK ArcGIS server-side reprojection, outSR=4326)",
+    "building": {
+      "kod": 22329056,
+      "cisladomovni": "1441",
+      "typstavebnihoobjektukod": 1,
+      "zpusobvyuzitikod": 19,
+      "pocetpodlazi": 2,
+      "zastavenaplocha": 3712,
+      "identifikacniparcela": 2190627101.0,
+      "isknbudovaid": 930438101.0
+    }
+  },
+  "identity_bridge": [
+    "MasterDC's Datacentrum Praha page says the data centre is at 'Kodaňská 46, 101 00 Praha 10' with reserved parking directly at the data-centre building; its data-centre overview page lists 'Datacentrum Praha Kodaňská 46, Praha 10' as one of its two own data centres.",
+    "The RÚIAN query for Kodaňská %/46 in Praha returns exactly one address point, Kodaňská 1441/46, Vršovice, 10100 Praha 10 (kod 22672052), whose parent building object is 22329056 (čp. 1441; 2 floors; built-up area 3,712 m2)."
+  ],
+  "consistency_checks": {
+    "pyproj_epsg1623_from_sjtsk": [
+      14.463287519,
+      50.069510038
+    ],
+    "pyproj_transformation": "Inverse of Krovak East North (Greenwich) + S-JTSK to WGS 84 (1) + axis order change (2D)",
+    "served_vs_pyproj_m": 0.002,
+    "address_point_inside_building": true,
+    "dist_to_building_boundary_m": 2.4,
+    "dist_to_building_centroid_m": 10.3,
+    "building_area_m2_sjtsk": 3711.9,
+    "max_building_vertex_distance_m": 80.3,
+    "building_centroid_wgs84": [
+      14.4634287,
+      50.069492
+    ],
+    "nearest_atlas_sites_km": {
+      "CRA DC Tower Žižkov": 1.549,
+      "CRA Prague Gateway Data Center Campus": 15.13,
+      "Hetzner Falkenstein Data Center Park (Am Datacenter-Park 1)": 158.365
+    },
+    "base_dataset": "verified_construction_core/2026-11-07-research-hundredtwentyfourth",
+    "versions": {
+      "pyproj": "3.7.1",
+      "proj": "9.5.1",
+      "shapely": "2.1.1"
+    }
+  },
+  "source_sha256": {
+    "address_point_epsg5514": "61f86451a2378a1c6838c604313a23649236f3b5514abc91852b7e64e083f9d2",
+    "address_point_epsg4326": "1496138140d49bb1ea5338a6667d44b25a963fcbc2064ceb16cc4da9ce0a3196",
+    "building_epsg5514": "4ef76c9297d0ffc7c6dbe32b4b87658ef2da981b453af03d33611fff0a7b7f59",
+    "masterdc_datacentrum_praha_page": "a2557276f1cc0bb3b5d1a7062abd05f8f6471983d076c9151a970c57bf023e17",
+    "masterdc_datacentra_page": "4b369983bc7ebac8e7ec9e8f8022cd643e3faa8c1d4f36d304db363b2f751550"
+  }
+}

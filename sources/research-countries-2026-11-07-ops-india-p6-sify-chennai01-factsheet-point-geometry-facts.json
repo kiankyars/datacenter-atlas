@@ -1,0 +1,24 @@
+{
+  "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+  "candidate": "Sify Chennai 01 data center, 2nd Floor, Tidel Park, No. 4 Canal Bank Road, Taramani, Chennai: operator-printed factsheet coordinate (new site)",
+  "prepared_at": "2026-11-07",
+  "source": {
+    "file": "local_data/country-research-ops-india-p6/sify-chennai-factsheet.pdf",
+    "sha256": "de8d40fbb65ed99028d3a9e82b50ce20376aeaea067aaf9139ca3914492196af",
+    "document": "Sify Technologies facility factsheet PDF (2 pages, created May 2022) linked as 'Download Fact Sheet' from the facility's section of the current Sify city page",
+    "statement": "Printed coordinate 'N 12.9896416, E 80.2484908', printed on page 1 directly under the address '2nd Floor, Tidel Park, No.4, Canal Bank Road, Taramani, Chennai, Tamil Nadu 600113' and the heading 'SIFY CHENNAI DATA CENTER'."
+  },
+  "selected_point": [
+    80.2484908,
+    12.9896416
+  ],
+  "selected_point_basis": "The operator-printed decimal-degree coordinate, read from the PDF text layer (pdftotext) and kept unchanged (direct geometry; WGS 84 assumed, no datum stated).",
+  "checks": {
+    "conflicting_operator_coordinate": "The current city page (sify-chennai-data-center.html, sha256 3eee80d52ef269a321688b392fa4b1a389bd40f32897a4ea74c68d5b6d3cec9d; the same JSON-LD is present in the Internet Archive copies of July and 1 October 2026) carries a page-level schema.org LocalBusiness block with the same street address and GeoCoordinates 13.0060899, 80.2484437. That point lies 1820 m from the factsheet point. It is not used: on imagery it does not fall on the facility (see imagery_visual_check).",
+    "series_accuracy_note": "In the same 2022 factsheet series, the MUM02 (Airoli) coordinate lies about 262 m from the MIDC plot that carries the Airoli facility's published plot number, so these printed coordinates are not survey-grade and may be off by a few hundred metres.",
+    "imagery_visual_check": "Esri World Imagery export (visual check only, not a locator source): the factsheet point falls on the roof of a very large multi-storey office building with a rooftop helipad marking, set in landscaped grounds west of an arterial road and an elevated rail line, consistent with a large IT-park building; at the page JSON-LD point a dense residential block of small detached houses east of an elevated rail line and its station, with no large office or data-centre building. Imagery dates not stated. Files: esri-imagery-chennai-tidel-factsheet-point.png (sha256 afb2430de8df851fd368f4786fafc0ba6044820dceca9cb77f69f08858bd2426), esri-imagery-chennai-jsonld-point.png (sha256 6380615b2cb0e0c1558d3dc665ef973bba8982217d7bf0fe7bd8ec97f012b8fb)",
+    "atlas_records_within_2km": "Checked against verified_construction_core/2026-11-07-research-hundredtwentyfourth, every pending queue changes.json and claims.tsv: no Atlas site, pending addition or locator correction within 2 km. Nearest Atlas records: CtrlS Chennai Datacenter Park (Ambattur) 15966 m, CapitaLand DC Chennai Ambattur 16530 m, Sify Chennai 02 (Siruseri; imported locality point) 17899 m."
+  },
+  "license": "Sify Technologies website and documents: all rights reserved (no open licence stated). Only the printed coordinate and address are used; the raw PDF is not redistributed.",
+  "attribution": "Sify Technologies Limited"
+}

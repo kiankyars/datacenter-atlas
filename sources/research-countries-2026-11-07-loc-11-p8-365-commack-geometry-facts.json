@@ -1,0 +1,47 @@
+{
+  "candidate_id": "loc-11-p8-365-commack",
+  "physical_site_stable_key": "curated:365-commack-campus",
+  "decision": "Replace the PeeringDB facility point with the New York State SAM rooftop address point for 500 Commack Road, Commack 11725, the operator's published address.",
+  "source_file": "local_data/country-research-loc-11-p8/nys-sam-500-commack-rd.json",
+  "source_sha256": "31b01549a9de2d09bfa1082646b0663c2f6c2e8f9f4bbaec64159e86e5daf3a0",
+  "source_url": "https://gisservices.its.ny.gov/arcgis/rest/services/SAM_Address_Points/MapServer/1/query?where=AddressNumber%3D500%20AND%20StreetName%3D%27Commack%27%20AND%20ZipCode%3D%2711725%27&outFields=NYSAddressPointID,AddressNumber,SuffixAddressNumber,CompleteStreetName,SubAddress,ZipName,ZipCode,PointType,AddressSource,DateUpdated,PrimaryPoint,CityTownName,Structure,Site,SubSite,BusinessName,SWIS_SBL_ID,SWIS_PRINT_KEY_ID,AddressLabel,Status,CountyName&returnGeometry=true&outSR=4326&f=json",
+  "published_fields": {
+    "NYSAddressPointID": "SUFF268706",
+    "AddressNumber": 500,
+    "CompleteStreetName": "Commack Road",
+    "ZipName": "Commack",
+    "ZipCode": "11725",
+    "CityTownName": "Smithtown",
+    "CountyName": "Suffolk",
+    "PointType": "1 (Rooftop)",
+    "AddressSource": "County AP",
+    "PrimaryPoint": "Y",
+    "Status": "Active",
+    "DateUpdated": "2020-02-19"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -73.29248666571333,
+      40.82296890596069
+    ]
+  },
+  "geometry_note": "The point is copied as the service returns it in WGS84 (outSR=4326). The state geocoder returns the same point (-73.29248669, 40.82296893, Ref_ID SUFF268706) as a score-100 candidate for the operator's address, beside the '500 A' driveway point (SUFF238982), which carries a suffix the operator does not use.",
+  "footprint_check": {
+    "footprint_objectid": 3446314,
+    "source": "NYSERDA / Suffolk County Department of Information Technology (2006)",
+    "area_m2": 31724,
+    "rooftop_point_inside": true,
+    "rooftop_point_distance_to_edge_m": 23.8,
+    "replaced_point_inside": true,
+    "max_vertex_distance_from_point_m": 209.5
+  },
+  "other_points": "SUFF238982 '500 A Commack Rd' (PointType 3, Driveway Entrance, from County Parcels) at -73.29249207, 40.82413902, 130 m north and outside the footprint; not used.",
+  "replaced_point": [
+    -73.291647,
+    40.822677
+  ],
+  "displacement_m": 77.8,
+  "transform": "pyproj 3.7.1 (EPSG:32618) and shapely 2.1.1 for the containment check only",
+  "nearby_records_within_2km": "Only this site (77.8 m) in verified_construction_core/2026-11-07-research-hundredtwentyfourth; no pending addition or locator correction within 2 km."
+}

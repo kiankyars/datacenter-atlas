@@ -1,0 +1,91 @@
+{
+ "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+ "candidate": "Digital Realty BCN1 data centre, Avinguda / Carrer del Maresme 43 (Digital Realty address: Av. del Maresme, 43, 08918 Badalona; cadastral municipality Sant Adrià de Besòs), Barcelona, Spain",
+ "geometry": {
+  "type": "Point",
+  "coordinates": [
+   2.2322354,
+   41.4295746
+  ]
+ },
+ "coordinate_reference_system": "Source parcels in EPSG:25831 (ETRS89 / UTM 31N) as served by the Catastro INSPIRE cadastral-parcel WFS (GetParcel, srsname EPSG::25831; the responses declare http://www.opengis.net/def/crs/EPSG/0/25831); the planar area centroid of their union is transformed to EPSG:4326 longitude/latitude with pyproj 3.7.1 always_xy=True.",
+ "source_url": "https://ovc.catastro.meh.es/ovcservweb/OVCSWLocalizacionRC/OVCCoordenadas.asmx/Consulta_RCCOOR?SRS=EPSG:4326&Coordenada_X=2.2322354&Coordenada_Y=41.4295746",
+ "raw_capture_file": "local_data/country-research-ops-iberia-italy-p6/catastro-rccoor-dlr-bcn1-union-centroid.xml",
+ "raw_capture_sha256": "e03868ddb57592a7eb9dc621da3144522b05b31becded23b4787a2ff20f523eb",
+ "retrieved_at": "2026-11-06T23:41:23.818Z",
+ "source_selection": "Digital Realty's BCN1 page gives 'Av. del Maresme, 43, 08918 Badalona' and a facility coordinate of 41.42980158922037, 2.2328209064953253. Catastro has no no. 43 on Badalona's (even-numbered) side of the street; its odd-numbered side is in Sant Adrià de Besòs, where CL MARESME 43 is parcel 5968901DF3856H (no. 43-45). Catastro's coordinate lookup at Digital Realty's coordinate returns the adjoining parcel 5968902DF3856H (no. 39-41). Undated imagery shows one large building with dense rooftop plant spanning both parcels, so the locator is the area centroid of their union rather than of either parcel alone.",
+ "parcel_captures": [
+  {
+   "cadastral_reference_14": "5968901DF3856H",
+   "address": "CL MARESME 43 N2-45, 08930 SANT ADRIA DE BESOS (BARCELONA)",
+   "catastro_use": "Property 5968901DF3856H0001DX: 'Industrial', 4,600 m2 built, 1978, 100% participation (building data predate the data centre)",
+   "raw_capture_file": "local_data/country-research-ops-iberia-italy-p6/catastro-cp-5968901DF3856H.gml",
+   "raw_capture_sha256": "e7bbc6fdc4609b2985f6b64256a5c87db7437228460b2daa8258364a9b951bf1",
+   "source_url": "https://ovc.catastro.meh.es/INSPIRE/wfsCP.aspx?service=wfs&version=2&request=getfeature&STOREDQUERIE_ID=GetParcel&refcat=5968901DF3856H&srsname=EPSG::25831",
+   "retrieved_at": "2026-11-06T23:39:10.158Z",
+   "address_capture_file": "local_data/country-research-ops-iberia-italy-p6/catastro-dnploc-sant-adria-maresme-43.xml",
+   "address_capture_sha256": "17b95e17f704db6bcefb2e0998734e8d42b582c239b3053414e13c6b2958e5b0"
+  },
+  {
+   "cadastral_reference_14": "5968902DF3856H",
+   "address": "CL MARESME 39 N2-41, 08930 SANT ADRIA DE BESOS (BARCELONA)",
+   "catastro_use": "Property 5968902DF3856H0001XX: 'Industrial', 1,985 m2 built, 1978, 100% participation (building data predate the data centre)",
+   "raw_capture_file": "local_data/country-research-ops-iberia-italy-p6/catastro-cp-5968902DF3856H.gml",
+   "raw_capture_sha256": "e9b5f7bfe09bcae2166556e0611dae86d7ebc127468c7a1422f8f5a129a28611",
+   "source_url": "https://ovc.catastro.meh.es/INSPIRE/wfsCP.aspx?service=wfs&version=2&request=getfeature&STOREDQUERIE_ID=GetParcel&refcat=5968902DF3856H&srsname=EPSG::25831",
+   "retrieved_at": "2026-11-06T23:39:19.652Z",
+   "address_capture_file": "local_data/country-research-ops-iberia-italy-p6/catastro-dnprc-5968902DF3856H.xml",
+   "address_capture_sha256": "629438af4061a1e66260715501d3b2e446521d3a83af5e9c3ef7db623ec10744"
+  }
+ ],
+ "computation": {
+  "tool": "uv run --no-project --with pyproj==3.7.1 --with shapely==2.1.1 python -I (shapely Polygons from the two GML posLists, unary union, area centroid, pyproj Transformer EPSG:25831 -> EPSG:4326, always_xy=True)",
+  "planar_area_m2": 6866.8,
+  "parcel_planar_areas_m2": {
+   "5968901DF3856H": 4702.8,
+   "5968902DF3856H": 2164.0
+  },
+  "centroid_epsg25831": [
+   435850.626,
+   4586730.109
+  ],
+  "centroid_inside_parcel": true,
+  "centroid_parcel": "5968902DF3856H (4.4 m from the boundary shared with 5968901DF3856H)",
+  "centroid_distance_to_boundary_m": 27.1,
+  "bounding_box_m": [
+   118.0,
+   122.7
+  ],
+  "farthest_vertex_from_centroid_m": 64.0
+ },
+ "reverse_lookup": "Catastro Consulta_RCCOOR at 2.2322354, 41.4295746 returns parcel 5968902DF3856H, CL MARESME 39 N2-41 SANT ADRIA DE BESOS (BARCELONA).",
+ "cross_checks": {
+  "operator_coordinate": [
+   2.2328209064953253,
+   41.42980158922037
+  ],
+  "operator_coordinate_distance_m": 55.0,
+  "operator_coordinate_parcel": "5968902DF3856H (inside, 1.4 m from its boundary; Catastro RCCOOR returns the same parcel)",
+  "catastro_reference_points": {
+   "5968901DF3856H": [
+    2.2321042,
+    41.4295418
+   ],
+   "5968902DF3856H": [
+    2.2325211,
+    41.4296028
+   ]
+  },
+  "catastro_reference_point_distances_m": {
+   "5968901DF3856H": 11.6,
+   "5968902DF3856H": 24.1
+  },
+  "imagery": "Esri World Imagery export (local esri-dlr-bcn1.png, about 335 by 245 m around the point) shows one large dark-roofed building covered with rows of rooftop plant spanning both parcels, with earthworks to the south-west. The imagery is undated and is not used as a status observation."
+ },
+ "scope_class": "operator_address_cadastral_parcel_pair_area_centroid",
+ "precision": "Area centroid of the union of cadastral parcels 5968901DF3856H (Carrer del Maresme 43-45, 4,703 m2) and 5968902DF3856H (Carrer del Maresme 39-41, 2,164 m2) in Sant Adrià de Besòs, together about 6,867 m2 and 118 by 123 m. No. 43 is the number Digital Realty gives for BCN1 and Digital Realty's own coordinate lies in the adjoining no. 39-41 parcel; imagery shows one building spanning both. The point lies inside the union 27 m from its outer boundary (in parcel 5968902DF3856H, 4 m from the shared boundary) and locates the data-centre property; it is not a surveyed building footprint.",
+ "uncertainty_reason": "Catastro publishes no positional accuracy for parcel boundaries; the point is a derived interior anchor of a two-parcel union whose farthest vertex is about 64 m away, and Digital Realty's own coordinate is 55 m away. Decimal places are computation precision, not accuracy.",
+ "not_located": [
+  "Barcelona Cable Landing Station (described by Digital Realty as less than 300 m away; not located)"
+ ]
+}

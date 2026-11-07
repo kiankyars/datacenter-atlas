@@ -1,0 +1,78 @@
+{
+  "candidate_id": "masterdc-datacentrum-brno-cejl",
+  "decision": "Selected the RÚIAN address point (adresní místo 19189273, Cejl 825/20, Zábrdovice, 602 00 Brno) as served by the ČÚZK RUIAN map service in WGS84, the address MasterDC gives for its Brno data centre, as the campus locator. The point lies inside the RÚIAN building 19025238 (čp. 825) that carries the address.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      16.618758370007384,
+      49.19681696854564
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_numbered_address_point",
+  "use_scope": "campus_locator",
+  "derivation": "direct_geometry",
+  "source_file": "local_data/country-research-ops-cee-p6/ruian-am-cejl-20-brno-4326.json",
+  "selected_properties": {
+    "adresni_misto_kod": 19189273,
+    "address": "Cejl 825/20, Zábrdovice, 60200 Brno",
+    "cislo_domovni": 825,
+    "cislo_orientacni": 20,
+    "stavebni_objekt_kod": 19025238,
+    "storage_crs": "EPSG:5514 (S-JTSK / Krovak East North)",
+    "point_sjtsk": [
+      -597361.8500000015,
+      -1160648.4800000004
+    ],
+    "served_crs": "EPSG:4326 (ČÚZK ArcGIS server-side reprojection, outSR=4326)",
+    "building": {
+      "kod": 19025238,
+      "cisladomovni": "825",
+      "typstavebnihoobjektukod": 1,
+      "zpusobvyuzitikod": 5,
+      "pocetpodlazi": null,
+      "zastavenaplocha": 1796,
+      "identifikacniparcela": 1551690702.0,
+      "isknbudovaid": 525391702.0
+    }
+  },
+  "identity_bridge": [
+    "MasterDC's Datacentrum Brno page says the data centre is at 'Cejl 20, 602 00 Brno' in the city centre with reserved parking directly at the data-centre building; its data-centre overview page lists 'Datacentrum Brno Cejl 20, Brno' as one of its two own data centres.",
+    "The RÚIAN query for Cejl %/20 in Brno returns exactly one address point, Cejl 825/20, Zábrdovice, 60200 Brno (kod 19189273), whose parent building object is 19025238 (čp. 825; built-up area 1,796 m2)."
+  ],
+  "consistency_checks": {
+    "pyproj_epsg1623_from_sjtsk": [
+      16.618758374,
+      49.19681699
+    ],
+    "pyproj_transformation": "Inverse of Krovak East North (Greenwich) + S-JTSK to WGS 84 (1) + axis order change (2D)",
+    "served_vs_pyproj_m": 0.002,
+    "address_point_inside_building": true,
+    "dist_to_building_boundary_m": 10.0,
+    "dist_to_building_centroid_m": 4.6,
+    "building_area_m2_sjtsk": 1795.8,
+    "max_building_vertex_distance_m": 42.9,
+    "building_centroid_wgs84": [
+      16.6187711,
+      49.1967767
+    ],
+    "nearest_atlas_sites_km": {
+      "ZONER DC Brno (Nové sady)": 1.421,
+      "Digital Realty VIE13-VIE16 Digital Park Vienna Expansion": 103.947,
+      "CRA Prague Gateway Data Center Campus": 182.991
+    },
+    "base_dataset": "verified_construction_core/2026-11-07-research-hundredtwentyfourth",
+    "versions": {
+      "pyproj": "3.7.1",
+      "proj": "9.5.1",
+      "shapely": "2.1.1"
+    }
+  },
+  "source_sha256": {
+    "address_point_epsg5514": "10d0ed50d2e92d84340583c0877fb43d3fcf45722de147c17ea27cc63e048b8c",
+    "address_point_epsg4326": "98f7df3222a6e6023cf8860514a17e3bbe856d3bc27fe2bfe68c0a7f41b40e44",
+    "building_epsg5514": "beaf8009588e860124ce12501ef7c9678679e206c2692d7db38f4a52e9f47ecf",
+    "masterdc_datacentrum_brno_page": "ad9a632f53ff5e6977c47a104252c59a077cddfc1061c4d17c252a910ec0bd6a",
+    "masterdc_datacentra_page": "4b369983bc7ebac8e7ec9e8f8022cd643e3faa8c1d4f36d304db363b2f751550"
+  }
+}
