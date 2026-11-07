@@ -1,0 +1,103 @@
+{
+ "candidate_id": "dlr-global-p11-digital-realty-erskine-park-syd10-syd11",
+ "decision": "Selected the official NSW AddressPoint of '1-11 TEMPLAR ROAD ERSKINE PARK' (rid 2895724) as the campus locator for Digital Realty's Erskine Park campus (SYD10 at 1-11 Templar Road and SYD11 at 13-23 Templar Road), copied without transformation (rounded to 7 decimals).",
+ "geometry": {
+  "type": "Point",
+  "coordinates": [
+   150.7958846,
+   -33.816152
+  ]
+ },
+ "authority_class": "official_source",
+ "derivation": "direct_geometry",
+ "scope_class": "official_address_point_property_centroid",
+ "use_scope": "campus_locator",
+ "source_file": "local_data/country-research-dlr-global-p11/nsw-addresspoint-1-11-templar-road-erskine-park.geojson",
+ "source_sha256": "8a8bc9a66b96bb503507bc0b8599a43456f88251ada651742aeac1ce01b3e029",
+ "source_url": "https://portal.spatial.nsw.gov.au/server/rest/services/NSW_Geocoded_Addressing_Theme/FeatureServer/1/query?where=address%3D%271-11%20TEMPLAR%20ROAD%20ERSKINE%20PARK%27&outFields=rid,gurasid,principaladdresssiteoid,addresspointtype,addresspointuncertainty,containment,address,housenumber,lastupdate&returnGeometry=true&outSR=4326&f=geojson",
+ "retrieved_at": "2026-11-07T02:03:41.481Z",
+ "selected_properties": {
+  "addresspoint_1_11": {
+   "rid": 2895724,
+   "gurasid": 74393486,
+   "principaladdresssiteoid": 3306373,
+   "addresspointtype": 1,
+   "addresspointuncertainty": null,
+   "containment": 1,
+   "address": "1-11 TEMPLAR ROAD ERSKINE PARK",
+   "housenumber": "1-11",
+   "lastupdate": 1311665527029
+  },
+  "addresspoint_15": {
+   "rid": 4216390,
+   "gurasid": 74393556,
+   "principaladdresssiteoid": 3306393,
+   "addresspointtype": 1,
+   "addresspointuncertainty": null,
+   "containment": 1,
+   "address": "15 TEMPLAR ROAD ERSKINE PARK",
+   "housenumber": "15",
+   "lastupdate": 1536922074497
+  },
+  "property_1_11": {
+   "propid": 3589824,
+   "address": "1-11 TEMPLAR ROAD ERSKINE PARK",
+   "housenumber": "1-11",
+   "propertytype": 1,
+   "lastupdate": 1311665509542,
+   "dissolveparcelcount": 1,
+   "principaladdresssiteoid": 3306373
+  },
+  "property_15": {
+   "propid": 3589825,
+   "address": "15 TEMPLAR ROAD ERSKINE PARK",
+   "housenumber": "15",
+   "propertytype": 1,
+   "lastupdate": 1311665509561,
+   "dissolveparcelcount": 1,
+   "principaladdresssiteoid": 3306393
+  },
+  "lot_at_1_11_point": {
+   "lotidstring": "2//DP1160603",
+   "lotnumber": "2",
+   "planlabel": "DP1160603",
+   "planlotarea": 18316.259,
+   "planlotareaunits": "Meters",
+   "lastupdate": 1310213731263
+  },
+  "lot_at_15_point": {
+   "lotidstring": "3//DP1160603",
+   "lotnumber": "3",
+   "planlabel": "DP1160603",
+   "planlotarea": 16543.129,
+   "planlotareaunits": "Meters",
+   "lastupdate": 1310213731334
+  }
+ },
+ "transform": "none for the selected point (published WGS84, rounded to 7 decimals, shift 0.004 m); checks computed in EPSG:7856 (GDA2020 / MGA zone 56) with pyproj 3.7.1 and shapely 2.1.1",
+ "consistency_checks": {
+  "templar_road_addresspoint_count": 13,
+  "point_inside_lot_2_dp1160603": true,
+  "point_distance_to_lot_2_boundary_m": 58.8,
+  "point_distance_to_lot_2_centroid_m": 4.6,
+  "lot_2_planar_area_m2": 18316.3,
+  "lot_3_planar_area_m2": 16543.1,
+  "property_1_11_equals_lot_2_symmetric_difference_m2": 0.0,
+  "property_15_equals_lot_3_symmetric_difference_m2": 0.0,
+  "lots_2_and_3_share_boundary_m": 129.2,
+  "addresspoint_15_inside_lot_3": true,
+  "addresspoint_15_distance_to_lot_3_centroid_m": 0.0,
+  "campus_union_lots_2_3_area_m2": 34859.4,
+  "campus_union_extent_m": [
+   193.4,
+   303.0
+  ],
+  "point_distance_to_union_centroid_m": 66.1,
+  "farthest_union_vertex_from_point_m": 213.0,
+  "geodesic_point_to_addresspoint_15_m": 137.1,
+  "operator_syd10_page_point_distance_m": 0.0,
+  "operator_syd11_page_point_distance_to_addresspoint_15_m": 0.1,
+  "nearest_atlas_site_stack_syd01_distance_m": 1479.8
+ },
+ "verification_script": "scratchpad bin/facts.py (uv run --no-project --with pyproj==3.7.1 --with shapely==2.1.1 python -I)"
+}

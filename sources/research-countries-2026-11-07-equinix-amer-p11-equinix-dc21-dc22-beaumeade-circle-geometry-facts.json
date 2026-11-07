@@ -1,0 +1,96 @@
+{
+  "candidate_id": "equinix-amer-p11-equinix-dc21-dc22-beaumeade-circle",
+  "decision": "Selected the area centroid of Loudoun County parcel MCPI 061200160000 (Beaumeade phase 1, plat 2026-0161; LandRecords MapServer layer 5) as the campus locator for Equinix DC21 (22175 Beaumeade Circle) and DC22 (22165 Beaumeade Circle), whose county address points both lie on this parcel.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -77.4536634,
+      39.0122282
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_tax_parcel_centroid",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-equinix-amer-p11/loudoun-parcel-061200160000.json",
+  "source_sha256": "ae3e6824b7f4d9bbaadf5ec07ca3d1f0ea85b0d7f688968a8f0f82ec40cd55eb",
+  "source_url": "https://logis.loudoun.gov/gis/rest/services/COL/LandRecords/MapServer/5/query?where=PA_MCPI%3D%27061200160000%27&outFields=PA_MCPI,PA_TYPE,PA_PLAT_NUM,PA_LEGAL_ACRE,PA_SUBD_NAME,PA_SUBD_PHASE,PA_LEGAL_SQFT,PA_UPD_DATE&returnGeometry=true&outSR=4326&f=json",
+  "retrieved_at": "2026-11-07T01:59:07.317Z",
+  "identity_source_file": "local_data/country-research-equinix-amer-p11/loudoun-addresspoints-three-parcels.json",
+  "identity_source_sha256": "6cd820f9db22a937ec7ec3ebe18e64429bb044e4374a63ac3087b5ca57354a04",
+  "identity_source_url": "https://logis.loudoun.gov/gis/rest/services/COL/LandRecords/MapServer/2/query?where=AD_MCPI%20IN%20%28%27061200160000%27%2C%27060209652000%27%2C%27060182916000%27%29&outFields=AD_MCPI,AD_ADDRESS,AD_POINT_TYPE,FULL_ADDRESS,AM_POINT_X_DD,AM_POINT_Y_DD,AD_UPD_DATE&returnGeometry=true&outSR=4326&f=json",
+  "selected_properties": {
+    "061200160000": {
+      "PA_MCPI": "061200160000",
+      "PA_TYPE": "P",
+      "PA_PLAT_NUM": "2026-0161",
+      "PA_LEGAL_ACRE": 36.238,
+      "PA_SUBD_NAME": "BEAUMEADE",
+      "PA_SUBD_PHASE": "1",
+      "PA_LEGAL_SQFT": 1578514,
+      "PA_UPD_DATE": 1787803200000
+    }
+  },
+  "facts": {
+    "parcel_centroid_lon_lat": [
+      -77.4536634,
+      39.0122282
+    ],
+    "selected_point_lon_lat": [
+      -77.4536634,
+      39.0122282
+    ],
+    "selected_point_inside_parcel": true,
+    "selected_point_distance_to_boundary_m": 132.4,
+    "selected_point_distance_to_parcel_centroid_m": 0.0,
+    "parcel_centroid_inside": true,
+    "geodesic_acres": 36.272,
+    "bounds_lon_lat": [
+      -77.456043,
+      39.00982,
+      -77.451184,
+      39.015056
+    ],
+    "approx_extent_m": [
+      421,
+      581
+    ],
+    "max_vertex_distance_from_selected_point_m": 324,
+    "centroid_method": "area centroid computed in EPSG:32618 (pyproj 3.7.1, shapely 2.1.1) and transformed to WGS84; the EPSG:5070 (CONUS Albers) centroid differs by 0.000 m",
+    "parcel_valid": true,
+    "rings": 1,
+    "vertices": 163,
+    "reference_points": [
+      {
+        "label": "Loudoun County address point 22165 BEAUMEADE CIR, ASHBURN (MCPI 061200160000)",
+        "lon_lat": [
+          -77.45379647,
+          39.0138374
+        ],
+        "inside_parcel": true,
+        "distance_to_selected_point_m": 179.0,
+        "distance_to_boundary_m": 76.3
+      },
+      {
+        "label": "Loudoun County address point 22157 BEAUMEADE CIR, ASHBURN (MCPI 061200160000)",
+        "lon_lat": [
+          -77.45349833,
+          39.0127038
+        ],
+        "inside_parcel": true,
+        "distance_to_selected_point_m": 54.7,
+        "distance_to_boundary_m": 79.9
+      },
+      {
+        "label": "Loudoun County address point 22175 BEAUMEADE CIR, ASHBURN (MCPI 061200160000)",
+        "lon_lat": [
+          -77.45447936,
+          39.01185503
+        ],
+        "inside_parcel": true,
+        "distance_to_selected_point_m": 81.9,
+        "distance_to_boundary_m": 114.5
+      }
+    ]
+  },
+  "verification_script": "scratchpad equinix-amer-p11/write_geom.py (uv run --no-project --with pyproj==3.7.1 --with shapely==2.1.1 python -I)"
+}

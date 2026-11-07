@@ -1,0 +1,161 @@
+{
+ "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+ "candidate": "Iron Mountain Data Centers MUM-2 (Web Werks), Plot R-202, Trans Thane Creek Industrial Area, Rabale, Navi Mumbai: MIDC plot-centroid locator (new site, existing-operations project)",
+ "prepared_at": "2026-11-07",
+ "source": {
+  "file": "local_data/country-research-india-new-2-p10/midc/midc-ttc-plot-r-202.json",
+  "sha256": "acec0cc8c7c252851906dc466381739a5d64f04e59a3dec002a2b441e67f955f",
+  "service": "MIDC CitizenPortal/MIDC_Main_Map_Service MapServer layer 11 'Plot Boundary' (gis.midcindia.org), query IA_CODE=201 AND PLOT_NUMBER='R-202,R-202/1', fields limited to plot identifiers, area, published centroid, allotment status and land use (no allottee, user or editor fields requested)",
+  "statement": "One feature: OBJECTID 268204, IA_NAME 'Trans Thane Creek Industrial Area', IA_CODE 201, PLOT_NUMBER 'R-202,R-202/1', MIDC_PLOT_AREA 4088.0, LONGITUDE 73.00823489 and LATITUDE 19.14094209 (the layer's plot-centroid fields), ALLOTED_STATUS_TYPE 2 (allotted), MIDC_LAND_USE 1 (industrial), one ring of 13 vertices in EPSG:32643."
+ },
+ "native_ring": {
+  "crs": "EPSG:32643 WGS 84 / UTM zone 43N (response spatialReference wkid 32643)",
+  "vertices": [
+   [
+    290553.0290000001,
+    2117589.1986
+   ],
+   [
+    290521.92619999964,
+    2117570.8345999997
+   ],
+   [
+    290513.8509999998,
+    2117566.0328
+   ],
+   [
+    290501.0131999999,
+    2117588.1487000007
+   ],
+   [
+    290488.48649999965,
+    2117609.728599999
+   ],
+   [
+    290476.00260000024,
+    2117631.2349999994
+   ],
+   [
+    290474.3739,
+    2117634.0407
+   ],
+   [
+    290468.38239999954,
+    2117644.5511000007
+   ],
+   [
+    290488.50659999996,
+    2117656.386
+   ],
+   [
+    290497.52440000046,
+    2117661.5760999992
+   ],
+   [
+    290507.44519999996,
+    2117667.2858000007
+   ],
+   [
+    290533.2352999998,
+    2117623.684699999
+   ],
+   [
+    290553.0290000001,
+    2117589.1986
+   ]
+  ],
+  "area_m2": 4126.9
+ },
+ "transformation": {
+  "software": "pyproj 3.7.1, shapely 2.1.1",
+  "operation": "Inverse of UTM zone 43N on WGS 84 (no datum change), used only to check the published centroid",
+  "ring_wgs84": [
+   [
+    73.00864,
+    19.1406974
+   ],
+   [
+    73.0083464,
+    19.1405283
+   ],
+   [
+    73.0082701,
+    19.1404841
+   ],
+   [
+    73.0081457,
+    19.1406826
+   ],
+   [
+    73.0080244,
+    19.1408762
+   ],
+   [
+    73.0079034,
+    19.1410691
+   ],
+   [
+    73.0078876,
+    19.1410943
+   ],
+   [
+    73.0078295,
+    19.1411886
+   ],
+   [
+    73.0080195,
+    19.1412976
+   ],
+   [
+    73.0081046,
+    19.1413454
+   ],
+   [
+    73.0081983,
+    19.141398
+   ],
+   [
+    73.0084481,
+    19.1410068
+   ],
+   [
+    73.00864,
+    19.1406974
+   ]
+  ]
+ },
+ "selected_point": [
+  73.00823489,
+  19.14094209
+ ],
+ "selected_point_basis": "The plot centroid MIDC publishes in the record's LONGITUDE and LATITUDE fields, retained unchanged (direct geometry), as for the published Sify Airoli (KALWA-K-10), Sify Rabale (R-847/1/2), CtrlS Mumbai (A-GEN-72/1A) and Colt Navi Mumbai (KALWA-K-5/05A) locators in the same industrial area.",
+ "checks": {
+  "published_centroid_inside_ring": true,
+  "published_centroid_distance_to_ring_m": 22.8,
+  "computed_planar_centroid_wgs84": [
+   73.00823489,
+   19.14094209
+  ],
+  "published_vs_computed_centroid_m": 0.0,
+  "ring_area_vs_midc_plot_area_m2": [
+   4126.9,
+   4088.0
+  ],
+  "plot_extent_m": [
+   84.6,
+   101.3
+  ],
+  "farthest_vertex_from_selected_point_m": 50.8,
+  "operator_address": "Iron Mountain's Mumbai data-centre page (Internet Archive copy of 13 May 2026, local ia-irm-mumbai-20260513.html) gives 'MUM-2: R202, Sec-8, Rabale, Navi Mumbai, 400701, India' and 'MUM-1: 9th Floor, Sigma IT Park, Sector-8, Rabale'; the MUM-2 brochure (local irm-mum-2-brochure.pdf) says MUM-2 is 'Located next to IMDC MUM-1'. No operator coordinate was used.",
+  "uniqueness": "Query IA_CODE IN (201, 4680) AND PLOT_NUMBER LIKE '%202%' (local midc-ttc-plot-202-search.json, sha256 61fff70762072da6d380a5f8e1f831f4e74170d6b3d5f4834bc5e5de52cb23c4) returns eight records. 'R-202,R-202/1' is the only industrial plot in the Rabale R block carrying 202. The others are a 400 m2 project-affected-person plot 'PAP-R-201/202,203AND376' (land-use code 4) 236 m away, plots in other TTC blocks (W-202 at 4.8 km, the merged EL-201/EL-202/EL-229 plot at 4.0 km, D-202 and its two parts at 8.6 km) and a 57 m2 PAP-A-202 plot at 3.4 km.",
+  "neighbours": "A 200 m buffer query around the point (local midc-ttc-plots-within-200m-of-r-202.json, sha256 4507c4cd753db925296321b7a1d2a09acaa7afe41fc4df86bbf6eda06917bf62) returns the adjoining allotted plot 'R-203,R-204' (8,100 m2, centroid 45 m away) and 'R-205,R-206/207/1' (11,249 m2, 181 m away), among smaller industrial plots. No source used here ties MUM-1 (Sigma IT Park) to a plot number, so the campus extent is not mapped.",
+  "imagery_visual_check": "Esri World Imagery export of the surrounding block (local esri/esri-r-202-rabale.jpg, visual check only, not a locator source): the point falls on a tall building with rows of rooftop plant, next to a larger tower to the north-east."
+ },
+ "nearest_atlas_records_m": {
+  "imported:semiconductor-atlas:sify-rabale-navi-mumbai (MIDC R-847/1/2 centroid)": 978.3,
+  "curated:adaniconnex-navi-mumbai-ghansoli-acxnmi01-campus": 2455.5,
+  "curated:sify-airoli-reliable-plaza-k10-data-center": 3263.7,
+  "curated:colt-dcs-navi-mumbai-campus": 3666.0
+ },
+ "geodesic": "pyproj Geod(ellps='WGS84') inverse distances"
+}

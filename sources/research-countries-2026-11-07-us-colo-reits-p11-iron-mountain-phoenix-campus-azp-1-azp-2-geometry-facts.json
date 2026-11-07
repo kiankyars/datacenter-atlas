@@ -1,0 +1,88 @@
+{
+  "candidate_id": "us-colo-reits-p11-iron-mountain-phoenix-campus-azp-1-azp-2",
+  "decision": "Selected the area centroid of the union of Maricopa County Assessor parcels 125-08-007A (situs 615 N 48TH ST; owner IO DATA CENTERS LLC) and 125-08-002C (situs 4802 E VAN BUREN ST; owner 4802 E VAN BUREN LLC), the 39-acre Phoenix campus of AZP-1 and AZP-2, as the campus locator.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -111.9766244,
+      33.4538733
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_tax_parcel_union_centroid",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-us-colo-reits-p11/mcassessor-parcels-azp1-azp2",
+  "source_sha256": "c7e812edcb45d8c97dcd678fffe0294b916347620fdd63322588c9b7f81941d7",
+  "source_url": "https://gis.mcassessor.maricopa.gov/arcgis/rest/services/Parcels/MapServer/0/query?where=APN+IN+%28%2712508007A%27%2C%2712508002C%27%29&outFields=APN%2CAPN_DASH%2COWNER_NAME%2CPHYSICAL_ADDRESS%2CLAND_SIZE%2CDEED_DATE%2CPUC%2CJURISDICTION%2CSTR&returnGeometry=true&outSR=4326&f=json",
+  "retrieved_at": "2026-11-07T01:53:30.255Z",
+  "selected_properties": {
+    "12508002C": {
+      "APN": "12508002C",
+      "APN_DASH": "125-08-002C",
+      "OWNER_NAME": "4802 E VAN BUREN LLC",
+      "PHYSICAL_ADDRESS": "4802 E VAN BUREN ST   PHOENIX  85008",
+      "LAND_SIZE": 392454,
+      "PUC": "1507",
+      "JURISDICTION": "PHOENIX",
+      "STR": "5 1N 4E"
+    },
+    "12508007A": {
+      "APN": "12508007A",
+      "APN_DASH": "125-08-007A",
+      "OWNER_NAME": "IO DATA CENTERS LLC",
+      "PHYSICAL_ADDRESS": "615 N 48TH ST   PHOENIX  85008",
+      "LAND_SIZE": 1324354,
+      "PUC": "1507",
+      "JURISDICTION": "PHOENIX",
+      "STR": "5 1N 4E"
+    }
+  },
+  "facts": {
+    "centroid_lon_lat": [
+      -111.9766244,
+      33.4538733
+    ],
+    "centroid_inside": true,
+    "centroid_distance_to_boundary_m": 107.1,
+    "geodesic_area_m2": 159615.0,
+    "geodesic_acres": 39.442,
+    "union_geometry_type": "Polygon",
+    "parcel_count": 2,
+    "bounds_lon_lat": [
+      -111.978331,
+      33.451207,
+      -111.974117,
+      33.4565
+    ],
+    "approx_extent_m": [
+      394,
+      589
+    ],
+    "max_vertex_distance_from_centroid_m": 331.6,
+    "centroid_method": "area centroid of the parcel union computed in EPSG:32612 (pyproj 3.7.1, shapely 2.1.1) and transformed to WGS84, rounded to 7 decimals; the EPSG:5070 (CONUS Albers) centroid differs by 0.003 m",
+    "parcel_valid": true,
+    "reference_points": [
+      {
+        "label": "US Census geocoder match '615 N 48TH ST, PHOENIX, AZ, 85008' (address-range interpolation, TIGER line 128224178)",
+        "lon_lat": [
+          -111.97838160586,
+          33.45414361211
+        ],
+        "inside_parcel": false,
+        "distance_to_centroid_m": 166.1,
+        "distance_to_boundary_m": 6.8
+      },
+      {
+        "label": "US Census geocoder match '4802 E VAN BUREN ST, PHOENIX, AZ, 85008' (address-range interpolation, TIGER line 650136721)",
+        "lon_lat": [
+          -111.978318087386,
+          33.451171259586
+        ],
+        "inside_parcel": false,
+        "distance_to_centroid_m": 338.5,
+        "distance_to_boundary_m": 8.0
+      }
+    ]
+  },
+  "verification_script": "scratchpad colo-p11/facts.py (uv run --no-project --with pyproj==3.7.1 --with shapely==2.1.1 python -I)"
+}

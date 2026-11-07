@@ -1,0 +1,95 @@
+{
+ "format": "datacenter-atlas-geometry-facts-v1",
+ "fragment": "saudi-gulf-p10",
+ "subject": "MEEZA data centre campus at Umm Garn (Qatar Foundation data centre; M-VAULT 2 and the adjacent M-VAULT 6), Qatar",
+ "computed_at": "2026-11-07",
+ "capture_files": [
+  "local_data/country-research-saudi-gulf-p10/gisqatar-landmarks-q-meeza-datacentre.json",
+  "local_data/country-research-saudi-gulf-p10/gisqatar-landmarks-q-data.json",
+  "local_data/country-research-saudi-gulf-p10/gisqatar-landmarks-layer0.json",
+  "local_data/country-research-saudi-gulf-p10/gisqatar-landmarks-service.json",
+  "local_data/country-research-saudi-gulf-p10/gisqatar-qars-reverse-landmark-2.json",
+  "local_data/country-research-saudi-gulf-p10/gisqatar-qars-locator-info.json"
+ ],
+ "capture_sha256": {
+  "gisqatar-landmarks-q-meeza-datacentre.json": "55f019891717ca01f65c0172a18e910f30d59bc891349f7303a6fcfc1ea3a16a",
+  "gisqatar-landmarks-q-data.json": "0ec2030debdebc5e2020814d001e95e350cda2d0869733236f4243d4bb50229f",
+  "gisqatar-landmarks-layer0.json": "e59e0624a425fbf999e9c92ea031171046a9950d49e592cfc0b1b9a9b076b728",
+  "gisqatar-landmarks-service.json": "37cfccb568fdc0ea263b03a86581372e1e2c2bf8148909659d1e935779e23ced",
+  "gisqatar-qars-reverse-landmark-2.json": "2b986302f139d554f7bd7eaef4845ada72c5f3825dde5547d1b0e6ab4601873a",
+  "gisqatar-qars-locator-info.json": "05a2b7a0f4d0ac81dc981db44104d21e113b167d4612847058a9137eed352878"
+ },
+ "source_service": "Government of Qatar, Ministry of Municipality GIS ArcGIS Server (services.gisqatar.org.qa, ArcGIS 11.3): MapServer Vector/Landmarks layer 0 'Landmarks' (named landmark gazetteer, native CRS EPSG:2932 QND95 / Qatar National Grid) and GeocodeServer Vector/QARS_Custom_Locator (Qatar national address system zone/street/building points). Both queried without token, login or form; robots.txt on the host returns HTTP 404 (no restrictions).",
+ "landmark_query": {
+  "where": "UPPER(ENAME) LIKE '%MEEZA%' OR UPPER(ENAME) LIKE '%DATA CENT%' OR UPPER(ENAME) LIKE '%VAULT%' OR UPPER(ENAME) LIKE '%DATACENT%'",
+  "features_returned": 2,
+  "broader_query_where": "UPPER(ENAME) LIKE '%DATA%' OR ANAME LIKE N'%بيانات%' OR UPPER(ENAME) LIKE '%SERVER%'",
+  "broader_query_features_returned": 2,
+  "note": "No landmark is named MEEZA or M-VAULT. Only two landmarks in the whole layer are data centres: 'Data Center, Qatar Foundation' in Umm Garn (selected) and 'Ooredoo, Data Center' in Wadi Al Sail, Doha (27.6 km away, unrelated)."
+ },
+ "selected_landmark": {
+  "OBJECTID": 624061,
+  "LANDMARK_ID": 7354,
+  "CATEGORY": "GOVERNMENT",
+  "SUBCATEGORY": 27,
+  "ENAME": "Data Center, Qatar Foundation",
+  "ANAME": "مركز البيانات، مؤسسة قطر",
+  "DISTRICT_ENAME": "Umm Garn",
+  "ZONE_NO": 70,
+  "STREET_NO": 1495,
+  "STREET_ENAME": "Street 1495",
+  "BUILDING_NO": 125,
+  "STATUS": 1,
+  "DATE_MODFD_epoch_ms": 1511222401000,
+  "DATE_MODFD_utc": "2017-11-21",
+  "native_XCOORD_YCOORD_epsg2932": [
+   222467,
+   421942
+  ],
+  "service_outSR4326_lonlat": [
+   51.43945715445179,
+   25.551354402802474
+  ],
+  "pyproj_check": "pyproj 3.7.1 EPSG:2932 -> EPSG:4326 using 'Inverse of Qatar National Grid + QND95 to WGS 84 (1)' gives 51.4394579, 25.5513560 from the integer XCOORD/YCOORD attributes, 0.19 m from the service's WGS 84 output; the service output is used unchanged apart from rounding to 7 decimals.",
+  "fields_not_copied": "The layer's phone, fax, e-mail and P.O. box fields were not requested or copied."
+ },
+ "qars_address_point": {
+  "query": "reverseGeocode at the selected landmark point (WGS 84)",
+  "returned_ZONE_NO": 70,
+  "returned_STREET_NO": 1495,
+  "returned_BUILDING_NO": 125,
+  "returned_epsg2932": [
+   222489.98786862777,
+   421967.16744205914
+  ],
+  "returned_lonlat": [
+   51.439687094435,
+   25.551582816593
+  ],
+  "distance_from_landmark_m": 34.3,
+  "note": "The national address point returned for the landmark location carries the same zone 70, street 1495, building 125 that the landmark record states, which ties the named landmark to the addressed building. It is a building address point, not a footprint."
+ },
+ "imagery_check": {
+  "service": "Esri World Imagery tiles z17 (x 84263-84265, y 55907-55909), viewed only; no imagery or derived geometry copied; acquisition date not established",
+  "tiles": [
+   "esri-img-z17-55907-84263.jpg",
+   "esri-img-z17-55907-84264.jpg",
+   "esri-img-z17-55907-84265.jpg",
+   "esri-img-z17-55908-84263.jpg",
+   "esri-img-z17-55908-84264.jpg",
+   "esri-img-z17-55908-84265.jpg",
+   "esri-img-z17-55909-84263.jpg",
+   "esri-img-z17-55909-84264.jpg",
+   "esri-img-z17-55909-84265.jpg"
+  ],
+  "observation": "The landmark point lies inside a walled compound about 140 m east-west by 250 m north-south (measured approximately at about 1.08 m per pixel). The compound holds one large purpose-built building with a distinctive pitched central roof and a yard of plant units along its south side, consistent with a data centre. The QARS building-125 point lies 34 m north-east of the landmark point at the compound's east entrance. A vacant plot of about 155 by 285 m lies directly east across the access road; no construction is visible on it in this imagery, which therefore predates the M-VAULT 6 works (start Q4 2025). The imagery cannot show which adjacent plot M-VAULT 6 occupies."
+ },
+ "geometry": {
+  "type": "Point",
+  "coordinates": [
+   51.4394572,
+   25.5513544
+  ]
+ },
+ "geometry_note": "Campus point for the MEEZA Umm Garn site: the government's named landmark for the Qatar Foundation data centre (M-VAULT 2). MEEZA's 2023 prospectus places M-VAULT 6 'next to MV-2', and the 29 October 2026 presentation places both in Um Garn; the M-VAULT 6 building's own plot is not published, so the point is not a footprint or centroid of M-VAULT 6."
+}

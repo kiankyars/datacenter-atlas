@@ -1,0 +1,98 @@
+{
+  "candidate_id": "equinix-amer-p11-equinix-dc3-chilum-place",
+  "decision": "Selected the official Loudoun County address point for 44470 CHILUM PL (LandRecords MapServer layer 2, on MCPI 060182916000) as the locator for Equinix DC3. The parcel centroid is not used: the 22.6-acre parcel also carries 44490 Chilum Place and 44520 Hastings Drive, whose county permits name the ACC2 and ACC3 data centers, and its centroid falls outside the concave parcel.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -77.4612226,
+      39.0222561
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_address_point",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-equinix-amer-p11/loudoun-addresspoint-44470-chilum-pl.json",
+  "source_sha256": "21a3bd0f8a2c18f2dac85a73514d9a73501a310da5d48c464200d2fb92c97139",
+  "source_url": "https://logis.loudoun.gov/gis/rest/services/COL/LandRecords/MapServer/2/query?where=UPPER(FULL_ADDRESS)%20LIKE%20%2744470%20CHILUM%25%27&outFields=AD_MCPI,AD_ADDRESS,AD_POINT_TYPE,FULL_ADDRESS,AM_POINT_X_DD,AM_POINT_Y_DD,AD_UPD_DATE&returnGeometry=true&outSR=4326&f=json",
+  "retrieved_at": "2026-11-07T01:59:09.679Z",
+  "other_address_points_source_file": "local_data/country-research-equinix-amer-p11/loudoun-addresspoints-three-parcels.json",
+  "other_address_points_source_sha256": "6cd820f9db22a937ec7ec3ebe18e64429bb044e4374a63ac3087b5ca57354a04",
+  "parcel_source_file": "local_data/country-research-equinix-amer-p11/loudoun-parcels-three.json",
+  "parcel_source_sha256": "f07475f206282b90f5b878131a4935fe935d4c8d8a41bacfd935bde3c641ae1c",
+  "parcel_source_url": "https://logis.loudoun.gov/gis/rest/services/COL/LandRecords/MapServer/5/query?where=PA_MCPI%20IN%20%28%27061200160000%27%2C%27060209652000%27%2C%27060182916000%27%29&outFields=PA_MCPI,PA_TYPE,PA_PLAT_NUM,PA_LEGAL_ACRE,PA_SUBD_NAME,PA_SUBD_PHASE,PA_LEGAL_SQFT,PA_UPD_DATE&returnGeometry=true&outSR=4326&f=json",
+  "selected_properties": {
+    "address_point": {
+      "AD_MCPI": "060182916000",
+      "AD_ADDRESS": 44470,
+      "AD_POINT_TYPE": "2",
+      "FULL_ADDRESS": "44470 CHILUM PL, ASHBURN",
+      "AM_POINT_X_DD": -77.46122261,
+      "AM_POINT_Y_DD": 39.02225612,
+      "AD_UPD_DATE": 1137474000000
+    },
+    "060182916000": {
+      "PA_MCPI": "060182916000",
+      "PA_TYPE": "C",
+      "PA_PLAT_NUM": "2022-0141",
+      "PA_LEGAL_ACRE": 22.62,
+      "PA_SUBD_NAME": "ASHBURN CORPORATE CENTER",
+      "PA_SUBD_PHASE": "1",
+      "PA_LEGAL_SQFT": 985335,
+      "PA_UPD_DATE": 1727064000000
+    }
+  },
+  "facts": {
+    "parcel_centroid_lon_lat": [
+      -77.4601004,
+      39.0211068
+    ],
+    "selected_point_lon_lat": [
+      -77.4612226,
+      39.0222561
+    ],
+    "selected_point_inside_parcel": true,
+    "selected_point_distance_to_boundary_m": 54.3,
+    "selected_point_distance_to_parcel_centroid_m": 160.4,
+    "parcel_centroid_inside": false,
+    "geodesic_acres": 22.594,
+    "bounds_lon_lat": [
+      -77.462649,
+      39.018726,
+      -77.457948,
+      39.023357
+    ],
+    "approx_extent_m": [
+      407,
+      514
+    ],
+    "max_vertex_distance_from_selected_point_m": 418,
+    "centroid_method": "area centroid computed in EPSG:32618 (pyproj 3.7.1, shapely 2.1.1) and transformed to WGS84; the EPSG:5070 (CONUS Albers) centroid differs by 0.000 m",
+    "parcel_valid": true,
+    "rings": 1,
+    "vertices": 66,
+    "reference_points": [
+      {
+        "label": "Loudoun County address point 44520 HASTINGS DR, ASHBURN (MCPI 060182916000)",
+        "lon_lat": [
+          -77.45994396,
+          39.01996301
+        ],
+        "inside_parcel": true,
+        "distance_to_selected_point_m": 277.6,
+        "distance_to_boundary_m": 84.6
+      },
+      {
+        "label": "Loudoun County address point 44490 CHILUM PL, ASHBURN (MCPI 060182916000)",
+        "lon_lat": [
+          -77.45943986,
+          39.02150511
+        ],
+        "inside_parcel": true,
+        "distance_to_selected_point_m": 175.5,
+        "distance_to_boundary_m": 50.2
+      }
+    ],
+    "address_point_attribute_vs_geometry_m": 0.0
+  },
+  "verification_script": "scratchpad equinix-amer-p11/write_geom.py (uv run --no-project --with pyproj==3.7.1 --with shapely==2.1.1 python -I)"
+}

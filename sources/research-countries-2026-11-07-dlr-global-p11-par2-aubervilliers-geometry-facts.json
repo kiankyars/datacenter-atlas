@@ -1,0 +1,90 @@
+{
+ "candidate_id": "dlr-global-p11-digital-realty-par2-aubervilliers",
+ "decision": "Selected the Base Adresse Nationale housenumber point '20 Rue des Gardinoux 93300 Aubervilliers' (id 93001_4120_00020) returned by the IGN Géoplateforme geocoder as the site locator for Digital Realty PAR2 (20-22 rue des Gardinoux, Bâtiment E501), copied without transformation.",
+ "geometry": {
+  "type": "Point",
+  "coordinates": [
+   2.370445,
+   48.906762
+  ]
+ },
+ "authority_class": "official_source",
+ "derivation": "direct_geometry",
+ "scope_class": "official_address_point_of_operator_published_address",
+ "use_scope": "reviewed_site_locator",
+ "source_file": "local_data/country-research-dlr-global-p11/geopf-geocode-20-rue-des-gardinoux-aubervilliers.json",
+ "source_sha256": "265b77b4c21f7bb7887c0cccc1619f08921db7ba274bf417f0df8af92132d602",
+ "source_url": "https://data.geopf.fr/geocodage/search?q=20%20rue%20des%20Gardinoux%2093300%20Aubervilliers&index=address&limit=5",
+ "retrieved_at": "2026-11-07T02:00:37.831Z",
+ "selected_properties": {
+  "label": "20 Rue des Gardinoux 93300 Aubervilliers",
+  "score": 0.9713263636363636,
+  "housenumber": "20",
+  "id": "93001_4120_00020",
+  "banId": "ec725186-1e52-49e8-b30f-429a489899dc",
+  "name": "20 Rue des Gardinoux",
+  "postcode": "93300",
+  "citycode": "93001",
+  "x": 653852.15,
+  "y": 6867602.15,
+  "city": "Aubervilliers",
+  "context": "93, Seine-Saint-Denis, Île-de-France",
+  "type": "housenumber",
+  "importance": 0.68459,
+  "depcode": "93",
+  "street": "Rue des Gardinoux",
+  "_type": "address"
+ },
+ "transform": "none for the selected point (published WGS84); checks computed in EPSG:2154 (Lambert-93) with pyproj 3.7.1 and shapely 2.1.1",
+ "consistency_checks": {
+  "ban_lambert93_xy": [
+   653852.15,
+   6867602.15
+  ],
+  "ban_lambert93_to_wgs84_vs_point_m": 0.006,
+  "parcel_containing_point": "930010000P0005",
+  "parcel_P0005_contenance_m2": 26408,
+  "parcel_P0005_planar_area_m2": 26417.3,
+  "parcel_P0005_extent_m": [
+   174.7,
+   231.7
+  ],
+  "point_inside_P0005": true,
+  "point_distance_to_P0005_boundary_m": 16.1,
+  "point_distance_to_P0005_centroid_m": 96.4,
+  "farthest_P0005_vertex_from_point_m": 217.0,
+  "reference_points": [
+   {
+    "label": "Géorisques AIOT 0007404608 INTERXION FRANCE, '20 RUE DES GARDINOUX' (SIRET 42394579900082)",
+    "lon_lat": [
+     2.370443,
+     48.906761
+    ],
+    "inside_P0005": true,
+    "distance_to_P0005_boundary_m": 16.0,
+    "distance_to_selected_point_m": 0.2
+   },
+   {
+    "label": "Digital Realty PAR2 page field_latitude/field_longitude (not used)",
+    "lon_lat": [
+     2.37014,
+     48.90662
+    ],
+    "inside_P0005": false,
+    "distance_to_P0005_boundary_m": 1.1,
+    "distance_to_selected_point_m": 27.4
+   },
+   {
+    "label": "Géorisques AIOT 0007404609 INTERXION FRANCE, '45 AVENUE VICTOR HUGO' (PAR1 address)",
+    "lon_lat": [
+     2.371631,
+     48.903233
+    ],
+    "inside_P0005": false,
+    "distance_to_P0005_boundary_m": 381.3,
+    "distance_to_selected_point_m": 402.0
+   }
+  ]
+ },
+ "verification_script": "scratchpad bin/facts.py (uv run --no-project --with pyproj==3.7.1 --with shapely==2.1.1 python -I)"
+}

@@ -1,0 +1,73 @@
+{
+  "candidate_id": "us-colo-reits-p11-iron-mountain-chi-1-des-plaines",
+  "decision": "Selected the area centroid of Cook County parcel 09-28-300-013 (ccgisdata Parcel 2021 polygon; Assessor property address 1700 E TOUHY AVE, Des Plaines; Cook County GIS address point 1680 East Touhy Avenue on the same PIN) as the campus locator for Iron Mountain CHI-1.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -87.8809281,
+      42.011143
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_tax_parcel_centroid",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-us-colo-reits-p11/cook-parcel2021-0928300013",
+  "source_sha256": "bbd2e1035f9e3f05591fb58dc2cbb8a3da85c7b1cac3c2c8f35e44c447f6ed04",
+  "source_url": "https://datacatalog.cookcountyil.gov/resource/77tz-riq7.json?$select=pin10,assessorbldgclass,municipality,the_geom&$where=pin10=%270928300013%27",
+  "retrieved_at": "2026-11-07T01:55:50.809Z",
+  "selected_properties": {
+    "0928300013": {
+      "pin10": "0928300013",
+      "assessorbldgclass": "100",
+      "municipality": "Des Plaines"
+    }
+  },
+  "facts": {
+    "centroid_lon_lat": [
+      -87.8809281,
+      42.011143
+    ],
+    "centroid_inside": true,
+    "centroid_distance_to_boundary_m": 98.6,
+    "geodesic_area_m2": 54136.6,
+    "geodesic_acres": 13.377,
+    "union_geometry_type": "Polygon",
+    "parcel_count": 1,
+    "bounds_lon_lat": [
+      -87.882121,
+      42.00988,
+      -87.879729,
+      42.012408
+    ],
+    "approx_extent_m": [
+      200,
+      279
+    ],
+    "max_vertex_distance_from_centroid_m": 171.5,
+    "centroid_method": "area centroid of the parcel union computed in EPSG:32616 (pyproj 3.7.1, shapely 2.1.1) and transformed to WGS84, rounded to 7 decimals; the EPSG:5070 (CONUS Albers) centroid differs by 0.003 m",
+    "parcel_valid": true,
+    "reference_points": [
+      {
+        "label": "Cook County GIS address point 1680 EAST TOUHY AVENUE, Des Plaines 60018 (objectid 442206, PIN 09283000130000)",
+        "lon_lat": [
+          -87.88164023,
+          42.01127474
+        ],
+        "inside_parcel": true,
+        "distance_to_centroid_m": 60.8,
+        "distance_to_boundary_m": 39.6
+      },
+      {
+        "label": "Cook County Assessor Parcel Universe published centroid for PIN 09283000130000 (tax years 2024-2026)",
+        "lon_lat": [
+          -87.8809280852,
+          42.0111430232
+        ],
+        "inside_parcel": true,
+        "distance_to_centroid_m": 0.0,
+        "distance_to_boundary_m": 98.6
+      }
+    ]
+  },
+  "verification_script": "scratchpad colo-p11/facts.py (uv run --no-project --with pyproj==3.7.1 --with shapely==2.1.1 python -I)"
+}

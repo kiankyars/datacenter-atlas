@@ -1,0 +1,45 @@
+{
+  "candidate_id": "equinix-amer-p11-equinix-mt1-montreal",
+  "decision": "Selected the official Adresses Quebec address point (MRNF AQ_ADRESSES_WMS layer 0, version AQ20261101) for 6205 rue Vanden-Abeele, Montreal H4S 1S1 as the campus locator for Equinix MT1 (Equinix address 6205 Vanden Abeele Street, Saint Laurent, Quebec H4S 1S1). It is the only address record returned for that civic number on that street.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -73.7452272,
+      45.4889859
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_address_point",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-equinix-amer-p11/aq-adresse-6205-vanden-abeele.json",
+  "source_sha256": "0e2987f7f1e31e7820a2beedd3385dacf6d39d5d8ffcff48a21965c0d960b003",
+  "source_url": "https://servicescarto.mrnf.gouv.qc.ca/pes/rest/services/Territoire/AQ_ADRESSES_WMS/MapServer/0/query?where=NoCivq%3D6205+AND+upper%28AdresseFormatee%29+LIKE+%27%25VANDEN%25%27&outFields=*&returnGeometry=true&outSR=4326&f=json",
+  "retrieved_at": "2026-11-07T01:58:24.373Z",
+  "selected_properties": {
+    "address_point": {
+      "AdresseFormatee": "6205 rue Vanden-Abeele, Montréal H4S1S1",
+      "CaractAdr": "",
+      "IdAdr": "326d039c7060798ce06371f2298e3963",
+      "NbUnite": 1,
+      "NoCivq": 6205,
+      "NoCivqSuf": null,
+      "OBJECTID": 321039,
+      "Position": "-73.745225395195348, 45.48897549443145",
+      "Version": "AQ20261101"
+    }
+  },
+  "facts": {
+    "returned_records": 1,
+    "geometry_lon_lat_outSR_4326": [
+      -73.7452271574915,
+      45.488985881640865
+    ],
+    "position_attribute_lon_lat": [
+      -73.74522539519535,
+      45.48897549443145
+    ],
+    "geometry_vs_position_attribute_m": 1.16,
+    "note": "The layer returns the point in WGS84 (outSR 4326); its Position attribute is the native NAD83(CSRS) longitude/latitude. The 4326 geometry is used; the difference is a datum transformation, not a different address."
+  },
+  "verification_script": "scratchpad equinix-amer-p11/write_geom.py (uv run --no-project --with pyproj==3.7.1 --with shapely==2.1.1 python -I)"
+}

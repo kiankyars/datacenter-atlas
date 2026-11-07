@@ -1,0 +1,390 @@
+{
+  "reviewer": "root",
+  "reviewed_at": "2026-11-07",
+  "decision": "accepted_for_integration",
+  "update": "verified_construction_core/2026-11-07-research-hundredtwentyninth",
+  "base_dataset": "verified_construction_core/2026-11-07-research-hundredtwentyeighth",
+  "process": "continuous: one researcher per beat, one adversarial verifier per fragment",
+  "fragments": [
+    {
+      "fragment": "br-cl-co-ops-p10",
+      "verdict": "accept",
+      "checks": [
+        "rehashed all 6 relied-on captures (Nebula post, Nebula page, hostdime.com Colombia page, ZF Tocancipá news, IGAC R_TERRENO, IGAC R_CONSTRUCCION) plus the sitemap: sha256 matches .metadata.json and content_hash; geometry facts sha256 b9a49be5... matches",
+        "status read in capture: HostDime Colombia BlogPosting (author/publisher Organization HostDime Colombia; datePublished = dateModified = article:published_time 2026-10-21T20:06:08Z) says Uptime issued Tier IV Facility on 28 Aug 2026 'sobre la instalación construida y en operación' and that after ~2.5 years of operation the first 208-rack hall is 95% occupied at ~1.5 MW IT; company_disclosure; 17 days before 2026-11-07",
+        "date check: 15 newsletter posts were posted to the blog within minutes on 2026-10-21 (created_at, sitemap lastmod); content dates the text to >= 23 Sep 2026, so the observation is in window either way; date_semantics amended to disclose this",
+        "scope: existing operations only; Q2 2027 second white area is a forecast and not used; no capacity beyond first-hall IT load asserted; commercial colocation",
+        "locator recomputed from raw capture: JSON-LD LocalBusiness 'HostDime Colombia — Data Center Nebula' geo 4.9631492, -73.9616311 with the Tocancipá free-zone Interior 9 address; [lon, lat] order correct; method string passes the builder map-service check",
+        "locator source acceptable under the rule (operator schema.org structured data); the page's Google Maps embed carries identical values and was not the source; precedent: operator schema.org points (Bulk N01/DK01, firstcolo FRA7, eStruxture CAL3, TierPoint OK2)",
+        "IGAC containment recomputed (EPSG:9377, pyproj 3.7.1/shapely 2.1.1): exactly one R_TERRENO parcel 258170000000000050904900000000 (prefix 25817 = Tocancipá), 38.72 ha, point 92.1 m inside, 310.0 m from centroid, so not a zone centroid; no R_CONSTRUCCION polygon contains the point, nearest 29.2 m (1 storey)",
+        "identity: hostdime.com Colombia page gives the same Int 9 free-zone address, 5-storey, >800 racks, HostDime sole owner/operator/developer; Bogotá office excluded",
+        "zftocancipa source relabelled from company_disclosure to news: the page is a republished La República article ('Tomado de'); title, publisher, attribution, licence, summary and identity_review wording corrected; context only",
+        "distinctness: no HostDime/Nebula/Tocancipá/Verganzo/tax-ID match in sites.csv, projects.csv, evidence.csv, source-records.json, identity-mapping.json of 2026-11-07-research-hundredtwentyeighth, other queue changes/holds, sources/*-holds.json; nearest site ODATA BG01 at 30.3 km; only claims.tsv hit is this fragment",
+        "roles: HostDime Colombia (HOSTDIME.COM.CO S.A.S.) operator, current; no private personal data (phones, emails, quoted executives) in sources, summaries, URLs or holds",
+        "holds (Claro Triara/Megacenter, Equinix RJ1/RJ2 lead, beat sweep) reviewed: reasons and reopen conditions coherent; no personal data",
+        "dryrun_fragment.py ok: 1,017 sites, 1,097 projects, 6,097 evidence rows on base 2026-11-07-research-hundredtwentyeighth"
+      ],
+      "residual_risks": [
+        "the operator's schema.org coordinate equals its embedded Google Maps pin, so the operator may have taken it from a map listing; accepted because the rule admits operator-published structured-data coordinates, but horizontal uncertainty is unknown and the point lies on a free-zone internal road rather than inside a recorded construction",
+        "status as_of is publication-normalized to the 2026-10-21 blog posting; the newsletter text may date from late Sept/early Oct 2026",
+        "IGAC public layers publish no licence text or currency date; used only as context"
+      ]
+    },
+    {
+      "fragment": "dlr-global-p11",
+      "verdict": "accept",
+      "checks": [
+        "base dataset read from site/config.json: verified_construction_core/2026-11-07-research-hundredtwentyeighth (re-read before finishing, unchanged)",
+        "all 24 relied-on captures rehashed: file sha256 == metadata sha256 == source content_hash, byte counts and URLs match, HTTP 200, no credentials, robots allowed",
+        "IA sitemap copies in dlr-global-p11 and ops-mea-p6 are byte-identical and match existing Atlas evidence 4b075ef5/07a6564d",
+        "Sydney post read in capture: visible date 04 September 2026 and node field_publish_date 2026-09-04; FAQ 'We operate two data centers in Sydney: SYD10 at 1-11 Templar Road and SYD11 at 13-23 Templar Road'; absent from 4 Jun sitemap copy, present 3 Oct",
+        "Flex post read in capture: visible date 30 October 2026, own node field_publish_date 2026-10-30; 'platform now runs from two Digital Realty sites in Paris: PAR2 ... and PAR7'; PAR2/PAR7 linked to DLR facility pages; absent from 3 Oct sitemap, live lastmod 2026-11-04",
+        "2026-10-30 dates on other DLR pages (Boston/Marseille blogs, case studies, Q3 release) traced to the Flex related-content card, not re-dated main content",
+        "85-day floor 2026-08-14: Sydney 2026-09-04 (64 days), Paris 2026-10-30 (8 days); both company_disclosure on operator's own blog; as_of == published_at",
+        "SYD locator recomputed: NSW AddressPoint rid 2895724 (150.7958846,-33.816152) inside Lot 2 DP1160603, 58.8 m from boundary, 4.5 m from lot centroid; 15 Templar Rd point 137.1 m; lots share 129.2 m boundary; union 34,859 m2, max vertex 213 m",
+        "PAR7 locator recomputed: Georisques AIOT 0006514850 point (2.402225,48.924981); L93 656197/6869610 converts within 0.05 m; 0.5 m outside parcel R0185, 57.2 m from centroid; BAN 1/3 Rue Rateau 62.4/29.7 m; DLR page point 94.3 m",
+        "PAR7 identity: inspection PDF pages 1-2 rendered: INTERXION FRANCE site INTERXION PAR7, 1-3 rue du Rateau, admin building plus operating buildings 7.1 and 7.2",
+        "PAR2 locator recomputed: BAN 93001_4120_00020 (2.370445,48.906762); L93 converts within 0.01 m; inside parcel P0005 16.1 m from boundary, 96.4 m from centroid; 0.18 m from Georisques INTERXION FRANCE 20 rue des Gardinoux; DLR page point 27.4 m",
+        "locator sources are government registers / official open geocoder (NSW Spatial Services, Georisques, IGN Geoplateforme BAN); no map-service, embed, PeeringDB or OSM coordinates; NSW licence wording matches existing Atlas evidence",
+        "distinctness: no Atlas site/project/evidence/source-record/identity-mapping hit for Templar, SYD10/11, Rateau, Gardinoux, E501, AIOT/SIRET ids or DP1160603; nearest Atlas sites STACK SYD01 1.48 km, Paris Digital Park 399 m (fr-p2 review names PAR7 as separate), Equinix Saint-Denis 2.72 km",
+        "queue screen: no other fragment addition, locator correction or claim within 2 km or naming these facilities; sixty-sixth hold on PAR7 is a lead_only whose reopen condition is met",
+        "roles: Digital Realty operator current; Flex customer current, both from the Flex post",
+        "successor: Q3 2026 release names only land buys (Brussels, Dugny) and Teraco stake, no sale or closure of SYD10/11, PAR2 or PAR7",
+        "no third-party personal names in changes, sources, holds or notes; one project per new site",
+        "dryrun_fragment.py ok against the current base"
+      ],
+      "residual_risks": [
+        "PAR2 point is the street address point of a 2.6 ha multi-building parcel; Batiment E501 position unpublished (up to ~217 m)",
+        "PAR7 point sits on the street edge of the 1.8 ha parcel, not on building 7.1 or 7.2",
+        "SYD campus locator is the SYD10 lot address point; SYD11 is on the adjoining lot up to ~213 m away",
+        "Paris status rests on a customer story published on the operator's blog, not a facility-specific operator notice",
+        "Sydney publication date bounded by sitemap copies only to 4 Jun-3 Oct 2026; the in-window date relies on the page's own displayed publish date"
+      ]
+    },
+    {
+      "fragment": "equinix-amer-p11",
+      "verdict": "accept",
+      "checks": [
+        "current_dataset verified_construction_core/2026-11-07-research-hundredtwentyeighth read at start and before verdict",
+        "all 21 sources rehashed: sha256 matches content_hash and .metadata.json; 5 geometry-facts files match geometry_facts_sha256",
+        "earnings presentation (ops-nova-us-p6 capture, sha256 2b2d3aad...) slide 35 rendered with pdftoppm: Washington DC/Ashburn Stabilized DC3, DC12, DC15, DC21; Expansion DC16; New DC22; Owned DC12, DC15, DC16, DC21, DC22; Leased DC3; Miami MI6 Stabilized and Owned; Montreal MT1 Expansion and Owned; only TR4 closed",
+        "slide 47 definitions read (New/Expansion/Stabilized by Phase 1 or final phase operating before or after 1 Jan 2025); quarter ended 30 Sep 2026 confirmed in results release; as_of 2026-09-30 inside 85-day floor 2026-08-14; not used as an opening date",
+        "results release and IR list captures byte-identical to existing evidence rows e3c956b7 and 240f3cb0; IR list shows only dividend and SG6 releases after 28 Oct",
+        "IA id_ copies of 3 Oct 2026 read: DC21 22175 and DC22 22165 Beaumeade Circle, DC12 44790, DC15 44780, DC16 44740 Performance Circle, DC3 44470 Chilum Place, MI6 1525 NW 98th Court Doral, MT1 6205 Vanden Abeele St Saint Laurent H4S 1S1",
+        "parcel centroids recomputed with pyproj 3.7.1/shapely 2.1.1 in UTM and EPSG:5070: MCPI 061200160000, 060209652000 and MDC folio 3530320310010 each within 0.003 m of the claimed point, inside the parcel at the stated edge distances (132.4, 100.3, 68.0 m)",
+        "address points recomputed: Loudoun 44470 CHILUM PL and Adresses Quebec 6205 rue Vanden-Abeele (AQ20261101) equal the claimed points; DC3 point inside parcel 060182916000, 54.3 m from edge; parcel centroid outside the concave parcel, so address point use is justified",
+        "every Equinix address point lies inside the parcel used (22175, 22165; 44790, 44780, 44740); distances 81.9/179.0 m and 115.1/131.5/138.9 m match; MDC Property Appraiser site point 0.59 m from centroid",
+        "locator sources are county/provincial government services (logis.loudoun.gov, gisweb.miamidade.gov, servicescarto.mrnf.gouv.qc.ca CC-BY-4.0); no map widget, commercial map, geocoder, PeeringDB or OSM in compliance log",
+        "robots: www.equinix.com and CloudFront not requested; IA, Loudoun, Miami-Dade and MRNF robots 404; investor/newsroom robots 200 and allowed",
+        "distinctness: no Atlas site/project/evidence/source-record/identity-mapping hit for DC21, DC22, DC15, DC16, DC3 (Ashburn), MI6, MT1, Chilum, Performance Circle, Doral, Vanden or parcels 060182916000/3530320310010; nearest records Filigree Court 672 m, Cologix ASH 463-891 m (parcel 060189720000), ACC11 766-1403 m, MI6 none within 5 km, MT1 Cologix MTL8 1.94 km",
+        "no pending queue addition or locator correction within 5 km of any locator; queue and sources/*-holds mentions are only the ops-nova-us-p6, us-colo-metros-p9 and ops-canada-p6 holds whose reopen conditions these records meet",
+        "roles: Equinix operator/owner current for owned IBXs; DC3 leased so operator only",
+        "one project per new site; DC22 fit-out, DC17 and DC10 held",
+        "dryrun_fragment.py ok: sites 1016->1021, projects 1096->1101"
+      ],
+      "residual_risks": [
+        "Beaumeade parcel 061200160000 was re-platted in 2026 (plat 2026-0161) and also carries 22157 Beaumeade Circle; parcel layer has no owner field, so Equinix ownership of the whole parcel rests on the portfolio 'Owned' column",
+        "Performance Circle parcel also carries the DC17 construction (44710) and the Ashburn North development (44690); the campus centroid represents more than the three recorded IBXs",
+        "DC3 shares parcel 060182916000 with the ACC2 (44490 Chilum Place) and ACC3 (44520 Hastings Drive) data centres, 175-278 m away; a future ACC2/ACC3 record must be screened against DC3",
+        "Status is the portfolio listing at the 30 Sep 2026 quarter end; it lapses from the 85-day window around 24 Dec 2026 without a later Equinix disclosure",
+        "notes cite the MT1 hold as 127th update, but it is in the rejected ops-canada-p6 fragment; immaterial to admission"
+      ]
+    },
+    {
+      "fragment": "equinix-apac-p11",
+      "verdict": "accept",
+      "checks": [
+        "current_dataset re-read: verified_construction_core/2026-11-07-research-hundredtwentyeighth (unchanged at verdict time)",
+        "all 20 relied-on captures rehashed: sha256 equals .metadata.json sha256 and source content_hash; byte counts and URLs match; HTTP 200",
+        "status: Q3 2026 earnings PDF (company_disclosure, published 2026-10-28) slide 37 read with pdftotext -layout and rendered with pdftoppm: Singapore Stabilized SG1, SG2, SG3, SG5; Sydney Stabilized SY1, SY2, SY3, SY4, SY7; Owned SG3, SG5*, SY1, SY2, SY4*; Leased SG2, SY3; no red Status Change entries in APAC",
+        "slide 47 Stabilized definition and slide 30 Stabilized cabinets billed confirmed; as_of 2026-09-30 is 38 days old (inside 85-day window); same evidence row 5b8d90a9 already backs 14 AMER projects at 2026-09-30 operational",
+        "OneMap SG2/SG3: street and postcode searches byte-identical; WGS84 equals SVY21 X/Y via pyproj 3.7.1 (6.3e-9 m, 3.2e-9 m); coordinates in changes.json match capture exactly; SLA official source, terms captured",
+        "NSW AddressPoint 1/639 Gardeners Road Mascot (only point for '%639%GARDENERS ROAD%') and 47-49 Bourke Road Alexandria (only Bourke Road Alexandria range covering 47 in 454-point listing; plain 47 query empty): coordinates match captures exactly",
+        "shapely/pyproj EPSG:7856 recompute: 639 Gardeners property 16,730.9 m2, point 0.11 m from centroid, inside; 47-49 Bourke property 18,427.7 m2, point 0.96 m from centroid, inside",
+        "addresses read in Equinix IA id_ captures: SG2 15 Pioneer Walk #04-01 627753; SG3 26A Ayer Rajah Crescent 139963 (7-storey) vs SG1 20 Ayer Rajah Crescent 139964 (9-storey); SY1 639 Gardeners Rd Unit B, SY2 Unit C (NSW 2020); SY3 47 Bourke Road Alexandria; SY4 200 Bourke Road Alexandria",
+        "SY4 reuses published campus site vcc-site-f252607f7215cd712881 locator exactly (project a2272656, geometry evidence a487861d, no baseline identity evidence); builder inheritance checks pass",
+        "no locator from Google/commercial maps, map widgets, PeeringDB or OSM; derivation direct_geometry; uncertainty null with reasons",
+        "distinctness: keyword screen (Pioneer Walk, 627753, 26A Ayer, 139963, Gardeners Road, 47 Bourke, SG2/SG3/SY1-SY4) over sites, projects, evidence, source-records, identity-mapping: no matches beyond SG1 and the SY4/SY5 campus; 2 km screen: SG3-SG1 138.5 m (separate building/postcode/tenure), SG2-Keppel DC SG5 537 m, SG2-Equinix SG5 795 m, SY1/2-campus 366 m, SY3-campus 790 m",
+        "queue screen: only published fragments (ops-singapore-jakarta-p6, ops-sydney-melbourne-p6, q3-apac-operators-p3) near these points; claims.tsv only this fragment; holds taken up are hundredtwentysecond SG2/SG3 and hundredtwentyfourth SY4/summary holds whose reopen conditions are met",
+        "one project per new site (SG2, SG3, SY1/SY2 campus, SY3); SY4 added to existing site",
+        "roles: Equinix operator current on all; owner current only for SG3, SY1/SY2 (Owned, no ground-lease asterisk); SY4 owner not asserted",
+        "sources: 6 reused sources match existing evidence rows field-for-field; all sources referenced; no personal data",
+        "dry run (dryrun_fragment.py): ok, 1,020 sites, 1,101 projects, 6,105 evidence rows"
+      ],
+      "residual_risks": [
+        "status rests on a quarterly portfolio table (position at 2026-09-30), not a site-specific statement; precedent row 5b8d90a9 is already used the same way",
+        "shared evidence title names slide 35 (AMER) although the APAC rows rely on slide 37; kept identical to the existing evidence row by design",
+        "SY1 and SY2 combined in one existing-operations project on one property; the register's only point is '1/639', not Units B/C",
+        "SY3 address '47 Bourke Road' mapped to register range 47-49 Bourke Road (reviewed_site_locator)",
+        "SG2 point marks the multi-occupier Pioneer Hub building address, not the #04-01 unit",
+        "Equinix pages read only as Internet Archive copies (www.equinix.com robots 403); CDX successor listings are filtered to HTTP 200 and cannot show removals",
+        "presentation PDF was captured by another lane under an earlier robots-403 interpretation; this fragment made no request to that host",
+        "NSW licence text recorded differs from the existing 200 Bourke Road evidence row ('no-open-license-asserted')"
+      ]
+    },
+    {
+      "fragment": "equinix-emea-p11",
+      "verdict": "accept",
+      "checks": [
+        "base verified_construction_core/2026-11-07-research-hundredtwentyeighth re-read at start and end",
+        "all 26 raw captures rehashed: sha256 equals source content_hash and .metadata.json",
+        "presentation PDF read with pdftotext: slide 36 Amsterdam row lists AM1-AM8, AM11 Stabilized; Owned AM1*-AM4*, AM5, AM6, AM7*; Leased AM8, AM11; no Status Change rows",
+        "slide 47 Stabilized definition and slide 30 193 stabilized IBXs confirmed; title slide 'Presented on October 28, 2026'",
+        "presentation source fields identical to existing Atlas evidence row 5b8d90a9 (same capture, no new request to the 403 robots host)",
+        "observation 2026-09-30 quarter end, inside 85-day window (from 2026-08-14) until 2026-12-24; matches accepted Equinix existing-operations precedents at 2026-09-30",
+        "IA copies of each IBX page: own address block and meta give Luttenbergweg 4 1101 EC (AM1, AM2), Science Park 610 1098 XH (AM3, AM4), Schepenbergweg 42 1105 AT (AM5), Duivendrechtsekade 80A 1096 AH (AM6), Lemelerbergweg 28 1101 AH (AM11)",
+        "each locator recomputed: addition point equals BAG verblijfsobject point and BAG address point exactly; address query returns that object (AM6: only 80A of 10 results matches)",
+        "pand containment recomputed in RD New with pyproj 3.7.1/shapely 2.1.1: inside by 2.6/4.0/3.1/5.1/3.3 m; round trip ~5e-9 deg; vbo-pand links cross-checked by UUID",
+        "locator source: Kadaster BAG via PDOK OGC API (government register, CC0-1.0); PDOK robots.txt allows / except /bzk/locatieserver/*; no map widget, commercial map, PeeringDB or OSM",
+        "PDOK source URLs match capture self links and pand item ids",
+        "distinctness: no keyword (streets, postcodes, vbo ids, Equinix AM codes, Telecity, Amstel Business Park) in sites/projects/evidence/source-records/identity-mapping, other fragments, claims.tsv or sources/*-holds.json except the ams-deep-p9 Equinix AM lead this fragment takes up",
+        "distance: only Atlas site within 2 km is Digital Realty AMS9 at 0.546 km from AM3/AM4 (different operator and address); no other fragment point within 2 km except that same AMS9 point",
+        "roles: Equinix operator current for all; owner current only for AM5/AM6 (Owned, no ground lease); ground-leased and leased IBXs carry no owner role",
+        "one project per new site; all 26 sources referenced; no third-party personal data found",
+        "dryrun_fragment.py ok: 1021 sites, 1101 projects, 6116 evidence (+5/+5/+25)"
+      ],
+      "residual_risks": [
+        "operational status rests on a quarter-end portfolio listing, not a facility-specific statement (same basis accepted for earlier Equinix rows)",
+        "AM3/AM4 campus point is the office-use unit (2,058 m2) of the 2015 Science Park 610 pand; stated AM3+AM4 space exceeds that pand's floor area, so part of the campus may sit in a neighbouring building",
+        "AM1/AM2 object spans two panden; point lies in the 1983 pand, the 1984 pand boundary is 65 m away",
+        "IBX-to-address link rests on undated Equinix pages via Internet Archive copies of 3 October 2026 (identity only)",
+        "presentation capture predates the pipeline's robots-403-as-disallow policy; reused, not re-requested",
+        "BAG points are address-unit points with no published positional accuracy (uncertainty recorded as unknown with reasons)"
+      ]
+    },
+    {
+      "fragment": "india-new-2-p10",
+      "verdict": "accept",
+      "checks": [
+        "current_dataset re-read: 2026-11-07-research-hundredtwentyeighth; dry run against it ok (+1 site, +2 projects, +8 evidence)",
+        "all 10 relied-on captures rehashed: SHA-256 equals source content_hash and .metadata.json sha256",
+        "reused sources c50d3a91 (IRM Q3 SRP) and 43c92b0d (AEL Q2 FY27) match existing evidence metadata field-for-field",
+        "IRM Q3 2026 SRP p22 read: 'MUM-1/2 and Other' India row in Data Center Operating Portfolio, quarter ended 30 Sep 2026 (38 days, in window); company_disclosure",
+        "IA copy 20260513 of Iron Mountain Mumbai page read: 'MUM-2: R202, Sec-8, Rabale', 'recently launched MUM-2', 'MUM-2 Launched'; newest Mumbai copy in captured CDX listing",
+        "MUM-2 brochure read: 'Located next to IMDC MUM-1', 2.2 ha site, 6.3 MW design figure (not asserted)",
+        "MIDC layer 11 R-202,R-202/1 recomputed with pyproj/shapely (EPSG:32643): computed centroid equals published 73.00823489,19.14094209; inside ring, 22.8 m from edge, max vertex 50.8 m; geometry facts sha256 matches",
+        "R-202 identity: only industrial plot with 202 in the TTC R block; adjoining R-203,R-204 (8,100 m2) consistent with MUM-1 next door",
+        "locator source is a government GIS record (MIDC); no Google/Bing/Apple/OSM/PeeringDB or map-widget coordinate; Esri imagery visual check only",
+        "CtrlS colocation live capture read: 'UPCOMING Mumbai DC6, DC7, DC8 & DC9' 8000 racks 140 MW; dateModified 2026-10-26 bounded by IA 20261025 copy (dateModified 2026-03-13, Hyderabad DC1 4 MW vs 6 MW) and page-sitemap lastmod 2026-10-26T06:41:54Z",
+        "CtrlS reuse: project 49268cbe geometry evidence d19c7a18 is the site's only geometry evidence; point 19.10825487,73.02374542 unchanged; EL-201 merged plot 251 m east disclosed, not used",
+        "CtrlS Mumbai page: single campus of 5 buildings with 6 upcoming; DC6-DC9 belong to host site; site holds only DC1-DC5 project",
+        "AEL Q2 FY27 presentation p16 read: 'Hyd I | Phase I & II - 9.6 MW each completed', 19.2 MW operational; exchange letter dated 28 Oct 2026; strictly newer than 2026-10-09; scope kept (Pune/Noida precedent from same filing)",
+        "distinctness: 5 km radius screen of sites.csv (nearest Sify Rabale 981 m, other operator); keyword screen (Web Werks, MUM-1/2, Sigma IT Park, R-202, IMDC, CtrlS DC6-DC9, adaniconnex-hyderabad) across dataset files, all queue changes/holds, claims.tsv and sources/*-holds.json: no duplicate",
+        "india-south-asia-p4 hold reopen condition met; india-south-asia-p5 claim orphaned (compliance.log only since 27 Oct); india-p6 claim released",
+        "roles: operator current (IRM), operator intended (CtrlS); relationship_scope values valid",
+        "no third-party personal data in changes, sources or holds; robots.txt recorded for every host in compliance.log and metadata"
+      ],
+      "residual_risks": [
+        "MUM-2 operating status rests on a portfolio row that bundles MUM-1/2 and Other; no per-building capacity asserted",
+        "Iron Mountain page read via Internet Archive copy because ironmountain.com robots.txt returned HTTP 429 (identity/address only)",
+        "MIDC copyright policy requires prior permission for reproduction; only the published centroid and plot identifiers are used (same basis as earlier MIDC locators)",
+        "MUM-2 point marks plot R-202 only; the operator's 5.5-acre campus extent is not mapped",
+        "CtrlS DC6-DC9 announced date is a page-version observation; the entry dates from March 2026 and the buildings are not separately located",
+        "AdaniConneX Hyderabad record keeps its locality-context locator (replacement pending under up-11-p7 hold)"
+      ]
+    },
+    {
+      "fragment": "ntt-gdc-p11",
+      "verdict": "accept",
+      "checks": [
+        "all 19 sources rehashed: sha256 equals content_hash and .metadata.json sha256 (HTTP 200, credential-free); 11 geometry-facts source files also rehash",
+        "status source fy2026_pre_2q.pdf (company_disclosure) slide 11 rendered with pdftoppm: 'service launches in Phoenix, Dallas, and Virginia in the U.S., and Amsterdam in Europe' for H1 FY2026; capacity 'As of September 30, 2026 (Results)' NA 780 / EMEA 450 MW",
+        "Japanese original slide 11 read: '米国Phoenix、Dallas、Virginia、欧州Amsterdamでサービス提供を開始'; IR Events page lists the same rev-hashed PDF under the 4 Nov 2026 briefing",
+        "as_of 2026-09-30 (half-year end, not an opening date) <= publication 2026-11-04; 38 days old, inside 85-day window from 2026-08-14; matches accepted quarter-end disclosure precedent (equinix-amer-p11, ops-nova-us-p6)",
+        "market-to-facility mapping: nttdata.com en-gb/en-us sitemaps and EMEA page list only amsterdam-1 in NL, only PH1/PH4 (one 240MW campus, 10256 Elliot Rd) for Phoenix and only TX1/TX4 (one 124MW campus, Lookout Dr) for Dallas; Virginia correctly held (several sites)",
+        "AMS1 locator recomputed: BAG verblijfsobject 0394010001010283 RD (111182.587, 477513.978) -> CRS84 with pyproj 3.7.1 equals served point to 0.0005 m; inside pand 0394100001027760, 2.6 m from edge; union of 4 Aviolanda 1 panden 16,833.1 m2, centroid 104.1 m, max vertex 196.8 m",
+        "AMS1 locator source acceptable: Kadaster BAG via PDOK OGC API (government register, CC0), address matches operator page, 2024 fact sheet and IA copy of 8 Jun 2026; api.pdok.nl robots allow path; no map service, PeeringDB or OSM",
+        "Phoenix/Dallas reuse: reuse_from_project_id and geometry_evidence_id equal the baseline PH5 (82493fac...) and TX4 (6600dddb...) rows; campus_locator scope; Census 2008 Lookout Dr match recomputed 492 m west of the 2060 campus point on the same TIGER line",
+        "Phoenix addition meets the us-phoenix-p4 (seventy-eighth) hold reopen condition 'a dated NTT operator statement of operation ... reusing the campus locator exactly'; PH5 (TCO 30 Oct 2026, after half-year end) not refreshed",
+        "scope edits: Phoenix name and facility_scope no longer assert PH4 as operating and alias 'NTT Phoenix PH4' removed (PH4 status is held by this fragment); Dallas facility_scope states neither the launched building nor TX4 status is asserted",
+        "distinctness: no Aviolanda/1437 ED/NTT Amsterdam hit in sites, projects, evidence, source-records, identity-mapping, other fragments, claims.tsv or sources/*-holds.json; within 2 km only DLR AMS5 (0.757 km) and AMS10 (0.98 km); rf-4-p12 holds TX4 refresh, no queued fragment adds an NTT Phoenix/Dallas campus record",
+        "roles: NTT Global Data Centers operator, relationship_scope current, sourced to operator pages; no private names, phones or emails in changes, sources or holds",
+        "dry run ok against 2026-11-07-research-hundredtwentyeighth: sites 1016->1017, projects 1096->1099, evidence 6091->6110"
+      ],
+      "residual_risks": [
+        "status is a market-level half-year statement, not a facility-specific one; the tie to AMS1 and to the Phoenix and Dallas campuses rests on undated operator location pages listing one facility or campus per market",
+        "the H1 launches are probably PH4 (TCO July 2026) and TX4 (June 2026 target); the campus-level records may overlap the building-level TX4 record (still under_construction 2026-05-31) until TX4 is refreshed",
+        "'including PH1' and 'including TX1' rest on undated operator pages (identity only); no building-level operating status is asserted",
+        "AMS1 point is the 393 m2 main-address pand; the main halls (1B 2020, 1C 2026) are 31-38 m away and the BAG publishes no positional accuracy",
+        "Dallas campus point is a Census street-range interpolation of the TX4 address; TX1's interpolated point is about 0.5 km west",
+        "observation 2026-09-30 leaves the 85-day window on 24 Dec 2026 without a later NTT disclosure"
+      ]
+    },
+    {
+      "fragment": "rf-1-p12",
+      "verdict": "accept",
+      "checks": [
+        "rehashed chesterfield-file-5225.pdf in rf-1-p12 and us-central-va-p4 = 6147dbd9... (byte-identical) matches metadata, source content_hash and existing evidence f945197a (url, published_at 2026-08-26, retrieved_at 2026-10-26T19:20:16.605Z, hash all identical, so row reused)",
+        "pdftotext p.123 'Data Centers - Board of Supervisors Work Session - August 26, 2026'; p.138 'Chirisa Digital Drive, 1551 Digital Drive: No existing buildings; 2 buildings under construction', 600,000 sq ft, closed system; p.137 CTP is a separate scope not used",
+        "CivicClerk events JSON (8c75c5ce... rehashed) gives file 5225 '2026-08-26 Agenda Packet.' publishOn 2026-08-26T13:43Z; agenda item 14.B Data Centers Update; minutes file 5321 (c6c4aa7a... rehashed, publishOn 2026-10-30) confirm presentation of Chirisa Digital Drive at 1551 Digital Drive",
+        "county Data Centers page (ee9bb9ba... rehashed, 7 Nov) still 'as of July 2026' with Digital Drive 'Under construction; two buildings' = existing observation; refresh strictly newer (2026-08-26 > 2026-07-01), same two-building scope",
+        "rehashed amazonpa-falls.html 3bc22455... and wb-20260829150905 copy 3221c5e2...; JSON-LD/article:modified_time 2026-09-08T13:47:48-04:00 vs archived 2026-08-25; text diff shows real edit (Fast Track sentences removed) and 'Status Active Construction' restated; CDX has no copy after 2026-08-29",
+        "rehashed amazonpa-salem.html 6f0dd6f1... and wb-20260829150855 copy a5daf244...; dateModified 2026-11-03T13:59:24-05:00 vs archived 2026-08-25; edit adds USD 2.7bn/CBA text and 'November 3, 2026' CBA news item linking /uploads/2026/11/ one-pager (4f3bf428... rehashed, rendered: CBA terms only, no milestone); 'Status Active Construction' restated",
+        "all three as_of dates within 85-day window (from 2026-08-14); all <= published_at and retrieval; sources company_disclosure/government_record primary",
+        "Falls and Salem refreshes strictly newer than 2026-07-19; TBD commissioning/operation and planned building counts not used; scope stays campus buildout; Salem imported partially_operational AWS record (2026-10-09, ~0.7 km) left unchanged",
+        "no locator changes; no additions; queue claims.tsv shows only rf-1-p12 on these projects; up-18-p7 Salem locator hold and us-central-va-p4 Digital Drive hold consistent (this takes up the latter)",
+        "no private individuals' data in changes, sources or holds; new evidence ids 3b4db451/6b224d94 not in base evidence",
+        "dryrun_fragment.py ok against 2026-11-07-research-hundredtwentyeighth (evidence 6091 -> 6093)"
+      ],
+      "residual_risks": [
+        "Amazon 'Status Active Construction' is a static field unchanged between versions; as_of relies on WordPress dateModified bounded below by the 29 Aug 2026 archive copy (and for Salem by the Nov 2026 CBA item/upload)",
+        "Chesterfield packet PDF CreationDate is later on 26 Aug than the portal publishOn; both the same day, so day-precision observation unaffected",
+        "Salem campus now has buildout under_construction 2026-11-03 beside imported partially_operational 2026-10-09; scopes kept separate"
+      ]
+    },
+    {
+      "fragment": "rf-2-p12",
+      "verdict": "accept",
+      "checks": [
+        "Rehashed all 8 source captures (6 rf-2-p12, 2 existing-refresh-us-p3): SHA-256 equals sources.json content_hash and .metadata.json sha256; URLs and capture times match",
+        "Vineland: rendered the image-only PDF (pdftoppm, 1 page); read 'meeting held on August 17, 2026', Phase 2 item 1 '587,980 square foot two-story AI Data Center Building Expansion ... (currently under construction)', 'GRANTED'; legal-notices index lists it under September 12, 2026, with no later DataOne notice",
+        "Vineland date fix: the notice reports the 17 Aug 2026 determination and repeats the application caption, so the observation is dated to the meeting (17 Aug) instead of the posting (12 Sep); still strictly newer than 7 Aug, within 85 days (window start 14 Aug), not after published_at",
+        "Cipher: text diff of the 26 Oct capture (sitemap lastmod 2026-10-15, generated 26 Oct) against the 7 Nov capture (sitemap lastmod 2026-10-29, generated 6 Nov) shows a real FAQ edit (jobs answer); 'Construction is underway' is in the overview; version bounded 26 Oct 19:43Z to 7 Nov, matching earlier verdicts that accepted sitemap lastmod plus an earlier copy; IA CDX after 1 Aug returned []",
+        "Cipher: completion H1 2027, 12-month construction period, tax and job figures not used; company_disclosure; 9 days old",
+        "Crusoe: release body reads 'DENVER - November 6, 2026'; newsroom block lists it under November 6, 2026; Crusoe says its pre-development (site selection, governmental approvals, power strategy) is complete and the project is set up for construction; construction not inferred",
+        "Crusoe permit: read the 8 Jul 2026 county memo (hash c4516431 matches evidence 530eac78). It confirms the earlier Crusoe site plan and PUD approvals and says Google/Jupiter Star re-submitted a reduced Site Plan Revision that the county 'intends to process administratively'. Corrected permit_reference, which had overstated the revision as already processed",
+        "Legistar: 26-023 (BOCC hearing 6 Jan 2026, Passed) on the Project Jade site plan; 26-422/26-466 cover only the HUB-1 office CUP; no county appeal, revocation or rehearing matter",
+        "Distinctness: within 6 km in the 128th release only the target records plus Nebius Vineland (4.47 km) and Meta Cheyenne (5.37 km); in pending queue fragments only the already-published up-3-p7 Crusoe locator correction; no other fragment touches the three stable keys",
+        "No third-party personal data in changes, sources, holds or notes (Vineland secretary's name, PDF author, Cipher email not copied)",
+        "Roles unchanged; no additions, locator corrections or context updates; 4 holds reviewed and kept",
+        "dryrun_fragment.py ok against verified_construction_core/2026-11-07-research-hundredtwentyeighth (1016 sites, 1096 projects)"
+      ],
+      "residual_risks": [
+        "Vineland: 'currently under construction' is the application caption repeated from the August hearing notices, not a separate site inspection",
+        "Cipher: the 29 Oct page edit changed only the jobs answer. 'Construction is underway' is unchanged wording carried into the re-dated version; Cipher's Q3 2026 update (robots-blocked host) was not read",
+        "Crusoe: the permitted refresh rests on Crusoe's general 'governmental approvals' statement plus the Jan 2026 county approval. The decision on the reduced Google revision PZ-26-00058 is unknown, and Google may have started site work, which this source would not show",
+        "Vineland at 17 Aug is 82 days old at the 7 Nov update date and leaves the 85-day window after 10 Nov 2026"
+      ]
+    },
+    {
+      "fragment": "rf-3-p12",
+      "verdict": "accept",
+      "checks": [
+        "rehashed hut8-q3-2026-results.html (2337667...), terawulf-q3-2026-results.html (86d3157...), irm-q3-2026-srp.pdf in rf-3-p12 and refresh-operations-p6 (b525b99...): all match metadata and source content_hash",
+        "Hut 8 release: dateline 'MIAMI, November 4, 2026' at byte 129317, CMS timestamp 2026-11-04T11:30Z; quote 'Construction at both River Bend and Beacon Point remains on track'; River Bend bullet (steel/foundations across four halls, initial substation energization) and Beacon Point bullet (campus substation construction commenced, Phase 1 foundation and underground utility work, Phase 2 civil design only) read in capture",
+        "Hut 8 release defines the Phase 2 lease as the second 352 MW lease with the Phase 1 tenant, so Phase 1 = existing first-phase 352 MW record; Phase 2 not attributed; first data hall delivery Q2 2027 confirms no operation",
+        "Hut 8 index capture lists the Q3 release first; 10 Aug Texas-directive release capture describes Beacon Point as under development, no pause",
+        "TeraWulf release dated 2026-11-06 07:00 EST; Lake Mariner bullet: 102 MW operated as of September 30, 2026, with an additional 336 MW under construction across CB-4 and CB-5; CB-5 phased delivery early 2027 (forecast, unused)",
+        "Iron Mountain Q3 2026 SRP page 23 rendered with pdftoppm and pdftotext: NJE-1 4.0 MW under construction, 100% pre-leased, $2.7M Q3 investment, no footnote (footnote 1 applies only to CHI-1 Future Phases); 'All figures for the quarter ended September 30, 2026 unless noted'; dateline November 5, 2026",
+        "IRM source metadata identical to published evidence c50d3a91 (same URL, retrieved_at, hash); dry run merges it (+2 evidence rows)",
+        "all observations strictly newer than existing (2026-08-04, 2026-08-04, 2026-08-04, 2026-08-05, 2026-06-30) and within 85 days of 2026-11-07 (on/after 2026-08-14); none postdates its source",
+        "all sources company_disclosure on issuer-controlled hosts; no locators changed; no role claims; no private personal data in sources, summaries or holds",
+        "distinctness: nearest other sites 169 km, 151 km, 71 km, 16.9 km from the four site points; no unpublished queue fragment changes these projects (us-colo-reits-p11 only holds NJE-1 operating 20.8 MW); repo holds only defer these exact refreshes or hold geometry",
+        "dryrun_fragment.py ok against verified_construction_core/2026-11-07-research-hundredtwentyeighth"
+      ],
+      "residual_risks": [
+        "Hut 8 as_of 2026-11-04 rests on a forward-looking 'remains on track' quote on publication day, corroborated by Q3 (to 30 Sep) physical progress bullets; same convention as the existing 4 Aug observations",
+        "Beacon Point campus record (imported) keeps its admin2 reference point 27.74,-97.52 pending up-4-p7's locator-replacement hold; status refresh does not touch geometry",
+        "IRM source raw_capture_file points at refresh-operations-p6's capture (identical bytes re-captured in rf-3-p12)"
+      ]
+    },
+    {
+      "fragment": "rf-4-p12",
+      "verdict": "accept",
+      "checks": [
+        "rehashed middlesex-10-30-2026.pdf (54d0a7c0...), Fall-2026 newsletter (90b50544...), page sitemap (f2195cdd...) and minutes page (85c7fc29...): all match metadata and sources.json content_hash",
+        "read all 5 pages of the 30 Oct 2026 minutes with pdftotext: vice-chairman acknowledges negative impacts of construction on Country Club Road residents and residents adjacent to the construction site; resident comment on ongoing PAX-1 construction and evening work; engineer reports road repairs under the PAX-1 developer's agreement; PAX-1 landscaping planted",
+        "government_record (township minutes), meeting date 30 Oct 2026 printed in header; PDF CreationDate 2026-11-05 09:28 EST, sitemap lastmod 2026-11-05 09:58 -05:00, minutes page lists 10-30-2026 as newest entry; published_at 2026-11-05 >= as_of",
+        "85-day window: 2026-10-30 is 8 days before 2026-11-07; strictly newer than existing announced 2026-03-05",
+        "newsletter page 7 read: Phase 1-A and 1-B site grading underway (context only, PDF created 2026-08-17); generic under_construction matches vocabulary ('construction under way, without a more specific stage'); park-wide scope kept, no phase split or permitted claim",
+        "later minutes: 10-30 is newest; 10-07 mentions PAX-1 only in public comment and Phase 1-C review extension; Phase 1-C/2 review-time extension is plan review, not a pause",
+        "distinctness: 2 km screen of 2026-11-07 hundred-twenty-eighth sites finds only this site (next nearest 76.8 km, CoreWeave/Chirisa Lancaster); name screen finds only this record; queue claims only up-7-p7 (published locator correction, current locator 40.2535105,-77.1192689) and this fragment; holds hits are the us-midwest-east-p1/forty-first Phase 1-B hold whose reopen condition ('dated primary statement of physical work across the park') this meets",
+        "no locator change; no roles changed; no third-party personal data in changes, sources or holds (resident and official names not copied)",
+        "TX4 hold retained: Dallas service launch not attributed to a named building; TX4 page states an opening target only",
+        "unreferenced newsletter source kept as cited scope context (precedent in 28 published fragments; builder creates evidence only on association)",
+        "dryrun_fragment.py ok against verified_construction_core/2026-11-07-research-hundredtwentyeighth"
+      ],
+      "residual_risks": [
+        "Construction observation is generic: the only stage-specific evidence (site grading for Phases 1-A and 1-B) comes from an August 2026 newsletter, so site_preparation might be the more precise reading",
+        "The construction statements partly come from public comment recorded in the minutes; the decisive official statement is the vice-chairman's acknowledgement of construction impacts",
+        "Phase 1-C and Phase 2 are being redesigned (review extended to 3 Feb 2027); later phases could change scope while the park-wide record stays under_construction"
+      ]
+    },
+    {
+      "fragment": "rf-7-p12",
+      "verdict": "accept",
+      "checks": [
+        "rehashed meta-gallatin-info-sheet-asset.html (PDF bytes) = 1e63dc03... matches metadata and source content_hash",
+        "rehashed ia-meta-gallatin-asset-20260730.bin, meta-fbdc-reusable-asset-sitemap.xml, ia-cdx-meta-gallatin-asset.json, meta-post-sitemap.xml against metadata",
+        "pdftotext and page-1 render: 'Operating Responsibly' says operational data center buildings achieve LEED Gold; 100+ operational jobs; present-tense on-site water operations at the Gallatin Data Center",
+        "diff against Feb 2025 sheet (IA 30 Jul 2026 copy): content substantively revised ($2.2M+, 120+ grants, new sections), so a new Meta statement, not a re-upload",
+        "date bounded: IA 30 Jul 2026 still old sheet; new PDF raw CreationDate D:20260902080125-07'00'; 2026/09 upload folder; asset sitemap lastmod 2026-09-03T09:54:41Z; Atlas evidence row retrieved 2026-10-09; whole bound inside 85-day window (from 2026-08-14)",
+        "company_disclosure primary; strictly newer than 2024-11-15; partially_operational refresh allowed only because record already has it (dataset_update.py)",
+        "scope kept campus-level; same name/operator; locator unchanged (E911 GTN1-5 mean 36.4104928,-86.367608 = current dataset)",
+        "distinctness: only this site within 2 km in current sites.csv; nearest other TierPoint Nashville 69.6 km; claims.tsv shows only up-19-p7 locator correction and this refresh; prior us-ok-la-ar-ms-al-tn-p3 reject reopen condition (dated Meta statement of current status) met",
+        "precedent: Meta Sept 2026 fact sheets for Los Lunas, Kansas City, Sarpy accepted as operating observations",
+        "fixed pdf_creation_date to stored offset form (same instant)",
+        "dryrun_fragment.py ok against 2026-11-07-research-hundredtwentyeighth"
+      ],
+      "residual_risks": [
+        "LEED Gold sentence may be fleet boilerplate; operation inferred from it together with Gallatin-specific operational jobs and water-operations text",
+        "sheet does not say whether the fourth building is complete; partially_operational retained, not upgraded",
+        "as_of uses sitemap lastmod (3 Sep) rather than PDF creation date (2 Sep); both inside window"
+      ]
+    },
+    {
+      "fragment": "saudi-gulf-p10",
+      "verdict": "accept",
+      "checks": [
+        "All 9 sources and 6 geometry-fact captures rehashed: file sha256 == metadata sha256 == source content_hash; geometry facts sha256 258fb07c... matches source",
+        "Status: Q3 2026 presentation (company_disclosure, 29 Oct 2026, CreationDate 2026-10-29) slides 5 and 6 rendered: 'MV6 superstructure nearly completed and power supply confirmed'; M-VAULT 6 'Phase: Construction' with construction photo; call transcript (29 Oct 2026) 'MV6 is progressing very well. We are finishing the civil work'",
+        "Window: 2026-10-29 is 9 days before 2026-11-07, inside 85 days",
+        "Identity: prospectus p. 'MV-6 next to MV-2' and QF lease of land and building in Umm Quarn; Q4 2025 deck 'M-Vault 6 | Um Garn'; Q3 2026 deck site tour 'M-VAULT 2 and M-VAULT 6 in Um Garn' all read in captures",
+        "Locator: Qatar MoM GIS Landmarks layer (government gazetteer) feature 7354 'Data Center, Qatar Foundation', Umm Garn, zone 70/street 1495/building 125; service WGS84 51.43945715,25.55135440 rounds to the submitted point; pyproj 3.7.1 EPSG:2932->4326 of XCOORD/YCOORD gives 0.19 m offset",
+        "QARS government address locator reverse geocode returns zone 70/street 1495/building 125, 34.3 m from the point (recomputed)",
+        "Locator source acceptable: government gazetteer and address register, publisher terms (none stated) recorded in license; no Google/Bing/Apple/HERE/PeeringDB/OSM used; Esri imagery tiles only viewed, point falls on the large building in the walled compound",
+        "Only two data-centre landmarks in the gazetteer (broader query capture checked); the other is Ooredoo Wadi Al Sail, 27.5 km away",
+        "Scope campus_locator with null uncertainty and stated reason; builder accepts; one project on a new site",
+        "Roles: owner current (interim FS note 18 Murabaha for construction of MV6), operator intended (presentation); relationship_scope values valid",
+        "Distinctness: current dataset 2026-11-07-research-hundredtwentyeighth has no Qatar/MEEZA/Umm Garn/Qatar Foundation record; nearest site 165.9 km (Dammam); no queued addition or locator correction within 50 km; claims.tsv only this fragment; repo holds (thirtyfirst, thirtyfourth, fortysixth) are location-less MEEZA holds whose reopen condition is met for MV6 at campus level",
+        "No third-party personal data in changes, sources, holds or geometry facts; executives referred to by role",
+        "Compliance log: robots.txt obeyed per host; humain.com only via Internet Archive; no forbidden map services",
+        "Edited operator_stated_figures and status summary to record the chart split (about 6 MW in construction phase, about 18 MW future phase) so 24 MW is not read as all under construction",
+        "dryrun_fragment.py ok against 2026-11-07-research-hundredtwentyeighth (1,017 sites, 1,097 projects)"
+      ],
+      "residual_risks": [
+        "Point locates the M-VAULT 2 / Qatar Foundation data-centre building; M-VAULT 6's own plot is unpublished and placed only 'next to MV-2' (2023 prospectus) and 'in Um Garn' (2026 decks), so the offset to the MV6 building is unquantified",
+        "Gazetteer landmark names Qatar Foundation, not MEEZA; the tie to MEEZA MV2 rests on the QF lease in Umm Quarn plus the deck's 'M-VAULT 2 ... in Um Garn' and the landmark being the only data centre in Umm Garn",
+        "Qatar GIS service states no reuse licence; only one point and address numbers are restated as facts",
+        "Owner role is MEEZA as developer financing construction on land leased from Qatar Foundation"
+      ]
+    },
+    {
+      "fragment": "us-colo-reits-p11",
+      "verdict": "accept",
+      "checks": [
+        "config current_dataset verified_construction_core/2026-11-07-research-hundredtwentyeighth read at start and before verdict; date 2026-11-07, floor 2026-08-14",
+        "all 19 relied-on captures rehashed: sha256 equals .metadata.json and source content_hash",
+        "supplemental bytes identical to existing Atlas evidence c50d3a91 (same hash); copied evidence fields match that row",
+        "pdftotext -layout p22: AZP-1 41.0, AZP-2 46.5, AZP-3 (1) 36.0, DEN-1 11.3 (86.0%), CHI-1 12.0 MW Stabilized in Data Center Operating Portfolio; footnote (1) AZP-3 consolidated JV",
+        "p23: no Phoenix or Denver development row; CHI-1 Future Phases footnoted planned-not-commenced and correctly excluded",
+        "definitions page: Pre-Stabilized = building recently placed in service; operating portfolio separate from Under Construction/Held for Development",
+        "status as_of 2026-09-30 (quarter end), 38 days old, company_disclosure published 2026-11-05: inside 85-day window",
+        "locators recomputed with pyproj 3.7.1/shapely 2.1.1 in UTM 12N/16N/13N: all four centroids reproduce to <=0.004 m, inside polygon, EPSG:5070 cross-check agrees; acres 10.227/39.442/13.377/5.68",
+        "CHI-1 centroid equals Cook Assessor Parcel Universe centroid (0.0 m); 1680 E Touhy address point inside PIN 09283000130000; DEN-1 state address point 4.5 m inside union",
+        "locator sources are county assessor / state parcel composite / Cook open data (government); census geocoder cross-check only; no map widget, Google, PeeringDB or OSM",
+        "identity: Phoenix permits project 23-446 named IMDC AZP3 / IMAZP3 at 5100 E Roosevelt; parcel owner IRON MOUNTAIN DATA CENTERS ARIZONA 3 LLC; AZP-1/AZP-2 addresses and 39-acre campus on IA Phoenix page, brochures say 'on the same campus'; CHI-1 1680 Touhy Ave 13-acre and DEN-1 4300 Brighton Blvd 6-acre on IA operator pages",
+        "distinctness: no Atlas site, alias, address or parcel match; nearest Atlas sites 7.24/6.73/6.11/1.08 km (CoreSite DE3, different operator); no pending queue point within 3 km; AZP-3 vs AZP-1/2 554.6 m on different parcels/owners/addresses",
+        "AZP-3 holds (us-southwest-p1/p2, us-phoenix-p5) reopen conditions met by Q3 supplemental plus parcel 125-12-037",
+        "each new site has exactly one project; roles operator/current from the supplemental",
+        "RSS feed (lastBuildDate 2026-11-06) shows no later sale/closure news; no third-party personal data in sources, summaries or holds",
+        "wording corrected: 'Stabilized = in service longer' replaced with the supplemental's definition in all four status summaries; AZP-3 identity/distinctness text no longer claims the page says AZP-3 is outside the campus",
+        "dryrun_fragment.py ok: 1020 sites, 1100 projects, 6109 evidence (+4/+4/+18)"
+      ],
+      "residual_risks": [
+        "operator pages read only through Internet Archive raw copies because www.ironmountain.com answers robots.txt with 429/403; the archive host itself has no robots rules",
+        "AZP-3 still has open TI permits and a 'PHASE 2' grading permit; the record asserts operation only at the 36.0 MW the operator lists, not completion of later phases",
+        "AZP-1 and AZP-2 are recorded as one existing-operations project on one campus although the supplemental lists them separately",
+        "CHI-1 polygon is the 2021 parcel layer; its centroid matches the Assessor's 2026 Parcel Universe centroid, but boundary changes after 2021 are not separately checked",
+        "DEN-1 and AZP-2 parcel owners (MAG DATACENTERS LLC, 4802 E VAN BUREN LLC) are not linked to Iron Mountain by a captured source; identity rests on operator addresses and acreage"
+      ]
+    }
+  ],
+  "packet_pins": {
+    "definitions/atlas-research-hundredtwentyninth-2026-11-07.json": "7dad6570706e4d7bc0847e3447a54da4387acf18917d578f8dc94d1e420da9e1",
+    "sources/research-countries-2026-11-07-hundredtwentyninth-primary-sources.json": "b0c297fc105206a01199298bf1457bb3fdeb7bc3fa1daa40453dfe1d53ab705a",
+    "sources/research-countries-2026-11-07-hundredtwentyninth-actions.json": "82bc6728aa7e5a3db1f1738c961a323c43d4d7ac15aac183cb5b7ba089a15c9f",
+    "sources/research-countries-2026-11-07-hundredtwentyninth-holds.json": "12a7747e9dd5620615a1236c9371c45f12c56165de55c6adb39d2eb34b06d284"
+  },
+  "raw_captures_redistributed": false
+}

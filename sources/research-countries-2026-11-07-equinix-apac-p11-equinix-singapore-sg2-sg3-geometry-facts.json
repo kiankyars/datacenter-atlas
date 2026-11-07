@@ -1,0 +1,62 @@
+{
+ "format": "datacenter-atlas-geometry-facts-v1",
+ "fragment": "equinix-apac-p11",
+ "prepared_on": "2026-11-07",
+ "method_note": "Each point is the OneMap (Singapore Land Authority) address-search feature for the street address and postcode that Equinix gives for the IBX on its own facility page (Internet Archive raw copies of 3 October 2026, captured by the ops-singapore-jakarta-p6 lane; www.equinix.com answers robots.txt with HTTP 403, so the live pages were not requested). For each IBX two searches were captured on 7 November 2026: the house number plus street name and the postcode alone; for each IBX the two responses are byte-identical (same sha256). The served WGS84 latitude/longitude was re-derived from the served SVY21 (EPSG:3414) X/Y with pyproj 3.7.1 (always_xy, EPSG:3414 -> EPSG:4326); the geodesic difference is 6.3e-9 m (SG2) and 3.2e-9 m (SG3). No offsets or rounding were applied. No commercial map, map embed or map-widget parameter, short link, PeeringDB record or OpenStreetMap service was used. No API token was used and the responses carry no error notice. OneMap's Terms of Use (captured 7 November 2026, local_data/country-research-equinix-apac-p11/onemap-termsofuse.html) grant a non-exclusive, royalty-free, revocable licence to access, view, download, print or otherwise use the SLA Data for any usage, subject to those terms.",
+ "site_versus_campus_review": "Equinix SG3 (26A Ayer Rajah Crescent, Private Lot FX1-4a, Singapore 139963) lies 138.8 m (WGS84 geodesic; 138.8 m planar in SVY21) north-east of the published Atlas site Equinix SG1 (20 Ayer Rajah Crescent, Singapore 139964, curated:equinix-sg1-20-ayer-rajah-crescent). They are treated as separate physical sites: Equinix lists them as separate IBX data centres with separate street numbers, postcodes and pages; its pages describe different buildings (SG1 a 9-storey and SG3 a 7-storey reinforced-concrete building) with separate colocation-space figures (109,211 and 117,219 sq ft); OneMap returns separate address features with different postcodes; and Equinix's Q3 2026 presentation (slide 37) lists SG3 as Owned and SG1 as Leased. Equinix does not describe the two as one campus. SG2 (15 Pioneer Walk, 627753) is 10.86 km from SG1 and 0.80 km from the published Equinix SG5 site (6 Sunview Drive, 627488), which is a separate IBX, address and building.",
+ "candidates": [
+  {
+   "candidate_id": "equinix-sg2-15-pioneer-walk",
+   "facility": "Equinix SG2 (Singapore IBX)",
+   "operator_stated_address": "15 Pioneer Walk #04-01 Singapore, 627753",
+   "geometry": {"type": "Point", "coordinates": [103.6957485584442, 1.321486905666541]},
+   "authority_class": "official_source",
+   "scope_class": "official_numbered_address_point",
+   "use_scope": "project_locator",
+   "precision_scope": "Singapore Land Authority address point for 15 Pioneer Walk, Singapore 627753, which OneMap names as the building PIONEER HUB; Equinix gives SG2's address as unit #04-01 of that building. It marks the building address, not a surveyed outline, entrance, land-lot boundary, the #04-01 unit or a data hall; the building may have other occupiers.",
+   "horizontal_uncertainty_metres": null,
+   "horizontal_uncertainty_unknown_reason": "OneMap supplies no positional accuracy for address points; decimal places are not survey accuracy, and the point does not mark the building outline or land lot.",
+   "source_url": "https://www.onemap.gov.sg/api/common/elastic/search?returnGeom=Y&getAddrDetails=Y&pageNum=1&searchVal=15%20PIONEER%20WALK",
+   "source_file": "local_data/country-research-equinix-apac-p11/onemap-15-pioneer-walk.json",
+   "source_sha256": "aa9f18a7ff5b12b99095241222e1b93cba147dfd7850116215faee5f399197ce",
+   "postcode_check_file": "local_data/country-research-equinix-apac-p11/onemap-627753.json",
+   "postcode_check_sha256": "aa9f18a7ff5b12b99095241222e1b93cba147dfd7850116215faee5f399197ce",
+   "served_feature": {"SEARCHVAL": "PIONEER HUB", "BLK_NO": "15", "ROAD_NAME": "PIONEER WALK", "BUILDING": "PIONEER HUB", "ADDRESS": "15 PIONEER WALK PIONEER HUB SINGAPORE 627753", "POSTAL": "627753"},
+   "native_coordinates": {"crs": "EPSG:3414 (SVY21)", "x": 12689.80640828423, "y": 33749.24902396835},
+   "served_wgs84": {"latitude": 1.321486905666541, "longitude": 103.6957485584442},
+   "pyproj_recomputed_wgs84": {"latitude": 1.3214869056665413, "longitude": 103.69574855844425, "difference_metres": 6.3e-09},
+   "axis_note": "GeoJSON coordinates are [longitude, latitude].",
+   "atlas_records_within_2km": [
+    "curated:keppel-dc-singapore-5-sunview-way (site) and curated:keppel-dc-singapore-5-sunview-way:existing-operations (project), 537.3 m: Keppel DC Singapore 5, Sunview Way - a different operator at a different address",
+    "curated:equinix-sg5-6-sunview-drive (site) and curated:equinix-sg5-6-sunview-drive:existing-operations (project), 795.7 m: Equinix SG5, 6 Sunview Drive 627488 - a different Equinix IBX, address and building"
+   ],
+   "next_nearest_record": "curated:nxera-dc-tuas-7a-tuas-avenue-3:existing-operations, 4.40 km"
+  },
+  {
+   "candidate_id": "equinix-sg3-26a-ayer-rajah-crescent",
+   "facility": "Equinix SG3 (Singapore IBX)",
+   "operator_stated_address": "26A Ayer Rajah Crescent, Private Lot FX1-4a, Singapore 139963",
+   "geometry": {"type": "Point", "coordinates": [103.7906869304203, 1.295938946621691]},
+   "authority_class": "official_source",
+   "scope_class": "official_numbered_address_point",
+   "use_scope": "project_locator",
+   "precision_scope": "Singapore Land Authority address point for 26A Ayer Rajah Crescent, Singapore 139963 (building NIL), the address Equinix gives for SG3. It marks the building address, not a surveyed outline, entrance, the land lot FX1-4a or a data hall.",
+   "horizontal_uncertainty_metres": null,
+   "horizontal_uncertainty_unknown_reason": "OneMap supplies no positional accuracy for address points; decimal places are not survey accuracy, and the point does not mark the building outline or land lot.",
+   "source_url": "https://www.onemap.gov.sg/api/common/elastic/search?returnGeom=Y&getAddrDetails=Y&pageNum=1&searchVal=26A%20AYER%20RAJAH%20CRESCENT",
+   "source_file": "local_data/country-research-equinix-apac-p11/onemap-26a-ayer-rajah-crescent.json",
+   "source_sha256": "3db9b8440fc5f3eea4de70631ac8045eb92176905606519ad29fdc3b4af62ee6",
+   "postcode_check_file": "local_data/country-research-equinix-apac-p11/onemap-139963.json",
+   "postcode_check_sha256": "3db9b8440fc5f3eea4de70631ac8045eb92176905606519ad29fdc3b4af62ee6",
+   "served_feature": {"SEARCHVAL": "26A AYER RAJAH CRESCENT SINGAPORE 139963", "BLK_NO": "26A", "ROAD_NAME": "AYER RAJAH CRESCENT", "BUILDING": "NIL", "ADDRESS": "26A AYER RAJAH CRESCENT SINGAPORE 139963", "POSTAL": "139963"},
+   "native_coordinates": {"crs": "EPSG:3414 (SVY21)", "x": 23255.47188509814, "y": 30923.90312243998},
+   "served_wgs84": {"latitude": 1.295938946621691, "longitude": 103.7906869304203},
+   "pyproj_recomputed_wgs84": {"latitude": 1.2959389466216906, "longitude": 103.79068693042028, "difference_metres": 3.2e-09},
+   "axis_note": "GeoJSON coordinates are [longitude, latitude].",
+   "atlas_records_within_2km": [
+    "curated:equinix-sg1-20-ayer-rajah-crescent (site) and curated:equinix-sg1-20-ayer-rajah-crescent:existing-operations (project), 138.8 m: Equinix SG1, 20 Ayer Rajah Crescent 139964 - a separate Equinix IBX with its own address, postcode and building (see site_versus_campus_review)"
+   ],
+   "next_nearest_record": "curated:digital-realty-sin10-29a-international-business-park, 6.09 km"
+  }
+ ]
+}

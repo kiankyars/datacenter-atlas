@@ -1,0 +1,57 @@
+{
+ "format": "datacenter-atlas-geometry-facts-v1",
+ "fragment": "equinix-apac-p11",
+ "prepared_on": "2026-11-07",
+ "method_note": "Each point is the official NSW AddressPoint (NSW Spatial Services, NSW_Geocoded_Addressing_Theme FeatureServer layer 1) for the street address that Equinix gives on its own IBX page (Internet Archive raw copies of 3 and 15 October 2026; www.equinix.com answers robots.txt with HTTP 403, so the live pages were not requested), queried by address string with outSR=4326 and copied without transformation. The property (NSW_Land_Parcel_Property_Theme layer 12, by principal address site) and the lot (layer 8, point-intersect at the AddressPoint) were captured for the identity check. Property polygons were projected from the served EPSG:4326 coordinates to GDA2020 / MGA zone 56 (EPSG:7856) with pyproj 3.7.1 and measured with shapely 2.1.1 for the checks below only. No commercial map, map embed or map-widget parameter, short link, PeeringDB record or OpenStreetMap service was used; no token was used. Licence: the NSW Spatial Collaboration Portal item for the service (db9efdfa518d4215b89177328dce0595) carries the access note '(c) State of New South Wales (Spatial Services, a business unit of the Department of Customer Service NSW)' and links its Terms of Service and https://www.spatial.nsw.gov.au/copyright, which redirects to the NSW Government copyright page (Creative Commons Attribution 4.0 for material on that website, except as noted); the feature service itself asserts no licence text.",
+ "site_versus_campus_review": "Equinix SY1 (Unit B) and SY2 (Unit C) share the street address 639 Gardeners Road, Mascot NSW 2020, which the register holds as one property (propid 4537461, Lot 10 DP707290) with one address point; they are therefore one physical site (a two-IBX campus) and are added as one project with a campus locator. SY3 (47 Bourke Road, Alexandria NSW 2015; register property 47-49 Bourke Road, Lot 12 DP856809) is a separate property 1.16 km from 639 Gardeners Road and 0.79 km from the published 200 Bourke Road campus (SY4, SY5); Equinix lists SY3 as a separate IBX with its own address and building, and slide 37 of its Q3 2026 presentation lists SY3 as Leased while SY1, SY2, SY4 and SY5 are Owned. 639 Gardeners Road is 0.37 km from the 200 Bourke Road campus property (propid 4370754, Lot 100 DP1273607), a different property and lot; Equinix's pages describe cross-connects between SY1-SY5 but no shared campus.",
+ "candidates": [
+  {
+   "candidate_id": "equinix-sydney-639-gardeners-road-mascot-campus",
+   "facility": "Equinix SY1 and SY2 (Sydney IBXs)",
+   "operator_stated_address": "SY1: 639 Gardeners Road, Unit B, Sydney NSW 2020; SY2: 639 Gardeners Road, Unit C, Sydney NSW 2020",
+   "geometry": {"type": "Point", "coordinates": [151.188210489164, -33.92139199280768]},
+   "authority_class": "official_source",
+   "scope_class": "official_address_point_property_centroid",
+   "use_scope": "campus_locator",
+   "precision_scope": "Official NSW AddressPoint rid 5712796 ('1/639 GARDENERS ROAD MASCOT'), the only AddressPoint the register holds for 639 Gardeners Road. It lies 0.11 m from the planar centroid of the single 1.67 ha property and lot at that address (propid 4537461; Lot 10 DP707290; about 112 m by 218 m), 39.9 m from its nearest boundary. It locates the 639 Gardeners Road property shared by the SY1 (Unit B) and SY2 (Unit C) IBXs, not either building, a tenancy, an entrance or a surveyed position.",
+   "horizontal_uncertainty_metres": null,
+   "horizontal_uncertainty_unknown_reason": "The NSW AddressPoint record has null addresspointuncertainty and the register publishes no positional accuracy. The point is a property-centroid address point for a 1.67 ha property holding two IBX buildings (farthest boundary vertex 112.6 m away); Equinix does not publish where the Unit B and Unit C buildings stand within it.",
+   "source_url": "https://portal.spatial.nsw.gov.au/server/rest/services/NSW_Geocoded_Addressing_Theme/FeatureServer/1/query?where=address%20LIKE%20%27%25639%20GARDENERS%20ROAD%25%27&outFields=rid,gurasid,principaladdresssiteoid,addresspointtype,addresspointuncertainty,containment,address,housenumber,lastupdate&returnGeometry=true&outSR=4326&f=geojson",
+   "source_file": "local_data/country-research-equinix-apac-p11/nsw-guras-639-gardeners-road.geojson",
+   "source_sha256": "d9c38c384765d978a97cc69838a79cefa43c4c5d3e4e51af1c0a8d6e6142fa82",
+   "served_feature": {"rid": 5712796, "gurasid": 86003438, "principaladdresssiteoid": 4839070, "addresspointtype": 1, "addresspointuncertainty": null, "containment": 1, "address": "1/639 GARDENERS ROAD MASCOT", "housenumber": "1/639"},
+   "completeness_check": "A wider query (address LIKE '%639%GARDENERS ROAD%', local nsw-guras-639-gardeners-road-all.geojson, byte-identical response) returns the same single feature, so the register holds no separate Unit B or Unit C address point.",
+   "property_check": {"file": "local_data/country-research-equinix-apac-p11/nsw-property-639-gardeners-road-site4839070.geojson", "sha256": "e4a65d2a9295777f5c38fab634588bfa9380c70e7353663885ef8edc37a7cd16", "propid": 4537461, "address": "1/639 GARDENERS ROAD MASCOT", "dissolveparcelcount": 1, "planar_area_m2_epsg7856": 16730.9, "extent_m": [111.5, 218.1], "point_inside": true, "point_to_centroid_m": 0.11, "point_to_nearest_boundary_m": 39.9, "point_to_farthest_vertex_m": 112.6},
+   "lot_check": {"file": "local_data/country-research-equinix-apac-p11/nsw-lot-at-639-gardeners-road.json", "sha256": "bae51126df2c96a7f8d1cdf8d19187184b2520902e5c8ed9a8a84609c508e588", "lotidstring": "10//DP707290"},
+   "axis_note": "GeoJSON coordinates are [longitude, latitude].",
+   "atlas_records_within_2km": [
+    "curated:equinix-sydney-200-bourke-road-alexandria-campus (site) and curated:equinix-sydney-200-bourke-road-alexandria-campus:sy5-existing-operations (project), 366.4 m: Equinix's 200 Bourke Road property (SY4, SY5), a different property and lot"
+   ],
+   "next_nearest_record": "curated:digico-syd1-ultimo-campus, 5.22 km"
+  },
+  {
+   "candidate_id": "equinix-sy3-47-bourke-road-alexandria",
+   "facility": "Equinix SY3 (Sydney IBX)",
+   "operator_stated_address": "47 Bourke Road, Alexandria, Sydney NSW 2015",
+   "geometry": {"type": "Point", "coordinates": [151.19288307162276, -33.91174334404355]},
+   "authority_class": "official_source",
+   "scope_class": "official_address_point_property_centroid",
+   "use_scope": "reviewed_site_locator",
+   "precision_scope": "Official NSW AddressPoint rid 1767468 ('47-49 BOURKE ROAD ALEXANDRIA'), the register's address for the property that carries Equinix's '47 Bourke Road'. It lies 0.96 m from the planar centroid of the single 1.84 ha property and lot (propid 2110105; Lot 12 DP856809; about 206 m by 191 m), 50.3 m from its nearest boundary. It locates the SY3 property, not the SY3 building outline, an entrance or a surveyed position.",
+   "horizontal_uncertainty_metres": null,
+   "horizontal_uncertainty_unknown_reason": "The NSW AddressPoint record has null addresspointuncertainty and the register publishes no positional accuracy. The point is a property-centroid address point for a 1.84 ha property (farthest boundary vertex 107.2 m away); Equinix does not publish where the SY3 building stands within it.",
+   "source_url": "https://portal.spatial.nsw.gov.au/server/rest/services/NSW_Geocoded_Addressing_Theme/FeatureServer/1/query?where=address%20LIKE%20%27%2547-49%20BOURKE%20ROAD%20ALEXANDRIA%25%27&outFields=rid,gurasid,principaladdresssiteoid,addresspointtype,addresspointuncertainty,containment,address,housenumber,lastupdate&returnGeometry=true&outSR=4326&f=geojson",
+   "source_file": "local_data/country-research-equinix-apac-p11/nsw-guras-47-49-bourke-road-alexandria.geojson",
+   "source_sha256": "dbadab9aa0c48acd2581fd9a9a426c94f4e7f9aea91fc59c26ff95c902a35827",
+   "served_feature": {"rid": 1767468, "gurasid": 11505658, "principaladdresssiteoid": 1851292, "addresspointtype": 1, "addresspointuncertainty": null, "containment": 1, "address": "47-49 BOURKE ROAD ALEXANDRIA", "housenumber": "47-49"},
+   "completeness_check": "A query for '47 BOURKE ROAD ALEXANDRIA' returns no feature (local nsw-guras-47-bourke-road-alexandria.geojson), and the full Bourke Road Alexandria listing (local nsw-guras-bourke-road-alexandria-all.geojson, 454 features) has no plain '47' address: the only house numbers containing 47 are the range 47-49 and the strata units 47/51 and 47/53 at other properties (51 and 53 Bourke Road). The neighbouring properties are 41-45 Bourke Road (to the north-east) and 51 and 53 Bourke Road (to the south and south-west).",
+   "property_check": {"file": "local_data/country-research-equinix-apac-p11/nsw-property-47-49-bourke-road.geojson", "sha256": "03da2fc5f702f6a44624dfa1e9e2eb3dd0b5148e40b17a0c6c639af241f44127", "propid": 2110105, "address": "47-49 BOURKE ROAD ALEXANDRIA", "dissolveparcelcount": 1, "planar_area_m2_epsg7856": 18427.7, "extent_m": [205.9, 190.7], "point_inside": true, "point_to_centroid_m": 0.96, "point_to_nearest_boundary_m": 50.3, "point_to_farthest_vertex_m": 107.2},
+   "lot_check": {"file": "local_data/country-research-equinix-apac-p11/nsw-lot-at-47-49-bourke-road.json", "sha256": "cb8a8c895b4171ca09c9ec160e1d51ce054a6d2eee49f060a2209ca2300fd320", "lotidstring": "12//DP856809"},
+   "axis_note": "GeoJSON coordinates are [longitude, latitude].",
+   "atlas_records_within_2km": [
+    "curated:equinix-sydney-200-bourke-road-alexandria-campus (site) and curated:equinix-sydney-200-bourke-road-alexandria-campus:sy5-existing-operations (project), 791.5 m: Equinix's 200 Bourke Road property (SY4, SY5), a different property and lot"
+   ],
+   "next_nearest_record": "curated:digico-syd1-ultimo-campus, 4.10 km"
+  }
+ ]
+}

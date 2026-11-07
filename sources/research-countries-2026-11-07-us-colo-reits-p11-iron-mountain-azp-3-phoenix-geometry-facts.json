@@ -1,0 +1,68 @@
+{
+  "candidate_id": "us-colo-reits-p11-iron-mountain-azp-3-phoenix",
+  "decision": "Selected the area centroid of Maricopa County Assessor parcel 125-12-037 (situs 5100 E ROOSEVELT ST, Phoenix 85008; owner IRON MOUNTAIN DATA CENTERS ARIZONA 3 LLC) as the campus locator for Iron Mountain AZP-3.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -111.9723859,
+      33.4573907
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_tax_parcel_centroid",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-us-colo-reits-p11/mcassessor-parcel-125-12-037",
+  "source_sha256": "a9ce87d71c0d75d7fec830cbc831137c79a9e2e55951a1b112eccccbf9e8bf8d",
+  "source_url": "https://gis.mcassessor.maricopa.gov/arcgis/rest/services/Parcels/MapServer/0/query?where=APN+IN+%28%2712512037%27%29&outFields=APN%2CAPN_DASH%2COWNER_NAME%2CPHYSICAL_ADDRESS%2CLAND_SIZE%2CDEED_DATE%2CPUC%2CJURISDICTION%2CSTR&returnGeometry=true&outSR=4326&f=json",
+  "retrieved_at": "2026-11-07T01:51:48.244Z",
+  "selected_properties": {
+    "12512037": {
+      "APN": "12512037",
+      "APN_DASH": "125-12-037",
+      "OWNER_NAME": "IRON MOUNTAIN DATA CENTERS ARIZONA 3 LLC",
+      "PHYSICAL_ADDRESS": "5100 E ROOSEVELT ST   PHOENIX  85008",
+      "LAND_SIZE": 445357,
+      "PUC": "1507",
+      "JURISDICTION": "PHOENIX",
+      "STR": "5 1N 4E"
+    }
+  },
+  "facts": {
+    "centroid_lon_lat": [
+      -111.9723859,
+      33.4573907
+    ],
+    "centroid_inside": true,
+    "centroid_distance_to_boundary_m": 51.0,
+    "geodesic_area_m2": 41385.7,
+    "geodesic_acres": 10.227,
+    "union_geometry_type": "Polygon",
+    "parcel_count": 1,
+    "bounds_lon_lat": [
+      -111.973976,
+      33.456691,
+      -111.970983,
+      33.458315
+    ],
+    "approx_extent_m": [
+      279,
+      181
+    ],
+    "max_vertex_distance_from_centroid_m": 164.9,
+    "centroid_method": "area centroid of the parcel union computed in EPSG:32612 (pyproj 3.7.1, shapely 2.1.1) and transformed to WGS84, rounded to 7 decimals; the EPSG:5070 (CONUS Albers) centroid differs by 0.004 m",
+    "parcel_valid": true,
+    "reference_points": [
+      {
+        "label": "US Census geocoder match '5100 E ROOSEVELT ST, PHOENIX, AZ, 85008' (address-range interpolation on TIGER line 128840604, right side)",
+        "lon_lat": [
+          -111.971902822792,
+          33.456685118255
+        ],
+        "inside_parcel": false,
+        "distance_to_centroid_m": 90.2,
+        "distance_to_boundary_m": 1.0
+      }
+    ]
+  },
+  "verification_script": "scratchpad colo-p11/facts.py (uv run --no-project --with pyproj==3.7.1 --with shapely==2.1.1 python -I)"
+}
