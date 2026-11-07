@@ -1,0 +1,62 @@
+{
+  "candidate_id": "telehouse-th2-paris-voltaire",
+  "decision": "Selected the point that the Géorisques classified-installations register publishes for 'TELEHOUSE EUROPE (i 5637)', 137 Boulevard Voltaire, 75011 Paris (AIOT 0007405506): longitude 2.383948, latitude 48.856118, copied without transformation, as the campus locator. Telehouse publishes '137 Boulevard Voltaire; 75011 Paris' for TH2 Paris Voltaire; the BAN address point for 137 boulevard Voltaire lies 45.4 m to the west.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      2.383948,
+      48.856118
+    ]
+  },
+  "authority_class": "official_source",
+  "derivation": "direct_geometry",
+  "scope_class": "environmental_installation_register_site_location",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-euro-operators-2-p14/georisques-icpe-near-137-voltaire",
+  "source_sha256": "6974f230ab89c9c013438e1179c536a25201fa38095fbe4d43378a840febfa50",
+  "source_url": "https://www.georisques.gouv.fr/api/v1/installations_classees?latlon=2.383332,48.856082&rayon=1000&page=1&page_size=100",
+  "selected_properties": {
+    "raisonSociale": "TELEHOUSE EUROPE (i 5637)",
+    "adresse1": "137 Boulevard Voltaire",
+    "codePostal": "75011",
+    "codeInsee": "75056",
+    "codeAIOT": "0007405506",
+    "codeNaf": "61",
+    "regime": "Enregistrement",
+    "etatActivite": "En exploitation avec titre",
+    "date_maj": "2026-10-28/17-53-29",
+    "longitude": 2.383948,
+    "latitude": 48.856118,
+    "coordonneeXAIOT": 654798,
+    "coordonneeYAIOT": 6861963,
+    "systemeCoordonneesAIOT": "2154"
+  },
+  "fallback_point_check": "86 records returned; many carry the shared fallback point 654820 / 6862322 (2.38421, 48.859348). The Telehouse record's point differs from it by about 360 m and lies 45.4 m from the BAN housenumber point of its own address, so it is a site-specific position, not an arrondissement fallback.",
+  "transform_check": {
+    "tool": "uv run --no-project --with pyproj==3.7.1 --with shapely==2.1.1 python -I (PROJ 9.5.1)",
+    "source_crs": "EPSG:2154",
+    "target_crs": "EPSG:4326 (always_xy)",
+    "input": [
+      654798,
+      6861963
+    ],
+    "output_lon_lat": [
+      2.383948008761964,
+      48.856117794688956
+    ],
+    "difference_from_published_point_m": 0.02
+  },
+  "ban_cross_check": {
+    "file": "local_data/country-research-euro-operators-2-p14/ban-137-boulevard-voltaire",
+    "sha256": "33f6b9e70e90977341bf872eeaa2830b994b8bc2ff2ad63f55672334ef031224",
+    "ban_id": "75111_9907_00137",
+    "point": [
+      2.383332,
+      48.856082
+    ],
+    "distance_from_register_point_m": 45.4
+  },
+  "nearest_atlas_records": "none within 2 km; nearest Atlas site Equinix Paris Pantin Campus at 5,639 m; nearest pending queue addition Digital Realty PAR6 Ivry-sur-Seine (dlr-emea-p14) at 4,747 m",
+  "horizontal_uncertainty_metres": null,
+  "uncertainty_reason": "The register states no positional accuracy for installation points; the point lies 45 m from the official address point of 137 boulevard Voltaire, and Telehouse publishes no outline of the building, so its offset from the data halls is unknown."
+}

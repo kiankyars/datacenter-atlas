@@ -1,0 +1,74 @@
+{
+  "candidate_id": "apple-waukee-data-center-campus",
+  "decision": "Selected the Iowa DNR facility point of the active Title V air source 'Apple WKE Data Center Campus' at 2995 W Hickman Rd, Waukee (stfacid 310199906, programme ID 25-06-017) as the campus locator for Apple's Waukee data-centre campus (Project Morgan).",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -93.9273175,
+      41.6198174
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_regulatory_facility_point",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-apple-oracle-ops-p15/ia/iadnr-air-apple-wke-310199906.json",
+  "source_sha256": "e9afb5581d9ae03a9b377cdf2ff144caaa2b0061e541d557a52212e7db246620",
+  "source_url": "https://programs.iowadnr.gov/geospatial/rest/services/OneStop/IaFmFacilities/MapServer/0/query?where=stfacid%3D310199906&outFields=*&returnGeometry=true&outSR=4326&f=json",
+  "retrieved_at": "2026-11-07T04:21:57.004Z",
+  "selected_properties": {
+    "stfacid": 310199906,
+    "progid": "25-06-017",
+    "MAPLABELNA": "Apple WKE Data Center Campus",
+    "facName": "Apple Wke Data Center Campus",
+    "LocAddress": "2995 W Hickman Rd",
+    "CityName": "Waukee",
+    "State": "IA",
+    "locZip": "50263",
+    "countyName": "Dallas",
+    "opStatus": "Active",
+    "ProgType": "Title V",
+    "LEGENDTYPE_AIR": "Facility-AIR",
+    "Latitude": 41.61981,
+    "Longitude": -93.92731,
+    "X_Coord": 422747,
+    "Y_Coord": 4607980,
+    "Accuracy": null,
+    "colMthTxt": null,
+    "PIStartDt": "2023-04-27 (epoch ms 1682604281000; the Meta Altoona Title V record carries the same day, so this looks like a register migration date, not an operating-start date)",
+    "spatial_reference": "outSR=4326 (WGS84) as returned by the Iowa DNR OneStop IaFmFacilities MapServer, layer 0 (air facilities)"
+  },
+  "computed": {
+    "selected_point_lon_lat": [
+      -93.9273175,
+      41.6198174
+    ],
+    "attribute_lat_lon_vs_geometry_m": 1.0,
+    "related_iowa_dnr_records": {
+      "stormwater_315329305": {
+        "facName": "Project Morgan Apple Inc. Data Center - Construction",
+        "progid": "33781",
+        "LocAddress": "2995 W HICKMAN ROAD, Waukee",
+        "permitDesc": "CONSTRUCTION OF A DATA CENTER WITH ASSOCIATED PARKING LOTS, PRIVATE DRIVES AND UTILITIES",
+        "permitType": "GP #2",
+        "opStatus": "Active",
+        "permitStart": "2018-09-05",
+        "colMthTxt": "PUBLIC LAND SURVEY-QUARTER SECTION",
+        "refPntTxt": "CENTER OF FACILITY",
+        "Accuracy": 570,
+        "lon_lat": [
+          -93.9359475,
+          41.6256874
+        ],
+        "distance_from_selected_m": 970.7
+      }
+    },
+    "census_geocoder_address_matches": {
+      "2995 W Hickman Rd, Waukee, IA 50263": "no match (Public_AR_Current benchmark, 7 November 2026)"
+    },
+    "nearest_atlas_site": {
+      "physical_site_stable_key": "curated:meta-altoona-data-center-campus",
+      "distance_m": 35094.5
+    },
+    "method": "Point geometry and attributes as returned by the Iowa DNR service in WGS84 (outSR=4326); geodesic distances on the WGS84 ellipsoid with pyproj 3.7.1 Geod. The storm-water record is placed only to a quarter section (Accuracy 570) and is identity context, not the locator. No county parcel layer could be used: Dallas County publishes parcels only through the Beacon application behind a disclaimer page, which was not used."
+  }
+}

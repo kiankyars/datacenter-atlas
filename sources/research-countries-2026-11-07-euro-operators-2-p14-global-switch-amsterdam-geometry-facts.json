@@ -1,0 +1,60 @@
+{
+  "candidate_id": "global-switch-amsterdam-johan-huizingalaan-campus",
+  "decision": "Selected the official BAG verblijfsobject point 0363010000692657 (Johan Huizingalaan 759, 1066VH Amsterdam; status Verblijfsobject in gebruik; industriefunctie; 57,727 m2) as the campus locator. Global Switch publishes 'Johan Huizingalaan 759, 1066 VH Amsterdam' for both Amsterdam West and Amsterdam East; the BAG address query returns this object for the unlettered house number, and its served point coincides with the address point.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      4.82886510167032,
+      52.344009971362745
+    ]
+  },
+  "authority_class": "official_source",
+  "derivation": "direct_geometry",
+  "scope_class": "official_register_address_object_point_of_operator_published_facility_address",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-euro-operators-2-p14/pdok-bag-verblijfsobject-0363010000692657.json",
+  "source_sha256": "dece4486d20b945cba9a753e5b07d65fbb516cd2045003914a5f8451697999e1",
+  "source_url": "https://api.pdok.nl/kadaster/bag/ogc/v2/collections/verblijfsobject/items?f=json&identificatie=0363010000692657",
+  "selected_properties": {
+    "verblijfsobject": "0363010000692657",
+    "status": "Verblijfsobject in gebruik",
+    "gebruiksdoel": "industriefunctie",
+    "oppervlakte_m2": 57727,
+    "documentdatum": "2021-07-20",
+    "documentnummer": "MB02861675_OV00GM",
+    "hoofdadres": "Johan Huizingalaan 759, 1066VH Amsterdam (nummeraanduiding 0363200000396452)",
+    "address_query_url": "https://api.pdok.nl/kadaster/bag/ogc/v2/collections/adres/items?f=json&postcode=1066VH&huisnummer=759",
+    "address_query_returned": 2,
+    "other_address_returned": "Johan Huizingalaan 759 M (verblijfsobject 0363010012098895, kantoorfunctie, 127 m2, different pand)",
+    "served_crs": "OGC CRS84",
+    "locator_rd_new_pyproj": [
+      116952.57,
+      484157.0
+    ]
+  },
+  "pand": [
+    {
+      "file": "local_data/country-research-euro-operators-2-p14/pdok-bag-pand-759.json",
+      "sha256": "9a33f371172fd81855272ec0f54e0698e63d2aca0c71e3bd7d4a3f097a6471d4",
+      "source_url": "https://api.pdok.nl/kadaster/bag/ogc/v2/collections/pand/items/be5a1fed-a40b-54ea-a9b6-b576ba6ba968?f=json",
+      "pand": "0363100012112975",
+      "status": "Pand in gebruik (niet ingemeten)",
+      "bouwjaar": 1969,
+      "aantal_verblijfsobjecten": 5,
+      "documentdatum": "2026-08-04",
+      "footprint_area_m2_rd": 62866.9,
+      "locator_inside": true,
+      "locator_dist_to_boundary_m": 12.0,
+      "locator_to_centroid_m": 120.7,
+      "centroid_wgs84": [
+        4.8305171,
+        52.3436181
+      ],
+      "max_vertex_distance_m": 319.1
+    }
+  ],
+  "tool": "uv run --no-project --with pyproj==3.7.1 --with shapely==2.1.1 python -I (PROJ 9.5.1); EPSG:28992 used only for metric checks",
+  "nearest_atlas_records": "none within 2 km",
+  "horizontal_uncertainty_metres": null,
+  "uncertainty_reason": "The BAG register publishes no positional accuracy for verblijfsobject points; the point lies 12 m inside a 6.3 ha building footprint whose vertices reach about 319 m from it, and Global Switch publishes no plan of its West and East data centres."
+}

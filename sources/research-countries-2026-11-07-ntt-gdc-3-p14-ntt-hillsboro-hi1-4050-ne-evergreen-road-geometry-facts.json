@@ -1,0 +1,51 @@
+{
+  "candidate_id": "ntt-hillsboro-evergreen-road-campus",
+  "decision": "Selected the Oregon Metro RLIS address-locator PointAddress match for 4050 NE EVERGREEN RD, HILLSBORO, OR 97124 (score 100), the address NTT DATA publishes for Hillsboro HI1, as the campus locator. It locates the registered address point, not the HI1 building outline or the campus boundary.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -122.937389230086,
+      45.549570362512
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_address_point",
+  "use_scope": "campus_locator",
+  "derivation": "direct_geometry",
+  "source_file": "local_data/country-research-ntt-gdc-3-p14/metro-rlis-locator-4050-ne-evergreen.json",
+  "source_sha256": "66a9a5699a9cfbc4db9af6806eab39277a3e4481b46495fefcb2a7fd7bb73390",
+  "source_url": "https://gis.oregonmetro.gov/arcgis/rest/services/locators/RLIS_Locator_Pro/GeocodeServer/findAddressCandidates?SingleLine=4050%20NE%20Evergreen%20Rd%2C%20Hillsboro%2C%20OR%2097124&outFields=*&outSR=4326&maxLocations=5&f=json",
+  "retrieved_at": "2026-11-07T04:22:11.467Z",
+  "selected_properties": {
+    "match_addr": "4050 NE EVERGREEN RD, HILLSBORO, OR, 97124",
+    "addr_type": "PointAddress",
+    "score": 100,
+    "status": "M",
+    "state_plane_xy_ft": [
+      7577789.852461116,
+      695878.7918849231
+    ],
+    "locator_spatial_reference": "wkid 2913 (NAD83(HARN) / Oregon North, ft)",
+    "locator_info_file": "local_data/country-research-ntt-gdc-3-p14/metro-rlis-locator-info.json"
+  },
+  "consistency_checks": {
+    "state_plane_epsg2913_to_wgs84_pyproj": [
+      -122.9374037,
+      45.54957586
+    ],
+    "epsg2913_shift_m": 1.28,
+    "state_plane_epsg2269_to_wgs84_pyproj_shift_m": 0.0,
+    "second_candidate": "NE EVERGREEN RD, HILLSBORO (StreetName match, score 95.76) about 1.9 km west; not used",
+    "census_public_ar_current_match": "no match for 4050 NE Evergreen Rd, Hillsboro, OR 97124 (census-4050-ne-evergreen-rd.json)",
+    "taxlot_locator_match": "the Metro Taxlot_Locator_Pro service returned no candidate for the address (metro-taxlot-locator-4050-ne-evergreen.json)",
+    "nearest_atlas_sites_m": {
+      "STACK POR03 Hillsboro Campus (4735 NE Starr Blvd)": 511.3,
+      "Flexential Hillsboro Starr Campus": 782
+    },
+    "method": "Served WGS84 point compared with pyproj conversions of the locator's State Plane coordinates; the served point equals the EPSG:2269 (NAD83) conversion and is 1.28 m from the EPSG:2913 (HARN) conversion.",
+    "tools": "pyproj 3.7.1, shapely 2.1.1 (uv run --no-project, python -I)"
+  },
+  "identity_bridge": [
+    "NTT DATA's Hillsboro HI1 page (version of 22 October 2026, captured 7 November 2026) and the Internet Archive copy of 23 April 2026 of its predecessor give '4050 NE Evergreen Rd, Hillsboro, OR 97124' and call HI1 'the first of five data centers on our 126MW campus'."
+  ]
+}

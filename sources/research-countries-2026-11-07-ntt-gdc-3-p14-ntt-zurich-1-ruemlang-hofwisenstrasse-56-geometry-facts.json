@@ -1,0 +1,95 @@
+{
+  "candidate_id": "ntt-zurich-1-ruemlang-hofwisenstrasse-56",
+  "decision": "Selected the swisstopo official building-address point EGAID 101787046 (Hofwisenstrasse 56, 8153 Rümlang; building EGID 210185249), the address NTT DATA publishes for Zurich 1, as the site locator. It lies inside cadastral parcel 5697 (EGRID CH457517770255), 28.6 m from the parcel boundary. It locates the building's address point, not the building outline or data halls.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      8.541316,
+      47.448691
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_building_address_point_of_operator_published_facility_address",
+  "use_scope": "campus_locator",
+  "derivation": "direct_geometry",
+  "source_file": "local_data/country-research-ntt-gdc-3-p14/geoadmin-address-101787046.json",
+  "source_sha256": "37c390bdc7e2cb0427202cf511c1da4cd1a039a2bb900a65563f17d3e38e92ca",
+  "source_url": "https://api3.geo.admin.ch/rest/services/ech/MapServer/ch.swisstopo.amtliches-gebaeudeadressverzeichnis/101787046?sr=4326&geometryFormat=geojson",
+  "retrieved_at": "2026-11-07T04:20:24.856Z",
+  "selected_properties": {
+    "adr_egaid": 101787046,
+    "bdg_egid": 210185249,
+    "stn_label": "Hofwisenstrasse",
+    "adr_number": "56",
+    "zip_label": "8153 Rümlang",
+    "com_fosnr": 97,
+    "com_name": "Rümlang",
+    "adr_status": "1",
+    "adr_official": false,
+    "bdg_category": "non_residential",
+    "adr_modified": "20241115",
+    "point_lv95": [
+      2683162.8,
+      1255906.4
+    ],
+    "gwr_building_210185249": {
+      "gkat": 1060,
+      "gklas": 1220,
+      "gbauj": 2010,
+      "gastw": 4,
+      "garea_m2": 7426,
+      "gvol_m3": 174132,
+      "gebf_m2": 29704,
+      "lparz": "5697",
+      "egrid": "CH457517770255",
+      "building_coordinate_lv95": [
+        2683099.539,
+        1255876.815
+      ],
+      "source_file": "local_data/country-research-ntt-gdc-3-p14/geoadmin-gwr-210185249.json"
+    },
+    "gwr_building_192015045": {
+      "address": "Hofwisenstrasse 56.1",
+      "gbez": "Nebengebäude",
+      "garea_m2": 13,
+      "lparz": "5697",
+      "source_file": "local_data/country-research-ntt-gdc-3-p14/geoadmin-gwr-192015045.json"
+    },
+    "cadastral_parcel": {
+      "number": "5697",
+      "egrid": "CH457517770255",
+      "bfsnr": 97,
+      "source_file": "local_data/country-research-ntt-gdc-3-p14/geoadmin-cadastral-parcel-hofwisenstrasse-56.json"
+    }
+  },
+  "consistency_checks": {
+    "lv95_to_wgs84_pyproj": [
+      8.5413169,
+      47.448691
+    ],
+    "lv95_to_wgs84_shift_m": 0.06,
+    "point_in_parcel": true,
+    "point_to_parcel_boundary_m": 28.6,
+    "parcel_area_m2_lv95": 18402.4,
+    "parcel_bbox_m": [
+      217,
+      185
+    ],
+    "parcel_centroid_wgs84_lon_lat": [
+      8.5404459,
+      47.4485361
+    ],
+    "point_to_parcel_centroid_m": 67.9,
+    "farthest_parcel_vertex_m": 176.7,
+    "gwr_building_coordinate_distance_m": 69.8,
+    "gwr_building_coordinate_in_parcel": true,
+    "hofwisenstrasse_56_1_address_distance_m": 142.4,
+    "search_results": "The SearchServer query for 'Hofwisenstrasse 56 8153 Rümlang' returns Hofwisenstrasse 56 (EGAID 101787046) first and Hofwisenstrasse 56.1 (EGAID 103471802, a 13 m² outbuilding on the same parcel) second.",
+    "method": "LV95 (EPSG:2056) coordinates from the federal address and building registers converted with pyproj to WGS84; parcel area and distances computed in LV95.",
+    "tools": "pyproj 3.7.1, shapely 2.1.1 (uv run --no-project, python -I)"
+  },
+  "identity_bridge": [
+    "NTT DATA's Zurich 1 page (version of 22 October 2026, captured 7 November 2026) and the Internet Archive copy of 13 February 2026 of its predecessor give 'Hofwisenstrasse 56, P.O.Box 11, 8153 Rümlang, Switzerland'.",
+    "The federal building-address register returns building EGID 210185249 at that address: non-residential, built 2010, four storeys, 7,426 m² footprint, 29,704 m² floor area, on parcel 5697."
+  ]
+}

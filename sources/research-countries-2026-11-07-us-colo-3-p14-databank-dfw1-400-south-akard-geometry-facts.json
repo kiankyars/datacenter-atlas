@@ -1,0 +1,69 @@
+{
+  "candidate_id": "us-colo-3-p14-databank-dfw1-400-south-akard",
+  "decision": "Selected the area centroid of Dallas Central Appraisal District parcel 00000101136000000 (situs 400 S AKARD ST; owner of record DB DATA CENTER DALLAS LLC), as published by the TxGIO StratMap land-parcel service, as the reviewed site locator for DataBank DFW1 (Downtown Dallas Data Center).",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -96.7982065,
+      32.7781429
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_tax_parcel_centroid",
+  "use_scope": "reviewed_site_locator",
+  "source_file": "local_data/country-research-us-colo-3-p14/txgio-parcel-identify-400-s-akard.json",
+  "source_sha256": "1a5528f056a2c9c21b5d00e1c9510c5922f8ea3de3e9927d819e91b037ac8694",
+  "source_url": "https://feature.geographic.texas.gov/arcgis/rest/services/Parcels/stratmap_land_parcels_48_most_recent/MapServer/identify?geometry=%7B%22xmin%22%3A-96.803%2C%22ymin%22%3A32.7744%2C%22xmax%22%3A-96.795%2C%22ymax%22%3A32.7824%2C%22spatialReference%22%3A%7B%22wkid%22%3A4326%7D%7D&geometryType=esriGeometryEnvelope&sr=4326&layers=all%3A0&layerDefs=%7B%220%22%3A%22situs_num%3D%27400%27%20AND%20situs_st_1%20LIKE%20%27%25AKARD%25%27%22%7D&tolerance=0&mapExtent=-96.803%2C32.7744%2C-96.795%2C32.7824&imageDisplay=800%2C800%2C96&returnGeometry=true&f=json",
+  "retrieved_at": "2026-11-07T04:30:59.055Z",
+  "selected_properties": {
+    "00000101136000000": {
+      "PROP_ID": "00000101136000000",
+      "OWNER_NAME": "DB DATA CENTER DALLAS LLC",
+      "SITUS_ADDR": "400 S AKARD ST ,DALLAS, TX 752025324",
+      "LEGAL_AREA": "2.816",
+      "YEAR_BUILT": "Null",
+      "TAX_YEAR": "2026",
+      "SOURCE": "DALLAS APPRAISAL DISTRICT",
+      "COUNTY": "DALLAS"
+    }
+  },
+  "facts": {
+    "centroid_lon_lat": [
+      -96.7982065,
+      32.7781429
+    ],
+    "centroid_inside": true,
+    "centroid_distance_to_boundary_m": 48.5,
+    "geodesic_area_m2": 11397.6,
+    "geodesic_acres": 2.82,
+    "union_geometry_type": "Polygon",
+    "parcel_count": 1,
+    "distinct_geometries": 1,
+    "bounds_lon_lat": [
+      -96.798977,
+      32.77759,
+      -96.797452,
+      32.77869
+    ],
+    "approx_extent_m": [
+      143,
+      122
+    ],
+    "max_vertex_distance_from_centroid_m": 78.8,
+    "centroid_method": "area centroid of the parcel polygon computed in EPSG:32614 (pyproj 3.7.1, shapely 2.1.1) and transformed to WGS84, rounded to 7 decimals; the EPSG:5070 (CONUS Albers) centroid differs by 0.000 m",
+    "parcel_valid": true,
+    "reference_points": [
+      {
+        "label": "US Census Bureau geocoder (Public_AR_Current) interpolated point for 400 S AKARD ST, DALLAS, TX, 75202 (cross-check only)",
+        "lon_lat": [
+          -96.798998193505,
+          32.778405489151
+        ],
+        "inside_parcel": false,
+        "distance_to_centroid_m": 79.7,
+        "distance_to_parcel_m": 2.7
+      }
+    ]
+  },
+  "verification_script": "scratch us-colo-3-p14/parcel_geom.py (uv run --no-project --with pyproj==3.7.1 --with shapely==2.1.1 python -I)"
+}

@@ -1,0 +1,102 @@
+{
+  "candidate_id": "ntt-ashburn-va1-44664-guilford-drive",
+  "decision": "Selected the official Loudoun County address point for 44664 GUILFORD DR, ASHBURN (point type 2, MCPI 060298548000), the address NTT DATA publishes for its Ashburn VA1 data centre, as the site locator. It lies inside parcel 060298548000 (subdivision BEAUMEADE, Lot 28A, 7.199 acres), 26.3 m from the parcel centroid. It locates the registered address of the VA1 parcel, not the building outline.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -77.45491398,
+      39.02288362
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_address_point",
+  "use_scope": "campus_locator",
+  "derivation": "direct_geometry",
+  "source_file": "local_data/country-research-ntt-gdc-3-p14/loudoun-address-guilford-44664-44610-r2.json",
+  "source_sha256": "aac7d8998cb3a7e1404602e49a68945782c8a6e175446ab20c885c01d09de68c",
+  "source_url": "https://logis.loudoun.gov/gis/rest/services/COL/LandRecords/MapServer/2/query?where=AM_STR_NAME%3D%27GUILFORD%27%20AND%20AD_ADDRESS%20IN%20(44664%2C44610)&outFields=AD_POINT_TYPE,AD_ADDRESS,AD_MCPI,AD_UPD_DATE,FULL_ADDRESS,AM_ZIP,AM_TOWN,AM_POINT_X_DD,AM_POINT_Y_DD,AM_POINT_X_SP,AM_POINT_Y_SP&returnGeometry=true&outSR=4326&f=json",
+  "retrieved_at": "2026-11-07T04:19:47.404Z",
+  "selected_properties": {
+    "full_address": "44664 GUILFORD DR, ASHBURN",
+    "zip": 20147,
+    "mcpi": "060298548000",
+    "point_type": "2",
+    "am_point_dd": [
+      -77.45491398,
+      39.02288362
+    ],
+    "served_geometry": [
+      -77.4549139797209,
+      39.02288362212151
+    ],
+    "am_point_state_plane_ftus": [
+      11779827.19333333,
+      7057258.58499999
+    ],
+    "parcel": {
+      "mcpi": "060298548000",
+      "type": "P",
+      "subdivision": "BEAUMEADE",
+      "plat_lot": "28A",
+      "phase": "1",
+      "section": "1",
+      "legal_acre": 7.199,
+      "legal_sqft": 313632,
+      "pa_upd_date": "2024-09-23 (epoch ms 1727064000000)",
+      "source_file": "local_data/country-research-ntt-gdc-3-p14/loudoun-parcel-060298548000.json"
+    },
+    "addresses_on_parcel": {
+      "44664 GUILFORD DR, ASHBURN": {
+        "dist_from_selected_m": 0.0,
+        "inside_parcel": true
+      },
+      "44660 GUILFORD DR, ASHBURN": {
+        "dist_from_selected_m": 134.3,
+        "inside_parcel": true
+      }
+    }
+  },
+  "consistency_checks": {
+    "point_in_parcel": true,
+    "point_to_parcel_boundary_m": 37.5,
+    "farthest_parcel_vertex_m": 207.0,
+    "parcel_area_m2_utm18n": 29150.0,
+    "parcel_geodesic_area_m2": 29140.9,
+    "parcel_bbox_m": [
+      213,
+      330
+    ],
+    "parcel_centroid_wgs84_lon_lat": [
+      -77.4548575,
+      39.0226508
+    ],
+    "point_to_parcel_centroid_m": 26.3,
+    "state_plane_epsg2283_to_wgs84_shift_m": 0.0,
+    "census_public_ar_current_match": {
+      "matched": "44664 GUILFORD DR, ASHBURN, VA, 20147",
+      "point": [
+        -77.45590039284,
+        39.021905388109
+      ],
+      "distance_m": 138.2,
+      "inside_parcel": false,
+      "note": "address-range interpolation on the street; not used"
+    },
+    "nttdata_va2_44610_guilford_dr_address_point": {
+      "point": [
+        -77.45756211371653,
+        39.02499097526948
+      ],
+      "mcpi": "060386530000",
+      "distance_m": 327.6,
+      "inside_va1_parcel": false
+    },
+    "ntt_va5_21583_megawatt_dr_address_point_distance_m": 1440.9,
+    "method": "Parcel ring from the county service in WGS84; area, centroid and distances computed in EPSG:32618 (WGS 84 / UTM 18N) and on the WGS84 ellipsoid; the county's State Plane (EPSG:2283, US survey feet) coordinates were converted with pyproj and match the served point.",
+    "tools": "pyproj 3.7.1, shapely 2.1.1 (uv run --no-project, python -I)"
+  },
+  "identity_bridge": [
+    "NTT DATA's Ashburn VA1 page (version of 15 October 2026, captured 7 November 2026) and the Internet Archive copy of 20 April 2026 of its services.global.ntt predecessor give '44664 Guilford Dr., Ashburn, VA 20147'.",
+    "The Loudoun County address-point layer returns exactly one point for 44664 GUILFORD DR, on parcel 060298548000; NTT's VA2 address, 44610 GUILFORD DR, is a separate point on parcel 060386530000, 327.6 m away."
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "candidate_id": "ntt-silicon-valley-sv1-1160-walsh-avenue",
+  "decision": "Selected the centroid of Santa Clara County FY2026 parcel 224-58-003 (situs 1160 WALSH AV, SANTA CLARA 95050-2647), the parcel at the address NTT DATA publishes for SV1, as the site locator. It locates the parcel, not the SV1 building outline.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -121.9553623,
+      37.3689742
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_tax_parcel_centroid",
+  "use_scope": "reviewed_site_locator",
+  "derivation": "direct_geometry",
+  "source_file": "local_data/country-research-ntt-gdc-3-p14/sccgov-parcel-1160-walsh.json",
+  "source_sha256": "0787694b11bdf56f7b1c69753ba3f4de131def133ce2625acd133cc17f7887e9",
+  "source_url": "https://data.sccgov.org/resource/ubcd-cewv.geojson?$where=situs_street_name='WALSH'%20AND%20situs_city_name='SANTA%20CLARA'%20AND%20situs_house_number='1160'",
+  "retrieved_at": "2026-11-07T04:20:49.440Z",
+  "selected_properties": {
+    "22458003": {
+      "situs": "1160 WALSH AV, SANTA CLARA",
+      "zip": "95050-2647",
+      "jurisdiction": "SANTA CLARA",
+      "number_of_situs_address": 2
+    }
+  },
+  "layer": "County of Santa Clara Parcels (Socrata dataset ubcd-cewv on data.sccgov.org), GeoJSON in WGS84; rows carry APN, situs address and jurisdiction only (no owner fields)",
+  "computed": {
+    "apns": [
+      "22458003"
+    ],
+    "parts": 1,
+    "geodesic_area_m2": 13203.9,
+    "geodesic_acres": 3.263,
+    "centroid_lon_lat": [
+      -121.9553623,
+      37.3689742
+    ],
+    "centroid_inside": true,
+    "centroid_to_boundary_m": 33.6,
+    "crs_cross_check_shift_m": {
+      "EPSG:5070": 0.0,
+      "EPSG:3310": 0.0
+    },
+    "extent_m": [
+      101.0,
+      149.7
+    ],
+    "max_vertex_distance_from_centroid_m": 92.6,
+    "bounds_lon_lat": [
+      -121.955986,
+      37.368359,
+      -121.954842,
+      37.369698
+    ],
+    "census_public_ar_current_match": {
+      "matched": "1160 WALSH AVE, SANTA CLARA, CA, 95050",
+      "point": [
+        -121.952504484042,
+        37.369699522197
+      ],
+      "distance_m": 265.6,
+      "inside_parcel": false,
+      "note": "address-range interpolation; not used"
+    },
+    "method": "Parcel polygon from the county dataset; centroid computed in EPSG:32610 (WGS 84 / UTM 10N) and returned to WGS84; EPSG:5070 and EPSG:3310 cross-checks give the same point; geodesic area on the WGS84 ellipsoid.",
+    "tools": "pyproj 3.7.1, shapely 2.1.1 (uv run --no-project, python -I)"
+  },
+  "identity_bridge": [
+    "NTT DATA's Silicon Valley SV1 page (version of 22 October 2026, captured 7 November 2026) and the Internet Archive copy of 20 April 2026 of its predecessor give '1160 Walsh Ave., Santa Clara, CA 95050'.",
+    "A query of the county Parcels dataset for situs house number 1160 on WALSH in SANTA CLARA returns exactly one parcel, 22458003 (two situs addresses)."
+  ]
+}

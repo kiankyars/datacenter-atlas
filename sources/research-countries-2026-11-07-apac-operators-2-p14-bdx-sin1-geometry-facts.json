@@ -1,0 +1,53 @@
+{
+  "format": "datacenter-atlas-geometry-facts-v1",
+  "fragment": "apac-operators-2-p14",
+  "prepared_on": "2026-11-07",
+  "method_note": "The point is the single OneMap address-search feature for the address BDx gives on its SIN1 facility page (110 Paya Lebar Road, Singapore). The served WGS84 latitude/longitude was re-derived from the served SVY21 (EPSG:3414) X/Y with pyproj 3.7.1 (always_xy, EPSG:3414 -> EPSG:4326); the difference is below 0.0001 m. A search for the returned postcode 409009 gave a byte-identical single result. No geocoding beyond the official address search, no offsets and no rounding were applied. BDx's 'View on Map' link and any map imagery on its page were not used.",
+  "candidates": [
+    {
+      "candidate_id": "bdx-sin1",
+      "facility": "BDx SIN1 Data Center",
+      "operator_stated_address": "110 Paya Lebar Road, Singapore",
+      "official_address_returned": "110 PAYA LEBAR ROAD ONETEN PAYA LEBAR SINGAPORE 409009",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.8917270063526,
+          1.32392912489181
+        ]
+      },
+      "authority_class": "official_source",
+      "scope_class": "official_numbered_address_point",
+      "use_scope": "project_locator",
+      "precision_scope": "Singapore Land Authority address point for the operator-stated address. It marks the building address, not a surveyed outline, entrance, land-lot boundary or data hall.",
+      "horizontal_uncertainty_metres": null,
+      "horizontal_uncertainty_unknown_reason": "OneMap supplies no positional accuracy for address points; decimal places are not survey accuracy.",
+      "source_url": "https://www.onemap.gov.sg/api/common/elastic/search?searchVal=110%20PAYA%20LEBAR%20ROAD&returnGeom=Y&getAddrDetails=Y&pageNum=1",
+      "source_file": "onemap-110-paya-lebar-road.json",
+      "source_sha256": "c32bb3b8f2c1c171e7dc8c0592062d9bc9955611cb609e41f6d765b1cd6e1d48",
+      "postcode_check_file": "onemap-409009.json",
+      "postcode_check_sha256": "c32bb3b8f2c1c171e7dc8c0592062d9bc9955611cb609e41f6d765b1cd6e1d48",
+      "native_coordinates": {
+        "crs": "EPSG:3414 (SVY21)",
+        "x": 34500.27340022195,
+        "y": 34018.94962278381
+      },
+      "served_wgs84": {
+        "latitude": 1.32392912489181,
+        "longitude": 103.8917270063526
+      },
+      "pyproj_rederived_wgs84": {
+        "latitude": 1.323929124892,
+        "longitude": 103.891727006353,
+        "difference_m": 0.0
+      },
+      "axis_note": "GeoJSON coordinates are [longitude, latitude].",
+      "atlas_records_within_2km": [
+        {"kind": "STT Singapore 5 Tai Seng (existing Atlas site; queue loc-8-p6 locator correction at the same distance)", "distance_km": 1.294},
+        {"kind": "Global Switch Singapore Tai Seng Data Centre, 2 Tai Seng Avenue (existing Atlas site)", "distance_km": 1.442},
+        {"kind": "Equinix SG4 Singapore IBX, 7 Tai Seng Drive (existing Atlas site; queue ops-singapore-jakarta-p6 addition)", "distance_km": 1.665},
+        {"kind": "Keppel Genting Lane Data Centre Campus (existing Atlas site)", "distance_km": 1.691}
+      ]
+    }
+  ]
+}

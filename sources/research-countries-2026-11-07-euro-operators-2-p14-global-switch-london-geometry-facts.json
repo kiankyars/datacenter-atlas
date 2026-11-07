@@ -1,0 +1,67 @@
+{
+  "candidate_id": "global-switch-london-docklands-campus",
+  "decision": "Selected the site location that the Environment Agency's installations register publishes for permit EPR/BP3530YR (holder Global Switch Limited, 240 East India Dock House, East India Dock Road, London E14 9YY): grid reference TQ3858080990, latitude 51.510845, longitude -0.004416, copied without transformation. The permit itself says 'the campus is centred on National Grid Reference TQ 3858 8099' and covers the London North (240 East India Dock Road) and London East (3 Nutmeg Lane) data centres, 'only separated by a private road' and treated as a single site, so the point is used as the campus locator of the London North and London East campus.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -0.004416,
+      51.510845
+    ]
+  },
+  "authority_class": "official_source",
+  "derivation": "direct_geometry",
+  "scope_class": "environmental_permit_register_site_location",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-euro-operators-2-p14/ea-register-epr-bp3530yr.json",
+  "source_sha256": "46a14af1479ef4a4f6dd8f366535ffa81c2f7a4ee51edc2d20ec5df02846f3d5",
+  "source_url": "https://environment.data.gov.uk/public-register/industrial-installations/registration/EPR-BP3530YR.json",
+  "selected_properties": {
+    "registration": "EPR/BP3530YR",
+    "holder": "GLOBAL SWITCH LIMITED",
+    "premises": "240, East India Dock House",
+    "site_address": "240, East India Dock House, East India Dock Road, East India Dock Road, London, E14 9YY",
+    "gridReference": "TQ3858080990",
+    "easting": 538580,
+    "northing": 180990,
+    "lat": 51.510845,
+    "long": -0.004416,
+    "activity": "Combustion; Any Fuel =>50MW - 1.1 A(1) a)"
+  },
+  "permit_cross_check": {
+    "file": "local_data/country-research-euro-operators-2-p14/gs-bp3530yr-permit.pdf",
+    "sha256": "c97e8b553353414e67be47d2119f41ea228b7aaca9d8b18774f200edbb24783a",
+    "installation": "London North and London East Data Centres",
+    "campus_centre_ngr": "TQ 3858 8099",
+    "statement": "The two buildings are only separated by a private road and are considered to be part of a single site."
+  },
+  "transform_check": {
+    "tool": "uv run --no-project --with pyproj==3.7.1 --with shapely==2.1.1 python -I (PROJ 9.5.1)",
+    "source_crs": "EPSG:27700",
+    "target_crs": "EPSG:4326 (always_xy)",
+    "input": [
+      538580,
+      180990
+    ],
+    "output_lon_lat": [
+      -0.004423,
+      51.51085
+    ],
+    "difference_from_published_point_m": 0.75
+  },
+  "nearest_atlas_records": [
+    {
+      "site": "curated:telehouse-london-docklands-campus",
+      "distance_m": 214
+    },
+    {
+      "site": "curated:netwise-london-east",
+      "distance_m": 1103
+    },
+    {
+      "site": "curated:equinix-ld8-harbour-exchange-square-docklands",
+      "distance_m": 1586
+    }
+  ],
+  "horizontal_uncertainty_metres": null,
+  "uncertainty_reason": "The register states no positional accuracy and the permit gives the campus centre only to the 10 m resolution of an eight-figure grid reference; London North and London East lie on either side of a private road at offsets that are not published."
+}

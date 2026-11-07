@@ -1,0 +1,82 @@
+{
+  "candidate_id": "global-switch-frankfurt-eschborner-landstrasse-campus",
+  "decision": "Selected the City of Frankfurt building-address point for Eschborner Landstraße 110 (address object DEHEFALK30007gL1, shared with Nos. 108, 112 and 108-112), the address Global Switch publishes for both Frankfurt North and Frankfurt South, transformed from EPSG:25832 to WGS84, as the campus locator.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      8.5983358,
+      50.1287949
+    ]
+  },
+  "authority_class": "official_source",
+  "derivation": "direct_geometry",
+  "scope_class": "official_building_address_point",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-euro-operators-2-p14/frankfurt-geoportal-eschborner-landstrasse-all.json",
+  "source_sha256": "e98a0fd61f8a4673f72d028048104e39eab373b0f24fac6f7b861fbed97025bd",
+  "source_url": "https://geoportal.frankfurt.de/elastic/basisgis/_search?source_content_type=application%2Fjson&source=%7B%22query%22%3A%7B%22match_phrase_prefix%22%3A%7B%22properties.searchField%22%3A%22Eschborner%20Landstra%5Cu00dfe%22%7D%7D%2C%22size%22%3A300%7D",
+  "selected_properties": {
+    "address_object": "DEHEFALK30007gL1",
+    "searchField_values": [
+      "Eschborner Landstraße 108",
+      "Eschborner Landstraße 108-112",
+      "Eschborner Landstraße 110",
+      "Eschborner Landstraße 112"
+    ],
+    "source": "Gebaeudeadresse",
+    "coordinates_epsg25832": [
+      471290.9199999999,
+      5553028.101
+    ]
+  },
+  "transform": {
+    "tool": "uv run --no-project --with pyproj==3.7.1 --with shapely==2.1.1 python -I (PROJ 9.5.1)",
+    "source_crs": "EPSG:25832 (declared for the geoportal's ELASTIC geosearch in karte/config.json)",
+    "target_crs": "EPSG:4326 (always_xy)",
+    "output_lon_lat": [
+      8.5983358,
+      50.1287949
+    ],
+    "round_trip_after_7_decimal_rounding_m": 0.002
+  },
+  "nearest_other_address_objects_m": [
+    [
+      56.4,
+      "Eschborner Landstraße 101",
+      "DEHEFALK30007eek"
+    ],
+    [
+      56.4,
+      "Eschborner Landstraße 99",
+      "DEHEFALK30007eek"
+    ],
+    [
+      56.4,
+      "Eschborner Landstraße 99-101",
+      "DEHEFALK30007eek"
+    ],
+    [
+      61.3,
+      "Eschborner Landstraße 97",
+      "DEHEFALK30007Rzx"
+    ]
+  ],
+  "nearest_atlas_records": [
+    {
+      "site": "curated:ntt-frankfurt-1-campus",
+      "distance_m": 266,
+      "distance_to_polygon_m": 95.5,
+      "inside": false
+    },
+    {
+      "site": "curated:colt-frankfurt3-sossenheim-campus",
+      "distance_m": 903
+    },
+    {
+      "site": "curated:mk-netzdienste-fra2-frankfurt-campus",
+      "distance_m": 1208
+    }
+  ],
+  "horizontal_uncertainty_metres": null,
+  "uncertainty_reason": "The address register publishes no positional accuracy, and Global Switch publishes no outline of its North and South buildings, so their offsets from the shared building-address point are unknown."
+}

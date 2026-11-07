@@ -1,0 +1,217 @@
+{
+  "reviewer": "root",
+  "reviewed_at": "2026-11-07",
+  "decision": "accepted_for_integration",
+  "update": "verified_construction_core/2026-11-07-research-hundredthirtythird",
+  "base_dataset": "verified_construction_core/2026-11-07-research-hundredthirtysecond",
+  "process": "continuous: one researcher per beat, one adversarial verifier per fragment",
+  "fragments": [
+    {
+      "fragment": "apac-operators-2-p14",
+      "verdict": "accept",
+      "checks": [
+        "current_dataset verified_construction_core/2026-11-07-research-hundredthirtysecond read at start and before verdict",
+        "rehashed bdx-sin1.html (0817cbd3...), ia-20260929002743-bdx-sin1.html (023c6622...), onemap-110-paya-lebar-road.json and onemap-409009.json (c32bb3b8...): all match .metadata.json and sources.json content_hash",
+        "read decisive text in live and archived BDx SIN1 page: 'Singapore / Paya Lebar', 'Operational', 12MW IT load, 5,480 sqm, 14,400 sqm GFA, address 110 Paya Lebar Road, Singapore; visible text of live and 2026-09-29 archive identical",
+        "JSON-LD dateModified 2026-09-10T01:19:16Z in both live page and Internet Archive copy 2026-09-29 (CDX index shows single 2026 capture, HTTP 200): dateModified bounded by archived copy",
+        "2026-09-10 is 58 days before 2026-11-07: inside 85-day window; BDx page is company_disclosure (primary)",
+        "OneMap (Singapore Land Authority official geocoder, sla-onemap-terms-of-use as in existing published OneMap evidence) returns found=1 for 110 Paya Lebar Road; postcode 409009 search byte-identical",
+        "recomputed SVY21 X/Y to WGS84 with pyproj 3.7.1: 103.89172700635258, 1.3239291248918101, 1.6e-9 m from served point; changes.json point equals served point",
+        "locator scope project_locator, official_numbered_address_point, precision/identity/uncertainty recorded; no map-service, PeeringDB or OSM coordinates; 'View on Map' not used",
+        "role BDx Data Centers operator, relationship_scope current, sourced to the BDx page",
+        "distinctness: no SIN1/Paya Lebar/110 Paya Lebar Road/OneTen/409009 match in sites, projects, evidence, source-records, identity-mapping, sources/*-holds.json, other queue changes/holds or claims (only this fragment's claim)",
+        "nearest records: STT Singapore 5 Tai Seng 1.294 km, Global Switch Tai Seng 1.442 km, Equinix SG4 1.665 km, Keppel Genting Lane 1.691 km (and their queue counterparts loc-8-p6, sea-p6, ops-singapore-jakarta-p6): different operators and addresses",
+        "single new project on a new site; commercial colocation scope; no personal data in changes, sources or holds",
+        "dryrun_fragment.py ok against base verified_construction_core/2026-11-07-research-hundredthirtysecond"
+      ],
+      "residual_risks": [
+        "status date is a page dateModified, not an opening or inspection date; operational is an operator listing",
+        "OneMap address point marks the building address, not the data-hall footprint; no positional accuracy published",
+        "12 MW is operator-listed capacity, not verified load"
+      ]
+    },
+    {
+      "fragment": "apple-oracle-ops-p15",
+      "verdict": "accept",
+      "checks": [
+        "rehashed all 8 cited captures against .metadata.json sha256 and sources.json content_hash: all match (staff report aac5d9e1, PZ minutes ce9455d7, CC minutes 5760eb6a, DNR air e9afb558, DNR storm water 2ce60365, valuation page 0b802d84, 2025 staff report 714ff596, Sept 2026 permit report 69da64ba); geometry facts sha256 244fb4c1 matches",
+        "pdftotext of DocumentCenter/View/19014: report date 23 Oct 2026 (PDF created 23 Oct 2026), Owner/Applicant Apple, Inc., existing land use 'Apple Data Center Site', 'approved a site plan for the existing data center building in April 2022', relocated tent 'northwest of the existing data center building', photos of existing buildings",
+        "status source is a government_record with published_at 2026-10-23 = as_of; 15 days before 2026-11-07, inside 85-day window",
+        "June 2025 staff report read: fit-out of the existing data center, no exterior changes, mechanical units already south of the building; supports the building existing; summary amended to say the 2025 AZ2 fit-out completion is not established and to drop the unsupported 'first' wording",
+        "PZ minutes 27 Oct 2026 and CC minutes 2 Nov 2026 (Resolution #2026-432) read: laydown/temporary facilities only; staff confirmed no data-centre buildings in the plan; no data-centre stage claimed from them",
+        "Agendas CC 9 Nov and PZ 10 Nov 2026 have no Apple/Project Morgan item",
+        "locator recomputed from raw Iowa DNR OneStop layer 0 capture (outSR 4326): -93.9273175177, 41.6198174367 -> rounded matches; UTM 15N reprojection within 1.1/1.6 m of the published X/Y; attribute lat/lon 1.0 m; storm-water quarter-section point 970.7 m",
+        "locator source is a state government facility register on programs.iowadnr.gov (robots.txt 404); no map service, PeeringDB or OSM; campus_locator / official_regulatory_facility_point / direct_geometry matches the Meta Altoona precedent; not a city centre (Waukee downtown is several km east)",
+        "identity: DNR air facility name 'Apple WKE Data Center Campus' and storm-water 'Project Morgan Apple Inc. Data Center' both at 2995 W Hickman Rd; Council minutes tie Project Morgan WKE.94 to 2995 W Hickman Road",
+        "role Apple Inc. owner current supported by staff report Owner/Applicant",
+        "distinctness: no Waukee/Project Morgan/Hickman/Apple WKE match in sites, projects, evidence, source-records, identity-mapping, other queue fragments or sources/*-holds.json (only Milwaukee hits); no queue/holds/claims coordinate within 5 km except this fragment's own claim; nearest Atlas site Meta Altoona 35.1 km",
+        "no private individuals' names, phones or emails in changes, sources, holds or URLs",
+        "dryrun_fragment.py ok against verified_construction_core/2026-11-07-research-hundredthirtysecond (1130 sites, 1217 projects)"
+      ],
+      "residual_risks": [
+        "'Existing data center building' shows the building is built but the June 2025 AZ2 interior fit-out may still be in progress; completion is scoped to the building and does not imply operation",
+        "Iowa DNR air-facility point has no stated accuracy or collection method; it is a campus point on a ~639-acre property, not the building position",
+        "Council minutes PDF metadata (30 Oct 2026) predates the 2 Nov meeting; used as context only with no publication date",
+        "Apple has not stated in-window that the Waukee building operates; operational refresh held as lead_only"
+      ]
+    },
+    {
+      "fragment": "dlr-emea-p14",
+      "verdict": "accept",
+      "checks": [
+        "All 49 source captures rehashed: SHA-256 equals content_hash and .metadata.json sha256/bytes/url/captured_at; 37 geometry-facts source_sha256 entries match",
+        "Reused IA sitemaps (3 Oct, 4 Jun 2026) match current-dataset evidence 07a6564d and 4b075ef5 field for field",
+        "Sitemap lastmods re-extracted: PAR3 09-17T17:34Z, PAR5 09-17T15:03Z, PAR6 09-16T22:14Z, PAR12 09-16T19:15Z, MRS1 09-16T20:37Z, MAD1 09-16T17:38Z, MAD2 09-16T18:23Z identical in IA 3 Oct and live 7 Nov sitemaps; IA 4 Jun gives 2025/early-2026 values",
+        "Lower bounds: latest CDX copy of each page (4 Jun-11 Aug 2026) diffed against the live capture: building size changed on all seven and SOC3 (plus SOC2 for PAR3/PAR6) added; no CDX copy after the edit",
+        "Decisive present-tense operator text and street address read in each live capture (PAR3/PAR6/MAD2 colocation offering, PAR12 connected network, MRS1 subsea gateway and suites) plus 24x7 onsite security; metro pages list all seven at the same addresses",
+        "Observations 2026-09-16/17 are within the 85-day window (floor 2026-08-14); status kind company_disclosure with published_at = bounded modification day, same method as accepted dlr-global-2-p13, ams-deep-p9, ops-cee-p6",
+        "BAN locators recomputed from IGN Geoplateforme captures: coordinates equal served WGS84; pyproj 3.7.1 Lambert-93 round trip 0.0 m; parcel containment, boundary/centroid and building distances recomputed with shapely and match the text",
+        "Saint-Denis: both Georisques AIOT points (0007405589, 0007408417, Digital Realty France, inspections titled INTERXION PAR3/PAR5) fall in building 605, 57.3/53.6 m from the point; two-parcel extent 119.7 m",
+        "MRS1: Georisques DIGITAL REALTY France (MRS1) point 0.8 m from BAN 40; operator point 40.7 m away (not used)",
+        "Madrid: Catastro CPMRC 7471710VK4777A converts to the INSPIRE referencePoint (0.02 m), inside the 2,828 m2 parcel; CartoCiudad portals 71/73 carry the matching refCatastral; parcels share a 51.9 m boundary",
+        "Locator sources are government address/cadastral services (BAN etalab-2.0, IGN PCI/BD TOPO, Catastro); operator structured points, map services, PeeringDB and OSM not used; robots.txt captured for every host (404 or allowing the paths used)",
+        "Distance screen vs current dataset and all queue changes: nearest are Equinix PA6 639 m, DLR PAR2 1,035 m, Equinix Saint-Denis 1,696 m, Nabiax Julian Camarillo 951 m, Edged Marseille 3,117 m; none at the same address or facility",
+        "Text screen (codes, streets, cadastral refs, AIOT ids, Viridi) of sites/projects/evidence/source-records/identity-mapping, all queue changes/holds, claims.tsv and sources/*-holds.json: only the leads this fragment reopens, OpCore/Data4 code collisions and this lane's own claims",
+        "One project per new site; PAR3+PAR5 and MAD1+MAD2 are adjoining buildings kept as campus projects with campus_locator; roles Digital Realty operator/current from the status pages; no third-party personal data",
+        "Edits: PAR3/PAR5 capacity_qualification corrected (rubrique 2925 is battery charging, not generators); PAR12 uncertainty_reason now discloses the nearer 20,300 m2 building on ZA 0297 at 44.3 m",
+        "dryrun_fragment.py ok against 2026-11-07-research-hundredthirtysecond (1134 sites, 1221 projects, 6766 evidence)"
+      ],
+      "residual_risks": [
+        "Status rests on facility-page versions dated by sitemap lastmod bounded by IA copies; the IA lower-bound copies are from June (August for MAD1), so the content may have been first edited earlier and re-saved on 16/17 September",
+        "PAR5 and MAD1 pages carry only metro-level descriptive text; their operation within the campus projects rests on facility specifics and the PAR3/MAD2 campus statements",
+        "PAR12 BAN point lies in an unbuilt parcel 44-121 m from candidate buildings; the 8,933 m2 building is matched by size only, and the VIRIDI DATA PAR 12 register point is 1.1 km away",
+        "PAR6 occupying building not confirmed by an official source; BAN 15 chosen over BAN 11 (operator point) by parcel containment",
+        "Observations leave the 85-day window on 2026-12-10 (16 Sep) and 2026-12-11 (17 Sep)"
+      ]
+    },
+    {
+      "fragment": "euro-operators-2-p14",
+      "verdict": "accept",
+      "checks": [
+        "Base re-read: site/config.json current_dataset = verified_construction_core/2026-11-07-research-hundredthirtysecond (1,129 sites, 1,216 projects, 6,719 evidence) at start and end",
+        "All 24 sources rehashed: sha256 of each raw capture equals content_hash and its .metadata.json sha256/bytes; HTTP 200 and metadata URL = source_url; 4 geometry-facts files match geometry_facts_sha256",
+        "Byte-identical reuse confirmed: gs-page-sitemap = evidence e5d0c4a1 (76e87ae6...), gs-post-sitemap = f0551b78 (7a226395...), frankfurt-geoportal-config = 6eddbcec (907501e9...)",
+        "GS London: live capture JSON-LD dateModified 2026-10-05T07:55:29Z; IA CDX lists 20260714 then 20261013; IA 20260714 raw copy dateModified 2026-01-05 with different intro; IA 20261013 carries the 2026-10-05 version; page-sitemap lastmod 2026-10-05T07:55:29Z; present-tense 'Global Switch London offers scalable space and flexible power provisioning' / 'Our London campus offers...' read in capture; 33 days old",
+        "GS Amsterdam: dateModified 2026-10-05T07:54:08Z; IA 20260714 (last 2026 CDX entry) holds 2026-02-16 version with different intro; sitemap lastmod matches; present-tense 'offers unmatched scalability, connectivity and power flexibility' read; 33 days old",
+        "GS Frankfurt: dateModified 2026-10-05T07:54:50Z bounded by IA 20260714 (2026-02-16 version) and IA 20261011 (this version); sitemap lastmod matches; present-tense 'highly connected landmark campus ... offering adaptable technical space' read; 33 days old",
+        "Addresses read in IA 14 July copies and About page (dateModified 2026-10-19): London East 3 Nutmeg Lane E14 2AX, London North 240 East India Dock Road E14 9YY, London South Nutmeg Lane (excluded); Amsterdam West/East Johan Huizingalaan 759 1066 VH; Frankfurt North/South Eschborner Landstrasse 110 60489",
+        "GS method matches published precedents (Hong Kong 2026-10-05, Singapore Woodlands and Madrid 2026-09-23 page versions); earlier 34th hold objection (London page not archive-bounded) now met by IA 20261013 copy",
+        "TH2: dateModified 2026-09-30T07:44:46Z; IA 20260607 (last CDX entry) holds 2026-03-09 version with different intro; telehouse.fr page-sitemap lastmod 2026-09-30T07:44:46 matches; capture reads 'Coeur de reseau...TH2 Paris Voltaire vous garantit un site', 'Reservez des aujourd'hui votre espace IT', host of France-IX; new 400 m2/600 kW floor 'mise en service prevue fin 2026' correctly excluded; 38 days old; Paris list page (dateModified 2026-10-01) names TH2 and TH3 as Paris campuses",
+        "London locator: EA register JSON lat 51.510845 long -0.004416 grid TQ3858080990 (E538580 N180990), holder GLOBAL SWITCH LIMITED; pyproj 3.7.1 EPSG:27700->4326 lands 0.75 m from published point; permit PDF p.1-4 (pdftotext) reads 'the campus is centred on National Grid Reference TQ 3858 8099', London North and East 'only separated by a private road ... single site', permit determined 25/06/2019",
+        "Amsterdam locator: BAG verblijfsobject 0363010000692657 point (4.82886510167032, 52.344009971362745) copied exactly; hoofdadres Johan Huizingalaan 759 1066VH; in use; shapely: inside pand 0363100012112975 (6.29 ha), 12.0 m from boundary, 120.7 m from centroid; 759 M office unit 229 m away not used",
+        "Frankfurt locator: geoportal Gebaeudeadresse DEHEFALK30007gL1 for No. 110 at E471290.92 N5553028.101; config declares epsg 25832 for elastic geosearch; pyproj 3.7.1 -> 8.5983358, 50.1287949 (0.002 m); No. 100 (NTT) 236 m away; point 95.5 m outside the NTT Frankfurt 1 polygon, which contains No. 100",
+        "Paris locator: Georisques record TELEHOUSE EUROPE (i 5637), 137 Boulevard Voltaire, AIOT 0007405506, own point 2.383948/48.856118 (not the shared fallback 2.38421/48.859348); Lambert-93 654798/6861963 -> 0.02 m; 45.4 m from BAN housenumber 75111_9907_00137",
+        "Locator sources are EA register, Kadaster BAG (PDOK OGC API), City of Frankfurt geoportal and Georisques/BAN: government-published, each with Atlas precedent and licence fields consistent with prior evidence; no Google/commercial map, PeeringDB or OSM service used",
+        "Distinctness: keyword screen (Global Switch London/Amsterdam/Frankfurt, Huizinga, Eschborner, Nutmeg, East India Dock, Voltaire, France-IX, BP3530YR, AIOT, postcodes) of sites/projects/evidence/source-records/identity-mapping: only hit is Telehouse Inventory Estate 'East India Dock' project on the Telehouse campus; geodesic distances recomputed: London 215 m Telehouse Docklands, 1,104 m Netwise, 1,588 m Equinix LD8; Frankfurt 266 m NTT FRA1, 905 m Colt FRA3, 1,212 m MK FRA2; Amsterdam and Paris none within 3 km",
+        "Queue screen: no other changes.json point within 2 km (only published uk-ops-p10 Equinix LD8 at 1,586 m); claims.tsv entries for these four keys are this fragment's own; pending ntt-gdc-3-p14 and dlr-emea-p14 items are elsewhere",
+        "Holds screen: 31st/34th/121st London holds, 53rd Frankfurt hold, 121st/127th Amsterdam leads, 66th/123rd TH2 leads read; reopen conditions met by the archive-bounded in-window operator page versions plus government locators",
+        "Roles: operator, relationship_scope current, sourced to each status page; one project per new site; scope excludes London South, Amsterdam expansion, TH2 new floor; no third-party personal data in sources, summaries, URLs or holds",
+        "dryrun_fragment.py: ok (1,133 sites, 1,220 projects, 6,740 evidence)"
+      ],
+      "residual_risks": [
+        "Global Switch operating statements are present-tense marketing copy ('offers ... space and power'), not an explicit 'in operation' sentence; accepted on the published Woodlands/Madrid/Hong Kong precedent",
+        "The 5 October London page version names only 'Global Switch London'/'our London campus'; London North and East are named in the July archive and 19 October About page, and the 'major expansion programme' (London South) is excluded by scope",
+        "Amsterdam and TH2 page versions are bounded only from below by an archive copy plus the matching sitemap lastmod (no post-modification archive copy)",
+        "Campus locators are a permit centre (London, 10 m grid resolution) and address-register points (Amsterdam inside a 6.3 ha building, Frankfurt shared building-address object, Paris register point 45 m from the BAN address point); offsets to data halls unknown"
+      ]
+    },
+    {
+      "fragment": "google-ops-us-p15",
+      "verdict": "accept",
+      "checks": [
+        "current_dataset re-read from site/config.json at claim and finish: verified_construction_core/2026-11-07-research-hundredthirtysecond (1,129 sites, 1,216 projects, 6,719 evidence rows)",
+        "all 15 relied-on captures rehashed: SHA-256 equals both .metadata.json sha256 and each source content_hash; every capture HTTP 200 with robots_checks allowed (robots 200 or 404)",
+        "DWEE presentation read with pdfinfo/pdftotext and slide 6 rendered with pdftoppm: every slide dated 'October 20, 2026'; PDF CreationDate 2026-10-21; task-force page capture links it under the 20 October meeting; sitemap lastmod 2026-10-21T19:12Z",
+        "slide 4: LB1010 reports are required of facilities primarily used to store, manage and process digital data with a peak electricity demand of 10 MW or more; slide 5: owner/operators report electricity demand, water use and implemented efficiency measures; reporting period CY2025, due 30 Sep 2026",
+        "slide 6 table reads 'Google (Westwood Solutions, LLC) Omaha (Douglas)' and 'Google (Fireball Group, LLC) Papillion (Sarpy)'; map pins Westwood north of Omaha and Fireball Groups LLC north of the Travelers and Raven Northbrook pins in the Sarpy inset",
+        "slides 7-11 city column differs from slide 6 for 5 of 6 rows (confirmed); entity mapping resolved independently: DWEE notices put Westwood Solutions LLC (FID 117197) 'for the operation of a data center' at 8425 North 114th Street, Omaha, Douglas County and Fireball Group LLC (FID 106518), 'an existing data processing center', at 14865 Gold Coast Rd, Papillion, Sarpy County",
+        "status source kind government_record (primary); as_of 2026-10-20 <= published_at 2026-10-21 <= retrieval 2026-11-07; 18 days before 2026-11-07, inside the 85-day window",
+        "status scope kept: existing-operations projects only; proposed DWEE construction-permit revisions (72+4 and 34+10 generators, cooling towers) are not admitted as projects or stages",
+        "Google Nebraska page (live and IA copies 2026-09-13/2026-09-15) read: 'Our data center communities in Nebraska (Lincoln, Omaha, and Papillion)'; Papillion built 2019, Omaha built 2022; used only as operator-role and history context",
+        "Omaha locator recomputed from the raw DOGIS capture with pyproj 3.7.1/shapely 2.1.1 in EPSG:5070: parcel 2245320128 centroid -96.0882257, 41.3399739 (0.0006 m from stated), 157.27 acres, inside, 216.4 m from boundary; union with 2245320130 431.3 m NW; county address point inside the parcel 264.7 m away",
+        "Omaha parcel owner WESTWOOD SOLUTIONS LLC with tax mailing address 1600 Amphitheatre Pkwy; improvements USD 197,367,100; twelve Westwood parcels in Sec 20-16-12 confirmed in the owner query capture",
+        "Papillion locator recomputed from the raw Census geocoder JSON: exact match 14865 GOLD COAST RD, PAPILLION, NE 68138, TIGER edge 655028435 R, range 14801-14899, -96.146874849183, 41.139852928207 -> rounded point matches; geographies lookup Sarpy County 31153, Papillion city",
+        "locator sources acceptable: Douglas County-Omaha GIS parcel layer (government cadastral) and US Census geocoder (official open geocoder); no map service, map widget, PeeringDB or OSM; geometry-facts files hash to the recorded geometry_facts_sha256",
+        "distinctness: no site, project, evidence, source-record or identity-mapping row names Westwood, Fireball, Gold Coast, 114th, Rainwood or a Google Nebraska campus; nearest Atlas sites Omaha 15.5 km (1623 Farnam), Papillion 2,008.5 m geodesic (Meta Sarpy, different operator, LB1010 reporter and address; Meta's parcel lies north of Capehart Rd, ~1.6 km south of this point)",
+        "no other queue fragment, pending addition or claims.tsv row covers these campuses; only sources/*-holds.json entries are the forty-first, seventy-first, thirty-fourth and hundred-and-twenty-seventh holds whose reopen conditions (dated in-window government statement naming the campus plus an official locator) this fragment meets",
+        "roles: Westwood Solutions LLC owner current (parcel owner of record); Google operator current (Google Nebraska page); relationship_scope values valid",
+        "one project per new site; no third-party personal data in changes, sources, holds or geometry facts (site lead and task-force members not named)",
+        "fix: distinctness reviews corrected to 22.8 km SSW/NNE between the two Google sites (was '23 km south-west/north-east') and to the current dataset row counts",
+        "holds (Lincoln/Agate, Council Bluffs, Henderson, Storey County, other Google US campuses) reviewed: reasons and reopen conditions sound, no personal data",
+        "dryrun_fragment.py ok: 1,131 sites, 1,218 projects, 6,733 evidence on base hundredthirtysecond"
+      ],
+      "residual_risks": [
+        "operational status rests on DWEE's 20 October 2026 presentation of LB1010 reports covering calendar-year 2025; the deck states no explicit 'operating' sentence and Google's electricity/water figures are redacted, so the reading relies on the statutory definition (facilities used to process data with >=10 MW peak demand) plus DWEE's 2025 operating-permit notices",
+        "the presentation is internally inconsistent (slides 7-11 city column); identity rests on slide 6 agreeing with DWEE air notices and Douglas County parcels, not on the full deck",
+        "earlier lanes (us-plains-p10, seventy-first holds) declined to treat the LB1010 listing as an in-window operating statement; this acceptance departs from that researcher judgement",
+        "Papillion locator is a Census address-range interpolation along Gold Coast Rd, not a parcel or building; Sarpy County parcels were unreachable under robots rules; campus extent and offset from the road unknown",
+        "Omaha locator is the centroid of one of two improved parcels; the campus extends onto parcel 2245320130 to the north",
+        "Fireball Group LLC has no owner role recorded (no reachable Sarpy parcel record)"
+      ]
+    },
+    {
+      "fragment": "ntt-gdc-3-p14",
+      "verdict": "accept",
+      "checks": [
+        "base dataset verified_construction_core/2026-11-07-research-hundredthirtysecond read from site/config.json at start and before verdict; 85-day floor 2026-08-14",
+        "all 30 sources rehashed: raw capture sha256 == .metadata.json sha256 == content_hash (sitemap and NoVA hub reuse ntt-gdc-2-p13 captures, byte-identical); 5 geometry-facts files match geometry_facts_sha256; capture metadata HTTP 200, no credentials, robots_checks allowed (only a non-relied CDX call returned 503)",
+        "version dates from __NEXT_DATA__ route: VA1 page itemVersion 24 updated 2026-10-15T19:46:05Z; EMEA hub v25 2026-10-16T11:36:14Z; Americas hub v25 2026-10-29T09:39:30Z; each equals en-us sitemap lastmod; Americas is the only GDC item dated 10-29, EMEA one of two on 10-16; none is the 76-item 10-22 re-save (VIE1/ZUR1/HI1/SV1 pages are, used as context only)",
+        "lower bounds: IA id_ copies of the services.global.ntt predecessors (VA1 2026-04-20, Americas 2026-06-16, EMEA 2026-09-03, VIE1 2026-06-12, ZUR1 2026-02-13, HI1 2026-04-23, SV1 2026-04-20) carry the same facility text/rows and addresses; EMEA copy is itself inside the window; accepted lastmod-plus-IA-lower-bound precedent (ntt-gdc-2-p13 CA2/CA3/VA5)",
+        "decisive statements read in captures: VA1 'VA1 offers 12.6MW of critical IT load and is the first of nine data centers on our 224MW campus' at 44664 Guilford Dr; EMEA 'We operate carrier-neutral data centers' with '15.2MW of critical IT load at Vienna 1' and '20MW of critical IT load at Zurich 1' versus '36MW of planned capacity at Paris 1 ... available at the end of 2027'; Americas route field 'We operate seven data center campuses' and 'operates in seven US markets: ... Hillsboro, Santa Clara ...' with Hillsboro HI1 and Santa Clara SV1 as the only facilities in those markets (planned VA11/CH3 marked 'See more'); no future tense on VIE1/ZUR1/HI1/SV1/VA1 pages",
+        "company_disclosure status sources; as_of dates are page-version dates, not opening dates; capacities not recorded; one project per new site",
+        "VA1 locator recomputed: Loudoun address point 44664 GUILFORD DR (MCPI 060298548000) State Plane EPSG:2283 -> pyproj 3.7.1 equals served point (0.0002 m); inside parcel (Beaumeade lot 28A, 7.20 ac), 37.5 m from boundary, 26.3 m from centroid; VA2 point 327.6 m away on parcel 060386530000; Census match 138 m off, not used",
+        "Vienna locator: BEV Adressregister search returns one feature '1100 Wien Computerstraße 4' at 16.34087958, 48.158123232 = changes.json; ~6 km SSW of centre consistent with operator text",
+        "Zurich locator: geo.admin EGAID 101787046 Hofwisenstrasse 56 Rümlang (EGID 210185249) served WGS84 equals changes.json; LV95 2683162.8/1255906.4 -> pyproj 0.065 m; inside parcel 5697 (18,402 m2), 28.6 m from boundary; GWR building 2010, 4 storeys, 7,426 m2 footprint",
+        "Hillsboro locator: Metro RLIS PointAddress score 100 '4050 NE EVERGREEN RD' served point equals EPSG:2269 conversion (0.0002 m), 1.28 m from EPSG:2913; Census no match",
+        "SV1 locator: Santa Clara County parcel 22458003 (situs 1160 WALSH AV) centroid recomputed in EPSG:32610/5070/3310 = -121.9553623, 37.3689742 (<=0.005 m), inside, 33.6 m from boundary, 3.26 ac",
+        "locator sources acceptable: county/regional/federal government registers (Loudoun, BEV CC-BY-4.0, swisstopo opendata.swiss, Metro RLIS Open Database EULA as in us-or-wa-p4, Santa Clara County); no map service, map link, PeeringDB or OSM; robots.txt allowed for each host",
+        "distinctness: no Atlas site/project/evidence/source-record/identity-mapping hit for Guilford, Computerstraße, Hofwisenstrasse, Rümlang, Evergreen Rd, 1160 Walsh, NTT VA1/Vienna 1/Zurich 1/HI1/SV1, e-shelter or RagingWire; within 2.5 km only other operators (Equinix DC10/Performance Circle/DC3/Filigree, Cologix, DLR ACC6, Digital ACC11 for VA1; STACK POR03 and Flexential for HI1; Colovore and CoreSite for SV1; DLR Glattbrugg 2.02 km at Bäulerwisen-/Sägereistrasse for ZUR1; none for VIE1) plus NTT VA5 Lot 1 site 1.44 km away on another parcel; 348 other fragments, claims.tsv and 102 sources/*-holds.json screened: only the ntt-gdc-p11/ntt-gdc-2-p13 holds this reopens",
+        "roles: operator NTT Global Data Centers, relationship_scope current, consistent with existing NTT Atlas rows; no private names, phones or emails in changes, sources, holds or geometry facts",
+        "dry run ok against hundredthirtysecond: sites 1129 -> 1134, projects 1221, evidence 6747"
+      ],
+      "residual_risks": [
+        "version dates rest on NTT's own CMS 'updated' field and sitemap lastmod (not independent) with out-of-window IA lower bounds for VA1, HI1 and SV1; VA1's 15 Oct save shares an edit session with TX4 (19:46:48Z), whose page kept stale future-tense text, so an edit date is not proof of a content review",
+        "HI1 and SV1 rest on a market-level dated statement ('operates in seven US markets'); the facility rows are datasource items without their own version date",
+        "VA1 is a separate site from the NTT Megawatt Drive Lot 1 site although NTT markets one 224 MW Ashburn campus; VA2 (held) may later need to join the VA1 site",
+        "Vienna 1 page gives inconsistent capacity figures (16/15.4 MW; EMEA 15.2 MW); no capacity recorded",
+        "no owner recorded; some assets (e.g. Vienna VIE1) may be held by NTT DC REIT",
+        "all locators are address points or a parcel centroid, not building footprints; the Zurich address point is 69.8 m from the GWR building coordinate"
+      ]
+    },
+    {
+      "fragment": "us-colo-3-p14",
+      "verdict": "accept",
+      "checks": [
+        "current dataset re-read at start and end: verified_construction_core/2026-11-07-research-hundredthirtysecond",
+        "all 22 sources rehashed: raw capture sha256 == .metadata.json sha256 == content_hash, byte counts match, HTTP 200, no credentials, robots allowed",
+        "sitemap sources byte-identical to published evidence 9fea3786/245dcbca; mirrored metadata accepted by builder",
+        "Westway campus page: JSON-LD dateModified 2026-09-26T23:01:12Z; IA 2026-04-19 copy = version 2025-05-21 with 38 carriers per building; IA 2026-10-26 copy = same Sept 26 version, 40 carriers; live text read (3 data centers, HOU1 5150/HOU2 5170 Westway Park Blvd, HOU3 11003 Corporate Centre Dr)",
+        "DFW1 page: dateModified 2026-09-27T19:16:25Z; IA 2026-08-26 copy = version 2026-08-13, 44 carriers; IA 2026-10-26 copy = Sept 27 version, 47 carriers; text read (400 South Akard, carrier hotel, 7MW, 2N)",
+        "DFW2 page: dateModified 2026-09-28T22:32:47Z; IA 2026-04-21 copy = version 2026-03-04, 39 carriers, Raised label, no Metal line; IA 2026-10-26 copy identical to live (48 carriers)",
+        "Dallas market page Sept 28 version (IA 2026-10-06) shows DFW1 47 / DFW2 48 vs IA 2026-05-18 40 / 39",
+        "all three as_of dates (2026-09-26/27/28) within 85 days of 2026-11-07; company_disclosure primary sources; present-tense operating statements",
+        "locators recomputed from raw TxGIO identify JSON in EPSG:32615/32614 and EPSG:5070 with pyproj 3.7.1 + shapely 2.1.1: Westway union centroid -95.5589881,29.8441288 (0.005 m off, inside, 112 m from boundary, 46.87 ac, two parts 15.8 m apart); Akard -96.7982065,32.7781429 (0.002 m, inside, 48.5 m, 2.816 ac); Quality Way -96.7113463,32.96637 (0.003 m, inside, 50.3 m, 4.33 ac)",
+        "locator sources are TxGIO StratMap government parcel records (public-use-as-is, matching existing Atlas TxGIO evidence); no map service, PeeringDB or OSM used; geometry-facts file hashes match sources.json",
+        "identity: Harris parcels all owned by DATA CENTER HOUSTON LLC mailed to 400 S Akard Ste 100; 0 Westway strip parcel 248.5 m away correctly excluded; DCAD BPP accounts DBA DATABANK linked to 400 S Akard and 904 Quality Way real-property accounts",
+        "roles: DataBank operator/current for all; owner/current for Data Center Houston LLC and DB Data Center Dallas LLC from parcel owner of record; no owner asserted for Collins Technology Park Partners LLC",
+        "distinctness: no Akard/Westway/Quality Way/Corporate Centre/parcel-ID hit in sites/projects/evidence/source-records/identity-mapping; nearest Atlas sites 21.4 km (Houston), 3.2 km Equinix Infomart (Akard), 1.15 km 365 Data Centers Richardson TX1 (different operator, address, parcel); queue overlap only us-dfw-p5 lead_only hold that requests this route; loc-12-p8 point at 1.15 km is the 365 site",
+        "one project per new site; no personal names, phones or emails in changes, sources or holds",
+        "dryrun_fragment.py ok: +3 sites, +3 projects, +17 evidence rows"
+      ],
+      "residual_risks": [
+        "Westway and DFW2 lower IA bounds are April 2026 with no archived copy until 26 October, so an unarchived intermediate version cannot be excluded; DFW1 is tightly bounded (13 Aug to 27 Sept)",
+        "DataBank market/campus facility cards appear theme-rendered from building posts (Houston page dated 18 Aug already shows 40 carriers; Dallas page dated Feb 2025 showed 'IT Square Feet' in May 2026), so the Westway 38->40 change may come from building-post edits of 26-29 Sept rather than the campus page's own edit; admission follows the published Centennial/Ashburn campus-page precedent",
+        "MW and square-foot figures are operator design ratings, not load in service",
+        "StratMap appraisal-district parcels publish no positional accuracy; uncertainty left null with reason",
+        "Owner roles rest on owner-of-record names whose DataBank affiliation is inferred from the shared 400 S Akard mailing address"
+      ]
+    }
+  ],
+  "packet_pins": {
+    "definitions/atlas-research-hundredthirtythird-2026-11-07.json": "444c1c615e39b887c8e4aaabce7e056cfab6e95df9c09b3325130957171e5e90",
+    "sources/research-countries-2026-11-07-hundredthirtythird-primary-sources.json": "eaaff77d8dd2ff086232fc56ce83d07c9fd07ac880e952a2d664897cc74b6288",
+    "sources/research-countries-2026-11-07-hundredthirtythird-actions.json": "d79aee95da54f66cf070e811c95f3c6ce3eab114507e534488a8ef408b8857c2",
+    "sources/research-countries-2026-11-07-hundredthirtythird-holds.json": "bd96ac1e40a17aa270c674de2edd57a2f6725432890116796e33f531db6b34b8"
+  },
+  "raw_captures_redistributed": false
+}

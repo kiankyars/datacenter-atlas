@@ -1,0 +1,62 @@
+{
+  "candidate_id": "google-omaha-westwood-solutions-data-center-campus",
+  "decision": "Selected the centroid of Douglas County parcel 2245320128 (8425 N 114 St, owner of record Westwood Solutions LLC) as the campus locator for the Google Omaha data center.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -96.0882257,
+      41.3399739
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_tax_parcel_centroid",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-google-ops-us-p15/ne/dogis-parcels-8425-11649.json",
+  "source_sha256": "f403c449f74253b0e41c817819ea3ccb957531b7edb1b8bf33e4284ea1261bcd",
+  "source_url": "https://gis.dogis.org/arcgis/rest/services/Accela_Dynamic/MapServer/7/query?where=PIN%20IN%20(%272245320128%27,%272245320130%27,%272245320116%27)&outFields=PIN,OWNER_NAME,ADDRESS2,OWNER_CITY,OWNER_STAT,PROPERTY_A,SEC_TWN_RN,ADDITION_N,LOT,LEGAL1,CLASS,LAND_VALUE,IMPROVEMEN,TOTAL_VALU&returnGeometry=true&outSR=4326&f=json",
+  "retrieved_at": "2026-11-07T04:16:12.535Z",
+  "selected_properties": {
+    "PIN": "2245320128",
+    "OWNER_NAME": "WESTWOOD SOLUTIONS LLC",
+    "PROPERTY_A": "8425 N 114 ST",
+    "SEC_TWN_RN": "20-16-12",
+    "ADDITION_N": "STATE AND HIGHWAY 133 ADDITION",
+    "LOT": "5",
+    "LEGAL1": "IRREG SE PT LOT 5 IN TAX DIST 0239",
+    "CLASS": "C",
+    "LAND_VALUE": 2041800,
+    "IMPROVEMEN": 197367100,
+    "TOTAL_VALU": 199408900
+  },
+  "computed": {
+    "method": "Parcel ring transcribed from the DOGIS Accela_Dynamic MapServer layer 7 response (outSR=4326), projected to EPSG:5070 (NAD83 / Conus Albers) with pyproj 3.7.1, area centroid computed with shapely 2.1.1 and projected back to EPSG:4326; rounded to 7 decimals.",
+    "parcel_area_m2": 636461.7,
+    "parcel_area_acres": 157.273,
+    "centroid_inside_parcel": true,
+    "centroid_to_parcel_boundary_m": 216.4,
+    "adjacent_parcel_2245320130": {
+      "owner": "WESTWOOD SOLUTIONS LLC",
+      "property_address": "11649 RAINWOOD RD",
+      "improvements_usd": 44415700,
+      "area_acres": 170.514,
+      "union_with_selected_parcel_centroid_lon_lat": [
+        -96.0912096,
+        41.3431403
+      ],
+      "union_centroid_distance_from_selected_m": 431.3,
+      "note": "Not used: the address 8425 North 114th Street named by the DWEE air-permit notices is on parcel 2245320128."
+    },
+    "douglas_address_point_8425_n_114th_st": {
+      "source_file": "local_data/country-research-google-ops-us-p15/ne/dogis-address-8425-n-114th-st.json",
+      "source_sha256": "aefa37b8043f765fbca15271cdabeebe04a9b50e8307c6392f6dccdd6f89cd07",
+      "lon_lat": [
+        -96.0888722,
+        41.3376412
+      ],
+      "stored_pin": "2245320116",
+      "inside_selected_parcel": true,
+      "distance_from_selected_m": 264.7,
+      "note": "The address point carries a superseded PIN (2245320116) and a stale place name of a former logistics occupant; it lies inside parcel 2245320128 but is not used as the locator."
+    }
+  }
+}
