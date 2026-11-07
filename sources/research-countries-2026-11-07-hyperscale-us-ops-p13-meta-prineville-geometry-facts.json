@@ -1,0 +1,119 @@
+{
+  "candidate_id": "meta-prineville-data-center-campus",
+  "decision": "Selected the Crook County current address point for 735 SW Connect Way, whose county note reads 'FACEBOOK PRN1, PRIOR 735 SW VITESSE AVE, PRIOR ACT 19271', on tax lot 1515010001102 (owner of record Vitesse LLC), as the campus locator for Meta's Prineville Data Center.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -120.887201,
+      44.2943302
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_address_point_of_named_operator_building",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-hyperscale-us-ops-p13/oregon/crook-address-points-facebook-prn-notes.json",
+  "source_sha256": "aa09e104a3e9b43a777ab2859e1e47356dff6a959a2a0251d869ff1e77a3d870",
+  "source_url": "https://gis.crookcountyor.gov/server/rest/services/CC_Current_Address_Points/MapServer/0/query?where=UPPER(notes)%20LIKE%20%27%25FACEBOOK%25%27%20OR%20UPPER(notes)%20LIKE%20%27%25META%20%25%27%20OR%20UPPER(notes)%20LIKE%20%27%25PRN%25%27&outFields=maptaxlot,number,direction,street_name,street_type,city,full_address,bld_use,bld_type,status,notes,lat,long,zip,in_prineville,primary_add,creation_date,last_update&returnGeometry=true&outSR=4326&f=json",
+  "retrieved_at": "2026-11-07T03:39:12.747Z",
+  "selected_properties": {
+    "maptaxlot": "1515010001102",
+    "full_address": "735 SW CONNECT WAY",
+    "city": "PRINEVILLE",
+    "zip": "97754",
+    "bld_use": "COMR",
+    "status": "Current",
+    "notes": "FACEBOOK PRN1, PRIOR 735 SW VITESSE AVE, PRIOR ACT 19271",
+    "primary_add": "Y",
+    "lat": 44.29432442,
+    "long": -120.88718732,
+    "creation_date": "2018-03-06 (epoch ms 1520294400000)",
+    "last_update": "2023-09-07 (epoch ms 1694095459000)",
+    "spatial_reference": "outSR=4326 (WGS84) as returned by the Crook County ArcGIS MapServer CC_Current_Address_Points, layer 0"
+  },
+  "computed": {
+    "selected_point_lon_lat": [
+      -120.887201,
+      44.2943302
+    ],
+    "attribute_lat_long_vs_geometry_m": 1.3,
+    "inside_taxlot": "1515010001102 (VITESSE LLC, situs 735 SW CONNECT WAY, GIS_ACRES 33.48)",
+    "taxlot_1515010001102_geodesic_acres": 33.47,
+    "min_distance_point_to_taxlot_boundary_m": 74.6,
+    "other_facebook_prn_address_points": {
+      "800 SW CONNECT WAY": {
+        "notes": "FACEBOOK PRN3",
+        "maptaxlot": "1515010001100",
+        "lon_lat": [
+          -120.881309,
+          44.2922559
+        ],
+        "distance_from_selected_m": 523.7,
+        "inside_taxlot": [
+          "1515010001100"
+        ]
+      },
+      "496 SW CONNECT WAY": {
+        "notes": "FACEBOOK PARCEL 1",
+        "maptaxlot": "1515010001101",
+        "lon_lat": [
+          -120.8862608,
+          44.2976675
+        ],
+        "distance_from_selected_m": 378.4,
+        "inside_taxlot": [
+          "1515010001101"
+        ]
+      },
+      "500 SW CONNECT WAY": {
+        "notes": "FACEBOOK PRN2",
+        "maptaxlot": "1515010001100",
+        "lon_lat": [
+          -120.8842285,
+          44.2951568
+        ],
+        "distance_from_selected_m": 254.4,
+        "inside_taxlot": [
+          "1515010001100"
+        ]
+      },
+      "600 SW CONNECT WAY": {
+        "notes": "FACEBOOK PRN4",
+        "maptaxlot": "1515010001100",
+        "lon_lat": [
+          -120.883236,
+          44.2964251
+        ],
+        "distance_from_selected_m": 392.8,
+        "inside_taxlot": [
+          "1515010001100"
+        ]
+      },
+      "900 SW CONNECT LOOP": {
+        "notes": "PRN5/6, PRIOR 200 SW CONNECT WAY",
+        "maptaxlot": "1515000000301",
+        "lon_lat": [
+          -120.8795265,
+          44.2997901
+        ],
+        "distance_from_selected_m": 862.1,
+        "inside_taxlot": [
+          "1515000000301"
+        ]
+      }
+    },
+    "vitesse_llc_taxlots": [
+      "1415350003201",
+      "1515000000301",
+      "1515000000318",
+      "1515010000400",
+      "1515010000800",
+      "1515010000900",
+      "1515010001100",
+      "1515010001102",
+      "1515010001200"
+    ],
+    "vitesse_llc_taxlot_union": "Polygon, 488.42 geodesic acres (9 lots)",
+    "distance_to_apple_prineville_campus_locator_m": 2012.3,
+    "method": "Point geometry and attributes as returned by the county service in WGS84 (outSR=4326); geodesic distances and areas on the WGS84 ellipsoid with pyproj 3.7.1 Geod; point-in-polygon tests with shapely 2.1.1 on the county tax-lot polygons (CC_Taxlots_Helion layer 0, outSR=4326); boundary distance in UTM zone 10N (EPSG:32610)."
+  }
+}

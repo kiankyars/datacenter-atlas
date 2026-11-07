@@ -1,0 +1,79 @@
+{
+  "candidate_id": "ntt-sacramento-ca3-1625-west-national-drive",
+  "decision": "Selected the Sacramento County PointAddress geocoder's address point for 1625 W NATIONAL DR, SACRAMENTO, CA, 95834 (Addr_type PointAddress, score 100, Ref_ID 412218), served in WGS84, as the campus locator for NTT Sacramento CA3, whose published address is 1625 W. National Dr. The point lies inside county parcel 225-0942-055-0000 (situs 1625 W NATIONAL DR) next to its centroid. It locates the address and parcel, not the building outline.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -121.498794,
+      38.644317
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_address_point",
+  "use_scope": "campus_locator",
+  "derivation": "direct_geometry",
+  "source_file": "local_data/country-research-ntt-gdc-2-p13/sac-pointaddress-1625-w-national.json",
+  "source_url": "https://mapservices.gis.saccounty.gov/arcgis/rest/services/PointAddress/GeocodeServer/findAddressCandidates?SingleLine=1625+W+National+Dr%2C+Sacramento%2C+CA+95834&outFields=*&outSR=4326&maxLocations=5&f=json",
+  "selected_properties": {
+    "match_addr": "1625 W NATIONAL DR, SACRAMENTO, CA, 95834",
+    "addr_type": "PointAddress",
+    "score": 100,
+    "status": "M",
+    "ref_id": 412218,
+    "state_plane_xy_ftUS_epsg2226": [
+      6704818.267766861,
+      1996861.3997344775
+    ],
+    "parcel": {
+      "apn": "225-0942-055-0000",
+      "situs": "1625 W NATIONAL DR, SACRAMENTO, CA 95834",
+      "lot_size_sqft": 338461,
+      "zone": "MP",
+      "jurisdiction": "UNINCORPORATED",
+      "source_file": "local_data/country-research-ntt-gdc-2-p13/sac-parcel-at-1625-w-national.json"
+    }
+  },
+  "consistency_checks": {
+    "point_in_parcel": true,
+    "point_to_parcel_boundary_m": 81.9,
+    "farthest_parcel_vertex_m": 129.2,
+    "parcel_area_m2_utm10n": 31918.6,
+    "parcel_centroid_wgs84": [
+      38.6443104,
+      -121.4988108
+    ],
+    "point_to_parcel_centroid_m": 1.6,
+    "state_plane_to_wgs84_pyproj": [
+      38.6443119,
+      -121.4987808
+    ],
+    "served_point_vs_pyproj_state_plane_m": 1.278,
+    "census_public_ar_current_match": {
+      "address": "1625 NATIONAL DR, SACRAMENTO, CA, 95834",
+      "range": "1601-1799 (right side)",
+      "point": [
+        38.643542023145,
+        -121.496867680873
+      ],
+      "distance_m": 188.2,
+      "note": "interpolated street-range point, not used"
+    },
+    "distance_to_1200_striker_ave_point_m": 1065.2,
+    "nearest_atlas_site_km": {
+      "Microsoft Alviso San Jose Datacenter Campus": 140.69
+    },
+    "versions": {
+      "pyproj": "3.7.1",
+      "proj": "9.5.1",
+      "shapely": "2.1.1"
+    }
+  },
+  "source_sha256": {
+    "pointaddress": "a02743138ddb278d4ed5adc4559e9cd81b3f7525e5d6a7f56252f502085904a7",
+    "parcel": "62113c04ff35b4e8154b7fb4762b0d440832edeb572e0a8bcb9e400e7d6ffaec",
+    "census": "00bf69147c1ad714e34103636c7e81d28a65dc2f9fb1eeb711f77d58abe0733f",
+    "operator_page_ca3": "b529645197c7dcc4bae32c18f2a8626e7b4f616840d9ffcb4c0d318042bbedcd"
+  },
+  "licence": "public-record-source-terms (Sacramento County GIS ArcGIS REST service; the service metadata states no licence or copyright; only the returned coordinates, address match and parcel fields are used); the operator page is all rights reserved and only its published address was compared.",
+  "axis_note": "GeoJSON coordinates are [longitude, latitude]."
+}

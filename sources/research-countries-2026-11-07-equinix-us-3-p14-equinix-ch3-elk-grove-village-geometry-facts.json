@@ -1,0 +1,82 @@
+{
+  "candidate_id": "equinix-us-3-p14-equinix-ch3-elk-grove-village-1905-lunt-avenue",
+  "decision": "Selected the Cook County Assessor's published parcel centroid for PIN 08351040830000 (1905 LUNT AVE, Elk Grove Village; tax years 2024-2026) as the locator for Equinix CH3, the same method as the published CH5 site next door. The 2021 county parcel polygon at that centroid (pin10 0835104034, the pre-2024 PIN of 1905 Lunt Ave) is used to check that the point lies inside the property and outside the CH5 parcel.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -87.9553016,
+      42.0010949
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_tax_parcel_centroid",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-equinix-us-3-p14/cook-parcel-universe-08351040830000.json",
+  "source_sha256": "56954261869d9bea51b24f2bcdde1e366eceaa4aebe77ef6b47141218258f295",
+  "source_url": "https://datacatalog.cookcountyil.gov/resource/nj4t-kc8j.json?$select=pin,pin10,year,class,lon,lat,x_3435,y_3435,township_name,cook_municipality_name&$where=pin=%2708351040830000%27&$order=year%20DESC&$limit=5",
+  "retrieved_at": "2026-11-07T03:30:59.047Z",
+  "parcel_source_file": "local_data/country-research-equinix-us-3-p14/cook-parcel2021-at-ch3-centroid.json",
+  "parcel_source_sha256": "649c9475f05cb094e45c779344be209e23f9c82af73c0dd3d1291a546326012b",
+  "parcel_source_url": "https://datacatalog.cookcountyil.gov/resource/77tz-riq7.json?$select=pin10,assessorbldgclass,municipality,the_geom&$where=intersects(the_geom,%20%27POINT%20(-87.9553016378%2042.001094935)%27)",
+  "selected_properties": {
+    "parcel_universe": {
+      "pin": "08351040830000",
+      "pin10": "0835104083",
+      "year": "2026",
+      "class": "597",
+      "lon": "-87.9553016378",
+      "lat": "42.001094935",
+      "x_3435": "1087002.1506727517",
+      "y_3435": "1943215.8000058979",
+      "township_name": "Elk Grove",
+      "cook_municipality_name": "VILLAGE OF ELK GROVE VILLAGE"
+    },
+    "parcel_2021": {
+      "pin10": "0835104034",
+      "assessorbldgclass": "587",
+      "municipality": "Elk Grove Village"
+    }
+  },
+  "facts": {
+    "parcel_centroid_lon_lat": [
+      -87.9553016,
+      42.0010949
+    ],
+    "selected_point_lon_lat": [
+      -87.9553016,
+      42.0010949
+    ],
+    "selected_point_inside_parcel": true,
+    "selected_point_distance_to_boundary_m": 81.6,
+    "selected_point_distance_to_parcel_centroid_m": 0.0,
+    "parcel_centroid_inside": true,
+    "geodesic_acres": 8.32,
+    "bounds_lon_lat": [
+      -87.956297,
+      42.000153,
+      -87.954299,
+      42.002044
+    ],
+    "approx_extent_m": [
+      166,
+      210
+    ],
+    "max_vertex_distance_from_selected_point_m": 132,
+    "centroid_method": "area centroid computed in EPSG:32616 (pyproj 3.7.1, shapely 2.1.1) and transformed to WGS84; the EPSG:5070 (CONUS Albers) centroid differs by 0.000 m",
+    "parcel_valid": true,
+    "rings": 1,
+    "vertices": 15,
+    "reference_points": [
+      {
+        "label": "Atlas site Equinix CH5 Data Center, 2001 Lunt Ave (vcc-site-9ea881e4f6faab9a0137; Assessor centroid of PIN 08351040840000)",
+        "lon_lat": [
+          -87.9536421,
+          42.0011268
+        ],
+        "inside_parcel": false,
+        "distance_to_selected_point_m": 137.5,
+        "distance_to_parcel_boundary_m": 55.9
+      }
+    ]
+  }
+}

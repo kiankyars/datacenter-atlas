@@ -1,0 +1,125 @@
+{
+  "candidate_id": "meta-altoona-data-center-campus",
+  "decision": "Selected the Iowa DNR facility point of the active Title V air source 'Siculus, Inc.' at 100 Share Way NW, Altoona (stfacid 310199764, programme ID 77-07-010) as the campus locator for Meta's Altoona Data Center.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -93.5100874,
+      41.6632675
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_regulatory_facility_point",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-hyperscale-us-ops-p13/iowa/iowadnr-air-siculus-title-v.json",
+  "source_sha256": "c44b99f4600b135caa6aca532008266faab8b06540089a2ce22cab8afebc765c",
+  "source_url": "https://programs.iowadnr.gov/geospatial/rest/services/OneStop/IaFmFacilities/MapServer/0/query?where=stfacid%3D310199764&outFields=*&returnGeometry=true&outSR=4326&f=json",
+  "retrieved_at": "2026-11-07T03:35:22.990Z",
+  "selected_properties": {
+    "stfacid": 310199764,
+    "progid": "77-07-010",
+    "facName": "Siculus, Inc.",
+    "LocAddress": "100 Share Way NW",
+    "CityName": "Altoona",
+    "State": "IA",
+    "locZip": "50009",
+    "countyName": "Polk",
+    "opStatus": "Active",
+    "ProgType": "Title V",
+    "Latitude": 41.66326,
+    "Longitude": -93.51008,
+    "X_Coord": 457534,
+    "Y_Coord": 4612515,
+    "LEGENDTYPE_AIR": "Facility-AIR",
+    "PIStartDt": "2023-04-27 (epoch ms 1682605175000)",
+    "spatial_reference": "outSR=4326 (WGS84) as returned by the Iowa DNR OneStop IaFmFacilities MapServer, layer 0 (air facilities)"
+  },
+  "computed": {
+    "selected_point_lon_lat": [
+      -93.5100874,
+      41.6632675
+    ],
+    "related_iowa_dnr_records": {
+      "spill_422068402": {
+        "facName": "Facebook",
+        "LocAddress": "1700 34th Ave NW",
+        "Sectn_T_R": "Sec 10 T79N R23W",
+        "attribute_lat_lon": [
+          41.66546,
+          -93.50968
+        ],
+        "distance_from_selected_m": 245.9,
+        "note": "layer geometry for this record is a placeholder at (-91.62, 42.15); the attribute Latitude/Longitude are used"
+      },
+      "spill_422070286": {
+        "facName": "Facebook Server Farm",
+        "LocAddress": "5053 NE 62nd Ave",
+        "Sectn_T_R": "Sec 3 T79N R23W",
+        "attribute_lat_lon": [
+          41.67306,
+          -93.5196
+        ],
+        "distance_from_selected_m": 1345.6,
+        "note": "layer geometry for this record is a placeholder at (-91.62, 42.15); the attribute Latitude/Longitude are used"
+      },
+      "stormwater_316857195": {
+        "facName": "Project Sequelant - Construction",
+        "LocAddress": "1100 SHARE WAY, NW",
+        "permitDesc": "CONSTRUCTION OF A BUILDING, ROAD, PARKING LOT, AND UTILITIES",
+        "opStatus": "Active",
+        "colMthTxt": "PUBLIC LAND SURVEY-QUARTER SECTION",
+        "Accuracy": 570,
+        "lon_lat": [
+          -93.5079574,
+          41.6692675
+        ],
+        "distance_from_selected_m": 689.6
+      },
+      "stormwater_312068167": {
+        "facName": "Siculus, Inc. - Construction",
+        "LocAddress": "100 SHARE WAY ",
+        "permitDesc": "CONSTRUCTION OF A ROAD, PARKING LOT, BUILDINGS, ELECTRICAL SUBSTATION AND UTILITIES  195 ACRES",
+        "opStatus": "Discontinued",
+        "colMthTxt": "PUBLIC LAND SURVEY-QUARTER SECTION",
+        "Accuracy": 570,
+        "lon_lat": [
+          -93.5096974,
+          41.6654475
+        ],
+        "distance_from_selected_m": 244.3
+      },
+      "stormwater_317932568": {
+        "facName": "Project Sequelant - Construction",
+        "LocAddress": "1100 SHARE WAY NORTHWEST",
+        "permitDesc": "CONSTRUCTION OF A BUILDING, ROAD, PARKING LOT AND UTILITIES",
+        "opStatus": "Active",
+        "colMthTxt": null,
+        "Accuracy": null,
+        "lon_lat": [
+          -93.5128774,
+          41.6806175
+        ],
+        "distance_from_selected_m": 1941.0
+      }
+    },
+    "facebook_spill_422068402_vs_siculus_construction_312068167_m": 2.4,
+    "census_geocoder_address_matches": {
+      "100 SHARE WAY NW": {
+        "lon_lat": [
+          -93.5122894,
+          41.663362
+        ],
+        "distance_from_selected_m": 183.7
+      },
+      "1700 34TH AVE NW": {
+        "lon_lat": [
+          -93.5031507,
+          41.664159
+        ],
+        "distance_from_selected_m": 586.1
+      }
+    },
+    "distance_to_lightedge_altoona_dsm_campus_locator_m": 4461.3,
+    "method": "Point geometry and attributes as returned by the Iowa DNR service in WGS84 (outSR=4326); geodesic distances on the WGS84 ellipsoid with pyproj 3.7.1 Geod. The Siculus construction and Project Sequelant storm-water records give colMthTxt 'PUBLIC LAND SURVEY-QUARTER SECTION' with Accuracy 570, so they place those records only to a quarter section."
+  }
+}

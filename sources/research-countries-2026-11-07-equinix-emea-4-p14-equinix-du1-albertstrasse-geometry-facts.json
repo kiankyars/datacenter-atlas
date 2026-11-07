@@ -1,0 +1,61 @@
+{
+  "candidate_id": "equinix-du1-duesseldorf-albertstrasse-27",
+  "decision": "Selected the official NRW building-address point (Geobasis NRW INSPIRE addresses from building references) for Albertstraße 27, 40233 Düsseldorf (Address_DENW20AL0000trho), the address Equinix publishes for DU1, transformed from EPSG:25832 to WGS84, as the project locator. The coordinate in the map widget on Equinix's page was not used.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      6.8067425,
+      51.2195455
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_building_address_point",
+  "use_scope": "project_locator",
+  "source_file": "local_data/country-research-equinix-emea-4-p14/nrw-ad-addresses-duesseldorf-albertstrasse-27-bbox.xml",
+  "source_sha256": "06a32e88e0cbe86f336a367da27d018c2a02ab476b78e3098f1d8645bb086cd0",
+  "source_url": "https://www.wfs.nrw.de/geobasis/wfs_nw_inspire-adressen_gebref?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=ad%3AAddress&FILTER=%3Cfes%3AFilter%20xmlns%3Afes%3D%22http%3A%2F%2Fwww.opengis.net%2Ffes%2F2.0%22%20xmlns%3Aad%3D%22http%3A%2F%2Finspire.ec.europa.eu%2Fschemas%2Fad%2F4.0%22%20xmlns%3Agml%3D%22http%3A%2F%2Fwww.opengis.net%2Fgml%2F3.2%22%3E%3Cfes%3ABBOX%3E%3Cfes%3AValueReference%3Ead%3Aposition%2Fad%3AGeographicPosition%2Fad%3Ageometry%3C%2Ffes%3AValueReference%3E%3Cgml%3AEnvelope%20srsName%3D%22http%3A%2F%2Fwww.opengis.net%2Fdef%2Fcrs%2Fepsg%2F0%2F25832%22%3E%3Cgml%3AlowerCorner%3E346635%205676325%3C%2Fgml%3AlowerCorner%3E%3Cgml%3AupperCorner%3E347035%205676725%3C%2Fgml%3AupperCorner%3E%3C%2Fgml%3AEnvelope%3E%3C%2Ffes%3ABBOX%3E%3C%2Ffes%3AFilter%3E&COUNT=1000",
+  "selected_properties": {
+    "source_layer": "ad:Address (INSPIRE-WFS NW Adressen Gebäudereferenzen, Geobasis NRW)",
+    "address_feature_id": "Address_DENW20AL0000trho",
+    "thoroughfare": "ThoroughfareName_0511100001024 (Albertstraße; municipality key 05111000, Düsseldorf)",
+    "postal_descriptor": "PostalDescriptor_40233",
+    "house_number": "27 (published in the second LocatorDesignator, whose type code reads addressNumberExtension; the first designator, typed addressNumber, is empty; for 27a the letter sits in the first designator, so the service swaps the two type codes)",
+    "position_specification": "building",
+    "position_method": "byAdministrator",
+    "native_coordinates_epsg25832": [
+      346835.461,
+      5676525.427
+    ],
+    "operator_published_address": "Albertstrasse 27, 40233 Dusseldorf (Equinix DU1 page, Internet Archive copy of 3 October 2026)"
+  },
+  "consistency_checks": {
+    "bbox_query": "A BBOX query of 400 m x 400 m (EPSG:25832 346635-347035 / 5676325-5676725) returns 57 address features, eight of them on Albertstraße (ThoroughfareName_0511100001024): 27, 27a, 30, 31, 32, 36, 39 and 40. A separate thoroughfare-name query for Albertstraße returns 33 streets in NRW, one of them in Düsseldorf (0511100001024).",
+    "neighbour_m": {
+      "Albertstraße 27a (Address_DENW20AL0000trhn)": 23.0,
+      "Albertstraße 31 (Address_DENW20AL0000trhe)": 121.4
+    },
+    "nearest_atlas_sites_km": {
+      "AtlasEdge DUS001 Düsseldorf Data Centre (Hilden)": 9.757,
+      "AtlasEdge Leverkusen Campus": 23.291
+    },
+    "crs": "The response declares srsName http://www.opengis.net/def/crs/epsg/0/25832 (ETRS89 / UTM zone 32N).",
+    "round_trip_m": 0.006,
+    "versions": {
+      "pyproj": "3.7.1",
+      "proj": "9.5.1",
+      "shapely": "2.1.1"
+    }
+  },
+  "transform_check": "pyproj 3.7.1 (PROJ 9.5.1) EPSG:25832 -> EPSG:4326, always_xy; rounded to 7 decimal places; the rounded point transforms back to within 0.006 m.",
+  "excluded_coordinates": [
+    {
+      "kind": "Map widget coordinate on the Equinix DU1 page",
+      "reason": "A map-embed parameter, which the locator policy excludes; not read or used."
+    },
+    {
+      "kind": "Albertstraße 27a address point (23 m away)",
+      "reason": "Not the number Equinix publishes."
+    }
+  ],
+  "limitations": "The point is the state register building-address point for the published address (specification building, method byAdministrator); it is not a parcel, building footprint or surveyed position, and the service states no positional accuracy."
+}

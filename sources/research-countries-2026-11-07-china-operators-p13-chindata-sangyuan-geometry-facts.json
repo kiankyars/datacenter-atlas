@@ -1,0 +1,100 @@
+{
+ "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+ "researched_at": "2026-11-07T00:00:00+00:00",
+ "fragment": "china-operators-p13",
+ "candidate": "Chindata Hebei Sangyuan Base (环首都·桑园云计算产业基地), Huangying village, Sangyuan town, Huailai County, Zhangjiakou, Hebei: campus locator for Sangyuan phases 1-2 existing data-centre operations",
+ "method": "The selected point is the area centroid of the quadrilateral formed by the four corner control points printed as X/Y plane coordinates on the official phase 2 site plan (环首都·桑园云计算产业基地建设项目（二期）项目修建性详细规划, sheet 总平面图（调整前）), attached to the Huailai County Spatial Planning Committee Office publicity of 14 March 2024. The printed values are Gauss-Kruger grid coordinates with the zone number 39 prefixed to Y (3-degree zone 39, central meridian 117 E). The sheet states that its coordinates are in metres but does not name the datum; it was read as CGCS2000, the datum that the 2026 Huailai planning sheet for the Jingxi project states for the same grid, and the result was checked against Sentinel-2 imagery (frame_check). The values were converted with pyproj 3.7.1 from EPSG:4527 (CGCS2000 / 3-degree Gauss-Kruger zone 39, with the 39 prefix) to EPSG:4490 (CGCS2000 geographic). CGCS2000 and WGS84 agree to well under a metre at this scale, so no further transformation was applied. The area and centroid were computed with shapely 2.1.1 in the projected grid.",
+ "source_sheet": {
+  "label": "Site plan before adjustment (总平面图（调整前）) of the Sangyuan phase 2 detailed site plan, attached to the Huailai design-scheme revision publicity of 14 March 2024",
+  "publicity_url": "http://www.huailai.gov.cn/single/79/54624.html",
+  "sheet_url": "http://www.huailai.gov.cn/main/upload/2024-03-14/17103832643192c9581938e366e21702018e3ac9723f51d7.jpg",
+  "local_capture": "local_data/country-research-china-operators-p13/att/hl-54624-a1.jpg",
+  "source_sha256": "cc23f397304446fa44f43939f42722ec89680a3a21c0560c1e3c26ba847fef78",
+  "pixels": [
+   8064,
+   6048
+  ],
+  "printed_header": "宗地编号：GY21-44; 土地证编号：冀（2023）怀来县不动产权第0000091号; 规划用地面积 31386.72 平方米; 总建筑面积 42338.96 平方米; 设计说明：本图坐标、尺寸、标高均以米为单位",
+  "printed_buildings": "1#动力中心 (power centre, 2F), 2#机房楼 and 3#机房楼 (machine-room buildings, 3F, H=22.00 m), 4#水泵房 (pump room), 5#附属用楼 (ancillary building) and 6#配电装置楼 (switchgear building); the 三期 (phase 3) block is drawn adjoining on the east and provincial road S241 further east"
+ },
+ "printed_control_points": [
+  {
+   "point": "north-west, at the north-west turn of the internal ring road",
+   "printed": "X=4460711.865, Y=39375622.408"
+  },
+  {
+   "point": "north-east, at the north-east turn of the internal ring road beside the east red line",
+   "printed": "X=4460716.651, Y=39375726.999",
+   "note": "The last digit is partly crossed by the dashed building-control line; .999 is the reading that keeps the point on the line through the other eastern point parallel to the western line (computed Y 39375726.998) and on the phase 3 sheet's west red line (computed Y 39375727.003). Reading .993 would move the centroid by 1.5 mm."
+  },
+  {
+   "point": "south-east, at the south-east turn of the internal ring road beside the east red line",
+   "printed": "X=4460544.959, Y=39375734.854"
+  },
+  {
+   "point": "south-west, at the south-west turn of the internal ring road",
+   "printed": "X=4460539.689, Y=39375630.286"
+  },
+  {
+   "point": "west road, beside the junction of the 3# and 2# machine-room buildings (not a corner; used only as a check)",
+   "printed": "X=4460631.195, Y=39375626.099"
+  }
+ ],
+ "consistency_checks": {
+  "side_lengths_m": {
+   "north_NW_NE": 104.7,
+   "east_NE_SE": 171.872,
+   "south_SE_SW": 104.701,
+   "west_SW_NW": 172.356
+  },
+  "printed_dimensions": "The sheet dimensions the south road between the south-west and south-east points as 104.70 m (computed 104.701 m) and the north road as 37.09 m + 67.60 m = 104.69 m (computed 104.70 m).",
+  "collinearity": "The printed west-road point X=4460631.195 lies on the line from the north-west to the south-west point: interpolated Y 39375626.099, identical to the printed value.",
+  "adjoining_phase_3_sheet": "The 9 February 2026 approved phase 3 site plan (hl-68448-siteplan.pdf, sheet 8.2 修改后总平面图, land area 26,673.86 m2) prints its red-line corners as X=4460748.67, Y=39375831.68; X=4460505.17, Y=39375846.74; X=4460743.82, Y=39375725.76; and X=4460500.15, Y=39375736.91. Its west edge passes within 0.01 m of the phase 2 sheet's two eastern points (interpolated Y 39375734.860 and 39375727.003 against printed 39375734.854 and 39375726.999), so both sheets share one plane grid and phase 3 adjoins phase 2 on the east. The phase 3 corners enclose 26,341 m2, 1.2 percent less than the stated area, so they are used only for this check.",
+  "quadrilateral_area_m2": 18020.32,
+  "note": "The four points enclose the 2# and 3# machine-room buildings and their service roads, about 105 m east-west by 172 m north-south, inside the 31,386.72 m2 phase 2 parcel. They are design control points, not the red-line corners, which the sheet does not print."
+ },
+ "selected_point": {
+  "label": "Area centroid of the quadrilateral formed by the four printed corner control points of the phase 2 machine-room block",
+  "grid_xy_zone39": [
+   4460628.29,
+   375678.612
+  ],
+  "lon_lat": [
+   115.5383764,
+   40.2708472
+  ],
+  "vertices_lon_lat": [
+   [
+    115.5376997,
+    40.2715912
+   ],
+   [
+    115.538928,
+    40.2716499
+   ],
+   [
+    115.5390536,
+    40.2701053
+   ],
+   [
+    115.5378256,
+    40.2700423
+   ]
+  ],
+  "farthest_vertex_m": 100.9,
+  "phase_3_parcel_centroid": {
+   "lon_lat": [
+    115.539631,
+    40.270822
+   ],
+   "distance_m": 106.8
+  }
+ },
+ "frame_check": {
+  "imagery": "Copernicus Sentinel-2 L2A scene S2B_50TLK_20261023_0_L2A (acquired 23 October 2026 03:16 UTC, eo:cloud_cover 0.12 percent), true-colour TCI COG https://sentinel-cogs.s3.us-west-2.amazonaws.com/sentinel-s2-l2a-cogs/50/T/LK/2026/10/S2B_50TLK_20261023_0_L2A/TCI.tif. The STAC item (s2/S2B_50TLK_20261023_0_L2A.json, sha256 6a630dcf4897e1a8da30401a52a79f50f2337eff29ad9d73975a616692f7322c) and the October 2026 tile listing (s2/s2-50TLK-202610-list.xml, sha256 e409bb4bf2d3a85a7b213689e46ed1d29b3331805023e320b5dc0b17c7f889e8) were captured with robots.txt checked (HTTP 404, no restrictions). A 160 x 160 pixel window (10 m pixels, EPSG:32650, origin 374930 E, 4459640 N) was read with HTTP range requests through GDAL (rasterio 1.4.3), not captured in full; the window is kept as s2/derived-S2B_50TLK_20261023-TCI-window-sangyuan.tif (sha256 27bab1003dcd657e435f0464ab4c82de7b68914a96edf7ac65dbc0cb128f2e13) with the overlay s2/derived-S2B_50TLK_20261023-TCI-window-sangyuan-overlay.png (sha256 fb9ffb67d08acad1590359bd453a79356350dc3b7c82e782dca1d1d2c5ddc369). Contains modified Copernicus Sentinel data 2026.",
+  "observation": "Drawn on the window, the converted quadrilateral frames a large bright roof block, and the selected point falls on that roof; the converted phase 3 red line frames the adjoining roofed block to the east. A third large roofed block lies across an east-west road about 150-400 m south and 30-230 m east of the point, beside the north-south provincial road. This matches the 17 March 2023 phase 2 land-use analysis sheet (hl-44088-a1.jpg), which outlines the phase 2 site (本期建设范围) with the built phase 1 land (一期建设用地(已建成)) to its south-east across the east-west road and west of 宝平线 (S241), and the phase 2 sheets, which show S241 east of the phase 3 block. The fit is consistent at the 10 m pixel scale with reading the coordinates as CGCS2000; the imagery was used only for this check and does not contribute to the point.",
+  "relation_to_point": "Not used to derive or move the point."
+ },
+ "scope_statement": "The point locates the Sangyuan campus through the phase 2 machine-room block. It is not a red-line parcel centroid, a building corner, an entrance, the phase 2 110 kV substation or a campus boundary. Phase 1 (33,333.33 m2, title 冀(2021)怀来县不动产权第0012563号) and phase 3 are not separately located; phase 1's buildings lie roughly 150-460 m from the point.",
+ "map_services_used": "None. No Google, Waze, Apple, Bing, HERE, Yandex, Baidu, Amap, Naver, Kakao or Tencent map, map embed or PeeringDB location was used, and no OpenStreetMap API, Overpass or extract mirror was fetched."
+}

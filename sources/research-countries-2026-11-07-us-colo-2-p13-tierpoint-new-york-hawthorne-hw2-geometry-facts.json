@@ -1,0 +1,95 @@
+{
+  "candidate_id": "us-colo-2-p13-tierpoint-new-york-hawthorne-hw2-17-skyline-drive",
+  "decision": "Selected the area centroid of Westchester County (Town of Mount Pleasant, SWIS 553489) tax parcel 116.11-1-5 (parcel address 17 SKYLINE DR; property class 449; 2025 assessment roll), as published by the NYS ITS public tax-parcel service, as the reviewed site locator for TierPoint New York - Hawthorne Data Center (HW2), which TierPoint's page names 'Hawthorne Data Center - 17 Skyline Drive'. TierPoint's other Hawthorne building (HWT, 11 Skyline Drive) lies on the separate, non-contiguous parcel 116.7-1-17 and is deliberately excluded.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -73.8170545,
+      41.0866478
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_tax_parcel_centroid",
+  "use_scope": "reviewed_site_locator",
+  "source_file": "local_data/country-research-us-colo-2-p13/nys-parcels-westchester-11-15-17-skyline.json",
+  "source_sha256": "cfe4bb84bcfd355bb09b210184c41e285db3ebfe4c65a97018ebcd7965307c27",
+  "source_url": "https://gisservices.its.ny.gov/arcgis/rest/services/NYS_Tax_Parcels_Public/MapServer/1/query?where=COUNTY_NAME%3D%27Westchester%27+AND+SWIS%3D%27553489%27+AND+PRINT_KEY+IN+%28%27116.7-1-17%27%2C%27116.11-1-5%27%2C%27116.11-1-4%27%29&outFields=COUNTY_NAME%2CMUNI_NAME%2CSWIS%2CPRINT_KEY%2CSBL%2CPARCEL_ADDR%2CPROP_CLASS%2CACRES%2CCALC_ACRES%2CYR_BLT%2CGFA%2CPRIMARY_OWNER%2CROLL_YR%2CSPATIAL_YR%2CGRID_EAST%2CGRID_NORTH&returnGeometry=true&outSR=4326&f=json",
+  "retrieved_at": "2026-11-07T03:34:32.826Z",
+  "selected_properties": {
+    "116.11-1-5": {
+      "COUNTY_NAME": "Westchester",
+      "MUNI_NAME": "Mount Pleasant",
+      "SWIS": "553489",
+      "PRINT_KEY": "116.11-1-5",
+      "SBL": "11601100010050000000",
+      "PARCEL_ADDR": "17 SKYLINE DR",
+      "PROP_CLASS": "449",
+      "ACRES": 3.58,
+      "CALC_ACRES": 3.57886726,
+      "YR_BLT": 1990,
+      "GFA": 85858,
+      "PRIMARY_OWNER": "LD DI ASSETCO LLC",
+      "ROLL_YR": 2025,
+      "SPATIAL_YR": 2025
+    }
+  },
+  "facts": {
+    "centroid_lon_lat": [
+      -73.8170545,
+      41.0866478
+    ],
+    "centroid_inside": true,
+    "centroid_distance_to_boundary_m": 44.4,
+    "geodesic_area_m2": 14483.2,
+    "geodesic_acres": 3.58,
+    "union_geometry_type": "Polygon",
+    "parcel_count": 1,
+    "distinct_geometries": 1,
+    "bounds_lon_lat": [
+      -73.818155,
+      41.086011,
+      -73.815963,
+      41.08732
+    ],
+    "approx_extent_m": [
+      183,
+      146
+    ],
+    "max_vertex_distance_from_centroid_m": 101.0,
+    "centroid_method": "area centroid of the parcel polygon computed in EPSG:32618 (pyproj 3.7.1, shapely 2.1.1) and transformed to WGS84, rounded to 7 decimals; the EPSG:5070 (CONUS Albers) centroid differs by 0.000 m",
+    "parcel_valid": true,
+    "reference_points": [
+      {
+        "label": "US Census Bureau geocoder (Public_AR_Current) interpolated point for 17 SKYLINE DR, HAWTHORNE, NY, 10532 (street-range interpolation; not used)",
+        "lon_lat": [
+          -73.813861129021,
+          41.09091419727
+        ],
+        "inside_parcel": false,
+        "distance_to_centroid_m": 544.5,
+        "distance_to_boundary_m": 460.3
+      },
+      {
+        "label": "TierPoint page schema.org GeoCoordinates published for the HWT building at 11 Skyline Drive (not for HW2; shows the separation only)",
+        "lon_lat": [
+          -73.815574,
+          41.088689
+        ],
+        "inside_parcel": false,
+        "distance_to_centroid_m": 258.6,
+        "distance_to_boundary_m": 174.4
+      },
+      {
+        "label": "Area centroid of NYS ITS parcel 116.7-1-17 (11 SKYLINE DR, HWT), excluded",
+        "lon_lat": [
+          -73.815184,
+          41.0884556
+        ],
+        "inside_parcel": false,
+        "distance_to_centroid_m": 255.0,
+        "distance_to_boundary_m": 172.8
+      }
+    ]
+  },
+  "verification_script": "scratchpad uc2p13/geo/facts.py (uv run --no-project --with pyproj==3.7.1 --with shapely==2.1.1 python -I)"
+}

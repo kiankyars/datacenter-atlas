@@ -1,0 +1,117 @@
+{
+ "candidate_id": "meta-henrico-data-center-campus",
+ "decision": "Selected the centroid of Henrico County tax parcel GPIN 849-701-2260 (6200 Technology Blvd, Sandston; assessed by the county as 'Computer Center' with building name 'FACEBOOK BUILDING 2') as the campus locator for Meta's Henrico Data Center.",
+ "geometry": {
+  "type": "Point",
+  "coordinates": [
+   -77.2364665,
+   37.481856
+  ]
+ },
+ "authority_class": "official_source",
+ "scope_class": "official_tax_parcel_centroid",
+ "use_scope": "campus_locator",
+ "source_file": "local_data/country-research-meta-ops-p15/va/henrico-tax-parcels.geojson",
+ "source_sha256": "6f63fa730d2427cc72ab62208a66e1b0f2b7a52da4009b3baa91fe8a2e39f6a4",
+ "source_url": "https://data-henrico.opendata.arcgis.com/api/download/v1/items/5ff8f102e9e74796b1fb01fab9b92b46/geojson?layers=0",
+ "effective_url": "https://hub.arcgis.com/api/v3/datasets/5ff8f102e9e74796b1fb01fab9b92b46_0/downloads/data?format=geojson&spatialRefId=4326&where=1%3D1",
+ "retrieved_at": "2026-11-07T04:14:09.065Z",
+ "selected_properties": {
+  "GPIN": "849-701-2260",
+  "OBJECTID": 541761,
+  "FULL_ADDRESS": "6200 TECHNOLOGY BLVD",
+  "ADDRESS_KEY": 356934,
+  "PARCEL_TYPE": 0,
+  "EFFECTIVE_DATE": "2024-01-01T00:00:00Z",
+  "Date_Modified": "2023-08-24T16:58:39Z",
+  "spatial_reference": "GeoJSON in EPSG:4326 as served by the hub download (spatialRefId=4326)",
+  "cama_record": {
+   "source_file": "local_data/country-research-meta-ops-p15/va/henrico-cama-data-external.csv",
+   "source_sha256": "57fa74b85b4c3b7f2fa5676d6cf92f94ee3a604ac5fe638cfad59fae2c39354e",
+   "GPIN": "849-701-2260",
+   "PID": "142516",
+   "PARCEL_STREET": "6200 TECHNOLOGY BLVD",
+   "CITY": "SANDSTON VA",
+   "ZIP_CODE": "23150",
+   "USE_CODE": "497",
+   "USE_DESCRIPTION": "Computer Center",
+   "BUILDING_NAME": "FACEBOOK BUILDING 2",
+   "NUMBER_PROPERTY_CARDS": "2",
+   "PARCEL_ACREAGE": "172.053",
+   "TAX_YEAR": "2026",
+   "IMPROVEMENTS_VALUE_CURRENT": "639748200",
+   "LAND_VALUE_CURRENT": "11052300",
+   "YEAR_BUILT": "2020",
+   "LAST_SALE_DATE": "2017-09-29",
+   "DEED_BOOK_PAGE": "5664/1875"
+  }
+ },
+ "computed": {
+  "tool": "uv run --no-project --with pyproj==3.7.1 --with shapely==2.1.1 python -I (shapely centroid in EPSG:4326; geodesic area on WGS84; metric distances in EPSG:32618)",
+  "selected_parcel": {
+   "geom_type": "Polygon",
+   "exterior_vertices": 66,
+   "centroid_lon_lat": [
+    -77.2364665,
+    37.481856
+   ],
+   "centroid_inside_parcel": true,
+   "centroid_to_boundary_m": 390.8,
+   "geodesic_area_acres": 172.48,
+   "utm18n_extent_m": [
+    984.9,
+    1218.4
+   ]
+  },
+  "second_facebook_parcel": {
+   "GPIN": "852-700-2714",
+   "address": "7301 TECHNOLOGY BLVD",
+   "cama_building_name": "FACEBOOK BUILDING 3",
+   "cama_acreage": "129.272",
+   "geodesic_area_acres": 129.18,
+   "centroid_lon_lat": [
+    -77.2272683,
+    37.477678
+   ],
+   "centroid_inside_parcel": true,
+   "centroid_separation_from_selected_m": 936.4,
+   "touches_selected_parcel": false
+  },
+  "county_master_address_points": {
+   "source_file": "local_data/country-research-meta-ops-p15/va/henrico-master-address-points.csv",
+   "source_sha256": "5934f6d130597bee8b03c3c1d2b90da8745ba48243fb3f2148742224bf351ecc",
+   "6200 TECHNOLOGY BLVD": {
+    "ADDRESS_KEY": "356934",
+    "X_EPSG2284_ftUS": 11849325.6866514,
+    "Y_EPSG2284_ftUS": 3702609.33728702,
+    "lon_lat": [
+     -77.2371439,
+     37.4850366
+    ],
+    "EFF_DATE": "2017-08-15",
+    "ACTIVE_FLAG": "1",
+    "inside_parcel_849_701_2260": true,
+    "to_selected_centroid_m": 358.1
+   },
+   "7301 TECHNOLOGY BLVD": {
+    "ADDRESS_KEY": "1760561",
+    "X_EPSG2284_ftUS": 11852130.762078,
+    "Y_EPSG2284_ftUS": 3700378.9267216,
+    "lon_lat": [
+     -77.2275808,
+     37.478808
+    ],
+    "EFF_DATE": "2020-09-14",
+    "ACTIVE_FLAG": "1",
+    "inside_parcel_852_700_2714": true
+   },
+   "transform": "EPSG:2284 (NAD83 / Virginia South ftUS, the CSV download spatialRefId) to EPSG:4326 with pyproj 3.7.1, always_xy"
+  },
+  "nearest_other_computer_center_parcels_m": {
+   "QTS RIC2 DC5 (6060 Technology Blvd)": 619,
+   "QTS RIC2 DC3 (6050 Technology Blvd)": 626,
+   "QTS RIC1 DC4 (3560 Portugee Rd)": 1027,
+   "Bank of America Data Center (6050 Technology Creek Dr)": 1533
+  }
+ }
+}

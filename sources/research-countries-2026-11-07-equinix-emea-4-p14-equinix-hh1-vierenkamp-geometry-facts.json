@@ -1,0 +1,56 @@
+{
+  "candidate_id": "equinix-hh1-hamburg-vierenkamp-1",
+  "decision": "Selected the official Hamburg house coordinate (LGV/Statistikamt Nord central address service, dog:Hauskoordinaten HH_HK_428067256) for Vierenkamp 1, 22453 Hamburg (OT Niendorf), the address Equinix publishes for HH1, transformed from EPSG:25832 to WGS84, as the project locator. The coordinate in the map widget on Equinix's page was not used.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      9.9745649,
+      53.6446444
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_building_address_point",
+  "use_scope": "project_locator",
+  "source_file": "local_data/country-research-equinix-emea-4-p14/hh-dog-hausnummern-vierenkamp.xml",
+  "source_sha256": "e45615eb93b260c1d5cde1460e4037cda5d1e69da97aa00cca415027e771d9ff",
+  "source_url": "https://geodienste.hamburg.de/HH_WFS_DOG?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&STOREDQUERY_ID=HausnummernZuStrasse&strassenname=Vierenkamp",
+  "selected_properties": {
+    "source_layer": "dog:Hauskoordinaten (WFS Zentraler AdressService Hamburg, stored query HausnummernZuStrasse)",
+    "feature_id": "HH_HK_428067256",
+    "geographicIdentifier": "Vierenkamp 1, 22453  Hamburg(OT Niendorf)",
+    "native_coordinates_epsg25832": [
+      564424.185,
+      5944427.079
+    ],
+    "operator_published_address": "Vierenkamp 1, 22453 Hamburg (Stadtteil Niendorf) (Equinix HH1 page, Internet Archive copy of 3 October 2026)"
+  },
+  "consistency_checks": {
+    "street_query": "The stored query HausnummernZuStrasse for Vierenkamp returns 13 house coordinates (1, 2, 4, 6, 7, 8, 8a, 9, 10, 11, 12, 13, 15); number 1 is a single feature.",
+    "neighbour_m": {
+      "Vierenkamp 2 (HH_HK_428067253)": 102.8
+    },
+    "nearest_atlas_sites_km": {
+      "dataR Rellingen Data Center Campus": 6.793,
+      "Portus IPHH4 Hamburg (Wendenstraße 285)": 11.26
+    },
+    "crs": "The response declares srsName urn:ogc:def:crs:EPSG::25832 (ETRS89 / UTM zone 32N).",
+    "round_trip_m": 0.005,
+    "versions": {
+      "pyproj": "3.7.1",
+      "proj": "9.5.1",
+      "shapely": "2.1.1"
+    }
+  },
+  "transform_check": "pyproj 3.7.1 (PROJ 9.5.1) EPSG:25832 -> EPSG:4326, always_xy; rounded to 7 decimal places; the rounded point transforms back to within 0.005 m.",
+  "excluded_coordinates": [
+    {
+      "kind": "Map widget coordinate on the Equinix HH1 page",
+      "reason": "A map-embed parameter, which the locator policy excludes; not read or used."
+    },
+    {
+      "kind": "The 50 m geographicExtent square around the house coordinate",
+      "reason": "A generic search extent, not a building outline."
+    }
+  ],
+  "limitations": "The point is the official house coordinate for the published address; it is not a parcel, building footprint or surveyed position, and the service states no positional accuracy."
+}

@@ -1,0 +1,83 @@
+{
+  "candidate_id": "ntt-sacramento-1200-striker-avenue",
+  "decision": "Selected the Sacramento County PointAddress geocoder's address point for 1200 STRIKER AVE, SACRAMENTO, CA, 95834 (Addr_type PointAddress, score 100, Ref_ID 401092), served in WGS84, as the campus locator for the NTT Sacramento buildings that NTT DATA publishes at 1200 Striker Ave. (CA1 and CA2). The point lies inside the county parcel 225-0060-056-0000 (situs 1200 W STRIKER AVE) almost exactly at its centroid. It locates the address and parcel, not either building outline.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -121.489227,
+      38.650302
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_address_point",
+  "use_scope": "campus_locator",
+  "derivation": "direct_geometry",
+  "source_file": "local_data/country-research-ntt-gdc-2-p13/sac-pointaddress-1200-striker.json",
+  "source_url": "https://mapservices.gis.saccounty.gov/arcgis/rest/services/PointAddress/GeocodeServer/findAddressCandidates?SingleLine=1200+Striker+Ave%2C+Sacramento%2C+CA+95834&outFields=*&outSR=4326&maxLocations=5&f=json",
+  "selected_properties": {
+    "match_addr": "1200 STRIKER AVE, SACRAMENTO, CA, 95834",
+    "addr_type": "PointAddress",
+    "score": 100,
+    "status": "M",
+    "ref_id": 401092,
+    "state_plane_xy_ftUS_epsg2226": [
+      6707538.388583644,
+      1999056.2002153546
+    ],
+    "parcel": {
+      "apn": "225-0060-056-0000",
+      "situs": "1200 W STRIKER AVE, SACRAMENTO, CA 95834",
+      "lot_size_sqft": 373309,
+      "zone": "M-1",
+      "jurisdiction": "UNINCORPORATED",
+      "short_legal": "P160005, Name: PARCEL MAP, Lot:: 9",
+      "source_file": "local_data/country-research-ntt-gdc-2-p13/sac-parcel-at-1200-striker.json"
+    },
+    "adjoining_parcel_note": "The situs listing (sac-parcels-striker-national-situs.json) also returns 1312 STRIKER AVE (APN 225-0060-057-0000, 369,389 sq ft); no source ties an NTT building to it."
+  },
+  "consistency_checks": {
+    "point_in_parcel": true,
+    "point_to_parcel_boundary_m": 73.1,
+    "farthest_parcel_vertex_m": 139.9,
+    "parcel_area_m2_utm10n": 34815.0,
+    "parcel_centroid_wgs84": [
+      38.6503074,
+      -121.4892287
+    ],
+    "point_to_parcel_centroid_m": 0.6,
+    "state_plane_to_wgs84_pyproj": [
+      38.6502969,
+      -121.4892138
+    ],
+    "served_point_vs_pyproj_state_plane_m": 1.278,
+    "census_public_ar_current_match": {
+      "address": "1200 STRIKER AVE, SACRAMENTO, CA, 95834",
+      "range": "1200-1398 (left side)",
+      "point": [
+        38.650976246974,
+        -121.487765814886
+      ],
+      "distance_m": 147.4,
+      "note": "interpolated street-range point, not used"
+    },
+    "distance_to_1625_w_national_dr_point_m": 1065.2,
+    "nearest_atlas_site_km": {
+      "Microsoft Alviso San Jose Datacenter Campus": 141.56
+    },
+    "versions": {
+      "pyproj": "3.7.1",
+      "proj": "9.5.1",
+      "shapely": "2.1.1"
+    }
+  },
+  "source_sha256": {
+    "pointaddress": "4e8e7bbc7727f4945279cb88abc125642afde071e8a0b7bc5fe289aaa4f35b38",
+    "parcel": "2e377324803b630d770425a86d363b51c636d7b5d83f8bec07088559586f08a0",
+    "situs_listing": "bdde73975f258b03f471e8d332f2ca1038beb4e6e8d40bd1aa1e5c386c33d6b0",
+    "census": "9c56d3b83320cc3bad1ec9e3322559082be088cf5b5d8c2f61bf50af276e804d",
+    "operator_page_ca2": "12f872ffeb356cbb0aa947e1ceb01d69cdb0bea7f9c27faad3da213a099f46cf",
+    "operator_page_ca1": "c074701fecc8c3c277ce241e89ce066b48f29430cf9512e9d7e76d4e4640b66d"
+  },
+  "licence": "public-record-source-terms (Sacramento County GIS ArcGIS REST service; the service metadata states no licence or copyright; only the returned coordinates, address match and parcel fields are used); the operator pages are all rights reserved and only their published address was compared.",
+  "axis_note": "GeoJSON coordinates are [longitude, latitude]."
+}

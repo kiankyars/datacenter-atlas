@@ -1,0 +1,96 @@
+{
+  "candidate_id": "equinix-us-3-p14-equinix-dc10-ashburn-21551-beaumeade-circle",
+  "decision": "Selected the official Loudoun County address point for 21551 BEAUMEADE CIR (LandRecords MapServer layer 2, on MCPI 060108050000) as the locator for Equinix DC10, whose Equinix-published address is 21551 Beaumeade Circle, Ashburn, VA 20147. The parcel (10.7 acres) also carries the address point 21541 Beaumeade Circle, which no source here ties to Equinix, so the Equinix address point is used rather than the parcel centroid.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -77.4516338,
+      39.021273
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_address_point",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-equinix-us-3-p14/loudoun-addresspoint-21551-beaumeade-cir.json",
+  "source_sha256": "763ff0d9560bd477b957d3a45401e8cca8148ebc80970f0f01a7e08b62250e2a",
+  "source_url": "https://logis.loudoun.gov/gis/rest/services/COL/LandRecords/MapServer/2/query?where=UPPER(FULL_ADDRESS)%20LIKE%20%2721551%20BEAUMEADE%25%27&outFields=AD_MCPI,AD_ADDRESS,AD_POINT_TYPE,FULL_ADDRESS,AM_POINT_X_DD,AM_POINT_Y_DD,AD_UPD_DATE&returnGeometry=true&outSR=4326&f=json",
+  "retrieved_at": "2026-11-07T03:29:59.858Z",
+  "parcel_source_file": "local_data/country-research-equinix-us-3-p14/loudoun-parcel-060108050000.json",
+  "parcel_source_sha256": "c517802ae745a380b7acc8f6e426766432068d6c1301ea760ce96b1925ac6be3",
+  "parcel_source_url": "https://logis.loudoun.gov/gis/rest/services/COL/LandRecords/MapServer/5/query?where=PA_MCPI%3D%27060108050000%27&outFields=PA_MCPI,PA_TYPE,PA_PLAT_NUM,PA_LEGAL_ACRE,PA_SUBD_NAME,PA_SUBD_PHASE,PA_LEGAL_SQFT,PA_UPD_DATE&returnGeometry=true&outSR=4326&f=json",
+  "other_address_points_source_file": "local_data/country-research-equinix-us-3-p14/loudoun-addresspoints-on-060108050000.json",
+  "other_address_points_source_sha256": "9a7337459cab7827636c177b0bf14ff92a4455f5ddcf3ee900d26b6e2662e60b",
+  "selected_properties": {
+    "address_point": {
+      "AD_MCPI": "060108050000",
+      "AD_ADDRESS": 21551,
+      "AD_POINT_TYPE": "2",
+      "FULL_ADDRESS": "21551 BEAUMEADE CIR, ASHBURN",
+      "AM_POINT_X_DD": -77.45163382,
+      "AM_POINT_Y_DD": 39.02127298,
+      "AD_UPD_DATE": 1209441600000
+    },
+    "parcel": {
+      "PA_MCPI": "060108050000",
+      "PA_TYPE": "P",
+      "PA_PLAT_NUM": "1998-0232",
+      "PA_LEGAL_ACRE": 10.725,
+      "PA_SUBD_NAME": "BEAUMEADE",
+      "PA_SUBD_PHASE": "1",
+      "PA_LEGAL_SQFT": 467203,
+      "PA_UPD_DATE": 1727064000000
+    }
+  },
+  "facts": {
+    "parcel_centroid_lon_lat": [
+      -77.4511236,
+      39.0208776
+    ],
+    "selected_point_lon_lat": [
+      -77.4516338,
+      39.021273
+    ],
+    "selected_point_inside_parcel": true,
+    "selected_point_distance_to_boundary_m": 36.6,
+    "selected_point_distance_to_parcel_centroid_m": 62.3,
+    "parcel_centroid_inside": true,
+    "geodesic_acres": 10.712,
+    "bounds_lon_lat": [
+      -77.452966,
+      39.01986,
+      -77.448891,
+      39.022122
+    ],
+    "approx_extent_m": [
+      353,
+      251
+    ],
+    "max_vertex_distance_from_selected_point_m": 247,
+    "centroid_method": "area centroid computed in EPSG:32618 (pyproj 3.7.1, shapely 2.1.1) and transformed to WGS84; the EPSG:5070 (CONUS Albers) centroid differs by 0.000 m",
+    "parcel_valid": true,
+    "rings": 1,
+    "vertices": 11,
+    "reference_points": [
+      {
+        "label": "Loudoun County address point 21541 BEAUMEADE CIR, ASHBURN (MCPI 060108050000)",
+        "lon_lat": [
+          -77.450938,
+          39.0206922
+        ],
+        "inside_parcel": true,
+        "distance_to_selected_point_m": 88.3,
+        "distance_to_parcel_boundary_m": 56.6
+      },
+      {
+        "label": "Atlas site Equinix Ashburn Campus - Performance Circle (vcc-site-1566946d5c10d1978327)",
+        "lon_lat": [
+          -77.4509021,
+          39.0235644
+        ],
+        "inside_parcel": false,
+        "distance_to_selected_point_m": 262.2,
+        "distance_to_parcel_boundary_m": 163.7
+      }
+    ]
+  }
+}

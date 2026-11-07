@@ -1,0 +1,52 @@
+{
+  "candidate_id": "equinix-ma5-swinton-agecroft-commerce-park",
+  "decision": "Selected the Environment Agency installations register's published site latitude and longitude for permit EPR/WE2798AB (holder Equinix (UK) Limited, premises 'Equinix MA6, MA5', Swinton M27 8BX), copied without transformation, as a campus locator for the Agecroft site that holds the operating MA5 and the permitted MA6.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -2.304306,
+      53.506297
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "environmental_permit_register_site_location",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-equinix-emea-4-p14/ea-registration-EPR-WE2798AB.json",
+  "source_sha256": "4c3748559e46e49b0faa56c497e2bb70e84bf694c51d09ce77f720015d12e13e",
+  "source_url": "https://environment.data.gov.uk/public-register/industrial-installations/registration/EPR-WE2798AB.json",
+  "selected_properties": {
+    "permit": "EPR/WE2798AB (MCP; status Effective; registration date 2023-08-18; local authority Salford E08000006)",
+    "holder": "EQUINIX (UK) LIMITED",
+    "site_address": "Equinix MA6, MA5, Swinton, Greater Manchester, M27 8BX",
+    "grid_reference": "SD7991401112 (easting 379914, northing 401112)",
+    "published_lat_long": [
+      53.506297,
+      -2.304306
+    ],
+    "operator_published_address": "Unit 2 Agecroft Commerce Park, 2 and 4 Firedamp Way, Swinton, M27 8BX Manchester (Equinix MA5 page, Internet Archive copy of 3 October 2026)"
+  },
+  "consistency_checks": {
+    "bng_check": "pyproj 3.7.1 converts EPSG:27700 379914 / 401112 to 53.5063089, -2.3043134, 1.41 m from the published latitude and longitude.",
+    "postcode": "The register postcode M27 8BX matches the postcode on Equinix's MA5 page.",
+    "nearest_atlas_sites_km": {
+      "Equinix MA3, Joule House, Trafford Park": 4.318,
+      "Datum Manchester Campus (Wythenshawe)": 14.461
+    },
+    "versions": {
+      "pyproj": "3.7.1",
+      "proj": "9.5.1",
+      "shapely": "2.1.1"
+    }
+  },
+  "excluded_coordinates": [
+    {
+      "kind": "Map widget coordinate on the Equinix MA5 page",
+      "reason": "A map-embed parameter, which the locator policy excludes; not read or used."
+    },
+    {
+      "kind": "Postcode centroid of M27 8BX",
+      "reason": "Not used; no postcode or commercial geocoder was queried."
+    }
+  ],
+  "limitations": "The register point is the regulator's site location for the medium combustion plant permit that covers MA6 and MA5; it is not a building outline or surveyed position, and the register states no positional accuracy. It may lie on the MA6 part of the site rather than at the MA5 building."
+}

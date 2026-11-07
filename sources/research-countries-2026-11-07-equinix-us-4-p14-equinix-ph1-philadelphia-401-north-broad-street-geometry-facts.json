@@ -1,0 +1,74 @@
+{
+  "candidate_id": "equinix-us-4-p14-equinix-ph1-philadelphia-401-north-broad-street",
+  "decision": "Selected the point the City of Philadelphia's Address Information System returns for an exact match on 401 N BROAD ST (geocode type pwd_parcel), rounded to 7 decimals with no datum change, as the campus locator for Equinix PH1, whose Equinix-published address is 401 N Broad Street, Suite 990, Philadelphia, PA 19108. It coincides with the area centroid of Philadelphia Water Department parcel 332747 (401 N BROAD ST), recorded as a cross-check.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -75.1608347,
+      39.9598237
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_geocoder_parcel_point",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-equinix-us-4-p14/phila-ais-401-n-broad-st.json",
+  "source_sha256": "e446d5482bb94fbd7f713914ed8a7946c7634047de79633ac7523386de294caf",
+  "source_url": "https://api.phila.gov/ais/v1/search/401%20N%20Broad%20St",
+  "retrieved_at": "2026-11-07T03:42:44.524Z",
+  "check_source_file": "local_data/country-research-equinix-us-4-p14/phila-pwd-parcel-332747.geojson",
+  "check_source_sha256": "749f84844d4a067ca688b366eb0e0daf5ba4e1289223a27ced4dba44e5bbb89c",
+  "check_source_url": "https://phl.carto.com/api/v2/sql?q=SELECT%20*%20FROM%20pwd_parcels%20WHERE%20parcelid%3D332747&format=GeoJSON",
+  "selected_properties": {
+    "ais_exact_match": {
+      "street_address": "401 N BROAD ST",
+      "zip_code": "19108",
+      "usps_bldgfirm": "COMMERCE BLDG",
+      "pwd_parcel_id": "332747",
+      "dor_parcel_id": "003N200099",
+      "opa_account_num": "874900000",
+      "bin": "1026345",
+      "historic_site": "Yes",
+      "zoning": "I-2"
+    },
+    "pwd_parcel": {
+      "parcelid": 332747,
+      "address": "401 N BROAD ST",
+      "bldg_code": "LC0",
+      "bldg_desc": "IND.WHSE MASONRY",
+      "brt_id": "874900000",
+      "gross_area": 117672,
+      "num_accounts": 2
+    }
+  },
+  "facts": {
+    "selected_point_lon_lat": [
+      -75.1608347,
+      39.9598237
+    ],
+    "selected_point_inside_parcel": true,
+    "selected_point_distance_to_boundary_m": 34.0,
+    "selected_point_distance_to_parcel_centroid_m": 0.2,
+    "parcel_centroid_lon_lat": [
+      -75.160836,
+      39.959822
+    ],
+    "geodesic_acres": 2.702,
+    "geodesic_square_metres": 10933.0,
+    "bounds_lon_lat": [
+      -75.161831,
+      39.9594,
+      -75.159845,
+      39.960246
+    ],
+    "approx_extent_m": [
+      170,
+      94
+    ],
+    "max_vertex_distance_from_parcel_centroid_m": 88,
+    "centroid_method": "area centroid computed in EPSG:32618 (UTM 18N) (pyproj 3.7.1, shapely 2.1.1) and transformed to WGS84; the EPSG:5070 (CONUS Albers) centroid differs by 0.000 m",
+    "parcel_valid": true,
+    "rings": 1,
+    "vertices": 5,
+    "max_vertex_distance_from_selected_point_m": 88
+  }
+}

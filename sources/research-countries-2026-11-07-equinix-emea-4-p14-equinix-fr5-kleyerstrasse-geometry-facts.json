@@ -1,0 +1,57 @@
+{
+  "candidate_id": "equinix-fr5-frankfurt-kleyerstrasse-90",
+  "decision": "Selected the City of Frankfurt's official building-address point for Kleyerstraße 90 (address object DEHEFALK30007XiH), the address Equinix publishes for FR5, transformed from EPSG:25832 to WGS84, as the project locator. The coordinate in the map widget on Equinix's page was not used.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      8.6325662,
+      50.0985157
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_building_address_point",
+  "use_scope": "project_locator",
+  "source_file": "local_data/country-research-equinix-emea-4-p14/frankfurt-geoportal-kleyerstrasse-9x.json",
+  "source_sha256": "896c21e917604e893fc2c259f102a3dfb0f4a792de92d2d1f1f7d5dff4f8c846",
+  "source_url": "https://geoportal.frankfurt.de/elastic/basisgis/_search?source_content_type=application%2Fjson&source=%7B%22query%22%3A%7B%22match_phrase_prefix%22%3A%7B%22properties.searchField%22%3A%22Kleyerstra%C3%9Fe+9%22%7D%7D%2C%22size%22%3A50%7D",
+  "selected_properties": {
+    "source_layer": "Gebaeudeadresse (layerId 12)",
+    "address_object_id": "DEHEFALK30007XiH",
+    "searchField": "Kleyerstraße 90",
+    "native_coordinates_epsg25832": [
+      473720.9749999996,
+      5549648.859999999
+    ],
+    "operator_published_address": "Kleyerstrasse 90, 60326 Frankfurt (Equinix FR5 page, Internet Archive copy of 3 October 2026)"
+  },
+  "consistency_checks": {
+    "prefix_query": "A match_phrase_prefix query for 'Kleyerstraße 9' returns 14 building-address features; 'Kleyerstraße 90' is one feature (DEHEFALK30007XiH). The nearest other numbers in the response are Kleyerstraße 92 (DEHEFALK4uD0002i) and 92a-92d.",
+    "neighbour_m": {
+      "Kleyerstraße 92 (DEHEFALK4uD0002i)": 156.2
+    },
+    "atlas_neighbours_m": {
+      "Telehouse Frankfurt Campus, Kleyerstraße 75-87 (curated:telehouse-frankfurt-kleyerstrasse-campus)": 340.0,
+      "Equinix FR7, Gutleutstraße 310 (curated:equinix-fr7-frankfurt-gutleutstrasse-310)": 846.5,
+      "Equinix Lärchenstrasse campus FR4/FR6/FR8 (curated:equinix-frankfurt-laerchenstrasse-campus)": 3236.5
+    },
+    "crs": "The geoportal configuration (https://geoportal.frankfurt.de/karte/config.json, captured 6 November 2026 by ops-frankfurt-de-p6, local local_data/country-research-ops-frankfurt-de-p6/frankfurt-geoportal-config.json, rehashed 7 November 2026, sha256 907501e96178af215a8fbe3d239ebd2d775fde13baf770ff0270d7e734053702) sets the routing geosearch on the same elastic service to epsg 25832, so the coordinates are ETRS89 / UTM zone 32N metres. The same service and transform underlie the published FR2, FR6, FR7 and Telehouse Frankfurt locators.",
+    "round_trip_m": 0.005,
+    "versions": {
+      "pyproj": "3.7.1",
+      "proj": "9.5.1",
+      "shapely": "2.1.1"
+    }
+  },
+  "transform_check": "pyproj 3.7.1 (PROJ 9.5.1) EPSG:25832 -> EPSG:4326, always_xy; rounded to 7 decimal places; the rounded point transforms back to within 0.005 m.",
+  "excluded_coordinates": [
+    {
+      "kind": "Map widget coordinate on the Equinix FR5 page",
+      "reason": "A map-embed parameter, which the locator policy excludes; not read or used."
+    },
+    {
+      "kind": "Telehouse Frankfurt campus address point (Kleyerstraße 75-87)",
+      "reason": "A different operator and address."
+    }
+  ],
+  "limitations": "The point is the register building-address point for the published address; it is not a parcel, building footprint or surveyed position, and the register states no positional accuracy."
+}

@@ -1,0 +1,59 @@
+{
+  "candidate_id": "equinix-munich-seidlstrasse-3-mu1-mu3",
+  "decision": "Selected the City of Munich geoportal address point for Seidlstraße 3 (layer gsm_wfs:wahlraumfinder_adressen, feature wahlraumfinder_adressen.139390), the address Equinix publishes for both MU1 (2nd floor) and MU3 (1st floor), transformed from EPSG:25832 to WGS84, as the project locator for the two IBXs in one building. The coordinates in the map widgets on Equinix's pages were not used.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      11.5560124,
+      48.1426857
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_building_address_point",
+  "use_scope": "project_locator",
+  "source_file": "local_data/country-research-equinix-emea-4-p14/muc-geoportal-adressen-seidlstrasse.xml",
+  "source_sha256": "ea79e9c1adfe8c4c223d77d6b2fee5ddc0d029150142c0d196c9978cfe34cd57",
+  "source_url": "https://geoportal.muenchen.de/geoserver/gsm_wfs/wfs?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=gsm_wfs%3Awahlraumfinder_adressen&FILTER=%3Cfes%3AFilter%20xmlns%3Afes%3D%22http%3A%2F%2Fwww.opengis.net%2Ffes%2F2.0%22%20xmlns%3Agsm_wfs%3D%22gsm_wfs%22%3E%3Cfes%3APropertyIsLike%20wildCard%3D%22%2A%22%20singleChar%3D%22.%22%20escapeChar%3D%22%21%22%3E%3Cfes%3AValueReference%3Egsm_wfs%3Aaddress%3C%2Ffes%3AValueReference%3E%3Cfes%3ALiteral%3ESeidlstr%2A%3C%2Ffes%3ALiteral%3E%3C%2Ffes%3APropertyIsLike%3E%3C%2Ffes%3AFilter%3E&COUNT=200",
+  "selected_properties": {
+    "source_layer": "gsm_wfs:wahlraumfinder_adressen ('Adressen'; Landeshauptstadt München, Kommunalreferat - GeodatenService)",
+    "feature_id": "wahlraumfinder_adressen.139390",
+    "address": "Seidlstraße 3",
+    "native_coordinates_epsg25832": [
+      690133.83760081,
+      5335319.08789806
+    ],
+    "operator_published_address": "Seidlstrasse 3, 2nd Floor (MU1) and 1st Floor (MU3), 80335 Munich (Equinix MU1 and MU3 pages, Internet Archive copies of 3 October 2026)"
+  },
+  "consistency_checks": {
+    "street_query": "A PropertyIsLike query 'Seidlstr*' returns 24 address points on Seidlstraße; 'Seidlstraße 3' is one feature.",
+    "neighbour_m": {
+      "Seidlstraße 1": 39.1,
+      "Seidlstraße 5": 73.5,
+      "Seidlstraße 2a (opposite side)": 54.4
+    },
+    "nearest_atlas_sites_km": {
+      "Deutsche Telekom Industrial AI Cloud, Munich Tucherpark": 3.385,
+      "NorthC Munich 1 Balan Campus": 4.321,
+      "Equinix MU4 Munich Data Center (Aschheim)": 9.394
+    },
+    "crs": "The response declares srsName urn:ogc:def:crs:EPSG::25832 (ETRS89 / UTM zone 32N).",
+    "round_trip_m": 0.003,
+    "versions": {
+      "pyproj": "3.7.1",
+      "proj": "9.5.1",
+      "shapely": "2.1.1"
+    }
+  },
+  "transform_check": "pyproj 3.7.1 (PROJ 9.5.1) EPSG:25832 -> EPSG:4326, always_xy; rounded to 7 decimal places; the rounded point transforms back to within 0.003 m.",
+  "excluded_coordinates": [
+    {
+      "kind": "Map widget coordinates on the Equinix MU1 and MU3 pages",
+      "reason": "Map-embed parameters, which the locator policy excludes; not read or used."
+    },
+    {
+      "kind": "Munich city centre and the Equinix MU4 site in Aschheim",
+      "reason": "Not MU1/MU3's published address."
+    }
+  ],
+  "limitations": "The point is the municipal address point for the published address; it is not a parcel, building footprint or surveyed position, and the service states no positional accuracy. Both IBXs occupy floors of the same building, so one point serves both."
+}

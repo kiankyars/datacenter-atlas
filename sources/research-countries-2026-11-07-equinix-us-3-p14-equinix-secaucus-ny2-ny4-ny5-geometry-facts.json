@@ -1,0 +1,346 @@
+{
+  "description": "Locator facts for three Equinix Secaucus IBXs, each on its own NJOGIS statewide (MOD-IV composite) tax parcel. One candidate entry per IBX; the parcels are separate and do not touch.",
+  "pairwise_distances": {
+    "ny4-ny5_centroid_distance_m": 317.0,
+    "ny4-ny2_centroid_distance_m": 500.7,
+    "ny5-ny2_centroid_distance_m": 281.2
+  },
+  "candidates": [
+    {
+      "candidate_id": "equinix-us-3-p14-equinix-ny4-secaucus",
+      "decision": "Selected the area centroid of the NJOGIS statewide parcel 0909_30_4.03 (Secaucus Town block 30 lot 4.03, PROP_LOC '755 SECAUCUS ROAD', MOD-IV building description '2S-B-DC') as the campus locator for Equinix NY4, whose Equinix-published address is 755 Secaucus Road, Secaucus, NJ 07094. The NJ Office of GIS geocoder's PointAddress for the same address lies inside the parcel and is recorded as a cross-check.",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.0699685,
+          40.776025
+        ]
+      },
+      "authority_class": "official_source",
+      "scope_class": "official_tax_parcel_centroid",
+      "use_scope": "campus_locator",
+      "source_file": "local_data/country-research-equinix-us-3-p14/njogis-parcels-secaucus-ny2-ny4-ny5.json",
+      "source_sha256": "c511ef549f729594d4cfdc791d2fc8a13b5e21038b580119b1a891e12c660316",
+      "source_url": "https://maps.nj.gov/arcgis/rest/services/Framework/Cadastral/MapServer/0/query?where=PAMS_PIN%20IN%20(%270909_30_4.03%27,%270909_23_4.02%27,%270909_22_2%27)&outFields=PAMS_PIN,MUN_NAME,COUNTY,PCLBLOCK,PCLLOT,PCLQCODE,PROP_LOC,PROP_CLASS,OWNER_NAME,CALC_ACRE,BLDG_DESC,YR_CONSTR,LAST_YR_TX,PCL_PBDATE,PCLLASTUPD&returnGeometry=true&outSR=4326&f=json",
+      "retrieved_at": "2026-11-07T03:33:46.428Z",
+      "selected_feature": "0909_30_4.03",
+      "address_point_source_file": "local_data/country-research-equinix-us-3-p14/njgeo-geocode-755-secaucus-rd.json",
+      "address_point_source_sha256": "6a776b3f3bf8db97c5b34eebcc230b9f7def286192d706c006e76365358630fb",
+      "address_point_source_url": "https://geo.nj.gov/arcgis/rest/services/Tasks/NJ_Geocode/GeocodeServer/findAddressCandidates?SingleLine=755+Secaucus+Rd%2C+Secaucus%2C+NJ+07094&outSR=4326&outFields=Match_addr%2CAddr_type%2CScore%2CLoc_name&f=json",
+      "selected_properties": {
+        "parcel": {
+          "PAMS_PIN": "0909_30_4.03",
+          "MUN_NAME": "SECAUCUS TOWN",
+          "COUNTY": "HUDSON",
+          "PCLBLOCK": "30",
+          "PCLLOT": "4.03",
+          "PCLQCODE": "",
+          "PROP_LOC": "755 SECAUCUS ROAD",
+          "PROP_CLASS": "4B",
+          "OWNER_NAME": "",
+          "CALC_ACRE": 19,
+          "BLDG_DESC": "2S-B-DC",
+          "YR_CONSTR": 2001,
+          "LAST_YR_TX": 2156312.14,
+          "PCL_PBDATE": 1761696000000,
+          "PCLLASTUPD": null
+        },
+        "address_point": {
+          "address": "755 Secaucus Road, Secaucus, New Jersey, 07094",
+          "score": 100,
+          "Addr_type": "PointAddress",
+          "location": {
+            "x": -74.069343000001,
+            "y": 40.777002000003
+          }
+        }
+      },
+      "facts": {
+        "parcel_centroid_lon_lat": [
+          -74.0699685,
+          40.776025
+        ],
+        "selected_point_lon_lat": [
+          -74.0699685,
+          40.776025
+        ],
+        "selected_point_inside_parcel": true,
+        "selected_point_distance_to_boundary_m": 64.4,
+        "selected_point_distance_to_parcel_centroid_m": 0.0,
+        "parcel_centroid_inside": true,
+        "geodesic_acres": 18.974,
+        "bounds_lon_lat": [
+          -74.07197,
+          40.773341,
+          -74.067897,
+          40.778618
+        ],
+        "approx_extent_m": [
+          344,
+          586
+        ],
+        "max_vertex_distance_from_selected_point_m": 302,
+        "centroid_method": "area centroid computed in EPSG:32618 (pyproj 3.7.1, shapely 2.1.1) and transformed to WGS84; the EPSG:5070 (CONUS Albers) centroid differs by 0.000 m",
+        "parcel_valid": true,
+        "rings": 1,
+        "vertices": 9,
+        "reference_points": [
+          {
+            "label": "NJ_Geocode PointAddress '755 Secaucus Road, Secaucus, New Jersey, 07094' (score 100)",
+            "lon_lat": [
+              -74.069343,
+              40.777002
+            ],
+            "inside_parcel": true,
+            "distance_to_selected_point_m": 120.7,
+            "distance_to_parcel_boundary_m": 55.8
+          },
+          {
+            "label": "NJ_Geocode PointAddress '800 Secaucus Road, Secaucus, New Jersey, 07094' (score 100)",
+            "lon_lat": [
+              -74.0722635,
+              40.778721
+            ],
+            "inside_parcel": false,
+            "distance_to_selected_point_m": 356.6,
+            "distance_to_parcel_boundary_m": 224.1
+          },
+          {
+            "label": "NJ_Geocode PointAddress '275 Hartz Way, Secaucus, New Jersey, 07094' (score 100)",
+            "lon_lat": [
+              -74.0759175,
+              40.777443
+            ],
+            "inside_parcel": false,
+            "distance_to_selected_point_m": 526.3,
+            "distance_to_parcel_boundary_m": 457.6
+          }
+        ]
+      }
+    },
+    {
+      "candidate_id": "equinix-us-3-p14-equinix-ny5-secaucus",
+      "decision": "Selected the area centroid of the NJOGIS statewide parcel 0909_23_4.02 (Secaucus Town block 23 lot 4.02, PROP_LOC '800 SECAUCUS ROAD', MOD-IV building description '3S-B-DC') as the campus locator for Equinix NY5, whose Equinix-published address is 800 Secaucus Road, Secaucus, NJ 07094. The NJ Office of GIS geocoder's PointAddress for the same address lies inside the parcel and is recorded as a cross-check.",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.0724174,
+          40.7781886
+        ]
+      },
+      "authority_class": "official_source",
+      "scope_class": "official_tax_parcel_centroid",
+      "use_scope": "campus_locator",
+      "source_file": "local_data/country-research-equinix-us-3-p14/njogis-parcels-secaucus-ny2-ny4-ny5.json",
+      "source_sha256": "c511ef549f729594d4cfdc791d2fc8a13b5e21038b580119b1a891e12c660316",
+      "source_url": "https://maps.nj.gov/arcgis/rest/services/Framework/Cadastral/MapServer/0/query?where=PAMS_PIN%20IN%20(%270909_30_4.03%27,%270909_23_4.02%27,%270909_22_2%27)&outFields=PAMS_PIN,MUN_NAME,COUNTY,PCLBLOCK,PCLLOT,PCLQCODE,PROP_LOC,PROP_CLASS,OWNER_NAME,CALC_ACRE,BLDG_DESC,YR_CONSTR,LAST_YR_TX,PCL_PBDATE,PCLLASTUPD&returnGeometry=true&outSR=4326&f=json",
+      "retrieved_at": "2026-11-07T03:33:46.428Z",
+      "selected_feature": "0909_23_4.02",
+      "address_point_source_file": "local_data/country-research-equinix-us-3-p14/njgeo-geocode-800-secaucus-rd.json",
+      "address_point_source_sha256": "ad6d1ce3aae6fc9d475172bb4741ae38f2a595aac577f594b5994050bc3d8f75",
+      "address_point_source_url": "https://geo.nj.gov/arcgis/rest/services/Tasks/NJ_Geocode/GeocodeServer/findAddressCandidates?SingleLine=800+Secaucus+Rd%2C+Secaucus%2C+NJ+07094&outSR=4326&outFields=Match_addr%2CAddr_type%2CScore%2CLoc_name&f=json",
+      "selected_properties": {
+        "parcel": {
+          "PAMS_PIN": "0909_23_4.02",
+          "MUN_NAME": "SECAUCUS TOWN",
+          "COUNTY": "HUDSON",
+          "PCLBLOCK": "23",
+          "PCLLOT": "4.02",
+          "PCLQCODE": "",
+          "PROP_LOC": "800 SECAUCUS ROAD",
+          "PROP_CLASS": "4A",
+          "OWNER_NAME": "",
+          "CALC_ACRE": 13,
+          "BLDG_DESC": "3S-B-DC",
+          "YR_CONSTR": 2012,
+          "LAST_YR_TX": 2444834.96,
+          "PCL_PBDATE": 1761696000000,
+          "PCLLASTUPD": null
+        },
+        "address_point": {
+          "address": "800 Secaucus Road, Secaucus, New Jersey, 07094",
+          "score": 100,
+          "Addr_type": "PointAddress",
+          "location": {
+            "x": -74.072263500001,
+            "y": 40.778721000003
+          }
+        }
+      },
+      "facts": {
+        "parcel_centroid_lon_lat": [
+          -74.0724174,
+          40.7781886
+        ],
+        "selected_point_lon_lat": [
+          -74.0724174,
+          40.7781886
+        ],
+        "selected_point_inside_parcel": true,
+        "selected_point_distance_to_boundary_m": 96.6,
+        "selected_point_distance_to_parcel_centroid_m": 0.0,
+        "parcel_centroid_inside": true,
+        "geodesic_acres": 13.043,
+        "bounds_lon_lat": [
+          -74.07408,
+          40.776722,
+          -74.070755,
+          40.779655
+        ],
+        "approx_extent_m": [
+          281,
+          326
+        ],
+        "max_vertex_distance_from_selected_point_m": 167,
+        "centroid_method": "area centroid computed in EPSG:32618 (pyproj 3.7.1, shapely 2.1.1) and transformed to WGS84; the EPSG:5070 (CONUS Albers) centroid differs by 0.000 m",
+        "parcel_valid": true,
+        "rings": 1,
+        "vertices": 5,
+        "reference_points": [
+          {
+            "label": "NJ_Geocode PointAddress '755 Secaucus Road, Secaucus, New Jersey, 07094' (score 100)",
+            "lon_lat": [
+              -74.069343,
+              40.777002
+            ],
+            "inside_parcel": false,
+            "distance_to_selected_point_m": 291.1,
+            "distance_to_parcel_boundary_m": 193.2
+          },
+          {
+            "label": "NJ_Geocode PointAddress '800 Secaucus Road, Secaucus, New Jersey, 07094' (score 100)",
+            "lon_lat": [
+              -74.0722635,
+              40.778721
+            ],
+            "inside_parcel": true,
+            "distance_to_selected_point_m": 60.5,
+            "distance_to_parcel_boundary_m": 76.8
+          },
+          {
+            "label": "NJ_Geocode PointAddress '275 Hartz Way, Secaucus, New Jersey, 07094' (score 100)",
+            "lon_lat": [
+              -74.0759175,
+              40.777443
+            ],
+            "inside_parcel": false,
+            "distance_to_selected_point_m": 306.9,
+            "distance_to_parcel_boundary_m": 155.3
+          }
+        ]
+      }
+    },
+    {
+      "candidate_id": "equinix-us-3-p14-equinix-ny2-secaucus",
+      "decision": "Selected the area centroid of the NJOGIS statewide parcel 0909_22_2 (Secaucus Town block 22 lot 2, PROP_LOC '275 HARTZ WAY', MOD-IV building description '1S-B-DC') as the campus locator for Equinix NY2, whose Equinix-published address is 275 Hartz Way, Secaucus, NJ 07094. The NJ Office of GIS geocoder's PointAddress for the same address lies inside the parcel and is recorded as a cross-check.",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.0756,
+          40.7774398
+        ]
+      },
+      "authority_class": "official_source",
+      "scope_class": "official_tax_parcel_centroid",
+      "use_scope": "campus_locator",
+      "source_file": "local_data/country-research-equinix-us-3-p14/njogis-parcels-secaucus-ny2-ny4-ny5.json",
+      "source_sha256": "c511ef549f729594d4cfdc791d2fc8a13b5e21038b580119b1a891e12c660316",
+      "source_url": "https://maps.nj.gov/arcgis/rest/services/Framework/Cadastral/MapServer/0/query?where=PAMS_PIN%20IN%20(%270909_30_4.03%27,%270909_23_4.02%27,%270909_22_2%27)&outFields=PAMS_PIN,MUN_NAME,COUNTY,PCLBLOCK,PCLLOT,PCLQCODE,PROP_LOC,PROP_CLASS,OWNER_NAME,CALC_ACRE,BLDG_DESC,YR_CONSTR,LAST_YR_TX,PCL_PBDATE,PCLLASTUPD&returnGeometry=true&outSR=4326&f=json",
+      "retrieved_at": "2026-11-07T03:33:46.428Z",
+      "selected_feature": "0909_22_2",
+      "address_point_source_file": "local_data/country-research-equinix-us-3-p14/njgeo-geocode-275-hartz-way.json",
+      "address_point_source_sha256": "61f6985d3572750210ea88ba67012e63cefa991b940ebbf0c810a99c75162092",
+      "address_point_source_url": "https://geo.nj.gov/arcgis/rest/services/Tasks/NJ_Geocode/GeocodeServer/findAddressCandidates?SingleLine=275+Hartz+Way%2C+Secaucus%2C+NJ+07094&outSR=4326&outFields=Match_addr%2CAddr_type%2CScore%2CLoc_name&f=json",
+      "selected_properties": {
+        "parcel": {
+          "PAMS_PIN": "0909_22_2",
+          "MUN_NAME": "SECAUCUS TOWN",
+          "COUNTY": "HUDSON",
+          "PCLBLOCK": "22",
+          "PCLLOT": "2",
+          "PCLQCODE": "",
+          "PROP_LOC": "275 HARTZ WAY",
+          "PROP_CLASS": "4B",
+          "OWNER_NAME": "",
+          "CALC_ACRE": 20,
+          "BLDG_DESC": "1S-B-DC",
+          "YR_CONSTR": 1972,
+          "LAST_YR_TX": 1555835.69,
+          "PCL_PBDATE": 1761696000000,
+          "PCLLASTUPD": null
+        },
+        "address_point": {
+          "address": "275 Hartz Way, Secaucus, New Jersey, 07094",
+          "score": 100,
+          "Addr_type": "PointAddress",
+          "location": {
+            "x": -74.075917500001,
+            "y": 40.777443000003
+          }
+        }
+      },
+      "facts": {
+        "parcel_centroid_lon_lat": [
+          -74.0756,
+          40.7774398
+        ],
+        "selected_point_lon_lat": [
+          -74.0756,
+          40.7774398
+        ],
+        "selected_point_inside_parcel": true,
+        "selected_point_distance_to_boundary_m": 104.9,
+        "selected_point_distance_to_parcel_centroid_m": 0.0,
+        "parcel_centroid_inside": true,
+        "geodesic_acres": 20.314,
+        "bounds_lon_lat": [
+          -74.077503,
+          40.774522,
+          -74.073635,
+          40.779272
+        ],
+        "approx_extent_m": [
+          327,
+          527
+        ],
+        "max_vertex_distance_from_selected_point_m": 324,
+        "centroid_method": "area centroid computed in EPSG:32618 (pyproj 3.7.1, shapely 2.1.1) and transformed to WGS84; the EPSG:5070 (CONUS Albers) centroid differs by 0.000 m",
+        "parcel_valid": true,
+        "rings": 1,
+        "vertices": 19,
+        "reference_points": [
+          {
+            "label": "NJ_Geocode PointAddress '755 Secaucus Road, Secaucus, New Jersey, 07094' (score 100)",
+            "lon_lat": [
+              -74.069343,
+              40.777002
+            ],
+            "inside_parcel": false,
+            "distance_to_selected_point_m": 530.4,
+            "distance_to_parcel_boundary_m": 393.7
+          },
+          {
+            "label": "NJ_Geocode PointAddress '800 Secaucus Road, Secaucus, New Jersey, 07094' (score 100)",
+            "lon_lat": [
+              -74.0722635,
+              40.778721
+            ],
+            "inside_parcel": false,
+            "distance_to_selected_point_m": 315.6,
+            "distance_to_parcel_boundary_m": 121.2
+          },
+          {
+            "label": "NJ_Geocode PointAddress '275 Hartz Way, Secaucus, New Jersey, 07094' (score 100)",
+            "lon_lat": [
+              -74.0759175,
+              40.777443
+            ],
+            "inside_parcel": true,
+            "distance_to_selected_point_m": 26.8,
+            "distance_to_parcel_boundary_m": 79.7
+          }
+        ]
+      }
+    }
+  ]
+}

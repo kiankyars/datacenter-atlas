@@ -1,0 +1,82 @@
+{
+  "candidate_id": "us-colo-2-p13-tierpoint-dallas-allen",
+  "decision": "Selected the area centroid of Collin Appraisal District parcel R-11110-00A-001R-1 (property 2751066; situs 820 ALLEN COMMERCE PKWY; owner of record COMPASS DATACENTERS DFW I LLC), as published by the TxGIO StratMap land-parcel service, as the reviewed site locator for TierPoint Dallas - Allen (DA2).",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -96.6573942,
+      33.1386238
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_tax_parcel_centroid",
+  "use_scope": "reviewed_site_locator",
+  "source_file": "local_data/country-research-us-colo-2-p13/txgio-parcel-identify-820-allen-commerce.json",
+  "source_sha256": "b949f0b6ec8e7106496bf17d0f8a2055291d17268e22ad0d37ae0bf0f957c82c",
+  "source_url": "https://feature.geographic.texas.gov/arcgis/rest/services/Parcels/stratmap_land_parcels_48_most_recent/MapServer/identify?geometry=%7B%22xmin%22%3A-96.6673%2C%22ymin%22%3A33.1311%2C%22xmax%22%3A-96.6553%2C%22ymax%22%3A33.1431%2C%22spatialReference%22%3A%7B%22wkid%22%3A4326%7D%7D&geometryType=esriGeometryEnvelope&sr=4326&layers=all%3A0&layerDefs=%7B%220%22%3A%22situs_num%3D%27820%27%22%7D&tolerance=0&mapExtent=-96.6673%2C33.1311%2C-96.6553%2C33.1431&imageDisplay=800%2C800%2C96&returnGeometry=true&f=json",
+  "retrieved_at": "2026-11-07T03:30:41.710Z",
+  "selected_properties": {
+    "2751066": {
+      "PROP_ID": "2751066",
+      "GEO_ID": "R-11110-00A-001R-1",
+      "OWNER_NAME": "COMPASS DATACENTERS DFW I LLC",
+      "LEGAL_AREA": "12",
+      "SITUS_ADDR": "820 ALLEN COMMERCE PKWY, ALLEN, TX 75013",
+      "LEGAL_DESC": "ALLEN COMMERCE CENTER ADDITION (CAL), BLK A, LOT 1R; (REPLAT) (REPLAT)",
+      "YEAR_BUILT": "2016",
+      "IMP_VALUE": "14734160",
+      "TAX_YEAR": "2026",
+      "SOURCE": "COLLIN APPRAISAL DISTRICT",
+      "COUNTY": "COLLIN"
+    }
+  },
+  "facts": {
+    "centroid_lon_lat": [
+      -96.6573942,
+      33.1386238
+    ],
+    "centroid_inside": true,
+    "centroid_distance_to_boundary_m": 74.4,
+    "geodesic_area_m2": 49277.4,
+    "geodesic_acres": 12.18,
+    "union_geometry_type": "Polygon",
+    "parcel_count": 1,
+    "distinct_geometries": 1,
+    "bounds_lon_lat": [
+      -96.658366,
+      33.137143,
+      -96.656418,
+      33.140164
+    ],
+    "approx_extent_m": [
+      175,
+      335
+    ],
+    "max_vertex_distance_from_centroid_m": 186.7,
+    "centroid_method": "area centroid of the parcel polygon computed in EPSG:32614 (pyproj 3.7.1, shapely 2.1.1) and transformed to WGS84, rounded to 7 decimals; the EPSG:5070 (CONUS Albers) centroid differs by 0.000 m",
+    "parcel_valid": true,
+    "reference_points": [
+      {
+        "label": "US Census Bureau geocoder (Public_AR_Current) interpolated point for 820 ALLEN COMMERCE PKWY, ALLEN, TX, 75013",
+        "lon_lat": [
+          -96.661340955944,
+          33.137144271482
+        ],
+        "inside_parcel": false,
+        "distance_to_centroid_m": 403.2,
+        "distance_to_boundary_m": 277.6
+      },
+      {
+        "label": "TierPoint page schema.org GeoCoordinates for Dallas - Allen (corroboration only)",
+        "lon_lat": [
+          -96.657408,
+          33.138055
+        ],
+        "inside_parcel": true,
+        "distance_to_centroid_m": 63.1,
+        "distance_to_boundary_m": 70.6
+      }
+    ]
+  },
+  "verification_script": "scratchpad uc2p13/geo/facts.py (uv run --no-project --with pyproj==3.7.1 --with shapely==2.1.1 python -I)"
+}

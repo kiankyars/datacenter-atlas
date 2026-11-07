@@ -1,0 +1,247 @@
+{
+ "format": "datacenter-atlas-geometry-facts-v1",
+ "fragment": "equinix-apac-3-p14",
+ "prepared_on": "2026-11-07",
+ "method_note": "Each point is the longitude/latitude of the single feature returned by the Geospatial Information Authority of Japan (GSI) address search (msearch.gsi.go.jp/address-search/AddressSearch, keyless GET) for the street address that Equinix gives on its own IBX page (Internet Archive raw copies of 3 October 2026; www.equinix.com answers robots.txt with HTTP 403, so the live pages were not requested), written in Japanese form (for example 東京都江東区有明1-2-41). Each response holds exactly one feature resolved to the house number (号). Coordinates are used unchanged (JGD2011 geographic, treated as WGS84-equivalent at this precision; no transformation or rounding). GSI's reverse geocoder was queried at each point for the municipality and chome. For identity review only, GSI standard-map tiles (cyberjapandata.gsi.go.jp/xyz/std, z18, 0.485 m per pixel at this latitude) were captured and the point's pixel position and the distance to the nearest drawn building outline were measured with Python (Pillow 11.0.0); geodesic distances use pyproj 3.7.1 (WGS84). No commercial map, map embed or map-widget parameter, short link, PeeringDB record or OpenStreetMap service was used; no token or key was used. GSI content is reused under GSI's content terms with attribution (the terms page on www.gsi.go.jp could not be captured in this pass because its robots.txt was unreachable, so the licence label follows the Atlas's existing GSI evidence rows).",
+ "site_versus_campus_review": "Equinix gives TY6 and TY7 the same address (2-2-43 Higashi-Shinagawa) and the other Tokyo pages describe both as 'located at 2-2-43, Higashi-shinagawa', so they form one campus site with one project (as the Atlas did for Sydney SY1/SY2 at 639 Gardeners Road). TY8 (2-1-7 Higashi-Shinagawa, Harbor Premium II) has its own address in a different block (1-ban); its GSI point is 50.2 m from the TY6/TY7 point but on the opposite side of the same street, at a different building, so it is its own site. Equinix's Tokyo listing groups 'our TY6/TY7/TY8 data centers' only as neighbours. TY2 (3-8-21 Higashi-Shinagawa) is 556-605 m south of them. TY3 (1-9-20 Edagawa) and TY5 (1-10-19 Edagawa) are 198.3 m apart in different blocks (9-ban and 10-ban) and different buildings, so each is its own site. TY11 (1-2-41 Ariake) is more than 2 km from every other point. As a consistency check, the GSI block-level point for TY15's address (港南三丁目6番; held, not used as a locator) is 1,040.9 m from the TY6/TY7 point and 1,646.3 m from the TY2 point, matching Equinix's statement that TY15 is 'about 1km from our TY6/TY7/TY8 data centers' with TY2 'just 1.5km away'.",
+ "candidates": [
+  {
+   "candidate_id": "equinix-ty11-tokyo-ariake-1-2-41",
+   "facility": "Equinix TY11 (Tokyo IBX)",
+   "operator_stated_address": "1-2-41, Ariake, Koutou-ku, Tokyo 135 0063, Japan (Equinix TY11 page, archived 3 October 2026)",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     139.791565,
+     35.639973
+    ]
+   },
+   "authority_class": "official_source",
+   "scope_class": "official_numbered_address_point",
+   "use_scope": "project_locator",
+   "source_url": "https://msearch.gsi.go.jp/address-search/AddressSearch?q=%E6%9D%B1%E4%BA%AC%E9%83%BD%E6%B1%9F%E6%9D%B1%E5%8C%BA%E6%9C%89%E6%98%8E1-2-41",
+   "source_file": "local_data/country-research-equinix-apac-3-p14/gsi-addr-ty11.json",
+   "source_sha256": "1d1fe367e336e48b485867ad91bb8cc73814bc8f9797c7d482e139efe5a26e6c",
+   "source_bytes": 176,
+   "retrieved_at": "2026-11-07T03:56:36.345Z",
+   "selected_feature": {
+    "title": "東京都江東区有明一丁目２番４１号",
+    "addressCode": "",
+    "coordinates": [
+     139.791565,
+     35.639973
+    ],
+    "feature_count_in_response": 1,
+    "resolution_level": "house number (号): chome, block (番) and house number (号) are all resolved"
+   },
+   "reverse_geocoder": {
+    "muniCd": "13108",
+    "lv01Nm": "有明一丁目",
+    "source_file": "local_data/country-research-equinix-apac-3-p14/gsi-revgeo-ty11.json"
+   },
+   "map_tile_review": "On GSI's z18 standard-map tile 232865/103263 the point (pixel 28.5, 134.0; 0.485 m per pixel) lies on the street line at the T-junction where a north-east street meets the road running north-north-west, at the north-west corner of the block that holds the two buildings drawn south-east of it: the nearer, about 45 m by 15 m, is 12.9 m south-east of the point, and a larger building, at least 81 m by 51 m (it continues past the tile edge), begins about 34 m east-south-east. The block north of the junction is labelled 東京消防庁 (Tokyo Fire Department) on the tile.",
+   "extent_review": "The point is on the street frontage at the block corner, 12.9 m from the nearest building drawn in the block; a 5-storey building with 11,553 m2 of colocation space is more likely the larger building, which extends at least 121 m from the point, so the data-centre space may lie up to about 130 m from the point.",
+   "distances": "Within 2 km of the point: Ariake TK2 Data Centre (curated:ariake-tk2-data-centre; planned building at 有明二丁目, announced) at 825.0 m, a different chome, lots and developer; MC Digital Realty HND12 Toyosu Data Centre (curated:mc-digital-realty-hnd12-toyosu; announced) at 1,386.5 m. No pending queue change lies within 2 km; the jp-kanto-p2 claim for Ariake TK2 (35.63,139.79) is 1,116 m away and is the same Ariake TK2 record. This fragment's TY3 and TY5 are 2,169 m and 2,105 m away.",
+   "horizontal_uncertainty_metres": null
+  },
+  {
+   "candidate_id": "equinix-tokyo-higashi-shinagawa-2-2-43-campus",
+   "facility": "Equinix TY6 and TY7 (Tokyo IBXs)",
+   "operator_stated_address": "2-2-43 Higashi-Shinagawa, Shinagawa-ku, Tokyo 140 0002, Japan (Equinix TY6 and TY7 pages, archived 3 October 2026)",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     139.747864,
+     35.622814
+    ]
+   },
+   "authority_class": "official_source",
+   "scope_class": "official_numbered_address_point",
+   "use_scope": "campus_locator",
+   "source_url": "https://msearch.gsi.go.jp/address-search/AddressSearch?q=%E6%9D%B1%E4%BA%AC%E9%83%BD%E5%93%81%E5%B7%9D%E5%8C%BA%E6%9D%B1%E5%93%81%E5%B7%9D2-2-43",
+   "source_file": "local_data/country-research-equinix-apac-3-p14/gsi-addr-ty6-ty7.json",
+   "source_sha256": "0ca39dba3a3f86234d41ad52534e75005390ab8aa7a69c8e801ae7cdace035fc",
+   "source_bytes": 179,
+   "retrieved_at": "2026-11-07T03:56:32.348Z",
+   "selected_feature": {
+    "title": "東京都品川区東品川二丁目２番４３号",
+    "addressCode": "",
+    "coordinates": [
+     139.747864,
+     35.622814
+    ],
+    "feature_count_in_response": 1,
+    "resolution_level": "house number (号): chome, block (番) and house number (号) are all resolved"
+   },
+   "reverse_geocoder": {
+    "muniCd": "13109",
+    "lv01Nm": "東品川二丁目",
+    "source_file": "local_data/country-research-equinix-apac-3-p14/gsi-revgeo-ty6-ty7.json"
+   },
+   "map_tile_review": "On GSI's z18 standard-map tiles 232833/103278 and 232833/103279 (0.485 m per pixel) the point (pixel 74.0, 229.4 of the upper tile) lies on the eastern line of the north-north-west street, at the western frontage of the block east of the street, whose building is drawn about 125 m by 36 m (long side north-north-west) and lies 12.2 m east of the point; the building across the street, west of the point, is 8.1 m away. The TY8 address point (2-1-7) lies 50.2 m to the south on the western line of the same street, at a different block and building.",
+   "extent_review": "The point is on the street frontage of the block east of the street; the building drawn there is about 125 m by 36 m and extends to 93 m from the point, so the TY6 and TY7 space may lie up to about 95 m from the point.",
+   "distances": "Within 2 km of the point: no Atlas site or project and no pending queue change. This fragment's TY8 address point (2-1-7 Higashi-Shinagawa) is 50.2 m south, on the opposite (western) side of the same street, in a different block (1-ban rather than 2-ban) and building; it is a separate site. This fragment's TY2 (3-8-21 Higashi-Shinagawa) is 605.4 m south. The jp-kanto lanes' held DPDC Shinagawa II plan is at 東品川5丁目6番1, a different chome, with no coordinate claimed.",
+   "horizontal_uncertainty_metres": null
+  },
+  {
+   "candidate_id": "equinix-ty8-tokyo-higashi-shinagawa-2-1-7",
+   "facility": "Equinix TY8 (Tokyo IBX)",
+   "operator_stated_address": "2-1-7, Higashi-Shinagawa, Shinagawa-ku, Harbor Premium II, Tokyo 140 0002, Japan (Equinix TY8 page, archived 3 October 2026)",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     139.747955,
+     35.622368
+    ]
+   },
+   "authority_class": "official_source",
+   "scope_class": "official_numbered_address_point",
+   "use_scope": "project_locator",
+   "source_url": "https://msearch.gsi.go.jp/address-search/AddressSearch?q=%E6%9D%B1%E4%BA%AC%E9%83%BD%E5%93%81%E5%B7%9D%E5%8C%BA%E6%9D%B1%E5%93%81%E5%B7%9D2-1-7",
+   "source_file": "local_data/country-research-equinix-apac-3-p14/gsi-addr-ty8.json",
+   "source_sha256": "a5df6b4970fb31c85b353fc24681b24973295445a2ae845f0aa3a64145cb8e0b",
+   "source_bytes": 176,
+   "retrieved_at": "2026-11-07T03:56:33.356Z",
+   "selected_feature": {
+    "title": "東京都品川区東品川二丁目１番７号",
+    "addressCode": "",
+    "coordinates": [
+     139.747955,
+     35.622368
+    ],
+    "feature_count_in_response": 1,
+    "resolution_level": "house number (号): chome, block (番) and house number (号) are all resolved"
+   },
+   "reverse_geocoder": {
+    "muniCd": "13109",
+    "lv01Nm": "東品川二丁目",
+    "source_file": "local_data/country-research-equinix-apac-3-p14/gsi-revgeo-ty8.json"
+   },
+   "map_tile_review": "On GSI's z18 standard-map tile 232833/103279 (0.485 m per pixel) the point (pixel 91.0, 75.7) lies on the western line of the north-north-west street, 3.7 m east of the north-east corner of the building drawn in the block west of the street (at least 47 m by 22 m; it continues past the tile's western edge); the building across the street to the east is 18.7 m away. The TY6/TY7 address point (2-2-43) is 50.2 m to the north on the eastern line of the same street.",
+   "extent_review": "The point is 3.7 m from the outline of the building drawn at the address; that building extends at least 49 m from the point and continues past the tile edge, so the TY8 space may lie 50 m or more from the point.",
+   "distances": "Within 2 km of the point: no Atlas site or project and no pending queue change. This fragment's TY6/TY7 campus point (2-2-43 Higashi-Shinagawa) is 50.2 m north, on the opposite (eastern) side of the same street, in a different block (2-ban) and building; this fragment's TY2 (3-8-21 Higashi-Shinagawa) is 556.1 m south. The jp-kanto lanes' held DPDC Shinagawa II plan is at 東品川5丁目6番1, a different chome, with no coordinate claimed.",
+   "horizontal_uncertainty_metres": null
+  },
+  {
+   "candidate_id": "equinix-ty2-tokyo-higashi-shinagawa-3-8-21",
+   "facility": "Equinix TY2 (Tokyo IBX)",
+   "operator_stated_address": "3-8-21 Higashi-Shinagawa, Shinagawa-ku, Tokyo 140 0002, Japan (Equinix TY2 page, archived 3 October 2026)",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     139.747726,
+     35.617359
+    ]
+   },
+   "authority_class": "official_source",
+   "scope_class": "official_numbered_address_point",
+   "use_scope": "project_locator",
+   "source_url": "https://msearch.gsi.go.jp/address-search/AddressSearch?q=%E6%9D%B1%E4%BA%AC%E9%83%BD%E5%93%81%E5%B7%9D%E5%8C%BA%E6%9D%B1%E5%93%81%E5%B7%9D3-8-21",
+   "source_file": "local_data/country-research-equinix-apac-3-p14/gsi-addr-ty2.json",
+   "source_sha256": "b689651840d801a743a35fd4b47938dc8e654c505b43c1dae9ffc633c0ab0654",
+   "source_bytes": 179,
+   "retrieved_at": "2026-11-07T03:56:28.572Z",
+   "selected_feature": {
+    "title": "東京都品川区東品川三丁目８番２１号",
+    "addressCode": "",
+    "coordinates": [
+     139.747726,
+     35.617359
+    ],
+    "feature_count_in_response": 1,
+    "resolution_level": "house number (号): chome, block (番) and house number (号) are all resolved"
+   },
+   "reverse_geocoder": {
+    "muniCd": "13109",
+    "lv01Nm": "東品川三丁目",
+    "source_file": "local_data/country-research-equinix-apac-3-p14/gsi-revgeo-ty2.json"
+   },
+   "map_tile_review": "On GSI's z18 standard-map tile 232833/103283 (0.485 m per pixel) the point (pixel 48.3, 200.4) lies on the street line at the western frontage of a block; a small building (about 10 m by 6 m) is drawn 6.2 m south-east of the point, and the block's main building, about 35 m by 26 m, lies about 18-56 m east of it.",
+   "extent_review": "GSI's point is on the block frontage; a 7-storey building with 3,018 m2 of colocation space is more likely the block's main building, about 18-56 m east of the point, than the small building 6.2 m away, so the data-centre space may lie up to about 56 m from the point.",
+   "distances": "Within 2 km of the point: no Atlas site or project and no pending queue change. This fragment's TY8 point (2-1-7 Higashi-Shinagawa) is 556.1 m north and its TY6/TY7 campus point (2-2-43) 605.4 m north, both different chome, blocks and buildings. The jp-kanto lanes' held DPDC Shinagawa II plan is at 東品川5丁目6番1, a different chome, with no coordinate claimed.",
+   "horizontal_uncertainty_metres": null
+  },
+  {
+   "candidate_id": "equinix-ty3-tokyo-edagawa-1-9-20",
+   "facility": "Equinix TY3 (Tokyo IBX)",
+   "operator_stated_address": "1-9-20 Edagawa, Koto-ku, Tokyo 135 0051, Japan (Equinix TY3 page, archived 3 October 2026)",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     139.803421,
+     35.656963
+    ]
+   },
+   "authority_class": "official_source",
+   "scope_class": "official_numbered_address_point",
+   "use_scope": "project_locator",
+   "source_url": "https://msearch.gsi.go.jp/address-search/AddressSearch?q=%E6%9D%B1%E4%BA%AC%E9%83%BD%E6%B1%9F%E6%9D%B1%E5%8C%BA%E6%9E%9D%E5%B7%9D1-9-20",
+   "source_file": "local_data/country-research-equinix-apac-3-p14/gsi-addr-ty3.json",
+   "source_sha256": "105ad31e3fcf8c0565e4a49850a1885af5cf2aaff8e45dcb88f34e3112490454",
+   "source_bytes": 176,
+   "retrieved_at": "2026-11-07T03:56:29.581Z",
+   "selected_feature": {
+    "title": "東京都江東区枝川一丁目９番２０号",
+    "addressCode": "",
+    "coordinates": [
+     139.803421,
+     35.656963
+    ],
+    "feature_count_in_response": 1,
+    "resolution_level": "house number (号): chome, block (番) and house number (号) are all resolved"
+   },
+   "reverse_geocoder": {
+    "muniCd": "13108",
+    "lv01Nm": "枝川一丁目",
+    "source_file": "local_data/country-research-equinix-apac-3-p14/gsi-revgeo-ty3.json"
+   },
+   "map_tile_review": "On GSI's z18 standard-map tile 232873/103248 (0.485 m per pixel) the point (pixel 190.6, 76.5) lies 1.4 m from the northern corner, on the street side, of a building of about 42 m by 37 m drawn on the block along the north-west to south-east street.",
+   "extent_review": "The point is 1.4 m from the corner of the building drawn at the address, which is about 42 m by 37 m and extends to 55 m from the point, so the data-centre space may lie up to about 55 m from the point.",
+   "distances": "Within 2 km of the point: MC Digital Realty HND12 Toyosu Data Centre (curated:mc-digital-realty-hnd12-toyosu; planned building, announced) at 852.8 m, a different district (Toyosu) and operator. No pending queue change lies within 2 km. This fragment's TY5 (1-10-19 Edagawa) is 198.3 m south-east in a different block (10-ban) and building; this fragment's TY11 is 2,169 m away.",
+   "horizontal_uncertainty_metres": null
+  },
+  {
+   "candidate_id": "equinix-ty5-tokyo-edagawa-1-10-19",
+   "facility": "Equinix TY5 (Tokyo IBX)",
+   "operator_stated_address": "1-10-19, Edagawa, Koto-ku, Tokyo 135 0051, Japan (Equinix TY5 page, archived 3 October 2026)",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     139.804794,
+     35.655571
+    ]
+   },
+   "authority_class": "official_source",
+   "scope_class": "official_numbered_address_point",
+   "use_scope": "project_locator",
+   "source_url": "https://msearch.gsi.go.jp/address-search/AddressSearch?q=%E6%9D%B1%E4%BA%AC%E9%83%BD%E6%B1%9F%E6%9D%B1%E5%8C%BA%E6%9E%9D%E5%B7%9D1-10-19",
+   "source_file": "local_data/country-research-equinix-apac-3-p14/gsi-addr-ty5.json",
+   "source_sha256": "779f529df4a82dbe95c097d20c0956fe62c5ae4879aee3bad01ea37a316a98d9",
+   "source_bytes": 179,
+   "retrieved_at": "2026-11-07T03:56:31.352Z",
+   "selected_feature": {
+    "title": "東京都江東区枝川一丁目１０番１９号",
+    "addressCode": "",
+    "coordinates": [
+     139.804794,
+     35.655571
+    ],
+    "feature_count_in_response": 1,
+    "resolution_level": "house number (号): chome, block (番) and house number (号) are all resolved"
+   },
+   "reverse_geocoder": {
+    "muniCd": "13108",
+    "lv01Nm": "枝川一丁目",
+    "source_file": "local_data/country-research-equinix-apac-3-p14/gsi-revgeo-ty5.json"
+   },
+   "map_tile_review": "On GSI's z18 standard-map tile 232874/103249 (0.485 m per pixel) the point (pixel 190.5, 139.8) lies 2.0 m from the north-eastern side of a building at least 78 m by 35 m (it continues past the tile edge) drawn along the north-west to south-east street; a second, narrower building (about 70 m by 15 m) lies 29 m north-west in the same block.",
+   "extent_review": "The point is 2.0 m from the outline of the building drawn at the address, which extends at least 81 m from the point and continues past the tile edge, so the data-centre space may lie 85 m or more from the point.",
+   "distances": "Within 2 km of the point: MC Digital Realty HND12 Toyosu Data Centre (curated:mc-digital-realty-hnd12-toyosu; planned building, announced) at 865.0 m, a different district (Toyosu) and operator. No pending queue change lies within 2 km. This fragment's TY3 (1-9-20 Edagawa) is 198.3 m north-west in a different block (9-ban) and building; this fragment's TY11 is 2,105 m away.",
+   "horizontal_uncertainty_metres": null
+  }
+ ],
+ "not_used": [
+  "No Google, Apple, Bing, HERE, Waze, Yandex, Baidu, Naver, Kakao or other commercial web map, PeeringDB or OpenStreetMap data was opened or used.",
+  "The map widget embedded in the Equinix pages was not read or used."
+ ]
+}
