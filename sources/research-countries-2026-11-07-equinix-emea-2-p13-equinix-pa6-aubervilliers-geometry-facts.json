@@ -1,0 +1,91 @@
+{
+  "candidate_id": "equinix-pa6-aubervilliers-waldeck-rochet",
+  "decision": "Selected the WGS84 point that the national classified-installations register (Géorisques installations_classees API) publishes for establishment AIOT 0007408791, EQUINIX France, 10 RUE WALDECK ROCHET, BATIMENT 520, 93300 Aubervilliers: longitude 2.36815, latitude 48.910175, copied without transformation, as the project locator.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      2.36815,
+      48.910175
+    ]
+  },
+  "authority_class": "official_source",
+  "derivation": "direct_geometry",
+  "scope_class": "classified_installation_register_establishment_point",
+  "use_scope": "project_locator",
+  "source_file": "local_data/country-research-equinix-emea-2-p13/georisques-icpe-93001-p1.json",
+  "source_sha256": "2cb199741c6b8a75768bf8b41cc24fdd565a5a5dfc5e5419204ae9aadb63ca15",
+  "source_url": "https://www.georisques.gouv.fr/api/v1/installations_classees?code_insee=93001&page=1&page_size=100",
+  "retrieved_at": "2026-11-07T02:37:58.897Z",
+  "selected_properties": {
+    "raisonSociale": "EQUINIX France",
+    "adresse1": "10 RUE WALDECK ROCHET",
+    "adresse2": "BATIMENT 520",
+    "codePostal": "93300",
+    "codeInsee": "93001",
+    "commune": "Aubervilliers",
+    "codeNaf": "63",
+    "codeAIOT": "0007408791",
+    "siret": "42984085300080",
+    "regime": "Autorisation",
+    "ied": true,
+    "statutSeveso": "Non Seveso",
+    "etatActivite": "En exploitation avec titre",
+    "serviceAIOT": "DRIEAT IdF",
+    "longitude": 2.36815,
+    "latitude": 48.910175,
+    "coordonneeXAIOT": 653687,
+    "coordonneeYAIOT": 6867983,
+    "systemeCoordonneesAIOT": "2154",
+    "date_maj": "2026-11-04/15-30-39"
+  },
+  "operator_published_address": "10 rue Waldeck Rochet Bat 520, Building 520, 93300 Aubervilliers (Equinix PA6 page, Internet Archive copy of 3 October 2026)",
+  "identity_bridge": [
+    "The register names EQUINIX France at '10 RUE WALDECK ROCHET, BATIMENT 520, 93300 Aubervilliers', NAF 63, regime Autorisation, IED, 'En exploitation avec titre', with combustion heading 3110 (52.67 MW).",
+    "The DRIEAT inspection report of the 29 March 2023 visit (dated 17 April 2023, published on Géorisques for AIOT 0007408791) says EQUINIX FRANCE operates 'sur son site EQUINIX PA6 à Aubervilliers' a data centre consisting of one building with administrative, IT and technical parts, with 10 fuel-oil generators, authorised by prefectoral order of 20 August 2010.",
+    "Equinix's PA6 page (Internet Archive copy of 3 October 2026) gives the same address, 10 rue Waldeck Rochet, Building 520, 93300 Aubervilliers."
+  ],
+  "transform": {
+    "note": "No transform is applied to the published longitude and latitude. Check only: pyproj 3.7.1 EPSG:2154 -> EPSG:4326 of the register's Lambert-93 coordinates (653687, 6867983) gives a point 0.035 m from the published one."
+  },
+  "consistency_checks": {
+    "cadastral_parcel": "The IGN API Carto cadastre service queried with the register point (local local_data/country-research-equinix-emea-2-p13/ign-apicarto-parcel-at-icpe-point-pa6.json, sha256 2955987096d8...) returns the single parcel 930010000P0155 (section 0P, no. 0155, contenance 18,112 m2). With shapely 2.1.1 in Lambert-93 the point lies inside it, 41.4 m from its boundary and 40.2 m from its centroid (2.3682134, 48.9098163); the parcel's geodesic area is 18,114 m2 and its extent about 122 m by 185 m.",
+    "parcel_facts": {
+      "idu": "930010000P0155",
+      "section": "0P",
+      "numero": "0155",
+      "contenance_m2": 18112,
+      "point_inside": true,
+      "distance_to_boundary_m": 41.4,
+      "distance_to_centroid_m": 40.2,
+      "centroid_wgs84": [
+        2.3682134,
+        48.9098163
+      ],
+      "geodesic_area_m2": 18114,
+      "extent_m": [
+        122,
+        185
+      ]
+    },
+    "versions": {
+      "pyproj": "3.7.1",
+      "proj": "9.5.1",
+      "shapely": "2.1.1"
+    }
+  },
+  "excluded_coordinates": [
+    {
+      "kind": "Map widget coordinates on Equinix's IBX pages",
+      "reason": "Map-embed parameters, which the locator policy excludes; not read or used."
+    },
+    {
+      "kind": "Equinix France's registered office address (31-35 rue de la Fédération, Paris 15e) printed on the inspection reports",
+      "reason": "Head-office address, not the facility."
+    },
+    {
+      "kind": "National address API (api-adresse.data.gouv.fr)",
+      "reason": "Its robots.txt disallows the search path (as recorded by earlier passes); not requested."
+    }
+  ],
+  "scope_note": "The establishment is the single-building PA6 site; the register point locates the establishment, not a building outline or surveyed position."
+}

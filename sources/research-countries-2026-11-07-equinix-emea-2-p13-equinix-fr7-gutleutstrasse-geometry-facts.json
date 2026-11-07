@@ -1,0 +1,54 @@
+{
+  "candidate_id": "equinix-fr7-frankfurt-gutleutstrasse-310",
+  "decision": "Selected the City of Frankfurt's official building-address point for Gutleutstraße 310 (address object DEHEFALK30007mjk), the address Equinix publishes for FR7, transformed from EPSG:25832 to WGS84, as the project locator. The coordinate in the map widget on Equinix's page was not used.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      8.6441415,
+      50.0968355
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_building_address_point",
+  "use_scope": "project_locator",
+  "source_file": "local_data/country-research-equinix-emea-2-p13/frankfurt-geoportal-gutleutstrasse-310.json",
+  "source_sha256": "1f218d3d3f41a19e47efca635224ae1eebe9c7d39e96f1aead7104ba33176173",
+  "source_url": "https://geoportal.frankfurt.de/elastic/basisgis/_search?source_content_type=application%2Fjson&source=%7B%22query%22%3A%7B%22match_phrase%22%3A%7B%22properties.searchField%22%3A%22Gutleutstra%C3%9Fe+310%22%7D%7D%2C%22size%22%3A5%7D",
+  "selected_properties": {
+    "source_layer": "Gebaeudeadresse (layerId 12)",
+    "address_object_id": "DEHEFALK30007mjk",
+    "searchField": "Gutleutstraße 310",
+    "native_coordinates_epsg25832": [
+      474547.9519999996,
+      5549458.0370000005
+    ],
+    "operator_published_address": "Gutleutstrasse 310, 60327 Frankfurt (Equinix FR7 page, Internet Archive copy of 3 October 2026; meta description postcode 60326)"
+  },
+  "consistency_checks": {
+    "exact_address_query": "A match_phrase query for 'Gutleutstraße 310' returns exactly one feature: Gebaeudeadresse DEHEFALK30007mjk.",
+    "nearest_atlas_sites_km": {
+      "Telehouse Frankfurt Campus (Kleyerstraße 75-87, Frankfurt-Gallus)": 1.082,
+      "Equinix Frankfurt Lärchenstrasse Campus (FR4, FR6, FR8)": 4.075,
+      "NorthC Frankfurt1 (FRA01)": 4.526
+    },
+    "crs": "The geoportal configuration (https://geoportal.frankfurt.de/karte/config.json, captured 6 November 2026 by ops-frankfurt-de-p6, local local_data/country-research-ops-frankfurt-de-p6/frankfurt-geoportal-config.json, rehashed 7 November 2026, sha256 907501e96178af215a8fbe3d239ebd2d775fde13baf770ff0270d7e734053702) sets the routing geosearch on the same 'elastic' service to epsg 25832, so the coordinates are ETRS89 / UTM zone 32N metres. The same service and transform underlie the accepted FR6, Telehouse Frankfurt and NorthC FRA01 locators.",
+    "round_trip_m": 0.0043,
+    "versions": {
+      "pyproj": "3.7.1",
+      "proj": "9.5.1",
+      "shapely": "2.1.1"
+    }
+  },
+  "transform_check": "pyproj 3.7.1 (PROJ 9.5.1) EPSG:25832 -> EPSG:4326, always_xy; rounded to 7 decimal places; the rounded point transforms back to within 0.0043 m.",
+  "excluded_coordinates": [
+    {
+      "kind": "Map widget coordinate on the Equinix FR7 page",
+      "reason": "A map-embed parameter, which the locator policy excludes; not read or used."
+    },
+    {
+      "kind": "Frankfurt city centre and Equinix's other Frankfurt addresses",
+      "reason": "Not FR7's published address."
+    }
+  ],
+  "limitations": "The point is the register's building-address point for the published address; it is not a parcel, building footprint or surveyed position, and the register states no positional accuracy."
+}

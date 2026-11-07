@@ -1,0 +1,55 @@
+{
+  "candidate_id": "iron-mountain-global-p13-iron-mountain-fra-2-frankfurt-heinrich-lanz-allee-47",
+  "decision": "Selected the City of Frankfurt's official building-address point for Heinrich-Lanz-Allee 47 (address object DEHEFALK30007jPd), the address Iron Mountain publishes for FRA-2, transformed from EPSG:25832 to WGS84, as the campus locator.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      8.6402644,
+      50.1955935
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_building_address_point",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-iron-mountain-global-p13/frankfurt-geoportal-heinrich-lanz-allee-all.json",
+  "source_sha256": "0cdc6e602a18ff5fb9375e31f77d07ce977bdfb36fad8f6893deb80e41585dd8",
+  "source_url": "https://geoportal.frankfurt.de/elastic/basisgis/_search?source_content_type=application%2Fjson&source=%7B%22query%22%3A%7B%22match_phrase_prefix%22%3A%7B%22properties.searchField%22%3A%22Heinrich-Lanz-Allee%22%7D%7D%2C%22size%22%3A300%7D",
+  "retrieved_at": "2026-11-07T03:03:46.135Z",
+  "selected_properties": {
+    "source_layer": "Gebaeudeadresse (layerId 12)",
+    "address_object_id": "DEHEFALK30007jPd",
+    "searchField": "Heinrich-Lanz-Allee 47",
+    "native_coordinates_epsg25832": [
+      474323.57600000035,
+      5560439.971000001
+    ],
+    "operator_published_address": "Heinrich-Lanz-Allee 47, 60437 Frankfurt am Main (Iron Mountain Frankfurt page, Internet Archive raw copy of 11 June 2026)"
+  },
+  "consistency_checks": {
+    "street_query": "A prefix query for 'Heinrich-Lanz-Allee' returns 24 features (one street area and 23 building addresses); exactly one is 'Heinrich-Lanz-Allee 47'. The nearest other address on the street is No. 33, 260.6 m away; Nos. 1-38 lie 0.8-0.9 km to the east.",
+    "crs": "The geoportal configuration (https://geoportal.frankfurt.de/karte/config.json; Atlas evidence 6eddbcec-13da-5da0-b897-aa866c5c7086, local local_data/country-research-ops-frankfurt-de-p6/frankfurt-geoportal-config.json, rehashed 7 November 2026, sha256 907501e9...3702) sets the geosearch on the same 'elastic' service to epsg 25832, so the coordinates are ETRS89 / UTM zone 32N metres. The same service and transform underlie the Atlas's Equinix FR2/FR7, Telehouse Frankfurt and NorthC FRA01 locators.",
+    "round_trip_m": 0.0051,
+    "nearest_atlas_sites_km": {
+      "NTT Frankfurt 1 Data Center Campus": 7.86,
+      "maincubes FRA03, Schwalbach am Taunus": 8.47,
+      "noris network FRA1 Schwalbach Campus": 8.48
+    },
+    "versions": {
+      "pyproj": "3.7.1",
+      "shapely": "2.1.1"
+    }
+  },
+  "transform_check": "pyproj 3.7.1 EPSG:25832 -> EPSG:4326, always_xy; rounded to 7 decimal places; the rounded point transforms back to within 0.0051 m.",
+  "excluded_coordinates": [
+    {
+      "kind": "Map widgets or map links on Iron Mountain pages",
+      "reason": "Not read or used (locator source policy)."
+    },
+    {
+      "kind": "Frankfurt city centre and Iron Mountain's FRA-1 address (Borsigallee 1)",
+      "reason": "Not FRA-2's published address."
+    }
+  ],
+  "limitations": "The point is the register's building-address point for the published address; it is not a parcel, building footprint or surveyed position, and the register states no positional accuracy.",
+  "verification_script": "scratchpad imp13/facts.py (uv run --no-project --with pyproj==3.7.1 --with shapely==2.1.1 python -I)"
+}

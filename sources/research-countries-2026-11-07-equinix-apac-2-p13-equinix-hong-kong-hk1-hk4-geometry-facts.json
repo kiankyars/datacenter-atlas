@@ -1,0 +1,281 @@
+{
+ "format": "datacenter-atlas-geometry-facts-v1",
+ "fragment": "equinix-apac-2-p13",
+ "prepared_on": "2026-11-07",
+ "method_note": "Each point is the latitude/longitude served by the Hong Kong Government's Address Lookup Service (ALS, Digital Policy Office; www.als.gov.hk/lookup, keyless GET) for the street address that Equinix gives on its own IBX page (Internet Archive raw copies of 3 October 2026; www.equinix.com answers robots.txt with HTTP 403, so the live pages were not requested), copied without transformation. The served HK1980 grid easting/northing was transformed with pyproj 3.7.1 (EPSG:2326 to EPSG:4326) only as a check. For the identity check the Lands Department lot layer published on the CSDI portal (landsd_rcd_1637217253134_22729 FeatureServer layer 0, point-intersect at the ALS grid point, and the same lot by LotCSUID in its native HK1980 grid) and its land-information table (layer 1000) were captured; lot polygons were measured in the native grid with shapely 2.1.1. No commercial map, map embed or map-widget parameter, short link, PeeringDB record or OpenStreetMap service was used; no token or key was used. ALS licence: the ALS dataset is published on DATA.GOV.HK (the www.als.gov.hk home page redirects to its dataset page), whose Terms and Conditions (captured 7 November 2026, local local_data/country-research-equinix-apac-2-p13/datagovhk-terms-and-conditions.html) allow the Data to be reproduced and distributed for commercial and non-commercial purposes free of charge, on condition that the source is identified and the Government's ownership acknowledged. The CSDI lot layers assert no licence text in the captured responses and are used only for the identity check.",
+ "site_versus_campus_review": "Equinix lists HK1 (168 Yeung Uk Road, Tsuen Wan), HK2 (3 Shing Yiu Street, Kwai Chung), HK3 (1 Wang Wo Tsai Street, Tsuen Wan) and HK4 (22 On Sum Street, Siu Lek Yuen) as separate IBXs with their own addresses and buildings, linked by fibre into a 'virtual campus'. Each ALS point lies on a different government lot (TWTL 340 RP, KCTL 452, TWTL 363, STTL 357); HK1 to HK3 are 248 m apart, HK1 to HK2 335 m and HK2 to HK3 569 m, and HK4 is 9.3 km away in Sha Tin. Each is therefore its own site with one project and a project locator. HK5 (Tower 2, 299 Wan Po Road, Tseung Kwan O) is in SUNeVision's MEGA Plus building, already an Atlas site, and is held; HK6 (18 Sha Tsui Road) is already an Atlas site.",
+ "candidates": [
+  {
+   "candidate_id": "equinix-hk1-goodman-global-gateway-tsuen-wan",
+   "facility": "Equinix HK1 (Hong Kong IBX)",
+   "operator_stated_address": "Unit 2702, 27/F, Goodman Global Gateway, 168 Yeung Uk Road, Tsuen Wan, N.T., Hong Kong",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     114.11935,
+     22.36558
+    ]
+   },
+   "authority_class": "official_source",
+   "scope_class": "official_numbered_address_point",
+   "use_scope": "project_locator",
+   "precision_scope": "Hong Kong Address Lookup Service point for 168 Yeung Uk Road (Goodman Global Gateway; GeoAddress 3034325159T20050430), the building address Equinix gives for Equinix HK1. It lies inside the single government land lot TWTL 340 RP (7817.9 m2), 4.3 m from the lot's planar centroid and 41.0 m from its nearest boundary. It marks the building address, not a surveyed outline, entrance, the Equinix floor or a data hall, and the building may have other occupiers.",
+   "horizontal_uncertainty_metres": null,
+   "horizontal_uncertainty_unknown_reason": "The Address Lookup Service supplies no positional accuracy; latitude and longitude are served to five decimal places (about 1 m) and agree with the served HK1980 grid coordinates to 0.29 m. Decimal precision is not survey accuracy.",
+   "source_url": "https://www.als.gov.hk/lookup?q=168%20Yeung%20Uk%20Road%20Tsuen%20Wan&n=5",
+   "source_file": "local_data/country-research-equinix-apac-2-p13/als-168-yeung-uk-road.xml",
+   "source_sha256": "4dd87ee2059385670e85f75847b6b2b6159430072148e8a03a53ac063120be62",
+   "served_feature": {
+    "als_building": "GOODMAN GLOBAL GATEWAY",
+    "als_chinese_building": "嘉民國際訊通中心",
+    "als_number": "168",
+    "als_street": "YEUNG UK ROAD",
+    "als_location": "TSUEN WAN",
+    "als_district": "TSUEN WAN DISTRICT",
+    "geoaddress": "3034325159T20050430",
+    "score": "66.47",
+    "easting": 830343.0,
+    "northing": 825159.0,
+    "lat": 22.36558,
+    "lon": 114.11935
+   },
+   "coordinate_check": {
+    "pyproj_3_7_1_epsg2326_to_epsg4326_lat_lon": [
+     22.3655813,
+     114.1193476
+    ],
+    "served_lat_lon_vs_served_grid_m": 0.29
+   },
+   "lot_check": {
+    "lot_at_point_source_url": "https://portal.csdi.gov.hk/server/rest/services/common/landsd_rcd_1637217253134_22729/FeatureServer/0/query?geometry=830343%2C825159&geometryType=esriGeometryPoint&inSR=2326&spatialRel=esriSpatialRelIntersects&outFields=*&returnGeometry=true&outSR=4326&f=json",
+    "lot_at_point_source_file": "local_data/country-research-equinix-apac-2-p13/csdi-lot-at-168-yeung-uk-road.json",
+    "lot_at_point_source_sha256": "4301e4cd6a8faf65d48330d282b9916d8701bc881c22cc42884e3e1f5700cb7d",
+    "lot_native_source_url": "https://portal.csdi.gov.hk/server/rest/services/common/landsd_rcd_1637217253134_22729/FeatureServer/0/query?where=LotCSUID%3D%27812000340%20%20%20%20RP%27&outFields=*&returnGeometry=true&f=json",
+    "lot_native_source_file": "local_data/country-research-equinix-apac-2-p13/csdi-lot-twtl340rp-native.json",
+    "lot_native_source_sha256": "d943c28fd7d745e48a7940f4097bc1a63aa0809b8e6b7381a575471e7f059f6b",
+    "land_info_source_url": "https://portal.csdi.gov.hk/server/rest/services/common/landsd_rcd_1637217253134_22729/FeatureServer/1000/query?where=LotCSUID%3D%27812000340%20%20%20%20RP%27&outFields=*&f=json",
+    "land_info_source_file": "local_data/country-research-equinix-apac-2-p13/csdi-landinfo-twtl340rp.json",
+    "land_info_source_sha256": "13c6eb3d9efce531ceea19f3eabe7d277748c5e5a12aacb3e0ce049d57ae5023",
+    "lot_display_name": "TWTL 340 RP",
+    "lot_csuid": "812000340    RP",
+    "lot_class": "New Grant Lot",
+    "lots_at_point": [
+     "812000340    RP"
+    ],
+    "lot_area_m2_hk1980_grid": 7817.9,
+    "lot_bbox_m": [
+     108.9,
+     121.0
+    ],
+    "point_inside_lot": true,
+    "point_to_lot_centroid_m": 4.3,
+    "point_to_lot_boundary_m": 41.0,
+    "point_to_farthest_lot_vertex_m": 71.4
+   }
+  },
+  {
+   "candidate_id": "equinix-hk2-3-shing-yiu-street-kwai-chung",
+   "facility": "Equinix HK2 (Hong Kong IBX)",
+   "operator_stated_address": "17/F Kerry Warehouse, 3 Shing Yiu Street, Kwai Chung, N.T., Hong Kong",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     114.11898,
+     22.36257
+    ]
+   },
+   "authority_class": "official_source",
+   "scope_class": "official_numbered_address_point",
+   "use_scope": "project_locator",
+   "precision_scope": "Hong Kong Address Lookup Service point for 3 Shing Yiu Street (Kerry Godown (Tsuen Wan); GeoAddress 3030524826T20050430), the building address Equinix gives for Equinix HK2. It lies inside the single government land lot KCTL 452 (6525.8 m2), 3.0 m from the lot's planar centroid and 25.3 m from its nearest boundary. It marks the building address, not a surveyed outline, entrance, the Equinix floor or a data hall, and the building may have other occupiers.",
+   "horizontal_uncertainty_metres": null,
+   "horizontal_uncertainty_unknown_reason": "The Address Lookup Service supplies no positional accuracy; latitude and longitude are served to five decimal places (about 1 m) and agree with the served HK1980 grid coordinates to 0.44 m. Decimal precision is not survey accuracy.",
+   "source_url": "https://www.als.gov.hk/lookup?q=3%20Shing%20Yiu%20Street%20Kwai%20Chung&n=5",
+   "source_file": "local_data/country-research-equinix-apac-2-p13/als-3-shing-yiu-street.xml",
+   "source_sha256": "f8c8a7dcf748ef20fdb7ca0daf7308c48ade8e6b57e451fc6fd8176eaaf213aa",
+   "served_feature": {
+    "als_building": "KERRY GODOWN (TSUEN WAN)",
+    "als_chinese_building": "嘉里(荃灣)貨倉",
+    "als_number": "3",
+    "als_street": "SHING YIU STREET",
+    "als_location": "KWAI CHUNG",
+    "als_district": "KWAI TSING DISTRICT",
+    "geoaddress": "3030524826T20050430",
+    "score": "88.75",
+    "easting": 830305.0,
+    "northing": 824826.0,
+    "lat": 22.36257,
+    "lon": 114.11898
+   },
+   "coordinate_check": {
+    "pyproj_3_7_1_epsg2326_to_epsg4326_lat_lon": [
+     22.3625739,
+     114.1189799
+    ],
+    "served_lat_lon_vs_served_grid_m": 0.44
+   },
+   "lot_check": {
+    "lot_at_point_source_url": "https://portal.csdi.gov.hk/server/rest/services/common/landsd_rcd_1637217253134_22729/FeatureServer/0/query?geometry=830305%2C824826&geometryType=esriGeometryPoint&inSR=2326&spatialRel=esriSpatialRelIntersects&outFields=*&returnGeometry=true&outSR=4326&f=json",
+    "lot_at_point_source_file": "local_data/country-research-equinix-apac-2-p13/csdi-lot-at-3-shing-yiu-street.json",
+    "lot_at_point_source_sha256": "3cec44a859ad373b45456350cc08736874de2890eca8c4ed32f3b2293959c277",
+    "lot_native_source_url": "https://portal.csdi.gov.hk/server/rest/services/common/landsd_rcd_1637217253134_22729/FeatureServer/0/query?where=LotCSUID%3D%27553000452%27&outFields=*&returnGeometry=true&f=json",
+    "lot_native_source_file": "local_data/country-research-equinix-apac-2-p13/csdi-lot-kctl452-native.json",
+    "lot_native_source_sha256": "0663478313044fcadceedf4156f3faa67cc4b9dd9a596b66769cc8afed3114b1",
+    "land_info_source_url": "https://portal.csdi.gov.hk/server/rest/services/common/landsd_rcd_1637217253134_22729/FeatureServer/1000/query?where=LotCSUID%3D%27553000452%27&outFields=*&f=json",
+    "land_info_source_file": "local_data/country-research-equinix-apac-2-p13/csdi-landinfo-kctl452.json",
+    "land_info_source_sha256": "1fee87577d75325677405a78dcf1f9d5800beef3e822e98ec23ef23e278a0152",
+    "lot_display_name": "KCTL 452",
+    "lot_csuid": "553000452",
+    "lot_class": "New Grant Lot",
+    "lots_at_point": [
+     "553000452"
+    ],
+    "lot_area_m2_hk1980_grid": 6525.8,
+    "lot_bbox_m": [
+     84.4,
+     128.7
+    ],
+    "point_inside_lot": true,
+    "point_to_lot_centroid_m": 3.0,
+    "point_to_lot_boundary_m": 25.3,
+    "point_to_farthest_lot_vertex_m": 67.8
+   }
+  },
+  {
+   "candidate_id": "equinix-hk3-1-wang-wo-tsai-street-tsuen-wan",
+   "facility": "Equinix HK3 (Hong Kong IBX)",
+   "operator_stated_address": "6/F, 1 Wang Wo Tsai Street, Hong Kong (page description: Tsuen Wan)",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     114.11854,
+     22.36769
+    ]
+   },
+   "authority_class": "official_source",
+   "scope_class": "official_numbered_address_point",
+   "use_scope": "project_locator",
+   "precision_scope": "Hong Kong Address Lookup Service point for 1 Wang Wo Tsai Street (no building name in the top record; GeoAddress 3026025393T20050430), the building address Equinix gives for Equinix HK3. It lies inside the single government land lot TWTL 363 (3969.2 m2), 14.4 m from the lot's planar centroid and 23.0 m from its nearest boundary. It marks the building address, not a surveyed outline, entrance, the Equinix floor or a data hall, and the building may have other occupiers.",
+   "horizontal_uncertainty_metres": null,
+   "horizontal_uncertainty_unknown_reason": "The Address Lookup Service supplies no positional accuracy; latitude and longitude are served to five decimal places (about 1 m) and agree with the served HK1980 grid coordinates to 0.46 m. Decimal precision is not survey accuracy.",
+   "source_url": "https://www.als.gov.hk/lookup?q=1%20Wang%20Wo%20Tsai%20Street&n=5",
+   "source_file": "local_data/country-research-equinix-apac-2-p13/als-1-wang-wo-tsai-street.xml",
+   "source_sha256": "8b0d816cda30710d8f518ab9a5b5c9d89910d1d1eca068ba3d59f6dec61bff10",
+   "served_feature": {
+    "als_building": null,
+    "als_chinese_building": null,
+    "als_number": "1",
+    "als_street": "WANG WO TSAI STREET",
+    "als_location": null,
+    "als_district": "TSUEN WAN DISTRICT",
+    "geoaddress": "3026025393T20050430",
+    "score": "88.75",
+    "easting": 830260.0,
+    "northing": 825393.0,
+    "lat": 22.36769,
+    "lon": 114.11854
+   },
+   "coordinate_check": {
+    "pyproj_3_7_1_epsg2326_to_epsg4326_lat_lon": [
+     22.3676941,
+     114.1185408
+    ],
+    "served_lat_lon_vs_served_grid_m": 0.46
+   },
+   "lot_check": {
+    "lot_at_point_source_url": "https://portal.csdi.gov.hk/server/rest/services/common/landsd_rcd_1637217253134_22729/FeatureServer/0/query?geometry=830260%2C825393&geometryType=esriGeometryPoint&inSR=2326&spatialRel=esriSpatialRelIntersects&outFields=*&returnGeometry=true&outSR=4326&f=json",
+    "lot_at_point_source_file": "local_data/country-research-equinix-apac-2-p13/csdi-lot-at-1-wang-wo-tsai-street.json",
+    "lot_at_point_source_sha256": "06fe3d715703ff56bd257a9bf7eb28bed983a145603392c3cbd9da0c63902219",
+    "lot_native_source_url": "https://portal.csdi.gov.hk/server/rest/services/common/landsd_rcd_1637217253134_22729/FeatureServer/0/query?where=LotCSUID%3D%27812000363%27&outFields=*&returnGeometry=true&f=json",
+    "lot_native_source_file": "local_data/country-research-equinix-apac-2-p13/csdi-lot-twtl363-native.json",
+    "lot_native_source_sha256": "00da50c2e202bf89e3f2864d5f3b389ead37011dc8b8e0ef72edadabebb32faf",
+    "land_info_source_url": "https://portal.csdi.gov.hk/server/rest/services/common/landsd_rcd_1637217253134_22729/FeatureServer/1000/query?where=LotCSUID%3D%27812000363%27&outFields=*&f=json",
+    "land_info_source_file": "local_data/country-research-equinix-apac-2-p13/csdi-landinfo-twtl363.json",
+    "land_info_source_sha256": "22a88823a36cb3f3e5b849a4cea4971566c96843792d0bacd95045967d2fd43e",
+    "lot_display_name": "TWTL 363",
+    "lot_csuid": "812000363",
+    "lot_class": "New Grant Lot",
+    "lots_at_point": [
+     "812000363"
+    ],
+    "lot_area_m2_hk1980_grid": 3969.2,
+    "lot_bbox_m": [
+     79.7,
+     87.0
+    ],
+    "point_inside_lot": true,
+    "point_to_lot_centroid_m": 14.4,
+    "point_to_lot_boundary_m": 23.0,
+    "point_to_farthest_lot_vertex_m": 59.4
+   }
+  },
+  {
+   "candidate_id": "equinix-hk4-ever-gain-building-no-3-sha-tin",
+   "facility": "Equinix HK4 (Hong Kong IBX)",
+   "operator_stated_address": "Ever Gain Building No. 3, 22 On Sum Street, Siu Lek Yuen, Hong Kong",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     114.20621,
+     22.38935
+    ]
+   },
+   "authority_class": "official_source",
+   "scope_class": "official_numbered_address_point",
+   "use_scope": "project_locator",
+   "precision_scope": "Hong Kong Address Lookup Service point for 22 On Sum Street (Ever Gain Building (No 3); GeoAddress 3928927790T20050430), the building address Equinix gives for Equinix HK4. It lies inside the single government land lot STTL 357 (3399.8 m2), 3.2 m from the lot's planar centroid and 21.2 m from its nearest boundary. It marks the building address, not a surveyed outline, entrance, the Equinix floor or a data hall, and the building may have other occupiers.",
+   "horizontal_uncertainty_metres": null,
+   "horizontal_uncertainty_unknown_reason": "The Address Lookup Service supplies no positional accuracy; latitude and longitude are served to five decimal places (about 1 m) and agree with the served HK1980 grid coordinates to 0.22 m. Decimal precision is not survey accuracy.",
+   "source_url": "https://www.als.gov.hk/lookup?q=22%20On%20Sum%20Street%20Siu%20Lek%20Yuen&n=5",
+   "source_file": "local_data/country-research-equinix-apac-2-p13/als-22-on-sum-street.xml",
+   "source_sha256": "07df8e0205f3f79c9f9636fd50054f8cd3eae0ee5b2007df8dbae99bff14206a",
+   "served_feature": {
+    "als_building": "EVER GAIN BUILDING (NO 3)",
+    "als_chinese_building": "永得利大廈(第三座)",
+    "als_number": "22",
+    "als_street": "ON SUM STREET",
+    "als_location": "SHA TIN",
+    "als_district": "SHA TIN DISTRICT",
+    "geoaddress": "3928927790T20050430",
+    "score": "84.96",
+    "easting": 839289.0,
+    "northing": 827790.0,
+    "lat": 22.38935,
+    "lon": 114.20621
+   },
+   "coordinate_check": {
+    "pyproj_3_7_1_epsg2326_to_epsg4326_lat_lon": [
+     22.3893481,
+     114.2062108
+    ],
+    "served_lat_lon_vs_served_grid_m": 0.22
+   },
+   "lot_check": {
+    "lot_at_point_source_url": "https://portal.csdi.gov.hk/server/rest/services/common/landsd_rcd_1637217253134_22729/FeatureServer/0/query?geometry=839289%2C827790&geometryType=esriGeometryPoint&inSR=2326&spatialRel=esriSpatialRelIntersects&outFields=*&returnGeometry=true&outSR=4326&f=json",
+    "lot_at_point_source_file": "local_data/country-research-equinix-apac-2-p13/csdi-lot-at-22-on-sum-street.json",
+    "lot_at_point_source_sha256": "495c48a518ff5b249aafd8e043227daa8a647425da7c2b5be839235240509b86",
+    "lot_native_source_url": "https://portal.csdi.gov.hk/server/rest/services/common/landsd_rcd_1637217253134_22729/FeatureServer/0/query?where=LotCSUID%3D%27732000357%27&outFields=*&returnGeometry=true&f=json",
+    "lot_native_source_file": "local_data/country-research-equinix-apac-2-p13/csdi-lot-sttl357-native.json",
+    "lot_native_source_sha256": "303f00c6eb1daed1955a45419e1debbbaab476259f9255522440d7cd556ef2f7",
+    "land_info_source_url": "https://portal.csdi.gov.hk/server/rest/services/common/landsd_rcd_1637217253134_22729/FeatureServer/1000/query?where=LotCSUID%3D%27732000357%27&outFields=*&f=json",
+    "land_info_source_file": "local_data/country-research-equinix-apac-2-p13/csdi-landinfo-sttl357.json",
+    "land_info_source_sha256": "406496ce9222af87e38530ccf09a24ba25d224683ed8fe5f891b39b333275d53",
+    "lot_display_name": "STTL 357",
+    "lot_csuid": "732000357",
+    "lot_class": "New Grant Lot",
+    "lots_at_point": [
+     "732000357"
+    ],
+    "lot_area_m2_hk1980_grid": 3399.8,
+    "lot_bbox_m": [
+     86.1,
+     78.0
+    ],
+    "point_inside_lot": true,
+    "point_to_lot_centroid_m": 3.2,
+    "point_to_lot_boundary_m": 21.2,
+    "point_to_farthest_lot_vertex_m": 46.8
+   }
+  }
+ ]
+}

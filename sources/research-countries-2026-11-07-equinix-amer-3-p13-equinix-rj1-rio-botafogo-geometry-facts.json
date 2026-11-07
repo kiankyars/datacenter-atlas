@@ -1,0 +1,85 @@
+{
+  "candidate_id": "equinix-amer-3-p13-equinix-rj1-rio-de-janeiro",
+  "decision": "Selected the IBGE CNEFE 2022 address record 95686971 (Rua Voluntarios da Patria 360, Botafogo, CEP 22270-010; establishment 'DATA CENTER EQUINIX'; NV_GEO_COORD 1 = original Censo 2022 address coordinate) as the campus locator for Equinix RJ1 (Equinix address Rua Voluntarios da Patria, 360, Botafogo, 22270-010 Rio de Janeiro). It is the only CNEFE record at that number on that street in Botafogo.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -43.194569,
+      -22.955171
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_address_point",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-equinix-amer-3-p13/ibge-cnefe-2022-3304557-rio-de-janeiro.zip",
+  "source_sha256": "688e6693ebb93eac908033c238bfb1372771f49c0a6fd1ba566ea1fecfb16c91",
+  "source_url": "https://ftp.ibge.gov.br/Cadastro_Nacional_de_Enderecos_para_Fins_Estatisticos/Censo_Demografico_2022/Arquivos_CNEFE/CSV/Municipio/33_RJ/3304557_RIO_DE_JANEIRO.zip",
+  "retrieved_at": "2026-11-07T02:45:44.947Z",
+  "selected_properties": {
+    "cnefe_record": {
+      "COD_UNICO_ENDERECO": "95686971",
+      "COD_SETOR": "330455705090047P",
+      "NUM_QUADRA": "1",
+      "NUM_FACE": "3",
+      "CEP": "22270010",
+      "DSC_LOCALIDADE": "BOTAFOGO",
+      "NOM_TIPO_SEGLOGR": "RUA",
+      "NOM_TITULO_SEGLOGR": "VOLUNTARIOS",
+      "NOM_SEGLOGR": "DA PATRIA",
+      "NUM_ENDERECO": "360",
+      "LATITUDE": "-22.955171",
+      "LONGITUDE": "-43.194569",
+      "NV_GEO_COORD": "1",
+      "COD_ESPECIE": "6",
+      "DSC_ESTABELECIMENTO": "DATA CENTER EQUINIX",
+      "COD_INDICADOR_ESTAB_ENDERECO": "1"
+    }
+  },
+  "facts": {
+    "matching_records_at_address": 1,
+    "csv_member": "3304557_RIO_DE_JANEIRO.csv",
+    "all_records_labelled_equinix_in_municipality": [
+      {
+        "COD_UNICO_ENDERECO": "95687028",
+        "COD_SETOR": "330455705090047P",
+        "NUM_QUADRA": "1",
+        "NUM_FACE": "4",
+        "CEP": "22271010",
+        "DSC_LOCALIDADE": "BOTAFOGO",
+        "NOM_TIPO_SEGLOGR": "RUA",
+        "NOM_TITULO_SEGLOGR": "",
+        "NOM_SEGLOGR": "MARTINS FERREIRA",
+        "NUM_ENDERECO": "91",
+        "LATITUDE": "-22.954578",
+        "LONGITUDE": "-43.194800",
+        "NV_GEO_COORD": "1",
+        "COD_ESPECIE": "6",
+        "DSC_ESTABELECIMENTO": "DATA CENTER EQUINIX",
+        "COD_INDICADOR_ESTAB_ENDERECO": "1",
+        "distance_from_selected_m": 69.81
+      },
+      {
+        "COD_UNICO_ENDERECO": "95686971",
+        "COD_SETOR": "330455705090047P",
+        "NUM_QUADRA": "1",
+        "NUM_FACE": "3",
+        "CEP": "22270010",
+        "DSC_LOCALIDADE": "BOTAFOGO",
+        "NOM_TIPO_SEGLOGR": "RUA",
+        "NOM_TITULO_SEGLOGR": "VOLUNTARIOS",
+        "NOM_SEGLOGR": "DA PATRIA",
+        "NUM_ENDERECO": "360",
+        "LATITUDE": "-22.955171",
+        "LONGITUDE": "-43.194569",
+        "NV_GEO_COORD": "1",
+        "COD_ESPECIE": "6",
+        "DSC_ESTABELECIMENTO": "DATA CENTER EQUINIX",
+        "COD_INDICADOR_ESTAB_ENDERECO": "1",
+        "distance_from_selected_m": 0.0
+      }
+    ],
+    "datum_note": "CNEFE coordinates are SIRGAS 2000 latitude/longitude, used as WGS84 (the two frames agree to within a few centimetres).",
+    "note": "The second 'DATA CENTER EQUINIX' record (Rua Martins Ferreira 91) is on the same census block (quadra 1, sector 330455705090047P) on the opposite face; it is treated as another frontage of the same RJ1 building block, not as a separate site, and is not used as the locator."
+  },
+  "verification_script": "scratchpad eqam3/geom.py (uv run --no-project --with pyproj==3.7.1 --with shapely==2.1.1 python -I)"
+}

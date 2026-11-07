@@ -1,0 +1,91 @@
+{
+  "candidate_id": "equinix-paris-pantin-general-leclerc-campus",
+  "decision": "Selected the WGS84 point that the national classified-installations register (Géorisques installations_classees API) publishes for establishment AIOT 0007409817, EQUINIX FRANCE SAS, 110 BIS AVENUE DU GENERAL LECLERC, 93500 Pantin: longitude 2.421797, latitude 48.900257, copied without transformation, as the campus locator.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      2.421797,
+      48.900257
+    ]
+  },
+  "authority_class": "official_source",
+  "derivation": "direct_geometry",
+  "scope_class": "classified_installation_register_establishment_point",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-equinix-emea-2-p13/georisques-icpe-93055-p1.json",
+  "source_sha256": "bb089d44077b7c150063e0a6711140bc5cdb3f2be501616ae36fa4a75d327288",
+  "source_url": "https://www.georisques.gouv.fr/api/v1/installations_classees?code_insee=93055&page=1&page_size=100",
+  "retrieved_at": "2026-11-07T02:37:59.832Z",
+  "selected_properties": {
+    "raisonSociale": "EQUINIX FRANCE SAS",
+    "adresse1": "110 BIS AVENUE DU GENERAL LECLERC",
+    "adresse2": null,
+    "codePostal": "93500",
+    "codeInsee": "93055",
+    "commune": "Pantin",
+    "codeNaf": "63",
+    "codeAIOT": "0007409817",
+    "siret": "42984085300056",
+    "regime": "Autorisation",
+    "ied": true,
+    "statutSeveso": "Non Seveso",
+    "etatActivite": "En exploitation avec titre",
+    "serviceAIOT": "DRIEAT IdF",
+    "longitude": 2.421797,
+    "latitude": 48.900257,
+    "coordonneeXAIOT": 657611,
+    "coordonneeYAIOT": 6866850,
+    "systemeCoordonneesAIOT": "2154",
+    "date_maj": "2026-08-31/18-00-26"
+  },
+  "operator_published_address": "110 Bis avenue du General Leclerc, 93500 Pantin (Equinix PA4 page, Internet Archive copy of 3 October 2026); the PA8x page gives the same street address, Building 19",
+  "identity_bridge": [
+    "The register names EQUINIX FRANCE SAS at '110 BIS AVENUE DU GENERAL LECLERC, 93500 Pantin', NAF 63, regime Autorisation, IED, 'En exploitation avec titre'.",
+    "The DRIEAT inspection report of the 15 October 2025 visit (published on Géorisques for AIOT 0007409817) says the site, on a former postal sorting centre with access in Pantin and extending into Bobigny, was authorised on 24 January 2011 as a data centre named 'PA4', operated by Equinix France SAS since a change-of-operator declaration of 1 August 2013 (operated since 2012), and that a new building 'PA8' (ground plus two storeys with basement) was built in 2018; it counts 22 generators dedicated to building PA4 and 12 to building PA8.",
+    "Equinix's PA4 page (Internet Archive copy of 3 October 2026) gives the address 110 Bis avenue du General Leclerc, 93500 Pantin; its PA8x page gives the same street address, Building 19."
+  ],
+  "transform": {
+    "note": "No transform is applied to the published longitude and latitude. Check only: pyproj 3.7.1 EPSG:2154 -> EPSG:4326 of the register's Lambert-93 coordinates (657611, 6866850) gives a point 0.024 m from the published one."
+  },
+  "consistency_checks": {
+    "cadastral_parcel": "The IGN API Carto cadastre service queried with the register point (local local_data/country-research-equinix-emea-2-p13/ign-apicarto-parcel-at-icpe-point-pa4.json, sha256 ef4fd92a7c99...) returns the single parcel 930550000S0087 (section 0S, no. 0087, contenance 11,237 m2). With shapely 2.1.1 in Lambert-93 the point lies inside it, 36.1 m from its boundary and 22.3 m from its centroid (2.4215733, 48.9003933); the parcel's geodesic area is 10,695 m2 and its extent about 136 m by 157 m.",
+    "parcel_facts": {
+      "idu": "930550000S0087",
+      "section": "0S",
+      "numero": "0087",
+      "contenance_m2": 11237,
+      "point_inside": true,
+      "distance_to_boundary_m": 36.1,
+      "distance_to_centroid_m": 22.3,
+      "centroid_wgs84": [
+        2.4215733,
+        48.9003933
+      ],
+      "geodesic_area_m2": 10695,
+      "extent_m": [
+        136,
+        157
+      ]
+    },
+    "versions": {
+      "pyproj": "3.7.1",
+      "proj": "9.5.1",
+      "shapely": "2.1.1"
+    }
+  },
+  "excluded_coordinates": [
+    {
+      "kind": "Map widget coordinates on Equinix's IBX pages",
+      "reason": "Map-embed parameters, which the locator policy excludes; not read or used."
+    },
+    {
+      "kind": "Equinix France's registered office address (31-35 rue de la Fédération, Paris 15e) printed on the inspection reports",
+      "reason": "Head-office address, not the facility."
+    },
+    {
+      "kind": "National address API (api-adresse.data.gouv.fr)",
+      "reason": "Its robots.txt disallows the search path (as recorded by earlier passes); not requested."
+    }
+  ],
+  "scope_note": "The establishment holds the PA4 data centre and the PA8 (PA8x xScale) building under one ICPE authorisation; the register point is a campus locator for the Pantin site, not the PA4 building."
+}

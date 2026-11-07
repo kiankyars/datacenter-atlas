@@ -1,0 +1,57 @@
+{
+  "candidate_id": "equinix-amer-3-p13-equinix-tr7-brampton",
+  "decision": "Selected the City of Brampton open-data address point (OpenData_Address_Points layer 14, ADDRESS_ID 1874230, primary address) for '1895 WILLIAMS PKY' as the campus locator for Equinix TR7 (Equinix address 1895 Williams Parkway, Brampton, Ontario L6S 6E6). The layer returns exactly one record for civic number 1895 on WILLIAMS.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -79.7180286,
+      43.7447036
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_address_point",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-equinix-amer-3-p13/brampton-address-1895-williams-pkwy.json",
+  "source_sha256": "fa8ffb09960946d35ff8af0f7177c01fee58343ff8dcd984d85f0628b8b0fe3b",
+  "source_url": "https://maps1.brampton.ca/arcgis/rest/services/COB/OpenData_Address_Points/MapServer/14/query?where=CIVIC_NUMBER%3D%271895%27+AND+upper%28STREET_NAME%29+LIKE+%27WILLIAMS%25%27&outFields=*&returnGeometry=true&outSR=4326&f=json",
+  "retrieved_at": "2026-11-07T02:37:40.998Z",
+  "selected_properties": {
+    "address_point": {
+      "OBJECTID": 184733,
+      "FULL_ADDRESS": "1895 WILLIAMS PKY",
+      "CIVIC_NUMBER": "1895",
+      "STREET_NAME": "WILLIAMS",
+      "STREET_TYPE": "PKY",
+      "CITY": "BRAMPTON",
+      "PROVINCE": "ON",
+      "POSTAL_CODE": "L6S6E6",
+      "PROP_CODE_DESC": "Industrial",
+      "ADDRESS_TYPE": "PRIMARY",
+      "ADDRESS_ID": 1874230.0,
+      "REG_PLAN_NUMBER": "43M-873",
+      "SITE_PLAN_NUMBER": "SP99-028.000",
+      "GIS_ID": 57725.0
+    }
+  },
+  "facts": {
+    "returned_records": 1,
+    "geometry_lon_lat_outSR_4326": [
+      -79.7180285862161,
+      43.744703571335855
+    ],
+    "native_spatial_reference": "WKID 102100 (Web Mercator); the server reprojected to EPSG:4326 on request (outSR=4326)",
+    "postal_code_matches_equinix": true,
+    "nearby_equinix_tr6_address_point": {
+      "FULL_ADDRESS": "30 BRAMTREE CRT",
+      "ADDRESS_ID": 1939010,
+      "REG_PLAN_NUMBER": "43M-873",
+      "lon_lat": [
+        -79.71659646733761,
+        43.743750017623704
+      ],
+      "distance_from_tr7_point_m": 156.63
+    },
+    "note": "TR6 (30 Bramtree Court) is a separate Equinix IBX with its own address point on the same registered plan 43M-873; it is not part of this record."
+  },
+  "verification_script": "scratchpad eqam3/geom.py (uv run --no-project --with pyproj==3.7.1 --with shapely==2.1.1 python -I)"
+}

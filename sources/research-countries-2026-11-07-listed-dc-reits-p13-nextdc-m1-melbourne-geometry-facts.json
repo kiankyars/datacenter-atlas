@@ -1,0 +1,41 @@
+{
+ "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+ "candidate": "NEXTDC M1 Melbourne (826 Lorimer Street, Port Melbourne VIC 3207): official Vicmap Address point locator",
+ "prepared_at": "2026-11-07",
+ "service": "https://opendata.maps.vic.gov.au/geoserver/wfs (Victorian Government open data platform GeoServer WFS 2.0.0; feature types open-data-platform:address (Vicmap Address, ResourceIdentifier vmadd:address, native CRS EPSG:7844 GDA2020) and open-data-platform:v_property_mp (Vicmap Property)). The GetCapabilities response states no access constraints; Vicmap Address is recorded in existing Atlas evidence as CC-BY-4.0 with attribution '(c) State of Victoria, Department of Transport and Planning, Vicmap'. robots.txt of opendata.maps.vic.gov.au returned HTTP 404 (no restrictions), read before the first request and recorded in each capture's robots_checks. The Vicmap ArcGIS Online FeatureServer used for earlier Atlas Vicmap rows (services-ap1.arcgis.com) was not used, because its robots.txt now answers HTTP 403.",
+ "operator_address_source": {
+  "files": [
+   {
+    "file": "local_data/country-research-listed-dc-reits-p13/nextdc-contact.html",
+    "sha256": "3384b1ff5b32c0005b3ceb93d6465186b108d602d1a7a91f67252cab7fb88423"
+   },
+   {
+    "file": "local_data/country-research-listed-dc-reits-p13/nextdc-melbourne-tech-specs-2026.pdf",
+    "sha256": "a0b85cd51f1bedb0448e0f4cb6e49d131757b587f2b3d081407df705b8920546"
+   }
+  ],
+  "statement": "NEXTDC's contact page (https://www.nextdc.com/contact, bytes identical to Atlas evidence 031da008-4b2d-5c1b-98e4-59563997d4cd) lists 'M1 Melbourne 826 Lorimer Street Port Melbourne, VIC, 3207'. NEXTDC's Melbourne technical-specifications brochure (2026_NEXTDC_Tech_Specs_Melbourne_Data_Centres.pdf, PDF modification date 1 May 2026) gives 'M1 Melbourne 826 Lorimer Street, Port Melbourne VIC 3207' in its national address list and, in its specification table, 'M1 826 Lorimer Street Port Melbourne VIC 3207'. The contact page's 'Get directions' links point to a commercial map service; they were neither followed nor read for coordinates."
+ },
+ "address_point": {
+  "file": "local_data/country-research-listed-dc-reits-p13/vicmap-address-826-lorimer-street.json",
+  "sha256": "b4da2373ddbf0698198966270d0154eee05e740f45cc8a286798cd65dd5086af",
+  "query": "open-data-platform:address, cql_filter road_name='LORIMER' AND locality_name='PORT MELBOURNE' AND house_number_1=826, outputFormat application/json, srsName EPSG:4326",
+  "result": "numberMatched 2, both on Vicmap property PFI 202959350: (a) pfi 460240423, ezi_address '826 LORIMER STREET PORT MELBOURNE 3207', is_primary N, geocode_feature E, property_status A, source LGO, source_verified 2026-06-24, outside_property N, point [144.932211, -37.822133]; (b) pfi 202959351, '826-846 LORIMER STREET PORT MELBOURNE 3207', is_primary Y, geocode_feature V, source_verified 2013-08-12, point [144.932205, -37.822146], 1.5 m from (a). The same pfi 460240423 requested without srsName returns the identical coordinates in its native EPSG:7844 (GDA2020) (file local_data/country-research-listed-dc-reits-p13/vicmap-address-pfi-460240423-native.json, sha256 c122cbd08042b303f15504d6fa134c87ff8b28e7fd8d5a7004b36a25660e92d0), so the served EPSG:4326 values are the GDA2020 coordinates unchanged (GDA2020 and WGS84 agree to well under 1 m here)."
+ },
+ "selected_point": {
+  "coordinates_lon_lat": [
+   144.932211,
+   -37.822133
+  ],
+  "source": "Vicmap Address pfi 460240423, the record whose ezi_address exactly matches the operator's '826 Lorimer Street, Port Melbourne VIC 3207', copied unchanged (direct geometry)",
+  "scope": "project_locator; official address point for the operator-stated street address, inside the Vicmap property that also carries the primary 826-846 Lorimer Street address. It marks an address point near the street frontage, not a surveyed building outline or data hall."
+ },
+ "property_context": {
+  "file": "local_data/country-research-listed-dc-reits-p13/vicmap-property-pfi-202959350.json",
+  "sha256": "73cfeaf8957721b4168529e03e9a3a5d399dfe4526f893cbb6bd5d2bcaa462cc",
+  "query": "open-data-platform:v_property_mp, cql_filter prop_pfi='202959350', srsName EPSG:4326",
+  "result": "Exactly one property: prop_pfi 202959350, prop_propnum 611376, prop_lga_code 343, prop_status A, a 10-vertex ring. Recomputed with pyproj 3.7.1 and shapely 2.1.1 in EPSG:7855 (MGA2020 zone 55): planar area 14296.6 m2 (geodesic 14296.4 m2), extent about 142.0 m east-west by 133.5 m north-south; the selected point lies inside it, 6.48 m from its nearest boundary and 58.97 m from its planar centroid (144.93224041, -37.82266377); the farthest boundary vertex is 133.2 m away. The primary 826-846 point is also inside it, 1.5 m from the selected point."
+ },
+ "distinctness": "Nearest current Atlas site: NEXTDC M4 Melbourne Data Center Campus (curated:nextdc-m4-melbourne, 127 Todd Road locator), 1966.7 m west-south-west (geodesic); no other Atlas site within 6 km (NEXTDC M3 6.3 km, CDC Brooklyn 7.8 km). M4 is a separate development on a different property.",
+ "tools": "pyproj 3.7.1 and shapely 2.1.1 via uv run --no-project, python -I; captures read as data only."
+}

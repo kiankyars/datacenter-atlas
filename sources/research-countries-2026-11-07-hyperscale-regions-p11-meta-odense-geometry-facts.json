@@ -1,0 +1,111 @@
+{
+  "candidate_id": "meta-odense-data-center-campus",
+  "decision": "Selected the midpoint of the two generator stack positions that Odense Kommune's environmental approval of 28 October 2021 for Cassin Networks ApS gives for Bygning 1 and Bygning 2 (the two data halls of the first phase, with the administration building between them), transformed from ETRS89 / UTM zone 32N (EPSG:25832) to WGS84, as the campus locator for Meta's Odense Data Centre in Tietgenbyen.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      10.4852989,
+      55.3671964
+    ]
+  },
+  "authority_class": "compiled_reference",
+  "scope_class": "official_permit_published_utm_generator_positions_midpoint",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-hyperscale-regions-p11/dk/odense-miljoegodkendelse-cassin-udvidelse-2021.pdf",
+  "source_sha256": "fdb3b160ac660bac7190efa9bcd69489b59736239e9fe0f417eb13d2ffeaf559",
+  "source_url": "https://dma.mst.dk/vis-sag/download/2d8ea3fa-819f-427b-a1e7-9d4017198621",
+  "retrieved_at": "2026-11-07T02:29:03.904Z",
+  "selected_properties": {
+    "document": "Miljoegodkendelse til Cassin Networks ApS, Odense Kommune, 28 oktober 2021 (69 pages); anlaegsadresse M. P. Allerupsvej 48, 5220 Odense SOE; CVR 36967552; P-nummer 1024584182; hovedaktivitet Datacenter",
+    "table": "OML (air-dispersion) input table after the stack-placement section (Placering af afkast): columns Bygning 1, 2, 3, 5 and 6, row 'UTM-koordinater', one representative worst-case generator per building",
+    "utm_coordinates": {
+      "Bygning 1 (generator 1EGN3)": [
+        594255,
+        6136534
+      ],
+      "Bygning 2 (generator 2EGN10)": [
+        594023,
+        6136782
+      ],
+      "Bygning 3 (generator 3EGN4)": [
+        593932,
+        6136894
+      ],
+      "Bygning 5 (generator 5EG-N2)": [
+        593586,
+        6136695
+      ],
+      "Bygning 6 (generator 6EG-N3)": [
+        593517,
+        6136462
+      ]
+    },
+    "crs_interpretation": "The approval labels the values 'UTM-koordinater' without naming a datum; ETRS89 / UTM zone 32N (EPSG:25832) is the Danish public-sector standard and is confirmed by all five points falling inside the EPSG:25832 outline of lokalplan 4-1022 'Udvidelse af datacenter i Tietgenbyen' served by Plandata.dk.",
+    "location_text": "Section 2.5 Beliggenhed: the data centre and its emergency power plant lie in the western part of Tietgenbyen; the new data halls are to adjoin the existing data centre; the company's total area is about 92.3 ha; the area is covered by lokalplan 4-1022, which replaces the three local plans that regulated the data centre's land. The approval also places a cooling yard by the administration building between Bygning 1 and 2.",
+    "lokalplan_4_1022": "Plandata.dk WFS pdk:theme_pdk_lokalplan_vedtaget planid 10796505, plannr 4-1022, plannavn 'Udvidelse af datacenter i Tietgenbyen', kommune Odense (461), adopted 2021-10-27, in force 2021-10-28, status V (vedtaget), MultiPolygon in EPSG:25832"
+  },
+  "computed": {
+    "midpoint_bygning_1_2_utm32": [
+      594139.0,
+      6136658.0
+    ],
+    "midpoint_lon_lat": [
+      10.4852989,
+      55.3671964
+    ],
+    "transform": "pyproj 3.7.1 Transformer EPSG:25832 -> EPSG:4326, always_xy=True; rounded to 7 decimals",
+    "building_points_lon_lat": {
+      "Bygning 1": [
+        10.4870867,
+        55.3660603
+      ],
+      "Bygning 2": [
+        10.483511,
+        55.3683325
+      ],
+      "Bygning 3": [
+        10.4821134,
+        55.369356
+      ],
+      "Bygning 5": [
+        10.4765894,
+        55.3676345
+      ],
+      "Bygning 6": [
+        10.4754233,
+        55.3655546
+      ]
+    },
+    "geodesic_distance_from_midpoint_m": {
+      "Bygning 1": 169.9,
+      "Bygning 2": 169.8,
+      "Bygning 3": 314.0,
+      "Bygning 5": 554.4,
+      "Bygning 6": 652.3
+    },
+    "lokalplan_4_1022_area_ha": 94.44,
+    "inside_lokalplan_4_1022": {
+      "midpoint": true,
+      "Bygning 1": true,
+      "Bygning 2": true,
+      "Bygning 3": true,
+      "Bygning 5": true,
+      "Bygning 6": true
+    },
+    "distance_to_lokalplan_boundary_m": {
+      "midpoint": 252.2,
+      "Bygning 1": 108.6,
+      "Bygning 2": 180.0,
+      "Bygning 3": 190.4,
+      "Bygning 5": 110.3,
+      "Bygning 6": 73.8
+    },
+    "lokalplan_source": {
+      "source_file": "local_data/country-research-hyperscale-regions-p11/dk/plandata-lokalplan-4-1022-full-25832.json",
+      "source_sha256": "5227f4557dec684eee29e651cfccfe95157d7e4405c0fa9e108f0e44ad0917f8",
+      "source_url": "https://geoserver.plandata.dk/geoserver/wfs?service=WFS&version=2.0.0&request=GetFeature&typeNames=pdk:theme_pdk_lokalplan_vedtaget&outputFormat=application/json&srsName=EPSG:25832&cql_filter=planid=10796505",
+      "retrieved_at": "2026-11-07T02:25:20.196Z"
+    },
+    "method": "Read the UTM table from the approval with pdftotext; transformed with pyproj 3.7.1; containment and boundary distances computed with shapely 2.1.1 in EPSG:25832 against the lokalplan MultiPolygon; geodesic distances on the WGS84 ellipsoid (pyproj Geod). No geocoder, commercial map, map viewport, PeeringDB or OpenStreetMap service was used."
+  }
+}

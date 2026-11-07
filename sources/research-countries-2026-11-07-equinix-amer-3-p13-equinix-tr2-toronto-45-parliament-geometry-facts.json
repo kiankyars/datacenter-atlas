@@ -1,0 +1,48 @@
+{
+  "candidate_id": "equinix-amer-3-p13-equinix-tr2-toronto",
+  "decision": "Selected the City of Toronto One Address Repository address point (ADDRESS_POINT_ID 30035054) for '45 Parliament St' as the campus locator for Equinix TR2 (Equinix address 45 Parliament Street, Toronto, Ontario M5A 0G7). The datastore returns exactly one record for that full address.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -79.361951,
+      43.6508542
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_address_point",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-equinix-amer-3-p13/toronto-oar-45-parliament-st.json",
+  "source_sha256": "92d7bcbc09f4652505ed266a913495d197307d49d7e6912c17c5c59931b8e842",
+  "source_url": "https://ckan0.cf.opendata.inter.prod-toronto.ca/api/3/action/datastore_search?resource_id=0b3756af-9caf-4f0f-ac28-9c6617adede4&filters=%7B%22ADDRESS_FULL%22%3A+%2245+Parliament+St%22%7D&limit=20",
+  "retrieved_at": "2026-11-07T02:37:05.087Z",
+  "selected_properties": {
+    "address_point": {
+      "ADDRESS_POINT_ID": 30035054,
+      "ADDRESS_ID": 1520916,
+      "ADDRESS_FULL": "45 Parliament St",
+      "ADDRESS_NUMBER": "45",
+      "LINEAR_NAME_FULL": "Parliament St",
+      "CENTRELINE_ID": 60071569,
+      "CENTRELINE_SIDE": "R",
+      "CENTRELINE_MEASURE": 65.33,
+      "CENTRELINE_OFFSET": 36.44,
+      "MAINT_STAGE": "REGULAR",
+      "GENERAL_USE": "Unknown",
+      "CLASS_FAMILY_DESC": "Land, Structure, Structure Entrance",
+      "ADDRESS_CLASS_DESC": "Land",
+      "PLACE_NAME": "None",
+      "MUNICIPALITY_NAME": "former Toronto",
+      "WARD_NAME": "Toronto Centre"
+    }
+  },
+  "facts": {
+    "returned_records": 1,
+    "total": 1,
+    "geometry_lon_lat_epsg4326": [
+      -79.3619510261393,
+      43.6508541617998
+    ],
+    "note": "The datastore geometry is GeoJSON in WGS84 (EPSG:4326, per the package's 'Address Points - 4326' resources). The point is offset 36.44 m from street centreline 60071569 on side R (the register's own CENTRELINE_OFFSET), i.e. it lies on the property, not on the road."
+  },
+  "verification_script": "scratchpad eqam3/geom.py (uv run --no-project --with pyproj==3.7.1 --with shapely==2.1.1 python -I)"
+}

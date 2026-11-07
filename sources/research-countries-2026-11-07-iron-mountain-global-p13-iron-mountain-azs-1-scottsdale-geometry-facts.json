@@ -1,0 +1,87 @@
+{
+  "candidate_id": "iron-mountain-global-p13-iron-mountain-azs-1-scottsdale",
+  "decision": "Selected the area centroid of Maricopa County Assessor parcel 215-07-212A (situs 8521 E PRINCESS DR, Scottsdale 85255; owner IO DATA CENTERS LLC), the only parcel with that situs, as the campus locator for Iron Mountain AZS-1.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -111.8955242,
+      33.6446571
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_tax_parcel_centroid",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-iron-mountain-global-p13/mcassessor-parcel-215-07-212a.json",
+  "source_sha256": "cdfa22676501d3114eb9263a83d9e0c02137383e2fc0233f54f799967de9b5b1",
+  "source_url": "https://gis.mcassessor.maricopa.gov/arcgis/rest/services/Parcels/MapServer/0/query?where=APN+IN+%28%2721507212A%27%29&outFields=APN%2CAPN_DASH%2COWNER_NAME%2CPHYSICAL_ADDRESS%2CLAND_SIZE%2CDEED_DATE%2CPUC%2CJURISDICTION%2CSTR&returnGeometry=true&outSR=4326&f=json",
+  "retrieved_at": "2026-11-07T03:04:03.997Z",
+  "selected_properties": {
+    "21507212A": {
+      "APN": "21507212A",
+      "APN_DASH": "215-07-212A",
+      "OWNER_NAME": "IO DATA CENTERS LLC",
+      "PHYSICAL_ADDRESS": "8521 E PRINCESS DR   SCOTTSDALE  85255",
+      "LAND_SIZE": 204512,
+      "DEED_DATE": "2018-01-11",
+      "PUC": "1507",
+      "JURISDICTION": "SCOTTSDALE",
+      "STR": "36 4N 4E"
+    }
+  },
+  "facts": {
+    "centroid_lon_lat": [
+      -111.8955242,
+      33.6446571
+    ],
+    "centroid_inside": true,
+    "centroid_distance_to_boundary_m": 58.8,
+    "geodesic_area_m2": 18232.4,
+    "geodesic_acres": 4.505,
+    "assessor_land_size_sq_ft": 204512,
+    "parcel_count": 1,
+    "ring_vertex_count": 14,
+    "parcel_valid": true,
+    "bounds_lon_lat": [
+      -111.896388,
+      33.643816,
+      -111.894772,
+      33.645612
+    ],
+    "approx_extent_m": [
+      149,
+      198
+    ],
+    "max_vertex_distance_from_centroid_m": 113.6,
+    "centroid_method": "area centroid of the parcel polygon computed in EPSG:32612 (UTM zone 12N; pyproj 3.7.1, shapely 2.1.1) and transformed to WGS84, rounded to 7 decimals; the EPSG:5070 (CONUS Albers) centroid differs by 0.00003 m",
+    "situs_query": "A Maricopa assessor query for PHYSICAL_ADDRESS LIKE '8521 E PRINCESS%' returns exactly one parcel, 215-07-212A (local mcassessor-situs-8521-e-princess.json).",
+    "reference_points": [
+      {
+        "label": "US Census geocoder match '8521 E PRINCESS DR, SCOTTSDALE, AZ, 85255' (address-range interpolation on TIGER line 243927297, right side, range 8501-8733)",
+        "lon_lat": [
+          -111.89730956363,
+          33.644736488562
+        ],
+        "inside_parcel": false,
+        "distance_to_centroid_m": 165.9,
+        "distance_to_boundary_m": 88.7
+      }
+    ],
+    "nearest_atlas_sites_km": {
+      "Aligned Phoenix Data Center Campus (2500 W Union Hills Dr)": 20.03,
+      "Iron Mountain AZP-3 Phoenix Data Center (5100 E Roosevelt St)": 22.01,
+      "Iron Mountain Phoenix Campus AZP-1 and AZP-2": 22.51
+    }
+  },
+  "excluded_coordinates": [
+    {
+      "kind": "Census geocoder interpolation",
+      "reason": "Street-centreline address-range interpolation 88.7 m outside the parcel; cross-check only."
+    },
+    {
+      "kind": "Map widgets or map links on Iron Mountain pages",
+      "reason": "Not read or used (locator source policy)."
+    }
+  ],
+  "limitations": "The point locates the 4.5-acre AZS-1 property, not a surveyed building outline; the assessor publishes no positional accuracy for its parcel polygons.",
+  "verification_script": "scratchpad imp13/facts.py (uv run --no-project --with pyproj==3.7.1 --with shapely==2.1.1 python -I)"
+}

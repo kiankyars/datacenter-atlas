@@ -1,0 +1,45 @@
+{
+  "candidate_id": "equinix-amer-3-p13-equinix-mt2-vaudreuil-dorion",
+  "decision": "Selected the official Adresses Quebec address point (MRNF AQ_ADRESSES_WMS layer 0, version AQ20261101) for '3500 rue F.-X.-Tessier, Vaudreuil-Dorion J7V5V5' as the campus locator for Equinix MT2 (Equinix address 3500 Rue F.-X.-Tessier, Vaudreuil-Dorion, Quebec J7V 5V5). It is the only address record returned for civic number 3500 on a street containing 'TESSIER'.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -74.0504525,
+      45.4116992
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_address_point",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-equinix-amer-3-p13/aq-adresse-3500-fx-tessier.json",
+  "source_sha256": "93909ea29e6aba079f185bed0ddb61a3edc68b6abf8a993b0ef97f1052c0b0a8",
+  "source_url": "https://servicescarto.mrnf.gouv.qc.ca/pes/rest/services/Territoire/AQ_ADRESSES_WMS/MapServer/0/query?where=NoCivq%3D3500+AND+upper%28AdresseFormatee%29+LIKE+%27%25TESSIER%25%27&outFields=*&returnGeometry=true&outSR=4326&f=json",
+  "retrieved_at": "2026-11-07T02:36:46.405Z",
+  "selected_properties": {
+    "address_point": {
+      "AdresseFormatee": "3500 rue F.-X.-Tessier, Vaudreuil-Dorion J7V5V5",
+      "CaractAdr": "",
+      "IdAdr": "b2c1f6cab20b40e78ef02bab8b18fffb",
+      "NbUnite": 1,
+      "NoCivq": 3500,
+      "NoCivqSuf": null,
+      "OBJECTID": 5335882,
+      "Position": "-74.050451206023368, 45.411688423053974",
+      "Version": "AQ20261101"
+    }
+  },
+  "facts": {
+    "returned_records": 1,
+    "geometry_lon_lat_outSR_4326": [
+      -74.05045251322937,
+      45.41169921613676
+    ],
+    "position_attribute_lon_lat": [
+      -74.05045120602337,
+      45.411688423053974
+    ],
+    "geometry_vs_position_attribute_m": 1.2,
+    "note": "The layer returns the point in WGS84 (outSR 4326); its Position attribute is the native NAD83(CSRS) longitude/latitude. The 4326 geometry is used, rounded to 7 decimals; the difference is a datum transformation, not a different address."
+  },
+  "verification_script": "scratchpad eqam3/geom.py (uv run --no-project --with pyproj==3.7.1 --with shapely==2.1.1 python -I)"
+}

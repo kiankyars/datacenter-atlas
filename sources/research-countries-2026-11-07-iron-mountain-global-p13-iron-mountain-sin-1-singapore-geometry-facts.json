@@ -1,0 +1,50 @@
+{
+  "candidate_id": "iron-mountain-global-p13-iron-mountain-sin-1-singapore",
+  "decision": "Selected the Singapore Land Authority OneMap address point for 1 Serangoon North Avenue 6, Singapore 554502, the address Iron Mountain publishes for SIN-1, as the campus locator. The Google Maps link on Iron Mountain's page was not read or used.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.8711976266078,
+      1.375876069005865
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_numbered_address_point",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-iron-mountain-global-p13/onemap-554502.json",
+  "source_sha256": "68fae0b01859289bc259fe28f578a5d22aa6530547fa8ee2dea6971933e391e7",
+  "source_url": "https://www.onemap.gov.sg/api/common/elastic/search?returnGeom=Y&getAddrDetails=Y&pageNum=1&searchVal=554502",
+  "retrieved_at": "2026-11-07T03:02:57.105Z",
+  "selected_properties": {
+    "SEARCHVAL": "1 SERANGOON NORTH AVENUE 6 SINGAPORE 554502",
+    "BLK_NO": "1",
+    "ROAD_NAME": "SERANGOON NORTH AVENUE 6",
+    "BUILDING": "NIL",
+    "POSTAL": "554502",
+    "X": "32215.46904260851",
+    "Y": "39762.93428302556",
+    "LATITUDE": "1.375876069005865",
+    "LONGITUDE": "103.8711976266078"
+  },
+  "consistency_checks": {
+    "postcode_and_street_queries": "The postcode search 554502 and the street search '1 SERANGOON NORTH AVENUE 6' each return exactly one feature, and the two responses are byte-identical (sha256 68fae0b0...91e7).",
+    "svy21_round_trip": "The served SVY21 (EPSG:3414) X/Y transformed with pyproj 3.7.1 equals the served WGS84 latitude/longitude to 4.7e-9 m.",
+    "nearest_atlas_sites_km": {
+      "Keppel DC Singapore 1 (Keppel DigiHub), 25 Serangoon North Avenue 5": 0.41,
+      "Equinix SG4 Singapore IBX, 7 Tai Seng Drive": 4.77,
+      "STT Singapore 5 Tai Seng": 4.97
+    }
+  },
+  "excluded_coordinates": [
+    {
+      "kind": "Google Maps link on the archived Iron Mountain Singapore page (February 2026)",
+      "reason": "A commercial map link, which the locator policy excludes; its parameters were not used."
+    },
+    {
+      "kind": "Serangoon or Singapore locality centres",
+      "reason": "Not the published address."
+    }
+  ],
+  "limitations": "The point is the registered address point of the building at 1 Serangoon North Avenue 6; it is not a surveyed footprint or land lot, and OneMap states no positional accuracy. Iron Mountain describes a 0.65-hectare (1.6-acre) campus.",
+  "verification_script": "scratchpad imp13/facts.py (uv run --no-project --with pyproj==3.7.1 --with shapely==2.1.1 python -I)"
+}

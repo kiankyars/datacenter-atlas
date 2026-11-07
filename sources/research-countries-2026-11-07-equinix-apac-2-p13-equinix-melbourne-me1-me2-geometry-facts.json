@@ -1,0 +1,77 @@
+{
+ "format": "datacenter-atlas-geometry-facts-v1",
+ "fragment": "equinix-apac-2-p13",
+ "prepared_on": "2026-11-07",
+ "method_note": "The point is the official Vicmap Address record for '578 LORIMER STREET PORT MELBOURNE 3207' (Victoria Department of Transport and Planning, Vicmap Address, served by the Victorian open-data GeoServer WFS layer open-data-platform:address at opendata.maps.vic.gov.au), the street address Equinix gives for both ME1 and ME2 on its own IBX pages (Internet Archive raw copies of 3 October 2026; www.equinix.com answers robots.txt with HTTP 403, so the live pages were not requested). It was queried by road name, locality and house number with srsName=EPSG:4326 and copied without transformation; the same record requested in the layer's native CRS (EPSG:7844, GDA2020) returns identical coordinate digits. The property (layer open-data-platform:v_property_mp, by the address record's property_pfi) and the parcel (layer open-data-platform:parcel_view, point-intersect at the address point) were captured for the identity check. Polygons were projected from the served EPSG:4326 coordinates to GDA2020 / MGA zone 55 (EPSG:7855) with pyproj 3.7.1 and measured with shapely 2.1.1 for the checks below only. No commercial map, map embed or map-widget parameter, short link, PeeringDB record or OpenStreetMap service was used; no token or key was used. Licence: DataVic lists Vicmap Address (Department of Transport and Planning) under Creative Commons Attribution 4.0 International (dataset page captured 7 November 2026, local local_data/country-research-equinix-apac-2-p13/datavic-dataset-vicmap-address.html).",
+ "site_versus_campus_review": "Equinix gives the same street address, 578 Lorimer Street, Port Melbourne VIC 3207, for ME1 (a 2-storey building, 3,326 m2 colocation space) and ME2 (a 5-storey building, 8,172 m2 colocation space), and each page's related-IBX block places the other in Port Melbourne. Vicmap holds one property for the address (property_pfi 221794916, a single 2.49 ha parcel, parcel pfi 221794912) with two address records: the primary '552-578 LORIMER STREET' (geocode_feature V) and the non-primary '578 LORIMER STREET' (geocode_feature E), 1.54 m apart. Both IBXs therefore stand on one property and are added as one campus project with a campus locator. ME4 (Derrimut, VIC 3026) and ME5 (West Melbourne, VIC 3003) are separate IBXs whose pages give no street address; they are held.",
+ "candidates": [
+  {
+   "candidate_id": "equinix-melbourne-578-lorimer-street-port-melbourne-campus",
+   "facility": "Equinix ME1 and ME2 (Melbourne IBXs)",
+   "operator_stated_address": "ME1 and ME2: 578 Lorimer Street, Port Melbourne, Melbourne VIC 3207, Australia",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     144.915097,
+     -37.821707
+    ]
+   },
+   "authority_class": "official_source",
+   "scope_class": "official_property_address_point_at_street_frontage",
+   "use_scope": "campus_locator",
+   "precision_scope": "Official Vicmap Address record '578 LORIMER STREET PORT MELBOURNE 3207' (ufi 888094116, pfi 460240419, property_pfi 221794916; source LGO, source_verified 2026-06-24; is_primary N; geocode_feature E), the exact street address Equinix publishes for ME1 and ME2. It lies inside the single 2.49 ha property and parcel at that address (about 164 m by 255 m), 6.67 m from its nearest boundary on the Lorimer Street side and 112.7 m from its planar centroid; the property's primary virtual address point '552-578 LORIMER STREET' lies 1.54 m away. It locates the 578 Lorimer Street property shared by the ME1 and ME2 IBXs, not either building, an entrance gate as surveyed, or a data hall.",
+   "horizontal_uncertainty_metres": null,
+   "horizontal_uncertainty_unknown_reason": "Vicmap Address supplies no positional accuracy for the record. The point stands near the street frontage of a 2.49 ha property that holds two IBX buildings (farthest property vertex 239.0 m away); Equinix does not publish where the ME1 and ME2 buildings stand within it.",
+   "source_url": "https://opendata.maps.vic.gov.au/geoserver/wfs?service=WFS&version=2.0.0&request=GetFeature&typeNames=open-data-platform:address&outputFormat=application/json&srsName=EPSG:4326&CQL_FILTER=road_name%3D%27LORIMER%27%20AND%20locality_name%3D%27PORT%20MELBOURNE%27%20AND%20house_number_1%3D578",
+   "source_file": "local_data/country-research-equinix-apac-2-p13/vic-address-578-lorimer-street.geojson",
+   "source_sha256": "b55bd569ad32efd1021b3b88a50e379f5e63ca7d737c16887de80fead9872243",
+   "served_feature": {
+    "ufi": 888094116,
+    "pfi": "460240419",
+    "property_pfi": "221794916",
+    "ezi_address": "578 LORIMER STREET PORT MELBOURNE 3207",
+    "source": "LGO",
+    "source_verified": "2026-06-24T00:00:00Z",
+    "is_primary": "N",
+    "property_status": "A",
+    "geocode_feature": "E",
+    "house_number_1": 578,
+    "road_name": "LORIMER",
+    "road_type": "STREET",
+    "locality_name": "PORT MELBOURNE",
+    "postcode": "3207",
+    "lga_code": "343",
+    "outside_property": "N",
+    "complex_site": "N",
+    "served_crs": "urn:ogc:def:crs:EPSG::4326"
+   },
+   "completeness_check": "The query road_name='LORIMER' AND locality_name='PORT MELBOURNE' AND house_number_1=578 returns exactly one feature (numberMatched 1). Querying the layer by property_pfi='221794916' (local local_data/country-research-equinix-apac-2-p13/vic-address-property-221794916.geojson, sha256 7ac71212e94636d1a7659add7978b1b808abe585c2ce3e09ef83bf4d73ee38ac) returns the two address records of the property: '578 LORIMER STREET' and the primary '552-578 LORIMER STREET' (ufi 728741999, pfi 221794917, geocode_feature V, coordinates 144.915091, -37.82172). The same query in the native CRS (local local_data/country-research-equinix-apac-2-p13/vic-address-property-221794916-native-crs.geojson, sha256 c3125c633c38f5195c17b5ee01728264c73a8d0e536c19dc8fb7e0f1ae4eab71; EPSG:7844) returns identical coordinate digits.",
+   "property_check": {
+    "property_source_file": "local_data/country-research-equinix-apac-2-p13/vic-property-221794916.geojson",
+    "property_source_sha256": "f08d978f59ac2682118768d45731ae2d77e6505e7491347d73d23e76bea696d5",
+    "property_source_url": "https://opendata.maps.vic.gov.au/geoserver/wfs?service=WFS&version=2.0.0&request=GetFeature&typeNames=open-data-platform:v_property_mp&outputFormat=application/json&srsName=EPSG:4326&CQL_FILTER=prop_pfi%3D%27221794916%27",
+    "prop_pfi": "221794916",
+    "prop_propnum": "650393",
+    "prop_lga_code": "343",
+    "prop_status": "A",
+    "prop_multi_assessment": "N",
+    "parcel_source_file": "local_data/country-research-equinix-apac-2-p13/vic-parcel-at-578-lorimer.geojson",
+    "parcel_source_sha256": "8c24edff465b274c092a1114833627ec3444a93cbdbdcc80d7d991cbd7c2f67a",
+    "parcel_source_url": "https://opendata.maps.vic.gov.au/geoserver/wfs?service=WFS&version=2.0.0&request=GetFeature&typeNames=open-data-platform:parcel_view&outputFormat=application/json&srsName=EPSG:4326&CQL_FILTER=INTERSECTS(geom,SRID=4326;POINT(144.915097%20-37.821707))",
+    "parcel_pfi": "221794912",
+    "property_area_m2_epsg7855": 24940.7,
+    "parcel_area_m2_epsg7855": 24940.7,
+    "property_parcel_symmetric_difference_m2": 0.0,
+    "property_bbox_m": [
+     163.5,
+     254.9
+    ],
+    "point_inside_property": true,
+    "point_to_property_boundary_m": 6.67,
+    "point_to_property_centroid_m": 112.7,
+    "point_to_farthest_property_vertex_m": 239.0,
+    "point_to_primary_address_point_m": 1.54
+   }
+  }
+ ]
+}

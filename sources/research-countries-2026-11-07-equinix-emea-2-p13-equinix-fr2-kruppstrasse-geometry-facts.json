@@ -1,0 +1,58 @@
+{
+  "candidate_id": "equinix-fr2-frankfurt-kruppstrasse-121-127",
+  "decision": "Selected the City of Frankfurt's official building-address point for Kruppstraße 121-127 (address object DEHEFALK4f500002), the address Equinix publishes for FR2, transformed from EPSG:25832 to WGS84, as the project locator. The coordinate in the map widget on Equinix's page was not used.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      8.7404339,
+      50.1432765
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_building_address_point",
+  "use_scope": "project_locator",
+  "source_file": "local_data/country-research-equinix-emea-2-p13/frankfurt-geoportal-kruppstrasse-12x.json",
+  "source_sha256": "946776597e7cbedb7ea4c5b2cc1dd4347ae35eded256107ed1c346ebd1736f0c",
+  "source_url": "https://geoportal.frankfurt.de/elastic/basisgis/_search?source_content_type=application%2Fjson&source=%7B%22query%22%3A%7B%22match_phrase_prefix%22%3A%7B%22properties.searchField%22%3A%22Kruppstra%C3%9Fe+12%22%7D%7D%2C%22size%22%3A50%7D",
+  "selected_properties": {
+    "source_layer": "Gebaeudeadresse (layerId 12)",
+    "address_object_id": "DEHEFALK4f500002",
+    "searchField": "Kruppstraße 121-127",
+    "native_coordinates_epsg25832": [
+      481453.01099999994,
+      5554593.291999999
+    ],
+    "operator_published_address": "Kruppstrasse 121-127, 60388 Frankfurt (Equinix FR2 page, Internet Archive copy of 3 October 2026)"
+  },
+  "consistency_checks": {
+    "exact_address_query": "A match_phrase_prefix query for 'Kruppstraße 12' returns 10 building-address features. 'Kruppstraße 121-127' is one Gebaeudeadresse feature, address object DEHEFALK4f500002, and the single numbers 121, 123, 125 and 127 are entries of the same object at the same point; the even numbers 120-128 on the opposite side are separate objects 78-140 m to the east.",
+    "north_east_campus_neighbours_m": {
+      "Friesstraße 9 (DEHEFALK3vh00001), Equinix's FR13 address": 448.9,
+      "Friesstraße 24 (DEHEFALK3JA00003), part of Equinix's FR9x address Friesstrasse 22-24": 229.6,
+      "RP Darmstadt FR16x permit site coordinate 481220 / 5554565 (EPSG:25832) quoted in the thirty-fourth update's hold": 234.7
+    },
+    "nearest_atlas_sites_km": {
+      "Digital Realty Digital Park Fechenheim Campus": 2.122,
+      "Rechenzentrum Karben, Schultheisenwiese (Karben-Rendel)": 8.494
+    },
+    "crs": "The geoportal configuration (https://geoportal.frankfurt.de/karte/config.json, captured 6 November 2026 by ops-frankfurt-de-p6, local local_data/country-research-ops-frankfurt-de-p6/frankfurt-geoportal-config.json, rehashed 7 November 2026, sha256 907501e96178af215a8fbe3d239ebd2d775fde13baf770ff0270d7e734053702) sets the routing geosearch on the same 'elastic' service to epsg 25832, so the coordinates are ETRS89 / UTM zone 32N metres. The same service and transform underlie the accepted FR6, Telehouse Frankfurt and NorthC FRA01 locators.",
+    "round_trip_m": 0.005,
+    "versions": {
+      "pyproj": "3.7.1",
+      "proj": "9.5.1",
+      "shapely": "2.1.1"
+    }
+  },
+  "transform_check": "pyproj 3.7.1 (PROJ 9.5.1) EPSG:25832 -> EPSG:4326, always_xy; rounded to 7 decimal places; the rounded point transforms back to within 0.005 m.",
+  "excluded_coordinates": [
+    {
+      "kind": "Map widget coordinate on the Equinix FR2 page",
+      "reason": "A map-embed parameter, which the locator policy excludes; not read or used."
+    },
+    {
+      "kind": "Frankfurt city centre and Equinix's other Frankfurt addresses",
+      "reason": "Not FR2's published address."
+    }
+  ],
+  "limitations": "The point is the register's building-address point for the published address; it is not a parcel, building footprint or surveyed position, and the register states no positional accuracy."
+}

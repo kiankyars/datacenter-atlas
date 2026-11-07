@@ -1,0 +1,50 @@
+{
+  "candidate_id": "meta-clonee-data-center-campus",
+  "decision": "Selected the National Grid Reference that the EPA's Register of Licence for IE licence P1192-01 (Runways Information Services Limited, Clonee Data Center, Slí Na Cháirde, Portan, Clonee; register document of 9 October 2023) gives for the location of the licensed activity, read as TM75 / Irish Grid (EPSG:29903) and transformed to WGS84, as the campus locator for Meta's Clonee Data Centre.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -6.4384101,
+      53.4173821
+    ]
+  },
+  "authority_class": "compiled_reference",
+  "scope_class": "official_regulator_register_installation_site_centre_grid_reference",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-hyperscale-regions-p11/ie/epa-P1192-01-register-of-licence-20231009.pdf",
+  "source_sha256": "84f1575e87dda3db892dcdf3e24a4661f02fca357dbedc73472bdba9da4a6755",
+  "source_url": "https://leap.epa.ie/docs/090151b280892749.pdf",
+  "retrieved_at": "2026-11-07T02:42:13.832Z",
+  "selected_properties": {
+    "register_title": "Register of IE Licence Application No. P1192-01",
+    "name_and_address_of_applicant": "Runways Information Services Limited, Clonee Data Center, Slí Na Cháirde, Portan, Clonee, County Meath",
+    "class_of_activity": "2.1 Combustion of fuels in installations with a total rated thermal input of 50 MW or more",
+    "location_of_activity": "Slí Na Cháirde, Portan, Clonee, Meath",
+    "national_grid_reference": "N241918 E303876 (northing 241918, easting 303876)",
+    "planning_authority": "Meath County Council; Fingal County Council; An Bord Pleanála",
+    "date_of_application": "13 February 2023",
+    "pdf_creation_date": "2023-10-09 18:57:03 EEST"
+  },
+  "computed": {
+    "irish_grid_easting_northing": [
+      303876,
+      241918
+    ],
+    "lon_lat": [
+      -6.4384101,
+      53.4173821
+    ],
+    "transform": "pyproj 3.7.1 Transformer EPSG:29903 -> EPSG:4326, always_xy=True, default operation 'Inverse of Irish Grid + TM75 to WGS 84 (2)' (stated accuracy 1 m); rounded to 7 decimals",
+    "alternative_operation": "'Inverse of Irish Grid + TM75 to WGS 84 (3)' (stated accuracy 6 m) gives 53.4173792, -6.4384426, 2.19 m from the selected point",
+    "itm_literal_reading_lat_lon": [
+      48.8615,
+      -12.037
+    ],
+    "itm_literal_reading_note": "Read as ITM (EPSG:2157) the values would fall in the Atlantic south-west of Ireland, so Irish Grid is the only plausible reading, as for the accepted ie-pleanala-p3 EPA register points.",
+    "same_point_in_accepted_facts": "sources/research-countries-2026-10-26-ie-pleanala-p3-epa-site-centre-points-geometry-facts.json lists the same register grid reference for P1192-01 as 53.4173821, -6.4384101 (as a nearby non-Atlas facility)",
+    "geodesic_distance_to_nearest_atlas_site_m": {
+      "SDC-EN Meath I data storage campus, Bracetown and Gunnocks (vcc-site-1a7a99925cc9fdd0d013)": 1564.3
+    },
+    "method": "Read the register PDF with pdftotext; transformed with pyproj 3.7.1; geodesic distances on the WGS84 ellipsoid (pyproj Geod). No geocoder, commercial map, map viewport, PeeringDB or OpenStreetMap service was used."
+  }
+}
