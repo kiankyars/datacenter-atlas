@@ -644,7 +644,8 @@ when a built site is available.
     deployed.
   - `deploy` (permissions `pages: write`, `id-token: write`): only for pushes to `main`, after the
     whole `build` job has passed; publishes with `actions/deploy-pages` to the `github-pages`
-    environment, waiting up to 25 minutes for Pages to sync the files (the action's default is 10). Deployments share the `pages` concurrency group and do not cancel each other; a
+    environment. The action waits at most 10 minutes (its maximum) for Pages to sync the files; a
+    deployment that has not finished by then is cancelled, and the next push deploys the whole site. Deployments share the `pages` concurrency group and do not cancel each other; a
     newer push to a pull request cancels that pull request's older run. Each build attempt names
     its Pages artifact `github-pages-<attempt>` and `deploy` takes that name from the build job's
     output, so re-running a failed run deploys instead of finding two artifacts of the same name.

@@ -192,7 +192,7 @@ jobs:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     needs: [build, release]
     runs-on: ubuntu-24.04
-    timeout-minutes: 30
+    timeout-minutes: 15
     permissions:
       pages: write # create the Pages deployment
       id-token: write # prove the deployment comes from this workflow
@@ -208,9 +208,6 @@ jobs:
         uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1
         with:
           artifact_name: ${{ needs.build.outputs.pages_artifact }}
-          # Pages usually syncs the site in under a minute, but some deployments sit in
-          # syncing_files past the action's 10-minute default; give them 25 minutes.
-          timeout: 1500000
 
   verify-live:
     # The deployment API reports success before every CDN edge serves the new files; this job
