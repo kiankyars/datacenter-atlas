@@ -1,0 +1,103 @@
+{
+  "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+  "candidate": "ETIX Lille #2 data centre, 1681 Rue des Saules, 59262 Sainghin-en-Mélantois (Nord), France",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      3.13631,
+      50.5840952
+    ]
+  },
+  "coordinate_reference_system": "API Carto returns the parcel as GeoJSON in WGS84 longitude/latitude (EPSG:4326). The parcel was projected to EPSG:2154 (RGF93 v1 / Lambert-93) with pyproj 3.7.1 (always_xy=True), its planar area centroid computed with shapely 2.1.1, and the centroid transformed back to EPSG:4326. BD TOPO footprints were requested in EPSG:2154; address points were projected to EPSG:2154 for distances.",
+  "source_url": "https://apicarto.ign.fr/api/cadastre/parcelle?geom=%7B%22type%22%3A%22Point%22%2C%22coordinates%22%3A%5B3.136551%2C50.58423%5D%7D",
+  "raw_capture_file": "local_data/country-research-fr-it-ops-p10/apicarto-parcelle-sainghin-1681-rue-des-saules.json",
+  "raw_capture_sha256": "01b59ffc2e7619bc97e925f5410933f6afd83da9d9c123b355678baff26b344a",
+  "retrieved_at": "2026-11-07T01:24:57.290Z",
+  "source_selection": "ETIX publishes the Lille #2 address as 1681 Rue des Saules, 59262 Sainghin-en-Mélantois. The Géoplateforme geocoder returns that exact housenumber (BAN 59523_0739_01681, score 0.95) at 3.136551, 50.58423; API Carto queried at that point returns the single parcel 59523000ZI0325, whose area centroid is used.",
+  "parcel": {
+    "idu": "59523000ZI0325",
+    "section": "ZI",
+    "numero": "0325",
+    "code_insee": "59523",
+    "commune": "Sainghin-en-Mélantois",
+    "contenance_m2": 10102,
+    "computed_area_m2_epsg2154": 10219.5,
+    "bbox_extent_m": [
+      133.2,
+      184.1
+    ]
+  },
+  "centroid_epsg2154": [
+    709669.66,
+    7054117.64
+  ],
+  "centroid_inside_parcel": true,
+  "centroid_distance_to_boundary_m": 21.3,
+  "max_vertex_distance_from_centroid_m": 119.0,
+  "checks": [
+    {
+      "label": "BAN housenumber 1681 Rue des Saules 59262 Sainghin-en-Mélantois (59523_0739_01681), ETIX's published Lille #2 address",
+      "coordinates": [
+        3.136551,
+        50.58423
+      ],
+      "inside_parcel": true,
+      "distance_to_centroid_m": 22.8
+    },
+    {
+      "label": "Géoplateforme street-level result 'Rue des Famards 59273 Fretin' (59256_0190, score 0.78) for ETIX Lille #4's address 28 Rue des Famards (no housenumber point; held, not used)",
+      "coordinates": [
+        3.131276,
+        50.58333
+      ],
+      "inside_parcel": false,
+      "distance_to_centroid_m": 365.5
+    }
+  ],
+  "bdtopo_buildings": [
+    {
+      "cleabs": "BATIMENT0000000358204984",
+      "nature": "Industriel, agricole ou commercial",
+      "usage_1": "Commercial et services",
+      "footprint_m2": 1872.5,
+      "height_m": 8.8,
+      "share_inside_parcel": 1.0,
+      "contains_centroid": true,
+      "etat": "En service"
+    },
+    {
+      "cleabs": "BATIMENT0000002499950788",
+      "nature": "Industriel, agricole ou commercial",
+      "usage_1": "Commercial et services",
+      "footprint_m2": 944.1,
+      "height_m": 6.5,
+      "share_inside_parcel": 1.0,
+      "contains_centroid": false,
+      "etat": "En service",
+      "bdtopo_object_created": "2026-05-17"
+    }
+  ],
+  "imagery_check": {
+    "raw_capture_file": "local_data/country-research-fr-it-ops-p10/esri-etix-lille-2-sainghin.png",
+    "raw_capture_sha256": "a05d79ef2d4d16f892cca8fa633dbe48bf3ebe30a6a5e2ee0859582e542f2ed0",
+    "source_url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=3.1345,50.5830,3.1381,50.5852&bboxSR=4326&imageSR=4326&size=800,600&format=png&f=image",
+    "retrieved_at": "2026-11-07T01:27:01.633Z",
+    "license": "Esri World Imagery (Esri and its imagery providers); export viewed for a qualitative check only, not redistributed and not used to place or move any coordinate.",
+    "observation": "Undated export, bbox 3.1345-3.1381 E, 50.5830-50.5852 N. The centroid falls on a medium-sized flat-roofed building with an annex and an external plant yard, west of a roundabout and between large logistics warehouses; consistent with a stand-alone data-centre property, not used for the coordinates."
+  },
+  "capture_files": [
+    "apicarto-parcelle-sainghin-1681-rue-des-saules.json",
+    "geopf-geocode-1681-rue-des-saules-sainghin.json",
+    "bdtopo-batiment-sainghin-zi325.json",
+    "geopf-geocode-28-rue-des-famards-fretin.json",
+    "esri-etix-lille-2-sainghin.png"
+  ],
+  "capture_sha256": {
+    "apicarto-parcelle-sainghin-1681-rue-des-saules.json": "01b59ffc2e7619bc97e925f5410933f6afd83da9d9c123b355678baff26b344a",
+    "geopf-geocode-1681-rue-des-saules-sainghin.json": "f0d5f2589dff2f2b706c34314c0d1ded478220fb8d61288a81b7ded56cfec478",
+    "bdtopo-batiment-sainghin-zi325.json": "69f706cb8c081740c3f03f17fef080497fe1f6e5412485d4753444494f50291e",
+    "geopf-geocode-28-rue-des-famards-fretin.json": "a35b32e8a290c477c7705141b838f7091d7e1600fd36f2f95272d2d315c7d4a4",
+    "esri-etix-lille-2-sainghin.png": "a05d79ef2d4d16f892cca8fa633dbe48bf3ebe30a6a5e2ee0859582e542f2ed0"
+  },
+  "method": "shapely 2.1.1 planar area centroid of the cadastral parcel in EPSG:2154 (pyproj 3.7.1), transformed to WGS84; containment and distances computed in EPSG:2154; BD TOPO buildings tested for intersection with the parcel and containment of the centroid."
+}

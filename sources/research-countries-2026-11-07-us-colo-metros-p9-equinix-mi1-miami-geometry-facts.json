@@ -1,0 +1,81 @@
+{
+  "candidate_id": "us-colo-metros-p9-equinix-mi1-miami",
+  "decision": "Selected the area centroid of Miami-Dade County parcel folio 0101030801050 (situs 50 NE 9 ST; County GIS MD_LandInformation layer 26 Parcels) as the campus locator for Equinix MI1.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -80.1930561,
+      25.7823645
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_tax_parcel_centroid",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-us-colo-metros-p9/mdc-paparcel-folio-0101030801050.json",
+  "source_sha256": "d8fab68810c0c6ec582416f5105e86df9f0be3ddf990bf211252ec8f5624f8d3",
+  "source_url": "https://gisweb.miamidade.gov/arcgis/rest/services/MD_LandInformation/MapServer/26/query?where=FOLIO%3D%270101030801050%27&outFields=*&returnGeometry=true&outSR=4326&f=json",
+  "retrieved_at": "2026-11-07T01:29:31.878Z",
+  "selected_properties": {
+    "0101030801050": {
+      "FOLIO": "0101030801050",
+      "TRUE_SITE_ADDR": "50 NE 9 ST",
+      "TRUE_SITE_CITY": "MIAMI",
+      "TRUE_OWNER1": "VERIZON DATA CENTERS V LLC",
+      "DOR_DESC": "OFFICE BUILDING - MULTISTORY : OFFICE BUILDING",
+      "FLOOR_COUNT": 6,
+      "BUILDING_COUNT": 1,
+      "YEAR_BUILT": 2001,
+      "LOT_SIZE": 150000.0
+    }
+  },
+  "facts": {
+    "centroid_lon_lat": [
+      -80.1930561,
+      25.7823645
+    ],
+    "centroid_inside": true,
+    "centroid_distance_to_boundary_m": 43.6,
+    "geodesic_acres": 3.141,
+    "bounds_lon_lat": [
+      -80.193802,
+      25.781949,
+      -80.192321,
+      25.782785
+    ],
+    "approx_extent_m": [
+      149,
+      93
+    ],
+    "max_vertex_distance_from_centroid_m": 85,
+    "centroid_method": "area centroid computed in EPSG:32617 (pyproj 3.7.1, shapely 2.1.1) and transformed to WGS84; the EPSG:5070 (CONUS Albers) centroid differs by 0.000 m",
+    "reference_points": [
+      {
+        "label": "Miami-Dade Property Appraiser site point (X_COORD/Y_COORD, Florida East state plane) for folio 0101030801050, converted",
+        "lon_lat": [
+          -80.1930534,
+          25.7823597
+        ],
+        "inside_parcel": true,
+        "distance_to_centroid_m": 0.6,
+        "distance_to_boundary_m": 43.2
+      },
+      {
+        "label": "US Census geocoder interpolated address-range point for 50 NE 9th St (cross-check)",
+        "lon_lat": [
+          -80.193061,
+          25.7827528
+        ],
+        "inside_parcel": true,
+        "distance_to_centroid_m": 43.0,
+        "distance_to_boundary_m": 0.6
+      }
+    ],
+    "parcel_valid": true,
+    "rings": 1,
+    "vertices": 25,
+    "lot_size_sqft_appraiser": 150000.0,
+    "shape_area_sqft_layer": 136818.7
+  },
+  "verification_script": "scratchpad p9colo/write_geom.py (uv run --no-project --with pyproj==3.7.1 --with shapely==2.1.1 python -I)",
+  "verifier_note": "use_scope and decision aligned with changes.json (campus_locator) by verifier worker 1 on 2026-11-07; geometry and facts unchanged and recomputed independently from the raw capture."
+}

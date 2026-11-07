@@ -1,0 +1,124 @@
+{
+  "candidate_id": "us-colo-metros-p9-equinix-dallas-infomart",
+  "decision": "Selected the area centroid of Dallas County parcel 00100100010020000 (TxGIO StratMap land parcels; owner of record EQUINIX LLC; situs 1950 N STEMMONS FWY) as the campus locator for the Infomart building that holds Equinix DA1, DA2, DA3 and DA6.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -96.8194335,
+      32.8007602
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_tax_parcel_centroid",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-us-colo-metros-p9/txgio-parcels-infomart-envelope.json",
+  "source_sha256": "feb8a2cb43ca3f21947dfff0f6aa04ac7f8d575ea6d9aeb6217abe7ff6c00c9a",
+  "source_url": "https://feature.geographic.texas.gov/arcgis/rest/services/Parcels/stratmap_land_parcels_48_most_recent/MapServer/identify?geometry=%7B%22xmin%22%3A-96.8275%2C%22ymin%22%3A32.7990%2C%22xmax%22%3A-96.8200%2C%22ymax%22%3A32.8045%2C%22spatialReference%22%3A%7B%22wkid%22%3A4326%7D%7D&geometryType=esriGeometryEnvelope&sr=4326&layers=all%3A0&tolerance=0&mapExtent=-96.84%2C32.79%2C-96.81%2C32.82&imageDisplay=1000%2C1000%2C96&returnGeometry=true&f=json",
+  "retrieved_at": "2026-11-07T01:25:43.124Z",
+  "selected_properties": {
+    "00100100010020000": {
+      "PROP_ID": "00100100010020000",
+      "OWNER_NAME": "EQUINIX LLC",
+      "SITUS_ADDR": "1950 N STEMMONS FWY ,DALLAS, TX 752073134",
+      "LEGAL_AREA": "18.08"
+    }
+  },
+  "facts": {
+    "centroid_lon_lat": [
+      -96.8194335,
+      32.8007602
+    ],
+    "centroid_inside": true,
+    "centroid_distance_to_boundary_m": 108.8,
+    "geodesic_acres": 18.097,
+    "bounds_lon_lat": [
+      -96.821339,
+      32.79907,
+      -96.817675,
+      32.803355
+    ],
+    "approx_extent_m": [
+      344,
+      472
+    ],
+    "max_vertex_distance_from_centroid_m": 306,
+    "centroid_method": "area centroid computed in EPSG:32614 (pyproj 3.7.1, shapely 2.1.1) and transformed to WGS84; the EPSG:5070 (CONUS Albers) centroid differs by 0.000 m",
+    "reference_points": [
+      {
+        "label": "TxGIO/City of Dallas address point 1950 N STEMMONS FWY (building address)",
+        "lon_lat": [
+          -96.8187562,
+          32.801499
+        ],
+        "inside_parcel": true,
+        "distance_to_centroid_m": 103.6,
+        "distance_to_boundary_m": 11.9
+      },
+      {
+        "label": "TxGIO/City of Dallas address point 1990 N STEMMONS FWY (Equinix DA11 address, not in this record)",
+        "lon_lat": [
+          -96.8208288,
+          32.8018163
+        ],
+        "inside_parcel": false,
+        "distance_to_centroid_m": 175.5,
+        "distance_to_boundary_m": 43.0
+      },
+      {
+        "label": "TxGIO/City of Dallas address point 1950 N STEMMONS FWY 3050 (Equinix DA6 suite)",
+        "lon_lat": [
+          -96.8195452,
+          32.8009091
+        ],
+        "inside_parcel": true,
+        "distance_to_centroid_m": 19.6,
+        "distance_to_boundary_m": 109.1
+      },
+      {
+        "label": "TxGIO/City of Dallas address point 1950 N STEMMONS FWY 2048 (Equinix DA3 suite)",
+        "lon_lat": [
+          -96.8193373,
+          32.8006164
+        ],
+        "inside_parcel": true,
+        "distance_to_centroid_m": 18.3,
+        "distance_to_boundary_m": 109.5
+      },
+      {
+        "label": "TxGIO/City of Dallas address point 1950 N STEMMONS FWY 2027 (Equinix DA2 suite)",
+        "lon_lat": [
+          -96.8193122,
+          32.8013775
+        ],
+        "inside_parcel": true,
+        "distance_to_centroid_m": 69.4,
+        "distance_to_boundary_m": 63.3
+      },
+      {
+        "label": "TxGIO/City of Dallas address point 1950 N STEMMONS FWY 1039A (Equinix DA3 suite)",
+        "lon_lat": [
+          -96.8191232,
+          32.8011921
+        ],
+        "inside_parcel": true,
+        "distance_to_centroid_m": 56.0,
+        "distance_to_boundary_m": 59.0
+      },
+      {
+        "label": "US Census geocoder interpolated address-range point for 1950 N Stemmons Fwy (not used)",
+        "lon_lat": [
+          -96.823829,
+          32.8015403
+        ],
+        "inside_parcel": false,
+        "distance_to_centroid_m": 420.7,
+        "distance_to_boundary_m": 260.0
+      }
+    ],
+    "parcel_valid": true,
+    "rings": 1,
+    "vertices": 34,
+    "legal_acres": 18.08
+  },
+  "verification_script": "scratchpad p9colo/write_geom.py (uv run --no-project --with pyproj==3.7.1 --with shapely==2.1.1 python -I)"
+}

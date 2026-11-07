@@ -1,0 +1,97 @@
+{
+ "format": "datacenter-atlas-geometry-facts-v1",
+ "fragment": "nordic-ops-p10",
+ "prepared_on": "2026-11-07",
+ "method_note": "Each point is the capital-region address register point (Seudullinen osoiteluettelo / Regional Address List, WFS layer avoindata:PKS_osoiteluettelo on kartta.hel.fi, published by the City of Helsinki with data produced by the cities of Helsinki, Espoo, Vantaa and Kauniainen from address decisions and land-use plans) for the street address Equinix gives for the IBX on its own facility page (Internet Archive raw copies of 3 October 2026 for HE6 and 3 and 11 October 2026 for HE7; www.equinix.com answers robots.txt with HTTP 403 to this pipeline, so the live pages were not requested). Two kinds of query were captured: the whole street 'Sinimäentie' in the register's native CRS EPSG:3879 (ETRS-GK25) and the exact street-and-number filters (number 12, number 8) served in EPSG:4326. The locator is the served EPSG:4326 point exactly as returned (GeoJSON [longitude, latitude]); the native EPSG:3879 point was transformed independently with pyproj 3.7.1 (always_xy, EPSG:3879 -> EPSG:4326) and agrees within 3.1 mm (Sinimäentie 12) and 2.6 mm (Sinimäentie 8). No geocoding beyond the official register query, no offsets and no rounding were applied. The latitude/longitude constants in the map-widget scripts of Equinix's pages were not read for the locator or used as a check, and no commercial map, map embed, short link, PeeringDB record or OpenStreetMap service was used.",
+ "register_metadata": {
+  "title": "Seudullinen osoiteluettelo (Pääkaupunkiseudun osoiteluettelo) / Regional Address List",
+  "metadata_url": "https://kartta.hel.fi/paikkatietohakemisto/metadata/?id=181",
+  "metadata_capture": "hel-metadata-181-pks-osoiteluettelo.html",
+  "metadata_capture_sha256": "415d1da78dfad669b963e8b5450d9c99d58f66036226851a1f76edb16ea3b641",
+  "metadata_captured_at": "2026-11-07T01:36:26.521Z",
+  "licence": "Seudullinen avoimen tietoaineiston lisenssi 1.0 (regional open-data licence of the Helsinki capital region); 'Julkinen saatavuus: julkista saatavuutta ei rajoitettu'; 'Hinta: Aineisto julkaistu avoimena datana'",
+  "scale": "1:4000",
+  "native_crs": "ETRS-GK25 (EPSG:3879)",
+  "scope_note": "The metadata states that the list holds the street addresses of properties, plots and plan units, not apartment-specific or postal addresses, and that a division letter ('jakokirjain') is added to a property's address number only when the original property has been divided into two or more separate properties. 'Sinimäentie 8', '8a' and '8b' are therefore separate register addresses; the operator's unlettered 'Sinimaentie 8' matches the unlettered row."
+ },
+ "site_versus_campus_review": "Equinix HE6 and HE7 are treated as two separate physical sites with one project each. Equinix lists them as separate IBX data centres with separate pages, separate street addresses on different address numbers (Sinimaentie 12 and Sinimaentie 8, both 02630 Espoo), separate building descriptions (HE6 '5-Storey, Reinforced Concrete', 1,756 m2 colocation space; HE7 'Reinforced Concrete', 1,450 m2), and separate portfolio categories in its Q3 2026 presentation (HE6 Stabilized, HE7 Expansion; both Owned). In the address register the two addresses are distinct property addresses: the unlettered Sinimäentie 8 point (PKS_osoiteluettelo.133849) is 212.9 m (WGS84 geodesic) from the Sinimäentie 12 point (PKS_osoiteluettelo.133848); the divided-property addresses 8a (PKS_osoiteluettelo.108244) and 8b (PKS_osoiteluettelo.114551) lie 66.6 m and 225.0 m from the number-12 point and 160.1 m and 178.9 m from the unlettered number-8 point. No Equinix statement found calls HE6 and HE7 one campus ('Campus Cross Connects' appears on both pages only as a generic product name). The Atlas already keeps nearby same-operator buildings at separate addresses as separate sites (for example Keppel DC Singapore 2 and 3, 45 m apart; TierPoint OK2 and OKC, 140 m; NorthC Münchenstein 1 and 2, 307 m). Equinix HE3 (Parrukatu 2, Helsinki), HE4 (Myllynkivenkuja 4B, Vantaa) and HE5 (Sahamyllyntie 4B, Helsinki) are existing separate Atlas sites 9.7-11.8 km away.",
+ "candidates": [
+  {
+   "candidate_id": "equinix-he6-espoo-sinimaentie-12",
+   "facility": "Equinix HE6 (Helsinki metro IBX)",
+   "operator_stated_address": "Sinimaentie 12 02630 Espoo Finland (address block and meta description of the HE6 page; the related-IBX blocks of the other Helsinki IBX pages give 'Sinimaentie 12 02630 Espoo')",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     24.77776202,
+     60.20250094
+    ]
+   },
+   "authority_class": "official_source",
+   "scope_class": "official_numbered_address_point",
+   "use_scope": "project_locator",
+   "precision_scope": "Capital-region address register point for Sinimäentie 12, 02630 Espoo (data owner Espoo; updated in the service 2026-11-05), the register entry for the operator-stated address. It marks the property street address at the register's 1:4000 scale, not a surveyed building outline, entrance, property boundary or data hall.",
+   "horizontal_uncertainty_metres": null,
+   "horizontal_uncertainty_unknown_reason": "The register metadata gives a 1:4000 scale but no positional accuracy for address points; decimal places are not survey accuracy.",
+   "register_feature_id": "PKS_osoiteluettelo.133848",
+   "source_url": "https://kartta.hel.fi/ws/geoserver/avoindata/wfs?service=WFS&version=2.0.0&request=GetFeature&typeNames=avoindata:PKS_osoiteluettelo&outputFormat=application/json&count=10&srsName=EPSG:4326&CQL_FILTER=katunimi%3D%27Sinim%C3%A4entie%27%20AND%20osoitenumero%3D12",
+   "source_file": "hel-pks-osoite-sinimaentie-12-epsg4326-b.json",
+   "source_sha256": "b5313c3869625f9ad904ae7ff4f31e3af94f98989a3e42cb0d0b22a8bcdb3162",
+   "source_captured_at": "2026-11-07T01:36:34.713Z",
+   "street_check_file": "hel-pks-osoite-sinimaentie-epsg3879.json",
+   "street_check_sha256": "d15d0cad3a0f3dae6401b0eb9219e5104e54a0c1dc32a65002abdbd900defce0",
+   "street_check": "The street-wide query returns 23 Sinimäentie rows, all in Espoo (even numbers 4-14 in 02630, odd numbers and 18-24 in 02180, plus the unnumbered street row); exactly one row has number 12, with no division letter. The exact-filter query returns that single row.",
+   "native_epsg3879_point": [
+    25487675.0,
+    6676655
+   ],
+   "independent_pyproj_transform_epsg4326": [
+    24.777762022,
+    60.202500913
+   ],
+   "served_minus_transformed_metres": 0.0031
+  },
+  {
+   "candidate_id": "equinix-he7-espoo-sinimaentie-8",
+   "facility": "Equinix HE7 (Helsinki metro IBX)",
+   "operator_stated_address": "Sinimaentie 8, 02630 Espoo Finland (address block of the HE7 page; meta description 'Sinimaentie 8 02630 Espoo')",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     24.77429434,
+     60.20332082
+    ]
+   },
+   "authority_class": "official_source",
+   "scope_class": "official_numbered_address_point",
+   "use_scope": "project_locator",
+   "precision_scope": "Capital-region address register point for the unlettered address Sinimäentie 8, 02630 Espoo (data owner Espoo; updated in the service 2026-11-05), the register entry for the operator-stated address. It marks the property street address at the register's 1:4000 scale, not a surveyed building outline, entrance, property boundary or data hall; the register also holds separate divided-property addresses 8a and 8b nearby.",
+   "horizontal_uncertainty_metres": null,
+   "horizontal_uncertainty_unknown_reason": "The register metadata gives a 1:4000 scale but no positional accuracy for address points; decimal places are not survey accuracy.",
+   "register_feature_id": "PKS_osoiteluettelo.133849",
+   "source_url": "https://kartta.hel.fi/ws/geoserver/avoindata/wfs?service=WFS&version=2.0.0&request=GetFeature&typeNames=avoindata:PKS_osoiteluettelo&outputFormat=application/json&count=10&srsName=EPSG:4326&CQL_FILTER=katunimi%3D%27Sinim%C3%A4entie%27%20AND%20osoitenumero%3D8",
+   "source_file": "hel-pks-osoite-sinimaentie-8-epsg4326.json",
+   "source_sha256": "40379c415934b909719453bc86f19d72b1e9ba49b853e1829117a07f5aa5bb35",
+   "source_captured_at": "2026-11-07T01:36:24.546Z",
+   "street_check_file": "hel-pks-osoite-sinimaentie-epsg3879.json",
+   "street_check_sha256": "d15d0cad3a0f3dae6401b0eb9219e5104e54a0c1dc32a65002abdbd900defce0",
+   "street_check": "The exact-filter query for number 8 returns three rows: the unlettered 'Sinimäentie 8' (PKS_osoiteluettelo.133849) and the divided-property addresses '8a' (PKS_osoiteluettelo.108244) and '8b' (PKS_osoiteluettelo.114551), all Espoo 02630. Equinix gives 'Sinimaentie 8' without a division letter, so the unlettered row is used; the 8a and 8b points lie 160.1 m and 178.9 m from it. The street-wide query confirms these are the only number-8 rows.",
+   "native_epsg3879_point": [
+    25487483.0,
+    6676747
+   ],
+   "independent_pyproj_transform_epsg4326": [
+    24.774294339,
+    60.203320797
+   ],
+   "served_minus_transformed_metres": 0.0026
+  }
+ ],
+ "inter_point_distances_metres_wgs84_geodesic": {
+  "Sinimäentie 12 (133848) - Sinimäentie 8 (133849)": 212.9,
+  "Sinimäentie 12 (133848) - Sinimäentie 8a (108244)": 66.6,
+  "Sinimäentie 12 (133848) - Sinimäentie 8b (114551)": 225.0,
+  "Sinimäentie 8 (133849) - Sinimäentie 8a (108244)": 160.1,
+  "Sinimäentie 8 (133849) - Sinimäentie 8b (114551)": 178.9
+ }
+}

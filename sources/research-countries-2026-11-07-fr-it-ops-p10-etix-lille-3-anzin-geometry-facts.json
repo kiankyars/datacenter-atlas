@@ -1,0 +1,110 @@
+{
+  "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+  "candidate": "ETIX Lille #3 data centre, 486 Avenue Augusta Ada-King, 59410 Anzin (Nord), France",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      3.5220383,
+      50.3782836
+    ]
+  },
+  "coordinate_reference_system": "API Carto returns the parcel as GeoJSON in WGS84 longitude/latitude (EPSG:4326). The parcel was projected to EPSG:2154 (RGF93 v1 / Lambert-93) with pyproj 3.7.1 (always_xy=True), its planar area centroid computed with shapely 2.1.1, and the centroid transformed back to EPSG:4326. BD TOPO footprints were requested in EPSG:2154; address points were projected to EPSG:2154 for distances.",
+  "source_url": "https://apicarto.ign.fr/api/cadastre/parcelle?geom=%7B%22type%22%3A%22Point%22%2C%22coordinates%22%3A%5B3.522098%2C50.378216%5D%7D",
+  "raw_capture_file": "local_data/country-research-fr-it-ops-p10/apicarto-parcelle-anzin-building-point.json",
+  "raw_capture_sha256": "f3965d0d9b490505495a5a1c9c4f9eedd323aad0f94744a37d42b748d6c5a69c",
+  "retrieved_at": "2026-11-07T01:26:11.785Z",
+  "source_selection": "ETIX publishes the Lille #3 address as 486 Av. Augusta Ada-King, 59410 Anzin. The Géoplateforme geocoder returns that exact housenumber (BAN 59014_0543_00486, score 0.96) at 3.522212, 50.378692, which API Carto places on 59014000AE0459, an elongated 2.5 ha parcel (bounding box about 399 by 935 m) along the avenue. The nearest BD TOPO building to the address point, 5.2 m away, is BATIMENT0000002000270069, which lies wholly in the adjoining parcel 59014000AE0416; the next building is 66.2 m away. API Carto queried at a point inside that building (3.522098, 50.378216) returns 59014000AE0416, whose area centroid is used; the address point is 0.9 m outside AE 416, which shares a 163.6 m boundary with AE 459.",
+  "parcel": {
+    "idu": "59014000AE0416",
+    "section": "AE",
+    "numero": "0416",
+    "code_insee": "59014",
+    "commune": "Anzin",
+    "contenance_m2": 5480,
+    "computed_area_m2_epsg2154": 5491.0,
+    "bbox_extent_m": [
+      57.9,
+      161.4
+    ]
+  },
+  "centroid_epsg2154": [
+    737184.09,
+    7031303.75
+  ],
+  "centroid_inside_parcel": true,
+  "centroid_distance_to_boundary_m": 18.3,
+  "max_vertex_distance_from_centroid_m": 84.4,
+  "checks": [
+    {
+      "label": "BAN housenumber 486 Avenue Augusta Ada King 59410 Anzin (59014_0543_00486), ETIX's published Lille #3 address; on parcel 59014000AE0459",
+      "coordinates": [
+        3.522212,
+        50.378692
+      ],
+      "inside_parcel": false,
+      "distance_to_parcel_m": 0.9,
+      "distance_to_centroid_m": 47.1,
+      "distance_to_building_BATIMENT0000002000270069_m": 5.2,
+      "distance_to_next_nearest_building_m": 66.2
+    },
+    {
+      "label": "Parcel 59014000AE0459 (API Carto at the address point; contenance 24,666 m2; area centroid 3.5210665, 50.3758905 lies outside it), not used",
+      "coordinates": [
+        3.5210665,
+        50.3758905
+      ],
+      "inside_parcel": false,
+      "distance_to_centroid_m": 322.5
+    }
+  ],
+  "bdtopo_buildings": [
+    {
+      "cleabs": "BATIMENT0000002000270069",
+      "nature": "Industriel, agricole ou commercial",
+      "usage_1": "Commercial et services",
+      "footprint_m2": 1750.8,
+      "height_m": 9.5,
+      "share_inside_parcel": 1.0,
+      "contains_centroid": true,
+      "etat": "En service",
+      "date_d_apparition": "2016-01-01"
+    },
+    {
+      "cleabs": "BATIMENT0000000289170648",
+      "usage_1": "Résidentiel",
+      "footprint_m2": 413.1,
+      "distance_from_address_point_m": 66.2,
+      "on_parcel": false
+    },
+    {
+      "cleabs": "BATIMENT0000000289170547",
+      "usage_1": "Industriel",
+      "footprint_m2": 1111.3,
+      "distance_from_address_point_m": 83.5,
+      "on_parcel": false
+    }
+  ],
+  "imagery_check": {
+    "raw_capture_file": "local_data/country-research-fr-it-ops-p10/esri-etix-lille-3-anzin.png",
+    "raw_capture_sha256": "64488a81cca547a1eda3a495a7ab81351592c9b5ca597098eee410234e8d30a0",
+    "source_url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=3.5206,50.3775,3.5236,50.3793&bboxSR=4326&imageSR=4326&size=800,600&format=png&f=image",
+    "retrieved_at": "2026-11-07T01:27:06.527Z",
+    "license": "Esri World Imagery (Esri and its imagery providers); export viewed for a qualitative check only, not redistributed and not used to place or move any coordinate.",
+    "observation": "Undated export, bbox 3.5206-3.5236 E, 50.3775-50.3793 N. The centroid falls on a single dark flat-roofed building with an external equipment pad on its west side and a car park, between the avenue and a railway; consistent with a stand-alone data-centre building, not used for the coordinates."
+  },
+  "capture_files": [
+    "apicarto-parcelle-anzin-building-point.json",
+    "apicarto-parcelle-anzin-486-av-augusta-ada-king.json",
+    "geopf-geocode-486-av-augusta-ada-king-anzin.json",
+    "bdtopo-batiment-anzin-486-augusta-ada-king.json",
+    "esri-etix-lille-3-anzin.png"
+  ],
+  "capture_sha256": {
+    "apicarto-parcelle-anzin-building-point.json": "f3965d0d9b490505495a5a1c9c4f9eedd323aad0f94744a37d42b748d6c5a69c",
+    "apicarto-parcelle-anzin-486-av-augusta-ada-king.json": "cd3cae1bc3f5280c298e6761ae5bb49d11ef322afaae693b6c674e99b91c563c",
+    "geopf-geocode-486-av-augusta-ada-king-anzin.json": "bc043e2433082ccd1512134986da1718bbc256614b4258abaa510751dddf2dbe",
+    "bdtopo-batiment-anzin-486-augusta-ada-king.json": "ac6455f7e4881d747d331842a4412956e54143d87276ff2ac4d4db4b22c90883",
+    "esri-etix-lille-3-anzin.png": "64488a81cca547a1eda3a495a7ab81351592c9b5ca597098eee410234e8d30a0"
+  },
+  "method": "shapely 2.1.1 planar area centroid of the cadastral parcel in EPSG:2154 (pyproj 3.7.1), transformed to WGS84; containment and distances computed in EPSG:2154; BD TOPO buildings tested for intersection with the parcel and containment of the centroid."
+}

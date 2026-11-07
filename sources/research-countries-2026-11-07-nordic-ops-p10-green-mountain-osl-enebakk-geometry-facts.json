@@ -1,0 +1,53 @@
+{
+ "format": "datacenter-atlas-geometry-facts-v1",
+ "fragment": "nordic-ops-p10",
+ "prepared_on": "2026-11-07",
+ "method_note": "The point is the official address representation point (representasjonspunkt) of the road address 'Granittveien 110', 1914 Ytre Enebakk, Enebakk municipality (kommunenummer 3220), in Kartverket's Matrikkelen address register, served by Kartverket's open WFS 'WFS for Matrikkelen-Adresse' (wfs.geonorge.no/skwms1/wfs.matrikkelen-adresse, feature type app:Vegadresse). Green Mountain gives this address for its OSL-Enebakk data center on its own contact page (captured 7 November 2026). Two street-wide queries were captured (kommunenummer = 3220 and adressenavn = 'Granittveien'): one served in EPSG:4326 (GML axis order latitude, longitude) and one in the national projected CRS EPSG:25832 (ETRS89 / UTM 32N). The locator is the served EPSG:4326 point exactly as returned, written as GeoJSON [longitude, latitude]; the EPSG:25832 point was transformed independently with pyproj 3.7.1 (always_xy, EPSG:25832 -> EPSG:4326) and agrees within 2.6 cm (the served EPSG:4326 coordinates carry six decimals). No geocoder, offset or rounding was applied, and no commercial map, map embed, short link, PeeringDB record or OpenStreetMap service was used. ws.geonorge.no (the address REST API) answers robots.txt with HTTP 403 and was not requested.",
+ "register_metadata": {
+  "title": "Matrikkelen - Adresse (Kartverket)",
+  "catalogue_record": "https://kartkatalog.geonorge.no/api/getdata/f7df7a18-b30f-4745-bd64-d0863812350c",
+  "catalogue_capture": "geonorge-kartkatalog-matrikkelen-adresse.json",
+  "catalogue_capture_sha256": "8636138a2e196d64a25d69d3544d484c2f6f0389a20c00e89903a7fdd676c59c",
+  "licence": "Creative Commons BY 4.0 (CC BY 4.0); access constraints 'Åpne data'",
+  "capabilities_capture": "geonorge-wfs-adresse-capabilities.xml",
+  "capabilities_capture_sha256": "a363c0adde4f39c8b9ae81eceec255d4443604d80f3b47291dcccb818120c529"
+ },
+ "candidates": [
+  {
+   "candidate_id": "green-mountain-osl-enebakk-campus",
+   "facility": "Green Mountain OSL-Enebakk data center campus",
+   "operator_stated_address": "OSL-Enebakk, Granittveien 110, 1914 Ytre Enebakk, Norway (Green Mountain contact page, 'Data centers' block, captured 7 November 2026; page dateModified 2026-09-30)",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     10.993719,
+     59.757392
+    ]
+   },
+   "authority_class": "official_source",
+   "scope_class": "official_numbered_address_point",
+   "use_scope": "project_locator",
+   "precision_scope": "Official Matrikkelen address representation point for Granittveien 110, 1914 Ytre Enebakk (address id 6416464350, cadastral unit 3220-91/908, updated 2024-09-05; register flag stedfestingVerifisert = false). It marks the registered road address, not a surveyed building outline, campus boundary or data hall.",
+   "horizontal_uncertainty_metres": null,
+   "horizontal_uncertainty_unknown_reason": "Kartverket's address record gives no positional accuracy and flags the placement as not verified (stedfestingVerifisert = false); the point is an address point for a campus of about 72,200 m2 and three buildings, so the data halls can lie some distance from it.",
+   "register_feature_id": "Vegadresse.6416464350 (adresseId 6416464350, uuidAdresse 0a1ac0b2-39f0-5e64-86e4-2bd35aeaf51c)",
+   "source_url": "https://wfs.geonorge.no/skwms1/wfs.matrikkelen-adresse?service=WFS&version=2.0.0&request=GetFeature&typeNames=app:Vegadresse&count=200&srsName=urn:ogc:def:crs:EPSG::4326&filter=%3Cfes:Filter%20xmlns:fes%3D%22http://www.opengis.net/fes/2.0%22%20xmlns:app%3D%22http://skjema.geonorge.no/SOSI/produktspesifikasjon/Matrikkelen-Adresse/20200501%22%3E%3Cfes:And%3E%3Cfes:PropertyIsEqualTo%3E%3Cfes:ValueReference%3Eapp:kommunenummer%3C/fes:ValueReference%3E%3Cfes:Literal%3E3220%3C/fes:Literal%3E%3C/fes:PropertyIsEqualTo%3E%3Cfes:PropertyIsEqualTo%3E%3Cfes:ValueReference%3Eapp:adressenavn%3C/fes:ValueReference%3E%3Cfes:Literal%3EGranittveien%3C/fes:Literal%3E%3C/fes:PropertyIsEqualTo%3E%3C/fes:And%3E%3C/fes:Filter%3E",
+   "source_file": "geonorge-vegadresse-3220-granittveien-epsg4326.gml",
+   "source_sha256": "aebf0ae026c6582de7fd25a69db57ffadf07eb4f8232ebc3942378f94c175bd1",
+   "source_captured_at": "2026-11-07T01:45:25.236Z",
+   "street_check_file": "geonorge-vegadresse-3220-granittveien-epsg25832.gml",
+   "street_check_sha256": "f687cd66a1b8fe1010b1f656cea8245d2573262dd2312d8055a168d3304a27b7",
+   "street_check": "Both street-wide queries return six Granittveien road addresses in Enebakk (3220), all postcode 1914 Ytre Enebakk: numbers 2, 30, 44, 100, 110 and 112. Exactly one row has number 110 (no letter), on cadastral unit 91/908; number 112 is on the same cadastral unit 52.3 m to the south, and number 100 (unit 91/882) lies about 200 m north. Earlier queries with the wrong municipality number 3228 (Nes) returned no rows and are kept in local not-relied-wrong-municipality/.",
+   "native_epsg25832_point": [
+    612007.1,
+    6626076.8
+   ],
+   "independent_pyproj_transform_epsg4326": [
+    10.993719185,
+    59.757392213
+   ],
+   "served_minus_transformed_metres": 0.0259
+  }
+ ],
+ "site_versus_campus_review": "OSL-Enebakk is recorded as one physical site with one project for its existing operating campus: Green Mountain describes one 'data center campus' on a single 72,200 m2 area with three completed buildings (the 2020 single-tenant building with its 2022-2023 expansions, the 14.5 MW colocation building completed in December 2022 and a 10 MW building completed in 2024) and further planned expansion. No Atlas site lies within 21 km (nearest Skygard OSL1 Hovinbyen Campus, 21.50 km)."
+}

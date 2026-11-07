@@ -1,0 +1,92 @@
+{
+  "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+  "candidate": "ETIX Lille #1 data centre, 101 Boulevard Constantin Descat, 59200 Tourcoing (Nord), France",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      3.1566919,
+      50.6998181
+    ]
+  },
+  "coordinate_reference_system": "API Carto returns the parcel as GeoJSON in WGS84 longitude/latitude (EPSG:4326). The parcel was projected to EPSG:2154 (RGF93 v1 / Lambert-93) with pyproj 3.7.1 (always_xy=True), its planar area centroid computed with shapely 2.1.1, and the centroid transformed back to EPSG:4326. BD TOPO footprints were requested in EPSG:2154; address points were projected to EPSG:2154 for distances.",
+  "source_url": "https://apicarto.ign.fr/api/cadastre/parcelle?geom=%7B%22type%22%3A%22Point%22%2C%22coordinates%22%3A%5B3.156502%2C50.699966%5D%7D",
+  "raw_capture_file": "local_data/country-research-fr-it-ops-p10/apicarto-parcelle-tourcoing-101-bd-constantin-descat.json",
+  "raw_capture_sha256": "36a4ffe24c3b6bf093e7e96fecc17d5fd697f4b0988f8a97bc6bd6c6a62dcc9c",
+  "retrieved_at": "2026-11-07T01:24:59.138Z",
+  "source_selection": "ETIX publishes the Lille #1 address as 101 Bd Constantin Descat, 59200 Tourcoing. The Géoplateforme geocoder returns that exact housenumber (BAN 59599_1402_00101, score 0.98) at 3.156502, 50.699966; API Carto queried at that point returns the single parcel 59599000IM0521, whose area centroid is used.",
+  "parcel": {
+    "idu": "59599000IM0521",
+    "section": "IM",
+    "numero": "0521",
+    "code_insee": "59599",
+    "commune": "Tourcoing",
+    "contenance_m2": 1536,
+    "computed_area_m2_epsg2154": 1542.0,
+    "bbox_extent_m": [
+      59.8,
+      56.7
+    ]
+  },
+  "centroid_epsg2154": [
+    711089.94,
+    7067015.43
+  ],
+  "centroid_inside_parcel": true,
+  "centroid_distance_to_boundary_m": 14.2,
+  "max_vertex_distance_from_centroid_m": 34.0,
+  "checks": [
+    {
+      "label": "BAN housenumber 101 Boulevard Constantin Descat 59200 Tourcoing (59599_1402_00101), ETIX's published Lille #1 address",
+      "coordinates": [
+        3.156502,
+        50.699966
+      ],
+      "inside_parcel": true,
+      "distance_to_centroid_m": 21.3
+    }
+  ],
+  "bdtopo_buildings": [
+    {
+      "cleabs": "BATIMENT0000002499951684",
+      "nature": "Indifférenciée",
+      "usage_1": "Commercial et services",
+      "footprint_m2": 2068.7,
+      "height_m": 21.4,
+      "share_inside_parcel": 0.736,
+      "contains_centroid": true,
+      "etat": "En service",
+      "bdtopo_object_created": "2026-05-17"
+    },
+    {
+      "cleabs": "BATIMENT0000002501395893",
+      "nature": "Indifférenciée",
+      "usage_1": "Commercial et services",
+      "footprint_m2": 396.5,
+      "height_m": 0,
+      "share_inside_parcel": 0.001,
+      "contains_centroid": false,
+      "etat": "En service"
+    }
+  ],
+  "imagery_check": {
+    "raw_capture_file": "local_data/country-research-fr-it-ops-p10/esri-etix-lille-1-tourcoing.png",
+    "raw_capture_sha256": "b54f39e9c00f09a6fa7551a8670a13b59c9ba5270a34acdfc280acac337b759d",
+    "source_url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=3.1556,50.6992,3.1578,50.7005&bboxSR=4326&imageSR=4326&size=800,600&format=png&f=image",
+    "retrieved_at": "2026-11-07T01:27:04.540Z",
+    "license": "Esri World Imagery (Esri and its imagery providers); export viewed for a qualitative check only, not redistributed and not used to place or move any coordinate.",
+    "observation": "Undated export, bbox 3.1556-3.1578 E, 50.6992-50.7005 N. The centroid falls on a light-roofed block within a dense urban complex of large flat-roofed buildings with circular roof features, beside terraced housing; the data centre (480 m2 of IT rooms per ETIX's EED workbook) cannot be distinguished from the rest of the complex, so the point locates the address parcel only."
+  },
+  "capture_files": [
+    "apicarto-parcelle-tourcoing-101-bd-constantin-descat.json",
+    "geopf-geocode-101-bd-constantin-descat-tourcoing.json",
+    "bdtopo-batiment-tourcoing-im521.json",
+    "esri-etix-lille-1-tourcoing.png"
+  ],
+  "capture_sha256": {
+    "apicarto-parcelle-tourcoing-101-bd-constantin-descat.json": "36a4ffe24c3b6bf093e7e96fecc17d5fd697f4b0988f8a97bc6bd6c6a62dcc9c",
+    "geopf-geocode-101-bd-constantin-descat-tourcoing.json": "2fbddcd90f1543b7de4fdab672d4e44c02d1e05a24a0d4fe4c327e69194bd7d0",
+    "bdtopo-batiment-tourcoing-im521.json": "cd20e071c2f9f7198147c3132523a6f726a03135af646a8e5e9b6df0ea320026",
+    "esri-etix-lille-1-tourcoing.png": "b54f39e9c00f09a6fa7551a8670a13b59c9ba5270a34acdfc280acac337b759d"
+  },
+  "method": "shapely 2.1.1 planar area centroid of the cadastral parcel in EPSG:2154 (pyproj 3.7.1), transformed to WGS84; containment and distances computed in EPSG:2154; BD TOPO buildings tested for intersection with the parcel and containment of the centroid."
+}

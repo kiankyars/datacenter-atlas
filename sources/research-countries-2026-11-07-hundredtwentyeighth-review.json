@@ -1,0 +1,234 @@
+{
+  "reviewer": "root",
+  "reviewed_at": "2026-11-07",
+  "decision": "accepted_for_integration",
+  "update": "verified_construction_core/2026-11-07-research-hundredtwentyeighth",
+  "base_dataset": "verified_construction_core/2026-11-07-research-hundredtwentyseventh",
+  "process": "continuous: one researcher per beat, one adversarial verifier per fragment",
+  "fragments": [
+    {
+      "fragment": "africa-ops-p9",
+      "verdict": "accept",
+      "checks": [
+        "Base re-read from site/config.json: verified_construction_core/2026-11-07-research-hundredtwentyseventh (1,001 sites, 1,079 projects)",
+        "Rehashed all 7 relied-on captures (NBO1 live page, live en-sitemap, IA 2026-10-03 and 2026-06-04 sitemaps, IA 2026-06-10 NBO1 page, NBO2 release, Nairobi metro page): sha256 equals .metadata.json and sources.json content_hash; robots_checks allowed (digitalrealty.com disallows only /taxonomy/ and /node/; web.archive.org robots 404)",
+        "NBO1 page text read: 'Langata S Rd & LRC Rd, Nairobi, Kenya'; 'From single cabinets to private data center suites'; total building size 15,500 ft2 (1,450 m2); 2N UPS; N+2 cooling; Tier III, PCI-DSS, ISO 27001; 24x7 onsite security; 'Talk techs, specs, and availability' - present-tense colocation offer, company_disclosure",
+        "Version dating: diff against IA 2026-06-10 copy shows only that copy had 20,000 ft2, no Tier III, 'Request a tour'; NBO1 lastmod 2026-09-16T20:34Z in live sitemap and in IA 2026-10-03 sitemap copy, 2026-03-31 in IA 2026-06-04 copy; CDX lists no NBO1 copy after 2026-06-10 - archive-bounded modification day, same method as the published MBA2 precedent",
+        "85-day window from 2026-08-14: 2026-09-16 observation is 52 days old; observed equals source published_at",
+        "NBO2 release (dateline 7 Sep 2026) read in raw JSON body: 'Built alongside Nairobi One (NBO1), NBO2 strengthens a campus'; 'expanding its Nairobi campus'; customers connect to 100+ networks, two IXPs and a satellite teleport - campus identity context only",
+        "Metro page lists '2 Data Centers': NBO1 (Langata S Rd & LRC Rd) and NBO2 (Langata S Rd LRC Rd); DLR field_latitude/longitude -1.32226, 36.70718 identical on NBO1, NBO2 and metro pages, 5.52 km from the campus point (recomputed) - placeholder not used",
+        "Locator: inherits exactly from project c233fed8 (geometry evidence 9f023cac, campus_locator, Point -1.3497326, 36.7485148, no geometry_identity rows); base describes that point as the operator-linked NBO1 marker; no new coordinate introduced; builder _inherited_campus_locator accepts",
+        "Shared evidence: IA sitemap sources hash to existing evidence IDs 07a6564d and 4b075ef5 with identical retrieved_at and content_hash; other five source evidence IDs are new",
+        "Roles: Digital Realty operator, relationship_scope current, from the NBO1 page",
+        "Distinctness: no Atlas project for NBO1 (only NBO2 on the host site); nearest other sites iXAfrica NBOX1 15.45 km, Konza 60.63 km, Olkaria 74.11 km (recomputed haversine); no queued addition or locator correction within 5 km; queue/claims references are loc-5-p6 locator research (held) and NBO1 holds that this addition takes up",
+        "Reopen conditions of the thirty-fourth, ninety-eighth/africa-p3, mea-p5 and ops-mea-p6/hundred-twenty-fourth NBO1 holds met: archive-bounded in-window NBO1 page version, placement on the existing campus reusing its locator, DLR pair resolved as a shared placeholder",
+        "Successor screen: live sitemap still dates NBO1 to 2026-09-16; no Africa/Nairobi newsroom entry after 7 Sep 2026",
+        "No third-party personal data in changes, sources, holds or notes (release executives referred to by role only)",
+        "dryrun_fragment.py: ok (1,001 sites, 1,080 projects, 6,008 evidence rows) against hundredtwentyseventh"
+      ],
+      "residual_risks": [
+        "Operating status rests on a facility page with no explicit 'operational' wording; it is inferred from the present-tense colocation offer, Tier III/24x7 security specifications and the NBO2 release's live-campus context",
+        "The observation date is the page-version modification day (2026-09-16), not a physical event; the building-size and Tier III change does not date a physical change",
+        "The inherited Karen campus point is a Google Maps feature on the loc-5-p6 locator_replacement_pending hold; the site now has two projects on it, and any later locator_correction must cover both",
+        "Alias 'icolo.io NBO 1 Data Center' repeats the place name of the existing map-service geometry evidence (a name, not coordinates)",
+        "Digital Realty's Q3 2026 results (29 Oct 2026) were not re-read for NBO1 changes",
+        "The observation leaves the 85-day window on about 10 December 2026 and the builder's 90-day limit on 15 December 2026"
+      ]
+    },
+    {
+      "fragment": "de-ops-p10",
+      "verdict": "accept",
+      "checks": [
+        "All 16 relied-on captures rehashed: SHA-256 equals sources.json content_hash and the .metadata.json sha256; LoD2 tile 648_5478 size 137,407,037 and SHA-256 equal the official 09.meta4 metalink entry",
+        "Nürnberg Zentrum status read in the EN page capture (JSON-LD dateModified 2026-10-27T14:29:05Z = page-sitemap lastmod): established locations Nuremberg South, Nuremberg Center; table Availability/Status Nuremberg Center Ready for Occupancy; on-site walkthrough at South or Center; DE page (dateModified 14:02:16Z) Bezugsfertig",
+        "Date bound: CDX shows only the 15 Aug 2025 IA copy (dateModified 2024-06-28, none of the statements); only the DE and EN Nuremberg pages carry a 27 Oct sitemap lastmod (targeted edit, not a bulk touch); second dated source: overview page 30 Oct version, preceded by the 12 Oct 2026 IA copy (version 2026-09-07), both list Nürnberg Zentrum in the certification table under zehn Hochsicherheits-Rechenzentren",
+        "company_disclosure in the operator voice; as_of 2026-10-27 equals published_at, 11 days before 2026-11-07, inside 85 days",
+        "Locator recomputed from the raw LoD2 GML with pyproj 3.7.1/shapely 2.1.1: DEBY_LOD2_3334460 address Deutschherrnstraße 15,17 Nürnberg, Gemeindeschluessel 09564000, function 31001_2000, 257.0 m2, GroundSurface centroid 649578.908/5479958.452 EPSG:25832 -> [11.0639195, 49.4538566] exactly; centroid inside; 15a, 19 and the two unaddressed buildings and the 5-building union centroid (25 m west) reproduce",
+        "Locator source acceptable: Bavarian LDBV LoD2 government building model, CC BY 4.0 recorded; no map-service or PeeringDB input; Google Maps placeholder on the locations page not used",
+        "Identity: locations page Nürnberg Zentrum Deutschherrnstraße 15–19, 90429 Nürnberg; DQS EN 50600 certificate (pdftotext) scope Rechenzentrum Nürnberg Mitte, Deutschherrnstraße 15-19; Center page names NBG2, NBG3, NBG4; ALKIS Parzellarkarte shows 19, 15/17 and 15a on the group and the point falls in the 15/17 block; DOP40 (flight 13.06.2025) consistent",
+        "Scope reviewed_site_locator, compiled_reference, coordinate_transform; uncertainty null with reason (75.8 m to far end of the address group)",
+        "Distinctness: no dataset record, source record or identity mapping names Deutschherrnstraße, Nürnberg Zentrum/Mitte or NBG2-4; nearest sites Hetzner Nuremberg 3.6 km and noris NBG6 6.9 km (recomputed); no other queue fragment, claims row or sources/*-holds.json covers the facility; one project on the new site",
+        "BA3 refresh: EN page reads Under Construction (2026) in the status row and Under Construction card for Nuremberg South BA3; DE page Im Bau (2026); Ready in 2027 not used; strictly newer than the existing 2026-08-13 under_construction; scope unchanged; South page (6 Nov) has no completion",
+        "Roles: noris network AG operator, relationship_scope current; commercial colocation, not a demonstrator or institutional system",
+        "No third-party personal data: the certificate signatory and phone numbers are not copied",
+        "dryrun_fragment.py ok: 1,002 sites, 1,080 projects, 6,019 evidence rows against 2026-11-07-research-hundredtwentyseventh"
+      ],
+      "residual_risks": [
+        "The 27 Oct page version is bounded below only by an Aug 2025 archive copy; the in-window date for the BA3 Under Construction label rests on the operator dateModified and sitemap lastmod (same pattern accepted for Cologix); Nürnberg Zentrum also has the IA-bounded 30 Oct overview page",
+        "The operator does not say which building of Deutschherrnstraße 15–19 holds NBG2-NBG4; the point is the 15/17 address building, not a data-hall footprint",
+        "Ready for Occupancy is marketing status text; no capacity or load is asserted"
+      ]
+    },
+    {
+      "fragment": "fr-it-ops-p10",
+      "verdict": "accept",
+      "checks": [
+        "All 19 relied-on captures rehashed: sha256 matches sources.json content_hash and .metadata.json sha256/bytes/url; 3 geometry-facts files match geometry_facts_sha256",
+        "Decisive statement read in live capture: 'We operate four fully interconnected sites' with Lille #1 101 Bd Constantin Descat Tourcoing, #2 1681 Rue des Saules Sainghin-en-Melantois, #3 486 Av. Augusta Ada-King Anzin; French version same day says 'Nous y exploitons quatre sites'",
+        "dateModified 2026-10-15T04:21:45Z (JSON-LD and article:modified_time) equals page-sitemap lastmod; IA raw copy 20260921054005 shows preceding version dateModified 2026-07-06 with same statement/site list, and carries a 2026-09-11 asset cache-buster; version bounded 2026-09-21..2026-11-07, inside the 85-day floor 2026-08-14",
+        "IA 20260520 copy SHA1-base32 matches CDX digest exactly; 20260921 copy differs from CDX digest (likely content-encoding) but no redirect and internal dates consistent",
+        "Source kinds: ETIX pages company_disclosure (primary); geocoder/API Carto/BD TOPO government_record",
+        "Locators recomputed independently with pyproj 3.7.1/shapely 2.1.1 from raw API Carto parcels (EPSG:2154 area centroid): all three within 0.004 m of claimed points; centroids inside parcels at 21.3/18.3/14.2 m from boundary",
+        "BAN housenumbers 1681 Rue des Saules and 101 Bd Constantin Descat fall inside parcels ZI0325 / IM0521; 486 Av. Augusta Ada King point is 0.89 m outside AE0416 on strip AE0459, with BD TOPO building BATIMENT0000002000270069 (2016, commercial, 1,750.8 m2) 5.2 m away wholly in AE0416; next building 66.2 m",
+        "Locator sources acceptable: Geoplateforme/BAN official geocoder and IGN API Carto cadastre; no Google/Bing/Apple/HERE/OSM/PeeringDB; Esri imagery used only as a qualitative check (viewed: flat-roofed plant buildings at Sainghin and Anzin, dense Plaine Images-type complex at Tourcoing)",
+        "EED workbook (created 2026-10-29) checked: Lille#1 Tourcoing 2016/09 480 m2, Lille#2 Sainghin 2010 1120 m2, Lille#3 Anzin 2016 1440 m2; operator name Etix Everywhere Holding France; no personal data copied",
+        "Roles: operator/current for ETIX supported by the page and EED workbook",
+        "Distinctness: no ETIX/address/commune hits in current dataset sites/projects/evidence/source-records/identity-mapping, other queue fragments or sources/*-holds.json (only ETIX Bangkok mention in a Thai fragment); nearest Atlas sites 13.6-41.3 km; no queued/held point within 5 km",
+        "One project per new site; successor review: newsroom/post sitemap show no sale or closure",
+        "dryrun_fragment.py: ok (1,004 sites, 1,082 projects)"
+      ],
+      "residual_risks": [
+        "Lille #1 point is the address parcel centroid inside a larger urban building complex; the IT rooms are not separately located",
+        "Lille #3 locator uses the parcel of the only building next to the BAN point (BAN point itself is 0.9 m outside that parcel)",
+        "Lille #2 and held Lille #4 share an identical 3 200 kW / 810-rack label on the ETIX page and Lille #4's street point is 0.37 km away; a future Lille #4 admission must check whether it is part of the same campus",
+        "Status rests on a bounded page-modification date of a long-standing present-tense statement, not on a dated event"
+      ]
+    },
+    {
+      "fragment": "global-2026-q4-p9",
+      "verdict": "accept",
+      "checks": [
+        "Rehashed captures: Q3 SRP b525b99e... (both p6 and p9 copies, 3,999,242 bytes) = content_hash and existing evidence c50d3a91; Q2 SRP 43a64943...; County buildings 0cf88a62...; County campuses 92231fe9...; layer-10 definition 410187f2...; VA-9 brochure 2beb6b34... = Atlas evidence cfc9c29d; geometry facts 21e074ae... matches sources.json",
+        "Read Q3 SRP p23 via pdftotext: 'VA-9 Phase 1 (2) 14.0 14.0 100.0% $34.4 $142.7 $173.5 Q4 2026' and 'LON-3 Future Phases 24.7 24.7 100.0% $38.2 $339.2 $391.9 Q1 2027'; neither carries footnote (1) (construction not commenced, CHI-1 only)",
+        "Q3 SRP p22 operating portfolio: London LON-1/LON-2 only, Northern Virginia VA-1..VA-7 only, so neither LON-3 nor VA-9 was in service at 30 Sep 2026",
+        "Quarter-end basis read on p2 ('All figures for the quarter ended September 30, 2026 unless noted'); PDF created 5 Nov 2026; as_of 2026-09-30 is 38 days before 2026-11-07, inside 85 days; company_disclosure is primary",
+        "Strictly newer than existing 2026-06-30 observations; same status and scope; Q2 SRP p23 comparison rows confirmed (LON-3 25.0 MW, VA-9 Phase 1 14.0 MW, Q4 2026)",
+        "Ninety-third hold (refresh-operations-p4) named the Q3 supplemental as VA-9's reopen condition; hundred-twenty-sixth hold deferred LON-3 for the beat limit; both reopen conditions met",
+        "Locator recomputed from raw County GeoJSON: OBJECTID 8 'Iron Mountain Data Center VA-8/9', 11530 ELEVATE DR 100, GPIN 7596-55-9338 at -77.54264965, 38.77171048 -> 7dp matches",
+        "Displacement recomputed: haversine 118.06 m, geodesic 117.88 m (pyproj 3.7.1); under 25 km",
+        "Shapely 2.1.1: new and old points both inside County campus 'Iron Mountain' REZ2021-00022 (145.21 geodesic acres); new point 68.7 m inside boundary; all County VA-1..VA-7, VA-10 and VA-8/9 points inside; Manassas Point campus separate (1.4-1.55 km)",
+        "Same campus: same operator (Iron Mountain), building named VA-8/9 at the 11530 Elevate Dr address the base record gives for VA-9; brochure says VA-9 'is located in the same building as VA-8' on the 142-acre Manassas site",
+        "Locator source is a Prince William County government GIS layer (ArcGIS REST, gisweb.pwcva.gov), not a forbidden map service or PeeringDB; robots.txt 404 logged in compliance.log; native CRS wkid 102746/2283 confirmed in layer definition",
+        "replaces_geometry_evidence_id 375685f2 is the geometry evidence of the site's only project d83dc321",
+        "Distinctness: only other Atlas site within 3 km is Yondr Hornbaker Road (1,354 m, different operator); no other queue fragment changes these records or has a point within 3 km; Iron Mountain mentions in other fragments are distinctness notes only",
+        "No third-party personal data: County campus LastEditUser field not copied into changes, sources or holds",
+        "Corrected a page citation in the Q3 source's date_semantics (quarter-end statement is on page 2, not page 1)",
+        "dryrun_fragment.py ok against verified_construction_core/2026-11-07-research-hundredtwentyseventh"
+      ],
+      "residual_risks": [
+        "County Data Center Buildings layer still shows VA-8/9 as 'Planned' with no permit case (last edited 6 Aug 2026); the under_construction refresh rests on Iron Mountain's Q3 disclosure of $34.4M Q3 spend. The same County campus layer lists the whole campus as 'Planned' despite seven completed buildings, so its lifecycle fields appear to lag",
+        "VA-9 Phase 1 and Phase 2 rows carry identical investment figures in both Q2 and Q3; per-phase spend may be an allocation rather than separately measured work",
+        "The County point is an undated building marker with no stated accuracy; it was reprojected server-side from NAD83 Virginia North without a named datum transformation (about 1-2 m)",
+        "The 11530 Elevate Drive address for VA-9 comes from the County layer and the base record; the operator's brochure gives no street address",
+        "LON-3 capacity restated from 25.0 to 24.7 MW; the record keeps its '25 MW Build' name and scope"
+      ]
+    },
+    {
+      "fragment": "nordic-ops-p10",
+      "verdict": "accept",
+      "checks": [
+        "All 14 relied-on captures rehashed: sha256 equals both .metadata.json and source content_hash; retrieved_at equals metadata",
+        "Equinix Q3 2026 presentation (pdftotext slide 36): Helsinki 5 IBX; Stabilized HE3-HE6, Expansion HE7; Owned HE5*, HE6, HE7 (no ground-lease mark on HE6/HE7); slide 47 definitions confirm Phase 1 / final phase operating before 2025-01-01; published 2026-10-28, observation 2026-09-30 within 85-day floor 2026-08-14",
+        "Presentation source fields equal published evidence row 5b8d90a9 exactly (merge); listing source equals row 3a9c56a1, and both listing captures are byte-identical",
+        "IA raw copies of Equinix HE6 (3 Oct) and HE7 (11 Oct) pages read: addresses Sinimaentie 12 02630 Espoo and Sinimaentie 8, 02630 Espoo; specs 1,756 m2 / 1,450 m2 as summarised",
+        "Helsinki capital-region address register (government, open licence 1.0 per metadata id=181): one Sinimaentie 12 row (133848) and one unlettered 8 row (133849), plus 8a/8b; served EPSG:4326 points equal locators; independent pyproj 3.7.1 EPSG:3879->4326 transform agrees within 3.1 mm / 2.6 mm",
+        "HE6-HE7 geodesic distance 212.9 m; HE7-8a 160.1 m, HE7-8b 178.9 m, as stated; separate sites consistent with existing HE3/HE4/HE5 separate-site treatment",
+        "Green Mountain OSL-Enebakk IA copy of 11 Oct 2026 read: present-tense 'currently occupies the first data center building', three completed buildings (2020, Dec 2022, 2024); dateModified 2026-09-09 bounded by 7 Jun 2026 copy (dateModified 2026-04-27, older figures); live page unchanged; same route as the published FRA-Mainz IA-copy precedent (company_disclosure with source_observation_date)",
+        "Green Mountain contact page lists OSL-Enebakk at Granittveien 110, 1914 Ytre Enebakk under Data centers (HQ is Stavanger, not used)",
+        "Kartverket Matrikkelen-Adresse WFS (CC BY 4.0 per Geonorge catalogue capture): exactly one Granittveien 110 in kommune 3220 (Vegadresse.6416464350, 91/908, stedfestingVerifisert false); GML lat-lon order handled; EPSG:25832 point transforms to locator within 2.6 cm",
+        "No locator from Google/Bing/Apple/HERE/OSM/PeeringDB or map widgets; all locators are government address-register points for operator-published addresses",
+        "Distinctness: no keyword hits (Sinimaentie, Granittveien, Enebakk, HE6, HE7) in current dataset files; nearest Atlas records 6.1-6.3 km (Microsoft Espoo) and none within 12 km of Enebakk; no pending queue addition within 5 km; only prior mentions are the ops-nordics-p6 and nordics-p1 holds being taken up; claims.tsv consistent",
+        "Roles: Equinix operator+owner current from presentation Owned column; Green Mountain operator current only",
+        "No third-party personal data in changes, sources, holds, geometry facts or notes",
+        "dryrun_fragment.py ok: sites 1004, projects 1082 against verified_construction_core/2026-11-07-research-hundredtwentyseventh"
+      ],
+      "residual_risks": [
+        "Shared Equinix presentation evidence title names slide 35 (AMER) because it is copied from the published row for merging; the Helsinki data are on slide 36",
+        "HE7 address could be read as covering divided-property addresses 8a/8b (160-179 m away); stated in uncertainty reason",
+        "HE6 and HE7 kept as separate sites 213 m apart; a later review could merge them as one Equinix Sinimaentie campus",
+        "OSL-Enebakk status rests on an archived undated operator page whose occupancy sentence predates the September revision; accepted on the FRA-Mainz IA-copy precedent with the revision bounded by the June copy",
+        "Kartverket flags the Granittveien 110 placement as not verified; the campus is about 72,200 m2 so data halls may lie some distance from the point"
+      ]
+    },
+    {
+      "fragment": "uk-ops-p10",
+      "verdict": "accept",
+      "checks": [
+        "All 11 relied-on captures rehashed: sha256 matches sources.json content_hash and each .metadata.json (presentation PDF from country-research-ops-nova-us-p6, 2b2d3aad...; 3 EA register JSONs; 5 Internet Archive id_ copies; 2 GOV.UK decision PDFs); geometry facts files match their recorded sha256",
+        "Status: slide 36 of Equinix Q3 2026 earnings presentation (PDF CreationDate 2026-10-28, title slide 'Presented on October 28, 2026') read with pdftotext and rendered at 110 dpi: London Stabilized LD3-LD8, Expansion LD9 and LD10; Manchester Stabilized MA1, MA3 and MA4, Expansion MA5; slide 47 definitions (Stabilized: final phase operating before 2025-01-01; Expansion: Phase 1 operating before 2025-01-01) and slide 30 cabinets billed confirmed",
+        "company_disclosure, primary; observation 2026-09-30 quarter end, 38 days before 2026-11-07, inside the 85-day window (from 2026-08-14); same evidence row 5b8d90a9 and as_of semantics as published Equinix projects (DC13, DC14, HE3-HE5)",
+        "LD9 scoped to operating data centre only; further Expansion phase excluded; no opening date or capacity asserted",
+        "Locators: EA installations register (government_record, OGL conditional licence) published lat/long copied exactly: LD8 51.498163,-0.014911 (EPR/DP3906BE), LD9 51.530532,-0.258024 (EPR/TP3500PB), MA3 53.468015,-2.293397 (EPR/MP3822ST); pyproj 3.7.1 EPSG:27700->4326 of register eastings/northings gives 0.81, 0.81 and 1.45 m offsets",
+        "Decision-document NGRs recomputed: LD8 TQ 37882 79559 is 8.5 m from the register point; LD9 TQ 21070 82738 is 139.8 m east; disclosed in uncertainty_reason with uncertainty unknown",
+        "Full EA listing (uk-planning-portals-p6 capture) confirms nearest other installations: Colt Powergate EPR/DP3107LF 89 m from LD9 point (123 m from NGR), Cloud House 299 m from LD8, nothing within 400 m of MA3 except Whitworth Bros mill",
+        "Identity: register holder EQUINIX (UK) LIMITED with premises '6/7/8/9, LD8', '2 Powergate Business Park', 'Equinix MA3, Joule House'; archived Equinix IBX page address blocks (3 Oct 2026) give the same addresses and postcodes; MA3 meta blurb 'Reynolds House' disclosed as stale",
+        "Locator sources acceptable: government register; no commercial map, widget, PeeringDB, OSM or geocoder; Equinix map-widget constants not used",
+        "Distinctness: keyword and distance screens against hundredtwentysixth and the now-current hundredtwentyseventh (sites.csv, projects.csv, evidence.csv, source-records.json, identity-mapping.json), every queue fragment's changes.json/holds.json and sources/*-holds.json: no LD8/LD9/MA3 record; nearest Atlas sites Telehouse Docklands 1.76 km, Vantage LHR2 0.30 km, Datum Manchester 10.1 km; only leads in thirtyfourth and fiftyeighth holds, which these reopen",
+        "Roles operator/current for Equinix (presentation) and Equinix (UK) Limited (permit holder); one project per new site; commercial colocation scope",
+        "No personal data in changes, sources or holds; robots records present for every requested host",
+        "dryrun_fragment.py ok against hundredtwentyseventh: 1,004 sites, 1,082 projects, 6,013 evidence (+3/+3/+10)"
+      ],
+      "residual_risks": [
+        "Operational status rests on a quarter-end portfolio listing rather than a facility-specific statement (same basis as accepted Equinix fragments)",
+        "LD9 register point is 139.8 m from the decision-document NGR and 89 m from Colt's separate Powergate data centre; no site plan or basemap check was possible",
+        "MA3 register point (MCP permit) has no second government grid reference to cross-check; Equinix's own meta blurb names Reynolds House",
+        "Presentation PDF was captured by ops-nova-us-p6 although the host robots.txt answers 403; no new request made",
+        "LD9 Expansion definition on slide 47 also covers a new phase opened on or after 2025-01-01; summary omits that clause but the operating status is unaffected"
+      ]
+    },
+    {
+      "fragment": "us-colo-metros-p9",
+      "verdict": "accept",
+      "checks": [
+        "All 17 relied-on captures rehashed: sha256 equals content_hash and .metadata.json (HTTP 200) for each; the results release and IR list re-captures are byte-identical to the ops-nova-us-p6 captures",
+        "Q3 2026 presentation (company_disclosure, published 2026-10-28) slide 35 read via pdftotext and rendered at 90 dpi: Dallas Stabilized DA1/DA2/DA3/DA6 owned; Denver DE2 Expansion owned; Miami MI1 Expansion owned; Change Summary only Closed IBX TR4; slide 47 definitions and slide 30 cabinets billed confirmed",
+        "Status operational as_of 2026-09-30 (quarter end) <= published 2026-10-28; 38 days before 2026-11-07, inside the 85-day floor (2026-08-14); same basis as existing Equinix rows (DC13, Filigree Court, HE3-5)",
+        "Reused evidence fields match existing Atlas rows 5b8d90a9, e3c956b7 and 240f3cb0 exactly",
+        "Identity: archived Equinix pages give 1950 N Stemmons Fwy suites 1034/2027/1039A&2048/3050 (7-storey), 50 NE 9th St (6-storey) and 335 Inverness Dr S (1-storey)",
+        "Locators recomputed from raw parcel JSON (UTM 14N/17N/13N, EPSG:5070 cross-check; pyproj 3.7.1, shapely 2.1.1): all three centroids match to <=0.01 m, inside parcel at 108.8/43.6/75.1 m from edge",
+        "Locator sources are government parcel services (TxGIO StratMap, Miami-Dade County GIS, Colorado Public Parcels); no map service, widget or PeeringDB coordinates",
+        "Cross-checks recomputed: Dallas 9-1-1 suite points 18.3-69.4 m inside parcel, DA11 point 43.0 m outside; Miami appraiser site point 0.6 m and Census point 43.0 m; Colorado 335 Inverness Dr S address point 66.5 m on the same parcel",
+        "Parcel owners of record: EQUINIX LLC (Dallas, Douglas); Verizon Data Centers V LLC (Miami) disclosed, with the owner role relying only on Equinix's Owned column",
+        "Distinctness: no Atlas site within 4.3 km (Dallas: Equinix DA12 4.31 km), 12.6 km (Miami: Iron Mountain MIA-1) or 0.93 km (Denver: DataBank DEN1, different operator and parcel); no name or address matches in sites/projects/evidence/source-records/identity-mapping; no pending queue addition or correction within 5 km; related holds (sixty-eighth Infomart TDLR lead, ninety-first DataBank lead) are lead-only",
+        "Roles owner/operator Equinix with relationship_scope current from the presentation",
+        "Fixed geometry facts for MI1 and DE2: use_scope/decision said project_locator while changes.json uses campus_locator; aligned to campus_locator and updated geometry_facts_sha256 in sources.json",
+        "Removed from the NY4 hold a comparison against the map point embedded in Equinix's page script (map-widget data)",
+        "No private individuals' data in sources, summaries, URLs, holds or geometry facts",
+        "dryrun_fragment.py ok against 2026-11-07-research-hundredtwentyseventh (1004 sites, 1082 projects)"
+      ],
+      "residual_risks": [
+        "Status rests on a portfolio listing (Stabilized/Expansion category for the quarter), not a facility-specific statement; consistent with earlier accepted Equinix admissions",
+        "Parcel centroids locate the properties (18-acre Infomart, 3.1-acre MI1 block, 13-acre DE2 lot) rather than the data halls; horizontal uncertainty is unquantified",
+        "MI1's owner of record is Verizon Data Centers V LLC; the Equinix ownership role relies on Equinix's own Owned column",
+        "The PDF host now refuses robots.txt, so the status capture is the existing ops-nova-us-p6 capture"
+      ]
+    },
+    {
+      "fragment": "us-ga-oh-az-in-p9",
+      "verdict": "accept",
+      "checks": [
+        "All 11 sources rehashed: raw capture sha256 equals metadata sha256 and sources.json content_hash; URLs match capture metadata; robots checks recorded as allowed (citydata.mesaaz.gov 200 crawl-delay 1; assessor, MCAQD and Census hosts 404); no credentials",
+        "PA0826-4 capture reused from local_data/country-research-us-ga-sc-nc-p3 (same hash as Atlas evidence 68e58476, identical url/retrieved_at/title/publisher/license); 7 Nov re-capture byte-identical",
+        "Mesa Elliot: permit row PMT26-15404 'Expedite - Data Center, Building A' (229,416 sq ft single-storey data center) opened 2026-08-20, status 'Revisions Required' status_date 2026-10-27, no issue date, parcel 31410777; dataset dataUpdatedAt 2026-11-06 >= as_of; 11 days old",
+        "Mesa Elliot announced reading follows published Thistle Landing precedent (announced from dated city application naming the data center); the ninety-second hold left this reading to review; civil/grading permits kept as context only",
+        "Mesa Elliot locator recomputed from raw assessor polygon in EPSG:32612: centroid (-111.6087212, 33.3468299) exact; 42.79 geodesic acres; 132.7 m from edge; city inspection geocode (317 m) and MCAQD PHX 062 point (323 m) inside parcel; owner AMAZON DATA SERVICES INC, situs 10437 E ELLIOT RD",
+        "Mesa Elliot distinct from AWS PHX065 (10464 E Pecos Rd, parcel 304-34-015G, ~5.7 km south); only Atlas mention is evidence 2072e28d context; nearest sites NTT 0.92 km, EdgeCore 1.14 km, CyrusOne 1.64 km, all different parcels/owners",
+        "ATL088: PA0826-4 PDF text read (pdftotext): Douglas County, 'Amazon Data Services, Inc ATL088 Campus', application 30292, 2341 Echo Road Lithia Springs 30122, 'Construct and operate a data center'; PDF created 2026-08-26; 73 days old, inside 85-day window",
+        "ATL088 locator: Census geocoder capture read; exact match 2341 ECHO RD LITHIA SPRINGS GA 30122, Douglas County 13097, TIGER edge 16649788 R 2301-2419; rounded point (-84.6003177, 33.7414608) matches; official open geocoder permitted by locator rule; precedent fe8ac418/00400957",
+        "ATL088 successors: PA0926-1..5, PA1026-1..4a, PA1126-1/1a and draft-permits page contain no ATL088/30292 entry; aws-douglas-county-georgia is a multi_site_program record with admin2 point, not a site; nearest Atlas sites Flexential 1.57 km, DC BLOX 1.61 km",
+        "EdgeCore PH02 Phase 2: permit row PMT24-13760 'EdgeCore PH02 - Phase 2' (floors 1-3 build-out, MEP, generators; USD 370,941,467) status 'C of C Issued' 2026-11-04; inspections show plumbing/electric/mechanical finals approved 2026-11-03, Building Final and C of C approved 2026-11-04; PMT24-20204 Phase 3 still 'Issued'",
+        "EdgeCore locator inheritance: project 441174d1 is the only project on site vcc-site-54d4a697323404ecfc35; geometry evidence 032583e0 and identity evidence 4e246ced/88544cac/9ad305ee match the 127th dataset; city geocode 365 m from campus point recomputed",
+        "Completion scoped to PMT24-13760 works only; operation, capacity and tenants not claimed; phase projects at imported campus sites have precedent (QScale Building B, Riot phases 3-4, etc.)",
+        "Roles checked: owner/current (assessor) for Elliot; operator/intended (EPD applicant) for ATL088; none for EdgeCore phase",
+        "Distinctness re-run against current dataset 2026-11-07-research-hundredtwentyseventh (sites, projects, evidence, source-records, identity-mapping), all queue changes/holds, claims.tsv and sources/*-holds.json: no duplicate; only one project per new site",
+        "No third-party personal data in changes, sources, holds or notes (PDF author, Socrata owner and firm contacts not copied)",
+        "dryrun_fragment.py ok against hundredtwentysixth and again against hundredtwentyseventh (+2 sites, +3 projects)"
+      ],
+      "residual_risks": [
+        "Elliot Road 'announced' rests on an unissued building application (Revisions Required); applicant fields were not captured, so Amazon identity rests on assessor ownership and the county 'PHX 062' registration",
+        "as_of for Elliot is the 27 Oct plan-review status date rather than the 20 Aug filing date; both inside the window",
+        "ATL088 point is a Census address-range interpolation on Echo Road with unknown offset from the campus; no parcel geometry reachable",
+        "EdgeCore PH02 Phase 2 is a build-out package inside an existing building whose tenant fit-outs already had certificates of occupancy; completion is scoped narrowly and may be read as overlapping the campus-level project",
+        "Some earlier Mesa records cross-file 'PHX 065'/'PHX066' designations between the Elliot and Pecos parcels; the new site adopts neither designation",
+        "Combined dry run with johor-batam-p10 fails on that fragment's own status refresh (fails alone too), not on this fragment"
+      ]
+    }
+  ],
+  "packet_pins": {
+    "definitions/atlas-research-hundredtwentyeighth-2026-11-07.json": "f6f4c57424987cda2711dc35f1e351f59644cdadd6bad824231d5989743fd1ed",
+    "sources/research-countries-2026-11-07-hundredtwentyeighth-primary-sources.json": "b44a32f04b93c22f2b5383133cf578290d41b7bb10d5a55abbf96d3dad978045",
+    "sources/research-countries-2026-11-07-hundredtwentyeighth-actions.json": "f0d0d0400061c3b007e14ceb02f86eab37b3643e389cad725da5a68cdf81c2b0",
+    "sources/research-countries-2026-11-07-hundredtwentyeighth-holds.json": "f672119dfc0a6707980df2e3729a3a776f8994657b27480ff362822fed5634b3"
+  },
+  "raw_captures_redistributed": false
+}
