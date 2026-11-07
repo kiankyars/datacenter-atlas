@@ -1,0 +1,45 @@
+{
+  "candidate_id": "iron-mountain-lon-1-slough-dundee-road",
+  "decision": "Selected the national grid reference that Iron Mountain (UK) Data Centre Limited's environmental permit application EPR/LP3020MX/A001 gives for the middle of the site (Form Part B2, question 2a, site name 'Iron Mountain Data Centres LON-1', 724-729 Dundee Road, Slough SL1 4JU): SU 94926 81766 (British National Grid easting 494926, northing 181766), converted to WGS84 with pyproj 3.7.1 as latitude 51.526838, longitude -0.633041. It is the applicant's single site-centre reference in a document published by the Environment Agency on its consultation hub, used as the campus locator of LON-1; it is not a building outline, permit boundary or surveyed position.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -0.633041,
+      51.526838
+    ]
+  },
+  "authority_class": "compiled_reference",
+  "derivation": "coordinate_transform",
+  "scope_class": "environmental_permit_application_site_grid_reference",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-uk-south-p1/im-sl14ju-part-b2.pdf",
+  "source_sha256": "a1f9305dacbe20ff9ee312812960e9b6d3a93344e28a59d718490523be256006",
+  "source_url": "https://consult.environment-agency.gov.uk/psc/sl1-4ju-iron-mountain-uk-data-centre-limited-a001/supporting_documents/application-bespoke-a001-form-part-b2-30062026-19112025_41006693400001_part_b2_formpdf",
+  "retrieved_at": "2026-10-22T16:38:15.632Z",
+  "selected_properties": {
+    "form": "Form EPB: Application for an environmental permit - Part B2 general - new bespoke permit (EPB2 Version 19, September 2023), 14 pages",
+    "question_2a_site_name": "Iron Mountain Data Centres LON-1",
+    "question_2a_address": "724-729 Dundee Road, Slough, United Kingdom",
+    "question_2a_postcode": "SL1 4JU",
+    "question_2a_national_grid_reference_for_the_middle_of_the_site": "SU 94926 81766",
+    "question_2b": "Installation; national grid reference for the regulated facility 'As in 2a above'",
+    "application": "EPR/LP3020MX/A001 (Section 1.1 Part A(1)(a), burning any fuel in an appliance with a rated thermal input of 50 or more megawatts)"
+  },
+  "transform": {
+    "source_crs": "EPSG:27700 (OSGB36 / British National Grid)",
+    "target_crs": "EPSG:4326 (WGS 84), axis order lon/lat (always_xy)",
+    "tool": "uv run --no-project --with pyproj==3.7.1 --with shapely==2.1.1 python -I (PROJ 9.5.1)",
+    "input": [494926, 181766],
+    "output_lat_lon": [51.526838, -0.633041],
+    "rounding": "Six decimal places; the rounded point is 0.03 m from the unrounded transform output.",
+    "check": "The same transformer applied to the Environment Agency register's own easting and northing for permit EPR/TP3120LE (Iron Mountain LON3, 495857, 181041) gives 51.520164, -0.619822, 0.7 m from the register's published latitude and longitude (51.520159, -0.619815), so the transform agrees with the regulator's conversion at sub-metre level."
+  },
+  "consistency_checks": {
+    "operator_address": "Iron Mountain's London data-centres page (Internet Archive raw copy of 8 May 2026, local_data/country-research-euro-operators-p11/ia-irm-london.html) lists 'LON-1: 724-729 Dundee Road Slough, SL1 4JU, UK', 'LON-2: 110 Buckingham Avenue Slough' and 'LON-3 111 Buckingham Avenue Slough, SL1 4PF', matching the form's site name, address and postcode.",
+    "government_record": "GOV.UK's advertisement of application EPR/LP3020MX/A001 (first published 13 August 2026; local govuk-lon1-advert-content.json and govuk-lon1-advert-body.json, captured 7 November 2026) gives the regulated facility address 'SL1 4JU, Iron Mountain (UK) Data Centre Limited Dundee Road Slough SL1 4JU'.",
+    "site_plan": "The application's site location plan (Figure 001, SLR drawing SDC-SLR-XX-XX-D-EM-000001 P01, 1:10,000; local_data/country-research-uk-south-p1/im-sl14ju-site-location-plan.pdf, sha256 23f35cdc...) outlines the environmental permit boundary as a single plot on the northern edge of the Slough Trading Estate, about 270 m east-west by 150 m north-south (the outline's bounding box measured against the plan's 1:10,000 scale bar on a 150 dpi rendering), bounded on the east by Dundee Road and on the north by Scafell Road; the grid reference is described by the form as the middle of that site.",
+    "nearby_records": "Atlas records within 2 km: Equinix Slough Campus (LD4, LD5, LD6, LD7 and LD10), 585 m south-east, and Iron Mountain LON-3 London Data Center (111 Buckingham Avenue), 1,159 m south-east. Both are different plots with their own permits (EPR/LP3303PR and EPR/TP3120LE).",
+    "not_used": "No commercial map, map widget, map-link coordinate, geocoder, postcode centroid, PeeringDB, OpenStreetMap, town centre or estate centroid is used. The Iron Mountain page's map script was not read for coordinates."
+  },
+  "scope_note": "The point locates the LON-1 installation's permit site at 724-729 Dundee Road; uncertainty is left unknown because the form states no accuracy and the permit boundary spans about 270 m by 150 m."
+}

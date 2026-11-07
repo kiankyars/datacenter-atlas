@@ -1,0 +1,65 @@
+{
+ "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+ "candidate": "NEXTDC B2 Brisbane (454 St Pauls Terrace, Fortitude Valley) and B1 Brisbane (20 Wharf Street, Brisbane City): official Queensland address-point locators",
+ "prepared_at": "2026-11-07",
+ "service": "https://spatial-gis.information.qld.gov.au/arcgis/rest/services/PlanningCadastre/LandParcelPropertyFramework/MapServer (Queensland Government spatial services; layer 0 'Addresses' from the Queensland Address Management Framework, updated nightly, sourceSpatialReference wkid 4283 GDA94; layer 4 'Cadastral parcels' from the Digital Cadastral Database, updated nightly). Layer copyright text: '(c) State of Queensland (Department of Resources) 2024'; no open licence is stated in the service metadata. robots.txt of spatial-gis.information.qld.gov.au captured 2026-11-07 before the first request (local robots/robots-spatial-gis.information.qld.gov.au.txt) has 'user-agent: *' with no Disallow lines.",
+ "operator_address_source": {
+  "file": "local_data/country-research-apac-operators-p11/nextdc-contact-us.html",
+  "sha256": "3384b1ff5b32c0005b3ceb93d6465186b108d602d1a7a91f67252cab7fb88423",
+  "statement": "NEXTDC's contact page (requested as https://www.nextdc.com/contact-us, served from https://www.nextdc.com/contact, captured 2026-11-07T02:22:24.871Z) lists 'B1 Brisbane 20 Wharf Street Brisbane, QLD, 4000' and 'B2 Brisbane 454 St Pauls Terrace Fortitude Valley, QLD, 4006'. The page's 'Get directions' links point to a commercial map service and were neither followed nor read for coordinates."
+ },
+ "facilities": {
+  "b2": {
+   "facility": "NEXTDC B2 Brisbane",
+   "operator_address_statement": "454 St Pauls Terrace, Fortitude Valley, QLD, 4006 (NEXTDC contact page); the B2 facility page gives the locality 'Fortitude Valley QLD' and the sitewide facility list 'Fortitude Valley | 6,000m2 | 12MW'.",
+   "address_point": {
+    "file": "local_data/country-research-apac-operators-p11/qld-address-454-fortitude-valley.json",
+    "sha256": "62daeed42c30654be1ad5306ea88aabbe8b5a023dbe0b9ec2e6706fa86ceb41b",
+    "query": "layer 0 attribute query, outFields=*, returnGeometry=true, outSR=4326",
+    "result": "Exactly one feature: address '454 St Pauls Terrace Fortitude Valley QLD', address_pid 3043369, objectid 1522637, lotplan 100SP300569, geocode_type 'PC' (property centroid), address_status 'P', lotplan_status 'C'. Served geometry (outSR 4326): x 153.0330291653931, y -27.453709514857625. Attribute latitude/longitude (the layer's native GDA94 values): -27.45372207, 153.03302313."
+   },
+   "selected_point": {
+    "coordinates_lon_lat": [
+     153.0330291653931,
+     -27.453709514857625
+    ],
+    "source": "the address service's served WGS84 (outSR 4326) point geometry, copied unchanged (direct geometry)",
+    "cross_check": "The served point is 1.51 m from the record's attribute GDA94 latitude/longitude. pyproj 3.7.1 / PROJ 9.5.1 TransformerGroup EPSG:4283 -> EPSG:4326 (always_xy, allow_ballpark False) first operation 'GDA94 to WGS 84 (1)' (stated accuracy 3.0 m) is a null shift, so the 1.51 m offset is the server's own datum handling; it is well inside the property-centroid scope of the point and is recorded rather than corrected.",
+    "scope": "project_locator; official address point of property-centroid type for the operator-stated street address. It marks the property, not a surveyed building outline, entrance or data hall."
+   },
+   "parcel_context": {
+    "file": "local_data/country-research-apac-operators-p11/qld-parcel-100sp300569.json",
+    "sha256": "b575c0f88945418e1055aad54cfe9aa14d74f56fa40ef3c38cae2ea700b0b061",
+    "query": "layer 4 attribute query lotplan='100SP300569', outSR=4326",
+    "result": "Exactly one parcel: lot/plan 100SP300569, tenure Freehold, lot_area 3717 m2, accuracy code 'STANDARD 1:2500 CADASTRAL MAP - 1.5M', a closed 12-vertex ring. Recomputed with shapely 2.1.1 in EPSG:28356 (MGA zone 56): area 3687.4 m2, extent about 95.0 m east-west by 91.6 m north-south; the selected point lies inside the parcel, 18.0 m from its nearest boundary and 0.0 m from its planar centroid (153.0330293, -27.4537096); the farthest boundary vertex is 51.8 m away."
+   }
+  },
+  "b1": {
+   "facility": "NEXTDC B1 Brisbane",
+   "operator_address_statement": "20 Wharf Street, Brisbane, QLD, 4000 (NEXTDC contact page); the sitewide facility list gives 'Brisbane CBD | 1,650m2 | 2.25MW' and the B1 page '2.25MW IT Capacity'.",
+   "address_point": {
+    "file": "local_data/country-research-apac-operators-p11/qld-address-20-wharf-street-brisbane-city.json",
+    "sha256": "a0c910fcc7d9e9c2dc7ae5d8e98da4c24955d50a0ad8ca375313b506b601093f",
+    "query": "layer 0 attribute query, outFields=*, returnGeometry=true, outSR=4326",
+    "result": "Exactly one feature: address '20 Wharf Street Brisbane City QLD', address_pid -2017526695, objectid 62042, lotplan 10RP193176, geocode_type 'PC' (property centroid), address_status 'P', lotplan_status 'C'. Served geometry (outSR 4326): x 153.0296506742664, y -27.465510974611455. Attribute latitude/longitude (the layer's native GDA94 values): -27.46552353, 153.02964464."
+   },
+   "selected_point": {
+    "coordinates_lon_lat": [
+     153.0296506742664,
+     -27.465510974611455
+    ],
+    "source": "the address service's served WGS84 (outSR 4326) point geometry, copied unchanged (direct geometry)",
+    "cross_check": "The served point is 1.51 m from the record's attribute GDA94 latitude/longitude. pyproj 3.7.1 / PROJ 9.5.1 TransformerGroup EPSG:4283 -> EPSG:4326 (always_xy, allow_ballpark False) first operation 'GDA94 to WGS 84 (1)' (stated accuracy 3.0 m) is a null shift, so the 1.51 m offset is the server's own datum handling; it is well inside the property-centroid scope of the point and is recorded rather than corrected.",
+    "scope": "project_locator; official address point of property-centroid type for the operator-stated street address. It marks the property, not a surveyed building outline, entrance or data hall."
+   },
+   "parcel_context": {
+    "file": "local_data/country-research-apac-operators-p11/qld-parcel-10rp193176.json",
+    "sha256": "41e293b741038c380f3e898ac63c4a3cb85adb4bfced72d1894f7f1950bf4b15",
+    "query": "layer 4 attribute query lotplan='10RP193176', outSR=4326",
+    "result": "Exactly one parcel: lot/plan 10RP193176, tenure Freehold, lot_area 797 m2, accuracy code 'STANDARD 1:2500 CADASTRAL MAP - 1.5M', a closed 14-vertex ring. Recomputed with shapely 2.1.1 in EPSG:28356 (MGA zone 56): area 797.8 m2, extent about 48.5 m east-west by 40.4 m north-south; the selected point lies inside the parcel, 8.0 m from its nearest boundary and 3.5 m from its planar centroid (153.0296558, -27.4654795); the farthest boundary vertex is 27.3 m away."
+   }
+  }
+ },
+ "separation": "The two selected points are 1,354 m apart (haversine); they are different addresses, lots and facilities.",
+ "not_used": "No coordinates were taken from the NEXTDC contact page's map links, any commercial map or geocoder, PeeringDB or OpenStreetMap, and no city-centre, head-office or suburb centroid was used. Queries with upper-case attribute values returned no features and are not relied on."
+}

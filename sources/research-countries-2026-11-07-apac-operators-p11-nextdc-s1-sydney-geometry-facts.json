@@ -1,0 +1,38 @@
+{
+ "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+ "candidate": "NEXTDC S1 Sydney (4 Eden Park Drive, Macquarie Park NSW): official NSW AddressPoint locator",
+ "prepared_at": "2026-11-07",
+ "service": "https://portal.spatial.nsw.gov.au/server/rest/services (NSW Spatial Services, Department of Customer Service: NSW_Geocoded_Addressing_Theme FeatureServer layer 1 AddressPoint; NSW_Land_Parcel_Property_Theme FeatureServer layer 12 Property and layer 8 Lot). No open licence is stated in the responses. robots.txt of portal.spatial.nsw.gov.au returned HTTP 404 (no restrictions), checked by the capture tool before the first request (shared robots cache entry fetched 2026-11-07T00:11:33Z, within its 6-hour lifetime; recorded in each capture's robots_checks).",
+ "operator_address_source": {
+  "file": "local_data/country-research-apac-operators-p11/nextdc-contact-us.html",
+  "sha256": "3384b1ff5b32c0005b3ceb93d6465186b108d602d1a7a91f67252cab7fb88423",
+  "statement": "NEXTDC's contact page (served from https://www.nextdc.com/contact, captured 2026-11-07T02:22:24.871Z) lists 'S1 Sydney 4 Eden Park Drive Macquarie Park, NSW, 2113'. Its 'Get directions' links point to a commercial map service and were neither followed nor read. NEXTDC's S1 page (local nextdc-s1-sydney.html, sha256 ef5a225dc485c7da12684a67a2d1cde9006946bc63cc1202c6bec2592408a7ed) gives 'S1 Macquarie Park', '16MW' and 'Macquarie Park | 5,800m2 | 16MW'."
+ },
+ "address_point": {
+  "file": "local_data/country-research-apac-operators-p11/nsw-guras-eden-park-drive.geojson",
+  "sha256": "dc4534c8d15fc6d2f80d08849e2e60596b91adc90dfe5a273a458814513f88ac",
+  "query": "layer 1 where address LIKE '%EDEN PARK DRIVE MACQUARIE PARK%', outSR 4326, GeoJSON",
+  "result": "Eight AddressPoints on Eden Park Drive, Macquarie Park (numbers 1, 2, 3A, 3B, 4, 5, 6 and 7). Exactly one is '4 EDEN PARK DRIVE MACQUARIE PARK': rid 2426865, gurasid 70738140, principaladdresssiteoid 3169830, addresspointtype 1, containment 1, addresspointuncertainty null, lastupdate 2010-04-12, served WGS84 point [151.1314477636523, -33.785172523171276]. Every other Eden Park Drive point lies 99 to 120 m away (5 at 99 m, 6 at 102 m, 7 at 114 m, 1 at 115 m, 2, 3A and 3B at 120 m)."
+ },
+ "selected_point": {
+  "coordinates_lon_lat": [
+   151.1314477636523,
+   -33.785172523171276
+  ],
+  "source": "the AddressPoint service's served WGS84 GeoJSON geometry for rid 2426865, copied unchanged (direct geometry)",
+  "scope": "project_locator; official address point for the operator-stated street address, lying inside the single property and lot at that address. It marks the address point, not a surveyed building outline, entrance or data hall."
+ },
+ "property_context": {
+  "file": "local_data/country-research-apac-operators-p11/nsw-property-4-eden-park-drive.geojson",
+  "sha256": "75051f105aa723e6e4e6f95bd24ac2885b3172d6731c127fd3bbe82c1261c683",
+  "query": "layer 12 where principaladdresssiteoid=3169830, outSR 4326",
+  "result": "Exactly one property: propid 3507250, address '4 EDEN PARK DRIVE MACQUARIE PARK', propertytype 1, dissolveparcelcount 1, a 122-vertex ring. Recomputed with shapely 2.1.1 in EPSG:28356 (MGA zone 56): area 9650.4 m2, extent about 149.2 m east-west by 141.7 m north-south; the AddressPoint lies inside it, 32.1 m from its nearest boundary and 2.4 m from its planar centroid (151.1314221, -33.7851732); the farthest boundary vertex is 80.8 m away."
+ },
+ "lot_context": {
+  "file": "local_data/country-research-apac-operators-p11/nsw-lot-at-4-eden-park-drive.geojson",
+  "sha256": "e6afb4b7f1bb5819d281ab36c0ca801fc09aab15bef88da8f53a1e5d9615cfe4",
+  "query": "layer 8 point intersection at the AddressPoint, outSR 4326",
+  "result": "Exactly one lot: 14//DP1148612 (lot 14, DP1148612), planlotarea 9,650.424 m2. Its ring is identical to the property ring (symmetric-difference area 0.0 m2), so the property is that single lot."
+ },
+ "not_used": "No coordinates were taken from NEXTDC's map links, any commercial map or geocoder, PeeringDB or OpenStreetMap, and no city-centre, head-office or suburb centroid was used."
+}

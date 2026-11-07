@@ -1,0 +1,197 @@
+{
+  "reviewer": "root",
+  "reviewed_at": "2026-11-07",
+  "decision": "accepted_for_integration",
+  "update": "verified_construction_core/2026-11-07-research-hundredthirtieth",
+  "base_dataset": "verified_construction_core/2026-11-07-research-hundredtwentyninth",
+  "process": "continuous: one researcher per beat, one adversarial verifier per fragment",
+  "fragments": [
+    {
+      "fragment": "africa-operators-p11",
+      "verdict": "accept",
+      "checks": [
+        "Rehashed all 6 relied-on captures (Q3 2026 presentation 2b2d3aad..., IA JN1 page 20fc91cd..., Ekurhuleni stand 20c73336..., Brollo addresses e788eece..., envelope addresses 104d98bd..., 2022 SA entry release 91bd3e7a...): all match .metadata.json and source content_hash; retrieved_at equals captured_at",
+        "Rendered slide 36 of the Q3 2026 presentation (PDF CreationDate 2026-10-28): Johannesburg count 1, JN1 in the Expansion column and in the Owned column without ground-lease asterisk; slide 47 defines Expansion as Phase 1 operating before 1 Jan 2025; status operational as of 2026-09-30 is 38 days before 2026-11-07 (within 85 days); company_disclosure primary",
+        "Equinix evidence fields identical to existing Atlas row 5b8d90a9 (title, URL, hash, dates, licence); same precedent as 29 published Equinix projects with status_as_of 2026-09-30",
+        "IA raw copy 20261003181045 of the Equinix JN1 page (canonical jn1 URL) prints '308 Brollo Road, Isando, Germiston, Johannesburg, Gauteng 1614' and 34,294 sq ft",
+        "Locator recomputed with pyproj 3.7.1/shapely 2.1.1: stand GIS_KEY N510130000030800000 (erf 308 Tunney Ext 13, SG T0IR0671) record LAT/LON -26.15554417, 28.19792368 equals the change point and the UTM 35S area centroid to 1e-8 deg; geodesic area 19,156.9 m2; point inside stand",
+        "Address register: only one 308 BROLLO ROAD (OBJECTID 307639, same GIS_KEY), inside the stand 5.0 m from boundary, 72.8 m from reference point; no other envelope address falls on the stand",
+        "Locator source is a City of Ekurhuleni government cadastral/address-register record (acceptable class); terms recorded in licence; no Google/commercial map, widget, PeeringDB or OSM used; method string passes builder map-service check",
+        "Qualitative Esri imagery mosaic with stand outline: point on a large flat-roofed building with rooftop plant, generator row and tanks in a walled compound filling the stand",
+        "Context release 13 Dec 2022 quotes (4.0 MW JN1, 690+ cabinets, two further phases, 20.0 MW campus) verified and used as plans only",
+        "Roles Equinix operator/owner current from slide 36 Owned column; scope limited to existing operating phase, no capacity asserted",
+        "Distinctness: no JN1/Brollo/Tunney/Equinix-ZA record in hundredtwentyninth sites/projects/evidence/source-records/identity-mapping; nearest Atlas site Teraco Isando 1,951 m (builder sphere); no other pending queue point within 5 km except published africa-p1 Teraco Isando; JN1 appears only in holds whose reopen conditions are met",
+        "dryrun_fragment.py ok against verified_construction_core/2026-11-07-research-hundredtwentyninth (1,042 sites, 1,126 projects, 6,244 evidence)"
+      ],
+      "residual_risks": [
+        "City of Ekurhuleni data are 'all rights reserved' with an accuracy disclaimer and no stated positional accuracy; the stand LANDUSE attribute still reads VACANT",
+        "Esri street map labels the north road 'Techno Rd' and a directory earlier listed JN1 at 103 Brollo Road; the operator's 308 Brollo Road plus the municipal register govern",
+        "Status rests on portfolio categorisation (Expansion = Phase 1 operating before 2025), not on a facility-specific operating statement; window expires 24 December 2026",
+        "Holds for LG1/LG2, AC1 and AB1 describe positions derived from Equinix map-widget constants (no coordinates recorded); not used for any locator"
+      ]
+    },
+    {
+      "fragment": "apac-operators-p11",
+      "verdict": "accept",
+      "checks": [
+        "All 20 relied-on captures rehashed: sha256 matches content_hash and .metadata.json; 3 geometry-facts files match geometry_facts_sha256",
+        "GS HK: live page JSON-LD dateModified 2026-10-05T07:54:28Z read in capture; IA raw copy 20260714 holds prior version (dateModified 2026-02-16) without the new intro sentence; page-sitemap lastmod 2026-10-05T07:54:28Z matches; present-tense 'capacity available now' text confirmed; 33 days old",
+        "GS HK address '18 Chun Yat Street Tseung Kwan O Industrial Estate' confirmed in About page (dateModified 2026-10-19) and IA copy",
+        "GS HK locator: ALS first result 18 CHUN YAT STREET (score 81.00) WGS84 114.26955,22.28652; HK1980 E845819 N816406 -> WGS84 with pyproj 3.7.1 = 0.45 m from served point; inside CSDI lot TKOTL 39 &Exts S.Q ss.5 S.C, 52.4 m from boundary (shapely 2.1.1)",
+        "NEXTDC B2: presentation slide 30 text 'B2 BRISBANE ... Status Operational' read via pdftotext; cover dated 27 August 2026; PDF CreationDate 27 Aug 2026; 72 days old",
+        "NEXTDC annual report PDF page 5 (printed p.4) rendered at 150 dpi; label colours sampled: S1,S2,S3,S6,M1,M2,M3,B1,B2,P1,P2,PH1,NE1,C1,A1,D1,SC1,KL1 = legend Operational RGB(0,144,64), 18 codes matching '18 operational data centres'; 6 in development and 5 in planning also match",
+        "Contact page capture gives B1 20 Wharf Street Brisbane, B2 454 St Pauls Terrace Fortitude Valley, S1 4 Eden Park Drive Macquarie Park; map links not used",
+        "QLD address layer points copied exactly from served outSR 4326 geometry (B2 pid 3043369, B1 pid -2017526695); GDA94 attribute offset 1.51 m; B2 inside lot 100SP300569 (18 m from boundary, at centroid), B1 inside lot 10RP193176 (8 m from boundary)",
+        "NSW AddressPoint rid 2426865 is the only '4 EDEN PARK DRIVE' of 8 points; inside property propid 3507250 / lot 14//DP1148612, 32.1 m from boundary, 2.4 m from centroid",
+        "Locator sources are HKSAR ALS, Queensland address register and NSW AddressPoint (official government address registers); no commercial map, PeeringDB or OSM; license fields consistent with prior Atlas evidence for these services",
+        "Distinctness: recomputed nearest current-dataset sites (GS HK: HKG10 0.67 km, MEGA Plus 0.90 km, MEGA IDC 1.02 km; S1: Apollo 0.44, IC3 0.63, Road 1 0.74, Alma Rd 1.23, Julius Ave 1.83 km; Brisbane: nearest 611-612 km); no name/address/lot match in sites, projects, evidence, source-records, identity-mapping; other queue fragments within 2 km are the already-published records above; only matching holds are the ops-sydney-melbourne-p6/hundredtwentyfourth NEXTDC summary hold whose reopen condition (dated ASX filing) is now met",
+        "Roles: operator/current for Global Switch and NEXTDC from status sources; one project per new site; no third-party personal data (PDF author metadata not copied)",
+        "dryrun_fragment.py: ok (1045 sites, 1129 projects)"
+      ],
+      "residual_risks": [
+        "GS HK observation date rests on CMS dateModified corroborated by the same site's Yoast sitemap lastmod; the independent IA copy only bounds the change to after 14 July 2026",
+        "B1 and S1 operating status rests on legend colour coding in the annual report at-a-glance page rather than text; the report is published 27 August 2026 but may reflect 30 June 2026 position",
+        "Address points are property/address points, not building footprints; uncertainty left null",
+        "B2 reuses legacy key curated:nextdc-b2-brisbane from an older curated source outside the current dataset"
+      ]
+    },
+    {
+      "fragment": "euro-operators-p11",
+      "verdict": "accept",
+      "checks": [
+        "base re-read from site/config.json: verified_construction_core/2026-11-07-research-hundredtwentyninth; dry run ok (1,042 sites, 1,126 projects, 6,243 evidence)",
+        "rehashed all 5 relied-on captures (supplemental PDF b525b99e, Part B2 a1f9305d, NTS bcc63344, GOV.UK advert 639ec5f6, IA London page 019bd5f7): match .metadata.json sha256 and source content_hash; supplemental hash/URL equal existing Atlas evidence c50d3a91",
+        "status: read supplemental p22 (pdftotext -layout): London LON-1 8.7 MW Stabilized, 51.4% leased, Pre-Stabilized dash; p23 has no LON-1 row; p28 defines Pre-Stabilized as recently placed in service; PDF CreationDate 2026-11-05; company_disclosure; as_of 2026-09-30 is 38 days old, inside 85-day window (from 2026-08-14)",
+        "status precedent: same evidence c50d3a91 already supports operational existing-operations projects (AZP-3, DEN-1, CHI-1) with as_of 2026-09-30",
+        "locator: Part B2 q2a read in capture: site 'Iron Mountain Data Centres LON-1', 724-729 Dundee Road, SL1 4JU, NGR SU 94926 81766 middle of site; q2b installation 'As in 2a'",
+        "locator recomputed independently: SU 94926 81766 -> E494926 N181766 -> EPSG:4326 with pyproj 3.7.1/PROJ 9.5.1 = -0.633041, 51.526838 (0.03 m from claimed)",
+        "locator plausibility: rendered site location plan (1:10,000) at 200 dpi; its OS 1 km grid lines (E496000, N181000, N182000; 1,006 m spacing measured) place the claimed point inside the green permit boundary (grey fill, one boundary crossing), plot bounded by Scafell Road and Dundee Road; EA register point for CyrusOne 700 Stirling Road falls on Stirling Road in the same frame",
+        "locator source acceptable: applicant permit form published by the Environment Agency; licence recorded all-rights-reserved; no map service, PeeringDB or OSM; builder _map_service check passes",
+        "identity: NTS (30 June 2026) names Iron Mountain Data Centre LON-1 at 724-729 Dundee Road with 11 standby generators; IA copy (8 May 2026) of Iron Mountain London page lists LON-1 at 724-729 Dundee Road, LON-2 110 and LON-3 111 Buckingham Avenue; GOV.UK advert gives Dundee Road SL1 4JU facility for EPR/LP3020MX/A001",
+        "distinctness: no LON-1/Dundee/LP3020MX/SL1 4JU in sites, projects, evidence, identity-mapping or source-records of the 129th; nearest Atlas sites Equinix Slough Campus 585 m and Iron Mountain LON-3 1,159 m (different address, plot, permit; LON-3 precision scoped to 111 Buckingham Avenue); no unpublished queue item within 2.5 km; no LON1 alias collision",
+        "holds: LON-1 appears only in thirty-fifth (uk-south-p1) and hundredth (uk-england-p5) holds whose reopen condition (in-window Iron Mountain statement naming LON-1) is met",
+        "roles: Iron Mountain operator, current, from the supplemental, matching existing Iron Mountain existing-operations records",
+        "scope: commercial colocation facility; no opening date or capacity asserted; leaseable MW kept as context only",
+        "fixed: GOV.UK advert source summary/date_semantics said 'not updated since'; capture carries a 25 Sept 2026 withdrawn_notice (consultation period ended), now recorded",
+        "no third-party personal data found in changes, sources or holds"
+      ],
+      "residual_risks": [
+        "the form's 'middle of the site' grid reference has no stated accuracy; uncertainty left null with reason (plot about 270 m x 150 m)",
+        "Part B2 and NTS bytes are the uk-south-p1 capture of 22 Oct 2026; live consultation URLs now return 410/404, so they cannot be re-fetched",
+        "permit application EPR/LP3020MX/A001 is undecided; status rests on the operator's portfolio table, not the permit",
+        "producer notes record running another agent's shared stdlib-only scratch script (h2t.py) with python3 -I on captured HTML; no capture was executed",
+        "the 30 Sept 2026 observation ages out of the 85-day window on 24 Dec 2026 if not published before then"
+      ]
+    },
+    {
+      "fragment": "rf-11-p12",
+      "verdict": "accept",
+      "checks": [
+        "date 2026-11-07; 85-day floor 2026-08-14; current_dataset verified_construction_core/2026-11-07-research-hundredtwentyninth re-read at start and before the dry run",
+        "both projects found in projects.csv: Meta Sturgeon under_construction 2026-07-08, Microsoft Etobicoke under_construction 2026-08-05; both refresh dates strictly newer",
+        "rehashed the road-closure HTML (2b06bd8f...), WP REST JSON (8fad3975...), post sitemap (0916a103...), Toronto register JSON (e0bc08d3...), package JSON (6c767cd1...) and both robots files: file sha256 equals .metadata.json sha256 and content_hash; metadata URL equals source_url; HTTP 200; no redirects",
+        "road notice text read in the capture: 'Sturgeon County has temporarily closed Rge Rd 223 from Hwy 643 south to Twp Rd 560 during the construction of the Meta Data Center. The road closure will continue throughout the project.' datePublished August 24, 2026",
+        "WP REST post 160395: date 2026-08-24T15:41:15, modified 2026-08-24T15:41:20; sitemap lastmod 2026-08-24T15:41:20-06:00, so the text is unchanged since publication; publication date used, not a later dateModified",
+        "Meta identity: the notice names the Meta Data Center; DP-26-0028 (56111 Rge Rd 223, quarters in sections 2, 3, 10 and 11 of Twp 56 Rge 22 W4) lies on Rge Rd 223; the County data-centre page lists Meta Sturgeon Data Centre as the only Meta project; locator and scope unchanged",
+        "Meta successor: Meta post sitemap has no Sturgeon post after July 2026 (latest posts are Ohio, Kuna, Eagle Mountain); DP-26-0293 piling permit is already held by the hundred-twenty-seventh holds; no completion or operation found",
+        "Toronto register read: 7 rows for application 23 169869 at 48 Lowe's Place (GEO_ID 30029368); conditional BLD issued 2025-04-08 status Inspection, no COMPLETED_DATE; full BLD at Examiner's Notice Sent; package last_refreshed 2026-11-06; no inspection or status-change dates in the register",
+        "Etobicoke removed because undated 'Inspection' status was not accepted as a dated stage in earlier reviews (ca-p3 Toronto holds, us-ca-pnw-ak-hi-p4 SV19, refresh-construction-p4); Microsoft forecast fall 2026 completion, so an open permit may outlast physical work",
+        "source kind government_record, primary; license and attribution recorded; robots.txt for www.sturgeoncounty.ca allows the paths (disallows /wp-admin/ only)",
+        "no other queue fragment or holds file updates either project (claims.tsv rows 1253-1254 are rf-11-p12 only); the road-closure URL is not already in evidence.csv or source-records.json",
+        "no additions or locator corrections, so no locator was recomputed; roles unchanged",
+        "two existing holds (Green ZRH1 DC4, Bitdeer Fox Creek) reviewed and kept; no personal data in changes, sources, holds or notes",
+        "dryrun_fragment.py ok against hundredtwentyninth (1041 sites, 1125 projects)"
+      ],
+      "residual_risks": [
+        "The Meta observation of 24 August 2026 leaves the 85-day window after 17 November 2026, so publish promptly",
+        "The road notice is a traffic notice, not an inspection. It says construction is under way at the Meta site, but it gives no building stage or extent",
+        "The notice does not give the closed segment's coordinates. The link to the campus rests on the 'Meta Data Center' name and on DP-26-0028's address on Rge Rd 223"
+      ]
+    },
+    {
+      "fragment": "rf-6-p12",
+      "verdict": "accept",
+      "checks": [
+        "base re-read at verification: current_dataset = 2026-11-07-research-hundredtwentyninth; all four records present with the stated prior status/date (Muskogee partially_operational 2026-07-28, Hunt County announced 2026-07-28, Pecos announced 2026-07-28, Lake Hawkeye announced 2026-08-05) and geometry evidence ids fcf3d591/2fce484d/51ab226d/17090cb5 as the fragment states",
+        "rehashed corz-q3fy26-deck.htm (8ad89fd...), corz-q3-2026-release.html (d26165b...), wulf-10q-20260930.htm (75ae969...), corz-8k-20261105.htm (3f473f3...), slide004/006/009 jpgs, lakehawkeye-open-letter.html, cipher-black-pearl.html and reused q3-us-neocloud-miners-p6/corz-10q-20260930.htm (07bcb48...): all match .metadata.json sha256 and source content_hash",
+        "robots: investors.corescientific.com and investors.terawulf.com robots.txt (cached captures) disallow only /form-submit; capture metadata shows allowed, no credentials",
+        "8-K index (Item 9.01) lists 99.1 press release and 99.2 company presentation dated 5 Nov 2026 and links q3fy26earningsdeckvfinal.htm; deck header 'Published on November 5, 2026'",
+        "slide 9 image read: Muskogee OK ~70 MW leased, green check in Status column, ~70 MW billing; footnote 'Total billing as of November 5, 2026'; term library defines billable capacity as service commenced and actively billing",
+        "slide 4 image read: AMD + credit-backed neocloud 530 MW across exactly five sites (Pecos TX* 185, Dalton GA 120, Hunt TX* 110, Muskogee OK* 82, Auburn AL 32); slide 6: Muskogee est. 2H 2027, Pecos 1H 2027, Hunt County 1H 2028 initial delivery (forecasts, not used)",
+        "release text read: CEO quote 'construction under our second is underway across five campuses', dated November 05, 2026 7:00 am EST; Q3 10-Q confirms the second HDC contract is the AMD/Neocloud ~530 MW 'across five of our sites', so the five campuses are the five AMD sites incl. Hunt County and Pecos",
+        "Q3 10-Q searched: no statement that construction at any AMD site has not begun; Hunt County note 'intends to develop this land as a future data center site' is acquisition-accounting language, not contradictory; Texas (4) facilities = one Pecos and one Hunt County site",
+        "Hunt County corroboration: up-3-p7 TCEQ registry capture shows 'CORE SCIENTIFIC GVT-1', Hunt County, County Road 3507, construction stormwater authorization TXR1584ZD active from 2026-08-14 (not used as status source)",
+        "TeraWulf 10-Q read: Cayuga Lease note ties lease to 'the Company's Lake Hawkeye site in New York' for HPC data center use; MD&A 'Upon completion of permitting and site development' ~400 MW potential and 'forward development pipeline'; header 'Published on November 6, 2026'",
+        "Lake Hawkeye open letter (25 Oct 2026) and newsroom read: Town of Lansing considering a prohibition; no developer pause, withdrawal, permit decision or construction, so announced is correct",
+        "all observations (2026-11-05, 2026-11-06) strictly newer than existing, within 85 days of 2026-11-07 (window opens 2026-08-14), not after source publication; source kinds regulatory_filing (8-K EX-99.2, 10-Q) and company_disclosure (release)",
+        "partially_operational refresh allowed: Muskogee already partially_operational; scope kept (campus with CoreWeave building billing, AMD building not delivered)",
+        "no locators added or changed; no role claims; claims.tsv shows only rf-6-p12 status-refresh claims on these keys (rf-2-p12 holds the separate curated Pecos initial-HDC key; up-3/up-9-p7 locator claims already published); no other pending fragment touches these keys",
+        "no third-party personal data in changes/sources/holds (officers by role only)",
+        "Cipher Black Pearl hold reviewed: correct to hold (page silent on delivered capacity; IR host blocked)",
+        "dryrun_fragment.py: ok against hundredtwentyninth (+3 evidence rows)"
+      ],
+      "residual_risks": [
+        "Hunt County and Pecos under_construction rest on an aggregate CEO statement ('underway across five campuses') mapped to sites via the same-day deck and 10-Q; the release itself names no site and only the release is linked as status evidence for those two projects",
+        "Lake Hawkeye 10-Q MD&A paragraph may be text carried over from earlier quarters; Town of Lansing may enact a data-centre prohibition",
+        "TeraWulf 10-Q URL already has an evidence row (e47884cd) with a different content hash from an earlier capture; the builder adds a second evidence row for the same URL"
+      ]
+    },
+    {
+      "fragment": "rf-8-p12",
+      "verdict": "accept",
+      "checks": [
+        "current dataset 2026-11-07-research-hundredtwentyninth; 85-day window opens 2026-08-14",
+        "all 4 source captures plus NTT page, Camellia page, newsletter listing, Itasca sitemap and Riot post sitemap rehashed: SHA-256 matches metadata and content_hash",
+        "Riot Q3 release read: 'Data Center revenue ... reflecting the first full quarter of the stabilized 25 MW delivered to AMD' for the period ended 30 Sep 2026; Jan 2026 release ties the AMD 25 MW lease to the Rockdale Site",
+        "Riot as_of 2026-09-30 <= published 2026-11-04, strictly newer than 2026-08-10, keeps partially_operational and campus scope; AMD phases 3-4 record untouched",
+        "Itasca newsletter p2 rendered with pdftoppm: two buildings operating, one under construction, two approved; NTT page April FAQ names Data Center 3 under construction, so the one under construction is CH3",
+        "Itasca date bounded: PDF CreationDate 2026-08-18, ModDate 2026-09-08, listing page sitemap lastmod 2026-09-08; newer than 2026-08-13",
+        "Effingham item 486 'Posted on September 09, 2026' read; County Camellia page says reviews, permits and inspections still precede construction, so announced is the right stage",
+        "all three sources are primary (company_disclosure, government_record x2); no locator changes in fragment",
+        "effinghamcounty.org robots.txt re-fetched: /m/newsflash/ and /902/ allowed in both the * and ClaudeBot groups; incident capture (CivicAlerts 508) not used",
+        "no other queue fragment updates these three keys; claims.tsv shows only rf-8-p12 and the published us-chicago-in-p5 CH3 addition",
+        "no private personal data in changes, sources or holds (Village Administrator referred to by role only)",
+        "dryrun_fragment.py ok against hundredtwentyninth"
+      ],
+      "residual_risks": [
+        "Riot refresh rests on a financial statement (quarter rent revenue on delivered, stabilized capacity) rather than a physical description; the hundred-twentieth hold had declined it for lacking an as-of statement",
+        "Itasca publication date comes from PDF ModDate and the listing page sitemap lastmod; no archived copy exists",
+        "Effingham item is a tax and benefits communication re-observing a planned project; a later permit stage may exist but was not found in County records read",
+        "Riot campus locator remains the imported Rockdale city point (separate up-8-p7 locator hold)"
+      ]
+    },
+    {
+      "fragment": "us-permits-late-oct-p11",
+      "verdict": "accept",
+      "checks": [
+        "all 8 relied-on captures rehashed: sha256 matches .metadata.json and sources.json content_hash, byte counts and URLs agree, HTTP 200",
+        "PA1126-1 PDF read with pdftotext: Coffee County 'Lightwood Technology Campus' app 30406, 745 Brantley Blvd, Douglas 31535, 'Construct and Operate data center with 23 diesel-fired emergency generators'; Monroe County 'Rumble Road Facility' app 30405, 1441 Rumble Road, Forsyth 31029, 'Construct and operate a data center'",
+        "PA1026-4a PDF read: Rockdale County 'DCB Atlanta East, LLC' app 29932, 1726 Farmer Road, Conyers 30012, Proposed Permit (synthetic minor, intent to issue), 97 x 3.0-MW generators, comments to 30 Nov 2026",
+        "dates: PA1126-1 created 4 Nov 2026 (23:26 EET = 16:26 EST) and listed 'November 4, 2026' on EPD index; PA1026-4a created 28 Oct 2026 and listed 'October 28, 2026'; index JSON-LD dateModified 2026-11-04; both within 85 days of 2026-11-07",
+        "source kind government_record (Georgia EPD) for all three status observations; announced only, no permit/construction/operation asserted; generator ratings not recorded as capacity",
+        "locators recomputed from raw Census geocoder JSON (Public_AR_Current/Current_Current, single exact match each): -83.838708,32.9931072 (TIGER 66671750 R 1349-1599, Monroe 13207); -82.8399245,31.4824849 (TIGER 649755592 L 701-799, Coffee 13069); -84.0460119,33.6885953 (TIGER 23740361 L 1700-1998, Rockdale 13247) - all match changes.json at 7dp",
+        "locator source acceptable: US Census geocoder is an official open geocoder; no map service, widget, PeeringDB or OSM used; geometry facts sha256 match sources.json",
+        "DC BLOX identity: operator page (modified 2026-10-19, IA copy 20261026 same text) gives '1726 Farmer Road, Conyers, Georgia 30012'; its schema.org GeoCoordinates (33.6913989,-84.047062) lie 0.33 km from the Census point, corroborating the campus location",
+        "roles: DCB Atlanta East, LLC operator/intended from the proposed-permit facility name; other two have no named party and roles []",
+        "distinctness re-screened against the newer current dataset 2026-11-07-research-hundredtwentyninth (sites, projects, evidence, source-records, identity-mapping), all 99 sources/*-holds.json, every other queue fragment and claims.tsv: no name/address/application hits beyond the 128th PA1126-1 lead_only (reopen condition met) and the 57th DC BLOX Atlanta East hold; nearest records 76.5 km, 144.8 km and 24.6 km",
+        "one project per new site; no third-party personal data (EPD staff contact and PDF author not copied)",
+        "dryrun_fragment.py ok against base 2026-11-07-research-hundredtwentyninth"
+      ],
+      "residual_risks": [
+        "Census points are street-segment interpolations with unknown uncertainty; large rural parcels (Rumble Road) may extend hundreds of metres from the point",
+        "DC BLOX Atlanta East is recorded announced as a floor although the operator reported site preparation from Sept 2024; a later dated construction/operation record should refresh it",
+        "Rumble Road Facility (Monroe County) may be the Google ~950-acre Monroe County land purchase lead (40th holds); identity not established, so a later Google record must be screened against this site",
+        "Project Rockforge (Rockdale County, MMM Acquisitions) relation to DC BLOX Atlanta East is not established; that hold stays open",
+        "Rumble Road and Lightwood applicants are unnamed; workload (possibly crypto mining) and operator unknown",
+        "DC BLOX 57th hold asked for an official parcel; the Census geocoder is accepted under the current locator policy instead"
+      ]
+    }
+  ],
+  "packet_pins": {
+    "definitions/atlas-research-hundredthirtieth-2026-11-07.json": "0cb29e7ea29c4966743d76b954678159e4699a255cc7126eae8c7e9088b90bea",
+    "sources/research-countries-2026-11-07-hundredthirtieth-primary-sources.json": "6ad51b9d61c0bdf6974a53c412ed6d831e3de1c81d027bda8fbc582af67a99c2",
+    "sources/research-countries-2026-11-07-hundredthirtieth-actions.json": "57b7a89a06c58b323ff850285a06b4f5bcebece4ac21e733e0ed13984c5b14a3",
+    "sources/research-countries-2026-11-07-hundredthirtieth-holds.json": "ff4ecfe231c52c9e609c127f0304285a65fac096cb4165bed1a60fec2212ade7"
+  },
+  "raw_captures_redistributed": false
+}

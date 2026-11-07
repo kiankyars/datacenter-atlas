@@ -1,0 +1,69 @@
+{
+ "format": "datacenter-atlas-reviewed-geometry-facts-v1",
+ "candidate": "Global Switch Hong Kong (18 Chun Yat Street, Tseung Kwan O Industrial Estate): official address-point locator",
+ "prepared_at": "2026-11-07",
+ "address_identity_source": {
+  "files": [
+   "local_data/country-research-apac-operators-p11/gs-about.html",
+   "local_data/country-research-apac-operators-p11/ia-gs-hong-kong-20260714.html",
+   "local_data/country-research-apac-operators-p11/als-18-chun-yat-street.xml"
+  ],
+  "sha256": [
+   "0ff63848547b394d9709931bfc5f8fd7266f2ef58d5b9d67505a92928dc91e8d",
+   "44ddba0433b7d966e918b21f12aecdb3201cdcb73bb59103b50691cfb8a58277",
+   "372bb11d6c0978a6c7c91b6fa44be523dce089354d9118ff63a9191da88fb9fa"
+  ],
+  "statement": "Global Switch's live About page (version modified 19 October 2026) and the Internet Archive copy of 14 July 2026 of its Hong Kong page both give the facility as 'Hong Kong 71MW 18 Chun Yat Street Tseung Kwan O Industrial Estate New Territories Hong Kong'. The HKSAR Address Lookup Service returns as its first result (score 81.00) the premises address 18 CHUN YAT STREET, TSEUNG KWAN O, Sai Kung District, NT (GeoAddress 4581916406T20210429) at HK1980 Grid Easting 845819, Northing 816406, WGS84 latitude 22.28652, longitude 114.26955. The second result (score 50.47) is a different premises, 12 Chun Yat Street in the Tseung Kwan O Industrial Estate, and is not used."
+ },
+ "selected_point": {
+  "coordinates_lon_lat": [
+   114.26955,
+   22.28652
+  ],
+  "source": "Address Lookup Service served WGS84 latitude/longitude (five decimals) for 18 Chun Yat Street, used directly",
+  "cross_check": "The served HK1980 grid coordinate (E 845819, N 816406) transformed once with pyproj 3.7.1 / PROJ 9.5.1 (TransformerGroup EPSG:2326 -> EPSG:4326, always_xy, allow_ballpark False, first operation: Inverse of Hong Kong 1980 Grid + Hong Kong 1980 to WGS 84 (1), stated accuracy 1.0 m) gives [114.2695543, 22.2865202], 0.45 m from the served five-decimal point; the difference is the five-decimal rounding of the served value.",
+  "scope": "project_locator; official numbered address point for the operator-stated address. It marks the address point, not a surveyed building outline, entrance, data hall or lot boundary."
+ },
+ "lot_context": {
+  "service": "https://portal.csdi.gov.hk/server/rest/services/common/landsd_rcd_1637217253134_22729/FeatureServer (Lands Department lot polygons via CSDI; layer 0 queried by point intersection at the ALS grid point; layer 1000 LandInformation queried by LotCSUID). robots.txt of portal.csdi.gov.hk captured 2026-11-07 (local robots/robots-portal.csdi.gov.hk.txt) disallows only /geoportal/, /portal/ and /notice/.",
+  "point_intersection": {
+   "file": "local_data/country-research-apac-operators-p11/csdi-lot-at-18-chun-yat-street.json",
+   "sha256": "b2c2bd955a125776cdfac4ce6e01cb20af6abe485e42b91750dfe262c25f366e",
+   "result": "Exactly one lot polygon: OBJECTID 180788, LotID 1810051631, LotCSUID '759000039    &EXTSTO,Q,5,C', Shape__Area 21,515.60 m2 (ring area recomputed with shapely 2.1.1: 21,515.60 m2), a closed four-vertex ring about 233 m east-west by 174 m north-south in EPSG:2326."
+  },
+  "lot_name": {
+   "file": "local_data/country-research-apac-operators-p11/csdi-landinfo-759000039-ext.json",
+   "sha256": "41954268d05c3c07e0009549edbb58fa511a2fea7f443df40d788370629a8f33",
+   "result": "LandInformation row LotCSUID '759000039    &EXTSTO,Q,5,C' -> LotDisplayName 'TKOTL 39 &Exts Thereto S.Q ss.5 S.C', Class New Grant Lot, LBSInfo Yes."
+  },
+  "native_ring_hk1980": [
+   [
+    845976.7600000007,
+    816398.4640000015
+   ],
+   [
+    845935.0270000007,
+    816299.8200000022
+   ],
+   [
+    845743.8800000008,
+    816380.6670000013
+   ],
+   [
+    845797.7300000004,
+    816474.1060000025
+   ],
+   [
+    845976.7600000007,
+    816398.4640000015
+   ]
+  ],
+  "address_point_relation": "The ALS address point lies inside this lot section, 52.4 m from its boundary and 47.7 m from its planar centroid (native centroid E 845863.10, N 816387.73; WGS84 [114.2699821, 22.286355]).",
+  "use": "Identity context only. Tseung Kwan O Town Lot 39 and its extensions form the subdivided industrial-estate lot; the selected locator is the address point, not the lot section's centroid and not an industrial-estate centroid. The neighbouring Atlas record Digital Realty HKG10 is located on a different section of the same master lot (TKOTL 39 &Exts Thereto S.J ss.1), 670 m away."
+ },
+ "rejected": [
+  "No map-service, map-embed, PeeringDB, OpenStreetMap or commercial geocoder coordinate was used or consulted.",
+  "The Tseung Kwan O Industrial Estate as a whole and the master lot TKOTL 39 are not used as locators."
+ ],
+ "horizontal_uncertainty": "Not stated by the Address Lookup Service; the served WGS84 value is rounded to five decimals (about 1 m), and the HK1980-to-WGS84 operation has a stated accuracy of 1.0 m. No total ground accuracy is asserted."
+}

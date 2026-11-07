@@ -1,0 +1,75 @@
+{
+  "format": "datacenter-atlas-geometry-facts-v1",
+  "fragment": "africa-operators-p11",
+  "prepared_at": "2026-11-07",
+  "candidate_id": "equinix-jn1-johannesburg-308-brollo-road",
+  "candidate": "Equinix JN1 Johannesburg IBX, 308 Brollo Road, Isando (Tunney Extension 13), City of Ekurhuleni, South Africa",
+  "decision": "Selected the City of Ekurhuleni's own reference point for the registered stand that carries the address Equinix publishes for JN1: the LATITUDE and LONGITUDE fields of Stands-layer record GIS_KEY N510130000030800000 (erf 308, Tunney Ext 13), -26.15554417, 28.19792368. Literal municipal coordinates with axis reordering only; no geocoder, map service or coordinate transformation is involved in the selected point.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      28.19792368,
+      -26.15554417
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_municipal_stand_reference_point_of_operator_published_facility_address",
+  "use_scope": "campus_locator",
+  "precision_scope": "The City of Ekurhuleni's reference point (area centroid) of erf 308 Tunney Ext 13, the 19,157 m2 registered stand whose address in the municipal address register is 308 Brollo Road. It marks the JN1 property; it is not a building outline, data-hall position or surveyed boundary.",
+  "horizontal_uncertainty_metres": null,
+  "horizontal_uncertainty_unknown_reason": "The municipal service states no positional accuracy for stand outlines or their reference points, and its site disclaimer says the data are for information only and continuously being verified; the imagery check is qualitative, with unknown imagery date and accuracy.",
+  "source_url": "https://gis.ekurhuleni.gov.za/arcgis/rest/services/Ekurhuleni/Ekurhuleni_Propety_Data_Map/MapServer/1/query?where=GIS_KEY%3D%27N510130000030800000%27&outFields=OBJECTID,PROPDESC,TOWNSHIP,GIS_KEY,SUBURB,PROPNO,PTNO,LANDUSE,ERF_STATUS,LATITUDE,LONGITUDE,SG_CODE,SHAPE_Area&returnGeometry=true&outSR=4326&f=json",
+  "source_file": "local_data/country-research-africa-operators-p11/ekurhuleni-stand-n510130000030800000.json",
+  "source_sha256": "20c733368f73760e0771da69090db8a2dc419ff21310878700691c8553afb4c7",
+  "retrieved_at": "2026-11-07T02:35:22.665Z",
+  "source_literal_coordinate_tokens": [
+    "\"LATITUDE\":-26.15554417 (selected)",
+    "\"LONGITUDE\":28.19792368 (selected)",
+    "\"PROPDESC\":\"308\", \"TOWNSHIP\":\"TUNNEY EXT 13\", \"GIS_KEY\":\"N510130000030800000\", \"SUBURB\":\"TUNNEY\", \"SG_CODE\":\"T0IR0671\""
+  ],
+  "axis_note": "The stand record gives latitude and longitude as separate fields; GeoJSON coordinates are [longitude, latitude].",
+  "consistency_checks": [
+    {
+      "check": "address register match",
+      "result": "The City's Addresses layer (layer 0 of the same Property Data map service) returns, for street name BROLLO, six address points, all in suburb TUNNEY; the only 308 is OBJECTID 307639, ADDRESS '308 BROLLO ROAD', STATUS 'A', GIS_KEY N510130000030800000, at -26.15496658, 28.19757672. That GIS_KEY is the key of the selected stand record, and the address point lies inside the stand outline, 5.0 m from its boundary at the street frontage and 72.8 m from the selected reference point (pyproj WGS84 geodesic; UTM 35S for the boundary distance). Equinix's JN1 page gives '308 Brollo Road, Isando, Germiston, Johannesburg, Gauteng 1614'. No other 308 Brollo Road exists in the register.",
+      "file": "local_data/country-research-africa-operators-p11/ekurhuleni-addresses-brollo.json",
+      "url": "https://gis.ekurhuleni.gov.za/arcgis/rest/services/Ekurhuleni/Ekurhuleni_Propety_Data_Map/MapServer/0/query?where=UPPER(STR_NAME)%20LIKE%20%27%25BROLLO%25%27&outFields=OBJECTID,STR_NUMBER,STR_NAME,STR_TYPE,STATUS,ADDRESS,SUBURB,UNIT_NO,GIS_KEY,PARCEL_OID&returnGeometry=true&outSR=4326&f=json",
+      "sha256": "e788eeceaaa4dbff959e4565291a1cc944c718f80d17ffe1e7443bd05be8d49f",
+      "retrieved_at": "2026-11-07T02:34:58.059Z"
+    },
+    {
+      "check": "stand outline and reference point (pyproj 3.7.1, shapely 2.1.1)",
+      "result": "The stand outline (one 12-vertex ring served in WGS84) has a geodesic area of 19,156.9 m2 and perimeter of 559.8 m, spans 28.19710-28.19885 E and 26.15488-26.15622 S, and its planar area centroid (computed in UTM 35S, EPSG:32735, and transformed back) is -26.1555442, 28.1979237, equal to the record's own LATITUDE/LONGITUDE fields to 1e-8 degrees. The record's LANDUSE field still reads 'VACANT', an out-of-date land-use attribute for a stand that now carries a built data centre (see the imagery check); it is disclosed and not relied on.",
+      "file": "local_data/country-research-africa-operators-p11/ekurhuleni-stand-n510130000030800000.json",
+      "sha256": "20c733368f73760e0771da69090db8a2dc419ff21310878700691c8553afb4c7"
+    },
+    {
+      "check": "neighbouring address points",
+      "result": "An envelope query of the Addresses layer around the stand (local ekurhuleni-addresses-near-jn1.json) returns, besides 308 and 309 Brollo Road and 1/307 Brollo Road, several Techno Road addresses (295, 307 and 480 Techno Road) and Barbara Road, Eland Street and Trek Street addresses; none of them lies on the selected stand. Street numbers here follow erf numbers (308 Brollo Road on erf 308).",
+      "file": "local_data/country-research-africa-operators-p11/ekurhuleni-addresses-near-jn1.json",
+      "sha256": "104d98bd36159c1d74789694c0a8c8c3e530177098295fce557377596dd6e2b6",
+      "retrieved_at": "2026-11-07T02:36:57.315Z"
+    },
+    {
+      "check": "imagery and street labels (qualitative identity check only; nothing measured or copied from the tiles)",
+      "result": "In Esri World Imagery z18 tiles the selected point falls on the roof of a large flat-roofed building (white central roof with rows of rooftop plant) inside a walled compound that fills the stand outline; on its south-west side are a row of about eight containerised generator or plant units and two cylindrical tanks, with paved yards and parking around it, consistent with a data-centre building. The address point lies at the compound's north frontage. Esri World Street Map z17 labels the road along the north side 'Techno Rd' rather than Brollo Road; the municipal address register, which is the authority for the address, gives the stand's address as 308 Brollo Road. The large industrial sheds to the west and the yards to the south and east are on other stands.",
+      "files": [
+        "local_data/country-research-africa-operators-p11/tiles/jn1-img-z18-151604-150815.jpg",
+        "local_data/country-research-africa-operators-p11/tiles/jn1-img-z18-151605-150815.jpg",
+        "local_data/country-research-africa-operators-p11/tiles/jn1-img-z18-151604-150816.jpg",
+        "local_data/country-research-africa-operators-p11/tiles/jn1-img-z18-151605-150816.jpg",
+        "local_data/country-research-africa-operators-p11/tiles/jn1-street-z17-75802-75407.jpg",
+        "local_data/country-research-africa-operators-p11/tiles/jn1-street-z17-75802-75408.jpg"
+      ],
+      "tile_service": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer and World_Street_Map/MapServer (robots.txt 'Disallow:' empty, read 7 November 2026)"
+    },
+    {
+      "check": "other Atlas records nearby",
+      "result": "The nearest Atlas site is the Teraco Isando Campus (JB1, JB3, JB5) point at -26.138, 28.19802, 1,943.7 m north (pyproj WGS84 geodesic; 1,950.8 m on the builder's sphere), a different operator and property (5 Brewery Street / Kiln Road, Isando). The next nearest are Teraco JB2 Bredell (12.0 km), Teraco JB4 Bredell (16.1 km) and Africa Data Centres JHB1 Midrand (17.9 km)."
+    },
+    {
+      "check": "excluded coordinates",
+      "result": "Not used: the coordinate constants in the Equinix JN1 page's map-widget script, any commercial map, map link or embed, the 'Building Footprints (Google)' layer of the Ekurhuleni building-footprint service, PeeringDB (an earlier Atlas hold notes that it lists JN1 at '103 Brollo Road', which differs from Equinix's own '308 Brollo Road'), and OpenStreetMap services."
+    }
+  ]
+}
