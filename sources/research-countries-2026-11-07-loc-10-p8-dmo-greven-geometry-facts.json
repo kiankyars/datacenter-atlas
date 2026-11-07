@@ -1,0 +1,39 @@
+{
+ "candidate_id": "loc-10-p8-dmo-greven-dmo1",
+ "physical_site_stable_key": "curated:dmo-greven-dmo1",
+ "decision": "Replace the PeeringDB facility point with the centroid of the ALKIS building that the NRW cadastre records at Hüttruper Heide 91, Greven, DMO's published data-centre address at Münster Osnabrück airport.",
+ "source_file": "local_data/country-research-loc-10-p8/nrw-alkis-gebaeude-greven-flur135-98-bbox.gml",
+ "source_sha256": "b8ff449618680e3d9ba479f5e2584dde8efafae09ab50b5598df3470581f304a",
+ "source_url": "https://www.wfs.nrw.de/geobasis/wfs_nw_alkis_vereinfacht?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=ave:GebaeudeBauwerk&BBOX=410950,5776395,411215,5776645,urn:ogc:def:crs:EPSG::25832&COUNT=200",
+ "published_fields": {
+  "oid": "DENW53AL0000jk3NBL",
+  "gebnutzbez": "Gebäude",
+  "funktion": "Gebäude für Wirtschaft oder Gewerbe",
+  "gfkzshh": "31001_2000",
+  "lagebeztxt": "Hüttruper Heide 91",
+  "gmdschl": "05566012",
+  "aktualit": "2025-05-28Z",
+  "geometry": "MultiSurface in EPSG:25832 with one exterior ring of 5 positions (4 corners), first vertices 411044.134 5776499.831, 411085.536 5776513.192, 411063.783 5776580.57, 411022.388 5776567.184"
+ },
+ "conversion": "Area centroid of the exterior ring computed with shapely 2.1.1 in EPSG:25832 (411053.961, 5776540.195; area 3,079.7 m2; bounding box about 63 m by 81 m), converted with pyproj 3.7.1 \"Inverse of UTM zone 32N + ETRS89 to WGS 84 (1)\" to (7.700506, 52.1322164), 7 decimals.",
+ "geometry": {
+  "type": "Point",
+  "coordinates": [
+   7.700506,
+   52.1322164
+  ]
+ },
+ "containment_checks": {
+  "parcel": "The ALKIS Flurstueck query for Greven location texts containing Hüttruper Heide returns 189 parcels; exactly one has location text \"Hüttruper Heide 91\": 05502413500098 (Gemarkung Greven, Flur 135, Flurstück 98, 29,057 m2, uses Flugverkehr 27,807 m2 and Wald 1,250 m2, updated 2025-05-28). The building lies wholly inside it (overlap 1.000).",
+  "other_buildings": "The bbox query returns four buildings: the addressed DENW53AL0000jk3NBL; an unaddressed 811 m2 commercial building DENW53AL0000jk3MBL on the same parcel (same record date 2025-05-28, centroid 7.6998618, 52.13218); and two small agricultural/forestry buildings (22 m2 and 16 m2) outside the parcel.",
+  "replaced_point": "The replaced point (7.700174, 52.13129) lies inside parcel 135/98 but 64 m outside building DENW53AL0000jk3NBL."
+ },
+ "replaced_point": [
+  7.700174,
+  52.13129
+ ],
+ "displacement_m": 105.5,
+ "identity_bridge": "DMO's contact page and its 'Was ist das Rechenzentrum?' page give DMO GmbH, Hüttruper Heide 91, 48268 Greven, and say the Datacenter Münster Osnabrück has operated at Münster/Osnabrück airport since April 2026.",
+ "nearby_records_within_2km": "Only this site (curated:dmo-greven-dmo1, 105 m) in the current dataset; no pending queue addition or locator correction and no hold within 2 km.",
+ "not_used": "PeeringDB, commercial map services and map links were not used."
+}

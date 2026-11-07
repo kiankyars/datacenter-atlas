@@ -1,0 +1,73 @@
+{
+ "candidate_id": "up-10-p7-scala-tambore-barueri",
+ "decision": "Selected the IBGE CNEFE 2022 address coordinate of Avenida Ceci 1850, Tambore, Barueri, registered with the establishment identification 'SCALA', as the campus locator for Scala Data Centers' Tambore Campus, replacing the imported Tambore district point.",
+ "geometry": {
+  "type": "Point",
+  "coordinates": [
+   -46.811245,
+   -23.494048
+  ]
+ },
+ "authority_class": "official_source",
+ "scope_class": "official_census_address_register_point_of_named_establishment",
+ "use_scope": "campus_locator",
+ "source_files": [
+  {
+   "file": "local_data/country-research-up-10-p7/ibge-cnefe2022-3505708-barueri.zip",
+   "sha256": "fcd1a8a914ab05ee68ae775d43481929e3f79b36ed32d4e7df1748b3f37c283a",
+   "url": "https://ftp.ibge.gov.br/Cadastro_Nacional_de_Enderecos_para_Fins_Estatisticos/Censo_Demografico_2022/Arquivos_CNEFE/CSV/Municipio/35_SP/3505708_BARUERI.zip",
+   "retrieved_at": "2026-11-06T23:40:36.361Z"
+  },
+  {
+   "file": "local_data/country-research-up-10-p7/ibge-cnefe2022-dicionario.xls",
+   "sha256": "7b3684a709cd28a5787c42ba771c94bc364d5869b50334152dd445048a7c1744",
+   "url": "https://ftp.ibge.gov.br/Cadastro_Nacional_de_Enderecos_para_Fins_Estatisticos/Censo_Demografico_2022/Arquivos_CNEFE/CSV/Dicionario_CNEFE_Censo_2022.xls",
+   "retrieved_at": "2026-11-06T23:43:45.647Z"
+  }
+ ],
+ "layer": "IBGE CNEFE Censo 2022 municipal CSV 3505708_BARUERI.csv (semicolon-separated, fields per Dicionario_CNEFE_Censo_2022.xls); rows filtered to DSC_ESTABELECIMENTO containing 'SCALA' (two rows; a street named Scalamandre Sobrinho is not an establishment match)",
+ "selected_properties": {
+  "COD_UNICO_ENDERECO": "199929412",
+  "DSC_LOCALIDADE": "TAMBORE",
+  "NOM_TIPO_SEGLOGR": "AVENIDA",
+  "NOM_SEGLOGR": "CECI",
+  "NUM_ENDERECO": "1850",
+  "CEP": "06460120",
+  "LATITUDE": "-23.494048",
+  "LONGITUDE": "-46.811245",
+  "NV_GEO_COORD": "1",
+  "COD_ESPECIE": "6",
+  "DSC_ESTABELECIMENTO": "SCALA",
+  "COD_INDICADOR_ESTAB_ENDERECO": "1",
+  "COD_SETOR": "350570805000132P"
+ },
+ "facts": {
+  "matching_establishment_rows": 2,
+  "second_row": {
+   "COD_UNICO_ENDERECO": "199929409",
+   "address": "AVENIDA CECI 5",
+   "lon_lat": [
+    -46.812748,
+    -23.495618
+   ],
+   "distance_to_selected_m": 232.3
+  },
+  "dictionary_meanings": {
+   "NV_GEO_COORD=1": "Endereco - coordenada original do Censo 2022",
+   "COD_ESPECIE=6": "Estabelecimento de outras finalidades",
+   "COD_INDICADOR_ESTAB_ENDERECO=1": "Unico"
+  },
+  "coordinates_used_as_published": true,
+  "previous_point_lon_lat": [
+   -46.8419,
+   -23.4656
+  ],
+  "displacement_haversine_m": 4447.6,
+  "nearest_other_atlas_record": {
+   "key": "curated:odata-dc-sp03-barueri-tambore-campus",
+   "operator": "ODATA",
+   "distance_m": 1623.3
+  }
+ },
+ "exclusions": "Scala's headquarters at Alameda Tocantins 350 (an office address on the operator's archived contact page) is not used. The campus extends beyond one address; no master-plan boundary or parcel was reachable (barueri.sp.gov.br allows only listed sections to robots, and scaladatacenters.com answers HTTP 403). No geocoder, map viewport or district centroid is used."
+}

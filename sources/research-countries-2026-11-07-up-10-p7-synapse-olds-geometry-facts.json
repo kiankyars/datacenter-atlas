@@ -1,0 +1,80 @@
+{
+ "candidate_id": "up-10-p7-synapse-olds",
+ "decision": "Selected the planar centroid of the union of legal subdivisions 3, 4, 5, 6, 11, 12, 13 and 14 of Section 4-33-1-W5 (the SW and NW quarter sections the developer names for the Synapse Data Center) in the Government of Alberta ATS grid as the campus locator replacing the imported Olds town point.",
+ "geometry": {
+  "type": "Point",
+  "coordinates": [
+   -114.0904053,
+   51.8022797
+  ]
+ },
+ "authority_class": "official_source",
+ "scope_class": "official_township_survey_quarter_section_union_centroid",
+ "use_scope": "campus_locator",
+ "source_files": [
+  {
+   "file": "local_data/country-research-up-10-p7/ab-ats-lsd-grid-sec4-33-1-w5.geojson",
+   "sha256": "b17ffa5b31a715dd30fb0115cd595926a2c49c62d82e1623c5e46073a8e949b0",
+   "url": "https://geospatial.alberta.ca/titan/rest/services/cadastre/ct_seamless_legal_subdivision_grid/FeatureServer/0/query?where=MER%3D5%20AND%20RGE%3D1%20AND%20TWP%3D33%20AND%20SEC%3D4&outFields=PID,DESCRIPTOR,MER,RGE,TWP,SEC,QTR,LSD&returnGeometry=true&outSR=4326&f=geojson",
+   "retrieved_at": "2026-11-06T23:22:13.782Z"
+  }
+ ],
+ "layer": "Government of Alberta geospatial.alberta.ca 'cadastre/ct_seamless_legal_subdivision_grid' FeatureServer layer 0 (Alberta Township System LSD grid with road allowances merged into their parent LSDs), queried by MER=5, RGE=1, TWP=33, SEC=4 and requested in WGS84 (outSR 4326)",
+ "selected_properties": {
+  "selected_lsds": [
+   3,
+   4,
+   5,
+   6,
+   11,
+   12,
+   13,
+   14
+  ],
+  "quarters": {
+   "SW": [
+    3,
+    4,
+    5,
+    6
+   ],
+   "NW": [
+    11,
+    12,
+    13,
+    14
+   ]
+  },
+  "returned_lsds": 16
+ },
+ "facts": {
+  "union_type": "Polygon",
+  "union_parts": 1,
+  "all_valid": true,
+  "union_geodesic_area_ha": 134.68,
+  "union_geodesic_acres": 332.81,
+  "bounds_lon_lat": [
+   -114.096409,
+   51.794944,
+   -114.084412,
+   51.809612
+  ],
+  "approx_extent_m": [
+   828,
+   1632
+  ],
+  "centroid_inside": true,
+  "centroid_method": "shapely planar centroid of the union in WGS84 longitude/latitude; the EPSG:32611 planar centroid transformed back differs by 0.04 m",
+  "max_distance_centroid_to_union_vertex_m": 915,
+  "context_full_section_centroid_lon_lat": [
+   -114.0845685,
+   51.8022791
+  ],
+  "previous_point_lon_lat": [
+   -114.10667,
+   51.79278
+  ],
+  "displacement_haversine_m": 1538.4
+ },
+ "exclusions": "The SE and NE quarters of Section 4 are not used: the information package's text names the SW and NW quarters and its maps show a single half-section outline. The site plan shows a railway clipping the north-west corner and an existing commercial parcel at the south end, so the developable site is somewhat smaller than the half section. No geocoder, map viewport, town centre or industrial-area centroid is used."
+}

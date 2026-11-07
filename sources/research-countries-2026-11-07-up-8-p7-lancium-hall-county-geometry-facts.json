@@ -1,0 +1,82 @@
+{
+ "candidate_id": "up-8-p7-lancium-hall-county",
+ "decision": "Selected the planar centroid of the union of the three contiguous Hall County tax parcels that the TxGIO StratMap land-parcel layer lists as owned by LANCIUM TURKEY, LLC (Hall Appraisal District, tax year 2026), whose 471.1 legal acres match the approximately 465-acre campus QTS describes for its data center on Lancium's Clean Campus near Turkey, as the campus locator replacing the imported Turkey town point.",
+ "geometry": {
+  "type": "Point",
+  "coordinates": [
+   -100.8731339,
+   34.3605916
+  ]
+ },
+ "authority_class": "official_source",
+ "scope_class": "official_tax_parcel_union_centroid",
+ "use_scope": "campus_locator",
+ "source_files": [
+  {
+   "file": "local_data/country-research-up-8-p7/txgio-parcels-hall-lancium-turkey-envelope.json",
+   "sha256": "b39b81f37a40dcde1436802dadd9549a4dd42b8ed44abec27dbfd26fa08159b4",
+   "url": "https://feature.geographic.texas.gov/arcgis/rest/services/Parcels/stratmap_land_parcels_48_most_recent/MapServer/identify?geometry=-100.885%2C34.351%2C-100.847%2C34.368&geometryType=esriGeometryEnvelope&sr=4326&layers=all%3A0&tolerance=0&mapExtent=-100.885%2C34.351%2C-100.847%2C34.368&imageDisplay=1000%2C1000%2C96&returnGeometry=true&f=json",
+   "retrieved_at": "2026-11-06T23:01:37.406Z"
+  }
+ ],
+ "layer": "TxGIO 'stratmap_land_parcels_48_most_recent' MapServer identify (layer 0), envelope -100.885,34.351,-100.847,34.368 (WGS84), returnGeometry true; the service does not support query, so identify over an envelope was used and the Lancium-owned rows were selected by owner name",
+ "selected_properties": {
+  "201338": {
+   "owner": "LANCIUM TURKEY, LLC",
+   "legal_area_acres": 112.0,
+   "gis_area_attribute": 118.327144,
+   "geodesic_acres": 118.31,
+   "situs": "CR AA",
+   "source": "HALL APPRAISAL DISTRICT",
+   "tax_year": "2026"
+  },
+  "201341": {
+   "owner": "LANCIUM TURKEY, LLC",
+   "legal_area_acres": 202.65,
+   "gis_area_attribute": 199.937692,
+   "geodesic_acres": 199.91,
+   "situs": "(blank)",
+   "source": "HALL APPRAISAL DISTRICT",
+   "tax_year": "2026"
+  },
+  "201347": {
+   "owner": "LANCIUM TURKEY, LLC",
+   "legal_area_acres": 156.45,
+   "gis_area_attribute": 160.643032,
+   "geodesic_acres": 160.62,
+   "situs": "(blank)",
+   "source": "HALL APPRAISAL DISTRICT",
+   "tax_year": "2026"
+  }
+ },
+ "facts": {
+  "parcels": 3,
+  "union_type": "Polygon",
+  "union_parts": 1,
+  "union_valid": true,
+  "union_geodesic_acres": 478.83,
+  "legal_acres_total": 471.1,
+  "operator_stated_campus_acres": 465,
+  "centroid_inside": true,
+  "centroid_method": "shapely centroid of the union in a local transverse Mercator (WGS84) at the union centroid, transformed back; the planar WGS84 centroid differs by 0.02 m",
+  "max_distance_centroid_to_union_vertex_m": 1152.1,
+  "bounds_lon_lat": [
+   -100.883325,
+   34.352086,
+   -100.865848,
+   34.366758
+  ],
+  "extent_m": [
+   1608,
+   1628
+  ],
+  "excluded_lancium_parcel": "Property 201525 (LANCIUM TURKEY, LLC, 300.43 legal acres) lies about 0.8 km east of the union and is not contiguous with it; with it the holding would total about 790 acres in two parts, well above the stated 465-acre campus, so it is excluded from the locator (its centroid lies 1,869 m from the selected point)",
+  "previous_point_lon_lat": [
+   -100.8953,
+   34.3939
+  ],
+  "displacement_m": 4226,
+  "verification_script": "union.py (pyproj 3.7.1, shapely 2.1.1; uv run --no-project, python -I)"
+ },
+ "exclusions": "Neighbouring parcels in the identify envelope belong to other owners, including private individuals; they are not part of the union and their owner names are not reproduced. No geocoder, map viewport, operator map widget, town centre or county centroid is used."
+}

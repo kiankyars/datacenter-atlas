@@ -1,0 +1,83 @@
+{
+  "candidate_id": "coresite-silicon-valley-santa-clara-campus",
+  "decision": "Selected the centroid of the union of Santa Clara County FY2026 parcels 216-29-123 (2972 STENDER WY, SV4), 216-46-021 (3020 CORONADO DR, SV7), 216-29-084 (3035 STENDER WY, SV8) and 216-29-108 (2915 STENDER WY, SV9) as the campus locator of CoreSite's Santa Clara buildings SV4, SV7, SV8 and SV9. It locates the four-parcel group, not any one building; the union is non-contiguous and spans streets and other occupants' land between the parcels.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -121.9710987,
+      37.3761468
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_tax_parcel_union_centroid",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-ops-us-metros-p6/sccgov-parcels-coresite-sv4-sv7-sv8-sv9.geojson",
+  "source_sha256": "c65ebb2701f8e7e417d6f40b8006468facbd4277ae01fc10ed1a1287ac3202d0",
+  "source_url": "https://data.sccgov.org/resource/ubcd-cewv.geojson?$where=apn%20in('21629123','21646021','21629084','21629108')",
+  "retrieved_at": "2026-11-06T23:24:58.164Z",
+  "selected_properties": {
+    "21629084": {
+      "situs": "3035 STENDER WY, SANTA CLARA",
+      "zip": "95054",
+      "jurisdiction": "SANTA CLARA",
+      "number_of_situs_address": 1
+    },
+    "21629108": {
+      "situs": "2915 STENDER WY, SANTA CLARA",
+      "zip": "95054-3214",
+      "jurisdiction": "SANTA CLARA",
+      "number_of_situs_address": 2
+    },
+    "21629123": {
+      "situs": "2972 STENDER WY, SANTA CLARA",
+      "zip": "95054-3213",
+      "jurisdiction": "SANTA CLARA",
+      "number_of_situs_address": 5
+    },
+    "21646021": {
+      "situs": "3020 CORONADO DR, SANTA CLARA",
+      "zip": "95054",
+      "jurisdiction": "SANTA CLARA",
+      "number_of_situs_address": 2
+    }
+  },
+  "layer": "County of Santa Clara Parcels (Socrata dataset ubcd-cewv on data.sccgov.org), GeoJSON in WGS84; rows carry APN, situs address and jurisdiction only (no owner fields)",
+  "computed": {
+    "apns": [
+      "21629084",
+      "21629108",
+      "21629123",
+      "21646021"
+    ],
+    "parts": 4,
+    "geodesic_area_m2": 47555.9,
+    "geodesic_acres": 11.751,
+    "centroid_lon_lat": [
+      -121.9710987,
+      37.3761468
+    ],
+    "centroid_inside": true,
+    "centroid_parcel": [
+      "21629123"
+    ],
+    "crs_cross_check_shift_m": 0.0001,
+    "extent_m": [
+      415.5,
+      334.3
+    ],
+    "max_vertex_distance_from_centroid_m": 279.9,
+    "bounds_lon_lat": [
+      -121.973528,
+      37.374714,
+      -121.968863,
+      37.377768
+    ],
+    "method": "Union of the parcel polygon(s); centroid computed in EPSG:32610 (WGS 84 / UTM 10N) and returned to WGS84; EPSG:5070 and EPSG:3310 cross-checks give the same point; geodesic area on the WGS84 ellipsoid.",
+    "tools": "pyproj 3.7.1, shapely 2.1.1 (uv run --no-project, python -I)"
+  },
+  "identity_bridge": [
+    "CoreSite's Silicon Valley market page (version of 9 October 2026; Internet Archive copy of 11 October 2026 and live copy of 6 November 2026) gives SV4 at 2972 Stender Way, SV7 at 3020 Coronado Drive, SV8 at 3035 Stender Way and SV9 at 2915 Stender Way, all Santa Clara, CA 95054; CoreSite's 30 July 2025 release and SV9 page place SV9 at 2915 Stender Way.",
+    "A query of the county Parcels dataset for these four APNs returns four parcels whose situs addresses match the four CoreSite addresses (jurisdiction Santa Clara). The same four parcels and centroid were computed by the us-ca-pnw-ak-hi-p5 lane (ninety-fifth holds); this capture has the identical SHA-256 (c65ebb27...)."
+  ],
+  "excluded": "No geocoder, commercial map, PeeringDB, city centre or company map pin is used."
+}

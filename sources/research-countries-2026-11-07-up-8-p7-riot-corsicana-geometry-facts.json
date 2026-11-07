@@ -1,0 +1,79 @@
+{
+ "candidate_id": "up-8-p7-riot-corsicana",
+ "decision": "Selected the planar centroid of the union of the four contiguous Navarro County tax parcels owned by RIOT CORSICANA LLC on FM 709 South (J. Taylor Abstract A10011 tracts 3, 9A, 10A and 10B; 332.03 legal acres), which match the 'contiguous 332-acre parcel' that Riot's 4 November 2026 release says carries the entirety of its Corsicana campus, as the campus locator replacing the imported Navarro County reference point.",
+ "geometry": {
+  "type": "Point",
+  "coordinates": [
+   -96.5123409,
+   31.9684038
+  ]
+ },
+ "authority_class": "official_source",
+ "scope_class": "official_tax_parcel_union_centroid",
+ "use_scope": "campus_locator",
+ "source_files": [
+  {
+   "file": "local_data/country-research-up-8-p7/txgio-parcels-navarro-riot-corsicana-llc.json",
+   "sha256": "4a09987ae1ede1cbc7f86b7ecb09bbbd6d0383a94e928f68a99e3ea99ae550b7",
+   "url": "https://feature.geographic.texas.gov/arcgis/rest/services/Parcels/stratmap_land_parcels_48_most_recent/MapServer/identify?geometry=-96.95%2C31.80%2C-96.05%2C32.35&geometryType=esriGeometryEnvelope&sr=4326&layers=all%3A0&layerDefs=%7B%220%22%3A%22UPPER%28OWNER_NAME%29%20LIKE%20%27%25RIOT%20CORSICANA%25%27%22%7D&tolerance=0&mapExtent=-96.95%2C31.80%2C-96.05%2C32.35&imageDisplay=1000%2C1000%2C96&returnGeometry=true&f=json",
+   "retrieved_at": "2026-11-06T23:02:50.842Z"
+  }
+ ],
+ "layer": "TxGIO 'stratmap_land_parcels_48_most_recent' MapServer identify (layer 0), envelope -96.95,31.80,-96.05,32.35 with layerDefs UPPER(OWNER_NAME) LIKE '%RIOT CORSICANA%', returnGeometry true (Navarro Appraisal District rows, tax year 2026)",
+ "selected_properties": {
+  "14291723": {
+   "owner": "RIOT CORSICANA LLC",
+   "legal_description": "ABS A10011 J TAYLOR ABST TRACT 3 265.71 ACRES",
+   "situs": "6980 FM 709 S",
+   "geodesic_acres": 268.7
+  },
+  "14316780": {
+   "owner": "RIOT CORSICANA LLC",
+   "legal_description": "ABS A10011 J TAYLOR ABST TRACT 9A 60.478 ACRES",
+   "situs": "(blank)",
+   "geodesic_acres": 61.06
+  },
+  "14298156": {
+   "owner": "RIOT CORSICANA LLC",
+   "legal_description": "ABS A10011 J TAYLOR ABST TRACT 10A 2.407 ACRES",
+   "situs": "6901 FM 709 S",
+   "geodesic_acres": 2.43
+  },
+  "14298155": {
+   "owner": "RIOT CORSICANA LLC",
+   "legal_description": "ABS A10011 J TAYLOR ABST TRACT 10B 3.433 ACRES",
+   "situs": "7093 FM 709 S",
+   "geodesic_acres": 3.46
+  }
+ },
+ "facts": {
+  "parcels": 4,
+  "union_type": "MultiPolygon",
+  "union_parts": 2,
+  "union_valid": true,
+  "union_geodesic_acres": 335.65,
+  "legal_acres_total": 332.03,
+  "operator_stated_campus_acres": 332,
+  "centroid_inside": true,
+  "centroid_method": "shapely centroid of the union in a local transverse Mercator (WGS84) at the union centroid, transformed back; the planar WGS84 centroid differs by 0.03 m",
+  "max_distance_centroid_to_union_vertex_m": 1199.6,
+  "bounds_lon_lat": [
+   -96.523796,
+   31.959269,
+   -96.504345,
+   31.975191
+  ],
+  "extent_m": [
+   1839,
+   1766
+  ],
+  "excluded_riot_parcels": "Three further RIOT CORSICANA LLC rows lie to the north (tract 28, 238.1 legal acres, and two rows of tract 28D, 354.904 legal acres, centroids about 1.9 to 2.6 km north of the selected point); they are outside the 332-acre campus parcel the operator describes and are excluded",
+  "previous_point_lon_lat": [
+   -96.47,
+   32.05
+  ],
+  "displacement_m": 9913,
+  "verification_script": "union.py (pyproj 3.7.1, shapely 2.1.1; uv run --no-project, python -I)"
+ },
+ "exclusions": "No geocoder, map viewport, county centroid or city centre is used; mailing addresses in the parcel rows are not reproduced."
+}

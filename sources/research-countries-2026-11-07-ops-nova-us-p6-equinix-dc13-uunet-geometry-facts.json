@@ -1,0 +1,55 @@
+{
+  "candidate_id": "ops-nova-us-p6-equinix-dc13-ashburn-uunet-way",
+  "decision": "Selected the Loudoun County address point 21830 UUNET DR (MCPI 088200644000), the only register address numbered 21830 on the UUNET-named street, as the locator for Equinix DC13, whose published address is 21830 Uunet Way, Ashburn, VA 20147.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -77.4751937,
+      39.0125625
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_address_point",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-ops-nova-us-p6/loudoun-addresspoints-uunet.json",
+  "source_sha256": "6f61de5e4be5930d26ec3034cb8e29c08cb5e5e8e429067b537f7a1efa343705",
+  "source_url": "https://logis.loudoun.gov/gis/rest/services/COL/LandRecords/MapServer/2/query?where=UPPER(FULL_ADDRESS)%20LIKE%20%27%25UUNET%25%27&outFields=AD_MCPI,AD_ADDRESS,AD_POINT_TYPE,FULL_ADDRESS,AM_POINT_X_DD,AM_POINT_Y_DD,AD_UPD_DATE&returnGeometry=true&outSR=4326&f=json",
+  "retrieved_at": "2026-11-06T23:28:08.616Z",
+  "selected_properties": {
+    "FULL_ADDRESS": "21830 UUNET DR, ASHBURN",
+    "AD_MCPI": "088200644000",
+    "AD_POINT_TYPE": "2"
+  },
+  "facts": {
+    "uunet_addresses_in_register": [
+      "21821 UUNET DR, ASHBURN",
+      "21830 UUNET DR, ASHBURN",
+      "21838 UUNET DR, ASHBURN",
+      "21841 UUNET DR, ASHBURN",
+      "21861 UUNET DR, ASHBURN",
+      "21890 UUNET DR, ASHBURN"
+    ],
+    "point_inside_parcel_088200644000": true,
+    "distance_to_parcel_centroid_m": 12.3,
+    "distance_to_parcel_boundary_m": 51.3,
+    "parcel": {
+      "mcpi": "088200644000",
+      "subdivision": "MCI/NO VA CAMPUS",
+      "plat": "2015-0055",
+      "legal_acres": 6.214,
+      "geodesic_acres": 6.21,
+      "valid": true,
+      "centroid": [
+        -77.4753304,
+        39.012594
+      ],
+      "approx_extent_m": [
+        241,
+        179
+      ],
+      "source_sha256": "e4df7be35f5cfdcb17ac638ff9b790edfc372cd1bf5cc635348ed6e96b640388"
+    },
+    "street_name_note": "The register has UUNET DR and no 'Uunet Way'; the county permit FIREC-2026-049679 also records street type DR for 21830."
+  },
+  "tools": "pyproj 3.7.1 and shapely 2.1.1 (uv run --no-project); no map service or geocoder used"
+}

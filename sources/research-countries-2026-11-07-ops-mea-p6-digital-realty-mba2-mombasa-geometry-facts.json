@@ -1,0 +1,67 @@
+{
+  "format": "datacenter-atlas-geometry-facts-v1",
+  "fragment": "ops-mea-p6",
+  "prepared_at": "2026-11-07",
+  "candidate_id": "digital-realty-mba2-mombasa-nyali-kongoni-road",
+  "candidate": "Digital Realty (formerly iColo) MBA2 data centre, Kongoni Road, off Beach Road, Nyali, Mombasa, Kenya",
+  "decision": "Selected Digital Realty's own MBA2 coordinates from the structured facility record embedded in its MBA2 page (field_latitude -4.042194, field_longitude 39.700137). Literal operator coordinate with axis reordering only; no geocoding, map service or transformation.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      39.700137,
+      -4.042194
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_source_reported_facility_reference_point",
+  "use_scope": "campus_locator",
+  "precision_scope": "Digital Realty's published reference point for its MBA2 data centre on Kongoni Road, off Beach Road, Mombasa. It falls at the Kongoni Road frontage of the facility compound; it is not a building centroid, parcel or boundary.",
+  "horizontal_uncertainty_metres": null,
+  "horizontal_uncertainty_unknown_reason": "The page states no datum, reference feature or accuracy for its coordinates, and the imagery check is qualitative, with unknown imagery date and accuracy.",
+  "source_url": "https://www.digitalrealty.com/data-centers/emea/mombasa/mba2",
+  "source_file": "local_data/country-research-ops-mea-p6/dlr-mba2-20261107.html",
+  "source_sha256": "832507cffaf0948da0098e2347bb61abfa4b5937c219c04d9e07e450b2905b6a",
+  "retrieved_at": "2026-11-06T23:07:15.095Z",
+  "source_literal_coordinate_tokens": [
+    "\"field_latitude\":[{\"value\":\"-4.042194\"}] (selected)",
+    "\"field_longitude\":[{\"value\":\"39.700137\"}] (selected)",
+    "\"field_address_location\":[{\"value\":\"<p>Kongoni Road, off Beach Rd, Mombasa, Kenya</p>\"}]"
+  ],
+  "axis_note": "The page fields give latitude and longitude separately; GeoJSON coordinates are [longitude, latitude].",
+  "consistency_checks": [
+    {
+      "check": "archive copy",
+      "result": "The Internet Archive raw copy of 13 July 2026 carries the same field_latitude/field_longitude and the same address, so the coordinates predate the 20 August 2026 page version and were not changed by it.",
+      "file": "local_data/country-research-ops-mea-p6/ia-20260713-dlr-mba2.html",
+      "url": "https://web.archive.org/web/20260713115022id_/https://www.digitalrealty.com/data-centers/emea/mombasa/mba2",
+      "sha256": "8eaf40f825f16ba423d00f2e92d92ffcc1b21617e52a9cf4bbc02182cb0b4029",
+      "retrieved_at": "2026-11-06T23:11:37.600Z"
+    },
+    {
+      "check": "imagery and street labels (qualitative identity check only; nothing measured or copied from the tiles)",
+      "result": "In Esri World Imagery z18 tiles the point lies on the north side of a street at the south-east gate of a walled compound that holds one large flat-roofed building (very roughly 55 m by 60 m) with rows of rooftop plant units, consistent with a 2,500 m2 data-centre building. Esri World Street Map z17 labels the street at the point 'Kongoni Rd', about 115 m west-south-west of its junction with 'Beach Rd', matching the operator address 'Kongoni Road, off Beach Rd'. The surrounding blocks are residential and hotel buildings.",
+      "files": [
+        "local_data/country-research-ops-mea-p6/tiles/mba2-img-z18-159980-134017.jpg",
+        "local_data/country-research-ops-mea-p6/tiles/mba2-img-z18-159981-134017.jpg",
+        "local_data/country-research-ops-mea-p6/tiles/mba2-img-z18-159980-134018.jpg",
+        "local_data/country-research-ops-mea-p6/tiles/mba2-img-z18-159981-134018.jpg",
+        "local_data/country-research-ops-mea-p6/tiles/mba2-street-z17-79990-67008.jpg",
+        "local_data/country-research-ops-mea-p6/tiles/mba2-street-z17-79990-67009.jpg"
+      ],
+      "tile_service": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer and World_Street_Map/MapServer (robots.txt 'Disallow:' empty, read 7 November 2026)"
+    },
+    {
+      "check": "other Digital Realty Mombasa point",
+      "result": "The MBA1 page point (-4.00833, 39.60574) is 11.13 km west-north-west, on the Mombasa Road (A109) carriageway at Miritini; MBA1 is a separate facility and is held in this fragment (point on the road, building not identified).",
+      "distance_m": 11131.3
+    }
+  ],
+  "distance_method": "pyproj 3.7.1 Geod(ellps='WGS84').inv",
+  "nearest_atlas_sites": [
+    {"physical_site_stable_key": "curated:wingu-africa-mbezi-dar-es-salaam", "distance_m": 300800.2},
+    {"physical_site_stable_key": "curated:konza-national-data-centre", "distance_km": 382.7},
+    {"physical_site_stable_key": "curated:ixafrica-nbox1-nairobi-mombasa-road-campus", "distance_km": 433.5},
+    {"physical_site_stable_key": "curated:icolo-nairobi-karen-campus", "distance_m": 443105.8}
+  ],
+  "not_used": "No Google, Apple, Bing, HERE, Waze, Yandex or other commercial map coordinates, no PeeringDB record and no OpenStreetMap API, Overpass or extract were used for this locator."
+}

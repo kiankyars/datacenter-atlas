@@ -1,0 +1,62 @@
+{
+ "format": "datacenter-atlas-geometry-facts-v1",
+ "fragment": "ops-sydney-melbourne-p6",
+ "prepared_on": "2026-11-07",
+ "method_note": "The point is the NSW Spatial Services AddressPoint feature (NSW_Geocoded_Addressing_Theme FeatureServer layer 1) for '200 BOURKE ROAD ALEXANDRIA', the street address Equinix publishes for SY5 ('Unit B, 200 Bourke Road, Alexandria, Sydney, NSW 2015') and for SY4 ('200 Bourke Road, Alexandria'). The query by address string returned exactly one feature (rid 4983926, gurasid 84493151, principal address site 4516656, addresspointtype 1, containment 1, null addresspointuncertainty). Its WGS84 geometry (outSR=4326, served by the service) is copied without change. The property layer (layer 12) returns one property for that principal address site, propid 4370754 '200 BOURKE ROAD ALEXANDRIA' (dissolveparcelcount 1), and the lot layer (layer 8) returns Lot 100 DP1273607 (plan area 13,159.272 m2) at the point. Checked with pyproj 3.7.1 and shapely 2.1.1 in GDA2020 / MGA zone 56 (EPSG:7856): the property polygon has a planar area of 13,159.3 m2 (matching the lot's plan area), extends about 174 m by 103 m, and contains the address point, which coincides with the polygon's planar centroid (0.0 m) and lies 39.2 m from the nearest boundary. The register has no separate 'Unit B' sub-address. No commercial map, map embed or map-widget parameter (including the map data embedded in Equinix's own page), short link, PeeringDB record or OpenStreetMap service was used.",
+ "site_versus_campus_review": "Equinix publishes 200 Bourke Road, Alexandria for SY4 and 'Unit B, 200 Bourke Road' for SY5, and the NSW register holds a single address, property and lot (Lot 100 DP1273607) for 200 Bourke Road. The point therefore locates a property shared by two Equinix IBXs, treated as one campus site; only SY5 is added here (one project on a new site). Equinix's other Sydney IBXs have different street addresses (SY1 and SY2 at 639 Gardeners Road; SY3 at 47 Bourke Road; SY9x in Rosehill) and are not part of this site.",
+ "candidates": [
+  {
+   "candidate_id": "equinix-sy5-200-bourke-road-alexandria",
+   "facility": "Equinix SY5 (Sydney IBX), on the 200 Bourke Road property shared with SY4",
+   "operator_stated_address": "Unit B, 200 Bourke Road, Alexandria, Sydney, NSW 2015, Australia",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     151.1893982524125,
+     -33.91824790402587
+    ]
+   },
+   "authority_class": "official_source",
+   "scope_class": "official_address_point_property_centroid",
+   "use_scope": "campus_locator",
+   "register_feature": {
+    "layer": "NSW_Geocoded_Addressing_Theme/FeatureServer/1",
+    "rid": 4983926,
+    "gurasid": 84493151,
+    "principaladdresssiteoid": 4516656,
+    "address": "200 BOURKE ROAD ALEXANDRIA",
+    "addresspointtype": 1,
+    "containment": 1,
+    "addresspointuncertainty": null
+   },
+   "property": {
+    "layer": "NSW_Land_Parcel_Property_Theme/FeatureServer/12",
+    "propid": 4370754,
+    "address": "200 BOURKE ROAD ALEXANDRIA",
+    "dissolveparcelcount": 1,
+    "planar_area_m2_epsg7856": 13159.3,
+    "extent_m": [
+     173.9,
+     103.2
+    ]
+   },
+   "lot": {
+    "layer": "NSW_Land_Parcel_Property_Theme/FeatureServer/8",
+    "lotidstring": "100//DP1273607",
+    "planlotarea_m2": 13159.272
+   },
+   "checks": {
+    "point_inside_property": true,
+    "distance_to_property_boundary_m": 39.2,
+    "distance_to_property_planar_centroid_m": 0.0,
+    "crs_for_checks": "EPSG:7856",
+    "tools": "pyproj 3.7.1, shapely 2.1.1"
+   },
+   "nearest_records": {
+    "atlas_sites_within_2_km": [],
+    "nearest_atlas_site": "curated:digico-syd1-ultimo-campus (DigiCo SYD1 Ultimo Campus), 4.86 km",
+    "held_proposals_nearby": "22 O'Riordan Street, Alexandria data-centre proposal (SSD-77274467; not an Atlas record, held as reject_outside_window): NSW address point 1.56 km north-east"
+   }
+  }
+ ]
+}

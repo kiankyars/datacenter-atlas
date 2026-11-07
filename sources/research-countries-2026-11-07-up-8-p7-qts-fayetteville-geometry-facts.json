@@ -1,0 +1,140 @@
+{
+ "candidate_id": "up-8-p7-qts-fayetteville",
+ "decision": "Selected the mean position of the ten Fayette County address-register points labelled 'QTS DATA CENTER BUILDING 100' to '1000' (1435 W Highway 54 #100 and #200, 167 Tyrone Road #300 to #800, 556 Sandy Creek Road #900 and #1000) as the campus locator replacing the imported Fayetteville city point; the register's site point 1435 W Highway 54 'QTS DATA CENTER' is the facility address in Georgia EPD's advisory for QTS Fayetteville I, LLC.",
+ "geometry": {
+  "type": "Point",
+  "coordinates": [
+   -84.5271587,
+   33.4561028
+  ]
+ },
+ "authority_class": "official_source",
+ "scope_class": "official_address_register_building_points_mean",
+ "use_scope": "campus_locator",
+ "source_files": [
+  {
+   "file": "local_data/country-research-up-8-p7/fayette-address-points-qts-data-center.json",
+   "sha256": "92a004a961b1526139237dc2f0d906e145445451077acf7814f26566ed737b14",
+   "url": "https://services5.arcgis.com/Hg5aLg4LtSINzVWa/arcgis/rest/services/Address_Points/FeatureServer/0/query?where=UPPER%28Business_N%29%20LIKE%20%27QTS%20DATA%20CENTER%25%27%20OR%20%28AddNum%3D%271435%27%20AND%20FullStreet%3D%27W%20HIGHWAY%2054%27%29&outFields=FID%2CAddrType%2CAddNum%2CPrefix%2CFullStreet%2CFullAddr%2CUnit%2CCity%2CZipCode%2COccType%2CJuris%2CBusiness_N%2CCP_Alias1%2CCP_Alias2%2CCP_Alias3%2CPARID%2CSTATUS%2Ccreated_da%2Clast_edi_1&returnGeometry=true&outSR=4326&orderByFields=FID&f=json",
+   "retrieved_at": "2026-11-06T23:22:42.791Z"
+  }
+ ],
+ "layer": "Fayette County, Georgia 'Address_Points' FeatureServer layer 0 (ArcGIS Online organisation Hg5aLg4LtSINzVWa), query UPPER(Business_N) LIKE 'QTS DATA CENTER%' OR (AddNum='1435' AND FullStreet='W HIGHWAY 54'), outSR 4326; 15 rows",
+ "selected_points": {
+  "QTS DATA CENTER BUILDING 100": {
+   "address": "1435 W HIGHWAY 54 #100",
+   "lon_lat": [
+    -84.5227482,
+    33.4483701
+   ]
+  },
+  "QTS DATA CENTER BUILDING 200": {
+   "address": "1435 W HIGHWAY 54 #200",
+   "lon_lat": [
+    -84.5229288,
+    33.4502426
+   ]
+  },
+  "QTS DATA CENTER BULDING 300 (sic)": {
+   "address": "167 TYRONE RD #300",
+   "lon_lat": [
+    -84.5261859,
+    33.4483228
+   ]
+  },
+  "QTS DATA CENTER BUILDING 400": {
+   "address": "167 TYRONE RD #400",
+   "lon_lat": [
+    -84.5288067,
+    33.4492124
+   ]
+  },
+  "QTS DATA CENTER BUILDING 500": {
+   "address": "167 TYRONE RD #500",
+   "lon_lat": [
+    -84.5291595,
+    33.4561265
+   ]
+  },
+  "QTS DATA CENTER BUILDING 600": {
+   "address": "167 TYRONE RD #600",
+   "lon_lat": [
+    -84.530803,
+    33.4577048
+   ]
+  },
+  "QTS DATA CENTER BUILDING 700": {
+   "address": "167 TYRONE RD #700",
+   "parcel_id": "7-13-142",
+   "lon_lat": [
+    -84.5290089,
+    33.4602783
+   ]
+  },
+  "QTS DATA CENTER BUILDING 800": {
+   "address": "167 TYRONE RD #800",
+   "parcel_id": "7-13-143",
+   "lon_lat": [
+    -84.5290139,
+    33.4614744
+   ]
+  },
+  "QTS DATA CENTER BUILDING 900": {
+   "address": "556 SANDY CREEK RD #900",
+   "lon_lat": [
+    -84.529069,
+    33.4646405
+   ]
+  },
+  "QTS DATA CENTER BUILDING 1000": {
+   "address": "556 SANDY CREEK RD #1000",
+   "lon_lat": [
+    -84.5238642,
+    33.4646556
+   ]
+  }
+ },
+ "facts": {
+  "building_points": 10,
+  "mean_method": "arithmetic mean of the ten points in a local transverse Mercator (WGS84) centred on their mean, transformed back",
+  "building_point_distances_from_mean_m": {
+   "100": 951,
+   "200": 760,
+   "300": 868,
+   "400": 779,
+   "500": 186,
+   "600": 383,
+   "700": 494,
+   "800": 620,
+   "900": 963,
+   "1000": 997
+  },
+  "building_point_extent_m": [
+   749,
+   1812
+  ],
+  "site_address_point": {
+   "label": "QTS DATA CENTER",
+   "address": "1435 W HIGHWAY 54",
+   "lon_lat": [
+    -84.5244558,
+    33.4459211
+   ],
+   "distance_from_mean_m": 1157
+  },
+  "entrance_points": {
+   "QTS DATA CENTER - TYRONE ENTRANCE (167 TYRONE RD)": 1061,
+   "QTS DATA CENTER - EMERGENCY ENTRANCE (435 FLAT CREEK TRL)": 726,
+   "QTS DATA CENTER FLAT CREEK ENTRANCE (Flat Creek Tr at Linden Rd)": 888,
+   "QTS DATA CENTER NORTH ENTRANCE (556 SANDY CREEK RD)": 2434
+  },
+  "excluded_rows": "parking rows labelled QTS PARKING (Trilith, Veterans Parkway east campus parking) are not data-center buildings and were not returned by this query; they are not used",
+  "census_geocoder_check": "the US Census geocoder result for 1435 Hwy 54 W (-84.5254466, 33.4453402, captured as census-geocode-1435-hwy-54-w-fayetteville.json) lies 112 m from the register site point and 1,207 m from the selected point; it was not used",
+  "previous_point_lon_lat": [
+   -84.4617,
+   33.4478
+  ],
+  "displacement_m": 6143
+ },
+ "exclusions": "Editor user names and dates in the register rows are not reproduced. No geocoder, map viewport, operator map widget or city centre is used."
+}

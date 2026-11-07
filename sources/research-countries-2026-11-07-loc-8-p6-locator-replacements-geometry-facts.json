@@ -1,0 +1,157 @@
+{
+ "format": "datacenter-atlas-geometry-facts-v1",
+ "fragment": "loc-8-p6",
+ "prepared_on": "2026-11-07",
+ "method_note": "Goodman MAD01: the selected point is copied unchanged from the Direccion General del Catastro Consulta_CPMRC reference point (EPSG:4326) for parcel 3873202VK5737D; it equals the INSPIRE parcel referencePoint (453660.15, 4477201.09, EPSG:25830) transformed with pyproj 3.7.1 / PROJ 9.5.1 (difference 0.0 m), and lies inside the 5,577 m2 parcel polygon (shapely 2.1.1; 18.6 m from the boundary). STT Singapore 5: the point is copied unchanged from the OneMap address search; the served SVY21 X/Y transformed EPSG:3414 to EPSG:4326 with pyproj 3.7.1 differs by 4.4e-11 m. Africa Data Centres JHB1: the City of Johannesburg stand 849 polygon (33 vertices) served in WGS84 was projected to UTM 35S (EPSG:32735) with pyproj 3.7.1, its planar area centroid computed with shapely 2.1.1 (area 55,701.7 m2 in UTM; register 55,741 m2), transformed back and rounded to 7 decimals (28.1195855, -26.0101806); the polygon served in its native TM_29_Hartebeesthoek projection (pyproj CRS from the served WKT) gives the same centroid (0.0 m), and the City's point query at the rounded point returns only stand 849. No Google, Apple, Bing, HERE, Waze, Yandex or other commercial map coordinate, map link, embed, PeeringDB record or OpenStreetMap service was used.",
+ "displacement_formula": "haversine, mean Earth radius 6,371,008.8 m (as in datacenter_atlas.dataset_update._distance_metres)",
+ "nearest_other_atlas_sites_within_2km": {
+  "curated:stt-singapore5-tai-seng": [
+   {
+    "physical_site_stable_key": "curated:global-switch-singapore-tai-seng",
+    "distance_metres": 406
+   },
+   {
+    "physical_site_stable_key": "curated:equinix-sg4-7-tai-seng-drive",
+    "distance_metres": 459
+   },
+   {
+    "physical_site_stable_key": "curated:keppel-genting-lane-data-centre-campus",
+    "distance_metres": 1914
+   }
+  ],
+  "others": "No other Atlas site, project, source-record point or pending queue point lies within 2 km of the new Goodman MAD01 or Africa Data Centres JHB1 points (base verified_construction_core/2026-11-07-research-hundredtwentysecond)."
+ },
+ "corrections": [
+  {
+   "physical_site_stable_key": "curated:goodman-mad01-madrid-data-centre-campus",
+   "site_id": "vcc-site-d00d83a0549fcc042174",
+   "site_name": "Goodman MAD01 Madrid Data Centre Campus",
+   "replaced_geometry_evidence_id": "c874fcec-0c4d-5dec-b277-0c338369d9c7",
+   "replaced_point": {
+    "type": "Point",
+    "coordinates": [
+     -3.546397,
+     40.444143
+    ]
+   },
+   "selected_point": {
+    "type": "Point",
+    "coordinates": [
+     -3.54643314207296,
+     40.444170964771
+    ]
+   },
+   "selected_source_id": "loc-8-p6-catastro-cpmrc-3873202vk5737d",
+   "identity_source_ids": [
+    "loc-8-p6-catastro-via-iveco-pegaso",
+    "loc-8-p6-catastro-dnploc-iveco-pegaso-cinco-2",
+    "loc-8-p6-catastro-cp-3873202vk5737d"
+   ],
+   "displacement_metres": 4.4
+  },
+  {
+   "physical_site_stable_key": "curated:stt-singapore5-tai-seng",
+   "site_id": "vcc-site-a2a3c5a67612393a5baa",
+   "site_name": "STT Singapore 5 Tai Seng",
+   "replaced_geometry_evidence_id": "9ba9d235-cced-5a80-b3a9-11d624cd7b6b",
+   "replaced_point": {
+    "type": "Point",
+    "coordinates": [
+     103.8902246,
+     1.3353439999999999
+    ]
+   },
+   "selected_point": {
+    "type": "Point",
+    "coordinates": [
+     103.8904869924277,
+     1.33550407469478
+    ]
+   },
+   "selected_source_id": "loc-8-p6-onemap-35-tai-seng-street",
+   "identity_source_ids": [
+    "loc-8-p6-stt-singapore5-factsheet"
+   ],
+   "displacement_metres": 34.2
+  },
+  {
+   "physical_site_stable_key": "curated:africa-data-centres-jhb1-midrand",
+   "site_id": "vcc-site-f12c1276f78e5184af30",
+   "site_name": "Africa Data Centres JHB1 Midrand",
+   "replaced_geometry_evidence_id": "f8e7e085-a179-5a3b-920f-caab394e2b30",
+   "replaced_point": {
+    "type": "Point",
+    "coordinates": [
+     28.1202488,
+     -26.0093927
+    ]
+   },
+   "selected_point": {
+    "type": "Point",
+    "coordinates": [
+     28.1195855,
+     -26.0101806
+    ]
+   },
+   "selected_source_id": "loc-8-p6-joburg-stand-849-halfway-house-ext37",
+   "identity_source_ids": [
+    "loc-8-p6-adc-midrand-page-2026-10-16",
+    "loc-8-p6-joburg-stand-at-selected-point",
+    "loc-8-p6-joburg-street-address-401-old-pretoria-main"
+   ],
+   "displacement_metres": 109.9
+  }
+ ],
+ "geometry_facts": {
+  "curated:goodman-mad01-madrid-data-centre-campus": {
+   "parcel": "3873202VK5737D",
+   "inspire_area_m2": 5577,
+   "polygon_vertices": 11,
+   "bounds_epsg25830": [
+    453604.86,
+    4477130.11,
+    453681.42,
+    4477225.7
+   ],
+   "reference_point_epsg25830": [
+    453660.15,
+    4477201.09
+   ],
+   "area_centroid_wgs84": [
+    -3.5466298814,
+    40.44396334
+   ],
+   "selected_point_inside_parcel": true,
+   "selected_point_distance_to_boundary_m": 18.6,
+   "replaced_point_inside_parcel": true,
+   "replaced_point_distance_to_boundary_m": 15.1
+  },
+  "curated:stt-singapore5-tai-seng": {
+   "svy21_xy": [
+    34362.2425864879,
+    35298.84566129372
+   ],
+   "transform_check_m": 4.4e-11
+  },
+  "curated:africa-data-centres-jhb1-midrand": {
+   "stand": "849 Halfway House Ext.37",
+   "register_area_m2": 55741,
+   "planar_area_native_m2": 55739.7,
+   "polygon_vertices": 33,
+   "dimensions_m": [
+    266,
+    371
+   ],
+   "selected_point_distance_to_boundary_m": 90.1,
+   "farthest_vertex_m": 193.9,
+   "replaced_point_inside_stand": true,
+   "replaced_point_distance_to_boundary_m": 33.5,
+   "street_address_marker": [
+    28.120378108625644,
+    -26.010725782942398
+   ],
+   "street_address_marker_inside_stand": true,
+   "street_address_marker_to_selected_point_m": 99.7
+  }
+ }
+}

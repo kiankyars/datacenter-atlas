@@ -1,0 +1,79 @@
+{
+  "candidate_id": "ops-nova-us-p6-equinix-manassas-infantry-ridge-road-campus",
+  "decision": "Selected the point of Prince William County's Data Center Buildings record 'Equinix Manassas DC14' (7400 Infantry Ridge Rd, GPIN 7697-47-7005) as the campus locator for Equinix's Manassas campus, whose existing IBX is DC14.",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -77.5108797,
+      38.8033295
+    ]
+  },
+  "authority_class": "official_source",
+  "scope_class": "official_data_center_building_register_point",
+  "use_scope": "campus_locator",
+  "source_file": "local_data/country-research-ops-nova-us-p6/pwc-dc-buildings-infantry-equinix.json",
+  "source_sha256": "f3d04d3259fd85b1ff7f197fdfb02dd66f84afd4499389adccdf4d2b7368477a",
+  "source_url": "https://gisweb.pwcva.gov/arcgis/rest/services/CountyMapper/LandDevelopment/MapServer/10/query?where=UPPER(Address)%20LIKE%20%27%25INFANTRY%25%27%20OR%20UPPER(BuildingName)%20LIKE%20%27%25EQUINIX%25%27&outFields=*&returnGeometry=true&outSR=4326&f=json",
+  "retrieved_at": "2026-11-06T23:28:53.153Z",
+  "facts": {
+    "records": [
+      {
+        "building_name": "Verizon Manassas 7777 Infantry Ridge",
+        "building_id": "Verizon",
+        "address": "7777 INFANTRY RIDGE RD",
+        "gpin": "7697-47-3772",
+        "status": "Completed",
+        "lon_lat": [
+          -77.5124925,
+          38.8048863
+        ],
+        "inside_parcel_7697_47_7005": false
+      },
+      {
+        "building_name": "Equinix Manassas DC14",
+        "building_id": "DC14",
+        "address": "7400 INFANTRY RIDGE RD",
+        "gpin": "7697-47-7005",
+        "status": "Completed",
+        "lon_lat": [
+          -77.5108797,
+          38.8033295
+        ],
+        "inside_parcel_7697_47_7005": true
+      },
+      {
+        "building_name": "Equinix Manassas DC19",
+        "building_id": "DC19",
+        "address": "7200 INFANTRY RIDGE RD",
+        "gpin": "7697-47-2201",
+        "status": "Planned",
+        "lon_lat": [
+          -77.5131081,
+          38.8029964
+        ],
+        "inside_parcel_7697_47_7005": false
+      }
+    ],
+    "dc14_point_distance_to_parcel_centroid_m": 9.6,
+    "dc14_point_distance_to_parcel_boundary_m": 48.7,
+    "parcel": {
+      "gpin": "7697-47-7005",
+      "acreage": 7.3092,
+      "use_description": "DataCenter - Technology Services",
+      "geodesic_acres": 7.35,
+      "valid": true,
+      "vertices": 329,
+      "centroid": [
+        -77.5109393,
+        38.8032562
+      ],
+      "approx_extent_m": [
+        325,
+        175
+      ],
+      "source_sha256": "908ca8551b77d716aac644df0b448e44080fc1183b0344a3962dd792b83007da"
+    },
+    "dc19_point_distance_to_dc14_point_m": 197.1
+  },
+  "tools": "pyproj 3.7.1 and shapely 2.1.1 (uv run --no-project); no map service or geocoder used"
+}

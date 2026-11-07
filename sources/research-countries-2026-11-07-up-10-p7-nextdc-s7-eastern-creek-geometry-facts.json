@@ -1,0 +1,60 @@
+{
+ "candidate_id": "up-10-p7-nextdc-s7-eastern-creek",
+ "decision": "Selected the site coordinates printed in NEXTDC's Request for SEARs for SSD-113934740 (latitude -33.801799, longitude 150.826) as the campus locator replacing the imported Eastern Creek suburb point.",
+ "geometry": {
+  "type": "Point",
+  "coordinates": [
+   150.826,
+   -33.801799
+  ]
+ },
+ "authority_class": "official_source",
+ "scope_class": "applicant_declared_site_coordinates_in_state_planning_application",
+ "use_scope": "campus_locator",
+ "source_files": [
+  {
+   "file": "local_data/country-research-up-10-p7/nsw-pda-107168706-request-for-sears.pdf",
+   "sha256": "cb6e18084ce52900f5bcc139a8ddb20b69ce1d22aac9c89f0cdfc44471f52ba2",
+   "url": "https://majorprojects.planningportal.nsw.gov.au/prweb/PRRestService/mp/01/getContent?AttachRef=PDA-107168706%2120260409T040422.778+GMT",
+   "retrieved_at": "2026-11-06T23:24:40.126Z"
+  },
+  {
+   "file": "local_data/country-research-up-10-p7/nsw-cadastre-lot-at-s7-declared-point.geojson",
+   "sha256": "e9c4b0c06fa6c6c0b8824d47073bdeceee5fc78af1c4450527801869a197c9cb",
+   "url": "https://maps.six.nsw.gov.au/arcgis/rest/services/public/NSW_Cadastre/MapServer/9/query?geometry=150.826%2C-33.801799&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=lotidstring,lotnumber,planlabel,planlotarea,planlotareaunits,startdate,lastupdate&returnGeometry=true&outSR=4326&f=geojson",
+   "retrieved_at": "2026-11-06T23:27:25.254Z"
+  }
+ ],
+ "layer": "Request for SEARs PDF (PDA-107168706) section 'Site Details': 'Site Co-ordinates - Latitude -33.801799', 'Site Co-ordinates - Longitude 150.826'; cross-checked against NSW Spatial Services NSW_Cadastre layer 9 (Lot) queried at that point in WGS84",
+ "selected_properties": {
+  "printed_latitude": "-33.801799",
+  "printed_longitude": "150.826",
+  "site_address": "1 Kangaroo Avenue (Honeycomb Drive), Eastern Creek",
+  "application_lots": [
+   "Lot 13 DP1302361",
+   "Lot 7 DP1225803"
+  ],
+  "site_area_sqm": 255157
+ },
+ "facts": {
+  "coordinates_used_as_printed": true,
+  "longitude_printed_decimals": 3,
+  "current_lot_at_point": "100//DP1326944",
+  "current_lot_plan_area_sqm": 331016.9,
+  "point_inside_current_lot": true,
+  "distance_point_to_lot_boundary_m": 105.4,
+  "distance_point_to_lot_planar_centroid_m": 185.2,
+  "application_lots_in_current_cadastre": false,
+  "planning_portal_page_point_lon_lat": [
+   150.825602,
+   -33.801799
+  ],
+  "distance_point_to_planning_portal_page_point_m": 36.8,
+  "previous_point_lon_lat": [
+   150.85,
+   -33.8059
+  ],
+  "displacement_haversine_m": 2263.9
+ },
+ "exclusions": "Lot 13 DP1302361 and Lot 7 DP1225803 return no features in the current NSW cadastre, so no parcel union is computed; the current lot 100//DP1326944 is a cross-check only. No geocoder, map viewport or suburb centroid is used."
+}

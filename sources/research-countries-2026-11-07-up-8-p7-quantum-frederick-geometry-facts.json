@@ -1,0 +1,129 @@
+{
+ "candidate_id": "up-8-p7-quantum-frederick",
+ "decision": "Selected the area centroid of the 'Applications Accepted' (APFO approval prior to 17 June 2025) status area on Frederick County's 'Critical Digital Infrastructure Site Plan Approvals, As of July 1, 2026' map (Division of Planning and Permitting, printed 14 July 2026), read from the map raster and georeferenced with the GeoPDF registration the County embedded in the file, as the campus locator replacing the imported Frederick County locality point for the Quantum Frederick data center park at Adamstown.",
+ "geometry": {
+  "type": "Point",
+  "coordinates": [
+   -77.4741693,
+   39.3295703
+  ]
+ },
+ "authority_class": "compiled_reference",
+ "scope_class": "official_county_cdi_site_plan_approval_area_georeferenced_raster_centroid",
+ "use_scope": "campus_locator",
+ "derivation": "georeferenced_source_map",
+ "source_files": [
+  {
+   "file": "local_data/country-research-up-8-p7/frederick-cdi-approved-site-plans-july-2026.pdf",
+   "sha256": "94030666af1b8f0d3e3fab7226bd389083dc5b78846b83be57a724d077b94ade",
+   "url": "https://www.frederickcountymd.gov/DocumentCenter/View/374476/CDI-approved-site-plans-July-2026",
+   "retrieved_at": "2026-11-06T23:16:52.345Z"
+  }
+ ],
+ "facts": {
+  "map_title": "Critical Digital Infrastructure Site Plan Approvals, As of July 1, 2026 (Frederick County, Maryland, Division of Planning and Permitting; PDF title CDI; created with Esri ArcGIS Pro 3.5.7, 14 July 2026)",
+  "legend": "Area Status: 'Applications Accepted, 1,297 acres (APFO Approval Prior to June 17, 2025)' (green), 'Applications Not Currently Accepted, 1,287 acres' and 'CDI Overlay Zone'",
+  "labelled_site_plans_in_accepted_area": "site-plan labels for Aligned Data Centers (4 buildings, 74.89 acres), Bauxite, Bauxite II and Bauxite III building groups and several substations (Aligned, Bauxite and Lot 112A), with roads including Adamstown Road, Manor Woods Road, New Design Road, Digital Drive and Basford Road; the label text is interleaved in the PDF, so per-label acreages other than Aligned's are not relied on",
+  "georeference": {
+   "viewport_name": "CDI_ExecutiveOrderWSitePlanApprovals_20260714",
+   "viewport_bbox_pt": [
+    21.6,
+    162.0,
+    590.4,
+    768.646713285
+   ],
+   "gpts_lat_lon": [
+    [
+     39.30675,
+     -77.50927
+    ],
+    [
+     39.36072,
+     -77.50966
+    ],
+    [
+     39.36098,
+     -77.44447
+    ],
+    [
+     39.30701,
+     -77.44413
+    ]
+   ],
+   "lpts": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     0
+    ]
+   ],
+   "projection": "NAD_1983_StatePlane_Maryland_FIPS_1900_Feet (embedded WKT); computed in EPSG:2248 with pyproj 3.7.1",
+   "affine_fit_max_residual_ft": 0.033
+  },
+  "raster": "page 1 rendered with pdftoppm -r 300 -png (2550 x 3300 px); 7.78 ft per pixel inside the viewport",
+  "segmentation": "pixels within 6 of RGB (135, 202, 102) in every channel inside the viewport; 29 connected components of at least 1 acre",
+  "detected_accepted_area_acres": 1080.3,
+  "legend_accepted_area_acres": 1297,
+  "detection_shortfall_note": "about 17 percent of the stated area is hidden under labels, road lines and parcel outlines drawn over the green fill, so the centroid weights the unlabelled parts slightly more",
+  "largest_components": [
+   {
+    "acres": 194.9,
+    "centroid_lon_lat": [
+     -77.472871,
+     39.325682
+    ]
+   },
+   {
+    "acres": 94.1,
+    "centroid_lon_lat": [
+     -77.483987,
+     39.324917
+    ]
+   },
+   {
+    "acres": 89.1,
+    "centroid_lon_lat": [
+     -77.464723,
+     39.323915
+    ]
+   },
+   {
+    "acres": 70.9,
+    "centroid_lon_lat": [
+     -77.463595,
+     39.334226
+    ]
+   },
+   {
+    "acres": 69.7,
+    "centroid_lon_lat": [
+     -77.462767,
+     39.328235
+    ]
+   }
+  ],
+  "centroid_pixel": [
+   1373,
+   1563
+  ],
+  "centroid_on_green_pixel": true,
+  "previous_point_lon_lat": [
+   -77.3972,
+   39.4311
+  ],
+  "displacement_m": 13085,
+  "verification_script": "green.py (numpy 2.3.2, scipy 1.16.1, pillow 11.3.0, pyproj 3.7.1; uv run --no-project, python -I)"
+ },
+ "exclusions": "The 'Applications Not Currently Accepted' area and the CDI overlay as a whole are not used; the County Executive's 14 September 2026 DRRA letter does not locate the Frederick Digital Campus land, so it is used for identity only. No geocoder, map service viewport, town centre or overlay-zone centroid is used."
+}

@@ -1,0 +1,76 @@
+{
+ "candidate_id": "up-8-p7-rowan-temple",
+ "decision": "Selected the planar centroid of the union of the three contiguous Bell County tax parcels that the TxGIO StratMap land-parcel layer lists as owned by ROWAN TEMPLE LLC on Bob White Road (Bell Appraisal District, tax year 2026; M. Moreno survey A0014BC), which contain the street frontage of 1855 Bob White Road where TDLR registered Rowan Digital Infrastructure's AUS02 (Building 2) data-center project, as the campus locator replacing the imported Temple city point.",
+ "geometry": {
+  "type": "Point",
+  "coordinates": [
+   -97.2836295,
+   31.0599572
+  ]
+ },
+ "authority_class": "official_source",
+ "scope_class": "official_tax_parcel_union_centroid",
+ "use_scope": "campus_locator",
+ "source_files": [
+  {
+   "file": "local_data/country-research-up-8-p7/txgio-parcels-bell-rowan-temple-llc.json",
+   "sha256": "d08d8d1ee7a2b9b0c1e5ce04b5375f48b9432fae9ba6f6b47d03ac0d12f30b99",
+   "url": "https://feature.geographic.texas.gov/arcgis/rest/services/Parcels/stratmap_land_parcels_48_most_recent/MapServer/identify?geometry=-97.95%2C30.75%2C-97.05%2C31.32&geometryType=esriGeometryEnvelope&sr=4326&layers=all%3A0&layerDefs=%7B%220%22%3A%22UPPER%28OWNER_NAME%29%20LIKE%20%27%25ROWAN%20TEMPLE%25%27%22%7D&tolerance=0&mapExtent=-97.95%2C30.75%2C-97.05%2C31.32&imageDisplay=1000%2C1000%2C96&returnGeometry=true&f=json",
+   "retrieved_at": "2026-11-06T23:03:56.096Z"
+  }
+ ],
+ "layer": "TxGIO 'stratmap_land_parcels_48_most_recent' MapServer identify (layer 0), envelope -97.95,30.75,-97.05,31.32 with layerDefs UPPER(OWNER_NAME) LIKE '%ROWAN TEMPLE%', returnGeometry true",
+ "selected_properties": {
+  "12894": {
+   "objectid": 371916,
+   "owner": "ROWAN TEMPLE LLC",
+   "legal_description": "A0014BC M MORENO, 261, 279-1, ACRES 58.411",
+   "situs": "2351 BOB WHITE",
+   "geodesic_acres": 58.42
+  },
+  "36491": {
+   "objectid": 391052,
+   "owner": "ROWAN TEMPLE LLC",
+   "legal_description": "A0014BC M MORENO, 255 & 256, ACRES 454.238",
+   "situs": "1707 BOB WHITE",
+   "geodesic_acres": 454.35
+  },
+  "239676": {
+   "objectid": 449789,
+   "owner": "ROWAN TEMPLE LLC",
+   "legal_description": "A0014BC M MORENO, 264, ACRES 41.944",
+   "situs": "1707 BOB WHITE",
+   "geodesic_acres": 41.95
+  }
+ },
+ "facts": {
+  "parcels": 3,
+  "union_type": "Polygon",
+  "union_parts": 1,
+  "union_valid": true,
+  "union_geodesic_acres": 554.73,
+  "legal_acres_total": 554.593,
+  "operator_stated_campus_acres": "roughly 700 (Rowan, 5 January 2026)",
+  "centroid_inside": true,
+  "centroid_method": "shapely centroid of the union in a local transverse Mercator (WGS84) at the union centroid, transformed back; the planar WGS84 centroid differs by 0.01 m",
+  "max_distance_centroid_to_union_vertex_m": 1349.9,
+  "bounds_lon_lat": [
+   -97.296758,
+   31.048681,
+   -97.273591,
+   31.071326
+  ],
+  "extent_m": [
+   2211,
+   2511
+  ],
+  "tdlr_project_address": "1855 Bob White Road, Temple, TX 76501 (TABS2026026121, AUS02 (Building 2)); its house number lies between the 1707 and 2351 Bob White situs numbers of the selected parcels; no official address point was used",
+  "previous_point_lon_lat": [
+   -97.4208,
+   31.1056
+  ],
+  "displacement_m": 14014,
+  "verification_script": "union.py (pyproj 3.7.1, shapely 2.1.1; uv run --no-project, python -I)"
+ },
+ "exclusions": "Only parcels owned by the named LLC are used; about 145 acres of the roughly 700-acre campus Rowan describes are not in parcels under that name, so the locator describes the Rowan Temple LLC holding. No geocoder, map viewport or city centre is used; contact and accessibility-specialist names in the TDLR record are not reproduced."
+}

@@ -1,0 +1,45 @@
+{
+ "candidate_id": "loc-10-p8-cra-dc-tower-zizkov",
+ "physical_site_stable_key": "curated:cra-dc-tower-zizkov-campus",
+ "decision": "Replace the PeeringDB facility point with the RUIAN address point for Mahlerovy sady 2699/1, Zizkov, Praha 3, the only address of the Zizkov television transmitter compound in which CRA operates DC TOWER.",
+ "source_file": "local_data/country-research-loc-10-p8/cuzk-ruian-adresnimisto-mahlerovy-sady-2699.json",
+ "source_sha256": "c7acd624c5719aa22f400d3e26e3c642c56cd144127d018da82d0f2dab4eb0ad",
+ "source_url": "https://ags.cuzk.cz/arcgis/rest/services/RUIAN/Prohlizeci_sluzba_nad_daty_RUIAN/MapServer/1/query?where=cislodomovni%3D2699+AND+adresa+LIKE+%27%25Mahlerovy%25%27&outFields=kod,cislodomovni,cisloorientacni,cisloorientacnipismeno,psc,stavebniobjekt,ulice,platiod,adresa&returnGeometry=true&f=json",
+ "published_fields": {
+  "kod (address point code)": 22701605,
+  "adresa": "Mahlerovy sady 2699/1, Žižkov, 13000 Praha 3",
+  "cislodomovni": 2699,
+  "cisloorientacni": 1,
+  "psc": 13000,
+  "stavebniobjekt (building object)": 21717311,
+  "ulice (street code)": 505331,
+  "platiod (valid from, epoch ms)": 1499644800000,
+  "geometry": {
+   "x": -740747.53,
+   "y": -1043993.14,
+   "spatialReference": "wkid 102067 / latestWkid 5514 (S-JTSK / Krovak East North)"
+  }
+ },
+ "conversion": "EPSG:5514 to EPSG:4326 with pyproj 3.7.1 (always_xy). The default operation selected is \"Inverse of Krovak East North (Greenwich) + S-JTSK to WGS 84 (5)\", EPSG accuracy 1 m: (14.451665217804342, 50.08125745990283), rounded to 7 decimals. Alternative EPSG operations (1) and (4) give points within 1.6 m; operation (3) (6 m accuracy) differs by about 10 m and was not used.",
+ "geometry": {
+  "type": "Point",
+  "coordinates": [
+   14.4516652,
+   50.0812575
+  ]
+ },
+ "containment_checks": {
+  "building": "RUIAN building object 21717311 (No. 2699, identification parcel 2075352101, built-up area 2,124 m2, one recorded floor, no flats) contains the address point, 10.1 m inside its outline (shapely 2.1.1 in EPSG:5514). Its outline centroid is (14.4517726, 50.0809643).",
+  "parcel": "Parcel 1361/4 (id 2075352101, 2,124 m2, land type code 13, cadastral area 727415 Zizkov) is the building parcel. It and parcel 1361/5 (170 m2, carrying an unnumbered building object 42413419) lie inside the outer ring of parcel 1361/1 (17,473 m2 declared; outer ring 19,767 m2 = 17,473 + 2,124 + 170).",
+  "street": "A query of all RUIAN address points on street code 505331 (Mahlerovy sady) returns exactly one: 22701605, Mahlerovy sady 2699/1.",
+  "replaced_point": "The replaced point (14.451122, 50.08103) lies on parcel 1361/5 and inside the outer ring of 1361/1, 31.9 m from building 2699."
+ },
+ "replaced_point": [
+  14.451122,
+  50.08103
+ ],
+ "displacement_m": 46.3,
+ "identity_bridge": "CRA's article 'Jak se staví datová centra' (dated 5. 12. 2017 on the page) says DC TOWER is hidden in the compound of the Zizkov television transmitter, in spaces that once held analogue transmission equipment, and that the transmitter site at Mahlerovy sady was chosen in 1984. CRA's 16 October 2025 release on the DC Tower expansion places the data centre in Prague-Zizkov. Mahlerovy sady 2699/1 is the only RUIAN address on that street.",
+ "nearby_records_within_2km": "Only this site (curated:cra-dc-tower-zizkov-campus, 46 m) in the current dataset; no pending queue addition or locator correction within 2 km; no hold names Mahlerovy sady or DC Tower.",
+ "not_used": "PeeringDB, commercial map services and map links were not used. nahlizenidokn.cuzk.cz disallows automated access in robots.txt and was not queried."
+}
