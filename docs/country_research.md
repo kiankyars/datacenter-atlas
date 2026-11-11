@@ -1178,6 +1178,26 @@ The snapshot contains **1,301 sites, 1,411 projects and
 7,293 evidence records in 90 countries**. Historical snapshots and
 all unrelated project records remain unchanged.
 
+`verified_construction_core/2026-11-11-research-hundredfiftyfourth` adds OVHcloud Hillsboro HIL1.
+The operator's November 10 service-restoration report establishes existing
+operation, original address records identify the host, and the Oregon government
+address point supplies its locator. No opening date or operating capacity is inferred.
+
+Sify Chennai 02 and Noida 02 now use representative points derived from numeric
+site coordinates in original government records, joined to the named facilities
+through the issuer's property table. Their statuses, dates, roles and metrics are
+unchanged. Coordinate accuracy and source datum remain unknown.
+
+The existing Iron Mountain Amsterdam campus retains its exact point and
+uncertainty. Its transformed Dutch government coordinate is now correctly
+classified as a compiled reference, and its site-level locator evidence names the
+selected source. The AMS-2 construction observation is unchanged. The reviewed
+AMS-1 operating-phase proposal will inherit this corrected locator in a later update.
+
+The snapshot contains **1,302 sites, 1,412 projects and
+7,302 evidence records in 90 countries**. Historical snapshots and
+all unrelated project records remain unchanged.
+
 ## 25 October 2026
 
 `verified_construction_core/2026-10-25-research-sixtysecond` adds three commercial sites and

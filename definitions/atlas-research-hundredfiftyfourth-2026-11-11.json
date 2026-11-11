@@ -1,0 +1,169 @@
+{
+  "format": "datacenter-atlas-update-input-v1",
+  "updated_at": "2026-11-11",
+  "output": "verified_construction_core/2026-11-11-research-hundredfiftyfourth",
+  "base_dataset": "verified_construction_core/2026-11-11-research-hundredfiftythird",
+  "base_manifest_sha256": "0de02598e7bd311b1fbf4fb59f774564f8ce326d3cd372b8bbd3810b4e00fe60",
+  "source_files": [
+    {
+      "path": "sources/research-countries-2026-11-11-hundredfiftyfourth-primary-sources.json",
+      "sha256": "6d2588b10ee1101cf5b0e33637b2b39c6e79835014d544bbd66fadf99ced322e"
+    }
+  ],
+  "additions": [
+    {
+      "project_stable_key": "curated:ovhcloud-hillsboro-1300-ne-25th:existing-operations",
+      "physical_site_stable_key": "curated:ovhcloud-hillsboro-1300-ne-25th",
+      "site_name": "OVHcloud Hillsboro HIL1 (1300 NE 25th Avenue, Hillsboro, Oregon)",
+      "name": "OVHcloud Hillsboro HIL1 — existing commercial operations",
+      "country": "United States",
+      "country_iso_a2": "US",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-11-10",
+        "source_id": "commercial154-hillsboro-host-nov10",
+        "summary": "The original operator report identifies an actual issue affecting a VPS host at location HIL, records remediation and marks the incident resolved at 20:33 UTC on November 10. This evidences existing commercial hosting at Hillsboro. The statement that some VPS instances may be unavailable is conditional; no claim is made that every instance or the whole facility lost service."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -122.956586,
+            45.5339286
+          ]
+        },
+        "source_id": "commercial154-hillsboro-state-address",
+        "identity_source_ids": [
+          "commercial154-hillsboro-customer-address",
+          "commercial154-hillsboro-operator-registration",
+          "commercial153-ovh-us-physical-hosts"
+        ],
+        "scope": "reviewed_site_locator",
+        "scope_class": "government_exact_address_point",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "oregon_pointaddress_epsg2992_inverse_explicit_epsg1188",
+        "precision": "Exact Oregon government PointAddress result for 1300 Northeast 25th Avenue, Hillsboro OR 97124, score 100. Native EPSG:2992 Oregon Lambert international-foot coordinates are inversely projected and transformed using explicit EPSG:1188 NAD83 to WGS84 (1), with zero geocentric translations and a 4 m nominal mainland datum approximation. Coordinates are rounded to seven decimal places. This is an address reference point, not a surveyed building, entrance, rack or campus boundary. Source realization, epoch, building offset and per-record positional accuracy are unstated; the 4 m operation estimate is not total location accuracy.",
+        "identity_review": "All four committed baseline 153 identity layers were searched: 1,301 sites, 1,411 projects, 231 source records, and 231 identity-mapping records plus 231 decisions. OVH/OVHcloud, HIL1/HIL-1, 1300 NE 25th Avenue, Data Center West Coast, H111A08 and HIL0115 aliases were checked. Only the eight already represented OVHcloud hosts outside Oregon matched operator identity; no exact Hillsboro address or local host alias matched. All 1,301 full geometries were checked, including polygons and multipolygons. The nearest host is NTT Hillsboro at 4050 NE Evergreen Road, 2.296 km away; STACK POR03 at 4735 NE Starr Boulevard is 2.588 km away, and US Signal OR02 at 3295 NE 83rd Avenue is 4.991 km away. No existing site lies within 2 km. These are different named physical addresses. One existing OVHcloud host is proposed, with no separate rack, tenant or future expansion site.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "Government point accuracy, offset from hosting equipment, NAD83 realization and epoch are not supplied. The nominal datum-operation accuracy is not total location accuracy."
+      },
+      "context_source_ids": [
+        "commercial154-hillsboro-customer-address",
+        "commercial154-hillsboro-operator-registration",
+        "commercial153-ovh-us-physical-hosts"
+      ],
+      "roles": [
+        {
+          "party": "OVHcloud US",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "commercial154-hillsboro-host-nov10"
+        }
+      ],
+      "distinctness_review": "All four committed baseline 153 identity layers were searched: 1,301 sites, 1,411 projects, 231 source records, and 231 identity-mapping records plus 231 decisions. OVH/OVHcloud, HIL1/HIL-1, 1300 NE 25th Avenue, Data Center West Coast, H111A08 and HIL0115 aliases were checked. Only the eight already represented OVHcloud hosts outside Oregon matched operator identity; no exact Hillsboro address or local host alias matched. All 1,301 full geometries were checked, including polygons and multipolygons. The nearest host is NTT Hillsboro at 4050 NE Evergreen Road, 2.296 km away; STACK POR03 at 4735 NE Starr Boulevard is 2.588 km away, and US Signal OR02 at 3295 NE 83rd Avenue is 4.991 km away. No existing site lies within 2 km. These are different named physical addresses. One existing OVHcloud host is proposed, with no separate rack, tenant or future expansion site.",
+      "successor_review": "The captured original US status history and HIL-filtered history were read through November 11. A later November 10 VPS host incident identifies location HIL, records actual remediation and resolves the incident at 20:33 UTC; it supersedes the first October 19 rack-fault lead as the current observation. Completed infrastructure-maintenance updates through November 10 corroborate continued work inside the existing site but do not commission a new expansion. Future November 12 and later scheduled maintenance are not completed observations. This is a bounded public status-history review, not an exhaustive corporate archive or claim of uninterrupted service.",
+      "scoped_project_details": {
+        "numbered_address": "1300 NE 25th Avenue, Hillsboro, Oregon 97124",
+        "scope": "One existing physical HIL1 host and existing commercial service; no separate VPS rack, customer tenancy or planned expansion admitted.",
+        "observation": "Actual VPS host incident and resolution; some-instance impact remains conditional. Earlier October 19 bare-metal rack incident explicitly names Hillsboro.",
+        "capacity": "No MW, rack count, area, utilization, network-block allocation, generator or UPS metric selected.",
+        "location_limitations": "Exact Oregon government PointAddress result for 1300 Northeast 25th Avenue, Hillsboro OR 97124, score 100. Native EPSG:2992 Oregon Lambert international-foot coordinates are inversely projected and transformed using explicit EPSG:1188 NAD83 to WGS84 (1), with zero geocentric translations and a 4 m nominal mainland datum approximation. Coordinates are rounded to seven decimal places. This is an address reference point, not a surveyed building, entrance, rack or campus boundary. Source realization, epoch, building offset and per-record positional accuracy are unstated; the 4 m operation estimate is not total location accuracy."
+      }
+    }
+  ],
+  "status_updates": [],
+  "context_updates": [],
+  "locator_corrections": [
+    {
+      "physical_site_stable_key": "curated:iron-mountain-amsterdam-data-center-campus",
+      "site_id": "vcc-site-faa101d551da0c45f1c5",
+      "replaces_geometry_evidence_id": "583562f6-1d06-596e-81cc-289524fe0c00",
+      "provenance_only": true,
+      "reason": "The baseline project already uses the transformed official-notice XML point, but labels its authority official_source and derivation official_notice_source_point. The site also aggregates the map-support JavaScript evidence as geometry despite the project selecting only the XML. Correct the authority and derivation to compiled_reference/coordinate_transform, document the exact transformation and campus precision, and make the site geometry-evidence array reflect the project-selected XML. Preserve the original canonical evidence row, all its associations, the separate legacy JavaScript evidence row and every status, metric and role claim.",
+      "displacement_review": "Zero displacement: native RD coordinates [105821.282, 489564.609] transformed using inverse RD New and Amersfoort to WGS 84 (4), EPSG:4833, exactly reproduce [4.664735411619385, 52.39172475368806], without rounding. Campus scope, source entity and the exact existing unknown-uncertainty text remain unchanged. The new metadata does not improve source accuracy or locate the expansion building. All 1,301 full geometries checked; the same campus is at zero distance and the nearest other host is 3.064 km away.",
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            4.664735411619385,
+            52.39172475368806
+          ]
+        },
+        "source_id": "europe154-iron-mountain-campus-point",
+        "identity_source_ids": [
+          "europe154-iron-mountain-campus-address",
+          "europe154-iron-mountain-ams1-phase-identity"
+        ],
+        "scope": "campus_locator",
+        "scope_class": "official_permit_notice_campus_reference_point",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "government_notice_RD_New_explicit_Amersfoort_to_WGS84_4",
+        "precision": "The official XML supplies the J.W. Lucasweg 35 campus reference point in RD New, interpreted from the official map implementation. Inverse RD New plus Amersfoort to WGS 84 (4), with longitude/latitude axis normalization, reproduces [4.664735411619385, 52.39172475368806] exactly. No rounding is applied to preserve the existing campus identity. This point is not a surveyed building, rack, entrance, parcel boundary or expansion-work footprint; no improved accuracy is asserted.",
+        "identity_review": "The original government notice explicitly names Iron Mountain at J.W. Lucasweg 35, Haarlem, and its matching XML contains the native campus reference point. The original operator brochure identifies AMS-1 as the existing Haarlem campus and separately describes its additional 10 MW development targeted for Q2 2027; this is identity/phase context, not a new status observation. Baseline153 contains exactly one matching Iron Mountain campus and its AMS-2 expansion project. All four identity layers and all 1,301 complete geometries were checked. The independently transformed point equals the existing campus point exactly; the nearest different host is Goodman AMS01, 3.064 km away. Neither the campus nor the expansion is moved, reidentified, completed or admitted again.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "No source-specific numeric horizontal accuracy is published; transform operation accuracy is not site-locator uncertainty."
+      }
+    },
+    {
+      "physical_site_stable_key": "imported:semiconductor-atlas:sify-chennai-02-siruseri",
+      "site_id": "vcc-site-dc7beeb061c0e039f4cf",
+      "replaces_geometry_evidence_id": "ac5b7466-58d3-5166-a4b9-6156d63c66d9",
+      "reason": "Replace the inherited Wikipedia-derived Siruseri locality reference with a representative point derived from the exact Sify H-11/1A government clearance site-boundary coordinates. Preserve the existing project/site identity, partially_operational status as of June 30, 2025, roles and all metrics.",
+      "displacement_review": "WGS84 geodesic displacement from the inherited locality reference is 2,942.52 m. This is within the 50 km existing locality-reference correction limit and is explained by the original point representing Siruseri rather than the facility. Exact plot joins in the government records and DRHP establish the same existing host. No building-level accuracy claim is made.",
+      "locator": {
+        "scope": "campus_locator",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            80.2266699,
+            12.8302495
+          ]
+        },
+        "source_id": "sify154-siruseri-original-ec-boundary",
+        "identity_source_ids": [
+          "sify153-sebi-drhp-dated-physical-portfolio",
+          "sify154-siruseri-expansion-government-identity"
+        ],
+        "scope_class": "government_clearance_boundary_derived_representative_point",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "original_government_dms_boundary_wgs84_assumed_utm44n_centroid",
+        "precision": "Representative point derived from the twelve numeric GPS site-boundary vertices in the original government clearance. DMS converted arithmetically to decimal degrees; source datum unstated and WGS84 assumed. Projected to WGS84/UTM44N, polygon centroid calculated, then inverse-projected and rounded to 7 decimal places. The selected point is inside the encoded ring. Not a surveyed parcel boundary, building, entrance, tower or current-work footprint; decimal places do not express positional accuracy. Encoded ring area 19,478.78 m² differs from stated 19,841 m² by 1.83%.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The historical government GPS table supplies no survey method, datum, epoch or horizontal accuracy. Ring-derived point identifies the campus rather than an operating building; the area discrepancy remains unresolved.",
+        "identity_review": "Original 2019 government clearance pp 1–2 identifies the Sify data-centre plot H-11/1A, surveys 85 part / 86 / 87 part, Siruseri. Original 2023 government minutes identify the Sify Infinit expansion at the exact same plot; the canonical 2025 DRHP printed p 306/PDF 311 identifies Chennai 02 at H-11/1A. These are the existing imported Chennai 02 campus, not Chennai 01 at Tidel Park. Four identity layers were reviewed: 1,301 sites, 1,411 projects, 231 source records and 231 identity records/decisions. Only the existing Chennai 02 host matches this phase/address; Chennai 01 is distinct. All 1,301 complete geometries were checked; nearest different host Equinix CN1 is 1,245.37 m away. The point represents the original site/campus parcel and does not locate a particular operating tower."
+      }
+    },
+    {
+      "physical_site_stable_key": "imported:semiconductor-atlas:sify-noida-02",
+      "site_id": "vcc-site-37108b4d9d3683d6451d",
+      "replaces_geometry_evidence_id": "5a5fd34a-45cf-5da0-8871-2e26a40fc5f2",
+      "reason": "Replace the inherited Noida city reference point with a representative point derived from the four site corners in the original government appraisal record, joined to Sify Noida 02 through the issuer property table. This corrects locator scope; it does not alter the physical host, status, roles, metric values or historical artifacts.",
+      "displacement_review": "The point moves 8417.27 m by WGS84 geodesic (8428.58 m by the builder’s mean-radius haversine) from the old Noida city point. The baseline marks it imported_reference_point with locality scope; this is within the existing 50 km locality-correction limit. All 1,301 full site geometries were checked, not just display centroids. Nearest different host is Sify Noida 01/B-07 at 410.59 m; its explicit plot address differs.",
+      "locator": {
+        "scope": "campus_locator",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            77.3729634,
+            28.51016
+          ]
+        },
+        "source_id": "sify154-noida-seac-site-corners",
+        "identity_source_ids": [
+          "sify153-sebi-drhp-dated-physical-portfolio"
+        ],
+        "scope_class": "government_report_site_corner_derived_centroid",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "literal_SEAC_DMS_site_corners_to_WGS84_assumed_UTM43N_polygon_centroid_then_inverse_projection",
+        "precision": "Representative point derived from four numeric site corners in the original government appraisal record for the three-plot B-11/B-12/B-13 Noida site. Source DMS values are converted to decimal degrees, assumed WGS84, projected to EPSG:32643 for the planar polygon centroid and inverse-projected. Only the representative point is selected; no surveyed campus, building, boundary, entrance or operating footprint is asserted. Source datum and accuracy are unstated. Seven decimal places are representation, not measured accuracy.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The government record supplies no datum, coordinate epoch, survey methodology or horizontal accuracy for the applicant-reported corners. A centroid derived from those corners does not establish independent positional accuracy or an individual building location.",
+        "identity_review": "The original SEAC record names SKVR, all three B-11/B-12/B-13 plots, Sector 132 and 19,305 square metres. The canonical issuer DRHP independently joins Noida 02 to exactly these plots and SKVR as lessor (printed 306/PDF311) and reports the same 19,305-square-metre SKVR land area (printed 426/PDF431). All 1,301 sites, 1,411 projects, 231 imported source records, 231 identity records and 231 decisions were checked. The existing Noida 02 host is the sole matching physical host; AdaniConneX cross-references only the shared old city point. Noida 01 is separately listed at B-07 and its locator lies 410.59 m away. The correction reuses the existing Noida 02 IDs and preserves its partially operational June 30, 2025 status, all roles and metrics."
+      }
+    }
+  ]
+}

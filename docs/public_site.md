@@ -541,6 +541,15 @@ publication does not depend on reaching a site-count target or product-version m
    reference points that only name a town, county or state (`locality`, `admin2` or `admin1`) may move
    up to 50, 200 or 1,000 km to the campus they stand for. The replaced
    capture keeps its other associations and stays in earlier versions.
+   To correct a locator's provenance without moving it, set `provenance_only: true`
+   on the correction and retain its existing geometry evidence. The point, scope,
+   source entity and uncertainty must match exactly; at least one provenance field
+   must change. A transformed point must be classified as `compiled_reference`.
+   The source metadata and existing evidence associations remain intact. Correct
+   the campus in one update before adding a phase that inherits its locator.
+   If the capture has a legacy evidence ID, its source may explicitly name that
+   `reuse_evidence_id`. The ID must already exist, and the URL, content hash,
+   canonical metadata and hash scope must match the existing evidence exactly.
 3. Record the reviewed changes in `definitions/atlas-update-YYYY-MM-DD.json`, retaining stable
    site and project identifiers and pinning the previous dataset manifest. Build the dated
    snapshot with `python3 scripts/build_dataset_update.py --input definitions/atlas-update-YYYY-MM-DD.json`,

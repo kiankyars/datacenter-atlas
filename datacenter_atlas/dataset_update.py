@@ -392,6 +392,17 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
     baseline_evidence = {row["evidence_id"]: copy.deepcopy(row) for row in evidence}
     expanded_site_keys = set()
     evidence_by_id = {row["evidence_id"]: row for row in evidence}
+    for source_id, source in sources.items():
+        details = source_details[source_id]
+        if "reuse_evidence_id" in details:
+            evidence_id = _text(details["reuse_evidence_id"], "reused baseline evidence ID")
+            previous = baseline_evidence.get(evidence_id)
+            _require(previous is not None, "reused evidence ID must exist in the baseline")
+            fields = ("kind", "title", "source_url", "publisher", "source_family", "license", "attribution",
+                      "published_at", "retrieved_at", "content_hash", "content_hash_scope")
+            _require(all((details.get(field) or "") == (previous.get(field) or "") for field in fields),
+                     "reused evidence must exactly match the baseline capture and canonical metadata")
+            source["evidence_id"] = evidence_id
     touched = set()
     canonical = {key: value for key, value in evidence_by_id.items()}
     for source in sources.values():
@@ -542,7 +553,24 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
                                   "uncertainty_reason", "identity_review"}, "unsupported locator correction field")
         geometry_fields = _point_locator(locator, sources, updated)
         _require(len(members) == 1 or locator["scope"] == "campus_locator", "a multi-project site needs a campus locator")
-        _require(sources[locator["source_id"]]["evidence_id"] != replaced, "a locator correction needs a different geometry source")
+        provenance_only = item.get("provenance_only", False)
+        _require(isinstance(provenance_only, bool), "provenance_only must be a boolean")
+        if provenance_only:
+            _require(sources[locator["source_id"]]["evidence_id"] == replaced,
+                     "a provenance-only correction must preserve the geometry evidence")
+            preserved = site_locator_fields + ("geometry_source_entity_kind", "geometry_scope_class",
+                                               "geometry_use_scope", "geometry_source_url")
+            _require(all(geometry_fields[field] == members[0][field] for field in preserved),
+                     "a provenance-only correction must preserve exact geometry, scope, source entity and uncertainty")
+            _require(geometry_fields["geometry_derivation"] in {"coordinate_transform", "georeferenced_source_map"}
+                     and geometry_fields["geometry_authority_class"] == "compiled_reference",
+                     "a provenance-only correction needs a derived point with compiled authority")
+            changed_fields = ("geometry_derivation", "geometry_method", "geometry_authority_class", "geometry_precision_scope")
+            _require(any(geometry_fields[field] != members[0][field] for field in changed_fields),
+                     "a provenance-only correction must change locator provenance")
+        else:
+            _require(sources[locator["source_id"]]["evidence_id"] != replaced,
+                     "a locator correction needs a different geometry source")
         identity_ids = locator.get("identity_source_ids", [])
         _require(isinstance(identity_ids, list) and all(value in sources for value in identity_ids)
                  and len(identity_ids) == len(set(identity_ids)), "locator identity sources must be reviewed sources")
@@ -565,19 +593,20 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
                            ("geometry_authority_classes", "geometry_authority_class"), ("geometry_use_scopes", "geometry_use_scope"),
                            ("geometry_precision_scopes", "geometry_precision_scope"), ("geometry_evidence_ids", "geometry_evidence_id")):
             site[key + "_json"] = _json(sorted({row[field] for row in members}))
-        # The replaced capture stays in the archive of earlier versions. Here it keeps only the
-        # associations that do not come from its use as this site's locator.
-        old = evidence_by_id[replaced]
-        roles = set(json.loads(old["roles_json"]))
-        if roles == {"geometry"}:
-            member_ids = {row["project_id"] for row in members}
-            old["project_ids_json"] = _json(sorted(set(json.loads(old["project_ids_json"])) - member_ids))
-        if not any(row["geometry_evidence_id"] == replaced for row in projects):
-            roles.discard("geometry")
-        old["roles_json"] = _json(sorted(roles))
-        if not json.loads(old["project_ids_json"]) and not old.get("source_record_id"):
-            evidence.remove(old)
-            del evidence_by_id[replaced]
+        if not provenance_only:
+            # The replaced capture stays in the archive of earlier versions. Here it keeps only the
+            # associations that do not come from its use as this site's locator.
+            old = evidence_by_id[replaced]
+            roles = set(json.loads(old["roles_json"]))
+            if roles == {"geometry"}:
+                member_ids = {row["project_id"] for row in members}
+                old["project_ids_json"] = _json(sorted(set(json.loads(old["project_ids_json"])) - member_ids))
+            if not any(row["geometry_evidence_id"] == replaced for row in projects):
+                roles.discard("geometry")
+            old["roles_json"] = _json(sorted(roles))
+            if not json.loads(old["project_ids_json"]) and not old.get("source_record_id"):
+                evidence.remove(old)
+                del evidence_by_id[replaced]
         corrected.append({"physical_site_stable_key": site_key, "site_id": site["site_id"],
                           "previous_geometry_evidence_id": replaced,
                           "geometry_evidence_id": members[0]["geometry_evidence_id"],

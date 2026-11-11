@@ -1047,6 +1047,7 @@ class LocatorCorrectionTests(unittest.TestCase):
         map_source = {**self.case.sources["sources"][0], "id": "old-map", "kind": "map",
                       "title": "Map feature", "source_url": "https://maps.example.net/feature/1",
                       "content_hash": hashlib.sha256(b"old map feature").hexdigest()}
+        self.old_map_source = copy.deepcopy(map_source)
         self.case.sources["sources"].append(map_source)
         first = self.case.spec["additions"][0]
         first["locator"]["source_id"] = "old-map"
@@ -1142,6 +1143,232 @@ class LocatorCorrectionTests(unittest.TestCase):
         kept = evidence[project["status_evidence_id"]]
         self.assertEqual(json.loads(kept["roles_json"]), ["physical_status"])
         self.assertIn(project["project_id"], json.loads(kept["project_ids_json"]))
+
+    def replace_first_tables(self, tables):
+        manifest_path = self.root / "first/manifest.json"
+        manifest = json.loads(manifest_path.read_bytes())
+        for name, rows in tables.items():
+            out = io.StringIO(newline="")
+            writer = csv.DictWriter(out, fieldnames=list(rows[0]), lineterminator="\n")
+            writer.writeheader()
+            writer.writerows(rows)
+            raw = out.getvalue().encode()
+            (self.root / "first" / name).write_bytes(raw)
+            manifest["files"][name] = {"bytes": len(raw), "sha256": hashlib.sha256(raw).hexdigest()}
+        manifest_path.write_text(json.dumps(manifest))
+        digest = hashlib.sha256(manifest_path.read_bytes()).hexdigest()
+        (manifest_path.parent / "manifest.sha256").write_text(digest + "  manifest.json\n")
+        self.base("first")
+
+    def legacy_geometry_evidence(self):
+        original_id = self.project["geometry_evidence_id"]
+        legacy_id = str(uuid5(NAMESPACE_URL, "legacy:site-locator:original-row"))
+        projects = self.rows("first", "projects.csv", "project_id")
+        sites = self.rows("first", "sites.csv", "site_id")
+        evidence = self.rows("first", "evidence.csv", "evidence_id")
+        projects[self.project["project_id"]]["geometry_evidence_id"] = legacy_id
+        sites[self.project["site_id"]]["geometry_evidence_ids_json"] = json.dumps([legacy_id])
+        evidence[original_id]["evidence_id"] = legacy_id
+        self.replace_first_tables({"projects.csv": list(projects.values()), "sites.csv": list(sites.values()),
+                                   "evidence.csv": list(evidence.values())})
+        self.project = projects[self.project["project_id"]]
+        self.correction["replaces_geometry_evidence_id"] = legacy_id
+        self.old_map_source.update(reuse_evidence_id=legacy_id,
+                                   content_hash_scope=evidence[original_id].get("content_hash_scope", ""))
+
+    def provenance_correction(self):
+        self.case.sources["sources"].append(copy.deepcopy(self.old_map_source))
+        self.correction.update(
+            provenance_only=True,
+            reason="The unchanged source point was projected; correct its derivation and authority.",
+            displacement_review="The exact point, scope and uncertainty remain unchanged.",
+            locator={**self.second["locator"], "derivation": "coordinate_transform",
+                     "authority": "compiled_reference", "method": "published_native_point_inverse_projection"},
+        )
+
+    def test_provenance_only_preserves_geometry_evidence_and_reproduces(self):
+        self.provenance_correction()
+        before_files = {path.name: path.read_bytes() for path in (self.root / "first").iterdir()}
+        payloads, manifest, tables = self.corrected()
+        before = self.rows("first", "projects.csv", "project_id")
+        changed_fields = {"geometry_derivation", "geometry_authority_class", "geometry_method"}
+        for row in tables["projects.csv"]:
+            prior = before[row["project_id"]]
+            differences = {field for field in row if row[field] != prior[field]}
+            self.assertEqual(differences, changed_fields if row["project_id"] == self.project["project_id"] else set())
+        self.assertEqual({row["evidence_id"]: row for row in tables["evidence.csv"]},
+                         self.rows("first", "evidence.csv", "evidence_id"))
+        before_sites = self.rows("first", "sites.csv", "site_id")
+        for row in tables["sites.csv"]:
+            differences = {field for field in row if row[field] != before_sites[row["site_id"]][field]}
+            self.assertEqual(differences, {"geometry_derivations_json", "geometry_authority_classes_json", "geometry_methods_json"}
+                             if row["site_id"] == self.project["site_id"] else set())
+        report = json.loads(payloads["selection-report.json"])["corrected_locators"][0]
+        self.assertEqual(report["displacement_metres"], 0)
+        self.assertEqual(report["previous_geometry_evidence_id"], report["geometry_evidence_id"])
+        self.assertEqual(manifest["counts"]["evidence"], len(self.rows("first", "evidence.csv", "evidence_id")))
+        out = self.root / "provenance"
+        build_update(self.case.input, out, root=self.root)
+        self.assertEqual(manifest, validate_update(self.case.input, out, root=self.root))
+        self.assertEqual(before_files, {path.name: path.read_bytes() for path in (self.root / "first").iterdir()})
+
+    def test_provenance_only_retains_old_associations_when_adding_identity_context(self):
+        self.provenance_correction()
+        self.correction["locator"]["identity_source_ids"] = ["work"]
+        _, _, tables = self.corrected()
+        evidence = {row["evidence_id"]: row for row in tables["evidence.csv"]}
+        prior = self.rows("first", "evidence.csv", "evidence_id")
+        status_id = self.project["status_evidence_id"]
+        expected = copy.deepcopy(prior)
+        expected[status_id]["roles_json"] = json.dumps(
+            sorted(set(json.loads(prior[status_id]["roles_json"])) | {"context:geometry_identity"}), separators=(",", ":"))
+        self.assertEqual(evidence, expected)
+
+    def test_provenance_corrected_snapshot_supports_a_later_inherited_phase(self):
+        self.legacy_geometry_evidence()
+        self.provenance_correction()
+        self.correction["locator"]["identity_source_ids"] = ["work", "parcel"]
+        self.corrected()
+        build_update(self.case.input, self.root / "provenance", root=self.root)
+        self.base("provenance")
+        reference = self.rows("provenance", "projects.csv")[self.project["project_stable_key"]]
+        before_projects = self.rows("provenance", "projects.csv", "project_id")
+        before_evidence = self.rows("provenance", "evidence.csv", "evidence_id")
+        identity_ids = sorted(identifier for identifier, row in before_evidence.items()
+                              if reference["project_id"] in json.loads(row["project_ids_json"])
+                              and "context:geometry_identity" in json.loads(row["roles_json"]))
+        self.assertEqual(len(identity_ids), 2)
+        phase = {**self.second, "existing_site_id": reference["site_id"],
+                 "site_identity_review": "A separate phase on the same reviewed campus.",
+                 "locator": {"reuse_from_project_id": reference["project_id"],
+                             "geometry_evidence_id": reference["geometry_evidence_id"],
+                             "geometry_identity_evidence_ids": identity_ids, "scope": "campus_locator",
+                             "identity_review": "Inherit the exact corrected locator and all identity evidence."}}
+        self.case.spec.update(additions=[phase], locator_corrections=[])
+        self.case.write()
+        out = self.root / "phase"
+        manifest = build_update(self.case.input, out, root=self.root)
+        self.assertEqual(manifest, validate_update(self.case.input, out, root=self.root))
+        after_projects = self.rows("phase", "projects.csv", "project_id")
+        for identifier, row in before_projects.items():
+            self.assertEqual(after_projects[identifier], row)
+        added_id = str(uuid5(NAMESPACE_URL, phase["project_stable_key"]))
+        added = after_projects[added_id]
+        self.assertEqual(added["site_id"], reference["site_id"])
+        for field in reference:
+            if field.startswith(("geometry_", "horizontal_uncertainty")) or field in {"latitude", "longitude"}:
+                self.assertEqual(added[field], reference[field], field)
+        self.assertEqual((added["geometry_derivation"], added["geometry_authority_class"]),
+                         ("coordinate_transform", "compiled_reference"))
+        after_evidence = self.rows("phase", "evidence.csv", "evidence_id")
+        associated = {reference["geometry_evidence_id"], *identity_ids}
+        for identifier, row in before_evidence.items():
+            expected = copy.deepcopy(row)
+            if identifier in associated:
+                expected["project_ids_json"] = json.dumps(
+                    sorted(set(json.loads(row["project_ids_json"])) | {added_id}), separators=(",", ":"))
+            self.assertEqual(after_evidence[identifier], expected)
+        self.assertEqual(set(after_evidence), set(before_evidence))
+
+    def test_legacy_evidence_reuse_rejects_missing_wrong_or_changed_captures(self):
+        self.legacy_geometry_evidence()
+        self.provenance_correction()
+        valid = copy.deepcopy(self.case.sources["sources"][-1])
+        cases = [
+            ({"reuse_evidence_id": ""}, "reused baseline evidence ID"),
+            ({"reuse_evidence_id": "missing"}, "must exist in the baseline"),
+            ({"reuse_evidence_id": self.project["status_evidence_id"]}, "exactly match the baseline capture"),
+            ({"source_url": "https://maps.example.net/feature/2"}, "exactly match the baseline capture"),
+            ({"content_hash": hashlib.sha256(b"different capture").hexdigest()}, "exactly match the baseline capture"),
+        ]
+        for field in ("kind", "title", "publisher", "source_family", "license", "attribution", "content_hash_scope"):
+            cases.append(({field: "different"}, "exactly match the baseline capture"))
+        cases.extend([
+            ({"published_at": "2026-09-20"}, "exactly match the baseline capture"),
+            ({"retrieved_at": "2026-10-12T08:00:00Z"}, "exactly match the baseline capture"),
+        ])
+        for changes, message in cases:
+            with self.subTest(changes=changes):
+                self.case.sources["sources"][-1] = {**valid, **changes}
+                with self.assertRaisesRegex(UpdateError, message):
+                    self.corrected()
+        self.case.sources["sources"][-1] = {key: value for key, value in valid.items() if key != "reuse_evidence_id"}
+        with self.assertRaisesRegex(UpdateError, "preserve the geometry evidence"):
+            self.corrected()
+        self.case.sources["sources"][-1] = valid
+        _, _, tables = self.corrected()
+        self.assertEqual({row["evidence_id"]: row for row in tables["evidence.csv"]},
+                         self.rows("first", "evidence.csv", "evidence_id"))
+
+    def test_provenance_only_rejects_geometry_source_scope_uncertainty_and_invalid_flags(self):
+        self.provenance_correction()
+        valid = copy.deepcopy(self.correction)
+        locator = valid["locator"]
+        cases = [
+            ({"geometry": {"type": "Point", "coordinates": [-100.099, 30.2]}}, "preserve exact geometry"),
+            ({"source_id": "parcel"}, "preserve the geometry evidence"),
+            ({"scope": "project_locator"}, "preserve exact geometry"),
+            ({"scope_class": "building_centroid"}, "preserve exact geometry"),
+            ({"horizontal_uncertainty_metres": 5}, "preserve exact geometry"),
+            ({"uncertainty_reason": "Different uncertainty."}, "preserve exact geometry"),
+            ({"derivation": "direct_geometry"}, "needs a derived point"),
+            ({"authority": "official_source"}, "derived locator must be a compiled reference"),
+        ]
+        for changes, message in cases:
+            with self.subTest(changes=changes):
+                self.correction = {**valid, "locator": {**locator, **changes}}
+                with self.assertRaisesRegex(UpdateError, message):
+                    self.corrected()
+        for flag in ("true", 1, None):
+            with self.subTest(flag=flag):
+                self.correction = {**valid, "provenance_only": flag}
+                with self.assertRaisesRegex(UpdateError, "provenance_only must be a boolean"):
+                    self.corrected()
+        self.correction = valid
+        self.case.sources["sources"][-1]["publisher"] = "Changed publisher"
+        with self.assertRaisesRegex(UpdateError, "conflicting metadata for the same evidence capture"):
+            self.corrected()
+
+    def test_provenance_only_requires_an_actual_change_and_explicit_opt_in(self):
+        self.provenance_correction()
+        for flag in (None, False):
+            with self.subTest(flag=flag):
+                self.correction.pop("provenance_only", None)
+                if flag is not None:
+                    self.correction["provenance_only"] = flag
+                with self.assertRaisesRegex(UpdateError, "different geometry source"):
+                    self.corrected()
+        self.correction["provenance_only"] = True
+        self.corrected()
+        build_update(self.case.input, self.root / "provenance", root=self.root)
+        self.base("provenance")
+        with self.assertRaisesRegex(UpdateError, "must change locator provenance"):
+            self.corrected()
+
+    def test_provenance_only_cannot_share_a_campus_with_an_addition_or_second_correction(self):
+        self.provenance_correction()
+        self.case.spec["additions"] = [{**self.second, "existing_site_id": self.project["site_id"],
+                                       "site_identity_review": "Same campus, separately scoped phase."}]
+        with self.assertRaisesRegex(UpdateError, "no addition or other correction"):
+            self.corrected()
+        self.case.spec["additions"] = []
+        self.case.spec["locator_corrections"] = [self.correction, copy.deepcopy(self.correction)]
+        with self.assertRaisesRegex(UpdateError, "no addition or other correction"):
+            self.case.payloads()
+
+    def test_provenance_only_cannot_reclassify_the_baseline_source_entity(self):
+        self.provenance_correction()
+        tables = {}
+        for name, key, field, value in (
+            ("projects.csv", "project_id", "geometry_source_entity_kind", "project"),
+            ("sites.csv", "site_id", "geometry_source_entity_kinds_json", '["project"]'),
+        ):
+            rows = self.rows("first", name, key)
+            rows[self.project[key]][field] = value
+            tables[name] = list(rows.values())
+        self.replace_first_tables(tables)
+        with self.assertRaisesRegex(UpdateError, "preserve exact geometry, scope, source entity"):
+            self.corrected()
 
     def test_multi_project_campus_moves_every_project_and_needs_campus_scope(self):
         self.second.update(existing_site_id=self.project["site_id"],
