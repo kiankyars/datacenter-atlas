@@ -1161,6 +1161,23 @@ retain the original polygon and its evidence.
 The snapshot contains **1,296 sites, 1,405 projects and 7,278
 evidence records in 90 countries**. All unrelated project records remain unchanged.
 
+`verified_construction_core/2026-11-11-research-hundredfiftythird` adds OVHcloud hosts in
+Beauharnois, Vint Hill, Limburg, Erith and Warsaw. Dated operator incident reports
+identify existing customer services at the selected facilities; government
+address, parcel, planning and installation records provide scoped locators.
+The observations do not establish opening dates, operating capacity or the
+status of other buildings sharing a city or campus.
+
+CDC Marsden Park MP1 is added as an operating project on the existing campus,
+using its corrected government locator. The separate six-building construction
+project remains unchanged. Six Sify records retain their physical statuses but
+now use the prospectus's explicit June 30, 2025 observation date instead of
+webpage modification or capture dates. No capacity metrics are added.
+
+The snapshot contains **1,301 sites, 1,411 projects and
+7,293 evidence records in 90 countries**. Historical snapshots and
+all unrelated project records remain unchanged.
+
 ## 25 October 2026
 
 `verified_construction_core/2026-10-25-research-sixtysecond` adds three commercial sites and

@@ -1,0 +1,455 @@
+{
+  "format": "datacenter-atlas-update-input-v1",
+  "updated_at": "2026-11-11",
+  "output": "verified_construction_core/2026-11-11-research-hundredfiftythird",
+  "base_dataset": "verified_construction_core/2026-11-11-research-hundredfiftysecond",
+  "base_manifest_sha256": "1b096a2dfa3d26f8733b728c242f54153011f72f715c35f83263e6b6b13c93b0",
+  "source_files": [
+    {
+      "path": "sources/research-countries-2026-11-11-hundredfiftythird-primary-sources.json",
+      "sha256": "072b6154d4318f8cbf14592a576c47f61a0397f2adf67d614d8b51ace64e45b6"
+    }
+  ],
+  "additions": [
+    {
+      "project_stable_key": "curated:ovhcloud-beauharnois-campus:existing-bhs6-operations",
+      "physical_site_stable_key": "curated:ovhcloud-beauharnois-campus",
+      "site_name": "OVHcloud Beauharnois Campus (50 rue de l’Aluminerie, Beauharnois)",
+      "name": "OVHcloud Beauharnois Campus — existing BHS6 commercial operations",
+      "country": "Canada",
+      "country_iso_a2": "CA",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-11-06",
+        "source_id": "commercial153-bhs6-restored-operation",
+        "summary": "The original operator incident reports that customers temporarily could not access their dedicated servers through vRack in BHS6 rack T06F27 and that service was restored November 6. This directly evidences existing commercial hosted equipment in BHS6; it does not commission the whole Beauharnois campus or an expansion."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -73.8964913,
+            45.3092614
+          ]
+        },
+        "source_id": "commercial153-beauharnois-government-point",
+        "identity_source_ids": [
+          "commercial153-bhs6-exact-address"
+        ],
+        "scope": "reviewed_site_locator",
+        "scope_class": "government_address_point",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "inverse_original_quebec_web_mercator_address_geometry",
+        "precision": "Government address point for 50 rue de l’Aluminerie, Beauharnois J6N0C2, IdAdr 8a91dc7769784883b7bf48534f4f09c7, OBJECTID 2612459, version AQ20261101. The selected point is the inverse of the exact EPSG:3857 geometry declared by the Québec REST response. It is an address reference point for the physical campus, not a BHS6 footprint, rack or full campus boundary. The separate Position string differs slightly and is not selected. The underlying downloadable product uses NAD83, but the service transformation into EPSG:3857, realization, epoch and positional accuracy are undocumented; no additional datum shift is invented.",
+        "identity_review": "All four baseline identity layers were searched: 1,296 sites, 1,405 projects, 231 source records, and 231 identity-mapping records plus 231 decisions. Searches covered OVH/OVHcloud, Beauharnois, Aluminerie, BHS1–9, Vint Hill, VIN1, 6872 Watson Court and county parcel 7915-86-3249-000. Only the three existing French OVHcloud campuses matched actual operator identities; unrelated OVH substrings inside serialized evidence IDs are not candidate identities. No candidate address, local alias or parcel matched. All 1,296 complete baseline geometries, including polygons and multipolygons, were checked. The nearest existing host is Equinix MT2 in Vaudreuil-Dorion, 16.587 km away. No baseline host is within 3 km. One Beauharnois physical campus is proposed with its BHS6 operations scoped separately; other numbered BHS halls, server manufacturing and any expansion are not additional admitted hosts or commissioned capacity.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "Source point/parcel positional accuracy, upstream datum realization and epoch are not supplied; a representative point is not an internal project footprint."
+      },
+      "context_source_ids": [
+        "commercial153-bhs6-exact-address"
+      ],
+      "roles": [
+        {
+          "party": "OVHcloud",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "commercial153-bhs6-restored-operation"
+        }
+      ],
+      "distinctness_review": "All four baseline identity layers were searched: 1,296 sites, 1,405 projects, 231 source records, and 231 identity-mapping records plus 231 decisions. Searches covered OVH/OVHcloud, Beauharnois, Aluminerie, BHS1–9, Vint Hill, VIN1, 6872 Watson Court and county parcel 7915-86-3249-000. Only the three existing French OVHcloud campuses matched actual operator identities; unrelated OVH substrings inside serialized evidence IDs are not candidate identities. No candidate address, local alias or parcel matched. All 1,296 complete baseline geometries, including polygons and multipolygons, were checked. The nearest existing host is Equinix MT2 in Vaudreuil-Dorion, 16.587 km away. No baseline host is within 3 km. One Beauharnois physical campus is proposed with its BHS6 operations scoped separately; other numbered BHS halls, server manufacturing and any expansion are not additional admitted hosts or commissioned capacity.",
+      "successor_review": "The original incident endpoint resolves November 6 BHS6 customer-service disruption. The separately captured latest 50 bare-metal incident records were read through November 11; the later November 10 BHS1 event is a different hall and does not refresh the BHS6 observation date. The page describes the BHS component as operational. This bounded status-index review found no conflicting BHS6 retirement or relocation statement; it is not a claim to have exhausted every corporate archive.",
+      "scoped_project_details": {
+        "physical_scope": "Existing BHS6 hosted-server operations within one Beauharnois physical campus; no other hall or manufacturing footprint admitted.",
+        "observation_scope": "Restored actual customer server access within the named rack; no campus-wide availability or whole-campus completion claim.",
+        "capacity": "No MW, floor area, rack total, utilization, UPS or generator metric selected.",
+        "location_limitations": "Government address point for 50 rue de l’Aluminerie, Beauharnois J6N0C2, IdAdr 8a91dc7769784883b7bf48534f4f09c7, OBJECTID 2612459, version AQ20261101. The selected point is the inverse of the exact EPSG:3857 geometry declared by the Québec REST response. It is an address reference point for the physical campus, not a BHS6 footprint, rack or full campus boundary. The separate Position string differs slightly and is not selected. The underlying downloadable product uses NAD83, but the service transformation into EPSG:3857, realization, epoch and positional accuracy are undocumented; no additional datum shift is invented."
+      }
+    },
+    {
+      "project_stable_key": "curated:ovhcloud-vint-hill-6872-watson:existing-operations",
+      "physical_site_stable_key": "curated:ovhcloud-vint-hill-6872-watson",
+      "site_name": "OVHcloud Vint Hill (6872 Watson Court, Warrenton, Virginia)",
+      "name": "OVHcloud Vint Hill — existing commercial operations",
+      "country": "United States",
+      "country_iso_a2": "US",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-11-11",
+        "source_id": "commercial153-vint-restored-operation",
+        "summary": "The original operator page reports a fault affecting vRack in Vint Hill racks V119G26 and V119G27 and says network services were restored at 03:25 UTC on November 11. This supports existing commercial operations at Vint Hill. The incident remains in monitoring and does not establish completion of any expansion."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -77.6744784,
+            38.7474229
+          ]
+        },
+        "source_id": "commercial153-vint-government-parcel",
+        "identity_source_ids": [
+          "commercial153-ovh-us-physical-hosts"
+        ],
+        "scope": "reviewed_site_locator",
+        "scope_class": "government_tax_parcel_reference_point",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "original_county_parcel_native_centroid_explicit_epsg1188",
+        "precision": "Interior area-weighted centroid of exact Fauquier County tax parcel 7915-86-3249-000 at 6872 Watson Court, owned by Data Center Vint Hill LLC and mailed to OVHcloud Finance. Native EPSG:2283 geometry is transformed with the explicit mainland NAD83 to WGS84 (1), EPSG:1188, operation. Its 4 m nominal operation accuracy does not quantify parcel survey or representative-point uncertainty. This is a parcel reference point, not a surveyed data-center footprint, entrance or rack. The county address point retains a stale school descriptor and is deliberately not selected.",
+        "identity_review": "All four baseline identity layers were searched: 1,296 sites, 1,405 projects, 231 source records, and 231 identity-mapping records plus 231 decisions. Searches covered OVH/OVHcloud, Beauharnois, Aluminerie, BHS1–9, Vint Hill, VIN1, 6872 Watson Court and county parcel 7915-86-3249-000. Only the three existing French OVHcloud campuses matched actual operator identities; unrelated OVH substrings inside serialized evidence IDs are not candidate identities. No candidate address, local alias or parcel matched. All 1,296 complete baseline geometries, including polygons and multipolygons, were checked. The nearest existing host is Gardner Property Data Center Campus in Gainesville, 7.144 km away; Yondr Bristow is 8.545 km away. No baseline host is within 3 km. The exact existing parcel at 6872 Watson Court is distinct from those hosts and from any adjacent proposed OVH expansion parcel; no new building or capacity phase is inferred.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "Source point/parcel positional accuracy, upstream datum realization and epoch are not supplied; a representative point is not an internal project footprint."
+      },
+      "context_source_ids": [
+        "commercial153-ovh-us-physical-hosts"
+      ],
+      "roles": [
+        {
+          "party": "OVHcloud US",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "commercial153-vint-restored-operation"
+        }
+      ],
+      "distinctness_review": "All four baseline identity layers were searched: 1,296 sites, 1,405 projects, 231 source records, and 231 identity-mapping records plus 231 decisions. Searches covered OVH/OVHcloud, Beauharnois, Aluminerie, BHS1–9, Vint Hill, VIN1, 6872 Watson Court and county parcel 7915-86-3249-000. Only the three existing French OVHcloud campuses matched actual operator identities; unrelated OVH substrings inside serialized evidence IDs are not candidate identities. No candidate address, local alias or parcel matched. All 1,296 complete baseline geometries, including polygons and multipolygons, were checked. The nearest existing host is Gardner Property Data Center Campus in Gainesville, 7.144 km away; Yondr Bristow is 8.545 km away. No baseline host is within 3 km. The exact existing parcel at 6872 Watson Court is distinct from those hosts and from any adjacent proposed OVH expansion parcel; no new building or capacity phase is inferred.",
+      "successor_review": "The original incident page and current original US status page were read. The November 11 restoration is explicitly at 03:25 UTC, already past at the November 11 14:18:48 UTC review. The incident remains in monitoring rather than resolved. Actual restored network service supports an operating host without claiming that every rack or future expansion is operational. The current page contains no later contradictory Vint Hill closure or relocation statement; this is a bounded public status review.",
+      "scoped_project_details": {
+        "physical_scope": "Existing Vint Hill host at the named county parcel; no adjacent planned building or capacity phase admitted.",
+        "observation_scope": "Restored network service in two named racks, with the incident still monitored; no whole-site availability claim.",
+        "capacity": "No MW, floor area, rack total, utilization, UPS or generator metric selected.",
+        "location_limitations": "Interior area-weighted centroid of exact Fauquier County tax parcel 7915-86-3249-000 at 6872 Watson Court, owned by Data Center Vint Hill LLC and mailed to OVHcloud Finance. Native EPSG:2283 geometry is transformed with the explicit mainland NAD83 to WGS84 (1), EPSG:1188, operation. Its 4 m nominal operation accuracy does not quantify parcel survey or representative-point uncertainty. This is a parcel reference point, not a surveyed data-center footprint, entrance or rack. The county address point retains a stale school descriptor and is deliberately not selected."
+      }
+    },
+    {
+      "project_stable_key": "curated:ovhcloud-limburg-lim1-3-campus:existing-operations",
+      "physical_site_stable_key": "curated:ovhcloud-limburg-lim1-3-campus",
+      "site_name": "OVHcloud Limburg LIM1–3 Campus (Limburger Straße 45, Limburg an der Lahn)",
+      "name": "OVHcloud Limburg LIM1–3 Campus (Limburger Straße 45, Limburg an der Lahn) — existing LIM3 commercial operations",
+      "country": "Germany",
+      "country_iso_a2": "DE",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-10-30",
+        "source_id": "europe153-lim3-physical-operation",
+        "summary": "OVHcloud records customer servers in LIM3 rack LIM0302B04C becoming unavailable at 01:18 UTC on October 30 and being restored by 02:01 UTC after an electrical-equipment problem. This establishes existing physical commercial hosting at LIM3 on that date. The selected scope is the named rack, not a campus-wide outage, opening or change to every Limburg building."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            8.0626177,
+            50.4084631
+          ]
+        },
+        "source_id": "maincubes142-hlnug-register",
+        "identity_source_ids": [
+          "europe152-ovh-datacentre-region-identity",
+          "maincubes142-hlnug-coordinate-form"
+        ],
+        "scope": "reviewed_site_locator",
+        "scope_class": "government_named_campus_chimney_point",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "hlnug_etrs89_prefixed_utm32_epsg4647_to4326_epsg1149",
+        "precision": "First complete government chimney coordinate row for the named LIM1–3 establishment, native ETRS89/UTM zone 32N with prefix [32433392, 5584467]. Transformed with pyproj 3.8.0 / PROJ 9.8.1 using inverse prefixed UTM and ETRS89 to WGS 84 (1), EPSG:1149, then rounded to seven decimal places. The operation’s nominal 1 m accuracy is not total source accuracy. This is a stack/campus anchor, not a surveyed building centre, hall, rack or campus perimeter.",
+        "identity_review": "All four baseline identity layers were reviewed: 1,296 sites, 1,405 projects, 231 source records, and both 231 records and 231 decisions in identity-mapping.json. Candidate city, exact-address and numbered-host aliases found no existing match. Distances to all 1,296 complete existing geometries, including polygons, were calculated. No baseline site is within 2 km; nearest is noris network FRA1 Schwalbach Campus at 43.219 km. The proposed European sites are geographically separate. One named LIM1–3 campus and one project scoped to existing LIM3 operations. The original 2022 operator announcement of a second Limburg site is not assigned to this campus or admitted as a separate host.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "Original per-point survey method, positional accuracy and epoch are unstated. Source display precision and datum-operation accuracy do not establish total positional uncertainty."
+      },
+      "context_source_ids": [
+        "europe152-ovh-datacentre-region-identity",
+        "maincubes142-hlnug-coordinate-form"
+      ],
+      "roles": [
+        {
+          "party": "OVHcloud",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "europe153-lim3-physical-operation"
+        }
+      ],
+      "distinctness_review": "All four baseline identity layers were reviewed: 1,296 sites, 1,405 projects, 231 source records, and both 231 records and 231 decisions in identity-mapping.json. Candidate city, exact-address and numbered-host aliases found no existing match. Distances to all 1,296 complete existing geometries, including polygons, were calculated. No baseline site is within 2 km; nearest is noris network FRA1 Schwalbach Campus at 43.219 km. The proposed European sites are geographically separate. One named LIM1–3 campus and one project scoped to existing LIM3 operations. The original 2022 operator announcement of a second Limburg site is not assigned to this campus or admitted as a separate host.",
+      "successor_review": "The complete captured current Bare Metal and Network status HTML and the latest 50 incident records from each original operator feed were reviewed through November 11. This is a bounded recent-feed review, not an exhaustive archive. Later global API/account reports and scheduled future maintenance are not new physical campus observations. No later contradictory closure or physical-status report was identified in those captured feeds. One named LIM1–3 campus and one project scoped to existing LIM3 operations. The original 2022 operator announcement of a second Limburg site is not assigned to this campus or admitted as a separate host.",
+      "scoped_project_details": {
+        "numbered_address": "Limburger Straße 45, Limburg an der Lahn, Germany",
+        "selected_physical_host_code": "LIM3",
+        "aliases": [
+          "OVH Limburg",
+          "OVHcloud Limburg",
+          "LIM1",
+          "LIM2",
+          "LIM3",
+          "DCD Data Center Deutschland GmbH"
+        ],
+        "scope": "One named LIM1–3 campus and one project scoped to existing LIM3 operations. The original 2022 operator announcement of a second Limburg site is not assigned to this campus or admitted as a separate host.",
+        "source_limits": "No IT load, utility capacity, generator thermal rating, rack count, floor area, PUE, water use, SLA, certificate currency or measured workload metric is selected. Historical report dates, incident dates, future scheduled work and database updates retain separate meanings."
+      }
+    },
+    {
+      "project_stable_key": "curated:ovhcloud-erith-eri1-viking-way:existing-operations",
+      "physical_site_stable_key": "curated:ovhcloud-erith-eri1-viking-way",
+      "site_name": "OVHcloud Erith ERI1 Data Centre (Unit 8 Viking Way, Erith)",
+      "name": "OVHcloud Erith ERI1 Data Centre (Unit 8 Viking Way, Erith) — existing ERI1 commercial operations",
+      "country": "United Kingdom",
+      "country_iso_a2": "GB",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-11-02",
+        "source_id": "europe153-eri1-physical-operation",
+        "summary": "OVHcloud records customer servers in ERI1 rack E105A01 becoming unavailable at 07:38 UTC on November 2 and being restored by 07:43 UTC. This establishes existing physical commercial hosting at ERI1. The named rack incident does not establish campus-wide downtime, a new opening or any status for ERI2."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            0.1665351,
+            51.4915393
+          ]
+        },
+        "source_id": "europe153-bexley-erith-site-reference",
+        "identity_source_ids": [
+          "europe152-ovh-datacentre-region-identity",
+          "europe153-bexley-erith-property-identity",
+          "europe153-bexley-erith-hall-identity"
+        ],
+        "scope": "reviewed_site_locator",
+        "scope_class": "government_published_applicant_site_reference_point",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "bexley_applicant_bng_epsg27700_to4326_epsg1314",
+        "precision": "Original applicant site-reference easting 550506 and northing 179180 at Unit 8 Viking Way. British National Grid EPSG:27700 is the explicitly stated interpretation of the UK planning-form coordinates; the form itself does not print a datum. pyproj 3.8.0 / PROJ 9.8.1 applies inverse British National Grid and OSGB36 to WGS 84 (6), EPSG:1314, with axis normalization, then rounds to seven decimal places. The operation’s nominal 2 m accuracy is not total location accuracy. This is a property reference point, not a rack, surveyed building centre or ERI2 location.",
+        "identity_review": "All four baseline identity layers were reviewed: 1,296 sites, 1,405 projects, 231 source records, and both 231 records and 231 decisions in identity-mapping.json. Candidate city, exact-address and numbered-host aliases found no existing match. Distances to all 1,296 complete existing geometries, including polygons, were calculated. No baseline site is within 2 km; nearest is Former Stone Foundries, 669A Woolwich Road and VIP Industrial Estate, Charlton (Royal Borough of Greenwich) at 9.395 km. The proposed European sites are geographically separate. The November 2 operator incident names ERI1 rack E105A01. The original OVHcloud-branded site layout in the Unit 8 Viking Way application depicts hall E105 and its row A. Matching the distinctive E105/row A components is an explicitly inferential incident-to-property identity join; the plan does not print ERI1 or the complete rack identifier E105A01. E105 occurs once in the reviewed plan, among halls E101–E105; uniqueness outside this document is not proven. The application and planning statement directly establish the Unit 8 property. Other secondary 12/14 Viking Way variants are not reconciled as legally equivalent addresses, and ERI2 remains unassigned. No exact rack position is selected.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "Original per-point survey method, positional accuracy and epoch are unstated. Source display precision and datum-operation accuracy do not establish total positional uncertainty."
+      },
+      "context_source_ids": [
+        "europe152-ovh-datacentre-region-identity",
+        "europe153-bexley-erith-property-identity",
+        "europe153-bexley-erith-hall-identity"
+      ],
+      "roles": [
+        {
+          "party": "OVHcloud",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "europe153-eri1-physical-operation"
+        }
+      ],
+      "distinctness_review": "All four baseline identity layers were reviewed: 1,296 sites, 1,405 projects, 231 source records, and both 231 records and 231 decisions in identity-mapping.json. Candidate city, exact-address and numbered-host aliases found no existing match. Distances to all 1,296 complete existing geometries, including polygons, were calculated. No baseline site is within 2 km; nearest is Former Stone Foundries, 669A Woolwich Road and VIP Industrial Estate, Charlton (Royal Borough of Greenwich) at 9.395 km. The proposed European sites are geographically separate. The November 2 operator incident names ERI1 rack E105A01. The original OVHcloud-branded site layout in the Unit 8 Viking Way application depicts hall E105 and its row A. Matching the distinctive E105/row A components is an explicitly inferential incident-to-property identity join; the plan does not print ERI1 or the complete rack identifier E105A01. E105 occurs once in the reviewed plan, among halls E101–E105; uniqueness outside this document is not proven. The application and planning statement directly establish the Unit 8 property. Other secondary 12/14 Viking Way variants are not reconciled as legally equivalent addresses, and ERI2 remains unassigned. No exact rack position is selected.",
+      "successor_review": "The complete captured current Bare Metal and Network status HTML and the latest 50 incident records from each original operator feed were reviewed through November 11. This is a bounded recent-feed review, not an exhaustive archive. Later global API/account reports and scheduled future maintenance are not new physical campus observations. No later contradictory closure or physical-status report was identified in those captured feeds. The November 2 operator incident names ERI1 rack E105A01. The original OVHcloud-branded site layout in the Unit 8 Viking Way application depicts hall E105 and its row A. Matching the distinctive E105/row A components is an explicitly inferential incident-to-property identity join; the plan does not print ERI1 or the complete rack identifier E105A01. E105 occurs once in the reviewed plan, among halls E101–E105; uniqueness outside this document is not proven. The application and planning statement directly establish the Unit 8 property. Other secondary 12/14 Viking Way variants are not reconciled as legally equivalent addresses, and ERI2 remains unassigned. No exact rack position is selected.",
+      "scoped_project_details": {
+        "numbered_address": "Unit 8 Viking Way, Erith DA8 1EW, United Kingdom",
+        "selected_physical_host_code": "ERI1",
+        "aliases": [
+          "OVH Erith",
+          "OVHcloud Erith ERI1",
+          "ERI1",
+          "Data Center Erith Ltd",
+          "Unit 8 Viking Way"
+        ],
+        "scope": "The November 2 operator incident names ERI1 rack E105A01. The original OVHcloud-branded site layout in the Unit 8 Viking Way application depicts hall E105 and its row A. Matching the distinctive E105/row A components is an explicitly inferential incident-to-property identity join; the plan does not print ERI1 or the complete rack identifier E105A01. E105 occurs once in the reviewed plan, among halls E101–E105; uniqueness outside this document is not proven. The application and planning statement directly establish the Unit 8 property. Other secondary 12/14 Viking Way variants are not reconciled as legally equivalent addresses, and ERI2 remains unassigned. No exact rack position is selected.",
+        "source_limits": "No IT load, utility capacity, generator thermal rating, rack count, floor area, PUE, water use, SLA, certificate currency or measured workload metric is selected. Historical report dates, incident dates, future scheduled work and database updates retain separate meanings."
+      }
+    },
+    {
+      "project_stable_key": "curated:ovhcloud-waw1-ozarow:existing-operations",
+      "physical_site_stable_key": "curated:ovhcloud-waw1-ozarow",
+      "site_name": "OVHcloud WAW1 Data Center (Kazimierza Kamińskiego 6, Ożarów Mazowiecki)",
+      "name": "OVHcloud WAW1 Data Center (Kazimierza Kamińskiego 6, Ożarów Mazowiecki) — existing WAW1 commercial operations",
+      "country": "Poland",
+      "country_iso_a2": "PL",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-10-25",
+        "source_id": "europe153-waw1-physical-operation",
+        "summary": "OVHcloud records public-network access to customer servers in WAW1 rack WAW0109A04C being unavailable from 22:29 to 22:35 UTC on October 25, then restored. This establishes existing physical commercial hosting at WAW1. The named rack incident is not a whole-campus outage or an opening date."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            20.8081669,
+            52.2076364
+          ]
+        },
+        "source_id": "europe153-gugik-waw1-address-point",
+        "identity_source_ids": [
+          "europe152-ovh-datacentre-region-identity",
+          "europe153-clevercloud-waw1-address",
+          "commercial153-bhs6-exact-address"
+        ],
+        "scope": "reviewed_site_locator",
+        "scope_class": "government_exact_address_point",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "gugik_prg_exact_named_address_feature_crs84",
+        "precision": "Exact GUGiK PRG address feature ID-410394f2-c012-42f2-9962-16a79d00d59e for house number 6, Kazimierza Kamińskiego, Ożarów Mazowiecki. The authority publishes WGS 84 CRS84 longitude/latitude [20.808166863388454, 52.2076363593578]; selected coordinates are rounded to seven decimal places without a local datum transformation. This is an official address point, not a surveyed building centre, entrance or campus boundary. Coordinate epoch and positional accuracy are unstated.",
+        "identity_review": "All four baseline identity layers were reviewed: 1,296 sites, 1,405 projects, 231 source records, and both 231 records and 231 decisions in identity-mapping.json. Candidate city, exact-address and numbered-host aliases found no existing match. Distances to all 1,296 complete existing geometries, including polygons, were calculated. No baseline site is within 2 km; nearest is Hillwood Reguły Data Center Campus at 5.568 km. The proposed European sites are geographically separate. One existing WAW1 commercial host at the exact original customer-listed address. The certificate is address identity only and does not establish present certification currency or a separate customer tenancy role.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "Original per-point survey method, positional accuracy and epoch are unstated. Source display precision and datum-operation accuracy do not establish total positional uncertainty."
+      },
+      "context_source_ids": [
+        "europe152-ovh-datacentre-region-identity",
+        "europe153-clevercloud-waw1-address",
+        "commercial153-bhs6-exact-address"
+      ],
+      "roles": [
+        {
+          "party": "OVHcloud",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "europe153-waw1-physical-operation"
+        }
+      ],
+      "distinctness_review": "All four baseline identity layers were reviewed: 1,296 sites, 1,405 projects, 231 source records, and both 231 records and 231 decisions in identity-mapping.json. Candidate city, exact-address and numbered-host aliases found no existing match. Distances to all 1,296 complete existing geometries, including polygons, were calculated. No baseline site is within 2 km; nearest is Hillwood Reguły Data Center Campus at 5.568 km. The proposed European sites are geographically separate. One existing WAW1 commercial host at the exact original customer-listed address. The certificate is address identity only and does not establish present certification currency or a separate customer tenancy role.",
+      "successor_review": "The complete captured current Bare Metal and Network status HTML and the latest 50 incident records from each original operator feed were reviewed through November 11. This is a bounded recent-feed review, not an exhaustive archive. Later global API/account reports and scheduled future maintenance are not new physical campus observations. No later contradictory closure or physical-status report was identified in those captured feeds. One existing WAW1 commercial host at the exact original customer-listed address. The certificate is address identity only and does not establish present certification currency or a separate customer tenancy role.",
+      "scoped_project_details": {
+        "numbered_address": "Kazimierza Kamińskiego 6, 05-850 Ożarów Mazowiecki, Poland",
+        "selected_physical_host_code": "WAW1",
+        "aliases": [
+          "OVHcloud WAW1",
+          "OVHCloud Warsaw WAW-1",
+          "OVH Ożarów Mazowiecki",
+          "WAW1",
+          "WAW-1"
+        ],
+        "scope": "One existing WAW1 commercial host at the exact original customer-listed address. The certificate is address identity only and does not establish present certification currency or a separate customer tenancy role.",
+        "source_limits": "No IT load, utility capacity, generator thermal rating, rack count, floor area, PUE, water use, SLA, certificate currency or measured workload metric is selected. Historical report dates, incident dates, future scheduled work and database updates retain separate meanings."
+      }
+    },
+    {
+      "project_stable_key": "curated:cdc-marsden-park-campus:mp1-existing-operations",
+      "physical_site_stable_key": "curated:cdc-marsden-park-campus",
+      "existing_site_id": "vcc-site-37ddc3b143bf9ea08d1c",
+      "site_name": "CDC Marsden Park Campus",
+      "name": "CDC Marsden Park MP1 — existing commercial data-centre operations",
+      "country": "Australia",
+      "country_iso_a2": "AU",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-09-16",
+        "source_id": "au-nz-p3-cdc-investor-day-2026",
+        "summary": "The original September 16, 2026 CDC presentation, page 8, names Sydney Marsden Park 1 among delivered data centres now contributing to earnings. This records existing MP1 commercial operation as of that date, not its first opening day. The six-building SSD construction programme and proposed local MP1 expansion remain separate."
+      },
+      "locator": {
+        "reuse_from_project_id": "164033cb-411d-5ffb-ab5d-b04bdecfa1ac",
+        "geometry_evidence_id": "71d40751-cded-5bd1-a1c6-4b3d15cf70b4",
+        "geometry_identity_evidence_ids": [
+          "ba468b64-43ed-5f0c-8abf-001689467564",
+          "7dc48b9f-f85a-56d1-95a9-862d0be7a504",
+          "bf6615f0-21d4-50ed-b475-f09921866ca5",
+          "e86d3030-80cb-5a88-a573-405820d7819c"
+        ],
+        "scope": "campus_locator",
+        "identity_review": "Baseline 152 contains one physical CDC Marsden Park campus and one six-building construction project, curated:cdc-marsden-park-campus:early-construction, for SSD-70889211. The original October applicant report identifies the overall campus at 105 and 113 Hollinsworth Road, Lots 10 and 11 DP 1262052, distinguishes its separately approved southwest MP1 building, and expressly maps MP1.S1 to MP1 and DA-24-00542. Risk-screening Figure 1 shows that local-DA building within the same overall campus, outside the larger SSD project scope. The former MP1.S2 is renamed MP2; it is not the admitted MP1 phase. All four identity layers were rechecked: 1,296 sites, 1,405 projects, 231 source records, and 231 identity records plus 231 decisions. Matches identify only this existing campus and its construction project; no separate MP1 operation project exists. All 1,296 complete site geometries were checked. The existing campus point matches exactly; the nearest different host, Glendenning Road Data Centre, is 4,382.57 m away. The inherited government point represents the campus, not the MP1 building, entrance, parcel boundary or expansion footprint. Its datum assumption, unknown accuracy and full provenance remain unchanged."
+      },
+      "context_source_ids": [
+        "asia152-marsden-mod1-phase-identity",
+        "asia152-marsden-risk-campus-identity",
+        "asia152-marsden-mp1-local-approval",
+        "au-nz-p3-cdc-investor-day-2026"
+      ],
+      "roles": [
+        {
+          "party": "CDC Data Centres",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "au-nz-p3-cdc-investor-day-2026"
+        }
+      ],
+      "distinctness_review": "Baseline 152 contains one physical CDC Marsden Park campus and one six-building construction project, curated:cdc-marsden-park-campus:early-construction, for SSD-70889211. The original October applicant report identifies the overall campus at 105 and 113 Hollinsworth Road, Lots 10 and 11 DP 1262052, distinguishes its separately approved southwest MP1 building, and expressly maps MP1.S1 to MP1 and DA-24-00542. Risk-screening Figure 1 shows that local-DA building within the same overall campus, outside the larger SSD project scope. The former MP1.S2 is renamed MP2; it is not the admitted MP1 phase. All four identity layers were rechecked: 1,296 sites, 1,405 projects, 231 source records, and 231 identity records plus 231 decisions. Matches identify only this existing campus and its construction project; no separate MP1 operation project exists. All 1,296 complete site geometries were checked. The existing campus point matches exactly; the nearest different host, Glendenning Road Data Centre, is 4,382.57 m away. The inherited government point represents the campus, not the MP1 building, entrance, parcel boundary or expansion footprint. Its datum assumption, unknown accuracy and full provenance remain unchanged.",
+      "site_identity_review": "MP1 is the separately approved local-DA operating phase within the existing campus. The original Mod-1 report explicitly maps MP1.S1 to MP1 and identifies DA-24-00542; Figure 1 in the risk screening confirms the same-campus relationship. Add a project on the existing host and inherit the exact baseline campus locator.",
+      "successor_review": "The original October 6 Mod-1 report distinguishes MP1 from the six-building development and retains the local expansion as a proposal under assessment. The original October 21 Infratil update concerns under-construction power and delivery timelines, does not name MP1 and does not reverse its operation. The November 11 captured Infratil news index was reviewed through its latest visible October 30 item; this is a bounded source review, not an exhaustive claim that no later report exists.",
+      "scoped_project_details": {
+        "phase_identity": "MP1, formerly MP1.S1, local DA-24-00542. The former MP1.S2 is renamed MP2 and belongs to the distinct SSD development scope.",
+        "capacity": "No capacity metric selected. The 5 MW local approval and 12.5 MW expansion proposal provide identity context only; neither is recorded as operating load.",
+        "excluded_scope": "No completed local expansion, completion of the six-building project or operation of the whole campus is inferred.",
+        "geometry": "Inherit the corrected government campus representative Point and every provenance and uncertainty field exactly. No MP1 footprint or improved positional accuracy is asserted.",
+        "baseline_project_preservation": "The existing six-building construction project remains under construction as of September 16, 2026; its row is unchanged."
+      }
+    }
+  ],
+  "status_updates": [],
+  "status_corrections": [
+    {
+      "project_stable_key": "curated:sify-airoli-reliable-plaza-k10-data-center:existing-operations",
+      "replaces_status_evidence_id": "a994034c-3584-5d30-bf0c-5b1d5c6b502c",
+      "reason": "The inherited September 29, 2026 physical-status day comes from the city page’s article:modified_time/dateModified metadata. Original stored source projections expressly describe that CMS version time; the underlying facility statement is not an independently dated physical observation. Replace that unsupported date with the issuer’s explicitly dated facility portfolio, preserving the existing status.",
+      "identity_review": "The issuer property table on printed p 306 joins Airoli to Reliable Plaza, Plot 10, Kalwa Block/TTC Industrial Area, Airoli; matches baseline Reliable Plaza K-10 host despite the report listing several occupied floors. Preserve project 6a70b953-1372-577e-8e70-18c1b1382967, site vcc-site-a5383dd2ec5fef03442f, all geometry and provenance, role claims and metric arrays. This is only a status-date/evidence correction.",
+      "successor_review": "The 2026 SEC annual report excerpt and original October 28, 2026 results were reviewed; they contain broader portfolio/operational-capacity statements, not a later explicit physical observation for each of these six exact facilities. The earlier June 15, 2026 Noida 02 walkthrough capture does not itself establish customer operation or full-campus completion. The current subsidiary-site search index advertises an Integrated Annual Report 2025–2026, but original home, www home and content pages timed out, and the linked report target could not be verified. A search surfaced a 2024–25 PDF under a 2026 path; neither its path nor the advertised banner establishes a 2026 physical date. This is a bounded correction to a proven observation, not an assertion that June 30, 2025 is the latest possible observation. Existing-record corrections are exempt from the new-admission age gate.",
+      "status": {
+        "value": "operational",
+        "as_of": "2025-06-30",
+        "source_id": "sify153-sebi-drhp-dated-physical-portfolio",
+        "summary": "Printed pp 290, 293 and 301 identify the operating Airoli facility, hosted clients and commissioned capacity within the explicitly June 30, 2025 portfolio. Correct the unsupported later CMS or retrieval date; this is not a first-opening date."
+      }
+    },
+    {
+      "project_stable_key": "curated:sify-noida-01-sector-132-data-center:existing-operations",
+      "replaces_status_evidence_id": "53d1a14b-6468-5c31-925b-2a7276634ad9",
+      "reason": "The inherited September 29, 2026 physical-status day comes from the city page’s article:modified_time/dateModified metadata. Original stored source projections expressly describe that CMS version time; the underlying facility statement is not an independently dated physical observation. Replace that unsupported date with the issuer’s explicitly dated facility portfolio, preserving the existing status.",
+      "identity_review": "The issuer property table on printed p 306 joins Noida 01 to B-07, Sector 132, Noida; exact numbered plot matches the existing DEL01 host. Preserve project 6cc2ec20-b93f-5531-ba43-b9b9a05d4770, site vcc-site-7eddcb1db8fd87fe045d, all geometry and provenance, role claims and metric arrays. This is only a status-date/evidence correction.",
+      "successor_review": "The 2026 SEC annual report excerpt and original October 28, 2026 results were reviewed; they contain broader portfolio/operational-capacity statements, not a later explicit physical observation for each of these six exact facilities. The earlier June 15, 2026 Noida 02 walkthrough capture does not itself establish customer operation or full-campus completion. The current subsidiary-site search index advertises an Integrated Annual Report 2025–2026, but original home, www home and content pages timed out, and the linked report target could not be verified. A search surfaced a 2024–25 PDF under a 2026 path; neither its path nor the advertised banner establishes a 2026 physical date. This is a bounded correction to a proven observation, not an assertion that June 30, 2025 is the latest possible observation. Existing-record corrections are exempt from the new-admission age gate.",
+      "status": {
+        "value": "operational",
+        "as_of": "2025-06-30",
+        "source_id": "sify153-sebi-drhp-dated-physical-portfolio",
+        "summary": "Printed p 295 explicitly dates Noida operation to June 30, 2025 and names Noida 01 hosting services. The separate Noida 02 campus is not merged. Correct the unsupported later CMS or retrieval date; this is not a first-opening date."
+      }
+    },
+    {
+      "project_stable_key": "curated:sify-chennai-01-tidel-park-data-center:existing-operations",
+      "replaces_status_evidence_id": "1f98d380-0672-57d3-af45-f10ef1595053",
+      "reason": "The inherited September 29, 2026 physical-status day comes from the city page’s article:modified_time/dateModified metadata. Original stored source projections expressly describe that CMS version time; the underlying facility statement is not an independently dated physical observation. Replace that unsupported date with the issuer’s explicitly dated facility portfolio, preserving the existing status.",
+      "identity_review": "The issuer property table on printed p 306 joins Chennai 01 to Second floor, TIDEL Park, No. 4, Taramani, Chennai; the same named building and floor as the existing host. Preserve project 94b3fbc1-5b01-5d8c-b426-e6c29a48c4c9, site vcc-site-0d850bd09c425ddfd184, all geometry and provenance, role claims and metric arrays. This is only a status-date/evidence correction.",
+      "successor_review": "The 2026 SEC annual report excerpt and original October 28, 2026 results were reviewed; they contain broader portfolio/operational-capacity statements, not a later explicit physical observation for each of these six exact facilities. The earlier June 15, 2026 Noida 02 walkthrough capture does not itself establish customer operation or full-campus completion. The current subsidiary-site search index advertises an Integrated Annual Report 2025–2026, but original home, www home and content pages timed out, and the linked report target could not be verified. A search surfaced a 2024–25 PDF under a 2026 path; neither its path nor the advertised banner establishes a 2026 physical date. This is a bounded correction to a proven observation, not an assertion that June 30, 2025 is the latest possible observation. Existing-record corrections are exempt from the new-admission age gate.",
+      "status": {
+        "value": "operational",
+        "as_of": "2025-06-30",
+        "source_id": "sify153-sebi-drhp-dated-physical-portfolio",
+        "summary": "Printed p 293 explicitly dates the Chennai portfolio to June 30, 2025, identifies Chennai 01 at TIDEL Park and describes hosted customer applications. Correct the unsupported later CMS or retrieval date; this is not a first-opening date."
+      }
+    },
+    {
+      "project_stable_key": "imported:semiconductor-atlas:sify-chennai-02-siruseri",
+      "replaces_status_evidence_id": "65525961-e294-51af-a486-474cb85cf939",
+      "reason": "The inherited September 29, 2026 physical-status day comes from the city page’s article:modified_time/dateModified metadata. Original stored source projections expressly describe that CMS version time; the underlying facility statement is not an independently dated physical observation. Replace that unsupported date with the issuer’s explicitly dated facility portfolio, preserving the existing status.",
+      "identity_review": "The issuer property table on printed p 306 joins Chennai 02 to H-11/1A, SIPCOT Information Technology Park, Eagattur, Siruseri; exact named Chennai 02 campus matches the imported Siruseri project. Preserve project 9d173225-d19b-5566-ab43-b319b0434236, site vcc-site-dc7beeb061c0e039f4cf, all geometry and provenance, role claims and metric arrays. This is only a status-date/evidence correction.",
+      "successor_review": "The 2026 SEC annual report excerpt and original October 28, 2026 results were reviewed; they contain broader portfolio/operational-capacity statements, not a later explicit physical observation for each of these six exact facilities. The earlier June 15, 2026 Noida 02 walkthrough capture does not itself establish customer operation or full-campus completion. The current subsidiary-site search index advertises an Integrated Annual Report 2025–2026, but original home, www home and content pages timed out, and the linked report target could not be verified. A search surfaced a 2024–25 PDF under a 2026 path; neither its path nor the advertised banner establishes a 2026 physical date. This is a bounded correction to a proven observation, not an assertion that June 30, 2025 is the latest possible observation. Existing-record corrections are exempt from the new-admission age gate.",
+      "status": {
+        "value": "partially_operational",
+        "as_of": "2025-06-30",
+        "source_id": "sify153-sebi-drhp-dated-physical-portfolio",
+        "summary": "Printed pp 111, 293 and 301 establish existing Chennai 02 Tower B operation by June 30, 2025 while other campus towers and additional fit-out remain incomplete. Preserve partial operation; do not claim the whole campus is complete. Correct the unsupported later CMS or retrieval date; this is not a first-opening date."
+      }
+    },
+    {
+      "project_stable_key": "imported:semiconductor-atlas:sify-rabale-navi-mumbai",
+      "replaces_status_evidence_id": "3ca04bf3-2438-554c-8f7a-ac8c8167e22c",
+      "reason": "The inherited October 9, 2026 physical-status day is the access/review date of an undated operator page. The original imported source record explicitly says it used that access date. Replace it with the issuer’s explicit June 30, 2025 observation of five operating towers; preserve partial-campus operation.",
+      "identity_review": "The issuer property table on printed p 306 joins Rabale to Towers 1/2 at R-847/1/2 and R-847/1/3, with other named Rabale tower plots; matches the existing Mumbai 03 campus and its retained MIDC address-plot locator. Preserve project c52dcc98-dfd2-5012-8703-5d9e24de51b2, site vcc-site-2088ce1cae4288c3f3a1, all geometry and provenance, role claims and metric arrays. This is only a status-date/evidence correction.",
+      "successor_review": "The 2026 SEC annual report excerpt and original October 28, 2026 results were reviewed; they contain broader portfolio/operational-capacity statements, not a later explicit physical observation for each of these six exact facilities. The earlier June 15, 2026 Noida 02 walkthrough capture does not itself establish customer operation or full-campus completion. The current subsidiary-site search index advertises an Integrated Annual Report 2025–2026, but original home, www home and content pages timed out, and the linked report target could not be verified. A search surfaced a 2024–25 PDF under a 2026 path; neither its path nor the advertised banner establishes a 2026 physical date. This is a bounded correction to a proven observation, not an assertion that June 30, 2025 is the latest possible observation. Existing-record corrections are exempt from the new-admission age gate.",
+      "status": {
+        "value": "partially_operational",
+        "as_of": "2025-06-30",
+        "source_id": "sify153-sebi-drhp-dated-physical-portfolio",
+        "summary": "Printed p 290 expressly reports Rabale Towers 1–5 operating as of June 30, 2025 within a twelve-tower campus plan. Preserve partial operation without inferring operation of the remaining towers. Correct the unsupported later CMS or retrieval date; this is not a first-opening date."
+      }
+    },
+    {
+      "project_stable_key": "imported:semiconductor-atlas:sify-noida-02",
+      "replaces_status_evidence_id": "bf0f0450-c42b-52be-9271-339ff02468c8",
+      "reason": "The inherited September 29, 2026 physical-status day comes from the city page’s article:modified_time/dateModified metadata. Original stored source projections expressly describe that CMS version time; the underlying facility statement is not an independently dated physical observation. Replace that unsupported date with the issuer’s explicitly dated facility portfolio, preserving the existing status.",
+      "identity_review": "The issuer property table on printed p 306 joins Noida 02 to B-11, B-12 and B-13, Sector 132, Noida; named Noida 02 campus near Noida 01, matching the existing separate campus project. Preserve project d31725a8-2753-5d70-963d-320d4f6fbb61, site vcc-site-37108b4d9d3683d6451d, all geometry and provenance, role claims and metric arrays. This is only a status-date/evidence correction.",
+      "successor_review": "The 2026 SEC annual report excerpt and original October 28, 2026 results were reviewed; they contain broader portfolio/operational-capacity statements, not a later explicit physical observation for each of these six exact facilities. The earlier June 15, 2026 Noida 02 walkthrough capture does not itself establish customer operation or full-campus completion. The current subsidiary-site search index advertises an Integrated Annual Report 2025–2026, but original home, www home and content pages timed out, and the linked report target could not be verified. A search surfaced a 2024–25 PDF under a 2026 path; neither its path nor the advertised banner establishes a 2026 physical date. This is a bounded correction to a proven observation, not an assertion that June 30, 2025 is the latest possible observation. Existing-record corrections are exempt from the new-admission age gate.",
+      "status": {
+        "value": "partially_operational",
+        "as_of": "2025-06-30",
+        "source_id": "sify153-sebi-drhp-dated-physical-portfolio",
+        "summary": "Printed pp 295–296 and 301 identify Noida 02 Tower B operating within a three-tower campus as of June 30, 2025. Preserve partial operation; no commissioning of the other towers is inferred. Correct the unsupported later CMS or retrieval date; this is not a first-opening date."
+      }
+    }
+  ],
+  "context_updates": []
+}
