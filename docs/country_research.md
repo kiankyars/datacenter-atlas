@@ -1142,6 +1142,25 @@ unchanged. The snapshot contains **1,291 sites, 1,400 projects and
 7,253 evidence records in 90 countries**. Unresolved
 candidates and remaining date concerns are retained in the research holds.
 
+`verified_construction_core/2026-11-11-research-hundredfiftysecond` adds the OVHcloud Roubaix,
+Strasbourg and Gravelines campuses, Cirion CUR1 in Curitiba, and Digital Realty
+IAD24 with a completed Summit colocation expansion project. Recent provider
+incident reports support the four operating hosts; Summit's dated statement
+supports the completed expansion without claiming customer workloads or
+commissioned capacity. Government installation records and operator-published
+coordinates provide the locators. CUR1's historical coordinate retains its
+unknown accuracy and unresolved municipal street-number discrepancy.
+
+The existing CDC Marsden Park campus now uses a named government project point
+in place of its legacy community-mapped polygon. This changes locator provenance
+and scope, without claiming improved accuracy or changing its six-building
+construction status. The separate operating MP1 phase is held for admission
+against the corrected locator in the following snapshot. Historical snapshots
+retain the original polygon and its evidence.
+
+The snapshot contains **1,296 sites, 1,405 projects and 7,278
+evidence records in 90 countries**. All unrelated project records remain unchanged.
+
 ## 25 October 2026
 
 `verified_construction_core/2026-10-25-research-sixtysecond` adds three commercial sites and
