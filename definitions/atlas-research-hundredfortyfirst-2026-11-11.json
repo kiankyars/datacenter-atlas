@@ -1,0 +1,118 @@
+{
+  "format": "datacenter-atlas-update-input-v1",
+  "updated_at": "2026-11-11",
+  "output": "verified_construction_core/2026-11-11-research-hundredfortyfirst",
+  "base_dataset": "verified_construction_core/2026-11-11-research-hundredfortieth",
+  "base_manifest_sha256": "bbd841859f9142b06d020611a0e77af7a120b9d2287006ad8639ce6904ce3849",
+  "source_files": [
+    {
+      "path": "sources/research-countries-2026-11-11-hundredfortyfirst-primary-sources.json",
+      "sha256": "082760cf91c89c1f4b64e6bacce674c380f7d8c5a94d20ca79caa297aeb53504"
+    }
+  ],
+  "additions": [
+    {
+      "project_stable_key": "curated:hkcolo-telehouse-ccc-tseung-kwan-o:existing-operations",
+      "physical_site_stable_key": "curated:hkcolo-telehouse-ccc-tseung-kwan-o",
+      "site_name": "HKCOLO Telehouse Hong Kong CCC, 2 Chun Yat Street",
+      "name": "HKCOLO Telehouse Hong Kong CCC — existing colocation operations",
+      "country": "Hong Kong",
+      "country_iso_a2": "HK",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-09-28",
+        "source_id": "portfolio141-ccc-status",
+        "summary": "The operator reports existing live data-centre operations maintained during a September cooling-tower contingency drill and normal operation after the exercise. The report is dated 28 September; the drill day is unstated. No new opening or capacity expansion is inferred."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            114.27453,
+            22.29064
+          ]
+        },
+        "source_id": "portfolio141-ccc-als",
+        "identity_source_ids": [
+          "portfolio141-ccc-facility",
+          "portfolio141-ccc-brochure"
+        ],
+        "scope": "project_locator",
+        "scope_class": "official_numbered_address_point",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "retain_exact_ALS_GeoAddress_4633116863T20050430_HKCOLO_2_CHUN_YAT_STREET",
+        "precision": "Official point for the named HKCOLO premises at 2 Chun Yat Street, locating the physical host. No surveyed boundary, floor, hall, entrance or equipment position is claimed.",
+        "identity_review": "Four baseline identity layers have no HKCOLO, Telehouse Hong Kong CCC, Cloud Computing Complex, THK-CCC or exact 2 Chun Yat Street aliases. The exact named ALS estate HKCOLO at number 2 matches the operator address. Nearby MEGA Plus is the separate 299 Wan Po Road host (303.5 m between selected locators); MEGA IDC is separately identified on government lot TKOTL 131 (419.3 m). Global Switch is at number 18 Chun Yat Street (687.3 m), a separately returned ALS suggestion expressly excluded. Distances screen neighbours and do not establish property boundaries. CCC is one host; its rooms, cable landing facilities and exchange presences are not new sites.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The Address Lookup Service gives no positional accuracy. Five decimal places are coordinate representation, not survey accuracy."
+      },
+      "context_source_ids": [
+        "portfolio141-ccc-facility",
+        "portfolio141-ccc-brochure"
+      ],
+      "roles": [
+        {
+          "party": "HKCOLO.NET Limited",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "portfolio141-ccc-brochure"
+        }
+      ],
+      "distinctness_review": "Four baseline identity layers have no HKCOLO, Telehouse Hong Kong CCC, Cloud Computing Complex, THK-CCC or exact 2 Chun Yat Street aliases. The exact named ALS estate HKCOLO at number 2 matches the operator address. Nearby MEGA Plus is the separate 299 Wan Po Road host (303.5 m between selected locators); MEGA IDC is separately identified on government lot TKOTL 131 (419.3 m). Global Switch is at number 18 Chun Yat Street (687.3 m), a separately returned ALS suggestion expressly excluded. Distances screen neighbours and do not establish property boundaries. CCC is one host; its rooms, cable landing facilities and exchange presences are not new sites.",
+      "successor_review": "The original complete HKCOLO news page was reviewed through its 3 November statement, alongside the current CCC facility page and targeted HKCOLO/Telehouse searches. October items concern conference participation; no later supported physical-status change was found. The observation remains the 28 September report.",
+      "scoped_project_details": {
+        "facility_codes": [
+          "Telehouse Hong Kong CCC",
+          "THK-CCC",
+          "Cloud Computing Complex"
+        ],
+        "operator_published_design_specifications": {
+          "brochure_production_month": "2026-04",
+          "data_hall_floors": 3,
+          "gross_floor_area_m2": 33829,
+          "electrical_capacity_mva": 40,
+          "ups_configuration": "N+1/2N",
+          "transformer_and_generator_configuration": "N+1/2N",
+          "cooling_design": "N+1 water cooling; N+1 CRAC"
+        },
+        "scope": "Brochure design descriptions and operating-host identity; MVA is apparent electrical capacity and is neither MW IT load nor measured consumption. Configuration alternatives are retained verbatim as alternatives. No current certification, whole-property ownership or achieved new construction is inferred."
+      }
+    }
+  ],
+  "status_updates": [],
+  "context_updates": [],
+  "locator_corrections": [
+    {
+      "physical_site_stable_key": "curated:mk-netzdienste-fra2-frankfurt-campus",
+      "site_id": "vcc-site-6e976e59ba53ede4e5f8",
+      "replaces_geometry_evidence_id": "cc4a3866-c7d9-5a51-b06d-1e33ac614589",
+      "reason": "Replace the legacy PeeringDB facility point with the City of Frankfurt’s own building-address point for the exact Wilhelm-Fay-Straße 23 address published by xTom for the MK Netzdienste host. The operator identifies this host as FRA2. Retain the existing campus and project identity and the 29 September operating observation.",
+      "displacement_review": "11.0 m from the previous point to the official address point. This is the same street-numbered MK FRA2 campus, not a newly identified property. The nearest other Atlas site is Colt Frankfurt 3 Sossenheim, 478.6 m away; Global Switch Frankfurt is 1213.0 m away and NTT Frankfurt 1 is 1478.5 m away. These separately named campuses are not merged. No site boundary or accuracy improvement is inferred.",
+      "locator": {
+        "scope": "campus_locator",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            8.5816711,
+            50.1265887
+          ]
+        },
+        "source_id": "locator141-mk-fra2-address",
+        "identity_source_ids": [
+          "locator141-mk-fra2-xtom-status",
+          "locator141-mk-fra2-facility",
+          "locator141-frankfurt-config"
+        ],
+        "scope_class": "official_building_address_point",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "official_municipal_address_point_crs_transform",
+        "precision": "City of Frankfurt building-address point DEHEFALK1Bt0000L for Wilhelm-Fay-Straße 23, used as the location anchor of the existing MK FRA2 campus. It does not locate individual data halls, distinguish the campus buildings or delineate the property.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The municipal address index does not state positional accuracy. An address point need not coincide with a building centre or entrance, and seven decimal places do not imply survey accuracy.",
+        "identity_review": "xTom’s original dated report explicitly places its MK Netzdienste Datacenter host at Wilhelm-Fay-Straße 23, Frankfurt. MK’s own facility page identifies its Frankfurt host as FRA2. The municipal query returns exactly one matching street-numbered building-address object. The separate city configuration establishes EPSG:25832 for the transformation; it is supporting coordinate-system evidence only. The original company footer in Minden is excluded. No third-party map or facility-directory coordinates are fetched or reused."
+      }
+    }
+  ]
+}

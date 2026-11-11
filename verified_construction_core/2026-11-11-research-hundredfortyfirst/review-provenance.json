@@ -1,0 +1,320 @@
+{
+  "input_sha256": "66da8597df7ef939c03a25c2454bd9aa7701fe95de42987714102ee3cb815f13",
+  "source_projections": {
+    "locator141-frankfurt-config": {
+      "attribution": "Stadt Frankfurt am Main",
+      "capture_note": "Fresh original HTTP capture is byte-identical to the existing evidence. Canonical source metadata and retrieval date are retained.",
+      "content_hash": "907501e96178af215a8fbe3d239ebd2d775fde13baf770ff0270d7e734053702",
+      "content_hash_scope": "sha256_exact_content_decoded_response_bytes",
+      "id": "locator141-frankfurt-config",
+      "kind": "government_record",
+      "license": "public-record-source-terms",
+      "published_at": null,
+      "publisher": "Stadt Frankfurt am Main",
+      "raw_capture_file": "local_data/research-2026-11-11-locators-141/frankfurt-config.json",
+      "raw_capture_redistributed": false,
+      "retrieved_at": "2026-11-06T22:30:39.756Z",
+      "reverified_at": "2026-11-11T08:47:49.615785+00:00",
+      "source_family": "frankfurt_municipal_geoportal",
+      "source_url": "https://geoportal.frankfurt.de/karte/config.json",
+      "summary": "The city map configuration binds the elastic geosearch to EPSG:25832. This supplies the coordinate reference system for the building-address result; it provides no facility identity or status independently.",
+      "title": "Stadt Frankfurt am Main geoportal map configuration (karte/config.json)"
+    },
+    "locator141-mk-fra2-address": {
+      "attribution": "Stadt Frankfurt am Main",
+      "content_hash": "4ae973c660d9be033ab9c98208d21200967741dfe4cbf64d97283dd24f473b3f",
+      "content_hash_scope": "sha256_exact_http_response_body_bytes",
+      "coordinate_transformation": "pyproj 3.8.0 / PROJ 9.8.1; always_xy=True; Inverse of UTM zone 32N + ETRS89 to WGS 84 (1), axis order normalized; rounded to seven decimal places.",
+      "date_semantics": "Undated register extract; no physical-status observation inferred.",
+      "id": "locator141-mk-fra2-address",
+      "kind": "government_record",
+      "license": "public-record-source-terms",
+      "published_at": null,
+      "publisher": "Stadt Frankfurt am Main",
+      "raw_capture_file": "local_data/research-2026-11-11-locators-141/mk-fra2-address.json",
+      "raw_capture_redistributed": false,
+      "retrieved_at": "2026-11-11T08:46:21.700874+00:00",
+      "source_crs": "EPSG:25832",
+      "source_family": "frankfurt_municipal_geoportal",
+      "source_url": "https://geoportal.frankfurt.de/elastic/basisgis/_search?source_content_type=application%2Fjson&source=%7B%22query%22%3A%7B%22match_phrase_prefix%22%3A%7B%22properties.searchField%22%3A%22Wilhelm-Fay-Stra%C3%9Fe+23%22%7D%7D%2C%22size%22%3A50%7D",
+      "summary": "The municipal address index returns exactly one building-address object, DEHEFALK1Bt0000L, labelled Wilhelm-Fay-Straße 23. Its EPSG:25832 point [470098.4330000002,5552789.347999999] transforms to WGS84 [8.581671104900451,50.12658873938657], rounded to [8.5816711,50.1265887]. The city configuration supplies the CRS. This is an address anchor for the existing MK FRA2 campus, not a building footprint or accuracy guarantee.",
+      "target_crs": "EPSG:4326",
+      "title": "Stadt Frankfurt building-address object DEHEFALK1Bt0000L: Wilhelm-Fay-Straße 23"
+    },
+    "locator141-mk-fra2-facility": {
+      "attribution": "MK Netzdienste GmbH",
+      "content_hash": "c9c988bfffe70f57eef301958b607e28418786411a277bbca56ee696eef5f861",
+      "content_hash_scope": "sha256_exact_http_response_body_bytes",
+      "id": "locator141-mk-fra2-facility",
+      "kind": "company_disclosure",
+      "license": "all-rights-reserved",
+      "published_at": null,
+      "publisher": "MK Netzdienste GmbH",
+      "raw_capture_file": "local_data/research-2026-11-11-locators-141/mk-fra2-facility.html",
+      "raw_capture_redistributed": false,
+      "retrieved_at": "2026-11-11T08:47:00.374531+00:00",
+      "source_family": "MK Netzdienste GmbH",
+      "source_url": "https://www.mk.de/unternehmen/firmenstandorte/rechenzentrum-frankfurt",
+      "summary": "The operator identifies its Frankfurt data centre as FRA2. Its footer at Dresdener Straße 18, Minden is a company contact address, not the Frankfurt facility. The exact Frankfurt address is established by the tenant’s named-host report. Undated specifications and historical building works are not used to renew status.",
+      "title": "MK Netzdienste original FRA2 facility identity page"
+    },
+    "locator141-mk-fra2-xtom-status": {
+      "attribution": "xTom",
+      "capture_note": "Fresh original HTTP capture is byte-identical to the existing evidence. Canonical source metadata and retrieval date are retained.",
+      "content_hash": "01847855fedd2c54876278999fede8573fcff6ed8770774c719da72ccb24a5e5",
+      "content_hash_scope": "sha256_exact_response_bytes",
+      "id": "locator141-mk-fra2-xtom-status",
+      "kind": "company_disclosure",
+      "license": "all-rights-reserved",
+      "published_at": "2026-09-29",
+      "publisher": "xTom",
+      "raw_capture_file": "local_data/research-2026-11-11-locators-141/mk-fra2-xtom-status.html",
+      "raw_capture_redistributed": false,
+      "retrieved_at": "2026-10-29T02:47:46.959332+00:00",
+      "reverified_at": "2026-11-11T08:47:00.204467+00:00",
+      "source_family": "xTom",
+      "source_url": "https://xtom.com/news/xtom-launches-services-at-mk-netzdienste-in-frankfurt/",
+      "summary": "The original 29 September report identifies the physical MK Netzdienste Frankfurt host at Wilhelm-Fay-Straße 23. Its address corroborates the municipal address object. The original September operating observation is unchanged; this recapture adds location provenance, not a new status observation.",
+      "title": "xTom reports its opened node inside the MK Netzdienste Frankfurt host"
+    },
+    "portfolio141-ccc-als": {
+      "attribution": "Address Lookup Service, Digital Policy Office, Government of the Hong Kong SAR (DATA.GOV.HK)",
+      "content_hash": "c392f157165fe13762a0cfad32ab0e1e06ff8ed19df43459e36a6b309af00a9d",
+      "content_hash_scope": "sha256_exact_http_response_body_bytes",
+      "date_semantics": "Undated government address-service record retrieved 11 November 2026; GeoAddress suffix is not a current status date.",
+      "id": "portfolio141-ccc-als",
+      "kind": "government_record",
+      "license": "DATA.GOV.HK Terms and Conditions: commercial and non-commercial reproduction permitted free of charge with identification of the source and acknowledgement of Government and relevant-organisation intellectual property rights. Terms captured 11 November 2026 at https://data.gov.hk/en/terms-and-conditions.",
+      "published_at": null,
+      "publisher": "Digital Policy Office, Government of the Hong Kong SAR (Address Lookup Service)",
+      "raw_capture_file": "local_data/research-2026-11-11-portfolio-141/hkcolo-ccc-als.json",
+      "raw_capture_redistributed": false,
+      "retrieved_at": "2026-11-11T08:46:16.028606+00:00",
+      "selected_record": {
+        "Address": {
+          "PremisesAddress": {
+            "ChiPremisesAddress": {
+              "ChiDistrict": {
+                "DcDistrict": "西貢區"
+              },
+              "ChiEstate": {
+                "EstateName": "HKCOLO"
+              },
+              "ChiStreet": {
+                "BuildingNoFrom": "2",
+                "StreetName": "駿日街"
+              },
+              "Region": "新界"
+            },
+            "EngPremisesAddress": {
+              "EngDistrict": {
+                "DcDistrict": "SAI KUNG DISTRICT"
+              },
+              "EngEstate": {
+                "EstateName": "HKCOLO"
+              },
+              "EngStreet": {
+                "BuildingNoFrom": "2",
+                "StreetName": "CHUN YAT STREET"
+              },
+              "Region": "NT"
+            },
+            "GeoAddress": "4633116863T20050430",
+            "GeospatialInformation": {
+              "Easting": "846331",
+              "Latitude": "22.29064",
+              "Longitude": "114.27453",
+              "Northing": "816863"
+            }
+          }
+        },
+        "ValidationInformation": {
+          "Score": 38.83
+        }
+      },
+      "source_family": "hong_kong_address_lookup_service",
+      "source_url": "https://www.als.gov.hk/lookup?q=2%20Chun%20Yat%20Street%20Tseung%20Kwan%20O&n=5",
+      "summary": "The third suggestion exactly matches HKCOLO, CHUN YAT STREET 2, SAI KUNG DISTRICT (GeoAddress 4633116863T20050430), with served WGS84 latitude 22.29064 and longitude 114.27453 and HK1980 easting 846331/northing 816863. It is selected by exact building name and street number rather than rank. The higher-ranked numbers 12 and 18 Chun Yat Street and other lower suggestions are different properties and are excluded.",
+      "terms_capture_file": "local_data/research-2026-11-11-portfolio-141/datagovhk-terms.html",
+      "terms_capture_sha256": "c901a8f56c42a4cbcb2502c10d3623309529500e38f5d6c247aab68c6149dde0",
+      "title": "Hong Kong Address Lookup Service: HKCOLO, 2 Chun Yat Street"
+    },
+    "portfolio141-ccc-brochure": {
+      "attribution": "HKCOLO.NET Limited",
+      "content_hash": "24b93d0c9a8d6d346c1516afc1eac1000af85d200072765287fbbe98aebcc5d7",
+      "content_hash_scope": "sha256_exact_http_response_body_bytes",
+      "date_semantics": "The PDF says made in Apr 2026; no precise publication day is invented. Brochure identity and design specifications only, not current status evidence.",
+      "id": "portfolio141-ccc-brochure",
+      "kind": "company_disclosure",
+      "license": "all-rights-reserved; compact factual projection only",
+      "pages_reviewed": [
+        2,
+        11,
+        16
+      ],
+      "published_at": null,
+      "publisher": "HKCOLO.NET Limited",
+      "raw_capture_file": "local_data/research-2026-11-11-portfolio-141/hkcolo-ccc-brochure.pdf",
+      "raw_capture_redistributed": false,
+      "retrieved_at": "2026-11-11T08:46:20.007373+00:00",
+      "source_family": "hkcolo_facility_brochure",
+      "source_url": "https://www.telehouse.com.hk/en/resources/brochures/files/TELEHOUSE_Hong-Kong-CCC.pdf",
+      "summary": "The original brochure identifies HKCOLO.NET Limited as operator of Telehouse Hong Kong CCC. Page 11 describes three data-hall floors, 33,829 square metres gross floor area, 40 MVA power capacity, N+1/2N UPS and transformer/generator configurations, and N+1 water cooling and CRAC design. These are published design specifications, not measured demand, completed new capacity or guaranteed performance. Page 16 states the material was made in April 2026; the publication day is unstated.",
+      "title": "Telehouse Hong Kong CCC brochure, made April 2026",
+      "visual_review": "Original PDF pages 2, 11 and 16 rendered locally and visually reviewed for operator identity, aligned specification labels/values and April 2026 production date."
+    },
+    "portfolio141-ccc-facility": {
+      "attribution": "HKCOLO / HKCOLO.NET",
+      "content_hash": "ad459eabecd79248d3abe24eb491048db30a1992bf8bb6c14e99fb40788c4084",
+      "content_hash_scope": "sha256_exact_http_response_body_bytes",
+      "id": "portfolio141-ccc-facility",
+      "kind": "company_disclosure",
+      "license": "all-rights-reserved; compact factual projection only",
+      "published_at": null,
+      "publisher": "HKCOLO / HKCOLO.NET",
+      "raw_capture_file": "local_data/research-2026-11-11-portfolio-141/hkcolo-ccc.html",
+      "raw_capture_redistributed": false,
+      "retrieved_at": "2026-11-11T08:45:54.431835+00:00",
+      "source_family": "hkcolo_facility_page",
+      "source_url": "https://www.hkcolo.com/cloud_computing_complex.html",
+      "summary": "The original CCC facility table identifies 2 Chun Yat Street, Tseung Kwan O, New Territories, Hong Kong. It describes a three-storey data-centre building with rooftop, colocation cabinets, cages and suites, and staffed operations. The page is undated and supplies identity and specifications only.",
+      "title": "HKCOLO Cloud Computing Complex: numbered address and facility specifications"
+    },
+    "portfolio141-ccc-status": {
+      "attribution": "HKCOLO / HKCOLO.NET",
+      "content_hash": "b6ce0151ec3e82eab7663ff011fb391b450f078226f7d56ea1ec2fc4c5ea19b8",
+      "content_hash_scope": "sha256_exact_http_response_body_bytes",
+      "date_semantics": "28 September is the dated operator report; it describes a drill in September without stating its exact day. Existing operation as reported then, not a new opening, and not renewed to the November capture date.",
+      "id": "portfolio141-ccc-status",
+      "kind": "company_disclosure",
+      "license": "all-rights-reserved; compact factual projection only",
+      "published_at": "2026-09-28",
+      "publisher": "HKCOLO / HKCOLO.NET",
+      "raw_capture_file": "local_data/research-2026-11-11-portfolio-141/hkcolo-news.html",
+      "raw_capture_redistributed": false,
+      "retrieved_at": "2026-11-11T08:45:53.204841+00:00",
+      "source_family": "hkcolo_newsroom",
+      "source_url": "https://www.hkcolo.com/news_n_events.html",
+      "summary": "The operator reports that its September contingency exercise at the named Telehouse CCC Data Center activated the standby cooling tower while maintaining normal temperatures and stable data-centre operations. After inspection and maintenance, the cooling system returned to normal operation. The original page also carries later October event reports and a 3 November company-representation statement; these do not report a later physical-status change.",
+      "title": "HKCOLO: Operational Resilience - Successful Cooling Tower Contingency Drill, 28 September 2026"
+    }
+  },
+  "update": {
+    "additions": [
+      {
+        "context_source_ids": [
+          "portfolio141-ccc-facility",
+          "portfolio141-ccc-brochure"
+        ],
+        "country": "Hong Kong",
+        "country_iso_a2": "HK",
+        "distinctness_review": "Four baseline identity layers have no HKCOLO, Telehouse Hong Kong CCC, Cloud Computing Complex, THK-CCC or exact 2 Chun Yat Street aliases. The exact named ALS estate HKCOLO at number 2 matches the operator address. Nearby MEGA Plus is the separate 299 Wan Po Road host (303.5 m between selected locators); MEGA IDC is separately identified on government lot TKOTL 131 (419.3 m). Global Switch is at number 18 Chun Yat Street (687.3 m), a separately returned ALS suggestion expressly excluded. Distances screen neighbours and do not establish property boundaries. CCC is one host; its rooms, cable landing facilities and exchange presences are not new sites.",
+        "locator": {
+          "authority": "official_source",
+          "derivation": "direct_geometry",
+          "geometry": {
+            "coordinates": [
+              114.27453,
+              22.29064
+            ],
+            "type": "Point"
+          },
+          "horizontal_uncertainty_metres": null,
+          "identity_review": "Four baseline identity layers have no HKCOLO, Telehouse Hong Kong CCC, Cloud Computing Complex, THK-CCC or exact 2 Chun Yat Street aliases. The exact named ALS estate HKCOLO at number 2 matches the operator address. Nearby MEGA Plus is the separate 299 Wan Po Road host (303.5 m between selected locators); MEGA IDC is separately identified on government lot TKOTL 131 (419.3 m). Global Switch is at number 18 Chun Yat Street (687.3 m), a separately returned ALS suggestion expressly excluded. Distances screen neighbours and do not establish property boundaries. CCC is one host; its rooms, cable landing facilities and exchange presences are not new sites.",
+          "identity_source_ids": [
+            "portfolio141-ccc-facility",
+            "portfolio141-ccc-brochure"
+          ],
+          "method": "retain_exact_ALS_GeoAddress_4633116863T20050430_HKCOLO_2_CHUN_YAT_STREET",
+          "precision": "Official point for the named HKCOLO premises at 2 Chun Yat Street, locating the physical host. No surveyed boundary, floor, hall, entrance or equipment position is claimed.",
+          "scope": "project_locator",
+          "scope_class": "official_numbered_address_point",
+          "source_id": "portfolio141-ccc-als",
+          "uncertainty_reason": "The Address Lookup Service gives no positional accuracy. Five decimal places are coordinate representation, not survey accuracy."
+        },
+        "name": "HKCOLO Telehouse Hong Kong CCC — existing colocation operations",
+        "physical_site_stable_key": "curated:hkcolo-telehouse-ccc-tseung-kwan-o",
+        "project_stable_key": "curated:hkcolo-telehouse-ccc-tseung-kwan-o:existing-operations",
+        "roles": [
+          {
+            "party": "HKCOLO.NET Limited",
+            "relationship_scope": "current",
+            "role": "operator",
+            "source_id": "portfolio141-ccc-brochure"
+          }
+        ],
+        "scoped_project_details": {
+          "facility_codes": [
+            "Telehouse Hong Kong CCC",
+            "THK-CCC",
+            "Cloud Computing Complex"
+          ],
+          "operator_published_design_specifications": {
+            "brochure_production_month": "2026-04",
+            "cooling_design": "N+1 water cooling; N+1 CRAC",
+            "data_hall_floors": 3,
+            "electrical_capacity_mva": 40,
+            "gross_floor_area_m2": 33829,
+            "transformer_and_generator_configuration": "N+1/2N",
+            "ups_configuration": "N+1/2N"
+          },
+          "scope": "Brochure design descriptions and operating-host identity; MVA is apparent electrical capacity and is neither MW IT load nor measured consumption. Configuration alternatives are retained verbatim as alternatives. No current certification, whole-property ownership or achieved new construction is inferred."
+        },
+        "site_name": "HKCOLO Telehouse Hong Kong CCC, 2 Chun Yat Street",
+        "status": {
+          "as_of": "2026-09-28",
+          "source_id": "portfolio141-ccc-status",
+          "summary": "The operator reports existing live data-centre operations maintained during a September cooling-tower contingency drill and normal operation after the exercise. The report is dated 28 September; the drill day is unstated. No new opening or capacity expansion is inferred.",
+          "value": "operational"
+        },
+        "successor_review": "The original complete HKCOLO news page was reviewed through its 3 November statement, alongside the current CCC facility page and targeted HKCOLO/Telehouse searches. October items concern conference participation; no later supported physical-status change was found. The observation remains the 28 September report."
+      }
+    ],
+    "base_dataset": "verified_construction_core/2026-11-11-research-hundredfortieth",
+    "base_manifest_sha256": "bbd841859f9142b06d020611a0e77af7a120b9d2287006ad8639ce6904ce3849",
+    "context_updates": [],
+    "format": "datacenter-atlas-update-input-v1",
+    "locator_corrections": [
+      {
+        "displacement_review": "11.0 m from the previous point to the official address point. This is the same street-numbered MK FRA2 campus, not a newly identified property. The nearest other Atlas site is Colt Frankfurt 3 Sossenheim, 478.6 m away; Global Switch Frankfurt is 1213.0 m away and NTT Frankfurt 1 is 1478.5 m away. These separately named campuses are not merged. No site boundary or accuracy improvement is inferred.",
+        "locator": {
+          "authority": "official_source",
+          "derivation": "direct_geometry",
+          "geometry": {
+            "coordinates": [
+              8.5816711,
+              50.1265887
+            ],
+            "type": "Point"
+          },
+          "horizontal_uncertainty_metres": null,
+          "identity_review": "xTom’s original dated report explicitly places its MK Netzdienste Datacenter host at Wilhelm-Fay-Straße 23, Frankfurt. MK’s own facility page identifies its Frankfurt host as FRA2. The municipal query returns exactly one matching street-numbered building-address object. The separate city configuration establishes EPSG:25832 for the transformation; it is supporting coordinate-system evidence only. The original company footer in Minden is excluded. No third-party map or facility-directory coordinates are fetched or reused.",
+          "identity_source_ids": [
+            "locator141-mk-fra2-xtom-status",
+            "locator141-mk-fra2-facility",
+            "locator141-frankfurt-config"
+          ],
+          "method": "official_municipal_address_point_crs_transform",
+          "precision": "City of Frankfurt building-address point DEHEFALK1Bt0000L for Wilhelm-Fay-Straße 23, used as the location anchor of the existing MK FRA2 campus. It does not locate individual data halls, distinguish the campus buildings or delineate the property.",
+          "scope": "campus_locator",
+          "scope_class": "official_building_address_point",
+          "source_id": "locator141-mk-fra2-address",
+          "uncertainty_reason": "The municipal address index does not state positional accuracy. An address point need not coincide with a building centre or entrance, and seven decimal places do not imply survey accuracy."
+        },
+        "physical_site_stable_key": "curated:mk-netzdienste-fra2-frankfurt-campus",
+        "reason": "Replace the legacy PeeringDB facility point with the City of Frankfurt’s own building-address point for the exact Wilhelm-Fay-Straße 23 address published by xTom for the MK Netzdienste host. The operator identifies this host as FRA2. Retain the existing campus and project identity and the 29 September operating observation.",
+        "replaces_geometry_evidence_id": "cc4a3866-c7d9-5a51-b06d-1e33ac614589",
+        "site_id": "vcc-site-6e976e59ba53ede4e5f8"
+      }
+    ],
+    "output": "verified_construction_core/2026-11-11-research-hundredfortyfirst",
+    "source_files": [
+      {
+        "path": "sources/research-countries-2026-11-11-hundredfortyfirst-primary-sources.json",
+        "sha256": "082760cf91c89c1f4b64e6bacce674c380f7d8c5a94d20ca79caa297aeb53504"
+      }
+    ],
+    "status_updates": [],
+    "updated_at": "2026-11-11"
+  }
+}

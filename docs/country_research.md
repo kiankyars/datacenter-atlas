@@ -988,6 +988,17 @@ facility specifications scoped separately. This adds supporting identity evidenc
 changing the host's status date, locator or project count. The 13 source projections add
 11 evidence records; all existing project rows and earlier published snapshots are unchanged.
 
+`verified_construction_core/2026-11-11-research-hundredfortyfirst` adds **one physical
+site and one project**: HKCOLO Telehouse Hong Kong CCC at 2 Chun Yat Street. Its
+28 September operator report describes continued live operations during a cooling
+contingency drill. The government address record matches HKCOLO and number 2;
+nearby MEGA Plus, MEGA IDC and Global Switch remain separate hosts. April brochure
+specifications retain their design scope and do not become measured demand.
+MK Netzdienste FRA2 receives a municipal address point in place of its legacy
+directory locator, moving the anchor 11 metres and preserving its 29 September
+status observation. The snapshot contains **1,259 sites, 1,368 projects and 7,093
+evidence records in 90 countries**. Earlier snapshots remain unchanged.
+
 ## 25 October 2026
 
 `verified_construction_core/2026-10-25-research-sixtysecond` adds three commercial sites and
