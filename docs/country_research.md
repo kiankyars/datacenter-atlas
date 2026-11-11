@@ -899,6 +899,18 @@ From 22 October 2026 sites are added continuously: researchers each work a narro
 
 `verified_construction_core/2026-11-07-research-hundredthirtythird`: **1150 sites and 1237 projects in 88 countries**. Adds BDx SIN1 — existing data-centre operations; Apple Waukee Data Center Campus — existing data center building (Project Morgan); Digital Realty Saint-Denis — PAR3 and PAR5 existing colocation data-centre operations (7-9 and 11-13 avenue des Arts et Métiers); Digital Realty PAR12 — existing colocation data-centre operations (16 avenue Joseph Froelicher, Ferrières-en-Brie); Digital Realty PAR6 — existing colocation data-centre operations (11-15 rue Galilée, Ivry-sur-Seine); Digital Realty MRS1 — existing colocation data-centre operations (40 avenue Roger Salengro, Marseille 3e); Digital Realty Madrid — MAD1 and MAD2 existing colocation data-centre operations (Calle Albasanz 71 and 73); Global Switch London — existing data-centre operations (London North, East India Dock House, and London East, Global Switch House); Global Switch Amsterdam — existing data-centre operations (Johan Huizingalaan 759); Global Switch Frankfurt — existing data-centre operations (Frankfurt North and South, Eschborner Landstraße 110); Telehouse TH2 Paris Voltaire — existing data-centre operations (137 boulevard Voltaire); Google Omaha (Douglas County) — existing data-centre campus operations; Google Papillion (Sarpy County) — existing data-centre campus operations; NTT Ashburn VA1 — existing colocation data-centre operations (44664 Guilford Dr, Ashburn, VA 20147); NTT Vienna 1 — existing colocation data-centre operations (Computerstraße 4, 1100 Wien); NTT Zurich 1 — existing colocation data-centre operations (Hofwisenstrasse 56, Rümlang); NTT Hillsboro HI1 — existing colocation data-centre operations (4050 NE Evergreen Rd, Hillsboro, OR 97124); NTT Silicon Valley SV1 — existing colocation data-centre operations (1160 Walsh Ave, Santa Clara, CA 95050); DataBank Westway Park Campus (HOU1-HOU3) — existing data-centre and colocation operations; DataBank DFW1 (400 South Akard) — existing data-centre, colocation and carrier-hotel operations; DataBank DFW2 North Dallas (Richardson) — existing data-centre and colocation operations.
 
+`verified_construction_core/2026-11-11-research-hundredthirtyfourth` adds four physical sites:
+Equinix's CH1/CH2/CH4 host at 350 E Cermak in Chicago, CH7 in Westmont, SV2 in Santa Clara,
+and BX1 in Bruges near Bordeaux. Each uses the operator's published facility point and
+30 September portfolio observation, with sourced facility specifications. The dataset now
+contains **1,154 sites and 1,241 projects in 88 countries**.
+
+Newer operator statements refresh STT Tokyo 1, KDDI Osaka Sakai, Datum FRN2 and Datum
+Manchester MCR1/MCR2. Firstcolo FRA7 gains power-partnership context without changing its
+construction date. Independent review kept planned KDDI testing separate from existing
+operation; its container expansion and six other leads remain held for unresolved location
+or date evidence.
+
 ## 25 October 2026
 
 `verified_construction_core/2026-10-25-research-sixtysecond` adds three commercial sites and
