@@ -1214,6 +1214,22 @@ The snapshot contains **1,304 sites, 1,415 projects and
 7,314 evidence records in 90 countries**. Historical snapshots and
 all unrelated project records remain unchanged.
 
+`verified_construction_core/2026-11-11-research-hundredfiftysixth` adds the CtrlS Patna greenfield
+property, OpenColo in Santa Clara, Digital Realty's Elk Grove Village campus with
+a CH1 operating project, and Digital Park Ostend with a FRA14 operating project.
+Original opening and customer incident records establish their dated operation.
+
+Patna's government plan explicitly joins the current lease to former parcel C-16.
+Its derived reference point retains the unresolved area differences and unknown
+accuracy; it is not a current lease boundary. The other locators use a Census
+address reference or original operator points, with their precision limits recorded.
+
+Eight existing Frankfurt sites, covering thirteen projects, receive coordinate
+provenance corrections. Their exact points, scope, uncertainty, physical status,
+roles and metrics remain unchanged. The snapshot contains **1,308 sites, 1,419
+projects and 7,330 evidence records in 90 countries**. Historical files and all
+unrelated project records remain unchanged.
+
 ## 25 October 2026
 
 `verified_construction_core/2026-10-25-research-sixtysecond` adds three commercial sites and

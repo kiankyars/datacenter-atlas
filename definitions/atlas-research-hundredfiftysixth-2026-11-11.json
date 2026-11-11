@@ -1,0 +1,498 @@
+{
+  "format": "datacenter-atlas-update-input-v1",
+  "updated_at": "2026-11-11",
+  "output": "verified_construction_core/2026-11-11-research-hundredfiftysixth",
+  "base_dataset": "verified_construction_core/2026-11-11-research-hundredfiftyfifth",
+  "base_manifest_sha256": "18d791a09505f69b8d8b7625d1579fd33abe57b93cf68cecedc50bd2ec39d6aa",
+  "source_files": [
+    {
+      "path": "sources/research-countries-2026-11-11-hundredfiftysixth-primary-sources.json",
+      "sha256": "ec0ef5fe00a2c199869898c0f61b749bd551a01861c7367790ddd0d9803c3444"
+    }
+  ],
+  "additions": [
+    {
+      "project_stable_key": "curated:opencolo-santa-clara-3223-kenneth:existing-operations",
+      "physical_site_stable_key": "curated:opencolo-santa-clara-3223-kenneth",
+      "site_name": "OpenColo by American Cloud (3223 Kenneth Street, Santa Clara, California)",
+      "name": "OpenColo Santa Clara — existing commercial operations",
+      "country": "United States",
+      "country_iso_a2": "US",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-11-10",
+        "source_id": "commercial156-opencolo-racknerd-nov10",
+        "summary": "The original November 10 San Jose report identifies an actual connectivity problem on physical host node SJ247KVM and later states it is resolved. RackNerd’s status explanation defines a hypervisor/node as a physical server hosting VPS instances. Its exact San Jose facility address joins this observation to OpenColo at 3223 Kenneth Street, Santa Clara. This supports existing hosting, not a new opening, expansion completion or whole-site outage."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -121.9565841,
+            37.3788779
+          ]
+        },
+        "source_id": "commercial156-opencolo-census-address",
+        "identity_source_ids": [
+          "commercial156-racknerd-sanjose-address",
+          "commercial156-americancloud-opencolo-address"
+        ],
+        "scope": "reviewed_site_locator",
+        "scope_class": "government_exact_address_reference",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "census_tiger_address_interpolation_explicit_epsg1188",
+        "precision": "Exact US Census match for 3223 KENNETH ST, SANTA CLARA, CA, 95054. Its native NAD83 point [-121.956584078706, 37.378877902274] is interpolated along TIGER edge 122959375, right side, potential range 3101–3299. Explicit EPSG:1188 NAD83 to WGS 84 (1), applicable to California, uses zero geocentric translations and has nominal 4 m datum-operation accuracy; its no-op representation is not exact datum equivalence. Coordinates are rounded to seven decimal places. This is an interpolated street-address reference, not a surveyed building, entrance, parcel centroid, rack or boundary. Source realization, epoch, interpolation offset and total accuracy are unknown. RackNerd prints ZIP 95045; the operator and government use 95054. Both exact Census queries return the same address, edge and point; no street-number or city mismatch exists.",
+        "identity_review": "All four committed baseline 155 identity layers were searched: 1,304 sites, 1,415 projects, 231 source records, and 231 mapping records plus 231 decisions. OpenColo, American Cloud, 3223 Kenneth, Energy Group Networks, EGI/EGIhosting and SJ247KVM have no matching host. All 1,304 complete geometries, including polygons and multipolygons, were compared. Four other hosts lie within 2 km: Equinix SV2 at 1350 Duane Avenue (204.330 m), Colovore at 1101 Space Park Drive / 3060 Raymond Street (366.522 m), NTT SV1 at 1160 Walsh Avenue (1.104 km), and the CoreSite Stender Way/Coronado Drive campus (1.321 km). These are distinct named primary addresses; none is 3223 Kenneth Street. The operator expressly identifies its own OpenColo building at the latter address. The approximate street locator and close neighbors do not prove a shared campus. No additional RackNerd region, node, suite or future expansion site is created.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "Census interpolation, offset to hosting equipment, NAD83 realization and epoch are unspecified. The nominal 4 m datum-operation accuracy does not establish total point accuracy."
+      },
+      "context_source_ids": [
+        "commercial156-racknerd-sanjose-address",
+        "commercial156-americancloud-opencolo-address"
+      ],
+      "roles": [
+        {
+          "party": "American Cloud",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "commercial156-americancloud-opencolo-address"
+        }
+      ],
+      "distinctness_review": "All four committed baseline 155 identity layers were searched: 1,304 sites, 1,415 projects, 231 source records, and 231 mapping records plus 231 decisions. OpenColo, American Cloud, 3223 Kenneth, Energy Group Networks, EGI/EGIhosting and SJ247KVM have no matching host. All 1,304 complete geometries, including polygons and multipolygons, were compared. Four other hosts lie within 2 km: Equinix SV2 at 1350 Duane Avenue (204.330 m), Colovore at 1101 Space Park Drive / 3060 Raymond Street (366.522 m), NTT SV1 at 1160 Walsh Avenue (1.104 km), and the CoreSite Stender Way/Coronado Drive campus (1.321 km). These are distinct named primary addresses; none is 3223 Kenneth Street. The operator expressly identifies its own OpenColo building at the latter address. The approximate street locator and close neighbors do not prove a shared campus. No additional RackNerd region, node, suite or future expansion site is created.",
+      "successor_review": "The captured original RackNerd status page was reviewed through November 11. The latest listed San Jose incident is SJ247KVM, November 10 at 22:54 with explicit HTML offset -08:00, equivalent to November 11 at 06:54 UTC and already past at capture. The body subsequently reports resolution without a separately dated update. Current service-state labels and their modification timestamps are not substituted for the dated node observation. The original OpenColo domain redirects to American Cloud’s own facility page, which retains the OpenColo name and exact address. Its undated 4.5 MW expansion wording does not establish a new dated phase, completion or operating capacity. This is bounded original status/host review, not an exhaustive corporate archive or uninterrupted-service claim.",
+      "scoped_project_details": {
+        "address": "3223 Kenneth Street, Santa Clara, CA 95054",
+        "identity": "RackNerd San Jose is the customer service label, not another physical site. Customer ZIP 95045 and operator/government ZIP 95054 remain explicitly distinguished.",
+        "scope": "Existing host operation only; no undated expansion, suite, customer tenancy or new cloud region admitted.",
+        "metrics": "No MW, area, rack count, capacity, efficiency, certification or service-guarantee metric selected.",
+        "location_limits": "Exact US Census match for 3223 KENNETH ST, SANTA CLARA, CA, 95054. Its native NAD83 point [-121.956584078706, 37.378877902274] is interpolated along TIGER edge 122959375, right side, potential range 3101–3299. Explicit EPSG:1188 NAD83 to WGS 84 (1), applicable to California, uses zero geocentric translations and has nominal 4 m datum-operation accuracy; its no-op representation is not exact datum equivalence. Coordinates are rounded to seven decimal places. This is an interpolated street-address reference, not a surveyed building, entrance, parcel centroid, rack or boundary. Source realization, epoch, interpolation offset and total accuracy are unknown. RackNerd prints ZIP 95045; the operator and government use 95054. Both exact Census queries return the same address, edge and point; no street-number or city mismatch exists."
+      }
+    },
+    {
+      "project_stable_key": "curated:digital-realty-elk-grove-village-campus:ch1-existing-operations",
+      "physical_site_stable_key": "curated:digital-realty-elk-grove-village-campus",
+      "site_name": "Digital Realty Elk Grove Village Campus (CH1, 2200 Busse Road, Illinois)",
+      "name": "Digital Realty CH1 — existing commercial operations at Elk Grove Village",
+      "country": "United States",
+      "country_iso_a2": "US",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-11-09",
+        "source_id": "commercial156-ch1-racknerd-nov9",
+        "summary": "The original November 9 Chicago report documents an actual connectivity issue on deployed node 7950XCHI303 and subsequently reports resolution. Joined to RackNerd’s exact 2200 Busse Road facility address and Digital Realty’s CH1 page, this supports existing CH1 hosting within the Elk Grove Village campus. It does not establish operation in CH2/CH3, a new opening or a whole-campus outage."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -87.9583402,
+            41.9942501
+          ]
+        },
+        "source_id": "commercial156-digital-ch1-cms",
+        "identity_source_ids": [
+          "commercial156-racknerd-chicago-address",
+          "commercial156-digital-ch1-cms"
+        ],
+        "scope": "campus_locator",
+        "scope_class": "operator_published_campus_reference",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "original_operator_cms_node2284_named_latitude_longitude",
+        "precision": "The original Digital Realty CH1 page embeds CMS node 2284 with title/site code CH1, exact address 2200 Busse Road and named latitude 41.9942501 / longitude -87.9583402 fields. Preserve those direct operator-published values as a campus reference. No transformation, external map-app coordinate or nearby marker substitution is used. The operator does not specify datum, realization, epoch, per-point accuracy or a surveyed footprint. Its longitude/latitude values are interpreted as WGS84 for GeoJSON representation; this explicit representation assumption does not establish the source datum. This page marker is not a verified rack, building centroid, entrance, parcel or campus boundary, and it does not locate CH2 or CH3 individually.",
+        "identity_review": "All four committed baseline 155 identity layers were searched: 1,304 sites, 1,415 projects, 231 source records, and 231 mapping records plus 231 decisions. Searches covered 2200/2299 Busse, 1400/1420 East Devon, Digital Elk Grove, DuPont Fabros, ServerCentral, Deft, CH1 and the actual incident node. Only the separate Equinix CH1/CH2/CH4 host at 350 East Cermak matches the generic CH1 code. No Digital Realty Elk Grove campus is represented. All 1,304 complete geometries were compared. Nearby Equinix CH3 at 1905 Lunt Avenue is 800.874 m away and CH5 at 2001 Lunt Avenue is 857.284 m away; their addresses and operator differ. The original Digital CH1 page explicitly describes its three-building Elk Grove Village campus. Admit one campus with a CH1-only operating project at 2200 Busse; do not create separate tenant, rack, CH2 or CH3 hosts or infer operation throughout the campus.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The operator publishes no datum, epoch, numerical accuracy or point-to-building offset. This is a campus reference from the CH1 page, not a surveyed building or boundary."
+      },
+      "context_source_ids": [
+        "commercial156-racknerd-chicago-address",
+        "commercial156-digital-ch1-cms"
+      ],
+      "roles": [
+        {
+          "party": "Digital Realty",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "commercial156-digital-ch1-cms"
+        }
+      ],
+      "distinctness_review": "All four committed baseline 155 identity layers were searched: 1,304 sites, 1,415 projects, 231 source records, and 231 mapping records plus 231 decisions. Searches covered 2200/2299 Busse, 1400/1420 East Devon, Digital Elk Grove, DuPont Fabros, ServerCentral, Deft, CH1 and the actual incident node. Only the separate Equinix CH1/CH2/CH4 host at 350 East Cermak matches the generic CH1 code. No Digital Realty Elk Grove campus is represented. All 1,304 complete geometries were compared. Nearby Equinix CH3 at 1905 Lunt Avenue is 800.874 m away and CH5 at 2001 Lunt Avenue is 857.284 m away; their addresses and operator differ. The original Digital CH1 page explicitly describes its three-building Elk Grove Village campus. Admit one campus with a CH1-only operating project at 2200 Busse; do not create separate tenant, rack, CH2 or CH3 hosts or infer operation throughout the campus.",
+      "successor_review": "The captured original RackNerd status page was reviewed through November 11. Its latest listed Chicago event is the November 9 physical-node incident 7950XCHI303, followed by undated resolution. A separate November 7 four-node event records three nodes back online and then resolution, corroborating actual hosting but not replacing the newer event date. Later November 10 entries concern other locations. The original Digital CH1 page and current Chicago portfolio still identify 2200 Busse and distinguish CH2 at 2299 Busse and CH3 at 1400 East Devon. No later relocation or closure is reported in this bounded original host/status review. Availability marketing does not commission other campus buildings or new capacity.",
+      "scoped_project_details": {
+        "address": "CH1: 2200 Busse Road, Elk Grove Village, IL 60007",
+        "campus": "The primary CH1 page describes one three-building Digital Elk Grove Village campus. Retain one host; operational observation is limited to CH1. CH2/CH3 remain unobserved, not newly commissioned.",
+        "identity": "RackNerd Chicago supplies the dated physical-node observation and exact address. No separate RackNerd region, tenant, node or rack site admitted.",
+        "metrics": "No power, area, room, rack, utilization or commissioned-capacity metric selected.",
+        "location_limits": "The original Digital Realty CH1 page embeds CMS node 2284 with title/site code CH1, exact address 2200 Busse Road and named latitude 41.9942501 / longitude -87.9583402 fields. Preserve those direct operator-published values as a campus reference. No transformation, external map-app coordinate or nearby marker substitution is used. The operator does not specify datum, realization, epoch, per-point accuracy or a surveyed footprint. Its longitude/latitude values are interpreted as WGS84 for GeoJSON representation; this explicit representation assumption does not establish the source datum. This page marker is not a verified rack, building centroid, entrance, parcel or campus boundary, and it does not locate CH2 or CH3 individually."
+      }
+    },
+    {
+      "project_stable_key": "curated:digital-realty-frankfurt-ostend:fra14-existing-operations",
+      "physical_site_stable_key": "curated:digital-realty-frankfurt-ostend",
+      "site_name": "Digital Realty Digital Park Ostend Campus (FRA14 anchor, Frankfurt)",
+      "name": "Digital Realty FRA14 — existing commercial operations at Digital Park Ostend",
+      "country": "Germany",
+      "country_iso_a2": "DE",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-08-25",
+        "source_id": "europe156-fra14-upcloud-aug25",
+        "summary": "The original August 25 incident explicitly reports an actual storage backend issue affecting some resources, including cloud servers, in UpCloud DE-FRA1. The original host page links DE-FRA1 directly to Digital Realty FRA14. This establishes existing physical commercial hosting at FRA14; the issue is limited to some hosted resources and does not establish whole-campus downtime, a new opening or uninterrupted service. The original August 26 updates record an implemented fix and resolution; the selected observation remains August 25."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            8.73778,
+            50.11959
+          ]
+        },
+        "source_id": "europe156-fra14-original-operator-point",
+        "identity_source_ids": [
+          "europe156-upcloud-fra14-host-identity",
+          "europe156-fra14-ostend-campus-identity"
+        ],
+        "scope": "campus_locator",
+        "scope_class": "operator_named_constituent_campus_reference_point",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "digital_realty_fra14_original_cms_literal_point",
+        "precision": "Literal longitude 8.73778 and latitude 50.11959 from Digital Realty’s original named FRA14 CMS node 2329, joined in the same node to Weismüllerstrasse 34, 60314 Frankfurt am Main. The operator’s original brochure explicitly places FRA14 on Digital Park Ostend. Reorder the native fields into GeoJSON longitude/latitude without numeric transformation, rounding or geocoding. This is a representative constituent-facility marker used solely as the Ostend campus anchor, not a surveyed campus boundary, parcel, entrance, rack position or the location of nearby land acquired in Q3. Datum, epoch and positional accuracy are unstated; WGS84 representation is an explicit interpretation, and five decimal places do not imply survey accuracy. No map-provider, directory or community-map coordinate is selected.",
+        "identity_review": "All four identity layers of committed baseline 155 were searched: 1,304 sites, 1,415 projects, 231 source records, and both 231 identity-mapping records and 231 decisions. Exact FRA14, DE-FRA1, Weismüller street variants, Digital Park Ostend and Hanauer Landstrasse terms found no matching host. Broader Interxion/Ostend/Digital Realty Frankfurt matches were read: they refer to separate Paris facilities or the existing Digital Park Fechenheim campus. All 1,304 complete geometries, including polygons, were checked. The only represented host within 2 km is Digital Park Fechenheim, 1.286 km away, whose existing point is explicitly FRA20 at Hugo-Junkers-Strasse 5a and whose project is UW04; it is not the Ostend campus or FRA14 at Weismüllerstrasse 34. Equinix FR2 at Kruppstraße 121–127 is 2.642 km away. Add one Digital Park Ostend campus with one FRA14-specific operating project. Other Ostend numbered buildings, UpCloud’s hosted service deployment and the separately acquired nearby land do not become extra physical sites or additional phase/status claims.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "Original operator marker supplies no datum realization, epoch, positional accuracy or campus-boundary offset. The decimal representation is not an accuracy estimate."
+      },
+      "context_source_ids": [
+        "europe156-upcloud-fra14-host-identity",
+        "europe156-fra14-ostend-campus-identity"
+      ],
+      "roles": [
+        {
+          "party": "Digital Realty",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "europe156-fra14-original-operator-point"
+        },
+        {
+          "party": "UpCloud",
+          "role": "user",
+          "relationship_scope": "current",
+          "source_id": "europe156-upcloud-fra14-host-identity"
+        }
+      ],
+      "distinctness_review": "All four identity layers of committed baseline 155 were searched: 1,304 sites, 1,415 projects, 231 source records, and both 231 identity-mapping records and 231 decisions. Exact FRA14, DE-FRA1, Weismüller street variants, Digital Park Ostend and Hanauer Landstrasse terms found no matching host. Broader Interxion/Ostend/Digital Realty Frankfurt matches were read: they refer to separate Paris facilities or the existing Digital Park Fechenheim campus. All 1,304 complete geometries, including polygons, were checked. The only represented host within 2 km is Digital Park Fechenheim, 1.286 km away, whose existing point is explicitly FRA20 at Hugo-Junkers-Strasse 5a and whose project is UW04; it is not the Ostend campus or FRA14 at Weismüllerstrasse 34. Equinix FR2 at Kruppstraße 121–127 is 2.642 km away. Add one Digital Park Ostend campus with one FRA14-specific operating project. Other Ostend numbered buildings, UpCloud’s hosted service deployment and the separately acquired nearby land do not become extra physical sites or additional phase/status claims.",
+      "successor_review": "The original 50-incident UpCloud feed and current status page were reviewed through November 11. The August 25 incident records a fix and resolution on August 26; no later DE-FRA1 incident appears in that bounded feed. The October 23 general API/control-panel incident is not a new host observation. December 2–3 Frankfurt network work was still scheduled at capture time and is not treated as completed. Digital Realty’s October 29 Q3 release describes a third-quarter land acquisition near its Ostend campus; its proposed capacity is not existing FRA14 capacity or evidence that works began. Lauer’s September 2026 original report describes heat-recovery work at the existing FRA14 facility and says the heat system is being commissioned; it is not a new data-center opening or proof of completed heat delivery. Bounded later closure/transfer searches found no superseding physical-site change; this is not an exhaustive archive or proof of uninterrupted operation.",
+      "scoped_project_details": {
+        "physical_scope": "One Ostend physical campus, with a single dated operating observation limited to FRA14 and the hosted DE-FRA1 service. Other constituent buildings receive no separate status assertion.",
+        "excluded_inferences": "No new opening, whole-campus outage, rack location, ownership change, adjacent-land construction, facility expansion or typed power/energy/efficiency metric is selected.",
+        "locator_scope": "Literal longitude 8.73778 and latitude 50.11959 from Digital Realty’s original named FRA14 CMS node 2329, joined in the same node to Weismüllerstrasse 34, 60314 Frankfurt am Main. The operator’s original brochure explicitly places FRA14 on Digital Park Ostend. Reorder the native fields into GeoJSON longitude/latitude without numeric transformation, rounding or geocoding. This is a representative constituent-facility marker used solely as the Ostend campus anchor, not a surveyed campus boundary, parcel, entrance, rack position or the location of nearby land acquired in Q3. Datum, epoch and positional accuracy are unstated; WGS84 representation is an explicit interpretation, and five decimal places do not imply survey accuracy. No map-provider, directory or community-map coordinate is selected."
+      }
+    },
+    {
+      "project_stable_key": "curated:ctrls-patna-biada-c32-c33:greenfield-operations",
+      "physical_site_stable_key": "curated:ctrls-patna-biada-c32-c33",
+      "site_name": "CtrlS Patna greenfield data centre, BIADA lease C-32/33",
+      "name": "CtrlS Patna greenfield data centre — existing commercial operations",
+      "country": "India",
+      "country_iso_a2": "IN",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-10-13",
+        "source_id": "asia156-ctrls-patna-october-opening",
+        "summary": "The original operator release, published October 16 with an explicit October 13 dateline, describes its newly inaugurated Patliputra greenfield data centre as currently offering IT load for commercial hosting. The achieved opening plus present available facility capacity supports operational status as of October 13; future expansion and the separate Bodh Gaya proposal are excluded. No commissioned or sold-capacity metric is selected."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            85.1058804,
+            25.6350104
+          ]
+        },
+        "source_id": "asia156-biada-old-c16-native-parcel",
+        "identity_source_ids": [
+          "asia156-biada-patna-lease-identity",
+          "asia156-ctrls-patna-2024-new-land",
+          "asia156-ctrls-patna-facility-identity"
+        ],
+        "scope": "reviewed_site_locator",
+        "scope_class": "government_historical_parcel_reference",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "government_native_wgs84_historical_parcel_projected_area_centroid",
+        "precision": "Approximate historical government parcel-reference centroid for old C-16, explicitly joined by the BIADA plan to CtrlS lease C-32/33. Native polygon vertices are declared EPSG:4326; they are projected to WGS84 UTM zone 45N (EPSG:32645), area-centroided, inverse projected and rounded to seven decimals. This is not a surveyed current lease boundary, building centroid, entrance or footprint. The plan's old and current lease areas differ by 180 sq ft; the GIS polygon measures 4,489.57 m², 10.46% larger than its old tabulated area and 10.91% larger than the current lease area. The point is inside the historical GIS polygon, but containment within the current lease is not independently computed. Source horizontal accuracy, realization and epoch are unspecified; total positional uncertainty is unknown. No geometry is digitized from the plan, scale or basemap.",
+        "identity_review": "All four committed baseline 155 identity layers were reviewed: 1,304 sites, 1,415 projects, 231 source records, and 231 identity-mapping records plus 231 decisions. Patna, Patliputra/Pataliputra, CtrlS, the former Kaveri occupier and the lease labels identify no represented Patna host. The represented CtrlS hosts are in Chennai, Hyderabad, Chandanvelly, Mumbai, Kolkata, Bengaluru and Noida. Broad substring hits in a Kolkata project URL and Visakhapatnam source/identity records concern Visakhapatnam, not Patna; none represents this property. All 1,304 full site geometries were compared, including polygons and multipolygons. The nearest represented host is Data World Matatirtha Campus, 226,803.3 m away; the represented CtrlS Kolkata campus is 477,843.1 m away. The 2024 original operator release places its new BIADA property 300 m from its existing Patna DC1. No separate DC1 host, phase code, customer deployment or building is invented in this admission. The original BIADA plan places the CtrlS name inside the northeast rectangle and expressly labels the same rectangle old C-16 (43,750 sq ft) and lease C-32/33 (43,570 sq ft). The original government GIS has one matching C-16 feature, OBJECTID 6162 / OBJECTID_1 2610, with the same old tabulated area. Its former Kaveri liquor occupier and 1971 allotment date are historical attributes, not current occupancy or operation. Matching west Upendra Maharathi, east BSNL and south C-4 neighbors corroborate the parcel identity. The differently located old C-32/C-33P polygons are not combined or selected. The operator's 2024 release identifies newly acquired BIADA land in Patliputra for a Rs 400 crore greenfield facility, separate from existing DC1; the 2026 opening identifies the same new Patliputra greenfield investment. This establishes the new property without assigning an unverified DC2 code.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "Government historical polygon accuracy, realization and epoch are unspecified. Both old/current tabular area differences and the larger geometric area remain unresolved; offset from the current lease and building is unknown."
+      },
+      "context_source_ids": [
+        "asia156-biada-patna-lease-identity",
+        "asia156-ctrls-patna-2024-new-land",
+        "asia156-ctrls-patna-facility-identity"
+      ],
+      "roles": [
+        {
+          "party": "CtrlS Datacenters Ltd",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "asia156-ctrls-patna-october-opening"
+        }
+      ],
+      "distinctness_review": "All four committed baseline 155 identity layers were reviewed: 1,304 sites, 1,415 projects, 231 source records, and 231 identity-mapping records plus 231 decisions. Patna, Patliputra/Pataliputra, CtrlS, the former Kaveri occupier and the lease labels identify no represented Patna host. The represented CtrlS hosts are in Chennai, Hyderabad, Chandanvelly, Mumbai, Kolkata, Bengaluru and Noida. Broad substring hits in a Kolkata project URL and Visakhapatnam source/identity records concern Visakhapatnam, not Patna; none represents this property. All 1,304 full site geometries were compared, including polygons and multipolygons. The nearest represented host is Data World Matatirtha Campus, 226,803.3 m away; the represented CtrlS Kolkata campus is 477,843.1 m away. The 2024 original operator release places its new BIADA property 300 m from its existing Patna DC1. No separate DC1 host, phase code, customer deployment or building is invented in this admission.",
+      "successor_review": "The original operator press index and current Patna facility page were captured and reviewed on November 11. The index contains the October opening release; no later named Patna closure, relocation or contrary physical-stage report was established in this bounded review. The current facility page lists DC1 and DC2 separately but supplies no explicit lease-to-code join. It is identity context only, not a retrieval-dated operating observation. The Bodh Gaya letter of intent in the selected release concerns a separate proposed property and is excluded.",
+      "scoped_project_details": {
+        "property_identity": "BIADA Patliputra Industrial Area lease C-32/33, explicitly identified in the original plan as former C-16. One new greenfield physical host; older Patna DC1 remains a distinct, unadmitted candidate.",
+        "phase_code_limit": "The current facility page lists DC1 and DC2, but no selected original directly assigns DC2 to this lease. The record therefore uses the supported greenfield property name.",
+        "current_operation_scope": "The original operator release, published October 16 with an explicit October 13 dateline, describes its newly inaugurated Patliputra greenfield data centre as currently offering IT load for commercial hosting. The achieved opening plus present available facility capacity supports operational status as of October 13; future expansion and the separate Bodh Gaya proposal are excluded. No commissioned or sold-capacity metric is selected.",
+        "location_limitations": "Approximate historical government parcel-reference centroid for old C-16, explicitly joined by the BIADA plan to CtrlS lease C-32/33. Native polygon vertices are declared EPSG:4326; they are projected to WGS84 UTM zone 45N (EPSG:32645), area-centroided, inverse projected and rounded to seven decimals. This is not a surveyed current lease boundary, building centroid, entrance or footprint. The plan's old and current lease areas differ by 180 sq ft; the GIS polygon measures 4,489.57 m², 10.46% larger than its old tabulated area and 10.91% larger than the current lease area. The point is inside the historical GIS polygon, but containment within the current lease is not independently computed. Source horizontal accuracy, realization and epoch are unspecified; total positional uncertainty is unknown. No geometry is digitized from the plan, scale or basemap.",
+        "capacity": "No power, racks, floor area, customer utilization or investment metric selected.",
+        "prior_hold_resolution": "The immutable batch 155 hold remains intact. This later review resolves its physical-location question using the newly examined explicit old-C-16 plan label, exact native C-16 government feature and independently matching neighbors, rather than the rejected southwest C-32/C-33P combination."
+      }
+    }
+  ],
+  "status_updates": [],
+  "context_updates": [],
+  "locator_corrections": [
+    {
+      "physical_site_stable_key": "curated:global-switch-frankfurt-eschborner-landstrasse-campus",
+      "site_id": "vcc-site-23756b31d48143864a59",
+      "replaces_geometry_evidence_id": "ed859e3e-42a5-500c-80a8-1f2282fdc796",
+      "provenance_only": true,
+      "reason": "Original coordinates are projected; the existing transformed longitude/latitude point was mislabeled direct_geometry/official_source. Correct its derivation and authority while preserving the exact point and every physical-status, role, capacity and scope claim.",
+      "displacement_review": "Zero displacement. The original government point independently transforms to the exact existing coordinates; no positional improvement or more precise physical boundary is claimed.",
+      "locator": {
+        "geometry": {
+          "coordinates": [
+            8.5983358,
+            50.1287949
+          ],
+          "type": "Point"
+        },
+        "source_id": "euro-operators-2-p14-frankfurt-geoportal-eschborner-landstrasse",
+        "identity_source_ids": [
+          "euro-operators-2-p14-gs-frankfurt-page-ia-20260714"
+        ],
+        "scope": "campus_locator",
+        "scope_class": "official_building_address_point",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "municipal_ETRS89_UTM32N_inverse_explicit_ETRS89_to_WGS84_1",
+        "precision": "Official City of Frankfurt building-address point for Eschborner Landstraße 110 (address object DEHEFALK30007gL1, which also carries Nos. 108, 112 and 108-112), the address Global Switch publishes for Frankfurt North and Frankfurt South, transformed from EPSG:25832 (471290.920, 5553028.101) to WGS84 with pyproj 3.7.1. It marks the registered building address, not the North or South building footprint, a parcel or a surveyed position. The stored longitude/latitude is analyst-derived by inverse UTM zone 32N and ETRS89 to WGS 84 (1), rounded to seven decimal places. The derived point has compiled-reference authority; nominal transformation accuracy and decimal places are not total positional accuracy.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The address register publishes no positional accuracy, and Global Switch publishes no outline of its North and South buildings, so their offsets from the shared building-address point are unknown.",
+        "identity_review": "The original municipal address object DEHEFALK30007gL1 at Eschborner Landstraße 110 matches the preserved original operator or direct customer address. All baseline 155 identity layers and 1,304 full geometries were reviewed. Existing site and project identities, location scope and uncertainty are unchanged."
+      }
+    },
+    {
+      "physical_site_stable_key": "curated:equinix-fr7-frankfurt-gutleutstrasse-310",
+      "site_id": "vcc-site-407df34a11fc6dadea48",
+      "replaces_geometry_evidence_id": "77fffc0a-1fd3-5824-86fc-8838982b015b",
+      "provenance_only": true,
+      "reason": "Original coordinates are projected; the existing transformed longitude/latitude point was mislabeled direct_geometry/official_source. Correct its derivation and authority while preserving the exact point and every physical-status, role, capacity and scope claim.",
+      "displacement_review": "Zero displacement. The original government point independently transforms to the exact existing coordinates; no positional improvement or more precise physical boundary is claimed.",
+      "locator": {
+        "geometry": {
+          "coordinates": [
+            8.6441415,
+            50.0968355
+          ],
+          "type": "Point"
+        },
+        "source_id": "equinix-emea-2-p13-frankfurt-geoportal-gutleutstrasse-310",
+        "identity_source_ids": [
+          "equinix-emea-2-p13-ia-eqx-fr7-page-20261003"
+        ],
+        "scope": "project_locator",
+        "scope_class": "official_building_address_point",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "municipal_ETRS89_UTM32N_inverse_explicit_ETRS89_to_WGS84_1",
+        "precision": "Official City of Frankfurt building-address point for Gutleutstraße 310 (address object DEHEFALK30007mjk), the address Equinix publishes for FR7, transformed from EPSG:25832 (474547.952, 5549458.037) to WGS84. It marks the registered building address, not FR7's building footprint, a parcel or a surveyed position. The stored longitude/latitude is analyst-derived by inverse UTM zone 32N and ETRS89 to WGS 84 (1), rounded to seven decimal places. The derived point has compiled-reference authority; nominal transformation accuracy and decimal places are not total positional accuracy.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The address register publishes no positional accuracy, and Equinix does not publish the FR7 building outline, so the offset of the address point from the building is unknown.",
+        "identity_review": "The original municipal address object DEHEFALK30007mjk at Gutleutstraße 310 matches the preserved original operator or direct customer address. All baseline 155 identity layers and 1,304 full geometries were reviewed. Existing site and project identities, location scope and uncertainty are unchanged."
+      }
+    },
+    {
+      "physical_site_stable_key": "curated:iron-mountain-fra-2-frankfurt-heinrich-lanz-allee-47",
+      "site_id": "vcc-site-a79540cc6f7f80655d9a",
+      "replaces_geometry_evidence_id": "1b933927-9433-5bbe-accc-effab9d6c418",
+      "provenance_only": true,
+      "reason": "Original coordinates are projected; the existing transformed longitude/latitude point was mislabeled direct_geometry/official_source. Correct its derivation and authority while preserving the exact point and every physical-status, role, capacity and scope claim.",
+      "displacement_review": "Zero displacement. The original government point independently transforms to the exact existing coordinates; no positional improvement or more precise physical boundary is claimed.",
+      "locator": {
+        "geometry": {
+          "coordinates": [
+            8.6402644,
+            50.1955935
+          ],
+          "type": "Point"
+        },
+        "source_id": "iron-mountain-global-p13-frankfurt-geoportal-heinrich-lanz-allee",
+        "identity_source_ids": [
+          "iron-mountain-global-p13-ia-irm-frankfurt-page-20260611"
+        ],
+        "scope": "campus_locator",
+        "scope_class": "official_building_address_point",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "municipal_ETRS89_UTM32N_inverse_explicit_ETRS89_to_WGS84_1",
+        "precision": "Official City of Frankfurt building-address point for Heinrich-Lanz-Allee 47 (address object DEHEFALK30007jPd), the address Iron Mountain publishes for FRA-2, transformed from EPSG:25832 (474323.576, 5560439.971) to WGS84. It marks the registered building address, not FRA-2's building footprint, a parcel or a surveyed position. The stored longitude/latitude is analyst-derived by inverse UTM zone 32N and ETRS89 to WGS 84 (1), rounded to seven decimal places. The derived point has compiled-reference authority; nominal transformation accuracy and decimal places are not total positional accuracy.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The address register publishes no positional accuracy, and Iron Mountain does not publish the FRA-2 building outline, so the offset of the address point from the building is unknown.",
+        "identity_review": "The original municipal address object DEHEFALK30007jPd at Heinrich-Lanz-Allee 47 matches the preserved original operator or direct customer address. All baseline 155 identity layers and 1,304 full geometries were reviewed. Existing site and project identities, location scope and uncertainty are unchanged."
+      }
+    },
+    {
+      "physical_site_stable_key": "curated:mk-netzdienste-fra2-frankfurt-campus",
+      "site_id": "vcc-site-6e976e59ba53ede4e5f8",
+      "replaces_geometry_evidence_id": "c5b09fa3-d4ec-590d-93f9-d2ead983cb4d",
+      "provenance_only": true,
+      "reason": "Original coordinates are projected; the existing transformed longitude/latitude point was mislabeled direct_geometry/official_source. Correct its derivation and authority while preserving the exact point and every physical-status, role, capacity and scope claim.",
+      "displacement_review": "Zero displacement. The original government point independently transforms to the exact existing coordinates; no positional improvement or more precise physical boundary is claimed.",
+      "locator": {
+        "geometry": {
+          "coordinates": [
+            8.5816711,
+            50.1265887
+          ],
+          "type": "Point"
+        },
+        "source_id": "locator141-mk-fra2-address",
+        "identity_source_ids": [
+          "locator141-mk-fra2-xtom-status"
+        ],
+        "scope": "campus_locator",
+        "scope_class": "official_building_address_point",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "municipal_ETRS89_UTM32N_inverse_explicit_ETRS89_to_WGS84_1",
+        "precision": "City of Frankfurt building-address point DEHEFALK1Bt0000L for Wilhelm-Fay-Straße 23, used as the location anchor of the existing MK FRA2 campus. It does not locate individual data halls, distinguish the campus buildings or delineate the property. The stored longitude/latitude is analyst-derived by inverse UTM zone 32N and ETRS89 to WGS 84 (1), rounded to seven decimal places. The derived point has compiled-reference authority; nominal transformation accuracy and decimal places are not total positional accuracy.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The municipal address index does not state positional accuracy. An address point need not coincide with a building centre or entrance, and seven decimal places do not imply survey accuracy.",
+        "identity_review": "The original municipal address object DEHEFALK1Bt0000L at Wilhelm-Fay-Straße 23 matches the preserved original operator or direct customer address. All baseline 155 identity layers and 1,304 full geometries were reviewed. Existing site and project identities, location scope and uncertainty are unchanged."
+      }
+    },
+    {
+      "physical_site_stable_key": "curated:equinix-fr2-frankfurt-kruppstrasse-121-127",
+      "site_id": "vcc-site-89ace718d5f40e8df4eb",
+      "replaces_geometry_evidence_id": "d9b5db81-0273-52ec-85f1-3ee23e577e7c",
+      "provenance_only": true,
+      "reason": "Original coordinates are projected; the existing transformed longitude/latitude point was mislabeled direct_geometry/official_source. Correct its derivation and authority while preserving the exact point and every physical-status, role, capacity and scope claim.",
+      "displacement_review": "Zero displacement. The original government point independently transforms to the exact existing coordinates; no positional improvement or more precise physical boundary is claimed.",
+      "locator": {
+        "geometry": {
+          "coordinates": [
+            8.7404339,
+            50.1432765
+          ],
+          "type": "Point"
+        },
+        "source_id": "europe-136-20261111-fr2-address",
+        "identity_source_ids": [
+          "europe-136-20261111-fr2"
+        ],
+        "scope": "campus_locator",
+        "scope_class": "official_building_address_point",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "municipal_ETRS89_UTM32N_inverse_explicit_ETRS89_to_WGS84_1",
+        "precision": "Unchanged official City of Frankfurt building-address point DEHEFALK4f500002 at Kruppstraße 121-127, the address Equinix publishes for FR2. The operator explicitly includes FR2.1-FR2.6 and FR13 within Frankfurt North East Campus. Used only as a constituent FR2 address anchor for that campus, not its centroid, boundary, the position of FR13 or a surveyed outline. No positional improvement is claimed. The stored longitude/latitude is analyst-derived by inverse UTM zone 32N and ETRS89 to WGS 84 (1), rounded to seven decimal places. The derived point has compiled-reference authority; nominal transformation accuracy and decimal places are not total positional accuracy.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The address register publishes no positional accuracy, and Equinix does not publish the outline of the FR2 building, whose 29,386 m2 of colocation space implies a large footprint; the offset of the address point from the building centre is unknown.",
+        "identity_review": "The original municipal address object DEHEFALK4f500002 at Kruppstraße 121-127 matches the preserved original operator or direct customer address. All baseline 155 identity layers and 1,304 full geometries were reviewed. Existing site and project identities, location scope and uncertainty are unchanged."
+      }
+    },
+    {
+      "physical_site_stable_key": "curated:equinix-fr5-frankfurt-kleyerstrasse-90",
+      "site_id": "vcc-site-36267cc3d4acb7877ac9",
+      "replaces_geometry_evidence_id": "d6d893f1-88b6-5c0f-a7f7-143307160ecd",
+      "provenance_only": true,
+      "reason": "Original coordinates are projected; the existing transformed longitude/latitude point was mislabeled direct_geometry/official_source. Correct its derivation and authority while preserving the exact point and every physical-status, role, capacity and scope claim.",
+      "displacement_review": "Zero displacement. The original government point independently transforms to the exact existing coordinates; no positional improvement or more precise physical boundary is claimed.",
+      "locator": {
+        "geometry": {
+          "coordinates": [
+            8.6325662,
+            50.0985157
+          ],
+          "type": "Point"
+        },
+        "source_id": "equinix-emea-4-p14-frankfurt-geoportal-kleyerstrasse-90",
+        "identity_source_ids": [
+          "equinix-emea-4-p14-ia-eqx-fr5-page-20261003"
+        ],
+        "scope": "project_locator",
+        "scope_class": "official_building_address_point",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "municipal_ETRS89_UTM32N_inverse_explicit_ETRS89_to_WGS84_1",
+        "precision": "Official City of Frankfurt building-address point for Kleyerstraße 90 (address object DEHEFALK30007XiH), the address Equinix publishes for FR5, transformed from EPSG:25832 (473720.975, 5549648.860) to WGS84. It marks the registered building address, not FR5's building footprint, a parcel or a surveyed position. The stored longitude/latitude is analyst-derived by inverse UTM zone 32N and ETRS89 to WGS 84 (1), rounded to seven decimal places. The derived point has compiled-reference authority; nominal transformation accuracy and decimal places are not total positional accuracy.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The address register publishes no positional accuracy, and Equinix does not publish the outline of the 6-storey FR5 building or the extent of its phases; the offset of the address point from the building centre is unknown.",
+        "identity_review": "The original municipal address object DEHEFALK30007XiH at Kleyerstraße 90 matches the preserved original operator or direct customer address. All baseline 155 identity layers and 1,304 full geometries were reviewed. Existing site and project identities, location scope and uncertainty are unchanged."
+      }
+    },
+    {
+      "physical_site_stable_key": "curated:equinix-frankfurt-laerchenstrasse-campus",
+      "site_id": "vcc-site-c1a9728398fb388857d1",
+      "replaces_geometry_evidence_id": "47f4e999-60df-57fa-9e14-77a9ec21e70b",
+      "provenance_only": true,
+      "reason": "Original coordinates are projected; the existing transformed longitude/latitude point was mislabeled direct_geometry/official_source. Correct its derivation and authority while preserving the exact point and every physical-status, role, capacity and scope claim.",
+      "displacement_review": "Zero displacement. The original government point independently transforms to the exact existing coordinates; no positional improvement or more precise physical boundary is claimed.",
+      "locator": {
+        "geometry": {
+          "coordinates": [
+            8.5872105,
+            50.0976805
+          ],
+          "type": "Point"
+        },
+        "source_id": "ops-frankfurt-de-p6-frankfurt-geoportal-laerchenstrasse-110",
+        "identity_source_ids": [
+          "ops-frankfurt-de-p6-ia-eqx-fr6-page-20261003"
+        ],
+        "scope": "campus_locator",
+        "scope_class": "official_building_address_point",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "municipal_ETRS89_UTM32N_inverse_explicit_ETRS89_to_WGS84_1",
+        "precision": "Official City of Frankfurt building-address point for Lärchenstraße 110 (address object DEHEFALK30007b3M), the address Equinix publishes for FR6 and also for FR4 on its Lärchenstrasse campus. It locates the campus at that registered address, not FR6's building footprint, a parcel or the campus boundary; the campus also includes FR8 at Lärchenstraße 141, whose address point is 117 m to the north-west. The stored longitude/latitude is analyst-derived by inverse UTM zone 32N and ETRS89 to WGS 84 (1), rounded to seven decimal places. The derived point has compiled-reference authority; nominal transformation accuracy and decimal places are not total positional accuracy.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The address register publishes no positional accuracy. The point is a single address point shared by FR4 and FR6; Equinix does not publish where the FR6 building stands on the campus, which reaches at least to Lärchenstraße 141 (FR8), 117 m away.",
+        "identity_review": "The original municipal address object DEHEFALK30007b3M at Lärchenstraße 110 matches the preserved original operator or direct customer address. All baseline 155 identity layers and 1,304 full geometries were reviewed. Existing site and project identities, location scope and uncertainty are unchanged."
+      }
+    },
+    {
+      "physical_site_stable_key": "curated:northc-frankfurt-fra01",
+      "site_id": "vcc-site-ece79fca728f9d94dc00",
+      "replaces_geometry_evidence_id": "8a94810f-0243-582c-b684-10791ec2a193",
+      "provenance_only": true,
+      "reason": "Original coordinates are projected; the existing transformed longitude/latitude point was mislabeled direct_geometry/official_source. Correct its derivation and authority while preserving the exact point and every physical-status, role, capacity and scope claim.",
+      "displacement_review": "Zero displacement. The original government point independently transforms to the exact existing coordinates; no positional improvement or more precise physical boundary is claimed.",
+      "locator": {
+        "geometry": {
+          "coordinates": [
+            8.581028313722268,
+            50.099568066327265
+          ],
+          "type": "Point"
+        },
+        "source_id": "northc-municipal-address",
+        "identity_source_ids": [
+          "northc-location"
+        ],
+        "scope": "project_locator",
+        "scope_class": "official_building_address_point",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "municipal_ETRS89_UTM32N_inverse_explicit_ETRS89_to_WGS84_1",
+        "precision": "Official municipal building-address point for exact street and house number695. Binds the operator-published project address; does not delineate the new data-centre building, parcel or works boundary. The stored longitude/latitude is analyst-derived by inverse UTM zone 32N and ETRS89 to WGS 84 (1), preserving the existing unrounded double-precision coordinates. The derived point has compiled-reference authority; nominal transformation accuracy and decimal places are not total positional accuracy.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "Address source provides no positional accuracy. Transformation operation accuracy of1m is not site-location uncertainty.",
+        "identity_review": "The original municipal address object DEHEFALK30007nlo at Mainzer Landstraße 695 matches the preserved original operator or direct customer address. All baseline 155 identity layers and 1,304 full geometries were reviewed. Existing site and project identities, location scope and uncertainty are unchanged."
+      }
+    }
+  ]
+}
