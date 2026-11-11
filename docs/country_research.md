@@ -1261,6 +1261,18 @@ the old address point remains identity evidence. The AMS17 operating project awa
 separate admission. The snapshot contains **1,314 sites,
 1,425 projects and 7,365 evidence records in 90 countries**.
 
+`verified_construction_core/2026-11-11-research-hundredsixtieth` adds HIVE Valenzuela in
+Paraguay and an AMS17 operating project at the existing Amsterdam Science Park
+campus. HIVE's filing supplies an October 31 operating observation; government
+records identify the Valenzuela campus. Clouvider's November 3 onsite work supplies
+AMS17's separate observation.
+
+Yguazú's electrical expansion retains construction status with a November 9
+observation. AMS9's date is corrected to February 23, 2024 using the original
+engineering report; a webpage modification date had been mistaken for physical
+evidence. The snapshot contains **1,315 sites,
+1,427 projects and 7,373 evidence records in 90 countries**.
+
 ## 25 October 2026
 
 `verified_construction_core/2026-10-25-research-sixtysecond` adds three commercial sites and

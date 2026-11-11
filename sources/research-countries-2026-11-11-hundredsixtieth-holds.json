@@ -1,0 +1,1240 @@
+{
+  "reviewed_at": "2026-11-11",
+  "base_dataset": "verified_construction_core/2026-11-11-research-hundredfiftyninth",
+  "holds": [
+    {
+      "candidate": "GEN02 / Safe Host SH2 physical campus, Gland (CloudSigma Geneva candidate)",
+      "country": "Switzerland",
+      "country_iso_a2": "CH",
+      "reason": "Recent original CloudSigma physical operation is established at its Geneva cloud, but the exact provider-to-host and selected locator scope were not closed to admission confidence. The original facility-location page survives only as a cached web-search representation, while direct HTTP and web-open now return 410. Its Geneva block names GEN02/SH2, but its separate Zurich block contains a conflicting ZH5 description under a GEN02 label. The current operator address has an official numeric address entry, but its administrative-building location has not been independently resolved to the intended data-centre campus anchor. No new physical site or lifecycle row is selected.",
+      "observed_status_review": {
+        "supported_status_for_cloud": "operational",
+        "as_of": "2026-09-07",
+        "source_capture_id": "cloudsigma-geneva-incident.json",
+        "incident_id": "565wgktqszj2",
+        "date_semantics": "Original incident updates at 14:31 UTC describe simultaneous physical network-device reboot and loss of connectivity to storage nodes; the 14:54 UTC update says Geneva fixed. This is a physical-host operation observation, not an opening or proof of continuous uptime. It does not itself name GEN02 or Gland.",
+        "excluded_successor_inference": "The separate September 19 endpoint migration zrh→gva and November scheduled/API status notices do not establish a physical host move, a data-centre opening, or a new physical observation at GEN02."
+      },
+      "identity_review": {
+        "base_manifest_sha256": "f87756d448a5d7845bc852c83436114c4957dcc4e4d5854a24694f457a4ab6b8",
+        "aliases_regex": "\\bGEN0[123]A?\\b|Safe.?Host|Avouillon|\\bGland\\b|Vaultica|CloudSigma",
+        "layers": {
+          "sites": {
+            "records_checked": 1314,
+            "matches": []
+          },
+          "projects": {
+            "records_checked": 1425,
+            "matches": []
+          },
+          "source_records": {
+            "records_checked": 231,
+            "matches": []
+          },
+          "identity_records": {
+            "records_checked": 231,
+            "matches": []
+          },
+          "identity_decisions": {
+            "records_checked": 231,
+            "matches": []
+          }
+        },
+        "full_capture": "commercial160-identity-spatial-review.json"
+      },
+      "locator_review": {
+        "official_address_candidate": {
+          "source_capture_id": "swisstopo-gen02-address.json",
+          "egaid": 102347631,
+          "egid": 280079147,
+          "address": "Route des Avouillons 32, 1196 Gland",
+          "native_crs": "EPSG:2056",
+          "native_easting": 2509766.8,
+          "native_northing": 1140873.9,
+          "derived_lon_lat_screening_only": [
+            6.265042261893949,
+            46.41313112256581
+          ],
+          "selected_as_locator": false
+        },
+        "scope_caution": "Official building-register entry 280079147 has 991 m² footprint, seven storeys and 2019 construction year; these values are identity/context only, not data-centre metrics. The entry may be the campus administrative building rather than the server building. Original contractor INDUNI explicitly describes one Safe Host development combining data-centre and administrative buildings at 32, 34, 36; that evidence is retained, but no administrative point is silently promoted to a surveyed server/building location.",
+        "operator_brand_boundary": "Current Vaultica page identifies GEN02 at 32; STACK original GEN02 brochure describes the same named campus. Hikube current original page identifies GLD as STACK GEN02. No separate Vaultica and STACK physical hosts are created and no exact ownership/lease relationship is normalized.",
+        "rejected_other_numeric_source": {
+          "source_capture_id": "rampini-safehost.pdf",
+          "page": 2,
+          "printed_address": "Route des Avouillons 103",
+          "printed_wgs84_lon_lat": [
+            6.267586,
+            46.409882
+          ],
+          "printed_lv95": [
+            2509957.657,
+            1140508.37
+          ],
+          "reason": "Original contractor project sheet supplies a materially different address/point and source scope concerns exterior works. Not accepted as operator/government locator or silently reconciled to GEN02."
+        },
+        "geometry_screen": {
+          "count": 1314,
+          "nearest_ten": [
+            {
+              "site_id": "vcc-site-5bb1f5c30c00126b9475",
+              "name": "Equinix GV1 Geneva IBX, Rue de la Confédération 6, Genève",
+              "geometry_type": "Point",
+              "distance_m": 25071.810624490776
+            },
+            {
+              "site_id": "vcc-site-816bd61bc358b33da3c7",
+              "name": "NorthC Genf Data Center, The Hive (Route du Nant-d'Avril 152, Meyrin)",
+              "geometry_type": "Point",
+              "distance_m": 25996.394467155835
+            },
+            {
+              "site_id": "vcc-site-8b747204eba25cd9ca42",
+              "name": "Equinix GV2 Geneva IBX, Route du Bois-des-Frères 48, Le Lignon (Vernier)",
+              "geometry_type": "Point",
+              "distance_m": 26192.301215883428
+            },
+            {
+              "site_id": "vcc-site-2951be03bc4bb606aa06",
+              "name": "PIPA-DC1 Data Center, Blyes (Parc Industriel de la Plaine de l'Ain, ZAC de la Baccolanche)",
+              "geometry_type": "Point",
+              "distance_m": 99315.72813161062
+            },
+            {
+              "site_id": "vcc-site-89dc6bb67642a9c7b145",
+              "name": "NorthC Biel (Bern) Data Center (Tennisweg 6, Biel/Bienne)",
+              "geometry_type": "Point",
+              "distance_m": 113201.6839410094
+            },
+            {
+              "site_id": "vcc-site-256fe3e79fe67b7a6bd3",
+              "name": "NorthC Münchenstein (Basel) 3 Data Center, uptownBasel (Schorenweg 21, Arlesheim)",
+              "geometry_type": "Point",
+              "distance_m": 159181.9686380461
+            },
+            {
+              "site_id": "vcc-site-2f9f23202e369dd7905a",
+              "name": "NorthC Münchenstein (Basel) 1 Data Center (Weidenstrasse 41, Münchenstein)",
+              "geometry_type": "Point",
+              "distance_m": 159661.15640298362
+            },
+            {
+              "site_id": "vcc-site-e6edf55983c28732b0f1",
+              "name": "NorthC Münchenstein (Basel) 2 Data Center (Weidenstrasse 13, Münchenstein)",
+              "geometry_type": "Point",
+              "distance_m": 159964.0339822396
+            },
+            {
+              "site_id": "vcc-site-a984e7c4df277059e820",
+              "name": "Microsoft Petit-Landau / Hombourg Datacenter Campus (lieu-dit Alte Stocketen, Haut-Rhin)",
+              "geometry_type": "Point",
+              "distance_m": 176597.4757064811
+            },
+            {
+              "site_id": "vcc-site-30de35a29d7b36fc6ef8",
+              "name": "FlexBase Technologiezentrum Laufenburg Campus",
+              "geometry_type": "Point",
+              "distance_m": 185840.36738456416
+            }
+          ],
+          "scope": "Screening of an unselected address reference only; does not prove the exact GEN02 facility location or distinctness from unrepresented neighboring GEN03."
+        }
+      },
+      "next_evidence": "A current original CloudSigma Geneva→physical GEN02/Gland join, plus an original operator/government facility point or plan explicitly joining the selected address/building point to the GEN02 occupied campus, and an exact GEN03 adjacency/campus review. No new geometric claim is justified solely by cached code labels."
+    },
+    {
+      "candidate": "Eastern Communications physical host of CloudSigma Manila 2",
+      "country": "Philippines",
+      "country_iso_a2": "PH",
+      "reason": "Original October 10 customer incident establishes actual on-site rack-power restoration and running hosts at Manila 2, but the exact Eastern Communications physical building and eligible numeric locator were not established. Cached original location text names Eastern Communications without a street address. No Metro Manila centroid, unrelated Eastern office, or directory coordinate is selected.",
+      "observed_status_review": {
+        "supported_status_for_cloud": "operational",
+        "as_of": "2026-10-10",
+        "source_capture_id": "cloudsigma-mnl2-incident.json",
+        "incident_id": "tx5nqtzdxwb3",
+        "date_semantics": "The 06:28 UTC original update identifies a power outage and technical team on site; the 08:31 UTC update confirms power restored to racks and all servers running. This establishes physical infrastructure use, not a facility opening or whole-building outage."
+      },
+      "identity_review": {
+        "base_manifest_sha256": "f87756d448a5d7845bc852c83436114c4957dcc4e4d5854a24694f457a4ab6b8",
+        "aliases_regex": "Eastern.?Communications|\\bMNL2\\b|Manila.?2|CloudSigma",
+        "layers": {
+          "sites": {
+            "records_checked": 1314,
+            "matches": []
+          },
+          "projects": {
+            "records_checked": 1425,
+            "matches": []
+          },
+          "source_records": {
+            "records_checked": 231,
+            "matches": []
+          },
+          "identity_records": {
+            "records_checked": 231,
+            "matches": []
+          },
+          "identity_decisions": {
+            "records_checked": 231,
+            "matches": []
+          }
+        },
+        "full_capture": "commercial160-identity-spatial-review.json"
+      },
+      "geometry_review": "All baseline identity layers were searched, but without an exact building no valid full-geometry nearest-host comparison can establish a missing physical site. No location was fabricated to satisfy a numerical check.",
+      "next_evidence": "Original customer/operator exact Manila 2 building/address join and eligible operator/government numeric facility locator, followed by fresh all-geometry and alias/successor review."
+    },
+    {
+      "candidate": "HIVE Yguazú existing operations",
+      "reason": "The October 31 operating observation and physical identity are supported, but the committed site has three geometry evidence IDs while its sole baseline project selects one. Exact campus-locator inheritance fails the builder provenance-equality guard. Hold the new project pending a separately reviewed treatment of this legacy geometry bundle; do not recapture, relabel or weaken validation. The existing electrical-expansion status refresh is independent of this hold.",
+      "proposed_project_stable_key": "curated:hive-yguazu-paraguay-campus:existing-operations",
+      "existing_site_id": "vcc-site-ee413666d6aa0f69a386",
+      "baseline_geometry_evidence_ids": [
+        "3530db1f-8c5d-541a-bf50-146038fd3aaa",
+        "7b54b2a6-dc99-58e3-b816-eb8d3ae4c3d4",
+        "8799b8d9-43e5-562f-94de-86e09c8caa87"
+      ],
+      "selected_project_geometry_evidence_id": "3530db1f-8c5d-541a-bf50-146038fd3aaa",
+      "scope": "No new Yguazú operating project or geometry alteration admitted in this batch."
+    }
+  ],
+  "research_capture_indexes": [
+    {
+      "research_scope": "Bounded CloudSigma Geneva/GEN02 and Manila 2 physical-host research; no selected evidence or admission. Raw captures remain local and are not redistributed.",
+      "captures": [
+        {
+          "capture_id": "cloudsigma-geneva-incident.json",
+          "source_url": "https://cloudsigma.statuspage.io/api/v2/incidents/565wgktqszj2.json",
+          "final_url": "https://cloudsigma.statuspage.io/api/v2/incidents/565wgktqszj2.json",
+          "http_status": 200,
+          "content_type": "application/json; charset=utf-8",
+          "retrieved_at": "2026-11-11T17:08:44.525393+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-commercial-160/cloudsigma-geneva-incident.json",
+          "content_hash": "d35f74f2084383c7845c08e0a375d5115aef5f4bdc4ecf60cbc7a06a82629503",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 4529,
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "cloudsigma-incidents.json",
+          "source_url": "https://statuspage.cloudsigma.com/api/v1/incidents?per_page=100",
+          "final_url": "https://statuspage.cloudsigma.com/api/v1/incidents?per_page=100",
+          "http_status": 200,
+          "content_type": "application/json",
+          "retrieved_at": "2026-11-11T17:08:13.064081+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-commercial-160/cloudsigma-incidents.json",
+          "content_hash": "5e8eb763774f94c674088fe5f04fabf57ef53f3e79067dcdba9b6a5d7a9f1401",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 108888,
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "cloudsigma-locations-cached-search.json",
+          "source_url": "https://blog.cloudsigma.com/cloud-locations/",
+          "final_url": "https://blog.cloudsigma.com/cloud-locations/",
+          "retrieved_at": "2026-11-11T17:11:45.541198+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-commercial-160/cloudsigma-locations-cached-search.json",
+          "content_hash": "7d7ae051b2559e80fc6391608f8fded8a3dbd285d57c0d6e289b022740e7c471",
+          "content_hash_scope": "sha256_exact_utf8_serialized_web_search_response_bytes_not_http_body",
+          "bytes": 35469,
+          "raw_capture_redistributed": false,
+          "capture_limit": "Web search tool supplied cached original publisher representation with crawl age four months; direct HTTP request and web open now410. This is not a fresh raw source body.",
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "cloudsigma-locations-web.json",
+          "source_url": "https://blog.cloudsigma.com/cloud-locations/",
+          "final_url": "https://blog.cloudsigma.com/cloud-locations/",
+          "retrieved_at": "2026-11-11T17:11:26.445660+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-commercial-160/cloudsigma-locations-web.json",
+          "content_hash": "2a98c33934c9fd1324ac2223b286b0a9a1b7f52a4ede69ecd584832ea436cb9b",
+          "content_hash_scope": "sha256_exact_utf8_serialized_web_tool_response_bytes_not_http_body",
+          "bytes": 232,
+          "raw_capture_redistributed": false,
+          "capture_limit": "Web open tool error representation confirming original publisher page returned HTTP410. Contains no original facility-page content.",
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "cloudsigma-mnl2-incident.json",
+          "source_url": "https://cloudsigma.statuspage.io/api/v2/incidents/tx5nqtzdxwb3.json",
+          "final_url": "https://cloudsigma.statuspage.io/api/v2/incidents/tx5nqtzdxwb3.json",
+          "http_status": 200,
+          "content_type": "application/json; charset=utf-8",
+          "retrieved_at": "2026-11-11T17:08:44.514360+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-commercial-160/cloudsigma-mnl2-incident.json",
+          "content_hash": "56ee79f06f0ac77d4952b0ee738bd6186b77bfb1e44e288fb6138a37295a3d14",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 3807,
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "cloudsigma-status.json",
+          "source_url": "https://cloudsigma.statuspage.io/api/v2/incidents.json",
+          "final_url": "https://cloudsigma.statuspage.io/api/v2/incidents.json",
+          "http_status": 200,
+          "content_type": "application/json; charset=utf-8",
+          "retrieved_at": "2026-11-11T17:08:12.471066+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-commercial-160/cloudsigma-status.json",
+          "content_hash": "78465b65b94330dbae9544e0597bb83d3e90cb927aea0557262290111d604cca",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 145921,
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "commercial160-identity-spatial-review.json",
+          "source_url": "local-calculation:commercial160-held-candidates-identity-spatial-review",
+          "retrieved_at": "2026-11-11T17:13:13.187346+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-commercial-160/commercial160-identity-spatial-review.json",
+          "content_hash": "709721ad41512267641fefaeb0ff068c583bae7a5d027edd7a22e1cf050b935c",
+          "content_hash_scope": "sha256_exact_local_calculation_json_bytes",
+          "bytes": 270579,
+          "raw_capture_redistributed": false,
+          "license": "analyst-generated local research calculation; underlying raw source material not redistributed"
+        },
+        {
+          "capture_id": "hikube-infrastructure.html",
+          "source_url": "https://hikube.cloud/en/company/infrastructure",
+          "final_url": "https://hikube.cloud/en/company/infrastructure",
+          "http_status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "retrieved_at": "2026-11-11T17:10:47.528534+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-commercial-160/hikube-infrastructure.html",
+          "content_hash": "6f9d900eab6a66688694ff337d3e04f13b9402f1f2415f2ba43163dfc511f431",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 114958,
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "induni-safehost.html",
+          "source_url": "https://induni.ch/portfolio-items/safe-host-sa/",
+          "final_url": "https://induni.ch/portfolio-items/safe-host-sa/",
+          "http_status": 200,
+          "content_type": "text/html; charset=UTF-8",
+          "retrieved_at": "2026-11-11T17:11:05.483547+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-commercial-160/induni-safehost.html",
+          "content_hash": "2144b8c7b6c73c575f5255b46d812a1d2811b8a1714c838b232edc169dd4dbb8",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 65618,
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "induni-safehost.pdf",
+          "source_url": "https://induni.ch/wp-content/uploads/2019/03/SafeHost.pdf",
+          "final_url": "https://induni.ch/wp-content/uploads/2019/03/SafeHost.pdf",
+          "http_status": 200,
+          "content_type": "application/pdf",
+          "retrieved_at": "2026-11-11T17:11:05.541321+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-commercial-160/induni-safehost.pdf",
+          "content_hash": "4ccbd7e2a53b5f5aba89a3014ca5c9f63634eddf6eac115a1855d2446c61f5ff",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 197979,
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "rampini-safehost.pdf",
+          "source_url": "https://rampini.ch/docview/845",
+          "final_url": "https://rampini.ch/docview/845",
+          "http_status": 200,
+          "content_type": "application/pdf",
+          "retrieved_at": "2026-11-11T17:11:05.612395+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-commercial-160/rampini-safehost.pdf",
+          "content_hash": "dfc3737ce2bd164e1d92ede58ce1df62f742f5d528ef7c55dd8b1c3aca655d05",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 268146,
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "stack-gen02.pdf",
+          "source_url": "https://www.stackinfra.com/wp-content/uploads/2022/06/GEN02_FIN.pdf",
+          "final_url": "https://www.stackinfra.com/wp-content/uploads/2022/06/GEN02_FIN.pdf",
+          "http_status": 200,
+          "content_type": "application/pdf",
+          "retrieved_at": "2026-11-11T17:08:44.973732+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-commercial-160/stack-gen02.pdf",
+          "content_hash": "d47666adf21687432e5e050d1765d537babc44b6200372f1fe3a3766edf538e1",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 4605688,
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "swisstopo-gen02-address.json",
+          "source_url": "https://api3.geo.admin.ch/rest/services/ech/MapServer/ch.swisstopo.amtliches-gebaeudeadressverzeichnis/102347631?sr=2056",
+          "final_url": "https://api3.geo.admin.ch/rest/services/ech/MapServer/ch.swisstopo.amtliches-gebaeudeadressverzeichnis/102347631?sr=2056",
+          "http_status": 200,
+          "content_type": "application/json",
+          "retrieved_at": "2026-11-11T17:10:03.040717+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-commercial-160/swisstopo-gen02-address.json",
+          "content_hash": "9dc1a91fd862befea3397a1d514656bb1d2e4163d6ea4af293706d70a8175ab3",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 660,
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "swisstopo-gen02-building.json",
+          "source_url": "https://api3.geo.admin.ch/rest/services/ech/MapServer/ch.bfs.gebaeude_wohnungs_register/280079147_0?sr=2056",
+          "final_url": "https://api3.geo.admin.ch/rest/services/ech/MapServer/ch.bfs.gebaeude_wohnungs_register/280079147_0?sr=2056",
+          "http_status": 200,
+          "content_type": "application/json",
+          "retrieved_at": "2026-11-11T17:10:03.042838+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-commercial-160/swisstopo-gen02-building.json",
+          "content_hash": "99317e1bdde1358c825c4ab0baee4554bdf33c5955aa6ad30ec7af9776a3c1e1",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 1743,
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "swisstopo-gland-search.json",
+          "source_url": "https://api3.geo.admin.ch/rest/services/ech/SearchServer?searchText=Route%20des%20Avouillons%2032%20Gland&type=locations&origins=address&sr=2056",
+          "final_url": "https://api3.geo.admin.ch/rest/services/ech/SearchServer?searchText=Route%20des%20Avouillons%2032%20Gland&type=locations&origins=address&sr=2056",
+          "http_status": 200,
+          "content_type": "application/json",
+          "retrieved_at": "2026-11-11T17:09:25.520667+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-commercial-160/swisstopo-gland-search.json",
+          "content_hash": "ad5c4c20e271c8b8524adcaf02fa142357ca826447bf4b630b39b4d48ad7524a",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 3049,
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "swisstopo-search-docs.html",
+          "source_url": "https://docs.geo.admin.ch/access-data/search.html",
+          "final_url": "https://docs.geo.admin.ch/access-data/search.html",
+          "http_status": 200,
+          "content_type": "text/html",
+          "retrieved_at": "2026-11-11T17:09:25.683151+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-commercial-160/swisstopo-search-docs.html",
+          "content_hash": "d58a209fb23ad8b23b8ca3db23a740c91bf7e4e637db9c11632b0d33ad44df51",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 157538,
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "vaultica-switzerland.html",
+          "source_url": "https://www.vaultica.com/switzerland/",
+          "final_url": "https://www.vaultica.com/switzerland/",
+          "http_status": 200,
+          "content_type": "text/html; charset=UTF-8",
+          "retrieved_at": "2026-11-11T17:09:13.246938+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-commercial-160/vaultica-switzerland.html",
+          "content_hash": "2823ad64e3f76c5445bbc67e9b2a66cae7e5fc2724f004d38044733c2f0d4b7f",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 160136,
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        }
+      ]
+    },
+    {
+      "research_scope": "Original HIVE and MADES captures plus explicitly labelled decoded PDFs and local full-geometry calculations; raw third-party content is not redistributed. Unselected discovery material does not establish admitted claims.",
+      "captures": [
+        {
+          "capture_id": "elsurti-water.html",
+          "source_url": "https://elsurti.com/reportaje/2026/10/20/16-data-centers-en-paraguay-pueden-consumir-hasta-74-millones-de-litros-de-agua-en-un-solo-dia/",
+          "final_url": "https://elsurti.com/reportaje/2026/10/20/16-data-centers-en-paraguay-pueden-consumir-hasta-74-millones-de-litros-de-agua-en-un-solo-dia/",
+          "retrieved_at": "2026-11-11T17:06:52.643025+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-root-160/elsurti-water.html",
+          "content_hash": "54b6308742b09267f77831dd02c1cddb7cf4881ef6c10873ec9295e82c9a504c",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 27283,
+          "http_status": 200,
+          "content_type": "text/html; charset=UTF-8",
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "hive-10q-sept30.pdf",
+          "source_url": "https://www.hivedigitaltechnologies.com/medias/hivesite/reporting/HIVE%20Digital%20Technologies%20Ltd._%20Form%2010-Q%20-%20Final.pdf",
+          "final_url": "https://www.hivedigitaltechnologies.com/medias/hivesite/reporting/HIVE%20Digital%20Technologies%20Ltd._%20Form%2010-Q%20-%20Final.pdf",
+          "retrieved_at": "2026-11-11T17:08:09.621368+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-root-160/hive-10q-sept30.pdf",
+          "content_hash": "fac121d9df31da86aa38206edbc55a6a3d855416f1ebe23fbde45c5359c994e6",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 4370935,
+          "http_status": 200,
+          "content_type": "application/pdf",
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "hive-2026-10k.html",
+          "source_url": "https://www.hivedigitaltechnologies.com/static/hivesite/filings/000106299326002973/form10k.htm",
+          "final_url": "https://www.hivedigitaltechnologies.com/static/hivesite/filings/000106299326002973/form10k.htm",
+          "retrieved_at": "2026-11-11T17:06:50.632672+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-root-160/hive-2026-10k.html",
+          "content_hash": "a38b24d030854b3db94008adc14e3bf53c951052f205548daaed9d27a655d13f",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 3249922,
+          "http_status": 200,
+          "content_type": "text/html",
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "hive-filings.html",
+          "source_url": "https://www.hivedigitaltechnologies.com/investors/filings/",
+          "final_url": "https://www.hivedigitaltechnologies.com/investors/filings/",
+          "retrieved_at": "2026-11-11T17:07:41.826401+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-root-160/hive-filings.html",
+          "content_hash": "a08a7785423801a4b15f1303bacbe0709984859bd1cd0f833701225dbd264521",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 138879,
+          "http_status": 200,
+          "content_type": "text/html",
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "hive-identity-geometry-review.json",
+          "source_url": "local-calculation:root160-hive-identity-geometry-review",
+          "retrieved_at": "2026-11-11T17:24:20.275961+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-root-160/hive-identity-geometry-review.json",
+          "content_hash": "0fc91ce78a32138bd2cc425ad348d284f6e8d3e8d602cbacf9e3fcfe5c62620c",
+          "content_hash_scope": "sha256_exact_local_calculation_json_bytes",
+          "bytes": 63536,
+          "raw_capture_redistributed": false,
+          "license": "project-authored calculation metadata; underlying source terms retained; no raw publisher redistribution"
+        },
+        {
+          "capture_id": "hive-news.html",
+          "source_url": "https://www.hivedigitaltechnologies.com/news/",
+          "final_url": "https://www.hivedigitaltechnologies.com/news/",
+          "retrieved_at": "2026-11-11T17:06:49.830395+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-root-160/hive-news.html",
+          "content_hash": "6810666f0f911acbbadf8460f1eb5b99a7bce47d51ee06f67668df0708d510c7",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 26779,
+          "http_status": 200,
+          "content_type": "text/html",
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "hive-paraguay.html",
+          "source_url": "https://www.hivedigitaltechnologies.com/operations/paraguay/",
+          "final_url": "https://www.hivedigitaltechnologies.com/operations/paraguay/",
+          "retrieved_at": "2026-11-11T17:06:50.146936+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-root-160/hive-paraguay.html",
+          "content_hash": "1198a8e33cec131128ff50aa666c851796c3fdb063e808f1b63b2482d371e95d",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 221872,
+          "http_status": 200,
+          "content_type": "text/html",
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "hive-presentations.html",
+          "source_url": "https://www.hivedigitaltechnologies.com/investors/presentation/",
+          "final_url": "https://www.hivedigitaltechnologies.com/investors/presentation/",
+          "retrieved_at": "2026-11-11T17:07:41.614930+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-root-160/hive-presentations.html",
+          "content_hash": "a18493bb22b00fa9769e3c517547d9124dd01f5b2258aaf5ecf56939ee6d7d49",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 17690,
+          "http_status": 200,
+          "content_type": "text/html",
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "hive-q2-f2027.pdf",
+          "source_url": "https://www.hivedigitaltechnologies.com/medias/hivesite/reporting/HIVE%20Earnings%20Q2%20F2027.pdf",
+          "final_url": "https://www.hivedigitaltechnologies.com/medias/hivesite/reporting/HIVE%20Earnings%20Q2%20F2027.pdf",
+          "retrieved_at": "2026-11-11T17:08:09.049430+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-root-160/hive-q2-f2027.pdf",
+          "content_hash": "d748c07e2d7a96daccfb61d09e8c747534eee0c1ea482f48ea5763e62bcc9b1b",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 5397565,
+          "http_status": 200,
+          "content_type": "application/pdf",
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "hive-q2-nov9.html",
+          "source_url": "https://www.hivedigitaltechnologies.com/news/hive-reports-q2-revenue-of-849-million-with-ai-gpu-revenue-expanding-70-as-dual-engine-model-drives-resilience-with-139-million-in-cash-on-the-balance-sheet/",
+          "final_url": "https://www.hivedigitaltechnologies.com/news/hive-reports-q2-revenue-of-849-million-with-ai-gpu-revenue-expanding-70-as-dual-engine-model-drives-resilience-with-139-million-in-cash-on-the-balance-sheet/",
+          "retrieved_at": "2026-11-11T17:06:49.930503+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-root-160/hive-q2-nov9.html",
+          "content_hash": "8f8e473c985222320e18cb8d8ebc957d56cbf8b5326853c842ca511beed4d0c3",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 44268,
+          "http_status": 200,
+          "content_type": "text/html",
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "hive-results.html",
+          "source_url": "https://www.hivedigitaltechnologies.com/investors/results/",
+          "final_url": "https://www.hivedigitaltechnologies.com/investors/results/",
+          "retrieved_at": "2026-11-11T17:07:41.819013+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-root-160/hive-results.html",
+          "content_hash": "07ca44d579ae8b27938a6e9ac8fdc39bca5eb37da2013ad3a841d7caefb5ba93",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 100099,
+          "http_status": 200,
+          "content_type": "text/html",
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "hive-sept30-10q.html",
+          "source_url": "https://www.hivedigitaltechnologies.com/static/hivesite/filings/000106299326005842/form10q.htm",
+          "final_url": "https://www.hivedigitaltechnologies.com/static/hivesite/filings/000106299326005842/form10q.htm",
+          "retrieved_at": "2026-11-11T17:07:42.777020+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-root-160/hive-sept30-10q.html",
+          "content_hash": "97c129e814943a6f32c5473ba05ed64149883287c6ae95c7b86098754b5d8a1b",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 2606639,
+          "http_status": 200,
+          "content_type": "text/html",
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "yguazu-current-detail.json",
+          "source_url": "https://apps.mades.gov.py/siam/portal/det-siam-proy?expId=83461",
+          "final_url": "https://apps.mades.gov.py/siam/portal/det-siam-proy?expId=83461",
+          "retrieved_at": "2026-11-11T17:11:50.156240+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-root-160/yguazu-current-detail.json",
+          "content_hash": "c6fa72a85742df0b8f4ad3cfa19ae15e63c52019b53541775fbfb56438f5ac17",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 522,
+          "http_status": 200,
+          "content_type": "application/json;charset=UTF-8",
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "yguazu-current-point.json",
+          "source_url": "https://apps.mades.gov.py/siam/poligono-siam?expediente=6240&gestion=2026&punto=true",
+          "final_url": "https://apps.mades.gov.py/siam/poligono-siam?expediente=6240&gestion=2026&punto=true",
+          "retrieved_at": "2026-11-11T17:11:50.274509+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-root-160/yguazu-current-point.json",
+          "content_hash": "7634de9d86da7a53d2bb14ed2a9a25b2046fdb16edccddc3b17a9579ecf2f89a",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 232,
+          "http_status": 200,
+          "content_type": "application/json;charset=UTF-8",
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "jupiter-mining-rima.pdf",
+          "source_url": "https://www.mades.gov.py/wp-content/uploads/2025/11/8739__2025__RIMA_JUPITER_MINING.pdf",
+          "final_url": "https://www.mades.gov.py/wp-content/uploads/2025/11/8739__2025__RIMA_JUPITER_MINING.pdf",
+          "retrieved_at": "2026-11-11T17:08:23.914326+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-valenzuela-160/jupiter-mining-rima.pdf",
+          "content_hash": "79954c67fc0b7cb58c571c244a710ea00e93ef121179d9a5d301feb2318a4f60",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 2382035,
+          "http_status": 200,
+          "content_type": "application/pdf",
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "mades-search-w3x.html",
+          "source_url": "https://www.mades.gov.py/?s=W3X",
+          "final_url": "https://www.mades.gov.py/?s=W3X",
+          "retrieved_at": "2026-11-11T17:08:23.913336+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-valenzuela-160/mades-search-w3x.html",
+          "content_hash": "b7b49f709ea02257f59858169dbc1f1c5a69425a5ea4392724af2239e8327a6c",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 107187,
+          "http_status": 200,
+          "content_type": "text/html; charset=UTF-8",
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "siam-project-reports.html",
+          "source_url": "https://apps.mades.gov.py/siam/portal/proyecto-informes",
+          "final_url": "https://apps.mades.gov.py/siam/portal/proyecto-informes",
+          "retrieved_at": "2026-11-11T17:08:23.912303+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-valenzuela-160/siam-project-reports.html",
+          "content_hash": "ea0413851d0c516a49d13572088700e4fb8c363e18e6dd538801ad81b945901a",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 79613,
+          "http_status": 200,
+          "content_type": "text/html;charset=UTF-8",
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "siam-public-maps.html",
+          "source_url": "https://apps.mades.gov.py/siam/portal/mapas",
+          "final_url": "https://apps.mades.gov.py/siam/portal/mapas",
+          "retrieved_at": "2026-11-11T17:11:37.030471+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-valenzuela-160/siam-public-maps.html",
+          "content_hash": "0a5fc210c5d1eb4afebf18092d7255917665fe3d1810bcab82deeecdab404518",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 64522,
+          "http_status": 200,
+          "content_type": "text/html;charset=UTF-8",
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "siam-valenzuela-search.json",
+          "source_url": "https://apps.mades.gov.py/siam/portal/dashboard-proyecto/rest?sSearch=Valenzuela&iDisplayStart=0&iDisplayLength=25&sEcho=1",
+          "final_url": "https://apps.mades.gov.py/siam/portal/dashboard-proyecto/rest?sSearch=Valenzuela&iDisplayStart=0&iDisplayLength=25&sEcho=1",
+          "retrieved_at": "2026-11-11T17:09:01.952160+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-valenzuela-160/siam-valenzuela-search.json",
+          "content_hash": "c026a675b8b55393d1cb6793dc64eeea4e6c501c8129632155ba70f3d8f34cdc",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 18355,
+          "http_status": 200,
+          "content_type": "application/json;charset=UTF-8",
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "siam-w3x-10726-2025-declaration.decoded.pdf",
+          "source_url": "https://apps.mades.gov.py/siam/portal/dashboard-proyecto/declaracion/75416",
+          "retrieved_at": "2026-11-11T17:12:06.473260+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-valenzuela-160/siam-w3x-10726-2025-declaration.decoded.pdf",
+          "content_hash": "4d76fcf6ea51e024bbabf005d158af8e2e3be78d3293ac6847189ab354c85e04",
+          "content_hash_scope": "sha256_exact_base64_decoded_embedded_pdf_bytes",
+          "bytes": 391517,
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted",
+          "extraction": {
+            "method": "json.loads of the exact captured response body, followed by strict base64 decoding; no content editing",
+            "parent_raw_capture_file": "local_data/research-2026-11-11-valenzuela-160/siam-w3x-10726-2025-declaration.pdf",
+            "parent_content_hash": "f19523d6c8cd67d4695d6f55c0699755fd6f8e2de93f8f2f0593be0872f67976",
+            "parent_bytes": 522026,
+            "capture_date_semantics": "Same original response retrieval; decoding is not a new publisher capture."
+          }
+        },
+        {
+          "capture_id": "siam-w3x-10726-2025-declaration.pdf",
+          "source_url": "https://apps.mades.gov.py/siam/portal/dashboard-proyecto/declaracion/75416",
+          "final_url": "https://apps.mades.gov.py/siam/portal/dashboard-proyecto/declaracion/75416",
+          "retrieved_at": "2026-11-11T17:12:06.473260+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-valenzuela-160/siam-w3x-10726-2025-declaration.pdf",
+          "content_hash": "f19523d6c8cd67d4695d6f55c0699755fd6f8e2de93f8f2f0593be0872f67976",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 522026,
+          "http_status": 200,
+          "content_type": "application/pdf; charset=UTF-8",
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "siam-w3x-10726-2025-detail.html",
+          "source_url": "https://apps.mades.gov.py/siam/portal/det-siam-proy?expId=75416",
+          "final_url": "https://apps.mades.gov.py/siam/portal/det-siam-proy?expId=75416",
+          "retrieved_at": "2026-11-11T17:09:35.942148+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-valenzuela-160/siam-w3x-10726-2025-detail.html",
+          "content_hash": "db86a0b00738a1f9a4d1fbff6043f2b88b68efe88353c9fae386701bcc6407fe",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 509,
+          "http_status": 200,
+          "content_type": "application/json;charset=UTF-8",
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "siam-w3x-10726-2025-native-point.json",
+          "source_url": "https://apps.mades.gov.py/siam/poligono-siam?expediente=10726&gestion=2025&punto=true",
+          "final_url": "https://apps.mades.gov.py/siam/poligono-siam?expediente=10726&gestion=2025&punto=true",
+          "retrieved_at": "2026-11-11T17:12:06.472343+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-valenzuela-160/siam-w3x-10726-2025-native-point.json",
+          "content_hash": "451e778d6779f332288cf4e0e6e888a05991e2a8eca5faf2907055180a9c0bef",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 231,
+          "http_status": 200,
+          "content_type": "application/json;charset=UTF-8",
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "siam-w3x-10726-2025-native-polygon.json",
+          "source_url": "https://apps.mades.gov.py/siam/poligono-siam?expediente=10726&gestion=2025&punto=false",
+          "final_url": "https://apps.mades.gov.py/siam/poligono-siam?expediente=10726&gestion=2025&punto=false",
+          "retrieved_at": "2026-11-11T17:15:51.206282+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-valenzuela-160/siam-w3x-10726-2025-native-polygon.json",
+          "content_hash": "caaaf19572cb8d639c1e90a7f709c73c29dd19f4ff84294e0872eb75084303eb",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 72,
+          "http_status": 200,
+          "content_type": "application/json;charset=UTF-8",
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "siam-w3x-2374-2025-declaration.decoded.pdf",
+          "source_url": "https://apps.mades.gov.py/siam/portal/dashboard-proyecto/declaracion/65861",
+          "retrieved_at": "2026-11-11T17:12:06.473572+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-valenzuela-160/siam-w3x-2374-2025-declaration.decoded.pdf",
+          "content_hash": "b2474f3f4db79c157e4225416203d09097a10d5541a4d0307ee660d3f12d4c33",
+          "content_hash_scope": "sha256_exact_base64_decoded_embedded_pdf_bytes",
+          "bytes": 392828,
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted",
+          "extraction": {
+            "method": "json.loads of the exact captured response body, followed by strict base64 decoding; no content editing",
+            "parent_raw_capture_file": "local_data/research-2026-11-11-valenzuela-160/siam-w3x-2374-2025-declaration.pdf",
+            "parent_content_hash": "6dbdc62dd10e2fa47853613eba7e57c468f73ab43ec32f29e83dcbe6cd27d055",
+            "parent_bytes": 523774,
+            "capture_date_semantics": "Same original response retrieval; decoding is not a new publisher capture."
+          }
+        },
+        {
+          "capture_id": "siam-w3x-2374-2025-declaration.pdf",
+          "source_url": "https://apps.mades.gov.py/siam/portal/dashboard-proyecto/declaracion/65861",
+          "final_url": "https://apps.mades.gov.py/siam/portal/dashboard-proyecto/declaracion/65861",
+          "retrieved_at": "2026-11-11T17:12:06.473572+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-valenzuela-160/siam-w3x-2374-2025-declaration.pdf",
+          "content_hash": "6dbdc62dd10e2fa47853613eba7e57c468f73ab43ec32f29e83dcbe6cd27d055",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 523774,
+          "http_status": 200,
+          "content_type": "application/pdf; charset=UTF-8",
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "siam-w3x-2374-2025-detail.html",
+          "source_url": "https://apps.mades.gov.py/siam/portal/det-siam-proy?expId=65861",
+          "final_url": "https://apps.mades.gov.py/siam/portal/det-siam-proy?expId=65861",
+          "retrieved_at": "2026-11-11T17:09:35.942316+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-valenzuela-160/siam-w3x-2374-2025-detail.html",
+          "content_hash": "62479d72cfe6b67c539da4435b8ffc5b4b0b6ae365c0109d22e3e3d94d0f56dd",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 512,
+          "http_status": 200,
+          "content_type": "application/json;charset=UTF-8",
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "siam-w3x-75416-polygon.json",
+          "source_url": "https://apps.mades.gov.py/siam/portal/poligono-siam",
+          "http_method": "POST",
+          "request_form": {
+            "proyectoIdList": "75416"
+          },
+          "retrieved_at": "2026-11-11T17:10:59.542462+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-valenzuela-160/siam-w3x-75416-polygon.json",
+          "content_hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 2,
+          "http_status": 200,
+          "content_type": "application/json;charset=UTF-8",
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "siam-w3x-9294-2024-detail.html",
+          "source_url": "https://apps.mades.gov.py/siam/portal/det-siam-proy?expId=61392",
+          "final_url": "https://apps.mades.gov.py/siam/portal/det-siam-proy?expId=61392",
+          "retrieved_at": "2026-11-11T17:09:35.943295+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-valenzuela-160/siam-w3x-9294-2024-detail.html",
+          "content_hash": "a462600979c928153c33a391ba93a440f38728dc4cd20890a4165933a3ffd55b",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 524,
+          "http_status": 200,
+          "content_type": "application/json;charset=UTF-8",
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "siam-w3x-search.json",
+          "source_url": "https://apps.mades.gov.py/siam/portal/dashboard-proyecto/rest?sSearch=W3X&iDisplayStart=0&iDisplayLength=25&sEcho=1",
+          "final_url": "https://apps.mades.gov.py/siam/portal/dashboard-proyecto/rest?sSearch=W3X&iDisplayStart=0&iDisplayLength=25&sEcho=1",
+          "retrieved_at": "2026-11-11T17:09:01.951963+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-valenzuela-160/siam-w3x-search.json",
+          "content_hash": "0696a7aecd7951c5c11cfce8bd7fda6ce3332ac73477cb9c4a943ea5648dd918",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 3042,
+          "http_status": 200,
+          "content_type": "application/json;charset=UTF-8",
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "valenzuela-spatial-identity-review.json",
+          "raw_capture_file": "local_data/research-2026-11-11-valenzuela-160/valenzuela-spatial-identity-review.json",
+          "retrieved_at": "2026-11-11T17:16:25.380101+00:00",
+          "content_hash": "a34851be698dab041e7b8ec503ae9bbb99d04f35ecb7de2858edbf9b1bcdbd30",
+          "content_hash_scope": "sha256_exact_locally_generated_review_json_bytes",
+          "bytes": 53582,
+          "raw_capture_redistributed": false,
+          "license": "local factual review calculation; original source terms retained"
+        }
+      ]
+    },
+    {
+      "lane": "AMS9 historical status-date correction",
+      "captures": [
+        {
+          "capture_id": "amsix-ams9-physical-migration-2024.html",
+          "source_url": "https://www.ams-ix.net/ams/stories/30-years-and-a-broken-marriage",
+          "final_url": "https://www.ams-ix.net/ams/stories/30-years-and-a-broken-marriage",
+          "retrieved_at": "2026-11-11T17:06:20.020025+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-asia-160/amsix-ams9-physical-migration-2024.html",
+          "content_hash": "9d1c7df7bdc997ab89d6097a078b4f221555a61538372f7a79632bd8cad0d528",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 490927,
+          "http_status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "amsix-migration-retrospective-2025.html",
+          "source_url": "https://www.ams-ix.net/ams/news/migration-to-juniper-switches-completed",
+          "final_url": "https://www.ams-ix.net/ams/news/migration-to-juniper-switches-completed",
+          "retrieved_at": "2026-11-11T17:07:06.519393+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-asia-160/amsix-migration-retrospective-2025.html",
+          "content_hash": "1846541c9b8adf8762c111dd6a02d19afcb8744a37698768be527a87cdfa0604",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 478244,
+          "http_status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "amsix-colocations-identity.html",
+          "source_url": "https://www.ams-ix.net/ams/colocations",
+          "final_url": "https://www.ams-ix.net/ams/colocations",
+          "retrieved_at": "2026-11-11T17:07:06.596190+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-asia-160/amsix-colocations-identity.html",
+          "content_hash": "06f7156c6fa05a83df64e1aa2dbc298dd79769d50672944ad40161ed46817de5",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 486491,
+          "http_status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "ams9-identity-geometry-review.json",
+          "source_url": "local-calculation:asia160-ams9-identity-geometry-review",
+          "retrieved_at": "2026-11-11T17:08:14.058113+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-asia-160/ams9-identity-geometry-review.json",
+          "content_hash": "dc5a0cc9515ccb2af38f946e5882b1483fed0b0e515231b85da807e93b79363e",
+          "content_hash_scope": "sha256_exact_local_calculation_json_bytes",
+          "bytes": 382517,
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "digital-realty-soc3-2023-senbee.pdf",
+          "source_url": "https://senbee.com/legal/downloads/Digital%20Realty%20203%20SOC%203%20Report.pdf",
+          "final_url": "https://senbee.com/legal/downloads/Digital%20Realty%20203%20SOC%203%20Report.pdf",
+          "retrieved_at": "2026-11-11T16:58:19.505051+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-ams9-correction-prep/digital-realty-soc3-2023-senbee.pdf",
+          "content_hash": "9201545afa4f3438cc57d41e9318f9fa00ad6cc6809c9ea3d10ad9fbfe378f71",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 118783,
+          "http_status": 200,
+          "content_type": "application/pdf",
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "f5-incidents-page2.json",
+          "source_url": "https://www.f5cloudstatus.com/api/v2/incidents.json?page=2",
+          "final_url": "https://www.f5cloudstatus.com/api/v2/incidents.json?page=2",
+          "retrieved_at": "2026-11-11T16:58:19.449786+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-ams9-correction-prep/f5-incidents-page2.json",
+          "content_hash": "d080afa2f667264b1479833136c318a1967d59e7938e1f77676e998a782d1610",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 320719,
+          "http_status": 200,
+          "content_type": "application/json; charset=utf-8",
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "f5-incidents-page3.json",
+          "source_url": "https://www.f5cloudstatus.com/api/v2/incidents.json?page=3",
+          "final_url": "https://www.f5cloudstatus.com/api/v2/incidents.json?page=3",
+          "retrieved_at": "2026-11-11T16:58:19.442228+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-ams9-correction-prep/f5-incidents-page3.json",
+          "content_hash": "d080afa2f667264b1479833136c318a1967d59e7938e1f77676e998a782d1610",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 320719,
+          "http_status": 200,
+          "content_type": "application/json; charset=utf-8",
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "f5-incidents.json",
+          "source_url": "https://www.f5cloudstatus.com/api/v2/incidents.json",
+          "final_url": "https://www.f5cloudstatus.com/api/v2/incidents.json",
+          "retrieved_at": "2026-11-11T16:57:43.177029+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-ams9-correction-prep/f5-incidents.json",
+          "content_hash": "d080afa2f667264b1479833136c318a1967d59e7938e1f77676e998a782d1610",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 320719,
+          "http_status": 200,
+          "content_type": "application/json; charset=utf-8",
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "f5-maintenance.json",
+          "source_url": "https://www.f5cloudstatus.com/api/v2/scheduled-maintenances.json",
+          "final_url": "https://www.f5cloudstatus.com/api/v2/scheduled-maintenances.json",
+          "retrieved_at": "2026-11-11T16:57:43.248573+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-ams9-correction-prep/f5-maintenance.json",
+          "content_hash": "730703fb3bc7dc9e967bb154753357bb2f638b33ea6ca9031ac4ef448cb5146c",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 413792,
+          "http_status": 200,
+          "content_type": "application/json; charset=utf-8",
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "f5-private-interconnect.html",
+          "source_url": "https://docs.cloud.f5.com/docs-v2/multi-cloud-network-connect/concepts/f5-distributed-cloud-private-interconnect",
+          "final_url": "https://docs.cloud.f5.com/docs-v2/multi-cloud-network-connect/concepts/f5-distributed-cloud-private-interconnect",
+          "retrieved_at": "2026-11-11T16:57:43.983970+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-ams9-correction-prep/f5-private-interconnect.html",
+          "content_hash": "914b3421ddb547d46dc5fb9834d018803949836c5955f560026d3bb092f4d54e",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 409404,
+          "http_status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "f5-status.html",
+          "source_url": "https://www.f5cloudstatus.com/",
+          "final_url": "https://www.f5cloudstatus.com/",
+          "retrieved_at": "2026-11-11T16:57:43.385983+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-ams9-correction-prep/f5-status.html",
+          "content_hash": "e99991f83ab2020cbe2ce63f6773e64f47caa805c4d558141a092e32efbcf1c6",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 317716,
+          "http_status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "ams9-factsheet.pdf",
+          "source_url": "https://go2.digitalrealty.com/rs/087-YZJ-646/images/DS_Digital_Realty_2407_AMS9_Property_Factsheet_EN.pdf",
+          "retrieved_at": "2026-11-11T16:20:20.371609+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-europe-158/ams9-factsheet.pdf",
+          "content_hash": "4deeba75d674e08576a1b585855a47a70b2d6fecda072bd4c00a72180657c4d7",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 655815,
+          "http_status": 200,
+          "content_type": "application/pdf; charset=utf-8",
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "ams17-factsheet.pdf",
+          "source_url": "https://go2.digitalrealty.com/rs/087-YZJ-646/images/DS_Digital_Realty_2309_AMS17_factsheet.pdf",
+          "retrieved_at": "2026-11-11T16:20:23.215825+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-europe-158/ams17-factsheet.pdf",
+          "content_hash": "6bdd4df9b2eb231811c9296d8fa4ee9418bbcd4bd1eafe679c4f644f0cc03f5a",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 1079720,
+          "http_status": 200,
+          "content_type": "application/pdf; charset=utf-8",
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "digital-realty-ams17.html",
+          "source_url": "https://www.digitalrealty.com/data-centers/emea/amsterdam/ams17",
+          "retrieved_at": "2026-11-11T16:19:46.056846+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-europe-158/digital-realty-ams17.html",
+          "content_hash": "0a51f0967539062c8997a56673c8eb497d0c3282e282bc0cd7e7584462a60f3c",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 206711,
+          "http_status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "original-ams9-cms-page-2026.html",
+          "source_url": "https://www.digitalrealty.com/data-centers/emea/amsterdam/ams9",
+          "final_url": "https://www.digitalrealty.com/data-centers/emea/amsterdam/ams9",
+          "retrieved_at": "2026-11-07T00:26:34.427Z",
+          "raw_capture_file": "local_data/country-research-ams-deep-p9/dlr-ams9.html",
+          "content_hash": "a475f9e66b21322b1c1859025122dfaac429323e3026c0dd924f9a7512bac857",
+          "content_hash_scope": "sha256_exact_content_decoded_response_bytes",
+          "bytes": 212350,
+          "http_status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "raw_capture_redistributed": false
+        }
+      ]
+    },
+    {
+      "research_scope": "Exact original captures from batches 158/159 reused with unchanged URLs, hashes and retrieval times; only new local audit calculations are generated. No raw publisher redistribution.",
+      "captures": [
+        {
+          "capture_id": "clouvider-ams17-nov3.json",
+          "source_url": "https://www.clouviderstatus.net/api/v2/incidents/gzfw4t37pmnc.json",
+          "canonical_url": "https://www.clouviderstatus.net/api/v2/incidents/gzfw4t37pmnc.json",
+          "retrieved_at": "2026-11-11T16:28:26.483482+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-europe-158/clouvider-ams17-nov3.json",
+          "content_hash": "c2a8d3fbe2831d69ba008b1a670865c8e46e463a439de811f3e826e5514f00f8",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 3629,
+          "http_status": 200,
+          "content_type": "application/json; charset=utf-8",
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "clouvider-datatower.html",
+          "source_url": "https://www.clouvider.com/amsterdam-data-tower-digital-realty-datacenter/",
+          "canonical_url": "https://www.clouvider.com/amsterdam-data-tower-digital-realty-datacenter/",
+          "retrieved_at": "2026-11-11T16:19:20.458106+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-europe-158/clouvider-datatower.html",
+          "content_hash": "bad334ddf921dc5da6d2512941440e29c76b888aa9466d8dd205b1f98504a4dd",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 142388,
+          "http_status": 200,
+          "content_type": "text/html; charset=UTF-8",
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "clouvider-incidents.json",
+          "source_url": "https://www.clouviderstatus.net/api/v2/incidents.json",
+          "canonical_url": "https://www.clouviderstatus.net/api/v2/incidents.json",
+          "retrieved_at": "2026-11-11T16:19:21.191100+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-europe-158/clouvider-incidents.json",
+          "content_hash": "5208bb464897384dcaf327db72dd8c41f437f1d89ae1a17a553ffc95bf4ee106",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 318237,
+          "http_status": 200,
+          "content_type": "application/json; charset=utf-8",
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "clouvider-summary.json",
+          "source_url": "https://www.clouviderstatus.net/api/v2/summary.json",
+          "canonical_url": "https://www.clouviderstatus.net/api/v2/summary.json",
+          "retrieved_at": "2026-11-11T16:19:20.774455+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-europe-158/clouvider-summary.json",
+          "content_hash": "6812fe4bd99c48af0e036587b6bda3a3371094b1300b3ff7dfaf7089610a9dcd",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 13992,
+          "http_status": 200,
+          "content_type": "application/json; charset=utf-8",
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "clouvider-nov6-maintenance.html",
+          "source_url": "https://www.clouviderstatus.net/incidents/hgysc44k3gy2",
+          "canonical_url": "https://www.clouviderstatus.net/incidents/hgysc44k3gy2",
+          "retrieved_at": "2026-11-11T16:20:19.620342+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-europe-158/clouvider-nov6-maintenance.html",
+          "content_hash": "710c387aeaa13be3d96a92362e3fedfdcb7cc37f80f7b892e859d23307c0aabb",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 73509,
+          "http_status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "clouvider-nov11-maintenance.html",
+          "source_url": "https://www.clouviderstatus.net/incidents/lbhm3htgq0xl",
+          "canonical_url": "https://www.clouviderstatus.net/incidents/lbhm3htgq0xl",
+          "retrieved_at": "2026-11-11T16:20:19.659504+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-europe-158/clouvider-nov11-maintenance.html",
+          "content_hash": "f783949ac40cb6a83478eaa8c7f0da508768913cf5afa0d28965dfa05e862609",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 73764,
+          "http_status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "digital-realty-ams17.html",
+          "source_url": "https://www.digitalrealty.com/data-centers/emea/amsterdam/ams17",
+          "canonical_url": "https://www.digitalrealty.com/data-centers/emea/amsterdam/ams17",
+          "retrieved_at": "2026-11-11T16:19:46.056846+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-europe-158/digital-realty-ams17.html",
+          "content_hash": "0a51f0967539062c8997a56673c8eb497d0c3282e282bc0cd7e7584462a60f3c",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 206711,
+          "http_status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "ams17-factsheet.pdf",
+          "source_url": "https://go2.digitalrealty.com/rs/087-YZJ-646/images/DS_Digital_Realty_2309_AMS17_factsheet.pdf",
+          "canonical_url": "https://go2.digitalrealty.com/rs/087-YZJ-646/images/DS_Digital_Realty_2309_AMS17_factsheet.pdf",
+          "retrieved_at": "2026-11-11T16:20:23.215825+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-europe-158/ams17-factsheet.pdf",
+          "content_hash": "6bdd4df9b2eb231811c9296d8fa4ee9418bbcd4bd1eafe679c4f644f0cc03f5a",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 1079720,
+          "http_status": 200,
+          "content_type": "application/pdf; charset=utf-8",
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "ams9-factsheet.pdf",
+          "source_url": "https://go2.digitalrealty.com/rs/087-YZJ-646/images/DS_Digital_Realty_2407_AMS9_Property_Factsheet_EN.pdf",
+          "canonical_url": "https://go2.digitalrealty.com/rs/087-YZJ-646/images/DS_Digital_Realty_2407_AMS9_Property_Factsheet_EN.pdf",
+          "retrieved_at": "2026-11-11T16:20:20.371609+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-europe-158/ams9-factsheet.pdf",
+          "content_hash": "4deeba75d674e08576a1b585855a47a70b2d6fecda072bd4c00a72180657c4d7",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 655815,
+          "http_status": 200,
+          "content_type": "application/pdf; charset=utf-8",
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "source_url": "https://api.pdok.nl/kadaster/bag/ogc/v2/collections/verblijfsobject/items?f=json&identificatie=0363010003684984",
+          "license": "CC0-1.0",
+          "retrieved_at": "2026-11-07T00:33:06.152Z",
+          "content_hash": "c95040ab86bcf2ce70344fea2b3d7092b4aafb9f78bd7d999d111f3e5f1eaed2",
+          "content_hash_scope": "sha256_exact_content_decoded_response_bytes",
+          "raw_capture_file": "local_data/country-research-ams-deep-p9/pdok-vbo-0363010003684984.json",
+          "raw_capture_redistributed": false,
+          "capture_id": "pdok-vbo-0363010003684984.json",
+          "bytes": 1861
+        },
+        {
+          "capture_id": "europe160-spatial-identity-review.json",
+          "raw_capture_file": "local_data/research-2026-11-11-europe-160/europe160-spatial-identity-review.json",
+          "retrieved_at": "2026-11-11T17:06:11.753698+00:00",
+          "content_hash": "31131f07ca8a3fdb8308a166d4c4cc0241bb6fb37eab782cc8bb2a97d0635d4f",
+          "content_hash_scope": "sha256_exact_locally_generated_review_json_bytes",
+          "bytes": 35825,
+          "raw_capture_redistributed": false,
+          "license": "local factual review calculation; original source terms retained"
+        },
+        {
+          "capture_id": "europe160-builder-preflight.json",
+          "raw_capture_file": "local_data/research-2026-11-11-europe-160/europe160-builder-preflight.json",
+          "retrieved_at": "2026-11-11T17:06:11.753698+00:00",
+          "content_hash": "1c679274c0a1b542479f54b0025febe1236ddeaddf08a64f78c9b9243cf96899",
+          "content_hash_scope": "sha256_exact_locally_generated_review_json_bytes",
+          "bytes": 2369,
+          "raw_capture_redistributed": false,
+          "license": "local factual review calculation; original source terms retained"
+        }
+      ]
+    }
+  ]
+}
