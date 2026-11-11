@@ -911,6 +911,20 @@ construction date. Independent review kept planned KDDI testing separate from ex
 operation; its container expansion and six other leads remain held for unresolved location
 or date evidence.
 
+`verified_construction_core/2026-11-11-research-hundredthirtyfifth` adds **30 physical sites
+and 30 projects**, reaching **1,184 sites and 1,271 projects in 89 countries**. The pass
+covers 12 US hosts; ten European sites including the first Bulgarian records; three
+Tokyo sites, Jakarta JK1 and three Shanghai sites; and Kao Data's Kenwood Point development.
+Lisbon LS1/LS2 and Shanghai SH2/SH3 each count as one campus. Carrier-hotel records describe
+the admitted tenant operations, with shared-host aliases retained for future deduplication.
+
+The 44 source projections add 42 evidence records and facility specifications. Quarter-end
+portfolio observations remain dated 30 September; JK1 uses a 10 November operator statement.
+Kao's 4 November construction record covers development/site works without asserting that
+the main building has started. Its applicant grid point is traced to a public archived
+planning form and checked against the live council register. Independent source and identity
+reviews passed; all existing site/project rows and earlier published snapshots remain unchanged.
+
 ## 25 October 2026
 
 `verified_construction_core/2026-10-25-research-sixtysecond` adds three commercial sites and
