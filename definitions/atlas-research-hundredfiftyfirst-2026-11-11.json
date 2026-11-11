@@ -1,0 +1,394 @@
+{
+  "format": "datacenter-atlas-update-input-v1",
+  "updated_at": "2026-11-11",
+  "output": "verified_construction_core/2026-11-11-research-hundredfiftyfirst",
+  "base_dataset": "verified_construction_core/2026-11-11-research-hundredfiftieth",
+  "base_manifest_sha256": "00477fa9e6d83f4df4f65453584a74a1fd8f3ae8c1a84a300d2aa068b49310f9",
+  "source_files": [
+    {
+      "path": "sources/research-countries-2026-11-11-hundredfiftyfirst-primary-sources.json",
+      "sha256": "8a3cbf9a94f62ccefe3129655aff097d83b72b174f680b5235a299ceb1602ca5"
+    }
+  ],
+  "additions": [
+    {
+      "project_stable_key": "curated:element-critical-austin-one-8025:existing-operations",
+      "physical_site_stable_key": "curated:element-critical-austin-one-8025",
+      "site_name": "Element Critical Austin One (AUS1), 8025 North Interstate Highway 35",
+      "name": "Element Critical Austin One — existing commercial data-center operations",
+      "country": "United States",
+      "country_iso_a2": "US",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-10-02",
+        "source_id": "commercial151-element-austin-oct2-operations",
+        "summary": "The original October 2, 2026 operator article explicitly describes four enterprise customer workloads currently hosted inside Austin One Data Hall 3. This records the existing commercial host’s operation, without assigning an opening date or asserting that every advertised capacity or future phase is commissioned."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -97.6962276,
+            30.3427745
+          ]
+        },
+        "source_id": "commercial151-element-austin-city-address",
+        "identity_source_ids": [
+          "commercial151-element-austin-identity"
+        ],
+        "scope": "reviewed_site_locator",
+        "scope_class": "official_exact_address_point",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "city_of_austin_exact_address_point_inverse_epsg3857_to4326",
+        "precision": "The original City of Austin address-point service identifies PLACE_ID 151973 as 8025 N IH 35 SVRD NB, with no address fraction, matching the operator’s 8025 North Interstate Highway 35 address. The distinct 8025½ record is excluded. Native city coordinates are EPSG:3857; the selected point is a mathematical inverse Web Mercator projection into EPSG:4326, rounded to seven decimals. This is an address anchor, not a surveyed building, entrance, parcel centroid, campus boundary or Data Hall 3 footprint. Upstream datum realization, epoch, transformation and address-point accuracy are unspecified.",
+        "identity_review": "All four baseline identity layers were searched: 1,286 sites, 1,395 projects, 231 identity-mapping records and 231 decisions, and 231 original source records. Element Critical, elementcritical, vXchnge, TX-01 and the exact 8025 address produced no matching host; bare 8025 substrings in unrelated UUIDs/source hashes were reviewed and rejected. The original September 14, 2021 operator announcement names the acquired Austin One facility but does not identify its seller. vXchnge and TX-01 are conservatively searched discovery aliases, not identities established by that announcement. Distances to all 1,286 complete existing site geometries, including polygons, were checked; no host is within 2 km. The nearest is Sabey SDC Austin Round Rock, 16.437 km away.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The municipal address service does not quantify per-point position accuracy or offset to the facility footprint. Upstream datum realization, epoch and transformation are unspecified."
+      },
+      "context_source_ids": [
+        "commercial151-element-austin-identity"
+      ],
+      "roles": [
+        {
+          "party": "Element Critical",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "commercial151-element-austin-oct2-operations"
+        }
+      ],
+      "distinctness_review": "All four baseline identity layers were searched: 1,286 sites, 1,395 projects, 231 identity-mapping records and 231 decisions, and 231 original source records. Element Critical, elementcritical, vXchnge, TX-01 and the exact 8025 address produced no matching host; bare 8025 substrings in unrelated UUIDs/source hashes were reviewed and rejected. The original September 14, 2021 operator announcement names the acquired Austin One facility but does not identify its seller. vXchnge and TX-01 are conservatively searched discovery aliases, not identities established by that announcement. Distances to all 1,286 complete existing site geometries, including polygons, were checked; no host is within 2 km. The nearest is Sabey SDC Austin Round Rock, 16.437 km away.",
+      "successor_review": "The operator’s original latest-20 WordPress feed includes November 6, 2026 as its newest article. Its full sizing guide and the current Austin location page were read; no later closure or changed physical status was identified in those originals or bounded targeted searches through November 11. Generic availability and November 6 deployment advice do not replace the October 2 current-workload observation. This is not an exhaustive incident history.",
+      "scoped_project_details": {
+        "numbered_address": "8025 North Interstate Highway 35, Austin, Texas 78753",
+        "scope": "One existing commercial host including internal Data Hall 3; no separate customer, cabinet, hall or historical renovation site.",
+        "capacity": "No advertised MW, floor area, customer rack density, utilisation or uptime metric is selected.",
+        "location_limitations": "The original City of Austin address-point service identifies PLACE_ID 151973 as 8025 N IH 35 SVRD NB, with no address fraction, matching the operator’s 8025 North Interstate Highway 35 address. The distinct 8025½ record is excluded. Native city coordinates are EPSG:3857; the selected point is a mathematical inverse Web Mercator projection into EPSG:4326, rounded to seven decimals. This is an address anchor, not a surveyed building, entrance, parcel centroid, campus boundary or Data Hall 3 footprint. Upstream datum realization, epoch, transformation and address-point accuracy are unspecified."
+      }
+    },
+    {
+      "project_stable_key": "curated:opcore-dc2-vitry:existing-operations",
+      "physical_site_stable_key": "curated:opcore-dc2-vitry",
+      "site_name": "Opcore PAR2 / Scaleway DC2 Data Center (29 rue Edith Cavell, Vitry-sur-Seine)",
+      "name": "Opcore PAR2 / Scaleway DC2 — existing commercial data-centre operations",
+      "country": "France",
+      "country_iso_a2": "FR",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-10-15",
+        "source_id": "europe151-scaleway-dc2-physical-operation",
+        "summary": "The original October 15 incident identifies DC2 room 205, rack G2, and reports replacement of both network devices and resolution that day after a rack power surge. This is physical service restoration within an existing commercial host, not a whole-campus outage or a new opening."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            2.4130267,
+            48.7949359
+          ]
+        },
+        "source_id": "europe151-georisques-vitry-locators",
+        "identity_source_ids": [
+          "europe151-opcore-dc2-factsheet",
+          "europe151-opcore-par2-current-name",
+          "europe151-georisques-dc2-identity"
+        ],
+        "scope": "reviewed_site_locator",
+        "scope_class": "government_named_installation_point",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "georisques_aiot_epsg2154_to4326_rgf93v1_epsg1671",
+        "precision": "Government installation reference point for AIOT 0100029253, 29 rue Edith Cavell, Vitry-sur-Seine. The source explicitly provides native EPSG:2154 integer coordinates [656881, 6855144]; pyproj 3.8.0 / PROJ 9.8.1 applies inverse Lambert-93 and RGF93 v1 to WGS 84 (1), EPSG:1671, with longitude/latitude output rounded to seven decimals. The operation has 1 m nominal accuracy, which is not total positional accuracy. This is not a surveyed boundary, entrance, building centre or incident-room location.",
+        "identity_review": "All four baseline identity layers were checked: 1,286 sites, 1,395 projects, 231 original source records, and both 231 records and 231 decisions in identity-mapping.json. No match was found for Scaleway, Online SAS, Opcore/OP CORE, Vitry-sur-Seine, Saint-Ouen-l’Aumône or the candidate numbered-address aliases. Distances to all 1,286 complete existing geometries, including polygons, were computed. No existing host is within 2 km; the nearest is Digital Realty PAR6 Data Center, 11-15 rue Galilée, Ivry-sur-Seine at 2.384 km. DC2 and DC3 are separate numbered properties 3.262 km apart; DC5 is over 35 km from both. Internal rooms, racks and planned equipment changes remain within their host sites.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The register does not publish per-installation positional accuracy, survey method or coordinate epoch. Integer source coordinates, decimal output precision and 1 m nominal datum-operation accuracy do not resolve those unknowns."
+      },
+      "context_source_ids": [
+        "europe151-opcore-dc2-factsheet",
+        "europe151-opcore-par2-current-name",
+        "europe151-georisques-dc2-identity"
+      ],
+      "roles": [
+        {
+          "party": "Opcore",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "europe151-opcore-par2-current-name"
+        }
+      ],
+      "distinctness_review": "All four baseline identity layers were checked: 1,286 sites, 1,395 projects, 231 original source records, and both 231 records and 231 decisions in identity-mapping.json. No match was found for Scaleway, Online SAS, Opcore/OP CORE, Vitry-sur-Seine, Saint-Ouen-l’Aumône or the candidate numbered-address aliases. Distances to all 1,286 complete existing geometries, including polygons, were computed. No existing host is within 2 km; the nearest is Digital Realty PAR6 Data Center, 11-15 rue Galilée, Ivry-sur-Seine at 2.384 km. DC2 and DC3 are separate numbered properties 3.262 km apart; DC5 is over 35 km from both. Internal rooms, racks and planned equipment changes remain within their host sites.",
+      "successor_review": "The full current Scaleway status page and latest 50 incident records were reviewed through November 11, alongside its historical incident page, current Opcore facility pages and the complete government commune results (both pages). Named later DC3 rack/router reports resolve localized incidents; they do not establish whole-campus closure. No contradictory later primary site-status observation was identified in this bounded review. The incident API ignores the attempted page=2 query, so a repeated response is not claimed as an additional history page. The DC5 October 23 environmental order is retained as supporting-installation regulatory context, not proof of additional commissioned capacity.",
+      "scoped_project_details": {
+        "numbered_address": "29 rue Edith Cavell, Vitry-sur-Seine",
+        "aliases": [
+          "DC2",
+          "PAR2",
+          "Scaleway DC2",
+          "Opcore PAR2",
+          "Online DC2"
+        ],
+        "scope": "Existing commercial facility at its named government installation location; internal data halls, racks and equipment are not separate physical sites.",
+        "source_limits": "No advertised IT power, utility power, generator thermal power, floor area, PUE, uptime, certification currency, opening date or measured workload metric is selected."
+      }
+    },
+    {
+      "project_stable_key": "curated:opcore-dc3-vitry:existing-operations",
+      "physical_site_stable_key": "curated:opcore-dc3-vitry",
+      "site_name": "Opcore PAR3 / Scaleway DC3 Data Center (61 rue Julian Grimau, Vitry-sur-Seine)",
+      "name": "Opcore PAR3 / Scaleway DC3 — existing commercial data-centre operations",
+      "country": "France",
+      "country_iso_a2": "FR",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-11-10",
+        "source_id": "europe151-scaleway-dc3-physical-operation",
+        "summary": "The original November 10 incident records a connectivity issue on the DC3 interlink router and potential effects on connected customers’ production traffic, then reports resolution that afternoon. This establishes an existing commercial service host without quantifying actual customer impact or whole-campus downtime."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            2.3805793,
+            48.7749132
+          ]
+        },
+        "source_id": "europe151-georisques-vitry-locators",
+        "identity_source_ids": [
+          "europe151-opcore-dc3-factsheet",
+          "europe151-opcore-par3-current-name",
+          "europe151-georisques-dc3-identity"
+        ],
+        "scope": "reviewed_site_locator",
+        "scope_class": "government_named_installation_point",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "georisques_aiot_epsg2154_to4326_rgf93v1_epsg1671",
+        "precision": "Government installation reference point for AIOT 0006516500, 61 rue Julian Grimau, Vitry-sur-Seine. The source explicitly provides native EPSG:2154 integer coordinates [654480, 6852936]; pyproj 3.8.0 / PROJ 9.8.1 applies inverse Lambert-93 and RGF93 v1 to WGS 84 (1), EPSG:1671, with longitude/latitude output rounded to seven decimals. The operation has 1 m nominal accuracy, which is not total positional accuracy. This is not a surveyed boundary, entrance, building centre or incident-room location.",
+        "identity_review": "All four baseline identity layers were checked: 1,286 sites, 1,395 projects, 231 original source records, and both 231 records and 231 decisions in identity-mapping.json. No match was found for Scaleway, Online SAS, Opcore/OP CORE, Vitry-sur-Seine, Saint-Ouen-l’Aumône or the candidate numbered-address aliases. Distances to all 1,286 complete existing geometries, including polygons, were computed. No existing host is within 2 km; the nearest is SNC PARAY DC Data Centre, Paray-Vieille-Poste (1 avenue du Maréchal Devaux) at 3.461 km. DC2 and DC3 are separate numbered properties 3.262 km apart; DC5 is over 35 km from both. Internal rooms, racks and planned equipment changes remain within their host sites.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The register does not publish per-installation positional accuracy, survey method or coordinate epoch. Integer source coordinates, decimal output precision and 1 m nominal datum-operation accuracy do not resolve those unknowns."
+      },
+      "context_source_ids": [
+        "europe151-opcore-dc3-factsheet",
+        "europe151-opcore-par3-current-name",
+        "europe151-georisques-dc3-identity"
+      ],
+      "roles": [
+        {
+          "party": "Opcore",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "europe151-opcore-par3-current-name"
+        }
+      ],
+      "distinctness_review": "All four baseline identity layers were checked: 1,286 sites, 1,395 projects, 231 original source records, and both 231 records and 231 decisions in identity-mapping.json. No match was found for Scaleway, Online SAS, Opcore/OP CORE, Vitry-sur-Seine, Saint-Ouen-l’Aumône or the candidate numbered-address aliases. Distances to all 1,286 complete existing geometries, including polygons, were computed. No existing host is within 2 km; the nearest is SNC PARAY DC Data Centre, Paray-Vieille-Poste (1 avenue du Maréchal Devaux) at 3.461 km. DC2 and DC3 are separate numbered properties 3.262 km apart; DC5 is over 35 km from both. Internal rooms, racks and planned equipment changes remain within their host sites.",
+      "successor_review": "The full current Scaleway status page and latest 50 incident records were reviewed through November 11, alongside its historical incident page, current Opcore facility pages and the complete government commune results (both pages). Named later DC3 rack/router reports resolve localized incidents; they do not establish whole-campus closure. No contradictory later primary site-status observation was identified in this bounded review. The incident API ignores the attempted page=2 query, so a repeated response is not claimed as an additional history page. The DC5 October 23 environmental order is retained as supporting-installation regulatory context, not proof of additional commissioned capacity.",
+      "scoped_project_details": {
+        "numbered_address": "61 rue Julian Grimau, Vitry-sur-Seine",
+        "aliases": [
+          "DC3",
+          "PAR3",
+          "Scaleway DC3",
+          "Opcore PAR3",
+          "Online DC3"
+        ],
+        "scope": "Existing commercial facility at its named government installation location; internal data halls, racks and equipment are not separate physical sites.",
+        "source_limits": "No advertised IT power, utility power, generator thermal power, floor area, PUE, uptime, certification currency, opening date or measured workload metric is selected."
+      }
+    },
+    {
+      "project_stable_key": "curated:opcore-dc5-saint-ouen:existing-operations",
+      "physical_site_stable_key": "curated:opcore-dc5-saint-ouen",
+      "site_name": "Opcore PAR5 / Scaleway DC5 Data Center (25 avenue de l’Eguillette, Saint-Ouen-l’Aumône)",
+      "name": "Opcore PAR5 / Scaleway DC5 — existing commercial data-centre operations",
+      "country": "France",
+      "country_iso_a2": "FR",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-11-02",
+        "source_id": "europe151-scaleway-dc5-physical-operation",
+        "summary": "The original November 2 incident identifies RPN service in rack DC5/S9/C52 and reports a cold reboot restoring service at 12:22:44 UTC. The cause was not established. This supports existing commercial-host operation, without claiming a whole-campus outage or a new opening."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            2.1362322,
+            49.0527545
+          ]
+        },
+        "source_id": "europe151-georisques-saint-ouen-locators",
+        "identity_source_ids": [
+          "europe151-opcore-dc5-factsheet",
+          "europe151-opcore-par5-current-name",
+          "europe151-georisques-dc5-october-permit"
+        ],
+        "scope": "reviewed_site_locator",
+        "scope_class": "government_named_installation_point",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "georisques_aiot_epsg2154_to4326_rgf93v1_epsg1671",
+        "precision": "Government installation reference point for AIOT 0100004871, 25 avenue de l’Eguillette, Saint-Ouen-l’Aumône. The source explicitly provides native EPSG:2154 integer coordinates [636862, 6883999]; pyproj 3.8.0 / PROJ 9.8.1 applies inverse Lambert-93 and RGF93 v1 to WGS 84 (1), EPSG:1671, with longitude/latitude output rounded to seven decimals. The operation has 1 m nominal accuracy, which is not total positional accuracy. This is not a surveyed boundary, entrance, building centre or incident-room location.",
+        "identity_review": "All four baseline identity layers were checked: 1,286 sites, 1,395 projects, 231 original source records, and both 231 records and 231 decisions in identity-mapping.json. No match was found for Scaleway, Online SAS, Opcore/OP CORE, Vitry-sur-Seine, Saint-Ouen-l’Aumône or the candidate numbered-address aliases. Distances to all 1,286 complete existing geometries, including polygons, were computed. No existing host is within 2 km; the nearest is Equinix PA7, Energy Park Building 9, Courbevoie at 18.746 km. DC2 and DC3 are separate numbered properties 3.262 km apart; DC5 is over 35 km from both. Internal rooms, racks and planned equipment changes remain within their host sites.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The register does not publish per-installation positional accuracy, survey method or coordinate epoch. Integer source coordinates, decimal output precision and 1 m nominal datum-operation accuracy do not resolve those unknowns."
+      },
+      "context_source_ids": [
+        "europe151-opcore-dc5-factsheet",
+        "europe151-opcore-par5-current-name",
+        "europe151-georisques-dc5-october-permit"
+      ],
+      "roles": [
+        {
+          "party": "Opcore",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "europe151-opcore-par5-current-name"
+        }
+      ],
+      "distinctness_review": "All four baseline identity layers were checked: 1,286 sites, 1,395 projects, 231 original source records, and both 231 records and 231 decisions in identity-mapping.json. No match was found for Scaleway, Online SAS, Opcore/OP CORE, Vitry-sur-Seine, Saint-Ouen-l’Aumône or the candidate numbered-address aliases. Distances to all 1,286 complete existing geometries, including polygons, were computed. No existing host is within 2 km; the nearest is Equinix PA7, Energy Park Building 9, Courbevoie at 18.746 km. DC2 and DC3 are separate numbered properties 3.262 km apart; DC5 is over 35 km from both. Internal rooms, racks and planned equipment changes remain within their host sites.",
+      "successor_review": "The full current Scaleway status page and latest 50 incident records were reviewed through November 11, alongside its historical incident page, current Opcore facility pages and the complete government commune results (both pages). Named later DC3 rack/router reports resolve localized incidents; they do not establish whole-campus closure. No contradictory later primary site-status observation was identified in this bounded review. The incident API ignores the attempted page=2 query, so a repeated response is not claimed as an additional history page. The DC5 October 23 environmental order is retained as supporting-installation regulatory context, not proof of additional commissioned capacity.",
+      "scoped_project_details": {
+        "numbered_address": "25 avenue de l’Eguillette, Saint-Ouen-l’Aumône",
+        "aliases": [
+          "DC5",
+          "PAR5",
+          "Scaleway DC5",
+          "Opcore PAR5",
+          "Online DC5"
+        ],
+        "scope": "Existing commercial facility at its named government installation location; internal data halls, racks and equipment are not separate physical sites.",
+        "source_limits": "No advertised IT power, utility power, generator thermal power, floor area, PUE, uptime, certification currency, opening date or measured workload metric is selected. The historical operator sheet uses 25 rue de l’Eguillette; the current register and October 23 order use 25 avenue, while the 2024 inspection used 27 avenue. Identity is joined by DC5 and exact AIOT 0100004871, not an assumption that every spelling/number denotes the same entrance. The separate 6 rue de la Patelle warehouse entry is excluded."
+      }
+    },
+    {
+      "project_stable_key": "curated:cdc-hume-campus-two:hu6-existing-operations",
+      "physical_site_stable_key": "curated:cdc-hume-campus-two",
+      "site_name": "CDC Hume Campus Two, Hume",
+      "name": "CDC Hume Two HU6 — existing commercial data-centre operations",
+      "country": "Australia",
+      "country_iso_a2": "AU",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-09-16",
+        "source_id": "au-nz-p3-cdc-investor-day-2026",
+        "summary": "The original September 16 CDC investor presentation names Canberra Hume 6 among seven delivered data centres now contributing to earnings (page 8). This is a dated observation of HU6 operation, not an opening date, capacity claim or completion of every Hume Two phase."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            149.1636734,
+            -35.3974763
+          ]
+        },
+        "source_id": "asia151-act-hu6-address",
+        "identity_source_ids": [
+          "au-nz-p3-cdc-investor-day-2026",
+          "asia151-cdc-hu6-applicant-address",
+          "asia151-cdc-hume-two-campus-identity"
+        ],
+        "scope": "reviewed_site_locator",
+        "scope_class": "official_exact_address_point",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "act_government_assigned_address_native_epsg7855_to4326_explicit_epsg8450",
+        "precision": "Government assigned-address point for HU6 at 62 Sawmill Circuit (ADDRESS_ID 414160; block 99 section 7 Hume), used as representative locator for the linked Hume Two campus. This is not a building centroid, entrance, hall point or surveyed campus boundary. Native EPSG:7855 inverse projection plus EPSG:8450 GDA2020 to WGS84 (2), nominal 3 m approximation; seven-decimal output. Source point accuracy and epoch are unknown, so nominal transform accuracy does not quantify total accuracy.",
+        "identity_review": "All four baseline identity layers were searched: 1,286 sites, 1,395 projects, 231 source records, and 231 records plus 231 decisions in identity-mapping.json. No Hume, HU1–HU6, 62 Sawmill Circuit, 5 Tralee Street, DA202443633 or address 414160 matched an existing host. All 1,286 complete site geometries were compared, including polygons: no existing host within 2 km; nearest CDC Beard campus polygon is 7,405.1 m away and Equinix CA1 point is 21,247.9 m away. The operator explicitly groups HU4/HU5/HU6 as Hume Two; applicant originals connect HU6 block 99 with the adjoining same-lessee block 103. One Hume Two physical host is admitted with one HU6 operations project, not separate linked-building sites or a combined Hume One/Two host.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "No per-point horizontal accuracy or building offset supplied by ACT address service. WGS84 realization and coordinate epoch are unspecified. EPSG:8450 nominal 3 m accuracy does not resolve these uncertainties."
+      },
+      "context_source_ids": [
+        "au-nz-p3-cdc-investor-day-2026",
+        "asia151-cdc-hu6-applicant-address",
+        "asia151-cdc-hume-two-campus-identity"
+      ],
+      "roles": [
+        {
+          "party": "CDC Data Centres",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "au-nz-p3-cdc-investor-day-2026"
+        }
+      ],
+      "distinctness_review": "All four baseline identity layers were searched: 1,286 sites, 1,395 projects, 231 source records, and 231 records plus 231 decisions in identity-mapping.json. No Hume, HU1–HU6, 62 Sawmill Circuit, 5 Tralee Street, DA202443633 or address 414160 matched an existing host. All 1,286 complete site geometries were compared, including polygons: no existing host within 2 km; nearest CDC Beard campus polygon is 7,405.1 m away and Equinix CA1 point is 21,247.9 m away. The operator explicitly groups HU4/HU5/HU6 as Hume Two; applicant originals connect HU6 block 99 with the adjoining same-lessee block 103. One Hume Two physical host is admitted with one HU6 operations project, not separate linked-building sites or a combined Hume One/Two host.",
+      "successor_review": "Current original Infratil news and the October 21 Australian data-centre update were reviewed. The latter discusses power and delivery timelines for under-construction sites without naming HU6 or reversing its delivered operation. No later named HU6 physical change was established in the bounded review.",
+      "scoped_project_details": {
+        "numbered_address": "62 Sawmill Circuit, Hume ACT 2620",
+        "physical_scope": "HU6 operating project within Hume Two campus, identified with HU4/HU5 as the linked physical host. HU4/HU5 receive no separate new operating observation in this admission. Hume One HU1–HU3 is not merged into this host.",
+        "campus_identity": "Original March 2026 report describes same-lessee block 103 expansion onto adjoining block 99, crown-lease consolidation approval and a connecting bridge. Completed legal consolidation or completed bridge construction is not independently asserted.",
+        "capacity": "No capacity metric selected.",
+        "geometry_scope": "Government assigned HU6 address point is a campus representative, not a whole-campus footprint."
+      }
+    }
+  ],
+  "status_updates": [],
+  "status_corrections": [
+    {
+      "project_stable_key": "curated:nextdc-b2-brisbane:existing-operations",
+      "replaces_status_evidence_id": "4a84d81f-0dad-57f5-8345-46590007930b",
+      "reason": "The inherited August 27, 2026 observation used report publication. The original annual report explicitly dates the physical operating portfolio to June 30, 2026, so only the unsupported observation date and evidence binding are corrected.",
+      "identity_review": "The same exact baseline NEXTDC B2 project and physical host are retained. No identity, geometry, capacity metric, role or project scope is changed.",
+      "successor_review": "Bounded original NEXTDC financial reports and current newsroom review through November 11, plus targeted named searches for later B1/B2/M1/S1/S6 operation, found no newer site-specific physical observation that would replace this explicit date. This is not an exhaustive incident history. Existing status correction is exempt from the new-admission 90-day gate.",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-06-30",
+        "source_id": "apac-operators-p11-nextdc-fy26-annual-report-20260827",
+        "summary": "Printed page 83 / PDF page 84 expressly names B2 among the physically operating data centres as at June 30, 2026. August 27 is publication, not a renewed physical observation; the operational status itself is preserved."
+      }
+    },
+    {
+      "project_stable_key": "curated:nextdc-s1-sydney:existing-operations",
+      "replaces_status_evidence_id": "c808a3d4-b62f-5ad7-965e-8c854e710c95",
+      "reason": "The inherited August 27, 2026 observation used report publication. The original annual report explicitly dates the physical operating portfolio to June 30, 2026, so only the unsupported observation date and evidence binding are corrected.",
+      "identity_review": "The same exact baseline NEXTDC S1 project and physical host are retained. No identity, geometry, capacity metric, role or project scope is changed.",
+      "successor_review": "Bounded original NEXTDC financial reports and current newsroom review through November 11, plus targeted named searches for later B1/B2/M1/S1/S6 operation, found no newer site-specific physical observation that would replace this explicit date. This is not an exhaustive incident history. Existing status correction is exempt from the new-admission 90-day gate.",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-06-30",
+        "source_id": "apac-operators-p11-nextdc-fy26-annual-report-20260827",
+        "summary": "Printed page 83 / PDF page 84 expressly names S1 among the physically operating data centres as at June 30, 2026. August 27 is publication, not a renewed physical observation; the operational status itself is preserved."
+      }
+    },
+    {
+      "project_stable_key": "curated:nextdc-s6-sydney:existing-operations",
+      "replaces_status_evidence_id": "4a84d81f-0dad-57f5-8345-46590007930b",
+      "reason": "The inherited August 27, 2026 observation used report publication. The original annual report explicitly dates the physical operating portfolio to June 30, 2026, so only the unsupported observation date and evidence binding are corrected.",
+      "identity_review": "The same exact baseline NEXTDC S6 project and physical host are retained. No identity, geometry, capacity metric, role or project scope is changed.",
+      "successor_review": "Bounded original NEXTDC financial reports and current newsroom review through November 11, plus targeted named searches for later B1/B2/M1/S1/S6 operation, found no newer site-specific physical observation that would replace this explicit date. This is not an exhaustive incident history. Existing status correction is exempt from the new-admission 90-day gate.",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-06-30",
+        "source_id": "apac-operators-p11-nextdc-fy26-annual-report-20260827",
+        "summary": "Printed page 83 / PDF page 84 expressly names S6 among the physically operating data centres as at June 30, 2026. August 27 is publication, not a renewed physical observation; the operational status itself is preserved."
+      }
+    },
+    {
+      "project_stable_key": "curated:nextdc-b1-brisbane:existing-operations",
+      "replaces_status_evidence_id": "c808a3d4-b62f-5ad7-965e-8c854e710c95",
+      "reason": "The inherited August 27, 2026 observation used report publication. The original annual report explicitly dates the physical operating portfolio to June 30, 2026, so only the unsupported observation date and evidence binding are corrected.",
+      "identity_review": "The same exact baseline NEXTDC B1 project and physical host are retained. No identity, geometry, capacity metric, role or project scope is changed.",
+      "successor_review": "Bounded original NEXTDC financial reports and current newsroom review through November 11, plus targeted named searches for later B1/B2/M1/S1/S6 operation, found no newer site-specific physical observation that would replace this explicit date. This is not an exhaustive incident history. Existing status correction is exempt from the new-admission 90-day gate.",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-06-30",
+        "source_id": "apac-operators-p11-nextdc-fy26-annual-report-20260827",
+        "summary": "Printed page 83 / PDF page 84 expressly names B1 among the physically operating data centres as at June 30, 2026. August 27 is publication, not a renewed physical observation; the operational status itself is preserved."
+      }
+    },
+    {
+      "project_stable_key": "curated:nextdc-m1-melbourne-port-melbourne:existing-operations",
+      "replaces_status_evidence_id": "c808a3d4-b62f-5ad7-965e-8c854e710c95",
+      "reason": "The inherited August 27, 2026 observation used report publication. The original annual report explicitly dates the physical operating portfolio to June 30, 2026, so only the unsupported observation date and evidence binding are corrected.",
+      "identity_review": "The same exact baseline NEXTDC M1 project and physical host are retained. No identity, geometry, capacity metric, role or project scope is changed.",
+      "successor_review": "Bounded original NEXTDC financial reports and current newsroom review through November 11, plus targeted named searches for later B1/B2/M1/S1/S6 operation, found no newer site-specific physical observation that would replace this explicit date. This is not an exhaustive incident history. Existing status correction is exempt from the new-admission 90-day gate.",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-06-30",
+        "source_id": "apac-operators-p11-nextdc-fy26-annual-report-20260827",
+        "summary": "Printed page 83 / PDF page 84 expressly names M1 among the physically operating data centres as at June 30, 2026. August 27 is publication, not a renewed physical observation; the operational status itself is preserved."
+      }
+    }
+  ],
+  "context_updates": []
+}

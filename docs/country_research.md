@@ -1128,6 +1128,20 @@ All 1,282 prior sites and 1,391 projects remain unchanged. The snapshot contains
 Unresolved candidates and the Cologix ASH2 status-date concern remain documented
 in the accompanying research holds.
 
+`verified_construction_core/2026-11-11-research-hundredfiftyfirst` adds Element Critical Austin One,
+Opcore PAR2/DC2, PAR3/DC3 and PAR5/DC5 near Paris, and CDC Hume Campus Two
+in Canberra with a project limited to HU6 operations. Dated customer-workload,
+service-restoration and operator disclosures establish operation. Government
+address or installation records supply the locators, with coordinate transforms
+and unknown positional accuracy recorded explicitly.
+
+Five existing NEXTDC operating observations (B1, B2, M1, S1 and S6) are corrected
+from the annual-results publication date to the explicit 30 June 2026 physical
+observation date. Their identities, locations, roles and capacity fields remain
+unchanged. The snapshot contains **1,291 sites, 1,400 projects and
+7,253 evidence records in 90 countries**. Unresolved
+candidates and remaining date concerns are retained in the research holds.
+
 ## 25 October 2026
 
 `verified_construction_core/2026-10-25-research-sixtysecond` adds three commercial sites and
