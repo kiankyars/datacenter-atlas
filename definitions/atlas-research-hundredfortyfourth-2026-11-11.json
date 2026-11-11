@@ -1,0 +1,279 @@
+{
+  "format": "datacenter-atlas-update-input-v1",
+  "updated_at": "2026-11-11",
+  "output": "verified_construction_core/2026-11-11-research-hundredfortyfourth",
+  "base_dataset": "verified_construction_core/2026-11-11-research-hundredfortythird",
+  "base_manifest_sha256": "ebf030c7e36370b2f2dbb4c2aebbc1c517a216032950f83a9446e61fd71e8d0e",
+  "source_files": [
+    {
+      "path": "sources/research-countries-2026-11-11-hundredfortyfourth-primary-sources.json",
+      "sha256": "0aa747863b568af41c3384d2f79c11d60b087ef55ecb38bde2c2a194106ef73a"
+    }
+  ],
+  "additions": [
+    {
+      "project_stable_key": "curated:1547-mcallen-mctx1:existing-operations",
+      "physical_site_stable_key": "curated:1547-mcallen-mctx1",
+      "site_name": "1547 MCTX1 Chase Tower Data Center, 200 S 10th Street, McAllen, Texas 78501",
+      "name": "1547 MCTX1 Chase Tower — existing commercial data-centre operations",
+      "country": "United States",
+      "country_iso_a2": "US",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-10-14",
+        "source_id": "commercial144-1547-oct14",
+        "summary": "The 14 October operator article explicitly says 1547 operates MCT-IX inside Chase Tower; its original facility sheet and exchange page identify the same building as a commercial carrier hotel and colocation host. This establishes existing operation on the publication date, not an opening or expansion-completion event."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -98.2304007,
+            26.202018
+          ]
+        },
+        "source_id": "commercial144-mcallen-address",
+        "identity_source_ids": [
+          "commercial144-mcallen-spec"
+        ],
+        "scope": "campus_locator",
+        "scope_class": "official_exact_address_geocoder_point",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "us_census_exact_mcallen_facility_address_epsg4269_to4326_explicit_epsg1188",
+        "precision": "Exact numbered-address match from the US Census Bureau geocoder for 200 S 10th Street, McAllen, Texas 78501, independently given by the original operator specification sheet. The point is interpolated on TIGER edge 71501715, side R, address range 200–298. It locates the facility address, not a building footprint or property boundary. Census documents NAD83 output. Explicit transformation from EPSG:4269 to EPSG:4326 used EPSG:1188, NAD83 to WGS 84 (1), in pyproj 3.8.0, followed by seven-decimal rounding. This zero-translation operation leaves the numerical coordinates unchanged. Its published 4 m operation accuracy does not describe the overall accuracy of this address locator; no survey precision or exact datum equivalence is asserted.",
+        "identity_review": "No McAllen, Chase Tower, MCTX1, MCT-IX, exact numbered-address, 1547-domain or spelled-out operator alias matches across baseline sites.csv, projects.csv, both identity-mapping records and decisions, or source-records.json. Nearest baseline host is Soluna Project Kati in Willacy County, 66.91 km away; no host lies within 2 km. The tower, its meet-me rooms, colocated tenants and MCT-IX constitute one physical host, not separate facilities. The annex and added colocation capacity described historically are not separately counted or treated as completed.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "Census supplies no horizontal accuracy for address-range interpolation or the offset to the building. Datum realization and coordinate epoch are unspecified. EPSG:1188’s 4 m operation accuracy does not quantify address or facility-offset uncertainty; overall uncertainty remains unknown."
+      },
+      "context_source_ids": [
+        "commercial144-mcallen-spec",
+        "commercial144-mct-ix"
+      ],
+      "roles": [
+        {
+          "party": "fifteenfortyseven Critical Systems Realty (1547)",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "commercial144-mct-ix"
+        }
+      ],
+      "distinctness_review": "No McAllen, Chase Tower, MCTX1, MCT-IX, exact numbered-address, 1547-domain or spelled-out operator alias matches across baseline sites.csv, projects.csv, both identity-mapping records and decisions, or source-records.json. Nearest baseline host is Soluna Project Kati in Willacy County, 66.91 km away; no host lies within 2 km. The tower, its meet-me rooms, colocated tenants and MCT-IX constitute one physical host, not separate facilities. The annex and added colocation capacity described historically are not separately counted or treated as completed.",
+      "successor_review": "Reviewed the original October 14 article, current operator blog/news indexes and facility references, plus targeted November 2026, sale and closure searches through November 11. No later primary status change was located. The retained December 16, 2025 operator release describes additional internal colocation space and an annex with a Q4 2026 target; the October article does not state that those expansions are completed. They are excluded from achieved status and capacity.",
+      "scoped_project_details": {
+        "numbered_address": "200 S 10th Street, McAllen, Texas 78501",
+        "facility_code": "MCTX1",
+        "building_name": "Chase Tower",
+        "scope": "Existing commercial carrier hotel and colocation host within one mixed-use building. Hosted network providers and cloud interconnection are services within that host, not additional physical sites.",
+        "opening_date": "Not established or inferred.",
+        "power": "No metric selected: building power, backup generation, prospective expansion and IT load have different scopes.",
+        "floor_area": "No metric selected: mixed-use building area is not wholly data-centre floor space."
+      }
+    },
+    {
+      "project_stable_key": "curated:1547-portland-ptor1:existing-operations",
+      "physical_site_stable_key": "curated:1547-portland-ptor1",
+      "site_name": "1547 PTOR1 Pittock Block Data Center, 921 SW Washington Street, Portland, Oregon 97205",
+      "name": "1547 PTOR1 Pittock Block — existing commercial data-centre operations",
+      "country": "United States",
+      "country_iso_a2": "US",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-10-14",
+        "source_id": "commercial144-1547-oct14",
+        "summary": "The 14 October operator article identifies PTOR1 inside Pittock Block and describes current access for customers’ colocated infrastructure through its cloud interconnection. The original specification sheet identifies 1547 as the physical host operator. This establishes existing commercial operation on the publication date, not a newly opened facility."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -122.6806336,
+            45.5212018
+          ]
+        },
+        "source_id": "commercial144-portland-address",
+        "identity_source_ids": [
+          "commercial144-portland-spec"
+        ],
+        "scope": "campus_locator",
+        "scope_class": "official_exact_address_geocoder_point",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "us_census_exact_portland_facility_address_epsg4269_to4326_explicit_epsg1188",
+        "precision": "Exact numbered-address match from the US Census Bureau geocoder for 921 SW Washington Street, Portland, Oregon 97205, independently given by the original operator specification sheet. The point is interpolated on TIGER edge 157499173, side R, address range 901–999. It locates the facility address, not a building footprint or property boundary. Census documents NAD83 output. Explicit transformation from EPSG:4269 to EPSG:4326 used EPSG:1188, NAD83 to WGS 84 (1), in pyproj 3.8.0, followed by seven-decimal rounding. This zero-translation operation leaves the numerical coordinates unchanged. Its published 4 m operation accuracy does not describe the overall accuracy of this address locator; no survey precision or exact datum equivalence is asserted.",
+        "identity_review": "No Pittock, PTOR1, 921 SW Washington, 1547-domain or spelled-out operator alias matches across baseline sites.csv, projects.csv, both identity-mapping records and decisions, or source-records.json. The sole Portland text match is STACK POR03 in Hillsboro, 20.49 km away. The nearest baseline host is NTT Hillsboro, 20.25 km away; no host lies within 2 km. One Pittock Block physical host covers the carrier hotel, commercial colocation and its hosted network/cloud interconnection; individual carriers and AWS connectivity are not separate new data centres.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "Census supplies no horizontal accuracy for address-range interpolation or the offset to the building. Datum realization and coordinate epoch are unspecified. EPSG:1188’s 4 m operation accuracy does not quantify address or facility-offset uncertainty; overall uncertainty remains unknown."
+      },
+      "context_source_ids": [
+        "commercial144-portland-spec"
+      ],
+      "roles": [
+        {
+          "party": "fifteenfortyseven Critical Systems Realty (1547)",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "commercial144-portland-spec"
+        }
+      ],
+      "distinctness_review": "No Pittock, PTOR1, 921 SW Washington, 1547-domain or spelled-out operator alias matches across baseline sites.csv, projects.csv, both identity-mapping records and decisions, or source-records.json. The sole Portland text match is STACK POR03 in Hillsboro, 20.49 km away. The nearest baseline host is NTT Hillsboro, 20.25 km away; no host lies within 2 km. One Pittock Block physical host covers the carrier hotel, commercial colocation and its hosted network/cloud interconnection; individual carriers and AWS connectivity are not separate new data centres.",
+      "successor_review": "Reviewed the original October 14 article, current operator blog/news indexes and specification sheet, plus targeted November 2026, sale and closure searches through November 11. No later primary status change was located. Earlier fit-out and power-expansion plans are not treated as new operational phases or assigned new capacity.",
+      "scoped_project_details": {
+        "numbered_address": "921 SW Washington Street, Portland, Oregon 97205",
+        "facility_code": "PTOR1",
+        "building_name": "Pittock Block",
+        "scope": "Existing commercial carrier hotel and colocation host within one mixed-use building. Hosted network providers and cloud interconnection are services within that host, not additional physical sites.",
+        "opening_date": "Not established or inferred.",
+        "power": "No metric selected: building power, backup generation, prospective expansion and IT load have different scopes.",
+        "floor_area": "No metric selected: mixed-use building area is not wholly data-centre floor space."
+      }
+    },
+    {
+      "project_stable_key": "curated:yotta-greater-noida-knowledge-park-v:campus-operation",
+      "physical_site_stable_key": "curated:yotta-greater-noida-knowledge-park-v",
+      "site_name": "Yotta Greater Noida Data Center Park, Plot 7, Knowledge Park V",
+      "name": "Yotta Greater Noida campus — existing operation",
+      "country": "India",
+      "country_iso_a2": "IN",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-09-29",
+        "source_id": "asia144-yotta-ibm-sept29",
+        "summary": "The dated IBM/Yotta announcement expressly places operating Yotta cloud regions at its Greater Noida and Panvel physical data-centre parks, and says the new platform is available through them. This records existing Greater Noida campus operation; it does not establish a new opening, completion of planned buildings, measured IT load or a particular GPU deployment."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            77.4826306,
+            28.5510944
+          ]
+        },
+        "source_id": "asia144-yotta-noida-eia",
+        "identity_source_ids": [
+          "asia144-yotta-noida-address",
+          "asia144-yotta-noida-parivesh"
+        ],
+        "scope": "campus_locator",
+        "scope_class": "applicant_environmental_assessment_reported_campus_centre",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "NIDP_EIA_PDF_pages23_and42_explicit_project_centre_DMS_to_decimal_no_datum_transform",
+        "precision": "The applicant's May 2022 EIA explicitly reports the centre of the 80,961.1 m2 data-centre project at Plot 07, Knowledge Park V. DMS 28°33′03.94″ N, 77°28′57.47″ E is converted arithmetically to decimal degrees and rounded to seven decimals. This is a campus reference, not a surveyed boundary, particular building, entrance or complete-phase footprint. The coordinates' datum is unspecified and is represented as WGS84 without a datum transformation; this is an explicit assumption, not a claim of measured datum equivalence. No coordinates are taken from the EIA's embedded maps, map apps, PeeringDB or industrial-zone centroids.",
+        "identity_review": "Case-insensitive searches of baseline sites.csv, projects.csv, source-records.json and identity-mapping.json find no Yotta, NIDP, Knowledge Park V/5, Panvel or NMDC record. The operator's exact Plot 7, Knowledge Park V address matches the named NIDP EIA site. This is one physical campus with existing operation; D1, D2, D4, GPU deployments and SEZ designations are not counted as separate sites or admitted phases. The closest baseline host is Sify Noida 01 (DEL01) at 11,535.2 m; CtrlS Noida is 13,051.0 m away. No current host is within 2 km. The new project records campus operation, not a claim that all planned buildings are operating.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The applicant EIA does not state a coordinate datum, survey method, epoch or positional accuracy. Its point represents an 8.1 ha multi-building project; no building-level precision or whole-campus surveyed boundary is asserted."
+      },
+      "context_source_ids": [
+        "asia144-yotta-noida-address",
+        "asia144-yotta-noida-parivesh"
+      ],
+      "roles": [
+        {
+          "party": "Yotta Data Services Private Limited",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "asia144-yotta-ibm-sept29"
+        }
+      ],
+      "distinctness_review": "Case-insensitive searches of baseline sites.csv, projects.csv, source-records.json and identity-mapping.json find no Yotta, NIDP, Knowledge Park V/5, Panvel or NMDC record. The operator's exact Plot 7, Knowledge Park V address matches the named NIDP EIA site. This is one physical campus with existing operation; D1, D2, D4, GPU deployments and SEZ designations are not counted as separate sites or admitted phases. The closest baseline host is Sify Noida 01 (DEL01) at 11,535.2 m; CtrlS Noida is 13,051.0 m away. No current host is within 2 km. The new project records campus operation, not a claim that all planned buildings are operating.",
+      "successor_review": "Reviewed the current operator facility page, original Yotta press-release index and the same joint announcement on Yotta's site, the August–September operator newsletter, the original October 12 NIDP SEZ notification and bounded searches for Yotta/Greater Noida/D1 October–November opening, closure, fire, pause and outage reports through 11 November. No later supported physical-status change for the existing campus was found. Newsletter expansion plans are not completed facilities. The October SEZ designation concerns only a 1.65 ha subarea and is neither a new operating observation nor a campus-wide building consent. The current undated pages do not renew September 29 status.",
+      "scoped_project_details": {
+        "numbered_address": "Plot No 7, Tusiana Village, Knowledge Park V, Greater Noida, Uttar Pradesh, India",
+        "applicant_name": "NIDP Developers Private Limited",
+        "applicant_plot_area_m2": 80961.1,
+        "applicant_plot_area_scope": "Historical May 2022 EIA project land area, not building floor area or independently surveyed current extent.",
+        "capacity": "No MW, racks, GPU count or completed-building count selected; new platform availability is not a measured load or phase-completion statement.",
+        "campus_aliases": [
+          "Yotta Greater Noida Data Center Park",
+          "Yotta D1 campus",
+          "NIDP Developers Plot 07 Knowledge Park V"
+        ]
+      }
+    },
+    {
+      "project_stable_key": "curated:atos-andover-data-centre:existing-operations",
+      "physical_site_stable_key": "curated:atos-andover-data-centre",
+      "site_name": "Atos Andover Data Centre, Shepherds Spring Lane, Andover, Hampshire SP10 1DL",
+      "name": "Atos Andover Data Centre — existing commercial hosting operations",
+      "country": "United Kingdom",
+      "country_iso_a2": "GB",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-10-20",
+        "source_id": "europe144-atos-defra",
+        "summary": "Original dated Defra pipeline notice explicitly describes equipment currently in situ in Atos Andover DC. Existing physical commercial hosting is supported on October 20. The proposed December 4 renewal and future contract dates remain prospective; no new opening, completed award or renewal is claimed."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -1.4792901,
+            51.2130578
+          ]
+        },
+        "source_id": "europe144-os-uprn",
+        "identity_source_ids": [
+          "europe144-atos-property",
+          "europe144-atos-planning",
+          "europe144-atos-certificate"
+        ],
+        "scope": "campus_locator",
+        "scope_class": "official_named_property_uprn_address_point",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "exact_council_dc_uprn_join_to_os_open_uprn_native_etrs89_epsg4258_to4326",
+        "precision": "Exact council-named DC property UPRN 100062539376 joined to original OS Open UPRN October 2026 CSV line 33090772. Native ETRS89 longitude -1.4792901 and latitude 51.2130578 transformed explicitly from EPSG:4258 to EPSG:4326 with pyproj ETRS89 to WGS 84 (1), axis order normalized; pipeline proj=noop ellps=GRS80. Numerical coordinates unchanged. Published operation accuracy 1 m does not measure the OS address point or its offset from facility buildings. No building-centre, footprint or surveyed boundary claim. Council restricted map data, postcode centroids and directory coordinates excluded. Transformation software: pyproj 3.8.0 with PROJ 9.8.1. EPSG operation code 1149 (ETRS89 to WGS 84 (1)); the axis-order normalization is only serialization handling.",
+        "identity_review": "No exact Andover, Shepherds Spring Lane, Charlton Place, UPRN 100062539376 or Atos host across sites.csv, projects.csv, identity-mapping records/decisions, and source-records.json in base 143. Broad substring hits were handover in unrelated Pune/Stargate records. Nearest baseline site is Didcot North, 48.051 km away; Datum Farnborough, 48.093 km away, no host within 2 km. One physical existing commercial hosting property; Defra equipment, data halls, historical extension, and energy infrastructure are not counted as separate hosts.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "OS Open UPRN row does not supply per-record horizontal positional accuracy. The 1 m nominal datum-operation accuracy is not whole-locator uncertainty; address-point offset, datum realization and coordinate epoch remain unspecified."
+      },
+      "context_source_ids": [
+        "europe144-atos-process",
+        "europe144-atos-property",
+        "europe144-atos-planning",
+        "europe144-atos-certificate",
+        "europe144-os-crs",
+        "europe144-os-overview",
+        "europe144-os-license",
+        "europe144-os-downloads"
+      ],
+      "roles": [
+        {
+          "party": "Atos IT Services UK Limited",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "europe144-atos-certificate"
+        }
+      ],
+      "distinctness_review": "No exact Andover, Shepherds Spring Lane, Charlton Place, UPRN 100062539376 or Atos host across sites.csv, projects.csv, identity-mapping records/decisions, and source-records.json in base 143. Broad substring hits were handover in unrelated Pune/Stargate records. Nearest baseline site is Didcot North, 48.051 km away; Datum Farnborough, 48.093 km away, no host within 2 km. One physical existing commercial hosting property; Defra equipment, data halls, historical extension, and energy infrastructure are not counted as separate hosts.",
+      "successor_review": "Official procurement record checked through November 11 contains only October 20 release. Targeted Andover/Atos November, closure and fire searches found no later site-specific primary status change. November 9 DCD reports the same proposed renewal and is discovery-only, not a fresher status date. EDF 2024 mention of closing its Andover disaster-recovery site is a separate customer/site context, not evidence of closure of the 2026 Defra host. Neither the postcode point nor any source from a map directory is used.",
+      "scoped_project_details": {
+        "address": "Shepherds Spring Lane, Andover, Hampshire SP10 1DL",
+        "building_alias": "Charlton Place",
+        "uprn": "100062539376",
+        "scope": "One existing commercial data-centre host; government tenant procurement proves installed hosting, not government ownership.",
+        "opening_date": "Not established.",
+        "power": "No capacity metric selected; directory figure of 10 MW unsupported by selected original sources.",
+        "floor_area": "No floor-area metric selected; directory figure of 58000 sq ft unsupported by selected original sources."
+      }
+    }
+  ],
+  "status_updates": [],
+  "status_corrections": [
+    {
+      "project_stable_key": "imported:semiconductor-atlas:qscale-q01-levis",
+      "replaces_status_evidence_id": "bba8372d-6941-50b4-ac42-93b948f99605",
+      "reason": "The imported note explicitly chose 9 October 2026 as the access date of an undated page. Its selected dated issuer source was published on 4 June. Replace the unsupported retrieval day with that physical-observation date, retaining the imported partially-operational classification and the separate Building B project.",
+      "identity_review": "The existing imported Q01 campus and curated Q01 Building B already share site vcc-site-0ecf05307f91c1e40479 in Levis. The original issuer release explicitly names that Q01 campus and its second building. This correction applies only to the imported campus project; it creates no site or phase and preserves the shared locator and the curated Building B construction record.",
+      "successor_review": "Reviewed the original June release, May acquisition release, current issuer news index and Q01 campus page, plus bounded QScale October and November searches through 11 November. The current campus page supports HPE deployment but is undated. The news index lists no later physical-status release than 4 June. No dated later Building B opening, cessation, pause or closure was located. Forecast capacity and generic AI-ready language are not delivery observations. This is a correction to an existing record, so the new-site 90-day admission window does not apply.",
+      "status": {
+        "value": "partially_operational",
+        "as_of": "2026-06-04",
+        "source_id": "qscale144-june4-campus",
+        "summary": "The original 4 June release describes the existing Q01 campus running on Quebec's grid while Building B construction is underway. Retain the partially-operational campus classification and correct the unsupported October retrieval date. No customer deployment, commissioned capacity or Building B opening is inferred."
+      }
+    }
+  ],
+  "context_updates": []
+}

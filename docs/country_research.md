@@ -1033,6 +1033,19 @@ physical data-centre construction. The snapshot contains **1,263 sites, 1,372
 projects and 7,122 evidence records in 90 countries**. Earlier snapshots remain
 unchanged; eight unresolved candidates or claims are retained in the research holds.
 
+`verified_construction_core/2026-11-11-research-hundredfortyfourth` adds **four physical
+sites and four projects**: 1547's McAllen MCTX1 and Portland PTOR1, Yotta Greater Noida,
+and Atos Andover. Dated operator or customer statements support existing commercial
+operation. New openings, completed expansions and commissioned capacity are not inferred.
+The locations use exact government address records or an explicit applicant campus
+coordinate, with datum assumptions and unknown positional accuracy documented.
+
+QScale Q01 retains its partially operational campus classification; its unsupported
+October retrieval date is corrected to the June issuer report. Building B's separate
+construction record and the shared location remain unchanged. The snapshot contains
+**1,267 sites, 1,376 projects and 7,143 evidence records in 90 countries**. Earlier
+snapshots remain unchanged; seven unresolved candidates remain in the research holds.
+
 ## 25 October 2026
 
 `verified_construction_core/2026-10-25-research-sixtysecond` adds three commercial sites and
