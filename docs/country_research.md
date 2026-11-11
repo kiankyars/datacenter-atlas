@@ -963,6 +963,20 @@ reconcile the named regional list with the explicitly operational portfolio tota
 specifications remain individually attributed; unavailable or anomalous fields do not become
 zero capacity. Earlier project rows and published snapshot bytes remain unchanged.
 
+`verified_construction_core/2026-11-11-research-hundredthirtyninth` adds **six physical
+sites and six operating projects**, reaching **1,255 sites and 1,364 projects in 90 countries**.
+MC1 in Barka and SN1 in Salalah bring Oman into the Atlas. UAE additions cover the
+DX1/DX3 Dubai Production City campus and the separate Khazna hosts of AD1 in Masdar
+City and DX2 in Meydan. Facility specifications remain scoped to Equinix's space.
+The 30 September portfolio observation does not replace SN1's historical 2024 opening.
+
+DEN01 in Skovlunde uses CoreWeave's 27 October operating report and an exact national
+address point joined to the municipal permit's parcel. Planned deployment and campus
+capacity are not treated as fully commissioned. A 14 August CVC report refreshes
+firstcolo FRA7's construction observation while preserving its identity and locator.
+The 21 source projections add 19 evidence records; earlier published snapshots remain
+unchanged. Ørslev, Agios Dimitrios and Jakarta 2A remain held for unresolved exact locations.
+
 ## 25 October 2026
 
 `verified_construction_core/2026-10-25-research-sixtysecond` adds three commercial sites and
