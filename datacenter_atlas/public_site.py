@@ -5099,6 +5099,17 @@ def _project_section(context: _Context, project: Mapping[str, Any], anchors: _Ev
         record = detail["record"]
         if len(project.get("project_details") or []) > 1:
             parts.append(f'<h4>{_e(record["name"])}</h4>')
+        location = record.get("location") or {}
+        original_point = (location.get("lat"), location.get("lon"))
+        current_point = (project.get("latitude"), project.get("longitude"))
+        location_changed = (all(_is_number(value) for value in (*original_point, *current_point))
+                            and original_point != current_point)
+        if (record.get("status") != status or record.get("status_as_of") != project.get("status_as_of")
+                or location_changed):
+            record_date = record.get("status_as_of")
+            date_label = f" as of {_e(record_date)}" if record_date else " (date not stated)"
+            parts.append(f'<p class="small muted">Historical source record{date_label}. '
+                         'Current status and location are shown separately.</p>')
         parts.append(render_record(record, current_status=status, current_date=project.get("status_as_of"),
                                    include_summary=False))
     for narrative in context.project_narratives.get(project["project_id"], {}).get("context", []):

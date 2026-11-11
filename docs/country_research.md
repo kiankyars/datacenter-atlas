@@ -999,6 +999,24 @@ directory locator, moving the anchor 11 metres and preserving its 29 September
 status observation. The snapshot contains **1,259 sites, 1,368 projects and 7,093
 evidence records in 90 countries**. Earlier snapshots remain unchanged.
 
+`verified_construction_core/2026-11-11-research-hundredfortysecond` adds **three
+physical sites and three projects**: Lumenasu Kanaoka No.1 in Higashiosaka,
+PureColo Alpharetta at 1001 Windward Concourse, and NTT Berlin 1 at
+Nonnendammallee 15. Kanaoka records 19 October construction of the combined
+data-centre and battery facility. Alpharetta records an existing customer-ready
+facility on 15 October; its scheduled customer deployment remains unconfirmed.
+Berlin 1 records live government-tenant connections on 1 October, without
+asserting uninterrupted operation after a later, incompletely identified fire
+report. All three locations use exact government address or parcel records.
+
+The maincubes FRA03 locator now uses a registered equipment point assigned to
+the named campus. Google Fort Wayne receives an explicit government campus
+reference, and its unsupported retrieval-based status date is replaced with
+the 11 December 2025 operating observation in Google's dated written statement.
+These corrections preserve the existing sites and projects. The snapshot
+contains **1,262 sites, 1,371 projects and 7,112 evidence records in 90 countries**.
+All earlier published snapshots remain unchanged.
+
 ## 25 October 2026
 
 `verified_construction_core/2026-10-25-research-sixtysecond` adds three commercial sites and

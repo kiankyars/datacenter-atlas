@@ -121,6 +121,74 @@ class ProjectPageContentTests(unittest.TestCase):
         self.assertNotIn('href="javascript:', rendered)
         self.assertIn('href="#evidence-e-status"', rendered)
 
+    def _attach_original_record(self):
+        record = {
+            "name": "Original campus record", "status": "operational", "status_as_of": "2026-09-24",
+            "summary": "The source describes the campus as operational.",
+            "location": {"lat": 41.018, "lon": -85.058, "locality": "Fort Wayne",
+                         "note": "Approximate road intersection; the parcel itself is not mapped."},
+            "notes": "The original observation used the page access date.",
+            "metrics": [{"metric": "investment", "value": 2000000000, "unit": "USD",
+                         "qualifier": "exact", "basis": "announced", "applies_to": "campus",
+                         "note": "Announced campus investment."}],
+            "sources": [],
+        }
+        self.project.update({"latitude": 41.018, "longitude": -85.058,
+                             "project_details": [{"record": record}]})
+        return record
+
+    def test_status_date_correction_labels_preserved_details_without_changing_them(self):
+        record = self._attach_original_record()
+        self.project["status_as_of"] = "2025-12-11"
+        original = deepcopy(self.project)
+        rendered = public_site._project_section(self.context, self.project, self.anchors)
+        notice = "Historical source record as of 2026-09-24."
+        self.assertIn(notice, rendered)
+        self.assertIn("Current status and location are shown separately.", rendered)
+        self.assertLess(rendered.index(notice), rendered.index("This record reports operational"))
+        self.assertIn("2,000,000,000 USD", rendered)
+        self.assertIn("Announced · Campus", rendered)
+        self.assertIn(record["metrics"][0]["note"], rendered)
+        self.assertIn(record["location"]["note"], rendered)
+        self.assertIn(record["notes"], rendered)
+        self.assertEqual(self.project, original)
+
+    def test_locator_only_correction_labels_original_location_notes(self):
+        for coordinate in ("latitude", "longitude"):
+            with self.subTest(coordinate=coordinate):
+                record = self._attach_original_record()
+                self.project[coordinate] += 0.01
+                original = deepcopy(self.project)
+                rendered = public_site._project_section(self.context, self.project, self.anchors)
+                self.assertIn("Historical source record as of 2026-09-24.", rendered)
+                self.assertLess(rendered.index("Historical source record"), rendered.index("<strong>Location:</strong>"))
+                self.assertIn(record["location"]["note"], rendered)
+                self.assertEqual(self.project, original)
+
+    def test_unchanged_or_incomplete_coordinates_do_not_add_a_historical_label(self):
+        for missing_coordinate in (None, "lat", "lon"):
+            with self.subTest(missing_coordinate=missing_coordinate):
+                record = self._attach_original_record()
+                if missing_coordinate:
+                    del record["location"][missing_coordinate]
+                    self.project["latitude"] += 0.01
+                    self.project["longitude"] += 0.01
+                original = deepcopy(self.project)
+                rendered = public_site._project_section(self.context, self.project, self.anchors)
+                self.assertNotIn("Historical source record", rendered)
+                self.assertNotIn("Current status and location are shown separately.", rendered)
+                self.assertIn(record["notes"], rendered)
+                self.assertEqual(self.project, original)
+
+    def test_historical_label_handles_an_original_record_without_a_date(self):
+        record = self._attach_original_record()
+        del record["status_as_of"]
+        original = deepcopy(self.project)
+        rendered = public_site._project_section(self.context, self.project, self.anchors)
+        self.assertIn("Historical source record (date not stated).", rendered)
+        self.assertNotIn("None", rendered)
+        self.assertEqual(self.project, original)
+
     def test_overview_without_saved_prose_still_gives_dated_sourced_status(self):
         rendered = public_site._site_overview(self.context, [self.project], self.anchors)
         self.assertIn("Example campus was reported operational", rendered)
