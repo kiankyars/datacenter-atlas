@@ -1,0 +1,399 @@
+{
+  "format": "datacenter-atlas-update-input-v1",
+  "updated_at": "2026-11-11",
+  "output": "verified_construction_core/2026-11-11-research-hundredfortyfifth",
+  "base_dataset": "verified_construction_core/2026-11-11-research-hundredfortyfourth",
+  "base_manifest_sha256": "2098761f15dc6bf227345aa3c9f338420591913096b50f6990e061aa223f30da",
+  "source_files": [
+    {
+      "path": "sources/research-countries-2026-11-11-hundredfortyfifth-primary-sources.json",
+      "sha256": "3c3fa425faa602522b9246656b6b908cd56a51882ec09aca5fdbb07d0544b565"
+    }
+  ],
+  "additions": [
+    {
+      "project_stable_key": "curated:1547-alohanap-kapolei:existing-operations",
+      "physical_site_stable_key": "curated:1547-alohanap-kapolei",
+      "site_name": "1547 AlohaNAP HAII1 Data Center, 91-340 Farrington Highway, Kapolei",
+      "name": "1547 AlohaNAP HAII1 — existing commercial colocation operations",
+      "country": "United States",
+      "country_iso_a2": "US",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-09-14",
+        "source_id": "commercial145-1547-sept14",
+        "summary": "The 14 September original operator article identifies AlohaNAP as a current connection point and says AlohaNAP and DRFortress provide connectivity supporting Hawaii submarine systems. The operator specification identifies the same physical commercial colocation host and address. This records existing operation on the article date, not a new opening or completed campus expansion."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -158.0921615,
+            21.3385437
+          ]
+        },
+        "source_id": "commercial145-aloha-address",
+        "identity_source_ids": [
+          "commercial145-aloha-spec"
+        ],
+        "scope": "campus_locator",
+        "scope_class": "official_exact_address_geocoder_point",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "us_census_exact_alohanap_address_epsg4269_to4326_explicit_hawaii_epsg1252",
+        "precision": "The exact operator-published 91-340 Farrington Highway address is matched by the US Census Bureau. This point is interpolated along TIGER edge 635724755, side R, not surveyed at a building. Census documents NAD83 output. The native EPSG:4269 point was explicitly transformed to EPSG:4326 with Hawaii-applicable EPSG:1252, NAD83 to WGS 84 (3), using translations X +1 m, Y +1 m, Z -1 m. The result is rounded to seven decimals. Published operation accuracy is 4 m, not total locator accuracy. A more accurate grid operation was unavailable locally; no optimal transformation is claimed. pyproj 3.8.0 / PROJ 9.8.1 was used.",
+        "identity_review": "All four baseline identity layers were scanned, including both records and decisions in identity-mapping.json: 1,267 sites, 1,376 projects, 462 mapping objects representing 231 source records, and 231 source records. No AlohaNAP, DRFortress, HAII1, Kapolei, exact candidate address, Koapaka, TMK 11015013 or Hawaii Pacific Teleport match exists. Honolulu matches only Servpac MTP in Mililani; Farrington matches an unrelated J5 proposal outside Hawaii. Existing 1547 matches are McAllen and Portland. Nearest existing host is Servpac MTP, 17.54 km away. DRFortress is 18.16 km away and a different property. The AlohaNAP colocation host is one site; satellite infrastructure, network services and planned expansion buildings are not counted separately.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The source supplies no per-record horizontal accuracy or offset to the specific data-centre space. Datum realization and epoch are unspecified. Nominal transformation accuracy does not quantify the full locator uncertainty."
+      },
+      "context_source_ids": [
+        "commercial145-aloha-spec"
+      ],
+      "roles": [
+        {
+          "party": "fifteenfortyseven Critical Systems Realty (1547)",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "commercial145-1547-sept14"
+        }
+      ],
+      "distinctness_review": "All four baseline identity layers were scanned, including both records and decisions in identity-mapping.json: 1,267 sites, 1,376 projects, 462 mapping objects representing 231 source records, and 231 source records. No AlohaNAP, DRFortress, HAII1, Kapolei, exact candidate address, Koapaka, TMK 11015013 or Hawaii Pacific Teleport match exists. Honolulu matches only Servpac MTP in Mililani; Farrington matches an unrelated J5 proposal outside Hawaii. Existing 1547 matches are McAllen and Portland. Nearest existing host is Servpac MTP, 17.54 km away. DRFortress is 18.16 km away and a different property. The AlohaNAP colocation host is one site; satellite infrastructure, network services and planned expansion buildings are not counted separately.",
+      "successor_review": "Reviewed the current 1547 facility pages and original news/blog indexes, DRFortress press index, original April 2025 acquisition release, and targeted October/November 2026, closure, sale and outage searches through November 11. No later primary physical-status change was located. Events, workshops, ownership history, registry updates and access dates are not newer operational observations. Undated AlohaNAP expansion plans do not demonstrate completion; no extra phase is admitted.",
+      "scoped_project_details": {
+        "numbered_address": "91-340 Farrington Highway, Kapolei, Hawaii 96707",
+        "scope": "Existing commercial colocation host; no new opening date, completed expansion, cabinet occupancy or customer computing deployment is inferred.",
+        "capacity": "No power, floor-area, rack-count or completed-building metric is selected."
+      }
+    },
+    {
+      "project_stable_key": "curated:drfortress-honolulu-koapaka:existing-operations",
+      "physical_site_stable_key": "curated:drfortress-honolulu-koapaka",
+      "site_name": "DRFortress Honolulu Data Center, 3375 Koapaka Street",
+      "name": "DRFortress Honolulu — existing commercial colocation operations",
+      "country": "United States",
+      "country_iso_a2": "US",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-09-14",
+        "source_id": "commercial145-1547-sept14",
+        "summary": "The 14 September original 1547 article explicitly names DRFortress together with AlohaNAP as providing connectivity supporting Hawaii submarine systems and local cloud/network infrastructure. DRFortress’s original facility page identifies its existing commercial Honolulu colocation host and street address; its acquisition release establishes the publisher relationship. This records existing physical-host operation, not a newly opened or expanded facility."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -157.9168684,
+            21.3345291
+          ]
+        },
+        "source_id": "commercial145-drf-holis-address",
+        "identity_source_ids": [
+          "commercial145-drf-home"
+        ],
+        "scope": "campus_locator",
+        "scope_class": "official_exact_address_property_centroid_point",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "honolulu_holis_exact_3375_koapaka_point_epsg3760_to4152_then_epsg1580_to4326",
+        "precision": "The operator’s numbered address is matched to the municipal HoLIS address point for 3375 Koapaka Street, TMK 11015013, objectid 112257. HoLIS labels the origin method Centroid. The point locates the address complex, not Suite D-198, a building centre or a surveyed boundary. Native EPSG:3760, NAD83(HARN) / Hawaii zone 3 in US survey feet, was inverse-projected to EPSG:4152 and explicitly transformed with EPSG:1580, NAD83(HARN) to WGS 84 (1), whose area includes Hawaii. This no-op datum approximation has 2 m nominal operation accuracy; it does not measure underlying address-point error. Output is rounded to seven decimals using pyproj 3.8.0 / PROJ 9.8.1. No measured datum equivalence or survey precision is asserted.",
+        "identity_review": "All four baseline identity layers were scanned, including both records and decisions in identity-mapping.json: 1,267 sites, 1,376 projects, 462 mapping objects representing 231 source records, and 231 source records. No AlohaNAP, DRFortress, HAII1, Kapolei, exact candidate address, Koapaka, TMK 11015013 or Hawaii Pacific Teleport match exists. Honolulu matches only Servpac MTP in Mililani; Farrington matches an unrelated J5 proposal outside Hawaii. Existing 1547 matches are McAllen and Portland. Nearest existing host is Servpac MTP, 19.43 km away. AlohaNAP is 18.16 km away and a different property. One DRFortress physical host is admitted within the Koapaka address complex; its suites, carrier presences and historical expansions are not separate sites. The older Equinix Hawaii business identity does not match any baseline Honolulu host.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The source supplies no per-record horizontal accuracy or offset to the specific data-centre space. Datum realization and epoch are unspecified. Nominal transformation accuracy does not quantify the full locator uncertainty."
+      },
+      "context_source_ids": [
+        "commercial145-drf-home",
+        "commercial145-drf-acquisition"
+      ],
+      "roles": [
+        {
+          "party": "DRFortress",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "commercial145-drf-home"
+        }
+      ],
+      "distinctness_review": "All four baseline identity layers were scanned, including both records and decisions in identity-mapping.json: 1,267 sites, 1,376 projects, 462 mapping objects representing 231 source records, and 231 source records. No AlohaNAP, DRFortress, HAII1, Kapolei, exact candidate address, Koapaka, TMK 11015013 or Hawaii Pacific Teleport match exists. Honolulu matches only Servpac MTP in Mililani; Farrington matches an unrelated J5 proposal outside Hawaii. Existing 1547 matches are McAllen and Portland. Nearest existing host is Servpac MTP, 19.43 km away. AlohaNAP is 18.16 km away and a different property. One DRFortress physical host is admitted within the Koapaka address complex; its suites, carrier presences and historical expansions are not separate sites. The older Equinix Hawaii business identity does not match any baseline Honolulu host.",
+      "successor_review": "Reviewed the current 1547 facility pages and original news/blog indexes, DRFortress press index, original April 2025 acquisition release, and targeted October/November 2026, closure, sale and outage searches through November 11. No later primary physical-status change was located. Events, workshops, ownership history, registry updates and access dates are not newer operational observations. Undated AlohaNAP expansion plans do not demonstrate completion; no extra phase is admitted.",
+      "scoped_project_details": {
+        "numbered_address": "3375 Koapaka Street, Suite D-198, Honolulu, Hawaii 96819",
+        "scope": "Existing commercial colocation host; no new opening date, completed expansion, cabinet occupancy or customer computing deployment is inferred.",
+        "capacity": "No power, floor-area, rack-count or completed-building metric is selected."
+      }
+    },
+    {
+      "project_stable_key": "curated:goodman-tsukuba-tech-central:tyo05-first-building",
+      "physical_site_stable_key": "curated:goodman-tsukuba-tech-central",
+      "site_name": "Goodman Tsukuba Tech Central campus, Oho 2, Tsukuba, Ibaraki",
+      "name": "Goodman TYO05 — first data-centre building at Tsukuba Tech Central",
+      "country": "Japan",
+      "country_iso_a2": "JP",
+      "status": {
+        "value": "under_construction",
+        "as_of": "2026-09-30",
+        "source_id": "japan145-goodman-q1",
+        "summary": "The issuer's November 4 report lists TYO05 in its September 30 data-centre work in progress, explicitly described as projects under construction. The earlier named Tsukuba presentation binds this code to the first building at Tsukuba Tech Central. The observation records physical construction, not the lease date, a ceremonial event, completed operation or all future campus phases."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            140.074203,
+            36.140759
+          ]
+        },
+        "source_id": "japan145-gsi-campus",
+        "identity_source_ids": [
+          "japan145-project-site",
+          "japan145-city-land",
+          "japan145-parcel-schedule",
+          "japan145-district-plan",
+          "japan145-city-campus-plan",
+          "japan145-goodman-fy26"
+        ],
+        "scope": "campus_locator",
+        "scope_class": "official_parent_plot_address_point_with_whole_campus_identity",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "GSI_parent_Oho_2_address_point_reconciled_with_Goodman_campus_parcel_schedule",
+        "precision": "Unmodified GSI point for Oho 2, reconciled with the council schedule of Oho 2-1 through 2-38 and the developer's contiguous campus plans. The query requests 2-2 but the returned feature is only parent plot 2. This point locates the whole campus and is north of TYO05; it does not locate the first building, exact subparcel, entrance or surveyed boundary. The original response omits datum and accuracy. Its geographic coordinates are represented as WGS84 without a datum transformation, an explicit representation assumption rather than measured datum equivalence. No map-app or directory coordinate is used.",
+        "identity_review": "No Tsukuba, TYO05, TKO05, つくば, 大穂 or tsukuba-tc matches across baseline sites.csv, projects.csv, identity-mapping records and decisions, or source-records.json. The closest existing host is AirTrunk TOK1 Tokyo East, 34,890.5 metres away. The first building and later planned buildings belong to one Goodman campus; the neighbouring KEK research institute and southern amenity facilities are not separate data-centre hosts.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "GSI supplies no feature accuracy, datum realization or epoch. The feature represents a roughly 45.6 hectare parent property with multiple planned phases; the offset to TYO05 is not a quantified positional uncertainty. No building-level or survey precision is asserted."
+      },
+      "context_source_ids": [
+        "japan145-goodman-fy26",
+        "japan145-project-site",
+        "japan145-city-land",
+        "japan145-parcel-schedule",
+        "japan145-district-plan",
+        "japan145-city-campus-plan",
+        "japan145-november-newsletter"
+      ],
+      "roles": [
+        {
+          "party": "GJDP",
+          "role": "owner",
+          "relationship_scope": "current",
+          "source_id": "japan145-goodman-q1"
+        }
+      ],
+      "distinctness_review": "No Tsukuba, TYO05, TKO05, つくば, 大穂 or tsukuba-tc matches across baseline sites.csv, projects.csv, identity-mapping records and decisions, or source-records.json. The closest existing host is AirTrunk TOK1 Tokyo East, 34,890.5 metres away. The first building and later planned buildings belong to one Goodman campus; the neighbouring KEK research institute and southern amenity facilities are not separate data-centre hosts.",
+      "successor_review": "Reviewed the original November 4 issuer update, November 6 resident newsletter, November 9 notices on the current project site, current city land-sale and project history material, and targeted October–November TYO05/Tsukuba construction, opening and cessation searches through November 11. September 30 is the latest dated building-specific physical observation selected. The newsletter reports earlier noise measurements and future completion; its October ceremony concerns amenities. GX designation and open-house notices do not establish a construction milestone. No later supported building opening, pause or closure was located.",
+      "scoped_project_details": {
+        "facility_code": "TYO05",
+        "operator_published_address": "Oho 2-2 and other plots, Tsukuba, Ibaraki, Japan",
+        "campus_scope": "One contiguous Goodman master-planned campus. Only its first data-centre building is admitted as a project. Later phases, logistics options and amenity facilities do not add projects or physical hosts.",
+        "locator_scope": "Whole parent-address campus anchor, not the first building or exact subparcel 2-2.",
+        "capacity_scope": "Issuer first-building and future-campus MW figures describe development scope; no commissioned capacity or measured IT load is selected.",
+        "commercial_scope": "Issuer reports the first building leased to one unnamed hyperscale customer. No customer identity or achieved operating service is inferred.",
+        "ownership_scope": "GJDP is the ownership vehicle printed in the issuer table; no unverified expansion of the acronym or legal-entity identity is supplied."
+      }
+    },
+    {
+      "project_stable_key": "curated:asp-dc-pori-kupariteollisuuspuisto-campus:site-preparatory-works",
+      "physical_site_stable_key": "curated:asp-dc-pori-kupariteollisuuspuisto-campus",
+      "site_name": "ASP DC Pori Campus, Mastojentie 20, Kupariteollisuuspuisto",
+      "name": "ASP DC Pori Campus — preparatory site works",
+      "country": "Finland",
+      "country_iso_a2": "FI",
+      "status": {
+        "value": "under_construction",
+        "as_of": "2026-11-04",
+        "source_id": "europe145-pori-ncc",
+        "summary": "NCC’s Finnish November 4 release explicitly states that preparatory works began at the October–November turn. Status covers initial campus enabling works. It does not assert that DC6 construction, piling scheduled for November 23, the data-centre building phase, commissioning or service has begun."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            21.8494043,
+            61.4562899
+          ]
+        },
+        "source_id": "europe145-pori-parcel",
+        "identity_source_ids": [
+          "europe145-pori-planning",
+          "europe145-pori-notice",
+          "europe145-pori-stormwater"
+        ],
+        "scope": "campus_locator",
+        "scope_class": "national_parent_parcel_reference_point_within_original_named_campus_plan",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "government_named_campus_parent_parcel_join_and_original_site_plan_review_of_national_reference_point",
+        "precision": "National cadastral reference 60904500140004 supplies E225631.743, N6824456.581 in EPSG:3067. Transformed with pyproj 3.8.0 / PROJ 9.8.1 using inverse TM35FIN (EPSG:16065) and EUREF-FIN to WGS 84 (1), EPSG:10701, with longitude/latitude axis normalization. This is a point for the broader parent property, used only as a campus locator after independent alignment against the original project noise map and ASP/Sweco site plan. It is not a DC6 footprint, building centre, entrance or boundary. Three original national building corners were aligned to the original plan’s vector outline; an independent fourth corner checked the fit. The unchanged parent reference point lies visibly inside the western ASP campus, in its southern portion. This visual containment check does not measure the campus boundary or identify activity at the point. Serialized longitude and latitude are rounded to seven decimal places; full transformation output and original native coordinates are retained in the source extraction record.",
+        "identity_review": "No exact Pori, CompassForge, Mastojentie, Kupariteollisuuspuisto, ASP DC or parcel match across sites.csv, projects.csv, identity-mapping.json and source-records.json in base 144. Broad Ecogrid hits identify the separate Lahti Kujala project. No baseline host is within 2 km; nearest is QTS Forssa at 120.810 km. The independent Polarnode Honkaluoto proposal is a different site, while ASP’s halls, substation, energy systems and enabling works belong to one campus.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The source does not supply per-point horizontal accuracy; the nominal 1 m transformation accuracy excludes cadastral geometry accuracy, campus offsets and the site-plan interpretation."
+      },
+      "context_source_ids": [
+        "europe145-pori-notice",
+        "europe145-pori-planning",
+        "europe145-pori-stormwater",
+        "europe145-mml-service",
+        "europe145-mml-license",
+        "europe145-pori-asp-location",
+        "europe145-pori-subdivision",
+        "europe145-pori-ncc-en",
+        "europe145-pori-building-context",
+        "europe145-pori-noise-map"
+      ],
+      "roles": [],
+      "distinctness_review": "No exact Pori, CompassForge, Mastojentie, Kupariteollisuuspuisto, ASP DC or parcel match across sites.csv, projects.csv, identity-mapping.json and source-records.json in base 144. Broad Ecogrid hits identify the separate Lahti Kujala project. No baseline host is within 2 km; nearest is QTS Forssa at 120.810 km. The independent Polarnode Honkaluoto proposal is a different site, while ASP’s halls, substation, energy systems and enabling works belong to one campus.",
+      "successor_review": "Searches through November 11 for ASP DC Pori, Pori construction and Finnish suspension terms found the November 4 primary release and current public notice, with no later site-specific primary status change. Undated operator RFS remains prospective. The November 23 noisy-work start is a future subactivity, not a contradiction of earlier general site preparation. Search absence is not proof of uninterrupted work.",
+      "scoped_project_details": {
+        "address": "Mastojentie 20, 28330 Pori, Finland",
+        "parent_parcel": "609-45-14-4",
+        "forming_parcel": "609-45-14-8",
+        "scope": "One commercial data-centre campus; status specifically covers enabling site works.",
+        "power": "No power observation selected: acquisition, financing and current portfolio material contain different planned or secured capacity scopes.",
+        "operating_date": "No completed opening or service date established.",
+        "site_plan_scope": "Sweco page 3 describes phase 1 focused on DC6 and associated storage/work areas; the reference point is a campus locator, not an assertion of activity at that particular point.",
+        "development_parties": [
+          {
+            "party": "ASP DC Pori Oy",
+            "relationship": "developer",
+            "source_id": "europe145-pori-ncc"
+          },
+          {
+            "party": "NCC",
+            "relationship": "preparatory-works contractor",
+            "source_id": "europe145-pori-ncc"
+          }
+        ]
+      }
+    },
+    {
+      "project_stable_key": "curated:asp-k11-kanalvegen-11:operations",
+      "physical_site_stable_key": "curated:asp-k11-kanalvegen-11",
+      "site_name": "Asp K11 data centre, Kanalvegen 11, Sola",
+      "name": "Asp K11 — existing commercial data-centre operation",
+      "country": "Norway",
+      "country_iso_a2": "NO",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-08-31",
+        "source_id": "norway145-q2",
+        "summary": "Current-tense Outlook in the report approved August 31 says K11 continues operating at its established Phase 1 capacity. This admits existing commercial operation only; the additional 6 MW agreement for Q3 2027 is not delivered capacity or another host."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            5.686361,
+            58.8977526
+          ]
+        },
+        "source_id": "norway145-k11-address",
+        "identity_source_ids": [
+          "norway145-annual",
+          "norway145-k11-native"
+        ],
+        "scope": "project_locator",
+        "scope_class": "official_numbered_address_point",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "Kartverket_Matrikkelen_exact_numbered_address_query_EPSG4326",
+        "precision": "Direct government representative point for Kanalvegen 11, municipality 1124, with one exact match. Output requested and labelled EPSG:4326; no coordinate digitization, local transformation or external map-app point. The annual report binds the named data-centre host to this exact address. The point is not a surveyed building footprint, entrance or cadastral centroid. Source stedfestingverifisert=true is retained; neither boolean nor decimal precision is a measured error bound.",
+        "identity_review": "No facility, address, ASP, K11, M12, Forus Industry Arena or Seabrokers identity matches across all baseline144 sites, projects, source records and identity-mapping records/decisions. The nearest existing host is Green Mountain Undheim Campus, 27,228.2 metres away (haversine, mean Earth radius 6,371,000 metres). The two ASP numbered-address points are 3,614.1 metres apart on different properties in different municipalities. The operator report explicitly treats them as two properties, not two phases of one campus.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The government address response supplies no numerical horizontal accuracy, datum realization or coordinate epoch. The register verification flag is not a positional error estimate."
+      },
+      "context_source_ids": [
+        "norway145-annual",
+        "norway145-k11-native",
+        "norway145-address-api",
+        "norway145-news-index",
+        "norway145-future-contract",
+        "norway145-bond"
+      ],
+      "roles": [
+        {
+          "party": "Asp Data Center AS",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "norway145-q2"
+        }
+      ],
+      "distinctness_review": "No facility, address, ASP, K11, M12, Forus Industry Arena or Seabrokers identity matches across all baseline144 sites, projects, source records and identity-mapping records/decisions. The nearest existing host is Green Mountain Undheim Campus, 27,228.2 metres away (haversine, mean Earth radius 6,371,000 metres). The two ASP numbered-address points are 3,614.1 metres apart on different properties in different municipalities. The operator report explicitly treats them as two properties, not two phases of one campus.",
+      "successor_review": "Reviewed original current facility pages, news index, August lease announcement, September financing release and targeted named K11/M12 operating, closure and outage searches through November 11. No later dated source found that establishes a different physical state. Current facility pages are undated; financing and future-delivery announcements do not refresh the selected August 31 observation. This is a bounded source review, not proof that no later event occurred.",
+      "scoped_project_details": {
+        "facility_code": "K11",
+        "operator_published_address": "Kanalvegen 11, Sola, Norway",
+        "government_postal_address": "Kanalvegen 11, 4033 STAVANGER",
+        "address_id": "38188982",
+        "cadastral_reference": "1124-35/360",
+        "commercial_scope": "Existing physical data-centre capacity provided under long-term customer service agreements. This is not a carrier point of presence or a research demonstration.",
+        "capacity_scope": "Only established Phase 1 operation is admitted. H1 5 MW operating capacity and future 6 MW contract retain their separate time and scope; undated 11 MW marketing headline is not normalized as commissioned capacity.",
+        "former_operator_scope": "Original undated operator facility page identifies Equinor as original builder; no current Equinor ownership or customer role is inferred.",
+        "address_scope": "Sola is the official municipality; Stavanger is the postal city. These are consistent with the annual report Sola facility heading and greater Stavanger description."
+      }
+    },
+    {
+      "project_stable_key": "curated:asp-m12-midtgaardveien-12:operations",
+      "physical_site_stable_key": "curated:asp-m12-midtgaardveien-12",
+      "site_name": "Asp M12 data centre, Midtgårdveien 12, Stavanger",
+      "name": "Asp M12 — existing commercial data-centre operation",
+      "country": "Norway",
+      "country_iso_a2": "NO",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-08-31",
+        "source_id": "norway145-q2",
+        "summary": "Current-tense Outlook in the report approved August 31 says M12 is fully operational under its long-term data-centre agreement. This is continuing operation, not an August opening; the actual live-operations date reported elsewhere remains March 6 and Phase 2 ramp-up commencement June 22."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            5.7492631,
+            58.8969936
+          ]
+        },
+        "source_id": "norway145-m12-address",
+        "identity_source_ids": [
+          "norway145-annual",
+          "norway145-m12-native"
+        ],
+        "scope": "project_locator",
+        "scope_class": "official_numbered_address_point",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "Kartverket_Matrikkelen_exact_numbered_address_query_EPSG4326",
+        "precision": "Direct government representative point for Midtgårdveien 12, municipality 1103, with one exact match. Output requested and labelled EPSG:4326; no coordinate digitization, local transformation or external map-app point. The annual report binds the named data-centre host to this exact address. The point is not a surveyed building footprint, entrance or cadastral centroid. Source stedfestingverifisert=false is retained; neither boolean nor decimal precision is a measured error bound.",
+        "identity_review": "No facility, address, ASP, K11, M12, Forus Industry Arena or Seabrokers identity matches across all baseline144 sites, projects, source records and identity-mapping records/decisions. The nearest existing host is Green Mountain Undheim Campus, 26,552.4 metres away (haversine, mean Earth radius 6,371,000 metres). The two ASP numbered-address points are 3,614.1 metres apart on different properties in different municipalities. The operator report explicitly treats them as two properties, not two phases of one campus.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The government address response supplies no numerical horizontal accuracy, datum realization or coordinate epoch. The register verification flag is not a positional error estimate."
+      },
+      "context_source_ids": [
+        "norway145-annual",
+        "norway145-m12-native",
+        "norway145-address-api",
+        "norway145-news-index"
+      ],
+      "roles": [
+        {
+          "party": "Asp Data Center AS",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "norway145-q2"
+        }
+      ],
+      "distinctness_review": "No facility, address, ASP, K11, M12, Forus Industry Arena or Seabrokers identity matches across all baseline144 sites, projects, source records and identity-mapping records/decisions. The nearest existing host is Green Mountain Undheim Campus, 26,552.4 metres away (haversine, mean Earth radius 6,371,000 metres). The two ASP numbered-address points are 3,614.1 metres apart on different properties in different municipalities. The operator report explicitly treats them as two properties, not two phases of one campus.",
+      "successor_review": "Reviewed original current facility pages, news index, August lease announcement, September financing release and targeted named K11/M12 operating, closure and outage searches through November 11. No later dated source found that establishes a different physical state. Current facility pages are undated; financing and future-delivery announcements do not refresh the selected August 31 observation. This is a bounded source review, not proof that no later event occurred.",
+      "scoped_project_details": {
+        "facility_code": "M12",
+        "operator_published_address": "Midtgårdveien 12, Stavanger, Norway",
+        "government_postal_address": "Midtgårdveien 12, 4031 STAVANGER",
+        "address_id": "168381590",
+        "cadastral_reference": "1103-13/54",
+        "commercial_scope": "Existing physical data-centre capacity provided under long-term customer service agreements. This is not a carrier point of presence or a research demonstration.",
+        "capacity_scope": "M12 live-operation commencement March 6 and Phase 2 ramp-up commencement June 22 are historical milestones. H1 3 MW contract, undated 9 MW headline and potential 12 MW expansion are not normalized into a fresh commissioned-capacity value.",
+        "former_operator_scope": "Original undated operator facility page identifies Equinor as original builder; no current Equinor ownership or customer role is inferred.",
+        "address_scope": "The address belongs to the named operating property; the group registered office at Knud Holms gate 8 is not used."
+      }
+    }
+  ],
+  "status_updates": [],
+  "context_updates": []
+}

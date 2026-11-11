@@ -1046,6 +1046,20 @@ construction record and the shared location remain unchanged. The snapshot conta
 **1,267 sites, 1,376 projects and 7,143 evidence records in 90 countries**. Earlier
 snapshots remain unchanged; seven unresolved candidates remain in the research holds.
 
+`verified_construction_core/2026-11-11-research-hundredfortyfifth` adds **six physical
+sites and six projects**: AlohaNAP and DRFortress in Hawaii, Goodman Tsukuba Tech
+Central in Japan, ASP DC Pori in Finland, and Asp K11 and M12 in Norway. Dated
+primary sources support existing operation at the Hawaiian and Norwegian hosts,
+construction of Tsukuba's first building, and initial site preparation at Pori.
+Government address, parcel and campus references supply the locations, with
+coordinate transformations and campus-level limitations retained in the evidence.
+
+All prior sites and projects remain unchanged. One existing Goodman source gains
+the new project's associations; 36 evidence records are added. The snapshot contains
+**1,273 sites, 1,382 projects and 7,179 evidence records in 90 countries**. Earlier
+snapshots remain unchanged. Panvel and PDG JH1 remain held for missing precise
+location or sufficiently recent physical-status evidence.
+
 ## 25 October 2026
 
 `verified_construction_core/2026-10-25-research-sixtysecond` adds three commercial sites and
