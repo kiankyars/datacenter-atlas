@@ -1,0 +1,2149 @@
+{
+  "reviewed_at": "2026-11-11",
+  "base_dataset": "verified_construction_core/2026-11-11-research-hundredfortyninth",
+  "holds": [
+    {
+      "candidate": "Existing Cologix ASH2 status-date provenance correction",
+      "country": "United States",
+      "project_id": "c79a6dd9-5210-502b-901d-88cf8f9f7dce",
+      "project_stable_key": "curated:cologix-ashburn-beaumeade-circle-campus:ash2-current-construction",
+      "reason": "The selected under_construction date 2026-10-15 derives solely from the operator webpage dateModified. Identical construction wording is present in the retained June 30 archive copy, with CMS datePublished May 10 and dateModified May 11. None of those CMS or capture dates is a dated physical observation. Fresh original operator page and 2025 ESG report did not resolve a replacement. The report discusses ASH1, not ASH2. The earlier county fire-line authorization and generic conduit inspection date do not prove ASH2 building construction.",
+      "next_evidence": "Obtain an independently dated ASH2 physical report or an exact issued development/building permit with verified ASH2 scope and issue date. Do not substitute webpage metadata, archive retrieval, ASH1 completion or a separate 38-acre development. The refreshed LandMARC service currently lists only a county polygon layer, so the specific building-permit scope was not resolved by this bounded API check.",
+      "current_status_evidence_id": "9b049fd4-29fc-5442-866f-e923f93e7bfe",
+      "status_correction_proposed": false
+    },
+    {
+      "candidate": "Eletronet ELET1, São Paulo",
+      "country": "Brazil",
+      "hold_reason": "November 9 trade coverage and the November 10 InvestSP republication describe a new development and future migration from an existing host, but no exact facility address or original dated construction observation has been recovered. Existing Eletronet partner locations cannot substitute for the new property.",
+      "next_evidence": "Obtain an original Eletronet dated project statement and exact ELET1 property/address. Do not substitute company headquarters, a partner colocation host or the existing São Paulo PIX.",
+      "discovery_urls": [
+        "https://investsp.org.br/noticias/eletronet-investe-r-25-milhoes-em-novo-data-center-em-sao-paulo/",
+        "https://www.eletronet.com/servicos/datacenter/"
+      ]
+    },
+    {
+      "id": "europe150-reynolds-house-manchester-locator-hold",
+      "candidate": "Reynolds House Manchester commercial data-centre host (Volta MAN1/MAN2; formerly Lunar 1/Lunar 2 and Equinix MA2)",
+      "country": "United Kingdom",
+      "country_iso_a2": "GB",
+      "disposition": "hold",
+      "source_ids": [
+        "europe150-arcus-reynolds-oct27",
+        "europe150-volta-reynolds-identity",
+        "europe150-capitaland-reynolds-rejected-marker",
+        "europe150-government-epc-reynolds",
+        "europe150-ea-reynolds-query",
+        "europe150-enwl-reynolds-route"
+      ],
+      "reason": "Fresh original commercial operations are established, but no reliable eligible precise locator was resolved. The landlord-native marker conflicts with the operator’s embedded facility view; map-app coordinates are excluded. Government EPC records establish exact property identity but no usable numeric location. Utility connection data are neither an obtained original record nor an automatic facility locator.",
+      "supported_status": {
+        "value": "operational",
+        "as_of": "2026-10-27",
+        "source_id": "europe150-arcus-reynolds-oct27"
+      },
+      "identity_review": "The 1,282 baseline sites, 1,391 projects, 231 identity-mapping records, 231 identity-mapping decisions and 231 source records were searched. Reynolds, Archway, Lunar, MA2, Volta, Server Hotel and DC7 aliases found no matching physical host. Broad DC7 matches are QTS Dallas, Tet Salaspils, CtrlS Mumbai and Hetzner references; Volta also matches an unrelated Bitdeer tenant. Existing Equinix MA3 and MA4 have misleading Reynolds House text in historical source metadata but their selected addresses and points are Joule House and Synergy House, separate hosts. Reynolds House contains Lunar 1 and Lunar 2 suites and an iomart DC7 operation; it must be one physical host, with phase/operator scope preserved. Turing House (iomart DC6), Lovell House and Hyde Road are distinct buildings.",
+      "reopen_when": "Obtain an exact council/planning/cadastral/EA record, a government UPRN joined to OS Open UPRN, or a corrected and demonstrably campus-specific landlord/operator numeric marker. Preserve one physical Reynolds House host and separate Hyde Road, Turing House and Lovell House.",
+      "rejected_date": "Volta October 17 CMS metadata is not used; the owner’s October 27 body dateline is explicit.",
+      "later_status_review": "The November 2 original transaction adviser account repeats current Reynolds House colocation and carrier hosting. Current original Volta Manchester and iomart pages corroborate the host identity; bounded later-event searches did not reveal a later closure or relocation. No claim of uninterrupted operation is made.",
+      "other_routes": [
+        {
+          "url": "https://www.manchester.gov.uk/__data/assets/file/0019/185014/Local_Authority_Land_2026.csv",
+          "result": "Official download discovered, but direct retrieval returned 403. No rows used."
+        },
+        {
+          "url": "https://arcusbe.manchester.gov.uk/pr/s/register-view?c__r=Arcus_BE_Public_Register",
+          "result": "Public register shell captured; no exact property record resolved.",
+          "capture_id": "manchester-register.html"
+        }
+      ]
+    },
+    {
+      "candidate": "JAIC Data Dynamics / Digital Dynamic Fukushima Futaba Town DC",
+      "country": "Japan",
+      "country_iso_a2": "JP",
+      "reason": "Fresh original October 21 construction evidence and commercial identity are supported, but exact physical host locator remains unavailable. Captures name Futaba municipality only. Corporate Tokyo headquarters, inferred town centroid and expected operating dates are rejected.",
+      "status_source_id": "japan150-eole-futaba-oct21",
+      "observed_status_review": {
+        "supported_status": "under_construction",
+        "as_of": "2026-10-21",
+        "source_page": 1,
+        "construction_scope": "The project participant expressly says JAIC is advancing construction of the named data centre; no ceremony or financing-only inference is used.",
+        "not_established": "Completion, actual November opening and actual year-end GPU deployment are not established."
+      },
+      "identity_review": {
+        "baseline_manifest_sha256": "c7710f68e0a6ad534a89b7e07cca7f9c5f597c06a2550122ea3a33269c33fcf5",
+        "aliases_regex": "Futaba|双葉|JAIC|ジャイク|福島双葉町DC",
+        "layers": {
+          "sites.csv": {
+            "count": 1282,
+            "matches": []
+          },
+          "projects.csv": {
+            "count": 1391,
+            "matches": []
+          },
+          "identity-mapping.json:records": {
+            "count": 231,
+            "matches": []
+          },
+          "identity-mapping.json:decisions": {
+            "count": 231,
+            "matches": []
+          },
+          "source-records.json": {
+            "count": 231,
+            "matches": []
+          }
+        },
+        "nearby_review": "Not calculated: no eligible host point or parcel was found. A municipal centroid would invent precision and is not selected.",
+        "screened_existing_hosts": [
+          "Kobe Former Conveyor Tunnel Data Center: vcc-site-b2fcc0a6771c39846412",
+          "APL Hibikino Data Center Campus, Kitakyushu: vcc-site-c81c0194b0e64300e188",
+          "AI Tech Tomakomai Kashiwabara Data Center Campus: vcc-site-f9661fed6650ccc21ce2",
+          "Ishikari Renewable Energy Data Center No.1: vcc-site-2b082c2af5f1a4774370"
+        ]
+      },
+      "later_status_review": "Bounded original Eole and Digital Dynamic news indexes were captured through November 11, plus targeted original-domain searches. Digital Dynamic visible latest entry is the older April 14 groundbreaking; Eole lists October 22 national deployment-program and October 29 proof-of-concept headlines after October 21. Those index headlines alone are not successor physical status of Futaba. No later specific opening/closure report was found in this bounded pass; it is not exhaustive and the future November date is not assumed achieved.",
+      "next_evidence": "Recover a public original operator/developer facility coordinate or municipality permit, cadastral parcel or georeferenced site plan expressly bound to JAIC Fukushima Futaba Town DC. Check subsequent named facility opening before any admission.",
+      "excluded_metrics": "No typed MW, GPU count, cost, area or utilization selected; historical 2 MW is receiving capacity and wider GPU totals are not host-specific operating capacity."
+    },
+    {
+      "candidate": "Guangdong Hengsuan Guangzhou AI Computing Industry Empowerment Center",
+      "country": "China",
+      "country_iso_a2": "CN",
+      "reason": "The original energy decision supports a named proposal and exact street address but supplies no numeric host locator. The energy review alone is not development permission.",
+      "status_source_id": "china150-hengsuan-energy-review",
+      "observed_status_review": {
+        "supported_status": "announced",
+        "as_of": "2026-09-04",
+        "admitted": false
+      },
+      "identity_review": {
+        "baseline_manifest_sha256": "c7710f68e0a6ad534a89b7e07cca7f9c5f597c06a2550122ea3a33269c33fcf5",
+        "aliases_regex": "Hengsuan|恒算|广州智算产业赋能|919023",
+        "layers": {
+          "sites.csv": {
+            "count": 1282,
+            "matches": []
+          },
+          "projects.csv": {
+            "count": 1391,
+            "matches": []
+          },
+          "source-records.json:records": {
+            "count": 231,
+            "matches": []
+          },
+          "identity-mapping.json:records": {
+            "count": 231,
+            "matches": []
+          },
+          "identity-mapping.json:decisions": {
+            "count": 231,
+            "matches": []
+          }
+        },
+        "nearby_review": "Not calculated because no eligible exact host point or parcel is available. No city centroid or third-party map coordinate is substituted."
+      },
+      "later_status_review": "Bounded original-domain and exact-name searches through November 11 found no later original physical-status report resolving this hold. This is not an exhaustive absence claim. Secondary construction descriptions and financing/approval events were not promoted to physical status.",
+      "next_evidence": "Recover an original operator or government numeric point or georeferenced parcel for 68 Kaitai Avenue, and check subsequent planning and actual-works evidence."
+    },
+    {
+      "candidate": "China Mobile / Hubei Mobile Huangshi Big Data Center",
+      "country": "China",
+      "country_iso_a2": "CN",
+      "reason": "The original draft site plan supplies no geographic coordinate. Fresh commissioning news is newspaper reporting with an unnamed manager, not an eligible primary status source; formal operation is explicitly future.",
+      "status_source_id": "china150-huangshi-september-news",
+      "observed_status_review": {
+        "supported_status": null,
+        "as_of": null,
+        "admitted": false
+      },
+      "identity_review": {
+        "baseline_manifest_sha256": "c7710f68e0a6ad534a89b7e07cca7f9c5f597c06a2550122ea3a33269c33fcf5",
+        "aliases_regex": "Huangshi|黄石|湖北移动算力网络",
+        "layers": {
+          "sites.csv": {
+            "count": 1282,
+            "matches": []
+          },
+          "projects.csv": {
+            "count": 1391,
+            "matches": []
+          },
+          "source-records.json:records": {
+            "count": 231,
+            "matches": []
+          },
+          "identity-mapping.json:records": {
+            "count": 231,
+            "matches": []
+          },
+          "identity-mapping.json:decisions": {
+            "count": 231,
+            "matches": []
+          }
+        },
+        "nearby_review": "Not calculated because no eligible exact host point or parcel is available. No city centroid or third-party map coordinate is substituted."
+      },
+      "later_status_review": "Bounded original-domain and exact-name searches through November 11 found no later original physical-status report resolving this hold. This is not an exhaustive absence claim. Secondary construction descriptions and financing/approval events were not promoted to physical status.",
+      "next_evidence": "Find an original operator or named participant physical-status report and an eligible georeferenced permit, EIA, address-point or parcel record bound to the Huangshi site."
+    },
+    {
+      "candidate": "Sinnet Horinger AI Computing Center",
+      "country": "China",
+      "country_iso_a2": "CN",
+      "reason": "Fresh issuer originals support a still-proposed commercial center, expressly not started on its original schedule. Road boundaries and a property certificate have not yet been resolved to original numeric geometry. Other Horinger and Hohhot campuses are already represented; without a precise candidate point, proximity and parcel separation remain unresolved.",
+      "status_source_id": "china150-sinnet-horinger-feasibility",
+      "observed_status_review": {
+        "supported_status": "announced",
+        "as_of": "2026-09-24",
+        "admitted": false
+      },
+      "identity_review": {
+        "baseline_manifest_sha256": "c7710f68e0a6ad534a89b7e07cca7f9c5f597c06a2550122ea3a33269c33fcf5",
+        "aliases_regex": "Horinger|Helingeer|和林格尔|1006502|Sinnet|光环新网|Hohhot|呼和浩特",
+        "layers": {
+          "sites.csv": {
+            "count": 1282,
+            "matches": [
+              {
+                "site_id": "vcc-site-23ffbb893f12f178d8d3",
+                "name": "China Mobile Hohhot Data Center",
+                "country": "China",
+                "country_iso_a2": "CN"
+              },
+              {
+                "site_id": "vcc-site-7311a9ab273caa85afc2",
+                "name": "Agricultural Bank of China Horinger Data Center (Data Centre Third Branch)",
+                "country": "China",
+                "country_iso_a2": "CN"
+              },
+              {
+                "site_id": "vcc-site-8b806f7ae4b0034de59b",
+                "name": "BONC Horinger Intelligent Computing Centre (Industrial Internet Northern Regional Center)",
+                "country": "China",
+                "country_iso_a2": "CN"
+              },
+              {
+                "site_id": "vcc-site-a3b8ee51c5572c85cebc",
+                "name": "China Telecom Cloud Computing Inner Mongolia Information Park (Horinger)",
+                "country": "China",
+                "country_iso_a2": "CN"
+              },
+              {
+                "site_id": "vcc-site-aef6f651cb9065d646b0",
+                "name": "Huawei Cloud Horinger Data Center — Yungu South Zone",
+                "country": "China",
+                "country_iso_a2": "CN"
+              },
+              {
+                "site_id": "vcc-site-c1888e4188c5e991f794",
+                "name": "Paratera Inner Mongolia New Computing Base (Horinger)",
+                "country": "China",
+                "country_iso_a2": "CN"
+              },
+              {
+                "site_id": "vcc-site-f335df1fb078ba6f6d19",
+                "name": "Huawei Cloud Horinger Data Center — Yungu West Zone",
+                "country": "China",
+                "country_iso_a2": "CN"
+              },
+              {
+                "site_id": "vcc-site-f59d2f5037e6cf9243dd",
+                "name": "Volcano Engine Inner Mongolia Horinger Compute Centre — Phase 1 Campus",
+                "country": "China",
+                "country_iso_a2": "CN"
+              }
+            ]
+          },
+          "projects.csv": {
+            "count": 1391,
+            "matches": [
+              {
+                "project_id": "1dd04d18-ca1c-5a59-846b-235ebabebffa",
+                "site_id": "vcc-site-23ffbb893f12f178d8d3",
+                "name": "China Mobile Hohhot Data Center — existing intelligent computing centre operations",
+                "country": "China",
+                "country_iso_a2": "CN",
+                "geometry_evidence_id": "7ca96b06-e9d7-59ba-9829-1819b659c02c",
+                "status_evidence_id": "2be6a9c7-1cce-57ed-a102-2326b6540971",
+                "operating_model_evidence_id": "",
+                "operator": "China Mobile (中国移动)"
+              },
+              {
+                "project_id": "5c88b0bc-da28-541d-9a42-ef1e195ffcc7",
+                "site_id": "vcc-site-f335df1fb078ba6f6d19",
+                "name": "Huawei Cloud Horinger Yungu West Zone Phase 1 — second-batch works (2# data-centre machine-room building and 2# generator platform)",
+                "country": "China",
+                "country_iso_a2": "CN",
+                "geometry_evidence_id": "ea139fe4-8201-51e1-8a72-b14cd289728f",
+                "status_evidence_id": "75f62bc3-a97d-5224-997c-3a2a9ff43aff",
+                "operating_model_evidence_id": "",
+                "operator": ""
+              },
+              {
+                "project_id": "6cbf7ad8-26a6-58e3-aa0e-ad6c7a11dd19",
+                "site_id": "vcc-site-7311a9ab273caa85afc2",
+                "name": "Agricultural Bank of China Horinger Data Center — newly commissioned data-centre operations",
+                "country": "China",
+                "country_iso_a2": "CN",
+                "geometry_evidence_id": "3e1f0a7d-0239-5f8a-921a-edae10983d29",
+                "status_evidence_id": "828c3774-ef0a-51d4-8d50-9af047a15158",
+                "operating_model_evidence_id": "",
+                "operator": "Agricultural Bank of China (中国农业银行)"
+              },
+              {
+                "project_id": "7da9b59e-38b7-5335-9393-f739f93d03cd",
+                "site_id": "vcc-site-aef6f651cb9065d646b0",
+                "name": "Huawei Cloud Horinger Yungu South Zone Phase 1 — 3# data-centre machine-room building (3D data centre)",
+                "country": "China",
+                "country_iso_a2": "CN",
+                "geometry_evidence_id": "6eeb18ad-b80c-5658-b192-b285ad32bee7",
+                "status_evidence_id": "2c82a8e7-be93-5b45-8cc8-090aab9ec5cd",
+                "operating_model_evidence_id": "",
+                "operator": ""
+              },
+              {
+                "project_id": "8140cff8-04b3-5d90-a8bc-f5fb48f7af08",
+                "site_id": "vcc-site-8b806f7ae4b0034de59b",
+                "name": "BONC Horinger Intelligent Computing Centre — existing operations",
+                "country": "China",
+                "country_iso_a2": "CN",
+                "geometry_evidence_id": "48b3c190-79dd-5d90-a890-ed1758f3c681",
+                "status_evidence_id": "b5152228-7680-5036-a60d-fe39da80b1c1",
+                "operating_model_evidence_id": "",
+                "operator": "BONC (东方国信; 北京东方国信科技股份有限公司)"
+              },
+              {
+                "project_id": "83d24ae4-38df-5b1f-9d3c-ea679f7c21d0",
+                "site_id": "vcc-site-f59d2f5037e6cf9243dd",
+                "name": "Volcano Engine Inner Mongolia Horinger Compute Centre Phase 1 A — 10-1 data-centre machine-room building",
+                "country": "China",
+                "country_iso_a2": "CN",
+                "geometry_evidence_id": "2130cbd0-e145-5f34-aa5f-6910db5fdbf2",
+                "status_evidence_id": "57454158-b171-5a06-8659-785457c564b1",
+                "operating_model_evidence_id": "",
+                "operator": ""
+              },
+              {
+                "project_id": "bfdd4a67-bc51-551b-9ea0-88e3fb9de310",
+                "site_id": "vcc-site-c1888e4188c5e991f794",
+                "name": "Paratera Inner Mongolia New Computing Base — Phase 2 works (二期工程)",
+                "country": "China",
+                "country_iso_a2": "CN",
+                "geometry_evidence_id": "b62436b3-706b-5909-8d0b-7395e77bbc48",
+                "status_evidence_id": "5b02c04c-137f-595e-bf5f-7596146029a8",
+                "operating_model_evidence_id": "",
+                "operator": "Paratera (并行科技)"
+              },
+              {
+                "project_id": "cd72f11f-e9b0-52ab-9b08-2e45abd3a43d",
+                "site_id": "vcc-site-c1888e4188c5e991f794",
+                "name": "Paratera Inner Mongolia New Computing Base — existing compute-base operations",
+                "country": "China",
+                "country_iso_a2": "CN",
+                "geometry_evidence_id": "b62436b3-706b-5909-8d0b-7395e77bbc48",
+                "status_evidence_id": "b5152228-7680-5036-a60d-fe39da80b1c1",
+                "operating_model_evidence_id": "",
+                "operator": "Paratera (并行科技)"
+              },
+              {
+                "project_id": "d4f5ee02-4c8a-5252-97fd-e39f7add28bf",
+                "site_id": "vcc-site-23ffbb893f12f178d8d3",
+                "name": "China Mobile Hohhot B25/B27 Expansion",
+                "country": "China",
+                "country_iso_a2": "CN",
+                "geometry_evidence_id": "7ca96b06-e9d7-59ba-9829-1819b659c02c",
+                "status_evidence_id": "13283b78-b1ee-5ed7-8b23-7f8abd2238f4",
+                "operating_model_evidence_id": "",
+                "operator": ""
+              },
+              {
+                "project_id": "fbffac41-d525-5f63-a471-9c5870b3ed32",
+                "site_id": "vcc-site-23ffbb893f12f178d8d3",
+                "name": "China Mobile Hohhot Data Center — B02 machine building operations",
+                "country": "China",
+                "country_iso_a2": "CN",
+                "geometry_evidence_id": "7ca96b06-e9d7-59ba-9829-1819b659c02c",
+                "status_evidence_id": "051ee0cb-6652-52a6-9217-f25822f1fef7",
+                "operating_model_evidence_id": "",
+                "operator": "China Mobile (中国移动)"
+              }
+            ]
+          },
+          "source-records.json:records": {
+            "count": 231,
+            "matches": []
+          },
+          "identity-mapping.json:records": {
+            "count": 231,
+            "matches": []
+          },
+          "identity-mapping.json:decisions": {
+            "count": 231,
+            "matches": []
+          }
+        },
+        "nearby_review": "Not calculated because no eligible exact host point or parcel is available. No city centroid or third-party map coordinate is substituted."
+      },
+      "later_status_review": "Bounded original-domain and exact-name searches through November 11 found no later original physical-status report resolving this hold. This is not an exhaustive absence claim. Secondary construction descriptions and financing/approval events were not promoted to physical status.",
+      "next_evidence": "Recover the official property geometry for certificate 1006502 or an original project EIA/permit with numeric location; check whether later original sources establish actual construction."
+    },
+    {
+      "candidate": "Yuyao Intelligent Computing (Inner Mongolia) Green Computing Project — Shaerying, Hohhot",
+      "country": "China",
+      "country_iso_a2": "CN",
+      "reason": "The complete original EIA confirms a named parent data-center proposal, but the only explicit numeric geometry belongs to its supporting substation and contains conflicting center versus corner coordinates. No DC-specific numeric locator resolves that discrepancy. The original diagram uses a Google Earth basemap; no geometry was digitized. The supporting substation approval is not a DC development permit.",
+      "status_source_id": "china150-yuyao-original-eia",
+      "observed_status_review": {
+        "supported_status": "announced",
+        "as_of": null,
+        "report_month": "2026-10",
+        "published_on": "2026-10-21",
+        "date_scope": "Month-dated applicant report published October21; no precise day of the physical non-start observation is invented.",
+        "not_established": "Actual construction, completion, operation and DC development permission.",
+        "admitted": false
+      },
+      "identity_review": {
+        "baseline_manifest_sha256": "c7710f68e0a6ad534a89b7e07cca7f9c5f597c06a2550122ea3a33269c33fcf5",
+        "aliases_regex": "Yuyao|煜曜|煜芯|539741|Shaerying|Shaerying|沙尔营|Tumed|土默特左旗",
+        "layers": {
+          "sites.csv": {
+            "count": 1282,
+            "matches": []
+          },
+          "projects.csv": {
+            "count": 1391,
+            "matches": []
+          },
+          "source-records.json:records": {
+            "count": 231,
+            "matches": []
+          },
+          "identity-mapping.json:records": {
+            "count": 231,
+            "matches": []
+          },
+          "identity-mapping.json:decisions": {
+            "count": 231,
+            "matches": []
+          }
+        },
+        "nearby_review": "No candidate geometry is selected. Exact nearby-campus separation remains unresolved until the parent DC locator is independently established; a substation coordinate is not silently substituted."
+      },
+      "later_status_review": "Original provincial index, complete October applicant EIA and October16 decision were inspected. Bounded name searches found later supporting-power and procurement leads but no inspected original establishing actual parent DC works. Municipal government site retrieval timed out. No later event is assumed from forecast dates; this is not exhaustive.",
+      "next_evidence": "Obtain a parent DC parcel/address point or corrected original project coordinate record that resolves the conflicting substation center and binds the exact physical DC host. Recheck a dated original status observation before admission.",
+      "geography_note": "Company name 煜曜 is romanized Yuyao; the site is in Inner Mongolia, not Yuyao city in Zhejiang."
+    },
+    {
+      "candidate": "Hostweb data center, Rua Dr. Justa Araújo 631, Serrinha, Fortaleza",
+      "country": "Brazil",
+      "hold_reason": "The original operator facility page identifies the physical data center at Rua Dr. Justa Araújo 631, Serrinha, but no original dated physical/status observation from August 13 through November 11, 2026 was recovered in this bounded pass. The latest 20 original WordPress posts begin May 20, 2026; undated facility and client claims, crawl dates and recruitment aggregators do not establish a fresh observation. A precise eligible locator is also unresolved.",
+      "identity_scope": "The commercial office at Rua Padre Chevalier 885 is distinct and cannot locate the data center. Original operator Google Maps link is not selected or decoded into an Atlas locator.",
+      "locator_review": {
+        "source": "Fortaleza municipal SEFIN 2023 fiscal-lot WFS, reached through the ordinary public map catalogue and client API.",
+        "loose_query_rejected": "JUSTA%631 returned Rua José Justa 4631 and Rua Gastão Justa 631; both are different streets and rejected.",
+        "full_street_query": "The original JUSTA%ARA query returned all 83 matched records, including the correct Rua DOUTORJUSTA ARAÚJO street in Serrinha, but no address numbered 631. Nearby numbers 643, 646, 650, 655 and 656 are not substitutes.",
+        "neighborhood_number_query": "The Serrinha address-number 631 query returned Rua Vitoriano Borges 631 and Rua Governador João Carlos 631; neither is the operator address.",
+        "limitation": "A missing cadastral-address match does not establish absence of the facility or parcel. No centroid, nearby-site distance or admission is produced without an exact property join."
+      },
+      "date_scope": "CMS dates and retrieval timestamps are not used as physical-status observation dates. The available May 20 post concerns Recife event participation rather than observation of this Fortaleza facility.",
+      "next_evidence": "Obtain a fresh dated original statement about the operating Fortaleza host and an exact operator/government numeric locator or cadastral property join for Rua Dr. Justa Araújo 631.",
+      "discovery_urls": [
+        "https://hostweb.com.br/data-center/",
+        "https://hostweb.com.br/wp-json/wp/v2/posts?per_page=20&orderby=date&order=desc",
+        "https://mapas.fortaleza.ce.gov.br/mapa/750/lotes-fiscais"
+      ],
+      "four_layer_identity_review": {
+        "aliases": [
+          "hostweb",
+          "justa ara",
+          "padre chevalier",
+          "07319644",
+          "07.319.644"
+        ],
+        "layers": {
+          "sites.csv": {
+            "records": {
+              "count": 1282,
+              "matches": []
+            }
+          },
+          "projects.csv": {
+            "records": {
+              "count": 1391,
+              "matches": []
+            }
+          },
+          "identity-mapping.json": {
+            "records": {
+              "count": 231,
+              "matches": []
+            },
+            "decisions": {
+              "count": 231,
+              "matches": []
+            }
+          },
+          "source-records.json": {
+            "records": {
+              "count": 231,
+              "matches": []
+            }
+          }
+        }
+      },
+      "nearby_review": "Not performed: no eligible point was resolved; no guessed location or admission."
+    }
+  ],
+  "research_capture_indexes": [
+    {
+      "research_scope": "ValorC3 existing commercial-host operations, address checks and bounded later-event review",
+      "captures": [
+        {
+          "capture_id": "loudoun-permit-service.json",
+          "source_url": "https://logis.loudoun.gov/gis/rest/services/LMARC/LandMARC_Permits/MapServer?f=json",
+          "final_url": "https://logis.loudoun.gov/gis/rest/services/LMARC/LandMARC_Permits/MapServer?f=json",
+          "retrieved_at": "2026-11-11T12:48:53.315908+00:00",
+          "content_hash": "32d8d4c01e2a554a515cded1b413deefa58862b3faee80c5fc78714e5337750a",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "raw_capture_file": "local_data/research-2026-11-11-commercial-150/loudoun-permit-service.json",
+          "bytes": 2606,
+          "content_type": "application/json;charset=UTF-8",
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "utah-address-authority.html",
+          "source_url": "https://gis.utah.gov/products/sgid/location/address-points/",
+          "final_url": "https://gis.utah.gov/products/sgid/location/address-points/",
+          "retrieved_at": "2026-11-11T12:47:00.736308+00:00",
+          "content_hash": "e939dc7eaf693ca2414da4f23cc7f03fa69b9f67c016ae5a3d9941a5fc12a10f",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "raw_capture_file": "local_data/research-2026-11-11-commercial-150/utah-address-authority.html",
+          "bytes": 59039,
+          "content_type": "text/html; charset=UTF-8",
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "utah-address-item.json",
+          "source_url": "https://www.arcgis.com/sharing/rest/content/items/3f4f7a8efcd147febeca8bacaea67a14?f=json",
+          "final_url": "https://www.arcgis.com/sharing/rest/content/items/3f4f7a8efcd147febeca8bacaea67a14?f=json",
+          "retrieved_at": "2026-11-11T12:47:28.210964+00:00",
+          "content_hash": "452dac4737026e1c72060a405f1e90958149128ac164b3e1a8a329c61edeed0f",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "raw_capture_file": "local_data/research-2026-11-11-commercial-150/utah-address-item.json",
+          "bytes": 6170,
+          "content_type": "application/json;charset=utf-8",
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "utah-address-layer.json",
+          "source_url": "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/UtahAddressPoints/FeatureServer/0?f=pjson",
+          "final_url": "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/UtahAddressPoints/FeatureServer/0?f=pjson",
+          "retrieved_at": "2026-11-11T12:47:00.496960+00:00",
+          "content_hash": "81c919dc499f93094231dfc93213ac2a5ad0c541f85b6301ae3c644fabb478cd",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "raw_capture_file": "local_data/research-2026-11-11-commercial-150/utah-address-layer.json",
+          "bytes": 19241,
+          "content_type": "application/json; charset=utf-8",
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "valor-boi1-census-final.json",
+          "source_url": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=10215+W+Emerald+St%2C+Boise%2C+ID+83704&benchmark=Public_AR_Current&format=json",
+          "final_url": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=10215+W+Emerald+St%2C+Boise%2C+ID+83704&benchmark=Public_AR_Current&format=json",
+          "retrieved_at": "2026-11-11T12:46:13.857623+00:00",
+          "content_hash": "6cd9ae6fc290dbb7bcce0aa5f48c74897f0a1fcfa59be6991da00331483806cb",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "raw_capture_file": "local_data/research-2026-11-11-commercial-150/valor-boi1-census-final.json",
+          "bytes": 647,
+          "content_type": "application/json",
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "valor-boi1-census.json",
+          "source_url": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=10215+W+Emerald+St%2C+Boise%2C+ID+83713&benchmark=Public_AR_Current&format=json",
+          "final_url": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=10215+W+Emerald+St%2C+Boise%2C+ID+83713&benchmark=Public_AR_Current&format=json",
+          "retrieved_at": "2026-11-11T12:45:18.339169+00:00",
+          "content_hash": "8e7e770b82a28d46c955754530396c3ce7dec785c2be86c1d509efcdb4a66d3b",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "raw_capture_file": "local_data/research-2026-11-11-commercial-150/valor-boi1-census.json",
+          "bytes": 647,
+          "content_type": "application/json",
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "valor-boi1-page.html",
+          "source_url": "https://valorc3.com/data-centers/idaho/boise/boi1-10215-w-emerald-st/",
+          "final_url": "https://valorc3.com/data-centers/idaho/boise/boi1-10215-w-emerald-st/",
+          "retrieved_at": "2026-11-11T12:45:18.520889+00:00",
+          "content_hash": "a4f5f747e8d2354d82d87460b9bada8c150f044a6e979f833e6f7504f1c618f0",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "raw_capture_file": "local_data/research-2026-11-11-commercial-150/valor-boi1-page.html",
+          "bytes": 366084,
+          "content_type": "text/html; charset=UTF-8",
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "valor-boi2-page.html",
+          "source_url": "https://valorc3.com/data-centers/idaho/boise/boi2-boise-data-center/",
+          "final_url": "https://valorc3.com/data-centers/idaho/boise/boi2-9501-w-emerald-st/",
+          "retrieved_at": "2026-11-11T12:45:18.955519+00:00",
+          "content_hash": "909f0545690f7bebb3b193bd037f03b48adf524af163903848a72d2b472044af",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "raw_capture_file": "local_data/research-2026-11-11-commercial-150/valor-boi2-page.html",
+          "bytes": 321441,
+          "content_type": "text/html; charset=UTF-8",
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "valor-boise.html",
+          "source_url": "https://valorc3.com/data-centers/boise/",
+          "final_url": "https://valorc3.com/data-centers/idaho/boise/",
+          "retrieved_at": "2026-11-11T12:44:23.612489+00:00",
+          "content_hash": "f68bd9f7c0b68ae61275994e3af3b3a9550b03f858178df77296bb018a5e975d",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "raw_capture_file": "local_data/research-2026-11-11-commercial-150/valor-boise.html",
+          "bytes": 353352,
+          "content_type": "text/html; charset=UTF-8",
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "valor-latest-posts.json",
+          "source_url": "https://valorc3.com/wp-json/wp/v2/posts?per_page=20&orderby=date&order=desc",
+          "final_url": "https://valorc3.com/wp-json/wp/v2/posts?per_page=20&orderby=date&order=desc",
+          "retrieved_at": "2026-11-11T12:48:01.881801+00:00",
+          "content_hash": "cdc128b4defdecadbd96a4f2dbca3cf6db230b4553f406532d97c51f9486c7f3",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "raw_capture_file": "local_data/research-2026-11-11-commercial-150/valor-latest-posts.json",
+          "bytes": 689947,
+          "content_type": "application/json; charset=UTF-8",
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "valor-newsroom.html",
+          "source_url": "https://valorc3.com/news/",
+          "final_url": "https://valorc3.com/news/",
+          "retrieved_at": "2026-11-11T12:46:13.283328+00:00",
+          "content_hash": "8a43e91e85a986a2d1f29a14de5c7af80ee066f5112363e583d9aeb620d9eef8",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "raw_capture_file": "local_data/research-2026-11-11-commercial-150/valor-newsroom.html",
+          "bytes": 293199,
+          "content_type": "text/html; charset=UTF-8",
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "valor-okc-acquisition.html",
+          "source_url": "https://valorc3.com/news/dif-investee-company-tonaquint-acquires-edgex-data-centers-in-oklahoma-city",
+          "final_url": "https://valorc3.com/news/dif-investee-company-tonaquint-acquires-edgex-data-centers-in-oklahoma-city/",
+          "retrieved_at": "2026-11-11T12:48:01.939495+00:00",
+          "content_hash": "3b61df109176be4547e2c87be89c7e8e34f6915993d154483fabbaabd419006d",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "raw_capture_file": "local_data/research-2026-11-11-commercial-150/valor-okc-acquisition.html",
+          "bytes": 290079,
+          "content_type": "text/html; charset=UTF-8",
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "valor-okc1-census.json",
+          "source_url": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=4442+Newcastle+Rd%2C+Oklahoma+City%2C+OK&benchmark=Public_AR_Current&format=json",
+          "final_url": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=4442+Newcastle+Rd%2C+Oklahoma+City%2C+OK&benchmark=Public_AR_Current&format=json",
+          "retrieved_at": "2026-11-11T12:46:13.637737+00:00",
+          "content_hash": "c3376402bf02cccc4a0144b6d741b70d7c4733d903ade776088a9b6b14643cd8",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "raw_capture_file": "local_data/research-2026-11-11-commercial-150/valor-okc1-census.json",
+          "bytes": 664,
+          "content_type": "application/json",
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "valor-okc1-page.html",
+          "source_url": "https://valorc3.com/data-centers/oklahoma/oklahoma-city/okc1-4442-newcastle-rd/",
+          "final_url": "https://valorc3.com/data-centers/oklahoma/oklahoma-city/okc1-4442-newcastle-rd/",
+          "retrieved_at": "2026-11-11T12:46:13.238001+00:00",
+          "content_hash": "51eea5895ea537d2db92fc0f0b5482302ce7e94c9263c712e86ead2c05a1aa95",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "raw_capture_file": "local_data/research-2026-11-11-commercial-150/valor-okc1-page.html",
+          "bytes": 351401,
+          "content_type": "text/html; charset=UTF-8",
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "valor-rebrand.html",
+          "source_url": "https://valorc3.com/news/tonaquint-rebrands-as-valorc3-data-centers/",
+          "final_url": "https://valorc3.com/news/tonaquint-rebrands-as-valorc3-data-centers/",
+          "retrieved_at": "2026-11-11T12:48:01.345598+00:00",
+          "content_hash": "606b71b03ced2f14f9e3d4863b380dd3f6ed199569e0df23e8495d936feaa2b5",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "raw_capture_file": "local_data/research-2026-11-11-commercial-150/valor-rebrand.html",
+          "bytes": 290329,
+          "content_type": "text/html; charset=UTF-8",
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "valor-september-boi1-post.html",
+          "source_url": "https://www.linkedin.com/posts/valorc3datacenters_datacenters-datacenter-colocation-activity-7500565541783351296-fk2u",
+          "final_url": "https://www.linkedin.com/posts/valorc3datacenters_datacenters-datacenter-colocation-activity-7500565541783351296-fk2u",
+          "retrieved_at": "2026-11-11T12:44:41.289412+00:00",
+          "content_hash": "ed08155487d22bdafd681d0a1772aa5e6690a00e088d024d1e2d93721274f53e",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "raw_capture_file": "local_data/research-2026-11-11-commercial-150/valor-september-boi1-post.html",
+          "bytes": 110814,
+          "content_type": "text/html; charset=utf-8",
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "valor-soc-oct26.html",
+          "source_url": "https://valorc3.com/news/valorc3-data-centers-soc-1-soc-2-type-ii-attestations-10-26-2026/",
+          "final_url": "https://valorc3.com/news/valorc3-data-centers-soc-1-soc-2-type-ii-attestations-10-26-2026/",
+          "retrieved_at": "2026-11-11T12:45:38.982773+00:00",
+          "content_hash": "53a8d5880a5f21899b4ac25185c09dd760c42703a6531b0dfe07b89ac04fb7b2",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "raw_capture_file": "local_data/research-2026-11-11-commercial-150/valor-soc-oct26.html",
+          "bytes": 290353,
+          "content_type": "text/html; charset=UTF-8",
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "valor-stg1-census-variant-0.json",
+          "source_url": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=1108+West+1600+South%2C+Saint+George%2C+UT+84770&benchmark=Public_AR_Current&format=json",
+          "final_url": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=1108+West+1600+South%2C+Saint+George%2C+UT+84770&benchmark=Public_AR_Current&format=json",
+          "retrieved_at": "2026-11-11T12:46:45.352086+00:00",
+          "content_hash": "ba8069e171d3db4d1dcab6a93557a1553b228f7a83d53a787c22f74e95b827be",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "raw_capture_file": "local_data/research-2026-11-11-commercial-150/valor-stg1-census-variant-0.json",
+          "bytes": 254,
+          "content_type": "application/json",
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "valor-stg1-census-variant-1.json",
+          "source_url": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=1108+W+1600+S%2C+ST+GEORGE%2C+UT+84790&benchmark=Public_AR_Current&format=json",
+          "final_url": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=1108+W+1600+S%2C+ST+GEORGE%2C+UT+84790&benchmark=Public_AR_Current&format=json",
+          "retrieved_at": "2026-11-11T12:46:45.392853+00:00",
+          "content_hash": "51ae65a5ce5b597754788d9855f3ff55032306bcfd20334db96cbd99fb2487fe",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "raw_capture_file": "local_data/research-2026-11-11-commercial-150/valor-stg1-census-variant-1.json",
+          "bytes": 244,
+          "content_type": "application/json",
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "valor-stg1-census-variant-2.json",
+          "source_url": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=1108+W+1600+S%2C+WASHINGTON%2C+UT&benchmark=Public_AR_Current&format=json",
+          "final_url": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=1108+W+1600+S%2C+WASHINGTON%2C+UT&benchmark=Public_AR_Current&format=json",
+          "retrieved_at": "2026-11-11T12:46:45.372819+00:00",
+          "content_hash": "ccdf47a718e0787122e9cafc72adaca70595fc4bf7735a5b5c477ccdd991132c",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "raw_capture_file": "local_data/research-2026-11-11-commercial-150/valor-stg1-census-variant-2.json",
+          "bytes": 239,
+          "content_type": "application/json",
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "valor-stg1-census-variant-3.json",
+          "source_url": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=1108+W+1600+S%2C+UT+84770&benchmark=Public_AR_Current&format=json",
+          "final_url": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=1108+W+1600+S%2C+UT+84770&benchmark=Public_AR_Current&format=json",
+          "retrieved_at": "2026-11-11T12:46:45.341051+00:00",
+          "content_hash": "9723a736b35b0b944e429af0288bf03e4a5de589f6a4ce2b23e8a801d74a528a",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "raw_capture_file": "local_data/research-2026-11-11-commercial-150/valor-stg1-census-variant-3.json",
+          "bytes": 233,
+          "content_type": "application/json",
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "valor-stg1-census.json",
+          "source_url": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=1108+W+1600+S%2C+St+George%2C+UT+84770&benchmark=Public_AR_Current&format=json",
+          "final_url": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=1108+W+1600+S%2C+St+George%2C+UT+84770&benchmark=Public_AR_Current&format=json",
+          "retrieved_at": "2026-11-11T12:46:13.081703+00:00",
+          "content_hash": "1c3152bd17b789974f82b6d53507390c3be5db4a4fb6f36bfba9e001ac9577fb",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "raw_capture_file": "local_data/research-2026-11-11-commercial-150/valor-stg1-census.json",
+          "bytes": 244,
+          "content_type": "application/json",
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "valor-stg1-page.html",
+          "source_url": "https://valorc3.com/data-centers/utah/st-george/stg1-1108-west-1600-south-bldg-d/",
+          "final_url": "https://valorc3.com/data-centers/utah/st-george/stg1-1108-west-1600-south-bldg-d/",
+          "retrieved_at": "2026-11-11T12:46:13.550848+00:00",
+          "content_hash": "18fd9190f0ee64cc36cdbe6a428ab9c5181e3899dba7e91309a51e901cc62a8e",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "raw_capture_file": "local_data/research-2026-11-11-commercial-150/valor-stg1-page.html",
+          "bytes": 359468,
+          "content_type": "text/html; charset=UTF-8",
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "valor-stg1-utah-address.json",
+          "source_url": "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/UtahAddressPoints/FeatureServer/0/query?where=AddNum%3D%271108%27+AND+StreetName%3D%271600%27&outFields=%2A&returnGeometry=true&f=json",
+          "final_url": "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/UtahAddressPoints/FeatureServer/0/query?where=AddNum%3D%271108%27+AND+StreetName%3D%271600%27&outFields=%2A&returnGeometry=true&f=json",
+          "retrieved_at": "2026-11-11T12:47:38.021169+00:00",
+          "content_hash": "210dd7b56189feb6db3d2ffe1fb3887dc3a58d3560f7feb6f5c18d0949b43c3b",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "raw_capture_file": "local_data/research-2026-11-11-commercial-150/valor-stg1-utah-address.json",
+          "bytes": 4349,
+          "content_type": "application/json; charset=utf-8",
+          "raw_capture_redistributed": false
+        },
+        {
+          "source_url": "https://www.census.gov/programs-surveys/geography/technical-documentation/complete-technical-documentation/census-geocoder.html",
+          "raw_capture_file": "local_data/research-2026-11-11-commercial-143/census-geocoder-documentation.html",
+          "content_hash": "4c3a1847c2e4069cd1138311bd78f15b77087154e528fdb24464c87e45a8e1f9",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "retrieved_at": "2026-11-11T09:47:55.329236+00:00",
+          "raw_capture_redistributed": false,
+          "bytes": 340150,
+          "capture_id": "commercial150-census-geocoder-documentation"
+        },
+        {
+          "source_url": "https://www2.census.gov/geo/pdfs/maps-data/data/FAQ_for_Census_Bureau_Public_Geocoder.pdf",
+          "raw_capture_file": "local_data/research-2026-11-11-commercial-143/census-geocoder-faq.pdf",
+          "content_hash": "13a8ca9f7395daf53e0c06344dd2f1ed28bc6806ab0625b3410eba7e280db169",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "retrieved_at": "2026-11-11T09:47:55.127247+00:00",
+          "raw_capture_redistributed": false,
+          "bytes": 561406,
+          "capture_id": "commercial150-census-geocoder-faq"
+        }
+      ]
+    },
+    {
+      "research_scope": "Confirmed Cologix ASH2 CMS-date provenance issue; no correction admitted",
+      "captures": [
+        {
+          "source_url": "https://cologix.com/data-centers/ashburn/ash2/",
+          "retrieved_at": "2026-10-23T00:46:20.635Z",
+          "content_hash": "ea84e1141497d66aa02e838ede28c8900b5f543a61460643d688fc8d5c516ac3",
+          "content_hash_scope": "sha256_exact_content_decoded_response_bytes",
+          "raw_capture_file": "local_data/country-research-us-va-p2/cologix-ash2-20261023.html",
+          "raw_capture_redistributed": false,
+          "capture_id": "us-va-p2-cologix-ash2-page-20261015",
+          "bytes": 429597,
+          "existing_source_id": "us-va-p2-cologix-ash2-page-20261015"
+        },
+        {
+          "source_url": "https://web.archive.org/web/20260630010338id_/https://cologix.com/data-centers/ashburn/ash2/",
+          "retrieved_at": "2026-10-23T00:47:50.995Z",
+          "content_hash": "3f850b9de9606ff1b16210e2ceba1031e77f4c9a5c71d506b9c4c5e97abeb11a",
+          "content_hash_scope": "sha256_exact_content_decoded_response_bytes",
+          "raw_capture_file": "local_data/country-research-us-va-p2/ia-cologix-ash2-20260630.html",
+          "raw_capture_redistributed": false,
+          "capture_id": "us-va-p2-cologix-ash2-page-ia-20260630",
+          "bytes": 473085,
+          "existing_source_id": "us-va-p2-cologix-ash2-page-ia-20260630"
+        },
+        {
+          "source_url": "https://logis.loudoun.gov/gis/rest/services/LMARC/LandMARC_Permits/MapServer/1/query?where=ParcelPIN%3D%27060189720000%27&outFields=PermitNumber,PermitType,PermitWorkClass,PermitStatus,ParcelPIN,ADDRESSLINE1,ADDRESSLINE2,ADDRESSLINE3,STREETTYPE,CITY,DESCRIPTION,APPLYDATE,ISSUEDATE,FINALIZEDATE,LASTINSPECTIONDATE,SQUAREFEET,VALUE,DataSnapshot&returnGeometry=false&f=json",
+          "retrieved_at": "2026-10-23T00:48:59.948Z",
+          "content_hash": "81a12fde625130d7f41a523a5e2f785490bbbd8e9fe80b9353ef433583169cc5",
+          "content_hash_scope": "sha256_exact_content_decoded_response_bytes",
+          "raw_capture_file": "local_data/country-research-us-va-p2/loudoun-landmarc-parcel-060189720000.json",
+          "raw_capture_redistributed": false,
+          "capture_id": "us-va-p2-loudoun-landmarc-parcel-060189720000",
+          "bytes": 22297,
+          "existing_source_id": "us-va-p2-loudoun-landmarc-parcel-060189720000"
+        },
+        {
+          "capture_id": "ash2-current.html",
+          "source_url": "https://cologix.com/data-centers/ashburn/ash2/",
+          "final_url": "https://cologix.com/data-centers/ashburn/ash2/",
+          "retrieved_at": "2026-11-11T12:38:25.921250+00:00",
+          "content_hash": "91420e0bc81efde4ee4e091a91c74ceb6484cf31ca2c80820ac847ea89fcc8bd",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "raw_capture_file": "local_data/research-2026-11-11-cologix-date-audit-next-pass/ash2-current.html",
+          "bytes": 415770,
+          "content_type": "text/html; charset=UTF-8",
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "ash2-specsheet.html",
+          "source_url": "https://cologix.com/resources/spec-sheets/ash2-data-center-spec-sheet/",
+          "final_url": "https://cologix.com/resources/spec-sheets/ash2-data-center-spec-sheet/",
+          "retrieved_at": "2026-11-11T12:41:00.188386+00:00",
+          "content_hash": "8a725b69ccc9010ec334d10eedfa199b510607c8fcbeac70ae32d028b3a04ad0",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "raw_capture_file": "local_data/research-2026-11-11-cologix-date-audit-next-pass/ash2-specsheet.html",
+          "bytes": 433250,
+          "content_type": "text/html; charset=UTF-8",
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "cologix-2025-esg-report.pdf",
+          "source_url": "https://cologix.com/wp-content/uploads/2026/08/Cologix-2025-ESG-Report.pdf",
+          "final_url": "https://cologix.com/wp-content/uploads/2026/08/Cologix-2025-ESG-Report.pdf",
+          "retrieved_at": "2026-11-11T12:41:31.415726+00:00",
+          "content_hash": "b22bb395171582c92a72691141af66355bfc62f73ad9753d13da50fbe2e8251d",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "raw_capture_file": "local_data/research-2026-11-11-cologix-date-audit-next-pass/cologix-2025-esg-report.pdf",
+          "bytes": 15715242,
+          "content_type": "application/pdf",
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "cologix-esg-2025.html",
+          "source_url": "https://cologix.com/news/cologix-releases-2025-esg-report-highlighting-purpose-driven-growth/",
+          "final_url": "https://cologix.com/news/cologix-releases-2025-esg-report-highlighting-purpose-driven-growth/",
+          "retrieved_at": "2026-11-11T12:38:30.387309+00:00",
+          "content_hash": "ddc7160790c0d266e8cb7bfe69c093faf4376dd8d1d8f4ed1cb9fc6949f217b0",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "raw_capture_file": "local_data/research-2026-11-11-cologix-date-audit-next-pass/cologix-esg-2025.html",
+          "bytes": 443248,
+          "content_type": "text/html; charset=UTF-8",
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "cologix-esg-landing.html",
+          "source_url": "https://cologix.com/about-us/esg/",
+          "final_url": "https://cologix.com/about-us/esg/",
+          "retrieved_at": "2026-11-11T12:41:03.463295+00:00",
+          "content_hash": "d3843fb0503c4e052d15368a1bbcbcedce3c0c763b3cca00662b5ed103de16e9",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "raw_capture_file": "local_data/research-2026-11-11-cologix-date-audit-next-pass/cologix-esg-landing.html",
+          "bytes": 482667,
+          "content_type": "text/html; charset=UTF-8",
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "cologix-esg-report.html",
+          "source_url": "https://cologix.com/resources/analyst-reports/cologixs-6th-annual-esg-report-the-power-of-connection/",
+          "final_url": "https://cologix.com/resources/analyst-reports/cologixs-6th-annual-esg-report-the-power-of-connection/",
+          "retrieved_at": "2026-11-11T12:41:03.283789+00:00",
+          "content_hash": "0dd66c8d83b6f6fa9f111bec9e7ab8cd5a7add347a5cc1aed27833f344b71632",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "raw_capture_file": "local_data/research-2026-11-11-cologix-date-audit-next-pass/cologix-esg-report.html",
+          "bytes": 433416,
+          "content_type": "text/html; charset=UTF-8",
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "cologix-news.html",
+          "source_url": "https://cologix.com/news/",
+          "final_url": "https://cologix.com/news/",
+          "retrieved_at": "2026-11-11T12:38:29.000251+00:00",
+          "content_hash": "bac3d71add5b05407d5a9641fcb4c7c9e5b3224ae2c39c0b21120448cbbe9670",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "raw_capture_file": "local_data/research-2026-11-11-cologix-date-audit-next-pass/cologix-news.html",
+          "bytes": 476270,
+          "content_type": "text/html; charset=UTF-8",
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "cologix-specs.html",
+          "source_url": "https://cologix.com/resources/spec-sheets/",
+          "final_url": "https://cologix.com/resources/spec-sheets/",
+          "retrieved_at": "2026-11-11T12:38:28.733178+00:00",
+          "content_hash": "098731d1e225796f64f0786478d3c194bd1a002eae7d7fa00b5b360a5a60806c",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "raw_capture_file": "local_data/research-2026-11-11-cologix-date-audit-next-pass/cologix-specs.html",
+          "bytes": 485009,
+          "content_type": "text/html; charset=UTF-8",
+          "raw_capture_redistributed": false
+        }
+      ]
+    },
+    {
+      "research_scope": "AngoNAP locator discovery only: RNP supplied partner-site context, not the selected coordinate. Municipal cadastral geometry supplies the accepted point.",
+      "captures": [
+        {
+          "source_url": "https://plataforma.rnp.br/arquivos/documents/ANEXO%20II%20-%20Lista%20de%20sites%20-%20INFOVIA%20NACIONAL.pdf?VersionId=nu1GrUADbr7NCTlbPH6n9f0YufLpG1HL",
+          "final_url": "https://plataforma.rnp.br/arquivos/documents/ANEXO%20II%20-%20Lista%20de%20sites%20-%20INFOVIA%20NACIONAL.pdf?VersionId=nu1GrUADbr7NCTlbPH6n9f0YufLpG1HL",
+          "retrieved_at": "2026-11-11T12:43:50.457623+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-latam-150/rnp-infovia-sites.pdf",
+          "content_hash": "684408742252e40952eccef53156ab37a5f25670957d2bb44bcb5b4b75173620",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 145798,
+          "http_status": 200,
+          "content_type": "application/pdf",
+          "raw_capture_redistributed": false,
+          "capture_id": "rnp-infovia-sites.pdf"
+        }
+      ]
+    },
+    {
+      "research_scope": "Unadmitted candidate context",
+      "captures": [
+        {
+          "id": "europe150-arcus-reynolds-oct27",
+          "kind": "company_disclosure",
+          "title": "Volta Data Centres acquires the Reynolds House Manchester data centre",
+          "publisher": "Arcus Infrastructure Partners",
+          "source_family": "Arcus Infrastructure Partners",
+          "license": "source-terms; compact factual projection only; no open-content licence asserted",
+          "attribution": "Arcus Infrastructure Partners",
+          "published_at": "2026-10-27",
+          "capture_id": "arcus-oct27-web.txt",
+          "source_url": "https://arcusip.com/volta-data-centres-acquires-the-reynolds-house-manchester-data-centre/",
+          "canonical_url": "https://arcusip.com/volta-data-centres-acquires-the-reynolds-house-manchester-data-centre/",
+          "retrieved_at": "2026-11-11T12:51:28.739Z",
+          "retrieval_started_at": "2026-11-11T12:51:27.274Z",
+          "raw_capture_file": "local_data/research-2026-11-11-europe-150/arcus-oct27-web.txt",
+          "content_hash": "9a049c28d25a789599393c1a78696f9cfb8a41860096d696d656e39130c1b081",
+          "content_hash_scope": "sha256_utf8_complete_web_tool_original_page_text_with_terminal_newline",
+          "bytes": 7708,
+          "representation": "Complete original-page text returned by web.open, including 144 numbered lines and response metadata. This is not the original HTTP body; direct HTTP returned 403.",
+          "raw_capture_redistributed": false,
+          "summary": "Original owner release reports current commercial colocation, carriers and customers at the named Reynolds House campus. The acquisition itself is not the physical-status basis.",
+          "extraction": {
+            "date_basis": "Visible October 27, 2026 and London, 27 October 2026 body dateline agree. Arcus assets under management carry a separate June 30 date; that does not scope the current host narrative.",
+            "supported_status": "operational",
+            "status_as_of": "2026-10-27",
+            "excluded_metrics": "No future expansion, installed power, carrier count or customer count is selected.",
+            "later_context": {
+              "capture_id": "ashurst-nov2.html",
+              "source_url": "https://www.ashurstperkinscoie.com/en/who-we-are/our-news-work-market-recognition/ashurst-perkins-coie-advises-arcus-on-agreement-to-acquire-reynolds-house-manchester-data-centre/",
+              "canonical_url": "https://www.ashurstperkinscoie.com/en/who-we-are/our-news-work-market-recognition/ashurst-perkins-coie-advises-arcus-on-agreement-to-acquire-reynolds-house-manchester-data-centre/",
+              "retrieved_at": "2026-11-11T12:45:56.009492+00:00",
+              "raw_capture_file": "local_data/research-2026-11-11-europe-150/ashurst-nov2.html",
+              "content_hash": "8fc4baf1b6641c52f6ad786cb484a9049d75b879c3c22ba49ff8068e3bc541e1",
+              "content_hash_scope": "sha256_exact_http_response_body_bytes",
+              "bytes": 277101,
+              "http_status": 200,
+              "content_type": "text/html; charset=utf-8",
+              "raw_capture_redistributed": false
+            }
+          }
+        },
+        {
+          "id": "europe150-volta-reynolds-identity",
+          "kind": "company_disclosure",
+          "title": "Volta Manchester data centres",
+          "publisher": "Volta Data Centres",
+          "source_family": "Volta Data Centres",
+          "license": "source-terms; compact factual projection only; no open-content licence asserted",
+          "attribution": "Volta Data Centres",
+          "published_at": null,
+          "capture_id": "volta-manchester.html",
+          "source_url": "https://voltadatacentres.com/manchester/",
+          "canonical_url": "https://voltadatacentres.com/manchester/",
+          "retrieved_at": "2026-11-11T12:42:30.356028+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-europe-150/volta-manchester.html",
+          "content_hash": "c288156a32ff64273f6d99c9f805dfbcc5293828862a70110330dff75d49db16",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 291236,
+          "http_status": 200,
+          "content_type": "text/html; charset=UTF-8",
+          "raw_capture_redistributed": false,
+          "summary": "Current operator page links the Manchester business to Volta and says existing customers continue receiving service from the same data centres.",
+          "extraction": {
+            "date_semantics": "Undated identity context only. The separate Reynolds announcement page carries October 17 CMS metadata, conflicting with the dated October 27 owner transaction release; that CMS date is not used as a physical observation.",
+            "supporting_captures": [
+              {
+                "capture_id": "volta-reynolds.html",
+                "source_url": "https://voltadatacentres.com/reynolds-house-manchester-joins-volta/",
+                "canonical_url": "https://voltadatacentres.com/reynolds-house-manchester-joins-volta/",
+                "retrieved_at": "2026-11-11T12:42:30.340738+00:00",
+                "raw_capture_file": "local_data/research-2026-11-11-europe-150/volta-reynolds.html",
+                "content_hash": "357c372a16defb763f84a6abde7d7f9c61961af0df96f3b95f02b41569e754b7",
+                "content_hash_scope": "sha256_exact_http_response_body_bytes",
+                "bytes": 170081,
+                "http_status": 200,
+                "content_type": "text/html; charset=UTF-8",
+                "raw_capture_redistributed": false
+              },
+              {
+                "capture_id": "volta-wp-reynolds.json",
+                "source_url": "https://voltadatacentres.com/wp-json/wp/v2/posts?slug=reynolds-house-manchester-joins-volta",
+                "canonical_url": "https://voltadatacentres.com/wp-json/wp/v2/posts?slug=reynolds-house-manchester-joins-volta",
+                "retrieved_at": "2026-11-11T12:42:53.830481+00:00",
+                "raw_capture_file": "local_data/research-2026-11-11-europe-150/volta-wp-reynolds.json",
+                "content_hash": "42955c56e867c1e3b01519b525bd1936edf6cba3cc9ccbcb7fd1d578539d386f",
+                "content_hash_scope": "sha256_exact_http_response_body_bytes",
+                "bytes": 15908,
+                "http_status": 200,
+                "content_type": "application/json; charset=UTF-8",
+                "raw_capture_redistributed": false
+              },
+              {
+                "capture_id": "lunar1.html",
+                "source_url": "https://www.lunardigital.co.uk/data-centres/lunar-1",
+                "canonical_url": "https://www.lunardigital.co.uk/data-centres/lunar-1",
+                "retrieved_at": "2026-11-11T12:45:28.214927+00:00",
+                "raw_capture_file": "local_data/research-2026-11-11-europe-150/lunar1.html",
+                "content_hash": "88a209c9734cf7116912789ff2afb36bcf202e0ee96459009418ea8703804568",
+                "content_hash_scope": "sha256_exact_http_response_body_bytes",
+                "bytes": 150614,
+                "http_status": 200,
+                "content_type": "text/html; charset=utf-8",
+                "raw_capture_redistributed": false
+              },
+              {
+                "capture_id": "lunar2.html",
+                "source_url": "https://www.lunardigital.co.uk/data-centres/lunar-2",
+                "canonical_url": "https://www.lunardigital.co.uk/data-centres/lunar-2",
+                "retrieved_at": "2026-11-11T12:45:27.760947+00:00",
+                "raw_capture_file": "local_data/research-2026-11-11-europe-150/lunar2.html",
+                "content_hash": "f4e36138a1eba860f3539675d6d66c661563a61bda38f3b9692630cb502f7e56",
+                "content_hash_scope": "sha256_exact_http_response_body_bytes",
+                "bytes": 142166,
+                "http_status": 200,
+                "content_type": "text/html; charset=utf-8",
+                "raw_capture_redistributed": false
+              },
+              {
+                "capture_id": "lunar3.html",
+                "source_url": "https://www.lunardigital.co.uk/data-centres/lunar-3",
+                "canonical_url": "https://www.lunardigital.co.uk/data-centres/lunar-3",
+                "retrieved_at": "2026-11-11T12:45:27.683582+00:00",
+                "raw_capture_file": "local_data/research-2026-11-11-europe-150/lunar3.html",
+                "content_hash": "d5f231854cb5c41cb737ae465b309e3a35dd58cbba5c3400881430fb4d564e0c",
+                "content_hash_scope": "sha256_exact_http_response_body_bytes",
+                "bytes": 145854,
+                "http_status": 200,
+                "content_type": "text/html; charset=utf-8",
+                "raw_capture_redistributed": false
+              },
+              {
+                "capture_id": "lunar-contact.html",
+                "source_url": "https://www.lunardigital.co.uk/contact-us",
+                "canonical_url": "https://www.lunardigital.co.uk/contact-us",
+                "retrieved_at": "2026-11-11T12:45:55.107402+00:00",
+                "raw_capture_file": "local_data/research-2026-11-11-europe-150/lunar-contact.html",
+                "content_hash": "6ccc8aa17b043aad646ef5d532185f6997695d9da6dfc1e5491ef25fd8e2bf8c",
+                "content_hash_scope": "sha256_exact_http_response_body_bytes",
+                "bytes": 85701,
+                "http_status": 200,
+                "content_type": "text/html; charset=utf-8",
+                "raw_capture_redistributed": false
+              },
+              {
+                "capture_id": "iomart-manchester.html",
+                "source_url": "https://www.iomart.com/our-data-centres/manchester-city-data-centres",
+                "canonical_url": "https://www.iomart.com/our-data-centres/manchester-city-data-centres",
+                "retrieved_at": "2026-11-11T12:49:30.189840+00:00",
+                "raw_capture_file": "local_data/research-2026-11-11-europe-150/iomart-manchester.html",
+                "content_hash": "8d128718094871bf6d908ecdaa645c5ddb54ad45c619c8b49a6d486d011ecaed",
+                "content_hash_scope": "sha256_exact_http_response_body_bytes",
+                "bytes": 107858,
+                "http_status": 200,
+                "content_type": "text/html; charset=utf-8",
+                "raw_capture_redistributed": false
+              }
+            ],
+            "suite_scope": "Lunar 1 and Lunar 2 share the Reynolds House host. The third Manchester facility at Hyde Road must not be merged merely because Volta groups the city portfolio. The original iomart page identifies Reynolds House as DC7 and Turing House as DC6."
+          }
+        },
+        {
+          "id": "europe150-capitaland-reynolds-rejected-marker",
+          "kind": "company_disclosure",
+          "title": "Reynolds House property reference",
+          "publisher": "CapitaLand",
+          "source_family": "CapitaLand",
+          "license": "source-terms; compact factual projection only; no open-content licence asserted",
+          "attribution": "CapitaLand",
+          "published_at": null,
+          "capture_id": "capitaland-reynolds.html",
+          "source_url": "https://www.capitaland.com/en/find-a-property/global-property-listing/data-centres/reynolds-house.html",
+          "canonical_url": "https://www.capitaland.com/en/find-a-property/global-property-listing/data-centres/reynolds-house.html",
+          "retrieved_at": "2026-11-11T12:42:52.941066+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-europe-150/capitaland-reynolds.html",
+          "content_hash": "4c7406b338d023a833722cd1d10507210cc8b5a7b2041906a4685e21036005bd",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 265875,
+          "http_status": 200,
+          "content_type": "text/html;charset=utf-8",
+          "raw_capture_redistributed": false,
+          "summary": "Landlord names Reynolds House at Plot C1, Birley Fields, Hulme and publishes a native numeric marker. The point is not selected because its campus placement remains unresolved.",
+          "extraction": {
+            "published_marker": {
+              "latitude": 53.4663968,
+              "longitude": -2.2470208,
+              "label": "Reynolds House",
+              "address": "Plot C1, Birley Fields, Hulme, Manchester, Greater Manchester, UK"
+            },
+            "field_provenance": "Own HTML div#entity-detail-map data-latitude/data-longitude, not fetched from a map app.",
+            "rejection": "The native marker is about 240 m north of the operator page’s embedded Google view of the facility. No official parcel or building geometry was obtained to resolve that discrepancy. Neither point is selected, averaged or nudged; Google coordinates remain excluded.",
+            "datum": "Native latitude/longitude; no declared datum or accuracy. No transformation or location claim admitted."
+          }
+        },
+        {
+          "id": "europe150-government-epc-reynolds",
+          "kind": "government_record",
+          "title": "Government energy certificate: Reynolds House, Manchester Technopark, Plot C1",
+          "publisher": "UK energy performance certificate register",
+          "source_family": "UK energy performance certificate register",
+          "license": "source-terms; compact factual projection only; no open-content licence asserted",
+          "attribution": "UK energy performance certificate register",
+          "published_at": null,
+          "capture_id": "epc-reynolds-property.html",
+          "source_url": "https://find-energy-certificate.service.gov.uk/energy-certificate/6701-7341-5920-4175-8355",
+          "canonical_url": "https://find-energy-certificate.service.gov.uk/energy-certificate/6701-7341-5920-4175-8355",
+          "retrieved_at": "2026-11-11T12:49:52.835179+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-europe-150/epc-reynolds-property.html",
+          "content_hash": "aa1c5d619df7b6c55e23ed4e34bc99b5527c20b27818cc45b91212479b6f0168",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 34424,
+          "http_status": 200,
+          "content_type": "text/html;charset=utf-8",
+          "raw_capture_redistributed": false,
+          "summary": "Original government certificate identifies the named property at the landlord’s Plot C1 address. Related air-conditioning certificate identifies Reynolds House at 4 Archway.",
+          "extraction": {
+            "certificate_reference": "6701-7341-5920-4175-8355",
+            "address": "Reynolds House, Manchester Technopark, Plot C1, Birley Fields, Hulme, Manchester, M15 5RN",
+            "supporting_captures": [
+              {
+                "capture_id": "epc-nondomestic-search.html",
+                "source_url": "https://find-energy-certificate.service.gov.uk/find-a-non-domestic-certificate/search-by-postcode?postcode=M15%205RL",
+                "canonical_url": "https://find-energy-certificate.service.gov.uk/find-a-non-domestic-certificate/search-by-postcode?postcode=M15%205RL",
+                "retrieved_at": "2026-11-11T12:49:29.920144+00:00",
+                "raw_capture_file": "local_data/research-2026-11-11-europe-150/epc-nondomestic-search.html",
+                "content_hash": "eb200e5d1b77948c0829002e306f72f274bb40d7cecadf58395727b7a7032106",
+                "content_hash_scope": "sha256_exact_http_response_body_bytes",
+                "bytes": 35262,
+                "http_status": 200,
+                "content_type": "text/html;charset=utf-8",
+                "raw_capture_redistributed": false
+              },
+              {
+                "capture_id": "epc-nondomestic-search-rn.html",
+                "source_url": "https://find-energy-certificate.service.gov.uk/find-a-non-domestic-certificate/search-by-postcode?postcode=M15%205RN",
+                "canonical_url": "https://find-energy-certificate.service.gov.uk/find-a-non-domestic-certificate/search-by-postcode?postcode=M15%205RN",
+                "retrieved_at": "2026-11-11T12:49:29.904526+00:00",
+                "raw_capture_file": "local_data/research-2026-11-11-europe-150/epc-nondomestic-search-rn.html",
+                "content_hash": "6fd0f0064c762c4081c6c5773e74fa05888bab0719554893e8516c43f1290da4",
+                "content_hash_scope": "sha256_exact_http_response_body_bytes",
+                "bytes": 23477,
+                "http_status": 200,
+                "content_type": "text/html;charset=utf-8",
+                "raw_capture_redistributed": false
+              },
+              {
+                "capture_id": "epc-reynolds-ac.html",
+                "source_url": "https://find-energy-certificate.service.gov.uk/energy-certificate/2165-6026-0441-0500-8295",
+                "canonical_url": "https://find-energy-certificate.service.gov.uk/energy-certificate/2165-6026-0441-0500-8295",
+                "retrieved_at": "2026-11-11T12:49:52.915387+00:00",
+                "raw_capture_file": "local_data/research-2026-11-11-europe-150/epc-reynolds-ac.html",
+                "content_hash": "4ed032e1043af9d2aba5ae6cec2c50094d5849882b8e633eeca0dc21ca02f83e",
+                "content_hash_scope": "sha256_exact_http_response_body_bytes",
+                "bytes": 30429,
+                "http_status": 200,
+                "content_type": "text/html;charset=utf-8",
+                "raw_capture_redistributed": false
+              },
+              {
+                "capture_id": "epc-reynolds-ac-report.html",
+                "source_url": "https://find-energy-certificate.service.gov.uk/energy-certificate/0960-1242-0514-6820-5054",
+                "canonical_url": "https://find-energy-certificate.service.gov.uk/energy-certificate/0960-1242-0514-6820-5054",
+                "retrieved_at": "2026-11-11T12:49:52.906638+00:00",
+                "raw_capture_file": "local_data/research-2026-11-11-europe-150/epc-reynolds-ac-report.html",
+                "content_hash": "84f7b3b4018286b0318390b4b19ff2775e7990ead4cb955cea8281988204ab93",
+                "content_hash_scope": "sha256_exact_http_response_body_bytes",
+                "bytes": 132120,
+                "http_status": 200,
+                "content_type": "text/html;charset=utf-8",
+                "raw_capture_redistributed": false
+              }
+            ],
+            "date_semantics": "Historical identity records only. Certificate expiry, inspection and lodgement dates are not publication dates or fresh host operating observations.",
+            "locator_limit": "The inspected public records expose no UPRN or numeric location suitable for joining to OS Open UPRN."
+          }
+        },
+        {
+          "id": "europe150-ea-reynolds-query",
+          "kind": "government_record",
+          "title": "Environment Agency installation-register search for Reynolds",
+          "publisher": "Environment Agency",
+          "source_family": "Environment Agency",
+          "license": "source-terms; compact factual projection only; no open-content licence asserted",
+          "attribution": "Environment Agency",
+          "published_at": null,
+          "capture_id": "ea-reynolds.json",
+          "source_url": "https://environment.data.gov.uk/public-register/industrial-installations/registration.json?address-search=Reynolds",
+          "canonical_url": "https://environment.data.gov.uk/public-register/industrial-installations/registration.json?address-search=Reynolds",
+          "retrieved_at": "2026-11-11T12:48:33.783961+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-europe-150/ea-reynolds.json",
+          "content_hash": "76052bd4462462857682dfa7b0078e26accf261db16e8610740b78f6eb16a01c",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 978,
+          "http_status": 200,
+          "content_type": "application/json",
+          "raw_capture_redistributed": false,
+          "summary": "The exact public query returned no Reynolds installation. Archway returned an unrelated Fleetwood generator; Server returned no item.",
+          "extraction": {
+            "scope": "Only these bounded public queries, not proof that no permit exists.",
+            "supporting_captures": [
+              {
+                "capture_id": "ea-archway.json",
+                "source_url": "https://environment.data.gov.uk/public-register/industrial-installations/registration.json?address-search=Archway",
+                "canonical_url": "https://environment.data.gov.uk/public-register/industrial-installations/registration.json?address-search=Archway",
+                "retrieved_at": "2026-11-11T12:48:33.780723+00:00",
+                "raw_capture_file": "local_data/research-2026-11-11-europe-150/ea-archway.json",
+                "content_hash": "853f9e9937de8d2d192d2f1fa811ff9c1f6961f498265c1ef063dce67cd24f6c",
+                "content_hash_scope": "sha256_exact_http_response_body_bytes",
+                "bytes": 3336,
+                "http_status": 200,
+                "content_type": "application/json",
+                "raw_capture_redistributed": false
+              },
+              {
+                "capture_id": "ea-server-hotel.json",
+                "source_url": "https://environment.data.gov.uk/public-register/industrial-installations/registration.json?address-search=Server",
+                "canonical_url": "https://environment.data.gov.uk/public-register/industrial-installations/registration.json?address-search=Server",
+                "retrieved_at": "2026-11-11T12:49:08.625632+00:00",
+                "raw_capture_file": "local_data/research-2026-11-11-europe-150/ea-server-hotel.json",
+                "content_hash": "d1c56c453f5963b37760ccae099d474583aea218c1e9c77016ec4c3e61818d75",
+                "content_hash_scope": "sha256_exact_http_response_body_bytes",
+                "bytes": 970,
+                "http_status": 200,
+                "content_type": "application/json",
+                "raw_capture_redistributed": false
+              },
+              {
+                "capture_id": "ea-installations-search.html",
+                "source_url": "https://environment.data.gov.uk/public-register/view/search-industrial-installations",
+                "canonical_url": "https://environment.data.gov.uk/public-register/view/search-industrial-installations",
+                "retrieved_at": "2026-11-11T12:48:05.463659+00:00",
+                "raw_capture_file": "local_data/research-2026-11-11-europe-150/ea-installations-search.html",
+                "content_hash": "85636cff150fdc9d0e7c3de2307eda825337da35f1e9ee91f2923a81e1a83061",
+                "content_hash_scope": "sha256_exact_http_response_body_bytes",
+                "bytes": 68631,
+                "http_status": 200,
+                "content_type": "text/html;charset=UTF-8",
+                "raw_capture_redistributed": false
+              }
+            ]
+          }
+        },
+        {
+          "id": "europe150-enwl-reynolds-route",
+          "kind": "company_disclosure",
+          "title": "SP ENW Embedded Capacity Register 2 metadata",
+          "publisher": "SP Electricity North West",
+          "source_family": "SP Electricity North West",
+          "license": "source-terms; compact factual projection only; no open-content licence asserted",
+          "attribution": "SP Electricity North West",
+          "published_at": null,
+          "capture_id": "enwl-ecr2.json",
+          "source_url": "https://electricitynorthwest.opendatasoft.com/api/explore/v2.1/catalog/datasets/enwl-embedded-capacity-register-2-1mw-and-above",
+          "canonical_url": "https://electricitynorthwest.opendatasoft.com/api/explore/v2.1/catalog/datasets/enwl-embedded-capacity-register-2-1mw-and-above",
+          "retrieved_at": "2026-11-11T12:49:08.671550+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-europe-150/enwl-ecr2.json",
+          "content_hash": "e7136df410f05e0f97f38fdf05a9bba8ba5279ebd4cb08eb9be0638b7f9d74ba",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 18072,
+          "http_status": 200,
+          "content_type": "application/json; charset=utf-8",
+          "raw_capture_redistributed": false,
+          "summary": "Original utility catalog describes the connection register and CC BY 4.0 terms, but requires registration for actual records. No original Reynolds row was obtained.",
+          "extraction": {
+            "secondary_discovery_lead": "QueueWatch names The Server Hotel / Telecity at Reynolds House, 4 Archway, with an OS grid reference. Those third-party values are not admitted.",
+            "secondary_discovery_url": "https://queuequant.com/queuewatch/distribution/electricity-north-west/site/the-server-hotel-7c5a16b8/",
+            "access_boundary": "The catalog explicitly says actual dataset content is available to registered users only. Anonymous records requests returned 403; the anonymous export returned an empty array, which is not absence evidence.",
+            "supporting_captures": [
+              {
+                "capture_id": "enwl-ecr-catalog.json",
+                "source_url": "https://electricitynorthwest.opendatasoft.com/api/explore/v2.1/catalog/datasets?limit=100&where=search(title,%20%27Embedded%20Capacity%27)",
+                "canonical_url": "https://electricitynorthwest.opendatasoft.com/api/explore/v2.1/catalog/datasets?limit=100&where=search(title,%20%27Embedded%20Capacity%27)",
+                "retrieved_at": "2026-11-11T12:48:34.031559+00:00",
+                "raw_capture_file": "local_data/research-2026-11-11-europe-150/enwl-ecr-catalog.json",
+                "content_hash": "09940006a7b8c576447fd256f511112444ca0bf3ddc29c6727a9488d901be7ea",
+                "content_hash_scope": "sha256_exact_http_response_body_bytes",
+                "bytes": 59827,
+                "http_status": 200,
+                "content_type": "application/json; charset=utf-8",
+                "raw_capture_redistributed": false
+              },
+              {
+                "capture_id": "enwl-ecr-supplement.json",
+                "source_url": "https://electricitynorthwest.opendatasoft.com/api/explore/v2.1/catalog/datasets/ecr-supplementary-data",
+                "canonical_url": "https://electricitynorthwest.opendatasoft.com/api/explore/v2.1/catalog/datasets/ecr-supplementary-data",
+                "retrieved_at": "2026-11-11T12:48:33.854275+00:00",
+                "raw_capture_file": "local_data/research-2026-11-11-europe-150/enwl-ecr-supplement.json",
+                "content_hash": "5cd955945b96f565aa33e6b057a7b03e9a9e71e88bb3eb5a796a5754256f3a2a",
+                "content_hash_scope": "sha256_exact_http_response_body_bytes",
+                "bytes": 10595,
+                "http_status": 200,
+                "content_type": "application/json; charset=utf-8",
+                "raw_capture_redistributed": false
+              },
+              {
+                "capture_id": "enwl-ecr-export.json",
+                "source_url": "https://electricitynorthwest.opendatasoft.com/api/explore/v2.1/catalog/datasets/enwl-embedded-capacity-register-2-1mw-and-above/exports/json",
+                "canonical_url": "https://electricitynorthwest.opendatasoft.com/api/explore/v2.1/catalog/datasets/enwl-embedded-capacity-register-2-1mw-and-above/exports/json",
+                "retrieved_at": "2026-11-11T12:49:53.526160+00:00",
+                "raw_capture_file": "local_data/research-2026-11-11-europe-150/enwl-ecr-export.json",
+                "content_hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+                "content_hash_scope": "sha256_exact_http_response_body_bytes",
+                "bytes": 2,
+                "http_status": 200,
+                "content_type": "application/json; charset=utf-8",
+                "raw_capture_redistributed": false
+              }
+            ],
+            "scope_boundary": "A utility connection location is not automatically a facility or campus locator. Current admission policy requires eligible facility operator/developer/landlord/public-authority geometry and an exact campus join."
+          }
+        }
+      ]
+    },
+    {
+      "research_scope": "Unadmitted candidate context",
+      "captures": [
+        {
+          "id": "japan150-eole-futaba-oct21",
+          "kind": "company_disclosure",
+          "title": "Eole: NVIDIA HGX B300 orders and Fukushima Futaba Town DC construction",
+          "publisher": "Eole Inc.",
+          "source_family": "Eole Inc.",
+          "license": "source-terms; compact factual projection only; no open-content licence asserted",
+          "attribution": "Eole Inc.",
+          "published_at": "2026-10-21",
+          "capture_id": "eole-futaba-oct21.pdf",
+          "source_url": "https://www.eole.co.jp/2026_release/press_20261021.pdf",
+          "final_url": "https://www.eole.co.jp/2026_release/press_20261021.pdf",
+          "retrieved_at": "2026-11-11T12:44:11.504941+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-asia-150-japan/eole-futaba-oct21.pdf",
+          "bytes": 152728,
+          "content_hash": "1a96ec924a8bf64705e96826ce478f35a759f6e3611d33deb82493c6f3ff7e8a",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "http_status": 200,
+          "content_type": "application/pdf",
+          "raw_capture_redistributed": false,
+          "summary": "The project participant describes JAIC Data Dynamics advancing construction of the named Fukushima Futaba Town DC. Facility operation in November and GPU installation/operation by year end are prospective.",
+          "extraction": {
+            "page": 1,
+            "original_phrase": "福島県双葉町で建設を進める",
+            "date_semantics": "The PDF header explicitly dates the report October 21, 2026. The report supports construction then; November facility operation and year-end B300 deployment remain plans. GPU totals for the broader company are not site capacity.",
+            "visual_review": "Original PDF page 1 rendered with Poppler and independently visually read.",
+            "commercial_scope": "Named sales and installation participants describe customer-facing GPU compute infrastructure; historical operator release expressly identifies GPU hosting and colocation.",
+            "locator_scope": "Municipality only; no exact site address, coordinates or parcel in the selected report.",
+            "supporting_captures": [
+              {
+                "capture_id": "eole-futaba-oct21.html",
+                "source_url": "https://www.eole.co.jp/news/release/2026/news_post899/",
+                "final_url": "https://www.eole.co.jp/news/release/2026/news_post899/",
+                "retrieved_at": "2026-11-11T12:43:37.004028+00:00",
+                "raw_capture_file": "local_data/research-2026-11-11-asia-150-japan/eole-futaba-oct21.html",
+                "bytes": 29566,
+                "content_hash": "fd4af575c29e6d676ba9d32e797b89fb2388cc1da3d6acbbe2a2106f206cdb95",
+                "content_hash_scope": "sha256_exact_http_response_body_bytes",
+                "http_status": 200,
+                "content_type": "text/html",
+                "raw_capture_redistributed": false
+              }
+            ]
+          },
+          "publication_date_precision": "day"
+        },
+        {
+          "id": "japan150-digitaldynamic-futaba-context",
+          "kind": "company_disclosure",
+          "title": "Digital Dynamic: JAIC Fukushima Futaba Town commercial DC project",
+          "publisher": "Digital Dynamic",
+          "source_family": "Digital Dynamic",
+          "license": "source-terms; compact factual projection only; no open-content licence asserted",
+          "attribution": "Digital Dynamic",
+          "published_at": "2025-10-07",
+          "capture_id": "digitaldynamic-futaba-project.html",
+          "source_url": "https://digital-dynamic.co.jp/news/press-release/782",
+          "final_url": "https://digital-dynamic.co.jp/news/press-release/782",
+          "retrieved_at": "2026-11-11T12:43:36.674389+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-asia-150-japan/digitaldynamic-futaba-project.html",
+          "bytes": 43333,
+          "content_hash": "7eb5a7e12332053d5e57341be35ff6060aa233258fcdc482a7ed084be5cdf1fd",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "http_status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "raw_capture_redistributed": false,
+          "summary": "The original developer/operator disclosure identifies the JAIC joint venture and planned GPU hosting and colocation in Futaba town.",
+          "extraction": {
+            "date_semantics": "Historical October 7, 2025 identity/commercial context only; subsidy acceptance and expected December 2026 operation do not establish current construction or operation.",
+            "location_scope": "The facility is identified only as Fukushima Prefecture, Futaba Town. Tokyo Kudan-kita and Toranomon addresses identify corporate headquarters and are not accepted as facility locators."
+          },
+          "publication_date_precision": "day"
+        },
+        {
+          "id": "japan150-eole-native-location-scope",
+          "kind": "company_disclosure",
+          "title": "Eole AI infrastructure: facility-location disclosure scope",
+          "publisher": "Eole Inc.",
+          "source_family": "Eole Inc.",
+          "license": "source-terms; compact factual projection only; no open-content licence asserted",
+          "attribution": "Eole Inc.",
+          "published_at": null,
+          "capture_id": "eole-ai-infrastructure.html",
+          "source_url": "https://ai-infra.eole.co.jp/",
+          "final_url": "https://ai-infra.eole.co.jp/",
+          "retrieved_at": "2026-11-11T12:43:37.052374+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-asia-150-japan/eole-ai-infrastructure.html",
+          "bytes": 25740,
+          "content_hash": "a0add0dcca8bb3cf2057203bb87aac57038f6dff850aa1624cbfae8a6eef01ff",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "http_status": 200,
+          "content_type": "text/html",
+          "raw_capture_redistributed": false,
+          "summary": "The native service FAQ says precise installation locations have limited public disclosure for security. It links the named Futaba project but supplies no eligible numeric host locator.",
+          "extraction": {
+            "date_semantics": "Undated identity/reference; dates on linked news are not a date for this full page or a physical-status observation.",
+            "locator_review": "No point selected. Only an original facility coordinate, identifiable official parcel/address record or georeferenced site plan could close this hold. No map app, directory, geocoder or institutional/showroom point was used."
+          },
+          "publication_date_precision": null
+        },
+        {
+          "id": "china150-hengsuan-energy-review",
+          "kind": "government_record",
+          "title": "Guangzhou energy review: Guangdong Hengsuan Guangzhou AI Computing Industry Empowerment Center",
+          "publisher": "Guangzhou Development and Reform Commission",
+          "source_family": "Guangzhou Development and Reform Commission",
+          "license": "source-terms; compact factual projection only; no open-content licence asserted",
+          "attribution": "Guangzhou Development and Reform Commission",
+          "published_at": "2026-09-07",
+          "publication_date_precision": "day",
+          "capture_id": "guangzhou-hengsuan-energy-review.html",
+          "source_url": "https://fgw.gz.gov.cn/gkmlpt/content/10/10993/post_10993848.html",
+          "final_url": "https://fgw.gz.gov.cn/gkmlpt/content/10/10993/post_10993848.html",
+          "retrieved_at": "2026-11-11T12:42:54.833989+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-asia-150/guangzhou-hengsuan-energy-review.html",
+          "content_hash": "417b88d125fc7c7b9f0b0e3eff4554195174fd5d8ccbf679a6bcd0d9483f40f6",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 54479,
+          "http_status": 200,
+          "content_type": "text/html; charset=UTF-8",
+          "raw_capture_redistributed": false,
+          "summary": "The September 4 energy-review decision identifies a proposed six-floor data center at 68 Kaitai Avenue, Science City, Huangpu, Guangzhou, with December 2027 production expected. Energy-review acceptance does not establish development permission, construction or operation.",
+          "document_date": "2026-09-04",
+          "extraction": {
+            "project_code": "2510-440112-04-01-919023",
+            "decision_number": "穗发改批〔2026〕60号",
+            "date_semantics": "The document was issued September 4 and published September 7. The native publication metadata, not the page modification time, supplies publication.",
+            "location_scope": "Exact street address only; no numeric coordinate, address-point object or georeferenced parcel is supplied."
+          }
+        },
+        {
+          "id": "china150-huangshi-original-plan",
+          "kind": "government_planning_record",
+          "title": "Hubei Mobile Computing Network Huangshi Big Data Center: draft detailed planning publicity",
+          "publisher": "Huangshi Natural Resources and Planning Bureau",
+          "source_family": "Huangshi Natural Resources and Planning Bureau",
+          "license": "source-terms; compact factual projection only; no open-content licence asserted",
+          "attribution": "Huangshi Natural Resources and Planning Bureau",
+          "published_at": null,
+          "publication_date_precision": null,
+          "capture_id": "huangshi-plan-2024.pdf",
+          "source_url": "https://zrzy.huangshi.gov.cn/xygl/ghgl/pqgs/202402/P020240202331680553106.pdf",
+          "final_url": "https://zrzy.huangshi.gov.cn/xygl/ghgl/pqgs/202402/P020240202331680553106.pdf",
+          "retrieved_at": "2026-11-11T12:42:48.129949+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-asia-150/huangshi-plan-2024.pdf",
+          "content_hash": "c8f3e4941a31238129cc0239051d7a66f69cd4d45f99e82d716b20a1a3d9b4ec",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 2777892,
+          "http_status": 200,
+          "content_type": "application/pdf",
+          "raw_capture_redistributed": false,
+          "summary": "The original government-hosted three-page plan identifies the physical data-center and office development. Its stamp is February 1, 2024 and public-comment period February 2–9; this is preapproval publicity, not an issued planning permission.",
+          "extraction": {
+            "report_date": "2024-02-01",
+            "public_comment_period": [
+              "2024-02-02",
+              "2024-02-09"
+            ],
+            "visual_review": "Original plan page 1 rendered and inspected; it shows roads, plot dimensions and a development layout without a geographic coordinate grid.",
+            "location_scope": "11,577-square-meter plot by Jing Er Road and Baihua Road; metric plot dimensions alone do not yield an eligible global locator."
+          }
+        },
+        {
+          "id": "china150-huangshi-september-news",
+          "kind": "trade_press",
+          "title": "Huangshi computing-network report: cabinet commissioning before operation",
+          "publisher": "Huangshi Daily, republished by Huangshi municipal government",
+          "source_family": "Huangshi Daily, republished by Huangshi municipal government",
+          "license": "source-terms; compact factual projection only; no open-content licence asserted",
+          "attribution": "Huangshi Daily, republished by Huangshi municipal government",
+          "published_at": "2026-09-21",
+          "publication_date_precision": "day",
+          "capture_id": "huangshi-status-sept21.html",
+          "source_url": "https://gzw.huangshi.gov.cn/xqydt/202609/t20260922_1361699.html",
+          "final_url": "https://gzw.huangshi.gov.cn/xqydt/202609/t20260922_1361699.html",
+          "retrieved_at": "2026-11-11T12:42:49.731457+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-asia-150/huangshi-status-sept21.html",
+          "content_hash": "983e0a224401f43124731cb1bd919475045cff0b3badb6a95dfa4ff265ca3954",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 20708,
+          "http_status": 200,
+          "content_type": "text/html",
+          "raw_capture_redistributed": false,
+          "summary": "The article describes September 20 cabinet commissioning at Hubei Mobile Huangshi and says formal operation remains future. An unnamed project manager recounts February completion and acceptance. Government republication does not turn this reporting into an original authority observation or a named participant statement.",
+          "extraction": {
+            "date_semantics": "The visible article date is September 21; the URL includes September 22. On-site commissioning is described as September 20, and operation is prospective.",
+            "publication_origin_review": "The municipal Development and Reform Commission copy labels the source Huangshi Daily; the selected SASAC copy labels it municipal government.",
+            "supporting_captures": [
+              {
+                "capture_id": "huangshi-report-origin-label.html",
+                "source_url": "https://fgw.huangshi.gov.cn/xwzx/fgyw/202609/t20260922_1361439.html",
+                "final_url": "https://fgw.huangshi.gov.cn/xwzx/fgyw/202609/t20260922_1361439.html",
+                "retrieved_at": "2026-11-11T12:52:51.197062+00:00",
+                "raw_capture_file": "local_data/research-2026-11-11-asia-150/huangshi-report-origin-label.html",
+                "content_hash": "0a7a27a4238ac9ee5f105e1698c4a4f421b80a38078bee79f6846135f1f6a1a3",
+                "content_hash_scope": "sha256_exact_http_response_body_bytes",
+                "bytes": 11885,
+                "http_status": 200,
+                "content_type": "text/html",
+                "raw_capture_redistributed": false
+              }
+            ]
+          }
+        },
+        {
+          "id": "china150-sinnet-horinger-feasibility",
+          "kind": "regulatory_filing",
+          "title": "Sinnet additional-investment feasibility report for Horinger AI Computing Center",
+          "publisher": "Beijing Sinnet Technology via CNINFO",
+          "source_family": "Beijing Sinnet Technology via CNINFO",
+          "license": "source-terms; compact factual projection only; no open-content licence asserted",
+          "attribution": "Beijing Sinnet Technology via CNINFO",
+          "published_at": "2026-09-25",
+          "publication_date_precision": "day",
+          "capture_id": "sinnet-horinger-feasibility-sept24.pdf",
+          "source_url": "https://static.cninfo.com.cn/finalpage/2026-09-25/1225582045.PDF",
+          "final_url": "https://static.cninfo.com.cn/finalpage/2026-09-25/1225582045.PDF",
+          "retrieved_at": "2026-11-11T12:45:12.589608+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-asia-150/sinnet-horinger-feasibility-sept24.pdf",
+          "content_hash": "dedb5aa697aca83d889c239b0942758449786a4e819a947abe0cc44b0f30ef63",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 382181,
+          "http_status": 200,
+          "content_type": "application/pdf",
+          "raw_capture_redistributed": false,
+          "summary": "The issuer report dated September 24 describes the named commercial computing-center proposal and states that it had not started as originally planned. Page 10 says energy and engineering-planning approvals are still being pursued. The road-bounded parcel and property certificate identify land but supply no numeric coordinate.",
+          "document_date": "2026-09-24",
+          "extraction": {
+            "date_semantics": "September 24 is the printed report date; the exchange publication path is September 25. Neither date is a CMS modification observation.",
+            "location_pages": [
+              4,
+              10
+            ],
+            "status_pages": [
+              5,
+              10
+            ],
+            "property_certificate": "蒙（2025）呼和浩特市（和）不动产权第1006502号",
+            "site_context": "About 71,500 square meters, east of Shenglian Road, west of Shunda Road / Yungu vertical road 38, south of Yungu horizontal road 40 and north of Yungu Avenue.",
+            "visual_review": "Original PDF pages 4 and 10 rendered and inspected; no numeric site point recovered.",
+            "metric_scope": "The 90–120 MW and planned buildings describe a proposal; no operating capacity is asserted."
+          }
+        },
+        {
+          "id": "china150-sinnet-horinger-investment",
+          "kind": "regulatory_filing",
+          "title": "Sinnet board announcement of additional Horinger project investment",
+          "publisher": "Beijing Sinnet Technology via CNINFO",
+          "source_family": "Beijing Sinnet Technology via CNINFO",
+          "license": "source-terms; compact factual projection only; no open-content licence asserted",
+          "attribution": "Beijing Sinnet Technology via CNINFO",
+          "published_at": "2026-09-25",
+          "publication_date_precision": "day",
+          "capture_id": "sinnet-horinger-investment-sept24.pdf",
+          "source_url": "https://static.cninfo.com.cn/finalpage/2026-09-25/1225582046.PDF",
+          "final_url": "https://static.cninfo.com.cn/finalpage/2026-09-25/1225582046.PDF",
+          "retrieved_at": "2026-11-11T12:45:13.074068+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-asia-150/sinnet-horinger-investment-sept24.pdf",
+          "content_hash": "04754e57cc61a05a100c6b48a48a607248b4e25820a30708a13407db9f7297a8",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 265557,
+          "http_status": 200,
+          "content_type": "application/pdf",
+          "raw_capture_redistributed": false,
+          "summary": "The original issuer board announcement dated September 24 confirms renewed investment in the Horinger project and explicitly says the project had not started according to its original plan. Investment approval is not physical construction.",
+          "document_date": "2026-09-24"
+        },
+        {
+          "id": "china150-yuyao-original-eia",
+          "kind": "company_disclosure",
+          "title": "Yuyao Intelligent Computing (Inner Mongolia) Green Computing Project: supporting 220 kV substation EIA",
+          "publisher": "Yuyao Intelligent Computing (Inner Mongolia) Data Technology Co., Ltd., via Inner Mongolia Department of Ecology and Environment",
+          "source_family": "Yuyao Intelligent Computing (Inner Mongolia) Data Technology Co., Ltd., via Inner Mongolia Department of Ecology and Environment",
+          "license": "source-terms; compact factual projection only; no open-content licence asserted",
+          "attribution": "Yuyao Intelligent Computing (Inner Mongolia) Data Technology Co., Ltd., via Inner Mongolia Department of Ecology and Environment",
+          "published_at": "2026-10-21",
+          "publication_date_precision": "day",
+          "capture_id": "yuyao-substation-eia.doc",
+          "source_url": "https://sthjt.nmg.gov.cn/xxgk/sthjzdlyxxgk/wrfzhssxg/hyfshjjg/202610/P020261021547009634249.doc",
+          "final_url": "https://sthjt.nmg.gov.cn/xxgk/sthjzdlyxxgk/wrfzhssxg/hyfshjjg/202610/P020261021547009634249.doc",
+          "retrieved_at": "2026-11-11T13:02:10.743165+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-asia-150/yuyao-substation-eia.doc",
+          "bytes": 56076095,
+          "content_hash": "18fcc6be08c87abfb949fde333e858f771346da6630bc2ad1c2301b5845ef120",
+          "content_hash_scope": "sha256_complete_http_entity_body_reassembled_by_range_resume",
+          "http_status": 206,
+          "content_type": "application/msword",
+          "raw_capture_redistributed": false,
+          "capture_method": "Original HTTP response body resumed at bytes 6521462 and 50113293 after bounded transfer limits. The resumed responses use the same entity ETag. Final complete entity length verified against the server Content-Range total; partial bytes were never selected as complete evidence.",
+          "response_entity_bytes": 56076095,
+          "resumed_from_bytes": [
+            6521462,
+            50113293
+          ],
+          "final_response_content_length": 5962802,
+          "server_etag": "\"6ae45b8c-357a73f\"",
+          "server_last_modified": "Fri, 30 Oct 2026 08:55:40 GMT",
+          "date_scope": "Server Last-Modified is technical response metadata, not the report date, publication date or observed data-center status date.",
+          "summary": "The original applicant report, prepared in October 2026 and published by the environmental authority on October 21, describes a proposed parent data-center project in Shaerying, Tumed Left Banner, Hohhot, Inner Mongolia. It expressly says the parent DC and substation had not started and were planned to start together. Numeric locations identify the supporting substation, with a material internal discrepancy. No coordinate is admitted.",
+          "extraction": {
+            "original_company_name": "煜曜智算（内蒙古）数据科技有限公司",
+            "company_name_geography": "Yuyao romanizes the company name 煜曜. This is not Yuyao city (余姚) in Zhejiang; the report and index both identify Inner Mongolia.",
+            "report_date": "2026-10",
+            "report_date_precision": "month",
+            "date_semantics": "The stamped original cover specifies October 2026. The authority index explicitly publishes the report October 21. The October 30 server Last-Modified header does not supply publication or observed status.",
+            "parent_data_center_scope": "Printed page18 describes the parent computing project and its services for AI and industry. Printed pages40–41 expressly say the parent is a data-center project and had not started; the planned substation construction date is not proof of any actual DC works.",
+            "printed_pages_reviewed": [
+              1,
+              18,
+              24,
+              25,
+              40,
+              41,
+              115
+            ],
+            "rendered_pdf_pages_reviewed": [
+              1,
+              6,
+              23,
+              29,
+              30,
+              45,
+              46,
+              120
+            ],
+            "rendering": "Original DOC converted with LibreOfficeDev 26.8.0.0.alpha0 using local Chinese fonts, then relevant pages visually inspected. Conversion is a review derivative, not the captured original or a new published source.",
+            "locator_scope": "Table2-1 contains four explicitly numeric substation corners; basic-information page1 instead gives a materially different substation center. Boundary monitoring and transformer tables align with the corner range, but no DC-specific numeric point or parent parcel is supplied. Printed page24 says substation is in the western part of the parent project range. Figure10 labels both components on a Google Earth basemap; the diagram is read for identity only, with no digitized point or polygon.",
+            "center_dms": [
+              "111°30′45.208″E",
+              "40°34′33.550″N"
+            ],
+            "substation_corner_dms": [
+              [
+                "111°30′15.76″E",
+                "40°34′25.09″N"
+              ],
+              [
+                "111°30′15.89″E",
+                "40°34′26.68″N"
+              ],
+              [
+                "111°30′20.87″E",
+                "40°34′26.44″N"
+              ],
+              [
+                "111°30′20.69″E",
+                "40°34′24.84″N"
+              ]
+            ],
+            "coordinate_datum": "No coordinate reference system or datum identified in the inspected geographic tables; no WGS84 equivalence asserted.",
+            "admitted_geometry": null,
+            "capacity_scope": "Substation transformer MVA, power-project cost, substation area and forecast dates are not DC capacity, cost, footprint or completed works."
+          }
+        },
+        {
+          "id": "china150-yuyao-substation-decision",
+          "kind": "government_record",
+          "title": "Inner Mongolia approval of the Yuyao supporting substation environmental report",
+          "publisher": "Inner Mongolia Department of Ecology and Environment",
+          "source_family": "Inner Mongolia Department of Ecology and Environment",
+          "license": "source-terms; compact factual projection only; no open-content licence asserted",
+          "attribution": "Inner Mongolia Department of Ecology and Environment",
+          "published_at": "2026-10-21",
+          "publication_date_precision": "day",
+          "capture_id": "yuyao-substation-decision.docx",
+          "source_url": "https://sthjt.nmg.gov.cn/xxgk/sthjzdlyxxgk/wrfzhssxg/hyfshjjg/202610/P020261021547012534960.docx",
+          "final_url": "https://sthjt.nmg.gov.cn/xxgk/sthjzdlyxxgk/wrfzhssxg/hyfshjjg/202610/P020261021547012534960.docx",
+          "retrieved_at": "2026-11-11T12:51:51.866371+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-asia-150/yuyao-substation-decision.docx",
+          "content_hash": "c14a4e08eeaf00f53e72176c39e5a90ed0b48c912ed96b2472226ce83a99cf40",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 29669,
+          "http_status": 200,
+          "content_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+          "raw_capture_redistributed": false,
+          "summary": "Decision 内环表〔2026〕269号, issued October 16 and published October 21, accepts the supporting 220 kV substation environmental report subject to conditions. It expressly has no other administrative preapproval effect. It does not grant a data-center development permit or establish actual construction.",
+          "document_date": "2026-10-16",
+          "extraction": {
+            "decision_scope": "Supporting electrical substation only. No data-center permitted status is inferred.",
+            "visual_review": "Complete original DOCX text and Chinese-font render inspected."
+          }
+        },
+        {
+          "id": "china150-yuyao-eia-index",
+          "kind": "government_record",
+          "title": "Inner Mongolia publication index for the Yuyao supporting substation EIA and decision",
+          "publisher": "Inner Mongolia Department of Ecology and Environment",
+          "source_family": "Inner Mongolia Department of Ecology and Environment",
+          "license": "source-terms; compact factual projection only; no open-content licence asserted",
+          "attribution": "Inner Mongolia Department of Ecology and Environment",
+          "published_at": "2026-10-21",
+          "publication_date_precision": "day",
+          "capture_id": "yuyao-substation-eia-index.html",
+          "source_url": "https://sthjt.nmg.gov.cn/xxgk/sthjzdlyxxgk/wrfzhssxg/hyfshjjg/202610/t20261021_2967458.html",
+          "final_url": "https://sthjt.nmg.gov.cn/xxgk/sthjzdlyxxgk/wrfzhssxg/hyfshjjg/202610/t20261021_2967458.html",
+          "retrieved_at": "2026-11-11T12:50:14.969658+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-asia-150/yuyao-substation-eia-index.html",
+          "content_hash": "64391ee1681f1583b913f37c949d9f5701f006cae9c8ff9fa655638abbb00eca",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 29796,
+          "http_status": 200,
+          "content_type": "text/html",
+          "raw_capture_redistributed": false,
+          "summary": "The original authority page explicitly gives October 21, 2026 at 15:10 and links the complete applicant EIA DOC and approval DOCX. The named applicant and Inner Mongolia project geography agree with both originals.",
+          "extraction": {
+            "publication_time_displayed": "2026-10-21 15:10",
+            "scope": "Publication provenance for the two linked original documents, not separate DC construction evidence."
+          }
+        }
+      ]
+    },
+    {
+      "research_scope": "Bounded Japan150 discovery, original status/context and later-news-index capture; no eligible numeric locator.",
+      "captures": [
+        {
+          "capture_id": "digitaldynamic-futaba-project.html",
+          "source_url": "https://digital-dynamic.co.jp/news/press-release/782",
+          "final_url": "https://digital-dynamic.co.jp/news/press-release/782",
+          "retrieved_at": "2026-11-11T12:43:36.674389+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-asia-150-japan/digitaldynamic-futaba-project.html",
+          "bytes": 43333,
+          "content_hash": "7eb5a7e12332053d5e57341be35ff6060aa233258fcdc482a7ed084be5cdf1fd",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "http_status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "digitaldynamic-news.html",
+          "source_url": "https://digital-dynamic.co.jp/news/",
+          "final_url": "https://digital-dynamic.co.jp/news",
+          "retrieved_at": "2026-11-11T12:43:37.656912+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-asia-150-japan/digitaldynamic-news.html",
+          "bytes": 56126,
+          "content_hash": "5d750652b158335abc52498ad87b3d6ca230f6b7a619f76547de20d90cfff515",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "http_status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "eole-ai-infrastructure.html",
+          "source_url": "https://ai-infra.eole.co.jp/",
+          "final_url": "https://ai-infra.eole.co.jp/",
+          "retrieved_at": "2026-11-11T12:43:37.052374+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-asia-150-japan/eole-ai-infrastructure.html",
+          "bytes": 25740,
+          "content_hash": "a0add0dcca8bb3cf2057203bb87aac57038f6dff850aa1624cbfae8a6eef01ff",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "http_status": 200,
+          "content_type": "text/html",
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "eole-futaba-oct21.html",
+          "source_url": "https://www.eole.co.jp/news/release/2026/news_post899/",
+          "final_url": "https://www.eole.co.jp/news/release/2026/news_post899/",
+          "retrieved_at": "2026-11-11T12:43:37.004028+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-asia-150-japan/eole-futaba-oct21.html",
+          "bytes": 29566,
+          "content_hash": "fd4af575c29e6d676ba9d32e797b89fb2388cc1da3d6acbbe2a2106f206cdb95",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "http_status": 200,
+          "content_type": "text/html",
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "eole-futaba-oct21.pdf",
+          "source_url": "https://www.eole.co.jp/2026_release/press_20261021.pdf",
+          "final_url": "https://www.eole.co.jp/2026_release/press_20261021.pdf",
+          "retrieved_at": "2026-11-11T12:44:11.504941+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-asia-150-japan/eole-futaba-oct21.pdf",
+          "bytes": 152728,
+          "content_hash": "1a96ec924a8bf64705e96826ce478f35a759f6e3611d33deb82493c6f3ff7e8a",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "http_status": 200,
+          "content_type": "application/pdf",
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "eole-news.html",
+          "source_url": "https://www.eole.co.jp/news/",
+          "final_url": "https://www.eole.co.jp/news/",
+          "retrieved_at": "2026-11-11T12:43:37.012607+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-asia-150-japan/eole-news.html",
+          "bytes": 31075,
+          "content_hash": "6ee8cb8ba9c5778b928cdafa35f7a10f14f2af9f8409f845449d550b513b6ec2",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "http_status": 200,
+          "content_type": "text/html",
+          "raw_capture_redistributed": false
+        }
+      ]
+    },
+    {
+      "research_scope": "China150 original status, identity and planning research. All listed captures are complete; the 56 MB EIA uses an explicitly documented byte-range-resumed complete-entity hash scope.",
+      "captures": [
+        {
+          "capture_id": "guangzhou-hengsuan-energy-review.html",
+          "source_url": "https://fgw.gz.gov.cn/gkmlpt/content/10/10993/post_10993848.html",
+          "final_url": "https://fgw.gz.gov.cn/gkmlpt/content/10/10993/post_10993848.html",
+          "retrieved_at": "2026-11-11T12:42:54.833989+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-asia-150/guangzhou-hengsuan-energy-review.html",
+          "content_hash": "417b88d125fc7c7b9f0b0e3eff4554195174fd5d8ccbf679a6bcd0d9483f40f6",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 54479,
+          "http_status": 200,
+          "content_type": "text/html; charset=UTF-8",
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "huangshi-plan-2024.pdf",
+          "source_url": "https://zrzy.huangshi.gov.cn/xygl/ghgl/pqgs/202402/P020240202331680553106.pdf",
+          "final_url": "https://zrzy.huangshi.gov.cn/xygl/ghgl/pqgs/202402/P020240202331680553106.pdf",
+          "retrieved_at": "2026-11-11T12:42:48.129949+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-asia-150/huangshi-plan-2024.pdf",
+          "content_hash": "c8f3e4941a31238129cc0239051d7a66f69cd4d45f99e82d716b20a1a3d9b4ec",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 2777892,
+          "http_status": 200,
+          "content_type": "application/pdf",
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "huangshi-report-origin-label.html",
+          "source_url": "https://fgw.huangshi.gov.cn/xwzx/fgyw/202609/t20260922_1361439.html",
+          "final_url": "https://fgw.huangshi.gov.cn/xwzx/fgyw/202609/t20260922_1361439.html",
+          "retrieved_at": "2026-11-11T12:52:51.197062+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-asia-150/huangshi-report-origin-label.html",
+          "content_hash": "0a7a27a4238ac9ee5f105e1698c4a4f421b80a38078bee79f6846135f1f6a1a3",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 11885,
+          "http_status": 200,
+          "content_type": "text/html",
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "huangshi-status-sept21.html",
+          "source_url": "https://gzw.huangshi.gov.cn/xqydt/202609/t20260922_1361699.html",
+          "final_url": "https://gzw.huangshi.gov.cn/xqydt/202609/t20260922_1361699.html",
+          "retrieved_at": "2026-11-11T12:42:49.731457+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-asia-150/huangshi-status-sept21.html",
+          "content_hash": "983e0a224401f43124731cb1bd919475045cff0b3badb6a95dfa4ff265ca3954",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 20708,
+          "http_status": 200,
+          "content_type": "text/html",
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "sinnet-horinger-feasibility-sept24.pdf",
+          "source_url": "https://static.cninfo.com.cn/finalpage/2026-09-25/1225582045.PDF",
+          "final_url": "https://static.cninfo.com.cn/finalpage/2026-09-25/1225582045.PDF",
+          "retrieved_at": "2026-11-11T12:45:12.589608+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-asia-150/sinnet-horinger-feasibility-sept24.pdf",
+          "content_hash": "dedb5aa697aca83d889c239b0942758449786a4e819a947abe0cc44b0f30ef63",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 382181,
+          "http_status": 200,
+          "content_type": "application/pdf",
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "sinnet-horinger-investment-sept24.pdf",
+          "source_url": "https://static.cninfo.com.cn/finalpage/2026-09-25/1225582046.PDF",
+          "final_url": "https://static.cninfo.com.cn/finalpage/2026-09-25/1225582046.PDF",
+          "retrieved_at": "2026-11-11T12:45:13.074068+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-asia-150/sinnet-horinger-investment-sept24.pdf",
+          "content_hash": "04754e57cc61a05a100c6b48a48a607248b4e25820a30708a13407db9f7297a8",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 265557,
+          "http_status": 200,
+          "content_type": "application/pdf",
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "yuyao-substation-decision.docx",
+          "source_url": "https://sthjt.nmg.gov.cn/xxgk/sthjzdlyxxgk/wrfzhssxg/hyfshjjg/202610/P020261021547012534960.docx",
+          "final_url": "https://sthjt.nmg.gov.cn/xxgk/sthjzdlyxxgk/wrfzhssxg/hyfshjjg/202610/P020261021547012534960.docx",
+          "retrieved_at": "2026-11-11T12:51:51.866371+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-asia-150/yuyao-substation-decision.docx",
+          "content_hash": "c14a4e08eeaf00f53e72176c39e5a90ed0b48c912ed96b2472226ce83a99cf40",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 29669,
+          "http_status": 200,
+          "content_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "yuyao-substation-eia-index.html",
+          "source_url": "https://sthjt.nmg.gov.cn/xxgk/sthjzdlyxxgk/wrfzhssxg/hyfshjjg/202610/t20261021_2967458.html",
+          "final_url": "https://sthjt.nmg.gov.cn/xxgk/sthjzdlyxxgk/wrfzhssxg/hyfshjjg/202610/t20261021_2967458.html",
+          "retrieved_at": "2026-11-11T12:50:14.969658+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-asia-150/yuyao-substation-eia-index.html",
+          "content_hash": "64391ee1681f1583b913f37c949d9f5701f006cae9c8ff9fa655638abbb00eca",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 29796,
+          "http_status": 200,
+          "content_type": "text/html",
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "yuyao-substation-eia.doc",
+          "source_url": "https://sthjt.nmg.gov.cn/xxgk/sthjzdlyxxgk/wrfzhssxg/hyfshjjg/202610/P020261021547009634249.doc",
+          "final_url": "https://sthjt.nmg.gov.cn/xxgk/sthjzdlyxxgk/wrfzhssxg/hyfshjjg/202610/P020261021547009634249.doc",
+          "retrieved_at": "2026-11-11T13:02:10.743165+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-asia-150/yuyao-substation-eia.doc",
+          "bytes": 56076095,
+          "content_hash": "18fcc6be08c87abfb949fde333e858f771346da6630bc2ad1c2301b5845ef120",
+          "content_hash_scope": "sha256_complete_http_entity_body_reassembled_by_range_resume",
+          "http_status": 206,
+          "content_type": "application/msword",
+          "raw_capture_redistributed": false,
+          "capture_method": "Original HTTP response body resumed at bytes 6521462 and 50113293 after bounded transfer limits. The resumed responses use the same entity ETag. Final complete entity length verified against the server Content-Range total; partial bytes were never selected as complete evidence.",
+          "response_entity_bytes": 56076095,
+          "resumed_from_bytes": [
+            6521462,
+            50113293
+          ],
+          "final_response_content_length": 5962802,
+          "server_etag": "\"6ae45b8c-357a73f\"",
+          "server_last_modified": "Fri, 30 Oct 2026 08:55:40 GMT",
+          "date_scope": "Server Last-Modified is technical response metadata, not the report date, publication date or observed data-center status date."
+        }
+      ]
+    },
+    {
+      "research_scope": "Bounded Hostweb Fortaleza admission hold: original operator identity and latest-20 chronology review, public municipal locator authority chain and rejected address queries. No source is admitted as selected physical status or location; raw response timestamps are capture metadata only.",
+      "captures": [
+        {
+          "source_url": "https://hostweb.com.br/",
+          "final_url": "https://hostweb.com.br/",
+          "retrieved_at": "2026-11-11T12:57:45.371958+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-latam-150/hostweb-home.html",
+          "content_hash": "cc0b6fe17c03f200abf43bb2c3a126cd12c2baf45323695e1ab6ec10cbb86263",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 311973,
+          "http_status": 200,
+          "content_type": "text/html; charset=UTF-8",
+          "raw_capture_redistributed": false,
+          "capture_id": "hostweb-home.html"
+        },
+        {
+          "source_url": "https://hostweb.com.br/data-center/",
+          "final_url": "https://hostweb.com.br/data-center/",
+          "retrieved_at": "2026-11-11T12:57:45.067038+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-latam-150/hostweb-facility.html",
+          "content_hash": "2e05409ed2598969e1deadebf5e1dba0cb2e5763fc6f8486161cb8d922f17f2b",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 220024,
+          "http_status": 200,
+          "content_type": "text/html; charset=UTF-8",
+          "raw_capture_redistributed": false,
+          "capture_id": "hostweb-facility.html"
+        },
+        {
+          "source_url": "https://mapas.fortaleza.ce.gov.br/api/v1/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=LIMITES_ADMINISTRATIVOS%3Avw_Lotes_fiscais&outputFormat=application%2Fjson&maxFeatures=10&CQL_FILTER=%22Endere%C3%A7o%22+ILIKE+%27%25JUSTA%25631%25%27",
+          "final_url": "https://mapas.fortaleza.ce.gov.br/api/v1/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=LIMITES_ADMINISTRATIVOS%3Avw_Lotes_fiscais&outputFormat=application%2Fjson&maxFeatures=10&CQL_FILTER=%22Endere%C3%A7o%22+ILIKE+%27%25JUSTA%25631%25%27",
+          "retrieved_at": "2026-11-11T12:57:43.868828+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-latam-150/fortaleza-hostweb-address.json",
+          "content_hash": "e5bbc772a7bce05f040c92a172389bd2782e9475801ab21aab9a19a700f9857a",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 1772,
+          "http_status": 200,
+          "content_type": "text/html; charset=UTF-8",
+          "raw_capture_redistributed": false,
+          "capture_id": "fortaleza-hostweb-address.json"
+        },
+        {
+          "capture_id": "fortaleza-map750-post.json",
+          "source_url": "https://mapas.fortaleza.ce.gov.br/api/getMap/750",
+          "final_url": "https://mapas.fortaleza.ce.gov.br/api/getMap/750",
+          "request_method": "POST",
+          "request_body": "",
+          "retrieved_at": "2026-11-11T12:45:57.248107+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-latam-150/fortaleza-map750-post.json",
+          "content_hash": "33eaef3e12881cd55ea4a2150ffca0cf69dd5f8addb9ce32017b70e7d2a2c931",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 552,
+          "http_status": 200,
+          "content_type": "application/json",
+          "raw_capture_redistributed": false
+        },
+        {
+          "source_url": "https://mapas.fortaleza.ce.gov.br/api/v1/ows?service=WFS&version=2.0.0&request=GetCapabilities",
+          "final_url": "https://mapas.fortaleza.ce.gov.br/api/v1/ows?service=WFS&version=2.0.0&request=GetCapabilities",
+          "retrieved_at": "2026-11-11T12:45:07.688413+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-latam-150/fortaleza-public-wfs-capabilities.xml",
+          "content_hash": "956e5da1d40367f531a4ba17ba86bfd1cf1d2f200492aff6798113a9eaa9f74e",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 465824,
+          "http_status": 200,
+          "content_type": "text/xml; charset=UTF-8",
+          "raw_capture_redistributed": false,
+          "capture_id": "fortaleza-public-wfs-capabilities.xml"
+        },
+        {
+          "source_url": "https://mapas.fortaleza.ce.gov.br/assets/js/LeafletFunctionService.js?3.6.6",
+          "final_url": "https://mapas.fortaleza.ce.gov.br/assets/js/LeafletFunctionService.js?3.6.6",
+          "retrieved_at": "2026-11-11T12:44:17.625543+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-latam-150/fortaleza-LeafletFunctionService.js",
+          "content_hash": "14b7dd2c9ad3aa09ee2e584f31629e7528938e5106a7d3a8bf865798878fbcdd",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 56269,
+          "http_status": 200,
+          "content_type": "text/javascript",
+          "raw_capture_redistributed": false,
+          "capture_id": "fortaleza-LeafletFunctionService.js"
+        },
+        {
+          "capture_id": "hostweb-latest-posts.json",
+          "source_url": "https://hostweb.com.br/wp-json/wp/v2/posts?per_page=20&orderby=date&order=desc",
+          "final_url": "https://hostweb.com.br/wp-json/wp/v2/posts?per_page=20&orderby=date&order=desc",
+          "http_status": 200,
+          "content_type": "application/json; charset=UTF-8",
+          "retrieved_at": "2026-11-11T13:02:20.455761+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-hostweb-150/hostweb-latest-posts.json",
+          "content_hash": "dd48e6241ae20c340a7cdb114a10c506ac6ffb4323d0ac0826d2160b37ecbfb7",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 633520,
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "hostweb-justa-araujo-street.json",
+          "source_url": "https://mapas.fortaleza.ce.gov.br/api/v1/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=LIMITES_ADMINISTRATIVOS%3Avw_Lotes_fiscais&outputFormat=application%2Fjson&maxFeatures=100&CQL_FILTER=%22Endere%C3%A7o%22+ILIKE+%27%25JUSTA%25ARA%25%27",
+          "final_url": "https://mapas.fortaleza.ce.gov.br/api/v1/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=LIMITES_ADMINISTRATIVOS%3Avw_Lotes_fiscais&outputFormat=application%2Fjson&maxFeatures=100&CQL_FILTER=%22Endere%C3%A7o%22+ILIKE+%27%25JUSTA%25ARA%25%27",
+          "http_status": 200,
+          "content_type": "application/json",
+          "retrieved_at": "2026-11-11T13:02:18.771441+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-hostweb-150/hostweb-justa-araujo-street.json",
+          "content_hash": "f55b36b26a3cf3cab7bc62abc2f684a350ef3b3e454e9abf24757a800da2a634",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 60622,
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "hostweb-631-serrinha.json",
+          "source_url": "https://mapas.fortaleza.ce.gov.br/api/v1/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=LIMITES_ADMINISTRATIVOS%3Avw_Lotes_fiscais&outputFormat=application%2Fjson&maxFeatures=100&CQL_FILTER=%22Endere%C3%A7o%22+ILIKE+%27%25%2C+631+%25%27+AND+%22Bairro%22+ILIKE+%27%25SERRINHA%25%27",
+          "final_url": "https://mapas.fortaleza.ce.gov.br/api/v1/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=LIMITES_ADMINISTRATIVOS%3Avw_Lotes_fiscais&outputFormat=application%2Fjson&maxFeatures=100&CQL_FILTER=%22Endere%C3%A7o%22+ILIKE+%27%25%2C+631+%25%27+AND+%22Bairro%22+ILIKE+%27%25SERRINHA%25%27",
+          "http_status": 200,
+          "content_type": "text/html; charset=UTF-8",
+          "retrieved_at": "2026-11-11T13:02:18.113570+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-hostweb-150/hostweb-631-serrinha.json",
+          "content_hash": "0af9ad48bd8bb400e9c1854c68615c835c1c0246236c4375d34d289d22f93f06",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 1586,
+          "raw_capture_redistributed": false
+        },
+        {
+          "source_url": "https://mapas.fortaleza.ce.gov.br/mapa/750/lotes-fiscais",
+          "final_url": "https://mapas.fortaleza.ce.gov.br/mapa/750/lotes-fiscais",
+          "retrieved_at": "2026-11-11T12:27:19.932752+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-latam-149/fortaleza-lotes-public.html",
+          "content_hash": "15ea7434949bd1fa3fcbc874a402e3cfec23e869693a6f3d7c58af7a53fe21be",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 77255,
+          "http_status": 200,
+          "content_type": "text/html; charset=UTF-8",
+          "raw_capture_redistributed": false,
+          "capture_id": "fortaleza-lotes-public.html"
+        }
+      ]
+    }
+  ]
+}

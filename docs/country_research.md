@@ -1116,6 +1116,18 @@ All 1,279 prior sites and 1,388 projects remain unchanged. The snapshot contains
 Qingyang, STT Noida NOI2 and AngoNAP II remain held for exact locators; the
 Fukushima showroom is excluded from commercial-host coverage.
 
+`verified_construction_core/2026-11-11-research-hundredfiftieth` adds ValorC3 BOI-1 in Boise, STG-1 in
+St. George and OKC-1 in Oklahoma City, plus Angola Cables AngoNAP II in Fortaleza.
+Recent operator and network-provider reports support existing commercial operation.
+Government address records locate the US hosts; Fortaleza's municipal cadastral
+parcel resolves AngoNAP II's previous locator hold. Coordinate transformations,
+address interpolation and unknown positional accuracy remain explicit.
+
+All 1,282 prior sites and 1,391 projects remain unchanged. The snapshot contains
+**1,286 sites, 1,395 projects and 7,233 evidence records in 90 countries**.
+Unresolved candidates and the Cologix ASH2 status-date concern remain documented
+in the accompanying research holds.
+
 ## 25 October 2026
 
 `verified_construction_core/2026-10-25-research-sixtysecond` adds three commercial sites and
