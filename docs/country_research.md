@@ -952,6 +952,17 @@ identity without renewing status dates. Every existing project row and earlier
 published snapshot is unchanged. Future SP7 and unresolved host relationships remain
 in the research queue.
 
+`verified_construction_core/2026-11-11-research-hundredthirtyeighth` adds **19 physical
+sites and 27 operating projects**, reaching **1,249 sites and 1,358 projects in 89 countries**.
+New hosts cover Australia, Japan, Korea, Poland, France, Turkey and Ireland; eight projects
+join existing Frankfurt, Slough, Pantin, Saint-Denis and Alcobendas campuses. Native operator
+records supply the new locators; inherited government campus anchors remain exact. Historical
+operator and regulator documents resolve shared properties without refreshing status. All new
+operating observations retain the 30 September 2026 portfolio date. The xScale admissions
+reconcile the named regional list with the explicitly operational portfolio total. Facility
+specifications remain individually attributed; unavailable or anomalous fields do not become
+zero capacity. Earlier project rows and published snapshot bytes remain unchanged.
+
 ## 25 October 2026
 
 `verified_construction_core/2026-10-25-research-sixtysecond` adds three commercial sites and
