@@ -1242,6 +1242,14 @@ September 29 observation. Existing geometry, roles, capacity and historical evid
 remain unchanged. The snapshot contains **1,310 sites,
 1,421 projects and 7,342 evidence records in 90 countries**.
 
+`verified_construction_core/2026-11-11-research-hundredfiftyeighth` adds Intergate West in Tukwila,
+Washington, and QTS Piscataway 1 in New Jersey. Original customer incident records
+date existing operation; operator and customer facility descriptions join each host
+to its exact government address reference. Derived locator points retain their
+unknown positional accuracy. Existing records remain unchanged. The snapshot contains
+**1,312 sites, 1,423 projects and
+7,351 evidence records in 90 countries**.
+
 ## 25 October 2026
 
 `verified_construction_core/2026-10-25-research-sixtysecond` adds three commercial sites and

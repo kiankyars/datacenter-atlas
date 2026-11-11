@@ -1,0 +1,145 @@
+{
+  "format": "datacenter-atlas-update-input-v1",
+  "updated_at": "2026-11-11",
+  "output": "verified_construction_core/2026-11-11-research-hundredfiftyeighth",
+  "base_dataset": "verified_construction_core/2026-11-11-research-hundredfiftyseventh",
+  "base_manifest_sha256": "a7da89676837842d3d6d5dd7455f8b8ee6e3d522a9f0c085400d3dc6d1e7aee9",
+  "source_files": [
+    {
+      "path": "sources/research-countries-2026-11-11-hundredfiftyeighth-primary-sources.json",
+      "sha256": "77bf0c00ac3f38ac8563f58a0e293f90ba1815e054bea634547e464636d7d0e2"
+    }
+  ],
+  "additions": [
+    {
+      "project_stable_key": "curated:seattle-intergate-west-campus:12201-existing-operations",
+      "physical_site_stable_key": "curated:seattle-intergate-west-campus",
+      "site_name": "Intergate West / SDC Seattle West (Tukwila, Washington)",
+      "name": "Intergate West — existing commercial hosting at 12201 Tukwila International Boulevard",
+      "country": "United States",
+      "country_iso_a2": "US",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-11-04",
+        "source_id": "commercial158-seattle-racknerd-nov4",
+        "summary": "The original November 4 incident reports connectivity problems on physical host SEA160KVM and a later resolution. RackNerd defines a node as a physical server hosting VPS instances. Its Seattle facility page supplies 12201 Tukwila International Boulevard within Intergate West, matching Wowrack’s own hosting facility. This dates existing commercial hosting at the address, not a new opening or campus-wide outage."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -122.2935854,
+            47.4941366
+          ]
+        },
+        "source_id": "commercial158-seattle-census-address",
+        "identity_source_ids": [
+          "commercial158-racknerd-seattle-address",
+          "commercial158-wowrack-seattle-address",
+          "commercial158-sabey-west-campus-profile"
+        ],
+        "scope": "campus_locator",
+        "scope_class": "government_exact_address_reference",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "census_tiger_address_interpolation_explicit_epsg1188",
+        "precision": "Exact Census match for 12201 TUKWILA INTERNATIONAL BLVD, SEATTLE, WA, 98168. Native NAD83 point [-122.293585366074, 47.494136628714] is interpolated on TIGER edge 186626277, side R, potential range 12101–12299. Explicit EPSG:1188 NAD83 to WGS 84 (1) uses zero geocentric translations and has nominal 4 m datum-operation accuracy; its no-op form is not exact datum equality. The operation covers this mainland location. The rounded seven-decimal point is a campus address reference, not a surveyed building, entrance, parcel centroid, server location or boundary. Realization, epoch, interpolation offset and total horizontal accuracy are unknown.",
+        "identity_review": "All four committed baseline 157 identity layers were checked: 1,310 sites, 1,421 projects, 231 source records and 231 mapping records plus 231 decisions. Exact 12201/Tukwila, Intergate West, SDC Seattle, Wowrack, IGW01/IGW03, SEA160KVM and Sabey aliases produced no matching host. Broad Sabey matches belong to Indianapolis, Austin and Umatilla. All 1,310 full geometries were compared, including polygons without centroid substitution. The nearest host is Equinix SE4 in Kent, 8.714 km away; Westin/Equinix SE2 is 13.770 km away. The two current hosting pages explicitly place 12201 within Intergate West; Sabey's original profile separately names the West campus at adjacent 12301. One West campus is admitted, with operation observed only at 12201. East-campus equipment, network transport, office/flex space, building-letter variants and internal IGW codes do not create extra sites or status claims.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "Census interpolation, offset to hosting equipment, NAD83 realization and epoch are unspecified. Nominal 4 m datum-operation accuracy does not establish total point accuracy."
+      },
+      "context_source_ids": [
+        "commercial158-racknerd-seattle-address",
+        "commercial158-wowrack-seattle-address",
+        "commercial158-sabey-west-campus-profile"
+      ],
+      "roles": [
+        {
+          "party": "Wowrack",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "commercial158-wowrack-seattle-address"
+        },
+        {
+          "party": "RackNerd",
+          "role": "user",
+          "relationship_scope": "current",
+          "source_id": "commercial158-racknerd-seattle-address"
+        }
+      ],
+      "distinctness_review": "All four committed baseline 157 identity layers were checked: 1,310 sites, 1,421 projects, 231 source records and 231 mapping records plus 231 decisions. Exact 12201/Tukwila, Intergate West, SDC Seattle, Wowrack, IGW01/IGW03, SEA160KVM and Sabey aliases produced no matching host. Broad Sabey matches belong to Indianapolis, Austin and Umatilla. All 1,310 full geometries were compared, including polygons without centroid substitution. The nearest host is Equinix SE4 in Kent, 8.714 km away; Westin/Equinix SE2 is 13.770 km away. The two current hosting pages explicitly place 12201 within Intergate West; Sabey's original profile separately names the West campus at adjacent 12301. One West campus is admitted, with operation observed only at 12201. East-campus equipment, network transport, office/flex space, building-letter variants and internal IGW codes do not create extra sites or status claims.",
+      "successor_review": "Original weekly RackNerd incident pages were reviewed across August 13–November 11. Ten Seattle incidents fall in that window; the latest is SEA160KVM on November 4. Its captured body reports resolution without a separate date. No later Seattle incident appears in the reviewed pages. Current-state labels are not fresh physical observations or an uninterrupted-service guarantee. Original customer, Wowrack and Sabey property sources establish the West campus context; office/flex offerings and broad Seattle-campus power availability do not date a new data-centre phase.",
+      "scoped_project_details": {
+        "address": "12201 Tukwila International Boulevard, Tukwila (Seattle postal city), WA 98168",
+        "scope": "One Intergate West campus; existing hosting observed at 12201 only. No office/flex, East-campus or other internal building phase admitted. Wowrack operates the matched hosting facility; no direct RackNerd service contract or legal landlord ownership asserted.",
+        "metrics": "No MW, area, racks, capacity, efficiency, certification or service guarantee selected.",
+        "location_limits": "Exact Census match for 12201 TUKWILA INTERNATIONAL BLVD, SEATTLE, WA, 98168. Native NAD83 point [-122.293585366074, 47.494136628714] is interpolated on TIGER edge 186626277, side R, potential range 12101–12299. Explicit EPSG:1188 NAD83 to WGS 84 (1) uses zero geocentric translations and has nominal 4 m datum-operation accuracy; its no-op form is not exact datum equality. The operation covers this mainland location. The rounded seven-decimal point is a campus address reference, not a surveyed building, entrance, parcel centroid, server location or boundary. Realization, epoch, interpolation offset and total horizontal accuracy are unknown."
+      }
+    },
+    {
+      "project_stable_key": "curated:qts-piscataway-1-101-possumtown:existing-operations",
+      "physical_site_stable_key": "curated:qts-piscataway-1-101-possumtown",
+      "site_name": "QTS Piscataway 1 (101 Possumtown Road, New Jersey)",
+      "name": "QTS Piscataway 1 — existing commercial operations",
+      "country": "United States",
+      "country_iso_a2": "US",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-10-05",
+        "source_id": "commercial158-piscataway-racknerd-oct5",
+        "summary": "The original October 5 incident reports connectivity problems on physical host NJ108KVM and a later resolution. RackNerd defines a node as a physical server hosting VPS instances. Its New Jersey facility page identifies 101 Possumtown Road, matching QTS Piscataway 1. This dates existing hosting at that physical campus, not an expansion, new opening or whole-site outage."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -74.4888384,
+            40.5568687
+          ]
+        },
+        "source_id": "commercial158-piscataway-census-address",
+        "identity_source_ids": [
+          "commercial158-racknerd-newjersey-address",
+          "commercial158-qts-piscataway-address"
+        ],
+        "scope": "campus_locator",
+        "scope_class": "government_exact_address_reference",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "census_tiger_address_interpolation_explicit_epsg1188",
+        "precision": "Exact Census match for 101 POSSUMTOWN RD, PISCATAWAY, NJ, 08854. Native NAD83 point [-74.488838412769, 40.556868681731] is interpolated on TIGER edge 60360460, side L, potential range 101–199. Explicit EPSG:1188 NAD83 to WGS 84 (1) uses zero geocentric translations and has nominal 4 m datum-operation accuracy; its no-op form is not exact datum equality. The operation covers this mainland location. The rounded seven-decimal point is a campus address reference, not a surveyed building, entrance, parcel centroid, server location or boundary. Realization, epoch, interpolation offset and total horizontal accuracy are unknown.",
+        "identity_review": "All four committed baseline 157 identity layers were checked: 1,310 sites, 1,421 projects, 231 source records and 231 mapping records plus 231 decisions. Exact 101/Possumtown, Piscataway, PNJ1/PNJ01, NJ108KVM, DuPont Fabros/DFT NJ1, Constant Hosting, ReliableSite and Net Data Centers aliases produced no matching host. All 1,310 complete geometries were compared. The nearest existing host is Iron Mountain NJE-1, 13.954 km away; Equinix NY11 Carteret is 21.025 km away. The customer and original operator give the same 101 Possumtown Road address. Other New Jersey data centres, customer suites and undated expansion phases are not separate additions.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "Census interpolation, offset to hosting equipment, NAD83 realization and epoch are unspecified. Nominal 4 m datum-operation accuracy does not establish total point accuracy."
+      },
+      "context_source_ids": [
+        "commercial158-racknerd-newjersey-address",
+        "commercial158-qts-piscataway-address"
+      ],
+      "roles": [
+        {
+          "party": "QTS",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "commercial158-qts-piscataway-address"
+        },
+        {
+          "party": "RackNerd",
+          "role": "user",
+          "relationship_scope": "current",
+          "source_id": "commercial158-racknerd-newjersey-address"
+        }
+      ],
+      "distinctness_review": "All four committed baseline 157 identity layers were checked: 1,310 sites, 1,421 projects, 231 source records and 231 mapping records plus 231 decisions. Exact 101/Possumtown, Piscataway, PNJ1/PNJ01, NJ108KVM, DuPont Fabros/DFT NJ1, Constant Hosting, ReliableSite and Net Data Centers aliases produced no matching host. All 1,310 complete geometries were compared. The nearest existing host is Iron Mountain NJE-1, 13.954 km away; Equinix NY11 Carteret is 21.025 km away. The customer and original operator give the same 101 Possumtown Road address. Other New Jersey data centres, customer suites and undated expansion phases are not separate additions.",
+      "successor_review": "Original weekly RackNerd incident pages were reviewed across August 13–November 11. Two New Jersey incidents fall in that window; the latest is NJ108KVM on October 5. Its captured body reports resolution without a separate date. No later New Jersey incident appears in the reviewed pages. The current QTS and customer pages agree on 101 Possumtown Road. QTS's undated additional two-story expansion and capacity claims do not establish completion or a later physical date. This is a bounded original incident/facility review, not an exhaustive ownership/tenancy archive.",
+      "scoped_project_details": {
+        "address": "101 Possumtown Road, Piscataway, NJ 08854",
+        "scope": "Existing campus hosting only; customer suites and an undated additional-building claim do not become separate sites or completed phases.",
+        "metrics": "No MW, area, racks, capacity, efficiency, certification or service guarantee selected.",
+        "location_limits": "Exact Census match for 101 POSSUMTOWN RD, PISCATAWAY, NJ, 08854. Native NAD83 point [-74.488838412769, 40.556868681731] is interpolated on TIGER edge 60360460, side L, potential range 101–199. Explicit EPSG:1188 NAD83 to WGS 84 (1) uses zero geocentric translations and has nominal 4 m datum-operation accuracy; its no-op form is not exact datum equality. The operation covers this mainland location. The rounded seven-decimal point is a campus address reference, not a surveyed building, entrance, parcel centroid, server location or boundary. Realization, epoch, interpolation offset and total horizontal accuracy are unknown."
+      }
+    }
+  ],
+  "status_updates": [],
+  "context_updates": []
+}

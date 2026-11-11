@@ -1,0 +1,1358 @@
+{
+  "reviewed_at": "2026-11-11",
+  "base_dataset": "verified_construction_core/2026-11-11-research-hundredfiftyseventh",
+  "holds": [
+    {
+      "candidate": "RackNerd Dallas at 3000 Irving Boulevard",
+      "reason": "Customer gives 3000 Irving Boulevard while baseline TierPoint Dallas is 3004 Irving Boulevard. Adjacency/campus alias relationship needs original property review before treating this as another host. No addition or status change selected.",
+      "source_capture": {
+        "capture_id": "racknerd-dallas-host.html",
+        "source_url": "https://www.racknerd.com/dallas-datacenter",
+        "final_url": "https://www.racknerd.com/dallas-datacenter",
+        "http_status": 200,
+        "content_type": "text/html; charset=UTF-8",
+        "retrieved_at": "2026-11-11T16:16:22.863036+00:00",
+        "raw_capture_file": "local_data/research-2026-11-11-commercial-158/racknerd-dallas-host.html",
+        "content_hash": "e745942f702502c86f86eed6696e3d2f1113849d867ec070f90d7a21f4964ea8",
+        "content_hash_scope": "sha256_exact_http_response_body_bytes",
+        "bytes": 15054,
+        "raw_capture_redistributed": false
+      },
+      "baseline_site_id": "vcc-site-70f158f9244021c02457",
+      "baseline_project_scope": "TierPoint Dallas (DAL), 3004 Irving Boulevard"
+    },
+    {
+      "candidate": "STTGDC Noida campus / NOI2 at DLF Techpark, Plot 1 Sector 143A",
+      "country": "India",
+      "country_iso_a2": "IN",
+      "reason": "Fresh original NOI2 completion and the STT-to-DLF Plot 1 identity are supported, but no eligible numeric locator within the STT campus or NOI2 footprint was established. The UP-RERA filing endpoints and their mean describe a larger mixed-use development, so no physical site or project is admitted.",
+      "observed_status_review": {
+        "supported_status": "completed",
+        "as_of": "2026-11-03",
+        "status_capture_id": "stt-noida-nov3.html",
+        "scope": "Original operator release records inauguration of the developed NOI2 facility on its existing Noida campus. No current customer workloads, commissioning of all advertised capacity, NOI3 completion or whole-estate completion is inferred.",
+        "successor_context_capture_id": "stt-noida-neysa-oct21.html",
+        "future_deployment": "Original October 21 announcement schedules Neysa first deployment from Q1 2027. Selection does not prove live GPUs or operational workloads.",
+        "date_boundary": "Current operator cards and retrieval dates are not physical observation dates."
+      },
+      "locator_review": {
+        "eligible_coordinate_obtained": false,
+        "property_identity": "DLF subsidiary FY2025 accounts p56 notes 45/46 identify STT Data Centre 2 agreement at Plot 1 and the commercial leasehold estate at Plot 01 Sector 143A. Note 45(b) prints Sector 43A; the discrepancy is retained, with Sector 143A supported by the next note, STT original DC1 factsheet and regulator filing. CTUIL also places STT at Plot 1 Sector 143.",
+        "original_coordinate_source": "gov-ca-techpark.pdf",
+        "visual_pages_reviewed": {
+          "gov-ca-techpark.pdf": [
+            1
+          ],
+          "dlf-urvasi-2025.pdf": [
+            56
+          ]
+        },
+        "source_scope": "The UP-RERA accountant certificate concerns mixed IT Block A, Data Centre Block B and open parking. It is a private filing hosted by the regulator, not a government survey. Its text describes 33,310 m², while the four endpoints enclose approximately 106,990 m². The landlord describes a 24.774-acre estate; the operator DC1 factsheet describes about 5 acres. These extents are not interchangeable.",
+        "rejected_derived_reference": {
+          "native_coordinate_order": "latitude, longitude",
+          "native_lat_lon": {
+            "north": [
+              28.4999199,
+              77.4272096
+            ],
+            "south": [
+              28.4957912,
+              77.4293296
+            ],
+            "east": [
+              28.4975468,
+              77.4308782
+            ],
+            "west": [
+              28.4981709,
+              77.4257813
+            ]
+          },
+          "source_page": 1,
+          "source_crs": "Geographic latitude and longitude; datum, realization and epoch unspecified by source. No datum correction claimed.",
+          "method": "Equal arithmetic mean of four published endpoint longitude values and separately latitude values; axis reordering; round to seven decimal places. This is a compiled mixed-estate reference, not an official centroid.",
+          "unrounded_lon_lat": [
+            77.428299675,
+            28.4978572
+          ],
+          "selected_lon_lat": [
+            77.4282997,
+            28.4978572
+          ],
+          "source_stated_phase_area_m2": 33310,
+          "diagnostic_four_endpoint_polygon_area_m2": 106990.43305837459,
+          "area_limit": "Connecting cardinal endpoint observations is a diagnostic only. Its area differs from the stated first-phase area; no polygon, surveyed boundary, phase footprint, parcel size, current area or distance bound is selected.",
+          "unknowns": [
+            "native datum",
+            "native coordinate accuracy",
+            "offset to NOI2 building",
+            "exact extent of phase and campus"
+          ]
+        },
+        "rejection": "The compiled mean is a host-estate context reference only. No selected source establishes that it lies in STT’s occupied campus or quantifies the offset to NOI2. It must not be classified as a campus_locator to force admission. No polygon or area is selected.",
+        "forbidden_substitutes": "No directory, map-app, OSM or city centroid supplies replacement geometry."
+      },
+      "identity_review": {
+        "baseline_manifest_sha256": "a7da89676837842d3d6d5dd7455f8b8ee6e3d522a9f0c085400d3dc6d1e7aee9",
+        "aliases_regex": "Noida|143.?A|Urv[ae]?shi?|Urvasi|Neysa|\\bNOI[123]\\b|STT|ST.?Telemedia|\\bDLF\\b|Tech.?Park",
+        "layers": {
+          "sites": {
+            "records_checked": 1310,
+            "broad_matches": 24
+          },
+          "projects": {
+            "records_checked": 1421,
+            "broad_matches": 29
+          },
+          "source_records": {
+            "records_checked": 231,
+            "broad_matches": 8
+          },
+          "identity_records": {
+            "records_checked": 231,
+            "broad_matches": 8
+          },
+          "identity_decisions": {
+            "records_checked": 231,
+            "broad_matches": 6
+          }
+        },
+        "decision": "No STT Noida/DLF Techpark physical host is represented. Existing Noida matches are Sify 01/02, CtrlS Sector127, AdaniConneX and Yotta Knowledge Park V; STT brands elsewhere are different campuses. Current operator explicitly groups NOI1/2/3; these must not create separate physical sites.",
+        "geometry_screening": {
+          "geometries_checked": 1310,
+          "distance_method": "Full existing geometry projected into candidate-centred WGS84 azimuthal equidistant metres; no polygon-centroid substitution; native source datum unknown so distances are screening comparisons, not survey measures.",
+          "nearest_ten": [
+            {
+              "site_id": "vcc-site-37108b4d9d3683d6451d",
+              "name": "Sify Noida 02 data center campus",
+              "geometry_type": "Point",
+              "distance_m": 5586.397127180264
+            },
+            {
+              "site_id": "vcc-site-7eddcb1db8fd87fe045d",
+              "name": "Sify Noida 01 data center campus (DEL01), Plot B7, Sector 132, Noida",
+              "geometry_type": "Point",
+              "distance_m": 5749.038791710931
+            },
+            {
+              "site_id": "vcc-site-e32786b1ee990ce41cfe",
+              "name": "Yotta Greater Noida Data Center Park, Plot 7, Knowledge Park V",
+              "geometry_type": "Point",
+              "distance_m": 7943.112169469909
+            },
+            {
+              "site_id": "vcc-site-c7ddba9644af8bc54913",
+              "name": "CtrlS Noida Datacenter (Sector 127)",
+              "geometry_type": "Point",
+              "distance_m": 8431.619806772016
+            },
+            {
+              "site_id": "vcc-site-c4475d593124b26a70cd",
+              "name": "AdaniConneX Noida data centre campus",
+              "geometry_type": "Point",
+              "distance_m": 13276.993718822298
+            },
+            {
+              "site_id": "vcc-site-eb73e734b6b086a24061",
+              "name": "STT Jaipur Sitapura Data Centre",
+              "geometry_type": "Point",
+              "distance_m": 246984.86123848375
+            },
+            {
+              "site_id": "vcc-site-ae968411f4e47979f120",
+              "name": "SKY47 Karakoram-01 Data Center Campus",
+              "geometry_type": "Point",
+              "distance_m": 699790.8637170357
+            },
+            {
+              "site_id": "vcc-site-9110ab1aaf7969ec33fc",
+              "name": "Data World Matatirtha Campus",
+              "geometry_type": "Point",
+              "distance_m": 772615.197988681
+            },
+            {
+              "site_id": "vcc-site-b361966a5e9d8673a550",
+              "name": "CtrlS Patna greenfield data centre, BIADA lease C-32/33",
+              "geometry_type": "Point",
+              "distance_m": 824772.3602047298
+            },
+            {
+              "site_id": "vcc-site-7f644893d8685d1d4b44",
+              "name": "Reliance Jamnagar AI-enabled data centre for Meta",
+              "geometry_type": "Point",
+              "distance_m": 997031.843653375
+            }
+          ],
+          "limitation": "Screening used the rejected mixed-estate mean solely to look for candidate duplicates. It does not establish eligible campus geometry."
+        }
+      },
+      "next_evidence": "An original operator, landlord, developer or government numeric STT-specific locator, or a source plan with sufficient anchors to locate the STT campus/NOI2 independently of the wider mixed-use estate."
+    },
+    {
+      "candidate": "Digital Realty AMS17 / Amsterdam Data Tower, Science Park 120, Amsterdam",
+      "decision": "hold_existing_campus_project",
+      "reason": "Fresh original physical evidence and the building/campus identity are established, but baseline AMS9 geometry is explicitly a project_locator at the Science Park 121 address unit. The actual updater rejects inheritance as a campus locator. This batch must not relabel that point, create a duplicate physical campus or manufacture a different capture to bypass the guard.",
+      "status_candidate": {
+        "value": "operational",
+        "as_of": "2026-11-03",
+        "source_url": "https://www.clouviderstatus.net/api/v2/incidents/gzfw4t37pmnc.json",
+        "incident_id": "gzfw4t37pmnc",
+        "component_id": "tpvm0r1vfq9b",
+        "scope": "Original component names Amsterdam Data Tower. The report describes an on-site engineer troubleshooting AMS-CORE-3, then records restoration of that device to topology and site redundancy at 23:41 GMT. Select existing commercial hosting only; not opening, capacity, whole-campus outage or uninterrupted operation."
+      },
+      "identity_review": "Clouvider’s original facility page names Digital Realty Amsterdam Data Tower; the original AMS17 factsheet names the tower and Science Park 120, and both AMS17 and AMS9 factsheets explicitly place their facilities on Digital Realty’s Amsterdam Science Park campus. The AMS17 HTML native node 2265 joins code, address and its own marker. Page meta-title Science Park 121 is inconsistent with the exact node/body 120 and is not substituted. The baseline operating project is AMS9 only.",
+      "locator_findings": {
+        "existing_site_id": "vcc-site-1e33c686f1997686f9c4",
+        "existing_project_id": "77164e63-e49b-5925-9775-0e82da569be5",
+        "existing_point": [
+          4.952727093407854,
+          52.35610567572586
+        ],
+        "existing_geometry_evidence_id": "4281748b-43fc-5a9e-83b4-69113b1f29a8",
+        "existing_geometry_use_scope": "project_locator",
+        "existing_geometry_identity_evidence_ids": [],
+        "unselected_ams17_native_marker": [
+          4.9516091,
+          52.3563532
+        ],
+        "native_marker_scope": "Exact operator fields with unstated datum, epoch and accuracy; WGS84 representation is an interpretation. Not selected or used to move the existing campus.",
+        "actual_updater_guard": "locator inheritance requires campus scope",
+        "provenance_only_limit": "The existing same-evidence provenance_only API also requires geometry_use_scope to remain unchanged; it cannot convert project_locator to campus_locator."
+      },
+      "date_semantics": "November 3 is the original actual incident day. Original update created_at strings are preserved in raw JSON; CMS, archive, access, certificate and brochure filename dates are not physical observations.",
+      "successor_review": "The original 50-incident feed contains no newer Amsterdam-specific physical incident after November 3. November 6 follow-up explicitly says European hypervisor updates were completed; this regional context does not assign workloads to additional London or Manchester facilities. November 11 US continuation is not European status. No exhaustive archive or continuous service claim.",
+      "required_followup": "A separately reviewed scope-aware campus locator workflow that preserves the distinct AMS9 address-unit meaning and all historical evidence; then rebase and independently review the AMS17 phase against the committed corrected baseline.",
+      "capture_ids": [
+        "clouvider-ams17-nov3.json",
+        "clouvider-incidents.json",
+        "clouvider-summary.json",
+        "clouvider-status.html",
+        "clouvider-datatower.html",
+        "digital-realty-ams17.html",
+        "digital-realty-ams9.html",
+        "ams17-factsheet.pdf",
+        "ams9-factsheet.pdf",
+        "clouvider-nov6-maintenance.html",
+        "clouvider-nov11-maintenance.html",
+        "europe158-spatial-identity-review.json",
+        "europe158-builder-contract-preflight.json"
+      ],
+      "source_urls": [
+        "https://www.clouviderstatus.net/api/v2/incidents/gzfw4t37pmnc.json",
+        "https://www.clouviderstatus.net/api/v2/incidents.json",
+        "https://www.clouviderstatus.net/api/v2/summary.json",
+        "https://www.clouviderstatus.net/",
+        "https://www.clouvider.com/amsterdam-data-tower-digital-realty-datacenter/",
+        "https://www.digitalrealty.com/data-centers/emea/amsterdam/ams17",
+        "https://www.digitalrealty.com/data-centers/emea/amsterdam/ams9",
+        "https://go2.digitalrealty.com/rs/087-YZJ-646/images/DS_Digital_Realty_2309_AMS17_factsheet.pdf",
+        "https://go2.digitalrealty.com/rs/087-YZJ-646/images/DS_Digital_Realty_2407_AMS9_Property_Factsheet_EN.pdf",
+        "https://www.clouviderstatus.net/incidents/hgysc44k3gy2",
+        "https://www.clouviderstatus.net/incidents/lbhm3htgq0xl"
+      ]
+    },
+    {
+      "candidate": "UK Servers Continuity House / 205/DC3, 205 Torrington Avenue, Coventry",
+      "decision": "hold_missing_eligible_numeric_locator",
+      "reason": "The original August 24 incident and exact facility identity are established, but no eligible numeric operator/developer/landlord/government location was resolved. A postal address, postcode or third-party directory marker is insufficient.",
+      "status_candidate": {
+        "value": "operational",
+        "as_of": "2026-08-24",
+        "source_url": "https://status.ukservers.com/api/v2/incidents/hw795x9rp1w4.json",
+        "incident_id": "hw795x9rp1w4",
+        "component_id": "ld5wx65dv8z6",
+        "scope": "Original incident exclusively tags Coventry–Continuity House (205/DC3), reports a router hardware fault and restored service on August 24. August 27 closure says a future maintenance window will migrate affected customers; it does not prove replacement completed. The later October 21 PHP advisory does not independently establish physical work."
+      },
+      "identity_review": "The operator handbook explicitly gives the physical site address Continuity House, 205 Torrington Avenue, CV4 9UT. The facility page distinguishes Continuity House from the separate 211 facility and its two data halls. Council rates workbook row 2611 independently names UK Dedicated Servers at Continuity House, 205; row 1799 names its other premises at units 21–22, 211. Neither administrative record establishes fresh physical operation or an exact coordinate. The public non-domestic EPC names Unit 1, 205 but supplies no UPRN or numeric location.",
+      "locator_findings": {
+        "numeric_point_selected": false,
+        "government_rates_property_reference": "1WE8906920543",
+        "rates_reference_is_not_uprn": true,
+        "unresolved_address_variant": "Companies House discovery references Unit 1 and older CV4 9AP; current operator site handbook and council Continuity House row agree on CV4 9UT. The exact site-unit join would need further review with any numeric locator.",
+        "map_terms_scope": "The actually read council planning terms restrict copying of submitted plans/drawings to consultation. No blanket commercial-reuse prohibition is inferred for all council data; the separate open-data page states OGL for its designated datasets. No planning-map coordinate is selected.",
+        "rejected_sources": "Directory coordinates, IP geolocation, postcode points and map-app coordinates were not selected. No OSM request was made."
+      },
+      "successor_review": "Original current 50-incident feed and current facility page reviewed through November 11. Later PHP security advisory is not new physical hosting evidence. Regional network and replacement plans are not treated as whole-site closure or completed migrations.",
+      "required_followup": "Original operator coordinate, exact public-authority address/UPRN join to an eligible open numeric point, or exact named-site planning/permit location; then full-geometry proximity review.",
+      "capture_ids": [
+        "coventry-auth-info.json",
+        "coventry-map-actual-terms.html",
+        "coventry-map-app.html",
+        "coventry-map-main.js",
+        "coventry-map-terms.html",
+        "coventry-open-data-licence.html",
+        "coventry-planning-register-links.html",
+        "coventry-rates-download-index.html",
+        "coventry-rates-oct2026.xlsx",
+        "epc-cv49ap.html",
+        "epc-cv49ut.html",
+        "epc-nondom-cv49ap.html",
+        "epc-nondom-cv49ut.html",
+        "epc-type.html",
+        "epc-unit1-205.html",
+        "ukservers-aup.html",
+        "ukservers-contact.html",
+        "ukservers-coventry-aug24.json",
+        "ukservers-datacentre.html",
+        "ukservers-handbook.html",
+        "ukservers-home.html",
+        "ukservers-incidents.json",
+        "ukservers-origin-news.html",
+        "ukservers-status.html",
+        "europe158-spatial-identity-review.json"
+      ],
+      "source_urls": [
+        "https://maps.coventry.gov.uk/connect/analyst/controller/authentication/getinfo",
+        "https://www.coventry.gov.uk/planning-2/online-planning-map/5",
+        "https://maps.coventry.gov.uk/connect/analyst/mobile/",
+        "https://maps.coventry.gov.uk/connect/analyst/mobile/main-es2015.0ead6c6c559b20742d2a.js",
+        "https://www.coventry.gov.uk/planning-2/online-planning-map/3",
+        "https://www.coventry.gov.uk/information-governance/open-data/2",
+        "https://www.coventry.gov.uk/planning-development/coventry-online-planning-register",
+        "https://www.coventry.gov.uk/downloads/download/2178/non_domestic_rates_foi_report",
+        "https://www.coventry.gov.uk/downloads/file/47650/all-accounts-with-rv-of-zero-upwards-including-retail-relief-october-2026",
+        "https://find-energy-certificate.service.gov.uk/find-a-certificate/search-by-postcode?postcode=CV4%209AP&property_type=non_domestic",
+        "https://find-energy-certificate.service.gov.uk/find-a-certificate/search-by-postcode?postcode=CV4%209UT&property_type=non_domestic",
+        "https://find-energy-certificate.service.gov.uk/find-a-non-domestic-certificate/search-by-postcode?postcode=CV4%209AP",
+        "https://find-energy-certificate.service.gov.uk/find-a-non-domestic-certificate/search-by-postcode?postcode=CV4%209UT",
+        "https://find-energy-certificate.service.gov.uk/find-a-certificate/type-of-property",
+        "https://find-energy-certificate.service.gov.uk/energy-certificate/5197-6275-0995-2611-8314",
+        "https://www.ukservers.com/acceptable-use-policy/",
+        "https://www.ukservers.com/contact-us/",
+        "https://status.ukservers.com/api/v2/incidents/hw795x9rp1w4.json",
+        "https://www.ukservers.com/our-datacentre/",
+        "https://ukservers.com/docs/handbook.html",
+        "https://www.ukservers.com/",
+        "https://status.ukservers.com/api/v2/incidents.json",
+        "https://www.ukservers.com/news/",
+        "https://status.ukservers.com"
+      ]
+    },
+    {
+      "candidate": "Telxius Cancun Landing Gateway & Edge Data Center",
+      "country": "Mexico",
+      "country_iso_a2": "MX",
+      "reason": "The original September 3 release establishes a built facility ready for customers, but no precise facility-level locator was established. The operator network map supplies a named data-centre point with exactly the same geometry as a generic Cancun PoP; its inverse-projected coordinates are rounded to 0.01 degree and no site address or parcel is supplied. The reviewed sources do not establish whether this is a generalized network node or the actual physical host. No new site is admitted from that uncertainty.",
+      "observed_status_review": {
+        "supported_status": "completed",
+        "as_of": "2026-09-03",
+        "source_capture_id": "telxius-cancun-sept3.html",
+        "date_semantics": "Explicit original publication and dateline describe the facility as built and ready to support customers. This supports completion, without treating customer readiness as proof of equipment in operation. The separate Tikal cable launch remains a future first-half-2027 target.",
+        "later_context": "The undated new-PoPs page describes commercial facilities and services; it does not create a later dated physical observation. No capacity or operating workload is selected."
+      },
+      "locator_review": {
+        "operator_chain": "The original Telxius page links mapainteractivo.telxius.com. Its bootstrap loads index-8a695de0.js, which names the public ArcGIS service Mapa_publico and the telxius.maps.arcgis.com portal. ArcGIS item1dc66cc8d6fb48d5a0aadec3e2e842c7 is owned by Telxius.",
+        "feature_id": 79,
+        "feature_code": "TCAN01",
+        "feature_type": "Data Centers / DATA_CENTERS",
+        "native_spatial_reference": {
+          "wkid": 102100,
+          "latestWkid": 3857
+        },
+        "native_point": {
+          "x": -9678116.529567199,
+          "y": 2412160.8537174673
+        },
+        "analyst_inverse_projection_context_only": {
+          "source_crs": "EPSG:3857",
+          "target_crs": "EPSG:4326",
+          "rounded_coordinates": [
+            -86.94,
+            21.17
+          ],
+          "selected_as_locator": false
+        },
+        "competing_same_point_feature": {
+          "objectid": 98,
+          "type": "Points of Presence (PoPs) / INTERNATIONAL_POP",
+          "same_exact_native_geometry": true
+        },
+        "scope_limit": "This network reference is not established as a precise building, entrance or parcel. No metropolitan marker, beach manhole or cable landing point is substituted for the data centre.",
+        "fcc_context": "Original FCC June 2025 license summary identifies a new Cancun cable landing station but says the precise location will be furnished once real estate is acquired; that document supplies no Cancun station coordinate. No cable authorization is treated as permission for the data-centre development or a physical opening."
+      },
+      "identity_review": {
+        "baseline_manifest_sha256": "a7da89676837842d3d6d5dd7455f8b8ee6e3d522a9f0c085400d3dc6d1e7aee9",
+        "aliases_regex": "Telxius|TCAN01|Canc[uú]n|Tikal",
+        "layers": {
+          "sites.csv": {
+            "records_checked": 1310,
+            "matches": 0
+          },
+          "projects.csv": {
+            "records_checked": 1421,
+            "matches": 0
+          },
+          "source-records.json:records": {
+            "records_checked": 231,
+            "matches": 0
+          },
+          "identity-mapping.json:records": {
+            "records_checked": 231,
+            "matches": 0
+          },
+          "identity-mapping.json:decisions": {
+            "records_checked": 231,
+            "matches": 0
+          }
+        },
+        "nearby_review": "Not used for admission because the candidate coordinate has unresolved physical scope. No comparison using this coarse reference is claimed to establish a new exact host."
+      },
+      "next_evidence": "An operator, developer, landlord or public-authority address/parcel/coordinate explicitly locating the physical TCAN01/Cancun facility, or an updated original FCC station-location filing with a demonstrable facility identity join."
+    }
+  ],
+  "research_capture_indexes": [
+    {
+      "research_scope": "Primary-source research captures",
+      "captures": [
+        {
+          "capture_id": "status-week-2026-08-08.html",
+          "source_url": "https://status.racknerd.com/?start_date=2026-08-08",
+          "final_url": "https://status.racknerd.com/?start_date=2026-08-08",
+          "http_status": 200,
+          "content_type": "text/html; charset=UTF-8",
+          "retrieved_at": "2026-11-11T16:17:14.521846+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-commercial-158/status-week-2026-08-08.html",
+          "content_hash": "fe6e973b3a1b2ad05c223e9e4a93ace3866c282f859d0ff0246cb3afb3ed4587",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 55092,
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "status-week-2026-08-15.html",
+          "source_url": "https://status.racknerd.com/?start_date=2026-08-15",
+          "final_url": "https://status.racknerd.com/?start_date=2026-08-15",
+          "http_status": 200,
+          "content_type": "text/html; charset=UTF-8",
+          "retrieved_at": "2026-11-11T16:17:14.212064+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-commercial-158/status-week-2026-08-15.html",
+          "content_hash": "f3d3b98239a81660d85f3aa481128c2828717d97f6e8586f781eb1810090cb53",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 34253,
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "status-week-2026-08-22.html",
+          "source_url": "https://status.racknerd.com/?start_date=2026-08-22",
+          "final_url": "https://status.racknerd.com/?start_date=2026-08-22",
+          "http_status": 200,
+          "content_type": "text/html; charset=UTF-8",
+          "retrieved_at": "2026-11-11T16:17:14.439773+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-commercial-158/status-week-2026-08-22.html",
+          "content_hash": "ac8ed4312501dc3fb361520ee6e5e80da467f63ee19214bf2397e9275387a264",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 72424,
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "status-week-2026-08-29.html",
+          "source_url": "https://status.racknerd.com/?start_date=2026-08-29",
+          "final_url": "https://status.racknerd.com/?start_date=2026-08-29",
+          "http_status": 200,
+          "content_type": "text/html; charset=UTF-8",
+          "retrieved_at": "2026-11-11T16:17:14.308230+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-commercial-158/status-week-2026-08-29.html",
+          "content_hash": "ae7c58a0356c7f69bf6918b411ab92692d9e51fa2fdcbe302bf299c1e144bdbe",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 46361,
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "status-week-2026-09-05.html",
+          "source_url": "https://status.racknerd.com/?start_date=2026-09-05",
+          "final_url": "https://status.racknerd.com/?start_date=2026-09-05",
+          "http_status": 200,
+          "content_type": "text/html; charset=UTF-8",
+          "retrieved_at": "2026-11-11T16:17:12.311855+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-commercial-158/status-week-2026-09-05.html",
+          "content_hash": "db80cbd71e7f047410e3e58c7f1f20e5ceac9dae61dce7aedd1fb6e6fe499699",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 47728,
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "status-week-2026-09-12.html",
+          "source_url": "https://status.racknerd.com/?start_date=2026-09-12",
+          "final_url": "https://status.racknerd.com/?start_date=2026-09-12",
+          "http_status": 200,
+          "content_type": "text/html; charset=UTF-8",
+          "retrieved_at": "2026-11-11T16:17:11.994617+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-commercial-158/status-week-2026-09-12.html",
+          "content_hash": "210c23d709735e93b10c4446a917f489fe4565dff1d504695f43a709200e74a3",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 46754,
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "status-week-2026-09-19.html",
+          "source_url": "https://status.racknerd.com/?start_date=2026-09-19",
+          "final_url": "https://status.racknerd.com/?start_date=2026-09-19",
+          "http_status": 200,
+          "content_type": "text/html; charset=UTF-8",
+          "retrieved_at": "2026-11-11T16:17:12.078640+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-commercial-158/status-week-2026-09-19.html",
+          "content_hash": "f237a75b8624bf42d9bec4292f3faef135b367d7111e7c4604506fb2e533e0bb",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 50491,
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "status-week-2026-09-26.html",
+          "source_url": "https://status.racknerd.com/?start_date=2026-09-26",
+          "final_url": "https://status.racknerd.com/?start_date=2026-09-26",
+          "http_status": 200,
+          "content_type": "text/html; charset=UTF-8",
+          "retrieved_at": "2026-11-11T16:17:12.061246+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-commercial-158/status-week-2026-09-26.html",
+          "content_hash": "f59523017119682647a79dd4f1b16112d1a7dd5a9d933444f8c0177f55986433",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 53870,
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "status-week-2026-10-03.html",
+          "source_url": "https://status.racknerd.com/?start_date=2026-10-03",
+          "final_url": "https://status.racknerd.com/?start_date=2026-10-03",
+          "http_status": 200,
+          "content_type": "text/html; charset=UTF-8",
+          "retrieved_at": "2026-11-11T16:17:10.337785+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-commercial-158/status-week-2026-10-03.html",
+          "content_hash": "f54906db4a566a917df4bf8db20e370b778afd02969079b9c9522be2ad110faa",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 43005,
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "status-week-2026-10-10.html",
+          "source_url": "https://status.racknerd.com/?start_date=2026-10-10",
+          "final_url": "https://status.racknerd.com/?start_date=2026-10-10",
+          "http_status": 200,
+          "content_type": "text/html; charset=UTF-8",
+          "retrieved_at": "2026-11-11T16:17:10.380447+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-commercial-158/status-week-2026-10-10.html",
+          "content_hash": "0c557eb51e61cd820235d8d6cbdefa6b9e81e42302081fb60f86323cdfb26217",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 65303,
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "status-week-2026-10-17.html",
+          "source_url": "https://status.racknerd.com/?start_date=2026-10-17",
+          "final_url": "https://status.racknerd.com/?start_date=2026-10-17",
+          "http_status": 200,
+          "content_type": "text/html; charset=UTF-8",
+          "retrieved_at": "2026-11-11T16:17:10.710837+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-commercial-158/status-week-2026-10-17.html",
+          "content_hash": "a72e68667cbd57d6d6bccb7ff12aa9fc40bba084737e88cd4a9d0a00b7cc87bd",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 54449,
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "status-week-2026-10-24.html",
+          "source_url": "https://status.racknerd.com/?start_date=2026-10-24",
+          "final_url": "https://status.racknerd.com/?start_date=2026-10-24",
+          "http_status": 200,
+          "content_type": "text/html; charset=UTF-8",
+          "retrieved_at": "2026-11-11T16:17:10.357018+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-commercial-158/status-week-2026-10-24.html",
+          "content_hash": "2eb780eded5d7ada249eb9202ae31761f7d01b4a70303663ece7747a45c32fe2",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 48131,
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "status-week-nov7.html",
+          "source_url": "https://status.racknerd.com/?start_date=2026-11-07",
+          "final_url": "https://status.racknerd.com/?start_date=2026-11-07",
+          "http_status": 200,
+          "content_type": "text/html; charset=UTF-8",
+          "retrieved_at": "2026-11-11T16:16:49.815646+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-commercial-158/status-week-nov7.html",
+          "content_hash": "489747b4851fcf6f9ee2378d73ad0b4660ad0b1807db8ceafaa063e3c60ee8cb",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 29878,
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "status-week-oct31.html",
+          "source_url": "https://status.racknerd.com/?start_date=2026-10-31",
+          "final_url": "https://status.racknerd.com/?start_date=2026-10-31",
+          "http_status": 200,
+          "content_type": "text/html; charset=UTF-8",
+          "retrieved_at": "2026-11-11T16:16:49.990993+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-commercial-158/status-week-oct31.html",
+          "content_hash": "089d80859ba7275167d8200e48f04aacae090e90accedf6a079440297c5fac7a",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 44445,
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "racknerd-datacenters.html",
+          "source_url": "https://www.racknerd.com/datacenters",
+          "final_url": "https://www.racknerd.com/datacenters",
+          "http_status": 200,
+          "content_type": "text/html; charset=UTF-8",
+          "retrieved_at": "2026-11-11T16:16:22.868359+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-commercial-158/racknerd-datacenters.html",
+          "content_hash": "dd3d1517f669ea4c1fdbb04df29f9bb697105481e6b3a15466ba9f6c3a22d3f1",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 20791,
+          "raw_capture_redistributed": false
+        }
+      ]
+    },
+    {
+      "lane": "India STTGDC Noida bounded research",
+      "captures": [
+        {
+          "capture_id": "stt-noida-nov3.html",
+          "source_url": "https://www.sttgdc.com/in-en/newsroom/sttgdc-india-inaugurates-22-mw-data-centre-noida-part-approximately-200-mw-planned-across",
+          "final_url": "https://www.sttgdc.com/in-en/newsroom/sttgdc-india-inaugurates-22-mw-data-centre-noida-part-approximately-200-mw-planned-across",
+          "retrieved_at": "2026-11-11T16:17:59.344145+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-asia-158/stt-noida-nov3.html",
+          "content_hash": "c8b99891d31ba06413025e8f98c9fa78ea127b6aef24ba0286efbaae65bc7b6f",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 120101,
+          "http_status": 200,
+          "content_type": "text/html; charset=UTF-8",
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "stt-noida-current.html",
+          "source_url": "https://www.sttgdc.com/in-en/locations/noida",
+          "final_url": "https://www.sttgdc.com/in-en/locations/noida",
+          "retrieved_at": "2026-11-11T16:17:58.297801+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-asia-158/stt-noida-current.html",
+          "content_hash": "3c3d56c3459af7eda4b83b48c5ade6be0a2e0b0fa05a2afddea198d8e5276fe4",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 120100,
+          "http_status": 200,
+          "content_type": "text/html; charset=UTF-8",
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "stt-noida-factsheet.pdf",
+          "source_url": "https://assets.sttelemediagdc.com/sttgdc/global_en/public/2024-02/Noida_DC_1_2.pdf",
+          "final_url": "https://assets.sttelemediagdc.com/sttgdc/global_en/public/2024-02/Noida_DC_1_2.pdf",
+          "retrieved_at": "2026-11-11T16:21:45.481138+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-asia-158/stt-noida-factsheet.pdf",
+          "content_hash": "4178713ee1c40173efa47e74883a5c9c38996204215fc8c943916f9dc202fbf6",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 5460775,
+          "http_status": 200,
+          "content_type": "application/pdf",
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "dlf-urvasi-2025.pdf",
+          "source_url": "https://www.dlf.in/account-subsidiary-companies/2025/urvashi_infratech_private_limited.pdf",
+          "final_url": "https://www.dlf.in/account-subsidiary-companies/2025/urvashi_infratech_private_limited.pdf",
+          "retrieved_at": "2026-11-11T16:23:15.787920+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-asia-158/dlf-urvasi-2025.pdf",
+          "content_hash": "7a1d6bd3d1881993a3454352bb80431447d0bc98887f556092beb53eb5a7d999",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 4321924,
+          "http_status": 200,
+          "content_type": "application/pdf",
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "ctuil-stt-noida.pdf",
+          "source_url": "https://www.ctuil.in/uploads/ists_consultation_meeting/minutes/176242143922Minutes%20of%2041st%20CMETS%20NR%20meeting%20held%20on%2010-10-2025.pdf",
+          "final_url": "https://www.ctuil.in/uploads/ists_consultation_meeting/minutes/176242143922Minutes%20of%2041st%20CMETS%20NR%20meeting%20held%20on%2010-10-2025.pdf",
+          "retrieved_at": "2026-11-11T16:22:35.206163+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-asia-158/ctuil-stt-noida.pdf",
+          "content_hash": "bbb851e834d0248bf61fe7fd552a6c38d67b2dc2248c1a1ed790a311832d0096",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 5594141,
+          "http_status": 200,
+          "content_type": "application/pdf",
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "gov-ca-techpark.pdf",
+          "source_url": "https://up-rera.in/ViewDocument?Param=PRJ21544789CA_Techpark__Noida_Certificate.pdf",
+          "final_url": "https://up-rera.in/ViewDocument?Param=PRJ21544789CA_Techpark__Noida_Certificate.pdf",
+          "retrieved_at": "2026-11-11T16:21:50.257836+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-asia-158/gov-ca-techpark.pdf",
+          "content_hash": "9b3bd0e46ac64b4bcfb64f58940186d66c9ac2c0b509a3327c94a2800a2ec658",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 1100466,
+          "http_status": 200,
+          "content_type": "application/pdf",
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "gov-rera-techpark.html",
+          "source_url": "https://www.up-rera.in/viewprojects?id=wE5hj9tt8Ko%3D",
+          "final_url": "https://www.up-rera.in/viewprojects?id=wE5hj9tt8Ko%3D",
+          "retrieved_at": "2026-11-11T16:21:55.129475+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-asia-158/gov-rera-techpark.html",
+          "content_hash": "fb192a97ac9f8ca70438431d3b2143e3899a1592279aeefc745e1e046c1d622b",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 704014,
+          "http_status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "stt-noida-spatial-review.json",
+          "source_url": "local-calculation:asia158-stt-noida-spatial-review",
+          "retrieved_at": "2026-11-11T16:23:48.435424+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-asia-158/stt-noida-spatial-review.json",
+          "content_hash": "e86159b3af4adf56d0691bffea21bc70f55cc69a3f4956cd0988e4dc5d4325f1",
+          "content_hash_scope": "sha256_exact_local_calculation_json_bytes",
+          "bytes": 404696,
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "stt-noida-neysa-oct21.html",
+          "source_url": "https://www.sttgdc.com/in-en/newsroom/sttgdc-to-host-neysa-ai-compute-infrastructure-noida-data-centre",
+          "final_url": "https://www.sttgdc.com/in-en/newsroom/sttgdc-to-host-neysa-ai-compute-infrastructure-noida-data-centre",
+          "retrieved_at": "2026-11-11T16:24:00.527737+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-asia-158/stt-noida-neysa-oct21.html",
+          "content_hash": "b3886dd4548a6e69b77aa1dead453bd5cfb1956fdfcfdd41f31759f27728a766",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 114153,
+          "http_status": 200,
+          "content_type": "text/html; charset=UTF-8",
+          "raw_capture_redistributed": false
+        }
+      ]
+    },
+    {
+      "research_scope": "Original European discovery and held candidates; complete originals retained only in ignored local_data. No selected data mutation or raw redistribution.",
+      "captures": [
+        {
+          "capture_id": "ams17-factsheet.pdf",
+          "source_url": "https://go2.digitalrealty.com/rs/087-YZJ-646/images/DS_Digital_Realty_2309_AMS17_factsheet.pdf",
+          "canonical_url": "https://go2.digitalrealty.com/rs/087-YZJ-646/images/DS_Digital_Realty_2309_AMS17_factsheet.pdf",
+          "retrieved_at": "2026-11-11T16:20:23.215825+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-europe-158/ams17-factsheet.pdf",
+          "content_hash": "6bdd4df9b2eb231811c9296d8fa4ee9418bbcd4bd1eafe679c4f644f0cc03f5a",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 1079720,
+          "http_status": 200,
+          "content_type": "application/pdf; charset=utf-8",
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "ams9-factsheet.pdf",
+          "source_url": "https://go2.digitalrealty.com/rs/087-YZJ-646/images/DS_Digital_Realty_2407_AMS9_Property_Factsheet_EN.pdf",
+          "canonical_url": "https://go2.digitalrealty.com/rs/087-YZJ-646/images/DS_Digital_Realty_2407_AMS9_Property_Factsheet_EN.pdf",
+          "retrieved_at": "2026-11-11T16:20:20.371609+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-europe-158/ams9-factsheet.pdf",
+          "content_hash": "4deeba75d674e08576a1b585855a47a70b2d6fecda072bd4c00a72180657c4d7",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 655815,
+          "http_status": 200,
+          "content_type": "application/pdf; charset=utf-8",
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "clouvider-ams17-nov3.json",
+          "source_url": "https://www.clouviderstatus.net/api/v2/incidents/gzfw4t37pmnc.json",
+          "canonical_url": "https://www.clouviderstatus.net/api/v2/incidents/gzfw4t37pmnc.json",
+          "retrieved_at": "2026-11-11T16:28:26.483482+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-europe-158/clouvider-ams17-nov3.json",
+          "content_hash": "c2a8d3fbe2831d69ba008b1a670865c8e46e463a439de811f3e826e5514f00f8",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 3629,
+          "http_status": 200,
+          "content_type": "application/json; charset=utf-8",
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "clouvider-datatower.html",
+          "source_url": "https://www.clouvider.com/amsterdam-data-tower-digital-realty-datacenter/",
+          "canonical_url": "https://www.clouvider.com/amsterdam-data-tower-digital-realty-datacenter/",
+          "retrieved_at": "2026-11-11T16:19:20.458106+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-europe-158/clouvider-datatower.html",
+          "content_hash": "bad334ddf921dc5da6d2512941440e29c76b888aa9466d8dd205b1f98504a4dd",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 142388,
+          "http_status": 200,
+          "content_type": "text/html; charset=UTF-8",
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "clouvider-incidents.json",
+          "source_url": "https://www.clouviderstatus.net/api/v2/incidents.json",
+          "canonical_url": "https://www.clouviderstatus.net/api/v2/incidents.json",
+          "retrieved_at": "2026-11-11T16:19:21.191100+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-europe-158/clouvider-incidents.json",
+          "content_hash": "5208bb464897384dcaf327db72dd8c41f437f1d89ae1a17a553ffc95bf4ee106",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 318237,
+          "http_status": 200,
+          "content_type": "application/json; charset=utf-8",
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "clouvider-nov11-maintenance.html",
+          "source_url": "https://www.clouviderstatus.net/incidents/lbhm3htgq0xl",
+          "canonical_url": "https://www.clouviderstatus.net/incidents/lbhm3htgq0xl",
+          "retrieved_at": "2026-11-11T16:20:19.659504+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-europe-158/clouvider-nov11-maintenance.html",
+          "content_hash": "f783949ac40cb6a83478eaa8c7f0da508768913cf5afa0d28965dfa05e862609",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 73764,
+          "http_status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "clouvider-nov6-maintenance.html",
+          "source_url": "https://www.clouviderstatus.net/incidents/hgysc44k3gy2",
+          "canonical_url": "https://www.clouviderstatus.net/incidents/hgysc44k3gy2",
+          "retrieved_at": "2026-11-11T16:20:19.620342+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-europe-158/clouvider-nov6-maintenance.html",
+          "content_hash": "710c387aeaa13be3d96a92362e3fedfdcb7cc37f80f7b892e859d23307c0aabb",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 73509,
+          "http_status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "clouvider-status.html",
+          "source_url": "https://www.clouviderstatus.net/",
+          "canonical_url": "https://www.clouviderstatus.net/",
+          "retrieved_at": "2026-11-11T16:19:21.149791+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-europe-158/clouvider-status.html",
+          "content_hash": "d5d35156d831fb2a2b895d6bc27e05aaf8d2d5387118820779ede4b2b4bfeecc",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 136872,
+          "http_status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "clouvider-summary.json",
+          "source_url": "https://www.clouviderstatus.net/api/v2/summary.json",
+          "canonical_url": "https://www.clouviderstatus.net/api/v2/summary.json",
+          "retrieved_at": "2026-11-11T16:19:20.774455+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-europe-158/clouvider-summary.json",
+          "content_hash": "6812fe4bd99c48af0e036587b6bda3a3371094b1300b3ff7dfaf7089610a9dcd",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 13992,
+          "http_status": 200,
+          "content_type": "application/json; charset=utf-8",
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "coventry-auth-info.json",
+          "source_url": "https://maps.coventry.gov.uk/connect/analyst/controller/authentication/getinfo",
+          "canonical_url": "https://maps.coventry.gov.uk/connect/analyst/controller/authentication/getinfo",
+          "retrieved_at": "2026-11-11T16:24:27.381417+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-europe-158/coventry-auth-info.json",
+          "content_hash": "d07476a4c431d7387a942bf4d0f6884ef913987b6ea608c6d77761673b352aa7",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 461,
+          "raw_capture_redistributed": false,
+          "retrieval_note": "curl with system TLS trust; certificate verification enabled.",
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "coventry-map-actual-terms.html",
+          "source_url": "https://www.coventry.gov.uk/planning-2/online-planning-map/5",
+          "canonical_url": "https://www.coventry.gov.uk/planning-2/online-planning-map/5",
+          "retrieved_at": "2026-11-11T16:21:38.009803+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-europe-158/coventry-map-actual-terms.html",
+          "content_hash": "3e04bda620f9f16af0f6194f4036376b5618c11d76fa174e559322930a48a8a6",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 40086,
+          "http_status": 200,
+          "content_type": "text/html; charset=UTF-8",
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "coventry-map-app.html",
+          "source_url": "https://maps.coventry.gov.uk/connect/analyst/mobile/",
+          "canonical_url": "https://maps.coventry.gov.uk/connect/analyst/mobile/",
+          "retrieved_at": "2026-11-11T16:23:06.273691+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-europe-158/coventry-map-app.html",
+          "content_hash": "eed12fa03923f4fb75c10d556962dc8656b069d23c7e19ddec3e769eb5a86a03",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 4085,
+          "raw_capture_redistributed": false,
+          "retrieval_note": "curl with system TLS trust; urllib failed local issuer verification; certificate verification was not disabled.",
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "coventry-map-main.js",
+          "source_url": "https://maps.coventry.gov.uk/connect/analyst/mobile/main-es2015.0ead6c6c559b20742d2a.js",
+          "canonical_url": "https://maps.coventry.gov.uk/connect/analyst/mobile/main-es2015.0ead6c6c559b20742d2a.js",
+          "retrieved_at": "2026-11-11T16:23:20.335027+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-europe-158/coventry-map-main.js",
+          "content_hash": "b24f0aa1638664cb25a04b75433c784d000581367e2450e66ba62875a260a668",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 5038329,
+          "raw_capture_redistributed": false,
+          "retrieval_note": "curl with system TLS trust; certificate verification enabled.",
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "coventry-map-terms.html",
+          "source_url": "https://www.coventry.gov.uk/planning-2/online-planning-map/3",
+          "canonical_url": "https://www.coventry.gov.uk/planning-2/online-planning-map/3",
+          "retrieved_at": "2026-11-11T16:21:20.190566+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-europe-158/coventry-map-terms.html",
+          "content_hash": "250cce69a269cf95c66cbe1dc7bfab394d42f9f13c43b4542b7e2a5ce288477b",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 41794,
+          "http_status": 200,
+          "content_type": "text/html; charset=UTF-8",
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "coventry-open-data-licence.html",
+          "source_url": "https://www.coventry.gov.uk/information-governance/open-data/2",
+          "canonical_url": "https://www.coventry.gov.uk/information-governance/open-data/2",
+          "retrieved_at": "2026-11-11T16:31:25.213169+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-europe-158/coventry-open-data-licence.html",
+          "content_hash": "9bd76992478f14b543f7854123ae6e201a49dcd7fd74f2f61f7f37e28234100c",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 40316,
+          "http_status": 200,
+          "content_type": "text/html; charset=UTF-8",
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "coventry-planning-register-links.html",
+          "source_url": "https://www.coventry.gov.uk/planning-development/coventry-online-planning-register",
+          "canonical_url": "https://www.coventry.gov.uk/planning-development/coventry-online-planning-register",
+          "retrieved_at": "2026-11-11T16:26:03.422189+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-europe-158/coventry-planning-register-links.html",
+          "content_hash": "3bcbd28453c18e297fde26de9a226414da1937c82773591a85d69c96142a9f0d",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 35096,
+          "http_status": 200,
+          "content_type": "text/html; charset=UTF-8",
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "coventry-rates-download-index.html",
+          "source_url": "https://www.coventry.gov.uk/downloads/download/2178/non_domestic_rates_foi_report",
+          "canonical_url": "https://www.coventry.gov.uk/downloads/download/2178/non_domestic_rates_foi_report",
+          "retrieved_at": "2026-11-11T16:31:25.072570+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-europe-158/coventry-rates-download-index.html",
+          "content_hash": "1ec40e2f324aa54b1dc2859d60c0f749326fa1f9c690d25afaab292f818ce3c9",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 31318,
+          "http_status": 200,
+          "content_type": "text/html; charset=UTF-8",
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "coventry-rates-oct2026.xlsx",
+          "source_url": "https://www.coventry.gov.uk/downloads/file/47650/all-accounts-with-rv-of-zero-upwards-including-retail-relief-october-2026",
+          "canonical_url": "https://www.coventry.gov.uk/downloads/file/47650/all-accounts-with-rv-of-zero-upwards-including-retail-relief-october-2026",
+          "retrieved_at": "2026-11-11T16:22:31.758717+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-europe-158/coventry-rates-oct2026.xlsx",
+          "content_hash": "ef95df1a0bad173b98e295ba84b2409a065d00e81292a790b3af30fca2bdf46e",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 1389682,
+          "http_status": 200,
+          "content_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "digital-realty-ams17.html",
+          "source_url": "https://www.digitalrealty.com/data-centers/emea/amsterdam/ams17",
+          "canonical_url": "https://www.digitalrealty.com/data-centers/emea/amsterdam/ams17",
+          "retrieved_at": "2026-11-11T16:19:46.056846+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-europe-158/digital-realty-ams17.html",
+          "content_hash": "0a51f0967539062c8997a56673c8eb497d0c3282e282bc0cd7e7584462a60f3c",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 206711,
+          "http_status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "digital-realty-ams9.html",
+          "source_url": "https://www.digitalrealty.com/data-centers/emea/amsterdam/ams9",
+          "canonical_url": "https://www.digitalrealty.com/data-centers/emea/amsterdam/ams9",
+          "retrieved_at": "2026-11-11T16:19:45.681781+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-europe-158/digital-realty-ams9.html",
+          "content_hash": "a475f9e66b21322b1c1859025122dfaac429323e3026c0dd924f9a7512bac857",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 212350,
+          "http_status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "epc-cv49ap.html",
+          "source_url": "https://find-energy-certificate.service.gov.uk/find-a-certificate/search-by-postcode?postcode=CV4%209AP&property_type=non_domestic",
+          "canonical_url": "https://find-energy-certificate.service.gov.uk/find-a-certificate/search-by-postcode?postcode=CV4%209AP&property_type=non_domestic",
+          "retrieved_at": "2026-11-11T16:24:35.090913+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-europe-158/epc-cv49ap.html",
+          "content_hash": "26f1fa1b9f5c0833e843145b563d36f917fcf01a8f8000bc2f98ad5ae06822ab",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 27891,
+          "http_status": 200,
+          "content_type": "text/html;charset=utf-8",
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "epc-cv49ut.html",
+          "source_url": "https://find-energy-certificate.service.gov.uk/find-a-certificate/search-by-postcode?postcode=CV4%209UT&property_type=non_domestic",
+          "canonical_url": "https://find-energy-certificate.service.gov.uk/find-a-certificate/search-by-postcode?postcode=CV4%209UT&property_type=non_domestic",
+          "retrieved_at": "2026-11-11T16:24:13.985394+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-europe-158/epc-cv49ut.html",
+          "content_hash": "c3aa5eeaff49a0237d5cf41ae2247242933e6e9d8f9dca10d465266fdff60611",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 15264,
+          "http_status": 200,
+          "content_type": "text/html;charset=utf-8",
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "epc-nondom-cv49ap.html",
+          "source_url": "https://find-energy-certificate.service.gov.uk/find-a-non-domestic-certificate/search-by-postcode?postcode=CV4%209AP",
+          "canonical_url": "https://find-energy-certificate.service.gov.uk/find-a-non-domestic-certificate/search-by-postcode?postcode=CV4%209AP",
+          "retrieved_at": "2026-11-11T16:25:15.390419+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-europe-158/epc-nondom-cv49ap.html",
+          "content_hash": "fa8601a68ece66bf3c1372d53a6e027b363329b511057755daac92b4e5f55f3a",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 133605,
+          "http_status": 200,
+          "content_type": "text/html;charset=utf-8",
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "epc-nondom-cv49ut.html",
+          "source_url": "https://find-energy-certificate.service.gov.uk/find-a-non-domestic-certificate/search-by-postcode?postcode=CV4%209UT",
+          "canonical_url": "https://find-energy-certificate.service.gov.uk/find-a-non-domestic-certificate/search-by-postcode?postcode=CV4%209UT",
+          "retrieved_at": "2026-11-11T16:25:15.288728+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-europe-158/epc-nondom-cv49ut.html",
+          "content_hash": "541dbce9ca3edaa8b4f5a1766a88eaee4008299c4048f85c0d84e60a70bcc368",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 41227,
+          "http_status": 200,
+          "content_type": "text/html;charset=utf-8",
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "epc-type.html",
+          "source_url": "https://find-energy-certificate.service.gov.uk/find-a-certificate/type-of-property",
+          "canonical_url": "https://find-energy-certificate.service.gov.uk/find-a-certificate/type-of-property",
+          "retrieved_at": "2026-11-11T16:24:55.600610+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-europe-158/epc-type.html",
+          "content_hash": "a449b9351824b827773c38706a8b1c8dedd508075777c3d2bf8aac5c14881f89",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 15646,
+          "http_status": 200,
+          "content_type": "text/html;charset=utf-8",
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "epc-unit1-205.html",
+          "source_url": "https://find-energy-certificate.service.gov.uk/energy-certificate/5197-6275-0995-2611-8314",
+          "canonical_url": "https://find-energy-certificate.service.gov.uk/energy-certificate/5197-6275-0995-2611-8314",
+          "retrieved_at": "2026-11-11T16:25:30.347404+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-europe-158/epc-unit1-205.html",
+          "content_hash": "57039f6e32239bfa3392dd1d2ba9fae777fba3ddcb4214810c4f9fd1387359e6",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 34304,
+          "http_status": 200,
+          "content_type": "text/html;charset=utf-8",
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "europe158-builder-contract-preflight.json",
+          "raw_capture_file": "local_data/research-2026-11-11-europe-158/europe158-builder-contract-preflight.json",
+          "retrieved_at": "2026-11-11T16:31:25.378727+00:00",
+          "content_hash": "397742af4b26ff339cb4e733097cb639967268df1de7cfc721aba19fa361fd55",
+          "content_hash_scope": "sha256_exact_locally_generated_review_json_bytes",
+          "bytes": 990,
+          "raw_capture_redistributed": false,
+          "license": "local review calculation; original source terms retained"
+        },
+        {
+          "capture_id": "europe158-spatial-identity-review.json",
+          "raw_capture_file": "local_data/research-2026-11-11-europe-158/europe158-spatial-identity-review.json",
+          "retrieved_at": "2026-11-11T16:31:25.378727+00:00",
+          "content_hash": "511a72ab4148be3de3035450b367302aa71b63a45ee1ed146de4f98cdca78056",
+          "content_hash_scope": "sha256_exact_locally_generated_calculation_json_bytes",
+          "bytes": 32846,
+          "raw_capture_redistributed": false,
+          "license": "local review calculation; original source terms retained"
+        },
+        {
+          "capture_id": "ukservers-aup.html",
+          "source_url": "https://www.ukservers.com/acceptable-use-policy/",
+          "canonical_url": "https://www.ukservers.com/acceptable-use-policy/",
+          "retrieved_at": "2026-11-11T16:22:20.819446+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-europe-158/ukservers-aup.html",
+          "content_hash": "d86f5a9db0fc0f0ecf58f4012d88f0422a2d97e2f82503c0835b2050e919b525",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 121154,
+          "http_status": 200,
+          "content_type": "text/html; charset=UTF-8",
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "ukservers-contact.html",
+          "source_url": "https://www.ukservers.com/contact-us/",
+          "canonical_url": "https://www.ukservers.com/contact-us/",
+          "retrieved_at": "2026-11-11T16:20:53.655711+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-europe-158/ukservers-contact.html",
+          "content_hash": "57de6e9b028b68a7fe5429989a542ef50ad476d781997eaf370f19379416ede1",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 111062,
+          "http_status": 200,
+          "content_type": "text/html; charset=UTF-8",
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "ukservers-coventry-aug24.json",
+          "source_url": "https://status.ukservers.com/api/v2/incidents/hw795x9rp1w4.json",
+          "canonical_url": "https://status.ukservers.com/api/v2/incidents/hw795x9rp1w4.json",
+          "retrieved_at": "2026-11-11T16:20:53.724219+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-europe-158/ukservers-coventry-aug24.json",
+          "content_hash": "d32a440d3626ac6ef07772942a90d283d83e8e4532524c13d21286a74d6c6c10",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 3370,
+          "http_status": 200,
+          "content_type": "application/json; charset=utf-8",
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "ukservers-datacentre.html",
+          "source_url": "https://www.ukservers.com/our-datacentre/",
+          "canonical_url": "https://www.ukservers.com/our-datacentre/",
+          "retrieved_at": "2026-11-11T16:20:06.097383+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-europe-158/ukservers-datacentre.html",
+          "content_hash": "b989df6ea262089b4c0f2533d90a3c319b016221ab978b73fc1fcb139e552b61",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 124326,
+          "http_status": 200,
+          "content_type": "text/html; charset=UTF-8",
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "ukservers-handbook.html",
+          "source_url": "https://ukservers.com/docs/handbook.html",
+          "canonical_url": "https://ukservers.com/docs/handbook.html",
+          "retrieved_at": "2026-11-11T16:22:31.701265+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-europe-158/ukservers-handbook.html",
+          "content_hash": "444506ede59ddfc2f7a6a3ef1f7999b01c2cc733802af5358cee8c3c6b874d84",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 41972,
+          "http_status": 200,
+          "content_type": "text/html",
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "ukservers-home.html",
+          "source_url": "https://www.ukservers.com/",
+          "canonical_url": "https://www.ukservers.com/",
+          "retrieved_at": "2026-11-11T16:19:44.803126+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-europe-158/ukservers-home.html",
+          "content_hash": "41c5273f3914531779debc2a0cfda417131132fa3e21cb49627cacbbcc676375",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 146705,
+          "http_status": 200,
+          "content_type": "text/html; charset=UTF-8",
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "ukservers-incidents.json",
+          "source_url": "https://status.ukservers.com/api/v2/incidents.json",
+          "canonical_url": "https://status.ukservers.com/api/v2/incidents.json",
+          "retrieved_at": "2026-11-11T16:20:06.825791+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-europe-158/ukservers-incidents.json",
+          "content_hash": "6668e4f2c9e4e9545ca98730ba00719abe52c0e2e053e4a9904e817626b81398",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 206462,
+          "http_status": 200,
+          "content_type": "application/json; charset=utf-8",
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "ukservers-origin-news.html",
+          "source_url": "https://www.ukservers.com/news/",
+          "canonical_url": "https://www.ukservers.com/",
+          "retrieved_at": "2026-11-11T16:21:38.637709+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-europe-158/ukservers-origin-news.html",
+          "content_hash": "41c5273f3914531779debc2a0cfda417131132fa3e21cb49627cacbbcc676375",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 146705,
+          "http_status": 200,
+          "content_type": "text/html; charset=UTF-8",
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        },
+        {
+          "capture_id": "ukservers-status.html",
+          "source_url": "https://status.ukservers.com",
+          "canonical_url": "https://status.ukservers.com",
+          "retrieved_at": "2026-11-11T16:20:07.968846+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-europe-158/ukservers-status.html",
+          "content_hash": "0e22cf673fafead258858fd80595dcdfed02e8b367cc7352c63548233c4a82dc",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 85394,
+          "http_status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "raw_capture_redistributed": false,
+          "license": "source-terms; compact factual projection only; no open-content licence asserted"
+        }
+      ]
+    },
+    {
+      "research_scope": "Cancun original facility-status and unresolved locator research",
+      "captures": [
+        {
+          "capture_id": "telxius-cancun-sept3.html",
+          "source_url": "https://telxius.com/en/telxius-boosts-caribbean-connectivity-and-expands-mexican-footprint-with-new-cancun-landing-gateway-edge-data-center/",
+          "final_url": "https://telxius.com/en/telxius-boosts-caribbean-connectivity-and-expands-mexican-footprint-with-new-cancun-landing-gateway-edge-data-center/",
+          "retrieved_at": "2026-11-11T16:18:20.132254+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-latam-158/telxius-cancun-sept3.html",
+          "content_hash": "746f303419f804765aa137aec38baccfb95654e4bb8fcab9625f0ed7e8e10c10",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 156152,
+          "http_status": 200,
+          "content_type": "text/html; charset=UTF-8",
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "telxius-new-pops.html",
+          "source_url": "https://telxius.com/en/our-new-pops/",
+          "final_url": "https://telxius.com/en/our-new-pops/",
+          "retrieved_at": "2026-11-11T16:18:20.135940+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-latam-158/telxius-new-pops.html",
+          "content_hash": "fc16eed56bd7c9307e02d3bc765424b34dca026c54d1f261ab4375e48e3bffa6",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 89396,
+          "http_status": 200,
+          "content_type": "text/html; charset=UTF-8",
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "telxius-network-map.html",
+          "source_url": "https://mapainteractivo.telxius.com/",
+          "final_url": "https://mapainteractivo.telxius.com/",
+          "retrieved_at": "2026-11-11T16:18:19.659386+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-latam-158/telxius-network-map.html",
+          "content_hash": "f781b0bad9b2ff7bc7aba53dedcf0cc1775c25a427dc8717a6dee255044591ea",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 437,
+          "http_status": 200,
+          "content_type": "text/html",
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "telxius-network-map.js",
+          "source_url": "https://mapainteractivo.telxius.com/assets/index-8a695de0.js",
+          "final_url": "https://mapainteractivo.telxius.com/assets/index-8a695de0.js",
+          "retrieved_at": "2026-11-11T16:18:49.760658+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-latam-158/telxius-network-map.js",
+          "content_hash": "35f7b5ee3de89eb4ae21212064d2e9e72707ff5ff83fad3c80d50f765baaaaa0",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 4368695,
+          "http_status": 200,
+          "content_type": "application/javascript",
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "telxius-map-service.json",
+          "source_url": "https://services8.arcgis.com/XE2aVFUsK0ORs1gS/arcgis/rest/services/Mapa_publico/FeatureServer?f=pjson",
+          "final_url": "https://services8.arcgis.com/XE2aVFUsK0ORs1gS/arcgis/rest/services/Mapa_publico/FeatureServer?f=pjson",
+          "retrieved_at": "2026-11-11T16:19:32.979340+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-latam-158/telxius-map-service.json",
+          "content_hash": "101286a93e0f496dfa5c78aec0e2fe6d9eb830e7afb2bdc65ec4ae5d99d46c68",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 6113,
+          "http_status": 200,
+          "content_type": "application/json; charset=utf-8",
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "telxius-map-points-metadata.json",
+          "source_url": "https://services8.arcgis.com/XE2aVFUsK0ORs1gS/arcgis/rest/services/Mapa_publico/FeatureServer/0?f=pjson",
+          "final_url": "https://services8.arcgis.com/XE2aVFUsK0ORs1gS/arcgis/rest/services/Mapa_publico/FeatureServer/0?f=pjson",
+          "retrieved_at": "2026-11-11T16:19:54.353981+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-latam-158/telxius-map-points-metadata.json",
+          "content_hash": "f6aefd83362fc9d3b25984bd4fd95445c49cece456387ee646704c96e37ddc2a",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 386200,
+          "http_status": 200,
+          "content_type": "application/json; charset=utf-8",
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "telxius-map-item.json",
+          "source_url": "https://www.arcgis.com/sharing/rest/content/items/1dc66cc8d6fb48d5a0aadec3e2e842c7?f=pjson",
+          "final_url": "https://www.arcgis.com/sharing/rest/content/items/1dc66cc8d6fb48d5a0aadec3e2e842c7?f=pjson",
+          "retrieved_at": "2026-11-11T16:19:53.823054+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-latam-158/telxius-map-item.json",
+          "content_hash": "5cd829bcc4dba70fec587205f34dbd3c87e61ff8ce183a435e7c06d7117a3f7e",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 1530,
+          "http_status": 200,
+          "content_type": "text/plain;charset=utf-8",
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "telxius-map-cancun-query.json",
+          "source_url": "https://services8.arcgis.com/XE2aVFUsK0ORs1gS/arcgis/rest/services/Mapa_publico/FeatureServer/0/query?f=pjson&where=name+LIKE+%27%25Canc%25%27&outFields=%2A&returnGeometry=true",
+          "final_url": "https://services8.arcgis.com/XE2aVFUsK0ORs1gS/arcgis/rest/services/Mapa_publico/FeatureServer/0/query?f=pjson&where=name+LIKE+%27%25Canc%25%27&outFields=%2A&returnGeometry=true",
+          "retrieved_at": "2026-11-11T16:19:53.973053+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-latam-158/telxius-map-cancun-query.json",
+          "content_hash": "2ff9e819c5439841dc8cb4eb4dc7a589341c2775e3770274bc66bbb9e93dffe4",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 6581,
+          "http_status": 200,
+          "content_type": "application/json; charset=utf-8",
+          "raw_capture_redistributed": false
+        },
+        {
+          "capture_id": "fcc-tikal-2025.pdf",
+          "source_url": "https://docs.fcc.gov/public/attachments/DA-25-514A1.pdf",
+          "final_url": "https://docs.fcc.gov/public/attachments/DA-25-514A1.pdf",
+          "retrieved_at": "2026-11-11T16:18:20.028486+00:00",
+          "raw_capture_file": "local_data/research-2026-11-11-latam-158/fcc-tikal-2025.pdf",
+          "content_hash": "d64207c41ce0b7fea30bcd7fcedc4eaee9a3ea818c320e11660c1d8381b290e6",
+          "content_hash_scope": "sha256_exact_http_response_body_bytes",
+          "bytes": 422003,
+          "http_status": 200,
+          "content_type": "application/pdf; charset=UTF-8",
+          "raw_capture_redistributed": false
+        }
+      ]
+    }
+  ]
+}
