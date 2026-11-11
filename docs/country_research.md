@@ -1017,6 +1017,22 @@ These corrections preserve the existing sites and projects. The snapshot
 contains **1,262 sites, 1,371 projects and 7,112 evidence records in 90 countries**.
 All earlier published snapshots remain unchanged.
 
+`verified_construction_core/2026-11-11-research-hundredfortythird` adds **one physical
+site and one project**: Lightedge's proposed Boone colocation campus on Lakewood
+Drive. The 2 November council proceedings confirm that it remains a proposal;
+final site selection and construction are unconfirmed. The government address
+locator represents street interpolation, with its datum conversion and unknown
+overall positional accuracy documented. Two proposed buildings share one host.
+
+Core Scientific Denton receives a campus address point in place of its city-level
+reference. Its 5 November issuer presentation supports operating capacity without
+asserting completion of every fit-out. CyrusOne Freestone retains announced status;
+its unsupported retrieval-based date is corrected to a dated June ceremony report.
+The ceremony and ambiguous works at the adjacent power plant do not establish
+physical data-centre construction. The snapshot contains **1,263 sites, 1,372
+projects and 7,122 evidence records in 90 countries**. Earlier snapshots remain
+unchanged; eight unresolved candidates or claims are retained in the research holds.
+
 ## 25 October 2026
 
 `verified_construction_core/2026-10-25-research-sixtysecond` adds three commercial sites and
