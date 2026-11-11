@@ -925,6 +925,20 @@ the main building has started. Its applicant grid point is traced to a public ar
 planning form and checked against the live council register. Independent source and identity
 reviews passed; all existing site/project rows and earlier published snapshots remain unchanged.
 
+`verified_construction_core/2026-11-11-research-hundredthirtysixth` adds **30 physical sites
+and 35 projects**, reaching **1,214 sites and 1,306 projects in 89 countries**. It covers
+six US, eight European, seven Asian and nine Canadian hosts. Five additional projects
+share the existing NY4, NY5, Great Oaks and 151 Front Street sites. Culpeper, Corvin Drive,
+Manchester MA1/MA4, Manila MN1/MN2 and Mumbai MB2/MB3 are each counted as one campus.
+
+The 61 source projections add 58 evidence records; one superseded locator record remains
+in earlier snapshots. Facility specifications retain their individual IBX scope, and
+quarter-end operating observations remain dated 30 September. Shaoguan's November utility
+approval adds context without changing its announced status. Frankfurt FR2 gains explicit
+campus scope using the same official address point, with zero displacement; FR13 admission
+is deferred to the next snapshot. Independent source, identity and output reviews passed.
+All previous status observations, coordinates and published snapshots are preserved.
+
 ## 25 October 2026
 
 `verified_construction_core/2026-10-25-research-sixtysecond` adds three commercial sites and
