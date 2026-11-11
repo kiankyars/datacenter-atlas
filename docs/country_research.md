@@ -35,6 +35,11 @@ from the 90 days before the data update. Review later reports and keep the date 
 actually supports; a new research pass does not make an old observation current. Publish supported
 additions and updates as they are ready.
 
+Page modification times and retrieval dates do not date physical observations. If one was
+selected incorrectly, correct the existing record using the dated source statement. For an
+affected metric, `metric_date_corrections` must match the complete prior observation and change
+only its date and evidence reference; its value, stage and scope remain unchanged.
+
 Take each location from what the operator, developer, landlord or a public authority publishes:
 their own coordinates, addresses, site plans or maps, or permit, planning, cadastral, parcel and
 address records. Do not copy coordinates from map apps or facility directories whose terms forbid
@@ -1088,6 +1093,16 @@ coordinates. The evidence retains coordinate methods and unknown location
 accuracy. All prior records and snapshots remain unchanged. The snapshot contains
 **1,278 sites, 1,387 projects and 7,205 evidence records in 90 countries**.
 Five other candidates remain held for unresolved location or status evidence.
+
+`verified_construction_core/2026-11-11-research-hundredfortyeighth` adds Serverfarm's Clarksville campus
+in Arkansas, under construction on October 30. Its location comes from the FAA's
+filed ARK1 building point, corroborated by state parcel records.
+
+Seven Teraco project dates are corrected from webpage modification dates to dated
+operator observations. CT1's planned 2 MW expansion claim receives the same date
+correction; its amount and planned stage remain unchanged. Earlier snapshots are
+preserved. The dataset contains **1,279 sites, 1,388 projects and
+7,213 evidence records in 90 countries**. Seven candidates remain held.
 
 ## 25 October 2026
 

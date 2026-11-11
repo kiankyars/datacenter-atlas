@@ -1286,5 +1286,222 @@ class ImportedReferenceCorrectionTests(unittest.TestCase):
         with self.assertRaisesRegex(UpdateError, "farther than 50 km from a locality point"):
             self.correct(60)
 
+class MetricDateCorrectionTests(unittest.TestCase):
+    """Correct the date and capture of one exact observation, never its measured claim."""
+
+    write = DatasetUpdateTests.write
+    payloads = DatasetUpdateTests.payloads
+
+    def setUp(self):
+        DatasetUpdateTests.setUp(self)
+        self.addition = copy.deepcopy(self.spec["additions"][0])
+        self.spec["additions"] = []
+        self.rows = list(csv.DictReader(io.StringIO((BASE / "projects.csv").read_text())))
+        self.project = next(row for row in self.rows if "goodman-hkg09" in row["project_stable_key"])
+        self.observations = json.loads(self.project["power_observations_json"])
+        self.correction = self.request(self.project, "power_observations_json", self.observations[0])
+        self.spec["metric_date_corrections"] = [self.correction]
+
+    def request(self, project, field, observation):
+        return {"project_stable_key": project["project_stable_key"], "field": field,
+                "replaces_observation": copy.deepcopy(observation), "as_of_date": "2025-11-12", "source_id": "work",
+                "reason": "The previous date was a CMS modification, not the original publication.",
+                "identity_review": "The original source names the same project and metric scope."}
+
+    def projects(self, payloads):
+        return {row["project_stable_key"]: row for row in csv.DictReader(io.StringIO(payloads["projects.csv"].decode()))}
+
+    def replace_baseline_projects(self):
+        out = io.StringIO(newline="")
+        writer = csv.DictWriter(out, fieldnames=list(self.rows[0]), lineterminator="\n")
+        writer.writeheader()
+        writer.writerows(self.rows)
+        raw = out.getvalue().encode()
+        (self.root / "base/projects.csv").write_bytes(raw)
+        path = self.root / "base/manifest.json"
+        manifest = json.loads(path.read_bytes())
+        manifest["files"]["projects.csv"] = {"bytes": len(raw), "sha256": hashlib.sha256(raw).hexdigest()}
+        path.write_text(json.dumps(manifest))
+        digest = hashlib.sha256(path.read_bytes()).hexdigest()
+        (path.parent / "manifest.sha256").write_text(digest + "  manifest.json\n")
+        self.spec["base_manifest_sha256"] = digest
+
+    def test_date_correction_preserves_claim_other_observations_history_and_reproduces(self):
+        before = {path.name: path.read_bytes() for path in (self.root / "base").iterdir() if path.is_file()}
+        self.write()
+        out = self.root / "corrected"
+        manifest = build_update(self.input, out, root=self.root)
+        self.assertEqual(manifest, validate_update(self.input, out, root=self.root))
+        payloads, _ = update_payloads(self.input, root=self.root)
+        projects = self.projects(payloads)
+        observation = json.loads(projects[self.project["project_stable_key"]]["power_observations_json"])[0]
+        new_id = str(uuid5(NAMESPACE_URL, self.sources["sources"][0]["source_url"] + "#" + self.sources["sources"][0]["content_hash"]))
+        self.assertEqual(observation, {**self.observations[0], "as_of_date": "2025-11-12", "evidence_id": new_id})
+        for original in self.rows:
+            changed = copy.deepcopy(projects[original["project_stable_key"]])
+            changed["status_age_days_at_review"] = original["status_age_days_at_review"]
+            if original["project_id"] == self.project["project_id"]:
+                remaining = json.loads(changed["power_observations_json"])
+                self.assertEqual(remaining[1:], self.observations[1:])
+                changed["power_observations_json"] = original["power_observations_json"]
+            self.assertEqual(changed, original)
+        evidence = {row["evidence_id"]: row for row in csv.DictReader(io.StringIO(payloads["evidence.csv"].decode()))}
+        for original in csv.DictReader(io.StringIO(before["evidence.csv"].decode())):
+            self.assertEqual(evidence[original["evidence_id"]], original)
+        self.assertEqual(json.loads(evidence[new_id]["roles_json"]), ["typed_metric:critical_it_mw"])
+        self.assertEqual(json.loads(evidence[new_id]["project_ids_json"]), [self.project["project_id"]])
+        self.assertEqual(before, {path.name: path.read_bytes() for path in (self.root / "base").iterdir() if path.is_file()})
+        report = json.loads(payloads["selection-report.json"])
+        self.assertEqual(report["refreshed_projects"], [])
+        self.assertEqual(report["corrected_metric_observations"], [{
+            "project_stable_key": self.project["project_stable_key"], "field": "power_observations_json",
+            "observation_index": 0, "metric": "critical_it_mw", "previous_as_of_date": "2026-07-20",
+            "as_of_date": "2025-11-12", "previous_evidence_id": self.observations[0]["evidence_id"], "evidence_id": new_id}])
+        provenance = json.loads(payloads["review-provenance.json"])
+        self.assertEqual(provenance["update"]["metric_date_corrections"], [self.correction])
+        self.assertEqual(provenance["source_projections"]["work"], self.sources["sources"][0])
+
+    def test_all_metric_fields_and_multiple_observations_keep_their_order_and_roles(self):
+        annual = {**self.observations[0], "metric": "annual_energy_gwh", "unit": "GWh/year"}
+        self.project["annual_energy_observations_json"] = json.dumps([annual])
+        self.replace_baseline_projects()
+        efficiency = next(row for row in self.rows if json.loads(row["efficiency_observations_json"]))
+        requests = [self.request(self.project, "power_observations_json", observation) for observation in self.observations]
+        requests += [self.request(self.project, "annual_energy_observations_json", annual),
+                     self.request(efficiency, "efficiency_observations_json", json.loads(efficiency["efficiency_observations_json"])[0])]
+        self.spec["metric_date_corrections"] = requests
+        payloads, _ = self.payloads()
+        projects = self.projects(payloads)
+        for request in requests:
+            observations = json.loads(projects[request["project_stable_key"]][request["field"]])
+            corrected = next(value for value in observations if value["metric"] == request["replaces_observation"]["metric"])
+            self.assertEqual(corrected, {**request["replaces_observation"], "as_of_date": "2025-11-12", "evidence_id": corrected["evidence_id"]})
+        self.assertEqual([value["metric"] for value in json.loads(projects[self.project["project_stable_key"]]["power_observations_json"])],
+                         [value["metric"] for value in self.observations])
+        new_id = json.loads(projects[self.project["project_stable_key"]]["annual_energy_observations_json"])[0]["evidence_id"]
+        evidence = next(row for row in csv.DictReader(io.StringIO(payloads["evidence.csv"].decode())) if row["evidence_id"] == new_id)
+        self.assertEqual(json.loads(evidence["roles_json"]), ["typed_metric:annual_energy_gwh", "typed_metric:critical_it_mw",
+                                                             "typed_metric:grid_connection_mw", "typed_metric:pue"])
+        self.spec["metric_date_corrections"].reverse()
+        reordered, _ = self.payloads()
+        for name in ("projects.csv", "evidence.csv", "selection-report.json"):
+            self.assertEqual(payloads[name], reordered[name])
+
+    def test_metric_date_and_status_corrections_can_coexist(self):
+        self.spec["status_corrections"] = [{
+            "project_stable_key": self.project["project_stable_key"],
+            "replaces_status_evidence_id": self.project["status_evidence_id"], "reason": "Correct publication date.",
+            "status": self.addition["status"], "identity_review": "Same project.", "successor_review": "No later status."}]
+        payloads, _ = self.payloads()
+        row = self.projects(payloads)[self.project["project_stable_key"]]
+        self.assertEqual(row["status_as_of"], "2026-09-21")
+        metric = json.loads(row["power_observations_json"])[0]
+        self.assertEqual(metric["as_of_date"], "2025-11-12")
+        self.assertEqual(metric["evidence_id"], row["status_evidence_id"])
+        evidence = next(value for value in csv.DictReader(io.StringIO(payloads["evidence.csv"].decode()))
+                        if value["evidence_id"] == row["status_evidence_id"])
+        self.assertEqual(json.loads(evidence["roles_json"]), ["physical_status", "typed_metric:critical_it_mw"])
+
+    def test_unknown_unsafe_incomplete_and_noop_requests_fail(self):
+        cases = [
+            ({"project_stable_key": "missing"}, "baseline project"),
+            ({"project_stable_key": None}, "baseline project"),
+            ({"field": "workloads_json"}, "unsupported metric observation field"),
+            ({"field": None}, "unsupported metric observation field"),
+            ({"value": 999}, "unsupported metric date correction field"),
+            ({"replaces_observation": None}, "exact baseline observation"),
+            ({"replaces_observation": {}}, "uniquely match"),
+            ({"reason": " "}, "metric date correction reason"),
+            ({"identity_review": None}, "metric identity review"),
+            ({"source_id": None}, "metric correction source"),
+            ({"source_id": "missing"}, "reviewed source"),
+            ({"as_of_date": None}, "ISO date string"),
+            ({"as_of_date": "2026-10-14"}, "future metric observation"),
+            ({"as_of_date": "2026-10-01"}, "postdates its source"),
+            ({"as_of_date": self.observations[0]["as_of_date"]}, "different observation date"),
+        ]
+        for changes, message in cases:
+            with self.subTest(changes=changes):
+                self.spec["metric_date_corrections"] = [{**self.correction, **changes}]
+                with self.assertRaisesRegex(UpdateError, message):
+                    self.payloads()
+        for key in self.correction:
+            with self.subTest(missing=key):
+                request = copy.deepcopy(self.correction)
+                del request[key]
+                self.spec["metric_date_corrections"] = [request]
+                with self.assertRaises(UpdateError):
+                    self.payloads()
+
+    def test_changed_claim_or_stale_observation_cannot_be_matched(self):
+        for field, value in {"base": 29, "low": 27, "high": 30, "stage": "operational", "metric": "grid_connection_mw",
+                             "unit": "GW", "notes": "Changed scope", "target_date": "2028-01-01", "evidence_id": "different",
+                             "as_of_date": "2026-07-19", "scope": "campus"}.items():
+            with self.subTest(field=field):
+                self.spec["metric_date_corrections"] = [{**self.correction, "replaces_observation": {**self.observations[0], field: value}}]
+                with self.assertRaisesRegex(UpdateError, "uniquely match"):
+                    self.payloads()
+
+    def test_metric_correction_requires_publication_date_and_primary_source_kind(self):
+        original = copy.deepcopy(self.sources["sources"][0])
+        cases = [{"published_at": value} for value in (None, "")]
+        cases += [{"kind": kind} for kind in ("news", "analyst_report", "map", "unknown")]
+        cases.append({"published_at": None, "source_observation_date": "2025-11-12",
+                      "source_observation_date_precision": "day", "date_semantics": "Dated entry on an undated page."})
+        for changes in cases:
+            with self.subTest(changes=changes):
+                self.sources["sources"][0] = {**original, **changes}
+                with self.assertRaisesRegex(UpdateError, "dated primary source"):
+                    self.payloads()
+        for kind in ("company_disclosure", "government_record", "regulatory_filing"):
+            with self.subTest(accepted_kind=kind):
+                self.sources["sources"][0] = {**original, "kind": kind}
+                payloads, _ = self.payloads()
+                observation = json.loads(self.projects(payloads)[self.project["project_stable_key"]]["power_observations_json"])[0]
+                self.assertEqual(observation["as_of_date"], "2025-11-12")
+
+    def test_duplicate_ambiguous_and_chained_requests_fail(self):
+        self.spec["metric_date_corrections"] = [self.correction, copy.deepcopy(self.correction)]
+        with self.assertRaisesRegex(UpdateError, "duplicate metric observation correction"):
+            self.payloads()
+        self.spec["metric_date_corrections"] = [self.correction]
+        payloads, _ = self.payloads()
+        corrected = json.loads(self.projects(payloads)[self.project["project_stable_key"]]["power_observations_json"])[0]
+        self.spec["metric_date_corrections"].append({**self.correction, "replaces_observation": corrected, "as_of_date": "2025-11-11"})
+        with self.assertRaisesRegex(UpdateError, "uniquely match"):
+            self.payloads()
+        self.project["power_observations_json"] = json.dumps(self.observations + [self.observations[0]])
+        self.replace_baseline_projects()
+        self.spec["metric_date_corrections"] = [self.correction]
+        with self.assertRaisesRegex(UpdateError, "uniquely match"):
+            self.payloads()
+
+    def test_new_and_withdrawn_projects_cannot_have_metric_dates_corrected(self):
+        self.spec["additions"] = [self.addition]
+        self.spec["metric_date_corrections"] = [{**self.correction, "project_stable_key": self.addition["project_stable_key"]}]
+        with self.assertRaisesRegex(UpdateError, "baseline project"):
+            self.payloads()
+        self.spec["additions"] = []
+        self.spec["metric_date_corrections"] = [self.correction]
+        self.spec["withdrawals"] = [{"project_stable_key": self.project["project_stable_key"],
+                                     "replaces_status_evidence_id": self.project["status_evidence_id"],
+                                     "reason": "Unsupported selection.", "source_ids": ["work"]}]
+        with self.assertRaisesRegex(UpdateError, "non-withdrawn baseline project"):
+            self.payloads()
+
+    def test_rebased_correction_rejects_stale_matches_and_reused_evidence(self):
+        self.write()
+        out = self.root / "corrected"
+        build_update(self.input, out, root=self.root)
+        self.spec.update(base_dataset="corrected", base_manifest_sha256=hashlib.sha256((out / "manifest.json").read_bytes()).hexdigest())
+        with self.assertRaisesRegex(UpdateError, "uniquely match"):
+            self.payloads()
+        row = next(row for row in csv.DictReader(io.StringIO((out / "projects.csv").read_text()))
+                   if row["project_id"] == self.project["project_id"])
+        self.correction.update(replaces_observation=json.loads(row["power_observations_json"])[0], as_of_date="2025-11-11")
+        with self.assertRaisesRegex(UpdateError, "different evidence capture"):
+            self.payloads()
+
+
 if __name__ == "__main__":
     unittest.main()

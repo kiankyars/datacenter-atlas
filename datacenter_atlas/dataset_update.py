@@ -626,6 +626,51 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
             associate(source_id, row["project_id"], "context:" + item["context_kind"])
         contextualized.append(key)
 
+    corrected_metrics, metric_targets = [], set()
+    metric_fields = {"power_observations_json", "annual_energy_observations_json", "efficiency_observations_json"}
+    withdrawal_keys = {item["project_stable_key"] for item in spec.get("withdrawals", [])}
+    for item in spec.get("metric_date_corrections", []):
+        _require(isinstance(item, dict) and set(item) <= {
+            "project_stable_key", "field", "replaces_observation", "as_of_date", "source_id", "reason", "identity_review",
+        }, "unsupported metric date correction field")
+        key, field = item.get("project_stable_key"), item.get("field")
+        _require(isinstance(key, str) and key in by_key and by_key[key]["project_id"] in baseline_projects
+                 and key not in withdrawal_keys, "metric date correction needs an existing, non-withdrawn baseline project")
+        _require(isinstance(field, str) and field in metric_fields, "unsupported metric observation field")
+        _text(item.get("reason"), "metric date correction reason")
+        _text(item.get("identity_review"), "metric identity review")
+        source_id = _text(item.get("source_id"), "metric correction source")
+        _require(source_id in sources, "metric correction source must be a reviewed source")
+        row = by_key[key]
+        original = item.get("replaces_observation")
+        _require(isinstance(original, dict), "metric correction must name the exact baseline observation")
+        baseline = json.loads(baseline_projects[row["project_id"]][field])
+        matches = [index for index, observation in enumerate(baseline) if _json(observation) == _json(original)]
+        _require(len(matches) == 1, "metric correction must uniquely match an exact baseline observation")
+        index = matches[0]
+        target = (key, field, index)
+        _require(target not in metric_targets, "duplicate metric observation correction")
+        metric_targets.add(target)
+        observed = _date(item.get("as_of_date"))
+        _require(observed <= updated, "future metric observation")
+        source = sources[source_id]
+        _require(source.get("published_at")
+                 and source["kind"] in {"company_disclosure", "government_record", "regulatory_filing"},
+                 "metric date correction needs a dated primary source")
+        retrieved = datetime.fromisoformat(source["retrieved_at"].replace("Z", "+00:00")).date()
+        _require(observed <= retrieved and observed <= _date(source["published_at"]),
+                 "metric observation postdates its source")
+        _require(item["as_of_date"] != original.get("as_of_date"), "metric correction needs a different observation date")
+        _require(source["evidence_id"] != original.get("evidence_id"), "metric correction needs a different evidence capture")
+        metric = _text(original.get("metric"), "existing metric")
+        observations = json.loads(row[field])
+        observations[index] = {**original, "as_of_date": item["as_of_date"],
+                               "evidence_id": associate(source_id, row["project_id"], "typed_metric:" + metric)}
+        row[field] = _json(observations)
+        corrected_metrics.append({"project_stable_key": key, "field": field, "observation_index": index, "metric": metric,
+                                  "previous_as_of_date": original.get("as_of_date"), "as_of_date": item["as_of_date"],
+                                  "previous_evidence_id": original.get("evidence_id"), "evidence_id": source["evidence_id"]})
+
     withdrawn = []
     for item in spec.get("withdrawals", []):
         key = item["project_stable_key"]
@@ -708,6 +753,9 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
         report["context_enriched_projects"] = sorted(contextualized)
     if corrected:
         report["corrected_locators"] = sorted(corrected, key=lambda entry: entry["site_id"])
+    if corrected_metrics:
+        report["corrected_metric_observations"] = sorted(
+            corrected_metrics, key=lambda entry: (entry["project_stable_key"], entry["field"], entry["observation_index"]))
     if has_consolidation:
         report.update(source_record_resolutions=inherited_resolutions,
                       consolidation_policy=inherited_report.get("consolidation_policy", ""),
