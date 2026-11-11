@@ -939,6 +939,19 @@ campus scope using the same official address point, with zero displacement; FR13
 is deferred to the next snapshot. Independent source, identity and output reviews passed.
 All previous status observations, coordinates and published snapshots are preserved.
 
+`verified_construction_core/2026-11-11-research-hundredthirtyseventh` adds **16 physical
+sites and 25 projects**, reaching **1,230 sites and 1,331 projects in 89 countries**.
+Fourteen new hosts cover Brazil, Chile, Colombia, Mexico and Peru; two are in Warsaw.
+Nine further projects share existing campuses in Querétaro, Frankfurt, Slough and
+Saint-Denis. SP3/SP5x and ST1/ST2 each count as one campus, with specifications scoped
+to each facility. SP5x is reconciled against the explicitly operating xScale portfolio.
+
+The 39 source projections add 35 evidence records. All new operating observations
+remain dated 30 September; older opening releases and regulator documents establish
+identity without renewing status dates. Every existing project row and earlier
+published snapshot is unchanged. Future SP7 and unresolved host relationships remain
+in the research queue.
+
 ## 25 October 2026
 
 `verified_construction_core/2026-10-25-research-sixtysecond` adds three commercial sites and
