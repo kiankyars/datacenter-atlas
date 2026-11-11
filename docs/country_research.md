@@ -977,6 +977,17 @@ firstcolo FRA7's construction observation while preserving its identity and loca
 The 21 source projections add 19 evidence records; earlier published snapshots remain
 unchanged. Ørslev, Agios Dimitrios and Jakarta 2A remain held for unresolved exact locations.
 
+`verified_construction_core/2026-11-11-research-hundredfortieth` adds **three physical
+sites and three operating projects**, reaching **1,258 sites and 1,367 projects in 90 countries**.
+AC1 in Appolonia, the shared LG1/LG2 campus in Lekki and AB1 in Grand-Bassam use named
+operator locators and the 30 September portfolio observation. Original operator and
+government evidence distinguishes AB1 from ST DIGITAL's nearby newer facility.
+
+Equinix HK5 is documented within Tower 2 of the existing MEGA Plus property, with its
+facility specifications scoped separately. This adds supporting identity evidence without
+changing the host's status date, locator or project count. The 13 source projections add
+11 evidence records; all existing project rows and earlier published snapshots are unchanged.
+
 ## 25 October 2026
 
 `verified_construction_core/2026-10-25-research-sixtysecond` adds three commercial sites and
