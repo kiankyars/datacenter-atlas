@@ -1,0 +1,2129 @@
+{
+  "input_sha256": "fb82cf71dec897b1ccaf55e4ec116cda3f408e9b32f08c41586d4cabad982bf5",
+  "source_projections": {
+    "commercial155-buffalo-census-address": {
+      "attribution": "United States Census Bureau",
+      "bytes": 650,
+      "capture_id": "census-buf1-address.json",
+      "content_hash": "021417b8a3db70ba05e61dceb94693e63b14a8eee1a31164f5ba21a92943f6e0",
+      "content_hash_scope": "sha256_exact_http_response_body_bytes",
+      "content_type": "application/json",
+      "extraction": {
+        "coordinate_reference_basis": "Official Census Geocoder FAQ question 3, printed page 2, expressly specifies NAD83. Official documentation describes interpolation along MAF/TIGER potential address ranges, which may contain nonexistent structure numbers. Separate primary facility pages establish that this numbered address actually hosts the named data center.",
+        "coordinate_reproduction": {
+          "area_of_use": "- name: North America - onshore and offshore: Canada - Alberta; British Columbia; Manitoba; New Brunswick; Newfoundland and Labrador; Northwest Territories; Nova Scotia; Nunavut; Ontario; Prince Edward Island; Quebec; Saskatchewan; Yukon. United States (USA) - Alabama; Alaska (mainland); Arizona; Arkansas; California; Colorado; Connecticut; Delaware; Florida; Georgia; Idaho; Illinois; Indiana; Iowa; Kansas; Kentucky; Louisiana; Maine; Maryland; Massachusetts; Michigan; Minnesota; Mississippi; Missouri; Montana; Nebraska; Nevada; New Hampshire; New Jersey; New Mexico; New York; North Carolina; North Dakota; Ohio; Oklahoma; Oregon; Pennsylvania; Rhode Island; South Carolina; South Dakota; Tennessee; Texas; Utah; Vermont; Virginia; Washington; West Virginia; Wisconsin; Wyoming.\n- bounds: (-172.54, 23.81, -47.74, 86.46)",
+          "description": "NAD83 to WGS 84 (1) (with axis order normalized for visualization)",
+          "limitation": "Explicit EPSG:1188 New York-applicable mainland NAD83 to WGS84 (1), zero geocentric translations, 4 m nominal datum approximation. No state-specific high-accuracy grid used. Source realization, epoch, street-address interpolation and building offset remain unknown. This is not a total 4 m point-accuracy claim.",
+          "nominal_operation_accuracy_m": 4.0,
+          "operations": [
+            {
+              "$schema": "https://proj.org/schemas/v0.7/projjson.schema.json",
+              "id": {
+                "authority": "EPSG",
+                "code": 15498
+              },
+              "method": {
+                "id": {
+                  "authority": "EPSG",
+                  "code": 9843
+                },
+                "name": "Axis Order Reversal (2D)"
+              },
+              "name": "axis order change (2D)",
+              "type": "Conversion"
+            },
+            {
+              "$schema": "https://proj.org/schemas/v0.7/projjson.schema.json",
+              "accuracy": "4.0",
+              "area": "North America - onshore and offshore: Canada - Alberta; British Columbia; Manitoba; New Brunswick; Newfoundland and Labrador; Northwest Territories; Nova Scotia; Nunavut; Ontario; Prince Edward Island; Quebec; Saskatchewan; Yukon. United States (USA) - Alabama; Alaska (mainland); Arizona; Arkansas; California; Colorado; Connecticut; Delaware; Florida; Georgia; Idaho; Illinois; Indiana; Iowa; Kansas; Kentucky; Louisiana; Maine; Maryland; Massachusetts; Michigan; Minnesota; Mississippi; Missouri; Montana; Nebraska; Nevada; New Hampshire; New Jersey; New Mexico; New York; North Carolina; North Dakota; Ohio; Oklahoma; Oregon; Pennsylvania; Rhode Island; South Carolina; South Dakota; Tennessee; Texas; Utah; Vermont; Virginia; Washington; West Virginia; Wisconsin; Wyoming.",
+              "bbox": {
+                "east_longitude": -47.74,
+                "north_latitude": 86.46,
+                "south_latitude": 23.81,
+                "west_longitude": -172.54
+              },
+              "id": {
+                "authority": "EPSG",
+                "code": 1188
+              },
+              "method": {
+                "id": {
+                  "authority": "EPSG",
+                  "code": 9603
+                },
+                "name": "Geocentric translations (geog2D domain)"
+              },
+              "name": "NAD83 to WGS 84 (1)",
+              "parameters": [
+                {
+                  "id": {
+                    "authority": "EPSG",
+                    "code": 8605
+                  },
+                  "name": "X-axis translation",
+                  "unit": "metre",
+                  "value": 0
+                },
+                {
+                  "id": {
+                    "authority": "EPSG",
+                    "code": 8606
+                  },
+                  "name": "Y-axis translation",
+                  "unit": "metre",
+                  "value": 0
+                },
+                {
+                  "id": {
+                    "authority": "EPSG",
+                    "code": 8607
+                  },
+                  "name": "Z-axis translation",
+                  "unit": "metre",
+                  "value": 0
+                }
+              ],
+              "remarks": "Derived at 354 stations. Accuracy 2m in each axis.",
+              "scope": "Military survey.",
+              "source_crs": {
+                "coordinate_system": {
+                  "axis": [
+                    {
+                      "abbreviation": "Lat",
+                      "direction": "north",
+                      "name": "Geodetic latitude",
+                      "unit": "degree"
+                    },
+                    {
+                      "abbreviation": "Lon",
+                      "direction": "east",
+                      "name": "Geodetic longitude",
+                      "unit": "degree"
+                    }
+                  ],
+                  "subtype": "ellipsoidal"
+                },
+                "datum": {
+                  "ellipsoid": {
+                    "inverse_flattening": 298.257222101,
+                    "name": "GRS 1980",
+                    "semi_major_axis": 6378137
+                  },
+                  "name": "North American Datum 1983",
+                  "type": "GeodeticReferenceFrame"
+                },
+                "id": {
+                  "authority": "EPSG",
+                  "code": 4269
+                },
+                "name": "NAD83",
+                "remarks": "Longitude is POSITIVE EAST. The adjustment included connections to Greenland and Mexico but the system was not adopted there. For applications with an accuracy of better than 1m replaced by NAD83(HARN) in the US and PRVI and by NAD83(CSRS) in Canada.",
+                "type": "GeographicCRS"
+              },
+              "target_crs": {
+                "coordinate_system": {
+                  "axis": [
+                    {
+                      "abbreviation": "Lat",
+                      "direction": "north",
+                      "name": "Geodetic latitude",
+                      "unit": "degree"
+                    },
+                    {
+                      "abbreviation": "Lon",
+                      "direction": "east",
+                      "name": "Geodetic longitude",
+                      "unit": "degree"
+                    }
+                  ],
+                  "subtype": "ellipsoidal"
+                },
+                "datum_ensemble": {
+                  "accuracy": "2.0",
+                  "ellipsoid": {
+                    "inverse_flattening": 298.257223563,
+                    "name": "WGS 84",
+                    "semi_major_axis": 6378137
+                  },
+                  "id": {
+                    "authority": "EPSG",
+                    "code": 6326
+                  },
+                  "members": [
+                    {
+                      "id": {
+                        "authority": "EPSG",
+                        "code": 1166
+                      },
+                      "name": "World Geodetic System 1984 (Transit)"
+                    },
+                    {
+                      "id": {
+                        "authority": "EPSG",
+                        "code": 1152
+                      },
+                      "name": "World Geodetic System 1984 (G730)"
+                    },
+                    {
+                      "id": {
+                        "authority": "EPSG",
+                        "code": 1153
+                      },
+                      "name": "World Geodetic System 1984 (G873)"
+                    },
+                    {
+                      "id": {
+                        "authority": "EPSG",
+                        "code": 1154
+                      },
+                      "name": "World Geodetic System 1984 (G1150)"
+                    },
+                    {
+                      "id": {
+                        "authority": "EPSG",
+                        "code": 1155
+                      },
+                      "name": "World Geodetic System 1984 (G1674)"
+                    },
+                    {
+                      "id": {
+                        "authority": "EPSG",
+                        "code": 1156
+                      },
+                      "name": "World Geodetic System 1984 (G1762)"
+                    },
+                    {
+                      "id": {
+                        "authority": "EPSG",
+                        "code": 1309
+                      },
+                      "name": "World Geodetic System 1984 (G2139)"
+                    },
+                    {
+                      "id": {
+                        "authority": "EPSG",
+                        "code": 1383
+                      },
+                      "name": "World Geodetic System 1984 (G2296)"
+                    }
+                  ],
+                  "name": "World Geodetic System 1984 ensemble"
+                },
+                "id": {
+                  "authority": "EPSG",
+                  "code": 4326
+                },
+                "name": "WGS 84",
+                "type": "GeographicCRS"
+              },
+              "type": "Transformation"
+            },
+            {
+              "$schema": "https://proj.org/schemas/v0.7/projjson.schema.json",
+              "id": {
+                "authority": "EPSG",
+                "code": 15498
+              },
+              "method": {
+                "id": {
+                  "authority": "EPSG",
+                  "code": 9843
+                },
+                "name": "Axis Order Reversal (2D)"
+              },
+              "name": "axis order change (2D)",
+              "type": "Conversion"
+            }
+          ],
+          "pipeline": "+proj=noop",
+          "software": {
+            "PROJ": "9.8.1",
+            "pyproj": "3.8.0",
+            "shapely": "2.2.0"
+          },
+          "source_crs": "EPSG:4269 NAD83",
+          "target_crs": "EPSG:4326"
+        },
+        "exact_address_match": {
+          "addressComponents": {
+            "city": "BUFFALO",
+            "fromAddress": "301",
+            "preDirection": "",
+            "preQualifier": "",
+            "preType": "",
+            "state": "NY",
+            "streetName": "DELAWARE",
+            "suffixDirection": "",
+            "suffixQualifier": "",
+            "suffixType": "AVE",
+            "toAddress": "341",
+            "zip": "14202"
+          },
+          "coordinates": {
+            "x": -78.875764747946,
+            "y": 42.893545371659
+          },
+          "matchedAddress": "325 DELAWARE AVE, BUFFALO, NY, 14202",
+          "tigerLine": {
+            "side": "R",
+            "tigerLineId": "48290483"
+          }
+        },
+        "locator_scope": "Exact US Census address match for 325 DELAWARE AVE, BUFFALO, NY, 14202. Native NAD83 longitude -78.875764747946, latitude 42.893545371659 is interpolated along TIGER edge 48290483, right side, potential address range 301–341. Explicit EPSG:1188 NAD83 to WGS 84 (1), applicable to New York, uses zero geocentric translations and has nominal 4 m datum-operation accuracy; its no-op representation is not exact datum equivalence. The transformed coordinates are rounded to seven decimal places. This is an interpolated street-address reference, not a surveyed building, entrance, parcel centroid, suite, rack or footprint. Source realization/epoch, interpolation offset and total horizontal uncertainty are unknown.",
+        "native_coordinates": [
+          -78.875764747946,
+          42.893545371659
+        ],
+        "selected_coordinates": [
+          -78.8757647,
+          42.8935454
+        ],
+        "spatial_identity_review": {
+          "all_geometries_checked": 1302,
+          "base_commit": "3158a5807923d1d70bbb4e2f5d705b285f33a5eb",
+          "base_dataset": "verified_construction_core/2026-11-11-research-hundredfiftyfourth",
+          "base_file_hashes": {
+            "identity-mapping.json": "3c0ba3dcad7941c5317e8a36b0b4c3e87e29bb945b59751319ddcc657069a8de",
+            "projects.csv": "d474d0c4c428d85f0bb3eeac719e9b43237186044a6b4abfa2795fc17bf1f645",
+            "sites.csv": "a2247fcefc4008a54ffaa666c104e507c58a390098c13c63dfffac8b1d054c4a",
+            "source-records.json": "0b593c002903193ca62489eac1ba25674f262fa03bbd2078a2a422f58015fd1a"
+          },
+          "base_manifest_sha256": "e7ca221d83d38fe306dd6d588ee852500eeef68e733cca5f46f0d47d08be0211",
+          "baseline_commit_confirmation_pending": false,
+          "exact_address_match": {
+            "addressComponents": {
+              "city": "BUFFALO",
+              "fromAddress": "301",
+              "preDirection": "",
+              "preQualifier": "",
+              "preType": "",
+              "state": "NY",
+              "streetName": "DELAWARE",
+              "suffixDirection": "",
+              "suffixQualifier": "",
+              "suffixType": "AVE",
+              "toAddress": "341",
+              "zip": "14202"
+            },
+            "coordinates": {
+              "x": -78.875764747946,
+              "y": 42.893545371659
+            },
+            "matchedAddress": "325 DELAWARE AVE, BUFFALO, NY, 14202",
+            "tigerLine": {
+              "side": "R",
+              "tigerLineId": "48290483"
+            }
+          },
+          "four_identity_layers": {
+            "identity_decisions": {
+              "count": 231,
+              "matches": []
+            },
+            "identity_records": {
+              "count": 231,
+              "matches": []
+            },
+            "projects": {
+              "count": 1412,
+              "matches": []
+            },
+            "sites": {
+              "count": 1302,
+              "matches": []
+            },
+            "source_records": {
+              "count": 231,
+              "matches": []
+            }
+          },
+          "native_coordinates": [
+            -78.875764747946,
+            42.893545371659
+          ],
+          "nearest_ten": [
+            {
+              "distance_m": 55250.2373868311,
+              "geometry_type": "Point",
+              "name": "TeraWulf Lake Mariner Data Campus",
+              "site_id": "vcc-site-88b1acf055e1ab6200e4"
+            },
+            {
+              "distance_m": 92932.62958970238,
+              "geometry_type": "Point",
+              "name": "Equinix TR2 Toronto (45 Parliament Street)",
+              "site_id": "vcc-site-2427a124a3b2740669f8"
+            },
+            {
+              "distance_m": 93090.70987120281,
+              "geometry_type": "Point",
+              "name": "151 Front Street West Data Centre (Telehouse Canada), Toronto",
+              "site_id": "vcc-site-7e0aadb2cd0ce2755f0d"
+            },
+            {
+              "distance_m": 93199.89831980437,
+              "geometry_type": "Point",
+              "name": "250 Front Street West Data Centre (Telehouse Canada), Toronto",
+              "site_id": "vcc-site-0c4425440869e26c13cb"
+            },
+            {
+              "distance_m": 93835.13033014565,
+              "geometry_type": "Point",
+              "name": "905 King Street West Data Centre (Telehouse Canada), Toronto",
+              "site_id": "vcc-site-1b88f16ebcce9a59f8d9"
+            },
+            {
+              "distance_m": 105730.13301266331,
+              "geometry_type": "Point",
+              "name": "Microsoft Etobicoke Ontario Datacenter Campus",
+              "site_id": "vcc-site-12d6215837c6451ab8a3"
+            },
+            {
+              "distance_m": 112201.31597178479,
+              "geometry_type": "Point",
+              "name": "Equinix TR5, 8100 Warden Ave, Markham, Ontario",
+              "site_id": "vcc-site-317bc8fae88467198a57"
+            },
+            {
+              "distance_m": 112854.11128010291,
+              "geometry_type": "Point",
+              "name": "Cologix Markham Campus (TOR4 and TOR5), 105 Clegg Road",
+              "site_id": "vcc-site-540736a0838fdf01dd20"
+            },
+            {
+              "distance_m": 116660.75581961773,
+              "geometry_type": "Point",
+              "name": "Equinix TR7 Toronto (1895 Williams Parkway, Brampton)",
+              "site_id": "vcc-site-a3e4ffb996bc9942b7da"
+            },
+            {
+              "distance_m": 117065.9670288374,
+              "geometry_type": "Point",
+              "name": "Microsoft Vaughan Datacentre Campus (YTO11)",
+              "site_id": "vcc-site-f1711beb19eaf65e19e2"
+            }
+          ],
+          "reviewed_at": "2026-11-11T15:11:38.044476+00:00",
+          "selected_coordinates": [
+            -78.8757647,
+            42.8935454
+          ],
+          "transform": {
+            "area_of_use": "- name: North America - onshore and offshore: Canada - Alberta; British Columbia; Manitoba; New Brunswick; Newfoundland and Labrador; Northwest Territories; Nova Scotia; Nunavut; Ontario; Prince Edward Island; Quebec; Saskatchewan; Yukon. United States (USA) - Alabama; Alaska (mainland); Arizona; Arkansas; California; Colorado; Connecticut; Delaware; Florida; Georgia; Idaho; Illinois; Indiana; Iowa; Kansas; Kentucky; Louisiana; Maine; Maryland; Massachusetts; Michigan; Minnesota; Mississippi; Missouri; Montana; Nebraska; Nevada; New Hampshire; New Jersey; New Mexico; New York; North Carolina; North Dakota; Ohio; Oklahoma; Oregon; Pennsylvania; Rhode Island; South Carolina; South Dakota; Tennessee; Texas; Utah; Vermont; Virginia; Washington; West Virginia; Wisconsin; Wyoming.\n- bounds: (-172.54, 23.81, -47.74, 86.46)",
+            "description": "NAD83 to WGS 84 (1) (with axis order normalized for visualization)",
+            "limitation": "Explicit EPSG:1188 New York-applicable mainland NAD83 to WGS84 (1), zero geocentric translations, 4 m nominal datum approximation. No state-specific high-accuracy grid used. Source realization, epoch, street-address interpolation and building offset remain unknown. This is not a total 4 m point-accuracy claim.",
+            "nominal_operation_accuracy_m": 4.0,
+            "operations": [
+              {
+                "$schema": "https://proj.org/schemas/v0.7/projjson.schema.json",
+                "id": {
+                  "authority": "EPSG",
+                  "code": 15498
+                },
+                "method": {
+                  "id": {
+                    "authority": "EPSG",
+                    "code": 9843
+                  },
+                  "name": "Axis Order Reversal (2D)"
+                },
+                "name": "axis order change (2D)",
+                "type": "Conversion"
+              },
+              {
+                "$schema": "https://proj.org/schemas/v0.7/projjson.schema.json",
+                "accuracy": "4.0",
+                "area": "North America - onshore and offshore: Canada - Alberta; British Columbia; Manitoba; New Brunswick; Newfoundland and Labrador; Northwest Territories; Nova Scotia; Nunavut; Ontario; Prince Edward Island; Quebec; Saskatchewan; Yukon. United States (USA) - Alabama; Alaska (mainland); Arizona; Arkansas; California; Colorado; Connecticut; Delaware; Florida; Georgia; Idaho; Illinois; Indiana; Iowa; Kansas; Kentucky; Louisiana; Maine; Maryland; Massachusetts; Michigan; Minnesota; Mississippi; Missouri; Montana; Nebraska; Nevada; New Hampshire; New Jersey; New Mexico; New York; North Carolina; North Dakota; Ohio; Oklahoma; Oregon; Pennsylvania; Rhode Island; South Carolina; South Dakota; Tennessee; Texas; Utah; Vermont; Virginia; Washington; West Virginia; Wisconsin; Wyoming.",
+                "bbox": {
+                  "east_longitude": -47.74,
+                  "north_latitude": 86.46,
+                  "south_latitude": 23.81,
+                  "west_longitude": -172.54
+                },
+                "id": {
+                  "authority": "EPSG",
+                  "code": 1188
+                },
+                "method": {
+                  "id": {
+                    "authority": "EPSG",
+                    "code": 9603
+                  },
+                  "name": "Geocentric translations (geog2D domain)"
+                },
+                "name": "NAD83 to WGS 84 (1)",
+                "parameters": [
+                  {
+                    "id": {
+                      "authority": "EPSG",
+                      "code": 8605
+                    },
+                    "name": "X-axis translation",
+                    "unit": "metre",
+                    "value": 0
+                  },
+                  {
+                    "id": {
+                      "authority": "EPSG",
+                      "code": 8606
+                    },
+                    "name": "Y-axis translation",
+                    "unit": "metre",
+                    "value": 0
+                  },
+                  {
+                    "id": {
+                      "authority": "EPSG",
+                      "code": 8607
+                    },
+                    "name": "Z-axis translation",
+                    "unit": "metre",
+                    "value": 0
+                  }
+                ],
+                "remarks": "Derived at 354 stations. Accuracy 2m in each axis.",
+                "scope": "Military survey.",
+                "source_crs": {
+                  "coordinate_system": {
+                    "axis": [
+                      {
+                        "abbreviation": "Lat",
+                        "direction": "north",
+                        "name": "Geodetic latitude",
+                        "unit": "degree"
+                      },
+                      {
+                        "abbreviation": "Lon",
+                        "direction": "east",
+                        "name": "Geodetic longitude",
+                        "unit": "degree"
+                      }
+                    ],
+                    "subtype": "ellipsoidal"
+                  },
+                  "datum": {
+                    "ellipsoid": {
+                      "inverse_flattening": 298.257222101,
+                      "name": "GRS 1980",
+                      "semi_major_axis": 6378137
+                    },
+                    "name": "North American Datum 1983",
+                    "type": "GeodeticReferenceFrame"
+                  },
+                  "id": {
+                    "authority": "EPSG",
+                    "code": 4269
+                  },
+                  "name": "NAD83",
+                  "remarks": "Longitude is POSITIVE EAST. The adjustment included connections to Greenland and Mexico but the system was not adopted there. For applications with an accuracy of better than 1m replaced by NAD83(HARN) in the US and PRVI and by NAD83(CSRS) in Canada.",
+                  "type": "GeographicCRS"
+                },
+                "target_crs": {
+                  "coordinate_system": {
+                    "axis": [
+                      {
+                        "abbreviation": "Lat",
+                        "direction": "north",
+                        "name": "Geodetic latitude",
+                        "unit": "degree"
+                      },
+                      {
+                        "abbreviation": "Lon",
+                        "direction": "east",
+                        "name": "Geodetic longitude",
+                        "unit": "degree"
+                      }
+                    ],
+                    "subtype": "ellipsoidal"
+                  },
+                  "datum_ensemble": {
+                    "accuracy": "2.0",
+                    "ellipsoid": {
+                      "inverse_flattening": 298.257223563,
+                      "name": "WGS 84",
+                      "semi_major_axis": 6378137
+                    },
+                    "id": {
+                      "authority": "EPSG",
+                      "code": 6326
+                    },
+                    "members": [
+                      {
+                        "id": {
+                          "authority": "EPSG",
+                          "code": 1166
+                        },
+                        "name": "World Geodetic System 1984 (Transit)"
+                      },
+                      {
+                        "id": {
+                          "authority": "EPSG",
+                          "code": 1152
+                        },
+                        "name": "World Geodetic System 1984 (G730)"
+                      },
+                      {
+                        "id": {
+                          "authority": "EPSG",
+                          "code": 1153
+                        },
+                        "name": "World Geodetic System 1984 (G873)"
+                      },
+                      {
+                        "id": {
+                          "authority": "EPSG",
+                          "code": 1154
+                        },
+                        "name": "World Geodetic System 1984 (G1150)"
+                      },
+                      {
+                        "id": {
+                          "authority": "EPSG",
+                          "code": 1155
+                        },
+                        "name": "World Geodetic System 1984 (G1674)"
+                      },
+                      {
+                        "id": {
+                          "authority": "EPSG",
+                          "code": 1156
+                        },
+                        "name": "World Geodetic System 1984 (G1762)"
+                      },
+                      {
+                        "id": {
+                          "authority": "EPSG",
+                          "code": 1309
+                        },
+                        "name": "World Geodetic System 1984 (G2139)"
+                      },
+                      {
+                        "id": {
+                          "authority": "EPSG",
+                          "code": 1383
+                        },
+                        "name": "World Geodetic System 1984 (G2296)"
+                      }
+                    ],
+                    "name": "World Geodetic System 1984 ensemble"
+                  },
+                  "id": {
+                    "authority": "EPSG",
+                    "code": 4326
+                  },
+                  "name": "WGS 84",
+                  "type": "GeographicCRS"
+                },
+                "type": "Transformation"
+              },
+              {
+                "$schema": "https://proj.org/schemas/v0.7/projjson.schema.json",
+                "id": {
+                  "authority": "EPSG",
+                  "code": 15498
+                },
+                "method": {
+                  "id": {
+                    "authority": "EPSG",
+                    "code": 9843
+                  },
+                  "name": "Axis Order Reversal (2D)"
+                },
+                "name": "axis order change (2D)",
+                "type": "Conversion"
+              }
+            ],
+            "pipeline": "+proj=noop",
+            "software": {
+              "PROJ": "9.8.1",
+              "pyproj": "3.8.0",
+              "shapely": "2.2.0"
+            },
+            "source_crs": "EPSG:4269 NAD83",
+            "target_crs": "EPSG:4326"
+          },
+          "unrounded_coordinates": [
+            -78.875764747946,
+            42.893545371659
+          ],
+          "within_2km": []
+        },
+        "supporting_captures": [
+          {
+            "bytes": 340154,
+            "capture_id": "census-geocoder-documentation.html",
+            "content_hash": "9fb7c88eca1ec438697bb186f5024670bf8f0140badcda5615987fff34695496",
+            "content_hash_scope": "sha256_exact_http_response_body_bytes",
+            "content_type": "text/html; charset=UTF-8",
+            "final_url": "https://www.census.gov/programs-surveys/geography/technical-documentation/complete-technical-documentation/census-geocoder.html",
+            "http_status": 200,
+            "raw_capture_file": "local_data/research-2026-11-11-commercial-155/census-geocoder-documentation.html",
+            "raw_capture_redistributed": false,
+            "retrieved_at": "2026-11-11T15:11:20.084847+00:00",
+            "source_url": "https://www.census.gov/programs-surveys/geography/technical-documentation/complete-technical-documentation/census-geocoder.html"
+          },
+          {
+            "bytes": 561406,
+            "capture_id": "census-geocoder-faq.pdf",
+            "content_hash": "13a8ca9f7395daf53e0c06344dd2f1ed28bc6806ab0625b3410eba7e280db169",
+            "content_hash_scope": "sha256_exact_http_response_body_bytes",
+            "content_type": "application/pdf",
+            "final_url": "https://www2.census.gov/geo/pdfs/maps-data/data/FAQ_for_Census_Bureau_Public_Geocoder.pdf",
+            "http_status": 200,
+            "raw_capture_file": "local_data/research-2026-11-11-commercial-155/census-geocoder-faq.pdf",
+            "raw_capture_redistributed": false,
+            "retrieved_at": "2026-11-11T15:11:19.625880+00:00",
+            "source_url": "https://www2.census.gov/geo/pdfs/maps-data/data/FAQ_for_Census_Bureau_Public_Geocoder.pdf"
+          },
+          {
+            "bytes": 12626,
+            "capture_id": "commercial155-buffalo-spatial-review",
+            "content_hash": "152c2919bc05b67e5fde083b7308de56b7b65c3e657cc6e05bcde32651880627",
+            "content_hash_scope": "sha256_exact_local_calculation_json_bytes",
+            "raw_capture_file": "local_data/research-2026-11-11-commercial-155/buffalo-spatial-review.json",
+            "raw_capture_redistributed": false,
+            "retrieved_at": "2026-11-11T15:11:38.493616+00:00",
+            "source_url": "local-calculation:atlas155-commercial-spatial"
+          }
+        ]
+      },
+      "final_url": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=325%20Delaware%20Avenue%2C%20Buffalo%2C%20NY%2014202&benchmark=Public_AR_Current&format=json",
+      "http_status": 200,
+      "id": "commercial155-buffalo-census-address",
+      "kind": "government_record",
+      "license": "US Census public government geocoder; compact factual point and explicit transformation; no positional warranty asserted",
+      "published_at": null,
+      "publisher": "United States Census Bureau",
+      "raw_capture_file": "local_data/research-2026-11-11-commercial-155/census-buf1-address.json",
+      "raw_capture_redistributed": false,
+      "retrieved_at": "2026-11-11T15:08:14.012281+00:00",
+      "source_family": "United States Census Bureau",
+      "source_url": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=325%20Delaware%20Avenue%2C%20Buffalo%2C%20NY%2014202&benchmark=Public_AR_Current&format=json",
+      "summary": "The original Census geocoder returns one exact Buffalo address match. Its NAD83 street-range interpolated point is explicitly transformed to WGS84 and used as a building-address reference with unknown total positional accuracy.",
+      "title": "US Census Bureau: exact 325 Delaware Avenue Buffalo address match"
+    },
+    "commercial155-buffalo-racknerd-nov9": {
+      "attribution": "RackNerd",
+      "bytes": 8662,
+      "capture_id": "racknerd-newyork-nov9.html",
+      "content_hash": "85011f479a09ceefe8982a929f0f0ea40a19b0b76df14f058fc62dd8a1130ab2",
+      "content_hash_scope": "sha256_exact_http_response_body_bytes",
+      "content_type": "text/html; charset=UTF-8",
+      "extraction": {
+        "component": "New York Datacenter",
+        "equivalent_utc_timestamp": "2026-11-10T07:27:00Z",
+        "incident_id": 4737,
+        "original_event_timestamp": "2026-11-09T23:27:00-08:00",
+        "original_title": "OUTAGE - NYRN305KVM",
+        "resolution_date": "The original body reports resolution without a separate dated update; no exact resolution timestamp is asserted.",
+        "scope": "Actual one-node connectivity incident establishes deployed physical hosting. The status-page explanation expressly distinguishes node issues from site-wide service loss.",
+        "successor_review": "The captured original RackNerd status page was reviewed through November 11. Its latest listed New York incident is NYRN305KVM, dated November 9 at 23:27 with explicit HTML offset -08:00; later listed November 10 incidents concern other locations. The selected incident body reports resolution without a separately dated update. The current New York component is operational and reports its last update as November 9 at 23:34:51 without an explicit offset; that component timestamp is not substituted for the selected physical observation. March 27, 2026 original ColoCrossing expansion completion remains older context, not a new November opening. No contrary relocation or closure was found in this bounded original host/status review; no exhaustive corporate-history claim is made.",
+        "supporting_captures": [
+          {
+            "bytes": 36796,
+            "capture_id": "racknerd-status-current.html",
+            "content_hash": "3c0a8421a8a083c786b0291ff86a8d0579288ef7f65221c5f2c814f9c2d799d6",
+            "content_hash_scope": "sha256_exact_http_response_body_bytes",
+            "content_type": "text/html; charset=UTF-8",
+            "final_url": "https://status.racknerd.com/",
+            "http_status": 200,
+            "raw_capture_file": "local_data/research-2026-11-11-commercial-155/racknerd-status-current.html",
+            "raw_capture_redistributed": false,
+            "retrieved_at": "2026-11-11T15:08:11.229729+00:00",
+            "source_url": "https://status.racknerd.com/"
+          }
+        ],
+        "timestamp_basis": "Original abbr data-timeago attribute explicitly gives -08:00; the visible calendar date November 9 is retained as status_as_of. No local Buffalo timezone is assumed."
+      },
+      "final_url": "https://status.racknerd.com/incident/4737",
+      "http_status": 200,
+      "id": "commercial155-buffalo-racknerd-nov9",
+      "kind": "company_disclosure",
+      "license": "all-rights-reserved; compact factual projection only",
+      "published_at": "2026-11-09",
+      "publisher": "RackNerd",
+      "raw_capture_file": "local_data/research-2026-11-11-commercial-155/racknerd-newyork-nov9.html",
+      "raw_capture_redistributed": false,
+      "retrieved_at": "2026-11-11T15:08:11.455818+00:00",
+      "source_family": "RackNerd",
+      "source_url": "https://status.racknerd.com/incident/4737",
+      "summary": "The original November 9 New York incident reports actual connectivity problems on node NYRN305KVM and subsequently states that the issue is resolved. RackNerd defines a node/hypervisor as a physical server hosting VPS instances. Joined to its exact New York facility address, this supports existing commercial hosting at 325 Delaware Avenue. It does not establish a new opening, expansion, commissioned capacity or a whole-site outage.",
+      "title": "RackNerd New York: NYRN305KVM physical-node incident, November 9, 2026"
+    },
+    "commercial155-colocrossing-buf1-address": {
+      "attribution": "ColoCrossing",
+      "bytes": 280553,
+      "capture_id": "colocrossing-buf1-host.html",
+      "content_hash": "d8cfa580fde20f0e33733c59a71ea09759a326ed0f431c36c6b24749e9fd695e",
+      "content_hash_scope": "sha256_exact_http_response_body_bytes",
+      "content_type": "text/html; charset=UTF-8",
+      "extraction": {
+        "address": "325 Delaware Ave, Buffalo, NY 14202",
+        "distinctness_review": "All four committed baseline 154 identity layers were searched: 1,302 sites, 1,412 projects, 231 source records, and 231 identity-mapping records plus 231 decisions. ColoCrossing, BUF1/BUF-1, 325 Delaware, Velocity Servers, HostPapa, RackNerd/NYRN, ServerMania, Nexeon, Deluxe, Benchmark Group and Buffalo aliases, plus nearby 350 Main Street and 5319 Enterprise Drive, produce no matches. All 1,302 full geometries, including polygons and multipolygons, were compared. The nearest represented host is TeraWulf Lake Mariner, 55.250 km away. The original Cogent service list identifies ColoCrossing BUF1 and CenturyLink at 325 Delaware, and separately places 365 and Shatter IT at 350 Main Street. These are colocated-provider aliases or different physical addresses, not reasons to create additional sites. One existing physical 325 Delaware host is proposed; no separate customer, suite, server or expansion host is inferred.",
+        "facility_code": "BUF1",
+        "historical_boundary": "This undated facility page mentions both July 2012 and commissioned 2014. Neither is selected as an opening date. The separate original March 27, 2026 expansion article records completion then, but it does not date present capacity or create another project.",
+        "identity_scope": "Exact building-level join only; no claim that every provider or suite at the carrier hotel belongs to ColoCrossing. RackNerd is not assigned an unsupported owner or tenant role.",
+        "nearby_host_context": "Original Cogent service listings place ColoCrossing BUF1 and CenturyLink at 325 Delaware; 365 and Shatter IT are at the separate 350 Main Street address. Network-service listings supply identity context only, not dated physical operation or numeric coordinates.",
+        "operator": "ColoCrossing",
+        "supporting_captures": [
+          {
+            "bytes": 279501,
+            "capture_id": "colocrossing-buf1-march27.html",
+            "content_hash": "ec70f0b507829cae12fe2f4b416a946c0d8d57939e722d0b3aa7f0f34b10754b",
+            "content_hash_scope": "sha256_exact_http_response_body_bytes",
+            "content_type": "text/html; charset=UTF-8",
+            "final_url": "https://www.colocrossing.com/blog/cloud-server-hosting-vs-dedicated-servers-4",
+            "http_status": 200,
+            "raw_capture_file": "local_data/research-2026-11-11-commercial-155/colocrossing-buf1-march27.html",
+            "raw_capture_redistributed": false,
+            "retrieved_at": "2026-11-11T15:08:14.045922+00:00",
+            "source_url": "https://www.colocrossing.com/blog/colocrossing-expands-buffalo-data-center-to-support-growing-infrastructure-demands/"
+          },
+          {
+            "bytes": 96330,
+            "capture_id": "cogent-buffalo-locations.html",
+            "content_hash": "f13c03134507603aef9e298d184fbd8fd9750f3c4ed044532529614e31255e17",
+            "content_hash_scope": "sha256_exact_http_response_body_bytes",
+            "content_type": "text/html; charset=utf-8",
+            "final_url": "https://cogentco.com/en/network/service-locations?action=search&continent=&country=&metro=Buffalo&site_type=&state=",
+            "http_status": 200,
+            "raw_capture_file": "local_data/research-2026-11-11-commercial-155/cogent-buffalo-locations.html",
+            "raw_capture_redistributed": false,
+            "retrieved_at": "2026-11-11T15:11:19.548215+00:00",
+            "source_url": "https://cogentco.com/en/network/service-locations?action=search&continent=&country=&metro=Buffalo&site_type=&state="
+          }
+        ]
+      },
+      "final_url": "https://www.colocrossing.com/datacenter/buffalo-ny/",
+      "http_status": 200,
+      "id": "commercial155-colocrossing-buf1-address",
+      "kind": "company_disclosure",
+      "license": "all-rights-reserved; compact factual projection only",
+      "published_at": null,
+      "publisher": "ColoCrossing",
+      "raw_capture_file": "local_data/research-2026-11-11-commercial-155/colocrossing-buf1-host.html",
+      "raw_capture_redistributed": false,
+      "retrieved_at": "2026-11-11T15:08:11.485569+00:00",
+      "source_family": "ColoCrossing",
+      "source_url": "https://www.colocrossing.com/datacenter/buffalo-ny/",
+      "summary": "The original operator page identifies Buffalo facility BUF1 at 325 Delaware Avenue, Buffalo NY 14202 and describes its own dedicated-server and colocation operations. The shared exact address binds the host name and current operator to the building evidenced by RackNerd’s dated physical-node observation.",
+      "title": "ColoCrossing Buffalo BUF1: exact 325 Delaware Avenue host"
+    },
+    "commercial155-racknerd-newyork-address": {
+      "attribution": "RackNerd",
+      "bytes": 15402,
+      "capture_id": "racknerd-newyork-host.html",
+      "content_hash": "22cc3cc795b8399ce69ab1466eafe80939d288b1383d0c5743a6450de8a3239b",
+      "content_hash_scope": "sha256_exact_http_response_body_bytes",
+      "content_type": "text/html; charset=UTF-8",
+      "extraction": {
+        "address": "325 Delaware Avenue, Buffalo NY 14202",
+        "distinctness_review": "All four committed baseline 154 identity layers were searched: 1,302 sites, 1,412 projects, 231 source records, and 231 identity-mapping records plus 231 decisions. ColoCrossing, BUF1/BUF-1, 325 Delaware, Velocity Servers, HostPapa, RackNerd/NYRN, ServerMania, Nexeon, Deluxe, Benchmark Group and Buffalo aliases, plus nearby 350 Main Street and 5319 Enterprise Drive, produce no matches. All 1,302 full geometries, including polygons and multipolygons, were compared. The nearest represented host is TeraWulf Lake Mariner, 55.250 km away. The original Cogent service list identifies ColoCrossing BUF1 and CenturyLink at 325 Delaware, and separately places 365 and Shatter IT at 350 Main Street. These are colocated-provider aliases or different physical addresses, not reasons to create additional sites. One existing physical 325 Delaware host is proposed; no separate customer, suite, server or expansion host is inferred.",
+        "identity_join": "The provider uses the same New York Datacenter label on its facility and status pages; its exact Buffalo address equals the separate ColoCrossing BUF1 operator address. This is a physical-building identity join, not an independently established floor, suite or rack location.",
+        "scope": "Current original address identity only. No performance guarantee, certification, opening year, renewable share, service capacity or suite equivalence is selected."
+      },
+      "final_url": "https://racknerd.com/new-york-datacenter",
+      "http_status": 200,
+      "id": "commercial155-racknerd-newyork-address",
+      "kind": "company_disclosure",
+      "license": "all-rights-reserved; compact factual projection only",
+      "published_at": null,
+      "publisher": "RackNerd",
+      "raw_capture_file": "local_data/research-2026-11-11-commercial-155/racknerd-newyork-host.html",
+      "raw_capture_redistributed": false,
+      "retrieved_at": "2026-11-11T15:08:10.994923+00:00",
+      "source_family": "RackNerd",
+      "source_url": "https://racknerd.com/new-york-datacenter",
+      "summary": "RackNerd identifies its New York data center as a Western New York hosting facility and gives the exact facility address 325 Delaware Avenue, Buffalo NY 14202. This joins the named New York status component to Buffalo rather than New York City.",
+      "title": "RackNerd New York data center: 325 Delaware Avenue, Buffalo"
+    },
+    "de-hesse-p2-frankfurt-geoportal-kleyerstrasse-75-87": {
+      "attribution": "Stadt Frankfurt am Main",
+      "bytes": 538,
+      "capture_id": "frankfurt-geoportal-kleyerstrasse-75-87.json",
+      "capture_method": "credential-free Node fetch; no retry; content-decoded response bytes",
+      "content_hash": "7a63c345a1f77c02317706653a027879b06b1b39427d6e723d7c3fea476075d3",
+      "content_hash_scope": "sha256_exact_response_bytes",
+      "coordinate_crs": "EPSG:25832",
+      "date_semantics": "Register extract retrieved 23 October 2026; no record date is served. Not a status observation.",
+      "extraction": {
+        "provenance_correction": {
+          "accuracy_limit": "Transformation accuracy estimate is not source address-point accuracy; source datum realization, coordinate epoch and positional accuracy are not supplied.",
+          "crs_basis": "Original official map config portalConfig.secondaryMenu.sections[0][9].geosearch.epsg=25832; same municipal elastic address service.",
+          "full_geometries_checked": 1302,
+          "identity_review": {
+            "identity_decisions": {
+              "matches": [],
+              "records_checked": 231
+            },
+            "identity_records": {
+              "matches": [],
+              "records_checked": 231
+            },
+            "projects": {
+              "matches": [
+                {
+                  "name": "Telehouse Frankfurt Building N — new 3.6 MW IT data centre",
+                  "project_id": "07b70245-b1c8-537d-a34e-942ff872179e",
+                  "site_id": "vcc-site-ef1b8d8c8c3eaaae3590"
+                },
+                {
+                  "name": "Atman WAW-2 — existing commercial data-centre operations",
+                  "project_id": "9392ce23-138c-57a2-a05c-a61ca2ff9a9d",
+                  "site_id": "vcc-site-2dd1f245b80e70358a44"
+                },
+                {
+                  "name": "Equinix FR5 — existing IBX colocation data-centre operations, operating phases (Kleyerstraße 90, Frankfurt)",
+                  "project_id": "abea7479-ddba-5b12-88f5-d417241f8d89",
+                  "site_id": "vcc-site-36267cc3d4acb7877ac9"
+                }
+              ],
+              "records_checked": 1412
+            },
+            "sites": {
+              "matches": [
+                {
+                  "name": "Equinix FR5 Frankfurt IBX (Kleyer 90), Kleyerstraße 90, Frankfurt am Main",
+                  "site_id": "vcc-site-36267cc3d4acb7877ac9"
+                },
+                {
+                  "name": "Telehouse Frankfurt Campus (Kleyerstraße 75-87, Frankfurt-Gallus)",
+                  "site_id": "vcc-site-ef1b8d8c8c3eaaae3590"
+                }
+              ],
+              "records_checked": 1302
+            },
+            "source_records": {
+              "matches": [],
+              "records_checked": 231
+            }
+          },
+          "native_point": [
+            473466.9179999996,
+            5549422.126
+          ],
+          "nearest": [
+            [
+              0.0,
+              "vcc-site-ef1b8d8c8c3eaaae3590",
+              "Telehouse Frankfurt Campus (Kleyerstraße 75-87, Frankfurt-Gallus)"
+            ],
+            [
+              340.6539802549822,
+              "vcc-site-36267cc3d4acb7877ac9",
+              "Equinix FR5 Frankfurt IBX (Kleyer 90), Kleyerstraße 90, Frankfurt am Main"
+            ],
+            [
+              1082.0553483176773,
+              "vcc-site-407df34a11fc6dadea48",
+              "Equinix FR7 Frankfurt IBX, Gutleutstraße 310, Frankfurt am Main"
+            ],
+            [
+              2995.276724887787,
+              "vcc-site-c1a9728398fb388857d1",
+              "Equinix Frankfurt Lärchenstrasse Campus (FR4, FR6, FR8), Lärchenstraße 110, Frankfurt-Griesheim"
+            ],
+            [
+              3451.7985468158,
+              "vcc-site-ece79fca728f9d94dc00",
+              "NorthC Frankfurt1 (FRA01)"
+            ]
+          ],
+          "nominal_operation_accuracy_metres": 1.0,
+          "operation": "Inverse of UTM zone 32N + ETRS89 to WGS 84 (1) (with axis order normalized for visualization)",
+          "pipeline": "+proj=pipeline +step +inv +proj=utm +zone=32 +ellps=GRS80 +step +proj=unitconvert +xy_in=rad +xy_out=deg",
+          "selected_point": [
+            8.6290298,
+            50.0964652
+          ],
+          "source_crs": "EPSG:25832 ETRS89 / UTM zone32N",
+          "unrounded_point": [
+            8.629029798252581,
+            50.096465182088
+          ]
+        },
+        "supporting_captures": [
+          {
+            "bytes": 88743,
+            "capture_id": "frankfurt-geoportal-config.json",
+            "capture_method": "credential-free Node fetch; no retry; content-decoded response bytes",
+            "content_hash": "8fa247f3d47a09de7f6b91a6ce3a5253a0a561a2b217466076ed627b92aaae78",
+            "content_hash_scope": "sha256_exact_response_bytes",
+            "final_url": "https://geoportal.frankfurt.de/karte/config.json",
+            "http_status": 200,
+            "raw_capture_file": "local_data/country-research-de-hesse-p2/frankfurt-geoportal-config.json",
+            "raw_capture_redistributed": false,
+            "retrieved_at": "2026-10-23T00:40:33.774Z",
+            "source_url": "https://geoportal.frankfurt.de/karte/config.json"
+          }
+        ]
+      },
+      "final_url": "https://geoportal.frankfurt.de/elastic/basisgis/_search?source_content_type=application%2Fjson&source=%7B%22query%22%3A%7B%22match_phrase%22%3A%7B%22properties.searchField%22%3A%22Kleyerstra%C3%9Fe+75-87%22%7D%7D%2C%22size%22%3A5%7D",
+      "geometry_facts_file": "sources/research-countries-2026-10-23-de-hesse-p2-telehouse-frankfurt-geometry-facts.json",
+      "geometry_facts_sha256": "24829de48ac72e8b53bfbd8bcddce9986fa8cbd793ba3a240c14943f51936565",
+      "http_status": 200,
+      "id": "de-hesse-p2-frankfurt-geoportal-kleyerstrasse-75-87",
+      "kind": "government_record",
+      "license": "public-record-source-terms",
+      "published_at": null,
+      "publisher": "Stadt Frankfurt am Main",
+      "raw_capture_file": "local_data/country-research-de-hesse-p2/frankfurt-geoportal-kleyerstrasse-75-87.json",
+      "raw_capture_redistributed": false,
+      "retrieved_at": "2026-10-23T00:40:35.618Z",
+      "reuse_evidence_id": "e7a32e2b-9596-5518-a6a8-5ae8ccd5915a",
+      "source_family": "frankfurt_municipal_geoportal",
+      "source_url": "https://geoportal.frankfurt.de/elastic/basisgis/_search?source_content_type=application%2Fjson&source=%7B%22query%22%3A%7B%22match_phrase%22%3A%7B%22properties.searchField%22%3A%22Kleyerstra%C3%9Fe+75-87%22%7D%7D%2C%22size%22%3A5%7D",
+      "summary": "The original municipal address record supplies a projected ETRS89/UTM32N point for Kleyerstraße 75–87. Reproducing its coordinate transformation yields the exact existing campus point. This corrects its authority/derivation labels only; no new point, source observation or accuracy claim is selected.",
+      "title": "Stadt Frankfurt am Main geoportal address search (basisgis): building address Kleyerstraße 75-87",
+      "transcribed_coordinates": [
+        473466.9179999996,
+        5549422.126
+      ]
+    },
+    "de-hesse-p2-telehouse-de-rechenzentrum-2026-page": {
+      "attribution": "Telehouse Deutschland",
+      "bytes": 143985,
+      "capture_id": "telehouse-de-rechenzentrum-2026.html",
+      "capture_method": "credential-free Node fetch; no retry; content-decoded response bytes",
+      "content_hash": "53de46c6b0d5f229309b4453f0adc05d494bc72d77ff3f6a9c84475900ef905f",
+      "content_hash_scope": "sha256_exact_response_bytes",
+      "date_semantics": "Undated product page: JSON-LD datePublished 2019-08-09 (page creation) and dateModified 2025-10-07; its '2026 Betriebsbereit' line was a forecast when written. Used only for identity and the campus address, not as a status observation.",
+      "final_url": "https://www.telehouse-rechenzentrum.de/rechenzentrum-2026/",
+      "http_status": 200,
+      "id": "de-hesse-p2-telehouse-de-rechenzentrum-2026-page",
+      "kind": "company_disclosure",
+      "license": "all-rights-reserved",
+      "published_at": null,
+      "publisher": "Telehouse Deutschland GmbH",
+      "raw_capture_file": "local_data/country-research-de-hesse-p2/telehouse-de-rechenzentrum-2026.html",
+      "raw_capture_redistributed": false,
+      "retrieved_at": "2026-10-23T00:38:49.064Z",
+      "reuse_evidence_id": "64c0fae9-6bc8-5376-a917-63b3f071f6f0",
+      "source_family": "telehouse-rechenzentrum.de pages",
+      "source_url": "https://www.telehouse-rechenzentrum.de/rechenzentrum-2026/",
+      "summary": "The archived original operator page names its Frankfurt campus at Kleyerstrasse 75–87. It is reused solely as address/campus identity; page creation/modification dates and forecasts do not renew physical status or add capacity metrics.",
+      "title": "Telehouse Deutschland: Rechenzentrum 2026 — Neues Rechenzentrum, Frankfurt"
+    },
+    "europe154-iron-mountain-ams1-phase-identity": {
+      "attribution": "Iron Mountain Data Centers",
+      "bytes": 491822,
+      "canonical_url": "https://edge.sitecorecloud.io/ironmountain-c8dd68e9/media/project/iron-mountain/iron-mountain/files/services/imdc/locations/data-center-amsterdam-brochure.pdf?sc_lang=en",
+      "capture_id": "iron-mountain-ams1-brochure.pdf",
+      "content_hash": "33d4b66e179adf3f3ec9cf4f551567738bccf5468afd35a013a3507a639d583a",
+      "content_hash_scope": "sha256_exact_http_response_body_bytes",
+      "content_type": "application/pdf",
+      "extraction": {
+        "copyright_year_not_publication_date": 2023,
+        "discovery_page_url": "https://www.ironmountain.com/data-centers/locations/emea/amsterdam",
+        "pages_read": [
+          1,
+          2
+        ],
+        "phase_boundary": "The brochure’s existing AMS-1 operation is distinct from the added 10 MW expansion. It does not establish completion of the existing Atlas AMS-2 construction project or of any full-build target.",
+        "publication_date_established": false,
+        "scope": "Identity and phase context only. No power, floor-area, efficiency, interconnection or customer-count metric selected. The schematic Hall 6 does not supply or refine the chosen campus point.",
+        "visually_reviewed_pages": [
+          1,
+          2
+        ]
+      },
+      "http_status": 200,
+      "id": "europe154-iron-mountain-ams1-phase-identity",
+      "kind": "company_disclosure",
+      "license": "source-terms; compact factual projection only; no open-content licence asserted",
+      "published_at": null,
+      "publisher": "Iron Mountain Data Centers",
+      "raw_capture_file": "local_data/research-2026-11-11-europe-154/iron-mountain-ams1-brochure.pdf",
+      "raw_capture_redistributed": false,
+      "retrieved_at": "2026-11-11T14:41:01.833959+00:00",
+      "source_family": "Iron Mountain Data Centers",
+      "source_url": "https://edge.sitecorecloud.io/ironmountain-c8dd68e9/media/project/iron-mountain/iron-mountain/files/services/imdc/locations/data-center-amsterdam-brochure.pdf?sc_lang=en",
+      "summary": "The original operator brochure identifies AMS-1 in Haarlem as an existing colocation facility serving customers, and separately describes an additional expansion targeted for Q2 2027. It supports Iron Mountain’s current operator identity and the distinction between the existing operating phase and the expansion already represented in the Atlas.",
+      "title": "Iron Mountain Amsterdam Data Center (AMS-1): existing colocation and separate expansion"
+    },
+    "europe155-ams1-exact-host-address": {
+      "attribution": "BSI, distributed by Scaleway",
+      "bytes": 1260475,
+      "canonical_url": "https://www-uploads.scaleway.com/IS_787020_EN_46136c6c21.pdf",
+      "capture_id": "scaleway-host-certificate.pdf",
+      "content_hash": "54c9a8a6df9af9c5454b9a9a339dfc098354461970dd0e5221529d5ad6b80b81",
+      "content_hash_scope": "sha256_exact_http_response_body_bytes",
+      "content_type": "application/pdf",
+      "extraction": {
+        "certificate_number": "IS 787020",
+        "effective_date": "2023-12-06",
+        "expiry_date_printed": "2026-12-05",
+        "latest_revision_date": "2023-12-06",
+        "original_registration_date": "2023-12-06",
+        "pages_read": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "publication_date_established": false,
+        "scope": "Historical original host identity only; no current certification, certification renewal, legal-site hosting or current tenant-role inference. Separate Interxion AMS5, Equinix AM7 and Warsaw rows are not aliases of this host.",
+        "visually_reviewed_page": 3
+      },
+      "http_status": 200,
+      "id": "europe155-ams1-exact-host-address",
+      "kind": "company_disclosure",
+      "license": "source-terms; compact factual projection only; no open-content licence asserted",
+      "published_at": null,
+      "publisher": "BSI, distributed by Scaleway",
+      "raw_capture_file": "local_data/research-2026-11-11-europe-154/scaleway-host-certificate.pdf",
+      "raw_capture_redistributed": false,
+      "retrieved_at": "2026-11-11T14:38:17.006581+00:00",
+      "source_family": "BSI, distributed by Scaleway",
+      "source_url": "https://www-uploads.scaleway.com/IS_787020_EN_46136c6c21.pdf",
+      "summary": "The original certificate page 3 explicitly identifies the colocation host as Iron Mountain AMS1 at J.W. Lucasweg 35, Haarlem 2031 BE, Netherlands. Its registered activity supports Scaleway Public Cloud infrastructure. This exact host/address identity is joined to the dated Scaleway incident; certification alone is not the operating observation.",
+      "title": "Scaleway-distributed BSI certificate IS 787020: Iron Mountain AMS1 at J.W. Lucasweg 35"
+    },
+    "europe155-ams1-physical-operation": {
+      "attribution": "Scaleway",
+      "bytes": 2525,
+      "canonical_url": "https://status.scaleway.com/api/v2/incidents/ks6w90j7dlkv.json",
+      "capture_id": "scaleway-ams1-nov9.json",
+      "content_hash": "d91daaa42cb1076a0947c5b68afbdccf146143c0aaa0008dac47bd10928519c1",
+      "content_hash_scope": "sha256_exact_http_response_body_bytes",
+      "content_type": "application/json; charset=utf-8",
+      "extraction": {
+        "date_semantics": "The selected November 9 observation is the dated original report and resolution, not the earlier reported fault onset or API/component modification date.",
+        "first_published_at": "2026-11-09T09:23:27.531+01:00",
+        "incident_id": "ks6w90j7dlkv",
+        "inherited_locator_contract": {
+          "baseline_commit": "3158a5807923d1d70bbb4e2f5d705b285f33a5eb",
+          "baseline_dataset": "verified_construction_core/2026-11-11-research-hundredfiftyfourth",
+          "baseline_manifest_sha256": "e7ca221d83d38fe306dd6d588ee852500eeef68e733cca5f46f0d47d08be0211",
+          "geometry_evidence_id": "583562f6-1d06-596e-81cc-289524fe0c00",
+          "geometry_identity_evidence_ids": [
+            "052125d3-300b-5ef1-a267-79b7b63da354",
+            "0a91dfb2-a658-54cd-8294-e917690855b7",
+            "af754737-fdde-580f-9b3e-c1e1bc787bcf",
+            "d2a2c2ab-27ad-53e6-873a-e6f37c4a8e66",
+            "eb38284b-a7f3-5377-a980-f267b3877c24"
+          ],
+          "identity_metadata": [
+            {
+              "attribution": "Iron Mountain Data Centers",
+              "content_hash": "33d4b66e179adf3f3ec9cf4f551567738bccf5468afd35a013a3507a639d583a",
+              "content_hash_scope": "sha256_exact_http_response_body_bytes",
+              "evidence_id": "052125d3-300b-5ef1-a267-79b7b63da354",
+              "kind": "company_disclosure",
+              "license": "source-terms; compact factual projection only; no open-content licence asserted",
+              "project_ids_json": "[\"e3f1fc38-bc59-5373-803f-d5c86d817096\"]",
+              "publication_date_precision": "unknown",
+              "published_at": "",
+              "publisher": "Iron Mountain Data Centers",
+              "retrieved_at": "2026-11-11T14:41:01.833959+00:00",
+              "roles_json": "[\"context:geometry_identity\"]",
+              "source_family": "Iron Mountain Data Centers",
+              "source_local_id": "",
+              "source_record_id": "",
+              "source_record_sha256": "",
+              "source_url": "https://edge.sitecorecloud.io/ironmountain-c8dd68e9/media/project/iron-mountain/iron-mountain/files/services/imdc/locations/data-center-amsterdam-brochure.pdf?sc_lang=en",
+              "title": "Iron Mountain Amsterdam Data Center (AMS-1): existing colocation and separate expansion"
+            },
+            {
+              "attribution": "Iron Mountain Data Centers",
+              "content_hash": "cf3624ab97b5d5e8b372655cecd2f9c98df3406fa2a2678eea8d5ecba25391de",
+              "content_hash_scope": "inherited_unspecified",
+              "evidence_id": "0a91dfb2-a658-54cd-8294-e917690855b7",
+              "kind": "company_disclosure",
+              "license": "all-rights-reserved",
+              "project_ids_json": "[\"e3f1fc38-bc59-5373-803f-d5c86d817096\"]",
+              "publication_date_precision": "datetime",
+              "published_at": "2026-06-12T18:03:57Z",
+              "publisher": "Iron Mountain Data Centers",
+              "retrieved_at": "2026-07-20T04:22:16Z",
+              "roles_json": "[\"context:geometry_identity\",\"context:site_distinctness\"]",
+              "source_family": "iron_mountain_resources",
+              "source_local_id": "",
+              "source_record_id": "",
+              "source_record_sha256": "",
+              "source_url": "https://resources.ironmountain.com/videos-and-webinars/d/data-centers-inside-the-amsterdam-data-center-campus-3d-rendering",
+              "title": "Amsterdam Data Center campus 3D rendering: Powering the future with AMS-2"
+            },
+            {
+              "attribution": "Province of Noord-Holland",
+              "content_hash": "e6409d9298cdf249b9cc37c6609173d28a25300092d0df95cb588a6f76d5facf",
+              "content_hash_scope": "inherited_unspecified",
+              "evidence_id": "af754737-fdde-580f-9b3e-c1e1bc787bcf",
+              "kind": "government_record",
+              "license": "no-open-redistribution-license-asserted",
+              "project_ids_json": "[\"e3f1fc38-bc59-5373-803f-d5c86d817096\"]",
+              "publication_date_precision": "day",
+              "published_at": "2025-04-07",
+              "publisher": "Province of Noord-Holland",
+              "retrieved_at": "2026-09-08T19:54:10Z",
+              "roles_json": "[\"context:geometry_identity\",\"context:site_distinctness\"]",
+              "source_family": "iron_amsterdam_permit",
+              "source_local_id": "",
+              "source_record_id": "",
+              "source_record_sha256": "",
+              "source_url": "https://zoek.officielebekendmakingen.nl/prb-2025-5574.html",
+              "title": "Iron Mountain Haarlem permit - exact address"
+            },
+            {
+              "attribution": "Iron Mountain Data Centers",
+              "content_hash": "62be35adea69fb7cddf87a9a1a07734afac9898e3e9a76416d8a64b598f7b392",
+              "content_hash_scope": "inherited_unspecified",
+              "evidence_id": "d2a2c2ab-27ad-53e6-873a-e6f37c4a8e66",
+              "kind": "company_disclosure",
+              "license": "all-rights-reserved",
+              "project_ids_json": "[\"e3f1fc38-bc59-5373-803f-d5c86d817096\"]",
+              "publication_date_precision": "unknown",
+              "published_at": "",
+              "publisher": "Iron Mountain Data Centers",
+              "retrieved_at": "2026-07-20T04:22:16Z",
+              "roles_json": "[\"context:geometry_identity\",\"context:site_distinctness\"]",
+              "source_family": "iron_mountain_data_center_location_pages",
+              "source_local_id": "",
+              "source_record_id": "",
+              "source_record_sha256": "",
+              "source_url": "https://www.ironmountain.com/data-centers/locations/amsterdam-data-center",
+              "title": "Amsterdam Data Center"
+            },
+            {
+              "attribution": "Province of Noord-Holland / Officiele Bekendmakingen",
+              "content_hash": "31692c94bc5334950f3d0f298c53bc2d430d16a38b54a8e7b9121378a73a2fe2",
+              "content_hash_scope": "sha256_exact_http_response_body_bytes",
+              "evidence_id": "eb38284b-a7f3-5377-a980-f267b3877c24",
+              "kind": "government_record",
+              "license": "source-terms; compact factual projection only; no open-content licence asserted",
+              "project_ids_json": "[\"e3f1fc38-bc59-5373-803f-d5c86d817096\"]",
+              "publication_date_precision": "day",
+              "published_at": "2025-04-07",
+              "publisher": "Province of Noord-Holland / Officiele Bekendmakingen",
+              "retrieved_at": "2026-11-11T14:38:27.963600+00:00",
+              "roles_json": "[\"context:geometry_identity\"]",
+              "source_family": "Province of Noord-Holland / Officiele Bekendmakingen",
+              "source_local_id": "",
+              "source_record_id": "",
+              "source_record_sha256": "",
+              "source_url": "https://zoek.officielebekendmakingen.nl/prb-2025-5574.html",
+              "title": "Provincie Noord-Holland: Iron Mountain data centre at J.W. Lucasweg 35, Haarlem"
+            }
+          ],
+          "reference_project_id": "e3f1fc38-bc59-5373-803f-d5c86d817096",
+          "scope": "Baseline evidence references, not new raw publisher captures. All prior evidence metadata and existing project rows are preserved."
+        },
+        "physical_scope": "Existing servers in one named room/rack. No exact rack position is geolocated.",
+        "reported_fault_started_at": "2026-11-07T02:51:47Z",
+        "resolved_at": "2026-11-09T10:01:41.784+01:00",
+        "successor_review": "The original Scaleway current incident feed and embedded September–November history were reviewed through the November 11 retrieval. The November 9 AMS1 incident is resolved; other current maintenance or product incidents do not establish closure, completion of an expansion or uninterrupted whole-campus operation. The original Iron Mountain brochure separately describes the additional 10 MW expansion with a future Q2 2027 target. This is bounded public-source review, not an exhaustive corporate archive.",
+        "supporting_captures": [
+          {
+            "bytes": 154140,
+            "canonical_url": "https://status.scaleway.com/api/v2/incidents.json",
+            "capture_id": "scaleway-current-incidents.json",
+            "content_hash": "9da5ddbea58ca8211ac5504c24579b9b860fc9b92bd365ed22bfaf0a3f86da04",
+            "content_hash_scope": "sha256_exact_http_response_body_bytes",
+            "content_type": "application/json; charset=utf-8",
+            "http_status": 200,
+            "raw_capture_file": "local_data/research-2026-11-11-europe-154/scaleway-current-incidents.json",
+            "raw_capture_redistributed": false,
+            "retrieved_at": "2026-11-11T14:36:03.095615+00:00",
+            "source_url": "https://status.scaleway.com/api/v2/incidents.json"
+          },
+          {
+            "bytes": 210223,
+            "canonical_url": "https://status.scaleway.com/history",
+            "capture_id": "scaleway-history.html",
+            "content_hash": "9b1fc1b6d1533bf4c8cec79556d8ffd9e6fb1ea32daecea0b8a73c5774ecad4b",
+            "content_hash_scope": "sha256_exact_http_response_body_bytes",
+            "content_type": "text/html; charset=utf-8",
+            "http_status": 200,
+            "raw_capture_file": "local_data/research-2026-11-11-europe-154/scaleway-history.html",
+            "raw_capture_redistributed": false,
+            "retrieved_at": "2026-11-11T14:37:00.890839+00:00",
+            "source_url": "https://status.scaleway.com/history"
+          },
+          {
+            "bytes": 17316,
+            "capture_id": "ams1-spatial-identity-review.json",
+            "content_hash": "67ad033ed99a3f02e904bea6a89af6b516d0901f8f7782cc3ac27860499e671e",
+            "content_hash_scope": "sha256_exact_locally_generated_review_json_bytes",
+            "raw_capture_file": "local_data/research-2026-11-11-europe-155/ams1-spatial-identity-review.json",
+            "raw_capture_redistributed": false,
+            "retrieved_at": "2026-11-11T15:11:11.222618+00:00"
+          }
+        ]
+      },
+      "http_status": 200,
+      "id": "europe155-ams1-physical-operation",
+      "kind": "company_disclosure",
+      "license": "source-terms; compact factual projection only; no open-content licence asserted",
+      "published_at": "2026-11-09",
+      "publisher": "Scaleway",
+      "raw_capture_file": "local_data/research-2026-11-11-europe-154/scaleway-ams1-nov9.json",
+      "raw_capture_redistributed": false,
+      "retrieved_at": "2026-11-11T14:38:27.069333+00:00",
+      "source_family": "Scaleway",
+      "source_url": "https://status.scaleway.com/api/v2/incidents/ks6w90j7dlkv.json",
+      "summary": "The original November 9 incident identifies an unreachable RPN switch and unavailable RPN connectivity for some existing servers in AMS1 room H6 rack 50, then records resolution. This establishes current physical hosting at the named facility. It does not establish an opening date, a whole-campus outage or uninterrupted operation.",
+      "title": "Scaleway: AMS1 room H6 rack 50 connectivity incident resolved November 9, 2026"
+    },
+    "europe155-scaleway-ams1-code-identity": {
+      "attribution": "Scaleway",
+      "bytes": 5240418,
+      "canonical_url": "https://www-uploads.scaleway.com/Impact_Report2025_22ee3a8232.pdf",
+      "capture_id": "scaleway-impact2025.pdf",
+      "content_hash": "f7af895431bad2f4aab7cc4bc7cb824b9756c1cedbf7744c9963505ea4f48a45",
+      "content_hash_scope": "sha256_exact_http_response_body_bytes",
+      "content_type": "application/pdf",
+      "extraction": {
+        "pages_reviewed": [
+          1,
+          25
+        ],
+        "publication_date_established": false,
+        "report_title_year": 2025,
+        "scope": "Code-to-host identity only. No reported energy, emissions, capacity or PUE values are selected, and this report is not the current physical observation.",
+        "table_data_year": 2024,
+        "visually_reviewed_page": 25
+      },
+      "http_status": 200,
+      "id": "europe155-scaleway-ams1-code-identity",
+      "kind": "company_disclosure",
+      "license": "source-terms; compact factual projection only; no open-content licence asserted",
+      "published_at": null,
+      "publisher": "Scaleway",
+      "raw_capture_file": "local_data/research-2026-11-11-europe-154/scaleway-impact2025.pdf",
+      "raw_capture_redistributed": false,
+      "retrieved_at": "2026-11-11T14:38:17.016108+00:00",
+      "source_family": "Scaleway",
+      "source_url": "https://www-uploads.scaleway.com/Impact_Report2025_22ee3a8232.pdf",
+      "summary": "The original report page 25 directly maps Scaleway AMS1 in the Netherlands to Iron Mountain. It distinguishes AMS2 at Interxion and AMS3 at Equinix, resolving the tenant code to the selected operator host. The table is labelled 2024 data; it supplies identity context only.",
+      "title": "Scaleway Impact Report 2025: AMS1 identified as Iron Mountain"
+    },
+    "europe155-telia-government-identity": {
+      "attribution": "Southern Finland Regional State Administrative Agency; City of Helsinki publication",
+      "bytes": 1009052,
+      "canonical_url": "https://www.hel.fi/static/liitteet/kanslia/Kuulutukset/muut-viranomaiskuulutukset/ESAVI-Kuulutus-21-12-2017-22-01-2018.pdf",
+      "capture_id": "helsinki-telia-permit-notice.pdf",
+      "content_hash": "7acffe37944f2035ad998d42015b9acb74fdc724694e385095022010cccf7021",
+      "content_hash_scope": "sha256_exact_http_response_body_bytes",
+      "content_type": "application/pdf",
+      "extraction": {
+        "applicant": "Telia Finland Oyj / Telia Finland Abp",
+        "case_reference": "ESAVI/9910/2016",
+        "date_limit": "The notice dateline, stated decision day and public display period are distinct; no publication day is inferred from the filename or those dates.",
+        "decision_date_stated": "2017-12-21",
+        "decision_reference": "258/2017/1",
+        "display_period": [
+          "2017-12-21",
+          "2018-01-22"
+        ],
+        "document_dateline": "2017-12-19",
+        "original_site_address": "Valimotie 3-5 / Gjuterivägen 3-5, Helsinki / Helsingfors",
+        "pages_visually_reviewed": [
+          1,
+          2
+        ],
+        "publication_date_established": false
+      },
+      "http_status": 200,
+      "id": "europe155-telia-government-identity",
+      "kind": "government_record",
+      "license": "source-terms; compact factual projection only; no open-content licence asserted",
+      "published_at": null,
+      "publisher": "Southern Finland Regional State Administrative Agency; City of Helsinki publication",
+      "raw_capture_file": "local_data/research-2026-11-11-europe-155/helsinki-telia-permit-notice.pdf",
+      "raw_capture_redistributed": false,
+      "retrieved_at": "2026-11-11T15:00:48.364326+00:00",
+      "source_family": "Southern Finland Regional State Administrative Agency; City of Helsinki publication",
+      "source_url": "https://www.hel.fi/static/liitteet/kanslia/Kuulutukset/muut-viranomaiskuulutukset/ESAVI-Kuulutus-21-12-2017-22-01-2018.pdf",
+      "summary": "The original bilingual notice directly joins applicant Telia Finland Oyj / Telia Finland Abp, Helsinki Data Center and Valimotie 3–5 / Gjuterivägen 3–5. It is historical physical identity context, not evidence of present operation or a new permitted phase.",
+      "title": "Southern Finland Regional State Administrative Agency: Helsinki Data Center permit notice, ESAVI/9910/2016"
+    },
+    "europe155-telia-helsinki-address-point": {
+      "attribution": "City of Helsinki",
+      "bytes": 710,
+      "canonical_url": "https://kartta.hel.fi/ws/geoserver/avoindata/wfs?service=WFS&version=2.0.0&request=GetFeature&typeNames=avoindata%3AHelsinki_osoiteluettelo&count=20&outputFormat=application%2Fjson&CQL_FILTER=katunimi%3D%27Valimotie%27+AND+%28osoitenumero%3D3+OR+osoitenumero%3D5%29",
+      "capture_id": "helsinki-valimotie-address.json",
+      "content_hash": "06deb00bc47096d339595cef8415ce033315039b360af1769a50fb6b347a3b11",
+      "content_hash_scope": "sha256_exact_http_response_body_bytes",
+      "content_type": null,
+      "extraction": {
+        "address_join": "Original operator and permit notice both name the facility at Valimotie 3–5. Selected municipal number 3 is within that explicit range; no separate number 5 feature or campus polygon is inferred.",
+        "license_scope": "Helsinki Region Infoshare identifies the address dataset as Creative Commons Attribution 4.0 and documents the ETRS-GK25 coordinate system. Attribute City of Helsinki.",
+        "locator_scope": "Exact Helsinki municipal address reference point for Valimotie 3, within the operator and government facility address range Valimotie 3–5, 00380 Helsinki. The query for numbers 3 or 5 returns only number 3. Native EPSG:3879 E25493179/N6678166 is transformed through inverse Finland Gauss-Kruger zone 25 and EPSG:10701 EUREF-FIN to WGS 84 (1), then rounded to seven decimal places. The 1 m nominal datum-operation accuracy is not total location accuracy. This is not a building centre, entrance, equipment point or surveyed campus boundary; the city manual expressly warns that address points can lie outside parcel polygons. No parcel containment is asserted. Source realization epoch, address offset and per-record horizontal accuracy are not supplied.",
+        "manual_context": "Official manual dated August 31, 2021: EPSG:3879 recommended on page 8; address points may lie outside property polygons on page 27. The manual date is not a publication date or a site observation.",
+        "native_feature": {
+          "geometry": {
+            "coordinates": [
+              25493179.0,
+              6678166
+            ],
+            "type": "Point"
+          },
+          "geometry_name": "geom",
+          "id": "Helsinki_osoiteluettelo.52925",
+          "properties": {
+            "datanomistaja": "Helsinki",
+            "e": 25493179,
+            "gatan": "Gjuterivägen",
+            "id": 52925,
+            "katunimi": "Valimotie",
+            "kaupunki": "Helsinki",
+            "n": 6678166,
+            "osoitekirjain": null,
+            "osoitenumero": 3,
+            "osoitenumero2": null,
+            "osoitenumero_teksti": "3",
+            "paivitetty_tietopalveluun": "2026-11-10",
+            "postinumero": "00380",
+            "postitoimipaikka": "Helsinki",
+            "staden": "Helsingfors",
+            "tyyppi": 1
+          },
+          "type": "Feature"
+        },
+        "publication_date_established": false,
+        "query_scope": "Exact street Valimotie and address number 3 or 5; one matched and returned feature, number 3.",
+        "record_updated_at": "2026-11-10",
+        "response_crs": {
+          "properties": {
+            "name": "urn:ogc:def:crs:EPSG::3879"
+          },
+          "type": "name"
+        },
+        "supporting_captures": [
+          {
+            "bytes": 2620,
+            "canonical_url": "https://kartta.hel.fi/ws/geoserver/avoindata/wfs?service=WFS&version=2.0.0&request=DescribeFeatureType&typeNames=avoindata%3AHelsinki_osoiteluettelo",
+            "capture_id": "helsinki-address-schema.xml",
+            "content_hash": "1f58ec2a0909a588e94d62879461b67f8ea4873e48359a124282b7e9a20c9eee",
+            "content_hash_scope": "sha256_exact_http_response_body_bytes",
+            "content_type": null,
+            "http_status": 200,
+            "raw_capture_file": "local_data/research-2026-11-11-europe-155/helsinki-address-schema.xml",
+            "raw_capture_redistributed": false,
+            "retrieved_at": "2026-11-11T15:00:59.934679+00:00",
+            "source_url": "https://kartta.hel.fi/ws/geoserver/avoindata/wfs?service=WFS&version=2.0.0&request=DescribeFeatureType&typeNames=avoindata%3AHelsinki_osoiteluettelo"
+          },
+          {
+            "bytes": 26653,
+            "canonical_url": "https://hri.fi/data/dataset/helsingin-osoiteluettelo/resource/5430eda8-e27c-436f-b5c9-0684e1c6c5aa",
+            "capture_id": "helsinki-address-license.html",
+            "content_hash": "1141ae5787d2165d0c13a965dbb9948a49496d27a916b77a18e15063966e830b",
+            "content_hash_scope": "sha256_exact_http_response_body_bytes",
+            "content_type": "text/html; charset=utf-8",
+            "http_status": 200,
+            "raw_capture_file": "local_data/research-2026-11-11-europe-155/helsinki-address-license.html",
+            "raw_capture_redistributed": false,
+            "retrieved_at": "2026-11-11T15:01:01.154057+00:00",
+            "source_url": "https://hri.fi/data/dataset/helsingin-osoiteluettelo/resource/5430eda8-e27c-436f-b5c9-0684e1c6c5aa"
+          },
+          {
+            "bytes": 206077,
+            "canonical_url": "https://www.hel.fi/fi/paatoksenteko-ja-hallinto/tietoa-helsingista/kartat-ja-paikkatieto/paikkatiedot-tehokayttoon/avoimet-paikkatiedot",
+            "capture_id": "helsinki-wfs-authority.html",
+            "content_hash": "23239736356d0e1095ad66bccea105de21dda4f9621e6a015baa4f1634131933",
+            "content_hash_scope": "sha256_exact_http_response_body_bytes",
+            "content_type": "text/html; charset=utf-8",
+            "http_status": 200,
+            "raw_capture_file": "local_data/research-2026-11-11-europe-155/helsinki-wfs-authority.html",
+            "raw_capture_redistributed": false,
+            "retrieved_at": "2026-11-11T15:01:02.523456+00:00",
+            "source_url": "https://www.hel.fi/fi/paatoksenteko-ja-hallinto/tietoa-helsingista/kartat-ja-paikkatieto/paikkatiedot-tehokayttoon/avoimet-paikkatiedot"
+          },
+          {
+            "bytes": 957944,
+            "canonical_url": "https://kartta.hel.fi/avoindata/dokumentit/Prosessi_Tyoohje_kyselypalveluiden_kaytto_ulkoverkko.pdf",
+            "capture_id": "helsinki-wfs-manual.pdf",
+            "content_hash": "2d5942b963fb22425ed67113f1a077e7f207bc745f4dfa4299f081e8fa8e1cb5",
+            "content_hash_scope": "sha256_exact_http_response_body_bytes",
+            "content_type": "application/pdf",
+            "http_status": 200,
+            "raw_capture_file": "local_data/research-2026-11-11-europe-155/helsinki-wfs-manual.pdf",
+            "raw_capture_redistributed": false,
+            "retrieved_at": "2026-11-11T15:01:00.355508+00:00",
+            "source_url": "https://kartta.hel.fi/avoindata/dokumentit/Prosessi_Tyoohje_kyselypalveluiden_kaytto_ulkoverkko.pdf"
+          },
+          {
+            "bytes": 14504,
+            "capture_id": "telia-spatial-identity-review.json",
+            "content_hash": "5bac321cf54b6c525835b6dade2a5500ab18a383cecd13e8a4978912d1a5faf6",
+            "content_hash_scope": "sha256_exact_locally_generated_calculation_json_bytes",
+            "raw_capture_file": "local_data/research-2026-11-11-europe-155/telia-spatial-identity-review.json",
+            "raw_capture_redistributed": false,
+            "retrieved_at": "2026-11-11T15:09:36.450587+00:00"
+          }
+        ],
+        "transformation": {
+          "always_xy": true,
+          "description": "Inverse of Finland Gauss-Kruger zone 25 + EUREF-FIN to WGS 84 (1) (with axis order normalized for visualization)",
+          "nominal_operation_accuracy_metres": 1.0,
+          "operations": [
+            {
+              "$schema": "https://proj.org/schemas/v0.7/projjson.schema.json",
+              "id": {
+                "authority": "EPSG",
+                "code": 15498
+              },
+              "method": {
+                "id": {
+                  "authority": "EPSG",
+                  "code": 9843
+                },
+                "name": "Axis Order Reversal (2D)"
+              },
+              "name": "axis order change (2D)",
+              "type": "Conversion"
+            },
+            {
+              "$schema": "https://proj.org/schemas/v0.7/projjson.schema.json",
+              "id": {
+                "authority": "INVERSE(EPSG)",
+                "code": 3866
+              },
+              "method": {
+                "id": {
+                  "authority": "INVERSE(EPSG)",
+                  "code": 9807
+                },
+                "name": "Inverse of Transverse Mercator"
+              },
+              "name": "Inverse of Finland Gauss-Kruger zone 25",
+              "parameters": [
+                {
+                  "id": {
+                    "authority": "EPSG",
+                    "code": 8801
+                  },
+                  "name": "Latitude of natural origin",
+                  "unit": "degree",
+                  "value": 0
+                },
+                {
+                  "id": {
+                    "authority": "EPSG",
+                    "code": 8802
+                  },
+                  "name": "Longitude of natural origin",
+                  "unit": "degree",
+                  "value": 25
+                },
+                {
+                  "id": {
+                    "authority": "EPSG",
+                    "code": 8805
+                  },
+                  "name": "Scale factor at natural origin",
+                  "unit": "unity",
+                  "value": 1
+                },
+                {
+                  "id": {
+                    "authority": "EPSG",
+                    "code": 8806
+                  },
+                  "name": "False easting",
+                  "unit": "metre",
+                  "value": 25500000
+                },
+                {
+                  "id": {
+                    "authority": "EPSG",
+                    "code": 8807
+                  },
+                  "name": "False northing",
+                  "unit": "metre",
+                  "value": 0
+                }
+              ],
+              "type": "Conversion"
+            },
+            {
+              "$schema": "https://proj.org/schemas/v0.7/projjson.schema.json",
+              "accuracy": "1.0",
+              "area": "Finland - onshore and offshore.",
+              "bbox": {
+                "east_longitude": 31.59,
+                "north_latitude": 70.09,
+                "south_latitude": 58.84,
+                "west_longitude": 19.08
+              },
+              "id": {
+                "authority": "EPSG",
+                "code": 10701
+              },
+              "method": {
+                "id": {
+                  "authority": "EPSG",
+                  "code": 9603
+                },
+                "name": "Geocentric translations (geog2D domain)"
+              },
+              "name": "EUREF-FIN to WGS 84 (1)",
+              "parameters": [
+                {
+                  "id": {
+                    "authority": "EPSG",
+                    "code": 8605
+                  },
+                  "name": "X-axis translation",
+                  "unit": "metre",
+                  "value": 0
+                },
+                {
+                  "id": {
+                    "authority": "EPSG",
+                    "code": 8606
+                  },
+                  "name": "Y-axis translation",
+                  "unit": "metre",
+                  "value": 0
+                },
+                {
+                  "id": {
+                    "authority": "EPSG",
+                    "code": 8607
+                  },
+                  "name": "Z-axis translation",
+                  "unit": "metre",
+                  "value": 0
+                }
+              ],
+              "remarks": "Approximation at the +/- 1m level assuming that ETRS89 is equivalent to WGS 84. EUREF-FIN is a national realization of ETRS89.",
+              "scope": "(null/copy) Approximation for medium and low accuracy applications assuming equality between plate-fixed static and earth-fixed dynamic CRSs, ignoring static/dynamic CRS differences.",
+              "source_crs": {
+                "coordinate_system": {
+                  "axis": [
+                    {
+                      "abbreviation": "Lat",
+                      "direction": "north",
+                      "name": "Geodetic latitude",
+                      "unit": "degree"
+                    },
+                    {
+                      "abbreviation": "Lon",
+                      "direction": "east",
+                      "name": "Geodetic longitude",
+                      "unit": "degree"
+                    }
+                  ],
+                  "subtype": "ellipsoidal"
+                },
+                "datum": {
+                  "anchor_epoch": 1997,
+                  "ellipsoid": {
+                    "inverse_flattening": 298.257222101,
+                    "name": "GRS 1980",
+                    "semi_major_axis": 6378137
+                  },
+                  "name": "EUREF-FIN",
+                  "type": "GeodeticReferenceFrame"
+                },
+                "id": {
+                  "authority": "EPSG",
+                  "code": 10690
+                },
+                "name": "EUREF-FIN",
+                "remarks": "EUREF-FIN is the national realization of ETRS89 in Finland.",
+                "type": "GeographicCRS"
+              },
+              "target_crs": {
+                "coordinate_system": {
+                  "axis": [
+                    {
+                      "abbreviation": "Lat",
+                      "direction": "north",
+                      "name": "Geodetic latitude",
+                      "unit": "degree"
+                    },
+                    {
+                      "abbreviation": "Lon",
+                      "direction": "east",
+                      "name": "Geodetic longitude",
+                      "unit": "degree"
+                    }
+                  ],
+                  "subtype": "ellipsoidal"
+                },
+                "datum_ensemble": {
+                  "accuracy": "2.0",
+                  "ellipsoid": {
+                    "inverse_flattening": 298.257223563,
+                    "name": "WGS 84",
+                    "semi_major_axis": 6378137
+                  },
+                  "id": {
+                    "authority": "EPSG",
+                    "code": 6326
+                  },
+                  "members": [
+                    {
+                      "id": {
+                        "authority": "EPSG",
+                        "code": 1166
+                      },
+                      "name": "World Geodetic System 1984 (Transit)"
+                    },
+                    {
+                      "id": {
+                        "authority": "EPSG",
+                        "code": 1152
+                      },
+                      "name": "World Geodetic System 1984 (G730)"
+                    },
+                    {
+                      "id": {
+                        "authority": "EPSG",
+                        "code": 1153
+                      },
+                      "name": "World Geodetic System 1984 (G873)"
+                    },
+                    {
+                      "id": {
+                        "authority": "EPSG",
+                        "code": 1154
+                      },
+                      "name": "World Geodetic System 1984 (G1150)"
+                    },
+                    {
+                      "id": {
+                        "authority": "EPSG",
+                        "code": 1155
+                      },
+                      "name": "World Geodetic System 1984 (G1674)"
+                    },
+                    {
+                      "id": {
+                        "authority": "EPSG",
+                        "code": 1156
+                      },
+                      "name": "World Geodetic System 1984 (G1762)"
+                    },
+                    {
+                      "id": {
+                        "authority": "EPSG",
+                        "code": 1309
+                      },
+                      "name": "World Geodetic System 1984 (G2139)"
+                    },
+                    {
+                      "id": {
+                        "authority": "EPSG",
+                        "code": 1383
+                      },
+                      "name": "World Geodetic System 1984 (G2296)"
+                    }
+                  ],
+                  "name": "World Geodetic System 1984 ensemble"
+                },
+                "id": {
+                  "authority": "EPSG",
+                  "code": 4326
+                },
+                "name": "WGS 84",
+                "type": "GeographicCRS"
+              },
+              "type": "Transformation"
+            },
+            {
+              "$schema": "https://proj.org/schemas/v0.7/projjson.schema.json",
+              "id": {
+                "authority": "EPSG",
+                "code": 15498
+              },
+              "method": {
+                "id": {
+                  "authority": "EPSG",
+                  "code": 9843
+                },
+                "name": "Axis Order Reversal (2D)"
+              },
+              "name": "axis order change (2D)",
+              "type": "Conversion"
+            }
+          ],
+          "pipeline": "+proj=pipeline +step +inv +proj=tmerc +lat_0=0 +lon_0=25 +k=1 +x_0=25500000 +y_0=0 +ellps=GRS80 +step +proj=unitconvert +xy_in=rad +xy_out=deg",
+          "scope": "Exact municipal address reference point, not a building centre, entrance or parcel boundary. Seven-decimal representation is not survey accuracy. Original coordinates are integer metres; positional accuracy and epoch are not published. The 1 m nominal EUREF-FIN-to-WGS84 operation accuracy is not total location accuracy.",
+          "selected_lon_lat": [
+            24.8769561,
+            60.2161918
+          ],
+          "software": {
+            "PROJ": "9.8.1",
+            "pyproj": "3.8.0",
+            "shapely": "2.2.0"
+          },
+          "source_axis_order": "easting,northing; matches explicit e and n properties",
+          "source_crs": "EPSG:3879",
+          "target_crs": "EPSG:4326",
+          "unrounded_lon_lat": [
+            24.87695612896878,
+            60.21619183963473
+          ]
+        }
+      },
+      "http_status": 200,
+      "id": "europe155-telia-helsinki-address-point",
+      "kind": "government_record",
+      "license": "CC-BY-4.0",
+      "published_at": null,
+      "publisher": "City of Helsinki",
+      "raw_capture_file": "local_data/research-2026-11-11-europe-155/helsinki-valimotie-address.json",
+      "raw_capture_redistributed": false,
+      "retrieved_at": "2026-11-11T15:01:54.295346+00:00",
+      "source_family": "City of Helsinki",
+      "source_url": "https://kartta.hel.fi/ws/geoserver/avoindata/wfs?service=WFS&version=2.0.0&request=GetFeature&typeNames=avoindata%3AHelsinki_osoiteluettelo&count=20&outputFormat=application%2Fjson&CQL_FILTER=katunimi%3D%27Valimotie%27+AND+%28osoitenumero%3D3+OR+osoitenumero%3D5%29",
+      "summary": "The original municipal WFS returns the exact address point for Valimotie 3 in Helsinki. It is joined to the operator’s and government notice’s 3–5 facility address range and transformed from the response’s explicit EPSG:3879 coordinates. The record update date is not a publication or operating date.",
+      "title": "City of Helsinki open address register: Valimotie 3, feature 52925"
+    },
+    "europe155-telia-operator-address": {
+      "attribution": "Telia Finland Oyj",
+      "bytes": 126477,
+      "canonical_url": "https://www.telia.fi/yrityksille/palvelut/konesalipalvelut/datakeskukset/helsinki-data-center",
+      "capture_id": "telia-hdc-operator.html",
+      "content_hash": "85e165b3349e4691874c3fb895d788a873d05cecbc86e2d610364476e381f4f6",
+      "content_hash_scope": "sha256_exact_http_response_body_bytes",
+      "content_type": "text/html;charset=UTF-8",
+      "extraction": {
+        "locator_exclusions": "No Google Maps link or map-app coordinates were used or requested.",
+        "original_address": "Telia Helsinki Data Center, Valimotie 3-5, 00380 Helsinki",
+        "publication_date_established": false,
+        "role_scope": "Current facility operator, supported by Telia’s own service page; no ownership or exclusivity claim."
+      },
+      "http_status": 200,
+      "id": "europe155-telia-operator-address",
+      "kind": "company_disclosure",
+      "license": "source-terms; compact factual projection only; no open-content licence asserted",
+      "published_at": null,
+      "publisher": "Telia Finland Oyj",
+      "raw_capture_file": "local_data/research-2026-11-11-europe-155/telia-hdc-operator.html",
+      "raw_capture_redistributed": false,
+      "retrieved_at": "2026-11-11T15:00:48.978269+00:00",
+      "source_family": "Telia Finland Oyj",
+      "source_url": "https://www.telia.fi/yrityksille/palvelut/konesalipalvelut/datakeskukset/helsinki-data-center",
+      "summary": "Telia identifies its Helsinki Data Center at Valimotie 3–5, 00380 Helsinki and describes the colocation service it provides. This is current operator and physical-address context; its undated marketing and technical figures do not supply the dated operating observation or typed metrics.",
+      "title": "Telia Helsinki Data Center: original operator site and Valimotie 3–5 address"
+    },
+    "europe155-telia-upcloud-host-identity": {
+      "attribution": "UpCloud",
+      "bytes": 57053,
+      "capture_id": "upcloud-host-identity-web.json",
+      "capture_scope": "Saved complete returned representations from original operator page; direct HTTP403. Includes overlapping first, identity section and final remainder opens. No claim to raw HTTP body hash.",
+      "content_hash": "58b3ea3c464e50b2a5fd9a77af856c06b37f952405f5fede5ee2bc975728482e",
+      "content_hash_scope": "sha256_exact_saved_web_tool_response_json_bytes_not_original_http_body",
+      "extraction": {
+        "capture_limit": "Direct ordinary HTTP returned 403. The saved JSON contains complete returned, overlapping web-tool representations of the original operator page, including the full identity section. Its hash covers those exact saved representation bytes, not an original HTTP response body.",
+        "identity_section": "FI-HEL2 / Helsinki, Finland / Telia / Telia Helsinki Data Center",
+        "publication_date_established": false,
+        "separate_host": "FI-HEL1 / Equinix HE6; not merged with FI-HEL2."
+      },
+      "id": "europe155-telia-upcloud-host-identity",
+      "kind": "company_disclosure",
+      "license": "source-terms; compact factual projection only; no open-content licence asserted",
+      "published_at": null,
+      "publisher": "UpCloud",
+      "raw_capture_file": "local_data/research-2026-11-11-europe-155/upcloud-host-identity-web.json",
+      "raw_capture_redistributed": false,
+      "retrieved_at": "2026-11-11T15:02:10.823832+00:00",
+      "source_family": "UpCloud",
+      "source_url": "https://upcloud.com/data-centers/",
+      "summary": "The FI-HEL2 section directly identifies Telia Helsinki Data Center as the physical host. FI-HEL1 is separately identified with Equinix HE6. Undated service, certification, energy and historical availability claims are not used to date current operation or select metrics.",
+      "title": "UpCloud data-center information: FI-HEL2 at Telia Helsinki Data Center"
+    },
+    "europe155-telia-upcloud-sept28": {
+      "attribution": "UpCloud",
+      "bytes": 2802,
+      "canonical_url": "https://status.upcloud.com/api/v2/incidents/0213390b5cst.json",
+      "capture_id": "upcloud-hel2-sept28.json",
+      "content_hash": "496f8496423ad31a40158a8fda14fd4fbbb0494b3e1c244e67ed2debc4be09c1",
+      "content_hash_scope": "sha256_exact_http_response_body_bytes",
+      "content_type": "application/json; charset=utf-8",
+      "extraction": {
+        "created_at": "2026-09-28T14:01:50.729Z",
+        "excluded_date_semantics": "Component creation/start dates, page updated_at and retrieval time are not opening or physical-observation dates.",
+        "fix_implemented_at": "2026-09-28T15:34:32.264Z",
+        "incident_id": "0213390b5cst",
+        "physical_scope": "Actual storage-service backend activity at the named FI-HEL2 data center, affecting some services only.",
+        "resolved_at": "2026-09-28T16:41:26.545Z",
+        "status": "resolved",
+        "successor_review": "Original UpCloud incidents, current status and history were reviewed through November 11. The later October 23 event concerns control-panel/API connectivity and does not identify a new physical host status. November 5 FI-HEL2 object-storage maintenance is marked completed; its generic maintenance description is retained as later context rather than replacing the specific September 28 observation. November 11 work from 17:00 to 22:00 UTC was still scheduled at capture time and is not treated as completed. Bounded searches of Telia and UpCloud material and later closure/transfer reports did not find a superseding physical-site change. This is not an exhaustive archive or proof of uninterrupted service.",
+        "supporting_captures": [
+          {
+            "bytes": 231167,
+            "canonical_url": "https://status.upcloud.com/api/v2/incidents.json",
+            "capture_id": "upcloud-current-incidents.json",
+            "content_hash": "5a8ca27a8b8f085ccabd1a686c07a2e741c4841db053ea5f2846934a47fd98c7",
+            "content_hash_scope": "sha256_exact_http_response_body_bytes",
+            "content_type": "application/json; charset=utf-8",
+            "http_status": 200,
+            "raw_capture_file": "local_data/research-2026-11-11-europe-155/upcloud-current-incidents.json",
+            "raw_capture_redistributed": false,
+            "retrieved_at": "2026-11-11T15:00:48.227789+00:00",
+            "source_url": "https://status.upcloud.com/api/v2/incidents.json"
+          },
+          {
+            "bytes": 178352,
+            "canonical_url": "https://status.upcloud.com/",
+            "capture_id": "upcloud-current-status.html",
+            "content_hash": "a90b3d38d1eadbefaee9b6d54b49a4f60a73d12a48b866d6ff4d39431af381da",
+            "content_hash_scope": "sha256_exact_http_response_body_bytes",
+            "content_type": "text/html; charset=utf-8",
+            "http_status": 200,
+            "raw_capture_file": "local_data/research-2026-11-11-europe-155/upcloud-current-status.html",
+            "raw_capture_redistributed": false,
+            "retrieved_at": "2026-11-11T15:01:54.693093+00:00",
+            "source_url": "https://status.upcloud.com/"
+          },
+          {
+            "bytes": 171242,
+            "canonical_url": "https://status.upcloud.com/history",
+            "capture_id": "upcloud-history.html",
+            "content_hash": "7933b1e87aa5e9d7747f0308cc7384e5f67bcce9b39b8027905313b47e397fa1",
+            "content_hash_scope": "sha256_exact_http_response_body_bytes",
+            "content_type": "text/html; charset=utf-8",
+            "http_status": 200,
+            "raw_capture_file": "local_data/research-2026-11-11-europe-155/upcloud-history.html",
+            "raw_capture_redistributed": false,
+            "retrieved_at": "2026-11-11T15:01:54.778302+00:00",
+            "source_url": "https://status.upcloud.com/history"
+          }
+        ],
+        "time_zone": "UTC"
+      },
+      "http_status": 200,
+      "id": "europe155-telia-upcloud-sept28",
+      "kind": "company_disclosure",
+      "license": "source-terms; compact factual projection only; no open-content licence asserted",
+      "published_at": "2026-09-28",
+      "publisher": "UpCloud",
+      "raw_capture_file": "local_data/research-2026-11-11-europe-155/upcloud-hel2-sept28.json",
+      "raw_capture_redistributed": false,
+      "retrieved_at": "2026-11-11T15:01:54.626169+00:00",
+      "source_family": "UpCloud",
+      "source_url": "https://status.upcloud.com/api/v2/incidents/0213390b5cst.json",
+      "summary": "The original September 28 incident reports actual File Storage backend issues and unwanted NFS failovers at FI-HEL2, followed by an implemented fix at 15:34 UTC and resolution at 16:41 UTC. UpCloud directly identifies FI-HEL2 as the Telia Helsinki Data Center. This supports existing commercial hosting at that physical host; it does not establish a new opening, a whole-campus outage or uninterrupted operation.",
+      "title": "UpCloud: FI-HEL2 File Storage issues and resolution, September 28, 2026"
+    }
+  },
+  "update": {
+    "additions": [
+      {
+        "context_source_ids": [
+          "commercial155-racknerd-newyork-address",
+          "commercial155-colocrossing-buf1-address"
+        ],
+        "country": "United States",
+        "country_iso_a2": "US",
+        "distinctness_review": "All four committed baseline 154 identity layers were searched: 1,302 sites, 1,412 projects, 231 source records, and 231 identity-mapping records plus 231 decisions. ColoCrossing, BUF1/BUF-1, 325 Delaware, Velocity Servers, HostPapa, RackNerd/NYRN, ServerMania, Nexeon, Deluxe, Benchmark Group and Buffalo aliases, plus nearby 350 Main Street and 5319 Enterprise Drive, produce no matches. All 1,302 full geometries, including polygons and multipolygons, were compared. The nearest represented host is TeraWulf Lake Mariner, 55.250 km away. The original Cogent service list identifies ColoCrossing BUF1 and CenturyLink at 325 Delaware, and separately places 365 and Shatter IT at 350 Main Street. These are colocated-provider aliases or different physical addresses, not reasons to create additional sites. One existing physical 325 Delaware host is proposed; no separate customer, suite, server or expansion host is inferred.",
+        "locator": {
+          "authority": "compiled_reference",
+          "derivation": "coordinate_transform",
+          "geometry": {
+            "coordinates": [
+              -78.8757647,
+              42.8935454
+            ],
+            "type": "Point"
+          },
+          "horizontal_uncertainty_metres": null,
+          "identity_review": "All four committed baseline 154 identity layers were searched: 1,302 sites, 1,412 projects, 231 source records, and 231 identity-mapping records plus 231 decisions. ColoCrossing, BUF1/BUF-1, 325 Delaware, Velocity Servers, HostPapa, RackNerd/NYRN, ServerMania, Nexeon, Deluxe, Benchmark Group and Buffalo aliases, plus nearby 350 Main Street and 5319 Enterprise Drive, produce no matches. All 1,302 full geometries, including polygons and multipolygons, were compared. The nearest represented host is TeraWulf Lake Mariner, 55.250 km away. The original Cogent service list identifies ColoCrossing BUF1 and CenturyLink at 325 Delaware, and separately places 365 and Shatter IT at 350 Main Street. These are colocated-provider aliases or different physical addresses, not reasons to create additional sites. One existing physical 325 Delaware host is proposed; no separate customer, suite, server or expansion host is inferred.",
+          "identity_source_ids": [
+            "commercial155-racknerd-newyork-address",
+            "commercial155-colocrossing-buf1-address"
+          ],
+          "method": "census_tiger_address_interpolation_explicit_epsg1188",
+          "precision": "Exact US Census address match for 325 DELAWARE AVE, BUFFALO, NY, 14202. Native NAD83 longitude -78.875764747946, latitude 42.893545371659 is interpolated along TIGER edge 48290483, right side, potential address range 301–341. Explicit EPSG:1188 NAD83 to WGS 84 (1), applicable to New York, uses zero geocentric translations and has nominal 4 m datum-operation accuracy; its no-op representation is not exact datum equivalence. The transformed coordinates are rounded to seven decimal places. This is an interpolated street-address reference, not a surveyed building, entrance, parcel centroid, suite, rack or footprint. Source realization/epoch, interpolation offset and total horizontal uncertainty are unknown.",
+          "scope": "reviewed_site_locator",
+          "scope_class": "government_exact_address_reference",
+          "source_id": "commercial155-buffalo-census-address",
+          "uncertainty_reason": "Census address-range interpolation, offset from the actual hosting space, NAD83 realization and epoch are not supplied. The nominal datum-operation accuracy is not total point accuracy."
+        },
+        "name": "ColoCrossing Buffalo BUF1 — existing commercial operations",
+        "physical_site_stable_key": "curated:colocrossing-buffalo-325-delaware",
+        "project_stable_key": "curated:colocrossing-buffalo-325-delaware:existing-operations",
+        "roles": [
+          {
+            "party": "ColoCrossing",
+            "relationship_scope": "current",
+            "role": "operator",
+            "source_id": "commercial155-colocrossing-buf1-address"
+          }
+        ],
+        "scoped_project_details": {
+          "capacity": "No MW, rack count, area, utilization, generator or network metric selected.",
+          "identity_limit": "The exact shared primary address and matching New York facility label provide the building join; no floor or suite identity is inferred.",
+          "location_limitations": "Exact US Census address match for 325 DELAWARE AVE, BUFFALO, NY, 14202. Native NAD83 longitude -78.875764747946, latitude 42.893545371659 is interpolated along TIGER edge 48290483, right side, potential address range 301–341. Explicit EPSG:1188 NAD83 to WGS 84 (1), applicable to New York, uses zero geocentric translations and has nominal 4 m datum-operation accuracy; its no-op representation is not exact datum equivalence. The transformed coordinates are rounded to seven decimal places. This is an interpolated street-address reference, not a surveyed building, entrance, parcel centroid, suite, rack or footprint. Source realization/epoch, interpolation offset and total horizontal uncertainty are unknown.",
+          "numbered_address": "325 Delaware Avenue, Buffalo, New York 14202",
+          "observation": "Actual deployed physical-server issue, with subsequent undated resolution. One-node impact does not establish a facility-wide outage.",
+          "scope": "One existing physical host at building level. No separate RackNerd tenancy, suite, physical node or expansion is admitted."
+        },
+        "site_name": "ColoCrossing Buffalo BUF1 (325 Delaware Avenue, Buffalo, New York)",
+        "status": {
+          "as_of": "2026-11-09",
+          "source_id": "commercial155-buffalo-racknerd-nov9",
+          "summary": "The original November 9 New York incident reports actual connectivity problems on node NYRN305KVM and subsequently states that the issue is resolved. RackNerd defines a node/hypervisor as a physical server hosting VPS instances. Joined to its exact New York facility address, this supports existing commercial hosting at 325 Delaware Avenue. It does not establish a new opening, expansion, commissioned capacity or a whole-site outage.",
+          "value": "operational"
+        },
+        "successor_review": "The captured original RackNerd status page was reviewed through November 11. Its latest listed New York incident is NYRN305KVM, dated November 9 at 23:27 with explicit HTML offset -08:00; later listed November 10 incidents concern other locations. The selected incident body reports resolution without a separately dated update. The current New York component is operational and reports its last update as November 9 at 23:34:51 without an explicit offset; that component timestamp is not substituted for the selected physical observation. March 27, 2026 original ColoCrossing expansion completion remains older context, not a new November opening. No contrary relocation or closure was found in this bounded original host/status review; no exhaustive corporate-history claim is made."
+      },
+      {
+        "context_source_ids": [
+          "europe155-ams1-exact-host-address",
+          "europe155-scaleway-ams1-code-identity",
+          "europe154-iron-mountain-ams1-phase-identity"
+        ],
+        "country": "Netherlands",
+        "country_iso_a2": "NL",
+        "distinctness_review": "Committed baseline 154 contains this exact Iron Mountain Amsterdam/Haarlem campus and one AMS-2 10 MW construction project, but no existing AMS-1 operating project. The original Scaleway certificate names Iron Mountain AMS1 at J.W. Lucasweg 35. Its impact-report table maps Scaleway AMS1 to Iron Mountain and distinguishes the Interxion AMS2 tenant code. The government notice and original operator identity use the same campus address. All four identity layers were rechecked: 1,302 sites, 1,412 projects, 231 source records and both 231 mapping records and 231 decisions, including EvoSwitch, Haarlem, Lucasweg and numbered AMS aliases. Broader matches identify separate Digital Realty/NTT addresses in Haarlemmermeer and Microsoft AMS13–14 in Middenmeer, not this campus. All 1,302 full geometries were reviewed. The existing campus is at zero distance; the nearest different host is Goodman AMS01 at 3.064 km. Add one operating project to this existing site, with no separate tenant, rack or extra site.",
+        "existing_site_id": "vcc-site-faa101d551da0c45f1c5",
+        "locator": {
+          "geometry_evidence_id": "583562f6-1d06-596e-81cc-289524fe0c00",
+          "geometry_identity_evidence_ids": [
+            "052125d3-300b-5ef1-a267-79b7b63da354",
+            "0a91dfb2-a658-54cd-8294-e917690855b7",
+            "af754737-fdde-580f-9b3e-c1e1bc787bcf",
+            "d2a2c2ab-27ad-53e6-873a-e6f37c4a8e66",
+            "eb38284b-a7f3-5377-a980-f267b3877c24"
+          ],
+          "identity_review": "Committed baseline 154 contains this exact Iron Mountain Amsterdam/Haarlem campus and one AMS-2 10 MW construction project, but no existing AMS-1 operating project. The original Scaleway certificate names Iron Mountain AMS1 at J.W. Lucasweg 35. Its impact-report table maps Scaleway AMS1 to Iron Mountain and distinguishes the Interxion AMS2 tenant code. The government notice and original operator identity use the same campus address. All four identity layers were rechecked: 1,302 sites, 1,412 projects, 231 source records and both 231 mapping records and 231 decisions, including EvoSwitch, Haarlem, Lucasweg and numbered AMS aliases. Broader matches identify separate Digital Realty/NTT addresses in Haarlemmermeer and Microsoft AMS13–14 in Middenmeer, not this campus. All 1,302 full geometries were reviewed. The existing campus is at zero distance; the nearest different host is Goodman AMS01 at 3.064 km. Add one operating project to this existing site, with no separate tenant, rack or extra site.",
+          "reuse_from_project_id": "e3f1fc38-bc59-5373-803f-d5c86d817096",
+          "scope": "campus_locator"
+        },
+        "name": "Iron Mountain AMS-1 — existing commercial data-centre operations",
+        "physical_site_stable_key": "curated:iron-mountain-amsterdam-data-center-campus",
+        "project_stable_key": "curated:iron-mountain-amsterdam-data-center-campus:ams1-existing-operations",
+        "roles": [
+          {
+            "party": "Iron Mountain Data Centers",
+            "relationship_scope": "current",
+            "role": "operator",
+            "source_id": "europe154-iron-mountain-ams1-phase-identity"
+          }
+        ],
+        "scoped_project_details": {
+          "baseline_project_preservation": "Keep e3f1fc38-bc59-5373-803f-d5c86d817096 unchanged: AMS-2 expansion remains under construction as of September 30, 2026.",
+          "baseline_provenance_boundary": "Batch 154 already corrected the campus locator provenance while preserving its point and source identity. This addition makes no locator correction and preserves the entire AMS-2 project row. Inherited historical identity evidence retains its original metadata; no current publication date or new raw-source capture is invented.",
+          "geometry": "Inherit the exact reviewed baseline 154 campus locator, including unrounded coordinates, compiled_reference authority, coordinate_transform derivation, precision and unknown uncertainty. Only original XML evidence 583562f6-1d06-596e-81cc-289524fe0c00 is geometry. All five baseline context:geometry_identity evidence rows are pinned; the CRS support JavaScript is not inherited.",
+          "metrics": "No metrics selected. Future targets and undated brochure quantities are not current operating capacity.",
+          "phase_identity": "Existing AMS-1 operation on the same campus as the separately recorded AMS-2 construction project. Scaleway’s separate AMS2 tenant code means Interxion and is not the Iron Mountain expansion."
+        },
+        "site_identity_review": "The current customer incident, direct Scaleway AMS1-to-Iron Mountain table, exact host/address certificate and original government campus identity form the same-host join. The incident room/rack code is not used to infer coordinates. The point remains a campus representative point, not a surveyed building, rack, entrance or parcel boundary.",
+        "site_name": "Iron Mountain Amsterdam Data Center Campus",
+        "status": {
+          "as_of": "2026-11-09",
+          "source_id": "europe155-ams1-physical-operation",
+          "summary": "The November 9 original Scaleway report records an actual RPN connectivity fault affecting some servers in AMS1 room H6 rack 50 and its resolution that morning. The exact host is Iron Mountain AMS1 at J.W. Lucasweg 35. This evidences existing operation on that date, not initial opening or expansion completion.",
+          "value": "operational"
+        },
+        "successor_review": "The original Scaleway current incident feed and embedded September–November history were reviewed through the November 11 retrieval. The November 9 AMS1 incident is resolved; other current maintenance or product incidents do not establish closure, completion of an expansion or uninterrupted whole-campus operation. The original Iron Mountain brochure separately describes the additional 10 MW expansion with a future Q2 2027 target. This is bounded public-source review, not an exhaustive corporate archive."
+      },
+      {
+        "context_source_ids": [
+          "europe155-telia-upcloud-host-identity",
+          "europe155-telia-operator-address",
+          "europe155-telia-government-identity"
+        ],
+        "country": "Finland",
+        "country_iso_a2": "FI",
+        "distinctness_review": "Review against committed baseline 154 searched all four identity layers: 1,302 sites, 1,412 projects, 231 source records and both 231 identity-mapping records and 231 decisions. Exact Valimotie, Gjuterivägen, Telia Helsinki, TeliaSonera Helsinki, Helsinki Data Center and FI-HEL2 aliases found no matching host. The generic Helsinki Data Center match is Hetzner at Huurrekuja 10 in Tuusula, 16.459 km away; broad Telia/Sonera terms match only the separate Vilnius site in Lithuania. All 1,302 full geometries, including polygons, were checked. Nearest is Equinix HE6 at Sinimäentie 12 in Espoo, 5.708 km away; HE7 at Sinimäentie 8 is 5.870 km away. No baseline host is within 2 km. UpCloud itself separately maps FI-HEL1 to Equinix HE6. The FI-HEL2 service deployment adds no separate tenant or rack site. Committed baseline 154 is pinned by its manifest and commit.",
+        "locator": {
+          "authority": "compiled_reference",
+          "derivation": "coordinate_transform",
+          "geometry": {
+            "coordinates": [
+              24.8769561,
+              60.2161918
+            ],
+            "type": "Point"
+          },
+          "horizontal_uncertainty_metres": null,
+          "identity_review": "Review against committed baseline 154 searched all four identity layers: 1,302 sites, 1,412 projects, 231 source records and both 231 identity-mapping records and 231 decisions. Exact Valimotie, Gjuterivägen, Telia Helsinki, TeliaSonera Helsinki, Helsinki Data Center and FI-HEL2 aliases found no matching host. The generic Helsinki Data Center match is Hetzner at Huurrekuja 10 in Tuusula, 16.459 km away; broad Telia/Sonera terms match only the separate Vilnius site in Lithuania. All 1,302 full geometries, including polygons, were checked. Nearest is Equinix HE6 at Sinimäentie 12 in Espoo, 5.708 km away; HE7 at Sinimäentie 8 is 5.870 km away. No baseline host is within 2 km. UpCloud itself separately maps FI-HEL1 to Equinix HE6. The FI-HEL2 service deployment adds no separate tenant or rack site. Committed baseline 154 is pinned by its manifest and commit.",
+          "identity_source_ids": [
+            "europe155-telia-upcloud-host-identity",
+            "europe155-telia-operator-address",
+            "europe155-telia-government-identity"
+          ],
+          "method": "helsinki_address_epsg3879_inverse_epsg10701",
+          "precision": "Exact Helsinki municipal address reference point for Valimotie 3, within the operator and government facility address range Valimotie 3–5, 00380 Helsinki. The query for numbers 3 or 5 returns only number 3. Native EPSG:3879 E25493179/N6678166 is transformed through inverse Finland Gauss-Kruger zone 25 and EPSG:10701 EUREF-FIN to WGS 84 (1), then rounded to seven decimal places. The 1 m nominal datum-operation accuracy is not total location accuracy. This is not a building centre, entrance, equipment point or surveyed campus boundary; the city manual expressly warns that address points can lie outside parcel polygons. No parcel containment is asserted. Source realization epoch, address offset and per-record horizontal accuracy are not supplied.",
+          "scope": "reviewed_site_locator",
+          "scope_class": "government_exact_address_point",
+          "source_id": "europe155-telia-helsinki-address-point",
+          "uncertainty_reason": "The municipal record supplies no numeric positional accuracy or address-to-host offset. The 1 m nominal transformation accuracy is not total location accuracy."
+        },
+        "name": "Telia Helsinki Data Center — existing commercial operations",
+        "physical_site_stable_key": "curated:telia-helsinki-valimotie",
+        "project_stable_key": "curated:telia-helsinki-valimotie:existing-operations",
+        "roles": [
+          {
+            "party": "Telia Finland Oyj",
+            "relationship_scope": "current",
+            "role": "operator",
+            "source_id": "europe155-telia-operator-address"
+          },
+          {
+            "party": "UpCloud",
+            "relationship_scope": "current",
+            "role": "user",
+            "source_id": "europe155-telia-upcloud-host-identity"
+          }
+        ],
+        "scoped_project_details": {
+          "excluded_inferences": "No new opening, new construction phase, whole-campus downtime, ownership, floor area, MW, PUE, measured energy, certification guarantee or comparative size is selected.",
+          "location_limits": "Exact Helsinki municipal address reference point for Valimotie 3, within the operator and government facility address range Valimotie 3–5, 00380 Helsinki. The query for numbers 3 or 5 returns only number 3. Native EPSG:3879 E25493179/N6678166 is transformed through inverse Finland Gauss-Kruger zone 25 and EPSG:10701 EUREF-FIN to WGS 84 (1), then rounded to seven decimal places. The 1 m nominal datum-operation accuracy is not total location accuracy. This is not a building centre, entrance, equipment point or surveyed campus boundary; the city manual expressly warns that address points can lie outside parcel polygons. No parcel containment is asserted. Source realization epoch, address offset and per-record horizontal accuracy are not supplied.",
+          "physical_scope": "One existing commercial data-center host at Valimotie 3–5; FI-HEL2 is the hosted service location, not an extra physical site."
+        },
+        "site_name": "Telia Helsinki Data Center (Valimotie 3–5, Helsinki)",
+        "status": {
+          "as_of": "2026-09-28",
+          "source_id": "europe155-telia-upcloud-sept28",
+          "summary": "The original September 28 incident reports actual File Storage backend issues and unwanted NFS failovers at FI-HEL2, followed by an implemented fix at 15:34 UTC and resolution at 16:41 UTC. UpCloud directly identifies FI-HEL2 as the Telia Helsinki Data Center. This supports existing commercial hosting at that physical host; it does not establish a new opening, a whole-campus outage or uninterrupted operation.",
+          "value": "operational"
+        },
+        "successor_review": "Original UpCloud incidents, current status and history were reviewed through November 11. The later October 23 event concerns control-panel/API connectivity and does not identify a new physical host status. November 5 FI-HEL2 object-storage maintenance is marked completed; its generic maintenance description is retained as later context rather than replacing the specific September 28 observation. November 11 work from 17:00 to 22:00 UTC was still scheduled at capture time and is not treated as completed. Bounded searches of Telia and UpCloud material and later closure/transfer reports did not find a superseding physical-site change. This is not an exhaustive archive or proof of uninterrupted service."
+      }
+    ],
+    "base_dataset": "verified_construction_core/2026-11-11-research-hundredfiftyfourth",
+    "base_manifest_sha256": "e7ca221d83d38fe306dd6d588ee852500eeef68e733cca5f46f0d47d08be0211",
+    "context_updates": [],
+    "format": "datacenter-atlas-update-input-v1",
+    "locator_corrections": [
+      {
+        "displacement_review": "Zero displacement: independent transformation of the original municipal native point reproduces the exact current point after the existing seven-decimal rounding. No positional improvement or individual Building N location is claimed.",
+        "locator": {
+          "authority": "compiled_reference",
+          "derivation": "coordinate_transform",
+          "geometry": {
+            "coordinates": [
+              8.6290298,
+              50.0964652
+            ],
+            "type": "Point"
+          },
+          "horizontal_uncertainty_metres": null,
+          "identity_review": "The original government address object DEHEFALK4mb00001 matches the archived operator campus address, Kleyerstrasse 75–87. All four baseline 154 identity layers and all 1,302 full geometries were reviewed. Existing campus and project IDs, address-point scope and uncertainty are preserved. No relocation, new building identity or physical-status claim is made.",
+          "identity_source_ids": [
+            "de-hesse-p2-telehouse-de-rechenzentrum-2026-page"
+          ],
+          "method": "municipal_ETRS89_UTM32N_inverse_explicit_ETRS89_to_WGS84_1",
+          "precision": "Official City of Frankfurt building-address point for Kleyerstraße 75-87 (address object DEHEFALK4mb00001), the address Telehouse publishes for its Frankfurt campus and its new data centre. It locates the campus at its registered street address, not Building N's footprint, a parcel or the campus boundary. The stored longitude/latitude is derived from the original EPSG:25832 point using inverse UTM32N and ETRS89 to WGS 84 (1), with longitude/latitude axis order, rounded to seven decimal places. Decimal places and nominal transformation accuracy do not establish address-point accuracy.",
+          "scope": "campus_locator",
+          "scope_class": "official_building_address_point",
+          "source_id": "de-hesse-p2-frankfurt-geoportal-kleyerstrasse-75-87",
+          "uncertainty_reason": "The address register publishes no positional accuracy. The point is a single address point at the campus street frontage, and Telehouse does not publish where Building N stands on the roughly 67,000 m2 campus."
+        },
+        "physical_site_stable_key": "curated:telehouse-frankfurt-kleyerstrasse-campus",
+        "provenance_only": true,
+        "reason": "The original source provides projected coordinates, whereas the baseline labels the stored transformed point direct_geometry/official_source. Correct to coordinate_transform/compiled_reference without changing the point, scope, uncertainty, canonical evidence, physical status, roles or metrics.",
+        "replaces_geometry_evidence_id": "e7a32e2b-9596-5518-a6a8-5ae8ccd5915a",
+        "site_id": "vcc-site-ef1b8d8c8c3eaaae3590"
+      }
+    ],
+    "output": "verified_construction_core/2026-11-11-research-hundredfiftyfifth",
+    "source_files": [
+      {
+        "path": "sources/research-countries-2026-11-11-hundredfiftyfifth-primary-sources.json",
+        "sha256": "c954e12be33ab4ac5a08f4f9c8365f18a849ee216620588af3cf90738e831421"
+      }
+    ],
+    "status_updates": [],
+    "updated_at": "2026-11-11"
+  }
+}

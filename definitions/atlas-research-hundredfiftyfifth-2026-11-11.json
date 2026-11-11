@@ -1,0 +1,223 @@
+{
+  "format": "datacenter-atlas-update-input-v1",
+  "updated_at": "2026-11-11",
+  "output": "verified_construction_core/2026-11-11-research-hundredfiftyfifth",
+  "base_dataset": "verified_construction_core/2026-11-11-research-hundredfiftyfourth",
+  "base_manifest_sha256": "e7ca221d83d38fe306dd6d588ee852500eeef68e733cca5f46f0d47d08be0211",
+  "source_files": [
+    {
+      "path": "sources/research-countries-2026-11-11-hundredfiftyfifth-primary-sources.json",
+      "sha256": "c954e12be33ab4ac5a08f4f9c8365f18a849ee216620588af3cf90738e831421"
+    }
+  ],
+  "additions": [
+    {
+      "project_stable_key": "curated:colocrossing-buffalo-325-delaware:existing-operations",
+      "physical_site_stable_key": "curated:colocrossing-buffalo-325-delaware",
+      "site_name": "ColoCrossing Buffalo BUF1 (325 Delaware Avenue, Buffalo, New York)",
+      "name": "ColoCrossing Buffalo BUF1 — existing commercial operations",
+      "country": "United States",
+      "country_iso_a2": "US",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-11-09",
+        "source_id": "commercial155-buffalo-racknerd-nov9",
+        "summary": "The original November 9 New York incident reports actual connectivity problems on node NYRN305KVM and subsequently states that the issue is resolved. RackNerd defines a node/hypervisor as a physical server hosting VPS instances. Joined to its exact New York facility address, this supports existing commercial hosting at 325 Delaware Avenue. It does not establish a new opening, expansion, commissioned capacity or a whole-site outage."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -78.8757647,
+            42.8935454
+          ]
+        },
+        "source_id": "commercial155-buffalo-census-address",
+        "identity_source_ids": [
+          "commercial155-racknerd-newyork-address",
+          "commercial155-colocrossing-buf1-address"
+        ],
+        "scope": "reviewed_site_locator",
+        "scope_class": "government_exact_address_reference",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "census_tiger_address_interpolation_explicit_epsg1188",
+        "precision": "Exact US Census address match for 325 DELAWARE AVE, BUFFALO, NY, 14202. Native NAD83 longitude -78.875764747946, latitude 42.893545371659 is interpolated along TIGER edge 48290483, right side, potential address range 301–341. Explicit EPSG:1188 NAD83 to WGS 84 (1), applicable to New York, uses zero geocentric translations and has nominal 4 m datum-operation accuracy; its no-op representation is not exact datum equivalence. The transformed coordinates are rounded to seven decimal places. This is an interpolated street-address reference, not a surveyed building, entrance, parcel centroid, suite, rack or footprint. Source realization/epoch, interpolation offset and total horizontal uncertainty are unknown.",
+        "identity_review": "All four committed baseline 154 identity layers were searched: 1,302 sites, 1,412 projects, 231 source records, and 231 identity-mapping records plus 231 decisions. ColoCrossing, BUF1/BUF-1, 325 Delaware, Velocity Servers, HostPapa, RackNerd/NYRN, ServerMania, Nexeon, Deluxe, Benchmark Group and Buffalo aliases, plus nearby 350 Main Street and 5319 Enterprise Drive, produce no matches. All 1,302 full geometries, including polygons and multipolygons, were compared. The nearest represented host is TeraWulf Lake Mariner, 55.250 km away. The original Cogent service list identifies ColoCrossing BUF1 and CenturyLink at 325 Delaware, and separately places 365 and Shatter IT at 350 Main Street. These are colocated-provider aliases or different physical addresses, not reasons to create additional sites. One existing physical 325 Delaware host is proposed; no separate customer, suite, server or expansion host is inferred.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "Census address-range interpolation, offset from the actual hosting space, NAD83 realization and epoch are not supplied. The nominal datum-operation accuracy is not total point accuracy."
+      },
+      "context_source_ids": [
+        "commercial155-racknerd-newyork-address",
+        "commercial155-colocrossing-buf1-address"
+      ],
+      "roles": [
+        {
+          "party": "ColoCrossing",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "commercial155-colocrossing-buf1-address"
+        }
+      ],
+      "distinctness_review": "All four committed baseline 154 identity layers were searched: 1,302 sites, 1,412 projects, 231 source records, and 231 identity-mapping records plus 231 decisions. ColoCrossing, BUF1/BUF-1, 325 Delaware, Velocity Servers, HostPapa, RackNerd/NYRN, ServerMania, Nexeon, Deluxe, Benchmark Group and Buffalo aliases, plus nearby 350 Main Street and 5319 Enterprise Drive, produce no matches. All 1,302 full geometries, including polygons and multipolygons, were compared. The nearest represented host is TeraWulf Lake Mariner, 55.250 km away. The original Cogent service list identifies ColoCrossing BUF1 and CenturyLink at 325 Delaware, and separately places 365 and Shatter IT at 350 Main Street. These are colocated-provider aliases or different physical addresses, not reasons to create additional sites. One existing physical 325 Delaware host is proposed; no separate customer, suite, server or expansion host is inferred.",
+      "successor_review": "The captured original RackNerd status page was reviewed through November 11. Its latest listed New York incident is NYRN305KVM, dated November 9 at 23:27 with explicit HTML offset -08:00; later listed November 10 incidents concern other locations. The selected incident body reports resolution without a separately dated update. The current New York component is operational and reports its last update as November 9 at 23:34:51 without an explicit offset; that component timestamp is not substituted for the selected physical observation. March 27, 2026 original ColoCrossing expansion completion remains older context, not a new November opening. No contrary relocation or closure was found in this bounded original host/status review; no exhaustive corporate-history claim is made.",
+      "scoped_project_details": {
+        "numbered_address": "325 Delaware Avenue, Buffalo, New York 14202",
+        "scope": "One existing physical host at building level. No separate RackNerd tenancy, suite, physical node or expansion is admitted.",
+        "observation": "Actual deployed physical-server issue, with subsequent undated resolution. One-node impact does not establish a facility-wide outage.",
+        "identity_limit": "The exact shared primary address and matching New York facility label provide the building join; no floor or suite identity is inferred.",
+        "capacity": "No MW, rack count, area, utilization, generator or network metric selected.",
+        "location_limitations": "Exact US Census address match for 325 DELAWARE AVE, BUFFALO, NY, 14202. Native NAD83 longitude -78.875764747946, latitude 42.893545371659 is interpolated along TIGER edge 48290483, right side, potential address range 301–341. Explicit EPSG:1188 NAD83 to WGS 84 (1), applicable to New York, uses zero geocentric translations and has nominal 4 m datum-operation accuracy; its no-op representation is not exact datum equivalence. The transformed coordinates are rounded to seven decimal places. This is an interpolated street-address reference, not a surveyed building, entrance, parcel centroid, suite, rack or footprint. Source realization/epoch, interpolation offset and total horizontal uncertainty are unknown."
+      }
+    },
+    {
+      "project_stable_key": "curated:iron-mountain-amsterdam-data-center-campus:ams1-existing-operations",
+      "physical_site_stable_key": "curated:iron-mountain-amsterdam-data-center-campus",
+      "existing_site_id": "vcc-site-faa101d551da0c45f1c5",
+      "site_name": "Iron Mountain Amsterdam Data Center Campus",
+      "name": "Iron Mountain AMS-1 — existing commercial data-centre operations",
+      "country": "Netherlands",
+      "country_iso_a2": "NL",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-11-09",
+        "source_id": "europe155-ams1-physical-operation",
+        "summary": "The November 9 original Scaleway report records an actual RPN connectivity fault affecting some servers in AMS1 room H6 rack 50 and its resolution that morning. The exact host is Iron Mountain AMS1 at J.W. Lucasweg 35. This evidences existing operation on that date, not initial opening or expansion completion."
+      },
+      "locator": {
+        "reuse_from_project_id": "e3f1fc38-bc59-5373-803f-d5c86d817096",
+        "geometry_evidence_id": "583562f6-1d06-596e-81cc-289524fe0c00",
+        "geometry_identity_evidence_ids": [
+          "052125d3-300b-5ef1-a267-79b7b63da354",
+          "0a91dfb2-a658-54cd-8294-e917690855b7",
+          "af754737-fdde-580f-9b3e-c1e1bc787bcf",
+          "d2a2c2ab-27ad-53e6-873a-e6f37c4a8e66",
+          "eb38284b-a7f3-5377-a980-f267b3877c24"
+        ],
+        "scope": "campus_locator",
+        "identity_review": "Committed baseline 154 contains this exact Iron Mountain Amsterdam/Haarlem campus and one AMS-2 10 MW construction project, but no existing AMS-1 operating project. The original Scaleway certificate names Iron Mountain AMS1 at J.W. Lucasweg 35. Its impact-report table maps Scaleway AMS1 to Iron Mountain and distinguishes the Interxion AMS2 tenant code. The government notice and original operator identity use the same campus address. All four identity layers were rechecked: 1,302 sites, 1,412 projects, 231 source records and both 231 mapping records and 231 decisions, including EvoSwitch, Haarlem, Lucasweg and numbered AMS aliases. Broader matches identify separate Digital Realty/NTT addresses in Haarlemmermeer and Microsoft AMS13–14 in Middenmeer, not this campus. All 1,302 full geometries were reviewed. The existing campus is at zero distance; the nearest different host is Goodman AMS01 at 3.064 km. Add one operating project to this existing site, with no separate tenant, rack or extra site."
+      },
+      "context_source_ids": [
+        "europe155-ams1-exact-host-address",
+        "europe155-scaleway-ams1-code-identity",
+        "europe154-iron-mountain-ams1-phase-identity"
+      ],
+      "roles": [
+        {
+          "party": "Iron Mountain Data Centers",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "europe154-iron-mountain-ams1-phase-identity"
+        }
+      ],
+      "distinctness_review": "Committed baseline 154 contains this exact Iron Mountain Amsterdam/Haarlem campus and one AMS-2 10 MW construction project, but no existing AMS-1 operating project. The original Scaleway certificate names Iron Mountain AMS1 at J.W. Lucasweg 35. Its impact-report table maps Scaleway AMS1 to Iron Mountain and distinguishes the Interxion AMS2 tenant code. The government notice and original operator identity use the same campus address. All four identity layers were rechecked: 1,302 sites, 1,412 projects, 231 source records and both 231 mapping records and 231 decisions, including EvoSwitch, Haarlem, Lucasweg and numbered AMS aliases. Broader matches identify separate Digital Realty/NTT addresses in Haarlemmermeer and Microsoft AMS13–14 in Middenmeer, not this campus. All 1,302 full geometries were reviewed. The existing campus is at zero distance; the nearest different host is Goodman AMS01 at 3.064 km. Add one operating project to this existing site, with no separate tenant, rack or extra site.",
+      "site_identity_review": "The current customer incident, direct Scaleway AMS1-to-Iron Mountain table, exact host/address certificate and original government campus identity form the same-host join. The incident room/rack code is not used to infer coordinates. The point remains a campus representative point, not a surveyed building, rack, entrance or parcel boundary.",
+      "successor_review": "The original Scaleway current incident feed and embedded September–November history were reviewed through the November 11 retrieval. The November 9 AMS1 incident is resolved; other current maintenance or product incidents do not establish closure, completion of an expansion or uninterrupted whole-campus operation. The original Iron Mountain brochure separately describes the additional 10 MW expansion with a future Q2 2027 target. This is bounded public-source review, not an exhaustive corporate archive.",
+      "scoped_project_details": {
+        "phase_identity": "Existing AMS-1 operation on the same campus as the separately recorded AMS-2 construction project. Scaleway’s separate AMS2 tenant code means Interxion and is not the Iron Mountain expansion.",
+        "metrics": "No metrics selected. Future targets and undated brochure quantities are not current operating capacity.",
+        "geometry": "Inherit the exact reviewed baseline 154 campus locator, including unrounded coordinates, compiled_reference authority, coordinate_transform derivation, precision and unknown uncertainty. Only original XML evidence 583562f6-1d06-596e-81cc-289524fe0c00 is geometry. All five baseline context:geometry_identity evidence rows are pinned; the CRS support JavaScript is not inherited.",
+        "baseline_project_preservation": "Keep e3f1fc38-bc59-5373-803f-d5c86d817096 unchanged: AMS-2 expansion remains under construction as of September 30, 2026.",
+        "baseline_provenance_boundary": "Batch 154 already corrected the campus locator provenance while preserving its point and source identity. This addition makes no locator correction and preserves the entire AMS-2 project row. Inherited historical identity evidence retains its original metadata; no current publication date or new raw-source capture is invented."
+      }
+    },
+    {
+      "project_stable_key": "curated:telia-helsinki-valimotie:existing-operations",
+      "physical_site_stable_key": "curated:telia-helsinki-valimotie",
+      "site_name": "Telia Helsinki Data Center (Valimotie 3–5, Helsinki)",
+      "name": "Telia Helsinki Data Center — existing commercial operations",
+      "country": "Finland",
+      "country_iso_a2": "FI",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-09-28",
+        "source_id": "europe155-telia-upcloud-sept28",
+        "summary": "The original September 28 incident reports actual File Storage backend issues and unwanted NFS failovers at FI-HEL2, followed by an implemented fix at 15:34 UTC and resolution at 16:41 UTC. UpCloud directly identifies FI-HEL2 as the Telia Helsinki Data Center. This supports existing commercial hosting at that physical host; it does not establish a new opening, a whole-campus outage or uninterrupted operation."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            24.8769561,
+            60.2161918
+          ]
+        },
+        "source_id": "europe155-telia-helsinki-address-point",
+        "identity_source_ids": [
+          "europe155-telia-upcloud-host-identity",
+          "europe155-telia-operator-address",
+          "europe155-telia-government-identity"
+        ],
+        "scope": "reviewed_site_locator",
+        "scope_class": "government_exact_address_point",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "helsinki_address_epsg3879_inverse_epsg10701",
+        "precision": "Exact Helsinki municipal address reference point for Valimotie 3, within the operator and government facility address range Valimotie 3–5, 00380 Helsinki. The query for numbers 3 or 5 returns only number 3. Native EPSG:3879 E25493179/N6678166 is transformed through inverse Finland Gauss-Kruger zone 25 and EPSG:10701 EUREF-FIN to WGS 84 (1), then rounded to seven decimal places. The 1 m nominal datum-operation accuracy is not total location accuracy. This is not a building centre, entrance, equipment point or surveyed campus boundary; the city manual expressly warns that address points can lie outside parcel polygons. No parcel containment is asserted. Source realization epoch, address offset and per-record horizontal accuracy are not supplied.",
+        "identity_review": "Review against committed baseline 154 searched all four identity layers: 1,302 sites, 1,412 projects, 231 source records and both 231 identity-mapping records and 231 decisions. Exact Valimotie, Gjuterivägen, Telia Helsinki, TeliaSonera Helsinki, Helsinki Data Center and FI-HEL2 aliases found no matching host. The generic Helsinki Data Center match is Hetzner at Huurrekuja 10 in Tuusula, 16.459 km away; broad Telia/Sonera terms match only the separate Vilnius site in Lithuania. All 1,302 full geometries, including polygons, were checked. Nearest is Equinix HE6 at Sinimäentie 12 in Espoo, 5.708 km away; HE7 at Sinimäentie 8 is 5.870 km away. No baseline host is within 2 km. UpCloud itself separately maps FI-HEL1 to Equinix HE6. The FI-HEL2 service deployment adds no separate tenant or rack site. Committed baseline 154 is pinned by its manifest and commit.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The municipal record supplies no numeric positional accuracy or address-to-host offset. The 1 m nominal transformation accuracy is not total location accuracy."
+      },
+      "context_source_ids": [
+        "europe155-telia-upcloud-host-identity",
+        "europe155-telia-operator-address",
+        "europe155-telia-government-identity"
+      ],
+      "roles": [
+        {
+          "party": "Telia Finland Oyj",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "europe155-telia-operator-address"
+        },
+        {
+          "party": "UpCloud",
+          "role": "user",
+          "relationship_scope": "current",
+          "source_id": "europe155-telia-upcloud-host-identity"
+        }
+      ],
+      "distinctness_review": "Review against committed baseline 154 searched all four identity layers: 1,302 sites, 1,412 projects, 231 source records and both 231 identity-mapping records and 231 decisions. Exact Valimotie, Gjuterivägen, Telia Helsinki, TeliaSonera Helsinki, Helsinki Data Center and FI-HEL2 aliases found no matching host. The generic Helsinki Data Center match is Hetzner at Huurrekuja 10 in Tuusula, 16.459 km away; broad Telia/Sonera terms match only the separate Vilnius site in Lithuania. All 1,302 full geometries, including polygons, were checked. Nearest is Equinix HE6 at Sinimäentie 12 in Espoo, 5.708 km away; HE7 at Sinimäentie 8 is 5.870 km away. No baseline host is within 2 km. UpCloud itself separately maps FI-HEL1 to Equinix HE6. The FI-HEL2 service deployment adds no separate tenant or rack site. Committed baseline 154 is pinned by its manifest and commit.",
+      "successor_review": "Original UpCloud incidents, current status and history were reviewed through November 11. The later October 23 event concerns control-panel/API connectivity and does not identify a new physical host status. November 5 FI-HEL2 object-storage maintenance is marked completed; its generic maintenance description is retained as later context rather than replacing the specific September 28 observation. November 11 work from 17:00 to 22:00 UTC was still scheduled at capture time and is not treated as completed. Bounded searches of Telia and UpCloud material and later closure/transfer reports did not find a superseding physical-site change. This is not an exhaustive archive or proof of uninterrupted service.",
+      "scoped_project_details": {
+        "physical_scope": "One existing commercial data-center host at Valimotie 3–5; FI-HEL2 is the hosted service location, not an extra physical site.",
+        "excluded_inferences": "No new opening, new construction phase, whole-campus downtime, ownership, floor area, MW, PUE, measured energy, certification guarantee or comparative size is selected.",
+        "location_limits": "Exact Helsinki municipal address reference point for Valimotie 3, within the operator and government facility address range Valimotie 3–5, 00380 Helsinki. The query for numbers 3 or 5 returns only number 3. Native EPSG:3879 E25493179/N6678166 is transformed through inverse Finland Gauss-Kruger zone 25 and EPSG:10701 EUREF-FIN to WGS 84 (1), then rounded to seven decimal places. The 1 m nominal datum-operation accuracy is not total location accuracy. This is not a building centre, entrance, equipment point or surveyed campus boundary; the city manual expressly warns that address points can lie outside parcel polygons. No parcel containment is asserted. Source realization epoch, address offset and per-record horizontal accuracy are not supplied."
+      }
+    }
+  ],
+  "status_updates": [],
+  "context_updates": [],
+  "locator_corrections": [
+    {
+      "physical_site_stable_key": "curated:telehouse-frankfurt-kleyerstrasse-campus",
+      "site_id": "vcc-site-ef1b8d8c8c3eaaae3590",
+      "replaces_geometry_evidence_id": "e7a32e2b-9596-5518-a6a8-5ae8ccd5915a",
+      "provenance_only": true,
+      "reason": "The original source provides projected coordinates, whereas the baseline labels the stored transformed point direct_geometry/official_source. Correct to coordinate_transform/compiled_reference without changing the point, scope, uncertainty, canonical evidence, physical status, roles or metrics.",
+      "displacement_review": "Zero displacement: independent transformation of the original municipal native point reproduces the exact current point after the existing seven-decimal rounding. No positional improvement or individual Building N location is claimed.",
+      "locator": {
+        "geometry": {
+          "coordinates": [
+            8.6290298,
+            50.0964652
+          ],
+          "type": "Point"
+        },
+        "source_id": "de-hesse-p2-frankfurt-geoportal-kleyerstrasse-75-87",
+        "identity_source_ids": [
+          "de-hesse-p2-telehouse-de-rechenzentrum-2026-page"
+        ],
+        "scope": "campus_locator",
+        "scope_class": "official_building_address_point",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "municipal_ETRS89_UTM32N_inverse_explicit_ETRS89_to_WGS84_1",
+        "precision": "Official City of Frankfurt building-address point for Kleyerstraße 75-87 (address object DEHEFALK4mb00001), the address Telehouse publishes for its Frankfurt campus and its new data centre. It locates the campus at its registered street address, not Building N's footprint, a parcel or the campus boundary. The stored longitude/latitude is derived from the original EPSG:25832 point using inverse UTM32N and ETRS89 to WGS 84 (1), with longitude/latitude axis order, rounded to seven decimal places. Decimal places and nominal transformation accuracy do not establish address-point accuracy.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The address register publishes no positional accuracy. The point is a single address point at the campus street frontage, and Telehouse does not publish where Building N stands on the roughly 67,000 m2 campus.",
+        "identity_review": "The original government address object DEHEFALK4mb00001 matches the archived operator campus address, Kleyerstrasse 75–87. All four baseline 154 identity layers and all 1,302 full geometries were reviewed. Existing campus and project IDs, address-point scope and uncertainty are preserved. No relocation, new building identity or physical-status claim is made."
+      }
+    }
+  ]
+}

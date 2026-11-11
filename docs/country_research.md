@@ -1198,6 +1198,22 @@ The snapshot contains **1,302 sites, 1,412 projects and
 7,302 evidence records in 90 countries**. Historical snapshots and
 all unrelated project records remain unchanged.
 
+`verified_construction_core/2026-11-11-research-hundredfiftyfifth` adds Telia Helsinki Data Center
+and ColoCrossing Buffalo BUF1. Dated customer service incidents establish existing
+hosting, and original operator and customer records identify the facilities.
+Municipal and Census address points provide locators with their transformation,
+interpolation and unknown positional accuracy recorded.
+
+Iron Mountain AMS-1 is added as an operating project on the existing
+Amsterdam/Haarlem campus, inheriting its corrected locator and identity evidence.
+The separate AMS-2 expansion retains its construction status. Telehouse Frankfurt's
+existing point is unchanged; its projected-coordinate derivation is now correctly
+classified as a compiled reference. No status, role or metric is changed.
+
+The snapshot contains **1,304 sites, 1,415 projects and
+7,314 evidence records in 90 countries**. Historical snapshots and
+all unrelated project records remain unchanged.
+
 ## 25 October 2026
 
 `verified_construction_core/2026-10-25-research-sixtysecond` adds three commercial sites and
