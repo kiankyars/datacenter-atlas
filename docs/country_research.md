@@ -1104,6 +1104,18 @@ correction; its amount and planned stage remain unchanged. Earlier snapshots are
 preserved. The dataset contains **1,279 sites, 1,388 projects and
 7,213 evidence records in 90 countries**. Seven candidates remain held.
 
+`verified_construction_core/2026-11-11-research-hundredfortyninth` adds three existing commercial hosts:
+Atman WAW-2 in Warsaw, RadiusDC Phoenix I DC1 (phoenixNAP Phoenix), and Ascenty
+Fortaleza 1 (FTZ01) in Maracanaú. Dated reports of installed equipment and live
+customer services support operation. Government address and parcel records locate
+Warsaw and Phoenix; Ascenty's technical sheet supplies its own coordinates and
+retains its conflicting neighborhood wording.
+
+All 1,279 prior sites and 1,388 projects remain unchanged. The snapshot contains
+**1,282 sites, 1,391 projects and 7,223 evidence records in 90 countries**.
+Qingyang, STT Noida NOI2 and AngoNAP II remain held for exact locators; the
+Fukushima showroom is excluded from commercial-host coverage.
+
 ## 25 October 2026
 
 `verified_construction_core/2026-10-25-research-sixtysecond` adds three commercial sites and
