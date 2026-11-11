@@ -1250,6 +1250,17 @@ unknown positional accuracy. Existing records remain unchanged. The snapshot con
 **1,312 sites, 1,423 projects and
 7,351 evidence records in 90 countries**.
 
+`verified_construction_core/2026-11-11-research-hundredfiftyninth` adds Digital Realty DUB10 in
+Dublin and Digital Parks Africa Samrand in South Africa, using dated customer
+operating evidence and original operator points. Three CapitaLand India Trust
+projects retain construction status with observations from the October 28 report.
+
+The Amsterdam Science Park campus replaces its AMS9-specific address point with an
+operator-published anchor at AMS17. Original brochures establish the shared campus;
+the old address point remains identity evidence. The AMS17 operating project awaits
+separate admission. The snapshot contains **1,314 sites,
+1,425 projects and 7,365 evidence records in 90 countries**.
+
 ## 25 October 2026
 
 `verified_construction_core/2026-10-25-research-sixtysecond` adds three commercial sites and
