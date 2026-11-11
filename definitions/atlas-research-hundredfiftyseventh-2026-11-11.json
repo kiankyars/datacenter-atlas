@@ -1,0 +1,232 @@
+{
+  "format": "datacenter-atlas-update-input-v1",
+  "updated_at": "2026-11-11",
+  "output": "verified_construction_core/2026-11-11-research-hundredfiftyseventh",
+  "base_dataset": "verified_construction_core/2026-11-11-research-hundredfiftysixth",
+  "base_manifest_sha256": "cfd663ffbdea7270339ae1fc306d3ae640d3756d5786cd11bba45406c42f563c",
+  "source_files": [
+    {
+      "path": "sources/research-countries-2026-11-11-hundredfiftyseventh-primary-sources.json",
+      "sha256": "ac3b2740f8ceeebddb60e72ec92aef2dbbf61c5aa0bb9d9594ad02419300c889"
+    }
+  ],
+  "additions": [
+    {
+      "project_stable_key": "curated:coresite-at2-marietta-1130-powers-ferry:existing-operations",
+      "physical_site_stable_key": "curated:coresite-at2-marietta-1130-powers-ferry",
+      "site_name": "CoreSite AT2 (1130 Powers Ferry Place, Marietta, Georgia)",
+      "name": "CoreSite AT2 Marietta — existing commercial operations",
+      "country": "United States",
+      "country_iso_a2": "US",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-11-09",
+        "source_id": "commercial157-at2-racknerd-nov9",
+        "summary": "The original November 9 incident reports connectivity problems on deployed host ATL115KVM and a subsequent resolution. RackNerd defines nodes as physical servers hosting VPS instances. Its Atlanta facility page gives 1130 Powers Ferry Place, matching CoreSite AT2. This supports existing hosting at that physical host, not a new opening or whole-site outage."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -84.4823774,
+            33.9240225
+          ]
+        },
+        "source_id": "commercial157-at2-census-address",
+        "identity_source_ids": [
+          "commercial157-racknerd-atlanta-address",
+          "commercial157-coresite-at2-address"
+        ],
+        "scope": "reviewed_site_locator",
+        "scope_class": "government_exact_address_reference",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "census_tiger_address_interpolation_explicit_epsg1188",
+        "precision": "Exact US Census match for 1130 POWERS FERRY PL, MARIETTA, GA, 30067. Native NAD83 point [-84.482377414438, 33.924022533306] is interpolated along TIGER edge 17253813, side R, potential address range 1092–1198. Explicit EPSG:1188 NAD83 to WGS 84 (1) uses zero geocentric translations and has nominal 4 m datum-operation accuracy; the no-op representation is not exact datum equality. The operation covers this mainland location. Coordinates are rounded to seven decimal places. This is an interpolated street-address reference, not a surveyed building, entrance, parcel centroid, server position or boundary. Source realization, epoch, interpolation offset and total horizontal accuracy remain unknown.",
+        "identity_review": "All four committed baseline 156 identity layers were searched: 1,308 sites, 1,419 projects, 231 source records and 231 mapping records plus 231 decisions. The exact address, AT2/CoreSite, DataSite, RackNerd ATL115KVM and broader ColoCrossing/PhoenixNAP/Colo-ATL aliases have no matching physical host. Broad brand matches refer to different named facilities and were reviewed individually. All 1,308 complete geometries were compared without substituting polygon centroids. The nearest host is Equinix AT4 at 450 Interstate North Parkway, 4.113 km away; the next is 365 Data Centers Smyrna GA2, 9.896 km away. AT1 at 55 Marietta Street is a separate downtown address, despite the operator marketing both as an Atlanta network campus. Only the standalone Marietta AT2 host is added.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "Census interpolation, offset to hosting equipment, NAD83 realization and epoch are unspecified. Nominal 4 m datum-operation accuracy does not establish total point accuracy."
+      },
+      "context_source_ids": [
+        "commercial157-racknerd-atlanta-address",
+        "commercial157-coresite-at2-address",
+        "commercial157-coresite-at2-history"
+      ],
+      "roles": [
+        {
+          "party": "CoreSite",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "commercial157-coresite-at2-address"
+        },
+        {
+          "party": "RackNerd",
+          "role": "user",
+          "relationship_scope": "current",
+          "source_id": "commercial157-racknerd-atlanta-address"
+        }
+      ],
+      "distinctness_review": "All four committed baseline 156 identity layers were searched: 1,308 sites, 1,419 projects, 231 source records and 231 mapping records plus 231 decisions. The exact address, AT2/CoreSite, DataSite, RackNerd ATL115KVM and broader ColoCrossing/PhoenixNAP/Colo-ATL aliases have no matching physical host. Broad brand matches refer to different named facilities and were reviewed individually. All 1,308 complete geometries were compared without substituting polygon centroids. The nearest host is Equinix AT4 at 450 Interstate North Parkway, 4.113 km away; the next is 365 Data Centers Smyrna GA2, 9.896 km away. AT1 at 55 Marietta Street is a separate downtown address, despite the operator marketing both as an Atlanta network campus. Only the standalone Marietta AT2 host is added.",
+      "successor_review": "The original RackNerd status page was reviewed through November 11. Its latest listed Atlanta node event is the November 9 incident; the captured body reports resolution without separately dating it. The live state label is not used to refresh the date or promise uninterrupted service. CoreSite current AT2 and 2022 integration pages retain the same 1130 Powers Ferry Place identity. Neither network-market campus grouping nor undated facility specifications create a new expansion or capacity observation. This is a bounded original incident/facility review.",
+      "scoped_project_details": {
+        "address": "1130 Powers Ferry Place, Marietta, GA 30067",
+        "scope": "One standalone physical host. Network-connected AT1 is a separate property; no market-wide campus consolidation.",
+        "metrics": "No power, floor area, racks, capacity, efficiency, certification or service-guarantee metric selected.",
+        "location_limits": "Exact US Census match for 1130 POWERS FERRY PL, MARIETTA, GA, 30067. Native NAD83 point [-84.482377414438, 33.924022533306] is interpolated along TIGER edge 17253813, side R, potential address range 1092–1198. Explicit EPSG:1188 NAD83 to WGS 84 (1) uses zero geocentric translations and has nominal 4 m datum-operation accuracy; the no-op representation is not exact datum equality. The operation covers this mainland location. Coordinates are rounded to seven decimal places. This is an interpolated street-address reference, not a surveyed building, entrance, parcel centroid, server position or boundary. Source realization, epoch, interpolation offset and total horizontal accuracy remain unknown."
+      }
+    },
+    {
+      "project_stable_key": "curated:west7center-los-angeles-1200-west-7th:existing-operations",
+      "physical_site_stable_key": "curated:west7center-los-angeles-1200-west-7th",
+      "site_name": "West7Center (1200 W 7th Street, Los Angeles, California)",
+      "name": "West7Center Los Angeles — existing commercial data-centre hosting",
+      "country": "United States",
+      "country_iso_a2": "US",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-11-10",
+        "source_id": "commercial157-west7-racknerd-nov10",
+        "summary": "The original November 10 incident reports connectivity problems on deployed host LAXSSD2021DC03 and a subsequent resolution. RackNerd defines nodes as physical servers hosting VPS instances. Its Los Angeles DC-03 page gives 1200 W 7th Street, matching the West7Center property. This supports existing commercial hosting within the building, not a new opening or whole-building outage."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -118.2657905,
+            34.0514127
+          ]
+        },
+        "source_id": "commercial157-west7-census-address",
+        "identity_source_ids": [
+          "commercial157-racknerd-la-dc03-address",
+          "commercial157-rising-west7-address"
+        ],
+        "scope": "reviewed_site_locator",
+        "scope_class": "government_exact_address_reference",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "census_tiger_address_interpolation_explicit_epsg1188",
+        "precision": "Exact US Census match for 1200 W 7TH ST, LOS ANGELES, CA, 90017. Native NAD83 point [-118.265790505652, 34.051412699975] is interpolated along TIGER edge 141616780, side L, potential address range 1100–1200. Explicit EPSG:1188 NAD83 to WGS 84 (1) uses zero geocentric translations and has nominal 4 m datum-operation accuracy; the no-op representation is not exact datum equality. The operation covers this mainland location. Coordinates are rounded to seven decimal places. This is an interpolated street-address reference, not a surveyed building, entrance, parcel centroid, server position or boundary. Source realization, epoch, interpolation offset and total horizontal accuracy remain unknown.",
+        "identity_review": "All four committed baseline 156 identity layers were searched: 1,308 sites, 1,419 projects, 231 source records and 231 mapping records plus 231 decisions. West7/West 7, 1200 W/West 7th, DC03, Garland, Evocative, VPLS, Alchemy, Net Data Centers and ColoCrossing were checked. Broad Garland matches refer to Texas hosts; ColoCrossing matches Buffalo BUF1, not this Los Angeles property. No West7Center host is represented. All 1,308 complete geometries were compared. The sole host within 2 km is Equinix LA1 at 600 W 7th Street, 840.211 m away. RackNerd explicitly describes connectivity from DC03 to that separate address and One Wilshire. Goodman LAX01 is 6.771 km away. The mixed office/data-centre building is one physical host; customer suites, network nodes and operator brands do not add sites.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "Census interpolation, offset to hosting equipment, NAD83 realization and epoch are unspecified. Nominal 4 m datum-operation accuracy does not establish total point accuracy."
+      },
+      "context_source_ids": [
+        "commercial157-racknerd-la-dc03-address",
+        "commercial157-rising-west7-address",
+        "commercial157-west7-management-context"
+      ],
+      "roles": [
+        {
+          "party": "RackNerd",
+          "role": "user",
+          "relationship_scope": "current",
+          "source_id": "commercial157-racknerd-la-dc03-address"
+        }
+      ],
+      "distinctness_review": "All four committed baseline 156 identity layers were searched: 1,308 sites, 1,419 projects, 231 source records and 231 mapping records plus 231 decisions. West7/West 7, 1200 W/West 7th, DC03, Garland, Evocative, VPLS, Alchemy, Net Data Centers and ColoCrossing were checked. Broad Garland matches refer to Texas hosts; ColoCrossing matches Buffalo BUF1, not this Los Angeles property. No West7Center host is represented. All 1,308 complete geometries were compared. The sole host within 2 km is Equinix LA1 at 600 W 7th Street, 840.211 m away. RackNerd explicitly describes connectivity from DC03 to that separate address and One Wilshire. Goodman LAX01 is 6.771 km away. The mixed office/data-centre building is one physical host; customer suites, network nodes and operator brands do not add sites.",
+      "successor_review": "The original RackNerd status page was reviewed through November 11. Its latest listed DC03 node event is November 10; an earlier November 8 DC03LA214KVM incident uses the same host suffix. Resolutions are not independently dated, and current service labels do not replace event dates. RackNerd DC03, the property portfolio and the official West7Center site agree on the host identity. Current management is retained only as context; no ownership conclusion is drawn. This is a bounded original incident/property review, not a complete ownership or tenancy archive.",
+      "scoped_project_details": {
+        "address": "1200 W 7th Street, Los Angeles, CA 90017",
+        "scope": "One mixed office/data-centre physical host. Rising property/critical-facilities management remains context; legal owner/operator is not selected. No tenant suite or DC03 service label creates another site.",
+        "metrics": "No power, floor area, racks, capacity, efficiency, certification or service-guarantee metric selected.",
+        "location_limits": "Exact US Census match for 1200 W 7TH ST, LOS ANGELES, CA, 90017. Native NAD83 point [-118.265790505652, 34.051412699975] is interpolated along TIGER edge 141616780, side L, potential address range 1100–1200. Explicit EPSG:1188 NAD83 to WGS 84 (1) uses zero geocentric translations and has nominal 4 m datum-operation accuracy; the no-op representation is not exact datum equality. The operation covers this mainland location. Coordinates are rounded to seven decimal places. This is an interpolated street-address reference, not a surveyed building, entrance, parcel centroid, server position or boundary. Source realization, epoch, interpolation offset and total horizontal accuracy remain unknown."
+      }
+    }
+  ],
+  "status_updates": [],
+  "status_corrections": [
+    {
+      "project_stable_key": "curated:global-switch-frankfurt-eschborner-landstrasse-campus:existing-operations",
+      "replaces_status_evidence_id": "821a8b84-d209-56e7-a397-f04de0cbecf7",
+      "reason": "The selected 2026-10-05 date came from the original facility page's CMS dateModified/sitemap version, as the historical admission projection explicitly states. Archival comparison bounds a page edit but does not date physical hosting. Replace only the current status observation and its evidence with the dated original December 31, 2025 year-end estate observation. The old source remains unchanged in history and retains its valid operator/identity context; no source metadata or historical bytes are rewritten.",
+      "status": {
+        "value": "operational",
+        "as_of": "2025-12-31",
+        "source_id": "globalswitch157-annual2025-existing-assets",
+        "summary": "At its December 31, 2025 reporting cutoff, Global Switch's original annual report places Frankfurt North and Frankfurt South in its named completed estate. Together with its explicit existing-customer hosting and actual electricity-supply discussion, this supports existing operation. Both are named in the completed-property section. Frankfurt 3 remains separately classified as development and is excluded. This is a reporting-cutoff observation, not a new opening, a capacity claim or a CMS edit date."
+      },
+      "identity_review": "Exact existing project 09697400-eb31-5af7-8d1d-ce8dae666130 and stable key curated:global-switch-frankfurt-eschborner-landstrasse-campus:existing-operations are pinned to site vcc-site-23756b31d48143864a59. The original report names Frankfurt North and Frankfurt South, matching the established facility identity and current original operator address list. Both are named in the completed-property section. Frankfurt 3 remains separately classified as development and is excluded. Preserve the exact existing point, site membership, roles and typed metrics; no entity, phase or alias is added.",
+      "successor_review": "The operator's original annual-report index and corporate announcement index were checked through November 11, together with the April 27 London digital-twin announcement, September 29 Paris announcement and October 6 anniversary account. No newer interim report or site-specific dated physical observation was found for the six annual-report corrections in this bounded review. The October anniversary discusses corporate continuity and historical expansion; it does not establish a new observation for every named property. Current facility descriptions and page modification/sitemap dates are retained only as identity/context. London's live-suite observation is used separately. Paris retains its independently dated existing-operation observation; its future Blackwell deployment and 2027 heat-delivery plan are not completed physical activity. No closure, sale, new commissioned phase or site relocation is inferred. This is a bounded review, not an exhaustive corporate archive or guarantee of continuous service."
+    },
+    {
+      "project_stable_key": "curated:global-switch-hong-kong-tseung-kwan-o:existing-operations",
+      "replaces_status_evidence_id": "13b8fadb-d884-55c7-ba95-044ebb0e2a7b",
+      "reason": "The selected 2026-10-05 date came from the original facility page's CMS dateModified/sitemap version, as the historical admission projection explicitly states. Archival comparison bounds a page edit but does not date physical hosting. Replace only the current status observation and its evidence with the dated original December 31, 2025 year-end estate observation. The old source remains unchanged in history and retains its valid operator/identity context; no source metadata or historical bytes are rewritten.",
+      "status": {
+        "value": "operational",
+        "as_of": "2025-12-31",
+        "source_id": "globalswitch157-annual2025-existing-assets",
+        "summary": "At its December 31, 2025 reporting cutoff, Global Switch's original annual report places Hong Kong in its named completed estate. Together with its explicit existing-customer hosting and actual electricity-supply discussion, this supports existing operation. The named completed Hong Kong property is the already represented Tseung Kwan O host; no new phase or capacity is asserted. This is a reporting-cutoff observation, not a new opening, a capacity claim or a CMS edit date."
+      },
+      "identity_review": "Exact existing project 131c7ae1-2c96-5431-bed8-fde8eb8dca5d and stable key curated:global-switch-hong-kong-tseung-kwan-o:existing-operations are pinned to site vcc-site-889c4a4bcce907a380cc. The original report names Hong Kong, matching the established facility identity and current original operator address list. The named completed Hong Kong property is the already represented Tseung Kwan O host; no new phase or capacity is asserted. Preserve the exact existing point, site membership, roles and typed metrics; no entity, phase or alias is added.",
+      "successor_review": "The operator's original annual-report index and corporate announcement index were checked through November 11, together with the April 27 London digital-twin announcement, September 29 Paris announcement and October 6 anniversary account. No newer interim report or site-specific dated physical observation was found for the six annual-report corrections in this bounded review. The October anniversary discusses corporate continuity and historical expansion; it does not establish a new observation for every named property. Current facility descriptions and page modification/sitemap dates are retained only as identity/context. London's live-suite observation is used separately. Paris retains its independently dated existing-operation observation; its future Blackwell deployment and 2027 heat-delivery plan are not completed physical activity. No closure, sale, new commissioned phase or site relocation is inferred. This is a bounded review, not an exhaustive corporate archive or guarantee of continuous service."
+    },
+    {
+      "project_stable_key": "curated:global-switch-london-docklands-campus:existing-operations",
+      "replaces_status_evidence_id": "2696819a-7dc5-508a-ae53-4fb5d0a12cac",
+      "reason": "The selected 2026-10-05 date came from the original facility page's CMS dateModified/sitemap version, as the historical admission projection explicitly states. Archival comparison bounds a page edit but does not date physical hosting. Replace only the current status observation and its evidence with the dated original April 27 live-suite statement. The old source remains unchanged in history and retains its valid operator/identity context; no source metadata or historical bytes are rewritten.",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-04-27",
+        "source_id": "globalswitch157-london-live-suite-apr27",
+        "summary": "The dated original announcement identifies the physical London liquid-cooling suite as live and says its digital recreation uses live and historical telemetry. This supports operation at the existing London campus on April 27. The virtual model is not a new physical data centre; the later rollout of customer-led twins and any new room or building remain unobserved."
+      },
+      "identity_review": "Exact existing project 21ebba9c-e353-5aea-baaa-6f05639092f6 and stable key curated:global-switch-london-docklands-campus:existing-operations are pinned to site vcc-site-919cbddc43c8964a46f3. The original report names London North and London East campus, matching the established facility identity and current original operator address list. The existing campus includes North and East; the April 27 observation is limited to a live suite on that campus. No claim is made that every room or building was observed. London South remains excluded. Preserve the exact existing point, site membership, roles and typed metrics; no entity, phase or alias is added.",
+      "successor_review": "The operator's original annual-report index and corporate announcement index were checked through November 11, together with the April 27 London digital-twin announcement, September 29 Paris announcement and October 6 anniversary account. No newer interim report or site-specific dated physical observation was found for the six annual-report corrections in this bounded review. The October anniversary discusses corporate continuity and historical expansion; it does not establish a new observation for every named property. Current facility descriptions and page modification/sitemap dates are retained only as identity/context. London's live-suite observation is used separately. Paris retains its independently dated existing-operation observation; its future Blackwell deployment and 2027 heat-delivery plan are not completed physical activity. No closure, sale, new commissioned phase or site relocation is inferred. This is a bounded review, not an exhaustive corporate archive or guarantee of continuous service."
+    },
+    {
+      "project_stable_key": "curated:global-switch-singapore-tai-seng:existing-operations",
+      "replaces_status_evidence_id": "63faa128-69fd-5f57-a22b-530e45b0fe24",
+      "reason": "The selected 2026-09-23 date came from the original facility page's CMS dateModified/sitemap version, as the historical admission projection explicitly states. Archival comparison bounds a page edit but does not date physical hosting. Replace only the current status observation and its evidence with the dated original December 31, 2025 year-end estate observation. The old source remains unchanged in history and retains its valid operator/identity context; no source metadata or historical bytes are rewritten.",
+      "status": {
+        "value": "operational",
+        "as_of": "2025-12-31",
+        "source_id": "globalswitch157-annual2025-existing-assets",
+        "summary": "At its December 31, 2025 reporting cutoff, Global Switch's original annual report places Singapore Tai-Seng in its named completed estate. Together with its explicit existing-customer hosting and actual electricity-supply discussion, this supports existing operation. The report names Tai-Seng separately from Singapore Woodlands. Preserve the distinct existing 2 Tai Seng Avenue host; no new subsea suite or commissioning is inferred. This is a reporting-cutoff observation, not a new opening, a capacity claim or a CMS edit date."
+      },
+      "identity_review": "Exact existing project 8366936a-85b8-59f2-ab5d-fe608084cd92 and stable key curated:global-switch-singapore-tai-seng:existing-operations are pinned to site vcc-site-da1c0f22ba87466fcbd4. The original report names Singapore Tai-Seng, matching the established facility identity and current original operator address list. The report names Tai-Seng separately from Singapore Woodlands. Preserve the distinct existing 2 Tai Seng Avenue host; no new subsea suite or commissioning is inferred. Preserve the exact existing point, site membership, roles and typed metrics; no entity, phase or alias is added.",
+      "successor_review": "The operator's original annual-report index and corporate announcement index were checked through November 11, together with the April 27 London digital-twin announcement, September 29 Paris announcement and October 6 anniversary account. No newer interim report or site-specific dated physical observation was found for the six annual-report corrections in this bounded review. The October anniversary discusses corporate continuity and historical expansion; it does not establish a new observation for every named property. Current facility descriptions and page modification/sitemap dates are retained only as identity/context. London's live-suite observation is used separately. Paris retains its independently dated existing-operation observation; its future Blackwell deployment and 2027 heat-delivery plan are not completed physical activity. No closure, sale, new commissioned phase or site relocation is inferred. This is a bounded review, not an exhaustive corporate archive or guarantee of continuous service."
+    },
+    {
+      "project_stable_key": "curated:global-switch-amsterdam-johan-huizingalaan-campus:existing-operations",
+      "replaces_status_evidence_id": "bee43702-6f9e-51ba-b8a1-b068bc07d191",
+      "reason": "The selected 2026-10-05 date came from the original facility page's CMS dateModified/sitemap version, as the historical admission projection explicitly states. Archival comparison bounds a page edit but does not date physical hosting. Replace only the current status observation and its evidence with the dated original December 31, 2025 year-end estate observation. The old source remains unchanged in history and retains its valid operator/identity context; no source metadata or historical bytes are rewritten.",
+      "status": {
+        "value": "operational",
+        "as_of": "2025-12-31",
+        "source_id": "globalswitch157-annual2025-existing-assets",
+        "summary": "At its December 31, 2025 reporting cutoff, Global Switch's original annual report places Amsterdam West and Amsterdam East campus in its named completed estate. Together with its explicit existing-customer hosting and actual electricity-supply discussion, this supports existing operation. Both names occur under completed properties; the 2025 narrative limits Amsterdam East's newly completed capacity to Phase 1. Retain the existing campus operation only, without asserting all East phases or the current marketing capacity as operational. This is a reporting-cutoff observation, not a new opening, a capacity claim or a CMS edit date."
+      },
+      "identity_review": "Exact existing project aca507ba-6cee-545b-88f7-3e8f7b007976 and stable key curated:global-switch-amsterdam-johan-huizingalaan-campus:existing-operations are pinned to site vcc-site-e12739405cd3142e9240. The original report names Amsterdam West and Amsterdam East campus, matching the established facility identity and current original operator address list. Both names occur under completed properties; the 2025 narrative limits Amsterdam East's newly completed capacity to Phase 1. Retain the existing campus operation only, without asserting all East phases or the current marketing capacity as operational. Preserve the exact existing point, site membership, roles and typed metrics; no entity, phase or alias is added.",
+      "successor_review": "The operator's original annual-report index and corporate announcement index were checked through November 11, together with the April 27 London digital-twin announcement, September 29 Paris announcement and October 6 anniversary account. No newer interim report or site-specific dated physical observation was found for the six annual-report corrections in this bounded review. The October anniversary discusses corporate continuity and historical expansion; it does not establish a new observation for every named property. Current facility descriptions and page modification/sitemap dates are retained only as identity/context. London's live-suite observation is used separately. Paris retains its independently dated existing-operation observation; its future Blackwell deployment and 2027 heat-delivery plan are not completed physical activity. No closure, sale, new commissioned phase or site relocation is inferred. This is a bounded review, not an exhaustive corporate archive or guarantee of continuous service."
+    },
+    {
+      "project_stable_key": "curated:global-switch-singapore-woodlands:existing-operations",
+      "replaces_status_evidence_id": "63faa128-69fd-5f57-a22b-530e45b0fe24",
+      "reason": "The selected 2026-09-23 date came from the original facility page's CMS dateModified/sitemap version, as the historical admission projection explicitly states. Archival comparison bounds a page edit but does not date physical hosting. Replace only the current status observation and its evidence with the dated original December 31, 2025 year-end estate observation. The old source remains unchanged in history and retains its valid operator/identity context; no source metadata or historical bytes are rewritten.",
+      "status": {
+        "value": "operational",
+        "as_of": "2025-12-31",
+        "source_id": "globalswitch157-annual2025-existing-assets",
+        "summary": "At its December 31, 2025 reporting cutoff, Global Switch's original annual report places Singapore Woodlands in its named completed estate. Together with its explicit existing-customer hosting and actual electricity-supply discussion, this supports existing operation. The report names Woodlands separately from Singapore Tai-Seng. Preserve the existing 7 Woodlands Height host; no merger of the Singapore sites. This is a reporting-cutoff observation, not a new opening, a capacity claim or a CMS edit date."
+      },
+      "identity_review": "Exact existing project cd5590b2-d25e-5324-9e0e-a024d76edf55 and stable key curated:global-switch-singapore-woodlands:existing-operations are pinned to site vcc-site-0e2732d26c2a4de0a93c. The original report names Singapore Woodlands, matching the established facility identity and current original operator address list. The report names Woodlands separately from Singapore Tai-Seng. Preserve the existing 7 Woodlands Height host; no merger of the Singapore sites. Preserve the exact existing point, site membership, roles and typed metrics; no entity, phase or alias is added.",
+      "successor_review": "The operator's original annual-report index and corporate announcement index were checked through November 11, together with the April 27 London digital-twin announcement, September 29 Paris announcement and October 6 anniversary account. No newer interim report or site-specific dated physical observation was found for the six annual-report corrections in this bounded review. The October anniversary discusses corporate continuity and historical expansion; it does not establish a new observation for every named property. Current facility descriptions and page modification/sitemap dates are retained only as identity/context. London's live-suite observation is used separately. Paris retains its independently dated existing-operation observation; its future Blackwell deployment and 2027 heat-delivery plan are not completed physical activity. No closure, sale, new commissioned phase or site relocation is inferred. This is a bounded review, not an exhaustive corporate archive or guarantee of continuous service."
+    },
+    {
+      "project_stable_key": "curated:global-switch-madrid-calle-yecora-campus:existing-operations",
+      "replaces_status_evidence_id": "9680eeb6-1dff-58e2-a1d8-2839da24abc6",
+      "reason": "The selected 2026-09-23 date came from the original facility page's CMS dateModified/sitemap version, as the historical admission projection explicitly states. Archival comparison bounds a page edit but does not date physical hosting. Replace only the current status observation and its evidence with the dated original December 31, 2025 year-end estate observation. The old source remains unchanged in history and retains its valid operator/identity context; no source metadata or historical bytes are rewritten.",
+      "status": {
+        "value": "operational",
+        "as_of": "2025-12-31",
+        "source_id": "globalswitch157-annual2025-existing-assets",
+        "summary": "At its December 31, 2025 reporting cutoff, Global Switch's original annual report places Madrid existing facility in its named completed estate. Together with its explicit existing-customer hosting and actual electricity-supply discussion, this supports existing operation. The report distinguishes completed Madrid from development Madrid 2. Preserve the existing Madrid 1 project at Calle Yécora 4 and exclude the planned expansion. This is a reporting-cutoff observation, not a new opening, a capacity claim or a CMS edit date."
+      },
+      "identity_review": "Exact existing project f9ad6877-6e4a-5767-ad7d-7ac73e77ab47 and stable key curated:global-switch-madrid-calle-yecora-campus:existing-operations are pinned to site vcc-site-239e6725a17b43063d1d. The original report names Madrid existing facility, matching the established facility identity and current original operator address list. The report distinguishes completed Madrid from development Madrid 2. Preserve the existing Madrid 1 project at Calle Yécora 4 and exclude the planned expansion. Preserve the exact existing point, site membership, roles and typed metrics; no entity, phase or alias is added.",
+      "successor_review": "The operator's original annual-report index and corporate announcement index were checked through November 11, together with the April 27 London digital-twin announcement, September 29 Paris announcement and October 6 anniversary account. No newer interim report or site-specific dated physical observation was found for the six annual-report corrections in this bounded review. The October anniversary discusses corporate continuity and historical expansion; it does not establish a new observation for every named property. Current facility descriptions and page modification/sitemap dates are retained only as identity/context. London's live-suite observation is used separately. Paris retains its independently dated existing-operation observation; its future Blackwell deployment and 2027 heat-delivery plan are not completed physical activity. No closure, sale, new commissioned phase or site relocation is inferred. This is a bounded review, not an exhaustive corporate archive or guarantee of continuous service."
+    }
+  ],
+  "context_updates": []
+}

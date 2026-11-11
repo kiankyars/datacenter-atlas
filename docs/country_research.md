@@ -1230,6 +1230,18 @@ roles and metrics remain unchanged. The snapshot contains **1,308 sites, 1,419
 projects and 7,330 evidence records in 90 countries**. Historical files and all
 unrelated project records remain unchanged.
 
+`verified_construction_core/2026-11-11-research-hundredfiftyseventh` adds CoreSite AT2 in
+Marietta and West7Center in Los Angeles. Original customer incident records establish
+dated operation; operator and property descriptions join the facilities to government
+address references. Derived locator points retain their unknown positional accuracy.
+
+Seven Global Switch records replace webpage modification dates with supported physical
+observations: six use the annual report's December 31, 2025 reporting cutoff, and London
+uses an April 27, 2026 statement about its live data-centre suite. Paris retains its
+September 29 observation. Existing geometry, roles, capacity and historical evidence
+remain unchanged. The snapshot contains **1,310 sites,
+1,421 projects and 7,342 evidence records in 90 countries**.
+
 ## 25 October 2026
 
 `verified_construction_core/2026-10-25-research-sixtysecond` adds three commercial sites and
