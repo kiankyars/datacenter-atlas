@@ -1,0 +1,141 @@
+{
+  "format": "datacenter-atlas-update-input-v1",
+  "updated_at": "2026-11-11",
+  "output": "verified_construction_core/2026-11-11-research-hundredfortysixth",
+  "base_dataset": "verified_construction_core/2026-11-11-research-hundredfortyfifth",
+  "base_manifest_sha256": "45b4c827cda421b154ae97c812ac564f86fb9efde107d39fc56504ba3274972f",
+  "source_files": [
+    {
+      "path": "sources/research-countries-2026-11-11-hundredfortysixth-primary-sources.json",
+      "sha256": "25a59cfa83841e0bd55e446ef799aadf9c9e4ecc815395a7fe3976b14545c768"
+    }
+  ],
+  "additions": [
+    {
+      "project_stable_key": "curated:njfx-wall-township-campus:existing-colocation-operations",
+      "physical_site_stable_key": "curated:njfx-wall-township-campus",
+      "site_name": "NJFX Wall Township Colocation Campus, 1410 Wall Church Road",
+      "name": "NJFX Wall Township — existing commercial colocation operations",
+      "country": "United States",
+      "country_iso_a2": "US",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-11-10",
+        "source_id": "commercial146-njfx-nov10",
+        "summary": "The November 10 original operator article explicitly states that NJFX operates the purpose-built carrier-neutral cable landing station and colocation campus in Wall Township. This records operation of the existing commercial host. It does not establish a new opening or completion of the separately discussed liquid-cooled data hall."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -74.0524217,
+            40.1600224
+          ]
+        },
+        "source_id": "commercial146-njfx-census",
+        "identity_source_ids": [
+          "commercial146-njfx-address-identity",
+          "commercial146-njfx-wall-study"
+        ],
+        "scope": "campus_locator",
+        "scope_class": "official_exact_address_geocoder_point",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "us_census_exact_1410_wall_church_address_epsg4269_to4326_explicit_epsg1188",
+        "precision": "The operator-published 1410 Wall Church Road address is exactly matched by the US Census Bureau to a point interpolated along TIGER edge 642133679, side R. The point locates the campus address, not a surveyed building, entrance or parcel boundary. Census documents NAD83 output. Native EPSG:4269 coordinates were explicitly represented in EPSG:4326 using the New Jersey-applicable EPSG:1188 NAD83 to WGS 84 (1) no-op datum approximation, with zero translations and 4 m nominal operation accuracy. This is not measured datum equivalence or total locator accuracy. The output is rounded to seven decimal places using pyproj 3.8.0 / PROJ 9.8.1.",
+        "identity_review": "All four baseline identity layers were scanned: 1,273 sites, 1,382 projects, both 231 records and 231 decisions in identity-mapping.json, and 231 original source records. No NJFX, New Jersey Fiber/Fibre Exchange, Wall Township, Wall Church Road, exact 1400/1410 address, Tyco or Project Cool Water match exists. Tata matches only an unrelated TCS HyperVault campus in Hyderabad. The nearest existing host is Iron Mountain NJE-1, 47.30 km away; none is within 2 km. The official 2019 municipal report distinguishes the 1410 NJFX building from the neighbouring 1400 Tata property. The current operator pricing page describes a fiber tie between the two addresses. One NJFX campus host anchored at 1410 is admitted; the adjacent cable station, carrier presences, submarine cable systems and new liquid-cooled hall are not counted separately.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "Census supplies no per-record positional accuracy or offset from the interpolated street point to the data-centre space. NAD83 realization and epoch are unspecified. The 4 m nominal datum-operation accuracy does not quantify these unknowns."
+      },
+      "context_source_ids": [
+        "commercial146-njfx-address-identity",
+        "commercial146-njfx-wall-study",
+        "commercial146-njfx-oct30"
+      ],
+      "roles": [
+        {
+          "party": "NJFX",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "commercial146-njfx-nov10"
+        }
+      ],
+      "distinctness_review": "All four baseline identity layers were scanned: 1,273 sites, 1,382 projects, both 231 records and 231 decisions in identity-mapping.json, and 231 original source records. No NJFX, New Jersey Fiber/Fibre Exchange, Wall Township, Wall Church Road, exact 1400/1410 address, Tyco or Project Cool Water match exists. Tata matches only an unrelated TCS HyperVault campus in Hyderabad. The nearest existing host is Iron Mountain NJE-1, 47.30 km away; none is within 2 km. The official 2019 municipal report distinguishes the 1410 NJFX building from the neighbouring 1400 Tata property. The current operator pricing page describes a fiber tie between the two addresses. One NJFX campus host anchored at 1410 is admitted; the adjacent cable station, carrier presences, submarine cable systems and new liquid-cooled hall are not counted separately.",
+      "successor_review": "The original operator WordPress API was reviewed through its ten latest complete posts, latest November 10, together with the current original news index and targeted November 2026, closure, acquisition and operation searches through November 11. No later primary physical-status change was located. October 30 describes summer work on a new liquid-cooled hall retrospectively; neither elapsed time, current marketing capacity nor future power-delivery targets establish its completion. Historical government ownership labels are not used as current party roles.",
+      "scoped_project_details": {
+        "numbered_address": "1410 Wall Church Road, Wall Township, New Jersey 07719",
+        "scope": "One existing commercial colocation campus anchored at the operator-published 1410 address. No separate Tata/cable-landing host, carrier presence or liquid-cooled expansion is added.",
+        "capacity": "No power, floor-area, rack-count, commissioned-hall or customer computing metric is selected."
+      }
+    },
+    {
+      "project_stable_key": "curated:era4-shelford-canterbury:data-centre-development",
+      "physical_site_stable_key": "curated:era4-shelford-canterbury",
+      "site_name": "Era4 Shelford Farm Estate data centre, Canterbury",
+      "name": "Era4 / Carbon3.AI Shelford data centre — permitted development",
+      "country": "United Kingdom",
+      "country_iso_a2": "GB",
+      "status": {
+        "value": "permitted",
+        "as_of": "2026-10-15",
+        "source_id": "uk146-shelford-permission",
+        "summary": "Canterbury City Council issued full planning permission CA/25/02094 on October 15 for the data-centre building, compound and associated works at Shelford Farm Estate. Consent remains subject to conditions. Era4's next-day release says design and construction planning are forthcoming; no physical start or operation is established.",
+        "permit_scope": "data_center_development",
+        "permit_type": "planning_permission",
+        "permit_decision": "granted",
+        "permit_reference": "Canterbury City Council CA/25/02094, issued 2026-10-15",
+        "permit_identity_review": "The issued notice names the exact Shelford Farm Estate site and data-centre building and compound. Its approved plan list includes 1001 P03, which depicts the compact DC plot and separate access. The October 13 committee date is distinct from the October 15 issue date; this consent concerns the DC development itself, not only landfill, utility or ancillary works."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            1.1028852,
+            51.3000847
+          ]
+        },
+        "source_id": "uk146-shelford-flood-risk-locator",
+        "identity_source_ids": [
+          "uk146-shelford-application",
+          "uk146-shelford-approved-location-plan",
+          "uk146-shelford-design-access",
+          "uk146-shelford-planning-statement",
+          "uk146-shelford-era4-committee-memo",
+          "uk146-shelford-era4-oct16"
+        ],
+        "scope": "project_locator",
+        "scope_class": "applicant_flood_risk_assessment_reported_project_centre",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "applicant_FRA_PDF_page7_explicit_BNG_project_centre_to_WGS84_OSTN15_EPSG7710",
+        "precision": "The applicant consultant explicitly reports the DC site centre at national-grid E 616398.6 m, N 160233.9 m. Interpreted as EPSG:27700, it is transformed to EPSG:4326 with OSTN15 / EPSG:7710 using pyproj 3.7.2 and PROJ 9.5.1, then rounded to seven decimals. The 1 m nominal transformation accuracy is not source accuracy. The point represents the compact development, not the whole landfill, an entrance, a particular building or a surveyed boundary. Report and plan scope were inspected; no polygon containment calculation or map-derived coordinate is claimed. The unselected application-form point E 616335, N 160156 differs by 100.565 m.",
+        "identity_review": "Baseline sites.csv, projects.csv, source-records.json and identity-mapping.json contain no Shelford, Carbon3.AI/Carbon3AI, Era4, Neoghost, Broad Oak, Shalloak, CA/25/02094 or Canterbury identity. The only loose Era 4 match is Carrera 43B in Colombia; Valencia matches refer to Valencia County, New Mexico. The nearest existing host is Green Mountain LON-East / Romford North at 72,242.2 m. This is one compact DC project at the waste-management property; the landfill, gas generation, access road, equipment phase and other Era4 locations are not separate admissions.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The applicant report does not state its source survey method, positional accuracy or coordinate epoch. National-grid context is interpreted as British National Grid; the original does not print an EPSG identifier. The 0.1 m input resolution and 1 m nominal OSTN15 transformation accuracy do not quantify total source uncertainty or an individual-building offset."
+      },
+      "context_source_ids": [
+        "uk146-shelford-application",
+        "uk146-shelford-approved-location-plan",
+        "uk146-shelford-design-access",
+        "uk146-shelford-planning-statement",
+        "uk146-shelford-era4-committee-memo",
+        "uk146-shelford-era4-oct16",
+        "uk146-shelford-document-index"
+      ],
+      "roles": [],
+      "distinctness_review": "Baseline sites.csv, projects.csv, source-records.json and identity-mapping.json contain no Shelford, Carbon3.AI/Carbon3AI, Era4, Neoghost, Broad Oak, Shalloak, CA/25/02094 or Canterbury identity. The only loose Era 4 match is Carrera 43B in Colombia; Valencia matches refer to Valencia County, New Mexico. The nearest existing host is Green Mountain LON-East / Romford North at 72,242.2 m. This is one compact DC project at the waste-management property; the landfill, gas generation, access road, equipment phase and other Era4 locations are not separate admissions.",
+      "successor_review": "Reviewed the original council summary, dates, document index, related applications and linked property history through November 11. The application remains Granted, with no later displayed decision or discharge record. Appeal status is Not Available, which is not proof that no challenge exists. Era4's October 16 release says design and construction plans are forthcoming. Its current news list and Valencia's press index provide no later supported physical-status change in the bounded search. Retain the October 15 issued-permission date; no construction or operation is inferred.",
+      "scoped_project_details": {
+        "address": "Shelford Farm Estate, Broad Oak Road / Shalloak Road, Canterbury, Kent, CT2 0PU",
+        "applicant": "Carbon3.AI in the original application; Era4 in the October 13 project memo and October 16 developer release.",
+        "developer": "Era4, as expressly described in its original release. No operator or landowner role is inferred.",
+        "scope": "One permitted commercial AI data-centre development on a former composting hardstanding. The existing landfill and gas-generation activities are separate.",
+        "area_scope": "Approved plan 1001 P03 separately labels a 3,810 m² DC plot and 2,142 m² access route. The form's total 5,915 m² and the older flood report's circa 3,300 m² are document-specific scopes; no harmonized final land-area metric is selected.",
+        "capacity": "No achieved or planned MW, commissioned equipment count or floor-area capacity is selected.",
+        "locator_discrepancy": "The form point and later detailed flood-report site centre differ by 100.565 m in British National Grid. The latter is selected because it explicitly identifies the DC development centre; no formal containment or surveyed accuracy is claimed."
+      }
+    }
+  ],
+  "status_updates": [],
+  "context_updates": []
+}

@@ -1060,6 +1060,21 @@ the new project's associations; 36 evidence records are added. The snapshot cont
 snapshots remain unchanged. Panvel and PDG JH1 remain held for missing precise
 location or sufficiently recent physical-status evidence.
 
+`verified_construction_core/2026-11-11-research-hundredfortysixth` adds **two physical
+sites and two projects**: NJFX's operating colocation campus in Wall Township,
+New Jersey, and Era4's permitted Shelford Farm data centre in Canterbury, England.
+NJFX's November 10 statement supports existing operation; it does not establish
+completion of the newer liquid-cooled hall. Canterbury's October 15 planning
+permission supports permitted status, with no construction-start claim.
+
+NJFX uses a government address reference. Shelford uses the approved flood report's
+explicit site-centre coordinate; the application form's different point remains
+documented and unselected. Coordinate transformations and location limitations
+remain in the evidence. All earlier sites, projects and snapshots are unchanged.
+The snapshot contains **1,275 sites, 1,384 projects and 7,193 evidence
+records in 90 countries**. Six other candidates remain held for missing precise
+location or adequate status evidence.
+
 ## 25 October 2026
 
 `verified_construction_core/2026-10-25-research-sixtysecond` adds three commercial sites and
