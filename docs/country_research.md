@@ -1075,6 +1075,20 @@ The snapshot contains **1,275 sites, 1,384 projects and 7,193 evidence
 records in 90 countries**. Six other candidates remain held for missing precise
 location or adequate status evidence.
 
+`verified_construction_core/2026-11-11-research-hundredfortyseventh` adds **three physical
+sites and three projects**: US Signal's operating IA01 facility in Waukee, Iowa;
+its existing OR02 building in Hillsboro, Oregon; and Digital Realty's ROM1 first
+phase under construction in Rome. Their supported observation dates are September
+21, October 27 and October 19 respectively. Hillsboro's customer availability
+remains pending; its acquisition does not establish operation.
+
+Waukee uses the official county parcel matched to the municipal plan, Hillsboro
+uses an exact state address point, and Rome uses the operator's native facility
+coordinates. The evidence retains coordinate methods and unknown location
+accuracy. All prior records and snapshots remain unchanged. The snapshot contains
+**1,278 sites, 1,387 projects and 7,205 evidence records in 90 countries**.
+Five other candidates remain held for unresolved location or status evidence.
+
 ## 25 October 2026
 
 `verified_construction_core/2026-10-25-research-sixtysecond` adds three commercial sites and

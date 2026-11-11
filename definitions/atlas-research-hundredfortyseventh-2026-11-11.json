@@ -1,0 +1,191 @@
+{
+  "format": "datacenter-atlas-update-input-v1",
+  "updated_at": "2026-11-11",
+  "output": "verified_construction_core/2026-11-11-research-hundredfortyseventh",
+  "base_dataset": "verified_construction_core/2026-11-11-research-hundredfortysixth",
+  "base_manifest_sha256": "73827540edc3f373a6a334cbfe5a2b8ae96b027efde1cdeba367010c3329208a",
+  "source_files": [
+    {
+      "path": "sources/research-countries-2026-11-11-hundredfortyseventh-primary-sources.json",
+      "sha256": "0524216293d1c646258035379c30b3a553761a557a8c6c720b56b1ed31990c62"
+    }
+  ],
+  "additions": [
+    {
+      "project_stable_key": "curated:us-signal-des-moines-waukee:existing-operations",
+      "physical_site_stable_key": "curated:us-signal-des-moines-waukee",
+      "site_name": "US Signal IA01 Des Moines, 390 NE Alices Road, Waukee",
+      "name": "US Signal IA01 Des Moines, 390 NE Alices Road, Waukee — existing operations",
+      "country": "United States",
+      "country_iso_a2": "US",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-09-21",
+        "source_id": "us147-desmoines-sep22",
+        "summary": "The original September 21 dateline says US Signal supports customers across Iowa and the surrounding region through its Des Moines data center. The page was published September 22. This contemporaneous named-site customer-hosting statement supports existing operation as of September 21; award nomination itself is not physical-status evidence."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -93.8541797,
+            41.6203977
+          ]
+        },
+        "source_id": "us147-desmoines-county-parcel",
+        "scope": "campus_locator",
+        "scope_class": "official_cadastral_parcel_centroid",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "native_county_parcel_area_weighted_centroid_then_epsg3418_to4269_and_explicit_epsg1188_to4326",
+        "precision": "Computed area-weighted centroid of exact Dallas County parcel 1227403002, checked strictly inside its native polygon. The municipal applicant plan binds that folio to US Signal at 390 NE Alice’s Road. Original NAD83 Iowa South US-survey-feet coordinates (EPSG:3418) were inversely projected, then represented in WGS 84 through explicit Iowa-applicable EPSG:1188, with 4 m nominal datum-operation accuracy. Rounded to seven decimals. This is a property locator, not a surveyed facility footprint, entrance, data hall or building centroid.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "County GIS supplies no per-record positional accuracy or datum realization/epoch. The centroid is derived from the mapped property, while the 4 m operation estimate concerns only the datum approximation; neither establishes total location accuracy.",
+        "identity_source_ids": [
+          "us147-waukee-municipal-plan",
+          "us147-desmoines-address"
+        ],
+        "identity_review": "All four baseline layers were scanned: 1,275 sites, 1,384 projects, 231 identity records and 231 identity decisions, and 231 source records. US Signal, OneNeck, Vital Support, TDS Hosted, TEAM Technologies and the exact street-address aliases return no match. The nearest existing host is Apple Waukee Data Center Campus (Project Morgan, 2995 W Hickman Rd, Waukee, Iowa), 6,079.96 metres away by anchor-to-anchor haversine distance; none lies within 2 km. One existing operating commercial host, not a second site for the pending expansion."
+      },
+      "context_source_ids": [
+        "us147-waukee-municipal-plan",
+        "us147-desmoines-address",
+        "us147-desmoines-may14"
+      ],
+      "roles": [
+        {
+          "party": "US Signal",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "us147-desmoines-sep22"
+        }
+      ],
+      "distinctness_review": "All four baseline layers were scanned: 1,275 sites, 1,384 projects, 231 identity records and 231 identity decisions, and 231 source records. US Signal, OneNeck, Vital Support, TDS Hosted, TEAM Technologies and the exact street-address aliases return no match. The nearest existing host is Apple Waukee Data Center Campus (Project Morgan, 2995 W Hickman Rd, Waukee, Iowa), 6,079.96 metres away by anchor-to-anchor haversine distance; none lies within 2 km. One existing operating commercial host, not a second site for the pending expansion.",
+      "successor_review": "Original operator press-release index reviewed through its November 9 leadership release, together with the current exact facility page and bounded later-date original-source searches through November 11. No later site-specific completion, operation, closure or cancellation was found. The November 9 corporate leadership statement does not refresh either facility status. The May 14 expansion report remains historical context; completion is not inferred.",
+      "scoped_project_details": {
+        "numbered_address": "390 NE Alices Road, Waukee, IA 50263",
+        "scope": "One existing operating commercial host, not a second site for the pending expansion.",
+        "capacity": "No power, floor-area, rack, occupancy or commissioned-capacity metric is selected."
+      }
+    },
+    {
+      "project_stable_key": "curated:us-signal-hillsboro-or02:existing-built-facility",
+      "physical_site_stable_key": "curated:us-signal-hillsboro-or02",
+      "site_name": "US Signal OR02 Hillsboro, 3295 NE 83rd Avenue",
+      "name": "US Signal OR02 Hillsboro, 3295 NE 83rd Avenue — existing built facility",
+      "country": "United States",
+      "country_iso_a2": "US",
+      "status": {
+        "value": "completed",
+        "as_of": "2026-10-27",
+        "source_id": "us147-hillsboro-oct27",
+        "summary": "The October 27 original release identifies an established, existing data-center building with data hall space and on-site power today. These physical descriptions support the completed existing building, independently of the acquisition event. Customer operation, network integration, OpenCloud deployment and future expansion are not established."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -122.894189,
+            45.5436036
+          ]
+        },
+        "source_id": "commercial147-hillsboro-state-address",
+        "scope": "campus_locator",
+        "scope_class": "official_exact_address_geocoder_point",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "oregon_state_pointaddress_epsg2992_to4269_then_explicit_epsg1188_to4326",
+        "precision": "Official Oregon state geocoder point matched to the exact 3295 Northeast 83rd Avenue, Hillsboro OR 97124 address, score 100 and PointAddress type. Native EPSG:2992 Oregon Lambert feet were inversely projected to NAD83 and transformed to WGS 84 using the Oregon-applicable EPSG:1188 zero-translation approximation, with 4 m nominal datum-operation accuracy. This is an address locator, not a surveyed building or parcel boundary. Coordinates rounded to seven decimals.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The state service provides no per-record position accuracy, building offset, datum realization or epoch; the 4 m datum-operation estimate is not total locator accuracy.",
+        "identity_source_ids": [
+          "us147-hillsboro-address"
+        ],
+        "identity_review": "All four baseline layers were scanned: 1,275 sites, 1,384 projects, 231 identity records and 231 identity decisions, and 231 source records. US Signal, OneNeck, Vital Support, TDS Hosted, TEAM Technologies and the exact street-address aliases return no match. The nearest existing host is NTT Hillsboro Data Center Campus, 4050 NE Evergreen Road, Hillsboro, Oregon, 3,428.94 metres away by anchor-to-anchor haversine distance; none lies within 2 km. One existing built facility; no current customer operation, newly commissioned cloud service or separate future expansion is asserted."
+      },
+      "context_source_ids": [
+        "us147-hillsboro-address"
+      ],
+      "roles": [
+        {
+          "party": "US Signal",
+          "role": "owner",
+          "relationship_scope": "current",
+          "source_id": "us147-hillsboro-oct27"
+        }
+      ],
+      "distinctness_review": "All four baseline layers were scanned: 1,275 sites, 1,384 projects, 231 identity records and 231 identity decisions, and 231 source records. US Signal, OneNeck, Vital Support, TDS Hosted, TEAM Technologies and the exact street-address aliases return no match. The nearest existing host is NTT Hillsboro Data Center Campus, 4050 NE Evergreen Road, Hillsboro, Oregon, 3,428.94 metres away by anchor-to-anchor haversine distance; none lies within 2 km. One existing built facility; no current customer operation, newly commissioned cloud service or separate future expansion is asserted.",
+      "successor_review": "Original operator press-release index reviewed through its November 9 leadership release, together with the current exact facility page and bounded later-date original-source searches through November 11. No later site-specific completion, operation, closure or cancellation was found. The November 9 corporate leadership statement does not refresh either facility status. The undated facility page still describes customer availability as pending plans.",
+      "scoped_project_details": {
+        "numbered_address": "3295 NE 83rd Avenue, Hillsboro, OR 97124",
+        "scope": "One existing built facility; no current customer operation, newly commissioned cloud service or separate future expansion is asserted.",
+        "capacity": "No power, floor-area, rack, occupancy or commissioned-capacity metric is selected."
+      }
+    },
+    {
+      "project_stable_key": "curated:digital-realty-rome-campus:rom1-first-phase-construction",
+      "physical_site_stable_key": "curated:digital-realty-rome-campus",
+      "site_name": "Digital Realty Rome Campus ROM1, Via delle Testuggini 98–100",
+      "name": "Digital Realty ROM1 — first-phase construction",
+      "country": "Italy",
+      "country_iso_a2": "IT",
+      "status": {
+        "value": "under_construction",
+        "as_of": "2026-10-19",
+        "source_id": "europe147-rom1-techbau-oct19",
+        "summary": "The October 19 original contractor release explicitly includes Digital Realty ROM1 among current construction projects. The dated narrative includes post-June developments, so the status is not assigned to the June 30 financial year end. This records first-phase physical construction, without asserting completion, commercial operation or commissioned capacity."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            12.48923,
+            41.776044
+          ]
+        },
+        "source_id": "europe147-rom1-operator-locator",
+        "identity_source_ids": [
+          "europe147-rom1-operator-locator",
+          "europe147-rom1-techbau-project"
+        ],
+        "scope": "campus_locator",
+        "scope_class": "operator_published_facility_point",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "operator_native_rom1_cms_facility_node_101937_latitude_longitude",
+        "precision": "The original Digital Realty facility node 101937 directly joins ROM1, Via delle Testuggini 98–100, latitude 41.776044 and longitude 12.489230. These six-decimal native values are retained without transformation and interpreted as geographic WGS 84 for GeoJSON. They locate the named facility/campus, not a surveyed building centre, parcel, entrance or data hall. The separate metro marker is excluded.",
+        "identity_review": "The four baseline identity layers were scanned: 1,275 sites, 1,384 projects, all 231 records and 231 decisions in identity-mapping.json, and 231 original source records. ROM1, Via delle Testuggini, Trigoria and Rome/Digital Realty aliases return no matching host. The nearest existing Atlas site is Equinix GN1 in Genoa, 411.408 km away; none is within 2 km. The operator joins the exact ROM1 node, street address and facility point. The contractor joins ROM1 to redevelopment of the former ACEA office complex on the same street in Municipio IX. One physical campus host and its ROM1 first-phase construction project are added. Future campus buildings, modules, network nodes and equipment are not separate hosts.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The operator gives no datum realization, epoch, survey method, accuracy estimate or offset to the first-phase works; total horizontal uncertainty is unknown."
+      },
+      "context_source_ids": [
+        "europe147-rom1-operator-locator",
+        "europe147-rom1-techbau-project",
+        "europe147-rom1-operator-oct12"
+      ],
+      "roles": [
+        {
+          "party": "Digital Realty",
+          "role": "operator",
+          "relationship_scope": "intended",
+          "source_id": "europe147-rom1-operator-oct12"
+        }
+      ],
+      "distinctness_review": "The four baseline identity layers were scanned: 1,275 sites, 1,384 projects, all 231 records and 231 decisions in identity-mapping.json, and 231 original source records. ROM1, Via delle Testuggini, Trigoria and Rome/Digital Realty aliases return no matching host. The nearest existing Atlas site is Equinix GN1 in Genoa, 411.408 km away; none is within 2 km. The operator joins the exact ROM1 node, street address and facility point. The contractor joins ROM1 to redevelopment of the former ACEA office complex on the same street in Municipio IX. One physical campus host and its ROM1 first-phase construction project are added. Future campus buildings, modules, network nodes and equipment are not separate hosts.",
+      "successor_review": "Reviewed through November 11, 2026. The current original ROM1 and contractor project pages retain first-phase scope; the contractor news index lists later October 26 and October 30 items without a ROM1 physical-status update. Targeted original-source and later-report searches found no subsequent completion, opening, pause or cancellation report. The October 12 operator update describes operation as future. October 19 remains the supported observation date; current retrieval is not a renewed status.",
+      "scoped_project_details": {
+        "numbered_address": "Via delle Testuggini 98–100, Rome, Italy",
+        "former_use": "Former ACEA office complex, Municipio IX, Rome.",
+        "scope": "One Rome campus host with a ROM1 first-phase construction record. Future campus phases and technical modules are not separate sites.",
+        "construction_contractor": {
+          "party": "Techbau S.p.A.",
+          "source_id": "europe147-rom1-techbau-project",
+          "scope": "Engineering, Procurement and Construction for ROM1."
+        },
+        "capacity": "No measured load, power capacity, rack count or floor-area metric is selected. Reported design figures and future targets are not treated as commissioned capacity."
+      }
+    }
+  ],
+  "status_updates": [],
+  "context_updates": []
+}
