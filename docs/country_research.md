@@ -1295,7 +1295,9 @@ The September 30 filing also identifies occupied facilities in Santa Clara and
 Markham. NEXTDC's November roster confirms operations at NE1 in Newman and at
 the existing KL1 campus in Kuala Lumpur. Australia's national address register
 supplies property or frontage points for Newman, M2 and M3 in Melbourne, and S3
-in Sydney.
+in Sydney. NEXTDC lists all three metropolitan facilities as operating alongside
+continuing fit-out work. At M3, its November 11 construction update identifies
+Stages 1 and 2 as operating.
 
 ## 25 October 2026
 
