@@ -164,6 +164,21 @@ def _suitable_report(
     return True
 
 
+def _narrative_source_projects(update: Mapping[str, Any]) -> dict[str, set[str]]:
+    """Which projects use each release-local source projection for narrative prose?"""
+    projects: dict[str, set[str]] = {}
+    for group in ("additions", "status_updates", "status_corrections", "context_updates"):
+        for change in update.get(group, []) or []:
+            project_key = change.get("project_stable_key")
+            if not project_key:
+                continue
+            for source_id in (*change.get("source_ids", []), *change.get("context_source_ids", []),
+                              change.get("status", {}).get("source_id")):
+                if source_id:
+                    projects.setdefault(source_id, set()).add(project_key)
+    return projects
+
+
 def load_project_narratives(
     root: Path, versions: Sequence[Any], current: Any, atlas: Any,
     read_verified_json: Callable[[Any, str], Any],
@@ -176,7 +191,7 @@ def load_project_narratives(
     does. The newest matching status summary wins; stale status summaries cannot
     replace the current status. A single-source context update supplies reviewed
     prose for that project and evidence; its newest summary supersedes generic
-    document prose. All report wording and its caveats stay intact.
+    document prose. Multi-source updates retain each source's own summary.
     """
     root = root.resolve()
     projects = {row["project_stable_key"]: row for row in atlas.projects if row.get("project_stable_key")}
@@ -189,11 +204,12 @@ def load_project_narratives(
         return result.setdefault(project["project_id"], {"status": None, "context": []})
 
     def report(project: Mapping[str, Any], evidence: Mapping[str, Any], text: Any,
-               source: Mapping[str, Any] | None = None) -> None:
+               source: Mapping[str, Any] | None = None, *, reviewed_shared_status: bool = False) -> None:
         scoped = scoped_context.get((project["project_id"], evidence["evidence_id"]))
         text = scoped or _text(text)
         if (not text or not _associated(evidence, project)
-                or not _suitable_report(evidence, project, source, reviewed_shared_status=bool(scoped))):
+                or not _suitable_report(evidence, project, source,
+                                        reviewed_shared_status=bool(scoped) or reviewed_shared_status)):
             return
         narrative = item(project)
         entry = {"text": text, "evidence_id": evidence["evidence_id"]}
@@ -214,6 +230,16 @@ def load_project_narratives(
             return evidence
         return None
 
+    def reviewed_shared_status(change: Mapping[str, Any], project: Mapping[str, Any],
+                               evidence: Mapping[str, Any]) -> bool:
+        return (
+            project.get("status_as_of") is not None
+            and change.get("preserve_status_as_of") == project["status_as_of"]
+            and f"context:{change.get('context_kind')}" in evidence.get("roles", [])
+            and any(status_by_project.get(pid) == evidence["evidence_id"]
+                    for pid in evidence["project_ids"] if pid != project["project_id"])
+        )
+
     lineage = []
     for version in _lineage(root, versions, current):
         files = version.manifest.get("files", {})
@@ -233,14 +259,8 @@ def load_project_narratives(
                 continue
             # Evidence roles span projects. A report on a different building can
             # also have a reviewed excerpt tied to this project's current observation.
-            reviewed_shared_status = (
-                project.get("status_as_of") is not None
-                and change.get("preserve_status_as_of") == project["status_as_of"]
-                and f"context:{change.get('context_kind')}" in evidence.get("roles", [])
-                and any(status_by_project.get(pid) == evidence["evidence_id"]
-                        for pid in evidence["project_ids"] if pid != project["project_id"])
-            )
-            if _suitable_report(evidence, project, source, reviewed_shared_status=reviewed_shared_status):
+            if _suitable_report(evidence, project, source,
+                                reviewed_shared_status=reviewed_shared_status(change, project, evidence)):
                 # Lineage is newest first. A shared document may have different
                 # reviewed excerpts for each project, so neither source ID nor
                 # document hash alone is a sufficient prose key.
@@ -271,15 +291,21 @@ def load_project_narratives(
                 evidence = modern_evidence(source, project)
                 if evidence:
                     report(project, evidence, source.get("summary"), source)
+        source_projects = _narrative_source_projects(update)
         for change in update.get("context_updates", []) or []:
             project = projects.get(change.get("project_stable_key"))
             if not project:
                 continue
-            for source_id in change.get("source_ids", []):
+            source_ids = change.get("source_ids", [])
+            for source_id in source_ids:
                 source = sources.get(source_id)
                 evidence = modern_evidence(source, project)
                 if evidence:
-                    report(project, evidence, source.get("summary"), source)
+                    # A portfolio may have a separate excerpt for each facility.
+                    # A projection used for several projects cannot identify whose prose it contains.
+                    dedicated = (len(source_ids) > 1 and source_projects[source_id] == {project["project_stable_key"]}
+                                 and reviewed_shared_status(change, project, evidence))
+                    report(project, evidence, source.get("summary"), source, reviewed_shared_status=dedicated)
         pinned_specs.extend(provenance.get("source_inputs", []))
         pinned_specs.extend(spec for spec in version.manifest.get("portable_source_inputs", [])
                             if isinstance(spec.get("path"), str)

@@ -230,6 +230,53 @@ class ProjectNarrativeTests(unittest.TestCase):
             {"text": second["summary"], "evidence_id": sid},
         ])
 
+    def test_multisource_updates_keep_distinct_excerpts_of_a_shared_status_document(self):
+        general, eid = self.add_source("portfolio", projects=["p", "q", "r"],
+                                       roles=["physical_status", "context:identity"],
+                                       text="The portfolio lists facilities in several markets.")
+        current, cid = self.add_source("current", roles=["physical_status"])
+        self.modern(current, cid, context=["portfolio"])
+        self.atlas.projects.extend([
+            {**self.project, "project_id": "q", "project_stable_key": "curated:two"},
+            {**self.project, "project_id": "r", "project_stable_key": "curated:three", "status_evidence_id": eid},
+        ])
+        address, aid = self.add_source("address", projects=["p", "q"], text="The two street addresses are listed.")
+        first = {**general, "id": "leased", "summary": "The operator leases space in Tower 2."}
+        second = {**general, "id": "owned", "summary": "The operator owns the completed building on this campus."}
+        self.provenance["source_projections"].update({s["id"]: s for s in (general, address, first, second)})
+        update = {"project_stable_key": "curated:one", "context_kind": "identity",
+                  "preserve_status_as_of": self.project["status_as_of"], "source_ids": ["address", "leased"],
+                  "summary": "A joint finding drawn from both sources."}
+        other = {**update, "project_stable_key": "curated:two", "source_ids": ["address", "owned"]}
+        self.provenance["update"]["context_updates"] = [update, other]
+        address_note = {"text": address["summary"], "evidence_id": aid}
+
+        def check(first_context, second_context):
+            narratives = self.load()
+            self.assertEqual(narratives["p"]["status"]["evidence_id"], cid)
+            for project_id, extra in (("p", first_context), ("q", second_context)):
+                expected = [address_note]
+                if extra:
+                    expected.append({"text": extra, "evidence_id": eid})
+                self.assertEqual(narratives[project_id]["context"], expected)
+
+        check(first["summary"], second["summary"])
+        update["preserve_status_as_of"] = "2026-09-01"
+        check(None, second["summary"])
+        update["preserve_status_as_of"] = self.project["status_as_of"]
+        update["source_ids"] = ["address", "owned"]
+        check(None, None)
+        update["source_ids"] = ["address", "leased"]
+        evidence = self.atlas.evidence_by_id[eid]
+        evidence["kind"] = "government_cadastral_api"
+        check(None, None)
+        evidence["kind"] = general["kind"]
+        evidence["roles"] = ["physical_status", "context:power_readiness"]
+        check(None, None)
+        evidence["roles"] = ["physical_status", "context:identity"]
+        self.atlas.projects[-1]["status_evidence_id"] = "superseded"
+        check(None, None)
+
     def test_curated_exact_id_prevents_shared_page_excerpt_cross_wiring(self):
         one, oid = self.add_source("one", curated=True, text="Only campus One is operational.",
                                    url="https://example.com/campuses", digest="a" * 64,
