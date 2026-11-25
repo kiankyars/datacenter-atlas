@@ -63,7 +63,7 @@ them directly from their providers, under the providers' terms; the website's
 ## OpenStreetMap-derived geometries: ODbL 1.0
 
 Some locators are derived from OpenStreetMap; their geometry evidence row has `license` set to
-`ODbL-1.0` (<!-- atlas:osm-geometry-count -->89 of the 1518 project geometries, on 79 sites, in the 2026-11-25 data snapshot<!-- /atlas:osm-geometry-count -->). These
+`ODbL-1.0` (<!-- atlas:osm-geometry-count -->89 of the 1529 project geometries, on 79 sites, in the 2026-11-25 data snapshot<!-- /atlas:osm-geometry-count -->). These
 geometries are © OpenStreetMap contributors and are available under the ODbL 1.0, not CC BY 4.0.
 Credit "© OpenStreetMap contributors" and link to <https://www.openstreetmap.org/copyright>. If you
 publicly use a derivative database of these geometries, the ODbL's share-alike terms apply to that
@@ -90,6 +90,8 @@ Required disclaimer:
 
 Additional terms reminder:
 Comply with any additional Terms of Use set forth by the City agency or department providing data used by the software application, or other secondary or derivative application, including, without limitation, requirements to include additional citations or disclaimers at the site where the application can be accessed or downloaded.
+
+Contains information licensed under the Open Government Licence – City of Calgary. [Licence terms](https://data.calgary.ca/stories/s/u45n-7awa/)
 
 Other source-specific notices, such as the e-Stat processed-boundary notice and the Open
 Government Licence – Alberta statement, appear in each dataset's `ATTRIBUTION.txt` and on the
