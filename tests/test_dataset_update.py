@@ -2298,5 +2298,79 @@ class PowerObservationTests(unittest.TestCase):
             self.payloads()
 
 
+class EfficiencyObservationTests(unittest.TestCase):
+    setUp = DatasetUpdateTests.setUp
+    write = DatasetUpdateTests.write
+    payloads = DatasetUpdateTests.payloads
+
+    def quarterly_observation(self):
+        self.spec["format"] = "datacenter-atlas-update-input-v2"
+        source = {**self.sources["sources"][0], "id": "report", "source_url": "https://example.org/efficiency",
+                  "published_at": None, "source_reporting_period": "2026-Q2",
+                  "date_semantics": "Q2 is the measured April–June reporting period."}
+        self.sources["sources"].append(source)
+        action = {
+            "project_stable_key": self.spec["additions"][0]["project_stable_key"], "source_id": "report",
+            "metric": "pue", "stage": "measured", "as_of_date": "2026-06-30", "target_date": None,
+            "low": 1.09, "base": 1.09, "high": 1.09, "method": "reported", "confidence": 1,
+            "unit": "ratio", "notes": "Mean PUE for the campus in the second quarter.",
+        }
+        self.spec["efficiency_observations"] = [action]
+        return action, source
+
+    def test_efficiency_replays_with_its_own_evidence_and_reporting_date(self):
+        action, _ = self.quarterly_observation()
+        self.write()
+        out = self.root / "out"
+        self.assertEqual(build_update(self.input, out, root=self.root), validate_update(self.input, out, root=self.root))
+        with (out / "projects.csv").open() as f:
+            row = next(r for r in csv.DictReader(f) if r["project_stable_key"] == action["project_stable_key"])
+        obs, = json.loads(row["efficiency_observations_json"])
+        with (out / "evidence.csv").open() as f:
+            source = next(r for r in csv.DictReader(f) if r["evidence_id"] == obs["evidence_id"])
+        self.assertEqual(obs, {**{k: v for k, v in action.items() if k not in {"source_id", "project_stable_key"}},
+                               "evidence_id": source["evidence_id"]})
+        self.assertEqual(json.loads(source["roles_json"]), ["typed_metric:pue"])
+        self.assertEqual(json.loads(source["project_ids_json"]), [row["project_id"]])
+        self.assertEqual(row["efficiency_unknown_reason"], "")
+        self.assertEqual(row["status_as_of"], self.spec["additions"][0]["status"]["as_of"])
+        self.assertEqual(json.loads(row["power_observations_json"]), [])
+        self.spec["efficiency_observations"].append(action.copy())
+        with self.assertRaisesRegex(UpdateError, "duplicate or conflicting"):
+            self.payloads()
+
+    def test_annual_average_uses_calendar_year_end(self):
+        action, source = self.quarterly_observation()
+        source.update(source_reporting_period="2025", date_semantics="Calendar year average reported for 2025.")
+        action["as_of_date"] = "2025-12-31"
+        self.payloads()
+        action["as_of_date"] = "2025-09-30"
+        with self.assertRaisesRegex(UpdateError, "end of its measured reporting period"):
+            self.payloads()
+
+    def test_quarterly_efficiency_requires_matching_period_stage_and_units(self):
+        action, source = self.quarterly_observation()
+        for changes, error in [
+            ({"as_of_date": "2026-06-29"}, "end of its measured reporting period"),
+            ({"as_of_date": "2026-03-31"}, "end of its measured reporting period"),
+            ({"stage": "design"}, "end of its measured reporting period"),
+            ({"target_date": "2026-09-30"}, "end of its measured reporting period"),
+            ({"unit": "MW"}, "metric/unit"), ({"metric": "critical_it_mw", "unit": "MW"}, "metric/unit"),
+            ({"low": 0.95}, "PUE must be at least one"),
+        ]:
+            with self.subTest(changes=changes), self.assertRaisesRegex(UpdateError, error):
+                self.spec["efficiency_observations"] = [{**action, **changes}]
+                self.payloads()
+        self.spec["efficiency_observations"] = [action]
+        del source["source_reporting_period"]
+        with self.assertRaisesRegex(UpdateError, "explicit observation date"):
+            self.payloads()
+        source["published_at"] = "2026-07-07"
+        self.payloads()
+        self.spec["format"] = "datacenter-atlas-update-input-v1"
+        with self.assertRaisesRegex(UpdateError, "v2 action list"):
+            self.payloads()
+
+
 if __name__ == "__main__":
     unittest.main()

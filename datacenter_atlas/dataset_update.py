@@ -21,7 +21,9 @@ from uuid import NAMESPACE_URL, uuid5
 
 from .models import LifecycleStatus
 from .public_site import CDLA_LICENSE_FILE, CDLA_PERMISSIVE, validate_dataset
-from .verified_construction_core import POWER_METRICS, VerifiedConstructionCoreError, _validate_typed_observation
+from .verified_construction_core import (
+    EFFICIENCY_METRICS, POWER_METRICS, VerifiedConstructionCoreError, _validate_typed_observation,
+)
 
 
 class UpdateError(ValueError):
@@ -212,29 +214,39 @@ def _status_metadata(value):
     return "authoritative_physical_status_update", "physical_status"
 
 
-def _power_observation(item, source, details):
-    _require("evidence_id" not in item, "power observation must cite source_id")
+def _metric_observation(item, source, details, category, allowed_metrics):
+    _require("evidence_id" not in item, f"{category} observation must cite source_id")
     observation = {key: value for key, value in item.items() if key not in {"project_stable_key", "source_id"}}
     observation["evidence_id"] = source["evidence_id"]
     try:
-        _validate_typed_observation(observation, POWER_METRICS)
+        _validate_typed_observation(observation, allowed_metrics)
     except (VerifiedConstructionCoreError, TypeError) as exc:
-        raise UpdateError(f"invalid power observation: {exc}") from exc
-    _text(observation["notes"], "power observation scope")
+        raise UpdateError(f"invalid {category} observation: {exc}") from exc
+    if observation["metric"] == "pue":
+        _require(observation["low"] >= 1, "PUE must be at least one")
+    _text(observation["notes"], f"{category} observation scope")
     _require(observation["stage"] != "unknown" and observation["method"] != "unknown",
-             "power observation needs a known stage and method")
+             f"{category} observation needs a known stage and method")
     observed = _date(observation["as_of_date"])
     if observation["target_date"] is not None:
         _date(observation["target_date"])
     if source.get("published_at"):
-        _require(observed <= _date(source["published_at"]), "power observation postdates its source")
-    else:
+        _require(observed <= _date(source["published_at"]), f"{category} observation postdates its source")
+    if category == "efficiency" and "source_reporting_period" in details:
+        period = details["source_reporting_period"]
+        quarter = {(3, 31): 1, (6, 30): 2, (9, 30): 3, (12, 31): 4}.get((observed.month, observed.day))
+        matches_period = ((quarter is not None and period == f"{observed.year}-Q{quarter}")
+                          or (quarter == 4 and period == str(observed.year)))
+        _require(matches_period and observation["stage"] == "measured" and observation["target_date"] is None,
+                 "efficiency observation must use the end of its measured reporting period")
+        _text(details.get("date_semantics"), "efficiency reporting period semantics")
+    elif not source.get("published_at"):
         _require(details.get("source_observation_date") == observation["as_of_date"]
                  and details.get("source_observation_date_precision") == "day",
-                 "undated power source needs an explicit observation date")
-        _text(details.get("date_semantics"), "power source observation date semantics")
+                 f"undated {category} source needs an explicit observation date")
+        _text(details.get("date_semantics"), f"{category} source observation date semantics")
     retrieved = datetime.fromisoformat(source["retrieved_at"].replace("Z", "+00:00")).date()
-    _require(observed <= retrieved, "power observation postdates its capture")
+    _require(observed <= retrieved, f"{category} observation postdates its capture")
     return observation
 
 
@@ -812,25 +824,31 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
                                   "previous_as_of_date": original.get("as_of_date"), "as_of_date": item["as_of_date"],
                                   "previous_evidence_id": original.get("evidence_id"), "evidence_id": source["evidence_id"]})
 
-    added_power = []
-    power_actions = spec.get("power_observations", [])
-    _require(isinstance(power_actions, list) and (not power_actions or is_v2), "power observations require a v2 action list")
-    for item in power_actions:
-        _require(isinstance(item, dict), "power observation must be an action object")
-        key = _text(item.get("project_stable_key"), "power observation project")
-        _require(key in by_key and key not in withdrawal_keys, "power observation needs a non-withdrawn project")
-        source_id = _text(item.get("source_id"), "power observation source")
-        _require(source_id in sources, "power observation needs a reviewed source")
-        row = by_key[key]
-        observation = _power_observation(item, sources[source_id], source_details[source_id])
-        observations = json.loads(row["power_observations_json"])
-        identity = ("metric", "stage", "as_of_date", "target_date")
-        _require(not any(all(old.get(k) == observation[k] for k in identity) for old in observations),
-                 "duplicate or conflicting power observation for the same metric, stage and dates")
-        associate(source_id, row["project_id"], "typed_metric:" + observation["metric"])
-        row["power_observations_json"] = _json([*observations, observation])
-        row["power_unknown_reason"] = ""
-        added_power.append({"project_stable_key": key, **{k: observation[k] for k in (*identity, "evidence_id")}})
+    added_metrics = {}
+    identity = ("metric", "stage", "as_of_date", "target_date")
+    for category, allowed_metrics in (("power", POWER_METRICS), ("efficiency", EFFICIENCY_METRICS)):
+        action_key = category + "_observations"
+        metric_actions = spec.get(action_key, [])
+        _require(isinstance(metric_actions, list) and (not metric_actions or is_v2),
+                 f"{category} observations require a v2 action list")
+        for item in metric_actions:
+            _require(isinstance(item, dict), f"{category} observation must be an action object")
+            key = _text(item.get("project_stable_key"), f"{category} observation project")
+            _require(key in by_key and key not in withdrawal_keys, f"{category} observation needs a non-withdrawn project")
+            source_id = _text(item.get("source_id"), f"{category} observation source")
+            _require(source_id in sources, f"{category} observation needs a reviewed source")
+            observation = _metric_observation(item, sources[source_id], source_details[source_id], category, allowed_metrics)
+            row = by_key[key]
+            field = action_key + "_json"
+            observations = json.loads(row[field])
+            _require(not any(all(old.get(k) == observation[k] for k in identity) for old in observations),
+                     f"duplicate or conflicting {category} observation for the same metric, stage and dates")
+            associate(source_id, row["project_id"], "typed_metric:" + observation["metric"])
+            row[field] = _json([*observations, observation])
+            row[category + "_unknown_reason"] = ""
+            added_metrics.setdefault("added_" + action_key, []).append({
+                "project_stable_key": key, **{k: observation[k] for k in (*identity, "evidence_id")},
+            })
 
     withdrawn = []
     duplicate_replacements = {}
@@ -940,8 +958,7 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
     if corrected_metrics:
         report["corrected_metric_observations"] = sorted(
             corrected_metrics, key=lambda entry: (entry["project_stable_key"], entry["field"], entry["observation_index"]))
-    if added_power:
-        report["added_power_observations"] = added_power
+    report.update(added_metrics)
     if has_consolidation:
         report.update(source_record_resolutions=inherited_resolutions,
                       consolidation_policy=inherited_report.get("consolidation_policy", ""),
