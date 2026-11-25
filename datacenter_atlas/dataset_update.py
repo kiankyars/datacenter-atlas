@@ -406,6 +406,28 @@ def _feature(site):
     return {"type": "Feature", "id": site["site_id"], "geometry": json.loads(site["geometry_json"]), "properties": properties}
 
 
+def _check_duplicate_claims(row, keeper, evidence, review_evidence_ids):
+    # Keep all observations and source links when removing a second record of the same phase.
+    for field, value in row.items():
+        if field in {"project_id", "project_stable_key", "name"}:
+            continue
+        if field in {"owner", "operator", "users", "tenants", "customers"} and not value:
+            continue
+        if field == "role_claims_json":
+            retained_claims = json.loads(keeper[field])
+            _require(all(claim in retained_claims for claim in json.loads(value)), "duplicate has a distinct role claim")
+        else:
+            _require(value == keeper[field], f"duplicate has a distinct project field: {field}")
+    retained_evidence = set()
+    for source in evidence:
+        linked = json.loads(source["project_ids_json"])
+        if keeper["project_id"] in linked:
+            retained_evidence.add(source["evidence_id"])
+        else:
+            _require(row["project_id"] not in linked, "duplicate has evidence absent from retained project")
+    _require(review_evidence_ids <= retained_evidence, "duplicate review must cite evidence linked to the retained project")
+
+
 def update_payloads(input_path: Path, *, root: Path = ROOT):
     """Validate the update and return all output bytes, without writing anything."""
     input_bytes = input_path.read_bytes()
@@ -804,6 +826,8 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
         added_power.append({"project_stable_key": key, **{k: observation[k] for k in (*identity, "evidence_id")}})
 
     withdrawn = []
+    duplicate_replacements = {}
+    deduplicated_site_ids = set()
     for item in spec.get("withdrawals", []):
         key = item["project_stable_key"]
         _require(key in by_key and key not in touched, "unknown or repeated withdrawal")
@@ -812,23 +836,42 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
         _require(item.get("replaces_status_evidence_id") == row["status_evidence_id"], "withdrawal must name the removed status evidence")
         _text(item.get("reason"), "withdrawal reason")
         _require(item.get("source_ids") and all(sid in sources for sid in item["source_ids"]), "withdrawal needs reviewed sources")
-        _require(sum(project["site_id"] == row["site_id"] for project in projects) == 1, "multi-project campus withdrawals require a separate review")
+        if "duplicate_of" in item:
+            keeper_key = _text(item["duplicate_of"], "retained project key")
+            keeper = by_key.get(keeper_key)
+            _require(is_v2 and keeper is not None and keeper_key not in withdrawal_keys
+                     and keeper["project_id"] in baseline_projects and row["project_id"] in baseline_projects
+                     and row["site_id"] == keeper["site_id"], "duplicate needs a surviving baseline project at the same site")
+            _require(not any(res.get("project_id") == row["project_id"] or row["project_id"] in res.get("related_project_ids", [])
+                             for res in inherited_resolutions),
+                     "cannot remove a project used by an imported source mapping")
+            _check_duplicate_claims(row, keeper, evidence, {sources[sid]["evidence_id"] for sid in item["source_ids"]})
+            duplicate_replacements[row["project_id"]] = keeper["project_id"]
+            deduplicated_site_ids.add(row["site_id"])
+        else:
+            _require(sum(project["site_id"] == row["site_id"] for project in projects) == 1,
+                     "multi-project campus withdrawals require a separate review")
+            sites[:] = [site for site in sites if site["site_id"] != row["site_id"]]
         projects.remove(row)
-        sites[:] = [site for site in sites if site["site_id"] != row["site_id"]]
         for source in evidence:
             source["project_ids_json"] = _json([pid for pid in json.loads(source["project_ids_json"]) if pid != row["project_id"]])
         # Unmapped program and unresolved inventory sources deliberately have no
         # project association. Keep them, and keep withdrawn imported sources,
         # so their preserved source objects retain complete resolvable provenance.
-        evidence[:] = [source for source in evidence if json.loads(source["project_ids_json"]) or source.get("source_record_id")]
+        if "duplicate_of" not in item:
+            evidence[:] = [source for source in evidence if json.loads(source["project_ids_json"]) or source.get("source_record_id")]
         withdrawn.append(key)
 
     for row in projects:
         row["status_age_days_at_review"] = str((updated - _date(row["status_as_of"])).days)
         _require(int(row["status_age_days_at_review"]) >= 0, "base has observations after update date")
+    expanded_or_new_campuses = expanded_site_keys | new_campus_keys
     for site in sites:
         members = [row for row in projects if row["site_id"] == site["site_id"]]
-        if site["physical_site_stable_key"] in expanded_site_keys or site["physical_site_stable_key"] in new_campus_keys:
+        if site["site_id"] in deduplicated_site_ids:
+            site["project_ids_json"] = _json(sorted(row["project_id"] for row in members))
+            site["project_stable_keys_json"] = _json(sorted(row["project_stable_key"] for row in members))
+        if site["physical_site_stable_key"] in expanded_or_new_campuses or site["site_id"] in deduplicated_site_ids:
             site["project_count"] = str(len(members))
             site["independent_imagery_verification"] = str(all(row["independent_imagery_verification"] == "true" for row in members)).lower()
             postures = {row["verification_posture"] for row in members}
@@ -878,6 +921,8 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
         "base_dataset": spec["base_dataset"],
         "observation_policy": "Last documented observations; records are not a claim that all projects are still under construction on the update date.",
     }
+    if duplicate_replacements:
+        report["duplicate_project_replacements"] = duplicate_replacements
     if expanded_site_keys:
         report["expanded_sites"] = sorted(expanded_site_keys)
         report["added_projects"] = [item["project_stable_key"] for item in spec.get("additions", [])]

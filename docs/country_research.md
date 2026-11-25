@@ -40,6 +40,11 @@ selected incorrectly, correct the existing record using the dated source stateme
 affected metric, `metric_date_corrections` must match the complete prior observation and change
 only its date and evidence reference; its value, stage and scope remain unchanged.
 
+For two records of the same phase on one campus, a v2 withdrawal can name the surviving
+project by stable key in `duplicate_of`. Cite evidence already linked to the survivor and check
+that it retains every observation and source on the duplicate. The selection report records
+the retired and surviving project IDs.
+
 In a v2 update, add facility-level power figures to `power_observations`. Give each entry its
 `project_stable_key`, reviewed `source_id`, and the typed observation fields from
 `power_observations_json`, omitting `evidence_id`. Record the source's observation date, the

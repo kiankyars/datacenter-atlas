@@ -719,6 +719,66 @@ class NewCampusAdmissionTests(unittest.TestCase):
         second["locator"]["identity_source_ids"].reverse()
         self.spec["additions"].append(second)
 
+    def prepare_duplicate_review(self):
+        first, second = self.spec["additions"]
+        self.write()
+        out = self.root / "campus"
+        manifest = build_update(self.input, out, root=self.root)
+        with (out / "projects.csv").open() as stream:
+            rows = {r["project_stable_key"]: r for r in csv.DictReader(stream)}
+        original, repeated = (rows[action["project_stable_key"]] for action in (first, second))
+        self.spec.update(additions=[], base_dataset="campus",
+                         base_manifest_sha256=hashlib.sha256((out / "manifest.json").read_bytes()).hexdigest())
+        self.spec["withdrawals"] = [{
+            "project_stable_key": repeated["project_stable_key"], "duplicate_of": original["project_stable_key"],
+            "replaces_status_evidence_id": repeated["status_evidence_id"], "reason": "Same building and phase.", "source_ids": ["work"],
+        }]
+        return original, repeated, manifest
+
+    def test_withdraw_duplicate_preserves_campus_source_links_and_original_project(self):
+        first, second = self.spec["additions"]
+        second["status"] = copy.deepcopy(first["status"])
+        original, repeated, manifest = self.prepare_duplicate_review()
+        payloads, corrected = self.payloads()
+        projects = list(csv.DictReader(io.StringIO(payloads["projects.csv"].decode())))
+        self.assertIn(original, projects)
+        self.assertNotIn(repeated["project_id"], {r["project_id"] for r in projects})
+        self.assertEqual(corrected["counts"]["projects"], manifest["counts"]["projects"] - 1)
+        self.assertEqual(corrected["counts"]["physical_sites"], manifest["counts"]["physical_sites"])
+        self.assertEqual(corrected["counts"]["evidence"], manifest["counts"]["evidence"])
+        site = next(r for r in csv.DictReader(io.StringIO(payloads["sites.csv"].decode())) if r["site_id"] == original["site_id"])
+        self.assertEqual(site["project_count"], "1")
+        self.assertEqual(json.loads(site["project_ids_json"]), [original["project_id"]])
+        self.assertEqual(json.loads(site["project_stable_keys_json"]), [original["project_stable_key"]])
+        feature = next(f for f in json.loads(payloads["sites.geojson"])["features"] if f["id"] == site["site_id"])
+        self.assertEqual(feature["properties"]["project_count"], 1)
+        self.assertEqual(feature["properties"]["statuses"], [original["last_observed_physical_status"]])
+        self.assertEqual(feature["properties"]["newest_status_as_of"], original["status_as_of"])
+        self.assertEqual(json.loads(payloads["selection-report.json"])["duplicate_project_replacements"],
+                         {repeated["project_id"]: original["project_id"]})
+        for row in csv.DictReader(io.StringIO(payloads["evidence.csv"].decode())):
+            self.assertNotIn(repeated["project_id"], json.loads(row["project_ids_json"]))
+        withdrawal = self.spec["withdrawals"][0]
+        withdrawal["source_ids"] = ["announcement"]
+        with self.assertRaisesRegex(UpdateError, "cite evidence linked to the retained project"):
+            self.payloads()
+        withdrawal.update(duplicate_of=repeated["project_stable_key"], source_ids=["work"])
+        with self.assertRaisesRegex(UpdateError, "surviving baseline project"):
+            self.payloads()
+
+    def test_withdraw_duplicate_rejects_distinct_phase_observations(self):
+        self.prepare_duplicate_review()
+        with self.assertRaisesRegex(UpdateError, "distinct project field"):
+            self.payloads()
+
+    def test_withdraw_duplicate_rejects_unique_evidence(self):
+        first, second = self.spec["additions"]
+        second["status"] = copy.deepcopy(first["status"])
+        second["context_source_ids"] = ["announcement"]
+        self.prepare_duplicate_review()
+        with self.assertRaisesRegex(UpdateError, "evidence absent from retained project"):
+            self.payloads()
+
     def test_members_share_one_site_and_keep_their_own_evidence_and_dates(self):
         payloads, manifest = self.payloads()
         self.spec["additions"].reverse()
