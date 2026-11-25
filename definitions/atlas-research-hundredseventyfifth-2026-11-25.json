@@ -1,0 +1,1354 @@
+{
+  "format": "datacenter-atlas-update-input-v2",
+  "updated_at": "2026-11-25",
+  "output": "verified_construction_core/2026-11-25-research-hundredseventyfifth",
+  "base_dataset": "verified_construction_core/2026-11-25-research-hundredseventyfourth",
+  "base_manifest_sha256": "ac94250d6ef839def5a539296a27017c2ff6a16b2192867b83ec5fcc26554edc",
+  "source_files": [
+    {
+      "path": "sources/research-countries-2026-11-25-hundredseventyfifth-primary-sources.json",
+      "sha256": "154ac43f43cf5248c0a6c90b1998958555367381c44fd90a0d5d2ab2ca6e0b49"
+    }
+  ],
+  "additions": [
+    {
+      "physical_site_stable_key": "curated:lome-data-centre-cite-oua",
+      "project_stable_key": "curated:lome-data-centre-cite-oua:existing-operations",
+      "site_name": "Lomé Data Centre, Cité Oua",
+      "name": "Lomé Data Centre, existing colocation operations",
+      "country": "Togo",
+      "country_iso_a2": "TG",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-11-03",
+        "source_id": "emea175-togo-undp",
+        "summary": "On November 3, UNDP reported that the server it supplied at the Lomé Data Centre was running local AI applications. UNDP says Togo had the equipment from July."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            1.21151643,
+            6.19248591
+          ]
+        },
+        "scope": "campus_locator",
+        "scope_class": "government_named_establishment_point",
+        "method": "Togo_PRISE_national_survey_named_establishment",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "source_id": "emea175-lome-national-survey",
+        "identity_source_ids": [
+          "emea175-lome-colocation",
+          "emea175-lome-operator",
+          "emea175-lome-carrier"
+        ],
+        "precision": "The national survey’s establishment point for Lomé Data Center (LDC), GTA.",
+        "identity_review": "The national survey names the establishment. SIN, UNDP and CSquared independently identify the host. The provider’s network point nearby corroborates its locality.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The source gives the location without a measured offset to the operating data halls."
+      },
+      "roles": [
+        {
+          "party": "Société d’Infrastructures Numériques (SIN)",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "emea175-lome-operator"
+        }
+      ],
+      "context_source_ids": [
+        "emea175-lome-colocation"
+      ],
+      "distinctness_review": "The named physical host is separate from the tenant’s GPU server. Snapshot 174 contained no project or site in Togo.",
+      "successor_review": "The November account describes live workloads at the named host. The owner continues to offer physical rack and cage service."
+    },
+    {
+      "physical_site_stable_key": "curated:atnorth-ice01-hafnarfjordur-steinhella",
+      "project_stable_key": "curated:atnorth-ice01-hafnarfjordur-steinhella:existing-operations",
+      "site_name": "atNorth ICE01, Hafnarfjörður",
+      "name": "atNorth ICE01, Reykjavík metro colocation operations",
+      "country": "Iceland",
+      "country_iso_a2": "IS",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-10-05",
+        "source_id": "emea175-ice01-operation",
+        "summary": "atNorth’s communications director confirmed that the company operated a data centre in Hafnarfjörður on October 5. Its facility directory identifies the site as ICE01."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -21.99346053,
+            64.04948489
+          ]
+        },
+        "scope": "campus_locator",
+        "scope_class": "government_address_point",
+        "method": "HMS_Stadfangaskra_WGS84_ICE01_operator_address",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "source_id": "emea175-ice01-hms",
+        "identity_source_ids": [
+          "emea175-ice01-operator-address",
+          "emea175-ice01-facility"
+        ],
+        "precision": "Registered address point for the Steinhella 10 property.",
+        "identity_review": "The operator names the facility at Steinhella 10 and the national address register resolves this address in Hafnarfjörður.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The source gives the location without a measured offset to the operating data halls."
+      },
+      "roles": [
+        {
+          "party": "atNorth",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "emea175-ice01-facility"
+        }
+      ],
+      "context_source_ids": [],
+      "distinctness_review": "The Hafnarfjörður site at Steinhella 10 is separate from ICE02 in Reykjanesbær and ICE03 in Akureyri.",
+      "successor_review": "The operator continues to list ICE01 with colocation services. October reporting also distinguishes all three locations."
+    },
+    {
+      "physical_site_stable_key": "curated:atnorth-ice02-reykjanesbaer-campus",
+      "project_stable_key": "curated:atnorth-ice02-reykjanesbaer-campus:existing-operations",
+      "site_name": "atNorth ICE02 Reykjanesbær Campus",
+      "name": "atNorth ICE02, existing Keflavík colocation operations",
+      "country": "Iceland",
+      "country_iso_a2": "IS",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-10-05",
+        "source_id": "emea175-ice02-operation",
+        "summary": "atNorth’s communications director identified the operating Reykjanesbær data centre in October. The company identifies it as ICE02."
+      },
+      "locator": {
+        "reuse_from_project_id": "9be0ab88-c727-5dbc-8a12-e2443878b69f",
+        "geometry_evidence_id": "6aa2c3ec-e7cc-59f0-8cd1-4b6e68a51fef",
+        "geometry_evidence_ids": [
+          "6aa2c3ec-e7cc-59f0-8cd1-4b6e68a51fef"
+        ],
+        "geometry_identity_evidence_ids": [],
+        "scope": "campus_locator",
+        "identity_review": "The phase-two development and the operating ICE02 colocation facility share atNorth’s Reykjanesbær campus. The existing geometry represents the named campus."
+      },
+      "roles": [
+        {
+          "party": "atNorth",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "emea175-ice02-facility"
+        }
+      ],
+      "context_source_ids": [],
+      "distinctness_review": "Snapshot 174 records the phase-two construction project at this site. This addition covers the colocation capacity already serving customers at ICE02.",
+      "successor_review": "The operating campus and the earlier phase-two construction observation remain separate; the director’s statement gives no phase-specific commissioning date.",
+      "existing_site_id": "vcc-site-17f7ed745e789e79ad69",
+      "site_identity_review": "Snapshot 174 records the phase-two construction project at this site. This addition covers the colocation capacity already serving customers at ICE02."
+    },
+    {
+      "physical_site_stable_key": "curated:atnorth-ice03-akureyri",
+      "project_stable_key": "curated:atnorth-ice03-akureyri:existing-operations",
+      "site_name": "atNorth ICE03, Akureyri",
+      "name": "atNorth ICE03, Akureyri colocation operations",
+      "country": "Iceland",
+      "country_iso_a2": "IS",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-11-11",
+        "source_id": "emea175-ice03-operation",
+        "summary": "atNorth described work on customers’ servers and network equipment at its Akureyri centre in a November 11 recruitment notice."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -18.1401053,
+            65.6762322
+          ]
+        },
+        "scope": "campus_locator",
+        "scope_class": "named_commercial_estate_centroid",
+        "method": "OSM_ICE03_named_commercial_estate_UTM_28N_centroid",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "source_id": "emea175-ice03-campus-geometry",
+        "identity_source_ids": [
+          "emea175-ice03-facility",
+          "emea175-ice03-planning"
+        ],
+        "precision": "Centroid of the mapped ICE03 commercial property in Akureyri.",
+        "identity_review": "The mapped property and operator facility page have the same site code, operator and city. The Institute’s consultation identifies that site as the location of the proposed expansion.",
+        "horizontal_uncertainty_metres": 150
+      },
+      "roles": [
+        {
+          "party": "atNorth",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "emea175-ice03-facility"
+        }
+      ],
+      "context_source_ids": [
+        "emea175-ice03-planning"
+      ],
+      "distinctness_review": "The ICE03 site in northern Iceland is a separate campus from ICE01 and ICE02. The record covers existing operations.",
+      "successor_review": "The national planning review and subsequent recruitment distinguish the established centre from the proposed extension."
+    },
+    {
+      "physical_site_stable_key": "curated:equinix-am7-amsterdam-kuiperbergweg",
+      "project_stable_key": "curated:equinix-am7-amsterdam-kuiperbergweg:existing-operations",
+      "site_name": "Equinix AM7, Kuiperbergweg, Amsterdam",
+      "name": "Equinix AM7, Amsterdam colocation operations",
+      "country": "Netherlands",
+      "country_iso_a2": "NL",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-09-30",
+        "source_id": "emea175-am7-quarter",
+        "summary": "Equinix listed AM7 among its stabilized Amsterdam data centres at quarter end."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            4.937939218057059,
+            52.30305864172539
+          ]
+        },
+        "scope": "campus_locator",
+        "scope_class": "government_industrial_address_unit_point",
+        "method": "Dutch_BAG_operator_and_carrier_address_point",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "source_id": "emea175-am7-cadastral-locator",
+        "identity_source_ids": [
+          "emea175-am7-operator",
+          "emea175-am7-carrier",
+          "emea175-am7-pand-1",
+          "emea175-am7-pand-2",
+          "emea175-am7-pand-3",
+          "emea175-am11-boundary-comparison"
+        ],
+        "precision": "BAG reference point for the three-building industrial unit at Kuiperbergweg 13.",
+        "identity_review": "Equinix’s AM7 page uses both street numbers. The carrier identifies AM7 at 13, and the operator-published point for 19 and the official point of address unit 13 both fall inside BAG building 0363100012104121. The three buildings of this unit are distinct from the AM11 building.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The source gives the location without a measured offset to the operating data halls."
+      },
+      "roles": [
+        {
+          "party": "Equinix",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "emea175-am7-operator"
+        }
+      ],
+      "context_source_ids": [],
+      "distinctness_review": "The AM11 building at Lemelerbergweg 28 is physically separate from every building linked to the AM7 registered unit. A broad commercial interconnection campus spans both host properties.",
+      "successor_review": "The September portfolio and subsequently captured facility specification both identify AM7. AFIBER lists AM7 under its former Telecity 2 name."
+    },
+    {
+      "physical_site_stable_key": "curated:hut-8-canada-gta1",
+      "project_stable_key": "curated:hut-8-canada-gta1:existing-colocation",
+      "site_name": "Hut 8 Mississauga GTA1, 4701 Tahoe Boulevard",
+      "name": "Hut 8 Mississauga GTA1 — operating colocation facility",
+      "country": "Canada",
+      "country_iso_a2": "CA",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-10-02",
+        "source_id": "am175-gta1-operating",
+        "summary": "Hut 8 identified Mississauga GTA1 as one of its operating Canadian colocation facilities."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -79.60930575,
+            43.63908908
+          ]
+        },
+        "source_id": "am175-gta1-locator",
+        "identity_source_ids": [
+          "am175-gta1-identity",
+          "am175-gta1-report"
+        ],
+        "scope": "reviewed_site_locator",
+        "scope_class": "government_address_point",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "official_civic_address_point",
+        "precision": "Regional civic address point for 4701 Tahoe Boulevard, Mississauga.",
+        "identity_review": "Hut 8 identifies Mississauga GTA1 at 4701 Tahoe Boulevard. The local civic address authority returns the corresponding premises.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The address authority supplies no numerical horizontal uncertainty for this record."
+      },
+      "roles": [
+        {
+          "party": "Hut 8 Canada",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "am175-gta1-operating"
+        }
+      ],
+      "context_source_ids": [
+        "am175-gta1-identity",
+        "am175-gta1-offer"
+      ],
+      "distinctness_review": "The operator distinguishes its five facilities by location. The nearest geometry in snapshot 174 is HIVE Toronto (15 City View Drive), 6.32 km away. The address, operator and alias checks found no equivalent record.",
+      "successor_review": "Hut 8’s September sale of managed cloud and backup services to Opti9 retained the physical colocation facilities. The original operator’s October account and November quarterly filing identify the continuing facilities."
+    },
+    {
+      "physical_site_stable_key": "curated:hut-8-canada-gta2",
+      "project_stable_key": "curated:hut-8-canada-gta2:existing-colocation",
+      "site_name": "Hut 8 Vaughan GTA2, 27 Buttermill Avenue",
+      "name": "Hut 8 Vaughan GTA2 — operating colocation facility",
+      "country": "Canada",
+      "country_iso_a2": "CA",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-10-02",
+        "source_id": "am175-gta2-operating",
+        "summary": "Hut 8 identified Vaughan GTA2 as one of its operating Canadian colocation facilities."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -79.52969879,
+            43.7984584
+          ]
+        },
+        "source_id": "am175-gta2-locator",
+        "identity_source_ids": [
+          "am175-gta2-identity",
+          "am175-gta2-report"
+        ],
+        "scope": "reviewed_site_locator",
+        "scope_class": "government_address_point",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "official_civic_address_point",
+        "precision": "Regional civic address point for 27 Buttermill Avenue, Vaughan.",
+        "identity_review": "Hut 8 identifies Vaughan GTA2 at 27 Buttermill Avenue. The local civic address authority returns the corresponding premises.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The address authority supplies no numerical horizontal uncertainty for this record."
+      },
+      "roles": [
+        {
+          "party": "Hut 8 Canada",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "am175-gta2-operating"
+        }
+      ],
+      "context_source_ids": [
+        "am175-gta2-identity"
+      ],
+      "distinctness_review": "The operator distinguishes its five facilities by location. The nearest geometry in snapshot 174 is Microsoft Vaughan Datacentre Campus (YTO11), 7.99 km away. The address, operator and alias checks found no equivalent record.",
+      "successor_review": "Hut 8’s September sale of managed cloud and backup services to Opti9 retained the physical colocation facilities. The original operator’s October account and November quarterly filing identify the continuing facilities."
+    },
+    {
+      "physical_site_stable_key": "curated:hut-8-canada-van1",
+      "project_stable_key": "curated:hut-8-canada-van1:existing-colocation",
+      "site_name": "Hut 8 Vancouver Vault VAN1, 900 West Hastings Street",
+      "name": "Hut 8 Vancouver Vault VAN1 — operating colocation facility",
+      "country": "Canada",
+      "country_iso_a2": "CA",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-10-28",
+        "source_id": "am175-van1-operating",
+        "summary": "Hut 8 reported operating the Vancouver Vault (VAN1) as one of its two downtown Vancouver colocation sites. Its October guide gives VAN1 a 1 MW design rating."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -123.1165019,
+            49.2866058
+          ]
+        },
+        "source_id": "am175-van1-locator",
+        "identity_source_ids": [
+          "am175-van1-identity",
+          "am175-van1-report"
+        ],
+        "scope": "reviewed_site_locator",
+        "scope_class": "government_address_point",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "official_civic_address_point",
+        "precision": "Provincial parcel point for 900 West Hastings Street, Vancouver.",
+        "identity_review": "Hut 8 identifies Vancouver Vault VAN1 at 900 West Hastings Street. The local civic address authority returns the corresponding premises.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The address authority supplies no numerical horizontal uncertainty for this record."
+      },
+      "roles": [
+        {
+          "party": "Hut 8 Canada",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "am175-van1-operating"
+        }
+      ],
+      "context_source_ids": [
+        "am175-van1-identity"
+      ],
+      "distinctness_review": "The operator distinguishes its five facilities by location. The nearest geometry in snapshot 174 is Cologix VAN4 Data Centre, Vancouver (175 West Cordova Street), 0.66 km away. The address, operator and alias checks found no equivalent record.",
+      "successor_review": "Hut 8’s September sale of managed cloud and backup services to Opti9 retained the physical colocation facilities. The original operator’s October account and November quarterly filing identify the continuing facilities."
+    },
+    {
+      "physical_site_stable_key": "curated:hut-8-canada-van2",
+      "project_stable_key": "curated:hut-8-canada-van2:existing-colocation",
+      "site_name": "Hut 8 Vancouver VAN2, 701 West Georgia Street",
+      "name": "Hut 8 Vancouver VAN2 — operating colocation facility",
+      "country": "Canada",
+      "country_iso_a2": "CA",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-10-28",
+        "source_id": "am175-van2-operating",
+        "summary": "Hut 8 reported operating VAN2 as one of its two downtown Vancouver colocation sites."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -123.117746,
+            49.2833965
+          ]
+        },
+        "source_id": "am175-van2-locator",
+        "identity_source_ids": [
+          "am175-van2-identity",
+          "am175-van2-report"
+        ],
+        "scope": "reviewed_site_locator",
+        "scope_class": "government_address_point",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "official_civic_address_point",
+        "precision": "Provincial parcel point for 701 West Georgia Street, Vancouver.",
+        "identity_review": "Hut 8 identifies Vancouver VAN2 at 701 West Georgia Street. The local civic address authority returns the corresponding premises.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The address authority supplies no numerical horizontal uncertainty for this record."
+      },
+      "roles": [
+        {
+          "party": "Hut 8 Canada",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "am175-van2-operating"
+        }
+      ],
+      "context_source_ids": [
+        "am175-van2-identity"
+      ],
+      "distinctness_review": "The operator distinguishes its five facilities by location. The nearest geometry in snapshot 174 is Cologix VAN4 Data Centre, Vancouver (175 West Cordova Street), 0.66 km away. The address, operator and alias checks found no equivalent record.",
+      "successor_review": "Hut 8’s September sale of managed cloud and backup services to Opti9 retained the physical colocation facilities. The original operator’s October account and November quarterly filing identify the continuing facilities."
+    },
+    {
+      "physical_site_stable_key": "curated:hut-8-canada-kel1",
+      "project_stable_key": "curated:hut-8-canada-kel1:existing-colocation",
+      "site_name": "Hut 8 Kelowna KEL1, 2130 Leckie Place",
+      "name": "Hut 8 Kelowna KEL1 — operating colocation facility",
+      "country": "Canada",
+      "country_iso_a2": "CA",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-10-28",
+        "source_id": "am175-kel1-operating",
+        "summary": "Hut 8 reported operating KEL1 in Kelowna as the secondary colocation site for its two Vancouver facilities."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -119.4415947,
+            49.8853624
+          ]
+        },
+        "source_id": "am175-kel1-locator",
+        "identity_source_ids": [
+          "am175-kel1-identity",
+          "am175-kel1-tenant-address",
+          "am175-kel1-report"
+        ],
+        "scope": "reviewed_site_locator",
+        "scope_class": "government_address_point",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "official_civic_address_point",
+        "precision": "Provincial rooftop point for 2130 Leckie Place, Kelowna.",
+        "identity_review": "Zenlayer names its host and suite at 2130 Leckie Place. Hut 8 identifies KEL1 as its Kelowna colocation facility.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The address authority supplies no numerical horizontal uncertainty for this record."
+      },
+      "roles": [
+        {
+          "party": "Hut 8 Canada",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "am175-kel1-operating"
+        }
+      ],
+      "context_source_ids": [
+        "am175-kel1-identity",
+        "am175-kel1-offer"
+      ],
+      "distinctness_review": "The operator distinguishes its five facilities by location. The nearest geometry in snapshot 174 is Equinix KA1, 1460 Bunker Road, Kamloops, British Columbia, 110.48 km away. The address, operator and alias checks found no equivalent record.",
+      "successor_review": "Hut 8’s September sale of managed cloud and backup services to Opti9 retained the physical colocation facilities. The original operator’s October account and November quarterly filing identify the continuing facilities."
+    },
+    {
+      "physical_site_stable_key": "curated:hive-lachute-chemin-bethany",
+      "project_stable_key": "curated:hive-lachute-chemin-bethany:existing-cryptographic-computing",
+      "site_name": "HIVE Lachute, 963 chemin Bethany",
+      "name": "HIVE Lachute — operating cryptographic computing facility",
+      "country": "Canada",
+      "country_iso_a2": "CA",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-10-31",
+        "source_id": "am175-lachute-filing",
+        "summary": "HIVE reported active mining at its leased Québec facility on October 31. Its Québec subsidiary identifies the facility as the site in Lachute."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -74.28820571,
+            45.63630391
+          ]
+        },
+        "source_id": "am175-lachute-locator",
+        "identity_source_ids": [
+          "am175-lachute-purchase",
+          "am175-lachute-regulator"
+        ],
+        "scope": "reviewed_site_locator",
+        "scope_class": "official_registered_property_point",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "provincial_registered_property_point",
+        "precision": "Official property point for 963 chemin Bethany, where the facility leases space.",
+        "identity_review": "The executed share purchase agreement identifies the facility address and Québec subsidiary. The subsidiary’s 2026 filing identifies the facility in Lachute. The city lists the same address at cadastral lot 4 783 811, matching the Québec government register address.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The provincial feature identifies the industrial property and gives no positional tolerance or location of the leased compute space."
+      },
+      "roles": [
+        {
+          "party": "9376-9974 Québec Inc. (HIVE Québec)",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "am175-lachute-regulator"
+        }
+      ],
+      "context_source_ids": [
+        "am175-lachute-regulator"
+      ],
+      "distinctness_review": "The company distinguishes the Québec leased facility from its hosted capacity in Québec City and Montréal. The nearest prior site is WhiteFiber MTL-3, Saint-Jérôme, 26.6 km away. The five baseline identity layers contain no Lachute or civic-address match.",
+      "successor_review": "The Québec subsidiary described the operating lease in March. The October portfolio table still treats the Québec facility as leased and operational."
+    },
+    {
+      "physical_site_stable_key": "curated:samsung-sds-gumi-ai-data-center",
+      "project_stable_key": "curated:samsung-sds-gumi-ai-data-center:dedicated-ai-data-center",
+      "name": "Samsung SDS Gumi AI Data Center — initial construction",
+      "site_name": "Samsung SDS Gumi AI Data Center",
+      "country": "Korea, Republic of",
+      "country_iso_a2": "KR",
+      "status": {
+        "value": "under_construction",
+        "as_of": "2026-11-02",
+        "source_id": "asia175-samsung-gumi-construction",
+        "summary": "Samsung SDS confirmed full-scale construction of the dedicated Gumi AI data center on November 2."
+      },
+      "roles": [
+        {
+          "role": "owner",
+          "party": "Samsung SDS",
+          "source_id": "asia175-samsung-gumi-plant-identity",
+          "relationship_scope": "current"
+        }
+      ],
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            128.391533,
+            36.098068
+          ]
+        },
+        "source_id": "asia175-gumi-land-parcel",
+        "identity_source_ids": [
+          "asia175-samsung-gumi-contractor-address",
+          "asia175-samsung-gumi-plant-identity"
+        ],
+        "authority": "compiled_reference",
+        "scope": "campus_locator",
+        "scope_class": "cadastral_parcel_locator",
+        "derivation": "coordinate_transform",
+        "method": "Korean_cadastral_parcel_centroid",
+        "precision": "Planar centroid of lot 259-1 in Gongdan-dong, Gumi. The point represents the construction parcel on the former Plant 1 grounds.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The cadastral feature is a reference parcel without a stated horizontal tolerance for the mapped data center.",
+        "identity_review": "The site-specific project documentation names lot 259-1, Gongdan-dong, Gumi, and the government feature carries the matching cadastral code 4719011300102590001."
+      },
+      "distinctness_review": "The parcel and facility name identify a distinct construction site. The baseline site, project, source and identity records contain no matching address or project alias.",
+      "successor_review": "The new facility occupies part of the former Gumi Plant 1 site in Gongdan-dong. Samsung SDS’s existing Gumi Data Center is at 302 3gongdan 3-ro in the separate Gumi Plant 2 area. The November 12 worksite notice corroborates the construction address. The 120 MW figure describes possible future expansion.",
+      "context_source_ids": [
+        "asia175-samsung-gumi-contractor-address"
+      ]
+    },
+    {
+      "physical_site_stable_key": "curated:digital-realty-gimpo-icn11",
+      "project_stable_key": "curated:digital-realty-gimpo-icn11:hyperscale-colocation-building",
+      "name": "Digital Realty ICN11 — hyperscale data center construction",
+      "site_name": "Digital Realty ICN11, Gimpo",
+      "country": "Korea, Republic of",
+      "country_iso_a2": "KR",
+      "status": {
+        "value": "under_construction",
+        "as_of": "2026-10-15",
+        "source_id": "asia175-digital-realty-icn11-structure",
+        "summary": "Digital Realty reported that the structure of its ICN11 data center had topped out, with operations still to come."
+      },
+      "roles": [],
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            126.636227,
+            37.651231
+          ]
+        },
+        "source_id": "asia175-gimpo-land-parcel",
+        "identity_source_ids": [
+          "asia175-dl-icn11-contract"
+        ],
+        "authority": "compiled_reference",
+        "scope": "campus_locator",
+        "scope_class": "cadastral_parcel_locator",
+        "derivation": "coordinate_transform",
+        "method": "Korean_cadastral_parcel_centroid",
+        "precision": "Planar centroid of lot 6877-9 in Gurae-dong, Gimpo. The point represents the development parcel identified by the construction contractor.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The cadastral feature is a reference parcel without a stated horizontal tolerance for the mapped data center.",
+        "identity_review": "The site-specific project documentation names lot 6877-9, Gurae-dong, Gimpo, and the government feature carries the matching cadastral code 4157010900168770009."
+      },
+      "distinctness_review": "The parcel and facility name identify a distinct construction site. The baseline site, project, source and identity records contain no matching address or project alias.",
+      "successor_review": "Gimpo ICN11 and Mapo-gu ICN10 are separate physical sites. The November construction contract adjusts scope, value and schedule. It gives no subsequent completion or operating milestone.",
+      "context_source_ids": [
+        "asia175-dl-icn11-contract"
+      ]
+    },
+    {
+      "physical_site_stable_key": "curated:mega-data-korea-wonju-mega-cluster",
+      "project_stable_key": "curated:mega-data-korea-wonju-mega-cluster:ai-data-center-construction",
+      "name": "Wonju Mega Cluster AI Data Center — construction",
+      "site_name": "Mega Data Korea Wonju Mega Cluster AI Data Center",
+      "country": "Korea, Republic of",
+      "country_iso_a2": "KR",
+      "status": {
+        "value": "under_construction",
+        "as_of": "2026-11-20",
+        "source_id": "asia175-wonju-electrical-contract",
+        "summary": "Wonju City Council recorded active civil works on October 20. On November 20 the electrical and telecommunications contractor reported its work start date for the same project."
+      },
+      "roles": [],
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            127.951327,
+            37.312174
+          ]
+        },
+        "source_id": "asia175-wonju-land-parcel",
+        "identity_source_ids": [
+          "asia175-wonju-campus-parcel"
+        ],
+        "authority": "compiled_reference",
+        "scope": "campus_locator",
+        "scope_class": "cadastral_parcel_locator",
+        "derivation": "coordinate_transform",
+        "method": "Korean_cadastral_parcel_centroid",
+        "precision": "Planar centroid of lot San 112-1 in Dangu-dong, Wonju. The point represents the developer’s named reference lot within the wider planned industrial campus.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The cadastral feature is a reference parcel without a stated horizontal tolerance for the mapped data center.",
+        "identity_review": "The site-specific project documentation names lot San 112-1, Dangu-dong, Wonju, and the government feature carries the matching cadastral code 5113010700201120001."
+      },
+      "distinctness_review": "The parcel and facility name identify a distinct construction site. The baseline site, project, source and identity records contain no matching address or project alias.",
+      "successor_review": "The developer names the Dangu-dong site. City testimony distinguishes it from separate Wonju Innovation City and Enterprise City schemes. The November contract schedules future completion and makes its advance payment contingent on financing approval.",
+      "context_source_ids": [
+        "asia175-wonju-civil-works",
+        "asia175-wonju-campus-parcel"
+      ]
+    },
+    {
+      "physical_site_stable_key": "curated:cleanspark-sandersville-ai-campus-fall-line-industrial-park-west",
+      "project_stable_key": "curated:cleanspark-sandersville-ai-campus-fall-line-industrial-park-west:leased-ai-data-center",
+      "name": "CleanSpark Sandersville AI Campus — leased data center construction",
+      "site_name": "CleanSpark Sandersville AI Campus, Fall Line Industrial Park West",
+      "country": "United States",
+      "country_iso_a2": "US",
+      "status": {
+        "value": "under_construction",
+        "as_of": "2026-11-24",
+        "source_id": "ga175-sandersville-q4-construction",
+        "summary": "CleanSpark’s November 24 earnings release reports that the Sandersville AI data center is under construction. Delivery of its first data hall is planned for November 2027."
+      },
+      "roles": [
+        {
+          "role": "owner",
+          "party": "CleanSpark, Inc.",
+          "source_id": "ga175-sandersville-ai-land-and-lease",
+          "relationship_scope": "current"
+        }
+      ],
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -82.853976,
+            33.006216
+          ]
+        },
+        "source_id": "ga175-sandersville-grad-park-point",
+        "identity_source_ids": [
+          "ga175-sandersville-council-land",
+          "ga175-sandersville-council-acquisition",
+          "ga175-sandersville-ai-land-and-lease"
+        ],
+        "authority": "compiled_reference",
+        "scope": "campus_locator",
+        "scope_class": "named_industrial_park_property_point",
+        "derivation": "direct_geometry",
+        "method": "Electric_Cities_of_Georgia_GRAD_native_site_marker",
+        "precision": "Publisher’s representative point inside the main Fall Line Industrial Park West parcel acquired for the new campus.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The economic-development map supplies a park-level location, without a stated positional tolerance or a location for an individual data hall.",
+        "identity_review": "Electric Cities of Georgia identifies the 122-acre Fall Line Industrial Park West property. City minutes identify CleanSpark’s acquisition of the 122 acres and the SEC filing distinguishes it from the neighboring mining property."
+      },
+      "distinctness_review": "The 10-Q distinguishes new adjacent land from CleanSpark’s legacy Sandersville campus at 2015 George Lyons Parkway. The city confirms the additional 122-acre purchase and the land-marketing map identifies its separate tract. EPA’s locator for the legacy mining facility falls outside the GRAD tract. The snapshot 174 site and identity records contain no matching campus.",
+      "successor_review": "The November 24 results report confirms physical construction, with deliveries planned beginning in 2027. The adjoining bitcoin facility is outside this project’s scope.",
+      "context_source_ids": [
+        "ga175-sandersville-ai-q4-slides",
+        "ga175-sandersville-council-land",
+        "ga175-sandersville-council-acquisition",
+        "ga175-sandersville-ai-land-and-lease"
+      ]
+    },
+    {
+      "physical_site_stable_key": "curated:soluna-dorothy-operating-campus-briscoe",
+      "project_stable_key": "curated:soluna-dorothy-operating-campus-briscoe:dorothy-1a-operations",
+      "site_name": "Soluna Dorothy operating campus, Briscoe County",
+      "name": "Soluna Dorothy 1A — existing computing operations",
+      "country": "United States",
+      "country_iso_a2": "US",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-09-30",
+        "source_id": "root175-dorothy-1a",
+        "summary": "Soluna reported Dorothy 1A operating at September 30. The quarterly filing gives a combined 50 MW for Dorothy 1A and 1B."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -101.3180506,
+            34.3934917
+          ]
+        },
+        "scope": "campus_locator",
+        "scope_class": "reviewed_facility_property_locator",
+        "method": "Briscoe_County_2024_survey_centroid_with_TIGER_road_control",
+        "precision": "Centroid of the surveyed operating property for Dorothy 1A, 1B and 2, north of County Road F.",
+        "source_id": "root175-dorothy-old-survey",
+        "identity_source_ids": [
+          "root175-briscoe-roads",
+          "root175-dorothy-new-deed",
+          "root175-dorothy-acquisition"
+        ],
+        "identity_review": "Centroid of the surveyed operating property for Dorothy 1A, 1B and 2, north of County Road F.",
+        "authority": "compiled_reference",
+        "derivation": "georeferenced_source_map",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The deed calls locate the tract relative to the road. The federal mapped road intersection carries no certified horizontal accuracy for these survey monuments."
+      },
+      "site_identity_review": "The county names the three project entities on the same 33.56-acre surveyed property. Soluna lists the operating projects separately in its quarterly filing. The newer Dorothy 3 agreement covers a separate land purchase on the other side of County Road F.",
+      "distinctness_review": "The county names the three project entities on the same 33.56-acre surveyed property. Soluna lists the operating projects separately in its quarterly filing. The newer Dorothy 3 agreement covers a separate land purchase on the other side of County Road F.",
+      "successor_review": "The November results discuss the neighbouring AI development separately from existing bitcoin hosting and mining operations.",
+      "roles": [
+        {
+          "role": "operator",
+          "party": "Soluna Holdings, Inc.",
+          "relationship_scope": "current",
+          "source_id": "root175-dorothy-1a"
+        }
+      ],
+      "context_source_ids": []
+    },
+    {
+      "physical_site_stable_key": "curated:soluna-dorothy-operating-campus-briscoe",
+      "project_stable_key": "curated:soluna-dorothy-operating-campus-briscoe:dorothy-1b-operations",
+      "site_name": "Soluna Dorothy operating campus, Briscoe County",
+      "name": "Soluna Dorothy 1B — existing computing operations",
+      "country": "United States",
+      "country_iso_a2": "US",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-09-30",
+        "source_id": "root175-dorothy-1b",
+        "summary": "Soluna reported Dorothy 1B operating at September 30. The quarterly filing gives a combined 50 MW for Dorothy 1A and 1B."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -101.3180506,
+            34.3934917
+          ]
+        },
+        "scope": "campus_locator",
+        "scope_class": "reviewed_facility_property_locator",
+        "method": "Briscoe_County_2024_survey_centroid_with_TIGER_road_control",
+        "precision": "Centroid of the surveyed operating property for Dorothy 1A, 1B and 2, north of County Road F.",
+        "source_id": "root175-dorothy-old-survey",
+        "identity_source_ids": [
+          "root175-briscoe-roads",
+          "root175-dorothy-new-deed",
+          "root175-dorothy-acquisition"
+        ],
+        "identity_review": "Centroid of the surveyed operating property for Dorothy 1A, 1B and 2, north of County Road F.",
+        "authority": "compiled_reference",
+        "derivation": "georeferenced_source_map",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The deed calls locate the tract relative to the road. The federal mapped road intersection carries no certified horizontal accuracy for these survey monuments."
+      },
+      "site_identity_review": "The county names the three project entities on the same 33.56-acre surveyed property. Soluna lists the operating projects separately in its quarterly filing. The newer Dorothy 3 agreement covers a separate land purchase on the other side of County Road F.",
+      "distinctness_review": "The county names the three project entities on the same 33.56-acre surveyed property. Soluna lists the operating projects separately in its quarterly filing. The newer Dorothy 3 agreement covers a separate land purchase on the other side of County Road F.",
+      "successor_review": "The November results discuss the neighbouring AI development separately from existing bitcoin hosting and mining operations.",
+      "roles": [
+        {
+          "role": "operator",
+          "party": "Soluna Holdings, Inc.",
+          "relationship_scope": "current",
+          "source_id": "root175-dorothy-1b"
+        }
+      ],
+      "context_source_ids": []
+    },
+    {
+      "physical_site_stable_key": "curated:soluna-dorothy-operating-campus-briscoe",
+      "project_stable_key": "curated:soluna-dorothy-operating-campus-briscoe:dorothy-2-operations",
+      "site_name": "Soluna Dorothy operating campus, Briscoe County",
+      "name": "Soluna Dorothy 2 — existing computing operations",
+      "country": "United States",
+      "country_iso_a2": "US",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-09-30",
+        "source_id": "root175-dorothy-2",
+        "summary": "Soluna reported Dorothy 2 operating at September 30. Its quarterly filing reports 48 MW for Dorothy 2 without specifying IT or gross facility power."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -101.3180506,
+            34.3934917
+          ]
+        },
+        "scope": "campus_locator",
+        "scope_class": "reviewed_facility_property_locator",
+        "method": "Briscoe_County_2024_survey_centroid_with_TIGER_road_control",
+        "precision": "Centroid of the surveyed operating property for Dorothy 1A, 1B and 2, north of County Road F.",
+        "source_id": "root175-dorothy-old-survey",
+        "identity_source_ids": [
+          "root175-briscoe-roads",
+          "root175-dorothy-new-deed",
+          "root175-dorothy-acquisition"
+        ],
+        "identity_review": "Centroid of the surveyed operating property for Dorothy 1A, 1B and 2, north of County Road F.",
+        "authority": "compiled_reference",
+        "derivation": "georeferenced_source_map",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The deed calls locate the tract relative to the road. The federal mapped road intersection carries no certified horizontal accuracy for these survey monuments."
+      },
+      "site_identity_review": "The county names the three project entities on the same 33.56-acre surveyed property. Soluna lists the operating projects separately in its quarterly filing. The newer Dorothy 3 agreement covers a separate land purchase on the other side of County Road F.",
+      "distinctness_review": "The county names the three project entities on the same 33.56-acre surveyed property. Soluna lists the operating projects separately in its quarterly filing. The newer Dorothy 3 agreement covers a separate land purchase on the other side of County Road F.",
+      "successor_review": "The November results discuss the neighbouring AI development separately from existing bitcoin hosting and mining operations.",
+      "roles": [
+        {
+          "role": "operator",
+          "party": "Soluna Holdings, Inc.",
+          "relationship_scope": "current",
+          "source_id": "root175-dorothy-2"
+        }
+      ],
+      "context_source_ids": []
+    },
+    {
+      "physical_site_stable_key": "curated:soluna-dorothy-3-briscoe",
+      "project_stable_key": "curated:soluna-dorothy-3-briscoe:initial-ai-development",
+      "site_name": "Soluna Dorothy 3 AI campus, Briscoe County",
+      "name": "Soluna Dorothy 3 — initial AI data center development",
+      "country": "United States",
+      "country_iso_a2": "US",
+      "status": {
+        "value": "under_construction",
+        "as_of": "2026-11-16",
+        "source_id": "root175-dorothy3-start",
+        "summary": "Soluna reported on November 16 that construction at the Dorothy 3 AI campus began in October. The initial phase is the planned joint venture with Applied Digital."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -101.3238967,
+            34.388241
+          ]
+        },
+        "scope": "campus_locator",
+        "scope_class": "reviewed_facility_property_locator",
+        "method": "Briscoe_County_2026_deed_centroid_with_TIGER_road_control",
+        "precision": "Centroid of the two tracts in the Dorothy 3 purchase. The point represents the new AI campus.",
+        "source_id": "root175-dorothy-new-deed",
+        "identity_source_ids": [
+          "root175-briscoe-roads",
+          "root175-dorothy-acquisition",
+          "root175-dorothy-old-survey"
+        ],
+        "identity_review": "Centroid of the two tracts in the Dorothy 3 purchase. The point represents the new AI campus.",
+        "authority": "compiled_reference",
+        "derivation": "georeferenced_source_map",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The property survey is tied to a digitized road junction. Its absolute offset to the survey control and the ultimate phase-one building are unreported."
+      },
+      "site_identity_review": "The county names the three project entities on the same 33.56-acre surveyed property. Soluna lists the operating projects separately in its quarterly filing. The newer Dorothy 3 agreement covers a separate land purchase on the other side of County Road F.",
+      "distinctness_review": "The county names the three project entities on the same 33.56-acre surveyed property. Soluna lists the operating projects separately in its quarterly filing. The newer Dorothy 3 agreement covers a separate land purchase on the other side of County Road F.",
+      "successor_review": "The company explicitly dates construction to October and reported it on November 16. Its prospective customer letter was non-binding, and the joint venture closing was still pending.",
+      "roles": [
+        {
+          "role": "owner",
+          "party": "Soluna Holdings, Inc.",
+          "relationship_scope": "current",
+          "source_id": "root175-dorothy-acquisition"
+        }
+      ],
+      "context_source_ids": []
+    },
+    {
+      "physical_site_stable_key": "curated:cleanspark-cheyenne-logistics",
+      "project_stable_key": "curated:cleanspark-cheyenne-logistics:existing-operations",
+      "site_name": "CleanSpark North Range, Cheyenne",
+      "name": "CleanSpark North Range — operating bitcoin data center",
+      "country": "United States",
+      "country_iso_a2": "US",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-09-30",
+        "source_id": "root175-wy-logistics",
+        "summary": "CleanSpark reported that both of its wholly owned Wyoming mining facilities were operating at September 30. North Range is one of the two Cheyenne sites identified in the acquisition documents."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -104.8949393,
+            41.1253547
+          ]
+        },
+        "scope": "campus_locator",
+        "scope_class": "reviewed_facility_property_locator",
+        "method": "county_assessor_parcel_centroid_UTM13N",
+        "precision": "Reference point inside the 635 Logistics Drive property in Cheyenne.",
+        "source_id": "root175-wy-logistics-parcel",
+        "identity_source_ids": [
+          "root175-wy-transaction",
+          "root175-wy-state"
+        ],
+        "identity_review": "Reference point inside the 635 Logistics Drive property in Cheyenne.",
+        "authority": "compiled_reference",
+        "derivation": "georeferenced_source_map",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The source does not quantify the position of the reference point relative to individual data halls."
+      },
+      "site_identity_review": "The transaction lists two separate properties in different parts of Cheyenne. The county legal description identifies this parcel.",
+      "distinctness_review": "The transaction lists two separate properties in different parts of Cheyenne. The county legal description identifies this parcel.",
+      "successor_review": "The November annual report confirms two operating facilities and reports their power in aggregate.",
+      "roles": [
+        {
+          "role": "operator",
+          "party": "CleanSpark, Inc.",
+          "relationship_scope": "current",
+          "source_id": "root175-wy-logistics"
+        }
+      ],
+      "context_source_ids": []
+    },
+    {
+      "physical_site_stable_key": "curated:cleanspark-cheyenne-venture",
+      "project_stable_key": "curated:cleanspark-cheyenne-venture:existing-operations",
+      "site_name": "CleanSpark Campstool, Cheyenne",
+      "name": "CleanSpark Campstool — operating bitcoin data center",
+      "country": "United States",
+      "country_iso_a2": "US",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-09-30",
+        "source_id": "root175-wy-venture",
+        "summary": "CleanSpark reported that both of its wholly owned Wyoming mining facilities were operating at September 30. Campstool is one of the two Cheyenne sites identified in the acquisition documents."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -104.6949922,
+            41.1443206
+          ]
+        },
+        "scope": "campus_locator",
+        "scope_class": "reviewed_facility_property_locator",
+        "method": "county_assessor_parcel_centroid_UTM13N",
+        "precision": "Reference point inside the 9010 Venture Drive property in Cheyenne.",
+        "source_id": "root175-wy-venture-parcel",
+        "identity_source_ids": [
+          "root175-wy-transaction",
+          "root175-wy-state"
+        ],
+        "identity_review": "Reference point inside the 9010 Venture Drive property in Cheyenne.",
+        "authority": "compiled_reference",
+        "derivation": "georeferenced_source_map",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The source does not quantify the position of the reference point relative to individual data halls."
+      },
+      "site_identity_review": "The transaction lists two separate properties in different parts of Cheyenne. The county legal description identifies this parcel.",
+      "distinctness_review": "The transaction lists two separate properties in different parts of Cheyenne. The county legal description identifies this parcel.",
+      "successor_review": "The November annual report confirms two operating facilities and reports their power in aggregate.",
+      "roles": [
+        {
+          "role": "operator",
+          "party": "CleanSpark, Inc.",
+          "relationship_scope": "current",
+          "source_id": "root175-wy-venture"
+        }
+      ],
+      "context_source_ids": []
+    },
+    {
+      "physical_site_stable_key": "curated:cleanspark-sandersville-existing",
+      "project_stable_key": "curated:cleanspark-sandersville-existing:bitcoin-mining-operations",
+      "site_name": "CleanSpark Sandersville mining campus, George Lyons Parkway",
+      "name": "CleanSpark Sandersville — operating bitcoin data center",
+      "country": "United States",
+      "country_iso_a2": "US",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-09-30",
+        "source_id": "root175-sanders-operations",
+        "summary": "CleanSpark identified ongoing bitcoin mining at its existing Sandersville site and described a future transition of that power to a new adjacent data center campus."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -82.838702,
+            33.002981
+          ]
+        },
+        "scope": "campus_locator",
+        "scope_class": "reviewed_facility_property_locator",
+        "method": "US_EPA_FRS_address_matched_entrance",
+        "precision": "EPA address-matched entrance for the registered parcel, reported in NAD83 with an estimated accuracy of 50 metres.",
+        "source_id": "root175-sanders-epa",
+        "identity_source_ids": [
+          "root175-sanders-historic"
+        ],
+        "identity_review": "EPA address-matched entrance for the registered parcel, reported in NAD83 with an estimated accuracy of 50 metres.",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "horizontal_uncertainty_metres": 50
+      },
+      "site_identity_review": "The new leased AI campus is described by the issuer as adjacent to this existing mining site. The EPA and the acquisition filing both identify the existing site address.",
+      "distinctness_review": "The new leased AI campus is described by the issuer as adjacent to this existing mining site. The EPA and the acquisition filing both identify the existing site address.",
+      "successor_review": "The annual report describes a planned future decommissioning in fiscal 2028, with bitcoin operations still in place at the reporting date.",
+      "roles": [
+        {
+          "role": "operator",
+          "party": "CleanSpark, Inc.",
+          "relationship_scope": "current",
+          "source_id": "root175-sanders-operations"
+        }
+      ],
+      "context_source_ids": []
+    },
+    {
+      "physical_site_stable_key": "curated:iren-canal-flats-bc",
+      "project_stable_key": "curated:iren-canal-flats-bc:existing-operations",
+      "site_name": "IREN Canal Flats data center campus",
+      "name": "IREN Canal Flats — operating data center",
+      "country": "Canada",
+      "country_iso_a2": "CA",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-11-04",
+        "source_id": "root175-cf-operations",
+        "summary": "IREN’s community briefing identifies Canal Flats as an operating British Columbia data center and gives 2019 as the year operations began. IREN also reported a closed-loop liquid-cooling upgrade at the campus."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -115.8018626,
+            50.1534046
+          ]
+        },
+        "scope": "campus_locator",
+        "scope_class": "reviewed_facility_property_locator",
+        "method": "BC_Address_Geocoder_official_parcel_point",
+        "precision": "Provincial address point for the Canal Flats campus property. The point represents the parcel, not a particular building.",
+        "source_id": "root175-cf-point",
+        "identity_source_ids": [
+          "root175-cf-identity",
+          "root175-cf-site"
+        ],
+        "identity_review": "Provincial address point for the Canal Flats campus property. The point represents the parcel, not a particular building.",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The source does not quantify the position of the reference point relative to individual data halls."
+      },
+      "site_identity_review": "The operator lists three separate British Columbia campuses. The matching government address refers specifically to this campus.",
+      "distinctness_review": "The operator lists three separate British Columbia campuses. The matching government address refers specifically to this campus.",
+      "successor_review": "The company describes commercial computing services at its British Columbia campuses and ongoing investment in upgrades.",
+      "roles": [
+        {
+          "role": "operator",
+          "party": "IREN Limited",
+          "relationship_scope": "current",
+          "source_id": "root175-cf-operations"
+        }
+      ],
+      "context_source_ids": [
+        "root175-bc-notice",
+        "root175-cf-upgrades"
+      ]
+    },
+    {
+      "physical_site_stable_key": "curated:iren-prince-george-bc",
+      "project_stable_key": "curated:iren-prince-george-bc:existing-operations",
+      "site_name": "IREN Prince George data center campus",
+      "name": "IREN Prince George — operating data center",
+      "country": "Canada",
+      "country_iso_a2": "CA",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-11-04",
+        "source_id": "root175-pg-operations",
+        "summary": "IREN’s community briefing identifies Prince George as an operating British Columbia data center and gives 2022 as the year operations began."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -122.7064075,
+            53.9109538
+          ]
+        },
+        "scope": "campus_locator",
+        "scope_class": "reviewed_facility_property_locator",
+        "method": "BC_Address_Geocoder_official_parcel_point",
+        "precision": "Provincial address point for the Prince George campus property. The point represents the parcel, not a particular building.",
+        "source_id": "root175-pg-point",
+        "identity_source_ids": [
+          "root175-pg-identity",
+          "root175-pg-site"
+        ],
+        "identity_review": "Provincial address point for the Prince George campus property. The point represents the parcel, not a particular building.",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The source does not quantify the position of the reference point relative to individual data halls."
+      },
+      "site_identity_review": "The operator lists three separate British Columbia campuses. The matching government address refers specifically to this campus.",
+      "distinctness_review": "The operator lists three separate British Columbia campuses. The matching government address refers specifically to this campus.",
+      "successor_review": "The company describes commercial computing services at its British Columbia campuses and ongoing investment in upgrades.",
+      "roles": [
+        {
+          "role": "operator",
+          "party": "IREN Limited",
+          "relationship_scope": "current",
+          "source_id": "root175-pg-operations"
+        }
+      ],
+      "context_source_ids": [
+        "root175-bc-notice"
+      ]
+    }
+  ],
+  "status_updates": [
+    {
+      "project_stable_key": "imported:semiconductor-atlas:sk-aws-ulsan-ai-data-center",
+      "status": {
+        "value": "under_construction",
+        "as_of": "2026-11-21",
+        "source_id": "asia175-ulsan-construction-visit",
+        "summary": "The Presidential Office reported the November 21 visit to the active Ulsan construction site."
+      },
+      "identity_review": "The president visited the SK AI Data Center construction site in Nam-gu, Ulsan. This is the existing SK-AWS project in Ulsan.",
+      "successor_review": "The presidential visit confirms ongoing construction on November 21. No later construction completion or opening was identified."
+    }
+  ],
+  "context_updates": [
+    {
+      "project_stable_key": "curated:soluna-project-kati-campus:kati-2-ai",
+      "context_kind": "identity",
+      "preserve_status_as_of": "2026-10-07",
+      "source_ids": [
+        "root175-kati2-work"
+      ],
+      "identity_review": "Kati 2 is the campus containing the Building 1 registration; Soluna’s report addresses the overall AI development.",
+      "summary": "Soluna reported an October construction start at the wider Kati 2 campus. The November prospective lease covered 118 MW of IT capacity and remained non-binding."
+    }
+  ],
+  "power_observations": [
+    {
+      "project_stable_key": "curated:hive-lachute-chemin-bethany:existing-cryptographic-computing",
+      "source_id": "am175-lachute-filing",
+      "metric": "gross_facility_mw",
+      "stage": "operational",
+      "unit": "MW",
+      "low": 34.5,
+      "base": 34.5,
+      "high": 34.5,
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2026-10-31",
+      "target_date": null,
+      "notes": "HIVE reported 34.5 MW of available power capacity for the operating Lachute facility. It separately reported 29 MW of average operational consumption."
+    },
+    {
+      "project_stable_key": "curated:hive-toronto-15-city-view:existing-operations",
+      "source_id": "am175-toronto-filing",
+      "metric": "gross_facility_mw",
+      "stage": "operational",
+      "unit": "MW",
+      "low": 5.5,
+      "base": 5.5,
+      "high": 5.5,
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2026-10-31",
+      "target_date": null,
+      "notes": "HIVE reported 5.5 MW of available power capacity for the operating Toronto facility. It separately reported 1 MW of average operational consumption."
+    },
+    {
+      "project_stable_key": "curated:hive-valenzuela-paraguay-campus:existing-operations",
+      "source_id": "am175-valenzuela-filing",
+      "metric": "gross_facility_mw",
+      "stage": "operational",
+      "unit": "MW",
+      "low": 107,
+      "base": 107,
+      "high": 107,
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2026-10-31",
+      "target_date": null,
+      "notes": "HIVE reported 107 MW of available power capacity for the operating Valenzuela facility. It separately reported 107.7 MW of average operational consumption."
+    },
+    {
+      "project_stable_key": "curated:hive-yguazu-paraguay-campus:existing-operations",
+      "source_id": "am175-yguazu-filing",
+      "metric": "gross_facility_mw",
+      "stage": "operational",
+      "unit": "MW",
+      "low": 200,
+      "base": 200,
+      "high": 200,
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2026-10-31",
+      "target_date": null,
+      "notes": "HIVE reported 200 MW of available power capacity for the operating Yguazú facility. It separately reported 195.9 MW of average operational consumption."
+    },
+    {
+      "project_stable_key": "curated:digital-realty-gimpo-icn11:hyperscale-colocation-building",
+      "source_id": "asia175-dl-icn11-contract",
+      "metric": "critical_it_mw",
+      "stage": "planned",
+      "low": 64,
+      "base": 64,
+      "high": 64,
+      "unit": "MW",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2026-11-03",
+      "target_date": null,
+      "notes": "DL E&C’s November 3 contract amendment specifies 64 MW of design IT load for the ICN11 data center building in Gimpo."
+    },
+    {
+      "project_stable_key": "curated:cleanspark-sandersville-ai-campus-fall-line-industrial-park-west:leased-ai-data-center",
+      "source_id": "ga175-sandersville-ai-q4-slides",
+      "metric": "critical_it_mw",
+      "stage": "planned",
+      "low": 175,
+      "base": 175,
+      "high": 175,
+      "unit": "MW",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2026-11-24",
+      "target_date": null,
+      "notes": "CleanSpark’s November 24 earnings presentation reports 175 MW of critical IT capacity for its leased Sandersville AI data center. The leased capacity covers the project to be delivered in phases."
+    },
+    {
+      "project_stable_key": "curated:soluna-dorothy-3-briscoe:initial-ai-development",
+      "source_id": "root175-dorothy3-capacity",
+      "metric": "critical_it_mw",
+      "stage": "planned",
+      "low": 50,
+      "base": 50,
+      "high": 50,
+      "unit": "MW",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2026-10-20",
+      "target_date": null,
+      "notes": "The October 20 subscription agreement describes the initial Dorothy 3A phase. Its customer letter was non-binding."
+    },
+    {
+      "project_stable_key": "curated:soluna-dorothy-3-briscoe:initial-ai-development",
+      "source_id": "root175-dorothy3-capacity",
+      "metric": "gross_facility_mw",
+      "stage": "planned",
+      "low": 75,
+      "base": 75,
+      "high": 75,
+      "unit": "MW",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2026-10-20",
+      "target_date": null,
+      "notes": "The October 20 subscription agreement describes the initial Dorothy 3A phase. Its customer letter was non-binding."
+    },
+    {
+      "project_stable_key": "curated:soluna-project-kati-campus:kati-2-ai",
+      "source_id": "root175-kati-building-registration",
+      "metric": "critical_it_mw",
+      "stage": "design",
+      "low": 112,
+      "base": 112,
+      "high": 112,
+      "unit": "MW",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2026-10-07",
+      "target_date": null,
+      "notes": "Approximate design IT load for registered Building 1 at Kati II. The registration predates the later campus-wide prospective lease."
+    }
+  ]
+}
