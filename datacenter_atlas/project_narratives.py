@@ -135,6 +135,16 @@ def _associated(evidence: Mapping[str, Any], project: Mapping[str, Any]) -> bool
     return project["project_id"] in evidence.get("project_ids", [])
 
 
+def _is_locator_excerpt(spec: Mapping[str, Any], document: Any) -> bool:
+    source_id = spec.get("source_id")
+    if not source_id or "evidence_pointer" not in spec or not isinstance(document, dict):
+        return False
+    return any(
+        source_id in row.get("geometry_source_ids", []) or source_id in row.get("identity_source_ids", [])
+        for row in document.get("results", []) if isinstance(row, dict)
+    )
+
+
 def _suitable_report(
     evidence: Mapping[str, Any], project: Mapping[str, Any], source: Mapping[str, Any] | None = None,
     *, reviewed_shared_status: bool = False,
@@ -194,8 +204,9 @@ def load_project_narratives(
     def modern_evidence(source: Any, project: Mapping[str, Any]) -> Mapping[str, Any] | None:
         if not isinstance(source, dict):
             return None
-        identifier = str(uuid.uuid5(uuid.NAMESPACE_URL,
-                                   f"{source.get('source_url')}#{source.get('content_hash')}"))
+        identifier = source.get("reuse_evidence_id") or str(uuid.uuid5(
+            uuid.NAMESPACE_URL, f"{source.get('source_url')}#{source.get('content_hash')}",
+        ))
         evidence = evidence_by_id.get(identifier)
         if (evidence and _associated(evidence, project)
                 and evidence.get("source_url") == source.get("source_url")
@@ -279,6 +290,7 @@ def load_project_narratives(
     # alone is unsafe: one source page can contain different project excerpts.
     read_cache: dict[tuple[str, str, int | None], Any] = {}
     collected: dict[str, str] = {}
+    locator_excerpts: set[str] = set()
     for spec in pinned_specs:
         cache_key = (spec["path"], spec["sha256"], spec.get("bytes"))
         if cache_key not in read_cache:
@@ -305,6 +317,10 @@ def load_project_narratives(
             if identifier in collected and collected[identifier] != text:
                 raise ProjectNarrativeError(f"conflicting narrative excerpts for evidence: {identifier}")
             collected[identifier] = text
+            # A later project may reuse the document for another role. Its new
+            # role does not broaden the original locator excerpt's scope.
+            if _is_locator_excerpt(spec, document):
+                locator_excerpts.add(identifier)
 
     for project in atlas.projects:
         if project.get("project_details"):
@@ -316,6 +332,6 @@ def load_project_narratives(
             item(project)["status"] = {"text": collected[status_id], "evidence_id": status_id}
         for evidence in atlas.evidence_by_project.get(project["project_id"], []):
             identifier = evidence["evidence_id"]
-            if identifier in collected and identifier != status_id:
+            if identifier in collected and identifier != status_id and identifier not in locator_excerpts:
                 report(project, evidence, collected[identifier])
     return {key: value for key, value in result.items() if value["status"] or value["context"]}

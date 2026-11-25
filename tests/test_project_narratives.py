@@ -243,6 +243,35 @@ class ProjectNarrativeTests(unittest.TestCase):
         self.assertEqual(result["status"]["text"], one["excerpt"])
         self.assertEqual(result["context"], [])
 
+    def test_reused_locator_excerpt_does_not_become_operator_prose_on_other_facilities(self):
+        shared, sid = self.add_source(
+            "brochure", curated=True, projects=["p", "q"],
+            roles=["context:geometry_identity", "context:identity", "role:operator"],
+            text="Page three lists the US street addresses.",
+        )
+        other = {**self.project, "project_id": "q", "project_stable_key": "curated:two"}
+        self.atlas.projects.append(other)
+        self.atlas.evidence_by_project["q"] = [self.atlas.evidence_by_id[sid]]
+        context, cid = self.add_source("services", curated=True, text="The operator offers colocation.")
+        pin = self.write_pin("sources/brochure.json", {
+            "evidence": [shared, context],
+            "results": [{"identity_source_ids": ["address-source"]}],
+        })
+        self.version.manifest["portable_source_inputs"] = [pin, {
+            **pin, "source_id": "address-source", "evidence_pointer": "/evidence/0",
+            "evidence_sha256": _canonical_sha256(shared),
+        }]
+        self.assertEqual(self.load(), {
+            "p": {"status": None, "context": [{"text": context["excerpt"], "evidence_id": cid}]},
+        })
+        updated = {**shared, "id": "reuse", "reuse_evidence_id": sid,
+                   "summary": "The operator lists a Frankfurt facility on page five."}
+        self.version.manifest["files"] = {"review-provenance.json": {}}
+        self.provenance = {"source_projections": {"reuse": updated}, "update": {"additions": [
+            {"project_stable_key": "curated:two", "context_source_ids": ["reuse"]},
+        ]}}
+        self.assertEqual(self.load()["q"]["context"], [{"text": updated["summary"], "evidence_id": sid}])
+
     def test_exact_pointer_and_canonical_hash(self):
         source, identifier = self.add_source("unicode", curated=True, text="Keihanna ラボ; campus scope only.")
         self.project["status_evidence_id"] = identifier
