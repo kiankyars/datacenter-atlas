@@ -2061,7 +2061,11 @@ class RealSiteBuildTests(unittest.TestCase):
         page = self.site / "sites" / powered["site_id"] / "index.html"
         parsed = scan(page)
         text = page.read_text(encoding="utf-8")
-        self.assertIn("Critical IT load", text)
+        metrics = read_json(ROOT / "site" / "vocabulary.json")["power_metrics"]
+        for project_id in site_projects:
+            for observation in json.loads(projects[project_id]["power_observations_json"]):
+                label = metrics[observation["metric"]]["label"]
+                self.assertIn(f"<td>{html_escape(label)}</td>", text)
         self.assertEqual(json.loads(parsed.data_blocks["site-geometry"])["geometry"], json.loads(powered["geometry_json"]))
         place = json.loads(parsed.data_blocks["application/ld+json"])
         self.assertEqual((place["@type"], place["geo"]["latitude"]), ("Place", float(powered["latitude"])))
