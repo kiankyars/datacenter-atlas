@@ -205,10 +205,12 @@ DATA_CAVEATS = (
 DATASET_KEYWORDS = ("data centres", "data centers", "construction", "infrastructure", "geospatial", "open data")
 SITES_FEED_TITLE = "Data Center Atlas sites"
 WAYBACK_PREFIX = "https://web.archive.org/web/"
+METRO_RLIS_LICENSE_URL = "https://rlisdiscovery.oregonmetro.gov/pages/open-database-license"
 # Licence codes recorded on evidence rows that have a canonical terms page.
 LICENSE_URLS = {
     "ODbL-1.0": "https://opendatacommons.org/licenses/odbl/1-0/",
     "CC-BY-4.0": "https://creativecommons.org/licenses/by/4.0/",
+    "CC BY 4.0": "https://creativecommons.org/licenses/by/4.0/",
     "CC-BY-3.0": "https://creativecommons.org/licenses/by/3.0/",
     "CC-BY-SA-2.0": "https://creativecommons.org/licenses/by-sa/2.0/",
     "CC-BY-SA-4.0": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -218,6 +220,7 @@ LICENSE_URLS = {
     "dl-de/by-2-0": "https://www.govdata.de/dl-de/by-2-0",
     "Open-Government-Licence-Alberta": "https://open.alberta.ca/licence",
     "Open Government Licence - Toronto": "https://open.toronto.ca/open-data-licence/",
+    f"Metro RLIS Open Database End User License Agreement. {METRO_RLIS_LICENSE_URL}": METRO_RLIS_LICENSE_URL,
     "Open Government Licence v3.0, except where otherwise stated": (
         "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
     ),

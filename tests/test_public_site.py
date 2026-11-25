@@ -1214,6 +1214,19 @@ class TokenTests(unittest.TestCase):
         self.assertEqual(public_site.fallback_label("context:new_kind"), "Context: New Kind")
 
 
+class SourceLicenseTests(unittest.TestCase):
+    def test_address_source_licenses_link_to_their_terms(self):
+        metro_terms = "https://rlisdiscovery.oregonmetro.gov/pages/open-database-license"
+        for label, url in [
+            ("CC BY 4.0", "https://creativecommons.org/licenses/by/4.0/"),
+            (f"Metro RLIS Open Database End User License Agreement. {metro_terms}", metro_terms),
+        ]:
+            with self.subTest(label=label):
+                scan = PageScan()
+                scan.feed(public_site._license_link(label))
+                self.assertIn(("a", "href", url), scan.links)
+
+
 class FixtureBuildTests(unittest.TestCase):
     base_url = "http://127.0.0.1:8000/sub/"
 

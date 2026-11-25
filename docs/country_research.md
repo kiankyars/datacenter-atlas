@@ -44,9 +44,14 @@ Take each location from what the operator, developer, landlord or a public autho
 their own coordinates, addresses, site plans or maps, or permit, planning, cadastral, parcel and
 address records. Do not copy coordinates from map apps or facility directories whose terms forbid
 reuse, such as Google Maps or PeeringDB; from updates dated 7 November 2026 the builder rejects them.
-OpenStreetMap's API, Overpass and extract mirrors disallow automated access, so research does not
-fetch them. Points copied from such services before then, and imported points that name only a
-town, county or state, are replaced with `locator_corrections` as published locations are found.
+For an OpenStreetMap locator, match the feature name or civic address to the operator’s
+facility, record the object ID and version, and preserve ODbL attribution. Use regional
+extracts for bulk research and follow the service’s usage limits for individual queries.
+See the [OSM data access policy](https://operations.osmfoundation.org/policies/api/)
+and [Overpass usage guidance](https://dev.overpass-api.de/overpass-doc/en/preface/commons.html).
+
+Use `locator_corrections` to replace restricted map-service coordinates and imported town,
+county or state points as better documented facility locations become available.
 
 `verified_construction_core/2026-10-29-research-hundredeighteenth` adds two sites and two projects:
 **932 sites and 1,000 projects in 87 countries**. CRA DC Tower Žižkov in Prague and STTGDC SIN6
@@ -1315,6 +1320,14 @@ the facility now operated by SBA Edge. In Tukwila, the operator's SEA2 facility 
 former Cyxtera SE4 share the same address and site record. Tainan’s municipal
 register places Chunghwa Telecom’s Zhongshan IDC at 207 Zhongshan Road in
 West Central District.
+
+At Panama Pacífico, KIO reported construction on its second data hall in November.
+At Ponte San Pietro, Aruba’s operating buildings A, B and C share a campus with
+its planned building D. In Hillsboro, the regional address register and city inventory distinguish
+EdgeConneX POR01 from POR02 and from a neighbouring property sold for manufacturing.
+Shaoguan’s November 24 project review identified China Mobile’s Phase 2 and China
+Telecom’s Shaotang campus as under construction. China Mobile’s separate Shaotang
+project was still in preparation.
 
 ## 25 October 2026
 
