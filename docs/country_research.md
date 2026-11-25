@@ -1299,6 +1299,15 @@ in Sydney. NEXTDC lists all three metropolitan facilities as operating alongside
 continuing fit-out work. At M3, its November 11 construction update identifies
 Stages 1 and 2 as operating.
 
+In Sweden, EcoDataCenter's site managers reported four operating data centres
+in Falun and three under construction in Borlänge on November 18. The county
+register locates both campuses. Its Borlänge record places the facility at the
+former Kvarnsveden mill, 4.4 km from the town-centre point previously used.
+In Japan, Nomura announced a container data centre at Landport Takatsuki, and
+OPTAGE's OC1 facility in Osaka gained Megaport service on October 27. In Christchurch,
+Environment Canterbury identifies Datacom's Gloucester Data Centre at 61–67
+Gloucester Street, linking the operator's address to the official civic point at 61.
+
 ## 25 October 2026
 
 `verified_construction_core/2026-10-25-research-sixtysecond` adds three commercial sites and
