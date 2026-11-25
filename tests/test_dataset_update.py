@@ -556,6 +556,54 @@ class DatasetUpdateTests(unittest.TestCase):
             self.spec["base_dataset"] = output.relative_to(self.root).as_posix()
             self.spec["base_manifest_sha256"] = hashlib.sha256((output / "manifest.json").read_bytes()).hexdigest()
 
+    def test_reviewed_status_transition_promotes_the_project_and_site_in_v2(self):
+        addition = self.spec["additions"][0]
+        addition.update(name="Example — announced conversion")
+        addition["status"]["value"] = "announced"
+        original = self.prepare_existing_campus()
+        self.spec["additions"] = []
+        self.sources["sources"][0].update(published_at="2026-10-01", content_hash=hashlib.sha256(b"new report").hexdigest())
+        planned = original["verification_posture"]
+        physical = "authoritative_physical_observation_plus_reviewed_site_locator"
+        for version, group, value, name, posture in (
+            ("v1", "status_updates", "under_construction", None, planned),
+            ("v2", "status_updates", "under_construction", "Example conversion", physical),
+            ("v2", "status_corrections", "completed", None, physical),
+            ("v2", "status_updates", "paused", None, planned),
+        ):
+            with self.subTest(version=version, group=group, status=value):
+                self.spec["format"] = "datacenter-atlas-update-input-" + version
+                action = {"project_stable_key": original["project_stable_key"],
+                          "identity_review": "Same campus conversion.", "successor_review": "Latest report.",
+                          "status": {"value": value, "as_of": "2026-10-01", "source_id": "work",
+                                     "summary": f"The operator reports the conversion is {value}."}}
+                if name:
+                    action["name"] = name
+                if group == "status_corrections":
+                    action.update(replaces_status_evidence_id=original["status_evidence_id"], reason="Reviewed operator report.")
+                self.spec[group] = [action]
+                payloads, _ = self.payloads()
+                del self.spec[group]
+                project = next(row for row in csv.DictReader(io.StringIO(payloads["projects.csv"].decode()))
+                               if row["project_id"] == original["project_id"])
+                site = next(row for row in csv.DictReader(io.StringIO(payloads["sites.csv"].decode()))
+                            if row["site_id"] == original["site_id"])
+                self.assertEqual((project["name"], project["verification_posture"]), (name or original["name"], posture))
+                self.assertEqual((site["name"], site["verification_posture"]), ("Example campus", posture))
+                self.assertEqual(project["geometry_evidence_id"], original["geometry_evidence_id"])
+
+    def test_status_action_requires_a_valid_v2_project_name_when_supplied(self):
+        original = next(csv.DictReader((BASE / "projects.csv").read_text().splitlines()))
+        action = {"project_stable_key": original["project_stable_key"], "status": self.spec["additions"][0]["status"],
+                  "identity_review": "Same project.", "successor_review": "Latest report."}
+        self.spec["status_updates"] = [action]
+        for version, name, message in (("v1", "New name", "requires v2"), ("v2", " ", "project name"),
+                                       ("v2", None, "project name"), ("v2", 123, "project name")):
+            self.spec["format"] = "datacenter-atlas-update-input-" + version
+            action["name"] = name
+            with self.subTest(version=version, name=name), self.assertRaisesRegex(UpdateError, message):
+                self.payloads()
+
     def test_base_and_source_hash_mismatch_fail(self):
         self.write()
         (self.root / "source.json").write_text("{}")
@@ -1185,6 +1233,20 @@ class RetainedImportedStatusTests(unittest.TestCase):
                          ("announced", "authoritative_project_announcement"))
         self.refresh(self.PARTIAL, "operational")
         self.assertEqual(self.projects(self.payloads()[0])[self.PARTIAL]["last_observed_physical_status"], "operational")
+
+    def test_v2_construction_at_a_locality_does_not_claim_a_reviewed_site_locator(self):
+        self.refresh(self.PROPOSED, "announced")
+        self.write()
+        baseline = self.root / "announced"
+        build_update(self.input, baseline, root=self.root)
+        self.spec.update(format="datacenter-atlas-update-input-v2", base_dataset="announced",
+                         base_manifest_sha256=hashlib.sha256((baseline / "manifest.json").read_bytes()).hexdigest())
+        self.sources["sources"][0].update(published_at="2026-10-12", retrieved_at="2026-10-12T08:00:00Z",
+                                          content_hash=hashlib.sha256(b"construction report").hexdigest())
+        self.refresh(self.PROPOSED, "under_construction", as_of="2026-10-12")
+        project = self.projects(self.payloads()[0])[self.PROPOSED]
+        self.assertEqual(project["geometry_use_scope"], "locality_context")
+        self.assertEqual(project["verification_posture"], "authoritative_project_record_plus_scoped_location")
 
     def test_other_records_cannot_move_to_retained_statuses(self):
         messages = {"partially_operational": "retained imported status", "proposed": "proposed means announcement"}

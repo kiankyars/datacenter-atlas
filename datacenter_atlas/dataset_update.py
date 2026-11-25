@@ -55,6 +55,8 @@ ADMISSION_STATUSES = ACTIVE_STATUSES | PLANNED_STATUSES | {LifecycleStatus.COMPL
 OBSERVED_STATUSES = ACTIVE_STATUSES | {LifecycleStatus.OPERATIONAL.value, PARTIALLY_OPERATIONAL}
 FIRSTHAND_REPORT_KINDS = {"news", "analyst_report"}
 PROJECT_RECORD_POSTURE = "authoritative_project_record_plus_scoped_location"
+PHYSICAL_OBSERVATION_POSTURE = "authoritative_physical_observation_plus_reviewed_site_locator"
+REVIEWED_LOCATOR_SCOPES = {"project_locator", "reviewed_site_locator", "campus_locator"}
 ROOT = Path(__file__).resolve().parents[1]
 # From this update date, a new or corrected locator may not copy coordinates from a map service or
 # directory whose terms forbid reuse in another dataset. Earlier updates still reproduce unchanged;
@@ -331,7 +333,7 @@ def _point_locator(locator, sources, updated):
     _require(isinstance(coords, list) and len(coords) == 2 and all(isinstance(n, (int, float)) and not isinstance(n, bool) and math.isfinite(n) for n in coords), "invalid point coordinates")
     lon, lat = coords
     _require(-180 <= lon <= 180 and -90 <= lat <= 90, "point outside coordinate range")
-    _require(locator["scope"] in {"project_locator", "reviewed_site_locator", "campus_locator"}, "new locator must locate the project or campus")
+    _require(locator["scope"] in REVIEWED_LOCATOR_SCOPES, "new locator must locate the project or campus")
     for field in ("method", "precision", "identity_review"):
         _text(locator.get(field), f"locator {field}")
     derivation = locator.get("derivation", "direct_geometry")
@@ -382,6 +384,7 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
     spec = json.loads(input_bytes)
     input_format = spec["format"]
     _require(input_format in ("datacenter-atlas-update-input-v1", "datacenter-atlas-update-input-v2"), "unsupported update format")
+    is_v2 = input_format == "datacenter-atlas-update-input-v2"
     actions = [item["project_stable_key"] for group in ("additions", "status_updates", "status_corrections", "context_updates", "withdrawals") for item in spec.get(group, [])]
     _require(len(actions) == len(set(actions)), "a project may occur in only one action per update")
     updated = _date(spec["updated_at"])
@@ -494,7 +497,7 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
                 evidence_row["project_ids_json"] = _json(sorted(set(json.loads(evidence_row["project_ids_json"])) | {pid}))
         else:
             geometry_fields["geometry_evidence_id"] = associate(locator["source_id"], pid, "geometry")
-            if input_format == "datacenter-atlas-update-input-v2":
+            if is_v2:
                 identity_ids = locator.get("identity_source_ids", [])
                 _require(isinstance(identity_ids, list) and all(isinstance(value, str) and value in sources for value in identity_ids)
                          and len(identity_ids) == len(set(identity_ids)),
@@ -507,7 +510,7 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
             name=_text(item["name"], "project name"), country=_text(item["country"], "country"), country_iso_a2=iso,
             last_observed_physical_status=status["value"], status_as_of=status["as_of"], status_method=status_method,
             status_evidence_id=associate(status["source_id"], pid, status_role),
-            verification_posture=(PROJECT_RECORD_POSTURE if status["value"] in PLANNED_STATUSES else "authoritative_physical_observation_plus_reviewed_site_locator"),
+            verification_posture=(PROJECT_RECORD_POSTURE if status["value"] in PLANNED_STATUSES else PHYSICAL_OBSERVATION_POSTURE),
             independent_imagery_verification="false", imagery_review_outcome="not_reviewed",
             development_type="unknown", development_type_unknown_reason="not established by selected evidence",
             operating_model="unknown", operating_model_unknown_reason="not established by selected evidence",
@@ -640,6 +643,7 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
                           "geometry_evidence_id": members[0]["geometry_evidence_id"],
                           "displacement_metres": round(displacement, 1)})
 
+    promoted_site_ids = set()
     changes = [(item, False) for item in spec.get("status_updates", [])]
     changes += [(item, True) for item in spec.get("status_corrections", [])]
     for item, correction in changes:
@@ -662,11 +666,19 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
             _require(_date(status["as_of"]) > _date(row["status_as_of"]), "status refresh must be newer than existing observation")
         _text(item.get("identity_review"), "status identity review")
         _text(item.get("successor_review"), "later-status review")
+        if "name" in item:
+            _require(is_v2, "changing the project name on a status action requires v2")
+            row["name"] = _text(item["name"], "project name")
         row.update(last_observed_physical_status=status["value"], status_as_of=status["as_of"],
                    status_evidence_id=associate(status["source_id"], row["project_id"], status_role),
                    status_source_url=sources[status["source_id"]]["source_url"], status_method=status_method)
         if status["value"] in PLANNED_STATUSES:
             row["verification_posture"] = PROJECT_RECORD_POSTURE
+        elif (is_v2 and row["verification_posture"] == PROJECT_RECORD_POSTURE
+              and row["geometry_use_scope"] in REVIEWED_LOCATOR_SCOPES
+              and status["value"] in OBSERVED_STATUSES | {LifecycleStatus.COMPLETED.value}):
+            row["verification_posture"] = PHYSICAL_OBSERVATION_POSTURE
+            promoted_site_ids.add(row["site_id"])
 
     contextualized = []
     for item in spec.get("context_updates", []):
@@ -763,7 +775,7 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
         site["statuses_json"] = _json(sorted({row["last_observed_physical_status"] for row in members}))
         if any(row["verification_posture"] == PROJECT_RECORD_POSTURE for row in members):
             site["verification_posture"] = PROJECT_RECORD_POSTURE
-        if has_consolidation:
+        if has_consolidation or site["site_id"] in promoted_site_ids:
             postures = {row["verification_posture"] for row in members}
             site["verification_posture"] = next(iter(postures)) if len(postures) == 1 else "mixed_review_postures"
     counts = {
