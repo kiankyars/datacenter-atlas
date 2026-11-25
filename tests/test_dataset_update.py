@@ -11,6 +11,7 @@ from pathlib import Path
 import runpy
 import shutil
 import tempfile
+from types import SimpleNamespace
 import unittest
 from unittest.mock import patch
 from uuid import NAMESPACE_URL, uuid5
@@ -2206,6 +2207,107 @@ class MetricDateCorrectionTests(unittest.TestCase):
                    if row["project_id"] == self.project["project_id"])
         self.correction.update(replaces_observation=json.loads(row["power_observations_json"])[0], as_of_date="2025-11-11")
         with self.assertRaisesRegex(UpdateError, "different evidence capture"):
+            self.payloads()
+
+
+class OperatingModelUpdateTests(unittest.TestCase):
+    write = DatasetUpdateTests.write
+    payloads = DatasetUpdateTests.payloads
+
+    def setUp(self):
+        DatasetUpdateTests.setUp(self)
+        self.spec["format"] = "datacenter-atlas-update-input-v2"
+        self.key = self.spec["additions"][0]["project_stable_key"]
+        self.sheet = {
+            **self.sources["sources"][0], "id": "sheet", "title": "Facility service sheet",
+            "kind": "company_facility_page", "source_url": "https://example.org/facilities",
+            "published_at": None, "content_hash": hashlib.sha256(b"facility service sheet").hexdigest(),
+            "summary": "The operator offers rack colocation at Example campus and Second campus.",
+        }
+        self.sources["sources"].append(self.sheet)
+        self.action = {"project_stable_key": self.key, "operating_model": "colocation", "source_id": "sheet",
+                       "identity_review": "The sheet lists rack colocation at the named Example campus."}
+        self.spec["operating_model_updates"] = [self.action]
+
+    def test_existing_and_new_projects_retain_scope_sources_and_status(self):
+        self.spec.pop("operating_model_updates")
+        self.spec["additions"][0]["context_source_ids"] = ["sheet"]
+        self.write()
+        first = self.root / "2026-10-13-first"
+        build_update(self.input, first, root=self.root)
+        original = public_site.load_atlas(public_site._load_version(first), "https://example.org/")
+        before = next(p for p in original.projects if p["project_stable_key"] == self.key)
+        eid = next(e["evidence_id"] for e in original.evidence if e["source_url"] == self.sheet["source_url"])
+        self.sheet["reuse_evidence_id"] = eid
+
+        new_key = "curated:second-campus:construction"
+        addition = self.spec["additions"][0]
+        addition.update(project_stable_key=new_key, physical_site_stable_key="curated:second-campus",
+                        site_name="Second campus", name="Second campus construction", context_source_ids=[])
+        addition["locator"]["geometry"]["coordinates"] = [-99.0, 30.2]
+        self.spec.update(base_dataset=first.name, base_manifest_sha256=hashlib.sha256((first / "manifest.json").read_bytes()).hexdigest(),
+                         operating_model_updates=[self.action, {**self.action, "project_stable_key": new_key,
+                             "identity_review": "The sheet also lists the service at Second campus."}])
+        self.write()
+        out = self.root / "2026-10-13-next"
+        manifest = build_update(self.input, out, root=self.root)
+        self.assertEqual(manifest, validate_update(self.input, out, root=self.root))
+        atlas = public_site.load_atlas(public_site._load_version(out), "https://example.org/")
+        project = atlas.project_by_id[before["project_id"]]
+        second = next(p for p in atlas.projects if p["project_stable_key"] == new_key)
+        for row in (project, second):
+            self.assertEqual(row["operating_model"], "colocation")
+            self.assertIsNone(row["operating_model_unknown_reason"])
+            self.assertEqual(row["operating_model_evidence_id"], eid)
+        for field in before.keys() - {"operating_model", "operating_model_unknown_reason", "operating_model_evidence_id"}:
+            self.assertEqual(before[field], project[field], field)
+        evidence = atlas.evidence_by_id[eid]
+        self.assertEqual(set(evidence["roles"]), {*original.evidence_by_id[eid]["roles"], "operating_model"})
+        self.assertEqual(set(evidence["project_ids"]), {project["project_id"], second["project_id"]})
+        self.assertEqual(len(atlas.evidence), len(original.evidence))
+        report = json.loads((out / "selection-report.json").read_bytes())
+        self.assertEqual(report["refreshed_projects"], [])
+        self.assertEqual(report["operating_model_updates"], [
+            {"project_stable_key": key, "operating_model": "colocation", "evidence_id": eid}
+            for key in sorted((self.key, new_key))
+        ])
+        facts = public_site._project_facts(SimpleNamespace(vocabulary=public_site.Vocabulary({}), atlas=atlas),
+                                           project, public_site._EvidenceAnchors(project["evidence_ids"]))
+        self.assertIn(f'href="#evidence-{eid}"', dict(facts)["Operating model"])
+
+        self.spec.update(base_dataset=out.name, base_manifest_sha256=hashlib.sha256((out / "manifest.json").read_bytes()).hexdigest(),
+                         additions=[], operating_model_updates=[{**self.action, "operating_model": "retail_colocation"}])
+        with self.assertRaisesRegex(UpdateError, "already established"):
+            self.payloads()
+
+    def test_invalid_duplicate_or_conflicting_updates_fail(self):
+        for changes, message in [
+            ({"operating_model": "unknown"}, "known model"), ({"operating_model": "colo"}, "known model"),
+            ({"project_stable_key": "missing"}, "non-withdrawn project"), ({"source_id": "missing"}, "reviewed source"),
+            ({"identity_review": ""}, "evidence scope"), ({"evidence_id": "injected"}, "requires project_stable_key"),
+        ]:
+            with self.subTest(changes=changes), self.assertRaisesRegex(UpdateError, message):
+                self.spec["operating_model_updates"] = [{**self.action, **changes}]
+                self.payloads()
+        for model in ("colocation", "wholesale_colocation"):
+            with self.subTest(model=model), self.assertRaisesRegex(UpdateError, "duplicate or conflicting"):
+                self.spec["operating_model_updates"] = [self.action, {**self.action, "operating_model": model}]
+                self.payloads()
+        self.spec["operating_model_updates"] = [self.action]
+        self.sheet["kind"] = "map"
+        with self.assertRaisesRegex(UpdateError, "primary facility or project evidence"):
+            self.payloads()
+        self.spec["format"] = "datacenter-atlas-update-input-v1"
+        with self.assertRaisesRegex(UpdateError, "v2 action list"):
+            self.payloads()
+
+    def test_model_cannot_be_assigned_to_a_withdrawn_project(self):
+        with (BASE / "projects.csv").open() as f:
+            original = next(csv.DictReader(f))
+        key = original["project_stable_key"]
+        self.spec["withdrawals"] = [{"project_stable_key": key}]
+        self.spec["operating_model_updates"] = [{**self.action, "project_stable_key": key}]
+        with self.assertRaisesRegex(UpdateError, "non-withdrawn project"):
             self.payloads()
 
 

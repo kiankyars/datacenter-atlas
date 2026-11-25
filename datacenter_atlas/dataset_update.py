@@ -19,7 +19,7 @@ from pathlib import Path
 from urllib.parse import urlsplit
 from uuid import NAMESPACE_URL, uuid5
 
-from .models import LifecycleStatus
+from .models import LifecycleStatus, OperatingModel
 from .public_site import CDLA_LICENSE_FILE, CDLA_PERMISSIVE, validate_dataset
 from .verified_construction_core import (
     EFFICIENCY_METRICS, ENERGY_METRICS, POWER_METRICS, VerifiedConstructionCoreError, _validate_typed_observation,
@@ -782,9 +782,36 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
             associate(source_id, row["project_id"], "context:" + item["context_kind"])
         contextualized.append(key)
 
+    withdrawal_keys = {item["project_stable_key"] for item in spec.get("withdrawals", [])}
+    model_actions = spec.get("operating_model_updates", [])
+    _require(isinstance(model_actions, list) and (not model_actions or is_v2),
+             "operating model updates require a v2 action list")
+    model_updates = []
+    for item in model_actions:
+        _require(isinstance(item, dict) and set(item) == {
+            "project_stable_key", "operating_model", "source_id", "identity_review",
+        }, "operating model update requires project_stable_key, operating_model, source_id and identity_review")
+        key = _text(item["project_stable_key"], "operating model project")
+        _require(key in by_key and key not in withdrawal_keys, "operating model update needs a non-withdrawn project")
+        row = by_key[key]
+        _require(row["operating_model"] == OperatingModel.UNKNOWN and not row["operating_model_evidence_id"],
+                 "operating model already established; duplicate or conflicting update")
+        model = _text(item["operating_model"], "operating model")
+        _require(model in set(OperatingModel) - {OperatingModel.UNKNOWN}, "operating model must be a known model")
+        _text(item["identity_review"], "operating model evidence scope")
+        source_id = _text(item["source_id"], "operating model source")
+        _require(source_id in sources, "operating model update needs a reviewed source")
+        _require(sources[source_id]["kind"] in {
+            "operator_website", "company_facility_page", "company_facility_specification", "company_disclosure",
+            "regulatory_filing", "government_record", "government_permit", "government_planning_record",
+            "government_environmental_document", "government_notice", "government_registry", "court_record",
+        }, "operating model update needs primary facility or project evidence")
+        evidence_id = associate(source_id, row["project_id"], "operating_model")
+        row.update(operating_model=model, operating_model_unknown_reason="", operating_model_evidence_id=evidence_id)
+        model_updates.append({"project_stable_key": key, "operating_model": model, "evidence_id": evidence_id})
+
     corrected_metrics, metric_targets = [], set()
     metric_fields = {"power_observations_json", "annual_energy_observations_json", "efficiency_observations_json"}
-    withdrawal_keys = {item["project_stable_key"] for item in spec.get("withdrawals", [])}
     for item in spec.get("metric_date_corrections", []):
         _require(isinstance(item, dict) and set(item) <= {
             "project_stable_key", "field", "replaces_observation", "as_of_date", "source_id", "reason", "identity_review",
@@ -957,6 +984,8 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
         report["added_projects"] = [item["project_stable_key"] for item in spec.get("additions", [])]
     if contextualized:
         report["context_enriched_projects"] = sorted(contextualized)
+    if model_updates:
+        report["operating_model_updates"] = sorted(model_updates, key=lambda item: item["project_stable_key"])
     if corrected:
         report["corrected_locators"] = sorted(corrected, key=lambda entry: entry["site_id"])
     if corrected_metrics:

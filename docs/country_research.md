@@ -55,6 +55,13 @@ capacity stage and the facility or phase covered in `notes`. A reported single v
 and `planned`. Portfolio totals, ownership-share figures and unspecified MW belong in source
 notes until a source identifies the facility-level quantity.
 
+Use `operating_model_updates` in a v2 update when primary evidence identifies the operating
+model of a specific project whose model is unknown. Each entry takes `project_stable_key`,
+`operating_model`, `source_id` and an `identity_review` explaining how the source supports
+that model at the named property or phase. For example, an operator’s facility sheet offering
+rack space to customers supports `colocation`. The action also works on a project admitted
+in the same update. A previously published source can be cited again using its original capture.
+
 Take each location from what the operator, developer, landlord or a public authority publishes:
 their own coordinates, addresses, site plans or maps, or permit, planning, cadastral, parcel and
 address records. Do not copy coordinates from map apps or facility directories whose terms forbid
