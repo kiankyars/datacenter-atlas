@@ -2000,5 +2000,94 @@ class MetricDateCorrectionTests(unittest.TestCase):
             self.payloads()
 
 
+class PowerObservationTests(unittest.TestCase):
+    write = DatasetUpdateTests.write
+    payloads = DatasetUpdateTests.payloads
+
+    def setUp(self):
+        DatasetUpdateTests.setUp(self)
+        self.spec["format"] = "datacenter-atlas-update-input-v2"
+        self.project_key = self.spec["additions"][0]["project_stable_key"]
+        self.action = {
+            "project_stable_key": self.project_key, "source_id": "work", "metric": "critical_it_mw",
+            "stage": "planned", "low": 2.5, "base": 2.5, "high": 2.5, "unit": "MW", "method": "reported",
+            "confidence": 0.99, "as_of_date": "2026-09-20", "target_date": None,
+            "notes": "The developer reports 2.5 MW of planned IT capacity for the project.",
+        }
+        self.sources["sources"][0]["summary"] += " The project has 2.5 MW planned IT capacity as of September 20."
+        self.spec["power_observations"] = [self.action]
+
+    def test_power_on_new_and_existing_projects_preserves_status_and_prior_observations(self):
+        with (BASE / "projects.csv").open() as f:
+            original = next(row for row in csv.DictReader(f) if json.loads(row["power_observations_json"]))
+        old = json.loads(original["power_observations_json"])
+        key = original["project_stable_key"]
+        self.spec["power_observations"].append({**self.action, "project_stable_key": key})
+        self.write()
+        out = self.root / "out"
+        manifest = build_update(self.input, out, root=self.root)
+        self.assertEqual(validate_update(self.input, out, root=self.root), manifest)
+        with (out / "projects.csv").open() as f:
+            rows = {r["project_stable_key"]: r for r in csv.DictReader(f)}
+        added = rows[self.project_key]
+        ref = added["status_evidence_id"]
+        expected = {k: v for k, v in self.action.items() if k not in {"project_stable_key", "source_id"}}
+        expected["evidence_id"] = ref
+        self.assertEqual(json.loads(added["power_observations_json"]), [expected])
+        self.assertEqual(json.loads(rows[key]["power_observations_json"]), [*old, expected])
+        self.assertEqual(added["power_unknown_reason"], "")
+        self.assertEqual(rows[key]["power_unknown_reason"], "")
+        for field in original.keys() - {"power_observations_json", "power_unknown_reason", "status_age_days_at_review"}:
+            self.assertEqual(rows[key][field], original[field], field)
+        with (out / "evidence.csv").open() as f:
+            source = next(r for r in csv.DictReader(f) if r["evidence_id"] == ref)
+        self.assertIn("typed_metric:critical_it_mw", json.loads(source["roles_json"]))
+        self.assertIn("physical_status", json.loads(source["roles_json"]))
+        self.assertEqual(set(json.loads(source["project_ids_json"])), {added["project_id"], original["project_id"]})
+        report = json.loads((out / "selection-report.json").read_bytes())
+        self.assertEqual([a["project_stable_key"] for a in report["added_power_observations"]], [self.project_key, key])
+        self.assertNotIn(key, report["refreshed_projects"])
+        provenance = json.loads((out / "review-provenance.json").read_bytes())
+        self.assertEqual(provenance["update"]["power_observations"], self.spec["power_observations"])
+
+        self.spec.update(base_dataset="out", base_manifest_sha256=hashlib.sha256((out / "manifest.json").read_bytes()).hexdigest(),
+                         additions=[], power_observations=[self.action])
+        with self.assertRaisesRegex(UpdateError, "duplicate or conflicting"):
+            self.payloads()
+
+    def test_different_values_or_sources_collide_for_the_same_project_metric_stage_and_dates(self):
+        self.sources["sources"].append({**self.sources["sources"][0], "id": "other", "source_url": "https://example.org/other"})
+        self.spec["power_observations"].append({**self.action, "source_id": "other", "low": 3, "base": 3, "high": 3})
+        with self.assertRaisesRegex(UpdateError, "duplicate or conflicting"):
+            self.payloads()
+        self.spec["power_observations"][1]["as_of_date"] = "2026-09-21"
+        self.payloads()
+
+    def test_invalid_units_scope_intervals_and_date_are_rejected(self):
+        for changes, error in [
+            ({"stage": "unknown"}, "known stage"), ({"metric": "power_mw"}, "metric/unit"),
+            ({"unit": "MVA"}, "metric/unit"), ({"high": 1}, "interval"), ({"confidence": True}, "confidence"),
+            ({"as_of_date": "2026-09-22"}, "postdates its source"), ({"source_id": "missing"}, "reviewed source"),
+            ({"project_stable_key": "absent"}, "non-withdrawn project"), ({"notes": ""}, "scope"),
+            ({"evidence_id": "unreviewed"}, "source_id"),
+        ]:
+            with self.subTest(changes=changes), self.assertRaisesRegex(UpdateError, error):
+                self.spec["power_observations"] = [{**self.action, **changes}]
+                self.payloads()
+
+    def test_undated_page_needs_a_dated_statement_for_the_observation(self):
+        power = {**self.sources["sources"][0], "id": "spec", "source_url": "https://example.org/spec", "published_at": None}
+        self.sources["sources"].append(power)
+        self.action["source_id"] = "spec"
+        with self.assertRaisesRegex(UpdateError, "explicit observation date"):
+            self.payloads()
+        power.update(source_observation_date=self.action["as_of_date"], source_observation_date_precision="day",
+                     date_semantics="The facility specification explicitly dates its capacity statement.")
+        self.payloads()
+        self.spec["format"] = "datacenter-atlas-update-input-v1"
+        with self.assertRaisesRegex(UpdateError, "v2 action list"):
+            self.payloads()
+
+
 if __name__ == "__main__":
     unittest.main()

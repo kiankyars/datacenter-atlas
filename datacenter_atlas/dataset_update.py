@@ -20,6 +20,7 @@ from uuid import NAMESPACE_URL, uuid5
 
 from .models import LifecycleStatus
 from .public_site import validate_dataset
+from .verified_construction_core import POWER_METRICS, VerifiedConstructionCoreError, _validate_typed_observation
 
 
 class UpdateError(ValueError):
@@ -208,6 +209,32 @@ def _status_metadata(value):
     if value == LifecycleStatus.PERMITTED.value:
         return "authoritative_construction_permit", "permit"
     return "authoritative_physical_status_update", "physical_status"
+
+
+def _power_observation(item, source, details):
+    _require("evidence_id" not in item, "power observation must cite source_id")
+    observation = {key: value for key, value in item.items() if key not in {"project_stable_key", "source_id"}}
+    observation["evidence_id"] = source["evidence_id"]
+    try:
+        _validate_typed_observation(observation, POWER_METRICS)
+    except (VerifiedConstructionCoreError, TypeError) as exc:
+        raise UpdateError(f"invalid power observation: {exc}") from exc
+    _text(observation["notes"], "power observation scope")
+    _require(observation["stage"] != "unknown" and observation["method"] != "unknown",
+             "power observation needs a known stage and method")
+    observed = _date(observation["as_of_date"])
+    if observation["target_date"] is not None:
+        _date(observation["target_date"])
+    if source.get("published_at"):
+        _require(observed <= _date(source["published_at"]), "power observation postdates its source")
+    else:
+        _require(details.get("source_observation_date") == observation["as_of_date"]
+                 and details.get("source_observation_date_precision") == "day",
+                 "undated power source needs an explicit observation date")
+        _text(details.get("date_semantics"), "power source observation date semantics")
+    retrieved = datetime.fromisoformat(source["retrieved_at"].replace("Z", "+00:00")).date()
+    _require(observed <= retrieved, "power observation postdates its capture")
+    return observation
 
 
 def _site_from_project(project, name):
@@ -740,6 +767,26 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
                                   "previous_as_of_date": original.get("as_of_date"), "as_of_date": item["as_of_date"],
                                   "previous_evidence_id": original.get("evidence_id"), "evidence_id": source["evidence_id"]})
 
+    added_power = []
+    power_actions = spec.get("power_observations", [])
+    _require(isinstance(power_actions, list) and (not power_actions or is_v2), "power observations require a v2 action list")
+    for item in power_actions:
+        _require(isinstance(item, dict), "power observation must be an action object")
+        key = _text(item.get("project_stable_key"), "power observation project")
+        _require(key in by_key and key not in withdrawal_keys, "power observation needs a non-withdrawn project")
+        source_id = _text(item.get("source_id"), "power observation source")
+        _require(source_id in sources, "power observation needs a reviewed source")
+        row = by_key[key]
+        observation = _power_observation(item, sources[source_id], source_details[source_id])
+        observations = json.loads(row["power_observations_json"])
+        identity = ("metric", "stage", "as_of_date", "target_date")
+        _require(not any(all(old.get(k) == observation[k] for k in identity) for old in observations),
+                 "duplicate or conflicting power observation for the same metric, stage and dates")
+        associate(source_id, row["project_id"], "typed_metric:" + observation["metric"])
+        row["power_observations_json"] = _json([*observations, observation])
+        row["power_unknown_reason"] = ""
+        added_power.append({"project_stable_key": key, **{k: observation[k] for k in (*identity, "evidence_id")}})
+
     withdrawn = []
     for item in spec.get("withdrawals", []):
         key = item["project_stable_key"]
@@ -825,6 +872,8 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
     if corrected_metrics:
         report["corrected_metric_observations"] = sorted(
             corrected_metrics, key=lambda entry: (entry["project_stable_key"], entry["field"], entry["observation_index"]))
+    if added_power:
+        report["added_power_observations"] = added_power
     if has_consolidation:
         report.update(source_record_resolutions=inherited_resolutions,
                       consolidation_policy=inherited_report.get("consolidation_policy", ""),

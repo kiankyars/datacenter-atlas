@@ -40,6 +40,14 @@ selected incorrectly, correct the existing record using the dated source stateme
 affected metric, `metric_date_corrections` must match the complete prior observation and change
 only its date and evidence reference; its value, stage and scope remain unchanged.
 
+In a v2 update, add facility-level power figures to `power_observations`. Give each entry its
+`project_stable_key`, reviewed `source_id`, and the typed observation fields from
+`power_observations_json`, omitting `evidence_id`. Record the source's observation date, the
+capacity stage and the facility or phase covered in `notes`. A reported single value has equal
+`low`, `base` and `high` values in MW. For example, planned IT capacity uses `critical_it_mw`
+and `planned`. Portfolio totals, ownership-share figures and unspecified MW belong in source
+notes until a source identifies the facility-level quantity.
+
 Take each location from what the operator, developer, landlord or a public authority publishes:
 their own coordinates, addresses, site plans or maps, or permit, planning, cadastral, parcel and
 address records. Do not copy coordinates from map apps or facility directories whose terms forbid
