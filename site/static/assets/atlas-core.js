@@ -1340,6 +1340,7 @@
   // Canonical pages of the licence codes used in evidence records. Codes that
   // are not listed (custom or descriptive terms) stay plain text.
   var LICENSE_URLS = {
+    'CDLA-Permissive-2.0': 'https://cdla.dev/permissive-2-0/',
     'ODbL-1.0': 'https://opendatacommons.org/licenses/odbl/1-0/',
     'CC-BY-4.0': 'https://creativecommons.org/licenses/by/4.0/',
     'CC-BY-3.0': 'https://creativecommons.org/licenses/by/3.0/',

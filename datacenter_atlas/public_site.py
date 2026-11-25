@@ -191,6 +191,8 @@ ODBL = {
     "scope": "Geometries whose geometry evidence row has license ODbL-1.0 (derived from OpenStreetMap).",
 }
 OSM_COPYRIGHT_URL = "https://www.openstreetmap.org/copyright"
+CDLA_PERMISSIVE = "CDLA-Permissive-2.0"
+CDLA_LICENSE_FILE = f"{CDLA_PERMISSIVE}.txt"
 THIRD_PARTY_TERMS = (
     "Third-party facts, titles, URLs and geometries keep their source terms (each evidence record's license "
     "and attribution)."
@@ -208,6 +210,7 @@ WAYBACK_PREFIX = "https://web.archive.org/web/"
 METRO_RLIS_LICENSE_URL = "https://rlisdiscovery.oregonmetro.gov/pages/open-database-license"
 # Licence codes recorded on evidence rows that have a canonical terms page.
 LICENSE_URLS = {
+    CDLA_PERMISSIVE: "https://cdla.dev/permissive-2-0/",
     "ODbL-1.0": "https://opendatacommons.org/licenses/odbl/1-0/",
     "CC-BY-4.0": "https://creativecommons.org/licenses/by/4.0/",
     "CC BY 4.0": "https://creativecommons.org/licenses/by/4.0/",
@@ -370,6 +373,7 @@ DOWNLOAD_INFO = {
         "Original research notes retained with the archived data.",
     ),
     "ATTRIBUTION.txt": ("Text", "text/plain", "Source attribution and third-party terms."),
+    CDLA_LICENSE_FILE: ("Text", "text/plain", "Complete licence for source data marked CDLA-Permissive-2.0."),
     "manifest.json": ("JSON", "application/json", "File sizes and SHA-256 hashes of the source files."),
     "manifest.sha256": ("Text", "text/plain", "SHA-256 of manifest.json."),
     "map.html": ("HTML", "text/html", "Archived offline map."),
@@ -4003,6 +4007,12 @@ def _datapackage(context: _Context, atlas: Atlas, blobs: Mapping[str, bytes]) ->
     config, version = context.config, atlas.version
     files = {record.name: record for record in version.files}
     licenses = _package_licenses(context)
+    if CDLA_LICENSE_FILE in files:
+        licenses.append({
+            "name": CDLA_PERMISSIVE,
+            "path": CDLA_LICENSE_FILE,
+            "title": "Source data whose evidence records specify CDLA Permissive 2.0",
+        })
     resources = [
         _table_resource(context, atlas, file_name, files[file_name], licenses)
         for file_name in TABLE_FILES if file_name in files
@@ -6188,6 +6198,16 @@ def _attribution_page(context: _Context) -> _Page:
     path = "about/attribution/index.html"
     root = _relative_root(path)
     current = context.current
+    cdla_credits = sorted({
+        item["attribution"] for item in context.atlas.evidence if item.get("license") == CDLA_PERMISSIVE
+    })
+    cdla_notice = ""
+    if cdla_credits:
+        license_url = _dated_download_url(context, current, CDLA_LICENSE_FILE, root)
+        cdla_notice = (
+            f'<p>Data under CDLA Permissive 2.0 are credited to {_e("; ".join(cdla_credits))}. '
+            f'When sharing these data, include the <a href="{_e(license_url)}">full licence text</a>.</p>'
+        )
     statements = _license_statements(item.get("license") for item in context.atlas.evidence)
     statements_html = ""
     if statements:
@@ -6205,6 +6225,7 @@ def _attribution_page(context: _Context) -> _Page:
         "attribution. The Atlas links to sources and does not redistribute third-party documents or imagery.</p>",
         f'<p>Geometries derived from OpenStreetMap are © {_external_link(OSM_COPYRIGHT_URL, "OpenStreetMap contributors")}, '
         f'available under the {_external_link(ODBL["url"], ODBL["name"])}.</p>',
+        cdla_notice,
         '<section class="callout" aria-labelledby="legal-notice"><h2 id="legal-notice">Legal notice</h2>'
         f'{context.legal_notice_html}</section>',
         statements_html,

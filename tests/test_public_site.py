@@ -1219,12 +1219,41 @@ class SourceLicenseTests(unittest.TestCase):
         metro_terms = "https://rlisdiscovery.oregonmetro.gov/pages/open-database-license"
         for label, url in [
             ("CC BY 4.0", "https://creativecommons.org/licenses/by/4.0/"),
+            ("CDLA-Permissive-2.0", "https://cdla.dev/permissive-2-0/"),
             (f"Metro RLIS Open Database End User License Agreement. {metro_terms}", metro_terms),
         ]:
             with self.subTest(label=label):
                 scan = PageScan()
                 scan.feed(public_site._license_link(label))
                 self.assertIn(("a", "href", url), scan.links)
+
+    def test_cdla_text_and_source_credit_travel_with_the_version(self):
+        filename = "CDLA-Permissive-2.0.txt"
+        text = (ROOT / "datacenter_atlas" / "licenses" / filename).read_bytes()
+        with tempfile.TemporaryDirectory() as directory:
+            base = Path(directory)
+            root = make_fixture_root(base)
+            version = add_published_fixture(root)
+            rows = read_csv(version / "evidence.csv")
+            rows[0].update(license="CDLA-Permissive-2.0", attribution="Foundation & provider")
+            _write_csv(version / "evidence.csv", EVIDENCE_FIELDS, rows)
+            (version / filename).write_bytes(text)
+            _reseal(version, add=(filename,))
+            out = base / "site"
+            public_site.build_site(out, root=root)
+
+            for name in ("latest", version.name):
+                downloads = out / "downloads" / name
+                self.assertEqual((downloads / filename).read_bytes(), text)
+                with zipfile.ZipFile(downloads / f"datacenter-atlas-{name}.zip") as archive:
+                    self.assertEqual(archive.read(filename), text)
+                self.assertIn(filename, (downloads / "SHA256SUMS").read_text())
+                licenses = read_json(downloads / "datapackage.json")["licenses"]
+                self.assertIn(filename, {entry["path"] for entry in licenses})
+            self.assertFalse((out / "downloads" / FIXTURE_PREVIEW / filename).exists())
+            page = (out / "about/attribution/index.html").read_text()
+            self.assertIn("Foundation &amp; provider", page)
+            self.assertIn(f'downloads/{version.name}/{filename}"', page)
 
 
 class FixtureBuildTests(unittest.TestCase):

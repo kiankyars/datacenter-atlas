@@ -20,7 +20,7 @@ from urllib.parse import urlsplit
 from uuid import NAMESPACE_URL, uuid5
 
 from .models import LifecycleStatus
-from .public_site import validate_dataset
+from .public_site import CDLA_LICENSE_FILE, CDLA_PERMISSIVE, validate_dataset
 from .verified_construction_core import POWER_METRICS, VerifiedConstructionCoreError, _validate_typed_observation
 
 
@@ -947,9 +947,13 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
                       consolidation_policy=inherited_report.get("consolidation_policy", ""),
                       decisions=inherited_report.get("decisions", {}))
     attribution = (base_path / "ATTRIBUTION.txt").read_text()
-    attribution += "\nSources added in " + updated.isoformat() + ":\n" + "\n".join(
-        f"{row['publisher']}: {row['title']} — {row['source_url']} ({row['license']})" for row in sources.values()
-    ) + "\n"
+    source_notices = []
+    for row in sources.values():
+        notice = f"{row['publisher']}: {row['title']} — {row['source_url']} ({row['license']})"
+        if row["license"] == CDLA_PERMISSIVE:
+            notice += f" — {row['attribution']}. Full licence in {CDLA_LICENSE_FILE}."
+        source_notices.append(notice)
+    attribution += "\nSources added in " + updated.isoformat() + ":\n" + "\n".join(source_notices) + "\n"
     payloads = {name: _csv_bytes(sorted(rows, key=lambda row: row[next(iter(row))]), [field["name"] for field in schema["tables"][name]["fields"]]) for name, rows in tables.items()}
     payloads.update({
         "schema.json": _bytes(schema), "selection-report.json": _bytes(report),
@@ -958,6 +962,8 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
         "ATTRIBUTION.txt": attribution.encode(),
         "README.md": (f"# Data Center Atlas — {updated.isoformat()}\n\n{len(sites)} sites in {counts['countries']} countries.\n\nEach status retains its observation date. This update does not reverify every inherited record.\nEarlier observations and correction history are preserved in the base dataset.\n\nAtlas-authored structure and annotations: CC BY 4.0. Third-party source facts retain their source terms; see ATTRIBUTION.txt.\n").encode(),
     })
+    if CDLA_LICENSE_FILE in base["files"] or any(row["license"] == CDLA_PERMISSIVE for row in evidence):
+        payloads[CDLA_LICENSE_FILE] = (Path(__file__).parent / "licenses" / CDLA_LICENSE_FILE).read_bytes()
     if has_consolidation:
         for name in ("source-records.json", "identity-mapping.json"):
             _require(name in base["files"], f"consolidated base is missing {name}")

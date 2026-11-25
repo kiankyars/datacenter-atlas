@@ -461,6 +461,7 @@ test('sitesToCsv writes the documented columns and parses back exactly', () => {
 });
 
 test('licence links: known codes only; OpenStreetMap credit detection', () => {
+  assert.equal(Core.licenseUrl('CDLA-Permissive-2.0'), 'https://cdla.dev/permissive-2-0/');
   assert.equal(Core.licenseUrl('ODbL-1.0'), 'https://opendatacommons.org/licenses/odbl/1-0/');
   assert.equal(Core.licenseUrl(' CC-BY-4.0 '), 'https://creativecommons.org/licenses/by/4.0/');
   assert.equal(Core.licenseUrl('CC-BY-SA-2.0'), 'https://creativecommons.org/licenses/by-sa/2.0/');

@@ -82,6 +82,26 @@ class DatasetUpdateTests(unittest.TestCase):
         with self.assertRaisesRegex(UpdateError, "not reproducible"):
             validate_update(self.input, out, root=self.root)
 
+    def test_cdla_source_includes_license_text_and_credit_in_later_snapshots(self):
+        filename = "CDLA-Permissive-2.0.txt"
+        self.assertNotIn(filename, self.payloads()[0])
+        self.sources["sources"][0].update(license="CDLA-Permissive-2.0", attribution="Foundation and provider")
+        first = self.root / "first"
+        self.write()
+        build_update(self.input, first, root=self.root)
+        expected = (ROOT / "datacenter_atlas" / "licenses" / filename).read_bytes()
+        self.assertEqual(hashlib.sha256(expected).hexdigest(), "4531a67d443284d93ffed0803df5b10634aff21c3d77e381f2d48af01d875868")
+        self.assertEqual((first / filename).read_bytes(), expected)
+        self.assertIn(f"Foundation and provider. Full licence in {filename}", (first / "ATTRIBUTION.txt").read_text())
+
+        self.spec.update(base_dataset="first", base_manifest_sha256=hashlib.sha256((first / "manifest.json").read_bytes()).hexdigest())
+        self.spec["additions"][0].update(physical_site_stable_key="curated:another-site", project_stable_key="curated:another-site:construction")
+        self.spec["additions"][0]["locator"]["geometry"]["coordinates"] = [-99.0, 30.2]
+        self.sources["sources"][0].update(license="all-rights-reserved", source_url="https://example.org/another-site")
+        payloads, manifest = self.payloads()
+        self.assertEqual(payloads[filename], expected)
+        self.assertEqual(manifest["files"][filename]["sha256"], hashlib.sha256(expected).hexdigest())
+
     def test_refresh_preserves_old_evidence_and_rejects_backdating(self):
         original = next(csv.DictReader(io.StringIO((BASE / "projects.csv").read_text())))
         self.spec["status_updates"] = [{
