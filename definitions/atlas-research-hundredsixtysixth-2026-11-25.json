@@ -1,0 +1,315 @@
+{
+  "format": "datacenter-atlas-update-input-v1",
+  "updated_at": "2026-11-25",
+  "output": "verified_construction_core/2026-11-25-research-hundredsixtysixth",
+  "base_dataset": "verified_construction_core/2026-11-25-research-hundredsixtyfifth",
+  "base_manifest_sha256": "dc62f070c80911044afc380a70f41cc8010a5162b36c6afbb262565e632fea45",
+  "source_files": [
+    {
+      "path": "sources/research-countries-2026-11-25-hundredsixtysixth-primary-sources.json",
+      "sha256": "7d81e07f23edf3cb560c74895ad7a26992d5e387c1d6870a491fe6f3b5b8099e"
+    }
+  ],
+  "additions": [
+    {
+      "physical_site_stable_key": "curated:sba-edge-sao-paulo-jose-abrantes",
+      "project_stable_key": "curated:sba-edge-sao-paulo-jose-abrantes:existing-operations",
+      "site_name": "SBA Edge São Paulo (former DC Matrix), Rua José Abrantes 186",
+      "name": "SBA Edge São Paulo — existing colocation operations",
+      "country": "Brazil",
+      "country_iso_a2": "BR",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-10-06",
+        "source_id": "br166-megaport-sba",
+        "summary": "Megaport added service at SBA Edge São Paulo on October 6, 2026. SBA Edge identifies the host site as its operating commercial colocation facility."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -46.717376,
+            -23.646578
+          ]
+        },
+        "source_id": "br166-ibge-matrix-186",
+        "identity_source_ids": [
+          "br166-megaport-sba",
+          "br166-sba-matrix",
+          "br166-prodesp-dc-matrix"
+        ],
+        "scope": "project_locator",
+        "scope_class": "government_address_point",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "IBGE_CNEFE_original_civic_address_60818599",
+        "precision": "Original census address point for the named Matrix establishment at Rua José Abrantes 186, São Paulo. SIRGAS 2000 to WGS 84 (EPSG operation 15894) preserves the published numbers.",
+        "identity_review": "Compared 1,347 complete baseline site geometries, 1,465 projects, 231 source records and both sets of 231 identity mappings and decisions using SBA, Matrix, José Abrantes, the CEP and national address ID. The only Matrix name hit is an unrelated building in London. Equinix SP1 is the nearest existing site, 13.894 km away. The census names Matrix at the published house number, corroborated by the state contract and the operator’s acquisition history.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "IBGE assigns the original-address geocoding level and reports no measured horizontal accuracy for this individual record."
+      },
+      "roles": [
+        {
+          "party": "SBA Edge",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "br166-sba-sao-paulo"
+        }
+      ],
+      "context_source_ids": [
+        "br166-megaport-sba",
+        "br166-sba-sao-paulo",
+        "br166-sba-matrix",
+        "br166-prodesp-dc-matrix"
+      ],
+      "distinctness_review": "Compared 1,347 complete baseline site geometries, 1,465 projects, 231 source records and both sets of 231 identity mappings and decisions using SBA, Matrix, José Abrantes, the CEP and national address ID. The only Matrix name hit is an unrelated building in London. Equinix SP1 is the nearest existing site, 13.894 km away. The census names Matrix at the published house number, corroborated by the state contract and the operator’s acquisition history.",
+      "successor_review": "Reviewed the current operator facility and institutional profiles and the network provider’s dated service listing through November 25. No later original closure or superseding physical status was identified.",
+      "scoped_project_details": {
+        "former_name": "DC Matrix",
+        "matrix_acquisition_year": 2022,
+        "commercial_address": "Rua José Abrantes 186, Santo Amaro, São Paulo, SP, 04756-010",
+        "facility_floor_area_m2": 4000,
+        "active_racks": "more than 1,000",
+        "facility_power_capacity": "4 MW, operator-stated power capacity with no disclosed IT-load classification."
+      }
+    },
+    {
+      "project_stable_key": "curated:antel-massera-pando:existing-operations",
+      "physical_site_stable_key": "curated:antel-massera-pando",
+      "site_name": "Antel Datacenter Internacional Ing. José Luis Massera, Pando",
+      "name": "Antel Datacenter Internacional Ing. José Luis Massera, Pando — existing commercial operations",
+      "country": "Uruguay",
+      "country_iso_a2": "UY",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-11-10",
+        "source_id": "uy166-pando-presidency-status",
+        "summary": "The Presidency reports that Antel operates its existing data centre at Parque Industrial y Tecnológico de Pando."
+      },
+      "locator": {
+        "source_id": "uy166-pando-community-campus",
+        "identity_source_ids": [
+          "uy166-pando-operator",
+          "uy166-pando-presidency-status"
+        ],
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -55.9468809,
+            -34.72542655
+          ]
+        },
+        "scope": "campus_locator",
+        "scope_class": "community_mapped_named_data_center_campus_representative_point",
+        "authority": "community_mapped",
+        "method": "openstreetmap_named_campus_polygon_bbox_center_verified_inside_polygon",
+        "derivation": "direct_geometry",
+        "precision": "Representative point inside the contributor-mapped Antel campus. It locates the named establishment. It has no surveyed accuracy and does not represent the building, a cadastral boundary or unit B/01.",
+        "identity_review": "The operator’s full Massera facility name and Parque Industrial de Pando location match the independently named OSM industrial-campus way. The government confirms Pando’s operating host. Padrón 9702 covers a larger industrial park; its geometry and the internal building feature are not used as the locator.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The OpenStreetMap feature supplies no surveyed horizontal accuracy or numeric uncertainty."
+      },
+      "context_source_ids": [
+        "uy166-pando-operator",
+        "uy166-pando-presidency-status"
+      ],
+      "roles": [
+        {
+          "party": "Antel",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "uy166-pando-operator"
+        }
+      ],
+      "distinctness_review": "Searches for Antel, Pando, Massera and the map-object ID covered all 1,347 sites, 1,465 projects, 231 imported source records and both 231-entry mapping arrays. The nearest existing site geometry is Google Canelones Uruguay Data Center, 10,784 metres from the mapped Pando campus. The separate building feature with the operator and facility name describes the same host. Certification phases and the future Las Piedras project are outside this admission.",
+      "successor_review": "November 10 explicitly confirms continuing operation at Pando. The operator’s November 16 event discusses expansion and a separate Las Piedras project. It gives no commissioning date for additional computing capacity.",
+      "scoped_project_details": {
+        "location": "Parque Industrial de Pando, Canelones",
+        "commercial_scope": "Antel’s existing data-centre services at Pando.",
+        "geometry_scope": "Representative point inside the contributor-mapped Antel campus. It locates the named establishment. It has no surveyed accuracy and does not represent the building, a cadastral boundary or unit B/01."
+      }
+    },
+    {
+      "project_stable_key": "curated:cht-tainan-zhongshan:existing-operations",
+      "physical_site_stable_key": "curated:cht-tainan-zhongshan",
+      "site_name": "Chunghwa Telecom Tainan Zhongshan IDC",
+      "name": "Chunghwa Telecom Tainan Zhongshan IDC operations",
+      "country": "Taiwan",
+      "country_iso_a2": "TW",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-10-01",
+        "source_id": "east166-cht-zhongshan-notice",
+        "summary": "CHT identifies customers receiving Internet connectivity at its Tainan Zhongshan IDC in its October 1 notice. It markets the facility for commercial colocation."
+      },
+      "roles": [
+        {
+          "party": "Chunghwa Telecom Co., Ltd.",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "east166-cht-commercial-facility"
+        }
+      ],
+      "context_source_ids": [
+        "east166-cht-commercial-facility",
+        "east166-sgs-zhongshan-address"
+      ],
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            120.2112227,
+            22.9968198
+          ]
+        },
+        "source_id": "east166-tainan-doorplates",
+        "identity_source_ids": [
+          "east166-sgs-zhongshan-address",
+          "east166-cht-commercial-facility"
+        ],
+        "scope": "reviewed_site_locator",
+        "scope_class": "official_numbered_address_point",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "Tainan_City_doorplate_TWD97_TM2_zone_121_to_WGS84",
+        "precision": "Municipal address reference for the host building at 207 Zhongshan Road. The city positions doorplates manually and reports no per-record survey accuracy.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The released municipal address-point data provides no positional accuracy for this row. The feature locates the building address.",
+        "identity_review": "The CHT facility page and separate SGS verification table name the Tainan Zhongshan facility at the same address. The Tainan City register has a unique unsuffixed municipal doorplate for Zhongshan Road 207 in West Central District."
+      },
+      "distinctness_review": "The name, Zhongshan transliterations and local Chinese spellings were screened across all five identity layers. The two existing mapped sites in Taiwan are in Taipei and Taoyuan. All 1,347 complete site geometries were compared. The nearest is BDx TPE1 Data Center, No. 18 Wenhua East Road, Guishan, Taoyuan at 256.1 km. Independent facility names distinguish Tainan Zhongshan from Kaohsiung Zhongshan and Tainan Yongkang.",
+      "successor_review": "The public operator roster and service notices checked through November 25 continue to list the site. The notice establishes existing customers on October 1; the later date it schedules for network work is prospective.",
+      "scoped_project_details": {
+        "address": "207 Zhongshan Road, West Central District, Tainan",
+        "scope": "Existing commercial IDC operations at the named address."
+      }
+    },
+    {
+      "physical_site_stable_key": "curated:databank-ewr2-piscataway",
+      "project_stable_key": "curated:databank-ewr2-piscataway:existing-operations",
+      "site_name": "DataBank EWR2, 25 Corporate Place South, Piscataway",
+      "name": "DataBank EWR2 Piscataway — existing colocation operations",
+      "country": "United States",
+      "country_iso_a2": "US",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-10-29",
+        "source_id": "us166-megaport-nj",
+        "summary": "Megaport reports service added on 29 October 2026 at this established facility. This dates its network availability and supports existing commercial operations."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -74.45820463534504,
+            40.549212851615216
+          ]
+        },
+        "source_id": "us166-nad-nj",
+        "identity_source_ids": [
+          "us166-megaport-nj",
+          "us166-ewr2-op",
+          "us166-ewr2-owner"
+        ],
+        "scope": "project_locator",
+        "scope_class": "government_address_point",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "US_DOT_NAD_state_address_point_57071416",
+        "precision": "Native civic address point at the commercial facility’s exact street number. NAD placement: Structure - Rooftop.",
+        "identity_review": "Matched the commercial address and relevant predecessor names against 1,347 complete site geometries, 1,465 projects, 231 source records and both sets of 231 identity records and decisions. The nearest existing site is QTS Piscataway 1 (101 Possumtown Road, New Jersey) at 2.730 km. The separate QTS Piscataway 1 campus has address 101 Possumtown Road. DataBank acquired the previously leased EWR2 building and identifies Zayo’s zColo as its previous operator.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "No per-record horizontal accuracy is reported in the NAD address row."
+      },
+      "roles": [
+        {
+          "party": "DataBank",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "us166-ewr2-op"
+        },
+        {
+          "party": "DataBank",
+          "role": "owner",
+          "relationship_scope": "current",
+          "source_id": "us166-ewr2-owner"
+        }
+      ],
+      "context_source_ids": [
+        "us166-megaport-nj",
+        "us166-ewr2-op",
+        "us166-ewr2-owner"
+      ],
+      "distinctness_review": "Matched the commercial address and relevant predecessor names against 1,347 complete site geometries, 1,465 projects, 231 source records and both sets of 231 identity records and decisions. The nearest existing site is QTS Piscataway 1 (101 Possumtown Road, New Jersey) at 2.730 km. The separate QTS Piscataway 1 campus has address 101 Possumtown Road. DataBank acquired the previously leased EWR2 building and identifies Zayo’s zColo as its previous operator.",
+      "successor_review": "Reviewed the current operator profile, carrier listing and named facility history through November 25. No superseding original dated closure or distinct new construction was identified.",
+      "scoped_project_details": {
+        "critical_it_load_mw": 3,
+        "it_area_sq_ft": 22590,
+        "former_operator": "Zayo zColo",
+        "owner": "DataBank"
+      }
+    },
+    {
+      "physical_site_stable_key": "curated:csquare-sea2-south-180th-tukwila",
+      "project_stable_key": "curated:csquare-sea2-south-180th-tukwila:existing-operations",
+      "site_name": "Csquare SEA2, 6101 South 180th Street, Tukwila",
+      "name": "Csquare SEA2 Tukwila — existing colocation operations",
+      "country": "United States",
+      "country_iso_a2": "US",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-08-31",
+        "source_id": "us166-megaport-wa",
+        "summary": "Megaport reports service added on 31 August 2026 at this established facility. This dates its network availability and supports existing commercial operations."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -122.25651361399997,
+            47.44071764500006
+          ]
+        },
+        "source_id": "us166-nad-wa",
+        "identity_source_ids": [
+          "us166-megaport-wa",
+          "us166-sea2-op",
+          "us166-sea2-alias",
+          "us166-sea2-city"
+        ],
+        "scope": "project_locator",
+        "scope_class": "government_address_point",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "US_DOT_NAD_state_address_point_88013557",
+        "precision": "Native civic address point at the commercial facility’s exact street number. NAD placement: Unknown.",
+        "identity_review": "Matched the commercial address and relevant predecessor names against 1,347 complete site geometries, 1,465 projects, 231 source records and both sets of 231 identity records and decisions. The nearest existing site is Equinix SE4, 6906 South 204th Street, Kent, Washington at 2.165 km. The operator’s SEA2 and Megaport’s SEA2-A describe the same street address. Cogent crosswalks Cyxtera SE4 and distinguishes DataBank SEA2 and Centersquare SEA1-B on South 120th Place. The City’s historical permit identifies Cyxtera at number 6101. Equinix SE4 in Kent is unrelated to Cyxtera SE4.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "No per-record horizontal accuracy is reported in the NAD address row."
+      },
+      "roles": [
+        {
+          "party": "Csquare",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "us166-sea2-op"
+        }
+      ],
+      "context_source_ids": [
+        "us166-megaport-wa",
+        "us166-sea2-op",
+        "us166-sea2-alias",
+        "us166-sea2-city"
+      ],
+      "distinctness_review": "Matched the commercial address and relevant predecessor names against 1,347 complete site geometries, 1,465 projects, 231 source records and both sets of 231 identity records and decisions. The nearest existing site is Equinix SE4, 6906 South 204th Street, Kent, Washington at 2.165 km. The operator’s SEA2 and Megaport’s SEA2-A describe the same street address. Cogent crosswalks Cyxtera SE4 and distinguishes DataBank SEA2 and Centersquare SEA1-B on South 120th Place. The City’s historical permit identifies Cyxtera at number 6101. Equinix SE4 in Kent is unrelated to Cyxtera SE4.",
+      "successor_review": "Reviewed the current operator profile, carrier listing and named facility history through November 25. No superseding original dated closure or distinct new construction was identified.",
+      "scoped_project_details": {
+        "utility_power_mw": 8.6,
+        "operator_reported_area_sq_ft": 29279,
+        "former_operator": "Cyxtera SE4",
+        "operator_facility_code": "SEA2",
+        "network_provider_label": "SEA2-A"
+      }
+    }
+  ]
+}

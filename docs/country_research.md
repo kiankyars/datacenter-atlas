@@ -1308,6 +1308,14 @@ OPTAGE's OC1 facility in Osaka gained Megaport service on October 27. In Christc
 Environment Canterbury identifies Datacom's Gloucester Data Centre at 61–67
 Gloucester Street, linking the operator's address to the official civic point at 61.
 
+In Pando, Uruguay, Antel names its José Luis Massera campus inside the industrial
+park. Its locator uses the campus mapped by OpenStreetMap contributors. In São
+Paulo, Brazil's census address register identifies Matrix at Rua José Abrantes 186,
+the facility now operated by SBA Edge. In Tukwila, the operator's SEA2 facility and the
+former Cyxtera SE4 share the same address and site record. Tainan’s municipal
+register places Chunghwa Telecom’s Zhongshan IDC at 207 Zhongshan Road in
+West Central District.
+
 ## 25 October 2026
 
 `verified_construction_core/2026-10-25-research-sixtysecond` adds three commercial sites and
