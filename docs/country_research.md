@@ -68,6 +68,12 @@ explicit point, list reviewed documents that connect the facility to that addres
 parcel in `locator.identity_source_ids`. The builder links those documents to the
 project as identity evidence. The source of the coordinates belongs in `locator.source_id`.
 
+When two buildings or phases first enter the atlas together on one campus, give them separate
+project keys, status observations and a `site_identity_review` on each addition. Use one
+`physical_site_stable_key`, site name and country, and give every member the same explicit
+`campus_locator` with its full set of location evidence. Omit `existing_site_id` for a new
+campus. A later update can reference the published site ID and inherit its reviewed locator.
+
 `verified_construction_core/2026-10-29-research-hundredeighteenth` adds two sites and two projects:
 **932 sites and 1,000 projects in 87 countries**. CRA DC Tower Žižkov in Prague and STTGDC SIN6
 (STT Singapore 6) in Loyang record existing commercial data-centre operation.

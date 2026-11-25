@@ -13,6 +13,7 @@ import hashlib
 import io
 import json
 import math
+from collections import Counter
 from datetime import date, datetime
 from pathlib import Path
 from urllib.parse import urlsplit
@@ -441,7 +442,11 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
     baseline_projects = {row["project_id"]: copy.deepcopy(row) for row in projects}
     baseline_sites = copy.deepcopy(sites_by_key)
     baseline_evidence = {row["evidence_id"]: copy.deepcopy(row) for row in evidence}
-    expanded_site_keys = set()
+    additions = spec.get("additions", [])
+    addition_counts = Counter(item["physical_site_stable_key"] for item in additions)
+    expanded_site_keys = base_site_keys.intersection(addition_counts)
+    new_campus_keys = {key for key, count in addition_counts.items() if count > 1 and key not in base_site_keys}
+    new_campus_locators = {}
     evidence_by_id = {row["evidence_id"]: row for row in evidence}
     for source_id, source in sources.items():
         details = source_details[source_id]
@@ -480,19 +485,27 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
         row["project_ids_json"] = _json(sorted(set(json.loads(row["project_ids_json"])) | {project_id}))
         return identifier
 
-    for item in spec.get("additions", []):
+    for item in additions:
         key, site_key = item["project_stable_key"], item["physical_site_stable_key"]
         _require(key not in by_key, "duplicate project; use a status update for an existing project")
         existing_site = sites_by_key.get(site_key)
-        if existing_site:
-            _require(site_key in base_site_keys and item.get("existing_site_id") == existing_site["site_id"],
+        new_campus = site_key in new_campus_keys
+        if new_campus:
+            _require(is_v2, "admitting several projects on a new physical site requires v2")
+            _require("existing_site_id" not in item, "new campus members cannot specify an existing site ID")
+            _text(item.get("site_identity_review"), "new campus site identity review")
+            _require(item["locator"].get("scope") == "campus_locator" and "reuse_from_project_id" not in item["locator"],
+                     "new campus members require explicit campus locators")
+        elif existing_site:
+            _require(item.get("existing_site_id") == existing_site["site_id"],
                      "existing physical site requires an explicit matching base site ID")
             _text(item.get("site_identity_review"), "existing site identity review")
+        else:
+            _require(not item.get("existing_site_id"), "existing site ID does not resolve to the physical site key")
+        if existing_site:
             _require(all(item.get(field) == existing_site[target] for field, target in (
                 ("site_name", "name"), ("country", "country"), ("country_iso_a2", "country_iso_a2"))),
                 "existing site name and country must match")
-        else:
-            _require(not item.get("existing_site_id"), "existing site ID does not resolve to the physical site key")
         _text(item.get("distinctness_review"), "site distinctness review")
         _text(item.get("successor_review"), "later-status review")
         status, locator = item["status"], item["locator"]
@@ -508,7 +521,7 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
             geometry_fields = _point_locator(locator, sources, updated)
             geometry = locator["geometry"]
             uncertainty = locator.get("horizontal_uncertainty_metres")
-            if existing_site:
+            if existing_site and not new_campus:
                 _require(locator["scope"] == "campus_locator" and geometry == json.loads(existing_site["geometry_json"]),
                          "existing site addition must reuse its reviewed campus point")
                 _require((str(uncertainty) if uncertainty is not None else "") == existing_site["horizontal_uncertainty_metres"]
@@ -531,6 +544,11 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
                          "locator identity_source_ids must be a list of unique reviewed source IDs")
                 for source_id in identity_ids:
                     associate(source_id, pid, "context:identity")
+                if new_campus:
+                    identity_evidence = {associate(source_id, pid, "context:geometry_identity") for source_id in identity_ids}
+                    signature = (geometry_fields, identity_evidence)
+                    _require(new_campus_locators.setdefault(site_key, signature) == signature,
+                             "new campus members must share the same locator, provenance and identity evidence")
         row = {field["name"]: "[]" if field["logical_type"] == "json_array" else "" for field in schema["tables"]["projects.csv"]["fields"]}
         row.update(
             project_id=pid, project_stable_key=key, site_id=sid, physical_site_stable_key=site_key,
@@ -548,7 +566,7 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
             status_source_url=sources[status["source_id"]]["source_url"],
         )
         row.update(geometry_fields)
-        if existing_site:
+        if existing_site and not new_campus:
             locator_fields = (
                 "geometry_source_entity_kind", "geometry_derivation", "geometry_method", "geometry_scope_class",
                 "geometry_authority_class", "geometry_use_scope", "geometry_precision_scope",
@@ -570,7 +588,6 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
         projects.append(row)
         by_key[key] = row
         if existing_site:
-            expanded_site_keys.add(site_key)
             projection = _site_from_project(row, item["site_name"])
             for field, value in projection.items():
                 if field.endswith("_json") and field != "geometry_json":
@@ -581,7 +598,6 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
             sites_by_key[site_key] = site
 
     corrected = []
-    addition_sites = {item["physical_site_stable_key"] for item in spec.get("additions", [])}
     site_locator_fields = ("latitude", "longitude", "geometry_json", "geometry_type",
                            "horizontal_uncertainty_metres", "horizontal_uncertainty_unknown_reason")
     project_locator_fields = site_locator_fields + (
@@ -591,7 +607,7 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
     )
     for item in spec.get("locator_corrections", []):
         site_key = item["physical_site_stable_key"]
-        _require(site_key in base_site_keys and site_key not in addition_sites
+        _require(site_key in base_site_keys and site_key not in addition_counts
                  and site_key not in {entry["physical_site_stable_key"] for entry in corrected},
                  "a locator correction needs an existing site with no addition or other correction in the update")
         site = sites_by_key[site_key]
@@ -812,7 +828,7 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
         _require(int(row["status_age_days_at_review"]) >= 0, "base has observations after update date")
     for site in sites:
         members = [row for row in projects if row["site_id"] == site["site_id"]]
-        if site["physical_site_stable_key"] in expanded_site_keys:
+        if site["physical_site_stable_key"] in expanded_site_keys or site["physical_site_stable_key"] in new_campus_keys:
             site["project_count"] = str(len(members))
             site["independent_imagery_verification"] = str(all(row["independent_imagery_verification"] == "true" for row in members)).lower()
             postures = {row["verification_posture"] for row in members}
@@ -822,7 +838,7 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
         site["statuses_json"] = _json(sorted({row["last_observed_physical_status"] for row in members}))
         if any(row["verification_posture"] == PROJECT_RECORD_POSTURE for row in members):
             site["verification_posture"] = PROJECT_RECORD_POSTURE
-        if has_consolidation or site["site_id"] in promoted_site_ids:
+        if has_consolidation or site["site_id"] in promoted_site_ids or site["physical_site_stable_key"] in new_campus_keys:
             postures = {row["verification_posture"] for row in members}
             site["verification_posture"] = next(iter(postures)) if len(postures) == 1 else "mixed_review_postures"
     counts = {
@@ -856,7 +872,7 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
     schema.update(format="datacenter-atlas-tables-v1", observation_policy="Each status has its own observation date. Dataset updates do not renew older observations.")
     report = {
         "updated_at": updated.isoformat(), "lifecycle_reference_date": updated.isoformat(), "counts": counts,
-        "added_sites": [item["physical_site_stable_key"] for item in spec.get("additions", []) if item["physical_site_stable_key"] not in base_site_keys],
+        "added_sites": [key for key in addition_counts if key not in base_site_keys],
         "refreshed_projects": sorted(touched - set(withdrawn)), "withdrawn_projects": withdrawn,
         "withdrawal_note": _text(spec.get("withdrawal_note", "Unsupported construction selections are removed; no cancellation or other physical status is inferred."), "withdrawal note"),
         "base_dataset": spec["base_dataset"],

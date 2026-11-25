@@ -698,6 +698,111 @@ class DatasetUpdateTests(unittest.TestCase):
             self.payloads()
 
 
+class NewCampusAdmissionTests(unittest.TestCase):
+    write = DatasetUpdateTests.write
+    payloads = DatasetUpdateTests.payloads
+
+    def setUp(self):
+        DatasetUpdateTests.setUp(self)
+        self.spec["format"] = "datacenter-atlas-update-input-v2"
+        first = self.spec["additions"][0]
+        first["site_identity_review"] = "The first building is part of the named campus."
+        for name in ("survey", "address", "deed", "announcement"):
+            self.sources["sources"].append({**self.sources["sources"][0], "id": name,
+                                           "source_url": f"https://example.org/{name}"})
+        first["locator"].update(source_id="survey", identity_source_ids=["address", "deed"])
+        second = copy.deepcopy(first)
+        second.update(project_stable_key="curated:test-campus:phase2", name="Second building",
+                      site_identity_review="The announced second building shares the same campus parcel.")
+        second["status"].update(value="announced", as_of="2026-09-18", source_id="announcement",
+                                summary="The developer announced a second building on the campus.")
+        second["locator"]["identity_source_ids"].reverse()
+        self.spec["additions"].append(second)
+
+    def test_members_share_one_site_and_keep_their_own_evidence_and_dates(self):
+        payloads, manifest = self.payloads()
+        self.spec["additions"].reverse()
+        reversed_payloads, _ = self.payloads()
+        for filename in ("sites.csv", "sites.geojson", "projects.csv", "evidence.csv", "selection-report.json"):
+            self.assertEqual(payloads[filename], reversed_payloads[filename], filename)
+
+        key = "curated:test-campus"
+        def rows(name):
+            return list(csv.DictReader(io.StringIO(payloads[name].decode())))
+        site, = (r for r in rows("sites.csv") if r["physical_site_stable_key"] == key)
+        members = [r for r in rows("projects.csv") if r["site_id"] == site["site_id"]]
+        by_id = {r["project_id"]: r for r in members}
+        self.assertEqual(manifest["counts"]["physical_sites"], 200)
+        self.assertEqual((site["project_count"], len(members)), ("2", 2))
+        self.assertEqual(set(json.loads(site["project_ids_json"])), set(by_id))
+        self.assertEqual(set(json.loads(site["project_stable_keys_json"])), {r["project_stable_key"] for r in members})
+        self.assertEqual((site["oldest_status_as_of"], site["newest_status_as_of"]), ("2026-09-18", "2026-09-21"))
+        self.assertEqual(json.loads(site["statuses_json"]), ["announced", "site_preparation"])
+        self.assertEqual(site["verification_posture"], "mixed_review_postures")
+        feature, = (r for r in json.loads(payloads["sites.geojson"])["features"] if r["id"] == site["site_id"])
+        self.assertEqual(feature["properties"]["statuses"], ["announced", "site_preparation"])
+        self.assertEqual(feature["properties"]["project_count"], 2)
+        self.assertEqual(feature["geometry"], json.loads(site["geometry_json"]))
+        report = json.loads(payloads["selection-report.json"])
+        self.assertEqual(report["added_sites"], [key])
+        self.assertNotIn("expanded_sites", report)
+        evidence = {r["evidence_id"]: r for r in rows("evidence.csv")}
+        for r in members:
+            self.assertEqual(json.loads(evidence[r["status_evidence_id"]]["project_ids_json"]), [r["project_id"]])
+        locator_ids = []
+        for source in evidence.values():
+            if source["source_url"] in {"https://example.org/address", "https://example.org/deed"}:
+                self.assertIn("context:geometry_identity", json.loads(source["roles_json"]))
+                self.assertEqual(set(json.loads(source["project_ids_json"])), set(by_id))
+                locator_ids.append(source["evidence_id"])
+        self.assertEqual(len(locator_ids), 2)
+
+        # A later phase can inherit the complete locator from either original member.
+        out = self.root / "campus"
+        built = build_update(self.input, out, root=self.root)
+        self.assertEqual(validate_update(self.input, out, root=self.root), built)
+        action = self.spec["additions"][0]
+        action.update(project_stable_key="curated:test-campus:phase3", existing_site_id=site["site_id"])
+        self.spec.update(additions=[action], base_dataset="campus",
+                         base_manifest_sha256=hashlib.sha256((out / "manifest.json").read_bytes()).hexdigest())
+        for donor in members:
+            action["locator"] = {"reuse_from_project_id": donor["project_id"], "scope": "campus_locator",
+                                 "identity_review": "The third phase is on the same parcel.",
+                                 "geometry_evidence_id": donor["geometry_evidence_id"],
+                                 "geometry_identity_evidence_ids": locator_ids}
+            after, _ = self.payloads()
+            report = json.loads(after["selection-report.json"])
+            self.assertEqual((report["added_sites"], report["expanded_sites"]), ([], [key]))
+            self.assertTrue(all(len(json.loads(r["project_ids_json"])) == 3 for r in
+                                csv.DictReader(io.StringIO(after["evidence.csv"].decode())) if r["evidence_id"] in locator_ids))
+
+    def test_all_members_require_matching_identity_and_explicit_campus_provenance(self):
+        self.spec["format"] = "datacenter-atlas-update-input-v1"
+        with self.assertRaisesRegex(UpdateError, "requires v2"):
+            self.payloads()
+        self.spec["format"] = "datacenter-atlas-update-input-v2"
+        first, second = self.spec["additions"]
+        for item_change, locator_change, error in [
+            ({"site_identity_review": ""}, {}, "site identity review"),
+            ({"existing_site_id": "invented"}, {}, "existing site ID"),
+            ({"site_name": "Another estate"}, {}, "name and country"),
+            ({"country_iso_a2": "CA"}, {}, "name and country"),
+            ({}, {"scope": "project_locator"}, "explicit campus locators"),
+            ({}, {"reuse_from_project_id": "invented"}, "explicit campus locators"),
+            ({}, {"geometry": {"type": "Point", "coordinates": [-100.11, 30.2]}}, "same locator"),
+            ({}, {"source_id": "deed"}, "same locator"),
+            ({}, {"precision": "Different precision"}, "same locator"),
+            ({}, {"horizontal_uncertainty_metres": 50}, "same locator"),
+            ({}, {"identity_source_ids": ["address"]}, "same locator"),
+        ]:
+            modified = {**second, **item_change, "locator": {**second["locator"], **locator_change}}
+            for pair in ([first, modified], [modified, first]):
+                with self.subTest(changes=(item_change, locator_change), first=pair[0]["name"]):
+                    self.spec["additions"] = pair
+                    with self.assertRaisesRegex(UpdateError, error):
+                        self.payloads()
+
+
 class InheritedCampusLocatorTests(unittest.TestCase):
     """Exercise the actual legacy Shiroi polygon and evidence, not a reimported facsimile."""
 
