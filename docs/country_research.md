@@ -53,6 +53,11 @@ and [Overpass usage guidance](https://dev.overpass-api.de/overpass-doc/en/prefac
 Use `locator_corrections` to replace restricted map-service coordinates and imported town,
 county or state points as better documented facility locations become available.
 
+Use `datacenter-atlas-update-input-v2` for new updates. On a new project with an
+explicit point, list reviewed documents that connect the facility to that address or
+parcel in `locator.identity_source_ids`. The builder links those documents to the
+project as identity evidence. The source of the coordinates belongs in `locator.source_id`.
+
 `verified_construction_core/2026-10-29-research-hundredeighteenth` adds two sites and two projects:
 **932 sites and 1,000 projects in 87 countries**. CRA DC Tower Žižkov in Prague and STTGDC SIN6
 (STT Singapore 6) in Loyang record existing commercial data-centre operation.

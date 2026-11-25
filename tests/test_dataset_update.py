@@ -368,6 +368,40 @@ class DatasetUpdateTests(unittest.TestCase):
         validate_update(ROOT / "definitions/atlas-update-2026-10-13.json",
                         ROOT / "verified_construction_core/2026-10-13")
 
+    def test_point_addition_locator_identity_sources_are_associated_from_v2(self):
+        identity = {**self.sources["sources"][0], "id": "directory", "source_url": "https://example.org/directory"}
+        self.sources["sources"].append(identity)
+        addition = self.spec["additions"][0]
+        addition["locator"]["identity_source_ids"] = ["directory"]
+        project_id = str(uuid5(NAMESPACE_URL, addition["project_stable_key"]))
+        expected = [(["context:identity"], [project_id])]
+        for version, context_ids, expected_links in (
+            ("v1", [], []),
+            ("v2", [], expected),
+            ("v2", ["directory"], expected),
+        ):
+            with self.subTest(version=version, context_ids=context_ids):
+                self.spec["format"] = "datacenter-atlas-update-input-" + version
+                addition["context_source_ids"] = context_ids
+                payloads, _ = self.payloads()
+                rows = csv.DictReader(io.StringIO(payloads["evidence.csv"].decode()))
+                links = [(json.loads(row["roles_json"]), json.loads(row["project_ids_json"]))
+                         for row in rows if row["source_url"] == identity["source_url"]]
+                self.assertEqual(links, expected_links)
+
+    def test_v2_point_addition_validates_optional_locator_identity_sources(self):
+        self.spec["format"] = "datacenter-atlas-update-input-v2"
+        locator = self.spec["additions"][0]["locator"]
+        omitted, _ = self.payloads()
+        locator["identity_source_ids"] = []
+        empty, _ = self.payloads()
+        self.assertEqual(omitted["evidence.csv"], empty["evidence.csv"])
+        for invalid in ("work", None, ["work", "work"], [""], ["missing"], [1], [{}]):
+            with self.subTest(invalid=invalid):
+                locator["identity_source_ids"] = invalid
+                with self.assertRaisesRegex(UpdateError, "identity_source_ids"):
+                    self.payloads()
+
     def test_dated_media_observation_does_not_invent_publication_date(self):
         source = self.sources["sources"][0]
         source.update(published_at=None, source_observation_date="2026-09-21",

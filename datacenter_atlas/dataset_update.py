@@ -380,7 +380,8 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
     """Validate the update and return all output bytes, without writing anything."""
     input_bytes = input_path.read_bytes()
     spec = json.loads(input_bytes)
-    _require(spec["format"] == "datacenter-atlas-update-input-v1", "unsupported update format")
+    input_format = spec["format"]
+    _require(input_format in ("datacenter-atlas-update-input-v1", "datacenter-atlas-update-input-v2"), "unsupported update format")
     actions = [item["project_stable_key"] for group in ("additions", "status_updates", "status_corrections", "context_updates", "withdrawals") for item in spec.get(group, [])]
     _require(len(actions) == len(set(actions)), "a project may occur in only one action per update")
     updated = _date(spec["updated_at"])
@@ -493,6 +494,13 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
                 evidence_row["project_ids_json"] = _json(sorted(set(json.loads(evidence_row["project_ids_json"])) | {pid}))
         else:
             geometry_fields["geometry_evidence_id"] = associate(locator["source_id"], pid, "geometry")
+            if input_format == "datacenter-atlas-update-input-v2":
+                identity_ids = locator.get("identity_source_ids", [])
+                _require(isinstance(identity_ids, list) and all(isinstance(value, str) and value in sources for value in identity_ids)
+                         and len(identity_ids) == len(set(identity_ids)),
+                         "locator identity_source_ids must be a list of unique reviewed source IDs")
+                for source_id in identity_ids:
+                    associate(source_id, pid, "context:identity")
         row = {field["name"]: "[]" if field["logical_type"] == "json_array" else "" for field in schema["tables"]["projects.csv"]["fields"]}
         row.update(
             project_id=pid, project_stable_key=key, site_id=sid, physical_site_stable_key=site_key,
